@@ -1,0 +1,8 @@
+; app_helloaura.def
+
+LIBRARY  "app_core_helloaura"
+; For Win32 DLLs, only EXPORTs really required.
+
+EXPORTS
+app_core_helloaura_get_new_library
+

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+<Project>
+		<Option title="experience_lite" />
+		<Option pch_mode="2" />
+  		<Option compiler="gcc" />
+		<Build>
+			<Target title="basis">
+				<Option output="$(#time_dir)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(#time_dir)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(#time_dir)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option type="3" />
+		 		<Option compiler="gcc" />
+				<Option parameters=": app=app-core/uinteraction type=uinteraction locale=_std schema=_std install build_number=basis" />
+				<Option host_application="$(#time_dir)/x64/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option run_host_application_in_terminal="0" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-fPIC" />
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+				</Compiler>
+			</Target>
+			<Target title="install">
+				<Option output="$(#time_dir)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(#time_dir)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(#time_dir)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option type="3" />
+		 		<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+					<Add option="-DMEMDLEAK" />
+				</Compiler>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-std=c++17" />
+			<Add option="-fPIC" />
+			
+			<Add option="-fexceptions" />
+			<Add option="-fnon-call-exceptions" />
+			<Add option="-fno-pie" />
+			<Add option="-fno-stack-protector" />
+			<Add option="-Wno-pointer-arith" />
+			<Add option="-Wno-attributes" />
+			<Add option="-Winvalid-pch" />
+			<Add option="-Wno-conversion-null" />
+			<Add directory="." />
+			<Add directory="$(PROJECT_DIR)" />
+			<Add directory="$(#archive)" />
+			<Add directory="$(#config)" />
+			<Add directory="$(WORKSPACE_DIR)/../.." />
+			<Add directory="$(WORKSPACE_DIR)/../../inc" />
+			<Add directory="$(WORKSPACE_DIR)/../../include" />
+			<Add directory="$(WORKSPACE_DIR)/../../platform-linux" />
+			<Add directory="$(WORKSPACE_DIR)/../../app/_include" />
+			<Add directory="$(WORKSPACE_DIR)/../../app" />
+
+			<Add directory="$(#sensitive)/sensitive/include" />
+		</Compiler>
+		<Linker>
+			<Add option="-Wl,-rpath=\\$$$ORIGIN" />
+			<Add option="-laura" />
+			<Add option="-laxis" />
+			<Add option="-lbase" />
+			<Add option="-Wl,-z,defs" />
+			<Add directory="$(#time_dir)/x64/$(TARGET_NAME)" />
+		</Linker>
+		<ExtraCommands>
+			<Add before="../../platform-linux/stage/prepare_framework_h.sh $(PROJECT_DIR) $(TARGET_OBJECT_DIR)" />
+		</ExtraCommands>
+		<Unit filename="and_experience_lite.vcxproj" />
+		<Unit filename="framework.h">
+			<Option compile="1" />
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="user_button.cpp" />
+		<Unit filename="user_button.h" />
+		<Unit filename="user_control_box.cpp" />
+		<Unit filename="user_control_box.h" />
+		<Unit filename="experience_lite.h" />
+		<Unit filename="experience_lite_frame.cpp" />
+		<Unit filename="experience_lite_frame.h" />
+		<Unit filename="experience_lite_frame_001.cpp" />
+		<Unit filename="experience_lite_frame_001.h" />
+		<Unit filename="experience_lite_frame_002.cpp" />
+		<Unit filename="experience_lite_frame_002.h" />
+		<Unit filename="experience_lite_frame_005.cpp" />
+		<Unit filename="experience_lite_frame_005.h" />
+		<Unit filename="experience_lite_frame_008.cpp" />
+		<Unit filename="experience_lite_frame_008.h" />
+		<Unit filename="experience_lite_frame_011.cpp" />
+		<Unit filename="experience_lite_frame_011.h" />
+		<Unit filename="experience_lite_frame_013.cpp" />
+		<Unit filename="experience_lite_frame_013.h" />
+		<Unit filename="experience_lite_frame_Minimal001.cpp" />
+		<Unit filename="experience_lite_frame_Minimal001.h" />
+		<Unit filename="experience_lite_interaction.cpp" />
+		<Unit filename="experience_lite_interaction.h" />
+		<Unit filename="experience_lite_library.cpp" />
+		<Unit filename="experience_lite_library.h" />
+		<Unit filename="experience_lite_user_theme.cpp" />
+		<Unit filename="experience_lite_user_theme.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+			<envvars />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

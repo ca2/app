@@ -1,0 +1,4 @@
+LIBRARY  "audio_mmsystem"
+
+EXPORTS
+factory_exchange

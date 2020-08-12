@@ -1,0 +1,1933 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files\net">
+      <UniqueIdentifier>{ab3329cf-9ecc-4590-a567-9f22556c4d8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\axis">
+      <UniqueIdentifier>{c884c593-8d0f-465b-8314-98944d5dac4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net">
+      <UniqueIdentifier>{116e3076-c458-43fe-92e9-72e6aae3c491}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\http">
+      <UniqueIdentifier>{87154103-1603-4ede-93b7-a339452693d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets">
+      <UniqueIdentifier>{8fae7900-ce7c-490a-a003-21d7bbc52bba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\bsd">
+      <UniqueIdentifier>{aa2de5fd-433e-4c87-a975-f11c7df0e2a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\bsd\asynch_dns">
+      <UniqueIdentifier>{baf4bf79-0723-4aa5-9196-54f9af9dd6a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\bsd\basic">
+      <UniqueIdentifier>{7a21e308-ac3d-4e9c-baed-60bca85b09ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\bsd\internal">
+      <UniqueIdentifier>{4ff161c8-bc1d-4055-970d-44982ecbde11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\bsd\smtp">
+      <UniqueIdentifier>{1dedc2b1-d1f0-4908-99f2-09c8fd1ef98a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\bsd\sip">
+      <UniqueIdentifier>{f3eb02c4-8094-402d-881b-710f80d399a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\bsd\timer">
+      <UniqueIdentifier>{a1f3ff52-fcc1-408b-8341-a9f71dc4aa5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\bsd\webserver">
+      <UniqueIdentifier>{7778ba93-af59-4ce3-8697-5fb3fccc9ca2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\http">
+      <UniqueIdentifier>{a5c7501f-8541-45c3-a3a3-755c723b2e05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\http">
+      <UniqueIdentifier>{2451c210-f24a-4626-b8cc-97b3f5930555}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets">
+      <UniqueIdentifier>{176a1d43-41e0-46f2-8712-2fba8a448aac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\bsd">
+      <UniqueIdentifier>{337710ef-0295-4559-85f6-5d63ce2022cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\bsd\asynch_dns">
+      <UniqueIdentifier>{81f6d057-4560-4f85-9a5e-6b94d5484070}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\bsd\internal">
+      <UniqueIdentifier>{a6046340-d6ab-4917-8a48-caa83b44298c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\bsd\sip">
+      <UniqueIdentifier>{94f7a9a2-8c4d-47f1-be59-bca4e9a68f3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\bsd\smtp">
+      <UniqueIdentifier>{ce8e1910-fdab-4916-be09-39a3d446de5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\bsd\timer">
+      <UniqueIdentifier>{f004c46c-913f-44e3-8276-613682f04b0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\bsd\webserver">
+      <UniqueIdentifier>{cfa9b769-297b-4db9-98ca-510975595975}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\http">
+      <UniqueIdentifier>{16d3ab4a-a67a-4333-96da-7245b291e6e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\bsd\basic">
+      <UniqueIdentifier>{12411c8f-2a93-40cf-bb5e-14f2988930a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\programming">
+      <UniqueIdentifier>{d0b4c014-e341-4901-87ae-635655fd469d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\programming\javascript">
+      <UniqueIdentifier>{d0c7ea9a-6603-4e55-9f3c-47dc1f6beb7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\programming">
+      <UniqueIdentifier>{0c781238-460c-42fb-8480-ad29ea72ff6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\programming\javascript">
+      <UniqueIdentifier>{1523f2fe-95c5-4ef8-aeb6-44864f6d2cc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\axis\compress">
+      <UniqueIdentifier>{81b4689d-269d-4f05-8d03-9fd0d7fb0783}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\axis\compress\zip">
+      <UniqueIdentifier>{a8ba95fd-1ee1-4c54-885a-73221d29eba7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\filesystem">
+      <UniqueIdentifier>{e735cbc7-6be2-44c9-b19a-0c3d6ee00183}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\filesystem\fs">
+      <UniqueIdentifier>{ac8dd5af-8993-4120-b887-6a1e4eaaa29d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\axis\crypto">
+      <UniqueIdentifier>{827d6b98-e29f-4ba3-9835-3a7b78877deb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\filesystem">
+      <UniqueIdentifier>{22c285dd-ad96-4ecc-8b5f-c3b809e98645}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\filesystem\fs">
+      <UniqueIdentifier>{b19eccb3-0ff3-4b9c-b6de-ab7724054f1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\mail">
+      <UniqueIdentifier>{18e5190d-031e-4ad6-a338-9a3c09365a81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\mail">
+      <UniqueIdentifier>{680a0322-4659-4b9e-9c33-fd5c55060730}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\axis\install">
+      <UniqueIdentifier>{90021ec4-d01a-4f04-a062-a622ecf9d870}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\axis\axis">
+      <UniqueIdentifier>{5dc0d2bc-fc5d-4202-9b04-2343b93cccb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\axis\os">
+      <UniqueIdentifier>{9e92b674-0ae7-4e1e-bd86-d513ccacb6a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\axis\os\android">
+      <UniqueIdentifier>{1d998585-d816-43da-8e2f-dd16e84dde53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\axis\os\ansios">
+      <UniqueIdentifier>{d8fdcc30-b719-4944-8c43-76d53cfb6b94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\axis\geoip">
+      <UniqueIdentifier>{a1196ae1-643e-46d0-9f06-361c06e383d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\axis\node">
+      <UniqueIdentifier>{cbc7bdb2-868d-47ca-9594-7ff7e1135989}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\axis\node\android">
+      <UniqueIdentifier>{7e1d30ab-0995-45f2-b0b9-64e3a5d68c5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\axis\node\ansios">
+      <UniqueIdentifier>{69195050-6ed5-49b9-b26e-60f94ca26561}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics">
+      <UniqueIdentifier>{77a62835-eec4-4402-8c83-6e76b4a45e29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\visual">
+      <UniqueIdentifier>{9664df1f-ad34-48c6-b5d6-da6868f70346}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics">
+      <UniqueIdentifier>{f1b3691d-552d-4920-a0b6-6a011536c58e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\visual">
+      <UniqueIdentifier>{76550fd3-6119-42b3-b4f8-1fc25f9d98ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\http\webserver">
+      <UniqueIdentifier>{ec42121c-51b9-4fdd-a944-73a138916178}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\http\webserver">
+      <UniqueIdentifier>{b61f0f14-23c5-48cc-8816-99689890b656}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\base">
+      <UniqueIdentifier>{df5a8a68-274c-4fd3-8b02-5a2837bf1e2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\base">
+      <UniqueIdentifier>{6f80b300-33ea-4785-ad5c-1cbe0e30cace}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis">
+      <UniqueIdentifier>{225c8e24-bbc5-4bf4-9da8-92ec39a039ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\compress">
+      <UniqueIdentifier>{75053c2a-c9d5-43d3-aa2e-3bd3da3bccac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\compress\zip">
+      <UniqueIdentifier>{487ab119-db2e-4fdd-b0b1-3d12dad9dd07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\crypto">
+      <UniqueIdentifier>{3447641d-5c92-4366-adec-9adba60127e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\os">
+      <UniqueIdentifier>{245e3241-db5a-4886-814d-9434580575d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\os\android">
+      <UniqueIdentifier>{58b6201f-03a2-4896-ae5a-477d9ea6a138}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\os\ansios">
+      <UniqueIdentifier>{68334ac9-3045-461a-9922-b6f49f0a803d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\install">
+      <UniqueIdentifier>{3199e756-cf18-4f55-8ef4-e1ef783b0fda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\axis">
+      <UniqueIdentifier>{b15f9423-6971-4587-b04f-ca13192a9bcf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\geoip">
+      <UniqueIdentifier>{403c1ed8-0445-4993-8c2f-5ad393680969}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\node">
+      <UniqueIdentifier>{57540175-8b21-49ef-a8b9-0ccf5f3f4a56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\node\android">
+      <UniqueIdentifier>{8e87a155-a76c-44a0-8114-25921d3dd914}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\node\ansios">
+      <UniqueIdentifier>{a082445c-e80b-4002-8250-1fd29ecad1d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\axis\compress\bsdiff">
+      <UniqueIdentifier>{88278108-b038-46ac-83f3-76c91098bd7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\compress\bsdiff">
+      <UniqueIdentifier>{6fabeb5e-e915-44e7-bf8d-83d306caae72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\account">
+      <UniqueIdentifier>{26f038ab-32c4-4427-ac9c-28327cfe4906}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\axis\account">
+      <UniqueIdentifier>{dc227b1d-ec5c-47a2-ad78-290446c62dbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive">
+      <UniqueIdentifier>{3720e2ae-fc8c-4049-be3d-6960616d2669}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive\data">
+      <UniqueIdentifier>{c2632396-fa32-4ff4-baf6-ff2531410268}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive\datetime">
+      <UniqueIdentifier>{1a859d2b-d142-4063-970a-9ff5768d370b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive">
+      <UniqueIdentifier>{944b09dd-6b10-45c3-af11-f1f1949d45ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive\data">
+      <UniqueIdentifier>{f7ad2647-47bf-4d92-9059-f448632e2d7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive\datetime">
+      <UniqueIdentifier>{0cb59b7e-2810-4e45-a4c9-3aea7616f232}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\database">
+      <UniqueIdentifier>{a7546116-5d20-4a4e-b2ff-307fd83109dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\database">
+      <UniqueIdentifier>{fbc0b709-4da7-48e4-8f9f-885b9dda1c45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\database\database">
+      <UniqueIdentifier>{30ce828b-2bfd-456b-8638-5d6970ad1e6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\database\database">
+      <UniqueIdentifier>{c60f014d-0a72-4aae-a48f-55707b8d2163}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\database\simpledb">
+      <UniqueIdentifier>{7679c86e-8be4-40a6-820f-11014ef47c81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\database\simpledb">
+      <UniqueIdentifier>{134b881a-5baf-425b-9393-596ad7950f20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\database\sqlitedb">
+      <UniqueIdentifier>{5a7a1e86-39fd-44fc-96ed-e58681dfc351}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\database\sqlitedb">
+      <UniqueIdentifier>{8bcc8a4b-3d30-4fa2-959d-aa62d9eec869}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\filesystem\filesystem">
+      <UniqueIdentifier>{94b07492-0c09-4918-bcfd-0f563f2040e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\filesystem\filesystem">
+      <UniqueIdentifier>{606e8001-561a-41b9-b9ec-7cdf83c69696}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="net\net.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\net_net.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\net_url_departament.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\http_application.h">
+      <Filter>Header Files\net\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\http_get_socket.h">
+      <Filter>Header Files\net\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\http_http.h">
+      <Filter>Header Files\net\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\http_output_stream.h">
+      <Filter>Header Files\net\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\http_system.h">
+      <Filter>Header Files\net\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\asynch_dns\resolv_server.h">
+      <Filter>Header Files\net\sockets\bsd\asynch_dns</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\asynch_dns\resolv_socket.h">
+      <Filter>Header Files\net\sockets\bsd\asynch_dns</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\internal\SSLInitializer.h">
+      <Filter>Header Files\net\sockets\bsd\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http_client_socket.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http_debug_socket.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http_get_socket.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http_post_socket.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http_put_socket.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http_session.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http_socket.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http_tunnel.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\sockets.h">
+      <Filter>Header Files\net\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\sockets_http_batch_buffer.h">
+      <Filter>Header Files\net\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\sockets_http_buffer.h">
+      <Filter>Header Files\net\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\sockets_link_in_socket.h">
+      <Filter>Header Files\net\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\sockets_link_out_socket.h">
+      <Filter>Header Files\net\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\sockets_logger.h">
+      <Filter>Header Files\net\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\sockets_trace_logger.h">
+      <Filter>Header Files\net\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sip\sip_base.h">
+      <Filter>Header Files\net\sockets\bsd\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sip\sip_base_client_socket.h">
+      <Filter>Header Files\net\sockets\bsd\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sip\sip_callback.h">
+      <Filter>Header Files\net\sockets\bsd\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sip\sip_client.h">
+      <Filter>Header Files\net\sockets\bsd\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sip\sip_event.h">
+      <Filter>Header Files\net\sockets\bsd\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sip\sip_request.h">
+      <Filter>Header Files\net\sockets\bsd\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sip\sip_response.h">
+      <Filter>Header Files\net\sockets\bsd\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sip\sip_server.h">
+      <Filter>Header Files\net\sockets\bsd\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sip\sip_socket.h">
+      <Filter>Header Files\net\sockets\bsd\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sip\sip_tcp_client_socket.h">
+      <Filter>Header Files\net\sockets\bsd\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sip\sip_transaction.h">
+      <Filter>Header Files\net\sockets\bsd\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sip\sip_udp_client_socket.h">
+      <Filter>Header Files\net\sockets\bsd\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_listen_socket.h">
+      <Filter>Header Files\net\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_net.h">
+      <Filter>Header Files\net\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_sctp_socket.h">
+      <Filter>Header Files\net\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_socket.h">
+      <Filter>Header Files\net\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_socket_handler.h">
+      <Filter>Header Files\net\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_client_context.h">
+      <Filter>Header Files\net\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_client_context_map.h">
+      <Filter>Header Files\net\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_stream_socket.h">
+      <Filter>Header Files\net\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_sync_socket_handler.h">
+      <Filter>Header Files\net\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_tcp_socket.h">
+      <Filter>Header Files\net\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_tls_socket.h">
+      <Filter>Header Files\net\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_udp_socket.h">
+      <Filter>Header Files\net\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\smtp\smtp_socket.h">
+      <Filter>Header Files\net\sockets\bsd\smtp</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\smtp\smtpd_socket.h">
+      <Filter>Header Files\net\sockets\bsd\smtp</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\timer\Event.h">
+      <Filter>Header Files\net\sockets\bsd\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\timer\EventHandler.h">
+      <Filter>Header Files\net\sockets\bsd\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\timer\EventTime.h">
+      <Filter>Header Files\net\sockets\bsd\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\timer\IEventHandler.h">
+      <Filter>Header Files\net\sockets\bsd\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\timer\IEventOwner.h">
+      <Filter>Header Files\net\sockets\bsd\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\webserver\ajp13.h">
+      <Filter>Header Files\net\sockets\bsd\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\webserver\Ajp13Socket.h">
+      <Filter>Header Files\net\sockets\bsd\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\webserver\AjpBaseSocket.h">
+      <Filter>Header Files\net\sockets\bsd\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\webserver\http_base_socket.h">
+      <Filter>Header Files\net\sockets\bsd\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\webserver\httpd_socket.h">
+      <Filter>Header Files\net\sockets\bsd\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sockets.h">
+      <Filter>Header Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sockets_config.h">
+      <Filter>Header Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sockets_sockets.h">
+      <Filter>Header Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\net_address.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\net_email.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\net_email_address.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="programming\javascript\javascript.h">
+      <Filter>Header Files\programming\javascript</Filter>
+    </ClInclude>
+    <ClInclude Include="programming\javascript\javascript_functions.h">
+      <Filter>Header Files\programming\javascript</Filter>
+    </ClInclude>
+    <ClInclude Include="programming\javascript\javascript_tinyjs.h">
+      <Filter>Header Files\programming\javascript</Filter>
+    </ClInclude>
+    <ClInclude Include="programming\javascript\javascript_tinyjs_functions.h">
+      <Filter>Header Files\programming\javascript</Filter>
+    </ClInclude>
+    <ClInclude Include="net\net_url_domain.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\compress\zip\zip_internal.h">
+      <Filter>Source Files\axis\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\compress\zip\api.h">
+      <Filter>Header Files\axis\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\compress\zip\crypt.h">
+      <Filter>Header Files\axis\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\compress\zip\File.h">
+      <Filter>Header Files\axis\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\compress\zip\InFile.h">
+      <Filter>Header Files\axis\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\compress\zip\ioapi.h">
+      <Filter>Header Files\axis\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\compress\zip\iowin32.h">
+      <Filter>Header Files\axis\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\compress\zip\memory_buffer.h">
+      <Filter>Header Files\axis\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\compress\zip\unzip.h">
+      <Filter>Header Files\axis\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\compress\zip\Util.h">
+      <Filter>Header Files\axis\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\compress\zip\zip.h">
+      <Filter>Header Files\axis\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\compress\compress.h">
+      <Filter>Header Files\axis\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem.h">
+      <Filter>Header Files\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\fs\fs.h">
+      <Filter>Header Files\filesystem\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\fs\fs_data.h">
+      <Filter>Header Files\filesystem\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\fs\fs_fs.h">
+      <Filter>Header Files\filesystem\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\fs\fs_ifs.h">
+      <Filter>Header Files\filesystem\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\fs\fs_ifs_file.h">
+      <Filter>Header Files\filesystem\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\fs\fs_item.h">
+      <Filter>Header Files\filesystem\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\fs\fs_item_array.h">
+      <Filter>Header Files\filesystem\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\fs\fs_native_fs.h">
+      <Filter>Header Files\filesystem\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\fs\fs_remote_native_file.h">
+      <Filter>Header Files\filesystem\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\fs\fs_remote_native_fs.h">
+      <Filter>Header Files\filesystem\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\fs\fs_set.h">
+      <Filter>Header Files\filesystem\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\compress\compress_compress.h">
+      <Filter>Header Files\axis\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\crypto\crypto.h">
+      <Filter>Header Files\axis\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\crypto\crypto_crypto.h">
+      <Filter>Header Files\axis\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="net\mail\mail.h">
+      <Filter>Header Files\net\mail</Filter>
+    </ClInclude>
+    <ClInclude Include="net\mail\mail_pop3.h">
+      <Filter>Header Files\net\mail</Filter>
+    </ClInclude>
+    <ClInclude Include="net\mail\pop3_socket.h">
+      <Filter>Header Files\net\mail</Filter>
+    </ClInclude>
+    <ClInclude Include="net\mail\simple_pop3.h">
+      <Filter>Header Files\net\mail</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\os.h">
+      <Filter>Header Files\axis\os</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\android\android_window_impl.h">
+      <Filter>Header Files\axis\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\android\android.h">
+      <Filter>Header Files\axis\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\install\install.h">
+      <Filter>Header Files\axis\install</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\install\install_canvas.h">
+      <Filter>Header Files\axis\install</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\install\install_cube_run.h">
+      <Filter>Header Files\axis\install</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\install\install_focus.h">
+      <Filter>Header Files\axis\install</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\install\install_install.h">
+      <Filter>Header Files\axis\install</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\install\install_installer.h">
+      <Filter>Header Files\axis\install</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\install\install_small_bell.h">
+      <Filter>Header Files\axis\install</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\install\install_trace.h">
+      <Filter>Header Files\axis\install</Filter>
+    </ClInclude>
+    <ClInclude Include="net\net_ip_enum.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\net_port_forward.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http_listener.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\http_status.h">
+      <Filter>Header Files\net\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\http_signal.h">
+      <Filter>Header Files\net\http</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\android\android_cross_win_file.h">
+      <Filter>Header Files\axis\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\android\android_cross_win_gdi.h">
+      <Filter>Header Files\axis\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\android\android_cross_win_gdi_internal.h">
+      <Filter>Header Files\axis\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\android\android_file.h">
+      <Filter>Header Files\axis\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\android\android_file_watcher.h">
+      <Filter>Header Files\axis\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\android\android_graphics.h">
+      <Filter>Header Files\axis\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\android\android_internal.h">
+      <Filter>Header Files\axis\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\android\android_process.h">
+      <Filter>Header Files\axis\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\android\android_window_android.h">
+      <Filter>Header Files\axis\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\android\android_android.h">
+      <Filter>Header Files\axis\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\ansios\ansios.h">
+      <Filter>Header Files\axis\os\ansios</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\geoip\geoip.h">
+      <Filter>Header Files\axis\geoip</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\geoip\geoip_city.h">
+      <Filter>Header Files\axis\geoip</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\geoip\geoip_internal.h">
+      <Filter>Header Files\axis\geoip</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\geoip\geoip_update.h">
+      <Filter>Header Files\axis\geoip</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\geoip\global.h">
+      <Filter>Header Files\axis\geoip</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\fs\fs_link.h">
+      <Filter>Header Files\filesystem\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\node.h">
+      <Filter>Header Files\axis\node</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\android\android.h">
+      <Filter>Header Files\axis\node\android</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\android\android_factory_exchange.h">
+      <Filter>Header Files\axis\node\android</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\android\android_file_set.h">
+      <Filter>Header Files\axis\node\android</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\android\android_ip_enum.h">
+      <Filter>Header Files\axis\node\android</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\android\android_port_forward.h">
+      <Filter>Header Files\axis\node\android</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\ansios\ansios.h">
+      <Filter>Header Files\axis\node\ansios</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\android\android_crypto.h">
+      <Filter>Header Files\axis\node\android</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_visual.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_imaging.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_api.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_font.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_font_central.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_graphics_extension.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_image_list.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_dib.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_buffered_graphics.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_dib_pal.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_FreeImageFileProc.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_fastblur.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_water_routine.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_rgb_quad_array.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_glyph_set.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_glyph.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_const.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="net\net_sockets.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\webserver\webserver_http_cookie.h">
+      <Filter>Header Files\net\http\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\webserver\webserver_http_form.h">
+      <Filter>Header Files\net\http\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\webserver\webserver_http_request.h">
+      <Filter>Header Files\net\http\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\webserver\webserver_http_response.h">
+      <Filter>Header Files\net\http\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\webserver\webserver_http_transaction.h">
+      <Filter>Header Files\net\http\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\http_listener.h">
+      <Filter>Header Files\net\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_server_context.h">
+      <Filter>Header Files\net\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_server_context_map.h">
+      <Filter>Header Files\net\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sockets_bsd.h">
+      <Filter>Header Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\axis\axis.h">
+      <Filter>Header Files\axis\axis</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\axis\axis_application.h">
+      <Filter>Header Files\axis\axis</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\axis\axis_c.h">
+      <Filter>Header Files\axis\axis</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\axis\axis_c_cpp.h">
+      <Filter>Header Files\axis\axis</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\axis\axis_c_objc.h">
+      <Filter>Header Files\axis\axis</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\axis\axis_c_objcpp.h">
+      <Filter>Header Files\axis\axis</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\axis\axis_c_winrt.h">
+      <Filter>Header Files\axis\axis</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\axis\axis_os.h">
+      <Filter>Header Files\axis\axis</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\axis\axis_session.h">
+      <Filter>Header Files\axis\axis</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\axis\axis_simple_app.h">
+      <Filter>Header Files\axis\axis</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\axis\axis_static_start.h">
+      <Filter>Header Files\axis\axis</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\axis\axis_system.h">
+      <Filter>Header Files\axis\axis</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\compress\zip\zipImpl.h">
+      <Filter>Header Files\axis\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\base\sockets_base_socket.h">
+      <Filter>Header Files\net\sockets\base</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\base\sockets_base_socket_handler.h">
+      <Filter>Header Files\net\sockets\base</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\compress\bzip_stream.h">
+      <Filter>Header Files\axis\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\compress\gzip_stream.h">
+      <Filter>Header Files\axis\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\compress\bsdiff\libbsdiff.h">
+      <Filter>Header Files\axis\compress\bsdiff</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\account\account.h">
+      <Filter>Header Files\axis\account</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\account\account_authentication_map.h">
+      <Filter>Header Files\axis\account</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\account\account_account.h">
+      <Filter>Header Files\axis\account</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\account\account_licensing.h">
+      <Filter>Header Files\axis\account</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\account\account_user.h">
+      <Filter>Header Files\axis\account</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\account\account_user_authentication.h">
+      <Filter>Header Files\axis\account</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\account\account_contact_list.h">
+      <Filter>Header Files\axis\account</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\account\account_user_set.h">
+      <Filter>Header Files\axis\account</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\account\account_usera.h">
+      <Filter>Header Files\axis\account</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\account\account_validate.h">
+      <Filter>Header Files\axis\account</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\data\data_simple_item.h">
+      <Filter>Header Files\primitive\data</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\data\data_tree.h">
+      <Filter>Header Files\primitive\data</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\data\data_tree_item.h">
+      <Filter>Header Files\primitive\data</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\datetime\datetime_departament.h">
+      <Filter>Header Files\primitive\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\datetime\datetime_value.h">
+      <Filter>Header Files\primitive\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="version.config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="version.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database_base.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database_change_event.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database_client.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database_database.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database_definition.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database_field_definition.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database_id.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database_key.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database_selection.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database_selection_item.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database_server.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database_set.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database_stringhelper.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database_template.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\aaa_want_to_remove_database_update_hint.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\db_long_set.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\db_server.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\db_set.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\db_str_set.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\db_stra_set.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\file_set.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\im_post.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_base.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_database.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_manager.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_record.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_result.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_server.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_service.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_session.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_set.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_simpledb.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_socket.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_socket_thread.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_table.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\veiev_post.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\sqlitedb\sqlitedb.h">
+      <Filter>Header Files\database\sqlitedb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\sqlitedb\sqlitedb_base.h">
+      <Filter>Header Files\database\sqlitedb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\sqlitedb\sqlitedb_set.h">
+      <Filter>Header Files\database\sqlitedb</Filter>
+    </ClInclude>
+    <ClInclude Include="net\net_email_departament.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\android\android_axis_dir.h">
+      <Filter>Header Files\axis\node\android</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\android\android_axis_file_system.h">
+      <Filter>Header Files\axis\node\android</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\filesystem_axis_application.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\filesystem_axis_system.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\filesystem_dir_axis_application.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\filesystem_dir_axis_system.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="net\net_net.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="net\net_url_departament.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\http_application.cpp">
+      <Filter>Source Files\net\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\http_get_socket.cpp">
+      <Filter>Source Files\net\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\http_output_stream.cpp">
+      <Filter>Source Files\net\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\http_signal.cpp">
+      <Filter>Source Files\net\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\http_system.cpp">
+      <Filter>Source Files\net\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_listen_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_net.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_sctp_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_Socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_socket_handler.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_ssl_client_context.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_ssl_client_context_map.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_stream_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_sync_socket_handler.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_tcp_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_tls_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_udp_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\asynch_dns\sockets_resolv_server.cpp">
+      <Filter>Source Files\net\sockets\bsd\asynch_dns</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\asynch_dns\sockets_resolv_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\asynch_dns</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\internal\sockets_SSLInitializer.cpp">
+      <Filter>Source Files\net\sockets\bsd\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_base.cpp">
+      <Filter>Source Files\net\sockets\bsd\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_base_client_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_callback.cpp">
+      <Filter>Source Files\net\sockets\bsd\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_client.cpp">
+      <Filter>Source Files\net\sockets\bsd\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_request.cpp">
+      <Filter>Source Files\net\sockets\bsd\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_response.cpp">
+      <Filter>Source Files\net\sockets\bsd\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_server.cpp">
+      <Filter>Source Files\net\sockets\bsd\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_tcp_client_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_transaction.cpp">
+      <Filter>Source Files\net\sockets\bsd\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_udp_client_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\smtp\sockets_smtp_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\smtp</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\smtp\sockets_smtpd_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\smtp</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\timer\sockets_Event.cpp">
+      <Filter>Source Files\net\sockets\bsd\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\timer\sockets_EventHandler.cpp">
+      <Filter>Source Files\net\sockets\bsd\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\timer\sockets_EventTime.cpp">
+      <Filter>Source Files\net\sockets\bsd\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\timer\sockets_IEventOwner.cpp">
+      <Filter>Source Files\net\sockets\bsd\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\webserver\sockets_Ajp13Socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\webserver\sockets_AjpBaseSocket.cpp">
+      <Filter>Source Files\net\sockets\bsd\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\webserver\sockets_http_base_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\webserver\sockets_httpd_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sockets_include.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sockets_sockets.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_client_socket.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_debug_socket.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_get_socket.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_post_socket.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_put_socket.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_session.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_socket.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_tunnel.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\sockets_http_batch_buffer.cpp">
+      <Filter>Source Files\net\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\sockets_http_buffer.cpp">
+      <Filter>Source Files\net\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\sockets_link_in_socket.cpp">
+      <Filter>Source Files\net\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\sockets_link_out_socket.cpp">
+      <Filter>Source Files\net\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\sockets_trace_logger.cpp">
+      <Filter>Source Files\net\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="net\net_address.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="net\net_email.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="net\net_email_address.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="programming\javascript\javascript.cpp">
+      <Filter>Source Files\programming\javascript</Filter>
+    </ClCompile>
+    <ClCompile Include="programming\javascript\javascript_functions.cpp">
+      <Filter>Source Files\programming\javascript</Filter>
+    </ClCompile>
+    <ClCompile Include="programming\javascript\javascript_tinyjs_functions.cpp">
+      <Filter>Source Files\programming\javascript</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\compress\zip\zip_api.cpp">
+      <Filter>Source Files\axis\compress\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\compress\zip\zip_file.cpp">
+      <Filter>Source Files\axis\compress\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\compress\zip\zip_in_file.cpp">
+      <Filter>Source Files\axis\compress\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\compress\zip\zip_ioapi.cpp">
+      <Filter>Source Files\axis\compress\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\compress\zip\zip_memory_buffer.cpp">
+      <Filter>Source Files\axis\compress\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\compress\zip\zip_unzip.cpp">
+      <Filter>Source Files\axis\compress\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\compress\zip\zip_util.cpp">
+      <Filter>Source Files\axis\compress\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\compress\zip\zip_zip.cpp">
+      <Filter>Source Files\axis\compress\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\fs\fs_data.cpp">
+      <Filter>Source Files\filesystem\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\fs\fs_fs.cpp">
+      <Filter>Source Files\filesystem\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\fs\fs_ifs.cpp">
+      <Filter>Source Files\filesystem\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\fs\fs_ifs_file.cpp">
+      <Filter>Source Files\filesystem\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\fs\fs_item.cpp">
+      <Filter>Source Files\filesystem\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\fs\fs_item_array.cpp">
+      <Filter>Source Files\filesystem\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\fs\fs_native_fs.cpp">
+      <Filter>Source Files\filesystem\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\fs\fs_remote_native_file.cpp">
+      <Filter>Source Files\filesystem\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\fs\fs_remote_native_fs.cpp">
+      <Filter>Source Files\filesystem\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\fs\fs_set.cpp">
+      <Filter>Source Files\filesystem\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\http.cpp">
+      <Filter>Source Files\net\http</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\compress\compress_compress.cpp">
+      <Filter>Source Files\axis\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="net\net_url_domain.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\crypto\crypto_crypto.cpp">
+      <Filter>Source Files\axis\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="net\mail\mail_pop3.cpp">
+      <Filter>Source Files\net\mail</Filter>
+    </ClCompile>
+    <ClCompile Include="net\mail\mail_pop3_socket.cpp">
+      <Filter>Source Files\net\mail</Filter>
+    </ClCompile>
+    <ClCompile Include="net\mail\mail_simple_pop3.cpp">
+      <Filter>Source Files\net\mail</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\install\install.cpp">
+      <Filter>Source Files\axis\install</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\install\install_boot.cpp">
+      <Filter>Source Files\axis\install</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\install\install_bz.cpp">
+      <Filter>Source Files\axis\install</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\install\install_canvas.cpp">
+      <Filter>Source Files\axis\install</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\install\install_focus.cpp">
+      <Filter>Source Files\axis\install</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\install\install_install.cpp">
+      <Filter>Source Files\axis\install</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\install\install_installer.cpp">
+      <Filter>Source Files\axis\install</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\install\install_small_bell.cpp">
+      <Filter>Source Files\axis\install</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\install\install_trace.cpp">
+      <Filter>Source Files\axis\install</Filter>
+    </ClCompile>
+    <ClCompile Include="net\net_ip_enum.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="net\net_port_forward.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_listener.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\http_status.cpp">
+      <Filter>Source Files\net\http</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\android\android.cpp">
+      <Filter>Source Files\axis\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\geoip\geoip.cpp">
+      <Filter>Source Files\axis\geoip</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\geoip\geoip_city.cpp">
+      <Filter>Source Files\axis\geoip</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\geoip\geoip_region_name.cpp">
+      <Filter>Source Files\axis\geoip</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\geoip\geoip_time_zone.cpp">
+      <Filter>Source Files\axis\geoip</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\geoip\geoip_update.cpp">
+      <Filter>Source Files\axis\geoip</Filter>
+    </ClCompile>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\fs\fs_link.cpp">
+      <Filter>Source Files\filesystem\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\android\android_factory_exchange.cpp">
+      <Filter>Source Files\axis\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\android\android_file_set.cpp">
+      <Filter>Source Files\axis\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\android\android_ip_enum.cpp">
+      <Filter>Source Files\axis\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\android\android_port_forward.cpp">
+      <Filter>Source Files\axis\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\android\android1.cpp">
+      <Filter>Source Files\axis\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\android\android_crypto.cpp">
+      <Filter>Source Files\axis\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\visual_dib.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\visual_font.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\visual_imaging.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\visual_fastblur.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\visual_glyph.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\visual_image_list.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\visual_graphics_extension.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\visual_FreeImageFileProc.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\visual_visual.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\visual_api.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\visual_font_central.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\visual_buffered_graphics.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\visual_water_routine.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\visual_rgb_quad_array.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\visual_glyph_set.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\webserver\webserver_http_cookie.cpp">
+      <Filter>Source Files\net\http\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\webserver\webserver_http_form.cpp">
+      <Filter>Source Files\net\http\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\webserver\webserver_http_request.cpp">
+      <Filter>Source Files\net\http\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\webserver\webserver_http_response.cpp">
+      <Filter>Source Files\net\http\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\webserver\webserver_http_transaction.cpp">
+      <Filter>Source Files\net\http\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\net_sockets.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_ssl_server_context.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_ssl_server_context_map.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\axis\axis_application.cpp">
+      <Filter>Source Files\axis\axis</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\axis\axis_session.cpp">
+      <Filter>Source Files\axis\axis</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\axis\axis_static_start.cpp">
+      <Filter>Source Files\axis\axis</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\axis\axis_system.cpp">
+      <Filter>Source Files\axis\axis</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\base\sockets_base_socket.cpp">
+      <Filter>Source Files\net\sockets\base</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\base\sockets_base_socket_handler.cpp">
+      <Filter>Source Files\net\sockets\base</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\axis\axis.cpp">
+      <Filter>Source Files\axis\axis</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\compress\bzip_stream.cpp">
+      <Filter>Source Files\axis\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\compress\gzip_stream.cpp">
+      <Filter>Source Files\axis\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\account\account.cpp">
+      <Filter>Source Files\axis\account</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\account\account_authentication_map.cpp">
+      <Filter>Source Files\axis\account</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\account\account_account.cpp">
+      <Filter>Source Files\axis\account</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\account\account_licensing.cpp">
+      <Filter>Source Files\axis\account</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\account\account_user.cpp">
+      <Filter>Source Files\axis\account</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\account\account_user_authentication.cpp">
+      <Filter>Source Files\axis\account</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\compress\bsdiff\bsdiff_bsdiff.cpp">
+      <Filter>Source Files\axis\compress\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\compress\bsdiff\bsdiff_bspatch.cpp">
+      <Filter>Source Files\axis\compress\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\account\account_contact_list.cpp">
+      <Filter>Source Files\axis\account</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\account\account_user_set.cpp">
+      <Filter>Source Files\axis\account</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\account\account_usera.cpp">
+      <Filter>Source Files\axis\account</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\account\account_validate.cpp">
+      <Filter>Source Files\axis\account</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\data\data_simple_item.cpp">
+      <Filter>Source Files\primitive\data</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\data\data_tree.cpp">
+      <Filter>Source Files\primitive\data</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\data\data_tree_item.cpp">
+      <Filter>Source Files\primitive\data</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\datetime\datetime_departament.cpp">
+      <Filter>Source Files\primitive\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\datetime\datetime_value.cpp">
+      <Filter>Source Files\primitive\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\ansios\ansios_crypt.cpp">
+      <Filter>Source Files\axis\os\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_application.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_base.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_client.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_definition.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_event_change.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_field_definition.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_id.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_key.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_selection.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_selection_item.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_server.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_set.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_stringhelper.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\aaa_want_to_remove_database_update_hint.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_base.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_database.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_dataset.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_db_server.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_file_set.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_im_post.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_long_set.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_manager.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_mysql_database.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_mysql_result.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_record_row.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_result.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_server.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_service.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_session.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_set.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_simpledb.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_socket.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_socket_thread.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_str_set.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_stra_set.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_table.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_veiev_post.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\sqlitedb\sqlitedb_base.cpp">
+      <Filter>Source Files\database\sqlitedb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\sqlitedb\sqlitedb_set.cpp">
+      <Filter>Source Files\database\sqlitedb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\_database.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\_simpledb.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="net\_net.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\_bsd.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\net_email_departament.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\_sockets.cpp">
+      <Filter>Source Files\net\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\compress\_compress.cpp">
+      <Filter>Source Files\axis\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\account\_account.cpp">
+      <Filter>Source Files\axis\account</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\geoip\_geoip.cpp">
+      <Filter>Source Files\axis\geoip</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\install\_install.cpp">
+      <Filter>Source Files\axis\install</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\fs\_fs.cpp">
+      <Filter>Source Files\filesystem\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\_visual.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\_axis_axis.cpp">
+      <Filter>Source Files\axis</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\_os.cpp">
+      <Filter>Source Files\axis\os</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\filesystem_axis_application.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\filesystem_axis_system.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\filesystem_dir_axis_application.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\filesystem_dir_axis_system.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\_node.cpp">
+      <Filter>Source Files\axis\node</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\android\_android_node.cpp">
+      <Filter>Source Files\axis\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\android\android_axis_dir.cpp">
+      <Filter>Source Files\axis\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\android\android_axis_file_system.cpp">
+      <Filter>Source Files\axis\node\android</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="axis\axis\axis.inl">
+      <Filter>Header Files\axis\axis</Filter>
+    </None>
+    <None Include="axis.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

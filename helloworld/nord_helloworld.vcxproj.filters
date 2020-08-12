@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helloworld_application.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helloworld_document.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helloworld_edit_view.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helloworld_frame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helloworld_full_view.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helloworld_lite_view.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helloworld_main_view.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helloworld_pane_view.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="aaa_want_to_remove_helloworld_view_update_hint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helloworld_switcher_view.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helloworld_toggle_view.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helloworld_top_view.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helloworld_view.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{ae3e0de7-c3e8-4f3a-816c-b4bea3be0434}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{184c09f4-64ce-4305-bb19-58844e5c54ef}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helloworld.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helloworld_application.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helloworld_document.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helloworld_edit_view.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helloworld_frame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helloworld_full_view.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helloworld_lite_view.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helloworld_main_view.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helloworld_pane_view.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="aaa_want_to_remove_helloworld_view_update_hint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helloworld_switcher_view.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helloworld_toggle_view.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helloworld_top_view.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helloworld_view.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

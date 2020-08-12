@@ -1,0 +1,4 @@
+LIBRARY  "audio_xaudio2"
+
+EXPORTS
+factory_exchange

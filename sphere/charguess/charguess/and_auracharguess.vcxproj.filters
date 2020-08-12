@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{a3a559a3-6c95-4483-8964-f0d4943b1eca}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{c9710ef4-0975-4ac1-a1b1-bd2ffae5f776}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Source Files\cpp">
+      <UniqueIdentifier>{1f9c7a20-7571-4478-8ce7-d24d3c592741}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\cpp">
+      <UniqueIdentifier>{d7888f66-c8b2-4c3f-9d17-eaf17f252184}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\framework">
+      <UniqueIdentifier>{3151d847-ff5f-4305-b784-7fcb7fc81d13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\framework">
+      <UniqueIdentifier>{8cc33fc5-25b9-4ad6-9683-714c10da2f09}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="auracharguess.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="cpp\big5Prober.cpp">
+      <Filter>Source Files\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="cpp\charDistribution.cpp">
+      <Filter>Source Files\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="cpp\charguess.cpp">
+      <Filter>Source Files\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="cpp\EscCharsetProber.cpp">
+      <Filter>Source Files\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="cpp\EscSM.cpp">
+      <Filter>Source Files\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="cpp\EUCJPProber.cpp">
+      <Filter>Source Files\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="cpp\EUCKRProber.cpp">
+      <Filter>Source Files\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="cpp\EUCTWProber.cpp">
+      <Filter>Source Files\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="cpp\GB2312Prober.cpp">
+      <Filter>Source Files\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="cpp\jpCntx.cpp">
+      <Filter>Source Files\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="cpp\LangBulgarianModel.cpp">
+      <Filter>Source Files\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="cpp\LangCyrillicModel.cpp">
+      <Filter>Source Files\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="cpp\LangGreekModel.cpp">
+      <Filter>Source Files\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="cpp\LangHungarianModel.cpp">
+      <Filter>Source Files\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="cpp\LangThaiModel.cpp">
+      <Filter>Source Files\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="cpp\Latin1Prober.cpp">
+      <Filter>Source Files\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="cpp\MBCSGroupProber.cpp">
+      <Filter>Source Files\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="cpp\MBCSSM.cpp">
+      <Filter>Source Files\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="cpp\SBCharsetProber.cpp">
+      <Filter>Source Files\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="cpp\SBCSGroupProber.cpp">
+      <Filter>Source Files\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="cpp\SJISProber.cpp">
+      <Filter>Source Files\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="cpp\universal.cpp">
+      <Filter>Source Files\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="cpp\UTF8Prober.cpp">
+      <Filter>Source Files\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\framework.cpp">
+      <Filter>Source Files\framework</Filter>
+    </ClCompile>
+    <ClCompile Include="cpp\_cpp.cpp">
+      <Filter>Source Files\cpp</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\charguess.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\framework.h">
+      <Filter>Header Files\framework</Filter>
+    </ClInclude>
+    <ClInclude Include="include\big5Prober.h">
+      <Filter>Header Files\cpp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\charDistribution.h">
+      <Filter>Header Files\cpp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\charsetProber.h">
+      <Filter>Header Files\cpp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\codingStateMachine.h">
+      <Filter>Header Files\cpp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\config.h">
+      <Filter>Header Files\cpp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EscCharsetProber.h">
+      <Filter>Header Files\cpp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EUCJPProber.h">
+      <Filter>Header Files\cpp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EUCKRProber.h">
+      <Filter>Header Files\cpp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EUCTWProber.h">
+      <Filter>Header Files\cpp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\universal.h">
+      <Filter>Header Files\cpp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\types.h">
+      <Filter>Header Files\cpp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SJISProber.h">
+      <Filter>Header Files\cpp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SBCSGroupProber.h">
+      <Filter>Header Files\cpp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\UTF8Prober.h">
+      <Filter>Header Files\cpp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pkgInt.h">
+      <Filter>Header Files\cpp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Latin1Prober.h">
+      <Filter>Header Files\cpp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\jpCntx.h">
+      <Filter>Header Files\cpp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GB2312Prober.h">
+      <Filter>Header Files\cpp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SBCharsetProber.h">
+      <Filter>Header Files\cpp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MBCSGroupProber.h">
+      <Filter>Header Files\cpp</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

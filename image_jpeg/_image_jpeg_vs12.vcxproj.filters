@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{749043d9-5163-449e-bde6-c0d79f02e866}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{a88c06bf-ec0b-496a-990f-a6e881bfe999}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Source Files">
+      <UniqueIdentifier>{7b02c736-7b42-494e-833f-423715d77cbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Source Files\Plugins">
+      <UniqueIdentifier>{332172a8-8e16-4450-b477-19cbf86d4cd4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\FreeImage\PluginJPEG.cpp">
+      <Filter>Source Files\Source Files\Plugins</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

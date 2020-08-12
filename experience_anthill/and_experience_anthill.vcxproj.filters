@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="experience_core_frame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="experience_core_frame_001.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="experience_core_frame_002.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="experience_core_frame_005.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="experience_core_frame_008.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="experience_core_frame_Minimal001.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="experience_core_interaction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="experience_core_library.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="experience_core_frame_011.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="experience_core_frame_013.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="experience_core.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="experience_core_frame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="experience_core_frame_001.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="experience_core_frame_002.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="experience_core_frame_005.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="experience_core_frame_008.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="experience_core_frame_Minimal001.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="experience_core_interaction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="experience_core_library.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="experience_core_frame_011.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="experience_core_frame_013.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="experience_core.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

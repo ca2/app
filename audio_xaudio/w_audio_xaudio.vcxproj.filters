@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{439a3f4e-bebb-40c0-9677-57ff877df162}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{26aa9ed0-9a5c-494c-a87c-2bf57f02aa4c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="audio_xaudio.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="audio_xaudio_command.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="audio_xaudio_factory_exchange.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="audio_xaudio_wave_in.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="audio_xaudio_wave_out.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="audio_xaudio_factory_exchange.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="audio_xaudio_wave_in.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="audio_xaudio_wave_out.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="audio_xaudio.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

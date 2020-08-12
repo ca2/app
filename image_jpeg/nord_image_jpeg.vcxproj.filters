@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Source\FreeImage\PluginJPEG.cpp">
+      <Filter>Source Files\Source Files\Plugins</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{fedd0292-24a8-47d7-9e0e-69790c9b8aad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{b5c88a49-9b4e-4c90-83d9-5873277d21ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Source Files">
+      <UniqueIdentifier>{ecad66f2-633b-4d00-bdef-ac191ca42c86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Source Files\Plugins">
+      <UniqueIdentifier>{dcb5f05d-76bf-4f49-a834-57173c0c6112}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Toolkit Files">
+      <UniqueIdentifier>{78793970-1769-4959-a9ee-2a9dda0d77f9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="axisjpeg.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

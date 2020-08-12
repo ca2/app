@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
+    <LocalDebuggerCommand>$(OutDir)app_sphere_userstack.exe</LocalDebuggerCommand>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">
+    <LocalDebuggerCommand>$(OutDir)app_sphere_userstack.exe</LocalDebuggerCommand>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
+    <LocalDebuggerCommand>$(OutDir)app_sphere_userstack.exe</LocalDebuggerCommand>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
+    <LocalDebuggerCommandArguments>: app=app-cidadedecuritiba/alphaclock app=app-core/projection app-core/projection.countries=br,ru,us,se,jp app-core/projection.br.link="http://ca2.etc.br" app-core/projection.ru.link="http://ca2.ru" app-core/projection.us.link="http://ca2.us" app-core/projection.se.link="http://ca2.se" app-core/projection.jp.link="http://ca2.jp" app=app-core/flag app-core/flag.file="matter://brasil.gif" app=app-core/hellomultiverse app/sphere/userstack.tab=app-core/hellomultiverse app/sphere/userstack.tab=app-core/flag app/sphere/userstack.tab=app-core/projection app/sphere/userstack.tab=app-cidadedecuritiba/alphaclock</LocalDebuggerCommandArguments>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">
+    <LocalDebuggerCommandArguments>: app=app-cidadedecuritiba/alphaclock app=app-core/projection app-core/projection.countries=br,ru,us,se,jp app-core/projection.br.link="http://ca2.etc.br" app-core/projection.ru.link="http://ca2.ru" app-core/projection.us.link="http://ca2.us" app-core/projection.se.link="http://ca2.se" app-core/projection.jp.link="http://ca2.jp" app=app-core/flag app-core/flag.file="matter://brasil.gif" app=app-core/hellomultiverse app/sphere/userstack.tab=app-core/hellomultiverse app/sphere/userstack.tab=app-core/flag app/sphere/userstack.tab=app-core/projection app/sphere/userstack.tab=app-cidadedecuritiba/alphaclock</LocalDebuggerCommandArguments>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
+    <LocalDebuggerCommandArguments>: app=app-cidadedecuritiba/alphaclock app=app-core/projection app-core/projection.countries=br,ru,us,se,jp app-core/projection.br.link="http://ca2.etc.br" app-core/projection.ru.link="http://ca2.ru" app-core/projection.us.link="http://ca2.us" app-core/projection.se.link="http://ca2.se" app-core/projection.jp.link="http://ca2.jp" app=app-core/flag app-core/flag.file="matter://brasil.gif" app=app-core/hellomultiverse app/sphere/userstack.tab=app-core/hellomultiverse app/sphere/userstack.tab=app-core/flag app/sphere/userstack.tab=app-core/projection app/sphere/userstack.tab=app-cidadedecuritiba/alphaclock</LocalDebuggerCommandArguments>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
+</Project>

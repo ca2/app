@@ -1,0 +1,5 @@
+LIBRARY "draw2d_opengl"
+
+EXPORTS
+draw2d_factory_exchange
+

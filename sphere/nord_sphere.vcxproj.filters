@@ -1,0 +1,354 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{74738716-c89f-482d-a670-ee6cd4edbd5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{254d110b-611d-4483-a088-790de1d3b4e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\asphere">
+      <UniqueIdentifier>{15a5d7d9-45e2-4c15-80e2-ce1d8528d0c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\calculator">
+      <UniqueIdentifier>{5cc5f71f-05c1-47cd-b1a4-84941a0f22bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\command">
+      <UniqueIdentifier>{5d73fa94-42b0-4e61-a07c-29a2cbc8e1af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\console">
+      <UniqueIdentifier>{34009306-76b9-430c-a61b-dcc39f81eec5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\filehandler">
+      <UniqueIdentifier>{338f4053-1c72-43af-a87d-340ba3fdb8d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\sphere">
+      <UniqueIdentifier>{973614b8-461e-49f3-93e9-974426617f93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\userstack">
+      <UniqueIdentifier>{f7f8e105-bfe0-484a-b1b4-9d70feaa7ca5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\asphere">
+      <UniqueIdentifier>{5f42f28e-6915-4618-b4ef-5582a9f6db49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\calculator">
+      <UniqueIdentifier>{336e2b35-71b2-4966-b4b5-d8e3534b949a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\command">
+      <UniqueIdentifier>{ac80593e-d9fd-4a90-9acd-3466ea0b03be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\console">
+      <UniqueIdentifier>{d0b57428-29c2-4cdd-87d6-39ac6e0f3c5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\filehandler">
+      <UniqueIdentifier>{9b64abd1-a871-43f7-8f5f-90746af1c7d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sphere">
+      <UniqueIdentifier>{d8f9faac-26ed-4c24-b293-ef5f0083a069}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\userstack">
+      <UniqueIdentifier>{98802804-7936-4c18-a6d7-701da95187e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\charguess">
+      <UniqueIdentifier>{5453e945-7a90-47a9-9d40-3ee072edd56c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\colorertake5">
+      <UniqueIdentifier>{c189ff0a-5b93-42af-bbd1-f8a8a2e27531}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\pcre">
+      <UniqueIdentifier>{994c6f10-98b4-47ad-b255-5bf921479ae6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net">
+      <UniqueIdentifier>{362d2d38-eb89-4a3e-b9b9-b1c6b9451b17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\mail">
+      <UniqueIdentifier>{2086584a-3cd6-4402-9433-cbe07bd3a075}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets">
+      <UniqueIdentifier>{dce6c321-d7ec-4e89-9c50-e243ab0865a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\bsd">
+      <UniqueIdentifier>{948cce1c-e7a6-4990-8901-ba0a1b147f39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\bsd\sip">
+      <UniqueIdentifier>{7f552597-6449-4d93-b43f-ce478b2a5895}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="asphere\asphere.h">
+      <Filter>Header Files\asphere</Filter>
+    </ClInclude>
+    <ClInclude Include="asphere\asphere_application.h">
+      <Filter>Header Files\asphere</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\calculator.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\calculator_application.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\calculator_document.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\calculator_frame.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\calculator_view.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="command\command.h">
+      <Filter>Header Files\command</Filter>
+    </ClInclude>
+    <ClInclude Include="command\command_application.h">
+      <Filter>Header Files\command</Filter>
+    </ClInclude>
+    <ClInclude Include="command\command_document.h">
+      <Filter>Header Files\command</Filter>
+    </ClInclude>
+    <ClInclude Include="command\command_form_callback.h">
+      <Filter>Header Files\command</Filter>
+    </ClInclude>
+    <ClInclude Include="command\command_frame.h">
+      <Filter>Header Files\command</Filter>
+    </ClInclude>
+    <ClInclude Include="command\command_pane_view.h">
+      <Filter>Header Files\command</Filter>
+    </ClInclude>
+    <ClInclude Include="command\aaa_want_to_remove_command_view_update_hint.h">
+      <Filter>Header Files\command</Filter>
+    </ClInclude>
+    <ClInclude Include="command\command_primary_view.h">
+      <Filter>Header Files\command</Filter>
+    </ClInclude>
+    <ClInclude Include="command\command_view.h">
+      <Filter>Header Files\command</Filter>
+    </ClInclude>
+    <ClInclude Include="console\console_prompt_document.h">
+      <Filter>Header Files\console</Filter>
+    </ClInclude>
+    <ClInclude Include="console\console_prompt_frame.h">
+      <Filter>Header Files\console</Filter>
+    </ClInclude>
+    <ClInclude Include="console\console.h">
+      <Filter>Header Files\console</Filter>
+    </ClInclude>
+    <ClInclude Include="console\console_application.h">
+      <Filter>Header Files\console</Filter>
+    </ClInclude>
+    <ClInclude Include="console\console_prompt.h">
+      <Filter>Header Files\console</Filter>
+    </ClInclude>
+    <ClInclude Include="console\console_prompt_impact.h">
+      <Filter>Header Files\console</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\filehandler.h">
+      <Filter>Header Files\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\filehandler_application.h">
+      <Filter>Header Files\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\filehandler_document.h">
+      <Filter>Header Files\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\filehandler_frame.h">
+      <Filter>Header Files\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\filehandler_pane_view.h">
+      <Filter>Header Files\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\aaa_want_to_remove_filehandler_view_update_hint.h">
+      <Filter>Header Files\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\filehandler_view.h">
+      <Filter>Header Files\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="sphere\sphere.h">
+      <Filter>Header Files\sphere</Filter>
+    </ClInclude>
+    <ClInclude Include="sphere\sphere_application.h">
+      <Filter>Header Files\sphere</Filter>
+    </ClInclude>
+    <ClInclude Include="sphere\sphere_library.h">
+      <Filter>Header Files\sphere</Filter>
+    </ClInclude>
+    <ClInclude Include="sphere\sphere_main_frame.h">
+      <Filter>Header Files\sphere</Filter>
+    </ClInclude>
+    <ClInclude Include="userstack\userstack.h">
+      <Filter>Header Files\userstack</Filter>
+    </ClInclude>
+    <ClInclude Include="userstack\userstack_document.h">
+      <Filter>Header Files\userstack</Filter>
+    </ClInclude>
+    <ClInclude Include="userstack\userstack_form_callback.h">
+      <Filter>Header Files\userstack</Filter>
+    </ClInclude>
+    <ClInclude Include="userstack\userstack_frame.h">
+      <Filter>Header Files\userstack</Filter>
+    </ClInclude>
+    <ClInclude Include="userstack\userstack_pane_view.h">
+      <Filter>Header Files\userstack</Filter>
+    </ClInclude>
+    <ClInclude Include="userstack\aaa_want_to_remove_userstack_view_update_hint.h">
+      <Filter>Header Files\userstack</Filter>
+    </ClInclude>
+    <ClInclude Include="userstack\userstack_application.h">
+      <Filter>Header Files\userstack</Filter>
+    </ClInclude>
+    <ClInclude Include="userstack\userstack_view.h">
+      <Filter>Header Files\userstack</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="asphere\asphere_application.cpp">
+      <Filter>Source Files\asphere</Filter>
+    </ClCompile>
+    <ClCompile Include="asphere\asphere_asphere.cpp">
+      <Filter>Source Files\asphere</Filter>
+    </ClCompile>
+    <ClCompile Include="calculator\calculator_application.cpp">
+      <Filter>Source Files\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="calculator\calculator_document.cpp">
+      <Filter>Source Files\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="calculator\calculator_frame.cpp">
+      <Filter>Source Files\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="calculator\calculator_view.cpp">
+      <Filter>Source Files\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="command\command_application.cpp">
+      <Filter>Source Files\command</Filter>
+    </ClCompile>
+    <ClCompile Include="command\command_document.cpp">
+      <Filter>Source Files\command</Filter>
+    </ClCompile>
+    <ClCompile Include="command\command_form_callback.cpp">
+      <Filter>Source Files\command</Filter>
+    </ClCompile>
+    <ClCompile Include="command\command_frame.cpp">
+      <Filter>Source Files\command</Filter>
+    </ClCompile>
+    <ClCompile Include="command\command_pane_view.cpp">
+      <Filter>Source Files\command</Filter>
+    </ClCompile>
+    <ClCompile Include="command\aaa_want_to_remove_command_view_update_hint.cpp">
+      <Filter>Source Files\command</Filter>
+    </ClCompile>
+    <ClCompile Include="command\command_primary_view.cpp">
+      <Filter>Source Files\command</Filter>
+    </ClCompile>
+    <ClCompile Include="command\command_view.cpp">
+      <Filter>Source Files\command</Filter>
+    </ClCompile>
+    <ClCompile Include="console\console_prompt_document.cpp">
+      <Filter>Source Files\console</Filter>
+    </ClCompile>
+    <ClCompile Include="console\console_prompt_frame.cpp">
+      <Filter>Source Files\console</Filter>
+    </ClCompile>
+    <ClCompile Include="console\console_application.cpp">
+      <Filter>Source Files\console</Filter>
+    </ClCompile>
+    <ClCompile Include="console\console_prompt.cpp">
+      <Filter>Source Files\console</Filter>
+    </ClCompile>
+    <ClCompile Include="console\console_prompt_impact.cpp">
+      <Filter>Source Files\console</Filter>
+    </ClCompile>
+    <ClCompile Include="filehandler\filehandler_application.cpp">
+      <Filter>Source Files\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filehandler\filehandler_document.cpp">
+      <Filter>Source Files\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filehandler\filehandler_frame.cpp">
+      <Filter>Source Files\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filehandler\filehandler_pane_view.cpp">
+      <Filter>Source Files\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filehandler\aaa_want_to_remove_filehandler_view_update_hint.cpp">
+      <Filter>Source Files\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filehandler\filehandler_view.cpp">
+      <Filter>Source Files\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="sphere\sphere_application.cpp">
+      <Filter>Source Files\sphere</Filter>
+    </ClCompile>
+    <ClCompile Include="sphere\sphere_library.cpp">
+      <Filter>Source Files\sphere</Filter>
+    </ClCompile>
+    <ClCompile Include="sphere\sphere_main_frame.cpp">
+      <Filter>Source Files\sphere</Filter>
+    </ClCompile>
+    <ClCompile Include="userstack\userstack_document.cpp">
+      <Filter>Source Files\userstack</Filter>
+    </ClCompile>
+    <ClCompile Include="userstack\userstack_form_callback.cpp">
+      <Filter>Source Files\userstack</Filter>
+    </ClCompile>
+    <ClCompile Include="userstack\userstack_frame.cpp">
+      <Filter>Source Files\userstack</Filter>
+    </ClCompile>
+    <ClCompile Include="userstack\userstack_pane_view.cpp">
+      <Filter>Source Files\userstack</Filter>
+    </ClCompile>
+    <ClCompile Include="userstack\aaa_want_to_remove_userstack_view_update_hint.cpp">
+      <Filter>Source Files\userstack</Filter>
+    </ClCompile>
+    <ClCompile Include="userstack\userstack_application.cpp">
+      <Filter>Source Files\userstack</Filter>
+    </ClCompile>
+    <ClCompile Include="userstack\userstack_view.cpp">
+      <Filter>Source Files\userstack</Filter>
+    </ClCompile>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="_sphere.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="asphere\_asphere.cpp">
+      <Filter>Source Files\asphere</Filter>
+    </ClCompile>
+    <ClCompile Include="calculator\_calculator.cpp">
+      <Filter>Source Files\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="command\_command.cpp">
+      <Filter>Source Files\command</Filter>
+    </ClCompile>
+    <ClCompile Include="console\_console.cpp">
+      <Filter>Source Files\console</Filter>
+    </ClCompile>
+    <ClCompile Include="filehandler\_filehandler.cpp">
+      <Filter>Source Files\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="sphere\_sphere.cpp">
+      <Filter>Source Files\sphere</Filter>
+    </ClCompile>
+    <ClCompile Include="userstack\_userstack.cpp">
+      <Filter>Source Files\userstack</Filter>
+    </ClCompile>
+    <ClCompile Include="charguess\_charguess.cpp">
+      <Filter>Source Files\charguess</Filter>
+    </ClCompile>
+    <ClCompile Include="colorertake5\_colorertake5.cpp">
+      <Filter>Source Files\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="pcre\pcre.cpp">
+      <Filter>Source Files\pcre</Filter>
+    </ClCompile>
+    <ClCompile Include="net\mail\_mail.cpp">
+      <Filter>Source Files\net\mail</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\_sockets_bsd_sip.cpp">
+      <Filter>Source Files\net\sockets\bsd\sip</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

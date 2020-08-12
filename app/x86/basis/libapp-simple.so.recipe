@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project>
+  <SOLibPaths>C:\basis\app-simple\app\x86\basis\libapp-simple.so;C:\Microsoft\AndroidNDK64\android-ndk-r16b\prebuilt\android-x86\gdbserver\gdbserver;C:\Microsoft\AndroidNDK64\android-ndk-r16b\sources\cxx-stl\llvm-libc++\libs\x86\libc++_shared.so</SOLibPaths>
+  <AndroidLibPaths />
+  <OObjPaths>C:\basis\app-simple\app\x86\basis\app_simple_drawing</OObjPaths>
+  <Configuration>basis</Configuration>
+  <Platform>x86</Platform>
+  <AndroidArchitecture>x86</AndroidArchitecture>
+  <!--links to other recipe files-->
+  <RecipeFiles />
+</project>

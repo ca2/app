@@ -1,0 +1,6 @@
+﻿<toolbar>
+<button id="file_save">保存</button>
+<button id="edit_undo">元に戻す</button>
+<button id="edit_redo">やり直し</button>
+<button id="file_put">Put</button>
+</toolbar>

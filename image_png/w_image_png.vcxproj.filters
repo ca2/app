@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{b37d942f-4bb2-40e0-8e7c-3dae6762b41c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Plugins">
+      <UniqueIdentifier>{b431b429-3d4a-4934-9b74-ff1b01884ab1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{ced609c0-dd6b-4a79-994b-b4fb0c095c79}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\FreeImage\PluginPNG.cpp">
+      <Filter>Source Files\Plugins</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="axis_image_png.def" />
+  </ItemGroup>
+</Project>

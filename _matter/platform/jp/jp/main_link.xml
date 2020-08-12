@@ -1,0 +1,21 @@
+﻿<links>
+<link name="biteditor" src="biteditor.dll" brief="biteditor" />
+<link name="browser" src="veriview.dll" brief="Leia arquivos html interpretados" />
+<link name="devedge" src="devedge.dll" brief="Desenvolva em ca2 com o devedge" />
+<link name="eluce gerenciador de imagens" src="eluce.dll" brief="eluce image manager" />
+<link name="intelligent intercommunication" src="i2com.dll" brief="Intercomunique-se Inteligentemente" />
+<link name="mail" src="mail.dll" brief="Correio" />
+<link name="自然" src="nature.dll" brief="A natureza ca2." icon="matter://icon-green-24.png" />
+<link name="netnode" src="netnode.dll" brief="Flua como um nó em uma rede" />
+<link name="netnode setup" src="netnodecfg.dll" brief="Netnode Setup" />
+<link name="netshare client" src="netshareclient.dll" brief="Netshare Client" />
+<link name="netshare server" src="netshareserver.dll" brief="Netshare Server" />
+<link name="netshare server setup" src="netshareservercfg.dll" brief="Netshare Server Setup" />
+<link name="RTP receiver" src="rtprx.dll" brief="RTP receiver" />
+<link name="RTP transmission" src="rtptx.dll" brief="RTP transmission" />
+<link name="Status" src="status.dll" brief="Status" />
+<link name="verifile ファイルマネージャー" src="verifile.dll" brief="Gerenciador de Arquivos" />
+<link name="verisimplevideo reprodutor de vídeos" src="verisimplevideo.dll" brief="verisimplevideo video player" />
+<link name="veriview" src="veriview.dll" brief="veriview" />
+<link name="ベリーウェール Musical Player" src="mplite.dll" brief="Cante com o ベリーウェール Musical Player" />
+</links>

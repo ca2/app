@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="base" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="basis">
+				<Option output="$(#time_dir)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(#time_dir)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(#time_dir)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-std=c++17" />
+					<Add option="-pg" />
+					<Add option="-fPIC" />
+					<Add option="-m64" />
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+				</Compiler>
+				<Linker>
+					<Add option="-pg" />
+					<Add option="-m64" />
+					<Add directory="$(#time_dir)/x64/$(TARGET_NAME)" />
+				</Linker>
+			</Target>
+			<Target title="stage">
+				<Option output="$(#time_dir)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(#time_dir)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(#time_dir)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-O0" />
+					<Add option="-pg" />
+					<Add option="-fPIC" />
+					<Add option="-m64" />
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add option="-pg" />
+					<Add option="-m64" />
+					<Add directory="$(#time_dir)/x64/$(TARGET_NAME)" />
+				</Linker>
+			</Target>
+			<Target title="memdleak">
+				<Option output="$(#time_dir)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(#time_dir)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(#time_dir)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+					<Add option="-DMEMDLEAK" />
+				</Compiler>
+				<Linker>
+					<Add directory="$(#time_dir)/x64/$(TARGET_NAME)" />
+				</Linker>
+			</Target>
+		</Build>
+		<VirtualTargets>
+			<Add alias="all_sanitizers" targets="basis;" />
+		</VirtualTargets>
+		<Compiler>
+			<Add option="-fPIC" />
+			<Add option="-std=c++17" />
+			<Add option="-fexceptions" />
+			<Add option="-fnon-call-exceptions" />
+			<Add option="-fno-pie" />
+			<Add option="-fno-stack-protector" />
+			<Add option="-Wno-pointer-arith" />
+			<Add option="-Wno-attributes" />
+			<Add option="-Winvalid-pch" />
+			<Add option="`freetype-config --cflags`" />
+			<Add option="`pkg-config --cflags glib-2.0 freetype2`" />
+			<Add option="-DLINUX" />
+			<Add directory="." />
+			<Add directory="$(PROJECT_DIR)" />
+			<Add directory="$(#archive)" />
+			<Add directory="$(#config)" />
+			<Add directory="$(WORKSPACE_DIR)/../.." />
+			<Add directory="$(WORKSPACE_DIR)/../../inc" />
+			<Add directory="$(WORKSPACE_DIR)/../../include" />
+			<Add directory="$(WORKSPACE_DIR)/../../platform-linux" />
+			<Add directory="$(WORKSPACE_DIR)/../../app/_include" />
+			<Add directory="$(WORKSPACE_DIR)/../../app" />
+
+		</Compiler>
+		<Linker>
+			<Add option="-Wl,-rpath=\\$$$ORIGIN" />
+			<Add option="-lace" />
+			<Add option="-laura" />
+			<Add option="-laxis" />
+			<Add option="-Wl,-z,defs" />
+			<Add directory="$(#time_dir)/x64/$(TARGET_NAME)" />
+		</Linker>
+		<ExtraCommands>
+			<Add before="../../platform-linux/stage/prepare_framework_h.sh $(PROJECT_DIR) $(TARGET_OBJECT_DIR)" />
+		</ExtraCommands>
+		<Unit filename="base/base/_.cpp" />
+		<Unit filename="base/base/_.h" />
+		<Unit filename="base/base/_impl.h" />
+		<Unit filename="base/base/aaa_want_to_remove_base_system_str.h" />
+		<Unit filename="base/base/aaa_want_to_remove_simple_app.h" />
+		<Unit filename="base/base/application.cpp" />
+		<Unit filename="base/base/application.h" />
+		<Unit filename="base/base/session.cpp" />
+		<Unit filename="base/base/session.h" />
+		<Unit filename="base/base/static_start.cpp" />
+		<Unit filename="base/base/static_start.h" />
+		<Unit filename="base/base/system.cpp" />
+		<Unit filename="base/base/system.h" />
+		<Unit filename="database/database.h" />
+		<Unit filename="database/database/database.h" />
+		<Unit filename="database/database/database_user_interaction.cpp" />
+		<Unit filename="database/simpledb/simpledb.h" />
+		<Unit filename="database/simpledb/simpledb_file_system_size.cpp" />
+		<Unit filename="database/simpledb/simpledb_file_system_size.h" />
+		<Unit filename="framework.cpp" />
+		<Unit filename="framework.h">
+			<Option compile="1" />
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="policy/_.h" />
+		<Unit filename="policy/_c.cpp" />
+		<Unit filename="policy/policy.h" />
+		<Unit filename="policy/policy_objc.h" />
+		<Unit filename="policy/policy_objcpp.h" />
+		<Unit filename="policy/policy_winrt.h" />
+		<Unit filename="update.h" />
+		<Unit filename="user/_.h" />
+		<Unit filename="user/_impl.h" />
+		<Unit filename="user/account/account.cpp" />
+		<Unit filename="user/account/account.h" />
+		<Unit filename="user/account/account_dialog.cpp" />
+		<Unit filename="user/account/account_dialog.h" />
+		<Unit filename="user/account/account_login.cpp" />
+		<Unit filename="user/account/account_login.h" />
+		<Unit filename="user/account/account_simple_ui.cpp" />
+		<Unit filename="user/account/account_simple_ui.h" />
+		<Unit filename="user/account/simple_ui_style.h" />
+		<Unit filename="user/hotplugin/hotplugin.cpp" />
+		<Unit filename="user/hotplugin/hotplugin.h" />
+		<Unit filename="user/hotplugin/hotplugin_bare_paint_discreet.cpp" />
+		<Unit filename="user/hotplugin/hotplugin_bare_paint_full_screen.cpp" />
+		<Unit filename="user/hotplugin/hotplugin_bare_paint_veri_discreet.cpp" />
+		<Unit filename="user/hotplugin/hotplugin_composer.cpp" />
+		<Unit filename="user/hotplugin/hotplugin_composer.h" />
+		<Unit filename="user/hotplugin/hotplugin_container_launcher.cpp" />
+		<Unit filename="user/hotplugin/hotplugin_container_launcher.h" />
+		<Unit filename="user/hotplugin/hotplugin_host.cpp" />
+		<Unit filename="user/hotplugin/hotplugin_host.h" />
+		<Unit filename="user/hotplugin/hotplugin_plugin.cpp" />
+		<Unit filename="user/hotplugin/hotplugin_plugin.h" />
+		<Unit filename="user/hotplugin/hotplugin_windows.cpp" />
+		<Unit filename="user/prelude.h" />
+		<Unit filename="user/simple/simple.h" />
+		<Unit filename="user/simple/simple_scroll_bar.cpp" />
+		<Unit filename="user/simple/simple_scroll_bar.h" />
+		<Unit filename="user/simple_ui/simple_ui.h" />
+		<Unit filename="user/simple_ui/simple_ui_edit_box.cpp" />
+		<Unit filename="user/simple_ui/simple_ui_edit_box.h" />
+		<Unit filename="user/simple_ui/simple_ui_interaction.cpp" />
+		<Unit filename="user/simple_ui/simple_ui_interaction.h" />
+		<Unit filename="user/simple_ui/simple_ui_label.cpp" />
+		<Unit filename="user/simple_ui/simple_ui_label.h" />
+		<Unit filename="user/simple_ui/simple_ui_message_box.cpp" />
+		<Unit filename="user/simple_ui/simple_ui_message_box.h" />
+		<Unit filename="user/simple_ui/simple_ui_password.cpp" />
+		<Unit filename="user/simple_ui/simple_ui_password.h" />
+		<Unit filename="user/simple_ui/simple_ui_style.cpp" />
+		<Unit filename="user/simple_ui/simple_ui_style.h" />
+		<Unit filename="user/simple_ui/simple_ui_tap.cpp" />
+		<Unit filename="user/simple_ui/simple_ui_tap.h" />
+		<Unit filename="user/simple_ui/simple_ui_top.cpp" />
+		<Unit filename="user/simple_ui/simple_ui_top.h" />
+		<Unit filename="user/user/_.h" />
+		<Unit filename="user/user/box.cpp" />
+		<Unit filename="user/user/box.h" />
+		<Unit filename="user/user/button.cpp" />
+		<Unit filename="user/user/button.h" />
+		<Unit filename="user/user/composition_imm_client.h" />
+		<Unit filename="user/user/control.cpp" />
+		<Unit filename="user/user/control.h" />
+		<Unit filename="user/user/control_bar.cpp" />
+		<Unit filename="user/user/control_bar.h" />
+		<Unit filename="user/user/control_ddx_dbflags.h" />
+		<Unit filename="user/user/document.cpp" />
+		<Unit filename="user/user/document.h" />
+		<Unit filename="user/user/document_data_map.h" />
+		<Unit filename="user/user/form_callback.cpp" />
+		<Unit filename="user/user/form_callback.h" />
+		<Unit filename="user/user/form_control.cpp" />
+		<Unit filename="user/user/form_control.h" />
+		<Unit filename="user/user/form_update_hint.h" />
+		<Unit filename="user/user/frame_window.cpp" />
+		<Unit filename="user/user/frame_window.h" />
+		<Unit filename="user/user/imm_client.h" />
+		<Unit filename="user/user/impact.cpp" />
+		<Unit filename="user/user/impact.h" />
+		<Unit filename="user/user/impact_creator.cpp" />
+		<Unit filename="user/user/impact_creator.h" />
+		<Unit filename="user/user/impact_data.h" />
+		<Unit filename="user/user/impact_host.cpp" />
+		<Unit filename="user/user/impact_host.h" />
+		<Unit filename="user/user/impact_system.cpp" />
+		<Unit filename="user/user/impact_system.h" />
+		<Unit filename="user/user/impact_update.h" />
+		<Unit filename="user/user/impact_update_hint.h" />
+		<Unit filename="user/user/inline.h" />
+		<Unit filename="user/user/multiple_document_template.cpp" />
+		<Unit filename="user/user/multiple_document_template.h" />
+		<Unit filename="user/user/plain_edit.cpp" />
+		<Unit filename="user/user/plain_edit.h" />
+		<Unit filename="user/user/plain_text_data.cpp" />
+		<Unit filename="user/user/plain_text_data.h" />
+		<Unit filename="user/user/progress.cpp" />
+		<Unit filename="user/user/progress.h" />
+		<Unit filename="user/user/schema_button.h" />
+		<Unit filename="user/user/schema_composite.h" />
+		<Unit filename="user/user/schema_menu.h" />
+		<Unit filename="user/user/scroll.cpp" />
+		<Unit filename="user/user/scroll.h" />
+		<Unit filename="user/user/scroll_bar.cpp" />
+		<Unit filename="user/user/scroll_bar.h" />
+		<Unit filename="user/user/server.cpp" />
+		<Unit filename="user/user/server.h" />
+		<Unit filename="user/user/simple_view.cpp" />
+		<Unit filename="user/user/simple_view.h" />
+		<Unit filename="user/user/single_document_template.cpp" />
+		<Unit filename="user/user/single_document_template.h" />
+		<Unit filename="user/user/still.cpp" />
+		<Unit filename="user/user/still.h" />
+		<Unit filename="user/user/user.cpp" />
+		<Unit filename="user/user/user.h" />
+		<Unit filename="user/user/wait_cursor.cpp" />
+		<Unit filename="user/user/wait_cursor.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+			<envvars />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

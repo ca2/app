@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\..\stage\x86\draw2d_direct2d.dll">
+      <Filter>Library</Filter>
+    </None>
+    <None Include="..\..\..\stage\x86\experience_core.dll">
+      <Filter>Library</Filter>
+    </None>
+    <None Include="..\..\..\platform\thirdparty\binary\x64\msvcp120d.dll">
+      <Filter>Library</Filter>
+    </None>
+    <None Include="..\..\..\platform\thirdparty\binary\x64\msvcr120d.dll">
+      <Filter>Library</Filter>
+    </None>
+    <None Include="..\..\..\platform\thirdparty\binary\x64\vccorlib120d.dll">
+      <Filter>Library</Filter>
+    </None>
+    <None Include="..\..\..\platform\thirdparty\binary\x64\vcomp120d.dll">
+      <Filter>Library</Filter>
+    </None>
+    <None Include=".\winmetro_hellobase.pfx">
+      <Filter>Metrowin</Filter>
+    </None>
+    <None Include="winmetro_app_core_hellobase_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Library">
+      <UniqueIdentifier>{ace2cb1a-7cb1-4097-af9d-cbaf9cebd184}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Metrowin">
+      <UniqueIdentifier>{9ad42556-f808-4fab-bfde-974878552a58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{339e9f1d-8236-47dc-95e0-1645e20e2658}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>{a18158b0-d81a-4990-b993-e7bfcaaec3c5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\HelloBase30.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="assets\HelloBase50.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="assets\HelloBase70.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="assets\HelloBase150.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="assets\HelloBase310.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="assets\HelloBase310-150.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="assets\HelloBase620-300.png">
+      <Filter>Assets</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <Filter>Metrowin</Filter>
+    </AppxManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="winmetro_hellobase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

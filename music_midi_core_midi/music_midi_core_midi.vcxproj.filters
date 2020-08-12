@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="player\music_midi_mmsystem_player.h">
+      <Filter>Header Files\player</Filter>
+    </ClInclude>
+    <ClInclude Include="player\music_midi_mmsystem_player_window.h">
+      <Filter>Header Files\player</Filter>
+    </ClInclude>
+    <ClInclude Include="music_midi_mmsystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="music_midi_mmsystem_exception.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="music_midi_mmsystem_file.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="music_midi_mmsystem_sequence.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="music_midi_mmsystem_sequence_thread.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="music_midi_mmsystem_translation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="player\music_midi_mmsystem_player_callback.h">
+      <Filter>Header Files\player</Filter>
+    </ClInclude>
+    <ClInclude Include="player\music_midi_mmsystem_player_interface.h">
+      <Filter>Header Files\player</Filter>
+    </ClInclude>
+    <ClInclude Include="music_midi_mmsystem_factory_exchange.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{e2571db8-1669-4ee5-82a1-a6d704bfe32d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{87a445b3-95eb-40bd-9ff2-d032ed40678f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\player">
+      <UniqueIdentifier>{8a8086ab-f46c-4c8f-97b9-a1a426e3c686}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\player">
+      <UniqueIdentifier>{8e5b7997-2f5b-4774-ab4a-ace327554df2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="music_midi_mmsystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="music_midi_mmsystem_exception.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="music_midi_mmsystem_file.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="music_midi_mmsystem_sequence.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="music_midi_mmsystem_sequence_thread.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="player\music_midi_mmsystem_player.cpp">
+      <Filter>Source Files\player</Filter>
+    </ClCompile>
+    <ClCompile Include="player\music_midi_mmsystem_player_window.cpp">
+      <Filter>Source Files\player</Filter>
+    </ClCompile>
+    <ClCompile Include="music_midi_mmsystem_translation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="player\music_midi_mmsystem_player_callback.cpp">
+      <Filter>Source Files\player</Filter>
+    </ClCompile>
+    <ClCompile Include="player\music_midi_mmsystem_player_interface.cpp">
+      <Filter>Source Files\player</Filter>
+    </ClCompile>
+    <ClCompile Include="music_midi_mmsystem_factory_exchange.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="music_midi_mmsystem.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

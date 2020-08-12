@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="draw2d_cairo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="draw2d_cairo_bitmap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="draw2d_cairo_brush.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="draw2d_cairo_dib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="draw2d_cairo_factory_exchange.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="draw2d_cairo_font.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="draw2d_cairo_graphics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="draw2d_cairo_palette.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="draw2d_cairo_pen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="draw2d_cairo_region.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="draw2d_cairo_object.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="draw2d_cairo_path.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="draw2d_cairo_keep.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="draw2d_cairo_bitmap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="draw2d_cairo_brush.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="draw2d_cairo_dib.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="draw2d_cairo_factory_exchange.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="draw2d_cairo_font.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="draw2d_cairo_graphics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="draw2d_cairo_palette.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="draw2d_cairo_pen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="draw2d_cairo_preview_dc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="draw2d_cairo_region.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="draw2d_cairo_object.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="draw2d_cairo_path.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="draw2d_cairo_keep.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="draw2d_cairo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="draw2d_cairo.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

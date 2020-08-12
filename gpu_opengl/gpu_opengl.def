@@ -1,0 +1,8 @@
+LIBRARY "gpu_opengl"
+
+
+EXPORTS
+imaging_factory_exchange
+
+
+

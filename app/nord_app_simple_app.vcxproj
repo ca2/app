@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x86">
+      <Configuration>Debug</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="stage|ARM">
+      <Configuration>stage</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="stage|x86">
+      <Configuration>stage</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{85DD443E-1930-4C2D-A917-200E09D871E8}</ProjectGuid>
+    <Keyword>Android</Keyword>
+    <ApplicationType>Android</ApplicationType>
+    <ApplicationTypeRevision>3.0</ApplicationTypeRevision>
+    <ProjectName>app_simple_app</ProjectName>
+    <RootNamespace>app-simple</RootNamespace>
+    <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>Clang_5_0</PlatformToolset>
+    <UseOfStl>c++_shared</UseOfStl>
+    <ThumbMode>Disabled</ThumbMode>
+    <AndroidAPILevel>android-19</AndroidAPILevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>Clang_5_0</PlatformToolset>
+    <UseOfStl>c++_shared</UseOfStl>
+    <ThumbMode>Disabled</ThumbMode>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>Clang_5_0</PlatformToolset>
+    <UseOfStl>c++_shared</UseOfStl>
+    <ThumbMode>Disabled</ThumbMode>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>Clang_5_0</PlatformToolset>
+    <UseOfStl>c++_shared</UseOfStl>
+    <ThumbMode>Disabled</ThumbMode>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <OutDir>$(SolutionDir)..\..\time-android\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\time-android\intermediate\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <UseMultiToolTask>true</UseMultiToolTask>
+    <TargetName>lib$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <OutDir>$(SolutionDir)..\..\time-android\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\time-android\intermediate\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <UseMultiToolTask>true</UseMultiToolTask>
+    <TargetName>lib$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
+    <OutDir>$(SolutionDir)..\..\time-android\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\time-android\intermediate\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <UseMultiToolTask>true</UseMultiToolTask>
+    <TargetName>lib$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
+    <OutDir>$(SolutionDir)..\..\time-android\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\time-android\intermediate\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <UseMultiToolTask>true</UseMultiToolTask>
+    <TargetName>lib$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../platform-android/platform_configuration/$(Platform)/$(Configuration);$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/platform-android/$(PlatformName)/$(Configuration)/include;$(__archive)/platform-android/include;$(__archive)/platform-android/thirdparty/$(PlatformName)/$(Configuration)/include;$(__archive)/platform-android/include/;;$(__archive)/local/include;$(SolutionDir)../../platform-android;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(SolutionDir)../../;$(SolutionDir)../../app;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../..;$(ProjectDir)..;$(ProjectDir).;$(Sysroot)\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ExceptionHandling>Enabled</ExceptionHandling>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <CppLanguageStandard>c++1z</CppLanguageStandard>
+      <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -Wno-char-subscripts</AdditionalOptions>
+      <PreprocessorDefinitions>DEBUG;__ANDROID_API__=19;_APP_SIMPLE_APP_LIBRARY</PreprocessorDefinitions>
+      <CLanguageStandard>c11</CLanguageStandard>
+    </ClCompile>
+    <Link>
+      <LibraryDependencies>aura;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-android\third\library\$(Platform)\$(Configuration)\;$(__archive)\storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../platform-android/platform_configuration/$(Platform)/$(Configuration);$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/platform-android/$(PlatformName)/$(Configuration)/include;$(__archive)/platform-android/include;$(__archive)/platform-android/thirdparty/$(PlatformName)/$(Configuration)/include;$(__archive)/platform-android/include/;;$(__archive)/local/include;$(SolutionDir)../../platform-android;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(SolutionDir)../../;$(SolutionDir)../../app;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../..;$(ProjectDir)..;$(ProjectDir).;$(Sysroot)\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>DEBUG;__ANDROID_API__=19;_APP_SIMPLE_APP_LIBRARY</PreprocessorDefinitions>
+      <ExceptionHandling>Enabled</ExceptionHandling>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <CLanguageStandard>c11</CLanguageStandard>
+      <CppLanguageStandard>c++1z</CppLanguageStandard>
+      <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -Wno-char-subscripts</AdditionalOptions>
+    </ClCompile>
+    <Link />
+    <Link>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-android\third\library\$(Platform)\$(Configuration)\;$(__archive)\storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
+      <LibraryDependencies>aura;$(StlLibraryName);android;m</LibraryDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <ExceptionHandling>Enabled</ExceptionHandling>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../platform-android/platform_configuration/$(Platform)/$(Configuration);$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/platform-android/$(PlatformName)/$(Configuration)/include;$(__archive)/platform-android/include;$(__archive)/platform-android/thirdparty/$(PlatformName)/$(Configuration)/include;$(__archive)/platform-android/include/;;$(__archive)/local/include;$(SolutionDir)../../platform-android;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(SolutionDir)../../;$(SolutionDir)../../app;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../..;$(ProjectDir)..;$(ProjectDir).;$(Sysroot)\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <CLanguageStandard>c11</CLanguageStandard>
+      <CppLanguageStandard>c++1z</CppLanguageStandard>
+      <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -Wno-unused-private-field -Wno-inconsistent-missing-override -Wno-char-subscripts</AdditionalOptions>
+      <DebugInformationFormat>FullDebug</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <LibraryDependencies>aura;$(StlLibraryName);android;m</LibraryDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-android\third\library\$(Platform)\$(Configuration)\;$(__archive)\storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <ExceptionHandling>Enabled</ExceptionHandling>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../platform-android/platform_configuration/$(Platform)/$(Configuration);$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/platform-android/$(PlatformName)/$(Configuration)/include;$(__archive)/platform-android/include;$(__archive)/platform-android/thirdparty/$(PlatformName)/$(Configuration)/include;$(__archive)/platform-android/include/;;$(__archive)/local/include;$(SolutionDir)../../platform-android;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(SolutionDir)../../;$(SolutionDir)../../app;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../..;$(ProjectDir)..;$(ProjectDir).;$(Sysroot)\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <CLanguageStandard>c11</CLanguageStandard>
+      <CppLanguageStandard>c++1z</CppLanguageStandard>
+      <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -Wno-unused-private-field -Wno-inconsistent-missing-override -Wno-char-subscripts</AdditionalOptions>
+      <DebugInformationFormat>FullDebug</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <LibraryDependencies>aura;$(StlLibraryName);android;m</LibraryDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-android\third\library\$(Platform)\$(Configuration)\;$(__archive)\storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="application.cpp" />
+    <ClCompile Include="framework.cpp" />
+    <ClCompile Include="window.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="application.h" />
+    <ClInclude Include="framework.h" />
+    <ClInclude Include="window.h" />
+    <ClInclude Include="_.h" />
+    <ClInclude Include="_user.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+</Project>

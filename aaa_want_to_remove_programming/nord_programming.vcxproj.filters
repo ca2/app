@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{441a4d6c-5c19-496c-b914-77f874441b32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\programming">
+      <UniqueIdentifier>{6c9e47b5-52ce-4975-9247-625fee76cbeb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\dynamic_source">
+      <UniqueIdentifier>{4ac5543a-d78d-4a28-950a-a0471b89053e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\introjection">
+      <UniqueIdentifier>{50bd948e-acff-412f-97db-ba30a78a90d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{311d5993-c949-4e92-9648-5f561a25d5a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\dynamic_source">
+      <UniqueIdentifier>{758adf94-4853-45f8-8af6-3a03d20a04e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\programming">
+      <UniqueIdentifier>{8ecc1b9d-723e-4a89-988e-db0c7bfe77b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\introjection">
+      <UniqueIdentifier>{8d289d82-978b-4532-9394-481e4c6e45ec}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="programming\programming.h">
+      <Filter>Header Files\programming</Filter>
+    </ClInclude>
+    <ClInclude Include="programming\programming_application.h">
+      <Filter>Header Files\programming</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_exit_exception.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_httpd_socket.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_library_class.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_script.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_script_cache.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_script_compiler.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_script_instance.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_script_interface.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_script_manager.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_session.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="introjection\introjection.h">
+      <Filter>Header Files\introjection</Filter>
+    </ClInclude>
+    <ClInclude Include="introjection\introjection_compiler.h">
+      <Filter>Header Files\introjection</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_exit_exception.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_httpd_socket.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_library_class.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_script.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_script_cache.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_script_compiler.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_script_instance.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_script_interface.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_script_manager.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_session.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="programming\programming_application.cpp">
+      <Filter>Source Files\programming</Filter>
+    </ClCompile>
+    <ClCompile Include="introjection\introjection_compiler.cpp">
+      <Filter>Source Files\introjection</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="programming.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

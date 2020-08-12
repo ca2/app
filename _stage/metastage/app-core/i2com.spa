@@ -1,0 +1,7 @@
+app\stage\metastage\bergedge.spa
+app\stage\metastage\app-core\multimedia.spa
+app\stage\metastage\app-core\rtprx.spa
+app\stage\metastage\app-core\rtptx.spa
+app\stage\metastage\app-core\tesseract.spa
+stage\basis\app_core_i2com.dll
+stage\basis\app_core_i2com.exe

@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{0b3593e1-10d1-4115-b210-4b4bd3af5e9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\kissfft">
+      <UniqueIdentifier>{0cf4d2bd-3900-4399-a537-d2993211cc7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\math">
+      <UniqueIdentifier>{39b5fc3f-a016-4fbd-874d-e881732077e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{53c823a6-a5fb-4437-8585-06b0262da1ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\math">
+      <UniqueIdentifier>{b89289c5-fb5c-4c8e-9ae7-54b2211827c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\kissfft">
+      <UniqueIdentifier>{a6791e20-5d5d-406b-aff7-2568b235c69f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kissfft\kissfft.h">
+      <Filter>Header Files\kissfft</Filter>
+    </ClInclude>
+    <ClInclude Include="kissfft\kissfft_fftd.h">
+      <Filter>Header Files\kissfft</Filter>
+    </ClInclude>
+    <ClInclude Include="kissfft\kissfft_ifftd.h">
+      <Filter>Header Files\kissfft</Filter>
+    </ClInclude>
+    <ClInclude Include="kissfft\kiss_fft.h">
+      <Filter>Header Files\kissfft</Filter>
+    </ClInclude>
+    <ClInclude Include="kissfft\kiss_ifft.h">
+      <Filter>Header Files\kissfft</Filter>
+    </ClInclude>
+    <ClInclude Include="kissfft\kiss_fft_guts.h">
+      <Filter>Header Files\kissfft</Filter>
+    </ClInclude>
+    <ClInclude Include="kissfft\aaa_vmskissfftfKiss_want_to_remove_xxx.h">
+      <Filter>Header Files\kissfft</Filter>
+    </ClInclude>
+    <ClInclude Include="math\math_math.h">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kissfft\kissfft_fftd.cpp">
+      <Filter>Source Files\kissfft</Filter>
+    </ClCompile>
+    <ClCompile Include="kissfft\kissfft_ifftd.cpp">
+      <Filter>Source Files\kissfft</Filter>
+    </ClCompile>
+    <ClCompile Include="kissfft\kiss_fft.cpp">
+      <Filter>Source Files\kissfft</Filter>
+    </ClCompile>
+    <ClCompile Include="kissfft\kiss_fft_shared.cpp">
+      <Filter>Source Files\kissfft</Filter>
+    </ClCompile>
+    <ClCompile Include="kissfft\kiss_ifft.cpp">
+      <Filter>Source Files\kissfft</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="math.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

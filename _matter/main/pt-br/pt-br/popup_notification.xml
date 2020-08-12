@@ -1,0 +1,8 @@
+
+	<menubar id="link">
+		<item id="cancel">Cancelar</item>
+		<separator />
+		<item id="transparent_frame">Ativar Transparência</item>
+		<separator />
+		<item id="app_exit">Sair</item>
+	</menubar>

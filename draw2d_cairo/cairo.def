@@ -1,0 +1,7 @@
+; draw2d_cairo.def : Declares the module parameters for the DLL.
+
+LIBRARY  "draw2d_cairo"
+; For Win32 DLLs, only EXPORTs really required.
+
+EXPORTS
+factory_exchange

@@ -1,0 +1,47 @@
+﻿<layout name="Deutsch">
+	<item code="key_return" value="&#10;" />
+	<item code="191" value="-" />
+	<item code="191" shift="1" value="_" />
+	<item code="226" value="<" />
+	<item code="226" shift="1" value=">" />
+	<item code="189" value="ß" />
+	<item code="189" shift="1" value="?" />
+	<item code="186" value="ö" />
+	<item code="186" shift="1" value="Ö" />
+	<item code="187" escape="´" />
+	<item code="187" shift="1" escape="`" />
+	<item code="219" value="ü" />
+	<item code="219" shift="1" value="Ü" />
+	<item code="222" value="ä" />
+	<item code="222" shift="1" value="Ä" />
+	<item code="221" value="+" />
+	<item code="221" shift="1" value="*" />
+	<item code="220" value="#" />
+	<item code="220" shift="1" value="'" />
+	<item code="188" value="," />
+	<item code="188" shift="1" value=";" />
+	<item code="190" value="." />
+	<item code="190" shift="1" value=":" />
+	<item code="193" value="" />
+	<item code="193" shift="1" value="" />
+	<item code="192" escape="^" />
+	<item code="192" shift="1" value="°" />
+	<item char="1" shift="1" value="!" />
+	<item char="2" shift="1" value="\"" />
+	<item char="3" shift="1" value="§" />
+	<item char="4" shift="1" value="$" />
+	<item char="5" shift="1" value="%" />
+	<item char="6" shift="1" escape=&amp;¨" />
+	<item char="7" shift="1" value="/" />
+	<item char="8" shift="1" value="(" />
+	<item char="9" shift="1" value=")" />
+	<item char="0" shift="1" value="=" />
+	<escape value="¨">
+		<item char="a" value="ä" />
+		<item char="e" value="ë" />
+		<item char="i" value="ï" />
+		<item char="o" value="ö" />
+		<item char="u" value="ü" />
+	</escape>
+</layout>
+

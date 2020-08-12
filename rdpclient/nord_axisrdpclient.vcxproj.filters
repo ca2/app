@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{8aefdf83-8f01-4e20-872c-7a4e0a077459}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\client">
+      <UniqueIdentifier>{1c2dfd0c-1f71-4285-a101-88d828d427a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\client\common">
+      <UniqueIdentifier>{9bec7dc3-8d1b-47ef-9535-1aa160b6e879}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\client\ca2">
+      <UniqueIdentifier>{739ed936-a50f-481a-bf86-5914add5b368}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{eebf7744-7275-4803-bf92-0b762d3851ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\client">
+      <UniqueIdentifier>{cba36e3e-625a-4ae7-8325-d4bac03140b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\client\common">
+      <UniqueIdentifier>{0307314b-f1dc-4e38-bf92-1e1b21655db8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\client\ca2">
+      <UniqueIdentifier>{222f8184-907b-484a-a349-aee4b790780c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\client\Android">
+      <UniqueIdentifier>{9a8c5302-0a51-4e96-b343-0eb1b4893dfb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\client\Android">
+      <UniqueIdentifier>{6a1ed7ea-b4dd-475c-ac54-714a1b09a40e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="client\common\compatibility.h">
+      <Filter>Header Files\client\common</Filter>
+    </ClInclude>
+    <ClInclude Include="client\ca2\ca2rdp.h">
+      <Filter>Header Files\client\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="client\ca2\ca2rdp_event.h">
+      <Filter>Header Files\client\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="client\ca2\ca2rdp_graphics.h">
+      <Filter>Header Files\client\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="client\Android\af_client.h">
+      <Filter>Header Files\client\Android</Filter>
+    </ClInclude>
+    <ClInclude Include="client\Android\af_channels.h">
+      <Filter>Header Files\client\Android</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="client\ca2\ca2rdp.cpp">
+      <Filter>Source Files\client\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="client\ca2\ca2rdp_event.cpp">
+      <Filter>Source Files\client\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="client\ca2\ca2rdp_graphics.cpp">
+      <Filter>Source Files\client\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="client\common\client.cpp">
+      <Filter>Source Files\client\common</Filter>
+    </ClCompile>
+    <ClCompile Include="client\common\cmdline.cpp">
+      <Filter>Source Files\client\common</Filter>
+    </ClCompile>
+    <ClCompile Include="client\common\compatibility.cpp">
+      <Filter>Source Files\client\common</Filter>
+    </ClCompile>
+    <ClCompile Include="client\common\file.cpp">
+      <Filter>Source Files\client\common</Filter>
+    </ClCompile>
+    <ClCompile Include="client\Android\af_client.cpp">
+      <Filter>Source Files\client\Android</Filter>
+    </ClCompile>
+    <ClCompile Include="client\Android\af_channels.cpp">
+      <Filter>Source Files\client\Android</Filter>
+    </ClCompile>
+    <ClCompile Include="client\ca2\ca2rdp_event_queue.cpp">
+      <Filter>Source Files\client\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="client\common\cf_channels.cpp">
+      <Filter>Source Files\client\common</Filter>
+    </ClCompile>
+    <ClCompile Include="client\common\cf_client.cpp">
+      <Filter>Source Files\client\common</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="axisrdpclient.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

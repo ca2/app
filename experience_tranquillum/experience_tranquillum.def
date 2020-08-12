@@ -1,0 +1,7 @@
+; experience_tranquillum.def : Declares the module parameters for the DLL.
+
+LIBRARY      "experience_tranquillum"
+	;DESCRIPTION  'uinteraction Windows Dynamic Link Library'
+
+EXPORTS
+experience_tranquillum_get_new_library

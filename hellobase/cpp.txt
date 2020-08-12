@@ -1,0 +1,27 @@
+ Volume in drive C has no label.
+ Volume Serial Number is CC8D-9F90
+
+ Directory of C:\nordroid\app-core\hellobase
+
+17/04/2016  03:31                24 framework.cpp
+17/04/2016  03:31               573 hellobase.cpp
+24/04/2016  11:53            27.642 hellobase_application.cpp
+17/04/2016  03:31             2.435 hellobase_document.cpp
+17/04/2016  03:32             2.135 hellobase_edit_view.cpp
+17/04/2016  03:31             2.907 hellobase_font_view.cpp
+17/04/2016  03:32             1.876 hellobase_frame.cpp
+19/04/2016  09:27             2.476 hellobase_gcom.cpp
+17/04/2016  03:32             2.726 hellobase_main_view.cpp
+19/04/2016  09:27            10.404 hellobase_pane_view.cpp
+17/04/2016  03:32               509 aaa_want_to_remove_hellobase_view_update_hint.cpp
+17/04/2016  03:31            17.309 hellobase_render.cpp
+17/04/2016  03:32             2.480 hellobase_switcher_view.cpp
+17/04/2016  03:31               885 hellobase_toggle_view.cpp
+17/04/2016  03:32             1.768 hellobase_top_view.cpp
+02/05/2016  19:08            19.472 hellobase_view.cpp
+01/05/2016  02:38             6.217 hellobase_view_base.cpp
+17/04/2016  03:31               750 mac_main.cpp
+19/04/2016  09:27             6.572 user_font_list.cpp
+17/04/2016  03:31               309 winmetro_hellobase.cpp
+              20 File(s)        109.469 bytes
+               0 Dir(s)  59.980.251.136 bytes free

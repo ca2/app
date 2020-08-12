@@ -1,0 +1,6 @@
+<menubar>
+	<item id="edit_cut">Cut</item>
+	<item id="edit_copy">Copy</item>
+	<item id="edit_paste">Paste</item>
+	<item id="edit_delete">Delete</item>
+</menubar>

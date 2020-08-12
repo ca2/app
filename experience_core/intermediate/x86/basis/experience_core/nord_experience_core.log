@@ -1,0 +1,8 @@
+﻿  ANDROID_HOME=
+  ANT_HOME=C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Apps\apache-ant-1.9.3
+  JAVA_HOME=C:\Program Files\Android\jdk\microsoft_dist_openjdk_1.8.0.25
+  NDK_ROOT=C:\\Microsoft\AndroidNDK64\android-ndk-r16b
+  C:\\Microsoft\AndroidNDK64\android-ndk-r16b\toolchains\x86-4.9\prebuilt\windows-x86_64/lib/gcc/i686-linux-android/4.9.x/../../../../i686-linux-android/bin\ld: error: cannot find -lcore
+  C:\\Microsoft\AndroidNDK64\android-ndk-r16b\toolchains\x86-4.9\prebuilt\windows-x86_64/lib/gcc/i686-linux-android/4.9.x/../../../../i686-linux-android/bin\ld: error: cannot find -laura
+  clang.exe: error: linker command failed with exit code 1 (use -v to see invocation)
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Application Type\Android\3.0\Android.Common.targets(119,5): error MSB6006: "clang.exe" exited with code 1.

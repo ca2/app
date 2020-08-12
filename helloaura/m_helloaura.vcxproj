@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="basis|ARM">
+      <Configuration>basis</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="basis|Win32">
+      <Configuration>basis</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="basis|x64">
+      <Configuration>basis</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{AA5C6E24-9DF1-4EC1-A907-E298FEAE1990}</ProjectGuid>
+    <RootNamespace>app_core_helloaura</RootNamespace>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
+    <AppContainerApplication>true</AppContainerApplication>
+    <ProjectName>app_core_helloaura</ProjectName>
+    <ApplicationType>Windows Store</ApplicationType>
+    <ApplicationTypeRevision>8.1</ApplicationTypeRevision>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\platform-windows\Common.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\platform-windows\Common.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\platform-windows\Common.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <IncludePath>$(VCInstallDir)include;$(WindowsSDK_IncludePath);</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PackageCertificateKeyFile>Direct3DApp2_TemporaryKey.pfx</PackageCertificateKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
+    <OutDir>$(SolutionDir)..\..\..\stage\$(SolutionName)\$(PlatformName)\</OutDir>
+    <IntDir>$(TimeDir)intermediate\$(SolutionName)\$(PlatformName)\$(ProjectName)\</IntDir>
+    <ReferencePath>$(VCInstallDir)lib</ReferencePath>
+    <LibraryPath>$(VCInstallDir)lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
+    <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
+    <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
+    <LinkIncremental>false</LinkIncremental>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
+    <OutDir>$(SolutionDir)..\..\..\stage\$(SolutionName)\$(PlatformName)\</OutDir>
+    <IntDir>$(TimeDir)intermediate\$(SolutionName)\$(PlatformName)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
+    <OutDir>$(SolutionDir)..\..\..\stage\$(SolutionName)\$(PlatformName)\</OutDir>
+    <IntDir>$(TimeDir)intermediate\$(SolutionName)\$(PlatformName)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <Link>
+      <AdditionalDependencies>kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <SubSystem Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Windows</SubSystem>
+      <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(SolutionDir)../../time/library/x86/$(ConfigurationName);$(__archive)/platform-uwp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ModuleDefinitionFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(TargetName).def</ModuleDefinitionFile>
+      <ImportLibrary Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(OutDir)$(TargetName).lib</ImportLibrary>
+      <IgnoreAllDefaultLibraries Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(IntDir);$(SolutionDir)../../time/library/$(PlatformName)/$(Configuration)/;$(__archive)/platform-uwp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ImportLibrary Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(OutDir)$(TargetName).lib</ImportLibrary>
+      <ImportLibrary Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(OutDir)$(TargetName).lib</ImportLibrary>
+      <IgnoreAllDefaultLibraries Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</IgnoreAllDefaultLibraries>
+      <ModuleDefinitionFile Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(TargetName).def</ModuleDefinitionFile>
+    </Link>
+    <ClCompile>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(SolutionDir)../../;$(SolutionDir)../../app;$(SolutionDir)../../app;$(__archive)/platform-uwp/thirdparty;$(SolutionDir)../../;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">_APP_CORE_HELLOAURA_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <ExceptionHandling Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Async</ExceptionHandling>
+      <DebugInformationFormat Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">ProgramDatabase</DebugInformationFormat>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</CompileAsManaged>
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</RuntimeTypeInfo>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">false</CompileAsManaged>
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+      <ExceptionHandling Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">Async</ExceptionHandling>
+      <StringPooling Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</StringPooling>
+      <FunctionLevelLinking Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</FunctionLevelLinking>
+      <EnableParallelCodeGeneration Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</EnableParallelCodeGeneration>
+      <FloatingPointModel Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Fast</FloatingPointModel>
+      <FloatingPointExceptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</FloatingPointExceptions>
+      <CreateHotpatchableImage Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</CreateHotpatchableImage>
+      <OpenMPSupport Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</OpenMPSupport>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">_APP_CORE_HELLOAURA_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|x64'">_APP_CORE_HELLOAURA_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'">/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <ExceptionHandling Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Async</ExceptionHandling>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</CompileAsManaged>
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</RuntimeTypeInfo>
+      <OpenMPSupport Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">false</OpenMPSupport>
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</RuntimeTypeInfo>
+      <OpenMPSupport Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</OpenMPSupport>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h" />
+    <ClInclude Include="helloaura.h" />
+    <ClInclude Include="helloaura_application.h" />
+    <ClInclude Include="helloaura_document.h" />
+    <ClInclude Include="helloaura_edit_view.h" />
+    <ClInclude Include="helloaura_frame.h" />
+    <ClInclude Include="helloaura_full_view.h" />
+    <ClInclude Include="helloaura_lite_view.h" />
+    <ClInclude Include="helloaura_main_view.h" />
+    <ClInclude Include="helloaura_pane_view.h" />
+
+    <ClInclude Include="helloaura_switcher_view.h" />
+    <ClInclude Include="helloaura_toggle_view.h" />
+    <ClInclude Include="helloaura_top_view.h" />
+    <ClInclude Include="helloaura_view.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="framework.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="helloaura.cpp" />
+    <ClCompile Include="helloaura_application.cpp" />
+    <ClCompile Include="helloaura_document.cpp" />
+    <ClCompile Include="helloaura_edit_view.cpp" />
+    <ClCompile Include="helloaura_frame.cpp" />
+    <ClCompile Include="helloaura_full_view.cpp" />
+    <ClCompile Include="helloaura_lite_view.cpp" />
+    <ClCompile Include="helloaura_main_view.cpp" />
+    <ClCompile Include="helloaura_pane_view.cpp" />
+
+    <ClCompile Include="helloaura_switcher_view.cpp" />
+    <ClCompile Include="helloaura_toggle_view.cpp" />
+    <ClCompile Include="helloaura_top_view.cpp" />
+    <ClCompile Include="helloaura_view.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\app\aura\m_aura.vcxproj">
+      <Project>{55f3f6b8-8baf-4f22-9e77-bcf9d5a23960}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\app\axis\m_axis.vcxproj">
+      <Project>{3bae8362-f135-4513-9163-58532baba44a}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\app\base\m_base.vcxproj">
+      <Project>{5487686f-8a2f-401a-a38e-fda8900e1984}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\app\aura\m_core.vcxproj">
+      <Project>{420d7aeb-cfca-45de-bb6e-95055df21987}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app_core_helloaura.def" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

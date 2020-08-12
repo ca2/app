@@ -1,0 +1,8 @@
+<menubar>
+	<menubar id="popup">
+		<item id="file_rename">Renomear</item>
+		<menubar id="Open With">
+			<item id="open_with">open_with</item>
+		</menubar>	
+	</menubar>
+</menubar>

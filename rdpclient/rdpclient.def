@@ -1,0 +1,27 @@
+LIBRARY		"rdpclient"
+EXPORTS
+wf_main
+;wf_pre_connect
+;wf_add_system_menu
+;wf_sw_begin_paint
+;wf_sw_end_paint
+;wf_sw_desktop_resize
+;wf_hw_begin_paint
+;wf_hw_end_paint
+;wf_hw_desktop_resize
+;floatbar_window_create
+;wf_invalidate_region
+;wf_image_new
+;wf_image_free
+;wf_update_offset
+;wf_resize_window
+;wf_toggle_fullscreen
+;wf_gdi_bitmap_update
+;wf_gdi_register_update_callbacks
+;wf_update_canvas_diff
+;wf_create_dib
+;wf_image_new
+;wf_image_free
+;wf_register_pointer
+;wf_register_graphics
+

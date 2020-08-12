@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
+  <Identity Name="cc.ca2.app-core.helloAXIS.2016-10-06-21-35" Publisher="CN=camilo" Version="1.0.15.0" />
+  <mp:PhoneIdentity PhoneProductId="1e4c7cd3-fcc2-44e7-9e13-eb7aacb60680" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Properties>
+    <DisplayName>Hello AXIS!!</DisplayName>
+    <PublisherDisplayName>Camilo</PublisherDisplayName>
+    <Logo>assets\Square50.png</Logo>
+  </Properties>
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
+  </Dependencies>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="HelloAXIS.HelloAXIS">
+      <uap:VisualElements DisplayName="HelloAXIS" Square150x150Logo="Assets\Square150.png" Square44x44Logo="Assets\Square44.png" Description="HelloAXIS" BackgroundColor="transparent">
+        <uap:LockScreen Notification="badge" BadgeLogo="assets\Square24.png" />
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150.png" ShortName="Hello AXIS!!" Square310x310Logo="assets\Square310.png" Square71x71Logo="Assets\Square71.png">
+          <uap:ShowNameOnTiles>
+            <uap:ShowOn Tile="square150x150Logo" />
+            <uap:ShowOn Tile="wide310x150Logo" />
+            <uap:ShowOn Tile="square310x310Logo" />
+          </uap:ShowNameOnTiles>
+        </uap:DefaultTile>
+        <uap:SplashScreen Image="Assets\Wide620x300.png" />
+      </uap:VisualElements>
+      <Extensions>
+        <uap:Extension Category="windows.fileTypeAssociation">
+          <uap:FileTypeAssociation Name="core_topic">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.topic</uap:FileType>
+            </uap:SupportedFileTypes>
+          </uap:FileTypeAssociation>
+        </uap:Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="internetClient" />
+    <uap:Capability Name="documentsLibrary" />
+    <uap:Capability Name="picturesLibrary" />
+  </Capabilities>
+</Package>

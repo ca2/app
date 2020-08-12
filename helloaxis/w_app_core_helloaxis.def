@@ -1,0 +1,8 @@
+; app_helloAXIS.def
+
+LIBRARY  "app_core_helloAXIS"
+; For Win32 DLLs, only EXPORTs really required.
+
+EXPORTS
+app_core_helloAXIS_get_new_library
+

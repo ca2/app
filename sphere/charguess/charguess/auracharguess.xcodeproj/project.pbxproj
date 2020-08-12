@@ -1,0 +1,587 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		07473E0D1B503FE4004688C5 /* libios_aura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07473E0C1B503FE4004688C5 /* libios_aura.dylib */; };
+		07502CB01B2529AF008D207C /* _cpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07502CAF1B2529AF008D207C /* _cpp.cpp */; };
+		07502CB21B2529BA008D207C /* charDistribution.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07502CB11B2529BA008D207C /* charDistribution.cpp */; };
+		07D6A82B1B4CBB45004FEBC2 /* _cpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07502CAF1B2529AF008D207C /* _cpp.cpp */; };
+		07D6A82C1B4CBB45004FEBC2 /* charDistribution.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07502CB11B2529BA008D207C /* charDistribution.cpp */; };
+		07D6A8301B4CBB45004FEBC2 /* codingStateMachine.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDAF019C83CD000F5CCE8 /* codingStateMachine.h */; };
+		07D6A8311B4CBB45004FEBC2 /* universal.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB1919C83CD000F5CCE8 /* universal.h */; };
+		07D6A8321B4CBB45004FEBC2 /* MBCSGroupProber.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB0E19C83CD000F5CCE8 /* MBCSGroupProber.h */; };
+		07D6A8331B4CBB45004FEBC2 /* SBCharsetProber.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB1219C83CD000F5CCE8 /* SBCharsetProber.h */; };
+		07D6A8341B4CBB45004FEBC2 /* charDistribution.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDAED19C83CD000F5CCE8 /* charDistribution.h */; };
+		07D6A8351B4CBB45004FEBC2 /* big5Prober.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDAEB19C83CD000F5CCE8 /* big5Prober.h */; };
+		07D6A8361B4CBB45004FEBC2 /* EscCharsetProber.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDAF519C83CD000F5CCE8 /* EscCharsetProber.h */; };
+		07D6A8371B4CBB45004FEBC2 /* UTF8Prober.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB1B19C83CD000F5CCE8 /* UTF8Prober.h */; };
+		07D6A8381B4CBB45004FEBC2 /* types.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB1719C83CD000F5CCE8 /* types.h */; };
+		07D6A8391B4CBB45004FEBC2 /* charsetProber.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDAEF19C83CD000F5CCE8 /* charsetProber.h */; };
+		07D6A83A1B4CBB45004FEBC2 /* EUCJPProber.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDAF819C83CD000F5CCE8 /* EUCJPProber.h */; };
+		07D6A83B1B4CBB45004FEBC2 /* jpCntx.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB0419C83CD000F5CCE8 /* jpCntx.h */; };
+		07D6A83C1B4CBB45004FEBC2 /* SBCSGroupProber.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB1419C83CD000F5CCE8 /* SBCSGroupProber.h */; };
+		07D6A83D1B4CBB45004FEBC2 /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDAF119C83CD000F5CCE8 /* config.h */; };
+		07D6A83E1B4CBB45004FEBC2 /* pkgInt.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB1019C83CD000F5CCE8 /* pkgInt.h */; };
+		07D6A83F1B4CBB45004FEBC2 /* EUCTWProber.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDAFE19C83CD000F5CCE8 /* EUCTWProber.h */; };
+		07D6A8401B4CBB45004FEBC2 /* EUCKRProber.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDAFB19C83CD000F5CCE8 /* EUCKRProber.h */; };
+		07D6A8411B4CBB45004FEBC2 /* GB2312Prober.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB0119C83CD000F5CCE8 /* GB2312Prober.h */; };
+		07D6A8421B4CBB45004FEBC2 /* Latin1Prober.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB0B19C83CD000F5CCE8 /* Latin1Prober.h */; };
+		07D6A8431B4CBB45004FEBC2 /* SJISProber.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB1619C83CD000F5CCE8 /* SJISProber.h */; };
+		9A1EDB1D19C83CD000F5CCE8 /* big5Prober.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDAEB19C83CD000F5CCE8 /* big5Prober.h */; };
+		9A1EDB1F19C83CD000F5CCE8 /* charDistribution.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDAED19C83CD000F5CCE8 /* charDistribution.h */; };
+		9A1EDB2119C83CD000F5CCE8 /* charsetProber.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDAEF19C83CD000F5CCE8 /* charsetProber.h */; };
+		9A1EDB2219C83CD000F5CCE8 /* codingStateMachine.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDAF019C83CD000F5CCE8 /* codingStateMachine.h */; };
+		9A1EDB2319C83CD000F5CCE8 /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDAF119C83CD000F5CCE8 /* config.h */; };
+		9A1EDB2519C83CD000F5CCE8 /* EscCharsetProber.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDAF519C83CD000F5CCE8 /* EscCharsetProber.h */; };
+		9A1EDB2819C83CD000F5CCE8 /* EUCJPProber.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDAF819C83CD000F5CCE8 /* EUCJPProber.h */; };
+		9A1EDB2A19C83CD000F5CCE8 /* EUCKRProber.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDAFB19C83CD000F5CCE8 /* EUCKRProber.h */; };
+		9A1EDB2C19C83CD000F5CCE8 /* EUCTWProber.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDAFE19C83CD000F5CCE8 /* EUCTWProber.h */; };
+		9A1EDB2E19C83CD000F5CCE8 /* GB2312Prober.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB0119C83CD000F5CCE8 /* GB2312Prober.h */; };
+		9A1EDB3019C83CD000F5CCE8 /* jpCntx.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB0419C83CD000F5CCE8 /* jpCntx.h */; };
+		9A1EDB3719C83CD000F5CCE8 /* Latin1Prober.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB0B19C83CD000F5CCE8 /* Latin1Prober.h */; };
+		9A1EDB3919C83CD000F5CCE8 /* MBCSGroupProber.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB0E19C83CD000F5CCE8 /* MBCSGroupProber.h */; };
+		9A1EDB3B19C83CD000F5CCE8 /* pkgInt.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB1019C83CD000F5CCE8 /* pkgInt.h */; };
+		9A1EDB3D19C83CD000F5CCE8 /* SBCharsetProber.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB1219C83CD000F5CCE8 /* SBCharsetProber.h */; };
+		9A1EDB3F19C83CD000F5CCE8 /* SBCSGroupProber.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB1419C83CD000F5CCE8 /* SBCSGroupProber.h */; };
+		9A1EDB4119C83CD000F5CCE8 /* SJISProber.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB1619C83CD000F5CCE8 /* SJISProber.h */; };
+		9A1EDB4219C83CD000F5CCE8 /* types.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB1719C83CD000F5CCE8 /* types.h */; };
+		9A1EDB4419C83CD000F5CCE8 /* universal.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB1919C83CD000F5CCE8 /* universal.h */; };
+		9A1EDB4619C83CD000F5CCE8 /* UTF8Prober.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB1B19C83CD000F5CCE8 /* UTF8Prober.h */; };
+		9A1EDB5519C83FFB00F5CCE8 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1EDB4E19C83FE800F5CCE8 /* libaura.dylib */; };
+		9A4E861A1D1FD74D008A419B /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E86181D1FD74D008A419B /* framework.cpp */; };
+		9A4E861B1D1FD74D008A419B /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4E86191D1FD74D008A419B /* framework.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		07473E0B1B503FE4004688C5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A1EDB4719C83FE800F5CCE8 /* aura.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 077A080B1B4D7403001C85FF;
+			remoteInfo = ios_aura;
+		};
+		07557C321B4D905B0065594B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A1EDB4719C83FE800F5CCE8 /* aura.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 077A05B41B4D7403001C85FF;
+			remoteInfo = aura_ios;
+		};
+		9A1EDB4D19C83FE800F5CCE8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A1EDB4719C83FE800F5CCE8 /* aura.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A98A6151771D67E000AE16E;
+			remoteInfo = aura;
+		};
+		9A1EDB5119C83FE800F5CCE8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A1EDB4719C83FE800F5CCE8 /* aura.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AE24D431904CEFE001AEFFB;
+			remoteInfo = aura_iosTests;
+		};
+		9A1EDB5319C83FF200F5CCE8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A1EDB4719C83FE800F5CCE8 /* aura.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
+			remoteInfo = aura;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		07502CAF1B2529AF008D207C /* _cpp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _cpp.cpp; sourceTree = "<group>"; };
+		07502CB11B2529BA008D207C /* charDistribution.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = charDistribution.cpp; sourceTree = "<group>"; };
+		07D6A8471B4CBB45004FEBC2 /* libios_auracharguess.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_auracharguess.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A1EDAEB19C83CD000F5CCE8 /* big5Prober.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = big5Prober.h; sourceTree = "<group>"; };
+		9A1EDAED19C83CD000F5CCE8 /* charDistribution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = charDistribution.h; sourceTree = "<group>"; };
+		9A1EDAEF19C83CD000F5CCE8 /* charsetProber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = charsetProber.h; sourceTree = "<group>"; };
+		9A1EDAF019C83CD000F5CCE8 /* codingStateMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = codingStateMachine.h; sourceTree = "<group>"; };
+		9A1EDAF119C83CD000F5CCE8 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		9A1EDAF519C83CD000F5CCE8 /* EscCharsetProber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EscCharsetProber.h; sourceTree = "<group>"; };
+		9A1EDAF819C83CD000F5CCE8 /* EUCJPProber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EUCJPProber.h; sourceTree = "<group>"; };
+		9A1EDAFB19C83CD000F5CCE8 /* EUCKRProber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EUCKRProber.h; sourceTree = "<group>"; };
+		9A1EDAFE19C83CD000F5CCE8 /* EUCTWProber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EUCTWProber.h; sourceTree = "<group>"; };
+		9A1EDB0119C83CD000F5CCE8 /* GB2312Prober.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GB2312Prober.h; sourceTree = "<group>"; };
+		9A1EDB0419C83CD000F5CCE8 /* jpCntx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jpCntx.h; sourceTree = "<group>"; };
+		9A1EDB0B19C83CD000F5CCE8 /* Latin1Prober.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Latin1Prober.h; sourceTree = "<group>"; };
+		9A1EDB0E19C83CD000F5CCE8 /* MBCSGroupProber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBCSGroupProber.h; sourceTree = "<group>"; };
+		9A1EDB1019C83CD000F5CCE8 /* pkgInt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pkgInt.h; sourceTree = "<group>"; };
+		9A1EDB1219C83CD000F5CCE8 /* SBCharsetProber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBCharsetProber.h; sourceTree = "<group>"; };
+		9A1EDB1419C83CD000F5CCE8 /* SBCSGroupProber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBCSGroupProber.h; sourceTree = "<group>"; };
+		9A1EDB1619C83CD000F5CCE8 /* SJISProber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJISProber.h; sourceTree = "<group>"; };
+		9A1EDB1719C83CD000F5CCE8 /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
+		9A1EDB1919C83CD000F5CCE8 /* universal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = universal.h; sourceTree = "<group>"; };
+		9A1EDB1B19C83CD000F5CCE8 /* UTF8Prober.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTF8Prober.h; sourceTree = "<group>"; };
+		9A1EDB4719C83FE800F5CCE8 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../../aura/.xcodeproj; sourceTree = "<group>"; };
+		9A4E86181D1FD74D008A419B /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = SOURCE_ROOT; };
+		9A4E86191D1FD74D008A419B /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = SOURCE_ROOT; };
+		9AA539B119B763C400B9F861 /* libauracharguess.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libauracharguess.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		07D6A82D1B4CBB45004FEBC2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07473E0D1B503FE4004688C5 /* libios_aura.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9AA5E5FC16F7C61B005C45CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A1EDB5519C83FFB00F5CCE8 /* libaura.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9A1B2F7D16A2AF5C00875A94 = {
+			isa = PBXGroup;
+			children = (
+				9A1EDB4719C83FE800F5CCE8 /* aura.xcodeproj */,
+				9A1EDAE819C83CD000F5CCE8 /* cpp */,
+				9A4E846C1D1FD377008A419B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9A1EDAE819C83CD000F5CCE8 /* cpp */ = {
+			isa = PBXGroup;
+			children = (
+				9A4E86181D1FD74D008A419B /* framework.cpp */,
+				9A4E86191D1FD74D008A419B /* framework.h */,
+				07502CB11B2529BA008D207C /* charDistribution.cpp */,
+				07502CAF1B2529AF008D207C /* _cpp.cpp */,
+				9A1EDAEB19C83CD000F5CCE8 /* big5Prober.h */,
+				9A1EDAED19C83CD000F5CCE8 /* charDistribution.h */,
+				9A1EDAEF19C83CD000F5CCE8 /* charsetProber.h */,
+				9A1EDAF019C83CD000F5CCE8 /* codingStateMachine.h */,
+				9A1EDAF119C83CD000F5CCE8 /* config.h */,
+				9A1EDAF519C83CD000F5CCE8 /* EscCharsetProber.h */,
+				9A1EDAF819C83CD000F5CCE8 /* EUCJPProber.h */,
+				9A1EDAFB19C83CD000F5CCE8 /* EUCKRProber.h */,
+				9A1EDAFE19C83CD000F5CCE8 /* EUCTWProber.h */,
+				9A1EDB0119C83CD000F5CCE8 /* GB2312Prober.h */,
+				9A1EDB0419C83CD000F5CCE8 /* jpCntx.h */,
+				9A1EDB0B19C83CD000F5CCE8 /* Latin1Prober.h */,
+				9A1EDB0E19C83CD000F5CCE8 /* MBCSGroupProber.h */,
+				9A1EDB1019C83CD000F5CCE8 /* pkgInt.h */,
+				9A1EDB1219C83CD000F5CCE8 /* SBCharsetProber.h */,
+				9A1EDB1419C83CD000F5CCE8 /* SBCSGroupProber.h */,
+				9A1EDB1619C83CD000F5CCE8 /* SJISProber.h */,
+				9A1EDB1719C83CD000F5CCE8 /* types.h */,
+				9A1EDB1919C83CD000F5CCE8 /* universal.h */,
+				9A1EDB1B19C83CD000F5CCE8 /* UTF8Prober.h */,
+			);
+			path = cpp;
+			sourceTree = "<group>";
+		};
+		9A1EDB4819C83FE800F5CCE8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A1EDB4E19C83FE800F5CCE8 /* libaura.dylib */,
+				07473E0C1B503FE4004688C5 /* libios_aura.dylib */,
+				9A1EDB5219C83FE800F5CCE8 /* aura_iosTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9A4E846C1D1FD377008A419B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9AA539B119B763C400B9F861 /* libauracharguess.dylib */,
+				07D6A8471B4CBB45004FEBC2 /* libios_auracharguess.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		07D6A82F1B4CBB45004FEBC2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07D6A8301B4CBB45004FEBC2 /* codingStateMachine.h in Headers */,
+				07D6A8311B4CBB45004FEBC2 /* universal.h in Headers */,
+				07D6A8321B4CBB45004FEBC2 /* MBCSGroupProber.h in Headers */,
+				07D6A8331B4CBB45004FEBC2 /* SBCharsetProber.h in Headers */,
+				07D6A8341B4CBB45004FEBC2 /* charDistribution.h in Headers */,
+				07D6A8351B4CBB45004FEBC2 /* big5Prober.h in Headers */,
+				07D6A8361B4CBB45004FEBC2 /* EscCharsetProber.h in Headers */,
+				07D6A8371B4CBB45004FEBC2 /* UTF8Prober.h in Headers */,
+				07D6A8381B4CBB45004FEBC2 /* types.h in Headers */,
+				07D6A8391B4CBB45004FEBC2 /* charsetProber.h in Headers */,
+				07D6A83A1B4CBB45004FEBC2 /* EUCJPProber.h in Headers */,
+				07D6A83B1B4CBB45004FEBC2 /* jpCntx.h in Headers */,
+				07D6A83C1B4CBB45004FEBC2 /* SBCSGroupProber.h in Headers */,
+				07D6A83D1B4CBB45004FEBC2 /* config.h in Headers */,
+				07D6A83E1B4CBB45004FEBC2 /* pkgInt.h in Headers */,
+				07D6A83F1B4CBB45004FEBC2 /* EUCTWProber.h in Headers */,
+				07D6A8401B4CBB45004FEBC2 /* EUCKRProber.h in Headers */,
+				07D6A8411B4CBB45004FEBC2 /* GB2312Prober.h in Headers */,
+				07D6A8421B4CBB45004FEBC2 /* Latin1Prober.h in Headers */,
+				07D6A8431B4CBB45004FEBC2 /* SJISProber.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9AA5E5FE16F7C61B005C45CE /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A1EDB2219C83CD000F5CCE8 /* codingStateMachine.h in Headers */,
+				9A1EDB4419C83CD000F5CCE8 /* universal.h in Headers */,
+				9A1EDB3919C83CD000F5CCE8 /* MBCSGroupProber.h in Headers */,
+				9A4E861B1D1FD74D008A419B /* framework.h in Headers */,
+				9A1EDB3D19C83CD000F5CCE8 /* SBCharsetProber.h in Headers */,
+				9A1EDB1F19C83CD000F5CCE8 /* charDistribution.h in Headers */,
+				9A1EDB1D19C83CD000F5CCE8 /* big5Prober.h in Headers */,
+				9A1EDB2519C83CD000F5CCE8 /* EscCharsetProber.h in Headers */,
+				9A1EDB4619C83CD000F5CCE8 /* UTF8Prober.h in Headers */,
+				9A1EDB4219C83CD000F5CCE8 /* types.h in Headers */,
+				9A1EDB2119C83CD000F5CCE8 /* charsetProber.h in Headers */,
+				9A1EDB2819C83CD000F5CCE8 /* EUCJPProber.h in Headers */,
+				9A1EDB3019C83CD000F5CCE8 /* jpCntx.h in Headers */,
+				9A1EDB3F19C83CD000F5CCE8 /* SBCSGroupProber.h in Headers */,
+				9A1EDB2319C83CD000F5CCE8 /* config.h in Headers */,
+				9A1EDB3B19C83CD000F5CCE8 /* pkgInt.h in Headers */,
+				9A1EDB2C19C83CD000F5CCE8 /* EUCTWProber.h in Headers */,
+				9A1EDB2A19C83CD000F5CCE8 /* EUCKRProber.h in Headers */,
+				9A1EDB2E19C83CD000F5CCE8 /* GB2312Prober.h in Headers */,
+				9A1EDB3719C83CD000F5CCE8 /* Latin1Prober.h in Headers */,
+				9A1EDB4119C83CD000F5CCE8 /* SJISProber.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		07D6A8271B4CBB45004FEBC2 /* ios_auracharguess */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 07D6A8441B4CBB45004FEBC2 /* Build configuration list for PBXNativeTarget "ios_auracharguess" */;
+			buildPhases = (
+				07D6A82A1B4CBB45004FEBC2 /* Sources */,
+				07D6A82D1B4CBB45004FEBC2 /* Frameworks */,
+				07D6A82F1B4CBB45004FEBC2 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				07557C331B4D905B0065594B /* PBXTargetDependency */,
+			);
+			name = ios_auracharguess;
+			productName = FreeImage;
+			productReference = 07D6A8471B4CBB45004FEBC2 /* libios_auracharguess.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		9AA5E4C216F7C61B005C45CE /* auracharguess */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9AA5E6D316F7C61B005C45CE /* Build configuration list for PBXNativeTarget "auracharguess" */;
+			buildPhases = (
+				9AA5E4C316F7C61B005C45CE /* Sources */,
+				9AA5E5FC16F7C61B005C45CE /* Frameworks */,
+				9AA5E5FE16F7C61B005C45CE /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9A1EDB5419C83FF200F5CCE8 /* PBXTargetDependency */,
+			);
+			name = auracharguess;
+			productName = FreeImage;
+			productReference = 9AA539B119B763C400B9F861 /* libauracharguess.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9A1B2F7F16A2AF5C00875A94 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
+			};
+			buildConfigurationList = 9A1B2F8216A2AF5C00875A94 /* Build configuration list for PBXProject "auracharguess" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9A1B2F7D16A2AF5C00875A94;
+			productRefGroup = 9A1B2F7D16A2AF5C00875A94;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 9A1EDB4819C83FE800F5CCE8 /* Products */;
+					ProjectRef = 9A1EDB4719C83FE800F5CCE8 /* aura.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				9AA5E4C216F7C61B005C45CE /* auracharguess */,
+				07D6A8271B4CBB45004FEBC2 /* ios_auracharguess */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		07473E0C1B503FE4004688C5 /* libios_aura.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libios_aura.dylib;
+			remoteRef = 07473E0B1B503FE4004688C5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A1EDB4E19C83FE800F5CCE8 /* libaura.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libaura.dylib;
+			remoteRef = 9A1EDB4D19C83FE800F5CCE8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A1EDB5219C83FE800F5CCE8 /* aura_iosTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = aura_iosTests.xctest;
+			remoteRef = 9A1EDB5119C83FE800F5CCE8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXSourcesBuildPhase section */
+		07D6A82A1B4CBB45004FEBC2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07D6A82B1B4CBB45004FEBC2 /* _cpp.cpp in Sources */,
+				07D6A82C1B4CBB45004FEBC2 /* charDistribution.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9AA5E4C316F7C61B005C45CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07502CB01B2529AF008D207C /* _cpp.cpp in Sources */,
+				07502CB21B2529BA008D207C /* charDistribution.cpp in Sources */,
+				9A4E861A1D1FD74D008A419B /* framework.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		07557C331B4D905B0065594B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = aura_ios;
+			targetProxy = 07557C321B4D905B0065594B /* PBXContainerItemProxy */;
+		};
+		9A1EDB5419C83FF200F5CCE8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = aura;
+			targetProxy = 9A1EDB5319C83FF200F5CCE8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		07D6A8451B4CBB45004FEBC2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		07D6A8461B4CBB45004FEBC2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		9A1B2F8A16A2AF5C00875A94 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				EXECUTABLE_EXTENSION = dylib;
+				EXECUTABLE_PREFIX = lib;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(WorkspaceDir)/app/thirdparty/include",
+					"$(WorkspaceDir)/platform/thirdparty/include",
+				);
+				INSTALL_PATH = "@executable_path";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(TARGET_BUILD_DIR)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/include . .. $(WorkspaceDir) $(WorkspaceDir)/app    cpp $(WorkspaceDir)/platform-macos $(WorkspaceDir)/app/_include $(WorkspaceDir)/third/include";
+				WorkspaceDir = "$(SRCROOT)/../..";
+			};
+			name = Debug;
+		};
+		9A1B2F8B16A2AF5C00875A94 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_POSTPROCESSING = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXECUTABLE_EXTENSION = dylib;
+				EXECUTABLE_PREFIX = lib;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(WorkspaceDir)/app/thirdparty/include",
+					"$(WorkspaceDir)/platform/thirdparty/include",
+				);
+				INSTALL_PATH = "@executable_path";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(TARGET_BUILD_DIR)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/include . .. $(WorkspaceDir) $(WorkspaceDir)/app    cpp $(WorkspaceDir)/platform-macos $(WorkspaceDir)/app/_include $(WorkspaceDir)/third/include";
+				WorkspaceDir = "$(SRCROOT)/../..";
+			};
+			name = Release;
+		};
+		9AA5E6D416F7C61B005C45CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+			};
+			name = Debug;
+		};
+		9AA5E6D516F7C61B005C45CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		07D6A8441B4CBB45004FEBC2 /* Build configuration list for PBXNativeTarget "ios_auracharguess" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07D6A8451B4CBB45004FEBC2 /* Debug */,
+				07D6A8461B4CBB45004FEBC2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9A1B2F8216A2AF5C00875A94 /* Build configuration list for PBXProject "auracharguess" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A1B2F8A16A2AF5C00875A94 /* Debug */,
+				9A1B2F8B16A2AF5C00875A94 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9AA5E6D316F7C61B005C45CE /* Build configuration list for PBXNativeTarget "auracharguess" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9AA5E6D416F7C61B005C45CE /* Debug */,
+				9AA5E6D516F7C61B005C45CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9A1B2F7F16A2AF5C00875A94 /* Project object */;
+}

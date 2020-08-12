@@ -1,0 +1,11 @@
+<links>
+<link name="veriwell Musical Player" src="mplite.dll" brief="Cante com o veriwell Musical Player" />
+<link name="devedge" src="devedge.dll" brief="Desenvolva em ca2 com o devedge" />
+<link name="netshareclient" src="netshareclient.dll" brief="Flua passo-1-passo com o netshareclient" />
+<link name="browser" src="html.dll" brief="Leia arquivos html interpretados" />
+<link name="natur" src="nature.dll" brief="natur ca2." icon="matter://icon-green-24.png"/>
+<link name="netnode" src="netnode.dll" brief="Flua como um nó em uma rede" />
+<link name="mail" src="mail.dll" brief="Correio" />
+<link name="filhanterare" src="verifile.dll" brief="filhanterare" />
+<link name="veriedit textredigerare" src="veriedit.dll" brief="Textredigeraren" />
+</links>

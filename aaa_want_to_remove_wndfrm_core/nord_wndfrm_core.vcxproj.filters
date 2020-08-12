@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="NewFilter1">
+      <UniqueIdentifier>{c6600739-8883-445a-9fa8-6d96b978ea26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{ad416610-b05f-490d-8835-d3d5fa1c9aa6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{327263bd-e196-44d7-ab13-69870bdbcb59}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="experience_core.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="experience_core_frame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="experience_core_frame_001.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="experience_core_frame_002.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="experience_core_frame_005.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="experience_core_frame_008.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="experience_core_frame_011.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="experience_core_frame_013.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="experience_core_frame_Minimal001.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="experience_core_interaction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="experience_core_library.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="user_meta_button.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="experience_core_user_schema.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="user_meta_control_box.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="experience_core_frame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="experience_core_frame_001.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="experience_core_frame_002.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="experience_core_frame_005.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="experience_core_frame_008.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="experience_core_frame_011.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="experience_core_frame_013.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="experience_core_frame_Minimal001.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="experience_core_interaction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="experience_core_library.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="user_meta_button.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="user_meta_control_box.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="experience_core_user_schema.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

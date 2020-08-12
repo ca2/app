@@ -1,0 +1,1670 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{67bf6c01-e2c0-4d75-b019-3d71a907927c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net">
+      <UniqueIdentifier>{8bdffb08-ae1b-4b67-8178-4fdaa11549d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\http">
+      <UniqueIdentifier>{19135791-66a9-4b32-ae7c-e7b0615432ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\http\webserver">
+      <UniqueIdentifier>{78640adb-e0dc-477d-b573-92be92d5b352}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets">
+      <UniqueIdentifier>{a38b8338-5895-456b-9a79-cab6f162f4f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\http">
+      <UniqueIdentifier>{ad010ade-09dc-4e81-8014-62397430ef0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\base">
+      <UniqueIdentifier>{9fff4e1d-9d26-4d4d-9e19-c728fbdd871f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\mail">
+      <UniqueIdentifier>{7eeb7d03-2351-4149-8ea1-47adeaee21c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\axis">
+      <UniqueIdentifier>{69d1171a-6c26-413a-9a08-d640c394cb73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\axis\compress">
+      <UniqueIdentifier>{011cdb9e-71fa-4284-bc91-ddd11e393429}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\axis\compress\zip">
+      <UniqueIdentifier>{3bb00495-5961-4cfb-8ec6-0d7aafa58ec9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\axis\crypto">
+      <UniqueIdentifier>{303022c6-ddbc-4183-8496-d5063f2be5a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\axis\install">
+      <UniqueIdentifier>{0f28766d-dfbc-48c5-8431-b847a38a79b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\axis\axis">
+      <UniqueIdentifier>{98074b40-95ee-4469-b681-c8f43e4e6e20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\axis\os">
+      <UniqueIdentifier>{cc5067f2-40bd-41cc-8388-9cf6692df03b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\axis\geoip">
+      <UniqueIdentifier>{c035d983-851b-4efd-8ff5-dd1c043659e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\axis\node">
+      <UniqueIdentifier>{488988f3-0850-471a-a079-23c034032133}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\axis\account">
+      <UniqueIdentifier>{ca92050f-9ab9-4a13-b388-bcba7e3cf04d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\programming">
+      <UniqueIdentifier>{554bb99b-57b1-466e-a149-af0d3d38c600}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\programming\javascript">
+      <UniqueIdentifier>{3cc3b6c2-282e-419f-b7a1-679853e9e088}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\filesystem">
+      <UniqueIdentifier>{ba566eec-2212-40de-951f-24fd67933e0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\filesystem\fs">
+      <UniqueIdentifier>{5194d879-2777-418d-b496-82d46c22a4ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics">
+      <UniqueIdentifier>{971e6e8f-6aa1-4db8-bd78-dabf3e958c1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\visual">
+      <UniqueIdentifier>{79859e5f-cbbb-493d-ae5c-c5559f87895b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive">
+      <UniqueIdentifier>{0399c31d-c4b0-40d2-813d-b93cb51cfbc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\database">
+      <UniqueIdentifier>{d9c11b17-1c94-4d8e-a80a-d2adf0f20874}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\database\database">
+      <UniqueIdentifier>{f5bf63bb-0735-4c2c-aea6-87dff0772033}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\database\simpledb">
+      <UniqueIdentifier>{b232746c-1459-4f84-9cb4-bca9cd5b3acd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\database\sqlitedb">
+      <UniqueIdentifier>{437d4d79-3241-4627-9720-da169021e310}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{deba61d4-848b-4ae2-84b1-b826b2e5672c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net">
+      <UniqueIdentifier>{8ad34aaa-6eeb-4e52-bace-1925865eaf26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\http">
+      <UniqueIdentifier>{d86ee86e-9cb8-46b5-8abd-77cd3076b064}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\http\webserver">
+      <UniqueIdentifier>{a412a2e7-11be-4bfc-81d1-45e79aafa42a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets">
+      <UniqueIdentifier>{691833b3-dab6-4095-83c2-06763e50be1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\http">
+      <UniqueIdentifier>{813d8b5f-a5e5-4dbe-8995-602226b512e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\base">
+      <UniqueIdentifier>{b3bab5ab-172b-4419-a9c9-82d2bf90e639}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\mail">
+      <UniqueIdentifier>{adeba462-f68c-429e-a5c3-1f02c632af7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\programming">
+      <UniqueIdentifier>{6494a628-2ac0-47d6-b924-a7558729de3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\programming\javascript">
+      <UniqueIdentifier>{fd687875-7e82-4d41-a742-d72ac287849a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\filesystem">
+      <UniqueIdentifier>{40f41bf5-9150-4985-a657-9f6a5495f8b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\filesystem\fs">
+      <UniqueIdentifier>{1ce2aeeb-285b-4a7e-927e-5ba40cc08900}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics">
+      <UniqueIdentifier>{a882ca23-52db-4092-987b-b477bc7a0a3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\visual">
+      <UniqueIdentifier>{413d2f31-8b90-4dd2-baea-8e263bd3b794}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis">
+      <UniqueIdentifier>{f0ac788d-80d2-46aa-aee1-8d5c99963fe6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\compress">
+      <UniqueIdentifier>{f1415e4c-f1b8-45f6-9df9-c70e4955d073}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\compress\zip">
+      <UniqueIdentifier>{068385d1-7c27-4424-ab62-67e0b4e33d71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\compress\bsdiff">
+      <UniqueIdentifier>{f2fd8846-7df2-4584-b38e-97da7436c3ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\crypto">
+      <UniqueIdentifier>{db14a716-d24c-4217-b97a-6e1d495a7e05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\os">
+      <UniqueIdentifier>{38653058-b398-4fb8-88a0-21e7875a765c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\install">
+      <UniqueIdentifier>{0f4fbdc0-2365-4529-b13b-5ef6edd61460}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\install\windows">
+      <UniqueIdentifier>{175f69d4-ac54-416a-af38-8d2a6fad8233}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\axis">
+      <UniqueIdentifier>{635759b2-4dc5-485f-999b-3ed850eab65e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\geoip">
+      <UniqueIdentifier>{3f2de374-86a3-4c17-9c99-ef2554bb57b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\node">
+      <UniqueIdentifier>{74f2faa8-3877-40e9-b9da-9fbdc4ca1695}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\account">
+      <UniqueIdentifier>{a2f33144-e8a3-4740-907e-fded6b2b888d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive">
+      <UniqueIdentifier>{c6a369e3-f5ec-4f4c-8dc8-95a842c1876e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\database">
+      <UniqueIdentifier>{ad3d91db-73d8-4bfd-8dd3-72c0b8867a2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\database\database">
+      <UniqueIdentifier>{13fa7377-afa8-4920-9611-f267ba65cd1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\database\simpledb">
+      <UniqueIdentifier>{c8e0e22b-e6eb-4f24-b02b-66c54c790dbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\database\sqlitedb">
+      <UniqueIdentifier>{b15d356f-4b08-49f5-8749-ebcfc0a66510}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\node\metrowin">
+      <UniqueIdentifier>{07bd2d2e-9128-4526-8eff-561882fd1a42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\axis\os\metrowin">
+      <UniqueIdentifier>{3114b11a-07a5-4f29-a869-e73478507b03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\axis\node\metrowin">
+      <UniqueIdentifier>{aaf0fe57-6449-4bb8-960b-348115dbd546}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\os\metrowin">
+      <UniqueIdentifier>{48a282d8-65ab-40ed-a1a4-7911e23131c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\winrt">
+      <UniqueIdentifier>{2024b535-9cd7-47b0-9a64-ed9fa3723523}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\winrt\basic">
+      <UniqueIdentifier>{af45a2b9-8369-47d1-8356-5bc1c7f8d902}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\winrt\asynch_dns">
+      <UniqueIdentifier>{13aea2dc-3327-43f7-9778-a6bb336900fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\winrt\sip">
+      <UniqueIdentifier>{fea21a25-e97b-42ff-8d67-99e207c02712}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\winrt\webserver">
+      <UniqueIdentifier>{b024219f-6fe4-49c1-8af5-11a0f9a91d06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\winrt\smtp">
+      <UniqueIdentifier>{669d15a8-327b-42a7-9e69-c34cc0392890}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\winrt\timer">
+      <UniqueIdentifier>{c689a583-0572-431c-a7c8-85bbed5797e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\winrt">
+      <UniqueIdentifier>{62b1f557-c6f5-4a59-bea0-1f2ccbb4e2d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\winrt\asynch_dns">
+      <UniqueIdentifier>{63d82750-8c61-4f1a-a60b-2db0c4d7c422}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\winrt\internal">
+      <UniqueIdentifier>{a2d0aee7-1d70-41d5-a310-ec44dbe3e07d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\winrt\sip">
+      <UniqueIdentifier>{d3b62a57-35f6-46b0-addc-48a15f8b6c23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\winrt\smtp">
+      <UniqueIdentifier>{1ce91acd-8f9f-49dc-841e-717fe7f9d1e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\winrt\timer">
+      <UniqueIdentifier>{4541e228-c04c-400f-9af8-000cc2d310be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\winrt\webserver">
+      <UniqueIdentifier>{7e31c52e-6ae7-4b7d-a7c0-e94a848e95d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\winrt\basic">
+      <UniqueIdentifier>{bb02404b-b1a7-45a6-9de2-d2678f2c3336}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\filesystem\filesystem">
+      <UniqueIdentifier>{eb76e6f8-6484-413b-8e6a-4fc9f0fe6d28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\filesystem\filesystem">
+      <UniqueIdentifier>{d115147e-3946-4ec3-9280-7e8dfd48bc44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user">
+      <UniqueIdentifier>{3e8cd80e-08d9-43bf-85f8-b5b53dcff791}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\node\windows">
+      <UniqueIdentifier>{9571386a-3259-4821-a9cf-e2416316b1e8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="version.config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="version.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="net\net.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\net_address.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\net_email.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\net_email_address.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\net_email_departament.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\net_ip_enum.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\net_net.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\net_port_forward.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\net_url_departament.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\net_url_domain.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\net_sockets.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\http_application.h">
+      <Filter>Header Files\net\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\http_get_socket.h">
+      <Filter>Header Files\net\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\http_http.h">
+      <Filter>Header Files\net\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\http_listener.h">
+      <Filter>Header Files\net\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\http_signal.h">
+      <Filter>Header Files\net\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\http_status.h">
+      <Filter>Header Files\net\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\http_system.h">
+      <Filter>Header Files\net\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\webserver\webserver_http_cookie.h">
+      <Filter>Header Files\net\http\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\webserver\webserver_http_form.h">
+      <Filter>Header Files\net\http\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\webserver\webserver_http_request.h">
+      <Filter>Header Files\net\http\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\webserver\webserver_http_response.h">
+      <Filter>Header Files\net\http\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\webserver\webserver_http_transaction.h">
+      <Filter>Header Files\net\http\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\sockets.h">
+      <Filter>Header Files\net\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\sockets_http_batch_buffer.h">
+      <Filter>Header Files\net\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\sockets_http_buffer.h">
+      <Filter>Header Files\net\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\sockets_link_in_socket.h">
+      <Filter>Header Files\net\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\sockets_link_out_socket.h">
+      <Filter>Header Files\net\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\sockets_logger.h">
+      <Filter>Header Files\net\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\sockets_trace_logger.h">
+      <Filter>Header Files\net\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http_listener.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http_client_socket.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http_debug_socket.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http_get_socket.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http_post_socket.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http_put_socket.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http_session.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http_socket.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http_tunnel.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\base\sockets_base_socket.h">
+      <Filter>Header Files\net\sockets\base</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\base\sockets_base_socket_handler.h">
+      <Filter>Header Files\net\sockets\base</Filter>
+    </ClInclude>
+    <ClInclude Include="net\mail\mail.h">
+      <Filter>Header Files\net\mail</Filter>
+    </ClInclude>
+    <ClInclude Include="net\mail\mail_pop3.h">
+      <Filter>Header Files\net\mail</Filter>
+    </ClInclude>
+    <ClInclude Include="net\mail\pop3_socket.h">
+      <Filter>Header Files\net\mail</Filter>
+    </ClInclude>
+    <ClInclude Include="net\mail\simple_pop3.h">
+      <Filter>Header Files\net\mail</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\compress\bzip_stream.h">
+      <Filter>Header Files\axis\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\compress\compress.h">
+      <Filter>Header Files\axis\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\compress\compress_compress.h">
+      <Filter>Header Files\axis\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\compress\gzip_stream.h">
+      <Filter>Header Files\axis\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\compress\zip\api.h">
+      <Filter>Header Files\axis\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\compress\zip\crypt.h">
+      <Filter>Header Files\axis\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\compress\zip\File.h">
+      <Filter>Header Files\axis\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\compress\zip\InFile.h">
+      <Filter>Header Files\axis\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\compress\zip\ioapi.h">
+      <Filter>Header Files\axis\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\compress\zip\iowin32.h">
+      <Filter>Header Files\axis\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\compress\zip\memory_buffer.h">
+      <Filter>Header Files\axis\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\compress\zip\unzip.h">
+      <Filter>Header Files\axis\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\compress\zip\Util.h">
+      <Filter>Header Files\axis\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\compress\zip\zip.h">
+      <Filter>Header Files\axis\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\compress\zip\zipImpl.h">
+      <Filter>Header Files\axis\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\crypto\crypto.h">
+      <Filter>Header Files\axis\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\crypto\crypto_crypto.h">
+      <Filter>Header Files\axis\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\install\install.h">
+      <Filter>Header Files\axis\install</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\install\install_canvas.h">
+      <Filter>Header Files\axis\install</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\install\install_cube_run.h">
+      <Filter>Header Files\axis\install</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\install\install_focus.h">
+      <Filter>Header Files\axis\install</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\install\install_install.h">
+      <Filter>Header Files\axis\install</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\install\install_installer.h">
+      <Filter>Header Files\axis\install</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\install\install_small_bell.h">
+      <Filter>Header Files\axis\install</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\install\install_trace.h">
+      <Filter>Header Files\axis\install</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\axis\axis.h">
+      <Filter>Header Files\axis\axis</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\axis\axis_application.h">
+      <Filter>Header Files\axis\axis</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\axis\axis_c.h">
+      <Filter>Header Files\axis\axis</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\axis\axis_c_cpp.h">
+      <Filter>Header Files\axis\axis</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\axis\axis_c_objc.h">
+      <Filter>Header Files\axis\axis</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\axis\axis_c_objcpp.h">
+      <Filter>Header Files\axis\axis</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\axis\axis_c_winrt.h">
+      <Filter>Header Files\axis\axis</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\axis\axis_os.h">
+      <Filter>Header Files\axis\axis</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\axis\axis_session.h">
+      <Filter>Header Files\axis\axis</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\axis\axis_simple_app.h">
+      <Filter>Header Files\axis\axis</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\axis\axis_static_start.h">
+      <Filter>Header Files\axis\axis</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\axis\axis_system.h">
+      <Filter>Header Files\axis\axis</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\os.h">
+      <Filter>Header Files\axis\os</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\geoip\geoip.h">
+      <Filter>Header Files\axis\geoip</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\geoip\geoip_city.h">
+      <Filter>Header Files\axis\geoip</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\geoip\geoip_internal.h">
+      <Filter>Header Files\axis\geoip</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\geoip\geoip_update.h">
+      <Filter>Header Files\axis\geoip</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\geoip\global.h">
+      <Filter>Header Files\axis\geoip</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\node.h">
+      <Filter>Header Files\axis\node</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\account\account.h">
+      <Filter>Header Files\axis\account</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\account\account_authentication_map.h">
+      <Filter>Header Files\axis\account</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\account\account_contact_list.h">
+      <Filter>Header Files\axis\account</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\account\account_account.h">
+      <Filter>Header Files\axis\account</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\account\account_licensing.h">
+      <Filter>Header Files\axis\account</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\account\account_user.h">
+      <Filter>Header Files\axis\account</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\account\account_usera.h">
+      <Filter>Header Files\axis\account</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\account\account_user_authentication.h">
+      <Filter>Header Files\axis\account</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\account\account_user_set.h">
+      <Filter>Header Files\axis\account</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\account\account_validate.h">
+      <Filter>Header Files\axis\account</Filter>
+    </ClInclude>
+    <ClInclude Include="programming\javascript\javascript.h">
+      <Filter>Header Files\programming\javascript</Filter>
+    </ClInclude>
+    <ClInclude Include="programming\javascript\javascript_functions.h">
+      <Filter>Header Files\programming\javascript</Filter>
+    </ClInclude>
+    <ClInclude Include="programming\javascript\javascript_tinyjs.h">
+      <Filter>Header Files\programming\javascript</Filter>
+    </ClInclude>
+    <ClInclude Include="programming\javascript\javascript_tinyjs_functions.h">
+      <Filter>Header Files\programming\javascript</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem.h">
+      <Filter>Header Files\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\fs\fs.h">
+      <Filter>Header Files\filesystem\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\fs\fs_data.h">
+      <Filter>Header Files\filesystem\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\fs\fs_fs.h">
+      <Filter>Header Files\filesystem\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\fs\fs_ifs.h">
+      <Filter>Header Files\filesystem\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\fs\fs_ifs_file.h">
+      <Filter>Header Files\filesystem\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\fs\fs_item.h">
+      <Filter>Header Files\filesystem\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\fs\fs_item_array.h">
+      <Filter>Header Files\filesystem\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\fs\fs_link.h">
+      <Filter>Header Files\filesystem\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\fs\fs_native_fs.h">
+      <Filter>Header Files\filesystem\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\fs\fs_remote_native_file.h">
+      <Filter>Header Files\filesystem\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\fs\fs_remote_native_fs.h">
+      <Filter>Header Files\filesystem\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\fs\fs_set.h">
+      <Filter>Header Files\filesystem\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_api.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_buffered_graphics.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_const.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_dib.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_dib_pal.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_fastblur.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_font.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_font_central.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_FreeImageFileProc.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_glyph.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_glyph_set.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_graphics_extension.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_image_list.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_imaging.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_rgb_quad_array.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_visual.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_water_routine.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database_base.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database_change_event.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database_client.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database_database.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database_definition.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database_field_definition.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database_id.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database_key.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database_selection.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database_selection_item.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database_server.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database_set.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database_stringhelper.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database_template.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\aaa_want_to_remove_database_update_hint.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\db_long_set.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\db_server.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\db_set.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\db_stra_set.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\db_str_set.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\file_set.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\im_post.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_base.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_database.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_manager.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_record.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_result.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_server.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_service.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_session.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_set.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_simpledb.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_socket.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_socket_thread.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_table.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\veiev_post.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\sqlitedb\sqlitedb.h">
+      <Filter>Header Files\database\sqlitedb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\sqlitedb\sqlitedb_base.h">
+      <Filter>Header Files\database\sqlitedb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\sqlitedb\sqlitedb_set.h">
+      <Filter>Header Files\database\sqlitedb</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\compress\zip\zip_internal.h">
+      <Filter>Source Files\axis\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\metrowin\metrowin.h">
+      <Filter>Header Files\axis\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\metrowin\metrowin_crypto.h">
+      <Filter>Header Files\axis\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\metrowin\metrowin_factory_exchange.h">
+      <Filter>Header Files\axis\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\metrowin\metrowin_file_set.h">
+      <Filter>Header Files\axis\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\metrowin\metrowin_ip_enum.h">
+      <Filter>Header Files\axis\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\metrowin\metrowin_port_forward.h">
+      <Filter>Header Files\axis\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\metrowin\metrowin1.h">
+      <Filter>Header Files\axis\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\metrowin\metrowin.h">
+      <Filter>Header Files\axis\os\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\metrowin\metrowin_sockets.h">
+      <Filter>Header Files\axis\os\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\asynch_dns\sockets_resolv_server.h">
+      <Filter>Header Files\net\sockets\winrt\asynch_dns</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\asynch_dns\sockets_resolv_socket.h">
+      <Filter>Header Files\net\sockets\winrt\asynch_dns</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\sockets_listen_socket.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\sockets_net.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\sockets_sctp_socket.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\sockets_socket.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\sockets_socket_handler.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\sockets_stream_socket.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\sockets_sync_socket_handler.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\sockets_tcp_socket.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\sockets_tls_socket.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\sockets_udp_socket.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sip\sip_base.h">
+      <Filter>Header Files\net\sockets\winrt\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sip\sip_base_client_socket.h">
+      <Filter>Header Files\net\sockets\winrt\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sip\sip_callback.h">
+      <Filter>Header Files\net\sockets\winrt\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sip\sip_client.h">
+      <Filter>Header Files\net\sockets\winrt\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sip\sip_event.h">
+      <Filter>Header Files\net\sockets\winrt\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sip\sip_request.h">
+      <Filter>Header Files\net\sockets\winrt\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sip\sip_response.h">
+      <Filter>Header Files\net\sockets\winrt\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sip\sip_server.h">
+      <Filter>Header Files\net\sockets\winrt\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sip\sip_socket.h">
+      <Filter>Header Files\net\sockets\winrt\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sip\sip_tcp_client_socket.h">
+      <Filter>Header Files\net\sockets\winrt\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sip\sip_transaction.h">
+      <Filter>Header Files\net\sockets\winrt\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sip\sip_udp_client_socket.h">
+      <Filter>Header Files\net\sockets\winrt\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\smtp\smtp_socket.h">
+      <Filter>Header Files\net\sockets\winrt\smtp</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\smtp\smtpd_socket.h">
+      <Filter>Header Files\net\sockets\winrt\smtp</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\timer\sockets_event.h">
+      <Filter>Header Files\net\sockets\winrt\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\timer\sockets_event_handler.h">
+      <Filter>Header Files\net\sockets\winrt\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\timer\sockets_event_time.h">
+      <Filter>Header Files\net\sockets\winrt\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\timer\sockets_ievent_handler.h">
+      <Filter>Header Files\net\sockets\winrt\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\timer\sockets_ievent_owner.h">
+      <Filter>Header Files\net\sockets\winrt\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\webserver\webserver_httpd_socket.h">
+      <Filter>Header Files\net\sockets\winrt\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\webserver\webserver_http_base_socket.h">
+      <Filter>Header Files\net\sockets\winrt\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\webserver\webserver_ajp13_socket.h">
+      <Filter>Header Files\net\sockets\winrt\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\webserver\webserver_ajp13.h">
+      <Filter>Header Files\net\sockets\winrt\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\webserver\webserver_ajp_base_socket.h">
+      <Filter>Header Files\net\sockets\winrt\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sockets.h">
+      <Filter>Header Files\net\sockets\winrt</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sockets_config.h">
+      <Filter>Header Files\net\sockets\winrt</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sockets_sockets.h">
+      <Filter>Header Files\net\sockets\winrt</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\metrowin\metrowin_axis_dir.h">
+      <Filter>Header Files\axis\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\filesystem_axis_application.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\filesystem_axis_system.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\filesystem_dir_axis_application.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\filesystem_dir_axis_system.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\metrowin\metrowin_axis_file_system.h">
+      <Filter>Header Files\axis\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\metrowin\metrowin_simple_ui.h">
+      <Filter>Header Files\axis\os\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\metrowin\metrowin_user_impl.h">
+      <Filter>Header Files\axis\os\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\metrowin\metrowin_copydesk.h">
+      <Filter>Header Files\axis\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\metrowin\metrowin_internal.h">
+      <Filter>Header Files\axis\node\metrowin</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="axis\axis\axis.inl">
+      <Filter>Header Files\axis\axis</Filter>
+    </None>
+    <None Include="axis.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="programming\javascript\javascript.cpp">
+      <Filter>Source Files\programming\javascript</Filter>
+    </ClCompile>
+    <ClCompile Include="programming\javascript\javascript_functions.cpp">
+      <Filter>Source Files\programming\javascript</Filter>
+    </ClCompile>
+    <ClCompile Include="programming\javascript\javascript_tinyjs_functions.cpp">
+      <Filter>Source Files\programming\javascript</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\fs\fs_link.cpp">
+      <Filter>Source Files\filesystem\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\fs\fs_data.cpp">
+      <Filter>Source Files\filesystem\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\fs\fs_fs.cpp">
+      <Filter>Source Files\filesystem\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\fs\fs_ifs.cpp">
+      <Filter>Source Files\filesystem\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\fs\fs_ifs_file.cpp">
+      <Filter>Source Files\filesystem\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\fs\fs_item.cpp">
+      <Filter>Source Files\filesystem\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\fs\fs_item_array.cpp">
+      <Filter>Source Files\filesystem\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\fs\fs_native_fs.cpp">
+      <Filter>Source Files\filesystem\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\fs\fs_remote_native_file.cpp">
+      <Filter>Source Files\filesystem\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\fs\fs_remote_native_fs.cpp">
+      <Filter>Source Files\filesystem\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\fs\fs_set.cpp">
+      <Filter>Source Files\filesystem\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\visual_api.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\visual_buffered_graphics.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\visual_dib.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\visual_fastblur.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\visual_font.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\visual_font_central.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\visual_glyph.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\visual_glyph_set.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\visual_graphics_extension.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\visual_image_list.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\visual_imaging.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\visual_rgb_quad_array.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\visual_visual.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\visual_water_routine.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\compress\bzip_stream.cpp">
+      <Filter>Source Files\axis\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\compress\gzip_stream.cpp">
+      <Filter>Source Files\axis\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\compress\compress_compress.cpp">
+      <Filter>Source Files\axis\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\compress\zip\zip_api.cpp">
+      <Filter>Source Files\axis\compress\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\compress\zip\zip_file.cpp">
+      <Filter>Source Files\axis\compress\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\compress\zip\zip_in_file.cpp">
+      <Filter>Source Files\axis\compress\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\compress\zip\zip_ioapi.cpp">
+      <Filter>Source Files\axis\compress\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\compress\zip\zip_memory_buffer.cpp">
+      <Filter>Source Files\axis\compress\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\compress\zip\zip_unzip.cpp">
+      <Filter>Source Files\axis\compress\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\compress\zip\zip_util.cpp">
+      <Filter>Source Files\axis\compress\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\compress\zip\zip_zip.cpp">
+      <Filter>Source Files\axis\compress\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\compress\bsdiff\bsdiff_bsdiff.cpp">
+      <Filter>Source Files\axis\compress\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\compress\bsdiff\bsdiff_bspatch.cpp">
+      <Filter>Source Files\axis\compress\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\crypto\crypto_crypto.cpp">
+      <Filter>Source Files\axis\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\install\install.cpp">
+      <Filter>Source Files\axis\install</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\install\install_boot.cpp">
+      <Filter>Source Files\axis\install</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\install\install_bz.cpp">
+      <Filter>Source Files\axis\install</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\install\install_canvas.cpp">
+      <Filter>Source Files\axis\install</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\install\install_focus.cpp">
+      <Filter>Source Files\axis\install</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\install\install_install.cpp">
+      <Filter>Source Files\axis\install</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\install\install_installer.cpp">
+      <Filter>Source Files\axis\install</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\install\install_small_bell.cpp">
+      <Filter>Source Files\axis\install</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\install\install_trace.cpp">
+      <Filter>Source Files\axis\install</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\install\windows\install_windows_boot.cpp">
+      <Filter>Source Files\axis\install\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\install\windows\install_windows_service.cpp">
+      <Filter>Source Files\axis\install\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\install\windows\install_windows_win.cpp">
+      <Filter>Source Files\axis\install\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\axis\axis.cpp">
+      <Filter>Source Files\axis\axis</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\axis\axis_application.cpp">
+      <Filter>Source Files\axis\axis</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\axis\axis_session.cpp">
+      <Filter>Source Files\axis\axis</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\axis\axis_static_start.cpp">
+      <Filter>Source Files\axis\axis</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\axis\axis_system.cpp">
+      <Filter>Source Files\axis\axis</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\geoip\geoip.cpp">
+      <Filter>Source Files\axis\geoip</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\geoip\geoip_city.cpp">
+      <Filter>Source Files\axis\geoip</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\geoip\geoip_region_name.cpp">
+      <Filter>Source Files\axis\geoip</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\geoip\geoip_time_zone.cpp">
+      <Filter>Source Files\axis\geoip</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\geoip\geoip_update.cpp">
+      <Filter>Source Files\axis\geoip</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\account\account.cpp">
+      <Filter>Source Files\axis\account</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\account\account_authentication_map.cpp">
+      <Filter>Source Files\axis\account</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\account\account_contact_list.cpp">
+      <Filter>Source Files\axis\account</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\account\account_account.cpp">
+      <Filter>Source Files\axis\account</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\account\account_licensing.cpp">
+      <Filter>Source Files\axis\account</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\account\account_user.cpp">
+      <Filter>Source Files\axis\account</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\account\account_usera.cpp">
+      <Filter>Source Files\axis\account</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\account\account_user_authentication.cpp">
+      <Filter>Source Files\axis\account</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\account\account_user_set.cpp">
+      <Filter>Source Files\axis\account</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\account\account_validate.cpp">
+      <Filter>Source Files\axis\account</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_application.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_base.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_client.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_definition.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_event_change.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_field_definition.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_id.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_key.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_selection.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_selection_item.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_server.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_set.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_stringhelper.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\aaa_want_to_remove_database_update_hint.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\_database.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\_simpledb.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_base.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_database.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_dataset.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_db_server.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_file_set.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_im_post.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_long_set.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_manager.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_mysql_database.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_mysql_result.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_record_row.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_result.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_server.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_service.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_session.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_set.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_simpledb.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_socket.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_socket_thread.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_stra_set.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_str_set.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_table.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_veiev_post.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\sqlitedb\sqlitedb_base.cpp">
+      <Filter>Source Files\database\sqlitedb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\sqlitedb\sqlitedb_set.cpp">
+      <Filter>Source Files\database\sqlitedb</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\metrowin\metrowin_crypto.cpp">
+      <Filter>Source Files\axis\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\metrowin\metrowin_factory_exchange.cpp">
+      <Filter>Source Files\axis\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\metrowin\metrowin_file_set.cpp">
+      <Filter>Source Files\axis\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\metrowin\metrowin_ip_enum.cpp">
+      <Filter>Source Files\axis\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\metrowin\metrowin_port_forward.cpp">
+      <Filter>Source Files\axis\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\metrowin\metrowin_base_crypto.cpp">
+      <Filter>Source Files\axis\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\metrowin\metrowin_simple_app.cpp">
+      <Filter>Source Files\axis\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\metrowin\metrowin_sockets.cpp">
+      <Filter>Source Files\axis\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\_winrt.cpp">
+      <Filter>Source Files\net\sockets\winrt</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\_sockets.cpp">
+      <Filter>Source Files\net\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="net\_net.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\http.cpp">
+      <Filter>Source Files\net\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\http_application.cpp">
+      <Filter>Source Files\net\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\http_get_socket.cpp">
+      <Filter>Source Files\net\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\http_output_stream.cpp">
+      <Filter>Source Files\net\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\http_signal.cpp">
+      <Filter>Source Files\net\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\http_status.cpp">
+      <Filter>Source Files\net\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\http_system.cpp">
+      <Filter>Source Files\net\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\webserver\webserver_http_cookie.cpp">
+      <Filter>Source Files\net\http\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\webserver\webserver_http_form.cpp">
+      <Filter>Source Files\net\http\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\webserver\webserver_http_request.cpp">
+      <Filter>Source Files\net\http\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\webserver\webserver_http_response.cpp">
+      <Filter>Source Files\net\http\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\webserver\webserver_http_transaction.cpp">
+      <Filter>Source Files\net\http\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\mail\mail_pop3.cpp">
+      <Filter>Source Files\net\mail</Filter>
+    </ClCompile>
+    <ClCompile Include="net\mail\mail_pop3_socket.cpp">
+      <Filter>Source Files\net\mail</Filter>
+    </ClCompile>
+    <ClCompile Include="net\mail\mail_simple_pop3.cpp">
+      <Filter>Source Files\net\mail</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\base\sockets_base_socket.cpp">
+      <Filter>Source Files\net\sockets\base</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\base\sockets_base_socket_handler.cpp">
+      <Filter>Source Files\net\sockets\base</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_client_socket.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_debug_socket.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_get_socket.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_listener.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_post_socket.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_put_socket.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_session.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_socket.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_tunnel.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\sockets_include.cpp">
+      <Filter>Source Files\net\sockets\winrt</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\sockets_sockets.cpp">
+      <Filter>Source Files\net\sockets\winrt</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\basic\sockets_net.cpp">
+      <Filter>Source Files\net\sockets\winrt\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\basic\sockets_sctp_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\basic\sockets_Socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\basic\sockets_socket_handler.cpp">
+      <Filter>Source Files\net\sockets\winrt\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\basic\sockets_stream_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\basic\sockets_sync_socket_handler.cpp">
+      <Filter>Source Files\net\sockets\winrt\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\basic\sockets_tcp_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\basic\sockets_tls_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\basic\sockets_udp_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\asynch_dns\sockets_resolv_server.cpp">
+      <Filter>Source Files\net\sockets\winrt\asynch_dns</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\asynch_dns\sockets_resolv_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\asynch_dns</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\sip\sockets_sip_base.cpp">
+      <Filter>Source Files\net\sockets\winrt\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\sip\sockets_sip_base_client_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\sip\sockets_sip_callback.cpp">
+      <Filter>Source Files\net\sockets\winrt\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\sip\sockets_sip_client.cpp">
+      <Filter>Source Files\net\sockets\winrt\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\sip\sockets_sip_request.cpp">
+      <Filter>Source Files\net\sockets\winrt\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\sip\sockets_sip_response.cpp">
+      <Filter>Source Files\net\sockets\winrt\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\sip\sockets_sip_server.cpp">
+      <Filter>Source Files\net\sockets\winrt\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\sip\sockets_sip_tcp_client_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\sip\sockets_sip_transaction.cpp">
+      <Filter>Source Files\net\sockets\winrt\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\sip\sockets_sip_udp_client_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\smtp\sockets_smtp_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\smtp</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\smtp\sockets_smtpd_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\smtp</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\timer\sockets_Event.cpp">
+      <Filter>Source Files\net\sockets\winrt\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\timer\sockets_EventHandler.cpp">
+      <Filter>Source Files\net\sockets\winrt\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\timer\sockets_EventTime.cpp">
+      <Filter>Source Files\net\sockets\winrt\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\timer\sockets_IEventOwner.cpp">
+      <Filter>Source Files\net\sockets\winrt\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\webserver\sockets_httpd_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\webserver\sockets_http_base_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\webserver\sockets_AjpBaseSocket.cpp">
+      <Filter>Source Files\net\sockets\winrt\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\webserver\sockets_Ajp13Socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\net_email_departament.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="net\net_address.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="net\net_email.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="net\net_email_address.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="net\net_ip_enum.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="net\net_net.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="net\net_port_forward.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="net\net_sockets.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="net\net_url_departament.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="net\net_url_domain.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\compress\_compress.cpp">
+      <Filter>Source Files\axis\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\account\_account.cpp">
+      <Filter>Source Files\axis\account</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\geoip\_geoip.cpp">
+      <Filter>Source Files\axis\geoip</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\install\_install.cpp">
+      <Filter>Source Files\axis\install</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\fs\_fs.cpp">
+      <Filter>Source Files\filesystem\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\_visual.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\filesystem_axis_application.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\filesystem_axis_system.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\filesystem_dir_axis_application.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\filesystem_dir_axis_system.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\metrowin\metrowin_axis_dir.cpp">
+      <Filter>Source Files\axis\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\metrowin\metrowin_axis_file_system.cpp">
+      <Filter>Source Files\axis\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\metrowin\metrowin.cpp">
+      <Filter>Source Files\axis\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\metrowin\metrowin_windowing.cpp">
+      <Filter>Source Files\axis\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\_axis_axis.cpp">
+      <Filter>Source Files\axis</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\axis\_axis_axis_axis.cpp">
+      <Filter>Source Files\axis\axis</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\crypto\_crypto.cpp">
+      <Filter>Source Files\axis\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\_node.cpp">
+      <Filter>Source Files\axis\node</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\_os.cpp">
+      <Filter>Source Files\axis\os</Filter>
+    </ClCompile>
+    <ClCompile Include="user\_user.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\metrowin\_metrowin_os.cpp">
+      <Filter>Source Files\axis\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\metrowin\_metrowin_node.cpp">
+      <Filter>Source Files\axis\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\dib_console.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\metrowin\metrowin_trace_message.cpp">
+      <Filter>Source Files\axis\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\metrowin\metrowin_copydesk.cpp">
+      <Filter>Source Files\axis\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\metrowin\metrowin_directx.cpp">
+      <Filter>Source Files\axis\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\metrowin\metrowin_directx_application.cpp">
+      <Filter>Source Files\axis\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\metrowin\metrowin_interaction_impl.cpp">
+      <Filter>Source Files\axis\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\metrowin\metrowin_window_draw.cpp">
+      <Filter>Source Files\axis\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\windows\windows_message_queue.cpp">
+      <Filter>Source Files\axis\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\metrowin\metrowin_multithreading.cpp">
+      <Filter>Source Files\axis\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\metrowin\metrowin_message_loop.cpp">
+      <Filter>Source Files\axis\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\_filesystem.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\_filesystem.cpp">
+      <Filter>Source Files\filesystem</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

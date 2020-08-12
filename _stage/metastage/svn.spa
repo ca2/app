@@ -1,0 +1,16 @@
+stage\basis\libapr-1.dll
+stage\basis\libapriconv-1.dll
+stage\basis\libaprutil-1.dll
+stage\basis\libeay32.dll
+stage\basis\libsasl.dll
+stage\basis\libsvn_client-1.dll
+stage\basis\libsvn_delta-1.dll
+stage\basis\libsvn_diff-1.dll
+stage\basis\libsvn_fs-1.dll
+stage\basis\libsvn_ra-1.dll
+stage\basis\libsvn_repos-1.dll
+stage\basis\libsvn_subr-1.dll
+stage\basis\libsvn_wc-1.dll
+stage\basis\list.txt
+stage\basis\ssleay32.dll
+stage\basis\svn.exe

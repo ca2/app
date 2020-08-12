@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="basis|ARM">
+      <Configuration>basis</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="basis|x86">
+      <Configuration>basis</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="stage|ARM">
+      <Configuration>stage</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="stage|x86">
+      <Configuration>stage</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{0365BD5F-5C57-4DB4-9270-D850D2A84FBB}</ProjectGuid>
+    <Keyword>Android</Keyword>
+    <ApplicationType>Android</ApplicationType>
+    <ApplicationTypeRevision>3.0</ApplicationTypeRevision>
+    <ProjectName>experience_core</ProjectName>
+    <RootNamespace>experience_core</RootNamespace>
+    <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>Gcc_4_9</PlatformToolset>
+    <AndroidAPILevel>android-19</AndroidAPILevel>
+    <UseOfStl>gnustl_shared</UseOfStl>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>Gcc_4_9</PlatformToolset>
+    <UseOfStl>gnustl_shared</UseOfStl>
+    <ThumbMode>Disabled</ThumbMode>
+    <AndroidAPILevel>android-19</AndroidAPILevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>Gcc_4_9</PlatformToolset>
+    <AndroidAPILevel>android-19</AndroidAPILevel>
+    <UseOfStl>gnustl_shared</UseOfStl>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>Gcc_4_9</PlatformToolset>
+    <UseOfStl>gnustl_shared</UseOfStl>
+    <ThumbMode>Disabled</ThumbMode>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'">
+    <OutDir>$(TimeDir)$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(TimeDir)$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <UseMultiToolTask>true</UseMultiToolTask>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
+    <OutDir>$(TimeDir)$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(TimeDir)$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <UseMultiToolTask>true</UseMultiToolTask>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
+    <OutDir>$(TimeDir)$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(TimeDir)$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <UseMultiToolTask>true</UseMultiToolTask>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
+    <OutDir>$(TimeDir)$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(TimeDir)$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <UseMultiToolTask>true</UseMultiToolTask>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../platform-android/platform_configuration/$(Platform)/$(Configuration);$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(SolutionDir)../../platform-android;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(SolutionDir)../../;$(SolutionDir)../../app;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../..;$(ProjectDir)..;$(ProjectDir).;$(Sysroot)\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_APP_CORE_EXPERIENCE_CORE_LIBRARY</PreprocessorDefinitions>
+      <ExceptionHandling>Enabled</ExceptionHandling>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <CppLanguageStandard>gnu++1y</CppLanguageStandard>
+      <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -Wno-char-subscripts</AdditionalOptions>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <CLanguageStandard>gnu11</CLanguageStandard>
+    </ClCompile>
+    <Link>
+      <AdditionalOptions>-fexceptions %(AdditionalOptions)</AdditionalOptions>
+      <LibraryDependencies>aura;base;axis;aura;ace;$(StlLibraryName);log;android</LibraryDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-android\third\library\$(Platform)\$(Configuration)\;$(__archive)\storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(OutDir);$(__archive)\storage-android\third\library\$(Platform)\$(Configuration)\;$(__archive)\storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
+    <ClCompile>
+      <ExceptionHandling>Enabled</ExceptionHandling>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -Wno-unused-private-field -Wno-inconsistent-missing-override -Wno-char-subscripts</AdditionalOptions>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../platform-android/platform_configuration/$(Platform)/$(Configuration);$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(SolutionDir)../../platform-android;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(SolutionDir)../../;$(SolutionDir)../../app;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../..;$(ProjectDir)..;$(ProjectDir).;$(Sysroot)\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CLanguageStandard>gnu11</CLanguageStandard>
+      <CppLanguageStandard>gnu++1y</CppLanguageStandard>
+      <PreprocessorDefinitions>_APP_CORE_EXPERIENCE_CORE_LIBRARY</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <LibraryDependencies>aura;base;axis;aura;ace;$(StlLibraryName);log;android</LibraryDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-android\third\library\$(Platform)\$(Configuration)\;$(__archive)\storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(OutDir);$(__archive)\storage-android\third\library\$(Platform)\$(Configuration)\;$(__archive)\storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\$(PlatformShortName);$(StlLibraryPath)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
+    <ClCompile>
+      <DebugInformationFormat>LineNumber</DebugInformationFormat>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../platform-android/platform_configuration/$(Platform)/$(Configuration);$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(SolutionDir)../../platform-android;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(SolutionDir)../../;$(SolutionDir)../../app;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../..;$(ProjectDir)..;$(ProjectDir).;$(Sysroot)\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <CLanguageStandard>gnu11</CLanguageStandard>
+      <CppLanguageStandard>gnu++1y</CppLanguageStandard>
+      <ExceptionHandling>Enabled</ExceptionHandling>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <PreprocessorDefinitions>_APP_CORE_EXPERIENCE_CORE_LIBRARY</PreprocessorDefinitions>
+      <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -Wno-unused-private-field -Wno-inconsistent-missing-override -Wno-char-subscripts</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-android\third\library\$(Platform)\$(Configuration)\;$(__archive)\storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(OutDir);$(__archive)\storage-android\third\library\$(Platform)\$(Configuration)\;$(__archive)\storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\$(PlatformShortName);$(StlLibraryPath)</AdditionalLibraryDirectories>
+      <LibraryDependencies>aura;base;axis;aura;ace;$(StlLibraryName);log;android</LibraryDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
+    <ClCompile>
+      <DebugInformationFormat>LineNumber</DebugInformationFormat>
+      <ExceptionHandling>Enabled</ExceptionHandling>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <CLanguageStandard>gnu11</CLanguageStandard>
+      <CppLanguageStandard>gnu++1y</CppLanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../platform-android/platform_configuration/$(Platform)/$(Configuration);$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(SolutionDir)../../platform-android;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(SolutionDir)../../;$(SolutionDir)../../app;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../..;$(ProjectDir)..;$(ProjectDir).;$(Sysroot)\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_APP_CORE_EXPERIENCE_CORE_LIBRARY</PreprocessorDefinitions>
+      <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -Wno-unused-private-field -Wno-inconsistent-missing-override -Wno-char-subscripts</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-android\third\library\$(Platform)\$(Configuration)\;$(__archive)\storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(OutDir);$(__archive)\storage-android\third\library\$(Platform)\$(Configuration)\;$(__archive)\storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
+      <LibraryDependencies>aura;base;axis;aura;ace;$(StlLibraryName);log;android</LibraryDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h" />
+    <ClInclude Include="user_meta_button.h" />
+    <ClInclude Include="user_meta_control_box.h" />
+    <ClInclude Include="experience_core.h" />
+    <ClInclude Include="experience_core_frame.h" />
+    <ClInclude Include="experience_core_frame_001.h" />
+    <ClInclude Include="experience_core_frame_002.h" />
+    <ClInclude Include="experience_core_frame_005.h" />
+    <ClInclude Include="experience_core_frame_008.h" />
+    <ClInclude Include="experience_core_frame_011.h" />
+    <ClInclude Include="experience_core_frame_013.h" />
+    <ClInclude Include="experience_core_frame_Minimal001.h" />
+    <ClInclude Include="experience_core_interaction.h" />
+    <ClInclude Include="experience_core_library.h" />
+    <ClInclude Include="experience_core_user_schema.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="framework.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user_meta_button.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x86'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="user_meta_control_box.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x86'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="experience_core_frame.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x86'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="experience_core_frame_001.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x86'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="experience_core_frame_002.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x86'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="experience_core_frame_005.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x86'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="experience_core_frame_008.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x86'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="experience_core_frame_011.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x86'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="experience_core_frame_013.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x86'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="experience_core_frame_Minimal001.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x86'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="experience_core_interaction.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x86'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="experience_core_library.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x86'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="experience_core_user_schema.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x86'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+</Project>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+<Project>
+		<Option title="time" />
+		<Option pch_mode="2" />
+  		<Option compiler="gcc" />
+		<Build>
+			<Target title="basis">
+				<Option output="$(#time_dir)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(#time_dir)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(#time_dir)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option type="3" />
+		 		<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+				</Compiler>
+			</Target>
+			<Target title="memdleak">
+				<Option output="$(#time_dir)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(#time_dir)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(#time_dir)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option type="3" />
+		 		<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+					<Add option="-DMEMDLEAK" />
+				</Compiler>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-std=c++0x" />
+			<Add option="-fexceptions" />
+			<Add option="-fnon-call-exceptions" />
+			<Add option="-fno-pie" />
+			<Add option="-fno-stack-protector" />
+			<Add option="-Wno-pointer-arith" />
+			<Add option="-Wno-attributes" />
+			<Add option="-Winvalid-pch" />
+			<Add option="-Wno-conversion-null" />
+			<Add option="-fPIC" />
+			<Add directory="." />
+			<Add directory="$(PROJECT_DIR)" />
+			<Add directory="$(#archive)" />
+			<Add directory="$(#config)" />
+			<Add directory="$(WORKSPACE_DIR)/../.." />
+			<Add directory="$(WORKSPACE_DIR)/../../inc" />
+			<Add directory="$(WORKSPACE_DIR)/../../include" />
+			<Add directory="$(WORKSPACE_DIR)/../../platform-linux" />
+			<Add directory="$(WORKSPACE_DIR)/../../app/_include" />
+			<Add directory="$(WORKSPACE_DIR)/../../app" />
+
+			<Add directory="$(#sensitive)/sensitive/include" />
+		</Compiler>
+		<Linker>
+			<Add option="-Wl,-rpath=\\$$$ORIGIN" />
+			
+			<Add option="-laura" />
+			<Add option="-Wl,-z,defs" />
+			<Add directory="$(#time_dir)/x64/$(TARGET_NAME)" />
+			<Add directory="/usr/lib64/mysql/" />
+		</Linker>
+		<Unit filename="calculator/calculator.h" />
+		<Unit filename="calculator/datetime_element.cpp" />
+		<Unit filename="calculator/datetime_element.h" />
+		<Unit filename="calculator/datetime_parser.cpp" />
+		<Unit filename="calculator/datetime_parser.h" />
+		<Unit filename="calculator/datetime_parser_exception.cpp" />
+		<Unit filename="calculator/datetime_parser_exception.h" />
+		<Unit filename="calculator/datetime_scanner.cpp" />
+		<Unit filename="calculator/datetime_scanner.h" />
+		<Unit filename="calculator/datetime_token.cpp" />
+		<Unit filename="calculator/datetime_token.h" />
+		<Unit filename="datetime/datetime.h" />
+		<Unit filename="datetime/datetime_calendar.cpp" />
+		<Unit filename="datetime/datetime_calendar.h" />
+		<Unit filename="datetime/datetime_calendar_interface.cpp" />
+		<Unit filename="datetime/datetime_calendar_interface.h" />
+		<Unit filename="datetime/datetime_clock.cpp" />
+		<Unit filename="datetime/datetime_clock.h" />
+		<Unit filename="datetime/datetime_clock_interface.cpp" />
+		<Unit filename="datetime/datetime_clock_interface.h" />
+		<Unit filename="datetime/datetime_float_time.cpp" />
+		<Unit filename="datetime/datetime_float_time.h" />
+		<Unit filename="datetime/datetime_windows_file_time.cpp" />
+		<Unit filename="datetime/datetime_windows_file_time.h" />
+		<Unit filename="framework.h">
+			<Option compile="1" />
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="time/time.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+			<envvars />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

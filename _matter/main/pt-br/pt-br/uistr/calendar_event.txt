@@ -1,0 +1,2 @@
+﻿"calendar_event:birthday[0]" = "Aniversário"
+"calendar_event:birthday[1]" = "Níver"

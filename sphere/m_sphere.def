@@ -1,0 +1,8 @@
+; m_ca2.def : Declares the module parameters for the DLL.
+
+LIBRARY  "m_ca2"
+; For Win32 DLLs, only EXPORTs really required.
+
+EXPORTS
+get_new_library
+

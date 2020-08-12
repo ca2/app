@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{0b3593e1-10d1-4115-b210-4b4bd3af5e9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{53c823a6-a5fb-4437-8585-06b0262da1ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\aqua">
+      <UniqueIdentifier>{39b5fc3f-a016-4fbd-874d-e881732077e4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="aqua_graphics_alpha.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="aqua\aqua_aqua.h">
+      <Filter>Header Files\aqua</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="aqua_graphics_alpha.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="math.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

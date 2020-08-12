@@ -1,0 +1,425 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="basis|ARM">
+      <Configuration>basis</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="basis|Win32">
+      <Configuration>basis</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="basis|x64">
+      <Configuration>basis</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="memdleak|ARM">
+      <Configuration>memdleak</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="memdleak|Win32">
+      <Configuration>memdleak</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="memdleak|x64">
+      <Configuration>memdleak</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{E0A5C2BD-1678-4EFB-B0D4-F8072CF3FE77}</ProjectGuid>
+    <RootNamespace>audio_mixer_xaudio</RootNamespace>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
+    <AppContainerApplication>true</AppContainerApplication>
+    <ProjectName>audio_mixer_xaudio</ProjectName>
+    <ApplicationType>Windows Store</ApplicationType>
+    <ApplicationTypeRevision>8.1</ApplicationTypeRevision>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|ARM'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\platform-windows\Common.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\platform-windows\Common.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\platform-windows\Common.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|ARM'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\platform-windows\Common.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\platform-windows\Common.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\platform-windows\Common.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <IncludePath>$(VCInstallDir)include;$(WindowsSDK_IncludePath);</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PackageCertificateKeyFile>Direct3DApp2_TemporaryKey.pfx</PackageCertificateKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
+    <OutDir>$(SolutionDir)..\..\..\stage\x86\</OutDir>
+    <IntDir>$(TimeDir)intermediate\x86\$(ProjectName)\</IntDir>
+    <ReferencePath>$(VCInstallDir)lib</ReferencePath>
+    <LibraryPath>$(VCInstallDir)lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
+    <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
+    <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">
+    <OutDir>$(SolutionDir)..\..\..\stage\x86\</OutDir>
+    <IntDir>$(TimeDir)intermediate\x86\$(ProjectName)\</IntDir>
+    <ReferencePath>$(VCInstallDir)lib</ReferencePath>
+    <LibraryPath>$(VCInstallDir)lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
+    <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
+    <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <Link>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <SubSystem Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Windows</SubSystem>
+      <SubSystem Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Windows</SubSystem>
+      <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(SolutionDir)../../time/library/x86/$(ConfigurationName);$(__archive)/platform-uwp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(SolutionDir)../../time/library/x86/$(ConfigurationName);$(__archive)/platform-uwp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ModuleDefinitionFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(TargetName).def</ModuleDefinitionFile>
+      <ImportLibrary Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(OutDir)$(TargetName).lib</ImportLibrary>
+      <ImportLibrary Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(OutDir)$(TargetName).lib</ImportLibrary>
+    </Link>
+    <ClCompile>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(SolutionDir)../../;$(SolutionDir)../../app;$(SolutionDir)../../app;$(__archive)/platform-uwp/thirdparty;$(SolutionDir)../../;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">_VERIWELL_MULTIMEDIA_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">_VERIWELL_MULTIMEDIA_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <ExceptionHandling Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Async</ExceptionHandling>
+      <ExceptionHandling Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Async</ExceptionHandling>
+      <DebugInformationFormat Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">ProgramDatabase</DebugInformationFormat>
+      <DebugInformationFormat Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">ProgramDatabase</DebugInformationFormat>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</CompileAsManaged>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">false</CompileAsManaged>
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</RuntimeTypeInfo>
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</RuntimeTypeInfo>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h" />
+    <ClInclude Include="ikaraoke\ikaraoke.h" />
+    <ClInclude Include="ikaraoke\ikaraoke_data.h" />
+    <ClInclude Include="ikaraoke\ikaraoke_data_container.h" />
+    <ClInclude Include="ikaraoke\ikaraoke_dynamic_data.h" />
+    <ClInclude Include="ikaraoke\ikaraoke_Global.h" />
+    <ClInclude Include="ikaraoke\ikaraoke_karaoke.h" />
+    <ClInclude Include="ikaraoke\ikaraoke_lyric_events_v1.h" />
+    <ClInclude Include="ikaraoke\ikaraoke_lyric_events_v2.h" />
+    <ClInclude Include="ikaraoke\ikaraoke_lyric_event_v1.h" />
+    <ClInclude Include="ikaraoke\ikaraoke_lyric_event_v2.h" />
+    <ClInclude Include="ikaraoke\ikaraoke_static_data.h" />
+    <ClInclude Include="imedia\imedia.h" />
+    <ClInclude Include="karaoke\karaoke.h" />
+    <ClInclude Include="karaoke\karaoke_bouncing_ball.h" />
+    <ClInclude Include="karaoke\karaoke_karaoke.h" />
+    <ClInclude Include="karaoke\karaoke_lyric_view_line.h" />
+    <ClInclude Include="karaoke\karaoke_lyric_view_lines.h" />
+    <ClInclude Include="karaoke\karaoke_lyric_view_line_selection.h" />
+    <ClInclude Include="karaoke\karaoke_lyric_view_line_template.h" />
+    <ClInclude Include="karaoke\karaoke_lyric_view_line_templates.h" />
+    <ClInclude Include="karaoke\karaoke_scoring.h" />
+    <ClInclude Include="karaoke\karaoke_scoring_central.h" />
+    <ClInclude Include="karaoke\karaoke_scoring_central_container.h" />
+    <ClInclude Include="karaoke\karaoke_view.h" />
+    <ClInclude Include="mediaalbum\mediaalbum.h" />
+    <ClInclude Include="mediaalbum\mediaalbum_document.h" />
+    <ClInclude Include="mediaalbum\mediaalbum_frame.h" />
+    <ClInclude Include="mediaalbum\mediaalbum_html_view.h" />
+    <ClInclude Include="mediaalbum\mediaalbum_main_view.h" />
+    <ClInclude Include="mediaalbum\mediaalbum_options_view.h" />
+    <ClInclude Include="mediaalbum\mediaalbum_search_form_view.h" />
+    <ClInclude Include="mediaalbum\mediaalbum_song_check_list.h" />
+    <ClInclude Include="mediaalbum\mediaalbum_song_list.h" />
+    <ClInclude Include="mediaalbum\mediaalbum_tree.h" />
+
+    <ClInclude Include="mediafun\mediafun.h" />
+    <ClInclude Include="mediafun\mediafun_list_view.h" />
+    <ClInclude Include="mediafun\mediafun_tree.h" />
+    <ClInclude Include="mediafun\mediafun_view.h" />
+    <ClInclude Include="medialibrary\medialibrary.h" />
+    <ClInclude Include="medialibrary\medialibrary_child_frame.h" />
+    <ClInclude Include="medialibrary\medialibrary_const.h" />
+    <ClInclude Include="medialibrary\medialibrary_document.h" />
+    <ClInclude Include="medialibrary\medialibrary_explorer_tree_view.h" />
+    <ClInclude Include="medialibrary\medialibrary_explorer_view.h" />
+    <ClInclude Include="medialibrary\medialibrary_list_view.h" />
+    <ClInclude Include="medialibrary\medialibrary_pane_view.h" />
+
+    <ClInclude Include="mediaplay\mediaplay.h" />
+    <ClInclude Include="mediaplay\mediaplay_data.h" />
+    <ClInclude Include="mediaplay\mediaplay_document.h" />
+    <ClInclude Include="mediaplay\mediaplay_karaoke.h" />
+    <ClInclude Include="mediaplay\mediaplay_record_notify_view.h" />
+    <ClInclude Include="mediaplay\mediaplay_view.h" />
+    <ClInclude Include="mediaplay\mediaplay_view_interface.h" />
+
+    <ClInclude Include="multimedia\multimedia.h" />
+    <ClInclude Include="multimedia\multimedia_application.h" />
+    <ClInclude Include="music\microke1\music_microke1.h" />
+    <ClInclude Include="music\microke1\music_microke1_section.h" />
+    <ClInclude Include="music\midi\music_midi.h" />
+    <ClInclude Include="music\midi\music_midi_attribute_message.h" />
+    <ClInclude Include="music\midi\music_midi_definition.h" />
+    <ClInclude Include="music\midi\music_midi_document_helper.h" />
+    <ClInclude Include="music\midi\music_midi_enum.h" />
+    <ClInclude Include="music\midi\music_midi_event.h" />
+    <ClInclude Include="music\midi\music_midi_events.h" />
+    <ClInclude Include="music\midi\music_midi_file_buffer.h" />
+    <ClInclude Include="music\midi\music_midi_lyric_track.h" />
+    <ClInclude Include="music\midi\music_midi_lyric_tracks.h" />
+    <ClInclude Include="music\midi\music_midi_midi.h" />
+    <ClInclude Include="music\midi\music_midi_midi_listener.h" />
+    <ClInclude Include="music\midi\music_midi_midi_listener_set.h" />
+    <ClInclude Include="music\midi\music_midi_out.h" />
+    <ClInclude Include="music\midi\music_midi_sequence.h" />
+    <ClInclude Include="music\midi\music_midi_sequence_thread.h" />
+    <ClInclude Include="music\midi\music_midi_tempo_map.h" />
+    <ClInclude Include="music\midi\music_midi_track.h" />
+    <ClInclude Include="music\midi\music_midi_tracks.h" />
+    <ClInclude Include="music\midi\music_midi_track_base.h" />
+    <ClInclude Include="music\midi\music_midi_track_v8.h" />
+    <ClInclude Include="music\midi\music_midi_util.h" />
+    <ClInclude Include="music\midi\music_midi_view_helper.h" />
+    <ClInclude Include="music\midi\player\music_midi_player.h" />
+    <ClInclude Include="music\midi\player\music_midi_player_callback_interface.h" />
+    <ClInclude Include="music\midi\player\music_midi_player_command.h" />
+    <ClInclude Include="music\midi\player\music_midi_player_interface.h" />
+    <ClInclude Include="music\midi\player\music_midi_player_notify_event.h" />
+    <ClInclude Include="music\music.h" />
+    <ClInclude Include="music\music_attributes.h" />
+    <ClInclude Include="music\music_definition.h" />
+    <ClInclude Include="music\music_enum.h" />
+    <ClInclude Include="music\music_exception.h" />
+    <ClInclude Include="music\music_karaoke_util.h" />
+    <ClInclude Include="music\softkaraoke\music_softkaraoke.h" />
+    <ClInclude Include="music\softkaraoke\music_softkaraoke_info.h" />
+    <ClInclude Include="music\star350\music_star350.h" />
+    <ClInclude Include="music\star350\music_star350_definition.h" />
+    <ClInclude Include="music\star350\music_star350_event.h" />
+    <ClInclude Include="music\star350\music_star350_event_track.h" />
+    <ClInclude Include="music\star350\music_star350_file_buffer.h" />
+    <ClInclude Include="music\star350\music_star350_info_header.h" />
+    <ClInclude Include="music\star350\music_star350_lyric_track.h" />
+    <ClInclude Include="music\star350\music_star350_lyric_tracks.h" />
+    <ClInclude Include="music\star350\music_star350_track.h" />
+    <ClInclude Include="music\star350\music_star350_tracks.h" />
+    <ClInclude Include="music\star350\music_star350_track_base.h" />
+    <ClInclude Include="music\tune1000\music_tune1000.h" />
+    <ClInclude Include="music\tune1000\music_tune1000_info.h" />
+    <ClInclude Include="music\xf\music_xf.h" />
+    <ClInclude Include="music\xf\music_xf_info_header.h" />
+    <ClInclude Include="music\xf\music_xf_info_headers.h" />
+    <ClInclude Include="music\xf\music_xf_info_header_ls.h" />
+    <ClInclude Include="music\xf\music_xf_xf.h" />
+    <ClInclude Include="music_user\aaa_want_to_remove_music_user_musical_player_central_container.h" />
+    <ClInclude Include="music_user\music_user.h" />
+    <ClInclude Include="music_user\music_user_midi.h" />
+    <ClInclude Include="music_user\music_user_midi_section.h" />
+    <ClInclude Include="music_user\music_user_midi_track_selection.h" />
+    <ClInclude Include="music_user\music_user_midi_track_selection_control_interface.h" />
+    <ClInclude Include="music_user\music_user_midi_track_selection_ddx.h" />
+    <ClInclude Include="music_user\music_user_midi_track_selection_document.h" />
+    <ClInclude Include="music_user\music_user_midi_track_selection_frame.h" />
+    <ClInclude Include="music_user\music_user_midi_track_selection_selection.h" />
+    <ClInclude Include="music_user\music_user_midi_track_selection_view.h" />
+
+    <ClInclude Include="music_user\music_user_musical_player.h" />
+    <ClInclude Include="music_user\music_user_player_document_container.h" />
+    <ClInclude Include="music_user\music_user_single_document_template.h" />
+    <ClInclude Include="video\video.h" />
+    <ClInclude Include="video\video_command.h" />
+    <ClInclude Include="video\video_global.h" />
+    <ClInclude Include="video\video_player.h" />
+    <ClInclude Include="video\video_player_command.h" />
+    <ClInclude Include="video_decode\decoder_.h" />
+    <ClInclude Include="video_decode\decoder_plugin.h" />
+    <ClInclude Include="video_decode\decoder_plugin_set.h" />
+    <ClInclude Include="video_decode\decoder_plugin_set_ex1.h" />
+    <ClInclude Include="video_decode\video_decode.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="framework.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="ikaraoke\ikaraoke_data.cpp" />
+    <ClCompile Include="ikaraoke\ikaraoke_data_container.cpp" />
+    <ClCompile Include="ikaraoke\ikaraoke_dynamic_data.cpp" />
+    <ClCompile Include="ikaraoke\ikaraoke_karaoke.cpp" />
+    <ClCompile Include="ikaraoke\ikaraoke_lyric_events_v1.cpp" />
+    <ClCompile Include="ikaraoke\ikaraoke_lyric_events_v2.cpp" />
+    <ClCompile Include="ikaraoke\ikaraoke_lyric_event_v1.cpp" />
+    <ClCompile Include="ikaraoke\ikaraoke_static_data.cpp" />
+    <ClCompile Include="karaoke\karaoke_bouncing_ball.cpp" />
+    <ClCompile Include="karaoke\karaoke_karaoke.cpp" />
+    <ClCompile Include="karaoke\karaoke_lyric_view_line.cpp" />
+    <ClCompile Include="karaoke\karaoke_lyric_view_lines.cpp" />
+    <ClCompile Include="karaoke\karaoke_lyric_view_line_selection.cpp" />
+    <ClCompile Include="karaoke\karaoke_lyric_view_line_template.cpp" />
+    <ClCompile Include="karaoke\karaoke_lyric_view_line_templates.cpp" />
+    <ClCompile Include="karaoke\karaoke_scoring.cpp" />
+    <ClCompile Include="karaoke\karaoke_scoring_central.cpp" />
+    <ClCompile Include="karaoke\karaoke_scoring_central_container.cpp" />
+    <ClCompile Include="karaoke\karaoke_view.cpp" />
+    <ClCompile Include="mediaalbum\mediaalbum_document.cpp" />
+    <ClCompile Include="mediaalbum\mediaalbum_frame.cpp" />
+    <ClCompile Include="mediaalbum\mediaalbum_html_view.cpp" />
+    <ClCompile Include="mediaalbum\mediaalbum_main_view.cpp" />
+    <ClCompile Include="mediaalbum\mediaalbum_options_view.cpp" />
+    <ClCompile Include="mediaalbum\mediaalbum_search_form_view.cpp" />
+    <ClCompile Include="mediaalbum\mediaalbum_song_check_list.cpp" />
+    <ClCompile Include="mediaalbum\mediaalbum_song_list.cpp" />
+    <ClCompile Include="mediaalbum\mediaalbum_tree.cpp" />
+
+    <ClCompile Include="mediafun\mediafun_list_view.cpp" />
+    <ClCompile Include="mediafun\mediafun_tree.cpp" />
+    <ClCompile Include="mediafun\mediafun_view.cpp" />
+    <ClCompile Include="medialibrary\medialibrary_child_frame.cpp" />
+    <ClCompile Include="medialibrary\medialibrary_document.cpp" />
+    <ClCompile Include="medialibrary\medialibrary_explorer_tree_view.cpp" />
+    <ClCompile Include="medialibrary\medialibrary_explorer_view.cpp" />
+    <ClCompile Include="medialibrary\medialibrary_list_view.cpp" />
+    <ClCompile Include="medialibrary\medialibrary_pane_view.cpp" />
+
+    <ClCompile Include="mediaplay\mediaplay_data.cpp" />
+    <ClCompile Include="mediaplay\mediaplay_document.cpp" />
+    <ClCompile Include="mediaplay\mediaplay_karaoke.cpp" />
+    <ClCompile Include="mediaplay\mediaplay_record_notify_view.cpp" />
+    <ClCompile Include="mediaplay\mediaplay_view.cpp" />
+    <ClCompile Include="mediaplay\mediaplay_view_interface.cpp" />
+
+    <ClCompile Include="multimedia\multimedia_application.cpp" />
+    <ClCompile Include="music\microke1\music_microke1.cpp" />
+    <ClCompile Include="music\midi\music_midi.cpp" />
+    <ClCompile Include="music\midi\music_midi_document_helper.cpp" />
+    <ClCompile Include="music\midi\music_midi_event.cpp" />
+    <ClCompile Include="music\midi\music_midi_events.cpp" />
+    <ClCompile Include="music\midi\music_midi_file_buffer.cpp" />
+    <ClCompile Include="music\midi\music_midi_lyric_track.cpp" />
+    <ClCompile Include="music\midi\music_midi_midi.cpp" />
+    <ClCompile Include="music\midi\music_midi_midi_listener.cpp" />
+    <ClCompile Include="music\midi\music_midi_out.cpp" />
+    <ClCompile Include="music\midi\music_midi_sequence.cpp" />
+    <ClCompile Include="music\midi\music_midi_sequence_thread.cpp" />
+    <ClCompile Include="music\midi\music_midi_track.cpp" />
+    <ClCompile Include="music\midi\music_midi_tracks.cpp" />
+    <ClCompile Include="music\midi\music_midi_track_base.cpp" />
+    <ClCompile Include="music\midi\music_midi_track_v8.cpp" />
+    <ClCompile Include="music\midi\music_midi_util.cpp" />
+    <ClCompile Include="music\midi\music_midi_view_helper.cpp" />
+    <ClCompile Include="music\midi\player\music_midi_player.cpp" />
+    <ClCompile Include="music\midi\player\music_midi_player_callback_interface.cpp" />
+    <ClCompile Include="music\midi\player\music_midi_player_command.cpp" />
+    <ClCompile Include="music\midi\player\music_midi_player_interface.cpp" />
+    <ClCompile Include="music\music_attributes.cpp" />
+    <ClCompile Include="music\music_exception.cpp" />
+    <ClCompile Include="music\music_karaoke_util.cpp" />
+    <ClCompile Include="music\softkaraoke\music_softkaraoke_info.cpp" />
+    <ClCompile Include="music\star350\music_star350_event.cpp" />
+    <ClCompile Include="music\star350\music_star350_event_base.cpp" />
+    <ClCompile Include="music\star350\music_star350_event_track.cpp" />
+    <ClCompile Include="music\star350\music_star350_file_buffer.cpp" />
+    <ClCompile Include="music\star350\music_star350_info_header.cpp" />
+    <ClCompile Include="music\star350\music_star350_lyric_track.cpp" />
+    <ClCompile Include="music\star350\music_star350_lyric_tracks.cpp" />
+    <ClCompile Include="music\star350\music_star350_track.cpp" />
+    <ClCompile Include="music\star350\music_star350_tracks.cpp" />
+    <ClCompile Include="music\star350\music_star350_track_base.cpp" />
+    <ClCompile Include="music\tune1000\music_tune1000_info.cpp" />
+    <ClCompile Include="music\xf\music_xf.cpp" />
+    <ClCompile Include="music\xf\music_xf_info_header.cpp" />
+    <ClCompile Include="music\xf\music_xf_info_headers.cpp" />
+    <ClCompile Include="music\xf\music_xf_info_header_ls.cpp" />
+    <ClCompile Include="music_user\music_user_midi_section.cpp" />
+    <ClCompile Include="music_user\music_user_midi_track_selection_control_interface.cpp" />
+    <ClCompile Include="music_user\music_user_midi_track_selection_ddx.cpp" />
+    <ClCompile Include="music_user\music_user_midi_track_selection_document.cpp" />
+    <ClCompile Include="music_user\music_user_midi_track_selection_frame.cpp" />
+    <ClCompile Include="music_user\music_user_midi_track_selection_selection.cpp" />
+    <ClCompile Include="music_user\music_user_midi_track_selection_view.cpp" />
+
+    <ClCompile Include="music_user\music_user_musical_player.cpp" />
+    <ClCompile Include="music_user\music_user_player_document_container.cpp" />
+    <ClCompile Include="music_user\music_user_single_document_template.cpp" />
+    <ClCompile Include="video\video_player.cpp" />
+    <ClCompile Include="video\video_player_command.cpp" />
+    <ClCompile Include="video_decode\video_decode_decoder_.cpp" />
+    <ClCompile Include="video_decode\video_decode_decoder_plugin.cpp" />
+    <ClCompile Include="video_decode\video_decode_decoder_plugin_set.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\app\base\m_base.vcxproj">
+      <Project>{5487686f-8a2f-401a-a38e-fda8900e1984}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\app\boot\m_boot.vcxproj">
+      <Project>{5fd926e7-e8b9-4451-baac-81efa94d1985}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\app\aura\m_core.vcxproj">
+      <Project>{420d7aeb-cfca-45de-bb6e-95055df21987}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\app\thirdparty\freetype\_m_ca2freetype.vcxproj">
+      <Project>{af9dfa62-6f0e-47b8-a55b-5ad825571f4f}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="veriwell_multimedia.def" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

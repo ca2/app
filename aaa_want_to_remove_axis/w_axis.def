@@ -1,0 +1,9 @@
+LIBRARY  "axis"
+
+
+EXPORTS
+defer_axis_init
+defer_axis_term
+
+
+

@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{1a1999d2-0b83-4ca3-bb8c-ed5c1f5b6379}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\client">
+      <UniqueIdentifier>{67b62aab-bb00-4078-927c-dca2a358a8ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\client\common">
+      <UniqueIdentifier>{3eb651de-f0dc-4f9c-afcb-4e25cf3dbafb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\client\ca2">
+      <UniqueIdentifier>{b5149756-4b77-40e7-92c9-5766af2b336d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Windows">
+      <UniqueIdentifier>{ace3822b-68e2-4cb1-9c69-5f6aa0ff7c45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{162d1354-07c7-4438-a468-9fbecfa14b96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\client">
+      <UniqueIdentifier>{dcfd1696-d3f0-4be8-89ef-35b9c350128e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\client\common">
+      <UniqueIdentifier>{575ac308-ce36-49ec-82d7-d4258890df93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\client\ca2">
+      <UniqueIdentifier>{94cfab52-3f08-4337-bf6e-ddddb2801139}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\client\Windows">
+      <UniqueIdentifier>{9a12623e-68cb-4052-ac86-87f8110d3538}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="client\common\cf_channels.h">
+      <Filter>Header Files\client\common</Filter>
+    </ClInclude>
+    <ClInclude Include="client\common\cf_client.h">
+      <Filter>Header Files\client\common</Filter>
+    </ClInclude>
+    <ClInclude Include="client\common\graphics.h">
+      <Filter>Header Files\client\common</Filter>
+    </ClInclude>
+    <ClInclude Include="client\common\rdpclient.h">
+      <Filter>Header Files\client\common</Filter>
+    </ClInclude>
+    <ClInclude Include="client\common\compatibility.h">
+      <Filter>Header Files\client\common</Filter>
+    </ClInclude>
+    <ClInclude Include="client\ca2\ca2rdp.h">
+      <Filter>Header Files\client\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="client\ca2\ca2rdp_event.h">
+      <Filter>Header Files\client\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="client\ca2\ca2rdp_graphics.h">
+      <Filter>Header Files\client\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="client\Windows\resource.h">
+      <Filter>Header Files\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="client\Windows\wf_channels.h">
+      <Filter>Header Files\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="client\Windows\wf_client.h">
+      <Filter>Header Files\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="client\Windows\wf_cliprdr.h">
+      <Filter>Header Files\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="client\Windows\wf_event.h">
+      <Filter>Header Files\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="client\Windows\wf_floatbar.h">
+      <Filter>Header Files\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="client\Windows\wf_gdi.h">
+      <Filter>Header Files\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="client\Windows\wf_graphics.h">
+      <Filter>Header Files\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="client\Windows\wf_rail.h">
+      <Filter>Header Files\Windows</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="client\common\cf_channels.cpp">
+      <Filter>Source Files\client\common</Filter>
+    </ClCompile>
+    <ClCompile Include="client\common\cf_client.cpp">
+      <Filter>Source Files\client\common</Filter>
+    </ClCompile>
+    <ClCompile Include="client\common\client.cpp">
+      <Filter>Source Files\client\common</Filter>
+    </ClCompile>
+    <ClCompile Include="client\common\cmdline.cpp">
+      <Filter>Source Files\client\common</Filter>
+    </ClCompile>
+    <ClCompile Include="client\common\compatibility.cpp">
+      <Filter>Source Files\client\common</Filter>
+    </ClCompile>
+    <ClCompile Include="client\common\file.cpp">
+      <Filter>Source Files\client\common</Filter>
+    </ClCompile>
+    <ClCompile Include="client\ca2\ca2rdp.cpp">
+      <Filter>Source Files\client\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="client\ca2\ca2rdp_event.cpp">
+      <Filter>Source Files\client\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="client\ca2\ca2rdp_graphics.cpp">
+      <Filter>Source Files\client\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="client\ca2\ca2rdp_event_queue.cpp">
+      <Filter>Source Files\client\ca2</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="axisrdpclient.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

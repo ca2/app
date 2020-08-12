@@ -1,0 +1,332 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="alloc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bios.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="conio.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Console-8.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dir.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dos.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fnkeys.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="io.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TurboC.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="XXXaspectratio..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="window..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wherey..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wherex..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TurboX..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TurboTrap..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TurboCVariables..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="textwidth..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="textmode..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="textcolor..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="textbackground..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="textattr..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="strupr..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="strlwr..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="setXXXXpage..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="setwritemode..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="setviewport..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="settextstyle..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="setrgbpalette..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="setpalette..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="setlinestyle..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="setgraphbufsize..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="setfillXXXX..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="setcolor..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="setbkcolor..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sector..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="registerbgifont..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="registerbgidriver..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="rectangle..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="random..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="puttext..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="putpixel..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="putch..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pieslice..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="outtextxy..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="normvideo..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="movetext..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lowvideo..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="line..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kbhit..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="installuserfont..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="installuserdriver..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="insline..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="initgraph..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="highvideo..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="graphresult..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="grapherrormsg..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="graphdefaults..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gotoxy..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="getviewsettings..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gettime..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gettextsettings..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gettextinfo..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gettext..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="getpixel..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="getpass..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="getpalette..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="getmoderange..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="getmodename..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="getmaxx..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="getmaxmode..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="getmaxcolor..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="getimage..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="getgraphmode..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="getftime..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="getdrivername..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="getdateSystem..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="getchTurbo..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="getche..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="getarccoords..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="freeTurbo..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="findfirst..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fillellipse..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="endianFile..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="endian..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ellipse..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="drawpoly..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dos2unix..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="detectgraph..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="delline..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="delay..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ctype..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cputs..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cprintf..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ConioResizeCallback..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clrscr..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clreol..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="closegraph..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clearXXXX..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="circle..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cgets..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bar..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="arc..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="_setcursortype..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="_graphXXXmem..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

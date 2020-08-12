@@ -1,0 +1,455 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="user\account\account.cpp">
+      <Filter>Source Files\user\account</Filter>
+    </ClCompile>
+    <ClCompile Include="user\account\account_login.cpp">
+      <Filter>Source Files\user\account</Filter>
+    </ClCompile>
+    <ClCompile Include="user\account\account_simple_ui.cpp">
+      <Filter>Source Files\user\account</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_scroll_bar.cpp">
+      <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="user\hotplugin\hotplugin.cpp">
+      <Filter>Source Files\user\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="user\hotplugin\hotplugin_composer.cpp">
+      <Filter>Source Files\user\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="user\hotplugin\hotplugin_container_launcher.cpp">
+      <Filter>Source Files\user\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="user\hotplugin\hotplugin_host.cpp">
+      <Filter>Source Files\user\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="user\hotplugin\hotplugin_plugin.cpp">
+      <Filter>Source Files\user\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="user\hotplugin\hotplugin_windows.cpp">
+      <Filter>Source Files\user\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_user_interaction.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_file_system_size.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="user\account\account_dialog.cpp">
+      <Filter>Source Files\user\account</Filter>
+    </ClCompile>
+    <ClCompile Include="user\hotplugin\hotplugin_bare_paint_discreet.cpp">
+      <Filter>Source Files\user\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="user\hotplugin\hotplugin_bare_paint_full_screen.cpp">
+      <Filter>Source Files\user\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="user\hotplugin\hotplugin_bare_paint_veri_discreet.cpp">
+      <Filter>Source Files\user\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\_.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\application.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\session.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\static_start.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\system.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\wait_cursor.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\still.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\single_document_template.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\simple_view.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\server.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\scroll_bar.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\scroll.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\progress.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\plain_text_data.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\plain_edit.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\multiple_document_template.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\impact_system.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\impact_host.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\impact_creator.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\impact.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\frame_window.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\form_control.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\form_callback.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\document.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\control_bar.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\control.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\button.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\box.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple_ui\simple_ui_edit_box.cpp">
+      <Filter>Source Files\user\simple_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple_ui\simple_ui_interaction.cpp">
+      <Filter>Source Files\user\simple_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple_ui\simple_ui_label.cpp">
+      <Filter>Source Files\user\simple_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple_ui\simple_ui_message_box.cpp">
+      <Filter>Source Files\user\simple_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple_ui\simple_ui_password.cpp">
+      <Filter>Source Files\user\simple_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple_ui\simple_ui_style.cpp">
+      <Filter>Source Files\user\simple_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple_ui\simple_ui_tap.cpp">
+      <Filter>Source Files\user\simple_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple_ui\simple_ui_top.cpp">
+      <Filter>Source Files\user\simple_ui</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_application.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_session.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_simple_app.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_static_start.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_system.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="user\account\simple_ui_style.h">
+      <Filter>Header Files\user\account</Filter>
+    </ClInclude>
+    <ClInclude Include="user\account\account_simple_ui.h">
+      <Filter>Header Files\user\account</Filter>
+    </ClInclude>
+    <ClInclude Include="user\account\account_login.h">
+      <Filter>Header Files\user\account</Filter>
+    </ClInclude>
+    <ClInclude Include="user\account\account.h">
+      <Filter>Header Files\user\account</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple\simple.h">
+      <Filter>Header Files\user\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple\simple_scroll_bar.h">
+      <Filter>Header Files\user\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple_ui\simple_ui.h">
+      <Filter>Header Files\user\simple_ui</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple_ui\simple_ui_edit_box.h">
+      <Filter>Header Files\user\simple_ui</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple_ui\simple_ui_interaction.h">
+      <Filter>Header Files\user\simple_ui</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple_ui\simple_ui_label.h">
+      <Filter>Header Files\user\simple_ui</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple_ui\simple_ui_message_box.h">
+      <Filter>Header Files\user\simple_ui</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple_ui\simple_ui_password.h">
+      <Filter>Header Files\user\simple_ui</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple_ui\simple_ui_style.h">
+      <Filter>Header Files\user\simple_ui</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple_ui\simple_ui_tap.h">
+      <Filter>Header Files\user\simple_ui</Filter>
+    </ClInclude>
+    <ClInclude Include="user\hotplugin\hotplugin.h">
+      <Filter>Header Files\user\hotplugin</Filter>
+    </ClInclude>
+    <ClInclude Include="user\hotplugin\hotplugin_composer.h">
+      <Filter>Header Files\user\hotplugin</Filter>
+    </ClInclude>
+    <ClInclude Include="user\hotplugin\hotplugin_container_launcher.h">
+      <Filter>Header Files\user\hotplugin</Filter>
+    </ClInclude>
+    <ClInclude Include="user\hotplugin\hotplugin_host.h">
+      <Filter>Header Files\user\hotplugin</Filter>
+    </ClInclude>
+    <ClInclude Include="user\hotplugin\hotplugin_plugin.h">
+      <Filter>Header Files\user\hotplugin</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics_window_graphics.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_control.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_control_bar.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_control_event.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_document.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_document_data_map.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_form_callback.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_form_window.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_frame_window.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_impact.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_impact_system.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_inline.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_interaction.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_interaction_base.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_interaction_child.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_interaction_impl.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_interaction_impl_base.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_message.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_message_queue.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_message_queue_listener.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_place_holder.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_place_holder_container.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_plain_edit.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_plain_text_data.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_scroll.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_scroll_bar.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_server.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_user.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_view_container.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_view_creator.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_view_creator_data.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_wait_cursor.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_window_map.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_window_util.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_windowing.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics_window_buffer.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics_window.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="policy\_.h">
+      <Filter>Header Files\policy</Filter>
+    </ClInclude>
+    <ClInclude Include="policy\policy.h">
+      <Filter>Header Files\policy</Filter>
+    </ClInclude>
+    <ClInclude Include="policy\policy_objc.h">
+      <Filter>Header Files\policy</Filter>
+    </ClInclude>
+    <ClInclude Include="policy\policy_objcpp.h">
+      <Filter>Header Files\policy</Filter>
+    </ClInclude>
+    <ClInclude Include="policy\policy_winrt.h">
+      <Filter>Header Files\policy</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{aae488d1-731b-4faf-9c66-100e85a52968}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user">
+      <UniqueIdentifier>{3356c0de-36d2-40ef-9932-1b03b4623ea7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\simple_ui">
+      <UniqueIdentifier>{68a398e9-f0cf-4a43-adb8-3e43f3e132bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\user">
+      <UniqueIdentifier>{28a9ff27-f69d-4083-b786-cd508a46e04d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\simple">
+      <UniqueIdentifier>{c36bfa7d-8c04-4e36-9719-0bff6a4c8153}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\account">
+      <UniqueIdentifier>{0e0293fb-d645-4602-b1ba-c22601601f98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics">
+      <UniqueIdentifier>{445df80a-1ec0-411c-8594-9fc3243bcdc5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base">
+      <UniqueIdentifier>{a1a750d9-611d-405b-9179-1f1c21159556}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\base">
+      <UniqueIdentifier>{7c7c4f51-aa61-436b-b826-c5e8a004b477}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{ee40fdb7-2df5-45d6-bbc4-c3eddbf2ef4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base">
+      <UniqueIdentifier>{e6443aae-e4df-4131-bf54-be9cacb360c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\base">
+      <UniqueIdentifier>{a41f383b-2bc0-45b0-be3e-1ddb7c686808}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user">
+      <UniqueIdentifier>{6b7ee7da-edb1-49c7-b218-d3cdc1d4dbe2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\account">
+      <UniqueIdentifier>{b245f8e4-c22a-4ccb-bb1d-64266315239e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\simple_ui">
+      <UniqueIdentifier>{295051c1-fba1-420c-9cc6-a7d922992408}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\simple">
+      <UniqueIdentifier>{34513441-69a4-49dd-9b09-38e504a3c9b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\user">
+      <UniqueIdentifier>{bf163e23-043e-4492-b022-f6c369604d5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\hotplugin">
+      <UniqueIdentifier>{5eecece5-257f-41bc-9569-4b6124c6f2ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\hotplugin">
+      <UniqueIdentifier>{7bb54dfd-ea3e-431c-835d-cfa4b3a44789}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\database">
+      <UniqueIdentifier>{9ee81ee4-02f3-455f-9be5-9224c47911ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\database\simpledb">
+      <UniqueIdentifier>{998629e8-1bc4-40df-a146-de6cbaff8a64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\database\database">
+      <UniqueIdentifier>{d317f03e-9ff6-4979-82b3-40a39ad53e2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\policy">
+      <UniqueIdentifier>{f344c886-3fcd-467e-88ad-df2f24622d7e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="base\base\base.inl">
+      <Filter>Header Files\base\base</Filter>
+    </None>
+  </ItemGroup>
+</Project>

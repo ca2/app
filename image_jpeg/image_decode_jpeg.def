@@ -1,0 +1,4 @@
+LIBRARY      "image_decode_jpeg"
+
+EXPORTS
+FreeImage_InitPlugin_image_decode_jpeg

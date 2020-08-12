@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{BA8FE7CC-2D7F-3CF0-B7B8-0903D70E5E7B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{5dc60211-eea2-49dd-8053-1d471d0d0d03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\cef">
+      <UniqueIdentifier>{d270ade9-0f02-4091-9154-1ba56780a072}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\cef">
+      <UniqueIdentifier>{e3b0670c-39ea-4c28-a5ca-6534d1ae1f0a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="browser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="browser_application.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="browser_document.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="browser_frame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="browser_gcom.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="browser_main_frame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="browser_main_view.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="browser_pane_view.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="browser_render.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="browser_switcher_view.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="browser_view.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="browser_view_base.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files\cef</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_app.h">
+      <Filter>Header Files\cef</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_handler.h">
+      <Filter>Header Files\cef</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="_browser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="browser_application.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="browser_document.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="browser_frame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="browser_gcom.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="browser_main_frame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="browser_main_view.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="browser_pane_view.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="browser_render.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="browser_switcher_view.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="browser_view.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="browser_view_base.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="simple_handler_win.cpp">
+      <Filter>Source Files\cef</Filter>
+    </ClCompile>
+    <ClCompile Include="simple_app.cpp">
+      <Filter>Source Files\cef</Filter>
+    </ClCompile>
+    <ClCompile Include="simple_handler.cpp">
+      <Filter>Source Files\cef</Filter>
+    </ClCompile>
+    <ClCompile Include="browser_exe.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="browser_windows.cpp">
+      <Filter>Source Files\cef</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app_browser.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="res\appid1.bin" />
+    <None Include="res\appid2.bin" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="browser.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\browser.ico" />
+    <Image Include="res\small.ico" />
+  </ItemGroup>
+</Project>

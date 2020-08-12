@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Source Files\math">
+      <UniqueIdentifier>{6001a4cb-f3c7-42ba-9be8-86ae960dfd8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\kissfft">
+      <UniqueIdentifier>{534e266d-f55f-434a-9f1d-841e5f40eb59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\kissfft">
+      <UniqueIdentifier>{e9c79601-1523-4115-b00b-cab433335ec4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\math">
+      <UniqueIdentifier>{ea69b92a-78e5-4384-a578-f69e1f88c3e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\calculator">
+      <UniqueIdentifier>{cec474f7-5878-4a21-a059-1975c0d49f8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\calculator">
+      <UniqueIdentifier>{1f2487b8-9e33-4d9f-9933-436d9c0ee0fe}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="kissfft\kissfft_ifftd.h">
+      <Filter>Header Files\kissfft</Filter>
+    </ClInclude>
+    <ClInclude Include="kissfft\kissfft_fftd.h">
+      <Filter>Header Files\kissfft</Filter>
+    </ClInclude>
+    <ClInclude Include="kissfft\kissfft.h">
+      <Filter>Header Files\kissfft</Filter>
+    </ClInclude>
+    <ClInclude Include="kissfft\kiss_ifft.h">
+      <Filter>Header Files\kissfft</Filter>
+    </ClInclude>
+    <ClInclude Include="kissfft\kiss_fft.h">
+      <Filter>Header Files\kissfft</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kissfft\kiss_fft_guts.h">
+      <Filter>Header Files\kissfft</Filter>
+    </ClInclude>
+    <ClInclude Include="math\math_math.h">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\calculator.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\calculator_calculator.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\calculator_element.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\calculator_parser.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\calculator_parser_exception.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\calculator_plain_edit_view.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\calculator_scanner.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\calculator_token.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\calculator_value.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="kissfft\kissfft_ifftd.cpp">
+      <Filter>Source Files\kissfft</Filter>
+    </ClCompile>
+    <ClCompile Include="kissfft\kissfft_fftd.cpp">
+      <Filter>Source Files\kissfft</Filter>
+    </ClCompile>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kissfft\kiss_fft.cpp">
+      <Filter>Source Files\kissfft</Filter>
+    </ClCompile>
+    <ClCompile Include="kissfft\kiss_fft_shared.cpp">
+      <Filter>Source Files\kissfft</Filter>
+    </ClCompile>
+    <ClCompile Include="kissfft\kiss_ifft.cpp">
+      <Filter>Source Files\kissfft</Filter>
+    </ClCompile>
+    <ClCompile Include="calculator\calculator_calculator.cpp">
+      <Filter>Source Files\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="kissfft\_kissfft.cpp">
+      <Filter>Source Files\kissfft</Filter>
+    </ClCompile>
+    <ClCompile Include="calculator\_calculator.cpp">
+      <Filter>Source Files\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="_math_math.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="calculator\calculator_element.cpp">
+      <Filter>Source Files\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="calculator\calculator_parser.cpp">
+      <Filter>Source Files\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="calculator\calculator_parser_exception.cpp">
+      <Filter>Source Files\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="calculator\calculator_plain_edit_view.cpp">
+      <Filter>Source Files\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="calculator\calculator_scanner.cpp">
+      <Filter>Source Files\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="calculator\calculator_value.cpp">
+      <Filter>Source Files\calculator</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="math.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

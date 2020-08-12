@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="gpu_opengl" />
+		<Option pch_mode="2" />
+		<Option compiler="clang" />
+		<Build>
+			<Target title="basis">
+				<Option output="$(#time_dir)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(#time_dir)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(#time_dir)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option type="3" />
+				<Option compiler="clang" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-fPIC" />
+					<Add option="-m64" />
+					<Add option="-g" />
+					<Add option="-std=c++17" />
+					<Add option="-pg" />
+					<Add option="-D_DEBUG" />
+				</Compiler>
+				<Linker>
+					<Add option="-m64" />
+					<Add option="-pg" />
+					<Add directory="$(#time_dir)/x64/$(TARGET_NAME)" />
+				</Linker>
+			</Target>
+			<Target title="stage">
+				<Option output="$(#time_dir)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(#time_dir)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(#time_dir)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option type="3" />
+				<Option compiler="clang" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-pg" />
+					<Add option="-fPIC" />
+					<Add option="-m64" />
+					<Add option="-g" />
+					<Add option="-std=c++17" />
+				</Compiler>
+				<Linker>
+					<Add option="-pg" />
+					<Add option="-m64" />
+					<Add option="-O0" />
+					<Add directory="$(#time_dir)/x64/$(TARGET_NAME)" />
+				</Linker>
+			</Target>
+			<Target title="memdleak">
+				<Option output="$(#time_dir)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(#time_dir)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(#time_dir)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option type="3" />
+				<Option compiler="clang" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+					<Add option="-DMEMDLEAK" />
+				</Compiler>
+				<Linker>
+					<Add directory="$(#time_dir)/x64/$(TARGET_NAME)" />
+				</Linker>
+			</Target>
+		</Build>
+		<VirtualTargets>
+			<Add alias="all_sanitizers" targets="basis;" />
+		</VirtualTargets>
+		<Compiler>
+			<Add option="-fPIC" />
+			<Add option="-std=c++17" />
+			<Add option="-fexceptions" />
+			<Add option="-fnon-call-exceptions" />
+			<Add option="-fno-pie" />
+			<Add option="-fno-stack-protector" />
+			<Add option="-Wno-pointer-arith" />
+			<Add option="-Wno-attributes" />
+			<Add option="-Winvalid-pch" />
+			<Add option="`pkg-config --cflags gtk+-3.0`" />
+			<Add option="-Wunused-command-line-argument" />
+			<Add option="-DLINUX" />
+			<Add option="-DBASE_FREEIMAGE" />
+			<Add option="-DSIXTY_FOUR_BIT_LONG" />
+			<Add option="-D_WINDOWS_" />
+			<Add directory="." />
+			<Add directory="$(PROJECT_DIR)" />
+			<Add directory="$(#archive)" />
+			<Add directory="$(#config)" />
+			<Add directory="$(WORKSPACE_DIR)/../.." />
+			<Add directory="$(WORKSPACE_DIR)/../../inc" />
+			<Add directory="$(WORKSPACE_DIR)/../../include" />
+			<Add directory="$(WORKSPACE_DIR)/../../platform-linux" />
+			<Add directory="$(WORKSPACE_DIR)/../../app/_include" />
+			<Add directory="$(WORKSPACE_DIR)/../../app" />
+
+		</Compiler>
+		<Linker>
+			<Add option="-Wl,-rpath=\\$$$ORIGIN" />
+			<Add option="-laura" />
+			<Add option="-lfreeimage" />
+			<Add option="-Wl,-z,defs" />
+			<Add directory="$(#time_dir)/x64/$(TARGET_NAME)" />
+		</Linker>
+		<ExtraCommands>
+			<Add before="$compiler $options $includes -x c++-header framework.h -o framework.h.gch" />
+		</ExtraCommands>
+		<Unit filename="_.h" />
+		<Unit filename="factory_exchange.cpp" />
+		<Unit filename="factory_exchange.h" />
+		<Unit filename="file_procedure.cpp" />
+		<Unit filename="file_procedure_ex1.cpp" />
+		<Unit filename="fimemory.h" />
+		<Unit filename="framework.cpp">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="framework.h">
+			<Option compile="1" />
+			<Option weight="0" />
+			<Option compiler="clang" use="1" buildCommand="$compiler $options $includes -x c++-header -c $file -o $object" />
+		</Unit>
+		<Unit filename="gpu_opengl.cpp" />
+		<Unit filename="imaging.cpp" />
+		<Unit filename="imaging.h" />
+		<Unit filename="loading.cpp" />
+		<Unit filename="loading_gif.cpp" />
+		<Unit filename="saving.cpp" />
+		<Extensions />
+	</Project>
+</CodeBlocks_project_file>

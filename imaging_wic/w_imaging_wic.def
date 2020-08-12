@@ -1,0 +1,8 @@
+LIBRARY "imaging_wic"
+
+
+EXPORTS
+imaging_factory_exchange
+
+
+

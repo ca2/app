@@ -1,0 +1,8 @@
+; app_browser.def
+
+LIBRARY  "app_browser"
+; For Win32 DLLs, only EXPORTs really required.
+
+EXPORTS
+app_browser_get_new_library
+

@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Source">
+      <UniqueIdentifier>{1f2487b8-9e33-4d9f-9933-436d9c0ee0fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Source\LibJPEG">
+      <UniqueIdentifier>{78d28e58-c657-4596-8681-14a147d56232}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Source Files">
+      <UniqueIdentifier>{2676422d-4013-4479-b0a7-4979e9db4525}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Source Files\Plugins">
+      <UniqueIdentifier>{e59ba0fc-9c7c-4df5-883b-4a159e5cd7f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Toolkit Files">
+      <UniqueIdentifier>{7fe2a45b-221d-41a4-92d7-e0ec8f0e96c9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\LibJPEG\cderror.h">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LibJPEG\cdjpeg.h">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LibJPEG\jconfig.h">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LibJPEG\jdct.h">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LibJPEG\jerror.h">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LibJPEG\jinclude.h">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LibJPEG\jmemsys.h">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LibJPEG\jmorecfg.h">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LibJPEG\jpegint.h">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LibJPEG\jpeglib.h">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LibJPEG\jversion.h">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LibJPEG\transupp.h">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\LibJPEG\cdjpeg.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jaricom.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jcapimin.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jcapistd.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jcarith.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jccoefct.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jccolor.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jcdctmgr.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jchuff.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jcinit.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jcmainct.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jcmarker.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jcmaster.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jcomapi.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jcparam.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jcprepct.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jcsample.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jctrans.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jdapimin.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jdapistd.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jdarith.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jdatadst.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jdatasrc.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jdcoefct.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jdcolor.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jddctmgr.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jdhuff.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jdinput.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jdmainct.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jdmarker.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jdmaster.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jdmerge.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jdpostct.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jdsample.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jdtrans.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jerror.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jfdctflt.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jfdctfst.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jfdctint.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jidctflt.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jidctfst.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jidctint.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jmemmgr.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jmemnobs.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jquant1.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jquant2.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\jutils.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\rdbmp.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\rdcolmap.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\rdgif.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\rdppm.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\rdrle.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\rdswitch.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\rdtarga.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\transupp.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\wrbmp.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\wrgif.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\wrppm.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\wrrle.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\wrtarga.c">
+      <Filter>Source Files\Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FreeImage\PluginJPEG.cpp">
+      <Filter>Source Files\Source Files\Plugins</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="axisjpeg.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

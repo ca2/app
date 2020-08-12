@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="_.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="button.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="control_box.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="experience.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frame_001.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frame_002.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frame_005.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frame_008.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frame_011.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frame_013.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frame_Minimal001.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="library.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="theme.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="_.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="button.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="control_box.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="experience.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frame_001.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frame_002.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frame_005.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frame_008.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frame_011.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frame_013.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frame_Minimal001.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="library.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="theme.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="user_button.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="user_control_box.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{3f2e1f22-3d63-4753-a38b-6c7f65fee083}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{b6d7d08b-d1bc-4c93-995a-d6dccfa4ddba}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

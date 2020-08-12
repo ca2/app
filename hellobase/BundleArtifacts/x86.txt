@@ -1,0 +1,3 @@
+MainPackage=C:\winmetro\time\Win32\basis\w_winmetro_hellobase\winmetro_app_core_hellobase_1.0.15.0_Win32_basis.appx
+SymbolPackage=C:\winmetro\platform\seed\metaseed\AppPackages\winmetro_app_core_hellobase\winmetro_app_core_hellobase_1.0.15.0_basis_Test\winmetro_app_core_hellobase_1.0.15.0_Win32_basis.appxsym
+ResourcePack=C:\winmetro\time\Win32\basis\w_winmetro_hellobase\winmetro_app_core_hellobase_1.0.15.0_scale-100.appx

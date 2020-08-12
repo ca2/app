@@ -1,0 +1,7 @@
+<toolbar>
+	<button id="file_open">Open</button>
+	<button id="file_add">Add</button>
+	<button id="execute_play">Play</button>
+	<separator />
+	<button id="levelup">Level Up</button>
+</toolbar>

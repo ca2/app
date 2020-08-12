@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{0d3e90c6-d65e-4a46-872f-e1466ccdc582}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\client">
+      <UniqueIdentifier>{3829a1f1-ca88-4cf0-84ed-b0ca966dffbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\client\common">
+      <UniqueIdentifier>{a2cfcc03-df33-4b4c-bbec-6029153446bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\client\ca2">
+      <UniqueIdentifier>{86fed9b7-0af7-4917-9e5f-8d7c9ad89093}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{ed0ca9a3-18cd-4e25-b337-99125ad8efda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\client">
+      <UniqueIdentifier>{53910e04-49d2-4f1f-b19f-19af5c2dc579}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\client\common">
+      <UniqueIdentifier>{a0475a8f-18b8-4184-b883-a3cb3da0b7e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\client\ca2">
+      <UniqueIdentifier>{de2be8ab-6714-4171-9011-a1df15864601}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="freerdp_rdpclient_setup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="client\common\compatibility.h">
+      <Filter>Header Files\client\common</Filter>
+    </ClInclude>
+    <ClInclude Include="client\ca2\ca2rdp.h">
+      <Filter>Header Files\client\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="client\ca2\ca2rdp_event.h">
+      <Filter>Header Files\client\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="client\ca2\ca2rdp_graphics.h">
+      <Filter>Header Files\client\ca2</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="client\common\client.c">
+      <Filter>Source Files\client\common</Filter>
+    </ClCompile>
+    <ClCompile Include="client\common\cmdline.c">
+      <Filter>Source Files\client\common</Filter>
+    </ClCompile>
+    <ClCompile Include="client\common\compatibility.c">
+      <Filter>Source Files\client\common</Filter>
+    </ClCompile>
+    <ClCompile Include="client\common\file.c">
+      <Filter>Source Files\client\common</Filter>
+    </ClCompile>
+    <ClCompile Include="client\ca2\ca2rdp.cpp">
+      <Filter>Source Files\client\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="client\ca2\ca2rdp_event.cpp">
+      <Filter>Source Files\client\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="client\ca2\ca2rdp_graphics.cpp">
+      <Filter>Source Files\client\ca2</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="axisrdpclient.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

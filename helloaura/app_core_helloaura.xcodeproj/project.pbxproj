@@ -1,0 +1,917 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		070533EF1C90B2CF00F31B3F /* libgcom.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 070533E61C90B2A100F31B3F /* libgcom.dylib */; };
+		07473E601B5050B8004688C5 /* helloaura_switcher_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 076D09F11A3FC72C007432B6 /* helloaura_switcher_view.cpp */; };
+		07473E641B5050B8004688C5 /* helloaura_main_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA1008C19971FCE004F84BD /* helloaura_main_view.cpp */; };
+		076D09FB1A3FC72C007432B6 /* helloaura_switcher_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 076D09F11A3FC72C007432B6 /* helloaura_switcher_view.cpp */; };
+		076D09FC1A3FC72C007432B6 /* helloaura_switcher_view.h in Headers */ = {isa = PBXBuildFile; fileRef = 076D09F21A3FC72C007432B6 /* helloaura_switcher_view.h */; };
+		07A4B1371B76469200DA5C57 /* helloaura_render.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07FB1AA21B744E8800F3FCC1 /* helloaura_render.cpp */; };
+		07A684EC17F0E06700C41DE6 /* helloaura_application.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A684E617F0E06700C41DE6 /* helloaura_application.h */; };
+		07A684ED17F0E06700C41DE6 /* helloaura_document.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A684E717F0E06700C41DE6 /* helloaura_document.h */; };
+		07A684EE17F0E06700C41DE6 /* helloaura_frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A684E817F0E06700C41DE6 /* helloaura_frame.h */; };
+		07A684EF17F0E06700C41DE6 /* aaa_want_to_remove_helloaura_view_update_hint.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A684E917F0E06700C41DE6 /* aaa_want_to_remove_helloaura_view_update_hint.h */; };
+		07A684F017F0E06700C41DE6 /* helloaura_pane_view.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A684EA17F0E06700C41DE6 /* helloaura_pane_view.h */; };
+		07A684F117F0E06700C41DE6 /* helloaura_view.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A684EB17F0E06700C41DE6 /* helloaura_view.h */; };
+		07AE494E1CC7A83F00959A6F /* helloaura_gcom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AE494A1CC7A83F00959A6F /* helloaura_gcom.cpp */; };
+		07AE494F1CC7A83F00959A6F /* helloaura_gcom.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AE494B1CC7A83F00959A6F /* helloaura_gcom.h */; };
+		07AE49501CC7A83F00959A6F /* helloaura_view_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AE494C1CC7A83F00959A6F /* helloaura_view_base.cpp */; };
+		07AE49511CC7A83F00959A6F /* helloaura_view_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AE494D1CC7A83F00959A6F /* helloaura_view_base.h */; };
+		07B65520190F3001002DAADE /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75BE16F78E600085103B /* framework.cpp */; };
+		07B65521190F3001002DAADE /* helloaura_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75C916F78E600085103B /* helloaura_application.cpp */; };
+		07B65522190F3001002DAADE /* helloaura_document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CA16F78E600085103B /* helloaura_document.cpp */; };
+		07B65523190F3001002DAADE /* helloaura_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CB16F78E600085103B /* helloaura_frame.cpp */; };
+		07B65524190F3001002DAADE /* helloaura_pane_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CC16F78E600085103B /* helloaura_pane_view.cpp */; };
+		07B65525190F3001002DAADE /* aaa_want_to_remove_helloaura_view_update_hint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CD16F78E600085103B /* aaa_want_to_remove_helloaura_view_update_hint.cpp */; };
+		07B65526190F3001002DAADE /* helloaura_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CE16F78E600085103B /* helloaura_view.cpp */; };
+		07FB1AA41B744E8800F3FCC1 /* helloaura_render.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07FB1AA21B744E8800F3FCC1 /* helloaura_render.cpp */; };
+		07FB1AA51B744E8800F3FCC1 /* helloaura_render.h in Headers */ = {isa = PBXBuildFile; fileRef = 07FB1AA31B744E8800F3FCC1 /* helloaura_render.h */; };
+		9A6716B61D155B860069A961 /* helloaura_main_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72594A1D1403E6001F56B4 /* helloaura_main_frame.cpp */; };
+		9A6716B71D155B860069A961 /* helloaura_gcom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AE494A1CC7A83F00959A6F /* helloaura_gcom.cpp */; };
+		9A6716B81D155B860069A961 /* helloaura_view_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AE494C1CC7A83F00959A6F /* helloaura_view_base.cpp */; };
+		9A72594C1D1403E6001F56B4 /* helloaura_main_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72594A1D1403E6001F56B4 /* helloaura_main_frame.cpp */; };
+		9A72594D1D1403E6001F56B4 /* helloaura_main_frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A72594B1D1403E6001F56B4 /* helloaura_main_frame.h */; };
+		9A8C49451F6069A8004A5BA4 /* libace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8C49441F6069A8004A5BA4 /* libace.dylib */; };
+		9A920FD81F3BF68500CD9D94 /* libcore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A920FD71F3BF68500CD9D94 /* libcore.dylib */; };
+		9A920FDC1F3BF69300CD9D94 /* libsphere.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A920FDB1F3BF69300CD9D94 /* libsphere.dylib */; };
+		9AA1009019971FCE004F84BD /* helloaura_main_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA1008C19971FCE004F84BD /* helloaura_main_view.cpp */; };
+		9AA1009119971FCE004F84BD /* helloaura_main_view.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AA1008D19971FCE004F84BD /* helloaura_main_view.h */; };
+		9ACE47D61D2041A300A1E0AD /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ACE47D51D2041A300A1E0AD /* libaura.dylib */; };
+		9ACE47DA1D2041AE00A1E0AD /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ACE47D91D2041AE00A1E0AD /* libaxis.dylib */; };
+		9ACE47DC1D2041B800A1E0AD /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ACE47DB1D2041B800A1E0AD /* libbase.dylib */; };
+		9ACE47DE1D2041E400A1E0AD /* libpcre.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ACE47DD1D2041E400A1E0AD /* libpcre.dylib */; };
+		9AE24EA11904CFFD001AEFFB /* libapp_core_helloaura.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24E8A1904CFFD001AEFFB /* libapp_core_helloaura.a */; };
+		9AE24EA71904CFFD001AEFFB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9AE24EA51904CFFD001AEFFB /* InfoPlist.strings */; };
+		9AE24EA91904CFFD001AEFFB /* app_core_helloaura_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE24EA81904CFFD001AEFFB /* app_core_helloaura_iosTests.m */; };
+		9AEB75DD16F78E600085103B /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75BE16F78E600085103B /* framework.cpp */; };
+		9AEB75DE16F78E600085103B /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEB75BF16F78E600085103B /* framework.h */; };
+		9AEB75E016F78E600085103B /* helloaura.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEB75C316F78E600085103B /* helloaura.h */; };
+		9AEB75E116F78E600085103B /* helloaura_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75C916F78E600085103B /* helloaura_application.cpp */; };
+		9AEB75E216F78E600085103B /* helloaura_document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CA16F78E600085103B /* helloaura_document.cpp */; };
+		9AEB75E316F78E600085103B /* helloaura_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CB16F78E600085103B /* helloaura_frame.cpp */; };
+		9AEB75E416F78E600085103B /* helloaura_pane_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CC16F78E600085103B /* helloaura_pane_view.cpp */; };
+		9AEB75E516F78E600085103B /* aaa_want_to_remove_helloaura_view_update_hint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CD16F78E600085103B /* aaa_want_to_remove_helloaura_view_update_hint.cpp */; };
+		9AEB75E616F78E600085103B /* helloaura_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CE16F78E600085103B /* helloaura_view.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		070533E51C90B2A100F31B3F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 070533CB1C90B2A100F31B3F /* gcom.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AEB75A316F78DF10085103B;
+			remoteInfo = gcom;
+		};
+		070533E71C90B2A100F31B3F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 070533CB1C90B2A100F31B3F /* gcom.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AE24E8A1904CFFD001AEFFB;
+			remoteInfo = ios_gcom;
+		};
+		070533E91C90B2A100F31B3F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 070533CB1C90B2A100F31B3F /* gcom.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AE24E991904CFFD001AEFFB;
+			remoteInfo = gcom_iosTests;
+		};
+		070533ED1C90B2B900F31B3F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 070533CB1C90B2A100F31B3F /* gcom.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AEB75A216F78DF10085103B;
+			remoteInfo = gcom;
+		};
+		9A259E1C1D25D9B40044727D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 070533CB1C90B2A100F31B3F /* gcom.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AE24E891904CFFD001AEFFB;
+			remoteInfo = ios_gcom;
+		};
+		9A95784E1F62217D00623508 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A9578481F62217C00623508 /* sphere.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A574B9816AAB906000CC4EF;
+			remoteInfo = sphere;
+		};
+		9A9578501F62217D00623508 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A9578481F62217C00623508 /* sphere.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07B657E2190F3CCB002DAADE;
+			remoteInfo = ios_sphere;
+		};
+		9A9578521F62217D00623508 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A9578481F62217C00623508 /* sphere.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07B657F1190F3CCC002DAADE;
+			remoteInfo = sphere_iosTests;
+		};
+		9A9578541F62218E00623508 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A9578481F62217C00623508 /* sphere.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 07B657E1190F3CCB002DAADE;
+			remoteInfo = ios_sphere;
+		};
+		9A9578561F62219700623508 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A9578481F62217C00623508 /* sphere.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A574B9716AAB906000CC4EF;
+			remoteInfo = sphere;
+		};
+		9AE24E9F1904CFFD001AEFFB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AEB759B16F78DF10085103B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AE24E891904CFFD001AEFFB;
+			remoteInfo = app_core_helloaura_ios;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9AE24E881904CFFD001AEFFB /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		070533CB1C90B2A100F31B3F /* gcom.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = gcom.xcodeproj; path = ../gcom/gcom.xcodeproj; sourceTree = "<group>"; };
+		076D09F11A3FC72C007432B6 /* helloaura_switcher_view.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaura_switcher_view.cpp; sourceTree = "<group>"; };
+		076D09F21A3FC72C007432B6 /* helloaura_switcher_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaura_switcher_view.h; sourceTree = "<group>"; };
+		07A684E617F0E06700C41DE6 /* helloaura_application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaura_application.h; sourceTree = "<group>"; };
+		07A684E717F0E06700C41DE6 /* helloaura_document.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaura_document.h; sourceTree = "<group>"; };
+		07A684E817F0E06700C41DE6 /* helloaura_frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaura_frame.h; sourceTree = "<group>"; };
+		07A684E917F0E06700C41DE6 /* aaa_want_to_remove_helloaura_view_update_hint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aaa_want_to_remove_helloaura_view_update_hint.h; sourceTree = "<group>"; };
+		07A684EA17F0E06700C41DE6 /* helloaura_pane_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaura_pane_view.h; sourceTree = "<group>"; };
+		07A684EB17F0E06700C41DE6 /* helloaura_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaura_view.h; sourceTree = "<group>"; };
+		07AE494A1CC7A83F00959A6F /* helloaura_gcom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaura_gcom.cpp; sourceTree = "<group>"; };
+		07AE494B1CC7A83F00959A6F /* helloaura_gcom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaura_gcom.h; sourceTree = "<group>"; };
+		07AE494C1CC7A83F00959A6F /* helloaura_view_base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaura_view_base.cpp; sourceTree = "<group>"; };
+		07AE494D1CC7A83F00959A6F /* helloaura_view_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaura_view_base.h; sourceTree = "<group>"; };
+		07FB1AA21B744E8800F3FCC1 /* helloaura_render.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaura_render.cpp; sourceTree = "<group>"; };
+		07FB1AA31B744E8800F3FCC1 /* helloaura_render.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaura_render.h; sourceTree = "<group>"; };
+		9A72594A1D1403E6001F56B4 /* helloaura_main_frame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaura_main_frame.cpp; sourceTree = "<group>"; };
+		9A72594B1D1403E6001F56B4 /* helloaura_main_frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaura_main_frame.h; sourceTree = "<group>"; };
+		9A8C49441F6069A8004A5BA4 /* libace.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libace.dylib; path = ../../../../Volumes/apple/archive/Xcode/DerivedData/Build/Products/Debug/libace.dylib; sourceTree = "<group>"; };
+		9A920FD71F3BF68500CD9D94 /* libcore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcore.dylib; path = ../../../../Volumes/apple/archive/Xcode/DerivedData/Build/Products/Debug/libcore.dylib; sourceTree = "<group>"; };
+		9A920FD91F3BF68B00CD9D94 /* libmultimedia.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmultimedia.dylib; path = ../../../../Volumes/apple/archive/Xcode/DerivedData/Build/Products/Debug/libmultimedia.dylib; sourceTree = "<group>"; };
+		9A920FDB1F3BF69300CD9D94 /* libsphere.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsphere.dylib; path = ../../../../Volumes/apple/archive/Xcode/DerivedData/Build/Products/Debug/libsphere.dylib; sourceTree = "<group>"; };
+		9A9578481F62217C00623508 /* sphere.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = sphere.xcodeproj; path = ../../app/sphere/sphere.xcodeproj; sourceTree = "<group>"; };
+		9A986CDE1D22629C001F4C04 /* libios_base.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_base.dylib; path = "../../app/base/build/Debug-iphoneos/libios_base.dylib"; sourceTree = "<group>"; };
+		9A986CE01D2262BA001F4C04 /* libios_axis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axis.dylib; path = "../../app/axis/build/Debug-iphoneos/libios_axis.dylib"; sourceTree = "<group>"; };
+		9A986CE21D2262CB001F4C04 /* libios_aura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_aura.dylib; path = "../../app/aura/build/Debug-iphoneos/libios_aura.dylib"; sourceTree = "<group>"; };
+		9AA1008C19971FCE004F84BD /* helloaura_main_view.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaura_main_view.cpp; sourceTree = "<group>"; };
+		9AA1008D19971FCE004F84BD /* helloaura_main_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaura_main_view.h; sourceTree = "<group>"; };
+		9AC62E941D20C12200A4AC0A /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/basic-ios-bmuegusfgbffmoeixicbxhlnbzop/Build/Products/Debug-iphonesimulator/libaura.dylib"; sourceTree = "<group>"; };
+		9AC62E981D20C12800A4AC0A /* libaxis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxis.dylib; path = "../../app/axis/build/Debug-iphoneos/libaxis.dylib"; sourceTree = "<group>"; };
+		9AC62E9A1D20C12F00A4AC0A /* libbase.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbase.dylib; path = "../../app/base/build/Debug-iphoneos/libbase.dylib"; sourceTree = "<group>"; };
+		9AC62E9C1D20C14600A4AC0A /* libios_pcre.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_pcre.dylib; path = "../../app/pcre/build/Debug-iphoneos/libios_pcre.dylib"; sourceTree = "<group>"; };
+		9ACE47D51D2041A300A1E0AD /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/aura-mac-ekqwiewkpeyhdudtxguywfqohhby/Build/Products/Debug/libaura.dylib"; sourceTree = "<group>"; };
+		9ACE47D91D2041AE00A1E0AD /* libaxis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxis.dylib; path = ../../app/axis/build/Debug/libaxis.dylib; sourceTree = "<group>"; };
+		9ACE47DB1D2041B800A1E0AD /* libbase.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbase.dylib; path = ../../app/base/build/Debug/libbase.dylib; sourceTree = "<group>"; };
+		9ACE47DD1D2041E400A1E0AD /* libpcre.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpcre.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/aura-mac-ekqwiewkpeyhdudtxguywfqohhby/Build/Products/Debug/libpcre.dylib"; sourceTree = "<group>"; };
+		9AE24E8A1904CFFD001AEFFB /* libapp_core_helloaura.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libapp_core_helloaura.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AE24E991904CFFD001AEFFB /* app_core_helloaura_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = app_core_helloaura_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AE24EA41904CFFD001AEFFB /* app_core_helloaura_iosTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "app_core_helloaura_iosTests-Info.plist"; sourceTree = "<group>"; };
+		9AE24EA61904CFFD001AEFFB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9AE24EA81904CFFD001AEFFB /* app_core_helloaura_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = app_core_helloaura_iosTests.m; sourceTree = "<group>"; };
+		9AEB75A316F78DF10085103B /* libapp_core_helloaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libapp_core_helloaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AEB75BE16F78E600085103B /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
+		9AEB75BF16F78E600085103B /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		9AEB75C316F78E600085103B /* helloaura.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaura.h; sourceTree = "<group>"; };
+		9AEB75C916F78E600085103B /* helloaura_application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaura_application.cpp; sourceTree = "<group>"; };
+		9AEB75CA16F78E600085103B /* helloaura_document.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaura_document.cpp; sourceTree = "<group>"; };
+		9AEB75CB16F78E600085103B /* helloaura_frame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaura_frame.cpp; sourceTree = "<group>"; };
+		9AEB75CC16F78E600085103B /* helloaura_pane_view.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaura_pane_view.cpp; sourceTree = "<group>"; };
+		9AEB75CD16F78E600085103B /* aaa_want_to_remove_helloaura_view_update_hint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_want_to_remove_helloaura_view_update_hint.cpp; sourceTree = "<group>"; };
+		9AEB75CE16F78E600085103B /* helloaura_view.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaura_view.cpp; sourceTree = "<group>"; };
+		9AF75DEF1F83EBA100FDE7CC /* libios_aura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_aura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AF75DF31F83EBAA00FDE7CC /* libios_axis.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libios_axis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AF75DF51F83EBB300FDE7CC /* libios_base.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libios_base.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AF75DF71F83EBBB00FDE7CC /* libios_core.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libios_core.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9AE24E871904CFFD001AEFFB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9AE24E961904CFFD001AEFFB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AE24EA11904CFFD001AEFFB /* libapp_core_helloaura.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9AEB75A016F78DF10085103B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A8C49451F6069A8004A5BA4 /* libace.dylib in Frameworks */,
+				9A920FDC1F3BF69300CD9D94 /* libsphere.dylib in Frameworks */,
+				9A920FD81F3BF68500CD9D94 /* libcore.dylib in Frameworks */,
+				9ACE47DE1D2041E400A1E0AD /* libpcre.dylib in Frameworks */,
+				9ACE47DC1D2041B800A1E0AD /* libbase.dylib in Frameworks */,
+				9ACE47DA1D2041AE00A1E0AD /* libaxis.dylib in Frameworks */,
+				9ACE47D61D2041A300A1E0AD /* libaura.dylib in Frameworks */,
+				070533EF1C90B2CF00F31B3F /* libgcom.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		070533CC1C90B2A100F31B3F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				070533E61C90B2A100F31B3F /* libgcom.dylib */,
+				070533E81C90B2A100F31B3F /* libios_gcom.a */,
+				070533EA1C90B2A100F31B3F /* gcom_iosTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9A920FD61F3BF68400CD9D94 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9AF75DF71F83EBBB00FDE7CC /* libios_core.dylib */,
+				9AF75DF51F83EBB300FDE7CC /* libios_base.dylib */,
+				9AF75DF31F83EBAA00FDE7CC /* libios_axis.dylib */,
+				9AF75DEF1F83EBA100FDE7CC /* libios_aura.dylib */,
+				9A8C49441F6069A8004A5BA4 /* libace.dylib */,
+				9A920FDB1F3BF69300CD9D94 /* libsphere.dylib */,
+				9A920FD91F3BF68B00CD9D94 /* libmultimedia.dylib */,
+				9A920FD71F3BF68500CD9D94 /* libcore.dylib */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9A9578491F62217C00623508 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A95784F1F62217D00623508 /* libsphere.dylib */,
+				9A9578511F62217D00623508 /* libios_sphere.a */,
+				9A9578531F62217D00623508 /* sphere_iosTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9AE24EA21904CFFD001AEFFB /* app_core_helloaura_iosTests */ = {
+			isa = PBXGroup;
+			children = (
+				9AE24EA81904CFFD001AEFFB /* app_core_helloaura_iosTests.m */,
+				9AE24EA31904CFFD001AEFFB /* Supporting Files */,
+			);
+			path = app_core_helloaura_iosTests;
+			sourceTree = "<group>";
+		};
+		9AE24EA31904CFFD001AEFFB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9AE24EA41904CFFD001AEFFB /* app_core_helloaura_iosTests-Info.plist */,
+				9AE24EA51904CFFD001AEFFB /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9AEB759A16F78DF10085103B = {
+			isa = PBXGroup;
+			children = (
+				9A9578481F62217C00623508 /* sphere.xcodeproj */,
+				070533CB1C90B2A100F31B3F /* gcom.xcodeproj */,
+				9A986CE21D2262CB001F4C04 /* libios_aura.dylib */,
+				9A986CE01D2262BA001F4C04 /* libios_axis.dylib */,
+				9A986CDE1D22629C001F4C04 /* libios_base.dylib */,
+				9AC62E9C1D20C14600A4AC0A /* libios_pcre.dylib */,
+				9AC62E9A1D20C12F00A4AC0A /* libbase.dylib */,
+				9AC62E981D20C12800A4AC0A /* libaxis.dylib */,
+				9AC62E941D20C12200A4AC0A /* libaura.dylib */,
+				9ACE47DD1D2041E400A1E0AD /* libpcre.dylib */,
+				9ACE47DB1D2041B800A1E0AD /* libbase.dylib */,
+				9ACE47D91D2041AE00A1E0AD /* libaxis.dylib */,
+				9ACE47D51D2041A300A1E0AD /* libaura.dylib */,
+				9AEB75AA16F78E600085103B /* helloaura */,
+				9AE24EA21904CFFD001AEFFB /* app_core_helloaura_iosTests */,
+				9AEB75A416F78DF10085103B /* Products */,
+				9A920FD61F3BF68400CD9D94 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		9AEB75A416F78DF10085103B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9AEB75A316F78DF10085103B /* libapp_core_helloaura.dylib */,
+				9AE24E8A1904CFFD001AEFFB /* libapp_core_helloaura.a */,
+				9AE24E991904CFFD001AEFFB /* app_core_helloaura_iosTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9AEB75AA16F78E600085103B /* helloaura */ = {
+			isa = PBXGroup;
+			children = (
+				9AEB75C316F78E600085103B /* helloaura.h */,
+				9AEB75BE16F78E600085103B /* framework.cpp */,
+				9AEB75BF16F78E600085103B /* framework.h */,
+				9AEB75C916F78E600085103B /* helloaura_application.cpp */,
+				07A684E617F0E06700C41DE6 /* helloaura_application.h */,
+				9AEB75CA16F78E600085103B /* helloaura_document.cpp */,
+				07A684E717F0E06700C41DE6 /* helloaura_document.h */,
+				9AEB75CB16F78E600085103B /* helloaura_frame.cpp */,
+				07A684E817F0E06700C41DE6 /* helloaura_frame.h */,
+				07AE494A1CC7A83F00959A6F /* helloaura_gcom.cpp */,
+				07AE494B1CC7A83F00959A6F /* helloaura_gcom.h */,
+				9A72594A1D1403E6001F56B4 /* helloaura_main_frame.cpp */,
+				9A72594B1D1403E6001F56B4 /* helloaura_main_frame.h */,
+				9AA1008C19971FCE004F84BD /* helloaura_main_view.cpp */,
+				9AA1008D19971FCE004F84BD /* helloaura_main_view.h */,
+				9AEB75CC16F78E600085103B /* helloaura_pane_view.cpp */,
+				07A684EA17F0E06700C41DE6 /* helloaura_pane_view.h */,
+				9AEB75CD16F78E600085103B /* aaa_want_to_remove_helloaura_view_update_hint.cpp */,
+				07A684E917F0E06700C41DE6 /* aaa_want_to_remove_helloaura_view_update_hint.h */,
+				07FB1AA21B744E8800F3FCC1 /* helloaura_render.cpp */,
+				07FB1AA31B744E8800F3FCC1 /* helloaura_render.h */,
+				076D09F11A3FC72C007432B6 /* helloaura_switcher_view.cpp */,
+				076D09F21A3FC72C007432B6 /* helloaura_switcher_view.h */,
+				07AE494C1CC7A83F00959A6F /* helloaura_view_base.cpp */,
+				07AE494D1CC7A83F00959A6F /* helloaura_view_base.h */,
+				9AEB75CE16F78E600085103B /* helloaura_view.cpp */,
+				07A684EB17F0E06700C41DE6 /* helloaura_view.h */,
+			);
+			name = helloaura;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		9AEB75A116F78DF10085103B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AEB75DE16F78E600085103B /* framework.h in Headers */,
+				07FB1AA51B744E8800F3FCC1 /* helloaura_render.h in Headers */,
+				9AEB75E016F78E600085103B /* helloaura.h in Headers */,
+				07A684F117F0E06700C41DE6 /* helloaura_view.h in Headers */,
+				9AA1009119971FCE004F84BD /* helloaura_main_view.h in Headers */,
+				07AE49511CC7A83F00959A6F /* helloaura_view_base.h in Headers */,
+				9A72594D1D1403E6001F56B4 /* helloaura_main_frame.h in Headers */,
+				07A684EF17F0E06700C41DE6 /* aaa_want_to_remove_helloaura_view_update_hint.h in Headers */,
+				07A684ED17F0E06700C41DE6 /* helloaura_document.h in Headers */,
+				07A684F017F0E06700C41DE6 /* helloaura_pane_view.h in Headers */,
+				07AE494F1CC7A83F00959A6F /* helloaura_gcom.h in Headers */,
+				07A684EE17F0E06700C41DE6 /* helloaura_frame.h in Headers */,
+				076D09FC1A3FC72C007432B6 /* helloaura_switcher_view.h in Headers */,
+				07A684EC17F0E06700C41DE6 /* helloaura_application.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		9AE24E891904CFFD001AEFFB /* ios_app_core_helloaura */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9AE24EBA1904CFFD001AEFFB /* Build configuration list for PBXNativeTarget "ios_app_core_helloaura" */;
+			buildPhases = (
+				9AE24E861904CFFD001AEFFB /* Sources */,
+				9AE24E871904CFFD001AEFFB /* Frameworks */,
+				9AE24E881904CFFD001AEFFB /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9A9578551F62218E00623508 /* PBXTargetDependency */,
+				9A259E1D1D25D9B40044727D /* PBXTargetDependency */,
+			);
+			name = ios_app_core_helloaura;
+			productName = app_core_helloaura_ios;
+			productReference = 9AE24E8A1904CFFD001AEFFB /* libapp_core_helloaura.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		9AE24E981904CFFD001AEFFB /* app_core_helloaura_iosTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9AE24EBB1904CFFD001AEFFB /* Build configuration list for PBXNativeTarget "app_core_helloaura_iosTests" */;
+			buildPhases = (
+				9AE24E951904CFFD001AEFFB /* Sources */,
+				9AE24E961904CFFD001AEFFB /* Frameworks */,
+				9AE24E971904CFFD001AEFFB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9AE24EA01904CFFD001AEFFB /* PBXTargetDependency */,
+			);
+			name = app_core_helloaura_iosTests;
+			productName = app_core_helloaura_iosTests;
+			productReference = 9AE24E991904CFFD001AEFFB /* app_core_helloaura_iosTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		9AEB75A216F78DF10085103B /* app_core_helloaura */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9AEB75A716F78DF10085103B /* Build configuration list for PBXNativeTarget "app_core_helloaura" */;
+			buildPhases = (
+				9AEB759F16F78DF10085103B /* Sources */,
+				9AEB75A016F78DF10085103B /* Frameworks */,
+				9AEB75A116F78DF10085103B /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9A9578571F62219700623508 /* PBXTargetDependency */,
+				070533EE1C90B2B900F31B3F /* PBXTargetDependency */,
+			);
+			name = app_core_helloaura;
+			productName = app_core_helloaura;
+			productReference = 9AEB75A316F78DF10085103B /* libapp_core_helloaura.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9AEB759B16F78DF10085103B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
+				TargetAttributes = {
+					9AE24E981904CFFD001AEFFB = {
+						TestTargetID = 9AEB75A216F78DF10085103B;
+					};
+				};
+			};
+			buildConfigurationList = 9AEB759E16F78DF10085103B /* Build configuration list for PBXProject "app_core_helloaura" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 9AEB759A16F78DF10085103B;
+			productRefGroup = 9AEB75A416F78DF10085103B /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 070533CC1C90B2A100F31B3F /* Products */;
+					ProjectRef = 070533CB1C90B2A100F31B3F /* gcom.xcodeproj */;
+				},
+				{
+					ProductGroup = 9A9578491F62217C00623508 /* Products */;
+					ProjectRef = 9A9578481F62217C00623508 /* sphere.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				9AEB75A216F78DF10085103B /* app_core_helloaura */,
+				9AE24E891904CFFD001AEFFB /* ios_app_core_helloaura */,
+				9AE24E981904CFFD001AEFFB /* app_core_helloaura_iosTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		070533E61C90B2A100F31B3F /* libgcom.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libgcom.dylib;
+			remoteRef = 070533E51C90B2A100F31B3F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		070533E81C90B2A100F31B3F /* libios_gcom.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libios_gcom.a;
+			remoteRef = 070533E71C90B2A100F31B3F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		070533EA1C90B2A100F31B3F /* gcom_iosTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = gcom_iosTests.xctest;
+			remoteRef = 070533E91C90B2A100F31B3F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A95784F1F62217D00623508 /* libsphere.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libsphere.dylib;
+			remoteRef = 9A95784E1F62217D00623508 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A9578511F62217D00623508 /* libios_sphere.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libios_sphere.a;
+			remoteRef = 9A9578501F62217D00623508 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A9578531F62217D00623508 /* sphere_iosTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = sphere_iosTests.xctest;
+			remoteRef = 9A9578521F62217D00623508 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9AE24E971904CFFD001AEFFB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AE24EA71904CFFD001AEFFB /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9AE24E861904CFFD001AEFFB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A6716B61D155B860069A961 /* helloaura_main_frame.cpp in Sources */,
+				9A6716B71D155B860069A961 /* helloaura_gcom.cpp in Sources */,
+				9A6716B81D155B860069A961 /* helloaura_view_base.cpp in Sources */,
+				07A4B1371B76469200DA5C57 /* helloaura_render.cpp in Sources */,
+				07473E641B5050B8004688C5 /* helloaura_main_view.cpp in Sources */,
+				07473E601B5050B8004688C5 /* helloaura_switcher_view.cpp in Sources */,
+				07B65520190F3001002DAADE /* framework.cpp in Sources */,
+				07B65521190F3001002DAADE /* helloaura_application.cpp in Sources */,
+				07B65522190F3001002DAADE /* helloaura_document.cpp in Sources */,
+				07B65523190F3001002DAADE /* helloaura_frame.cpp in Sources */,
+				07B65524190F3001002DAADE /* helloaura_pane_view.cpp in Sources */,
+				07B65525190F3001002DAADE /* aaa_want_to_remove_helloaura_view_update_hint.cpp in Sources */,
+				07B65526190F3001002DAADE /* helloaura_view.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9AE24E951904CFFD001AEFFB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AE24EA91904CFFD001AEFFB /* app_core_helloaura_iosTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9AEB759F16F78DF10085103B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AA1009019971FCE004F84BD /* helloaura_main_view.cpp in Sources */,
+				9AEB75DD16F78E600085103B /* framework.cpp in Sources */,
+				07AE494E1CC7A83F00959A6F /* helloaura_gcom.cpp in Sources */,
+				9A72594C1D1403E6001F56B4 /* helloaura_main_frame.cpp in Sources */,
+				076D09FB1A3FC72C007432B6 /* helloaura_switcher_view.cpp in Sources */,
+				07FB1AA41B744E8800F3FCC1 /* helloaura_render.cpp in Sources */,
+				9AEB75E116F78E600085103B /* helloaura_application.cpp in Sources */,
+				07AE49501CC7A83F00959A6F /* helloaura_view_base.cpp in Sources */,
+				9AEB75E216F78E600085103B /* helloaura_document.cpp in Sources */,
+				9AEB75E316F78E600085103B /* helloaura_frame.cpp in Sources */,
+				9AEB75E416F78E600085103B /* helloaura_pane_view.cpp in Sources */,
+				9AEB75E516F78E600085103B /* aaa_want_to_remove_helloaura_view_update_hint.cpp in Sources */,
+				9AEB75E616F78E600085103B /* helloaura_view.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		070533EE1C90B2B900F31B3F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = gcom;
+			targetProxy = 070533ED1C90B2B900F31B3F /* PBXContainerItemProxy */;
+		};
+		9A259E1D1D25D9B40044727D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_gcom;
+			targetProxy = 9A259E1C1D25D9B40044727D /* PBXContainerItemProxy */;
+		};
+		9A9578551F62218E00623508 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_sphere;
+			targetProxy = 9A9578541F62218E00623508 /* PBXContainerItemProxy */;
+		};
+		9A9578571F62219700623508 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = sphere;
+			targetProxy = 9A9578561F62219700623508 /* PBXContainerItemProxy */;
+		};
+		9AE24EA01904CFFD001AEFFB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9AE24E891904CFFD001AEFFB /* ios_app_core_helloaura */;
+			targetProxy = 9AE24E9F1904CFFD001AEFFB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9AE24EA51904CFFD001AEFFB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9AE24EA61904CFFD001AEFFB /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9AE24EAA1904CFFD001AEFFB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_EXTENSION = a;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACH_O_TYPE = staticlib;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		9AE24EAB1904CFFD001AEFFB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_EXTENSION = a;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACH_O_TYPE = staticlib;
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		9AE24EAC1904CFFD001AEFFB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/libapp_core_helloaura.dylib";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "app_core_helloaura_ios/app_core_helloaura_ios-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "app_core_helloaura_iosTests/app_core_helloaura_iosTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ca2.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		9AE24EAD1904CFFD001AEFFB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/libapp_core_helloaura.dylib";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "app_core_helloaura_ios/app_core_helloaura_ios-Prefix.pch";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "app_core_helloaura_iosTests/app_core_helloaura_iosTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ca2.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+		9AEB75A516F78DF10085103B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_ANALYZER_DEADCODE_DEADSTORES = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_STATIC_ANALYZER_MODE_ON_ANALYZE_ACTION = shallow;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_POSTPROCESSING = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				EXECUTABLE_PREFIX = lib;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREPROCESSOR_DEFINITIONS = _DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"",
+					"$(WorkspaceDir)/platform/thirdparty/include",
+				);
+				INSTALL_PATH = "@executable_path";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(TARGET_BUILD_DIR)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/include $(WorkspaceDir)/platform-macos $(WorkspaceDir)/app/_include $(WorkspaceDir)/third/include . .. $(WorkspaceDir)  $(WorkspaceDir)/app $(WorkspaceDir)/app";
+				WorkspaceDir = "$(SRCROOT)/../..";
+			};
+			name = Debug;
+		};
+		9AEB75A616F78DF10085103B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_ANALYZER_DEADCODE_DEADSTORES = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_STATIC_ANALYZER_MODE_ON_ANALYZE_ACTION = shallow;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_POSTPROCESSING = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXECUTABLE_PREFIX = lib;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = framework.h;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"",
+					"$(WorkspaceDir)/platform/thirdparty/include",
+				);
+				INSTALL_PATH = "@executable_path";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(TARGET_BUILD_DIR)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/include $(WorkspaceDir)/platform-macos $(WorkspaceDir)/app/_include $(WorkspaceDir)/third/include . .. $(WorkspaceDir)  $(WorkspaceDir)/app $(WorkspaceDir)/app";
+				VALIDATE_PRODUCT = YES;
+				WorkspaceDir = "$(SRCROOT)/../..";
+			};
+			name = Release;
+		};
+		9AEB75A816F78DF10085103B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+			};
+			name = Debug;
+		};
+		9AEB75A916F78DF10085103B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9AE24EBA1904CFFD001AEFFB /* Build configuration list for PBXNativeTarget "ios_app_core_helloaura" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9AE24EAA1904CFFD001AEFFB /* Debug */,
+				9AE24EAB1904CFFD001AEFFB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9AE24EBB1904CFFD001AEFFB /* Build configuration list for PBXNativeTarget "app_core_helloaura_iosTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9AE24EAC1904CFFD001AEFFB /* Debug */,
+				9AE24EAD1904CFFD001AEFFB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9AEB759E16F78DF10085103B /* Build configuration list for PBXProject "app_core_helloaura" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9AEB75A516F78DF10085103B /* Debug */,
+				9AEB75A616F78DF10085103B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9AEB75A716F78DF10085103B /* Build configuration list for PBXNativeTarget "app_core_helloaura" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9AEB75A816F78DF10085103B /* Debug */,
+				9AEB75A916F78DF10085103B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9AEB759B16F78DF10085103B /* Project object */;
+}

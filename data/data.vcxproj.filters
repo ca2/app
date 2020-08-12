@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files\mysql">
+      <UniqueIdentifier>{33c31b31-c43c-4307-9c28-64b0c0db9d6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\mysql">
+      <UniqueIdentifier>{25aca08e-98e7-4263-8191-7e2fd09aed75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\data">
+      <UniqueIdentifier>{9dfc1ee3-8265-4eb4-8400-170034655c80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{466b10fb-c2c3-4b42-83a3-78bdfb22bb1d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mysql\mysql_database.h">
+      <Filter>Header Files\mysql</Filter>
+    </ClInclude>
+    <ClInclude Include="data\data.h">
+      <Filter>Header Files\data</Filter>
+    </ClInclude>
+    <ClInclude Include="mysql\mysql_dataset.h">
+      <Filter>Header Files\mysql</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mysql\mysql_database.cpp">
+      <Filter>Source Files\mysql</Filter>
+    </ClCompile>
+    <ClCompile Include="mysql\mysql_dataset.cpp">
+      <Filter>Source Files\mysql</Filter>
+    </ClCompile>
+    <ClCompile Include="_.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\platform-windows\version.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

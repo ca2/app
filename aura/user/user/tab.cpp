@@ -91,6 +91,8 @@ namespace user
 
       m_bShowTabs                      = true;
 
+      m_bNoTabs                        = false;
+
       m_bDrawTabAtBackground           = false;
 
       _001SetVertical(false);

@@ -1,0 +1,74 @@
+#include "framework.h"
+
+
+#ifdef LINUX
+#include <unistd.h>
+#endif
+
+namespace user
+{
+
+
+   impact_creator::impact_creator()
+   {
+
+
+   }
+
+
+   impact_creator::~impact_creator()
+   {
+
+
+   }
+
+
+   void impact_creator::set_impact_creator(impact_creator* pimpactcreator)
+   {
+
+      m_pimpactcreator = pimpactcreator;
+
+   }
+
+
+   void impact_creator::on_create_impact(::user::impact_data * pimpactdata)
+   {
+
+      if (m_pimpactcreator)
+      {
+
+         m_pimpactcreator->create_impact(pimpactdata);
+
+      }
+
+   }
+
+
+   bool impact_creator::create_impact(::user::impact_data * pimpactdata)
+   {
+
+      on_create_impact(pimpactdata);
+
+      if(pimpactdata->m_bOk)
+      {
+
+         return true;
+
+      }
+
+      if(::is_set(pimpactdata->m_puserinteraction) || ::is_set(pimpactdata->m_pdocument))
+      {
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
+} // namespace user
+
+
+

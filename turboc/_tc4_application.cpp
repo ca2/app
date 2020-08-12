@@ -1,0 +1,186 @@
+#include "framework.h"
+
+
+namespace tc4
+{
+
+
+   application::application(::object * pobject) :
+      ::object(this),
+      ::thread(this),
+      ::aura::application(pobject),
+      ::axis::application(pobject),
+      ::base::application(pobject),
+      ::aura::application(pobject),
+      ::sphere::application(pobject):
+      m_mutexAiFont(this)
+   {
+
+      m_strAppName            = "tc4";
+      m_strBaseSupportId      = "ca2_flag";
+      m_bLicense              = false;
+
+      m_etype                 = type_normal;
+
+      m_strHelloMultiverse             = "Hello Multiverse!!";
+      m_strAlternateHelloMultiverse    = "Hello!!";
+
+      m_iErrorAiFont = -1;
+
+      m_bLoadAiFont = false;
+
+      m_bMultiverseChat = true;
+
+
+
+   }
+
+
+   application::~application()
+   {
+   }
+
+
+   bool application::initialize_application()
+   {
+
+      create_factory <::tc4::document >();
+      create_factory <::tc4::frame >();
+      create_factory <::tc4::edit_view >();
+      create_factory <::tc4::toggle_view >();
+      create_factory <::tc4::top_view >();
+      create_factory <::tc4::lite_view >();
+      create_factory <::tc4::full_view >();
+      create_factory <::tc4::view >();
+      create_factory <::tc4::main_view >();
+      create_factory <::tc4::switcher_view >();
+      create_factory <::tc4::pane_view >();
+
+      if(!::turboc::application::initialize_application())
+         return false;
+
+      ::user::single_document_template* pDocTemplate;
+      pDocTemplate = new ::user::single_document_template(
+      this,
+      "main",
+      __type(::tc4::document),
+      __type(::tc4::frame),       // top level SDI frame::user::interaction_impl
+      __type(::tc4::pane_view));
+      add_document_template(pDocTemplate);
+      m_ptemplateHelloMultiverseMain = pDocTemplate;
+      pDocTemplate = new ::user::single_document_template(
+      this,
+      "main",
+      __type(::tc4::document),
+      __type(::tc4::frame),       // top level SDI frame::user::interaction_impl
+      __type(::tc4::main_view));
+      add_document_template(pDocTemplate);
+      m_ptemplateHelloMultiverseView = pDocTemplate;
+      pDocTemplate = new ::user::single_document_template(
+      this,
+      "main",
+      __type(::tc4::document),
+      __type(::tc4::frame),       // top level SDI frame::user::interaction_impl
+      __type(::tc4::switcher_view));
+      add_document_template(pDocTemplate);
+      m_ptemplateHelloMultiverseSwitcher = pDocTemplate;
+
+      return true;
+   }
+
+   i32 application::exit_application()
+   {
+
+      return ::aura::application::exit_application();
+   }
+
+   void application::on_request(::create * pcreate)
+   {
+
+      /*
+
+      {
+         id lowvalue;
+         {
+            string str = "ABC";
+            lowvalue = str.lower();
+         }
+      }
+
+      property_set set;
+
+      set["c"] = 0;
+      set["ABC"] = 0;
+      set["abc"] = 0;
+      set["ebc"] = 0;
+
+      ::MessageBox(NULL,"stop oh yes!!","stop oh yes!!",MB_ICONINFORMATION);
+
+      */
+
+      //pcreate->m_bMakeVisible = false;
+
+      if(m_ptemplateHelloMultiverseMain->get_document_count() == 0)
+      {
+
+         m_ptemplateHelloMultiverseMain->do_request(pcreate);
+
+      }
+
+      if(pcreate->m_pcommandline->m_varFile.has_char())
+      {
+
+         m_ptemplateHelloMultiverseView->do_request(pcreate);
+
+      }
+
+      //pcreate->m_pcommandline->m_varQuery["document"].cast < document >()->get_typed_view < pane_view >()->GetParentFrame()->display(display_restore);
+
+   }
+
+
+
+   void application::load_ai_font()
+   {
+
+      if(m_bLoadAiFont)
+         return ;
+
+      m_bLoadAiFont = true;
+
+      m_iErrorAiFont = -1;
+
+      __begin_thread(get_context_application(),&thread_proc_load_ai_font,this,::priority_normal,0,0,NULL);
+
+   }
+
+
+   UINT application::thread_proc_load_ai_font(void * pparam)
+   {
+
+      application * pview = (application *)pparam;
+
+      pview->m_iErrorAiFont = -1;
+
+      //pview->m_iErrorAiFont = FT_New_Face((FT_Library)Sys(pview->get_context_application()).ftlibrary(),Sess(pview->get_context_application()).dir().matter_file("font/truetype/arialuni.ttf"),0,(FT_Face *)&pview->m_faceAi);
+
+      return pview->m_iErrorAiFont;
+
+   }
+
+
+} // namespace tc4
+
+
+
+
+extern "C"
+::aura::library * get_new_library(::object * pobject)
+{
+
+   return new ::aura::single_application_library < ::tc4::application > (pobject, "app-core");
+
+}
+
+
+

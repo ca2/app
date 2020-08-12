@@ -1,0 +1,100 @@
+#include "framework.h"
+//#include "base/user/user.h"
+
+
+#ifdef 
+
+
+namespace hotplugin
+{
+
+
+   void plugin::on_bare_paint_full_screen(::draw2d::graphics_pointer & pgraphics,const RECT & lprect)
+   {
+
+      double dRate = get_progress_rate();
+
+      if (dRate <= 0.0)
+      {
+
+         return;
+
+      }
+
+      RECT rectWindow;
+
+      get_window_rect(&rectWindow);
+
+      i32 cx = rectWindow.right - rectWindow.left;
+      i32 cy = rectWindow.bottom - rectWindow.top;
+
+      RECT rect;
+
+      rect.left = 0;
+      rect.top = 0;
+      rect.bottom = cy;
+      rect.right = cx;
+
+      string str;
+
+      str = m_strStatus;
+
+      string strProgress;
+
+      strProgress.Format("%0.3f%%", dRate * 100.0);
+
+      ::draw2d::brush_pointer br(e_create);
+
+      
+
+      {
+
+         BYTE uchR, uchG, uchB;
+         ::rect rect;
+         get_progress_color(uchR, uchG, uchB, dRate, 0);
+         br->create_solid(ARGB(255, uchR, uchG, uchB));
+         r = rect_dim(rect.left, rect.top, cx, cy);
+         pgraphics->FillRect(r, br);
+
+      }
+
+      br->create_solid(ARGB(255, 255, 255, 255));
+
+      pgraphics->SelectObject(br);
+
+      ::draw2d::font_pointer f(e_create);
+
+      f->create_pixel_font(FONT_SANS_FX, 49);
+
+      pgraphics->SelectObject(f);
+
+      string strStatus;
+
+      strStatus = str;
+
+      //on_paint_progress(pgraphics, m_rect);
+
+      pgraphics->text_out(rect.left + 84, rect.top + 84, strStatus);
+
+      f->create_pixel_font(FONT_SANS_FX, 90, true);
+
+      pgraphics->SelectObject(f);
+
+      pgraphics->text_out(rect.left + 84, (i32)(rect.top + 133 + 49 * 0.2), strProgress);
+
+      f->create_pixel_font(FONT_SANS_FX, 23);
+
+      pgraphics->SelectObject(f);
+
+      pgraphics->text_out(rect.left + 84, (i32)(rect.top + 133 + 49 * 0.2 + 133 * 0.2), m_strStatus2);
+
+   }
+
+
+} // namespace hotplugin
+
+
+#endif
+
+
+

@@ -1,0 +1,13 @@
+#pragma once
+
+
+/////////////////////////////////////////////////////
+//
+//    md5 implementation
+//    intentional duplication because spa
+//    needs md5
+//
+CLASS_DECL_AURA string file_md5_dup(const char * psz);
+//
+//
+/////////////////////////////////////////////////////

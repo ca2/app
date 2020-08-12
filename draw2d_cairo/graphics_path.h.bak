@@ -1,0 +1,48 @@
+#pragma once
+
+
+namespace lnx
+{
+
+
+   class CLASS_DECL_c graphics_path :
+      virtual public ::ca::graphics_path
+   {
+   public:
+
+
+ 
+
+
+      graphics_path(::ca::application * papp);
+      virtual ~graphics_path();
+
+
+      virtual bool has_current_point();
+      virtual point last_point();
+
+      virtual bool begin_figure(bool bFill, ::ca::e_fill_mode efillmode);
+      virtual bool end_figure(bool bClose);
+
+      virtual bool add_arc(const RECT & rect, i32 iStart, i32 iAngle);
+      virtual bool add_line(i32 x, i32 y);
+      virtual bool add_line(i32 x, i32 y, i32 x2, i32 y2);
+
+      virtual bool add_move(i32 x, i32 y);
+
+
+
+   };
+
+
+
+
+
+
+
+
+
+} // namespace lnx
+
+
+

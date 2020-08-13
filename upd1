@@ -1,0 +1,34 @@
+#!/bin/bash
+
+pushd app
+git pull
+popd
+
+pushd app-ca2
+git pull
+popd
+
+pushd platform-raspbian
+git pull
+popd
+
+pushd quasar-science
+git pull
+popd
+
+pushd third
+git pull
+popd
+
+
+#svn commit -F /ben/app-ca2/raspi-commit.txt /ben/app-ca2
+#git commit -F /ben/app-ca2/raspi-commit.txt /ben/platform-raspbian
+#git commit -F /ben/app-ca2/raspi-commit.txt /ben/quasar-science
+#git commit -F /ben/app-ca2/raspi-commit.txt /ben/third
+
+#git push origin master /ben/app
+#git push origin master /ben/platform-raspbian
+#git push origin master /ben/quasar-science
+#git push origin master /ben/third
+
+

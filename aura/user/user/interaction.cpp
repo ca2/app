@@ -1578,6 +1578,8 @@ namespace user
    void interaction::user_interaction_on_destroy()
    {
 
+      user_interaction_on_hide();
+
       {
 
          auto pimpl = m_pimpl;
@@ -1741,8 +1743,6 @@ namespace user
          }
 
       }
-
-      user_interaction_on_hide();
 
       //if (get_context_application())
       //{
@@ -8696,9 +8696,15 @@ restart:
 
       }
 
-      if (m_pdescriptor->m_puserinteractionParent == nullptr
-          || get_context_session() == nullptr
-          || m_pdescriptor->m_puserinteractionParent == get_context_session()->m_puiHost)
+      if (m_pdescriptor->m_puserinteractionParent == nullptr)
+      {
+
+         return (::user::interaction*) this;
+
+      }
+          
+      if(get_context_session() != nullptr
+          && m_pdescriptor->m_puserinteractionParent == get_context_session()->m_puiHost)
       {
 
          return (::user::interaction *) this;

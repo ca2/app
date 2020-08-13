@@ -19,6 +19,9 @@
 #include <tuple>
 
 
+CLASS_DECL_AURA void aura_ref();
+
+
 #ifdef WINDOWS_DESKTOP
 
 typedef i32 WINAPI __MAIN_DEFERRED_RUN(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPTSTR pCmdLine, i32 nCmdShow);

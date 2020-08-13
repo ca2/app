@@ -410,6 +410,8 @@ namespace aura
    aura::aura()
    {
 
+      m_bRef = false;
+
       construct();
 
       //g_pcsRefDbg = nullptr;
@@ -903,12 +905,14 @@ namespace aura
    }
 
 
-   void aura::ref()
+   void aura::this_ref()
    {
 
+      m_bRef = true;
       //printf()
 
    }
+
 
    ::aura::system * aura_create_system(app_core * pappcore)
    {
@@ -1376,3 +1380,15 @@ locale_t get_c_locale()
 //
 //
 //
+
+
+
+void aura_ref()
+{
+
+   ::aura::aura::g_aura.this_ref();
+
+}
+
+
+

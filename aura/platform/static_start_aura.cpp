@@ -2,9 +2,12 @@
 #include "static_start.h"
 
 
+namespace aura
+{
 
+   ::aura::aura aura::g_aura;
 
-static ::aura::aura g_aura;
+} // namespace aura
 
 //#pragma comment (linker, "/export:_g_aura")
 

@@ -38,9 +38,6 @@ namespace simple_shader
       virtual int64_t dec_ref(OBJ_REF_DBG_PARAMS) override;
 #endif
 
-      string get_font();
-      ::estatus set_font(const string& strFont);
-
       virtual ::estatus update_shader();
       virtual void defer_update_shader();
       virtual ::estatus _update_shader();
@@ -48,10 +45,6 @@ namespace simple_shader
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
 
       virtual void _001OnDraw1Through3(::draw2d::graphics_pointer & pgraphics);
-
-      virtual void _001OnDrawArcs(::draw2d::graphics_pointer & pgraphics, bool bPath);
-
-      virtual void draw_arc(::draw2d::graphics_pointer & pgraphics, rect & r, double dStart, double dAngle, bool bPath);
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
 

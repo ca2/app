@@ -7,55 +7,17 @@ namespace simple_shader
 {
 
 
-   application::application() :
-      m_echeckSimple(topic(id_simple_checkbox)),
-      m_echeckNoClientFrame(topic(id_no_client_frame)),
-      m_strSimple(topic(id_simple_text))
+   application::application() 
    {
-      
-      auto pproperty1 = find_property(id_simple_checkbox);
-      
-      bool bCheckOk = false;
-      
-      if(pproperty1->m_etype == type_enum_check)
-      {
-         
-         auto pproperty = pproperty1;
-         
-         if(pproperty->m_etype == type_enum_check)
-         {
             
-            auto & echeck = pproperty->m_echeck;
-            
-            if(echeck == check_undefined)
-            {
-               
-               bCheckOk = true;
-               
-            }
-            
-         }
-         
-      }
-      
-      if(!bCheckOk)
-      {
-       
-         message_box("simple_check_box is not ok");
-         
-      }
-      
-      m_strAppId = "app-simple/shader";
+      m_strAppId = "app/shader";
 
-      m_strAppName = "app-simple/shader";
+      m_strAppName = "app/shader";
 
-      m_strBaseSupportId = "ca2_flag";
+      m_strBaseSupportId = "app/shader";
 
       m_bLicense = false;
 
-      m_bMultiverseChat = true;
-
-      m_strMainTitle = "Simple Drawing";
 
    }
 
@@ -68,12 +30,6 @@ namespace simple_shader
 
 
 
-   string application::get_hover_font() const
-   {
-
-      return "Helvetica";
-
-   }
 
 
    ::estatus application::init_instance()
@@ -83,9 +39,7 @@ namespace simple_shader
 
       create_factory <::simple_shader::window >();
 
-      default_toggle_check_handling(id_simple_checkbox);
-
-      default_toggle_check_handling(id_no_client_frame);
+    
 
       if (!::aura::application::init_instance())
       {
@@ -133,13 +87,6 @@ namespace simple_shader
    }
 
 
-   string application::preferred_experience()
-   {
-
-      return ::aura::application::preferred_experience();
-
-   }
-
 
 #ifdef _DEBUG
 
@@ -161,27 +108,6 @@ namespace simple_shader
 
 
 #endif
-
-
-   ::id application::translate_property_id(const ::id & id)
-   {
-
-      if(id == "simple_checkbox")
-      {
-
-         return id_simple_checkbox;
-
-      }
-      else if(id == "simple_text")
-      {
-
-         return id_simple_text;
-
-      }
-
-      return id;
-
-   }
 
 
    __namespace_application_factory("app/shader");

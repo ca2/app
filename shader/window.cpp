@@ -10,7 +10,7 @@ namespace simple_shader
    window::window()
    {
 
-      m_iView = -1;
+      m_iShader = 0;
 
       value(FONTSEL_IMPACT) = true;
 
@@ -68,6 +68,7 @@ namespace simple_shader
    void window::install_message_routing(::channel * psender)
    {
 
+      ::user::interaction::install_message_routing(psender);
       ::user::interaction::install_simple_ui_default_mouse_handling(psender);
       IGUI_MSG_LINK(WM_CREATE,psender,this,&window::_001OnCreate);
       IGUI_MSG_LINK(WM_DESTROY, psender, this, &window::_001OnDestroy);
@@ -90,70 +91,9 @@ namespace simple_shader
 
       }
 
-      GetTopLevelFrame()->set_prodevian();
+      GetTopLevel()->set_prodevian();
 
-      auto predraw = [this]()
-         {
-
-            set_need_redraw();
-
-            post_redraw();
-
-         };
-
-      Application.m_mapRunnable[id_simple_checkbox] += predraw;
-
-      Application.m_mapRunnable[id_no_client_frame] += predraw;
-
-      auto estatus = __construct_new(m_prender);
-
-      if(!estatus)
-      {
-
-         pcreate->set_fail();
-
-         return;
-
-      }
-
-      m_prender->initialize_application_consumer();
-
-      m_prender->m_pinteraction = this;
-
-      string strText;
-
-
-      m_prender->update_shader();
-
-
-      {
-
-         ::id id = id_simple_text;
-
-         auto pproperty = Application.fetch_property(id);
-
-         var var;
-
-         if (Application.data_get(id, var))
-         {
-
-            pproperty->convert(var);
-
-         }
-
-         auto idRunnable = Application.translate_property_id(id);
-
-         Application.m_mapRunnable[idRunnable] += [this, id]()
-         {
-
-            auto pproperty = fetch_property(id);
-
-            m_prender->defer_load_fragment(pproperty->get_string());
-
-         };
-
-      }
-
+      update_shader();
 
    }
 
@@ -220,7 +160,7 @@ namespace simple_shader
 
          ::draw2d::graphics_pointer pgraphics = pimage->get_graphics();
 
-         m_prender->_001OnDraw(pgraphics);
+         m_rendera[m_iShader]->_001OnDraw(pgraphics);
 
          fork([this, pimage]()
             {
@@ -238,7 +178,7 @@ namespace simple_shader
 
       }
 
-      m_prender->_001OnDraw(pgraphics);
+      m_rendera[m_iShader]->_001OnDraw(pgraphics);
 
    }
 
@@ -255,9 +195,70 @@ namespace simple_shader
 
       }
 
-      m_prender->m_rect = rectClient;
+      m_rendera[m_iShader]->m_rect = rectClient;
 
-      m_prender->on_layout(pgraphics);
+      m_rendera[m_iShader]->on_layout(pgraphics);
+
+   }
+
+
+   bool window::on_click(const ::user::item& item)
+   {
+
+      m_iShader++;
+
+      if (m_iShader > 14)
+      {
+
+         m_iShader = 1;
+
+      }
+
+      update_shader();
+
+      return true;
+
+   }
+
+
+   void window::update_shader()
+   {
+
+      sync_lock sl(mutex());
+
+      if (m_rendera.get_count() <= m_iShader)
+      {
+
+         m_rendera.set_size(m_iShader + 1);
+
+      }
+
+      auto estatus = __construct_new(m_rendera[m_iShader]);
+
+      if (!estatus)
+      {
+
+         return;
+
+      }
+
+      m_rendera[m_iShader]->initialize_application_consumer();
+
+      m_rendera[m_iShader]->m_pinteraction = this;
+
+      string strText;
+
+      m_rendera[m_iShader]->m_strShaderPrefix.Format("%d", m_iShader + 1);
+
+      m_rendera[m_iShader]->update_shader();
+
+      //string str;
+
+      //str.Format("%d", m_iShader + 1);
+
+      //m_rendera[m_iShader]->defer_load_fragment(str);
+
+      set_need_layout();
 
    }
 

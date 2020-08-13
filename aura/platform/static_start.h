@@ -27,7 +27,6 @@ namespace aura
    extern CLASS_DECL_AURA critical_section* g_pcsFont;
 
    //extern critical_section* g_pcsRefDbg;
-   extern bool g_bAura;
 
 
 #if OBJ_TYP_CTR
@@ -196,18 +195,25 @@ namespace aura
 
 
    extern critical_section g_csRefDbg;
-
+   
+   CLASS_DECL_AURA void ref();
 
    class aura
    {
    public:
 
 
+      bool m_bRef;
+
+
       aura();
       ~aura();
-      
-      void ref();
 
+      static aura g_aura;
+      
+      void this_ref();
+
+      
       
       void construct();
 

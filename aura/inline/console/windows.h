@@ -1,4 +1,7 @@
 
+
+
+
 class console
 {
 public:
@@ -7,13 +10,23 @@ public:
    ::estatus m_estatus;
    __pointer(::aura::system) m_psystem;
 
-
-   void common_construct()
+   void create_system()
    {
+
+      aura_ref();
 
       m_psystem = __new(::aura::system());
 
       m_psystem->console_initialize();
+
+
+
+   }
+
+   void common_construct()
+   {
+
+      create_system();
 
       application_common(m_psystem);
 

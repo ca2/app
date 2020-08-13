@@ -11,9 +11,9 @@ namespace simple_shader
    public:
 
 
-      int                     m_iView;
-      __pointer(render)       m_prender;
-      bool                    m_bSaveFrame;
+      int                           m_iShader;
+      __pointer_array(render)       m_rendera;
+      bool                          m_bSaveFrame;
 
 
       window();
@@ -42,6 +42,12 @@ namespace simple_shader
       DECL_GEN_SIGNAL(_001OnKeyDown);
 
       virtual bool keyboard_focus_is_focusable() override;
+
+      virtual bool on_click(const ::user::item& item);
+
+
+      void update_shader();
+
 
    };
 

@@ -86,6 +86,8 @@ namespace multithreading
 
       }
 
+      pthread->set_os_int(id);
+
       s_pthreadptra2->add(pthread);
 
       s_piaThread2->add(id);

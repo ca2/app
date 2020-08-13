@@ -2360,7 +2360,8 @@ void thread::SetCurrentHandles()
 
    set_os_data((void *) ::get_current_hthread());
 
-   set_os_int(::get_current_ithread());
+   // done in thread_register
+   // set_os_int(::get_current_ithread());
 
 }
 

@@ -1,0 +1,7 @@
+<menubar>
+	<menubar id="view">
+		<item id="edit_copy">Copiar</item>
+		<item id="edit_paste">Colar</item>
+		<item id="app_exit">Sair</item>
+	</menubar>
+</menubar>

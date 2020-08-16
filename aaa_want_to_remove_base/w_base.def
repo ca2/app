@@ -1,9 +1,0 @@
-LIBRARY  "base"
-
-
-EXPORTS
-defer_base_init
-defer_base_term
-
-
-

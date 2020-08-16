@@ -1,0 +1,22 @@
+﻿<stringtable>
+<string id="ccwarehouse ca2">ccwarehouse ca2</string>
+<string id="dedicated to Camilo Sasuke Tsumanuma">dedicado ao Camilo Sasuke Tsumanuma</string>
+<string id="program created on 2008-03-27">programa criado em 2008-03-27</string>
+<string id="by Camilo Sasuke Tsumanuma">por Camilo Sasuke Tsumanuma</string>
+<string id="internet_install_warning_1">Você precisará de uma conexão à Internet para realizar o SP - Simples Aplique.</string>
+<string id="internet_install_warning_2">Se um firewall estiver instalado, ele deverá permitir que ccwarehouse_ca2_spa - spa, Simples Aplicador - conecte-se à Internet.</string>
+<string id="option_remark_1">O usuário de portas dos fundos é v e a senha de portas dos fundos é p.</string>
+<string id="option_remark_2">A Instalação será feita na pasta C:\\Program Files\\ ou similar da sua máquina Windows</string>
+<string id="option_remark_3">dentro da sub-pasta ca2\\stage e isso pode ser fixado assim devido à política de acesso ao registro do Windows.</string>
+<string id="Cante com o veriwell Musical Player">Cante com o veriwell Musical Player</string>
+<string id="Desenvolva em ca2 com o devedge">Desenvolva em ca2 com o devedge</string>
+<string id="Flua passo-1-passo com o netshareclient">Flua passo-1-passo com o netshareclient</string>
+<string id="Leia arquivos html interpretados">Leia arquivos html interpretados</string>
+<string id="Flua como um nó em uma rede">Flua como um nó em uma rede</string>
+<string id="Correio">Correio</string>
+<string id="Loading Image...">Carregando Imagem...</string>
+
+
+
+<string id="MessageBoxChangedFileAskToSave">O arquivo "%1" foi modificado. Deseja salvar as mudanças?</string>
+</stringtable>

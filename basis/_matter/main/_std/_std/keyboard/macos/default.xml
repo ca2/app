@@ -1,0 +1,92 @@
+<layout name="Brasil - ABNT2" hkla="0xf0100416;0x0416" >
+	<item code="12" value="key_q" />
+	<item code="13" value="key_w" />
+	<item code="14" value="key_e" />
+	<item code="15" value="key_r" />
+	<item code="17" value="key_t" />
+	<item code="16" value="key_y" />
+	<item code="32" value="key_u" />
+	<item code="34" value="key_i" />
+	<item code="31" value="key_o" />
+	<item code="35" value="key_p" />
+	<item code="0" value="key_a" />
+	<item code="1" value="key_s" />
+	<item code="2" value="key_d" />
+	<item code="3" value="key_f" />
+	<item code="5" value="key_g" />
+	<item code="4" value="key_h" />
+	<item code="38" value="key_j" />
+	<item code="40" value="key_k" />
+	<item code="37" value="key_l" />
+	<item code="41" value="key_semicolon" />
+	<item code="6" value="key_z" />
+	<item code="7" value="key_x" />
+	<item code="8" value="key_c" />
+	<item code="9" value="key_v" />
+	<item code="11" value="key_b" />
+	<item code="45" value="key_n" />
+	<item code="46" value="key_m" />
+	<item code="43" value="key_comma" />
+	<item code="47" value="key_dot" />
+	<item code="44" value="key_semicolon2" />
+	<item code="18" value="key_1" />
+	<item code="19" value="key_2" />
+	<item code="20" value="key_3" />
+	<item code="21" value="key_4" />
+	<item code="23" value="key_5" />
+	<item code="22" value="key_6" />
+	<item code="26" value="key_7" />
+	<item code="28" value="key_8" />
+	<item code="25" value="key_9" />
+	<item code="29" value="key_0" />
+	<item code="2001" value="key_lshift" />
+	<item code="2003" value="key_rshift" />
+	<item code="2011" value="key_lcontrol" />
+	<item code="2013" value="key_rcontrol" />
+	<item code="2021" value="key_lalt" />
+	<item code="2023" value="key_ralt" />
+	<item code="2031" value="key_lcommand" />
+	<item code="2033" value="key_rcommand" />
+	<item code="51" value="key_back" />
+	<item code="117" value="key_delete" />
+   <item scan="75" ext="1" value="key_left" />
+   <item scan="77" ext="1" value="key_right" />
+   <item scan="72" ext="1" value="key_up" />
+   <item scan="83" ext="1" value="key_delete" />
+   <item scan="80" ext="1" value="key_down" />
+   <item scan="71" ext="1" value="key_home" />
+   <item scan="79" ext="1" value="key_end" />
+   <item scan="73" ext="1" value="key_prior" />
+   <item scan="81" ext="1" value="key_next" />
+   <item code="48" value="key_tab" />
+	<item code="66" value="key_capslock" />
+	<item code="115" value="key_home" />
+	<item code="119" value="key_end" />
+	<item code="116" value="key_prior" />
+	<item code="121" value="key_next" />
+	<item code="36" value="key_return" />
+	<item code="27" value="key_hyphen" />
+	<item code="24" value="key_equal" />
+	<item code="94" value="key_slash2" />
+	<item code="30" value="key_openbracket2" />
+	<item code="42" value="key_closebracket2" />
+	<item code="39" value="key_til2" />
+	<item code="33" value="key_acute2" />
+	<item code="49" value="key_space" />
+	<item code="10" value="key_backslash2" />
+	<item code="50" value="key_apostrophe2" />
+	<item code="53" value="key_escape" />
+	<item code="3001" value="key_numpad_1" />
+	<item code="3002" value="key_numpad_2" />
+	<item code="3003" value="key_numpad_3" />
+	<item code="3004" value="key_numpad_4" />
+	<item code="3005" value="key_numpad_5" />
+	<item code="3006" value="key_numpad_6" />
+	<item code="3007" value="key_numpad_7" />
+	<item code="3008" value="key_numpad_8" />
+	<item code="3009" value="key_numpad_9" />
+	<item code="3000" value="key_numpad_0" />
+   
+
+</layout>
+

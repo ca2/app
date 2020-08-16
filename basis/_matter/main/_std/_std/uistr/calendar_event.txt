@@ -1,0 +1,1 @@
+﻿"calendar_event:birthday[0]" = "Birthday"

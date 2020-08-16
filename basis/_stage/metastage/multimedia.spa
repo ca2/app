@@ -1,0 +1,9 @@
+app\stage\metastage\aura.spa
+stage\basis\audio_decode_libmpg123.dll
+stage\basis\audio_decode_wave.dll
+[windows]stage\basis\audio_mmsystem.dll
+[windows]stage\basis\multimedia_mmsystem.dll
+stage\basis\baseid3lib.dll
+stage\basis\mpg123.dll
+stage\basis\gcom.dll
+stage\basis\multimedia.dll

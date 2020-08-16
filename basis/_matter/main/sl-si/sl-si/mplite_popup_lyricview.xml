@@ -1,0 +1,11 @@
+<menubar>
+	<menubar id="view">
+		<item id="impact_encoding">impact_encoding</item>
+		<item id="impact_full_screen" img="full_screen_16.png">Tela Inteira</item>
+		<item id="impact_gradual_filling" img="gradual_filling_16.png">Preenchimento Gradual</item>
+	</menubar>
+	<menubar id="execute">
+		<item id="execute_play">Play</item>
+	</menubar>
+
+</menubar>

@@ -1,0 +1,10 @@
+<menubar>
+	<item id="edit_undo">Undo</item>
+	<item id="edit_redo">Redo</item>
+	// form list requires separated undo redo by item column, try to boost control per cell?!?
+<separator/>
+	<item id="edit_cut">Cut</item>
+	<item id="edit_copy">Copy</item>
+	<item id="edit_paste">Paste</item>
+	<item id="edit_delete">Delete</item>
+</menubar>

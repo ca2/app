@@ -1,0 +1,6 @@
+﻿app\stage\metastage\audio.spa
+app\stage\metastage\veriwell.spa
+[windows]stage\basis\akrip.dll
+[windows]stage\basis\audio_decode_cd.dll
+[windows]stage\basis\music_midi_mmsystem.dll
+[windows]stage\basis\audio_decode_windows_media.dll

@@ -1,0 +1,11 @@
+<toolbar>
+<button id="levelup">Level Up</button>
+<button id="add_location">Add Location</button>
+<button id="replace_text_in_file_system">Replace text</button>
+<button id="edit_copy">Copy</button>
+<button id="edit_paste">Paste</button>
+<button id="new_folder">New folder</button>
+<button id="trash_that_is_not_trash">Trash that is not trash</button>
+<button id="new_manager">+</button>
+<button id="del_manager">-</button>
+</toolbar>

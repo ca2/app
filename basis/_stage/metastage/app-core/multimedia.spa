@@ -1,0 +1,5 @@
+stage\basis\akrip.dll
+stage\basis\audio_decode_cd.dll
+stage\basis\audio_decode_wave.dll
+stage\basis\math.dll
+stage\basis\multimedia.dll

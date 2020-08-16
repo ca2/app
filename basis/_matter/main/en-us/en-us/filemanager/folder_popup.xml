@@ -1,0 +1,5 @@
+<menubar>
+	<menubar id="popup">
+		<item id="file_rename">Renomear</item>
+	</menubar>
+</menubar>

@@ -55,6 +55,7 @@ public:
 #ifdef _UWP
    string_array_base(Platform::Array < Platform::String ^ > ^ refstra);
 #endif
+   string_array_base(CHAR_TYPE * const * ppsz, ::count c);
    virtual ~string_array_base();
 
 
@@ -1491,6 +1492,22 @@ template < class Type, class RawType >
 string_array_base < Type, RawType > ::string_array_base(const string_array_base < Type, RawType > & array) :
    ::array < Type >((const ::array < Type > &) array)
 {
+}
+
+
+template < class Type, class RawType >
+string_array_base < Type, RawType > ::string_array_base(CHAR_TYPE* const* ppsz, ::count c)
+{
+   
+   set_size(c);
+
+   for (::index i = 0; i < c; i++)
+   {
+
+      element_at(i) = ppsz[i];
+
+   }
+
 }
 
 

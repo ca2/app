@@ -235,7 +235,7 @@
 				</Linker>
 				<ExtraCommands>
 					<Add before="../../platform-linux/stage/prepare_framework_h.sh $(PROJECT_DIR) $(TARGET_OBJECT_DIR)" />
-					<Add before="cp -Rf $(#archive)/platform-linux/thirdparty/library/x64/* ../$(#time_dir)/x64/$(TARGET_NAME)/" />
+					<Add before="cp -Rf $(#archive)/third-linux/thirdparty/library/x64/* ../$(#time_dir)/x64/$(TARGET_NAME)/" />
 				</ExtraCommands>
 			</Target>
 		</Build>

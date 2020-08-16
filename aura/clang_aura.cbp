@@ -20,7 +20,7 @@
 					<Add option="-g" />
 					<Add option="-std=c++17" />
 					<Add option="-D_DEBUG" />
-					<Add directory="$(#archive)/platform-linux/third/include" />
+					<Add directory="$(#archive)/third-linux/third/include" />
 				</Compiler>
 				<Linker>
 					<Add option="-m64" />
@@ -75,7 +75,7 @@
 					<Add option="-g" />
 					<Add option="-O0" />
 					<Add option="-std=c++17" />
-					<Add directory="$(#archive)/platform-linux/third/include" />
+					<Add directory="$(#archive)/third-linux/third/include" />
 				</Compiler>
 				<Linker>
 					<Add option="-pg" />
@@ -223,7 +223,7 @@
 					<Add directory="$(#time_dir)/x64/$(TARGET_NAME)" />
 				</Linker>
 				<ExtraCommands>
-					<Add before="cp -Rf $(#archive)/platform-linux/thirdparty/library/x64/* ../$(#time_dir)/x64/$(TARGET_NAME)/" />
+					<Add before="cp -Rf $(#archive)/third-linux/thirdparty/library/x64/* ../$(#time_dir)/x64/$(TARGET_NAME)/" />
 				</ExtraCommands>
 			</Target>
 		</Build>

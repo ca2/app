@@ -7,7 +7,7 @@ CLASS_DECL_AURA COLORREF dk_red(); // <3 tbs
 void image_gl_set(image* pimage);
 
 
-namespace simple_shader
+namespace app_shader
 {
 
 
@@ -568,7 +568,7 @@ namespace simple_shader
 
 
 
-   } // namespace simple_shader
+   } // namespace app_shader
 
 
 

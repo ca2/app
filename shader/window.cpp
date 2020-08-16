@@ -3,7 +3,7 @@
 #include "aura/const/id.h"
 
 
-namespace simple_shader
+namespace app_shader
 {
 
 
@@ -248,7 +248,7 @@ namespace simple_shader
    }
 
 
-} // namespace simple_shader
+} // namespace app_shader
 
 
 

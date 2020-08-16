@@ -11,7 +11,7 @@
 #endif
 
 
-namespace simple_shader
+namespace app_shader
 {
 
    class application;

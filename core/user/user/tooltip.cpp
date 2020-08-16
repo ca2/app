@@ -77,8 +77,6 @@ namespace user
    void tooltip::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-
-
       pgraphics->SelectClipRgn(nullptr);
 
       ::rect rectClient;
@@ -87,7 +85,7 @@ namespace user
 
       ::draw2d::path_pointer path(e_create);
 
-      path->add_move(rectClient.left, rectClient.bottom);
+      path->set_current_point(rectClient.left, rectClient.bottom);
 
       ::rect rectBody;
 
@@ -101,7 +99,7 @@ namespace user
       path->add_line(rectBody.right,rectBody.top);
       path->add_line(rectBody.right,rectBody.bottom);
       path->add_line(rectBody.left + rectBody.height() / 2,rectBody.bottom);
-      path->end_figure(true);
+      path->close_figure();
 
       ::draw2d::brush_pointer b(e_create);
 

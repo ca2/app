@@ -2174,7 +2174,8 @@ namespace user
 
                   ::draw2d::path_pointer path(e_create);
 
-                  path->add_string(pbox->get_text(), rect, DT_LEFT | DT_BOTTOM | DT_SINGLELINE, pformat->get_font(pgraphics), pformat->m_crForeground);
+                  //path->add_draw_text(pbox->get_text(), rect, DT_LEFT | DT_BOTTOM | DT_SINGLELINE, pformat->get_font(pgraphics), pformat->m_crForeground);
+                  path->add_draw_text(pbox->get_text(), rect, DT_LEFT | DT_BOTTOM | DT_SINGLELINE, pformat->get_font(pgraphics));
 
                   ::draw2d::pen_pointer pen(e_create);
 

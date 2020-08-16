@@ -540,9 +540,14 @@ namespace draw2d_direct2d
       //ID2D1Brush * get_os_brush(::draw2d::brush * pbrush);
       //ID2D1Brush * get_os_pen_brush(::draw2d::pen * ppen);
 
-      virtual bool draw(const ::draw2d::path::string_path & path, ::draw2d::pen * ppen);
+      virtual bool draw(::draw2d::path::text_out * ptextout, ::draw2d::pen * ppen);
 
-      virtual bool fill(const ::draw2d::path::string_path & path, ::draw2d::brush * pbrush);
+      virtual bool fill(::draw2d::path::text_out * ptextout, ::draw2d::brush * pbrush);
+
+      virtual bool draw(::draw2d::path::draw_text * ptextout, ::draw2d::pen* ppen);
+
+      virtual bool fill(::draw2d::path::draw_text* ptextout, ::draw2d::brush* pbrush);
+
 
       virtual bool flush() override;
 

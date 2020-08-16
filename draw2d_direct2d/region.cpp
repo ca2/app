@@ -258,9 +258,9 @@ namespace draw2d_direct2d
       }
       */
 
-      path->begin_figure(true, m_efillmode);
+      path->begin_figure();
       path->add_lines(m_lppoints, m_nCount);
-      path->end_figure(true);
+      path->close_figure();
 
       return (ID2D1PathGeometry *) path->detach();
 
@@ -294,9 +294,11 @@ namespace draw2d_direct2d
             pa.add(pointd(m_lppoints[n].x, m_lppoints[n].y));
             n++;
          }
-         path->begin_figure(true, m_efillmode);
+         //path->begin_figure(true, m_efillmode);
+         path->begin_figure();
          path->add_lines(pa.get_data(), (int) pa.get_count());
-         path->end_figure(true);
+         //path->end_figure(true);
+         path->close_figure();
       }
 
       return (ID2D1PathGeometry *) path->detach();

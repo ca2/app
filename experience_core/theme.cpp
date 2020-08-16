@@ -167,7 +167,7 @@ namespace experience
 
                path->add_line(rectBorder.right,rectBorder.top);
 
-               path->end_figure(false);
+               path->close_figure();
 
                pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),ARGB(230,235,235,230),ARGB(250,255,255,250));
 
@@ -210,7 +210,7 @@ namespace experience
                path->add_line(rectBorder.right,rectBorder.top);
                path->add_line(rectBorder.right,rectBorder.bottom);
 
-               path->end_figure(true);
+               path->close_figure();
 
                if(ptab->m_itemHover == iTab  
                   && ptab->m_itemHover != ::user::element_close_tab_button 
@@ -288,7 +288,7 @@ namespace experience
 
                path->add_line(rectBorder.right - 1,rectClient.bottom);
 
-               path->end_figure(false);
+               //path->end_figure(false);
 
                pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),ARGB(230,235,235,230),ARGB(250,255,255,250));
 
@@ -333,7 +333,7 @@ namespace experience
 
                path->add_line(rectBorder.right - 1,rectClient.bottom);
 
-               path->end_figure(true);
+               path->close_figure();
 
                if (ptab->m_itemHover == iTab
                   && ptab->m_itemHover != ::user::element_close_tab_button

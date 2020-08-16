@@ -902,9 +902,11 @@ namespace draw2d_direct2d
       double start      = atan2(y3 - centery, x3 - centerx) * 180.0 / pi;
       double end        = atan2(y4 - centery, x4 - centerx) * 180.0 / pi;
 
-      path->begin_figure(false, ::draw2d::fill_mode_winding);
+      //path->begin_figure(false, ::draw2d::fill_mode_winding);
+      path->begin_figure();
       path->add_arc(rect, (int) start, (int) fmod(end + 360.0 - start, 360.0));
-      path->end_figure(false);
+      //path->end_figure(false);
+      //path->close_figure();
 
       return this->path(path);
 
@@ -917,9 +919,11 @@ namespace draw2d_direct2d
 
       ::rect rect((LONG) x1, (LONG)y1, (LONG)(x1 + w), (LONG)(y1 + h));
 
-      path->begin_figure(false, ::draw2d::fill_mode_winding);
+      //path->begin_figure(false, ::draw2d::fill_mode_winding);
+      path->begin_figure();
       path->add_arc(rect, start, extends);
-      path->end_figure(false);
+      //path->end_figure(false);
+      //path->close(false);
 
       return this->path(path);
 
@@ -941,9 +945,10 @@ namespace draw2d_direct2d
       double start = atan2(y3 - centery, x3 - centerx) * 180.0 / pi;
       double end = atan2(y4 - centery, x4 - centerx) * 180.0 / pi;
 
-      path->begin_figure(false, ::draw2d::fill_mode_winding);
+      //path->begin_figure(false, ::draw2d::fill_mode_winding);
+      path->begin_figure();
       path->add_arc(rect, start, end - start);
-      path->end_figure(false);
+      //path->end_figure(false);
 
       return this->path(path);
 
@@ -965,11 +970,15 @@ namespace draw2d_direct2d
 
       ::draw2d::path_pointer path(e_create);
 
-      path->begin_figure(false, ::draw2d::fill_mode_winding);
+      //path->begin_figure(false, ::draw2d::fill_mode_winding);
+
+      path->begin_figure();
 
       path->add_lines(lpPoints, nCount);
 
-      path->end_figure(false);
+      //path->end_figure(false);
+
+      //path->end_figure();
 
       return this->draw_path(path);
 
@@ -1346,11 +1355,15 @@ namespace draw2d_direct2d
 
       ::draw2d::path_pointer path(e_create);
 
-      path->begin_figure(true, ::draw2d::fill_mode_winding);
+      //path->begin_figure(true, ::draw2d::fill_mode_winding);
+
+      path->begin_figure();
 
       path->add_lines(lppoints, nCount);
 
-      path->end_figure(true);
+      //path->end_figure(true);
+
+      path->close_figure();
 
       return this->path(path);
 
@@ -1362,11 +1375,15 @@ namespace draw2d_direct2d
 
       ::draw2d::path_pointer path(e_create);
 
-      path->begin_figure(true, ::draw2d::fill_mode_winding);
+      //path->begin_figure(true, ::draw2d::fill_mode_winding);
+
+      path->begin_figure();
 
       path->add_lines(lppoints, nCount);
 
-      path->end_figure(true);
+      //path->end_figure(true);
+
+      path->close_figure();
 
       return this->draw_path(path);
 
@@ -1378,11 +1395,15 @@ namespace draw2d_direct2d
 
       ::draw2d::path_pointer path(e_create);
 
-      path->begin_figure(true,::draw2d::fill_mode_winding);
+      //path->begin_figure(true,::draw2d::fill_mode_winding);
+
+      path->begin_figure();
 
       path->add_lines(lppoints,nCount);
 
-      path->end_figure(true);
+      //path->end_figure(true);
+
+      path->close_figure();
 
       return this->fill_path(path);
 
@@ -4967,10 +4988,16 @@ namespace draw2d_direct2d
       for(index i = 0; i < ppath->m_elementa.get_size(); i++)
       {
 
-         if(ppath->m_elementa[i]->m_etype == ::draw2d::path::element::type_string)
+         if(ppath->m_elementa[i]->m_etype == ::draw2d::path::type_text_out)
          {
 
-            draw(ppath->m_elementa[i]->m_stringpath, ppen);
+            draw(ppath->m_elementa[i].cast < ::draw2d::path::text_out>(), ppen);
+
+         }
+         else if (ppath->m_elementa[i]->m_etype == ::draw2d::path::type_draw_text)
+         {
+
+            draw(ppath->m_elementa[i].cast < ::draw2d::path::draw_text>(), ppen);
 
          }
 
@@ -4991,12 +5018,6 @@ namespace draw2d_direct2d
 
       }
 
-      __keep_true(ppath->m_bFill);
-
-      ppath->m_bFill = true;
-
-      ppath->set_modified();
-
       ID2D1Brush * pbrush = m_pbrush->get_os_data < ID2D1Brush * >(this);
 
       if (pbrush == nullptr)
@@ -5005,6 +5026,10 @@ namespace draw2d_direct2d
          return false;
 
       }
+
+      __stack(m_bOutline, false);
+
+      ppath->set_modified();
 
       ID2D1PathGeometry * pgeometry = ppath->get_os_data < ID2D1PathGeometry * >(this);
 
@@ -5020,10 +5045,16 @@ namespace draw2d_direct2d
       for (index i = 0; i < ppath->m_elementa.get_size(); i++)
       {
 
-         if (ppath->m_elementa[i]->m_etype == ::draw2d::path::element::type_string)
+         if (ppath->m_elementa[i]->m_etype == ::draw2d::path::type_text_out)
          {
 
-            fill(ppath->m_elementa[i]->m_stringpath, m_pbrush);
+            fill(ppath->m_elementa[i].cast < ::draw2d::path::text_out >(), m_pbrush);
+
+         }
+         else if (ppath->m_elementa[i]->m_etype == ::draw2d::path::type_draw_text)
+         {
+
+            fill(ppath->m_elementa[i].cast < ::draw2d::path::draw_text >(), m_pbrush);
 
          }
 
@@ -5044,12 +5075,6 @@ namespace draw2d_direct2d
 
       }
 
-      __keep_true(ppath->m_bFill);
-
-      ppath->m_bFill = true;
-
-      ppath->set_modified();
-
       ID2D1Brush * pbrush = pbrushParam->get_os_data < ID2D1Brush * >(this);
 
       if (pbrush == nullptr)
@@ -5058,6 +5083,10 @@ namespace draw2d_direct2d
          return false;
 
       }
+
+      __stack(m_bOutline, false);
+
+      ppath->set_modified();
 
       ID2D1PathGeometry * pgeometry = ppath->get_os_data < ID2D1PathGeometry * >(this);
 
@@ -5073,10 +5102,16 @@ namespace draw2d_direct2d
       for (index i = 0; i < ppath->m_elementa.get_size(); i++)
       {
 
-         if (ppath->m_elementa[i]->m_etype == ::draw2d::path::element::type_string)
+         if (ppath->m_elementa[i]->m_etype == ::draw2d::path::type_text_out)
          {
 
-            fill(ppath->m_elementa[i]->m_stringpath, pbrushParam);
+            fill(ppath->m_elementa[i].cast < ::draw2d::path::text_out >(), pbrushParam);
+
+         }
+         else if (ppath->m_elementa[i]->m_etype == ::draw2d::path::type_draw_text)
+         {
+
+            fill(ppath->m_elementa[i].cast < ::draw2d::path::draw_text >(), pbrushParam);
 
          }
 
@@ -5106,12 +5141,12 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics::draw(const ::draw2d::path::string_path & path, ::draw2d::pen * ppen)
+   bool graphics::draw(::draw2d::path::text_out * ptextout, ::draw2d::pen * ppen)
    {
 
-      wstring szOutline(path.m_strText);
+      wstring szOutline(ptextout->m_strText);
 
-      IDWriteTextFormat * pformat = path.m_pfont->get_os_data < IDWriteTextFormat * > (this);
+      IDWriteTextFormat * pformat = ptextout->m_pfont->get_os_data < IDWriteTextFormat * > (this);
 
       IDWriteFactory * pfactory = global_draw_get_write_factory();
 
@@ -5139,19 +5174,19 @@ namespace draw2d_direct2d
 
       defer_text_rendering_hint();
 
-      playout->Draw(nullptr, &renderer, (FLOAT) path.m_x, (FLOAT) path.m_y);
+      playout->Draw(nullptr, &renderer, (FLOAT) ptextout->m_point.x, (FLOAT) ptextout->m_point.y);
 
       return true;
 
    }
 
 
-   bool graphics::fill(const ::draw2d::path::string_path & path, ::draw2d::brush * pbrush)
+   bool graphics::fill(::draw2d::path::text_out * ptextout, ::draw2d::brush * pbrush)
    {
 
-      wstring szOutline(path.m_strText);
+      wstring szOutline(ptextout->m_strText);
 
-      IDWriteTextFormat * pformat = path.m_pfont->get_os_data < IDWriteTextFormat * >(this);
+      IDWriteTextFormat * pformat = ptextout->m_pfont->get_os_data < IDWriteTextFormat * >(this);
 
       IDWriteFactory * pfactory = global_draw_get_write_factory();
 
@@ -5184,7 +5219,94 @@ namespace draw2d_direct2d
 
          defer_text_rendering_hint();
 
-         playout->Draw(nullptr, &renderer, (FLOAT)path.m_x, (FLOAT)path.m_y);
+         playout->Draw(nullptr, &renderer, (FLOAT)ptextout->m_point.x, (FLOAT)ptextout->m_point.y);
+
+      }
+
+      return true;
+
+   }
+
+
+   bool graphics::draw(::draw2d::path::draw_text* pdrawtext, ::draw2d::pen* ppen)
+   {
+
+      wstring szOutline(pdrawtext->m_strText);
+
+      IDWriteTextFormat* pformat = pdrawtext->m_pfont->get_os_data < IDWriteTextFormat* >(this);
+
+      IDWriteFactory* pfactory = global_draw_get_write_factory();
+
+      IDWriteTextLayout* playout = nullptr;
+
+      HRESULT hr = pfactory->CreateTextLayout(
+         szOutline,      // The string to be laid out and formatted.
+         (UINT32)szOutline.length(),  // The length of the string.
+         pformat,  // The text format to apply to the string (contains font information, etc).
+         4096,         // The width of the on_layout box.
+         4096,        // The height of the on_layout box.
+         &playout  // The IDWriteTextLayout interface pointer.
+      );
+
+      if (playout == nullptr)
+      {
+
+         return false;
+
+      }
+
+      CustomTextRenderer renderer(get_d2d1_factory1(), m_prendertarget.Get(), ppen->get_os_data < ID2D1Brush* >(this));
+
+      defer_text_primitive_blend();
+
+      defer_text_rendering_hint();
+
+      playout->Draw(nullptr, &renderer, (FLOAT)pdrawtext->m_rect.left, (FLOAT)pdrawtext->m_rect.top);
+
+      return true;
+
+   }
+
+
+   bool graphics::fill(::draw2d::path::draw_text * pdrawtext, ::draw2d::brush* pbrush)
+   {
+
+      wstring szOutline(pdrawtext->m_strText);
+
+      IDWriteTextFormat* pformat = pdrawtext->m_pfont->get_os_data < IDWriteTextFormat* >(this);
+
+      IDWriteFactory* pfactory = global_draw_get_write_factory();
+
+      IDWriteTextLayout* playout = nullptr;
+
+      HRESULT hr = pfactory->CreateTextLayout(
+         szOutline,      // The string to be laid out and formatted.
+         (UINT32)szOutline.length(),  // The length of the string.
+         pformat,  // The text format to apply to the string (contains font information, etc).
+         4096,         // The width of the on_layout box.
+         4096,        // The height of the on_layout box.
+         &playout  // The IDWriteTextLayout interface pointer.
+      );
+
+      if (playout == nullptr)
+      {
+
+         return false;
+
+      }
+
+      auto posbrush = pbrush->get_os_data < ID2D1Brush* >(this);
+
+      if (posbrush)
+      {
+
+         CustomTextRenderer renderer(get_d2d1_factory1(), m_prendertarget.Get(), nullptr, posbrush);
+
+         defer_text_primitive_blend();
+
+         defer_text_rendering_hint();
+
+         playout->Draw(nullptr, &renderer, (FLOAT)pdrawtext->m_rect.left, (FLOAT)pdrawtext->m_rect.top);
 
       }
 

@@ -901,10 +901,22 @@ namespace draw2d
    }
 
 
-   bool path::add_line(const pointd & point1, const pointd & point2)
+   bool path::add_line(const pointd & pointBeg, const pointd & pointEnd)
    {
 
-      return add_line(point1.x, point1.y, point2.x, point2.y);
+      auto pline = __new(line);
+
+      pline->m_pointBeg = pointBeg;
+
+      pline->m_pointEnd = pointEnd;
+
+      m_elementa.add(pline);
+
+      m_pointBeg = pline->m_pointBeg;
+
+      m_pointEnd = pline->m_pointEnd;
+
+      return true;
 
    }
 
@@ -912,7 +924,19 @@ namespace draw2d
    bool path::add_line(const pointd & point)
    {
 
-      return add_line(point.x,point.y);
+      auto pline = __new(line);
+
+      pline->m_pointBeg = m_pointEnd;
+
+      pline->m_pointEnd = point;
+
+      m_elementa.add(pline);
+
+      m_pointBeg = pline->m_pointBeg;
+
+      m_pointEnd = pline->m_pointEnd;
+
+      return true;
 
    }
 

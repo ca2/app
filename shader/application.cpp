@@ -3,7 +3,7 @@
 #include "aura/update.h"
 
 
-namespace simple_shader
+namespace app_shader
 {
 
 
@@ -37,7 +37,7 @@ namespace simple_shader
 
       set_local_data();
 
-      create_factory <::simple_shader::window >();
+      create_factory <::app_shader::window >();
 
     
 
@@ -113,7 +113,7 @@ namespace simple_shader
    __namespace_application_factory("app/shader");
 
 
-} // namespace simple_shader
+} // namespace app_shader
 
 
 

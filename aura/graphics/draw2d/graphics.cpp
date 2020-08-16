@@ -21,6 +21,8 @@ namespace draw2d
    graphics::graphics()
    {
 
+      m_bOutline = false;
+
       defer_create_mutex();
 
       m_puserinteraction         = nullptr;

@@ -19,7 +19,7 @@ namespace draw2d
    }
 
 
-   void object::dump(dump_context & dumpcontext) const
+   void object::dump(dump_context& dumpcontext) const
    {
 
       UNREFERENCED_PARAMETER(dumpcontext);
@@ -39,22 +39,40 @@ namespace draw2d
 
    bool object::CreateStockObject(i32 nIndex)
    {
-      
+
       ::exception::throw_interface_only();
-      
+
       return false;
 
    }
 
-   
+
    bool object::UnrealizeObject()
    {
-      
+
       ::exception::throw_interface_only();
-      
+
       return false;
 
    }
+
+
+ /*  void* object::get_os_data(::draw2d::graphcis* pgraphics, ::index i)
+   {
+
+      if (!m_bUpdated2 || !m_osdata[0])
+      {
+
+         defer_update(pgraphics);
+
+      }
+
+
+   }
+
+   return (POINTER)get_os_data(pgraphics, i);
+
+}*/
 
    
    UINT object::GetObjectType() const
@@ -91,10 +109,10 @@ namespace draw2d
    }
 
 
-   void object::defer_update(::draw2d::graphics* pgraphics) const
+   void object::defer_update(::draw2d::graphics* pgraphics, ::index i) const
    {
 
-      if(is_modified())
+      if(is_modified() || !m_osdata[i])
       {
 
          ::draw2d::object* pthis = (::draw2d::object*) this;
@@ -103,7 +121,7 @@ namespace draw2d
 
          pthis->clear_os_data();
 
-         if (pthis->create(pgraphics))
+         if (pthis->create(pgraphics, i))
          {
 
             pthis->set_updated();
@@ -115,7 +133,7 @@ namespace draw2d
    }
 
 
-   bool object::create(::draw2d::graphics* pgraphics)
+   bool object::create(::draw2d::graphics* pgraphics, ::index iCreate)
    {
 
       return true;

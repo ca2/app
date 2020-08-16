@@ -4,6 +4,13 @@
 namespace draw2d_direct2d
 {
 
+   enum e_path
+   {
+
+      path_hollow,
+      path_filled
+
+   };
 
    class CLASS_DECL_DRAW2D_DIRECT2D graphics_path :
       virtual public ::draw2d::path,
@@ -12,17 +19,20 @@ namespace draw2d_direct2d
    public:
 
 
+      Microsoft::WRL::ComPtr<ID2D1PathGeometry>          m_ppathHollow;
+      Microsoft::WRL::ComPtr<ID2D1PathGeometry>          m_ppathFilled;
       Microsoft::WRL::ComPtr<ID2D1PathGeometry>          m_ppath;
       Microsoft::WRL::ComPtr<ID2D1GeometrySink>          m_psink;
       bool                                               m_bFigureOpened;
       ::point                                            m_point;
+      D2D1_FIGURE_BEGIN                                  m_d2d2figurebegin;
 
 
       graphics_path();
       virtual ~graphics_path();
 
 
-      virtual bool create(::draw2d::graphics * pgraphics) override;
+      virtual bool create(::draw2d::graphics * pgraphics, ::index iCreate) override;
       virtual void destroy() override;
 
 

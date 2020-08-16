@@ -881,7 +881,7 @@ void font::destroy()
          
          m_bTextMetric = false;
          
-         defer_update(pgraphics);
+         defer_update(pgraphics, 0);
          
       }
       

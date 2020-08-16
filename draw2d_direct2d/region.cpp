@@ -102,7 +102,7 @@ namespace draw2d_direct2d
    bool region::contains(::draw2d::graphics* pgraphics, int x, int y) const
    {
 
-      ((region *) this)->defer_update(pgraphics);
+      ((region *) this)->defer_update(pgraphics, 0);
 
       BOOL b = FALSE;
 
@@ -157,7 +157,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool region::create(::draw2d::graphics* pgraphics)
+   bool region::create(::draw2d::graphics* pgraphics, ::index iCreate)
    {
 
       m_osdata[0] = get(pgraphics);

@@ -360,14 +360,52 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics_path::create(::draw2d::graphics* pgraphicsParam)
+   bool graphics_path::create(::draw2d::graphics* pgraphicsParam, ::index iCreate)
    {
 
       auto pgraphics = __graphics(pgraphicsParam);
 
-      m_ppath = nullptr;
+      HRESULT hr = S_OK;
 
-      HRESULT hr = ::get_d2d1_factory1()->CreatePathGeometry(&m_ppath);
+      if (pgraphics->m_bOutline)
+      {
+
+         if (iCreate == path_hollow)
+         {
+
+            if (m_ppathHollow.Get())
+            {
+
+               m_osdata[path_hollow] = m_ppathHollow.Get();
+
+               return m_osdata[path_hollow] != nullptr;
+
+            }
+
+         }
+
+         hr = ::get_d2d1_factory1()->CreatePathGeometry(&m_ppathHollow);
+
+         m_ppath = m_ppathHollow;
+
+      }
+      else
+      {
+
+         if (m_ppathHollow.Get())
+         {
+
+            m_osdata[path_filled] = m_ppathFilled.Get();
+
+            return m_osdata[path_filled] != nullptr;
+
+         }
+
+         hr = ::get_d2d1_factory1()->CreatePathGeometry(&m_ppathFilled);
+         
+         m_ppath = m_ppathFilled;
+
+      }
 
       ::draw2d_direct2d::throw_if_failed(hr);
 
@@ -399,7 +437,7 @@ namespace draw2d_direct2d
          
          m_psink->Close();
 
-         m_osdata[0] = m_ppath.Get();
+         m_osdata[iCreate] = m_ppath.Get();
 
       }
       else
@@ -411,7 +449,7 @@ namespace draw2d_direct2d
 
       m_psink = nullptr;
 
-      return m_osdata[0] != nullptr;
+      return m_ppath.Get() != nullptr;
 
    }
 
@@ -419,7 +457,7 @@ namespace draw2d_direct2d
    void * graphics_path::detach(::draw2d::graphics* pgraphicsParam)
    {
 
-      defer_update(pgraphicsParam);
+      defer_update(pgraphicsParam, 0);
 
       return m_ppath.Detach();
 
@@ -432,6 +470,10 @@ namespace draw2d_direct2d
       m_psink = nullptr;
 
       m_ppath = nullptr;
+
+      m_ppathHollow = nullptr;
+
+      m_ppathFilled = nullptr;
 
    }
 

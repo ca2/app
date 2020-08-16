@@ -472,7 +472,7 @@ SizingNone:;
                   if(Session.savings().is_trying_to_save(::aura::resource_processing))
                   {
 
-                     pgraphics->fill_solid_rect(rectDraw, crTopLeft);
+                     pgraphics->fill_rect(rectDraw, crTopLeft);
 
                   }
                   else
@@ -491,7 +491,7 @@ SizingNone:;
                   if(Session.savings().is_trying_to_save(::aura::resource_processing))
                   {
 
-                     pgraphics->fill_solid_rect(rectDraw, crTopLeft);
+                     pgraphics->fill_rect(rectDraw, crTopLeft);
 
                   }
                   else
@@ -511,7 +511,7 @@ SizingNone:;
                   if(Session.savings().is_trying_to_save(::aura::resource_processing))
                   {
 
-                     pgraphics->fill_solid_rect(rectDraw, crBottomRight);
+                     pgraphics->fill_rect(rectDraw, crBottomRight);
 
                   }
                   else
@@ -531,7 +531,7 @@ SizingNone:;
                   if(Session.savings().is_trying_to_save(::aura::resource_processing))
                   {
 
-                     pgraphics->fill_solid_rect(rectDraw, crBottomRight);
+                     pgraphics->fill_rect(rectDraw, crBottomRight);
 
                   }
                   else
@@ -711,7 +711,7 @@ SizingNone:;
                rect.left++;
                rect.right--;
 
-               pgraphics->fill_solid_rect(rect, Session.get_default_color(COLOR_BTNFACE));
+               pgraphics->fill_rect(rect, Session.get_default_color(COLOR_BTNFACE));
 
             }
 

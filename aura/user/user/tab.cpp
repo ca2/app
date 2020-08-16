@@ -706,7 +706,7 @@ namespace user
                   path->add_line(rectClient.left, rectBorder.top);
                   path->add_line(rectBorder.right, rectBorder.top);
 
-                  path->end_figure(false);
+                  path->close_figure();
 
                   pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 235, 235, 230), ARGB(250, 255, 255, 250));
 
@@ -734,7 +734,7 @@ namespace user
                   path->add_line(rectBorder.right, rectBorder.top);
                   path->add_line(rectBorder.right, rectBorder.bottom);
 
-                  path->end_figure(true);
+                  path->close_figure();
 
                   if (m_itemHover == iTab && m_itemHover != ::user::element_close_tab_button && !m_itemHover.in_range(::user::element_split, 100))
                   {
@@ -806,7 +806,7 @@ namespace user
 
                   path->add_line(rectBorder.right - 1, rectClient.bottom);
 
-                  path->end_figure(false);
+                  path->close_figure();
 
                   pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 235, 235, 230), ARGB(250, 255, 255, 250));
 
@@ -838,7 +838,7 @@ namespace user
 
                   path->add_line(rectBorder.right - 1, rectClient.bottom);
 
-                  path->end_figure(true);
+                  path->close_figure();
 
                   if (m_itemHover == iTab  && m_itemHover != ::user::element_close_tab_button && !m_itemHover.in_range(::user::element_split, 100))
                   {
@@ -947,7 +947,7 @@ namespace user
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      pgraphics->fill_solid_rect(get_data()->m_rectTab, ARGB(0xc0, 250, 255, 255));
+      pgraphics->fill_rect(get_data()->m_rectTab, ARGB(0xc0, 250, 255, 255));
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
 

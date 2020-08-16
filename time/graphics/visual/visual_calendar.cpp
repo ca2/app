@@ -74,7 +74,7 @@ namespace visual
          crBorder = RGB(90, 90, 80);
          GetRectDay(timeNow,rectDay);
          rectDay.inflate(m_iColWidth / 10,m_iColWidth / 10);
-         pgraphics->fill_solid_rect(rectDay,RGB(220,220,210));
+         pgraphics->fill_rect(rectDay,RGB(220,220,210));
          pgraphics->draw3d_rect(rectDay,crBorder);
          rectDay.deflate(1,1);
          pgraphics->draw3d_rect(rectDay,crBorder);

@@ -333,7 +333,7 @@ namespace user
 
          rectBackground += m_pointScroll;
 
-         pgraphics->fill_solid_rect(rectBackground, colorBackground);
+         pgraphics->fill_rect(rectBackground, colorBackground);
 
       }
 

@@ -191,7 +191,7 @@ namespace user
    }
 
 
-   bool image_list::get_rect(::rect & rect, const ::user::item & item)
+   bool image_list::get_rect(::user::item & item)
    {
 
       if (item == ::user::element_item)
@@ -261,13 +261,13 @@ namespace user
 
          }
 
-         rect.left = x;
+         item.m_rect.left = x;
 
-         rect.right = x + w;
+         item.m_rect.right = x + w;
 
-         rect.top = y;
+         item.m_rect.top = y;
 
-         rect.bottom = y + h + text_height;
+         item.m_rect.bottom = y + h + text_height;
 
          return true;
 
@@ -275,17 +275,23 @@ namespace user
       else if (item == ::user::element_icon)
       {
 
-         if (!get_rect(rect, { element_item, item.m_iItem } ))
          {
 
-            return false;
+            __stack(item.m_eelement, element_item);
+
+            if (!get_rect(item))
+            {
+
+               return false;
+
+            }
 
          }
 
          if (!m_bNoName)
          {
 
-            rect.bottom -= m_iTextHeight;
+            item.m_rect.bottom -= m_iTextHeight;
 
          }
 
@@ -302,14 +308,20 @@ namespace user
 
          }
 
-         if (!get_rect(rect, { element_item, item.m_iItem }))
          {
 
-            return false;
+            __stack(item.m_eelement, element_item);
+
+            if (!get_rect(item))
+            {
+
+               return false;
+
+            }
 
          }
 
-         rect.top += m_size.cy;
+         item.m_rect.top += m_size.cy;
 
          return true;
 
@@ -325,18 +337,16 @@ namespace user
 
       ::count c = m_imagea.get_count();
 
-      ::rect rect;
-
       for (index i = 0; i < c; i++)
       {
 
-         if (get_rect(rect, i))
+         item = i;
+
+         if (get_rect(item))
          {
 
-            if (rect.contains(item.m_pointHitTest))
+            if (item.m_rect.contains(item.m_pointHitTest))
             {
-
-               item = i;
 
                return;
 
@@ -345,6 +355,8 @@ namespace user
          }
 
       }
+
+      item = -1;
 
       item = ::user::element_none;
 
@@ -364,9 +376,9 @@ namespace user
 
       rectClient.offset(m_pointScroll);
 
-      pgraphics->fill_solid_rect(rectClient, get_color(pstyle, element_background));
+      pgraphics->fill_rect(rectClient, get_color(pstyle, element_background));
 
-      pgraphics->draw3d_rect(rectClient, ARGB(255, 192, 192, 192));
+      pgraphics->draw_rect(rectClient, ARGB(255, 192, 192, 192));
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
@@ -375,17 +387,17 @@ namespace user
       for (::user::item item = 0; item.m_iItem < cCount; item.m_iItem++)
       {
 
-         ::rect rectText;
+         ::user::item itemText;
 
          ::rect rectSel;
 
-         item = element_text;
+         itemText = element_text;
 
-         bool bRectText = get_rect(rectText, item);
+         bool bRectText = get_rect(itemText);
 
          item = element_icon;
 
-         if (get_rect(rect, item))
+         if (get_rect(item))
          {
 
             ::image_pointer pimageSrc = m_imagea[item];
@@ -445,7 +457,7 @@ namespace user
                if (!m_bNoName)
                {
 
-                  rectSel.bottom = rectText.bottom;
+                  rectSel.bottom = itemText.m_rect.bottom;
 
                }
 
@@ -515,7 +527,7 @@ namespace user
                if (bSel || bHover)
                {
 
-                  pgraphics->fill_solid_rect(rectSel, crSel);
+                  pgraphics->fill_rect(rectSel, crSel);
 
                }
 
@@ -527,11 +539,11 @@ namespace user
 
                   rectImage.inflate(1, 1);
 
-                  pgraphics->draw3d_rect(rectSel, crBorder);
+                  pgraphics->draw_rect(rectSel, crBorder);
 
                   rectImage.inflate(1, 1);
 
-                  pgraphics->draw3d_rect(rectSel, crBorder);
+                  pgraphics->draw_rect(rectSel, crBorder);
 
                }
 
@@ -549,7 +561,7 @@ namespace user
 
                pgraphics->set_text_color(get_color(pstyle, element_text));
 
-               pgraphics->draw_text(str, rectText, DT_CENTER | DT_VCENTER);
+               pgraphics->draw_text(str, itemText.m_rect, DT_CENTER | DT_VCENTER);
 
             }
 
@@ -580,19 +592,19 @@ namespace user
       for (index i = 0; i < m_imagea.get_count(); i++)
       {
 
-         ::rect rect;
+         ::user::item item(element_item, i);
 
-         if (get_rect(rect, { element_item, i }))
+         if (get_rect(item))
          {
 
             if (i == 0)
             {
 
-               sizeImage = rect.size();
+               sizeImage = item.m_rect;
 
             }
 
-            rectTotal.unite(rectTotal, rect);
+            rectTotal.unite(rectTotal, item.m_rect);
 
          }
 

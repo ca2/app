@@ -751,7 +751,7 @@ namespace userex
 
       r1.set_size(m_rectColors.right - r1.left, m_pimage->height());
 
-      pgraphics->fill_solid_rect(r1, get_color());
+      pgraphics->fill_rect(r1, get_color());
 
       int y = (int) (rectLum1.top + (1.0 - m_hls.m_dL)  * rectLum1.height());
 

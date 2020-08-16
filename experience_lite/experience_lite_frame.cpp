@@ -594,13 +594,13 @@
                   if (m_pframewindow->GetWndDraw()->is_active() && m_crActiveCaptionTextBk != 0)
                   {
 
-                     pgraphics->fill_solid_rect(m_rectCaptionTextBk, m_crActiveCaptionTextBk);
+                     pgraphics->fill_rect(m_rectCaptionTextBk, m_crActiveCaptionTextBk);
 
                   }
                   else
                   {
 
-                     pgraphics->fill_solid_rect(m_rectCaptionTextBk, m_crCaptionTextBk);
+                     pgraphics->fill_rect(m_rectCaptionTextBk, m_crCaptionTextBk);
 
                   }
 

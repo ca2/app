@@ -83,7 +83,7 @@ namespace filemanager
          dProgressU = dProgressL + dProgressD;
          if(dProgress < dProgressU)
          {
-            pgraphics->fill_solid_rect(rectProgress,RGB(255,240,200));
+            pgraphics->fill_rect(rectProgress,RGB(255,240,200));
          }
          if(dProgress > dProgressL)
          {

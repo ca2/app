@@ -5265,12 +5265,12 @@ namespace aura
                pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
                if (ptab->m_itemHover == (::user::e_element)(::user::element_split + i))
                {
-                  pgraphics->fill_solid_rect(rectEmp, ARGB(128, 150, 184, 255));
+                  pgraphics->fill_rect(rectEmp, ARGB(128, 150, 184, 255));
                   pgraphics->set(ptab->get_data()->m_brushTextHover);
                }
                else
                {
-                  //pgraphics->fill_solid_rect(rectEmp,ARGB(128,208,223,233));
+                  //pgraphics->fill_rect(rectEmp,ARGB(128,208,223,233));
                   pgraphics->set(ptab->get_data()->m_brushText);
                }
                pgraphics->set(ptab->m_pfontTab);

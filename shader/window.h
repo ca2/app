@@ -6,7 +6,7 @@ namespace simple_shader
 
 
    class CLASS_DECL_APP_SHADER window :
-      virtual public ::user::interaction
+      virtual public ::user::main_window
    {
    public:
 
@@ -19,14 +19,6 @@ namespace simple_shader
       window();
       virtual ~window();
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
-
-
-#ifdef DEBUG
-      virtual int64_t add_ref(OBJ_REF_DBG_PARAMS) override;
-      virtual int64_t dec_ref(OBJ_REF_DBG_PARAMS) override;
-#endif
 
 
       virtual void install_message_routing(::channel * psender) override;
@@ -43,10 +35,12 @@ namespace simple_shader
 
       virtual bool keyboard_focus_is_focusable() override;
 
-      virtual bool on_click(const ::user::item& item);
+      virtual ::user::e_translucency get_translucency(::user::style* pstyle) const override;
 
 
       void update_shader();
+
+      virtual bool on_click(const ::user::item& item);
 
 
    };

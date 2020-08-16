@@ -2227,7 +2227,7 @@ void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::grap
 
       get_client_rect(rectClient);
 
-      pgraphics->fill_solid_rect(rectClient, RGB(0, 0, 0));
+      pgraphics->fill_rect(rectClient, RGB(0, 0, 0));
 
    }
    else
@@ -2453,7 +2453,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
       if(Session.savings().is_trying_to_save(::aura::resource_translucent_background))
       {
 
-         //pgraphics->fill_solid_rect(rectClient, RGB(150, 220, 140));
+         //pgraphics->fill_rect(rectClient, RGB(150, 220, 140));
 
       }
       else if(Session.savings().is_trying_to_save(::aura::resource_processing)

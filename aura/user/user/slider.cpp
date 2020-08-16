@@ -214,13 +214,13 @@ namespace user
 
       byte bAlpha = (byte) (220.0* get_alpha());
 
-      pgraphics->draw3d_rect(rect,ARGB(bAlpha / 255,84 + 23,77+23,184+ 23),ARGB(bAlpha,84,77,184));
+      pgraphics->draw_3drect(rect,ARGB(bAlpha / 255,108,100,210),ARGB(bAlpha,90,70,180));
       rect.deflate(1,1);
-      pgraphics->draw3d_rect(rect,ARGB(bAlpha / 255,177 -13- 49,184 -13- 49,200 - 49),ARGB(bAlpha,177-49 - 49,184-49 - 49,200-49));
+      pgraphics->draw_3drect(rect,ARGB(bAlpha / 255,150,120,150),ARGB(bAlpha,60,80,150));
       rect.deflate(1,1);
-      pgraphics->draw3d_rect(rect,ARGB(bAlpha / 255,84+23,77+23,184+23),ARGB(bAlpha,84,77,184));
+      pgraphics->draw_3drect(rect,ARGB(bAlpha / 255,108,100,210),ARGB(bAlpha,90,70,180));
       rect.deflate(1,1);
-      pgraphics->fill_solid_rect(rect,ARGB(bAlpha1,140,77 + 49,1140));
+      pgraphics->fill_rect(rect,ARGB(bAlpha1,140,108,120));
       //if(m_bSlide)
       //{
       //   pgraphics->move_to(rect.center());

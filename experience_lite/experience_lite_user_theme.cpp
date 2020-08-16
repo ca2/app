@@ -91,7 +91,7 @@ namespace lite
       ::rect r1;
       ptab->get_client_rect(r1);
 
-      pgraphics->fill_solid_rect(r1, ARGB(255, 255, 255, 255));
+      pgraphics->fill_rect(r1, ARGB(255, 255, 255, 255));
 
       ptab->get_data()->m_pen->create_solid(1,RGB(32,32,32));
 
@@ -119,11 +119,11 @@ namespace lite
 
       COLORREF crbk = ptab->_001GetColor(::user::color_tab_layout_background);
 
-      pgraphics->fill_solid_rect(rcTabs, crbk);
+      pgraphics->fill_rect(rcTabs, crbk);
 
       crbk= ptab->_001GetColor(::user::color_tab_client_background);
 
-      pgraphics->fill_solid_rect(rcClient, crbk);
+      pgraphics->fill_rect(rcClient, crbk);
 
       i32 iTab = -1;
 
@@ -504,7 +504,7 @@ namespace lite
                pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
                if(ptab->m_eelementHover == (int)::user::element_split + i)
                {
-                  pgraphics->fill_solid_rect(rectEmp,ARGB(128,149,184,255));
+                  pgraphics->fill_rect(rectEmp,ARGB(128,149,184,255));
                   pgraphics->SelectObject(ptab->get_data()->m_brushTextHover);
                }
                else
@@ -1070,7 +1070,7 @@ namespace lite
 
                ptoolbar->_001GetElementRect(iItem, rectItem, ::user::toolbar::element_item);
 
-               pgraphics->fill_solid_rect(rectItem, ARGB(184, 255, 255, 255));
+               pgraphics->fill_rect(rectItem, ARGB(184, 255, 255, 255));
 
             }
 
@@ -1377,7 +1377,7 @@ namespace lite
 
                ptoolbar->_001GetElementRect(iItem, rectItem, ::user::toolbar::element_item);
 
-               pgraphics->fill_solid_rect(rectItem, _001GetColor(::user::color_button_background));
+               pgraphics->fill_rect(rectItem, _001GetColor(::user::color_button_background));
 
             }
 
@@ -1494,7 +1494,7 @@ namespace lite
 
       psplitlayout->get_client_rect(rectClient);
 
-      pgraphics->fill_solid_rect(rectClient, ARGB(255, 255, 255, 255));
+      pgraphics->fill_rect(rectClient, ARGB(255, 255, 255, 255));
 
       return true;
 

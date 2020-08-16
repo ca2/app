@@ -323,7 +323,7 @@ namespace user
       }
       else
       {
-         pgraphics->fill_solid_rect(rectClient, crBk);
+         pgraphics->fill_rect(rectClient, crBk);
       }
 
 
@@ -519,7 +519,7 @@ namespace user
 
             pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            pgraphics->fill_solid_rect(rectClient, colorBack);
+            pgraphics->fill_rect(rectClient, colorBack);
 
          }
 
@@ -548,7 +548,7 @@ namespace user
 
             pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            pgraphics->fill_solid_rect(rectClient, crBackground);
+            pgraphics->fill_rect(rectClient, crBackground);
 
          }
 

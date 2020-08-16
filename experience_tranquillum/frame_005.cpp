@@ -486,7 +486,7 @@ SizingNone:;
                   if(Session.savings().is_trying_to_save(::aura::resource_processing))
                   {
 
-                     pgraphics->fill_solid_rect(rectDraw, crTopLeft);
+                     pgraphics->fill_rect(rectDraw, crTopLeft);
 
                   }
                   else
@@ -505,7 +505,7 @@ SizingNone:;
                   if(Session.savings().is_trying_to_save(::aura::resource_processing))
                   {
 
-                     pgraphics->fill_solid_rect(rectDraw, crTopLeft);
+                     pgraphics->fill_rect(rectDraw, crTopLeft);
 
                   }
                   else
@@ -525,7 +525,7 @@ SizingNone:;
                   if(Session.savings().is_trying_to_save(::aura::resource_processing))
                   {
 
-                     pgraphics->fill_solid_rect(rectDraw, crBottomRight);
+                     pgraphics->fill_rect(rectDraw, crBottomRight);
 
                   }
                   else
@@ -545,7 +545,7 @@ SizingNone:;
                   if(Session.savings().is_trying_to_save(::aura::resource_processing))
                   {
 
-                     pgraphics->fill_solid_rect(rectDraw, crBottomRight);
+                     pgraphics->fill_rect(rectDraw, crBottomRight);
 
                   }
                   else
@@ -717,21 +717,21 @@ SizingNone:;
 
                ::rect rect(rectParam);
 
-               pgraphics->draw3d_rect(rect, Session.get_default_color(COLOR_BTNFACE), Session.get_default_color(COLOR_3DDKSHADOW));
+               pgraphics->draw_3drect(rect, Session.get_default_color(COLOR_BTNFACE), Session.get_default_color(COLOR_3DDKSHADOW));
 
                rect.top++;
                rect.bottom--;
                rect.left++;
                rect.right--;
 
-               pgraphics->draw3d_rect(rect, Session.get_default_color(COLOR_BTNHILIGHT), Session.get_default_color(COLOR_BTNSHADOW));
+               pgraphics->draw_3drect(rect, Session.get_default_color(COLOR_BTNHILIGHT), Session.get_default_color(COLOR_BTNSHADOW));
 
                rect.top++;
                rect.bottom--;
                rect.left++;
                rect.right--;
 
-               pgraphics->fill_solid_rect(rect, Session.get_default_color(COLOR_BTNFACE));
+               pgraphics->fill_rect(rect, Session.get_default_color(COLOR_BTNFACE));
 
             }
 

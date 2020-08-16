@@ -242,6 +242,8 @@ namespace user
       element_margin_bottom,
       element_window_title,
       element_image,
+      element_close_button,
+      element_close_icon,
 
 
       element_split = 10'000,
@@ -269,6 +271,8 @@ namespace user
 
    enum e_event
    {
+
+      event_none,
       event_initialize_control,
       event_action,
       event_button_down,
@@ -304,6 +308,7 @@ namespace user
       event_image_list_action,
       event_load_form_data,
       event_save_form_data,
+      event_close_app,
 
    };
 

@@ -163,20 +163,20 @@ namespace user
          if (echeck == ::check_tristate)
          {
 
-            pgraphics->fill_solid_rect(rectCheckBox, ARGB(255, 220, 220, 220));
+            pgraphics->fill_rect(rectCheckBox, ARGB(255, 220, 220, 220));
 
          }
 
          if (drawcontext.m_bListItemHover)
          {
 
-            pgraphics->draw3d_rect(rectCheckBox, ARGB(255, 60, 120, 200));
+            pgraphics->draw_rect(rectCheckBox, ARGB(255, 60, 120, 200));
 
          }
          else
          {
 
-            pgraphics->draw3d_rect(rectCheckBox, ARGB(255, 128, 128, 128));
+            pgraphics->draw_rect(rectCheckBox, ARGB(255, 128, 128, 128));
 
          }
 
@@ -313,7 +313,7 @@ namespace user
 
       auto rectR = rect_dim(h-2, 1, h-2, h-2);
 
-      point->add_arc(rectL, -90.0, -180.0);
+      point->add_arc(rectL, -90_degree, -180_degree);
 
       point->add_line((rectL.left + rectL.right) / 2, rectL.bottom);
 
@@ -325,7 +325,7 @@ namespace user
 
       point->add_line((rectL.left + rectL.right) / 2, rectL.top);
 
-      point->end_figure(true);
+      point->close_figure();
 
       ::draw2d::pen_pointer point1(e_create);
 

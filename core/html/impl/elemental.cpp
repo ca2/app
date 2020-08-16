@@ -778,7 +778,7 @@ namespace html
 //               if(m_pelemental->get_color(cr,::user::color_background, &style))
 //               {
 //
-//                  pgraphics->fill_solid_rect(rect, cr);
+//                  pgraphics->fill_rect(rect, cr);
 //
 //               }
 //

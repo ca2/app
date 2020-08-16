@@ -481,12 +481,12 @@ SizingNone:;
                   rectA.right = 4;
                   rectA.bottom = size;
 
-                  pgraphics->fill_solid_rect(rectA, RGB(0x60, 0x65, 0x55));
+                  pgraphics->fill_rect(rectA, RGB(0x60, 0x65, 0x55));
 
                   rectA.right = size;
                   rectA.bottom = 4;
 
-                  pgraphics->fill_solid_rect(rectA, RGB(0x60, 0x65, 0x55));
+                  pgraphics->fill_rect(rectA, RGB(0x60, 0x65, 0x55));
 
                }
                break;
@@ -497,12 +497,12 @@ SizingNone:;
                   rectA.left = rectA.right - 4;
                   rectA.bottom = size;
 
-                  pgraphics->fill_solid_rect(rectA, RGB(0x60, 0x65, 0x55));
+                  pgraphics->fill_rect(rectA, RGB(0x60, 0x65, 0x55));
 
                   rectA.left = rectA.right - size;
                   rectA.bottom = 4;
 
-                  pgraphics->fill_solid_rect(rectA, RGB(0x60, 0x65, 0x55));
+                  pgraphics->fill_rect(rectA, RGB(0x60, 0x65, 0x55));
                }
                break;
                case grip_bottom_left:
@@ -512,12 +512,12 @@ SizingNone:;
                   rectA.right = 4;
                   rectA.top = rectA.bottom - size;
 
-                  pgraphics->fill_solid_rect(rectA, RGB(0x60, 0x65, 0x55));
+                  pgraphics->fill_rect(rectA, RGB(0x60, 0x65, 0x55));
 
                   rectA.right = size;
                   rectA.top = rectA.bottom - 4;
 
-                  pgraphics->fill_solid_rect(rectA, RGB(0x60, 0x65, 0x55));
+                  pgraphics->fill_rect(rectA, RGB(0x60, 0x65, 0x55));
                }
                break;
                case grip_bottom_right:
@@ -527,12 +527,12 @@ SizingNone:;
                   rectA.left = rectA.right - 4;
                   rectA.top = rectA.bottom - size;
 
-                  pgraphics->fill_solid_rect(rectA, RGB(0x60, 0x65, 0x55));
+                  pgraphics->fill_rect(rectA, RGB(0x60, 0x65, 0x55));
 
                   rectA.left = rectA.right - size;
                   rectA.top = rectA.bottom - 4;
 
-                  pgraphics->fill_solid_rect(rectA, RGB(0x60, 0x65, 0x55));
+                  pgraphics->fill_rect(rectA, RGB(0x60, 0x65, 0x55));
                }
                break;
                case grip_top:
@@ -543,7 +543,7 @@ SizingNone:;
                   rectA.right = rectA.left + size;
                   rectA.bottom = 4;
 
-                  pgraphics->fill_solid_rect(rectA, RGB(0x60, 0x65, 0x55));
+                  pgraphics->fill_rect(rectA, RGB(0x60, 0x65, 0x55));
 
                }
                break;
@@ -555,7 +555,7 @@ SizingNone:;
                   rectA.right = rectA.left + size;
                   rectA.top = rectA.bottom - 4;
 
-                  pgraphics->fill_solid_rect(rectA, RGB(0x60, 0x65, 0x55));
+                  pgraphics->fill_rect(rectA, RGB(0x60, 0x65, 0x55));
                }
                break;
                case grip_left:
@@ -566,7 +566,7 @@ SizingNone:;
                   rectA.top = rectA.top + rectA.height() / 2 - size / 2;
                   rectA.bottom = rectA.top + size;
 
-                  pgraphics->fill_solid_rect(rectA, RGB(0x60, 0x65, 0x55));
+                  pgraphics->fill_rect(rectA, RGB(0x60, 0x65, 0x55));
                }
                break;
                case grip_right:
@@ -577,7 +577,7 @@ SizingNone:;
                   rectA.top = rectA.top + rectA.height() / 2 - size / 2;
                   rectA.bottom = rectA.top + size;
 
-                  pgraphics->fill_solid_rect(rectA, RGB(0x60, 0x65, 0x55));
+                  pgraphics->fill_rect(rectA, RGB(0x60, 0x65, 0x55));
                }
                break;
                default:
@@ -608,7 +608,7 @@ SizingNone:;
                rect.left++;
                rect.right--;
 
-               pgraphics->fill_solid_rect(rect, Session.get_default_color(COLOR_BTNFACE));
+               pgraphics->fill_rect(rect, Session.get_default_color(COLOR_BTNFACE));
 
             }
 

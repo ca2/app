@@ -3137,7 +3137,7 @@ namespace draw2d_opengl
       ::ExtTextOut(m_hdc, 0, 0, ETO_OPAQUE, rect, nullptr, 0, nullptr);
    }*/
 
-   /*void graphics::fill_solid_rect(const rectd & rect, COLORREF clr)
+   /*void graphics::fill_rect(const rectd & rect, COLORREF clr)
    {
       ::rect rect32;
       __copy(rect32, rect);
@@ -4890,7 +4890,7 @@ namespace draw2d_opengl
    }
 
 
-   void graphics::fill_solid_rect(const rectd& rect, COLORREF cr)
+   void graphics::fill_rect(const rectd& rect, COLORREF cr)
    {
 
       try
@@ -5148,7 +5148,7 @@ namespace draw2d_opengl
 //   }
 
 
-   //void graphics::fill_solid_rect(const rectd& rect, COLORREF cr)
+   //void graphics::fill_rect(const rectd& rect, COLORREF cr)
    //{
 
 

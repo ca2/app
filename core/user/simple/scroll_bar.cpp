@@ -1306,13 +1306,13 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
       if (Session.savings().is_trying_to_save(::aura::resource_processing))
       {
 
-         pgraphics->fill_solid_rect(rectClient, RGB(255, 255, 255));
+         pgraphics->fill_rect(rectClient, RGB(255, 255, 255));
 
       }
       else
       {
 
-         pgraphics->fill_solid_rect(rectClient, ARGB(255, 240, 240, 240));
+         pgraphics->fill_rect(rectClient, ARGB(255, 240, 240, 240));
 
       }
 
@@ -1686,7 +1686,7 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
 
             rectd r(x - iSize, y - iSize, x + iSize, y + iSize);
 
-            m_pimageDots->g()->fill_solid_rect(r, ARGB(80, 0, 0, 0));
+            m_pimageDots->g()->fill_rect(r, ARGB(80, 0, 0, 0));
 
             y += m_pimageDots->height() / (iDiv2 + 1.0);
 

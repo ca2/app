@@ -87,7 +87,7 @@ namespace user
          //   if(m_iHover == 0 || Session.m_puiLastLButtonDown == this)
          //   {
 
-         //      pgraphics->fill_solid_rect(rectClient,ARGB(255,127,127,127));
+         //      pgraphics->fill_rect(rectClient,ARGB(255,127,127,127));
 
          //      pgraphics->set_text_color(ARGB(255,0,100,255));
 
@@ -95,7 +95,7 @@ namespace user
          //   else
          //   {
 
-         //      pgraphics->fill_solid_rect(rectClient,ARGB(255,127,127,127));
+         //      pgraphics->fill_rect(rectClient,ARGB(255,127,127,127));
 
          //      pgraphics->set_text_color(ARGB(255,0,0,0));
 
@@ -107,7 +107,7 @@ namespace user
             if (!is_window_enabled())
             {
 
-               pgraphics->fill_solid_rect(rectClient, _001GetColor(color_background_disabled));
+               pgraphics->fill_rect(rectClient, _001GetColor(color_background_disabled));
 
                pgraphics->set_text_color(_001GetColor(color_text_disabled, ARGB(255, 160, 160, 160)));
 
@@ -115,7 +115,7 @@ namespace user
             else if (should_hover() && (m_itemHover || Session.m_puiLastLButtonDown == this))
             {
 
-               pgraphics->fill_solid_rect(rectClient, _001GetColor(color_background_hover));
+               pgraphics->fill_rect(rectClient, _001GetColor(color_background_hover));
 
                pgraphics->set_text_color(_001GetColor(color_text_hover));
 
@@ -127,7 +127,7 @@ namespace user
 
                //rectClient.deflate(1,1);
 
-               pgraphics->fill_solid_rect(rectClient, _001GetColor(color_background));
+               pgraphics->fill_rect(rectClient, _001GetColor(color_background));
 
                pgraphics->set_text_color(_001GetColor(color_text));
 
@@ -645,7 +645,7 @@ namespace user
       }
       else
       {
-         pgraphics->fill_solid_rect(rectClient, crBk);
+         pgraphics->fill_rect(rectClient, crBk);
       }
 
 
@@ -781,13 +781,13 @@ namespace user
       //   if (m_iHover == 0 || Session.m_puiLastLButtonDown == this)
       //   {
 
-      //      pgraphics->fill_solid_rect(rectClient, ARGB(255, 127, 127, 127));
+      //      pgraphics->fill_rect(rectClient, ARGB(255, 127, 127, 127));
 
       //   }
       //   else
       //   {
 
-      //      pgraphics->fill_solid_rect(rectClient, ARGB(255, 127, 127, 127));
+      //      pgraphics->fill_rect(rectClient, ARGB(255, 127, 127, 127));
 
       //   }
 
@@ -797,7 +797,7 @@ namespace user
          if (!is_window_enabled())
          {
 
-            pgraphics->fill_solid_rect(rectClient, _001GetColor(color_button_background_disabled));
+            pgraphics->fill_rect(rectClient, _001GetColor(color_button_background_disabled));
 
          }
          else if (m_itemHover || is_left_button_pressed())
@@ -807,13 +807,13 @@ namespace user
 
             //rectClient.deflate(1,1);
 
-            pgraphics->fill_solid_rect(rectClient, _001GetColor(color_button_background_hover));
+            pgraphics->fill_rect(rectClient, _001GetColor(color_button_background_hover));
 
          }
          else
          {
 
-            pgraphics->fill_solid_rect(rectClient, _001GetColor(color_button_background));
+            pgraphics->fill_rect(rectClient, _001GetColor(color_button_background));
 
          }
 

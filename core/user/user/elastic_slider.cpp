@@ -226,11 +226,11 @@ namespace user
       ::rect rect;
       GetSliderRect(rect);
 
-      pgraphics->draw3d_rect(rect,ARGB(bAlpha,255,255,255),ARGB(bAlpha,255,255,255));
+      pgraphics->draw_rect(rect,ARGB(bAlpha,255,255,255));
       rect.deflate(1, 1);
-      pgraphics->draw3d_rect(rect,ARGB(bAlpha,255,255,0),ARGB(bAlpha,255,255,0));
+      pgraphics->draw_rect(rect,ARGB(bAlpha,255,255,0));
       rect.deflate(1, 1);
-      pgraphics->draw3d_rect(rect,ARGB(bAlpha,255,255,255),ARGB(bAlpha,255,255,255));
+      pgraphics->draw_rect(rect,ARGB(bAlpha,255,255,255));
 
       if(m_bSlide)
       {

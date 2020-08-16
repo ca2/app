@@ -365,7 +365,7 @@ namespace user
 
             colorBackground.hls_rate(0.0, 0.6, -0.3);
 
-            pgraphics->fill_solid_rect(rEdit, colorBackground);
+            pgraphics->fill_rect(rEdit, colorBackground);
 
          }
 
@@ -383,7 +383,7 @@ namespace user
 
             color2.hls_rate(0.0, 0.3, 0.5);
 
-            pgraphics->draw3d_rect(rEdit, color2);
+            pgraphics->draw_rect(rEdit, color2);
 
          }
 
@@ -391,7 +391,7 @@ namespace user
 
          rEdit.deflate(rectPadding);
 
-         pgraphics->fill_solid_rect(rEdit, c.get_rgba());
+         pgraphics->fill_rect(rEdit, c.get_rgba());
 
       }
 

@@ -663,7 +663,7 @@ namespace draw2d_direct2d
       rect.right    = 300;
       rect.bottom   = 100;
 
-      g.fill_solid_rect(rect, ARGB(127, 255, 255, 240));
+      g.fill_rect(rect, ARGB(127, 255, 255, 240));
 
       g.m_pdc = nullptr;*/
 

@@ -133,10 +133,10 @@ namespace filehandler
       }
       else
       {
-         pgraphics->fill_solid_rect(m_rectItem, cr);
+         pgraphics->fill_rect(m_rectItem, cr);
       }
       cr = bHover ? ARGB(255, 150, 255, 150) : ARGB(255, 50, 255, 50);
-      pgraphics->fill_solid_rect(m_rectStatusImage, cr);
+      pgraphics->fill_rect(m_rectStatusImage, cr);
       COLORREF cr1;
       COLORREF cr2;
       if(bHover)

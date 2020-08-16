@@ -730,7 +730,7 @@ namespace user
    void menu_view::draw_header_rectangle(::draw2d::graphics_pointer & pgraphics, const ::rect & rect)
    {
 
-      pgraphics->fill_solid_rect(rect, ARGB(255, 240, 240, 240));
+      pgraphics->fill_rect(rect, ARGB(255, 240, 240, 240));
 
       pgraphics->move_to(rect.left, rect.top);
 

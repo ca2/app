@@ -239,7 +239,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    auto pstyle = get_style(pgraphics);
 
-   pgraphics->fill_solid_rect(rectClient, get_color(pstyle, ::user::element_background));
+   pgraphics->fill_rect(rectClient, get_color(pstyle, ::user::element_background));
 
    //::user::interaction::_001OnDraw(pgraphics);
 
@@ -323,9 +323,9 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 //   else
 //   {
 //#ifdef WINDOWS_DESKTOP
-//      pgraphics->fill_solid_rect(rectWindow, Session.get_default_color(COLOR_3DFACE));
+//      pgraphics->fill_rect(rectWindow, Session.get_default_color(COLOR_3DFACE));
 //#else
-//      pgraphics->fill_solid_rect(rectWindow, ARGB(255, 190, 184, 177));
+//      pgraphics->fill_rect(rectWindow, ARGB(255, 190, 184, 177));
 //#endif
 //   }
 //
@@ -367,7 +367,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 //
 //   // draw borders in non-client area
 //   DrawBorders(pgraphics, rectWindow);
-//   /*   pgraphics->fill_solid_rect(
+//   /*   pgraphics->fill_rect(
 //   rectWindow.left + 7, rectWindow.top,
 //   rectWindow.right, rectWindow.top + 1,
 //   RGB(128, 128, 123));*/
@@ -788,7 +788,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
       rectSeparator.bottom = rectImage.bottom;
 
-      pgraphics->draw3d_rect(rectSeparator, ARGB(255, 92, 92, 92), ARGB(255, 255, 255, 255));
+      pgraphics->draw_3drect(rectSeparator, ARGB(255, 92, 92, 92), ARGB(255, 255, 255, 255));
 
    }
    else
@@ -814,7 +814,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
                rectItem.height(),
                RGB(255, 255, 250), 208);
 
-               pgraphics->draw3d_rect(rectItem, ARGB(255, 127, 127, 127), ARGB(255, 255, 255, 255));
+               pgraphics->draw_3drect(rectItem, ARGB(255, 127, 127, 127), ARGB(255, 255, 255, 255));
 
             }
 
@@ -939,14 +939,14 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
             _001GetElementRect(iItem, rectItem, ::user::element_item, estate);
 
-            pgraphics->fill_solid_rect(rectItem, ARGB(190, 255, 255, 255));
+            pgraphics->fill_rect(rectItem, ARGB(190, 255, 255, 255));
 
          }
 
          if (estate & ::user::e_state_checked)
          {
 
-            pgraphics->draw3d_rect(rectItem, ARGB(255, 127, 127, 127), ARGB(255, 255, 255, 255));
+            pgraphics->draw_3drect(rectItem, ARGB(255, 127, 127, 127), ARGB(255, 255, 255, 255));
 
          }
 

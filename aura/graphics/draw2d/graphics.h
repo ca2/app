@@ -103,13 +103,13 @@ namespace draw2d
       inline oswindow get_window_handle() const;
 
 
-      void draw_ca2(int x,int y,int z,COLORREF crBk,COLORREF cr);
-      void draw_ca2_with_border(int x,int y,int z,int b,COLORREF crBk,COLORREF cr,COLORREF crOut);
-      void draw_ca2_border2(int x,int y,int z,int bOut,int bIn,COLORREF crBk,COLORREF cr,COLORREF crBorderOut,COLORREF crIn);
-      void draw_ca2_with_border2(int x,int y,int z,int bOut,int bIn,COLORREF crBk,COLORREF cr,COLORREF crBorderOut,COLORREF crIn);
+      void draw_ca2(int x,int y,int z,const ::color & colorBk,const ::color & color);
+      void draw_ca2_with_border(int x,int y,int z,int b,const ::color & colorBk,const ::color & color,const ::color & colorOut);
+      void draw_ca2_border2(int x,int y,int z,int bOut,int bIn,const ::color & colorBk,const ::color & color,const ::color & colorBorderOut,const ::color & colorIn);
+      void draw_ca2_with_border2(int x,int y,int z,int bOut,int bIn,const ::color & colorBk,const ::color & color,const ::color & colorBorderOut,const ::color & colorIn);
 
 
-      void draw_border(const ::rect & rect, COLORREF cr, int iWidth);
+      void draw_border(const ::rect & rect, const ::color & color, int iWidth);
       void draw_rect_side(const ::rect& rect, e_border eborder);
 
       virtual bool is_set();
@@ -152,7 +152,7 @@ namespace draw2d
 
       virtual bool blur(bool bExpand, double dRadius, const ::rect & rect);
 
-      virtual bool set_solid_pen(double dWidth, COLORREF cr);
+      virtual bool set_solid_pen(double dWidth, const ::color & color);
 
       virtual bool IsPrinting();            // TRUE if being used for printing
 
@@ -210,10 +210,10 @@ namespace draw2d
 
 
       // color and color Palette Functions
-      virtual COLORREF GetNearestColor(COLORREF crColor);
-      virtual ::draw2d::palette* SelectPalette(::draw2d::palette* pPalette, bool bForceBackground);
-      virtual UINT RealizePalette();
-      virtual void UpdateColors();
+      //virtual COLORREF GetNearestColor(const ::color & color);
+      //virtual ::draw2d::palette* SelectPalette(::draw2d::palette* pPalette, bool bForceBackground);
+      //virtual UINT RealizePalette();
+      //virtual void UpdateColors();
 
       // Drawing-Attribute Functions
       virtual i32 GetPolyFillMode();
@@ -236,22 +236,22 @@ namespace draw2d
 
 
 
-#ifdef WINDOWS_DESKTOP
-      virtual bool GetColorAdjustment(LPCOLORADJUSTMENT pColorAdjust);
+//#ifdef WINDOWS_DESKTOP
+//      virtual bool GetColorAdjustment(LPCOLORADJUSTMENT pColorAdjust);
+//
+//      virtual bool SetColorAdjustment(const COLORADJUSTMENT* pColorAdjust);
+//
+//#endif
 
-      virtual bool SetColorAdjustment(const COLORADJUSTMENT* pColorAdjust);
-
-#endif
-
-#if (_WIN32_WINNT >= 0x0500)
-
-      virtual COLORREF GetDCBrushColor();
-      virtual COLORREF SetDCBrushColor(COLORREF crColor);
-
-      virtual COLORREF GetDCPenColor();
-      virtual COLORREF SetDCPenColor(COLORREF crColor);
-
-#endif
+//#if (_WIN32_WINNT >= 0x0500)
+//
+//      virtual COLORREF GetDCBrushColor();
+//      virtual COLORREF SetDCBrushColor(const ::color & color);
+//
+//      virtual COLORREF GetDCPenColor();
+//      virtual COLORREF SetDCPenColor(const ::color & color);
+//
+//#endif
 
       // Graphics mode
       virtual i32 SetGraphicsMode(i32 iMode);
@@ -511,20 +511,20 @@ namespace draw2d
       virtual bool StretchBltAlphaBlend(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight, u32 dwRop = SRCCOPY);
       virtual bool StretchBltAlphaBlend(double x, double y, double nWidth, double nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight, u32 dwRop = SRCCOPY);
 
-      virtual COLORREF GetPixel(i32 x, i32 y);
-      virtual COLORREF GetPixel(const ::point & point);
-      virtual COLORREF SetPixel(i32 x, i32 y, COLORREF crColor);
-      virtual COLORREF SetPixel(const ::point & point, COLORREF crColor);
-      virtual bool FloodFill(i32 x, i32 y, COLORREF crColor);
-      virtual bool ExtFloodFill(i32 x, i32 y, COLORREF crColor, UINT nFillType);
+      virtual ::color GetPixel(i32 x, i32 y);
+      virtual ::color GetPixel(const ::point & point);
+      virtual ::color SetPixel(i32 x, i32 y, const ::color & color);
+      virtual ::color SetPixel(const ::point & point, const ::color & color);
+      virtual bool FloodFill(i32 x, i32 y, const ::color & color);
+      virtual bool ExtFloodFill(i32 x, i32 y, const ::color & color, UINT nFillType);
       virtual bool MaskBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc,
                            i32 xSrc, i32 ySrc, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask,
                            u32 dwRop);
       virtual bool PlgBlt(LPPOINT pPoint, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc,
 
                           i32 nWidth, i32 nHeight, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask);
-      virtual bool SetPixelV(i32 x, i32 y, COLORREF crColor);
-      virtual bool SetPixelV(const ::point & point, COLORREF crColor);
+      virtual bool SetPixelV(i32 x, i32 y, const ::color & color);
+      virtual bool SetPixelV(const ::point & point, const ::color & color);
       virtual bool GradientFill(TRIVERTEX* pVertices, WINULONG nVertices,
                                 void * pMesh, WINULONG nMeshElements, u32 dwMode);
       virtual bool TransparentBlt(i32 xDest, i32 yDest, i32 nDestWidth, i32 nDestHeight,
@@ -658,27 +658,27 @@ namespace draw2d
 
 
 
-      virtual i32 SetTextJustification(i32 nBreakExtra, i32 nBreakCount);
-      virtual i32 GetTextCharacterExtra();
-      virtual i32 SetTextCharacterExtra(i32 nCharExtra);
+      //virtual i32 SetTextJustification(i32 nBreakExtra, i32 nBreakCount);
+      //virtual i32 GetTextCharacterExtra();
+      //virtual i32 SetTextCharacterExtra(i32 nCharExtra);
 
-#ifdef WINDOWS_DESKTOP
+// #ifdef WINDOWS_DESKTOP
 
-      virtual u32 GetCharacterPlacement(const char * pString, strsize nCount, strsize nMaxExtent, LPGCP_RESULTS lpResults, u32 dwFlags);
+//       virtual u32 GetCharacterPlacement(const char * pString, strsize nCount, strsize nMaxExtent, LPGCP_RESULTS lpResults, u32 dwFlags);
 
-      virtual u32 GetCharacterPlacement(string & str, strsize nMaxExtent, LPGCP_RESULTS pResults, u32 dwFlags);
-
-
-#endif
-
-#if (_WIN32_WINNT >= 0x0500)
-
-      virtual bool GetTextExtentExPointI(LPWORD pgiIn, i32 cgi, i32 nMaxExtent, i32 * pnFit, i32 * alpDx, __out_opt LPSIZE lpSize);
-
-      virtual bool GetTextExtentPointI(LPWORD pgiIn, i32 cgi, __out_opt LPSIZE pSize);
+//       virtual u32 GetCharacterPlacement(string & str, strsize nMaxExtent, LPGCP_RESULTS pResults, u32 dwFlags);
 
 
-#endif
+// #endif
+
+// #if (_WIN32_WINNT >= 0x0500)
+
+//       virtual bool GetTextExtentExPointI(LPWORD pgiIn, i32 cgi, i32 nMaxExtent, i32 * pnFit, i32 * alpDx, __out_opt LPSIZE lpSize);
+
+//       virtual bool GetTextExtentPointI(LPWORD pgiIn, i32 cgi, __out_opt LPSIZE pSize);
+
+
+// #endif
 
 
 
@@ -688,64 +688,64 @@ namespace draw2d
       virtual bool DrawFrameControl(const ::rect & prect,UINT nType,UINT nState);
 
 
-      // Scrolling Functions
-      virtual bool ScrollDC(i32 dx, i32 dy, const ::rect &  pRectScroll, const ::rect &  lpRectClip,
+      //// Scolorolling Functions
+      //virtual bool ScrollDC(i32 dx, i32 dy, const ::rect &  pRectScoloroll, const ::rect &  lpRectClip,
 
-                            ::draw2d::region* pRgnUpdate, RECT * pRectUpdate);
+      //                      ::draw2d::region* pRgnUpdate, RECT * pRectUpdate);
 
 
       // font Functions
-      virtual bool GetCharWidth(UINT nFirstChar, UINT nLastChar, i32 * pBuffer);
+//      virtual bool GetCharWidth(UINT nFirstChar, UINT nLastChar, i32 * pBuffer);
 
-      virtual bool GetOutputCharWidth(UINT nFirstChar, UINT nLastChar, i32 * pBuffer);
+//      virtual bool GetOutputCharWidth(UINT nFirstChar, UINT nLastChar, i32 * pBuffer);
 
-      virtual u32 SetMapperFlags(u32 dwFlag);
-      virtual size GetAspectRatioFilter();
+//      virtual u32 SetMapperFlags(u32 dwFlag);
+//      virtual size GetAspectRatioFilter();
 
-#ifdef WINDOWS_DESKTOP
+// #ifdef WINDOWS_DESKTOP
 
-      virtual bool GetCharABCWidths(UINT nFirstChar, UINT nLastChar, LPABC pabc);
-
-
-#endif
-
-      virtual u32 GetFontData(u32 dwTable, u32 dwOffset, LPVOID pData, u32 cbData);
+//       virtual bool GetCharABCWidths(UINT nFirstChar, UINT nLastChar, LPABC pabc);
 
 
-#ifdef WINDOWS_DESKTOP
+// #endif
 
-      virtual i32 GetKerningPairs(i32 nPairs, LPKERNINGPAIR pkrnpair);
-
-      virtual UINT GetOutlineTextMetrics(UINT cbData, LPOUTLINETEXTMETRICW potm);
-
-      virtual u32 GetGlyphOutline(UINT nChar, UINT nFormat, LPGLYPHMETRICS pgm, u32 cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2);
+//      virtual u32 GetFontData(u32 dwTable, u32 dwOffset, LPVOID pData, u32 cbData);
 
 
-      virtual bool GetCharABCWidths(UINT nFirstChar, UINT nLastChar, LPABCFLOAT pABCF);
+// #ifdef WINDOWS_DESKTOP
+
+//       virtual i32 GetKerningPairs(i32 nPairs, LPKERNINGPAIR pkrnpair);
+
+//       virtual UINT GetOutlineTextMetrics(UINT cbData, LPOUTLINETEXTMETRICW potm);
+
+//       virtual u32 GetGlyphOutline(UINT nChar, UINT nFormat, LPGLYPHMETRICS pgm, u32 cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2);
 
 
-#endif
-
-      virtual bool GetCharWidth(UINT nFirstChar, UINT nLastChar, float * pFloatBuffer);
+//       virtual bool GetCharABCWidths(UINT nFirstChar, UINT nLastChar, LPABCFLOAT pABCF);
 
 
-      virtual u32 GetFontLanguageInfo();
+// #endif
 
-#if defined(WINDOWS_DESKTOP) && (_WIN32_WINNT >= 0x0500)
-
-      virtual bool GetCharABCWidthsI(UINT giFirst, UINT cgi, LPWORD pgi, LPABC pabc);
-
-      virtual bool GetCharWidthI(UINT giFirst, UINT cgi, LPWORD pgi, i32 * pBuffer);
+      // virtual bool GetCharWidth(UINT nFirstChar, UINT nLastChar, float * pFloatBuffer);
 
 
-#endif
+      // virtual u32 GetFontLanguageInfo();
 
-      // Printer/Device Escape Functions
-      virtual i32 Escape(i32 nEscape, i32 nCount, const char * pszInData, LPVOID lpOutData);
+//#if defined(WINDOWS_DESKTOP) && (_WIN32_WINNT >= 0x0500)
+//
+//      virtual bool GetCharABCWidthsI(UINT giFirst, UINT cgi, LPWORD pgi, LPABC pabc);
+//
+//      virtual bool GetCharWidthI(UINT giFirst, UINT cgi, LPWORD pgi, i32 * pBuffer);
+//
+//
+//#endif
 
-      virtual i32 Escape(i32 nEscape, i32 nInputSize, const char * pszInputData, i32 nOutputSize, char * pszOutputData);
+      //// Printer/Device Escape Functions
+      //virtual i32 Escape(i32 nEscape, i32 nCount, const char * pszInData, LPVOID lpOutData);
 
-      virtual i32 DrawEscape(i32 nEscape, i32 nInputSize, const char * pszInputData);
+      //virtual i32 Escape(i32 nEscape, i32 nInputSize, const char * pszInputData, i32 nOutputSize, char * pszOutputData);
+
+      //virtual i32 DrawEscape(i32 nEscape, i32 nInputSize, const char * pszInputData);
 
 
       // Escape helpers
@@ -803,14 +803,14 @@ namespace draw2d
 
       //                          ::draw2d::brush* pBrush = nullptr, ::draw2d::brush* pBrushLast = nullptr);
 
-      virtual void fill_solid_rect(const ::rect & rect, COLORREF clr);
-      virtual void fill_solid_rect(const rectd & rectd, COLORREF clr);
+      virtual void fill_rect(const ::rect & rect, const ::color & color);
+      virtual void fill_rect(const rectd & rectd, const ::color & color);
 
-      virtual void draw3d_rect(const ::rect & rect, COLORREF crTopLeft, COLORREF crBottomRight, eborder eborder = border_all);
-      virtual void draw3d_rect(const rectd & rectd, COLORREF crTopLeft, COLORREF crBottomRight, eborder eborder = border_all);
+      virtual void draw_3drect(const ::rect & rect, const ::color& colorTopLeft, const ::color& colorBottomRight, eborder eborder = border_all);
+      virtual void draw_3drect(const rectd & rectd, const ::color& colorTopLeft, const ::color& colorBottomRight, eborder eborder = border_all);
 
-      virtual void draw3d_rect(const ::rect & rect, COLORREF cr, eborder eborder = border_all);
-      virtual void draw3d_rect(const rectd & rectd, COLORREF cr, eborder eborder = border_all);
+      virtual void draw_rect(const ::rect & rect, const ::color& color, eborder eborder = border_all);
+      virtual void draw_rect(const rectd & rectd, const ::color& color, eborder eborder = border_all);
 
       virtual bool set_font(::user::interaction* pinteraction, ::user::e_element eelement, ::user::estate estate = ::user::e_state_none);
       inline bool set_font(::user::interaction* pinteraction, ::user::estate estate = ::user::e_state_none)
@@ -844,15 +844,15 @@ namespace draw2d
       // Returns:     None
       //
       bool draw_round_rect(const ::rect & rect, ::draw2d::pen * ppen, i32 radius, eborder eborder = border_all);
-      bool draw_round_top_left(const ::rect & rect, ::draw2d::pen * ppen, i32 radius, eborder eborder = border_all);
-      bool draw_round_bottom_right(const ::rect & rect, ::draw2d::pen * ppen, i32 radius, eborder eborder = border_all);
+      //bool draw_round_top_left(const ::rect & rect, ::draw2d::pen * ppen, i32 radius, eborder eborder = border_all);
+      //bool draw_round_bottom_right(const ::rect & rect, ::draw2d::pen * ppen, i32 radius, eborder eborder = border_all);
 
-      bool draw_round_rect(const ::rect & rect, COLORREF color, i32 radius, i32 width, eborder eborder = border_all);
-      bool draw_round_top_left(const ::rect & rect, COLORREF color, i32 radius, i32 width, eborder eborder = border_all);
-      bool draw_round_bottom_right(const ::rect & rect, COLORREF color, i32 radius, i32 width, eborder eborder = border_all);
+      bool draw_round_rect(const ::rect & rect, const ::color & color, i32 radius, i32 width, eborder eborder = border_all);
+      //bool draw_round_top_left(const ::rect & rect, const ::color & color, i32 radius, i32 width, eborder eborder = border_all);
+      //bool draw_round_bottom_right(const ::rect & rect, const ::color & color, i32 radius, i32 width, eborder eborder = border_all);
 
 
-      bool draw_stock_icon(const ::rect & rect, e_stock_icon eicon);
+      bool draw_stock_icon(const ::rectd & rect, e_stock_icon eicon);
 
 
       //=============================================================================
@@ -869,7 +869,7 @@ namespace draw2d
       //
       // Returns:     None
       //
-      bool fill_round_rect(const ::rect & rect, COLORREF color, i32 radius);
+      bool fill_round_rect(const ::rect & rect, const ::color & color, i32 radius);
 
       //=============================================================================
       //
@@ -892,9 +892,9 @@ namespace draw2d
 
       bool round_rect(const ::rect & rect, i32 radius);
 
-      virtual i32 _DrawText(const char * pcsz, strsize iCount, const ::rect &  pcrect, UINT uiFormat, ::draw2d::font * pfontUnderline = nullptr);
+      virtual i32 _DrawText(const char * pcsz, strsize iCount, const ::rect &  pcolorect, UINT uiFormat, ::draw2d::font * pfontUnderline = nullptr);
 
-      virtual i32 _DrawText(const string & str, const ::rect &  pcrect, UINT uiFormat, ::draw2d::font * pfontUnderline = nullptr);
+      virtual i32 _DrawText(const string & str, const ::rect &  pcolorect, UINT uiFormat, ::draw2d::font * pfontUnderline = nullptr);
 
 
 
@@ -907,7 +907,7 @@ namespace draw2d
 
       virtual float nanosvg_distPtSeg(float x, float y, float px, float py, float qx, float qy);
       virtual void nanosvg_cubicBez(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, float tol, int level);
-      virtual void nanosvg_drawPath(float* pts, int npts, char closed, float tol, COLORREF lineColor);
+      virtual void nanosvg_drawPath(float* pts, int npts, char closed, float tol, const ::color & color);
       virtual void nanosvg_drawControlPts(float* pts, int npts);
       virtual void nanosvg_drawframe(NSVGimage* pimage, int x, int y, int w, int h);
       // virtual void nanosvg_resizecb(int width, int height, int x, int y, int w, int h);
@@ -961,21 +961,21 @@ namespace draw2d
       inline bool fill_polygon(point_array & pointa) { return fill_polygon(pointa.get_data(), pointa.get_count()); }
       inline bool fill_polygon(pointd_array & pointa) { return fill_polygon(pointa.get_data(), pointa.get_count()); }
 
-      inline void fill_solid_rect_dim(i32 x, i32 y, i32 cx, i32 cy, COLORREF cr) { return fill_solid_rect(rect_dim(x, y, cx, cy), cr); }
-      inline void fill_solid_rect_dim(double x, double y, double cx, double cy, COLORREF cr) { return fill_solid_rect(rectd_dim(x, y, cx, cy), cr); }
+      inline void fill_solid_rect_dim(i32 x, i32 y, i32 cx, i32 cy, const ::color & color) { return fill_rect(rect_dim(x, y, cx, cy), color); }
+      inline void fill_solid_rect_dim(double x, double y, double cx, double cy, const ::color & color) { return fill_rect(rectd_dim(x, y, cx, cy), color); }
 
-      inline void fill_solid_rect_coord(i32 x1, i32 y1, i32 x2, i32 y2, COLORREF cr) { return fill_solid_rect(::rect(x1, y1, x2, y2), cr); }
-      inline void fill_solid_rect_coord(double x1, double y1, double x2, double y2, COLORREF cr) { return fill_solid_rect(rectd(x1, y1, x2, y2), cr); }
+      inline void fill_solid_rect_coord(i32 x1, i32 y1, i32 x2, i32 y2, const ::color & color) { return fill_rect(::rect(x1, y1, x2, y2), color); }
+      inline void fill_solid_rect_coord(double x1, double y1, double x2, double y2, const ::color & color) { return fill_rect(rectd(x1, y1, x2, y2), color); }
 
-      inline void draw3d_rect_dim(i32 x, i32 y, i32 cx, i32 cy, COLORREF crTopLeft, COLORREF crBottomLeft) { return draw3d_rect(rect_dim(x, y, cx, cy), crTopLeft, crBottomLeft); }
-      inline void draw3d_rect_dim(double x, double y, double cx, double cy, COLORREF crTopLeft, COLORREF crBottomLeft) { return draw3d_rect(rectd_dim(x, y, cx, cy), crTopLeft, crBottomLeft); }
-      inline void draw3d_rect_dim(i32 x, i32 y, i32 cx, i32 cy, COLORREF cr) { return draw3d_rect(rect_dim(x, y, cx, cy), cr); }
-      inline void draw3d_rect_dim(double x, double y, double cx, double cy, COLORREF cr) { return draw3d_rect(rectd_dim(x, y, cx, cy), cr); }
+      inline void draw_3drect_dim(i32 x, i32 y, i32 cx, i32 cy, const ::color& colorTopLeft, const ::color& colorBottomLeft) { return draw_3drect(rect_dim(x, y, cx, cy), colorTopLeft, colorBottomLeft); }
+      inline void draw_3drect_dim(double x, double y, double cx, double cy, const ::color& colorTopLeft, const ::color& colorBottomLeft) { return draw_3drect(rectd_dim(x, y, cx, cy), colorTopLeft, colorBottomLeft); }
+      inline void draw_rect_dim(i32 x, i32 y, i32 cx, i32 cy, const ::color& color) { return draw_rect(rect_dim(x, y, cx, cy), color); }
+      inline void draw_rect_dim(double x, double y, double cx, double cy, const ::color& color) { return draw_rect(rectd_dim(x, y, cx, cy), color); }
 
-      inline void draw3d_rect_coord(i32 x1, i32 y1, i32 x2, i32 y2, COLORREF crTopLeft, COLORREF crBottomLeft) { return draw3d_rect(::rect(x1, y1, x2, y2), crTopLeft, crBottomLeft); }
-      inline void draw3d_rect_coord(double x1, double y1, double x2, double y2, COLORREF crTopLeft, COLORREF crBottomLeft) { return draw3d_rect(rectd(x1, y1, x2, y2), crTopLeft, crBottomLeft); }
-      inline void draw3d_rect_coord(i32 x1, i32 y1, i32 x2, i32 y2, COLORREF cr) { return draw3d_rect(::rect(x1, y1, x2, y2), cr); }
-      inline void draw3d_rect_coord(double x1, double y1, double x2, double y2, COLORREF cr) { return draw3d_rect(rectd(x1, y1, x2, y2), cr); }
+      inline void draw_3drect_coord(i32 x1, i32 y1, i32 x2, i32 y2, const ::color& colorTopLeft, const ::color& colorBottomLeft) { return draw_3drect(::rect(x1, y1, x2, y2), colorTopLeft, colorBottomLeft); }
+      inline void draw_3drect_coord(double x1, double y1, double x2, double y2, const ::color& colorTopLeft, const ::color& colorBottomLeft) { return draw_3drect(rectd(x1, y1, x2, y2), colorTopLeft, colorBottomLeft); }
+      inline void draw_rect_coord(i32 x1, i32 y1, i32 x2, i32 y2, const ::color& color) { return draw_rect(::rect(x1, y1, x2, y2), color); }
+      inline void draw_rect_coord(double x1, double y1, double x2, double y2, const ::color& color) { return draw_rect(rectd(x1, y1, x2, y2), color); }
 
 
       inline bool draw(::image * pimage);

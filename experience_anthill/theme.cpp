@@ -173,7 +173,7 @@ namespace experience
 
       pgraphics->GetClipBox(r2);
 
-      pgraphics->fill_solid_rect(r1, ARGB(255, 255, 255, 255));
+      pgraphics->fill_rect(r1, ARGB(255, 255, 255, 255));
 
       ptab->get_data()->m_pen->create_solid(1,RGB(32,32,32));
 
@@ -203,11 +203,11 @@ namespace experience
       
       COLORREF crbk = ptab->get_color(pstyle, ::user::element_tab_layout_background);
 
-      pgraphics->fill_solid_rect(rcTabs, crbk);
+      pgraphics->fill_rect(rcTabs, crbk);
 
       crbk = ptab->get_color(pstyle, ::user::element_tab_client_background);
 
-      pgraphics->fill_solid_rect(rcClient, crbk);
+      pgraphics->fill_rect(rcClient, crbk);
 
       ::index iTab = -1;
 
@@ -603,7 +603,7 @@ namespace experience
                pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
                if(ptab->m_itemHover == (::user::e_element)(::user::element_split + i))
                {
-                  pgraphics->fill_solid_rect(rectEmp,ARGB(128, 150, 184, 255));
+                  pgraphics->fill_rect(rectEmp,ARGB(128, 150, 184, 255));
                   pgraphics->set(ptab->get_data()->m_brushTextHover);
                }
                else
@@ -1161,7 +1161,7 @@ namespace experience
 
                ptoolbar->_001GetElementRect(iItem, rectItem, ::user::element_item, ::user::e_state_none);
 
-               pgraphics->fill_solid_rect(rectItem, ARGB(190, 255, 255, 255));
+               pgraphics->fill_rect(rectItem, ARGB(190, 255, 255, 255));
 
             }
 
@@ -1413,7 +1413,7 @@ namespace experience
 
                ptoolbar->_001GetElementRect(iItem, rectItem, ::user::element_item, ::user::e_state_none);
 
-               pgraphics->fill_solid_rect(rectItem, ptoolbar->get_color(pstyle, ::user::element_background));
+               pgraphics->fill_rect(rectItem, ptoolbar->get_color(pstyle, ::user::element_background));
 
             }
 
@@ -1522,7 +1522,7 @@ namespace experience
 
       ::rect rectClient = psplitlayout->get_client_rect();
 
-      pgraphics->fill_solid_rect(rectClient, ARGB(255, 255, 255, 255));
+      pgraphics->fill_rect(rectClient, ARGB(255, 255, 255, 255));
 
       return true;
 

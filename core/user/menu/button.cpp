@@ -67,7 +67,7 @@ namespace user
 
          //pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         //pgraphics->fill_solid_rect(rectClient, _001GetButtonBackgroundColor());
+         //pgraphics->fill_rect(rectClient, _001GetButtonBackgroundColor());
 
          //::draw2d::pen_pointer pen(e_create);
 
@@ -228,9 +228,9 @@ namespace user
          if(echeck() == ::check_checked)
          {
 
-            pgraphics->fill_solid_rect(rectImageBorder, RGB(127, 127, 127));
+            pgraphics->fill_rect(rectImageBorder, RGB(127, 127, 127));
 
-            pgraphics->draw3d_rect(rectImageBorder, Session.get_default_color(COLOR_3DSHADOW), Session.get_default_color(COLOR_3DHILIGHT));
+            pgraphics->draw_3drect(rectImageBorder, Session.get_default_color(COLOR_3DSHADOW), Session.get_default_color(COLOR_3DHILIGHT));
 
          }
 

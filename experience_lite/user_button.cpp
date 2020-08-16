@@ -105,7 +105,7 @@ namespace user
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      pgraphics->fill_solid_rect(rectClient, pgraphics->m_pbrush->m_cr);
+      pgraphics->fill_rect(rectClient, pgraphics->m_pbrush->m_cr);
 
       //pgraphics->FillEllipse(rectEllipse);
 

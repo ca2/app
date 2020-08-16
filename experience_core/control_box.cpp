@@ -66,7 +66,7 @@ namespace experience
 
          //crBackground = ARGB(80, 255, 200, 160);
 
-         pgraphics->fill_solid_rect(rectClient, crBackground);
+         pgraphics->fill_rect(rectClient, crBackground);
 
       }
 

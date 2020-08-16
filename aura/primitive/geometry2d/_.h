@@ -1,6 +1,68 @@
 #pragma once
 
 
+class CLASS_DECL_AURA angle
+{
+public:
+
+   double m_d; // in radians
+
+   angle() : m_d(0.0) {}
+   angle(e_no_init) {}
+   angle(nullptr_t) : m_d(0.0) {}
+   angle(double d) : m_d(d) {}
+
+   angle operator -() const { return (angle)-m_d; }
+   
+   operator double() const { return m_d; }
+
+   double radian() const { return m_d; }
+
+   double degree() const { return m_d * 180.0 / MATH_PI; }
+
+   angle operator - (const ::angle& angle) const { return m_d - angle.m_d; }
+   angle operator + (const ::angle& angle) const { return m_d + angle.m_d; }
+   angle operator / (double d) const { return m_d / d; }
+   angle operator * (double d) const { return m_d * d; }
+
+   double normalized() const { auto d = fmod(m_d, 360); return d < 0.0 ? d + 360.0 : d; }
+   void normalize() { m_d = normalized(); }
+
+};
+
+
+inline angle operator "" _degree(long double d)
+{
+
+   return (angle) (d * MATH_PI / 180.0);
+
+}
+
+
+inline angle operator "" _degrees(long double d)
+{
+
+   return operator "" _degree(d);
+
+}
+
+
+inline angle operator "" _degree(unsigned long long int ull)
+{
+
+   return ((long double)ull) * MATH_PI / 180.0;
+
+}
+
+
+inline angle operator "" _degrees(unsigned long long int ull)
+{
+
+   return operator "" _degree(ull);
+
+}
+
+
 enum e_orientation
 {
 
@@ -1259,3 +1321,56 @@ inline ::Windows::Foundation::Rect ScaleRect(::Windows::Foundation::Rect rect, d
 
 
 
+
+
+template < typename RECT1, typename RECT2 >
+inline void expand_rect(RECT1* prect, const RECT2& r)
+{
+
+   if (::is_rect_null(prect))
+   {
+
+      __copy(prect, r);
+
+   }
+   else
+   {
+
+      prect->left = MIN((decltype(prect->left))prect->left, (decltype(prect->left))r.left);
+      prect->right = MAX((decltype(prect->right))prect->right, (decltype(prect->right))r.right);
+      prect->top = MIN((decltype(prect->top))prect->top, (decltype(prect->top))r.top);
+      prect->bottom = MAX((decltype(prect->bottom))prect->bottom, (decltype(prect->bottom))r.bottom);
+
+   }
+
+}
+
+
+template < typename RECT1, typename RECT2 >
+inline void collapse_rect(RECT1 * prect, const RECT2 & r)
+{
+
+   if (::is_rect_null(prect))
+   {
+
+      __copy(prect, r);
+
+   }
+   else
+   {
+
+      prect->left = MAX((decltype(prect->left))prect->left, (decltype(prect->left))r.left);
+      prect->right = MIN((decltype(prect->right))prect->right, (decltype(prect->right))r.right);
+      prect->top = MAX((decltype(prect->top))prect->top, (decltype(prect->top))r.top);
+      prect->bottom = MIN((decltype(prect->bottom))prect->bottom, (decltype(prect->bottom))r.bottom);
+
+      if (::width(prect) == 0 || height(prect) == 0)
+      {
+
+         ::null_rect(prect);
+
+      }
+
+   }
+
+}

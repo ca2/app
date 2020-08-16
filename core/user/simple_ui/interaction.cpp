@@ -526,7 +526,7 @@ namespace simple_ui
 //
 //      //pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
 //
-//      //pgraphics->fill_solid_rect(rect,ARGB(0,0,0,0));
+//      //pgraphics->fill_rect(rect,ARGB(0,0,0,0));
 //
 //   }
 //
@@ -692,7 +692,7 @@ namespace simple_ui
 //
 //      get_client_rect(rectWindow);
 //
-//      pgraphics->fill_solid_rect(rectWindow, ARGB(90, 127, 127, 127));
+//      pgraphics->fill_rect(rectWindow, ARGB(90, 127, 127, 127));
 //
 //   }
 //

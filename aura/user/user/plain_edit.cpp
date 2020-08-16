@@ -357,7 +357,7 @@ namespace user
 
       COLORREF crEditBackground = get_color(pstyle, element_background);
 
-      pgraphics->fill_solid_rect(rectClient, crEditBackground);
+      pgraphics->fill_rect(rectClient, crEditBackground);
 
       cr = get_color(pstyle, element_text);
       crBk = get_color(pstyle, element_background);
@@ -556,7 +556,7 @@ namespace user
          //      x1 = (int)(get_line_extent(iLine, x));
          //      if (pregion->styled()->bback)
          //      {
-         //         pgraphics->fill_solid_rect((i32)(left + x1), (i32)y, x1, m_iLineHeight, pregion->styled()->back);
+         //         pgraphics->fill_rect((i32)(left + x1), (i32)y, x1, m_iLineHeight, pregion->styled()->back);
          //      }
          //      ::draw2d::brush_pointer brushText(e_create);
          //      if (pregion->styled()->bfore)

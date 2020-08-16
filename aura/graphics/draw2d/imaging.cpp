@@ -2045,7 +2045,7 @@ bool imaging::clip_color_blend(::draw2d::graphics * pgraphics, const rect & rect
 bool imaging::clip_color_blend(::draw2d::graphics * pgraphics,const ::point & point,const ::size & size,COLORREF cr,BYTE bA)
 {
 
-   pgraphics->fill_solid_rect(rect(size), ARGB(bA,colorref_get_r_value(cr),colorref_get_g_value(cr),colorref_get_b_value(cr)));
+   pgraphics->fill_rect(rect(size), ARGB(bA,colorref_get_r_value(cr),colorref_get_g_value(cr),colorref_get_b_value(cr)));
 
    return true;
 
@@ -2088,7 +2088,7 @@ bool imaging::color_blend(::draw2d::graphics * pgraphics,const ::point & point,c
 
    pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-   pgraphics->fill_solid_rect(rect(point, size), (cr & 0x00ffffff) | (bA << 24));
+   pgraphics->fill_rect(rect(point, size), (cr & 0x00ffffff) | (bA << 24));
 
    return true;
 
@@ -2154,7 +2154,7 @@ bool imaging::CreateBitmap(::draw2d::graphics * pgraphics, ::draw2d::graphics * 
    if(bCreate)
    {
 
-      pgraphics->fill_solid_rect(rect(0,0,cxout,cyout),RGB(0,0,0));
+      pgraphics->fill_rect(rect(0,0,cxout,cyout),RGB(0,0,0));
 
    }
 
@@ -2209,7 +2209,7 @@ bool imaging::CreateBitmap(::draw2d::graphics *pgraphics,::draw2d::bitmap * pitm
    }
    if(bCreate)
    {
-      pgraphics->fill_solid_rect(rect(0,0,cxout,cyout),RGB(255,196,255));
+      pgraphics->fill_rect(rect(0,0,cxout,cyout),RGB(255,196,255));
    }
    return true;
 }
@@ -5477,7 +5477,7 @@ breakFilter2:
 //   y2 = yDest + iSize;
 //   for(i32 y = 0; y < cyDest; y++)
 //   {
-//   pdcDst->fill_solid_rect(x1, y1, x2, y2, imageB.get_graphics()->GetPixel(x, y));
+//   pdcDst->fill_rect(x1, y1, x2, y2, imageB.get_graphics()->GetPixel(x, y));
 //   y1 += iSize;
 //   y2 += iSize;
 //   }

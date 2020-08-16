@@ -424,14 +424,14 @@ namespace experience
          if(ptab->get_element_rect(-1,rectScroll, ::user::element_tab_near_scroll))
          {
     
-            pgraphics->fill_solid_rect(rectScroll, ARGB(255, 255, 255, 255));
+            pgraphics->fill_rect(rectScroll, ARGB(255, 255, 255, 255));
 
          }
    
          if(ptab->get_element_rect(-1,rectScroll, ::user::element_tab_far_scroll))
          {
     
-            pgraphics->fill_solid_rect(rectScroll, ARGB(255, 255, 255, 255));
+            pgraphics->fill_rect(rectScroll, ARGB(255, 255, 255, 255));
 
          }
          
@@ -480,12 +480,12 @@ namespace experience
                pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
                if(ptab->m_itemHover == (::index) ::user::element_split + i)
                {
-                  pgraphics->fill_solid_rect(rectEmp,ARGB(128, 150, 184, 255));
+                  pgraphics->fill_rect(rectEmp,ARGB(128, 150, 184, 255));
                   pgraphics->set(ptab->get_data()->m_brushTextHover);
                }
                else
                {
-                  //pgraphics->fill_solid_rect(rectEmp,ARGB(128,208,223,233));
+                  //pgraphics->fill_rect(rectEmp,ARGB(128,208,223,233));
                   pgraphics->set(ptab->get_data()->m_brushText);
                }
                pgraphics->set_font(ptab, ::user::element_close_tab_button);
@@ -863,13 +863,13 @@ namespace experience
          if (Session.savings().is_trying_to_save(::aura::resource_processing))
          {
 
-            pgraphics->fill_solid_rect(rectClient, ARGB(255, 255, 255, 255));
+            pgraphics->fill_rect(rectClient, ARGB(255, 255, 255, 255));
 
          }
          else
          {
 
-            pgraphics->fill_solid_rect(rectClient, ARGB(255, 210, 210, 210));
+            pgraphics->fill_rect(rectClient, ARGB(255, 210, 210, 210));
 
          }
 

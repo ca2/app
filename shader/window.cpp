@@ -18,6 +18,8 @@ namespace simple_shader
 
       m_flagNonClient.remove(non_client_focus_rect);
 
+      m_colorBackground = 0;
+
    }
 
 
@@ -27,49 +29,18 @@ namespace simple_shader
    }
 
 
-   void window::assert_valid() const
+   ::user::e_translucency window::get_translucency(::user::style* pstyle) const
    {
 
-      user::interaction::assert_valid();
+      return ::user::translucency_present;
 
    }
-
-
-   void window::dump(dump_context & dumpcontext) const
-   {
-
-      user::interaction::dump(dumpcontext);
-
-   }
-
-
-#ifdef _DEBUG
-
-
-   int64_t window::add_ref(OBJ_REF_DBG_PARAMS_DEF)
-   {
-
-      return  ::user::interaction::add_ref(OBJ_REF_DBG_ARGS);
-
-   }
-
-
-   int64_t window::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
-   {
-
-      return  ::user::interaction::dec_ref(OBJ_REF_DBG_ARGS);
-
-   }
-
-
-#endif
 
 
    void window::install_message_routing(::channel * psender)
    {
 
-      ::user::interaction::install_message_routing(psender);
-      ::user::interaction::install_simple_ui_default_mouse_handling(psender);
+      ::user::main_window::install_message_routing(psender);
       IGUI_MSG_LINK(WM_CREATE,psender,this,&window::_001OnCreate);
       IGUI_MSG_LINK(WM_DESTROY, psender, this, &window::_001OnDestroy);
       IGUI_MSG_LINK(WM_KEYDOWN, psender, this, &window::_001OnKeyDown);
@@ -90,6 +61,12 @@ namespace simple_shader
          return;
 
       }
+
+      auto pitem = get_user_item(::user::element_close_button);
+
+      *pitem = ::user::element_close_icon;
+
+      ModifyStyleEx(0, WS_EX_LAYERED);
 
       GetTopLevel()->set_prodevian();
 
@@ -113,9 +90,6 @@ namespace simple_shader
       {
 
          m_bSaveFrame = true;
-
-
-
 
       }
 
@@ -149,14 +123,14 @@ namespace simple_shader
    void window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
+      auto rectClient = get_client_rect();
+
       if (m_bSaveFrame)
       {
 
-         m_bSaveFrame = false;
-
-         auto rectClient = get_client_rect();
-
          auto pimage = create_image(rectClient);
+
+         m_bSaveFrame = false;
 
          ::draw2d::graphics_pointer pgraphics = pimage->get_graphics();
 
@@ -180,6 +154,8 @@ namespace simple_shader
 
       m_rendera[m_iShader]->_001OnDraw(pgraphics);
 
+      ::user::interaction::_001OnDraw(pgraphics);
+
    }
 
 
@@ -199,11 +175,20 @@ namespace simple_shader
 
       m_rendera[m_iShader]->on_layout(pgraphics);
 
+      ::user::main_window::on_layout(pgraphics);
+
    }
 
 
    bool window::on_click(const ::user::item& item)
    {
+
+      if (::user::interaction::on_click(item))
+      {
+
+         return true;
+
+      }
 
       m_iShader++;
 

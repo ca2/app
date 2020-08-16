@@ -371,7 +371,7 @@ namespace user
       else
       {
 
-         pgraphics->fill_solid_rect(rectClient, crBk);
+         pgraphics->fill_rect(rectClient, crBk);
 
       }
 
@@ -406,7 +406,7 @@ namespace user
       //if (_001GetFlag(flag_border))
       {
 
-         pgraphics->draw3d_rect(rectClient, crBorder, crBorder);
+         pgraphics->draw_rect(rectClient, crBorder);
 
       }
 
@@ -577,7 +577,7 @@ namespace user
 
             pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            pgraphics->fill_solid_rect(rectClient, colorBack);
+            pgraphics->fill_rect(rectClient, colorBack);
 
          }
 
@@ -591,11 +591,11 @@ namespace user
 
          ::rect rectPush(rectClient);
 
-         pgraphics->draw3d_rect(rectPush, colorTopLeft, colorBottomRight);
+         pgraphics->draw_3drect(rectPush, colorTopLeft, colorBottomRight);
 
          rectPush.deflate(1, 1);
 
-         pgraphics->draw3d_rect(rectPush, colorTopLeft, colorBottomRight);
+         pgraphics->draw_3drect(rectPush, colorTopLeft, colorBottomRight);
 
       }
       else
@@ -606,7 +606,7 @@ namespace user
 
             pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            pgraphics->fill_solid_rect(rectClient, crBackground);
+            pgraphics->fill_rect(rectClient, crBackground);
 
          }
 
@@ -1135,7 +1135,7 @@ namespace user
 
       if(bSubItemHover)
       {
-         pgraphics->draw3d_rect(
+         pgraphics->draw_3drect(
          rectClient,
          RGB(255,255,255),
          RGB(155,155,105));

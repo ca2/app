@@ -1139,7 +1139,7 @@ SizingNone:;
 
                rect.deflate(1, 1);
 
-               pgraphics->fill_solid_rect(rect, Session.get_default_color(COLOR_BTNFACE) | 0xff000000);
+               pgraphics->fill_rect(rect, Session.get_default_color(COLOR_BTNFACE) | 0xff000000);
 
             }
 

@@ -1610,6 +1610,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="user\user\impact_system.cpp" />
     <ClCompile Include="user\user\keyboard_layout_cfg.cpp" />
     <ClCompile Include="user\user\language.cpp" />
+    <ClCompile Include="user\user\main_window.cpp" />
     <ClCompile Include="user\user\margin.cpp" />
     <ClCompile Include="user\user\multiple_document_template.cpp" />
     <ClCompile Include="user\user\network_configuration.cpp" />
@@ -2060,6 +2061,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="user.h" />
     <ClInclude Include="user\user\image_list.h" />
     <ClInclude Include="user\user\language.h" />
+    <ClInclude Include="user\user\main_window.h" />
     <ClInclude Include="user\_.h" />
     <ClInclude Include="version\version.h" />
     <ClInclude Include="const\thread.h" />

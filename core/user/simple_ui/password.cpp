@@ -171,7 +171,7 @@ namespace simple_ui
       rectClient.left = m_point.x;
       rectClient.bottom = rectClient.top + m_size.cy;
       rectClient.right = rectClient.left + m_size.cx;*/
-      //      pgraphics->fill_solid_rect(rectClient, crBk);
+      //      pgraphics->fill_rect(rectClient, crBk);
 
 //
 

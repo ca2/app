@@ -38,7 +38,7 @@ namespace draw2d
 
       m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-      m_pimage->g()->fill_solid_rect(::rect(m_size), colorbg);
+      m_pimage->g()->fill_rect(::rect(m_size), colorbg);
 
       m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_blend);
 

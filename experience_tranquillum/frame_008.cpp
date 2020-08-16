@@ -415,7 +415,7 @@ SizingNone:
                      for (index i = 0; i < iMaxBorder; i++)
                      {
 
-                        pgraphics->draw3d_rect(rectA, ARGB(0, 0, 0, 0), ARGB(0, 0, 0, 0), eborder);
+                        pgraphics->draw_rect(rectA, ARGB(0, 0, 0, 0), eborder);
 
                         rectA.deflate(rectDeflate);
 
@@ -454,19 +454,19 @@ SizingNone:
                         if (m_estyle == StyleRedOrange)
                         {
 
-                           pgraphics->draw3d_rect(rectA, ARGB(255, 255, 170, 136), ARGB(255, 255, 170, 136), eborder);
+                           pgraphics->draw_rect(rectA, ARGB(255, 255, 170, 136), eborder);
 
                         }
                         else if (m_estyle == StyleLightGreen)
                         {
 
-                           pgraphics->draw3d_rect(rectA, ARGB(255, 128, 230, 150), ARGB(255, 128, 230, 150), eborder);
+                           pgraphics->draw_rect(rectA, ARGB(255, 128, 230, 150), eborder);
 
                         }
                         else
                         {
 
-                           pgraphics->draw3d_rect(rectA, ARGB(255, 0x07, 0x6D, 0x91), ARGB(255, 0x07, 0x6D, 0x91), eborder);
+                           pgraphics->draw_rect(rectA, ARGB(255, 0x07, 0x6D, 0x91), eborder);
 
                         }
 
@@ -475,7 +475,8 @@ SizingNone:
                      {
 
                         //rectA.deflate(9, 9, 9, 9);
-                        pgraphics->draw3d_rect(rectA, ARGB(255, 128, 128, 128), ARGB(255, 128, 128, 128));
+                        pgraphics->draw_rect(rectA, ARGB(255, 128, 128, 128));
+
                      }
 
                   }

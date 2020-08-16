@@ -3968,7 +3968,7 @@ bool image::fill_rect(const ::rect & rect, COLORREF cr)
 
       }
 
-      get_graphics()->fill_solid_rect(rect, cr);
+      get_graphics()->fill_rect(rect, cr);
 
 
       if (get_graphics()->m_ealphamode != emodeOld)
@@ -5694,7 +5694,7 @@ bool image::fill(COLORREF cr)
 
       get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-      get_graphics()->fill_solid_rect(rect(), cr);
+      get_graphics()->fill_rect(rect(), cr);
 
    }
 

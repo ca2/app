@@ -164,7 +164,7 @@ namespace tranquillum
 
       //crBackground = ARGB(255, 200, 180, 180);
 
-      pgraphics->fill_solid_rect(rectClient, crBackground);
+      pgraphics->fill_rect(rectClient, crBackground);
 
       return true;
 
@@ -433,7 +433,7 @@ namespace tranquillum
       if (!ptab->get_data()->m_bNoClient)
       {
 
-         pgraphics->fill_solid_rect(r1, ARGB(255, 255, 255, 255));
+         pgraphics->fill_rect(r1, ARGB(255, 255, 255, 255));
 
       }
 
@@ -450,14 +450,14 @@ namespace tranquillum
       if (ptab->get_data()->m_bNoClient)
       {
 
-         pgraphics->fill_solid_rect(rcTab, ARGB(255, 255, 255, 255));
+         pgraphics->fill_rect(rcTab, ARGB(255, 255, 255, 255));
 
       }
       ::rect rcTape(rcTab);
 
       rcTape.top = rcTape.bottom - 8;
 
-      pgraphics->fill_solid_rect(rcTape, ARGB(255, 192, 192, 192));
+      pgraphics->fill_rect(rcTape, ARGB(255, 192, 192, 192));
 
 
       ::rect rcTabs(rcTab);
@@ -478,11 +478,11 @@ namespace tranquillum
 
       COLORREF crbk = ptab->get_color(pstyle, ::user::element_tab_layout_background);
 
-      pgraphics->fill_solid_rect(rcTabs, crbk);
+      pgraphics->fill_rect(rcTabs, crbk);
 
       crbk = ptab->get_color(pstyle, ::user::element_tab_client_background);
 
-      pgraphics->fill_solid_rect(rcClient, crbk);
+      pgraphics->fill_rect(rcClient, crbk);
 
       ::index iTab = -1;
 
@@ -532,7 +532,7 @@ namespace tranquillum
 
                   rSel.bottom = rectClient.top + 3;
 
-                  pgraphics->fill_solid_rect(rSel, ARGB(255, 120, 155, 240));
+                  pgraphics->fill_rect(rSel, ARGB(255, 120, 155, 240));
 
                   pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 235, 235, 230), ARGB(250, 255, 255, 250));
 
@@ -658,7 +658,7 @@ namespace tranquillum
 
                   rSel.bottom = rectClient.top + 3;
 
-                  pgraphics->fill_solid_rect(rSel, ARGB(255, 120, 155, 240));
+                  pgraphics->fill_rect(rSel, ARGB(255, 120, 155, 240));
 
                   pane.m_brushFillSel->create_solid(ARGB(255, 255, 255, 255));
 
@@ -742,7 +742,7 @@ namespace tranquillum
             rVertLine = rect;
 
             rVertLine.left = rVertLine.right - 1;
-            pgraphics->fill_solid_rect(rVertLine, ARGB(127, 80, 80, 80));
+            pgraphics->fill_rect(rVertLine, ARGB(127, 80, 80, 80));
 
             //if (iPane == ptab->get_data()->m_panea.get_upper_bound())
             //{
@@ -853,7 +853,7 @@ namespace tranquillum
                pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
                if(ptab->m_itemHover.m_iItem == ((int) ::user::element_split) + i)
                {
-                  pgraphics->fill_solid_rect(rectEmp,ARGB(128,149,184,255));
+                  pgraphics->fill_rect(rectEmp,ARGB(128,149,184,255));
                   pgraphics->set(ptab->get_data()->m_brushTextHover);
                }
                else
@@ -1143,7 +1143,7 @@ namespace tranquillum
 
    //            ptoolbar->_001GetElementRect(iItem, rectItem, ::user::toolbar::element_item);
 
-   //            pgraphics->fill_solid_rect(rectItem, ARGB(184, 255, 255, 255));
+   //            pgraphics->fill_rect(rectItem, ARGB(184, 255, 255, 255));
 
    //         }
 
@@ -1447,7 +1447,7 @@ namespace tranquillum
 
    //            ptoolbar->_001GetElementRect(iItem, rectItem, ::user::toolbar::element_item);
 
-   //            pgraphics->fill_solid_rect(rectItem, ARGB(184, 255, 255, 255));
+   //            pgraphics->fill_rect(rectItem, ARGB(184, 255, 255, 255));
 
    //         }
 
@@ -1560,7 +1560,7 @@ namespace tranquillum
 
       psplitlayout->get_client_rect(rectClient);
 
-      pgraphics->fill_solid_rect(rectClient, ARGB(255, 255, 255, 255));
+      pgraphics->fill_rect(rectClient, ARGB(255, 255, 255, 255));
 
       return true;
 

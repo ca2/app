@@ -327,7 +327,7 @@ namespace console
       
       m_sizeChar = m_sizeChar.max(pgraphics.GetTextExtent("p"));
 
-      pgraphics->fill_solid_rect(rectClient,ARGB(dwAlpha,0,0,0));
+      pgraphics->fill_rect(rectClient,ARGB(dwAlpha,0,0,0));
 
       pgraphics->set_text_color(crTopic);
 
@@ -354,7 +354,7 @@ namespace console
 
 
 
-         pgraphics->fill_solid_rect(rectCaret,crTopic);
+         pgraphics->fill_rect(rectCaret,crTopic);
 
       }
 

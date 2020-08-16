@@ -33,7 +33,7 @@ namespace user
 
       virtual void on_hit_test(::user::item & item) override;
 
-      virtual bool get_rect(::rect & rect, const ::user::item & item) override;
+      virtual bool get_rect(::user::item & item) override;
 
 
 

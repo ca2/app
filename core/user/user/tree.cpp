@@ -203,7 +203,7 @@ namespace user
 
          pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         pgraphics->fill_solid_rect(rectClient, m_colorTreeBackground);
+         pgraphics->fill_rect(rectClient, m_colorTreeBackground);
 
 
          auto pointCursor=      Session.get_cursor_pos();
@@ -428,7 +428,7 @@ namespace user
          //if(Session.savings().is_trying_to_save(::aura::resource_processing))
          //{
 
-            data.m_pdc->fill_solid_rect(data.m_rect, ARGB(127, 96,96,96));
+            data.m_pdc->fill_rect(data.m_rect, ARGB(127, 96,96,96));
 
          //}
          //else

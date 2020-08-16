@@ -2521,7 +2521,7 @@ namespace user
 
 #if TEST
 
-         pgraphics->fill_solid_rect(60, 10, 50, 50, ARGB(128, 190, 180, 90));
+         pgraphics->fill_rect(60, 10, 50, 50, ARGB(128, 190, 180, 90));
 
 #endif
 
@@ -2533,7 +2533,7 @@ namespace user
 
 #if TEST
 
-         pgraphics->fill_solid_rect(10, 60, 50, 50, ARGB(128, 190, 180, 90));
+         pgraphics->fill_rect(10, 60, 50, 50, ARGB(128, 190, 180, 90));
 
 #endif
 

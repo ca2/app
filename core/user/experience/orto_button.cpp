@@ -42,7 +42,7 @@ namespace experience
       if (!is_window_enabled())
       {
 
-         pgraphics->fill_solid_rect(rectClient, ARGB(255, 90, 90, 80));
+         pgraphics->fill_rect(rectClient, ARGB(255, 90, 90, 80));
 
          crText = ARGB(255, 49, 50, 23);
 
@@ -50,7 +50,7 @@ namespace experience
       else if (m_itemHover)
       {
 
-         pgraphics->fill_solid_rect(rectClient, ARGB(190, 49, 50, 23));
+         pgraphics->fill_rect(rectClient, ARGB(190, 49, 50, 23));
 
          crText = ARGB(255, 255, 255, 255);
 
@@ -58,7 +58,7 @@ namespace experience
       else if (has_focus())
       {
 
-         pgraphics->fill_solid_rect(rectClient, ARGB(255, 255, 250, 184));
+         pgraphics->fill_rect(rectClient, ARGB(255, 255, 250, 184));
 
          crText = ARGB(255, 255, 255, 255);
 

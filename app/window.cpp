@@ -8,39 +8,13 @@ namespace app_app
    window::window()
    {
 
+      m_dBreathPeriod = 60.0;
 
-   }
+      m_dStartTime = ::get_secs();
 
+      //m_dLastTime = m_dStartTime;
 
-   window::~window()
-   {
-
-   }
-
-
-   void window::install_message_routing(::channel* pchannel)
-   {
-
-      ::user::interaction::install_message_routing(pchannel);
-
-      IGUI_MSG_LINK(WM_CLOSE, pchannel, this, &window::_001OnClose);
-      IGUI_MSG_LINK(WM_DISPLAYCHANGE, pchannel, this, &window::_001OnDisplayChange);
-
-   }
-
-
-   void window::assert_valid() const
-   {
-
-      ::user::interaction::assert_valid();
-
-   }
-
-
-   void window::dump(dump_context & dumpcontext) const
-   {
-
-      ::user::interaction::dump(dumpcontext);
+      m_dPhaseShift = 0.0;
 
    }
 
@@ -50,11 +24,13 @@ namespace app_app
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
+      pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
+
       ::rect rectClient;
 
       get_client_rect(rectClient);
 
-      pgraphics->fill_solid_rect(rectClient, ARGB(127, 255, 255, 255));
+      pgraphics->fill_rect(rectClient, ARGB(127, 255, 255, 255));
       
       double dBase = (double) rectClient.minimum_signed_absolute_dimension() / 17.0;
 
@@ -68,47 +44,86 @@ namespace app_app
 
       pgraphics->fill_solid_rect_dim(x, y + dBase * 6.0, dBase * 11.0, dBase * 5.0, ARGB(127, 255, 110, 150));
 
-      rectClient.deflate(dBase);
+      rectClient.deflate((long)dBase);
 
       for (int i = 0; i < dBase; i++)
       {
 
-         pgraphics->draw3d_rect(rectClient, ARGB(255, 127, 127, 127));
+         pgraphics->draw_rect(rectClient, ARGB(255, 127, 127, 127));
 
          rectClient.deflate(1, 1);
 
       }
 
+      pgraphics->set_smooth_mode(::draw2d::smooth_mode_high);
+
+      auto pitem = get_user_item(::user::element_close_button);
+
+      if (::is_set(pitem))
+      {
+
+         bool bHover = m_itemHover == ::user::element_close_button;
+
+         double dSourcePeriod = bHover ? 0.5 : 5.0;
+
+         double time = get_secs() - m_dStartTime;
+
+         double dFrequency = 1.0 / m_dBreathPeriod;
+
+         double omega = 2.0 * System.math().GetPi() * dFrequency;
+
+         double angle = omega * time;
+
+         angle += m_dPhaseShift;
+
+         double dNewPeriod = m_dBreathPeriod;
+
+         if (dSourcePeriod < dNewPeriod)
+         {
+
+            dNewPeriod -= dNewPeriod * 0.1;
+
+         }
+         else if (dSourcePeriod > dNewPeriod)
+         {
+
+            dNewPeriod += dNewPeriod * 0.1;
+
+         }
+
+         if (dNewPeriod != m_dBreathPeriod)
+         {
+
+            m_dBreathPeriod = dNewPeriod;
+
+            dFrequency = 1.0 / m_dBreathPeriod;
+
+            omega = 2.0 * System.math().GetPi() * dFrequency;
+
+            double angleNew = omega * time;
+
+            m_dPhaseShift = angle - angleNew;
+
+            m_dPhaseShift = fmod(m_dPhaseShift, 2.0 * System.math().GetPi());
+
+         }
+
+         int iSize = ::sin(angle) * 20 + 64;
+
+         get_client_rect(pitem->m_rect);
+
+         pitem->m_rect.left = pitem->m_rect.right - iSize;
+         pitem->m_rect.bottom = pitem->m_rect.top + iSize;
+
+         update_hover(nullptr);
+
+      }
+
+      ::user::interaction::_001OnDraw(pgraphics);
+
+      
+
    }
-
-
-   void window::_001OnClose(::message::message* pmessage)
-   {
-
-      Application.close(::aura::end_app);
-
-   }
-
-
-   void window::_001OnDisplayChange(::message::message* pmessage)
-   {
-
-      ::rect rectWindow;
-
-      _001InitialFramePosition(rectWindow, { 0.05, 0.05, 0.4, 0.4 });
-
-      display(display_normal);
-
-      place(rectWindow);
-
-      set_need_layout();
-
-      set_need_redraw();
-
-      post_redraw();
-
-   }
-
 
 
 } // namespace app_app

@@ -680,15 +680,15 @@ namespace html
             {
                if(m_bHover && m_pelemental->m_pstyle->get_color("background-color", "hover", pdata, m_pelemental, cr))
                {
-                  pgraphics->fill_solid_rect(rect, cr);
+                  pgraphics->fill_rect(rect, cr);
                }
                else if(has_link() && m_pelemental->m_pstyle->get_color("background-color", "link", pdata, m_pelemental, cr))
                {
-                  pgraphics->fill_solid_rect(rect, cr);
+                  pgraphics->fill_rect(rect, cr);
                }
                else if (m_pelemental->m_pstyle->get_color("background-color", "", pdata, m_pelemental, cr))
                {
-                  pgraphics->fill_solid_rect(rect, cr);
+                  pgraphics->fill_rect(rect, cr);
                }
             }
          }
@@ -874,14 +874,14 @@ namespace html
                else
                {
                   pgraphics->text_out(left,top,strLine);
-                  //pgraphics->fill_solid_rect(left,top,50,50,ARGB(255,0,255,0));
+                  //pgraphics->fill_rect(left,top,50,50,ARGB(255,0,255,0));
                }
 
                cy += m_sizea[i].cy;
                lim += strLine.get_length();
             }
          }
-         //pgraphics->fill_solid_rect(0, 0, 100, 100, RGB(0, 255, 0));
+         //pgraphics->fill_rect(0, 0, 100, 100, RGB(0, 255, 0));
 
          */
 

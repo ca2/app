@@ -52,15 +52,15 @@ namespace user
 
       get_client_rect(rect);
 
-      pgraphics->fill_solid_rect(rect, ARGB(255, 235, 235, 235));
+      pgraphics->fill_rect(rect, ARGB(255, 235, 235, 235));
 
-      pgraphics->draw3d_rect(rect, ARGB(255, 128, 128, 128), ARGB(255, 128, 128, 128));
+      pgraphics->draw_rect(rect, ARGB(255, 128, 128, 128));
 
       rect.deflate(1, 1);
 
       rect.right = (LONG) (rect.width() * m_dRate + rect.left);
 
-      pgraphics->fill_solid_rect(rect, ARGB(255, 100, 220,180));
+      pgraphics->fill_rect(rect, ARGB(255, 100, 220,180));
 
    }
 

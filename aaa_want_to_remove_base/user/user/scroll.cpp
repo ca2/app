@@ -1066,7 +1066,7 @@ namespace user
          rect.right = (LONG) (rect.left + m_pscrollbarVert->ui_state().m_size.cx);
          rect.bottom = (LONG) (rect.top + m_pscrollbarHorz->ui_state().m_size.cy);
 
-         pgraphics->fill_solid_rect(rect, _001GetColor(color_scrollbar_background));
+         pgraphics->fill_rect(rect, _001GetColor(color_scrollbar_background));
 
       }
 

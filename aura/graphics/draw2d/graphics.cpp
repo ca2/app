@@ -418,31 +418,31 @@ namespace draw2d
    }
 
 
-   COLORREF graphics::GetNearestColor(COLORREF crColor)
-   {
+   //COLORREF graphics::GetNearestColor(const ::color & colorColor)
+   //{
 
-      UNREFERENCED_PARAMETER(crColor);
+   //   UNREFERENCED_PARAMETER(crColor);
 
-      return 0;
+   //   return 0;
 
-   }
-
-
-   UINT graphics::RealizePalette()
-   {
+   //}
 
 
-      return -1;
-
-   }
-
-   void graphics::UpdateColors()
-   {
+   //UINT graphics::RealizePalette()
+   //{
 
 
+   //   return -1;
+
+   //}
+
+   //void graphics::UpdateColors()
+   //{
 
 
-   }
+
+
+   //}
 
 
    i32 graphics::GetPolyFillMode()
@@ -2134,7 +2134,7 @@ namespace draw2d
    }
 
 
-   COLORREF graphics::GetPixel(i32 x, i32 y)
+   ::color graphics::GetPixel(i32 x, i32 y)
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
@@ -2142,52 +2142,63 @@ namespace draw2d
       return 0;
    }
 
-   COLORREF graphics::GetPixel(const ::point & point)
+   ::color graphics::GetPixel(const ::point & point)
    {
       UNREFERENCED_PARAMETER(point);
 
       return 0;
    }
 
-   COLORREF graphics::SetPixel(i32 x, i32 y, COLORREF crColor)
+
+   ::color graphics::SetPixel(i32 x, i32 y, const ::color & color)
    {
+   
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
-      UNREFERENCED_PARAMETER(crColor);
+      UNREFERENCED_PARAMETER(color);
 
       return 0;
+
    }
 
-   COLORREF graphics::SetPixel(const ::point & point, COLORREF crColor)
+
+   ::color graphics::SetPixel(const ::point & point, const ::color& color)
    {
+
       UNREFERENCED_PARAMETER(point);
-      UNREFERENCED_PARAMETER(crColor);
+      UNREFERENCED_PARAMETER(color);
 
       return 0;
+
    }
 
-   bool graphics::FloodFill(i32 x, i32 y, COLORREF crColor)
+
+   bool graphics::FloodFill(i32 x, i32 y, const ::color& color)
    {
+      
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
-      UNREFERENCED_PARAMETER(crColor);
+      UNREFERENCED_PARAMETER(color);
 
       return false;
+
    }
 
-   bool graphics::ExtFloodFill(i32 x, i32 y, COLORREF crColor, UINT nFillType)
+
+   bool graphics::ExtFloodFill(i32 x, i32 y, const ::color& color, UINT nFillType)
    {
+      
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
-      UNREFERENCED_PARAMETER(crColor);
+      UNREFERENCED_PARAMETER(color);
       UNREFERENCED_PARAMETER(nFillType);
 
       return false;
+
    }
 
 
    bool graphics::text_out(i32 x, i32 y, const char * pszString, strsize nCount)
-
    {
 
       return text_out((double)x, (double)y, pszString, nCount);
@@ -2486,106 +2497,106 @@ namespace draw2d
       return false;
    }
 
-   i32 graphics::GetTextCharacterExtra()
-   {
+//   i32 graphics::GetTextCharacterExtra()
+//   {
+//
+//      return -1;
+//   }
+//
+//   bool graphics::GetCharWidth(UINT nFirstChar, UINT nLastChar, i32 * pBuffer)
+//
+//   {
+//      UNREFERENCED_PARAMETER(nFirstChar);
+//      UNREFERENCED_PARAMETER(nLastChar);
+//      UNREFERENCED_PARAMETER(pBuffer);
+//
+//
+//      return false;
+//   }
+//
+//   bool graphics::GetOutputCharWidth(UINT nFirstChar, UINT nLastChar, i32 * pBuffer)
+//
+//   {
+//      UNREFERENCED_PARAMETER(nFirstChar);
+//      UNREFERENCED_PARAMETER(nLastChar);
+//      UNREFERENCED_PARAMETER(pBuffer);
+//
+//
+//      return false;
+//   }
+//
+//   u32 graphics::GetFontLanguageInfo()
+//   {
+//
+//      return -1;
+//   }
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//   u32 graphics::GetCharacterPlacement(const char * pString, strsize nCount, strsize nMaxExtent, LPGCP_RESULTS pResults, u32 dwFlags)
+//
+//   {
+//      UNREFERENCED_PARAMETER(pString);
+//
+//      UNREFERENCED_PARAMETER(nCount);
+//      UNREFERENCED_PARAMETER(nMaxExtent);
+//      UNREFERENCED_PARAMETER(pResults);
+//
+//      UNREFERENCED_PARAMETER(dwFlags);
+//
+//      return -1;
+//   }
+//
+//   u32 graphics::GetCharacterPlacement(string & str, strsize nMaxExtent, LPGCP_RESULTS pResults, u32 dwFlags)
+//
+//   {
+//      UNREFERENCED_PARAMETER(str);
+//      UNREFERENCED_PARAMETER(nMaxExtent);
+//      UNREFERENCED_PARAMETER(pResults);
+//
+//      UNREFERENCED_PARAMETER(dwFlags);
+//
+//      return -1;
+//   }
+//
+//#endif
+//
+//   size graphics::GetAspectRatioFilter()
+//   {
+//
+//      return size(0, 0);
+//   }
 
-      return -1;
-   }
+   //bool graphics::ScrollDC(i32 dx, i32 dy, const rect &  pRectScroll, const rect &  pRectClip, ::draw2d::region * pRgnUpdate, RECT * pRectUpdate)
 
-   bool graphics::GetCharWidth(UINT nFirstChar, UINT nLastChar, i32 * pBuffer)
+   //{
+   //   UNREFERENCED_PARAMETER(dx);
+   //   UNREFERENCED_PARAMETER(dy);
+   //   UNREFERENCED_PARAMETER(pRectScroll);
 
-   {
-      UNREFERENCED_PARAMETER(nFirstChar);
-      UNREFERENCED_PARAMETER(nLastChar);
-      UNREFERENCED_PARAMETER(pBuffer);
+   //   UNREFERENCED_PARAMETER(pRectClip);
 
-
-      return false;
-   }
-
-   bool graphics::GetOutputCharWidth(UINT nFirstChar, UINT nLastChar, i32 * pBuffer)
-
-   {
-      UNREFERENCED_PARAMETER(nFirstChar);
-      UNREFERENCED_PARAMETER(nLastChar);
-      UNREFERENCED_PARAMETER(pBuffer);
-
-
-      return false;
-   }
-
-   u32 graphics::GetFontLanguageInfo()
-   {
-
-      return -1;
-   }
-
-#ifdef WINDOWS_DESKTOP
-
-   u32 graphics::GetCharacterPlacement(const char * pString, strsize nCount, strsize nMaxExtent, LPGCP_RESULTS pResults, u32 dwFlags)
-
-   {
-      UNREFERENCED_PARAMETER(pString);
-
-      UNREFERENCED_PARAMETER(nCount);
-      UNREFERENCED_PARAMETER(nMaxExtent);
-      UNREFERENCED_PARAMETER(pResults);
-
-      UNREFERENCED_PARAMETER(dwFlags);
-
-      return -1;
-   }
-
-   u32 graphics::GetCharacterPlacement(string & str, strsize nMaxExtent, LPGCP_RESULTS pResults, u32 dwFlags)
-
-   {
-      UNREFERENCED_PARAMETER(str);
-      UNREFERENCED_PARAMETER(nMaxExtent);
-      UNREFERENCED_PARAMETER(pResults);
-
-      UNREFERENCED_PARAMETER(dwFlags);
-
-      return -1;
-   }
-
-#endif
-
-   size graphics::GetAspectRatioFilter()
-   {
-
-      return size(0, 0);
-   }
-
-   bool graphics::ScrollDC(i32 dx, i32 dy, const rect &  pRectScroll, const rect &  pRectClip, ::draw2d::region * pRgnUpdate, RECT * pRectUpdate)
-
-   {
-      UNREFERENCED_PARAMETER(dx);
-      UNREFERENCED_PARAMETER(dy);
-      UNREFERENCED_PARAMETER(pRectScroll);
-
-      UNREFERENCED_PARAMETER(pRectClip);
-
-      UNREFERENCED_PARAMETER(pRgnUpdate);
-      UNREFERENCED_PARAMETER(pRectUpdate);
-
-
-      return false;
-   }
-
-   // Printer Escape Functions
-   i32 graphics::Escape(i32 nEscape, i32 nCount, const char * pszInData, LPVOID pOutData)
+   //   UNREFERENCED_PARAMETER(pRgnUpdate);
+   //   UNREFERENCED_PARAMETER(pRectUpdate);
 
 
-   {
-      UNREFERENCED_PARAMETER(nEscape);
-      UNREFERENCED_PARAMETER(nCount);
-      UNREFERENCED_PARAMETER(pszInData);
+   //   return false;
+   //}
 
-      UNREFERENCED_PARAMETER(pOutData);
+   //// Printer Escape Functions
+   //i32 graphics::Escape(i32 nEscape, i32 nCount, const char * pszInData, LPVOID pOutData)
 
 
-      return -1;
-   }
+   //{
+   //   UNREFERENCED_PARAMETER(nEscape);
+   //   UNREFERENCED_PARAMETER(nCount);
+   //   UNREFERENCED_PARAMETER(pszInData);
+
+   //   UNREFERENCED_PARAMETER(pOutData);
+
+
+   //   return -1;
+   //}
 
    // ::draw2d::graphics_pointer 3.1 Specific functions
    UINT graphics::SetBoundsRect(const rect &  pRectBounds, UINT flags)
@@ -2622,72 +2633,78 @@ namespace draw2d
 #endif
 
 
+//#ifdef WINDOWS_DESKTOP
+//
+//   UINT graphics::GetOutlineTextMetrics(UINT cbData, LPOUTLINETEXTMETRICW potm)
+//
+//   {
+//      UNREFERENCED_PARAMETER(cbData);
+//      UNREFERENCED_PARAMETER(potm);
+//
+//
+//      return -1;
+//   }
+//
+//   bool graphics::GetCharABCWidths(UINT nFirstChar, UINT nLastChar, LPABC pabc)
+//
+//   {
+//      UNREFERENCED_PARAMETER(nFirstChar);
+//      UNREFERENCED_PARAMETER(nLastChar);
+//      UNREFERENCED_PARAMETER(pabc);
+//
+//
+//      return false;
+//   }
+//
+//#endif
+//
+//   u32 graphics::GetFontData(u32 dwTable, u32 dwOffset, LPVOID pData,  u32 cbData)
+//
+//   {
+//      UNREFERENCED_PARAMETER(dwTable);
+//      UNREFERENCED_PARAMETER(dwOffset);
+//      UNREFERENCED_PARAMETER(pData);
+//
+//      UNREFERENCED_PARAMETER(cbData);
+//
+//      return -1;
+//   }
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//   i32 graphics::GetKerningPairs(i32 nPairs, LPKERNINGPAIR pkrnpair)
+//
+//   {
+//      UNREFERENCED_PARAMETER(nPairs);
+//      UNREFERENCED_PARAMETER(pkrnpair);
+//
+//
+//      return -1;
+//   }
+//
+//   u32 graphics::GetGlyphOutline(UINT nChar, UINT nFormat, LPGLYPHMETRICS pgm,  u32 cbBuffer, LPVOID pBuffer, const MAT2* pmat2)
+//
+//
+//
+//   {
+//      UNREFERENCED_PARAMETER(nChar);
+//      UNREFERENCED_PARAMETER(nFormat);
+//      UNREFERENCED_PARAMETER(pgm);
+//
+//      UNREFERENCED_PARAMETER(cbBuffer);
+//      UNREFERENCED_PARAMETER(pBuffer);
+//
+//      UNREFERENCED_PARAMETER(pmat2);
+//
+//
+//      return -1;
+//   }
+//
+//#endif
+
+
 #ifdef WINDOWS_DESKTOP
 
-   UINT graphics::GetOutlineTextMetrics(UINT cbData, LPOUTLINETEXTMETRICW potm)
-
-   {
-      UNREFERENCED_PARAMETER(cbData);
-      UNREFERENCED_PARAMETER(potm);
-
-
-      return -1;
-   }
-
-   bool graphics::GetCharABCWidths(UINT nFirstChar, UINT nLastChar, LPABC pabc)
-
-   {
-      UNREFERENCED_PARAMETER(nFirstChar);
-      UNREFERENCED_PARAMETER(nLastChar);
-      UNREFERENCED_PARAMETER(pabc);
-
-
-      return false;
-   }
-
-#endif
-
-   u32 graphics::GetFontData(u32 dwTable, u32 dwOffset, LPVOID pData,  u32 cbData)
-
-   {
-      UNREFERENCED_PARAMETER(dwTable);
-      UNREFERENCED_PARAMETER(dwOffset);
-      UNREFERENCED_PARAMETER(pData);
-
-      UNREFERENCED_PARAMETER(cbData);
-
-      return -1;
-   }
-
-#ifdef WINDOWS_DESKTOP
-
-   i32 graphics::GetKerningPairs(i32 nPairs, LPKERNINGPAIR pkrnpair)
-
-   {
-      UNREFERENCED_PARAMETER(nPairs);
-      UNREFERENCED_PARAMETER(pkrnpair);
-
-
-      return -1;
-   }
-
-   u32 graphics::GetGlyphOutline(UINT nChar, UINT nFormat, LPGLYPHMETRICS pgm,  u32 cbBuffer, LPVOID pBuffer, const MAT2* pmat2)
-
-
-
-   {
-      UNREFERENCED_PARAMETER(nChar);
-      UNREFERENCED_PARAMETER(nFormat);
-      UNREFERENCED_PARAMETER(pgm);
-
-      UNREFERENCED_PARAMETER(cbBuffer);
-      UNREFERENCED_PARAMETER(pBuffer);
-
-      UNREFERENCED_PARAMETER(pmat2);
-
-
-      return -1;
-   }
 
    // ::user::document handling functions
    i32 graphics::StartDoc(LPDOCINFO pDocInfo)
@@ -2699,7 +2716,9 @@ namespace draw2d
       return -1;
    }
 
+
 #endif
+
 
    i32 graphics::StartPage()
    {
@@ -2771,25 +2790,33 @@ namespace draw2d
       return false;
    }
 
-   bool graphics::SetPixelV(i32 x, i32 y, COLORREF crColor)
+
+   bool graphics::SetPixelV(i32 x, i32 y, const ::color& color)
    {
+      
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
-      UNREFERENCED_PARAMETER(crColor);
+      UNREFERENCED_PARAMETER(color);
 
       return false;
+
    }
 
-   bool graphics::SetPixelV(const ::point & point, COLORREF crColor)
+
+   bool graphics::SetPixelV(const ::point & point, const ::color& color)
    {
+      
       UNREFERENCED_PARAMETER(point);
-      UNREFERENCED_PARAMETER(crColor);
+      UNREFERENCED_PARAMETER(color);
 
       return false;
+
    }
+
 
    bool graphics::AngleArc(i32 x, i32 y, i32 nRadius, float fStartAngle, float fSweepAngle)
    {
+
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
       UNREFERENCED_PARAMETER(nRadius);
@@ -2797,6 +2824,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(fSweepAngle);
 
       return false;
+
    }
 
 
@@ -2806,8 +2834,6 @@ namespace draw2d
       UNREFERENCED_PARAMETER(rect);
       UNREFERENCED_PARAMETER(pointStart);
       UNREFERENCED_PARAMETER(pointEnd);
-
-
 
       return false;
 
@@ -2838,19 +2864,19 @@ namespace draw2d
    }
 
 
-#ifdef WINDOWS_DESKTOP
-
-   bool graphics::GetColorAdjustment(LPCOLORADJUSTMENT pColorAdjust)
-
-   {
-      UNREFERENCED_PARAMETER(pColorAdjust);
-
-
-      return false;
-   }
-
-#endif
-
+//#ifdef WINDOWS_DESKTOP
+//
+//   bool graphics::GetColorAdjustment(LPCOLORADJUSTMENT pColorAdjust)
+//
+//   {
+//      UNREFERENCED_PARAMETER(pColorAdjust);
+//
+//
+//      return false;
+//   }
+//
+//#endif
+//
 
    ::draw2d::pen * graphics::get_current_pen()
    {
@@ -2907,56 +2933,56 @@ namespace draw2d
    }
 
 
-   i32 graphics::DrawEscape(i32 nEscape, i32 nInputSize, const char * pszInputData)
-
-   {
-      UNREFERENCED_PARAMETER(nEscape);
-      UNREFERENCED_PARAMETER(nInputSize);
-      UNREFERENCED_PARAMETER(pszInputData);
-
-
-      return -1;
-   }
-
-   i32 graphics::Escape(i32 nEscape, i32 nInputSize, const char * pszInputData, i32 nOutputSize, char * pszOutputData)
-
-   {
-      UNREFERENCED_PARAMETER(nEscape);
-      UNREFERENCED_PARAMETER(nInputSize);
-      UNREFERENCED_PARAMETER(pszInputData);
-
-      UNREFERENCED_PARAMETER(nOutputSize);
-      UNREFERENCED_PARAMETER(pszOutputData);
-
-
-      return -1;
-   }
-
-#ifdef WINDOWS_DESKTOP
-
-   bool graphics::GetCharABCWidths(UINT nFirstChar, UINT nLastChar, LPABCFLOAT pABCF)
-
-   {
-      UNREFERENCED_PARAMETER(nFirstChar);
-      UNREFERENCED_PARAMETER(nLastChar);
-      UNREFERENCED_PARAMETER(pABCF);
-
-
-      return false;
-   }
-
-#endif
-
-   bool graphics::GetCharWidth(UINT nFirstChar, UINT nLastChar, float * pFloatBuffer)
-
-   {
-      UNREFERENCED_PARAMETER(nFirstChar);
-      UNREFERENCED_PARAMETER(nLastChar);
-      UNREFERENCED_PARAMETER(pFloatBuffer);
-
-
-      return false;
-   }
+//   i32 graphics::DrawEscape(i32 nEscape, i32 nInputSize, const char * pszInputData)
+//
+//   {
+//      UNREFERENCED_PARAMETER(nEscape);
+//      UNREFERENCED_PARAMETER(nInputSize);
+//      UNREFERENCED_PARAMETER(pszInputData);
+//
+//
+//      return -1;
+//   }
+//
+//   i32 graphics::Escape(i32 nEscape, i32 nInputSize, const char * pszInputData, i32 nOutputSize, char * pszOutputData)
+//
+//   {
+//      UNREFERENCED_PARAMETER(nEscape);
+//      UNREFERENCED_PARAMETER(nInputSize);
+//      UNREFERENCED_PARAMETER(pszInputData);
+//
+//      UNREFERENCED_PARAMETER(nOutputSize);
+//      UNREFERENCED_PARAMETER(pszOutputData);
+//
+//
+//      return -1;
+//   }
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//   bool graphics::GetCharABCWidths(UINT nFirstChar, UINT nLastChar, LPABCFLOAT pABCF)
+//
+//   {
+//      UNREFERENCED_PARAMETER(nFirstChar);
+//      UNREFERENCED_PARAMETER(nLastChar);
+//      UNREFERENCED_PARAMETER(pABCF);
+//
+//
+//      return false;
+//   }
+//
+//#endif
+//
+//   bool graphics::GetCharWidth(UINT nFirstChar, UINT nLastChar, float * pFloatBuffer)
+//
+//   {
+//      UNREFERENCED_PARAMETER(nFirstChar);
+//      UNREFERENCED_PARAMETER(nLastChar);
+//      UNREFERENCED_PARAMETER(pFloatBuffer);
+//
+//
+//      return false;
+//   }
 
 
    bool graphics::abort_path()
@@ -3191,90 +3217,94 @@ namespace draw2d
       return false;
    }
 
-#ifdef WINDOWS
+//#ifdef WINDOWS
+//
+//   COLORREF graphics::GetDCBrushColor()
+//   {
+//
+//      return 0;
+//   }
+//
+//
+//   //::color graphics::SetDCBrushColor(const ::color& color)
+//   //{
+//
+//   //   UNREFERENCED_PARAMETER(color);
+//
+//   //   return 0;
+//
+//   //}
+//
+//
+//   COLORREF graphics::GetDCPenColor()
+//   {
+//
+//      return 0;
+//   }
+//
+//   COLORREF graphics::SetDCPenColor(const ::color & colorColor)
+//   {
+//      UNREFERENCED_PARAMETER(crColor);
+//
+//      return 0;
+//   }
 
-   COLORREF graphics::GetDCBrushColor()
-   {
-
-      return 0;
-   }
-
-   COLORREF graphics::SetDCBrushColor(COLORREF crColor)
-   {
-      UNREFERENCED_PARAMETER(crColor);
-
-      return 0;
-   }
-
-   COLORREF graphics::GetDCPenColor()
-   {
-
-      return 0;
-   }
-
-   COLORREF graphics::SetDCPenColor(COLORREF crColor)
-   {
-      UNREFERENCED_PARAMETER(crColor);
-
-      return 0;
-   }
-
-#ifndef _UWP
-
-   bool graphics::GetCharABCWidthsI(UINT giFirst, UINT cgi, LPWORD pgi, LPABC pabc)
-
-   {
-      UNREFERENCED_PARAMETER(giFirst);
-      UNREFERENCED_PARAMETER(cgi);
-      UNREFERENCED_PARAMETER(pgi);
-      UNREFERENCED_PARAMETER(pabc);
-
-
-      return false;
-   }
-
-   bool graphics::GetCharWidthI(UINT giFirst, UINT cgi, LPWORD pgi, i32 * pBuffer)
-
-   {
-      UNREFERENCED_PARAMETER(giFirst);
-      UNREFERENCED_PARAMETER(cgi);
-      UNREFERENCED_PARAMETER(pgi);
-      UNREFERENCED_PARAMETER(pBuffer);
-
-
-      return false;
-   }
-
-#endif
-
-   bool graphics::GetTextExtentExPointI(LPWORD pgiIn, i32 cgi, i32 nMaxExtent, i32 * pnFit, i32 * alpDx, LPSIZE pSize)
-
-
-   {
-      UNREFERENCED_PARAMETER(pgiIn);
-      UNREFERENCED_PARAMETER(cgi);
-      UNREFERENCED_PARAMETER(nMaxExtent);
-      UNREFERENCED_PARAMETER(pnFit);
-
-      UNREFERENCED_PARAMETER(alpDx);
-      UNREFERENCED_PARAMETER(pSize);
-
-
-      return false;
-   }
-
-   bool graphics::GetTextExtentPointI(LPWORD pgiIn, i32 cgi, LPSIZE pSize)
-
-   {
-      UNREFERENCED_PARAMETER(pgiIn);
-      UNREFERENCED_PARAMETER(cgi);
-      UNREFERENCED_PARAMETER(pSize);
-
-
-      return false;
-   }
-
-#endif
+//#ifndef _UWP
+//
+//   bool graphics::GetCharABCWidthsI(UINT giFirst, UINT cgi, LPWORD pgi, LPABC pabc)
+//
+//   {
+//      UNREFERENCED_PARAMETER(giFirst);
+//      UNREFERENCED_PARAMETER(cgi);
+//      UNREFERENCED_PARAMETER(pgi);
+//      UNREFERENCED_PARAMETER(pabc);
+//
+//
+//      return false;
+//   }
+//
+//   bool graphics::GetCharWidthI(UINT giFirst, UINT cgi, LPWORD pgi, i32 * pBuffer)
+//
+//   {
+//      UNREFERENCED_PARAMETER(giFirst);
+//      UNREFERENCED_PARAMETER(cgi);
+//      UNREFERENCED_PARAMETER(pgi);
+//      UNREFERENCED_PARAMETER(pBuffer);
+//
+//
+//      return false;
+//   }
+//
+//#endif
+//
+//   bool graphics::GetTextExtentExPointI(LPWORD pgiIn, i32 cgi, i32 nMaxExtent, i32 * pnFit, i32 * alpDx, LPSIZE pSize)
+//
+//
+//   {
+//      UNREFERENCED_PARAMETER(pgiIn);
+//      UNREFERENCED_PARAMETER(cgi);
+//      UNREFERENCED_PARAMETER(nMaxExtent);
+//      UNREFERENCED_PARAMETER(pnFit);
+//
+//      UNREFERENCED_PARAMETER(alpDx);
+//      UNREFERENCED_PARAMETER(pSize);
+//
+//
+//      return false;
+//   }
+//
+//   bool graphics::GetTextExtentPointI(LPWORD pgiIn, i32 cgi, LPSIZE pSize)
+//
+//   {
+//      UNREFERENCED_PARAMETER(pgiIn);
+//      UNREFERENCED_PARAMETER(cgi);
+//      UNREFERENCED_PARAMETER(pSize);
+//
+//
+//      return false;
+//   }
+//
+//#endif
 
    void graphics::DPtoHIMETRIC(LPSIZE pSize)
 
@@ -3331,55 +3361,51 @@ namespace draw2d
    //}
 
 
-   void graphics::fill_solid_rect(const ::rect & rect, COLORREF cr)
-
+   void graphics::fill_rect(const ::rect & rect, const ::color & color)
    {
 
-      fill_solid_rect(rectd(rect), cr);
+      fill_rect(rectd(rect), color);
+
+   }
+
+
+   void graphics::fill_rect(const rectd & rect, const ::color& color)
+   {
+
+      fill_rect(::rect(rect), color);
+
+   }
+
+
+   void graphics::draw_3drect(const ::rect & rect, const ::color & colorTopLeft, const ::color & colorBottomRight, eborder eborder)
+   {
+
+      draw_3drect(rectd(rect), colorTopLeft, colorBottomRight, eborder);
 
 
    }
 
 
-   void graphics::fill_solid_rect(const rectd & rect, COLORREF cr)
+   void graphics::draw_3drect(const rectd & rect, const ::color & colorTopLeft, const ::color & colorBottomRight, eborder eborder)
    {
 
-      fill_solid_rect(::rect(rect), cr);
+      draw_3drect(::rect(rect), colorTopLeft, colorBottomRight, eborder);
 
    }
 
 
-   void graphics::draw3d_rect(const ::rect & rect, COLORREF crTopLeft, COLORREF crBottomRight, eborder eborder)
+   void graphics::draw_rect(const ::rect & rect, const ::color & color, eborder eborder)
    {
 
-      draw3d_rect(rectd(rect), crTopLeft, crBottomRight, eborder);
-
+      return draw_3drect(rect, color, color, eborder);
 
    }
 
 
-   void graphics::draw3d_rect(const rectd & rect, COLORREF crTopLeft, COLORREF crBottomRight, eborder eborder)
+   void graphics::draw_rect(const rectd & rect, const ::color & color, eborder eborder)
    {
 
-      draw3d_rect(::rect(rect), crTopLeft, crBottomRight, eborder);
-
-   }
-
-
-   void graphics::draw3d_rect(const ::rect & rect, COLORREF cr, eborder eborder)
-   {
-
-      return draw3d_rect(rect, cr, cr, eborder);
-
-   }
-
-
-   void graphics::draw3d_rect(const rectd & rect, COLORREF cr, eborder eborder)
-
-   {
-
-      return draw3d_rect(rect, cr, cr, eborder);
-
+      return draw_3drect(rect, color, color, eborder);
 
    }
 
@@ -3452,12 +3478,12 @@ namespace draw2d
 
 
 
-   ::draw2d::palette* graphics::SelectPalette(::draw2d::palette *, bool)
-   {
+   //::draw2d::palette* graphics::SelectPalette(::draw2d::palette *, bool)
+   //{
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
 
    i32 graphics::SetPolyFillMode(i32 nPolyFillMode)
@@ -3766,27 +3792,27 @@ namespace draw2d
       return -1;
    }
 
-   i32 graphics::SetTextJustification(i32 nBreakExtra, i32 nBreakCount)
-   {
-      UNREFERENCED_PARAMETER(nBreakExtra);
-      UNREFERENCED_PARAMETER(nBreakCount);
+   //i32 graphics::SetTextJustification(i32 nBreakExtra, i32 nBreakCount)
+   //{
+   //   UNREFERENCED_PARAMETER(nBreakExtra);
+   //   UNREFERENCED_PARAMETER(nBreakCount);
 
-      return -1;
-   }
+   //   return -1;
+   //}
 
-   i32 graphics::SetTextCharacterExtra(i32 nCharExtra)
-   {
-      UNREFERENCED_PARAMETER(nCharExtra);
+   //i32 graphics::SetTextCharacterExtra(i32 nCharExtra)
+   //{
+   //   UNREFERENCED_PARAMETER(nCharExtra);
 
-      return -1;
-   }
+   //   return -1;
+   //}
 
-   u32 graphics::SetMapperFlags(u32 dwFlag)
-   {
-      UNREFERENCED_PARAMETER(dwFlag);
+   //u32 graphics::SetMapperFlags(u32 dwFlag)
+   //{
+   //   UNREFERENCED_PARAMETER(dwFlag);
 
-      return -1;
-   }
+   //   return -1;
+   //}
 
    u32 graphics::GetLayout()
    {
@@ -3849,22 +3875,22 @@ namespace draw2d
    }
 
 
-#ifdef WINDOWS_DESKTOP
-
-
-   bool graphics::SetColorAdjustment(const COLORADJUSTMENT* pColorAdjust)
-
-   {
-
-      UNREFERENCED_PARAMETER(pColorAdjust);
-
-
-      return false;
-
-   }
-
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//
+//   bool graphics::SetColorAdjustment(const COLORADJUSTMENT* pColorAdjust)
+//
+//   {
+//
+//      UNREFERENCED_PARAMETER(pColorAdjust);
+//
+//
+//      return false;
+//
+//   }
+//
+//
+//#endif
 
 
    bool graphics::PolyBezierTo(const POINT * ppoints, count nCount)
@@ -4680,7 +4706,7 @@ namespace draw2d
    }
 
 
-   bool graphics::set_solid_pen(double dWidth, COLORREF cr)
+   bool graphics::set_solid_pen(double dWidth, const ::color & color)
    {
 
       if(m_ppen.is_null())
@@ -4690,7 +4716,7 @@ namespace draw2d
 
       }
 
-      m_ppen->create_solid(dWidth, cr);
+      m_ppen->create_solid(dWidth, color);
 
       return true;
 
@@ -4795,14 +4821,14 @@ namespace draw2d
    //
    // Returns:     None
    //
-   bool graphics::draw_round_rect(const ::rect & rectParam, COLORREF cr, i32 radius, i32 width, eborder eborder)
+   bool graphics::draw_round_rect(const ::rect & rectParam, const ::color & color, i32 radius, i32 width, eborder eborder)
    {
 
       ::rect rect(rectParam);
 
       ::draw2d::pen_pointer pen(e_create);
 
-      pen->create_solid(1.0, cr);
+      pen->create_solid(1.0, color);
 
       draw_round_rect(rect, pen, radius);
 
@@ -4824,110 +4850,116 @@ namespace draw2d
    }
 
 
-   bool graphics::draw_round_top_left(const ::rect & rect, ::draw2d::pen  * ppen, i32 radius, eborder eborder)
-   {
+   //bool graphics::draw_round_top_left(const ::rect & rect, ::draw2d::pen  * ppen, i32 radius, eborder eborder)
+   //{
 
-      ::draw2d::path_pointer path(e_create);
+   //   ::draw2d::path_pointer path(e_create);
 
-      path->begin_figure(false, ::draw2d::fill_mode_winding);
+   //   //path->begin_figure(false, ::draw2d::fill_mode_winding);
 
-      path->add_round_top_left(rect, 2 * radius);
+   //   path->begin_figure();
 
-      path->end_figure(false);
+   //   path->add_round_top_left(rect, 2 * radius);
 
-      draw_path(path, ppen);
+   //   path->close_figure();
 
-      return true;
+   //   draw_path(path, ppen);
 
-   }
+   //   return true;
 
-
-   bool graphics::draw_round_top_left(const ::rect & rectParam, COLORREF cr, i32 radius, i32 width, eborder eborder)
-   {
-
-      ::rect rect(rectParam);
-
-      i32 dia = 2 * radius;
-
-      ::draw2d::pen_pointer pen(e_create);
-
-      pen->create_solid(1.0, cr);
-
-      draw_round_top_left(rect, pen, radius);
+   //}
 
 
-      for (i32 i = 1; i<width; i++)
-      {
-         dia++;
+   //bool graphics::draw_round_top_left(const ::rect & rectParam, const ::color & color, i32 radius, i32 width, eborder eborder)
+   //{
 
-         // left stroke
-         rect.deflate(1, 0);
+   //   ::rect rect(rectParam);
 
-         draw_round_top_left(rect, pen, dia / 2);
+   //   i32 dia = 2 * radius;
 
-         // up stroke
-         rect.deflate(0, 1);
+   //   ::draw2d::pen_pointer pen(e_create);
 
-         draw_round_top_left(rect, pen, dia / 2);
+   //   pen->create_solid(1.0, color);
 
-      }
-
-      return true;
-
-   }
+   //   draw_round_top_left(rect, pen, radius);
 
 
-   bool graphics::draw_round_bottom_right(const ::rect & rect, ::draw2d::pen  * ppen, i32 radius, eborder eborder)
-   {
+   //   for (i32 i = 1; i<width; i++)
+   //   {
+   //      dia++;
 
-      ::draw2d::path_pointer path(e_create);
+   //      // left stroke
+   //      rect.deflate(1, 0);
 
-      path->begin_figure(false, ::draw2d::fill_mode_winding);
+   //      draw_round_top_left(rect, pen, dia / 2);
 
-      path->add_round_bottom_right(rect, 2 * radius);
+   //      // up stroke
+   //      rect.deflate(0, 1);
 
-      path->end_figure(false);
+   //      draw_round_top_left(rect, pen, dia / 2);
 
-      draw_path(path, ppen);
+   //   }
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
-   bool graphics::draw_round_bottom_right(const ::rect & rectParam, COLORREF cr, i32 radius, i32 width, eborder eborder)
-   {
+   //bool graphics::draw_round_bottom_right(const ::rect & rect, ::draw2d::pen  * ppen, i32 radius, eborder eborder)
+   //{
 
-      ::rect rect(rectParam);
+   //   ::draw2d::path_pointer path(e_create);
 
-      i32 dia = 2 * radius;
+   //   //path->begin_figure(false, ::draw2d::fill_mode_winding);
 
-      ::draw2d::pen_pointer pen(e_create);
+   //   path->begin_figure();
 
-      pen->create_solid(1.0, cr);
+   //   path->add_round_bottom_right(rect, 2 * radius);
 
-      draw_round_bottom_right(rect, pen, radius);
+   //   //path->end_figure(false);
 
-      for (i32 i = 1; i<width; i++)
-      {
+   //   path->close_figure();
 
-         dia++;
+   //   draw_path(path, ppen);
 
-         // left stroke
-         rect.deflate(1, 0);
+   //   return true;
 
-         draw_round_bottom_right(rect, pen, dia / 2);
+   //}
 
-         // up stroke
-         rect.deflate(0, 1);
 
-         draw_round_bottom_right(rect, pen, dia / 2);
+   //bool graphics::draw_round_bottom_right(const ::rect & rectParam, const ::color & color, i32 radius, i32 width, eborder eborder)
+   //{
 
-      }
+   //   ::rect rect(rectParam);
 
-      return true;
+   //   i32 dia = 2 * radius;
 
-   }
+   //   ::draw2d::pen_pointer pen(e_create);
+
+   //   pen->create_solid(1.0, color);
+
+   //   draw_round_bottom_right(rect, pen, radius);
+
+   //   for (i32 i = 1; i<width; i++)
+   //   {
+
+   //      dia++;
+
+   //      // left stroke
+   //      rect.deflate(1, 0);
+
+   //      draw_round_bottom_right(rect, pen, dia / 2);
+
+   //      // up stroke
+   //      rect.deflate(0, 1);
+
+   //      draw_round_bottom_right(rect, pen, dia / 2);
+
+   //   }
+
+   //   return true;
+
+   //}
 
    //=============================================================================
    //
@@ -4943,12 +4975,12 @@ namespace draw2d
    //
    // Returns:     None
    //
-   bool graphics::fill_round_rect(const ::rect & rect, COLORREF cr, i32 radius)
+   bool graphics::fill_round_rect(const ::rect & rect, const ::color & color, i32 radius)
    {
 
       ::draw2d::brush_pointer br(e_create);
 
-      br->create_solid(cr);
+      br->create_solid(color);
 
       return fill_round_rect(rect, br.m_p, radius);
 
@@ -4975,17 +5007,22 @@ namespace draw2d
 
       ::draw2d::path_pointer path(e_create);
 
-      path->begin_figure(true, ::draw2d::fill_mode_winding);
+      //path->begin_figure(true, ::draw2d::fill_mode_winding);
+
+      path->begin_figure();
 
       path->add_round_rect(rect, 2 * radius);
 
-      path->end_figure(true);
+      //path->end_figure(true);
+
+      path->close_figure();
 
       fill_path(path, pbr);
 
       return true;
 
    }
+
 
    bool graphics::round_rect(const ::rect & rect, i32 radius)
    {
@@ -5506,21 +5543,19 @@ namespace draw2d
 
 
 
-   bool graphics::draw_stock_icon(const rect & rectParam, e_stock_icon eicon)
+   bool graphics::draw_stock_icon(const rectd & rectParam, e_stock_icon eicon)
    {
 
       ::draw2d::pen_pointer pen(e_create);
-      ::draw2d::brush_pointer brush(e_create);
+
+      ::rectd rect(rectParam);
 
       *pen = *m_ppen;
-      *brush = *m_pbrush;
-
-      ::rect rect(rectParam);
 
       if(eicon == stock_icon_close)
       {
 
-         rect.deflate(rect.width() / 7, rect.height() / 7);
+         rect.deflate(rect.width() / 7.0, rect.height() / 7.0);
 
          m_ppen->m_dWidth *= 2.0;
          m_ppen->set_modified();
@@ -5533,7 +5568,7 @@ namespace draw2d
       else if(eicon == stock_icon_zoom)
       {
 
-         rect.deflate(0, rect.height() / 7);
+         rect.deflate(0, rect.height() / 7.0);
 
          draw_rect(rect);
 
@@ -5552,11 +5587,11 @@ namespace draw2d
       else if(eicon == stock_icon_restore)
       {
 
-         rect.deflate(0, rect.height() / 7);
+         rect.deflate(0, rect.height() / 7.0);
 
          ::rect rect1(rect);
 
-         rect1.deflate(0, 0, rect.width() / 3, rect.height() / 3);
+         rect1.deflate(0, 0, rect.width() / 3.0, rect.height() / 3.0);
 
          ::rect rect2(rect1);
 
@@ -5596,7 +5631,8 @@ namespace draw2d
       else if(eicon == stock_icon_iconify)
       {
 
-         rect.deflate(0, rect.height() / 7);
+
+         rect.deflate(0, rect.height() / 7.0);
 
 
          move_to(rect.bottom_left() - ::size(0,(LONG)(pen->m_dWidth*2.0)));
@@ -5618,7 +5654,7 @@ namespace draw2d
       else if(eicon == stock_icon_dock)
       {
 
-         rect.deflate(rect.height() / 8, rect.height() / 8);
+         rect.deflate(rect.height() / 8.0, rect.height() / 8.0);
 
          draw_ellipse(rect);
 
@@ -5638,7 +5674,7 @@ namespace draw2d
       else if (eicon == stock_icon_notify)
       {
 
-         rect.deflate(rect.height() / 2, rect.height() / 2);
+         rect.deflate(rect.height() / 2.0, rect.height() / 2.0);
 
          draw_ellipse(rect);
 
@@ -5658,7 +5694,7 @@ namespace draw2d
       else if (eicon == stock_icon_level_up)
       {
 
-         rect.deflate(rect.height() / 3, rect.height() / 3);
+         rect.deflate(rect.height() / 3.0, rect.height() / 3.0);
 
          point_array pointa;
 
@@ -5666,7 +5702,7 @@ namespace draw2d
 
          pointa.add(rect.bottom_right());
 
-         pointa.add((rect.right + rect.left) / 2, rect.top);
+         pointa.add((rect.right + rect.left) / 2.0, rect.top);
 
          polygon(pointa);
 
@@ -5674,7 +5710,7 @@ namespace draw2d
       else if (eicon == stock_icon_level_down)
       {
 
-         rect.deflate(rect.height() / 3, rect.height() / 3);
+         rect.deflate(rect.height() / 3.0, rect.height() / 3.0);
 
          point_array pointa;
 
@@ -5682,7 +5718,7 @@ namespace draw2d
 
          pointa.add(rect.top_right());
 
-         pointa.add((rect.right + rect.left) / 2, rect.bottom);
+         pointa.add((rect.right + rect.left) / 2.0, rect.bottom);
 
          polygon(pointa);
 
@@ -5695,7 +5731,6 @@ namespace draw2d
       }
 
       *m_ppen = *pen;
-      *m_pbrush = *brush;
 
       return true;
 
@@ -5847,20 +5882,20 @@ namespace draw2d
    }
 
 
-   void graphics::draw_ca2_with_border2(int x, int y, int z, int bOut, int bIn, COLORREF crBk, COLORREF cr, COLORREF crOut, COLORREF crIn)
+   void graphics::draw_ca2_with_border2(int x, int y, int z, int bOut, int bIn, const ::color & colorBk, const ::color & color, const ::color & colorOut, const ::color & colorIn)
    {
 
-      draw_ca2(x + bIn + bOut, y + bIn + bOut, z, crBk, cr);
+      draw_ca2(x + bIn + bOut, y + bIn + bOut, z, colorBk, color);
 
-      draw_ca2_border2(x, y, z, bOut, bIn, crBk, cr, crOut, crIn);
+      draw_ca2_border2(x, y, z, bOut, bIn, colorBk, color, colorOut, colorIn);
 
    }
 
 
-   void graphics::draw_ca2_with_border(int x, int y, int z, int b, COLORREF crBk, COLORREF cr, COLORREF crBorder)
+   void graphics::draw_ca2_with_border(int x, int y, int z, int b, const ::color & colorBk, const ::color & color, const ::color & colorBorder)
    {
 
-      draw_ca2(x + b, y + b, z, crBk, cr);
+      draw_ca2(x + b, y + b, z, colorBk, color);
 
       int w = z / 19;
 
@@ -5877,7 +5912,7 @@ namespace draw2d
 
       ::draw2d::pen_pointer point(e_create);
 
-      point->create_solid(1.0, crBorder);
+      point->create_solid(1.0, colorBorder);
 
       for(int i = 0; i < b; i++)
       {
@@ -5904,7 +5939,7 @@ namespace draw2d
 
 
 
-   void graphics::draw_ca2(int x, int y, int z, COLORREF crBk, COLORREF cr)
+   void graphics::draw_ca2(int x, int y, int z, const ::color & colorBk, const ::color & color)
    {
 
       ::draw2d::brush_pointer b(e_create);
@@ -5918,7 +5953,7 @@ namespace draw2d
 
       z = w * 19;
 
-      b->create_solid(crBk);
+      b->create_solid(colorBk);
 
       rect rect(x, y, x + z, y + z);
 
@@ -5926,7 +5961,7 @@ namespace draw2d
 
       // bottom line
 
-      b->create_solid(cr);
+      b->create_solid(color);
 
       rect.top += w * 13;
       rect.bottom -= w;
@@ -6056,7 +6091,7 @@ namespace draw2d
    }
 
 
-   void graphics::draw_ca2_border2(int x, int y, int z, int bOut, int bIn, COLORREF crBk, COLORREF cr, COLORREF crOut, COLORREF crIn)
+   void graphics::draw_ca2_border2(int x, int y, int z, int bOut, int bIn, const ::color & colorBk, const ::color & color, const ::color & colorOut, const ::color & colorIn)
    {
       int w = z / 19;
 
@@ -6070,7 +6105,7 @@ namespace draw2d
 
       ::draw2d::pen_pointer point(e_create);
 
-      point->create_solid(1.0, crIn);
+      point->create_solid(1.0, colorIn);
 
       for(int i = 0; i < bIn; i++)
       {
@@ -6081,7 +6116,7 @@ namespace draw2d
 
       }
 
-      point->create_solid(1.0, crOut);
+      point->create_solid(1.0, colorOut);
 
       for(int i = 0; i < bOut; i++)
       {
@@ -6178,7 +6213,7 @@ namespace draw2d
    }
 
 
-   void graphics::nanosvg_drawPath(float* pts, int npts, char closed, float tol, COLORREF cr)
+   void graphics::nanosvg_drawPath(float* pts, int npts, char closed, float tol, const ::color & color)
    {
 
       int i;
@@ -6573,7 +6608,7 @@ namespace draw2d
    }
 
 
-   void graphics::draw_border(const ::rect & rectParam, COLORREF cr, int iWidth)
+   void graphics::draw_border(const ::rect & rectParam, const ::color & color, int iWidth)
    {
 
       ::rect rect(rectParam);
@@ -6584,7 +6619,7 @@ namespace draw2d
 
       pen_pointer point1(e_create);
 
-      point1->create_solid(iWidth, cr);
+      point1->create_solid(iWidth, color);
 
       point1->m_ealign = ::draw2d::pen::align_inset;
 

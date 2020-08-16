@@ -2159,7 +2159,7 @@ break_click:;
 
             }
 
-            pdrawitem->m_pgraphics->fill_solid_rect(pdrawitem->m_rectSubItem, crBackHover);
+            pdrawitem->m_pgraphics->fill_rect(pdrawitem->m_rectSubItem, crBackHover);
 
          }
 

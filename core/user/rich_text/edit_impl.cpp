@@ -673,7 +673,7 @@ namespace user
          //   if (crBackground != 0)
          //   {
 
-         //      pgraphics->fill_solid_rect(rectClient, crBackground);
+         //      pgraphics->fill_rect(rectClient, crBackground);
 
          //   }
 
@@ -694,7 +694,7 @@ namespace user
 
          //   //crBackground = ARGB(255, 255, 200, 100);
 
-         //   pgraphics->fill_solid_rect(rectClient, crBackground);
+         //   pgraphics->fill_rect(rectClient, crBackground);
 
          //}
 
@@ -722,7 +722,7 @@ namespace user
 
             get_client_rect(rectClient);
 
-            pgraphics->fill_solid_rect(rectClient, ARGB(40, 255, 255, 255));
+            pgraphics->fill_rect(rectClient, ARGB(40, 255, 255, 255));
 
             draw_impl(pgraphics);
 

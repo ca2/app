@@ -453,10 +453,10 @@ namespace draw2d_cairo
 //      void DrawDragRect(const ::rect & rect, const ::size & size,
 //                        const ::rect & rectLast, const ::size & sizeLast,
 //                        ::draw2d::brush* pBrush = nullptr, ::draw2d::brush* pBrushLast = nullptr) override;
-      //void fill_solid_rect(const RECT64 * rect, COLORREF clr) override;
-      void fill_solid_rect(const ::rect & rect, COLORREF clr) override;
-      void fill_solid_rect(const ::rectd & rect, COLORREF clr) override;
-      //void fill_solid_rect(i32 x, i32 y, i32 cx, i32 cy, COLORREF clr) override;
+      //void fill_rect(const RECT64 * rect, COLORREF clr) override;
+      void fill_rect(const ::rect & rect, COLORREF clr) override;
+      void fill_rect(const ::rectd & rect, COLORREF clr) override;
+      //void fill_rect(i32 x, i32 y, i32 cx, i32 cy, COLORREF clr) override;
       void draw3d_rect(const ::rect & rect, COLORREF clrTopLeft, COLORREF clrBottomRight, eborder eborder = border_all) override;
       //void draw3d_rect(i32 x, i32 y, i32 cx, i32 cy,
       //              COLORREF clrTopLeft, COLORREF clrBottomRight) override;

@@ -480,7 +480,7 @@ namespace draw2d_quartz2d
 //      void DrawDragRect(const ::rectd & rect, const ::size & size,
 //                        const ::rectd & rectLast, const ::size & sizeLast,
 //                        ::draw2d::brush* pBrush = nullptr, ::draw2d::brush* pBrushLast = nullptr) override;
-      virtual void fill_solid_rect(const ::rectd & rect, COLORREF clr) override;
+      virtual void fill_rect(const ::rectd & rect, COLORREF clr) override;
       virtual void draw3d_rect(const ::rectd & rect, COLORREF clrTopLeft, COLORREF clrBottomRight, eborder eborder = border_all) override;
 
       virtual void assert_valid() const override;

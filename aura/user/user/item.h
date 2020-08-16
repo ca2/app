@@ -1,5 +1,30 @@
 #pragma once
 
+template < typename T >
+class ___stack
+{
+public:
+
+   T& m_reference;
+   T m_tPrevious;
+
+   ___stack(T& reference, const T& tStack) :
+      m_reference(reference)
+   {
+      m_tPrevious = reference;
+      reference = tStack;
+   }
+
+   ~___stack()
+   {
+      m_reference = m_tPrevious;
+
+   }
+
+};
+
+
+#define __stack(xxxx, aaaa) auto stack_at_line ## LINE_NUMBER = ::___stack < ::remove_reference< decltype(xxxx) >::TYPE > (xxxx, aaaa);
 
 namespace user
 {
@@ -31,26 +56,41 @@ namespace user
 #define ITEM_DRAWN 0x800000
 
 
-   class CLASS_DECL_AURA item : public ITEM
+
+   class CLASS_DECL_AURA item : 
+      public ITEM,
+      virtual public ::generic_object
    {
    public:
 
       // a user item is a "pointer"/address to a user interface element
 
-      ::point              m_pointScreen;
-      ::point              m_pointClient;
-      ::point              m_pointHitTest;
-      u64                  m_uFlags;
+      ::point                       m_pointScreen;
+      ::point                       m_pointClient;
+      ::point                       m_pointHitTest;
+      ::rect                        m_rect;
+      ::draw2d::graphics_pointer    m_pgraphics;
+      ::draw2d::path_pointer        m_ppath;
+      ::user::e_event               m_eevent;
+      u64                           m_uFlags;
       //::user::mouse *      m_pmouse;
 
       //item(e_element eelement, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, const ::u64 uFlags = flag_none) :
       //   item(eelement, iItem, iSubItem, iListItem, uFlags) {}
 
-      item(const ::u64 uFlags, e_element eelement, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1) :
-         item(eelement, iItem, iSubItem, iListItem, uFlags) {}
+      item(const ::u64 uFlags, e_element eelement, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, ::user::e_event eevent = ::user::event_none) :
+         item(eelement, iItem, iSubItem, iListItem, eevent, uFlags) {}
 
-      item(e_element eelement = ::user::element_none, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, const ::u64 uFlags = flag_none)
+      item(e_element eelement, ::user::e_event eevent)
+         : item(eelement, -1, -1, -1, eevent)
       {
+
+      }
+
+      item(e_element eelement = ::user::element_none, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, ::user::e_event eevent = event_none, const ::u64 uFlags = flag_none)
+      {
+
+         m_eevent = eevent;
 
          m_eelement = eelement;
 
@@ -66,6 +106,8 @@ namespace user
 
       item(::index iItem)
       {
+
+         m_eevent = ::user::event_none;
 
          m_eelement = ::user::element_none;
 

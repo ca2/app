@@ -939,7 +939,7 @@ namespace user
             1,
             RGB(128, 128, 123));
          }
-         //      pgraphics->fill_solid_rect(0, 0, rect.right, CY_BORDER, clr);
+         //      pgraphics->fill_rect(0, 0, rect.right, CY_BORDER, clr);
       }
       if (uStyle & (CBRS_BORDER_LEFT | CBRS_BORDER_TOP))
       {
@@ -979,7 +979,7 @@ namespace user
                pgraphics->fill_solid_rect_dim(rect.left + 7, rect.top + 1, rect.width() - 7, 1, clr);
             else
                pgraphics->fill_solid_rect_dim(rect.left, rect.top + 1, rect.width(), 1, clr);
-            //pgraphics->fill_solid_rect(0, 1, rect.right, CY_BORDER, clr);
+            //pgraphics->fill_rect(0, 1, rect.right, CY_BORDER, clr);
          }
 
          // draw right and bottom

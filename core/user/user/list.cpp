@@ -328,7 +328,7 @@ namespace user
 
             pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            pgraphics->draw3d_rect_dim(x1, y1, x2 - x1, y2 - y1, ARGB(192, 192, 192, 208), ARGB(192, 192, 192, 208));
+            pgraphics->draw_rect_dim(x1, y1, x2 - x1, y2 - y1, ARGB(192, 192, 192, 208));
 
             pgraphics->fill_solid_rect_dim(x1, y1, x2 - x1, y2 - y1, ARGB(90, 250, 250, 255));
 
@@ -623,9 +623,9 @@ namespace user
 
             pdrawitem->m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            pdrawitem->m_pgraphics->draw3d_rect(pdrawitem->m_rectItem, ARGB(80, 235, 235, 255), ARGB(80, 235, 235, 255));
+            pdrawitem->m_pgraphics->draw_rect(pdrawitem->m_rectItem, ARGB(80, 235, 235, 255));
 
-            pdrawitem->m_pgraphics->fill_solid_rect(pdrawitem->m_rectItem, ARGB(40, 255, 255, 255));
+            pdrawitem->m_pgraphics->fill_rect(pdrawitem->m_rectItem, ARGB(40, 255, 255, 255));
 
          }
 
@@ -669,13 +669,13 @@ namespace user
          else if (Session.savings().is_trying_to_save(::aura::resource_processing))
          {
 
-            pdrawitem->m_pgraphics->fill_solid_rect(pdrawitem->m_rectItem, ARGB(255, 96, 96, 96));
+            pdrawitem->m_pgraphics->fill_rect(pdrawitem->m_rectItem, ARGB(255, 96, 96, 96));
 
          }
          else
          {
 
-            pdrawitem->m_pgraphics->fill_solid_rect(pdrawitem->m_rectItem, pdrawitem->m_crItemBackground);
+            pdrawitem->m_pgraphics->fill_rect(pdrawitem->m_rectItem, pdrawitem->m_crItemBackground);
 
          }
 
@@ -683,7 +683,7 @@ namespace user
       else if (pdrawitem->m_crItemBackground != 0)
       {
 
-         pdrawitem->m_pgraphics->fill_solid_rect(pdrawitem->m_rectItem, pdrawitem->m_crItemBackground);
+         pdrawitem->m_pgraphics->fill_rect(pdrawitem->m_rectItem, pdrawitem->m_crItemBackground);
 
       }
 
@@ -782,7 +782,7 @@ namespace user
 
             color.m_iA = 90;
 
-            pdrawitem->m_pgraphics->fill_solid_rect(pdrawitem->m_rectItem, color);
+            pdrawitem->m_pgraphics->fill_rect(pdrawitem->m_rectItem, color);
 
          }
 
@@ -7326,7 +7326,7 @@ namespace user
                }
 
 
-               //pimage->g()->fill_solid_rect(::rect(pimage->size()), ARGB(255, 200, 220, 255));
+               //pimage->g()->fill_rect(::rect(pimage->size()), ARGB(255, 200, 220, 255));
                if (m_plist->m_iIconBlur > 0 && m_plist->m_iIconBlurRadius > 0)
                {
 
@@ -7364,7 +7364,7 @@ namespace user
 
                //m_plist->m_pimageTime->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-               //m_plist->m_pimageTime->get_graphics()->fill_solid_rect(r, 0);
+               //m_plist->m_pimageTime->get_graphics()->fill_rect(r, 0);
 
                ::rect rect2 = rectI;
 
@@ -7520,7 +7520,7 @@ namespace user
 
             m_pgraphics->draw_text(m_strText, m_rectText, iDrawTextFlags);
 
-            //m_pgraphics->fill_solid_rect(m_rectText.left, m_rectText.top, 100, 100, ARGB(128, 100, 125, 255));
+            //m_pgraphics->fill_rect(m_rectText.left, m_rectText.top, 100, 100, ARGB(128, 100, 125, 255));
 
             if (m_strText == "LOVE OR NOTHING")
             {

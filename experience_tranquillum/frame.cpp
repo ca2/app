@@ -606,7 +606,7 @@ namespace experience
                while (i < rectGrip.width() - 5 + 1)
                {
 
-                  pgraphics->draw3d_rect_dim(rectGrip.left + i, rectGrip.top, 3, rectGrip.height(), ARGB(84 + 23, 230, 230, 230), ARGB(84 + 23, 108 + 23, 108 + 23, 108 + 23));
+                  pgraphics->draw_3drect_dim(rectGrip.left + i, rectGrip.top, 3, rectGrip.height(), ARGB(110, 230, 230, 230), ARGB(110, 130, 130, 130));
 
                   i += 5;
 
@@ -687,14 +687,14 @@ namespace experience
             if(m_pframewindow->is_active())
             {
 
-               pgraphics->fill_solid_rect(m_rectCaptionTextBk, m_crActiveCaptionTextBk);
+               pgraphics->fill_rect(m_rectCaptionTextBk, m_crActiveCaptionTextBk);
 
             }
             else
             {
 
 
-               pgraphics->fill_solid_rect(m_rectCaptionTextBk, m_crCaptionTextBk);
+               pgraphics->fill_rect(m_rectCaptionTextBk, m_crCaptionTextBk);
 
             }
 

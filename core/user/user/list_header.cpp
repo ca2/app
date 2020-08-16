@@ -695,7 +695,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      pgraphics->fill_solid_rect(rectUpdate, get_color(pstyle, ::user::element_background));
+      pgraphics->fill_rect(rectUpdate, get_color(pstyle, ::user::element_background));
 
       ::draw2d::item drawitem;
       drawitem.m_pgraphics = pgraphics;

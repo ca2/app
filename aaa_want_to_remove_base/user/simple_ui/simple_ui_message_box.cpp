@@ -245,7 +245,7 @@ namespace simple_ui
 
       COLORREF crBk = get_simple_ui_color(::user::color_background);
 
-      pgraphics->fill_solid_rect(rectClient,crBk);
+      pgraphics->fill_rect(rectClient,crBk);
 
       __pointer(::draw2d::font) font(e_create);
 

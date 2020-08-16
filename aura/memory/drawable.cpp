@@ -155,7 +155,7 @@ namespace aura
    }
 
 
-   ::user::item drawable::hit_test(::message::mouse* pmouse) 
+   ::user::item drawable::hit_test(::message::mouse* pmouse)
    { 
       
       return hit_test(pmouse->m_point); 

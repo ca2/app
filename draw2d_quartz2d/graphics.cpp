@@ -4437,7 +4437,7 @@ namespace draw2d_quartz2d
    }
 
 
-   void graphics::fill_solid_rect(const ::rectd & rectParam, COLORREF clr)
+   void graphics::fill_rect(const ::rectd & rectParam, COLORREF clr)
    {
 
       CGRect rect;

@@ -1082,9 +1082,9 @@ namespace user
 
          }
 
-         pgraphics->fill_solid_rect(rect, crBk);
+         pgraphics->fill_rect(rect, crBk);
 
-         pgraphics->draw3d_rect(rect, crBorder, crBorder);
+         pgraphics->draw_rect(rect, crBorder);
 
       }
 

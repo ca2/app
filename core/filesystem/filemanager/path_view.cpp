@@ -163,7 +163,7 @@ namespace filemanager
 
       //   get_client_rect(rectClient);
 
-      //   pgraphics->fill_solid_rect(rectClient, ARGB(255, 255, 255, 255));
+      //   pgraphics->fill_rect(rectClient, ARGB(255, 255, 255, 255));
 
       ::user::plain_edit::_001OnDraw(pgraphics);
 

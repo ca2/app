@@ -70,13 +70,14 @@ namespace user
 
       //};
 
-
+      __pointer_array(::user::item)                m_itema;
       bool                                         m_bOverdraw;
       ::user::frame *                              m_pframe;
       ::user::item                                 m_itemLButtonDown;
       ::index                                      m_iIndex;
       item                                         m_itemCurrent;
       item                                         m_itemHover;
+      item                                         m_itemHoverMouse;
       ::size                                       m_sizeRestoreBroad;
       ::size                                       m_sizeRestoreCompact;
       //e_control_type                               m_econtroltype;
@@ -176,6 +177,10 @@ namespace user
 
 
       void user_interaction_common_construct();
+
+      virtual void on_create_user_interaction();
+
+      ::user::item* get_user_item(const ::user::item& item);
 
       bool is_ok()
       {
@@ -779,6 +784,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnSimpleCommand);
       DECL_GEN_SIGNAL(_001OnNeedLoadFormData);
       DECL_GEN_SIGNAL(_001OnNeedSaveFormData);
+      DECL_GEN_SIGNAL(_001OnDisplayChange);
 
 
       virtual DECL_GEN_SIGNAL(_002OnLButtonDown);
@@ -1190,10 +1196,18 @@ namespace user
       using ::aura::drawable::on_hit_test;
       virtual void on_hit_test(::user::item & item) override;
 
-      virtual bool get_rect(::rect& rect, const ::user::item& item);
+      virtual void update_hover(::message::mouse* pmouse = nullptr, bool bAvoidRedraw = true);
 
-      inline auto rect(const ::user::item& item) { ::rect rect; get_rect(rect, item); return rect; }
+      virtual bool get_rect(::user::item& item);
 
+      inline auto rect(const ::user::item& item) { get_rect((::user::item &) item); return item.m_rect; }
+
+      virtual __pointer(::user::item) add_user_item(const ::user::item & item);
+
+      virtual void _001DrawItems(::draw2d::graphics_pointer & pgraphics);
+
+
+      virtual void _001DrawItem(::draw2d::graphics_pointer& pgraphics, ::user::item * pitem);
 
       // these are utility functions
       // the utility functions should be based on this class functions
@@ -1270,6 +1284,7 @@ namespace user
 
       }
 
+      bool _001InitialFramePosition();
 
       bool _001InitialFramePosition(LPRECT lprect, const rectd & rectOptionalRateOrSize = {0., 0., 0., 0.});
 

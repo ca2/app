@@ -238,8 +238,8 @@ namespace user
         ::rect rectArrow(rectClient.right - m_sizeArrow.cx * 2, rectClient.bottom - m_sizeArrow.cy * 2, rectClient.right, rectClient.bottom);
         rectClient.right -= m_sizeArrow.cx;
         rectClient.bottom -= m_sizeArrow.cy;
-        pgraphics->fill_solid_rect(rectArrow, RGB(0, 120, 180));
-        pgraphics->fill_solid_rect(rectClient, RGB(220, 240, 250));
+        pgraphics->fill_rect(rectArrow, RGB(0, 120, 180));
+        pgraphics->fill_rect(rectClient, RGB(220, 240, 250));
         pgraphics->draw3d_rect(rectClient, RGB(0, 120, 180), RGB(0, 120, 180));
         pgraphics->set_text_color(RGB(0, 60, 90));
         rectText = rectClient;
@@ -252,8 +252,8 @@ namespace user
         ::rect rectArrow(0, rectClient.bottom - m_sizeArrow.cy * 2, m_sizeArrow.cx * 2, rectClient.bottom);
         rectClient.left = m_sizeArrow.cx;
         rectClient.bottom -= m_sizeArrow.cy;
-        pgraphics->fill_solid_rect(rectArrow, RGB(0, 120, 180));
-        pgraphics->fill_solid_rect(rectClient, RGB(220, 240, 250));
+        pgraphics->fill_rect(rectArrow, RGB(0, 120, 180));
+        pgraphics->fill_rect(rectClient, RGB(220, 240, 250));
         pgraphics->draw3d_rect(rectClient, RGB(0, 120, 180), RGB(0, 120, 180));
         pgraphics->set_text_color(RGB(0, 60, 90));
         rectText = rectClient;
@@ -265,8 +265,8 @@ namespace user
         ::rect rectArrow(0, 0, m_sizeArrow.cx * 2, m_sizeArrow.cy * 2);
         rectClient.left = m_sizeArrow.cx;
         rectClient.top = m_sizeArrow.cy;
-        pgraphics->fill_solid_rect(rectArrow, RGB(0, 120, 180));
-        pgraphics->fill_solid_rect(rectClient, RGB(220, 240, 250));
+        pgraphics->fill_rect(rectArrow, RGB(0, 120, 180));
+        pgraphics->fill_rect(rectClient, RGB(220, 240, 250));
         pgraphics->draw3d_rect(rectClient, RGB(0, 120, 180), RGB(0, 120, 180));
         pgraphics->set_text_color(RGB(0, 60, 90));
         rectText = rectClient;

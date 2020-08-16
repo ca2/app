@@ -5,6 +5,8 @@
 #include "aura/const/id.h"
 
 
+
+
 #define TEST_PRINT_BUFFER
 
 #ifdef WINDOWS_DESKTOP
@@ -1078,7 +1080,11 @@ namespace user
          IGUI_MSG_LINK(WM_NCCALCSIZE, pchannel, this, &interaction::_001OnNcCalcSize);
          IGUI_MSG_LINK(WM_SHOWWINDOW, pchannel, this, &interaction::_001OnShowWindow);
          IGUI_MSG_LINK(WM_SETFOCUS, pchannel, this, &interaction::_001OnSetFocus);
-      }  IGUI_MSG_LINK(WM_LBUTTONDOWN, pchannel, this, &interaction::_001OnLButtonDown);
+         IGUI_MSG_LINK(WM_DISPLAYCHANGE, pchannel, this, &interaction::_001OnDisplayChange);
+         IGUI_MSG_LINK(WM_LBUTTONDOWN, pchannel, this, &interaction::_001OnLButtonDown);
+
+      }
+      
 
 
       IGUI_MSG_LINK(WM_COMMAND, pchannel, this, &interaction::_001OnCommand);
@@ -2630,7 +2636,7 @@ namespace user
          if (m_pimpl->is_composite())
          {
 
-            pgraphics->fill_solid_rect(rect, ARGB(0, 0, 0, 0));
+            pgraphics->fill_rect(rect, ARGB(0, 0, 0, 0));
 
          }
          else
@@ -2639,13 +2645,13 @@ namespace user
             if (::user::is_app_dark_mode())
             {
 
-               pgraphics->fill_solid_rect(rect, ARGB(255, 25, 25, 25));
+               pgraphics->fill_rect(rect, ARGB(255, 25, 25, 25));
 
             }
             else
             {
 
-               pgraphics->fill_solid_rect(rect, ARGB(255, 255, 255, 255));
+               pgraphics->fill_rect(rect, ARGB(255, 255, 255, 255));
 
             }
 
@@ -2679,7 +2685,7 @@ namespace user
 
          pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         pgraphics->fill_solid_rect(rectHint, ARGB(128, __random(128, 255), __random(128, 255), __random(128, 255)));
+         pgraphics->fill_rect(rectHint, ARGB(128, __random(128, 255), __random(128, 255), __random(128, 255)));
 
       }
 
@@ -3085,7 +3091,7 @@ namespace user
          if (colorBackground.is_set())
          {
 
-            pgraphics->fill_solid_rect(rectClient, colorBackground);
+            pgraphics->fill_rect(rectClient, colorBackground);
 
          }
 
@@ -3104,7 +3110,7 @@ namespace user
 
          //}
 
-         pgraphics->fill_solid_rect(rectClient, colorBackground);
+         pgraphics->fill_rect(rectClient, colorBackground);
 
       }
 
@@ -3218,13 +3224,51 @@ namespace user
    }
 
 
+   void interaction::_001OnDisplayChange(::message::message* pmessage)
+   {
+
+      _001InitialFramePosition();
+
+   }
+
+
+   void interaction::on_create_user_interaction()
+   {
+
+
+   }
+
+
+   ::user::item* interaction::get_user_item(const ::user::item& item)
+   {
+
+      for (auto& pitem : m_itema)
+      {
+
+         if (*pitem == item)
+         {
+
+            return pitem;
+
+         }
+
+      }
+
+      return nullptr;
+
+   }
+
+
    void interaction::_001OnCreate(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);
 
+      on_create_user_interaction();
+
       run_property("on_create");
-runall(CREATE_PROCEDURE);
+
+      runall(CREATE_PROCEDURE);
 
       runall(CREATE_PROCEDURE);
 
@@ -6840,6 +6884,50 @@ runall(CREATE_PROCEDURE);
       m_pathFocusRect3.release();
       m_pathFocusRect4.release();
 
+      {
+
+         auto pitem = get_user_item(::user::element_close_button);
+
+         if (pitem)
+         {
+
+            if (pitem->m_rect.is_null())
+            {
+
+               get_client_rect(pitem->m_rect);
+
+               pitem->m_rect.left = pitem->m_rect.right - 32;
+
+               pitem->m_rect.bottom = pitem->m_rect.top + 32;
+
+            }
+
+         }
+
+      }
+
+      {
+
+         auto pitem = get_user_item(::user::element_close_icon);
+
+         if (pitem)
+         {
+
+            if (pitem->m_rect.is_null())
+            {
+
+               get_client_rect(pitem->m_rect);
+
+               pitem->m_rect.left = pitem->m_rect.right - 48;
+
+               pitem->m_rect.bottom = pitem->m_rect.top + 48;
+
+            }
+
+         }
+
+      }
+
    }
 
 
@@ -8808,6 +8896,24 @@ restart:
    {
 
       pmessage->m_bRet = true;
+
+      for (auto& pitem : m_itema)
+      {
+
+         if (pitem->m_eelement == ::user::element_close_button
+            || pitem->m_eelement == ::user::element_close_icon)
+         {
+
+            if (pitem->m_eevent == ::user::event_close_app)
+            {
+
+               Application.close(::aura::end_app);
+
+            }
+
+         }
+
+      }
 
       display(display_none);
 
@@ -11397,9 +11503,18 @@ restart:
    }
 
 
-
    bool interaction::on_click(const ::user::item & item)
    {
+
+      if (item == ::user::element_close_button
+         || item == ::user::element_close_icon)
+      {
+
+         post_message(WM_CLOSE);
+
+         return true;
+
+      }
 
       return false;
 
@@ -11904,15 +12019,20 @@ restart:
 
       route_control_event(&ev);
 
-      pmessage->m_bRet = ev.m_bRet;
-
-      if (pmessage->m_bRet)
+      if (::is_set(pmessage))
       {
 
-         if (pbase != nullptr)
+         pmessage->m_bRet = ev.m_bRet;
+
+         if (pmessage->m_bRet)
          {
 
-            pbase->m_lresult = 1;
+            if (pbase != nullptr)
+            {
+
+               pbase->m_lresult = 1;
+
+            }
 
          }
 
@@ -12169,39 +12289,88 @@ restart:
       if (m_bSimpleUIDefaultMouseHandling)
       {
 
-         auto itemHitTest = hit_test(pmouse);
+         update_hover(pmouse);
 
-         if (itemHitTest != m_itemHover)
+      }
+
+   }
+
+
+   void interaction::update_hover(::message::mouse* pmouse, bool bAvoidRedraw)
+   {
+
+      sync_lock sl(mutex());
+
+      point pointCursor;
+
+      if (::is_set(pmouse))
+      {
+
+         pointCursor = pmouse->m_point;
+
+      }
+      else
+      {
+
+         pointCursor = Session.get_cursor_pos();
+
+      }
+
+      auto itemHitTest = hit_test(pointCursor);
+
+      bool bAnyHoverChange = false;
+
+      if (itemHitTest != m_itemHover)
+      {
+
+         m_itemHover = itemHitTest;
+
+         bAnyHoverChange = true;
+
+      }
+
+      if (::is_set(pmouse))
+      {
+
+         if (itemHitTest != m_itemHoverMouse)
          {
 
-            auto itemOldHover = m_itemHover;
+            auto itemOldMouseHover = m_itemHoverMouse;
 
-            m_itemHover = itemHitTest;
+            m_itemHoverMouse = itemHitTest;
 
-            if (m_itemHover && !itemOldHover)
+            bAnyHoverChange = true;
+
+            if (m_itemHoverMouse && !itemOldMouseHover)
             {
 
                track_mouse_hover();
 
-               simple_on_control_event(pmessage, event_mouse_enter);
+               simple_on_control_event(pmouse, event_mouse_enter);
 
             }
-            else if (!m_itemHover && itemOldHover)
+            else if (!m_itemHoverMouse && itemOldMouseHover)
             {
 
-               simple_on_control_event(pmessage, event_mouse_leave);
+               simple_on_control_event(pmouse, event_mouse_leave);
 
             }
-
-            set_need_redraw();
 
             pmouse->m_bRet = true;
 
          }
-         else if (!m_itemHover.is_drawn())
+
+      }
+
+      if(bAnyHoverChange || !m_itemHover.is_drawn())
+      {
+
+         if (!bAvoidRedraw)
          {
 
             set_need_redraw();
+
+            post_redraw();
 
          }
 
@@ -12252,6 +12421,47 @@ restart:
    void interaction::on_hit_test(::user::item & item)
    {
 
+      sync_lock sl(mutex());
+
+      for (auto & pitem : m_itema)
+      {
+
+         if (pitem->m_ppath)
+         {
+
+            //if (!item.m_pgraphics)
+            //{
+
+            //   item.m_pgraphics = create_memory_graphics();
+
+            //}
+
+            if (pitem->m_ppath->contains(item.m_pgraphics, item.m_pointHitTest))
+            {
+
+               ((ITEM &)item) = ((ITEM &)*pitem);
+
+               return;
+
+            }
+
+         }
+         else if (get_rect(*pitem))
+         {
+
+            if (pitem->m_rect.contains(item.m_pointHitTest))
+            {
+
+               ((ITEM&)item) = ((ITEM&)*pitem);
+
+               return;
+
+            }
+
+         }
+
+      }
+
       auto rect = this->rect(::user::element_client);
 
       if (!rect.contains(item.m_pointHitTest))
@@ -12270,9 +12480,20 @@ restart:
    }
 
 
-   bool interaction::get_rect(::rect& rect, const ::user::item& item)
+   bool interaction::get_rect(::user::item& item)
    {
 
+      auto pitem = get_user_item(item);
+
+      if (pitem)
+      {
+
+         item.m_rect = pitem->m_rect;
+
+         return true;
+
+      }
+     
       if (!item)
       {
 
@@ -12280,7 +12501,7 @@ restart:
 
       }
 
-      rect = get_client_rect();
+      get_client_rect(item.m_rect);
 
       return true;
 
@@ -12396,7 +12617,7 @@ restart:
 
       //pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
 
-      //pgraphics->fill_solid_rect(rect,ARGB(0,0,0,0));
+      //pgraphics->fill_rect(rect,ARGB(0,0,0,0));
 
    }
 
@@ -12425,6 +12646,151 @@ restart:
    {
 
       //::user::interaction::_001OnDraw(pgraphics);
+      if (m_itema.has_element())
+      {
+
+         _001DrawItems(pgraphics);
+
+      }
+
+   }
+
+
+   __pointer(::user::item) interaction::add_user_item(const ::user::item & item)
+   {
+
+      __pointer(::user::item) pitem = __new(::user::item(item));
+
+      m_itema.add(pitem);
+
+      return pitem;
+
+   }
+
+   void interaction::_001DrawItems(::draw2d::graphics_pointer& pgraphics)
+   {
+
+      for (auto& pitem : m_itema)
+      {
+
+         _001DrawItem(pgraphics, pitem);
+
+      }
+
+   }
+
+
+   void interaction::_001DrawItem(::draw2d::graphics_pointer& pgraphics, ::user::item * pitem)
+   {
+
+      if (::is_null(pitem))
+      {
+
+         return;
+
+      }
+
+      if (pitem->m_eelement == ::user::element_close_button)
+      {
+
+         pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+
+         ::draw2d::pen_pointer ppen(e_create);
+
+         ::draw2d::brush_pointer pbrush(e_create);
+
+         auto pstyle = get_style(pgraphics);
+
+         ::rectd rectd(pitem->m_rect);
+
+         auto color = get_color(pstyle, ::user::element_background);
+
+         ppen->create_solid(rectd.minimum_dimension() / 10.0, color);
+
+         pbrush->create_solid(color);
+
+         pgraphics->set(pbrush);
+
+         if (m_itemHover == ::user::element_close_button)
+         {
+
+            color.m_iA = 180;
+
+         }
+         else
+         {
+
+            color.m_iA = 127;
+
+         }
+
+         pgraphics->fill_rect(rectd, color);
+
+         rectd.deflate(rectd.minimum_dimension() / 5.0);
+
+         pgraphics->set(ppen);
+
+         pgraphics->draw_stock_icon(rectd, stock_icon_close);
+
+      }
+      else if (pitem->m_eelement == ::user::element_close_icon)
+      {
+
+         pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+
+         ::draw2d::brush_pointer pbrush(e_create);
+
+         auto pstyle = get_style(pgraphics);
+
+         if (!pitem->m_ppath)
+         {
+
+            ::rectd rect(pitem->m_rect);
+
+            double dMinimumDimension = rect.minimum_dimension();
+
+            double dDeflate = dMinimumDimension / 3.0;
+
+            double w = rect.width();
+
+            double h = rect.height();
+
+            rect.deflate(0, dDeflate);
+
+            double w2 = rect.width();
+
+            double h2 = rect.height();
+
+            pitem->m_ppath.create();
+
+            pitem->m_ppath->add_rect(rect, 45_degrees);
+
+            pitem->m_ppath->add_rect(rect, -45_degrees);
+
+         }
+
+         auto color = get_color(pstyle, ::user::element_background);
+
+         if (m_itemHover == ::user::element_close_icon)
+         {
+
+            color.m_iA = 180;
+
+         }
+         else
+         {
+
+            color.m_iA = 127;
+
+         }
+
+         pbrush->create_solid(color);
+
+         pgraphics->set(pbrush);
+
+         pgraphics->fill_path(pitem->m_ppath);
+
+      }
 
    }
 
@@ -12599,7 +12965,7 @@ restart:
 
       get_client_rect(rectWindow);
 
-      pgraphics->fill_solid_rect(rectWindow, ARGB(90, 127, 127, 127));
+      pgraphics->fill_rect(rectWindow, ARGB(90, 127, 127, 127));
 
    }
 
@@ -12940,6 +13306,33 @@ restart:
       }
 
       return m_pimpl->_001GetTopLeftWeightedOccludedOpaqueRate();
+
+   }
+
+
+   bool interaction::_001InitialFramePosition()
+   {
+
+      ::rect rectWindow;
+
+      if (!_001InitialFramePosition(rectWindow, { 0.05, 0.05, 0.4, 0.4 }))
+      {
+
+         return false;
+
+      }
+
+      display(display_normal);
+
+      place(rectWindow);
+
+      set_need_layout();
+
+      set_need_redraw();
+
+      post_redraw();
+
+      return true;
 
    }
 

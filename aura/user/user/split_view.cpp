@@ -167,7 +167,7 @@ namespace user
       //   CalcPaneRect(i, &rect);
 
       //   // Top
-      //   pgraphics->fill_solid_rect(
+      //   pgraphics->fill_rect(
       //      rect.left,
       //      rect.top,
       //      rect.width(),
@@ -175,7 +175,7 @@ namespace user
       //      cr);
 
       //   // Right
-      //   pgraphics->fill_solid_rect(
+      //   pgraphics->fill_rect(
       //      rect.right - m_cxBorder,
       //      rect.top,
       //      m_cxBorder,
@@ -183,7 +183,7 @@ namespace user
       //      cr);
 
       //   // Bottom
-      //   pgraphics->fill_solid_rect(
+      //   pgraphics->fill_rect(
       //      rect.left,
       //      rect.bottom - m_cyBorder,
       //      rect.width(),
@@ -191,7 +191,7 @@ namespace user
       //      cr);
 
       //   // Left
-      //   pgraphics->fill_solid_rect(
+      //   pgraphics->fill_rect(
       //      rect.left,
       //      rect.top,
       //      m_cxBorder,

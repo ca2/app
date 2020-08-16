@@ -1364,7 +1364,7 @@ namespace user
 
          pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         pgraphics->fill_solid_rect(rectClient, colorBackground);
+         pgraphics->fill_rect(rectClient, colorBackground);
 
       }
 

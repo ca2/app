@@ -361,13 +361,13 @@ namespace draw2d
             if (!bCheckHover && i == m_iHover)
             {
 
-               pgraphics->fill_solid_rect(rect, pgraphics->m_puserinteraction->get_color(pgraphics->m_puserstyle, ::user::element_background, ::user::e_state_selected | ::user::e_state_hover));
+               pgraphics->fill_rect(rect, pgraphics->m_puserinteraction->get_color(pgraphics->m_puserstyle, ::user::element_background, ::user::e_state_selected | ::user::e_state_hover));
 
             }
             else
             {
 
-               pgraphics->fill_solid_rect(rect, pgraphics->m_puserinteraction->get_color(pgraphics->m_puserstyle, ::user::element_background, ::user::e_state_selected));
+               pgraphics->fill_rect(rect, pgraphics->m_puserinteraction->get_color(pgraphics->m_puserstyle, ::user::element_background, ::user::e_state_selected));
 
             }
 
@@ -379,7 +379,7 @@ namespace draw2d
             
             int iA = colorref_get_a_value(cr);
             
-            pgraphics->fill_solid_rect(rect, cr);
+            pgraphics->fill_rect(rect, cr);
 
          }
 

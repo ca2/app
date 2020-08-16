@@ -977,7 +977,7 @@ SizingNone:;
                rect.left++;
                rect.right--;
 
-               pgraphics->fill_solid_rect(rect, Session.get_default_color(COLOR_BTNFACE));
+               pgraphics->fill_rect(rect, Session.get_default_color(COLOR_BTNFACE));
 
             }
 

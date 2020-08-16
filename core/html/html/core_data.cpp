@@ -380,7 +380,7 @@ namespace html
       //if(m_strPathName.find_ci("alarms_index") >= 0)
       //{
 
-      //   pgraphics->fill_solid_rect(100,100,100,100,ARGB(190, 255, 0, 0));
+      //   pgraphics->fill_rect(100,100,100,100,ARGB(190, 255, 0, 0));
 
       //}
 
@@ -391,7 +391,7 @@ namespace html
       //if(m_strPathName.find_ci("alarms_index") >= 0)
       //{
 
-      //   pgraphics->fill_solid_rect(200,200,100,100,ARGB(190, 0, 255, 0));
+      //   pgraphics->fill_rect(200,200,100,100,ARGB(190, 0, 255, 0));
 
       //}
 

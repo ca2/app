@@ -964,6 +964,8 @@ typedef struct _AppIndicator AppIndicator;
 #include "aura/message/user.h"
 #include "aura/message/timer.h"
 
+#include "main_window.h"
+
 
 #include "command.h"
 

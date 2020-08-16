@@ -3,6 +3,7 @@
 
 #define nano_to_tick(nano) ((::i64)(nano) / (::i64)1000000)
 #define nano_to_millis(nano) ((double)(nano) / 1e6)
+#define nano_to_secs(nano) ((double)(nano) / 1e9)
 
 
 
@@ -21,6 +22,8 @@ inline i64 get_tick() { return nano_to_tick(get_nanos()); }
 /// millis, double milliseconds
 inline double first_milli() { return nano_to_millis(first_nano()); }
 inline double get_millis() { return nano_to_millis(get_nanos()); }
+
+inline double get_secs() { return nano_to_secs(get_nanos()); }
 
 
 

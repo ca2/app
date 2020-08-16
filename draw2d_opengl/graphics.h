@@ -58,8 +58,8 @@ namespace draw2d_opengl
       virtual HDC Detach();
       virtual bool AttachPrinter(HDC hdc);
       virtual HDC DetachPrinter();
-      using draw2d::graphics::fill_solid_rect;
-      void fill_solid_rect(const rectd& rect, COLORREF cr);
+      using draw2d::graphics::fill_rect;
+      void fill_rect(const rectd& rect, COLORREF cr);
 
 
       virtual void SetAttribDC(HDC hDC);  // set the Attribute DC
@@ -404,12 +404,12 @@ namespace draw2d_opengl
       virtual u32 GetCharacterPlacement(string & str, strsize nMaxExtent, LPGCP_RESULTS lpResults, u32 dwFlags) const;
       virtual u32 GetCharacterPlacement(const char * lpString, strsize nCount, strsize nMaxExtent, LPGCP_RESULTS lpResults, u32 dwFlags) const;
 
-#if (_WIN32_WINNT >= 0x0500)
-
-      bool GetTextExtentExPointI(LPWORD pgiIn, i32 cgi, i32 nMaxExtent, LPINT lpnFit, LPINT alpDx, __out_opt LPSIZE lpSize) const;
-      bool GetTextExtentPointI(LPWORD pgiIn, i32 cgi, __out_opt LPSIZE lpSize) const;
-
-#endif
+//#if (_WIN32_WINNT >= 0x0500)
+//
+//      bool GetTextExtentExPointI(LPWORD pgiIn, i32 cgi, i32 nMaxExtent, LPINT lpnFit, LPINT alpDx, __out_opt LPSIZE lpSize) const;
+//      bool GetTextExtentPointI(LPWORD pgiIn, i32 cgi, __out_opt LPSIZE lpSize) const;
+//
+//#endif
 
 
 

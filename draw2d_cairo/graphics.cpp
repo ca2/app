@@ -795,7 +795,7 @@ bool graphics::fill_rect(const ::rect & rect, ::draw2d::brush * pbrush)
 void graphics::frame_rect(const ::rect & rect, ::draw2d::brush* pBrush)
 {
 
-    fill_solid_rect(rect, pBrush->m_color);
+    fill_rect(rect, pBrush->m_color);
 
 }
 
@@ -4281,7 +4281,7 @@ bool graphics::GetTextExtent(sized & size, const string & str)
 }
 
 
-void graphics::fill_solid_rect(const ::rect & rect, COLORREF clr)
+void graphics::fill_rect(const ::rect & rect, COLORREF clr)
 {
 
     sync_lock ml(cairo_mutex());
@@ -4302,7 +4302,7 @@ void graphics::fill_solid_rect(const ::rect & rect, COLORREF clr)
 }
 
 
-void graphics::fill_solid_rect(const ::rectd & rect, COLORREF clr)
+void graphics::fill_rect(const ::rectd & rect, COLORREF clr)
 {
 
     sync_lock ml(cairo_mutex());

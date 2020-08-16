@@ -118,7 +118,7 @@ void image_frame::_001Process(::image * pimageCompose, ::image * pimageFrame, im
 
       ::rect rect = pframea->element_at(m_iFrame - 1)->m_rect;
 
-      pimageCompose->g()->fill_solid_rect(rect, crBack);
+      pimageCompose->g()->fill_rect(rect, crBack);
 
    }
 
@@ -128,7 +128,7 @@ void image_frame::_001Process(::image * pimageCompose, ::image * pimageFrame, im
 
            pimageCompose->set_alpha_mode(::draw2d::alpha_mode_set);
 
-           pimageCompose->g()->fill_solid_rect(pframea->rect(), 0);
+           pimageCompose->g()->fill_rect(pframea->rect(), 0);
 
         }*/
 

@@ -31,7 +31,7 @@ namespace draw2d
       rect.width() * sizeof(COLORREF));
       /*#define ARGB(a, rect,g,b)          ((COLORREF)(((BYTE)(rect)|((WORD)((BYTE)(g))<<8))|(((u32)(BYTE)(b))<<16)|((u32)(BYTE)(a))<<24)))
          set(m_bitmapBlend);
-         fill_solid_rect(rect, ARGB(0, 0, 0, 0));*/
+         fill_rect(rect, ARGB(0, 0, 0, 0));*/
    }
 
 } // namespace draw2d

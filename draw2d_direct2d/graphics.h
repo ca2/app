@@ -150,11 +150,11 @@ namespace draw2d_direct2d
       //::draw2d::object* SelectObject(::draw2d::object* pObject) override;
       // ::draw2d::object* provided so compiler doesn't use SelectObject(HGDIOBJ)
 
-      // color and color Palette Functions
-      COLORREF GetNearestColor(COLORREF crColor) override;
-      // ::draw2d::palette* SelectPalette(::draw2d::palette* pPalette, bool bForceBackground) override;
-      UINT RealizePalette() override;
-      void UpdateColors() override;
+      //// color and color Palette Functions
+      //COLORREF GetNearestColor(const ::color & color) override;
+      //// ::draw2d::palette* SelectPalette(::draw2d::palette* pPalette, bool bForceBackground) override;
+      //UINT RealizePalette() override;
+      //void UpdateColors() override;
 
       int GetPolyFillMode() override;
       int GetROP2() override;
@@ -165,15 +165,15 @@ namespace draw2d_direct2d
       int SetStretchBltMode(int nStretchMode) override;
 
 
-#if (_WIN32_WINNT >= 0x0500)
-
-      COLORREF GetDCBrushColor() override;
-      COLORREF SetDCBrushColor(COLORREF crColor) override;
-
-      COLORREF GetDCPenColor() override;
-      COLORREF SetDCPenColor(COLORREF crColor) override;
-
-#endif
+//#if (_WIN32_WINNT >= 0x0500)
+//
+//      COLORREF GetDCBrushColor() override;
+//      COLORREF SetDCBrushColor(const ::color & color) override;
+//
+//      COLORREF GetDCPenColor() override;
+//      COLORREF SetDCPenColor(const ::color & color) override;
+//
+//#endif
 
       // Graphics mode
       int SetGraphicsMode(int iMode) override;
@@ -351,19 +351,19 @@ namespace draw2d_direct2d
                      int xSrc, int ySrc, u32 dwRop) override;
       bool StretchBltRaw(double x, double y, double nWidth, double nHeight, ::draw2d::graphics * pgraphicsSrc,
                          int xSrc, int ySrc, int nSrcWidth, int nSrcHeight, u32 dwRop) override;
-      COLORREF GetPixel(int x, int y) override;
-      COLORREF GetPixel(const ::point & point) override;
-      COLORREF SetPixel(int x, int y, COLORREF crColor) override;
-      COLORREF SetPixel(const ::point & point, COLORREF crColor) override;
-      bool FloodFill(int x, int y, COLORREF crColor) override;
-      bool ExtFloodFill(int x, int y, COLORREF crColor, UINT nFillType) override;
+      ::color GetPixel(int x, int y) override;
+      ::color GetPixel(const ::point & point) override;
+      ::color SetPixel(int x, int y, const ::color & color) override;
+      ::color SetPixel(const ::point & point, const ::color & color) override;
+      bool FloodFill(int x, int y, const ::color & color) override;
+      bool ExtFloodFill(int x, int y, const ::color & color, UINT nFillType) override;
       bool MaskBlt(int x, int y, int nWidth, int nHeight, ::draw2d::graphics * pgraphicsSrc,
                    int xSrc, int ySrc, ::draw2d::bitmap& maskBitmap, int xMask, int yMask,
                    u32 dwRop) override;
       bool PlgBlt(LPPOINT lpPoint, ::draw2d::graphics * pgraphicsSrc, int xSrc, int ySrc,
                   int nWidth, int nHeight, ::draw2d::bitmap& maskBitmap, int xMask, int yMask) override;
-      bool SetPixelV(int x, int y, COLORREF crColor) override;
-      bool SetPixelV(const ::point & point, COLORREF crColor) override;
+      bool SetPixelV(int x, int y, const ::color & color) override;
+      bool SetPixelV(const ::point & point, const ::color & color) override;
       bool GradientFill(TRIVERTEX* pVertices, ULONG nVertices,
                         void * pMesh, ULONG nMeshElements, u32 dwMode) override;
       bool TransparentBlt(int xDest, int yDest, int nDestWidth, int nDestHeight,
@@ -411,19 +411,19 @@ namespace draw2d_direct2d
       virtual int GetTextFace(string & rString) override;
       virtual bool get_text_metrics(::draw2d::text_metric * lpMetrics) override;
       virtual bool get_output_text_metrics(::draw2d::text_metric * lpMetrics) override;
-      virtual int SetTextJustification(int nBreakExtra, int nBreakCount) override;
-      virtual int GetTextCharacterExtra() override;
-      virtual int SetTextCharacterExtra(int nCharExtra) override;
+      //virtual int SetTextJustification(int nBreakExtra, int nBreakCount) override;
+      //virtual int GetTextCharacterExtra() override;
+      //virtual int SetTextCharacterExtra(int nCharExtra) override;
 
 //      u32 GetCharacterPlacement(const char * lpString, int nCount, int nMaxExtent, LPGCP_RESULTS lpResults, u32 dwFlags) override;
       //    u32 GetCharacterPlacement(string & str, int nMaxExtent, LPGCP_RESULTS lpResults, u32 dwFlags) override;
 
-#if (_WIN32_WINNT >= 0x0500)
-
-      bool GetTextExtentExPointI(LPWORD pgiIn, int cgi, int nMaxExtent, LPINT lpnFit, LPINT alpDx, __out_opt LPSIZE lpSize) override;
-      bool GetTextExtentPointI(LPWORD pgiIn, int cgi, __out_opt LPSIZE lpSize) override;
-
-#endif
+//#if (_WIN32_WINNT >= 0x0500)
+//
+//      bool GetTextExtentExPointI(LPWORD pgiIn, int cgi, int nMaxExtent, LPINT lpnFit, LPINT alpDx, __out_opt LPSIZE lpSize) override;
+//      bool GetTextExtentPointI(LPWORD pgiIn, int cgi, __out_opt LPSIZE lpSize) override;
+//
+//#endif
 
 
 
@@ -431,41 +431,41 @@ namespace draw2d_direct2d
       //bool DrawEdge(const ::rect & rect, UINT nEdge, UINT nFlags) override;
       //bool DrawFrameControl(const ::rect & rect, UINT nType, UINT nState) override;
 
-      // Scrolling Functions
-      bool ScrollDC(int dx, int dy, const ::rect & rectScroll, const ::rect & rectClip,
-                    ::draw2d::region* pRgnUpdate, LPRECT lpRectUpdate) override;
+//      // Scrolling Functions
+//      bool ScrollDC(int dx, int dy, const ::rect & rectScroll, const ::rect & rectClip,
+//                    ::draw2d::region* pRgnUpdate, LPRECT lpRectUpdate) override;
+//
+//      // font Functions
+//      bool GetCharWidth(UINT nFirstChar, UINT nLastChar, LPINT lpBuffer) override;
+//      bool GetOutputCharWidth(UINT nFirstChar, UINT nLastChar, LPINT lpBuffer) override;
+//      u32 SetMapperFlags(u32 dwFlag) override;
+//      size GetAspectRatioFilter() override;
+//
+////      bool GetCharABCWidths(UINT nFirstChar, UINT nLastChar, LPABC lpabc) override;
+//      u32 GetFontData(u32 dwTable, u32 dwOffset, LPVOID lpData, u32 cbData) override;
+////      int GetKerningPairs(int nPairs, LPKERNINGPAIR lpkrnpair) override;
+////      UINT GetOutlineTextMetrics(UINT cbData, LPOUTLINETEXTMETRICW lpotm) override;
+////      u32 GetGlyphOutline(UINT nChar, UINT nFormat, LPGLYPHMETRICS lpgm,
+////         u32 cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2) override;
+//
+////      bool GetCharABCWidths(UINT nFirstChar, UINT nLastChar,
+////         LPABCFLOAT lpABCF) override;
+//      bool GetCharWidth(UINT nFirstChar, UINT nLastChar,
+//                        float* lpFloatBuffer) override;
+//
+//      u32 GetFontLanguageInfo() override;
+//
+//#if (_WIN32_WINNT >= 0x0500)
+//
+////      bool GetCharABCWidthsI(UINT giFirst, UINT cgi, LPWORD pgi, LPABC lpabc) override;
+////      bool GetCharWidthI(UINT giFirst, UINT cgi, LPWORD pgi, LPINT lpBuffer) override;
+//
+//#endif
 
-      // font Functions
-      bool GetCharWidth(UINT nFirstChar, UINT nLastChar, LPINT lpBuffer) override;
-      bool GetOutputCharWidth(UINT nFirstChar, UINT nLastChar, LPINT lpBuffer) override;
-      u32 SetMapperFlags(u32 dwFlag) override;
-      size GetAspectRatioFilter() override;
-
-//      bool GetCharABCWidths(UINT nFirstChar, UINT nLastChar, LPABC lpabc) override;
-      u32 GetFontData(u32 dwTable, u32 dwOffset, LPVOID lpData, u32 cbData) override;
-//      int GetKerningPairs(int nPairs, LPKERNINGPAIR lpkrnpair) override;
-//      UINT GetOutlineTextMetrics(UINT cbData, LPOUTLINETEXTMETRICW lpotm) override;
-//      u32 GetGlyphOutline(UINT nChar, UINT nFormat, LPGLYPHMETRICS lpgm,
-//         u32 cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2) override;
-
-//      bool GetCharABCWidths(UINT nFirstChar, UINT nLastChar,
-//         LPABCFLOAT lpABCF) override;
-      bool GetCharWidth(UINT nFirstChar, UINT nLastChar,
-                        float* lpFloatBuffer) override;
-
-      u32 GetFontLanguageInfo() override;
-
-#if (_WIN32_WINNT >= 0x0500)
-
-//      bool GetCharABCWidthsI(UINT giFirst, UINT cgi, LPWORD pgi, LPABC lpabc) override;
-//      bool GetCharWidthI(UINT giFirst, UINT cgi, LPWORD pgi, LPINT lpBuffer) override;
-
-#endif
-
-      // Printer/Device Escape Functions
-      virtual int Escape(int nEscape, int nCount, const char * lpszInData, LPVOID lpOutData) override;
-      virtual int Escape(int nEscape, int nInputSize, const char * lpszInputData, int nOutputSize, char * lpszOutputData) override;
-      virtual int DrawEscape(int nEscape, int nInputSize, const char * lpszInputData) override;
+      //// Printer/Device Escape Functions
+      //virtual int Escape(int nEscape, int nCount, const char * lpszInData, LPVOID lpOutData) override;
+      //virtual int Escape(int nEscape, int nInputSize, const char * lpszInputData, int nOutputSize, char * lpszOutputData) override;
+      //virtual int DrawEscape(int nEscape, int nInputSize, const char * lpszInputData) override;
 
       // Escape helpers
       int StartDoc(const char * lpszDocName) override;  // old Win3.0 version
@@ -503,11 +503,11 @@ namespace draw2d_direct2d
       //                  const ::rect & rectLast, const ::size & sizeLast,
       //                  ::draw2d::brush* pBrush = nullptr, ::draw2d::brush* pBrushLast = nullptr) override;
 
-      void fill_solid_rect(const ::rect & rect, COLORREF cr) override;
-      void fill_solid_rect(const ::rectd & rect, COLORREF cr) override;
+      void fill_rect(const ::rect & rect, const ::color & color) override;
+      void fill_rect(const ::rectd & rect, const ::color & color) override;
 
-      void draw3d_rect(const ::rect & rect, COLORREF crTopLeft, COLORREF crBottomRight, eborder eborder = border_all) override;
-      void draw3d_rect(const ::rectd & rect, COLORREF crTopLeft, COLORREF crBottomRight, eborder eborder = border_all) override;
+      void draw_3drect(const ::rect & rect, const ::color & colorTopLeft, const ::color & colorBottomRight, eborder eborder = border_all) override;
+      void draw_3drect(const ::rectd & rect, const ::color & colorTopLeft, const ::color & colorBottomRight, eborder eborder = border_all) override;
 
 
       virtual void assert_valid() const override;

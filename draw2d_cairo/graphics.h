@@ -96,15 +96,15 @@ namespace draw2d_cairo
       virtual ::estatus set(::draw2d::brush* pbrush) override;
       virtual ::estatus set(::draw2d::font* pfont) override;
       virtual ::estatus set(::draw2d::bitmap* pbitmap) override;
-      virtual i32 set(::draw2d::region* pregion) override;       // special return for regions
+      virtual ::estatus set(::draw2d::region* pregion) override;       // special return for regions
       //::draw2d_cairo::object* SelectObject(::draw2d_cairo::object* pObject);
       // ::draw2d_cairo::object* provided so compiler doesn't use SelectObject(HGDIOBJ)
 
 // color and color Palette Functions
-      COLORREF GetNearestColor(COLORREF crColor) override;
-      ::draw2d::palette* SelectPalette(::draw2d::palette* pPalette, bool bForceBackground) override;
-      UINT RealizePalette() override;
-      void UpdateColors() override;
+      //COLORREF GetNearestColor(const ::color & color) override;
+      //::draw2d::palette* SelectPalette(::draw2d::palette* pPalette, bool bForceBackground) override;
+      //UINT RealizePalette() override;
+      //void UpdateColors() override;
 
       i32 GetPolyFillMode() override;
       i32 GetROP2() override;
@@ -117,15 +117,15 @@ namespace draw2d_cairo
       // xxx      bool GetColorAdjustment(LPCOLORADJUSTMENT lpColorAdjust) override;
       // xxx      bool SetColorAdjustment(const COLORADJUSTMENT* lpColorAdjust) override;
 
-#if (_WIN32_WINNT >= 0x0500)
-
-      COLORREF GetDCBrushColor() override;
-      COLORREF SetDCBrushColor(COLORREF crColor) override;
-
-      COLORREF GetDCPenColor() override;
-      COLORREF SetDCPenColor(COLORREF crColor) override;
-
-#endif
+//#if (_WIN32_WINNT >= 0x0500)
+//
+//      COLORREF GetDCBrushColor() override;
+//      COLORREF SetDCBrushColor(const ::color & color) override;
+//
+//      COLORREF GetDCPenColor() override;
+//      COLORREF SetDCPenColor(const ::color & color) override;
+//
+//#endif
 
       // Graphics mode
       i32 SetGraphicsMode(i32 iMode) override;
@@ -289,19 +289,19 @@ namespace draw2d_cairo
                      i32 xSrc, i32 ySrc, u32 dwRop) override;
       bool StretchBltRaw(double x, double y, double nWidth, double nHeight, ::draw2d::graphics * pgraphicsSrc,
                          i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight, u32 dwRop) override;
-      COLORREF GetPixel(i32 x, i32 y) override;
-      COLORREF GetPixel(const ::point & point) override;
-      COLORREF SetPixel(i32 x, i32 y, COLORREF crColor) override;
-      COLORREF SetPixel(const ::point & point, COLORREF crColor) override;
-      bool FloodFill(i32 x, i32 y, COLORREF crColor) override;
-      bool ExtFloodFill(i32 x, i32 y, COLORREF crColor, UINT nFillType) override;
+      ::color GetPixel(i32 x, i32 y) override;
+      ::color GetPixel(const ::point & point) override;
+      ::color SetPixel(i32 x, i32 y, const ::color & color) override;
+      ::color SetPixel(const ::point & point, const ::color & color) override;
+      bool FloodFill(i32 x, i32 y, const ::color & color) override;
+      bool ExtFloodFill(i32 x, i32 y, const ::color & color, UINT nFillType) override;
       bool MaskBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc,
                    i32 xSrc, i32 ySrc, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask,
                    u32 dwRop) override;
       bool PlgBlt(LPPOINT lpPoint, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc,
                   i32 nWidth, i32 nHeight, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask) override;
-      bool SetPixelV(i32 x, i32 y, COLORREF crColor) override;
-      bool SetPixelV(const ::point & point, COLORREF crColor) override;
+      bool SetPixelV(i32 x, i32 y, const ::color & color) override;
+      bool SetPixelV(const ::point & point, const ::color & color) override;
       bool GradientFill(TRIVERTEX* pVertices, WINULONG nVertices,
                         void * pMesh, WINULONG nMeshElements, u32 dwMode) override;
       bool TransparentBlt(i32 xDest, i32 yDest, i32 nDestWidth, i32 nDestHeight,
@@ -357,9 +357,9 @@ namespace draw2d_cairo
       i32 GetTextFace(string & rString) override;
       bool get_text_metrics(::draw2d::text_metric * lpMetrics) override;
       bool get_output_text_metrics(::draw2d::text_metric * lpMetrics) override;
-      i32 SetTextJustification(i32 nBreakExtra, i32 nBreakCount) override;
-      i32 GetTextCharacterExtra() override;
-      i32 SetTextCharacterExtra(i32 nCharExtra) override;
+//      i32 SetTextJustification(i32 nBreakExtra, i32 nBreakCount) override;
+//      i32 GetTextCharacterExtra() override;
+//      i32 SetTextCharacterExtra(i32 nCharExtra) override;
 
       //xxx      u32 GetCharacterPlacement(const char * lpString, i32 nCount, i32 nMaxExtent, LPGCP_RESULTS lpResults, u32 dwFlags) override;
       //xxx      u32 GetCharacterPlacement(string & str, i32 nMaxExtent, LPGCP_RESULTS lpResults, u32 dwFlags) override;
@@ -375,42 +375,42 @@ namespace draw2d_cairo
       bool DrawEdge(const ::rect & rect, UINT nEdge, UINT nFlags) override;
       bool DrawFrameControl(const ::rect & rect, UINT nType, UINT nState) override;
 
-      // Scrolling Functions
-      bool ScrollDC(i32 dx, i32 dy, const ::rect & rectScroll, const ::rect & rectClip,
-                    ::draw2d::region* pRgnUpdate, LPRECT lpRectUpdate) override;
+//      // Scrolling Functions
+//      bool ScrollDC(i32 dx, i32 dy, const ::rect & rectScroll, const ::rect & rectClip,
+//                    ::draw2d::region* pRgnUpdate, LPRECT lpRectUpdate) override;
 
-      // font Functions
-      bool GetCharWidth(UINT nFirstChar, UINT nLastChar, LPINT lpBuffer) override;
-      bool GetOutputCharWidth(UINT nFirstChar, UINT nLastChar, LPINT lpBuffer) override;
-      u32 SetMapperFlags(u32 dwFlag) override;
-      size GetAspectRatioFilter() override;
+//      // font Functions
+//      bool GetCharWidth(UINT nFirstChar, UINT nLastChar, LPINT lpBuffer) override;
+//      bool GetOutputCharWidth(UINT nFirstChar, UINT nLastChar, LPINT lpBuffer) override;
+//      u32 SetMapperFlags(u32 dwFlag) override;
+//      size GetAspectRatioFilter() override;
 
       //xxx      bool GetCharABCWidths(UINT nFirstChar, UINT nLastChar, LPABC lpabc) override;
-      u32 GetFontData(u32 dwTable, u32 dwOffset, LPVOID lpData, u32 cbData) override;
+//      u32 GetFontData(u32 dwTable, u32 dwOffset, LPVOID lpData, u32 cbData) override;
       //xxx      i32 GetKerningPairs(i32 nPairs, LPKERNINGPAIR lpkrnpair) override;
       //xxx      UINT GetOutlineTextMetrics(UINT cbData, LPOUTLINETEXTMETRICW lpotm) override;
       //xxx      u32 GetGlyphOutline(UINT nChar, UINT nFormat, LPGLYPHMETRICS lpgm,
       //xxx    u32 cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2) override;
 
       //xxx      bool GetCharABCWidths(UINT nFirstChar, UINT nLastChar,
-      //xxx         LPABCFLOAT lpABCF) override;
-      bool GetCharWidth(UINT nFirstChar, UINT nLastChar,
-                        float* lpFloatBuffer) override;
-
-      u32 GetFontLanguageInfo() override;
-
-#if (_WIN32_WINNT >= 0x0500)
-
-      bool GetCharABCWidthsI(UINT giFirst, UINT cgi, LPWORD pgi, LPABC lpabc) override;
-      bool GetCharWidthI(UINT giFirst, UINT cgi, LPWORD pgi, LPINT lpBuffer) override;
-
-#endif
-
-      // Printer/Device Escape Functions
-      virtual i32 Escape(i32 nEscape, i32 nCount, const char * lpszInData, LPVOID lpOutData) override;
-      i32 Escape(i32 nEscape, i32 nInputSize, const char * lpszInputData, i32 nOutputSize, char * lpszOutputData) override;
-      i32 DrawEscape(i32 nEscape, i32 nInputSize, const char * lpszInputData) override;
-
+//      //xxx         LPABCFLOAT lpABCF) override;
+//      bool GetCharWidth(UINT nFirstChar, UINT nLastChar,
+//                        float* lpFloatBuffer) override;
+//
+//      u32 GetFontLanguageInfo() override;
+//
+//#if (_WIN32_WINNT >= 0x0500)
+//
+//      bool GetCharABCWidthsI(UINT giFirst, UINT cgi, LPWORD pgi, LPABC lpabc) override;
+//      bool GetCharWidthI(UINT giFirst, UINT cgi, LPWORD pgi, LPINT lpBuffer) override;
+//
+//#endif
+//
+//      // Printer/Device Escape Functions
+//      virtual i32 Escape(i32 nEscape, i32 nCount, const char * lpszInData, LPVOID lpOutData) override;
+//      i32 Escape(i32 nEscape, i32 nInputSize, const char * lpszInputData, i32 nOutputSize, char * lpszOutputData) override;
+//      i32 DrawEscape(i32 nEscape, i32 nInputSize, const char * lpszInputData) override;
+//
       // Escape helpers
       i32 StartDoc(const char * lpszDocName) override;  // old Win3.0 version
 //xxx      i32 StartDoc(LPDOCINFO lpDocInfo) override;
@@ -454,10 +454,10 @@ namespace draw2d_cairo
 //                        const ::rect & rectLast, const ::size & sizeLast,
 //                        ::draw2d::brush* pBrush = nullptr, ::draw2d::brush* pBrushLast = nullptr) override;
       //void fill_rect(const RECT64 * rect, COLORREF clr) override;
-      void fill_rect(const ::rect & rect, COLORREF clr) override;
-      void fill_rect(const ::rectd & rect, COLORREF clr) override;
+      void fill_rect(const ::rect & rect, const ::color & color) override;
+      void fill_rect(const ::rectd & rect, const ::color & color) override;
       //void fill_rect(i32 x, i32 y, i32 cx, i32 cy, COLORREF clr) override;
-      void draw3d_rect(const ::rect & rect, COLORREF clrTopLeft, COLORREF clrBottomRight, eborder eborder = border_all) override;
+      void draw_3drect(const ::rect & rect, const ::color & colorTopLeft, const ::color & colorBottomRight, eborder eborder = border_all) override;
       //void draw3d_rect(i32 x, i32 y, i32 cx, i32 cy,
       //              COLORREF clrTopLeft, COLORREF clrBottomRight) override;
 
@@ -499,13 +499,19 @@ namespace draw2d_cairo
 #if !defined(USE_PANGO)
       bool set(const ::draw2d::font * pfont);
 #endif
-      bool set(const ::draw2d::path * ppath);
-      bool set(const ::draw2d::path::element & e);
-      bool set(const ::draw2d::path::arc & arc);
-      bool set(const ::draw2d::path::move & move);
-      bool set(const ::draw2d::path::line & line);
-      bool set(const ::draw2d::path::rect & rect);
-      bool set(const ::draw2d::path::string_path & str);
+      bool _set(::draw2d::path * ppath);
+      bool _set(::draw2d::path::element * pelement);
+      bool _set(::draw2d::path::begin * pbegin);
+      bool _set(::draw2d::path::arc * parc);
+      //bool set(const ::draw2d::path::move & move);
+      bool _set(::draw2d::path::rect * prect);
+      bool _set(::draw2d::path::line * pline);
+      bool _set(const ::pointd_array & pointa);
+      bool _set(::draw2d::path::lines * plines);
+      bool _set(::draw2d::path::polygon * ppolygon);
+      bool _set(::draw2d::path::text_out * ptextout);
+      bool _set(::draw2d::path::draw_text * pdrawtext);
+      bool _set(::draw2d::path::close * pclose);
       bool fill_and_draw(::draw2d::brush * pbrush, ::draw2d::pen * ppen);
       bool fill(::draw2d::brush * pbrush, double xOrg  = 0.0, double yOrg = 0.0);
       bool _fill1(::draw2d::brush* pbrush, double xOrg = 0.0, double yOrg = 0.0);

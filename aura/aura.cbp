@@ -45,6 +45,7 @@
 					<Add option="-lssl" />
 					<Add option="-lcrypto" />
 					<Add option="-lpcre2-8" />
+					<Add option="-lsqlite3" />
 					<Add option="-lsn" />
 					<Add option="`pkg-config --libs glib-2.0 gtk+-3.0 gdk-3.0 appindicator3-0.1`" />
 					<Add option="-Wl,-z,defs" />
@@ -2673,6 +2674,7 @@
 		<Unit filename="user/user/list_view.h" />
 		<Unit filename="user/user/listing.h" />
 		<Unit filename="user/user/main_frame.h" />
+		<Unit filename="user/user/main_window.cpp" />
 		<Unit filename="user/user/margin.cpp" />
 		<Unit filename="user/user/margin.h" />
 		<Unit filename="user/user/menu.cpp" />
@@ -2905,9 +2907,6 @@
 		<Unit filename="xml/xml.cpp" />
 		<Unit filename="xml/xmlite.cpp" />
 		<Unit filename="xml/xmlite.h" />
-		<Extensions>
-			<code_completion />
-			<debugger />
-		</Extensions>
+		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

@@ -432,7 +432,7 @@ namespace draw2d
 
    }
 
-   
+
    //bool path::set_current_point(i32 x, i32 y)
    //{
 
@@ -445,8 +445,8 @@ namespace draw2d
    //   return true;
 
    //}
-   
-   
+
+
    bool path::set_current_point(const ::pointd & point)
    {
 
@@ -524,7 +524,7 @@ namespace draw2d
 
    }
 
-   
+
    //bool path::add_rect(const ::rect& rect, const ::point & point, const ::angle& angleRotationCenter)
    //{
 
@@ -782,7 +782,7 @@ namespace draw2d
 
    //   if(!has_current_point())
    //   {
-   //      
+   //
    //      return set_current_point(x,y);
 
    //   }
@@ -889,7 +889,7 @@ namespace draw2d
 
       pdrawtext->m_strText          = strText;
       pdrawtext->m_pfont            = pfont;
-      
+
       pdrawtext->m_rect             = rect;
       pdrawtext->m_iDrawTextFlags   = iDrawTextFlags;
       //pdrawtext->m_crForeground     = crForeground;
@@ -958,8 +958,8 @@ namespace draw2d
       return true;
 
    }
-   
-   
+
+
    bool path::add_polygon(const POINTD* ppoint, ::count nCount)
    {
 
@@ -1004,7 +1004,7 @@ namespace draw2d
       plines->m_pointa.set_size(nCount);
 
       memcpy(plines->m_pointa.get_data(), ppoint, plines->m_pointa.get_size_in_bytes());
-   
+
       m_elementa.add(plines);
 
       return true;
@@ -1420,7 +1420,7 @@ namespace draw2d
             {
 
                set_current_point(rectRect.bottom_right());
-               
+
                bOn = true;
 
             }
@@ -1775,8 +1775,8 @@ namespace draw2d
       case ::draw2d::path::type_draw_text:
          return _set(pgraphics, dynamic_cast <draw_text*>(pelement));
       case ::draw2d::path::type_close:
-         return _set(pgraphics, dynamic_cast <polygon*>(pelement));
-         
+         return _set(pgraphics, dynamic_cast <close*>(pelement));
+
       default:
          throw "unexpected simple os graphics element type";
       }
@@ -1785,7 +1785,7 @@ namespace draw2d
 
    }
 
-   
+
    bool path::_set(::draw2d::graphics* pgraphics, ::draw2d::path::begin* pbegin)
    {
 
@@ -1978,7 +1978,7 @@ namespace draw2d
             iEmptyBorder = 3;
 
          }
-         else 
+         else
          {
 
             iEmptyBorder = 0;

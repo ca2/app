@@ -131,29 +131,7 @@ i32 _c_XErrorHandler(Display * display, XErrorEvent * perrorevent);
 //
 
 
-   if(!psystem->begin_synch())
-   {
 
-      output_debug_string("Failed to begin_synch the system (::aura::system or ::aura::system derived)");
-
-      return error_failed;
-
-   }
-
-
-   if(psystem->m_bUser)
-   {
-
-      if(!XInitThreads())
-      {
-
-         return false;
-
-      }
-
-      XSetErrorHandler(_c_XErrorHandler);
-
-   }
 
    const char * pszName = psystem->m_strAppId;
 
@@ -183,6 +161,30 @@ i32 _c_XErrorHandler(Display * display, XErrorEvent * perrorevent);
    }
 
 #endif
+
+   if(!psystem->begin_synch())
+   {
+
+      output_debug_string("Failed to begin_synch the system (::aura::system or ::aura::system derived)");
+
+      return error_failed;
+
+   }
+
+
+   if(psystem->m_bUser)
+   {
+
+      if(!XInitThreads())
+      {
+
+         return false;
+
+      }
+
+      XSetErrorHandler(_c_XErrorHandler);
+
+   }
 
    if(psystem->m_bGtkApp)
    {

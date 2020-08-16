@@ -397,27 +397,27 @@ i32 graphics::EnumObjects(i32 nObjectType, i32(CALLBACK* lpfn)(LPVOID, LPARAM), 
 //}
 
 
-COLORREF graphics::GetNearestColor(COLORREF crColor)
-{
-
-    return crColor;
-
-}
-
-
-UINT graphics::RealizePalette()
-{
-
-    return 0;
-
-}
-
-
-void graphics::UpdateColors()
-{
-
-}
-
+//COLORREF graphics::GetNearestColor(COLORREF crColor)
+//{
+//
+//    return crColor;
+//
+//}
+//
+//
+//UINT graphics::RealizePalette()
+//{
+//
+//    return 0;
+//
+//}
+//
+//
+//void graphics::UpdateColors()
+//{
+//
+//}
+//
 
 i32 graphics::GetPolyFillMode()
 {
@@ -1597,7 +1597,7 @@ bool graphics::StretchBltRaw(double xDst, double yDst, double nDstWidth, double 
 }
 
 
-COLORREF graphics::GetPixel(i32 x, i32 y)
+::color graphics::GetPixel(i32 x, i32 y)
 {
 
     ::exception::throw_not_implemented();
@@ -1607,7 +1607,7 @@ COLORREF graphics::GetPixel(i32 x, i32 y)
 }
 
 
-COLORREF graphics::GetPixel(const ::point & point)
+::color graphics::GetPixel(const ::point & point)
 {
 
     ::exception::throw_not_implemented();
@@ -1617,7 +1617,7 @@ COLORREF graphics::GetPixel(const ::point & point)
 }
 
 
-COLORREF graphics::SetPixel(i32 x, i32 y, COLORREF crColor)
+::color graphics::SetPixel(i32 x, i32 y, const ::color & color)
 {
 
     ::exception::throw_not_implemented();
@@ -1627,7 +1627,7 @@ COLORREF graphics::SetPixel(i32 x, i32 y, COLORREF crColor)
 }
 
 
-COLORREF graphics::SetPixel(const ::point & point, COLORREF crColor)
+::color graphics::SetPixel(const ::point & point, const ::color & color)
 {
 
     ::exception::throw_not_implemented();
@@ -1637,7 +1637,7 @@ COLORREF graphics::SetPixel(const ::point & point, COLORREF crColor)
 }
 
 
-bool graphics::FloodFill(i32 x, i32 y, COLORREF crColor)
+bool graphics::FloodFill(i32 x, i32 y, const ::color & color)
 {
 
     ::exception::throw_not_implemented();
@@ -1647,7 +1647,7 @@ bool graphics::FloodFill(i32 x, i32 y, COLORREF crColor)
 }
 
 
-bool graphics::ExtFloodFill(i32 x, i32 y, COLORREF crColor, UINT nFillType)
+bool graphics::ExtFloodFill(i32 x, i32 y, const ::color & color, UINT nFillType)
 {
 
     ::exception::throw_not_implemented();
@@ -1933,75 +1933,75 @@ bool graphics::get_output_text_metrics(::draw2d::text_metric * lpMetrics)
 }
 
 
-i32 graphics::GetTextCharacterExtra()
-{
+//i32 graphics::GetTextCharacterExtra()
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return 0;
+//
+//}
+//
+//
+//bool graphics::GetCharWidth(UINT nFirstChar, UINT nLastChar, LPINT lpBuffer)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return false;
+//
+//}
+//
+//
+//bool graphics::GetOutputCharWidth(UINT nFirstChar, UINT nLastChar, LPINT lpBuffer)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return false;
+//
+//}
+//
+//
+//u32 graphics::GetFontLanguageInfo()
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return 0;
+//
+//}
+//
 
-    ::exception::throw_not_implemented();
-
-    return 0;
-
-}
-
-
-bool graphics::GetCharWidth(UINT nFirstChar, UINT nLastChar, LPINT lpBuffer)
-{
-
-    ::exception::throw_not_implemented();
-
-    return false;
-
-}
-
-
-bool graphics::GetOutputCharWidth(UINT nFirstChar, UINT nLastChar, LPINT lpBuffer)
-{
-
-    ::exception::throw_not_implemented();
-
-    return false;
-
-}
-
-
-u32 graphics::GetFontLanguageInfo()
-{
-
-    ::exception::throw_not_implemented();
-
-    return 0;
-
-}
-
-
-size graphics::GetAspectRatioFilter()
-{
-
-    ::exception::throw_not_implemented();
-
-    return size(0, 0);
-
-}
-
-
-bool graphics::ScrollDC(i32 dx, i32 dy, const ::rect & rectScroll, const ::rect & rectClip, ::draw2d::region* pRgnUpdate, LPRECT lpRectUpdate)
-{
-
-    ::exception::throw_not_implemented();
-
-    return false;
-
-}
-
-
-// Printer Escape Functions
-i32 graphics::Escape(i32 nEscape, i32 nCount, const char * lpszInData, LPVOID lpOutData)
-{
-
-    ::exception::throw_not_implemented();
-
-    return 0;
-
-}
+//size graphics::GetAspectRatioFilter()
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return size(0, 0);
+//
+//}
+//
+//
+//bool graphics::ScrollDC(i32 dx, i32 dy, const ::rect & rectScroll, const ::rect & rectClip, ::draw2d::region* pRgnUpdate, LPRECT lpRectUpdate)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return false;
+//
+//}
+//
+//
+//// Printer Escape Functions
+//i32 graphics::Escape(i32 nEscape, i32 nCount, const char * lpszInData, LPVOID lpOutData)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return 0;
+//
+//}
 
 
 // graphics 3.1 Specific functions
@@ -2025,16 +2025,16 @@ UINT graphics::GetBoundsRect(LPRECT rectBounds, UINT flags)
 }
 
 
-u32 graphics::GetFontData(u32 dwTable, u32 dwOffset, LPVOID lpData, u32 cbData)
-{
-
-    ::exception::throw_not_implemented();
-
-    return 0;
-
-}
-
-
+//u32 graphics::GetFontData(u32 dwTable, u32 dwOffset, LPVOID lpData, u32 cbData)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return 0;
+//
+//}
+//
+//
 i32 graphics::StartPage()
 {
 
@@ -2351,7 +2351,7 @@ bool graphics::PlgBlt(LPPOINT lpPoint, ::draw2d::graphics * pgraphicsSrc, i32 nX
 }
 
 
-bool graphics::SetPixelV(i32 x, i32 y, COLORREF crColor)
+bool graphics::SetPixelV(i32 x, i32 y, const ::color & color)
 {
 
     ::exception::throw_not_implemented();
@@ -2361,7 +2361,7 @@ bool graphics::SetPixelV(i32 x, i32 y, COLORREF crColor)
 }
 
 
-bool graphics::SetPixelV(const ::point & point, COLORREF crColor)
+bool graphics::SetPixelV(const ::point & point, const ::color & color)
 {
 
     ::exception::throw_not_implemented();
@@ -2459,36 +2459,36 @@ bool graphics::PolyBezier(const POINT* lpPoints, count nCount)
     return false;
 
 }
-
-
-i32 graphics::DrawEscape(i32 nEscape, i32 nInputSize, const char * lpszInputData)
-{
-
-    ::exception::throw_not_implemented();
-
-    return 0;
-
-}
-
-
-i32 graphics::Escape(i32 nEscape, i32 nInputSize, const char * lpszInputData, i32 nOutputSize, char * lpszOutputData)
-{
-
-    ::exception::throw_not_implemented();
-
-    return 0;
-
-}
-
-
-bool graphics::GetCharWidth(UINT nFirstChar, UINT nLastChar, float* lpFloatBuffer)
-{
-
-    ::exception::throw_not_implemented();
-
-    return false;
-
-}
+//
+//
+//i32 graphics::DrawEscape(i32 nEscape, i32 nInputSize, const char * lpszInputData)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return 0;
+//
+//}
+//
+//
+//i32 graphics::Escape(i32 nEscape, i32 nInputSize, const char * lpszInputData, i32 nOutputSize, char * lpszOutputData)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return 0;
+//
+//}
+//
+//
+//bool graphics::GetCharWidth(UINT nFirstChar, UINT nLastChar, float* lpFloatBuffer)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return false;
+//
+//}
 
 
 bool graphics::abort_path()
@@ -2616,7 +2616,7 @@ bool graphics::draw_path(::draw2d::path * ppath)
 
     sync_lock ml(cairo_mutex());
 
-    if (!set(ppath))
+    if (!_set(ppath))
     {
 
         return false;
@@ -2633,7 +2633,7 @@ bool graphics::fill_path(::draw2d::path * ppath)
 
     sync_lock ml(cairo_mutex());
 
-    if (!set(ppath))
+    if (!_set(ppath))
     {
 
         return false;
@@ -2650,7 +2650,7 @@ bool graphics::draw_path(::draw2d::path * ppath, ::draw2d::pen * ppen)
 
     sync_lock ml(cairo_mutex());
 
-    if (!set(ppath))
+    if (!_set(ppath))
     {
 
         return false;
@@ -2667,7 +2667,7 @@ bool graphics::fill_path(::draw2d::path * ppath, ::draw2d::brush * pbrush)
 
     sync_lock ml(cairo_mutex());
 
-    if (!set(ppath))
+    if (!_set(ppath))
     {
 
         return false;
@@ -2987,7 +2987,7 @@ void graphics::HIMETRICtoLP(LPSIZE lpSize)
 //   }
 
 
-void graphics::draw3d_rect(const ::rect & rect, COLORREF clrTopLeft, COLORREF clrBottomRight, eborder eborder)
+void graphics::draw_3drect(const ::rect & rect, const ::color & colorTopLeft, const ::color & colorBottomRight, eborder eborder)
 {
 
     sync_lock ml(cairo_mutex());
@@ -3003,28 +3003,28 @@ void graphics::draw3d_rect(const ::rect & rect, COLORREF clrTopLeft, COLORREF cl
     if (eborder & border_top)
     {
 
-        fill_solid_rect_dim(x, y, cx - 1, 1, clrTopLeft);
+        fill_solid_rect_dim(x, y, cx - 1, 1, colorTopLeft);
 
     }
 
     if (eborder & border_left)
     {
 
-        fill_solid_rect_dim(x, y, 1, cy - 1, clrTopLeft);
+        fill_solid_rect_dim(x, y, 1, cy - 1, colorTopLeft);
 
     }
 
     if (eborder & border_right)
     {
 
-        fill_solid_rect_dim(x + cx - 1, y, 1, cy, clrBottomRight);
+        fill_solid_rect_dim(x + cx - 1, y, 1, cy, colorBottomRight);
 
     }
 
     if (eborder & border_bottom)
     {
 
-        fill_solid_rect_dim(x, y + cy - 1, cx, 1, clrBottomRight);
+        fill_solid_rect_dim(x, y + cy - 1, cx, 1, colorBottomRight);
 
     }
 
@@ -3151,7 +3151,7 @@ bool graphics::RestoreDC(i32 nSavedDC)
 }
 
 
-i32 graphics::set(::draw2d::region* pregion)
+::estatus graphics::set(::draw2d::region* pregion)
 {
 
     ::exception::throw_not_implemented();
@@ -3161,13 +3161,13 @@ i32 graphics::set(::draw2d::region* pregion)
 }
 
 
-::draw2d::palette* graphics::SelectPalette(::draw2d::palette* pPalette, bool bForceBackground)
-{
-
-    return nullptr;
-
-}
-
+//::draw2d::palette* graphics::SelectPalette(::draw2d::palette* pPalette, bool bForceBackground)
+//{
+//
+//    return nullptr;
+//
+//}
+//
 
 i32 graphics::SetPolyFillMode(i32 nPolyFillMode)
 {
@@ -3474,36 +3474,36 @@ UINT graphics::SetTextAlign(UINT nFlags)
 }
 
 
-i32 graphics::SetTextJustification(i32 nBreakExtra, i32 nBreakCount)
-{
-
-    ::exception::throw_not_implemented();
-
-    return 0;
-
-}
-
-
-i32 graphics::SetTextCharacterExtra(i32 nCharExtra)
-{
-
-    ::exception::throw_not_implemented();
-
-    return 0;
-
-}
-
-
-u32 graphics::SetMapperFlags(u32 dwFlag)
-{
-
-    ::exception::throw_not_implemented();
-
-    return 0;
-
-}
-
-
+//i32 graphics::SetTextJustification(i32 nBreakExtra, i32 nBreakCount)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return 0;
+//
+//}
+//
+//
+//i32 graphics::SetTextCharacterExtra(i32 nCharExtra)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return 0;
+//
+//}
+//
+//
+//u32 graphics::SetMapperFlags(u32 dwFlag)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return 0;
+//
+//}
+//
+//
 u32 graphics::GetLayout()
 {
 
@@ -4281,7 +4281,7 @@ bool graphics::GetTextExtent(sized & size, const string & str)
 }
 
 
-void graphics::fill_rect(const ::rect & rect, COLORREF clr)
+void graphics::fill_rect(const ::rect & rect, const ::color & color)
 {
 
     sync_lock ml(cairo_mutex());
@@ -4293,7 +4293,7 @@ void graphics::fill_rect(const ::rect & rect, COLORREF clr)
 
     }
 
-    set_os_color(clr);
+    set_os_color(color);
 
     cairo_rectangle(m_pdc, rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top);
 
@@ -4302,7 +4302,7 @@ void graphics::fill_rect(const ::rect & rect, COLORREF clr)
 }
 
 
-void graphics::fill_rect(const ::rectd & rect, COLORREF clr)
+void graphics::fill_rect(const ::rectd & rect, const ::color & color)
 {
 
     sync_lock ml(cairo_mutex());
@@ -4314,7 +4314,7 @@ void graphics::fill_rect(const ::rectd & rect, COLORREF clr)
 
     }
 
-    set_os_color(clr);
+    set_os_color(color);
 
     cairo_rectangle(m_pdc, rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top);
 
@@ -5172,7 +5172,7 @@ bool graphics::draw(::draw2d::pen * ppen)
 }
 
 
-bool graphics::set(const ::draw2d::path * ppathParam)
+bool graphics::_set(::draw2d::path * ppathParam)
 {
 
     if(ppathParam == nullptr)
@@ -5197,7 +5197,7 @@ bool graphics::set(const ::draw2d::path * ppathParam)
 
     cairo_new_sub_path(m_pdc);
 
-    if (ppath->m_bFill)
+    //if (!m_bOutline)
     {
 
         if (ppath->m_efillmode == ::draw2d::fill_mode_alternate)
@@ -5218,7 +5218,7 @@ bool graphics::set(const ::draw2d::path * ppathParam)
     for (i32 i = 0; i < ppath->m_elementa.get_count(); i++)
     {
 
-        set(ppath->m_elementa(i));
+        _set(ppath->m_elementa[i]);
 
     }
 
@@ -5227,81 +5227,170 @@ bool graphics::set(const ::draw2d::path * ppathParam)
 }
 
 
-bool graphics::set(const ::draw2d_cairo::path::element & e)
+bool graphics::_set(::draw2d_cairo::path::element * pelement)
 {
 
     sync_lock ml(cairo_mutex());
 
-    switch (e.m_etype)
-    {
-    case ::draw2d::path::element::type_arc:
+//    switch (e.m_etype)
+//    {
+//    case ::draw2d::path::element::type_arc:
+//
+//        set(e.u.m_arc);
+//
+//        break;
+//
+//    case ::draw2d::path::element::type_line:
+//
+//        set(e.u.m_line);
+//
+//        break;
+//
+//    case ::draw2d::path::element::type_move:
+//
+//        set(e.u.m_move);
+//
+//        break;
+//
+//    case ::draw2d::path::element::type_rect:
+//
+//        set(e.u.m_rect);
+//
+//        break;
+//
+//    case ::draw2d::path::element::type_end:
+//    {
+//
+//
+//    }
+//
+//    break;
+//
+//    case ::draw2d::path::element::type_string:
+//    {
+//
+//        set(e.m_stringpath);
+//
+//    }
+//    break;
+//
+//    default:
+//
+//        __throw(::exception::exception("unexpected simple os graphics element type"));
+//
+//    }
 
-        set(e.u.m_arc);
+   switch (pelement->m_etype)
+   {
+   case ::draw2d::path::type_begin:
+      return _set(dynamic_cast <path::begin*>(pelement));
+   case ::draw2d::path::type_arc:
+      return _set(dynamic_cast <path::arc*>(pelement));
+   case ::draw2d::path::type_rect:
+      return _set(dynamic_cast <path::rect*>(pelement));
+   case ::draw2d::path::type_line:
+      return  _set(dynamic_cast <path::line*>(pelement));
+   case ::draw2d::path::type_lines:
+      return _set(dynamic_cast <path::lines*>(pelement));
+   case ::draw2d::path::type_polygon:
+      return _set(dynamic_cast <path::polygon*>(pelement));
+   case ::draw2d::path::type_text_out:
+      return _set(dynamic_cast <path::text_out*>(pelement));
+   case ::draw2d::path::type_draw_text:
+      return _set(dynamic_cast <path::draw_text*>(pelement));
+   case ::draw2d::path::type_close:
+      return _set(dynamic_cast <path::close*>(pelement));
+   default:
+      throw "unexpected simple os graphics element type";
+   }
 
-        break;
-
-    case ::draw2d::path::element::type_line:
-
-        set(e.u.m_line);
-
-        break;
-
-    case ::draw2d::path::element::type_move:
-
-        set(e.u.m_move);
-
-        break;
-
-    case ::draw2d::path::element::type_rect:
-
-        set(e.u.m_rect);
-
-        break;
-
-    case ::draw2d::path::element::type_end:
-    {
-
-        if (e.u.m_end.m_bClose)
-        {
-
-            cairo_close_path(m_pdc);
-
-        }
-
-    }
-
-    break;
-
-    case ::draw2d::path::element::type_string:
-    {
-
-        set(e.m_stringpath);
-
-    }
-    break;
-
-    default:
-
-        __throw(::exception::exception("unexpected simple os graphics element type"));
-
-    }
-
-    return false;
+   return false;
 
 }
 
 
-bool graphics::set(const ::draw2d_cairo::path::arc & a)
+bool graphics::_set(::draw2d_cairo::path::begin * pbegin)
 {
 
-    if (a.m_sizeRadius.cx <= 0.0000001)
+   sync_lock ml(cairo_mutex());
+
+   if(cairo_has_current_point(m_pdc))
+   {
+
+      cairo_new_sub_path(m_pdc);
+
+   }
+
+   return true;
+
+}
+
+
+bool graphics::_set(const ::pointd_array & pointa)
+{
+
+   if(pointa.get_count() <= 1)
+   {
+
+      return true;
+
+   }
+
+   sync_lock ml(cairo_mutex());
+
+   if (cairo_has_current_point(m_pdc))
+   {
+
+      double x;
+
+      double y;
+
+      cairo_get_current_point (m_pdc, &x, &y);
+
+      if(x != pointa[0].x || y != pointa[0].y)
+      {
+
+         cairo_move_to(m_pdc, pointa[0].x, pointa[0].y);
+
+      }
+      else
+      {
+
+         cairo_line_to(m_pdc, pointa[0].x, pointa[0].y);
+
+      }
+
+   }
+   else
+   {
+
+      cairo_move_to(m_pdc, pointa[0].x, pointa[0].y);
+
+   }
+
+   for(index i = 1; i < pointa.get_count(); i++)
+   {
+
+      cairo_line_to(m_pdc, pointa[i].x, pointa[i].y);
+
+   }
+
+   return true;
+
+}
+
+
+bool graphics::_set(::draw2d_cairo::path::arc * parc)
+{
+
+    if (parc->m_sizeRadius.cx <= 0.0000001)
     {
 
         return 0;
 
     }
 
-    if (a.m_sizeRadius.cy <= 0.0000001)
+    if (parc->m_sizeRadius.cy <= 0.0000001)
     {
 
         return 0;
@@ -5312,66 +5401,134 @@ bool graphics::set(const ::draw2d_cairo::path::arc & a)
 
     cairo_keep keep(m_pdc);
 
-    cairo_translate(m_pdc, a.m_pointCenter.x, a.m_pointCenter.y);
+    cairo_translate(m_pdc, parc->m_pointCenter.x, parc->m_pointCenter.y);
 
-    cairo_scale(m_pdc, 1.0, a.m_sizeRadius.cy / a.m_sizeRadius.cx);
+    cairo_scale(m_pdc, 1.0, parc->m_sizeRadius.cy / parc->m_sizeRadius.cx);
 
-    cairo_arc(m_pdc, 0.0, 0.0, a.m_sizeRadius.cx, a.m_dAngle1, a.m_dAngle2);
+    cairo_arc(m_pdc, 0.0, 0.0, parc->m_sizeRadius.cx, parc->m_angleBeg, parc->m_angleEnd);
 
     return true;
 
 }
 
 
-bool graphics::set(const ::draw2d_cairo::path::line & l)
+bool graphics::_set(::draw2d_cairo::path::line * pline)
 {
 
     sync_lock ml(cairo_mutex());
 
-    if (!cairo_has_current_point(m_pdc))
+    if (cairo_has_current_point(m_pdc))
     {
 
-        cairo_move_to(m_pdc, l.m_x + 0.5, l.m_y + 0.5);
+      double x;
+
+      double y;
+
+      cairo_get_current_point (m_pdc, &x, &y);
+
+      if(x != pline->m_pointBeg.x || y != pline->m_pointBeg.y)
+      {
+
+         cairo_move_to(m_pdc, pline->m_pointBeg.x, pline->m_pointBeg.y);
+
+      }
+      else
+      {
+
+         cairo_line_to(m_pdc, pline->m_pointBeg.x, pline->m_pointBeg.y);
+
+      }
 
     }
     else
     {
 
-        cairo_line_to(m_pdc, l.m_x + 0.5, l.m_y + 0.5);
+      cairo_move_to(m_pdc, pline->m_pointBeg.x, pline->m_pointBeg.y);
 
     }
 
-    return true;
-
-}
-
-
-bool graphics::set(const ::draw2d_cairo::path::rect & rect)
-{
-
-    sync_lock ml(cairo_mutex());
-
-    cairo_rectangle(m_pdc, rect.m_x, rect.m_y, rect.m_cx, rect.m_cy);
+    cairo_line_to(m_pdc, pline->m_pointEnd.x, pline->m_pointEnd.y);
 
     return true;
 
 }
 
 
-bool graphics::set(const ::draw2d_cairo::path::string_path & stringpath)
+bool graphics::_set(::draw2d_cairo::path::lines * plines)
+{
+
+   if(plines->m_pointa.get_count() <= 1)
+   {
+
+      return true;
+
+   }
+
+   sync_lock ml(cairo_mutex());
+
+   cairo_new_sub_path(m_pdc);
+
+   _set(plines->m_pointa);
+
+   return true;
+
+}
+
+
+bool graphics::_set(::draw2d_cairo::path::polygon * ppolygon)
+{
+
+   if(ppolygon->m_pointa.get_count() <= 1)
+   {
+
+      return true;
+
+   }
+
+   sync_lock ml(cairo_mutex());
+
+   cairo_new_sub_path(m_pdc);
+
+   _set(ppolygon->m_pointa);
+
+   cairo_close_path(m_pdc);
+
+   return true;
+
+}
+
+
+bool graphics::_set(::draw2d_cairo::path::rect * prect)
 {
 
     sync_lock ml(cairo_mutex());
 
-    auto rect = ::rectd(pointd(stringpath.m_x, stringpath.m_y), sized(65535.0, 65535.0));
+    cairo_rectangle(
+      m_pdc,
+      prect->m_rect.left,
+      prect->m_rect.top,
+      prect->m_rect.width(),
+      prect->m_rect.height());
+
+    return true;
+
+}
+
+
+bool graphics::_set(::draw2d_cairo::path::text_out * ptextout)
+{
+
+    sync_lock ml(cairo_mutex());
+
+    auto rect = ::rectd(ptextout->m_point, sized(65535.0, 65535.0));
 
 #if defined(USE_PANGO)
 
-    internal_draw_text_pango(stringpath.m_strText, stringpath.m_strText.get_length(), rect, 0, &pango_cairo_layout_path);
+    internal_draw_text_pango(ptextout->m_strText, ptextout->m_strText.get_length(), rect, 0, &pango_cairo_layout_path);
 
 #else
 
-    internal_draw_text(stringpath.m_strText, stringpath.m_strText.get_length(), rect, 0, &cairo_text_path);
+    internal_draw_text(ptextout->m_strText, ptextout->m_strText.get_length(), rect, 0, &cairo_text_path);
 
 #endif
 
@@ -5391,16 +5548,59 @@ bool graphics::set(const ::draw2d_cairo::path::string_path & stringpath)
 }
 
 
-bool graphics::set(const ::draw2d_cairo::path::move & p)
+bool graphics::_set(::draw2d_cairo::path::draw_text * pdrawtext)
 {
 
-    sync_lock ml(cairo_mutex());
+   sync_lock ml(cairo_mutex());
 
-    cairo_move_to(m_pdc, p.m_x + 0.5, p.m_y + 0.5);
+   auto rect = pdrawtext->m_rect;
 
-    return true;
+#if defined(USE_PANGO)
+
+   internal_draw_text_pango(pdrawtext->m_strText, pdrawtext->m_strText.get_length(), rect, 0, &pango_cairo_layout_path);
+
+#else
+
+   internal_draw_text(pdrawtext->m_strText, pdrawtext->m_strText.get_length(), rect, 0, &cairo_text_path);
+
+#endif
+
+   cairo_status_t status = cairo_status(m_pdc);
+
+   if(status != CAIRO_STATUS_SUCCESS)
+   {
+
+      const char * pszStatus = cairo_status_to_string(status);
+
+      TRACE("cairo error : graphics::set(string_path) %d %s", status, pszStatus);
+
+   }
+
+   return true;
 
 }
+
+
+bool graphics::_set(::draw2d_cairo::path::close * pclose)
+{
+
+   cairo_close_path(m_pdc);
+
+   return true;
+
+}
+
+
+//bool graphics::set(const ::draw2d_cairo::path::move & p)
+//{
+//
+//    sync_lock ml(cairo_mutex());
+//
+//    cairo_move_to(m_pdc, p.m_x + 0.5, p.m_y + 0.5);
+//
+//    return true;
+//
+//}
 
 
 

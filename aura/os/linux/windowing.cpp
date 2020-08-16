@@ -2876,7 +2876,6 @@ void x11_thread(osdisplay_data * pdisplaydata)
 
    }
 
-
    XEvent e = {};
 
 #if !defined(RASPBIAN)
@@ -2940,6 +2939,10 @@ void x11_thread(osdisplay_data * pdisplaydata)
             //printf("An error occured!\n");
 
          }
+
+         sync_lock sl(x11_mutex());
+
+         xdisplay d(pdisplay);
 
          while(XPending(pdisplay) && ::thread_get_run())
          {
@@ -3101,6 +3104,8 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e, XGenericEventC
 bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 #endif
 {
+
+   //sync_lock sl(x11_mutex());
 
    Display * pdisplay = pdisplaydata->m_pdisplay;
 

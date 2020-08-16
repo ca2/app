@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="app_simple_shader" />
+		<Option title="app_shader" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
@@ -108,31 +108,21 @@
 			<Add directory="$(#time_dir)/x64/$(TARGET_NAME)" />
 		</Linker>
 		<ExtraCommands>
-			<Add after="$(#archive)/tool-linux/bin/app._.sh $(WORKSPACE_DIR) $(PROJECT_DIR) $(TARGET_NAME) $(PROJECT_NAME) $(#time_name) $(#archive) $(#config)  app-simple/shader" />
+			<Add after="$(#archive)/tool-linux/bin/app._.sh $(WORKSPACE_DIR) $(PROJECT_DIR) $(TARGET_NAME) $(PROJECT_NAME) $(#time_name) $(#archive) $(#config)  app/shader" />
 			<Mode after="always" />
 		</ExtraCommands>
 		<Unit filename="_.h" />
 		<Unit filename="application.cpp" />
 		<Unit filename="application.h" />
-		<Unit filename="document.cpp" />
-		<Unit filename="document.h" />
-		<Unit filename="frame.cpp" />
-		<Unit filename="frame.h" />
 		<Unit filename="framework.cpp" />
 		<Unit filename="framework.h">
 			<Option compile="1" />
 			<Option weight="0" />
 		</Unit>
-		<Unit filename="main_frame.cpp" />
-		<Unit filename="main_frame.h" />
-		<Unit filename="pane_view.h" />
 		<Unit filename="render.cpp" />
 		<Unit filename="render.h" />
-		<Unit filename="simple_shader_1through3.cpp" />
-		<Unit filename="simple_shader_arcs.cpp" />
-		<Unit filename="tab_view.cpp" />
-		<Unit filename="view.cpp" />
-		<Unit filename="view.h" />
+		<Unit filename="window.cpp" />
+		<Unit filename="window.h" />
 		<Extensions>
 			<DoxyBlocks>
 				<comment_style block="0" line="0" />

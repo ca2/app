@@ -131,7 +131,7 @@ namespace draw2d_cairo
    }
 
 
-   bool font::create(::draw2d::graphics * pgraphics)
+   bool font::create(::draw2d::graphics * pgraphics, ::index iCreate)
    {
 
 #if defined(USE_PANGO)

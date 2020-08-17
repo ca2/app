@@ -1496,8 +1496,6 @@ namespace aura
 
       }
 
-
-
       bool bMatterFromHttpCache = false;
 
       if(m_iMatterFromHttpCache == -1)

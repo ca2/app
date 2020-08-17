@@ -5591,11 +5591,11 @@ namespace draw2d
 
          rect.deflate(0, rect.height() / 7.0);
 
-         ::rect rect1(rect);
+         ::rectd rect1(rect);
 
          rect1.deflate(0, 0, rect.width() / 3.0, rect.height() / 3.0);
 
-         ::rect rect2(rect1);
+         ::rectd rect2(rect1);
 
          rect2.Align(align_bottom_right, rect);
 
@@ -5603,18 +5603,18 @@ namespace draw2d
 
          m_ppen->m_elinecapBeg = ::draw2d::pen::line_cap_flat;
          m_ppen->m_elinecapEnd = ::draw2d::pen::line_cap_flat;
-         move_to(rect2.top_left() + ::size(0,(LONG)(pen->m_dWidth / 2.0)));
-         line_to(rect2.top_right() + ::size(0,(LONG)(pen->m_dWidth / 2.0)));
-         move_to(rect2.top_left() + ::size(0,(LONG)(pen->m_dWidth)));
-         line_to(rect2.top_right() + ::size(0,(LONG)(pen->m_dWidth)));
+         move_to(rect2.top_left() + ::size(0.,(pen->m_dWidth / 2.0)));
+         line_to(rect2.top_right() + ::size(0.,(pen->m_dWidth / 2.0)));
+         move_to(rect2.top_left() + ::size(0.,(pen->m_dWidth)));
+         line_to(rect2.top_right() + ::size(0.,(pen->m_dWidth)));
 
 
          move_to(rect1.top_left());
          line_to(rect1.top_right());
-         move_to(rect1.top_left() + ::size(0,(LONG)(pen->m_dWidth / 2.0)));
-         line_to(rect1.top_right() + ::size(0,(LONG)(pen->m_dWidth / 2.0)));
-         move_to(rect1.top_left() + ::size(0,(LONG)(pen->m_dWidth)));
-         line_to(rect1.top_right() + ::size(0,(LONG)(pen->m_dWidth)));
+         move_to(rect1.top_left() + ::size(0.,(pen->m_dWidth / 2.0)));
+         line_to(rect1.top_right() + ::size(0.,(pen->m_dWidth / 2.0)));
+         move_to(rect1.top_left() + ::size(0.,(pen->m_dWidth)));
+         line_to(rect1.top_right() + ::size(0.,(pen->m_dWidth)));
 
 
 

@@ -383,7 +383,8 @@ namespace user
 
    }
 
-   ::estatus     thread::run()
+
+   ::estatus thread::run()
    {
 
       ASSERT_VALID(this);

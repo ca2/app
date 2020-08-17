@@ -1498,13 +1498,13 @@ string_array_base < Type, RawType > ::string_array_base(const string_array_base 
 template < class Type, class RawType >
 string_array_base < Type, RawType > ::string_array_base(CHAR_TYPE* const* ppsz, ::count c)
 {
-   
-   set_size(c);
+
+   this->set_size(c);
 
    for (::index i = 0; i < c; i++)
    {
 
-      element_at(i) = ppsz[i];
+      this->element_at(i) = ppsz[i];
 
    }
 
@@ -4796,18 +4796,18 @@ template < class Type, class RawType >
    {
 
       char * psz = nullptr;
-      
+
       if(bMemoryAlloc)
       {
-         
+
          psz = ansi_duplicate(string(element_at(i)));
-         
+
       }
       else
       {
-       
+
          psz = strdup(string(element_at(i)));
-         
+
       }
 
       psza.add(psz);
@@ -4829,19 +4829,19 @@ template < class Type, class RawType >
    {
 
       widechar * pwsz = nullptr;
-      
+
       if(bMemoryAlloc)
       {
-         
+
          pwsz = wide_duplicate(wstring(element_at(i)));
-         
+
       }
       else
       {
-       
+
          pwsz = wcsdup(wstring(element_at(i)));
 
-         
+
       }
 
       psza.add(pwsz);
@@ -4866,18 +4866,18 @@ void string_array_base < Type, RawType > ::c_add(char ** ppsz, ::count c, bool b
       auto str = Type(psz);
 
       this->add(str);
-      
+
       if(bMemoryAlloc)
       {
 
          memory_free(psz);
-         
+
       }
       else
       {
-         
+
          free(psz);
-         
+
       }
 
    }
@@ -4889,13 +4889,13 @@ void string_array_base < Type, RawType > ::c_add(char ** ppsz, ::count c, bool b
       {
 
          memory_free(ppsz);
-         
+
       }
       else
       {
-         
+
          free(ppsz);
-         
+
       }
 
    }
@@ -4925,13 +4925,13 @@ void string_array_base < Type, RawType > ::c_add(char ** ppszParam, bool bMemory
       {
 
          memory_free(psz);
-         
+
       }
       else
       {
-         
+
          free(psz);
-         
+
       }
       ppsz++;
 
@@ -4941,13 +4941,13 @@ void string_array_base < Type, RawType > ::c_add(char ** ppszParam, bool bMemory
    {
 
       memory_free(ppszParam);
-      
+
    }
    else
    {
-      
+
       free(ppszParam);
-      
+
    }
 
 }
@@ -4970,13 +4970,13 @@ void string_array_base < Type, RawType > ::c_add(wchar_t ** ppwsz, ::count c, bo
       {
 
          memory_free(pwsz);
-         
+
       }
       else
       {
-         
+
          free(pwsz);
-         
+
       }
    }
 
@@ -4987,13 +4987,13 @@ void string_array_base < Type, RawType > ::c_add(wchar_t ** ppwsz, ::count c, bo
       {
 
          memory_free(ppwsz);
-         
+
       }
       else
       {
-         
+
          free(ppwsz);
-         
+
       }
    }
 
@@ -5020,13 +5020,13 @@ void string_array_base < Type, RawType > ::c_add(wchar_t ** ppwszParam, bool bMe
       {
 
          memory_free(pwsz);
-         
+
       }
       else
       {
-         
+
          free(pwsz);
-         
+
       }
       ppwsz++;
 
@@ -5039,13 +5039,13 @@ void string_array_base < Type, RawType > ::c_add(wchar_t ** ppwszParam, bool bMe
       {
 
          memory_free(ppwsz);
-         
+
       }
       else
       {
-         
+
          free(ppwsz);
-         
+
       }
    }
 

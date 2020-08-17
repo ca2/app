@@ -3322,12 +3322,12 @@ namespace windows
    bool interaction_impl::is_active()
    {
 
-      UINT uiThread = 0;
+      ITHREAD ithread = 0;
       
       if (m_puserinteraction && m_puserinteraction->m_pthreadUserInteraction)
       {
 
-         uiThread = m_puserinteraction->m_pthreadUserInteraction->get_os_int();
+         ithread = m_puserinteraction->m_pthreadUserInteraction->get_ithread();
 
       }
 
@@ -3337,7 +3337,7 @@ namespace windows
 
       oswindow oswindowActive;
 
-      if (GetGUIThreadInfo(uiThread, &info))
+      if (GetGUIThreadInfo(ithread, &info))
       {
 
          oswindowActive = info.hwndActive;

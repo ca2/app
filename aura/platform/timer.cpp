@@ -114,7 +114,9 @@ void timer::call_on_timer()
 
    m_bDupHandle = false;
 
-   SetCurrentHandles();
+   //SetCurrentHandles();
+
+   set_current_handles();
 
    ::set_thread(this);
 
@@ -242,9 +244,9 @@ void timer::call_on_timer()
 
          //impl_term();
 
-         set_os_int(0);
+         //set_os_int(0);
 
-         set_os_data(nullptr);
+         //set_os_data(nullptr);
 
 
 
@@ -258,9 +260,9 @@ void timer::call_on_timer()
    else
    {
 
-      set_os_int(0);
+      //set_os_int(0);
 
-      set_os_data(nullptr);
+      //set_os_data(nullptr);
 
    }
 

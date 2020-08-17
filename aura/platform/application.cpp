@@ -2491,7 +2491,7 @@ namespace aura
       if (!is_system() && is_true("SessionSynchronizedInput"))
       {
 
-         ::AttachThreadInput(GetCurrentThreadId(), (u32)System.get_os_int(), TRUE);
+         ::AttachThreadInput(GetCurrentThreadId(), (u32)System.get_ithread(), TRUE);
 
       }
 

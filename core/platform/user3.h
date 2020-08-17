@@ -47,6 +47,7 @@ namespace aura
 
       ::mutex                                            m_mutexThread;
       thread_map                                         m_threadmap;
+      thread_id_map                                      m_threadidmap;
       ::mutex                                            m_mutexThreadOn;
       isomap < ITHREAD, ITHREAD >                        m_mapThreadOn;
 

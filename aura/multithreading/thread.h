@@ -6,6 +6,7 @@ class mq;
 
 
 typedef isomap < ITHREAD, __pointer(thread) > thread_map;
+typedef isomap < thread *, ITHREAD > thread_id_map;
 
 
 ///
@@ -78,8 +79,8 @@ public:
    __pointer(counter)                                 m_pcounter;
 
    bool                                               m_bDupHandle;
-   HTHREAD                                            m_hthread;
-   ITHREAD                                            m_uThread;
+   HTHREAD                                            m_hthread1;
+   ITHREAD                                            m_ithread1;
 
    string                                             m_strDebugType;
 
@@ -168,10 +169,10 @@ public:
    ///  \brief    starts thread on first call
    virtual void start();
 
-   virtual void * get_os_data() const;
-   virtual ITHREAD get_os_int() const;
+   virtual HTHREAD get_hthread() const;
+   virtual ITHREAD get_ithread() const;
 
-   virtual void SetCurrentHandles();
+   virtual void set_current_handles();
 
    virtual HTHREAD get_os_handle() const;
 
@@ -180,8 +181,8 @@ public:
    virtual bool is_thread() const override;
    virtual bool is_running() const override;
 
-   virtual void set_os_data(void * pvoidOsData);
-   virtual void set_os_int(ITHREAD iData);
+   //virtual void set_os_data(void * pvoidOsData);
+   //virtual void set_os_int(ITHREAD iData);
 
 
    friend bool __internal_pre_translate_message(MESSAGE * pMsg);

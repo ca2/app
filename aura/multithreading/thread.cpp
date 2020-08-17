@@ -8,6 +8,17 @@
 
 ::mutex * g_pmutexThreadWaitClose = nullptr;
 
+
+HANDLE dup_handle(HANDLE h)
+{
+
+   DuplicateHandle(GetCurrentProcess(), ::GetCurrentThread(), GetCurrentProcess(), &h, 0, FALSE, DUPLICATE_SAME_ACCESS);
+
+   return h;
+
+}
+
+
 #ifdef WINDOWS_DESKTOP
 
 index engine_fileline(DWORD_PTR dwAddress, char * psz, int nCount, u32 * pline, u32 * pdisplacement = 0);
@@ -140,9 +151,9 @@ thread::thread()
 
    m_bDupHandle = false;
 
-   m_hthread = (HTHREAD) nullptr;
+   m_hthread1 = (HTHREAD) nullptr;
 
-   m_uThread = 0;
+   m_ithread1 = 0;
 
    m_nDisablePumpCount = 0;
 
@@ -205,7 +216,7 @@ thread::~thread()
 HTHREAD thread::get_os_handle() const
 {
 
-   return (HTHREAD)get_os_data();
+   return get_hthread();
 
 }
 
@@ -1247,7 +1258,7 @@ void thread::kick_idle()
 
 #ifdef WINDOWS_DESKTOP
 
-         ::PostThreadMessage(m_uThread, WM_KICKIDLE, 0, 0);
+         ::PostThreadMessage(m_ithread1, WM_KICKIDLE, 0, 0);
 
 #else
 
@@ -1842,7 +1853,7 @@ void thread::wait()
 sync_result thread::wait(const duration & duration)
 {
 
-   ITHREAD uThread = m_uThread;
+   ITHREAD ithread = m_ithread1;
 
    try
    {
@@ -1851,7 +1862,7 @@ sync_result thread::wait(const duration & duration)
 
       DWORD timeout = duration.is_pos_infinity() ? INFINITE : static_cast<DWORD>(duration.total_milliseconds());
 
-      HANDLE hthread = m_hthread;
+      HTHREAD hthread = m_hthread1;
 
       if (hthread == NULL || hthread == INVALID_HANDLE_VALUE)
       {
@@ -1900,7 +1911,7 @@ sync_result thread::wait(const duration & duration)
 
    }
 
-   return is_thread_on(uThread) ?
+   return is_thread_on(ithread) ?
           sync_result(::sync_result::result_timeout) :
           sync_result(::sync_result::result_event0);
 
@@ -2134,7 +2145,7 @@ bool thread::begin_thread(bool bSynchInitialization, ::e_priority epriority, UIN
 
    m_bRunThisThread = true;
 
-   ENSURE(m_hthread == (HTHREAD) nullptr);
+   ENSURE(m_hthread1 == (HTHREAD) nullptr);
 
    if(m_id.is_empty())
    {
@@ -2209,9 +2220,9 @@ bool thread::begin_thread(bool bSynchInitialization, ::e_priority epriority, UIN
 
    }
 
-   auto estatus = os_fork(epriority, nStackSize, uiCreateFlags, psa, &m_uThread, &m_hthread);
+   auto estatus = os_fork(epriority, nStackSize, uiCreateFlags, psa, &m_ithread1, &m_hthread1);
 
-   if(m_hthread == 0)
+   if(m_hthread1 == 0)
    {
 
       if (::is_set(get_context_object()))
@@ -2302,6 +2313,8 @@ bool thread::begin_synch(::e_priority epriority, UINT nStackSize, u32 uiCreateFl
 ::estatus thread::inline_init()
 {
 
+   set_current_handles();
+
    ::estatus estatus = __thread_init();
 
    if (!estatus)
@@ -2339,29 +2352,28 @@ bool thread::begin_synch(::e_priority epriority, UINT nStackSize, u32 uiCreateFl
 }
 
 
-void * thread::get_os_data() const
+HTHREAD thread::get_hthread() const
 {
 
-   return (void *)m_hthread;
+   return m_hthread1;
 
 }
 
 
-ITHREAD thread::get_os_int() const
+ITHREAD thread::get_ithread() const
 {
 
-   return m_uThread;
+   return m_ithread1;
 
 }
 
 
-void thread::SetCurrentHandles()
+void thread::set_current_handles()
 {
 
-   set_os_data((void *) ::get_current_hthread());
+   m_hthread1 = ::get_current_hthread();
 
-   // done in thread_register
-   // set_os_int(::get_current_ithread());
+   m_ithread1 = ::get_current_ithread();
 
 }
 
@@ -2369,7 +2381,7 @@ void thread::SetCurrentHandles()
 iptr thread::item() const
 {
 
-   return (iptr)m_hthread;
+   return (iptr)m_hthread1;
 
 }
 
@@ -2382,7 +2394,7 @@ void thread::__priority_and_affinity()
 
 #if defined(WINDOWS_DESKTOP) || defined(LINUX)
 
-      WINBOOL bOk = ::SetThreadAffinityMask(m_hthread, m_dwThreadAffinityMask) != 0;
+      WINBOOL bOk = ::SetThreadAffinityMask(m_hthread1, m_dwThreadAffinityMask) != 0;
 
       if (bOk)
       {
@@ -2414,17 +2426,17 @@ void thread::__priority_and_affinity()
 void thread::__os_initialize()
 {
 
-#ifdef WINDOWS_DESKTOP
-
-   DuplicateHandle(GetCurrentProcess(), ::GetCurrentThread(), GetCurrentProcess(), &m_hthread, 0, FALSE, DUPLICATE_SAME_ACCESS);
-
-#else
-
-   m_hthread = ::get_current_hthread();
-
-#endif
-
-   m_uThread = ::get_current_ithread();
+//#ifdef WINDOWS_DESKTOP
+//
+//   DuplicateHandle(GetCurrentProcess(), ::GetCurrentThread(), GetCurrentProcess(), &m_hthread, 0, FALSE, DUPLICATE_SAME_ACCESS);
+//
+//#else
+//
+//   m_hthread = ::get_current_hthread();
+//
+//#endif
+//
+//   m_uThread = ::get_current_ithread();
 
    try
    {
@@ -2490,7 +2502,7 @@ void thread::__os_finalize()
 
    __node_term_thread(this);
 
-   set_os_data(nullptr);
+   //set_os_data(nullptr);
 
 }
 
@@ -2619,11 +2631,11 @@ void thread::__os_finalize()
 void thread::__set_thread_on()
 {
 
-   SetCurrentHandles();
+   //SetCurrentHandles();
 
-   auto id = ::get_current_ithread();
+   //auto id = ::get_current_ithread();
 
-   ::multithreading::thread_register(id, this);
+   ::multithreading::thread_register(m_ithread1, this);
 
    if (g_axisoninitthread)
    {
@@ -2677,13 +2689,13 @@ void thread::__set_thread_off()
 
    //release(OBJ_REF_DBG_THIS);
 
-   ::multithreading::thread_unregister(pthread);
+   ::multithreading::thread_unregister(m_ithread1, pthread);
 
    auto id = ::get_current_ithread();
 
    set_thread_off(::get_current_ithread());
 
-   ::aura::system::g_p->unset_thread(::get_current_ithread());
+   //::aura::system::g_p->unset_thread(::get_current_ithread());
 
 }
 
@@ -2841,10 +2853,10 @@ bool thread::post_message(UINT message,WPARAM wParam,lparam lParam)
 
 #ifdef WINDOWS_DESKTOP
 
-   if (m_hthread && !m_bAuraMessageQueue)
+   if (m_hthread1 && !m_bAuraMessageQueue)
    {
 
-      WINBOOL bOk = ::PostThreadMessage(m_uThread, message, wParam, lParam) != FALSE;
+      WINBOOL bOk = ::PostThreadMessage(m_ithread1, message, wParam, lParam) != FALSE;
 
       if (!bOk)
       {
@@ -2883,7 +2895,7 @@ bool thread::send_object(UINT message, WPARAM wParam, lparam lParam, ::duration 
 
    }
 
-   if (m_hthread == (HTHREAD)nullptr || !thread_get_run())
+   if (m_hthread1 == (HTHREAD)nullptr || !thread_get_run())
    {
 
       if (lParam != 0)
@@ -2939,66 +2951,66 @@ bool thread::send_message(UINT message, WPARAM wParam, lparam lParam, ::duration
 }
 
 
-void thread::set_os_data(void * pvoidOsData)
-{
+//void thread::set_os_data(void * pvoidOsData)
+//{
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//   if(m_bDupHandle)
+//   {
+//
+//      if(m_hthread != nullptr)
+//      {
+//
+//         ::CloseHandle(m_hthread);
+//
+//      }
+//
+//   }
+//
+//   m_hthread = nullptr;
+//
+//   if(pvoidOsData != nullptr)
+//   {
+//
+//      if(::DuplicateHandle(::GetCurrentProcess(),(HANDLE)pvoidOsData,GetCurrentProcess(),&m_hthread,THREAD_ALL_ACCESS,TRUE,0))
+//      {
+//
+//         m_bDupHandle = true;
+//
+//      }
+//      else
+//      {
+//
+//         TRACE("thread::set_os_data failed to duplicate handle");
+//
+//      }
+//
+//   }
+//
+//#else
+//
+//   m_hthread = (HTHREAD)pvoidOsData;
+//
+//#endif
+//
+//}
 
-#ifdef WINDOWS_DESKTOP
 
-   if(m_bDupHandle)
-   {
-
-      if(m_hthread != nullptr)
-      {
-
-         ::CloseHandle(m_hthread);
-
-      }
-
-   }
-
-   m_hthread = nullptr;
-
-   if(pvoidOsData != nullptr)
-   {
-
-      if(::DuplicateHandle(::GetCurrentProcess(),(HANDLE)pvoidOsData,GetCurrentProcess(),&m_hthread,THREAD_ALL_ACCESS,TRUE,0))
-      {
-
-         m_bDupHandle = true;
-
-      }
-      else
-      {
-
-         TRACE("thread::set_os_data failed to duplicate handle");
-
-      }
-
-   }
-
-#else
-
-   m_hthread = (HTHREAD)pvoidOsData;
-
-#endif
-
-}
-
-
-void thread::set_os_int(ITHREAD ithread)
-{
-
-#ifdef WINDOWS_DESKTOP
-
-   m_uThread = (DWORD) ithread;
-
-#else
-
-   m_uThread = (ITHREAD) ithread;
-
-#endif
-
-}
+//void thread::set_os_int(ITHREAD ithread)
+//{
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//   m_uThread = (DWORD) ithread;
+//
+//#else
+//
+//   m_uThread = (ITHREAD) ithread;
+//
+//#endif
+//
+//}
 
 
 bool thread::on_get_thread_name(string& strThreadName)
@@ -3285,7 +3297,7 @@ int_bool thread::peek_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilter
 
 #ifdef WINDOWS_DESKTOP
 
-   if (m_hthread && !m_bAuraMessageQueue)
+   if (m_hthread1 && !m_bAuraMessageQueue)
    {
 
       if (::PeekMessage(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax, wRemoveMsg))
@@ -3355,7 +3367,7 @@ int_bool thread::get_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterM
 
    }
 
-   if (m_hthread)
+   if (m_hthread1)
    {
 
       int iRet = ::GetMessage(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax);
@@ -3424,7 +3436,7 @@ int_bool thread::post_message(oswindow oswindow, UINT uMessage, WPARAM wParam, L
 
 #ifdef WINDOWS_DESKTOP
 
-   if (m_hthread && !m_bAuraMessageQueue)
+   if (m_hthread1 && !m_bAuraMessageQueue)
    {
 
       if (::PostMessage(oswindow, uMessage, wParam, lParam))
@@ -3517,7 +3529,7 @@ void thread::dump(dump_context & dumpcontext) const
 thread::operator HTHREAD() const
 {
 
-   return is_null(this) ? (HTHREAD) nullptr : m_hthread;
+   return is_null(this) ? (HTHREAD) nullptr : m_hthread1;
 
 }
 
@@ -3911,7 +3923,7 @@ bool thread::set_thread_priority(::e_priority epriority)
 
    i32 nPriority = get_os_thread_priority(epriority);
 
-   bool bOk = ::SetThreadPriority(m_hthread, nPriority) != FALSE;
+   bool bOk = ::SetThreadPriority(m_hthread1, nPriority) != FALSE;
 
    if (!bOk)
    {
@@ -3934,7 +3946,7 @@ bool thread::set_thread_priority(::e_priority epriority)
 
    ASSERT(m_hthread != NULL_HTHREAD);
 
-   i32 nPriority = ::GetThreadPriority(m_hthread);
+   i32 nPriority = ::GetThreadPriority(m_hthread1);
 
    ::e_priority epriority = ::get_os_thread_scheduling_priority(nPriority);
 
@@ -3975,7 +3987,7 @@ void thread::start()
 
 #if defined (WINDOWS_DESKTOP)
 
-   ::ResumeThread(m_hthread);
+   ::ResumeThread(m_hthread1);
 
 #endif
 
@@ -3989,7 +4001,7 @@ u32 thread::ResumeThread()
 
 #if defined (WINDOWS_DESKTOP)
 
-   return ::ResumeThread(m_hthread);
+   return ::ResumeThread(m_hthread1);
 
 #else
 
@@ -4134,7 +4146,7 @@ CLASS_DECL_AURA bool is_active(::thread * pthread)
 
    }
 
-   return is_thread_on(pthread->m_uThread);
+   return is_thread_on(pthread->m_ithread1);
 
 }
 

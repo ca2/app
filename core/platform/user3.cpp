@@ -5774,22 +5774,43 @@ found:
    }
 
 
-   ::thread* system::get_thread(ITHREAD idthread)
+   ::thread* system::get_thread(ITHREAD ithread)
    {
 
       sync_lock sl(&m_mutexThread);
 
-      return m_threadmap[idthread];
+      return m_threadmap[ithread];
 
    }
 
 
-   void system::set_thread(ITHREAD idthread, ::thread* pthread)
+   ITHREAD system::get_thread_id(::thread * pthread)
    {
 
       sync_lock sl(&m_mutexThread);
 
-      m_threadmap[idthread].reset(pthread OBJ_REF_DBG_ADD_P_NOTE(this, "thread::thread_set"));
+      ITHREAD ithread = -1;
+
+      if(!m_threadidmap.lookup(pthread, ithread))
+      {
+
+         return 0;
+
+      }
+
+      return ithread;
+
+   }
+
+
+   void system::set_thread(ITHREAD ithread, ::thread* pthread)
+   {
+
+      sync_lock sl(&m_mutexThread);
+
+      m_threadmap[ithread].reset(pthread OBJ_REF_DBG_ADD_P_NOTE(this, "thread::thread_set"));
+
+      m_threadmap[pthread] = ithread;
 
    }
 

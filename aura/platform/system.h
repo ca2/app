@@ -48,6 +48,7 @@ namespace aura
 
       ::mutex                                            m_mutexThread;
       thread_map                                         m_threadmap;
+      thread_id_map                                      m_threadidmap;
       ::mutex                                            m_mutexThreadOn;
       isomap < ITHREAD, ITHREAD >                        m_mapThreadOn;
 
@@ -272,9 +273,10 @@ namespace aura
 
       //::url::department                           & url()     { return m_urldepartment; }
 
-      ::thread * get_thread(ITHREAD idthread);
-      void set_thread(ITHREAD idthread, ::thread* pthread);
-      void unset_thread(ITHREAD idthread);
+      ::thread * get_thread(ITHREAD ithread);
+      ITHREAD get_thread_id(::thread * pthread);
+      void set_thread(ITHREAD ithread, ::thread * pthread);
+      void unset_thread(ITHREAD ithread, ::thread * pthread);
 
       inline ::gpu::approach* get_gpu() { if (!m_pgpu) create_gpu(); return m_pgpu.get(); };
       inline ::gpu::approach* gpu() { return m_pgpu.get(); };

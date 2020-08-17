@@ -1246,7 +1246,7 @@ namespace aura
 
                m_edisplay = edisplay;
 
-               SetCurrentHandles();
+               //SetCurrentHandles();
 
             }
 
@@ -5784,24 +5784,63 @@ found:
    }
 
 
-   ::thread* system::get_thread(ITHREAD idthread)
+   ::thread* system::get_thread(ITHREAD ithread)
    {
 
       sync_lock sl(&m_mutexThread);
 
-      return m_threadmap[idthread];
+      return m_threadmap[ithread];
 
    }
 
 
-   void system::set_thread(ITHREAD idthread, ::thread* pthread)
+   ITHREAD system::get_thread_id(::thread* pthread)
    {
 
       sync_lock sl(&m_mutexThread);
 
-      m_threadmap[idthread].reset(pthread OBJ_REF_DBG_ADD_P_NOTE(this, "thread::thread_set"));
+      ITHREAD ithread = -1;
+
+      if (!m_threadidmap.lookup(pthread, ithread))
+      {
+
+         return 0;
+
+      }
+
+      return ithread;
 
    }
+
+
+   void system::set_thread(ITHREAD ithread, ::thread* pthread)
+   {
+
+      sync_lock sl(&m_mutexThread);
+
+      m_threadmap[ithread].reset(pthread OBJ_REF_DBG_ADD_P_NOTE(this, "thread::thread_set"));
+
+      m_threadidmap[pthread] = ithread;
+
+   }
+
+   void system::unset_thread(ITHREAD ithread, ::thread * pthread)
+   {
+
+      sync_lock sl(&m_mutexThread);
+
+#if OBJ_REF_DBG
+
+      m_threadmap[ithread].release(this);
+
+#endif
+
+      m_threadmap.remove_key(ithread);
+
+      m_threadidmap.remove_key(pthread);
+
+   }
+
 
 //#ifdef _OPENGL
    ::estatus system::create_gpu()
@@ -5832,21 +5871,6 @@ found:
    }
 //#endif
 
-
-   void system::unset_thread(ITHREAD idthread)
-   {
-
-      sync_lock sl(&m_mutexThread);
-
-#if OBJ_REF_DBG
-
-      m_threadmap[idthread].release(this);
-
-#endif
-
-      m_threadmap.remove_key(idthread);
-
-   }
 
 
    ::thread_group * system::thread_group(::e_priority epriority)

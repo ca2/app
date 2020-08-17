@@ -89,6 +89,8 @@ CLASS_DECL_AURA void __node_term_multithreading();
 //thread_local __pointer(property_set) t_ppropertyset;
 
 
+
+
 namespace multithreading
 {
 
@@ -99,9 +101,9 @@ namespace multithreading
    CLASS_DECL_AURA bool thread_registered(::thread * pthread);
    CLASS_DECL_AURA bool thread_id_registered(ITHREAD id);
 
-   CLASS_DECL_AURA void thread_register(ITHREAD id, ::thread * pthread);
+   CLASS_DECL_AURA void thread_register(ITHREAD ithread, ::thread * pthread);
 
-   CLASS_DECL_AURA void thread_unregister(::thread * pthread);
+   CLASS_DECL_AURA void thread_unregister(ITHREAD ithread, ::thread * pthread);
 
    CLASS_DECL_AURA bool is_child(::thread * pthread);
 

@@ -8,19 +8,19 @@ namespace multithreading
 {
 
 
-   CLASS_DECL_AURA comparable_eq_array<ITHREAD> * s_piaThread2 = nullptr;
-   CLASS_DECL_AURA __pointer_array(thread) * s_pthreadptra2 = nullptr;
-   CLASS_DECL_AURA::critical_section * s_pcs2 = nullptr;
+   //CLASS_DECL_AURA comparable_eq_array<ITHREAD> * s_piaThread2 = nullptr;
+   //CLASS_DECL_AURA __pointer_array(thread) * s_pthreadptra2 = nullptr;
+   //CLASS_DECL_AURA::critical_section * s_pcs2 = nullptr;
 
 
    CLASS_DECL_AURA void init_multithreading()
    {
 
-      s_pcs2 = new ::critical_section();
+      //s_pcs2 = new ::critical_section();
 
-      s_piaThread2 = new comparable_eq_array<ITHREAD>;
+      //s_piaThread2 = new comparable_eq_array<ITHREAD>;
 
-      s_pthreadptra2 = new __pointer_array(thread);
+      //s_pthreadptra2 = new __pointer_array(thread);
 
       __node_init_multithreading();
 
@@ -32,20 +32,22 @@ namespace multithreading
 
       __node_term_multithreading();
 
-      ::aura::del(s_pthreadptra2);
+      //::aura::del(s_pthreadptra2);
 
-      ::aura::del(s_piaThread2);
+      //::aura::del(s_piaThread2);
 
-      ::aura::del(s_pcs2);
+      //::aura::del(s_pcs2);
 
    }
 
    CLASS_DECL_AURA bool thread_id_registered(ITHREAD id)
    {
 
-      cslock lock(s_pcs2);
+      //cslock lock(s_pcs2);
 
-      return s_piaThread2->contains(id);
+      //return s_piaThread2->contains(id);
+
+      return ::aura::system::g_p->get_thread(id) != nullptr;
 
    }
 
@@ -53,74 +55,74 @@ namespace multithreading
    bool thread_registered(::thread * pthread)
    {
 
-      cslock lock(s_pcs2);
-
-      return s_pthreadptra2->contains(pthread);
+      return ::aura::system::g_p->get_thread_id(pthread) != 0;
 
    }
 
 
-   void thread_register(ITHREAD id, ::thread * pthread)
+   void thread_register(ITHREAD ithread, ::thread * pthread)
    {
 
-      cslock lock(s_pcs2);
+      //cslock lock(s_pcs2);
 
-      if (s_pthreadptra2->contains(pthread))
-      {
+      //if (s_pthreadptra2->contains(pthread))
+      //{
 
-         __throw(invalid_argument_exception());
+      //   __throw(invalid_argument_exception());
 
-      }
+      //}
 
-      if(id == 0)
-      {
+      //if(id == 0)
+      //{
 
-         TRACE("WHAT?!?!?");
+      //   TRACE("WHAT?!?!?");
 
-      }
+      //}
 
-      if (s_piaThread2->contains(id))
-      {
+      //if (s_piaThread2->contains(id))
+      //{
 
-         __throw(invalid_argument_exception());
+      //   __throw(invalid_argument_exception());
 
-      }
+      //}
 
-      pthread->set_os_int(id);
+      //pthread->set_os_int(id);
 
-      s_pthreadptra2->add(pthread);
+      //s_pthreadptra2->add(pthread);
 
-      s_piaThread2->add(id);
+      //s_piaThread2->add(id);
 
-      ::aura::system::g_p->set_thread(id, pthread);
+      ::aura::system::g_p->set_thread(ithread, pthread);
 
    }
 
 
-   void thread_unregister(::thread * pthread)
+   void thread_unregister(ITHREAD ithread, ::thread * pthread)
    {
 
-      cslock lock(s_pcs2);
+      //cslock lock(s_pcs2);
 
-      if (!s_pthreadptra2->contains(pthread))
-      {
+      //if (!s_pthreadptra2->contains(pthread))
+      //{
 
-         __throw(invalid_argument_exception());
+      //   __throw(invalid_argument_exception());
 
-      }
+      //}
 
-      auto id = pthread->get_os_int();
+      //auto id = pthread->get_os_int();
 
-      if (!s_piaThread2->contains(id))
-      {
+      //if (!s_piaThread2->contains(id))
+      //{
 
-         __throw(invalid_argument_exception());
+      //   __throw(invalid_argument_exception());
 
-      }
+      //}
 
-      s_pthreadptra2->remove(pthread);
+      //s_pthreadptra2->remove(pthread);
 
-      s_piaThread2->remove(id);
+      //s_piaThread2->remove(id);
+
+      ::aura::system::g_p->unset_thread(ithread, pthread);
 
    }
 
@@ -142,15 +144,15 @@ namespace multithreading
 
       }
 
-      cslock lock(s_pcs2);
+      sync_lock sl(&::aura::system::g_p->m_mutexThread);
 
-      for (auto & pthread : *s_pthreadptra2)
+      for (auto & pair : ::aura::system::g_p->m_threadidmap)
       {
 
          try
          {
 
-            if (pthread->m_threada.contains(pthreadChildCandidate))
+            if (pair.element1()->m_threada.contains(pthreadChildCandidate))
             {
 
                return true;
@@ -173,15 +175,15 @@ namespace multithreading
    void post_quit_to_all_threads()
    {
 
-      cslock lock(s_pcs2);
+      sync_lock sl(&::aura::system::g_p->m_mutexThread);
 
-      for (auto & pthread : *s_pthreadptra2)
+      for (auto& pair : ::aura::system::g_p->m_threadidmap)
       {
 
          try
          {
 
-            pthread->finalize();
+            pair.element1()->finalize();
 
          }
          catch (...)
@@ -197,15 +199,15 @@ namespace multithreading
    CLASS_DECL_AURA void post_to_all_threads(UINT message, WPARAM wparam, LPARAM lparam)
    {
 
-      cslock lock(s_pcs2);
+      sync_lock sl(&::aura::system::g_p->m_mutexThread);
 
-      for (auto & pthread : *s_pthreadptra2)
+      for (auto& pair : ::aura::system::g_p->m_threadidmap)
       {
 
          try
          {
 
-            pthread->post_message(message, wparam, lparam);
+            pair.element1()->post_message(message, wparam, lparam);
 
          }
          catch (...)

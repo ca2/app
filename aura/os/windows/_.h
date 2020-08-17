@@ -17,6 +17,9 @@ CLASS_DECL_AURA string read_resource_as_string(HINSTANCE hinst, UINT nID, const 
 CLASS_DECL_AURA bool read_resource_as_memory_dup(memory & m, HINSTANCE hinst, UINT nID, const char * pcszType, strsize iReadAtMostByteCount = -1);
 
 
+CLASS_DECL_AURA HANDLE dup_handle(HANDLE h);
+
+
 #include "registry.h"
 #include "process.h"
 #include "simple_hold_handle.h"

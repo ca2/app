@@ -49,11 +49,11 @@ namespace draw2d_cairo
 
       bool IsPrinting() override;            // TRUE if being used for printing
 
-      ::draw2d::pen *     get_current_pen() override;
-      ::draw2d::brush *   get_current_brush() override;
-      ::draw2d::palette * get_current_palette() override;
-      ::draw2d::font *    get_current_font() override;
-      ::draw2d::bitmap *  get_current_bitmap() override;
+      //::draw2d::pen *     get_current_pen() override;
+      //::draw2d::brush *   get_current_brush() override;
+      //::draw2d::palette * get_current_palette() override;
+      //::draw2d::font *    get_current_font() override;
+      //::draw2d::bitmap *  get_current_bitmap() override;
 
 
       //pen *       lnx_pen();
@@ -92,9 +92,9 @@ namespace draw2d_cairo
       // Type-safe selection helpers
    public:
       virtual ::draw2d::object* set_stock_object(i32 nIndex) override;
-      virtual ::estatus set(::draw2d::pen* ppen) override;
-      virtual ::estatus set(::draw2d::brush* pbrush) override;
-      virtual ::estatus set(::draw2d::font* pfont) override;
+      //virtual ::estatus set(::draw2d::pen* ppen) override;
+      //virtual ::estatus set(::draw2d::brush* pbrush) override;
+      //virtual ::estatus set(::draw2d::font* pfont) override;
       virtual ::estatus set(::draw2d::bitmap* pbitmap) override;
       virtual ::estatus set(::draw2d::region* pregion) override;       // special return for regions
       //::draw2d_cairo::object* SelectObject(::draw2d_cairo::object* pObject);
@@ -493,11 +493,11 @@ namespace draw2d_cairo
 
 
       // platform-specific or platform-internals
-      bool set_os_color(COLORREF cr);
-      bool set(const ::draw2d::brush * pbrush, double x = 0.0, double y = 0.0);
-      bool set(const ::draw2d::pen * ppen);
+      bool _set_os_color(COLORREF cr);
+      bool _set(::draw2d::brush * pbrush, double x = 0.0, double y = 0.0);
+      bool _set(::draw2d::pen * ppen);
 #if !defined(USE_PANGO)
-      bool set(const ::draw2d::font * pfont);
+      bool _set(::draw2d::font * pfont);
 #endif
       bool _set(::draw2d::path * ppath);
       bool _set(::draw2d::path::element * pelement);
@@ -526,8 +526,6 @@ namespace draw2d_cairo
 
       virtual bool _get(::draw2d::matrix & matrix) override;
       virtual bool _set(const ::draw2d::matrix & matrix) override;
-//      virtual bool append(const ::draw2d::matrix & matrix);
-      //    virtual bool prepend(const ::draw2d::matrix & matrix);
 
 
       virtual bool flush() override;

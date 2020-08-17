@@ -147,14 +147,7 @@ namespace experience
 
          ::draw2d::pen_pointer pen(e_create);
 
-         if (pgraphics->get_current_pen())
-         {
-
-            *pen = *pgraphics->get_current_pen();
-
-         }
-
-         pen->m_dWidth = 1.0;
+         pen->create_solid(1.0f, __acolor(255, 255, 255, 255));
 
          pgraphics->set(pen);
 
@@ -164,8 +157,8 @@ namespace experience
 
          pgraphics->draw_stock_icon(rectIcon, m_estockicon);
 
-
       }
+
       tick d2 = t1.elapsed();
 
       if (d2 > 50)

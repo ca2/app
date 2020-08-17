@@ -265,13 +265,13 @@ namespace draw2d
 
    bool graphics::set_font(::user::interaction* pinteraction, ::user::e_element eelement, ::user::estate estate)
    {
-   
+
       auto pstyle = pinteraction->get_style(m_puserstyle);
 
       auto pfont = pinteraction->get_font(pstyle, eelement, estate);
-      
+
       return set(pfont);
-   
+
    }
 
 
@@ -2154,7 +2154,7 @@ namespace draw2d
 
    ::color graphics::SetPixel(i32 x, i32 y, const ::color & color)
    {
-   
+
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
       UNREFERENCED_PARAMETER(color);
@@ -2177,7 +2177,7 @@ namespace draw2d
 
    bool graphics::FloodFill(i32 x, i32 y, const ::color& color)
    {
-      
+
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
       UNREFERENCED_PARAMETER(color);
@@ -2189,7 +2189,7 @@ namespace draw2d
 
    bool graphics::ExtFloodFill(i32 x, i32 y, const ::color& color, UINT nFillType)
    {
-      
+
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
       UNREFERENCED_PARAMETER(color);
@@ -2795,7 +2795,7 @@ namespace draw2d
 
    bool graphics::SetPixelV(i32 x, i32 y, const ::color& color)
    {
-      
+
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
       UNREFERENCED_PARAMETER(color);
@@ -2807,7 +2807,7 @@ namespace draw2d
 
    bool graphics::SetPixelV(const ::point & point, const ::color& color)
    {
-      
+
       UNREFERENCED_PARAMETER(point);
       UNREFERENCED_PARAMETER(color);
 
@@ -5548,11 +5548,7 @@ namespace draw2d
    bool graphics::draw_stock_icon(const rectd & rectParam, e_stock_icon eicon)
    {
 
-      ::draw2d::pen_pointer pen(e_create);
-
       ::rectd rect(rectParam);
-
-      *pen = *m_ppen;
 
       if(eicon == stock_icon_close)
       {
@@ -5603,18 +5599,18 @@ namespace draw2d
 
          m_ppen->m_elinecapBeg = ::draw2d::pen::line_cap_flat;
          m_ppen->m_elinecapEnd = ::draw2d::pen::line_cap_flat;
-         move_to(rect2.top_left() + ::size(0.,(pen->m_dWidth / 2.0)));
-         line_to(rect2.top_right() + ::size(0.,(pen->m_dWidth / 2.0)));
-         move_to(rect2.top_left() + ::size(0.,(pen->m_dWidth)));
-         line_to(rect2.top_right() + ::size(0.,(pen->m_dWidth)));
+         move_to(rect2.top_left() + ::size(0.,(m_ppen->m_dWidth / 2.0)));
+         line_to(rect2.top_right() + ::size(0.,(m_ppen->m_dWidth / 2.0)));
+         move_to(rect2.top_left() + ::size(0.,(m_ppen->m_dWidth)));
+         line_to(rect2.top_right() + ::size(0.,(m_ppen->m_dWidth)));
 
 
          move_to(rect1.top_left());
          line_to(rect1.top_right());
-         move_to(rect1.top_left() + ::size(0.,(pen->m_dWidth / 2.0)));
-         line_to(rect1.top_right() + ::size(0.,(pen->m_dWidth / 2.0)));
-         move_to(rect1.top_left() + ::size(0.,(pen->m_dWidth)));
-         line_to(rect1.top_right() + ::size(0.,(pen->m_dWidth)));
+         move_to(rect1.top_left() + ::size(0.,(m_ppen->m_dWidth / 2.0)));
+         line_to(rect1.top_right() + ::size(0.,(m_ppen->m_dWidth / 2.0)));
+         move_to(rect1.top_left() + ::size(0.,(m_ppen->m_dWidth)));
+         line_to(rect1.top_right() + ::size(0.,(m_ppen->m_dWidth)));
 
 
 
@@ -5622,12 +5618,12 @@ namespace draw2d
          m_ppen->m_elinecapEnd = ::draw2d::pen::line_cap_square;
          m_ppen->set_modified();
 
-         move_to(rect1.top_left() + ::size(0,(LONG)(pen->m_dWidth)));
+         move_to(rect1.top_left() + ::size(0,(LONG)(m_ppen->m_dWidth)));
          line_to(rect1.bottom_left());
          line_to(rect2.bottom_left());
 
-         move_to(rect1.top_right() + ::size(0,(LONG)(pen->m_dWidth)));
-         line_to(point(rect1.right,(int)(rect2.top - (LONG)(pen->m_dWidth))));
+         move_to(rect1.top_right() + ::size(0,(LONG)(m_ppen->m_dWidth)));
+         line_to(point(rect1.right,(int)(rect2.top - (LONG)(m_ppen->m_dWidth))));
 
       }
       else if(eicon == stock_icon_iconify)
@@ -5637,14 +5633,14 @@ namespace draw2d
          rect.deflate(0, rect.height() / 7.0);
 
 
-         move_to(rect.bottom_left() - ::size(0,(LONG)(pen->m_dWidth*2.0)));
-         line_to(rect.bottom_right() - ::size(0,(LONG)(pen->m_dWidth*2.0)));
-         move_to(rect.bottom_left() - ::size(0,(LONG)(pen->m_dWidth*3.0 / 2.0)));
-         line_to(rect.bottom_right() - ::size(0,(LONG)(pen->m_dWidth*3.0 / 2.0)));
-         move_to(rect.bottom_left() - ::size(0,(LONG)(pen->m_dWidth)));
-         line_to(rect.bottom_right() - ::size(0,(LONG)(pen->m_dWidth)));
-         move_to(rect.bottom_left() - ::size(0,(LONG)(pen->m_dWidth / 2.0)));
-         line_to(rect.bottom_right() - ::size(0,(LONG)(pen->m_dWidth / 2.0)));
+         move_to(rect.bottom_left() - ::size(0,(LONG)(m_ppen->m_dWidth*2.0)));
+         line_to(rect.bottom_right() - ::size(0,(LONG)(m_ppen->m_dWidth*2.0)));
+         move_to(rect.bottom_left() - ::size(0,(LONG)(m_ppen->m_dWidth*3.0 / 2.0)));
+         line_to(rect.bottom_right() - ::size(0,(LONG)(m_ppen->m_dWidth*3.0 / 2.0)));
+         move_to(rect.bottom_left() - ::size(0,(LONG)(m_ppen->m_dWidth)));
+         line_to(rect.bottom_right() - ::size(0,(LONG)(m_ppen->m_dWidth)));
+         move_to(rect.bottom_left() - ::size(0,(LONG)(m_ppen->m_dWidth / 2.0)));
+         line_to(rect.bottom_right() - ::size(0,(LONG)(m_ppen->m_dWidth / 2.0)));
          move_to(rect.bottom_left());
          line_to(rect.bottom_right());
 
@@ -5732,11 +5728,10 @@ namespace draw2d
 
       }
 
-      *m_ppen = *pen;
-
       return true;
 
    }
+
 
    void graphics::debug()
    {

@@ -501,11 +501,12 @@ size graphics::GetWindowExt()
 
 }
 
+
 // non-virtual helpers calling virtual mapping functions
 point graphics::SetViewportOrg(const ::point & point)
 {
 
-    return SetViewportOrg(point.x, point.y);
+   return SetViewportOrg(point.x, point.y);
 
 }
 
@@ -1069,40 +1070,40 @@ void graphics::DrawFocusRect(const ::rect & rect)
 bool graphics::draw_ellipse(double x1, double y1, double x2, double y2)
 {
 
-    sync_lock ml(cairo_mutex());
+   sync_lock ml(cairo_mutex());
 
-    double centerx = (x2 + x1) / 2.0;
+   double centerx = (x2 + x1) / 2.0;
 
-    double centery = (y2 + y1) / 2.0;
+   double centery = (y2 + y1) / 2.0;
 
-    double radiusx = fabs(x2 - x1) / 2.0;
+   double radiusx = fabs(x2 - x1) / 2.0;
 
-    double radiusy = fabs(y2 - y1) / 2.0;
+   double radiusy = fabs(y2 - y1) / 2.0;
 
-    if (radiusx == 0.0 || radiusy == 0.0)
-    {
+   if (radiusx == 0.0 || radiusy == 0.0)
+   {
 
-        return false;
+      return false;
 
-    }
+   }
 
-    cairo_keep keep(m_pdc);
+   cairo_keep keep(m_pdc);
 
-    cairo_new_sub_path(m_pdc);
+   cairo_new_sub_path(m_pdc);
 
-    cairo_translate(m_pdc, centerx, centery);
+   cairo_translate(m_pdc, centerx, centery);
 
-    cairo_scale(m_pdc, radiusx - m_ppen->m_dWidth / 2.0, radiusy - m_ppen->m_dWidth / 2.0);
+   cairo_scale(m_pdc, radiusx - m_ppen->m_dWidth / 2.0, radiusy - m_ppen->m_dWidth / 2.0);
 
-    cairo_arc(m_pdc, 0.0, 0.0, 1.0, 0.0, 2.0 * 3.1415);
+   cairo_arc(m_pdc, 0.0, 0.0, 1.0, 0.0, 2.0 * 3.1415);
 
-    keep.pulse();
+   keep.pulse();
 
-    set(m_ppen);
+   _set(m_ppen);
 
-    cairo_stroke(m_pdc);
+   cairo_stroke(m_pdc);
 
-    return true;
+   return true;
 
 }
 
@@ -1383,109 +1384,109 @@ bool graphics::PatBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, u32 dwRop)
 bool graphics::BitBltRaw(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, u32 dwRop)
 {
 
-    sync_lock ml(cairo_mutex());
+   sync_lock ml(cairo_mutex());
 
-    cairo_keep keep(m_pdc);
+   cairo_keep keep(m_pdc);
 
-    try
-    {
+   try
+   {
 
-        if (pgraphicsSrc == nullptr)
-        {
+      if (pgraphicsSrc == nullptr)
+      {
 
-            return false;
+         return false;
 
-        }
+      }
 
-        if (nWidth <= 0 || nHeight <= 0)
-        {
+      if (nWidth <= 0 || nHeight <= 0)
+      {
 
-            return false;
+         return false;
 
-        }
+      }
 
-        if(pgraphicsSrc->get_os_data() == nullptr)
-        {
+      if(pgraphicsSrc->get_os_data() == nullptr)
+      {
 
-            return false;
+         return false;
 
-        }
+      }
 
-        cairo_surface_t * psurface = cairo_get_target((cairo_t *)pgraphicsSrc->get_os_data());
+      cairo_surface_t * psurface = cairo_get_target((cairo_t *)pgraphicsSrc->get_os_data());
 
-        if (psurface == nullptr)
-        {
+      if (psurface == nullptr)
+      {
 
-            return false;
+         return false;
 
-        }
+      }
 
-        cairo_pattern_t * ppattern = cairo_pattern_create_for_surface(psurface);
+      cairo_pattern_t * ppattern = cairo_pattern_create_for_surface(psurface);
 
-        if (ppattern == nullptr)
-        {
+      if (ppattern == nullptr)
+      {
 
-            return false;
+         return false;
 
-        }
+      }
 
-        cairo_matrix_t matrix;
+      cairo_matrix_t matrix;
 
-        cairo_matrix_t matrixOld;
+      cairo_matrix_t matrixOld;
 
-        cairo_translate(m_pdc, x, y);
+      cairo_translate(m_pdc, x, y);
 
-        cairo_pattern_get_matrix(ppattern, &matrixOld);
+      cairo_pattern_get_matrix(ppattern, &matrixOld);
 
-        cairo_matrix_init_translate(&matrix, xSrc, ySrc);
+      cairo_matrix_init_translate(&matrix, xSrc, ySrc);
 
-        cairo_pattern_set_matrix(ppattern, &matrix);
+      cairo_pattern_set_matrix(ppattern, &matrix);
 
-        cairo_rectangle(m_pdc, 0, 0, nWidth, nHeight);
+      cairo_rectangle(m_pdc, 0, 0, nWidth, nHeight);
 
-        cairo_clip(m_pdc);
+      cairo_clip(m_pdc);
 
-        cairo_set_source(m_pdc, ppattern);
+      cairo_set_source(m_pdc, ppattern);
 
-        if (m_ealphamode == ::draw2d::alpha_mode_blend)
-        {
+      if (m_ealphamode == ::draw2d::alpha_mode_blend)
+      {
 
-            cairo_set_operator(m_pdc, CAIRO_OPERATOR_OVER);
+         cairo_set_operator(m_pdc, CAIRO_OPERATOR_OVER);
 
-        }
-        else if (m_ealphamode == ::draw2d::alpha_mode_set)
-        {
+      }
+      else if (m_ealphamode == ::draw2d::alpha_mode_set)
+      {
 
-            cairo_set_operator(m_pdc, CAIRO_OPERATOR_SOURCE);
+         cairo_set_operator(m_pdc, CAIRO_OPERATOR_SOURCE);
 
-        }
+      }
 
-        if (m_pregion.is_set() && !m_pregion.cast < region >()->is_simple_positive_region())
-        {
+      if (m_pregion.is_set() && !m_pregion.cast < region >()->is_simple_positive_region())
+      {
 
-            m_pregion.cast < region >()->mask(m_pdc);
+         m_pregion.cast < region >()->mask(m_pdc);
 
-        }
-        else
-        {
+      }
+      else
+      {
 
-            cairo_paint(m_pdc);
+         cairo_paint(m_pdc);
 
-        }
+      }
 
-        cairo_pattern_set_matrix(ppattern, &matrixOld);
+      cairo_pattern_set_matrix(ppattern, &matrixOld);
 
-        cairo_pattern_destroy(ppattern);
+      cairo_pattern_destroy(ppattern);
 
-        return true;
+      return true;
 
-    }
-    catch (...)
-    {
+   }
+   catch (...)
+   {
 
-        return false;
+      return false;
 
-    }
+   }
 
 }
 
@@ -1892,33 +1893,33 @@ bool graphics::get_text_metrics(::draw2d::text_metric * lpMetrics)
 
 #else
 
-    ((::draw2d_cairo::graphics *) this)->set(m_pfont);
+   ((::draw2d_cairo::graphics *) this)->_set(m_pfont);
 
-    cairo_font_extents_t e;
+   cairo_font_extents_t e;
 
-    cairo_font_extents(m_pdc, &e);
+   cairo_font_extents(m_pdc, &e);
 
-    lpMetrics->tmAscent = (LONG)e.ascent;
+   lpMetrics->tmAscent = (LONG)e.ascent;
 
-    lpMetrics->tmDescent = (LONG)e.descent;
+   lpMetrics->tmDescent = (LONG)e.descent;
 
-    lpMetrics->tmHeight = (LONG)e.height;
+   lpMetrics->tmHeight = (LONG)e.height;
 
-    lpMetrics->tmExternalLeading = (LONG)(e.height - (e.ascent + e.descent));
+   lpMetrics->tmExternalLeading = (LONG)(e.height - (e.ascent + e.descent));
 
-    lpMetrics->tmInternalLeading = (LONG)0;
+   lpMetrics->tmInternalLeading = (LONG)0;
 
-    lpMetrics->tmExternalLeading = (LONG)0;
+   lpMetrics->tmExternalLeading = (LONG)0;
 
-    string str(L"123AWZwmc123AWZwmcpQçg");
+   string str(L"123AWZwmc123AWZwmcpQçg");
 
-    ::size size = GetTextExtent(str);
+   ::size size = GetTextExtent(str);
 
-//      lpMetrics->tmAveCharWidth = (LONG)(size.cx * m_pfont->m_dFontWidth / (double)str.get_length());
+   // lpMetrics->tmAveCharWidth = (LONG)(size.cx * m_pfont->m_dFontWidth / (double)str.get_length());
 
 #endif
 
-    return true;
+   return true;
 
 }
 
@@ -2310,43 +2311,43 @@ bool graphics::PlgBlt(LPPOINT lpPoint, ::draw2d::graphics * pgraphicsSrc, i32 nX
 
     cairo_set_source(m_pdc, ppattern);
 
-    if (m_nStretchBltMode == 0)
-    {
+   if (m_nStretchBltMode == 0)
+   {
 
-        cairo_pattern_set_filter(cairo_get_source(m_pdc), CAIRO_FILTER_NEAREST);
+      cairo_pattern_set_filter(cairo_get_source(m_pdc), CAIRO_FILTER_NEAREST);
 
-    }
-    else if (m_nStretchBltMode == HALFTONE)
-    {
+   }
+   else if (m_nStretchBltMode == HALFTONE)
+   {
 
-        cairo_pattern_set_filter(cairo_get_source(m_pdc), CAIRO_FILTER_GOOD);
+      cairo_pattern_set_filter(cairo_get_source(m_pdc), CAIRO_FILTER_GOOD);
 
-    }
-    else
-    {
+   }
+   else
+   {
 
-        cairo_pattern_set_filter(cairo_get_source(m_pdc), CAIRO_FILTER_FAST);
+      cairo_pattern_set_filter(cairo_get_source(m_pdc), CAIRO_FILTER_FAST);
 
-    }
+   }
 
-    if (m_pregion.is_set() && !m_pregion.cast < region >()->is_simple_positive_region())
-    {
+   if (m_pregion.is_set() && !m_pregion.cast < region >()->is_simple_positive_region())
+   {
 
-        m_pregion.cast < region >()->mask(m_pdc);
+      m_pregion.cast < region >()->mask(m_pdc);
 
-    }
-    else
-    {
+   }
+   else
+   {
 
-        cairo_paint(m_pdc);
+      cairo_paint(m_pdc);
 
-    }
+   }
 
-//      cairo_pattern_set_matrix(ppattern, &matrixOld);
+   // cairo_pattern_set_matrix(ppattern, &matrixOld);
 
-    cairo_pattern_destroy(ppattern);
+   cairo_pattern_destroy(ppattern);
 
-    return true;
+   return true;
 
 }
 
@@ -2354,9 +2355,9 @@ bool graphics::PlgBlt(LPPOINT lpPoint, ::draw2d::graphics * pgraphicsSrc, i32 nX
 bool graphics::SetPixelV(i32 x, i32 y, const ::color & color)
 {
 
-    ::exception::throw_not_implemented();
+   ::exception::throw_not_implemented();
 
-    return false;
+   return false;
 
 }
 
@@ -2364,9 +2365,9 @@ bool graphics::SetPixelV(i32 x, i32 y, const ::color & color)
 bool graphics::SetPixelV(const ::point & point, const ::color & color)
 {
 
-    ::exception::throw_not_implemented();
+   ::exception::throw_not_implemented();
 
-    return false;
+   return false;
 
 }
 
@@ -2374,9 +2375,9 @@ bool graphics::SetPixelV(const ::point & point, const ::color & color)
 bool graphics::AngleArc(i32 x, i32 y, i32 nRadius, float fStartAngle, float fSweepAngle)
 {
 
-    ::exception::throw_not_implemented();
+   ::exception::throw_not_implemented();
 
-    return false;
+   return false;
 
 }
 
@@ -2384,9 +2385,9 @@ bool graphics::AngleArc(i32 x, i32 y, i32 nRadius, float fStartAngle, float fSwe
 bool graphics::ArcTo(const ::rect & rect, const ::point & pointStart, const ::point & pointEnd)
 {
 
-    ::exception::throw_not_implemented();
+   ::exception::throw_not_implemented();
 
-    return false;
+   return false;
 
 }
 
@@ -2394,9 +2395,9 @@ bool graphics::ArcTo(const ::rect & rect, const ::point & pointStart, const ::po
 i32 graphics::GetArcDirection()
 {
 
-    ::exception::throw_not_implemented();
+   ::exception::throw_not_implemented();
 
-    return 0;
+   return 0;
 
 }
 
@@ -2404,51 +2405,51 @@ i32 graphics::GetArcDirection()
 bool graphics::PolyPolyline(const POINT* lpPoints, const INT * lpPolyPoints, count nCount)
 {
 
-    ::exception::throw_not_implemented();
+   ::exception::throw_not_implemented();
 
-    return false;
-
-}
-
-
-::draw2d::pen * graphics::get_current_pen()
-{
-
-    return m_ppen;
+   return false;
 
 }
 
 
-::draw2d::brush * graphics::get_current_brush()
-{
-
-    return m_pbrush;
-
-}
-
-
-::draw2d::palette * graphics::get_current_palette()
-{
-
-    return (::draw2d::palette *)nullptr;
-
-}
+//::draw2d::pen * graphics::get_current_pen()
+//{
+//
+//   return m_ppen;
+//
+//}
 
 
-::draw2d::font * graphics::get_current_font()
-{
+//::draw2d::brush * graphics::get_current_brush()
+//{
+//
+//    return m_pbrush;
+//
+//}
 
-    return m_pfont;
 
-}
+//::draw2d::palette * graphics::get_current_palette()
+//{
+//
+//    return (::draw2d::palette *)nullptr;
+//
+//}
 
 
-::draw2d::bitmap * graphics::get_current_bitmap()
-{
+//::draw2d::font * graphics::get_current_font()
+//{
+//
+//    return m_pfont;
+//
+//}
 
-    return m_pbitmap;
 
-}
+//::draw2d::bitmap * graphics::get_current_bitmap()
+//{
+//
+//    return m_pbitmap;
+//
+//}
 
 
 bool graphics::PolyBezier(const POINT* lpPoints, count nCount)
@@ -3116,39 +3117,39 @@ bool graphics::RestoreDC(i32 nSavedDC)
 }
 
 
-::estatus graphics::set(::draw2d::pen* ppen)
-{
-
-   m_ppen = ppen;
-
-   return ::success;
-
-}
-
-
-::estatus graphics::set(::draw2d::brush* pbrush)
-{
-
-    m_pbrush = pbrush;
-
-    return ::success;
-
-}
+//::estatus graphics::set(::draw2d::pen* ppen)
+//{
+//
+//   m_ppen = ppen;
+//
+//   return ::success;
+//
+//}
 
 
-::estatus graphics::set(::draw2d::font* pfont)
-{
+//::estatus graphics::set(::draw2d::brush* pbrush)
+//{
+//
+//    m_pbrush = pbrush;
+//
+//    return ::success;
+//
+//}
 
-    if (!::draw2d::graphics::set(pfont))
-    {
 
-        return ::error_failed;
-
-    }
-
-    return ::success;
-
-}
+//::estatus graphics::set(::draw2d::font* pfont)
+//{
+//
+//    if (!::draw2d::graphics::set(pfont))
+//    {
+//
+//        return ::error_failed;
+//
+//    }
+//
+//    return ::success;
+//
+//}
 
 
 ::estatus graphics::set(::draw2d::region* pregion)
@@ -3755,7 +3756,7 @@ bool graphics::internal_draw_text_pango(const char * lpszString, strsize nCount,
     if(m_pbrush.is_set())
     {
 
-        set(m_pbrush, ptRef.x, ptRef.y);
+        _set(m_pbrush, ptRef.x, ptRef.y);
 
     }
 
@@ -3814,7 +3815,7 @@ bool graphics::internal_draw_text(const char * lpszString, strsize nCount, const
 
     _fill1();
 
-    set(m_pfont);
+    _set(m_pfont);
 
     cairo_font_extents_t e;
 
@@ -4098,7 +4099,7 @@ bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCou
 
 #else
 
-      set(m_pfont);
+      _set(m_pfont);
 
       cairo_text_extents_t extents;
 
@@ -4293,7 +4294,7 @@ void graphics::fill_rect(const ::rect & rect, const ::color & color)
 
     }
 
-    set_os_color(color);
+    _set_os_color(color);
 
     cairo_rectangle(m_pdc, rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top);
 
@@ -4314,11 +4315,11 @@ void graphics::fill_rect(const ::rectd & rect, const ::color & color)
 
     }
 
-    set_os_color(color);
+   _set_os_color(color);
 
-    cairo_rectangle(m_pdc, rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top);
+   cairo_rectangle(m_pdc, rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top);
 
-    cairo_fill(m_pdc);
+   cairo_fill(m_pdc);
 
 }
 
@@ -4469,7 +4470,7 @@ bool graphics::set_alpha_mode(::draw2d::e_alpha_mode ealphamode)
 bool graphics::set_text_rendering_hint(::draw2d::e_text_rendering_hint etextrenderinghint)
 {
 
-    return ::draw2d::graphics::set_text_rendering_hint(etextrenderinghint);
+   return ::draw2d::graphics::set_text_rendering_hint(etextrenderinghint);
 
 }
 
@@ -4659,142 +4660,146 @@ double graphics::get_dpix()
 }
 
 
-bool graphics::set(const ::draw2d::brush * pbrush, double x, double y)
+bool graphics::_set(::draw2d::brush * pbrush, double x, double y)
 {
 
-    sync_lock ml(cairo_mutex());
+   sync_lock ml(cairo_mutex());
 
-    if (pbrush->m_etype == ::draw2d::brush::type_radial_gradient_color)
-    {
+   if (pbrush->m_etype == ::draw2d::brush::type_radial_gradient_color)
+   {
 
-        cairo_pattern_t * ppattern = cairo_pattern_create_radial(pbrush->m_point.x - x, pbrush->m_point.y - y, 0, pbrush->m_point2.x - x, pbrush->m_point2.y - y, MAX(pbrush->m_size.cx, pbrush->m_size.cy));
+      cairo_pattern_t * ppattern = cairo_pattern_create_radial(pbrush->m_point.x - x, pbrush->m_point.y - y, 0, pbrush->m_point2.x - x, pbrush->m_point2.y - y, MAX(pbrush->m_size.cx, pbrush->m_size.cy));
 
-        cairo_pattern_add_color_stop_rgba(ppattern, 0., colorref_get_r_value(pbrush->m_color1) / 255.0, colorref_get_g_value(pbrush->m_color1) / 255.0, colorref_get_b_value(pbrush->m_color1) / 255.0, colorref_get_a_value(pbrush->m_color1) / 255.0);
+      cairo_pattern_add_color_stop_rgba(ppattern, 0., colorref_get_r_value(pbrush->m_color1) / 255.0, colorref_get_g_value(pbrush->m_color1) / 255.0, colorref_get_b_value(pbrush->m_color1) / 255.0, colorref_get_a_value(pbrush->m_color1) / 255.0);
 
-        cairo_pattern_add_color_stop_rgba(ppattern, 1., colorref_get_r_value(pbrush->m_color2) / 255.0, colorref_get_g_value(pbrush->m_color2) / 255.0, colorref_get_b_value(pbrush->m_color2) / 255.0, colorref_get_a_value(pbrush->m_color2) / 255.0);
+      cairo_pattern_add_color_stop_rgba(ppattern, 1., colorref_get_r_value(pbrush->m_color2) / 255.0, colorref_get_g_value(pbrush->m_color2) / 255.0, colorref_get_b_value(pbrush->m_color2) / 255.0, colorref_get_a_value(pbrush->m_color2) / 255.0);
 
-        cairo_set_source(m_pdc, ppattern);
+      cairo_set_source(m_pdc, ppattern);
 
-        cairo_pattern_destroy(ppattern);
+      cairo_pattern_destroy(ppattern);
 
-    }
-    else if (pbrush->m_etype == ::draw2d::brush::type_linear_gradient_point_color)
-    {
+   }
+   else if (pbrush->m_etype == ::draw2d::brush::type_linear_gradient_point_color)
+   {
 
-       double x0 = pbrush->m_point1.x - x;
+      double x0 = pbrush->m_point1.x - x;
 
-       double y0 = pbrush->m_point1.y - y;
+      double y0 = pbrush->m_point1.y - y;
 
-       double x1 = pbrush->m_point2.x - x;
+      double x1 = pbrush->m_point2.x - x;
 
-       double y1 = pbrush->m_point2.y - y;
+      double y1 = pbrush->m_point2.y - y;
 
-       cairo_pattern_t * ppattern = cairo_pattern_create_linear(x0, y0, x1, y1);
+      cairo_pattern_t * ppattern = cairo_pattern_create_linear(x0, y0, x1, y1);
 
-        double dR;
+      double dR;
 
-        double dG;
+      double dG;
 
-        double dB;
+      double dB;
 
-        double dA;
+      double dA;
 
-        dR = (double)pbrush->m_color1.m_iR / 255.0;
+      dR = (double)pbrush->m_color1.m_iR / 255.0;
 
-        dG = (double)pbrush->m_color1.m_iG / 255.0;
+      dG = (double)pbrush->m_color1.m_iG / 255.0;
 
-        dB = (double)pbrush->m_color1.m_iB / 255.0;
+      dB = (double)pbrush->m_color1.m_iB / 255.0;
 
-        dA = (double)pbrush->m_color1.m_iA / 255.0;
+      dA = (double)pbrush->m_color1.m_iA / 255.0;
 
-        cairo_pattern_add_color_stop_rgba(ppattern, 0., dR, dG, dB, dA);
+      cairo_pattern_add_color_stop_rgba(ppattern, 0., dR, dG, dB, dA);
 
-        dR = (double)pbrush->m_color2.m_iR / 255.0;
+      dR = (double)pbrush->m_color2.m_iR / 255.0;
 
-        dG = (double)pbrush->m_color2.m_iG / 255.0;
+      dG = (double)pbrush->m_color2.m_iG / 255.0;
 
-        dB = (double)pbrush->m_color2.m_iB / 255.0;
+      dB = (double)pbrush->m_color2.m_iB / 255.0;
 
-        dA = (double)pbrush->m_color2.m_iA / 255.0;
+      dA = (double)pbrush->m_color2.m_iA / 255.0;
 
-        cairo_pattern_add_color_stop_rgba(ppattern, 1., dR, dG, dB, dA);
+      cairo_pattern_add_color_stop_rgba(ppattern, 1., dR, dG, dB, dA);
 
-        cairo_set_source(m_pdc, ppattern);
+      cairo_set_source(m_pdc, ppattern);
 
-        //cairo_pattern_destroy(ppattern);
+      // cairo_pattern_destroy(ppattern);
 
-    }
-    else if (pbrush->m_etype == ::draw2d::brush::type_pattern)
-    {
+   }
+   else if (pbrush->m_etype == ::draw2d::brush::type_pattern)
+   {
 
-        if(!::is_ok(pbrush->m_pimage))
-        {
+      if(!::is_ok(pbrush->m_pimage))
+      {
 
-            return false;
+         return false;
 
-        }
+      }
 
-        cairo_surface_t * psurface = cairo_get_target((cairo_t *)pbrush->m_pimage->g()->get_os_data());
+      cairo_surface_t * psurface = cairo_get_target((cairo_t *)pbrush->m_pimage->g()->get_os_data());
 
-        if (psurface == nullptr)
-            return false;
+      if (psurface == nullptr)
+      {
 
-        cairo_pattern_t * ppattern = cairo_pattern_create_for_surface(psurface);
+         return false;
 
-        cairo_status_t status = cairo_pattern_status (ppattern);
+      }
 
-        if(status == CAIRO_STATUS_SUCCESS)
-        {
+      cairo_pattern_t * ppattern = cairo_pattern_create_for_surface(psurface);
 
-            cairo_pattern_set_extend(ppattern, CAIRO_EXTEND_REPEAT);
+      cairo_status_t status = cairo_pattern_status (ppattern);
 
-            cairo_set_source(m_pdc, ppattern);
+      if(status == CAIRO_STATUS_SUCCESS)
+      {
 
-        }
+         cairo_pattern_set_extend(ppattern, CAIRO_EXTEND_REPEAT);
 
-        cairo_pattern_destroy(ppattern);
+         cairo_set_source(m_pdc, ppattern);
 
-        if(status != CAIRO_STATUS_SUCCESS)
-        {
+      }
 
-            return false;
+      cairo_pattern_destroy(ppattern);
 
-        }
+      if(status != CAIRO_STATUS_SUCCESS)
+      {
 
-    }
-    else
-    {
+         return false;
 
-        cairo_set_source_rgba(m_pdc, colorref_get_r_value(pbrush->m_color) / 255.0, colorref_get_g_value(pbrush->m_color) / 255.0, colorref_get_b_value(pbrush->m_color) / 255.0, colorref_get_a_value(pbrush->m_color) / 255.0);
+      }
 
-    }
+   }
+   else
+   {
 
-    return true;
+      cairo_set_source_rgba(m_pdc, colorref_get_r_value(pbrush->m_color) / 255.0, colorref_get_g_value(pbrush->m_color) / 255.0, colorref_get_b_value(pbrush->m_color) / 255.0, colorref_get_a_value(pbrush->m_color) / 255.0);
+
+   }
+
+   return true;
 
 }
 
 
-bool graphics::set(const ::draw2d::pen * ppen)
+bool graphics::_set(::draw2d::pen * ppen)
 {
 
-    sync_lock ml(cairo_mutex());
+   sync_lock ml(cairo_mutex());
 
-    if (ppen->m_etype == ::draw2d::pen::type_brush)
-    {
+   if (ppen->m_etype == ::draw2d::pen::type_brush)
+   {
 
-        set(ppen->m_pbrush);
+      _set(ppen->m_pbrush);
 
-    }
-    else
-    {
+   }
+   else
+   {
 
-        cairo_set_source_rgba(m_pdc, colorref_get_r_value(ppen->m_color) / 255.0, colorref_get_g_value(ppen->m_color) / 255.0, colorref_get_b_value(ppen->m_color) / 255.0, colorref_get_a_value(ppen->m_color) / 255.0);
+      cairo_set_source_rgba(m_pdc, colorref_get_r_value(ppen->m_color) / 255.0, colorref_get_g_value(ppen->m_color) / 255.0, colorref_get_b_value(ppen->m_color) / 255.0, colorref_get_a_value(ppen->m_color) / 255.0);
 
-    }
+   }
 
-    cairo_set_line_width(m_pdc, ppen->m_dWidth);
+   cairo_set_line_width(m_pdc, ppen->m_dWidth);
 
-    return true;
+   return true;
 
 }
 
@@ -4802,193 +4807,190 @@ bool graphics::set(const ::draw2d::pen * ppen)
 #if !defined(USE_PANGO)
 
 
-bool graphics::set(const ::draw2d::font * pfontParam)
+bool graphics::_set(const ::draw2d::font * pfontParam)
 {
 
-    sync_lock ml(cairo_mutex());
+   sync_lock ml(cairo_mutex());
 
-    //cairo_select_font_face(m_pdc, pfont->m_strFontFamilyName, pfont->m_bItalic ? CAIRO_FONT_SLANT_ITALIC : CAIRO_FONT_SLANT_NORMAL, pfont->m_iFontWeight > 650 ? CAIRO_FONT_WEIGHT_BOLD : CAIRO_FONT_WEIGHT_NORMAL);
+   // cairo_select_font_face(m_pdc, pfont->m_strFontFamilyName, pfont->m_bItalic ? CAIRO_FONT_SLANT_ITALIC : CAIRO_FONT_SLANT_NORMAL, pfont->m_iFontWeight > 650 ? CAIRO_FONT_WEIGHT_BOLD : CAIRO_FONT_WEIGHT_NORMAL);
 
-    if (::is_null(pfontParam))
-    {
+   if (::is_null(pfontParam))
+   {
 
-        return false;
+      return false;
 
-    }
+   }
 
-    //::draw2d_cairo::font * pfont = dynamic_cast <::draw2d_cairo::font *> ((::draw2d::font *) pfontParam);
+   // ::draw2d_cairo::font * pfont = dynamic_cast <::draw2d_cairo::font *> ((::draw2d::font *) pfontParam);
 
-    //if (pfont == nullptr)
-    //{
+   //if (pfont == nullptr)
+   //{
 
-    //    return false;
+   //    return false;
 
-    //}
-    //
-    ///*if(pfont->m_ft != nullptr)
-    //{
-    //
-    // return true;
-    //
-    //}
-    //
-    //      //sync_lock sl(&user_mutex());
-    //
-    //      pfont->destroy();
-    //
-    ////      int status;
-    //
-    //      int iError = 0;
-    //
-    //      string strPath;
-    //
-    //
+   //}
+   //
+   ///*if(pfont->m_ft != nullptr)
+   //{
+   //
+   //    return true;
+   //
+   //}
+   //
+   //    //sync_lock sl(&user_mutex());
+   //
+   //    pfont->destroy();
+   //
+   ////  int status;
+   //
+   //    int iError = 0;
+   //
+   //    string strPath;
+   //
+   //
 
-    auto pcairodraw2dfont = __font(pfontParam);
+   auto pcairodraw2dfont = __font(pfontParam);
 
-    if (::is_null(pcairodraw2dfont))
-    {
+   if (::is_null(pcairodraw2dfont))
+   {
 
-       return false;
+      return false;
 
-    }
+   }
 
-    auto posdata = pfontParam->get_os_data(this);
+   auto posdata = pfontParam->get_os_data(this);
 
-    if (::is_null(posdata))
-    {
+   if (::is_null(posdata))
+   {
 
-       return false;
+      return false;
 
-    }
+   }
 
-    if (::is_set(posdata))
-    {
+   if (::is_set(posdata))
+   {
 
-       cairo_font_face_t* pfontface = (cairo_font_face_t*)posdata;
+      cairo_font_face_t* pfontface = (cairo_font_face_t*)posdata;
 
-       cairo_set_font_face(m_pdc, pfontface);
+      cairo_set_font_face(m_pdc, pfontface);
 
-    }
-    //else
-    //{
+   }
+   //else
+   //{
 
-    //   string  strPath = get_font_path(pcairodraw2dfont->m_strFontFamilyName);
+   //    string  strPath = get_font_path(pcairodraw2dfont->m_strFontFamilyName);
 
-    //   int iError = 0;
+   //    int iError = 0;
 
-    //   if (g_pmapFontError->lookup(strPath, iError))
-    //   {
+   //    if (g_pmapFontError->lookup(strPath, iError))
+   //    {
 
-    //      g_pmapFontFace->lookup(strPath, pcairodraw2dfont->m_ft);
+   //       g_pmapFontFace->lookup(strPath, pcairodraw2dfont->m_ft);
 
-    //   }
-    //   else
-    //   {
+   //    }
+   //    else
+   //    {
 
-    //      pcairodraw2dfont->m_ft = nullptr;
+   //       pcairodraw2dfont->m_ft = nullptr;
 
-    //      iError = FT_New_Face(__ftlibrary(), strPath, 0, &pcairodraw2dfont->m_ft);
+   //       iError = FT_New_Face(__ftlibrary(), strPath, 0, &pcairodraw2dfont->m_ft);
 
-    //      if (iError == 0)
-    //      {
+   //       if (iError == 0)
+   //       {
 
-    //         iError = FT_Select_Charmap(pcairodraw2dfont->m_ft, /* target face object */ FT_ENCODING_UNICODE); /* encoding */
+   //          iError = FT_Select_Charmap(pcairodraw2dfont->m_ft, /* target face object */ FT_ENCODING_UNICODE); /* encoding */
 
-    //      }
+   //       }
 
-    //      g_pmapFontError->set_at(strPath, iError);
+   //       g_pmapFontError->set_at(strPath, iError);
 
-    //      g_pmapFontFace->set_at(strPath, pcairodraw2dfont->m_ft);
+   //       g_pmapFontFace->set_at(strPath, pcairodraw2dfont->m_ft);
 
-    //   }
+   //    }
 
-    //   if (iError != 0 || pcairodraw2dfont->m_ft == nullptr)
-    //   {
+   //    if (iError != 0 || pcairodraw2dfont->m_ft == nullptr)
+   //    {
 
-    //      string strFont = pcairodraw2dfont->m_strFontFamilyName;
+   //       string strFont = pcairodraw2dfont->m_strFontFamilyName;
 
-    //      cairo_select_font_face(m_pdc, strFont, pcairodraw2dfont->m_bItalic ? CAIRO_FONT_SLANT_ITALIC : CAIRO_FONT_SLANT_NORMAL, pcairodraw2dfont->m_iFontWeight > 650 ? CAIRO_FONT_WEIGHT_BOLD : CAIRO_FONT_WEIGHT_NORMAL);
+   //       cairo_select_font_face(m_pdc, strFont, pcairodraw2dfont->m_bItalic ? CAIRO_FONT_SLANT_ITALIC : CAIRO_FONT_SLANT_NORMAL, pcairodraw2dfont->m_iFontWeight > 650 ? CAIRO_FONT_WEIGHT_BOLD : CAIRO_FONT_WEIGHT_NORMAL);
 
-    //   }
-    //   else
-    //   {
+   //    }
+   //    else
+   //    {
 
-    //      if (!g_pmapCairoFontFace->lookup(strPath, pcairodraw2dfont->m_pfontface))
-    //      {
+   //       if (!g_pmapCairoFontFace->lookup(strPath, pcairodraw2dfont->m_pfontface))
+   //       {
 
-    //         pcairodraw2dfont->m_pfontface = cairo_ft_font_face_create_for_ft_face(pcairodraw2dfont->m_ft, 0);
+   //          pcairodraw2dfont->m_pfontface = cairo_ft_font_face_create_for_ft_face(pcairodraw2dfont->m_ft, 0);
 
-    //         g_pmapCairoFontFace->set_at(strPath, pcairodraw2dfont->m_pfontface);
+   //          g_pmapCairoFontFace->set_at(strPath, pcairodraw2dfont->m_pfontface);
 
-    //         cairo_font_face_reference(pcairodraw2dfont->m_pfontface);
+   //          cairo_font_face_reference(pcairodraw2dfont->m_pfontface);
 
-    //      }
+   //       }
 
-    //      //         cairo_font_options_t * poptions = cairo_font_options_create ();
-    //      //
-    //      //         cairo_matrix_t m;
-    //      //
-    //      //         cairo_matrix_init_identity(&m);
-    //      //
-    //      //         cairo_matrix_t m2;
-    //      //
-    //      //         cairo_matrix_init_identity(&m2);
-    //      //
-    //      //         pfont->m_pfont = cairo_scaled_font_create(pfont->m_pface, &m, &m2, poptions);
-    //      //
-    //      //         cairo_set_scaled_font(m_pdc, pfont->m_pfont);
-    //      //
-    //      //         cairo_font_options_destroy(poptions);
-    //      //         */
-    //      //
-    //      cairo_set_font_face(m_pdc, pcairodraw2dfont->m_pfontface);
+   //       //  cairo_font_options_t * poptions = cairo_font_options_create ();
+   //       //
+   //       //  cairo_matrix_t m;
+   //       //
+   //       //  cairo_matrix_init_identity(&m);
+   //       //
+   //       //  cairo_matrix_t m2;
+   //       //
+   //       //  cairo_matrix_init_identity(&m2);
+   //       //
+   //       //  pfont->m_pfont = cairo_scaled_font_create(pfont->m_pface, &m, &m2, poptions);
+   //       //
+   //       //  cairo_set_scaled_font(m_pdc, pfont->m_pfont);
+   //       //
+   //       //  cairo_font_options_destroy(poptions);
+   //       //  */
+   //       //
+   //       cairo_set_font_face(m_pdc, pcairodraw2dfont->m_pfontface);
 
-    //   }
+   //    }
 
-    //}
+   // }
 
 #ifdef ANDROID
 
-    float fDpi = MAX(System.oslocal().m_fDpiX, System.oslocal().m_fDpiY);
+   float fDpi = MAX(System.oslocal().m_fDpiX, System.oslocal().m_fDpiY);
 
-    float fDensity = System.oslocal().m_fDensity;
+   float fDensity = System.oslocal().m_fDensity;
 
 #endif
 
-    if (pfontParam->m_eunitFontSize == ::draw2d::unit_pixel)
-    {
+   if (pfontParam->m_eunitFontSize == ::draw2d::unit_pixel)
+   {
 
 #ifdef ANDROID
 
-       cairo_set_font_size(m_pdc, pfontParam->m_dFontSize * fDensity * 0.5);
+      cairo_set_font_size(m_pdc, pfontParam->m_dFontSize * fDensity * 0.5);
 
 #else
 
-       cairo_set_font_size(m_pdc, pfontParam->m_dFontSize);
+      cairo_set_font_size(m_pdc, pfontParam->m_dFontSize);
 
 #endif
 
-
-    }
-    else
-    {
+   }
+   else
+   {
 
 #ifdef ANDROID
 
-       cairo_set_font_size(m_pdc, pfontParam->m_dFontSize * fDensity * 0.5 * 96.0 / 72.0);
+      cairo_set_font_size(m_pdc, pfontParam->m_dFontSize * fDensity * 0.5 * 96.0 / 72.0);
 
 #else
 
-       cairo_set_font_size(m_pdc, pfontParam->m_dFontSize * 96.0 / 72.0);
+      cairo_set_font_size(m_pdc, pfontParam->m_dFontSize * 96.0 / 72.0);
 
 #endif
 
+   }
 
-
-    }
-
-    return true;
+   return true;
 
 }
 
@@ -4999,48 +5001,48 @@ bool graphics::set(const ::draw2d::font * pfontParam)
 bool graphics::fill_and_draw()
 {
 
-    sync_lock ml(cairo_mutex());
+   sync_lock ml(cairo_mutex());
 
-    bool bPen = m_ppen->m_etype != ::draw2d::pen::type_null;
+   bool bPen = m_ppen->m_etype != ::draw2d::pen::type_null;
 
-    cairo_keep keep(m_pdc);
+   cairo_keep keep(m_pdc);
 
-    if (m_pbrush->m_etype != ::draw2d::brush::type_null)
-    {
+   if (m_pbrush->m_etype != ::draw2d::brush::type_null)
+   {
 
-        set(m_pbrush);
+      _set(m_pbrush);
 
-        set_alpha_mode(m_ealphamode);
+      set_alpha_mode(m_ealphamode);
 
-        if (bPen)
-        {
+      if (bPen)
+      {
 
-            cairo_fill_preserve(m_pdc);
+         cairo_fill_preserve(m_pdc);
 
-        }
-        else
-        {
+      }
+      else
+      {
 
-            cairo_fill(m_pdc);
+         cairo_fill(m_pdc);
 
-        }
+      }
 
-    }
+   }
 
-    keep.pulse();
+   keep.pulse();
 
-    if (bPen)
-    {
+   if (bPen)
+   {
 
-        set(m_ppen);
+      _set(m_ppen);
 
-        set_alpha_mode(m_ealphamode);
+      set_alpha_mode(m_ealphamode);
 
-        cairo_stroke(m_pdc);
+      cairo_stroke(m_pdc);
 
-    }
+   }
 
-    return true;
+   return true;
 
 }
 
@@ -5085,14 +5087,13 @@ bool graphics::_fill1(::draw2d::brush* pbrush, double xOrg, double yOrg)
 
       cairo_push_group(m_pdc);
 
-      set(pbrush, xOrg, yOrg);
-
+      _set(pbrush, xOrg, yOrg);
 
    }
    else
    {
 
-      set(pbrush, xOrg, yOrg);
+      _set(pbrush, xOrg, yOrg);
 
    }
 
@@ -5163,7 +5164,7 @@ bool graphics::draw(::draw2d::pen * ppen)
 
     cairo_keep keep(m_pdc);
 
-    set(ppen);
+    _set(ppen);
 
     cairo_stroke(m_pdc);
 
@@ -5289,7 +5290,7 @@ bool graphics::_set(::draw2d_cairo::path::element * pelement)
    case ::draw2d::path::type_rect:
       return _set(dynamic_cast <path::rect*>(pelement));
    case ::draw2d::path::type_line:
-      return  _set(dynamic_cast <path::line*>(pelement));
+      return _set(dynamic_cast <path::line*>(pelement));
    case ::draw2d::path::type_lines:
       return _set(dynamic_cast <path::lines*>(pelement));
    case ::draw2d::path::type_polygon:
@@ -5628,7 +5629,7 @@ void * graphics::detach()
 }
 
 
-bool graphics::set_os_color(COLORREF cr)
+bool graphics::_set_os_color(COLORREF cr)
 {
 
     sync_lock ml(cairo_mutex());

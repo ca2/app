@@ -130,9 +130,6 @@ i32 _c_XErrorHandler(Display * display, XErrorEvent * perrorevent);
 //   }
 //
 
-
-
-
    const char * pszName = psystem->m_strAppId;
 
    g_set_application_name(pszName);
@@ -170,7 +167,6 @@ i32 _c_XErrorHandler(Display * display, XErrorEvent * perrorevent);
       return error_failed;
 
    }
-
 
    if(psystem->m_bUser)
    {
@@ -214,7 +210,6 @@ i32 _c_XErrorHandler(Display * display, XErrorEvent * perrorevent);
 //      gtk_init_check(&psystem->m_argc, &psystem->m_argv);
 //
 //#endif
-
 
       gtk_main();
 

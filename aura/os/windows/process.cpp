@@ -6,6 +6,16 @@
 #include <Userenv.h>
 
 
+HANDLE dup_handle(HANDLE h)
+{
+
+   DuplicateHandle(GetCurrentProcess(), ::GetCurrentThread(), GetCurrentProcess(), &h, 0, FALSE, DUPLICATE_SAME_ACCESS);
+
+   return h;
+
+}
+
+
 //typedef struct _PROCESS_BASIC_INFORMATION64
 //{
 //   u64  Reserved1;

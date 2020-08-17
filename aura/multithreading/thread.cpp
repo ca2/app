@@ -6,17 +6,8 @@
 #include "aura/os/_os.h"
 #include "aura/platform/mq.h"
 
+
 ::mutex * g_pmutexThreadWaitClose = nullptr;
-
-
-HANDLE dup_handle(HANDLE h)
-{
-
-   DuplicateHandle(GetCurrentProcess(), ::GetCurrentThread(), GetCurrentProcess(), &h, 0, FALSE, DUPLICATE_SAME_ACCESS);
-
-   return h;
-
-}
 
 
 #ifdef WINDOWS_DESKTOP

@@ -1869,7 +1869,7 @@ sync_result thread::wait(const duration & duration)
       if(duration.is_pos_infinity())
       {
 
-         while(is_thread_on(uThread))
+         while(is_thread_on(ithread))
          {
 
             Sleep(100);
@@ -1884,7 +1884,7 @@ sync_result thread::wait(const duration & duration)
 
          auto dwStep = MIN(MAX(tickDelay / 10, 1), 100);
 
-         while(is_thread_on(uThread))
+         while(is_thread_on(ithread))
          {
 
             Sleep(dwStep);
@@ -2231,7 +2231,7 @@ bool thread::begin_thread(bool bSynchInitialization, ::e_priority epriority, UIN
 
 #ifndef WINDOWS
 
-   if(m_hthread == m_uThread)
+   if(m_hthread1 == m_ithread1)
    {
 
       INFO("create_thread success");

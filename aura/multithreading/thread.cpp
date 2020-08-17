@@ -2371,7 +2371,15 @@ ITHREAD thread::get_ithread() const
 void thread::set_current_handles()
 {
 
+#ifdef WINDOWS_DESKTOP
+
+   m_hthread1 = dup_handle(::get_current_hthread());
+
+#else
+
    m_hthread1 = ::get_current_hthread();
+
+#endif
 
    m_ithread1 = ::get_current_ithread();
 
@@ -3944,7 +3952,7 @@ bool thread::set_thread_priority(::e_priority epriority)
 ::e_priority thread::thread_priority()
 {
 
-   ASSERT(m_hthread != NULL_HTHREAD);
+   ASSERT(m_hthread1 != NULL_HTHREAD);
 
    i32 nPriority = ::GetThreadPriority(m_hthread1);
 
@@ -3997,7 +4005,7 @@ void thread::start()
 u32 thread::ResumeThread()
 {
 
-   ASSERT(m_hthread != NULL_HTHREAD);
+   ASSERT(m_hthread1 != NULL_HTHREAD);
 
 #if defined (WINDOWS_DESKTOP)
 

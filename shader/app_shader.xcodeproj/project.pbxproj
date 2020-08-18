@@ -164,9 +164,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		070B8EE91B6E53F900D26137 /* app_simple_app_shader */ = {
+		070B8EE91B6E53F900D26137 /* app_shader */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 070B8F071B6E53FA00D26137 /* Build configuration list for PBXNativeTarget "app_simple_app_shader" */;
+			buildConfigurationList = 070B8F071B6E53FA00D26137 /* Build configuration list for PBXNativeTarget "app_shader" */;
 			buildPhases = (
 				9A3E0BEE2309FC8900B5459B /* ShellScript */,
 				070B8EE61B6E53F900D26137 /* Sources */,
@@ -178,7 +178,7 @@
 			);
 			dependencies = (
 			);
-			name = app_simple_app_shader;
+			name = app_shader;
 			productName = "Hello Multiverse!!";
 			productReference = 070B8EEA1B6E53F900D26137 /* app_simple_app_shader.app */;
 			productType = "com.apple.product-type.application";
@@ -234,7 +234,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				070B8EE91B6E53F900D26137 /* app_simple_app_shader */,
+				070B8EE91B6E53F900D26137 /* app_shader */,
 				070B8EFC1B6E53FA00D26137 /* Hello Multiverse!!Tests */,
 			);
 		};
@@ -301,7 +301,7 @@
 /* Begin PBXTargetDependency section */
 		070B8EFF1B6E53FA00D26137 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 070B8EE91B6E53F900D26137 /* app_simple_app_shader */;
+			target = 070B8EE91B6E53F900D26137 /* app_shader */;
 			targetProxy = 070B8EFE1B6E53FA00D26137 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -511,7 +511,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		070B8F071B6E53FA00D26137 /* Build configuration list for PBXNativeTarget "app_simple_app_shader" */ = {
+		070B8F071B6E53FA00D26137 /* Build configuration list for PBXNativeTarget "app_shader" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				070B8F081B6E53FA00D26137 /* Debug */,

@@ -13,6 +13,8 @@
 		9A258EB324DA97980013F50E /* libdraw2d_quartz2d.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A6FABD32304797E00340A3D /* libdraw2d_quartz2d.dylib */; };
 		9A258EB724DA97980013F50E /* libgpu_opengl.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A8B644624CBE7B500A93185 /* libgpu_opengl.dylib */; };
 		9A258EB824DA97980013F50E /* libimaging_coreimage.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A8B638324CBD68100A93185 /* libimaging_coreimage.dylib */; };
+		9A488A4D24EB4B7500119EC4 /* libapp_app.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A4889EC24EB4A2200119EC4 /* libapp_app.dylib */; };
+		9A488A5024EB4B8700119EC4 /* libapp_app_shader.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A4889F224EB4A3800119EC4 /* libapp_app_shader.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,12 +46,33 @@
 			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
 			remoteInfo = aura;
 		};
-		9A48899624EB48DF00119EC4 /* PBXContainerItemProxy */ = {
+		9A4889EB24EB4A2200119EC4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A48899224EB48DE00119EC4 /* app_app_app.xcodeproj */;
+			containerPortal = 9A4889E724EB4A2200119EC4 /* app_app_app.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9A48898624EB48DE00119EC4;
-			remoteInfo = app_app_app;
+			remoteInfo = app_app;
+		};
+		9A4889F124EB4A3800119EC4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A4889ED24EB4A3800119EC4 /* app_app_shader.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A4889B624EB494600119EC4;
+			remoteInfo = app_app_shader;
+		};
+		9A488A4B24EB4B3400119EC4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A4889E724EB4A2200119EC4 /* app_app_app.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A48898524EB48DE00119EC4;
+			remoteInfo = app_app;
+		};
+		9A488A4E24EB4B7B00119EC4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A4889ED24EB4A3800119EC4 /* app_app_shader.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A4889B524EB494600119EC4;
+			remoteInfo = app_shader;
 		};
 		9A6FABD22304797E00340A3D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -144,6 +167,8 @@
 			dstPath = "$(WorkspaceDir)/time/$(PLATFORM_MODIFIER)";
 			dstSubfolderSpec = 0;
 			files = (
+				9A488A5024EB4B8700119EC4 /* libapp_app_shader.dylib in CopyFiles */,
+				9A488A4D24EB4B7500119EC4 /* libapp_app.dylib in CopyFiles */,
 				9A258EB124DA97980013F50E /* libaura.dylib in CopyFiles */,
 				9A258EB324DA97980013F50E /* libdraw2d_quartz2d.dylib in CopyFiles */,
 				9A258EB724DA97980013F50E /* libgpu_opengl.dylib in CopyFiles */,
@@ -159,7 +184,8 @@
 		9A06D7121FA2A7A5007FEB1B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A06D7131FA2A7A5007FEB1B /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		9A247CE02452C41600F23D28 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../aura/aura.xcodeproj; sourceTree = "<group>"; };
-		9A48899224EB48DE00119EC4 /* app_app_app.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = app_app_app.xcodeproj; path = ../../app_app_app/app_app_app.xcodeproj; sourceTree = "<group>"; };
+		9A4889E724EB4A2200119EC4 /* app_app_app.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = app_app_app.xcodeproj; path = ../app/app_app_app.xcodeproj; sourceTree = "<group>"; };
+		9A4889ED24EB4A3800119EC4 /* app_app_shader.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = app_app_shader.xcodeproj; path = ../shader/app_app_shader.xcodeproj; sourceTree = "<group>"; };
 		9A6FABCC2304797E00340A3D /* draw2d_quartz2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = draw2d_quartz2d.xcodeproj; path = ../draw2d_quartz2d/draw2d_quartz2d.xcodeproj; sourceTree = "<group>"; };
 		9A8B637224CBD68100A93185 /* imaging_coreimage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = imaging_coreimage.xcodeproj; path = ../imaging_coreimage/imaging_coreimage.xcodeproj; sourceTree = "<group>"; };
 		9A8B643424CBE7B500A93185 /* gpu_opengl.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = gpu_opengl.xcodeproj; path = ../gpu_opengl/gpu_opengl.xcodeproj; sourceTree = "<group>"; };
@@ -169,7 +195,8 @@
 		070B8EE11B6E53F900D26137 = {
 			isa = PBXGroup;
 			children = (
-				9A48899224EB48DE00119EC4 /* app_app_app.xcodeproj */,
+				9A4889E724EB4A2200119EC4 /* app_app_app.xcodeproj */,
+				9A4889ED24EB4A3800119EC4 /* app_app_shader.xcodeproj */,
 				9A247CE02452C41600F23D28 /* aura.xcodeproj */,
 				9A6FABCC2304797E00340A3D /* draw2d_quartz2d.xcodeproj */,
 				9A8B643424CBE7B500A93185 /* gpu_opengl.xcodeproj */,
@@ -207,10 +234,18 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9A48899324EB48DE00119EC4 /* Products */ = {
+		9A4889E824EB4A2200119EC4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A48899724EB48DF00119EC4 /* libapp_app_app.dylib */,
+				9A4889EC24EB4A2200119EC4 /* libapp_app.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9A4889EE24EB4A3800119EC4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A4889F224EB4A3800119EC4 /* libapp_app_shader.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -259,6 +294,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				9A488A4F24EB4B7B00119EC4 /* PBXTargetDependency */,
+				9A488A4C24EB4B3400119EC4 /* PBXTargetDependency */,
 				9A8B644E24CBE7C400A93185 /* PBXTargetDependency */,
 				9A8B638924CBD69F00A93185 /* PBXTargetDependency */,
 				9A2488DA2452C5EA00F23D28 /* PBXTargetDependency */,
@@ -298,8 +335,12 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 9A48899324EB48DE00119EC4 /* Products */;
-					ProjectRef = 9A48899224EB48DE00119EC4 /* app_app_app.xcodeproj */;
+					ProductGroup = 9A4889E824EB4A2200119EC4 /* Products */;
+					ProjectRef = 9A4889E724EB4A2200119EC4 /* app_app_app.xcodeproj */;
+				},
+				{
+					ProductGroup = 9A4889EE24EB4A3800119EC4 /* Products */;
+					ProjectRef = 9A4889ED24EB4A3800119EC4 /* app_app_shader.xcodeproj */;
 				},
 				{
 					ProductGroup = 9A247CE12452C41600F23D28 /* Products */;
@@ -347,11 +388,18 @@
 			remoteRef = 9A247CEA2452C41700F23D28 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A48899724EB48DF00119EC4 /* libapp_app_app.dylib */ = {
+		9A4889EC24EB4A2200119EC4 /* libapp_app.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libapp_app_app.dylib;
-			remoteRef = 9A48899624EB48DF00119EC4 /* PBXContainerItemProxy */;
+			path = libapp_app.dylib;
+			remoteRef = 9A4889EB24EB4A2200119EC4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A4889F224EB4A3800119EC4 /* libapp_app_shader.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libapp_app_shader.dylib;
+			remoteRef = 9A4889F124EB4A3800119EC4 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		9A6FABD32304797E00340A3D /* libdraw2d_quartz2d.dylib */ = {
@@ -446,6 +494,16 @@
 			isa = PBXTargetDependency;
 			name = aura;
 			targetProxy = 9A2488D92452C5EA00F23D28 /* PBXContainerItemProxy */;
+		};
+		9A488A4C24EB4B3400119EC4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = app_app;
+			targetProxy = 9A488A4B24EB4B3400119EC4 /* PBXContainerItemProxy */;
+		};
+		9A488A4F24EB4B7B00119EC4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = app_shader;
+			targetProxy = 9A488A4E24EB4B7B00119EC4 /* PBXContainerItemProxy */;
 		};
 		9A6FAD0323047CA100340A3D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

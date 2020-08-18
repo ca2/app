@@ -580,18 +580,16 @@ SizingNone:;
             void frame_011::DrawRectGrip(::draw2d::graphics_pointer & pgraphics, const ::rect & rectParam)
             {
 
-
-
                ::rect rect(rectParam);
 
-               pgraphics->draw3d_rect(rect, Session.get_default_color(COLOR_BTNFACE), Session.get_default_color(COLOR_3DDKSHADOW));
+               pgraphics->draw_3drect(rect, Session.get_default_color(COLOR_BTNFACE), Session.get_default_color(COLOR_3DDKSHADOW));
 
                rect.top++;
                rect.bottom--;
                rect.left++;
                rect.right--;
 
-               pgraphics->draw3d_rect(rect, Session.get_default_color(COLOR_BTNHILIGHT), Session.get_default_color(COLOR_BTNSHADOW));
+               pgraphics->draw_3drect(rect, Session.get_default_color(COLOR_BTNHILIGHT), Session.get_default_color(COLOR_BTNSHADOW));
 
                rect.top++;
                rect.bottom--;

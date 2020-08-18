@@ -1678,11 +1678,11 @@
 			buildSettings = {
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(HOME)/__archive/archive/platform-macos/library",
+					"$(HOME)/__archive/archive/third-macos/library",
 					"$(WorkspaceDir)/platform/thirdparty/library",
 					"$(TARGET_BUILD_DIR)",
 				);
-				SYSTEM_HEADER_SEARCH_PATHS = "$(HOME)/__archive/archive/platform-macos/include $(WorkspaceDir)/third/include $(WorkspaceDir)/platform-macos $(WorkspaceDir)/app/_include $(PROJECT_DIR) $(HOME)/__archive/archive/platform-macos/third/include/pcre";
+				SYSTEM_HEADER_SEARCH_PATHS = "$(HOME)/__archive/archive/third-macos/include $(WorkspaceDir)/third/include $(WorkspaceDir)/platform-macos $(WorkspaceDir)/app/_include $(PROJECT_DIR) $(HOME)/__archive/archive/third-macos/third/include/pcre";
 			};
 			name = Debug;
 		};
@@ -1691,11 +1691,11 @@
 			buildSettings = {
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(HOME)/__archive/archive/platform-macos/library",
+					"$(HOME)/__archive/archive/third-macos/library",
 					"$(WorkspaceDir)/platform/thirdparty/library",
 					"$(TARGET_BUILD_DIR)",
 				);
-				SYSTEM_HEADER_SEARCH_PATHS = "$(HOME)/__archive/archive/platform-macos/include $(WorkspaceDir)/third/include $(WorkspaceDir)/platform-macos $(WorkspaceDir)/app/_include $(PROJECT_DIR) $(HOME)/__archive/archive/platform-macos/third/include/pcre";
+				SYSTEM_HEADER_SEARCH_PATHS = "$(HOME)/__archive/archive/third-macos/include $(WorkspaceDir)/third/include $(WorkspaceDir)/platform-macos $(WorkspaceDir)/app/_include $(PROJECT_DIR) $(HOME)/__archive/archive/third-macos/third/include/pcre";
 			};
 			name = Release;
 		};

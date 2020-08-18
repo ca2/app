@@ -13,17 +13,19 @@ inline bool xxf_is_zerop(TYPE * p) { return ::is_zero(p, sizeof(TYPE)); }
 template < typename TYPE >
 inline bool xxf_is_zero(TYPE & t) { return ::is_zero(&t, sizeof(TYPE)); }
 
-template < typename TYPE >
-inline void __copy(TYPE * p, const TYPE * pSrc) { ::copy(p, pSrc); }
+//template < typename TYPE1, typename TYPE2 >
+//inline void __copy(TYPE1 * p, const TYPE2 * pSrc) { ::copy(p, pSrc); }
+//
+//template < typename TYPE1, typename TYPE2 >
+//inline void __copy(TYPE1 & t, const TYPE2 & tSrc) { ::copy(&t, &tSrc); }
+//
+//template < typename TYPE1, typename TYPE2 >
+//inline void __copy(TYPE1 * p, const TYPE2 & tSrc) { ::copy(p, &tSrc); }
+//
+//template < typename TYPE1, typename TYPE2 >
+//inline void __copy(TYPE1 & t, const TYPE2 * pSrc) { ::copy(&t, pSrc); }
 
-template < typename TYPE >
-inline void __copy(TYPE & t, const TYPE & tSrc) { ::copy(&t, &tSrc); }
 
-template < typename TYPE >
-inline void __copy(TYPE * p, const TYPE & tSrc) { ::copy(p, &tSrc); }
-
-template < typename TYPE >
-inline void __copy(TYPE & t, const TYPE * pSrc) { ::copy(&t, pSrc); }
 
 
 

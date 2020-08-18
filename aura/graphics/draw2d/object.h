@@ -34,7 +34,7 @@ namespace draw2d
       virtual void defer_update(::draw2d::graphics * pgraphics, ::index i) const;
 
 
-      virtual bool create(::draw2d::graphics* pgraphics, ::index iCreate);
+      virtual bool create(::draw2d::graphics * pgraphics, i8 iCreate);
       virtual void destroy();
 
       inline void set_modified() { m_bUpdated2 = false; }

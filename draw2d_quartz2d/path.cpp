@@ -32,7 +32,7 @@ namespace draw2d_quartz2d
    }
    
    
-   bool path::internal_end_figure(bool bClose)
+   bool path::internal_close(bool bClose)
    {
       
       if(bClose)
@@ -49,7 +49,7 @@ namespace draw2d_quartz2d
    }
    
    
-   bool path::internal_add_arc(const ::rect & rect, double dBeg, double dEnd, bool bClockwise)
+   bool path::internal_add_arc(const ::rectd & rect, double dBeg, double dEnd, bool bClockwise)
    {
       
       CGFloat d1 = rect.right - rect.left;
@@ -129,7 +129,7 @@ namespace draw2d_quartz2d
       
    }
 
-   bool path::internal_add_string_path(int x, int y, const string & strText, ::draw2d::font_pointer spfont, ::draw2d_quartz2d::graphics * p)
+   bool path::internal_add_text_out(int x, int y, const string & strText, ::draw2d::font_pointer spfont, ::draw2d_quartz2d::graphics * p)
    {
       
       CGContextSaveGState(p->m_pdc);
@@ -197,17 +197,17 @@ namespace draw2d_quartz2d
    }
    
    
-   bool path::create(::draw2d::graphics * pgraphics)
+   bool path::create(::draw2d::graphics * pgraphics, i8 iCreate)
    {
       
       m_path = CGPathCreateMutable();
       
-      for(i32 i = 0; i < m_elementa.get_count(); i++)
-      {
+      //for(i32 i = 0; i < m_elementa.get_count(); i++)
+      //{
          
-         set(m_elementa(i));
+         _set_create(pgraphics);
          
-      }
+      //}
       
       m_osdata[0] = m_path;
       
@@ -216,71 +216,147 @@ namespace draw2d_quartz2d
    }
 
    
-   bool path::set(const ::draw2d::path::element & e)
+//   bool path::set(const ::draw2d::path::element & e)
+//   {
+//
+//      switch(e.m_etype)
+//      {
+//         case ::draw2d::path::element::type_move:
+//            set(e.u.m_move);
+//            break;
+//         case ::draw2d::path::element::type_arc:
+//            set(e.u.m_arc);
+//            break;
+//         case ::draw2d::path::element::type_line:
+//            set(e.u.m_line);
+//            break;
+//         case ::draw2d::path::element::type_string:
+////            set(e.m_stringpath);
+//            break;
+//         case ::draw2d::path::element::type_end:
+//            internal_end_figure(e.u.m_end.m_bClose);
+//            break;
+//         default:
+//            __throw(::exception::exception("unexpected simple os graphics element type"));
+//      }
+//
+//      return false;
+//
+//   }
+   
+   
+   bool path::_set(::draw2d::graphics * pgraphics, ::draw2d::path::begin * pbegin)
    {
-      
-      switch(e.m_etype)
-      {
-         case ::draw2d::path::element::type_move:
-            set(e.u.m_move);
-            break;
-         case ::draw2d::path::element::type_arc:
-            set(e.u.m_arc);
-            break;
-         case ::draw2d::path::element::type_line:
-            set(e.u.m_line);
-            break;
-         case ::draw2d::path::element::type_string:
-//            set(e.m_stringpath);
-            break;
-         case ::draw2d::path::element::type_end:
-            internal_end_figure(e.u.m_end.m_bClose);
-            break;
-         default:
-            __throw(::exception::exception("unexpected simple os graphics element type"));
-      }
-      
-      return false;
-      
-   }
-   
-   
-   bool path::set(const ::draw2d::path::arc & arc)
-   {
-   
-      ::rect rect;
-      rect.left = arc.m_pointCenter.x - arc.m_sizeRadius.cx;
-      rect.right = arc.m_pointCenter.x + arc.m_sizeRadius.cx;
-      rect.top = arc.m_pointCenter.y - arc.m_sizeRadius.cy;
-      rect.bottom = arc.m_pointCenter.y + arc.m_sizeRadius.cy;
-      
-      return internal_add_arc(rect, arc.m_dAngle1, arc.m_dAngle2, arc.m_dAngle < 0.0);
-      
-   }
-   
-   
-   bool path::set(const ::draw2d::path::move & move)
-   {
-      
-      return internal_add_move(move.m_x, move.m_y);
-      
-   }
-   
-   bool path::set(const ::draw2d::path::line & line)
-   {
-      
-      return internal_add_line(line.m_x, line.m_y);
+
+      return true;
       
    }
 
-   bool path::set(const ::draw2d::path::string_path & stringpath)
+
+   bool path::_set(::draw2d::graphics * pgraphics, ::draw2d::path::arc * parc)
    {
+   
+      ::rectd rect;
       
-      return false;
-      //return //internal_add_string_path(stringpath.m_x, stringpath.m_y, stringpath.m_strText, stringpath.m_pfont);
+      rect.left = parc->m_pointCenter.x - parc->m_sizeRadius.cx;
+      rect.right = parc->m_pointCenter.x + parc->m_sizeRadius.cx;
+      rect.top = parc->m_pointCenter.y - parc->m_sizeRadius.cy;
+      rect.bottom = parc->m_pointCenter.y + parc->m_sizeRadius.cy;
+      
+      return internal_add_arc(rect, parc->m_angleBeg, parc->m_angleEnd, parc->m_angleEnd < parc->m_angleBeg);
       
    }
    
+   
+//   bool path::_set(::draw2d::graphics * pgraphics, ::draw2d::path::move & move)
+//   {
+//
+//      return internal_add_move(move.m_x, move.m_y);
+//
+//   }
+   
+   
+   bool path::_set(::draw2d::graphics * pgraphics, ::draw2d::path::rect * prect)
+   {
+   
+      CGRect r;
+      
+      r.origin.x = prect->m_rect.left;
+      r.origin.y = prect->m_rect.top;
+      r.size.width = prect->m_rect.width();
+      r.size.height = prect->m_rect.height();
+      
+      CGPathAddRect(m_path, nullptr, r);
+                    
+      return true;
+      
+   }
+                    
+
+   bool path::_set(::draw2d::graphics * pgraphics, ::draw2d::path::lines * plines)
+   {
+   
+      ::array < CGPoint > points;
+      
+      ::papaya::array::__copy(points, plines->m_pointa);
+      
+      CGPathAddLines(m_path, nullptr, points.get_data(), points.get_count());
+                    
+      return true;
+      
+   }
+                    
+
+   bool path::_set(::draw2d::graphics * pgraphics, ::draw2d::path::polygon * ppolygon)
+   {
+
+      ::array < CGPoint > points;
+      
+      ::papaya::array::__copy(points, ppolygon->m_pointa);
+      
+      CGPathAddLines(m_path, nullptr, points.get_data(), points.get_count());
+
+      CGPathCloseSubpath(m_path);
+      
+      return true;
+      
+   }
+
+
+   bool path::_set(::draw2d::graphics * pgraphics, ::draw2d::path::line * pline)
+   {
+      
+      return internal_add_line(pline->m_pointBeg.x, pline->m_pointEnd.y);
+      
+   }
+
+
+   bool path::_set(::draw2d::graphics * pgraphics, ::draw2d::path::text_out * ptextout)
+   {
+      
+      return false;
+      
+   }
+   
+
+   bool path::_set(::draw2d::graphics * pgraphics, ::draw2d::path::draw_text * pdrawtext)
+   {
+      
+      return false;
+      
+   }
+   
+
+   bool path::_set(::draw2d::graphics * pgraphics, ::draw2d::path::close * pclose)
+   {
+
+      CGPathCloseSubpath(m_path);
+      
+      return true;
+   
+   }
+
+
 
    bool path::contains(::draw2d::graphics_pointer & pgraphics, const ::pointd & point)
    {

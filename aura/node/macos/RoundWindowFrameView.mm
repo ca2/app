@@ -415,11 +415,9 @@ NSCursor * g_pcurrentNscursor = nullptr;
    
    {
       
-      COLORREF cr1 = ARGB(155, 255, 200, 0);
-      
       CGContextSetBlendMode(cgc, kCGBlendModeCopy);
       
-      CGContextSetRGBFillColor(cgc, argb_get_r_value(cr1) / 255.0f, argb_get_g_value(cr1) / 255.0f, argb_get_b_value(cr1) / 255.0f, argb_get_a_value(cr1) / 255.0f);
+      CGContextSetRGBFillColor(cgc, 255 / 255.0f, 200 / 255.0f, 0 / 255.0f, 155 / 255.0f);
       
       auto rectArtifact1 = rect;
       
@@ -441,11 +439,9 @@ NSCursor * g_pcurrentNscursor = nullptr;
    
    {
    
-      COLORREF cr2 = ARGB(155, 255, 255, 0);
-
       CGContextSetBlendMode(cgc, kCGBlendModeCopy);
 
-      CGContextSetRGBFillColor(cgc, argb_get_r_value(cr2) / 255.0f, argb_get_g_value(cr2) / 255.0f, argb_get_b_value(cr2) / 255.0f, argb_get_a_value(cr2) / 255.0f);
+      CGContextSetRGBFillColor(cgc, 255 / 255.0f, 255 / 255.0f, 255 / 255.0f, 155 / 255.0f);
       
       auto rectArtifact2 = rect;
       

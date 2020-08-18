@@ -1,0 +1,23 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "6054AFDC321D8B2F7605A89BCFD2229DAD7BD42E",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "6054AFDC321D8B2F7605A89BCFD2229DAD7BD42E" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "14C8FC32-EC1D-44D2-A47B-2B16E5FAAB55",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "6054AFDC321D8B2F7605A89BCFD2229DAD7BD42E" : "app\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "app_app_shader",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "shader\/app_app_shader\/app_app_shader.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ca2\/app",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "6054AFDC321D8B2F7605A89BCFD2229DAD7BD42E"
+    }
+  ]
+}

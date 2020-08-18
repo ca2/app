@@ -37,7 +37,7 @@ namespace draw2d_quartz2d
    }
 
    
-   bool font::create(::draw2d::graphics * pgraphics)
+   bool font::create(::draw2d::graphics * pgraphics, i8 iCreate)
    {
    
       array < CFTypeRef >  cfrel;
@@ -267,7 +267,7 @@ namespace draw2d_quartz2d
    double font::get_ascent(::draw2d::graphics * pgraphics)
    {
       
-      defer_update(pgraphics);
+      defer_update(pgraphics, 0);
       
       if(m_font == nil)
       {
@@ -284,7 +284,7 @@ namespace draw2d_quartz2d
    double font::get_descent(::draw2d::graphics * pgraphics)
    {
       
-      defer_update(pgraphics);
+      defer_update(pgraphics, 0);
       
       if(m_font == nil)
       {
@@ -301,7 +301,7 @@ namespace draw2d_quartz2d
    double font::get_leading(::draw2d::graphics * pgraphics)
    {
       
-      defer_update(pgraphics);
+      defer_update(pgraphics, 0);
       
       if(m_font == nil)
       {
@@ -318,7 +318,7 @@ namespace draw2d_quartz2d
    double font::get_height(::draw2d::graphics * pgraphics)
    {
       
-      defer_update(pgraphics);
+      defer_update(pgraphics, 0);
       
       if(m_font == nil)
       {

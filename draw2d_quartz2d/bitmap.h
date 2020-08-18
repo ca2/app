@@ -15,7 +15,7 @@ namespace draw2d_quartz2d
       memory                        m_memory;
       ::size                        m_size;
       CGContextRef                  m_pdc;
-      i32                       m_iScan;
+      i32                           m_iScan;
       COLORREF *                    m_pdata;
       
       

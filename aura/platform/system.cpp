@@ -5797,7 +5797,7 @@ found:
 
       sync_lock sl(&m_mutexThread);
 
-      ITHREAD ithread = -1;
+      ITHREAD ithread = NULL_ITHREAD;
 
       if (!m_threadidmap.lookup(pthread, ithread))
       {

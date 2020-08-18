@@ -34,7 +34,7 @@ namespace user
    struct CLASS_DECL_AURA  ITEM
    {
 
-      e_element                  m_eelement;
+      e_element          m_eelement;
       ::index            m_iItem;
       ::index            m_iSubItem;
       ::index            m_iListItem;
@@ -49,6 +49,9 @@ namespace user
       inline ::index list_item_index() const { return (::index) m_iListItem; }
 
 
+      bool operator == (const ITEM & item)  const { return !memcmp(this, &item, sizeof(ITEM)); }
+      bool operator != (const ITEM & item)  const { return !operator == (item); }
+
    };
 
 #pragma pack(pop, user_ITEM)
@@ -56,23 +59,35 @@ namespace user
 #define ITEM_DRAWN 0x800000
 
 
+   struct CLASS_DECL_AURA item_data :
+      public ITEM
+   {
+    
+      ::point                       m_pointScreen;
+      ::point                       m_pointClient;
+      ::point                       m_pointHitTest;
+      ::rect                        m_rect;
+      ::user::e_event               m_eevent;
+      u64                           m_uFlags;
+      
+      item_data & operator = (const item_data& item) { if (this != &item) memcpy(this, &item, sizeof(item_data)); return *this; }
+
+      bool operator == (const item_data & item)  const { return ITEM::operator==(item); }
+      bool operator != (const item_data & item)  const { return ITEM::operator!=(item); }
+
+      
+   };
 
    class CLASS_DECL_AURA item : 
-      public ITEM,
+      virtual public item_data,
       virtual public ::generic_object
    {
    public:
 
       // a user item is a "pointer"/address to a user interface element
 
-      ::point                       m_pointScreen;
-      ::point                       m_pointClient;
-      ::point                       m_pointHitTest;
-      ::rect                        m_rect;
       ::draw2d::graphics_pointer    m_pgraphics;
       ::draw2d::path_pointer        m_ppath;
-      ::user::e_event               m_eevent;
-      u64                           m_uFlags;
       //::user::mouse *      m_pmouse;
 
       //item(e_element eelement, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, const ::u64 uFlags = flag_none) :
@@ -135,10 +150,10 @@ namespace user
 
       operator i64() const { return (::i64) m_iItem; }
 
-      item& operator = (const item& item) { if (this != &item) memcpy(this, &item, sizeof(item)); return *this; }
+      item& operator = (const item & item) { item_data::operator=(item); return *this; }
 
-      bool operator == (const item & item)  const { return !memcmp(this, &item, sizeof(ITEM)); }
-      bool operator != (const item & item)  const { return !operator == (item); }
+      bool operator == (const item & item)  const { return ITEM::operator==(item); }
+      bool operator != (const item & item)  const { return ITEM::operator!=(item); }
 
       item & operator = (e_element eelement);
 

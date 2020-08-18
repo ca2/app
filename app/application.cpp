@@ -11,11 +11,11 @@ namespace app_app
    application::application()
    {
 
-      m_strAppId = "app-simple/app";
+      m_strAppId = "app/app";
 
-      m_strAppName = "app-simple/app";
+      m_strAppName = "app/app";
 
-      m_strBaseSupportId = "app_simple_app";
+      m_strBaseSupportId = "app_app";
 
       m_bLicense = false;
 
@@ -93,7 +93,7 @@ namespace app_app
    }
 
 
-   __namespace_application_factory("app-simple/app");
+   __namespace_application_factory("app/app");
 
 
 } // namespace app_app

@@ -100,10 +100,10 @@ bool os_init_application()
       
    }
    
-   set_main_hthread(psystem->m_hthread);
-
-   set_main_ithread(psystem->m_uThread);
-
+//   set_main_hthread(psystem->m_hthread);
+//
+//   set_main_ithread(psystem->m_uThread);
+//
    ns_application_main(psystem->m_argc, psystem->m_argv, psystem->m_strCommandLine);
 
    return ::success;

@@ -61,7 +61,7 @@ namespace draw2d_quartz2d
 
       virtual void destroy() override;
 
-      virtual bool create(::draw2d::graphics * pgraphics) override;
+      virtual bool create(::draw2d::graphics * pgraphics, i8 iCreate) override;
 
       virtual void * detach();
       

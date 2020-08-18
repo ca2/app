@@ -2474,6 +2474,8 @@
 		9A376ACD2409C2D8002D15D3 /* dir_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A376A512409C2D7002D15D3 /* dir_context.cpp */; };
 		9A376ACF2409C2DD002D15D3 /* _impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A376ACE2409C2DD002D15D3 /* _impl.h */; };
 		9A38EB8C2321E01500285290 /* libidn.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A38EB872321DFFC00285290 /* libidn.dylib */; };
+		9A39BADC24EB248F003C070E /* main_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A39BAD824EB248E003C070E /* main_window.cpp */; };
+		9A39BADD24EB248F003C070E /* main_window.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A39BADB24EB248E003C070E /* main_window.h */; };
 		9A41730820004E7A0056265A /* aes.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4172B820004E790056265A /* aes.h */; };
 		9A41730920004E7A0056265A /* asn1.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4172B920004E790056265A /* asn1.h */; };
 		9A41730A20004E7A0056265A /* asn1_mac.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4172BA20004E790056265A /* asn1_mac.h */; };
@@ -4874,6 +4876,8 @@
 		9A376A512409C2D7002D15D3 /* dir_context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dir_context.cpp; sourceTree = "<group>"; };
 		9A376ACE2409C2DD002D15D3 /* _impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _impl.h; sourceTree = "<group>"; };
 		9A38EB7D2321DFFC00285290 /* idn.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = idn.xcodeproj; path = ../../third/idn/idn.xcodeproj; sourceTree = "<group>"; };
+		9A39BAD824EB248E003C070E /* main_window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main_window.cpp; sourceTree = "<group>"; };
+		9A39BADB24EB248E003C070E /* main_window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = main_window.h; sourceTree = "<group>"; };
 		9A4172B420004E790056265A /* build-openssl-1.1.0f.log */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "build-openssl-1.1.0f.log"; sourceTree = "<group>"; };
 		9A4172B520004E790056265A /* build-openssl-1.1.0g.log */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "build-openssl-1.1.0g.log"; sourceTree = "<group>"; };
 		9A4172B820004E790056265A /* aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aes.h; sourceTree = "<group>"; };
@@ -5722,8 +5726,6 @@
 		07CABC0F1B3DFF200009F5B9 /* user */ = {
 			isa = PBXGroup;
 			children = (
-				9A25828024DA17AA0013F50E /* print_task.cpp */,
-				9A25827F24DA17A90013F50E /* print_task.h */,
 				9A5C95412472666A00107FDE /* _.cpp */,
 				9A8EB452244986A80056E362 /* _.h */,
 				9A1E1C5022F0AD85004243B8 /* _const_key.h */,
@@ -5848,6 +5850,8 @@
 				9A1E1CAD22F0ADB8004243B8 /* layout.h */,
 				9A1E1C6022F0ADA7004243B8 /* listing.h */,
 				9A8EB0C4244976870056E362 /* main_frame.h */,
+				9A39BAD824EB248E003C070E /* main_window.cpp */,
+				9A39BADB24EB248E003C070E /* main_window.h */,
 				9A8EAEAB244976590056E362 /* margin.cpp */,
 				9A8EAEEA2449766D0056E362 /* margin.h */,
 				9A1E1C9422F0ADB3004243B8 /* menu_command.cpp */,
@@ -5896,6 +5900,8 @@
 				9ABBCD4B22A1570D00029868 /* primitive_impl.h */,
 				9ABBCD4122A1570B00029868 /* primitive.cpp */,
 				9ABBCD4022A1570B00029868 /* primitive.h */,
+				9A25828024DA17AA0013F50E /* print_task.cpp */,
+				9A25827F24DA17A90013F50E /* print_task.h */,
 				9A1E1C8722F0ADB0004243B8 /* prodevian.h */,
 				9A8EAEC7244976600056E362 /* progress.cpp */,
 				9A8EAF2C2449767C0056E362 /* progress.h */,
@@ -9049,6 +9055,7 @@
 				9A376A7B2409C2D7002D15D3 /* memory_file.h in Headers */,
 				9A9852DE240978D500328439 /* _c_trait_ansi_impl.h in Headers */,
 				9A3767592409C19E002D15D3 /* list.h in Headers */,
+				9A39BADD24EB248F003C070E /* main_window.h in Headers */,
 				9A1E1D9722F0AF69004243B8 /* filters.h in Headers */,
 				9A2489F72453440F00F23D28 /* block.h in Headers */,
 				9A376AB12409C2D8002D15D3 /* set.h in Headers */,
@@ -11649,6 +11656,7 @@
 				9A8EB1312449768B0056E362 /* notify_icon.mm in Sources */,
 				9A8EB1492449768C0056E362 /* form_window.cpp in Sources */,
 				9A24862E2452C48F00F23D28 /* hyperlink.cpp in Sources */,
+				9A39BADC24EB248F003C070E /* main_window.cpp in Sources */,
 				9A3766162409C11C002D15D3 /* binary_operation.cpp in Sources */,
 				FA121C31236E95F200DBF21A /* strx.cpp in Sources */,
 				9A985314240978D500328439 /* _unicode.cpp in Sources */,
@@ -11806,7 +11814,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SYSTEM_HEADER_SEARCH_PATHS = "$(HOME)/__archive/archive/platform-$(PLATFORM_MODIFIER)/include $(WorkspaceDir)/third/include $(WorkspaceDir)/app/_include $(HOME)/__archive/archive/platform-$(PLATFORM_MODIFIER)/third/include/ /Users/camilo/__archive/archive/platform-ios/iPhoneSimulator13.4-x86_64.sdk/include";
+				SYSTEM_HEADER_SEARCH_PATHS = "$(HOME)/__archive/archive/third-$(PLATFORM_MODIFIER)/include $(WorkspaceDir)/third/include $(WorkspaceDir)/app/_include $(HOME)/__archive/archive/third-$(PLATFORM_MODIFIER)/third/include/ /Users/camilo/__archive/archive/platform-ios/iPhoneSimulator13.4-x86_64.sdk/include";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -11840,7 +11848,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SYSTEM_HEADER_SEARCH_PATHS = "$(HOME)/__archive/archive/platform-$(PLATFORM_MODIFIER)/include $(WorkspaceDir)/third/include $(WorkspaceDir)/app/_include $(HOME)/__archive/archive/platform-$(PLATFORM_MODIFIER)/third/include/ /Users/camilo/__archive/archive/platform-ios/iPhoneSimulator13.4-x86_64.sdk/include";
+				SYSTEM_HEADER_SEARCH_PATHS = "$(HOME)/__archive/archive/third-$(PLATFORM_MODIFIER)/include $(WorkspaceDir)/third/include $(WorkspaceDir)/app/_include $(HOME)/__archive/archive/third-$(PLATFORM_MODIFIER)/third/include/ /Users/camilo/__archive/archive/platform-ios/iPhoneSimulator13.4-x86_64.sdk/include";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -12014,7 +12022,7 @@
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SYSTEM_HEADER_SEARCH_PATHS = "$(HOME)/__archive/archive/platform-$(PLATFORM_MODIFIER)/include $(WorkspaceDir)/third/include $(WorkspaceDir)/app/_include $(HOME)/__archive/archive/platform-$(PLATFORM_MODIFIER)/third/include/";
+				SYSTEM_HEADER_SEARCH_PATHS = "$(HOME)/__archive/archive/third-$(PLATFORM_MODIFIER)/include $(WorkspaceDir)/third/include $(WorkspaceDir)/app/_include $(HOME)/__archive/archive/third-$(PLATFORM_MODIFIER)/third/include/";
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir) $(WorkspaceDir)/include $(WorkspaceDir)/platform-$(PLATFORM_MODIFIER) $(WorkspaceDir)/app/_include $(WorkspaceDir)/third/include $(WorkspaceDir)/app . $(PROJECT_DIR) $(HOME)/__archive/sensitive/sensitive/include";
 				USE_HEADERMAP = NO;
 				WARNING_CFLAGS = "";
@@ -12095,7 +12103,7 @@
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
-				SYSTEM_HEADER_SEARCH_PATHS = "$(HOME)/__archive/archive/platform-$(PLATFORM_MODIFIER)/include $(WorkspaceDir)/third/include $(WorkspaceDir)/app/_include $(HOME)/__archive/archive/platform-$(PLATFORM_MODIFIER)/third/include/";
+				SYSTEM_HEADER_SEARCH_PATHS = "$(HOME)/__archive/archive/third-$(PLATFORM_MODIFIER)/include $(WorkspaceDir)/third/include $(WorkspaceDir)/app/_include $(HOME)/__archive/archive/third-$(PLATFORM_MODIFIER)/third/include/";
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir) $(WorkspaceDir)/include $(WorkspaceDir)/platform-$(PLATFORM_MODIFIER) $(WorkspaceDir)/app/_include $(WorkspaceDir)/third/include $(WorkspaceDir)/app . $(PROJECT_DIR) $(HOME)/__archive/sensitive/sensitive/include";
 				USE_HEADERMAP = NO;
 				VALIDATE_PRODUCT = YES;

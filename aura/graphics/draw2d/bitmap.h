@@ -28,7 +28,7 @@ namespace draw2d
       virtual void dump(dump_context & dumpcontext) const;
 
       template < typename POINTER >
-      inline POINTER get_os_data(index i = 0) const
+      inline POINTER get_os_data(i8 i = 0) const
       {
 
          return (POINTER)m_osdata[i];
@@ -36,7 +36,7 @@ namespace draw2d
       }
 
 
-      inline void* get_os_data(index i = 0) const
+      inline void* get_os_data(i8 i = 0) const
       {
 
          return get_os_data < void * >(i);

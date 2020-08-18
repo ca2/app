@@ -33,6 +33,13 @@ public:
    rgb(const rgb & rgb) : m_iR(rgb.m_iR), m_iG(rgb.m_iG), m_iB(rgb.m_iB) { }
 
    rgb & operator =(const ::var & var);
+   
+   float fr() const {return m_iR / 255.f;}
+   float fg() const {return m_iG / 255.f;}
+   float fb() const {return m_iB / 255.f;}
+   double dr() const {return m_iR / 255.;}
+   double dg() const {return m_iG / 255.;}
+   double db() const {return m_iB / 255.;}
 
 };
 
@@ -58,6 +65,8 @@ public:
 
    rgba & operator =(const ::var & var);
 
+   float fa() const {return m_iA / 255.f;}
+   double da() const {return m_iA / 255.;}
 
 };
 

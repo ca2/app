@@ -40,7 +40,7 @@ namespace draw2d_quartz2d
    }
 
 
-   bool region::create(::draw2d::graphics * pgraphics)
+   bool region::create(::draw2d::graphics * pgraphics, i8 iCreate)
    {
 
       m_path = CGPathCreateMutable();

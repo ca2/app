@@ -133,7 +133,7 @@ namespace draw2d
    }
 
 
-   bool object::create(::draw2d::graphics* pgraphics, ::index iCreate)
+   bool object::create(::draw2d::graphics * pgraphics, i8 iCreate)
    {
 
       return true;

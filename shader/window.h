@@ -40,7 +40,7 @@ namespace app_shader
 
       void update_shader();
 
-      virtual bool on_click(const ::user::item& item);
+      virtual bool on_click(const ::user::item& item) override;
 
 
    };

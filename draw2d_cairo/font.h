@@ -38,7 +38,7 @@ namespace draw2d_cairo
       virtual ~font();
 
 
-      virtual bool create(::draw2d::graphics * pgraphics, ::index iCreate) override;
+      virtual bool create(::draw2d::graphics * pgraphics, i8 iCreate) override;
       virtual void destroy() override;
 
 

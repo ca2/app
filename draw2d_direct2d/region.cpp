@@ -157,7 +157,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool region::create(::draw2d::graphics* pgraphics, ::index iCreate)
+   bool region::create(::draw2d::graphics * pgraphics, i8 iCreate)
    {
 
       m_osdata[0] = get(pgraphics);

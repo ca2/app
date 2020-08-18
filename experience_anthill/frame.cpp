@@ -548,7 +548,7 @@ namespace experience
                      while (i < rectGrip.width() - 5 + 1)
                      {
 
-                        pgraphics->draw3d_rect_dim(rectGrip.left + i, rectGrip.top, 3, rectGrip.height(), ARGB(84 + 23, 230, 230, 230), ARGB(84 + 23, 108 + 23, 108 + 23, 108 + 23));
+                        pgraphics->draw_3drect(::rect_dim(rectGrip.left + i, rectGrip.top, 3, rectGrip.height()), ARGB(110, 230, 230, 230), ARGB(110, 130, 130, 130));
 
                         i += 5;
 

@@ -44,12 +44,12 @@ namespace app_app
 
       pgraphics->fill_solid_rect_dim(x, y + dBase * 6.0, dBase * 11.0, dBase * 5.0, ARGB(127, 255, 110, 150));
 
-      rectClient.deflate((long)dBase);
+      rectClient.deflate((LONG) dBase);
 
       for (int i = 0; i < dBase; i++)
       {
 
-         pgraphics->draw_rect(rectClient, ARGB(255, 127, 127, 127));
+         pgraphics->draw_rect(rectClient, __acolor(255, 127, 127, 127));
 
          rectClient.deflate(1, 1);
 

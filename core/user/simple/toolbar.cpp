@@ -1106,6 +1106,9 @@ bool simple_toolbar::_001GetElementRect(index iItem, RECT * prect, ::user::e_ele
 
       }
             
+         default:
+            break;
+            
       }
             
       if(estate & ::user::e_state_pressed)

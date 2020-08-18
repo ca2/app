@@ -259,7 +259,7 @@ namespace experience
                   path->add_line(rectClient.left,rectBorder.top);
                   path->add_line(rectBorder.right,rectBorder.top);
 
-                  path->end_figure(false);
+                  path->close_figure();
 
                   pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),ARGB(230,235,235,230),ARGB(250,255,255,250));
 
@@ -300,7 +300,7 @@ namespace experience
                   path->add_line(rectBorder.right,rectBorder.top);
                   path->add_line(rectBorder.right,rectBorder.bottom);
 
-                  path->end_figure(true);
+                  path->close_figure();
 
                   if (ptab->m_itemHover == iTab
                      && ptab->m_itemHover != ::user::element_close_tab_button
@@ -398,7 +398,7 @@ namespace experience
 
                   path->add_line(rectBorder.right - 1,rectClient.bottom);
 
-                  path->end_figure(false);
+                  path->close_figure();
 
                   //pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),ARGB(230,235,235,230),ARGB(250,255,255,250));
 
@@ -454,7 +454,7 @@ namespace experience
 
                   path->add_line(rectBorder.right - 1,rectClient.bottom);
 
-                  path->end_figure(true);
+                  path->close_figure();
 
                   if (ptab->m_itemHover == iTab
                      && ptab->m_itemHover != ::user::element_close_tab_button
@@ -1023,7 +1023,9 @@ namespace experience
          rectSeparator.right = rectSeparator.left + 2;
          rectSeparator.top = rectImage.top;
          rectSeparator.bottom = rectImage.bottom;
-         pgraphics->draw3d_rect(rectSeparator, ARGB(255, 92, 92, 92), ARGB(255, 255, 255, 255));
+         
+         pgraphics->draw_3drect(rectSeparator, ARGB(255, 92, 92, 92), ARGB(255, 255, 255, 255));
+         
       }
       else
       {
@@ -1046,7 +1048,8 @@ namespace experience
                   rectItem.height(),
                   RGB(255, 255, 250), 208);
 
-                  pgraphics->draw3d_rect(rectItem, ARGB(255, 127, 127, 127), ARGB(255, 255, 255, 255));
+                  pgraphics->draw_rect(rectItem, ARGB(255, 127, 127, 127));
+                  
                }
 
                if (uiImage != 0xffffffffu)
@@ -1168,7 +1171,7 @@ namespace experience
             if (estate & ::user::e_state_checked)
             {
 
-               pgraphics->draw3d_rect(rectItem, ARGB(255, 127, 127, 127), ARGB(255, 255, 255, 255));
+               pgraphics->draw_3drect(rectItem, ARGB(255, 127, 127, 127), ARGB(255, 255, 255, 255));
 
             }
 
@@ -1298,7 +1301,7 @@ namespace experience
                   rectItem.height(),
                   RGB(255, 255, 250), 208);
 
-                  pgraphics->draw3d_rect(rectItem, ARGB(255, 127, 127, 127), ARGB(255, 255, 255, 255));
+                  pgraphics->draw_3drect(rectItem, ARGB(255, 127, 127, 127), ARGB(255, 255, 255, 255));
                }
 
                if (uiImage != 0xffffffffu)
@@ -1420,7 +1423,7 @@ namespace experience
             if (estate & ::user::e_state_checked)
             {
 
-               pgraphics->draw3d_rect(rectItem, ARGB(255, 127, 127, 127), ARGB(255, 255, 255, 255));
+               pgraphics->draw_3drect(rectItem, ARGB(255, 127, 127, 127), ARGB(255, 255, 255, 255));
 
             }
 

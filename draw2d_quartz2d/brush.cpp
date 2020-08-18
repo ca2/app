@@ -65,7 +65,7 @@ namespace draw2d_quartz2d
    }
 
    
-   bool brush::create(::draw2d::graphics * pgraphics)
+   bool brush::create(::draw2d::graphics * pgraphics, i8 iCreate)
    {
       
       if(m_etype == type_linear_gradient_point_color || m_etype == type_radial_gradient_color)

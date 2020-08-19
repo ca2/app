@@ -404,13 +404,13 @@ public:
 
    virtual ::estatus call_request(::create * pcreate);
 
-   // former user::server
-   virtual ::user::document* open_new_document(::aura::application* pappOnBehalfOf);
+   //// former user::server
+   //virtual ::user::document* open_new_document(::aura::application* pappOnBehalfOf);
    virtual void on_request(::create* pcreate);
-   virtual ::user::document* open_document_file(::aura::application* pappOnBehalfOf);
-   virtual ::user::document* open_document_file(::aura::application* pappOnBehalfOf, const var& varFile, const var & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = window_flag_none, ::id id = ::id());
-   virtual ::user::document* open_document_file(::aura::application* pappOnBehalfOf, const var& varFile);
-   virtual ::user::document* create_subdocument(::user::impact_data* pimpactdata);
+   //virtual ::user::document* open_document_file(::aura::application* pappOnBehalfOf);
+   //virtual ::user::document* open_document_file(::aura::application* pappOnBehalfOf, const var& varFile, const var & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = window_flag_none, ::id id = ::id());
+   //virtual ::user::document* open_document_file(::aura::application* pappOnBehalfOf, const var& varFile);
+   //virtual ::user::document* create_subdocument(::user::impact_data* pimpactdata);
 
 
    virtual ::estatus run() override;

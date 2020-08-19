@@ -25,9 +25,9 @@ namespace aura
       virtual public ::application_container,
       virtual public ::database::client,
       virtual public ::user::form_callback,
-      virtual public ::user::impact_creator,
-      virtual public ::filemanager::callback,
-      virtual public ::user::document_manager_container
+//      virtual public ::user::impact_creator,
+      virtual public ::filemanager::callback
+      //, virtual public ::user::document_manager_container
    {
    public:
 
@@ -298,7 +298,9 @@ namespace aura
 
 
 
-      virtual bool do_prompt_file_name(var & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
+      //virtual bool do_prompt_file_name(var & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
+      //virtual bool do_prompt_file_name(var& varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
+      //user virtual bool do_prompt_file_name(var& varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
 
 
       virtual void process_message_filter(i32 code, ::message::message * pmessage) override;
@@ -344,7 +346,7 @@ namespace aura
       virtual i32 hotplugin_host_starter_start_sync(const char * pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
       virtual i32 hotplugin_host_host_starter_start_sync(const char * pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
 
-      virtual void on_update_view(::user::impact * pview, ::user::impact * pviewSender, LPARAM lHint, object * pHint);
+      //virtual void on_update_view(::user::impact * pview, ::user::impact * pviewSender, LPARAM lHint, object * pHint);
 
       virtual void on_control_event(::user::control_event* pevent) override;
       virtual void on_notify_control_event(::user::control_event* pevent);
@@ -352,8 +354,8 @@ namespace aura
 
 
 
-      virtual bool on_open_document(::user::document * pdocument, var varFile);
-      virtual bool on_save_document(::user::document * pdocument, var varFile);
+      //user virtual bool on_open_document(::user::document * pdocument, var varFile);
+      //user virtual bool on_save_document(::user::document * pdocument, var varFile);
 
 
 
@@ -821,7 +823,7 @@ namespace aura
       virtual string preferred_experience();
 
 
-      virtual ::user::document * place_hold(::user::interaction * pinteraction);
+      // user virtual ::user::document * place_hold(::user::interaction * pinteraction);
 
 
       virtual bool post_message(UINT message, WPARAM wParam = 0, lparam lParam = 0) override;
@@ -857,7 +859,7 @@ namespace aura
       virtual void close(e_end eend);
 
 
-      virtual __pointer(::user::document) defer_create_view(string strView, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::id & id = nullptr);
+      //user virtual __pointer(::user::document) defer_create_view(string strView, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::id & id = nullptr);
 
 
       virtual void HideApplication();
@@ -909,7 +911,7 @@ namespace aura
 
 
 
-      virtual void on_create_split_view(::user::split_view* pview);
+      //user virtual void on_create_split_view(::user::split_view* pview);
 
 
       //virtual ::type control_type_from_id(const ::id& id, ::user::e_control_type& econtroltype) override;
@@ -1143,7 +1145,7 @@ namespace aura
       //      virtual ::aura::file_system & file_system();
       //virtual bool _001OnDDECommand(const char* pcsz) override;
 
-      virtual ::user::document* _001OpenDocumentFile(var varFile);
+      //user virtual ::user::document* _001OpenDocumentFile(var varFile);
       //virtual bool on_open_document_file(var varFile) override;
       //DECL_GEN_SIGNAL(_001OnFileNew) override;
 
@@ -1306,7 +1308,7 @@ namespace aura
       virtual void data_on_after_change(::database::client* pclient, const ::database::key& id, const var& var, ::update* pupdate) override;
 
 
-      virtual ::user::document* open_document_file(::object* pobject, const char* pszFileName);
+      //user virtual ::user::document* open_document_file(::object* pobject, const char* pszFileName);
 
 
 
@@ -1319,7 +1321,7 @@ namespace aura
 
       //virtual void set_form_impact_system(::user::impact_system * pdoctemplate,::user::impact_system * pdoctemplateChild,::user::impact_system * pdoctemplatePlaceHolder);
 
-      ::user::document* hold(__pointer(::user::interaction) pinteraction);
+      //user ::user::document* hold(__pointer(::user::interaction) pinteraction);
 
       //virtual bool platform_open_by_file_extension(int iEdge,const char * pszPathName,application_bias * papplicationbias = nullptr);
       //virtual bool platform_open_by_file_extension(int iEdge,::create * pcc);
@@ -1333,7 +1335,7 @@ namespace aura
       //      virtual void set_cred(string strToken, const char * pszUsername, const char * pszPassword) override;
       //      virtual void set_cred_ok(string strToken, bool bOk) override;
 
-      virtual void remove_document_template(::user::impact_system* pimpactsystem);
+      //user virtual void remove_document_template(::user::impact_system* pimpactsystem);
 
       //virtual bool _001OnAgreeExit() override;
       //virtual void _001OnFranceExit() override;
@@ -1371,7 +1373,7 @@ namespace aura
       //virtual ::type control_type_from_id(const ::id& id, ::user::e_control_type& econtroltype) override;
 
 
-      virtual void on_create_impact(::user::impact_data* pimpactdata) override;
+      //virtual void on_create_impact(::user::impact_data* pimpactdata) override;
       //void process_message_filter(i32 code, ::message::message* pmessage) override;
 
 

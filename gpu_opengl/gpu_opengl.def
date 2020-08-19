@@ -2,7 +2,7 @@ LIBRARY "gpu_opengl"
 
 
 EXPORTS
-imaging_factory_exchange
+gpu_opengl_factory_exchange
 
 
 

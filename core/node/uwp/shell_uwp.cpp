@@ -7,7 +7,7 @@
 //
 #include "framework.h"
 #include "aura/compress/zip/context.h"
-#include "aura/user/user/shell.h"
+#include "aura/user/shell.h"
 #include "shell_uwp.h"
 
 

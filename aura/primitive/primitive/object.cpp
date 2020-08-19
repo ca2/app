@@ -717,12 +717,12 @@ bool object::enable_application_events(bool bEnable)
 }
 
 
-::user::document* object::open_new_document(::aura::application* pappOnBehalfOf)
-{
-
-   return open_document_file(pappOnBehalfOf, __visible(true));
-
-}
+//::user::document* object::open_new_document(::aura::application* pappOnBehalfOf)
+//{
+//
+//   return open_document_file(pappOnBehalfOf, __visible(true));
+//
+//}
 
 
 void object::on_request(::create* pcreate)
@@ -744,48 +744,48 @@ void object::on_request(::create* pcreate)
 }
 
 
-::user::document* object::open_document_file(::aura::application* pappOnBehalfOf)
-{
-
-   return open_document_file(pappOnBehalfOf, ::type_empty_argument);
-
-}
-
-
-::user::document* object::open_document_file(::aura::application* pappOnBehalfOf, const var& varFile, const ::var & varOptions, ::user::interaction* puiParent, ewindowflag eflag, ::id id)
-{
-
-   auto pcreate = __new(::create(pappOnBehalfOf, pappOnBehalfOf->m_strAppId, varFile, varOptions, puiParent, eflag, id));
-
-   do_request(pcreate);
-
-   return ::user::__document(pcreate);
-
-}
+//::user::document* object::open_document_file(::aura::application* pappOnBehalfOf)
+//{
+//
+//   return open_document_file(pappOnBehalfOf, ::type_empty_argument);
+//
+//}
 
 
-::user::document* object::open_document_file(::aura::application* pappOnBehalfOf, const var& varFile)
-{
+//::user::document* object::open_document_file(::aura::application* pappOnBehalfOf, const var& varFile, const ::var & varOptions, ::user::interaction* puiParent, ewindowflag eflag, ::id id)
+//{
+//
+//   auto pcreate = __new(::create(pappOnBehalfOf, pappOnBehalfOf->m_strAppId, varFile, varOptions, puiParent, eflag, id));
+//
+//   do_request(pcreate);
+//
+//   return ::user::__document(pcreate);
+//
+//}
 
-   return open_document_file(pappOnBehalfOf, varFile, ::type_empty_argument);
 
-}
+//::user::document* object::open_document_file(::aura::application* pappOnBehalfOf, const var& varFile)
+//{
+//
+//   return open_document_file(pappOnBehalfOf, varFile, ::type_empty_argument);
+//
+//}
 
 
-::user::document* object::create_subdocument(::user::impact_data* pimpactdata)
-{
-
-   auto pdocument = open_document_file(
-      pimpactdata->m_pplaceholder->get_context_application(),
-      ::type_null,
-      __visible(true),
-      pimpactdata->m_pplaceholder);
-
-   pimpactdata->m_pdocument = pdocument;
-
-   return pdocument;
-
-}
+//::user::document* object::create_subdocument(::user::impact_data* pimpactdata)
+//{
+//
+//   auto pdocument = open_document_file(
+//      pimpactdata->m_pplaceholder->get_context_application(),
+//      ::type_null,
+//      __visible(true),
+//      pimpactdata->m_pplaceholder);
+//
+//   pimpactdata->m_pdocument = pdocument;
+//
+//   return pdocument;
+//
+//}
 
 
 

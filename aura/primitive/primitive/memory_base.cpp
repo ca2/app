@@ -326,7 +326,7 @@ void memory_base::random_bytes(::count c)
    if (get_size() > 0)
    {
 
-      ::aura::system::g_p->math().random_bytes(get_data(), get_size());
+      ::get_context_system()->math().random_bytes(get_data(), get_size());
 
    }
 
@@ -1191,7 +1191,7 @@ void memory_base::to_base64(string & str, memsize pos, memsize size)
 
    }
 
-   str = ::aura::system::g_p->base64().encode(&get_data()[pos], MIN(get_size() - pos, size));
+   str = ::get_context_system()->base64().encode(&get_data()[pos], MIN(get_size() - pos, size));
 
 }
 
@@ -1210,7 +1210,7 @@ string memory_base::to_base64(memsize pos, memsize size)
 void memory_base::from_base64(const char * psz, strsize nCount)
 {
 
-   ::aura::system::g_p->base64().decode(*this, psz, nCount);
+   ::get_context_system()->base64().decode(*this, psz, nCount);
 
 }
 

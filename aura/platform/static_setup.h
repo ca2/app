@@ -4,42 +4,13 @@
 //
 //  Created by Camilo Sasuke Tsumanuma on 18/08/19.
 //
-
-
 #pragma once
-
-
-
 
 
 class node_data_exchange;
 
 
 void aura_set_get_new_application(PFN_NEW_AURA_APPLICATION pnewapplication);
-
-
-//template < typename APPLICATION >
-//class static_factory :
-//   virtual public ::aura::application
-//{
-//public:
-//
-//
-//   static  ::aura::application* new_application() { return new APPLICATION; }
-//
-//   ___application()
-//   {
-//
-//      set_aura_application_factory(&___application < APPLICATION >::new_application);
-//
-//   }
-//
-//
-//
-//};
-//
-
-
 
 
 class CLASS_DECL_AURA static_setup 
@@ -138,4 +109,6 @@ public:
 
 #define __namespace_object_factory(OBJECT, EOBJECT) \
 ::static_object_factory < OBJECT > TOKEN_AT_LINE(g_library_factory)(EOBJECT);
+
+
 

@@ -10,7 +10,7 @@ extern CLASS_DECL_AURA bool g_bTraceEnabled;
 #endif //NNDEBUG
 
 #ifdef NNDEBUG
-#define _DUMP( exp ) (void)(*::aura::system::g_p->m_pdumpcontext<<exp)
+#define _DUMP( exp ) (void)(*::get_context_system()->m_pdumpcontext<<exp)
 #else //NNDEBUG
 #define _DUMP( exp )
 #endif //!NNDEBUG

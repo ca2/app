@@ -838,7 +838,7 @@ string __get_text(string str)
    if (papp == nullptr)
    {
 
-      //return Sys(::aura::system::g_p).__get_text(str);
+      //return Sys(::get_context_system()).__get_text(str);
 
       return str;
 

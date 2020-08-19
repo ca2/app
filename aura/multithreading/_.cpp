@@ -47,7 +47,7 @@ namespace multithreading
 
       //return s_piaThread2->contains(id);
 
-      return ::aura::system::g_p->get_thread(id) != nullptr;
+      return ::get_context_system()->get_thread(id) != nullptr;
 
    }
 
@@ -55,7 +55,7 @@ namespace multithreading
    bool thread_registered(::thread * pthread)
    {
 
-      return ::aura::system::g_p->get_thread_id(pthread) != 0;
+      return ::get_context_system()->get_thread_id(pthread) != 0;
 
    }
 
@@ -63,36 +63,7 @@ namespace multithreading
    void thread_register(ITHREAD ithread, ::thread * pthread)
    {
 
-      //cslock lock(s_pcs2);
-
-      //if (s_pthreadptra2->contains(pthread))
-      //{
-
-      //   __throw(invalid_argument_exception());
-
-      //}
-
-      //if(id == 0)
-      //{
-
-      //   TRACE("WHAT?!?!?");
-
-      //}
-
-      //if (s_piaThread2->contains(id))
-      //{
-
-      //   __throw(invalid_argument_exception());
-
-      //}
-
-      //pthread->set_os_int(id);
-
-      //s_pthreadptra2->add(pthread);
-
-      //s_piaThread2->add(id);
-
-      ::aura::system::g_p->set_thread(ithread, pthread);
+      ::get_context_system()->set_thread(ithread, pthread);
 
    }
 
@@ -100,29 +71,7 @@ namespace multithreading
    void thread_unregister(ITHREAD ithread, ::thread * pthread)
    {
 
-      //cslock lock(s_pcs2);
-
-      //if (!s_pthreadptra2->contains(pthread))
-      //{
-
-      //   __throw(invalid_argument_exception());
-
-      //}
-
-      //auto id = pthread->get_os_int();
-
-      //if (!s_piaThread2->contains(id))
-      //{
-
-      //   __throw(invalid_argument_exception());
-
-      //}
-
-      //s_pthreadptra2->remove(pthread);
-
-      //s_piaThread2->remove(id);
-
-      ::aura::system::g_p->unset_thread(ithread, pthread);
+      ::get_context_system()->unset_thread(ithread, pthread);
 
    }
 
@@ -144,9 +93,9 @@ namespace multithreading
 
       }
 
-      sync_lock sl(&::aura::system::g_p->m_mutexThread);
+      sync_lock sl(&::get_context_system()->m_mutexThread);
 
-      for (auto & pair : ::aura::system::g_p->m_threadidmap)
+      for (auto & pair : ::get_context_system()->m_threadidmap)
       {
 
          try
@@ -175,9 +124,9 @@ namespace multithreading
    void post_quit_to_all_threads()
    {
 
-      sync_lock sl(&::aura::system::g_p->m_mutexThread);
+      sync_lock sl(&::get_context_system()->m_mutexThread);
 
-      for (auto& pair : ::aura::system::g_p->m_threadidmap)
+      for (auto& pair : ::get_context_system()->m_threadidmap)
       {
 
          try
@@ -199,9 +148,9 @@ namespace multithreading
    CLASS_DECL_AURA void post_to_all_threads(UINT message, WPARAM wparam, LPARAM lparam)
    {
 
-      sync_lock sl(&::aura::system::g_p->m_mutexThread);
+      sync_lock sl(&::get_context_system()->m_mutexThread);
 
-      for (auto& pair : ::aura::system::g_p->m_threadidmap)
+      for (auto& pair : ::get_context_system()->m_threadidmap)
       {
 
          try
@@ -218,54 +167,6 @@ namespace multithreading
       }
 
    }
-
-   //CLASS_DECL_AURA bool __wait_threading_count(::duration duration)
-   //{
-
-   //   tick tickStart = ::tick::now();
-
-   //   tick tickDelay = duration.total_milliseconds();
-
-   //   single_lock sl(::multithreading::s_pmutex);
-
-   //   while (tickStart.elapsed() < tickDelay)
-   //   {
-
-   //      sl.lock();
-
-   //      if (::multithreading::s_pthreadptra->get_count() <= 0)
-   //      {
-
-   //         return true;
-
-   //      }
-
-   //      for (index i = 0; i < ::multithreading::s_pthreadptra->get_count(); i++)
-   //      {
-
-   //         try
-   //         {
-
-   //            ::multithreading::s_pthreadptra->element_at(i)->finalize();
-
-   //         }
-   //         catch (...)
-   //         {
-
-   //         }
-
-   //      }
-
-   //      sl.unlock();
-
-   //      Sleep(100);
-
-   //   }
-
-   //   return false;
-
-   //}
-
 
 
    CLASS_DECL_AURA __pointer(::thread) calc_parent(::thread * pthread)
@@ -344,225 +245,7 @@ namespace multithreading
    }
 
 
-//   CLASS_DECL_AURA bool wait_threads(::duration duration, __pointer_array(::thread) threadaExcept)
-//   {
-//
-//      tick tickStart = ::tick::now();
-//
-//      tick tickDelay = duration.total_milliseconds();
-//
-//      __pointer_array(::thread) threada;
-//
-//      bool bFound;
-//
-//      while (tickStart.elapsed() < tickDelay)
-//      {
-//
-//         bFound = false;
-//
-//         {
-//
-//            cslock lock(s_pcs2);
-//
-//            for (auto & pthread : *s_pthreadptra2)
-//            {
-//
-//               if (!threadaExcept.contains(pthread))
-//               {
-//
-//                  bFound = true;
-//
-//                  break;
-//
-//               }
-//
-//            }
-//
-//         }
-//
-//         if (!bFound)
-//         {
-//
-//            return true;
-//
-//         }
-//
-//         for (auto & pthread : threada)
-//         {
-//
-//            try
-//            {
-//
-//               pthread->finalize();
-//
-//            }
-//            catch (...)
-//            {
-//
-//            }
-//
-//         }
-//
-//         Sleep(100);
-//
-//      }
-//
-//      return false;
-//
-//   }
-
-
 } // namespace multithreading
-
-
-//cflag < e_thread_flag > & thread_flags()
-//{
-//
-//   if (t_pflags == nullptr)
-//   {
-//
-//      t_pflags = new u64;
-//
-//      *t_pflags = 0ULL;
-//
-//   }
-//
-//   return (cflag < e_thread_flag > &) *t_pflags;
-//
-//}
-
-
-//CLASS_DECL_AURA void thread_set_flag(const cflag < e_thread_flag > & eflag, bool bSet)
-//{
-//
-//   auto & u = thread_flags();
-//
-//   if (bSet)
-//   {
-//
-//      u.add(eflag);
-//
-//   }
-//   else
-//   {
-//
-//      u.remove(eflag);
-//
-//   }
-//
-//}
-
-//CLASS_DECL_AURA bool thread_get_flag(e_thread_flag eflag)
-//{
-//
-//   if(t_pflags == nullptr)
-//   {
-//
-//      return false;
-//
-//   }
-//
-//   return (thread_flags() & eflag) != 0ULL;
-//
-//}
-
-
-//CLASS_DECL_AURA void thread_set_fast_path(bool bFastPath)
-//{
-//
-//   thread_set_flag(thread_flag_fast_path, bFastPath);
-//
-//}
-//
-//
-//CLASS_DECL_AURA bool thread_is_fast_path()
-//{
-//
-//   return thread_get_flag(thread_flag_fast_path);
-//
-//}
-
-
-//CLASS_DECL_AURA void thread_set_zip_is_dir(bool bZipIsDir)
-//{
-//
-//   thread_set_flag(thread_flag_zip_is_dir, bZipIsDir);
-//
-//}
-//
-//
-//CLASS_DECL_AURA bool thread_set(id_thread_zip_is_dir)
-//{
-//
-//   return thread_get_flag(thread_flag_zip_is_dir);
-//
-//}
-
-
-//CLASS_DECL_AURA void thread_set_is_timer(bool bIsTimer)
-//{
-//
-//   thread_set_flag(thread_flag_is_timer, bIsTimer);
-//
-//}
-//
-//
-//CLASS_DECL_AURA bool thread_is_timer()
-//{
-//
-//   return thread_get_flag(thread_flag_is_timer);
-//
-//}
-//
-//
-//CLASS_DECL_AURA void thread_set_resolve_alias(bool bResolveAlias)
-//{
-//
-//   thread_set_flag(thread_flag_resolve_alias, bResolveAlias);
-//
-//}
-//
-//
-//CLASS_DECL_AURA bool thread_resolve_alias()
-//{
-//
-//   return thread_get_flag(thread_flag_resolve_alias);
-//
-//}
-
-
-//thread_pointer ::get_thread();
-
-//::thread * get_thread(const ::set & setCreateThread)
-//{
-//
-//   ::thread * pthread = ::get_thread();
-//
-//   if (pthread == nullptr)
-//   {
-//
-//      //if (__optional_is_true(setCreateThread, !thread_get_flag(thread_flag_prevent_create_thread)))
-//      //{
-//
-//      //   __keep(thread_flag_prevent_create_thread);
-//
-//      //   //sleep(10_s);
-//
-//      //   //thread_
-//
-//      //   pthread = new thread();
-//
-//      //   pthread->initialize(::aura::system::g_p);
-//
-//      //   ::get_thread() = pthread;
-//
-//      //}
-//
-//   }
-//
-//   return pthread;
-//
-//}
 
 
 CLASS_DECL_AURA ::thread * get_thread_raw()
@@ -571,6 +254,7 @@ CLASS_DECL_AURA ::thread * get_thread_raw()
    return ::get_thread();
 
 }
+
 
 bool thread_get_run()
 {
@@ -582,7 +266,7 @@ bool thread_get_run()
       {
          ////////// and have short life, so it is safe to keep it running
          //return true;
-         return ::aura::system::g_p->thread_get_run();
+         return ::get_context_system()->thread_get_run();
 
       }
 
@@ -597,20 +281,6 @@ bool thread_get_run()
    return false;
 
 }
-
-
-//void defer_run_thread()
-//{
-//
-//   if (!thread_get_run())
-//   {
-//
-//      __throw(exit_exception(::get_thread()));
-//
-//   }
-//
-//}
-
 
 
 namespace multithreading
@@ -631,7 +301,6 @@ namespace multithreading
       return post_quit_and_wait(::get_thread(), duration);
 
    }
-
 
 
    void set_finish(::thread * pthread)
@@ -711,65 +380,11 @@ namespace multithreading
    }
 
 
-
-
 } // namespace multithreading
 
 
-
-
-
-
-
-
-//__pointer(thread) begin_thread(
-//::object * pobject,
-//thread_procedure procedure,
-//thread_parameter parameter,
-//e_priority epriority,
-//UINT nStackSize,
-//u32 dwCreateFlags,
-//LPSECURITY_ATTRIBUTES pSecurityAttrs,
-
-//ITHREAD * puiId,
-//::status::result * presult)
-//{
-//
-//   ASSERT(procedure != nullptr);
-//
-//   auto pthread = __new(thread(pobject, procedure, parameter));
-//
-//   ASSERT_VALID(pthread);
-//
-//   if(!pthread->simplecreate_thread(epriority, nStackSize, dwCreateFlags, pSecurityAttrs, puiId, presult))
-
-//   {
-//
-//      return nullptr;
-//
-//   }
-//
-//   return pthread;
-//
-//}
-
-
-
-
-
-
-
-//::mutex & user_mutex()
-//{
-//
-//   //static ::mutex * s_pmutexUser = new ::mutex();
-//
-//   //return *s_pmutexUser;
-//   return *((::mutex *)nullptr);
-//
-//}
-
 ::mutex * s_pmutexMessageDispatch = nullptr;
+
 
 ::mutex & message_dispatch_mutex()
 {
@@ -778,7 +393,6 @@ namespace multithreading
    return *s_pmutexMessageDispatch;
 
 }
-
 
 
 ::context * get_context()
@@ -871,8 +485,9 @@ void set_global_application(::aura::application* papp)
 
 }
 
+::aura::system * g_paurasystem = nullptr;
 
-::aura::system * get_context_system()
+CLASS_DECL_AURA ::aura::system * get_context_system()
 {
 
    thread * pthread = get_thread();
@@ -880,7 +495,7 @@ void set_global_application(::aura::application* papp)
    if (pthread == nullptr)
    {
 
-      return ::aura::system::g_p;
+      return g_paurasystem;
 
    }
 
@@ -926,7 +541,7 @@ bool do_events()
       try
       {
 
-         ::aura::system* psystem = ::aura::system::g_p;
+         ::aura::system* psystem = ::get_context_system();
 
          if (::is_set(psystem))
          {

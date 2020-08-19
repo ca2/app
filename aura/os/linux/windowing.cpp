@@ -2886,7 +2886,7 @@ void x11_thread(osdisplay_data * pdisplaydata)
 
    int retval = fcntl(g_fdX11[0], F_SETFL, fcntl(g_fdX11[0], F_GETFL) | O_NONBLOCK);
 
-   while(::aura::system::g_p != nullptr && ::thread_get_run())
+   while(::get_context_system() != nullptr && ::thread_get_run())
    {
 
       try
@@ -5032,7 +5032,7 @@ osdisplay_data * x11_main_display();
 void x11_start()
 {
 
-   auto psystem = ::aura::system::g_p;
+   auto psystem = ::get_context_system();
 
    auto psession = psystem->get_context_session();
 

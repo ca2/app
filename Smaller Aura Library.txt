@@ -1,0 +1,31 @@
+
+
+                        aura.dll Release (Win32)      aura.lib Static Release (Win32)    helloaura.exe Static Release (Win32)
+2020-08-18 01:38        17,180kb                      189,893kb                          12,187kb
+
+Tear PCRE2 (Perl Compatible Regular Expressions II) from aura (no pcre.dll (435kb) for DLL build, no pcre.lib for final executable Static Build)
+2020-08-18 01:4~        17,180kb                      189,628kb                          11,480kb
+
+Tear SQLITE3 from aura (no sqlite.dll (675kb) for DLL build, no sqlite.lib for final executable Static Build)
+from Wikipedia: "SQLite is a relational database management system contained in a C library.
+In contrast to many other database management systems, SQLite is not a client–server database engine.
+Rather, it is embedded into the end program."
+2020-08-18 02:52        17,130kb                      189,260kb                          11,420kb
+
+Tear xml extras
+2020-08-18 03:03        17,093kb                      187,021kb                          11,402kb
+
+Tear xmlite - Added-Implemented ::data::node (as good transport for markup language data)
+2020-08-18 05:04        16,896kb                      183,988kb                          11,281kb
+
+Tear userpresence (and experience filter and folder, just a header file (_const.h and moved to user now under aura root))
+2020-08-18 06:04        16,877kb                      183,639kb                          11,271kb
+
+Tear notification/notify icon from aura
+2020-08-18 06:31        16,778kb                      182,363kb                          11,218kb
+
+Tear document/view architecture classes from aura
+2020-08-18 06:31        16,071kb                      173,727kb                          10,820kb
+
+
+Tearing some controls from user...

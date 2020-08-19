@@ -77,6 +77,9 @@ namespace app_app
    }
 
 
+#ifdef _DEBUG
+
+
    int64_t application::add_ref(OBJ_REF_DBG_PARAMS_DEF)
    {
 

@@ -111,7 +111,9 @@ namespace simpledb
 
                auto pserver = m_pstorage->m_pserver;
 
-               __pointer(::sqlite::database) pdatabase = pserver->get_local_database();
+               //__pointer(::sqlite::database) pdatabase = pserver->get_local_database();
+
+               __pointer(::database::database) pdatabase = pserver->get_local_database();
 
                if (!pdatabase)
                {
@@ -125,6 +127,8 @@ namespace simpledb
                string str;
 
                sync_lock slDatabase(pdatabase->mutex());
+
+#ifdef COMPILE_WITH_SQLITE
 
                {
 
@@ -190,6 +194,8 @@ namespace simpledb
                   res = sqlite3_step(pstorage->m_pstmtReplace);
 
                }
+
+#endif
 
             }
             catch (...)

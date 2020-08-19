@@ -27,30 +27,30 @@
 //       {
 // // xxx            C_RUNTIME_ERRORCHECK_SPRINTF(_snprintf_s(sz, _countof(sz), _countof(sz) - 1, "unknown object at $%p, %u bytes long\n", pvData, nBytes));
 //       }
-//       else if(::aura::system::g_p->m_pdumpcontext->GetDepth() > 0)
+//       else if(::get_context_system()->m_pdumpcontext->GetDepth() > 0)
 //       {
 //          // long form
-//          pobject->dump(*::aura::system::g_p->m_pdumpcontext);
-//          *::aura::system::g_p->m_pdumpcontext << "\n";
+//          pobject->dump(*::get_context_system()->m_pdumpcontext);
+//          *::get_context_system()->m_pdumpcontext << "\n";
 //       }
 //       if(false) // else
 //       {
 //          //::object & obj = *pobject;
 //          // short form
 // // xxx         C_RUNTIME_ERRORCHECK_SPRINTF(_snprintf_s(sz, _countof(sz), _countof(sz) - 1, "a %hs object at $%p, %u bytes long\n", typeid(obj).name(), pvData, nBytes));
-//          *::aura::system::g_p->m_pdumpcontext << sz;
+//          *::get_context_system()->m_pdumpcontext << sz;
 //       }
 //    }
 //    catch(...)
 //    {
-//       *::aura::system::g_p->m_pdumpcontext << sz;
+//       *::get_context_system()->m_pdumpcontext << sz;
 //    }
 // }
 
 // i32 __cdecl __crt_report_hook(i32 nRptType, char *szMsg, i32* pResult)
 // {
 //    // no hook on asserts or when m_pFile is nullptr
-//    if (nRptType == _CRT_ASSERT || ::aura::system::g_p->m_pdumpcontext->m_pfile == nullptr)
+//    if (nRptType == _CRT_ASSERT || ::get_context_system()->m_pdumpcontext->m_pfile == nullptr)
 //       return FALSE;
 
 //    ASSERT( pResult != nullptr );
@@ -61,9 +61,9 @@
 //    if( szMsg == nullptr )
 //       __throw(invalid_argument_exception());
 
-//    // non-nullptr m_pFile, so go through ::aura::system::g_p->m_pdumpcontext for the message
+//    // non-nullptr m_pFile, so go through ::get_context_system()->m_pdumpcontext for the message
 //    *pResult = FALSE;
-//    *::aura::system::g_p->m_pdumpcontext << szMsg;
+//    *::get_context_system()->m_pdumpcontext << szMsg;
 //    //Allow other report hooks to be called.
 //    return FALSE;
 // }

@@ -41,7 +41,7 @@ namespace data
 
 
       virtual ::count get_data_bound_view_count() const;
-      virtual ::user::impact * get_data_bound_view(index iView);
+      virtual ::user::interaction * get_data_bound_view(index iInteraction);
 
       virtual void update(::update * pupdate) override;
 

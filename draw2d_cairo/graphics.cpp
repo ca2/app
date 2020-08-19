@@ -6177,7 +6177,7 @@ FT_Face graphics::ftface(const char* pszFontName)
 FT_Library __ftlibrary()
 {
 
-   FT_Library ftlibrary = (FT_Library) ::aura::system::g_p->ftlibrary();
+   FT_Library ftlibrary = (FT_Library) ::get_context_system()->ftlibrary();
 
    if (!ftlibrary)
    {
@@ -6192,7 +6192,7 @@ FT_Library __ftlibrary()
       }
 
 
-      ::aura::system::g_p->m_ftlibrary = ftlibrary;
+      ::get_context_system()->m_ftlibrary = ftlibrary;
 
    }
 

@@ -1,8 +1,8 @@
 #pragma once
 
 
-#include "aura/user/user/interaction.h"
-#include "aura/user/user/interaction_impl.h"
+#include "aura/user/interaction.h"
+#include "aura/user/interaction_impl.h"
 #include "round_window.h"
 
 

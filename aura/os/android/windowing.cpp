@@ -1056,18 +1056,18 @@ int translate_android_key_message(::message::key * pkey, int keyCode, int iUni);
 void android_mouse(unsigned int message, float x, float y)
 {
 
-   if (::aura::system::g_p == nullptr)
+   if (::get_context_system() == nullptr)
       return;
 
-   if (::aura::system::g_p->get_context_session() == nullptr)
+   if (::get_context_system()->get_context_session() == nullptr)
       return;
 
-   if (::aura::system::g_p->get_context_session()->m_puiHost == nullptr)
+   if (::get_context_system()->get_context_session()->m_puiHost == nullptr)
       return;
 
    MESSAGE msg;
 
-   msg.hwnd = ::aura::system::g_p->get_context_session()->m_puiHost->get_handle();
+   msg.hwnd = ::get_context_system()->get_context_session()->m_puiHost->get_handle();
 
    msg.message = message;
 
@@ -1079,8 +1079,8 @@ void android_mouse(unsigned int message, float x, float y)
 
    msg.pt.y = (long)y;
 
-   //::aura::system::g_p->get_context_session()->m_puiHost->message_handler(&msg);
-   ::aura::system::g_p->get_context_session()->m_puiHost->post_message(msg.message, msg.wParam, msg.lParam);
+   //::get_context_system()->get_context_session()->m_puiHost->message_handler(&msg);
+   ::get_context_system()->get_context_session()->m_puiHost->post_message(msg.message, msg.wParam, msg.lParam);
 
 }
 
@@ -1124,7 +1124,7 @@ void _android_key(unsigned int message, int keyCode, int iUni);
 void android_key(unsigned int message, int keyCode, int iUni)
 {
 
-   //::fork(::aura::system::g_p, [=]()
+   //::fork(::get_context_system(), [=]()
    //{
 
       _android_key(message, keyCode, iUni);
@@ -1136,13 +1136,13 @@ void android_key(unsigned int message, int keyCode, int iUni)
 void _android_key(unsigned int message, int keyCode, int iUni)
 {
 
-   if (::aura::system::g_p == nullptr)
+   if (::get_context_system() == nullptr)
       return;
 
-   if (::aura::system::g_p->get_context_session() == nullptr)
+   if (::get_context_system()->get_context_session() == nullptr)
       return;
 
-   if (::aura::system::g_p->get_context_session()->m_puiHost == nullptr)
+   if (::get_context_system()->get_context_session()->m_puiHost == nullptr)
       return;
 
    __pointer(::message::key) pkey = __new(::message::key());
@@ -1156,8 +1156,8 @@ void _android_key(unsigned int message, int keyCode, int iUni)
 
    }
 
-   //::aura::system::g_p->get_context_session()->m_puiHost->message_handler(pkey);
-   ::aura::system::g_p->get_context_session()->m_puiHost->post(pkey);
+   //::get_context_system()->get_context_session()->m_puiHost->message_handler(pkey);
+   ::get_context_system()->get_context_session()->m_puiHost->post(pkey);
 
 }
 
@@ -1169,16 +1169,16 @@ void _android_size(float xDummy, float yDummy, float cx, float cy)
 
    UNREFERENCED_PARAMETER(yDummy);
 
-   if (::aura::system::g_p == nullptr)
+   if (::get_context_system() == nullptr)
       return;
 
-   if (::aura::system::g_p->get_context_session() == nullptr)
+   if (::get_context_system()->get_context_session() == nullptr)
       return;
 
-   if (::aura::system::g_p->get_context_session()->m_puiHost == nullptr)
+   if (::get_context_system()->get_context_session()->m_puiHost == nullptr)
       return;
 
-   ::aura::system::g_p->get_context_session()->m_puiHost->set_window_pos(zorder_top, 0, 0, cx, cy, SWP_SHOWWINDOW);
+   ::get_context_system()->get_context_session()->m_puiHost->set_window_pos(zorder_top, 0, 0, cx, cy, SWP_SHOWWINDOW);
 
 
 }
@@ -1221,17 +1221,17 @@ void android_on_size(float xScreen, float yScreen, float pikachu, float yBitmap)
 
    output_debug_string("android_on_size\n");
 
-   if (::aura::system::g_p == nullptr)
+   if (::get_context_system() == nullptr)
    {
 
       return;
 
    }
 
-   //::fork(::aura::system::g_p, [=]()
+   //::fork(::get_context_system(), [=]()
    //{
 
-   ::aura::system::g_p->get_context_session()->m_puiHost->post_pred([=]()
+   ::get_context_system()->get_context_session()->m_puiHost->post_pred([=]()
       {
 
          _android_size(xScreen, yScreen, pikachu, yBitmap);
@@ -1334,13 +1334,13 @@ void android_on_text(e_os_text etext, const wchar_t * pwch, size_t len)
 
    string strText(pwch, len);
 
-   //::aura::system::g_p->fork([=]()
+   //::get_context_system()->fork([=]()
    //{
 
-   ::aura::system::g_p->get_context_session()->m_puiHost->post_pred([=]()
+   ::get_context_system()->get_context_session()->m_puiHost->post_pred([=]()
       {
 
-         ::aura::system::g_p->on_os_text(etext, strText);
+         ::get_context_system()->on_os_text(etext, strText);
 
       });
 
@@ -1383,7 +1383,7 @@ namespace aura
 
       }
 
-      ::aura::system::g_p->get_context_session()->m_puiHost->post(pkey);
+      ::get_context_system()->get_context_session()->m_puiHost->post(pkey);
 
 
    }
@@ -1606,7 +1606,7 @@ double _001GetWindowTopLeftWeightedOccludedOpaqueRate(oswindow oswindow)
 int GetMainScreenRect(LPRECT lprect)
 {
 
-   *lprect = ::aura::system::g_p->get_context_session()->m_puiHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen;
+   *lprect = ::get_context_system()->get_context_session()->m_puiHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen;
 
    return TRUE;
 
@@ -1620,7 +1620,7 @@ int GetMainScreenRect(LPRECT lprect)
 int SetMainScreenRect(LPCRECT lpcrect)
 {
 
-   ::aura::system::g_p->get_context_session()->m_puiHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen = *lpcrect;
+   ::get_context_system()->get_context_session()->m_puiHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen = *lpcrect;
 
    return TRUE;
 

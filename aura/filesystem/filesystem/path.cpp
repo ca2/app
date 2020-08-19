@@ -905,7 +905,7 @@ namespace file
 
          bUrl = false;
 
-         strPath = ::file::path(::aura::system::g_p->url().url_decode(strPath.Mid(7)));
+         strPath = ::file::path(::get_context_system()->url().url_decode(strPath.Mid(7)));
 
          return bCertainlySyntathicallyDir;
 

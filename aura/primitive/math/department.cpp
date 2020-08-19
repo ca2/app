@@ -610,7 +610,7 @@ namespace aura
 CLASS_DECL_AURA void generate_random_bytes(void * p, memsize s)
 {
 
-   ::aura::system::g_p->m_pmath->m_posdata->generate_random_bytes(p, s);
+   ::get_context_system()->m_pmath->m_posdata->generate_random_bytes(p, s);
 
 }
 

@@ -2,7 +2,7 @@
 
 
 #include "core/_.h"
-#include "aura/user/user/_user.h"       // thank you (mummy)
+#include "aura/user/_user.h"       // thank you (mummy)
 #include "core/user/experience/_experience.h"    // thank you (mummy)
 
 

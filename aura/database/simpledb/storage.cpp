@@ -11,9 +11,11 @@ namespace simpledb
    storage::storage()
    {
 
+#ifdef COMPILE_WITH_SQLITE
       m_pstmtSelect = nullptr;
 
       m_pstmtReplace = nullptr;
+#endif
 
       m_iSelectId = -1;
 
@@ -32,6 +34,7 @@ namespace simpledb
       sync_lock sl(m_pserver.is_set() && m_pserver->m_pdatabaseLocal.is_set() ?
          m_pserver->m_pdatabaseLocal->mutex() : nullptr);
 
+#ifdef COMPILE_WITH_SQLITE
       if (m_pstmtSelect != nullptr)
       {
 
@@ -49,6 +52,7 @@ namespace simpledb
          m_pstmtReplace = nullptr;
 
       }
+#endif
 
    }
 

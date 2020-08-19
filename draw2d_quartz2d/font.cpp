@@ -45,7 +45,7 @@ namespace draw2d_quartz2d
       if(m_fontName == nullptr)
       {
          
-         auto psystem = ::aura::system::g_p;
+         auto psystem = ::get_context_system();
          
          auto & draw2d = psystem->draw2d();
          

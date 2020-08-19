@@ -14,7 +14,7 @@ namespace game
 
 
       void*                               m_thisa[16];
-      __reference(::user::impact)         m_pview;
+      __reference(::user::interaction)    m_pinteraction;
 
 
       game();

@@ -1185,7 +1185,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 
    sync_lock sl(mutex());
 
-   return ::aura::system::g_p->m_pdirsystem->m_pathInstall;
+   return ::get_context_system()->m_pdirsystem->m_pathInstall;
 
 }
 

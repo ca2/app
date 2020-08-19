@@ -1,7 +1,9 @@
 #include "framework.h"
 #include "_simpledb.h"
 #include "aura/database/sqlitedb/_.h"
-#include <sqlite3.h>
+#ifdef COMPILE_WITH_SQLITE
+//#include <sqlite3.h>
+#endif
 #include "storage.h"
 
 
@@ -130,6 +132,8 @@ namespace simpledb
 
       strKey.replace("\\", "/");
 
+#ifdef COMPILE_WITH_SQLITE
+
       if (!pserver->m_bRemote || key.m_bLocalData)
       {
 
@@ -144,7 +148,7 @@ namespace simpledb
 
          int iTryStatement = 0;
 
-         __pointer(::sqlite::database) pdatabase = pserver->get_local_database();
+         __pointer(::database::database) pdatabase = pserver->get_local_database();
 
          class sync * pmutex = pdatabase->mutex();
 
@@ -268,6 +272,7 @@ namespace simpledb
 
       }
       else
+#endif
       {
 
          // Remote

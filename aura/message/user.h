@@ -1,11 +1,11 @@
 #pragma once
 
-namespace user
-{
-
-   class impact_data;
-
-}
+//namespace user
+//{
+//
+//   class impact_data;
+//
+//}
 
 
 #define MESSAGE_OLE_DRAGENTER WM_APP + 324
@@ -35,7 +35,7 @@ namespace message
 
       virtual void failed(const char * pcszErrorMessage);
 
-      ::user::impact_data * get_impact_data();
+      ::object * get_impact_data();
 
       ::create* get_create();
 

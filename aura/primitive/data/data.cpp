@@ -96,7 +96,7 @@ namespace data
    }
 
 
-   ::user::impact *  data::get_data_bound_view(index iView)
+   ::user::interaction *  data::get_data_bound_view(index iView)
    {
 
       return nullptr;

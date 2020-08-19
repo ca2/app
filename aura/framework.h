@@ -16,7 +16,7 @@
 #if !defined(BROAD_PRECOMPILED_HEADER)
 #define BROAD_PRECOMPILED_HEADER 1
 #endif
-#include "aura/user/user/_user.h"
+#include "aura/user/_user.h"
 #if BROAD_PRECOMPILED_HEADER
 //#include "core/user/simple/_simple.h"
 //#include "aura/user/rich_text/_rich_text.h"

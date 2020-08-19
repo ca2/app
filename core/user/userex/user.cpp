@@ -2,7 +2,7 @@
 #include "aura/platform/static_setup.h"
 #include "aura/update.h"
 #include "aura/xml/_.h"
-#include "aura/user/user/shell.h"
+#include "aura/user/shell.h"
 #include "core/user/user/_tree.h"
 
 
@@ -1908,7 +1908,7 @@ namespace core
    bool user::impl_set_wallpaper(index iScreen, string strLocalImagePath)
    {
 
-      return ::aura::system::g_p->android_set_user_wallpaper(strLocalImagePath);
+      return ::get_context_system()->android_set_user_wallpaper(strLocalImagePath);
 
    }
 
@@ -1917,7 +1917,7 @@ namespace core
 
       string strLocalImagePath;
 
-      ::aura::system::g_p->android_get_user_wallpaper(strLocalImagePath);
+      ::get_context_system()->android_get_user_wallpaper(strLocalImagePath);
 
       return strLocalImagePath;
 

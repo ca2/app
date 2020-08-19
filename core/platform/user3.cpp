@@ -65,7 +65,7 @@ CLASS_DECL_CORE void __simple_tracea(::generic_object * pobjectContext, e_trace_
 
 void os_post_quit();
 
-//extern ::mutex * &::aura::system::g_p->m_mutexLibrary;
+//extern ::mutex * &::get_context_system()->m_mutexLibrary;
 
 
 
@@ -416,9 +416,9 @@ namespace aura
 
          plibrary->initialize(this);
 
-         sync_lock sl(&::aura::system::g_p->m_mutexLibrary);
+         sync_lock sl(&::get_context_system()->m_mutexLibrary);
 
-         ::aura::system::g_p->m_mapLibrary.set_at("draw2d", plibrary);
+         ::get_context_system()->m_mapLibrary.set_at("draw2d", plibrary);
 
       }
 
@@ -809,7 +809,7 @@ namespace aura
    ::aura::library * system::get_library(const char * pszLibrary1, bool bOpenCa2)
    {
 
-      sync_lock sl(&::aura::system::g_p->m_mutexLibrary);
+      sync_lock sl(&::get_context_system()->m_mutexLibrary);
 
       string strLibrary(pszLibrary1);
 
@@ -818,7 +818,7 @@ namespace aura
       strLibrary.ends_eat_ci(".dylib");
       strLibrary.begins_eat_ci("lib");
 
-      __pointer(::aura::library) & plibrary = ::aura::system::g_p->m_mapLibrary[strLibrary];
+      __pointer(::aura::library) & plibrary = ::get_context_system()->m_mapLibrary[strLibrary];
 
       bool bLibraryOk = true;
 
@@ -1632,7 +1632,7 @@ namespace aura
 
       }
 
-      sync_lock sl(&::aura::system::g_p->m_mutexLibrary);
+      sync_lock sl(&::get_context_system()->m_mutexLibrary);
 
       estatus = __construct_new(m_pdraw2d);
 
@@ -1721,9 +1721,9 @@ namespace aura
 
 #else
 
-      sync_lock sl(&::aura::system::g_p->m_mutexLibrary);
+      sync_lock sl(&::get_context_system()->m_mutexLibrary);
 
-      __pointer(::aura::library) & plibrary = ::aura::system::g_p->m_mapLibrary["draw2d"];
+      __pointer(::aura::library) & plibrary = ::get_context_system()->m_mapLibrary["draw2d"];
 
       if (plibrary->is_opened())
       {
@@ -1855,9 +1855,9 @@ namespace aura
 
 #else
 
-      sync_lock sl(&::aura::system::g_p->m_mutexLibrary);
+      sync_lock sl(&::get_context_system()->m_mutexLibrary);
 
-      __pointer(::aura::library)& plibrary = ::aura::system::g_p->m_mapLibrary["imaging"];
+      __pointer(::aura::library)& plibrary = ::get_context_system()->m_mapLibrary["imaging"];
 
       auto estatus = __defer_construct_new(plibrary);
 
@@ -2385,9 +2385,9 @@ namespace aura
       try
       {
 
-         sync_lock sl(&::aura::system::g_p->m_mutexLibrary);
+         sync_lock sl(&::get_context_system()->m_mutexLibrary);
 
-         if (::aura::system::g_p->m_mapLibrary["draw2d"].is_set() && ::aura::system::g_p->m_mapLibrary["draw2d"]->is_opened())
+         if (::get_context_system()->m_mapLibrary["draw2d"].is_set() && ::get_context_system()->m_mapLibrary["draw2d"]->is_opened())
          {
 
             if (m_pDraw2dFactoryExchange != nullptr)

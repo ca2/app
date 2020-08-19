@@ -242,7 +242,7 @@ namespace draw2d
          if (::is_ok(m_pimage))
          {
 
-            auto& imaging = ::aura::system::g_p->imaging();
+            auto& imaging = ::get_context_system()->imaging();
 
             // SCAFFOLD comment?!.... first parameter (oswindow) is not used in windows (but at other OS(es))...
             HCURSOR hcursor = imaging.CreateAlphaCursor(pinteraction->get_handle(), m_pimage,m_szHotspotOffset.cx,m_szHotspotOffset.cy);
@@ -275,7 +275,7 @@ namespace draw2d
          else if(!m_bDefaultCursor)
          {
 
-            m_hcursor = ::aura::system::g_p->imaging().load_default_cursor(m_ecursor);
+            m_hcursor = ::get_context_system()->imaging().load_default_cursor(m_ecursor);
 
          }
 

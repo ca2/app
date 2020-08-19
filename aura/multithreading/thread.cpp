@@ -2694,7 +2694,7 @@ void thread::__set_thread_off()
 
    set_thread_off(::get_current_ithread());
 
-   //::aura::system::g_p->unset_thread(::get_current_ithread());
+   //::get_context_system()->unset_thread(::get_current_ithread());
 
 }
 
@@ -4128,9 +4128,9 @@ bool thread::kick_thread()
 CLASS_DECL_AURA bool is_thread_on(ITHREAD id)
 {
 
-   sync_lock sl(&::aura::system::g_p->m_mutexThreadOn);
+   sync_lock sl(&::get_context_system()->m_mutexThreadOn);
 
-   return ::aura::system::g_p->m_mapThreadOn.plookup(id) != nullptr;
+   return ::get_context_system()->m_mapThreadOn.plookup(id) != nullptr;
 
 }
 
@@ -4152,9 +4152,9 @@ CLASS_DECL_AURA bool is_active(::thread * pthread)
 CLASS_DECL_AURA void set_thread_on(ITHREAD id)
 {
 
-   sync_lock sl(&::aura::system::g_p->m_mutexThreadOn);
+   sync_lock sl(&::get_context_system()->m_mutexThreadOn);
 
-   ::aura::system::g_p->m_mapThreadOn.set_at(id, id);
+   ::get_context_system()->m_mapThreadOn.set_at(id, id);
 
 }
 
@@ -4162,9 +4162,9 @@ CLASS_DECL_AURA void set_thread_on(ITHREAD id)
 CLASS_DECL_AURA void set_thread_off(ITHREAD id)
 {
 
-   sync_lock sl(&::aura::system::g_p->m_mutexThreadOn);
+   sync_lock sl(&::get_context_system()->m_mutexThreadOn);
 
-   ::aura::system::g_p->m_mapThreadOn.remove_key(id);
+   ::get_context_system()->m_mapThreadOn.remove_key(id);
 
 }
 

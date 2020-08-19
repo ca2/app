@@ -5683,21 +5683,21 @@ LRESULT CALLBACK __window_procedure(oswindow oswindow, UINT message, WPARAM wpar
 
 
 
-   if (::aura::system::g_p == nullptr)
+   if (::get_context_system() == nullptr)
    {
 
       return 0;
 
    }
 
-   if (::aura::system::g_p->m_psystem == nullptr)
+   if (::get_context_system()->m_psystem == nullptr)
    {
 
       return 0;
 
    }
 
-   ::user::interaction_impl * pimpl = ::aura::system::g_p->m_psystem->impl_from_handle(oswindow);
+   ::user::interaction_impl * pimpl = ::get_context_system()->m_psystem->impl_from_handle(oswindow);
 
    pimpl->m_uiMessage = message;
 
@@ -5986,7 +5986,7 @@ void __term_windowing()
 
    }
 
-   auto psystem = ::aura::system::g_p;
+   auto psystem = ::get_context_system();
 
    if (psystem == nullptr)
    {

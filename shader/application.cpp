@@ -1,4 +1,5 @@
 #include "framework.h"
+#define WITH_GPU
 #include "aura/application.h"
 #include "aura/update.h"
 

@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "aura/user/user/image_list.h"
+#include "aura/user/image_list.h"
 
 
 namespace userex

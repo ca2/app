@@ -58,7 +58,7 @@ namespace file
       if (::str::begins_eat_ci(str, "Local\\"))
       {
 
-         path /= Sys(::aura::system::g_p).dir().home() / str;
+         path /= Sys(::get_context_system()).dir().home() / str;
 
       }
       else

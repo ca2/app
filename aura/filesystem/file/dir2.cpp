@@ -105,22 +105,22 @@
 ::file::path dir::roaming()
 {
 
-   if (::aura::system::g_p != nullptr)
+   if (::get_context_system() != nullptr)
    {
 
-      sync_lock sl(::aura::system::g_p->mutex());
+      sync_lock sl(::get_context_system()->mutex());
 
-      if (::aura::system::g_p->m_pathConfig.has_char())
+      if (::get_context_system()->m_pathConfig.has_char())
       {
 
-         return ::aura::system::g_p->m_pathConfig;
+         return ::get_context_system()->m_pathConfig;
 
       }
 
-      if (::aura::system::g_p->m_pathCacheDir.has_char())
+      if (::get_context_system()->m_pathCacheDir.has_char())
       {
 
-         return ::aura::system::g_p->m_pathCacheDir;
+         return ::get_context_system()->m_pathCacheDir;
 
       }
 
@@ -139,13 +139,13 @@
 
 #elif defined(ANDROID)
 
-   if (is_null(::aura::system::g_p, 65535))
+   if (is_null(::get_context_system(), 65535))
    {
 
       output_debug_string("dir::config(err1)\n");
 
    }
-   else if (is_null(::aura::system::g_p->m_poslocal, 65535))
+   else if (is_null(::get_context_system()->m_poslocal, 65535))
    {
 
       output_debug_string("dir::config(err3)\n");
@@ -162,12 +162,12 @@
 
 #endif
 
-   if (::aura::system::g_p != nullptr)
+   if (::get_context_system() != nullptr)
    {
 
-      sync_lock sl(::aura::system::g_p->mutex());
+      sync_lock sl(::get_context_system()->mutex());
 
-     ::aura::system::g_p->m_pathConfig = path;
+     ::get_context_system()->m_pathConfig = path;
 
    }
 

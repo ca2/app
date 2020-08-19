@@ -114,7 +114,7 @@ int lockf(int fd, int cmd, off_t ignored_len)
 //void android_set_cache_dir(const char* pszDir)
 //{
 //
-//   ::aura::system::g_p->m_pathCacheDir = pszDir;
+//   ::get_context_system()->m_pathCacheDir = pszDir;
 //
 //}
 //
@@ -122,6 +122,6 @@ int lockf(int fd, int cmd, off_t ignored_len)
 //const char* android_get_cache_dir()
 //{
 //
-//   return ::aura::system::g_p->m_pathCacheDir;
+//   return ::get_context_system()->m_pathCacheDir;
 //
 //}

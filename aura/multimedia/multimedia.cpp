@@ -58,12 +58,12 @@ namespace aura
    }
 
 
-   __pointer(::user::document) multimedia::defer_create_view(::object* pobjectContext, const string& strView, ::user::interaction* puiParent, ewindowflag ewindowflag, const ::id& id)
-   {
+   //__pointer(::user::document) multimedia::defer_create_view(::object* pobjectContext, const string& strView, ::user::interaction* puiParent, ewindowflag ewindowflag, const ::id& id)
+   //{
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
 
 
@@ -151,7 +151,7 @@ CLASS_DECL_AURA::aura::multimedia * get_context_multimedia(::object * pobjectCon
 CLASS_DECL_AURA bool has_multimedia()
 {
 
-   return ::is_set(::aura::system::g_p->m_pmultimedia);
+   return ::is_set(::get_context_system()->m_pmultimedia);
 
 }
 

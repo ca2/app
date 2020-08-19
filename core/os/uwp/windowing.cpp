@@ -545,7 +545,7 @@ CLASS_DECL_CORE oswindow get_window(oswindow oswindow, int iWindow)
    if (iWindow == GW_OWNER)
    {
 
-      ::user::interaction * pinteraction = Sys(::aura::system::g_p).ui_from_handle(oswindow);
+      ::user::interaction * pinteraction = Sys(::get_context_system()).ui_from_handle(oswindow);
 
       if (pinteraction == nullptr || pinteraction->m_puiOwner)
       {

@@ -2,7 +2,7 @@
 
 
 
-#include "aura/user/user/_user.h"
+#include "aura/user/_user.h"
 #include "aura/os/uwp/_uwp.h"
 
 

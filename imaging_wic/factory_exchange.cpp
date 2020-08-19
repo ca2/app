@@ -36,7 +36,7 @@ namespace imaging_wic
 //
 
 extern "C"
-void imaging_factory_exchange()
+void imaging_wic_factory_exchange()
 {
 
    create_factory < ::imaging_wic::imaging, ::imaging >();
@@ -44,17 +44,6 @@ void imaging_factory_exchange()
 }
 
 
-#ifdef CUBE
-
-void initialize_imaging_factory_exchange()
-{
-
-   g_pfnfactoryexchangeImaging = &imaging_factory_exchange;
-
-}
-
-#endif
 
 
-
-imaging_wic::factory_exchange g_imagingwicfactoryexchange;
+//imaging_wic::factory_exchange g_imagingwicfactoryexchange;

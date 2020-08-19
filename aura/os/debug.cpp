@@ -64,7 +64,7 @@ void simple_debug_print(const char * psz)
 CLASS_DECL_AURA void __tracea(::generic_object * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
 {
 
-   if (::is_null(::aura::system::g_p))
+   if (::is_null(::get_context_system()))
    {
 
       __simple_tracea(pobject, elevel, pszFunction, pszFile, iLine, psz);
@@ -73,7 +73,7 @@ CLASS_DECL_AURA void __tracea(::generic_object * pobject, e_trace_level elevel, 
 
    }
 
-   ::aura::system::g_p->__tracea(pobject, elevel, pszFunction, pszFile, iLine, psz);
+   ::get_context_system()->__tracea(pobject, elevel, pszFunction, pszFile, iLine, psz);
 
 }
 
@@ -103,7 +103,7 @@ CLASS_DECL_AURA void __tracef(::generic_object * pobject, e_trace_level elevel, 
 CLASS_DECL_AURA void __tracev(::generic_object * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args)
 {
 
-   if (::is_null(::aura::system::g_p))
+   if (::is_null(::get_context_system()))
    {
 
       __simple_tracev(pobject, elevel, pszFunction, pszFile, iLine, pszFormat, args);
@@ -112,7 +112,7 @@ CLASS_DECL_AURA void __tracev(::generic_object * pobject, e_trace_level elevel, 
 
    }
 
-   ::aura::system::g_p->__tracev(pobject, elevel, pszFunction, pszFile, iLine, pszFormat, args);
+   ::get_context_system()->__tracev(pobject, elevel, pszFunction, pszFile, iLine, pszFormat, args);
 
 }
 

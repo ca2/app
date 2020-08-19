@@ -826,9 +826,9 @@ type operator + (const TYPE & t) const { auto copy = *this; copy.add(t); return 
 
 #include "aura/exception/_const.h"
 
-#include "aura/user/user/_const.h"
+#include "aura/user/_const.h"
 
-#include "aura/user/experience/_const.h"
+#include "aura/user/_experience_const.h"
 
 #include "aura/filesystem/file/_const.h"
 
@@ -1200,8 +1200,8 @@ namespace message
 } // namespace message
 
 
-//#include "aura/user/user/_const.h"
-#include "aura/user/user/_const_key.h"
+//#include "aura/user/_const.h"
+#include "aura/user/_const_key.h"
 
 namespace draw2d
 {
@@ -1253,13 +1253,13 @@ namespace user
    class primitive;
    class frame;
    class menu;
-   class controller;
-   class document;
+   //class controller;
+   //class document;
 
-   class impact_system;
-   class impact_data;
+   //class impact_system;
+   //class impact_data;
    class printer;
-   class impact;
+//   class impact;
    class primitive;
    class interaction;
    class layout;
@@ -1992,7 +1992,6 @@ namespace html
    class html; // defined and set by html library/component
 
 }
-
 
 
 #define SCAST_PTR(TYPE, ptarget, psource) TYPE * ptarget = dynamic_cast < TYPE * > (psource);
@@ -2934,7 +2933,7 @@ CLASS_DECL_AURA string get_system_error_message(u32 dwError);
 
 
 
-//#include "aura/user/user/command.h"
+//#include "aura/user/command.h"
 
 
 #include "aura/message/message.h"
@@ -2992,7 +2991,7 @@ class mq;
 //#include "aura/user/simple/message_box.h"
 
 
-//#include "aura/user/user/impact_data.h"
+//#include "aura/user/impact_data.h"
 
 #include "aura/platform/log.h"
 
@@ -3107,7 +3106,7 @@ namespace file
 
 #include "aura/platform/fixed_alloc_impl.h"
 #include "aura/primitive/primitive/command_line.h"
-//#include "aura/user/user/create.h"
+//#include "aura/user/create.h"
 //#include "aura/primitive/primitive/create.h"
 #include "aura/primitive/primitive/request_signal.h"
 
@@ -3183,9 +3182,9 @@ namespace zip
 
 
 
-//#include "aura/user/user/style_coord.h"
-//#include "aura/user/user/style_rect.h"
-#include "aura/user/user/item.h"
+//#include "aura/user/style_coord.h"
+//#include "aura/user/style_rect.h"
+#include "aura/user/item.h"
 
 
 #include "aura/platform/exclusive.h"
@@ -3223,7 +3222,7 @@ class ifs;
 
 #include "aura/filesystem/fs/_fs.h"
 
-#include "aura/user/userpresence/_.h"
+//#include "aura/user/userpresence/_.h"
 
 //#include "aura/html/html_lite/_.h"
 

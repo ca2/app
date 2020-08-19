@@ -1015,7 +1015,7 @@ template < typename ENUM >
 inline void set_enum_text(ENUM e, const char * psz)
 {
 
-   auto psystem = ::aura::system::g_p;
+   auto psystem = ::get_context_system();
 
    cslock sl(&psystem->m_csEnumText);
 
@@ -1030,7 +1030,7 @@ template < typename ENUM >
 inline string enum_text(ENUM e)
 {
 
-   auto psystem = ::aura::system::g_p;
+   auto psystem = ::get_context_system();
 
    cslock sl(&psystem->m_csEnumText);
 
@@ -1043,7 +1043,7 @@ template < class ENUM >
 inline ENUM text_enum(ENUM & e, const char * psz, ENUM eDefault = (ENUM)0)
 {
 
-   auto psystem = ::aura::system::g_p;
+   auto psystem = ::get_context_system();
 
    cslock sl(&psystem->m_csEnumText);
 

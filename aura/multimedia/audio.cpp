@@ -127,7 +127,7 @@ CLASS_DECL_AURA ::aura::audio * get_context_audio(::object * pobjectContext)
 CLASS_DECL_AURA bool has_audio()
 {
 
-   return ::is_set(::aura::system::g_p->m_paudio);
+   return ::is_set(::get_context_system()->m_paudio);
 
 }
 

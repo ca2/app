@@ -23,6 +23,8 @@ namespace aura
 
       __composite(::aura::multimedia)                    m_pmultimedia;
 
+      string_map < string_map < PFN_factory_exchange > > m_mapFactoryExchange;
+
       // __composite(::aura::estamira)                      m_pestamira;
 
       ::type                                             m_typePaneTabView;
@@ -80,13 +82,10 @@ namespace aura
 
       // for lesser cooperative GUI applications
       bool                                               m_bProdevianMouse;
-      static ::id                                        idEmpty;
       __composite(class ::str::base64)                   m_pbase64;
 
       ::string_to_string                                 m_mapAppLibrary;
       __composite(class machine_event_central)           m_pmachineeventcentral;
-
-      static system *                                    g_p;
 
       float                                              m_dpi;
 
@@ -313,8 +312,9 @@ namespace aura
 
       virtual ::estatus init2();
 
-      virtual ::estatus defer_xml();
+      //virtual ::estatus defer_xml();
 
+      virtual __pointer(::data::node) load_xml(const char * pszXml);
 
       virtual ::estatus verb() override; // ambigous inheritance from ::aura::system/::axis::application
 
@@ -397,6 +397,12 @@ namespace aura
 
       class ::user::window_map                     &  window_map();
 
+      
+      __pointer(::aura::library) open_component_library(const char* pszComponent, const char* pszImplementation);
+
+      ::estatus do_factory_exchange(const char* pszComponent, const char* pszImplementation);
+
+      ::estatus set_factory_exchange(const char* pszComponent, const char * pszImplementation, PFN_factory_exchange pfnFactoryExchange);
 
       virtual void defer_audio();
 
@@ -559,7 +565,7 @@ namespace aura
       //virtual ::estatus process_init();
 
       virtual ::estatus init_draw2d();
-      virtual bool draw2d_factory_exchange();
+      virtual ::estatus draw2d_factory_exchange();
       virtual string draw2d_get_default_library_name();
 
       virtual bool imaging_factory_exchange();
@@ -664,9 +670,9 @@ namespace aura
 
       //virtual void on_request(::create * pcreate) override;
 
-      __pointer(regex) create_pcre(const string& str);
-      __pointer(regex_context) create_pcre_context(int iCount);
-      virtual int pcre_add_tokens(string_array& stra, const string& strTopic, const string& strRegexp, int nCount);
+      __pointer(regex) create_regular_expression(const char * pszStyle, const string& str);
+      __pointer(regex_context) create_regular_expression_context(const char* pszStyle, int iCount);
+      //virtual int pcre_add_tokens(string_array& stra, const string& strTopic, const string& strRegexp, int nCount);
 
 
       virtual string get_system_platform();
@@ -993,8 +999,6 @@ namespace aura
 
    CLASS_DECL_AURA ::mutex * get_image_mutex();
 
-
-
 } // namespace aura
 
 
@@ -1018,7 +1022,7 @@ template < typename ENUM >
 inline void set_enum_text(ENUM e, const char * psz)
 {
 
-   auto psystem = ::aura::system::g_p;
+   auto psystem = ::get_context_system();
 
    cslock sl(&psystem->m_csEnumText);
 
@@ -1033,7 +1037,7 @@ template < typename ENUM >
 inline string enum_text(ENUM e)
 {
 
-   auto psystem = ::aura::system::g_p;
+   auto psystem = ::get_context_system();
 
    cslock sl(&psystem->m_csEnumText);
 
@@ -1046,7 +1050,7 @@ template < class ENUM >
 inline ENUM text_enum(ENUM & e, const char * psz, ENUM eDefault = (ENUM)0)
 {
 
-   auto psystem = ::aura::system::g_p;
+   auto psystem = ::get_context_system();
 
    cslock sl(&psystem->m_csEnumText);
 

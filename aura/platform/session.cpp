@@ -43,7 +43,7 @@ void defer_term_ui();
 bool is_verbose();
 
 //extern string_map < __pointer(::aura::library) >* g_pmapLibrary;
-//extern ::mutex * &::aura::system::g_p->m_mutexLibrary;
+//extern ::mutex * &::get_context_system()->m_mutexLibrary;
 //extern string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
 
 int_bool point_is_window_origin(POINT ptHitTest, oswindow oswindowExclude, int iMargin);
@@ -970,9 +970,9 @@ namespace aura
 //
 //
 //         }
-//         sync_lock sl(&::aura::system::g_p->m_mutexLibrary);
+//         sync_lock sl(&::get_context_system()->m_mutexLibrary);
 //
-//         __pointer(::aura::library) & plibrary = &::aura::system::g_p->m_mapLibrary[pszAppId];
+//         __pointer(::aura::library) & plibrary = &::get_context_system()->m_mapLibrary[pszAppId];
 //
 //         if (!plibrary)
 //         {
@@ -1885,12 +1885,12 @@ namespace aura
 
        }
 
-      if (m_puserpresence.is_set())
-      {
+      //if (m_puserpresence.is_set())
+      //{
 
-         m_puserpresence->on_ui_mouse_message(pmouse);
+      //   m_puserpresence->on_ui_mouse_message(pmouse);
 
-      }
+      //}
       return true;
 
    }
@@ -2244,12 +2244,12 @@ namespace aura
    ::count session::get_monitor_count()
    {
 
-      if (get_document() != nullptr && get_view() != nullptr)
-      {
+      //if (get_document() != nullptr && get_view() != nullptr)
+      //{
 
-         return 1;
+      //   return 1;
 
-      }
+      //}
 
 
       if (m_bSystemSynchronizedScreen)
@@ -2271,15 +2271,15 @@ namespace aura
    bool session::get_monitor_rect(index iMonitor, RECT * prect)
    {
 
-      if (get_document() != nullptr && get_view() != nullptr)
-      {
+      //if (get_document() != nullptr && get_view() != nullptr)
+      //{
 
-         get_view()->get_window_rect(prect);
+      //   get_view()->get_window_rect(prect);
 
 
-         return true;
+      //   return true;
 
-      }
+      //}
 
 
       if (m_bSystemSynchronizedScreen)
@@ -3637,9 +3637,9 @@ ret:
 
          }
 
-         sync_lock sl(&::aura::system::g_p->m_mutexLibrary);
+         sync_lock sl(&::get_context_system()->m_mutexLibrary);
 
-         ::aura::system::g_p->m_mapLibrary[strLibrary] = plibrary;
+         ::get_context_system()->m_mapLibrary[strLibrary] = plibrary;
 
          ptheme->m_plibrary = plibrary;
 
@@ -3842,18 +3842,18 @@ ret:
 
       }
 
-      estatus = __compose_new(m_puserpresence);
+      //estatus = __compose_new(m_puserpresence);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         m_result.add(estatus);
+      //   m_result.add(estatus);
 
-         TRACE("Failed to create new User Presence");
+      //   TRACE("Failed to create new User Presence");
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
       if (!m_pifs)
       {
@@ -4372,12 +4372,12 @@ ret:
    }
 
 
-   void session::defer_initialize_user_presence()
-   {
+   //void session::defer_initialize_user_presence()
+   //{
 
-      userpresence().defer_initialize_user_presence();
+   //   userpresence().defer_initialize_user_presence();
 
-   }
+   //}
 
 
    bool session::on_create_frame_window()
@@ -5925,7 +5925,7 @@ namespace aura
 void os_on_finish_launching()
 {
 
-   auto psystem = ::aura::system::g_p;
+   auto psystem = ::get_context_system();
 
    auto psession = psystem->get_context_session();
 

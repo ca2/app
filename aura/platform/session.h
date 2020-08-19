@@ -8,9 +8,9 @@ namespace aura
    class CLASS_DECL_AURA session:
       virtual public ::aura::context_thread,
       virtual public ::application_container,
-      virtual public ::filemanager::item_action,
+      virtual public ::filemanager::item_action //,
       //virtual public ::filemanager::component,
-      virtual public ::user::document_manager_container
+      //virtual public ::user::document_manager_container
    {
    public:
 
@@ -104,7 +104,7 @@ namespace aura
 
 
 
-      __composite(::userpresence::department)               m_puserpresence;
+      //__composite(::userpresence::department)               m_puserpresence;
 
 
       __composite(::ftpfs)                                  m_pftpfs;
@@ -132,7 +132,7 @@ namespace aura
 
       virtual ::estatus     initialize(::object * pobjectContext) override;
 
-      inline ::userpresence::department & userpresence() { return *m_puserpresence; }
+      //inline ::userpresence::department & userpresence() { return *m_puserpresence; }
 
       virtual bool is_session() const override;
 
@@ -180,7 +180,7 @@ namespace aura
       // time in milliseconds that a pressing is considered a double click
       virtual DWORD get_Long_PhRESSing_time();
 
-      virtual void defer_initialize_user_presence();
+      //virtual void defer_initialize_user_presence();
 
       //virtual ::estatus     interactive_credentials(::account::credentials * pcredentials) override;
 
@@ -454,10 +454,10 @@ namespace aura
 
 
 
-      __pointer(::user::document)                   get_document();
-      __pointer(::user::impact)                     get_view();
-      __pointer(::user::document)                   get_platform();
-      __pointer(::user::document)                   get_nature();
+      //user __pointer(::user::document)                   get_document();
+      //user __pointer(::user::impact)                     get_view();
+      //user __pointer(::user::document)                   get_platform();
+      //user __pointer(::user::document)                   get_nature();
 
 
       //inline ::userex::userex* userex() { return m_puserex; }

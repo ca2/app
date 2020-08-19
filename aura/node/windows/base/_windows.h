@@ -5,7 +5,7 @@
 
 #include "aura/printer.h"
 
-#include "aura/user/user/print_job.h"
+#include "aura/user/print_job.h"
 
 #include "print_job.h"
 

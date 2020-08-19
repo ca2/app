@@ -404,12 +404,16 @@ namespace datetime
             ::str::begins_eat(str,"now") ||
             (pcontext != nullptr && pcontext->begins_eat(str,"calendar:now"))))
       {
+         
          time = ::datetime::time::get_current_time();
+         
          bBaseTime = true;
+
       }
+
       string_array stra;
 
-      auto pcre1 = System.create_pcre("^\\s*((\\d+)\\s*/\\s*(\\d+))((\\d|$)?!)");
+      auto pcre1 = System.create_regular_expression("pcre", "^\\s*((\\d+)\\s*/\\s*(\\d+))((\\d|$)?!)");
 
       if(!bBaseTime && pcre1->matches(stra, str) >= 5)
       {

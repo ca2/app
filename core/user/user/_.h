@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "aura/user/user/_user.h"
+#include "aura/user/_user.h"
 
 class form_document;
 

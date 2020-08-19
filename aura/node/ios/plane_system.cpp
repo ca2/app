@@ -31,7 +31,7 @@
 //plane_system::plane_system()
 //{
 //
-//   m_psystem = ::aura::system::g_p;
+//   m_psystem = ::get_context_system();
 //
 //   m_psystem->m_pplanesystem = this;
 //

@@ -103,7 +103,7 @@ void windowing_output_debug_string(const char * pszDebugString)
 
 #endif
 
-   auto psystem = ::aura::system::g_p;
+   auto psystem = ::get_context_system();
 
    sync_lock slSystem(psystem->mutex());
 

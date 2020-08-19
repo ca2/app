@@ -1,10 +1,6 @@
 #include "console_common.h"
 
 
-// Implement this function
-//void main();
-
-
 #ifdef LINUX
 
 #include "console/linux.h"
@@ -37,6 +33,7 @@
 
 #include "_new_impl.h"
 
+
 #if defined(WINDOWS)
 
 
@@ -47,7 +44,6 @@
 
 
 #endif
-
 
 
 

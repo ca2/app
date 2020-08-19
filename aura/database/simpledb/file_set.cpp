@@ -73,7 +73,7 @@ namespace simpledb
    void file_set::add_search(const ::file::path & pathSearchFolder, bool bRecursive)
    {
 
-      data_get(::aura::system::idEmpty, m_ppathaSearch);
+      data_get(::id(), m_ppathaSearch);
 
       data_get("recursive", m_pbaRecursive);
 
@@ -90,7 +90,7 @@ namespace simpledb
 
          m_pbaRecursive->add(bRecursive);
 
-         data_set(::aura::system::idEmpty, m_ppathaSearch);
+         data_set(::id(), m_ppathaSearch);
 
          data_set("recursive", m_pbaRecursive);
 
@@ -112,7 +112,7 @@ namespace simpledb
 
       ::file::set::clear_search();
 
-      data_set(::aura::system::idEmpty, ::var(type_new));
+      data_set(::id(), ::var(type_new));
 
       data_set("recursive", ::var(type_new));
 

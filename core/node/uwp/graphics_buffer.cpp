@@ -2,7 +2,7 @@
 #include "_uwp.h"
 #include "aura/os/uwp/_uwp.h"
 #include "aura/message.h"
-#include "aura/user/user/_user.h"
+#include "aura/user/_user.h"
 #include "buffer.h"
 #include <stdio.h>
 

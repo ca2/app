@@ -19,7 +19,7 @@ void message_box::show(::object* pobject)
    if (::is_null(pobject))
    {
 
-      pobject = ::aura::system::g_p;
+      pobject = ::get_context_system();
 
    }
 
@@ -30,8 +30,8 @@ void message_box::show(::object* pobject)
 CLASS_DECL_AURA ::estatus message_box(oswindow oswindow, const char* pszText, const char* pszTitle, ::emessagebox emessagebox, ::callback callback)
 {
 
-   ::user::primitive* primitive = ::aura::system::g_p->ui_from_handle(oswindow);
+   ::user::primitive* primitive = ::get_context_system()->ui_from_handle(oswindow);
 
-   return ::aura::system::g_p->message_box(primitive, pszText, pszTitle, emessagebox, callback);
+   return ::get_context_system()->message_box(primitive, pszText, pszTitle, emessagebox, callback);
 
 }

@@ -721,7 +721,7 @@ template < typename PRED >
 
    sync_lock sl(::aura::get_image_mutex());
 
-   ::image_pointer & pimage = ::aura::system::g_p->m_mapImage[path];
+   ::image_pointer & pimage = ::get_context_system()->m_mapImage[path];
 
    if (!pimage)
    {

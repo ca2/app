@@ -106,13 +106,13 @@ namespace graphics
 
 
 #include "platform/drawable.h"
-#include "aura/user/user/check.h"
-#include "aura/user/user/text.h"
-#include "aura/user/user/window_state.h"
-#include "aura/user/user/callback.h"
-#include "aura/user/user/primitive.h"
+#include "aura/user/check.h"
+#include "aura/user/text.h"
+#include "aura/user/window_state.h"
+#include "aura/user/callback.h"
+#include "aura/user/primitive.h"
 
-#include "aura/user/user/style_base.h"
-#include "aura/user/user/style.h"
+#include "aura/user/style_base.h"
+#include "aura/user/style.h"
 
 

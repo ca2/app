@@ -222,7 +222,7 @@ int_bool mq::peek_message(LPMESSAGE pMsg,oswindow oswindow,UINT wMsgFilterMin,UI
 __pointer(mq) get_mq(ITHREAD idthread, bool bCreate)
 {
 
-   ::thread * pthread = ::aura::system::g_p->get_thread(idthread);
+   ::thread * pthread = ::get_context_system()->get_thread(idthread);
 
    if (!pthread)
    {

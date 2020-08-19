@@ -11,7 +11,7 @@
 //  this copyright and permission notice. Attribution in compiled projects is
 //  appreciated but not required.
 //
-#include "aura/user/user/_const_key.h"
+#include "aura/user/_const_key.h"
 
 
 ::user::e_key event_key(UIEvent * event);

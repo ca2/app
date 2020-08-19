@@ -10,7 +10,7 @@
 #pragma once
 
 
-#include "app/aura/user/user/user_key_enum.h"
+#include "app/aura/user/user_key_enum.h"
 
 
 class boot_window

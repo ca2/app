@@ -67,7 +67,7 @@ class thread_startup;
 #include "aura/::user::command.h"
 #include "aura/message/message.h"
 #include "aura/command_target.h"
-#include "aura/user/user/primitive.h"
+#include "aura/user/primitive.h"
 #include "aura/multithreading/multithreading_common.h"
 #include "aura/multithreading/multithreading_pred_holder.h"
 #include "aura/multithreading/multithreading_thread.h"

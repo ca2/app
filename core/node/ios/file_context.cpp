@@ -33,9 +33,9 @@ namespace ios
          
       }
       
-      m_pdirsystem = ::aura::system::g_p->m_pdirsystem;
+      m_pdirsystem = ::get_context_system()->m_pdirsystem;
       
-      m_pfilesystem = ::aura::system::g_p->m_pfilesystem;
+      m_pfilesystem = ::get_context_system()->m_pfilesystem;
 
       string str = getenv("HOME");
 

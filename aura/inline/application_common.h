@@ -4,6 +4,51 @@
 #include "aura/_defer.h"
 
 
+#ifndef NO_DRAW2D
+#ifdef WINDOWS
+
+#ifdef WINDOWS_DESKTOP
+
+extern "C" void draw2d_gdiplus_factory_exchange();
+
+#endif
+
+extern "C" void draw2d_direct2d_factory_exchange();
+
+#elif defined(__APPLE__)
+
+extern "C" void draw2d_quartz_exchange();
+
+#else
+
+extern "C" void draw2d_factory_exchange();
+
+#endif
+
+
+extern "C" void draw2d_cairo_exchange();
+
+
+#endif
+
+
+#ifndef NO_IMAGING
+#ifdef WINDOWS_DESKTOP
+
+extern "C" void imaging_wic_factory_exchange();
+
+#endif
+
+extern "C" void imaging_freeimage_factory_exchange();
+
+#endif
+
+#ifdef WITH_GPU
+
+extern "C" void gpu_opengl_factory_exchange();
+
+#endif
+
 #ifdef LINUX
 
 #include "aura/os/binreloc.h"
@@ -16,7 +61,7 @@ const char* br_init_get_symbol();
 CLASS_DECL_AURA ::estatus os_application_system_run(::aura::system* psystem);
 
 
-void application_common(aura_main_struct * pmainstruct)
+void application_common(::aura::system * psystem)
 {
 
 #ifdef MAIN_STRING
@@ -49,6 +94,59 @@ void application_common(aura_main_struct * pmainstruct)
 
 #endif
 
+
+#ifdef CUBE
+
+#ifndef NO_DRAW2D
+
+#ifdef WINDOWS_DESKTOP
+
+  psystem->set_factory_exchange("draw2d", "gdiplus", &draw2d_gdiplus_factory_exchange);
+
+#elif _UWP
+
+  psystem->set_factory_exchange("draw2d", "direct2d", &draw2d_direct2d_factory_exchange);
+
+#elif defined(LINUX)
+
+  psystem->set_factory_exchange("draw2d", "cairo", &draw2d_cairo_factory_exchange);
+
+#elif defined(__APPLE__)
+
+  psystem->set_factory_exchange("draw2d", "quartz", &draw2d_quartz_factory_exchange);
+
+#else
+
+  psystem->set_factory_exchange("draw2d", &draw2d_factory_exchange);
+
+#endif
+  
+#endif
+
+#ifndef NO_IMAGING
+
+#ifdef WINDOWS_DESKTOP
+
+  psystem->set_factory_exchange("imaging", "wic", &imaging_wic_factory_exchange);
+
+#else
+
+  psystem->set_factory_exchange("imaging", "freeimage", &imaging_freeimage_factory_exchange);
+
+#endif
+
+#endif
+
+
+#ifdef WITH_GPU
+
+  psystem->set_factory_exchange("gpu", "opengl", &gpu_opengl_factory_exchange);
+
+#endif
+
+
+#endif
+
 }
 
 
@@ -75,42 +173,8 @@ public:
 };
 
 
-// #define __namespace_application_factory(NAMESPACE, APPID) \
-// namespace NAMESPACE { \
-// ::static_application_factory < ::NAMESPACE::application > g_applicationfactory(APPID);\
-// } \
-// extern "C" \
-// CLASS_DECL_EXPORT ::aura::application * new_aura_application() \
-// {\
-//    return ::NAMESPACE::g_applicationfactory.new_application(); \
-// }
-
 #define __namespace_application_factory(APPID) \
 ::static_application_factory < application > g_applicationfactory(APPID);
-
-
-
-
-// \
-// extern "C" \
-// CLASS_DECL_EXPORT ::aura::library * get_new_library() \
-// {\
-//    return ::NAMESPACE::g_libraryfactory.new_library(); \
-// }
-
-
-// #define __namespace_library_factory2(N1, N2, LIBRARY) \
-// namespace N1 { namespace N2 { \
-// ::static_library_factory < library > g_libraryfactory(LIBRARY);\
-// } }
-
-
-//  \
-// extern "C" \
-// CLASS_DECL_EXPORT ::aura::library * get_new_library() \
-// {\
-//    return ::N1::N2::g_libraryfactory.new_library(); \
-// }
 
 
 #ifdef WINDOWS_DESKTOP

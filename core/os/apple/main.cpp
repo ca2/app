@@ -37,7 +37,7 @@ u32 __start_system_with_file(const char ** pszaFile, int iCount)
 
    string strExtra;
 
-   //if(::aura::system::g_p != nullptr)
+   //if(::get_context_system() != nullptr)
    {
 
       if(pszaFile != nullptr)
@@ -49,11 +49,11 @@ u32 __start_system_with_file(const char ** pszaFile, int iCount)
       else
       {
 
-         ::create * pcreate = new ::create(::aura::system::g_p);
+         ::create * pcreate = new ::create(::get_context_system());
 
-         pcreate->m_pcommandline = new command_line(::aura::system::g_p, get_command_line_dup());
+         pcreate->m_pcommandline = new command_line(::get_context_system(), get_command_line_dup());
 
-         ::aura::system::g_p->request({ pcreate });
+         ::get_context_system()->request({ pcreate });
 
       }
 

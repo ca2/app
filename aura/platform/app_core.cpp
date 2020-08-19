@@ -10,7 +10,7 @@
 
 //extern string_map < __pointer(::aura::library) >* g_pmapLibrary ;
 //extern string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
-//extern ::mutex* &::aura::system::g_p->m_mutexLibrary;
+//extern ::mutex* &::get_context_system()->m_mutexLibrary;
 
 
 #ifdef RASPBIAN
@@ -1831,9 +1831,9 @@ __result(::aura::application) app_core::get_new_application(::object* pobjectCon
 
    string strAppId = pszAppId;
 
-   sync_lock sl(&::aura::system::g_p->m_mutexLibrary);
+   sync_lock sl(&::get_context_system()->m_mutexLibrary);
 
-   __pointer(::aura::library)& plibrary = ::aura::system::g_p->m_mapLibrary[strAppId];
+   __pointer(::aura::library)& plibrary = ::get_context_system()->m_mapLibrary[strAppId];
 
    if (papp)
    {
@@ -2294,7 +2294,7 @@ bool aura_level::defer_init(PFN_DEFER_INIT pfnDeferInit)
 void set_aura_system_as_thread()
 {
 
-   ::set_thread(::aura::system::g_p);
+   ::set_thread(::get_context_system());
 
 }
 

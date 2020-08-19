@@ -5,6 +5,14 @@
 #include "storage.h"
 
 
+::database::database * create_inline_relational_database()
+{
+
+   return nullptr;
+
+}
+
+
 namespace simpledb
 {
 
@@ -51,7 +59,9 @@ namespace simpledb
 
       }
 
-      auto pdatabase = __new(::sqlite::database());
+      //auto pdatabase = __new(::sqlite::database());
+
+      auto pdatabase = move_transfer(create_inline_relational_database());
 
       if (pdatabase.is_null())
       {

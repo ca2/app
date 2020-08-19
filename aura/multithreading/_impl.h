@@ -398,7 +398,7 @@ void async_pred(void (* pfnBranch )(::generic_object * pobjectTask, e_priority),
 inline ::thread* get_thread(ITHREAD idthread)
 {
 
-   return (::thread*) ::aura::system::g_p->get_thread(idthread);
+   return (::thread*) ::get_context_system()->get_thread(idthread);
 
 }
 

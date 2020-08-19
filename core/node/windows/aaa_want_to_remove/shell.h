@@ -6,7 +6,7 @@
 #include <CommonControls.h>
 
 
-#include "aura/user/user/shell.h"
+#include "aura/user/shell.h"
 
 
 namespace windows

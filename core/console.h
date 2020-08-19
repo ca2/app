@@ -40,7 +40,7 @@
 //
 //      iError = 0;
 //
-//      if (::aura::system::g_p->command_value_is_true("show_application_information"))
+//      if (::get_context_system()->command_value_is_true("show_application_information"))
 //      {
 //
 //         printf("return code is %d", iStatus);

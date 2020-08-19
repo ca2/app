@@ -2,7 +2,7 @@
 #include "aura/node/windows/_windows.h"
 #include "system_interaction_impl.h"
 #include "aura/message.h"
-#include "aura/user/user/interaction_thread.h"
+#include "aura/user/interaction_thread.h"
 #include "aura/os/windows/windowing.h"
 #include "aura/os/windows/top_level_enum.h"
 #include "aura/os/windows/imm_context.h"
@@ -5113,14 +5113,14 @@ LRESULT CALLBACK __window_procedure(HWND oswindow, UINT message, WPARAM wparam, 
 
    //return ::DefWindowProcW(oswindow, message, wparam, lparam);
 
-   if (::aura::system::g_p == nullptr)
+   if (::get_context_system() == nullptr)
    {
 
       return 0;
 
    }
 
-   if (::aura::system::g_p->get_context_system() == nullptr)
+   if (::get_context_system()->get_context_system() == nullptr)
    {
 
       return 0;

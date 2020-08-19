@@ -47,7 +47,7 @@ namespace message
 
       m_lresult = -1;
 
-      ///::aura::application * papp = ::aura::system::g_p;
+      ///::aura::application * papp = ::get_context_system();
 
       TRACE("%s", pcszErrorMessage);
 
@@ -88,7 +88,8 @@ namespace message
    }
 
 
-   ::user::impact_data * create::get_impact_data()
+   //::user::impact_data * create::get_impact_data()
+   ::object * create::get_impact_data()
    {
 
       auto pcreate = get_create();

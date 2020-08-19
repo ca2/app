@@ -2,7 +2,7 @@
 #include "_.h"
 #include <stdio.h>
 
-#include "sqlite3.h"
+//#include "sqlite3.h"
 
 
 extern "C" i32 axis_sqlite_callback(void * res_ptr,i32 ncol, char** reslt,char** cols);

@@ -7,7 +7,7 @@ void __dump_object(const context_object * pobject)
 
 #ifdef __DEBUG
 
-   *::aura::system::g_p->m_pdumpcontext << *pobject;
+   *::get_context_system()->m_pdumpcontext << *pobject;
 
 #endif //__DEBUG
 
@@ -34,7 +34,7 @@ void __dumpf(const char * pszFormat, ...)
 
 #ifdef __DEBUG
 
-   *::aura::system::g_p->m_pdumpcontext << szBuffer;
+   *::get_context_system()->m_pdumpcontext << szBuffer;
 
 #endif // __DEBUG
 

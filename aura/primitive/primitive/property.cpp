@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aura/xml/_.h"
+//#include "aura/xml/_.h"
 
 
 void prop_id_debug(::object * pobject);
@@ -1419,46 +1419,56 @@ string & property::get_http_post(string & str) const
 //
 //
 //
-string property::get_xml(::xml::disp_option * opt /*= &optDefault*/ )
-{
-  //   ::text_stream ostring;
-  //   //ostring << (const char *)m_strName << "='" << (const char *)m_strValue << "' ";
 
-  //   ostring << (const char *)m_strName << L"=" << (CHAR)opt->value_quotation_mark
-  //      << (const char *)(opt->reference_value&&opt->m_pentities?opt->m_pentities->entity_to_ref(m_strValue):m_strValue)
-  //      << (CHAR)opt->value_quotation_mark << L" ";
-  //   return ostring.str();
 
-  if(opt == ((::xml::disp_option *) 1))
-  {
 
-     opt = System.xml().m_poptionDefault;
 
-  }
 
-  string str;
+//string property::get_xml(::xml::disp_option * opt /*= &optDefault*/ )
+//{
+//  //   ::text_stream ostring;
+//  //   //ostring << (const char *)m_strName << "='" << (const char *)m_strValue << "' ";
+//
+//  //   ostring << (const char *)m_strName << L"=" << (CHAR)opt->value_quotation_mark
+//  //      << (const char *)(opt->reference_value&&opt->m_pentities?opt->m_pentities->entity_to_ref(m_strValue):m_strValue)
+//  //      << (CHAR)opt->value_quotation_mark << L" ";
+//  //   return ostring.str();
+//
+//  if(opt == ((::xml::disp_option *) 1))
+//  {
+//
+//     opt = System.xml().m_poptionDefault;
+//
+//  }
+//
+//  string str;
+//
+//  str = name();
+//  str += "=";
+//  str += opt->m_chQuote;
+//  string strValue;
+//  if(opt->m_bReferenceValue && opt->m_pentities)
+//     strValue = opt->m_pentities->entity_to_ref(get_string());
+//  else
+//     strValue = get_string();
+//
+//  strValue.replace("\\", "\\\\"); // should be first
+//  strValue.replace("\n", "\\n");
+//  strValue.replace("\t", "\\t");
+//  strValue.replace("\r", "\\r");
+//  strValue.replace("'", "\\'");
+//  strValue.replace("\"", "\\\"");
+//
+//  str += strValue;
+//  str += opt->m_chQuote;
+//
+//  return str;
+//}
 
-  str = name();
-  str += "=";
-  str += opt->m_chQuote;
-  string strValue;
-  if(opt->m_bReferenceValue && opt->m_pentities)
-     strValue = opt->m_pentities->entity_to_ref(get_string());
-  else
-     strValue = get_string();
 
-  strValue.replace("\\", "\\\\"); // should be first
-  strValue.replace("\n", "\\n");
-  strValue.replace("\t", "\\t");
-  strValue.replace("\r", "\\r");
-  strValue.replace("'", "\\'");
-  strValue.replace("\"", "\\\"");
 
-  str += strValue;
-  str += opt->m_chQuote;
 
-  return str;
-}
+
 //
 //
 //

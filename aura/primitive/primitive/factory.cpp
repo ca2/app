@@ -147,7 +147,7 @@ CLASS_DECL_AURA bool safe_free_memory(void * ptype)
 //
 //   strLibrary = stra.implode("_");
 //
-//   auto plibrary = ::aura::system::g_p->get_library(strLibrary);
+//   auto plibrary = ::get_context_system()->get_library(strLibrary);
 //
 //   plibrary->create_factory();
 //

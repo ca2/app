@@ -6,11 +6,7 @@
 #define PCRE2_STATIC
 #endif
 
-#if defined(WINDOWS) || defined(__APPLE__) || defined(ANDROID)
-#include "pcre/pcre2.h"
-#else
 #include <pcre2.h>
-#endif
 
 
 

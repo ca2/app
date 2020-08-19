@@ -110,7 +110,7 @@ namespace aura
 #endif
 
 
-   //::mutex * &::aura::system::g_p->g_mutexLibrary;
+   //::mutex * &::get_context_system()->g_mutexLibrary;
 
    __LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
 
@@ -552,7 +552,7 @@ namespace aura
 
       g_pmapRTL = nullptr;
 
-      //&::aura::system::g_p->g_mutexLibrary = new ::mutex;
+      //&::get_context_system()->g_mutexLibrary = new ::mutex;
 
       //g_pmapLibrary = new string_map < __pointer(::aura::library) >();
 
@@ -663,7 +663,7 @@ namespace aura
       //try
       //{
 
-      //   sync_lock sl(&::aura::system::g_p->g_mutexLibrary);
+      //   sync_lock sl(&::get_context_system()->g_mutexLibrary);
 
       //   g_pmapLibCall->remove_all();
 
@@ -677,9 +677,9 @@ namespace aura
       //try
       //{
 
-      //   sync_lock sl(&::aura::system::g_p->g_mutexLibrary);
+      //   sync_lock sl(&::get_context_system()->g_mutexLibrary);
 
-      //   &::aura::system::g_p->g_mapLibrary.remove_all();
+      //   &::get_context_system()->g_mapLibrary.remove_all();
 
       //}
       //catch (...)
@@ -800,7 +800,7 @@ namespace aura
 
       //del(g_pmapNewAuraLibrary);
 
-      //del(&::aura::system::g_p->g_mutexLibrary);
+      //del(&::get_context_system()->g_mutexLibrary);
 
       trace_category_static_term();
 

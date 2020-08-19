@@ -168,7 +168,7 @@ inline bool get_memory::get_base64(const string & str)
    else
    {
 
-      return ::aura::system::g_p->m_pbase64->decode(m_block, str, str.get_length());
+      return ::get_context_system()->m_pbase64->decode(m_block, str, str.get_length());
 
    }
 
@@ -179,7 +179,7 @@ template < typename PRED >
 inline ::image_result object::get_image(const var & varFile, ::u64 uTrait, PRED pred)
 {
 
-   return ::aura::system::g_p->get_image(this, varFile, uTrait, pred);
+   return ::get_context_system()->get_image(this, varFile, uTrait, pred);
 
 }
 

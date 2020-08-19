@@ -380,10 +380,10 @@ CLASS_DECL_AURA ::estatus _os_message_box(oswindow oswindow, const char* pszMess
 CLASS_DECL_AURA ::estatus os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, ::callback callback)
 {
 
-   if (::aura::system::g_p->is_dedicated_thread())
+   if (::get_context_system()->is_dedicated_thread())
    {
 
-      ::aura::system::g_p->fork([=]()
+      ::get_context_system()->fork([=]()
          {
 
             _os_message_box(oswindow, pszMessage, pszTitle, emessagebox, callback);

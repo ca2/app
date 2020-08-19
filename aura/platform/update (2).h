@@ -6,7 +6,7 @@
 
 
 #include "aura/update.h"
-#include "aura/user/user/impact_update.h"
+#include "aura/user/impact_update.h"
 
 
 

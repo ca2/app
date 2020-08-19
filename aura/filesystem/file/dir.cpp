@@ -664,7 +664,7 @@ namespace dir
 
       //}
 
-      //return ::file::system_dir::g_pthis->mk(path, ::aura::system::g_p);
+      //return ::file::system_dir::g_pthis->mk(path, ::get_context_system());
 
    }
 
@@ -922,7 +922,7 @@ namespace dir
 
       //}
 
-      //return ::file::system_dir::g_pthis->is(path, ::aura::system::g_p);
+      //return ::file::system_dir::g_pthis->is(path, ::get_context_system());
 
    }
 

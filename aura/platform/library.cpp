@@ -4,7 +4,7 @@
 
 //extern string_map < __pointer(::aura::library) > * g_pmapLibrary;
 
-//extern ::mutex * &::aura::system::g_p->m_mutexLibrary;
+//extern ::mutex * &::get_context_system()->m_mutexLibrary;
 
 
 typedef  void(*PFN_create_factory)();
@@ -111,7 +111,7 @@ namespace aura
    bool library::open(const char * pszPath,bool bAutoClose,bool bCa2Path)
    {
 
-      sync_lock sl(&::aura::system::g_p->m_mutexLibrary);
+      sync_lock sl(&::get_context_system()->m_mutexLibrary);
 
       m_strMessage.Empty();
 
@@ -125,7 +125,7 @@ namespace aura
          if (m_strCa2Name.has_char())
          {
 
-            ::aura::system::g_p->m_mapLibrary[m_strCa2Name] = this;
+            ::get_context_system()->m_mapLibrary[m_strCa2Name] = this;
 
          }
 
@@ -175,7 +175,7 @@ namespace aura
       if (m_strCa2Name.has_char())
       {
 
-         ::aura::system::g_p->m_mapLibrary.set_at(m_strCa2Name, this);
+         ::get_context_system()->m_mapLibrary.set_at(m_strCa2Name, this);
 
       }
 
@@ -187,7 +187,7 @@ namespace aura
    bool library::open_ca2_library(string strTitle)
    {
 
-      sync_lock sl(&::aura::system::g_p->m_mutexLibrary);
+      sync_lock sl(&::get_context_system()->m_mutexLibrary);
 
       if (m_pca2library.is_set())
       {
@@ -205,7 +205,7 @@ namespace aura
       try
       {
       
-         m_pca2library = ::aura::system::g_p->on_get_library(m_strName);
+         m_pca2library = ::get_context_system()->on_get_library(m_strName);
 
       }
       catch (...)
@@ -338,7 +338,7 @@ namespace aura
       if (m_strCa2Name.has_char())
       {
 
-         ::aura::system::g_p->m_mapLibrary.set_at(m_strCa2Name, this);
+         ::get_context_system()->m_mapLibrary.set_at(m_strCa2Name, this);
 
       }
 
@@ -358,7 +358,7 @@ namespace aura
    string library::get_library_name()
    {
 
-      sync_lock sl(&::aura::system::g_p->m_mutexLibrary);
+      sync_lock sl(&::get_context_system()->m_mutexLibrary);
 
       if(m_pca2library)
       {
@@ -403,7 +403,7 @@ namespace aura
    bool library::close()
    {
 
-      sync_lock sl(&::aura::system::g_p->m_mutexLibrary);
+      sync_lock sl(&::get_context_system()->m_mutexLibrary);
 
       try
       {
@@ -453,7 +453,7 @@ namespace aura
    string library::get_app_id(const char * pszAppName)
    {
 
-      sync_lock sl(&::aura::system::g_p->m_mutexLibrary);
+      sync_lock sl(&::get_context_system()->m_mutexLibrary);
 
       if(!contains_app(pszAppName))
          return "";
@@ -507,7 +507,7 @@ namespace aura
    string library::get_app_name(const char * pszAppId)
    {
 
-      sync_lock sl(&::aura::system::g_p->m_mutexLibrary);
+      sync_lock sl(&::get_context_system()->m_mutexLibrary);
 
       string strAppName(pszAppId);
 
@@ -567,7 +567,7 @@ namespace aura
    __result(::aura::application) library::get_new_application(::object * pobject, const char * pszAppId)
    {
 
-      sync_lock sl(&::aura::system::g_p->m_mutexLibrary);
+      sync_lock sl(&::get_context_system()->m_mutexLibrary);
 
       try
       {
@@ -677,7 +677,7 @@ namespace aura
    void library::get_app_list(string_array & stra)
    {
 
-      sync_lock sl(&::aura::system::g_p->m_mutexLibrary);
+      sync_lock sl(&::get_context_system()->m_mutexLibrary);
 
       if(get_ca2_library() != nullptr)
       {
@@ -739,7 +739,7 @@ namespace aura
    __pointer(::generic_object) library::create_object(::object * pobjectContext, const char * pszClass)
    {
 
-      sync_lock sl(&::aura::system::g_p->m_mutexLibrary);
+      sync_lock sl(&::get_context_system()->m_mutexLibrary);
 
       if (factory_has_object_class(pszClass))
       {
@@ -782,7 +782,7 @@ namespace aura
    bool library::has_object_class(const char * pszClassId)
    {
 
-      sync_lock sl(&::aura::system::g_p->m_mutexLibrary);
+      sync_lock sl(&::get_context_system()->m_mutexLibrary);
 
       if (factory_has_object_class(pszClassId))
       {
@@ -806,7 +806,7 @@ namespace aura
    bool library::contains_app(const char * pszAppId)
    {
 
-      sync_lock sl(&::aura::system::g_p->m_mutexLibrary);
+      sync_lock sl(&::get_context_system()->m_mutexLibrary);
 
       string_array stra;
 
@@ -820,7 +820,7 @@ namespace aura
    string library::get_root()
    {
 
-      sync_lock sl(&::aura::system::g_p->m_mutexLibrary);
+      sync_lock sl(&::get_context_system()->m_mutexLibrary);
 
       if(m_pca2library)
       {
@@ -837,7 +837,7 @@ namespace aura
    void library::get_create_view_id_list(::array < id > & ida)
    {
 
-      sync_lock sl(&::aura::system::g_p->m_mutexLibrary);
+      sync_lock sl(&::get_context_system()->m_mutexLibrary);
 
       UNREFERENCED_PARAMETER(ida);
 
@@ -847,7 +847,7 @@ namespace aura
    bool library::is_opened()
    {
 
-      sync_lock sl(&::aura::system::g_p->m_mutexLibrary);
+      sync_lock sl(&::get_context_system()->m_mutexLibrary);
 
       return m_plibrary != nullptr;
 
@@ -865,7 +865,7 @@ namespace aura
    void * library::raw_get(const char * pszEntryName)
    {
 
-      sync_lock sl(&::aura::system::g_p->m_mutexLibrary);
+      sync_lock sl(&::get_context_system()->m_mutexLibrary);
 
       return __node_library_raw_get(m_plibrary,pszEntryName);
 
@@ -971,14 +971,14 @@ namespace aura
 ::aura::library * lib(const char * psz)
 {
 
-   //if (::aura::system::g_p->m_mapLibCall == nullptr)
+   //if (::get_context_system()->m_mapLibCall == nullptr)
    //{
 
    //   return nullptr;
 
    //}
 
-   __pointer(::aura::library) & plibrary = ::aura::system::g_p->m_mapLibCall[psz];
+   __pointer(::aura::library) & plibrary = ::get_context_system()->m_mapLibCall[psz];
 
    if(!plibrary)
    {

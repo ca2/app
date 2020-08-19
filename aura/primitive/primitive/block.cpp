@@ -4,7 +4,7 @@
 block & block::from_base64(const char * psz, strsize iSize) const
 {
 
-   ::aura::system::g_p->m_pbase64->decode(*this, psz, iSize);
+   ::get_context_system()->m_pbase64->decode(*this, psz, iSize);
 
    return (block &)*this;
 
@@ -14,7 +14,7 @@ block & block::from_base64(const char * psz, strsize iSize) const
 string block::to_base64() const
 {
 
-   return ::aura::system::g_p->m_pbase64->encode(*this);
+   return ::get_context_system()->m_pbase64->encode(*this);
 
 }
 
@@ -28,7 +28,7 @@ fork_block & fork_block::from_base64(const char * psz, strsize iSize)
 
    m_pdata = memory_alloc((::memsize_cast) m_iSize);
 
-   m_iSize = ::aura::system::g_p->m_pbase64->decode(*this, psz, iSize);
+   m_iSize = ::get_context_system()->m_pbase64->decode(*this, psz, iSize);
 
    return (fork_block &)*this;
 

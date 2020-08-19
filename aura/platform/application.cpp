@@ -140,7 +140,9 @@ namespace aura
 
       m_puiCurrent = nullptr;
 
-      m_bInitializeDataCentral = true;
+      //m_bInitializeDataCentral = true;
+
+      m_bInitializeDataCentral = false;
 
       m_bContextTheme = false;
 
@@ -4239,16 +4241,16 @@ retry_license:
 
       }
 
-      try
-      {
+      //try
+      //{
 
-         __release(m_pdocmanager);
+      //   __release(m_pdocmanager);
 
-      }
-      catch (...)
-      {
+      //}
+      //catch (...)
+      //{
 
-      }
+      //}
 
 
       m_psimpledb.release();
@@ -6161,12 +6163,12 @@ retry_license:
 
    }
 
-   ::user::document *application::place_hold(::user::interaction * pinteraction)
-   {
+   //::user::document *application::place_hold(::user::interaction * pinteraction)
+   //{
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
 
    bool application::post_message(UINT message, WPARAM wparam, lparam lparam )
@@ -6326,21 +6328,21 @@ retry_license:
    }
 
 
-   __pointer(::user::document) application::defer_create_view(string strView, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::id & id)
-   {
+   //__pointer(::user::document) application::defer_create_view(string strView, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::id & id)
+   //{
 
-      //auto pcontroller = Multimedia.defer_create_view(strView, puiParent, ewindowflag, id);
+   //   //auto pcontroller = Multimedia.defer_create_view(strView, puiParent, ewindowflag, id);
 
-      //if (pcontroller)
-      //{
+   //   //if (pcontroller)
+   //   //{
 
-      //   return pcontroller;
+   //   //   return pcontroller;
 
-      //}
+   //   //}
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
    void application::process_message(::message::base * pbase)
    {
@@ -8049,31 +8051,31 @@ retry_license:
    //}
 
 
-   bool application::on_open_document(::user::document * pdocument, var varFile)
-   {
+   //bool application::on_open_document(::user::document * pdocument, var varFile)
+   //{
 
-      UNREFERENCED_PARAMETER(pdocument);
-      UNREFERENCED_PARAMETER(varFile);
-      return true;
+   //   UNREFERENCED_PARAMETER(pdocument);
+   //   UNREFERENCED_PARAMETER(varFile);
+   //   return true;
 
-   }
-
-
-   bool application::on_save_document(::user::document * pdocument, var varFile)
-   {
-
-      UNREFERENCED_PARAMETER(pdocument);
-      UNREFERENCED_PARAMETER(varFile);
-      return true;
-
-   }
+   //}
 
 
-   void application::on_update_view(::user::impact * pview, ::user::impact * pviewSender, LPARAM lHint, object * pHint)
-   {
+   //bool application::on_save_document(::user::document * pdocument, var varFile)
+   //{
+
+   //   UNREFERENCED_PARAMETER(pdocument);
+   //   UNREFERENCED_PARAMETER(varFile);
+   //   return true;
+
+   //}
 
 
-   }
+   //void application::on_update_view(::user::impact * pview, ::user::impact * pviewSender, LPARAM lHint, object * pHint)
+   //{
+
+
+   //}
 
    //void application::on_control_event(::user::control_event* pevent)
    //{
@@ -9230,7 +9232,7 @@ namespace aura
 
    void application::on_file_open()
    {
-      ENSURE(m_pdocmanager != nullptr);
+      //ENSURE(m_pdocmanager != nullptr);
       //document_manager()->on_file_open();
    }
 
@@ -9534,20 +9536,20 @@ namespace aura
 
    void application::RegisterShellFileTypes(bool bCompat)
    {
-      ENSURE(m_pdocmanager != nullptr);
+      //ENSURE(m_pdocmanager != nullptr);
       //      document_manager()->RegisterShellFileTypes(bCompat);
    }
 
    void application::UnregisterShellFileTypes()
    {
-      ENSURE(m_pdocmanager != nullptr);
+      //ENSURE(m_pdocmanager != nullptr);
       //    document_manager()->UnregisterShellFileTypes();
    }
 
 
    i32 application::get_open_document_count()
    {
-      ENSURE(m_pdocmanager != nullptr);
+      //ENSURE(m_pdocmanager != nullptr);
       //  return document_manager()->get_open_document_count();
       return 0;
    }
@@ -10104,14 +10106,14 @@ namespace aura
    //
    //   }
 
-   ::user::document* application::_001OpenDocumentFile(var varFile)
-   {
+   //::user::document* application::_001OpenDocumentFile(var varFile)
+   //{
 
-      request_file(varFile);
+   //   request_file(varFile);
 
-      return varFile["document"].cast < ::user::document >();
+   //   return varFile["document"].cast < ::user::document >();
 
-   }
+   //}
 
 
    //bool application::_001OnDDECommand(const char* pcsz)
@@ -10423,10 +10425,10 @@ namespace aura
    }
 
 
-   void application::on_create_split_view(::user::split_view* psplit)
-   {
+   //void application::on_create_split_view(::user::split_view* psplit)
+   //{
 
-   }
+   //}
 
 
    void application::EnableShellOpen()
@@ -11010,25 +11012,31 @@ namespace aura
    i32 application::GetVisibleTopLevelFrameCountExcept(__pointer(::user::interaction) pwndExcept)
    {
 
-      ::user::interaction_pointer_array wnda = *m_puiptraFrame;
+      //::user::interaction_pointer_array wnda = *m_puiptraFrame;
 
-      i32 iCount = 0;
-      for (i32 i = 0; i < wnda.get_size(); i++)
-      {
-         __pointer(::user::interaction) pwnd = wnda.element_at(i);
-         __pointer(::user::frame) pframewindow = pwnd;
-         bool bDefaultNotifyIcon = (pframewindow.is_set() && pframewindow->m_bDefaultNotifyIcon);
-         if (pwnd != nullptr &&
-            pwnd != pwndExcept &&
-            pwnd->is_window() &&
-            (pwnd->is_window_visible() || bDefaultNotifyIcon) &&
-            pwnd->get_window_type() == ::user::interaction::type_frame &&
-            !(pwnd->GetStyle() & WS_CHILD))
-         {
-            iCount++;
-         }
-      }
+      //i32 iCount = 0;
+      //for (i32 i = 0; i < wnda.get_size(); i++)
+      //{
+      //   __pointer(::user::interaction) pwnd = wnda.element_at(i);
+      //   __pointer(::user::frame) pframewindow = pwnd;
+      //   bool bDefaultNotifyIcon = (pframewindow.is_set() && pframewindow->m_bDefaultNotifyIcon);
+      //   if (pwnd != nullptr &&
+      //      pwnd != pwndExcept &&
+      //      pwnd->is_window() &&
+      //      (pwnd->is_window_visible() || bDefaultNotifyIcon) &&
+      //      pwnd->get_window_type() == ::user::interaction::type_frame &&
+      //      !(pwnd->GetStyle() & WS_CHILD))
+      //   {
+      //      iCount++;
+      //   }
+      //}
+
+      int iCount = 0;
+
+
+      
       return iCount;
+
    }
 
 
@@ -11157,27 +11165,27 @@ namespace aura
    bool application::on_close_frame_window(::user::frame* pframe)
    {
 
-      if (pframe->m_bCloseApplicationIfLastVisibleFrame)
-      {
-         if (GetVisibleTopLevelFrameCountExcept(pframe) <= 0)
-         {
+      //if (pframe->m_bCloseApplicationIfLastVisibleFrame)
+      //{
+      //   if (GetVisibleTopLevelFrameCountExcept(pframe) <= 0)
+      //   {
 
-            _001CloseApplication();
+      //      _001CloseApplication();
 
-         }
-         else
-         {
+      //   }
+      //   else
+      //   {
 
-            pframe->hide();
+      //      pframe->hide();
 
-         }
-      }
-      else
-      {
+      //   }
+      //}
+      //else
+      //{
 
-         pframe->DestroyWindow();
+      //   pframe->DestroyWindow();
 
-      }
+      //}
 
       return true;
 
@@ -11449,53 +11457,53 @@ namespace aura
    void application::process_message_filter(i32 code, ::message::message* pmessage)
    {
 
-      if (pmessage == nullptr)
-         return;   // not handled
+      //if (pmessage == nullptr)
+      //   return;   // not handled
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      //SCAST_PTR(::message::base, pbase, pmessage);
 
-      __pointer(::user::frame_window) pTopFrameWnd;
-      //::user::interaction * pMainWnd;
-      ::user::interaction* pMsgWnd;
-      switch (code)
-      {
-         //case MSGF_DDEMGR:
-         // Unlike other WH_MSGFILTER codes, MSGF_DDEMGR should
-         //  never call the next hook.
-         // By returning FALSE, the message will be dispatched
-         //  instead (the default behavior).
-         //return;
+      //__pointer(::user::frame_window) pTopFrameWnd;
+      ////::user::interaction * pMainWnd;
+      //::user::interaction* pMsgWnd;
+      //switch (code)
+      //{
+      //   //case MSGF_DDEMGR:
+      //   // Unlike other WH_MSGFILTER codes, MSGF_DDEMGR should
+      //   //  never call the next hook.
+      //   // By returning FALSE, the message will be dispatched
+      //   //  instead (the default behavior).
+      //   //return;
 
-      case MSGF_MENU:
+      //case MSGF_MENU:
 
-         pMsgWnd = dynamic_cast <::user::interaction*> (pbase->m_puserinteraction);
+      //   pMsgWnd = dynamic_cast <::user::interaction*> (pbase->m_puserinteraction);
 
-         if (pMsgWnd != nullptr)
-         {
-            pTopFrameWnd = pMsgWnd->GetTopLevelFrame();
-            if (pTopFrameWnd != nullptr && pTopFrameWnd->IsTracking() &&
-               pTopFrameWnd->m_bHelpMode)
-            {
-               //pMainWnd = __get_main_window();
-               //if((m_puiMain != nullptr) && (IsEnterKey(pbase) || IsButtonUp(pbase)))
-               //{
-               //   //                  pMainWnd->SendMessage(WM_COMMAND, ID_HELP);
-               //   pbase->m_bRet = true;
-               //   return;
-               //}
-            }
-         }
-         // fall through...
+      //   if (pMsgWnd != nullptr)
+      //   {
+      //      pTopFrameWnd = pMsgWnd->GetTopLevelFrame();
+      //      if (pTopFrameWnd != nullptr && pTopFrameWnd->IsTracking() &&
+      //         pTopFrameWnd->m_bHelpMode)
+      //      {
+      //         //pMainWnd = __get_main_window();
+      //         //if((m_puiMain != nullptr) && (IsEnterKey(pbase) || IsButtonUp(pbase)))
+      //         //{
+      //         //   //                  pMainWnd->SendMessage(WM_COMMAND, ID_HELP);
+      //         //   pbase->m_bRet = true;
+      //         //   return;
+      //         //}
+      //      }
+      //   }
+      //   // fall through...
 
-      case MSGF_DIALOGBOX:    // handles message boxes as well.
-         //pMainWnd = __get_main_window();
-         if (code == MSGF_DIALOGBOX && m_puiActive != nullptr &&
-            pbase->m_id >= WM_KEYFIRST && pbase->m_id <= WM_KEYLAST)
-         {
-         }
-         break;
-      }
-      // default to not handled
+      //case MSGF_DIALOGBOX:    // handles message boxes as well.
+      //   //pMainWnd = __get_main_window();
+      //   if (code == MSGF_DIALOGBOX && m_puiActive != nullptr &&
+      //      pbase->m_id >= WM_KEYFIRST && pbase->m_id <= WM_KEYLAST)
+      //   {
+      //   }
+      //   break;
+      //}
+      //// default to not handled
 
    }
 
@@ -11654,11 +11662,11 @@ namespace aura
 
 
 
-   void application::on_create_impact(::user::impact_data* pimpactdata)
-   {
+   //void application::on_create_impact(::user::impact_data* pimpactdata)
+   //{
 
 
-   }
+   //}
 
 
    bool application::process_message()
@@ -11892,14 +11900,16 @@ namespace aura
 
    }
 
-   bool application::do_prompt_file_name(var& varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument)
-   {
 
-      __throw(todo("core and os"));
+   //bool application::do_prompt_file_name(var& varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument)
+   //{
 
-      return false;
+   //   __throw(todo("core and os"));
 
-   }
+   //   return false;
+
+   //}
+
 
 } // namespace aura
 

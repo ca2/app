@@ -67,7 +67,7 @@ namespace aura
 #endif
 
 
-   //extern ::mutex * &::aura::system::g_p->g_mutexLibrary;
+   //extern ::mutex * &::get_context_system()->g_mutexLibrary;
 
    extern __LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
 
@@ -238,7 +238,7 @@ namespace aura
 
 //extern ::aura::aura __aura;
 
-//::aura::system::g_p
+//::get_context_system()
 
 //__aura.g_psystem
 

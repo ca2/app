@@ -328,7 +328,7 @@ namespace user
 } // namespace user
 
 
-#include "aura/user/user/control_property.h"
+#include "aura/user/control_property.h"
 
 #include "history.h"
 
@@ -374,7 +374,7 @@ namespace aura
 
 #include "theme.h"
 
-#include "app/aura/user/user/_.h"
+#include "app/aura/user/_.h"
 
 #include "debug.h"
 
@@ -411,7 +411,7 @@ namespace aura
 #include "_impl.h"
 
 
-#include "aura/user/user/_impl.h"
+#include "aura/user/_impl.h"
 
 
 #include "aura/user/_impl.h"

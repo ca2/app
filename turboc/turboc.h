@@ -3,7 +3,7 @@
 
 #include "aura/_.h"
 #include "aura/filesystem/filemanager/filemanager.h"
-#include "aura/user/user/user.h"
+#include "aura/user/user.h"
 
 
 //#include "ft2build.h"

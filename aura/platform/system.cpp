@@ -3,7 +3,7 @@
 #include "aura/platform/machine_event_data2.h"
 #include "aura/platform/machine_event2.h"
 #include "aura/platform/machine_event_central2.h"
-#include "aura/xml/_.h"
+//#include "aura/xml/_.h"
 #include "aura/platform/app_core.h"
 #include "aura/const/id.h"
 #include "aura/node/_node.h"
@@ -15,7 +15,7 @@
 #include "aura/gpu/gpu/_.h"
 //#endif
 
-
+extern ::aura::system* g_paurasystem;
 
 int GetMainScreenRect(LPRECT lprect);
 
@@ -65,7 +65,7 @@ CLASS_DECL_AURA void __simple_tracea(::generic_object * pobjectContext, e_trace_
 
 void os_post_quit();
 
-//extern ::mutex * &::aura::system::g_p->m_mutexLibrary;
+//extern ::mutex * &::get_context_system()->m_mutexLibrary;
 
 
 
@@ -89,7 +89,6 @@ string get_user_name()
 #endif
 
 
-
 namespace aura
 {
 
@@ -97,9 +96,9 @@ namespace aura
 
 
 
-   class ::id system::idEmpty;
+   //class ::id system::idEmpty;
 
-   system * system::g_p = nullptr;
+   //system * system::g_p = nullptr;
    ::mutex * g_pmutexImage = nullptr;
 
    ::mutex * get_image_mutex()
@@ -114,14 +113,16 @@ namespace aura
 
       //create_factory < ::userex::userex >();
 
+      g_paurasystem = this;
+
       m_bMessageThread = true;
 
       set_context_system(this);
 
-      if (g_p == nullptr)
+      if (g_paurasystem == nullptr)
       {
 
-         g_p = this;
+         g_paurasystem = this;
 
       }
 
@@ -412,18 +413,6 @@ namespace aura
 
       m_tickAfterApplicationFirstRequest = 0;
 
-      {
-
-         auto plibrary = __new(::aura::library);
-
-         plibrary->initialize(this);
-
-         sync_lock sl(&::aura::system::g_p->m_mutexLibrary);
-
-         ::aura::system::g_p->m_mapLibrary.set_at("draw2d", plibrary);
-
-      }
-
       estatus = __compose_new(m_purldepartment);
 
       if (!estatus)
@@ -582,6 +571,170 @@ namespace aura
       }
 
       return m_paudio;
+
+   }
+
+
+   ::estatus system::do_factory_exchange(const char* pszComponent, const char* pszImplementation)
+   {
+
+      string strComponent(pszComponent);
+
+      string strImplementation(pszImplementation);
+
+      ::str::begins_eat_ci(strImplementation, strComponent + "_");
+
+      ::str::begins_eat_ci(strImplementation, strComponent);
+
+#ifdef CUBE
+
+      auto pfnFactoryExchange = m_mapFactoryExchange[strComponent][strImplementation];
+
+      if (::is_null(pfnFactoryExchange))
+      {
+
+         return ::error_failed;
+
+      }
+
+      pfnFactoryExchange();
+
+      return ::success;
+
+#else
+
+      auto plibrary = open_component_library(pszComponent, pszImplementation);
+
+      if (!plibrary)
+      {
+
+         return ::error_failed;
+
+      }
+
+
+      PFN_factory_exchange pfn_factory_exchange = plibrary->get < PFN_factory_exchange >(strComponent + "_" + strImplementation + "_factory_exchange");
+
+      if (pfn_factory_exchange == nullptr)
+      {
+
+         pfn_factory_exchange = plibrary->get < PFN_factory_exchange >(strComponent + "_factory_exchange");
+
+         if (pfn_factory_exchange == nullptr)
+         {
+
+            pfn_factory_exchange = plibrary->get < PFN_factory_exchange >("factory_exchange");
+
+            if (pfn_factory_exchange == nullptr)
+            {
+
+               return ::error_failed;
+
+            }
+
+         }
+
+      }
+
+      pfn_factory_exchange();
+
+      return ::success;
+
+#endif
+
+   }
+
+
+   __pointer(::aura::library) system::open_component_library(const char* pszComponent, const char* pszImplementation)
+   {
+
+      // Ex. "draw2d" (Component) and implementation: either "draw2dcairo", "cairo", "draw2d_cairo"
+
+      sync_lock sl(&::get_context_system()->m_mutexLibrary);
+
+      __pointer(::aura::library)& plibrary = ::get_context_system()->m_mapLibrary[pszComponent];
+
+      if (plibrary && plibrary->is_opened())
+      {
+
+         return plibrary;
+
+      }
+
+      string strComponent(pszComponent);
+
+      string strImplementation(pszImplementation);
+
+      strComponent.trim();
+
+      strImplementation.trim();
+
+      string strLibrary;
+
+      if (strImplementation.is_empty())
+      {
+
+         return nullptr;
+
+      }
+
+      ::str::begins_eat_ci(strImplementation, strComponent + "_");
+
+      ::str::begins_eat_ci(strImplementation, strComponent);
+
+      strLibrary = strComponent + "_" + strImplementation;
+
+#ifdef CUBE
+
+      auto plibraryfactory = ::static_setup::get_first(::static_setup::flag_library, strLibrary);
+
+      if (!plibraryfactory)
+      {
+
+         return nullptr;
+
+      }
+
+      plibrary = plibraryfactory->new_library();
+
+#else
+
+      if (!plibrary)
+      {
+
+         plibrary = __new(::aura::library);
+
+         plibrary->initialize(this);
+
+      }
+
+      if (!plibrary->open(strLibrary))
+      {
+
+         return nullptr;
+
+      }
+
+
+      if (!plibrary->is_opened())
+      {
+
+         return nullptr;
+
+      }
+
+#endif
+
+      return plibrary;
+
+   }
+
+   ::estatus system::set_factory_exchange(const char* pszComponent, const char * pszImplementation, PFN_factory_exchange pfnFactoryExchange)
+   {
+
+      m_mapFactoryExchange[pszComponent][pszImplementation] = pfnFactoryExchange;
+
+      return ::success;
 
    }
 
@@ -811,7 +964,7 @@ namespace aura
    ::aura::library * system::get_library(const char * pszLibrary1, bool bOpenCa2)
    {
 
-      sync_lock sl(&::aura::system::g_p->m_mutexLibrary);
+      sync_lock sl(&::get_context_system()->m_mutexLibrary);
 
       string strLibrary(pszLibrary1);
 
@@ -820,7 +973,7 @@ namespace aura
       strLibrary.ends_eat_ci(".dylib");
       strLibrary.begins_eat_ci("lib");
 
-      __pointer(::aura::library) & plibrary = ::aura::system::g_p->m_mapLibrary[strLibrary];
+      __pointer(::aura::library) & plibrary = ::get_context_system()->m_mapLibrary[strLibrary];
 
       bool bLibraryOk = true;
 
@@ -898,10 +1051,10 @@ namespace aura
 
       ::aura::del(m_ppatch);
 
-      if (g_p == this)
+      if (g_paurasystem == this)
       {
 
-         g_p = nullptr;
+         g_paurasystem = nullptr;
 
       }
 
@@ -940,12 +1093,12 @@ namespace aura
       //   TRACE("system::~system: Potentially catastrophical error : error disabling simple factory request");
       //}
 
-      if (g_p == this)
-      {
+      //if (g_p == this)
+      //{
 
-         g_p = nullptr;
+      //   g_p = nullptr;
 
-      }
+      //}
 
 #ifdef LINUX
 
@@ -1632,7 +1785,7 @@ namespace aura
 
       }
 
-      sync_lock sl(&::aura::system::g_p->m_mutexLibrary);
+      sync_lock sl(&::get_context_system()->m_mutexLibrary);
 
       estatus = __construct_new(m_pdraw2d);
 
@@ -1705,78 +1858,141 @@ namespace aura
    }
 
 
-   bool system::draw2d_factory_exchange()
+   ::estatus system::draw2d_factory_exchange()
    {
 
-#ifdef CUBE
+//#ifdef CUBE
+//
+//      if (g_pfnfactoryexchangeDraw2d)
+//      {
+//
+//         g_pfnfactoryexchangeDraw2d();
+//
+//      }
+//
+//      return true;
+//
+//#else
 
-      if (g_pfnfactoryexchangeDraw2d)
-      {
 
-         g_pfnfactoryexchangeDraw2d();
+      //__pointer(::aura::library) plibrary;
 
-      }
+      //bool bLibraryOk = false;
 
-      return true;
+      //auto plibraryfactory = ::static_setup::get_first(::static_setup::flag_library, pszLibrary);
 
-#else
+      //if (!plibraryfactory)
+      //{
 
-      sync_lock sl(&::aura::system::g_p->m_mutexLibrary);
+      //   return nullptr;
 
-      __pointer(::aura::library) & plibrary = ::aura::system::g_p->m_mapLibrary["draw2d"];
+      //}
 
-      if (plibrary->is_opened())
-      {
+      //plibrary = plibraryfactory->new_library();
 
-         return true;
+      //if (!plibrary)
+      //{
 
-      }
+      //   return nullptr;
+
+      //}
+
+      //auto estatus = plibrary->initialize(this);
+
+      //if (estatus)
+      //{
+
+      //   bLibraryOk = true;
+
+      //}
+
+      //if (plibrary && bLibraryOk)
+      //{
+
+      //   return plibrary;
+
+      //}
+
+
+
+
+      //sync_lock sl(&::get_context_system()->m_mutexLibrary);
+
+      //__pointer(::aura::library) & plibrary = ::get_context_system()->m_mapLibrary["draw2d"];
+
+      //if (plibrary->is_opened())
+      //{
+
+      //   return true;
+
+      //}
 
       string strLibrary;
 
       if (has_property("draw2d"))
       {
 
-         string strDraw2d = value("draw2d");
+         strLibrary = value("draw2d");
 
-         strDraw2d.trim();
+         //strDraw2d.trim();
 
-         if (strDraw2d.has_char())
-         {
+         //if (strDraw2d.has_char())
+         //{
 
-            ::str::begins_eat_ci(strDraw2d, "draw2d_");
+         //   ::str::begins_eat_ci(strDraw2d, "draw2d_");
 
-            ::str::begins_eat_ci(strDraw2d, "draw2d");
+         //   ::str::begins_eat_ci(strDraw2d, "draw2d");
 
-            strLibrary = "draw2d_" + strDraw2d;
+         //   strLibrary = "draw2d_" + strDraw2d;
 
-         }
+         //}
 
       }
+
+      ::estatus estatus;
 
       if (strLibrary.has_char())
       {
 
-         plibrary->open(strLibrary);
+         estatus = do_factory_exchange("draw2d", strLibrary);
 
-         if (plibrary->is_opened())
-            goto finalize;
+         if (estatus)
+         {
+
+            return ::success;
+
+         }
 
       }
 
       strLibrary = draw2d_get_default_library_name();
 
       if (strLibrary.is_empty())
+      {
+
 #ifdef WINDOWS
+
          strLibrary = "draw2d_gdiplus";
+
 #else
+
          strLibrary = "draw2d_cairo";
+
 #endif
 
-      plibrary->open(strLibrary);
+      }
 
-      if (plibrary->is_opened())
-         goto finalize;
+      estatus = do_factory_exchange("draw2d", strLibrary);
+
+      if (estatus)
+      {
+
+         return ::success;
+
+      }
+
+      //if (plibrary->is_opened())
+      //   goto finalize;
 
 #ifdef WINDOWS_DESKTOP
 
@@ -1784,10 +2000,14 @@ namespace aura
       if (strLibrary != "draw2d_gdiplus")
       {
 
-         plibrary->open("draw2d_gdiplus");
+         estatus = do_factory_exchange("draw2d", "gdiplus");
 
-         if (plibrary->is_opened())
-            goto finalize;
+         if (estatus)
+         {
+
+            return ::success;
+
+         }
 
       }
 
@@ -1795,10 +2015,14 @@ namespace aura
       if (strLibrary != "draw2d_direct2d")
       {
 
-         plibrary->open("draw2d_directd");
+         estatus = do_factory_exchange("draw2d", "direct2d");
 
-         if (plibrary->is_opened())
-            goto finalize;
+         if (estatus)
+         {
+
+            return ::success;
+
+         }
 
       }
 
@@ -1809,32 +2033,36 @@ namespace aura
       {
 
 
-         plibrary->open("draw2d_cairo");
+         estatus = do_factory_exchange("draw2d", "cairo");
 
-         if (plibrary->is_opened())
-            goto finalize;
+         if (estatus)
+         {
 
-      }
+            return ::success;
 
-      output_debug_string("No draw2d pluging available!!.");
-      return false;
-
-   finalize:
-
-      PFN_factory_exchange pfn_factory_exchange = plibrary->get < PFN_factory_exchange >("draw2d_factory_exchange");
-
-      if (pfn_factory_exchange == nullptr)
-      {
-
-         return false;
+         }
 
       }
 
-      pfn_factory_exchange();
+      //output_debug_string("No draw2d pluging available!!.");
+      return error_failed;
 
-      return true;
+   //finalize:
 
-#endif
+   //   PFN_factory_exchange pfn_factory_exchange = plibrary->get < PFN_factory_exchange >("draw2d_factory_exchange");
+
+   //   if (pfn_factory_exchange == nullptr)
+   //   {
+
+   //      return false;
+
+   //   }
+
+   //   pfn_factory_exchange();
+
+   //   return true;
+
+//#endif
 
    }
 
@@ -1842,38 +2070,38 @@ namespace aura
    bool system::imaging_factory_exchange()
    {
 
-#ifdef CUBE
+//#ifdef CUBE
+//
+//      if (g_pfnfactoryexchangeImaging)
+//      {
+//
+//         g_pfnfactoryexchangeImaging();
+//
+//      }
+//
+//      return true;
+//
+//#else
 
-      if (g_pfnfactoryexchangeImaging)
-      {
+      //sync_lock sl(&::get_context_system()->m_mutexLibrary);
 
-         g_pfnfactoryexchangeImaging();
+      //__pointer(::aura::library)& plibrary = ::get_context_system()->m_mapLibrary["imaging"];
 
-      }
+      //auto estatus = __defer_construct_new(plibrary);
 
-      return true;
+      //if (!estatus)
+      //{
 
-#else
+      //   return false;
 
-      sync_lock sl(&::aura::system::g_p->m_mutexLibrary);
+      //}
 
-      __pointer(::aura::library)& plibrary = ::aura::system::g_p->m_mapLibrary["imaging"];
+      //if (plibrary->is_opened())
+      //{
 
-      auto estatus = __defer_construct_new(plibrary);
+      //   return true;
 
-      if (!estatus)
-      {
-
-         return false;
-
-      }
-
-      if (plibrary->is_opened())
-      {
-
-         return true;
-
-      }
+      //}
 
       string strLibrary;
 
@@ -1897,15 +2125,17 @@ namespace aura
 
       }
 
+      ::estatus estatus = ::error_failed;
+
       if (strLibrary.has_char())
       {
 
-         plibrary->open(strLibrary);
-
-         if (plibrary->is_opened())
+         estatus = do_factory_exchange("imaging", strLibrary);
+         
+         if (estatus)
          {
 
-            goto finalize;
+            return true;
 
          }
 
@@ -1932,26 +2162,26 @@ namespace aura
 
       }
 
-      plibrary->open(strLibrary);
+      estatus = do_factory_exchange("imaging", strLibrary);
 
-      if (plibrary->is_opened())
+      if (estatus)
       {
 
-         goto finalize;
+         return true;
 
       }
 
 #ifdef WINDOWS_DESKTOP
 
-      if (strLibrary != "wic_imaging")
+      if (strLibrary != "imaging_wic")
       {
 
-         plibrary->open("wic_imaging");
+         estatus = do_factory_exchange("imaging", "wic");
 
-         if (plibrary->is_opened())
+         if (estatus)
          {
 
-            goto finalize;
+            return true;
 
          }
 
@@ -1959,15 +2189,15 @@ namespace aura
 
 #endif
 
-      if (strLibrary != "freeimage_imaging")
+      if (strLibrary != "imaging_freeimage")
       {
 
-         plibrary->open("freeimage_imaging");
+         estatus = do_factory_exchange("imaging", "freeimage");
 
-         if (plibrary->is_opened())
+         if (estatus)
          {
 
-            goto finalize;
+            return true;
 
          }
 
@@ -1977,22 +2207,22 @@ namespace aura
 
       return false;
 
-   finalize:
-
-      PFN_factory_exchange pfn_factory_exchange = plibrary->get < PFN_factory_exchange >("imaging_factory_exchange");
-
-      if (pfn_factory_exchange == nullptr)
-      {
-
-         return false;
-
-      }
-
-      pfn_factory_exchange();
-
-      return true;
-
-#endif // CUBE
+//   finalize:
+//
+//      PFN_factory_exchange pfn_factory_exchange = plibrary->get < PFN_factory_exchange >("imaging_factory_exchange");
+//
+//      if (pfn_factory_exchange == nullptr)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      pfn_factory_exchange();
+//
+//      return true;
+//
+//#endif // CUBE
 
    }
 
@@ -2390,9 +2620,9 @@ namespace aura
       try
       {
 
-         sync_lock sl(&::aura::system::g_p->m_mutexLibrary);
+         sync_lock sl(&::get_context_system()->m_mutexLibrary);
 
-         if (::aura::system::g_p->m_mapLibrary["draw2d"].is_set() && ::aura::system::g_p->m_mapLibrary["draw2d"]->is_opened())
+         if (::get_context_system()->m_mapLibrary["draw2d"].is_set() && ::get_context_system()->m_mapLibrary["draw2d"]->is_opened())
          {
 
             if (m_pDraw2dFactoryExchange != nullptr)
@@ -2865,6 +3095,22 @@ namespace aura
    machine_event_central & system::machine_event_central()
    {
       return *m_pmachineeventcentral;
+   }
+
+
+   __pointer(regex) system::create_regular_expression(const char* pszStyle, const string& str)
+   {
+
+      return nullptr;
+
+   }
+
+
+   __pointer(regex_context) system::create_regular_expression_context(const char* pszStyle, int iCount)
+   {
+
+      return nullptr;
+
    }
 
 
@@ -5822,6 +6068,7 @@ found:
 
    }
 
+
    void system::unset_thread(ITHREAD ithread, ::thread * pthread)
    {
 
@@ -5853,9 +6100,20 @@ found:
 
       //System.load_library("gpu_opengl");
 
-      System.get_library("gpu_opengl");
+      auto estatus = System.do_factory_exchange("gpu", "opengl");
 
-      ::estatus estatus = __compose(m_pgpu);
+      //System.get_library("gpu_opengl");
+
+      
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = __compose(m_pgpu);
 
       if (!estatus)
       {
@@ -6615,46 +6873,46 @@ namespace aura
    //}
 
 
-   ::estatus system::defer_xml()
-   {
+   //::estatus system::defer_xml()
+   //{
 
-      if (m_pxml)
-      {
+   //   if (m_pxml)
+   //   {
 
-         return ::success;
+   //      return ::success;
 
-      }
+   //   }
 
-      auto estatus = __compose_new(m_pxml);
+   //   auto estatus = __compose_new(m_pxml);
 
-      if (!estatus)
-      {
+   //   if (!estatus)
+   //   {
 
-         return estatus;
+   //      return estatus;
 
-      }
+   //   }
 
-      estatus = m_pxml->init1();
+   //   estatus = m_pxml->init1();
 
-      if (!estatus)
-      {
+   //   if (!estatus)
+   //   {
 
-         return estatus;
+   //      return estatus;
 
-      }
+   //   }
 
-      estatus = m_pxml->init();
+   //   estatus = m_pxml->init();
 
-      if (!estatus)
-      {
+   //   if (!estatus)
+   //   {
 
-         return estatus;
+   //      return estatus;
 
-      }
+   //   }
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
 
 
@@ -6683,6 +6941,16 @@ namespace aura
       }
 
       return estatus;
+
+   }
+
+
+   __pointer(::data::node) system::load_xml(const char* pszXml)
+   {
+
+      __throw(interface_only_exception());
+
+      return nullptr;
 
    }
 

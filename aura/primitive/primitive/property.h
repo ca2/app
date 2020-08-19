@@ -230,7 +230,7 @@ public:
 ////   inline void get_string(char * psz) const;
 ////   strsize get_length() const;
 ////
-   string get_xml(::xml::disp_option * opt = ((::xml::disp_option *) 1));
+   //string get_xml(::xml::disp_option * opt = ((::xml::disp_option *) 1));
 ////
 ////   inline bool has_char() const { return has_char(); }
 ////

@@ -43,7 +43,7 @@ void defer_term_ui();
 bool is_verbose();
 
 //extern string_map < __pointer(::aura::library) >* g_pmapLibrary;
-//extern ::mutex * &::aura::system::g_p->m_mutexLibrary;
+//extern ::mutex * &::get_context_system()->m_mutexLibrary;
 //extern string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
 
 int_bool point_is_window_origin(POINT ptHitTest, oswindow oswindowExclude, int iMargin);
@@ -962,9 +962,9 @@ namespace aura
 //
 //
 //         }
-//         sync_lock sl(&::aura::system::g_p->m_mutexLibrary);
+//         sync_lock sl(&::get_context_system()->m_mutexLibrary);
 //
-//         __pointer(::aura::library) & plibrary = &::aura::system::g_p->m_mapLibrary[pszAppId];
+//         __pointer(::aura::library) & plibrary = &::get_context_system()->m_mapLibrary[pszAppId];
 //
 //         if (!plibrary)
 //         {
@@ -3629,9 +3629,9 @@ ret:
 
          }
 
-         sync_lock sl(&::aura::system::g_p->m_mutexLibrary);
+         sync_lock sl(&::get_context_system()->m_mutexLibrary);
 
-         ::aura::system::g_p->m_mapLibrary[strLibrary] = plibrary;
+         ::get_context_system()->m_mapLibrary[strLibrary] = plibrary;
 
          ptheme->m_plibrary = plibrary;
 
@@ -5815,7 +5815,7 @@ namespace aura
 void os_on_finish_launching()
 {
    
-   auto psystem = ::aura::system::g_p;
+   auto psystem = ::get_context_system();
    
    auto psession = psystem->get_context_session();
    

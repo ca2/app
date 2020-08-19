@@ -134,9 +134,9 @@ namespace user
 {
 
 
-   class impact_data;
+   //class impact_data;
    class form_callback;
-   class split_view;
+//   class split_view;
 
    class combo_box;
    class combo_list;
@@ -342,7 +342,7 @@ struct memory_state;
 ////} // namespace user
 ////
 
-#include "aura/user/user/control_property.h"
+#include "aura/user/control_property.h"
 
 #include "history.h"
 
@@ -386,7 +386,7 @@ namespace aura
 
 #include "theme.h"
 
-//#include "app/aura/user/user/_.h"
+//#include "app/aura/user/_.h"
 
 #include "debug.h"
 

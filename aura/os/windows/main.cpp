@@ -147,7 +147,7 @@ CLASS_DECL_AURA void main_async_runnable(::context_object * pobjectTaskParam)
 
    __pointer(::object) pobjectTask = pobjectTaskParam;
    
-   ::aura::system::g_p->post_pred([pobjectTask]()
+   ::get_context_system()->post_pred([pobjectTask]()
    {
 
       pobjectTask->call();
@@ -162,7 +162,7 @@ CLASS_DECL_AURA void main_sync_runnable(::context_object * pobjectTaskParam, ::d
    
    __pointer(::object) pobjectTask = pobjectTaskParam;
    
-   ::aura::system::g_p->send_pred([pobjectTask]()
+   ::get_context_system()->send_pred([pobjectTask]()
    {
 
       pobjectTask->call();

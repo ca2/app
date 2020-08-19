@@ -244,7 +244,7 @@ namespace uwp
       {
          OnChangeDpi(dpi);
 
-         //         ::aura::system::g_p->m_psystem->m_possystemwindow->m_bWindowSizeChange = true;
+         //         ::get_context_system()->m_psystem->m_possystemwindow->m_bWindowSizeChange = true;
 
       }));
 
@@ -768,7 +768,7 @@ namespace uwp
 
    //   m_pd2d1devicecontext->SetTransform(D2D1::Matrix3x2F::Identity());
 
-   //   ::draw2d::graphics_pointer dc(e_create_new, ::aura::system::g_p);
+   //   ::draw2d::graphics_pointer dc(e_create_new, ::get_context_system());
 
    //   dc->attach((ID2D1DeviceContext *) m_pd2d1devicecontext.Get());
 
@@ -800,7 +800,7 @@ namespace uwp
 
    //   ////_001UpdateBuffer();
 
-   //   ////Sys(::aura::system::g_p).m_possystemwindow->m_puserinteraction->_000OnDraw(m_pimage->g());
+   //   ////Sys(::get_context_system()).m_possystemwindow->m_puserinteraction->_000OnDraw(m_pimage->g());
 
    //   ////dc->from(m_pimage->get_size(), m_pimage->g(), SRCCOPY);
    //   ////dc->from(m_pimage->get_size(), m_pimage->g(), SRCCOPY);

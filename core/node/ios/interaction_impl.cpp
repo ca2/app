@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "_ios.h"
-#include "aura/user/user/_user.h"
-#include "aura/user/user/user.h"
+#include "aura/user/_user.h"
+#include "aura/user/user.h"
 #include "aura/os/ios/oswindow_data.h"
 
 double status_bar_height();

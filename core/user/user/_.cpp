@@ -6,7 +6,7 @@
 //
 //   ::estatus estatus = ::error_failed;
 //
-//   auto psystem = ::aura::system::g_p;
+//   auto psystem = ::get_context_system();
 //
 //   if(psystem)
 //   {

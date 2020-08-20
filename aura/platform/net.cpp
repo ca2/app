@@ -415,106 +415,106 @@ void openURL(const string &url_str)
 
 
 
-#ifdef WINDOWS
-#define strdup _strdup
-#endif
-
-CLASS_DECL_AURA int_bool freerdp_get_credentials(void * instance, char** username,char** password,char** domain, const char * pszServerName, int bInteractive)
-{
-
-   ::aura::application * papp = (::aura::application *) instance;
-
-   ::account::user user;
-
-   user.initialize(papp);
-
-   ::account::credentials credentials;
-
-   credentials.initialize_account_credentials(&user, Sess(papp).account()->storage());
-
-   //string strUsername;
-
-   //string strUser;
-
-   //string strDomain;
-
-   //string strPassword;
-
-   //string strToken;
-
-   credentials.m_strToken = Sys(papp).crypto_md5_text(pszServerName);
-
-   //string strTitle;
-
-   credentials.m_strTitle = "Enter Credentials for : " + string(pszServerName);
-
-   credentials.m_bInteractive = bInteractive;
-
-   //strUsername = file_as_string(::dir::system() / "config\\user.txt");
-
-   //strPassword = file_as_string(::dir::system() / "config\\pass.txt");
-
-   //if(strUsername.has_char() && strPassword.has_char())
-   //{
-
-   //}
-   //else
-   //{
-
-   if(credentials.get_credentials() != ::success_credentials)
-   {
-
-      return FALSE;
-
-   }
-
-   string strUser;
-
-   string strPassword(credentials.m_strPassword);
-
-   string strDomain;
-
-   index iFind = user.m_strLogin.find('/');
-
-   if(iFind > 0)
-   {
-
-      strUser = user.m_strLogin.Mid(iFind + 1);
-
-      strDomain = user.m_strLogin.Left(iFind);
-
-   }
-   else
-   {
-
-      strUser = user.m_strLogin;
-
-   }
-
-   if(username != nullptr)
-   {
-
-      *username = strdup(strUser);
-
-   }
-
-   if(domain != nullptr && strDomain.has_char())
-   {
-
-      *domain = strdup(strDomain);
-
-   }
-
-   if(password != nullptr)
-   {
-
-      *password = strdup(strPassword);
-
-   }
-
-   return TRUE;
-
-}
+//#ifdef WINDOWS
+//#define strdup _strdup
+//#endif
+//
+//CLASS_DECL_AURA int_bool freerdp_get_credentials(void * instance, char** username,char** password,char** domain, const char * pszServerName, int bInteractive)
+//{
+//
+//   ::aura::application * papp = (::aura::application *) instance;
+//
+//   ::account::user user;
+//
+//   user.initialize(papp);
+//
+//   ::account::credentials credentials;
+//
+//   credentials.initialize_account_credentials(&user, Sess(papp).account()->storage());
+//
+//   //string strUsername;
+//
+//   //string strUser;
+//
+//   //string strDomain;
+//
+//   //string strPassword;
+//
+//   //string strToken;
+//
+//   credentials.m_strToken = Sys(papp).crypto_md5_text(pszServerName);
+//
+//   //string strTitle;
+//
+//   credentials.m_strTitle = "Enter Credentials for : " + string(pszServerName);
+//
+//   credentials.m_bInteractive = bInteractive;
+//
+//   //strUsername = file_as_string(::dir::system() / "config\\user.txt");
+//
+//   //strPassword = file_as_string(::dir::system() / "config\\pass.txt");
+//
+//   //if(strUsername.has_char() && strPassword.has_char())
+//   //{
+//
+//   //}
+//   //else
+//   //{
+//
+//   if(credentials.get_credentials() != ::success_credentials)
+//   {
+//
+//      return FALSE;
+//
+//   }
+//
+//   string strUser;
+//
+//   string strPassword(credentials.m_strPassword);
+//
+//   string strDomain;
+//
+//   index iFind = user.m_strLogin.find('/');
+//
+//   if(iFind > 0)
+//   {
+//
+//      strUser = user.m_strLogin.Mid(iFind + 1);
+//
+//      strDomain = user.m_strLogin.Left(iFind);
+//
+//   }
+//   else
+//   {
+//
+//      strUser = user.m_strLogin;
+//
+//   }
+//
+//   if(username != nullptr)
+//   {
+//
+//      *username = strdup(strUser);
+//
+//   }
+//
+//   if(domain != nullptr && strDomain.has_char())
+//   {
+//
+//      *domain = strdup(strDomain);
+//
+//   }
+//
+//   if(password != nullptr)
+//   {
+//
+//      *password = strdup(strPassword);
+//
+//   }
+//
+//   return TRUE;
+//
+//}
 
 
 

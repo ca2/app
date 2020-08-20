@@ -2383,3 +2383,50 @@ template < typename PRED >
 procedure::procedure(const ::id& id, PRED pred, ::generic_object* pobjectHold) : function_base(id, __new(__pred_procedure < PRED >(pred, pobjectHold))) { }
 template < typename PRED >
 procedure::procedure(PRED pred, ::generic_object* pobjectHold) : procedure(::id(), pred, pobjectHold) { }
+
+
+
+//namespace user
+//{
+
+
+   inline message_box::message_box(const var& var)
+   {
+
+      if (var.get_type() == type_string)
+      {
+
+         m_strMessage = var;
+
+      }
+      else if (var.has_property("message") && var["message"].has_char())
+      {
+
+         m_strMessage = var["message"];
+
+      }
+      else if (var.has_property("format") && var["format"].has_char())
+      {
+
+         m_strMessage = var.propset().format(var["format"]);
+
+      }
+
+      m_puserprimitive = var["parent"].cast < ::user::primitive >();
+      m_strTitle = var["title"];
+      m_emessagebox = (::emessagebox) var["flags"].i64();
+
+      //if (m_puserprimitive)
+      //{
+
+      //   //m_oswindow = m_puserinteractionParent->get_safe_handle();
+
+      //}
+
+   }
+
+
+//} // namespace user
+//
+//
+//

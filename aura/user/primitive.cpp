@@ -594,14 +594,14 @@ namespace user
    }
 
 
-   __pointer(place_holder) primitive::place_hold(::user::interaction * pinteraction)
-   {
+   //__pointer(place_holder) primitive::place_hold(::user::interaction * pinteraction)
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
 
    //void primitive::set_timer(pointer_array < ::aura::timer_item > timera)
@@ -2804,24 +2804,24 @@ namespace user
    //}
 
 
-   bool primitive::track_popup_menu(::user::menu_item * pitem,i32 iFlags, const ::point & point)
-   {
+   //bool primitive::track_popup_menu(::user::menu_item * pitem,i32 iFlags, const ::point & point)
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
-   __pointer(::user::menu) primitive::track_popup_xml_menu(const var & varXml,i32 iFlags, const ::point & point, const size & size)
-   {
+   //__pointer(::user::menu) primitive::track_popup_xml_menu(const var & varXml,i32 iFlags, const ::point & point, const size & size)
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
 
    //__pointer(::user::menu) primitive::track_popup_xml_matter_menu(const char * pszMatter,i32 iFlags, const ::point & point)

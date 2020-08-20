@@ -50,7 +50,7 @@ namespace user
 
       //::user::style * get_user_style();
 
-      virtual ::estatus create_user_shell();
+      //virtual ::estatus create_user_shell();
 
 
       virtual ::estatus init1() override;
@@ -77,7 +77,7 @@ namespace user
       virtual ::type controltype_to_typeinfo(::user::e_control_type econtroltype);
 
 
-      virtual __pointer(::user::menu_interaction) create_menu_button(::user::style * pstyle, menu_item * pitem);
+      //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style * pstyle, menu_item * pitem);
 
 
    };

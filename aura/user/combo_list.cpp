@@ -48,7 +48,7 @@ namespace user
    void combo_list::install_message_routing(::channel * pchannel)
    {
 
-      ::user::control::install_message_routing(pchannel);
+      ::user::interaction::install_message_routing(pchannel);
 
       install_simple_ui_default_mouse_handling(pchannel);
 
@@ -863,7 +863,7 @@ namespace user
    item combo_list::hover_item()
    {
 
-      return ::user::control::hover_item();
+      return ::user::interaction::hover_item();
 
    }
 
@@ -1047,7 +1047,7 @@ namespace user
    void combo_list::_on_show_window()
    {
 
-      ::user::control::_on_show_window();
+      ::user::interaction::_on_show_window();
 
       if (is_screen_visible(display_request()))
       {

@@ -100,8 +100,8 @@ namespace user
       bool                                         m_bNeedSaveFormData;
       tick                                         m_tickLastRedraw;
       ::id                                         m_idView;
-      ::user::form *                               m_pform;
-      ::user::form *                               m_pformParent;
+      ::user::interaction *                        m_pform;
+      //::user::form *                               m_pformParent;
       ::user::layout *                             m_playout;
       //e_color                                      m_ecolorBackground;
       ::color                                      m_colorBackground;
@@ -168,8 +168,8 @@ namespace user
       /// represents (this window is a button [a menu button],
       /// this window is a checkbox [a menu checkbox],
       /// this window is a player/view [a menu picture/video/chat?!])
-      __pointer(menu_item)                      m_pmenuitemThis;
-      __pointer_array(menu)                     m_menuaGuest;
+      //__pointer(interaction)                    m_pmenuitemThis;
+      //__pointer_array(interaction)              m_menuaGuest;
       bool                                      m_bWfiUpDownTarget;
       __pointer_array(::thread)                 m_threada;
 
@@ -194,6 +194,8 @@ namespace user
             && !m_pimpl->m_bDestroying;
 
       }
+
+      virtual bool get_element_rect(RECT* prect, e_element eelement);
 
       virtual e_element get_default_element() const;
       virtual ::draw2d::font_pointer get_font(style * pstyle, e_element eelement, estate estate = e_state_none) const;
@@ -266,8 +268,8 @@ namespace user
       interaction * get_tooltip();
 
       virtual double get_rotate();
-      virtual ::user::form * get_form();
-      virtual ::user::form * get_parent_form();
+      virtual ::user::interaction * get_form();
+      virtual ::user::interaction* get_parent_form();
 
 
       virtual void set_place_child_title(const char* pszTitle);
@@ -412,6 +414,7 @@ namespace user
       virtual void mouse_hover_add(::user::interaction* pinterface) override;
       virtual bool mouse_hover_remove(::user::interaction* pinterface) override;
 
+      virtual i32 get_wheel_scroll_delta();
 
       template < typename TYPE >
       TYPE* typed_descedant(::user::interaction* puiExclude = nullptr)
@@ -768,7 +771,15 @@ namespace user
       virtual void _000OnDrag(::message::drag_and_drop* pdrag);
 
 
+      virtual LRESULT _OnCreate(VOID);
+      virtual LRESULT _OnDestroy(VOID);
+      //LRESULT _OnCommand(WORD, WORD, HWND);
+      virtual LRESULT _OnSetFocus(VOID);
+      virtual LRESULT _OnKillFocus(VOID);
+
+
       DECL_GEN_SIGNAL(_001OnLButtonDown);
+      DECL_GEN_SIGNAL(_001OnKillFocus);
       DECL_GEN_SIGNAL(_001OnSetFocus);
       DECL_GEN_SIGNAL(_001OnShowWindow);
       DECL_GEN_SIGNAL(_001OnMouseMove);
@@ -941,7 +952,7 @@ namespace user
 
       virtual bool is_selected(::data::item* pitem) override;
 
-      virtual __pointer(place_holder) place_hold(::user::interaction* pinteraction) override;
+      //virtual __pointer(place_holder) place_hold(::user::interaction* pinteraction) override;
 
 #if defined(_UWP) && defined(__cplusplus_winrt)
       static Agile<Windows::UI::Core::CoreWindow>(*s_get_os_window)(interaction* pinteraction);
@@ -963,8 +974,8 @@ namespace user
 
 
 
-      virtual bool track_popup_menu(::user::menu_item* pitem, i32 iFlags, const ::point& point) override;
-      virtual __pointer(::user::menu) track_popup_xml_menu(const var & varXml, i32 iFlags, const ::point& pointScreen = nullptr, const ::size& sizeMinimum = nullptr) override;
+      //virtual bool track_popup_menu(::user::menu_item* pitem, i32 iFlags, const ::point& point) override;
+      //virtual __pointer(::user::menu) track_popup_xml_menu(const var & varXml, i32 iFlags, const ::point& pointScreen = nullptr, const ::size& sizeMinimum = nullptr) override;
 
 
       virtual void _001OnExitIconic() override;

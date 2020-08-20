@@ -59,20 +59,11 @@
     <Filter Include="Source Files\net\sockets\bsd\basic">
       <UniqueIdentifier>{5d739ef4-d8f1-4633-bf68-d600ce894e31}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\net\sockets\bsd\timer">
-      <UniqueIdentifier>{e3374c7b-4e25-4fff-ab46-5b18a87369e7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net\sockets\bsd\smtp">
-      <UniqueIdentifier>{cc80accb-1f5c-4dca-8491-a4bf910b140f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\net\sockets\bsd\webserver">
       <UniqueIdentifier>{054ed6ca-8ff9-45f6-b662-e8393458226b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\net\sockets\http">
       <UniqueIdentifier>{a69c2782-0dc3-4525-9945-2b1b16b7712c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net\netserver">
-      <UniqueIdentifier>{3decb257-1b90-4b87-a480-a2e0b4736d84}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\graphics">
       <UniqueIdentifier>{14fc58bd-e136-4919-be5e-6efac6e33bf1}</UniqueIdentifier>
@@ -144,20 +135,11 @@
     <Filter Include="Header Files\net\sockets\bsd\basic">
       <UniqueIdentifier>{bf45e163-b53c-4448-844c-1dbddfd72345}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\net\sockets\bsd\smtp">
-      <UniqueIdentifier>{8a4d76fd-6ff6-46de-b5e2-6fc84ecaf06c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\sockets\bsd\timer">
-      <UniqueIdentifier>{553e0570-9178-489f-b5e0-f6415fcf8326}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\net\sockets\bsd\webserver">
       <UniqueIdentifier>{f0092b58-5fc7-46a4-8c19-23eb92267ae5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\net\sockets\http">
       <UniqueIdentifier>{71f979a2-c1aa-43c2-8776-57ee4508df8e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\netserver">
-      <UniqueIdentifier>{c08b4e8a-1480-46d8-ac58-4cbb5d9bce70}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\graphics">
       <UniqueIdentifier>{135cd0e5-e3ef-4c58-83e1-5835355a541d}</UniqueIdentifier>
@@ -170,9 +152,6 @@
     </Filter>
     <Filter Include="Header Files\database">
       <UniqueIdentifier>{b8156dfb-d7e5-4c12-8785-572fedf363f7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\papaya">
-      <UniqueIdentifier>{af30e842-0c89-4772-ab85-911b84385037}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\primitive\geometry2d">
       <UniqueIdentifier>{db93c184-411b-46d7-ace7-052cd69de598}</UniqueIdentifier>
@@ -243,12 +222,6 @@
     <Filter Include="Source Files\database">
       <UniqueIdentifier>{533e8db8-72ac-4a56-b24d-f60871d5c7e5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\database\database">
-      <UniqueIdentifier>{3b5e7183-834f-47a8-9cbb-253321a28985}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\database\database">
-      <UniqueIdentifier>{49286379-751e-4730-969a-8e2e1253f184}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\const">
       <UniqueIdentifier>{d1dc7140-9c26-4249-9bf3-84fc6fbb92d7}</UniqueIdentifier>
     </Filter>
@@ -257,12 +230,6 @@
     </Filter>
     <Filter Include="Header Files\filesystem\filemanager">
       <UniqueIdentifier>{8360180d-4810-4991-8eff-d53d2f2318c1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\account">
-      <UniqueIdentifier>{ffb60d99-be56-4a88-8d35-c3614159813f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\account">
-      <UniqueIdentifier>{058f723c-7bce-47fd-a108-4f55fc571ad6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\include">
       <UniqueIdentifier>{0c0346ef-bd1c-4a0a-85b1-cfd8ef8ec242}</UniqueIdentifier>
@@ -351,14 +318,8 @@
     <Filter Include="Header Files\inline\console">
       <UniqueIdentifier>{b02501a0-3913-4e17-bb27-ebe27d6ed3d6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\asset">
-      <UniqueIdentifier>{a486d7b0-00f0-4a4d-94a8-fcd139a0f458}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\symbol">
       <UniqueIdentifier>{2356ec8b-f96c-4629-ade2-5aac109dbc57}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\symbol">
-      <UniqueIdentifier>{7e409c51-0499-46f1-a3fc-9184d943d4ee}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\gpu">
       <UniqueIdentifier>{6babd4e6-4362-4594-860a-10bf897ae556}</UniqueIdentifier>
@@ -393,27 +354,6 @@
     <Filter Include="Source Files\multimedia\audio">
       <UniqueIdentifier>{418db2e9-b7f2-4891-b424-4f4fe142d1b9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\pcre">
-      <UniqueIdentifier>{852eb2e7-c412-43ab-bfad-5cf101b912f0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\pcre">
-      <UniqueIdentifier>{38ea27d6-5e83-45ae-99d9-90b04521824d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\database\simpledb">
-      <UniqueIdentifier>{33350625-e7bd-4324-8bb8-f1991afbaac8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\database\sqlitedb">
-      <UniqueIdentifier>{74c26f04-1085-4a18-b3ed-8990c4dab39c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\database\sqlitedb\NewFilter1">
-      <UniqueIdentifier>{a76b7b1d-9b61-431b-b9c5-ac1878cc545a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\database\simpledb">
-      <UniqueIdentifier>{645ef5d4-2567-4ad0-af18-1bbd063ba793}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\database\sqlitedb">
-      <UniqueIdentifier>{6cb49184-f379-4897-81ce-805627401057}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\game">
       <UniqueIdentifier>{f0606386-9495-46ce-9b74-b91bd4e7cc54}</UniqueIdentifier>
     </Filter>
@@ -422,6 +362,9 @@
     </Filter>
     <Filter Include="Source Files\user\windows_tsf">
       <UniqueIdentifier>{ee768bd0-29dd-4369-b2ac-4e13ee5bb847}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\oauth2">
+      <UniqueIdentifier>{1538148d-fc75-4abd-8efe-fb63727756a8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -434,23 +377,11 @@
     <ClInclude Include="primitive\api\api_rotate.h">
       <Filter>Header Files\primitive\api</Filter>
     </ClInclude>
-    <ClInclude Include="net\sockets\bsd\smtp\smtp_socket.h">
-      <Filter>Header Files\net\sockets\bsd\smtp</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\smtp\smtpd_socket.h">
-      <Filter>Header Files\net\sockets\bsd\smtp</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\webserver\ajp13.h">
-      <Filter>Header Files\net\sockets\bsd\webserver</Filter>
-    </ClInclude>
     <ClInclude Include="net\sockets\bsd\webserver\http_base_socket.h">
       <Filter>Header Files\net\sockets\bsd\webserver</Filter>
     </ClInclude>
     <ClInclude Include="net\sockets\bsd\webserver\httpd_socket.h">
       <Filter>Header Files\net\sockets\bsd\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="papaya\papaya_zoneing.h">
-      <Filter>Header Files\papaya</Filter>
     </ClInclude>
     <ClInclude Include="primitive\geometry3d\geometry3d_box.h">
       <Filter>Header Files\primitive\geometry3d</Filter>
@@ -1838,27 +1769,6 @@
     <ClInclude Include="net\sockets\bsd\socket_id_list.h">
       <Filter>Header Files\net\sockets\bsd</Filter>
     </ClInclude>
-    <ClInclude Include="net\sockets\bsd\webserver\ajp_base_socket.h">
-      <Filter>Header Files\net\sockets\bsd\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\webserver\ajp13_socket.h">
-      <Filter>Header Files\net\sockets\bsd\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\timer\_.h">
-      <Filter>Header Files\net\sockets\bsd\timer</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\timer\event_handler.h">
-      <Filter>Header Files\net\sockets\bsd\timer</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\timer\event_time.h">
-      <Filter>Header Files\net\sockets\bsd\timer</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\timer\ievent_handler.h">
-      <Filter>Header Files\net\sockets\bsd\timer</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\timer\ievent_owner.h">
-      <Filter>Header Files\net\sockets\bsd\timer</Filter>
-    </ClInclude>
     <ClInclude Include="net\sockets\bsd\ssl\client_context.h">
       <Filter>Header Files\net\sockets\bsd\ssl</Filter>
     </ClInclude>
@@ -1918,18 +1828,6 @@
     </ClInclude>
     <ClInclude Include="net\sockets\base\base_socket_handler.h">
       <Filter>Header Files\net\sockets\base</Filter>
-    </ClInclude>
-    <ClInclude Include="net\netserver\_.h">
-      <Filter>Header Files\net\netserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\netserver\socket.h">
-      <Filter>Header Files\net\netserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\netserver\socket_handler.h">
-      <Filter>Header Files\net\netserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\netserver\socket_thread.h">
-      <Filter>Header Files\net\netserver</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\handler.h">
       <Filter>Header Files\multithreading</Filter>
@@ -2003,9 +1901,6 @@
     <ClInclude Include="inline\_acid_app_impl.h">
       <Filter>Header Files\inline</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\math\prime100k.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\collection\runnable_array.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
@@ -2060,30 +1955,6 @@
     <ClInclude Include="filesystem\fs\set.h">
       <Filter>Header Files\filesystem\fs</Filter>
     </ClInclude>
-    <ClInclude Include="database\database\_.h">
-      <Filter>Header Files\database\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database\_impl.h">
-      <Filter>Header Files\database\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database\client.h">
-      <Filter>Header Files\database\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database\const.h">
-      <Filter>Header Files\database\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database\definition.h">
-      <Filter>Header Files\database\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database\field_definition.h">
-      <Filter>Header Files\database\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database\selection.h">
-      <Filter>Header Files\database\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database\server.h">
-      <Filter>Header Files\database\database</Filter>
-    </ClInclude>
     <ClInclude Include="inline\_draw2d_impl.h">
       <Filter>Header Files\inline</Filter>
     </ClInclude>
@@ -2135,83 +2006,11 @@
     <ClInclude Include="const\timer.h">
       <Filter>Header Files\const</Filter>
     </ClInclude>
-    <ClInclude Include="database\database\selection_item.h">
-      <Filter>Header Files\database\database</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\file\_const.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\create_thread.h">
       <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="account\_.h">
-      <Filter>Header Files\account</Filter>
-    </ClInclude>
-    <ClInclude Include="account\_account.h">
-      <Filter>Header Files\account</Filter>
-    </ClInclude>
-    <ClInclude Include="account\aaa_want_to_remove_account_authentication_map.h">
-      <Filter>Header Files\account</Filter>
-    </ClInclude>
-    <ClInclude Include="account\aaa_want_to_remove_account_authorization_task.h">
-      <Filter>Header Files\account</Filter>
-    </ClInclude>
-    <ClInclude Include="account\aaa_want_to_remove_account_object.h">
-      <Filter>Header Files\account</Filter>
-    </ClInclude>
-    <ClInclude Include="account\aaa_want_to_remove_account_user_authentication.h">
-      <Filter>Header Files\account</Filter>
-    </ClInclude>
-    <ClInclude Include="account\authenticator.h">
-      <Filter>Header Files\account</Filter>
-    </ClInclude>
-    <ClInclude Include="account\const.h">
-      <Filter>Header Files\account</Filter>
-    </ClInclude>
-    <ClInclude Include="account\contact_list.h">
-      <Filter>Header Files\account</Filter>
-    </ClInclude>
-    <ClInclude Include="account\credentials.h">
-      <Filter>Header Files\account</Filter>
-    </ClInclude>
-    <ClInclude Include="account\department.h">
-      <Filter>Header Files\account</Filter>
-    </ClInclude>
-    <ClInclude Include="account\e_status.h">
-      <Filter>Header Files\account</Filter>
-    </ClInclude>
-    <ClInclude Include="account\interactive.h">
-      <Filter>Header Files\account</Filter>
-    </ClInclude>
-    <ClInclude Include="account\network_authenticator.h">
-      <Filter>Header Files\account</Filter>
-    </ClInclude>
-    <ClInclude Include="account\product.h">
-      <Filter>Header Files\account</Filter>
-    </ClInclude>
-    <ClInclude Include="account\product_array.h">
-      <Filter>Header Files\account</Filter>
-    </ClInclude>
-    <ClInclude Include="account\storage.h">
-      <Filter>Header Files\account</Filter>
-    </ClInclude>
-    <ClInclude Include="account\storage_client.h">
-      <Filter>Header Files\account</Filter>
-    </ClInclude>
-    <ClInclude Include="account\system_storage.h">
-      <Filter>Header Files\account</Filter>
-    </ClInclude>
-    <ClInclude Include="account\user.h">
-      <Filter>Header Files\account</Filter>
-    </ClInclude>
-    <ClInclude Include="account\user_array.h">
-      <Filter>Header Files\account</Filter>
-    </ClInclude>
-    <ClInclude Include="account\user_set.h">
-      <Filter>Header Files\account</Filter>
-    </ClInclude>
-    <ClInclude Include="account\usera.h">
-      <Filter>Header Files\account</Filter>
     </ClInclude>
     <ClInclude Include="include\_.h">
       <Filter>Header Files\include</Filter>
@@ -2474,12 +2273,6 @@
     <ClInclude Include="node\windows\serial.h">
       <Filter>Header Files\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\windows\shell.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\shell1.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="node\windows\stdio_file.h">
       <Filter>Header Files\node\windows</Filter>
     </ClInclude>
@@ -2558,9 +2351,6 @@
     <ClInclude Include="os\winpr_input.h">
       <Filter>Header Files\os</Filter>
     </ClInclude>
-    <ClInclude Include="platform\app.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\app_core.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -2600,22 +2390,10 @@
     <ClInclude Include="platform\department.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\department_container.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\session.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\session_common.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\session_heap.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\system.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\system_heap.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\_impl.h">
@@ -2631,9 +2409,6 @@
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\_system_var_impl.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\_system_xml_impl.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="id.h">
@@ -2660,37 +2435,10 @@
     <ClInclude Include="platform\_features.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\aaa_want_to_remove_application_common.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\aaa_want_to_remove_common.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\aaa_want_to_remove_console_window2.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\aaa_want_to_remove_extras.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\aaa_want_to_remove_runnable.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\aaa_want_to_remove_system_common.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\aaa_want_to_remove_template.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\all.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\async.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\atomic2.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\aura.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\aura_aura.h">
@@ -2702,16 +2450,10 @@
     <ClInclude Include="platform\aura_regex.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\aura_status.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\auto.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\auto_pointer.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\back_insert_iterator.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\class.h">
@@ -2738,24 +2480,6 @@
     <ClInclude Include="platform\context.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\conv.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\core.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\core1.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\cpu_architecture.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\cregexp.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\cregexp_util.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\debug.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -2765,16 +2489,10 @@
     <ClInclude Include="platform\display.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\document_manager_container.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\draw_context2.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\drawable.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\e_status.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\enum.h">
@@ -2799,12 +2517,6 @@
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\flags.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\gudo2.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\Header.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\history.h">
@@ -2838,9 +2550,6 @@
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\library_object_allocator.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\live_signal.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\log.h">
@@ -2885,15 +2594,6 @@
     <ClInclude Include="platform\os_history.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\patch.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\plane.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\printer.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\printf.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -2918,9 +2618,6 @@
     <ClInclude Include="platform\run_start_installer.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\runnable2.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\savings.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -2930,9 +2627,6 @@
     <ClInclude Include="platform\serial_impl.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\serializable.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\shell_launcher.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -2940,9 +2634,6 @@
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\simple_log.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\smart_pointer_query.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\sprintf.h">
@@ -2957,25 +2648,10 @@
     <ClInclude Include="platform\status.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\std_pair.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\str_context.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\strn.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\struct.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\system_str.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\theme.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\this_build_number.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\tick.h">
@@ -3000,21 +2676,6 @@
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\trace_category.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\types.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\update (2).h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\user_edit_window.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\util1.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\v8stdint.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\version.h">
@@ -3158,12 +2819,6 @@
     <ClInclude Include="symbol\_impl.h">
       <Filter>Header Files\symbol</Filter>
     </ClInclude>
-    <ClInclude Include="platform\runnable_pred_callback.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\runnable_pred_procedure.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\filesystem\file_watcher.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
@@ -3236,9 +2891,6 @@
     <ClInclude Include="primitive\primitive\task.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="database\database\key.h">
-      <Filter>Header Files\database\database</Filter>
-    </ClInclude>
     <ClInclude Include="callback.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -3287,60 +2939,6 @@
     <ClInclude Include="node\windows\_node_windows_private.h">
       <Filter>Header Files\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="pcre\pcre.h">
-      <Filter>Header Files\pcre</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database\change_event.h">
-      <Filter>Header Files\database\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database\database.h">
-      <Filter>Header Files\database\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database\dataset.h">
-      <Filter>Header Files\database\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database\stringhelper.h">
-      <Filter>Header Files\database\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database\template.h">
-      <Filter>Header Files\database\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\simpledb\_.h">
-      <Filter>Header Files\database\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="database\simpledb\_simpledb.h">
-      <Filter>Header Files\database\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="database\simpledb\aaa_want_to_removesimpledb_database.h">
-      <Filter>Header Files\database\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="database\simpledb\file_set.h">
-      <Filter>Header Files\database\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="database\simpledb\item.h">
-      <Filter>Header Files\database\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="database\simpledb\queue_item.h">
-      <Filter>Header Files\database\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="database\simpledb\server.h">
-      <Filter>Header Files\database\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="database\simpledb\simpledb.h">
-      <Filter>Header Files\database\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="database\simpledb\storage.h">
-      <Filter>Header Files\database\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="database\simpledb\thread.h">
-      <Filter>Header Files\database\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="database\simpledb\thread_localdatabase.h">
-      <Filter>Header Files\database\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="database\simpledb\veiev_post.h">
-      <Filter>Header Files\database\simpledb</Filter>
-    </ClInclude>
     <ClInclude Include="game\_.h">
       <Filter>Header Files\game</Filter>
     </ClInclude>
@@ -3352,12 +2950,6 @@
     </ClInclude>
     <ClInclude Include="game\game.h">
       <Filter>Header Files\game</Filter>
-    </ClInclude>
-    <ClInclude Include="database\sqlitedb\database1.h">
-      <Filter>Header Files\database\sqlitedb</Filter>
-    </ClInclude>
-    <ClInclude Include="database\sqlitedb\dataset1.h">
-      <Filter>Header Files\database\sqlitedb</Filter>
     </ClInclude>
     <ClInclude Include="primitive\data\_.h">
       <Filter>Header Files\primitive\data</Filter>
@@ -3431,9 +3023,6 @@
     <ClInclude Include="user\00.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\box.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\button.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -3458,25 +3047,10 @@
     <ClInclude Include="user\composition_imm_client.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\control.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\control_bar.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\control_ddx_dbflags.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\control_descriptor.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\control_descriptor_set.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\control_event.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\control_property.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\copydesk.h">
@@ -3486,36 +3060,6 @@
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\create_struct.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\data_exchange.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\edit_window.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\form.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\form_callback.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\form_control.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\form_data.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\form_update_hint.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\form_window.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\image_list.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\image_manager.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\imm_client.h">
@@ -3545,15 +3089,6 @@
     <ClInclude Include="user\key.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\keyboard.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\keyboard_layout.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\keyboard_layout_cfg.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\language.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -3563,28 +3098,7 @@
     <ClInclude Include="user\layout.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\listing.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\main_frame.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\main_window.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\margin.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\menu.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\menu_command.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\menu_interaction.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\menu_item.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\message.h">
@@ -3599,24 +3113,6 @@
     <ClInclude Include="user\mouse.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\multiple_document_template.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\network_configuration.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\picture.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\picture_interaction.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\place_holder.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\place_holder_container.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\plain_edit.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -3627,9 +3123,6 @@
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\primitive_impl.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\print_task.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\prodevian.h">
@@ -3650,19 +3143,7 @@
     <ClInclude Include="user\scroll_info.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\shell.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\slider.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\split_bar.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\split_layout.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\static_control.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\still.h">
@@ -3674,16 +3155,7 @@
     <ClInclude Include="user\style_base.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\tab.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\tab_callback.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\text.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\theme.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user.h">
@@ -3712,6 +3184,72 @@
     </ClInclude>
     <ClInclude Include="console.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="user\keyboard.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\aaa_want_to_remove_strn.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\aaa_want_to_remove_struct.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\aaa_want_to_remove_util1.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\aaa_want_to_remove_v8stdint.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\geometry2d\_struct.h">
+      <Filter>Header Files\primitive\geometry2d</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\comparison\sign.h">
+      <Filter>Header Files\primitive\comparison</Filter>
+    </ClInclude>
+    <ClInclude Include="database\_.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\_impl.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\change_event.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\client.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\const.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\dataset.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\definition.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\field_definition.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\key.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\selection.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\selection_item.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\server.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\stringhelper.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\template.h">
+      <Filter>Header Files\database</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -4447,30 +3985,6 @@
     <ClCompile Include="net\sockets\bsd\ssl\initializer.cpp">
       <Filter>Source Files\net\sockets\bsd\ssl</Filter>
     </ClCompile>
-    <ClCompile Include="net\sockets\bsd\smtp\smtp_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\smtp</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\smtp\smtpd_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\smtp</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\timer\Event.cpp">
-      <Filter>Source Files\net\sockets\bsd\timer</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\timer\EventHandler.cpp">
-      <Filter>Source Files\net\sockets\bsd\timer</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\timer\EventTime.cpp">
-      <Filter>Source Files\net\sockets\bsd\timer</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\timer\IEventOwner.cpp">
-      <Filter>Source Files\net\sockets\bsd\timer</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\webserver\Ajp13Socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\webserver\AjpBaseSocket.cpp">
-      <Filter>Source Files\net\sockets\bsd\webserver</Filter>
-    </ClCompile>
     <ClCompile Include="net\sockets\bsd\webserver\http_base_socket.cpp">
       <Filter>Source Files\net\sockets\bsd\webserver</Filter>
     </ClCompile>
@@ -4533,15 +4047,6 @@
     </ClCompile>
     <ClCompile Include="net\sockets\websocket_client.cpp">
       <Filter>Source Files\net\sockets</Filter>
-    </ClCompile>
-    <ClCompile Include="net\netserver\socket.cpp">
-      <Filter>Source Files\net\netserver</Filter>
-    </ClCompile>
-    <ClCompile Include="net\netserver\socket_handler.cpp">
-      <Filter>Source Files\net\netserver</Filter>
-    </ClCompile>
-    <ClCompile Include="net\netserver\socket_thread.cpp">
-      <Filter>Source Files\net\netserver</Filter>
     </ClCompile>
     <ClCompile Include="net\_.cpp">
       <Filter>Source Files\net</Filter>
@@ -4642,9 +4147,6 @@
     <ClCompile Include="graphics\draw2d\alpha.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\math\prime100k.cpp">
-      <Filter>Source Files\primitive\math</Filter>
-    </ClCompile>
     <ClCompile Include="net\sockets\bsd\sockets.cpp">
       <Filter>Source Files\net\sockets\bsd</Filter>
     </ClCompile>
@@ -4683,12 +4185,6 @@
     </ClCompile>
     <ClCompile Include="graphics\draw3d\ortho.cpp">
       <Filter>Source Files\graphics\draw3d</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database\client.cpp">
-      <Filter>Source Files\database\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database\server.cpp">
-      <Filter>Source Files\database\database</Filter>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\nanosvg.cpp">
       <Filter>Source Files\graphics\draw2d\no_precompiled_header</Filter>
@@ -5170,9 +4666,6 @@
     <ClCompile Include="node\windows\serial.cpp">
       <Filter>Source Files\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="node\windows\shell.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
     <ClCompile Include="node\windows\stdio_file.cpp">
       <Filter>Source Files\node\windows</Filter>
     </ClCompile>
@@ -5287,54 +4780,6 @@
     <ClCompile Include="platform\system.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="account\account.cpp">
-      <Filter>Source Files\account</Filter>
-    </ClCompile>
-    <ClCompile Include="account\authenticator.cpp">
-      <Filter>Source Files\account</Filter>
-    </ClCompile>
-    <ClCompile Include="account\contact_list.cpp">
-      <Filter>Source Files\account</Filter>
-    </ClCompile>
-    <ClCompile Include="account\credentials.cpp">
-      <Filter>Source Files\account</Filter>
-    </ClCompile>
-    <ClCompile Include="account\department.cpp">
-      <Filter>Source Files\account</Filter>
-    </ClCompile>
-    <ClCompile Include="account\interactive.cpp">
-      <Filter>Source Files\account</Filter>
-    </ClCompile>
-    <ClCompile Include="account\network_authenticator.cpp">
-      <Filter>Source Files\account</Filter>
-    </ClCompile>
-    <ClCompile Include="account\product.cpp">
-      <Filter>Source Files\account</Filter>
-    </ClCompile>
-    <ClCompile Include="account\product_array.cpp">
-      <Filter>Source Files\account</Filter>
-    </ClCompile>
-    <ClCompile Include="account\storage.cpp">
-      <Filter>Source Files\account</Filter>
-    </ClCompile>
-    <ClCompile Include="account\storage_client.cpp">
-      <Filter>Source Files\account</Filter>
-    </ClCompile>
-    <ClCompile Include="account\system_storage.cpp">
-      <Filter>Source Files\account</Filter>
-    </ClCompile>
-    <ClCompile Include="account\user.cpp">
-      <Filter>Source Files\account</Filter>
-    </ClCompile>
-    <ClCompile Include="account\user_array.cpp">
-      <Filter>Source Files\account</Filter>
-    </ClCompile>
-    <ClCompile Include="account\user_set.cpp">
-      <Filter>Source Files\account</Filter>
-    </ClCompile>
-    <ClCompile Include="account\usera.cpp">
-      <Filter>Source Files\account</Filter>
-    </ClCompile>
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -5356,25 +4801,10 @@
     <ClCompile Include="platform\console_application.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\constraint.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="platform\context.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\context_image.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\conv.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\cpu_architecture.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\cregexp.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\cregexp_util.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\debug.cpp">
@@ -5383,16 +4813,10 @@
     <ClCompile Include="platform\department.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\department_container.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="platform\display.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\draw_context.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\element.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\exclusive.cpp">
@@ -5422,12 +4846,6 @@
     <ClCompile Include="platform\library.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\live_object.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\live_signal.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="platform\log.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -5452,9 +4870,6 @@
     <ClCompile Include="platform\math.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\mktime.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="platform\muldiv64.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -5462,15 +4877,6 @@
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\os_history.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\patch.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\pointer.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\printer.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\printf.cpp">
@@ -5483,9 +4889,6 @@
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\savings.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\serialize.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\shell_launcher.cpp">
@@ -5503,22 +4906,10 @@
     <ClCompile Include="platform\static_setup.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\status.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="platform\str_context.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\str_format.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\strn.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="platform\system_trace.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\template.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\theme.cpp">
@@ -5546,9 +4937,6 @@
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\version.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\version0.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive\block.cpp">
@@ -5583,9 +4971,6 @@
     </ClCompile>
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\run_system.cpp">
-      <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="os\windows\api.cpp">
       <Filter>Source Files\os\windows</Filter>
@@ -5650,9 +5035,6 @@
     <ClCompile Include="platform\aura_main_struct.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="symbol\message_box.cpp">
-      <Filter>Source Files\symbol</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\primitive\procedure.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
@@ -5704,9 +5086,6 @@
     <ClCompile Include="platform\static_start_aura.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="asset\cube_new.cpp">
-      <Filter>Source Files\asset</Filter>
-    </ClCompile>
     <ClCompile Include="platform\progress.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -5715,21 +5094,6 @@
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\item_action.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database\key.cpp">
-      <Filter>Source Files\database\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database\definition.cpp">
-      <Filter>Source Files\database\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database\selection.cpp">
-      <Filter>Source Files\database\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database\selection_item.cpp">
-      <Filter>Source Files\database\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database\field_definition.cpp">
-      <Filter>Source Files\database\database</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive\task.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
@@ -5761,48 +5125,6 @@
     <ClCompile Include="multimedia\audio\speaker.cpp">
       <Filter>Source Files\multimedia\audio</Filter>
     </ClCompile>
-    <ClCompile Include="pcre\pcre.cpp">
-      <Filter>Source Files\pcre</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database\database.cpp">
-      <Filter>Source Files\database\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database\dataset.cpp">
-      <Filter>Source Files\database\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database\event_change.cpp">
-      <Filter>Source Files\database\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database\id.cpp">
-      <Filter>Source Files\database\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database\stringhelper.cpp">
-      <Filter>Source Files\database\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\sqlitedb\database.cpp">
-      <Filter>Source Files\database\sqlitedb</Filter>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\file_set.cpp">
-      <Filter>Source Files\database\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\item.cpp">
-      <Filter>Source Files\database\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\server.cpp">
-      <Filter>Source Files\database\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb.cpp">
-      <Filter>Source Files\database\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\storage.cpp">
-      <Filter>Source Files\database\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\thread.cpp">
-      <Filter>Source Files\database\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\thread_localdatabase.cpp">
-      <Filter>Source Files\database\simpledb</Filter>
-    </ClCompile>
     <ClCompile Include="game\estamira.cpp">
       <Filter>Source Files\game</Filter>
     </ClCompile>
@@ -5813,9 +5135,6 @@
       <Filter>Source Files\primitive\data</Filter>
     </ClCompile>
     <ClCompile Include="user\_.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\box.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\button.cpp">
@@ -5842,22 +5161,10 @@
     <ClCompile Include="user\composition_imm_client.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\control.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\control_bar.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\control_descriptor.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\control_descriptor_set.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\control_event.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\control_property.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\copydesk.cpp">
@@ -5867,33 +5174,6 @@
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\create_struct.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\data_exchange.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\edit_window.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\form.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\form_callback.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\form_control.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\form_data.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\form_window.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\hotplugin.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\image_list.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\imm_client.cpp">
@@ -5923,15 +5203,6 @@
     <ClCompile Include="user\key.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\keyboard.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\keyboard_layout.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\keyboard_layout_cfg.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\language.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
@@ -5942,21 +5213,6 @@
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\main_window.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\margin.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\menu.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\menu_command.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\menu_interaction.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\menu_item.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\message.cpp">
@@ -5971,18 +5227,6 @@
     <ClCompile Include="user\os_colors.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\picture.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\picture_interaction.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\place_holder.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\place_holder_container.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\plain_edit.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
@@ -5995,34 +5239,16 @@
     <ClCompile Include="user\primitive_impl.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\print_task.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\progress.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\range.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\scroll.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\scroll_bar.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\shell.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\slider.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\split_bar.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\split_layout.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\static_control.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\still.cpp">
@@ -6034,22 +5260,10 @@
     <ClCompile Include="user\style_base.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\tab.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\tab_callback.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\text.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\theme.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\validate.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\wait_cursor.cpp">
@@ -6096,6 +5310,51 @@
     </ClCompile>
     <ClCompile Include="user\frame.cpp">
       <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\keyboard.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\scroll.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="database\client.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\dataset.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\definition.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\event_change.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\field_definition.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\id.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\key.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\selection.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\selection_item.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\server.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\stringhelper.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\message_box.cpp">
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -6200,15 +5459,6 @@
     </None>
     <None Include="primitive\math\_impl.h">
       <Filter>Header Files\primitive\math</Filter>
-    </None>
-    <None Include="platform\aura1.inl">
-      <Filter>Header Files\platform</Filter>
-    </None>
-    <None Include="platform\aura2.inl">
-      <Filter>Header Files\platform</Filter>
-    </None>
-    <None Include="platform\gudo_application2.inl">
-      <Filter>Header Files\platform</Filter>
     </None>
     <None Include="aura.def">
       <Filter>Source Files</Filter>

@@ -48,7 +48,7 @@ extern CLASS_DECL_AURA __LPFN_MAIN_DEFERRED_RUN __main_deferred_run;
 #endif
 
 
-#include "aura/platform/cpu_architecture.h"
+//#include "aura/platform/cpu_architecture.h"
 
 
 #include "aura/message/global.h"
@@ -1252,7 +1252,7 @@ namespace user
    class interaction_impl;
    class primitive;
    class frame;
-   class menu;
+//   class menu;
    //class controller;
    //class document;
 
@@ -1263,12 +1263,12 @@ namespace user
    class primitive;
    class interaction;
    class layout;
-   class place_holder;
-   class menu_item;
-   class form;
+   //class place_holder;
+   //class menu_item;
+   //class form;
    class style;
    class menu_interaction;
-   class tab;
+   //class tab;
    class tab_pane;
    class check_box;
    class toolbar;
@@ -2635,7 +2635,7 @@ namespace core
 
 #include "aura/primitive/comparison/md5.h"
 
-#include "aura/platform/conv.h"
+//#include "aura/platform/conv.h"
 
 #include "aura/primitive/primitive/request_interface.h"
 
@@ -2840,23 +2840,23 @@ namespace uwp
 
 #endif
 
-namespace account
-{
+//namespace account
+//{
+//
+//
+//   //class interactive;
+//   //class credentials;
+//   //class department;
+//   //class user;
+//   //class product;
+//   //class storage;
+//
+//
+//} // namespace account
 
 
-   class interactive;
-   class credentials;
-   class department;
-   class user;
-   class product;
-   class storage;
 
-
-} // namespace account
-
-
-
-#include "aura/account/_.h"
+//#include "aura/account/_.h"
 
 
 
@@ -2956,13 +2956,13 @@ CLASS_DECL_AURA string get_system_error_message(u32 dwError);
 
 #include "aura/primitive/primitive/edit.h"
 #include "aura/platform/department.h"
-#include "aura/platform/department_container.h"
+//#include "aura/platform/department_container.h"
 
 #include "aura/multithreading/threading.h"
 
 class mq;
 
-#include "aura/platform/live_signal.h"
+//#include "aura/platform/live_signal.h"
 #include "aura/multithreading/pred_holder.h"
 //#include "aura/primitive/primitive/command.h"
 #include "aura/multithreading/thread.h"
@@ -3123,8 +3123,8 @@ namespace file
 #include "aura/primitive/string/international_locale_schema.h"
 
 
-#include "aura/platform/cregexp.h"
-#include "aura/platform/cregexp_util.h"
+//#include "aura/platform/cregexp.h"
+//#include "aura/platform/cregexp_util.h"
 
 
 class CLASS_DECL_AURA ptra :
@@ -3168,9 +3168,9 @@ namespace zip
 
 #include "aura/crypto/crypto.h"
 
-#include "aura/database/database/_.h"
+#include "aura/database/_.h"
 
-#include "aura/database/simpledb/_.h"
+//#include "aura/database/simpledb/_.h"
 
 #include "aura/user/_.h"
 
@@ -3244,11 +3244,11 @@ class ifs;
 
 #include "aura/platform/application.h"
 
-#include "aura/platform/app.h"
+//#include "aura/platform/app.h"
 
 #include "aura/platform/application_message.h"
 
-#include "aura/account/_account.h"
+//#include "aura/account/_account.h"
 
 #include "aura/filesystem/filemanager/item_action.h"
 
@@ -3301,7 +3301,7 @@ namespace xml
 
 #include "aura/platform/system.h"
 
-#include "aura/platform/system_str.h"
+//#include "aura/platform/system_str.h"
 
 
 
@@ -3869,7 +3869,7 @@ CLASS_DECL_AURA ::aura::application * get_aura(void * p);
 #include "aura/filesystem/filesystem/_impl.h"
 
 
-#include "aura/database/database/_impl.h"
+#include "aura/database/_impl.h"
 
 
 #include "aura/os/_impl.h"

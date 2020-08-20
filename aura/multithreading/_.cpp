@@ -71,7 +71,9 @@ namespace multithreading
    void thread_unregister(ITHREAD ithread, ::thread * pthread)
    {
 
-      ::get_context_system()->unset_thread(ithread, pthread);
+      auto psystem = ::get_context_system();
+
+      psystem->unset_thread(ithread, pthread);
 
    }
 

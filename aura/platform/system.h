@@ -59,7 +59,7 @@ namespace aura
 
       __composite(class ::datetime::department)          m_pdatetime;
       __composite(::crypto::crypto)                      m_pcrypto;
-      __composite(class ::account::user_set)             m_puserset;
+      //__composite(class ::account::user_set)             m_puserset;
 
       __pointer_array(service_base)                      m_serviceptra;
       __composite(class ::xml::department)               m_pxml;
@@ -218,7 +218,7 @@ namespace aura
       //    class ::aura::service                        m_service;
 
 
-      class ::aura::patch *                           m_ppatch;
+      // class ::aura::patch* m_ppatch;
 
       //      __pointer(::aura::run_start_installer)              m_prunstartinstaller;
 
@@ -338,7 +338,7 @@ namespace aura
       //virtual i32 exit_instance();
       //virtual bool finalize();
 
-
+      virtual void finalize() override;
 
 
 
@@ -471,7 +471,7 @@ namespace aura
 
       ::net::email_department                & email();
 
-      __pointer(::account::user_set)                userset();
+      //__pointer(::account::user_set)                userset();
 
       ::datetime::department                 & datetime();
 
@@ -866,7 +866,7 @@ namespace aura
       //    ::aura::service                        & service();
       ::aura::history& hist();
 
-      class ::aura::patch& patch();
+      //class ::aura::patch& patch();
 
       //::http::system                         & http();
 
@@ -879,7 +879,8 @@ namespace aura
 
 
 
-      bool sync_load_url(string& str, const char* pszUrl, ::account::user* puser = nullptr, ::http::cookies* pcookies = nullptr);
+      //bool sync_load_url(string& str, const char* pszUrl, ::account::user* puser = nullptr, ::http::cookies* pcookies = nullptr);
+      bool sync_load_url(string& str, const char* pszUrl,  ::http::cookies* pcookies = nullptr);
 
 
 

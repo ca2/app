@@ -25,7 +25,7 @@ namespace user
 
       m_estyle = estyle;
 
-      m_bIdBound = true;
+      //m_bIdBound = true;
 
    }
 
@@ -585,7 +585,7 @@ namespace user
 //
 //      }
 
-      ::user::control::_001OnTimer(ptimer);
+      ::user::interaction::_001OnTimer(ptimer);
 
    }
 
@@ -633,7 +633,7 @@ namespace user
    void check_box::update(::update * pupdate)
    {
 
-      control::update(pupdate);
+      interaction::update(pupdate);
 
    }
 
@@ -641,7 +641,7 @@ namespace user
    void check_box::install_message_routing(::channel * pchannel)
    {
 
-      ::user::control::install_message_routing(pchannel);
+      ::user::interaction::install_message_routing(pchannel);
 
       install_simple_ui_default_mouse_handling(pchannel);
 

@@ -72,59 +72,59 @@ namespace user
          case type_element:
          {
 
-            auto pinteraction = argument.cast < interaction >();
+            //auto pinteraction = argument.cast < interaction >();
 
-            if (pinteraction)
-            {
+            //if (pinteraction)
+            //{
 
-               if (::is_null(get_context_object()))
-               {
+            //   if (::is_null(get_context_object()))
+            //   {
 
-                  set_context_object(pinteraction);
+            //      set_context_object(pinteraction);
 
-               }
+            //   }
 
-               if (pinteraction->is_window())
-               {
+            //   if (pinteraction->is_window())
+            //   {
 
-                  m_puserinteractionParent = pinteraction;
+            //      m_puserinteractionParent = pinteraction;
 
-                  break;
+            //      break;
 
-               }
-               else
-               {
+            //   }
+            //   else
+            //   {
 
-                  m_pusercontrol = pinteraction;
+            //      m_pusercontrol = pinteraction;
 
-                  break;
+            //      break;
 
-               }
+            //   }
 
-            }
+            //}
 
-            auto playout = argument.cast < layout >();
+            //auto playout = argument.cast < layout >();
 
-            if (playout)
-            {
+            //if (playout)
+            //{
 
-               if (::is_null(get_context_object()))
-               {
+            //   if (::is_null(get_context_object()))
+            //   {
 
-                  set_context_object(playout->get_context_object());
+            //      set_context_object(playout->get_context_object());
 
-               }
+            //   }
 
-               m_playout = playout;
+            //   m_playout = playout;
 
-            }
+            //}
 
-            if (::is_null(get_context_object()))
-            {
+            //if (::is_null(get_context_object()))
+            //{
 
-               set_context_object(argument.cast < ::object > ());
+            //   set_context_object(argument.cast < ::object > ());
 
-            }
+            //}
 
          }
                break;
@@ -265,14 +265,14 @@ namespace user
    bool control_descriptor::operator == (const control_descriptor & descriptor) const
    {
 
-      if (m_pusercontrol && ::is_set(descriptor.m_pusercontrol))
+ /*     if (m_pusercontrol && ::is_set(descriptor.m_pusercontrol))
       {
 
          return m_pusercontrol == descriptor.m_pusercontrol;
 
-      }
+      }*/
 
-      return m_id == descriptor.m_id && m_puserinteractionParent == descriptor.m_puserinteractionParent;
+      return m_id == descriptor.m_id && m_puserinteractionParent->descriptor() == descriptor.m_puserinteractionParent->descriptor();
 
    }
 

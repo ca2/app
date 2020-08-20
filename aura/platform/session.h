@@ -62,8 +62,8 @@ namespace aura
       e_cursor                                              m_ecursorDefault;
       e_cursor                                              m_ecursor;
 
-      __composite(::user::theme)                            m_ptheme;
-      string_map < __composite(::user::theme) >             m_mapTheme;
+      //__composite(::user::theme)                            m_ptheme;
+      // string_map < __composite(::user::theme) >             m_mapTheme;
 
       ::user::interaction *                                 m_puiCapture;
       bool                                                  m_bDrawCursor;
@@ -80,7 +80,7 @@ namespace aura
 
       //index                                               m_iEdge;
 
-      __composite(::account::department)                    m_paccount;
+      //__composite(::account::department)                    m_paccount;
       //__pointer(::account::licensing)                     m_plicensing;
       //__composite(::user::interaction)                      m_puserinteractionSystem;
       __composite(::aura::savings)                          m_psavings;
@@ -190,7 +190,7 @@ namespace aura
 
       virtual void translate_os_key_message(::user::key * pkey);
 
-      virtual void on_user_logon(::account::user * puser);
+      //virtual void on_user_logon(::account::user * puser);
 
       virtual void pre_translate_message(::message::message * pmessage) override;
 
@@ -258,19 +258,19 @@ namespace aura
 
       virtual bool defer_create_session_frame_window();
 
-      inline ::account::department * account() { return m_paccount; }
+      //inline ::account::department * account() { return m_paccount; }
 
       ::user::copydesk & copydesk();
 
-      virtual ::account::user * get_user(::file::path pathUrl = nullptr, bool bFetch = false, bool bInteractive = true);
+      //virtual ::account::user * get_user(::file::path pathUrl = nullptr, bool bFetch = false, bool bInteractive = true);
 
-      virtual void on_remove_user(::account::user * puser);
+      //virtual void on_remove_user(::account::user * puser);
 
       virtual bool is_licensed(const char * pszId, bool bInteractive = true);
 
       virtual bool get_auth(const string & pszForm, string & strUsername, string & strPassword);
 
-      virtual void interactive_credentials(::account::credentials * pcredentials);
+      //virtual void interactive_credentials(::account::credentials * pcredentials);
 
       ::aura::application * application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate) override;
 
@@ -357,12 +357,12 @@ namespace aura
       virtual index get_ui_wkspace(::user::interaction * pinteraction);
 
 
-      virtual void defer_instantiate_user_theme(const char * pszUiInteractionLibrary = nullptr);
-      __pointer(::user::theme) instantiate_user_theme(const char * pszExperienceLibrary, ::aura::application * papp = nullptr);
-      __pointer(::user::theme) get_user_theme(const char * pszExperienceLibrary, ::aura::application * papp = nullptr);
+      //virtual void defer_instantiate_user_theme(const char * pszUiInteractionLibrary = nullptr);
+      //__pointer(::user::theme) instantiate_user_theme(const char * pszExperienceLibrary, ::aura::application * papp = nullptr);
+      //__pointer(::user::theme) get_user_theme(const char * pszExperienceLibrary, ::aura::application * papp = nullptr);
 
 
-      virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rect & rect, ::draw2d::brush_pointer & brushText);
+      //virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rect & rect, ::draw2d::brush_pointer & brushText);
 
 
       virtual void set_bound_ui(::id idView, ::user::interaction * pinteraction);
@@ -389,6 +389,8 @@ namespace aura
       //virtual void term_session() override;
       //virtual void term3() override;
       //virtual bool finalize_filemanager();
+
+      virtual void finalize() override;
 
       //template < typename VIEW >
       //__pointer(::user::document)   create_form(__pointer(::user::interaction) pwndParent = nullptr, var var = ::var(::type_empty_argument), ::var varArgs = ::var(::type_empty_argument));
@@ -552,7 +554,7 @@ namespace aura
       //virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer & pgraphics, const ::rect& rect, ::draw2d::brush_pointer& brushText) override;
 
 
-      virtual bool prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::user::menu_item* pitem);
+      //virtual bool prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::user::menu_item* pitem);
 
       
       virtual ::color get_color(::user::e_element eelement, ::user::estate estate);

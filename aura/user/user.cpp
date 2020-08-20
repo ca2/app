@@ -34,15 +34,15 @@ namespace user
       //create_factory <::user::simple_view >();
       create_factory <::user::still >();
       create_factory <::user::combo_box >();
-      create_factory <::user::place_holder >();
+      //create_factory <::user::place_holder >();
       //create_factory <::user::font_combo_box >();
 
       //if(get_context_application()->is_system())
-      {
+      //{
 
-         create_factory <keyboard_layout >();
+      //   create_factory <keyboard_layout >();
 
-      }
+      //}
 
       if (!::aura::department::init1())
       {
@@ -66,14 +66,14 @@ namespace user
 
       }
 
-      auto estatus = create_user_shell();
+      //auto estatus = create_user_shell();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
 
 
@@ -292,12 +292,12 @@ namespace user
    }
 
 
-   __pointer(::user::menu_interaction) user::create_menu_button(::user::style * pstyle, menu_item* pitem)
-   {
+   //__pointer(::user::menu_interaction) user::create_menu_button(::user::style * pstyle, menu_item* pitem)
+   //{
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
 
 //   __pointer(::user::impact) user::get_view()

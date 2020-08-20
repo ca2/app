@@ -12,9 +12,19 @@ namespace app_app
 
       m_dStartTime = ::get_secs();
 
-      //m_dLastTime = m_dStartTime;
-
       m_dPhaseShift = 0.0;
+
+   }
+
+
+   void window::on_create_user_interaction()
+   {
+
+      main_window::on_create_user_interaction();
+
+      ModifyStyle(WS_CAPTION, 0);
+
+      ModifyStyleEx(0, WS_EX_LAYERED);
 
    }
 
@@ -108,11 +118,12 @@ namespace app_app
 
          }
 
-         int iSize = ::sin(angle) * 20 + 64;
+         int iSize = (int) (::sin(angle) * 20.0 + 64.0);
 
          get_client_rect(pitem->m_rect);
 
          pitem->m_rect.left = pitem->m_rect.right - iSize;
+
          pitem->m_rect.bottom = pitem->m_rect.top + iSize;
 
          update_hover(nullptr);
@@ -120,8 +131,6 @@ namespace app_app
       }
 
       ::user::interaction::_001OnDraw(pgraphics);
-
-      
 
    }
 

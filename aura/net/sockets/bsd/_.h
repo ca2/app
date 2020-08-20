@@ -289,9 +289,9 @@ using socket_list = ::comparable_list < SOCKET >;
 #include "aura/net/sockets/http/_.h"
 
 
-#include "webserver/ajp_base_socket.h"
-#include "webserver/ajp13_socket.h"
-#include "webserver/ajp13.h"
+//#include "webserver/ajp_base_socket.h"
+//#include "webserver/ajp13_socket.h"
+//#include "webserver/ajp13.h"
 #include "aura/net/sockets/http/socket.h"
 #include "webserver/http_base_socket.h"
 #include "webserver/httpd_socket.h"
@@ -309,15 +309,15 @@ using socket_list = ::comparable_list < SOCKET >;
 //#include "sip/sip_server.h"
 
 
-#include "smtp/smtp_socket.h"
-#include "smtp/smtpd_socket.h"
+//#include "smtp/smtp_socket.h"
+//#include "smtp/smtpd_socket.h"
 
-#include "timer/event_time.h"
-#include "timer/_.h"
+//#include "timer/event_time.h"
+//#include "timer/_.h"
 
-#include "timer/ievent_handler.h"
-#include "timer/ievent_owner.h"
-#include "timer/event_handler.h"
+//#include "timer/ievent_handler.h"
+//#include "timer/ievent_owner.h"
+//#include "timer/event_handler.h"
 
 #include "dns/resolv_socket.h"
 #include "dns/resolv_server.h"

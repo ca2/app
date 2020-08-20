@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_AURA still :
-      virtual public control
+      virtual public ::user::interaction
    {
    public:
 

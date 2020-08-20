@@ -190,7 +190,7 @@ namespace aura
 {
 
 
-   class patch;
+   //class patch;
    class history;
    class application;
    class session;
@@ -225,7 +225,7 @@ namespace aura
 
 #include "aura/const/_const.h"
 
-#include "aura/platform/struct.h"
+//#include "aura/platform/struct.h"
 
 #include "aura/os/aura.h"
 

@@ -21,10 +21,10 @@ namespace aura
       virtual public ::aura::context_thread,
       virtual public ::user::callback,
       virtual public int_scalar_source,
-      virtual public ::account::interactive,
+      //virtual public ::account::interactive,
       virtual public ::application_container,
       virtual public ::database::client,
-      virtual public ::user::form_callback,
+      //virtual public ::user::form_callback,
 //      virtual public ::user::impact_creator,
       virtual public ::filemanager::callback
       //, virtual public ::user::document_manager_container
@@ -119,7 +119,7 @@ namespace aura
 
       i32                                             m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
 
-      __pointer(::simpledb::server)                   m_psimpledb;
+      //__pointer(::simpledb::server)                   m_psimpledb;
 
       //::userex::pane_tab_view *                       m_pmainpane;
 
@@ -185,7 +185,7 @@ namespace aura
 
 //      virtual ::estatus     interactive_credentials(::account::credentials * pcredentials) override;
 
-      virtual ::database::key calc_data_key() override;
+      //virtual ::database::key calc_data_key() override;
 
 
       //virtual string load_podata(string strLang, bool bOnlyHeader);
@@ -204,7 +204,7 @@ namespace aura
       virtual bool is_serviceable() const;
 
 
-      virtual ::simpledb::server * simpledb();
+      //virtual ::simpledb::server * simpledb();
       virtual ::database::server * dataserver();
 
 
@@ -481,8 +481,8 @@ namespace aura
       virtual string get_title();
       virtual string_array get_categories();
 
-      virtual void on_create_keyboard();
-      virtual bool set_keyboard_layout(const char * pszPath, const ::action_context & action_context);
+      virtual void defer_create_keyboard();
+      //virtual bool set_keyboard_layout(const char * pszPath, const ::action_context & action_context);
 
 
       virtual bool enable_application_events(::object * pobject, bool bEnable);
@@ -773,7 +773,7 @@ namespace aura
 
       //virtual bool compress_gz(::file::file * pfileCompressed, ::file::file * pfileUncompressed, int iLevel = 6);
 
-      virtual void interactive_credentials(::account::credentials * pcredentials) override;
+      //virtual void interactive_credentials(::account::credentials * pcredentials) override;
 
       virtual ::file::path get_executable_path();
       virtual string get_executable_extension();
@@ -837,11 +837,11 @@ namespace aura
 
 
 
-      virtual ::account::user * get_user(::file::path pathUrl = nullptr, bool bFetch = false, bool bInteractive = true);
-
-      virtual ::account::user * interactive_get_user(::file::path pathUrl = nullptr);
-
-      virtual ::account::user * noninteractive_get_user(::file::path pathUrl = nullptr);
+//      virtual ::account::user * get_user(::file::path pathUrl = nullptr, bool bFetch = false, bool bInteractive = true);
+//
+////      virtual ::account::user * interactive_get_user(::file::path pathUrl = nullptr);
+//
+//      virtual ::account::user * noninteractive_get_user(::file::path pathUrl = nullptr);
 
       virtual void on_initial_frame_position(::user::frame * pframe);
 
@@ -1327,7 +1327,7 @@ namespace aura
       //virtual bool platform_open_by_file_extension(int iEdge,::create * pcc);
 
 
-      virtual void on_change_cur_sel(::user::tab* ptab);
+      //virtual void on_change_cur_sel(::user::tab* ptab);
 
 
       //      virtual void interactive_credentials(::account::credentials * pcredentials) override;
@@ -1394,7 +1394,7 @@ namespace aura
 
 
       //using ::aura::application::on_control_event;
-      using ::user::form_callback::on_control_event;
+      //using ::user::form_callback::on_control_event;
 
 
       //virtual void remove_document_template(::user::impact_system* pimpactsystem);

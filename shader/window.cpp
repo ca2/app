@@ -48,6 +48,8 @@ namespace app_shader
    }
 
 
+
+
    void window::_001OnCreate(::message::message * pmessage)
    {
 

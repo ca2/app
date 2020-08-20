@@ -81,6 +81,15 @@ namespace aura
    }
 
 
+   void context_thread::finalize()
+   {
+
+      ::thread::finalize();
+
+      ::context::finalize();
+
+   }
+
    //void command::on_create(::create* pcreate)
    //{
 

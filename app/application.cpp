@@ -96,6 +96,9 @@ namespace app_app
    }
 
 
+#endif
+
+
    __namespace_application_factory("app/app");
 
 

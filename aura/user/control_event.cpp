@@ -27,7 +27,7 @@ namespace user
 
    }
 
-   ::user::form * control_event::get_form()
+   ::user::interaction * control_event::get_form()
    {
 
       if (::is_null(m_puie))
@@ -42,7 +42,7 @@ namespace user
    }
 
 
-   ::user::form * control_event::get_parent_form()
+   ::user::interaction * control_event::get_parent_form()
    {
 
       if (::is_null(m_puie))

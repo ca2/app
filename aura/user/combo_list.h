@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_AURA combo_list :
-      virtual public ::user::control
+      virtual public ::user::scroll
    {
    public:
 

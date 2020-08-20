@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include  "aura/user/edit_window.h"
+//#include  "aura/user/edit_window.h"
 
 
 //#include <windowsx.h>
@@ -60,7 +60,7 @@ namespace tsf
       virtual public ITextStoreACP,
       virtual public ITfUIElementSink,
       virtual public ITfFunctionProvider,
-      virtual public ::user::edit_window
+      virtual public ::user::interaction
    {
    public:
 

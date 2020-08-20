@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_AURA main_window :
-      virtual public ::user::interaction
+      virtual public ::user::frame
    {
    public:
 

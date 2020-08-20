@@ -20,7 +20,7 @@ namespace user
    class plain_edit_internal;
 
    class CLASS_DECL_AURA plain_edit :
-      virtual public control,
+      virtual public ::user::scroll,
       virtual public ::data::listener
 #ifdef ENABLE_TEXT_SERVICES_FRAMEWORK
 #ifdef WINDOWS

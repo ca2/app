@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class tab;
+   //class tab;
 
 
    class CLASS_DECL_AURA control_event
@@ -15,8 +15,8 @@ namespace user
 
       e_event                          m_eevent;
       ::user::interaction *            m_puie;
-      ::user::tab *                    m_ptab;
-      ::user::form *                   m_pform;
+      ::user::interaction *            m_ptab;
+      ::user::interaction *            m_pform;
       id                               m_id;
       u64                              m_uiEvent;
       e_timer                          m_etimer;
@@ -45,8 +45,8 @@ namespace user
       //::user::impact_system * get_impact_system();
       //string get_impact_matter();
 
-      virtual ::user::form * get_form();
-      virtual ::user::form * get_parent_form();
+      virtual ::user::interaction * get_form();
+      virtual ::user::interaction * get_parent_form();
 
 
    };

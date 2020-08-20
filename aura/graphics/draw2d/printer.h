@@ -6,8 +6,7 @@ namespace draw2d
 
 
    class CLASS_DECL_AURA printer :
-      virtual public ::draw2d::object,
-      virtual public ::aura::printer
+      virtual public ::draw2d::object
    {
    public:
 

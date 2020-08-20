@@ -13,39 +13,39 @@ namespace net
    }
 
 
-   bool email_department::utf8_mail(class ::net::email * pemail)
-   {
+   //bool email_department::utf8_mail(class ::net::email * pemail)
+   //{
 
-      ::sockets::socket_handler handler(get_context_object());
+   //   ::sockets::socket_handler handler(get_context_object());
 
-      ::sockets::smtp_socket socket(handler);
+   //   ::sockets::smtp_socket socket(handler);
 
-      if(!socket.open((const string &) Context.file().as_string("C:\\sensitive\\sensitive\\seed\\default_sendmail_host.txt"), (port_t) 25))
-         return false;
+   //   if(!socket.open((const string &) Context.file().as_string("C:\\sensitive\\sensitive\\seed\\default_sendmail_host.txt"), (port_t) 25))
+   //      return false;
 
-      socket.m_estate = ::sockets::smtp_socket::state_initial;
+   //   socket.m_estate = ::sockets::smtp_socket::state_initial;
 
-      socket.m_pemail = pemail;
+   //   socket.m_pemail = pemail;
 
-      auto tickStart = ::tick::now();
+   //   auto tickStart = ::tick::now();
 
-      handler.add(&socket);
+   //   handler.add(&socket);
 
-      while (true)
-      {
+   //   while (true)
+   //   {
 
-         handler.select(8,0);
+   //      handler.select(8,0);
 
-         if(tickStart.elapsed() > 15_s)
-            break;
+   //      if(tickStart.elapsed() > 15_s)
+   //         break;
 
-         if(socket.m_estate == ::sockets::smtp_socket::state_end)
-            break;
+   //      if(socket.m_estate == ::sockets::smtp_socket::state_end)
+   //         break;
 
-      }
+   //   }
 
-      return socket.m_estate == ::sockets::smtp_socket::state_sent || socket.m_estate == ::sockets::smtp_socket::state_quit || socket.m_estate == ::sockets::smtp_socket::state_end;
-   }
+   //   return socket.m_estate == ::sockets::smtp_socket::state_sent || socket.m_estate == ::sockets::smtp_socket::state_quit || socket.m_estate == ::sockets::smtp_socket::state_end;
+   //}
 
 
    bool email_department::syntax_is_valid(const string & strEmailAddress)

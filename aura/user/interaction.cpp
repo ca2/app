@@ -139,7 +139,7 @@ namespace user
       m_palphasource = nullptr;
 
       m_pform = nullptr;
-      m_pformParent = nullptr;
+      //m_pformParent = nullptr;
 
    }
 
@@ -148,6 +148,14 @@ namespace user
    {
 
       //TRACE("::user::interaction::~interaction interaction=0x%016x %s", this, typeid(*this).name());
+
+   }
+
+
+   bool interaction::get_element_rect(RECT* prect, e_element eelement)
+   {
+
+      return false;
 
    }
 
@@ -381,7 +389,7 @@ namespace user
 
       }
 
-      m_pdescriptor->m_pusercontrol = this;
+      //m_pdescriptor->m_pusercontrol = this;
 
       return true;
 
@@ -711,7 +719,7 @@ namespace user
    }
 
 
-   ::user::form * interaction::get_form()
+   ::user::interaction * interaction::get_form()
    {
 
       return m_pform;
@@ -724,32 +732,32 @@ namespace user
 
       value("place_child_title") = pszTitle;
 
-      __pointer(::user::place_holder) pholder = GetParent();
+      //__pointer(::user::place_holder) pholder = GetParent();
 
-      if (pholder)
-      {
+      //if (pholder)
+      //{
 
-         auto pparent = pholder->GetParent();
+      //   auto pparent = pholder->GetParent();
 
-         if (pparent)
-         {
+      //   if (pparent)
+      //   {
 
-            auto pupdate = new_update();
+      //      auto pupdate = new_update();
 
-            pupdate->m_id = id_place_child_title_change;
+      //      pupdate->m_id = id_place_child_title_change;
 
-            pupdate->m_puserinteraction = pholder;
+      //      pupdate->m_puserinteraction = pholder;
 
-            pparent->call_update(pupdate);
+      //      pparent->call_update(pupdate);
 
-         }
+      //   }
 
-      }
+      //}
 
    }
 
 
-   ::user::form * interaction::get_parent_form()
+   ::user::interaction * interaction::get_parent_form()
    {
 
       auto pform = get_form();
@@ -890,14 +898,14 @@ namespace user
    }
 
 
-   __pointer(place_holder) interaction::place_hold(::user::interaction * pinteraction)
-   {
+   //__pointer(place_holder) interaction::place_hold(::user::interaction * pinteraction)
+   //{
 
-      UNREFERENCED_PARAMETER(pinteraction);
+   //   UNREFERENCED_PARAMETER(pinteraction);
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
 
    bool interaction::on_before_set_parent(::user::interaction * puiParent)
@@ -1079,6 +1087,7 @@ namespace user
          IGUI_MSG_LINK(WM_MOVE, pchannel, this, &interaction::_001OnMove);
          IGUI_MSG_LINK(WM_NCCALCSIZE, pchannel, this, &interaction::_001OnNcCalcSize);
          IGUI_MSG_LINK(WM_SHOWWINDOW, pchannel, this, &interaction::_001OnShowWindow);
+         IGUI_MSG_LINK(WM_KILLFOCUS, pchannel, this, &interaction::_001OnKillFocus);
          IGUI_MSG_LINK(WM_SETFOCUS, pchannel, this, &interaction::_001OnSetFocus);
          IGUI_MSG_LINK(WM_DISPLAYCHANGE, pchannel, this, &interaction::_001OnDisplayChange);
          IGUI_MSG_LINK(WM_LBUTTONDOWN, pchannel, this, &interaction::_001OnLButtonDown);
@@ -1268,7 +1277,11 @@ namespace user
 
       user_interaction_on_destroy();
 
+      _OnDestroy();
+
       pmessage->previous();
+
+
 
    }
 
@@ -1764,14 +1777,14 @@ namespace user
 
       m_bUserPrimitiveOk = false;
 
-      if (m_pmenuitemThis.is_set() && m_pmenuitemThis->m_puserinteraction == this)
-      {
+      //if (m_pmenuitemThis.is_set() && m_pmenuitemThis->m_puserinteraction == this)
+      //{
 
-         m_pmenuitemThis->m_puserinteraction.release();
+      //   m_pmenuitemThis->m_puserinteraction.release();
 
-      }
+      //}
 
-      m_pmenuitemThis.release();
+      //m_pmenuitemThis.release();
 
       m_ewindowflag -= window_flag_is_window;
 
@@ -3275,6 +3288,37 @@ namespace user
    }
 
 
+   LRESULT interaction::_OnCreate(VOID)
+   {
+
+      return 0;
+
+   }
+
+
+   LRESULT interaction::_OnDestroy(VOID)
+   {
+
+      return 0;
+
+   }
+
+
+   LRESULT interaction::_OnSetFocus(VOID)
+   {
+
+      return 0;
+
+   }
+
+
+   LRESULT interaction::_OnKillFocus(VOID)
+   {
+
+      return 0;
+
+   }
+
    void interaction::_001OnCreate(::message::message * pmessage)
    {
 
@@ -3349,23 +3393,23 @@ namespace user
             )
          {
 
-            __pointer(place_holder) pholder = GetParent();
+            //__pointer(place_holder) pholder = GetParent();
 
-            if (pholder.is_set())
-            {
+            //if (pholder.is_set())
+            //{
 
-               // A Copy Paste error (the commented out code below)?
-               //single_lock sl(puiParent->mutex(),TRUE);
-               //single_lock sl2(mutex(),TRUE);
+            //   // A Copy Paste error (the commented out code below)?
+            //   //single_lock sl(puiParent->mutex(),TRUE);
+            //   //single_lock sl2(mutex(),TRUE);
 
-               if (!pholder->is_place_holding(this))
-               {
+            //   if (!pholder->is_place_holding(this))
+            //   {
 
-                  pholder->place_hold(this);
+            //      pholder->place_hold(this);
 
-               }
+            //   }
 
-            }
+            //}
 
          }
 
@@ -3376,6 +3420,8 @@ namespace user
       }
 
       send_message(message_change_experience);
+
+      _OnCreate();
 
    }
 
@@ -4573,17 +4619,17 @@ namespace user
 
          auto rect(request_state().rect());
 
-         if (rect.area() <= 0)
-         {
+         //if (rect.area() <= 0)
+         //{
 
-            if (puiParent != nullptr && dynamic_cast <::user::place_holder *> (puiParent) != nullptr)
-            {
+         //   if (puiParent != nullptr && dynamic_cast <::user::place_holder *> (puiParent) != nullptr)
+         //   {
 
-               puiParent->get_client_rect(rect);
+         //      puiParent->get_client_rect(rect);
 
-            }
+         //   }
 
-         }
+         //}
 
          if (puiParent == nullptr && Session.m_puiHost.is_set() && Session.m_puiHost != this)
          {
@@ -8677,6 +8723,14 @@ restart:
    }
 
 
+   i32 interaction::get_wheel_scroll_delta()
+   {
+
+      return 0;
+
+   }
+
+
    ::user::interaction * interaction::previous_sibling(::user::interaction * pinteraction)
    {
       single_lock sl(mutex(), TRUE);
@@ -9307,57 +9361,57 @@ restart:
    //}
 
 
-   bool interaction::track_popup_menu(::user::menu_item * pitem, i32 iFlags, const ::point & point)
-   {
+   //bool interaction::track_popup_menu(::user::menu_item * pitem, i32 iFlags, const ::point & point)
+   //{
 
-      __pointer(::user::menu) pmenu = __create <  ::user::menu  > ();
+   //   __pointer(::user::menu) pmenu = __create <  ::user::menu  > ();
 
-      pmenu->m_pmenuitemThis = pitem;
+   //   pmenu->m_pmenuitemThis = pitem;
 
-      if (!pmenu->track_popup_menu(this, this))
-      {
+   //   if (!pmenu->track_popup_menu(this, this))
+   //   {
 
-         pmenu.release();
+   //      pmenu.release();
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
-   __pointer(::user::menu) interaction::track_popup_xml_menu(const var & varXml, i32 iFlags, const ::point & point, const ::size & sizeMinimum)
-   {
+   //__pointer(::user::menu) interaction::track_popup_xml_menu(const var & varXml, i32 iFlags, const ::point & point, const ::size & sizeMinimum)
+   //{
 
-      __pointer(::user::menu) pmenu = __create <  ::user::menu  > ();
+   //   __pointer(::user::menu) pmenu = __create <  ::user::menu  > ();
 
-      pmenu->m_sizeMinimum = sizeMinimum;
+   //   pmenu->m_sizeMinimum = sizeMinimum;
 
-      if (!pmenu->load_xml_menu(varXml))
-      {
+   //   if (!pmenu->load_xml_menu(varXml))
+   //   {
 
-         pmenu.release();
+   //      pmenu.release();
 
-         return pmenu;
+   //      return pmenu;
 
-      }
+   //   }
 
-      pmenu->hints(iFlags, point);
+   //   pmenu->hints(iFlags, point);
 
-      if (!pmenu->track_popup_menu(this, this))
-      {
+   //   if (!pmenu->track_popup_menu(this, this))
+   //   {
 
-         pmenu.release();
+   //      pmenu.release();
 
-         return pmenu;
+   //      return pmenu;
 
-      }
+   //   }
 
-      return pmenu;
+   //   return pmenu;
 
-   }
+   //}
 
 
    //__pointer(::user::menu) interaction::track_popup_xml_matter_menu(const char * pszMatter, i32 iFlags, const ::point & pointParam)
@@ -10680,6 +10734,16 @@ restart:
    }
 
 
+   void interaction::_001OnKillFocus(::message::message* pmessage)
+   {
+
+      SCAST_PTR(::message::kill_focus, pkillfocus, pmessage);
+
+      _OnKillFocus();
+
+   }
+
+      
    void interaction::_001OnSetFocus(::message::message * pmessage)
    {
 
@@ -10699,6 +10763,7 @@ restart:
       // return true to set focus to this control
       Application.keyboard_focus_OnSetFocus(this);
 
+      _OnSetFocus();
 
    }
 
@@ -12740,11 +12805,32 @@ restart:
 
          }
 
+         pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
+
          pgraphics->fill_rect(rectd, color);
+
+         if (color.get_hls().m_dL <= 0.5)
+         {
+
+            // If color is dark (dark mode?)
+            // blend lighter pixel at top-right edge
+            // so that the button looks more sharply square-edged
+
+            auto colorLighter = color;
+
+            colorLighter.hls_rate(0.0, 0.312569, 0.0);
+
+            colorLighter.m_iA = 127;
+
+            pgraphics->blend_pixel(pitem->m_rect.top_right() - ::size(1, 0), colorLighter);
+
+         }
 
          rectd.deflate(rectd.minimum_dimension() / 5.0);
 
          pgraphics->set(ppen);
+
+         pgraphics->set_smooth_mode(::draw2d::smooth_mode_high);
 
          pgraphics->draw_stock_icon(rectd, stock_icon_close);
 
@@ -13452,16 +13538,16 @@ restart:
 } // namespace user
 
 
-CLASS_DECL_AURA void g_track_popup_lyricview(::user::interaction * pinteraction, ::message::mouse * pmouse)
-{
-
-   auto point = pmouse->m_point;
-
-   pinteraction->_001ScreenToClient(point);
-
-   pinteraction->track_popup_xml_menu("matter://popup_lyricview.xml", 0, point);
-
-}
+//CLASS_DECL_AURA void g_track_popup_lyricview(::user::interaction * pinteraction, ::message::mouse * pmouse)
+//{
+//
+//   //auto point = pmouse->m_point;
+//
+//   //pinteraction->_001ScreenToClient(point);
+//
+//   //pinteraction->track_popup_xml_menu("matter://popup_lyricview.xml", 0, point);
+//
+//}
 
 
 

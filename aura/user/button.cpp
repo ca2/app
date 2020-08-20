@@ -16,13 +16,13 @@ namespace user
    button::~button()
    {
 
-      if (m_pmenuitemThis.is_set())
-      {
+      //if (m_pmenuitemThis.is_set())
+      //{
 
-         m_pmenuitemThis->m_puserinteraction = nullptr;
-         m_pmenuitemThis->m_pmenu = nullptr;
+      //   m_pmenuitemThis->m_puserinteraction = nullptr;
+      //   //m_pmenuitemThis->m_pmenu = nullptr;
 
-      }
+      //}
 
       ::aura::del(m_pbitmap);
       ::aura::del(m_plist);
@@ -45,7 +45,7 @@ namespace user
       m_pbitmap = nullptr;
       m_plist = nullptr;
       m_iClick = 0;
-      m_bIdBound = true;
+      //m_bIdBound = true;
 
    }
 
@@ -101,7 +101,7 @@ namespace user
    void button::install_message_routing(::channel * pchannel)
    {
 
-      ::user::control::install_message_routing(pchannel);
+      ::user::interaction::install_message_routing(pchannel);
 
       IGUI_MSG_LINK(WM_CREATE    , pchannel, this, &button::_001OnCreate);
       IGUI_MSG_LINK(WM_KEYDOWN   , pchannel, this, &button::_001OnKeyDown);
@@ -311,7 +311,7 @@ namespace user
    bool button::create_control(class control_descriptor * pdescriptor)
    {
 
-      return control::create_control(pdescriptor);
+      return interaction::create_control(pdescriptor);
 
 
    }
@@ -551,7 +551,7 @@ namespace user
    void button::update(::update * pupdate)
    {
 
-      control::update(pupdate);
+      interaction::update(pupdate);
 
    }
 
@@ -1085,7 +1085,7 @@ namespace user
       // Relay events from this button to the tool tip tool handler
       BaseToolTipRelayEvent(pmessage);
 
-      return ::user::control::pre_translate_message(pmessage);
+      return ::user::interaction::pre_translate_message(pmessage);
 
    }
 

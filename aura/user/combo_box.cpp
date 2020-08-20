@@ -55,7 +55,7 @@ namespace user
       else
       {
 
-         ::user::control::install_message_routing(pchannel);
+         ::user::interaction::install_message_routing(pchannel);
 
       }
 
@@ -99,45 +99,45 @@ namespace user
 
       ::color colorText(0, 0, 0, 255);
 
-      if (m_pdrawcontext != nullptr)
-      {
+      //if (m_pdrawcontext != nullptr)
+      //{
 
-         if (m_pdrawcontext->is_control_selected())
-         {
+      //   if (m_pdrawcontext->is_control_selected())
+      //   {
 
-            if (m_pdrawcontext->is_control_hover())
-            {
+      //      if (m_pdrawcontext->is_control_hover())
+      //      {
 
-               colorText = ::color(192,192,192, 255);
+      //         colorText = ::color(192,192,192, 255);
 
-            }
-            else
-            {
+      //      }
+      //      else
+      //      {
 
-               colorText = ::color(255, 255, 255, 255);
+      //         colorText = ::color(255, 255, 255, 255);
 
-            }
+      //      }
 
-         }
-         else
-         {
+      //   }
+      //   else
+      //   {
 
-            if (m_pdrawcontext->is_control_hover())
-            {
+      //      if (m_pdrawcontext->is_control_hover())
+      //      {
 
-               colorText = ::color(80, 80, 80, 255);;
+      //         colorText = ::color(80, 80, 80, 255);;
 
-            }
-            else
-            {
+      //      }
+      //      else
+      //      {
 
-               colorText = ::color(80, 80, 80, 255);;
+      //         colorText = ::color(80, 80, 80, 255);;
 
-            }
+      //      }
 
-         }
+      //   }
 
-      }
+      //}
 
       //if(!select_text_color(pgraphics, colorText))
       //{
@@ -155,6 +155,28 @@ namespace user
       int iDrawTextFlags = DT_LEFT | DT_VCENTER;
 
       pgraphics->draw_text(strText, rectText, iDrawTextFlags);
+
+   }
+
+
+   void combo_box::get_simple_drop_down_open_arrow_polygon(point_array& pointa)
+   {
+
+      ::rect rectDropDown;
+
+      get_element_rect(rectDropDown, element_drop_down);
+
+      i32 cx = rectDropDown.width() / 3;
+
+      i32 cy = cx * 2 / 3;
+
+      ::point pointCenter = rectDropDown.center();
+
+      pointa.add(pointCenter.x - cx / 2, pointCenter.y - cy / 2);
+
+      pointa.add(pointCenter.x + cx / 2, pointCenter.y - cy / 2);
+
+      pointa.add(pointCenter.x, pointCenter.y + cy / 2);
 
    }
 
@@ -194,46 +216,46 @@ namespace user
       //::user::e_color colorDropDown = color_button_background_disabled;
       ::color colorDropDown = ::color(127, 127, 127, 255);
 
-      if (m_pdrawcontext != nullptr)
-      {
+      //if (m_pdrawcontext != nullptr)
+      //{
 
-         if (m_pdrawcontext->is_control_selected())
-         {
+      //   if (m_pdrawcontext->is_control_selected())
+      //   {
 
-            if (m_pdrawcontext->is_control_hover())
-            {
+      //      if (m_pdrawcontext->is_control_hover())
+      //      {
 
-               colorDropDown = ::color(80, 80, 180, 255);
+      //         colorDropDown = ::color(80, 80, 180, 255);
 
-            }
-            else
-            {
+      //      }
+      //      else
+      //      {
 
-               colorDropDown = ::color(100, 100, 200, 255);
+      //         colorDropDown = ::color(100, 100, 200, 255);
 
-            }
+      //      }
 
-         }
-         else
-         {
+      //   }
+      //   else
+      //   {
 
-            if (m_pdrawcontext->is_control_hover())
-            {
+      //      if (m_pdrawcontext->is_control_hover())
+      //      {
 
-               colorDropDown = ::color(200, 200, 250, 255);
+      //         colorDropDown = ::color(200, 200, 250, 255);
 
-            }
-            else
-            {
+      //      }
+      //      else
+      //      {
 
-               colorDropDown = ::color(192, 192, 192, 255);
+      //         colorDropDown = ::color(192, 192, 192, 255);
 
-            }
+      //      }
 
-         }
+      //   }
 
-      }
-      else
+      //}
+      //else
       {
 
          if (Session.get_focus_ui() == this)
@@ -335,7 +357,7 @@ namespace user
    void combo_box::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::user::control::_001OnDraw(pgraphics);
+      ::user::interaction::_001OnDraw(pgraphics);
 
       _001OnDrawCombo(pgraphics);
 
@@ -425,7 +447,7 @@ namespace user
 
       }
 
-      return control::get_element_rect(prect, eelement);
+      return interaction::get_element_rect(prect, eelement);
 
 
    }
@@ -1616,7 +1638,7 @@ namespace user
 
       ASSERT(pdescriptor->get_control_type() == control_type_combo_box);
 
-      if (!::user::control::create_control(pdescriptor))
+      if (!::user::interaction::create_control(pdescriptor))
       {
 
          TRACE("Failed to create control");

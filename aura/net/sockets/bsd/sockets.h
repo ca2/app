@@ -22,7 +22,7 @@ namespace sockets
 #if defined(BSD_STYLE_SOCKETS)
       ssl_client_context_map                       m_clientcontextmap;
 #endif
-      AjpBaseSocket::Initializer *                 m_pajpaxissocketinit;
+      //AjpBaseSocket::Initializer *                 m_pajpaxissocketinit;
 
       ::count m_countHttpPostBoundary;
       ::mutex                                        m_mutexHttpPostBoundary;

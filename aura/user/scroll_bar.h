@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_AURA scroll_bar :
-      virtual public ::user::control
+      virtual public ::user::interaction
    {
    public:
 

@@ -235,7 +235,7 @@ namespace draw2d
 
 #include "thread_tool.h"
 
-#include "aura/platform/printer.h"
+//#include "aura/platform/printer.h"
 
 #include "printer.h"
 

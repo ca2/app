@@ -373,6 +373,8 @@ namespace aura
 
       ::thread::finalize();
 
+      m_pappContext.release();
+
    }
 
 
@@ -2127,18 +2129,18 @@ namespace aura
 
          //__throw(todo("database"));
 
-         auto estatus = m_psimpledb->initialize_simpledb_server(this, pathDatabase);
+         //auto estatus = m_psimpledb->initialize_simpledb_server(this, pathDatabase);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            m_result.add(estatus);
+         //   m_result.add(estatus);
 
-            return false;
+         //   return false;
 
-         }
+         //}
 
-         set_data_server(m_psimpledb);
+         //set_data_server(m_psimpledb);
 
       }
 
@@ -3353,12 +3355,12 @@ retry_license:
 
       //m_bAxisProcessInitializeResult = false;
 
-      if (m_psimpledb.is_null())
-      {
+      //if (m_psimpledb.is_null())
+      //{
 
-         __construct_new(m_psimpledb);
+      //   __construct_new(m_psimpledb);
 
-      }
+      //}
 
       //if (!::aura::application::process_init())
       //{
@@ -4223,23 +4225,23 @@ retry_license:
 
       }
 
-      if (m_psimpledb.is_set())
-      {
+      //if (m_psimpledb.is_set())
+      //{
 
-         try
-         {
+      //   try
+      //   {
 
-            m_psimpledb->finalize();
+      //      m_psimpledb->finalize();
 
-         }
-         catch (...)
-         {
+      //   }
+      //   catch (...)
+      //   {
 
-            m_result.add(error_failed);
+      //      m_result.add(error_failed);
 
-         }
+      //   }
 
-      }
+      //}
 
       //try
       //{
@@ -4253,7 +4255,7 @@ retry_license:
       //}
 
 
-      m_psimpledb.release();
+      //m_psimpledb.release();
 
 
    }
@@ -5484,12 +5486,12 @@ retry_license:
 
    //}
 
-   void application::interactive_credentials(::account::credentials * pcredentials)
-   {
+   //void application::interactive_credentials(::account::credentials * pcredentials)
+   //{
 
-      Session.interactive_credentials(pcredentials);
+   //   Session.interactive_credentials(pcredentials);
 
-   }
+   //}
 
 
    ::file::path application::get_executable_path()
@@ -5788,67 +5790,67 @@ retry_license:
    }
 
 
-   void application::on_create_keyboard()
+   void application::defer_create_keyboard()
    {
 
-      set_keyboard_layout(nullptr,::source_database);
+      //set_keyboard_layout(nullptr,::source_database);
 
    }
 
 
-   bool application::set_keyboard_layout(const char * pszPath, const ::action_context & context)
-   {
+   //bool application::set_keyboard_layout(const char * pszPath, const ::action_context & context)
+   //{
 
-      if(get_context_application()->get_context_session() == nullptr)
-      {
+   //   if(get_context_application()->get_context_session() == nullptr)
+   //   {
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-      if(pszPath == nullptr)
-      {
+   //   if(pszPath == nullptr)
+   //   {
 
-         if(is_set_ref(Session.keyboard().on_layout()))
-         {
+   //      if(is_set_ref(Session.keyboard().on_layout()))
+   //      {
 
-            //            if(Session.account()->m_puser != nullptr
-            //             && Session.account()->m_puser->m_strFontopusServerSessId.has_char())
-            //        {
+   //         //            if(Session.account()->m_puser != nullptr
+   //         //             && Session.account()->m_puser->m_strFontopusServerSessId.has_char())
+   //         //        {
 
-            // xxx data_set("keyboard_layout", keyboard().on_layout(::draw2d::graphics_pointer & pgraphics).m_strPath);
+   //         // xxx data_set("keyboard_layout", keyboard().on_layout(::draw2d::graphics_pointer & pgraphics).m_strPath);
 
-            //      }
+   //         //      }
 
-            return true;
-         }
+   //         return true;
+   //      }
 
-         string strCurrentSystemLayout = Session.keyboard().get_current_system_layout();
+   //      string strCurrentSystemLayout = Session.keyboard().get_current_system_layout();
 
-         if(strCurrentSystemLayout.is_empty())
-            return false;
+   //      if(strCurrentSystemLayout.is_empty())
+   //         return false;
 
-         if(!set_keyboard_layout(strCurrentSystemLayout,::source_database))
-            return false;
+   //      if(!set_keyboard_layout(strCurrentSystemLayout,::source_database))
+   //         return false;
 
-         //         if(Session.account()->m_puser != nullptr
-         //          && Session.account()->m_puser->m_strFontopusServerSessId.has_char())
-         //     {
+   //      //         if(Session.account()->m_puser != nullptr
+   //      //          && Session.account()->m_puser->m_strFontopusServerSessId.has_char())
+   //      //     {
 
-         // xxx            data_set("keyboard_layout", keyboard().on_layout(::draw2d::graphics_pointer & pgraphics).m_strPath);
+   //      // xxx            data_set("keyboard_layout", keyboard().on_layout(::draw2d::graphics_pointer & pgraphics).m_strPath);
 
-         //   }
+   //      //   }
 
-         return true;
-      }
+   //      return true;
+   //   }
 
-      if(!Session.keyboard().load_layout(pszPath,context))
-         return false;
+   //   if(!Session.keyboard().load_layout(pszPath,context))
+   //      return false;
 
-      // xxx Application.simpledb().on_set_keyboard_layout(pszPath, context);
+   //   // xxx Application.simpledb().on_set_keyboard_layout(pszPath, context);
 
-      return true;
-   }
+   //   return true;
+   //}
 
 
    bool application::keyboard_focus_is_focusable(::user::primitive * pue)
@@ -6283,35 +6285,35 @@ retry_license:
    }
 
 
-   ::account::user * application::get_user(::file::path pathUrl, bool bFetch, bool bInteractive)
-   {
+   //::account::user * application::get_user(::file::path pathUrl, bool bFetch, bool bInteractive)
+   //{
 
-      if(::is_null(get_context_session()))
-      {
+   //   if(::is_null(get_context_session()))
+   //   {
 
-         return nullptr;
+   //      return nullptr;
 
-      }
+   //   }
 
-      return get_context_session()->get_user(pathUrl, bFetch, bInteractive);
+   //   return get_context_session()->get_user(pathUrl, bFetch, bInteractive);
 
-   }
-
-
-   ::account::user * application::interactive_get_user(::file::path pathUrl)
-   {
-
-      return get_user(pathUrl, true, true);
-
-   }
+   //}
 
 
-   ::account::user * application::noninteractive_get_user(::file::path pathUrl)
-   {
+   //::account::user * application::interactive_get_user(::file::path pathUrl)
+   //{
 
-      return get_user(pathUrl, true, false);
+   //   return get_user(pathUrl, true, true);
 
-   }
+   //}
+
+
+   //::account::user * application::noninteractive_get_user(::file::path pathUrl)
+   //{
+
+   //   return get_user(pathUrl, true, false);
+
+   //}
 
 
    void application::on_initial_frame_position(::user::frame * pframe)
@@ -6748,12 +6750,12 @@ retry_license:
    //}
 
 
-   ::simpledb::server * application::simpledb()
-   {
+   //::simpledb::server * application::simpledb()
+   //{
 
-      return m_psimpledb;
+   //   return m_psimpledb;
 
-   }
+   //}
 
 
    ::database::server * application::dataserver()
@@ -7164,12 +7166,12 @@ retry_license:
    //}
 
 
-   ::database::key application::calc_data_key()
-   {
+   //::database::key application::calc_data_key()
+   //{
 
-      return ::database::key("app://" + m_strAppName, is_local_data());
+   //   return ::database::key("app://" + m_strAppName, is_local_data());
 
-   }
+   //}
 
 
 
@@ -7696,19 +7698,19 @@ retry_license:
 
       }
 
-      if (get_context_session()->account() == nullptr)
-      {
+      //if (get_context_session()->account() == nullptr)
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
-      if (interactive_get_user() == nullptr)
-      {
+      //if (interactive_get_user() == nullptr)
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
       return true;
 
@@ -11107,12 +11109,12 @@ namespace aura
    }
 
 
-   void application::on_change_cur_sel(::user::tab* ptab)
-   {
+   //void application::on_change_cur_sel(::user::tab* ptab)
+   //{
 
 
 
-   }
+   //}
 
 
    bool application::_001OnAgreeExit()

@@ -2472,11 +2472,11 @@ void thread::__os_finalize()
 {
 
 
-   m_pappContext.release();
+   //m_pappContext.release();
 
-   m_psessionContext.release();
+   //m_psessionContext.release();
 
-   m_psystemContext.release();
+   //m_psystemContext.release();
 
    //if (::is_set(get_context_application()))
    //{

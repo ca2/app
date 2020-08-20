@@ -6,6 +6,7 @@
 #include "compare.h"
 #include "hash.h"
 #include "binary.h"
+#include "sign.h"
 
 
 #define unequal(a, b, n) ((a - n < b && b < a + n) || (b - n < a && a < b + n))

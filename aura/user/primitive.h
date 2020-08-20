@@ -558,15 +558,15 @@ namespace user
 
       virtual bool is_selected(::data::item * pitem);
 
-      virtual __pointer(place_holder) place_hold(::user::interaction * pinteraction);
+      //virtual __pointer(place_holder) place_hold(::user::interaction * pinteraction);
 
       virtual bool has_command_handler(::user::command * pcommand) override;
 
 
 
-      virtual bool track_popup_menu(::user::menu_item * pitem,i32 iFlags, const ::point & point = nullptr);
+      //virtual bool track_popup_menu(::user::menu_item * pitem,i32 iFlags, const ::point & point = nullptr);
       //virtual __pointer(::user::menu) track_popup_xml_matter_menu(const char * pszMatter,i32 iFlags, const ::point & point);
-      virtual __pointer(::user::menu) track_popup_xml_menu(const var & varXml, i32 iFlags, const ::point & pointScreen = nullptr, const ::size& sizeMinimum = size(0, 0));
+      //virtual __pointer(::user::menu) track_popup_xml_menu(const var & varXml, i32 iFlags, const ::point & pointScreen = nullptr, const ::size& sizeMinimum = size(0, 0));
       //virtual __pointer(::user::menu) track_popup_xml_menu_file(var varFile, i32 iFlags, const ::point & point = nullptr, const ::size & sizeMinimum = size(0, 0));
 
       //virtual bool track_popup_menu(::user::menu_item * pitem,i32 iFlags,::message::message * pmessage);

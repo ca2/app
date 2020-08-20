@@ -68,7 +68,7 @@ namespace user
    class create_struct;
 
 
-   class tab;
+   //class tab;
 
    class tab_pane;
 

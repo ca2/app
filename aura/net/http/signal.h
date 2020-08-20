@@ -23,7 +23,7 @@ namespace http
       //property_set                   m_propset;
 
       __pointer(::http::cookies)       m_pcookies;
-      __composite(::account::user)     m_puser;
+      //__composite(::account::user)     m_puser;
 
 
       string                           m_strVersion;

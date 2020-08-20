@@ -9,7 +9,7 @@
 
 #include "os_history.h"
 
-#include "strn.h"
+//#include "strn.h"
 
 #include "process_data.h"
 
@@ -46,7 +46,7 @@ namespace user
 
    class printer;
    //class tree;
-   class form;
+   //class form;
    class single_document_template;
    class main_frame;
 
@@ -241,13 +241,13 @@ struct memory_state;
 //#include "core/user/userex/const.h"
 
 
-#include "strn.h"
+//#include "strn.h"
 
 
 #include "less.h"
 
 
-#include "smart_pointer_query.h"
+//#include "smart_pointer_query.h"
 
 
 #define ASSERT_KINDOF(class_name, object) ASSERT(base_class < class_name > ::bases(object))
@@ -342,7 +342,6 @@ struct memory_state;
 ////} // namespace user
 ////
 
-#include "aura/user/control_property.h"
 
 #include "history.h"
 
@@ -363,7 +362,7 @@ namespace aura
 
 #include "process_data.h"
 
-#include "types.h"
+//#include "types.h"
 
 #include "progress_interface.h"
 
@@ -380,7 +379,7 @@ namespace aura
 
 #include "logic.h"
 
-#include "util1.h"
+//#include "util1.h"
 
 //#include "app/aura/math/math_math.h"
 
@@ -392,7 +391,7 @@ namespace aura
 
 //#include "aura/filesystem/filehandler/filehandler.h"
 
-#include "patch.h"
+//#include "patch.h"
 
 //#include "filesystem/filemanager/callback.h"
 //

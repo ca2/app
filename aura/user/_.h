@@ -88,7 +88,7 @@ inline ::user::primitive* __user_primitive(oswindow oswindow);
 
 
 
-#include "form_callback.h"
+//#include "form_callback.h"
 //#include "impact_creator.h"
 
 
@@ -114,6 +114,6 @@ inline ::user::primitive* __user_primitive(oswindow oswindow);
 
 
 
-#include "aura/symbol/message_box.h"
+#include "aura/platform/message_box.h"
 
 

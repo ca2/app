@@ -155,6 +155,9 @@ public:
    inline ::estatus save_to_file(const ::var& varFile, const ::generic_object* pobject);
 
 
+   virtual void finalize() override;
+
+
 };
 
 

@@ -1,14 +1,14 @@
 #pragma once
 
 
-namespace account
-{
-   
-   
-   class user;
-
-   
-} // namespace account
+//namespace account
+//{
+//   
+//   
+//   class user;
+//
+//   
+//} // namespace account
 
 
 namespace http
@@ -33,12 +33,12 @@ class tinyjs;
 
 #define __prhttpget "http_get_%" PRhttpget "> "
 
-namespace account
-{
-
-   class user;
-
-} // namespace account
+//namespace account
+//{
+//
+//   class user;
+//
+//} // namespace account
 
 
 namespace sockets

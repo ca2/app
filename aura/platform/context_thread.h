@@ -37,6 +37,8 @@ namespace aura
 
       string command_line_text() const;
 
+      virtual void finalize() override;
+
 
    };
 

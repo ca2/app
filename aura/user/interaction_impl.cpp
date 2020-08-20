@@ -5007,7 +5007,7 @@ namespace user
 
       approximate_occlusion_rects(ra);
 
-      ::count cApproxOpaqueArea = 0;
+      ::i64 cApproxOpaqueArea = 0;
 
       for (auto& r : ra)
       {
@@ -5036,7 +5036,7 @@ namespace user
 
       approximate_occlusion_rects(ra);
 
-      ::count cApproxOpaqueArea = 0;
+      ::i64 cApproxOpaqueArea = 0;
 
       for (auto& r : ra)
       {

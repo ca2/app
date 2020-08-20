@@ -18,13 +18,13 @@ namespace user
    still::~still()
    {
 
-      if (m_pmenuitemThis.is_set())
-      {
+      //if (m_pmenuitemThis.is_set())
+      //{
 
-         m_pmenuitemThis->m_puserinteraction = nullptr;
-         m_pmenuitemThis->m_pmenu = nullptr;
+      //   m_pmenuitemThis->m_puserinteraction = nullptr;
+      //   m_pmenuitemThis->m_pmenu = nullptr;
 
-      }
+      //}
 
    }
 
@@ -32,7 +32,7 @@ namespace user
    void still::install_message_routing(::channel * pchannel)
    {
 
-      ::user::control::install_message_routing(pchannel);
+      ::user::interaction::install_message_routing(pchannel);
 
       IGUI_MSG_LINK(WM_CREATE, pchannel, this, &still::_001OnCreate);
       //IGUI_MSG_LINK(WM_LBUTTONDOWN, pchannel, this, &still::_001OnLButtonDown);
@@ -582,7 +582,7 @@ namespace user
    bool still::create_control(class control_descriptor * pdescriptor)
    {
 
-      return control::create_control(pdescriptor);
+      return interaction::create_control(pdescriptor);
 
    }
 
@@ -980,7 +980,7 @@ namespace user
       // Relay events from this still to the tool tip tool handler
       BaseToolTipRelayEvent(pmessage);
 
-      return ::user::control::pre_translate_message(pmessage);
+      return ::user::interaction::pre_translate_message(pmessage);
 
    }
 

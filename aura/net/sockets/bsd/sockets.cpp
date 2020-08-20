@@ -11,7 +11,7 @@ namespace sockets
 
       m_psslinit = nullptr;
 
-      m_pajpaxissocketinit    = nullptr;
+      //m_pajpaxissocketinit    = nullptr;
 
    }
 
@@ -25,7 +25,7 @@ namespace sockets
 
       ::aura::del(m_psslinit);
 
-      ::aura::del(m_pajpaxissocketinit);
+      //::aura::del(m_pajpaxissocketinit);
 
    }
 
@@ -76,7 +76,7 @@ namespace sockets
 
       m_spportforward.create();
 
-      m_pajpaxissocketinit = new AjpBaseSocket::Initializer;
+      //m_pajpaxissocketinit = new AjpBaseSocket::Initializer;
 
       m_countHttpPostBoundary = 0;
 
@@ -173,7 +173,7 @@ namespace sockets
 
       }
 
-      ::aura::del(m_pajpaxissocketinit);
+      ///::aura::del(m_pajpaxissocketinit);
 
    }
 

@@ -37,19 +37,41 @@ namespace user
    }
 
 
+   ::user::interaction* frame::GetActiveView() const
+   {
+
+      return nullptr;
+
+   }
+
+   
+   void frame::SetActiveView(::user::interaction* pViewNew, bool bNotify)
+   {
+
+
+   }
+
+   void frame::ActivateFrame(::edisplay edisplay)
+   {
+
+
+   }
+
+
+
    void frame::set_frame_title(const string& strFrameTitle)
    {
 
       m_strFrameTitle = strFrameTitle;
 
-      auto pparent = get_parent();
+      //auto pparent = get_parent();
 
-      if (pparent && pparent->is < ::user::place_holder >())
-      {
+      //if (pparent && pparent->is < ::user::place_holder >())
+      //{
 
-         set_place_child_title(m_strFrameTitle);
+      //   set_place_child_title(m_strFrameTitle);
 
-      }
+      //}
 
    }
 
@@ -74,6 +96,14 @@ namespace user
    {
 
       return true;
+
+   }
+
+
+   bool frame::LoadToolBar(id idToolBar, const char* pszToolBar, u32 dwCtrlStyle, u32 uStyle)
+   {
+
+      return false;
 
    }
 

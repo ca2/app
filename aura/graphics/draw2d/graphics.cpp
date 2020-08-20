@@ -2175,6 +2175,17 @@ namespace draw2d
    }
 
 
+   ::color graphics::blend_pixel(const ::point& point, const ::color& color)
+   {
+
+      UNREFERENCED_PARAMETER(point);
+      UNREFERENCED_PARAMETER(color);
+
+      return 0;
+
+   }
+
+
    bool graphics::FloodFill(i32 x, i32 y, const ::color& color)
    {
 

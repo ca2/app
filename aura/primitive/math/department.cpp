@@ -1,6 +1,6 @@
 #include "framework.h"
 #include <time.h>
-#include "aura/primitive/math/prime100k.h"
+//#include "aura/primitive/math/prime100k.h"
 #ifdef LINUX
 
 #endif
@@ -166,27 +166,27 @@ namespace math
 //
 //#endif
 
-         {
+         //{
 
-            int c = prime100k_count();
+         //   //int c = prime100k_count();
 
-            ::datetime::time time = ::datetime::time::get_current_time();
+         //   ::datetime::time time = ::datetime::time::get_current_time();
 
-            int l = get_nanos() % c;
+         //   int l = get_nanos() % c;
 
-            int m = (l + time.GetDay()) % c;
+         //   int m = (l + time.GetDay()) % c;
 
-            int n = (m + time.GetMonth()) % c;
+         //   int n = (m + time.GetMonth()) % c;
 
-            int o = (n + time.GetMinute()) % c;
+         //   int o = (n + time.GetMinute()) % c;
 
-            int p = (o + time.GetSecond()) % c;
+         //   int p = (o + time.GetSecond()) % c;
 
-            m_iRngReSeedCountDown = random_context_entropy(3);
+         //   m_iRngReSeedCountDown = random_context_entropy(3);
 
-            m_rng.seed(n, random_context_entropy(3));
+         //   m_rng.seed(n, random_context_entropy(3));
 
-         }
+         //}
 
 
       }

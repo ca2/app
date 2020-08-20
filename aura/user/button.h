@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_AURA button :
-      virtual public control,
+      virtual public ::user::interaction,
       virtual public check
    {
    public:

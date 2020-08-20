@@ -78,8 +78,8 @@ namespace http
       virtual string get(::http::session & session, const char * pszUrl, property_set & set);
 
 
-      virtual void set_proxy_auth(::account::user * puser, ::sockets::http_client_socket * pfile);
-      virtual void clean_proxy_auth(::account::user * puser);
+      //virtual void set_proxy_auth(::account::user * puser, ::sockets::http_client_socket * pfile);
+      //virtual void clean_proxy_auth(::account::user * puser);
 
 
       virtual bool open(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession, const char * pszHost, const char * pszProtocol, property_set & set, const char * pszVersion);
@@ -114,7 +114,7 @@ namespace http
       virtual pac * get_pac(const char * pszUrl);
       virtual proxy * get_proxy(const char * pszUrl);
 
-      virtual void on_auth(property_set & set, ::aura::application * papp, string & strUrl, string & strSessId, __pointer(::account::user) & puser);
+      //virtual void on_auth(property_set & set, ::aura::application * papp, string & strUrl, string & strSessId, __pointer(::account::user) & puser);
 
       //application();
       //virtual ~application();

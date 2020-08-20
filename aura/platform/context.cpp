@@ -1081,5 +1081,18 @@ void context::add_matter_locator(::aura::application * papp)
 }
 
 
+void context::finalize()
+{
+
+   ::object::finalize();
+
+   m_pappContext.release();
+
+   m_psessionContext.release();
+
+   m_psystemContext.release();
+
+}
+
 
 

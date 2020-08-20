@@ -112,15 +112,14 @@ namespace user
 
       virtual ::color get_border_main_body_color();
 
-//      virtual bool window_is_full_screen() = 0;
-      virtual ::user::interaction * GetActiveView() const = 0;           // active ::user::impact or nullptr
-      virtual void SetActiveView(::user::interaction* pViewNew, bool bNotify = TRUE) = 0;
+      virtual ::user::interaction * GetActiveView() const;
+      virtual void SetActiveView(::user::interaction* pViewNew, bool bNotify = TRUE);
 
       virtual ::userex::font_format_tool * font_format_tool(bool bCreate = false);
 
-      virtual void ActivateFrame(::edisplay edisplay = display_undefined) = 0;
+      virtual void ActivateFrame(::edisplay edisplay = display_undefined);
 
-      virtual bool LoadToolBar(id idToolBar, const char * pszToolBar, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP) = 0;
+      virtual bool LoadToolBar(id idToolBar, const char * pszToolBar, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
 
       virtual bool is_frame_window() override;
 

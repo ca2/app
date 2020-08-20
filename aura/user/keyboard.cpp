@@ -416,12 +416,12 @@ namespace user
    }
 
 
-   class keyboard_layout & keyboard::on_layout()
-   {
-      
-      return *m_playout;
+   //class keyboard_layout & keyboard::on_layout()
+   //{
+   //   
+   //   return *m_playout;
 
-   }
+   //}
 
 
    //void keyboard::process_escape(__pointer(::xml::node) pnode, property_set & set)
@@ -429,301 +429,303 @@ namespace user
    //   m_playout->process_escape(pnode, set);
    //}
 
-   bool keyboard::load_layout(const char * pszPath, const ::action_context & context)
-   {
-
-      auto playout = __new(::user::keyboard_layout);
-
-      string strPath;
-      if(pszPath == nullptr)
-      {
-         strPath = get_current_system_layout();
-      }
-      else
-      {
-         strPath = pszPath;
-      }
-      if(initialize(playout, strPath))
-      {
-         TRACE("setting keyboard on_layout to %s (path=%s)", playout->m_strName.c_str(), playout->m_strPath.c_str());
-         if(playout->load(playout->m_strPath))
-         {
-            m_playout = playout;
-// xxx            Application.simpledb().on_set_keyboard_layout(playout->m_strPath, context);
-            TRACE("successfully set keyboard on_layout to %s (path=%s)", playout->m_strName.c_str(), playout->m_strPath.c_str());
-            return true;
-         }
-         else
-         {
-            playout->release();
-            TRACE("failed to load keyboard on_layout : %s (path=%s)", playout->m_strName.c_str(), playout->m_strPath.c_str());
-         }
-      }
-      else
-      {
-         TRACE("failed to set keyboard on_layout path=%s", pszPath);
-      }
-      return false;
-   }
-
-   string keyboard::process_key(key * pkey)
-   {
-
-      if(m_playout == nullptr)
-      {
-
-         return string((char)(pkey->m_nChar & 0xff));
-
-      }
-
-      pkey->m_iCode = (int)(pkey->m_ekey);
-
-      if(Session.is_key_pressed(::user::key_shift))
-      {
-         pkey->m_iCode |= 0x80000000;
-      }
-      if(Session.is_key_pressed(::user::key_ralt))
-      {
-         pkey->m_iCode |= 0x40000000;
-      }
-
-      return m_playout->process_key(pkey);
-
-   }
-
-   string keyboard::process_key(::user::e_key ekey)
-   {
-
-      if(m_playout == nullptr)
-      {
-
-         return string((char) ekey);
-
-      }
-
-      int iCode = (int) (ekey);
-
-      if(Session.is_key_pressed(::user::key_shift))
-      {
-         iCode |= 0x80000000;
-      }
-      if(Session.is_key_pressed(::user::key_ralt))
-      {
-         iCode |= 0x40000000;
-      }
-
-      return m_playout->process_key(iCode);
-
-   }
-
-   string keyboard::process_char(const char * pszKey)
-   {
-      if(m_playout == nullptr)
-      {
-         return pszKey;
-      }
-      return m_playout->process_char(pszKey);
-   }
-
-   string keyboard::process_escape(const char * pszEscape)
-   {
-      if(m_playout == nullptr)
-      {
-         return pszEscape;
-      }
-      return m_playout->process_char(pszEscape);
-   }
-
-
-   string keyboard::get_current_system_layout()
-   {
-
-      keyboard_layout_ida layoutida;
-
-      ::file::patha patha;
-
-      Context.dir().matter_ls_file("keyboard layout", patha);
-
-      for(i32 i = 0; i < patha.get_count(); i++)
-      {
-
-         keyboard_layout_id layoutid;
-
-         ::file::path path = patha[i];
-
-         if(initialize(&layoutid, path))
-         {
-
-            layoutida.add(layoutid);
-
-         }
-
-      }
-
-      ::sort::quick_sort(layoutida, true);
-
-#ifdef WINDOWS_DESKTOP
-
-
-      string strOverride = file_as_string(::dir::system() / "config\\system\\keyboard_layout.txt");
-
-      if(strOverride.has_char())
-      {
-
-         string strTest;
-
-         string strPath = Context.dir().matter("keyboard layout/" + strOverride + ".xml");
-
-         strTest = Context.file().as_string(strPath);
-
-         if(strTest.has_char())
-         {
-
-            return strPath;
-
-         }
-
-      }
-
-      wchar_t szLayoutName[KL_NAMELENGTH];
-
-      ::GetKeyboardLayoutNameW(szLayoutName);
-
-      HKL hkl = ::GetKeyboardLayout(0);
-
-      for(i32 i = 0; i < layoutida.get_count(); i++)
-      {
-         if(layoutida[i].m_hkla.contains(hkl))
-         {
-            return layoutida[i].m_strPath;
-         }
-      }
-      hkl = (HKL) (((uptr) hkl) & 0xffff);
-      for(i32 i = 0; i < layoutida.get_count(); i++)
-      {
-         if(layoutida[i].m_hkla.contains(hkl))
-         {
-            return layoutida[i].m_strPath;
-         }
-      }
-
-#elif defined(LINUX) || defined(SOLARIS)
-
-      string strSymbol = x11_keyboard_get_current_group_symbol();
-
-      for(i32 i = 0; i < layoutida.get_count(); i++)
-      {
-         if(layoutida[i].m_countrycode.contains_ci(strSymbol))
-         {
-            return layoutida[i].m_strPath;
-         }
-      }
-
-#elif defined(MACOS)
-
-      string strSymbol = keyboard_input_source();
-
-      for(i32 i = 0; i < layoutida.get_count(); i++)
-      {
-         if(layoutida[i].m_keylayout.has_char() && strSymbol.contains(layoutida[i].m_keylayout))
-         {
-            return layoutida[i].m_strPath;
-         }
-      }
-
-#else
-
-      {
-
-         string strPath = Context.dir().matter("keyboard layout/br_abnt2.xml");
-
-         if(Context.file().exists(strPath))
-         {
-
-            return strPath;
-
-         }
-
-         return strPath;
-
-      }
-
-#endif
-
-      string strPath = Context.dir().matter("keyboard layout/en_us_international.xml");
-
-      if(Context.file().exists(strPath))
-      {
-
-         return strPath;
-
-      }
-
-      return "";
-
-   }
-
-
-   bool keyboard::initialize(keyboard_layout_id * playoutid, const char * pszPath)
-   {
-
-      if(!Context.file().exists(pszPath))
-         return false;
-
-      string str = Context.file().as_string(pszPath);
-
-      if(str.is_empty())
-         return false;
-
-      __throw(todo("xml"));
-
-//      ::xml::document doc;
+//   bool keyboard::load_layout(const char * pszPath, const ::action_context & context)
+//   {
 //
-//      if(!doc.load(str))
-//         return false;
+//      auto playout = __new(::user::keyboard_layout);
 //
-//      playoutid->m_strPath = pszPath;
-//
-//      playoutid->m_strName = doc.root()->attribute("name");
-//
-//      playoutid->m_countrycode = doc.root()->attribute("cc");
-//
-//      playoutid->m_keylayout = doc.root()->attribute("kl");
-//
-//      string_array straHkl;
-//
-//      straHkl.explode(";", doc.root()->attribute("hkla"));
-//
-//#ifdef WINDOWS_DESKTOP
-//
-//      for(i32 i = 0; i < straHkl.get_count(); i++)
+//      string strPath;
+//      if(pszPath == nullptr)
 //      {
-//         string strHkl = straHkl[i];
-//         HKL hkl;
-//         strHkl.trim();
-//         if(::str::begins_eat_ci(strHkl, "0x"))
+//         strPath = get_current_system_layout();
+//      }
+//      else
+//      {
+//         strPath = pszPath;
+//      }
+//      if(initialize(playout, strPath))
+//      {
+//         TRACE("setting keyboard on_layout to %s (path=%s)", playout->m_strName.c_str(), playout->m_strPath.c_str());
+//         if(playout->load(playout->m_strPath))
 //         {
-//            hkl = (HKL) ::hex::to_uint_ptr(strHkl);
+//            m_playout = playout;
+//// xxx            Application.simpledb().on_set_keyboard_layout(playout->m_strPath, context);
+//            TRACE("successfully set keyboard on_layout to %s (path=%s)", playout->m_strName.c_str(), playout->m_strPath.c_str());
+//            return true;
 //         }
 //         else
 //         {
-//            hkl = (HKL) ansi_to_uptr(strHkl);
+//            playout->release();
+//            TRACE("failed to load keyboard on_layout : %s (path=%s)", playout->m_strName.c_str(), playout->m_strPath.c_str());
 //         }
-//         playoutid->m_hkla.add(hkl);
+//      }
+//      else
+//      {
+//         TRACE("failed to set keyboard on_layout path=%s", pszPath);
+//      }
+//      return false;
+//   }
+
+   //string keyboard::process_key(key * pkey)
+   //{
+
+   //   //if(m_playout == nullptr)
+   //   //{
+
+   //   //   return string((char)(pkey->m_nChar & 0xff));
+
+   //   //}
+
+   //   pkey->m_iCode = (int)(pkey->m_ekey);
+
+   //   if(Session.is_key_pressed(::user::key_shift))
+   //   {
+   //      pkey->m_iCode |= 0x80000000;
+   //   }
+   //   if(Session.is_key_pressed(::user::key_ralt))
+   //   {
+   //      pkey->m_iCode |= 0x40000000;
+   //   }
+
+
+
+   //   //return m_playout->process_key(pkey);
+
+   //}
+
+   //string keyboard::process_key(::user::e_key ekey)
+   //{
+
+   //   if(m_playout == nullptr)
+   //   {
+
+   //      return string((char) ekey);
+
+   //   }
+
+   //   int iCode = (int) (ekey);
+
+   //   if(Session.is_key_pressed(::user::key_shift))
+   //   {
+   //      iCode |= 0x80000000;
+   //   }
+   //   if(Session.is_key_pressed(::user::key_ralt))
+   //   {
+   //      iCode |= 0x40000000;
+   //   }
+
+   //   return m_playout->process_key(iCode);
+
+   //}
+
+   //string keyboard::process_char(const char * pszKey)
+   //{
+   //   if(m_playout == nullptr)
+   //   {
+   //      return pszKey;
+   //   }
+   //   return m_playout->process_char(pszKey);
+   //}
+
+   //string keyboard::process_escape(const char * pszEscape)
+   //{
+   //   if(m_playout == nullptr)
+   //   {
+   //      return pszEscape;
+   //   }
+   //   return m_playout->process_char(pszEscape);
+   //}
+
+
+//   string keyboard::get_current_system_layout()
+//   {
+//
+//      keyboard_layout_ida layoutida;
+//
+//      ::file::patha patha;
+//
+//      Context.dir().matter_ls_file("keyboard layout", patha);
+//
+//      for(i32 i = 0; i < patha.get_count(); i++)
+//      {
+//
+//         keyboard_layout_id layoutid;
+//
+//         ::file::path path = patha[i];
+//
+//         if(initialize(&layoutid, path))
+//         {
+//
+//            layoutida.add(layoutid);
+//
+//         }
+//
+//      }
+//
+//      ::sort::quick_sort(layoutida, true);
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//
+//      string strOverride = file_as_string(::dir::system() / "config\\system\\keyboard_layout.txt");
+//
+//      if(strOverride.has_char())
+//      {
+//
+//         string strTest;
+//
+//         string strPath = Context.dir().matter("keyboard layout/" + strOverride + ".xml");
+//
+//         strTest = Context.file().as_string(strPath);
+//
+//         if(strTest.has_char())
+//         {
+//
+//            return strPath;
+//
+//         }
+//
+//      }
+//
+//      wchar_t szLayoutName[KL_NAMELENGTH];
+//
+//      ::GetKeyboardLayoutNameW(szLayoutName);
+//
+//      HKL hkl = ::GetKeyboardLayout(0);
+//
+//      for(i32 i = 0; i < layoutida.get_count(); i++)
+//      {
+//         if(layoutida[i].m_hkla.contains(hkl))
+//         {
+//            return layoutida[i].m_strPath;
+//         }
+//      }
+//      hkl = (HKL) (((uptr) hkl) & 0xffff);
+//      for(i32 i = 0; i < layoutida.get_count(); i++)
+//      {
+//         if(layoutida[i].m_hkla.contains(hkl))
+//         {
+//            return layoutida[i].m_strPath;
+//         }
+//      }
+//
+//#elif defined(LINUX) || defined(SOLARIS)
+//
+//      string strSymbol = x11_keyboard_get_current_group_symbol();
+//
+//      for(i32 i = 0; i < layoutida.get_count(); i++)
+//      {
+//         if(layoutida[i].m_countrycode.contains_ci(strSymbol))
+//         {
+//            return layoutida[i].m_strPath;
+//         }
+//      }
+//
+//#elif defined(MACOS)
+//
+//      string strSymbol = keyboard_input_source();
+//
+//      for(i32 i = 0; i < layoutida.get_count(); i++)
+//      {
+//         if(layoutida[i].m_keylayout.has_char() && strSymbol.contains(layoutida[i].m_keylayout))
+//         {
+//            return layoutida[i].m_strPath;
+//         }
 //      }
 //
 //#else
 //
-//      //__throw(todo());
+//      {
+//
+//         string strPath = Context.dir().matter("keyboard layout/br_abnt2.xml");
+//
+//         if(Context.file().exists(strPath))
+//         {
+//
+//            return strPath;
+//
+//         }
+//
+//         return strPath;
+//
+//      }
 //
 //#endif
 //
-//      if(playoutid->m_strName.is_empty())
+//      string strPath = Context.dir().matter("keyboard layout/en_us_international.xml");
+//
+//      if(Context.file().exists(strPath))
+//      {
+//
+//         return strPath;
+//
+//      }
+//
+//      return "";
+//
+//   }
+
+
+//   bool keyboard::initialize(keyboard_layout_id * playoutid, const char * pszPath)
+//   {
+//
+//      if(!Context.file().exists(pszPath))
 //         return false;
-
-      return true;
-
-   }
+//
+//      string str = Context.file().as_string(pszPath);
+//
+//      if(str.is_empty())
+//         return false;
+//
+//      __throw(todo("xml"));
+//
+////      ::xml::document doc;
+////
+////      if(!doc.load(str))
+////         return false;
+////
+////      playoutid->m_strPath = pszPath;
+////
+////      playoutid->m_strName = doc.root()->attribute("name");
+////
+////      playoutid->m_countrycode = doc.root()->attribute("cc");
+////
+////      playoutid->m_keylayout = doc.root()->attribute("kl");
+////
+////      string_array straHkl;
+////
+////      straHkl.explode(";", doc.root()->attribute("hkla"));
+////
+////#ifdef WINDOWS_DESKTOP
+////
+////      for(i32 i = 0; i < straHkl.get_count(); i++)
+////      {
+////         string strHkl = straHkl[i];
+////         HKL hkl;
+////         strHkl.trim();
+////         if(::str::begins_eat_ci(strHkl, "0x"))
+////         {
+////            hkl = (HKL) ::hex::to_uint_ptr(strHkl);
+////         }
+////         else
+////         {
+////            hkl = (HKL) ansi_to_uptr(strHkl);
+////         }
+////         playoutid->m_hkla.add(hkl);
+////      }
+////
+////#else
+////
+////      //__throw(todo());
+////
+////#endif
+////
+////      if(playoutid->m_strName.is_empty())
+////         return false;
+//
+//      return true;
+//
+//   }
 
 
    void keyboard::defer_show_software_keyboard(::user::primitive* pprimitive, bool bShow, string str, strsize iBeg, strsize iEnd)

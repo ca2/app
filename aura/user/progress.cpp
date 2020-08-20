@@ -20,7 +20,7 @@ namespace user
    void progress::install_message_routing(::channel * pchannel)
    {
 
-      ::user::control::install_message_routing(pchannel);
+      ::user::interaction::install_message_routing(pchannel);
 
    }
 
@@ -28,7 +28,7 @@ namespace user
    void progress::assert_valid() const
    {
 
-      ::user::control::assert_valid();
+      ::user::interaction::assert_valid();
 
    }
 
@@ -36,7 +36,7 @@ namespace user
    void progress::dump(dump_context & dumpcontext) const
    {
 
-      ::user::control::dump(dumpcontext);
+      ::user::interaction::dump(dumpcontext);
 
    }
 

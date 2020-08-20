@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "_struct.h"
+
+
 class CLASS_DECL_AURA angle
 {
 public:

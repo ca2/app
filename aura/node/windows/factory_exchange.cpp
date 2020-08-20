@@ -64,7 +64,7 @@ void __node_aura_factory_exchange()
    create_factory < ::file::os_watch, ::file::watch >();
 
    create_factory < ::windows::copydesk, ::user::copydesk >();
-   create_factory < ::windows::shell, ::user::shell >();
+   //create_factory < ::windows::shell, ::user::shell >();
 
 
 }

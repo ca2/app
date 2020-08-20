@@ -88,14 +88,14 @@ namespace filemanager
    }
 
 
-   void callback::on_file_manager_initialize_form_pre_data(::filemanager::data * pdata, id id, ::user::form * pform)
-   {
-      
-      UNREFERENCED_PARAMETER(pdata);
-      UNREFERENCED_PARAMETER(id);
-      UNREFERENCED_PARAMETER(pform);
+   //void callback::on_file_manager_initialize_form_pre_data(::filemanager::data * pdata, id id, ::user::form * pform)
+   //{
+   //   
+   //   UNREFERENCED_PARAMETER(pdata);
+   //   UNREFERENCED_PARAMETER(id);
+   //   UNREFERENCED_PARAMETER(pform);
 
-   }
+   //}
 
 
    //bool callback::GetFileManagerItemCallback(::filemanager::data * pdata, id id, const ::file::item_array & itema)

@@ -1,6 +1,6 @@
 #include "framework.h"
 //#include "aura/net/sockets/_.h"
-#include "aura/papaya/papaya_zoneing.h"
+//#include "aura/papaya/papaya_zoneing.h"
 #include "aura/const/id.h"
 #include "aura/platform/app_core.h"
 #include "aura/platform/static_setup.h"
@@ -464,9 +464,9 @@ namespace aura
    void session::term2()
    {
 
-      __release(m_ptheme);
+      // __release(m_ptheme);
 
-      m_mapTheme.remove_all();
+      //m_mapTheme.remove_all();
 
 #ifdef WINDOWS_DESKTOP
 
@@ -1228,31 +1228,33 @@ namespace aura
 
       }
 
-      if(m_paccount.is_null())
-      {
+      return false;
 
-         return false;
+      //if(m_paccount.is_null())
+      //{
 
-      }
+      //   return false;
 
-      return m_paccount->is_licensed(pszAppId, bInteractive);
+      //}
 
-   }
-
-
-   ::account::user * session::get_user(::file::path pathUrl, bool bFetch, bool bInteractive)
-   {
-
-      if(m_paccount.is_null())
-      {
-
-         return nullptr;
-
-      }
-
-      return m_paccount->get_user(pathUrl, bFetch, bInteractive);
+      //return m_paccount->is_licensed(pszAppId, bInteractive);
 
    }
+
+
+   //::account::user * session::get_user(::file::path pathUrl, bool bFetch, bool bInteractive)
+   //{
+
+   //   if(m_paccount.is_null())
+   //   {
+
+   //      return nullptr;
+
+   //   }
+
+   //   return m_paccount->get_user(pathUrl, bFetch, bInteractive);
+
+   //}
 
 
 //   ::account::user * session::interactive_get_user(::file::path pathUrl)
@@ -2477,7 +2479,7 @@ namespace aura
 
 
 
-#define ZONEING_COMPARE ::papaya::zoneing
+#define ZONEING_COMPARE ::comparison
 
    i64 g_i_get_best_zoneing = 0;
 
@@ -3458,239 +3460,239 @@ ret:
    }
 
 
-   ::user::theme_pointer session::get_user_theme(const char * pszExperienceLibrary, ::aura::application * papp)
-   {
-
-      auto &  ptheme = m_mapTheme[pszExperienceLibrary];
-
-      if (!ptheme)
-      {
-
-         auto pthemeNew = instantiate_user_theme(pszExperienceLibrary, papp);
-
-         __compose(ptheme, pthemeNew);
-
-      }
-
-      return ptheme;
-
-   }
-
-
-   ::user::theme_pointer session::instantiate_user_theme(const char * pszExperienceLibrary, ::aura::application * papp)
-   {
-
-      INFO("aura::session::instantiate_user_theme");
-
-      if (papp == nullptr)
-      {
-
-         papp = get_context_application();
-
-      }
-
-      string_array straLibrary;
-
-      {
-
-         string strId(pszExperienceLibrary);
-
-         if (strId.has_char())
-         {
-
-            straLibrary.add(strId);
-
-         }
-
-      }
-
-      {
-
-         string strId(App(papp).preferred_experience());
-
-         if (strId.has_char())
-         {
-
-            straLibrary.add(strId);
-
-         }
-
-      }
-
-      {
-
-         string strConfig;
-
-         if (has_property("experience"))
-         {
-
-            strConfig = value("experience");
-
-         }
-
-         if (strConfig.has_char())
-         {
-
-            string strLibrary = string("experience_") + strConfig;
-
-            straLibrary.add(strConfig);
-
-         }
-
-      }
-
-      {
-
-         string strWndFrm = Ctx(papp).file().as_string(::dir::config() / App(papp).m_strAppName / "experience.txt");
-
-         if (strWndFrm.has_char())
-         {
-
-            straLibrary.add(strWndFrm);
-
-         }
-
-      }
-
-      {
-
-         string strWndFrm = Ctx(papp).file().as_string(::dir::config() / ::file::path(App(papp).m_strAppName).folder() / "experience.txt");
-
-         if (strWndFrm.has_char())
-         {
-
-            straLibrary.add(strWndFrm);
-
-         }
-
-      }
-
-      {
-
-         string strWndFrm = Ctx(papp).file().as_string(::dir::config() / ::file::path(App(papp).m_strAppName).name() / "experience.txt");
-
-         if (strWndFrm.has_char())
-         {
-
-            straLibrary.add(strWndFrm);
-
-         }
-
-      }
-
-      {
-
-         string strWndFrm = Ctx(papp).file().as_string(::dir::config() / "system/experience.txt");
-
-         if (strWndFrm.has_char())
-         {
-
-            straLibrary.add(strWndFrm);
-
-         }
-
-      }
-
-      straLibrary.add("experience_core");
-
-      straLibrary.add("experience_metro");
-
-      straLibrary.add("experience_rootkiller");
-
-      straLibrary.add("experience_hyper");
-
-      ::user::theme_pointer ptheme;
-
-      for (string strLibrary : straLibrary)
-      {
-
-         strLibrary.replace("-", "_");
-
-         strLibrary.replace("/", "_");
-
-         if (!::str::begins_ci(strLibrary, "experience_"))
-         {
-
-            strLibrary = "experience_" + strLibrary;
-
-         }
-
-         auto plibrary = System.get_library(strLibrary, true);
-
-         if (::is_null(plibrary))
-         {
-
-            ERR("Failed to Load %s", strLibrary.c_str());
-
-            continue;
-
-         }
-
-         ptheme = plibrary->create_object(papp, "user_theme");
-
-         if (ptheme.is_null())
-         {
-
-            INFO("could not create user_style from ", strLibrary.c_str());
-
-            continue;
-
-         }
-
-         sync_lock sl(&::get_context_system()->m_mutexLibrary);
-
-         ::get_context_system()->m_mapLibrary[strLibrary] = plibrary;
-
-         ptheme->m_plibrary = plibrary;
-
-         m_puserstyle = ptheme;
-
-         break;
-
-      }
-
-      if (ptheme.is_null())
-      {
-
-//         message_box(nullptr, "Failed to find/open 'experience' library.\n\nSome reasons:\n   - No 'experience' library present;\n   - Failure to open any suitable 'experience' library.",nullptr, MB_OK);
-
-         __throw(exit_exception(get_context_system()));
-
-      }
-
-      if (ptheme.is_set())
-      {
-
-         ptheme->initialize_theme();
-
-
-      }
-
-      return ptheme;
-
-   }
-
-
-   void session::defer_instantiate_user_theme(const char * pszUiInteractionLibrary)
-   {
-
-      if (m_ptheme.is_null())
-      {
-
-         __compose(m_ptheme, get_user_theme(pszUiInteractionLibrary));
-
-         if (m_ptheme.is_null())
-         {
-
-            ERR("aura::session::defer_instantiate_user_theme");
-
-            __throw(resource_exception());
-
-         }
-
-      }
-
-   }
+   //::user::theme_pointer session::get_user_theme(const char * pszExperienceLibrary, ::aura::application * papp)
+   //{
+
+   //   auto &  ptheme = m_mapTheme[pszExperienceLibrary];
+
+   //   if (!ptheme)
+   //   {
+
+   //      auto pthemeNew = instantiate_user_theme(pszExperienceLibrary, papp);
+
+   //      __compose(ptheme, pthemeNew);
+
+   //   }
+
+   //   return ptheme;
+
+   //}
+
+
+//   ::user::theme_pointer session::instantiate_user_theme(const char * pszExperienceLibrary, ::aura::application * papp)
+//   {
+//
+//      INFO("aura::session::instantiate_user_theme");
+//
+//      if (papp == nullptr)
+//      {
+//
+//         papp = get_context_application();
+//
+//      }
+//
+//      string_array straLibrary;
+//
+//      {
+//
+//         string strId(pszExperienceLibrary);
+//
+//         if (strId.has_char())
+//         {
+//
+//            straLibrary.add(strId);
+//
+//         }
+//
+//      }
+//
+//      {
+//
+//         string strId(App(papp).preferred_experience());
+//
+//         if (strId.has_char())
+//         {
+//
+//            straLibrary.add(strId);
+//
+//         }
+//
+//      }
+//
+//      {
+//
+//         string strConfig;
+//
+//         if (has_property("experience"))
+//         {
+//
+//            strConfig = value("experience");
+//
+//         }
+//
+//         if (strConfig.has_char())
+//         {
+//
+//            string strLibrary = string("experience_") + strConfig;
+//
+//            straLibrary.add(strConfig);
+//
+//         }
+//
+//      }
+//
+//      {
+//
+//         string strWndFrm = Ctx(papp).file().as_string(::dir::config() / App(papp).m_strAppName / "experience.txt");
+//
+//         if (strWndFrm.has_char())
+//         {
+//
+//            straLibrary.add(strWndFrm);
+//
+//         }
+//
+//      }
+//
+//      {
+//
+//         string strWndFrm = Ctx(papp).file().as_string(::dir::config() / ::file::path(App(papp).m_strAppName).folder() / "experience.txt");
+//
+//         if (strWndFrm.has_char())
+//         {
+//
+//            straLibrary.add(strWndFrm);
+//
+//         }
+//
+//      }
+//
+//      {
+//
+//         string strWndFrm = Ctx(papp).file().as_string(::dir::config() / ::file::path(App(papp).m_strAppName).name() / "experience.txt");
+//
+//         if (strWndFrm.has_char())
+//         {
+//
+//            straLibrary.add(strWndFrm);
+//
+//         }
+//
+//      }
+//
+//      {
+//
+//         string strWndFrm = Ctx(papp).file().as_string(::dir::config() / "system/experience.txt");
+//
+//         if (strWndFrm.has_char())
+//         {
+//
+//            straLibrary.add(strWndFrm);
+//
+//         }
+//
+//      }
+//
+//      straLibrary.add("experience_core");
+//
+//      straLibrary.add("experience_metro");
+//
+//      straLibrary.add("experience_rootkiller");
+//
+//      straLibrary.add("experience_hyper");
+//
+//      ::user::theme_pointer ptheme;
+//
+//      for (string strLibrary : straLibrary)
+//      {
+//
+//         strLibrary.replace("-", "_");
+//
+//         strLibrary.replace("/", "_");
+//
+//         if (!::str::begins_ci(strLibrary, "experience_"))
+//         {
+//
+//            strLibrary = "experience_" + strLibrary;
+//
+//         }
+//
+//         auto plibrary = System.get_library(strLibrary, true);
+//
+//         if (::is_null(plibrary))
+//         {
+//
+//            ERR("Failed to Load %s", strLibrary.c_str());
+//
+//            continue;
+//
+//         }
+//
+//         ptheme = plibrary->create_object(papp, "user_theme");
+//
+//         if (ptheme.is_null())
+//         {
+//
+//            INFO("could not create user_style from ", strLibrary.c_str());
+//
+//            continue;
+//
+//         }
+//
+//         sync_lock sl(&::get_context_system()->m_mutexLibrary);
+//
+//         ::get_context_system()->m_mapLibrary[strLibrary] = plibrary;
+//
+//         ptheme->m_plibrary = plibrary;
+//
+//         m_puserstyle = ptheme;
+//
+//         break;
+//
+//      }
+//
+//      if (ptheme.is_null())
+//      {
+//
+////         message_box(nullptr, "Failed to find/open 'experience' library.\n\nSome reasons:\n   - No 'experience' library present;\n   - Failure to open any suitable 'experience' library.",nullptr, MB_OK);
+//
+//         __throw(exit_exception(get_context_system()));
+//
+//      }
+//
+//      if (ptheme.is_set())
+//      {
+//
+//         ptheme->initialize_theme();
+//
+//
+//      }
+//
+//      return ptheme;
+//
+//   }
+
+
+   //void session::defer_instantiate_user_theme(const char * pszUiInteractionLibrary)
+   //{
+
+   //   if (m_ptheme.is_null())
+   //   {
+
+   //      __compose(m_ptheme, get_user_theme(pszUiInteractionLibrary));
+
+   //      if (m_ptheme.is_null())
+   //      {
+
+   //         ERR("aura::session::defer_instantiate_user_theme");
+
+   //         __throw(resource_exception());
+
+   //      }
+
+   //   }
+
+   //}
 
 
    void session::set_bound_ui(::id idView, ::user::interaction * pinteraction)
@@ -3745,57 +3747,57 @@ ret:
    }
 
 
-   void session::on_user_logon(::account::user * puser)
-   {
-
-      // Remember:
-      // (Implement items below here or at derived class 'on_user_logon'
-      //  virtual member overload)
-      //
-      // - userpresence
-      // - intelligent file system (ifs)
-      //
-
-
-      //if(puser->m_strPathPrefix.is_empty())
-      //{
-
-      //   puser->m_strPathPrefix = Context.dir().default_os_user_path_prefix();
-
-      //}
-
-      //auto puser = get_user22();
-
-//      if(::is_null(puser))
+//   void session::on_user_logon(::account::user * puser)
+//   {
+//
+//      // Remember:
+//      // (Implement items below here or at derived class 'on_user_logon'
+//      //  virtual member overload)
+//      //
+//      // - userpresence
+//      // - intelligent file system (ifs)
+//      //
+//
+//
+//      //if(puser->m_strPathPrefix.is_empty())
+//      //{
+//
+//      //   puser->m_strPathPrefix = Context.dir().default_os_user_path_prefix();
+//
+//      //}
+//
+//      //auto puser = get_user22();
+//
+////      if(::is_null(puser))
+////      {
+////
+////         return;
+////
+////      }
+//
+//      puser->m_pathFolder = Context.dir().appdata() / "profile" / puser->m_strLogin;
+//
+//      Context.dir().mk(puser->m_pathFolder);
+//
+//      for (auto & papp : m_applicationa)
 //      {
 //
-//         return;
+//         if (papp.is_set())
+//         {
+//
+//            papp->call_update(id_change_user);
+//
+//         }
 //
 //      }
-
-      puser->m_pathFolder = Context.dir().appdata() / "profile" / puser->m_strLogin;
-
-      Context.dir().mk(puser->m_pathFolder);
-
-      for (auto & papp : m_applicationa)
-      {
-
-         if (papp.is_set())
-         {
-
-            papp->call_update(id_change_user);
-
-         }
-
-      }
-
-   }
-
-
-   void session::on_remove_user(::account::user * puser)
-   {
-
-   }
+//
+//   }
+//
+//
+//   void session::on_remove_user(::account::user * puser)
+//   {
+//
+//   }
 
 
    ::user::interaction * session::get_session_window()
@@ -4136,28 +4138,28 @@ ret:
       if (System.m_bUser)
       {
 
-         if (!m_paccount)
-         {
+         //if (!m_paccount)
+         //{
 
-            estatus = __compose_new(m_paccount);
+         //   estatus = __compose_new(m_paccount);
 
-            if (!estatus)
-            {
+         //   if (!estatus)
+         //   {
 
-               FATAL("aura::session::init2 Failed to create account department");
+         //      FATAL("aura::session::init2 Failed to create account department");
 
-               return false;
+         //      return false;
 
-            }
+         //   }
 
-         }
+         //}
 
-         if (!m_paccount->init_instance())
-         {
+         //if (!m_paccount->init_instance())
+         //{
 
-            return false;
+         //   return false;
 
-         }
+         //}
 
          if(System.m_bDraw2d)
          {
@@ -4342,22 +4344,20 @@ ret:
 
       }
 
-      try
-      {
+      //try
+      //{
 
-         __release(m_paccount);
+      //   __release(m_paccount);
 
-      }
-      catch (...)
-      {
+      //}
+      //catch (...)
+      //{
 
-         m_result.add(error_failed);
+      //   m_result.add(error_failed);
 
-      }
+      //}
 
-      __release(m_pkeyboard);
-
-
+//      __release(m_pkeyboard);
 
       defer_term_ui();
 
@@ -4391,7 +4391,7 @@ ret:
    void session::translate_os_key_message(::user::key * pkey)
    {
 
-      Session.keyboard().translate_os_key_message(pkey);
+//      Session.keyboard().translate_os_key_message(pkey);
 
    }
 
@@ -5141,150 +5141,150 @@ namespace aura
    //}
 
 
-   void session::interactive_credentials(::account::credentials* pcredentials)
-   {
+//   void session::interactive_credentials(::account::credentials* pcredentials)
+//   {
+//
+//
+//      //if (!USER)
+//      //{
+//
+//      //   //   //pcredentials->m_puser->m_estatusAuthentication = ::error_credentials_non_interactive;
+//
+//      //   return;
+//
+//      //}
+//      pcredentials->m_estatus = error_failed;
+//
+//      manual_reset_event ev;
+//
+//      if (!pcredentials->m_bInteractive)
+//      {
+//
+//         pcredentials->m_estatus = error_credentials_non_interactive;
+//
+//         return;
+//
+//      }
+//
+//      //if (m_pmainpane != nullptr && m_pmainpane == nullptr)
+//      //{
+//
+//      //   try
+//      //   {
+//
+//      //      m_pmainpane->interactive_credentials(pcredentials);
+//
+//      //   }
+//      //   catch (...)
+//      //   {
+//
+//      //   }
+//
+//      //}
+//
+//      if (pcredentials->m_estatus == ::success_credentials ||
+//         ::failed(pcredentials->m_estatus, STATUS_RANGE_AUTHENTICATION))
+//      {
+//
+//         return;
+//
+//      }
+//
+//#if !defined(LINUX) && !defined(APPLEOS) && !defined(ANDROID)
+//      //attach_thread_input_to_main_thread(false);
+//#endif
+//
+//      ::aura::session::interactive_credentials(pcredentials);
+//
+//      if (pcredentials->m_estatus == ::success_credentials)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      if (!pcredentials->m_bInteractive)
+//      {
+//
+//         pcredentials->m_estatus = error_credentials_non_interactive;
+//
+//         return;
+//
+//      }
+//
+//      auto puser = pcredentials->m_puser;
+//
+//      //auto pdialog = ::__create_new<::account::dialog>();
+//
+//      //pdialog->initialize_account_dialog(pcredentials);
+//
+//      //pdialog->get_credentials();
+//
+//      //pdialog->DestroyWindow();
+//
+//
+//   }
 
 
-      //if (!USER)
-      //{
+   //void session::_001OnDefaultTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer & pgraphics, const ::rect& rect, ::draw2d::brush_pointer& brushText)
+   //{
 
-      //   //   //pcredentials->m_puser->m_estatusAuthentication = ::error_credentials_non_interactive;
+   //   string_array& straTitle = pane.m_straTitle;
 
-      //   return;
+   //   pgraphics->set(brushText);
 
-      //}
-      pcredentials->m_estatus = error_failed;
+   //   if (straTitle.get_count() <= 1)
+   //   {
 
-      manual_reset_event ev;
+   //      pgraphics->_DrawText(pane.get_title(), rect, DT_LEFT | DT_BOTTOM | DT_NOPREFIX);
 
-      if (!pcredentials->m_bInteractive)
-      {
+   //   }
+   //   else
+   //   {
 
-         pcredentials->m_estatus = error_credentials_non_interactive;
-
-         return;
-
-      }
-
-      //if (m_pmainpane != nullptr && m_pmainpane == nullptr)
-      //{
-
-      //   try
-      //   {
-
-      //      m_pmainpane->interactive_credentials(pcredentials);
-
-      //   }
-      //   catch (...)
-      //   {
-
-      //   }
-
-      //}
-
-      if (pcredentials->m_estatus == ::success_credentials ||
-         ::failed(pcredentials->m_estatus, STATUS_RANGE_AUTHENTICATION))
-      {
-
-         return;
-
-      }
-
-#if !defined(LINUX) && !defined(APPLEOS) && !defined(ANDROID)
-      //attach_thread_input_to_main_thread(false);
-#endif
-
-      ::aura::session::interactive_credentials(pcredentials);
-
-      if (pcredentials->m_estatus == ::success_credentials)
-      {
-
-         return;
-
-      }
-
-      if (!pcredentials->m_bInteractive)
-      {
-
-         pcredentials->m_estatus = error_credentials_non_interactive;
-
-         return;
-
-      }
-
-      auto puser = pcredentials->m_puser;
-
-      //auto pdialog = ::__create_new<::account::dialog>();
-
-      //pdialog->initialize_account_dialog(pcredentials);
-
-      //pdialog->get_credentials();
-
-      //pdialog->DestroyWindow();
+   //      ::rect rectText(rect);
 
 
-   }
+   //      ::draw2d::font_pointer font;
+   //      font = pgraphics->get_current_font();
+   //      size sSep = ptab->get_data()->m_sizeSep;
+   //      ::rect rectEmp;
+   //      for (index i = 0; i < straTitle.get_size(); i++)
+   //      {
+   //         string str = straTitle[i];
+   //         size s = pane.m_sizeaText[i];
+   //         rectText.right = rectText.left + s.cx;
+   //         pgraphics->_DrawText(str, rectText, DT_LEFT | DT_BOTTOM | DT_NOPREFIX);
+   //         rectText.left += s.cx;
+   //         if (i < straTitle.get_upper_bound())
+   //         {
+   //            rectText.right = rectText.left + sSep.cx;
+   //            rectEmp = rectText;
+   //            rectEmp.deflate(1, 1);
+   //            ::draw2d::e_alpha_mode emode = pgraphics->m_ealphamode;
+   //            pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+   //            if (ptab->m_itemHover == (::user::e_element)(::user::element_split + i))
+   //            {
+   //               pgraphics->fill_rect(rectEmp, ARGB(128, 150, 184, 255));
+   //               pgraphics->set(ptab->get_data()->m_brushTextHover);
+   //            }
+   //            else
+   //            {
+   //               //pgraphics->fill_rect(rectEmp,ARGB(128,208,223,233));
+   //               pgraphics->set(ptab->get_data()->m_brushText);
+   //            }
+   //            pgraphics->set(ptab->m_pfontTab);
+   //            pgraphics->set_alpha_mode(emode);
+   //            pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT, rectText, DT_CENTER | DT_VCENTER | DT_NOPREFIX);
+   //            rectText.left += sSep.cx;
+   //            pgraphics->set(font);
+   //            pgraphics->set(brushText);
+   //         }
+   //      }
 
+   //   }
 
-   void session::_001OnDefaultTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer & pgraphics, const ::rect& rect, ::draw2d::brush_pointer& brushText)
-   {
-
-      string_array& straTitle = pane.m_straTitle;
-
-      pgraphics->set(brushText);
-
-      if (straTitle.get_count() <= 1)
-      {
-
-         pgraphics->_DrawText(pane.get_title(), rect, DT_LEFT | DT_BOTTOM | DT_NOPREFIX);
-
-      }
-      else
-      {
-
-         ::rect rectText(rect);
-
-
-         ::draw2d::font_pointer font;
-         font = pgraphics->get_current_font();
-         size sSep = ptab->get_data()->m_sizeSep;
-         ::rect rectEmp;
-         for (index i = 0; i < straTitle.get_size(); i++)
-         {
-            string str = straTitle[i];
-            size s = pane.m_sizeaText[i];
-            rectText.right = rectText.left + s.cx;
-            pgraphics->_DrawText(str, rectText, DT_LEFT | DT_BOTTOM | DT_NOPREFIX);
-            rectText.left += s.cx;
-            if (i < straTitle.get_upper_bound())
-            {
-               rectText.right = rectText.left + sSep.cx;
-               rectEmp = rectText;
-               rectEmp.deflate(1, 1);
-               ::draw2d::e_alpha_mode emode = pgraphics->m_ealphamode;
-               pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
-               if (ptab->m_itemHover == (::user::e_element)(::user::element_split + i))
-               {
-                  pgraphics->fill_rect(rectEmp, ARGB(128, 150, 184, 255));
-                  pgraphics->set(ptab->get_data()->m_brushTextHover);
-               }
-               else
-               {
-                  //pgraphics->fill_rect(rectEmp,ARGB(128,208,223,233));
-                  pgraphics->set(ptab->get_data()->m_brushText);
-               }
-               pgraphics->set(ptab->m_pfontTab);
-               pgraphics->set_alpha_mode(emode);
-               pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT, rectText, DT_CENTER | DT_VCENTER | DT_NOPREFIX);
-               rectText.left += sSep.cx;
-               pgraphics->set(font);
-               pgraphics->set(brushText);
-            }
-         }
-
-      }
-
-   }
+   //}
 
 
    string_array session::get_user_wallpaper()
@@ -5628,59 +5628,59 @@ namespace aura
 
 
 
-   bool session::prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::user::menu_item* pitem)
-   {
+   //bool session::prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::user::menu_item* pitem)
+   //{
 
-      __pointer(::user::button) pbutton = pitem->m_puserinteraction;
+   //   __pointer(::user::button) pbutton = pitem->m_puserinteraction;
 
-      if (pbutton->m_id == "close_menu")
-      {
+   //   if (pbutton->m_id == "close_menu")
+   //   {
 
-         pbutton->descriptor().set_control_type(::user::control_type_menu_button_close);
+   //      pbutton->descriptor().set_control_type(::user::control_type_menu_button_close);
 
-         pbutton->set_stock_icon(stock_icon_close);
+   //      pbutton->set_stock_icon(stock_icon_close);
 
-         pbutton->resize_to_fit(pgraphics);
+   //      pbutton->resize_to_fit(pgraphics);
 
-         return true;
+   //      return true;
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         pbutton->descriptor().set_control_type(::user::control_type_menu_button);
+   //      pbutton->descriptor().set_control_type(::user::control_type_menu_button);
 
-         int cx = pbutton->width();
+   //      int cx = pbutton->width();
 
-         int cy = pbutton->height();
+   //      int cy = pbutton->height();
 
-         pbutton->m_pmenuitemThis = pitem;
+   //      pbutton->m_pmenuitemThis = pitem;
 
-         ::rect rectMargin(1, 1, 1, 1);
+   //      ::rect rectMargin(1, 1, 1, 1);
 
-         int iCheckBoxSize = 16;
+   //      int iCheckBoxSize = 16;
 
-         int iElementPadding = 4;
+   //      int iElementPadding = 4;
 
-         auto& rectCheckBox = pbutton->m_rectCheckBox;
+   //      auto& rectCheckBox = pbutton->m_rectCheckBox;
 
-         rectCheckBox.left = rectMargin.left;
-         rectCheckBox.top = rectMargin.top;
-         rectCheckBox.bottom = cy - rectMargin.bottom;
-         rectCheckBox.right = rectCheckBox.left + iCheckBoxSize;
+   //      rectCheckBox.left = rectMargin.left;
+   //      rectCheckBox.top = rectMargin.top;
+   //      rectCheckBox.bottom = cy - rectMargin.bottom;
+   //      rectCheckBox.right = rectCheckBox.left + iCheckBoxSize;
 
-         auto& rectText = pbutton->m_rectText;
+   //      auto& rectText = pbutton->m_rectText;
 
-         rectText.left = rectCheckBox.right + iElementPadding;
-         rectText.top = rectMargin.top;
-         rectText.bottom = cy - rectMargin.bottom;
-         rectText.right = cx - rectMargin.right;
+   //      rectText.left = rectCheckBox.right + iElementPadding;
+   //      rectText.top = rectMargin.top;
+   //      rectText.bottom = cy - rectMargin.bottom;
+   //      rectText.right = cx - rectMargin.right;
 
-      }
+   //   }
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
    ::color session::get_color(::user::e_element eelement, ::user::estate estate)
    {
@@ -5915,6 +5915,14 @@ namespace aura
    //   return true;
 
    //}
+
+
+   void session::finalize()
+   {
+
+      ::aura::context_thread::finalize();
+
+   }
 
 
 } // namespace aura

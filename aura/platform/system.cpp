@@ -482,17 +482,17 @@ namespace aura
             //m_strInstallToken             = "core_system";
 
       //m_phistory = nullptr;
-      m_ppatch = new ::aura::patch();
+      //m_ppatch = new ::aura::patch();
       //g_pszCooperativeLevel = "aura";
 
-      estatus = __compose(m_puserset, __new(::account::user_set(this)));
+      //estatus = __compose(m_puserset, __new(::account::user_set(this)));
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         throw ::exception::exception(estatus);
+      //   throw ::exception::exception(estatus);
 
-      }
+      //}
 
       //#ifdef _UWP
       //      m_window                                  = nullptr;
@@ -1049,7 +1049,7 @@ namespace aura
    {
 
 
-      ::aura::del(m_ppatch);
+      //::aura::del(m_ppatch);
 
       if (g_paurasystem == this)
       {
@@ -4319,12 +4319,12 @@ found:
    }
 
 
-   __pointer(::account::user_set) system::userset()
-   {
+   //__pointer(::account::user_set) system::userset()
+   //{
 
-      return m_puserset;
+   //   return m_puserset;
 
-   }
+   //}
 
 
    bool system::defer_accumulate_on_open_file(string_array stra, string strExtra)
@@ -7445,7 +7445,8 @@ namespace aura
    //}
 
 
-   bool system::sync_load_url(string& str, const char* pszUrl, ::account::user* puser, ::http::cookies* pcookies)
+   //bool system::sync_load_url(string& str, const char* pszUrl, ::account::user* puser, ::http::cookies* pcookies)
+   bool system::sync_load_url(string& str, const char* pszUrl, ::http::cookies* pcookies)
 
    {
 
@@ -7453,7 +7454,7 @@ namespace aura
 
       property_set set;
 
-      set["user"] = puser;
+      //set["user"] = puser;
 
       set["cookies"] = pcookies;
 
@@ -7472,7 +7473,7 @@ namespace aura
 
          property_set set;
 
-         set["user"] = puser;
+         //set["user"] = puser;
 
          set["cookies"] = pcookies;
 
@@ -7489,12 +7490,12 @@ namespace aura
    }
 
 
-   ::aura::patch& system::patch()
-   {
+   //::aura::patch& system::patch()
+   //{
 
-      return *m_ppatch;
+   //   return *m_ppatch;
 
-   }
+   //}
 
 
    //::http::system & system::http()
@@ -8761,6 +8762,15 @@ namespace aura
       return m_typePaneTabView;
 
    }
+
+
+   void system::finalize()
+   {
+
+      ::aura::context_thread::finalize();
+
+   }
+
 
 } // namespace aura
 

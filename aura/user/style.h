@@ -55,8 +55,8 @@ namespace user
       void default_style_construct();
 
       //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style_pointer & pstyle, menu_item * pitem) override;
-      virtual bool prepare_menu(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem) override;
-      virtual bool prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem) override;
+      //virtual bool prepare_menu(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem) override;
+      //virtual bool prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem) override;
 
 
 //      virtual void initialize_style() override;
@@ -72,13 +72,13 @@ namespace user
 
       //virtual bool on_ui_event(e_event eevent, e_object eobject, ::user::interaction * pinteraction) override;
 
-      virtual bool _001OnDrawMenuInteraction(::draw2d::graphics_pointer & pgraphics, menu_interaction * pbutton) override;
+      //virtual bool _001OnDrawMenuInteraction(::draw2d::graphics_pointer & pgraphics, menu_interaction * pbutton) override;
 
-      virtual bool _001OnTabLayout(::draw2d::graphics_pointer& pgraphics, ::user::tab * ptab) override;
+      //virtual bool _001OnTabLayout(::draw2d::graphics_pointer& pgraphics, ::user::tab * ptab) override;
 
-      virtual bool _001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics, tab * ptab) override;
+      //virtual bool _001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics, tab * ptab) override;
 
-      virtual void _001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rect & rect, ::draw2d::brush_pointer & brushText) override;
+      //virtual void _001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rect & rect, ::draw2d::brush_pointer & brushText) override;
 
 
       //      virtual bool _001GetMainFrameTranslucency(::user::e_translucency & etranslucency) override;

@@ -466,36 +466,36 @@ namespace user
    }
 
 
-   bool style::_001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics, tab * ptab)
-   {
+   //bool style::_001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics, tab * ptab)
+   //{
 
-      return false;
+   //   return false;
 
-   }
-
-
-   bool style::_001OnDrawMenuInteraction(::draw2d::graphics_pointer & pgraphics, menu_interaction * pinteraction)
-   {
-
-      return false;
-
-   }
+   //}
 
 
-   void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rect & rect, ::draw2d::brush_pointer & brushText)
-   {
+   //bool style::_001OnDrawMenuInteraction(::draw2d::graphics_pointer & pgraphics, menu_interaction * pinteraction)
+   //{
 
-      Session._001OnDefaultTabPaneDrawTitle(pane, ptab, pgraphics, rect, brushText);
+   //   return false;
 
-   }
+   //}
 
 
-   bool style::_001OnTabLayout(::draw2d::graphics_pointer& pgraphics, ::user::tab * ptab)
-   {
+   //void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rect & rect, ::draw2d::brush_pointer & brushText)
+   //{
 
-      return false;
+   //   Session._001OnDefaultTabPaneDrawTitle(pane, ptab, pgraphics, rect, brushText);
 
-   }
+   //}
+
+
+   //bool style::_001OnTabLayout(::draw2d::graphics_pointer& pgraphics, ::user::tab * ptab)
+   //{
+
+   //   return false;
+
+   //}
 
 
    //   bool style::_001GetMainFrameTranslucency(::user::e_translucency & etranslucency)
@@ -554,31 +554,31 @@ namespace user
    //}
 
 
-   bool style::prepare_menu(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem)
-   {
+   //bool style::prepare_menu(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem)
+   //{
 
-      if (!prepare_menu_button(pgraphics,pitem))
-      {
+   //   if (!prepare_menu_button(pgraphics,pitem))
+   //   {
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
-   bool style::prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem)
-   {
+   //bool style::prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem)
+   //{
 
-      pgraphics->m_puserstyle = this;
+   //   pgraphics->m_puserstyle = this;
 
-      Session.prepare_menu_button(pgraphics, pitem);
+   //   Session.prepare_menu_button(pgraphics, pitem);
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
    //bool style::create_color(e_color ecolor, COLORREF cr)

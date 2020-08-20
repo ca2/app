@@ -1006,57 +1006,57 @@ namespace http
    }
 
 
-   void context::on_auth(property_set & set, ::aura::application *      papp, string & strUrl, string & strSessId, __pointer(::account::user) & puser)
-   {
+   //void context::on_auth(property_set & set, ::aura::application *      papp, string & strUrl, string & strSessId, __pointer(::account::user) & puser)
+   //{
 
-      if (::is_null(papp))
-      {
+   //   if (::is_null(papp))
+   //   {
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      if (set.is_true("raw_http"))
-      {
+   //   if (set.is_true("raw_http"))
+   //   {
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      if (!Sess(papp).account()->url_requires_auth(strUrl))
-      {
+   //   if (!Sess(papp).account()->url_requires_auth(strUrl))
+   //   {
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      string strWorkUrl;
+   //   string strWorkUrl;
 
-      bool bInteractive = set.is_set_false("noninteractive");
+   //   bool bInteractive = set.is_set_false("noninteractive");
 
-      puser = App(papp).get_user(strUrl, true, bInteractive);
+   //   puser = App(papp).get_user(strUrl, true, bInteractive);
 
-      if (puser.is_null())
-      {
+   //   if (puser.is_null())
+   //   {
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      strSessId = puser->m_strSessId;
+   //   strSessId = puser->m_strSessId;
 
-      if (strSessId.is_empty())
-      {
+   //   if (strSessId.is_empty())
+   //   {
 
-         System.url().string_set(strUrl, "authnone", 1);
+   //      System.url().string_set(strUrl, "authnone", 1);
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      //System.url().string_set(strUrl, "sessid", strSessId);
+   //   //System.url().string_set(strUrl, "sessid", strSessId);
 
-   }
+   //}
 
 
    bool context::open(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession, const char * pszHost, const char * pszProtocol, property_set & set, const char * pszVersion)
@@ -1119,9 +1119,9 @@ namespace http
 
       psession = __new(::sockets::http_session(handler, strProtocol, pszHost));
 
-      __pointer(::account::user) puser;
+      /*__pointer(::account::user) puser;
 
-      on_auth(set, papp, strUrl, strSessId, puser);
+      on_auth(set, papp, strUrl, strSessId, puser);*/
 
       if (strProtocol == "https")
       {
@@ -1287,9 +1287,9 @@ namespace http
 
          string strSessId;
 
-         __pointer(::account::user) puser;
+         //__pointer(::account::user) puser;
 
-         on_auth(set, papp, strUrl, strSessId, puser);
+         //on_auth(set, papp, strUrl, strSessId, puser);
 
          strRequest = System.url().get_object(strUrl);
 
@@ -1335,12 +1335,12 @@ namespace http
 
          }
 
-         if (set["user"].cast < ::account::user >() != nullptr && set["user"].cast < ::account::user >()->m_phttpcookies != nullptr && !(bool)set["disable_ca2_user_cookies"])
-         {
+         //if (set["user"].cast < ::account::user >() != nullptr && set["user"].cast < ::account::user >()->m_phttpcookies != nullptr && !(bool)set["disable_ca2_user_cookies"])
+         //{
 
-            psession->request().header(__id(cookie)) = set["user"].cast < ::account::user >()->m_phttpcookies->get_cookie_header();
+         //   psession->request().header(__id(cookie)) = set["user"].cast < ::account::user >()->m_phttpcookies->get_cookie_header();
 
-         }
+         //}
 
          if (set.has_property(__id(cookie)) && set[__id(cookie)].get_string().has_char())
          {
@@ -1777,9 +1777,11 @@ namespace http
 
       string strUrl(pszUrl);
 
-      bool bSessionAccount = !set.is_true("raw_http") && ::is_set(get_context_session()) && ::is_set(Session.account());
+//      bool bSessionAccount = !set.is_true("raw_http") && ::is_set(get_context_session()) && ::is_set(Session.account());
 
-      single_lock slFontopus(bSessionAccount ? Session.account()->mutex() : nullptr);
+      bool bSessionAccount = !set.is_true("raw_http") && ::is_set(get_context_session()) ;
+
+//      single_lock slFontopus(bSessionAccount ? Session.account()->mutex() : nullptr);
 
       string strIp;
 
@@ -1789,12 +1791,12 @@ namespace http
 
    retry_session:
 
-      __pointer(::account::user) puser;
+   //   __pointer(::account::user) puser;
 
       if (bSessionAccount)
       {
 
-         on_auth(set, papp, strUrl, strSessId, puser);
+//         on_auth(set, papp, strUrl, strSessId, puser);
 
          if (strSessId.has_char())
          {
@@ -1960,19 +1962,19 @@ namespace http
 
       }
 
-      if (set["user"].cast < ::account::user >() != nullptr && set["user"].cast < ::account::user >()->m_phttpcookies != nullptr && !(bool)set["disable_ca2_user_cookies"])
-      {
+      //if (set["user"].cast < ::account::user >() != nullptr && set["user"].cast < ::account::user >()->m_phttpcookies != nullptr && !(bool)set["disable_ca2_user_cookies"])
+      //{
 
-         if (set["user"].cast < ::account::user >()->m_phttpcookies->find_cookie("sessid") >= 0)
-         {
+      //   if (set["user"].cast < ::account::user >()->m_phttpcookies->find_cookie("sessid") >= 0)
+      //   {
 
-            set["user"].cast < ::account::user >()->m_phttpcookies->set_cookie("sessid", strSessId);
+      //      set["user"].cast < ::account::user >()->m_phttpcookies->set_cookie("sessid", strSessId);
 
-         }
+      //   }
 
-         psocket->request().header(__id(cookie)) = set["user"].cast < ::account::user >()->m_phttpcookies->get_cookie_header();
+      //   psocket->request().header(__id(cookie)) = set["user"].cast < ::account::user >()->m_phttpcookies->get_cookie_header();
 
-      }
+      //}
 
       if (set.has_property(__id(cookie)) && set[__id(cookie)].get_string().has_char())
       {
@@ -2343,16 +2345,16 @@ namespace http
       else if (iStatusCode == 401)
       {
 
-         if (strSessId.has_char() && puser.is_set() && iRetrySession < 3)
-         {
+         //if (strSessId.has_char() && puser.is_set() && iRetrySession < 3)
+         //{
 
-            Session.account()->not_auth(pszUrl);
+         //   Session.account()->not_auth(pszUrl);
 
-            iRetrySession++;
+         //   iRetrySession++;
 
-            goto retry_session;
+         //   goto retry_session;
 
-         }
+         //}
 
          estatus = error_http;
 
@@ -2482,12 +2484,12 @@ namespace http
 
       }
 
-      if (pmessageMessage->m_puser != nullptr)
-      {
+      //if (pmessageMessage->m_puser != nullptr)
+      //{
 
-         set["user"] = pmessageMessage->m_puser;
+      //   set["user"] = pmessageMessage->m_puser;
 
-      }
+      //}
 
       if (pmessageMessage->m_strVersion.has_char())
       {
@@ -2782,78 +2784,78 @@ namespace http
    }
 
 
-   void context::set_proxy_auth(::account::user * puser, ::sockets::http_client_socket * psocket)
-   {
+   //void context::set_proxy_auth(::account::user * puser, ::sockets::http_client_socket * psocket)
+   //{
 
-      string strUserName;
-      string strPassword;
-      string strUserNameFile;
-      string strPasswordFile;
-      string strSection;
+   //   string strUserName;
+   //   string strPassword;
+   //   string strUserNameFile;
+   //   string strPasswordFile;
+   //   string strSection;
 
-      strSection.Format("proxy_auth\\%s.%s", puser->m_strLogin.c_str(), "proxy_auth");
+   //   strSection.Format("proxy_auth\\%s.%s", puser->m_strLogin.c_str(), "proxy_auth");
 
-      strUserNameFile = Context.dir().appdata() / strSection + "_1";
+   //   strUserNameFile = Context.dir().appdata() / strSection + "_1";
 
-      strPasswordFile = Context.dir().appdata() / strSection + "_2";
+   //   strPasswordFile = Context.dir().appdata() / strSection + "_2";
 
-      bool bOk = true;
+   //   bool bOk = true;
 
-      if (!System.crypto().file_get(strUserNameFile, strUserName, nullptr, get_context_application()) || strUserName.is_empty())
-      {
+   //   if (!System.crypto().file_get(strUserNameFile, strUserName, nullptr, get_context_application()) || strUserName.is_empty())
+   //   {
 
-         bOk = false;
+   //      bOk = false;
 
-      }
+   //   }
 
-      if (!System.crypto().file_get(strPasswordFile, strPassword, nullptr, get_context_application()) || strPassword.is_empty())
-      {
+   //   if (!System.crypto().file_get(strPasswordFile, strPassword, nullptr, get_context_application()) || strPassword.is_empty())
+   //   {
 
-         bOk = false;
+   //      bOk = false;
 
-      }
+   //   }
 
-      if (bOk)
-      {
+   //   if (bOk)
+   //   {
 
-         psocket->m_strUserNameFile = strUserNameFile;
+   //      psocket->m_strUserNameFile = strUserNameFile;
 
-         psocket->m_strPasswordFile = strPasswordFile;
+   //      psocket->m_strPasswordFile = strPasswordFile;
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         if (Session.get_auth("context/account/proxy_authenticate.xhtml", strUserName, strPassword))
-         {
+   //      if (Session.get_auth("context/account/proxy_authenticate.xhtml", strUserName, strPassword))
+   //      {
 
-            System.crypto().file_set(strUserNameFile, strUserName, nullptr, get_context_application());
+   //         System.crypto().file_set(strUserNameFile, strUserName, nullptr, get_context_application());
 
-            System.crypto().file_set(strPasswordFile, strPassword, nullptr, get_context_application());
+   //         System.crypto().file_set(strPasswordFile, strPassword, nullptr, get_context_application());
 
-            psocket->m_strUserNameFile = strUserNameFile;
+   //         psocket->m_strUserNameFile = strUserNameFile;
 
-            psocket->m_strPasswordFile = strPasswordFile;
+   //         psocket->m_strPasswordFile = strPasswordFile;
 
-         }
+   //      }
 
-      }
+   //   }
 
-   }
+   //}
 
 
-   void context::clean_proxy_auth(::account::user * puser)
-   {
+   //void context::clean_proxy_auth(::account::user * puser)
+   //{
 
-      string strSection;
+   //   string strSection;
 
-      strSection.Format("proxy_auth\\%s.%s", puser->m_strLogin.c_str(), "proxy_auth");
+   //   strSection.Format("proxy_auth\\%s.%s", puser->m_strLogin.c_str(), "proxy_auth");
 
-      Context.file().del(Context.dir().appdata() / strSection + "_1");
+   //   Context.file().del(Context.dir().appdata() / strSection + "_1");
 
-      Context.file().del(Context.dir().appdata() / strSection + "_2");
+   //   Context.file().del(Context.dir().appdata() / strSection + "_2");
 
-   }
+   //}
 
 
    bool context::put(const char * pszUrl, memory_base & memory, property_set & set)

@@ -24,9 +24,9 @@ namespace user
       bool                                         m_bRadioChanged;
 
       // if a menu item
-      __pointer(::user::menu)                      m_pmenu;         // nullptr if not a menu
-      __pointer(::user::menu)                      m_pmenuChild;      // sub containing menu item
-      __pointer(::user::menu)                      m_pmenuParent;   // nullptr if parent menu not easily determined
+      __pointer(::user::interaction)               m_pmenu;         // nullptr if not a menu
+      __pointer(::user::interaction)               m_pmenuChild;      // sub containing menu item
+      __pointer(::user::interaction)               m_pmenuParent;   // nullptr if parent menu not easily determined
       // if a popup sub menu - ID is for first in popup
 
       // if from some other interaction_impl

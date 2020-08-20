@@ -26,7 +26,7 @@ namespace message
 
 namespace user
 {
-   class form;
+   //class form;
    class tooltip;
 
 
@@ -38,14 +38,14 @@ namespace user
    class interaction_child;
    class interaction_impl;
    class interaction_pointer_array;
-   class place_holder;
-   class tab;
-   class tab_pane;
-   class check_box;
-   class menu_interaction;
-   class menu_button;
-   class menu_item;
-   class menu_item_ptra;
+   //class place_holder;
+   //class tab;
+   //class tab_pane;
+   //class check_box;
+   //class menu_interaction;
+   //class menu_button;
+   //class menu_item;
+   //class menu_item_ptra;
    //class frame_window;
    class toolbar;
    class scroll_bar;
@@ -59,7 +59,7 @@ namespace user
    class system_interaction_impl;
 
 
-   class place_holder;
+   //class place_holder;
 
    //#if defined _UWP
    //
@@ -191,18 +191,18 @@ namespace user
 #include "window_util.h"
 #include "aura/graphics/draw2d/color.h"
 #include "style.h"
-#include "theme.h"
+//#include "theme.h"
 #include "aura/graphics/draw2d/text_box.h"
 #include "aura/graphics/draw2d/font_list.h"
 #include "window_state.h"
 #include "primitive_impl.h"
 
 
-#include "aura/database/database/key.h"
+#include "aura/database/key.h"
 
 
 #include "control_descriptor.h"
-#include "control_descriptor_set.h"
+//#include "control_descriptor_set.h"
 
 
 #include "layout.h"
@@ -228,26 +228,24 @@ namespace user
 #include "copydesk.h"
 #include "interaction_child.h"
 #include "scroll_info.h"
-#include "place_holder.h"
-#include "place_holder_container.h"
+//#include "place_holder.h"
+//#include "place_holder_container.h"
 //#include "job.h"
 //#include "core/user/experience/experience_updown.h"
 #include "frame.h"
-#include "menu_command.h"
-#include "menu_interaction.h"
-#include "menu_item.h"
-#include "menu.h"
+//#include "menu_command.h"
+//#include "menu_interaction.h"
+//#include "menu_item.h"
+//#include "menu.h"
 #include "control_event.h"
 #include "window_map.h"
 
+#include "scroll.h"
 
 //#include "aura/primitive/primitive/form_property_set.h"
 
 
-#include "scroll.h"
-#include "box.h"
 #include "control.h"
-#include "control_property.h"
 
 
 #include "scroll_bar.h"
@@ -256,8 +254,8 @@ namespace user
 #include "callback.h"
 
 
-#include "form_data.h"
-#include "form.h"
+//#include "form_data.h"
+//#include "form.h"
 
 
 #include "message_queue.h"
@@ -281,7 +279,7 @@ namespace user
 #endif
 
 
-#include "keyboard_layout.h"
+//#include "keyboard_layout.h"
 #include "keyboard.h"
 
 
@@ -304,7 +302,7 @@ namespace user
    //class mesh_cache_interface;
    //class mesh_data;
    //class list_column_array;
-   class tab;
+   //class tab;
 
 } // namespace user
 
@@ -458,7 +456,7 @@ namespace user
 
 
 
-#include "margin.h"
+//#include "margin.h"
 
 //#include "aura/user/rich_text/_const.h"
 
@@ -510,11 +508,11 @@ namespace user
 {
 
 
-   class menu_item_ptra;
-   class menu_item;
-   class menu_item_ptra;
+   //class menu_item_ptra;
+   //class menu_item;
+   //class menu_item_ptra;
    class front_end;
-   class menu_item;
+   //class menu_item;
 
    //class list_column_array;
 
@@ -574,8 +572,8 @@ namespace user
 //}
 //
 
-#include "picture.h"
-#include "picture_interaction.h"
+//#include "picture.h"
+//#include "picture_interaction.h"
 
 
 namespace user
@@ -652,8 +650,8 @@ namespace user
 //#include "place_holder_container.h"
 
 
-#include "tab_callback.h"
-#include "tab.h"
+//#include "tab_callback.h"
+//#include "tab.h"
 
 
 
@@ -754,14 +752,14 @@ class COleDataObject;   // forward context_object (see afxole.h)
 
 //#include "network_configuration.h"
 //#include "shell.h"
-#include "keyboard_layout_cfg.h"
+//#include "keyboard_layout_cfg.h"
 
 
 
 //#include "document_manager.h"
 
 
-#include "data_exchange.h"
+//#include "data_exchange.h"
 
 
 //#include "view_container.h"
@@ -799,7 +797,7 @@ namespace user
 //#include "bitmap_button.h"
 #include "combo_box.h"
 #include "combo_list.h"
-#include "static_control.h"
+//#include "static_control.h"
 
 //#include "button_control.h"
 
@@ -810,27 +808,27 @@ namespace user
 //#include "tool_::user::command.h"
 
 
-#include "control_bar.h"
+//#include "control_bar.h"
 //#include "statusbar.h"
 
 //#include "view.h"
 //#include "document.h"
 //#include "document_template.h"
 
-#include "split_bar.h"
-#include "split_layout.h"
+//#include "split_bar.h"
+//#include "split_layout.h"
 
 
-#include "form_control.h"
+//#include "form_control.h"
 
 
 //#include "form_document.h"
-#include "form_window.h"
+//#include "form_window.h"
 //#include "form_mesh.h"
 //#include "form_list.h"
 //#include "form_view.h"
 //#include "form_list_view.h"
-#include "split_bar.h"
+//#include "split_bar.h"
 
 
 //#include "impact_host.h"
@@ -954,7 +952,7 @@ typedef struct _AppIndicator AppIndicator;
 //#include "edit_plain_text_view.h"
 
 
-#include "static_control.h"
+//#include "static_control.h"
 
 
 #include "user.h"

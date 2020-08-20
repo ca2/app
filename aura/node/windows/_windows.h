@@ -24,7 +24,7 @@ CLASS_DECL_AURA::file::path get_known_folder(REFKNOWNFOLDERID kfid);
 #include "process.h"
 #include "registry.h"
 //#include "RoundWindowApp.h"
-#include "shell.h"
+//#include "shell.h"
 //#include "simple_hold_handle.h"
 #include "stdio_file.h"
 #include "dir_system.h"
@@ -36,7 +36,7 @@ CLASS_DECL_AURA::file::path get_known_folder(REFKNOWNFOLDERID kfid);
 #include "tts_speaker.h"
 #include "uac_tools.h"
 #include "user.h"
-#include "shell.h"
+//#include "shell.h"
 
 
 

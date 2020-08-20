@@ -2,7 +2,7 @@
 #include "_data.h"
 #include "aura/update.h"
 //#include "aura/printer2.h"
-#include "aura/user/print_task.h"
+//#include "aura/user/print_task.h"
 #include "aura/message.h"
 #include "aura/user/interaction_thread.h"
 #ifdef WINDOWS_DESKTOP
@@ -223,7 +223,7 @@ namespace user
    void plain_edit::install_message_routing(::channel * pchannel)
    {
 
-      control::install_message_routing(pchannel);
+      interaction::install_message_routing(pchannel);
 
 
       IGUI_MSG_LINK(WM_CREATE, pchannel, this, &plain_edit::_001OnCreate);
@@ -297,7 +297,7 @@ namespace user
       else
       {
 
-         ::user::control::update(pupdate);
+         ::user::interaction::update(pupdate);
 
       }
 
@@ -332,7 +332,7 @@ namespace user
    void plain_edit::on_viewport_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::user::control::on_viewport_offset(pgraphics);
+      ::user::interaction::on_viewport_offset(pgraphics);
 
    }
 
@@ -366,25 +366,25 @@ namespace user
 
       m_pinternal->update(pgraphics, this);
 
-      ::task * ptask = pgraphics->m_ptask;
+      //::task * ptask = pgraphics->m_ptask;
 
-      ::user::print_task * pprinttask = nullptr;
+      //::user::print_task * pprinttask = nullptr;
 
-      if (ptask != nullptr)
-         pprinttask = dynamic_cast <::user::print_task *> (ptask);
-      else
-         pprinttask = nullptr;
+      //if (ptask != nullptr)
+      //   pprinttask = dynamic_cast <::user::print_task *> (ptask);
+      //else
+      //   pprinttask = nullptr;
 
-      //::rect rectClient;
+      ////::rect rectClient;
 
-      //GetFocusRect(rectClient);
+      ////GetFocusRect(rectClient);
 
-      if (pprinttask != nullptr)
-      {
+      //if (pprinttask != nullptr)
+      //{
 
-         TRACE("Print Job Is Printing page %d", pprinttask->m_iPrintingPage);
+      //   TRACE("Print Job Is Printing page %d", pprinttask->m_iPrintingPage);
 
-      }
+      //}
 
       bool bCaretOn = is_caret_on();
 
@@ -836,7 +836,8 @@ namespace user
 
 #if !defined(APPLE_IOS) && !defined(ANDROID)
 
-      Session.keyboard(); // trigger keyboard creationg
+      //Session.keyboard(); // trigger keyboard creationg
+      Application.defer_create_keyboard();
 
 #endif
 
@@ -958,7 +959,7 @@ namespace user
 
       m_bRMouseDown = false;
 
-      track_popup_xml_menu("matter://system/edit_focus_popup.xml", 0, pmouse->m_point);
+      //track_popup_xml_menu("matter://system/edit_focus_popup.xml", 0, pmouse->m_point);
 
       pmouse->m_lresult = 1;
 
@@ -982,7 +983,7 @@ namespace user
    void plain_edit::_001OnTimer(::timer * ptimer)
    {
 
-      control::_001OnTimer(ptimer);
+      interaction::_001OnTimer(ptimer);
 
       e_timer etimer = (e_timer) ptimer->m_nIDEvent;
 
@@ -1318,7 +1319,7 @@ namespace user
    void plain_edit::pre_translate_message(::message::message * pmessage)
    {
 
-      ::user::control::pre_translate_message(pmessage);
+      ::user::interaction::pre_translate_message(pmessage);
 
    }
 
@@ -1726,7 +1727,7 @@ namespace user
    void plain_edit::on_change_viewport_offset()
    {
 
-      ::user::control::on_change_viewport_offset();
+      ::user::interaction::on_change_viewport_offset();
 
       auto pgraphics = ::draw2d::create_memory_graphics();
 
@@ -5016,7 +5017,7 @@ finished_update:
    void plain_edit::edit_on_text(string str)
    {
 
-      ::user::control::edit_on_text(str);
+      ::user::interaction::edit_on_text(str);
 
    }
 
@@ -5024,7 +5025,7 @@ finished_update:
    void plain_edit::edit_on_sel(strsize iSelBeg, strsize iSelEnd)
    {
 
-      ::user::control::edit_on_sel(iSelBeg, iSelEnd);
+      ::user::interaction::edit_on_sel(iSelBeg, iSelEnd);
 
    }
 
@@ -5878,7 +5879,7 @@ finished_update:
 
       ASSERT(pdescriptor->get_control_type() == control_type_edit_plain_text);
 
-      if (!::user::control::create_control(pdescriptor))
+      if (!::user::interaction::create_control(pdescriptor))
       {
 
          TRACE("Failed to create control");
@@ -6566,7 +6567,7 @@ finished_update:
    void plain_edit::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::user::control::_001OnNcDraw(pgraphics);
+      ::user::interaction::_001OnNcDraw(pgraphics);
 
    }
 

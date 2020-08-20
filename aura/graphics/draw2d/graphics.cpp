@@ -5610,18 +5610,18 @@ namespace draw2d
 
          m_ppen->m_elinecapBeg = ::draw2d::pen::line_cap_flat;
          m_ppen->m_elinecapEnd = ::draw2d::pen::line_cap_flat;
-         move_to(rect2.top_left() + ::size(0.,(m_ppen->m_dWidth / 2.0)));
-         line_to(rect2.top_right() + ::size(0.,(m_ppen->m_dWidth / 2.0)));
-         move_to(rect2.top_left() + ::size(0.,(m_ppen->m_dWidth)));
-         line_to(rect2.top_right() + ::size(0.,(m_ppen->m_dWidth)));
+         move_to(rect2.top_left() + ::sized(0.,(m_ppen->m_dWidth / 2.0)));
+         line_to(rect2.top_right() + ::sized(0.,(m_ppen->m_dWidth / 2.0)));
+         move_to(rect2.top_left() + ::sized(0.,(m_ppen->m_dWidth)));
+         line_to(rect2.top_right() + ::sized(0.,(m_ppen->m_dWidth)));
 
 
          move_to(rect1.top_left());
          line_to(rect1.top_right());
-         move_to(rect1.top_left() + ::size(0.,(m_ppen->m_dWidth / 2.0)));
-         line_to(rect1.top_right() + ::size(0.,(m_ppen->m_dWidth / 2.0)));
-         move_to(rect1.top_left() + ::size(0.,(m_ppen->m_dWidth)));
-         line_to(rect1.top_right() + ::size(0.,(m_ppen->m_dWidth)));
+         move_to(rect1.top_left() + ::sized(0.,(m_ppen->m_dWidth / 2.0)));
+         line_to(rect1.top_right() + ::sized(0.,(m_ppen->m_dWidth / 2.0)));
+         move_to(rect1.top_left() + ::sized(0.,(m_ppen->m_dWidth)));
+         line_to(rect1.top_right() + ::sized(0.,(m_ppen->m_dWidth)));
 
 
 
@@ -5629,12 +5629,12 @@ namespace draw2d
          m_ppen->m_elinecapEnd = ::draw2d::pen::line_cap_square;
          m_ppen->set_modified();
 
-         move_to(rect1.top_left() + ::size(0,(LONG)(m_ppen->m_dWidth)));
+         move_to(rect1.top_left() + ::sized(0,(m_ppen->m_dWidth)));
          line_to(rect1.bottom_left());
          line_to(rect2.bottom_left());
 
-         move_to(rect1.top_right() + ::size(0,(LONG)(m_ppen->m_dWidth)));
-         line_to(point(rect1.right,(int)(rect2.top - (LONG)(m_ppen->m_dWidth))));
+         move_to(rect1.top_right() + ::sized(0,(m_ppen->m_dWidth)));
+         line_to(pointd(rect1.right,(int)(rect2.top - (m_ppen->m_dWidth))));
 
       }
       else if(eicon == stock_icon_iconify)
@@ -5705,7 +5705,7 @@ namespace draw2d
 
          rect.deflate(rect.height() / 3.0, rect.height() / 3.0);
 
-         point_array pointa;
+         pointd_array pointa;
 
          pointa.add(rect.bottom_left());
 
@@ -5721,7 +5721,7 @@ namespace draw2d
 
          rect.deflate(rect.height() / 3.0, rect.height() / 3.0);
 
-         point_array pointa;
+         pointd_array pointa;
 
          pointa.add(rect.top_left());
 

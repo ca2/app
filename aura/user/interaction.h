@@ -35,6 +35,7 @@ namespace user
 
       };
 
+
       enum e_updown
       {
          updown_normal_frame,
@@ -43,10 +44,12 @@ namespace user
          updown_down,
       };
 
+
       // updown
       __pointer(::user::interaction)         m_pupdowntarget;
       ::user::interaction::e_updown          m_eupdown;
       //end updown
+
 
       //class draw_select
       //{
@@ -72,6 +75,7 @@ namespace user
       //   }
 
       //};
+
 
       __pointer_array(::user::item)                m_itema;
       bool                                         m_bOverdraw;

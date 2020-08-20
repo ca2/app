@@ -318,9 +318,6 @@
     <Filter Include="Header Files\inline\console">
       <UniqueIdentifier>{b02501a0-3913-4e17-bb27-ebe27d6ed3d6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\symbol">
-      <UniqueIdentifier>{2356ec8b-f96c-4629-ade2-5aac109dbc57}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\gpu">
       <UniqueIdentifier>{6babd4e6-4362-4594-860a-10bf897ae556}</UniqueIdentifier>
     </Filter>
@@ -382,21 +379,6 @@
     </ClInclude>
     <ClInclude Include="net\sockets\bsd\webserver\httpd_socket.h">
       <Filter>Header Files\net\sockets\bsd\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\geometry3d\geometry3d_box.h">
-      <Filter>Header Files\primitive\geometry3d</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\geometry3d\geometry3d_dimension.h">
-      <Filter>Header Files\primitive\geometry3d</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\geometry3d\geometry3d_location.h">
-      <Filter>Header Files\primitive\geometry3d</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\geometry3d\geometry3d_quaternions.h">
-      <Filter>Header Files\primitive\geometry3d</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\geometry3d\geometry3d.h">
-      <Filter>Header Files\primitive\geometry3d</Filter>
     </ClInclude>
     <ClInclude Include="primitive\math\complex.h">
       <Filter>Header Files\primitive\math</Filter>
@@ -992,9 +974,6 @@
     <ClInclude Include="primitive\datetime\file_time_span.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\mktime.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\datetime\time.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
@@ -1011,15 +990,6 @@
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
     <ClInclude Include="primitive\collection\_array_base_impl.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaa_want_to_remove_collection_point_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaa_want_to_remove_collection_rect_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaa_want_to_remove_collection_size_array.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
     <ClInclude Include="primitive\collection\address_array.h">
@@ -1321,9 +1291,6 @@
     </ClInclude>
     <ClInclude Include="primitive\geometry2d\_.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaa_want_to_remove_primitive_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\property_set_papaya.h">
       <Filter>Header Files\primitive\primitive</Filter>
@@ -1686,18 +1653,6 @@
       <Filter>Header Files\net\http</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filesystem\file_context.h">
-      <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filesystem\aaa_want_to_remove_application_dir.h">
-      <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filesystem\aaa_want_to_remove_application_file.h">
-      <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filesystem\aaa_want_to_remove_system_dir.h">
-      <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filesystem\aaa_want_to_remove_system_file.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filesystem\dir_context.h">
@@ -2573,9 +2528,6 @@
     <ClInclude Include="platform\main.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\match.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\muldiv32.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -2613,9 +2565,6 @@
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\restore.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\run_start_installer.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\savings.h">
@@ -2795,18 +2744,6 @@
     <ClInclude Include="primitive\primitive\callback.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="symbol\timeout.h">
-      <Filter>Header Files\symbol</Filter>
-    </ClInclude>
-    <ClInclude Include="symbol\message_box.h">
-      <Filter>Header Files\symbol</Filter>
-    </ClInclude>
-    <ClInclude Include="symbol\title.h">
-      <Filter>Header Files\symbol</Filter>
-    </ClInclude>
-    <ClInclude Include="symbol\user_parent.h">
-      <Filter>Header Files\symbol</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive\procedure.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
@@ -2815,9 +2752,6 @@
     </ClInclude>
     <ClInclude Include="primitive\primitive\object.h">
       <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="symbol\_impl.h">
-      <Filter>Header Files\symbol</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filesystem\file_watcher.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
@@ -2880,9 +2814,6 @@
       <Filter>Header Files\gpu\gpu</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\callback.h">
-      <Filter>Header Files\filesystem\filemanager</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filemanager\component.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\item_action.h">
@@ -3014,13 +2945,7 @@
     <ClInclude Include="user\_prelude.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\_tree.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\_user.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\00.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\button.h">
@@ -3065,9 +2990,6 @@
     <ClInclude Include="user\imm_client.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\inline.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\interaction.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -3099,9 +3021,6 @@
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\main_window.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\message.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\message_queue.h">
@@ -3221,18 +3140,6 @@
     <ClInclude Include="database\const.h">
       <Filter>Header Files\database</Filter>
     </ClInclude>
-    <ClInclude Include="database\database.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\dataset.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\definition.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\field_definition.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
     <ClInclude Include="database\key.h">
       <Filter>Header Files\database</Filter>
     </ClInclude>
@@ -3248,8 +3155,23 @@
     <ClInclude Include="database\stringhelper.h">
       <Filter>Header Files\database</Filter>
     </ClInclude>
-    <ClInclude Include="database\template.h">
-      <Filter>Header Files\database</Filter>
+    <ClInclude Include="primitive\geometry3d\quaternions.h">
+      <Filter>Header Files\primitive\geometry3d</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\geometry3d\location.h">
+      <Filter>Header Files\primitive\geometry3d</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\geometry3d\dimension.h">
+      <Filter>Header Files\primitive\geometry3d</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\geometry3d\box.h">
+      <Filter>Header Files\primitive\geometry3d</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\geometry3d\_.h">
+      <Filter>Header Files\primitive\geometry3d</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\match.h">
+      <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -4864,9 +4786,6 @@
     <ClCompile Include="platform\machine_event_data.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\match.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="platform\math.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -5215,9 +5134,6 @@
     <ClCompile Include="user\main_window.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\message.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\message_queue.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
@@ -5320,19 +5236,7 @@
     <ClCompile Include="database\client.cpp">
       <Filter>Source Files\database</Filter>
     </ClCompile>
-    <ClCompile Include="database\database.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\dataset.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\definition.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
     <ClCompile Include="database\event_change.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\field_definition.cpp">
       <Filter>Source Files\database</Filter>
     </ClCompile>
     <ClCompile Include="database\id.cpp">
@@ -5355,6 +5259,9 @@
     </ClCompile>
     <ClCompile Include="platform\message_box.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive\match.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

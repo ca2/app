@@ -162,10 +162,10 @@ public:
    virtual bool rgb_from(::image * pimage);
    virtual bool paint_rgb(color c);
 
-   virtual ::count get_rgba_area(const rgba & rgba) const;
-   virtual ::count get_rgba_area(const rgba& rgba, LPCRECT lpcrect) const;
-   virtual ::count _001GetTopLeftWeightedOpaqueArea(int iAlphaMin) const;
-   virtual ::count _001GetTopLeftWeightedOpaqueArea(int iAlphaMin, LPCRECT lpcrect) const;
+   virtual ::i64 get_rgba_area(const rgba & rgba) const;
+   virtual ::i64 get_rgba_area(const rgba& rgba, LPCRECT lpcrect) const;
+   virtual ::i64 _001GetTopLeftWeightedOpaqueArea(int iAlphaMin) const;
+   virtual ::i64 _001GetTopLeftWeightedOpaqueArea(int iAlphaMin, LPCRECT lpcrect) const;
 
 
    virtual bool saturation(double dRate);

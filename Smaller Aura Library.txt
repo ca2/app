@@ -57,4 +57,31 @@ more tear_off from aura
 
 
 
+
+
+
+                          /------------------ - - -     /------------------------- - - - -   /-------------------------------------- - - - 
+E>ThomasBS_/----------- - - -  /aura.dll Release (Win32)     /aura.lib Static Release (Win32)     /helloaura.exe Static Release (Win32)   ---- - - - 
+    /2020-08-18 01:38   /17,180kb     ----- - - -     /189,893kb       --------- - - -     /12,187kb                 ------------------ - - -
+   /2020-08-20 07:41   /13,915kb                     /137,668kb                           /9,715kb        ------------------ - - - 
+  /rebuild mark       /---------------- - - - - ---------------------- - - - ---------------------------------- - - -   
+ /------------------ - - -
+
+
+
+
+
+Last status from Thursday morning
+2020-08-20 08:08        13,915kb                        137,772kb                            9,717kb
+
+::database::database and ::database::dataset tear off
+2020-08-20 09:00        13,834kb                        137,133kb                            9,700kb
+
+database definition api/classes tear off ?
+2020-08-20 09:32        13,749kb                        136,462kb                            9,652kb
+
+final (for now) little more off
+2020-08-20 09:32        13,749kb                        136,494kb                            9,652kb
+
+
 Tearing some controls from user...

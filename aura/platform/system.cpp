@@ -1297,7 +1297,7 @@ namespace aura
       pcreate->m_strAppId = strAppId;
       //TRACE("m_pcreate COMMENT END");
 
-      create_factory < ::database::field >();
+      //create_factory < ::database::field >();
 
 
       if (is_true("show_application_information"))

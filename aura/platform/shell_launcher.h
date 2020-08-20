@@ -1,7 +1,9 @@
 #pragma once
 
+
 namespace aura
 {
+
 
 #ifndef _UWP
 
@@ -71,20 +73,10 @@ namespace aura
    };
 
 
-
-
 #endif
 
 
-
-
-
-
-
-
-
-
-
 } // namespace aura
+
 
 

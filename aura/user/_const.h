@@ -1,7 +1,6 @@
 #pragma once
 
 
-
 enum e_position
 {
    position_none = 0,

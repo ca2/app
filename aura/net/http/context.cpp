@@ -1789,7 +1789,7 @@ namespace http
 
       int iRetrySession = 0;
 
-   retry_session:
+   //retry_session:
 
    //   __pointer(::account::user) puser;
 

@@ -179,7 +179,7 @@ namespace user
 
 
 #include "aura/message/user.h"
-#include "message.h"
+//#include "message.h"
 #include "style_base.h"
 //#include "style_composite.h"
 
@@ -429,7 +429,7 @@ namespace user
 //#include "user_copydesk.h"
 
 
-#include "inline.h"
+//#include "inline.h"
 
 
 //

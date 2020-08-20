@@ -443,18 +443,15 @@ CLASS_DECL_AURA ::e_priority get_os_class_scheduling_priority(i32 iCa2Priority);
 
 
 
-
-
-#include "aura/primitive/datetime/mktime.h"
+//#include "aura/primitive/datetime/mktime.h"
 #include "aura/primitive/api/api.h"
 
 
 #include "aura/multimedia/_c.h"
 
 
-
-
 class generic_object;
+
 
 template < typename T >
 void __finalize_and_release(T& p)
@@ -3252,7 +3249,7 @@ class ifs;
 
 #include "aura/filesystem/filemanager/item_action.h"
 
-#include "aura/filesystem/filemanager/component.h"
+//#include "aura/filesystem/filemanager/component.h"
 
 //#include "core/user/userex/userex.h"
 

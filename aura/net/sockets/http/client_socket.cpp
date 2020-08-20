@@ -31,7 +31,7 @@ string dump_hex(::file::file* pfile)
 
    string strBuffer;
 
-   char* psz = strBuffer.get_string_buffer((pfile->get_size() / 16 + 1) * 80);
+   char* psz = strBuffer.get_string_buffer((strsize)(pfile->get_size() / 16 + 1) * 80);
 
    byte buf[16];
 

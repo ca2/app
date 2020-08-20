@@ -7298,10 +7298,10 @@ bool image::set_rgb(COLORREF cr)
 //}
 
 
-::count image::get_rgba_area(const rgba& rgba) const
+::i64 image::get_rgba_area(const rgba& rgba) const
 {
 
-   ::count areaRgba = 0;
+   ::i64 areaRgba = 0;
 
    COLORREF cr = IMAGE_ARGB(rgba.m_iA, rgba.m_iR, rgba.m_iG, rgba.m_iB);
 
@@ -7332,7 +7332,7 @@ bool image::set_rgb(COLORREF cr)
 }
 
 
-::count image::get_rgba_area(const rgba& rgba, LPCRECT lpcrect) const
+::i64 image::get_rgba_area(const rgba& rgba, LPCRECT lpcrect) const
 {
 
    ::rect r(lpcrect);
@@ -7389,7 +7389,7 @@ bool image::set_rgb(COLORREF cr)
 }
 
 
-::count image::_001GetTopLeftWeightedOpaqueArea(int iAlphaMin) const
+::i64 image::_001GetTopLeftWeightedOpaqueArea(int iAlphaMin) const
 {
 
    auto r = this->rect();
@@ -7399,7 +7399,7 @@ bool image::set_rgb(COLORREF cr)
 }
 
 
-::count image::_001GetTopLeftWeightedOpaqueArea(int iAlphaMin, LPCRECT lpcrect) const
+::i64 image::_001GetTopLeftWeightedOpaqueArea(int iAlphaMin, LPCRECT lpcrect) const
 {
 
    ::rect r(lpcrect);
@@ -7421,7 +7421,7 @@ bool image::set_rgb(COLORREF cr)
 
    int h = r.height();
 
-   ::count areaRgbaLast = 0;
+   ::i64 areaRgbaLast = 0;
 
    const COLORREF* p = this->get_data() + r.left + wscan * r.top;
 

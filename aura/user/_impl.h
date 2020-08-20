@@ -4,6 +4,7 @@
 namespace user
 {
 
+
    inline bool interaction::has_prodevian() const noexcept { return m_pimpl2 ? m_pimpl2->has_prodevian() : false; }
 
    

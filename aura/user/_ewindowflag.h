@@ -2,8 +2,6 @@
 #pragma once
 
 
-
-
 class ewindowflag
 {
 public:

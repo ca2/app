@@ -1,9 +1,6 @@
 ﻿#pragma once
 
 
-//#include "message_queue_listener.h"
-
-
 namespace user
 {
 
@@ -14,8 +11,8 @@ namespace user
    {
    public:
 
-            __pointer(::user::interaction)          m_spuiMessage;
-      message_queue_listener *         m_plistener;
+
+      __pointer(message_queue_listener)      m_plistener;
 
 
       message_queue();

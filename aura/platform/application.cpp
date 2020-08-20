@@ -3338,9 +3338,9 @@ retry_license:
 
       INFO("aura::application::process_init success");
 
-      create_factory < ::database::field_array >();
-      create_factory < ::database::row >();
-      create_factory < ::database::row_array >();
+      //create_factory < ::database::field_array >();
+      //create_factory < ::database::row >();
+      //create_factory < ::database::row_array >();
 
       //if (m_bAxisProcessInitialize)
       //{

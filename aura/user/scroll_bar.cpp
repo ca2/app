@@ -1,7 +1,6 @@
 #include "framework.h" 
 
 
-
 namespace user
 {
 
@@ -17,6 +16,7 @@ namespace user
       m_scrollinfo.nPos    = 0;
 
    }
+
 
    scroll_bar::~scroll_bar()
    {

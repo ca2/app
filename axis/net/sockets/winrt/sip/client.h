@@ -5,7 +5,7 @@ namespace sockets
 {
 
 
-   class CLASS_DECL_AURA sip_client :
+   class CLASS_DECL_AXIS sip_client :
       virtual public ::object
    {
    public:

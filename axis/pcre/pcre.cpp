@@ -6,11 +6,7 @@
 #define PCRE2_STATIC
 #endif
 
-#if defined(WINDOWS) || defined(__APPLE__) || defined(ANDROID)
-#include "pcre/pcre2.h"
-#else
 #include <pcre2.h>
-#endif
 
 
 
@@ -435,7 +431,7 @@ __pointer(pcre_code) pcre_code::compile(pcre_context * m_pcreContext,const strin
 }
 
 
-namespace aura
+namespace axis
 {
 
 

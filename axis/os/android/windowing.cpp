@@ -26,15 +26,15 @@ void defer_term_ui()
 //}
 
 
-CLASS_DECL_AURA i32 oswindow_find_message_only_window(::user::interaction_impl * puibaseMessageWindow);
-//CLASS_DECL_AURA i32 oswindow_find(Display * pdisplay,Window window);
-//CLASS_DECL_AURA i32 oswindow_find(Window window);
-CLASS_DECL_AURA oswindow_data * oswindow_get_message_only_window(::user::interaction_impl * puibaseMessageWindow);
-//CLASS_DECL_AURA oswindow_data * oswindow_get(Display * pdisplay,Window window,Visual * pvisual = nullptr,int iDepth = -1,int iScreen = -1,Colormap colormap = None);
-//CLASS_DECL_AURA oswindow_data * oswindow_get(Window window);
-//CLASS_DECL_AURA oswindow oswindow_defer_get(Window w);
-//CLASS_DECL_AURA bool oswindow_remove(Display * pdisplay,Window window);
-CLASS_DECL_AURA bool oswindow_remove_message_only_window(::user::interaction_impl * puibaseMessageOnlyWindow);
+CLASS_DECL_AXIS i32 oswindow_find_message_only_window(::user::interaction_impl * puibaseMessageWindow);
+//CLASS_DECL_AXIS i32 oswindow_find(Display * pdisplay,Window window);
+//CLASS_DECL_AXIS i32 oswindow_find(Window window);
+CLASS_DECL_AXIS oswindow_data * oswindow_get_message_only_window(::user::interaction_impl * puibaseMessageWindow);
+//CLASS_DECL_AXIS oswindow_data * oswindow_get(Display * pdisplay,Window window,Visual * pvisual = nullptr,int iDepth = -1,int iScreen = -1,Colormap colormap = None);
+//CLASS_DECL_AXIS oswindow_data * oswindow_get(Window window);
+//CLASS_DECL_AXIS oswindow oswindow_defer_get(Window w);
+//CLASS_DECL_AXIS bool oswindow_remove(Display * pdisplay,Window window);
+CLASS_DECL_AXIS bool oswindow_remove_message_only_window(::user::interaction_impl * puibaseMessageOnlyWindow);
 
 
 namespace user
@@ -1349,7 +1349,7 @@ void android_on_text(e_os_text etext, const wchar_t * pwch, size_t len)
 }
 
 
-namespace aura
+namespace axis
 {
 
    void system::on_os_text(e_os_text etext, string strText)
@@ -1392,7 +1392,7 @@ namespace aura
 } // namespace base
 
 
-CLASS_DECL_AURA void defer_dock_application(int_bool bDock)
+CLASS_DECL_AXIS void defer_dock_application(int_bool bDock)
 {
 
    UNREFERENCED_PARAMETER(bDock);
@@ -1401,7 +1401,7 @@ CLASS_DECL_AURA void defer_dock_application(int_bool bDock)
 }
 
 
-CLASS_DECL_AURA ::user::interaction_impl * oswindow_get(oswindow oswindow)
+CLASS_DECL_AXIS ::user::interaction_impl * oswindow_get(oswindow oswindow)
 {
 
    if (oswindow == nullptr)
@@ -1468,7 +1468,7 @@ i64 oswindow_id(oswindow w)
 }
 
 
-CLASS_DECL_AURA ::estatus os_message_box(oswindow oswindow, const char * pText, const char * lpCaption, ::emessagebox emessagebox, ::callback callback)
+CLASS_DECL_AXIS ::estatus os_message_box(oswindow oswindow, const char * pText, const char * lpCaption, ::emessagebox emessagebox, ::callback callback)
 {
 
    while (System.oslocal().m_iMessageBoxResult > 0)

@@ -5,7 +5,7 @@ namespace simpledb
 {
 
 
-   class CLASS_DECL_AURA file_set :
+   class CLASS_DECL_AXIS file_set :
       virtual public ::file::set,
       virtual public ::database::client
    {

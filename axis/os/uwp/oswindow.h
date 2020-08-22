@@ -3,7 +3,7 @@
 
 
 
-struct CLASS_DECL_AURA oswindow_data
+struct CLASS_DECL_AXIS oswindow_data
 {
 public:
 
@@ -42,12 +42,12 @@ public:
 //
 //
 /////static oswindow_dataptra * s_pdataptra;
-CLASS_DECL_AURA index oswindow_find(::user::interaction_impl* pinteraction);
-CLASS_DECL_AURA oswindow oswindow_get(::user::interaction_impl* pinteraction);
-CLASS_DECL_AURA oswindow oswindow_remove(::user::interaction_impl* pinteraction);
-CLASS_DECL_AURA::user::interaction_impl* oswindow_interaction_impl(oswindow oswindow);
-CLASS_DECL_AURA::user::interaction* oswindow_interaction(oswindow oswindow);
+CLASS_DECL_AXIS index oswindow_find(::user::interaction_impl* pinteraction);
+CLASS_DECL_AXIS oswindow oswindow_get(::user::interaction_impl* pinteraction);
+CLASS_DECL_AXIS oswindow oswindow_remove(::user::interaction_impl* pinteraction);
+CLASS_DECL_AXIS::user::interaction_impl* oswindow_interaction_impl(oswindow oswindow);
+CLASS_DECL_AXIS::user::interaction* oswindow_interaction(oswindow oswindow);
 #if defined(__cplusplus_winrt)
-CLASS_DECL_AURA Agile < Windows::UI::Core::CoreWindow > oswindow_core_window(oswindow window);
+CLASS_DECL_AXIS Agile < Windows::UI::Core::CoreWindow > oswindow_core_window(oswindow window);
 #endif
 

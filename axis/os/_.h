@@ -1,7 +1,6 @@
 //  Created by Camilo Sasuke Tsumanuma on 05/01/18.
 #pragma once
 
-CLASS_DECL_AURA string get_command_line_dup();
 
 #if defined(MACOS)
 
@@ -51,37 +50,5 @@ CLASS_DECL_AURA string get_command_line_dup();
 
 template < typename PRED >
 inline bool pred_Sleep(int iTime, PRED pred);
-
-
-//void adapt_font_name(string & str);
-
-
-namespace str
-{
-
-   string CLASS_DECL_AURA get_window_text_timeout(oswindow oswindow, tick tickTimeout = 1000);
-
-} // namespace str
-
-
-CLASS_DECL_AURA void defer_dock_application(int_bool bDock);
-
-
-CLASS_DECL_AURA string get_current_login_name();
-
-
-#if defined(WINDOWS)
-
-
-CLASS_DECL_AURA _locale_t get_c_locale();
-
-
-#else
-
-
-CLASS_DECL_AURA locale_t get_c_locale();
-
-#endif
-
 
 

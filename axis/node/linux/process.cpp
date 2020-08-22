@@ -143,7 +143,7 @@ void install_sigchld_handler()
 }
 
 
-CLASS_DECL_AURA void process_get_os_priority(i32 * piOsPolicy, sched_param * pparam, ::e_priority epriority);
+CLASS_DECL_AXIS void process_get_os_priority(i32 * piOsPolicy, sched_param * pparam, ::e_priority epriority);
 
 
 namespace ansios

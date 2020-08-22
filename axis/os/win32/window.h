@@ -5,7 +5,7 @@ namespace win32
 {
 
 
-   class CLASS_DECL_AURA window :
+   class CLASS_DECL_AXIS window :
       virtual public ::object
    {
    public:

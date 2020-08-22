@@ -7,7 +7,7 @@ namespace simpledb
    class storage;
 
 
-   class CLASS_DECL_AURA thread :
+   class CLASS_DECL_AXIS thread :
       virtual public ::thread
    {
    public:

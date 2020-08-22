@@ -5,7 +5,7 @@
 
 
 
-void CLASS_DECL_AURA __abort()
+void CLASS_DECL_AXIS __abort()
 {
    //__android_term();
    abort();

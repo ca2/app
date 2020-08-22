@@ -2,7 +2,7 @@
 //#include "axis/compress/compress.h"
 
 
-//namespace aura
+//namespace axis
 //{
 //   i32 patch::bsdiff(const char * old, const char * newfile, const char * patch)
 //   {
@@ -27,4 +27,4 @@
 //         return -1;
 //      }
 //   }
-//} // namespace aura
+//} // namespace axis

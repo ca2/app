@@ -8,7 +8,7 @@ namespace simpledb
    class server;
 
 
-   class CLASS_DECL_AURA storage :
+   class CLASS_DECL_AXIS storage :
       virtual public ::object
    {
    public:

@@ -6,7 +6,7 @@
 namespace sockets
 {
    /** Smtp server axis class. */
-   class CLASS_DECL_AURA smtp_socket : public tcp_socket
+   class CLASS_DECL_AXIS smtp_socket : public tcp_socket
    {
    public:
 

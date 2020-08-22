@@ -26,7 +26,7 @@ namespace account
          else
          {
 
-            get_context_application()->interactive_credentials(pcredentials);
+            Application.interactive_credentials(pcredentials);
 
          }
 

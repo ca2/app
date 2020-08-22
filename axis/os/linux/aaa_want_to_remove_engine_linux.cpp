@@ -165,7 +165,7 @@ HANDLE SymGetProcessHandle()
 namespace exception
 {
 
-//   CLASS_DECL_AURA class ::exception::engine & engine()
+//   CLASS_DECL_AXIS class ::exception::engine & engine()
 //   {
 //
 //      return *g_pexceptionengine;

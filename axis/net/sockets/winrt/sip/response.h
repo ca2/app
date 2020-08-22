@@ -5,7 +5,7 @@ namespace sip
 {
 
 
-   class CLASS_DECL_AURA response :
+   class CLASS_DECL_AXIS response :
       virtual public transaction
    {
    public:

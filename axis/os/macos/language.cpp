@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-CLASS_DECL_AURA string load_podata(string strLang, bool bOnlyHeader)
+CLASS_DECL_AXIS string load_podata(string strLang, bool bOnlyHeader)
 {
 
    ::file::path pathFolder = ::get_context_system()->dir().module();

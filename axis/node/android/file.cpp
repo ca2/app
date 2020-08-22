@@ -11,7 +11,7 @@
 #include <sys/stat.h>
 
 
-bool CLASS_DECL_AURA vfxFullPath(wstring& wstrFullPath, const wstring& wstrPath);
+bool CLASS_DECL_AXIS vfxFullPath(wstring& wstrFullPath, const wstring& wstrPath);
 
 struct errentry
 {
@@ -782,7 +782,7 @@ namespace android
 
 
 // turn a file, relative path or other into an absolute path
-bool CLASS_DECL_AURA vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath)
+bool CLASS_DECL_AXIS vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath)
 {
 
    wstrFullPath = wstrPath;
@@ -792,7 +792,7 @@ bool CLASS_DECL_AURA vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
 }
 
 //
-//void CLASS_DECL_AURA vfxThrowFileException(::object * pobject, const ::estatus & estatus, LONG lOsError, const char * lpszFileName /* == nullptr */)
+//void CLASS_DECL_AXIS vfxThrowFileException(::object * pobject, const ::estatus & estatus, LONG lOsError, const char * lpszFileName /* == nullptr */)
 //{
 //
 //   __throw(::file::exception(ecause, lOsError, lpszFileName));

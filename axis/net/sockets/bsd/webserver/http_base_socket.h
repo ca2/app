@@ -30,7 +30,7 @@ namespace sockets
    class response;
 
 
-   class CLASS_DECL_AURA http_base_socket :
+   class CLASS_DECL_AXIS http_base_socket :
       virtual public http_socket
    {
    public:

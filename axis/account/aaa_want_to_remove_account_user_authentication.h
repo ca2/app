@@ -64,11 +64,11 @@ string_timeout< t_iTimeout > & string_timeout < t_iTimeout >::operator = (const 
 namespace account
 {
 
-   typedef CLASS_DECL_AURA ::string_timeout < > string_timeout;
-   typedef CLASS_DECL_AURA string_map < string_timeout > string_string_timeout;
+   typedef CLASS_DECL_AXIS ::string_timeout < > string_timeout;
+   typedef CLASS_DECL_AXIS string_map < string_timeout > string_string_timeout;
 
 
-   class CLASS_DECL_AURA user_authentication :
+   class CLASS_DECL_AXIS user_authentication :
       public object
    {
    public:

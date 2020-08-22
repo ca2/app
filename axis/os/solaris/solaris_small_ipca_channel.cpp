@@ -9,7 +9,7 @@
 
 extern "C" void * small_ipc_rx_color::channel_receive_proc(void * param);
 
-namespace aura
+namespace axis
 {
 
 
@@ -459,7 +459,7 @@ namespace aura
    } // namespace ipc
 
 
-} // namespace aura
+} // namespace axis
 
 
 

@@ -4,7 +4,7 @@
 
 
 
-CLASS_DECL_AURA
+CLASS_DECL_AXIS
 i32
 MultiByteToWideChar2(
 UINT     CodePage,
@@ -16,7 +16,7 @@ widechar *  pWideCharStr,
 
 i32      cchWideChar);
 
-CLASS_DECL_AURA
+CLASS_DECL_AXIS
 i32
 WideCharToMultiByte2(
 UINT     CodePage,

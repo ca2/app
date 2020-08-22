@@ -729,7 +729,7 @@ namespace ios
 
 
 // turn a file, relative path or other into an absolute path
-bool CLASS_DECL_AURA vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath)
+bool CLASS_DECL_AXIS vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath)
 // lpszPathOut = buffer of _MAX_PATH
 // lpszFileIn = file, relative path or absolute path
 // (both in ANSI character set)
@@ -744,7 +744,7 @@ bool CLASS_DECL_AURA vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
 }
 
 
-CLASS_DECL_AURA void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShortName)
+CLASS_DECL_AXIS void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShortName)
 {
 
    __throw(todo());
@@ -752,7 +752,7 @@ CLASS_DECL_AURA void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShort
 }
 
 
-//void CLASS_DECL_AURA vfxThrowFileException(::object * pobject, ::estatus cause, LONG lOsError, const char * lpszFileName /* == nullptr */)
+//void CLASS_DECL_AXIS vfxThrowFileException(::object * pobject, ::estatus cause, LONG lOsError, const char * lpszFileName /* == nullptr */)
 //{
 //
 //   __throw(::file::exception(cause, lOsError, lpszFileName));
@@ -760,7 +760,7 @@ CLASS_DECL_AURA void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShort
 //}
 //
 //
-//::file::exception * CLASS_DECL_AURA get_FileException(::object * pobject, ::estatus cause, LONG lOsError, const char * lpszFileName /* == nullptr */)
+//::file::exception * CLASS_DECL_AXIS get_FileException(::object * pobject, ::estatus cause, LONG lOsError, const char * lpszFileName /* == nullptr */)
 //{
 //
 //   return __new(::file::exception(cause, lOsError, lpszFileName));
@@ -809,7 +809,7 @@ CLASS_DECL_AURA void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShort
 
 
 
-CLASS_DECL_AURA bool _os_may_have_alias(const char * psz)
+CLASS_DECL_AXIS bool _os_may_have_alias(const char * psz)
 {
 
    return true;

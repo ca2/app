@@ -5,7 +5,7 @@ namespace simpledb
 {
 
 
-   class CLASS_DECL_AURA item
+   class CLASS_DECL_AXIS item
    {
    public:
 

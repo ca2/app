@@ -2,35 +2,35 @@
 
 //#define __defer_register_class(fClass) __end_defer_register_class(fClass)
 
-//CLASS_DECL_AURA bool __end_defer_register_class(LONG fToRegister, const char ** ppszClass);
+//CLASS_DECL_AXIS bool __end_defer_register_class(LONG fToRegister, const char ** ppszClass);
 
 
 // Temporary ::map management (locks temp ::map on current thread)
-//CLASS_DECL_AURA void ::ca2::LockTempMaps(::object * pobject);
-//CLASS_DECL_AURA bool ::ca2::UnlockTempMaps(::object * pobject, bool bDeleteTemps = TRUE);
+//CLASS_DECL_AXIS void ::ca2::LockTempMaps(::object * pobject);
+//CLASS_DECL_AXIS bool ::ca2::UnlockTempMaps(::object * pobject, bool bDeleteTemps = TRUE);
 
 
 
 // from wincore. c p p
-extern CLASS_DECL_AURA const char gen_Wnd[];           // simple child windows/controls
-extern CLASS_DECL_AURA const char gen_WndControlBar[]; // controls with gray backgrounds
-extern CLASS_DECL_AURA const char gen_WndMDIFrame[];
-extern CLASS_DECL_AURA const char gen_WndFrameOrView[];
-extern CLASS_DECL_AURA const char gen_WndOleControl[];
+extern CLASS_DECL_AXIS const char gen_Wnd[];           // simple child windows/controls
+extern CLASS_DECL_AXIS const char gen_WndControlBar[]; // controls with gray backgrounds
+extern CLASS_DECL_AXIS const char gen_WndMDIFrame[];
+extern CLASS_DECL_AXIS const char gen_WndFrameOrView[];
+extern CLASS_DECL_AXIS const char gen_WndOleControl[];
 
 
 /////////////////////////////////////////////////////////////////////////////
 // Special helpers
 
-CLASS_DECL_AURA void __cancel_modes(oswindow hWndRcvr);
-CLASS_DECL_AURA bool __help_enabled();  // determine if ID_HELP handler exists
-CLASS_DECL_AURA bool __custom_log_font(UINT nIDS, LOGFONT* pLogFont);
-CLASS_DECL_AURA bool __get_prop_sheet_font(string & strFace, WORD& wSize, bool bWizard);
+CLASS_DECL_AXIS void __cancel_modes(oswindow hWndRcvr);
+CLASS_DECL_AXIS bool __help_enabled();  // determine if ID_HELP handler exists
+CLASS_DECL_AXIS bool __custom_log_font(UINT nIDS, LOGFONT* pLogFont);
+CLASS_DECL_AXIS bool __get_prop_sheet_font(string & strFace, WORD& wSize, bool bWizard);
 
-CLASS_DECL_AURA bool __is_combo_box_control(oswindow hWnd, UINT nStyle);
-CLASS_DECL_AURA bool __check_center_dialog(const char * lpszResource);
-CLASS_DECL_AURA bool __compare_class_name(oswindow hWnd, const char * lpszClassName);
-CLASS_DECL_AURA oswindow __child_window_from_point(oswindow, POINT);
+CLASS_DECL_AXIS bool __is_combo_box_control(oswindow hWnd, UINT nStyle);
+CLASS_DECL_AXIS bool __check_center_dialog(const char * lpszResource);
+CLASS_DECL_AXIS bool __compare_class_name(oswindow hWnd, const char * lpszClassName);
+CLASS_DECL_AXIS oswindow __child_window_from_point(oswindow, POINT);
 
 // for determining version of COMCTL32.DLL
 #define VERSION_WIN4    MAKELONG(0, 4)

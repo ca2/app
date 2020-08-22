@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA ca_cairo_keep
+class CLASS_DECL_AXIS ca_cairo_keep
 {
 public:
 

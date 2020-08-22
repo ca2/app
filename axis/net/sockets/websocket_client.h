@@ -5,7 +5,7 @@ namespace sockets
 {
 
 
-   class CLASS_DECL_AURA websocket_client :
+   class CLASS_DECL_AXIS websocket_client :
       virtual public http_client_socket
    {
    public:
@@ -84,7 +84,7 @@ namespace sockets
 } // namespace sockets
 
 
-CLASS_DECL_AURA void websocket_prefix_varuint(memory & m, unsigned int ui);
+CLASS_DECL_AXIS void websocket_prefix_varuint(memory & m, unsigned int ui);
 
 
 

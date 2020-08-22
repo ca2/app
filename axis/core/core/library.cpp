@@ -4,11 +4,11 @@
 
 
 
-namespace aura
+namespace axis
 {
 
 
-} // namespace aura
+} // namespace axis
 
 
 
@@ -26,7 +26,7 @@ extern "C"
 ::aura::library * get_new_library();
 #endif
 
-namespace aura
+namespace axis
 {
 
 

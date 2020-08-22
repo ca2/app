@@ -10,7 +10,7 @@
 
 
 
-CLASS_DECL_AURA void dll_processes(u32_array & dwa, string_array & straProcesses, const char * pszDll)
+CLASS_DECL_AXIS void dll_processes(u32_array & dwa, string_array & straProcesses, const char * pszDll)
 {
 
 
@@ -66,7 +66,7 @@ bool context::_os_resolve_alias(::file::path & path, const char * psz, ::user::p
 #endif
 
 //
-//CLASS_DECL_AURA bool _os_resolve_alias(::object * pobject, ::file::path & path, const char * psz, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount)
+//CLASS_DECL_AXIS bool _os_resolve_alias(::object * pobject, ::file::path & path, const char * psz, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount)
 //{
 //
 //   return _os_resolve_alias(path, psz, pinteraction, bNoUI, bNoMount);
@@ -74,7 +74,7 @@ bool context::_os_resolve_alias(::file::path & path, const char * psz, ::user::p
 //}
 
 
-CLASS_DECL_AURA bool _os_may_have_alias(const char * psz)
+CLASS_DECL_AXIS bool _os_may_have_alias(const char * psz)
 {
 
    return true;

@@ -34,6 +34,10 @@ namespace aura
 
       void* m_pnativeapp;
 
+      ::axis::application *         m_paxisapplication;
+      ::base::application *         m_pbaseapplication;
+      ::core::application *         m_pcoreapplication;
+
 
       // 2020-01-25: removing from ::aura::system, placing here (at ::context)
       // 2020-07-23: now at ::aura::application

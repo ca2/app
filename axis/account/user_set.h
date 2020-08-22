@@ -5,7 +5,7 @@ namespace account
 {
 
 
-   class CLASS_DECL_AURA user_set :
+   class CLASS_DECL_AXIS user_set :
       virtual public usera
    {
    public:

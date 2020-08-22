@@ -68,6 +68,9 @@ namespace aura
       m_bSimpleMessageLoop = false;
       m_bMessageThread = true;
       m_iEdge = -1;
+      m_paxissession = nullptr;
+      m_pbasesession = nullptr;
+      m_pcoresession = nullptr;
 
 
       create_factory < ::user::user >();
@@ -5924,6 +5927,7 @@ namespace aura
 
    }
 
+   __namespace_session_factory(session);
 
 } // namespace aura
 

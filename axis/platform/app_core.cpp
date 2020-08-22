@@ -242,7 +242,7 @@ extern "C"
 extern ::file::path * g_ppathInstallFolder;
 
 
-CLASS_DECL_AURA void set_debug_pointer(void * p);
+CLASS_DECL_AXIS void set_debug_pointer(void * p);
 
 
 ::estatus app_core::system_init()
@@ -912,7 +912,7 @@ typedef int_bool DEFER_INIT();
 typedef DEFER_INIT * PFN_DEFER_INIT;
 
 
-//CLASS_DECL_AURA int aura_entry_point(int argc, char * argv[], const char * pszMainAppId)
+//CLASS_DECL_AXIS int aura_entry_point(int argc, char * argv[], const char * pszMainAppId)
 //{
 //
 //   int iResult = 0;
@@ -941,7 +941,7 @@ typedef DEFER_INIT * PFN_DEFER_INIT;
 //}
 
 
-//CLASS_DECL_AURA long aura_prefix(::aura::system * psystem)
+//CLASS_DECL_AXIS long aura_prefix(::aura::system * psystem)
 //{
 //
 //   //pmaindata->m_pappcore = __new(app_core(pmaindata));
@@ -965,7 +965,7 @@ typedef DEFER_INIT * PFN_DEFER_INIT;
 //}
 
 
-//CLASS_DECL_AURA long aura_fork(::aura::system * psystem, PFN_NEW_AURA_APPLICATION pfnNewAuraApplication)
+//CLASS_DECL_AXIS long aura_fork(::aura::system * psystem, PFN_NEW_AURA_APPLICATION pfnNewAuraApplication)
 //{
 //
 //   //pmaindata->m_pappcore = __new(app_core(pmaindata));
@@ -996,7 +996,7 @@ typedef DEFER_INIT * PFN_DEFER_INIT;
 //}
 
 
-//CLASS_DECL_AURA long aura_aura(::aura::system * psystem)
+//CLASS_DECL_AXIS long aura_aura(::aura::system * psystem)
 //{
 //
 //   if (!psystem->system_prep())

@@ -62,11 +62,11 @@ DWORD ::get_tick();
 
 
 
-CLASS_DECL_AURA DWORD get_last_error();
-CLASS_DECL_AURA void set_last_error(DWORD dw);
+CLASS_DECL_AXIS DWORD get_last_error();
+CLASS_DECL_AXIS void set_last_error(DWORD dw);
 
 
-CLASS_DECL_AURA bool _istlead(i32 ch);
+CLASS_DECL_AXIS bool _istlead(i32 ch);
 
 
 oswindow GetCapture();

@@ -190,7 +190,7 @@ VOID WINAPI output_debug_string(LPCWSTR pOutputString)
 //
 ////CLASS_DECL_BASE fixed_alloc_array * new_wstring_manager();
 //
-//void CLASS_DECL_AURA __cdecl _ca2_purecall()
+//void CLASS_DECL_AXIS __cdecl _ca2_purecall()
 //{
 //    __throw(::exception::exception());
 //}

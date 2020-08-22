@@ -3,20 +3,20 @@
 //#include "sal.h"
 
 
-CLASS_DECL_AURA int ca2_main();
+CLASS_DECL_AXIS int ca2_main();
 
 
 //CLASS_DECL_BOOT extern fixed_alloc_array * g_pfixedallocaWstring;
 
 //CLASS_DECL_BOOT fixed_alloc_array * new_wstring_manager();
 
-void CLASS_DECL_AURA __cdecl _ca2_purecall()
+void CLASS_DECL_AXIS __cdecl _ca2_purecall()
 {
    __throw(::exception::exception());
 }
 
 
-CLASS_DECL_AURA void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppointers);
+CLASS_DECL_AXIS void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppointers);
 
 
 //::aura::application *     win_application_create(::aura::application * pappSystem, const char * pszId);
@@ -28,7 +28,7 @@ CLASS_DECL_AURA void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_
 //  Can be replaced as long as '::ca2::WinInit' is called first
 
 
-//int CLASS_DECL_AURA win_main(::aura::system * psystem, ::Array < ::String ^ > ^ args)
+//int CLASS_DECL_AXIS win_main(::aura::system * psystem, ::Array < ::String ^ > ^ args)
 //{
 //
 //   if (!main_initialize())
@@ -134,7 +134,7 @@ CLASS_DECL_AURA void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_
 //}
 
 
-//int CLASS_DECL_AURA ca2_main(HINSTANCE hInstance, HINSTANCE hPrevInstance, const char * lpCmdLine, int nCmdShow)
+//int CLASS_DECL_AXIS ca2_main(HINSTANCE hInstance, HINSTANCE hPrevInstance, const char * lpCmdLine, int nCmdShow)
 //{
 //   try
 //   {
@@ -235,7 +235,7 @@ CLASS_DECL_AURA void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_
 //
 //
 
-void CLASS_DECL_AURA __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppointers)
+void CLASS_DECL_AXIS __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppointers)
 {
    UNREFERENCED_PARAMETER(uiCode);
    UNREFERENCED_PARAMETER(ppointers);

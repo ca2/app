@@ -877,7 +877,7 @@ namespace ios
 //
 
 
-CLASS_DECL_AURA bool _istlead(i32 ch)
+CLASS_DECL_AXIS bool _istlead(i32 ch)
 {
 
    return false;

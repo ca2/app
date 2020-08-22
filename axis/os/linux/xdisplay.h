@@ -6,12 +6,12 @@ class osdisplay_data;
 class mutex;
 
 
-CLASS_DECL_AURA i32 osdisplay_find(Display * pdisplay);
-CLASS_DECL_AURA osdisplay_data * osdisplay_get(Display * pdisplay);
-CLASS_DECL_AURA bool osdisplay_remove(Display * pdisplay);
+CLASS_DECL_AXIS i32 osdisplay_find(Display * pdisplay);
+CLASS_DECL_AXIS osdisplay_data * osdisplay_get(Display * pdisplay);
+CLASS_DECL_AXIS bool osdisplay_remove(Display * pdisplay);
 
 
-class CLASS_DECL_AURA xdisplay
+class CLASS_DECL_AXIS xdisplay
 {
 public:
 

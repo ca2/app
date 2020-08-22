@@ -5,7 +5,7 @@ namespace simpledb
 {
 
 
-   class CLASS_DECL_AURA queue_item :
+   class CLASS_DECL_AXIS queue_item :
       virtual public context_object
    {
    public:

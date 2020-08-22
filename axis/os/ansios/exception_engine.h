@@ -5,7 +5,7 @@ namespace exception
 {
 
 
-   class CLASS_DECL_AURA os_engine :
+   class CLASS_DECL_AXIS os_engine :
       virtual public ::engine
 
    {

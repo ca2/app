@@ -4,13 +4,13 @@
 #include "aura/os/windows_common/draw2d_direct2d_global.h"
 
 
-CLASS_DECL_AURA int g_iMouse = -1;
+CLASS_DECL_AXIS int g_iMouse = -1;
 
 
-CLASS_DECL_AURA WINBOOL GetCursorPos(LPPOINT lppoint);
+CLASS_DECL_AXIS WINBOOL GetCursorPos(LPPOINT lppoint);
 
 
-CLASS_DECL_AURA int_bool ui_get_cursor_pos(POINT * ppt)
+CLASS_DECL_AXIS int_bool ui_get_cursor_pos(POINT * ppt)
 {
 
    if (ppt == nullptr)
@@ -52,7 +52,7 @@ int g_iMouseX = 0;
 int g_iMouseY = 0;
 
 
-CLASS_DECL_AURA WINBOOL GetCursorPos(LPPOINT lppoint)
+CLASS_DECL_AXIS WINBOOL GetCursorPos(LPPOINT lppoint)
 {
 
    lppoint->x = g_iMouseX;
@@ -95,14 +95,14 @@ CLASS_DECL_AURA WINBOOL GetCursorPos(LPPOINT lppoint)
 
 
 
-CLASS_DECL_AURA void defer_dock_application(int_bool bDock)
+CLASS_DECL_AXIS void defer_dock_application(int_bool bDock)
 {
 
    UNREFERENCED_PARAMETER(bDock);
 
 }
 
-CLASS_DECL_AURA void main_branch(::generic_object* pobjectTask, e_priority epriority)
+CLASS_DECL_AXIS void main_branch(::generic_object* pobjectTask, e_priority epriority)
 {
 
    ::wait(
@@ -579,7 +579,7 @@ namespace user
 {
 
 
-   CLASS_DECL_AURA COLORREF get_system_app_background_color()
+   CLASS_DECL_AXIS COLORREF get_system_app_background_color()
    {
 
       auto color = ::get_context_system()->get_context_session()->m_directxapplication->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
@@ -594,7 +594,7 @@ namespace user
 
    }
 
-   CLASS_DECL_AURA double get_system_app_luminance()
+   CLASS_DECL_AXIS double get_system_app_luminance()
    {
 
       auto color = ::get_context_system()->get_context_session()->m_directxapplication->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
@@ -610,7 +610,7 @@ namespace user
    }
 
 
-   CLASS_DECL_AURA void os_update_dark_mode()
+   CLASS_DECL_AXIS void os_update_dark_mode()
    {
 
       double dLuminance = get_system_app_luminance();

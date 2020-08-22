@@ -8,7 +8,7 @@ namespace android
 {
 
 
-   class CLASS_DECL_AURA shell :
+   class CLASS_DECL_AXIS shell :
       virtual public ::user::shell
    {
    public:
@@ -106,11 +106,11 @@ namespace android
       //         virtual void GetAscendants(per_fork * pfork, LPITEMIDLIST lpiidl, array < LPITEMIDLIST, LPITEMIDLIST > & lpiidla);
       //         virtual void Free(per_fork * pfork, array < LPITEMIDLIST, LPITEMIDLIST > & lpiidla);
       //
-      //         //      string CLASS_DECL_AURA _017FilePathGetParent(const char * pcsz);
+      //         //      string CLASS_DECL_AXIS _017FilePathGetParent(const char * pcsz);
       //
       //         HICON CalcIcon(LPITEMIDLIST lpiidl, const char * lpcszExtra, i32 cx, i32 cy);
       //         bool _017HasSubFolder(::object * pobject, LPITEMIDLIST lpiidl, const char * lpcszExtra);
-      //         //      void CLASS_DECL_AURA GetChildren(string_array & stra, const char * lpcszPath);
+      //         //      void CLASS_DECL_AXIS GetChildren(string_array & stra, const char * lpcszPath);
       //         LPITEMIDLIST _017ItemIDListGetLast(per_fork * pfork, LPITEMIDLIST lpiidl);
       //         LPITEMIDLIST _017ItemIDListDup(per_fork * pfork, LPITEMIDLIST lpiidl);
       //         LPITEMIDLIST _017ItemIDListGetFolderParent(per_fork * pfork, LPITEMIDLIST lpiidl);

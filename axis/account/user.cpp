@@ -62,12 +62,12 @@ namespace account
 
       }
 
-      if (get_context_session())
-      {
+      //if (get_context_session())
+      //{
 
-         Session.defer_initialize_user_presence();
+      //   Session.defer_initialize_user_presence();
 
-      }
+      //}
 
       return true;
 

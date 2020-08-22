@@ -8,7 +8,7 @@
 string get_error_message(DWORD dwError);
 
 
-CLASS_DECL_AURA bool __initialize();
+CLASS_DECL_AXIS bool __initialize();
 
 
 //#include "system_dir.h"
@@ -31,10 +31,10 @@ CLASS_DECL_AURA bool __initialize();
 
 
 
-void CLASS_DECL_AURA __cdecl _ca2_purecall();
-void CLASS_DECL_AURA __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers);
-bool CLASS_DECL_AURA __windows_init();
-i32 CLASS_DECL_AURA __windows_main(::aura::system * psystem, ::create * pmaininitdata);
+void CLASS_DECL_AXIS __cdecl _ca2_purecall();
+void CLASS_DECL_AXIS __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers);
+bool CLASS_DECL_AXIS __windows_init();
+i32 CLASS_DECL_AXIS __windows_main(::aura::system * psystem, ::create * pmaininitdata);
 
 
 
@@ -50,9 +50,9 @@ i32 CLASS_DECL_AURA __windows_main(::aura::system * psystem, ::create * pmainini
 
 
 // Sanity checks for ATOMs
-CLASS_DECL_AURA bool __is_valid_atom(ATOM nAtom);
-//CLASS_DECL_AURA bool __is_valid_atom(const char * psz);
-CLASS_DECL_AURA bool __is_valid_atom(const wchar_t * psz);
+CLASS_DECL_AXIS bool __is_valid_atom(ATOM nAtom);
+//CLASS_DECL_AXIS bool __is_valid_atom(const char * psz);
+CLASS_DECL_AXIS bool __is_valid_atom(const wchar_t * psz);
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -117,22 +117,22 @@ namespace windows
       i32 function();
    };
 
-   CLASS_DECL_AURA HINSTANCE   load_library(const char * psz);
+   CLASS_DECL_AXIS HINSTANCE   load_library(const char * psz);
 
-   CLASS_DECL_AURA bool        shell_get_special_folder_path(oswindow oswindow,::file::path &str,i32 csidl,bool fCreate);
-   CLASS_DECL_AURA ::file::path  shell_get_special_folder_path(i32 csidl, bool fCreate = true, oswindow oswindow = nullptr);
-   CLASS_DECL_AURA DWORD       get_file_attributes(const char * pFileName);
+   CLASS_DECL_AXIS bool        shell_get_special_folder_path(oswindow oswindow,::file::path &str,i32 csidl,bool fCreate);
+   CLASS_DECL_AXIS ::file::path  shell_get_special_folder_path(i32 csidl, bool fCreate = true, oswindow oswindow = nullptr);
+   CLASS_DECL_AXIS DWORD       get_file_attributes(const char * pFileName);
 
-   CLASS_DECL_AURA DWORD       get_current_directory(string & str);
-   CLASS_DECL_AURA DWORD       get_temp_path(string & str);
-   CLASS_DECL_AURA LONG        reg_query_value(HKEY hkey,const char * pszSubKey,string & str);
+   CLASS_DECL_AXIS DWORD       get_current_directory(string & str);
+   CLASS_DECL_AXIS DWORD       get_temp_path(string & str);
+   CLASS_DECL_AXIS LONG        reg_query_value(HKEY hkey,const char * pszSubKey,string & str);
 
-   CLASS_DECL_AURA HICON       extract_icon(HINSTANCE hInst,const char * pszExeFileName,UINT nIconIndex);
+   CLASS_DECL_AXIS HICON       extract_icon(HINSTANCE hInst,const char * pszExeFileName,UINT nIconIndex);
 
-   CLASS_DECL_AURA bool        delete_file(const char * pFileName);
+   CLASS_DECL_AXIS bool        delete_file(const char * pFileName);
 
-   CLASS_DECL_AURA i32     get_menu_string(HMENU hMenu,UINT uIDItem,string & str,UINT flags);
-   CLASS_DECL_AURA void        time_to_filetime(::object * pobject,const ::datetime::time& time,LPFILETIME pFileTime);
+   CLASS_DECL_AXIS i32     get_menu_string(HMENU hMenu,UINT uIDItem,string & str,UINT flags);
+   CLASS_DECL_AXIS void        time_to_filetime(::object * pobject,const ::datetime::time& time,LPFILETIME pFileTime);
 
 
 } // namespace windows
@@ -141,19 +141,19 @@ namespace windows
 
 
 
-CLASS_DECL_AURA LONG delete_registry_tree_helper(HKEY hParentKey,const string & strKeyName);
+CLASS_DECL_AXIS LONG delete_registry_tree_helper(HKEY hParentKey,const string & strKeyName);
 
 
-CLASS_DECL_AURA __pointer(::aura::application) __get_app();
-CLASS_DECL_AURA HINSTANCE __get_resource_handle();
-CLASS_DECL_AURA void __set_resource_handle(HINSTANCE hInstResource);
+CLASS_DECL_AXIS __pointer(::aura::application) __get_app();
+CLASS_DECL_AXIS HINSTANCE __get_resource_handle();
+CLASS_DECL_AXIS void __set_resource_handle(HINSTANCE hInstResource);
 
-CLASS_DECL_AURA HINSTANCE __get_resource_handle();
-CLASS_DECL_AURA HINSTANCE __find_string_resource_handle(UINT nID);
+CLASS_DECL_AXIS HINSTANCE __get_resource_handle();
+CLASS_DECL_AXIS HINSTANCE __find_string_resource_handle(UINT nID);
 
 
 
-CLASS_DECL_AURA i32 app_main(::aura::system * psystem, HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR pCmdLine, ::edisplay edisplay);
+CLASS_DECL_AXIS i32 app_main(::aura::system * psystem, HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR pCmdLine, ::edisplay edisplay);
 
 
 

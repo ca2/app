@@ -4,7 +4,7 @@
 i32 spaboot_start(const char * pszVersion, const char * pszId);
 
 
-namespace aura
+namespace axis
 {
    class file;
 }
@@ -23,7 +23,7 @@ namespace plugin
    class host_interaction;
    class system;
 
-   class CLASS_DECL_AURA plugin :
+   class CLASS_DECL_AXIS plugin :
       virtual public hotplugin::plugin
    {
    public:

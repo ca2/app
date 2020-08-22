@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA window_android :
+class CLASS_DECL_AXIS window_android :
    public ::graphics::buffer
 {
 public:

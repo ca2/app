@@ -5,7 +5,7 @@ namespace android
 {
 
 
-   class CLASS_DECL_AURA os_context :
+   class CLASS_DECL_AXIS os_context :
       public ::os_context
    {
    public:

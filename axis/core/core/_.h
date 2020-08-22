@@ -5,9 +5,9 @@
 
 
 #ifdef _CORE_LIBRARY
-#define CLASS_DECL_AURA  CLASS_DECL_EXPORT
+#define CLASS_DECL_AXIS  CLASS_DECL_EXPORT
 #else
-#define CLASS_DECL_AURA  CLASS_DECL_IMPORT
+#define CLASS_DECL_AXIS  CLASS_DECL_IMPORT
 #endif
 
 
@@ -157,27 +157,27 @@ namespace dynamic_source
 
 
 
-namespace aura
+namespace axis
 {
 
    //class run_start_installer;
 
-   CLASS_DECL_AURA bool init_core();
+   CLASS_DECL_AXIS bool init_core();
 
-   CLASS_DECL_AURA bool term_core();
-
-
-} // namespace aura
+   CLASS_DECL_AXIS bool term_core();
 
 
-CLASS_DECL_AURA int get_core_init();
+} // namespace axis
+
+
+CLASS_DECL_AXIS int get_core_init();
 extern "C"
-CLASS_DECL_AURA int_bool defer_core_init();
+CLASS_DECL_AXIS int_bool defer_core_init();
 extern "C"
-CLASS_DECL_AURA int_bool defer_core_term();
+CLASS_DECL_AXIS int_bool defer_core_term();
 
 
-namespace aura
+namespace axis
 {
 
 
@@ -185,15 +185,15 @@ namespace aura
    {
 
 
-      CLASS_DECL_AURA void init(void);
+      CLASS_DECL_AXIS void init(void);
 
-      CLASS_DECL_AURA void term(void);
+      CLASS_DECL_AXIS void term(void);
 
 
    } // namespace static_start
 
 
-} // namespace aura
+} // namespace axis
 
 
 
@@ -246,7 +246,7 @@ struct memory_state;
 
 class resource_exception;
 class user_exception;
-namespace aura
+namespace axis
 {
    class menu;                 // a menu
 
@@ -267,7 +267,7 @@ namespace draw2d
    class paint_graphics;          // embeddable BeginPaint struct helper
 }
 
-namespace aura
+namespace axis
 {
    class job;
 }
@@ -335,13 +335,13 @@ namespace user
 #include "os_history.h"
 
 
-namespace aura
+namespace axis
 {
 
    
-   CLASS_DECL_AURA void format_strings(string & rString, const char * pszFormat, const char * const* rgpsz, i32 nString);
+   CLASS_DECL_AXIS void format_strings(string & rString, const char * pszFormat, const char * const* rgpsz, i32 nString);
 
-   CLASS_DECL_AURA bool extract_sub_string(string & rString, const char * pszFullString, i32 iSubString, char chSep = '\n');
+   CLASS_DECL_AXIS bool extract_sub_string(string & rString, const char * pszFullString, i32 iSubString, char chSep = '\n');
 
 
 }

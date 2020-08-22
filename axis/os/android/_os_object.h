@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA os_object :
+class CLASS_DECL_AXIS os_object :
    virtual public ::generic_object
 {
 public:

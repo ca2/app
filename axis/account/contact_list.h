@@ -5,7 +5,7 @@ namespace account
 {
 
    
-   class CLASS_DECL_AURA contact_list :
+   class CLASS_DECL_AXIS contact_list :
       virtual public usera
    {
    public:

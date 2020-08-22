@@ -5,7 +5,7 @@ namespace posix
 {
 
 
-   class CLASS_DECL_AURA pipe :
+   class CLASS_DECL_AXIS pipe :
       virtual public ::process::pipe
    {
    public:

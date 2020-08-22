@@ -8,7 +8,7 @@ namespace sockets
    class link_in_socket;
 
    
-   class CLASS_DECL_AURA link_out_socket : public tcp_socket
+   class CLASS_DECL_AXIS link_out_socket : public tcp_socket
    {
    public:
       

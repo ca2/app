@@ -165,7 +165,7 @@ int _os_message_box(oswindow window, const char * pszMessage, const char * pszTi
 }
 
 
-CLASS_DECL_AURA string message_box_result_to_string(int iResult);
+CLASS_DECL_AXIS string message_box_result_to_string(int iResult);
 
 
 ::estatus os_message_box(oswindow window, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, ::callback callback)

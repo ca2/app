@@ -1,7 +1,7 @@
 
 
 
-class CLASS_DECL_AURA osdisplay_data
+class CLASS_DECL_AXIS osdisplay_data
 {
 public:
 

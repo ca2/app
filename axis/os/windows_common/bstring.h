@@ -2,7 +2,7 @@
 
 
 
-class CLASS_DECL_AURA bstring
+class CLASS_DECL_AXIS bstring
 {
 public:
 

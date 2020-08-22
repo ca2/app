@@ -2,7 +2,7 @@
 #include "aura/const/procedure.h"
 
 
-namespace aura
+namespace axis
 {
 
 
@@ -973,6 +973,6 @@ repeat:
 
    }
 
-} // namespace aura
+} // namespace axis
 
 

@@ -21,7 +21,7 @@ void dpi_os_initialize()
 }
 
 
-CLASS_DECL_AURA float os_get_dpi()
+CLASS_DECL_AXIS float os_get_dpi()
 {
 
    return g_DPIScaleX;
@@ -29,7 +29,7 @@ CLASS_DECL_AURA float os_get_dpi()
 }
 
 
-CLASS_DECL_AURA float point_dpi(oswindow hwnd, float points)
+CLASS_DECL_AXIS float point_dpi(oswindow hwnd, float points)
 {
 
    UNREFERENCED_PARAMETER(hwnd);
@@ -39,7 +39,7 @@ CLASS_DECL_AURA float point_dpi(oswindow hwnd, float points)
 }
 
 
-CLASS_DECL_AURA float dpiy(oswindow hwnd, float y)
+CLASS_DECL_AXIS float dpiy(oswindow hwnd, float y)
 {
 
    UNREFERENCED_PARAMETER(hwnd);
@@ -49,7 +49,7 @@ CLASS_DECL_AURA float dpiy(oswindow hwnd, float y)
 }
 
 
-CLASS_DECL_AURA float dpix(HWND hwnd, float x)
+CLASS_DECL_AXIS float dpix(HWND hwnd, float x)
 {
 
    UNREFERENCED_PARAMETER(hwnd);
@@ -59,7 +59,7 @@ CLASS_DECL_AURA float dpix(HWND hwnd, float x)
 }
 
 
-CLASS_DECL_AURA float y_dpi(HWND hwnd, float y)
+CLASS_DECL_AXIS float y_dpi(HWND hwnd, float y)
 {
 
    UNREFERENCED_PARAMETER(hwnd);
@@ -69,7 +69,7 @@ CLASS_DECL_AURA float y_dpi(HWND hwnd, float y)
 }
 
 
-CLASS_DECL_AURA float x_dpi(HWND hwnd, float x)
+CLASS_DECL_AXIS float x_dpi(HWND hwnd, float x)
 {
 
    UNREFERENCED_PARAMETER(hwnd);

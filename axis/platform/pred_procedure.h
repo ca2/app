@@ -1,8 +1,8 @@
 #pragma once
 
 
-CLASS_DECL_AURA void main_async_runnable(::context_object * pobjectTask);
-CLASS_DECL_AURA void main_sync_runnable(::context_object * pobjectTask, ::duration durationTimeout = one_minute());
+CLASS_DECL_AXIS void main_async_runnable(::context_object * pobjectTask);
+CLASS_DECL_AXIS void main_sync_runnable(::context_object * pobjectTask, ::duration durationTimeout = one_minute());
 
 
 #define new AURA_NEW
@@ -114,7 +114,7 @@ inline auto schedule(processor * pprocessor, PRED pred, e_priority epriority = p
 
 
 
-CLASS_DECL_AURA void main_branch(::generic_object * pobjectTask, e_priority epriority);
+CLASS_DECL_AXIS void main_branch(::generic_object * pobjectTask, e_priority epriority);
 
 
 

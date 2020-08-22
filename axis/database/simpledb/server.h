@@ -5,7 +5,7 @@ namespace simpledb
 {
 
 
-   class CLASS_DECL_AURA server :
+   class CLASS_DECL_AXIS server :
       virtual public ::database::server
    {
    public:

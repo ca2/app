@@ -1555,7 +1555,7 @@
 thread_local DWORD t_dwLastError;
 
 
-CLASS_DECL_AURA DWORD get_last_error()
+CLASS_DECL_AXIS DWORD get_last_error()
 {
 
    return t_dwLastError;
@@ -1563,7 +1563,7 @@ CLASS_DECL_AURA DWORD get_last_error()
 }
 
 
-CLASS_DECL_AURA void set_last_error(DWORD dw)
+CLASS_DECL_AXIS void set_last_error(DWORD dw)
 {
 
    t_dwLastError = dw;

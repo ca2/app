@@ -7,7 +7,7 @@
 //extern LPFN_ChangeWindowMessageFilter g_pfnChangeWindowMessageFilter;
 //
 //
-//namespace aura
+//namespace axis
 //{
 //
 //
@@ -552,7 +552,7 @@
 //   } // namespace ipc
 //
 //
-//} // namespace aura
+//} // namespace axis
 //
 //
 //

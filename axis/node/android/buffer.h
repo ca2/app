@@ -5,7 +5,7 @@ namespace android
 {
 
 
-   class CLASS_DECL_AURA buffer :
+   class CLASS_DECL_AXIS buffer :
       virtual public ::graphics::double_buffer
    {
    public:

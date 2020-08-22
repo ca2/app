@@ -63,7 +63,7 @@ i32 create_process(const char * _cmd_line, i32 * pprocessId)
    return 1;
 }
 
-CLASS_DECL_AURA i32 call_async(
+CLASS_DECL_AXIS i32 call_async(
 const char * pszPath,
 const char * pszParam,
 const char * pszDir,
@@ -87,7 +87,7 @@ i32 iShow)
 
 }
 
-CLASS_DECL_AURA u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::edisplay edisplay, const ::duration & durationTimeout, ::property_set & set)
+CLASS_DECL_AXIS u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::edisplay edisplay, const ::duration & durationTimeout, ::property_set & set)
 {
    vsstring strCmdLine;
 
@@ -124,7 +124,7 @@ CLASS_DECL_AURA u32 call_sync(const char * pszPath, const char * pszParam, const
 
 
 
-CLASS_DECL_AURA bool main_initialize()
+CLASS_DECL_AXIS bool main_initialize()
 {
 
    initialize_primitive_heap();
@@ -137,7 +137,7 @@ CLASS_DECL_AURA bool main_initialize()
 }
 
 
-CLASS_DECL_AURA bool main_finalize()
+CLASS_DECL_AXIS bool main_finalize()
 {
 
    bool bOk = true;

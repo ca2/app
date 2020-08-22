@@ -2,7 +2,7 @@
 #include "_uwp.h"
 
 
-CLASS_DECL_AURA::Windows::Storage::StorageFolder ^ winrt_folder1(string & strPath, string & strPrefix)
+CLASS_DECL_AXIS::Windows::Storage::StorageFolder ^ winrt_folder1(string & strPath, string & strPrefix)
 {
 
    if (str::begins_eat_ci(strPath, "image://"))
@@ -64,7 +64,7 @@ CLASS_DECL_AURA::Windows::Storage::StorageFolder ^ winrt_folder1(string & strPat
 
 
 
-CLASS_DECL_AURA ::Windows::Storage::StorageFolder ^ winrt_folder(string & strPath, string & strPrefix)
+CLASS_DECL_AXIS ::Windows::Storage::StorageFolder ^ winrt_folder(string & strPath, string & strPrefix)
 {
 
    ::Windows::Storage::StorageFolder ^ folder = winrt_folder1(strPath, strPrefix);
@@ -104,7 +104,7 @@ CLASS_DECL_AURA ::Windows::Storage::StorageFolder ^ winrt_folder(string & strPat
 }
 
 
-CLASS_DECL_AURA ::Windows::Storage::StorageFolder ^ winrt_get_folder(const string & strFolder, string & strPrefix)
+CLASS_DECL_AXIS ::Windows::Storage::StorageFolder ^ winrt_get_folder(const string & strFolder, string & strPrefix)
 {
 
    string strPath = strFolder;
@@ -136,7 +136,7 @@ CLASS_DECL_AURA ::Windows::Storage::StorageFolder ^ winrt_get_folder(const strin
 }
 
 
-CLASS_DECL_AURA::Windows::Storage::StorageFolder ^ winrt_get_folder(const string & strFolder)
+CLASS_DECL_AXIS::Windows::Storage::StorageFolder ^ winrt_get_folder(const string & strFolder)
 {
 
    string strPrefix;
@@ -146,7 +146,7 @@ CLASS_DECL_AURA::Windows::Storage::StorageFolder ^ winrt_get_folder(const string
 }
 
 
-CLASS_DECL_AURA ::Windows::Storage::StorageFolder ^ winrt_get_folder(const string & strFolder, string & strPrefix, string & strRelative)
+CLASS_DECL_AXIS ::Windows::Storage::StorageFolder ^ winrt_get_folder(const string & strFolder, string & strPrefix, string & strRelative)
 {
 
    string strPath = strFolder;

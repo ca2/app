@@ -16,21 +16,21 @@ typedef struct tag_MSG
 
 
 
-//CLASS_DECL_AURA WINBOOL WINAPI GetMessage(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax);
+//CLASS_DECL_AXIS WINBOOL WINAPI GetMessage(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax);
 
-//CLASS_DECL_AURA WINBOOL WINAPI PeekMessage(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax,UINT wRemoveMsg);
+//CLASS_DECL_AXIS WINBOOL WINAPI PeekMessage(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax,UINT wRemoveMsg);
 
-//CLASS_DECL_AURA WINBOOL WINAPI PostThreadMessage(ITHREAD idthread, UINT Msg, WPARAM wParam, LPARAM lParam);
+//CLASS_DECL_AXIS WINBOOL WINAPI PostThreadMessage(ITHREAD idthread, UINT Msg, WPARAM wParam, LPARAM lParam);
 
 
-CLASS_DECL_AURA void WINAPI TlsShutdown();
+CLASS_DECL_AXIS void WINAPI TlsShutdown();
 
 
 #ifndef _UWP
 
-CLASS_DECL_AURA BOOL WINAPI SetThreadPriority(HTHREAD hThread,int iPriority);
+CLASS_DECL_AXIS BOOL WINAPI SetThreadPriority(HTHREAD hThread,int iPriority);
 
-CLASS_DECL_AURA int WINAPI GetThreadPriority(HTHREAD hThread);
+CLASS_DECL_AXIS int WINAPI GetThreadPriority(HTHREAD hThread);
 
 #endif
 

@@ -11,7 +11,7 @@ namespace linux
    //{
 
 
-      class CLASS_DECL_AURA shell :
+      class CLASS_DECL_AXIS shell :
          virtual public ::user::shell
       {
       public:

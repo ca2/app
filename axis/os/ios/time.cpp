@@ -50,7 +50,7 @@ inline DWORD GetTickCount()
 
 
 
-//CLASS_DECL_AURA void sleep(const duration & duration)
+//CLASS_DECL_AXIS void sleep(const duration & duration)
 //{
 //   
 //   usleep((unsigned int) duration.get_total_milliseconds() * 1000);
@@ -58,7 +58,7 @@ inline DWORD GetTickCount()
 //}
 
 
-CLASS_DECL_AURA void Sleep(unsigned int dwMillis)
+CLASS_DECL_AXIS void Sleep(unsigned int dwMillis)
 {
    
    usleep(dwMillis * 1000);

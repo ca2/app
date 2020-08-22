@@ -12,7 +12,7 @@
 
 int create_process6(const char * _cmd_line, int * pprocessId);
 
-CLASS_DECL_AURA void dll_processes(u32_array & dwa, string_array & straProcesses, const char * pszDll)
+CLASS_DECL_AXIS void dll_processes(u32_array & dwa, string_array & straProcesses, const char * pszDll)
 {
 
    UNREFERENCED_PARAMETER(dwa);
@@ -301,7 +301,7 @@ i32 create_process4(const char * pszCommandLine, i32 * pprocessId)
 }
 
 
-CLASS_DECL_AURA i32 call_async(const char * pszPath, const char * pszParam, const char * pszDir, ::edisplay edisplay, bool bPrivileged, unsigned int * puiPid)
+CLASS_DECL_AXIS i32 call_async(const char * pszPath, const char * pszParam, const char * pszDir, ::edisplay edisplay, bool bPrivileged, unsigned int * puiPid)
 {
 
    string strCmdLine;
@@ -345,7 +345,7 @@ CLASS_DECL_AURA i32 call_async(const char * pszPath, const char * pszParam, cons
 }
 
 
-CLASS_DECL_AURA u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::edisplay edisplay, const ::duration & durationTimeout, ::property_set & set)
+CLASS_DECL_AXIS u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::edisplay edisplay, const ::duration & durationTimeout, ::property_set & set)
 {
 
    string strCmdLine;
@@ -650,7 +650,7 @@ bool shell_execute_sync(const char * pszFile, const char * pszParams, ::duration
 }
 
 
-CLASS_DECL_AURA bool is_shared_library_busy(u32 processid, const string_array & stra)
+CLASS_DECL_AXIS bool is_shared_library_busy(u32 processid, const string_array & stra)
 {
 
    return false;
@@ -658,7 +658,7 @@ CLASS_DECL_AURA bool is_shared_library_busy(u32 processid, const string_array & 
 }
 
 
-CLASS_DECL_AURA bool is_shared_library_busy(const string_array & stra)
+CLASS_DECL_AXIS bool is_shared_library_busy(const string_array & stra)
 {
 
    return false;
@@ -666,7 +666,7 @@ CLASS_DECL_AURA bool is_shared_library_busy(const string_array & stra)
 }
 
 
-CLASS_DECL_AURA i32 ca2_main();
+CLASS_DECL_AXIS i32 ca2_main();
 
 
 
@@ -749,7 +749,7 @@ int create_process2(const char * pszCommandLine, int * pprocessId)
 
 
 
-CLASS_DECL_AURA ::file::path core_app_path(string strApp)
+CLASS_DECL_AXIS ::file::path core_app_path(string strApp)
 {
 
    strApp.replace("-", "_");

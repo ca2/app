@@ -144,7 +144,7 @@ namespace account
    /// output
    /// m_strUsername
    /// m_strPassword
-   ::estatus  CLASS_DECL_AURA credentials::interactive_credentials()
+   ::estatus  CLASS_DECL_AXIS credentials::interactive_credentials()
    {
 
       m_estatus = error_none;

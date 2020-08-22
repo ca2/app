@@ -5,7 +5,7 @@ namespace http
 {
 
 
-   class CLASS_DECL_AURA application :
+   class CLASS_DECL_AXIS application :
       virtual public ::object
    {
    public:

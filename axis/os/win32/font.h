@@ -5,7 +5,7 @@ namespace win32
 {
 
 
-   class CLASS_DECL_AURA font :
+   class CLASS_DECL_AXIS font :
       virtual public object
    {
    public:

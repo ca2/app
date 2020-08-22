@@ -60,16 +60,16 @@ class mutex;
 class oswindow_data;
 
 
-CLASS_DECL_AURA i32 oswindow_find_message_only_window(::user::interaction_impl * puibaseMessageWindow);
-CLASS_DECL_AURA i32 oswindow_find(Display * pdisplay, Window window);
-CLASS_DECL_AURA i32 oswindow_find(Window window);
-CLASS_DECL_AURA oswindow_data * oswindow_get_message_only_window(::user::interaction_impl * puibaseMessageWindow);
-CLASS_DECL_AURA oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual = nullptr, int iDepth = -1, int iScreen = -1, Colormap colormap = None);
-CLASS_DECL_AURA oswindow_data * oswindow_get(Window window);
-CLASS_DECL_AURA oswindow_data * oswindow_defer_get(Display * pdisplay, Window window);
-CLASS_DECL_AURA oswindow oswindow_defer_get(Window w);
-CLASS_DECL_AURA bool oswindow_remove(Display * pdisplay, Window window);
-CLASS_DECL_AURA bool oswindow_remove_message_only_window(::user::interaction_impl * puibaseMessageOnlyWindow);
+CLASS_DECL_AXIS i32 oswindow_find_message_only_window(::user::interaction_impl * puibaseMessageWindow);
+CLASS_DECL_AXIS i32 oswindow_find(Display * pdisplay, Window window);
+CLASS_DECL_AXIS i32 oswindow_find(Window window);
+CLASS_DECL_AXIS oswindow_data * oswindow_get_message_only_window(::user::interaction_impl * puibaseMessageWindow);
+CLASS_DECL_AXIS oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual = nullptr, int iDepth = -1, int iScreen = -1, Colormap colormap = None);
+CLASS_DECL_AXIS oswindow_data * oswindow_get(Window window);
+CLASS_DECL_AXIS oswindow_data * oswindow_defer_get(Display * pdisplay, Window window);
+CLASS_DECL_AXIS oswindow oswindow_defer_get(Window w);
+CLASS_DECL_AXIS bool oswindow_remove(Display * pdisplay, Window window);
+CLASS_DECL_AXIS bool oswindow_remove_message_only_window(::user::interaction_impl * puibaseMessageOnlyWindow);
 
 
 struct hthread;
@@ -111,7 +111,7 @@ class simple_event;
 class mutex;
 
 
-class CLASS_DECL_AURA oswindow_data
+class CLASS_DECL_AXIS oswindow_data
 {
 public:
 

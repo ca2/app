@@ -8,7 +8,7 @@
 #include <pthread.h>
 
 
-namespace aura
+namespace axis
 {
 
 //   application::application(::object * pobject) :

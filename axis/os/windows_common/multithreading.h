@@ -1,7 +1,7 @@
 #pragma once
 
 
-CLASS_DECL_AURA WINBOOL SetThreadName(DWORD dwThreadID, const char* threadName);
+CLASS_DECL_AXIS WINBOOL SetThreadName(DWORD dwThreadID, const char* threadName);
 
 
 

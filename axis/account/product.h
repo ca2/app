@@ -10,7 +10,7 @@ namespace account
 {
 
 
-   class CLASS_DECL_AURA product :
+   class CLASS_DECL_AXIS product :
       virtual public object
    {
    public:

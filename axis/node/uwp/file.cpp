@@ -429,7 +429,7 @@ namespace uwp
    }
 
 
-   string CLASS_DECL_AURA vfxStringFromCLSID(REFCLSID rclsid)
+   string CLASS_DECL_AXIS vfxStringFromCLSID(REFCLSID rclsid)
    {
 
       CHAR szCLSID[256];
@@ -444,7 +444,7 @@ namespace uwp
    }
 
 
-   bool CLASS_DECL_AURA vfxGetInProcServer(const char * lpszCLSID, string & str)
+   bool CLASS_DECL_AXIS vfxGetInProcServer(const char * lpszCLSID, string & str)
    {
 
       bool b = FALSE;
@@ -484,7 +484,7 @@ namespace uwp
 
 
    // turn a file, relative path or other into an absolute path
-   bool CLASS_DECL_AURA vfxFullPath(unichar * lpszPathOut, const unichar * lpszFileIn)
+   bool CLASS_DECL_AXIS vfxFullPath(unichar * lpszPathOut, const unichar * lpszFileIn)
    // lpszPathOut = buffer of _MAX_PATH
    // lpszFileIn = file, relative path or absolute path
    // (both in ANSI character set)
@@ -499,7 +499,7 @@ namespace uwp
    }
 
 
-   void CLASS_DECL_AURA vfxGetModuleShortFileName(HINSTANCE hInst, string& strShortName)
+   void CLASS_DECL_AXIS vfxGetModuleShortFileName(HINSTANCE hInst, string& strShortName)
    {
       
       __throw(todo());
@@ -535,7 +535,7 @@ namespace uwp
 
 #define _wcsinc(_pc)    ((_pc)+1)
 
-   void CLASS_DECL_AURA vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath)
+   void CLASS_DECL_AXIS vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath)
    {
       //   ASSERT(lpszPath != nullptr);
       // determine the root name of the volume
@@ -578,7 +578,7 @@ namespace uwp
    }
 
 
-   void CLASS_DECL_AURA vfxGetRoot(const unichar * lpszPath, string& strRoot)
+   void CLASS_DECL_AXIS vfxGetRoot(const unichar * lpszPath, string& strRoot)
    {
       ASSERT(lpszPath != nullptr);
       wstring wstrRoot;
@@ -724,7 +724,7 @@ namespace uwp
    }
 
 
-   //UINT CLASS_DECL_AURA vfxGetFileName(const unichar * lpszPathName, unichar * lpszTitle, UINT nMax)
+   //UINT CLASS_DECL_AXIS vfxGetFileName(const unichar * lpszPathName, unichar * lpszTitle, UINT nMax)
    //{
    //   ASSERT(lpszTitle == nullptr ||
    //          __is_valid_address(lpszTitle, _MAX_FNAME));
@@ -772,7 +772,7 @@ namespace uwp
    /////////////////////////////////////////////////////////////////////////////
    // WinFileException helpers
 
-   //void CLASS_DECL_AURA throw_exception(__pointer(::aura::application) papp, int cause, LONG lOsError, const char * lpszFileName /* == nullptr */)
+   //void CLASS_DECL_AXIS throw_exception(__pointer(::aura::application) papp, int cause, LONG lOsError, const char * lpszFileName /* == nullptr */)
    //{
 
    //   __throw(::file::exception(WinFileException::OsErrorToException(lOsError),lOsError,lpszFileName));
@@ -1090,7 +1090,7 @@ namespace uwp
 
 
 
-bool CLASS_DECL_AURA vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath)
+bool CLASS_DECL_AXIS vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath)
 {
 
    wstrFullPath = wstrPath;
@@ -1101,7 +1101,7 @@ bool CLASS_DECL_AURA vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
 
 
 
-bool CLASS_DECL_AURA vfxResolveShortcut(string & strTarget, const char * pszSource, ::user::primitive * puiMessageParentOptional)
+bool CLASS_DECL_AXIS vfxResolveShortcut(string & strTarget, const char * pszSource, ::user::primitive * puiMessageParentOptional)
 {
 
 #ifdef WINDOWS_DESKTOP

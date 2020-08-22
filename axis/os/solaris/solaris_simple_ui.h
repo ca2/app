@@ -8,7 +8,7 @@ namespace os
 {
 
 
-   class CLASS_DECL_AURA simple_ui :
+   class CLASS_DECL_AXIS simple_ui :
       virtual public ::user::interaction
    {
    public:
@@ -102,7 +102,7 @@ namespace os
 
 
 
-CLASS_DECL_AURA void wm_nodecorations(oswindow w, int map);
+CLASS_DECL_AXIS void wm_nodecorations(oswindow w, int map);
 
 
 

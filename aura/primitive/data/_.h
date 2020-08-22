@@ -11,6 +11,16 @@ namespace data
 } // namespace data
 
 
+namespace xml
+{
+
+
+   class node;
+
+
+} // namespace xml
+
+
 #include "data.h"
 #include "container.h"
 #include "listener.h"

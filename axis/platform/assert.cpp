@@ -2,12 +2,12 @@
 #include <stdio.h>
 
 
-CLASS_DECL_AURA int __cpp_assert_failed_line(const char * pszFileName, int iLineNumber);
+CLASS_DECL_AXIS int __cpp_assert_failed_line(const char * pszFileName, int iLineNumber);
 
 
 
 
-CLASS_DECL_AURA int __assert_failed_line(const char * pszFileName, int iLineNumber)
+CLASS_DECL_AXIS int __assert_failed_line(const char * pszFileName, int iLineNumber)
 
 {
 
@@ -19,7 +19,7 @@ CLASS_DECL_AURA int __assert_failed_line(const char * pszFileName, int iLineNumb
 
 
 
-CLASS_DECL_AURA int __cpp_assert_failed_line(const char * pszFileName, int iLineNumber)
+CLASS_DECL_AXIS int __cpp_assert_failed_line(const char * pszFileName, int iLineNumber)
 {
 
    thread * pthread = get_thread();

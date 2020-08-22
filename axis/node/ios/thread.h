@@ -7,7 +7,7 @@ namespace ios
 {
 
 //   
-//   class CLASS_DECL_AURA thread :
+//   class CLASS_DECL_AXIS thread :
 //      virtual public ::ansios::thread_impl
 //   {
 //   public:

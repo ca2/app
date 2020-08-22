@@ -5,7 +5,7 @@
 //{
 //
 //
-//   class CLASS_DECL_AURA command :
+//   class CLASS_DECL_AXIS command :
 //      public ::create
 //   {
 //   public:

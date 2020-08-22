@@ -1,7 +1,7 @@
 #pragma once
 
 
-CLASS_DECL_AURA HANDLE create_file(
+CLASS_DECL_AXIS HANDLE create_file(
 const char *            pFileName,
 
 DWORD                   dwDesiredAccess,

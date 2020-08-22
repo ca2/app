@@ -452,7 +452,7 @@ int simple_ui_display::show()
 
 }
 
-CLASS_DECL_AURA string message_box_result_to_string(int iResult);
+CLASS_DECL_AXIS string message_box_result_to_string(int iResult);
 
 
 ::estatus os_message_box(oswindow oswindow, const char * psz, const char * pszTitle, ::emessagebox emessagebox, ::callback callback)

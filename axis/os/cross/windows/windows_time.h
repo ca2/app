@@ -14,10 +14,10 @@ struct timeval
 
 #ifndef _UWP
 
-CLASS_DECL_AURA int_bool WINAPI LocalFileTimeToFileTime(const FILETIME *localft, LPFILETIME utcft);
-CLASS_DECL_AURA int_bool WINAPI FileTimeToLocalFileTime(const FILETIME *utcft, LPFILETIME localft);
-CLASS_DECL_AURA int_bool FileTimeToSystemTime(const FILETIME *ft, LPSYSTEMTIME syst);
-CLASS_DECL_AURA int_bool SystemTimeToFileTime(const SYSTEMTIME *syst, LPFILETIME ft);
+CLASS_DECL_AXIS int_bool WINAPI LocalFileTimeToFileTime(const FILETIME *localft, LPFILETIME utcft);
+CLASS_DECL_AXIS int_bool WINAPI FileTimeToLocalFileTime(const FILETIME *utcft, LPFILETIME localft);
+CLASS_DECL_AXIS int_bool FileTimeToSystemTime(const FILETIME *ft, LPSYSTEMTIME syst);
+CLASS_DECL_AXIS int_bool SystemTimeToFileTime(const SYSTEMTIME *syst, LPFILETIME ft);
 
 void GetSystemTimeAsFileTime(LPFILETIME time); // [out] Destination for the current utc time
 void GetSystemTime(LPSYSTEMTIME systime);

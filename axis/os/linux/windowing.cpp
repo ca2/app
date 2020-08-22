@@ -30,7 +30,7 @@
 void oswindow_set_active_window(oswindow oswindow);
 
 
-CLASS_DECL_AURA void update_application_session_cursor(void * pvoidApp, const point & pointCursor);
+CLASS_DECL_AXIS void update_application_session_cursor(void * pvoidApp, const point & pointCursor);
 
 
 bool is_return_key(XIRawEvent *event)
@@ -159,7 +159,7 @@ Display * x11_get_display();
 void wm_toolwindow(oswindow w, bool bToolWindow);
 void wm_state_hidden(oswindow w, bool bSet);
 void wm_state_hidden_raw(oswindow w, bool bSet);
-CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(oswindow oswindow);
+CLASS_DECL_AXIS int_bool mq_remove_window_from_all_queues(oswindow oswindow);
 
 
 WINBOOL x11_get_cursor_pos(LPPOINT ppointCursor);
@@ -4166,7 +4166,7 @@ namespace user
 } // namespace user
 
 
-//namespace aura
+//namespace axis
 //{
 //
 //
@@ -4180,7 +4180,7 @@ namespace user
    }
 //
 //
-//} // namespace aura
+//} // namespace axis
 //
 
 WINBOOL set_window_pos(oswindow hwnd, oswindow hwndInsertAfter, i32 x, i32 y, i32 cx, i32 cy, UINT nFlags)
@@ -4444,7 +4444,7 @@ void wm_full_screen(oswindow w, const ::rect & rect)
 
 
 
-CLASS_DECL_AURA void defer_dock_application(int_bool bDock)
+CLASS_DECL_AXIS void defer_dock_application(int_bool bDock)
 {
 
    UNREFERENCED_PARAMETER(bDock);

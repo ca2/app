@@ -74,7 +74,7 @@ oswindow_data * oswindow_get(UIWindow * window)
 }
 
 
-CLASS_DECL_AURA ::user::interaction_impl * oswindow_get(oswindow oswindow)
+CLASS_DECL_AXIS ::user::interaction_impl * oswindow_get(oswindow oswindow)
 {
 
    if(oswindow == nullptr)

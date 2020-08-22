@@ -5,7 +5,7 @@ namespace http
 {
 
 
-   class CLASS_DECL_AURA transaction :
+   class CLASS_DECL_AXIS transaction :
       virtual public ::context_object
    {
    public:

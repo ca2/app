@@ -64,7 +64,7 @@
 
 
 
-CLASS_DECL_AURA bool __node_aura_pre_init()
+CLASS_DECL_AXIS bool __node_aura_pre_init()
 {
 
 //   ace_set_alloc(ace_memory_alloc, &ace_memory_realloc, &ace, <#size_t s#>, <#PFN_MEMORY_REALLOC prealloc#>, <#PFN_MEMORY_FREE pfree#>, <#PFN_MEMORY_SIZE psize#>)
@@ -75,7 +75,7 @@ CLASS_DECL_AURA bool __node_aura_pre_init()
 
 
 
-CLASS_DECL_AURA bool __node_pos_init()
+CLASS_DECL_AXIS bool __node_pos_init()
 {
 
    //t_posthread = new os_thread(nullptr, nullptr);
@@ -90,7 +90,7 @@ CLASS_DECL_AURA bool __node_pos_init()
 
 
 
-CLASS_DECL_AURA bool __node_pre_term()
+CLASS_DECL_AXIS bool __node_pre_term()
 {
 
    /*   if(t_posthread != nullptr)
@@ -119,7 +119,7 @@ CLASS_DECL_AURA bool __node_pre_term()
 void ui_app_terminate();
 
 
-CLASS_DECL_AURA bool __node_pos_term()
+CLASS_DECL_AXIS bool __node_pos_term()
 {
    //#elif defined(APPLEIOS)
    //
@@ -156,7 +156,7 @@ unsigned int sleep(unsigned int seconds)
 
 
 
-//CLASS_DECL_AURA bool __node_aura_pre_init()
+//CLASS_DECL_AXIS bool __node_aura_pre_init()
 //{
 //
 //
@@ -166,7 +166,7 @@ unsigned int sleep(unsigned int seconds)
 
 
 
-CLASS_DECL_AURA bool __node_aura_pos_init()
+CLASS_DECL_AXIS bool __node_aura_pos_init()
 {
 
    //   t_posthread = new os_thread(nullptr, nullptr);
@@ -181,7 +181,7 @@ CLASS_DECL_AURA bool __node_aura_pos_init()
 
 
 
-CLASS_DECL_AURA bool __node_aura_pre_term()
+CLASS_DECL_AXIS bool __node_aura_pre_term()
 {
 
    //   if(t_posthread != nullptr)
@@ -208,7 +208,7 @@ CLASS_DECL_AURA bool __node_aura_pre_term()
 
 
 
-CLASS_DECL_AURA bool __node_aura_pos_term()
+CLASS_DECL_AXIS bool __node_aura_pos_term()
 {
 
 

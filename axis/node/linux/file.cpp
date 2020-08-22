@@ -781,7 +781,7 @@ namespace linux
 
 
 // turn a file, relative path or other into an absolute path
-bool CLASS_DECL_AURA vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath)
+bool CLASS_DECL_AXIS vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath)
 // pszPathOut = buffer of _MAX_PATH
 
 // pszFileIn = file, relative path or absolute path
@@ -796,7 +796,7 @@ bool CLASS_DECL_AURA vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
    return true;
 }
 
-CLASS_DECL_AURA void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShortName)
+CLASS_DECL_AXIS void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShortName)
 {
 
    link_map * plm;
@@ -809,7 +809,7 @@ CLASS_DECL_AURA void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShort
 }
 
 
-CLASS_DECL_AURA bool vfxResolveShortcut(string & strTarget, const char * pszSource, __pointer(::user::primitive) puiMessageParentOptional)
+CLASS_DECL_AXIS bool vfxResolveShortcut(string & strTarget, const char * pszSource, __pointer(::user::primitive) puiMessageParentOptional)
 {
 
 

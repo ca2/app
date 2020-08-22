@@ -5,7 +5,7 @@ namespace sockets
 {
 
 
-   class CLASS_DECL_AURA sockets_base :
+   class CLASS_DECL_AXIS sockets_base :
       virtual public ::object
    {
    public:

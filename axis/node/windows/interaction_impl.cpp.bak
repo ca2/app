@@ -8,13 +8,13 @@
 //const GUID IID_ITaskbarList2 = { 0x602D4995, 0xB13A, 0x429b,{ 0xA6, 0x6E, 0x19, 0x35, 0xE4, 0x4F, 0x43, 0x17 } };
 //const GUID IID_ITaskList3 = { 0xEA1AFB91, 0x9E28, 0x4B86,{ 0x90, 0xE9, 0x9E, 0x9F, 0x8A, 0x5E, 0xEF, 0xAF } };
 
-CLASS_DECL_AURA int g_iMouseDown = 0;
+CLASS_DECL_AXIS int g_iMouseDown = 0;
 
-CLASS_DECL_AURA thread_int_ptr < DWORD_PTR > t_time1;
-CLASS_DECL_AURA thread_int_ptr < DWORD_PTR > t_time2;
+CLASS_DECL_AXIS thread_int_ptr < DWORD_PTR > t_time1;
+CLASS_DECL_AXIS thread_int_ptr < DWORD_PTR > t_time2;
 
 
-extern CLASS_DECL_AURA thread_int_ptr < DWORD_PTR > t_time1;
+extern CLASS_DECL_AXIS thread_int_ptr < DWORD_PTR > t_time1;
 
 thread_int_ptr < HHOOK > t_hHookOldCbtFilter;
 thread_pointer < ::windows::interaction_impl  > t_pwndInit;
@@ -23,7 +23,7 @@ thread_pointer < ::windows::interaction_impl  > t_pwndInit;
 
 const char * gen_OldWndProc = "::aura::OldWndProc423";
 
-CLASS_DECL_AURA bool hook_window_create(::windows::interaction_impl * pwindow);
+CLASS_DECL_AXIS bool hook_window_create(::windows::interaction_impl * pwindow);
 
 
 #define __WNDCLASS(s)    L"ca2" L##s
@@ -301,7 +301,7 @@ namespace windows
    }
 
 
-   __STATIC bool CLASS_DECL_AURA __modify_style(oswindow oswindow, i32 nStyleOffset,
+   __STATIC bool CLASS_DECL_AXIS __modify_style(oswindow oswindow, i32 nStyleOffset,
          u32 dwRemove, u32 dwAdd, UINT nFlags)
    {
       ASSERT(oswindow != nullptr);
@@ -5841,7 +5841,7 @@ LRESULT CALLBACK __window_procedure(oswindow oswindow, UINT message, WPARAM wpar
 }
 
 
-WNDPROC CLASS_DECL_AURA __get_window_procedure()
+WNDPROC CLASS_DECL_AXIS __get_window_procedure()
 {
 
    return &::__window_procedure;
@@ -5849,7 +5849,7 @@ WNDPROC CLASS_DECL_AURA __get_window_procedure()
 }
 
 
-CLASS_DECL_AURA bool hook_window_create(::windows::interaction_impl * pwindow)
+CLASS_DECL_AXIS bool hook_window_create(::windows::interaction_impl * pwindow)
 {
 
    if (pwindow == nullptr)
@@ -5908,7 +5908,7 @@ CLASS_DECL_AURA bool hook_window_create(::windows::interaction_impl * pwindow)
 }
 
 
-CLASS_DECL_AURA bool unhook_window_create()
+CLASS_DECL_AXIS bool unhook_window_create()
 {
 
    if (t_pwndInit != nullptr)
@@ -5925,7 +5925,7 @@ CLASS_DECL_AURA bool unhook_window_create()
 }
 
 
-void CLASS_DECL_AURA _handle_activate(::window_sp pwindow, WPARAM nState, ::window_sp pWndOther)
+void CLASS_DECL_AXIS _handle_activate(::window_sp pwindow, WPARAM nState, ::window_sp pWndOther)
 {
 
    ASSERT(pwindow);

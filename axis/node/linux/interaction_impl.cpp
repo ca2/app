@@ -40,7 +40,7 @@ void wm_state_hidden(oswindow w, bool bSet);
 
 //#include <X11/extensions/Xcomposite.h>
 
-//CLASS_DECL_AURA thread_int_ptr < DWORD_PTR > t_time1;
+//CLASS_DECL_AXIS thread_int_ptr < DWORD_PTR > t_time1;
 
 //#define COMPILE_MULTIMON_STUBS
 //#include <multimon.h>
@@ -49,12 +49,12 @@ void wm_state_hidden(oswindow w, bool bSet);
 
 extern SnLauncheeContext* g_psncontext;
 
-CLASS_DECL_AURA void hook_window_create(::user::interaction * pWnd);
-CLASS_DECL_AURA bool unhook_window_create();
-void CLASS_DECL_AURA __pre_init_dialog(
+CLASS_DECL_AXIS void hook_window_create(::user::interaction * pWnd);
+CLASS_DECL_AXIS bool unhook_window_create();
+void CLASS_DECL_AXIS __pre_init_dialog(
 ::user::interaction * pWnd, RECT * pRectOld, DWORD* pdwStyleOld);
 
-void CLASS_DECL_AURA __post_init_dialog(
+void CLASS_DECL_AXIS __post_init_dialog(
 ::user::interaction * pWnd, const rect & rectOld, DWORD dwStyleOld);
 LRESULT CALLBACK
 __activation_window_procedure(oswindow hWnd, UINT nMsg, WPARAM wparam, LPARAM lparam);

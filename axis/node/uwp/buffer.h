@@ -5,7 +5,7 @@ namespace uwp
 {
 
 
-   class CLASS_DECL_AURA buffer :
+   class CLASS_DECL_AXIS buffer :
       //virtual public ::graphics::double_buffer,
       virtual public ::graphics::bitmap_source_buffer
    {

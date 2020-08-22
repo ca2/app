@@ -5,7 +5,7 @@
 #include "aura/node/uwp/directx_application.h"
 
 
-CLASS_DECL_AURA ::estatus os_application_system_run(::aura::system * psystem)
+CLASS_DECL_AXIS ::estatus os_application_system_run(::aura::system * psystem)
 {
 
    //auto estatus = psystem->begin_synch();

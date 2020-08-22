@@ -490,7 +490,7 @@ int_bool file_is_equal_path_dup(const char * psz1, const char * psz2)
 }
 
 
-CLASS_DECL_AURA string file_get_mozilla_firefox_plugin_container_path()
+CLASS_DECL_AXIS string file_get_mozilla_firefox_plugin_container_path()
 {
    __throw(::exception::exception(" todo "));
 

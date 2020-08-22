@@ -36,6 +36,11 @@ namespace aura
 
 #endif
 
+
+      ::axis::session* m_paxissession;
+      ::base::session* m_pbasesession;
+      ::core::session* m_pcoresession;
+
       // For Mobile systems it is particularly meaningful...
       // ... is is the "Main Window" (sometimes just a concept) holding the App.
       // For Desktop Applications a meaning should be given or this member could be ignored?

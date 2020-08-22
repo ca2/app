@@ -5,7 +5,7 @@ namespace file
 {
    
    
-   class CLASS_DECL_AURA os_watch :
+   class CLASS_DECL_AXIS os_watch :
       virtual public watch
    {
    public:
@@ -38,7 +38,7 @@ namespace file
    };
    
 
-   class CLASS_DECL_AURA os_watcher :
+   class CLASS_DECL_AXIS os_watcher :
    virtual public watcher
    {
    public:

@@ -6,10 +6,10 @@
 #undef pointer
 
 
-CLASS_DECL_AURA int xinerama_get_monitor_count();
-CLASS_DECL_AURA int xinerama_get_monitor_rect(index i, RECT * prect);
+CLASS_DECL_AXIS int xinerama_get_monitor_count();
+CLASS_DECL_AXIS int xinerama_get_monitor_rect(index i, RECT * prect);
 
-CLASS_DECL_AURA int xinerama_get_screen_size(int& width, int& height);
+CLASS_DECL_AXIS int xinerama_get_screen_size(int& width, int& height);
 
 
 

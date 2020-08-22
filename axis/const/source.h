@@ -38,7 +38,7 @@ enum e_source : u64
 };
 
 
-__discrete_cflag(CLASS_DECL_AURA, esource, e_source);
+__discrete_cflag(CLASS_DECL_AXIS, esource, e_source);
 
 
 

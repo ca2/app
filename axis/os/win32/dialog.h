@@ -5,7 +5,7 @@ namespace win32
 {
 
 
-   class CLASS_DECL_AURA dialog :
+   class CLASS_DECL_AXIS dialog :
       virtual public window
    {
    public:

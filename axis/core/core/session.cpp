@@ -9,7 +9,7 @@
 #define MAGIC_PALACE_TAB_TEXT "/"
 
 
-namespace aura
+namespace axis
 {
 
    //session_docs * create_session_docs();
@@ -1738,7 +1738,7 @@ namespace aura
     }
 
 
-} // namespace aura
+} // namespace axis
 
 
 

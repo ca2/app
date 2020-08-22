@@ -10,13 +10,13 @@ void android_edit_on_set_focus(int l, int t, int r, int b, const char* pszText, 
 void android_edit_on_kill_focus();
 
 
-CLASS_DECL_AURA int g_iMouseDown = 0;
+CLASS_DECL_AXIS int g_iMouseDown = 0;
 //
-//CLASS_DECL_AURA thread_int_ptr < DWORD_PTR > t_time1;
-//CLASS_DECL_AURA thread_int_ptr < DWORD_PTR > t_time2;
+//CLASS_DECL_AXIS thread_int_ptr < DWORD_PTR > t_time1;
+//CLASS_DECL_AXIS thread_int_ptr < DWORD_PTR > t_time2;
 //
 //
-//extern CLASS_DECL_AURA thread_int_ptr < DWORD_PTR > t_time1;
+//extern CLASS_DECL_AXIS thread_int_ptr < DWORD_PTR > t_time1;
 //
 //
 //
@@ -122,7 +122,7 @@ namespace android
 
    // Change a interaction_impl's style
 
-   __STATIC bool CLASS_DECL_AURA __modify_style(oswindow oswindow,i32 nStyleOffset,
+   __STATIC bool CLASS_DECL_AXIS __modify_style(oswindow oswindow,i32 nStyleOffset,
          u32 dwRemove,u32 dwAdd,UINT nFlags)
    {
       ASSERT(oswindow != nullptr);

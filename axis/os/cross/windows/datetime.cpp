@@ -79,7 +79,7 @@ LONG TIME_GetBias(void);
 //#endif
 
 //#include "windows_internals.h"
-//#define CLASS_DECL_AURA
+//#define CLASS_DECL_AXIS
 ////#include "ca/ca/ca_verisimple_string.h"
 ////#include "ca/ca/ca_mutex.h"
 ////#include "ca/ca/ca_synch_lock.h"
@@ -145,7 +145,7 @@ static inline i32 IsLeapYear(i32 Year)
  * RETURNS
  *   Nothing.
  */
-CLASS_DECL_AURA void WINAPI RtlTimeToTimeFields(
+CLASS_DECL_AXIS void WINAPI RtlTimeToTimeFields(
 const LARGE_INTEGER *liTime,
 PTIME_FIELDS TimeFields)
 {
@@ -916,7 +916,7 @@ NTSTATUS WINAPI NtSetSystemTime(const LARGE_INTEGER *NewTime, LARGE_INTEGER *Old
 /*********************************************************************
  *      LocalFileTimeToFileTime                         (KERNEL32.@)
  */
-CLASS_DECL_AURA WINBOOL WINAPI LocalFileTimeToFileTime( const FILETIME *localft, LPFILETIME utcft )
+CLASS_DECL_AXIS WINBOOL WINAPI LocalFileTimeToFileTime( const FILETIME *localft, LPFILETIME utcft )
 {
    NTSTATUS status;
    LARGE_INTEGER local, utc;
@@ -941,7 +941,7 @@ CLASS_DECL_AURA WINBOOL WINAPI LocalFileTimeToFileTime( const FILETIME *localft,
 /*********************************************************************
  *      FileTimeToLocalFileTime                         (KERNEL32.@)
  */
-CLASS_DECL_AURA WINBOOL WINAPI FileTimeToLocalFileTime( const FILETIME *utcft, LPFILETIME localft )
+CLASS_DECL_AXIS WINBOOL WINAPI FileTimeToLocalFileTime( const FILETIME *utcft, LPFILETIME localft )
 {
    NTSTATUS status;
    LARGE_INTEGER local, utc;
@@ -1025,7 +1025,7 @@ WINBOOL WINAPI SystemTimeToFileTime( const SYSTEMTIME *syst, LPFILETIME ft )
  *  RETURNS
  *   Nothing.
  */
-CLASS_DECL_AURA void GetSystemTimeAsFileTime(
+CLASS_DECL_AXIS void GetSystemTimeAsFileTime(
 LPFILETIME time) /* [out] Destination for the current utc time */
 {
    LARGE_INTEGER t;
@@ -1047,7 +1047,7 @@ LPFILETIME time) /* [out] Destination for the current utc time */
  * RETURNS
  *  Nothing.
  */
-CLASS_DECL_AURA void GetSystemTime(LPSYSTEMTIME systime)
+CLASS_DECL_AXIS void GetSystemTime(LPSYSTEMTIME systime)
 {
    FILETIME ft;
    LARGE_INTEGER t;

@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace aura
+namespace axis
 {
 
 
-   class CLASS_DECL_AURA system :
+   class CLASS_DECL_AXIS system :
       virtual public ::aura::system
    {
    public:
@@ -254,7 +254,7 @@ namespace aura
    };
 
 
-} // namespace aura
+} // namespace axis
 
 
 
@@ -263,11 +263,11 @@ namespace aura
 
 
 
-// void CLASS_DECL_AURA __start_core_system_main(::base::system * psystem);
+// void CLASS_DECL_AXIS __start_core_system_main(::base::system * psystem);
 
 #ifdef _UWP
 
-CLASS_DECL_AURA int app_core_main(const char * psz);
+CLASS_DECL_AXIS int app_core_main(const char * psz);
 
 #endif
 

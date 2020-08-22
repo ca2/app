@@ -11,7 +11,7 @@ void ns_app_run();
 
 
 
-CLASS_DECL_AURA bool __node_aura_pre_init()
+CLASS_DECL_AXIS bool __node_aura_pre_init()
 {
 
    setlocale(LC_ALL,"");
@@ -22,7 +22,7 @@ CLASS_DECL_AURA bool __node_aura_pre_init()
 
 
 
-CLASS_DECL_AURA bool __node_aura_pos_init()
+CLASS_DECL_AXIS bool __node_aura_pos_init()
 {
 
 //   t_posthread = new os_thread(nullptr, nullptr);
@@ -37,7 +37,7 @@ CLASS_DECL_AURA bool __node_aura_pos_init()
 
 
 
-CLASS_DECL_AURA bool __node_aura_pre_term()
+CLASS_DECL_AXIS bool __node_aura_pre_term()
 {
 
 //   if(t_posthread != nullptr)
@@ -64,7 +64,7 @@ CLASS_DECL_AURA bool __node_aura_pre_term()
 
 
 
-CLASS_DECL_AURA bool __node_aura_pos_term()
+CLASS_DECL_AXIS bool __node_aura_pos_term()
 {
 
 //#ifdef MACOS
@@ -106,7 +106,7 @@ namespace audio
 {
 
 
-   CLASS_DECL_AURA string get_default_library_name()
+   CLASS_DECL_AXIS string get_default_library_name()
    {
    
       return "audio_core_audio";

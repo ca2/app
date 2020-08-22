@@ -10,12 +10,12 @@ namespace macos
 {
 
 
-   CLASS_DECL_AURA LRESULT CALLBACK __send_message_hook(i32, WPARAM, LPARAM);
-   CLASS_DECL_AURA LRESULT CALLBACK __cbt_filter_hook(i32, WPARAM, LPARAM);
-   CLASS_DECL_AURA LRESULT __call_window_procedure(::user::interaction *   pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
+   CLASS_DECL_AXIS LRESULT CALLBACK __send_message_hook(i32, WPARAM, LPARAM);
+   CLASS_DECL_AXIS LRESULT CALLBACK __cbt_filter_hook(i32, WPARAM, LPARAM);
+   CLASS_DECL_AXIS LRESULT __call_window_procedure(::user::interaction *   pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
 
 
-   class CLASS_DECL_AURA interaction_impl :
+   class CLASS_DECL_AXIS interaction_impl :
       virtual public ::user::interaction_impl,
       virtual public ::round_window
    {
@@ -667,9 +667,9 @@ namespace macos
 
 
       // implementation of message dispatch/hooking
-//      CLASS_DECL_AURA friend LRESULT CALLBACK __send_message_hook(i32, WPARAM, LPARAM);
-//      CLASS_DECL_AURA friend LRESULT CALLBACK __cbt_filter_hook(i32, WPARAM, LPARAM);
-//      CLASS_DECL_AURA friend LRESULT __call_window_procedure(::user::interaction *   pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
+//      CLASS_DECL_AXIS friend LRESULT CALLBACK __send_message_hook(i32, WPARAM, LPARAM);
+//      CLASS_DECL_AXIS friend LRESULT CALLBACK __cbt_filter_hook(i32, WPARAM, LPARAM);
+//      CLASS_DECL_AXIS friend LRESULT __call_window_procedure(::user::interaction *   pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
 
       // standard message implementation
 //      LRESULT OnNTCtlColor(WPARAM wParam, LPARAM lParam);

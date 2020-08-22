@@ -11,12 +11,12 @@
 
 #else
 
-#include "aura/_.h"
-#include "aura/platform/_platform.h"
+#include "axis/_.h"
+#include "axis/platform/_platform.h"
 #if !defined(BROAD_PRECOMPILED_HEADER)
 #define BROAD_PRECOMPILED_HEADER 1
 #endif
-#include "aura/user/user/_user.h"
+//#include "axis/user/_user.h"
 #if BROAD_PRECOMPILED_HEADER
 //#include "core/user/simple/_simple.h"
 //#include "aura/user/rich_text/_rich_text.h"
@@ -26,7 +26,7 @@
 //#include "core/user/experience/_experience.h"
 //#include "aura/user/databaseuser/_databaseuser.h"
 #endif
-#include "aura/crypto/crypto_openssl.h"
+//#include "aura/crypto/crypto_openssl.h"
 #include "aura/_defer.h"
 
 

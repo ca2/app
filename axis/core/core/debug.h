@@ -20,7 +20,7 @@
 
 #ifdef __cplusplus
 
-namespace aura
+namespace axis
 {
 extern "C" {
 #endif
@@ -105,7 +105,7 @@ void __stdcall gen_TraceGetCategoryInfo(uptr dwProcess, uptr dwModule, i32 iCate
 #ifdef __cplusplus
 };
 
-};  // namespace aura
+};  // namespace axis
 #endif
 
 #endif  // __DEBUGAPI_H__

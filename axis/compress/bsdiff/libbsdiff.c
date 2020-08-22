@@ -35,7 +35,7 @@
 
 
 
-//#define CLASS_DECL_AURA CLASS_DECL_EXPORT
+//#define CLASS_DECL_AXIS CLASS_DECL_EXPORT
 
 //#include <string.h>
 

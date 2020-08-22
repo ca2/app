@@ -617,7 +617,7 @@ namespace macos
 #define _wcsinc(_pc) ((_pc)+1)
 
 
-bool CLASS_DECL_AURA vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath)
+bool CLASS_DECL_AXIS vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath)
 {
 
    wstrFullPath = wstrPath;
@@ -627,7 +627,7 @@ bool CLASS_DECL_AURA vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
 }
 
 
-CLASS_DECL_AURA void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShortName)
+CLASS_DECL_AXIS void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShortName)
 {
 
    __throw(todo());
@@ -635,7 +635,7 @@ CLASS_DECL_AURA void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShort
 }
 
 
-CLASS_DECL_AURA bool vfxResolveShortcut(string & strTarget, const char * pszSource, ::user::primitive * puiMessageParentOptional)
+CLASS_DECL_AXIS bool vfxResolveShortcut(string & strTarget, const char * pszSource, ::user::primitive * puiMessageParentOptional)
 {
 
    char realname[_POSIX_PATH_MAX * 4];

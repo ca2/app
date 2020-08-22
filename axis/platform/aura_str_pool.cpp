@@ -2,7 +2,7 @@
 #include "aura/astr.h"
 
 
-CLASS_DECL_AURA aura_str_pool* s_paurastrpool = nullptr;
+CLASS_DECL_AXIS aura_str_pool* s_paurastrpool = nullptr;
 
 
 

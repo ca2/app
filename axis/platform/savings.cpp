@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace aura
+namespace axis
 {
 
 
@@ -77,4 +77,4 @@ namespace aura
       return m_eresourceflagsWarning.has(eresource);
    }
 
-} // namespace aura
+} // namespace axis

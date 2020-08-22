@@ -5,7 +5,7 @@ namespace simpledb
 {
 
 
-   class CLASS_DECL_AURA thread_localdatabase :
+   class CLASS_DECL_AXIS thread_localdatabase :
       virtual public ::thread
    {
    public:

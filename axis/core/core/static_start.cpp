@@ -14,7 +14,7 @@ aura_level auralevelCore(::aura_level::level_core, &defer_core_init);
 //#endif
 
 
-namespace aura
+namespace axis
 {
 
 
@@ -23,7 +23,7 @@ namespace aura
    {
 
 
-      CLASS_DECL_AURA void init()
+      CLASS_DECL_AXIS void init()
       {
 
          xxdebug_box("aura.dll base_static_start (0)", "box", MB_OK);
@@ -133,7 +133,7 @@ namespace aura
 
 
 
-      CLASS_DECL_AURA void term()
+      CLASS_DECL_AXIS void term()
       {
 
 

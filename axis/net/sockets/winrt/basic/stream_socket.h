@@ -7,7 +7,7 @@
 
       /** SOCK_STREAM socket base class.
       \ingroup basic */
-      class CLASS_DECL_AURA stream_socket :
+      class CLASS_DECL_AXIS stream_socket :
          virtual public socket
       {
       public:

@@ -10,7 +10,7 @@ namespace sockets
    class resolv_server;
 
 
-   class CLASS_DECL_AURA socket_handler :
+   class CLASS_DECL_AXIS socket_handler :
       public base_socket_handler
    {
    public:

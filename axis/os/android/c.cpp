@@ -8,7 +8,7 @@
 //{
 
    //extern "C"
-   CLASS_DECL_AURA i64 get_nanos()
+   CLASS_DECL_AXIS i64 get_nanos()
    {
 
       struct timespec ts;

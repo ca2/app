@@ -50,13 +50,13 @@ extern __pointer(os_remote) g_posremote;
 
 extern __pointer(os_local) g_poslocal;
 
-CLASS_DECL_AURA string get_string(jstring jstring);
+CLASS_DECL_AXIS string get_string(jstring jstring);
 
 
-CLASS_DECL_AURA void set_context(JNIEnv* penv);
-CLASS_DECL_AURA JNIEnv* get_jni_env();
+CLASS_DECL_AXIS void set_context(JNIEnv* penv);
+CLASS_DECL_AXIS JNIEnv* get_jni_env();
 
-CLASS_DECL_AURA void android_exchange();
+CLASS_DECL_AXIS void android_exchange();
 
 
 

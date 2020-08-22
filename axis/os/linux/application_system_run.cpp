@@ -10,7 +10,7 @@ extern ::app_core * g_pappcore;
 void os_post_quit();
 Display * x11_get_display();
 
-CLASS_DECL_AURA i32 ca2_main();
+CLASS_DECL_AXIS i32 ca2_main();
 
 
 
@@ -18,7 +18,7 @@ gboolean linux_start_system(gpointer data);
 
 
 
-void CLASS_DECL_AURA __cdecl _ca2_purecall()
+void CLASS_DECL_AXIS __cdecl _ca2_purecall()
 {
 
    __throw(::exception::exception());
@@ -307,7 +307,7 @@ void gdk_branch(generic_object * prunnable, e_priority epriority)
 }
 
 
-CLASS_DECL_AURA void main_branch(::generic_object * prunnable, e_priority epriority)
+CLASS_DECL_AXIS void main_branch(::generic_object * prunnable, e_priority epriority)
 {
 
    prunnable->add_ref(OBJ_REF_DBG_P_NOTE(nullptr, "main_branch"));

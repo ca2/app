@@ -6,7 +6,7 @@
 //{
 //
 //
-//   namespace aura
+//   namespace axis
 //   {
 //
 //
@@ -23,7 +23,7 @@
 //      }
 //
 //
-//   } // namespace aura
+//   } // namespace axis
 //
 //
 //} // namespace uwp

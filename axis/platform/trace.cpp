@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 
-namespace aura
+namespace axis
 {
 
 
@@ -25,8 +25,8 @@ namespace aura
 
 
       typedef void ( * PFN_trace_v)(const char *pszFileName, i32 nLine, u32 dwCategory, u32 nLevel, const char * pszFmt, va_list args);
-      CLASS_DECL_AURA void raw_trace_v(const char *pszFileName, i32 nLine, u32 dwCategory, u32 nLevel, const char * pszFmt, va_list args);
-      CLASS_DECL_AURA PFN_trace_v trace_v = &raw_trace_v;
+      CLASS_DECL_AXIS void raw_trace_v(const char *pszFileName, i32 nLine, u32 dwCategory, u32 nLevel, const char * pszFmt, va_list args);
+      CLASS_DECL_AXIS PFN_trace_v trace_v = &raw_trace_v;
 
 
       void trace::TraceV(const char *pszFileName, i32 nLine, e_trace_category ecategory, e_trace_level elevel, const char * pszFormat, va_list args) const
@@ -105,7 +105,7 @@ namespace aura
       }
 
 
-      CLASS_DECL_AURA void raw_trace_v(const char *pszFileName, i32 nLine, u32 dwCategory, u32 nLevel, const char * pszFmt, va_list args)
+      CLASS_DECL_AXIS void raw_trace_v(const char *pszFileName, i32 nLine, u32 dwCategory, u32 nLevel, const char * pszFmt, va_list args)
       {
 
          UNREFERENCED_PARAMETER(pszFileName);
@@ -121,7 +121,7 @@ namespace aura
 
       }
 
-      /*CLASS_DECL_AURA void system_log_trace_v(const char *pszFileName, i32 nLine, u32 dwCategory, u32 nLevel, const char * pszFmt, va_list args)
+      /*CLASS_DECL_AXIS void system_log_trace_v(const char *pszFileName, i32 nLine, u32 dwCategory, u32 nLevel, const char * pszFmt, va_list args)
       {
       System.log().trace_v(pszFileName, nLine, dwCategory, nLevel, pszFmt, args);
       }*/
@@ -129,7 +129,7 @@ namespace aura
 
    } // namespace trace
 
-}  // namespace aura
+}  // namespace axis
 
 
 
@@ -336,7 +336,7 @@ static const MAP_WM_MESSAGE allMessagesArray[] =
 };
 
 
-CLASS_DECL_AURA const char *  get_windows_message_name(UINT nMsg)
+CLASS_DECL_AXIS const char *  get_windows_message_name(UINT nMsg)
 {
 
    MAP_WM_MESSAGE * pmessage = (MAP_WM_MESSAGE *) allMessagesArray;
@@ -362,7 +362,7 @@ CLASS_DECL_AURA const char *  get_windows_message_name(UINT nMsg)
 #define SIMPLE_TRACE_FUNCTION_NAME 0
 #define SIMPLE_TRACE_FILE_NAME 0
 
-CLASS_DECL_AURA void __simple_tracea(::generic_object * pobjectContext, e_trace_level elevel, const char * pszFunction, const char *pszFileName, i32 iLine, const char * psz)
+CLASS_DECL_AXIS void __simple_tracea(::generic_object * pobjectContext, e_trace_level elevel, const char * pszFunction, const char *pszFileName, i32 iLine, const char * psz)
 {
 
 #ifndef DEBUG
@@ -439,7 +439,7 @@ CLASS_DECL_AURA void __simple_tracea(::generic_object * pobjectContext, e_trace_
 }
 
 
-CLASS_DECL_AURA void __simple_tracev(::generic_object * pobjectContext, e_trace_level elevel, const char * pszFunction, const char *pszFileName, i32 iLine, const char * pszFormat, va_list args)
+CLASS_DECL_AXIS void __simple_tracev(::generic_object * pobjectContext, e_trace_level elevel, const char * pszFunction, const char *pszFileName, i32 iLine, const char * pszFormat, va_list args)
 {
 
    //if (s_pstringmanager == nullptr)

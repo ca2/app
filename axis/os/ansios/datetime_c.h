@@ -2,13 +2,13 @@
 
 
 extern "C"
-CLASS_DECL_AURA struct tm *gmtime_r(const time_t *timep,struct tm *result);
+CLASS_DECL_AXIS struct tm *gmtime_r(const time_t *timep,struct tm *result);
 
 
 #if defined(WINDOWS)
 
 extern "C"
-CLASS_DECL_AURA int gettimeofday(struct timeval* tp, void* tz);
+CLASS_DECL_AXIS int gettimeofday(struct timeval* tp, void* tz);
 
 #endif
 

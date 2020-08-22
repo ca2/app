@@ -14,7 +14,7 @@ namespace sockets
 
    /** Binds incoming port number to new socket class X.
    \ingroup basic */
-   class CLASS_DECL_AURA listen_socket_base :
+   class CLASS_DECL_AXIS listen_socket_base :
       virtual public socket
    {
    public:

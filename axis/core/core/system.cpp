@@ -95,7 +95,7 @@ MC_COLOR_TEMPERATURE kelvin_mc_color(DWORD kelvin)
 #endif
 
 
-CLASS_DECL_AURA bool __rich_text_initialize(::aura::system * psystem);
+CLASS_DECL_AXIS bool __rich_text_initialize(::aura::system * psystem);
 
 // #ifdef CUBE
 
@@ -118,10 +118,10 @@ typedef void BASECORE_INIT();
 #endif // LINUX
 
 
-namespace aura
+namespace axis
 {
 
-   CLASS_DECL_AURA void black_body(float* r, float* g, float* b, DWORD dwTemp);
+   CLASS_DECL_AXIS void black_body(float* r, float* g, float* b, DWORD dwTemp);
 
  /*  bool system::on_application_menu_action(const char * pszCommand)
    {
@@ -2071,7 +2071,7 @@ namespace aura
 
 
 
-   CLASS_DECL_AURA void black_body(float* r, float* g, float* b, DWORD dwTemp)
+   CLASS_DECL_AXIS void black_body(float* r, float* g, float* b, DWORD dwTemp)
    {
 
       int temp_index = ((dwTemp - 1000) / 100) * 3;
@@ -2097,7 +2097,7 @@ namespace aura
 
 
 
-} // namespace aura
+} // namespace axis
 
 
 

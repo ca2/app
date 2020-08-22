@@ -4,12 +4,12 @@
 #include <shlobj.h>
 
 
-CLASS_DECL_AURA bool node_save_image(Windows::Storage::Streams::IRandomAccessStream^ stream, ::image* pimage, ::save_image* psaveimage);
+CLASS_DECL_AXIS bool node_save_image(Windows::Storage::Streams::IRandomAccessStream^ stream, ::image* pimage, ::save_image* psaveimage);
 
 bool node_save_image(::image * pimage, Windows::Storage::Streams::IRandomAccessStream ^stream, ::aura::application * papp);
 
 
-CLASS_DECL_AURA bool node_save_image(Windows::Storage::Streams::IRandomAccessStream ^ randomAccessStream, const ::image * pimage, ::save_image * psaveimage);
+CLASS_DECL_AXIS bool node_save_image(Windows::Storage::Streams::IRandomAccessStream ^ randomAccessStream, const ::image * pimage, ::save_image * psaveimage);
 
 
 namespace uwp

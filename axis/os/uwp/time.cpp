@@ -12,7 +12,7 @@
 //LARGE_INTEGER g_freq;
 //
 //extern "C"
-//CLASS_DECL_AURA i64 get_nanos()
+//CLASS_DECL_AXIS i64 get_nanos()
 //{
 //
 //   LARGE_INTEGER li = {};
@@ -25,7 +25,7 @@
 
 
 
-CLASS_DECL_AURA void sleep(const ::duration & dur)
+CLASS_DECL_AXIS void sleep(const ::duration & dur)
 {
 
    Sleep((DWORD) dur.total_milliseconds());

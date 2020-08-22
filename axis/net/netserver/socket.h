@@ -9,7 +9,7 @@ namespace netserver
 {
 
 
-   class CLASS_DECL_AURA socket :
+   class CLASS_DECL_AXIS socket :
       virtual public ::sockets::httpd_socket
    {
    public:

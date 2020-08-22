@@ -8,7 +8,7 @@ namespace sockets
    class SSLInitializer;
 
 
-   class CLASS_DECL_AURA sockets :
+   class CLASS_DECL_AXIS sockets :
       virtual public sockets_base
    {
    public:

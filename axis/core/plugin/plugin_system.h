@@ -8,7 +8,7 @@ namespace plugin
    class plugin;
 
 
-   class CLASS_DECL_AURA system :
+   class CLASS_DECL_AXIS system :
       virtual public ::aura::system
    {
    public:

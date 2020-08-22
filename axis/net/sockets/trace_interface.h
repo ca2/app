@@ -13,7 +13,7 @@ namespace sockets
 
 
 
-   //class CLASS_DECL_AURA trace_interface
+   //class CLASS_DECL_AXIS trace_interface
    //{
    //public:
 

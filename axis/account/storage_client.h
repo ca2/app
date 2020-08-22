@@ -10,7 +10,7 @@ namespace account
 {
    
    
-   class CLASS_DECL_AURA storage_client :
+   class CLASS_DECL_AXIS storage_client :
       virtual public ::object
    {
    public:

@@ -53,7 +53,7 @@ log_handler (const gchar   *log_domain,
 #endif
 
 
-namespace aura
+namespace axis
 {
 
 
@@ -74,9 +74,9 @@ namespace aura
 
 #endif
 
-   CLASS_DECL_AURA critical_section* g_pcsFont = nullptr;
+   CLASS_DECL_AXIS critical_section* g_pcsFont = nullptr;
 
-   CLASS_DECL_AURA string_to_string * g_pmapFontFaceName = nullptr;
+   CLASS_DECL_AXIS string_to_string * g_pmapFontFaceName = nullptr;
 
    ::mutex* g_pmutexChildren;
    ::mutex* g_pmutexThreadWaitClose;
@@ -193,7 +193,7 @@ namespace aura
 
 #endif
 
-   CLASS_DECL_AURA aura_str_pool* g_paurastrpool;
+   CLASS_DECL_AXIS aura_str_pool* g_paurastrpool;
 
    // #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
@@ -1005,12 +1005,12 @@ namespace aura
 //} // namespace static_start
 
 
-} // namespace aura
+} // namespace axis
 
 
 //static ::mutex * s_pmutexDraw2d = nullptr;
 //
-//CLASS_DECL_AURA ::mutex * draw2d_mutex()
+//CLASS_DECL_AXIS ::mutex * draw2d_mutex()
 //{
 //
 //   return s_pmutexDraw2d;
@@ -1018,7 +1018,7 @@ namespace aura
 //}
 
 
-//CLASS_DECL_AURA void init_draw2d_mutex()
+//CLASS_DECL_AXIS void init_draw2d_mutex()
 //{
 //
 //   s_pmutexDraw2d = new ::mutex();
@@ -1026,7 +1026,7 @@ namespace aura
 //}
 
 
-//CLASS_DECL_AURA void terg_draw2d_mutex()
+//CLASS_DECL_AXIS void terg_draw2d_mutex()
 //{
 //
 //   ::aura::del(s_pmutexDraw2d);
@@ -1035,7 +1035,7 @@ namespace aura
 
 
 
-CLASS_DECL_AURA ::mutex * get_cred_mutex()
+CLASS_DECL_AXIS ::mutex * get_cred_mutex()
 {
 
    return ::aura::g_pmutexCred;
@@ -1054,7 +1054,7 @@ CLASS_DECL_AURA ::mutex * get_cred_mutex()
 
 
 
-CLASS_DECL_AURA COLORREF dk_red() // <3 tbs
+CLASS_DECL_AXIS COLORREF dk_red() // <3 tbs
 {
    return ARGB(255, 200, 16, 46);
 }
@@ -1063,7 +1063,7 @@ CLASS_DECL_AURA COLORREF dk_red() // <3 tbs
 //thread_int_ptr < ::estatus    > t_estatus;
 
 
-CLASS_DECL_AURA void set_last_status(const ::estatus & estatus)
+CLASS_DECL_AXIS void set_last_status(const ::estatus & estatus)
 {
 
    ::get_thread()->m_estatus = estatus;
@@ -1071,7 +1071,7 @@ CLASS_DECL_AURA void set_last_status(const ::estatus & estatus)
 }
 
 
-CLASS_DECL_AURA ::estatus  get_last_status()
+CLASS_DECL_AXIS ::estatus  get_last_status()
 {
 
    return ::get_thread()->m_estatus;
@@ -1091,7 +1091,7 @@ CLASS_DECL_AURA ::estatus  get_last_status()
 //   {
 //
 //
-//      CLASS_DECL_AURA void init()
+//      CLASS_DECL_AXIS void init()
 //      {
 //
 //         xxdebug_box("axis.dll axis_static_start (0)", "box", MB_OK);
@@ -1165,7 +1165,7 @@ CLASS_DECL_AURA ::estatus  get_last_status()
 //
 //
 //
-//      CLASS_DECL_AURA void term()
+//      CLASS_DECL_AXIS void term()
 //      {
 //
 //         //#if defined(LINUX)
@@ -1231,7 +1231,7 @@ locale_t get_c_locale()
 //#endif
 //
 //
-//namespace aura
+//namespace axis
 //{
 //
 //
@@ -1240,7 +1240,7 @@ locale_t get_c_locale()
 //   {
 //
 ////
-////      CLASS_DECL_AURA void init()
+////      CLASS_DECL_AXIS void init()
 ////      {
 ////
 ////         xxdebug_box("aura.dll base_static_start (0)", "box", MB_OK);
@@ -1350,7 +1350,7 @@ locale_t get_c_locale()
 //
 //
 //
-//      CLASS_DECL_AURA void term()
+//      CLASS_DECL_AXIS void term()
 //      {
 //
 //

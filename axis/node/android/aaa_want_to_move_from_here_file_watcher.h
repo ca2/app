@@ -23,7 +23,7 @@
 //{
 //
 //
-//   class CLASS_DECL_AURA  os_watch :
+//   class CLASS_DECL_AXIS  os_watch :
 //      virtual public watch
 //   {
 //   public:

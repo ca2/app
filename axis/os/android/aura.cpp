@@ -13,7 +13,7 @@
 //thread_int_ptr < DWORD > t_dwLastError;
 
 
-//CLASS_DECL_AURA DWORD get_last_error()
+//CLASS_DECL_AXIS DWORD get_last_error()
 //{
 //
 //   tick t_tickLastError;
@@ -21,7 +21,7 @@
 //}
 //
 //
-//CLASS_DECL_AURA void set_last_error(DWORD dw)
+//CLASS_DECL_AXIS void set_last_error(DWORD dw)
 //{
 //
 //   t_dwLastError = dw;
@@ -29,7 +29,7 @@
 //}
 
 
-CLASS_DECL_AURA bool _istlead(i32 ch)
+CLASS_DECL_AXIS bool _istlead(i32 ch)
 {
 
    return false;
@@ -280,7 +280,7 @@ bool __node_aura_pos_term()
 
 
 
-CLASS_DECL_AURA int __node_is_debugger_attached()
+CLASS_DECL_AXIS int __node_is_debugger_attached()
 {
    return 0;
 }

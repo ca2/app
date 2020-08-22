@@ -7,7 +7,7 @@ namespace process
 {
 
 
-   CLASS_DECL_AURA bool set_priority(::e_priority epriority)
+   CLASS_DECL_AXIS bool set_priority(::e_priority epriority)
    {
 
       i32 iPolicy = SCHED_OTHER;
@@ -27,7 +27,7 @@ namespace process
 
 
 
-} // namespace aura
+} // namespace axis
 
 
 
@@ -134,7 +134,7 @@ int get_current_process_affinity_order()
 
 
 
-CLASS_DECL_AURA i64 get_nanos()
+CLASS_DECL_AXIS i64 get_nanos()
 {
 
 
@@ -165,7 +165,7 @@ CLASS_DECL_AURA i64 get_nanos()
 }
 
 
-CLASS_DECL_AURA void main_sync_runnable(::context_object * pobjectRunnable, ::duration durationTimeout)
+CLASS_DECL_AXIS void main_sync_runnable(::context_object * pobjectRunnable, ::duration durationTimeout)
 {
 
    __pointer(context_object) prunnable = pobjectRunnable;
@@ -195,7 +195,7 @@ CLASS_DECL_AURA void main_sync_runnable(::context_object * pobjectRunnable, ::du
 }
 
 
-CLASS_DECL_AURA void main_async_runnable(::context_object * prunnableParam)
+CLASS_DECL_AXIS void main_async_runnable(::context_object * prunnableParam)
 {
 
    __pointer(context_object) prunnable = prunnableParam;

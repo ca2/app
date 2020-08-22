@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-CLASS_DECL_AURA int framework_is_basis()
+CLASS_DECL_AXIS int framework_is_basis()
 {
 #if CA2_PLATFORM_VERSION == CA2_BASIS
    return TRUE;
@@ -11,7 +11,7 @@ CLASS_DECL_AURA int framework_is_basis()
 }
 
 
-CLASS_DECL_AURA int framework_is_stage()
+CLASS_DECL_AXIS int framework_is_stage()
 {
 #if CA2_PLATFORM_VERSION == CA2_STAGE
    return TRUE;
@@ -25,7 +25,7 @@ namespace version
 {
 
 
-   CLASS_DECL_AURA int compare(string str1, string str2)
+   CLASS_DECL_AXIS int compare(string str1, string str2)
    {
 
 

@@ -1878,7 +1878,7 @@ __result(::aura::application) app_core::get_new_application(::object* pobjectCon
             if (strAppId.is_empty())
             {
 
-               papp = get_context_system()->__create_new < ::aura::application > ();
+               papp = get_context_system()->__create < ::aura::application > ();
 
                *((::aura_main_struct*)papp) = *((::aura_main_struct*)this);
 

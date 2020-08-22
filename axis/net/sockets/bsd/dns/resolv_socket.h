@@ -7,7 +7,7 @@ namespace sockets
 
    /** Async DNS resolver socket. 
    \ingroup async */
-   class CLASS_DECL_AURA resolv_socket : public tcp_socket
+   class CLASS_DECL_AXIS resolv_socket : public tcp_socket
    {
    public:
 

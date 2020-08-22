@@ -8,7 +8,7 @@ namespace database
    class database;
 
 
-   class CLASS_DECL_AURA dataset :
+   class CLASS_DECL_AXIS dataset :
       virtual public ::object
    {
    public:

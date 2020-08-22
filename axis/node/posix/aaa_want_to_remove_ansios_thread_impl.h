@@ -5,7 +5,7 @@ namespace ansios
 {
 
 
-//   class CLASS_DECL_AURA thread_impl:
+//   class CLASS_DECL_AXIS thread_impl:
 //      virtual public ::thread_impl
 //   {
 //   public:

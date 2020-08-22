@@ -51,7 +51,7 @@ VOID WINAPI output_debug_string(LPCSTR lpOutputString)
 }
 
 
-CLASS_DECL_AURA void simple_debug_print(const char * psz)
+CLASS_DECL_AXIS void simple_debug_print(const char * psz)
 {
 
    __android_log_print(ANDROID_LOG_INFO, "simple_debug_string", "%s", psz);
@@ -70,7 +70,7 @@ VOID WINAPI output_debug_string(LPCWSTR lpOutputString)
 }
 
 
-CLASS_DECL_AURA int os_trace_level(e_trace_level elevel)
+CLASS_DECL_AXIS int os_trace_level(e_trace_level elevel)
 {
 
    switch(elevel)
@@ -88,7 +88,7 @@ CLASS_DECL_AURA int os_trace_level(e_trace_level elevel)
 }
 
 
-CLASS_DECL_AURA void os_trace(e_trace_level elevel, const char * pszTag, const char * pszMessage)
+CLASS_DECL_AXIS void os_trace(e_trace_level elevel, const char * pszTag, const char * pszMessage)
 {
 
    int iLevel = os_trace_level(elevel);

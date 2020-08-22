@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace aura
+namespace axis
 {
 
 
@@ -10,7 +10,7 @@ namespace aura
 //   class session_docs;
 
 
-   class CLASS_DECL_AURA session :
+   class CLASS_DECL_AXIS session :
       virtual public ::aura::session,
       virtual public ::filemanager::item_action,
       virtual public ::filemanager::component,
@@ -234,7 +234,7 @@ namespace aura
    };
 
 
-} // namespace aura
+} // namespace axis
 
 
 

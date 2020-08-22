@@ -20,7 +20,7 @@
 void ns_Sleep(unsigned int uiMillis);
 
 
-CLASS_DECL_AURA i64 get_nanos()
+CLASS_DECL_AXIS i64 get_nanos()
 {
    
    return ::aura::mach_absolute_time() * ::aura::g_machtime_conversion_factor;

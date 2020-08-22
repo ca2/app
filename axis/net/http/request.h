@@ -11,7 +11,7 @@ namespace http
    class form;
 
 
-   class CLASS_DECL_AURA request : 
+   class CLASS_DECL_AXIS request : 
       public transaction
    {
    public:

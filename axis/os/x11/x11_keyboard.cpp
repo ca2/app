@@ -438,7 +438,7 @@ string x11_keyboard_get_current_group_symbol()
 namespace user
 {
 
-   CLASS_DECL_AURA ::user::e_key keysym_to_userkey(const lparam & lparam)
+   CLASS_DECL_AXIS ::user::e_key keysym_to_userkey(const lparam & lparam)
    {
 
       KeySym keysym = (KeySym) (iptr)lparam.m_lparam;

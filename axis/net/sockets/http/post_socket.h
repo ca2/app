@@ -34,12 +34,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 namespace sockets
 {
 
-   class CLASS_DECL_AURA multipart :
+   class CLASS_DECL_AXIS multipart :
       virtual public object
    {
    public:
 
-      class CLASS_DECL_AURA item
+      class CLASS_DECL_AXIS item
       {
       public:
 
@@ -61,7 +61,7 @@ namespace sockets
 
    /** Generate a http post request, get response.
    \ingroup http */
-   class CLASS_DECL_AURA http_post_socket :
+   class CLASS_DECL_AXIS http_post_socket :
       virtual public http_client_socket
    {
    public:

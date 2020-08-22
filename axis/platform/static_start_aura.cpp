@@ -2,12 +2,12 @@
 #include "static_start.h"
 
 
-namespace aura
+namespace axis
 {
 
    ::aura::aura aura::g_aura;
 
-} // namespace aura
+} // namespace axis
 
 //#pragma comment (linker, "/export:_g_aura")
 

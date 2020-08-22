@@ -33,10 +33,10 @@ e_net_wm_state net_wm_state(const char * pszText);
 const char * net_wm_state_text(e_net_wm_state estate);
 
 
-CLASS_DECL_AURA int xinerama_get_monitor_count();
-CLASS_DECL_AURA int xinerama_get_monitor_rect(index i, RECT * prect);
+CLASS_DECL_AXIS int xinerama_get_monitor_count();
+CLASS_DECL_AXIS int xinerama_get_monitor_rect(index i, RECT * prect);
 
-CLASS_DECL_AURA int xinerama_get_screen_size(int& width, int& height);
+CLASS_DECL_AXIS int xinerama_get_screen_size(int& width, int& height);
 
 
 int best_xinerama_monitor(::user::interaction * pinteraction, RECT * prectRet);
@@ -72,15 +72,15 @@ void set_xcolor(XColor & color, COLORREF cr);
 
 
 
-CLASS_DECL_AURA i32 oswindow_find_message_only_window(::user::interaction_impl * puibaseMessageWindow);
-CLASS_DECL_AURA i32 oswindow_find(Display * pdisplay, Window window);
-CLASS_DECL_AURA i32 oswindow_find(Window window);
-CLASS_DECL_AURA oswindow_data * oswindow_get_message_only_window(::user::interaction_impl * puibaseMessageWindow);
-//CLASS_DECL_AURA oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual = nullptr);
-CLASS_DECL_AURA oswindow_data * oswindow_get(Window window);
-CLASS_DECL_AURA oswindow oswindow_defer_get(Window w);
-CLASS_DECL_AURA bool oswindow_remove(Display * pdisplay, Window window);
-CLASS_DECL_AURA bool oswindow_remove_message_only_window(::user::interaction_impl * puibaseMessageOnlyWindow);
+CLASS_DECL_AXIS i32 oswindow_find_message_only_window(::user::interaction_impl * puibaseMessageWindow);
+CLASS_DECL_AXIS i32 oswindow_find(Display * pdisplay, Window window);
+CLASS_DECL_AXIS i32 oswindow_find(Window window);
+CLASS_DECL_AXIS oswindow_data * oswindow_get_message_only_window(::user::interaction_impl * puibaseMessageWindow);
+//CLASS_DECL_AXIS oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual = nullptr);
+CLASS_DECL_AXIS oswindow_data * oswindow_get(Window window);
+CLASS_DECL_AXIS oswindow oswindow_defer_get(Window w);
+CLASS_DECL_AXIS bool oswindow_remove(Display * pdisplay, Window window);
+CLASS_DECL_AXIS bool oswindow_remove_message_only_window(::user::interaction_impl * puibaseMessageOnlyWindow);
 
 
 
@@ -97,7 +97,7 @@ CLASS_DECL_AURA bool oswindow_remove_message_only_window(::user::interaction_imp
 
 
 
-class CLASS_DECL_AURA device_context
+class CLASS_DECL_AXIS device_context
 {
 public:
 

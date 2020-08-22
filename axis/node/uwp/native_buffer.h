@@ -7,7 +7,7 @@ namespace uwp
    /////////////////////////////////////////////////////////////////////////////
    // native_buffer - raw unbuffered disk native_buffer I/O
 
-   class CLASS_DECL_AURA native_buffer:
+   class CLASS_DECL_AXIS native_buffer:
       virtual public ::file::file
    {
    public:

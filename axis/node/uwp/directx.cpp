@@ -9,7 +9,7 @@ using namespace Microsoft::WRL;
 using namespace Windows::Graphics::Display;
 using namespace D2D1;
 
-extern CLASS_DECL_AURA image_array * g_pimagea;
+extern CLASS_DECL_AXIS image_array * g_pimagea;
 void dpi_os_initialize();
 namespace uwp
 {

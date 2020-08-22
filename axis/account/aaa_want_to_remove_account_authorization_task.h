@@ -10,7 +10,7 @@ namespace account
 {
    
    
-   class CLASS_DECL_AURA http_execute:
+   class CLASS_DECL_AXIS http_execute:
    virtual public object
    {
    public:
@@ -25,14 +25,14 @@ namespace account
    };
    
    
-   class CLASS_DECL_AURA http_execute_array:
+   class CLASS_DECL_AXIS http_execute_array:
    public __pointer_array(http_execute)
    {
       
    };
 
    
-   class CLASS_DECL_AURA authorization_task :
+   class CLASS_DECL_AXIS authorization_task :
       virtual public ::object
    {
    public:

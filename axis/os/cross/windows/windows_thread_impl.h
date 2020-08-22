@@ -1,13 +1,13 @@
 ﻿#pragma once
 
 
-CLASS_DECL_AURA ITHREAD get_current_ithread();
+CLASS_DECL_AXIS ITHREAD get_current_ithread();
 
 
 #ifdef __cplusplus
 
-CLASS_DECL_AURA void * __thread_get_data(ITHREAD thread,u32 dwIndex);
-CLASS_DECL_AURA int_bool __thread_set_data(ITHREAD thread,u32 dwIndex,void * lpTlsValue);
+CLASS_DECL_AXIS void * __thread_get_data(ITHREAD thread,u32 dwIndex);
+CLASS_DECL_AXIS int_bool __thread_set_data(ITHREAD thread,u32 dwIndex,void * lpTlsValue);
 
 #endif
 

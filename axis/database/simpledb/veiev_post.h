@@ -4,7 +4,7 @@
 class db_server;
 
 
-class CLASS_DECL_AURA veiev_post :
+class CLASS_DECL_AXIS veiev_post :
    public db_set
 {
 public:
@@ -14,7 +14,7 @@ public:
    virtual ~veiev_post();
 
 
-   /*class CLASS_DECL_AURA record
+   /*class CLASS_DECL_AXIS record
    {
    public:
       var sender;

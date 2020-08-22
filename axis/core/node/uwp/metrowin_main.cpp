@@ -6,7 +6,7 @@
 #undef CoreApplication
 
 
-CLASS_DECL_AURA int app_core_main(const char * pszCmdLine)
+CLASS_DECL_AXIS int app_core_main(const char * pszCmdLine)
 {
 
    if(!defer_core_init())

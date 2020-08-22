@@ -6,7 +6,7 @@ namespace gen
 
 #if defined( _CUSTOM_THROW )  // You can define your own __throw( hresult_exception to __throw( a custom exception.
 
-CLASS_DECL_AURA void WINAPI atl_throw_impl( HRESULT hr )
+CLASS_DECL_AXIS void WINAPI atl_throw_impl( HRESULT hr )
 {
    TRACE(atlTraceException, 0, "__throw(hresult_exception: hr = 0x%x\n", hr ));
 #ifdef _AFX
@@ -29,7 +29,7 @@ CLASS_DECL_AURA void WINAPI atl_throw_impl( HRESULT hr )
 // Throw a atl_exception with th given HRESULT
 #if !defined( _CUSTOM_THROW )  // You can define your own __throw( hresult_exception
 
-//CLASS_DECL_AURA void WINAPI atl_throw_impl(HRESULT hr)
+//CLASS_DECL_AXIS void WINAPI atl_throw_impl(HRESULT hr)
 //{
 //   TRACE("__throw(hresult_exception: hr = 0x%x\n", hr));
  //  __throw(hresult_exception(hr));

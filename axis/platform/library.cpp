@@ -10,7 +10,7 @@
 typedef  void(*PFN_create_factory)();
 
 
-namespace aura
+namespace axis
 {
 
 
@@ -962,7 +962,7 @@ namespace aura
 
    }
 
-} // namespace aura
+} // namespace axis
 
 
 //string_map < __pointer(::aura::library) > * g_pmapLibCall = nullptr;

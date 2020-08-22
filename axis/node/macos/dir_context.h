@@ -5,7 +5,7 @@ namespace macos
 {
 
 
-   class CLASS_DECL_AURA dir_context :
+   class CLASS_DECL_AXIS dir_context :
       virtual public ::dir_context
    {
    public:

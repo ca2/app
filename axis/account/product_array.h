@@ -5,7 +5,7 @@ namespace account
 {
 
 
-   class CLASS_DECL_AURA product_array :
+   class CLASS_DECL_AXIS product_array :
       virtual public ::object
    {
    public:

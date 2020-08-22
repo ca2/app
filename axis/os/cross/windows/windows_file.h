@@ -214,8 +214,8 @@ typedef GENERIC_MAPPING *PGENERIC_MAPPING;*/
 
 
 #ifdef _UWP
-CLASS_DECL_AURA BOOL WINAPI LockFile(HANDLE hfile, u32 dwLo, u32 dwHi, u32 dwCountLo, u32 dwCountHi);
-CLASS_DECL_AURA BOOL WINAPI UnlockFile(HANDLE hfile, u32 dwLo, u32 dwHi, u32 dwCountLo, u32 dwCountHi);
+CLASS_DECL_AXIS BOOL WINAPI LockFile(HANDLE hfile, u32 dwLo, u32 dwHi, u32 dwCountLo, u32 dwCountHi);
+CLASS_DECL_AXIS BOOL WINAPI UnlockFile(HANDLE hfile, u32 dwLo, u32 dwHi, u32 dwCountLo, u32 dwCountHi);
 #endif
 
 

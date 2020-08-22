@@ -13,7 +13,7 @@ i32 _fltused = 0;
 #endif
 
 
-CLASS_DECL_AURA i32 abs_dup(i32 i)
+CLASS_DECL_AXIS i32 abs_dup(i32 i)
 {
    if(i < 0)
       return -i;
@@ -21,7 +21,7 @@ CLASS_DECL_AURA i32 abs_dup(i32 i)
       return i;
 }
 
-CLASS_DECL_AURA double fabs_dup(double f)
+CLASS_DECL_AXIS double fabs_dup(double f)
 {
    if(f < 0.0)
       return -f;
@@ -30,7 +30,7 @@ CLASS_DECL_AURA double fabs_dup(double f)
 }
 
 #ifdef SUPORTA_MATEMATICA_AVANCADA
-CLASS_DECL_AURA double atan_dup(double d)
+CLASS_DECL_AXIS double atan_dup(double d)
 {
 #ifdef X86
     _asm
@@ -45,17 +45,17 @@ CLASS_DECL_AURA double atan_dup(double d)
 #endif
 }
 
-CLASS_DECL_AURA double asin_dup(double d)
+CLASS_DECL_AXIS double asin_dup(double d)
 {
    return 2.0 * atan_dup(d / (1.0 + sqrt_dup(1.0 - d * d)));
 }
 
-CLASS_DECL_AURA double acos_dup(double d)
+CLASS_DECL_AXIS double acos_dup(double d)
 {
    return 2.0 * atan_dup(sqrt_dup(1.0 - d * d) / (1.0 + d));
 }
 
-CLASS_DECL_AURA double sqrt_dup(double d)
+CLASS_DECL_AXIS double sqrt_dup(double d)
 {
 #ifdef X86
     _asm
@@ -70,18 +70,18 @@ CLASS_DECL_AURA double sqrt_dup(double d)
 #endif
 }
 
-CLASS_DECL_AURA double pow_dup(double aura, double e)
+CLASS_DECL_AXIS double pow_dup(double aura, double e)
 {
    return exp_dup(e * log_dup(aura));
 }
 
 
-CLASS_DECL_AURA double fmod_dup(double x, double y)
+CLASS_DECL_AXIS double fmod_dup(double x, double y)
 {
    return fmod(x, y);
 }
 
-CLASS_DECL_AURA double exp_dup(double d)
+CLASS_DECL_AXIS double exp_dup(double d)
 {
 #ifdef X86
     _asm
@@ -96,7 +96,7 @@ CLASS_DECL_AURA double exp_dup(double d)
 #endif
 }
 
-CLASS_DECL_AURA double log_dup(double d)
+CLASS_DECL_AXIS double log_dup(double d)
 {
 #ifdef X86
     _asm
@@ -111,7 +111,7 @@ CLASS_DECL_AURA double log_dup(double d)
 #endif
 }
 
-CLASS_DECL_AURA double tan_dup(double d)
+CLASS_DECL_AXIS double tan_dup(double d)
 {
 #ifdef X86
     _asm
@@ -126,7 +126,7 @@ CLASS_DECL_AURA double tan_dup(double d)
 #endif
 }
 
-CLASS_DECL_AURA double sin_dup(double d)
+CLASS_DECL_AXIS double sin_dup(double d)
 {
 #ifdef X86
     _asm
@@ -141,7 +141,7 @@ CLASS_DECL_AURA double sin_dup(double d)
 #endif
 }
 
-CLASS_DECL_AURA double cos_dup(double d)
+CLASS_DECL_AXIS double cos_dup(double d)
 {
 #ifdef X86
     _asm
@@ -158,12 +158,12 @@ CLASS_DECL_AURA double cos_dup(double d)
 
 #endif
 
-CLASS_DECL_AURA void srand_dup(u32 seed)
+CLASS_DECL_AXIS void srand_dup(u32 seed)
 {
 	lastrand = seed;
 }
 
-CLASS_DECL_AURA  i32 rand_dup()
+CLASS_DECL_AXIS  i32 rand_dup()
 {
 	return (((lastrand = lastrand * 214013L + 2531011L) >> 16) & 0x7FFF);
 }

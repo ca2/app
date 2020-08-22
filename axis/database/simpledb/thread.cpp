@@ -37,7 +37,7 @@ namespace simpledb
 
                }
 
-               if (get_context_application()->get_context_session()->m_paccount == nullptr)
+               if (Session.m_paccount == nullptr)
                {
 
                   break;

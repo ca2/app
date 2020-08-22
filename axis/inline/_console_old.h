@@ -5,7 +5,7 @@
 #include "aura/platform/app_core.h"
 
 
-class CLASS_DECL_AURA console :
+class CLASS_DECL_AXIS console :
    public aura_main_struct
 {
 public:

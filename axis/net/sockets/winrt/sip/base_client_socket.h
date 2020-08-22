@@ -3,7 +3,7 @@
 namespace sockets
 {
 
-   class CLASS_DECL_AURA sip_base_client_socket :
+   class CLASS_DECL_AXIS sip_base_client_socket :
       virtual public sip_base,
       virtual public socket
    {

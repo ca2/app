@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace aura
+namespace axis
 {
 
    namespace logic
@@ -18,5 +18,5 @@ namespace aura
 
    } // namespace logic
 
-} // namespace aura
+} // namespace axis
 

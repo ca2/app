@@ -6,7 +6,7 @@ namespace sockets
 {
 
 
-   class CLASS_DECL_AURA ssl_client_context_map :
+   class CLASS_DECL_AXIS ssl_client_context_map :
       virtual public object
    {
    public:

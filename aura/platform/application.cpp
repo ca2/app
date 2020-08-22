@@ -119,6 +119,9 @@ namespace aura
       m_strAppId(::is_set(pszAppId) ? pszAppId : "")
    {
 
+      m_paxisapplication = nullptr;
+      m_pbaseapplication = nullptr;
+      m_pcoreapplication = nullptr;
       m_bUser = true;
       m_bUserEx = true;
       m_bDraw2d = true;

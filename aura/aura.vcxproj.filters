@@ -8,9 +8,6 @@
     <Filter Include="Source Files\primitive">
       <UniqueIdentifier>{73b6eb83-847b-4f04-a3de-daf20e5f9a48}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\multithreading">
-      <UniqueIdentifier>{262b60e3-e795-4339-b4cc-f4ca20348991}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\user">
       <UniqueIdentifier>{8832ff75-5113-4095-b832-a6e62e777cfd}</UniqueIdentifier>
     </Filter>
@@ -34,9 +31,6 @@
     </Filter>
     <Filter Include="Source Files\primitive\data">
       <UniqueIdentifier>{b47f1200-db28-45cf-88cd-eaf066d0e7a1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\multithreading\service">
-      <UniqueIdentifier>{1d2673ac-c466-4eef-a3c2-8d1ac417ee3a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\filesystem\filesystem">
       <UniqueIdentifier>{a1c58f3a-f4e9-4de5-a300-cf9b6065e04b}</UniqueIdentifier>
@@ -98,12 +92,6 @@
     </Filter>
     <Filter Include="Header Files\primitive\data">
       <UniqueIdentifier>{a96fca9e-248b-448a-b0bd-dee53b174b85}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\multithreading">
-      <UniqueIdentifier>{0d1fb68a-ae17-4c19-a26a-903d27492e6a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\multithreading\service">
-      <UniqueIdentifier>{2762f484-eb95-4a1b-a8ed-821742ef3e55}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\user">
       <UniqueIdentifier>{dc109c06-f55b-48ea-ac46-06302b3262f3}</UniqueIdentifier>
@@ -362,6 +350,18 @@
     </Filter>
     <Filter Include="Source Files\net\oauth2">
       <UniqueIdentifier>{1538148d-fc75-4abd-8efe-fb63727756a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\multithreading">
+      <UniqueIdentifier>{3b04ff9f-5bd9-45cc-afe3-93cb56f5f110}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\multithreading\service">
+      <UniqueIdentifier>{08767d9f-5c6d-46ae-9877-69a1c33083e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\multithreading">
+      <UniqueIdentifier>{f5fb0b8d-82f2-4a87-b245-1747ef8e70a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\multithreading\service">
+      <UniqueIdentifier>{711bcad9-5239-4e29-8d18-b825f0650185}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1154,108 +1154,6 @@
     <ClInclude Include="primitive\primitive\_property_set_composite_impl.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="multithreading\common.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\condition.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\critical_section.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\data.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\delay_thread.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\event.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\file_change_event.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\fork.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\initial_single_lock.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\manual_reset_event.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multi_lock.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\mutex.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\pred_holder.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\procedure_array.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\retry_multi_lock.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\retry_single_lock.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\semaphore.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\service_base.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\service_status.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\set_event_on_exit.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\single_lock.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\socket_event.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\sync.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\synch_index_iterator.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\synch_index_ptr_array.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\sync_lock.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\thread.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\thread_impl.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\thread_os.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\thread_parameter.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\tools.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\_.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\service\plain_service.h">
-      <Filter>Header Files\multithreading\service</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\service\thread_pool.h">
-      <Filter>Header Files\multithreading\service</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\geometry2d\types.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
@@ -1520,9 +1418,6 @@
     <ClInclude Include="net\email_address.h">
       <Filter>Header Files\net</Filter>
     </ClInclude>
-    <ClInclude Include="net\email_department.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
     <ClInclude Include="net\ip_enum.h">
       <Filter>Header Files\net</Filter>
     </ClInclude>
@@ -1570,9 +1465,6 @@
     </ClInclude>
     <ClInclude Include="net\sockets\websocket_client.h">
       <Filter>Header Files\net\sockets</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\retry.h">
-      <Filter>Header Files\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="graphics\draw2d\printer.h">
       <Filter>Header Files\graphics\draw2d</Filter>
@@ -1784,9 +1676,6 @@
     <ClInclude Include="net\sockets\base\base_socket_handler.h">
       <Filter>Header Files\net\sockets\base</Filter>
     </ClInclude>
-    <ClInclude Include="multithreading\handler.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\comparison\_c.h">
       <Filter>Header Files\primitive\comparison</Filter>
     </ClInclude>
@@ -1919,9 +1808,6 @@
     <ClInclude Include="graphics\graphics\bitmap_source_buffer.h">
       <Filter>Header Files\graphics\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="multithreading\sync_task.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\collection\string_array_base.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
@@ -1963,9 +1849,6 @@
     </ClInclude>
     <ClInclude Include="filesystem\file\_const.h">
       <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\create_thread.h">
-      <Filter>Header Files\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="include\_.h">
       <Filter>Header Files\include</Filter>
@@ -2687,15 +2570,6 @@
     <ClInclude Include="os\windows\api.h">
       <Filter>Header Files\os\windows</Filter>
     </ClInclude>
-    <ClInclude Include="multithreading\sync_array.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\sync_result.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\aaa_want_to_remove_waitable.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
     <ClInclude Include="inline\_console_old.h">
       <Filter>Header Files\inline</Filter>
     </ClInclude>
@@ -3173,6 +3047,132 @@
     <ClInclude Include="primitive\primitive\match.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
+    <ClInclude Include="multithreading\_.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\_impl.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\_thread_os_create_impl.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\aaa_want_to_remove_waitable.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\common.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\condition.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\create_thread.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\critical_section.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\data.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\delay_thread.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\event.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\file_change_event.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\fork.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\handler.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\initial_single_lock.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\manual_reset_event.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multi_lock.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\mutex.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\pred_holder.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\procedure_array.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\retry.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\retry_multi_lock.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\retry_single_lock.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\semaphore.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\service_base.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\service_status.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\set_event_on_exit.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\single_lock.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\socket_event.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\sync.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\sync_array.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\sync_lock.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\sync_result.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\sync_task.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\thread.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\thread_impl.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\thread_os.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\thread_parameter.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\threading.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\tools.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\service\plain_service.h">
+      <Filter>Header Files\multithreading\service</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\service\thread_pool.h">
+      <Filter>Header Files\multithreading\service</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="graphics\draw2d\apple\image_gif.cpp">
@@ -3592,75 +3592,6 @@
     <ClCompile Include="primitive\primitive\_.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="multithreading\condition.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\critical_section.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\event.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\file_change_event.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\manual_reset_event.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multi_lock.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\mutex.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\pred_holder.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\procedure_array.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\retry_multi_lock.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\retry_single_lock.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\semaphore.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\service_base.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\single_lock.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\socket_event.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\sync_lock.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\thread.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\thread_impl.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\thread_os.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\tools.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\sync_result.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\sync.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\service\plain_service.cpp">
-      <Filter>Source Files\multithreading\service</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\primitive\runnable.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
@@ -3982,9 +3913,6 @@
     <ClCompile Include="net\email_address.cpp">
       <Filter>Source Files\net</Filter>
     </ClCompile>
-    <ClCompile Include="net\email_department.cpp">
-      <Filter>Source Files\net</Filter>
-    </ClCompile>
     <ClCompile Include="net\ip_enum.cpp">
       <Filter>Source Files\net</Filter>
     </ClCompile>
@@ -4005,9 +3933,6 @@
     </ClCompile>
     <ClCompile Include="graphics\draw2d\_.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\_.cpp">
-      <Filter>Source Files\multithreading</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\text_stream.cpp">
       <Filter>Source Files\filesystem\file</Filter>
@@ -4047,9 +3972,6 @@
     </ClCompile>
     <ClCompile Include="primitive\primitive\generic_object.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\handler.cpp">
-      <Filter>Source Files\multithreading</Filter>
     </ClCompile>
     <ClCompile Include="primitive\comparison\var_strict.cpp">
       <Filter>Source Files\primitive\comparison</Filter>
@@ -4116,9 +4038,6 @@
     </ClCompile>
     <ClCompile Include="primitive\collection\string_array_base.cpp">
       <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\sync_task.cpp">
-      <Filter>Source Files\multithreading</Filter>
     </ClCompile>
     <ClCompile Include="os\windows\ansi_file.cpp">
       <Filter>Source Files\os\windows</Filter>
@@ -4894,12 +4813,6 @@
     <ClCompile Include="os\windows\api.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="multithreading\waitable.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\sync_array.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
     <ClCompile Include="multithreading\sync.cpp">
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
@@ -4941,9 +4854,6 @@
     </ClCompile>
     <ClCompile Include="node\windows\file_os_watcher.cpp">
       <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\threading.cpp">
-      <Filter>Source Files\multithreading</Filter>
     </ClCompile>
     <ClCompile Include="platform\aura_main_data.cpp">
       <Filter>Source Files\platform</Filter>
@@ -5263,6 +5173,93 @@
     <ClCompile Include="primitive\primitive\match.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
+    <ClCompile Include="multithreading\service\plain_service.cpp">
+      <Filter>Source Files\multithreading\service</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\_.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\condition.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\critical_section.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\event.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\file_change_event.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\handler.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\manual_reset_event.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multi_lock.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\mutex.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\pred_holder.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\procedure_array.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\retry_multi_lock.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\retry_single_lock.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\semaphore.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\service_base.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\single_lock.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\socket_event.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\sync.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\sync_array.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\sync_lock.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\sync_result.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\sync_task.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\thread.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\thread_impl.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\thread_os.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\threading.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\tools.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\waitable.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\primitive\papaya.inl">
@@ -5345,12 +5342,6 @@
     </None>
     <None Include="primitive\collection\_array_impl2.h">
       <Filter>Header Files\primitive\collection</Filter>
-    </None>
-    <None Include="multithreading\_thread_os_create_impl.h">
-      <Filter>Header Files\multithreading</Filter>
-    </None>
-    <None Include="multithreading\_impl.h">
-      <Filter>Header Files\multithreading</Filter>
     </None>
     <None Include="primitive\primitive\_factory_impl.h">
       <Filter>Header Files\primitive\primitive</Filter>

@@ -2,7 +2,7 @@
 #include "_uwp.h"
 
 
-CLASS_DECL_AURA memsize read_buffer(void* p, ::Windows::Storage::Streams::IBuffer^ ibuf, memsize size, memsize pos)
+CLASS_DECL_AXIS memsize read_buffer(void* p, ::Windows::Storage::Streams::IBuffer^ ibuf, memsize size, memsize pos)
 {
    
    Windows::Storage::Streams::DataReader^ r = Windows::Storage::Streams::DataReader::FromBuffer(ibuf);
@@ -39,7 +39,7 @@ CLASS_DECL_AURA memsize read_buffer(void* p, ::Windows::Storage::Streams::IBuffe
 }
 
 
-CLASS_DECL_AURA memory_file_pointer create_memory_file(::Windows::Storage::Streams::IInputStream^ stream)
+CLASS_DECL_AXIS memory_file_pointer create_memory_file(::Windows::Storage::Streams::IInputStream^ stream)
 {
 
    auto pfile = create_memory_file();

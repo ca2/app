@@ -4,7 +4,7 @@
 
 
 // interesting function
-/*bool CLASS_DECL_AURA __custom_log_font(UINT nIDS, LOGFONT* pLogFont)
+/*bool CLASS_DECL_AXIS __custom_log_font(UINT nIDS, LOGFONT* pLogFont)
 {
    ENSURE_ARG(pLogFont != nullptr);
    ASSERT(nIDS != 0);
@@ -26,7 +26,7 @@
    return TRUE;
 }*/
 #ifdef WINDOWS_DESKTOP
-bool CLASS_DECL_AURA __is_combo_box_control(oswindow hWnd, UINT nStyle)
+bool CLASS_DECL_AXIS __is_combo_box_control(oswindow hWnd, UINT nStyle)
 {
    if (hWnd == nullptr)
       return FALSE;
@@ -40,7 +40,7 @@ bool CLASS_DECL_AURA __is_combo_box_control(oswindow hWnd, UINT nStyle)
    return ::__invariant_stricmp(szCompare, "combobox") == 0;
 }
 
-bool CLASS_DECL_AURA __compare_class_name(oswindow hWnd, const char * lpszClassName)
+bool CLASS_DECL_AXIS __compare_class_name(oswindow hWnd, const char * lpszClassName)
 {
    ASSERT(::IsWindow(hWnd));
    char szTemp[32];
@@ -49,7 +49,7 @@ bool CLASS_DECL_AURA __compare_class_name(oswindow hWnd, const char * lpszClassN
 }
 
 
-oswindow CLASS_DECL_AURA __child_window_from_point(oswindow hWnd, POINT point)
+oswindow CLASS_DECL_AXIS __child_window_from_point(oswindow hWnd, POINT point)
 {
    ASSERT(hWnd != nullptr);
 
@@ -72,7 +72,7 @@ oswindow CLASS_DECL_AURA __child_window_from_point(oswindow hWnd, POINT point)
    return nullptr;    // not found
 }
 
-void CLASS_DECL_AURA __set_window_text(::user::interaction * hWndCtrl, const char * lpszNew)
+void CLASS_DECL_AXIS __set_window_text(::user::interaction * hWndCtrl, const char * lpszNew)
 {
    hWndCtrl->set_window_text(lpszNew);
    /*ENSURE(hWndCtrl);
@@ -90,7 +90,7 @@ void CLASS_DECL_AURA __set_window_text(::user::interaction * hWndCtrl, const cha
    }*/
 }
 
-void CLASS_DECL_AURA __delete_object(HGDIOBJ* pObject)
+void CLASS_DECL_AXIS __delete_object(HGDIOBJ* pObject)
 {
    ENSURE_ARG(pObject != nullptr);
    if (*pObject != nullptr)
@@ -100,7 +100,7 @@ void CLASS_DECL_AURA __delete_object(HGDIOBJ* pObject)
    }
 }
 /*
-void CLASS_DECL_AURA __cancel_modes(oswindow hWndRcvr)
+void CLASS_DECL_AXIS __cancel_modes(oswindow hWndRcvr)
 {
    // if we receive a message destined for a ::user::interaction_impl, cancel any combobox
    //  popups that could be in toolbars or dialog bars
@@ -133,7 +133,7 @@ void CLASS_DECL_AURA __cancel_modes(oswindow hWndRcvr)
    ::SendMessage(hWndCancel, CB_SHOWDROPDOWN, FALSE, 0L);
 }*/
 
-void CLASS_DECL_AURA __global_free(HGLOBAL hGlobal)
+void CLASS_DECL_AXIS __global_free(HGLOBAL hGlobal)
 {
    if (hGlobal == nullptr)
       return;

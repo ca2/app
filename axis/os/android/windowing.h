@@ -60,7 +60,7 @@ typedef address_array < oswindow_data * > oswindow_dataptra;
 *
 */
 
-struct CLASS_DECL_AURA oswindow_data
+struct CLASS_DECL_AXIS oswindow_data
 {
 
 //#ifdef ANDROID
@@ -214,4 +214,4 @@ class mutex;
 
 
 
-CLASS_DECL_AURA oswindow_data * oswindow_get(::user::interaction_impl * pinteraction);
+CLASS_DECL_AXIS oswindow_data * oswindow_get(::user::interaction_impl * pinteraction);

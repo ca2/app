@@ -5,7 +5,7 @@ namespace sockets
 {
 
 
-   class CLASS_DECL_AURA http_buffer :
+   class CLASS_DECL_AXIS http_buffer :
       virtual public ::file::transfer_file
    {
    public:

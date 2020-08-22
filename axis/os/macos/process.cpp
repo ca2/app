@@ -137,7 +137,7 @@ int create_process2(const char * _cmd_line, int * pprocessId)
 }
 
 
-CLASS_DECL_AURA int call_async(
+CLASS_DECL_AXIS int call_async(
 const char * pszPath,
 const char * pszParam,
 const char * pszDir,
@@ -182,7 +182,7 @@ unsigned int * puiPid)
 }
 
 
-CLASS_DECL_AURA u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::edisplay edisplay, const ::duration & durationTimeout, ::property_set & set)
+CLASS_DECL_AXIS u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::edisplay edisplay, const ::duration & durationTimeout, ::property_set & set)
 {
 
    string strCmdLine;
@@ -287,7 +287,7 @@ string apple_app_module_path()
 
 }
 
-CLASS_DECL_AURA bool is_shared_library_busy(u32 processid, const string_array & stra)
+CLASS_DECL_AXIS bool is_shared_library_busy(u32 processid, const string_array & stra)
 {
 
    return false;
@@ -295,7 +295,7 @@ CLASS_DECL_AURA bool is_shared_library_busy(u32 processid, const string_array & 
 }
 
 
-CLASS_DECL_AURA bool is_shared_library_busy(const string_array & stra)
+CLASS_DECL_AXIS bool is_shared_library_busy(const string_array & stra)
 {
 
    return false;
@@ -310,7 +310,7 @@ void os_term_application()
 }
 
 
-CLASS_DECL_AURA ::file::path core_app_path(string strApp)
+CLASS_DECL_AXIS ::file::path core_app_path(string strApp)
 {
 
    ::file::path path = getenv("HOME");

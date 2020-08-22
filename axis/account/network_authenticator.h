@@ -14,7 +14,7 @@ namespace account
 {
 
 
-   class CLASS_DECL_AURA network_authenticator :
+   class CLASS_DECL_AXIS network_authenticator :
       virtual public authenticator
    {
    public:

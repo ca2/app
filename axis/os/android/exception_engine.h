@@ -5,7 +5,7 @@ namespace android
 {
 
 
-   class CLASS_DECL_AURA exception_engine :
+   class CLASS_DECL_AXIS exception_engine :
       public ::exception_engine
    {
    public:

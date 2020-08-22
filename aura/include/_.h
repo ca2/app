@@ -518,6 +518,43 @@ namespace aura
 } // namespace aura
 
 
+namespace axis
+{
+
+
+   class application;
+   class session;
+   class system;
+
+
+} // namespace axis
+
+
+namespace base
+{
+
+
+   class application;
+   class session;
+   class system;
+
+
+} // namespace base
+
+
+namespace core
+{
+
+
+   class application;
+   class session;
+   class system;
+
+
+} // namespace core
+
+
+
 #include "aura/primitive/string/_c_impl.h"
 
 
@@ -1384,6 +1421,10 @@ namespace colorertake5
 class memory;
 
 
+CLASS_DECL_AURA ::aura::system* platform_create_system();
+CLASS_DECL_AURA ::aura::session* platform_create_session();
+
+
 //namespace plane
 //{
 //
@@ -1905,6 +1946,7 @@ namespace xml
 
    
    class node;
+   class document;
 
 
 } // namespace xml
@@ -2901,23 +2943,6 @@ namespace uwp
 
 
 
-class CLASS_DECL_AURA openweather_city :
-   virtual public context_object
-{
-public:
-
-   index    m_iIndex;
-   string   m_strCnt;
-   string   m_strCit;
-   i64  m_iId;
-   double   m_dLat;
-   double   m_dLon;
-
-};
-
-
-
-
 CLASS_DECL_AURA string get_system_error_message(u32 dwError);
 
 
@@ -3254,8 +3279,6 @@ class ifs;
 //#include "core/user/userex/userex.h"
 
 #include "aura/platform/session.h"
-
-#include "aura/net/email_department.h"
 
 #include "aura/multithreading/retry.h"
 

@@ -405,7 +405,7 @@ int destroy_window(oswindow oswindow)
 
 
 //
-//CLASS_DECL_AURA::user::interaction_impl * oswindow_interaction_impl(oswindow oswindow)
+//CLASS_DECL_AXIS::user::interaction_impl * oswindow_interaction_impl(oswindow oswindow)
 //{
 //
 //   if(oswindow == nullptr)
@@ -490,7 +490,7 @@ __int64 oswindow_id(struct oswindow_data * pdata)
 oswindow g_oswindowFocus = nullptr;
 
 
-CLASS_DECL_AURA oswindow get_focus()
+CLASS_DECL_AXIS oswindow get_focus()
 {
 
    return g_oswindowFocus;
@@ -498,7 +498,7 @@ CLASS_DECL_AURA oswindow get_focus()
 }
 
 
-CLASS_DECL_AURA oswindow set_focus(oswindow oswindow)
+CLASS_DECL_AXIS oswindow set_focus(oswindow oswindow)
 {
 
    ::oswindow oswindowPrevious = g_oswindowFocus;
@@ -539,7 +539,7 @@ CLASS_DECL_AURA oswindow set_focus(oswindow oswindow)
 }
 
 
-CLASS_DECL_AURA oswindow get_window(oswindow oswindow, int iWindow)
+CLASS_DECL_AXIS oswindow get_window(oswindow oswindow, int iWindow)
 {
 
    if (iWindow == GW_OWNER)
@@ -566,7 +566,7 @@ CLASS_DECL_AURA oswindow get_window(oswindow oswindow, int iWindow)
 
 
 
-CLASS_DECL_AURA WINBOOL show_window(oswindow oswindow, int iShowCmd)
+CLASS_DECL_AXIS WINBOOL show_window(oswindow oswindow, int iShowCmd)
 {
 
    UNREFERENCED_PARAMETER(oswindow);

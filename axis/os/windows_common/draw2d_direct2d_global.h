@@ -23,31 +23,31 @@ interface ID3D11Device1;
 interface IDXGIDevice;
 
 
-CLASS_DECL_AURA ID2D1Factory1 * get_d2d1_factory1(bool bCreate = true);
-CLASS_DECL_AURA IDWriteFactory * global_draw_get_write_factory(bool bCreate = true);
-CLASS_DECL_AURA ID3D11Device * global_draw_get_d3d11_device();
-CLASS_DECL_AURA ID3D11Device1 * global_draw_get_d3d11_device1();
-CLASS_DECL_AURA ID3D11DeviceContext * global_draw_get_d3d11_device_context(); // Immediate Device Context
-CLASS_DECL_AURA ID3D11DeviceContext1 * global_draw_get_d3d11_device_context1(); // Immediate Device Context
-CLASS_DECL_AURA IDXGIDevice * global_draw_get_dxgi_device();
-CLASS_DECL_AURA ID2D1Device * global_draw_get_d2d1_device();
+CLASS_DECL_AXIS ID2D1Factory1 * get_d2d1_factory1(bool bCreate = true);
+CLASS_DECL_AXIS IDWriteFactory * global_draw_get_write_factory(bool bCreate = true);
+CLASS_DECL_AXIS ID3D11Device * global_draw_get_d3d11_device();
+CLASS_DECL_AXIS ID3D11Device1 * global_draw_get_d3d11_device1();
+CLASS_DECL_AXIS ID3D11DeviceContext * global_draw_get_d3d11_device_context(); // Immediate Device Context
+CLASS_DECL_AXIS ID3D11DeviceContext1 * global_draw_get_d3d11_device_context1(); // Immediate Device Context
+CLASS_DECL_AXIS IDXGIDevice * global_draw_get_dxgi_device();
+CLASS_DECL_AXIS ID2D1Device * global_draw_get_d2d1_device();
 
 
 
-CLASS_DECL_AURA float point_dpi(oswindow hwnd, float points);
-CLASS_DECL_AURA float dpiy(oswindow hwnd, float y);
-CLASS_DECL_AURA float dpix(oswindow hwnd, float y);
-CLASS_DECL_AURA float y_dpi(oswindow hwnd, float y);
-CLASS_DECL_AURA float x_dpi(oswindow hwnd, float y);
+CLASS_DECL_AXIS float point_dpi(oswindow hwnd, float points);
+CLASS_DECL_AXIS float dpiy(oswindow hwnd, float y);
+CLASS_DECL_AXIS float dpix(oswindow hwnd, float y);
+CLASS_DECL_AXIS float y_dpi(oswindow hwnd, float y);
+CLASS_DECL_AXIS float x_dpi(oswindow hwnd, float y);
 
 
 namespace draw2d_direct2d
 {
 
 
-   CLASS_DECL_AURA void direct2d_finalize();
+   CLASS_DECL_AXIS void direct2d_finalize();
 
-   CLASS_DECL_AURA void defer_direct2d_initialize();
+   CLASS_DECL_AXIS void defer_direct2d_initialize();
 
 
 } // namespace draw2d
@@ -69,5 +69,5 @@ namespace dx
 } // namespace dx
 
 
-CLASS_DECL_AURA void directx_debug();
+CLASS_DECL_AXIS void directx_debug();
 

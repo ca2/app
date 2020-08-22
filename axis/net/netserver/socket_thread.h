@@ -5,7 +5,7 @@ namespace netserver
 {
 
 
-   class CLASS_DECL_AURA socket_thread :
+   class CLASS_DECL_AXIS socket_thread :
       virtual public ::thread
    {
    public:

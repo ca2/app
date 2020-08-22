@@ -26,7 +26,7 @@
 typedef ref_array < oswindow_data > oswindow_dataptra;
 
 
-struct CLASS_DECL_AURA oswindow_data
+struct CLASS_DECL_AXIS oswindow_data
 {
 
    bool                          m_bMessageOnlyWindow;

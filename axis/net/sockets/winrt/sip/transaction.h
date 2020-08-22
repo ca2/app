@@ -5,7 +5,7 @@ namespace sip
 {
 
 
-   class CLASS_DECL_AURA transaction :
+   class CLASS_DECL_AXIS transaction :
       virtual public ::object
    {
    public:

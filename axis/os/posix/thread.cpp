@@ -48,7 +48,7 @@ namespace ansios
 
 
 
-void CLASS_DECL_AURA __init_thread()
+void CLASS_DECL_AXIS __init_thread()
 {
 
 }
@@ -58,7 +58,7 @@ void CLASS_DECL_AURA __init_thread()
 
 
 
-void CLASS_DECL_AURA __term_thread()
+void CLASS_DECL_AXIS __term_thread()
 {
 
 }

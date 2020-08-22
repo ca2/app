@@ -5,7 +5,7 @@ namespace sockets
 {
 
 
-   class CLASS_DECL_AURA AjpBaseSocket : public tcp_socket
+   class CLASS_DECL_AXIS AjpBaseSocket : public tcp_socket
    {
    public:
 

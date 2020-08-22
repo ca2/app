@@ -6,7 +6,7 @@ namespace android
 
 
 
-   class CLASS_DECL_AURA interaction_impl:
+   class CLASS_DECL_AXIS interaction_impl:
       virtual public ::user::interaction_impl
    {
    public:

@@ -28,7 +28,7 @@ namespace sockets
 {
 
    /** Smtp server base class. */
-   class CLASS_DECL_AURA smtpd_socket : public tcp_socket
+   class CLASS_DECL_AXIS smtpd_socket : public tcp_socket
    {
    protected:
       typedef enum {

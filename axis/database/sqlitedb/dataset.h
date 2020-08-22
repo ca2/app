@@ -8,7 +8,7 @@
 //   class database;
 //
 //
-//   class CLASS_DECL_AURA dataset :
+//   class CLASS_DECL_AXIS dataset :
 //      public ::database::dataset
 //   {
 //   public:

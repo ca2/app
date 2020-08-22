@@ -74,7 +74,7 @@ i32 create_process(const char * _cmd_line, i32 * pprocessId)
 }
 
 
-CLASS_DECL_AURA i32 call_async(
+CLASS_DECL_AXIS i32 call_async(
 const char * pszPath,
 const char * pszParam,
 const char * pszDir,
@@ -107,7 +107,7 @@ unsigned int * puiPid)
 
 }
 
-CLASS_DECL_AURA u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::edisplay edisplay, const ::duration & durationTimeout, ::property_set & set)
+CLASS_DECL_AXIS u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::edisplay edisplay, const ::duration & durationTimeout, ::property_set & set)
 {
    string strCmdLine;
 
@@ -144,7 +144,7 @@ CLASS_DECL_AURA u32 call_sync(const char * pszPath, const char * pszParam, const
 
 
 
-CLASS_DECL_AURA bool main_initialize()
+CLASS_DECL_AXIS bool main_initialize()
 {
 
 //   t_posthread = new os_thread(nullptr,nullptr);
@@ -156,7 +156,7 @@ CLASS_DECL_AURA bool main_initialize()
 }
 
 
-CLASS_DECL_AURA bool main_finalize()
+CLASS_DECL_AXIS bool main_finalize()
 {
 
    //if(t_posthread != nullptr)
@@ -196,7 +196,7 @@ namespace process
 {
 
 
-   CLASS_DECL_AURA bool set_priority(::e_priority epriority)
+   CLASS_DECL_AXIS bool set_priority(::e_priority epriority)
    {
 
       i32 iPolicy = SCHED_OTHER;
@@ -220,7 +220,7 @@ namespace process
 
 //wideh * g_pwszCommandLine = nullptr;
 //
-//CLASS_DECL_AURA unichar * GetCommandLineW()
+//CLASS_DECL_AXIS unichar * GetCommandLineW()
 //{
 //
 //   return g_pwszCommandLine;
@@ -228,7 +228,7 @@ namespace process
 //}
 
 
-CLASS_DECL_AURA bool shell_execute_sync(const char * pszPath, const char * pszParam, ::duration durationTimeout)
+CLASS_DECL_AXIS bool shell_execute_sync(const char * pszPath, const char * pszParam, ::duration durationTimeout)
 {
 
    string strCmdLine;
@@ -266,7 +266,7 @@ CLASS_DECL_AURA bool shell_execute_sync(const char * pszPath, const char * pszPa
 }
 
 
-CLASS_DECL_AURA bool is_shared_library_busy(const string_array & stra)
+CLASS_DECL_AXIS bool is_shared_library_busy(const string_array & stra)
 {
 
    return true;
@@ -274,7 +274,7 @@ CLASS_DECL_AURA bool is_shared_library_busy(const string_array & stra)
 }
 
 
-CLASS_DECL_AURA ::file::path core_app_path(string strApp)
+CLASS_DECL_AXIS ::file::path core_app_path(string strApp)
 {
 
    throw todo();

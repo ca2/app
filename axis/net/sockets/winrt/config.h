@@ -186,7 +186,7 @@ namespace sockets {
 
 #elif defined(_UWP)
 
-CLASS_DECL_AURA const char *bsd_socket_error(int x);
+CLASS_DECL_AXIS const char *bsd_socket_error(int x);
 #define Errno get_last_error()
 
 #elif defined(WINDOWS_DESKTOP)
@@ -200,7 +200,7 @@ CLASS_DECL_AURA const char *bsd_socket_error(int x);
 #define SHUT_WR 1
 
 #define Errno WSAGetLastError()
-CLASS_DECL_AURA const char *bsd_socket_error(int x);
+CLASS_DECL_AXIS const char *bsd_socket_error(int x);
 
 namespace sockets
 {
@@ -247,7 +247,7 @@ namespace sockets
 namespace sockets
 {
    /** List type containing file descriptors. */
-   class CLASS_DECL_AURA socket_id_list :
+   class CLASS_DECL_AXIS socket_id_list :
       public ::comparable_list<SOCKET>
    {
    };

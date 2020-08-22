@@ -2,7 +2,7 @@
 
 class pcre_context_impl;
 
-class CLASS_DECL_AURA pcre_context :
+class CLASS_DECL_AXIS pcre_context :
    virtual public ::regex_context
 {
 public:
@@ -25,7 +25,7 @@ protected:
 };
 
 
-class CLASS_DECL_AURA pcre_regex :
+class CLASS_DECL_AXIS pcre_regex :
    virtual public ::regex
 {
 public:
@@ -61,7 +61,7 @@ public:
 };
 
 
-class CLASS_DECL_AURA pcre_code :
+class CLASS_DECL_AXIS pcre_code :
    virtual public pcre_regex
 {
 public:

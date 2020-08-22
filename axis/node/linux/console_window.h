@@ -5,7 +5,7 @@ namespace linux
 {
 
 
-   class CLASS_DECL_AURA console :
+   class CLASS_DECL_AXIS console :
       virtual public ::console::console
    {
    public:

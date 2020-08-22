@@ -158,7 +158,7 @@ bool __os_term_thread()
 
 #pragma warning (disable : 4273)
 
-CLASS_DECL_AURA DWORD WINAPI MsgWaitForMultipleObjects(DWORD nCount, const HANDLE* pHandles, BOOL fWaitAll, DWORD dwMilliseconds, DWORD dwWakeMask)
+CLASS_DECL_AXIS DWORD WINAPI MsgWaitForMultipleObjects(DWORD nCount, const HANDLE* pHandles, BOOL fWaitAll, DWORD dwMilliseconds, DWORD dwWakeMask)
 {
 
    return MsgWaitForMultipleObjectsEx(nCount, pHandles, dwMilliseconds, dwWakeMask | (fWaitAll ? MWMO_WAITALL: 0), 0);
@@ -166,7 +166,7 @@ CLASS_DECL_AURA DWORD WINAPI MsgWaitForMultipleObjects(DWORD nCount, const HANDL
 }
 
 
-CLASS_DECL_AURA DWORD WINAPI MsgWaitForMultipleObjectsEx(DWORD nCount, const HANDLE* pHandles, DWORD dwMilliseconds, DWORD dwWakeMask, DWORD dwFlags)
+CLASS_DECL_AXIS DWORD WINAPI MsgWaitForMultipleObjectsEx(DWORD nCount, const HANDLE* pHandles, DWORD dwMilliseconds, DWORD dwWakeMask, DWORD dwFlags)
 {
 
    DWORD dwResult = 0;

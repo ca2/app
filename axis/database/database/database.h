@@ -8,7 +8,7 @@ namespace database
    class dataset;
    class transaction;
 
-   class CLASS_DECL_AURA database :
+   class CLASS_DECL_AXIS database :
       virtual public ::object
    {
    public:
@@ -110,7 +110,7 @@ namespace database
    };
 
 
-   class CLASS_DECL_AURA transaction :
+   class CLASS_DECL_AXIS transaction :
       virtual public context_object
    {
    public:

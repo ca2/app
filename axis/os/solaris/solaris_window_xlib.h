@@ -5,7 +5,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA window_xlib :
+class CLASS_DECL_AXIS window_xlib :
    public window_graphics
 {
 public:

@@ -187,7 +187,7 @@ void module_output_debug_string_w(HINSTANCE hinstance, WCHAR* pwszPrefix = nullp
 #ifdef _UWP
 [MTAThread]
 #endif
-WINBOOL CLASS_DECL_AURA _001DefaultDllMain(HINSTANCE hinstance, DWORD dwReason, LPVOID pReserved, int iLibMainDebugBox, const lib_main_int& intDelayMs)
+WINBOOL CLASS_DECL_AXIS _001DefaultDllMain(HINSTANCE hinstance, DWORD dwReason, LPVOID pReserved, int iLibMainDebugBox, const lib_main_int& intDelayMs)
 {
 
    UNREFERENCED_PARAMETER(pReserved);

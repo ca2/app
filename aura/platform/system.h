@@ -15,6 +15,11 @@ namespace aura
    public:
 
 
+
+
+      ::axis::system* m_paxissystem;
+      ::base::system* m_pbasesystem;
+      ::core::system* m_pcoresystem;
       __pointer(::aura::application)                     m_papplicationStartup;
 
       __composite(::aura::system)                        m_psystemParent;
@@ -89,7 +94,7 @@ namespace aura
 
       float                                              m_dpi;
 
-      void *                                             m_ftlibrary;
+      //void *                                             m_ftlibrary;
 
       var                                                m_varFile;
 //      var                                                m_
@@ -123,20 +128,20 @@ namespace aura
       tick                                               m_tickMainStart;
       tick                                               m_tickAfterApplicationFirstRequest;
 
-      __pointer(::mutex)                                 m_spmutexOpenweatherCity;
+      //__pointer(::mutex)                                 m_spmutexOpenweatherCity;
 
-      string_array                                       m_straCityLo;
-      string_array                                       m_straCity;
-      i64_array                                          m_iaIds;
-      double_array                                       m_daLon;
-      double_array                                       m_daLat;
+      //string_array                                       m_straCityLo;
+      //string_array                                       m_straCity;
+      //i64_array                                          m_iaIds;
+      //double_array                                       m_daLon;
+      //double_array                                       m_daLat;
 
-      string_map < __pointer(openweather_city) >         m_mapCity;
+      //string_map < __pointer(openweather_city) >         m_mapCity;
 
       string                                             m_strIosHome;
       string                                             m_strIosTemp;
 
-      __composite(::net::email_department)               m_pemaildepartment;
+//      __composite(::net::email_department)               m_pemaildepartment;
 
       string_array                                            m_straCommandLineAccumul;
       string_array                                            m_straCommandLineExtra;
@@ -469,7 +474,7 @@ namespace aura
       //inline ::file::system_file & file() { return *m_spfile; }
 
 
-      ::net::email_department                & email();
+      //::net::email_department                & email();
 
       //__pointer(::account::user_set)                userset();
 
@@ -480,7 +485,7 @@ namespace aura
 
       virtual void on_allocation_error(const ::string & strName, ::object * pobjectSometimes);
 
-      ::mutex * get_openweather_city_mutex();
+      //::mutex * get_openweather_city_mutex();
 
 
       virtual os_local & oslocal();
@@ -648,7 +653,6 @@ namespace aura
 
       class ::crypto::crypto                       & crypto();
 
-      virtual void * & ftlibrary();
 
       virtual ::file::path local_get_matter_cache_path();
       virtual ::file::path local_get_matter_cache_path(string strMatter);
@@ -702,11 +706,11 @@ namespace aura
 
       virtual ::estatus do_request(::create * pcreate) override;
 
-      virtual void defer_check_openweather_city_list();
+      //virtual void defer_check_openweather_city_list();
 
-      virtual openweather_city * openweather_find_city(string strQuery);
-      virtual index openweather_find_city2(string strQuery, string & strCit, i64 & iId, double & dLat, double & dLon);
-      virtual index openweather_find_city2(string strQ1, string strQ2, string & strCit, i64 & iId, double & dLat, double & dLon, bool bPrefix);
+      //virtual openweather_city * openweather_find_city(string strQuery);
+      //virtual index openweather_find_city2(string strQuery, string & strCit, i64 & iId, double & dLat, double & dLon);
+      //virtual index openweather_find_city2(string strQ1, string strQ2, string & strCit, i64 & iId, double & dLat, double & dLon, bool bPrefix);
 
 #ifdef ANDROID
 //#pragma message("at macos??")

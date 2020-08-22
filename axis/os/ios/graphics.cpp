@@ -78,7 +78,7 @@ namespace draw2d
 {
 
 
-   CLASS_DECL_AURA string default_font_name()
+   CLASS_DECL_AXIS string default_font_name()
    {
    
       return "ArialMT";

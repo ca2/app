@@ -106,13 +106,13 @@ namespace macos
    }
 
 
-   CLASS_DECL_AURA void hook_window_create(::user::interaction * pWnd);
+   CLASS_DECL_AXIS void hook_window_create(::user::interaction * pWnd);
 
-   CLASS_DECL_AURA bool unhook_window_create();
+   CLASS_DECL_AXIS bool unhook_window_create();
 
-   void CLASS_DECL_AURA __pre_init_dialog(::user::interaction * pWnd, LPRECT lpRectOld, DWORD* pdwStyleOld);
+   void CLASS_DECL_AXIS __pre_init_dialog(::user::interaction * pWnd, LPRECT lpRectOld, DWORD* pdwStyleOld);
 
-   void CLASS_DECL_AURA __post_init_dialog(::user::interaction * pWnd, const RECT& rectOld, DWORD dwStyleOld);
+   void CLASS_DECL_AXIS __post_init_dialog(::user::interaction * pWnd, const RECT& rectOld, DWORD dwStyleOld);
 
    LRESULT CALLBACK __activation_window_procedure(oswindow hWnd, UINT nMsg, WPARAM wparam, LPARAM lparam);
 
@@ -5329,7 +5329,7 @@ namespace macos
    }
 
 
-   void CLASS_DECL_AURA __pre_init_dialog(
+   void CLASS_DECL_AXIS __pre_init_dialog(
    ::user::interaction * pWnd, LPRECT lpRectOld, DWORD* pdwStyleOld)
    {
       ASSERT(lpRectOld != nullptr);
@@ -5339,7 +5339,7 @@ namespace macos
       *pdwStyleOld = pWnd->GetStyle();
    }
 
-//   __STATIC void CLASS_DECL_AURA __post_init_dialog(
+//   __STATIC void CLASS_DECL_AXIS __post_init_dialog(
 //      ::user::interaction * p, const RECT& rectOld, DWORD dwStyleOld)
 //   {
 //      // must be hidden to start with
@@ -5370,7 +5370,7 @@ namespace macos
 
 
 
-   CLASS_DECL_AURA void hook_window_create(::user::interaction * pinteraction)
+   CLASS_DECL_AXIS void hook_window_create(::user::interaction * pinteraction)
    {
 
       UNREFERENCED_PARAMETER(pinteraction);
@@ -5378,7 +5378,7 @@ namespace macos
    }
 
 
-   CLASS_DECL_AURA bool unhook_window_create()
+   CLASS_DECL_AXIS bool unhook_window_create()
    {
 
       return true;
@@ -5386,7 +5386,7 @@ namespace macos
    }
 
 
-   void CLASS_DECL_AURA
+   void CLASS_DECL_AXIS
    __handle_activate(::user::interaction * pWnd, WPARAM nState, ::user::interaction * pWndOther)
    {
 
@@ -5417,7 +5417,7 @@ namespace macos
       //   }
    }
 
-   bool CLASS_DECL_AURA
+   bool CLASS_DECL_AXIS
    __handle_set_cursor(::user::interaction * pWnd, UINT nHitTest, UINT nMsg)
    {
 

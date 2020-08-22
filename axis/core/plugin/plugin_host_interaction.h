@@ -10,7 +10,7 @@ namespace plugin
    class plugin;
 
 
-   class CLASS_DECL_AURA host_interaction :
+   class CLASS_DECL_AXIS host_interaction :
       public ::user::box
    {
    public:

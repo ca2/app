@@ -3,7 +3,7 @@
 #include "aura/platform/app_core.h"
 
 
-CLASS_DECL_AURA string thread_get_name();
+CLASS_DECL_AXIS string thread_get_name();
 
 #include <stdio.h>
 // #include <stdarg.h>
@@ -26,7 +26,7 @@ CLASS_DECL_AURA string thread_get_name();
 #define ENABLE_TRACE 1
 #endif
 
-namespace aura
+namespace axis
 {
 
 
@@ -226,7 +226,7 @@ namespace aura
 
 //   extern __pointer(::aura::application) g_papp;
 
-   CLASS_DECL_AURA i32 SimpleDebugReport(i32 iReportType, const char * pszFileName,i32 iLine,const char *,const char * pszFormat, va_list list)
+   CLASS_DECL_AXIS i32 SimpleDebugReport(i32 iReportType, const char * pszFileName,i32 iLine,const char *,const char * pszFormat, va_list list)
    {
 #ifdef WIN32
 
@@ -786,7 +786,7 @@ skip_further_possible_recursive_impossible_logging_in_file:
       va_end(ptr);
    }*/
 
-} // namespace aura
+} // namespace axis
 
 
 

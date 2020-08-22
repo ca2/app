@@ -6,7 +6,7 @@
 //{
 //
 //
-//   class CLASS_DECL_AURA stream :
+//   class CLASS_DECL_AXIS stream :
 //      virtual public ::text_stream
 //   {
 //   public:

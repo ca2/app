@@ -22,9 +22,11 @@ public:
    {
 
       flag_none,
-      flag_application = 1,
-      flag_library = 2,
-      flag_object_user = 4,
+      flag_system = 1,
+      flag_session = 2,
+      flag_application = 4,
+      flag_library = 8,
+      flag_object_user = 16,
       flag_do_not_install = 4096,
 
    };
@@ -109,6 +111,15 @@ public:
 
 #define __namespace_object_factory(OBJECT, EOBJECT) \
 ::static_object_factory < OBJECT > TOKEN_AT_LINE(g_library_factory)(EOBJECT);
+
+
+#define __namespace_system_factory(SYSTEM) \
+__namespace_object_factory(SYSTEM,:: static_setup::flag_system)
+
+
+#define __namespace_session_factory(SESSION) \
+__namespace_object_factory(SESSION,:: static_setup::flag_session)
+
 
 
 

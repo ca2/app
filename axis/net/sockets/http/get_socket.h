@@ -36,7 +36,7 @@ namespace sockets
 
    /** get http page.
    \ingroup http */
-   class CLASS_DECL_AURA http_get_socket :
+   class CLASS_DECL_AXIS http_get_socket :
       virtual public http_client_socket
    {
    public:

@@ -10,7 +10,7 @@ namespace account
 {
 
    
-   class CLASS_DECL_AURA authenticator :
+   class CLASS_DECL_AXIS authenticator :
       virtual public ::object
    {
    public:

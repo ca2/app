@@ -78,16 +78,12 @@ namespace datetime
       };
 
 
-      int_ptr_map < time_zone >     m_cityTimeZone;
-      //string_map < time_zone >      m_countryTimeZone;
 
 
       class ::datetime::department::international  m_international;
       class ::datetime::department::str            m_str;
 
 
-      //bool                                         m_bInitialCountryTimeZoneInit;
-      bool                                         m_bInitialLocalityTimeZoneInit;
 
 
       department();
@@ -134,21 +130,12 @@ namespace datetime
 
       string friend_time(const ::aura::str_context * pcontext,::datetime::time timeNow,::datetime::time time);
 
-      virtual bool   locality_sunset(openweather_city * pcity, int & iRise, int & iSet);
-      virtual bool   locality_sunset(string strCountry, string strLocality, int & iRise, int & iSet);
-      virtual string initial_locality_time_zone(openweather_city * pcity, double & dZone);
-      virtual string initial_locality_time_zone(string strCountry, string strLocality, double & dZone);
-      virtual string initial_country_time_zone(string strCountry);
-      virtual string utc_offset_string(double dUTCOffset);
-      virtual double time_zone(string str, string strCountryCode);
 
 
       virtual string _001FriendTime(const ::aura::str_context* pcontext, const ::datetime::time& timeNow, const ::datetime::time& time);
 
    };
 
-
-   CLASS_DECL_AURA bool utc_offset_invalid(double dUTCOffset);
 
 
 

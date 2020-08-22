@@ -4,7 +4,7 @@
 #include "aura/os/_application.h"
 
 
-//CLASS_DECL_AURA i32 main_windows(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPTSTR pCmdLine, int nCmdShow)
+//CLASS_DECL_AXIS i32 main_windows(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPTSTR pCmdLine, int nCmdShow)
 //{
 //
 //   int iStatus = -1;

@@ -4,7 +4,7 @@
 class FileException;
 struct FileStatus;
 
-void CLASS_DECL_AURA vfxGetRoot(const unichar * lpszPath, string& wstrRoot);
+void CLASS_DECL_AXIS vfxGetRoot(const unichar * lpszPath, string& wstrRoot);
 
 namespace ios
 {
@@ -12,7 +12,7 @@ namespace ios
    /////////////////////////////////////////////////////////////////////////////
    // File - raw unbuffered disk file I/O
 
-   class CLASS_DECL_AURA file :
+   class CLASS_DECL_AXIS file :
       virtual public ::file::file
    {
    public:

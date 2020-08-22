@@ -26,9 +26,9 @@ string get_error_message(DWORD dwError);
 // Global implementation helpers
 
 // window creation hooking
-//CLASS_DECL_AURA void hook_window_create(::user::interaction * pWnd);
-//CLASS_DECL_AURA bool unhook_window_create();
-//CLASS_DECL_AURA void reset_message_cache();
+//CLASS_DECL_AXIS void hook_window_create(::user::interaction * pWnd);
+//CLASS_DECL_AXIS bool unhook_window_create();
+//CLASS_DECL_AXIS void reset_message_cache();
 
 
 #include "command.h"
@@ -57,12 +57,12 @@ string get_error_message(DWORD dwError);
 #define WIN_THREAD(pthread) (dynamic_cast < ::_UWP::thread * > (dynamic_cast < ::thread * >(pthread)))
 
 
-//CLASS_DECL_AURA void __trace_message(const char * pszPrefix, ::message::message * pmessage);
+//CLASS_DECL_AXIS void __trace_message(const char * pszPrefix, ::message::message * pmessage);
 
-//CLASS_DECL_AURA void __trace_message(const char * pszPrefix, LPMESSAGE lpmsg);
+//CLASS_DECL_AXIS void __trace_message(const char * pszPrefix, LPMESSAGE lpmsg);
 
 
-//CLASS_DECL_AURA void __cdecl __pre_translate_message(::message::message * pmessage);
+//CLASS_DECL_AXIS void __cdecl __pre_translate_message(::message::message * pmessage);
 
 #include "tts_speaker.h"
 

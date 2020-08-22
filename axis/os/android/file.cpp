@@ -43,7 +43,7 @@ i64 fd_get_file_size(i32 fd)
 
 
 
-CLASS_DECL_AURA void dll_processes(u32_array & dwa, string_array & straProcesses, const char * pszDll)
+CLASS_DECL_AXIS void dll_processes(u32_array & dwa, string_array & straProcesses, const char * pszDll)
 {
 
 
@@ -100,7 +100,7 @@ int lockf(int fd, int cmd, off_t ignored_len)
 }
 
 
- CLASS_DECL_AURA bool _os_may_have_alias(const char * psz)
+ CLASS_DECL_AXIS bool _os_may_have_alias(const char * psz)
  {
 
     return true;

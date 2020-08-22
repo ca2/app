@@ -5,7 +5,7 @@ namespace database
 {
 
    
-   class CLASS_DECL_AURA field_definition_item : 
+   class CLASS_DECL_AXIS field_definition_item : 
       virtual public ::object
    {
    public:
@@ -38,7 +38,7 @@ namespace database
    };
 
 
-   class CLASS_DECL_AURA field_definition : 
+   class CLASS_DECL_AXIS field_definition : 
       virtual public array < field_definition_item >
    {
    public:

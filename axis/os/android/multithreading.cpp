@@ -389,10 +389,10 @@ void get_os_priority(i32 * piPolicy, sched_param * pparam, i32 nCa2Priority)
 //
 //
 //
-//namespace aura
+//namespace axis
 //{
 //
-//   CLASS_DECL_AURA bool set_priority_class(i32 priority)
+//   CLASS_DECL_AXIS bool set_priority_class(i32 priority)
 //   {
 //
 //      i32 iPolicy = SCHED_OTHER;
@@ -412,7 +412,7 @@ void get_os_priority(i32 * piPolicy, sched_param * pparam, i32 nCa2Priority)
 //
 //
 //
-//} // namespace aura
+//} // namespace axis
 
 
 #if !defined(ANDROID) || defined(__arm__)

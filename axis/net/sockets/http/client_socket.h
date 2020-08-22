@@ -20,13 +20,13 @@ namespace sockets
    };
 
 
-   CLASS_DECL_AURA string http_method_string(e_http_method emethod);
-   CLASS_DECL_AURA e_http_method string_http_method(const string & str);
+   CLASS_DECL_AXIS string http_method_string(e_http_method emethod);
+   CLASS_DECL_AXIS e_http_method string_http_method(const string & str);
 
 
    /** get http response to file or memory.
    \ingroup http */
-   class CLASS_DECL_AURA http_client_socket :
+   class CLASS_DECL_AXIS http_client_socket :
       virtual public http_tunnel,
       virtual public int_scalar_source
    {
@@ -135,7 +135,7 @@ namespace http
 {
 
 
-   class CLASS_DECL_AURA session :
+   class CLASS_DECL_AXIS session :
       virtual public ::object
    {
    public:

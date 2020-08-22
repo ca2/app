@@ -30,11 +30,11 @@
 
 
 
-CLASS_DECL_AURA DWORD get_last_error();
-CLASS_DECL_AURA void set_last_error(DWORD dw);
+CLASS_DECL_AXIS DWORD get_last_error();
+CLASS_DECL_AXIS void set_last_error(DWORD dw);
 
 
-CLASS_DECL_AURA bool _istlead(i32 ch);
+CLASS_DECL_AXIS bool _istlead(i32 ch);
 
 
 
@@ -45,8 +45,8 @@ extern oswindow g_oswindowDesktop;
 
 
 
-CLASS_DECL_AURA bool main_initialize();
-CLASS_DECL_AURA bool main_finalize();
+CLASS_DECL_AXIS bool main_initialize();
+CLASS_DECL_AXIS bool main_finalize();
 
 /*
 bool os_on_start_application(::object * pobject);

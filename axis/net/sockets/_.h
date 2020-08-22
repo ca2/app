@@ -1,25 +1,7 @@
 #pragma once
 
 
-#include "logger.h"
-#include "trace_interface.h"
-
-
-
-
-
-namespace net
-{
-
-
-   CLASS_DECL_AURA i32 family_len(i32 family);
-
-
-};
-
-
-#include "sockets_base.h"
-
+#include "aura/net/sockets/_.h"
 
 
 #if defined(BSD_STYLE_SOCKETS)
@@ -29,10 +11,10 @@ namespace net
 #if defined(_UWP) || defined(LINUX)
 
 extern "C"
-CLASS_DECL_AURA const SSL_METHOD * TLS_client_method();
+CLASS_DECL_AXIS const SSL_METHOD * TLS_client_method();
 
 extern "C"
-CLASS_DECL_AURA const SSL_METHOD * TLS_server_method();
+CLASS_DECL_AXIS const SSL_METHOD * TLS_server_method();
 
 #endif
 
@@ -47,21 +29,3 @@ CLASS_DECL_AURA const SSL_METHOD * TLS_server_method();
 #endif
 
 
-#include "http_batch_buffer.h"
-
-
-#include "transfer_socket.h"
-
-
-#include "http/_.h"
-
-
-#include "aura/net/ip_enum.h"
-#include "aura/net/port_forward.h"
-
-
-#include "websocket_client.h"
-
-
-
-CLASS_DECL_AURA string ip_reverse(string str);

@@ -4,7 +4,7 @@
 #include "aura/os/_application.h"
 
 
-//CLASS_DECL_AURA ::estatus aura_run_system_init(::aura::system* psystem)
+//CLASS_DECL_AXIS ::estatus aura_run_system_init(::aura::system* psystem)
 //{
 //
 //   if (!psystem->system_beg())
@@ -30,7 +30,7 @@
 //}
 
 
-//CLASS_DECL_AURA::estatus aura_run_system_term(::aura::system* psystem)
+//CLASS_DECL_AXIS::estatus aura_run_system_term(::aura::system* psystem)
 //{
 //
 //   try
@@ -49,7 +49,7 @@
 //}
 
 
-//CLASS_DECL_AURA ::estatus aura_run_system_proc(::aura::system* psystem)
+//CLASS_DECL_AXIS ::estatus aura_run_system_proc(::aura::system* psystem)
 //{
 //
 //   ::estatus estatus = psystem->system_proc();
@@ -61,7 +61,7 @@
 
 
 
-//CLASS_DECL_AURA i32 aura_run_system(::aura::system * psystem)
+//CLASS_DECL_AXIS i32 aura_run_system(::aura::system * psystem)
 //{
 //
 //   //int iStatus = -1;

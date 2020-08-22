@@ -10,7 +10,7 @@ namespace account
 {
 
 
-   class CLASS_DECL_AURA credentials :
+   class CLASS_DECL_AXIS credentials :
       virtual public storage_client
    {
    public:

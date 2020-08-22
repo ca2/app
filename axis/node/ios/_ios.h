@@ -6,7 +6,7 @@
 
 
 //#include "aura/node/ansios/_.h"
-////#define CLASS_DECL_AURA
+////#define CLASS_DECL_AXIS
 
 //struct plane_system
 //{
@@ -32,8 +32,8 @@ string get_error_message(DWORD dwError);
 #define IOS_THREAD(pthread) (dynamic_cast < ::ios::thread * > (dynamic_cast < ::thread * >(pthread)))
 
 
-CLASS_DECL_AURA void __trace_message(const char * lpszPrefix, ::message::message * pmessage);
-CLASS_DECL_AURA void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
+CLASS_DECL_AXIS void __trace_message(const char * lpszPrefix, ::message::message * pmessage);
+CLASS_DECL_AXIS void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
 
 #include "implementation.h"
 #include "dir_system.h"
@@ -77,12 +77,12 @@ CLASS_DECL_AURA void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
 
 
 
-i32 CLASS_DECL_AURA __ios_main(i32 argc, char * argv[]);
+i32 CLASS_DECL_AXIS __ios_main(i32 argc, char * argv[]);
 
 
-CLASS_DECL_AURA void vfxThrowFileException(::object * pobject, const ::estatus & estatus, LONG lOsError, const char * lpszFileName = nullptr);
+CLASS_DECL_AXIS void vfxThrowFileException(::object * pobject, const ::estatus & estatus, LONG lOsError, const char * lpszFileName = nullptr);
 
-CLASS_DECL_AURA ::file::exception * get_FileException(::object * pobject, const ::estatus & estatus, LONG lOsError, const char * lpszFileName = nullptr);
+CLASS_DECL_AXIS ::file::exception * get_FileException(::object * pobject, const ::estatus & estatus, LONG lOsError, const char * lpszFileName = nullptr);
 
 
 

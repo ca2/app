@@ -1,13 +1,13 @@
 #include "framework.h"
 
 
-CLASS_DECL_AURA void thread_get_os_priority(int32_t * piOsPolicy, sched_param * pparam, int32_t iCa2Priority);
+CLASS_DECL_AXIS void thread_get_os_priority(int32_t * piOsPolicy, sched_param * pparam, int32_t iCa2Priority);
 
-CLASS_DECL_AURA void process_get_os_priority(int32_t * piOsPolicy, sched_param * pparam, int32_t iCa2Priority);
+CLASS_DECL_AXIS void process_get_os_priority(int32_t * piOsPolicy, sched_param * pparam, int32_t iCa2Priority);
 
-CLASS_DECL_AURA int32_t thread_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
+CLASS_DECL_AXIS int32_t thread_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
 
-CLASS_DECL_AURA int32_t process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
+CLASS_DECL_AXIS int32_t process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
 
 
 DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, sync_object * * pobjectptra, DWORD tickTimeout, DWORD dwWakeMask, DWORD dwFlags)
@@ -221,7 +221,7 @@ void thread_data::set(void * p)
 }
 
 
-CLASS_DECL_AURA HTHREAD get_current_hthread()
+CLASS_DECL_AXIS HTHREAD get_current_hthread()
 {
 
    return ::GetCurrentThread();
@@ -229,7 +229,7 @@ CLASS_DECL_AURA HTHREAD get_current_hthread()
 }
 
 
-CLASS_DECL_AURA ITHREAD get_current_ithread()
+CLASS_DECL_AXIS ITHREAD get_current_ithread()
 {
 
    return ::GetCurrentThreadId();
@@ -318,7 +318,7 @@ static HTHREAD g_hMainThread = nullptr;
 static ITHREAD g_iMainThread = (ITHREAD) -1;
 
 
-CLASS_DECL_AURA void set_main_thread(HTHREAD hThread)
+CLASS_DECL_AXIS void set_main_thread(HTHREAD hThread)
 {
 
    g_hMainThread = hThread;
@@ -326,7 +326,7 @@ CLASS_DECL_AURA void set_main_thread(HTHREAD hThread)
 }
 
 
-CLASS_DECL_AURA void set_main_thread_id(ITHREAD uiThread)
+CLASS_DECL_AXIS void set_main_thread_id(ITHREAD uiThread)
 {
 
    g_iMainThread = uiThread;
@@ -334,7 +334,7 @@ CLASS_DECL_AURA void set_main_thread_id(ITHREAD uiThread)
 }
 
 
-CLASS_DECL_AURA HTHREAD get_main_thread()
+CLASS_DECL_AXIS HTHREAD get_main_thread()
 {
 
    return g_hMainThread;
@@ -342,7 +342,7 @@ CLASS_DECL_AURA HTHREAD get_main_thread()
 }
 
 
-CLASS_DECL_AURA ITHREAD get_main_thread_id()
+CLASS_DECL_AXIS ITHREAD get_main_thread_id()
 {
 
    return g_iMainThread;
@@ -350,7 +350,7 @@ CLASS_DECL_AURA ITHREAD get_main_thread_id()
 }
 
 
-CLASS_DECL_AURA void attach_thread_input_to_main_thread(bool bAttach)
+CLASS_DECL_AXIS void attach_thread_input_to_main_thread(bool bAttach)
 {
 
 }
@@ -364,7 +364,7 @@ DWORD g_dwDebug_post_thread_msg_time;
 
 int g_iDebug_post_thread_msg_time;
 
-CLASS_DECL_AURA int_bool WINAPI PostThreadMessage(ITHREAD iThreadId,UINT Msg,WPARAM wParam,LPARAM lParam)
+CLASS_DECL_AXIS int_bool WINAPI PostThreadMessage(ITHREAD iThreadId,UINT Msg,WPARAM wParam,LPARAM lParam)
 {
 
    __pointer(mq) pmq = __get_mq(iThreadId);
@@ -403,7 +403,7 @@ CLASS_DECL_AURA int_bool WINAPI PostThreadMessage(ITHREAD iThreadId,UINT Msg,WPA
 }
 
 
-CLASS_DECL_AURA HTHREAD GetCurrentThread()
+CLASS_DECL_AXIS HTHREAD GetCurrentThread()
 {
 
    return pthread_self();
@@ -411,7 +411,7 @@ CLASS_DECL_AURA HTHREAD GetCurrentThread()
 }
 
 
-CLASS_DECL_AURA ITHREAD GetCurrentThreadId()
+CLASS_DECL_AXIS ITHREAD GetCurrentThreadId()
 {
 
    return pthread_self();
@@ -423,7 +423,7 @@ namespace multithreading
 {
 
 
-   CLASS_DECL_AURA bool set_priority(::e_priority epriority)
+   CLASS_DECL_AXIS bool set_priority(::e_priority epriority)
    {
 
       return (::SetThreadPriority(::GetCurrentThread(),priority) != 0);
@@ -431,7 +431,7 @@ namespace multithreading
    }
 
 
-   CLASS_DECL_AURA int32_t priority()
+   CLASS_DECL_AXIS int32_t priority()
    {
 
       return ::GetThreadPriority(::GetCurrentThread());
@@ -439,7 +439,7 @@ namespace multithreading
    }
 
 
-} // namespace aura
+} // namespace axis
 
 
 bool on_init_thread()
@@ -467,7 +467,7 @@ bool on_term_thread()
 }
 
 
-CLASS_DECL_AURA DWORD_PTR translate_processor_affinity(int iOrder)
+CLASS_DECL_AXIS DWORD_PTR translate_processor_affinity(int iOrder)
 {
 
    return 1 << iOrder;

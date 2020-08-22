@@ -15,7 +15,7 @@
 
 
 
-class CLASS_DECL_AURA tiny_http
+class CLASS_DECL_AXIS tiny_http
 {
 public:
 

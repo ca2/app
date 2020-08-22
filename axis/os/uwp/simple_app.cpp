@@ -1,7 +1,7 @@
 ﻿#include "framework.h"
 //#include "uwp.h"
 
-//namespace aura
+//namespace axis
 //{
 //
 //   app::app()
@@ -170,7 +170,7 @@
 //   }
 //
 //
-//} // namespace aura
+//} // namespace axis
 //
 //
 //

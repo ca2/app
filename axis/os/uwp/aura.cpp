@@ -7,7 +7,7 @@
 namespace audio
 {
 
-   CLASS_DECL_AURA string get_default_library_name()
+   CLASS_DECL_AXIS string get_default_library_name()
    {
 
       return "audio_xaudio";
@@ -377,7 +377,7 @@ string get_system_error_message(u32 dwError)
 
 
 
-//CLASS_DECL_AURA
+//CLASS_DECL_AXIS
 //HANDLE
 //WINAPI
 //CreateMutex(
@@ -389,13 +389,13 @@ string get_system_error_message(u32 dwError)
 //   return CreateMutexW(lpMutexAttributes, bInitialOwner, wstring(lpName));
 //}
 
-//CLASS_DECL_AURA char* getenv (const char* name)
+//CLASS_DECL_AXIS char* getenv (const char* name)
 //{
 //   return "";
 //}
 //
 
-//CLASS_DECL_AURA
+//CLASS_DECL_AXIS
 //_Ret_maybenull_
 //HANDLE
 //WINAPI
@@ -527,7 +527,7 @@ bool __node_aura_pre_init()
 
 }
 
-void CLASS_DECL_AURA __cdecl _ca2_purecall();
+void CLASS_DECL_AXIS __cdecl _ca2_purecall();
 
 bool __node_aura_pos_init()
 {

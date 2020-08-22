@@ -6,7 +6,7 @@
 // http://stackoverflow.com/questions/23709329/launch-one-metro-app-from-other-metro-app-windows-8
 // souvickcse http://stackoverflow.com/users/2246798/souvickcse
 
-namespace aura
+namespace axis
 {
 
 
@@ -413,7 +413,7 @@ namespace aura
    } // namespace ipc
 
 
-} // namespace aura
+} // namespace axis
 
 
 

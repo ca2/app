@@ -6,7 +6,7 @@
 #include <sys/msg.h>
 
 
-namespace aura
+namespace axis
 {
 
 
@@ -524,7 +524,7 @@ namespace aura
    } // namespace ipc
 
 
-} // namespace aura
+} // namespace axis
 
 
 

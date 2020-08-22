@@ -21,9 +21,9 @@ void set_defer_process_x_message(bool (* pfn)(HTHREAD hthread,LPMESSAGE pMsg,osw
 
 #pragma warning (disable:4273)
 
-CLASS_DECL_AURA DWORD WINAPI MsgWaitForMultipleObjects(DWORD nCount, const HANDLE * pHandles, BOOL fWaitAll, DWORD dwMilliseconds, DWORD dwWakeMask);
+CLASS_DECL_AXIS DWORD WINAPI MsgWaitForMultipleObjects(DWORD nCount, const HANDLE * pHandles, BOOL fWaitAll, DWORD dwMilliseconds, DWORD dwWakeMask);
 
-CLASS_DECL_AURA DWORD WINAPI MsgWaitForMultipleObjectsEx(DWORD nCount, const HANDLE* pHandles, DWORD dwMilliseconds, DWORD dwWakeMask, DWORD dwFlags);
+CLASS_DECL_AXIS DWORD WINAPI MsgWaitForMultipleObjectsEx(DWORD nCount, const HANDLE* pHandles, DWORD dwMilliseconds, DWORD dwWakeMask, DWORD dwFlags);
 
 #else
 
@@ -95,22 +95,22 @@ union semun
 // class mq;
 
 
-// CLASS_DECL_AURA int_bool WINAPI GetMessage(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax);
+// CLASS_DECL_AXIS int_bool WINAPI GetMessage(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax);
 
-// CLASS_DECL_AURA int_bool WINAPI PeekMessage(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg);
+// CLASS_DECL_AXIS int_bool WINAPI PeekMessage(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg);
 
-// CLASS_DECL_AURA int_bool WINAPI PostThreadMessage(ITHREAD idthread, UINT Msg, WPARAM wParam, LPARAM lParam);
+// CLASS_DECL_AXIS int_bool WINAPI PostThreadMessage(ITHREAD idthread, UINT Msg, WPARAM wParam, LPARAM lParam);
 
-// CLASS_DECL_AURA void mq_clear(ITHREAD hthread);
+// CLASS_DECL_AXIS void mq_clear(ITHREAD hthread);
 
 
 // #ifndef _UWP
 
-// CLASS_DECL_AURA DWORD WINAPI GetThreadId(HTHREAD Thread);
+// CLASS_DECL_AXIS DWORD WINAPI GetThreadId(HTHREAD Thread);
 
-// CLASS_DECL_AURA HTHREAD GetCurrentThread();
+// CLASS_DECL_AXIS HTHREAD GetCurrentThread();
 
-// CLASS_DECL_AURA ITHREAD GetCurrentThreadId();
+// CLASS_DECL_AXIS ITHREAD GetCurrentThreadId();
 
 // #endif
 

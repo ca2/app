@@ -4,7 +4,7 @@
 
 
 
-namespace aura
+namespace axis
 {
 
 
@@ -18,13 +18,13 @@ namespace aura
       }
 
 
-      CLASS_DECL_AURA i64 micros()
+      CLASS_DECL_AXIS i64 micros()
       {
 
          return ::get_nanos() / 1000;
 
       }
-CLASS_DECL_AURA int profile_sleep()
+CLASS_DECL_AXIS int profile_sleep()
 {
 
 #ifdef __DEBUG
@@ -45,7 +45,7 @@ CLASS_DECL_AURA int profile_sleep()
    } // namespace profiler
 
 
-} // namespace aura
+} // namespace axis
 
 
 

@@ -36,7 +36,7 @@ namespace sockets
    /** \defgroup async Asynchronous DNS */
    /** Async DNS resolver thread.
    \ingroup async */
-   class CLASS_DECL_AURA resolv_server :
+   class CLASS_DECL_AXIS resolv_server :
       virtual public ::thread
    {
    public:

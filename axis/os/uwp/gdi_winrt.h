@@ -4,11 +4,11 @@
 
 
 
-//CLASS_DECL_AURA float point_dpi(float points);
-//CLASS_DECL_AURA float dpiy(float y);
-//CLASS_DECL_AURA float dpix(float x);
-//CLASS_DECL_AURA float y_dpi(float y);
-//CLASS_DECL_AURA float x_dpi(float x);
+//CLASS_DECL_AXIS float point_dpi(float points);
+//CLASS_DECL_AXIS float dpiy(float y);
+//CLASS_DECL_AXIS float dpix(float x);
+//CLASS_DECL_AXIS float y_dpi(float y);
+//CLASS_DECL_AXIS float x_dpi(float x);
 //
 //
-//CLASS_DECL_AURA WINBOOL GetCursorPos(LPPOINT lppoint);
+//CLASS_DECL_AXIS WINBOOL GetCursorPos(LPPOINT lppoint);

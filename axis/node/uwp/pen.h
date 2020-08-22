@@ -5,7 +5,7 @@ namespace uwp
 {
 
 
-   class CLASS_DECL_AURA pen :
+   class CLASS_DECL_AXIS pen :
       virtual public ::_UWP::graphics_object,
       virtual public ::ca2::pen
    {

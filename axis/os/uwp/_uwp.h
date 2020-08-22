@@ -18,30 +18,30 @@
 #endif
 
 
-//CLASS_DECL_AURA bool __cdecl __is_idle_message(::message::message * pmessage);
-//CLASS_DECL_AURA bool __cdecl __is_idle_message(MESSAGE * pMsg);
+//CLASS_DECL_AXIS bool __cdecl __is_idle_message(::message::message * pmessage);
+//CLASS_DECL_AXIS bool __cdecl __is_idle_message(MESSAGE * pMsg);
 
 
-//CLASS_DECL_AURA oswindow WINAPI WinGetFocus();
-//CLASS_DECL_AURA oswindow WINAPI WinSetFocus(oswindow oswindow);
+//CLASS_DECL_AXIS oswindow WINAPI WinGetFocus();
+//CLASS_DECL_AXIS oswindow WINAPI WinSetFocus(oswindow oswindow);
 
 
-CLASS_DECL_AURA string normalize_path(const char* lpcszPath);
+CLASS_DECL_AXIS string normalize_path(const char* lpcszPath);
 
 
-CLASS_DECL_AURA oswindow get_capture();
-CLASS_DECL_AURA oswindow set_capture(oswindow oswindow);
-CLASS_DECL_AURA WINBOOL release_capture();
+CLASS_DECL_AXIS oswindow get_capture();
+CLASS_DECL_AXIS oswindow set_capture(oswindow oswindow);
+CLASS_DECL_AXIS WINBOOL release_capture();
 
-CLASS_DECL_AURA oswindow get_active_window();
-CLASS_DECL_AURA oswindow set_active_window(oswindow oswindow);
-
-
-
-CLASS_DECL_AURA int_bool is_window(oswindow oswindow);
+CLASS_DECL_AXIS oswindow get_active_window();
+CLASS_DECL_AXIS oswindow set_active_window(oswindow oswindow);
 
 
-//CLASS_DECL_AURA int WINAPI GetSystemMetrics(int i);
+
+CLASS_DECL_AXIS int_bool is_window(oswindow oswindow);
+
+
+//CLASS_DECL_AXIS int WINAPI GetSystemMetrics(int i);
 
 namespace user
 {
@@ -67,9 +67,9 @@ namespace user
 
 
 
-//CLASS_DECL_AURA ::Windows::Storage::StorageFolder ^ get_os_folder(const char * lpcszDirName);
-//CLASS_DECL_AURA::Windows::Storage::StorageFile ^ get_os_file(const char * lpcszFileName, dword dwDesiredAcces, dword dwShareMode, LPSECURITY_ATTRIBUTES lpSA, dword dwCreationDisposition, dword dwFlagsAndAttributes, HANDLE hTemplateFile);
-//CLASS_DECL_AURA bool get_file_time(::Windows::Storage::StorageFile ^ file, LPFILETIME lpCreationTime, LPFILETIME lpItemTime, LPFILETIME lpLastWriteTime);
+//CLASS_DECL_AXIS ::Windows::Storage::StorageFolder ^ get_os_folder(const char * lpcszDirName);
+//CLASS_DECL_AXIS::Windows::Storage::StorageFile ^ get_os_file(const char * lpcszFileName, dword dwDesiredAcces, dword dwShareMode, LPSECURITY_ATTRIBUTES lpSA, dword dwCreationDisposition, dword dwFlagsAndAttributes, HANDLE hTemplateFile);
+//CLASS_DECL_AXIS bool get_file_time(::Windows::Storage::StorageFile ^ file, LPFILETIME lpCreationTime, LPFILETIME lpItemTime, LPFILETIME lpLastWriteTime);
 
 
 #include "file_winrt.h"

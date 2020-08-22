@@ -4,7 +4,7 @@
 namespace sockets
 {
 
-   class CLASS_DECL_AURA tls_socket :
+   class CLASS_DECL_AXIS tls_socket :
       virtual public tcp_socket
    {
    public:

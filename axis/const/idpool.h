@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA idpool
+class CLASS_DECL_AXIS idpool
 {
 public:
 

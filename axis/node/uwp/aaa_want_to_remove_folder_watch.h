@@ -3,7 +3,7 @@
 //namespace uwp
 //{
 //
-//   class CLASS_DECL_AURA folder_watch :
+//   class CLASS_DECL_AXIS folder_watch :
 //      virtual public ::file::folder_watch,
 //      virtual public ::thread
 //   {

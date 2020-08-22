@@ -5,7 +5,7 @@ namespace net
 {
 
 
-   class CLASS_DECL_AURA port_forward_change_callbacks
+   class CLASS_DECL_AXIS port_forward_change_callbacks
    {
    public:
 
@@ -21,7 +21,7 @@ namespace net
    };
 
 
-   class CLASS_DECL_AURA port_forward :
+   class CLASS_DECL_AXIS port_forward :
       virtual public ::object
    {
    public:
@@ -49,7 +49,7 @@ namespace net
       // these are public because they are needed by classes that call the
       // GetPortMappingVector() and GetDeviceInformationContainer() methods
 
-      class CLASS_DECL_AURA port_map :
+      class CLASS_DECL_AXIS port_map :
          virtual public object
       {
       public:
@@ -62,7 +62,7 @@ namespace net
          string Description;
       };
 
-      class CLASS_DECL_AURA device :
+      class CLASS_DECL_AXIS device :
          virtual public object
       {
       public:

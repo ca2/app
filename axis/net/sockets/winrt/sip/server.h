@@ -5,7 +5,7 @@ namespace sockets
 {
 
 
-   class CLASS_DECL_AURA sip_server :
+   class CLASS_DECL_AXIS sip_server :
       public ::thread,
       public sip_base
    {

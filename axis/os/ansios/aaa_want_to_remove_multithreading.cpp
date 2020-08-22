@@ -5,13 +5,13 @@
 //#include <pthread.h>
 //
 //
-//CLASS_DECL_AURA void thread_get_os_priority(i32 * piOsPolicy, sched_param * pparam, i32 iCa2Priority);
+//CLASS_DECL_AXIS void thread_get_os_priority(i32 * piOsPolicy, sched_param * pparam, i32 iCa2Priority);
 //
-//CLASS_DECL_AURA void process_get_os_priority(i32 * piOsPolicy, sched_param * pparam, i32 iCa2Priority);
+//CLASS_DECL_AXIS void process_get_os_priority(i32 * piOsPolicy, sched_param * pparam, i32 iCa2Priority);
 //
-//CLASS_DECL_AURA i32 thread_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
+//CLASS_DECL_AXIS i32 thread_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
 //
-//CLASS_DECL_AURA i32 process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
+//CLASS_DECL_AXIS i32 process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
 //
 //
 //DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, HSYNC * pwaitableptra, DWORD dwTimeout, DWORD UNUSED(dwWakeMask), DWORD dwFlags)
@@ -164,7 +164,7 @@
 //
 //
 //
-//CLASS_DECL_AURA HTHREAD get_current_hthread()
+//CLASS_DECL_AXIS HTHREAD get_current_hthread()
 //{
 //
 //   return ::GetCurrentThread();
@@ -172,7 +172,7 @@
 //}
 //
 //
-////CLASS_DECL_AURA pDWORD get_current_ithread()
+////CLASS_DECL_AXIS pDWORD get_current_ithread()
 ////{
 ////
 ////   return ::GetCurrentThreadId();
@@ -1031,7 +1031,7 @@
 ////static HANDLE g_hMainThread = NULL;
 ////static UINT g_iMainThread = -1;
 ////
-////CLASS_DECL_AURA void set_main_thread(HANDLE hThread)
+////CLASS_DECL_AXIS void set_main_thread(HANDLE hThread)
 ////{
 ////
 ////   //   MESSAGE msg;
@@ -1044,7 +1044,7 @@
 ////
 ////}
 ////
-////CLASS_DECL_AURA void set_main_thread_id(UINT uiThread)
+////CLASS_DECL_AXIS void set_main_thread_id(UINT uiThread)
 ////{
 ////
 ////   //   MESSAGE msg;
@@ -1058,18 +1058,18 @@
 ////}
 ////
 ////
-////CLASS_DECL_AURA HANDLE get_main_thread()
+////CLASS_DECL_AXIS HANDLE get_main_thread()
 ////{
 ////   return g_hMainThread;
 ////
 ////}
-////CLASS_DECL_AURA UINT   get_main_thread_id()
+////CLASS_DECL_AXIS UINT   get_main_thread_id()
 ////{
 ////   return g_iMainThread;
 ////}
 ////
 ////
-////CLASS_DECL_AURA void attach_thread_input_to_main_thread(bool bAttach)
+////CLASS_DECL_AXIS void attach_thread_input_to_main_thread(bool bAttach)
 ////{
 ////   return;
 ////   //   MESSAGE msg;
@@ -1135,7 +1135,7 @@
 ////
 /////*
 ////
-////CLASS_DECL_AURA DWORD WINAPI GetThreadId(HTHREAD Thread)
+////CLASS_DECL_AXIS DWORD WINAPI GetThreadId(HTHREAD Thread)
 ////{
 ////
 ////   sync_lock mlThreadId(g_pmutexThreadIdLock);
@@ -1150,7 +1150,7 @@
 ////
 ////}
 ////
-////CLASS_DECL_AURA HTHREAD  WINAPI get_thread_handle(DWORD dw)
+////CLASS_DECL_AXIS HTHREAD  WINAPI get_thread_handle(DWORD dw)
 ////{
 ////
 ////   sync_lock mlThreadIdHandle(g_pmutexThreadIdHandleLock);
@@ -1168,7 +1168,7 @@
 ////*/
 ////
 /////*
-////CLASS_DECL_AURA int_bool WINAPI PostThreadMessageW(DWORD idThread,UINT Msg,WPARAM wParam,LPARAM lParam)
+////CLASS_DECL_AXIS int_bool WINAPI PostThreadMessageW(DWORD idThread,UINT Msg,WPARAM wParam,LPARAM lParam)
 ////{
 ////
 ////   HTHREAD h = ::get_thread_handle(idThread);
@@ -1206,7 +1206,7 @@
 ////}
 ////*/
 ////
-////CLASS_DECL_AURA int_bool WINAPI PostMessageW(oswindow oswindow,UINT Msg,WPARAM wParam,LPARAM lParam)
+////CLASS_DECL_AXIS int_bool WINAPI PostMessageW(oswindow oswindow,UINT Msg,WPARAM wParam,LPARAM lParam)
 ////{
 ////
 ////   HTHREAD  h = oswindow->get_user_interaction()->m_papp->get_os_handle();
@@ -1323,14 +1323,14 @@
 ////
 ////
 ////
-////CLASS_DECL_AURA HTHREAD GetCurrentThread()
+////CLASS_DECL_AXIS HTHREAD GetCurrentThread()
 ////{
 ////
 ////   return currentThread;
 ////
 ////}
 ////
-////CLASS_DECL_AURA UINT GetCurrentThreadId()
+////CLASS_DECL_AXIS UINT GetCurrentThreadId()
 ////{
 ////
 ////   return currentThreadId;

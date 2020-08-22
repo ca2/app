@@ -1,7 +1,7 @@
 #pragma once
 
 
-CLASS_DECL_AURA::estatus os_shell_initialize();
+CLASS_DECL_AXIS::estatus os_shell_initialize();
 
 
 //#include "aura/node/ansios/ansios.h"
@@ -30,10 +30,10 @@ string get_error_message(DWORD dwError);
 
 #include "host_interaction.h"
 
-//CLASS_DECL_AURA void __trace_message(const char * lpszPrefix, ::message::message * pmessage);
-//CLASS_DECL_AURA void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
+//CLASS_DECL_AXIS void __trace_message(const char * lpszPrefix, ::message::message * pmessage);
+//CLASS_DECL_AXIS void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
 
-CLASS_DECL_AURA void __cdecl __pre_translate_message(::message::message* pmessage);
+CLASS_DECL_AXIS void __cdecl __pre_translate_message(::message::message* pmessage);
 
 
 #include "application.h"
@@ -55,10 +55,10 @@ WINBOOL GetMessage(
 
 
 
-i32 CLASS_DECL_AURA __android_main(i32 argc, char* argv[]);
+i32 CLASS_DECL_AXIS __android_main(i32 argc, char* argv[]);
 
 
-CLASS_DECL_AURA void vfxThrowFileException(::object* pobject, const ::estatus& estatus, LONG lOsError, const char* lpszFileName = nullptr);
+CLASS_DECL_AXIS void vfxThrowFileException(::object* pobject, const ::estatus& estatus, LONG lOsError, const char* lpszFileName = nullptr);
 
 
 #include "internal.h"

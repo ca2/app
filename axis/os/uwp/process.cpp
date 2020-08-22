@@ -317,7 +317,7 @@ DWORD_PTR translate_processor_affinity(int i)
 
 #undef System
 
-CLASS_DECL_AURA int ui_open_url(const char * pszUrl)
+CLASS_DECL_AXIS int ui_open_url(const char * pszUrl)
 {
 
    string strUrl(pszUrl);
@@ -333,7 +333,7 @@ CLASS_DECL_AURA int ui_open_url(const char * pszUrl)
 
 
 
-CLASS_DECL_AURA bool is_shared_library_busy(const string_array & stra)
+CLASS_DECL_AXIS bool is_shared_library_busy(const string_array & stra)
 {
 
    return true;
@@ -356,7 +356,7 @@ bool shell_execute_sync(const char * pszFile, const char * pszParams, ::duration
 
 
 
-CLASS_DECL_AURA ::file::path core_app_path(string strApp)
+CLASS_DECL_AXIS ::file::path core_app_path(string strApp)
 {
 
    throw todo();

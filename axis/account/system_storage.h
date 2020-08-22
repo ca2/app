@@ -11,7 +11,7 @@ namespace account
 {
    
    
-   class CLASS_DECL_AURA system_storage :
+   class CLASS_DECL_AXIS system_storage :
    virtual public storage
    {
    public:

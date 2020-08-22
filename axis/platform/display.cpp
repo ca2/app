@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-CLASS_DECL_AURA e_display equivalence_sink(e_display edisplay)
+CLASS_DECL_AXIS e_display equivalence_sink(e_display edisplay)
 {
 
    if (edisplay == display_restore
@@ -18,7 +18,7 @@ CLASS_DECL_AURA e_display equivalence_sink(e_display edisplay)
 }
 
 
-CLASS_DECL_AURA int windows_show_window(e_display edisplay, e_activation eactivation)
+CLASS_DECL_AXIS int windows_show_window(e_display edisplay, e_activation eactivation)
 {
 
    auto bNoActivate = eactivation & activation_no_activate;
@@ -53,7 +53,7 @@ CLASS_DECL_AURA int windows_show_window(e_display edisplay, e_activation eactiva
 
 
 
-CLASS_DECL_AURA e_display windows_show_window_to_edisplay(int iShowWindow, e_activation & eactivation)
+CLASS_DECL_AXIS e_display windows_show_window_to_edisplay(int iShowWindow, e_activation & eactivation)
 {
 
    eactivation = activation_none;
@@ -94,7 +94,7 @@ CLASS_DECL_AURA e_display windows_show_window_to_edisplay(int iShowWindow, e_act
 
 
 
-CLASS_DECL_AURA string __str(e_display edisplay)
+CLASS_DECL_AXIS string __str(e_display edisplay)
 {
 
    if(is_docking_appearance(edisplay))

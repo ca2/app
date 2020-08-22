@@ -9,7 +9,7 @@ namespace account
 {
    
    
-   class CLASS_DECL_AURA interactive :
+   class CLASS_DECL_AXIS interactive :
       virtual public ::object
    {
    public:

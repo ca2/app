@@ -36,11 +36,11 @@
 
 
 
-CLASS_DECL_AURA int get_axis_init();
+CLASS_DECL_AXIS int get_axis_init();
 extern "C"
-CLASS_DECL_AURA int_bool defer_axis_init();
+CLASS_DECL_AXIS int_bool defer_axis_init();
 extern "C"
-CLASS_DECL_AURA int_bool defer_axis_term();
+CLASS_DECL_AXIS int_bool defer_axis_term();
 
 
 

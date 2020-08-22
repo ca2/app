@@ -5,7 +5,7 @@ namespace user
 {
 
 
-//   CLASS_DECL_AURA bool is_app_dark_mode()
+//   CLASS_DECL_AXIS bool is_app_dark_mode()
 //   {
 //
 //      return false;

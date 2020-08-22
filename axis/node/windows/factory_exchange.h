@@ -1,7 +1,7 @@
 #pragma once
 
 //
-//namespace aura
+//namespace axis
 //{
 //
 //
@@ -9,7 +9,7 @@
 //   {
 //
 //
-//      class CLASS_DECL_AURA factory_exchange:
+//      class CLASS_DECL_AXIS factory_exchange:
 //         virtual public ::object
 //      {
 //      public:
@@ -25,7 +25,7 @@
 //   } // namespace windows
 //
 //
-//} // namespace aura
+//} // namespace axis
 //
 //
 //

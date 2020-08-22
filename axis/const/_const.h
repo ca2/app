@@ -320,10 +320,10 @@ enum e_priority
 
 };
 
-//bool CLASS_DECL_AURA succeeded(const ::estatus & estatus);
-//bool CLASS_DECL_AURA status_succeeded(i64 i);
-//bool CLASS_DECL_AURA failed(const ::estatus & estatus);
-//bool CLASS_DECL_AURA status_failed(i64 i);
+//bool CLASS_DECL_AXIS succeeded(const ::estatus & estatus);
+//bool CLASS_DECL_AXIS status_succeeded(i64 i);
+//bool CLASS_DECL_AXIS failed(const ::estatus & estatus);
+//bool CLASS_DECL_AXIS status_failed(i64 i);
 
 enum e_thread
 {
@@ -593,9 +593,9 @@ enum e_window_flag
 #define WM_USER 0x0400
 #endif // WM_USER
 
-#ifndef CLASS_DECL_AURA
-#define CLASS_DECL_AURA
-#endif // CLASS_DECL_AURA
+#ifndef CLASS_DECL_AXIS
+#define CLASS_DECL_AXIS
+#endif // CLASS_DECL_AXIS
 #ifndef WM_APP
 #define WM_APP 0x8000
 #endif

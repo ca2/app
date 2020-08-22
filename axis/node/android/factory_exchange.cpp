@@ -7,7 +7,7 @@
 //namespace android
 //{
 //
-//   namespace aura
+//   namespace axis
 //   {
 //
 //      factory_exchange::factory_exchange()
@@ -32,7 +32,7 @@
 //      }
 //
 //
-//   } // namespace aura
+//   } // namespace axis
 //
 //
 //} // namespace android

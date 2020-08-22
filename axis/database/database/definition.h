@@ -5,7 +5,7 @@ namespace database
 {
 
 
-   class CLASS_DECL_AURA exception :
+   class CLASS_DECL_AXIS exception :
       public ::exception::exception
    {
    public:
@@ -73,7 +73,7 @@ namespace database
    };
 
 
-   class CLASS_DECL_AURA field :
+   class CLASS_DECL_AXIS field :
       virtual public ::context_object
    {
    public:
@@ -104,7 +104,7 @@ virtual ::stream & read(::stream & stream) override;
    using field_array = __pointer_array(field);
 
 
-   class CLASS_DECL_AURA result_set :
+   class CLASS_DECL_AXIS result_set :
       virtual public ::object
    {
    public:
@@ -128,7 +128,7 @@ virtual ::stream & read(::stream & stream) override;
    };
 
 
-   class CLASS_DECL_AURA parameter_list
+   class CLASS_DECL_AXIS parameter_list
    {
    public:
 

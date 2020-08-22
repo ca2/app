@@ -195,7 +195,7 @@ i32 CPU_Is_Aes_Supported()
 #include <intrin.h>
 #endif
 
-CLASS_DECL_AURA int cpu_has_avx()
+CLASS_DECL_AXIS int cpu_has_avx()
 {
    int avxSupported = 0;
 

@@ -3,13 +3,13 @@
 namespace uwp
 {
 
-   class CLASS_DECL_AURA printer :
+   class CLASS_DECL_AXIS printer :
       virtual public ::user::printer
    {
    public:
 
 
-      class CLASS_DECL_AURA document_properties :
+      class CLASS_DECL_AXIS document_properties :
          virtual public ::object
       {
       public:

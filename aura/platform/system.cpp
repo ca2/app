@@ -111,6 +111,11 @@ namespace aura
    system::system()
    {
 
+
+      m_paxissystem = nullptr;
+      m_pbasesystem = nullptr;
+      m_pcoresystem = nullptr;
+
       //create_factory < ::userex::userex >();
 
       g_paurasystem = this;
@@ -133,6 +138,7 @@ namespace aura
    {
 
       create_factory < ::aura::session >();
+      create_factory < ::aura::application >();
       //create_factory < ::imaging >();
 
       m_bSimpleMessageLoop = false;
@@ -267,14 +273,14 @@ namespace aura
 
       }
 
-      estatus = __compose_new(m_pemaildepartment);
+      //estatus = __compose_new(m_pemaildepartment);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       g_pmutexImage = new ::mutex();
 
@@ -374,8 +380,6 @@ namespace aura
          ::exception::exception::exception_enable_stack_trace(bGlobalEnableStackTrace);
 
       }
-
-      m_ftlibrary = nullptr;
 
       create_factory < ::user::control_descriptor >();
       create_factory < ::file::path_object >();
@@ -3005,29 +3009,29 @@ namespace aura
    }
 
 
-   ::mutex * system::get_openweather_city_mutex()
-   {
-
-      sync_lock sl(mutex());
-
-      if (m_spmutexOpenweatherCity.is_null())
-      {
-
-#ifdef _UWP
-
-         m_spmutexOpenweatherCity = __new(::mutex());
-
-#else
-
-         m_spmutexOpenweatherCity = __new(::mutex(e_create_new, false, "Global\\ca2_weather_city"));
-
-#endif
-
-      }
-
-      return m_spmutexOpenweatherCity;
-
-   }
+//   ::mutex * system::get_openweather_city_mutex()
+//   {
+//
+//      sync_lock sl(mutex());
+//
+//      if (m_spmutexOpenweatherCity.is_null())
+//      {
+//
+//#ifdef _UWP
+//
+//         m_spmutexOpenweatherCity = __new(::mutex());
+//
+//#else
+//
+//         m_spmutexOpenweatherCity = __new(::mutex(e_create_new, false, "Global\\ca2_weather_city"));
+//
+//#endif
+//
+//      }
+//
+//      return m_spmutexOpenweatherCity;
+//
+//   }
 
 
    //void system::on_allocation_error(const ::string & str, ::object * pobject)
@@ -3427,15 +3431,6 @@ namespace aura
    //   return "";
 
    //}
-
-
-   void * & system::ftlibrary()
-   {
-
-      return m_ftlibrary;
-
-
-   }
 
 
    void system::install_progress_add_up(int iAddUp)
@@ -3843,425 +3838,6 @@ namespace aura
    }
 
 
-   void system::defer_check_openweather_city_list()
-   {
-
-      sync_lock sl(get_openweather_city_mutex());
-
-      if (m_straCityLo.get_size() == m_straCity.get_size()
-            && m_straCity.get_size() == m_iaIds.get_size()
-            && m_iaIds.get_size() == m_daLon.get_size()
-            && m_daLon.get_size() == m_daLat.get_size()
-            && m_straCity.get_size() > 1)
-      {
-
-         return;
-
-      }
-
-      ::file::path pathFolder = ::dir::system();
-
-      bool bOk = false;
-
-      try
-      {
-
-         *get_reader(pathFolder / "weather-cit.bin") >> m_straCity;
-         *get_reader(pathFolder / "weather-cil.bin") >> m_straCityLo;
-         *get_reader(pathFolder / "weather-ids.bin") >> m_iaIds;
-         *get_reader(pathFolder / "weather-lon.bin") >> m_daLon;
-         *get_reader(pathFolder / "weather-lat.bin") >> m_daLat;
-
-
-         //Context.file().to_array(m_straCity, dir::system() / "weather-cit.bin");
-         //Context.file().to_array(m_straCityLo, dir::system() / "weather-cil.bin");
-         //Context.file().to_array(m_iaIds, dir::system() / "weather-ids.bin");
-         //Context.file().to_array(m_daLon, dir::system() / "weather-lon.bin");
-         //Context.file().to_array(m_daLat, dir::system() / "weather-lat.bin");
-
-
-         bOk = m_straCityLo.get_size() == m_straCity.get_size()
-               && m_straCity.get_size() == m_iaIds.get_size()
-               && m_iaIds.get_size() == m_daLon.get_size()
-               && m_daLon.get_size() == m_daLat.get_size()
-               && m_straCity.get_size() > 1;
-
-
-      }
-      catch (...)
-      {
-
-      }
-
-      if (!bOk)
-      {
-
-         try
-         {
-
-            Context.file().del(pathFolder / "weather-cit.bin");
-            Context.file().del(pathFolder / "weather-cil.bin");
-            Context.file().del(pathFolder / "weather-ids.bin");
-            Context.file().del(pathFolder / "weather-lon.bin");
-            Context.file().del(pathFolder / "weather-lat.bin");
-
-            m_straCityLo.remove_all();
-            m_straCity.remove_all();
-            m_iaIds.remove_all();
-            m_daLon.remove_all();
-            m_daLat.remove_all();
-
-         }
-         catch (...)
-         {
-
-         }
-
-      }
-
-      if (m_straCityLo.get_size() == m_straCity.get_size()
-            && m_straCity.get_size() == m_iaIds.get_size()
-            && m_iaIds.get_size() == m_daLon.get_size()
-            && m_daLon.get_size() == m_daLat.get_size()
-            && m_straCity.get_size() > 1)
-      {
-      }
-      else
-      {
-
-         string str;
-
-         str = Context.file().as_string("https://server.ca2.cc/city-list.json");
-
-         if (str.has_char())
-         {
-
-            string_array stra;
-
-            stra.add_lines(str);
-
-            for (auto strJson : stra)
-            {
-
-               const char * pszJson = strJson;
-
-               //const char * pszJson = "{\"_id\":6322752, \"name\" : \"Curitiba\", \"country\" : \"BR\", \"coord\" : {\"lon\":-49.290821, \"lat\" : -25.50395}}";
-
-               var v;
-
-               v.parse_json(pszJson);
-
-               string strLine = v["name"] + ", " + v["country"];
-
-               m_straCity.add(strLine);
-
-               m_straCityLo.add(strLine.lowered());
-
-               i64 iId = v["_id"];
-
-               m_iaIds.add(iId);
-
-               double dLon = v["coord"]["lon"];
-
-               m_daLon.add(dLon);
-
-               double dLat = v["coord"]["lat"];
-
-               m_daLat.add(dLat);
-
-            }
-
-            *get_writer(pathFolder / "weather-cit.bin") << m_straCity;
-            *get_writer(pathFolder / "weather-cil.bin") << m_straCityLo;
-            *get_writer(pathFolder / "weather-ids.bin") << m_iaIds;
-            *get_writer(pathFolder / "weather-lon.bin") << m_daLon;
-            *get_writer(pathFolder / "weather-lat.bin") << m_daLat;
-
-         }
-
-      }
-
-   }
-
-
-   openweather_city * system::openweather_find_city(string strQuery)
-   {
-
-      auto & pcity = m_mapCity[strQuery];
-
-      if (!pcity)
-      {
-
-         pcity = __new(openweather_city);
-
-         pcity->m_iIndex = openweather_find_city2(
-                           strQuery,
-                           pcity->m_strCit,
-                           pcity->m_iId,
-                           pcity->m_dLat,
-                           pcity->m_dLon);
-
-      }
-
-      return pcity;
-
-   }
-
-
-   index system::openweather_find_city2(string strQuery, string & strCit, i64 & iId, double & dLat, double & dLon)
-   {
-
-      string_array stra;
-
-      stra.explode(",", strQuery);
-
-      stra.trim();
-
-      stra.remove_empty();
-
-      if (stra.get_count() <= 0)
-      {
-
-         return -1;
-
-      }
-
-      if(stra.get_count() == 1)
-      {
-
-         return openweather_find_city2(strQuery, "", strCit, iId, dLat, dLon, true);
-
-      }
-
-
-      for (index iCount = stra.get_count() - 1; iCount >= 1; iCount--)
-      {
-
-         index iIndex = openweather_find_city2(stra.slice(0, iCount).implode(", "), stra.last(), strCit, iId, dLat, dLon, false);
-
-         if (iIndex >= 0)
-         {
-
-            return iIndex;
-
-         }
-
-      }
-
-      for (index iCount = stra.get_count() - 1; iCount >= 1; iCount--)
-      {
-
-         index iIndex = openweather_find_city2(stra.slice(0, iCount).implode(", "), stra.last(), strCit, iId, dLat, dLon, true);
-
-         if (iIndex >= 0)
-         {
-
-            return iIndex;
-
-         }
-
-      }
-
-      return -1;
-
-   }
-
-
-
-   index system::openweather_find_city2(string strQ1, string strQ2, string & strCit, i64 & iId, double & dLat, double & dLon, bool bPrefix)
-   {
-
-      string strQueryLo;
-
-      string strTry;
-
-      string strTry1;
-
-      string strTry2;
-
-      index iFind;
-
-      defer_check_openweather_city_list();
-
-      if (strQ1.compare_ci("Cologne") == 0 && strQ2.compare_ci("DE") == 0)
-      {
-
-         strQ1 = "Koeln";
-
-      }
-      else if (strQ1.compare_ci("Washington DC") == 0)
-      {
-
-         strQ1 = "Washington, D. C.";
-
-      }
-
-      strQueryLo = strQ1 + ", " + strQ2;
-
-      strQueryLo.make_lower();
-
-      if (bPrefix)
-      {
-
-         iFind = m_straCityLo.find_first_begins(strQueryLo);
-
-      }
-      else
-      {
-
-         iFind = m_straCityLo.find_first(strQueryLo);
-
-      }
-
-      if (iFind >= 0)
-      {
-
-         goto found;
-
-      }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      strTry = strQueryLo;
-
-      strTry.replace("'", "");
-
-      if (bPrefix)
-      {
-
-         iFind = m_straCityLo.find_first_begins(strTry);
-
-      }
-      else
-      {
-
-         iFind = m_straCityLo.find_first(strTry);
-
-      }
-
-      if (iFind >= 0)
-      {
-
-         goto found;
-
-      }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      strTry = strQueryLo;
-
-      strTry.replace("st.", "saint");
-      strTry.replace(unitext("são"), "sao");
-      strTry.replace(unitext("ž"), "z");
-      strTry.replace(unitext("á"), "a");
-      strTry.replace(unitext("à"), "a");
-      strTry.replace(unitext("ä"), "a");
-      strTry.replace(unitext("é"), "e");
-      strTry.replace(unitext("è"), "e");
-      strTry.replace(unitext("ë"), "e");
-      strTry.replace(unitext("í"), "i");
-      strTry.replace(unitext("ì"), "i");
-      strTry.replace(unitext("ï"), "i");
-      strTry.replace(unitext("ó"), "o");
-      strTry.replace(unitext("ò"), "o");
-      strTry.replace(unitext("ö"), "o");
-      strTry.replace(unitext("ú"), "u");
-      strTry.replace(unitext("ù"), "u");
-      strTry.replace(unitext("ü"), "u");
-
-      if (bPrefix)
-      {
-
-         iFind = m_straCityLo.find_first_begins(strTry);
-
-      }
-      else
-      {
-
-         iFind = m_straCityLo.find_first(strTry);
-
-      }
-
-      if (iFind >= 0)
-      {
-
-         goto found;
-
-      }
-
-
-
-
-
-
-
-
-
-      return -1;
-
-found:
-
-      strCit   = m_straCity[iFind];
-
-      iId      = m_iaIds[iFind];
-
-      dLat     = m_daLat[iFind];
-
-      dLon     = m_daLon[iFind];
-
-      return iFind;
-
-   }
 
 
    //string system::url_encode(const string & str)
@@ -4673,14 +4249,6 @@ found:
    }
 
 
-
-
-   ::net::email_department & system::email()
-   {
-
-      return *m_pemaildepartment;
-
-   }
 
 
    void system::enum_display_monitors()
@@ -8771,8 +8339,63 @@ namespace aura
 
    }
 
+   __namespace_system_factory(system);
 
 } // namespace aura
+
+
+
+::aura::system* platform_create_system()
+{
+
+   auto pstaticsetup = ::static_setup::get_first(::static_setup::flag_system, "");
+
+   if (!pstaticsetup)
+   {
+
+      return nullptr;
+
+   }
+
+   auto pobject = move_transfer(pstaticsetup->new_object());
+
+   if (!pobject)
+   {
+
+      return nullptr;
+
+   }
+
+   return pobject.cast < ::aura::system >();
+
+}
+
+
+::aura::session * platform_create_session()
+{
+
+   auto pstaticsetup = ::static_setup::get_first(::static_setup::flag_system, "");
+
+   if (!pstaticsetup)
+   {
+
+      return nullptr;
+
+   }
+
+   auto pobject = move_transfer(pstaticsetup->new_object());
+
+   if (!pobject)
+   {
+
+      return nullptr;
+
+   }
+
+   return pobject.cast < ::aura::session >();
+
+}
+
 
 
 

@@ -5,7 +5,7 @@ namespace sockets
 {
 
 
-   class CLASS_DECL_AURA sip_socket :
+   class CLASS_DECL_AXIS sip_socket :
       public http_tunnel
    {
    public:

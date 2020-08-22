@@ -5,7 +5,7 @@ namespace plugin
 {
 
 
-   class CLASS_DECL_AURA instance :
+   class CLASS_DECL_AXIS instance :
       public ::plugin::plugin
    {
    public:

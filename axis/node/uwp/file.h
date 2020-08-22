@@ -7,8 +7,8 @@
 class FileException;
 struct FileStatus;
 
-void CLASS_DECL_AURA vfxGetRoot(const unichar * lpszPath, string& wstrRoot);
-void CLASS_DECL_AURA vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath);
+void CLASS_DECL_AXIS vfxGetRoot(const unichar * lpszPath, string& wstrRoot);
+void CLASS_DECL_AXIS vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath);
 
 #define HFILE_NULL INVALID_HANDLE_VALUE
 
@@ -18,7 +18,7 @@ namespace uwp
    /////////////////////////////////////////////////////////////////////////////
    // File - raw unbuffered disk file I/O
 
-   class CLASS_DECL_AURA file :
+   class CLASS_DECL_AXIS file :
       virtual public ::file::file
    {
    public:

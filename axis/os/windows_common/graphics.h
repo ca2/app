@@ -11,7 +11,7 @@
 namespace draw2d
 {
 
-   class CLASS_DECL_AURA device_lock
+   class CLASS_DECL_AXIS device_lock
    {
    public:
 
@@ -51,7 +51,7 @@ namespace draw2d
    };
 
 
-   class CLASS_DECL_AURA lock :
+   class CLASS_DECL_AXIS lock :
       public sync_lock
    {
    public:

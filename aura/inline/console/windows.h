@@ -15,7 +15,9 @@ public:
 
       aura_ref();
 
-      m_psystem = __new(::aura::system());
+      m_psystem = ::move_transfer(platform_create_system());
+
+//      m_psystem = __new(::aura::system());
 
       m_psystem->console_initialize();
 

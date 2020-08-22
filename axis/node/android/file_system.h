@@ -5,7 +5,7 @@ namespace android
 {
 
 
-   class CLASS_DECL_AURA file_system :
+   class CLASS_DECL_AXIS file_system :
       virtual public ::file_system
    {
    public:

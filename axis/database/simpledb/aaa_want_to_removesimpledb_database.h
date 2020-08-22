@@ -6,7 +6,7 @@ namespace simpledb
    class table;
    class dataset;
 
-   class CLASS_DECL_AURA database :
+   class CLASS_DECL_AXIS database :
       public ::database::database
    {
    public:

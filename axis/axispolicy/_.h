@@ -87,14 +87,14 @@ typedef __pointer(::user::interaction_impl) window_pointer;
 
 
 
-CLASS_DECL_AURA bool axis_init();
-CLASS_DECL_AURA bool axis_term();
+CLASS_DECL_AXIS bool axis_init();
+CLASS_DECL_AXIS bool axis_term();
 
-CLASS_DECL_AURA bool __node_axis_pre_init();
-CLASS_DECL_AURA bool __node_axis_pos_init();
+CLASS_DECL_AXIS bool __node_axis_pre_init();
+CLASS_DECL_AXIS bool __node_axis_pos_init();
 
-CLASS_DECL_AURA bool __node_axis_pre_term();
-CLASS_DECL_AURA bool __node_axis_pos_term();
+CLASS_DECL_AXIS bool __node_axis_pre_term();
+CLASS_DECL_AXIS bool __node_axis_pos_term();
 
 
 #include "axis/filesystem/filesystem.h"

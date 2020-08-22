@@ -1,14 +1,14 @@
 #pragma once
 
 
-bool CLASS_DECL_AURA vfxResolveShortcut(string & strTarget, const char * pszSource, ::user::primitive * puiMessageParentOptional = nullptr);
+bool CLASS_DECL_AXIS vfxResolveShortcut(string & strTarget, const char * pszSource, ::user::primitive * puiMessageParentOptional = nullptr);
 
 
 namespace uwp
 {
 
 
-   class CLASS_DECL_AURA os_context :
+   class CLASS_DECL_AXIS os_context :
       public ::os_context
    {
    public:

@@ -10,13 +10,13 @@
 __pointer(mq) get_mq(ITHREAD idthread, bool bCreate);
 
 
-CLASS_DECL_AURA void thread_get_os_priority(i32 * piOsPolicy, sched_param * pparam, ::e_priority epriority);
+CLASS_DECL_AXIS void thread_get_os_priority(i32 * piOsPolicy, sched_param * pparam, ::e_priority epriority);
 
-CLASS_DECL_AURA void process_get_os_priority(i32 * piOsPolicy, sched_param * pparam, ::e_priority epriority);
+CLASS_DECL_AXIS void process_get_os_priority(i32 * piOsPolicy, sched_param * pparam, ::e_priority epriority);
 
-CLASS_DECL_AURA::e_priority thread_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
+CLASS_DECL_AXIS::e_priority thread_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
 
-CLASS_DECL_AURA::e_priority process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
+CLASS_DECL_AXIS::e_priority process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
 
 
 DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, HSYNC * synca, DWORD tickTimeout, DWORD dwWakeMask, DWORD dwFlags)
@@ -230,7 +230,7 @@ DWORD WaitForSingleObject(HSYNC hsync, DWORD tickTimeout)
 //}
 
 
-CLASS_DECL_AURA HTHREAD get_current_hthread()
+CLASS_DECL_AXIS HTHREAD get_current_hthread()
 {
 
    return ::pthread_self();
@@ -238,7 +238,7 @@ CLASS_DECL_AURA HTHREAD get_current_hthread()
 }
 
 
-CLASS_DECL_AURA ITHREAD get_current_ithread()
+CLASS_DECL_AXIS ITHREAD get_current_ithread()
 {
 
    return ::pthread_self();
@@ -355,7 +355,7 @@ static HTHREAD g_hMainThread = (HTHREAD) nullptr;
 static ITHREAD g_uiMainThread = (ITHREAD)-1;
 
 
-CLASS_DECL_AURA void set_main_hthread(HTHREAD hThread)
+CLASS_DECL_AXIS void set_main_hthread(HTHREAD hThread)
 {
 
    // MESSAGE msg;
@@ -368,7 +368,7 @@ CLASS_DECL_AURA void set_main_hthread(HTHREAD hThread)
 }
 
 
-CLASS_DECL_AURA void set_main_ithread(ITHREAD uiThread)
+CLASS_DECL_AXIS void set_main_ithread(ITHREAD uiThread)
 {
 
    //   MESSAGE msg;
@@ -381,7 +381,7 @@ CLASS_DECL_AURA void set_main_ithread(ITHREAD uiThread)
 }
 
 
-CLASS_DECL_AURA HTHREAD get_main_hthread()
+CLASS_DECL_AXIS HTHREAD get_main_hthread()
 {
 
    return g_hMainThread;
@@ -389,7 +389,7 @@ CLASS_DECL_AURA HTHREAD get_main_hthread()
 }
 
 
-CLASS_DECL_AURA ITHREAD get_main_ithread()
+CLASS_DECL_AXIS ITHREAD get_main_ithread()
 {
 
    return g_uiMainThread;
@@ -397,7 +397,7 @@ CLASS_DECL_AURA ITHREAD get_main_ithread()
 }
 
 
-CLASS_DECL_AURA void attach_thread_input_to_main_thread(bool bAttach)
+CLASS_DECL_AXIS void attach_thread_input_to_main_thread(bool bAttach)
 {
 
 }
@@ -419,8 +419,8 @@ int g_iDebug_post_thread_msg_time;
 
 
 
-//CLASS_DECL_AURA int_bool WINAPI mq_post(mq * pmq, oswindow oswindow, UINT Msg, WPARAM wParam, LPARAM lParam)
-//CLASS_DECL_AURA int_bool WINAPI mq_post(mq * pmq, UINT Msg, WPARAM wParam, LPARAM lParam)
+//CLASS_DECL_AXIS int_bool WINAPI mq_post(mq * pmq, oswindow oswindow, UINT Msg, WPARAM wParam, LPARAM lParam)
+//CLASS_DECL_AXIS int_bool WINAPI mq_post(mq * pmq, UINT Msg, WPARAM wParam, LPARAM lParam)
 //{
 //
 //   sync_lock ml(pmq->mutex());
@@ -450,14 +450,14 @@ int g_iDebug_post_thread_msg_time;
 //}
 
 
-// CLASS_DECL_AURA HTHREAD GetCurrentThread()
+// CLASS_DECL_AXIS HTHREAD GetCurrentThread()
 // {
 
 //    return pthread_self();
 
 // }
 
-// CLASS_DECL_AURA ITHREAD GetCurrentThreadId()
+// CLASS_DECL_AXIS ITHREAD GetCurrentThreadId()
 // {
 
 //    return pthread_self();
@@ -468,14 +468,14 @@ int g_iDebug_post_thread_msg_time;
 namespace multithreading
 {
 
-   CLASS_DECL_AURA bool set_priority(::e_priority epriority)
+   CLASS_DECL_AXIS bool set_priority(::e_priority epriority)
    {
 
       return (::SetThreadPriority(::get_current_hthread(), epriority) != 0);
    }
 
 
-   CLASS_DECL_AURA i32 priority()
+   CLASS_DECL_AXIS i32 priority()
    {
 
       return ::GetThreadPriority(::get_current_hthread());
@@ -483,7 +483,7 @@ namespace multithreading
    }
 
 
-} // namespace aura
+} // namespace axis
 
 
 bool on_init_thread()
@@ -511,7 +511,7 @@ bool on_term_thread()
 }
 
 
-CLASS_DECL_AURA DWORD_PTR translate_processor_affinity(int iOrder)
+CLASS_DECL_AXIS DWORD_PTR translate_processor_affinity(int iOrder)
 {
 
    return 1 << iOrder;

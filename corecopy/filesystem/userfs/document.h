@@ -1,0 +1,51 @@
+#pragma once
+
+
+namespace userfs
+{
+
+
+   class CLASS_DECL_CORE document :
+      virtual public ::user::document
+   {
+   public:
+
+
+      ::file::path                              m_pathFolder;
+      __composite(::fs::set)                    m_pfsset;
+      ::file::listing                           m_listingRoot;
+      ::file::listing                           m_listingUser2;
+      ::file::listing                           m_listingFinal2;
+      ::file::listing                           m_listingFolderUser2;
+      ::file::listing                           m_listingFolderFinal2;
+
+
+      document();
+      virtual ~document();
+
+
+      virtual ::estatus initialize(::object * pobjectContext) override;
+
+
+      ::user::document * get_document();
+
+
+      //virtual ::aura::application * get_context_application() const override;
+
+      virtual void assert_valid() const override;
+      virtual void dump(dump_context & dumpcontext) const override;
+
+
+      virtual bool browse(__pointer(::file::item) pitem, const ::action_context & action_context);
+
+
+      inline __pointer(::fs::set) fs_data() { return m_pfsset; }
+
+
+   };
+
+
+} // namespace userfs
+
+
+

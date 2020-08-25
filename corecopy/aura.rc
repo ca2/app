@@ -1,0 +1,26 @@
+1 VERSIONINFO
+   FILEVERSION 2014,805,305,32
+   PRODUCTVERSION 0,0,0,0
+   FILEFLAGSMASK 0x0L
+   FILEFLAGS 0x1L
+   FILEOS 0x4L
+   FILETYPE 0x1L
+   FILESUBTYPE 0x0L
+   BEGIN
+      BLOCK "StringFileInfo"
+      BEGIN
+         BLOCK "040904E4"
+         BEGIN
+            VALUE "CompanyName", "ca2 Desenvolvimento de Software Ltda."
+            VALUE "FileVersion", "2014.805.305.32"
+            VALUE "FileDescription", "aura Dynamic Link Library"
+            VALUE "LegalCopyright", "2014 ca2 Desenvolvimento de Software Ltda."
+        END
+      END
+      BLOCK "VarFileInfo"
+      BEGIN
+         VALUE "Translation", 0x409, 1200
+      END
+   END
+
+

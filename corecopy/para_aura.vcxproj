@@ -1,0 +1,494 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{8E89EEAD-234C-4036-8343-804CF9F2B1CE}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>orto_aura</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\platform-windows\Common.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\platform-windows\Common.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(SolutionDir)../../;$(SolutionDir)../../app;$(SolutionDir)../../app/base/base;$(SolutionDir)../../app;$(__archive)/third-windows/thirdparty/include;$(SolutionDir)../../;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(SolutionDir)../../app/base3/openssl;$(SolutionDir)../../app/base/openssl/crypto2;$(SolutionDir)../../app/base/openssl/ssl2;$(SolutionDir)../../app/base/base/openssl/crypto/asn1;$(SolutionDir)../../app/base/base/openssl/crypto/evp;$(SolutionDir)../../app/base/base/openssl/crypto/krb5;$(SolutionDir)../../app/base/base/openssl/crypto/modes;$(SolutionDir)../../app/base/base/openssl/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="aura\aura\aura.cpp" />
+    <ClCompile Include="aura\aura\aura_action_context.cpp" />
+    <ClCompile Include="aura\aura\aura_allocate_mid_big.cpp" />
+    <ClCompile Include="aura\aura\aura_allocate_system_heap.cpp" />
+    <ClCompile Include="aura\aura\aura_application.cpp" />
+    <ClCompile Include="aura\aura\aura_application_interface.cpp" />
+    <ClCompile Include="aura\aura\aura_argcargv.cpp" />
+    <ClCompile Include="aura\aura\aura_assert.cpp" />
+    <ClCompile Include="aura\aura\aura_checked.cpp" />
+    <ClCompile Include="aura\aura\aura_cmdtarg.cpp" />
+    <ClCompile Include="aura\aura\aura_command_target.cpp" />
+    <ClCompile Include="aura\aura\aura_conv.cpp" />
+    <ClCompile Include="aura\aura\aura_core_os.cpp" />
+    <ClCompile Include="aura\aura\aura_cpu_architecture.cpp" />
+    <ClCompile Include="aura\aura\aura_cregexp.cpp" />
+    <ClCompile Include="aura\aura\aura_cregexp_util.cpp" />
+    <ClCompile Include="aura\aura\aura_debug.cpp" />
+    <ClCompile Include="aura\aura\aura_department.cpp" />
+    <ClCompile Include="aura\aura\aura_department_container.cpp" />
+    <ClCompile Include="aura\aura\aura_element.cpp" />
+    <ClCompile Include="aura\aura\aura_file_watcher.cpp" />
+    <ClCompile Include="aura\aura\aura_file_watcher_impl.cpp" />
+    <ClCompile Include="aura\aura\aura_file_watcher_listener_thread.cpp" />
+    <ClCompile Include="aura\aura\aura_file_watcher_thread.cpp" />
+    <ClCompile Include="aura\aura\aura_fixed_alloc.cpp" />
+    <ClCompile Include="aura\aura\aura_flags.cpp" />
+    <ClCompile Include="aura\aura\aura_gudo.cpp" />
+    <ClCompile Include="aura\aura\aura_heap.cpp" />
+    <ClCompile Include="aura\aura\aura_id_pool.cpp" />
+    <ClCompile Include="aura\aura\aura_international.cpp" />
+    <ClCompile Include="aura\aura\aura_library.cpp" />
+    <ClCompile Include="aura\aura\aura_live_object.cpp" />
+    <ClCompile Include="aura\aura\aura_live_signal.cpp" />
+    <ClCompile Include="aura\aura\aura_log.cpp" />
+    <ClCompile Include="aura\aura\aura_machine_event.cpp" />
+    <ClCompile Include="aura\aura\aura_machine_event_central.cpp" />
+    <ClCompile Include="aura\aura\aura_machine_event_data.cpp" />
+    <ClCompile Include="aura\aura\aura_math.cpp" />
+    <ClCompile Include="aura\aura\aura_message_queue.cpp" />
+    <ClCompile Include="aura\aura\aura_microtimer.cpp" />
+    <ClCompile Include="aura\aura\aura_mktime.cpp" />
+    <ClCompile Include="aura\aura\aura_muldiv64.cpp" />
+    <ClCompile Include="aura\aura\aura_net.cpp" />
+    <ClCompile Include="aura\aura\aura_new.cpp" />
+    <ClCompile Include="aura\aura\aura_platform_interface.cpp" />
+    <ClCompile Include="aura\aura\aura_plex.cpp" />
+    <ClCompile Include="aura\aura\aura_plex_heap.cpp" />
+    <ClCompile Include="aura\aura\aura_printf.cpp" />
+    <ClCompile Include="aura\aura\aura_progress.cpp" />
+    <ClCompile Include="aura\aura\aura_root.cpp" />
+    <ClCompile Include="aura\aura\aura_savings.cpp" />
+    <ClCompile Include="aura\aura\aura_session.cpp" />
+    <ClCompile Include="aura\aura\aura_session_interface.cpp" />
+    <ClCompile Include="aura\aura\aura_simple_shell_launcher.cpp" />
+    <ClCompile Include="aura\aura\aura_small_ipc_channel.cpp" />
+    <ClCompile Include="aura\aura\aura_sprintf.cpp" />
+    <ClCompile Include="aura\aura\aura_static_start.cpp" />
+    <ClCompile Include="aura\aura\aura_system.cpp" />
+    <ClCompile Include="aura\aura\aura_template.cpp" />
+    <ClCompile Include="aura\aura\aura_trace.cpp" />
+    <ClCompile Include="aura\exception\exception.cpp" />
+    <ClCompile Include="aura\exception\exception_archive.cpp" />
+    <ClCompile Include="aura\exception\exception_archive_exception.cpp" />
+    <ClCompile Include="aura\exception\exception_base.cpp" />
+    <ClCompile Include="aura\exception\exception_call_stack.cpp" />
+    <ClCompile Include="aura\exception\exception_cancel.cpp" />
+    <ClCompile Include="aura\exception\exception_debug.cpp" />
+    <ClCompile Include="aura\exception\exception_dump.cpp" />
+    <ClCompile Include="aura\exception\exception_dump_context.cpp" />
+    <ClCompile Include="aura\exception\exception_dump_floating_point.cpp" />
+    <ClCompile Include="aura\exception\exception_dump_output.cpp" />
+    <ClCompile Include="aura\exception\exception_engine.cpp" />
+    <ClCompile Include="aura\exception\exception_error.cpp" />
+    <ClCompile Include="aura\exception\exception_exit.cpp" />
+    <ClCompile Include="aura\exception\exception_hresult.cpp" />
+    <ClCompile Include="aura\exception\exception_installing.cpp" />
+    <ClCompile Include="aura\exception\exception_interface_only.cpp" />
+    <ClCompile Include="aura\exception\exception_invalid_argument.cpp" />
+    <ClCompile Include="aura\exception\exception_invalid_character.cpp" />
+    <ClCompile Include="aura\exception\exception_invalid_handle.cpp" />
+    <ClCompile Include="aura\exception\exception_invalid_index.cpp" />
+    <ClCompile Include="aura\exception\exception_io.cpp" />
+    <ClCompile Include="aura\exception\exception_last_error.cpp" />
+    <ClCompile Include="aura\exception\exception_memory.cpp" />
+    <ClCompile Include="aura\exception\exception_not_implemented.cpp" />
+    <ClCompile Include="aura\exception\exception_not_installed.cpp" />
+    <ClCompile Include="aura\exception\exception_not_licensed.cpp" />
+    <ClCompile Include="aura\exception\exception_not_supported.cpp" />
+    <ClCompile Include="aura\exception\exception_operation_canceled.cpp" />
+    <ClCompile Include="aura\exception\exception_os.cpp" />
+    <ClCompile Include="aura\exception\exception_overflow_error.cpp" />
+    <ClCompile Include="aura\exception\exception_parsing.cpp" />
+    <ClCompile Include="aura\exception\exception_range_error.cpp" />
+    <ClCompile Include="aura\exception\exception_resource.cpp" />
+    <ClCompile Include="aura\exception\exception_runtime_error.cpp" />
+    <ClCompile Include="aura\exception\exception_simple.cpp" />
+    <ClCompile Include="aura\exception\exception_standard_translator.cpp" />
+    <ClCompile Include="aura\exception\exception_temporary.cpp" />
+    <ClCompile Include="aura\exception\exception_throw.cpp" />
+    <ClCompile Include="aura\exception\exception_todo.cpp" />
+    <ClCompile Include="aura\exception\exception_user.cpp" />
+    <ClCompile Include="aura\exception\exception_verisimple.cpp" />
+    <ClCompile Include="aura\exception\exception_void_implementation.cpp" />
+    <ClCompile Include="aura\message\message.cpp" />
+    <ClCompile Include="aura\message\message_base.cpp" />
+    <ClCompile Include="aura\message\message_dispatch.cpp" />
+    <ClCompile Include="aura\node\node.cpp" />
+    <ClCompile Include="aura\node\windows\windows.cpp" />
+    <ClCompile Include="aura\node\windows\windows_application.cpp" />
+    <ClCompile Include="aura\node\windows\windows_factory_exchange.cpp" />
+    <ClCompile Include="aura\node\windows\windows_file.cpp" />
+    <ClCompile Include="aura\node\windows\windows_file_c.c" />
+    <ClCompile Include="aura\node\windows\windows_file_find.cpp" />
+    <ClCompile Include="aura\node\windows\windows_folder_watch.cpp" />
+    <ClCompile Include="aura\node\windows\windows_handle.cpp" />
+    <ClCompile Include="aura\node\windows\windows_os.cpp" />
+    <ClCompile Include="aura\node\windows\windows_pipe.cpp" />
+    <ClCompile Include="aura\node\windows\windows_printer.cpp" />
+    <ClCompile Include="aura\node\windows\windows_process.cpp" />
+    <ClCompile Include="aura\node\windows\windows_registry.cpp" />
+    <ClCompile Include="aura\node\windows\windows_shell.cpp" />
+    <ClCompile Include="aura\node\windows\windows_stdio_file.cpp" />
+    <ClCompile Include="aura\node\windows\windows_thread.cpp" />
+    <ClCompile Include="aura\node\windows\windows_trace.cpp" />
+    <ClCompile Include="aura\node\windows\windows_uac_tools.cpp" />
+    <ClCompile Include="aura\os\cross\ansios\ansios_datetime.cpp" />
+    <ClCompile Include="aura\os\os_file.cpp" />
+    <ClCompile Include="aura\os\os_http.cpp" />
+    <ClCompile Include="aura\os\os_process.cpp" />
+    <ClCompile Include="aura\os\os_thread.cpp" />
+    <ClCompile Include="aura\os\windows\windows_base.cpp" />
+    <ClCompile Include="aura\os\windows\windows_base_file.cpp" />
+    <ClCompile Include="aura\os\windows\windows_base_process.cpp" />
+    <ClCompile Include="aura\os\windows\windows_base_registry.cpp" />
+    <ClCompile Include="aura\os\windows\windows_debug.cpp" />
+    <ClCompile Include="aura\os\windows\windows_dll.cpp" />
+    <ClCompile Include="aura\os\windows\windows_error.cpp" />
+    <ClCompile Include="aura\os\windows\windows_file_c.c" />
+    <ClCompile Include="aura\os\windows\windows_file_watcher.cpp" />
+    <ClCompile Include="aura\os\windows\windows_gdi.cpp" />
+    <ClCompile Include="aura\os\windows\windows_internal.cpp" />
+    <ClCompile Include="aura\os\windows\windows_launcher.cpp" />
+    <ClCompile Include="aura\os\windows\windows_library.cpp" />
+    <ClCompile Include="aura\os\windows\windows_lock.cpp" />
+    <ClCompile Include="aura\os\windows\windows_main.cpp" />
+    <ClCompile Include="aura\os\windows\windows_message_loop.cpp" />
+    <ClCompile Include="aura\os\windows\windows_multithreading.cpp" />
+    <ClCompile Include="aura\os\windows\windows_printer.cpp" />
+    <ClCompile Include="aura\os\windows\windows_registry.cpp" />
+    <ClCompile Include="aura\os\windows\windows_simple_app.cpp" />
+    <ClCompile Include="aura\os\windows\windows_simple_shell_launcher.cpp" />
+    <ClCompile Include="aura\os\windows\windows_simple_ui.cpp" />
+    <ClCompile Include="aura\os\windows\windows_small_ipc_channel.cpp" />
+    <ClCompile Include="aura\os\windows\windows_time.cpp" />
+    <ClCompile Include="aura\os\windows\windows_util.cpp" />
+    <ClCompile Include="aura\os\windows\windows_utils.cpp" />
+    <ClCompile Include="aura\process\process_bidi_pipe.cpp" />
+    <ClCompile Include="aura\process\process_department.cpp" />
+    <ClCompile Include="aura\process\process_pipe.cpp" />
+    <ClCompile Include="aura\process\process_process.cpp" />
+    <ClCompile Include="aura\xml\xml_attr.cpp" />
+    <ClCompile Include="aura\xml\xml_base_array.cpp" />
+    <ClCompile Include="aura\xml\xml_data.cpp" />
+    <ClCompile Include="aura\xml\xml_disp_option.cpp" />
+    <ClCompile Include="aura\xml\xml_document.cpp" />
+    <ClCompile Include="aura\xml\xml_edit.cpp" />
+    <ClCompile Include="aura\xml\xml_entity.cpp" />
+    <ClCompile Include="aura\xml\xml_exportable.cpp" />
+    <ClCompile Include="aura\xml\xml_importable.cpp" />
+    <ClCompile Include="aura\xml\xml_input_tree.cpp" />
+    <ClCompile Include="aura\xml\xml_node.cpp" />
+    <ClCompile Include="aura\xml\xml_output_tree.cpp" />
+    <ClCompile Include="aura\xml\xml_parse_info.cpp" />
+    <ClCompile Include="aura\xml\xml_property_exchange.cpp" />
+    <ClCompile Include="aura\xml\xml_tree_base.cpp" />
+    <ClCompile Include="aura\xml\xml_tree_schema.cpp" />
+    <ClCompile Include="aura\xml\xml_var_exchange.cpp" />
+    <ClCompile Include="aura\xml\xml_xml.cpp" />
+    <ClCompile Include="aura\xml\xml_xmlite.cpp" />
+    <ClCompile Include="filesystem\file\file.cpp" />
+    <ClCompile Include="filesystem\file\file_binary_buffer.cpp" />
+    <ClCompile Include="filesystem\file\file_buffered_buffer.cpp" />
+    <ClCompile Include="filesystem\file\file_byte_input_stream.cpp" />
+    <ClCompile Include="filesystem\file\file_byte_input_stream_binary_buffer.cpp" />
+    <ClCompile Include="filesystem\file\file_byte_output_stream.cpp" />
+    <ClCompile Include="filesystem\file\file_byte_output_stream_binary_buffer.cpp" />
+    <ClCompile Include="filesystem\file\file_byte_stream.cpp" />
+    <ClCompile Include="filesystem\file\file_byte_stream_memory_buffer.cpp" />
+    <ClCompile Include="filesystem\file\file_c.cpp" />
+    <ClCompile Include="filesystem\file\file_circular_buffer.cpp" />
+    <ClCompile Include="filesystem\file\file_composite.cpp" />
+    <ClCompile Include="filesystem\file\file_dir.cpp" />
+    <ClCompile Include="filesystem\file\file_dir2.cpp" />
+    <ClCompile Include="filesystem\file\file_exception.cpp" />
+    <ClCompile Include="filesystem\file\file_file_input_stream.cpp" />
+    <ClCompile Include="filesystem\file\file_file_output_stream.cpp" />
+    <ClCompile Include="filesystem\file\file_file_stream.cpp" />
+    <ClCompile Include="filesystem\file\file_file_stream_base.cpp" />
+    <ClCompile Include="filesystem\file\file_folder_watch.cpp" />
+    <ClCompile Include="filesystem\file\file_input_stream.cpp" />
+    <ClCompile Include="filesystem\file\file_memory_buffer.cpp" />
+    <ClCompile Include="filesystem\file\file_output_stream.cpp" />
+    <ClCompile Include="filesystem\file\file_plain_text_input_stream.cpp" />
+    <ClCompile Include="filesystem\file\file_plain_text_output_stream.cpp" />
+    <ClCompile Include="filesystem\file\file_plain_text_output_stream_string_buffer.cpp" />
+    <ClCompile Include="filesystem\file\file_plain_text_stream.cpp" />
+    <ClCompile Include="filesystem\file\file_plain_text_stream_base.cpp" />
+    <ClCompile Include="filesystem\file\file_plain_text_stream_memory_buffer.cpp" />
+    <ClCompile Include="filesystem\file\file_plain_text_stream_string_buffer.cpp" />
+    <ClCompile Include="filesystem\file\file_reader.cpp" />
+    <ClCompile Include="filesystem\file\file_seekable.cpp" />
+    <ClCompile Include="filesystem\file\file_serializable.cpp" />
+    <ClCompile Include="filesystem\file\file_set.cpp" />
+    <ClCompile Include="filesystem\file\file_simple_binary_buffer.cpp" />
+    <ClCompile Include="filesystem\file\file_stream.cpp" />
+    <ClCompile Include="filesystem\file\file_stream2.cpp" />
+    <ClCompile Include="filesystem\file\file_streambuf.cpp" />
+    <ClCompile Include="filesystem\file\file_stream_base.cpp" />
+    <ClCompile Include="filesystem\file\file_stream_buffer.cpp" />
+    <ClCompile Include="filesystem\file\file_stream_buffer_base.cpp" />
+    <ClCompile Include="filesystem\file\file_string_buffer.cpp" />
+    <ClCompile Include="filesystem\file\file_text_buffer.cpp" />
+    <ClCompile Include="filesystem\file\file_timeout_buffer.cpp" />
+    <ClCompile Include="filesystem\file\file_transfer_buffer.cpp" />
+    <ClCompile Include="filesystem\file\file_writer.cpp" />
+    <ClCompile Include="filesystem\file\file_writer_flush.cpp" />
+    <ClCompile Include="framework.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="framework_c.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">framework_c.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)framework_c.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\draw2d_bitmap.cpp" />
+    <ClCompile Include="graphics\draw2d\draw2d_brush.cpp" />
+    <ClCompile Include="graphics\draw2d\draw2d_dib.cpp" />
+    <ClCompile Include="graphics\draw2d\draw2d_font.cpp" />
+    <ClCompile Include="graphics\draw2d\draw2d_graphics.cpp" />
+    <ClCompile Include="graphics\draw2d\draw2d_object.cpp" />
+    <ClCompile Include="graphics\draw2d\draw2d_palette.cpp" />
+    <ClCompile Include="graphics\draw2d\draw2d_path.cpp" />
+    <ClCompile Include="graphics\draw2d\draw2d_pen.cpp" />
+    <ClCompile Include="graphics\draw2d\draw2d_region.cpp" />
+    <ClCompile Include="graphics\visual\visual_cursor.cpp" />
+    <ClCompile Include="graphics\visual\visual_icon.cpp" />
+    <ClCompile Include="multithreading\multithreading.cpp" />
+    <ClCompile Include="multithreading\multithreading_condition.cpp" />
+    <ClCompile Include="multithreading\multithreading_core.cpp" />
+    <ClCompile Include="multithreading\multithreading_critical_section.cpp" />
+    <ClCompile Include="multithreading\multithreading_event.cpp" />
+    <ClCompile Include="multithreading\multithreading_event_base.cpp" />
+    <ClCompile Include="multithreading\multithreading_event_collection.cpp" />
+    <ClCompile Include="multithreading\multithreading_file_change_event.cpp" />
+    <ClCompile Include="multithreading\multithreading_go_thread.cpp" />
+    <ClCompile Include="multithreading\multithreading_manual_reset_event.cpp" />
+    <ClCompile Include="multithreading\multithreading_multi_lock.cpp" />
+    <ClCompile Include="multithreading\multithreading_mutex.cpp" />
+    <ClCompile Include="multithreading\multithreading_retry_multi_lock.cpp" />
+    <ClCompile Include="multithreading\multithreading_retry_single_lock.cpp" />
+    <ClCompile Include="multithreading\multithreading_semaphore.cpp" />
+    <ClCompile Include="multithreading\multithreading_service_base.cpp" />
+    <ClCompile Include="multithreading\multithreading_signal_thread.cpp" />
+    <ClCompile Include="multithreading\multithreading_simple_thread.cpp" />
+    <ClCompile Include="multithreading\multithreading_single_lock.cpp" />
+    <ClCompile Include="multithreading\multithreading_socket_event.cpp" />
+    <ClCompile Include="multithreading\multithreading_synch_lock.cpp" />
+    <ClCompile Include="multithreading\multithreading_sync_object.cpp" />
+    <ClCompile Include="multithreading\multithreading_thread.cpp" />
+    <ClCompile Include="multithreading\multithreading_thread_impl.cpp" />
+    <ClCompile Include="multithreading\multithreading_waitable.cpp" />
+    <ClCompile Include="multithreading\multithreading_wait_result.cpp" />
+    <ClCompile Include="multithreading\service\service_plain_service.cpp" />
+    <ClCompile Include="primitive\collection\collection_2d_array.cpp" />
+    <ClCompile Include="primitive\collection\collection_array.cpp" />
+    <ClCompile Include="primitive\collection\collection_bit_array.cpp" />
+    <ClCompile Include="primitive\collection\collection_class_sort_array.cpp" />
+    <ClCompile Include="primitive\collection\collection_comparable_array.cpp" />
+    <ClCompile Include="primitive\collection\collection_id_array.cpp" />
+    <ClCompile Include="primitive\collection\collection_key_sort_array.cpp" />
+    <ClCompile Include="primitive\collection\collection_map_misc.cpp" />
+    <ClCompile Include="primitive\collection\collection_numeric_array.cpp" />
+    <ClCompile Include="primitive\collection\collection_object_list.cpp" />
+    <ClCompile Include="primitive\collection\collection_pointer_list.cpp" />
+    <ClCompile Include="primitive\collection\collection_point_array.cpp" />
+    <ClCompile Include="primitive\collection\collection_rect_array.cpp" />
+    <ClCompile Include="primitive\collection\collection_sort.cpp" />
+    <ClCompile Include="primitive\collection\collection_stringa.cpp" />
+    <ClCompile Include="primitive\collection\collection_stringl.cpp" />
+    <ClCompile Include="primitive\collection\collection_string_array.cpp" />
+    <ClCompile Include="primitive\collection\collection_string_list.cpp" />
+    <ClCompile Include="primitive\collection\collection_string_sort_array.cpp" />
+    <ClCompile Include="primitive\collection\collection_string_to_string_map.cpp" />
+    <ClCompile Include="primitive\collection\collection_var_array.cpp" />
+    <ClCompile Include="primitive\comparison\comparison_md5.cpp" />
+    <ClCompile Include="primitive\comparison\comparison_var_strict.cpp" />
+    <ClCompile Include="primitive\data\data_data.cpp" />
+    <ClCompile Include="primitive\data\data_data_container.cpp" />
+    <ClCompile Include="primitive\data\data_data_listener.cpp" />
+    <ClCompile Include="primitive\data\data_item.cpp" />
+    <ClCompile Include="primitive\datetime\datetime.cpp" />
+    <ClCompile Include="primitive\datetime\datetime_duration.cpp" />
+    <ClCompile Include="primitive\datetime\datetime_mktime.c" />
+    <ClCompile Include="primitive\datetime\datetime_time.cpp" />
+    <ClCompile Include="primitive\datetime\datetime_value.cpp" />
+    <ClCompile Include="primitive\geometry\geometry_geometry.cpp" />
+    <ClCompile Include="primitive\geometry\geometry_point.cpp" />
+    <ClCompile Include="primitive\geometry\geometry_rect.cpp" />
+    <ClCompile Include="primitive\geometry\geometry_size.cpp" />
+    <ClCompile Include="primitive\geometry\geometry_types.cpp" />
+    <ClCompile Include="primitive\math\math_cvt.cpp" />
+    <ClCompile Include="primitive\math\math_cvt_g.cpp" />
+    <ClCompile Include="primitive\math\math_department.cpp" />
+    <ClCompile Include="primitive\math\math_math.cpp" />
+    <ClCompile Include="primitive\math\math_math_rng.cpp" />
+    <ClCompile Include="primitive\math\math_mkint_c.cpp" />
+    <ClCompile Include="primitive\math\math_natural.cpp" />
+    <ClCompile Include="primitive\math\math_scalar.cpp" />
+    <ClCompile Include="primitive\application_bias.cpp" />
+    <ClCompile Include="primitive\bit.cpp" />
+    <ClCompile Include="primitive\color.cpp" />
+    <ClCompile Include="primitive\command.cpp" />
+    <ClCompile Include="primitive\command_line.cpp" />
+    <ClCompile Include="primitive\command_thread.cpp" />
+    <ClCompile Include="primitive\create_context.cpp" />
+    <ClCompile Include="primitive\edit.cpp" />
+    <ClCompile Include="primitive\factory.cpp" />
+    <ClCompile Include="primitive\id.cpp" />
+    <ClCompile Include="primitive\id_space.cpp" />
+    <ClCompile Include="primitive\interlocked_long.cpp" />
+    <ClCompile Include="primitive\interlocked_long_pulse.cpp" />
+    <ClCompile Include="primitive\job.cpp" />
+    <ClCompile Include="primitive\memory.cpp" />
+    <ClCompile Include="primitive\memory_base.cpp" />
+    <ClCompile Include="primitive\memory_c.cpp" />
+    <ClCompile Include="primitive\memory_container.cpp" />
+    <ClCompile Include="primitive\object.cpp" />
+    <ClCompile Include="primitive\property.cpp" />
+    <ClCompile Include="primitive\property_set.cpp" />
+    <ClCompile Include="primitive\relation_set.cpp" />
+    <ClCompile Include="primitive\request_interface.cpp" />
+    <ClCompile Include="primitive\request_signal.cpp" />
+    <ClCompile Include="primitive\shared_memory.cpp" />
+    <ClCompile Include="primitive\signal.cpp" />
+    <ClCompile Include="primitive\type.cpp" />
+    <ClCompile Include="primitive\var.cpp" />
+    <ClCompile Include="primitive\virtual_memory.cpp" />
+    <ClCompile Include="primitive\str\str_base64.cpp" />
+    <ClCompile Include="primitive\str\str_c.cpp" />
+    <ClCompile Include="primitive\str\str_ch.cpp" />
+    <ClCompile Include="primitive\str\str_ch_class.cpp" />
+    <ClCompile Include="primitive\str\str_core.cpp" />
+    <ClCompile Include="primitive\str\str_dup.cpp" />
+    <ClCompile Include="primitive\str\str_format.cpp" />
+    <ClCompile Include="primitive\str\str_from_integer.cpp" />
+    <ClCompile Include="primitive\str\str_hex.cpp" />
+    <ClCompile Include="primitive\str\str_international.cpp" />
+    <ClCompile Include="primitive\str\str_international_locale_schema.cpp" />
+    <ClCompile Include="primitive\str\str_istring.cpp" />
+    <ClCompile Include="primitive\str\str_manager.cpp" />
+    <ClCompile Include="primitive\str\str_parse.cpp" />
+    <ClCompile Include="primitive\str\str_simple.cpp" />
+    <ClCompile Include="primitive\str\str_str.cpp" />
+    <ClCompile Include="primitive\str\str_string.cpp" />
+    <ClCompile Include="primitive\str\str_stringtow.cpp" />
+    <ClCompile Include="primitive\str\str_strw.cpp" />
+    <ClCompile Include="primitive\str\str_strx.cpp" />
+    <ClCompile Include="primitive\str\str_tokenizer.cpp" />
+    <ClCompile Include="primitive\str\str_to_integer.cpp" />
+    <ClCompile Include="primitive\str\str_verisimple_wstring.cpp" />
+    <ClCompile Include="primitive\str\str_wtostring.cpp" />
+    <ClCompile Include="user\colorertake5\colorertake5_base_editor.cpp" />
+    <ClCompile Include="user\colorertake5\colorertake5_colorertake5.cpp" />
+    <ClCompile Include="user\colorertake5\colorertake5_default_error_handler.cpp" />
+    <ClCompile Include="user\colorertake5\colorertake5_error_handler_writer.cpp" />
+    <ClCompile Include="user\colorertake5\colorertake5_exception.cpp" />
+    <ClCompile Include="user\colorertake5\colorertake5_hrc_parser_helpers.cpp" />
+    <ClCompile Include="user\colorertake5\colorertake5_hrc_parser_impl.cpp" />
+    <ClCompile Include="user\colorertake5\colorertake5_line_regions_compact_support.cpp" />
+    <ClCompile Include="user\colorertake5\colorertake5_line_regions_support.cpp" />
+    <ClCompile Include="user\colorertake5\colorertake5_line_source.cpp" />
+    <ClCompile Include="user\colorertake5\colorertake5_logging.cpp" />
+    <ClCompile Include="user\colorertake5\colorertake5_outliner.cpp" />
+    <ClCompile Include="user\colorertake5\colorertake5_parsed_line_writer.cpp" />
+    <ClCompile Include="user\colorertake5\colorertake5_parser_factory.cpp" />
+    <ClCompile Include="user\colorertake5\colorertake5_region_handler.cpp" />
+    <ClCompile Include="user\colorertake5\colorertake5_region_mapper_impl.cpp" />
+    <ClCompile Include="user\colorertake5\colorertake5_styled_hrd_mapper.cpp" />
+    <ClCompile Include="user\colorertake5\colorertake5_text_hrd_mapper.cpp" />
+    <ClCompile Include="user\colorertake5\colorertake5_text_lines.cpp" />
+    <ClCompile Include="user\colorertake5\colorertake5_text_parser_helpers.cpp" />
+    <ClCompile Include="user\colorertake5\colorertake5_text_parser_impl.cpp" />
+    <ClCompile Include="user\colorertake5\TextConsoleViewer.cpp" />
+    <ClCompile Include="user\simple\message_box.cpp" />
+    <ClCompile Include="user\user\user_check_interface.cpp" />
+    <ClCompile Include="user\user\user_create_context.cpp" />
+    <ClCompile Include="user\user\user_draw_context.cpp" />
+    <ClCompile Include="user\user\user_draw_interface.cpp" />
+    <ClCompile Include="user\user\user_printer.cpp" />
+    <ClCompile Include="user\user\user_timer_array.cpp" />
+    <ClCompile Include="user\user\user_timer_item.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="aura\aura\aura_system_factory.inl" />
+    <None Include="para_aura.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h" />
+    <ClInclude Include="framework_c.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -8,7 +8,7 @@ namespace user
    class tab;
 
 
-   class CLASS_DECL_AURA tab_callback
+   class CLASS_DECL_BASE tab_callback
    {
    public:
 

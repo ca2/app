@@ -5,14 +5,14 @@ namespace user
 {
 
 
-   class CLASS_DECL_AURA menu_item :
+   class CLASS_DECL_BASE menu_item :
       virtual public ::object
    {
    public:
 
 
       id                               m_id;
-      __pointer(menu_item_ptra)        m_spmenuitema;
+      __pointer(menu_item_ptra)        m_pmenuitema;
       __pointer(menu_item)             m_pmenuitemParent;
       i32                              m_iFullHeightItemCount;
       i32                              m_iSeparatorCount;
@@ -54,7 +54,7 @@ namespace user
    };
 
 
-   class CLASS_DECL_AURA menu_item_ptra :
+   class CLASS_DECL_BASE menu_item_ptra :
       public __pointer_array(menu_item)
    {
    public:

@@ -31,7 +31,7 @@ namespace draw2d
       inline bool is_modified() const { return !is_up_to_date(); }
 
 
-      virtual void defer_update(::draw2d::graphics * pgraphics, ::index i) const;
+      virtual void defer_update(::draw2d::graphics * pgraphics, ::i8 i) const;
 
 
       virtual bool create(::draw2d::graphics * pgraphics, i8 iCreate);
@@ -58,7 +58,7 @@ namespace draw2d
 
 
       template < typename POINTER >
-      inline POINTER get_os_data(::draw2d::graphics* pgraphics, index i = 0) const
+      inline POINTER get_os_data(::draw2d::graphics* pgraphics, ::i8 i = 0) const
       {
 
          if (!m_bUpdated2 || !m_osdata[0])
@@ -73,7 +73,7 @@ namespace draw2d
       }
 
 
-      inline void* get_os_data(::draw2d::graphics* pgraphics, index i = 0) const
+      inline void* get_os_data(::draw2d::graphics* pgraphics, ::i8 i = 0) const
       {
 
          return get_os_data < void * >(pgraphics, i);

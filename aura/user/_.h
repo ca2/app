@@ -9,31 +9,14 @@ namespace user
 
    
    class user;
-   class control;
-   //class document_manager;
    class interaction_pointer_array;
-   //class split_view;
-   //class single_document_template;
-   //class multiple_document_template;
-   //class document;
    class keyboard;
-   class theme;
    class copydesk;
    class main_frame;
    class window_map;
-   //class tree;
    class plain_edit;
    class message_queue;
-   //template < class VIEW >  class show;
-   //using scroll_view = show < control >;
-   //using plain_edit_view = show < plain_edit >;
 
-   //class mesh_cache_interface;
-   //class mesh_data;
-   //class mesh;
-   //class list;
-   //class list_item;
-   //class list_column;
 
    CLASS_DECL_AURA COLORREF get_system_app_background_color();
 
@@ -46,7 +29,7 @@ namespace user
    class plain_text_command;
    class tree_draw_item;
 
-   class shell;
+   //class shell;
 
 
 

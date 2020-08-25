@@ -1694,7 +1694,7 @@ namespace user
 
          int iCurrentPageOffsetEnd = (int) (get_viewport_offset().y + rectClient.height());
 
-         index iCandidateCursorOffset = (MIN(MAX(0, iLine)* m_iLineHeight, m_sizeTotal.cy));
+         index iCandidateCursorOffset = (::index) (MIN((double) MAX(0, iLine)* m_iLineHeight, m_sizeTotal.cy));
 
          if (iCandidateCursorOffset < iCurrentPageOffsetStart)
          {
@@ -2738,7 +2738,7 @@ namespace user
 
          m_sizeTotal.cy = (LONG) ((((i32)m_iaLineLen.get_count() + (m_bMultiLine ? MAX(5, m_iLineCount) : 0)) * m_iLineHeight));
 
-         ::size sizePage;
+         ::sized sizePage;
 
          sizePage = rectClient.size();
 
@@ -6215,7 +6215,7 @@ finished_update:
 
    //   }
 
-   //   return ::user::control::display(nCmdShow);
+   //   return ::user::interaction::display(nCmdShow);
 
    //}
 
@@ -6236,7 +6236,7 @@ finished_update:
    }
 
 
-   size plain_edit::get_total_size()
+   sized plain_edit::get_total_size()
    {
 
       return m_sizeTotal;

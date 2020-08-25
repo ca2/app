@@ -1,9 +1,9 @@
 ﻿#include "framework.h"
 //#include "_filemanager.h"
-#include "aura/user/shell.h"
+#include "core/user/user/shell.h"
 #include "_data.h"
 #include "aura/template/list.h"
-#include "aura/user/_tree.h"
+#include "core/user/user/_tree.h"
 
 
 namespace filemanager

@@ -3173,6 +3173,9 @@
     <ClInclude Include="multithreading\service\thread_pool.h">
       <Filter>Header Files\multithreading\service</Filter>
     </ClInclude>
+    <ClInclude Include="user\box.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="graphics\draw2d\apple\image_gif.cpp">
@@ -5259,6 +5262,9 @@
     </ClCompile>
     <ClCompile Include="multithreading\waitable.cpp">
       <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="user\box.cpp">
+      <Filter>Source Files\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

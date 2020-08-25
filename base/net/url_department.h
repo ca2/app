@@ -5,7 +5,7 @@ namespace url
 {
 
 
-   class CLASS_DECL_AURA department :
+   class CLASS_DECL_BASE department :
       virtual public ::aura::department
    {
    public:

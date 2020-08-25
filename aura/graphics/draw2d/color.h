@@ -105,7 +105,15 @@ class CLASS_DECL_AURA color :
 {
 public:
 
+   static ::color transparent;
    static ::color black;
+   static ::color red;
+   static ::color green;
+   static ::color blue;
+   static ::color yellow;
+   static ::color cyan;
+   static ::color magenta;
+   static ::color white;
 
    enum e_channel
    {

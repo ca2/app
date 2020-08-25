@@ -55,11 +55,11 @@ console::console(int argc, wchar_t* argv[])
 
 #ifdef ACID_LIBRARY
 
-   PFN_NEW_AURA_LIBRARY pfnNewLibrary = &new_aura_library;
+   PFN_NEW_BASE_LIBRARY pfnNewLibrary = &new_aura_library;
 
 #else
 
-   PFN_NEW_AURA_LIBRARY pfnNewLibrary = nullptr;
+   PFN_NEW_BASE_LIBRARY pfnNewLibrary = nullptr;
 
 #endif
 
@@ -134,11 +134,11 @@ console::console(int argc, char * argv[])
 
 #ifdef ACID_LIBRARY
 
-   PFN_NEW_AURA_LIBRARY pfnNewLibrary = &new_aura_library;
+   PFN_NEW_BASE_LIBRARY pfnNewLibrary = &new_aura_library;
 
 #else
 
-   PFN_NEW_AURA_LIBRARY pfnNewLibrary = nullptr;
+   PFN_NEW_BASE_LIBRARY pfnNewLibrary = nullptr;
 
 #endif
 

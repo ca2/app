@@ -116,7 +116,9 @@ namespace user
 
       //virtual pointd client_screen_top_left();
 
-      //virtual bool GetFocusRect(RECT * prect);
+      virtual bool GetFocusRect(RECT * prect);
+
+      virtual void defer_update_display();
 
       //using ::user::primitive::get_client_rect;
       //using ::user::primitive::get_window_rect;

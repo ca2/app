@@ -24,7 +24,7 @@ namespace app_shader
 
       virtual void on_request(::create * pcreate) override;
 
-#ifdef DEBUG
+#ifdef _DEBUG
       virtual int64_t add_ref(OBJ_REF_DBG_PARAMS) override;
       virtual int64_t dec_ref(OBJ_REF_DBG_PARAMS) override;
 #endif

@@ -53,18 +53,18 @@ namespace user
 
       }
 
-      ::user::control * pcontrol = _001GetControl(item.item_index(), item.subitem_index());
+      ::user::interaction * pinteraction = _001GetControl(item.item_index(), item.subitem_index());
 
-      if(pcontrol != nullptr)
+      if(pinteraction != nullptr)
       {
-         if(pcontrol->descriptor().has_function(::user::control_function_action))
+         if(pinteraction->descriptor().has_function(::user::control_function_action))
          {
-            if(pcontrol->descriptor().get_control_type() == ::user::control_type_button)
+            if(pinteraction->descriptor().get_control_type() == ::user::control_type_button)
             {
 
 
                ::user::control_event ev;
-               ev.m_puie                  = pcontrol;
+               ev.m_puie                  = pinteraction;
                ev.m_eevent                = ::user::event_button_clicked;
 
                m_itemControl              = item;
@@ -76,7 +76,7 @@ namespace user
          else
          {
 
-            _001PlaceControl(pcontrol, item, true);
+            _001PlaceControl(pinteraction, item, true);
 
          }
 
@@ -87,7 +87,7 @@ namespace user
    }
 
 
-   control * form_mesh::_001GetControl(index iItem, index iSubItem)
+   ::user::interaction * form_mesh::_001GetControl(index iItem, index iSubItem)
    {
 
       return nullptr;
@@ -99,60 +99,70 @@ namespace user
 
 
 
-   void form_mesh::_001PlaceControl(::user::control * pcontrol, index iEditItem, bool bClick, bool bOnlySizeAndPosition)
+   void form_mesh::_001PlaceControl(::user::interaction * pinteraction, index iEditItem, bool bClick, bool bOnlySizeAndPosition)
    {
 
       ::rect rect;
 
       draw_mesh_item item(this);
 
-      item.m_iDisplayItem = _001DisplayToStrict(pcontrol->m_iEditItem);
-      item.m_iItem = pcontrol->m_iEditItem;
-      item.m_iSubItem = pcontrol->descriptor().m_iSubItem;
+      item.m_iDisplayItem = _001DisplayToStrict(pinteraction->m_iEditItem);
+      item.m_iItem = pinteraction->m_iEditItem;
+      item.m_iSubItem = pinteraction->descriptor().m_iSubItem;
       item.m_iOrder = _001MapSubItemToOrder(item.m_iSubItem);
       item.m_iListItem = -1;
       _001GetElementRect(&item,::user::mesh::element_text);
       if(item.m_bOk)
       {
          
-         _001Update(pcontrol);
+         _001Update(pinteraction);
 
-         pcontrol->order_top();
+         pinteraction->order_top();
          
-         pcontrol->place(rect);
+         pinteraction->place(rect);
 
-         pcontrol->display();
+         pinteraction->display();
 
-         _001SetEditControl(pcontrol);
+         _001SetEditControl(pinteraction);
 
-         pcontrol->SetFocus();
+         pinteraction->SetFocus();
 
       }
 
    }
 
 
-   void form_mesh::_001SetEditControl(::user::control * pcontrol)
+   void form_mesh::_001SetEditControl(::user::interaction * pinteraction)
    {
 
-      if(pcontrol == nullptr)
+      if(!pinteraction)
       {
-         if(m_pcontrolEdit != nullptr)
+
+         if(m_pcontrolEdit)
          {
-            __pointer(class control) pcontrolEdit = m_pcontrolEdit;
-            _001HideControl(pcontrolEdit);
+
+            _001HideControl(m_pcontrolEdit);
+
             m_pcontrolEdit = nullptr;
+
          }
+
       }
       else
       {
-         m_pcontrolEdit = pcontrol;
+
+         m_pcontrolEdit = pinteraction;
+
       }
+
    }
 
-   ::user::control * form_mesh::_001GetEditControl()
+
+   ::user::interaction * form_mesh::_001GetEditControl()
    {
+
       return m_pcontrolEdit;
+
    }
 
 
@@ -161,12 +171,12 @@ namespace user
 
       pmessage->previous();
 
-      ::user::control * pcontrol = _001GetEditControl();
+      ::user::interaction * pinteraction = _001GetEditControl();
 
-      if(pcontrol != nullptr)
+      if(pinteraction != nullptr)
       {
 
-         _001PlaceControl(pcontrol, pcontrol->m_iEditItem);
+         _001PlaceControl(pinteraction, pinteraction->m_iEditItem);
 
       }
 
@@ -178,15 +188,19 @@ namespace user
 
       pmessage->previous();
 
-      if(pmessage->m_bRet)
-         return;
-
-      ::user::control * pcontrol = _001GetEditControl();
-
-      if(pcontrol != nullptr)
+      if (pmessage->m_bRet)
       {
 
-         _001PlaceControl(pcontrol, pcontrol->m_iEditItem);
+         return;
+
+      }
+
+      ::user::interaction * pinteraction = _001GetEditControl();
+
+      if(pinteraction != nullptr)
+      {
+
+         _001PlaceControl(pinteraction, pinteraction->m_iEditItem);
 
       }
 
@@ -219,15 +233,15 @@ namespace user
       /*
       lresult = user::NotifyRetContinue;
 
-      ::user::control * pcontrol = m_controldescriptorset.get_control_by_id(wparam);
+      ::user::interaction * pinteraction = m_controldescriptorset.get_control_by_id(wparam);
 
-      if(pcontrol == nullptr)
+      if(pinteraction == nullptr)
       return true;
 
       user::Notify * pnotify = (user::Notify *) lparam;
 
 
-      switch(pcontrol->descriptor().get_type())
+      switch(pinteraction->descriptor().get_type())
       {
       case control_type_edit:
       switch(pnotify->m_uiCode)
@@ -238,8 +252,8 @@ namespace user
       switch(pkey->m_uiVKey)
       {
       //             //  case VK_RETURN:
-      _001SaveEdit(pcontrol);
-      pcontrol->display(display_none);
+      _001SaveEdit(pinteraction);
+      pinteraction->display(display_none);
       lresult &= ~user::NotifyRetContinue;
       return true;
       }
@@ -323,9 +337,9 @@ namespace user
    }
 
 
-   void form_mesh::_001HideControl(::user::control * pcontrol)
+   void form_mesh::_001HideControl(::user::interaction * pinteraction)
    {
-      pcontrol->display(display_none);
+      pinteraction->display(display_none);
    }
 
 
@@ -348,14 +362,14 @@ namespace user
       ::user::mesh::_001DrawSubItem(pdrawitem);
       //if(pdrawitem->m_pcolumn->m_bCustomDraw)
       //{
-      //   ::user::control * pcontrol = _001GetControlBySubItem(pdrawitem->m_iSubItem);
-      //   if(pcontrol != nullptr)
+      //   ::user::interaction * pinteraction = _001GetControlBySubItem(pdrawitem->m_iSubItem);
+      //   if(pinteraction != nullptr)
       //   {
       //      pdrawitem->m_rectClient = pdrawitem.m_rectSubItem;
       //      pdrawitem->m_rectWindow = pdrawitem.m_rectClient;
       //      _001ClientToScreen(pdrawitem->m_rectWindow);
       //      control_keep controlkeep(this,pdrawitem->m_iItem,pdrawitem->m_iSubItem);
-      //      pcontrol->_003CallCustomDraw(pdrawitem->m_pgraphics,pdrawitem);
+      //      pinteraction->_003CallCustomDraw(pdrawitem->m_pgraphics,pdrawitem);
       //   }
       //}
    }
@@ -369,22 +383,22 @@ namespace user
    }
 
 
-   bool form_mesh::_001IsPointInside(::user::control * pcontrol,point64 point)
+   bool form_mesh::_001IsPointInside(::user::interaction * pinteraction,point64 point)
    {
 
-      if(pcontrol->m_pdescriptor != nullptr)
+      if(pinteraction->m_pdescriptor != nullptr)
       {
 
-         if(pcontrol->m_pdescriptor->m_econtroltype == control_type_edit
-               || pcontrol->m_pdescriptor->m_econtroltype == control_type_edit_plain_text)
+         if(pinteraction->m_pdescriptor->m_econtroltype == control_type_edit
+               || pinteraction->m_pdescriptor->m_econtroltype == control_type_edit_plain_text)
          {
 
-            if(pcontrol == _001GetEditControl())
+            if(pinteraction == _001GetEditControl())
             {
                
                ::rect rectWindow;
                
-               pcontrol->get_window_rect(rectWindow);
+               pinteraction->get_window_rect(rectWindow);
 
                return rectWindow.contains(point);
 
@@ -405,18 +419,18 @@ namespace user
       draw_mesh_item item(this);
 
       return m_itemControl 
-         && m_itemControl.m_iSubItem == pcontrol->descriptor().m_iSubItem;
+         && m_itemControl.m_iSubItem == pinteraction->descriptor().m_iSubItem;
 
       //i32 iEditItem;
       //i32 iEditSubItem;
 
       //_001DisplayHitTest(point, iEditItem, iEditSubItem);
 
-      //      item.m_iDisplayItem = DisplayToStrict(pcontrol->m_iEditItem);
-      //    item.m_iItem = pcontrol->m_iEditItem;
-//      item.m_iDisplayItem = DisplayToStrict(pcontrol->m_iEditItem);
+      //      item.m_iDisplayItem = DisplayToStrict(pinteraction->m_iEditItem);
+      //    item.m_iItem = pinteraction->m_iEditItem;
+//      item.m_iDisplayItem = DisplayToStrict(pinteraction->m_iEditItem);
 //
-//      item.m_iSubItem = pcontrol->descriptor().m_iSubItem;
+//      item.m_iSubItem = pinteraction->descriptor().m_iSubItem;
 //      item.m_iOrder = _001MapSubItemToOrder(item.m_iSubItem);
 //      item.m_iListItem = -1;
 //      //_001GetElementRect(&item, ::user::mesh::element_sub_item);
@@ -458,7 +472,7 @@ namespace user
    void form_mesh::_000OnMouse(::message::mouse * pmouse)
    {
 
-      ::user::control::_000OnMouse(pmouse);
+      ::user::interaction::_000OnMouse(pmouse);
 
       //if (pmouse->m_bRet)
       //{
@@ -485,12 +499,12 @@ namespace user
       //   if(_001DisplayHitTest(point, iItem, iSubItem))
       //   {
       //
-      //      class ::user::control_descriptor * pcontrol = m_controldescriptorset.get_by_sub_item(iSubItem);
+      //      class ::user::control_descriptor * pinteraction = m_controldescriptorset.get_by_sub_item(iSubItem);
       //
-      //      if(pcontrol != nullptr
-      //      && pcontrol->m_pcontrol != nullptr
-      //      && (pcontrol->m_etype == type_edit
-      //      || pcontrol->m_etype == type_edit_plain_text)
+      //      if(pinteraction != nullptr
+      //      && pinteraction->m_pcontrol != nullptr
+      //      && (pinteraction->m_etype == type_edit
+      //      || pinteraction->m_etype == type_edit_plain_text)
       //&& !range.has_sub_item(iItem, iSubItem))
       //{
       //_001HideEditingControls();
@@ -506,12 +520,12 @@ namespace user
       //_001GetSelection(range);
       //if(_001DisplayHitTest(point, iItem, iSubItem))
       //{
-      //class ::user::control_descriptor * pcontrol = m_controldescriptorset.get_by_sub_item(iSubItem);
-      //if(pcontrol != nullptr
-      //&& pcontrol->m_pcontrol != nullptr
-      //&& !pcontrol->m_pcontrol->is_window_visible()
-      //&& (pcontrol->m_etype == type_edit
-      //|| pcontrol->m_etype == type_edit_plain_text))
+      //class ::user::control_descriptor * pinteraction = m_controldescriptorset.get_by_sub_item(iSubItem);
+      //if(pinteraction != nullptr
+      //&& pinteraction->m_pcontrol != nullptr
+      //&& !pinteraction->m_pcontrol->is_window_visible()
+      //&& (pinteraction->m_etype == type_edit
+      //|| pinteraction->m_etype == type_edit_plain_text))
       //{
       //return false;
       //}
@@ -566,11 +580,11 @@ namespace user
    }
 
 
-   void form_mesh::control_get_client_rect(::user::control * pcontrol,RECT * prect)
+   void form_mesh::control_get_client_rect(::user::interaction * pinteraction,RECT * prect)
 
    {
 
-      if(pcontrol == nullptr)
+      if(pinteraction == nullptr)
       {
 
          SetRectEmpty(prect);
@@ -609,7 +623,7 @@ namespace user
 
       }
 
-      item.m_iSubItem = pcontrol->descriptor().m_iSubItem;
+      item.m_iSubItem = pinteraction->descriptor().m_iSubItem;
 
       item.m_iOrder = _001MapSubItemToOrder(item.m_iSubItem);
 
@@ -627,10 +641,10 @@ namespace user
    }
 
 
-   void form_mesh::control_get_window_rect(::user::control * pcontrol,RECT * prect)
+   void form_mesh::control_get_window_rect(::user::interaction * pinteraction,RECT * prect)
 
    {
-      control_get_client_rect(pcontrol,prect);
+      control_get_client_rect(pinteraction,prect);
 
       _001ClientToScreen(prect);
 

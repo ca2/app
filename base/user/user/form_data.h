@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA form_data :
+class CLASS_DECL_BASE form_data :
    virtual public ::data::data
 {
 public:

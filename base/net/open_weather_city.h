@@ -2,7 +2,7 @@
 
 
 
-class CLASS_DECL_AURA openweather_city
+class CLASS_DECL_BASE openweather_city
 {
 public:
 

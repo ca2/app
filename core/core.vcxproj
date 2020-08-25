@@ -239,7 +239,7 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CORE_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)/third-windows/include;$(__archive)/third-windows/third/include;$(__archive)/third-windows/third/include/include;$(SolutionDir)../../platform-windows;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)/third-windows/include;$(__archive)/third-windows/third/include;$(__archive)/third-windows/third/include/include;$(SolutionDir)../../platform-windows/_include;$(SolutionDir)../../platform-windows;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <StringPooling>false</StringPooling>
       <ExceptionHandling>Async</ExceptionHandling>
@@ -398,7 +398,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CORE_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)/third-windows/include;$(__archive)/third-windows/third/include;$(__archive)/third-windows/third/include/include;$(SolutionDir)../../platform-windows;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)/third-windows/include;$(__archive)/third-windows/third/include;$(__archive)/third-windows/third/include/include;$(SolutionDir)../../platform-windows/_include;$(SolutionDir)../../platform-windows;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <StringPooling>false</StringPooling>
@@ -478,7 +478,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CORE_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)/third-windows/include;$(__archive)/third-windows/third/include;$(__archive)/third-windows/third/include/include;$(SolutionDir)../../platform-windows;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)/third-windows/include;$(__archive)/third-windows/third/include;$(__archive)/third-windows/third/include/include;$(SolutionDir)../../platform-windows/_include;$(SolutionDir)../../platform-windows;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -663,7 +663,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CORE_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)/third-windows/include;$(__archive)/third-windows/third/include;$(__archive)/third-windows/third/include/include;$(SolutionDir)../../platform-windows;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)/third-windows/include;$(__archive)/third-windows/third/include;$(__archive)/third-windows/third/include/include;$(SolutionDir)../../platform-windows/_include;$(SolutionDir)../../platform-windows;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -823,7 +823,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CORE_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)/third-windows/include;$(__archive)/third-windows/third/include;$(__archive)/third-windows/third/include/include;$(SolutionDir)../../platform-windows;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)/third-windows/include;$(__archive)/third-windows/third/include;$(__archive)/third-windows/third/include/include;$(SolutionDir)../../platform-windows/_include;$(SolutionDir)../../platform-windows;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -901,7 +901,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CORE_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)/third-windows/include;$(__archive)/third-windows/third/include;$(__archive)/third-windows/third/include/include;$(SolutionDir)../../platform-windows;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)/third-windows/include;$(__archive)/third-windows/third/include;$(__archive)/third-windows/third/include/include;$(SolutionDir)../../platform-windows/_include;$(SolutionDir)../../platform-windows;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -1624,7 +1624,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="node\windows\frame_window.cpp" />
+    <ClCompile Include="node\windows\shell.cpp" />
     <ClCompile Include="node\windows_common\application.cpp" />
     <ClCompile Include="os\ansios\base.cpp" />
     <ClCompile Include="os\ansios\datetime.cpp" />
@@ -1637,34 +1637,9 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="os\ansios\process.cpp" />
     <ClCompile Include="os\ansios\user.cpp" />
     <ClCompile Include="os\ansios\win.cpp" />
-    <ClCompile Include="programming\dynamic_source\exit_exception.cpp" />
-    <ClCompile Include="programming\dynamic_source\httpd_socket.cpp" />
-    <ClCompile Include="programming\dynamic_source\library_class.cpp" />
-    <ClCompile Include="programming\dynamic_source\script.cpp" />
-    <ClCompile Include="programming\dynamic_source\script_cache.cpp" />
-    <ClCompile Include="programming\dynamic_source\script_compiler.cpp" />
-    <ClCompile Include="programming\dynamic_source\script_composite.cpp" />
-    <ClCompile Include="programming\dynamic_source\script_instance.cpp" />
-    <ClCompile Include="programming\dynamic_source\script_interface.cpp" />
-    <ClCompile Include="programming\dynamic_source\script_main.cpp" />
-    <ClCompile Include="programming\dynamic_source\script_manager.cpp" />
-    <ClCompile Include="programming\dynamic_source\session.cpp" />
-    <ClCompile Include="programming\introjection\compiler.cpp" />
-    <ClCompile Include="programming\programming\programming_application.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="scripting\javascript\javascript.cpp" />
-    <ClCompile Include="scripting\javascript\javascript_functions.cpp" />
-    <ClCompile Include="scripting\javascript\javascript_tinyjs_functions.cpp" />
+    <ClCompile Include="platform\application.cpp" />
+    <ClCompile Include="platform\session.cpp" />
+    <ClCompile Include="platform\system.cpp" />
     <ClCompile Include="user\account\account.cpp" />
     <ClCompile Include="user\account\account_dialog.cpp" />
     <ClCompile Include="user\account\account_login.cpp" />
@@ -1672,22 +1647,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="user\account\view.cpp" />
     <ClCompile Include="user\databaseuser\key_mesh_data.cpp" />
     <ClCompile Include="user\databaseuser\mesh_data.cpp" />
-    <ClCompile Include="user\experience\button.cpp" />
-    <ClCompile Include="user\experience\control_box.cpp" />
-    <ClCompile Include="user\experience\department.cpp" />
-    <ClCompile Include="user\experience\dock_manager.cpp" />
-    <ClCompile Include="user\experience\experience.cpp" />
-    <ClCompile Include="user\experience\frame.cpp" />
-    <ClCompile Include="user\experience\frame_window.cpp" />
-    <ClCompile Include="user\experience\menu_manager.cpp" />
-    <ClCompile Include="user\experience\move_manager.cpp" />
-    <ClCompile Include="user\experience\orto_button.cpp" />
-    <ClCompile Include="user\experience\size_manager.cpp" />
-    <ClCompile Include="user\menu\button.cpp" />
-    <ClCompile Include="user\menu\central.cpp" />
-    <ClCompile Include="user\menu\list_view.cpp" />
-    <ClCompile Include="user\menu\list_window.cpp" />
-    <ClCompile Include="user\menu\menu_view.cpp" />
     <ClCompile Include="user\netuser\netuser_network_configuration.cpp" />
     <ClCompile Include="user\rich_text\box.cpp" />
     <ClCompile Include="user\rich_text\data.cpp" />
@@ -1703,17 +1662,14 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="user\simple\child_frame.cpp" />
     <ClCompile Include="user\simple\form_list_view.cpp" />
     <ClCompile Include="user\simple\form_view.cpp" />
-    <ClCompile Include="user\simple\frame_window.cpp" />
     <ClCompile Include="user\simple\list_control.cpp" />
     <ClCompile Include="user\simple\list_data.cpp" />
     <ClCompile Include="user\simple\list_header_control.cpp" />
     <ClCompile Include="user\simple\list_view.cpp" />
-    <ClCompile Include="user\simple\main_frame.cpp" />
     <ClCompile Include="user\simple\menu_bar.cpp" />
     <ClCompile Include="user\simple\mesh_data.cpp" />
     <ClCompile Include="user\simple\pane_document.cpp" />
     <ClCompile Include="user\simple\printer_list_view.cpp" />
-    <ClCompile Include="user\simple\scroll_bar.cpp" />
     <ClCompile Include="user\simple\static.cpp" />
     <ClCompile Include="user\simple\status_bar.cpp" />
     <ClCompile Include="user\simple\tab_control.cpp" />
@@ -1740,7 +1696,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="user\userex\home_view.cpp" />
     <ClCompile Include="user\userex\image_list.cpp" />
     <ClCompile Include="user\userex\impact_host.cpp" />
-    <ClCompile Include="user\userex\keyboard_layout.cpp" />
     <ClCompile Include="user\userex\menu_document.cpp" />
     <ClCompile Include="user\userex\menu_frame.cpp" />
     <ClCompile Include="user\userex\menu_view.cpp" />
@@ -1774,15 +1729,14 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="user\user\mesh_cache.cpp" />
     <ClCompile Include="user\user\mesh_cache_interface.cpp" />
     <ClCompile Include="user\user\mesh_data.cpp" />
+    <ClCompile Include="user\user\shell.cpp" />
     <ClCompile Include="user\user\statusbar.cpp" />
     <ClCompile Include="user\user\step_slider.cpp" />
     <ClCompile Include="user\user\toggle_switch.cpp" />
-    <ClCompile Include="user\user\toolbar.cpp" />
     <ClCompile Include="user\user\toolbar_ctrl.cpp" />
     <ClCompile Include="user\user\tool_command.cpp" />
     <ClCompile Include="user\user\tool_tip_tool.cpp" />
     <ClCompile Include="user\user\tool_tip_window.cpp" />
-    <ClCompile Include="user\user\tool_window.cpp" />
     <ClCompile Include="user\user\tree.cpp" />
     <ClCompile Include="user\user\tree_data.cpp" />
     <ClCompile Include="user\user\tree_window.cpp" />
@@ -1916,6 +1870,9 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="node\windows\aaa_want_to_remove\tts_speaker.h" />
     <ClInclude Include="node\windows\aaa_want_to_remove\uac_tools.h" />
     <ClInclude Include="node\windows\aaa_want_to_remove\user.h" />
+    <ClInclude Include="node\windows\shell.h" />
+    <ClInclude Include="node\windows\_.h" />
+    <ClInclude Include="node\windows\_windows.h" />
     <ClInclude Include="os\core.h" />
     <ClInclude Include="os\aura_gdk.h" />
     <ClInclude Include="os\binreloc.h" />
@@ -1942,6 +1899,9 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="os\_c.h" />
     <ClInclude Include="os\_impl.h" />
     <ClInclude Include="os\_os.h" />
+    <ClInclude Include="platform\application.h" />
+    <ClInclude Include="platform\session.h" />
+    <ClInclude Include="platform\system.h" />
     <ClInclude Include="platform\_generic_object_constructor_impl.h" />
     <ClInclude Include="include\objc.h" />
     <ClInclude Include="include\objcpp.h" />
@@ -1966,25 +1926,8 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="math\kissfft\kissfft.h" />
     <ClInclude Include="math\math_math.h" />
     <ClInclude Include="math\_math.h" />
-    <ClInclude Include="programming\dynamic_source\exit_exception.h" />
-    <ClInclude Include="programming\dynamic_source\httpd_socket.h" />
-    <ClInclude Include="programming\dynamic_source\library_class.h" />
-    <ClInclude Include="programming\dynamic_source\script.h" />
-    <ClInclude Include="programming\dynamic_source\script_cache.h" />
-    <ClInclude Include="programming\dynamic_source\script_compiler.h" />
-    <ClInclude Include="programming\dynamic_source\script_composite.h" />
-    <ClInclude Include="programming\dynamic_source\script_instance.h" />
-    <ClInclude Include="programming\dynamic_source\script_interface.h" />
-    <ClInclude Include="programming\dynamic_source\script_main.h" />
-    <ClInclude Include="programming\dynamic_source\script_manager.h" />
-    <ClInclude Include="programming\dynamic_source\session.h" />
-    <ClInclude Include="programming\dynamic_source\_.h" />
-    <ClInclude Include="programming\dynamic_source\_impl.h" />
-    <ClInclude Include="programming\introjection\compiler.h" />
-    <ClInclude Include="programming\introjection\_.h" />
     <ClInclude Include="update.h" />
     <ClInclude Include="user.h" />
-    <ClInclude Include="user\menu\menu_view.h" />
     <ClInclude Include="user\rich_text\box.h" />
     <ClInclude Include="user\rich_text\data.h" />
     <ClInclude Include="user\rich_text\document.h" />
@@ -2011,6 +1954,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="user\userex\group_image_list.h" />
     <ClInclude Include="user\userex\image_list.h" />
     <ClInclude Include="user\userex\progress.h" />
+    <ClInclude Include="user\user\shell.h" />
     <ClInclude Include="user\user\_tree.h" />
     <ClInclude Include="user\_.h" />
     <ClInclude Include="version\version.h" />
@@ -2076,7 +2020,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="net\ftp\file_status.cpp" />
     <ClCompile Include="net\ftp\output.cpp" />
     <ClCompile Include="net\ftp\output_stream.cpp" />
-    <ClCompile Include="user\experience\experience_updown.cpp" />
     <ClCompile Include="user\user\tooltip.cpp" />
     <ClInclude Include="const\check.h" />
     <ClInclude Include="const\context.h" />
@@ -2128,8 +2071,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="net\ftp\transfer_notification.h" />
     <ClInclude Include="net\ftp\_.h" />
     <ClInclude Include="net\_.h" />
-    <ClInclude Include="papaya\papaya_zoneing.h" />
-    <ClInclude Include="programming\_.h" />
     <ClInclude Include="user\account\account.h" />
     <ClInclude Include="user\account\account_dialog.h" />
     <ClInclude Include="user\account\account_login.h" />
@@ -2140,26 +2081,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="user\databaseuser\mesh_data.h" />
     <ClInclude Include="user\databaseuser\_.h" />
     <ClInclude Include="user\databaseuser\_databaseuser.h" />
-    <ClInclude Include="user\experience\button.h" />
-    <ClInclude Include="user\experience\control_box.h" />
-    <ClInclude Include="user\experience\department.h" />
-    <ClInclude Include="user\experience\dock_manager.h" />
-    <ClInclude Include="user\experience\experience.h" />
-    <ClInclude Include="user\experience\frame.h" />
-    <ClInclude Include="user\experience\frame_window.h" />
-    <ClInclude Include="user\experience\menu_manager.h" />
-    <ClInclude Include="user\experience\move_manager.h" />
-    <ClInclude Include="user\experience\orto_button.h" />
-    <ClInclude Include="user\experience\size_manager.h" />
-    <ClInclude Include="user\experience\_.h" />
-    <ClInclude Include="user\experience\_const.h" />
-    <ClInclude Include="user\experience\_experience.h" />
-    <ClInclude Include="user\menu\button.h" />
-    <ClInclude Include="user\menu\central.h" />
-    <ClInclude Include="user\menu\list_view.h" />
-    <ClInclude Include="user\menu\list_window.h" />
-    <ClInclude Include="user\menu\_.h" />
-    <ClInclude Include="user\menu\_menu.h" />
     <ClInclude Include="user\simple\child_frame.h" />
     <ClInclude Include="user\simple\form_list_view.h" />
     <ClInclude Include="user\simple\form_view.h" />
@@ -2198,7 +2119,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="user\userex\form_view.h" />
     <ClInclude Include="user\userex\home_view.h" />
     <ClInclude Include="user\userex\impact_host.h" />
-    <ClInclude Include="user\userex\keyboard_layout.h" />
     <ClInclude Include="user\userex\menu_document.h" />
     <ClInclude Include="user\userex\menu_frame.h" />
     <ClInclude Include="user\userex\menu_view.h" />
@@ -2244,7 +2164,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="user\user\mesh_cache_interface.h" />
     <ClInclude Include="user\user\mesh_data.h" />
     <ClInclude Include="user\user\mesh_item.h" />
-    <ClInclude Include="user\user\orto_button.h" />
     <ClInclude Include="user\user\listing.h" />
     <ClInclude Include="user\user\statusbar.h" />
     <ClInclude Include="user\user\step_slider.h" />
@@ -2261,22 +2180,9 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="user\user\xfplayer_view_lines.h" />
     <ClInclude Include="user\user\xfplayer_view_line_selection.h" />
     <ClInclude Include="user\user\_.h" />
-    <ClInclude Include="user\user\_ewindowflag.h" />
-    <ClInclude Include="user\user\_interaction_impl.h" />
     <ClInclude Include="user\user\tooltip.h" />
-    <ClInclude Include="user\user\windows_tsf\afxres.h" />
-    <ClInclude Include="user\user\windows_tsf\dataobj.h" />
-    <ClInclude Include="user\user\windows_tsf\globals.h" />
-    <ClInclude Include="user\user\windows_tsf\propldr.h" />
-    <ClInclude Include="user\user\windows_tsf\resource.h" />
-    <ClInclude Include="user\user\windows_tsf\edit_window.h" />
-    <ClInclude Include="user\user\windows_tsf\aaa_want_to_remove_tsfedit.h" />
-    <ClInclude Include="user\user\windows_tsf\tsfwnd.h" />
-    <ClInclude Include="user\user\windows_tsf\winres.h" />
     <ClInclude Include="user\user\_const.h" />
-    <ClInclude Include="user\user\_const_key.h" />
     <ClInclude Include="user\user\_user.h" />
-    <ClInclude Include="user\experience\experience_updown.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="_defer.h" />
     <None Include="core.def" />
@@ -2291,6 +2197,12 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
   <ItemGroup>
     <ProjectReference Include="..\aura\aura.vcxproj">
       <Project>{e000ffaf-392f-4e32-bf51-fd7ed638991f}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\axis\axis.vcxproj">
+      <Project>{4c6f5f2b-56ee-485f-924a-f8f0a9c24eb6}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\base\base.vcxproj">
+      <Project>{a216abd4-26c4-4746-96b3-9d30ed28cf92}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

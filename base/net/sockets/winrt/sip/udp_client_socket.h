@@ -5,7 +5,7 @@ namespace sockets
 {
 
 
-   class CLASS_DECL_AURA sip_udp_client_socket :
+   class CLASS_DECL_BASE sip_udp_client_socket :
       virtual public udp_socket,
       virtual public sip_base_client_socket
    {

@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AURA split_view :
+   class CLASS_DECL_BASE split_view :
       virtual public ::user::impact_host,
       virtual public ::user::show < split_layout >
    {

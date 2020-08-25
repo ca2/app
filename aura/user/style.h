@@ -11,6 +11,8 @@ namespace user
    public:
 
 
+      __pointer(::aura::library)             m_plibrary;
+
       ::draw2d::font_pointer                 m_pfont;
       ::draw2d::font_pointer                 m_pfontMenu;
       ::draw2d::font_pointer                 m_pfontButton;
@@ -59,7 +61,7 @@ namespace user
       //virtual bool prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem) override;
 
 
-//      virtual void initialize_style() override;
+      virtual ::estatus initialize_style();
 
 
       virtual bool _001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics,::user::frame * pframe) override;

@@ -465,19 +465,19 @@ namespace aura
    }
 
 
-   ::user::style* application::get_user_style() const
-   {
+   //::user::style* application::get_user_style() const
+   //{
 
-      if (m_psessionContext)
-      {
+   //   if (m_psessionContext)
+   //   {
 
-         return m_psessionContext->get_user_style();
+   //      return m_psessionContext->get_user_style();
 
-      }
+   //   }
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
 
    //string application::dialog_box(const char * pszMatter, property_set & propertyset)
@@ -2698,7 +2698,8 @@ namespace aura
       {
 
       }
-m_tickHeartBeat.Now();
+
+      m_tickHeartBeat.Now();
 
       try
       {
@@ -6231,7 +6232,7 @@ retry_license:
 
       pmessage->m_bRet = true;
 
-      close(end_app);
+      _001CloseApplication();
 
    }
 
@@ -7863,7 +7864,7 @@ retry_license:
 
 
 
-   ::aura::printer * application::get_printer(const char * pszDeviceName)
+   ::draw2d::printer * application::get_printer(const char * pszDeviceName)
    {
 
       ::exception::throw_interface_only();
@@ -11170,27 +11171,31 @@ namespace aura
    bool application::on_close_frame_window(::user::frame* pframe)
    {
 
-      //if (pframe->m_bCloseApplicationIfLastVisibleFrame)
-      //{
-      //   if (GetVisibleTopLevelFrameCountExcept(pframe) <= 0)
-      //   {
+      if (pframe->m_bCloseApplicationIfLastVisibleFrame)
+      {
 
-      //      _001CloseApplication();
+         if (GetVisibleTopLevelFrameCountExcept(pframe) <= 0)
+         {
 
-      //   }
-      //   else
-      //   {
+            pframe->DestroyWindow();
 
-      //      pframe->hide();
+            _001CloseApplication();
 
-      //   }
-      //}
-      //else
-      //{
+         }
+         else
+         {
 
-      //   pframe->DestroyWindow();
+            pframe->hide();
 
-      //}
+         }
+
+      }
+      else
+      {
+
+         pframe->DestroyWindow();
+
+      }
 
       return true;
 

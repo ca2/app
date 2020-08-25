@@ -37,7 +37,7 @@ namespace sockets
 
    /** Put http page.
    \ingroup http */
-   class CLASS_DECL_AURA http_put_socket :
+   class CLASS_DECL_BASE http_put_socket :
       virtual public http_client_socket
    {
    public:

@@ -7,7 +7,7 @@ namespace str
 {
 
 
-   CLASS_DECL_AURA string from(const struct sockaddr & sockaddr)
+   CLASS_DECL_BASE string from(const struct sockaddr & sockaddr)
    {
 
       string str;

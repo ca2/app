@@ -17,14 +17,14 @@ namespace str
 {
 
 
-   CLASS_DECL_AURA int_bool to(in6_addr & addr,const string & str);
-   CLASS_DECL_AURA void from(string & str, const in6_addr & addr);
-   CLASS_DECL_AURA int_bool to(in_addr & addr,const string & str);
-   CLASS_DECL_AURA void from(string & str, const in_addr & addr);
-   CLASS_DECL_AURA void from(string & str, const sockaddr_in &  addr);
-   CLASS_DECL_AURA void from(string & str, const sockaddr_in6 &  addr);
+   CLASS_DECL_BASE int_bool to(in6_addr & addr,const string & str);
+   CLASS_DECL_BASE void from(string & str, const in6_addr & addr);
+   CLASS_DECL_BASE int_bool to(in_addr & addr,const string & str);
+   CLASS_DECL_BASE void from(string & str, const in_addr & addr);
+   CLASS_DECL_BASE void from(string & str, const sockaddr_in &  addr);
+   CLASS_DECL_BASE void from(string & str, const sockaddr_in6 &  addr);
    #ifdef BSD_STYLE_SOCKETS
-   CLASS_DECL_AURA void from(string & str, const sockaddr & addr);
+   CLASS_DECL_BASE void from(string & str, const sockaddr & addr);
    #endif
 
 
@@ -90,16 +90,16 @@ inline stream & operator >>(stream & s, ::in_addr & addr)
 }
 
 
-CLASS_DECL_AURA u32 c_inet_addr(const char *src);
-CLASS_DECL_AURA i32 c_inet_pton(i32 af,const char *src,void *dst);
-CLASS_DECL_AURA const char * c_inet_ntop(i32 af,const void *src,char *dst,i32 cnt);
-CLASS_DECL_AURA string c_inet_ntop(i32 af,const void *src);
+CLASS_DECL_BASE u32 c_inet_addr(const char *src);
+CLASS_DECL_BASE i32 c_inet_pton(i32 af,const char *src,void *dst);
+CLASS_DECL_BASE const char * c_inet_ntop(i32 af,const void *src,char *dst,i32 cnt);
+CLASS_DECL_BASE string c_inet_ntop(i32 af,const void *src);
 
 
 
-CLASS_DECL_AURA string c_gethostbyname(const char * hostname);
+CLASS_DECL_BASE string c_gethostbyname(const char * hostname);
 
-CLASS_DECL_AURA string get_file_extension_mime_type(const string & strExtension);
+CLASS_DECL_BASE string get_file_extension_mime_type(const string & strExtension);
 
 
 #include "byte_order.h"

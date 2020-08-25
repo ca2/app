@@ -5,7 +5,7 @@ namespace http
 {
 
 
-   class CLASS_DECL_AURA listener:
+   class CLASS_DECL_BASE listener:
       virtual public object
    {
    public:

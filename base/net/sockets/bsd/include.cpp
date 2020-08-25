@@ -33,7 +33,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #ifdef WINDOWS
 
 
-CLASS_DECL_AURA string bsd_socket_error(i32 x)
+CLASS_DECL_BASE string bsd_socket_error(i32 x)
 {
 
    switch (x)

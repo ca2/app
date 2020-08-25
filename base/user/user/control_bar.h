@@ -104,7 +104,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AURA control_bar :
+   class CLASS_DECL_BASE control_bar :
       virtual public ::user::interaction
    {
    public:

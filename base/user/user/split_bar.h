@@ -6,7 +6,7 @@ namespace user
 
    class split_layout;
 
-   class CLASS_DECL_AURA split_bar :
+   class CLASS_DECL_BASE split_bar :
       public ::user::interaction
    {
    public:

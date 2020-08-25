@@ -91,7 +91,7 @@ namespace user
 
          __pointer(::userex::font_format_tool) get_font_format_tool(bool bCreate);
 
-         using ::user::control::_001GetText;
+         using ::user::interaction::_001GetText;
          virtual void _001GetText(string & str) const override;
          virtual void _001GetLayoutText(string & str) const override;
 

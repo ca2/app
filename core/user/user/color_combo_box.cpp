@@ -26,7 +26,7 @@ namespace user
    void color_combo_box::install_message_routing(::channel * psender)
    {
 
-      ::user::control::install_message_routing(psender);
+      ::user::interaction::install_message_routing(psender);
 
       IGUI_MSG_LINK(WM_CREATE, psender, this, &::user::color_combo_box::_001OnCreate);
       IGUI_MSG_LINK(WM_LBUTTONDOWN, psender, this, &::user::color_combo_box::_001OnLButtonDown);
@@ -165,7 +165,7 @@ namespace user
 
       }
 
-      ::user::control::on_control_event(pevent);
+      ::user::interaction::on_control_event(pevent);
 
    }
 

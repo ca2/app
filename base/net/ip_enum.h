@@ -15,7 +15,7 @@ namespace net
 {
 
    
-   class CLASS_DECL_AURA ip_enum :
+   class CLASS_DECL_BASE ip_enum :
       virtual public ::object
    {
    public:

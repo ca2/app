@@ -8,7 +8,7 @@ namespace http
 {
 
 
-   class CLASS_DECL_AURA cookie :
+   class CLASS_DECL_BASE cookie :
       virtual public object
    {
    public:
@@ -77,7 +77,7 @@ namespace http
 
 
 
-   class CLASS_DECL_AURA cookies :
+   class CLASS_DECL_BASE cookies :
       public __pointer_array(cookie)
    {
    public:

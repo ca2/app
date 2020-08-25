@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA url_domain_axis
+class CLASS_DECL_BASE url_domain_axis
 {
 public:
 
@@ -38,7 +38,7 @@ public:
 };
 
 
-class CLASS_DECL_AURA url_domain :
+class CLASS_DECL_BASE url_domain :
    public url_domain_axis
 {
 public:
@@ -65,9 +65,9 @@ public:
 
 
 
-bool CLASS_DECL_AURA server_is_top_domain(const char * pszTop1, strsize iLen1, const char * pszTop2, strsize iLen2);
+bool CLASS_DECL_BASE server_is_top_domain(const char * pszTop1, strsize iLen1, const char * pszTop2, strsize iLen2);
 
-inline bool CLASS_DECL_AURA server_is_top_domain(string strTop1, string strTop2)
+inline bool CLASS_DECL_BASE server_is_top_domain(string strTop1, string strTop2)
 {
 
    return server_is_top_domain(strTop1, strTop1.get_length(), strTop2, strTop2.get_length());

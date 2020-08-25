@@ -28,6 +28,12 @@ namespace user
    }
 
    
+   style::~style()
+   {
+
+   }
+
+
    void style::default_style_construct()
    {
 
@@ -43,8 +49,10 @@ namespace user
    }
 
 
-   style::~style()
+   ::estatus style::initialize_style()
    {
+
+      return ::success;
 
    }
 

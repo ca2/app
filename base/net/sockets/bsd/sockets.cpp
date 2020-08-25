@@ -227,7 +227,7 @@ string ip_reverse(string str)
 
 
 extern "C"
-CLASS_DECL_AURA const SSL_METHOD * TLS_client_method()
+CLASS_DECL_BASE const SSL_METHOD * TLS_client_method()
 {
 
    return TLSv1_2_client_method();
@@ -236,7 +236,7 @@ CLASS_DECL_AURA const SSL_METHOD * TLS_client_method()
 
 
 extern "C"
-CLASS_DECL_AURA const SSL_METHOD * TLS_server_method()
+CLASS_DECL_BASE const SSL_METHOD * TLS_server_method()
 {
 
    return TLSv1_2_server_method();

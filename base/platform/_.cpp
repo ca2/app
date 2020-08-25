@@ -15,13 +15,13 @@
 
 
 //extern "C"
-CLASS_DECL_AURA int_bool defer_aura_init();
+CLASS_DECL_BASE int_bool defer_aura_init();
 
 //extern "C"
-CLASS_DECL_AURA int_bool defer_aura_term();
+CLASS_DECL_BASE int_bool defer_aura_term();
 
 
-namespace aura
+namespace base
 {
 
 
@@ -67,7 +67,7 @@ namespace aura
    }
 
 
-} // namespace aura
+} // namespace base
 
 
 
@@ -122,7 +122,7 @@ int g_iAuraRefCount = 0;
 //}
 
 //extern "C"
-//CLASS_DECL_AURA int_bool defer_aura_term()
+//CLASS_DECL_BASE int_bool defer_aura_term()
 //{
 //
 //   g_iAuraRefCount--;
@@ -156,21 +156,21 @@ int g_iAuraRefCount = 0;
 
 
 
-CLASS_DECL_AURA int g_bAura = 0;
+CLASS_DECL_BASE int g_bAura = 0;
 
 
 
 
 
 
-CLASS_DECL_AURA u32 g_tickStartTime = 0;
+CLASS_DECL_BASE u32 g_tickStartTime = 0;
 
 
 
 
 
 //extern "C"
-CLASS_DECL_AURA void debug_print(const char* pszFormat, ...)
+CLASS_DECL_BASE void debug_print(const char* pszFormat, ...)
 {
 
    if (is_ptr_null(pszFormat, 1024))
@@ -212,13 +212,13 @@ void __post_quit_message(i32 nExitCode)
 
 
 //string_map < __pointer(::aura::library) >* g_pmapLibrary = nullptr;
-//string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary = nullptr;
+//string_map < PFN_NEW_BASE_LIBRARY >* g_pmapNewAuraLibrary = nullptr;
 
 
 //::mutex* &::get_context_system()->m_mutexLibrary = nullptr;
 
 
-CLASS_DECL_AURA string_map < PFN_NEW_AURA_LIBRARY >& __get_new_aura_library()
+CLASS_DECL_BASE string_map < PFN_NEW_BASE_LIBRARY >& __get_new_aura_library()
 {
 
    return ::get_context_system()->m_mapNewAuraLibrary;
@@ -226,7 +226,7 @@ CLASS_DECL_AURA string_map < PFN_NEW_AURA_LIBRARY >& __get_new_aura_library()
 }
 
 
-CLASS_DECL_AURA string_map < __pointer(::aura::library) >& __library()
+CLASS_DECL_BASE string_map < __pointer(::aura::library) >& __library()
 {
 
    return ::get_context_system()->m_mapLibrary;
@@ -235,7 +235,7 @@ CLASS_DECL_AURA string_map < __pointer(::aura::library) >& __library()
 
 
 
-CLASS_DECL_AURA PFN_NEW_AURA_LIBRARY get_get_new_aura_library(const char* psz)
+CLASS_DECL_BASE PFN_NEW_BASE_LIBRARY get_get_new_aura_library(const char* psz)
 {
 
    sync_lock sl(&::get_context_system()->m_mutexLibrary);
@@ -254,7 +254,7 @@ CLASS_DECL_AURA PFN_NEW_AURA_LIBRARY get_get_new_aura_library(const char* psz)
 }
 
 
-CLASS_DECL_AURA::aura::library& get_library(const char* psz)
+CLASS_DECL_BASE::aura::library& get_library(const char* psz)
 {
 
    sync_lock sl(&::get_context_system()->m_mutexLibrary);
@@ -264,7 +264,7 @@ CLASS_DECL_AURA::aura::library& get_library(const char* psz)
 }
 
 
-CLASS_DECL_AURA void register_get_new_aura_library(const char* psz, PFN_NEW_AURA_LIBRARY pfnNewAuraLibrary)
+CLASS_DECL_BASE void register_get_new_aura_library(const char* psz, PFN_NEW_BASE_LIBRARY pfnNewAuraLibrary)
 {
 
    sync_lock sl(&::get_context_system()->m_mutexLibrary);
@@ -274,7 +274,7 @@ CLASS_DECL_AURA void register_get_new_aura_library(const char* psz, PFN_NEW_AURA
 }
 
 
-CLASS_DECL_AURA void register_library(const char* psz, ::aura::library* plibrary)
+CLASS_DECL_BASE void register_library(const char* psz, ::aura::library* plibrary)
 {
 
    sync_lock sl(&::get_context_system()->m_mutexLibrary);
@@ -284,7 +284,7 @@ CLASS_DECL_AURA void register_library(const char* psz, ::aura::library* plibrary
 }
 
 
-CLASS_DECL_AURA int get_aura_init()
+CLASS_DECL_BASE int get_aura_init()
 {
 
    return g_iAuraRefCount;
@@ -293,7 +293,7 @@ CLASS_DECL_AURA int get_aura_init()
 
 
 extern "C"
-CLASS_DECL_AURA::aura::system * aura_create_aura_system()
+CLASS_DECL_BASE::aura::system * aura_create_aura_system()
 {
 
    return new ::aura::system();
@@ -302,7 +302,7 @@ CLASS_DECL_AURA::aura::system * aura_create_aura_system()
 
 
 ////extern "C"
-//CLASS_DECL_AURA int_bool defer_aura_init()
+//CLASS_DECL_BASE int_bool defer_aura_init()
 //{
 //
 //   g_iAuraRefCount++;
@@ -333,7 +333,7 @@ CLASS_DECL_AURA::aura::system * aura_create_aura_system()
 
 
 //extern "C"
-//CLASS_DECL_AURA int_bool defer_aura_term()
+//CLASS_DECL_BASE int_bool defer_aura_term()
 //{
 //
 //   g_iAuraRefCount--;
@@ -382,11 +382,11 @@ CLASS_DECL_AURA::aura::system * aura_create_aura_system()
 // }
 
 
-//CLASS_DECL_AURA LPFN_CREATE_SYSTEM g_pfn_create_system;
+//CLASS_DECL_BASE LPFN_CREATE_SYSTEM g_pfn_create_system;
 
-//CLASS_DECL_AURA const char* g_pszCooperativeLevel;
+//CLASS_DECL_BASE const char* g_pszCooperativeLevel;
 
-//CLASS_DECL_AURA int g_iDerivedApplication = 0;
+//CLASS_DECL_BASE int g_iDerivedApplication = 0;
 
 
 string get_debug_report_type_text(int iType)
@@ -472,7 +472,7 @@ int __cdecl debug_report(int iType, wchar_t const* pszFile, int iLine, wchar_t c
 }
 
 
-CLASS_DECL_AURA void writeln(const char* psz)
+CLASS_DECL_BASE void writeln(const char* psz)
 {
 
    output_debug_string(string(psz) + "\n");
@@ -480,7 +480,7 @@ CLASS_DECL_AURA void writeln(const char* psz)
 }
 
 
-CLASS_DECL_AURA int is_ptr_null(const void* p, size_t s)
+CLASS_DECL_BASE int is_ptr_null(const void* p, size_t s)
 {
 
    return (((size_t)p) < s);
@@ -512,7 +512,7 @@ extern "C"
 
 
 
-CLASS_DECL_AURA ::estatus load_factory_library(string strLibrary)
+CLASS_DECL_BASE ::estatus load_factory_library(string strLibrary)
 {
 
 

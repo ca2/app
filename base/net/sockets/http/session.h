@@ -11,7 +11,7 @@ namespace sockets
 
 
 
-   class CLASS_DECL_AURA http_session :
+   class CLASS_DECL_BASE http_session :
       virtual public http_get_socket,
       virtual public http_post_socket,
       virtual public http_put_socket

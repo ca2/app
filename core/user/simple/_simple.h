@@ -5,8 +5,10 @@
 #include "core/user/user/_user.h"
 
 
-#include "core/user/menu/_menu.h"
+#include "base/user/menu/_menu.h"
 
+
+#include "base/user/simple/_simple.h"
 
 
 namespace experience
@@ -34,11 +36,10 @@ namespace user
 #include "static.h"
 
 
-#include "core/user/experience/_.h"
 
 
 
-#include "scroll_bar.h"
+//#include "scroll_bar.h"
 
 #include "toolbar.h"
 #include "menu_bar.h"
@@ -46,11 +47,6 @@ namespace user
 
 
 #include "pane_document.h"
-
-
-
-#include "core/user/experience/frame_window.h"
-#include "frame_window.h"
 
 
 #include "form_view.h"
@@ -83,7 +79,7 @@ namespace user
 
 
 #include "child_frame.h"
-#include "main_frame.h"
+//#include "main_frame.h"
 
 
 #include "mesh_data.h"

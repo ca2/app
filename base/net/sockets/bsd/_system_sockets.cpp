@@ -2,7 +2,7 @@
 #include "aura/net/sockets/_.h"
 
 
-namespace aura
+namespace base
 {
 
 
@@ -29,7 +29,7 @@ namespace aura
 
    }
 
-} // namespace aura
+} // namespace base
 
 
 

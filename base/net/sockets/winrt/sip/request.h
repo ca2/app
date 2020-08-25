@@ -5,7 +5,7 @@ namespace sip
 {
 
 
-   class CLASS_DECL_AURA request :
+   class CLASS_DECL_BASE request :
       virtual public transaction
    {
    public:

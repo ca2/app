@@ -20,7 +20,7 @@ namespace user
    class plain_edit_internal;
 
    class CLASS_DECL_AURA plain_edit :
-      virtual public ::user::scroll,
+      virtual public ::user::scroll_base,
       virtual public ::data::listener
 #ifdef ENABLE_TEXT_SERVICES_FRAMEWORK
 #ifdef WINDOWS
@@ -336,7 +336,7 @@ namespace user
 
       virtual void on_change_viewport_offset() override;
 
-      virtual ::size get_total_size() override;
+      virtual ::sized get_total_size() override;
 
       virtual var get_ex_value();
 

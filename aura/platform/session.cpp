@@ -4412,12 +4412,12 @@ ret:
    }
 
 
-   ::user::style* session::get_user_style() const
-   {
+   // ::user::style* session::get_user_style() const
+   // {
 
-      return m_puserstyle;
+   //    return m_puserstyle;
 
-   }
+   // }
 
 
 } // namespace aura

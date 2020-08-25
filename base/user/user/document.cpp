@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "aura/message.h"
 #include "aura/update.h"
-#include "wait_cursor.h"
+#include "aura/user/wait_cursor.h"
 
 
 namespace user
@@ -102,25 +102,125 @@ namespace user
    }
 
 
-   void document::route_command_message(::user::command * pcommand)
-   {
+   //void document::route_command_message(::user::command * pcommand)
+   //{
 
-      channel::route_command_message(pcommand);
+   //   channel::route_command_message(pcommand);
 
-      if (pcommand->m_bRet)
-         return;
+   //   if (pcommand->m_bRet)
+   //      return;
 
-      if (m_pimpactsystem != nullptr)
-      {
+   //   if (m_pimpactsystem != nullptr)
+   //   {
 
-         m_pimpactsystem->route_command_message(pcommand);
+   //      m_pimpactsystem->route_command_message(pcommand);
 
-         if (pcommand->m_bRet)
-            return;
+   //      if (pcommand->m_bRet)
+   //         return;
 
-      }
+   //   }
 
-   }
+   //}
+
+
+   //void document::route_command_message(::user::command* pcommand)
+   //{
+
+   //   on_command_message(pcommand);
+
+   //   if (pcommand->m_bRet)
+   //   {
+
+   //      return;
+
+   //   }
+
+   //   auto pdocument = get_document();
+
+   //   if (pdocument)
+   //   {
+
+   //      pdocument->on_command_message(pcommand);
+
+   //      if (pcommand->m_bRet)
+   //      {
+
+   //         return;
+
+   //      }
+
+   //   }
+
+   //   //for (auto& pinteraction : m_interactionaCommandHandlers)
+   //   //{
+
+   //   //   if (pinteraction && pinteraction != GetActiveView())
+   //   //   {
+
+   //   //      pinteraction->on_command_message(pcommand);
+
+   //   //      if (pcommand->m_bRet)
+   //   //      {
+
+   //   //         return;
+
+   //   //      }
+
+   //   //   }
+
+   //   //}
+
+   //   // then pump through parent
+   //   __pointer(::user::interaction) puiParent = GetParent();
+   //   while (puiParent)
+   //   {
+
+   //      puiParent->on_command_message(pcommand);
+
+   //      if (pcommand->m_bRet)
+   //      {
+
+   //         return;
+
+   //      }
+
+   //   }
+
+   //   // last but not least, pump through cast
+   //   ::aura::application* papp = get_context_application();
+
+   //   if (papp != nullptr)
+   //   {
+
+   //      papp->on_command_message(pcommand);
+
+   //      if (pcommand->m_bRet)
+   //      {
+
+   //         return;
+
+   //      }
+
+   //   }
+
+   //   __pointer(channel) ptarget = Session.get_keyboard_focus();
+
+   //   if (ptarget != nullptr && ptarget != this && ptarget != GetActiveView()
+   //      && !m_interactionaCommandHandlers.contains(ptarget))
+   //   {
+
+   //      ptarget->on_command_message(pcommand);
+
+   //      if (pcommand->m_bRet)
+   //      {
+
+   //         return;
+
+   //      }
+
+   //   }
+
+   //}
 
 
    bool document::on_create_bars(::user::frame_window * pframe)
@@ -1692,7 +1792,7 @@ runall(CREATE_PROCEDURE);
    }
 
 
-} // namespace aura
+} // namespace base
 
 
 

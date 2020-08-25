@@ -1,10 +1,9 @@
 #pragma once
 
 
-#include "core/_.h"
-#include "aura/user/_user.h"       // thank you (mummy)
-#include "core/user/experience/_experience.h"    // thank you (mummy)
-
+#include "base/_.h"
+#include "base/user/user/_user.h"       // thank you (mummy)
+#include "base/user/experience/_experience.h"       // thank you (mummy)
 
 #ifdef _APP_EXPERIENCE_ANTHILL_LIBRARY
 #define CLASS_DECL_APP_EXPERIENCE_ANTHILL  CLASS_DECL_EXPORT
@@ -31,7 +30,7 @@
 #include "experience.h"
 
 
-#include "theme.h"
+#include "style.h"
 
 
 #include "library.h"

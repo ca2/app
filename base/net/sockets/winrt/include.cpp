@@ -2,7 +2,7 @@
 
 
 // only to be included in win32 projects
-CLASS_DECL_AURA const char *bsd_socket_error(int x)
+CLASS_DECL_BASE const char *bsd_socket_error(int x)
 {
 static   char tmp[100];
    switch (x)

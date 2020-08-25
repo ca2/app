@@ -131,6 +131,8 @@ namespace aura
 
       }
 
+      common_construct();
+
    }
 
 
@@ -152,10 +154,10 @@ namespace aura
    }
 
 
-   ::estatus system::initialize_system(::object * pobjectContext, app_core * pappcore)
+   ::estatus system::initialize(::object * pobjectContext)
    {
 
-      auto estatus = initialize(pobjectContext);
+      auto estatus = ::aura::context_thread::initialize(pobjectContext);
 
       if (!estatus)
       {
@@ -2123,7 +2125,9 @@ namespace aura
 
             ::str::ends_eat_ci(strImaging, "imaging");
 
-            strLibrary = strImaging + "_imaging";
+            ::str::begins_eat_ci(strImaging, "imaging_");
+
+            ::str::begins_eat_ci(strImaging, "imaging");
 
          }
 
@@ -8278,8 +8282,6 @@ namespace aura
    }
 
 
-
-
    CLASS_DECL_AURA void black_body(float* r, float* g, float* b, DWORD dwTemp)
    {
 
@@ -8345,8 +8347,32 @@ namespace aura
 
 
 
-::aura::system* platform_create_system()
+::aura::system* platform_create_system(HINSTANCE hinstance)
 {
+
+#ifndef CUBE
+
+   string strLevel = read_resource_as_string(hinstance, 108, "LEVEL");
+
+   if (strLevel.has_char())
+   {
+
+      string strMessage;
+
+      auto plibrary = __node_library_open(strLevel, strMessage);
+
+      if (!plibrary)
+      {
+
+         MessageBoxA(NULL, strMessage, "Could not open required library.", MB_ICONEXCLAMATION);
+
+         return nullptr;
+
+      }
+
+   }
+
+#endif
 
    auto pstaticsetup = ::static_setup::get_first(::static_setup::flag_system, "");
 

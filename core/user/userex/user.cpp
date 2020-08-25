@@ -1,8 +1,8 @@
 #include "framework.h"
 #include "aura/platform/static_setup.h"
 #include "aura/update.h"
-#include "aura/xml/_.h"
-#include "aura/user/shell.h"
+#include "axis/xml/_.h"
+#include "core/user/user/shell.h"
 #include "core/user/user/_tree.h"
 
 
@@ -112,10 +112,9 @@ namespace core
    ::estatus user::init1()
    {
 
-      create_factory <::simple_scroll_bar, ::user::scroll_bar>();
       create_factory < ::user::picture::picture_impl >();
 
-      create_factory <::userex::keyboard_layout >();
+      //create_factory <::userex::keyboard_layout >();
 
       create_factory <::userex::top_edit_view >();
       create_factory <::userex::top_toggle_view >();
@@ -138,19 +137,19 @@ namespace core
       }*/
 
 
-      if (!::user::user::init1())
+      if (!::base::user::init1())
       {
 
          return false;
 
       }
 
-      if (!initialize1_experience())
-      {
+      //if (!initialize1_experience())
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
       
       //m_phtml->add_ref(OBJ_REF_DBG_ARGS);
 
@@ -165,11 +164,32 @@ namespace core
 
    }
 
+   ::user::shell* user::shell()
+   {
+
+      if (!m_pshell)
+      {
+
+         auto estatus = create_user_shell();
+
+         if (!estatus)
+         {
+
+            TRACE("failed to create user shell");
+
+         }
+
+      }
+
+      return m_pshell;
+
+   }
+
 
    ::estatus user::init()
    {
 
-      if (!::user::user::init())
+      if (!::base::user::init())
       {
 
          return ::error_failed;
@@ -233,14 +253,11 @@ namespace core
       create_factory <simple_list_view >();
       create_factory <::user::document >();
       create_factory <simple_printer_list_view >();
-      create_factory <::user::combo_list >();
-      create_factory <::user::plain_edit >();
 
       create_factory <::user::menu_item >();
       create_factory <::user::menu >();
       create_factory <::user::menu_list_view >();
 
-      create_factory <::user::button >();
 
       create_factory <::user::show < ::user::plain_edit > >();
       create_factory <::user::show < ::user::tree > >();
@@ -250,6 +267,11 @@ namespace core
       create_factory <menu_frame >();
       create_factory <menu_view >();
 
+      
+
+      auto& sys = System;
+
+      auto typeinfo = sys.get_simple_frame_window_type_info();
 
       auto ptemplate = __new(::user::multiple_document_template(
          "system/form",
@@ -262,7 +284,7 @@ namespace core
       m_ptemplateForm = ptemplate;
 
 
-      Session.add_document_template(ptemplate);
+      add_document_template(ptemplate);
 
       ptemplate = __new(::user::multiple_document_template(
          "system/form",
@@ -274,7 +296,7 @@ namespace core
 
       m_ptemplateChildForm = ptemplate;
 
-      Session.add_document_template(m_ptemplateChildForm);
+      add_document_template(m_ptemplateChildForm);
 
       ptemplate = __new(::user::multiple_document_template(
             "system/form",
@@ -286,7 +308,7 @@ namespace core
 
       m_ptemplatePlaceHolder = ptemplate;
 
-      Session.add_document_template(ptemplate);
+      add_document_template(ptemplate);
 
       auto estatus = initialize_html();
 
@@ -537,7 +559,7 @@ namespace core
 
          m_mapTemplate[type] = psystem;
 
-         App(pobject).document_manager()->add_document_template(psystem);
+         User.document_manager()->add_document_template(psystem);
 
       }
 
@@ -590,14 +612,6 @@ namespace core
       __pointer(::user::form_window) pform = pdocument->get_typed_view < ::user::form_window >();
 
       return pdocument;
-
-   }
-
-
-   ::user::menu_central * user::menu()
-   {
-
-      return m_pmenucentral2;
 
    }
 
@@ -1382,7 +1396,7 @@ namespace core
 
          m_mapTemplate[type] = psystem;
 
-         App(pobject).document_manager()->add_document_template(psystem);
+         document_manager()->add_document_template(psystem);
 
       }
 
@@ -2051,12 +2065,12 @@ namespace core
    ::estatus user::initialize_userex()
    {
 
-      //if (is_system())
-      {
+      ////if (is_system())
+      //{
 
-         create_factory <::user::keyboard_layout >();
+      //   create_factory <::user::keyboard_layout >();
 
-      }
+      //}
 
       return true;
 
@@ -2110,13 +2124,6 @@ namespace core
    //}
 
 
-   ::type user::user_default_controltype_to_typeinfo(::user::e_control_type econtroltype)
-   {
-
-      return Sess(this).user()->controltype_to_typeinfo(econtroltype);
-
-
-   }
 
 
 
@@ -2169,6 +2176,8 @@ namespace core
       //m_pdocs->m_ptemplate_html->open_document_file(get_context_application(), itema[0]->get_user_path());
 
    }
+
+
 
 
    //void user::initialize_bergedge_application_interface()

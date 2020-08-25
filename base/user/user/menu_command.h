@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AURA menu_command :
+   class CLASS_DECL_BASE menu_command :
       virtual public ::user::command,
       virtual public ::user::check,
       virtual public ::user::text

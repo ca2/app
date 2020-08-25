@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "aura/user/_user.h"
+#include "base/user/user/_user.h"
 
 
 #include "core/filesystem/filemanager/component.h"
@@ -43,7 +43,6 @@ namespace user
    class check_box;
    class menu_interaction;
    class menu_button;
-   class menu_central;
    class menu_item;
    class menu_item_ptra;
    class frame_window;
@@ -51,11 +50,9 @@ namespace user
    class scroll_bar;
    class split_layout;
    class style;
-   class theme;
    class scroll_info;
    class window_map;
    using style_pointer = __pointer(style);
-   using theme_pointer = __pointer(theme);
    class system_interaction_impl;
 
 
@@ -106,7 +103,7 @@ namespace experience
 
 
 
-#include "core/user/experience/experience_updown.h"
+
 
 
 
@@ -380,7 +377,7 @@ namespace user
 #include "list_column_array.h"
 
 #include "list_header.h"
-#include "tool_window.h"
+//#include "tool_window.h"
 
 
 
@@ -425,7 +422,7 @@ class CDockState;           // forward context_object (see afxpriv.h)
 
 #include "core/user/simple_ui/_.h"
 
-#include "core/user/experience/_.h"
+//#include "core/user/experience/_.h"
 
 
 

@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AURA margin_base:
+   class CLASS_DECL_BASE margin_base:
       virtual public ::user::interaction
    {
    public:
@@ -93,7 +93,7 @@ namespace user
       }
 
 
-      virtual ::size get_total_size() override
+      virtual ::sized get_total_size() override
       {
 
          auto s = BASE::get_total_size();

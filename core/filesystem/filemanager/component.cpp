@@ -1,6 +1,6 @@
 ﻿#include "framework.h"
 //#include "_filemanager.h"
-#include "aura/user/shell.h"
+#include "core/user/user/shell.h"
 
 
 CLASS_DECL_CORE ::type __form_document_type();
@@ -204,7 +204,11 @@ namespace filemanager
 
       //__compose_new(this, m_pmap);
 
-      estatus = User.shell()->initialize(pobjectContext);
+      auto& user = User;
+
+      auto pshell = user.shell();
+
+      estatus = pshell->initialize(pobjectContext);
 
       if (!estatus)
       {

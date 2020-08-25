@@ -69,7 +69,7 @@ namespace userex
 
 #include "wait_message_dialog.h"
 #include "message_box.h"
-#include "keyboard_layout.h"
+//#include "keyboard_layout.h"
 
 
 #include "impact_host.h"

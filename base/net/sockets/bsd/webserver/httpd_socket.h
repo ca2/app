@@ -42,7 +42,7 @@ namespace sockets
    /** \defgroup webserver Webserver framework */
    /** Web server socket framework.
       \ingroup webserver */
-   class CLASS_DECL_AURA httpd_socket :
+   class CLASS_DECL_BASE httpd_socket :
       virtual public http_base_socket
    {
    public:

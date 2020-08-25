@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AURA edit_window :
+   class CLASS_DECL_BASE edit_window :
       virtual public ::user::interaction
    {
    public:

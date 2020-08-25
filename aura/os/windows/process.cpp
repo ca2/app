@@ -2,6 +2,9 @@
 #include "process.h"
 
 
+#undef User
+
+
 #include <Wtsapi32.h>
 #include <Userenv.h>
 

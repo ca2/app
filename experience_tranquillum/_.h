@@ -1,9 +1,8 @@
 #pragma once
 
 
-#include "core/_.h"
-#include "core/user/simple/_simple.h"       // thank you (mummy)
-#include "core/user/experience/_experience.h"    // thank you (mummy)
+#include "base/_.h"
+#include "base/user/simple/_simple.h"       // thank you (mummy)
 
 
 #ifdef _CA2_CORE_EXPERIENCE_TRANQUILLUM_LIBRARY
@@ -31,7 +30,7 @@
 #include "experience.h"
 
 
-#include "theme.h"
+#include "style.h"
 
 
 #include "library.h"

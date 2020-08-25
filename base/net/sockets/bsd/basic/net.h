@@ -85,7 +85,7 @@ namespace sockets
    */
 
 
-   class CLASS_DECL_AURA net :
+   class CLASS_DECL_BASE net :
       public object
    {
    public:
@@ -100,7 +100,7 @@ namespace sockets
       bool           m_bInitialized;
 
 
-      class CLASS_DECL_AURA dns_cache_item :
+      class CLASS_DECL_BASE dns_cache_item :
          virtual public ::object
       {
       public:
@@ -123,7 +123,7 @@ namespace sockets
 
       };
 
-      class CLASS_DECL_AURA reverse_cache_item:
+      class CLASS_DECL_BASE reverse_cache_item:
          virtual public ::generic_object
       {
       public:

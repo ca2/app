@@ -11,40 +11,40 @@ namespace user
    public:
 
 
-      bool                             m_bColumnsAdded;
-      int                              m_iImageSpacing;
-      bool                             m_bMorePlain;
-      bool                             m_bAutoCreateListHeader;
-      bool                             m_bHeaderCtrl;
-      bool                             m_bSingleColumnMode;
+      bool                                   m_bColumnsAdded;
+      int                                    m_iImageSpacing;
+      bool                                   m_bMorePlain;
+      bool                                   m_bAutoCreateListHeader;
+      bool                                   m_bHeaderCtrl;
+      bool                                   m_bSingleColumnMode;
 
-      __pointer(list_header)                  m_plistheader;
+      __pointer(list_header)                 m_plistheader;
 
-      draw_list_item * m_pdrawlistitem;
+      draw_list_item *                       m_pdrawlistitem;
 
-      ::user::list_column_array        m_columna;
+      ::user::list_column_array              m_columna;
 
-      __pointer(simple_list_data)             m_psimplelistdata;
+      __pointer(simple_list_data)            m_psimplelistdata;
 
 
-      ::draw2d::fastblur               m_blur;
-      index_map < ::image_pointer >              m_mapBlur;
-      index_map < string >             m_mapText;
-      index_map < COLORREF >           m_mapBackColor;
-      ::draw2d::fastblur               m_blurIcon;
-      index_map < ::image_pointer >              m_mapIconBlur;
-      double                           m_dIconSaturation;
-      double                           m_dIconLightness;
-      double                           m_dIconOpacity;
-      int                              m_iIconBlur;
-      int                              m_iIconBlurRadius;
-      int                              m_iTextSpreadRadius;
-      int                              m_iTextBlurRadius;
-      int                              m_iTextBlur;
-      ::rect                           m_rectSpot;
-      ::image_pointer                            m_pimageSpot;
-      ::image_pointer                            m_pimageTime;
-      bool                             m_bHighHighLight;
+      ::draw2d::fastblur                     m_blur;
+      index_map < ::image_pointer >          m_mapBlur;
+      index_map < string >                   m_mapText;
+      index_map < COLORREF >                 m_mapBackColor;
+      ::draw2d::fastblur                     m_blurIcon;
+      index_map < ::image_pointer >          m_mapIconBlur;
+      double                                 m_dIconSaturation;
+      double                                 m_dIconLightness;
+      double                                 m_dIconOpacity;
+      int                                    m_iIconBlur;
+      int                                    m_iIconBlurRadius;
+      int                                    m_iTextSpreadRadius;
+      int                                    m_iTextBlurRadius;
+      int                                    m_iTextBlur;
+      ::rect                                 m_rectSpot;
+      ::image_pointer                        m_pimageSpot;
+      ::image_pointer                        m_pimageTime;
+      bool                                   m_bHighHighLight;
 
 
       list();

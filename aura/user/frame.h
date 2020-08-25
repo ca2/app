@@ -94,13 +94,16 @@ namespace user
       bool                                         m_bDefaultNotifyIcon;
       string                                       m_strFrameTitle;
       ::size                                       m_sizeMinimum;
-      //address_array < ::user::impact * >           m_viewptraCommandHandlers;       // current active ::user::impact
+//      __pointer_array(::user::interaction)         m_interactionaCommandHandlers;
       bool                                         m_bCloseApplicationIfLastVisibleFrame;
       __pointer(::user::style)                     m_puserstyle;
 
   
       frame();
       virtual ~frame();
+
+
+      virtual void install_message_routing(::channel* pchannel) override;
 
       
       virtual style * _get_style() const override;
@@ -127,7 +130,7 @@ namespace user
 
       virtual ::size get_window_minimum_size() override;
 
-
+      DECL_GEN_SIGNAL(_001OnAppExit);
 
 
 

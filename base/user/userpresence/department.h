@@ -5,7 +5,7 @@ namespace userpresence
 {
 
 
-   class CLASS_DECL_AURA department :
+   class CLASS_DECL_BASE department :
       virtual public ::aura::department,
       virtual public ::aura::timer_array
    {

@@ -18,7 +18,7 @@ namespace user
    class notify_icon_listener;
 
 
-   class CLASS_DECL_AURA notify_icon :
+   class CLASS_DECL_BASE notify_icon :
 #ifdef WINDOWS_DESKTOP
       virtual public ::user::interaction
 #else

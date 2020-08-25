@@ -376,7 +376,7 @@ namespace userstack
             pinteraction->set_window_pos(zorder_top, rectClient.top, rectClient.left, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW);
          }
       }
-      ::user::show < ::user::control >::on_layout(pgraphics);
+      ::user::show < ::user::interaction >::on_layout(pgraphics);
       gcom::backview::user::interaction::on_layout(pgraphics);
    }*/
 

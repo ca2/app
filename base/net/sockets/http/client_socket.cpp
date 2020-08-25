@@ -10,7 +10,7 @@ namespace hex
 {
 
 
-inline CLASS_DECL_AURA void upper_pad_from(char* sz, const void* p, memsize s)
+inline CLASS_DECL_BASE void upper_pad_from(char* sz, const void* p, memsize s)
 {
    const u8* pb = (const u8*)p;
    sz += s * 2;
@@ -666,7 +666,7 @@ namespace sockets
 
    }
 
-   CLASS_DECL_AURA string http_method_string(e_http_method emethod)
+   CLASS_DECL_BASE string http_method_string(e_http_method emethod)
    {
 
       switch (emethod)
@@ -692,7 +692,7 @@ namespace sockets
    }
 
 
-   CLASS_DECL_AURA e_http_method string_http_method(const string & str)
+   CLASS_DECL_BASE e_http_method string_http_method(const string & str)
    {
 
       string strMethod(str);

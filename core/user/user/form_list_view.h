@@ -17,6 +17,9 @@ namespace user
       virtual ~form_list_view();
 
 
+      virtual ::estatus initialize(::object* pobjectContext) override;
+
+
       virtual void assert_valid() const override;
       virtual void dump(dump_context & dumpcontext) const override;
 
@@ -28,11 +31,12 @@ namespace user
       virtual void _001OnTimer(::timer * ptime) override;
 
       virtual void route_command_message(::user::command * pcommand) override;
+      virtual void on_command(::user::command* pcommand) override;
       virtual void update(::update * pupdate) override;
 
       virtual void set_viewport_offset(int, int) override;
       virtual ::point get_viewport_offset() override;
-      virtual ::size get_total_size() override;
+      virtual ::sized get_total_size() override;
 
       virtual void on_control_event(::user::control_event * pevent) override;
 

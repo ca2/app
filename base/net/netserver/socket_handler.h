@@ -5,7 +5,7 @@ namespace netserver
 {
 
 
-   class CLASS_DECL_AURA socket_handler :
+   class CLASS_DECL_BASE socket_handler :
       virtual public ::sockets::socket_handler
    {
    public:

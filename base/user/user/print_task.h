@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AURA print_task :
+   class CLASS_DECL_BASE print_task :
       virtual public ::task
    {
    public:
@@ -20,7 +20,7 @@ namespace user
       __pointer(::user::interaction)   m_pinteraction;
 
 
-      __pointer(::aura::printer)       m_phprinter;
+      __pointer(::draw2d::printer)     m_pprinter;
 
 
       print_task();

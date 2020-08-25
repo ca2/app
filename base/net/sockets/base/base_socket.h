@@ -18,13 +18,13 @@ namespace sockets
    /** \defgroup basic Basic sockets */
    /** base_socket base class.
    \ingroup basic */
-   class CLASS_DECL_AURA base_socket :
+   class CLASS_DECL_BASE base_socket :
       virtual public ::object
    {
    public:
 
 
-      class CLASS_DECL_AURA callback
+      class CLASS_DECL_BASE callback
       {
       public:
          virtual void OnRawData(base_socket * psocket, void * pdata, memsize len) = 0;
@@ -35,7 +35,7 @@ namespace sockets
 
       /** Detached base_socket run thread.
       \ingroup internal */
-      class CLASS_DECL_AURA socket_thread:
+      class CLASS_DECL_BASE socket_thread:
          virtual public ::thread
       {
       public:

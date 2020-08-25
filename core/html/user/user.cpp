@@ -27,7 +27,7 @@ namespace core
 
       m_ptemplateHtmlChildForm1 = ptemplate;
 
-      Session.add_document_template(ptemplate);
+      add_document_template(ptemplate);
 
       return ::success;
 

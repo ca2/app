@@ -77,6 +77,17 @@ namespace user
       //};
 
 
+      // control member variables BEGIN
+      ::aura::draw_context* m_pdrawcontext;
+      __pointer(::user::interaction)      m_pwndCustomWindowProc;
+      bool                                m_bCustomWindowProc;
+      index                               m_iEditItem;
+      bool                                m_bControlExCommandEnabled;
+      ::user::interaction* m_puiLabel;
+      bool                                m_bIdBound;
+      // control member variables END
+
+
       __pointer_array(::user::item)                m_itema;
       bool                                         m_bOverdraw;
       ::user::frame *                              m_pframe;
@@ -172,8 +183,8 @@ namespace user
       /// represents (this window is a button [a menu button],
       /// this window is a checkbox [a menu checkbox],
       /// this window is a player/view [a menu picture/video/chat?!])
-      //__pointer(interaction)                    m_pmenuitemThis;
-      //__pointer_array(interaction)              m_menuaGuest;
+      __pointer(object)                         m_pmenuitem;
+      __pointer_array(interaction)              m_menua;
       bool                                      m_bWfiUpDownTarget;
       __pointer_array(::thread)                 m_threada;
 
@@ -255,8 +266,8 @@ namespace user
       virtual ::sync * mutex_draw();
 
 
-      virtual bool AddControlBar(::user::control_bar* pcontrolbar);
-      virtual bool RemoveControlBar(::user::control_bar* pcontrolbar);
+      //virtual bool AddControlBar(::user::control_bar* pcontrolbar);
+      //virtual bool RemoveControlBar(::user::control_bar* pcontrolbar);
 
       // updown
       virtual bool wfi_is_up();
@@ -279,6 +290,8 @@ namespace user
       virtual void set_place_child_title(const char* pszTitle);
 
       virtual ::user::interaction* get_bind_ui();
+
+      virtual string get_display_tag();
 
       virtual void on_finalize() override;
       virtual void delete_this() override;
@@ -1025,6 +1038,12 @@ namespace user
       virtual bool get_rect_normal(RECT* prect);
 
 
+      virtual scroll_bar* get_horizontal_scroll_bar();
+      virtual scroll_bar* get_vertical_scroll_bar();
+
+      virtual scroll_data* get_horizontal_scroll_data();
+      virtual scroll_data* get_vertical_scroll_data();
+
 
       virtual void set_viewport_offset_x(int x);
       virtual void set_viewport_offset_y(int y);
@@ -1036,9 +1055,11 @@ namespace user
       virtual void on_change_viewport_offset();
       virtual void on_viewport_offset(::draw2d::graphics_pointer & pgraphics);
       virtual ::point get_viewport_offset();
-      virtual ::size get_total_size();
+      virtual ::sized get_total_size();
       virtual void on_change_view_size();
-      virtual ::size get_page_size();
+      virtual ::sized get_page_size();
+      virtual ::estatus set_total_size(const ::sized& size);
+      virtual ::estatus set_page_size(const ::sized& size);
       virtual ::point get_parent_accumulated_scroll() const override;
       virtual ::point get_parent_viewport_offset() const;
       virtual ::point get_ascendant_viewport_offset() const;
@@ -1231,6 +1252,65 @@ namespace user
 
       virtual void _001DrawItem(::draw2d::graphics_pointer& pgraphics, ::user::item * pitem);
 
+
+      // control member function BEGIN
+      //
+      //
+      //
+      /// if you (developer) don't know how to create a control,
+      /// you should be able (control developer pay attention now),
+      /// to build a default control with a default constructed
+      /// ::user::control_descriptor.
+      //virtual bool create_control(class control_descriptor* pdescriptor) override;
+      //virtual estate get_state() const override;
+      bool _003IsCustomMessage();
+      ::user::primitive* _003GetCustomMessageWnd();
+      //virtual void _001OnDraw(::draw2d::graphics_pointer& pgraphics) override;
+      virtual void route_command_message(::user::command* pcommand) override;
+      virtual bool has_function(e_control_function econtrolfunction) const;
+      virtual e_control_type get_control_type() const;
+      virtual void _003CallCustomDraw(::draw2d::graphics_pointer& pgraphics, ::aura::draw_context* pitem);
+      virtual bool _003CallCustomWindowProc(__pointer(::user::interaction) pwnd, UINT message, WPARAM wparam, LPARAM lparam, LRESULT& lresult);
+      virtual void _003OnCustomDraw(::draw2d::graphics_pointer& pgraphics, ::aura::draw_context* pitem);
+      virtual void _003CustomWindowProc(::message::message* pmessage);
+      //virtual form_list * get_form_list();
+      //virtual bool _001IsPointInside(::point point) override;
+      //control null() { return control(); }
+      bool Validate(string& str);
+      bool get_data(__pointer(::user::interaction) pwnd, var& var);
+      void SetEditItem(index iItem);
+      void SetEditSubItem(index iItem);
+      index GetEditSubItem();
+      index GetEditItem();
+      //virtual ::user::interaction * ControlExGetWnd();
+      //using ::user::box::get_client_rect;
+      //virtual bool get_client_rect(RECT * prect) override;
+      //using ::user::box::get_window_rect;
+      //virtual bool get_window_rect(RECT * prect) override;
+      //bool operator == (const class ::user::control_descriptor& descriptor) const;
+      //bool operator == (const class control& control) const;
+      virtual bool IsControlCommandEnabled();
+      virtual void EnableControlCommand(bool bEnable);
+      //virtual void BaseControlExOnMouseMove(UINT nFlags, const ::point & point);
+      //virtual void on_hit_test(::user::item & item) override;
+      //DECL_GEN_SIGNAL(_001OnCreate);
+      //DECL_GEN_SIGNAL(_001OnMouseMove);
+      //DECL_GEN_SIGNAL(_001OnMouseLeave);
+      //DECL_GEN_SIGNAL(_001OnKeyDown);
+      DECL_GEN_SIGNAL(_001OnEnable);
+      //DECL_GEN_SIGNAL(_001OnSetFocus);
+      //DECL_GEN_SIGNAL(_001OnKillFocus);
+      //virtual void route_control_event(::user::control_event* pevent) override;
+      //virtual void on_notify_control_event(control_event* pevent) override;
+      //virtual void on_control_event(::user::control_event* pevent) override;
+      //virtual bool simple_on_control_event(::message::message * pmessage, ::user::e_event eevent) override;
+      //virtual void walk_pre_translate_tree(::message::message * pmessage,__pointer(::user::interaction) puiStop);
+      //virtual bool get_element_rect(RECT* prect, e_element eelement);
+      virtual void get_simple_drop_down_open_arrow_polygon(point_array& pointa);
+      // control member functions END
+
+
+
       // these are utility functions
       // the utility functions should be based on this class functions
       // specially the style_base pure function overrides
@@ -1261,7 +1341,7 @@ namespace user
       virtual e_stock_icon get_stock_icon();
 
 
-      virtual e_control_type get_control_type() const;
+      //virtual e_control_type get_control_type() const;
 
 
       virtual void post_task(::generic_object * pobjectTask);
@@ -1338,6 +1418,26 @@ namespace user
       return m_pdescriptor->m_puserinteractionParent != NULL && !m_pdescriptor->m_puserinteractionParent->is_window_screen_visible() ? false : is_this_screen_visible();
 
    }
+
+
+   class control_cmd_ui : public ::user::command
+   {
+   public:
+
+
+      id_to_id      m_mapControlCommand;
+
+
+      control_cmd_ui();
+
+
+      virtual void Enable(bool bOn);
+      virtual void SetCheck(i32 nCheck);
+      virtual void SetText(const char* pszText);
+
+      id GetControlCommand(id id);
+
+   };
 
 
 } // namespace user

@@ -67,8 +67,6 @@ namespace aura
       e_cursor                                              m_ecursorDefault;
       e_cursor                                              m_ecursor;
 
-      //__composite(::user::theme)                            m_ptheme;
-      // string_map < __composite(::user::theme) >             m_mapTheme;
 
       ::user::interaction *                                 m_puiCapture;
       bool                                                  m_bDrawCursor;
@@ -128,7 +126,7 @@ namespace aura
       __composite(::draw2d::font_list)                      m_pfontlistSingleColumn;
       __composite(::user::user)                             m_puser;
       ::draw2d::font_pointer                                m_pfontCopyDesk;
-      __pointer(::user::style)                              m_puserstyle;
+      //__pointer(::user::style)                              m_puserstyle;
 
 
       session();
@@ -203,7 +201,7 @@ namespace aura
       //virtual ~session();
 
 
-      virtual ::user::style * get_user_style() const;
+      //virtual ::user::style * get_user_style() const;
 
 
       virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema) override;

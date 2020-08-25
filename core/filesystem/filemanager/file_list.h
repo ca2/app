@@ -115,8 +115,8 @@ namespace filemanager
 
       //void GetSelected(::file::item_array & itema);
 
-      void _001OnInitializeForm(::user::control * pcontrol) override;
-      void _001OnButtonAction(::user::control * pcontrol) override;
+      void _001OnInitializeForm(::user::interaction * pinteraction) override;
+      void _001OnButtonAction(::user::interaction * pinteraction) override;
 
       //virtual void _017OpenSelected(bool bOpenFile, const ::action_context & action_context) override;
       virtual void _017OpenContextMenuSelected(const ::action_context & action_context) override;

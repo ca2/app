@@ -5,7 +5,7 @@ namespace http
 {
 
 
-   class CLASS_DECL_AURA message :
+   class CLASS_DECL_BASE message :
       public ::message::message,
       virtual public ::object
    {

@@ -36,7 +36,7 @@ namespace user
       };
 
 
-      __pointer(::user::control)     m_pcontrolEdit;
+      __pointer(::user::interaction)     m_pcontrolEdit;
 
       ::count           m_iClickCount;
       item              m_itemClick;
@@ -57,26 +57,26 @@ namespace user
 
       virtual bool _001HitTest_(const ::point & point, index&iItem, index&iSubItem) override;
 
-      void control_get_client_rect(::user::control * pcontrol,RECT * prect) override;
+      void control_get_client_rect(::user::interaction * pinteraction,RECT * prect) override;
 
-      void control_get_window_rect(::user::control * pcontrol,RECT * prect) override;
+      void control_get_window_rect(::user::interaction * pinteraction,RECT * prect) override;
 
       bool control_001DisplayHitTest(const ::point & point);
 
       bool _001IsEditing() override;
 
-      virtual bool _001IsPointInside(::user::control * pcontrol,point64 ptt) override;
+      virtual bool _001IsPointInside(::user::interaction * pinteraction,point64 ptt) override;
 
       void _001HideEditingControls();
-      void _001HideControl(::user::control * pcontrol);
+      void _001HideControl(::user::interaction * pinteraction);
       //virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
       //virtual LRESULT _001BaseWndGetProperty(EProperty eprop,LPARAM lparam) override;
 
       ;; void _001UpdateColumns();
-      ::user::control * _001GetEditControl();
-      void _001SetEditControl(::user::control * pcontrol);
-      virtual void _001PlaceControl(::user::control * pcontrol, index iEditItem, bool bClick = false, bool bOnlySizeAndPosition = false);
-      virtual ::user::control * _001GetControl(index iItem, index iSubItem);
+      ::user::interaction * _001GetEditControl();
+      void _001SetEditControl(::user::interaction * pinteraction);
+      virtual void _001PlaceControl(::user::interaction * pinteraction, index iEditItem, bool bClick = false, bool bOnlySizeAndPosition = false);
+      virtual ::user::interaction * _001GetControl(index iItem, index iSubItem);
       virtual bool on_click(const ::user::item & item) override;
       void _001OnTimer(::timer * ptimer) override;
 

@@ -23,9 +23,6 @@
     <Filter Include="Source Files\net\ftp">
       <UniqueIdentifier>{0b669073-ca47-4983-866b-aaf68b29ede8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\user\experience">
-      <UniqueIdentifier>{fdccee35-bce4-4553-9639-c749c8a75390}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
@@ -39,9 +36,6 @@
     <Filter Include="Header Files\user\user">
       <UniqueIdentifier>{56c22d9d-a50c-4f18-9f8c-b278792cf0d3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\user\experience">
-      <UniqueIdentifier>{99144670-118c-4768-91b7-e095a8662a68}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\filesystem">
       <UniqueIdentifier>{e735cbc7-6be2-44c9-b19a-0c3d6ee00183}</UniqueIdentifier>
     </Filter>
@@ -50,12 +44,6 @@
     </Filter>
     <Filter Include="Header Files\net\ftp">
       <UniqueIdentifier>{8809b4aa-0c02-4365-b792-65aa2046bba6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\papaya">
-      <UniqueIdentifier>{af30e842-0c89-4772-ab85-911b84385037}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\user\user\windows_tsf">
-      <UniqueIdentifier>{a38ec7fc-1304-4e96-8c4c-d22d687b7d05}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\inline">
       <UniqueIdentifier>{ca5a634b-db67-405b-b94e-e17dbe4fdeeb}</UniqueIdentifier>
@@ -84,17 +72,11 @@
     <Filter Include="Source Files\filesystem\userfs">
       <UniqueIdentifier>{ab561717-17f5-48e3-a9ab-6cb51ec97a39}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\user\menu">
-      <UniqueIdentifier>{3e887d50-ab62-40fb-8285-758d522393ab}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\user\userex">
       <UniqueIdentifier>{503330b5-a325-4881-a812-e966bf65d0c8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\user\rich_text">
       <UniqueIdentifier>{9e397bb3-dbaa-4ad9-91c2-36486552913c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\user\menu">
-      <UniqueIdentifier>{01b305e4-0a2e-47f8-97e2-872039744c53}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\user\userex">
       <UniqueIdentifier>{08a3b786-b1d7-41e6-b455-100b443f6624}</UniqueIdentifier>
@@ -162,24 +144,6 @@
     <Filter Include="Source Files\math\calculator">
       <UniqueIdentifier>{6d75ab48-7ee2-47bd-9b79-3a5b9bec089c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\programming">
-      <UniqueIdentifier>{349e9704-9104-4ed7-b80d-923a3d08384b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\programming\dynamic_source">
-      <UniqueIdentifier>{7bd250b2-fa45-4a78-a5f6-9f13dd6b2a3d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\programming\introjection">
-      <UniqueIdentifier>{bd052af1-b8b8-426b-bbfe-fb73886cc195}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\programming">
-      <UniqueIdentifier>{dabe0df8-f123-4e53-a832-22d878fc4787}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\programming\dynamic_source">
-      <UniqueIdentifier>{0ceb640f-3703-4af7-a5e1-47bdca38044d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\programming\introjection">
-      <UniqueIdentifier>{e7f2d41e-2c5c-4fc6-bb7f-1931a4c53c6d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\include">
       <UniqueIdentifier>{0c0346ef-bd1c-4a0a-85b1-cfd8ef8ec242}</UniqueIdentifier>
     </Filter>
@@ -240,9 +204,6 @@
     <Filter Include="Source Files\os\ansios">
       <UniqueIdentifier>{3e3eb7e6-b2d0-4ef9-8057-41cbc4350638}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\scripting">
-      <UniqueIdentifier>{8e5866d5-656c-4c41-824a-f0d2509e1f26}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\geoip">
       <UniqueIdentifier>{80df2ab9-1f47-4aa8-9eac-b8d0abaa0c22}</UniqueIdentifier>
     </Filter>
@@ -297,11 +258,14 @@
     <Filter Include="Header Files\node\windows\aaa_want_to_remove">
       <UniqueIdentifier>{5403372a-4b5a-41b9-b6ce-743f746b7558}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\user\user\NewFilter1">
-      <UniqueIdentifier>{4ccceb8b-809a-48ca-a4d2-d0cc3301ab35}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\os\windows\a">
       <UniqueIdentifier>{9b965169-7168-48c3-8541-31b93c1a5321}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\platform">
+      <UniqueIdentifier>{f57d3b13-dbb9-46ec-8239-a2edf6b2f99d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\platform">
+      <UniqueIdentifier>{51be4361-eb21-484c-8772-1e1c35a7256e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -311,46 +275,10 @@
     <ClInclude Include="user\simple\message_box.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
-    <ClInclude Include="user\experience\experience_updown.h">
-      <Filter>Header Files\user\experience</Filter>
-    </ClInclude>
-    <ClInclude Include="papaya\papaya_zoneing.h">
-      <Filter>Header Files\papaya</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\_user.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\windows_tsf\afxres.h">
-      <Filter>Header Files\user\user\windows_tsf</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\windows_tsf\dataobj.h">
-      <Filter>Header Files\user\user\windows_tsf</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\windows_tsf\globals.h">
-      <Filter>Header Files\user\user\windows_tsf</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\windows_tsf\propldr.h">
-      <Filter>Header Files\user\user\windows_tsf</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\windows_tsf\resource.h">
-      <Filter>Header Files\user\user\windows_tsf</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\windows_tsf\tsfwnd.h">
-      <Filter>Header Files\user\user\windows_tsf</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\windows_tsf\winres.h">
-      <Filter>Header Files\user\user\windows_tsf</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\windows_tsf\edit_window.h">
-      <Filter>Header Files\user\user\windows_tsf</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\windows_tsf\aaa_want_to_remove_tsfedit.h">
-      <Filter>Header Files\user\user\windows_tsf</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\_const.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\_const_key.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\listing.h">
@@ -455,9 +383,6 @@
     <ClInclude Include="user\user\_.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\_interaction_impl.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\00.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
@@ -534,9 +459,6 @@
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\mesh_item.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\orto_button.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\statusbar.h">
@@ -704,54 +626,6 @@
     <ClInclude Include="filesystem\filemanager\view.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="user\menu\_.h">
-      <Filter>Header Files\user\menu</Filter>
-    </ClInclude>
-    <ClInclude Include="user\menu\central.h">
-      <Filter>Header Files\user\menu</Filter>
-    </ClInclude>
-    <ClInclude Include="user\menu\list_view.h">
-      <Filter>Header Files\user\menu</Filter>
-    </ClInclude>
-    <ClInclude Include="user\menu\list_window.h">
-      <Filter>Header Files\user\menu</Filter>
-    </ClInclude>
-    <ClInclude Include="user\experience\_.h">
-      <Filter>Header Files\user\experience</Filter>
-    </ClInclude>
-    <ClInclude Include="user\experience\_const.h">
-      <Filter>Header Files\user\experience</Filter>
-    </ClInclude>
-    <ClInclude Include="user\experience\control_box.h">
-      <Filter>Header Files\user\experience</Filter>
-    </ClInclude>
-    <ClInclude Include="user\experience\department.h">
-      <Filter>Header Files\user\experience</Filter>
-    </ClInclude>
-    <ClInclude Include="user\experience\dock_manager.h">
-      <Filter>Header Files\user\experience</Filter>
-    </ClInclude>
-    <ClInclude Include="user\experience\experience.h">
-      <Filter>Header Files\user\experience</Filter>
-    </ClInclude>
-    <ClInclude Include="user\experience\frame.h">
-      <Filter>Header Files\user\experience</Filter>
-    </ClInclude>
-    <ClInclude Include="user\experience\frame_window.h">
-      <Filter>Header Files\user\experience</Filter>
-    </ClInclude>
-    <ClInclude Include="user\experience\menu_manager.h">
-      <Filter>Header Files\user\experience</Filter>
-    </ClInclude>
-    <ClInclude Include="user\experience\move_manager.h">
-      <Filter>Header Files\user\experience</Filter>
-    </ClInclude>
-    <ClInclude Include="user\experience\size_manager.h">
-      <Filter>Header Files\user\experience</Filter>
-    </ClInclude>
-    <ClInclude Include="user\experience\button.h">
-      <Filter>Header Files\user\experience</Filter>
-    </ClInclude>
     <ClInclude Include="user\simple\_.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
@@ -863,9 +737,6 @@
     <ClInclude Include="user\userex\impact_host.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="user\userex\keyboard_layout.h">
-      <Filter>Header Files\user\userex</Filter>
-    </ClInclude>
     <ClInclude Include="user\userex\menu_document.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
@@ -947,9 +818,6 @@
     <ClInclude Include="filesystem\userfs\userfs.h">
       <Filter>Header Files\filesystem\userfs</Filter>
     </ClInclude>
-    <ClInclude Include="user\experience\_experience.h">
-      <Filter>Header Files\user\experience</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\filehandler\handler.h">
       <Filter>Header Files\filesystem\filehandler</Filter>
     </ClInclude>
@@ -971,12 +839,6 @@
     <ClInclude Include="filesystem\filehandler\_.h">
       <Filter>Header Files\filesystem\filehandler</Filter>
     </ClInclude>
-    <ClInclude Include="user\menu\_menu.h">
-      <Filter>Header Files\user\menu</Filter>
-    </ClInclude>
-    <ClInclude Include="user\menu\button.h">
-      <Filter>Header Files\user\menu</Filter>
-    </ClInclude>
     <ClInclude Include="user\simple\_simple.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
@@ -985,9 +847,6 @@
     </ClInclude>
     <ClInclude Include="user\user\tree_data.h">
       <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\experience\orto_button.h">
-      <Filter>Header Files\user\experience</Filter>
     </ClInclude>
     <ClInclude Include="user\databaseuser\key_mesh_data.h">
       <Filter>Header Files\user\databaseuser</Filter>
@@ -1000,9 +859,6 @@
     </ClInclude>
     <ClInclude Include="user\databaseuser\_databaseuser.h">
       <Filter>Header Files\user\databaseuser</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\_ewindowflag.h">
-      <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\account\account.h">
       <Filter>Header Files\user\account</Filter>
@@ -1034,42 +890,6 @@
     <ClInclude Include="user\userex\_impl.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="programming\dynamic_source\_.h">
-      <Filter>Header Files\programming\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\dynamic_source\exit_exception.h">
-      <Filter>Header Files\programming\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\dynamic_source\httpd_socket.h">
-      <Filter>Header Files\programming\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\dynamic_source\library_class.h">
-      <Filter>Header Files\programming\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\dynamic_source\script_cache.h">
-      <Filter>Header Files\programming\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\dynamic_source\script_compiler.h">
-      <Filter>Header Files\programming\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\dynamic_source\script_instance.h">
-      <Filter>Header Files\programming\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\dynamic_source\script_interface.h">
-      <Filter>Header Files\programming\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\dynamic_source\script_manager.h">
-      <Filter>Header Files\programming\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\dynamic_source\session.h">
-      <Filter>Header Files\programming\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\introjection\compiler.h">
-      <Filter>Header Files\programming\introjection</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\introjection\_.h">
-      <Filter>Header Files\programming\introjection</Filter>
-    </ClInclude>
     <ClInclude Include="include\_.h">
       <Filter>Header Files\include</Filter>
     </ClInclude>
@@ -1084,9 +904,6 @@
     </ClInclude>
     <ClInclude Include="include\winrt.h">
       <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\_.h">
-      <Filter>Header Files\programming</Filter>
     </ClInclude>
     <ClInclude Include="_.h">
       <Filter>Header Files</Filter>
@@ -1234,9 +1051,6 @@
     </ClInclude>
     <ClInclude Include="user\userex\progress.h">
       <Filter>Header Files\user\userex</Filter>
-    </ClInclude>
-    <ClInclude Include="user\menu\menu_view.h">
-      <Filter>Header Files\user\menu</Filter>
     </ClInclude>
     <ClInclude Include="user\userex\group_image_list.h">
       <Filter>Header Files\user\userex</Filter>
@@ -1502,18 +1316,6 @@
     <ClInclude Include="filesystem\userfs\_tree.h">
       <Filter>Header Files\filesystem\userfs</Filter>
     </ClInclude>
-    <ClInclude Include="programming\dynamic_source\_impl.h">
-      <Filter>Header Files\programming\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\dynamic_source\script_main.h">
-      <Filter>Header Files\programming\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\dynamic_source\script_composite.h">
-      <Filter>Header Files\programming\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\dynamic_source\script.h">
-      <Filter>Header Files\programming\dynamic_source</Filter>
-    </ClInclude>
     <ClInclude Include="platform\_generic_object_constructor_impl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1733,13 +1535,31 @@
     <ClInclude Include="user\userex\user.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
+    <ClInclude Include="user\user\shell.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="node\windows\_.h">
+      <Filter>Header Files\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="node\windows\_windows.h">
+      <Filter>Header Files\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="node\windows\shell.h">
+      <Filter>Header Files\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\application.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\session.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\system.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="user\simple\message_box.cpp">
       <Filter>Source Files\user\simple</Filter>
-    </ClCompile>
-    <ClCompile Include="user\experience\experience_updown.cpp">
-      <Filter>Source Files\user\experience</Filter>
     </ClCompile>
     <ClCompile Include="user\user\tooltip.cpp">
       <Filter>Source Files\user\user</Filter>
@@ -1841,12 +1661,6 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\tool_tip_window.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\tool_window.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\toolbar.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\toolbar_ctrl.cpp">
@@ -2044,9 +1858,6 @@
     <ClCompile Include="user\userex\impact_host.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
-    <ClCompile Include="user\userex\keyboard_layout.cpp">
-      <Filter>Source Files\user\userex</Filter>
-    </ClCompile>
     <ClCompile Include="user\userex\menu_document.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
@@ -2101,9 +1912,6 @@
     <ClCompile Include="user\simple\form_view.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
-    <ClCompile Include="user\simple\frame_window.cpp">
-      <Filter>Source Files\user\simple</Filter>
-    </ClCompile>
     <ClCompile Include="user\simple\list_control.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
@@ -2116,9 +1924,6 @@
     <ClCompile Include="user\simple\list_view.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
-    <ClCompile Include="user\simple\main_frame.cpp">
-      <Filter>Source Files\user\simple</Filter>
-    </ClCompile>
     <ClCompile Include="user\simple\menu_bar.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
@@ -2129,9 +1934,6 @@
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
     <ClCompile Include="user\simple\printer_list_view.cpp">
-      <Filter>Source Files\user\simple</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple\scroll_bar.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
     <ClCompile Include="user\simple\static.cpp">
@@ -2185,56 +1987,11 @@
     <ClCompile Include="user\rich_text\text_format_object.cpp">
       <Filter>Source Files\user\rich_text</Filter>
     </ClCompile>
-    <ClCompile Include="user\menu\button.cpp">
-      <Filter>Source Files\user\menu</Filter>
-    </ClCompile>
-    <ClCompile Include="user\menu\central.cpp">
-      <Filter>Source Files\user\menu</Filter>
-    </ClCompile>
-    <ClCompile Include="user\menu\list_view.cpp">
-      <Filter>Source Files\user\menu</Filter>
-    </ClCompile>
-    <ClCompile Include="user\menu\list_window.cpp">
-      <Filter>Source Files\user\menu</Filter>
-    </ClCompile>
-    <ClCompile Include="user\experience\button.cpp">
-      <Filter>Source Files\user\experience</Filter>
-    </ClCompile>
-    <ClCompile Include="user\experience\control_box.cpp">
-      <Filter>Source Files\user\experience</Filter>
-    </ClCompile>
-    <ClCompile Include="user\experience\department.cpp">
-      <Filter>Source Files\user\experience</Filter>
-    </ClCompile>
-    <ClCompile Include="user\experience\dock_manager.cpp">
-      <Filter>Source Files\user\experience</Filter>
-    </ClCompile>
-    <ClCompile Include="user\experience\experience.cpp">
-      <Filter>Source Files\user\experience</Filter>
-    </ClCompile>
-    <ClCompile Include="user\experience\frame.cpp">
-      <Filter>Source Files\user\experience</Filter>
-    </ClCompile>
-    <ClCompile Include="user\experience\frame_window.cpp">
-      <Filter>Source Files\user\experience</Filter>
-    </ClCompile>
-    <ClCompile Include="user\experience\menu_manager.cpp">
-      <Filter>Source Files\user\experience</Filter>
-    </ClCompile>
-    <ClCompile Include="user\experience\move_manager.cpp">
-      <Filter>Source Files\user\experience</Filter>
-    </ClCompile>
-    <ClCompile Include="user\experience\size_manager.cpp">
-      <Filter>Source Files\user\experience</Filter>
-    </ClCompile>
     <ClCompile Include="user\databaseuser\key_mesh_data.cpp">
       <Filter>Source Files\user\databaseuser</Filter>
     </ClCompile>
     <ClCompile Include="user\databaseuser\mesh_data.cpp">
       <Filter>Source Files\user\databaseuser</Filter>
-    </ClCompile>
-    <ClCompile Include="user\experience\orto_button.cpp">
-      <Filter>Source Files\user\experience</Filter>
     </ClCompile>
     <ClCompile Include="user\account\account.cpp">
       <Filter>Source Files\user\account</Filter>
@@ -2413,42 +2170,6 @@
     <ClCompile Include="math\calculator\calculator_value.cpp">
       <Filter>Source Files\math\calculator</Filter>
     </ClCompile>
-    <ClCompile Include="programming\dynamic_source\exit_exception.cpp">
-      <Filter>Source Files\programming\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\dynamic_source\httpd_socket.cpp">
-      <Filter>Source Files\programming\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\dynamic_source\library_class.cpp">
-      <Filter>Source Files\programming\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\dynamic_source\script.cpp">
-      <Filter>Source Files\programming\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\dynamic_source\script_cache.cpp">
-      <Filter>Source Files\programming\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\dynamic_source\script_compiler.cpp">
-      <Filter>Source Files\programming\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\dynamic_source\script_instance.cpp">
-      <Filter>Source Files\programming\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\dynamic_source\script_interface.cpp">
-      <Filter>Source Files\programming\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\dynamic_source\script_manager.cpp">
-      <Filter>Source Files\programming\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\dynamic_source\session.cpp">
-      <Filter>Source Files\programming\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\introjection\compiler.cpp">
-      <Filter>Source Files\programming\introjection</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\programming\programming_application.cpp">
-      <Filter>Source Files\programming</Filter>
-    </ClCompile>
     <ClCompile Include="include\_.cpp">
       <Filter>Source Files\include</Filter>
     </ClCompile>
@@ -2482,15 +2203,6 @@
     <ClCompile Include="os\ansios\win.cpp">
       <Filter>Source Files\os\ansios</Filter>
     </ClCompile>
-    <ClCompile Include="scripting\javascript\javascript.cpp">
-      <Filter>Source Files\scripting</Filter>
-    </ClCompile>
-    <ClCompile Include="scripting\javascript\javascript_functions.cpp">
-      <Filter>Source Files\scripting</Filter>
-    </ClCompile>
-    <ClCompile Include="scripting\javascript\javascript_tinyjs_functions.cpp">
-      <Filter>Source Files\scripting</Filter>
-    </ClCompile>
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -2511,9 +2223,6 @@
     </ClCompile>
     <ClCompile Include="user\userex\progress.cpp">
       <Filter>Source Files\user\userex</Filter>
-    </ClCompile>
-    <ClCompile Include="user\menu\menu_view.cpp">
-      <Filter>Source Files\user\menu</Filter>
     </ClCompile>
     <ClCompile Include="user\userex\group_image_list.cpp">
       <Filter>Source Files\user\userex</Filter>
@@ -2550,12 +2259,6 @@
     </ClCompile>
     <ClCompile Include="html\html_lite\tag.cpp">
       <Filter>Source Files\html\html_lite</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\dynamic_source\script_main.cpp">
-      <Filter>Source Files\programming\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\dynamic_source\script_composite.cpp">
-      <Filter>Source Files\programming\dynamic_source</Filter>
     </ClCompile>
     <ClCompile Include="user\simple_ui\edit_box.cpp">
       <Filter>Source Files\user\simple_ui</Filter>
@@ -2698,8 +2401,20 @@
     <ClCompile Include="user\userex\user.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
-    <ClCompile Include="node\windows\frame_window.cpp">
+    <ClCompile Include="user\user\shell.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="node\windows\shell.cpp">
       <Filter>Source Files\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\application.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\session.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\system.cpp">
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

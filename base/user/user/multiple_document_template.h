@@ -6,7 +6,7 @@ namespace user
 
 
    // MDI support (zero or more documents)
-   class CLASS_DECL_AURA multiple_document_template :
+   class CLASS_DECL_BASE multiple_document_template :
       virtual public ::user::impact_system
    {
    public:

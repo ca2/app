@@ -5,20 +5,20 @@ namespace user
 {
 
 
-   CLASS_DECL_AURA ::user::document* get_document(::user::interaction* pinteraction);
+   CLASS_DECL_BASE ::user::document* get_document(::user::interaction* pinteraction);
 
 
    class impact_data;
 
 
-   class CLASS_DECL_AURA impact_host :
+   class CLASS_DECL_BASE impact_host :
       virtual public ::user::impact,
       virtual public ::user::impact_creator
    {
    public:
 
 
-      class CLASS_DECL_AURA exception :
+      class CLASS_DECL_BASE exception :
          virtual public ::exception::exception
       {
       public:
@@ -32,10 +32,7 @@ namespace user
       };
 
 
-
-
-
-      impact_data_map                      m_impactdatamap;
+      impact_data_map      m_impactdatamap;
 
 
       impact_host();

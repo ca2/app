@@ -29,7 +29,7 @@ namespace user
    bool static_control::create_window(::user::interaction * puiParent,id id)
    {
 
-      return ::user::control::create_window(puiParent, id);
+      return ::user::interaction::create_window(puiParent, id);
 
    }
 
@@ -64,7 +64,7 @@ namespace user
    void static_control::install_message_routing(::channel * pchannel)
    {
 
-      ::user::control::install_message_routing(pchannel);
+      ::user::interaction::install_message_routing(pchannel);
 
       IGUI_MSG_LINK(WM_CREATE, pchannel, this, &static_control::_001OnCreate);
       IGUI_MSG_LINK(WM_LBUTTONDOWN, pchannel, this, &static_control::_001OnLButtonDown);

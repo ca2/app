@@ -8,7 +8,7 @@ namespace sockets
 
 
    /** Smtp server base class. */
-   class CLASS_DECL_AURA smtp_socket : public tcp_socket
+   class CLASS_DECL_BASE smtp_socket : public tcp_socket
    {
    public:
       typedef enum {

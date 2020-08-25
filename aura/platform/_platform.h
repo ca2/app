@@ -192,31 +192,6 @@ namespace aura
 } // namespace aura
 
 
-CLASS_DECL_AURA int get_core_init();
-//extern "C"
-//CLASS_DECL_AURA int_bool defer_aura_init();
-//extern "C"
-//CLASS_DECL_AURA int_bool defer_aura_term();
-
-
-namespace aura
-{
-
-
-   //static_start g_staticstart;
-   //{
-
-
-   //   CLASS_DECL_AURA void init(void);
-
-   //   CLASS_DECL_AURA void term(void);
-
-
-   //} // namespace static_start
-
-
-} // namespace aura
-
 
 
 
@@ -403,9 +378,6 @@ namespace aura
 
 
 #endif
-
-
-
 
 
 #include "str_context.h"

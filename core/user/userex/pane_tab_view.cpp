@@ -2,12 +2,20 @@
 #include "aura/update.h"
 
 
-namespace core {
+namespace core
+{
+
+
    ::type user::get_pane_tab_view_type_info()
    {
+
       return __type(::userex::pane_tab_view);
+
    }
-}
+
+
+} // namespace core
+
 
 namespace userex
 {

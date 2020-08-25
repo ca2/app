@@ -2659,7 +2659,7 @@ file_result file_context::get_file(const var & varFile, const efileopen & eopenF
 
          }
 
-         if (read_resource_as_memory_dup(*pfile->get_primitive_memory(), System.m_hinstance, iId, psz))
+         if (read_resource_as_memory(*pfile->get_primitive_memory(), System.m_hinstance, iId, psz))
          {
 
             return pfile;

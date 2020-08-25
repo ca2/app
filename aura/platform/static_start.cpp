@@ -914,16 +914,16 @@ namespace aura
    }
 
 
-   ::aura::system * aura_create_system(app_core * pappcore)
-   {
+   //::aura::system * aura_create_system(app_core * pappcore)
+   //{
 
-      auto psystem = new ::aura::system();
+   //   auto psystem = new ::aura::system();
 
-      psystem->initialize_system(nullptr, pappcore);
+   //   psystem->initialize(nullptr);
 
-      return psystem;
+   //   return psystem;
 
-   }
+   //}
 
 
 

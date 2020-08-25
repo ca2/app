@@ -1,5 +1,6 @@
 #pragma once
 
+#undef User
 
 #include <Wtsapi32.h>
 #include <Psapi.h>

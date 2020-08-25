@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AURA data_exchange :
+   class CLASS_DECL_BASE data_exchange :
       virtual public ::object
    {
    public:

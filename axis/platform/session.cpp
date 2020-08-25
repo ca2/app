@@ -66,25 +66,6 @@ namespace axis
    {
 
       m_paxissession = this;
-      m_bSimpleMessageLoop = false;
-      m_bMessageThread = true;
-      m_iEdge = -1;
-
-
-
-      //m_strAppId                    = "core_session";
-      //m_strAppName                  = "core_session";
-      //m_strBaseSupportId            = "core_session";
-      //m_strInstallToken             = "core_session";
-
-      m_puiLastUserInputPopup = nullptr;
-
-      //m_pdocs = create_session_docs();
-
-      //m_bLicense				               = false;
-
-      //m_bLicense           = false;
-      //m_eexclusiveinstance = ExclusiveInstanceNone;
 
    }
 
@@ -1299,8 +1280,6 @@ namespace axis
       }
 
    }
-
-
    __namespace_session_factory(session);
 
 } // namespace axis

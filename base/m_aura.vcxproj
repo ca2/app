@@ -4603,7 +4603,7 @@
       <CompileAsWinRT>true</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <PreprocessorDefinitions>_AURA_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_BASE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(SolutionDir)../../;$(SolutionDir)../../app;$(SolutionDir)../../app/base/base;$(SolutionDir)../../app;$(__archive)/third-uwp/thirdparty/include;$(__archive)/third-uwp/thirdparty;$(SolutionDir)../../;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(SolutionDir)../../app/base3/openssl;$(SolutionDir)../../app/base/openssl/crypto2;$(SolutionDir)../../app/base/openssl/ssl2;$(SolutionDir)../../app/base/base/openssl/crypto/asn1;$(SolutionDir)../../app/base/base/openssl/crypto/evp;$(SolutionDir)../../app/base/base/openssl/crypto/krb5;$(SolutionDir)../../app/base/base/openssl/crypto/modes;$(SolutionDir)../../app/base/base/openssl/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <StringPooling>false</StringPooling>
       <ExceptionHandling>Async</ExceptionHandling>
@@ -4640,7 +4640,7 @@
       <CompileAsWinRT>true</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <PreprocessorDefinitions>_AURA_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_BASE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(SolutionDir)../../;$(SolutionDir)../../app;$(SolutionDir)../../app/base/base;$(SolutionDir)../../app;$(__archive)/third-uwp/thirdparty/include;$(__archive)/third-uwp/thirdparty;$(SolutionDir)../../;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(SolutionDir)../../app/base3/openssl;$(SolutionDir)../../app/base/openssl/crypto2;$(SolutionDir)../../app/base/openssl/ssl2;$(SolutionDir)../../app/base/base/openssl/crypto/asn1;$(SolutionDir)../../app/base/base/openssl/crypto/evp;$(SolutionDir)../../app/base/base/openssl/crypto/krb5;$(SolutionDir)../../app/base/base/openssl/crypto/modes;$(SolutionDir)../../app/base/base/openssl/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <StringPooling>false</StringPooling>
       <ExceptionHandling>Async</ExceptionHandling>
@@ -4688,7 +4688,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>true</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_AURA_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_BASE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(SolutionDir)../../;$(SolutionDir)../../app;$(SolutionDir)../../app/base/base;$(SolutionDir)../../app;$(__archive)/third-uwp/thirdparty/include;$(__archive)/third-uwp/thirdparty;$(SolutionDir)../../;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(SolutionDir)../../app/base3/openssl;$(SolutionDir)../../app/base/openssl/crypto2;$(SolutionDir)../../app/base/openssl/ssl2;$(SolutionDir)../../app/base/base/openssl/crypto/asn1;$(SolutionDir)../../app/base/base/openssl/crypto/evp;$(SolutionDir)../../app/base/base/openssl/crypto/krb5;$(SolutionDir)../../app/base/base/openssl/crypto/modes;$(SolutionDir)../../app/base/base/openssl/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
@@ -4712,7 +4712,7 @@
       <SDLCheck>true</SDLCheck>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <PreprocessorDefinitions>_AURA_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_BASE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>true</OpenMPSupport>
       <CompileAsManaged>false</CompileAsManaged>
@@ -4740,7 +4740,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>true</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_AURA_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_BASE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(SolutionDir)../../;$(SolutionDir)../../app;$(SolutionDir)../../app/base/base;$(SolutionDir)../../app;$(__archive)/third-uwp/thirdparty/include;$(__archive)/third-uwp/thirdparty;$(SolutionDir)../../;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(SolutionDir)../../app/base3/openssl;$(SolutionDir)../../app/base/openssl/crypto2;$(SolutionDir)../../app/base/openssl/ssl2;$(SolutionDir)../../app/base/base/openssl/crypto/asn1;$(SolutionDir)../../app/base/base/openssl/crypto/evp;$(SolutionDir)../../app/base/base/openssl/crypto/krb5;$(SolutionDir)../../app/base/base/openssl/crypto/modes;$(SolutionDir)../../app/base/base/openssl/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
@@ -4767,7 +4767,7 @@
       <SDLCheck>true</SDLCheck>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <PreprocessorDefinitions>_AURA_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_BASE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>true</OpenMPSupport>
       <CompileAsManaged>false</CompileAsManaged>

@@ -15,13 +15,13 @@ namespace http
    class session;
 
 
-   class CLASS_DECL_AURA system :
+   class CLASS_DECL_BASE system :
       virtual public ::object
    {
    public:
 
 
-      class CLASS_DECL_AURA pac :
+      class CLASS_DECL_BASE pac :
          virtual public ::object
       {
       public:
@@ -40,7 +40,7 @@ namespace http
       };
 
 
-      class CLASS_DECL_AURA proxy :
+      class CLASS_DECL_BASE proxy :
          virtual public ::object
       {
       public:

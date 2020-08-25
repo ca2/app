@@ -5,7 +5,7 @@ namespace http
 {
 
 
-   CLASS_DECL_AURA string conn_status(property_set & set);
+   CLASS_DECL_BASE string conn_status(property_set & set);
 
 
 } // namespace http

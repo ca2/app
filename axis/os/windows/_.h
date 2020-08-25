@@ -14,7 +14,7 @@ class memory;
 
 CLASS_DECL_AXIS string key_to_char(WPARAM wparam, LPARAM lparam);
 CLASS_DECL_AXIS string read_resource_as_string(HINSTANCE hinst, UINT nID, const char * pcszType, strsize iReadAtMostByteCount = -1);
-CLASS_DECL_AXIS bool read_resource_as_memory_dup(memory & m, HINSTANCE hinst, UINT nID, const char * pcszType, strsize iReadAtMostByteCount = -1);
+CLASS_DECL_AXIS bool read_resource_as_memory(memory & m, HINSTANCE hinst, UINT nID, const char * pcszType, strsize iReadAtMostByteCount = -1);
 
 
 CLASS_DECL_AXIS HANDLE dup_handle(HANDLE h);

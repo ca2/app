@@ -28,7 +28,7 @@ namespace user
    }
 
    
-   void form_callback::_001OnInitializeControl(::user::control * pcontrol)
+   void form_callback::_001OnInitializeControl(::user::interaction * pinteraction)
    {
 
 

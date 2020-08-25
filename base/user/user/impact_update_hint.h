@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA impact_update :
+class CLASS_DECL_BASE impact_update :
    virtual public ::update
 {
 public:

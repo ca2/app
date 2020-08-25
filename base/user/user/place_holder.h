@@ -8,7 +8,7 @@ namespace user
    class place_holder_container;
 
 
-   class CLASS_DECL_AURA place_holder :
+   class CLASS_DECL_BASE place_holder :
       virtual public interaction
    {
    public:
@@ -27,7 +27,7 @@ namespace user
 
       virtual bool can_merge(::user::interaction * pinteraction) override;
       virtual bool merge(::user::interaction * pinteraction) override;
-      virtual __pointer(place_holder) place_hold(::user::interaction* pinteraction) override;
+      virtual __pointer(place_holder) place_hold(::user::interaction* pinteraction);
       virtual bool unplace(::user::interaction * pinteraction);
       virtual bool is_place_holding(::user::interaction * pinteraction);
 
@@ -56,7 +56,7 @@ namespace user
 
    };
 
-   class CLASS_DECL_AURA place_holder_ptra :
+   class CLASS_DECL_BASE place_holder_ptra :
       virtual public __pointer_array(place_holder)
    {
    public:

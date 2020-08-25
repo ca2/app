@@ -17,7 +17,7 @@ namespace sockets
 {
 
 
-   class CLASS_DECL_AURA ssl_context :
+   class CLASS_DECL_BASE ssl_context :
       virtual public ::object
    {
    public:

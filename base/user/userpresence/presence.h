@@ -5,7 +5,7 @@ namespace userpresence
 {
 
 
-   class CLASS_DECL_AURA presence :
+   class CLASS_DECL_BASE presence :
       virtual public ::object
    {
    public:

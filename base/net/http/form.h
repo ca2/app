@@ -7,7 +7,7 @@ namespace http
 
    /** Parse/store a http query_string/form-data body.
       \ingroup webserver */
-   class CLASS_DECL_AURA form :
+   class CLASS_DECL_BASE form :
       virtual public ::context_object
    {
    public:

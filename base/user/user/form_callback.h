@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AURA form_callback :
+   class CLASS_DECL_BASE form_callback :
       virtual public callback
    {
    public:
@@ -19,10 +19,7 @@ namespace user
 
 
       virtual void _001OnInitializeForm();
-      virtual void _001OnInitializeControl(control * pcontrol);
-
-
-      //virtual void OnUser123(WPARAM wparam,LPARAM lparam);
+      virtual void _001OnInitializeControl(interaction * pinteraction);
 
 
       virtual void _001InitializeFormPreData(::user::form * pform);

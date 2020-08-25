@@ -2576,6 +2576,21 @@ namespace user
    }
 
 
+   bool primitive::GetFocusRect(RECT* prect)
+   {
+
+      return false;
+
+   }
+
+
+   void primitive::defer_update_display()
+   {
+
+
+   }
+
+
    ::user::interaction * primitive::GetFocus()
    {
 

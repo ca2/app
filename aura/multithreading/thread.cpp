@@ -1321,7 +1321,12 @@ void thread::post_quit()
       if (thread_active() && !m_bAuraMessageQueue)
       {
 
-         post_message(WM_QUIT, 0, 0);
+         if (m_bMessageThread)
+         {
+
+            post_message(WM_QUIT, 0, 0);
+
+         }
 
       }
 
@@ -2852,12 +2857,28 @@ bool thread::post_message(UINT message,WPARAM wParam,lparam lParam)
 
 #ifdef WINDOWS_DESKTOP
 
-   if (m_hthread1 && !m_bAuraMessageQueue)
+   if (m_hthread1 && !m_bAuraMessageQueue && (m_bMessageThread || message != WM_QUIT))
    {
 
       WINBOOL bOk = ::PostThreadMessage(m_ithread1, message, wParam, lParam) != FALSE;
 
-      if (!bOk)
+      if (bOk)
+      {
+
+         if (message != WM_QUIT)
+         {
+
+            if (!m_bMessageThread)
+            {
+
+               m_bMessageThread = true;
+
+            }
+
+         }
+
+      }
+      else
       {
 
          TRACELASTERROR();
@@ -3190,10 +3211,25 @@ error:;
       run();
 
    }
-   catch (::exception_pointer pe)
+   catch (::exit_exception* pe)
+   {
+
+      if (pe->m_pthreadExit != this)
+      {
+
+         System.set_finish();
+
+      }
+
+      ::release(pe);
+
+   }
+   catch (::exception::exception * pe)
    {
 
       top_handle_exception(pe);
+
+      ::release(pe);
 
    }
    catch(...)

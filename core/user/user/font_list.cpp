@@ -262,7 +262,7 @@ namespace user
    void font_list::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::user::control::_001OnNcDraw(pgraphics);
+      ::user::interaction::_001OnNcDraw(pgraphics);
 
    }
 
@@ -432,7 +432,7 @@ namespace user
 
       on_change_view_size();
 
-      ::user::control::on_layout(pgraphics);
+      ::user::interaction::on_layout(pgraphics);
 
    }
 

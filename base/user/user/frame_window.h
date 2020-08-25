@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AURA frame_window :
+   class CLASS_DECL_BASE frame_window :
       virtual public ::user::frame,
       virtual public ::user::box
    {
@@ -145,7 +145,7 @@ namespace user
       virtual ::user::document * GetActiveDocument();
 
       virtual ::user::impact * GetActiveView() const override;           // active ::user::impact or nullptr
-      virtual void SetActiveView(::user::impact * pViewNew, bool bNotify = TRUE) override;
+      virtual void SetActiveView(::user::impact * pViewNew, bool bNotify = TRUE);
       // active ::user::impact or nullptr, bNotify == FALSE if focus should not be set
 
       // Active frame (for frames within frames -- MDI)
@@ -193,7 +193,10 @@ namespace user
 
       virtual bool LoadToolBar(id idToolBar, const char * pszToolBar, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP) override;
 
-      virtual void route_command_message(::user::command * pcommand) override;
+      
+      virtual void on_command_message(::user::command * pcommand) override;
+      virtual void route_command_message(::user::command* pcommand) override;
+
       virtual void on_update_frame_title(bool bAddToTitle);
       virtual void OnUpdateFrameMenu(HMENU hMenuAlt);
       virtual HACCEL GetDefaultAccelerator();
@@ -284,9 +287,6 @@ namespace user
 
 
       virtual bool has_command_handler(::user::command * pcommand) override;
-
-
-      //virtual ::user::style * userstyle() override;
 
 
    };

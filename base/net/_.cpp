@@ -79,7 +79,7 @@ namespace str
    * or 0 if the input is not a valid IPv6 address string.
    * (Same as inet_pton(AF_INET6, string, addr).)
    */
-   CLASS_DECL_AURA void to(in6_addr & addr, const ansichar * string)
+   CLASS_DECL_BASE void to(in6_addr & addr, const ansichar * string)
    {
       const uchar *s = (const uchar *)(const char *) string;
       i32 department = 0;        /* index of the current department (a 16-bit
@@ -214,7 +214,7 @@ namespace str
    * (Same as inet_ntop(AF_INET6, addr, buf, size), except that errno
    * is not set on failure.)
    */
-   CLASS_DECL_AURA void from(string & str, const in6_addr  & addr)
+   CLASS_DECL_BASE void from(string & str, const in6_addr  & addr)
    {
 
       str.Empty();
@@ -345,7 +345,7 @@ struct c_in_addr
 namespace str
 {
 
-CLASS_DECL_AURA void to(in_addr & addrParam, const ansichar * string)
+CLASS_DECL_BASE void to(in_addr & addrParam, const ansichar * string)
 {
 
    c_in_addr & addr = (c_in_addr &) addrParam;
@@ -426,7 +426,7 @@ namespace str
 {
 
 
-   CLASS_DECL_AURA void from(string & str, const in_addr &  addr)
+   CLASS_DECL_BASE void from(string & str, const in_addr &  addr)
    {
    #if defined(WINDOWS)
       str = ip_to_string(
@@ -441,7 +441,7 @@ namespace str
    }
 
 
-   CLASS_DECL_AURA void from(string & str, const sockaddr_in &  addr)
+   CLASS_DECL_BASE void from(string & str, const sockaddr_in &  addr)
    {
 
       return from(str, addr.sin_addr);
@@ -449,7 +449,7 @@ namespace str
    }
 
 
-   CLASS_DECL_AURA void from(string & str, const sockaddr_in6 &  addr)
+   CLASS_DECL_BASE void from(string & str, const sockaddr_in6 &  addr)
    {
 
       return from(str, addr.sin6_addr);
@@ -457,7 +457,7 @@ namespace str
    }
 
 
-   CLASS_DECL_AURA void from(string & str, const sockaddr & addr)
+   CLASS_DECL_BASE void from(string & str, const sockaddr & addr)
    {
 
       if(addr.sa_family == AF_INET)
@@ -485,7 +485,7 @@ namespace str
 } // namespace str
 
 
-CLASS_DECL_AURA i32 c_inet_pton(i32 af, const char *src, void *dst)
+CLASS_DECL_BASE i32 c_inet_pton(i32 af, const char *src, void *dst)
 {
 
    if(af == AF_INET)
@@ -518,7 +518,7 @@ CLASS_DECL_AURA i32 c_inet_pton(i32 af, const char *src, void *dst)
 }
 
 
-CLASS_DECL_AURA string c_inet_ntop(i32 af, const void *src)
+CLASS_DECL_BASE string c_inet_ntop(i32 af, const void *src)
 {
 
    string str;
@@ -544,7 +544,7 @@ CLASS_DECL_AURA string c_inet_ntop(i32 af, const void *src)
 
 }
 
-CLASS_DECL_AURA const char * c_inet_ntop(i32 af, const void *src, char *dst, i32 cnt)
+CLASS_DECL_BASE const char * c_inet_ntop(i32 af, const void *src, char *dst, i32 cnt)
 {
 
    if(dst == nullptr)
@@ -566,7 +566,7 @@ CLASS_DECL_AURA const char * c_inet_ntop(i32 af, const void *src, char *dst, i32
 
 #define C_INADDR_NONE ((u32) -1)
 
-CLASS_DECL_AURA u32 c_inet_addr(const char * src)
+CLASS_DECL_BASE u32 c_inet_addr(const char * src)
 {
 
    try
@@ -674,7 +674,7 @@ CLASS_DECL_AURA u32 c_inet_addr(const char * src)
 }
 
 
-CLASS_DECL_AURA string c_gethostbyname(const char * hostname)
+CLASS_DECL_BASE string c_gethostbyname(const char * hostname)
 {
 
 #ifdef _UWP

@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_CORE mesh :
-      virtual public ::user::control,
+      virtual public ::user::interaction,
       public ::sort::compare_interface
    {
    public:
@@ -521,8 +521,8 @@ namespace user
 
       //virtual bool get_client_rect(RECT * prect);
 
-      virtual ::size get_page_size() override;
-      virtual ::size get_total_size() override;
+      virtual ::sized get_page_size() override;
+      //virtual ::sized get_total_size() override;
 
       virtual string _001GetItemId(index iStrictItem);
       virtual index _001GetItemById(const char * pszChar);

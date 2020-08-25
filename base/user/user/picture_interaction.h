@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AURA picture_interaction :
+   class CLASS_DECL_BASE picture_interaction :
       virtual public ::user::picture,
       virtual public ::user::interaction
    {

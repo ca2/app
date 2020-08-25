@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AURA document :
+   class CLASS_DECL_BASE document :
       virtual public ::channel,
       virtual public ::data::data_container_base
    {
@@ -298,7 +298,7 @@ namespace user
       virtual void on_idle();
       virtual void on_final_release();
 
-      virtual void route_command_message(::user::command * pcommand) override;
+      //virtual void route_command_message(::user::command * pcommand) override;
 
       friend class impact_system;
 
@@ -377,7 +377,7 @@ namespace user
    };
 
 
-   CLASS_DECL_AURA __pointer(::user::document) __document(::create * pcreate);
+   CLASS_DECL_BASE __pointer(::user::document) __document(::create * pcreate);
 
 } // namespace user
 

@@ -134,10 +134,10 @@ namespace axis
    }
 
 
-   ::estatus system::initialize_system(::object * pobjectContext, app_core * pappcore)
+   ::estatus system::initialize(::object * pobjectContext)
    {
 
-      auto estatus = ::aura::system::initialize_system(pobjectContext, pappcore);
+      auto estatus = ::aura::system::initialize(pobjectContext);
 
       if (!estatus)
       {

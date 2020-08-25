@@ -6,7 +6,7 @@ namespace core
 
 
    class CLASS_DECL_CORE user :
-      virtual public ::user::user,
+      virtual public ::base::user,
       virtual public ::filemanager::component
    {
    public:
@@ -24,7 +24,10 @@ namespace core
       ::user::multiple_document_template *         m_ptemplateProgress2;
 
 
-      __pointer(::user::menu_central)              m_pmenucentral2;
+      __composite(::user::shell)                   m_pshell;
+
+
+
 
 
       keymap < ::type, ::user::impact_system * >   m_mapTemplate;
@@ -32,8 +35,8 @@ namespace core
       id_map < ::user::impact_system * >           m_mapimpactsystem;
 
 
-      //__composite(::userex::userex)                         m_puserex;
-      bool                                                  m_bFontSelInitialized;
+      //__composite(::userex::userex)              m_puserex;
+      bool                                         m_bFontSelInitialized;
 
 
       
@@ -45,21 +48,21 @@ namespace core
       ::type                                       m_typeDefaultListHeader;
       ::type                                       m_typeDefaultListData;
 
-      __composite(::userfs::userfs)                   m_puserfs;
+      __composite(::userfs::userfs)                m_puserfs;
 
-      ::status::result                                m_result;
+      ::status::result                             m_result;
 
-      __composite(::html::html)                       m_phtml;
+      __composite(::html::html)                    m_phtml;
 
-      //__composite(::user::keyboard)                         m_pkeyboard;
+      //__composite(::user::keyboard)              m_pkeyboard;
 
-      //index                                                 m_iEdge;
+      //index                                      m_iEdge;
       //::map < ::user::e_key, ::user::e_key, bool, bool > *  m_pmapKeyPressed;
 
-      //bool                                                  m_bProgrammerMode;
+      //bool                                       m_bProgrammerMode;
 
-      //bool                                                  m_bSystemSynchronizedCursor;
-      //point                                                 m_pointCursor;
+      //bool                                       m_bSystemSynchronizedCursor;
+      //point                                      m_pointCursor;
 
       //comparable_array < __reference(::user::interaction) > m_uiptraToolWindow;
 
@@ -131,7 +134,7 @@ namespace core
       //bool                                                  m_bFontSelInitialized;
       //__composite(::draw2d::font_list)                      m_pfontlistSingleColumn;
       //__composite(::user::user)                             m_puser;
-      __composite(::experience::department)                   m_pexperience;
+      
 
 
       user();
@@ -144,8 +147,6 @@ namespace core
       virtual __pointer(::user::menu_interaction) create_menu_button(::user::style* pstyle, ::user::menu_item* pitem) override;
 
 
-      ::user::menu_central * menu();
-
       // ::user::shell* shell();
       
       
@@ -156,7 +157,7 @@ namespace core
       virtual ::estatus init2() override;
       virtual ::estatus init() override;
 
-
+      virtual ::user::shell* shell();
 
       virtual ::estatus dialog_box(::object * pobjectContext, const char * pszMatter, property_set & propertyset, ::callback callback = ::callback());
 
@@ -229,7 +230,7 @@ namespace core
       ::user::document * hold(__pointer(::user::interaction) pinteraction);
 
 
-      //virtual bool create_user_shell();
+      virtual ::estatus create_user_shell();
 
 
       virtual string get_wallpaper(index iScreen);
@@ -265,7 +266,6 @@ namespace core
 
 
       virtual ::estatus initialize_userex();
-      virtual ::estatus initialize1_experience();
 
       virtual ::estatus userfs_init1();
       virtual ::estatus userfs_process_init();
@@ -278,16 +278,14 @@ namespace core
 
 
       virtual ::type get_pane_tab_view_type_info();
-      virtual ::type get_simple_frame_window_type_info();
+      //virtual ::type get_simple_frame_window_type_info() override;
       virtual ::type get_simple_child_frame_type_info();
 
 
       virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::patha& patha);
 
-      inline ::experience::department* experience() { return m_pexperience; }
 
 
-      virtual ::type user_default_controltype_to_typeinfo(::user::e_control_type econtroltype);
 
       //inline ::userpresence::department & userpresence() { return *m_puserpresence; }
 
@@ -517,9 +515,6 @@ namespace core
       //virtual index get_ui_wkspace(::user::interaction * pinteraction);
 
 
-      //virtual void defer_instantiate_user_theme(const char * pszUiInteractionLibrary = nullptr);
-      //__pointer(::user::theme) instantiate_user_theme(const char * pszExperienceLibrary, ::aura::application * papp = nullptr);
-      //__pointer(::user::theme) get_user_theme(const char * pszExperienceLibrary, ::aura::application * papp = nullptr);
 
 
       //virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rect & rect, ::draw2d::brush_pointer & brushText);
@@ -752,10 +747,7 @@ namespace core
    };
 
 
-   // CLASS_DECL_CORE::user::front_end_schema * GetUfeSchema(::object * pobject);
-   ///CLASS_DECL_CORE::user::front_end * GetUfe(::object * pobject);
-
-
 } // namespace aura
+
 
 

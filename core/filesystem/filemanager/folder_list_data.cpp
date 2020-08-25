@@ -24,7 +24,7 @@ namespace filemanager
       if(pitem->m_iSubItem == 0)
       {
          string_array stra;
-         if(!data_get(::aura::system::idEmpty, stra))
+         if(!data_get(::id(), stra))
          {
             pitem->m_bOk = false;
             return;
@@ -58,7 +58,7 @@ namespace filemanager
       
       string_array wstraTotal;
 
-      if (!data_get(::aura::system::idEmpty, wstraTotal))
+      if (!data_get(::id(), wstraTotal))
       {
 
          return;
@@ -96,7 +96,7 @@ namespace filemanager
 
       string_array straTotal;
 
-      if (!data_get(::aura::system::idEmpty, straTotal))
+      if (!data_get(::id(), straTotal))
       {
 
          return 0;
@@ -113,7 +113,7 @@ namespace filemanager
 
       string_array straData;
 
-      data_get(::aura::system::idEmpty, straData);
+      data_get(::id(), straData);
 
       int_array iaData;
       data_get("recursive", iaData);
@@ -151,7 +151,7 @@ namespace filemanager
 
       }
 
-      if (!data_set(::aura::system::idEmpty, straData))
+      if (!data_set(::id(), straData))
       {
 
          return false;
@@ -181,7 +181,7 @@ namespace filemanager
 
       string_array straData;
 
-      if (!data_get(::aura::system::idEmpty, straData))
+      if (!data_get(::id(), straData))
       {
 
          return true;
@@ -227,7 +227,7 @@ namespace filemanager
 
       }
 
-      if (!data_set(::aura::system::idEmpty, straData))
+      if (!data_set(::id(), straData))
       {
 
          return false;

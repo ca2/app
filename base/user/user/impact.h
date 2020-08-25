@@ -10,7 +10,7 @@ namespace user
 
 
 
-   class CLASS_DECL_AURA impact :
+   class CLASS_DECL_BASE impact :
       virtual public ::user::box
    {
    public:
@@ -228,6 +228,32 @@ namespace user
       }
 
 
+      virtual ::estatus initialize(::object* pobjectContext) override
+      {
+
+         auto estatus = ::user::impact::initialize(pobjectContext);
+
+         if (!estatus)
+         {
+
+            return estatus;
+
+         }
+
+         estatus = VIEW::initialize(pobjectContext);
+
+         if (!estatus)
+         {
+
+            return estatus;
+
+         }
+
+         return estatus;
+
+      }
+
+
       virtual void assert_valid() const override
       {
          impact::assert_valid();
@@ -254,6 +280,23 @@ namespace user
       {
 
          ::user::impact::route_command_message(pcommand);
+
+      }
+
+
+      virtual void on_command(::user::command* pcommand) override
+      {
+
+         VIEW::on_command(pcommand);
+
+         if (pcommand->m_bRet)
+         {
+
+            return;
+
+         }
+
+         ::user::impact::on_command(pcommand);
 
       }
 
@@ -340,9 +383,9 @@ namespace user
    };
 
 
-   CLASS_DECL_AURA __pointer(::user::interaction) create_view(const ::type & type, ::user::document * pdocument, ::user::interaction * pwndParent, id id, ::user::interaction * pviewLast = nullptr);
-   CLASS_DECL_AURA __pointer(::user::interaction) create_view(::create * pContext, ::user::interaction * pwndParent, id id);
-   CLASS_DECL_AURA ::user::document * get_document(::user::interaction * pinteraction);
+   CLASS_DECL_BASE __pointer(::user::interaction) create_view(const ::type & type, ::user::document * pdocument, ::user::interaction * pwndParent, id id, ::user::interaction * pviewLast = nullptr);
+   CLASS_DECL_BASE __pointer(::user::interaction) create_view(::create * pContext, ::user::interaction * pwndParent, id id);
+   CLASS_DECL_BASE ::user::document * get_document(::user::interaction * pinteraction);
 
 
 } // namespace user

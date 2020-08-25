@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AURA control_property
+   class CLASS_DECL_BASE control_property
    {
    public:
       

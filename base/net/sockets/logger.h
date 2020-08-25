@@ -9,7 +9,7 @@
 //   class base_socket;
 
 
-//   class CLASS_DECL_AURA logger :
+//   class CLASS_DECL_BASE logger :
 //      virtual public ::object
 //   {
 //      public:

@@ -82,7 +82,7 @@ uint32_pack(u32 value, u8 *out)
 }
 
 
-CLASS_DECL_AURA void websocket_prefix_varuint(memory & m, unsigned int ui)
+CLASS_DECL_BASE void websocket_prefix_varuint(memory & m, unsigned int ui)
 {
 
    auto iSize = uint32_size(ui);

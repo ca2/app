@@ -415,7 +415,7 @@ sync_result event::wait ()
          if (!thread_get_run())
          {
 
-            __throw(exit_exception());
+            __throw(exit_exception(::get_thread()));
 
          }
 

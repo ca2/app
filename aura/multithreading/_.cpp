@@ -501,7 +501,16 @@ CLASS_DECL_AURA ::aura::system * get_context_system()
 
    }
 
-   return pthread->get_context_system();
+   ::aura::system * psystem = pthread->get_context_system();
+
+   if (!psystem)
+   {
+
+      psystem = g_paurasystem;
+
+   }
+
+   return psystem;
 
 }
 

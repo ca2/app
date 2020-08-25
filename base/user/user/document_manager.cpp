@@ -885,41 +885,41 @@ namespace user
 
 } // namespace user
 
-
-namespace aura
-{
-
-
-   void application::remove_document_template(::user::impact_system * pimpactsystem)
-   {
-
-      if (m_pdocmanager == nullptr)
-         return;
-
-      document_manager()->remove_document_template(pimpactsystem);
-
-   }
-
-
-   ::user::document * application::open_document_file(::object * pobject, const char * pszFileName)
-
-   {
-
-      ASSERT(Application.m_pdocmanager != nullptr);
-
-      __pointer(::create) cc(e_create);
-
-      cc->m_pcommandline->m_varFile = pszFileName;
-
-
-      Application.document_manager()->request(cc);
-
-      return ::user::__document(cc);
-
-   }
-
-
-} // namespace aura
-
+//
+//namespace base
+//{
+//
+//
+//   //void application::remove_document_template(::user::impact_system * pimpactsystem)
+//   //{
+//
+//   //   if (m_pdocmanager == nullptr)
+//   //      return;
+//
+//   //   document_manager()->remove_document_template(pimpactsystem);
+//
+//   //}
+//
+//
+//   //::user::document * application::open_document_file(::object * pobject, const char * pszFileName)
+//
+//   //{
+//
+//   //   ASSERT(Application.m_pdocmanager != nullptr);
+//
+//   //   __pointer(::create) cc(e_create);
+//
+//   //   cc->m_pcommandline->m_varFile = pszFileName;
+//
+//
+//   //   Application.document_manager()->request(cc);
+//
+//   //   return ::user::__document(cc);
+//
+//   //}
+//
+//
+//} // namespace base
+//
 
 

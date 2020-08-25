@@ -11,7 +11,7 @@ namespace user
 
 
    class CLASS_DECL_CORE tree :
-      virtual public ::user::control
+      virtual public ::user::interaction
    {
    public:
 
@@ -174,7 +174,7 @@ namespace user
 
       virtual bool keyboard_focus_is_focusable() override;
 
-      virtual ::size get_total_size() override;
+      //virtual ::sized get_total_size() override;
 
       virtual void on_viewport_offset(::draw2d::graphics_pointer & pgraphics) override;
 

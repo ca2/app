@@ -42,7 +42,7 @@ namespace sockets
 {
 
 
-   class CLASS_DECL_AURA transfer_socket_exception :
+   class CLASS_DECL_BASE transfer_socket_exception :
       public ::exception::exception
    {
    public:
@@ -56,7 +56,7 @@ namespace sockets
 
    };
 
-   class CLASS_DECL_AURA transfer_socket :
+   class CLASS_DECL_BASE transfer_socket :
       virtual public tcp_socket
    {
    public:
@@ -76,7 +76,7 @@ namespace sockets
 
    };
 
-   class CLASS_DECL_AURA read_socket :
+   class CLASS_DECL_BASE read_socket :
       virtual public transfer_socket
    {
    public:
@@ -94,7 +94,7 @@ namespace sockets
    };
 
 
-   class CLASS_DECL_AURA write_socket :
+   class CLASS_DECL_BASE write_socket :
       virtual public transfer_socket
    {
    public:
@@ -108,7 +108,7 @@ namespace sockets
    };
 
 
-   //class CLASS_DECL_AURA http_transfer_socket :
+   //class CLASS_DECL_BASE http_transfer_socket :
    //   virtual public transfer_socket
    //{
    //public:

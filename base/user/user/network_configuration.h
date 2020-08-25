@@ -4,10 +4,8 @@
 namespace user
 {
 
-   class CLASS_DECL_AURA network_configuration :
+   class CLASS_DECL_BASE network_configuration :
       virtual public ::object
-//      public ::user::form_callback,
-   //    public ::user::impact_creator
    {
    public:
 

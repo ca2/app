@@ -21,7 +21,7 @@ namespace user
       m_iPad = 10;
       m_ealign = align_top_left;
 
-      m_scrolldataVert.m_bScrollEnable = true;
+      //m_scrolldataVert.m_bScrollEnable = true;
 
    }
 
@@ -615,7 +615,7 @@ namespace user
 
          m_sizeImage = sizeImage;
 
-         m_iWheelDeltaScroll = (i16) (sizeImage.cy / 3);
+         //m_iWheelDeltaScroll = (i16) (sizeImage.cy / 3);
 
          m_imageaThumb.remove_all();
 
@@ -627,9 +627,9 @@ namespace user
 
       rectTotal.bottom += m_iPad;
 
-      m_sizeTotal = rectTotal.size();
+      //m_sizeTotal = rectTotal.size();
 
-      m_scrolldataVert.m_iPage = rectClient.height();
+      //m_scrolldataVert.m_iPage = rectClient.height();
 
       ::user::box::on_layout(pgraphics);
 

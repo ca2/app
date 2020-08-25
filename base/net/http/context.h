@@ -5,7 +5,7 @@ namespace http
 {
 
 
-   class CLASS_DECL_AURA context :
+   class CLASS_DECL_BASE context :
       virtual public ::object
    {
    public:
@@ -14,7 +14,7 @@ namespace http
       ::property_set       m_setHttp;
 
 
-      class CLASS_DECL_AURA pac :
+      class CLASS_DECL_BASE pac :
          virtual public ::object
       {
       public:
@@ -33,7 +33,7 @@ namespace http
       };
 
 
-      class CLASS_DECL_AURA proxy :
+      class CLASS_DECL_BASE proxy :
          virtual public ::object
       {
       public:

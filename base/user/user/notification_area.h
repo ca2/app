@@ -7,7 +7,7 @@ namespace user
 
 #ifdef WINDOWS_DESKTOP
 
-   struct CLASS_DECL_AURA TRAYDATA
+   struct CLASS_DECL_BASE TRAYDATA
    {
       HWND    m_oswindow;
       UINT        uID;
@@ -17,7 +17,7 @@ namespace user
    };
 
 
-   struct CLASS_DECL_AURA TrayItemInfo :
+   struct CLASS_DECL_BASE TrayItemInfo :
       virtual public object
    {
       oswindow    m_oswindow;
@@ -30,12 +30,12 @@ namespace user
 
 #endif
 
-   CLASS_DECL_AURA char GetDriveLetter(const char * pDevicePath);
+   CLASS_DECL_BASE char GetDriveLetter(const char * pDevicePath);
 
-   CLASS_DECL_AURA oswindow FindTrayToolbarWindow();
+   CLASS_DECL_BASE oswindow FindTrayToolbarWindow();
 
 
-   class CLASS_DECL_AURA notification_area :
+   class CLASS_DECL_BASE notification_area :
       virtual public ::object
    {
    public:

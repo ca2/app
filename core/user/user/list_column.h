@@ -50,7 +50,7 @@ public:
    virtual ~list_column();
 
 
-   bool bind(::user::control_descriptor * pcontrol);
+   bool bind(::user::control_descriptor * pinteraction);
    
    
 

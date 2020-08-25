@@ -262,7 +262,7 @@ namespace aura
 
       void common_construct();
 
-      virtual ::estatus  initialize_system(::object * pobjectContext, app_core * pappcore);
+      virtual ::estatus  initialize(::object * pobjectContext) override;
 
       virtual ::estatus init();
       //virtual ::estatus init_instance() override;

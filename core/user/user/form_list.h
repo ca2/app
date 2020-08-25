@@ -23,30 +23,30 @@ namespace user
 
       void _000OnMouse(::message::mouse * pmouse) override;
 
-      void control_get_client_rect(::user::control * pcontrol,RECT * prect) override;
+      void control_get_client_rect(::user::interaction * pinteraction,RECT * prect) override;
 
-      void control_get_window_rect(::user::control * pcontrol,RECT * prect) override;
+      void control_get_window_rect(::user::interaction * pinteraction,RECT * prect) override;
 
       bool control_001DisplayHitTest(const ::point & point);
 
       virtual bool _001IsEditing() override;
 
-      virtual bool _001IsPointInside(::user::control * pcontrol,point64 ptt) override;
+      virtual bool _001IsPointInside(::user::interaction * pinteraction,point64 ptt) override;
 
       virtual void _001OnAddColumn(list_column * pcolumn) override;
 
       virtual void _001HideEditingControls();
-      virtual void _001HideControl(::user::control * pcontrol);
+      virtual void _001HideControl(::user::interaction * pinteraction);
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       //virtual LRESULT _001BaseWndGetProperty(EProperty eprop,LPARAM lparam) override;
 
       void _001UpdateColumns() override;
-      ::user::control * _001GetEditControl();
-      void _001SetEditControl(::user::control * pcontrol);
+      ::user::interaction * _001GetEditControl();
+      void _001SetEditControl(::user::interaction * pinteraction);
       virtual index _001AddControl(control_descriptor  * pdescriptor) override;
-      virtual void _001PlaceControl(::user::control * pcontrol, index iEditItem, bool bClick = false, bool bOnlySizeAndPosition = false) override;
-      virtual void _001OnShowControl(::user::control * pcontrol);
-      ::user::control * _001GetControl(index iItem, index iSubItem) override;
+      virtual void _001PlaceControl(::user::interaction * pinteraction, index iEditItem, bool bClick = false, bool bOnlySizeAndPosition = false) override;
+      virtual void _001OnShowControl(::user::interaction * pinteraction);
+      ::user::interaction * _001GetControl(index iItem, index iSubItem) override;
       virtual bool on_click(const ::user::item & item) override;
       virtual bool on_right_click(const ::user::item & item) override;
       void _001OnTimer(::timer * ptimer) override;
@@ -63,10 +63,10 @@ namespace user
 
       virtual bool _001OnUpdateItemCount(u32 dwFlags = 0) override;
 
-      virtual void _001UpdateComboBox(::user::control * pcontrol) override;
+      virtual void _001UpdateComboBox(::user::interaction * pinteraction) override;
 
-      virtual void _001UpdateEdit(::user::control * pcontrol) override;
-      virtual bool _001SaveEdit(::user::control * pcontrol) override;
+      virtual void _001UpdateEdit(::user::interaction * pinteraction) override;
+      virtual bool _001SaveEdit(::user::interaction * pinteraction) override;
 
       virtual bool _001OnMouseActivate(::user::interaction_impl * pDesktopWnd,UINT nHitTest,UINT message,LRESULT & iResult) override;
 

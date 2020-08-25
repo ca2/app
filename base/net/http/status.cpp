@@ -45,7 +45,7 @@ namespace http
 //
 //   }
 
-   CLASS_DECL_AURA string conn_status(property_set & set)
+   CLASS_DECL_BASE string conn_status(property_set & set)
    {
 
       ::estatus     estatus = (::estatus    )set["get_status"].i32();

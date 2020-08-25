@@ -5,7 +5,7 @@ namespace hotplugin
 {
 
 
-   CLASS_DECL_AURA void entry_hall_windows_on_paint(::draw2d::graphics_pointer & pgraphics, const ::rect & rect, const string & strEntryHallText)
+   CLASS_DECL_BASE void entry_hall_windows_on_paint(::draw2d::graphics_pointer & pgraphics, const ::rect & rect, const string & strEntryHallText)
    {
 
       int h = 33;

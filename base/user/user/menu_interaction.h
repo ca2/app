@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AURA menu_interaction :
+   class CLASS_DECL_BASE menu_interaction :
       virtual public interaction
    {
    public:

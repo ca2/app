@@ -6,7 +6,7 @@
 //
 //   class toolbar;
 //
-//   class CLASS_DECL_AURA image_manager :
+//   class CLASS_DECL_BASE image_manager :
 //      virtual public ::object
 //   {
 //   public:

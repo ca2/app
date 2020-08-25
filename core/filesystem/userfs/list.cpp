@@ -1,5 +1,5 @@
 ﻿#include "framework.h"
-#include "aura/user/shell.h"
+#include "core/user/user/shell.h"
 #include "_userfs.h"
 
 
@@ -535,25 +535,25 @@ namespace userfs
       ASSERT(FALSE);
    }
 
-   void list::_001OnInitializeForm(::user::control * pcontrol)
+   void list::_001OnInitializeForm(::user::interaction * pinteraction)
    {
-      ASSERT(pcontrol != nullptr);
-      if (pcontrol == nullptr)
+      ASSERT(pinteraction != nullptr);
+      if (pinteraction == nullptr)
          return;
 
       /*      filemanager::file_list_callback * pcallback =
       get_filemanager_template()->get_filemanager_template()->m_pfilelistcallback;
 
-      __pointer(::user::button) pbutton =  (pcontrol);
+      __pointer(::user::button) pbutton =  (pinteraction);
       if(pcallback != nullptr && pbutton != nullptr)
       {
-      pcallback->InitializeActionButton(((i32) pcontrol->descriptor().m_id) - 1000, pbutton);
+      pcallback->InitializeActionButton(((i32) pinteraction->descriptor().m_id) - 1000, pbutton);
       } */
    }
 
-   void list::_001OnButtonAction(::user::control * pcontrol)
+   void list::_001OnButtonAction(::user::interaction * pinteraction)
    {
-      UNREFERENCED_PARAMETER(pcontrol);
+      UNREFERENCED_PARAMETER(pinteraction);
       //      list_data * pdata = fslist();
       /* filemanager::file_list_callback * pcallback =
       get_filemanager_template()->get_filemanager_template()->m_pfilelistcallback;
@@ -561,7 +561,7 @@ namespace userfs
       if(pcallback != nullptr)
       {
       ::file::item item;
-      i32 iItem = pcontrol->GetEditItem();
+      i32 iItem = pinteraction->GetEditItem();
       i32 iStrict;
       if(m_eview == impact_icon)
       {
@@ -573,7 +573,7 @@ namespace userfs
       }
       item.m_strPath         = pdata->item(iStrict).m_strPath;
       item.m_strExtra        = pdata->item(iStrict).m_strExtra;
-      pcallback->OnButtonAction((i32) pcontrol->descriptor().m_id - 1000, item);
+      pcallback->OnButtonAction((i32) pinteraction->descriptor().m_id - 1000, item);
       } */
    }
 
@@ -690,9 +690,9 @@ namespace userfs
 
          auto iEditItem = range.ItemAt(0).get_lower_bound();
 
-         ::user::control * pcontrol = _001GetControl(iEditItem, fs_list()->m_iNameSubItem);
+         ::user::interaction * pinteraction = _001GetControl(iEditItem, fs_list()->m_iNameSubItem);
 
-         _001PlaceControl(pcontrol, iEditItem);
+         _001PlaceControl(pinteraction, iEditItem);
 
       }
 

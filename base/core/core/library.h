@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace aura
+namespace base
 {
 
 
-   class CLASS_DECL_AURA library:
+   class CLASS_DECL_BASE library:
       virtual public ::aura::single_application_library < application >,
       virtual public ::filehandler::menu_library
    {
@@ -27,6 +27,6 @@ namespace aura
    };
 
 
-} // namespace aura
+} // namespace base
 
 

@@ -334,12 +334,12 @@ namespace user
    //control * control_descriptor::get_control(::user::form * pform, index iItem)
    //{
 
-   //   __pointer(interaction) &  pcontrol = m_controlmap[0];
+   //   __pointer(interaction) &  pinteraction = m_controlmap[0];
 
-   //   if (pcontrol != nullptr)
+   //   if (pinteraction != nullptr)
    //   {
 
-   //      return pcontrol;
+   //      return pinteraction;
 
    //   }
 
@@ -348,15 +348,15 @@ namespace user
    //   if (!pform->create_control(this, iItem))
    //   {
 
-   //      pcontrol.release();
+   //      pinteraction.release();
 
    //      return nullptr;
 
    //   }
 
-   //   pcontrol = m_puserinteraction;
+   //   pinteraction = m_puserinteraction;
 
-   //   return pcontrol.cast < control>();
+   //   return pinteraction.cast < control>();
 
    //}
 

@@ -5,8 +5,8 @@ namespace user
 {
 
 
-   class CLASS_DECL_AURA impact_system :
-      virtual public channel
+   class CLASS_DECL_BASE impact_system :
+      virtual public server
    {
    public:
 

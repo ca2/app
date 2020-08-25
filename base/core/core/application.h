@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace aura
+namespace base
 {
 
 
-   class CLASS_DECL_AURA application:
+   class CLASS_DECL_BASE application:
       virtual public ::aura::application,
       virtual public ::user::form_callback,
       virtual public ::user::impact_creator,
@@ -624,20 +624,20 @@ namespace aura
    };
 
 
-} // namespace aura
+} // namespace base
 
 
-CLASS_DECL_AURA UINT c_cdecl application_thread_procedure(LPVOID pvoid);
+CLASS_DECL_BASE UINT c_cdecl application_thread_procedure(LPVOID pvoid);
 
 typedef __pointer(::aura::application) (*LPFN_instantiate_application)(__pointer(::aura::application) pappParent, const char * pszId);
 
-extern CLASS_DECL_AURA LPFN_instantiate_application g_lpfn_instantiate_application;
+extern CLASS_DECL_BASE LPFN_instantiate_application g_lpfn_instantiate_application;
 
 #ifdef WINDOWS_DESKTOP
 
-CLASS_DECL_AURA BOOL LaunchAppIntoDifferentSession(const char * pszProcess, const char * pszCommand, const char * pszDir, STARTUPINFO * psi, PROCESS_INFORMATION * ppi, int iSession = -1);
+CLASS_DECL_BASE BOOL LaunchAppIntoDifferentSession(const char * pszProcess, const char * pszCommand, const char * pszDir, STARTUPINFO * psi, PROCESS_INFORMATION * ppi, int iSession = -1);
 
-CLASS_DECL_AURA BOOL LaunchAppIntoSystemAcc(const char * pszProcess,const char * pszCommand,const char * pszDir,STARTUPINFO * psi,PROCESS_INFORMATION * ppi);
+CLASS_DECL_BASE BOOL LaunchAppIntoSystemAcc(const char * pszProcess,const char * pszCommand,const char * pszDir,STARTUPINFO * psi,PROCESS_INFORMATION * ppi);
 
 #endif // WINDOWS_DESKTOP
 

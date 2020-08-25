@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_CORE color_combo_box :
-      virtual public control
+      virtual public ::user::interaction
    {
    public:
 

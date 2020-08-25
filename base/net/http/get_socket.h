@@ -5,7 +5,7 @@ namespace http
 {
 
 
-   class CLASS_DECL_AURA get_socket : 
+   class CLASS_DECL_BASE get_socket : 
       virtual public ::sockets::http_get_socket
    {
    public:

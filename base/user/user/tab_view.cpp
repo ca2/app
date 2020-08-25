@@ -780,7 +780,7 @@ namespace user
       if (m_pimpactdata == nullptr)
       {
 
-         return ::aura::system::idEmpty;
+         return ::id();
 
       }
 

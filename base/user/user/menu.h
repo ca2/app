@@ -8,7 +8,7 @@ namespace user
    class menu_item;
 
 
-   class CLASS_DECL_AURA menu :
+   class CLASS_DECL_BASE menu :
       virtual public ::user::interaction
    {
    public:
@@ -17,22 +17,22 @@ namespace user
 
       
 
-      ::size                                   m_sizeMinimum;
-      __pointer(menu)                               m_pmenuParent;
-      //__pointer(menu_item)                          m_pmenuitem;
-      __pointer(::user::interaction)                m_puserinteractionParent;
-      __pointer(::user::interaction)                m_puiMenuNotify;
+      ::size                                 m_sizeMinimum;
+      __pointer(menu)                        m_pmenuParent;
+      __pointer(menu_item)                   m_pmenuitem;
+      __pointer(::user::interaction)         m_puserinteractionParent;
+      __pointer(::user::interaction)         m_puiMenuNotify;
       HMENU                                  m_hmenu;
       bool                                   m_bOwnItem;
-      ::size                                   m_size;
+      ::size                                 m_size;
       i32                                    m_iCheckBoxSize;
       bool                                   m_bAutoDelete;
       i32                                    m_iHeaderHeight;
-      __pointer(::user::menu_item)                  m_pitemClose;
+      __pointer(::user::menu_item)           m_pitemClose;
       id                                     m_idSubMenu;
       i32                                    m_iHoverSubMenu;
       u32                                    m_dwOut;
-      __pointer(menu)                               m_psubmenu;
+      __pointer(menu)                        m_psubmenu;
       id                                     m_idTimerMenu;
       point                                  m_pointTrack;
       point                                  m_pointPositionHint;
@@ -40,7 +40,7 @@ namespace user
       bool                                   m_bPositionHint;
       bool                                   m_bInline;
       bool                                   m_bMenuOk;
-      __pointer(menu_item)                          m_pmenuitemSub;
+      __pointer(menu_item)                   m_pmenuitemSub;
       int_array                              m_iaColumnWidth;
       int_array                              m_iaColumnHeight;
       bool                                   m_bCloseButton;
@@ -109,7 +109,7 @@ namespace user
 
       __pointer(::user::menu_item) get_menu_item();
 
-      __pointer(::user::menu_item) get_menu_item(::user::interaction * pinteraction);
+      //__pointer(::user::menu_item) get_menu_item(::user::interaction * pinteraction);
 
       virtual bool has_pending_graphical_update() override;
 

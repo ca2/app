@@ -8,7 +8,7 @@ namespace user
    class tab_callback;
 
 
-   class CLASS_DECL_AURA tab_pane:
+   class CLASS_DECL_BASE tab_pane:
       virtual public ::generic_object
    {
    public: 
@@ -54,7 +54,7 @@ namespace user
    };
 
 
-   class CLASS_DECL_AURA tab_pane_array:
+   class CLASS_DECL_BASE tab_pane_array:
       public __pointer_array(tab_pane)
    {
    public:
@@ -70,8 +70,8 @@ namespace user
    };
 
 
-   class CLASS_DECL_AURA tab :
-      virtual public control,
+   class CLASS_DECL_BASE tab :
+      virtual public ::user::interaction,
       virtual public place_holder_container
    {
    public:
@@ -98,7 +98,7 @@ namespace user
 
 
 
-      class CLASS_DECL_AURA data :
+      class CLASS_DECL_BASE data :
          virtual public ::data::data
       {
       public:
@@ -132,7 +132,7 @@ namespace user
          ::index                          m_iClickTab;
          bool                             m_bDrag;
          bool                             m_bVertical;
-         ::aura::match::any               m_matchanyRestore;
+         ::match::any                     m_matchanyRestore;
          bool                             m_bEnableCloseAll;
          bool                             m_bNoClient;
          ::size                           m_sizeTabTotal;
@@ -148,7 +148,7 @@ namespace user
       };
 
 
-      class CLASS_DECL_AURA remove_tab_exception
+      class CLASS_DECL_BASE remove_tab_exception
       {
       public:
 

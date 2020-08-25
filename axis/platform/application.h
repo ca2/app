@@ -40,7 +40,7 @@ namespace axis
 
       virtual string __get_text(string str) override;
 
-      virtual ::user::style* get_user_style() const;
+      //virtual ::user::style* get_user_style() const;
     
       virtual ::database::key calc_data_key() override;
 

@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA form_document :
+class CLASS_DECL_BASE form_document :
    virtual public ::user::document,
    virtual public ::user::form_callback
 {

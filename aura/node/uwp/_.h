@@ -2,6 +2,8 @@
 
 #define SECURITY_WIN32
 
+#undef User
+
 #include <shlobj.h>
 #include <Security.h>
 #include <shlobj.h>

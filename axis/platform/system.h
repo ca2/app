@@ -28,7 +28,7 @@ namespace axis
 
       void common_construct();
 
-      virtual ::estatus  initialize_system(::object * pobjectContext, app_core * pappcore);
+      virtual ::estatus initialize(::object * pobjectContext) override;
 
       virtual ::estatus init();
       virtual ::estatus inline_init() override;

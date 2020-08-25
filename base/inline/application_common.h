@@ -13,7 +13,7 @@ const char* br_init_get_symbol();
 #endif
 
 
-CLASS_DECL_AURA ::estatus os_application_system_run(::aura::system* psystem);
+CLASS_DECL_BASE ::estatus os_application_system_run(::aura::system* psystem);
 
 
 void application_common(aura_main_struct * pmainstruct)

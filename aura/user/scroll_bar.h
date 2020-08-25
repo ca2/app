@@ -14,8 +14,7 @@ namespace user
       e_orientation                    m_eorientation;
       scroll_info                      m_scrollinfo;
       bool                             m_bTracking;
-
-
+      ::size                           m_sizeTrackOffset;
 
 
       scroll_bar();

@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AURA document_manager_container :
+   class CLASS_DECL_BASE document_manager_container :
       virtual public ::object
    {
    public:

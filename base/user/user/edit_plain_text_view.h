@@ -7,7 +7,7 @@ namespace user
 
    using edit_plain_text_view = ::user::show < ::user::plain_edit >;
 
-   //class CLASS_DECL_AURA edit_plain_text_view :
+   //class CLASS_DECL_BASE edit_plain_text_view :
    //   virtual public scroll_view,
    //   virtual public plain_edit
    //{

@@ -27,7 +27,7 @@ namespace user
    ::estatus box::initialize(::object * pobjectContext)
    {
 
-      auto estatus = scroll::initialize(pobjectContext);
+      auto estatus = interaction::initialize(pobjectContext);
 
       if (!estatus)
       {
@@ -56,7 +56,7 @@ namespace user
    {
 
       ::user::interaction::install_message_routing(pchannel);
-      scroll::install_message_routing(pchannel);
+      //scroll::install_message_routing(pchannel);
 
       IGUI_MSG_LINK(WM_CREATE, pchannel, this, &box::_001OnCreate);
       IGUI_MSG_LINK(WM_SIZE, pchannel, this, &box::_001OnSize);
@@ -586,7 +586,13 @@ namespace user
 
    }
 
+   
+   string box::get_display_tag()
+   {
 
+      return m_strDisplay;
+
+   }
 
 
 } // namespace user

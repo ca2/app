@@ -10424,7 +10424,7 @@
     <frame>
       <ip>0xE60190C</ip>
       <obj>/xcore/time/x64/basis/libbase.so</obj>
-      <fn>user::control::install_message_routing(channel*)</fn>
+      <fn>user::interaction::install_message_routing(channel*)</fn>
       <dir>/xcore/app/base/user/user</dir>
       <file>control.cpp</file>
       <line>32</line>
@@ -10631,7 +10631,7 @@
     <frame>
       <ip>0xE60190C</ip>
       <obj>/xcore/time/x64/basis/libbase.so</obj>
-      <fn>user::control::install_message_routing(channel*)</fn>
+      <fn>user::interaction::install_message_routing(channel*)</fn>
       <dir>/xcore/app/base/user/user</dir>
       <file>control.cpp</file>
       <line>32</line>
@@ -10830,7 +10830,7 @@
     <frame>
       <ip>0xE60190C</ip>
       <obj>/xcore/time/x64/basis/libbase.so</obj>
-      <fn>user::control::install_message_routing(channel*)</fn>
+      <fn>user::interaction::install_message_routing(channel*)</fn>
       <dir>/xcore/app/base/user/user</dir>
       <file>control.cpp</file>
       <line>32</line>
@@ -11013,7 +11013,7 @@
     <frame>
       <ip>0xE60190C</ip>
       <obj>/xcore/time/x64/basis/libbase.so</obj>
-      <fn>user::control::install_message_routing(channel*)</fn>
+      <fn>user::interaction::install_message_routing(channel*)</fn>
       <dir>/xcore/app/base/user/user</dir>
       <file>control.cpp</file>
       <line>32</line>

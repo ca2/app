@@ -4,7 +4,16 @@
 
 double primitive_color_round(double d);
 
-color color:: black(0, 0, 0, 255);
+color color::transparent(0, 0, 0, 0);
+color color::black(0, 0, 0, 255);
+color color::red(255, 0, 0, 255);
+color color::green(0, 255, 0, 255);
+color color::blue(0, 0, 255, 255);
+color color::yellow(255, 255, 0, 255);
+color color::cyan(0, 255, 255, 255);
+color color::magenta(255, 0, 255, 255);
+color color::white(255, 255, 255, 255);
+
 
 color::color()
 {

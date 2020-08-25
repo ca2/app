@@ -23,7 +23,7 @@ class string;
 typedef iptr strsize;
 
 
-#define CLASS_DECL_AURA
+#define CLASS_DECL_BASE
 
 
 #include "aura/os/threading.h"

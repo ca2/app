@@ -745,12 +745,12 @@ void html_form_view::update(::update * pupdate)
          for (auto & pdescriptor : m_controldescriptorset.ptra())
          {
 
-            auto pcontrol = pdescriptor->m_pusercontrol;
+            auto pinteraction = pdescriptor->m_pinteraction;
 
-            if (pcontrol != nullptr)
+            if (pinteraction)
             {
 
-               _001Update(pcontrol);
+               _001Update(pinteraction);
 
             }
 

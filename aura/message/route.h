@@ -167,9 +167,7 @@ namespace message
    }
 
 
-
    using route_array = __pointer_array(route);
-
 
    __class(CLASS_DECL_AURA, id_route, ::map < ::message::id, const ::message::id &, __pointer(route_array) >);
 

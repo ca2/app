@@ -8,7 +8,7 @@ namespace user
    class split_bar;
 
 
-   class CLASS_DECL_AURA split_layout :
+   class CLASS_DECL_BASE split_layout :
       virtual public ::user::place_holder_container
    {
    public:
@@ -23,7 +23,7 @@ namespace user
       };
 
 
-      class CLASS_DECL_AURA Pane :
+      class CLASS_DECL_BASE Pane :
          virtual public object
       {
       public:

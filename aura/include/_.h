@@ -537,6 +537,7 @@ namespace base
    class application;
    class session;
    class system;
+   class user;
 
 
 } // namespace base
@@ -869,6 +870,11 @@ type operator + (const TYPE & t) const { auto copy = *this; copy.add(t); return 
 #include "aura/graphics/draw2d/_const.h"
 
 
+#define Usr(pobject) (*Sess(pobject).user())
+#define User (Usr(get_context()))
+
+
+
 enum enum_command
 {
 
@@ -887,15 +893,15 @@ class context_object;
 class object;
 
 
-namespace aura
-{
-
-
-   class printer;
-
-
-
-} // namespace aura
+//namespace aura
+//{
+//
+//
+//   class printer;
+//
+//
+//
+//} // namespace aura
 
 
 extern "C"
@@ -1309,6 +1315,7 @@ namespace user
    class split_layout;
    class style_rect;
    class scroll_bar;
+   class scroll_data;
 
 
    //using color_map = map < e_color, e_color, COLORREF, COLORREF >;
@@ -1421,7 +1428,7 @@ namespace colorertake5
 class memory;
 
 
-CLASS_DECL_AURA ::aura::system* platform_create_system();
+CLASS_DECL_AURA ::aura::system* platform_create_system(HINSTANCE hinstance);
 CLASS_DECL_AURA ::aura::session* platform_create_session();
 
 

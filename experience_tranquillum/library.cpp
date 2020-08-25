@@ -46,7 +46,7 @@ namespace experience
          else if(string(lpszClass) == "user_theme")
          {
 
-            return new theme;
+            return new style;
 
          }
          else

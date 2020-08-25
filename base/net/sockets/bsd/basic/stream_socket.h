@@ -7,7 +7,7 @@ namespace sockets
 
    /** SOCK_STREAM socket axis class.
    \ingroup basic */
-   class CLASS_DECL_AURA stream_socket :
+   class CLASS_DECL_BASE stream_socket :
       virtual public socket
    {
    public:

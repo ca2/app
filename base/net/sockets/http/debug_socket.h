@@ -39,7 +39,7 @@ namespace sockets
    /** HTTP request "echo" class. This class echoes a http request/body
    with a html formatted page.
    \ingroup http */
-   class CLASS_DECL_AURA http_debug_socket :
+   class CLASS_DECL_BASE http_debug_socket :
       public http_socket
    {
    public:

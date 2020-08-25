@@ -46,7 +46,7 @@ namespace sockets
 
    /** socket container class, event generator.
    \ingroup basic */
-   class CLASS_DECL_AURA base_socket_handler:
+   class CLASS_DECL_BASE base_socket_handler:
       virtual public ::object
    {
    public:
@@ -57,7 +57,7 @@ namespace sockets
 
       /** Connection pool class for internal use by the base_socket_handler.
       \ingroup internal */
-      class CLASS_DECL_AURA pool_socket : public socket
+      class CLASS_DECL_BASE pool_socket : public socket
       {
       public:
 

@@ -360,7 +360,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics_path::create(::draw2d::graphics* pgraphicsParam, ::index iCreate)
+   bool graphics_path::create(::draw2d::graphics* pgraphicsParam, ::i8 iCreate)
    {
 
       auto pgraphics = __graphics(pgraphicsParam);

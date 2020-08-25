@@ -4,7 +4,7 @@
 namespace plugin
 {
 
-   class CLASS_DECL_AURA history :
+   class CLASS_DECL_BASE history :
       virtual public ::aura::history
    {
    public:

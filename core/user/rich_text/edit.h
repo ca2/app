@@ -10,7 +10,7 @@ namespace user
 
 
       class CLASS_DECL_CORE edit :
-         virtual public ::user::control,
+         virtual public ::user::interaction,
          virtual public ::user::picture_interaction
 #ifdef WINDOWS_DESKTOP
          , virtual public ::imm_client
@@ -78,7 +78,7 @@ namespace user
 
          __pointer(::userex::font_format_tool) get_font_format_tool(bool bCreate);
 
-         using ::user::control::_001GetText;
+         using ::user::interaction::_001GetText;
          virtual void _001GetText(string & str) const override;
          virtual void _001GetLayoutText(string & str) const;
 

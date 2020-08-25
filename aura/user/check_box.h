@@ -47,7 +47,7 @@ namespace user
       virtual void _001OnDrawRedGreenCircle(::draw2d::graphics_pointer & pgraphics);
       virtual void _001OnDrawToggleSwitch(::draw2d::graphics_pointer & pgraphics);
 //      virtual ::enum_check _001GetCheck() override;
-      //using ::user::control::_001SetCheck;
+      //using ::user::interaction::_001SetCheck;
       virtual void _001SetCheck(::enum_check check, const ::action_context & action_context) override;
 
       void install_message_routing(::channel * pchannel) override;

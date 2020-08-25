@@ -5,13 +5,13 @@ namespace user
 {
 
 
-   class CLASS_DECL_AURA picture :
+   class CLASS_DECL_BASE picture :
       virtual public ::aura::drawable
    {
    public:
 
 
-      class CLASS_DECL_AURA picture_impl :
+      class CLASS_DECL_BASE picture_impl :
          virtual public context_object
       {
       public:

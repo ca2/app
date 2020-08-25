@@ -13,10 +13,10 @@
 ////#include <fcntl.h>
 #endif
 
-void CLASS_DECL_AURA __cdecl _ca2_purecall_();
+void CLASS_DECL_BASE __cdecl _ca2_purecall_();
 
 
-void CLASS_DECL_AURA __cdecl _ca2_purecall_()
+void CLASS_DECL_BASE __cdecl _ca2_purecall_()
 {
    __throw(::exception::exception());
 }

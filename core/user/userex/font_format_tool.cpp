@@ -732,32 +732,32 @@ namespace userex
 
 
 
-::userex::font_format_tool * simple_frame_window::font_format_tool(bool bCreate)
-{
-
-   sync_lock sl(mutex());
-
-   __pointer(::userex::font_format_tool) pfontformattool = m_ptoolwindowFont;
-
-   if (pfontformattool.is_null() && bCreate)
-   {
-
-      __construct_new < ::userex::font_format_tool> (pfontformattool);
-
-      m_ptoolwindowFont = pfontformattool;
-
-      sl.unlock();
-
-      //pfontformattool->m_ewindowflag |= window_flag_embedded_prodevian;
-      //pfontformattool->m_ewindowflag |= window_flag_satellite_window;
-
-      ::user::create_struct createstruct(WS_EX_NOACTIVATE | WS_EX_TOPMOST | WS_EX_TOOLWINDOW | WS_EX_LAYERED);
-      //::user::create_struct createstruct;
-
-      pfontformattool->create_window_ex(createstruct, nullptr, "textformat_sys_format_tool");
-
-   }
-
-   return pfontformattool;
-
-}
+//::userex::font_format_tool * simple_frame_window::font_format_tool(bool bCreate)
+//{
+//
+//   sync_lock sl(mutex());
+//
+//   __pointer(::userex::font_format_tool) pfontformattool = m_ptoolwindowFont;
+//
+//   if (pfontformattool.is_null() && bCreate)
+//   {
+//
+//      __construct_new < ::userex::font_format_tool> (pfontformattool);
+//
+//      m_ptoolwindowFont = pfontformattool;
+//
+//      sl.unlock();
+//
+//      //pfontformattool->m_ewindowflag |= window_flag_embedded_prodevian;
+//      //pfontformattool->m_ewindowflag |= window_flag_satellite_window;
+//
+//      ::user::create_struct createstruct(WS_EX_NOACTIVATE | WS_EX_TOPMOST | WS_EX_TOOLWINDOW | WS_EX_LAYERED);
+//      //::user::create_struct createstruct;
+//
+//      pfontformattool->create_window_ex(createstruct, nullptr, "textformat_sys_format_tool");
+//
+//   }
+//
+//   return pfontformattool;
+//
+//}

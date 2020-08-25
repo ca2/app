@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AURA ::update:
+   class CLASS_DECL_BASE ::update:
       virtual public update_hint
    {
    public:

@@ -666,33 +666,40 @@ bool XfplayerViewLineSelection::OnTimer(xfplayer_view_line & viewline, UINT user
 
 void XfplayerViewLineSelectionItem::NormalizeSel()
 {
+   
    if(m_iLineStart > m_iLineEnd)
    {
-      ::aura::__swap(m_iLineEnd, m_iLineStart);
-      ::aura::__swap(m_iCharEnd, m_iCharStart);
+      
+      __swap(m_iLineEnd, m_iLineStart);
+      
+      __swap(m_iCharEnd, m_iCharStart);
+
    }
-   else if(m_iLineStart == m_iLineEnd
-           && m_iCharStart > m_iCharEnd)
+   else if(m_iLineStart == m_iLineEnd && m_iCharStart > m_iCharEnd)
    {
-      ::aura::__swap(m_iCharEnd, m_iCharStart);
+
+      __swap(m_iCharEnd, m_iCharStart);
+
    }
 
 }
 
 
-
-
 void XfplayerViewLineSelection::GetNormalSelection(index & iLineStart, strsize & iCharStart, index & iLineEnd, strsize & iCharEnd)
 {
+
    if(m_item.GetLineStart() > m_item.GetLineEnd())
    {
+
       iLineStart = m_item.GetLineEnd();
       iCharStart = m_item.GetCharEnd();
       iLineEnd = m_item.GetLineStart();
       iCharEnd = m_item.GetCharStart();
+
    }
    else if(m_item.GetLineStart() == m_item.GetLineEnd())
    {
+
       iLineStart = m_item.GetLineStart();
       iLineEnd = m_item.GetLineEnd();
       if(m_item.GetCharStart() > m_item.GetCharEnd())

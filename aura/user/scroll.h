@@ -23,7 +23,7 @@ namespace user
    };
 
 
-   class CLASS_DECL_AURA scroll_x :
+   class CLASS_DECL_AURA scroll_x_base :
       virtual public interaction
    {
    public:
@@ -33,9 +33,13 @@ namespace user
       scroll_data       m_scrolldataHorz;
 
 
-      scroll_x();
-      virtual ~scroll_x();
+      scroll_x_base();
+      virtual ~scroll_x_base();
 
+
+      virtual scroll_bar* get_horizontal_scroll_bar() override;
+
+      virtual scroll_data* get_horizontal_scroll_data() override;
 
       virtual void install_message_routing(::channel * pchannel) override;
 
@@ -85,7 +89,7 @@ namespace user
 
 
 
-   class CLASS_DECL_AURA scroll_y :
+   class CLASS_DECL_AURA scroll_y_base :
       virtual public interaction
    {
    public:
@@ -97,8 +101,12 @@ namespace user
       i16              m_iWheelDeltaScroll;
 
 
-      scroll_y();
-      virtual ~scroll_y();
+      scroll_y_base();
+      virtual ~scroll_y_base();
+
+
+      virtual scroll_bar* get_vertical_scroll_bar() override;
+      virtual scroll_data* get_vertical_scroll_data() override;
 
 
       virtual void send_yscroll_message(int nSBCode);
@@ -133,19 +141,19 @@ namespace user
 
    };
 
-   class CLASS_DECL_AURA scroll :
-      virtual public ::user::scroll_x,
-      virtual public ::user::scroll_y
+
+   class CLASS_DECL_AURA scroll_base :
+      virtual public ::user::scroll_x_base,
+      virtual public ::user::scroll_y_base
    {
    public:
 
 
-      ::size            m_sizeTotal;
+      ::sized            m_sizeTotal;
 
 
-      scroll();
-      scroll(::object * pobject);
-      virtual ~scroll();
+      scroll_base();
+      virtual ~scroll_base();
 
 
 
@@ -169,9 +177,41 @@ namespace user
 
 
 
-      virtual ::size get_total_size() override;
+      virtual ::sized get_total_size() override;
+
+
+      virtual ::estatus set_total_size(const ::sized& size) override;
+      virtual ::estatus set_page_size(const ::sized& size) override;
+
 
       virtual void defer_draw_scroll_gap(::draw2d::graphics_pointer & pgraphics);
+
+   };
+
+
+   template < typename BASE >
+   class scroll :
+      virtual public scroll_base,
+      virtual public BASE
+   {
+   public:
+
+
+      scroll()
+      {
+      }
+
+      virtual ~scroll()
+      {
+      }
+
+      virtual void install_message_routing(::channel* pchannel) override
+      {
+
+         ::user::scroll_base::install_message_routing(pchannel);
+         BASE::install_message_routing(pchannel);
+
+      }
 
    };
 

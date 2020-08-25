@@ -5,7 +5,7 @@ namespace net
 {
 
 
-   class CLASS_DECL_AURA email_department :
+   class CLASS_DECL_BASE email_department :
       virtual public ::aura::department
    {
    public:

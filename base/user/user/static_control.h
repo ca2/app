@@ -5,10 +5,11 @@ namespace user
 {
 
 
-   class CLASS_DECL_AURA static_control :
-      virtual public ::user::control
+   class CLASS_DECL_BASE static_control :
+      virtual public ::user::interaction
    {
    public:
+
 
       enum e_type
       {

@@ -8,7 +8,7 @@ namespace user
    class control_descriptor;
 
 
-   class CLASS_DECL_AURA form :
+   class CLASS_DECL_BASE form :
       virtual public ::user::interaction
    {
    protected:

@@ -585,6 +585,13 @@ __pointer(::mutex) channel::s_pmutexChannel;
    void channel::route_command_message(::user::command * pcommand)
    {
 
+      on_command_message(pcommand);
+
+   }
+
+
+   void channel::on_command_message(::user::command* pcommand)
+   {
 
       if (pcommand->m_id.m_emessagetype == ::message::type_command)
       {

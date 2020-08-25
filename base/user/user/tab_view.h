@@ -9,7 +9,7 @@ namespace user
    class single_document_template;
 
 
-   class CLASS_DECL_AURA tab_view :
+   class CLASS_DECL_BASE tab_view :
       virtual public ::user::impact_host,
       virtual public ::user::tab,
       virtual public ::user::tab_callback

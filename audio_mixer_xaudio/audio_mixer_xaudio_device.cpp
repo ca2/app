@@ -291,8 +291,8 @@ namespace multimedia
             m_mapIDToControl.set_at(control->GetMixerControl().dwControlID, control);
             for(i32 l = 0; l < control->get_size(); l++)
             {
-               __pointer(::multimedia::audio_mixer::user::control) pcontrol = control->operator ()(l);
-               m_mapDlgItemIDToControl.set_at(pcontrol->_GetDlgCtrlID(), control);
+               __pointer(::multimedia::audio_mixer::user::interaction) pinteraction = control->operator ()(l);
+               m_mapDlgItemIDToControl.set_at(pinteraction->_GetDlgCtrlID(), control);
             }
          }
       }
@@ -324,8 +324,8 @@ namespace multimedia
             __pointer(::multimedia::audio_mixer::control) control = controla(k);
             for(i32 l = 0; l < control->get_size(); l++)
             {
-               __pointer(::multimedia::audio_mixer::user::control) pcontrol = control->operator()(l);
-               m_mapDlgItemIDToControl.set_at(pcontrol->_GetDlgCtrlID(), control);
+               __pointer(::multimedia::audio_mixer::user::interaction) pinteraction = control->operator()(l);
+               m_mapDlgItemIDToControl.set_at(pinteraction->_GetDlgCtrlID(), control);
             }
          }
       }
@@ -362,10 +362,10 @@ namespace multimedia
 
          u32 uiID = LOWORD(wparam);
 
-         ::multimedia::audio_mixer::control * pcontrol;
+         ::multimedia::audio_mixer::control * pinteraction;
 
-         if(m_mapDlgItemIDToControl.lookup(uiID, pcontrol)
-               && pcontrol->OnCommand(wparam, lparam))
+         if(m_mapDlgItemIDToControl.lookup(uiID, pinteraction)
+               && pinteraction->OnCommand(wparam, lparam))
             return true;
 
          return false;

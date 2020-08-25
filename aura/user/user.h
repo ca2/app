@@ -24,21 +24,19 @@ namespace user
    {
    public:
 
-
-      ::core::user* m_pcoreuser;
+      ::base::user *                m_pbaseuser;
+      ::core::user *                m_pcoreuser;
       ::user::primitive *           m_pmousefocusLButtonDown;
       ::user::primitive *           m_pmousefocusRButtonDown;
-      string_array                       m_straEscape;
-      //::user::style_pointer              pstyle;
+      string_array                  m_straEscape;
+      //::user::style_pointer       pstyle;
 
-      __composite(::user::shell)                   m_pshell;
-
-
-      ::type                                       m_typeHtmlDocument;
-      ::type                                       m_typeHtmlView;
+      ::type                        m_typeHtmlDocument;
+      ::type                        m_typeHtmlView;
       
       
-      
+      ::user::style_pointer                           m_pstyle;
+      string_map < ::user::style_pointer >            m_mapStyle;
 
 
       user();
@@ -46,7 +44,7 @@ namespace user
 
 
 
-      inline ::user::shell* shell() { return m_pshell; }
+      
 
       //::user::style * get_user_style();
 
@@ -75,7 +73,6 @@ namespace user
       virtual void term() override;
 
       virtual ::type controltype_to_typeinfo(::user::e_control_type econtroltype);
-
 
       //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style * pstyle, menu_item * pitem);
 

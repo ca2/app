@@ -2,7 +2,7 @@
 #include "_data.h"
 #include "aura/update.h"
 #include "_userfs.h"
-#include "aura/user/_tree.h"
+#include "core/user/user/_tree.h"
 
 
 namespace userfs
@@ -205,7 +205,7 @@ namespace userfs
 
       control.set_type(::user::form_control_type_edit);
       control.m_iKey = FILE_MANAGER_ID_FILE_NAME;
-      pcontrol->descriptor().m_id = FILE_MANAGER_ID_FILE_NAME;
+      pinteraction->descriptor().m_id = FILE_MANAGER_ID_FILE_NAME;
       control.set_data_type(::user::form_control_data_type_string);
 
       i32 iControl =  _001AddControl(control);

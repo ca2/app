@@ -5,7 +5,7 @@ namespace sockets
 {
 
 
-   class CLASS_DECL_AURA sync_socket_handler :
+   class CLASS_DECL_BASE sync_socket_handler :
       virtual public ::object,
       public socket::callback
    {

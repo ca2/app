@@ -183,7 +183,11 @@ public:
    virtual bool has_command_handler(::user::command * pcommand);
    virtual void on_command_probe(::user::command * pcommand);
 
+
    virtual void route_command_message(::user::command * pcommand);
+
+   
+   virtual void on_command_message(::user::command* pcommand);
 
 
    virtual void install_message_routing(::channel * pchannel);

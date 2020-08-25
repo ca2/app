@@ -508,7 +508,7 @@ CLASS_DECL_AURA string defer_solve_relative(const char * pszRelative,const char 
 
 
 
-//CLASS_DECL_AURA bool read_resource_as_file_dup(const char * pszFile,HINSTANCE hinst,UINT nID,LPCTSTR pcszType);
+//CLASS_DECL_AURA bool read_resource_as_file(const char * pszFile,HINSTANCE hinst,UINT nID,LPCTSTR pcszType);
 
 
 

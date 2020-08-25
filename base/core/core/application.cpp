@@ -4,7 +4,7 @@
 
 
 
-namespace aura
+namespace base
 {
 
 
@@ -4278,7 +4278,7 @@ m_tickHeartBeat.Now();
 
    //}
 
-} // namespace aura
+} // namespace base
 
 
 

@@ -84,7 +84,7 @@ namespace sockets
    Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    */
 
-   class CLASS_DECL_AURA net :
+   class CLASS_DECL_BASE net :
       public ::object
    {
    private:
@@ -101,7 +101,7 @@ namespace sockets
    public:
 
 
-      class CLASS_DECL_AURA dns_cache_item
+      class CLASS_DECL_BASE dns_cache_item
       {
       public:
 

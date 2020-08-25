@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AURA form_view:
+   class CLASS_DECL_BASE form_view:
       virtual public ::user::show < ::user::margin < ::user::form_window > >
    {
    public:

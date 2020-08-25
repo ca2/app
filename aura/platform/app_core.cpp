@@ -507,13 +507,13 @@ CLASS_DECL_AURA void set_debug_pointer(void * p);
 
    }
 
-   get_context_system()->common_construct();
+//   get_context_system()->common_construct();
 
    ::set_thread(get_context_system());
 
    debug_context_object(get_context_system());
 
-   get_context_system()->initialize_system(get_context_system(), this);
+   get_context_system()->initialize(get_context_system());
 
    //set_context_object(get_context_system());
 

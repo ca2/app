@@ -1,11 +1,5 @@
 #include "framework.h"
 #include "aura/id.h"
-//#include "aura/platform/str_context.h"
-//#include "aura/platform/version.h"
-
-
-
-
 
 
 
@@ -20,6 +14,7 @@ namespace axis
 
       m_paxisapplication = this;
 
+      m_bInitializeDataCentral = true;
       
    }
 
@@ -93,19 +88,19 @@ namespace axis
    }
 
 
-   ::user::style* application::get_user_style() const
-   {
+   //::user::style* application::get_user_style() const
+   //{
 
-      if (m_psessionContext)
-      {
+   //   if (m_psessionContext)
+   //   {
 
-         return m_psessionContext->get_user_style();
+   //      return m_psessionContext->user()->get_user_style();
 
-      }
+   //   }
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
 
    //string application::dialog_box(const char * pszMatter, property_set & propertyset)
@@ -368,10 +363,8 @@ namespace axis
 
       }
 
-
       if (m_bInitializeDataCentral)
       {
-
 
          ::file::path pathDatabase;
 
@@ -945,6 +938,8 @@ namespace axis
    void application::process_term()
    {
 
+      ::aura::application::process_term();
+
       //try
       //{
 
@@ -1300,27 +1295,29 @@ namespace axis
    void application::term1()
    {
 
+      ::aura::application::term1();
+
+      ////try
+      ////{
+
+      ////   impl_term1();
+
+      ////}
+      ////catch (...)
+      ////{
+
+      ////}
+
       //try
       //{
 
-      //   impl_term1();
+      //   ca_term1();
 
       //}
-      //catch (...)
+      //catch(...)
       //{
 
       //}
-
-      try
-      {
-
-         ca_term1();
-
-      }
-      catch(...)
-      {
-
-      }
 
    }
 
@@ -1350,27 +1347,28 @@ namespace axis
    void application::term2()
    {
 
+      ::aura::application::term2();
+      ////try
+      ////{
+
+      ////   impl_term2();
+
+      ////}
+      ////catch (...)
+      ////{
+
+      ////}
+
       //try
       //{
 
-      //   impl_term2();
+      //   ca_term2();
 
       //}
-      //catch (...)
+      //catch(...)
       //{
 
       //}
-
-      try
-      {
-
-         ca_term2();
-
-      }
-      catch(...)
-      {
-
-      }
 
    }
 
@@ -1407,27 +1405,29 @@ namespace axis
    void application::term3()
    {
 
+      ::aura::application::term3();
+
+      ////try
+      ////{
+
+      ////   impl_term3();
+
+      ////}
+      ////catch (...)
+      ////{
+
+      ////}
+
       //try
       //{
 
-      //   impl_term3();
+      //   ca_term3();
 
       //}
-      //catch (...)
+      //catch(...)
       //{
 
       //}
-
-      try
-      {
-
-         ca_term3();
-
-      }
-      catch(...)
-      {
-
-      }
 
    }
 
@@ -1466,6 +1466,7 @@ namespace axis
    void application::term_application()
    {
 
+      ::aura::application::term_application();
 
       try
       {
@@ -1629,16 +1630,9 @@ namespace axis
 
       }
 
-
-
       m_psimpledb.release();
 
-
    }
-
-
-
-
 
 
 //   bool application::impl_process_init()
@@ -2569,7 +2563,7 @@ namespace axis
    void application::term()
    {
 
-
+      ::aura::application::term();
 
    }
 

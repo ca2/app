@@ -152,6 +152,13 @@ namespace user
 
       }
 
+      //if (GetParentFrame() != nullptr)
+      //{
+
+      //   GetParentFrame()->m_interactionaCommandHandlers.add(this);
+
+      //}
+
       pmessagecreate->m_lresult = 0;
 
    }
@@ -171,12 +178,12 @@ namespace user
 
       }
 
-      if (GetTopLevelFrame() != nullptr)
-      {
+      //if (GetParentFrame() != nullptr)
+      //{
 
-         GetTopLevelFrame()->m_viewptraCommandHandlers.remove(this);
+      //   GetParentFrame()->m_interactionaCommandHandlers.remove(this);
 
-      }
+      //}
 
       if (m_pdocument != nullptr)
       {
@@ -266,7 +273,8 @@ namespace user
    void impact::route_command_message(::user::command * pcommand)
    {
 
-      ::user::box::route_command_message(pcommand);
+      // ::user::layout intentional
+      on_command_message(pcommand);
 
       if(pcommand->m_bRet)
       {
@@ -275,33 +283,12 @@ namespace user
 
       }
 
-      if (::user::impact::get_document() != nullptr)
+      auto pdocument = get_document();
+
+      if (pdocument)
       {
 
-         ::user::impact::get_document()->route_command_message(pcommand);
-
-         if(pcommand->m_bRet)
-         {
-
-            return;
-
-         }
-
-      }
-
-      __pointer(::user::interaction) puiParent = GetParent();
-
-      while (puiParent.is_set() && puiParent->is_place_holder())
-      {
-
-         puiParent = puiParent->get_parent();
-
-      }
-
-      if (puiParent.is_set() && !puiParent->is_frame_window())
-      {
-
-         puiParent->route_command_message(pcommand);
+         pdocument->on_command_message(pcommand);
 
          if (pcommand->m_bRet)
          {
@@ -312,12 +299,74 @@ namespace user
 
       }
 
-      Application.route_command_message(pcommand);
+      //for (auto& pinteraction : m_interactionaCommandHandlers)
+      //{
 
-      if (pcommand->m_bRet)
+      //   if (pinteraction && pinteraction != GetActiveView())
+      //   {
+
+      //      pinteraction->on_command_message(pcommand);
+
+      //      if (pcommand->m_bRet)
+      //      {
+
+      //         return;
+
+      //      }
+
+      //   }
+
+      //}
+
+      // then pump through parent
+      __pointer(::user::interaction) puiParent = GetParent();
+
+      while (puiParent)
       {
 
-         return;
+         puiParent->on_command_message(pcommand);
+
+         if (pcommand->m_bRet)
+         {
+
+            return;
+
+         }
+
+         puiParent = puiParent->GetParent();
+
+      }
+
+      // last but not least, pump through cast
+      ::aura::application* papp = get_context_application();
+
+      if (papp != nullptr)
+      {
+
+         papp->on_command_message(pcommand);
+
+         if (pcommand->m_bRet)
+         {
+
+            return;
+
+         }
+
+      }
+
+      __pointer(channel) ptarget = Session.get_keyboard_focus();
+
+      if (ptarget != nullptr && ptarget != this && ptarget != this)
+      {
+
+         ptarget->on_command_message(pcommand);
+
+         if (pcommand->m_bRet)
+         {
+
+            return;
+
+         }
 
       }
 
@@ -808,22 +857,22 @@ namespace user
 
       }
 
-      if (pinteraction.is_set())
-      {
+      //if (pinteraction.is_set())
+      //{
 
-         if (pinteraction->GetParent() != nullptr)
-         {
+      //   if (pinteraction->GetParent() != nullptr)
+      //   {
 
-            if (pinteraction->GetParent()->is_place_holder())
-            {
+      //      if (pinteraction->GetParent()->is_place_holder())
+      //      {
 
-               pinteraction->GetParent()->place_hold(pinteraction);
+      //         pinteraction->GetParent()->place_hold(pinteraction);
 
-            }
+      //      }
 
-         }
+      //   }
 
-      }
+      //}
 
       return pinteraction;
 

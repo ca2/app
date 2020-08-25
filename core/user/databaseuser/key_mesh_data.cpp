@@ -17,7 +17,7 @@ namespace databaseuser
    void data_key_mesh_data::_001GetItemText(::user::mesh_item * pitem)
    {
       string_array stra;
-      if(!data_get(::aura::system::idEmpty, stra))
+      if(!data_get(::id(), stra))
          return_(pitem->m_bOk, false)
          pitem->m_strText = stra[pitem->m_iItem];
       pitem->m_bOk = true;
@@ -28,7 +28,7 @@ namespace databaseuser
       
       string_array wstraTotal;
 
-      if (!data_get(::aura::system::idEmpty, wstraTotal))
+      if (!data_get(::id(), wstraTotal))
       {
 
          return;
@@ -50,7 +50,7 @@ namespace databaseuser
    ::count data_key_mesh_data::_001GetItemCount()
    {
       string_array straTotal;
-      if(!data_get(::aura::system::idEmpty, straTotal))
+      if(!data_get(::id(), straTotal))
          return -1;
       return straTotal.get_size();
    }
@@ -59,9 +59,9 @@ namespace databaseuser
    bool data_key_mesh_data::add_unique(const string_array & stra)
    {
       string_array straData;
-      data_get(::aura::system::idEmpty, straData);
+      data_get(::id(), straData);
       straData.add_unique(stra);
-      if(!data_set(::aura::system::idEmpty, straData))
+      if(!data_set(::id(), straData))
          return false;
       return true;
    }
@@ -69,10 +69,10 @@ namespace databaseuser
    bool data_key_mesh_data::remove(const string_array & stra)
    {
       string_array straData;
-      if(!data_get(::aura::system::idEmpty, straData))
+      if(!data_get(::id(), straData))
          return true;
       straData.remove(stra);
-      if(!data_set(::aura::system::idEmpty, straData))
+      if(!data_set(::id(), straData))
          return false;
       return true;
    }

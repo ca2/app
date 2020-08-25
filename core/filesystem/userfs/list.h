@@ -53,8 +53,8 @@ namespace userfs
       virtual __pointer(::file::item) get_first_selected_item();
 
 
-      void _001OnInitializeForm(::user::control * pcontrol) override;
-      void _001OnButtonAction(::user::control * pcontrol) override;
+      void _001OnInitializeForm(::user::interaction * pinteraction) override;
+      void _001OnButtonAction(::user::interaction * pinteraction) override;
 
       virtual void _017OpenItem(__pointer(::file::item) pitem, bool bOpenFile, const ::action_context & action_context);
       virtual void _017OpenFile(const ::file::item_array & itema, const ::action_context & action_context);

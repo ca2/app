@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AURA document_data_map:
+   class CLASS_DECL_BASE document_data_map:
       virtual public map < ::id, const ::id &, __pointer(::data::data) >
    {
    public:

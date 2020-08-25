@@ -66,6 +66,11 @@ namespace user
 
       }
 
+      create_factory <::user::combo_list >();
+      create_factory <::user::plain_edit >();
+      create_factory <::user::button >();
+
+
       //auto estatus = create_user_shell();
 
       //if (!estatus)
@@ -292,6 +297,14 @@ namespace user
    }
 
 
+   //::estatus user::close_all_documents(bool bEndSession)
+   //{
+
+   //   return ::error_interface_only;
+
+   //}
+
+
    //__pointer(::user::menu_interaction) user::create_menu_button(::user::style * pstyle, menu_item* pitem)
    //{
 
@@ -354,23 +367,6 @@ namespace aura
 
    void application::close(::aura::e_end eend)
    {
-
-      //try
-      //{
-
-      //   if (m_pdocmanager.is_set())
-      //   {
-
-      //      m_pdocmanager->close_all_documents(eend != ::aura::end_close);
-
-      //   }
-
-      //}
-      //catch (...)
-      //{
-
-
-      //}
 
       if (eend == ::aura::end_close)
       {

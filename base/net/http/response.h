@@ -5,7 +5,7 @@ namespace http
 {
 
 
-   class CLASS_DECL_AURA response : 
+   class CLASS_DECL_BASE response : 
       public http::transaction
    {
    public:

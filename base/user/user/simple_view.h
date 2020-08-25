@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AURA simple_view :
+   class CLASS_DECL_BASE simple_view :
       virtual public ::user::impact
    {
    public:

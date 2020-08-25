@@ -1,5 +1,9 @@
 ﻿#pragma once
 
+
+#undef User
+
+
 #define SECURITY_WIN32
 
 #include <shlobj.h>

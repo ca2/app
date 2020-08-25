@@ -37,7 +37,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
       /** socket implementation for UDP.
       \ingroup basic */
-      class CLASS_DECL_AURA udp_socket : 
+      class CLASS_DECL_BASE udp_socket : 
          virtual public socket
       {
       public:

@@ -745,7 +745,7 @@ namespace user
    void tree::_001OnTimer(::timer * ptimer)
    {
 
-      ::user::control::_001OnTimer(ptimer);
+      ::user::interaction::_001OnTimer(ptimer);
 
    }
 
@@ -825,7 +825,7 @@ namespace user
    void tree::install_message_routing(::channel * pchannel)
    {
 
-      ::user::control::install_message_routing(pchannel);
+      ::user::interaction::install_message_routing(pchannel);
 
       IGUI_MSG_LINK(WM_CREATE, pchannel, this, &tree::_001OnCreate);
       IGUI_MSG_LINK(WM_LBUTTONDBLCLK, pchannel, this, &tree::_001OnLButtonDblClk);
@@ -846,11 +846,15 @@ namespace user
    void tree::on_change_view_size()
    {
 
-      m_sizeTotal.cx = m_iCurrentViewWidth;
+      ::sized sizeTotal;
 
-      m_sizeTotal.cy = (LONG)(get_proper_item_count() * _001GetItemHeight());
+      sizeTotal.cx = m_iCurrentViewWidth;
 
-      ::user::control::on_change_view_size();
+      sizeTotal.cy = (LONG)(get_proper_item_count() * _001GetItemHeight());
+
+      set_total_size(sizeTotal);
+
+      ::user::interaction::on_change_view_size();
 
    }
 
@@ -1144,7 +1148,7 @@ namespace user
    void tree::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::user::control::on_layout(pgraphics);
+      ::user::interaction::on_layout(pgraphics);
 
       ::rect rectClient;
 
@@ -1175,9 +1179,13 @@ namespace user
 
       m_iCurrentViewWidth = _001CalcTotalViewWidth();
 
-      m_sizeTotal.cx = m_iCurrentViewWidth;
+      sized sizeTotal;
 
-      m_sizeTotal.cy = _001CalcTotalViewHeight();
+      sizeTotal.cx = m_iCurrentViewWidth;
+
+      sizeTotal.cy = _001CalcTotalViewHeight();
+
+      set_total_size(sizeTotal);
 
       on_change_view_size();
 
@@ -2143,12 +2151,12 @@ namespace user
    }
 
 
-   size tree::get_total_size()
-   {
+   //size tree::get_total_size()
+   //{
 
-      return m_sizeTotal;
+   //   return m_sizeTotal;
 
-   }
+   //}
 
 
    void tree::on_viewport_offset(::draw2d::graphics_pointer & pgraphics)

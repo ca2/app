@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "wait_cursor.h"
+#include "aura/user/wait_cursor.h"
 
 
 namespace user

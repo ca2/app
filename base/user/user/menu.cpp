@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "aura/id.h"
-#include "aura/xml/_.h"
+#include "axis/xml/_.h"
 #include "aura/const/timer.h"
 #include "aura/astr.h"
 
@@ -43,7 +43,7 @@ namespace user
    menu::menu(::user::menu_item * pitem)
    {
 
-      m_pmenuitemThis = pitem;
+      m_pmenuitem = pitem;
 
       m_ewindowflag += window_flag_arbitrary_positioning;
 
@@ -120,14 +120,14 @@ namespace user
    bool menu::create_menu(const string_array & straCommand, const string_array & straCommandTitle)
    {
 
-      if (m_pmenuitemThis.is_null())
+      if (m_pmenuitem.is_null())
       {
 
-         m_pmenuitemThis = __create <  menu_item  > ();
+         m_pmenuitem = __create <  menu_item  > ();
 
       }
 
-      return m_pmenuitemThis->create_menu(straCommand, straCommandTitle);
+      return m_pmenuitem->create_menu(straCommand, straCommandTitle);
 
    }
 
@@ -181,7 +181,7 @@ namespace user
 
       }
 
-      m_pmenuitemThis.release();
+      m_pmenuitem.release();
 
    }
 
@@ -189,14 +189,14 @@ namespace user
    bool menu::add_menu(::xml::node * pnode)
    {
 
-      if (m_pmenuitemThis.is_null())
+      if (m_pmenuitem.is_null())
       {
 
-         m_pmenuitemThis = __create <  menu_item  > ();
+         m_pmenuitem = __create <  menu_item  > ();
 
       }
 
-      if (m_pmenuitemThis.is_null())
+      if (m_pmenuitem.is_null())
       {
 
          return false;
@@ -208,9 +208,9 @@ namespace user
                        (bool)pnode->attribute("close_button");
 
 
-      m_pmenuitemThis->m_pmenu = this;
+      m_pmenuitem->m_pmenu = this;
 
-      if (!m_pmenuitemThis->load_menu(pnode))
+      if (!m_pmenuitem->load_menu(pnode))
 
       {
 
@@ -324,19 +324,19 @@ namespace user
 
       }
 
-      if (m_pmenuitemThis.is_set())
+      if (m_pmenuitem.is_set())
       {
 
-         ::user::interaction * puiHost = m_pmenuitemThis->m_puiHost;
+         ::user::interaction * puiHost = m_pmenuitem->m_puiHost;
 
          if (::is_set(puiHost))
          {
 
-            if (puiHost->m_menuaGuest.remove(this)
-                  && m_pmenuitemThis->m_pmenuitemParent.is_null())
+            if (puiHost->m_menua.remove(this)
+                  && m_pmenuitem->m_pmenuitemParent.is_null())
             {
 
-               m_pmenuitemThis->menu_item_destruct();
+               m_pmenuitem->menu_item_destruct();
 
             }
 
@@ -344,7 +344,7 @@ namespace user
 
       }
 
-      //m_pmenuitemThis.release();
+      //m_pmenuitem.release();
 
       m_puiMenuNotify.release();
 
@@ -364,7 +364,7 @@ namespace user
    ::user::menu_item * menu::GetSubMenu(i32 i)
    {
 
-      return get_menu_item()->m_spmenuitema->element_at(i);
+      return get_menu_item()->m_pmenuitema->element_at(i);
 
    }
 
@@ -372,10 +372,10 @@ namespace user
    bool menu::create_menu(::user::interaction * puiNotify, ::user::interaction * puiParent)
    {
 
-      if (m_pmenuitemThis.is_null())
+      if (m_pmenuitem.is_null())
       {
 
-         m_pmenuitemThis = __create <  menu_item  >();
+         m_pmenuitem = __create <  menu_item  >();
 
       }
 
@@ -388,9 +388,9 @@ namespace user
 
          m_puiMenuNotify = puiNotify;
 
-         m_puiMenuNotify->m_menuaGuest.add(this);
+         m_puiMenuNotify->m_menua.add(this);
 
-         m_pmenuitemThis->m_puiHost = puiNotify;
+         m_pmenuitem->m_puiHost = puiNotify;
 
       }
       else if (m_puiMenuNotify == nullptr)
@@ -533,7 +533,7 @@ namespace user
 
       }
 
-      if (!m_pmenuitemThis->create_buttons(pgraphics, this))
+      if (!m_pmenuitem->create_buttons(pgraphics, this))
       {
 
          ASSERT(FALSE);
@@ -563,7 +563,7 @@ namespace user
 
       }
 
-      update_command(m_pmenuitemThis);
+      update_command(m_pmenuitem);
 
       m_bMenuOk = true;
 
@@ -620,14 +620,14 @@ namespace user
    bool menu::contains_menu_item(menu_item * pitem, bool bRecursive) const
    {
 
-      if (m_pmenuitemThis.is_null())
+      if (m_pmenuitem.is_null())
       {
 
          return false;
 
       }
 
-      return m_pmenuitemThis->contains_menu_item(pitem, bRecursive);
+      return m_pmenuitem->contains_menu_item(pitem, bRecursive);
 
    }
 
@@ -660,7 +660,7 @@ namespace user
 
       __pointer(::user::menu_item) pitem = get_menu_item();
 
-      __pointer(::user::menu_item_ptra) spitema = pitem->m_spmenuitema;
+      __pointer(::user::menu_item_ptra) pmenuitema = pitem->m_pmenuitema;
 
       ::rect rectMargin = get_margin(pstyle);
 
@@ -704,19 +704,19 @@ namespace user
 
       index iColumn = 0;
 
-      for (i32 i = 0; i < spitema->get_size(); i++)
+      for (i32 i = 0; i < pmenuitema->get_size(); i++)
       {
 
-         string strButtonText = spitema->element_at(i)->m_puserinteraction->get_window_text();
+         string strButtonText = pmenuitema->element_at(i)->m_puserinteraction->get_window_text();
 
-         spitema->element_at(i)->m_iColumn = (int) iColumn;
+         pmenuitema->element_at(i)->m_iColumn = (int) iColumn;
 
-         spitema->element_at(i)->m_puserinteraction->on_calc_size(&calcsize);
+         pmenuitema->element_at(i)->m_puserinteraction->on_calc_size(&calcsize);
 
-         spitema->element_at(i)->m_rectUi.left = x;
-         spitema->element_at(i)->m_rectUi.right = x + calcsize.m_size.cx;
-         spitema->element_at(i)->m_rectUi.top = y;
-         spitema->element_at(i)->m_rectUi.bottom = y + calcsize.m_size.cy;
+         pmenuitema->element_at(i)->m_rectUi.left = x;
+         pmenuitema->element_at(i)->m_rectUi.right = x + calcsize.m_size.cx;
+         pmenuitema->element_at(i)->m_rectUi.top = y;
+         pmenuitema->element_at(i)->m_rectUi.bottom = y + calcsize.m_size.cy;
 
          y += calcsize.m_size.cy;
 
@@ -729,7 +729,7 @@ namespace user
 
          }
 
-         if (spitema->element_at(i)->m_bBreak)
+         if (pmenuitema->element_at(i)->m_bBreak)
          {
 
             x += m_iaColumnWidth[0];
@@ -762,16 +762,18 @@ namespace user
 
       m_size.cy = MAX(m_sizeMinimum.cy, m_size.cy);
 
-      ::count iItemCount = spitema->get_size();
+      ::count iItemCount = pmenuitema->get_size();
+
+      __pointer(::base::style) pbasestyle = pstyle;
 
       for (i32 i = 0; i < iItemCount; i++)
       {
 
-         ::user::menu_item * pitem = spitema->element_at(i);
+         ::user::menu_item * pitem = pmenuitema->element_at(i);
 
-         spitema->element_at(i)->m_rectUi.right = x + m_iaColumnWidth[pitem->m_iColumn];
+         pmenuitema->element_at(i)->m_rectUi.right = x + m_iaColumnWidth[pitem->m_iColumn];
 
-         pstyle->prepare_menu(pgraphics, pitem);
+         pbasestyle->prepare_menu(pgraphics, pitem);
 
          pitem->m_rectUi.right = MAX(pitem->m_rectUi.right, pitem->m_rectUi.left + m_sizeMinimum.cx);
 
@@ -781,10 +783,10 @@ namespace user
 
       }
 
-      if (m_bCloseButton)
+      if (pbasestyle && m_bCloseButton)
       {
 
-         pstyle->prepare_menu(pgraphics, m_pitemClose);
+         pbasestyle->prepare_menu(pgraphics, m_pitemClose);
 
          m_pitemClose->m_puserinteraction->place(m_pitemClose->m_rectUi);
 
@@ -925,7 +927,7 @@ namespace user
          else
          {
 
-            __pointer(::user::menu_item) pitem = get_menu_item(pevent->m_puie);
+            __pointer(::user::menu_item) pitem = pevent->m_puie->m_pmenuitem;
 
             if (pitem != nullptr && !pitem->m_bPopup)
             {
@@ -986,12 +988,12 @@ namespace user
             if (!m_bInline)
             {
 
-               if (pevent->m_puie->m_pmenuitemThis != m_pmenuitemSub)
+               if (pevent->m_puie->m_pmenuitem != m_pmenuitemSub)
                {
 
                   {
 
-                     __pointer(::user::menu_item) pitem = get_menu_item(pevent->m_puie);
+                     __pointer(::user::menu_item) pitem = pevent->m_puie->m_pmenuitem;
 
                      if (pitem->is_set())
                      {
@@ -1097,7 +1099,7 @@ namespace user
 
       }
 
-      __pointer(::user::menu_item_ptra) spitema = pitemThis->m_spmenuitema;
+      __pointer(::user::menu_item_ptra) pmenuitema = pitemThis->m_pmenuitema;
 
       if (ptimer->m_nIDEvent == timer_menu)
       {
@@ -1114,13 +1116,13 @@ namespace user
 
             m_idSubMenu = m_idTimerMenu;
 
-            m_psubmenu = __new(menu(spitema->find(m_idTimerMenu)));
+            m_psubmenu = __new(menu(pmenuitema->find(m_idTimerMenu)));
 
             m_psubmenu->initialize(this);
 
             ::rect rect;
 
-            spitema->find(m_idTimerMenu)->m_puserinteraction->get_window_rect(rect);
+            pmenuitema->find(m_idTimerMenu)->m_puserinteraction->get_window_rect(rect);
 
             m_psubmenu->update_position(rect.top_right());
 
@@ -1137,20 +1139,20 @@ namespace user
 
             sync_lock sl(mutex());
 
-            update_command(m_pmenuitemThis);
+            update_command(m_pmenuitem);
 
          }
 
-         //if(spitema != nullptr)
+         //if(pmenuitema != nullptr)
          //{
          //   ::user::command commandui(get_object());
-         //   commandui.m_pitema          = spitema;
-         //   for(i32 i = 0; i < spitema->get_size(); i++)
+         //   commandui.m_pitema          = pmenuitema;
+         //   for(i32 i = 0; i < pmenuitema->get_size(); i++)
          //   {
          //
          //      commandui.m_iIndex    = i;
-         //      commandui.m_id        = spitema->element_at(i)->m_id;
-         //      commandui.m_pOther    = spitema->element_at(i)->m_puserinteraction;
+         //      commandui.m_id        = pmenuitema->element_at(i)->m_id;
+         //      commandui.m_pOther    = pmenuitema->element_at(i)->m_puserinteraction;
          //
          //      __pointer(::user::interaction) puiTarget = get_target_window();
          //
@@ -1198,18 +1200,18 @@ namespace user
 
    //       __pointer(::user::menu_item) pitemThis = get_item();
 
-   //       __pointer(::user::menu_item_ptra) spitema = pitemThis->m_spmenuitema;
+   //       __pointer(::user::menu_item_ptra) pmenuitema = pitemThis->m_spmenuitema;
 
-   //       if(spitema != nullptr)
+   //       if(pmenuitema != nullptr)
    //       {
    //          ::user::command commandui(get_object());
-   //          commandui.m_pitema          = spitema;
-   //          for(i32 i = 0; i < spitema->get_size(); i++)
+   //          commandui.m_pitema          = pmenuitema;
+   //          for(i32 i = 0; i < pmenuitema->get_size(); i++)
    //          {
 
    //             commandui.m_iIndex    = i;
-   //             commandui.m_id        = spitema->element_at(i)->m_id;
-   //             commandui.m_pOther    = spitema->element_at(i)->m_puserinteraction;
+   //             commandui.m_id        = pmenuitema->element_at(i)->m_id;
+   //             commandui.m_pOther    = pmenuitema->element_at(i)->m_puserinteraction;
 
    //             __pointer(::user::interaction) pwndParent = m_puiNotify;
    //             if(pwndParent != nullptr)
@@ -1388,26 +1390,26 @@ namespace user
    __pointer(::user::menu_item) menu::get_menu_item()
    {
 
-      return m_pmenuitemThis;
+      return m_pmenuitem;
 
    }
 
 
-   __pointer(::user::menu_item) menu::get_menu_item(::user::interaction * pinteraction)
-   {
+   //__pointer(::user::menu_item) menu::get_menu_item(::user::interaction * pinteraction)
+   //{
 
-      __pointer(::user::interaction) pbutton = pinteraction;
+   //   __pointer(::user::interaction) pbutton = pinteraction;
 
-      if (pbutton.is_null())
-      {
+   //   if (pbutton.is_null())
+   //   {
 
-         return nullptr;
+   //      return nullptr;
 
-      }
+   //   }
 
-      return pbutton->m_pmenuitemThis;
+   //   return pbutton->m_pmenuitem;
 
-   }
+   //}
 
 
    ::user::interaction * menu::get_target_window()
@@ -1460,7 +1462,7 @@ namespace user
 
       }
 
-      if (pitemParent->m_spmenuitema == nullptr)
+      if (pitemParent->m_pmenuitema == nullptr)
       {
 
          return;
@@ -1469,14 +1471,14 @@ namespace user
 
       ::user::menu_command command(get_context_object());
 
-      command.m_pitema = pitemParent->m_spmenuitema;
+      command.m_pitema = pitemParent->m_pmenuitema;
 
-      command.m_iCount = pitemParent->m_spmenuitema->get_size();
+      command.m_iCount = pitemParent->m_pmenuitema->get_size();
 
       for (command.m_iIndex = 0; command.m_iIndex < command.m_iCount; command.m_iIndex++)
       {
 
-         __pointer(menu_item) pitem = pitemParent->m_spmenuitema->element_at(command.m_iIndex);
+         __pointer(menu_item) pitem = pitemParent->m_pmenuitema->element_at(command.m_iIndex);
 
          command.m_id = pitem->m_id;
 
@@ -1507,7 +1509,7 @@ namespace user
       for (command.m_iIndex = 0; command.m_iIndex < command.m_iCount; command.m_iIndex++)
       {
 
-         __pointer(menu_item) pitem = pitemParent->m_spmenuitema->element_at(command.m_iIndex);
+         __pointer(menu_item) pitem = pitemParent->m_pmenuitema->element_at(command.m_iIndex);
 
          command.m_id = pitem->m_id;
 
@@ -1536,7 +1538,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      auto pinteraction = Session.user()->create_menu_button(pstyle, pitem);
+      auto pinteraction = User.create_menu_button(pstyle, pitem);
 
       if (!pinteraction)
       {

@@ -3,13 +3,3 @@
 
 
 
-
-
-
-template < class TOOLBAR >
-bool simple_frame_window::LoadToolBar(id idToolBar,const char * pszToolBar,u32 dwCtrlStyle,u32 uStyle)
-{
-
-   return LoadToolBar(__type(TOOLBAR),idToolBar,pszToolBar,dwCtrlStyle,uStyle);
-
-}

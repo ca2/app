@@ -2,7 +2,7 @@
 #include "aura/message.h"
 
 
-//extern CLASS_DECL_AURA thread_int_ptr < DWORD_PTR > t_time1;
+//extern CLASS_DECL_BASE thread_int_ptr < DWORD_PTR > t_time1;
 
 #ifdef MACOS
 
@@ -1147,13 +1147,13 @@ namespace user
          pDoc->update_frame_counts();
       on_update_frame_title(TRUE);
 
-      if (GetParent() != nullptr
-            && GetParent()->is_place_holder()
-            && !is_true("should_not_be_automatically_holded_on_initial_update_frame"))
-      {
-         GetParent()->place_hold(this);
-         //GetParent()->on_layout(::draw2d::graphics_pointer & pgraphics);
-      }
+      //if (GetParent() != nullptr
+      //      && GetParent()->is_place_holder()
+      //      && !is_true("should_not_be_automatically_holded_on_initial_update_frame"))
+      //{
+      //   GetParent()->place_hold(this);
+      //   //GetParent()->on_layout(::draw2d::graphics_pointer & pgraphics);
+      //}
 
    }
 
@@ -1253,13 +1253,393 @@ namespace user
    }
 
 
-   void frame_window::route_command_message(::user::command * pcommand)
+   void frame_window::on_command_message(::user::command* pcommand)
    {
 
-      ::user::interaction::route_command_message(pcommand);
+      ::user::frame::on_command_message(pcommand);
 
    }
 
+
+   void frame_window::route_command_message(::user::command* pcommand)
+   {
+
+      // pump through current ::user::impact FIRST
+      __pointer(::user::impact) pview = GetActiveView();
+
+      if (pview != nullptr)
+      {
+
+         pview->on_command_message(pcommand);
+
+         if (pcommand->m_bRet)
+         {
+
+            return;
+
+         }
+
+         auto pdocument = pview->get_document();
+
+         if (pdocument)
+         {
+
+            pdocument->on_command_message(pcommand);
+
+            if (pcommand->m_bRet)
+            {
+
+               return;
+
+            }
+
+         }
+
+      }
+
+      //for (auto& pinteraction : m_interactionaCommandHandlers)
+      //{
+
+      //   if (pinteraction && pinteraction != GetActiveView())
+      //   {
+
+      //      pinteraction->on_command_message(pcommand);
+
+      //      if (pcommand->m_bRet)
+      //      {
+
+      //         return;
+
+      //      }
+
+      //   }
+
+      //}
+
+      //pview = get_child_by_id("pane_first");
+
+      //if (pview != nullptr)
+      //{
+
+      //   pview->route_command_message(pcommand);
+
+      //   if (pcommand->m_bRet)
+      //   {
+
+      //      return;
+
+      //   }
+
+      //}
+
+      //if (pcommand->m_pcommandtargetSource != this)
+      //{
+
+      //   // then pump through frame
+      //   ::user::frame_window::route_command_message(pcommand);
+
+      //   if (pcommand->m_bRet)
+      //   {
+
+      //      return;
+
+      //   }
+
+      //}
+
+      // then pump through parent
+      __pointer(::user::interaction) puiParent = GetParent();
+      while (puiParent)
+      {
+
+         puiParent->on_command_message(pcommand);
+
+         if (pcommand->m_bRet)
+         {
+
+            return;
+
+         }
+
+      }
+
+      // last but not least, pump through cast
+      ::aura::application* papp = get_context_application();
+
+      if (papp != nullptr)
+      {
+
+         papp->on_command_message(pcommand);
+
+         if (pcommand->m_bRet)
+         {
+
+            return;
+
+         }
+
+      }
+
+      __pointer(channel) ptarget = Session.get_keyboard_focus();
+
+      if (ptarget != nullptr && ptarget != this && ptarget != GetActiveView())
+      {
+
+         ptarget->on_command_message(pcommand);
+
+         if (pcommand->m_bRet)
+         {
+
+            return;
+
+         }
+
+      }
+
+
+      //for (auto& pinteraction : m_interactionaCommandHandlers)
+      //{
+
+      //   if (pinteraction && pinteraction != GetActiveView())
+      //   {
+
+      //      pinteraction->on_command_message(pcommand);
+
+      //      if (pcommand->m_bRet)
+      //      {
+
+      //         return;
+
+      //      }
+
+      //   }
+
+      //}
+
+      //pview = get_child_by_id("pane_first");
+
+      //if (pview != nullptr)
+      //{
+
+      //   pview->route_command_message(pcommand);
+
+      //   if (pcommand->m_bRet)
+      //   {
+
+      //      return;
+
+      //   }
+
+      //}
+
+      //if (pcommand->m_pcommandtargetSource != this)
+      //{
+
+      //   // then pump through frame
+      //   ::user::frame_window::route_command_message(pcommand);
+
+      //   if (pcommand->m_bRet)
+      //   {
+
+      //      return;
+
+      //   }
+
+      //}
+
+      // then pump through parent
+      //__pointer(::user::interaction) puiParent = GetParent();
+      //while (puiParent)
+      //{
+
+      //   puiParent->on_command_message(pcommand);
+
+      //   if (pcommand->m_bRet)
+      //   {
+
+      //      return;
+
+      //   }
+
+      //}
+
+      //// last but not least, pump through cast
+      //::aura::application* papp = get_context_application();
+
+      //if (papp != nullptr)
+      //{
+
+      //   papp->on_command_message(pcommand);
+
+      //   if (pcommand->m_bRet)
+      //   {
+
+      //      return;
+
+      //   }
+
+      //}
+
+      //__pointer(channel) ptarget = Session.get_keyboard_focus();
+
+      //if (ptarget != nullptr && ptarget != this && ptarget != GetActiveView()
+      //   && !m_interactionaCommandHandlers.contains(ptarget))
+      //{
+
+      //   ptarget->on_command_message(pcommand);
+
+      //   if (pcommand->m_bRet)
+      //   {
+
+      //      return;
+
+      //   }
+
+      //}
+
+
+      ////::user::box::route_command_message(pcommand);
+
+      ////if (pcommand->m_bRet)
+      ////{
+
+      ////   return;
+
+      ////}
+
+      ////if (pcommand->m_pcommandtargetSource == this)
+      ////{
+
+      ////   // then pump through frame
+      ////   ::user::frame::route_command_message(pcommand);
+
+      ////   if (pcommand->m_bRet)
+      ////   {
+
+      ////      return;
+
+      ////   }
+
+      ////}
+
+      ////// pump through current ::user::impact FIRST
+      ////__pointer(::user::impact) pview = GetActiveView();
+
+      ////if (pview != nullptr)
+      ////{
+
+      ////   pview->route_command_message(pcommand);
+
+      ////   if (pcommand->m_bRet)
+      ////   {
+
+      ////      return;
+
+      ////   }
+
+      ////}
+
+      ////for (auto& pview : m_interactionaCommandHandlers)
+      ////{
+
+      ////   if (pview != nullptr && pview != GetActiveView())
+      ////   {
+
+      ////      pview->route_command_message(pcommand);
+
+      ////      if (pcommand->m_bRet)
+      ////      {
+
+      ////         return;
+
+      ////      }
+
+      ////   }
+
+      ////}
+
+      ////pview = get_child_by_id("pane_first");
+
+      ////if (pview != nullptr)
+      ////{
+
+      ////   pview->route_command_message(pcommand);
+
+      ////   if (pcommand->m_bRet)
+      ////   {
+
+      ////      return;
+
+      ////   }
+
+      ////}
+
+      ////if (pcommand->m_pcommandtargetSource != this)
+      ////{
+
+      ////   // then pump through frame
+      ////   ::user::frame::route_command_message(pcommand);
+
+      ////   if (pcommand->m_bRet)
+      ////   {
+
+      ////      return;
+
+      ////   }
+
+      ////}
+
+      ////// then pump through parent
+      ////__pointer(::user::interaction) puiParent = GetParent();
+
+      ////if (puiParent != nullptr)
+      ////{
+
+      ////   puiParent->route_command_message(pcommand);
+
+      ////   if (pcommand->m_bRet)
+      ////   {
+
+      ////      return;
+
+      ////   }
+
+      ////}
+
+      ////// last but not least, pump through cast
+      ////::aura::application* papp = get_context_application();
+
+      ////if (papp != nullptr)
+      ////{
+
+      ////   papp->route_command_message(pcommand);
+
+      ////   if (pcommand->m_bRet)
+      ////   {
+
+      ////      return;
+
+      ////   }
+
+      ////}
+
+      ////__pointer(channel) ptarget = Session.get_keyboard_focus();
+
+      ////if (ptarget != nullptr && ptarget != this)
+      ////{
+
+      ////   ptarget->route_command_message(pcommand);
+
+      ////   if (pcommand->m_bRet)
+      ////   {
+
+      ////      return;
+
+      ////   }
+
+      ////}
+
+   }
 
 
    /*

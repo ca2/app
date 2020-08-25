@@ -12,7 +12,7 @@ namespace sockets
    /** \defgroup basic Basic sockets */
    /** socket axis class.
    \ingroup basic */
-   class CLASS_DECL_AURA socket :
+   class CLASS_DECL_BASE socket :
       virtual public base_socket
    {
    public:

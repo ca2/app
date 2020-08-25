@@ -55,7 +55,7 @@ namespace user
       void edit::assert_valid() const
       {
 
-         ::user::box::assert_valid();
+         ::user::interaction::assert_valid();
 
       }
 
@@ -63,7 +63,7 @@ namespace user
       void edit::dump(dump_context & dumpcontext) const
       {
 
-         ::user::box::dump(dumpcontext);
+         ::user::interaction::dump(dumpcontext);
 
       }
 
@@ -71,7 +71,7 @@ namespace user
       void edit::install_message_routing(::channel * pchannel)
       {
 
-         ::user::control::install_message_routing(pchannel);
+         ::user::interaction::install_message_routing(pchannel);
 
          IGUI_MSG_LINK(WM_CREATE, pchannel, this, &edit::_001OnCreate);
          IGUI_MSG_LINK(WM_DESTROY, pchannel, this, &edit::_001OnDestroy);
@@ -326,7 +326,7 @@ namespace user
       void edit::on_hit_test(::user::item & item)
       {
 
-         ::user::control::on_hit_test(item);
+         ::user::interaction::on_hit_test(item);
 
       }
 
@@ -334,7 +334,7 @@ namespace user
       void edit::_001GetText(string & str) const
       {
 
-         ::user::control::_001GetText(str);
+         ::user::interaction::_001GetText(str);
 
       }
 
@@ -454,7 +454,7 @@ namespace user
       void edit::on_control_event(::user::control_event * pevent)
       {
 
-         return ::user::control::on_control_event(pevent);
+         return ::user::interaction::on_control_event(pevent);
 
       }
 
@@ -682,7 +682,7 @@ namespace user
       void edit::_001OnTimer(::timer * ptimer)
       {
 
-         control::_001OnTimer(ptimer);
+         ::user::interaction::_001OnTimer(ptimer);
 
          if (ptimer->m_nIDEvent >= 100 && ptimer->m_nIDEvent <= 200)
          {

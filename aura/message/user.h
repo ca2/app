@@ -35,7 +35,7 @@ namespace message
 
       virtual void failed(const char * pcszErrorMessage);
 
-      ::object * get_impact_data();
+      ::generic_object * get_impact_data();
 
       ::create* get_create();
 

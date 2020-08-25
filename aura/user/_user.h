@@ -51,11 +51,9 @@ namespace user
    class scroll_bar;
    class split_layout;
    class style;
-   class theme;
    class scroll_info;
    class window_map;
    using style_pointer = __pointer(style);
-   using theme_pointer = __pointer(theme);
    class system_interaction_impl;
 
 
@@ -175,13 +173,10 @@ namespace user
 
 #include "command.h"
 
-//#include "impact_data.h"
-
 
 #include "aura/message/user.h"
-//#include "message.h"
 #include "style_base.h"
-//#include "style_composite.h"
+
 
 #include "aura/primitive/primitive/create.h"
 #include "create.h"
@@ -245,7 +240,7 @@ namespace user
 //#include "aura/primitive/primitive/form_property_set.h"
 
 
-#include "control.h"
+//#include "control.h"
 
 
 #include "scroll_bar.h"
@@ -293,42 +288,7 @@ namespace str
 
 } // namespace str
 
-namespace user
-{
 
-   //class mesh;
-   //class list_item;
-   //class list_column;
-   //class mesh_cache_interface;
-   //class mesh_data;
-   //class list_column_array;
-   //class tab;
-
-} // namespace user
-
-
-
-
-namespace user
-{
-
-   //class impact_data;
-   //class frame_window;
-
-
-} // namespace user
-
-//#include "user_windowing.h"
-
-
-//// Note: afxData.cxBorder and afxData.cyBorder aren't used anymore
-//#define CX_BORDER   1
-//#define CY_BORDER   1
-
-
-
-
-// Implementation structures
 struct __SIZEPARENTPARAMS;    // control bar implementationproperca2_property.h
 
 // Classes declared in this file
@@ -612,48 +572,15 @@ namespace user
 #endif
 #endif
 
+
 #include "plain_edit.h"
+
 
 #include "combo_box.h"
 #include "combo_list.h"
 
 
-
 #include "check_box.h"
-//#include "toggle_switch.h"
-
-
-
-
-//#include "mesh.h"
-//#include "list.h"
-
-//#include "impact.h"
-
-//#include "list_view.h"
-//#include "mesh_cache_interface.h"
-//#include "mesh_cache.h"
-//#include "list_cache.h"
-
-//#include "aura/user/simple/mesh_data.h"
-//#include "aura/user/simple/list_data.h"
-
-//#include "tree.h"
-
-//#include "form.h"
-//#include "form_list.h"
-//#include "form_list_view.h"
-
-
-
-//#include "place_holder.h"
-//#include "place_holder_container.h"
-
-
-//#include "tab_callback.h"
-//#include "tab.h"
-
-
 
 
 struct CPrintPreviewState;  // forward context_object (see afxext.h)
@@ -662,21 +589,12 @@ namespace user
    class control_bar;          // forward context_object (see afxext.h)
 }
 
-//class CReBar;               // forward context_object (see afxext.h)
 class simple_frame_window;
-//class CDockBar;             // forward context_object (see afxpriv.h)
 class mini_dock_frame_window;    // forward context_object (see afxpriv.h)
-//class CDockState;           // forward context_object (see afxpriv.h)
 
 
 #include "button.h"
-//#include "frame_window.h"
-//#include "server.h"
 #include "plain_edit.h"
-
-//#include "aura/user/simple_ui/_.h"
-
-//#include "core/user/experience/_.h"
 
 
 
@@ -969,7 +887,7 @@ typedef struct _AppIndicator AppIndicator;
 
 #include "aura/primitive/primitive/update.h"
 
-
+#include "box.h"
 
 
 

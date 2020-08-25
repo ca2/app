@@ -180,7 +180,7 @@ namespace aura
 
       virtual string __get_text(string str) override;
 
-      virtual ::user::style* get_user_style() const;
+      //virtual ::user::style* get_user_style() const;
       //virtual bool app_data_get(const ::id & id, stream & os) override;
       //virtual bool app_data_set(const ::id & id, stream & is) override;
 
@@ -333,7 +333,7 @@ namespace aura
       //virtual void set_env_var(const string & var, const string & value) override;
 
 
-      virtual ::aura::printer * get_printer(const char * pszDeviceName);
+      virtual ::draw2d::printer * get_printer(const char * pszDeviceName);
 
 
       virtual ::draw2d::icon * set_icon(object * pobject, ::draw2d::icon * picon, bool bBigIcon);

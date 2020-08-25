@@ -36,7 +36,7 @@ namespace sockets
 
    /** socket implementation for UDP.
    \ingroup basic */
-   class CLASS_DECL_AURA udp_socket : 
+   class CLASS_DECL_BASE udp_socket : 
       virtual public socket
    {
    private:

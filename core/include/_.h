@@ -5,7 +5,7 @@
 //  ca2 is an all-purpose multi-platform framework and set of libraries
 //  written in C++ language to help developers create great apps for users.
 //
-//  ca2/C++/C/Assembly/Huffman Machine/Hardware/Universe/Multiverse stack
+//  ca2/core/basis/axis/aura/C++/C/Assembly/os/Huffman Machine/Hardware/Universe/Multiverse stack
 //
 //
 
@@ -28,17 +28,11 @@ namespace user
 
 #include "core/user/user/_const.h"
 
-#include "core/user/experience/_const.h"
-
 #include "aura/const/_const.h"
 
 #include "aura/primitive/primitive/_memory.h"
 
 #include "core/user/user/_const.h"
-
-#include "core/user/user/_const_key.h"
-
-
 
 
 namespace core
@@ -69,9 +63,8 @@ namespace audio
 
 } // namespace audio
 
-
+#undef Usr
 #define Usr(pobject) (*Sess(pobject).user()->m_pcoreuser)
-#define User (Usr(get_context()))
 
 
 
@@ -86,12 +79,12 @@ CLASS_DECL_CORE bool __node_core_pos_term();
 //CLASS_DECL_CORE ::core::user * get_context_user();
 //CLASS_DECL_CORE inline ::core::user * get_context_user(::object * pobject);
 //CLASS_DECL_CORE inline ::core::user * get_context_user(::aura::application * papp);
-
-
-#include "aura/xml/exportable.h"
-
-
-#include "aura/xml/importable.h"
+//
+//
+//#include "aura/xml/exportable.h"
+//
+//
+//#include "aura/xml/importable.h"
 
 
 
@@ -188,8 +181,6 @@ class ifs;
 
 #include "core/html/html_lite/_.h"
 
-#include "core/user/experience/_.h"
-
 #include "core/filesystem/userfs/_.h"
 
 #include "core/filesystem/filemanager/_.h"
@@ -201,6 +192,12 @@ class ifs;
 //#include "core/game/_.h"
 
 #include "core/platform/user.h"
+
+#include "core/platform/application.h"
+
+#include "core/platform/session.h"
+
+#include "core/platform/system.h"
 
 //#include "core/multimedia/audio/speaker.h"
 
@@ -225,7 +222,7 @@ class ifs;
 #include "core/node/_.h"
 
 
-#include "core/scripting/javascript/javascript.h"
+//#include "core/scripting/javascript/javascript.h"
 
 
 #include "core/compress/compress.h"

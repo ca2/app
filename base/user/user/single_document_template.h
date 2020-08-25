@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AURA single_document_template :
+   class CLASS_DECL_BASE single_document_template :
       virtual public ::user::impact_system
    {
    public:

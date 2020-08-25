@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AURA image_list :
+   class CLASS_DECL_BASE image_list :
       virtual public ::user::box
    {
    public:
@@ -85,7 +85,7 @@ namespace user
    };
 
 
-   class CLASS_DECL_AURA image_list_view :
+   class CLASS_DECL_BASE image_list_view :
       virtual public show < margin < image_list > >
    {
    public:

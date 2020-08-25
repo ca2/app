@@ -124,13 +124,14 @@ namespace user
       return false;
    }
 
+
    void list::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::user::mesh::_001OnNcDraw(pgraphics);
 
-      defer_draw_scroll_gap(pgraphics);
-
+      //__throw(todo("scroll"));
+      //defer_draw_scroll_gap(pgraphics);
 
    }
 
@@ -1265,9 +1266,9 @@ namespace user
 
       }
 
-      m_sizeTotal = rect.size();
+      set_total_size(rect.size());
 
-      ::user::box::on_change_view_size();
+      ::user::interaction::on_change_view_size();
 
    }
 
@@ -1341,17 +1342,17 @@ namespace user
    }
 
 
-   bool list_column::bind(::user::control_descriptor * pcontrol)
+   bool list_column::bind(::user::control_descriptor * pinteraction)
    {
 
-      if (is_null(pcontrol))
+      if (is_null(pinteraction))
       {
 
          return false;
 
       }
 
-      m_iControl = pcontrol->m_iControl;
+      m_iControl = pinteraction->m_iControl;
 
       return m_iControl >= 0;
    }
@@ -3191,7 +3192,11 @@ namespace user
       sync_lock sl(mutex());
 
       if (m_plistheader == nullptr)
+      {
+
          return;
+
+      }
 
       if (m_bHeaderCtrl)
       {
@@ -3938,7 +3943,7 @@ namespace user
 
                         defer_update_display();
 
-                        strSort += "-" + m_strDisplay + ".icon_list_view_sort";
+                        strSort += "-" + get_display_tag() + ".icon_list_view_sort";
 
                         sl.lock();
 
@@ -6535,10 +6540,12 @@ namespace user
 
          ::rect rectScroll;
 
-         if (scroll_x::m_pscrollbarHorz != nullptr)
+         auto pscrollbar = get_horizontal_scroll_bar();
+
+         if (pscrollbar)
          {
 
-            scroll_x::m_pscrollbarHorz->get_window_rect(rectScroll);
+            pscrollbar->get_window_rect(rectScroll);
 
             if (point.y > (_001GetItemCount() - m_nDisplayCount) * m_iItemHeight + (m_bHeaderCtrl ? m_iItemHeight : 0))
             {
@@ -6568,7 +6575,7 @@ namespace user
 
       update_hover();
 
-      ::user::control::on_change_viewport_offset();
+      ::user::interaction::on_change_viewport_offset();
 
       set_need_redraw();
 
@@ -7715,7 +7722,7 @@ namespace user
 
          defer_update_display();
 
-         strSort += "-" + m_strDisplay + ".icon_list_view_sort";
+         strSort += "-" + get_display_tag() + ".icon_list_view_sort";
 
          string str = Context.file().as_string(strSort);
          string_array stra;

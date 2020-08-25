@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aura/xml/_.h"
+#include "axis/xml/_.h"
 
 
 namespace user
@@ -12,7 +12,7 @@ namespace user
       m_puiHost = nullptr;
       m_bBreak = false;
       m_puserinteraction = nullptr;
-      m_spmenuitema      = __new(menu_item_ptra(this));
+      m_pmenuitema = __new(menu_item_ptra(this));
       m_iLevel       = 0;
       m_bPopup       = false;
 
@@ -66,7 +66,7 @@ namespace user
    void menu_item::menu_item_destruct()
    {
 
-      for (auto & pitemChild : m_spmenuitema->ptra())
+      for (auto & pitemChild : m_pmenuitema->ptra())
       {
 
          pitemChild->menu_item_destruct();
@@ -110,7 +110,7 @@ namespace user
          if(m_pmenu->m_pmenuParent != nullptr)
          {
 
-            m_pmenu->m_pmenuParent->m_pmenuitemThis->m_iSeparatorCount++;
+            m_pmenu->m_pmenuParent->m_pmenuitem->m_iSeparatorCount++;
 
          }
 
@@ -190,7 +190,7 @@ namespace user
 
       pitem->m_pmenuitemParent = this;
 
-      m_spmenuitema->add(pitem);
+      m_pmenuitema->add(pitem);
 
    }
 
@@ -205,14 +205,14 @@ namespace user
 
       }
 
-      if (m_spmenuitema.is_null())
+      if (!m_pmenuitema)
       {
 
          return false;
 
       }
 
-      if (m_spmenuitema->contains(pitem))
+      if (m_pmenuitema->contains(pitem))
       {
 
          return true;
@@ -226,7 +226,7 @@ namespace user
 
       }
 
-      for (auto & pitemChild : m_spmenuitema->ptra())
+      for (auto & pitemChild : m_pmenuitema->ptra())
       {
 
          if (pitemChild->contains_menu_item(pitem))
@@ -247,10 +247,10 @@ namespace user
 
       ::user::style_pointer pstyle;
 
-      for (i32 iItem = 0; iItem < m_spmenuitema->get_size(); iItem++)
+      for (i32 iItem = 0; iItem < m_pmenuitema->get_size(); iItem++)
       {
 
-         __pointer(menu_item) pitem = m_spmenuitema->element_at(iItem);
+         __pointer(menu_item) pitem = m_pmenuitema->element_at(iItem);
 
          __pointer(::user::interaction) pinteraction = pitem->m_puserinteraction;
 
@@ -284,7 +284,7 @@ namespace user
 
          pinteraction->m_id = pitem->m_id;
 
-         pinteraction->m_pmenuitemThis = pitem;
+         pinteraction->m_pmenuitem = pitem;
 
          if (!pinteraction->is_window())
          {
@@ -316,7 +316,7 @@ namespace user
    bool menu_item::IsPopup()
    {
 
-      return m_spmenuitema.is_set() && m_spmenuitema->get_count() > 0;
+      return m_pmenuitema.is_set() && m_pmenuitema->get_count() > 0;
 
    }
 
@@ -338,13 +338,13 @@ namespace user
    menu_item * menu_item::find(id id)
    {
 
-      if(m_spmenuitema.is_null())
+      if(m_pmenuitema.is_null())
       {
          return nullptr;
 
       }
 
-      return m_spmenuitema->find(id);
+      return m_pmenuitema->find(id);
 
    }
 

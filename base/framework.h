@@ -11,25 +11,19 @@
 
 #else
 
-#include "aura/_.h"
-#include "aura/platform/_platform.h"
+#include "base/_.h"
+#include "base/platform/_platform.h"
 #if !defined(BROAD_PRECOMPILED_HEADER)
 #define BROAD_PRECOMPILED_HEADER 1
 #endif
-#include "aura/user/user/_user.h"
+#include "base/user/user/_user.h"
 #if BROAD_PRECOMPILED_HEADER
-//#include "core/user/simple/_simple.h"
-//#include "aura/user/rich_text/_rich_text.h"
-//#include "aura/filesystem/filemanager/_filemanager.h"
-//#include "aura/filesystem/filehandler/_filehandler.h"
-//#include "core/user/userex/_userex.h"
-//#include "core/user/experience/_experience.h"
-//#include "aura/user/databaseuser/_databaseuser.h"
+#include "base/user/experience/_experience.h"
+#include "base/user/simple/_simple.h"
+#include "base/user/menu/_menu.h"
 #endif
-#include "aura/crypto/crypto_openssl.h"
+
 #include "aura/_defer.h"
-
-
 
 #endif
 

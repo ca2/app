@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AURA control_ddx_dbflags
+   class CLASS_DECL_BASE control_ddx_dbflags
    {
    public:
 

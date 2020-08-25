@@ -109,7 +109,7 @@ namespace draw2d
    }
 
 
-   void object::defer_update(::draw2d::graphics* pgraphics, ::index i) const
+   void object::defer_update(::draw2d::graphics* pgraphics, ::i8 i) const
    {
 
       if(is_modified() || !m_osdata[i])

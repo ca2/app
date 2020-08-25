@@ -85,7 +85,7 @@ namespace user
       void edit_impl::assert_valid() const
       {
 
-         ::user::box::assert_valid();
+         ::user::interaction::assert_valid();
 
       }
 
@@ -93,7 +93,7 @@ namespace user
       void edit_impl::dump(dump_context & dumpcontext) const
       {
 
-         ::user::box::dump(dumpcontext);
+         ::user::interaction::dump(dumpcontext);
 
       }
 
@@ -101,7 +101,7 @@ namespace user
       void edit_impl::install_message_routing(::channel * pchannel)
       {
 
-         ::user::control::install_message_routing(pchannel);
+         ::user::interaction::install_message_routing(pchannel);
 
          IGUI_MSG_LINK(WM_CREATE, pchannel, this, &edit_impl::_001OnCreate);
          IGUI_MSG_LINK(WM_DESTROY, pchannel, this, &edit_impl::_001OnDestroy);
@@ -907,7 +907,7 @@ namespace user
 
          }
 
-         return ::user::control::on_control_event(pevent);
+         return ::user::interaction::on_control_event(pevent);
 
       }
 
@@ -1156,7 +1156,7 @@ namespace user
       void edit_impl::_001OnTimer(::timer * ptimer)
       {
 
-         control::_001OnTimer(ptimer);
+         ::user::interaction::_001OnTimer(ptimer);
 
          if (ptimer->m_nIDEvent >= 100 && ptimer->m_nIDEvent <= 200)
          {

@@ -15,7 +15,7 @@ namespace str
 {
 
 
-   CLASS_DECL_AURA void from(string & str, const struct sockaddr & sockaddr);
+   CLASS_DECL_BASE void from(string & str, const struct sockaddr & sockaddr);
 
 
 } // namespace str
@@ -231,12 +231,12 @@ namespace sockets
 
 
 #define Errno WSAGetLastError()
-CLASS_DECL_AURA string bsd_socket_error(i32 x);
+CLASS_DECL_BASE string bsd_socket_error(i32 x);
 
 
 #elif defined(_UWP)
 
-CLASS_DECL_AURA const char * bsd_socket_error(i32 x);
+CLASS_DECL_BASE const char * bsd_socket_error(i32 x);
 
 #define Errno get_last_error()
 

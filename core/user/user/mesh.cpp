@@ -100,8 +100,8 @@ namespace user
       m_nGridItemCount = 0;
       m_nGridColumnCount = 0;
 
-      m_sizeTotal.cx = 0;
-      m_sizeTotal.cy = 0;
+      //m_sizeTotal.cx = 0;
+      //m_sizeTotal.cy = 0;
 
    }
 
@@ -115,7 +115,7 @@ namespace user
    void mesh::install_message_routing(::channel * pchannel)
    {
 
-      ::user::control::install_message_routing(pchannel);
+      ::user::interaction::install_message_routing(pchannel);
 
       bool bList = dynamic_cast <list *> (this) != nullptr;
 
@@ -158,7 +158,7 @@ namespace user
       if(m_bLockViewUpdate)
          return;
 
-      ::user::control::_001OnDraw(pgraphics);
+      ::user::interaction::_001OnDraw(pgraphics);
 
       draw_framing(pgraphics);
 
@@ -988,10 +988,11 @@ namespace user
       return true;
    }
 
+
    void mesh::on_change_view_size()
    {
 
-      ::size sizeTotal = m_sizeTotal;
+      ::size sizeTotal = get_total_size();
 
       if(m_eview == impact_grid)
       {
@@ -3289,7 +3290,7 @@ namespace user
    void mesh::_001OnTimer(::timer * ptimer)
    {
 
-      ::user::control::_001OnTimer(ptimer);
+      ::user::interaction::_001OnTimer(ptimer);
 
       if(ptimer->m_nIDEvent == 12345679) // left click
       {
@@ -4573,7 +4574,7 @@ namespace user
    void mesh::on_change_viewport_offset()
    {
 
-//      ::user::control::on_change_viewport_offset();
+//      ::user::interaction::on_change_viewport_offset();
 
       m_iTopDisplayIndex = _001CalcDisplayTopIndex();
       index iLow = 0;
@@ -4805,7 +4806,9 @@ namespace user
 
             auto sizePage = get_page_size();
 
-            if((m_sizeTotal.cy - pointScroll.y - sizePage.cy) <= 1)
+            auto sizeTotal = get_total_size();
+
+            if((sizeTotal.cy - pointScroll.y - sizePage.cy) <= 1)
             {
 
                m_nItemCount = MIN(m_nGridItemCount,m_nItemCount + sizePage.cy);
@@ -4837,7 +4840,9 @@ namespace user
 
             auto sizePage = get_page_size();
 
-            if((m_sizeTotal.cx - pointScroll.x - sizePage.cx) <= 1)
+            auto sizeTotal = get_total_size();
+
+            if((sizeTotal.cx - pointScroll.x - sizePage.cx) <= 1)
             {
 
                m_nColumnCount = MIN(m_nGridColumnCount,m_nColumnCount + sizePage.cx);
@@ -5507,7 +5512,7 @@ namespace user
    ::point mesh::get_viewport_offset()
    {
 
-      return ::user::control::get_viewport_offset();
+      return ::user::interaction::get_viewport_offset();
 
    }
 
@@ -5555,15 +5560,15 @@ namespace user
    //}
 
 
-   size mesh::get_total_size()
-   {
+   //sized mesh::get_total_size()
+   //{
 
-      return m_sizeTotal;
+   //   return m_sizeTotal;
 
-   }
+   //}
 
 
-   size mesh::get_page_size()
+   sized mesh::get_page_size()
    {
 
       if(m_eview == impact_grid && m_iItemHeight > 0)
@@ -5587,7 +5592,7 @@ namespace user
       else
       {
 
-         return ::user::control::get_page_size();
+         return ::user::interaction::get_page_size();
 
       }
 
@@ -5600,13 +5605,13 @@ namespace user
    //   if(m_eview == impact_grid && m_iItemHeight > 0)
    //   {
 
-   //      ::user::control::get_client_rect(prect);
+   //      ::user::interaction::get_client_rect(prect);
 
    //   }
    //   else
    //   {
 
-   //      ::user::control::get_client_rect(prect);
+   //      ::user::interaction::get_client_rect(prect);
 
    //   }
 

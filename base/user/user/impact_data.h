@@ -8,7 +8,7 @@ namespace user
    class place_holder;
 
 
-   class CLASS_DECL_AURA impact_data :
+   class CLASS_DECL_BASE impact_data :
       virtual public ::generic_object
    {
    public:
@@ -39,7 +39,7 @@ namespace user
 
 
 
-   class CLASS_DECL_AURA impact_data_map :
+   class CLASS_DECL_BASE impact_data_map :
       public id_map < __pointer(impact_data) >
    {
    public:
@@ -47,7 +47,34 @@ namespace user
 
    };
 
+
+
 } // namespace user
+
+
+inline ::user::impact_data* __impact_data(::user::create* pusercreate)
+{
+
+   return ::is_set(pusercreate) ? pusercreate->m_pimpactdata.cast < ::user::impact_data > () : nullptr;
+
+}
+
+
+inline ::user::impact_data* __impact_data(::message::create* pmessagecreate)
+{
+
+   auto pimpactdata = ::is_set(pmessagecreate) ? pmessagecreate->get_impact_data() : nullptr;
+
+   if (!pimpactdata)
+   {
+
+      return nullptr;
+
+   }
+
+   return dynamic_cast < ::user::impact_data * >(pimpactdata);
+
+}
 
 
 

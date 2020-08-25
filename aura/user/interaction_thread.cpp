@@ -41,6 +41,8 @@ namespace user
    thread::thread()
    {
 
+      m_bMessageThread = true;
+
    }
 
 

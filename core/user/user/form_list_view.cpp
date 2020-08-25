@@ -77,6 +77,41 @@ namespace user
    }
 
 
+   ::estatus form_list_view::initialize(::object* pobjectContext)
+   {
+
+      auto estatus = ::user::form_list::initialize(pobjectContext);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+         
+      estatus = ::user::form_view::initialize(pobjectContext);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = ::user::list_view::initialize(pobjectContext);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+   
+   }
+
+
    void form_list_view::assert_valid() const
    {
 
@@ -119,11 +154,23 @@ namespace user
 
    }
 
+
    void form_list_view::route_command_message(::user::command * pcommand)
    {
+
       ::user::impact::route_command_message(pcommand);
 
    }
+
+
+   void form_list_view::on_command(::user::command* pcommand)
+   {
+
+      ::user::impact::on_command(pcommand);
+
+   }
+
+
    void form_list_view::_001OnTimer(::timer * ptimer)
    {
 
@@ -149,7 +196,7 @@ namespace user
    }
 
 
-   ::size form_list_view::get_total_size()
+   ::sized form_list_view::get_total_size()
    {
 
       return ::user::list_view::get_total_size();

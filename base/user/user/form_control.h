@@ -5,12 +5,9 @@ namespace user
 {
 
 
-   class CLASS_DECL_AURA form_control:
-      virtual public ::user::form,
-      virtual public ::user::control
+   class CLASS_DECL_BASE form_control:
+      virtual public ::user::form
    {
-
-
    public:
 
 
@@ -40,11 +37,11 @@ namespace user
       virtual ::estatus open_html(const ::string & str) override;
 
 
-      using ::user::control::_001IsPointInside;
-      virtual bool _001IsPointInside(::user::control * pcontrol,point64 point);
-      virtual void control_get_window_rect(::user::control * pcontrol,RECT * prect);
+      //using ::user::interaction::_001IsPointInside;
+      virtual bool _001IsPointInside(::user::interaction * pinteraction,point64 point);
+      virtual void control_get_window_rect(::user::interaction * pinteraction,RECT * prect);
 
-      virtual void control_get_client_rect(::user::control * pcontrol,RECT * prect);
+      virtual void control_get_client_rect(::user::interaction * pinteraction,RECT * prect);
 
       
       virtual ::user::form * get_form() override;
@@ -54,13 +51,13 @@ namespace user
       virtual bool _001Initialize();
 
       virtual void _017OnAppLanguage();
-      virtual void _001OnButtonAction(::user::control * pcontrol);
-      virtual void _001OnInitializeForm(::user::control * pcontrol);
+      virtual void _001OnButtonAction(::user::interaction * pinteraction);
+      virtual void _001OnInitializeForm(::user::interaction * pinteraction);
       void _001UpdateFunctionStatic();
-      virtual bool _001OnBeforeSave(::user::control * pcontrol);
+      virtual bool _001OnBeforeSave(::user::interaction * pinteraction);
       virtual void _001RemoveControls();
-      bool _001Validate(::user::control * pcontrol,var & var);
-      bool _001SaveEdit(::user::control * pcontrol);
+      bool _001Validate(::user::interaction * pinteraction,var & var);
+      bool _001SaveEdit(::user::interaction * pinteraction);
       virtual void on_command(::user::command * pcommand) override;
       DECL_GEN_SIGNAL(_001OnNotify);
       DECL_GEN_SIGNAL(_001OnMessageNotify);
@@ -70,7 +67,7 @@ namespace user
       bool _001GetData(id uiId,bool & bData);
 //      index _001AddControl(class control_descriptor  * pdescriptor) override;
       __pointer(class control_descriptor) new_form_control() override;
-      void _001FillCombo(::user::control * pcontrol);
+      void _001FillCombo(::user::interaction * pinteraction);
 
       virtual void WfiOnClose() override;
 
@@ -81,26 +78,26 @@ namespace user
       virtual void _001InitializeFormPreData();
       virtual void update(::update * pupdate) override;
       virtual bool update_data(bool bSaveAndValidate) override;
-      virtual void _001Update(::user::control * pcontrol);
-      virtual void _001UpdateCheckBox(::user::control * pcontrol);
-      virtual void _001UpdateComboBox(::user::control * pcontrol);
-      virtual void _001UpdateEdit(::user::control * pcontrol);
-      virtual void _001UpdateSimpleList(::user::control * pcontrol);
+      virtual void _001Update(::user::interaction * pinteraction);
+      virtual void _001UpdateCheckBox(::user::interaction * pinteraction);
+      virtual void _001UpdateComboBox(::user::interaction * pinteraction);
+      virtual void _001UpdateEdit(::user::interaction * pinteraction);
+      virtual void _001UpdateSimpleList(::user::interaction * pinteraction);
 
-      virtual void _001UpdateDbFlags(::user::control * pcontrol);
-      virtual void _001UpdateDbFlagsCheckBox(::user::control * pcontrol);
+      virtual void _001UpdateDbFlags(::user::interaction * pinteraction);
+      virtual void _001UpdateDbFlagsCheckBox(::user::interaction * pinteraction);
 
       DECL_GEN_SIGNAL(_001OnAppLanguage);
 
       bool OnCommand(WPARAM wparam,LPARAM lparam);
 
-      bool OnCommandButton(::user::control * pcontrol,UINT uiNotificationCode,LPARAM lparam);
+      bool OnCommandButton(::user::interaction * pinteraction,UINT uiNotificationCode,LPARAM lparam);
 
-      bool OnCommandCheckBox(::user::control * pcontrol,UINT uiNotificationCode,LPARAM lparam);
+      bool OnCommandCheckBox(::user::interaction * pinteraction,UINT uiNotificationCode,LPARAM lparam);
 
-      bool OnCommandComboBox(::user::control * pcontrol,UINT uiNotificationCode,LPARAM lparam);
+      bool OnCommandComboBox(::user::interaction * pinteraction,UINT uiNotificationCode,LPARAM lparam);
 
-      bool OnCommandEdit(::user::control * pcontrol,UINT uiNotificationCode,LPARAM lparam);
+      bool OnCommandEdit(::user::interaction * pinteraction,UINT uiNotificationCode,LPARAM lparam);
 
 
 
@@ -109,8 +106,6 @@ namespace user
 
       virtual bool create_control(class control_descriptor * pdescriptor, index iItem) override;
       virtual bool normalize_control_descriptor_typeinfo(class ::user::control_descriptor * pdescriptor);
-
-      bool operator == (const control & control) const;
 
       void on_control_event(::user::control_event * pevent) override;
       void _001SetControlFactory();
@@ -140,11 +135,11 @@ namespace user
 
       //virtual ::form_property_set * get_form_property_set() override;
 
-//      virtual bool _001IsPointInside(::user::control * pcontrol,point64 point);
+//      virtual bool _001IsPointInside(::user::interaction * pinteraction,point64 point);
 
-      //    virtual void control_get_window_rect(::user::control * pcontrol,RECT * prect);
+      //    virtual void control_get_window_rect(::user::interaction * pinteraction,RECT * prect);
 
-      //  virtual void control_get_client_rect(::user::control * pcontrol,RECT * prect);
+      //  virtual void control_get_client_rect(::user::interaction * pinteraction,RECT * prect);
 
 
 

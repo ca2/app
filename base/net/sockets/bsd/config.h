@@ -203,7 +203,7 @@ namespace sockets
 #define SHUT_WR 1
 
 #define Errno WSAGetLastError()
-CLASS_DECL_AURA string bsd_socket_error(i32 x);
+CLASS_DECL_BASE string bsd_socket_error(i32 x);
 
 //namespace sockets
 //{
@@ -233,7 +233,7 @@ CLASS_DECL_AURA string bsd_socket_error(i32 x);
 
 #elif defined(_UWP)
 
-CLASS_DECL_AURA const char *bsd_socket_error(i32 x);
+CLASS_DECL_BASE const char *bsd_socket_error(i32 x);
 #define Errno get_last_error()
 
 

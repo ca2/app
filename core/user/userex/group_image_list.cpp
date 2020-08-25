@@ -372,7 +372,7 @@ namespace userex
 
       pinteraction->get_window_rect(rectWindow);
 
-      m_pmenu = track_popup_xml_menu(strXml, 0, rectWindow.bottom_left(), ::size(width(), 0));
+      m_pmenu = User.track_popup_xml_menu(this, strXml, 0, rectWindow.bottom_left(), ::size(width(), 0));
       //m_pmenu->create_color(::user::color_button_background, ARGB(255, 255, 255, 255));
       //m_pmenu->create_color(::user::color_button_text, ARGB(255, 80, 80, 80));
 
@@ -380,7 +380,7 @@ namespace userex
 
       auto itemCurrent = current_item();
 
-      for (auto & item : *m_pmenu->m_pmenuitemThis->m_spmenuitema)
+      for (auto & item : *m_pmenu->m_pmenuitem->m_pmenuitema)
       {
 
          __pointer(::user::menu_button) pbutton = item->m_puserinteraction;

@@ -12,7 +12,7 @@ namespace net
 {
 
 
-   CLASS_DECL_AURA i32 family_len(i32 family);
+   CLASS_DECL_BASE i32 family_len(i32 family);
 
 
 };
@@ -29,10 +29,10 @@ namespace net
 #if defined(_UWP) || defined(LINUX)
 
 extern "C"
-CLASS_DECL_AURA const SSL_METHOD * TLS_client_method();
+CLASS_DECL_BASE const SSL_METHOD * TLS_client_method();
 
 extern "C"
-CLASS_DECL_AURA const SSL_METHOD * TLS_server_method();
+CLASS_DECL_BASE const SSL_METHOD * TLS_server_method();
 
 #endif
 
@@ -64,4 +64,4 @@ CLASS_DECL_AURA const SSL_METHOD * TLS_server_method();
 
 
 
-CLASS_DECL_AURA string ip_reverse(string str);
+CLASS_DECL_BASE string ip_reverse(string str);

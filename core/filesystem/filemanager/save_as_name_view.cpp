@@ -282,7 +282,7 @@ namespace filemanager
       else
       {
 
-         Session.get_view()->message_box("Failed to save document");
+         message_box("Failed to save document");
 
          pupdate->m_id = id_topic_save_failed;
 

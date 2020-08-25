@@ -28,7 +28,7 @@ namespace user
          if (control_descriptor.m_id == id)
          {
 
-            return control_descriptor.m_pusercontrol;
+            return control_descriptor.m_pinteraction;
 
          }
 
@@ -72,9 +72,9 @@ namespace user
    //class control_descriptor * control_descriptor_set::get(__pointer(::user::interaction) puie)
    //{
 
-   //   __pointer(control) pcontrol =  (puie.m_p);
+   //   __pointer(control) pinteraction =  (puie.m_p);
 
-   //   if(pcontrol == nullptr)
+   //   if(pinteraction == nullptr)
    //      return nullptr;
 
    //   for(i32 i = 0; i < this->get_size(); i++)
@@ -82,7 +82,7 @@ namespace user
 
    //      class control_descriptor & control_descriptor = *this->element_at(i);
 
-   //      if(control_descriptor.m_pcontrol == pcontrol)
+   //      if(control_descriptor.m_pcontrol == pinteraction)
    //      {
 
    //         return &control_descriptor;

@@ -1,6 +1,5 @@
 ﻿#include "framework.h"
-//#include "_filemanager.h"
-#include "aura/user/shell.h"
+#include "core/user/user/shell.h"
 #include "aura/update.h"
 
 
@@ -162,7 +161,7 @@ namespace filemanager
          else
          {
 
-            track_popup_xml_menu(filemanager_data()->m_strXmlPopup, 0, pcontextmenu->m_point);
+            User.track_popup_xml_menu(this, filemanager_data()->m_strXmlPopup, 0, pcontextmenu->m_point);
 
          }
 
@@ -170,7 +169,7 @@ namespace filemanager
       else
       {
 
-         track_popup_xml_menu(filemanager_data()->m_strPopup, 0, pcontextmenu->m_point);
+         User.track_popup_xml_menu(this, filemanager_data()->m_strPopup, 0, pcontextmenu->m_point);
 
       }
 
@@ -478,9 +477,9 @@ namespace filemanager
 
          index iEditItem = range.ItemAt(0).get_lower_bound();
 
-         ::user::control * pcontrol = _001GetControl(iEditItem, m_iNameSubItem);
+         ::user::interaction * pinteraction = _001GetControl(iEditItem, m_iNameSubItem);
 
-         _001PlaceControl(pcontrol, iEditItem);
+         _001PlaceControl(pinteraction, iEditItem);
 
       }
 
@@ -1215,13 +1214,13 @@ namespace filemanager
 
          {
 
-            auto pcontrol = __new( user::control_descriptor);
-            pcontrol->m_bTransparent = true;
-            pcontrol->set_control_type(user::control_type_button);
-            pcontrol->m_type = __type(::user::button);
-            pcontrol->m_id = 1000 + i;
-            pcontrol->add_function(user::control_function_action);
-            iControl = _001AddControl(pcontrol);
+            auto pinteraction = __new( user::control_descriptor);
+            pinteraction->m_bTransparent = true;
+            pinteraction->set_control_type(user::control_type_button);
+            pinteraction->m_type = __type(::user::button);
+            pinteraction->m_id = 1000 + i;
+            pinteraction->add_function(user::control_function_action);
+            iControl = _001AddControl(pinteraction);
 
          }
 
@@ -1275,16 +1274,16 @@ namespace filemanager
          if (bRenameEdit)
          {
 
-            auto pcontrol = __new( user::control_descriptor);
-            pcontrol->set_control_type(user::control_type_edit_plain_text);
-            pcontrol->m_datakey = "FILE_MANAGER_ID_FILE_NAME";
-            //pcontrol->descriptor().m_id = _vms::FILE_MANAGER_ID_FILE_NAME;
-            pcontrol->set_data_type(user::control_data_type_string);
-            pcontrol->add_function(user::control_function_vms_data_edit);
-            pcontrol->m_type = __type(::user::plain_edit);
-            pcontrol->m_iSubItem = i;
-            pcontrol->m_id = 1000 + i;
-            index iControl = _001AddControl(pcontrol);
+            auto pinteraction = __new( user::control_descriptor);
+            pinteraction->set_control_type(user::control_type_edit_plain_text);
+            pinteraction->m_datakey = "FILE_MANAGER_ID_FILE_NAME";
+            //pinteraction->descriptor().m_id = _vms::FILE_MANAGER_ID_FILE_NAME;
+            pinteraction->set_data_type(user::control_data_type_string);
+            pinteraction->add_function(user::control_function_vms_data_edit);
+            pinteraction->m_type = __type(::user::plain_edit);
+            pinteraction->m_iSubItem = i;
+            pinteraction->m_id = 1000 + i;
+            index iControl = _001AddControl(pinteraction);
             pcolumn->m_iControl = iControl;
 
          }
@@ -1566,12 +1565,12 @@ namespace filemanager
    }
 
 
-   void file_list::_001OnInitializeForm(::user::control * pcontrol)
+   void file_list::_001OnInitializeForm(::user::interaction * pinteraction)
    {
 
-      ASSERT(pcontrol != nullptr);
+      ASSERT(pinteraction != nullptr);
 
-      if (pcontrol == nullptr)
+      if (pinteraction == nullptr)
       {
 
          return;
@@ -1580,21 +1579,21 @@ namespace filemanager
 
       file_list_callback * pcallback = filemanager_data()->m_pfilelistcallback;
 
-      __pointer(::user::button) pbutton = pcontrol;
+      __pointer(::user::button) pbutton = pinteraction;
 
       if (pcallback != nullptr && pbutton != nullptr)
       {
 
          pbutton->set_button_style(::user::button::style_list);
 
-         pcallback->InitializeActionButton(((i32)pcontrol->descriptor().m_id) - 1000, pbutton);
+         pcallback->InitializeActionButton(((i32)pinteraction->descriptor().m_id) - 1000, pbutton);
 
       }
 
    }
 
 
-   void file_list::_001OnButtonAction(::user::control * pcontrol)
+   void file_list::_001OnButtonAction(::user::interaction * pinteraction)
    {
 
       file_list_callback * pcallback = filemanager_data()->m_pfilelistcallback;
@@ -1604,11 +1603,11 @@ namespace filemanager
 
          ::file::item item;
 
-         index iItem = pcontrol->GetEditItem();
+         index iItem = pinteraction->GetEditItem();
 
          index iStrict = _001DisplayToStrict(iItem);
 
-         pcallback->OnButtonAction((i32)pcontrol->descriptor().m_id - 1000, fs_list_item(iStrict));
+         pcallback->OnButtonAction((i32)pinteraction->descriptor().m_id - 1000, fs_list_item(iStrict));
 
       }
 

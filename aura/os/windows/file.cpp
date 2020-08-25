@@ -8,7 +8,7 @@
 
 
 
-int_bool read_resource_as_file_dup(const char * pszFile, HINSTANCE hinstance, UINT nID, LPCTSTR pcszType)
+int_bool read_resource_as_file(const char * pszFile, HINSTANCE hinstance, UINT nID, LPCTSTR pcszType)
 
 {
 
@@ -1444,7 +1444,7 @@ int_bool EnableTokenPrivilege(LPCTSTR pszPrivilege)
 
 
 
-CLASS_DECL_AURA bool read_resource_as_memory_dup(memory & m, HINSTANCE hinstance, UINT nID, const char * pcszType, strsize iReadAtMostByteCount)
+CLASS_DECL_AURA bool read_resource_as_memory(memory & m, HINSTANCE hinstance, UINT nID, const char * pcszType, strsize iReadAtMostByteCount)
 
 {
 

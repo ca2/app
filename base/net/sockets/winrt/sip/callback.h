@@ -8,7 +8,7 @@ namespace sockets
    class sip_socket;
 
 
-   class CLASS_DECL_AURA sip_callback :
+   class CLASS_DECL_BASE sip_callback :
       virtual public base_object
    {
    public:

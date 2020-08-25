@@ -3,7 +3,7 @@
 i32 WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPTSTR pCmdLine, int nCmdShow)
 {
 
-   auto psystem = __new(::aura::system());
+   auto psystem = platform_create_system(hinstance);
 
    psystem->application_initialize();
 

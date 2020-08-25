@@ -22,7 +22,7 @@ CLASS_DECL_AURA int_bool file_exists(const char * path);
 
 
 #ifdef WINDOWS
-CLASS_DECL_AURA int_bool read_resource_as_file_dup(const char * pszFile, HINSTANCE hinst, UINT nID, LPCTSTR pcszType);
+CLASS_DECL_AURA int_bool read_resource_as_file(const char * pszFile, HINSTANCE hinst, UINT nID, LPCTSTR pcszType);
 
 #endif
 //CLASS_DECL_AURA int_bool is_file_ok(const char * path1, const char * pszTemplate);
@@ -91,7 +91,7 @@ CLASS_DECL_AURA int_bool ensure_file_size(FILE * file,size_t iSize);
 CLASS_DECL_AURA int_bool file_exists(const char * path1);
 
 #ifdef WINDOWS
-CLASS_DECL_AURA int_bool read_resource_as_file_dup(const char * pszFile, HINSTANCE hinst, UINT nID, LPCTSTR pcszType);
+CLASS_DECL_AURA int_bool read_resource_as_file(const char * pszFile, HINSTANCE hinst, UINT nID, LPCTSTR pcszType);
 
 #endif
 

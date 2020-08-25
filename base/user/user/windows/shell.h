@@ -14,7 +14,7 @@ namespace user
    {
 
 
-      class CLASS_DECL_AURA windows :
+      class CLASS_DECL_BASE windows :
          virtual public ::user::shell::shell
       {
       public:

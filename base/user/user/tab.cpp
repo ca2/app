@@ -3,7 +3,7 @@
 #include "aura/const/timer.h"
 
 
-//extern CLASS_DECL_AURA thread_int_ptr < DWORD_PTR > t_time1;
+//extern CLASS_DECL_BASE thread_int_ptr < DWORD_PTR > t_time1;
 
 // pgraphics->GetTextExtent("->:<-"); // oh no!! omg!! The size is the size of the alien!!
 #define MAGIC_PALACE_TAB_SPLT "->:<-"
@@ -602,7 +602,7 @@ namespace user
       
       pgraphics->GetClipBox(rClip);
 
-      auto pstyle = get_style(pgraphics);
+      __pointer(::base::style) pstyle = get_style(pgraphics);
 
       if(pstyle)
       {
@@ -886,10 +886,12 @@ namespace user
          if (true)
          {
 
-            if (get_element_rect(iTab, rectText, ::user::element_text))
+            __pointer(::base::style) pbasestyle = pstyle;
+
+            if (pbasestyle && get_element_rect(iTab, rectText, ::user::element_text))
             {
 
-               pstyle->_001OnTabPaneDrawTitle(pane, this, pgraphics, rectText, brushText);
+               pbasestyle->_001OnTabPaneDrawTitle(pane, this, pgraphics, rectText, brushText);
 
             }
 
@@ -1214,7 +1216,7 @@ namespace user
 
       }
 
-      auto pstyle = get_style(pgraphics);
+      __pointer(::base::style) pstyle = get_style(pgraphics);
 
       if(pstyle)
       {
@@ -2496,7 +2498,7 @@ namespace user
    void tab::install_message_routing(::channel *pchannel)
    {
 
-      ::user::control::install_message_routing(pchannel);
+      ::user::interaction::install_message_routing(pchannel);
 
       //install_simple_ui_default_mouse_handling(pchannel);
 
@@ -3410,7 +3412,7 @@ namespace user
    void tab::update(::update * pupdate)
    {
 
-      control::update(pupdate);
+      ::user::interaction::update(pupdate);
 
       if (pupdate->m_id == id_get_topic_view_id)
       {
@@ -3468,8 +3470,7 @@ namespace user
    void tab::_001OnTimer(::timer * ptimer)
    {
 
-      control::_001OnTimer(ptimer);
-
+      ::user::interaction::_001OnTimer(ptimer);
 
       if (ptimer->m_nIDEvent == timer_defer_handle_auto_hide_tabs)
       {
@@ -3876,7 +3877,7 @@ namespace user
    bool tab::matches_restorable_tab(const var & varId, ::user::place_holder * pholder)
    {
 
-      ::aura::match::any  & matchany = get_data()->m_matchanyRestore;
+      ::match::any & matchany = get_data()->m_matchanyRestore;
 
       if (pholder != nullptr && (bool) pholder->value("void_restore"))
       {
@@ -3930,7 +3931,7 @@ namespace user
    bool tab::has_restore_tab()
    {
 
-      ::aura::match::any  & matchany = get_data()->m_matchanyRestore;
+      ::match::any  & matchany = get_data()->m_matchanyRestore;
 
       if(matchany.is_there_no_item())
          return false;
@@ -4023,6 +4024,6 @@ namespace user
    }
 
 
-} // namespace aura
+} // namespace base
 
 

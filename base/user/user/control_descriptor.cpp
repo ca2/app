@@ -95,7 +95,7 @@ namespace user
                else
                {
 
-                  m_pusercontrol = pinteraction;
+                  m_pinteraction = pinteraction;
 
                   break;
 
@@ -265,10 +265,10 @@ namespace user
    bool control_descriptor::operator == (const control_descriptor & descriptor) const
    {
 
-      if (m_pusercontrol && ::is_set(descriptor.m_pusercontrol))
+      if (m_pinteraction && ::is_set(descriptor.m_pinteraction))
       {
 
-         return m_pusercontrol == descriptor.m_pusercontrol;
+         return m_pinteraction == descriptor.m_pinteraction;
 
       }
 
@@ -334,12 +334,12 @@ namespace user
    //control * control_descriptor::get_control(::user::form * pform, index iItem)
    //{
 
-   //   __pointer(interaction) &  pcontrol = m_controlmap[0];
+   //   __pointer(interaction) &  pinteraction = m_controlmap[0];
 
-   //   if (pcontrol != nullptr)
+   //   if (pinteraction != nullptr)
    //   {
 
-   //      return pcontrol;
+   //      return pinteraction;
 
    //   }
 
@@ -348,15 +348,15 @@ namespace user
    //   if (!pform->create_control(this, iItem))
    //   {
 
-   //      pcontrol.release();
+   //      pinteraction.release();
 
    //      return nullptr;
 
    //   }
 
-   //   pcontrol = m_puserinteraction;
+   //   pinteraction = m_puserinteraction;
 
-   //   return pcontrol.cast < control>();
+   //   return pinteraction.cast < control>();
 
    //}
 

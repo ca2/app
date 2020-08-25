@@ -329,7 +329,7 @@ CLASS_DECL_AURA __pointer(::exception::exception) __trace_context_move_throw_exc
 
 
 
-#define __throw(...) throw(::exception_pointer(__new(__VA_ARGS__)))
+#define __throw(...) throw(new __VA_ARGS__)
 #define __rethrow(pe) throw pe;
 #define __throw_exit(estatus) __throw(exit_exception(estatus))
 

@@ -1,7 +1,11 @@
 #pragma once
 
 
-#include "aura/user/_user.h"
+#include "base/user/_.h"
+
+
+#include "_const.h"
+
 
 class form_document;
 
@@ -11,7 +15,6 @@ namespace user
 
    
    class user;
-   class control;
    class document_manager;
    class interaction_pointer_array;
    class split_view;
@@ -26,8 +29,9 @@ namespace user
    class tree;
    class plain_edit;
    class message_queue;
+   class scroll_base;
    template < class VIEW >  class show;
-   using scroll_view = show < control >;
+   using scroll_view = show < scroll_base >;
    using plain_edit_view = show < plain_edit >;
 
    class mesh_cache_interface;

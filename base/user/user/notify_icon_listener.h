@@ -5,12 +5,12 @@ namespace user
 {
 
 
-   class CLASS_DECL_AURA notify_icon_listener
+   class CLASS_DECL_BASE notify_icon_listener
    {
    public:
 
 
-      class CLASS_DECL_AURA item :
+      class CLASS_DECL_BASE item :
          virtual public object
       {
       public:

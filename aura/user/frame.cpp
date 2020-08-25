@@ -21,6 +21,48 @@ namespace user
    }
 
 
+   void frame::install_message_routing(::channel* pchannel)
+   {
+
+      ::user::interaction::install_message_routing(pchannel);
+
+      connect_command("app_exit", &frame::_001OnAppExit);
+
+      IGUI_MSG_LINK(WM_APPEXIT, pchannel, this, &frame::_001OnAppExit);
+
+   }
+
+
+   void frame::_001OnAppExit(::message::message* pmessage)
+   {
+
+      SCAST_PTR(::message::base, pbase, pmessage);
+
+      if (GetParent() != nullptr)
+      {
+
+         pmessage->m_bRet = false;
+
+         return;
+
+      }
+
+      Application._001CloseApplication();
+
+      DestroyWindow();
+
+      if (pmessage != nullptr)
+      {
+
+         pmessage->m_bRet = true;
+
+      }
+
+
+   }
+
+
+
    style * frame::_get_style() const
    {
 

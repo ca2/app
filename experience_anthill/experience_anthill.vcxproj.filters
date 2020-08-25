@@ -53,10 +53,10 @@
     <ClCompile Include="library.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="theme.cpp">
+    <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="_.cpp">
+    <ClCompile Include="style.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -100,10 +100,10 @@
     <ClInclude Include="library.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="theme.h">
+    <ClInclude Include="_.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="_.h">
+    <ClInclude Include="style.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

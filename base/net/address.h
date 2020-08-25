@@ -15,7 +15,7 @@ namespace net
 {
 
 
-   struct CLASS_DECL_AURA address
+   struct CLASS_DECL_BASE address
    {
    public:
 
@@ -194,9 +194,9 @@ namespace net
 #endif
 
 
-   CLASS_DECL_AURA address ipv4(u32 ui, port_t port = 0);
+   CLASS_DECL_BASE address ipv4(u32 ui, port_t port = 0);
 
-   CLASS_DECL_AURA address ipv6(void * p128bits, port_t port = 0);
+   CLASS_DECL_BASE address ipv6(void * p128bits, port_t port = 0);
 
 } // namespace sockets
 

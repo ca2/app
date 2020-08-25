@@ -28,7 +28,7 @@ namespace sockets
 {
 
    /** Smtp server axis class. */
-   class CLASS_DECL_AURA smtpd_socket : public tcp_socket
+   class CLASS_DECL_BASE smtpd_socket : public tcp_socket
    {
    public:
       

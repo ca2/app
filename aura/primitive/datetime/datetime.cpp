@@ -7,19 +7,7 @@
 
 #endif
 
-namespace datetime
-{
 
-
-   bool utc_offset_invalid(double dUTCOffset)
-   {
-
-      return dUTCOffset < -12.0 || dUTCOffset > 14.0;  // don't know (is invalid?)
-
-   }
-
-
-} // namespace datetime
 
 
 

@@ -218,7 +218,7 @@ namespace user
          if (point.x > MAX(0, sizeTotal.cx - sizePage.cx))
          {
 
-            point.x = MAX(0, sizeTotal.cx - sizePage.cx);
+            point.x = (LONG) MAX(0, sizeTotal.cx - sizePage.cx);
 
          }
 
@@ -248,9 +248,9 @@ namespace user
 
       get_client_rect(rectClient);
 
-      LONG iTotalHeight = sizeTotal.cy;
+      LONG iTotalHeight = (LONG) sizeTotal.cy;
 
-      LONG iTotalWidth = sizeTotal.cx;
+      LONG iTotalWidth = (LONG) sizeTotal.cx;
 
       LONG iClientHeight = rectClient.height();
 
@@ -590,7 +590,7 @@ namespace user
          if (point.y > MAX(0, sizeTotal.cy - sizePage.cy))
          {
 
-            point.y = MAX(0, sizeTotal.cy - sizePage.cy);
+            point.y = (LONG) MAX(0, sizeTotal.cy - sizePage.cy);
 
          }
 
@@ -625,9 +625,9 @@ namespace user
 
       get_client_rect(rectClient);
 
-      LONG iTotalHeight = sizeTotal.cy;
+      LONG iTotalHeight = (LONG) sizeTotal.cy;
 
-      LONG iTotalWidth = sizeTotal.cx;
+      LONG iTotalWidth = (LONG) sizeTotal.cx;
 
       LONG iClientHeight = rectClient.height();
 
@@ -766,9 +766,9 @@ namespace user
 
       }
 
-      LONG iTotalHeight = sizeTotal.cy;
+      LONG iTotalHeight = (LONG) sizeTotal.cy;
 
-      LONG iTotalWidth = sizeTotal.cx;
+      LONG iTotalWidth = (LONG) sizeTotal.cx;
 
       LONG iClientHeight = rectClient.height();
 
@@ -1031,9 +1031,9 @@ namespace user
 
       auto pointOffset = get_viewport_offset();
 
-      prect->right = prect->left + MIN(::width(prect), sizeTotal.cx - m_scrolldataHorz.m_iPage - pointOffset.x);
+      prect->right = (LONG) (prect->left + MIN(::width(prect), sizeTotal.cx - m_scrolldataHorz.m_iPage - pointOffset.x));
 
-      prect->bottom = prect->top + MIN(::height(prect), sizeTotal.cy - m_scrolldataVert.m_iPage - pointOffset.y);
+      prect->bottom = (LONG) (prect->top + MIN(::height(prect), sizeTotal.cy - m_scrolldataVert.m_iPage - pointOffset.y));
 
       return true;
 

@@ -3176,6 +3176,9 @@
     <ClInclude Include="user\box.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
+    <ClInclude Include="user\controller.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="graphics\draw2d\apple\image_gif.cpp">
@@ -5264,6 +5267,9 @@
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
     <ClCompile Include="user\box.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\controller.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
   </ItemGroup>

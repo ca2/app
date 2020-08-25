@@ -46,7 +46,7 @@ namespace aura
 
       virtual void on_decoder_fill_title_info(::multimedia::decoder * pdecoder, string_array & straTitle, string2a & str2aTitle);
 
-      //user virtual __pointer(::user::document) defer_create_view(::object* pobjectContext, const string & strView, ::user::interaction* puiParent, ewindowflag ewindowflag = window_flag_none, const ::id& id = nullptr);
+      virtual __pointer(::user::controller) defer_create_view(::object* pobjectContext, const string & strView, ::user::interaction* puiParent, ewindowflag ewindowflag = window_flag_none, const ::id& id = nullptr);
 
       virtual void _001OnFranceExit();
 

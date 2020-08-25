@@ -23,7 +23,7 @@ namespace multimedia
          create_factory <source                      >  (__type(::multimedia::audio_mixer::source));
          create_factory <thread                      >  (__type(::multimedia::audio_mixer::thread));
          /*create_factory <user::label                 >  (__type(::multimedia::audio_mixer::user::label));
-         create_factory <user::interaction               >  (__type(::multimedia::audio_mixer::user::interaction));
+         create_factory <user::interaction               >  (__type(::multimedia::audio_mixer::user::control));
          create_factory <user::level_control         >  (__type(::multimedia::audio_mixer::user::level_control));
          create_factory <user::toggle_control        >  (__type(::multimedia::audio_mixer::user::toggle_control));*/
 

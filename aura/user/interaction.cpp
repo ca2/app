@@ -1562,8 +1562,8 @@ namespace user
       auto pointOffset = get_viewport_offset();
 
       info.nMin = 0;
-      info.nMax = sizeTotal.cx;
-      info.nPage = sizePage.cx;
+      info.nMax = (::i32) sizeTotal.cx;
+      info.nPage = (::i32) sizePage.cx;
       info.nPos = pointOffset.x;
       info.nTrackPos = pointOffset.x;
    }
@@ -1575,10 +1575,11 @@ namespace user
       auto pointOffset = get_viewport_offset();
 
       info.nMin = 0;
-      info.nMax = sizeTotal.cy;
-      info.nPage = sizePage.cy;
+      info.nMax = (::i32) sizeTotal.cy;
+      info.nPage = (::i32) sizePage.cy;
       info.nPos = pointOffset.y;
       info.nTrackPos = pointOffset.y;
+
    }
 
 

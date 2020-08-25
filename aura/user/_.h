@@ -100,3 +100,6 @@ inline ::user::primitive* __user_primitive(oswindow oswindow);
 #include "aura/platform/message_box.h"
 
 
+
+#include "controller.h"
+

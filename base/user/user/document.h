@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_BASE document :
-      virtual public ::channel,
+      virtual public ::user::controller,
       virtual public ::data::data_container_base
    {
    public:

@@ -58,12 +58,12 @@ namespace aura
    }
 
 
-   //__pointer(::user::document) multimedia::defer_create_view(::object* pobjectContext, const string& strView, ::user::interaction* puiParent, ewindowflag ewindowflag, const ::id& id)
-   //{
+   __pointer(::user::controller) multimedia::defer_create_view(::object* pobjectContext, const string& strView, ::user::interaction* puiParent, ewindowflag ewindowflag, const ::id& id)
+   {
 
-   //   return nullptr;
+      return nullptr;
 
-   //}
+   }
 
 
 

@@ -402,3 +402,44 @@ namespace macos
 
 
 
+
+
+namespace core
+{
+
+
+   ::estatus user::create_user_shell()
+   {
+
+      ::estatus estatus = ::success;
+
+      if (!m_pshell)
+      {
+
+         estatus = __compose(m_pshell, __new(::macos::shell));
+
+         if (!estatus)
+         {
+
+            return estatus;
+
+         }
+
+      }
+
+      if (m_pshell)
+      {
+
+         return ::error_failed;
+
+      }
+
+      return ::success;
+
+   }
+
+
+} // namespace core
+
+
+

@@ -660,14 +660,16 @@
 					"$(WorkspaceDir)/third/include",
 				);
 				USER_HEADER_SEARCH_PATHS = (
+					"$(WorkspaceDir)",
 					"$(WorkspaceDir)/include",
 					"$(WorkspaceDir)/platform-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)",
+					"$(WorkspaceDir)/platform-$(PLATFORM_MODIFIER)/_include",
+					"$(WorkspaceDir)/app/_include",
+					"$(WorkspaceDir)/third/include",
 					"$(WorkspaceDir)/app",
-					"$(WorkspaceDir)/app",
-					"$(PROJECT_DIR)/..",
-					"$(PROJECT_DIR)",
 					.,
+					"$(PROJECT_DIR)",
+					"$(HOME)/__archive/sensitive/sensitive/include",
 				);
 				USE_HEADERMAP = NO;
 				WorkspaceDir = "$(SRCROOT)/../..";
@@ -738,14 +740,16 @@
 					"$(WorkspaceDir)/third/include",
 				);
 				USER_HEADER_SEARCH_PATHS = (
+					"$(WorkspaceDir)",
 					"$(WorkspaceDir)/include",
 					"$(WorkspaceDir)/platform-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)",
+					"$(WorkspaceDir)/platform-$(PLATFORM_MODIFIER)/_include",
+					"$(WorkspaceDir)/app/_include",
+					"$(WorkspaceDir)/third/include",
 					"$(WorkspaceDir)/app",
-					"$(WorkspaceDir)/app",
-					"$(PROJECT_DIR)/..",
-					"$(PROJECT_DIR)",
 					.,
+					"$(PROJECT_DIR)",
+					"$(HOME)/__archive/sensitive/sensitive/include",
 				);
 				USE_HEADERMAP = NO;
 				WorkspaceDir = "$(SRCROOT)/../..";

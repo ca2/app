@@ -4,7 +4,7 @@
 #include "file_os_watcher.h"
 #include "aura/node/posix/pipe.h"
 #include "aura/node/apple/process.h"
-#include "aura/node/macos/shell_macos.h"
+//#include "aura/node/macos/shell_macos.h"
 //#include "aura/node/unix/process.h"
 
 
@@ -49,7 +49,7 @@ void __node_aura_factory_exchange()
    create_factory < ::file::os_watch            , ::file::watch      > ();
    
    
-   create_factory < ::macos::shell   , ::user::shell > ();
+   //create_factory < ::macos::shell   , ::user::shell > ();
 
 }
 

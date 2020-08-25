@@ -20,22 +20,22 @@ namespace axis
       virtual ::estatus     initialize(::object * pobjectContext) override;
 
 
-      virtual ::estatus process_init();
+      virtual ::estatus process_init() override;
 
-      virtual ::estatus init1();
+      virtual ::estatus init1() override;
 
-      virtual ::estatus init2();
+      virtual ::estatus init2() override;
 
-      virtual ::estatus init();
+      virtual ::estatus init() override;
 
-      virtual void term();
+      virtual void term() override;
 
 
-      virtual void term2();
+      virtual void term2() override;
 
-      virtual void term1();
+      virtual void term1() override;
 
-      virtual void process_term();
+      virtual void process_term() override;
 
       inline ::account::department * account() { return m_paccount; }
 
@@ -45,9 +45,9 @@ namespace axis
 
       virtual void on_remove_user(::account::user * puser);
 
-      virtual bool is_licensed(const char * pszId, bool bInteractive = true);
+      virtual bool is_licensed(const char * pszId, bool bInteractive = true) override;
 
-      virtual bool get_auth(const string & pszForm, string & strUsername, string & strPassword);
+      virtual bool get_auth(const string & pszForm, string & strUsername, string & strPassword) override;
 
       virtual void interactive_credentials(::account::credentials * pcredentials);
 

@@ -30,10 +30,10 @@ namespace user
    }
 
 
-   void place_holder::_001OnShowWindow(::message::message * pmessage)
+   void place_holder::_001OnShowWindow(::message::message * /* pmessage */ )
    {
 
-      SCAST_PTR(::message::show_window, pshowwindow, pmessage);
+      //SCAST_PTR(::message::show_window, pshowwindow, pmessage);
 
       
    }

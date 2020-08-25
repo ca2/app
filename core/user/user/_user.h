@@ -526,7 +526,7 @@ namespace user
 
 #include "toolbar_control.h"
 
-#include "toolbar.h"
+//#include "toolbar.h"
 #include "statusbar.h"
 
 

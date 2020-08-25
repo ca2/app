@@ -2,11 +2,12 @@
 #include "axis/xml/_.h"
 #include "aura/platform/app_core.h"
 #include "aura/const/id.h"
-#include "axis/node/_node.h"
+//#include "axis/node/_node.h"
 //#include "aura/net/ftp/_.h"
 #include "aura/platform/profiler2.h"
 #include "aura/platform/static_setup.h"
 
+void __node_axis_factory_exchange();
 
 
 int GetMainScreenRect(LPRECT lprect);
@@ -578,3 +579,7 @@ namespace axis
 
 
 
+void __node_axis_factory_exchange()
+{
+   
+}

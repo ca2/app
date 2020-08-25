@@ -596,7 +596,7 @@ namespace user
 
       }
 
-      point pointViewportOffset = pgraphics->GetViewportOrg();
+      //point pointViewportOffset = pgraphics->GetViewportOrg();
       
       ::rect rClip;
       

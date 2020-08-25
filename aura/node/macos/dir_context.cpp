@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "aura/os/_.h"
 #include "aura/os/_os.h"
-#include "aura/xml/_.h"
+//#include "aura/xml/_.h"
 #include "aura/const/id.h"
 
 #include "_.h"
@@ -108,25 +108,25 @@ namespace macos
 
       m_pdirsystem->m_strCommonAppData = str / strRelative / "commonappdata";
 
-      xml::document doc;
-
-      string strPath = ::dir::appdata() / "configuration\\directory.xml";
-
-      string strDocument = Context.file().as_string(strPath);
-
-      if(doc.load(strDocument))
-      {
-
-         if(doc.root()->get_name() == "directory_configuration")
-         {
-
-            m_pdirsystem->m_strTimeFolder = doc.root()->get_child_value("time");
-
-            m_pdirsystem->m_strNetSeedFolder = doc.root()->get_child_value("netseed");
-
-         }
-
-      }
+//      xml::document doc;
+//
+//      string strPath = ::dir::appdata() / "configuration\\directory.xml";
+//
+//      string strDocument = Context.file().as_string(strPath);
+//
+//      if(doc.load(strDocument))
+//      {
+//
+//         if(doc.root()->get_name() == "directory_configuration")
+//         {
+//
+//            m_pdirsystem->m_strTimeFolder = doc.root()->get_child_value("time");
+//
+//            m_pdirsystem->m_strNetSeedFolder = doc.root()->get_child_value("netseed");
+//
+//         }
+//
+//      }
 
       if(m_pdirsystem->m_strTimeFolder.is_empty())
       {

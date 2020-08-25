@@ -59,20 +59,20 @@ namespace base
       virtual ::type user_default_controltype_to_typeinfo(::user::e_control_type econtroltype);
 
 
-      virtual ::user::primitive * get_mouse_focus_LButtonDown();
-      virtual void set_mouse_focus_LButtonDown(::user::primitive * pmousefocus);
-      virtual ::user::primitive * get_mouse_focus_RButtonDown();
-      virtual void set_mouse_focus_RButtonDown(::user::primitive * pmousefocus);
+      virtual ::user::primitive * get_mouse_focus_LButtonDown() override;
+      virtual void set_mouse_focus_LButtonDown(::user::primitive * pmousefocus) override;
+      virtual ::user::primitive * get_mouse_focus_RButtonDown() override;
+      virtual void set_mouse_focus_RButtonDown(::user::primitive * pmousefocus) override;
 
 
       virtual ::estatus initialize1_experience();
 
 
-      virtual void SendMessageToWindows(UINT message, WPARAM wParam, LPARAM lParam);
+      virtual void SendMessageToWindows(UINT message, WPARAM wParam, LPARAM lParam) override;
 
       virtual void term() override;
 
-      virtual ::type controltype_to_typeinfo(::user::e_control_type econtroltype);
+      virtual ::type controltype_to_typeinfo(::user::e_control_type econtroltype) override;
 
 
       virtual __pointer(::user::menu_interaction) create_menu_button(::user::style * pstyle, ::user::menu_item * pitem);

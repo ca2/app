@@ -38,7 +38,7 @@ namespace user
       
       virtual string calc_display();
       virtual bool does_display_match();
-      virtual void defer_update_display();
+      virtual void defer_update_display() override;
 
 
       virtual bool should_save_window_rect() override;

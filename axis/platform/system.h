@@ -30,22 +30,22 @@ namespace axis
 
       virtual ::estatus initialize(::object * pobjectContext) override;
 
-      virtual ::estatus init();
+      virtual ::estatus init() override;
       virtual ::estatus inline_init() override;
       virtual ::estatus inline_term() override;
 
-      virtual ::estatus init_system();
-      virtual void term_system();
+      virtual ::estatus init_system() override;
+      virtual void term_system() override;
 
-      virtual void term();
+      virtual void term() override;
 
 
 
-      virtual ::estatus process_init();
+      virtual ::estatus process_init() override;
 
-      virtual ::estatus init1();
+      virtual ::estatus init1() override;
 
-      virtual ::estatus init2();
+      virtual ::estatus init2() override;
 
       virtual ::estatus defer_xml();
 
@@ -85,20 +85,20 @@ namespace axis
 
       //virtual ::estatus init2();
 
-      virtual ::estatus initial_check_directrix();
+      virtual ::estatus initial_check_directrix() override;
 
       //virtual void term_system();
 
-      virtual void term2();
+      virtual void term2() override;
 
-      virtual void term1();
+      virtual void term1() override;
 
       //virtual void term();
 
-      virtual void TermApplication();
+      virtual void TermApplication() override;
 
 
-      virtual void process_term();
+      virtual void process_term() override;
 
 
 

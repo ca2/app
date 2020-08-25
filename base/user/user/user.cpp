@@ -1077,7 +1077,7 @@ namespace base
 
       });
 
-      return true;
+      return nullptr;
 
    }
 

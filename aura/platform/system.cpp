@@ -8350,7 +8350,7 @@ namespace aura
 ::aura::system* platform_create_system(HINSTANCE hinstance)
 {
 
-#ifndef CUBE
+#if defined(WINDOWS) && !defined(CUBE)
 
    string strLevel = read_resource_as_string(hinstance, 108, "LEVEL");
 

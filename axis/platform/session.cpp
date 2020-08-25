@@ -708,18 +708,23 @@ namespace axis
 
       ::estatus estatus = ::aura::session::init2();
 
+      if(!estatus)
+      {
+         
+         return estatus;
+         
+      }
 
       if (!InitializeLocalDataCentral())
       {
 
          message_box("Could not initialize Local data central");
 
-         return false;
+         return ::error_failed;
 
       }
 
-
-      return true;
+      return estatus;
 
    }
 

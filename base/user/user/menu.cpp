@@ -668,7 +668,7 @@ namespace user
 
       ::rect rectPadding = get_padding(pstyle);
 
-      int iElementPadding = rectPadding.left;
+      //int iElementPadding = rectPadding.left;
 
       int x = rectMargin.left + rectBorder.left + rectPadding.left;
 
@@ -1250,10 +1250,10 @@ namespace user
    }
 
 
-   void menu::_001OnNcActivate(::message::message * pmessage)
+   void menu::_001OnNcActivate(::message::message * /*pmessage */)
    {
 
-      SCAST_PTR(::message::nc_activate, pncactivate, pmessage);
+      //SCAST_PTR(::message::nc_activate, pncactivate, pmessage);
 
 //#ifdef WINDOWS_DESKTOP
 //
@@ -1319,7 +1319,7 @@ namespace user
    void menu::_001OnNcCalcSize(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      ///SCAST_PTR(::message::base, pbase, pmessage);
 
       pmessage->previous();
 

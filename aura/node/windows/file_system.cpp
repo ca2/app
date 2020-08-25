@@ -21,8 +21,16 @@ namespace windows
    ::estatus file_system::init_system()
    {
 
+      auto estatus = ::file_system::init_system();
 
-      return ::success;
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 

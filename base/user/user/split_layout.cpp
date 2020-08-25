@@ -101,7 +101,7 @@ namespace user
 
       //   }
 
-      //   pwnd = pcomponent->m_pholder;
+      //   pwnd = pcomponent->m_pplaceholder;
 
       //   if ( pwnd == nullptr)
       //   {
@@ -206,10 +206,10 @@ namespace user
       for(::index i = 0; i < m_panea.get_count(); i++)
       {
 
-         if(m_panea[i]->m_pholder.is_null())
+         if(m_panea[i]->m_pplaceholder.is_null())
          {
 
-            m_panea[i]->m_pholder = get_new_place_holder(m_panea[i]->m_rectClient);
+            m_panea[i]->m_pplaceholder = get_new_place_holder(m_panea[i]->m_rectClient);
 
          }
 
@@ -536,7 +536,7 @@ namespace user
 
          pcomponent = m_panea.element_at(i);
 
-         pwnd = pcomponent->m_pholder;
+         pwnd = pcomponent->m_pplaceholder;
 
          if (pwnd == nullptr)
          {
@@ -696,7 +696,7 @@ namespace user
 
       }
 
-      __pointer(::user::place_holder) pholder = ppane->m_pholder;
+      __pointer(::user::place_holder) pholder = ppane->m_pplaceholder;
 
       if (pholder == nullptr)
       {
@@ -924,10 +924,10 @@ namespace user
 
       split_layout::Pane * pcomponent = m_panea.element_at(iIndex);
 
-      if(pcomponent->m_pholder != nullptr)
+      if(pcomponent->m_pplaceholder != nullptr)
       {
 
-         if (!pcomponent->m_pholder->place_hold(puserinteraction))
+         if (!pcomponent->m_pplaceholder->place_hold(puserinteraction))
          {
 
             return false;
@@ -938,9 +938,9 @@ namespace user
       else
       {
 
-         pcomponent->m_pholder = place_hold(puserinteraction,pcomponent->m_rectClient);
+         pcomponent->m_pplaceholder = place_hold(puserinteraction,pcomponent->m_rectClient);
 
-         if (pcomponent->m_pholder == nullptr)
+         if (pcomponent->m_pplaceholder == nullptr)
          {
 
             return false;
@@ -1007,10 +1007,10 @@ namespace user
 
       split_layout::Pane * pcomponent = m_panea.element_at(iIndex);
 
-      if(pcomponent->m_pholder != nullptr)
+      if(pcomponent->m_pplaceholder != nullptr)
       {
 
-         if (!pcomponent->m_pholder->place_hold(puserinteraction))
+         if (!pcomponent->m_pplaceholder->place_hold(puserinteraction))
          {
 
             return false;
@@ -1023,11 +1023,11 @@ namespace user
 
          ::rect rectPane;
 
-         pcomponent->m_pholder->get_client_rect(rectPane);
+         pcomponent->m_pplaceholder->get_client_rect(rectPane);
 
-         pcomponent->m_pholder = place_hold(puserinteraction, rectPane);
+         pcomponent->m_pplaceholder = place_hold(puserinteraction, rectPane);
 
-         if (pcomponent->m_pholder == nullptr)
+         if (pcomponent->m_pplaceholder == nullptr)
          {
 
             return false;
@@ -1271,7 +1271,7 @@ namespace user
 
       }
 
-      return m_panea[iPane]->m_pholder;
+      return m_panea[iPane]->m_pplaceholder;
 
    }
 
@@ -1314,7 +1314,7 @@ namespace user
    }
 
 
-   index split_layout::get_pane_by_id(::id id)
+   split_layout::Pane * split_layout::get_pane_by_id(::id id)
    {
 
       for(index iPane = 0; iPane < m_panea.get_count(); iPane++)
@@ -1323,13 +1323,13 @@ namespace user
          if (m_panea[iPane]->m_id == id)
          {
 
-            return iPane;
+            return m_panea[iPane].get();
 
          }
 
       }
 
-      return -1;
+      return nullptr;
 
    }
 
@@ -1337,7 +1337,7 @@ namespace user
    split_layout::Pane::Pane()
    {
 
-      m_pholder = nullptr;
+      m_pplaceholder = nullptr;
 
       m_rect.Null();
 

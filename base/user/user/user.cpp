@@ -102,6 +102,23 @@ namespace base
 
       create_factory <::simple_scroll_bar, ::user::scroll_bar>();
 
+      create_factory <::user::menu_item >();
+      create_factory <::user::menu >();
+      create_factory <::user::menu_list_view >();
+
+
+      create_factory < ::user::split_layout  >();
+      create_factory < ::user::split_bar  >();
+
+
+      create_factory < simple_frame_window  >();
+      //create_factory < prodevian_translucent_simple_frame_window  >();
+      create_factory < simple_main_frame  >();
+      create_factory < ::user::document  >();
+      create_factory < ::user::split_view  >();
+
+
+      m_pmenucentral2 = __new(::user::menu_central);
 
       //auto estatus = create_user_shell();
 
@@ -199,6 +216,18 @@ namespace base
 
       }
       catch(...)
+      {
+
+      }
+
+
+      try
+      {
+
+         m_pmenucentral2.release();
+
+      }
+      catch (...)
       {
 
       }
@@ -329,10 +358,25 @@ namespace base
    }
 
 
-   __pointer(::user::menu_interaction) user::create_menu_button(::user::style * pstyle, ::user::menu_item* pitem)
+   __pointer(::user::menu_interaction) user::create_menu_button(::user::style* pstyle, ::user::menu_item* pitem)
    {
 
-      return nullptr;
+      auto pinteraction = __new(::user::menu_button(pitem));
+
+      if (pitem->m_pimage->is_set())
+      {
+
+         pinteraction->set_button_style(::user::button::style_image_and_text);
+
+         e_image eimage = (e_image)pitem->m_pmenu->value("image_transform").i32();
+
+         ::image_pointer pimage = pitem->m_pimage + eimage;
+
+         pinteraction->LoadBitmaps(pimage);
+
+      }
+
+      return pinteraction;
 
    }
 

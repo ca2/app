@@ -30,7 +30,7 @@ namespace userex
    bool split_view::on_new_view_creator_data(::user::impact_data * pimpactdata)
    {
 
-      ::index iPane = get_pane_by_id(pimpactdata->m_id);
+      ::index iPane = pimpactdata->m_id.i64();
 
       if (iPane < 0)
       {
@@ -41,11 +41,16 @@ namespace userex
 
       Pane * ppane = (Pane *) m_panea.element_at(iPane);
 
-      pimpactdata->m_pplaceholder = get_new_place_holder(ppane->m_rect);
+      if (!pimpactdata->m_pplaceholder)
+      {
 
-      ppane->m_pholder = pimpactdata->m_pplaceholder;
+         pimpactdata->m_pplaceholder = get_new_place_holder(ppane->m_rect);
 
-      if (ppane->m_pholder == nullptr)
+         ppane->m_pplaceholder = pimpactdata->m_pplaceholder;
+
+      }
+
+      if (ppane->m_pplaceholder == nullptr)
       {
 
          return false;
@@ -95,7 +100,7 @@ namespace userex
 
       ::rect rectClient;
 
-      pane.m_pholder->get_client_rect(rectClient);
+      pane.m_pplaceholder->get_client_rect(rectClient);
 
       ::user::impact_data * pdata = create_impact(id);
 

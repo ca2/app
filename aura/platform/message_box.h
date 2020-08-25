@@ -18,7 +18,8 @@ public:
    virtual ~message_box();
 
 
-   void show(::object* pobject = nullptr);
+   ::estatus show(::object* pobject);
+
 
 };
 

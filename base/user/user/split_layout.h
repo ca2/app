@@ -34,7 +34,8 @@ namespace user
          ::rect                              m_rectClient;
          ::size                              m_sizeFixed;
          bool                                m_bFixedSize;
-         __pointer(::user::place_holder)     m_pholder;
+         __pointer(::user::place_holder)     m_pplaceholder;
+         __pointer(::user::impact_data)      m_pimpactdata;
 
 
          Pane();
@@ -86,7 +87,7 @@ namespace user
       virtual __pointer(::user::place_holder) get_pane_holder(index iPane);
       virtual ::rect & get_pane_rect(index iPane);
       virtual id get_pane_id(index iPane);
-      virtual index get_pane_by_id(::id id);
+      virtual Pane * get_pane_by_id(::id id);
 
 
       virtual ::count get_pane_count();

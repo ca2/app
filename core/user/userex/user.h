@@ -144,7 +144,7 @@ namespace core
       virtual void finalize() override;
 
 
-      virtual __pointer(::user::menu_interaction) create_menu_button(::user::style* pstyle, ::user::menu_item* pitem) override;
+      //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style* pstyle, ::user::menu_item* pitem) override;
 
 
       // ::user::shell* shell();

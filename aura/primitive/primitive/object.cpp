@@ -1724,7 +1724,6 @@ string object::get_text(const var& var, const ::id& id)
 }
 
 
-
 ::estatus object::message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, ::callback callback)
 {
 

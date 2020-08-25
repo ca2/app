@@ -163,7 +163,7 @@ bool dir_system::update_module_path()
 
    auto pathCa2Module = pfile->m_pathCa2Module;
 
-   ::file::path pathCa2ModuleFolder = pathModule.folder();
+   ::file::path pathCa2ModuleFolder = pathCa2Module.folder();
 
    m_pathCa2Module = pathCa2ModuleFolder;
 

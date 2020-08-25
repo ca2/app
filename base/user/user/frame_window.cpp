@@ -1347,8 +1347,18 @@ namespace user
 
       //}
 
+      on_command_message(pcommand);
+
+      if (pcommand->m_bRet)
+      {
+
+         return;
+
+      }
+
       // then pump through parent
       __pointer(::user::interaction) puiParent = GetParent();
+
       while (puiParent)
       {
 

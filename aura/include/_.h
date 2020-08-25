@@ -2667,6 +2667,8 @@ namespace core
 
 #include "aura/primitive/geometry3d/_.h"
 
+class message_box;
+
 #include "aura/primitive/primitive/object.h"
 
 #include "aura/primitive/primitive/object_meta.h"
@@ -3763,6 +3765,9 @@ CLASS_DECL_AURA ::aura::application * get_aura(void * p);
 
 
 #include "aura/user/_.h"
+
+
+#include "aura/platform/message_box.h"
 
 
 #include "aura/platform/console_application.h"

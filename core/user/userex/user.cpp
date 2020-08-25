@@ -229,18 +229,9 @@ namespace core
 
       create_factory <::account::view >();
 
-      create_factory < ::user::split_layout  >();
-      create_factory < ::user::split_bar  >();
       create_factory < form_document >();
       create_factory < ::userex::split_view::Pane  >();
-      create_factory < simple_frame_window  >();
-      //create_factory < prodevian_translucent_simple_frame_window  >();
-      create_factory <::user::button >();
-      create_factory <::user::menu_list_view >();
       create_factory < simple_child_frame  >();
-      create_factory < simple_main_frame  >();
-      create_factory < ::user::document  >();
-      create_factory < ::user::split_view  >();
       create_factory < ::userex::split_view  >();
 
       create_factory < ::simple_mesh_data  >();
@@ -254,9 +245,6 @@ namespace core
       create_factory <::user::document >();
       create_factory <simple_printer_list_view >();
 
-      create_factory <::user::menu_item >();
-      create_factory <::user::menu >();
-      create_factory <::user::menu_list_view >();
 
 
       create_factory <::user::show < ::user::plain_edit > >();
@@ -429,8 +417,6 @@ namespace core
       create_factory <simple_toolbar >();
       create_factory <::experience::orto_button >();
 
-      m_pmenucentral2 = __new(::user::menu_central);
-
       estatus = initialize_filemanager_component(Session.m_pappCurrent);
 
       if (!estatus)
@@ -485,41 +471,11 @@ namespace core
 
       }
 
-      try
-      {
-
-         m_pmenucentral2.release();
-
-      }
-      catch (...)
-      {
-
-      }
 
    }
 
 
-   __pointer(::user::menu_interaction) user::create_menu_button(::user::style * pstyle, ::user::menu_item* pitem)
-   {
 
-      auto pinteraction = __new(::user::menu_button(pitem));
-
-      if (pitem->m_pimage->is_set())
-      {
-
-         pinteraction->set_button_style(::user::button::style_image_and_text);
-
-         e_image eimage = (e_image)pitem->m_pmenu->value("image_transform").i32();
-
-         ::image_pointer pimage = pitem->m_pimage + eimage;
-
-         pinteraction->LoadBitmaps(pimage);
-
-      }
-
-      return pinteraction;
-
-   }
 
    ::type user::controltype_to_typeinfo(::user::e_control_type econtroltype)
    {

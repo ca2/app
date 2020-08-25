@@ -211,6 +211,42 @@ namespace user
    }
 
 
+   bool split_view::on_prepare_impact_data(::user::impact_data* pimpactdata)
+   {
+
+      //if (!add_tab(pimpactdata->m_id, pimpactdata->m_idTitle))
+      //{
+
+      //   return false;
+
+      //}
+
+      split_layout::Pane* ppane = m_panea[pimpactdata->m_id.i64()];
+
+      if (ppane != nullptr)
+      {
+
+         if (!pimpactdata->m_pplaceholder)
+         {
+
+            auto pplaceholder = get_new_place_holder(ppane->m_rectClient);
+
+            pimpactdata->m_pplaceholder = pplaceholder;
+
+         }
+
+         ppane->m_pplaceholder = pimpactdata->m_pplaceholder;
+
+         ppane->m_pimpactdata = pimpactdata;
+
+      }
+
+      return true;
+
+   }
+
+
+
 } // namespace user
 
 

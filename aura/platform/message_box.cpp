@@ -13,7 +13,7 @@ message_box::~message_box()
 }
 
 
-void message_box::show(::object* pobject)
+::estatus message_box::show(::object* pobject)
 {
 
    if (::is_null(pobject))
@@ -23,7 +23,7 @@ void message_box::show(::object* pobject)
 
    }
 
-   pobject->message_box(m_puserprimitive, m_strMessage, m_strTitle, m_emessagebox, m_callback);
+   return pobject->message_box(m_puserprimitive, m_strMessage, m_strTitle, m_emessagebox, m_callback);
 
 }
 

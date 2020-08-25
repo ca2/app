@@ -1221,27 +1221,6 @@ namespace aura
    }
 
 
-   __pointer(::user::menu_interaction) session::create_menu_button(::user::style_pointer & pstyle, ::user::menu_item * pitem)
-   {
-
-      auto pinteraction  = __new(::user::menu_button(pitem));
-
-      if (pitem->m_pimage->is_set())
-      {
-
-         pinteraction->set_button_style(::user::button::style_image_and_text);
-
-         e_image eimage = (e_image) pitem->m_pmenu->value("image_transform").i32();
-
-         ::image_pointer pimage = pitem->m_pimage + eimage;
-
-         pinteraction->LoadBitmaps(pimage);
-
-      }
-
-      return pinteraction;
-
-   }
 
 
    //bool session::initialize_filemanager()

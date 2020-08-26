@@ -10071,7 +10071,6 @@
 		9A98A6131771D67E000AE16E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				HEADER_SEARCH_PATHS = "";
 				PLATFORM_MODIFIER = macos;
 				SDKROOT = macosx;
 			};
@@ -10080,7 +10079,6 @@
 		9A98A6141771D67E000AE16E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				HEADER_SEARCH_PATHS = "";
 				PLATFORM_MODIFIER = macos;
 				SDKROOT = macosx;
 			};

@@ -17,6 +17,8 @@
 		9A258EB624DA97980013F50E /* libexperience_tranquillum.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A3E0B442309FA7F00B5459B /* libexperience_tranquillum.dylib */; };
 		9A258EB724DA97980013F50E /* libgpu_opengl.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A8B644624CBE7B500A93185 /* libgpu_opengl.dylib */; };
 		9A258EB824DA97980013F50E /* libimaging_coreimage.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A8B638324CBD68100A93185 /* libimaging_coreimage.dylib */; };
+		9A3BA7D924F5EF7000150704 /* libaxis.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AD1180B24F51C1A00177261 /* libaxis.dylib */; };
+		9A3BA7EA24F5EF7B00150704 /* libbase.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AD1181124F51C2400177261 /* libbase.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -281,6 +283,8 @@
 			dstPath = "$(WorkspaceDir)/time/$(PLATFORM_MODIFIER)";
 			dstSubfolderSpec = 0;
 			files = (
+				9A3BA7EA24F5EF7B00150704 /* libbase.dylib in CopyFiles */,
+				9A3BA7D924F5EF7000150704 /* libaxis.dylib in CopyFiles */,
 				9A258EB124DA97980013F50E /* libaura.dylib in CopyFiles */,
 				9A258EB224DA97980013F50E /* libcore.dylib in CopyFiles */,
 				9A258EB324DA97980013F50E /* libdraw2d_quartz2d.dylib in CopyFiles */,

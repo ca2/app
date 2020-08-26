@@ -170,6 +170,16 @@
 		9A6855FB2432F8C80002FE94 /* form_update_hint.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6855AE2432F8C20002FE94 /* form_update_hint.h */; };
 		9A6856072432F8C80002FE94 /* control_ddx_dbflags.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6855BA2432F8C30002FE94 /* control_ddx_dbflags.h */; };
 		9A68560B2432F8C80002FE94 /* inline.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6855BE2432F8C40002FE94 /* inline.h */; };
+		9A833C1224F5731000C079FB /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD1182A24F51CCA00177261 /* libaura.dylib */; };
+		9A833C1324F5731800C079FB /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD1182C24F51CD000177261 /* libaxis.dylib */; };
+		9A833C1424F5732300C079FB /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD117B824F51B3D00177261 /* libbase.dylib */; };
+		9A833C3324F5769B00C079FB /* application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A833C2424F5769B00C079FB /* application.h */; };
+		9A833C3824F5769B00C079FB /* session.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A833C2924F5769B00C079FB /* session.h */; };
+		9A833C3924F5769B00C079FB /* session.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A833C2A24F5769B00C079FB /* session.cpp */; };
+		9A833C3A24F5769B00C079FB /* user.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A833C2B24F5769B00C079FB /* user.h */; };
+		9A833C3B24F5769B00C079FB /* system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A833C2C24F5769B00C079FB /* system.cpp */; };
+		9A833C3E24F5769B00C079FB /* system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A833C2F24F5769B00C079FB /* system.h */; };
+		9A833C3F24F5769B00C079FB /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A833C3024F5769B00C079FB /* application.cpp */; };
 		9A85613D22A9447200D61251 /* elemental.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8560E122A9447100D61251 /* elemental.cpp */; };
 		9A85613E22A9447200D61251 /* elemental.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8560E122A9447100D61251 /* elemental.cpp */; };
 		9A85613F22A9447200D61251 /* form.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8560E222A9447100D61251 /* form.cpp */; };
@@ -782,6 +792,13 @@
 		9A6855AE2432F8C20002FE94 /* form_update_hint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = form_update_hint.h; sourceTree = "<group>"; };
 		9A6855BA2432F8C30002FE94 /* control_ddx_dbflags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = control_ddx_dbflags.h; sourceTree = "<group>"; };
 		9A6855BE2432F8C40002FE94 /* inline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inline.h; sourceTree = "<group>"; };
+		9A833C2424F5769B00C079FB /* application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = application.h; sourceTree = "<group>"; };
+		9A833C2924F5769B00C079FB /* session.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = session.h; sourceTree = "<group>"; };
+		9A833C2A24F5769B00C079FB /* session.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = session.cpp; sourceTree = "<group>"; };
+		9A833C2B24F5769B00C079FB /* user.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user.h; sourceTree = "<group>"; };
+		9A833C2C24F5769B00C079FB /* system.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = system.cpp; sourceTree = "<group>"; };
+		9A833C2F24F5769B00C079FB /* system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = system.h; sourceTree = "<group>"; };
+		9A833C3024F5769B00C079FB /* application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application.cpp; sourceTree = "<group>"; };
 		9A8560E122A9447100D61251 /* elemental.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = elemental.cpp; sourceTree = "<group>"; };
 		9A8560E222A9447100D61251 /* form.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = form.cpp; sourceTree = "<group>"; };
 		9A8560E322A9447100D61251 /* table_row.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = table_row.cpp; sourceTree = "<group>"; };
@@ -1177,6 +1194,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A833C1224F5731000C079FB /* libaura.dylib in Frameworks */,
+				9A833C1424F5732300C079FB /* libbase.dylib in Frameworks */,
+				9A833C1324F5731800C079FB /* libaxis.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1431,6 +1451,20 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		9A833C2124F5769B00C079FB /* platform */ = {
+			isa = PBXGroup;
+			children = (
+				9A833C3024F5769B00C079FB /* application.cpp */,
+				9A833C2424F5769B00C079FB /* application.h */,
+				9A833C2A24F5769B00C079FB /* session.cpp */,
+				9A833C2924F5769B00C079FB /* session.h */,
+				9A833C2C24F5769B00C079FB /* system.cpp */,
+				9A833C2F24F5769B00C079FB /* system.h */,
+				9A833C2B24F5769B00C079FB /* user.h */,
+			);
+			path = platform;
+			sourceTree = "<group>";
+		};
 		9A8560DF22A9447100D61251 /* html */ = {
 			isa = PBXGroup;
 			children = (
@@ -1587,6 +1621,7 @@
 				9A25834E24DA23D60013F50E /* net */,
 				9A25866824DA25810013F50E /* node */,
 				9A25849A24DA257F0013F50E /* os */,
+				9A833C2124F5769B00C079FB /* platform */,
 				9A2583BF24DA23DB0013F50E /* template */,
 				9A92E4CD240B63FA00660EFD /* user */,
 				9A258B3524DA27E90013F50E /* _.h */,
@@ -2185,10 +2220,12 @@
 				9A92E7EC240B66CF00660EFD /* main_view.h in Headers */,
 				9A92E70D240B63FB00660EFD /* wait_message_dialog.h in Headers */,
 				9A2589F324DA25860013F50E /* _.h in Headers */,
+				9A833C3324F5769B00C079FB /* application.h in Headers */,
 				9A92E69D240B63FB00660EFD /* xfplayer_view_lines.h in Headers */,
 				9A92E6F5240B63FB00660EFD /* toolbar.h in Headers */,
 				9A92E810240B66CF00660EFD /* fs_simple_tree.h in Headers */,
 				9A92E702240B63FB00660EFD /* network_configuration.h in Headers */,
+				9A833C3824F5769B00C079FB /* session.h in Headers */,
 				9A92E65C240B63FB00660EFD /* mesh_item.h in Headers */,
 				9A25886124DA25840013F50E /* chronometer.h in Headers */,
 				9A85617D22A9447200D61251 /* user.h in Headers */,
@@ -2250,6 +2287,7 @@
 				9A25895824DA25850013F50E /* graphics.h in Headers */,
 				9A39EA362433638B000FECDA /* account_simple_ui.h in Headers */,
 				9A92E827240B66CF00660EFD /* operation_view.h in Headers */,
+				9A833C3E24F5769B00C079FB /* system.h in Headers */,
 				9A92E66F240B63FB00660EFD /* xfplayer_view_line.h in Headers */,
 				9A92E712240B63FB00660EFD /* home_view.h in Headers */,
 				9A25843624DA23DC0013F50E /* _c.h in Headers */,
@@ -2330,6 +2368,7 @@
 				9A92E739240B63FB00660EFD /* impact_host.h in Headers */,
 				9A92E75D240B63FB00660EFD /* span.h in Headers */,
 				9A85619022A9447200D61251 /* size.h in Headers */,
+				9A833C3A24F5769B00C079FB /* user.h in Headers */,
 				9A25893C24DA25850013F50E /* windowing.h in Headers */,
 				9A25893D24DA25850013F50E /* process.h in Headers */,
 				9A92E74C240B63FB00660EFD /* box.h in Headers */,
@@ -2513,6 +2552,7 @@
 				9A92E7F7240B66CF00660EFD /* list_item_array.cpp in Sources */,
 				9A92E805240B66CF00660EFD /* form.cpp in Sources */,
 				9A39EA3A2433638B000FECDA /* account_dialog.cpp in Sources */,
+				9A833C3F24F5769B00C079FB /* application.cpp in Sources */,
 				9A92E75E240B63FB00660EFD /* global.cpp in Sources */,
 				9A92E738240B63FB00660EFD /* property_page.cpp in Sources */,
 				9A92E6F0240B63FB00660EFD /* pane_document.cpp in Sources */,
@@ -2553,6 +2593,7 @@
 				9A92E6F4240B63FB00660EFD /* menu_bar.cpp in Sources */,
 				9A92E6F1240B63FB00660EFD /* list_view.cpp in Sources */,
 				9A258B6B24DA3C520013F50E /* handler.cpp in Sources */,
+				9A833C3B24F5769B00C079FB /* system.cpp in Sources */,
 				9A92E7FB240B66CF00660EFD /* userfs.cpp in Sources */,
 				9A92E82D240B66CF00660EFD /* tree.cpp in Sources */,
 				9A92E6D2240B63FB00660EFD /* mesh_data.cpp in Sources */,
@@ -2597,6 +2638,7 @@
 				9A25842A24DA23DC0013F50E /* output.cpp in Sources */,
 				9A39EA2124336353000FECDA /* top.cpp in Sources */,
 				9A92E726240B63FB00660EFD /* form_frame.cpp in Sources */,
+				9A833C3924F5769B00C079FB /* session.cpp in Sources */,
 				9A2582CC24DA18560013F50E /* fft.cpp in Sources */,
 				9A39EA2524336353000FECDA /* label.cpp in Sources */,
 				9A92E741240B63FB00660EFD /* property_sheet.cpp in Sources */,

@@ -151,7 +151,6 @@
 		9AD11F3A24F51D4900177261 /* image_list.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD11D0A24F51D4600177261 /* image_list.h */; };
 		9AD11F3B24F51D4900177261 /* static_control.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD11D0B24F51D4600177261 /* static_control.h */; };
 		9AD11F3C24F51D4900177261 /* data_exchange.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD11D0C24F51D4600177261 /* data_exchange.h */; };
-		9AD11F3D24F51D4900177261 /* control_descriptor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD11D0D24F51D4600177261 /* control_descriptor.cpp */; };
 		9AD11F3E24F51D4900177261 /* toolbar.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD11D0E24F51D4600177261 /* toolbar.h */; };
 		9AD11F3F24F51D4900177261 /* impact_host.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD11D0F24F51D4600177261 /* impact_host.h */; };
 		9AD11F4024F51D4900177261 /* form_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD11D1024F51D4600177261 /* form_data.h */; };
@@ -401,7 +400,6 @@
 		9AD11D0A24F51D4600177261 /* image_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = image_list.h; sourceTree = "<group>"; };
 		9AD11D0B24F51D4600177261 /* static_control.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = static_control.h; sourceTree = "<group>"; };
 		9AD11D0C24F51D4600177261 /* data_exchange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = data_exchange.h; sourceTree = "<group>"; };
-		9AD11D0D24F51D4600177261 /* control_descriptor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = control_descriptor.cpp; sourceTree = "<group>"; };
 		9AD11D0E24F51D4600177261 /* toolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = toolbar.h; sourceTree = "<group>"; };
 		9AD11D0F24F51D4600177261 /* impact_host.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = impact_host.h; sourceTree = "<group>"; };
 		9AD11D1024F51D4600177261 /* form_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = form_data.h; sourceTree = "<group>"; };
@@ -666,7 +664,6 @@
 				9AD11CC924F51D4600177261 /* control_ddx_dbflags.h */,
 				9AD11CF824F51D4600177261 /* control_descriptor_set.cpp */,
 				9AD11CC024F51D4600177261 /* control_descriptor_set.h */,
-				9AD11D0D24F51D4600177261 /* control_descriptor.cpp */,
 				9AD11CE824F51D4600177261 /* control_property.cpp */,
 				9AD11D2824F51D4600177261 /* control_property.h */,
 				9AD11CF724F51D4600177261 /* control.cpp */,
@@ -1171,7 +1168,6 @@
 				9AD11F1724F51D4800177261 /* impact_data.cpp in Sources */,
 				9AD11EBF24F51D4800177261 /* experience_updown.cpp in Sources */,
 				9AD11F5924F51D4900177261 /* menu_command.cpp in Sources */,
-				9AD11F3D24F51D4900177261 /* control_descriptor.cpp in Sources */,
 				9AD11F3924F51D4800177261 /* tool_window.cpp in Sources */,
 				9AD11F6524F51D4900177261 /* button.cpp in Sources */,
 				9AD11F2724F51D4800177261 /* control.cpp in Sources */,

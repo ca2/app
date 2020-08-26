@@ -152,7 +152,7 @@ inline __pointer(BASE_TYPE) __create()
 
    }
 
-   auto ptypeNew = pfactory->call_new();
+   __pointer(::generic_object) ptypeNew = pfactory->call_new();
 
    if (!ptypeNew)
    {

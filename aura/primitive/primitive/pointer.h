@@ -167,11 +167,15 @@ public:
    inline pointer(const void * p) : pointer(e_move_transfer, (T *)p) {}
 
    template < class T2 >
-   inline pointer(const pointer < T2 > & t) :
+   inline pointer(const pointer < T2 > & t2) :
       m_p(nullptr)
    {
+      
+      auto p2 = (T2 *) t2.m_p;
+      
+      auto p = dynamic_cast <T *>(p2);
 
-      operator = (dynamic_cast <T *>(t.m_p));
+      operator = (p);
 
    }
 

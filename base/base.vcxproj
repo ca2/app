@@ -666,7 +666,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)/third-windows/include;$(__archive)/third-windows/third/include;$(__archive)/third-windows/third/include/include;$(SolutionDir)../../platform-windows/_include;$(SolutionDir)../../platform-windows;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <SmallerTypeCheck>false</SmallerTypeCheck>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <StringPooling>false</StringPooling>
       <ExceptionHandling>Async</ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -1236,8 +1236,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="user\user\toolbar.h" />
     <ClInclude Include="user\user\tool_window.h" />
     <ClInclude Include="user\_.h" />
-    <ClCompile Include="user\userpresence\department.cpp" />
-    <ClCompile Include="user\userpresence\presence.cpp" />
     <ClCompile Include="user\user\form_data.cpp" />
     <ClCompile Include="user\user\menu_interaction.cpp" />
     <ClCompile Include="user\user\menu_item.cpp" />
@@ -1256,9 +1254,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="inline\library.h" />
     <ClInclude Include="inline\__debug_box_clear_impl.h" />
     <ClInclude Include="inline\__debug_box_set_impl.h" />
-    <ClInclude Include="user\userpresence\department.h" />
-    <ClInclude Include="user\userpresence\presence.h" />
-    <ClInclude Include="user\userpresence\_.h" />
     <ClInclude Include="user\user\button.h" />
     <ClInclude Include="user\user\combo_box.h" />
     <ClInclude Include="user\user\combo_list.h" />

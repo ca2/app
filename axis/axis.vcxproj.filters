@@ -159,6 +159,36 @@
     <Filter Include="Source Files\database\sqlitedb">
       <UniqueIdentifier>{6cb49184-f379-4897-81ce-805627401057}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\net\netserver">
+      <UniqueIdentifier>{52364022-ed3b-4112-96d7-504d46a822c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\netserver">
+      <UniqueIdentifier>{6cadea1c-637e-4bed-a306-b5798ee54bab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\html">
+      <UniqueIdentifier>{3189e26d-2e71-4111-87e2-27eeb872a339}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\html\html_lite">
+      <UniqueIdentifier>{d40db6e9-b12c-4d5c-a719-76aba2893957}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\html">
+      <UniqueIdentifier>{4cbf4d4e-ed37-4c41-a6a0-bd0709880d29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\html\html_lite">
+      <UniqueIdentifier>{4dcb20a8-bc82-4851-bd1e-ea897d773307}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\html\html">
+      <UniqueIdentifier>{957f10c0-caee-42c9-b997-8ef7b01ff807}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\html\html">
+      <UniqueIdentifier>{aaad9d9a-e15b-48d4-92ae-842bc8b1c9c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\geoip">
+      <UniqueIdentifier>{450b1cbc-3f48-42fe-a8b6-c1e36b76f64a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\geoip">
+      <UniqueIdentifier>{d54a1f58-033d-4ab9-a817-6baa20632a09}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="net\sockets\bsd\smtp\smtp_socket.h">
@@ -719,6 +749,66 @@
     <ClInclude Include="console_slim.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="net\netserver\_.h">
+      <Filter>Header Files\net\netserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\netserver\socket.h">
+      <Filter>Header Files\net\netserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\netserver\socket_handler.h">
+      <Filter>Header Files\net\netserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\netserver\socket_thread.h">
+      <Filter>Header Files\net\netserver</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_lite\_.h">
+      <Filter>Header Files\html\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_lite\attributes.h">
+      <Filter>Header Files\html\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_lite\common.h">
+      <Filter>Header Files\html\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_lite\entity_resolver.h">
+      <Filter>Header Files\html\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_lite\enum.h">
+      <Filter>Header Files\html\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_lite\html.h">
+      <Filter>Header Files\html\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_lite\reader.h">
+      <Filter>Header Files\html\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_lite\tag.h">
+      <Filter>Header Files\html\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html\_.h">
+      <Filter>Header Files\html\html</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html\html.h">
+      <Filter>Header Files\html\html</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html\_const.h">
+      <Filter>Header Files\html\html</Filter>
+    </ClInclude>
+    <ClInclude Include="geoip\global.h">
+      <Filter>Header Files\geoip</Filter>
+    </ClInclude>
+    <ClInclude Include="geoip\_.h">
+      <Filter>Header Files\geoip</Filter>
+    </ClInclude>
+    <ClInclude Include="geoip\city.h">
+      <Filter>Header Files\geoip</Filter>
+    </ClInclude>
+    <ClInclude Include="geoip\internal.h">
+      <Filter>Header Files\geoip</Filter>
+    </ClInclude>
+    <ClInclude Include="geoip\update.h">
+      <Filter>Header Files\geoip</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="net\sockets\bsd\smtp\smtp_socket.cpp">
@@ -924,6 +1014,45 @@
     </ClCompile>
     <ClCompile Include="_to.cpp">
       <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="net\netserver\socket.cpp">
+      <Filter>Source Files\net\netserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\netserver\socket_handler.cpp">
+      <Filter>Source Files\net\netserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\netserver\socket_thread.cpp">
+      <Filter>Source Files\net\netserver</Filter>
+    </ClCompile>
+    <ClCompile Include="html\html_lite\attributes.cpp">
+      <Filter>Source Files\html\html_lite</Filter>
+    </ClCompile>
+    <ClCompile Include="html\html_lite\entity_resolver.cpp">
+      <Filter>Source Files\html\html_lite</Filter>
+    </ClCompile>
+    <ClCompile Include="html\html_lite\reader.cpp">
+      <Filter>Source Files\html\html_lite</Filter>
+    </ClCompile>
+    <ClCompile Include="html\html_lite\tag.cpp">
+      <Filter>Source Files\html\html_lite</Filter>
+    </ClCompile>
+    <ClCompile Include="html\html\html.cpp">
+      <Filter>Source Files\html\html</Filter>
+    </ClCompile>
+    <ClCompile Include="geoip\geoip.cpp">
+      <Filter>Source Files\geoip</Filter>
+    </ClCompile>
+    <ClCompile Include="geoip\city.cpp">
+      <Filter>Source Files\geoip</Filter>
+    </ClCompile>
+    <ClCompile Include="geoip\region_name.cpp">
+      <Filter>Source Files\geoip</Filter>
+    </ClCompile>
+    <ClCompile Include="geoip\time_zone.cpp">
+      <Filter>Source Files\geoip</Filter>
+    </ClCompile>
+    <ClCompile Include="geoip\update.cpp">
+      <Filter>Source Files\geoip</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

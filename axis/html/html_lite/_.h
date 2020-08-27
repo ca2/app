@@ -36,8 +36,6 @@ me to keep updating it.
 class lite_html_tag;
 class lite_html_reader;
 
-#include "enum.h"
-
 
 #include "common.h"
 #include "attributes.h"
@@ -45,9 +43,6 @@ class lite_html_reader;
 #include "reader.h"
 #include "tag.h"
 
-
-
-#include "html.h"
 
 
 

@@ -1,14 +1,14 @@
 ﻿#pragma once
 
 
-#include "aura/net/netserver/_.h"
+#include "axis/net/netserver/_.h"
 
 
 namespace dynamic_source
 {
 
 
-   class CLASS_DECL_CORE httpd_socket :
+   class CLASS_DECL_APP_PROGRAMMING httpd_socket :
       virtual public ::netserver::socket
    {
    public:

@@ -2055,6 +2055,7 @@ namespace html
 
 #define Application (*get_app())
 #define ThisApp (*::application_consumer < application >::get_app())
+#define NamespaceApp(N) (*::application_consumer < ::N::application >::get_app())
 
 #undef Ctx
 #define Ctx(pobject) (*(::get_context(pobject)))

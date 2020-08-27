@@ -13,7 +13,7 @@ namespace dynamic_source
    class script_main;
 
 
-   class CLASS_DECL_CORE script_interface :
+   class CLASS_DECL_APP_PROGRAMMING script_interface :
       virtual public ::html::file
    {
    public:

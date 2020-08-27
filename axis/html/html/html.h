@@ -1,17 +1,11 @@
 #pragma once
 
 
-typedef string_map < COLORREF > string_to_colorref;
-
-
 namespace html
 {
 
 
-   typedef string_to_colorref CNamedColors;
-
-
-   class CLASS_DECL_CORE html:
+   class CLASS_DECL_AXIS html:
       public ::aura::department
    {
    public:

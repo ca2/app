@@ -38,7 +38,7 @@
  * @version 1.0 (March 18, 2004)
  * @author Gurmeet S. Kochar
  */
-class CLASS_DECL_CORE lite_html_tag
+class CLASS_DECL_AXIS lite_html_tag
 {
 // Construction/Destruction
 public:

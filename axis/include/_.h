@@ -89,6 +89,8 @@
 
 #include "axis/net/email_department.h"
 
+#include "axis/html/html/_.h"
+
 #include "axis/platform/system.h"
 
 #define new AURA_NEW

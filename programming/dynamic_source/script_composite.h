@@ -8,7 +8,7 @@ namespace dynamic_source
    class script_instance;
 
 
-   class CLASS_DECL_CORE script_composite :
+   class CLASS_DECL_APP_PROGRAMMING script_composite :
       virtual public script_interface
    {
    public:

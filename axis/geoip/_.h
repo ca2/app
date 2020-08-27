@@ -100,7 +100,7 @@ extern const char GeoIP_country_code3[253][4];
 extern const char * GeoIP_country_name[253];
 extern const char GeoIP_country_continent[253][3];
 
-#define GEOIP_API CLASS_DECL_CORE
+#define GEOIP_API CLASS_DECL_AXIS
 
 GEOIP_API void GeoIP_setup_custom_directory(char *dir);
 GEOIP_API GeoIP* GeoIP_open_type (i32 type, i32 flags);
@@ -207,6 +207,6 @@ GEOIP_API const char * GeoIP_time_zone_by_country_and_region(const char *country
 //#endif
 
 #include "global.h"
-#include "geoip_city.h"
-#include "geoip_update.h"
-#include "geoip_internal.h"
+#include "city.h"
+#include "update.h"
+#include "internal.h"

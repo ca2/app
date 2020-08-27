@@ -244,7 +244,7 @@ strsize lite_html_reader::parseDocument()
          lTemp = 0;
          string strChar;
          if (m_bResolveEntities)
-            lTemp = User.m_phtml->resolve_entity(&m_strBuffer[m_dwBufPos], strChar);
+            lTemp = System.m_phtml->resolve_entity(&m_strBuffer[m_dwBufPos], strChar);
 
          if (lTemp)
          {

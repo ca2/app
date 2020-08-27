@@ -1116,7 +1116,20 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="geoip\geoip.cpp" />
+    <ClCompile Include="geoip\city.cpp" />
+    <ClCompile Include="geoip\region_name.cpp" />
+    <ClCompile Include="geoip\time_zone.cpp" />
+    <ClCompile Include="geoip\update.cpp" />
+    <ClCompile Include="html\html\html.cpp" />
+    <ClCompile Include="html\html_lite\attributes.cpp" />
+    <ClCompile Include="html\html_lite\entity_resolver.cpp" />
+    <ClCompile Include="html\html_lite\reader.cpp" />
+    <ClCompile Include="html\html_lite\tag.cpp" />
     <ClCompile Include="include\_.cpp" />
+    <ClCompile Include="net\netserver\socket.cpp" />
+    <ClCompile Include="net\netserver\socket_handler.cpp" />
+    <ClCompile Include="net\netserver\socket_thread.cpp" />
     <ClCompile Include="node\windows\windows_desktop.cpp" />
     <ClCompile Include="node\windows\factory_exchange.cpp" />
     <ClCompile Include="pcre\pcre.cpp" />
@@ -1199,6 +1212,22 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="database\sqlitedb\dataset.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="framework_c.h" />
+    <ClInclude Include="geoip\_.h" />
+    <ClInclude Include="geoip\city.h" />
+    <ClInclude Include="geoip\internal.h" />
+    <ClInclude Include="geoip\update.h" />
+    <ClInclude Include="geoip\global.h" />
+    <ClInclude Include="html\html\html.h" />
+    <ClInclude Include="html\html\_.h" />
+    <ClInclude Include="html\html\_const.h" />
+    <ClInclude Include="html\html_lite\attributes.h" />
+    <ClInclude Include="html\html_lite\common.h" />
+    <ClInclude Include="html\html_lite\entity_resolver.h" />
+    <ClInclude Include="html\html_lite\enum.h" />
+    <ClInclude Include="html\html_lite\html.h" />
+    <ClInclude Include="html\html_lite\reader.h" />
+    <ClInclude Include="html\html_lite\tag.h" />
+    <ClInclude Include="html\html_lite\_.h" />
     <ClInclude Include="id.h" />
     <ClInclude Include="inline\application\linux.h" />
     <ClInclude Include="inline\application\macos.h" />
@@ -1214,6 +1243,10 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="inline\_console_old.h" />
     <ClInclude Include="inline\_new_impl.h" />
     <ClInclude Include="message.h" />
+    <ClInclude Include="net\netserver\socket.h" />
+    <ClInclude Include="net\netserver\socket_handler.h" />
+    <ClInclude Include="net\netserver\socket_thread.h" />
+    <ClInclude Include="net\netserver\_.h" />
     <ClInclude Include="net\_net_impl.h" />
     <ClInclude Include="node\opengl\context.h" />
     <ClInclude Include="node\windows\factory_exchange.h" />

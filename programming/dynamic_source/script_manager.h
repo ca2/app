@@ -22,16 +22,16 @@ namespace dynamic_source
 {
 
 
-   //CLASS_DECL_CORE script_instance * get_seed_instance();
+   //CLASS_DECL_APP_PROGRAMMING script_instance * get_seed_instance();
 
 
-   class CLASS_DECL_CORE script_manager :
+   class CLASS_DECL_APP_PROGRAMMING script_manager :
       virtual public ::user::message_queue_listener
    {
    public:
 
 
-      class CLASS_DECL_CORE clear_include_matches_file_watcher :
+      class CLASS_DECL_APP_PROGRAMMING clear_include_matches_file_watcher :
          virtual public ::file::listener
       {
       public:
@@ -48,7 +48,7 @@ namespace dynamic_source
 
 
 
-      class CLASS_DECL_CORE plugin_map_item :
+      class CLASS_DECL_APP_PROGRAMMING plugin_map_item :
          virtual public ::object
       {
       public:
@@ -66,7 +66,7 @@ namespace dynamic_source
 
       };
 
-      class CLASS_DECL_CORE tunnel_map_item
+      class CLASS_DECL_APP_PROGRAMMING tunnel_map_item
       {
       public:
 

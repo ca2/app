@@ -576,10 +576,10 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="data\_.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="mysql\mysql_database.h" />
     <ClInclude Include="mysql\mysql_dataset.h" />
+    <ClInclude Include="_.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">

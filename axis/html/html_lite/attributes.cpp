@@ -356,7 +356,7 @@ void LiteHTMLElemAttr::putValue(::lite_html_reader * preader, const char * pszVa
       if ((iCurPos = m_strValue.find('&', ++iCurPos)) == -1)
          break;
 
-      iParseLen = Usr(preader->get_context_application()).m_phtml->resolve_entity(m_strValue.Mid(iCurPos), strChar);
+      iParseLen = System.m_phtml->resolve_entity(m_strValue.Mid(iCurPos), strChar);
 
       if (iParseLen)
       {
@@ -377,14 +377,12 @@ bool LiteHTMLElemAttr::isNamedColorValue(::lite_html_reader * preader) const
    if((m_strValue.get_length()) && (::isalpha(m_strValue[0])))
    {
 
-      COLORREF crTemp = 0xffffffff;
+      if (System.m_phtml->m_namedColors.contains(m_strValue.lowered()))
+      {
 
-      string      strKey(m_strValue);
+          return true;
 
-      strKey.make_lower();
-
-      if(Usr(preader->get_context_application()).m_phtml->m_namedColors.lookup(m_strValue, crTemp))
-         return true;
+      }
 
    }
 
@@ -398,14 +396,14 @@ bool LiteHTMLElemAttr::isSysColorValue(::lite_html_reader * preader) const
    if((m_strValue.get_length()) && (::isalpha(m_strValue[0])))
    {
 
-      COLORREF   crTemp = 0xffffffff;
+      ::color color;
 
       string      strKey(m_strValue);
 
       strKey.make_lower();
 
-      if(Usr(preader->get_context_application()).m_phtml->m_namedColors.lookup(strKey, crTemp))
-         return (crTemp >= 0x80000000 && crTemp <= 0x80000018);
+      if(System.m_phtml->m_namedColors.lookup(strKey, color))
+         return color.m_iA == -2;
 
    }
 
@@ -449,7 +447,7 @@ bool LiteHTMLElemAttr::isHexColorValue() const
 COLORREF LiteHTMLElemAttr::getColorValue(::lite_html_reader * preader) const
 {
 
-   COLORREF crTemp = 0xffffffff;
+   color color;
 
    if(isNamedColorValue(preader))
    {
@@ -458,23 +456,23 @@ COLORREF LiteHTMLElemAttr::getColorValue(::lite_html_reader * preader) const
 
       strKey.make_lower();
 
-      if(Usr(preader->get_context_application()).m_phtml->m_namedColors.lookup(strKey, crTemp))
+      if(System.m_phtml->m_namedColors.lookup(strKey, color))
       {
 
          // is this a system named color value?
-         if (crTemp >= 0x80000000 && crTemp <= 0x80000018)
-            crTemp = Sess(preader->get_context_application()).get_default_color(crTemp & 0x7FFFFFFF);
+         if (color.m_iA == -2)
+            color = Sess(preader->get_context_application()).get_default_color(color.m_iR);
       }
 
    }
    else if (isHexColorValue())
    {
 
-      crTemp = (u32) ::strtoul(m_strValue.Mid(1), nullptr, 16);
+      color = (u32) ::strtoul(m_strValue.Mid(1), nullptr, 16);
 
    }
 
-   return crTemp;
+   return color;
 
 }
 

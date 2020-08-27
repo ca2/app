@@ -1,5 +1,4 @@
 #include "framework.h"
-#include "core/programming/_.h"
 #ifdef WINDOWS_DESKTOP
 #include "aura/node/windows/registry.h"
 #endif

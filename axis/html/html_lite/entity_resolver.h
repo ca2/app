@@ -41,7 +41,7 @@
  * @version 1.0 (Mar 17, 2004)
  * @author Gurmeet S. Kochar
  */
-class CLASS_DECL_CORE LiteHTMLEntityResolver :
+class CLASS_DECL_AXIS LiteHTMLEntityResolver :
    virtual public ::context_object
 {
 public:

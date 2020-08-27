@@ -156,7 +156,7 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CA2_DATA_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(SolutionDir)../../platform-windows;$(__archive)/third-windows/include;$(__archive)/third-windows/third/include;$(__archive)/third-windows-common/include;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(ProjectDir)../..;$(ProjectDir)../../include;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(SolutionDir)../../app;$(SolutionDir)../../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)/third-windows/include;$(__archive)/third-windows/third/include;$(__archive)/third-windows/third/include/include;$(SolutionDir)../../platform-windows/_include;$(SolutionDir)../../platform-windows;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAsManaged>false</CompileAsManaged>
       <StringPooling>false</StringPooling>
@@ -221,7 +221,7 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CA2_DATA_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(SolutionDir)../../platform-windows;$(__archive)/third-windows/include;$(__archive)/third-windows/third/include;$(__archive)/third-windows-common/include;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(ProjectDir)../..;$(ProjectDir)../../include;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(SolutionDir)../../app;$(SolutionDir)../../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)/third-windows/include;$(__archive)/third-windows/third/include;$(__archive)/third-windows/third/include/include;$(SolutionDir)../../platform-windows/_include;$(SolutionDir)../../platform-windows;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -286,7 +286,7 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CA2_DATA_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(SolutionDir)../../platform-windows;$(__archive)/third-windows/include;$(__archive)/third-windows/third/include;$(__archive)/third-windows-common/include;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(ProjectDir)../..;$(ProjectDir)../../include;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(SolutionDir)../../app;$(SolutionDir)../../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)/third-windows/include;$(__archive)/third-windows/third/include;$(__archive)/third-windows/third/include/include;$(SolutionDir)../../platform-windows/_include;$(SolutionDir)../../platform-windows;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -319,7 +319,7 @@
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <UseFullPaths>true</UseFullPaths>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp14</LanguageStandard>
       <OpenMPSupport>false</OpenMPSupport>
     </ClCompile>
     <Link>
@@ -357,7 +357,7 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CA2_DATA_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(SolutionDir)../../platform-windows;$(__archive)/third-windows/include;$(__archive)/third-windows/third/include;$(__archive)/third-windows-common/include;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(ProjectDir)../..;$(ProjectDir)../../include;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(SolutionDir)../../app;$(SolutionDir)../../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)/third-windows/include;$(__archive)/third-windows/third/include;$(__archive)/third-windows/third/include/include;$(SolutionDir)../../platform-windows/_include;$(SolutionDir)../../platform-windows;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -381,7 +381,7 @@
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <UseFullPaths>true</UseFullPaths>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp14</LanguageStandard>
       <OmitFramePointers>false</OmitFramePointers>
       <Optimization>Disabled</Optimization>
       <OpenMPSupport>false</OpenMPSupport>
@@ -430,7 +430,7 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CA2_DATA_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(SolutionDir)../../platform-windows;$(__archive)/third-windows/include;$(__archive)/third-windows/third/include;$(__archive)/third-windows-common/include;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(ProjectDir)../..;$(ProjectDir)../../include;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(SolutionDir)../../app;$(SolutionDir)../../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)/third-windows/include;$(__archive)/third-windows/third/include;$(__archive)/third-windows/third/include/include;$(SolutionDir)../../platform-windows/_include;$(SolutionDir)../../platform-windows;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -503,7 +503,7 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CA2_DATA_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(SolutionDir)../../platform-windows;$(__archive)/third-windows/include;$(__archive)/third-windows/third/include;$(__archive)/third-windows-common/include;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(ProjectDir)../..;$(ProjectDir)../../include;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(SolutionDir)../../app;$(SolutionDir)../../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)/third-windows/include;$(__archive)/third-windows/third/include;$(__archive)/third-windows/third/include/include;$(SolutionDir)../../platform-windows/_include;$(SolutionDir)../../platform-windows;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -535,7 +535,7 @@
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <UseFullPaths>true</UseFullPaths>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp14</LanguageStandard>
       <OpenMPSupport>false</OpenMPSupport>
     </ClCompile>
     <Link>
@@ -576,7 +576,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="data\data.h" />
+    <ClInclude Include="data\_.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="mysql\mysql_database.h" />
     <ClInclude Include="mysql\mysql_dataset.h" />
@@ -603,6 +603,9 @@
   <ItemGroup>
     <ProjectReference Include="..\aura\aura.vcxproj">
       <Project>{e000ffaf-392f-4e32-bf51-fd7ed638991f}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\axis\axis.vcxproj">
+      <Project>{4c6f5f2b-56ee-485f-924a-f8f0a9c24eb6}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

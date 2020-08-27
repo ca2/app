@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "core/math/calculator/calculator.h"
+#include "calculator_edit_view.h"
 #include "aura/update.h"
 #include "aura/const/id.h"
 
@@ -8,7 +8,84 @@ namespace calculator
 {
 
 
-   void plain_edit_view::update(::update * pupdate)
+   plain_edit_view::plain_edit_view()
+   {
+
+      m_pcallback = nullptr;
+
+      m_val.m_dR = 0.0;
+      m_val.m_dI = 0.0;
+
+   }
+
+
+   plain_edit_view::~plain_edit_view()
+   {
+
+   }
+
+
+
+
+   bool plain_edit_view::keyboard_focus_is_focusable()
+   {
+
+      return is_window_enabled() && is_window_visible();
+
+   }
+
+
+   var plain_edit_view::get_ex_value()
+   {
+
+      var v;
+
+      v["real"] = m_val.m_dR;
+      v["imaginary"] = m_val.m_dI;
+      v["text"] = ::user::plain_edit::get_ex_value();
+
+      return v;
+
+   }
+
+
+   void plain_edit_view::set_format(const string& strFormat)
+   {
+
+      m_strFormat = strFormat;
+
+   }
+
+
+   void plain_edit_view::set_callback(callback* pcallback)
+   {
+
+      m_pcallback = pcallback;
+
+   }
+
+
+} // namespace calculator
+
+
+::user::plain_edit* new_calculator_plain_edit()
+{
+
+   return new ::calculator::plain_edit_view();
+
+}
+
+
+
+
+
+
+
+namespace calculator
+{
+
+
+   void plain_edit_view::update(::update* pupdate)
    {
 
       if (pupdate->m_id == id_after_change_text)
@@ -22,7 +99,9 @@ namespace calculator
 
             _001GetText(strExp);
 
-            parser parser(get_context_object());
+            parser parser;
+
+            parser.initialize(this);
 
             error e;
 
@@ -30,7 +109,7 @@ namespace calculator
             e.m_iStart = -1;
             e.m_tick.Now();
 
-            ::calculator::element * pelement = nullptr;
+            ::calculator::element* pelement = nullptr;
 
             string strSource;
 
@@ -128,7 +207,7 @@ namespace calculator
                //__throw(::exception::exception("now a simple exception here"));
 
             }
-            catch (const numeric_parser_exception & exp)
+            catch (const numeric_parser_exception& exp)
             {
 
                e.m_strMessage = exp.get_message();
@@ -279,8 +358,8 @@ namespace calculator
 
    }
 
-   
-void plain_edit_view::plain_edit_on_after_change_text(::draw2d::graphics_pointer & pgraphics, const ::action_context & context)
+
+   void plain_edit_view::plain_edit_on_after_change_text(::draw2d::graphics_pointer& pgraphics, const ::action_context& context)
    {
 
       if (context.is_user_source())
@@ -301,5 +380,6 @@ void plain_edit_view::plain_edit_on_after_change_text(::draw2d::graphics_pointer
 
 
 } // namespace calculator
+
 
 

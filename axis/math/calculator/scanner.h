@@ -21,7 +21,7 @@ numbers:
 */
 
 
-   class CLASS_DECL_CORE scanner :
+   class CLASS_DECL_AXIS scanner :
       virtual public ::object
    {
    public:
@@ -32,9 +32,11 @@ numbers:
       __pointer(class token) m_ptoken;
 
 
-      scanner(::object * pobject);
+      scanner();
       virtual ~scanner();
 
+
+      virtual ::estatus initialize(::object* pobjectContext) override;
 
 
       void initialize(const char * psz);

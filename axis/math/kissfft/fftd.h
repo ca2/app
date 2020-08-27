@@ -5,7 +5,7 @@ namespace kissfft
 {
 
 
-   class CLASS_DECL_CORE fftd :
+   class CLASS_DECL_AXIS fftd :
       virtual public ::object
    {
    public:

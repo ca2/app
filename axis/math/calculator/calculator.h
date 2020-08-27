@@ -8,7 +8,7 @@ namespace calculator
    class calculator;
 
 
-   class CLASS_DECL_CORE calculator :
+   class CLASS_DECL_AXIS calculator :
       virtual public ::aura::department
    {
    public:

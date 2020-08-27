@@ -5,7 +5,7 @@ namespace calculator
 {
 
 
-   class CLASS_DECL_CORE element:
+   class CLASS_DECL_AXIS element:
       virtual public ::object
    {
    public:

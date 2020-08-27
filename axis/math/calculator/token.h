@@ -8,7 +8,7 @@ namespace calculator
 {
 
 
-   class CLASS_DECL_CORE token :
+   class CLASS_DECL_AXIS token :
       virtual public context_object
    {
    public:

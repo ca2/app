@@ -135,15 +135,6 @@
     <Filter Include="Source Files\html\hi5">
       <UniqueIdentifier>{5010553c-2d1a-4c30-92ce-560b471f9730}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\math">
-      <UniqueIdentifier>{2a95f45f-3e69-46a3-bde5-9def951b9abd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\math\kissfft">
-      <UniqueIdentifier>{f7081a56-46e9-4301-96ab-b1e6e0eb6689}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\math\calculator">
-      <UniqueIdentifier>{6d75ab48-7ee2-47bd-9b79-3a5b9bec089c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\include">
       <UniqueIdentifier>{0c0346ef-bd1c-4a0a-85b1-cfd8ef8ec242}</UniqueIdentifier>
     </Filter>
@@ -1556,6 +1547,9 @@
     <ClInclude Include="platform\system.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
+    <ClInclude Include="user\userex\calculator_edit_view.h">
+      <Filter>Header Files\user\userex</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="user\simple\message_box.cpp">
@@ -2131,45 +2125,6 @@
     <ClCompile Include="html\hi5\hi5_twitter_authorization.cpp">
       <Filter>Source Files\html\hi5</Filter>
     </ClCompile>
-    <ClCompile Include="math\kissfft\fft.cpp">
-      <Filter>Source Files\math\kissfft</Filter>
-    </ClCompile>
-    <ClCompile Include="math\kissfft\fft_shared.cpp">
-      <Filter>Source Files\math\kissfft</Filter>
-    </ClCompile>
-    <ClCompile Include="math\kissfft\fftd.cpp">
-      <Filter>Source Files\math\kissfft</Filter>
-    </ClCompile>
-    <ClCompile Include="math\kissfft\ifft.cpp">
-      <Filter>Source Files\math\kissfft</Filter>
-    </ClCompile>
-    <ClCompile Include="math\kissfft\ifftd.cpp">
-      <Filter>Source Files\math\kissfft</Filter>
-    </ClCompile>
-    <ClCompile Include="math\calculator\_calculator_update.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="math\calculator\calculator_calculator.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="math\calculator\calculator_element.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="math\calculator\calculator_parser.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="math\calculator\calculator_parser_exception.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="math\calculator\calculator_plain_edit_view.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="math\calculator\calculator_scanner.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="math\calculator\calculator_value.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
     <ClCompile Include="include\_.cpp">
       <Filter>Source Files\include</Filter>
     </ClCompile>
@@ -2415,6 +2370,9 @@
     </ClCompile>
     <ClCompile Include="platform\system.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="user\userex\calculator_edit_view.cpp">
+      <Filter>Source Files\user\userex</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

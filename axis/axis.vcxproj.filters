@@ -159,6 +159,24 @@
     <Filter Include="Source Files\database\sqlitedb">
       <UniqueIdentifier>{6cb49184-f379-4897-81ce-805627401057}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\math">
+      <UniqueIdentifier>{03716ed6-ef35-4331-b16a-7f534b9b1847}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\math\calculator">
+      <UniqueIdentifier>{9be397b6-10a5-41a7-a3ac-7bd58a49989c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\math\kissfft">
+      <UniqueIdentifier>{2b096b34-0d2b-41a1-9c85-adf0ca5218d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\math">
+      <UniqueIdentifier>{293be66d-1161-482c-ac5d-5f5c67a538cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\math\calculator">
+      <UniqueIdentifier>{54a1dd23-edcd-4fe8-9315-8bc95d954f58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\math\kissfft">
+      <UniqueIdentifier>{33a6341e-b6bf-4f1f-a567-e9190df6f960}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="net\sockets\bsd\smtp\smtp_socket.h">
@@ -719,6 +737,51 @@
     <ClInclude Include="console_slim.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="math\calculator\value.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\token.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\scanner.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\parser_exception.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\parser.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\element.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\kissfft\fft.h">
+      <Filter>Header Files\math\kissfft</Filter>
+    </ClInclude>
+    <ClInclude Include="math\kissfft\fft_guts.h">
+      <Filter>Header Files\math\kissfft</Filter>
+    </ClInclude>
+    <ClInclude Include="math\kissfft\fftd.h">
+      <Filter>Header Files\math\kissfft</Filter>
+    </ClInclude>
+    <ClInclude Include="math\kissfft\ifft.h">
+      <Filter>Header Files\math\kissfft</Filter>
+    </ClInclude>
+    <ClInclude Include="math\kissfft\ifftd.h">
+      <Filter>Header Files\math\kissfft</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\_.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\calculator.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\_.h">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\kissfft\_.h">
+      <Filter>Header Files\math\kissfft</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="net\sockets\bsd\smtp\smtp_socket.cpp">
@@ -924,6 +987,42 @@
     </ClCompile>
     <ClCompile Include="_to.cpp">
       <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="math\kissfft\fft.cpp">
+      <Filter>Source Files\math\kissfft</Filter>
+    </ClCompile>
+    <ClCompile Include="math\kissfft\fft_shared.cpp">
+      <Filter>Source Files\math\kissfft</Filter>
+    </ClCompile>
+    <ClCompile Include="math\kissfft\fftd.cpp">
+      <Filter>Source Files\math\kissfft</Filter>
+    </ClCompile>
+    <ClCompile Include="math\kissfft\ifft.cpp">
+      <Filter>Source Files\math\kissfft</Filter>
+    </ClCompile>
+    <ClCompile Include="math\kissfft\ifftd.cpp">
+      <Filter>Source Files\math\kissfft</Filter>
+    </ClCompile>
+    <ClCompile Include="math\calculator\value.cpp">
+      <Filter>Source Files\math\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="math\calculator\scanner.cpp">
+      <Filter>Source Files\math\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="math\calculator\parser_exception.cpp">
+      <Filter>Source Files\math\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="math\calculator\parser.cpp">
+      <Filter>Source Files\math\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="math\calculator\element.cpp">
+      <Filter>Source Files\math\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="math\calculator\calculator.cpp">
+      <Filter>Source Files\math\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="math\calculator\_update.cpp">
+      <Filter>Source Files\math\calculator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

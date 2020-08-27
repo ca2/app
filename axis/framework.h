@@ -25,6 +25,9 @@
 //#include "core/user/userex/_userex.h"
 //#include "core/user/experience/_experience.h"
 //#include "aura/user/databaseuser/_databaseuser.h"
+#include "axis/math/_.h"
+#include "axis/math/calculator/_.h"
+#include "axis/math/kissfft/_.h"
 #endif
 //#include "aura/crypto/crypto_openssl.h"
 #include "aura/_defer.h"

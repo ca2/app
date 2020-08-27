@@ -5,7 +5,7 @@ namespace calculator
 {
 
 
-   class CLASS_DECL_CORE parser :
+   class CLASS_DECL_AXIS parser :
       virtual public ::object
    {
    public:
@@ -15,9 +15,11 @@ namespace calculator
       __pointer_array(::calculator::element)       m_elementa;
 
 
-      parser(::object * pobject);
+      parser();
       virtual ~parser();
 
+
+      virtual ::estatus initialize(::object* pobjectContext) override;
 
       ::calculator::element * parse(const char * psz);
 

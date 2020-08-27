@@ -18,14 +18,14 @@ numeric_parser_exception::~numeric_parser_exception()
 }
 
 
-CLASS_DECL_CORE bool get_avoid_numeric_parser_exception()
+CLASS_DECL_AXIS bool get_avoid_numeric_parser_exception()
 {
 
    return thread_is_set(id_thread_avoid_numeric_parser_exception);
 
 }
 
-CLASS_DECL_CORE bool throw_numeric_parser_exception(const string & strMessage)
+CLASS_DECL_AXIS bool throw_numeric_parser_exception(const string & strMessage)
 {
 
    if(get_avoid_numeric_parser_exception())

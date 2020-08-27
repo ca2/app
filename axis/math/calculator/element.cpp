@@ -5,6 +5,7 @@
 namespace calculator
 {
 
+
    element::element()
    {
       m_pparent   = nullptr;

@@ -25,16 +25,34 @@ namespace calculator
    }
 
 
-   scanner::scanner(::object * pobject) :
-      ::object(pobject)
+   scanner::scanner()
    {
+
       input       = nullptr;
+
    }
+
 
    scanner::~scanner()
    {
    }
 
+
+   ::estatus scanner::initialize(::object* pobjectContext)
+   {
+
+      auto estatus = ::object::initialize(pobjectContext);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
 
    void scanner::initialize(const char * psz)
    {

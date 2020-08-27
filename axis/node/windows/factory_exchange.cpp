@@ -37,8 +37,8 @@
 //} // namespace axis
 
 
-void __node_axis_factory_exchange()
-{
+//void __node_axis_factory_exchange()
+//{
 
    //create_factory < ::windows::dir_system, ::dir_system >();
    //create_factory < ::windows::file_system, ::file_system >();
@@ -67,7 +67,7 @@ void __node_axis_factory_exchange()
    //create_factory < ::windows::shell, ::user::shell >();
 
 
-}
+//}
 
 
 

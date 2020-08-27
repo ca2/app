@@ -326,7 +326,14 @@ namespace draw2d_quartz2d
    bool path::_set(::draw2d::graphics * pgraphics, ::draw2d::path::line * pline)
    {
       
-      return internal_add_line(pline->m_pointBeg.x, pline->m_pointEnd.y);
+      if(pline->m_pointBeg != m_pointBeg)
+      {
+         
+         internal_add_line(pline->m_pointBeg.x, pline->m_pointBeg.y);
+         
+      }
+      
+      return internal_add_line(pline->m_pointEnd.x, pline->m_pointEnd.y);
       
    }
 

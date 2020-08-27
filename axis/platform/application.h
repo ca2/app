@@ -36,7 +36,7 @@ namespace axis
 
       virtual void assert_valid() const override;
       virtual void dump(dump_context & dumpcontext) const override;
-      virtual bool assert_user_logged_in();
+      virtual bool assert_user_logged_in() override;
 
       virtual string __get_text(string str) override;
 
@@ -48,74 +48,74 @@ namespace axis
 
 
       virtual ::simpledb::server * simpledb();
-      virtual ::database::server * dataserver();
+      virtual ::database::server * dataserver() override;
 
 
       virtual ::estatus verb() override;
 
 
-      virtual bool Ex2OnAppInstall();
-      virtual bool Ex2OnAppUninstall();
+      virtual bool Ex2OnAppInstall() override;
+      virtual bool Ex2OnAppUninstall() override;
 
-      virtual ::estatus init_application();
+      virtual ::estatus init_application() override;
 
-      virtual ::estatus init1();
-      virtual ::estatus init2();
-      virtual ::estatus init3();
-
-
-      virtual ::estatus init();
+      virtual ::estatus init1() override;
+      virtual ::estatus init2() override;
+      virtual ::estatus init3() override;
 
 
-      virtual ::estatus init_instance();
+      virtual ::estatus init() override;
+
+
+      virtual ::estatus init_instance() override;
 
 
       virtual ::estatus     run() override;
       virtual ::estatus     main() override;
-      virtual ::estatus     on_run();
+      virtual ::estatus     on_run() override;
 
-      virtual ::estatus application_pre_run();
-      virtual ::estatus os_native_bergedge_start();
-
-
-
-
-
-      virtual void term();
-
-
-      virtual void term_application();
+      virtual ::estatus application_pre_run() override;
+      virtual ::estatus os_native_bergedge_start() override;
 
 
 
 
-      virtual bool InitApplication();
+
+      virtual void term() override;
 
 
-      virtual ::estatus process_init();
+      virtual void term_application() override;
 
 
+
+
+      virtual bool InitApplication() override;
+
+
+      virtual ::estatus process_init() override;
 
 
 
 
 
 
-      virtual bool app_data_set(const ::id & id, stream & os);
-      virtual bool app_data_get(const ::id & id, stream & is);
-
-      virtual bool app_data_set(const ::id & id, ::object & obj);
-      virtual bool app_data_get(const ::id & id, ::object & obj);
 
 
+      virtual bool app_data_set(const ::id & id, stream & os) override;
+      virtual bool app_data_get(const ::id & id, stream & is) override;
+
+      virtual bool app_data_set(const ::id & id, ::object & obj) override;
+      virtual bool app_data_get(const ::id & id, ::object & obj) override;
 
 
-      virtual void process_term();
 
 
-      virtual void term1();
-      virtual void term2();
-      virtual void term3();
+      virtual void process_term() override;
+
+
+      virtual void term1() override;
+      virtual void term2() override;
+      virtual void term3() override;
 
 
 

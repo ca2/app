@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "axis/xml/_.h"
 #include "aura/astr.h"
 
@@ -436,7 +436,7 @@ namespace xml
 
                      bool trim = pparseinfo->m_bTrimValue;
 
-                     CHAR escape = pparseinfo->m_chEscapeValue;
+                     //CHAR escape = pparseinfo->m_chEscapeValue;
 
                      string strValue;
 

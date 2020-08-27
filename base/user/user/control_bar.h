@@ -65,6 +65,70 @@ class BaseDockState;
 #define LM_COMMIT   0x40    // Remember MRUWidth
 
 
+#ifndef CCS_TOP
+
+// begin_r_commctrl
+
+//====== COMMON CONTROL STYLES ================================================
+
+#define CCS_TOP                 0x00000001L
+#define CCS_NOMOVEY             0x00000002L
+#define CCS_BOTTOM              0x00000003L
+#define CCS_NORESIZE            0x00000004L
+#define CCS_NOPARENTALIGN       0x00000008L
+#define CCS_ADJUSTABLE          0x00000020L
+#define CCS_NODIVIDER           0x00000040L
+#define CCS_VERT                0x00000080L
+#define CCS_LEFT                (CCS_VERT | CCS_TOP)
+#define CCS_RIGHT               (CCS_VERT | CCS_BOTTOM)
+#define CCS_NOMOVEX             (CCS_VERT | CCS_NOMOVEY)
+
+// end_r_commctrl
+
+//====== SysLink control =========================================
+
+#ifdef _WIN32
+#if (NTDDI_VERSION >= NTDDI_WINXP)
+
+#define INVALID_LINK_INDEX  (-1)
+#define MAX_LINKID_TEXT     48
+#define L_MAX_URL_LENGTH    (2048 + 32 + sizeof("://"))
+
+#define WC_LINK         L"SysLink"
+
+// begin_r_commctrl
+
+#define LWS_TRANSPARENT     0x0001
+#define LWS_IGNORERETURN    0x0002
+#if (NTDDI_VERSION >= NTDDI_VISTA)
+#define LWS_NOPREFIX        0x0004
+#define LWS_USEVISUALSTYLE  0x0008
+#define LWS_USECUSTOMTEXT   0x0010
+#define LWS_RIGHT           0x0020
+#endif // (NTDDI_VERSION >= NTDDI_VISTA)
+
+// end_r_commctrl
+
+#define LIF_ITEMINDEX    0x00000001
+#define LIF_STATE        0x00000002
+#define LIF_ITEMID       0x00000004
+#define LIF_URL          0x00000008
+
+#define LIS_FOCUSED         0x00000001
+#define LIS_ENABLED         0x00000002
+#define LIS_VISITED         0x00000004
+#if (NTDDI_VERSION >= NTDDI_VISTA)
+#define LIS_HOTTRACK        0x00000008
+#define LIS_DEFAULTCOLORS   0x00000010 // Don't use any custom text colors
+#endif
+
+#endif
+
+#endif
+
+#endif
+
+
 /////////////////////////////////////////////////////////////////////////////
 // BaseControlBarInfo - used for docking serialization
 

@@ -27,7 +27,7 @@ namespace multimedia
       ::estatus in::init_thread()
       {
 
-         TRACE("in::init_instance %X\n", get_os_int());
+         TRACE("in::init_instance %X\n", get_ithread());
          //SetMainWnd(nullptr);
          //ASSERT(GetMainWnd() == nullptr);
          ::multithreading::set_priority(::priority_highest);

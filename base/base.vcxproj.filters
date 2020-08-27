@@ -21,17 +21,11 @@
     <Filter Include="Header Files\user\user">
       <UniqueIdentifier>{56c22d9d-a50c-4f18-9f8c-b278792cf0d3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\user\userpresence">
-      <UniqueIdentifier>{ef45a465-bf15-4cbf-8bb0-193f32578f88}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\inline">
       <UniqueIdentifier>{ca5a634b-db67-405b-b94e-e17dbe4fdeeb}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{884e337b-3347-4863-8d95-d6b0a4245427}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\user\userpresence">
-      <UniqueIdentifier>{5c13f854-3688-42d2-9dcd-744664685243}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\include">
       <UniqueIdentifier>{0c0346ef-bd1c-4a0a-85b1-cfd8ef8ec242}</UniqueIdentifier>
@@ -127,9 +121,6 @@
     </ClInclude>
     <ClInclude Include="inline\_draw2d_impl.h">
       <Filter>Header Files\inline</Filter>
-    </ClInclude>
-    <ClInclude Include="user\userpresence\department.h">
-      <Filter>Header Files\user\userpresence</Filter>
     </ClInclude>
     <ClInclude Include="user\user\form_callback.h">
       <Filter>Header Files\user\user</Filter>
@@ -265,12 +256,6 @@
     </ClInclude>
     <ClInclude Include="user\user\user.h">
       <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\userpresence\_.h">
-      <Filter>Header Files\user\userpresence</Filter>
-    </ClInclude>
-    <ClInclude Include="user\userpresence\presence.h">
-      <Filter>Header Files\user\userpresence</Filter>
     </ClInclude>
     <ClInclude Include="user\user\document_manager_container.h">
       <Filter>Header Files\user\user</Filter>
@@ -564,12 +549,6 @@
     </ClCompile>
     <ClCompile Include="user\user\validate.cpp">
       <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userpresence\department.cpp">
-      <Filter>Source Files\user\userpresence</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userpresence\presence.cpp">
-      <Filter>Source Files\user\userpresence</Filter>
     </ClCompile>
     <ClCompile Include="user\user\form_callback.cpp">
       <Filter>Source Files\user\user</Filter>

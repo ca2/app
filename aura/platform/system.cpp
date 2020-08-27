@@ -8346,11 +8346,17 @@ namespace aura
 } // namespace aura
 
 
+#ifdef __APPLE__
+
+string get_bundle_app_library_name();
+
+#endif
+
 
 ::aura::system* platform_create_system(HINSTANCE hinstance)
 {
 
-#ifndef CUBE
+#if defined(WINDOWS) && !defined(CUBE)
 
    string strLevel = read_resource_as_string(hinstance, 108, "LEVEL");
 
@@ -8371,6 +8377,29 @@ namespace aura
       }
 
    }
+   
+#elif defined(__APPLE__)
+
+   string strLibraryName = get_bundle_app_library_name();
+
+   if (strLibraryName.has_char())
+   {
+
+      string strMessage;
+
+      auto plibrary = __node_library_open(strLibraryName, strMessage);
+
+      if (!plibrary)
+      {
+
+         os_message_box(NULL, strMessage, "Could not open required library.", MB_ICONEXCLAMATION);
+
+         return nullptr;
+
+      }
+
+   }
+
 
 #endif
 

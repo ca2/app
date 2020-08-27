@@ -22,7 +22,11 @@ namespace app_app
 
       main_window::on_create_user_interaction();
 
+#ifdef WINDOWS_DESKTOP
+      
       ModifyStyle(WS_CAPTION, 0);
+      
+#endif
 
       ModifyStyleEx(0, WS_EX_LAYERED);
 

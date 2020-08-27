@@ -1237,7 +1237,7 @@ virtual void on_change_cur_sel(::user::tab* ptab);
 //
 ////virtual ::estatus init_instance() override;
 //
-virtual ::estatus     create_impact_system();
+virtual ::estatus     create_impact_system() override;
 //
 ////virtual ::type user_default_controltype_to_typeinfo(::user::e_control_type econtroltype) override;
 ////virtual ::type control_type_from_id(const ::id& id, ::user::e_control_type& econtroltype) override;

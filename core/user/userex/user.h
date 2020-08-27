@@ -282,7 +282,7 @@ namespace core
       virtual ::type get_simple_child_frame_type_info();
 
 
-      virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::patha& patha);
+      virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::patha& patha) override;
 
 
 

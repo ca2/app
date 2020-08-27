@@ -9,9 +9,14 @@
 #include "platform/config.h"
 
 
-#include "platform/__/__bit.h"
+#include "__/__bit.h"
+#include "__/__stdint.h"
+#include "__/__inttypes.h"
+#include "_aura_type.h"
+
 #include "platform/system.h"
 #include "platform/types.h"
+#include "aura/primitive/geometry2d/_struct.h"
 #include "_aura_type.h"
 #include "_aura_memory.h"
 
@@ -27,7 +32,7 @@ typedef iptr strsize;
 
 
 #include "aura/os/threading.h"
-#include "aura/platform/struct.h"
+//#include "aura/platform/struct.h"
 #include "aura/os/cross/cross.h"
 #include "aura/os/aura.h"
 

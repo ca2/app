@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "core/user/user/shell.h"
 #include "core/node/_node.h"
 #include "aura/compress/zip/_.h"
@@ -877,7 +877,7 @@ namespace user
 
          {
             ::image_pointer d = m_pilHover[iSize]->m_pimage;
-            size s = m_pil[iSize]->m_pimage->get_size();
+            //size s = m_pil[iSize]->m_pimage->get_size();
             ::image_pointer pimage(this);
             pimage->create(d->size());
             pimage->fill(255, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk));

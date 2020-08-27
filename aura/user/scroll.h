@@ -118,7 +118,7 @@ namespace user
 
       virtual void on_change_view_size() override;
       virtual void on_change_viewport_offset() override;
-      virtual i32 get_wheel_scroll_delta();
+      virtual i32 get_wheel_scroll_delta() override;
       virtual void create_y_scroll_bar(const ::rect & rect);
       virtual void layout_scroll_bar() override;
       virtual void _001DeferCreateYScrollBar();
@@ -173,7 +173,7 @@ namespace user
       virtual bool GetActiveClientRect(RECT * prect);
 
 
-      virtual bool GetFocusRect(RECT * prect);
+      virtual bool GetFocusRect(RECT * prect) override;
 
 
 

@@ -14,7 +14,7 @@
 		9A258EB724DA97980013F50E /* libgpu_opengl.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A8B644624CBE7B500A93185 /* libgpu_opengl.dylib */; };
 		9A258EB824DA97980013F50E /* libimaging_coreimage.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A8B638324CBD68100A93185 /* libimaging_coreimage.dylib */; };
 		9A488A4D24EB4B7500119EC4 /* libapp_app.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A4889EC24EB4A2200119EC4 /* libapp_app.dylib */; };
-		9A488A5024EB4B8700119EC4 /* libapp_app_shader.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A4889F224EB4A3800119EC4 /* libapp_app_shader.dylib */; };
+		9A488A5024EB4B8700119EC4 /* libapp_shader.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A4889F224EB4A3800119EC4 /* libapp_shader.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -167,7 +167,7 @@
 			dstPath = "$(WorkspaceDir)/time/$(PLATFORM_MODIFIER)";
 			dstSubfolderSpec = 0;
 			files = (
-				9A488A5024EB4B8700119EC4 /* libapp_app_shader.dylib in CopyFiles */,
+				9A488A5024EB4B8700119EC4 /* libapp_shader.dylib in CopyFiles */,
 				9A488A4D24EB4B7500119EC4 /* libapp_app.dylib in CopyFiles */,
 				9A258EB124DA97980013F50E /* libaura.dylib in CopyFiles */,
 				9A258EB324DA97980013F50E /* libdraw2d_quartz2d.dylib in CopyFiles */,
@@ -245,7 +245,7 @@
 		9A4889EE24EB4A3800119EC4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A4889F224EB4A3800119EC4 /* libapp_app_shader.dylib */,
+				9A4889F224EB4A3800119EC4 /* libapp_shader.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -395,10 +395,10 @@
 			remoteRef = 9A4889EB24EB4A2200119EC4 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A4889F224EB4A3800119EC4 /* libapp_app_shader.dylib */ = {
+		9A4889F224EB4A3800119EC4 /* libapp_shader.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libapp_app_shader.dylib;
+			path = libapp_shader.dylib;
 			remoteRef = 9A4889F124EB4A3800119EC4 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};

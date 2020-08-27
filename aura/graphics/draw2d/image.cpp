@@ -5627,28 +5627,55 @@ bool image::rotate270flipx()
 
 bool image::fill_byte(uchar uch)
 {
-
-   map();
-
-   if (area() <= 0 || get_data() == nullptr)
+   
+   if(m_bMapped)
    {
 
-      return false;
+      if (area() <= 0 || get_data() == nullptr)
+      {
 
+         return false;
+
+      }
+
+      int iScan = m_iScan;
+
+      int iHeight = get_size().cy;
+
+      if (iScan <= 0 || iHeight <= 0)
+      {
+
+         return false;
+
+      }
+
+      __memset(get_data(), uch, (memsize)(iScan * iHeight));
+      
    }
-
-   int iScan = m_iScan;
-
-   int iHeight = get_size().cy;
-
-   if (iScan <= 0 || iHeight <= 0)
+   else if(g())
    {
-
-      return false;
-
+   
+      auto color = __acolor(uch, uch, uch, uch);
+      
+      auto ealphamode = g()->m_ealphamode;
+      
+      if(ealphamode != ::draw2d::alpha_mode_set)
+      {
+      
+         g()->set_alpha_mode(::draw2d::alpha_mode_set);
+         
+      }
+      
+      g()->fill_solid_rect_dim(0, 0, m_size.cx, m_size.cy, color);
+      
+      if(ealphamode != ::draw2d::alpha_mode_set)
+      {
+         
+         g()->set_alpha_mode(ealphamode);
+         
+      }
+   
    }
-
-   __memset(get_data(), uch, (memsize)(iScan * iHeight));
 
    return true;
 

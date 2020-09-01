@@ -128,7 +128,7 @@ namespace windows
 
       virtual void on_visual_applied() override;
 
-      virtual void window_apply_visual(const ::user::window_state & windowstate) override;
+      //virtual void window_apply_visual(const ::user::window_state & windowstate) override;
 
       DECL_GEN_SIGNAL(_001OnDestroy);
       DECL_GEN_SIGNAL(_001OnCreate);
@@ -769,7 +769,7 @@ namespace windows
       virtual bool get_rect_normal(RECT * prect);
       virtual void register_drop_target();
       virtual void show_task(bool bShow);
-      virtual void _do_show_window() override;
+      virtual void window_show_change_visibility() override;
 
 
       virtual void non_top_most_upper_window_rects(::rect_array& recta) override;

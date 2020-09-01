@@ -1068,6 +1068,7 @@ namespace user
    {
 
       INFO("_001OnKeyDown (1)");
+
       {
 
          ::user::control_event ev;
@@ -5942,7 +5943,7 @@ finished_update:
 
          ::CreateCaret(hwnd, 0, 1, m_iLineHeight);
 
-         ::point pointCaret = origin();
+         ::point pointCaret = layout().design().origin();
 
          _001ClientToScreen(pointCaret);
 

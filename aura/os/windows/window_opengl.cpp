@@ -26,10 +26,10 @@ namespace opengl
    }
 
 
-   bool buffer::create_buffer(const ::size & size, int iStride)
+   bool buffer::update_buffer(const ::size & size, int iStride)
    {
 
-      return ::graphics::buffer::create_buffer(size, iStride);
+      return ::graphics::buffer::update_buffer(size, iStride);
 
    }
 

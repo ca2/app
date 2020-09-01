@@ -66,7 +66,7 @@ namespace graphics
 
 
 
-   bool buffer::create_buffer(const ::size & size, int iScan)
+   bool buffer::update_buffer(const ::size & size, int iScan)
    {
 
       if (!m_pimageBuffer->create(size))
@@ -110,7 +110,7 @@ namespace graphics
 
       auto sizeWindow = window_size();
 
-      if (buffer_size() != sizeWindow)
+      ///if (buffer_size() != sizeWindow)
       {
 
          string strType = m_pimpl->m_puserinteraction->type_name();
@@ -123,7 +123,7 @@ namespace graphics
          }
 
 
-         if (!create_buffer(sizeWindow))
+         if (!update_buffer(sizeWindow))
          {
 
             return nullptr;

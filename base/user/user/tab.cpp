@@ -3499,7 +3499,7 @@ namespace user
 
          index iClickTab = get_data()->m_iClickTab;
 
-         if(item && item == iClickTab)
+         if(item.is_set() && item == iClickTab)
          {
 
             get_data()->m_bDrag = true;

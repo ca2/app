@@ -17,6 +17,22 @@ namespace user
 
    }
 
+   
+   ::user::interaction* controller::impact_at(::index iImpact) const
+   {
+
+      return nullptr;
+
+   }
+   
+
+   ::count controller::impact_count() const
+   {
+
+      return 0;
+
+   }
+
 
    void controller::dump(dump_context&dumpcontext) const
    {

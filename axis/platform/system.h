@@ -105,6 +105,8 @@ namespace axis
 
       virtual ::estatus create_html();
 
+      virtual ::estatus defer_create_html();
+
 
       void assert_valid() const override;
       void dump(dump_context& action_context) const override;

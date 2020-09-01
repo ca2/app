@@ -8,6 +8,7 @@ namespace user
    frame::frame()
    {
       
+      m_bShowControlBox = true;
       m_bDefaultNotifyIcon = false;
       m_bCloseApplicationIfLastVisibleFrame = true;
       m_pframe = this;
@@ -76,6 +77,18 @@ namespace user
 
       return 0;
 
+   }
+
+
+   ::estatus frame::add_menu_item(const string & strPath, const string & strText, const string & strId)
+   {
+
+      m_straMenuParent.add(strPath);
+      m_straMenuName.add(strText);
+      m_straMenuId.add(strId);
+   
+      return ::success;
+   
    }
 
 
@@ -166,7 +179,7 @@ namespace user
          return m_sizeMinimum;
 
       }
-      else if (display_state() == ::display_minimal)
+      else if (layout().sketch().display() == ::display_minimal)
       {
 
          return ::size(8, 8);

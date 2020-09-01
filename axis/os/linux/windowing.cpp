@@ -3431,7 +3431,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                         bHandled = true;
 
                      }
-                     else if(pinteraction->display_request() == ::display_full_screen
+                     else if(pinteraction->layout().sketch().display() == ::display_full_screen
                            && pinteraction->display_state() != ::display_full_screen)
                      {
 
@@ -3493,7 +3493,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
                ::e_display edisplayPrevious = pinteraction->m_windowrect.m_edisplayPrevious;
 
-               pinteraction->request_state().m_edisplay3 = edisplayPrevious;
+               pinteraction->layout().sketch().m_edisplay3 = edisplayPrevious;
 
                pinteraction->process_state().m_edisplay3 = edisplayPrevious;
 
@@ -3674,10 +3674,10 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
       int YRoot = e.xbutton.y_root;
 
-//      int l = msg.hwnd->m_pimpl->m_puserinteraction->request_state().m_point.x;
-//      int t = msg.hwnd->m_pimpl->m_puserinteraction->request_state().m_point.y;
-//      int w = msg.hwnd->m_pimpl->m_puserinteraction->request_state().m_size.cx;
-//      int h = msg.hwnd->m_pimpl->m_puserinteraction->request_state().m_size.cy;
+//      int l = msg.hwnd->m_pimpl->m_puserinteraction->layout().sketch().m_point.x;
+//      int t = msg.hwnd->m_pimpl->m_puserinteraction->layout().sketch().m_point.y;
+//      int w = msg.hwnd->m_pimpl->m_puserinteraction->layout().sketch().m_size.cx;
+//      int h = msg.hwnd->m_pimpl->m_puserinteraction->layout().sketch().m_size.cy;
 //
 //      ::rect r;
 //
@@ -5123,7 +5123,7 @@ void x11_store_name(oswindow oswindow, const char * pszName)
 //   if(!bMoveDiff)
 //   {
 //
-//      if(pinteraction->request_state().m_point != point)
+//      if(pinteraction->layout().sketch().m_point != point)
 //      {
 //
 //         bMoveDiff = true;
@@ -5139,7 +5139,7 @@ void x11_store_name(oswindow oswindow, const char * pszName)
 //   if(!bSizeDiff)
 //   {
 //
-//      if(pinteraction->request_state().m_size != size)
+//      if(pinteraction->layout().sketch().m_size != size)
 //      {
 //
 //         bSizeDiff = true;

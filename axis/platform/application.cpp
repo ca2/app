@@ -1837,9 +1837,7 @@ namespace axis
    ::database::server * application::dataserver()
    {
 
-      //return simpledb();
-
-      return nullptr;
+      return m_psimpledb;
 
    }
 

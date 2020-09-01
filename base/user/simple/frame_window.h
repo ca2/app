@@ -203,8 +203,8 @@ public:
    virtual void NotifyFloatingWindows(u32 dwFlags) override;
 
 
-   virtual void prodevian_prepare_down() override;
-   virtual void prodevian_prepare_up() override;
+   virtual void design_down() override;
+   virtual void design_up() override;
 
 
    virtual bool calc_layered() override;

@@ -1587,6 +1587,8 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="user\copydesk.cpp" />
     <ClCompile Include="user\create.cpp" />
     <ClCompile Include="user\create_struct.cpp" />
+    <ClCompile Include="user\form.cpp" />
+    <ClCompile Include="user\form_callback.cpp" />
     <ClCompile Include="user\frame.cpp" />
     <ClCompile Include="user\imm_client.cpp" />
     <ClCompile Include="user\interaction.cpp" />
@@ -1600,7 +1602,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="user\keyboard.cpp" />
     <ClCompile Include="user\language.cpp" />
     <ClCompile Include="user\language_map.cpp" />
-    <ClCompile Include="user\layout.cpp" />
+    <ClCompile Include="user\interaction_layout.cpp" />
     <ClCompile Include="user\main_window.cpp" />
     <ClCompile Include="user\message_queue.cpp" />
     <ClCompile Include="user\mouse.cpp" />
@@ -2022,6 +2024,8 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="user\copydesk.h" />
     <ClInclude Include="user\create.h" />
     <ClInclude Include="user\create_struct.h" />
+    <ClInclude Include="user\form.h" />
+    <ClInclude Include="user\form_callback.h" />
     <ClInclude Include="user\frame.h" />
     <ClInclude Include="user\imm_client.h" />
     <ClInclude Include="user\interaction.h" />
@@ -2034,7 +2038,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="user\keyboard.h" />
     <ClInclude Include="user\language.h" />
     <ClInclude Include="user\language_map.h" />
-    <ClInclude Include="user\layout.h" />
+    <ClInclude Include="user\interaction_layout.h" />
     <ClInclude Include="user\main_window.h" />
     <ClInclude Include="user\message_queue.h" />
     <ClInclude Include="user\message_queue_listener.h" />
@@ -2894,7 +2898,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <None Include="filesystem\_impl.h" />
     <None Include="filesystem\file\_impl.h" />
     <None Include="filesystem\file\_serializable_impl.h" />
-    <None Include="graphics\draw2d\_visual_impl.h" />
     <None Include="graphics\draw2d\_impl.h" />
     <None Include="graphics\_impl.h" />
     <None Include="primitive\collection\_array_impl2.h" />

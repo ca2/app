@@ -142,7 +142,7 @@ namespace user
 
       void set_drawn() { m_uFlags |= ITEM_DRAWN; }
 
-      operator bool() const { return m_eelement != ::user::element_none; }
+      bool is_set() const { return m_eelement != ::user::element_none; }
 
       operator e_element() const { return m_eelement; }
 

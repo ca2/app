@@ -134,7 +134,7 @@ namespace user
             INFO("interaction_child::create_window_ex (rectChild %d, %d, (%d, %d))", rectChild.origin().x, rectChild.origin().y, rectChild.width(), rectChild.height());
             INFO("");
             INFO("");
-            m_puserinteraction->place(rectChild);
+            m_puserinteraction->layout().sketch() = rectChild;
 
          }
 
@@ -417,7 +417,7 @@ namespace user
    }
 
 
-   bool interaction_child::is_this_visible()
+   bool interaction_child::is_this_visible(e_layout elayout)
    {
 
       if (!m_puserinteraction)
@@ -441,7 +441,7 @@ namespace user
 
       //}
 
-      if (!::is_visible(m_puserinteraction->window_display()))
+      if (!m_puserinteraction->layout().state(elayout).is_visible())
       {
 
          return false;
@@ -453,38 +453,32 @@ namespace user
    }
 
 
-   void interaction_child::_do_show_window()
+   void interaction_child::window_show_change_visibility(::edisplay edisplay, ::eactivation eactivation)
    {
 
       try
       {
 
-         //if (is_different(GetStyle() & WS_VISIBLE, is_visible(m_puserinteraction->display_state())))
+         if (::is_visible(edisplay))
          {
 
-            if (is_visible(m_puserinteraction->display_state()))
-            {
+            ModifyStyle(0, WS_VISIBLE);
 
-               ModifyStyle(0, WS_VISIBLE);
+            m_puserinteraction->send_message(WM_SHOWWINDOW, 1);
 
-               m_puserinteraction->send_message(WM_SHOWWINDOW, 1);
+         }
+         else
+         {
 
-            }
-            else
-            {
+            ModifyStyle(WS_VISIBLE, 0);
 
-               ModifyStyle(WS_VISIBLE, 0);
-
-               m_puserinteraction->send_message(WM_SHOWWINDOW, 0);
-
-            }
+            m_puserinteraction->send_message(WM_SHOWWINDOW, 0);
 
          }
 
       }
       catch (...)
       {
-
 
       }
 
@@ -607,7 +601,7 @@ namespace user
 
          ::rect rectWindow;
          
-         m_puserinteraction->get_window_rect(rectWindow);
+         m_puserinteraction->get_window_rect(rectWindow, ::user::layout_design);
 
          auto pwnd = get_wnd();
 
@@ -701,16 +695,16 @@ namespace user
    bool interaction_child::start_window_visual()
    {
 
-      if (m_puserinteraction->window_state3() == m_puserinteraction->process_state())
+      if (m_puserinteraction->layout().window().visual() == m_puserinteraction->layout().sketch().visual())
       {
 
          return true;
 
       }
 
-      bool bWasVisible = is_visible(m_puserinteraction->window_state3().m_edisplay3);
+      bool bWasVisible = m_puserinteraction->layout().window().is_visible();
 
-      bool bNewVisible = is_visible(m_puserinteraction->process_state().m_edisplay3);
+      bool bNewVisible = m_puserinteraction->layout().sketch().is_visible();
 
       bool bChangeVisibility = is_different(bWasVisible, bNewVisible);
 

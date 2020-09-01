@@ -65,6 +65,9 @@ namespace aura
 
    session::session()
    {
+      
+      m_bAcceptsFirstResponder = true;
+      
       m_bSimpleMessageLoop = false;
       m_bMessageThread = true;
       m_iEdge = -1;
@@ -353,6 +356,13 @@ namespace aura
 
          return estatus;
 
+      }
+      
+      if(System.m_bAvoidFirstResponder)
+      {
+         
+         m_bAcceptsFirstResponder = false;
+         
       }
 
       INFO("aura::str_context Succeeded to Allocate!!");
@@ -3366,7 +3376,7 @@ namespace aura
 
          ::rect rect;
 
-         pinteraction->get_window_rect(rect);
+         pinteraction->layout().sketch().screen_rect(rect);
 
          return get_best_wkspace(nullptr, rect);
 
@@ -4394,7 +4404,7 @@ ret:
    void session::translate_os_key_message(::user::key * pkey)
    {
 
-//      Session.keyboard().translate_os_key_message(pkey);
+      keyboard().translate_os_key_message(pkey);
 
    }
 
@@ -4412,21 +4422,7 @@ ret:
    }
 
 
-   // ::user::style* session::get_user_style() const
-   // {
-
-   //    return m_puserstyle;
-
-   // }
-
-
 } // namespace aura
-
-
-
-
-
-
 
 
 #define MAGIC_PALACE_TAB_SPLT "->:<-"

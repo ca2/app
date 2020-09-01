@@ -19,6 +19,8 @@ namespace experience
       m_penButtonBackDisabled(e_create)
    {
 
+      m_strInteractionTag = "control_box";
+      
       set_control_box_button_id(button_close, "frame::ButtonClose");
       set_control_box_button_id(button_up, "frame::button_up");
       set_control_box_button_id(button_down, "frame::button_down");
@@ -432,7 +434,7 @@ namespace experience
 
          return true;
 
-         //auto edisplay = m_pframewindow->display_request();
+         //auto edisplay = m_pframewindow->layout().sketch().display();
 
          //return is_iconic(edisplay)
             // || is_full_screen(edisplay)
@@ -548,7 +550,7 @@ namespace experience
    void control_box::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto edisplay = m_pframewindow->display_request();
+      auto edisplay = m_pframewindow->layout().sketch().display();
 
       ::rect rectWindow;
 
@@ -970,7 +972,7 @@ namespace experience
       get_control_box_button_caption(ebutton, strCaption);
 
       id id = get_control_box_button_id(ebutton);
-
+      
       if (m_buttonmap.lookup(ebutton, pbutton))
       {
 
@@ -980,7 +982,11 @@ namespace experience
             return false;
             
          }
-
+         
+         string strTag = get_control_box_button_tag(ebutton);
+         
+         pbutton->m_strInteractionTag = strTag;
+         
          update_control_box_button(ebutton);
 
       }
@@ -1092,6 +1098,38 @@ namespace experience
       
       return m_mapButtonId[ebutton];
 
+   }
+
+
+   string control_box::get_control_box_button_tag(e_button ebutton)
+   {
+   
+      switch(ebutton)
+      {
+         case button_close: // stock_icon_close
+            return "button_close";
+         case button_up: // stock_icon_level_up
+            return "button_up";
+         case button_down: // stock_icon_level_down
+            return "button_down";
+         case button_minimize: // stock_icon_iconify
+            return "button_minimize";
+         case button_restore: // stock_icon_restore
+            return "button_restore";
+         case button_maximize: // stock_icon_maximize
+            return "button_maximize";
+         case button_notify_icon: // stock_icon_notify
+            return "button_notify_icon";
+         case button_transparent_frame: // stock_icon_transparent_frame
+            return "button_transparent_frame";
+         case button_dock: // stock_icon_dock
+            return "button_dock";
+         default:
+            break;
+      }
+      
+      return "(unknown)";
+   
    }
 
    

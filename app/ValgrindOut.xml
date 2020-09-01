@@ -13337,7 +13337,7 @@
     <frame>
       <ip>0x5D34BEB</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>user::interaction_impl::window_thread_apply_visual()</fn>
+      <fn>user::interaction_impl::window_show()</fn>
       <dir>/xcore/app/aura/user/user</dir>
       <file>interaction_impl.cpp</file>
       <line>3902</line>
@@ -13412,7 +13412,7 @@
     <frame>
       <ip>0x5D34A8B</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>user::interaction_impl::window_thread_apply_visual()</fn>
+      <fn>user::interaction_impl::window_show()</fn>
       <dir>/xcore/app/aura/user/user</dir>
       <file>interaction_impl.cpp</file>
       <line>3891</line>

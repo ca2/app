@@ -297,7 +297,7 @@ namespace user
 
          auto item = hit_test(pmouse);
 
-         if (item)
+         if (item.is_set())
          {
 
             auto pformattool = get_font_format_tool(true);
@@ -390,7 +390,7 @@ namespace user
 
          auto item = hit_test(pmouse);
 
-         if (item && Session.user()->get_mouse_focus_LButtonDown() == this)
+         if (item.is_set() && Session.user()->get_mouse_focus_LButtonDown() == this)
          {
 
             m_pdata->m_iSelEnd = item;
@@ -432,7 +432,7 @@ namespace user
 
          m_itemHover = hit_test(pmouse);
 
-         if (m_itemHover)
+         if (m_itemHover.is_set())
          {
 
             pmouse->m_ecursor = cursor_text_select;

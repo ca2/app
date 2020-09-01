@@ -101,7 +101,7 @@ namespace draw2d
 
       virtual ::file::path get_font_path(const string& strName);
 
-      inline oswindow get_window_handle() const;
+      virtual oswindow get_window_handle() const;
 
 
       void draw_ca2(int x,int y,int z,const ::color & colorBk,const ::color & color);

@@ -6,7 +6,6 @@
 html_form::html_form()
 {
 
-   
    m_pelementalLButtonDown = nullptr;
    m_pelementalHover = nullptr;
 
@@ -23,6 +22,32 @@ html_form::~html_form()
 {
 
    //::aura::del(m_phtmlform);
+
+}
+
+
+::estatus html_form::initialize(::object* pobjectContext)
+{
+
+   auto estatus = ::user::form_view::initialize(pobjectContext);
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   estatus = System.defer_create_html();
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return estatus;
 
 }
 
@@ -193,7 +218,9 @@ void html_form::_001OnCreate(::message::message * pmessage)
 {
    
    SCAST_PTR(::message::create, pcreate, pmessage);
-   
+
+   System.defer_create_html();
+
    if(pcreate->previous())
    {
       
@@ -451,8 +478,7 @@ void html_form::set_need_load_form_data()
 }
 
 
-
-bool html_form::open_document(const var & varFile)
+::estatus html_form::open_document(const var & varFile)
 {
 
    auto path = varFile.get_file_path();
@@ -497,7 +523,7 @@ bool html_form::open_document(const var & varFile)
 }
 
 
-::estatus     html_form::open_html(const ::string & str)
+::estatus html_form::open_html(const ::string & str)
 {
    
    auto phtmldata = get_html_data();

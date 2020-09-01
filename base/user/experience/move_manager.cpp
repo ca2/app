@@ -126,7 +126,7 @@ namespace experience
 
          m_iConsiderMove++;
 
-         if (::is_docking_appearance(pframewindow->display_request()))
+         if (::is_docking_appearance(pframewindow->layout().sketch().display()))
          {
 
             pframewindow->m_pframe->defer_frame_placement_snapping();
@@ -163,7 +163,7 @@ namespace experience
 
          }
 
-         bool bApply = !is_docking_appearance(m_pframewindow->display_request());
+         bool bApply = !is_docking_appearance(m_pframewindow->layout().sketch().display());
 
          window_stop_moving(bApply, pmouse);
 
@@ -200,7 +200,7 @@ namespace experience
          else if (bApply)
          {
 
-            auto rectRequest = m_pframewindow->request_state().rect();
+            auto rectRequest = m_pframewindow->layout().sketch().rect();
 
             index iMatchingMonitor = m_pframewindow->good_move(rectRequest, nullptr, true);
 
@@ -319,7 +319,7 @@ namespace experience
 
 #else
 
-         pframewindow->order_top();
+         pframewindow->layout().order_top();
 
          pframewindow->move_to(point);
 

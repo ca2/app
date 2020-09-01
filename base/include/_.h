@@ -35,6 +35,9 @@
 #include "aura/platform/application_menu.h"
 
 
+#include "aura/user/form_callback.h"
+
+
 #include "base/platform/application.h"
 #include "base/platform/session.h"
 #include "base/platform/system.h"

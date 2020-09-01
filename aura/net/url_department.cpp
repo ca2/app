@@ -2,13 +2,14 @@
 #include "aura/id.h"
 #include "aura/astr.h"
 
-#ifdef WINDOWS_DESKTOP
-#include "idn/idna.h"
-#elif defined(ANDROID)
-#include "idn/idna.h"
-#elif defined(__APPLE__)
-#include <idn/idna.h>
-#elif defined(LINUX)
+//#ifdef WINDOWS_DESKTOP
+//#include "idn/idna.h"
+//#elif defined(ANDROID)
+//#include "idn/idna.h"
+//#elif defined(__APPLE__)
+//#include <idn/idna.h>
+//#elif defined(LINUX)
+#if defined(LINUX)
 // at Ubuntu - libidn11-dev
 #include <idna.h>
 #endif
@@ -1515,8 +1516,8 @@ namespace url
 
       return str;
 
-#else
-
+#elif defined(LINUX)
+      
       char * point = nullptr;
 
       Idna_rc rc = (Idna_rc) idna_to_ascii_8z(psz, &point, IDNA_ALLOW_UNASSIGNED);
@@ -1533,7 +1534,13 @@ namespace url
       free(point);
 
       return str;
+      
+#else
+            
+      //      __throw(todo("idn"));
 
+      return psz;
+      
 #endif
 
    }
@@ -1557,8 +1564,7 @@ namespace url
 
       return str;
 
-#else
-
+#elif defined(LINUX)
 
       if(psz == nullptr || *psz == '\0')
          return "";
@@ -1590,6 +1596,12 @@ namespace url
       free(point);
 
       return str;
+      
+#else
+      
+      //__throw(todo("idn"));
+      
+      return psz;
 
 #endif
 

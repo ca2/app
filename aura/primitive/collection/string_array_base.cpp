@@ -1,7 +1,7 @@
 #include "framework.h"
 #include <memory.h>
 
-char * const * alloc_c_string_array(string_array & stra)
+char * const * alloc_c_string_array(const string_array & stra)
 {
    
    auto iCount = stra.get_count();

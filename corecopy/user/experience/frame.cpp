@@ -1166,9 +1166,9 @@ namespace experience
                //&& !m_pframewindow->window_is_moving()
                //&& !m_pframewindow->window_is_sizing()
                && !m_pframewindow->window_is_docking()
-               //&& !::is_docking_appearance(m_pframewindow->display_request())
-               && m_pframewindow->display_request() != display_zoomed
-               && m_pframewindow->display_request() != display_full_screen)
+               //&& !::is_docking_appearance(m_pframewindow->layout().sketch().display())
+               && m_pframewindow->layout().sketch().display() != display_zoomed
+               && m_pframewindow->layout().sketch().display() != display_full_screen)
             {
 
                defer_frame_placement_snapping();
@@ -1198,7 +1198,7 @@ namespace experience
 
       }
 
-      auto edisplay = m_pframewindow->display_request();
+      auto edisplay = m_pframewindow->layout().sketch().display();
 
       ::rect rect;
 
@@ -1206,7 +1206,7 @@ namespace experience
 
       bool bPreserveSize;
 
-      rectRequest = m_pframewindow->request_state().rect();
+      rectRequest = m_pframewindow->layout().sketch().rect();
 
       bool bMoving = m_pframewindow->move_manager()->window_is_moving();
 
@@ -1248,7 +1248,7 @@ namespace experience
 
       auto iWkspace = m_pframewindow->get_best_zoneing(edisplay, &rect, rectRequest, bPreserveSize);
 
-      if(edisplay != m_pframewindow->display_request() ||
+      if(edisplay != m_pframewindow->layout().sketch().display() ||
          (::is_docking_appearance(edisplay) && iWkspace != m_pframewindow->m_windowrect.m_iWkspace))
       {
 
@@ -1285,21 +1285,21 @@ namespace experience
                if (m_pframewindow->move_manager()->consider_move())
                {
 
-                  m_pframewindow->request_state().m_point = m_pframewindow->move_manager()->m_pointMove;
+                  m_pframewindow->layout().sketch().m_point = m_pframewindow->move_manager()->m_pointMove;
 
                }
 
             }
 
-            m_pframewindow->request_state().m_size = rect.size();
+            m_pframewindow->layout().sketch().m_size = rect.size();
 
          }
          else
          {
 
-            m_pframewindow->request_state().m_point = rect.origin();
+            m_pframewindow->layout().sketch().m_point = rect.origin();
 
-            m_pframewindow->request_state().m_size = rect.size();
+            m_pframewindow->layout().sketch().m_size = rect.size();
 
          }
 
@@ -1325,9 +1325,9 @@ namespace experience
 
             m_pframewindow->m_windowrect.m_rectSnapped = rect;
 
-            m_pframewindow->request_state().m_point = rect.origin();
+            m_pframewindow->layout().sketch().m_point = rect.origin();
 
-            m_pframewindow->request_state().m_size = rect.size();
+            m_pframewindow->layout().sketch().m_size = rect.size();
 
          }
          else if (m_pframewindow->move_manager()->window_is_moving())
@@ -1335,9 +1335,9 @@ namespace experience
 
             m_pframewindow->m_windowrect.m_rectSnapped = rect;
 
-            m_pframewindow->request_state().m_point = rect.origin();
+            m_pframewindow->layout().sketch().m_point = rect.origin();
 
-            m_pframewindow->request_state().m_size = rect.size();
+            m_pframewindow->layout().sketch().m_size = rect.size();
 
             m_pframewindow->set_reposition();
 
@@ -1347,7 +1347,7 @@ namespace experience
 
       auto sizeMin = m_pframewindow->get_window_minimum_size();
 
-      m_pframewindow->request_state().m_size.ensure_at_least(sizeMin);
+      m_pframewindow->layout().sketch().m_size.ensure_at_least(sizeMin);
 
    }
 
@@ -1355,7 +1355,7 @@ namespace experience
    void frame::sync_dock_grip_border()
    {
 
-      edisplay edisplay = m_pframewindow->display_request();
+      edisplay edisplay = m_pframewindow->layout().sketch().display();
 
       auto rectMargin = m_rectMarginNormal;
 

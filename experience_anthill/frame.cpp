@@ -510,7 +510,7 @@ namespace experience
 
                auto pframewindow = m_pframewindow;
 
-               if (!pframewindow->window_is_full_screen() && !pframewindow->window_is_zoomed() && !pframewindow->window_is_iconic() && !m_pframewindow->frame_is_transparent())
+               if (!pframewindow->window_is_full_screen() && !pframewindow->window_is_zoomed() && !pframewindow->window_is_iconic() && !m_pframewindow->frame_is_transparent() && m_pframewindow->m_bShowControlBox)
                {
 
                   on_draw_frame(pgraphics);

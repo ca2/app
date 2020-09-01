@@ -109,32 +109,34 @@ namespace draw2d
 //   }
 
 
-   bool bitmap::CreateDIBSection(::draw2d::graphics * pgraphics, const ::size & size, UINT usage,void **ppvBits,int * stride,HANDLE hSection,u32 offset)
+   bool bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::size & size,void **ppvBits,int * stride)
    {
 
       UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(size);
-      UNREFERENCED_PARAMETER(usage);
       UNREFERENCED_PARAMETER(ppvBits);
       UNREFERENCED_PARAMETER(stride);
-      UNREFERENCED_PARAMETER(hSection);
-      UNREFERENCED_PARAMETER(offset);
+
       ::exception::throw_not_implemented();
+
       return false;
+
    }
 
 
-   bool bitmap::HostDIBSection(::draw2d::graphics * pgraphics, const pixmap * ppixmap, UINT usage, HANDLE hSection, u32 offset)
+   bool bitmap::host_bitmap(::draw2d::graphics * pgraphics, const pixmap * ppixmap)
    {
+
       UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(ppixmap);
-      UNREFERENCED_PARAMETER(usage);
-      UNREFERENCED_PARAMETER(hSection);
-      UNREFERENCED_PARAMETER(offset);
+
       // callers must be prepared to cases when the
       // backend doesn't support "hosting" a portion of RAM as bitmap data
+
       return false;
+
    }
+
 
    bool bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy,u32 flInit,const void *pjBits, UINT iUsage)
    {

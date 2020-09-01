@@ -465,31 +465,6 @@ namespace aura
    }
 
 
-   //::user::style* application::get_user_style() const
-   //{
-
-   //   if (m_psessionContext)
-   //   {
-
-   //      return m_psessionContext->get_user_style();
-
-   //   }
-
-   //   return nullptr;
-
-   //}
-
-
-   //string application::dialog_box(const char * pszMatter, property_set & propertyset)
-   //{
-
-   //   throw_todo();
-
-   //   return "";
-
-   //}
-
-
    void application::install_message_routing(::channel * pchannel)
    {
 
@@ -8321,18 +8296,44 @@ namespace aura
 
       if (m_puiMain1 != nullptr)
       {
+         
+         ::id idCommand(pszCommand);
 
-         ::user::command command;
-
-         command.m_id = ::id(pszCommand);
-
-         m_puiMain1->route_command_message(&command);
-
-         if (command.m_bRet)
+         __pointer(::user::interaction) pinteraction = m_puiMain1;
+         
+         if(pinteraction)
          {
+         
+            pinteraction->post_pred([pinteraction, idCommand]()
+            {
 
+               ::user::command command;
+
+               command.m_id = idCommand;
+
+               pinteraction->route_command_message(&command);
+
+            });
+                               
             return true;
+            
+         }
+         else
+         {
+            
+            ::user::command command;
 
+            command.m_id = idCommand;
+            
+            m_puiMain1->route_command_message(&command);
+            
+            if(command.m_bRet)
+            {
+             
+               return true;
+               
+            }
+            
          }
 
       }
@@ -11057,7 +11058,7 @@ namespace aura
          __pointer(::user::interaction) pwnd = wnda.element_at(i);
          if (pwnd != nullptr
             && pwnd->is_window()
-            && pwnd->is_window_visible())
+            && pwnd->is_window_visible(::user::layout_sketch))
          {
             iCount++;
          }
@@ -11614,7 +11615,7 @@ namespace aura
             try
             {
 
-               bOk = pinteraction != nullptr && pinteraction->is_window_visible();
+               bOk = pinteraction != nullptr && pinteraction->is_window_visible(::user::layout_sketch);
             }
             catch (...)
             {

@@ -7,7 +7,7 @@ class CLASS_DECL_BASE form_document :
 {
 public:
 
-
+   
    form_document();
 
    virtual ~form_document();

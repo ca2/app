@@ -12,16 +12,16 @@ void __node_axis_factory_exchange();
 
 int GetMainScreenRect(LPRECT lprect);
 
-
-const char* g_pszMultimediaLibraryName = nullptr;
-
-
-CLASS_DECL_AXIS void multimedia_set_library_name(const char* psz)
-{
-
-   g_pszMultimediaLibraryName = psz;
-
-}
+//
+//const char* g_pszMultimediaLibraryName = nullptr;
+//
+//
+//CLASS_DECL_AXIS void multimedia_set_library_name(const char* psz)
+//{
+//
+//   g_pszMultimediaLibraryName = psz;
+//
+//}
 
 
 #ifdef CUBE

@@ -243,7 +243,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <StringPooling>false</StringPooling>
       <ExceptionHandling>Async</ExceptionHandling>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -403,7 +403,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <StringPooling>false</StringPooling>
       <ExceptionHandling>Async</ExceptionHandling>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -484,7 +484,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <StringPooling>false</StringPooling>
       <ExceptionHandling>Async</ExceptionHandling>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -826,7 +826,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)/third-windows/include;$(__archive)/third-windows/third/include;$(__archive)/third-windows/third/include/include;$(SolutionDir)../../platform-windows/_include;$(SolutionDir)../../platform-windows;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <SmallerTypeCheck>false</SmallerTypeCheck>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <StringPooling>false</StringPooling>
       <ExceptionHandling>Async</ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -904,7 +904,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)/third-windows/include;$(__archive)/third-windows/third/include;$(__archive)/third-windows/third/include/include;$(SolutionDir)../../platform-windows/_include;$(SolutionDir)../../platform-windows;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <SmallerTypeCheck>false</SmallerTypeCheck>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <StringPooling>false</StringPooling>
       <ExceptionHandling>Async</ExceptionHandling>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -1145,11 +1145,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="geoip\geoip.cpp" />
-    <ClCompile Include="geoip\geoip_city.cpp" />
-    <ClCompile Include="geoip\geoip_region_name.cpp" />
-    <ClCompile Include="geoip\geoip_time_zone.cpp" />
-    <ClCompile Include="geoip\geoip_update.cpp" />
     <ClCompile Include="html\elemental\elemental.cpp" />
     <ClCompile Include="html\graphics\attribute.cpp" />
     <ClCompile Include="html\graphics\base.cpp" />
@@ -1165,11 +1160,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="html\hi5\hi5_twitter_authorization.cpp" />
     <ClCompile Include="html\html\core_data.cpp" />
     <ClCompile Include="html\html\data.cpp" />
-    <ClCompile Include="html\html_lite\attributes.cpp" />
-    <ClCompile Include="html\html_lite\entity_resolver.cpp" />
-    <ClCompile Include="html\html_lite\html.cpp" />
-    <ClCompile Include="html\html_lite\reader.cpp" />
-    <ClCompile Include="html\html_lite\tag.cpp" />
     <ClCompile Include="html\impl\cell.cpp" />
     <ClCompile Include="html\impl\elemental.cpp" />
     <ClCompile Include="html\impl\form.cpp" />
@@ -1191,19 +1181,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="html\user\user.cpp" />
     <ClCompile Include="html\user\view.cpp" />
     <ClCompile Include="include\_.cpp" />
-    <ClCompile Include="math\calculator\calculator_calculator.cpp" />
-    <ClCompile Include="math\calculator\calculator_element.cpp" />
-    <ClCompile Include="math\calculator\calculator_parser.cpp" />
-    <ClCompile Include="math\calculator\calculator_parser_exception.cpp" />
-    <ClCompile Include="math\calculator\calculator_plain_edit_view.cpp" />
-    <ClCompile Include="math\calculator\calculator_scanner.cpp" />
-    <ClCompile Include="math\calculator\calculator_value.cpp" />
-    <ClCompile Include="math\calculator\_calculator_update.cpp" />
-    <ClCompile Include="math\kissfft\fft.cpp" />
-    <ClCompile Include="math\kissfft\fftd.cpp" />
-    <ClCompile Include="math\kissfft\fft_shared.cpp" />
-    <ClCompile Include="math\kissfft\ifft.cpp" />
-    <ClCompile Include="math\kissfft\ifftd.cpp" />
     <ClCompile Include="node\windows\aaa_want_to_remove\aaa_want_to_remove_handle.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
@@ -1686,6 +1663,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="user\simple_ui\tap.cpp" />
     <ClCompile Include="user\simple_ui\top.cpp" />
     <ClCompile Include="user\userex\-ehrror_dialog.cpp" />
+    <ClCompile Include="user\userex\calculator_edit_view.cpp" />
     <ClCompile Include="user\userex\color_view.cpp" />
     <ClCompile Include="user\userex\dialog.cpp" />
     <ClCompile Include="user\userex\font_format_tool.cpp" />
@@ -1783,14 +1761,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="html\graphics\tag.h" />
     <ClInclude Include="html\graphics\value.h" />
     <ClInclude Include="html\hi5\hi5_twitter_authorization.h" />
-    <ClInclude Include="html\html_lite\attributes.h" />
-    <ClInclude Include="html\html_lite\common.h" />
-    <ClInclude Include="html\html_lite\entity_resolver.h" />
-    <ClInclude Include="html\html_lite\enum.h" />
-    <ClInclude Include="html\html_lite\html.h" />
-    <ClInclude Include="html\html_lite\reader.h" />
-    <ClInclude Include="html\html_lite\tag.h" />
-    <ClInclude Include="html\html_lite\_.h" />
     <ClInclude Include="html\impl\cell.h" />
     <ClInclude Include="html\impl\elemental.h" />
     <ClInclude Include="html\impl\form.h" />
@@ -1909,23 +1879,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="include\_.h" />
     <ClInclude Include="include\_c_bridge.h" />
     <ClInclude Include="include\_include.h" />
-    <ClInclude Include="math\calculator\calculator.h" />
-    <ClInclude Include="math\calculator\calculator_calculator.h" />
-    <ClInclude Include="math\calculator\calculator_element.h" />
-    <ClInclude Include="math\calculator\calculator_parser.h" />
-    <ClInclude Include="math\calculator\calculator_parser_exception.h" />
-    <ClInclude Include="math\calculator\calculator_plain_edit_view.h" />
-    <ClInclude Include="math\calculator\calculator_scanner.h" />
-    <ClInclude Include="math\calculator\calculator_token.h" />
-    <ClInclude Include="math\calculator\calculator_value.h" />
-    <ClInclude Include="math\kissfft\fft.h" />
-    <ClInclude Include="math\kissfft\fftd.h" />
-    <ClInclude Include="math\kissfft\fft_guts.h" />
-    <ClInclude Include="math\kissfft\ifft.h" />
-    <ClInclude Include="math\kissfft\ifftd.h" />
-    <ClInclude Include="math\kissfft\kissfft.h" />
-    <ClInclude Include="math\math_math.h" />
-    <ClInclude Include="math\_math.h" />
     <ClInclude Include="update.h" />
     <ClInclude Include="user.h" />
     <ClInclude Include="user\rich_text\box.h" />
@@ -1951,6 +1904,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="user\simple_ui\tap.h" />
     <ClInclude Include="user\simple_ui\top.h" />
     <ClInclude Include="user\simple_ui\_.h" />
+    <ClInclude Include="user\userex\calculator_edit_view.h" />
     <ClInclude Include="user\userex\group_image_list.h" />
     <ClInclude Include="user\userex\image_list.h" />
     <ClInclude Include="user\userex\progress.h" />

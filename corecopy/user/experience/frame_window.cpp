@@ -293,7 +293,7 @@ namespace experience
          else
          {
 
-            order_top();
+            layout().order_top();
 
             display(display_normal, activation_set_foreground);
 
@@ -1566,19 +1566,19 @@ namespace experience
    }
 
 
-      bool frame_window::window_do_display()
+      bool frame_window::sketch_on_display()
       {
 
          if (!is_frame_experience_enabled())
          {
 
-            return ::user::frame_window::window_do_display();
+            return ::user::frame_window::sketch_on_display();
 
          }
 
-         auto edisplay = display_request();
+         auto edisplay = layout().sketch().display();
 
-         auto eactivation = request_state().m_eactivation;
+         auto eactivation = layout().sketch().m_eactivation;
 
          if (edisplay == display_iconic)
          {
@@ -1629,7 +1629,7 @@ namespace experience
 
          }
 
-         if (!::user::frame_window::window_do_display())
+         if (!::user::frame_window::sketch_on_display())
          {
 
             return false;
@@ -1898,7 +1898,7 @@ namespace experience
          else if (bTopAndBottom && bLeftAndRight && !bPreserveSize)
          {
 
-            if (display_request() == display_full_screen)
+            if (layout().sketch().display() == display_full_screen)
             {
 
                edisplay = display_full_screen;
@@ -1979,7 +1979,7 @@ namespace experience
       bool frame_window::_001OnBeforeAppearance()
       {
 
-         auto edisplay = display_request();
+         auto edisplay = layout().sketch().display();
 
          if (edisplay == display_notify_icon)
          {

@@ -57,6 +57,7 @@ namespace aura
 
       bool                                                  m_bSystemSynchronizedCursor;
       point                                                 m_pointCursor;
+      bool                                                  m_bAcceptsFirstResponder;
 
       comparable_array < __reference(::user::interaction) > m_uiptraToolWindow;
 

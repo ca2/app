@@ -94,7 +94,7 @@ namespace user
 
       ::rect rectClient;
 
-      get_client_rect(rectClient);
+      layout().get_client_rect(rectClient, ::user::layout_design);
       //::user::e_color colorText = color_text;
 
       ::color colorText(0, 0, 0, 255);
@@ -261,7 +261,7 @@ namespace user
          if (Session.get_focus_ui() == this)
          {
 
-            if (m_itemHover)
+            if (m_itemHover.is_set())
             {
 
                colorDropDown = ::color(200, 200, 250, 255);
@@ -278,7 +278,7 @@ namespace user
          else
          {
 
-            if (m_itemHover)
+            if (m_itemHover.is_set())
             {
 
                colorDropDown = ::color(200, 200, 250, 255);
@@ -370,7 +370,7 @@ namespace user
       if(m_bEdit)
       {
 
-         if(!m_itemCurrent)
+         if(!m_itemCurrent.is_set())
          {
 
             ::user::plain_edit::_001GetText(str);
@@ -387,7 +387,7 @@ namespace user
       else
       {
 
-         if(!m_itemCurrent)
+         if(!m_itemCurrent.is_set())
          {
 
             str = m_strText;
@@ -472,7 +472,7 @@ namespace user
 
       }
 
-      auto rectClient = get_client_rect();
+      auto rectClient = get_client_rect(::user::layout_sketch);
 
       if (rectClient.contains(item.m_pointHitTest))
       {
@@ -516,7 +516,7 @@ namespace user
 
          ::rect rectWindow;
 
-         get_window_rect(rectWindow);
+         get_window_rect(rectWindow, ::user::layout_sketch);
 
          m_plist->on_drop_down(rectWindow, m_sizeFull);
 
@@ -609,7 +609,7 @@ namespace user
 
          auto eelementHit = hit_test(pmouse);
 
-         if (eelementHit && (!m_bEdit || eelementHit == element_drop_down))
+         if (eelementHit.is_set() && (!m_bEdit || eelementHit == element_drop_down))
          {
 
             tick tickLastVisibilityChangeElapsed;
@@ -627,7 +627,7 @@ namespace user
                _001ToggleDropDown();
 
             }
-            else if (!m_plist->is_this_screen_visible())
+            else if (!m_plist->layout().sketch().is_screen_visible())
             {
 
                //output_debug_string("test");
@@ -655,7 +655,7 @@ namespace user
 
          auto eelementHit = hit_test(pmouse);
 
-         if (eelementHit && (!m_bEdit || eelementHit == element_drop_down))
+         if (eelementHit.is_set() && (!m_bEdit || eelementHit == element_drop_down))
          {
 
             pmouse->m_bRet = true;
@@ -704,7 +704,7 @@ namespace user
          //m_plist->pred([&]()
          //{
 
-            _001ShowDropDown(!m_plist->is_window_visible());
+            _001ShowDropDown(!m_plist->is_window_visible(::user::layout_sketch));
 
          //});
 
@@ -745,7 +745,7 @@ namespace user
 
          ::rect rectWindow;
 
-         get_window_rect(rectWindow);
+         get_window_rect(rectWindow, ::user::layout_sketch);
 
          m_plist->on_drop_down(rectWindow, m_sizeFull);
 
@@ -796,7 +796,7 @@ namespace user
 
       ::rect rectClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectClient, ::user::layout_sketch);
 
       m_plist->m_iItemHeight = MIN(24, rectClient.height());
 
@@ -1552,7 +1552,7 @@ namespace user
    bool combo_box::has_action_hover()
    {
 
-      return ::user::plain_edit::m_itemHover || is_drop_down();
+      return ::user::plain_edit::m_itemHover.is_set() || is_drop_down();
 
    }
 
@@ -1620,7 +1620,7 @@ namespace user
    bool combo_box::keyboard_focus_is_focusable()
    {
 
-      return is_window_enabled() && is_window_visible();
+      return is_window_enabled() && is_window_visible(layout_sketch);
 
    }
 
@@ -1628,7 +1628,7 @@ namespace user
    bool combo_box::is_drop_down()
    {
 
-      return m_plist != nullptr && m_plist->is_window_visible();
+      return m_plist != nullptr && m_plist->is_window_visible(layout_sketch);
 
    }
 

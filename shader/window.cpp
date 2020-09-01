@@ -125,7 +125,7 @@ namespace app_shader
    void window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectClient = get_client_rect();
+      auto rectClient = layout().get_client_rect();
 
       if (m_bSaveFrame)
       {

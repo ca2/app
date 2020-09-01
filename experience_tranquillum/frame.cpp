@@ -552,7 +552,8 @@ namespace experience
          if (!m_pframewindow->window_is_full_screen()
             && !m_pframewindow->window_is_zoomed()
             && !m_pframewindow->window_is_iconic()
-            && !m_pframewindow->frame_is_transparent())
+            && !m_pframewindow->frame_is_transparent()
+            && m_pframewindow->m_bShowControlBox)
          {
 
             tick tick1;
@@ -619,7 +620,7 @@ namespace experience
             //printf("C. frame::on_draw_frame %d\n", tick3.elapsed().m_i);
 
          }
-         else if (!m_pframewindow->window_is_full_screen() && !m_pframewindow->frame_is_transparent())
+         else if (!m_pframewindow->window_is_full_screen() && !m_pframewindow->frame_is_transparent() && m_pframewindow->m_bShowControlBox)
          {
 
             tick tick2;

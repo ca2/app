@@ -207,7 +207,7 @@ namespace experience
 
       }
 
-      //bool bApply = !is_docking_appearance(m_pframewindow->display_request());
+      //bool bApply = !is_docking_appearance(m_pframewindow->layout().sketch().display());
 
       bool bApply = true;
 
@@ -518,11 +518,17 @@ namespace experience
 
       m_pframewindow->m_rectPending.unite(rectBefore, rectAfter);
 
-      pframewindow->place(rectParentClient);
+      {
 
-      pframewindow->display();
+         sync_lock sl(pframewindow->get_mutex());
 
-      pframewindow->set_need_redraw();
+         pframewindow->place(rectParentClient);
+
+         pframewindow->display();
+
+         pframewindow->set_need_redraw();
+
+      }
 
    }
 

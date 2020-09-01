@@ -90,6 +90,28 @@ namespace user
    }
 
 
+   inline bool interaction::is_window_visible(e_layout elayout) const noexcept
+   {
+
+      if (m_pdescriptor.is_null())
+      {
+
+         return false;
+
+      }
+
+      return m_pdescriptor->m_puserinteractionParent != NULL && !m_pdescriptor->m_puserinteractionParent->is_window_visible(elayout) ? false : layout().state(elayout).is_visible();
+
+   }
+
+
+   inline bool interaction::is_window_screen_visible(e_layout elayout) const noexcept
+   {
+
+      return m_pdescriptor->m_puserinteractionParent != NULL && !m_pdescriptor->m_puserinteractionParent->is_window_screen_visible(elayout) ? false : is_screen_visible(layout().state(elayout).display());
+
+   }
+
 } // namespace user
 
 
@@ -192,20 +214,6 @@ inline prodevian::prodevian(::user::interaction* pinteraction) :
 //
 //} //   namespace aura
 
-
-namespace draw2d
-{
-
-
-   inline oswindow graphics::get_window_handle() const
-   {
-
-      return m_puserinteraction ? m_puserinteraction->get_safe_handle() : nullptr;
-
-   }
-
-
-} // namespace draw2d
 
 
 

@@ -4409,7 +4409,7 @@ namespace user
 
       auto pointOffset = get_viewport_offset();
 
-      m_plistheader->order_top();
+      m_plistheader->layout().order_top();
       m_plistheader->move_to(-pointOffset.x, 0);
       m_plistheader->display();
 
@@ -7096,7 +7096,7 @@ namespace user
 
       m_rangeSelection.clear();
 
-      if (!item)
+      if (!item.is_set())
       {
 
          return;

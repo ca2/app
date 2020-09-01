@@ -77,6 +77,54 @@ namespace user
    }
 
 
+   ::user::interaction* document::impact_at(::index iImpact) const
+   {
+
+      return m_viewa[iImpact];
+
+   }
+
+
+   ::count document::impact_count() const
+   {
+
+      return m_viewa.get_count();
+
+   }
+
+
+   bool document::contains(::user::interaction* pinteraction) const
+   {
+
+      for (auto& pimpact : m_viewa)
+      {
+
+         if (::is_set(pimpact))
+         {
+
+            if (pimpact == pinteraction)
+            {
+
+               return true;
+
+            }
+
+            if (pimpact->contains(pinteraction))
+            {
+
+               return true;
+
+            }
+
+         }
+
+      }
+
+      return false;
+
+   }
+
+
    void document::dump(dump_context & dumpcontext) const
    {
       ::object::dump(dumpcontext);

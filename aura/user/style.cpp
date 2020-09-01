@@ -1,4 +1,4 @@
-﻿#include "framework.h" 
+#include "framework.h" 
 
 
 namespace user
@@ -165,13 +165,10 @@ namespace user
    //}
 
 
-
    bool style::simple_ui_draw_focus_rect(::user::interaction * pinteraction, ::draw2d::graphics_pointer & pgraphics)
    {
 
-      bool bError = pinteraction->m_ptooltip.is_set()
-         && pinteraction->m_ptooltip->is_window_visible();
-                    //&& pinteraction->get_tooltip()->m_bError;
+      bool bError = pinteraction->m_ptooltip.is_set() && pinteraction->m_ptooltip->is_window_visible(layout_sketch);
 
       ::draw2d::savedc savedc(pgraphics);
 
@@ -205,14 +202,15 @@ namespace user
       i32 iStyle = 1;
 
       rectClient.left--;
+
       rectClient.top--;
 
-      if (get_context_application() != nullptr && (pinteraction->hover_item() || pinteraction->has_focus()))
+      if (get_context_application() != nullptr && (pinteraction->hover_item().is_set() || pinteraction->has_focus()))
       {
 
          ::draw2d::brush_pointer brush(e_create);
 
-         if (pinteraction->hover_item() && !pinteraction->has_text_input())
+         if (pinteraction->hover_item().is_set() && !pinteraction->has_text_input())
          {
 
             brush->create_solid(pinteraction->get_color(this, element_background, e_state_hover));
@@ -226,7 +224,7 @@ namespace user
          if (iStyle == 1)
          {
 
-            bool bHover = pinteraction->hover_item();
+            bool bHover = pinteraction->hover_item().is_set();
 
             if (bHover)
             {

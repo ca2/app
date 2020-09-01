@@ -127,6 +127,8 @@ namespace aura
 
       tick                                               m_tickMainStart;
       tick                                               m_tickAfterApplicationFirstRequest;
+      
+      
 
       //__pointer(::mutex)                                 m_spmutexOpenweatherCity;
 

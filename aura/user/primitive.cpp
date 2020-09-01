@@ -1061,11 +1061,11 @@ namespace user
    //}
 
 
-   void primitive::SetWindowDisplayChanged()
-   {
+   // void primitive::SetWindowDisplayChanged()
+   // {
 
 
-   }
+   // }
 
 
    ::user::frame * primitive::GetTopLevelFrame() const
@@ -2012,7 +2012,7 @@ namespace user
    }
 
 
-   bool primitive::is_this_visible()
+   bool primitive::is_this_visible(e_layout elayout)
    {
 
       return true;
@@ -2028,11 +2028,11 @@ namespace user
    }
 
 
-   void primitive::_do_show_window()
-   {
+   //void primitive::window_show_change_visibility()
+   //{
 
 
-   }
+   //}
 
 
    void primitive::ShowOwnedPopups(bool bShow)
@@ -2205,7 +2205,7 @@ namespace user
    }
 
 
-   void primitive::prodevian_update_visual(bool & bUpdateBuffer, bool & bUpdateWindow)
+   void primitive::sketch_to_design(::draw2d::graphics_pointer & pgraphics, bool & bUpdateBuffer, bool & bUpdateWindow)
    {
 
    }
@@ -2217,21 +2217,13 @@ namespace user
    }
 
 
-   void primitive::window_apply_visual(const window_state & windowstate)
-   {
+   // void primitive::window_apply_visual(const window_state & windowstate)
+   // {
 
-   }
-
-
-   void primitive::prodevian_prepare_window_minimize(::eactivation eactivation)
-   {
-
-      ::exception::throw_interface_only();
-
-   }
+   // }
 
 
-   void primitive::prodevian_prepare_window_maximize()
+   void primitive::sketch_prepare_window_minimize(::eactivation eactivation)
    {
 
       ::exception::throw_interface_only();
@@ -2239,7 +2231,7 @@ namespace user
    }
 
 
-   void primitive::prodevian_prepare_window_full_screen(const ::rect & rectHint)
+   void primitive::sketch_prepare_window_maximize()
    {
 
       ::exception::throw_interface_only();
@@ -2247,7 +2239,7 @@ namespace user
    }
 
 
-   void primitive::prodevian_prepare_window_restore(edisplay edisplay)
+   void primitive::sketch_prepare_window_full_screen(const ::rect & rectHint)
    {
 
       ::exception::throw_interface_only();
@@ -2255,7 +2247,15 @@ namespace user
    }
 
 
-   void primitive::prodevian_prepare_window_dock(::edisplay edisplayDock)
+   void primitive::sketch_prepare_window_restore(edisplay edisplay)
+   {
+
+      ::exception::throw_interface_only();
+
+   }
+
+
+   void primitive::sketch_prepare_window_dock(::edisplay edisplayDock)
    {
 
       ::exception::throw_interface_only();
@@ -2568,8 +2568,7 @@ namespace user
    bool primitive::on_keyboard_focus(::user::primitive * pfocus)
    {
 
-      set_need_redraw();
-
+      //set_need_redraw();
 
       return true;
 
@@ -3076,13 +3075,13 @@ namespace user
    }
 
 
-   void primitive::prodevian_prepare_down()
+   void primitive::design_down()
    {
 
    }
 
 
-   void primitive::prodevian_prepare_up()
+   void primitive::design_up()
    {
 
    }
@@ -3900,6 +3899,15 @@ namespace user
       UNREFERENCED_PARAMETER(bAscendants);
 
    }
+
+   
+   bool primitive::hide()
+   {
+
+      return false;
+
+   }
+
 
 
    void primitive::edit_on_text(string str)

@@ -86,7 +86,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool bitmap::CreateDIBSection(::draw2d::graphics* pgraphics, const ::size & size, UINT usage, void **ppvBits, int * stride, HANDLE hSection, u32 offset)
+   bool bitmap::create_bitmap(::draw2d::graphics* pgraphics, const ::size & size, void **ppvBits, int * stride)
    {
 
       ::draw2d::lock draw2dlock;

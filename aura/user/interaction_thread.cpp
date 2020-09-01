@@ -176,7 +176,7 @@ namespace user
 
       //__compose(m_pimpl->m_puserinteraction, m_pimpl->m_puserinteraction->m_pthreadUserInteraction);
 
-      __keep_flag_on(m_pimpl->m_puserinteraction->m_eflagLayouting, ::user::layout::layout_creating);
+      __keep_flag_on(m_pimpl->m_puserinteraction->layout().m_eflag, ::user::interaction_layout::flag_creating);
 
       //fork([this]()
       //   {

@@ -2645,7 +2645,7 @@ bool x11_process_message(Display * pdisplay)
 
                }
 
-               if(pinteraction->display_request() == ::display_full_screen
+               if(pinteraction->layout().sketch().display() == ::display_full_screen
                      && pinteraction->display_state() != ::display_full_screen
                      && !msg.hwnd->is_iconic())
                {
@@ -2692,7 +2692,7 @@ bool x11_process_message(Display * pdisplay)
 
                ::e_display edisplayPrevious = pinteraction->m_windowrect.m_edisplayPrevious;
 
-               pinteraction->request_state().m_edisplay3 = edisplayPrevious;
+               pinteraction->layout().sketch().m_edisplay3 = edisplayPrevious;
 
                pinteraction->process_state().m_edisplay3 = edisplayPrevious;
 

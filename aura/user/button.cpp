@@ -199,8 +199,7 @@ namespace user
          rect.right = LONG(size.cx * 1.6);
          rect.bottom = LONG(size.cy * 1.4);
 
-         set_size(rect.size());
-
+         layout().sketch().size() = rect.size();
 
       }
       else if (m_estyle == style_bitmap)
@@ -208,7 +207,7 @@ namespace user
 
          ::size size = m_pbitmap->m_pimage->size();
 
-         set_size(size);
+         layout().sketch().size() = size;
 
       }
       else
@@ -220,7 +219,7 @@ namespace user
 
          sizeTotal.cy = (LONG)(sizeTotal.cy * 1.4);
 
-         set_size(sizeTotal);
+         layout().sketch().size() = sizeTotal;
 
       }
 
@@ -289,7 +288,7 @@ namespace user
 
       ::rect rectClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectClient, ::user::layout_design);
 
       ::size sizeText = calc_text_size();
 
@@ -340,7 +339,7 @@ namespace user
          crBk = ARGB(255, 127, 127, 127);
 
       }
-      else if (m_itemHover)
+      else if (m_itemHover.is_set())
       {
 
          // Hover Background
@@ -390,7 +389,7 @@ namespace user
          crBorder = ARGB(255, 255, 255, 255);
 
       }
-      else if (m_itemHover)
+      else if (m_itemHover.is_set())
       {
 
          crBorder = ARGB(255, 100, 100, 200);
@@ -447,7 +446,7 @@ namespace user
    bool button::keyboard_focus_is_focusable()
    {
 
-      return is_window_enabled() && is_window_visible();
+      return is_window_enabled() && is_window_visible(::user::layout_sketch);
 
    }
 
@@ -495,7 +494,7 @@ namespace user
          crText = ARGB(255, 0, 0, 0);
 
       }
-      else if (m_itemHover)
+      else if (m_itemHover.is_set())
       {
 
          crText = ARGB(255, 0, 0, 0);
@@ -530,7 +529,7 @@ namespace user
          crBackground = ARGB(255, 240, 240, 240);
 
       }
-      else if (m_itemHover)
+      else if (m_itemHover.is_set())
       {
 
          crBackground = ARGB(255, 240, 240, 240);
@@ -729,7 +728,7 @@ namespace user
 
       if(echeck() == ::check_checked && ::is_ok(m_pbitmap->m_pimageSel))
          pimage = m_pbitmap->m_pimageSel;
-      else if(m_itemHover && is_window_enabled() && ::is_ok(m_pbitmap->m_pimageHover))
+      else if(m_itemHover.is_set() && is_window_enabled() && ::is_ok(m_pbitmap->m_pimageHover))
          pimage = m_pbitmap->m_pimageHover;
       else if(Session.get_focus_ui() == this && ::is_ok(m_pbitmap->m_pimageFocus))
          pimage = m_pbitmap->m_pimageFocus;   // third image for focused
@@ -811,7 +810,7 @@ namespace user
 
          if (echeck() == ::check_checked && m_pbitmap->m_pimageSel->is_set() && m_pbitmap->m_pimageSel->area() > 0)
             pimage = m_pbitmap->m_pimageSel;
-         else if (m_itemHover && is_window_enabled() && m_pbitmap->m_pimageHover->is_set() && m_pbitmap->m_pimageHover->area() > 0)
+         else if (m_itemHover.is_set() && is_window_enabled() && m_pbitmap->m_pimageHover->is_set() && m_pbitmap->m_pimageHover->area() > 0)
             pimage = m_pbitmap->m_pimageHover;
          else if (Session.get_focus_ui() == this && m_pbitmap->m_pimageFocus->is_set() && m_pbitmap->m_pimageFocus->area() > 0)
            pimage = m_pbitmap->m_pimageFocus;   // third image for focused
@@ -877,7 +876,7 @@ namespace user
 
       }
 
-      if(m_itemHover)
+      if(m_itemHover.is_set())
       {
 
          color.hls_rate(0.0,0.2,0.0);
@@ -1126,7 +1125,7 @@ namespace user
          if(get_form() != nullptr)
             return;
          get_client_rect(rectClient);
-         bItemHover     = m_itemHover;
+         bItemHover     = m_itemHover.is_set();
          bSubItemHover  = bItemHover;
       }
 

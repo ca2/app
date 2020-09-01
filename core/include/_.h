@@ -12,6 +12,19 @@
 #pragma once
 
 
+
+#undef System
+#undef Session
+#undef Application
+#undef Usr
+
+#define System (*get_context_system()->m_pcoresystem)
+#define Session (*get_context_session()->m_pcoresession)
+#define Application (*get_app()->m_pcoreapplication)
+#define Usr(pobject) (*Sess(pobject).user()->m_pcoreuser)
+
+
+
 namespace user
 {
 
@@ -63,8 +76,6 @@ namespace audio
 
 } // namespace audio
 
-#undef Usr
-#define Usr(pobject) (*Sess(pobject).user()->m_pcoreuser)
 
 
 
@@ -156,7 +167,7 @@ CLASS_DECL_CORE bool __node_core_pos_term();
 
 #include "core/os/process.h"
 
-#include "core/geoip/geoip.h"
+//#include "core/geoip/geoip.h"
 
 class ftpfs;
 
@@ -179,7 +190,7 @@ class ifs;
 
 //#include "core/database/simpledb/_.h"
 
-#include "core/html/html_lite/_.h"
+//#include "core/html/html_lite/_.h"
 
 #include "core/filesystem/userfs/_.h"
 
@@ -210,9 +221,6 @@ class ifs;
 
 #include "core/os/chronometer.h"
 
-
-
-#include "core/math/_math.h"
 
 
 // C++ Includes

@@ -107,7 +107,7 @@ void simple_scroll_bar::_001OnMouseMove(::message::message * pmessage)
 
       auto eelement = hit_test(pmouse);
 
-      if(eelement)
+      if(eelement.is_set())
       {
 
          pmouse->m_ecursor = cursor_arrow;
@@ -146,7 +146,7 @@ void simple_scroll_bar::_001OnLButtonDown(::message::message * pmessage)
 
    m_itemCurrent = hit_test(pmouse);
 
-   if(!m_itemCurrent)
+   if(!m_itemCurrent.is_set())
    {
 
       pmouse->m_bRet = false;
@@ -1193,7 +1193,7 @@ void simple_scroll_bar::_001OnClip(::draw2d::graphics_pointer & pgraphics)
       while (pinteraction != nullptr)
       {
 
-         if (i == 0)
+         if (i == 1)
          {
 
             pinteraction->::user::interaction::get_client_rect(rectFocus);
@@ -1806,7 +1806,7 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
    if(m_itemCurrent == eelement || m_itemHover== eelement)
    {
 
-      auto color = get_color(pstyle, ::user::e_state_hover);
+      auto color = get_color(pstyle, eelement, ::user::e_state_hover);
 
       return color ? color : __acolor(100, 190, 180, 250);
 
@@ -1814,7 +1814,7 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
    else
    {
 
-      auto color = get_color(pstyle);
+      auto color = get_color(pstyle, eelement);
 
       return color ? color : __acolor(150, 150, 150, 150);
 

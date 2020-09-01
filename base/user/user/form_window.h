@@ -18,7 +18,7 @@ namespace user
       virtual ~form_window();
 
       virtual string get_path() override;
-      virtual bool open_document(const var & varFile) override;
+      virtual ::estatus open_document(const var & varFile) override;
 
 
       //using ::user::interaction::_001IsPointInside;

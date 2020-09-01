@@ -1340,29 +1340,29 @@ namespace user
 
       }
 
-      if (get_document() != nullptr)
-      {
-
-         if (get_document()->has_command_handler(pcommand))
-         {
-
-            return true;
-
-         }
-
-      }
-
-      if (get_parent() != nullptr)
-      {
-
-         if (get_parent()->has_command_handler(pcommand))
-         {
-
-            return true;
-
-         }
-
-      }
+//      if (get_document() != nullptr)
+//      {
+//
+//         if (get_document()->has_command_handler(pcommand))
+//         {
+//
+//            return true;
+//
+//         }
+//
+//      }
+//
+//      if (get_parent() != nullptr)
+//      {
+//
+//         if (get_parent()->has_command_handler(pcommand))
+//         {
+//
+//            return true;
+//
+//         }
+//
+//      }
 
       return false;
 

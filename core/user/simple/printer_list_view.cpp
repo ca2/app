@@ -76,7 +76,7 @@ void simple_printer_list_view::_001OnCreate(::message::message * pmessage)
 bool simple_printer_list_view::on_click(const ::user::item & itemClick)
 {
 
-   if (!itemClick)
+   if (!itemClick.is_set())
    {
 
       return false;

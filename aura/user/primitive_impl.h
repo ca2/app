@@ -72,7 +72,7 @@ namespace user
 virtual bool setWMClass(const char * psz);
       virtual void finalize() override;
 
-      virtual void _do_show_window() override;
+      virtual void window_show_change_visibility(::edisplay edisplay, ::eactivation eactivation);
 
       //virtual bool check_need_translation();
       //virtual void clear_need_translation();
@@ -91,7 +91,7 @@ virtual bool setWMClass(const char * psz);
 
       virtual bool start_window_visual();
 
-      virtual void SetWindowDisplayChanged() override;
+      //virtual void SetWindowDisplayChanged() override;
 
 
       virtual bool create_message_queue(::user::interaction * pinteraction, const char * lpszName);

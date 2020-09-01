@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "menu_shared.h"
+
+
+
 namespace userex
 {
 
@@ -97,7 +101,14 @@ namespace user
 //      __pointer_array(::user::interaction)         m_interactionaCommandHandlers;
       bool                                         m_bCloseApplicationIfLastVisibleFrame;
       __pointer(::user::style)                     m_puserstyle;
-
+      bool                                         m_bShowControlBox;
+      
+      
+      __pointer(menu_shared)                       m_pmenushared;
+      string_array                                 m_straMenuParent;
+      string_array                                 m_straMenuName;
+      string_array                                 m_straMenuId;
+      
   
       frame();
       virtual ~frame();
@@ -115,6 +126,9 @@ namespace user
 
       virtual ::color get_border_main_body_color();
 
+      ::estatus add_menu_item(const string & strPath, const string & strText, const string & strId);
+
+      
       virtual ::user::interaction * GetActiveView() const;
       virtual void SetActiveView(::user::interaction* pViewNew, bool bNotify = TRUE);
 

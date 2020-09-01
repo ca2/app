@@ -21,7 +21,7 @@ namespace user
 
 
    class CLASS_DECL_AURA interaction :
-      virtual public layout,
+      virtual public ::user::primitive,
       virtual public ::timer_callback
    {
    public:
@@ -45,11 +45,18 @@ namespace user
       };
 
 
-      // updown
-      __pointer(::user::interaction)         m_pupdowntarget;
-      ::user::interaction::e_updown          m_eupdown;
-      //end updown
+      ewindowflag                               m_ewindowflag;
 
+
+
+      // updown
+      __pointer(::user::interaction)            m_pupdowntarget;
+      ::user::interaction::e_updown             m_eupdown;
+      //end updown
+      __pointer(control_descriptor)             m_pdescriptor;
+
+
+      __pointer(::user::interaction_layout)     m_playout;
 
       //class draw_select
       //{
@@ -76,107 +83,109 @@ namespace user
 
       //};
 
+      bool                                      m_bLayoutModified;
 
       // control member variables BEGIN
-      ::aura::draw_context* m_pdrawcontext;
-      __pointer(::user::interaction)      m_pwndCustomWindowProc;
-      bool                                m_bCustomWindowProc;
-      index                               m_iEditItem;
-      bool                                m_bControlExCommandEnabled;
-      ::user::interaction* m_puiLabel;
-      bool                                m_bIdBound;
+      __pointer(::aura::draw_context)           m_pdrawcontext;
+      __pointer(::user::interaction)            m_pwndCustomWindowProc;
+      bool                                      m_bCustomWindowProc;
+      index                                     m_iEditItem;
+      bool                                      m_bControlExCommandEnabled;
+      __pointer(::user::interaction)            m_puiLabel;
+      bool                                      m_bIdBound;
       // control member variables END
 
+      string                                    m_strInteractionTag;
 
-      __pointer_array(::user::item)                m_itema;
-      bool                                         m_bOverdraw;
-      ::user::frame *                              m_pframe;
-      ::user::item                                 m_itemLButtonDown;
-      ::index                                      m_iIndex;
-      item                                         m_itemCurrent;
-      item                                         m_itemHover;
-      item                                         m_itemHoverMouse;
-      ::size                                       m_sizeRestoreBroad;
-      ::size                                       m_sizeRestoreCompact;
-      //e_control_type                               m_econtroltype;
-      flags < e_non_client >                       m_flagNonClient;
-      bool                                         m_bTrackMouseLeave;
-      bool                                         m_bMouseHover;
-      bool                                         m_bSimpleUIDefaultMouseHandling;
-      int                                          m_iMouseMoveSkipCount;
-      int                                          m_iMouseMoveSkipSquareDistance;
-      ::tick                                       m_tickMouseMoveSkip;
-      ::point                                      m_pointMouseMoveSkip;
-      ::tick                                       m_tickMouseMovePeriod;
-      bool                                         m_bMouseMovePending;
-      ::point                                      m_pointMouseMove;
-      bool                                         m_bRedraw;
-      bool                                         m_bNeedLoadFormData;
-      bool                                         m_bNeedSaveFormData;
-      tick                                         m_tickLastRedraw;
-      ::id                                         m_idView;
-      ::user::interaction *                        m_pform;
-      //::user::form *                               m_pformParent;
-      ::user::layout *                             m_playout;
-      //e_color                                      m_ecolorBackground;
-      ::color                                      m_colorBackground;
-      bool                                         m_bWorkspaceFullScreen;
-      point                                        m_pointScroll;
-      bool                                         m_bHideOnTransparentFrame;
-      bool                                         m_bOffScreenRender;
-      bool                                         m_bMoveWindow;
-      bool                                         m_bVoidPaint;
-      bool                                         m_bRedrawing;
-      bool                                         m_bLockWindowUpdate;
-      bool                                         m_bLayoutEnable;
-      bool                                         m_bNeedLayout;
-      bool                                         m_bReposition;
-      bool                                         m_bRedrawOnVisible;
-      bool                                         m_bSaveWindowRect;
-      bool                                         m_bEnableSaveWindowRect2;
-      bool                                         m_bShowSoftwareKeyboard;
-      bool                                         m_bUserInteractionSetFinish;
-      //bool                                         m_bFreeHandMouseMove; this is the default
+      __pointer_array(::user::item)             m_itema;
+      bool                                      m_bOverdraw;
+      __pointer(::user::frame)                  m_pframe;
+      ::user::item                              m_itemLButtonDown;
+      ::index                                   m_iIndex;
+      item                                      m_itemCurrent;
+      item                                      m_itemHover;
+      item                                      m_itemHoverMouse;
+      ::size                                    m_sizeRestoreBroad;
+      ::size                                    m_sizeRestoreCompact;
+      flags < e_non_client >                    m_flagNonClient;
+      bool                                      m_bTrackMouseLeave;
+      bool                                      m_bMouseHover;
+      bool                                      m_bSimpleUIDefaultMouseHandling;
+      int                                       m_iMouseMoveSkipCount;
+      int                                       m_iMouseMoveSkipSquareDistance;
+      ::tick                                    m_tickMouseMoveSkip;
+      ::point                                   m_pointMouseMoveSkip;
+      ::tick                                    m_tickMouseMovePeriod;
+      bool                                      m_bMouseMovePending;
+      ::point                                   m_pointMouseMove;
+      bool                                      m_bNeedLoadFormData;
+      bool                                      m_bNeedSaveFormData;
+      tick                                      m_tickLastRedraw;
+      ::id                                      m_idView;
+      __pointer(::user::form)                   m_pform;
+      ::color                                   m_colorBackground;
+      bool                                      m_bWorkspaceFullScreen;
+      point                                     m_pointScroll;
+      bool                                      m_bHideOnTransparentFrame;
+      bool                                      m_bOffScreenRender;
+      bool                                      m_bMoveWindow;
+      bool                                      m_bVoidPaint;
+      bool                                      m_bRedrawing;
+      bool                                      m_bLockWindowUpdate;
+      bool                                      m_bLayoutEnable;
+      bool                                      m_bRedrawOnVisible;
+      bool                                      m_bSaveWindowRect;
+      bool                                      m_bEnableSaveWindowRect2;
+      bool                                      m_bShowSoftwareKeyboard;
+      bool                                      m_bUserInteractionSetFinish;
+      //bool                                    m_bFreeHandMouseMove; this is the default
       // if high frequency mouse move notification is required
       // create a fast path/low latency callback system
-      ::tick                                       m_tickMouseMove;
-      ::tick                                       m_tickMouseMoveIgnore;
-      alpha_source *                               m_palphasource;
-      i32                                          m_iItemHeight;
-      point                                        m_pointMoveCursor;
-      bool                                         m_bDefaultWalkPreTranslateParentTree;
-      ::aura::drawable *                           m_pdrawableBackground;
-      bool                                         m_bBackgroundBypass;
-      tick                                         m_tickLastFullUpdate;
-      bool                                         m_bSizeMove;
-      tick                                         m_tickLastVisualChange;
-      __reference(::file::insert_item)             m_pitemComposing;
-      __pointer(primitive_impl)                    m_pimpl;
-      __pointer(interaction_impl)                  m_pimpl2;
-      interaction *                                m_puserinteraction;
-      interaction_ptra                             m_uiptraOwned;
-      interaction_pointer_array                    m_uiptraChild;
-      string                                       m_strName;
-      interaction *                                m_puiOwner;
-      u64                                          m_uiUserInteractionFlags;
-      bool                                         m_bCursorInside;
-      e_cursor                                     m_ecursor;
-      bool                                         m_bRectOk;
-      bool                                         m_bParentScroll;
-      bool                                         m_bMessageWindow;
-      string                                       m_strWindowText;
-      bool                                         m_bModal;
-      ::thread *                                   m_pthreadModal;
-      __reference(::thread)                        m_pthreadUserInteraction;
-      id                                           m_idModalResult; // for return values from interaction_impl::RunModalLoop
-      i32                                          m_nModalResult; // for return values from ::interaction_impl::RunModalLoop
-      __pointer(interaction)                       m_ptooltip;
+      ::tick                                    m_tickMouseMove;
+      ::tick                                    m_tickMouseMoveIgnore;
+      __reference(alpha_source)                 m_palphasource;
+      i32                                       m_iItemHeight;
+      point                                     m_pointMoveCursor;
+      bool                                      m_bDefaultWalkPreTranslateParentTree;
+      __pointer(::aura::drawable)               m_pdrawableBackground;
+      bool                                      m_bBackgroundBypass;
+      tick                                      m_tickLastFullUpdate;
+      bool                                      m_bSizeMove;
+      tick                                      m_tickLastVisualChange;
+      __reference(::file::insert_item)          m_pitemComposing;
+      __pointer(primitive_impl)                 m_pimpl;
+      __pointer(interaction_impl)               m_pimpl2;
+      __pointer(interaction)                    m_puserinteraction;
+      interaction_ptra                          m_uiptraOwned;
+      interaction_pointer_array                 m_uiptraChild;
+      string                                    m_strName;
+      __pointer(interaction)                    m_puiOwner;
+      u64                                       m_uiUserInteractionFlags;
+      bool                                      m_bCursorInside;
+      e_cursor                                  m_ecursor;
+      bool                                      m_bRectOk;
+      bool                                      m_bParentScroll;
+      bool                                      m_bMessageWindow;
+      string                                    m_strWindowText;
+      bool                                      m_bModal;
+      __pointer(::thread)                       m_pthreadModal;
+      __reference(::thread)                     m_pthreadUserInteraction;
+      id                                        m_idModalResult; // for return values from interaction_impl::RunModalLoop
+      i32                                       m_nModalResult; // for return values from ::interaction_impl::RunModalLoop
+      __pointer(interaction)                    m_ptooltip;
+
+      bool                                      m_bNeedRedraw;
+      bool                                      m_bNeedLayout;
+      bool                                      m_bReposition;
+      bool                                      m_bUpdatingVisual;
+      bool                                      m_bUpdateVisual;
 
 
-      ::draw2d::path_pointer                       m_pathFocusRect1;
-      ::draw2d::path_pointer                       m_pathFocusRect2;
-      ::draw2d::path_pointer                       m_pathFocusRect3;
-      ::draw2d::path_pointer                       m_pathFocusRect4;
+
+      ::draw2d::path_pointer                    m_pathFocusRect1;
+      ::draw2d::path_pointer                    m_pathFocusRect2;
+      ::draw2d::path_pointer                    m_pathFocusRect3;
+      ::draw2d::path_pointer                    m_pathFocusRect4;
 
 
       /// The menu_item this user_interaction (window)
@@ -198,7 +207,25 @@ namespace user
 
       virtual void on_create_user_interaction();
 
+      class control_descriptor& descriptor();
+      const class control_descriptor& descriptor() const;
+
+
+
       ::user::item* get_user_item(const ::user::item& item);
+
+      const class ::user::interaction_layout& layout() const { return *m_playout; }
+      class ::user::interaction_layout& layout() { return *m_playout; }
+
+
+      inline void auto_prodevian_on_show() { m_ewindowflag |= window_flag_auto_prodevian_on_show; }
+      inline void clear_auto_prodevian_on_show() { m_ewindowflag -= window_flag_auto_prodevian_on_show; }
+      inline bool is_auto_prodevian_on_show() { return m_ewindowflag & window_flag_auto_prodevian_on_show; }
+
+      inline void visual_changed() { m_ewindowflag |= window_flag_visual_changed; }
+      inline void clear_visual_changed() { m_ewindowflag -= window_flag_visual_changed; }
+      inline bool is_visual_changed()const { return m_ewindowflag & window_flag_visual_changed; }
+
 
       bool is_ok()
       {
@@ -210,6 +237,15 @@ namespace user
 
       }
 
+      virtual string get_class_style(string strClass);
+      virtual bool set_class_style(string strClass, string strStyle);
+      virtual void sync_style();
+      virtual string get_full_style();
+      virtual void load_style(string strStyle);
+
+
+      virtual bool is_full_screen_enabled() const;
+
       virtual bool get_element_rect(RECT* prect, e_element eelement);
 
       virtual e_element get_default_element() const;
@@ -220,11 +256,11 @@ namespace user
       virtual double get_double(style* pstyle, enum_double edouble, double dDefault = 0.) const;
       virtual ::rect get_border(style* pstyle, e_element eelement, estate estate = e_state_none) const;
       inline ::rect get_border(style* pstyle, estate estate = e_state_none) const { return get_border(pstyle, get_default_element(), estate); }
-      virtual ::rect get_padding(style* pstyle, e_element eelement, estate estate = e_state_none) const;
+      virtual ::rect get_padding(style* pstyle, e_element eelement, estate elayout = e_state_none) const;
       inline ::rect get_padding(style* pstyle, estate estate = e_state_none) const { return get_padding(pstyle, get_default_element(), estate); }
-      virtual ::rect get_margin(style* pstyle, e_element eelement, estate estate = e_state_none) const;
+      virtual ::rect get_margin(style* pstyle, e_element eelement, estate elayout = e_state_none) const;
       inline ::rect get_margin(style* pstyle, estate estate = e_state_none) const { return get_margin(pstyle, get_default_element(), estate); }
-      virtual ::color get_color(style* pstyle, e_element eelement, estate estate = e_state_none) const;
+      virtual ::color get_color(style* pstyle, e_element eelement, estate elayout = e_state_none) const;
       inline ::color get_color(style* pstyle, estate estate = e_state_none) const { return get_color(pstyle, get_default_element(), estate); }
 
       virtual eflag get_draw_flags(style* pstyle) const;
@@ -283,8 +319,8 @@ namespace user
       interaction * get_tooltip();
 
       virtual double get_rotate();
-      virtual ::user::interaction * get_form();
-      virtual ::user::interaction* get_parent_form();
+      virtual ::user::form * get_form();
+      virtual ::user::form * get_parent_form();
 
 
       virtual void set_place_child_title(const char* pszTitle);
@@ -297,7 +333,7 @@ namespace user
       virtual void delete_this() override;
 
 
-      virtual bool window_move(i32 x, i32 y) override;
+      //virtual bool window_move(i32 x, i32 y) override;
 
 
       auto prodevian() { return __new(::prodevian(this)); }
@@ -309,12 +345,12 @@ namespace user
 
       virtual void on_defer_display();
 
-      virtual bool defer_display();
-      virtual bool prodevian_display();
-      virtual bool prodevian_appearance();
-      virtual bool prodevian_zorder();
-      virtual bool prodevian_reposition();
-      virtual bool prodevian_layout();
+      virtual bool defer_design_display();
+      virtual bool design_display();
+      virtual bool design_appearance();
+      virtual bool design_zorder();
+      virtual bool design_reposition();
+      virtual bool design_layout();
 
 
       virtual void prodevian_stop() override;
@@ -327,27 +363,58 @@ namespace user
       virtual void defer_restore(const ::rect& rectRequest);
       ::object * parent_property_set_holder() const override;
 
-      virtual void set_reposition(bool bSetThis = true) override;
-      virtual void _set_reposition(bool bSetThis = true) override;
+      virtual void set_reposition(bool bSetThis = true);
+      virtual void _set_reposition(bool bSetThis = true);
       virtual void set_need_layout(bool bAscendants = true);
+      //void set_need_layout() { m_bNeedLayout = true; }
       virtual void set_need_redraw(bool bAscendants = true) override;
       virtual void set_need_load_form_data() override;
       virtual void set_need_save_form_data() override;
+      //virtual bool commit_sketch();
       virtual void post_redraw(bool bAscendants = true) override;
       virtual void show_window();
 
-      virtual void prodevian_update_visual(bool & bUpdateBuffer, bool & bUpdateWindow) override;
+
+      bool create_layout(bool bTopLevel);
+
+
+      virtual void start_layout();
+      virtual void set_layout_ready();
+
+
+      virtual bool is_layout_modified() const;
+      virtual bool is_layout_ready() const;
+
+
+      virtual bool display(::edisplay edisplay = display_default, ::eactivation eactivation = ::activation_none);
+      virtual void place(const ::rect& rect, e_layout elayout = layout_sketch);
+
+      virtual ::zorder zorder(e_layout elayout = layout_sketch) const;
+      virtual void order(::zorder zorder, e_layout elayout = layout_sketch);
+
+      inline void order_top(e_layout elayout = layout_sketch) { order(zorder_top, elayout); }
+      inline void order_front(e_layout elayout = layout_sketch) { order(zorder_top, elayout); }
+      inline void order_top_most(e_layout elayout = layout_sketch) { order(zorder_top_most, elayout); }
+      inline void order_bottom(e_layout elayout = layout_sketch) { order(zorder_bottom, elayout); }
+
+
+      virtual void sketch_to_design(::draw2d::graphics_pointer & pgraphics, bool & bUpdateBuffer, bool & bUpdateWindow) override;
       virtual void _001UpdateWindow() override;
-      virtual void window_apply_visual(const struct window_state& windowstate) override;
+      //virtual void window_apply_visual(const class window_state& windowstate) override;
 
 
-      virtual void prodevian_prepare_window_minimize(::eactivation eactivation) override;
-      virtual void prodevian_prepare_window_maximize() override;
-      virtual void prodevian_prepare_window_full_screen(const ::rect& rectHint = nullptr) override;
-      virtual void prodevian_prepare_window_restore(edisplay edisplay) override;
-      virtual void prodevian_prepare_window_dock(edisplay edisplay) override;
+      virtual void sketch_prepare_window_minimize(::eactivation eactivation) override;
+      virtual void sketch_prepare_window_maximize() override;
+      virtual void sketch_prepare_window_full_screen(const ::rect& rectHint = nullptr) override;
+      virtual void sketch_prepare_window_restore(edisplay edisplay) override;
+      virtual void sketch_prepare_window_dock(edisplay edisplay) override;
 
 
+      inline void get_client_rect(LPRECT lprect, e_layout elayout = layout_design) const { layout().state(elayout).client_rect(lprect); }
+      inline ::rect get_client_rect(e_layout elayout = layout_design) const { return layout().state(elayout).client_rect(); }
+
+      inline void get_window_rect(LPRECT lprect, e_layout elayout = layout_design) const { *lprect = get_window_rect(elayout); }
+      inline ::rect get_window_rect(e_layout elayout = layout_design) const;
 
       inline bool set_prodevian() { return add_prodevian(this); }
       inline bool clear_prodevian() { return remove_prodevian(this); }
@@ -358,14 +425,20 @@ namespace user
 
 
       virtual bool is_frame_window();
-      virtual bool is_this_visible() override;
+      virtual bool is_this_visible(e_layout elayout = layout_design) override;
+
+      virtual bool sketch_on_display();
+
+
+      inline bool is_window_visible(e_layout elayout = layout_design) const noexcept;
+      inline bool is_window_screen_visible(e_layout elayout = layout_design) const noexcept;
 
 
       virtual bool create_message_queue(const char* lpszName) override;
 
       //virtual bool create_native_window(::user::native_window_initialize* pinitialize) override;
 
-    virtual bool setWMClass(const char * psz);
+      virtual bool setWMClass(const char * psz);
 
 
       virtual bool has_text_input();
@@ -584,7 +657,7 @@ namespace user
       virtual void on_show_window() override;
       virtual void _on_show_window();
 
-      virtual void _do_show_window() override;
+      virtual void window_show_change_visibility();
 
       virtual void defer_save_window_placement();
 
@@ -694,7 +767,7 @@ namespace user
       virtual bool post_object(UINT message, WPARAM wParam, lparam lParam);
 
 
-      virtual void SetWindowDisplayChanged() override;
+      //virtual void SetWindowDisplayChanged() override;
 
 
       virtual bool call_and_set_timer(uptr nIDEvent, ::duration durationElapse, PFN_TIMER pfnTimer = nullptr);
@@ -850,6 +923,11 @@ namespace user
       virtual bool is_parent(const primitive * puiIsParent) const override;
       virtual bool is_child(const primitive * puiIsChild) const override;
       virtual bool is_descendant(const primitive * puiIsDescendant) const override;
+
+      virtual bool is_ascendant(const ::user::controller * pcontroller) const;
+      virtual bool contains(const primitive* puiIsChild) const;
+
+      virtual bool r_contains(const primitive* puiIsChild) const;
 
       virtual ::user::interaction* get_wnd() const override;
       virtual ::user::interaction* get_wnd(UINT nCmd) const override;
@@ -1014,7 +1092,7 @@ namespace user
 
       virtual ::user::interaction* best_top_level_parent(RECT* prect);
 
-      virtual void get_window_rect(RECT * prect) const override;
+      //virtual void get_window_rect(RECT * prect) const override;
 
       virtual index get_zoneing(::rect* prect, const ::rect& rect, edisplay edisplay);
 
@@ -1022,7 +1100,7 @@ namespace user
 
       virtual index calculate_broad_and_compact_restore(RECT* prectWkspace = nullptr, SIZE* psizeMin = nullptr, const ::rect& rectHint = nullptr);
 
-      virtual void reset_window_state();
+       //virtual void reset_window_state();
 
       virtual index make_zoneing(RECT* prect, const ::rect& rect = nullptr, bool bSet = false, ::edisplay* pedisplay = nullptr, ::eactivation eactivation = activation_none, ::zorder zorder = zorder_top);
       virtual index best_zoneing(RECT* prect, const ::rect& rect = nullptr, bool bSet = false, ::edisplay* pedisplay = nullptr, ::eactivation eactivation = activation_none, ::zorder zorder = zorder_top);
@@ -1060,7 +1138,7 @@ namespace user
       virtual ::sized get_page_size();
       virtual ::estatus set_total_size(const ::sized& size);
       virtual ::estatus set_page_size(const ::sized& size);
-      virtual ::point get_parent_accumulated_scroll() const override;
+      virtual ::point get_parent_accumulated_scroll(e_layout elayout = layout_design) const;
       virtual ::point get_parent_viewport_offset() const;
       virtual ::point get_ascendant_viewport_offset() const;
       virtual void get_margin_rect(RECT* prectMargin);
@@ -1091,6 +1169,10 @@ namespace user
 
       virtual void user_interaction_on_destroy();
       virtual void user_interaction_on_hide();
+
+
+      virtual bool hide() override;
+
 
 
 
@@ -1178,6 +1260,8 @@ namespace user
       virtual void _001OnDeiconify(edisplay edisplay);
 
 
+
+
       virtual bool on_click(const ::user::item & item);
       virtual bool on_right_click(const ::user::item & item);
 
@@ -1262,7 +1346,7 @@ namespace user
       /// to build a default control with a default constructed
       /// ::user::control_descriptor.
       //virtual bool create_control(class control_descriptor* pdescriptor) override;
-      //virtual estate get_state() const override;
+      //virtual elayout get_state() const override;
       bool _003IsCustomMessage();
       ::user::primitive* _003GetCustomMessageWnd();
       //virtual void _001OnDraw(::draw2d::graphics_pointer& pgraphics) override;
@@ -1341,9 +1425,6 @@ namespace user
       virtual e_stock_icon get_stock_icon();
 
 
-      //virtual e_control_type get_control_type() const;
-
-
       virtual void post_task(::generic_object * pobjectTask);
       virtual void prodevian_schedule(::generic_object * pobjectTask);
 
@@ -1394,30 +1475,65 @@ namespace user
 
 
 
+      template < typename SIZE_SHIFTABLE >
+      inline auto screen_to_client(const SIZE_SHIFTABLE& o, e_layout elayout = layout_design) { return o - ::size(layout().screen_origin(elayout)) + ::size(get_parent_accumulated_scroll(elayout)); }
+
+
+      template < typename POINT_SHIFTABLE >
+      inline auto client_to_screen(const POINT_SHIFTABLE& o, e_layout elayout = layout_design) { return o + layout().screen_origin(elayout) - ::size(get_parent_accumulated_scroll(elayout)); }
+
+
+      template < typename SIZE_SHIFTABLE >
+      inline auto parent_to_client(const SIZE_SHIFTABLE& o, e_layout elayout = layout_design) { return o - ::size(layout().origin(elayout)); }
+
+
+      template < typename POINT_SHIFTABLE >
+      inline auto client_to_parent(const POINT_SHIFTABLE& o, e_layout elayout = layout_design) { return o + layout().origin(elayout); }
+
+
+      template < typename POINT_OFFSETABLE >
+      inline void _001ScreenToClient(POINT_OFFSETABLE& o, e_layout elayout = layout_design) { o -= layout().screen_origin(elayout); o += get_parent_accumulated_scroll(elayout); }
+      template < typename POINT_OFFSETABLE >
+      inline void _001ScreenToClient(POINT_OFFSETABLE* po, e_layout elayout = layout_design) { _001ScreenToClient(*po, elayout); }
+
+
+      template < typename POINT_OFFSETABLE >
+      inline void _001ClientToScreen(POINT_OFFSETABLE& o, e_layout elayout = layout_design) { o += layout().screen_origin(elayout); o -= get_parent_accumulated_scroll(elayout); }
+      template < typename POINT_OFFSETABLE >
+      inline void _001ClientToScreen(POINT_OFFSETABLE* po, e_layout elayout = layout_design) { _001ClientToScreen(*po, elayout); }
+
+
+      template < typename POINT_OFFSETABLE >
+      inline void _001ParentToClient(POINT_OFFSETABLE& o, e_layout elayout = layout_design) { o -= layout().origin(elayout); }
+      template < typename POINT_OFFSETABLE >
+      inline void _001ParentToClient(POINT_OFFSETABLE* po, e_layout elayout = layout_design) { _001ParentToClient(*po, elayout); }
+
+
+      template < typename POINT_OFFSETABLE >
+      inline void _001ClientToParent(POINT_OFFSETABLE& o, e_layout elayout = layout_design) { o += layout().origin(elayout); }
+      template < typename POINT_OFFSETABLE >
+      inline void _001ClientToParent(POINT_OFFSETABLE* po, e_layout elayout = layout_design) { _001ClientToParent(*po, elayout); }
+
+      inline void ScreenToClient(RECT* prect, e_layout elayout = layout_design) { ::rect_sub(prect, layout().screen_origin(elayout)); }
+      inline void ScreenToClient(POINT* ppoint, e_layout elayout = layout_design) { ::point_sub(ppoint, layout().screen_origin(elayout)); }
+
+
+      inline void ClientToScreen(RECT* prect, e_layout elayout = layout_design) { ::rect_add(prect, layout().screen_origin(elayout)); }
+      inline void ClientToScreen(POINT* ppoint, e_layout elayout = layout_design) { ::point_add(ppoint, layout().screen_origin(elayout)); }
+
+
+      inline void ParentToClient(RECT* prect, e_layout elayout = layout_design) { ::rect_sub(prect, layout().origin(elayout)); }
+      inline void ParentToClient(POINT* ppoint, e_layout elayout = layout_design) { ::point_sub(ppoint, layout().origin(elayout)); }
+
+
+      inline void ClientToParent(RECT* prect, e_layout elayout = layout_design) { ::rect_add(prect, layout().origin(elayout)); }
+      inline void ClientToParent(POINT* ppoint, e_layout elayout = layout_design) { ::point_add(ppoint, layout().origin(elayout)); }
+
+
    };
 
 
-   inline bool layout::is_window_visible() const noexcept
-   {
 
-      if (m_pdescriptor.is_null())
-      {
-
-         return false;
-
-      }
-
-      return m_pdescriptor->m_puserinteractionParent != NULL && !m_pdescriptor->m_puserinteractionParent->is_window_visible() ? false : is_this_visible();
-
-   }
-
-
-   inline bool layout::is_window_screen_visible() const noexcept
-   {
-
-      return m_pdescriptor->m_puserinteractionParent != NULL && !m_pdescriptor->m_puserinteractionParent->is_window_screen_visible() ? false : is_this_screen_visible();
-
-   }
 
 
    class control_cmd_ui : public ::user::command

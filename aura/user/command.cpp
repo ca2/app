@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 namespace user
@@ -8,6 +8,7 @@ namespace user
    command::command(::object * pobject) 
    {
 
+      common_construct();
       if (::is_set(pobject))
       {
 

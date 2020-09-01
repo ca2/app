@@ -1086,16 +1086,21 @@ namespace user
    }
 
 
+   void form_control::soft_reload()
+   {
 
+   }
 
 
    string form_control::get_path()
    {
+      
       return "";
+
    }
 
 
-   bool form_control::open_document(const var & varFile)
+   ::estatus form_control::open_document(const var & varFile)
    {
 
       return true;
@@ -1461,13 +1466,6 @@ namespace user
       }
 
       return pform;
-
-   }
-
-
-   void form_control::soft_reload()
-   {
-
 
    }
 

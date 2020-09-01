@@ -72,6 +72,10 @@ namespace user
             
             m_pscrollbarHorz->display();
 
+            //m_pscrollbarHorz->set_need_redraw();
+
+            //m_pscrollbarHorz->set_need_layout();
+
          }
          else
          {
@@ -1059,8 +1063,8 @@ namespace user
 
       prect->left = 0;
       prect->top = 0;
-      prect->right = ui_state().m_size.cx;
-      prect->bottom = ui_state().m_size.cy;
+      prect->right = layout().sketch().size().cx;
+      prect->bottom = layout().sketch().size().cy;
 
       return true;
 
@@ -1113,8 +1117,8 @@ namespace user
 
          rect.top = rectClient.bottom;
          rect.left = rectClient.right;
-         rect.right = (LONG) (rect.left + m_pscrollbarVert->ui_state().m_size.cx);
-         rect.bottom = (LONG) (rect.top + m_pscrollbarHorz->ui_state().m_size.cy);
+         rect.right = (LONG) (rect.left + m_pscrollbarVert->layout().design().size().cx);
+         rect.bottom = (LONG) (rect.top + m_pscrollbarHorz->layout().design().size().cy);
 
          pgraphics->fill_rect(rect, ARGB(127, 127, 127, 127));
 

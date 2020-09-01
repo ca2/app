@@ -42,6 +42,11 @@ namespace user
       virtual void assert_valid() const override;
 
 
+      virtual ::user::interaction* impact_at(::index iImpact) const override;
+      virtual ::count impact_count() const override;
+
+
+      virtual bool contains(::user::interaction* pinteraction) const;
 
 
       //virtual ::user::document* open_new_document(::aura::application* pappOnBehalfOf);

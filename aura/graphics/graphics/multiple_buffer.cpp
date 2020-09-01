@@ -38,7 +38,7 @@ namespace graphics
 
 #ifdef MACOS
 
-      m_imageaBuffer.set_size(40);
+      m_imageaBuffer.set_size(3);
 
 #else
 
@@ -59,8 +59,8 @@ namespace graphics
 
       return estatus;
 
-
    }
+
 
    ::sync * multiple_buffer::get_draw_lock()
    {
@@ -75,7 +75,7 @@ namespace graphics
 
       auto sizeBuffer = window_size();
 
-      if (m_imageaBuffer[m_iBuffer]->size() != sizeBuffer)
+      //if (m_imageaBuffer[m_iBuffer]->size() != sizeBuffer)
       {
 
          if (!m_imageaBuffer[m_iBuffer]->create(sizeBuffer))
@@ -317,7 +317,7 @@ namespace graphics
    sync * multiple_buffer::get_screen_sync()
    {
 
-      auto size = m_pimpl->m_puserinteraction->size();
+      auto size = m_pimpl->m_puserinteraction->layout().design().size();
 
       m_iScreen = find_best_buffer(size);
 
@@ -347,7 +347,7 @@ namespace graphics
 
       sync_lock sl(mutex());
 
-      auto size = m_pimpl->m_puserinteraction->size();
+      auto size = m_pimpl->m_puserinteraction->layout().design().size();
 
       auto iImage = find_best_buffer(size);
 

@@ -92,7 +92,7 @@ namespace user
    void primitive_impl::set_need_layout()
    {
 
-      m_puserinteraction->m_bNeedLayout = true;
+      m_puserinteraction->set_need_layout();
 
       if (m_puserinteraction->m_pdescriptor->m_puserinteractionParent != nullptr)
       {
@@ -391,7 +391,7 @@ namespace user
       if (m_puserinteraction)
       {
 
-         ::point_add(ppt, m_puserinteraction->ui_state().m_point);
+         ::point_add(ppt, m_puserinteraction->layout().design().origin());
 
       }
 
@@ -404,7 +404,7 @@ namespace user
       if (m_puserinteraction)
       {
 
-         ::point_sub(ppt, m_puserinteraction->ui_state().m_point);
+         ::point_sub(ppt, m_puserinteraction->layout().design().origin());
 
       }
 
@@ -1032,11 +1032,11 @@ namespace user
 
       }
 
-      if (m_puserinteraction->window_is_moving())
+      if (m_puserinteraction->layout().is_moving())
       {
          TRACE("moving: skip walk pre translate tree");
       }
-      else if (m_puserinteraction->window_is_sizing())
+      else if (m_puserinteraction->layout().is_sizing())
       {
          TRACE("sizing: skip walk pre translate tree");
       }
@@ -1121,7 +1121,7 @@ namespace user
    bool primitive_impl::get_rect_normal(RECT * prect)
    {
 
-      m_puserinteraction->get_window_rect(prect);
+      m_puserinteraction->layout().sketch().screen_rect(prect);
 
       return true;
 
@@ -1452,9 +1452,8 @@ namespace user
    {
 
       SCAST_PTR(::message::show_window, pshowwindow, pmessage);
-      //string str = g_p->operator[]((iptr)this);
 
-      set_need_redraw();
+      m_puserinteraction->set_need_redraw();
 
    }
 
@@ -1654,13 +1653,13 @@ namespace user
    }
 
 
-   void primitive_impl::SetWindowDisplayChanged()
-   {
+   // void primitive_impl::SetWindowDisplayChanged()
+   // {
 
-   }
+   // }
 
 
-   void primitive_impl::_do_show_window()
+   void primitive_impl::window_show_change_visibility(::edisplay edisplay, ::eactivation eactivation)
    {
 
    }

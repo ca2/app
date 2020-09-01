@@ -21,6 +21,8 @@ namespace draw2d
    graphics::graphics()
    {
 
+      //m_bLayoutModified = false;
+
       m_bOutline = false;
 
       defer_create_mutex();
@@ -117,6 +119,30 @@ namespace draw2d
       ::exception::throw_not_implemented();
 
       return nullptr;
+
+   }
+
+
+   oswindow graphics::get_window_handle() const
+   {
+
+      if (!m_puserinteraction)
+      {
+
+         return nullptr;
+
+      }
+
+      oswindow oswindow = m_puserinteraction->get_safe_handle();
+
+      if (!oswindow)
+      {
+
+         return nullptr;
+
+      }
+
+      return oswindow;
 
    }
 

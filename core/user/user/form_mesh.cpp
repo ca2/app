@@ -46,7 +46,7 @@ namespace user
    bool form_mesh::on_click(const ::user::item & item)
    {
       
-      if (!item)
+      if (!item.is_set())
       {
 
          return false;
@@ -117,7 +117,7 @@ namespace user
          
          _001Update(pinteraction);
 
-         pinteraction->order_top();
+         pinteraction->layout().order_top();
          
          pinteraction->place(rect);
 
@@ -418,7 +418,7 @@ namespace user
 
       draw_mesh_item item(this);
 
-      return m_itemControl 
+      return m_itemControl.is_set()
          && m_itemControl.m_iSubItem == pinteraction->descriptor().m_iSubItem;
 
       //i32 iEditItem;

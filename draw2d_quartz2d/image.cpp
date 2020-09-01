@@ -56,7 +56,7 @@ namespace draw2d_quartz2d
 
       }
 
-      destroy();
+      //destroy();
 
       if(size.is_empty())
       {
@@ -65,9 +65,9 @@ namespace draw2d_quartz2d
 
       }
 
-      m_pbitmap.create();
+      m_pbitmap.defer_create();
 
-      m_pgraphics.create();
+      m_pgraphics.defer_create();
 
       if(m_pbitmap.is_null() || m_pgraphics.is_null())
       {

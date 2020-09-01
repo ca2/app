@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "aura/const/timer.h"
 #include "orto_button.h"
 
@@ -47,7 +47,7 @@ namespace experience
          crText = ARGB(255, 49, 50, 23);
 
       }
-      else if (m_itemHover)
+      else if (m_itemHover.is_set())
       {
 
          pgraphics->fill_rect(rectClient, ARGB(190, 49, 50, 23));

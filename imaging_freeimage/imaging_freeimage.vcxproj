@@ -556,7 +556,7 @@
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <UseFullPaths>true</UseFullPaths>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <OpenMPSupport>false</OpenMPSupport>
       <EnableModules>false</EnableModules>
     </ClCompile>
@@ -749,7 +749,7 @@
       <UseFullPaths>true</UseFullPaths>
       <CompileAsManaged>false</CompileAsManaged>
       <CompileAsWinRT>false</CompileAsWinRT>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <OmitFramePointers>false</OmitFramePointers>
       <Optimization>Disabled</Optimization>
       <OpenMPSupport>false</OpenMPSupport>
@@ -1014,7 +1014,7 @@
       </SDLCheck>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <UseFullPaths>true</UseFullPaths>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <OpenMPSupport>false</OpenMPSupport>
       <EnableModules>false</EnableModules>
     </ClCompile>

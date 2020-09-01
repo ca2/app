@@ -110,7 +110,7 @@ namespace draw2d_direct2d
 
       int iScan = iStride;
 
-      if (!m_pbitmapMap->CreateDIBSection(m_pgraphicsMap, size, DIB_RGB_COLORS, (void **)&pcolorref, &iScan, nullptr, NULL))
+      if (!m_pbitmapMap->create_bitmap(m_pgraphicsMap, size, (void **)&pcolorref, &iScan))
       {
 
          m_sizeRaw.cx = 0;

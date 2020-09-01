@@ -30,7 +30,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnShowWindow);
 
 
-      virtual void prodevian_prepare_window_restore(edisplay edisplay) override;
+      virtual void sketch_prepare_window_restore(edisplay edisplay) override;
 
 
       virtual string get_display_tag() override;

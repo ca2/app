@@ -615,10 +615,10 @@ namespace windows
 
       }
 
-      m_puserinteraction->request_state().m_point.x = cs.x;
-      m_puserinteraction->request_state().m_point.y = cs.y;
-      m_puserinteraction->request_state().m_size.cx = cs.cx;
-      m_puserinteraction->request_state().m_size.cy = cs.cy;
+      m_puserinteraction->layout().sketch().m_point.x = cs.x;
+      m_puserinteraction->layout().sketch().m_point.y = cs.y;
+      m_puserinteraction->layout().sketch().m_size.cx = cs.cx;
+      m_puserinteraction->layout().sketch().m_size.cy = cs.cy;
 
       m_puserinteraction->window_state3().m_point.x = cs.x;
       m_puserinteraction->window_state3().m_point.y = cs.y;
@@ -819,7 +819,7 @@ namespace windows
 
       SCAST_PTR(::message::move, pmove, pmessage);
 
-      if (m_puserinteraction->request_state().m_point != pmove->m_point)
+      if (m_puserinteraction->layout().sketch().m_point != pmove->m_point)
       {
 
          if (m_puserinteraction->window_is_moving())
@@ -866,7 +866,7 @@ namespace windows
 
       SCAST_PTR(::message::size, psize, pmessage);
 
-      if (m_puserinteraction->request_state().m_size != psize->m_size)
+      if (m_puserinteraction->layout().sketch().m_size != psize->m_size)
       {
 
          m_puserinteraction->set_size(psize->m_size);
@@ -3051,12 +3051,12 @@ namespace windows
    }
 
 
-   void interaction_impl::window_apply_visual(const ::user::window_state & windowstate)
-   {
+   // void interaction_impl::window_apply_visual(const ::user::window_state & windowstate)
+   // {
 
-      return ::user::interaction_impl::window_apply_visual(windowstate);
+   //    return ::user::interaction_impl::window_apply_visual(windowstate);
 
-   }
+   // }
 
 
    //bool interaction_impl::_is_window_visible()
@@ -4082,7 +4082,7 @@ namespace windows
 
       bool bMove = false;
 
-      if (m_puserinteraction->request_state().m_point != point)
+      if (m_puserinteraction->layout().sketch().m_point != point)
       {
 
          if (m_puserinteraction->window_is_moving())
@@ -4102,7 +4102,7 @@ namespace windows
 
       bool bSize = false;
 
-      if (m_puserinteraction->request_state().m_size != size)
+      if (m_puserinteraction->layout().sketch().m_size != size)
       {
 
          m_puserinteraction->set_size(size);

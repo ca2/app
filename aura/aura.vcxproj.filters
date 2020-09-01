@@ -2891,9 +2891,6 @@
     <ClInclude Include="user\language_map.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\layout.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\main_window.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -3177,6 +3174,15 @@
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\controller.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\form.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\form_callback.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\interaction_layout.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
   </ItemGroup>
@@ -5044,9 +5050,6 @@
     <ClCompile Include="user\language_map.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\layout.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\main_window.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
@@ -5272,6 +5275,15 @@
     <ClCompile Include="user\controller.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
+    <ClCompile Include="user\form.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\form_callback.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\interaction_layout.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\primitive\papaya.inl">
@@ -5359,9 +5371,6 @@
       <Filter>Header Files\primitive\primitive</Filter>
     </None>
     <None Include="graphics\draw2d\_impl.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </None>
-    <None Include="graphics\draw2d\_visual_impl.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </None>
     <None Include="graphics\_impl.h">

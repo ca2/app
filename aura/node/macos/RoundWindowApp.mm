@@ -7,12 +7,15 @@
 //
 
 #import "_mm.h"
+
+#include "aura/user/menu_shared.h"
+
 bool on_application_menu_action(const char * pszCommand);int file_put_contents_dup(const char * path, const char * contents);
 void file_add_contents_raw(const char * path, const char * psz);
 i32 defer_run_system();
 u32 __start_system_with_file(const char * pszFileName);
 i32 defer_run_system(const char * pszFileName);
-
+void free_c_string_array(char * const * ppszList, int iCount);
 i32 defer_run_system(char * * psza, int c);
 
 void system_call_update_app_activated();
@@ -78,7 +81,7 @@ void set_aura_system_as_thread();
          
          strId = [[NSString alloc] initWithUTF8String: pszId];
          
-         item = [[NSMenuItem alloc] initWithTitle:  strTitle action: @selector(play:) keyEquivalent:@"" ];
+         item = [[NSMenuItem alloc] initWithTitle:  strTitle action: @selector(on_os_menu_item:) keyEquivalent:@"" ];
          
       }
       
@@ -129,7 +132,7 @@ void set_aura_system_as_thread();
 }
 
 
-- (void)play:(id)sender
+- (void)on_os_menu_item:(id)sender
 {
    
    NSMenuItem * pitem = (NSMenuItem *) sender;
@@ -378,15 +381,104 @@ NSAppleEventManager *appleEventManager = [NSAppleEventManager sharedAppleEventMa
 
 //[appDelegate->m_menu setDelegate:NSApp];
 
+- (void) ns_add_menu :(NSMenu *) menuParent withParent: (const char *) pszParent  withSharedMenu : (menu_shared *) pmenushared
+{
+   
+   if(!pmenushared)
+   {
+      
+      return;
+      
+   }
+
+      for(int i = 0; i < pmenushared->m_iCount; i++)
+      {
+
+         if(!strcmp("separator", pmenushared->m_ppszId[i]))
+         {
+            
+            NSMenuItem * menuitem = [NSMenuItem separatorItem];
+            
+            [menuParent addItem: menuitem];
+
+         }
+         else if(!strcmp(pszParent, pmenushared->m_ppszParent[i]))
+         {
+         
+            NSString * strTitle = [[NSString alloc] initWithUTF8String:pmenushared->m_ppszMenu[i]];
+
+            NSMenuItem * menuitem = [[NSMenuItem alloc] initWithTitle:strTitle action:@selector(on_command:) keyEquivalent:@""];
+      
+            NSString * strId = [[NSString alloc] initWithUTF8String:pmenushared->m_ppszId[i]];
+
+            pmenushared->m_ositema[i] = (__bridge void * )menuitem;
+            
+            [menuitem setTarget: self];
+
+            [menuitem setRepresentedObject: strId];
+         
+            [menuParent addItem: menuitem];
+
+         }
+
+      }
+
+
+}
 
 @end
 
 
-void ns_create_main_menu()
+
+
+void os_menu_item_enable(void * pitem, bool bEnable)
+{
+
+   NSMenuItem * pmenuitem = (__bridge NSMenuItem *) pitem;
+
+   ns_main_async(^()
+   {
+
+      [pmenuitem setEnabled: bEnable];
+
+   });
+
+}
+
+
+void os_menu_item_check(void * pitem, bool bCheck)
+{
+
+   NSMenuItem * pmenuitem = (__bridge NSMenuItem *) pitem;
+
+   ns_main_async(^()
+   {
+      
+      if(bCheck)
+      {
+
+         [pmenuitem setState: NSOnState];
+         
+      }
+      else
+      {
+         
+         [pmenuitem setState: NSOffState];
+         
+      }
+
+   });
+
+}
+
+
+void ns_create_main_menu(menu_shared * pmenushared)
 {
    
    
    id menuMain = [NSMenu alloc];
+   
+   RoundWindowApp * papp = (RoundWindowApp *) [[NSApplication sharedApplication] delegate ];
    
    {
       
@@ -404,10 +496,13 @@ void ns_create_main_menu()
       
       id menuitemQuit = [[NSMenuItem alloc] initWithTitle:strQuitTitle
                                                    action:@selector(terminate:) keyEquivalent:@"q"];
-      
+
+      [ papp ns_add_menu : menuApp withParent: "" withSharedMenu: pmenushared];
+
       [menuApp addItem: menuitemQuit];
       
    }
+
    
    {
       
@@ -421,11 +516,13 @@ void ns_create_main_menu()
       
       [menuitemView setSubmenu: menuView];
       
-      id strFxxTitle = _("Trasparentt(snowballeffect_smallerror>>>)Fxx");
+      id strFxxTitle = _("Transparent Frame");
       
       NSMenuItem * menuitemFxx = [[NSMenuItem alloc] initWithTitle:strFxxTitle
                                                             action:@selector(on_command:) keyEquivalent:@"f"];
       
+      [ papp ns_add_menu : menuView withParent: "view" withSharedMenu: pmenushared];
+
       [menuitemFxx setRepresentedObject: @"transparent_frame"];
       
       [menuView addItem: menuitemFxx];
@@ -433,10 +530,12 @@ void ns_create_main_menu()
    }
    
    [NSApp setMainMenu:menuMain];
-   
+
+
    
 }
 
+void os_begin_system();
 
 void ns_application_main(int argc, char *argv[], const char * pszCommandLine)
 {
@@ -464,13 +563,17 @@ void ns_application_main(int argc, char *argv[], const char * pszCommandLine)
    }
 //   else
 //   {
-//      
+//
 //      nsapp_activation_policy_regular();
-//      
+//
 //   }
    
 
    [NSApp activateIgnoringOtherApps:YES];
+   
+   os_begin_system();
+   
+
    
    [NSApp run];
    

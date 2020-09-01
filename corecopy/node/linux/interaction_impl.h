@@ -82,7 +82,7 @@ namespace linux
       //DECL_GEN_SIGNAL(_001OnProdevianSynch);
 
 
-      virtual void _do_show_window() override;
+      virtual void window_show_change_visibility() override;
 
 
 //#if(WINVER >= 0x0500)

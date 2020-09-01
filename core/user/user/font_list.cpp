@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "aura/update.h"
 #include "aura/procedure.h"
 
@@ -442,7 +442,7 @@ namespace user
 
       auto item = current_item();
 
-      if (!item)
+      if (!item.is_set())
       {
 
          return "";
@@ -461,7 +461,7 @@ namespace user
 
       auto item = hover_item();
 
-      if (!item)
+      if (!item.is_set())
       {
 
          return "";

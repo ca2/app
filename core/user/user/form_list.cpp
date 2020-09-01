@@ -52,7 +52,7 @@ namespace user
    bool form_list::on_right_click(const ::user::item & item)
    {
 
-      if (!item)
+      if (!item.is_set())
       {
 
 
@@ -142,7 +142,7 @@ namespace user
    bool form_list::on_click(const ::user::item & item)
    {
 
-      if(!item)
+      if(!item.is_set())
       {
 
          _001HideEditingControls();
@@ -532,7 +532,7 @@ namespace user
 
          }
 
-         pinteraction->order_top();
+         pinteraction->layout().order_top();
 
          pinteraction->place(rectControl);
 
@@ -1285,7 +1285,7 @@ break_click:;
       draw_list_item item(this);
 
 
-      return m_itemControl && m_itemControl.subitem_index() == pinteraction->descriptor().subitem_index();
+      return m_itemControl.is_set() && m_itemControl.subitem_index() == pinteraction->descriptor().subitem_index();
 
       //i32 iEditItem;
       //i32 iEditSubItem;

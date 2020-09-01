@@ -432,7 +432,7 @@ namespace experience
 
          return true;
 
-         //auto edisplay = m_pframewindow->display_request();
+         //auto edisplay = m_pframewindow->layout().sketch().display();
 
          //return is_iconic(edisplay)
             // || is_full_screen(edisplay)
@@ -548,7 +548,7 @@ namespace experience
    void control_box::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto edisplay = m_pframewindow->display_request();
+      auto edisplay = m_pframewindow->layout().sketch().display();
 
       ::rect rectWindow;
 

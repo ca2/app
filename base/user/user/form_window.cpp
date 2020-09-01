@@ -1068,13 +1068,19 @@ namespace user
    }
 
 
-   bool form_window::open_document(const var & varFile)
+   ::estatus form_window::open_document(const var & varFile)
    {
 
-      if(!::user::form_control::open_document(varFile))
-         return false;
+      auto estatus = ::user::form_control::open_document(varFile);
 
-      return true;
+      if(!estatus)
+      {
+         
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 

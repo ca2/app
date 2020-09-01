@@ -137,7 +137,7 @@ namespace user
 
       auto point = Session.get_cursor_pos();
 
-      _001ScreenToClient(point);
+      _001ScreenToClient(point, layout_design);
 
       ::rect rect;
 

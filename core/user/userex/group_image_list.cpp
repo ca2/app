@@ -474,7 +474,7 @@ namespace userex
 
          plist->place(rectList);
 
-         plist->order_top();
+         plist->layout().order_top();
 
          plist->display();
 

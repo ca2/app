@@ -51,7 +51,8 @@ namespace user
 
       bool                          m_bUpdatingScreen;
       tick                          m_tickLastScreenUpdate;
-      __pointer(generic_object)     m_ptaskX;
+      __pointer(generic_object)     m_ptaskUpdateScreen;
+      __pointer(generic_object)     m_ptaskApplyVisual;
 
 
       prodevian();
@@ -76,8 +77,8 @@ namespace user
 
       bool prodevian_reset(::user::interaction * pinteraction);
       bool prodevian_iteration();
-      void prodevian_update_buffer(bool & bUpdateBuffer, bool & bUpdateScreen, bool bForce = false);
-      bool prodevian_update_screen();
+      void update_buffer(bool & bUpdateBuffer, bool & bUpdateScreen, bool bForce = false);
+      bool update_screen();
 
       void defer_prodevian_step();
 

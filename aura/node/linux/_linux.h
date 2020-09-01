@@ -49,8 +49,8 @@ CLASS_DECL_AURA const char * __get_app_name();
 
 #define LNX_THREAD(pthread) (dynamic_cast < ::linux::thread * > (dynamic_cast < ::thread * >(pthread)))
 
-#include "shell.h"
-#include "shell_linux.h"
+//#include "shell.h"
+//#include "shell_linux.h"
 
 
 #include "interaction_impl.h"

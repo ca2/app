@@ -596,7 +596,7 @@ namespace userex
       if (bSaveAndValidate)
       {
 
-         if (m_pcomboFamily->m_itemCurrent)
+         if (m_pcomboFamily->m_itemCurrent.is_set())
          {
 
             m_formata[0]->m_strFontFamily = m_pcomboFamily->m_plist.cast <::user::font_list>()->m_pfontlist->m_pitema->element_at(m_pcomboFamily->m_itemCurrent)->m_strName;

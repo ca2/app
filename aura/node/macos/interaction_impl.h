@@ -291,19 +291,6 @@ namespace macos
 
       // Layered oswindow
 
-#if(_WIN32_WINNT >= 0x0500)
-
-      virtual bool SetLayeredWindowAttributes(COLORREF crKey, BYTE bAlpha, DWORD dwFlags);
-      virtual bool UpdateLayeredWindow(::draw2d::graphics * pDCDst, POINT *pptDst, SIZE *psize,
-                                       ::draw2d::graphics * pDCSrc, POINT *pptSrc, COLORREF crKey, BLENDFUNCTION *pblend, DWORD dwFlags);
-
-#endif   // _WIN32_WINNT >= 0x0500
-
-#if(_WIN32_WINNT >= 0x0501)
-
-      virtual bool GetLayeredWindowAttributes(COLORREF *pcrKey, BYTE *pbAlpha, DWORD *pdwFlags) const;
-
-#endif   // _WIN32_WINNT >= 0x0501
 
 
       // Timer Functions
@@ -705,7 +692,7 @@ namespace macos
 
       //virtual void _001ApplyVisual() override;
       
-      virtual void _do_show_window() override;
+      virtual void window_show_change_visibility() override;
       
       
    };

@@ -59,16 +59,41 @@ namespace graphics
 
       auto sizeWindow = window_size();
 
-      if (pimage->size() != sizeWindow)
+      //if (pimage->size() != sizeWindow)
       {
+         
+//         if(pimage->size().area() < sizeWindow.area())
+//         {
+//
+//            ::size sizeImage(1920, 1080);
+//
+//            if(sizeWindow.area() > sizeImage.area())
+//            {
+//
+//               sizeImage = sizeWindow;
+//
+//            }
+//
+            if (!pimage->create(sizeWindow))
+            {
 
-         if (!pimage->create(sizeWindow))
-         {
+               return nullptr;
 
-            return nullptr;
-
-         }
-
+            }
+            
+//         }
+//
+//         if(pimage->size().area() > sizeWindow.area())
+//         {
+//
+//            pimage->map();
+//
+//            pimage->m_iScan = sizeWindow.width() * sizeof(COLORREF);
+//
+//            pimage->m_size = sizeWindow;
+//
+//         }
+//
       }
 
       if (!pimage)

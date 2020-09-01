@@ -497,7 +497,7 @@ namespace userex
                   //if (!pframewindowTab->is_this_visible() || rectRequest != pframewindowTab->window_request_rect())
                   {
 
-                     pframewindowTab->order_top();
+                     pframewindowTab->layout().order_top();
 
                      pframewindowTab->place(rectRequest);
 

@@ -6,7 +6,9 @@
 
 #ifdef MACOS
 
-void ns_create_main_menu();
+__pointer(menu_shared) create_menu_shared(const string_array & straParent, const string_array & straMenu, const string_array & straId);
+
+void ns_create_main_menu(menu_shared * pmenushared);
 
 #endif
 
@@ -882,12 +884,22 @@ namespace user
 
 #ifdef MACOS
       
-      ns_main_async(^()
-              {
-
-      ns_create_main_menu();
+      if(get_parent() == nullptr)
+      {
          
-      });
+         m_pmenushared = create_menu_shared(
+                                            m_straMenuParent,
+                                            m_straMenuName,
+                                            m_straMenuId);
+
+         ns_main_async(^()
+         {
+            
+            ns_create_main_menu(m_pmenushared);
+            
+         });
+         
+      }
 
 #endif
 
@@ -2410,7 +2422,7 @@ namespace user
       if (edisplay == display_default)
       {
 
-         if (!::is_visible(display_request()))
+         if (!::is_visible(layout().sketch().display()))
          {
 
             edisplay = display_normal;
@@ -2425,16 +2437,16 @@ namespace user
          else
          {
           
-            edisplay = display_request();
+            edisplay = layout().sketch().display();
             
          }
 
       }
 
-      if(!request_state().m_zorder.is_change_request() || request_state().m_zorder.m_ezorder != zorder_top)
+      if(!layout().sketch().m_zorder.is_change_request() || layout().sketch().m_zorder.m_ezorder != zorder_top)
       {
 
-         order_top();
+         layout().order_top();
 
       }
 

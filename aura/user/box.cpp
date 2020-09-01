@@ -13,7 +13,7 @@ namespace user
 
       m_databasekey.m_bLocalData = true;
 
-      m_windowrectStore.m_edisplay = ::display_undefined;
+      layout().m_windowrectStore.m_edisplay = ::display_undefined;
 
    }
 
@@ -118,7 +118,7 @@ namespace user
       if (should_save_window_rect())
       {
 
-         if (display_state() == ::display_none)
+         if (layout().sketch().display() == ::display_none)
          {
 
             return false;
@@ -170,6 +170,9 @@ namespace user
       {
 
          m_ewindowflag |= window_flag_loading_window_rect;
+         
+         main_async([this]()
+                    {
 
          bool bRestore = good_restore(nullptr, nullptr, true, activation_none, zorder_top, initial_restore_display()) >= 0;
 
@@ -181,6 +184,10 @@ namespace user
             display();
 
          }
+            
+         });
+         
+         bool bRestore = true;
 
          return bRestore;
 
@@ -215,13 +222,13 @@ namespace user
 
          m_ewindowflag |= window_flag_loading_window_rect;
 
-         m_windowrectStore = windowrect;
+         layout().m_windowrectStore = windowrect;
 
-         m_windowrect = m_windowrectStore;
+         layout().m_windowrect = layout().m_windowrectStore;
 
          e_display edisplay = windowrect.m_edisplay;
 
-         set_appearance(windowrect.m_eappearance);
+         layout().sketch().appearance() = windowrect.m_eappearance;
 
          if (edisplay == display_iconic && bInitialFramePosition)
          {
@@ -253,15 +260,15 @@ namespace user
             if(bInitialFramePosition)
             {
 
-               ui_state().m_edisplay3 = edisplay;
+               layout().sketch().display() = edisplay;
 
             }
 
-            place(windowrect.m_rectWindow);
+            layout().sketch() = windowrect.m_rectWindow;
 
-            request_state().m_edisplay3 = edisplay;
+            layout().sketch() = edisplay;
 
-            m_bRequestReady = true;
+            layout().sketch().set_ready();
 
          }
          else if (!bForceRestore && is_docking_appearance(edisplay))
@@ -270,15 +277,15 @@ namespace user
             if(bInitialFramePosition)
             {
 
-               ui_state().m_edisplay3 = edisplay;
+               layout().sketch() = edisplay;
 
             }
 
-            place(windowrect.m_rectSnapped);
+            layout().sketch() = windowrect.m_rectSnapped;
 
-            request_state().m_edisplay3 = edisplay;
+            layout().sketch() = edisplay;
 
-            m_bRequestReady = true;
+            layout().sketch().set_ready();
 
          }
          else
@@ -317,29 +324,29 @@ namespace user
 
       }
 
-      if (display_state() == ::display_none)
+      if (layout().sketch().display() == ::display_none)
       {
 
          return false;
 
       }
 
-      if (m_windowrectStore.m_edisplay == display_undefined)
+      if (layout().m_windowrectStore.m_edisplay == display_undefined)
       {
 
-         Application.data_get(key, m_windowrectStore);
+         Application.data_get(key, layout().m_windowrectStore);
 
       }
 
-      auto windowrect = m_windowrectStore;
+      auto windowrect = layout().m_windowrectStore;
 
-      bool bGot = m_windowrectStore.m_edisplay != display_undefined;
+      bool bGot = layout().m_windowrectStore.m_edisplay != display_undefined;
 
-      windowrect.m_edisplay = display_request();
+      windowrect.m_edisplay = layout().sketch().display();
 
-      windowrect.m_eappearance = request_state().m_eappearance;
+      windowrect.m_eappearance = layout().sketch().appearance();
 
-      get_window_rect(windowrect.m_rectWindow);
+      get_window_rect(windowrect.m_rectWindow, layout_sketch);
 
       auto edisplay = windowrect.m_edisplay;
 
@@ -396,17 +403,22 @@ namespace user
 
       }
 
-      m_windowrectStore = windowrect;
+      layout().m_windowrectStore = windowrect;
 
       return true;
 
    }
 
 
-   void box::prodevian_prepare_window_restore(edisplay edisplay)
+   void box::sketch_prepare_window_restore(edisplay edisplay)
    {
 
-      good_restore(NULL, window_request_rect(), true, request_state().m_eactivation, request_state().m_zorder, edisplay);
+      main_async([this, edisplay]()
+      {
+
+         good_restore(NULL, layout().sketch().screen_rect(), true, layout().sketch().activation(), layout().sketch().zorder(), edisplay);
+
+      });
 
    }
 

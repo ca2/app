@@ -128,7 +128,7 @@ namespace windows
 
       virtual void on_visual_applied() override;
 
-      virtual void window_apply_visual(const ::user::window_state & windowstate) override;
+      //virtual void window_apply_visual(const ::user::window_state & windowstate) override;
 
       DECL_GEN_SIGNAL(_001OnDestroy);
       DECL_GEN_SIGNAL(_001OnCreate);

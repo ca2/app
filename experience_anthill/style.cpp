@@ -151,6 +151,29 @@ namespace experience
             return __acolor(255, 255, 255, 255);
 
          }
+         else if (eelement == ::user::element_text)
+         {
+            
+            if(estate & ::user::e_state_new_input)
+            {
+
+               return __acolor(255, 192, 192, 192);
+               
+            }
+            else
+            {
+               
+               return __acolor(255, 0, 0, 0);
+               
+            }
+
+         }
+         else if (eelement == ::user::element_border)
+         {
+
+            return __acolor(255, 127, 127, 127);
+         
+         }
 
          return ::color();
 
@@ -201,13 +224,23 @@ namespace experience
 
       rcClient.top = rcTabs.bottom;
       
-      COLORREF crbk = ptab->get_color(pstyle, ::user::element_tab_layout_background);
+      color colorBack = ptab->get_color(pstyle, ::user::element_tab_layout_background);
+      
+      if(colorBack.is_set())
+      {
 
-      pgraphics->fill_rect(rcTabs, crbk);
+         pgraphics->fill_rect(rcTabs, colorBack);
+         
+      }
 
-      crbk = ptab->get_color(pstyle, ::user::element_tab_client_background);
+      colorBack = ptab->get_color(pstyle, ::user::element_tab_client_background);
+      
+      if(colorBack.is_set())
+      {
 
-      pgraphics->fill_rect(rcClient, crbk);
+         pgraphics->fill_rect(rcClient, colorBack);
+         
+      }
 
       ::index iTab = -1;
 

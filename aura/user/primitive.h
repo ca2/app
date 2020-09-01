@@ -251,19 +251,21 @@ namespace user
 
       virtual void _001UpdateWindow();
 
-      virtual void window_apply_visual(const window_state & windowstate);
+      //virtual void window_apply_visual(const window_state & windowstate);
 
 
-      virtual void prodevian_update_visual(bool & bUpdateBuffer, bool & bUpdateWindow);
+      virtual void sketch_to_design(::draw2d::graphics_pointer& pgraphics, bool & bUpdateBuffer, bool & bUpdateWindow);
 
+      virtual void design_down();
+      virtual void design_up();
 
       virtual void prodevian_stop();
 
-      virtual void prodevian_prepare_window_minimize(::eactivation eactivation);
-      virtual void prodevian_prepare_window_maximize();
-      virtual void prodevian_prepare_window_full_screen(const ::rect & rectHint = nullptr);
-      virtual void prodevian_prepare_window_restore(edisplay edisplay);
-      virtual void prodevian_prepare_window_dock(edisplay edisplayDock);
+      virtual void sketch_prepare_window_minimize(::eactivation eactivation);
+      virtual void sketch_prepare_window_maximize();
+      virtual void sketch_prepare_window_full_screen(const ::rect & rectHint = nullptr);
+      virtual void sketch_prepare_window_restore(edisplay edisplay);
+      virtual void sketch_prepare_window_dock(edisplay edisplayDock);
 
 
       virtual void prodevian_redraw(bool bUpdateBuffer);
@@ -274,8 +276,6 @@ namespace user
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
       virtual void on_reposition();
       virtual void on_show_window();
-
-      virtual void _do_show_window();
 
       //virtual void BringToTop(edisplay edisplay);
       //virtual bool BringWindowToTop();
@@ -365,7 +365,7 @@ namespace user
       virtual bool ModifyStyleEx(u32 dwRemove,u32 dwAdd,UINT nFlags = 0);
       //virtual bool _display(edisplay edisplay);
 
-      virtual void SetWindowDisplayChanged();
+      //virtual void SetWindowDisplayChanged();
 
       // timer Functions
       virtual bool SetTimer(uptr nIDEvent,UINT nElapse,PFN_TIMER pfnTimer);
@@ -423,7 +423,7 @@ namespace user
 
 
       //virtual bool _is_window_visible();
-      virtual bool is_this_visible();
+      virtual bool is_this_visible(e_layout elayout);
       virtual bool is_window_enabled() const;
       virtual bool is_this_enabled() const;
 
@@ -591,8 +591,8 @@ namespace user
       //virtual void window_enable_full_screen(bool bEnable = true);
       //virtual bool window_is_full_screen();
       //virtual bool window_is_full_screen_enabled();
-      //virtual bool window_is_zoomed();
-      //virtual bool window_is_iconic();
+      //virtual bool onscreen_is_zoomed();
+      //virtual bool onscreen_is_iconic();
 
       //virtual bool display(edisplay edisplay);
 
@@ -629,8 +629,6 @@ namespace user
 
       virtual bool WfiOnStartDock();
       virtual void WfiOnDock(edisplay edisplay);
-      virtual void prodevian_prepare_down();
-      virtual void prodevian_prepare_up();
       virtual void WfiOnRestore();
       virtual void WfiOnMinimize(bool bNoActivate);
       virtual void WfiOnMaximize();
@@ -667,6 +665,7 @@ namespace user
       virtual void set_need_load_form_data();
       virtual void set_need_save_form_data();
       virtual void post_redraw(bool bAscendants = true);
+      virtual bool hide();
 
       // keyboard focus
       //virtual bool on_keyboard_focus(::user::primitive * pfocus);

@@ -35,7 +35,7 @@ void control_box::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
 void control_box::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 {
 
-   if(GetTopLevel()->frame_is_transparent() && !GetTopLevel()->is_active())
+   if((GetTopLevel()->frame_is_transparent() && !GetTopLevel()->is_active()) || !GetTopLevelFrame()->m_bShowControlBox)
    {
 
       return;

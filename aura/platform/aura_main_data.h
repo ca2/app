@@ -22,6 +22,8 @@ public:
    ::eactivation                    m_eactivation;
    string                           m_strAppId;
    ::file::path                     m_pathCacheDir;
+   bool                             m_bAvoidFirstResponder;
+
 
 #ifdef WINDOWS
 

@@ -265,7 +265,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    }
 
-   if (m_itemHover)
+   if (m_itemHover.is_set())
    {
 
       _001DrawItem(pgraphics, m_itemHover);
@@ -1552,7 +1552,7 @@ bool simple_toolbar::on_click(const ::user::item & item)
 
    __pointer(::user::interaction) pwnd = GetOwner();
 
-   if (!item)
+   if (!item.is_set())
    {
 
       return false;

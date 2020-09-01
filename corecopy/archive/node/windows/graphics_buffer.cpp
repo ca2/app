@@ -596,7 +596,7 @@ namespace windows
 
             //m_pimpl->m_puserinteraction->post_message(message_do_show_window);
 
-            m_pimpl->m_puserinteraction->_do_show_window();
+            m_pimpl->m_puserinteraction->window_show_change_visibility();
 
             //#ifdef WINDOWS_DESKTOP
             //               if ((m_pimpl->m_puserinteraction->GetExStyle() & WS_EX_LAYERED))

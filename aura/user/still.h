@@ -29,6 +29,8 @@ namespace user
 
       ::rect                              m_rectCheckBox;
       string                              m_strLink;
+      ::draw2d::font_pointer              m_pfont;
+      
 
       still();
       virtual ~still();

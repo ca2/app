@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "aura/const/timer.h"
 
 
@@ -5116,7 +5116,7 @@ namespace user
 
       m_rangeSelection.clear();
 
-      if (!item)
+      if (!item.is_set())
       {
 
          return;

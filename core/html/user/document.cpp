@@ -195,7 +195,7 @@ bool html_document::on_open_document(const var & varFile)
 
       pform->create_child_form <html_view>();
 
-      phtmlform = pform->m_pformChild;
+      phtmlform = pform->m_pform;
 
       phtmlform->set_form_callback(pform);
 

@@ -91,3 +91,16 @@ string thread_get_name()
    
 }
 
+
+
+CLASS_DECL_AURA void main_branch(::generic_object* pobjectTask, e_priority epriority)
+{
+
+   ns_main_sync(^()
+   {
+
+      pobjectTask->call();
+
+   });
+
+}

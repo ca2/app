@@ -1302,10 +1302,11 @@ namespace user
 //   class impact;
    class primitive;
    class interaction;
-   class layout;
+   class interaction_layout;
    //class place_holder;
    //class menu_item;
-   //class form;
+   class form;
+   class form_callback;
    class style;
    class menu_interaction;
    //class tab;

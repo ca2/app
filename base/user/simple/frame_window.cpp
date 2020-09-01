@@ -319,7 +319,7 @@ bool simple_frame_window::WindowDataSaveWindowRect()
 bool simple_frame_window::_001OnBeforeAppearance()
 {
 
-   edisplay edisplay = display_request();
+   edisplay edisplay = layout().sketch().display();
 
    if (edisplay == ::display_up || edisplay == ::display_down)
    {
@@ -945,7 +945,7 @@ void simple_frame_window::_001OnDisplayChange(::message::message * pmessage)
    if (is_host_top_level())
    {
 
-      ::edisplay edisplay = display_request();
+      ::edisplay edisplay = layout().sketch().display();
 
       display(edisplay, activation_display_change);
 
@@ -1913,10 +1913,10 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, 
 
          WindowDataLoadWindowRect(bForceRestore, bInitialFramePosition);
 
-         rectFrame = request_state().rect();
+         rectFrame = layout().sketch().rect();
 
          INFO("simple_frame_window::LoadFrame rectFrame (l=%d, t=%d) (w=%d, h=%d)", rectFrame.left, rectFrame.top, rectFrame.width(), rectFrame.height());
-         INFO("simple_frame_window::LoadFrame edisplay=%s", __cstr(request_state().m_edisplay3.eflag()));
+         INFO("simple_frame_window::LoadFrame edisplay=%s", __cstr(layout().sketch().m_edisplay3.eflag()));
 
          if (wfi_is_up_down())
          {
@@ -1970,12 +1970,12 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, 
 
       }
 
-      rectFrame = request_state().rect();
+      rectFrame = layout().sketch().rect();
 
       createstruct.set_rect(rectFrame);
 
       INFO("(2) simple_frame_window::LoadFrame rectFrame (l=%d, t=%d) (w=%d, h=%d)", rectFrame.left, rectFrame.top, rectFrame.width(), rectFrame.height());
-      INFO("(2) simple_frame_window::LoadFrame edisplay=%s", __cstr(request_state().m_edisplay3.eflag()));
+      INFO("(2) simple_frame_window::LoadFrame edisplay=%s", __cstr(layout().sketch().m_edisplay3.eflag()));
 
       if (pcreate->m_bMakeVisible)
       {
@@ -2082,7 +2082,7 @@ void simple_frame_window::on_frame_position()
 
    display(display_default, activation_set_active);
 
-   order_top();
+   layout().order_top();
 
    if (is_frame_experience_enabled())
    {

@@ -837,6 +837,35 @@ namespace experience
 
             }
 
+         }
+
+      }
+
+      if (eelement == ::user::element_scrollbar)
+      {
+
+         return __acolor(100, 192, 192, 192);
+
+      }
+      else if (eelement == ::user::element_scrollbar_rect)
+      {
+
+         return __acolor(160, 140, 140, 140);
+
+      }
+      else if (eelement == ::user::element_text)
+      {
+
+         if (estate & ::user::e_state_new_input)
+         {
+
+            return __acolor(255, 192, 192, 192);
+
+         }
+         else
+         {
+
+            return __acolor(255, 0, 0, 0);
 
          }
 
@@ -851,11 +880,11 @@ namespace experience
    bool style::_001DrawSimpleScrollBar(::draw2d::graphics_pointer & pgraphics, ::user::scroll_bar * pscrollbar)
    {
 
-      COLORREF crBackground = pscrollbar->get_color(this, ::user::element_background);
+      ::color colorBackground = pscrollbar->get_color(this, ::user::element_scrollbar);
 
       ::rect rectClient = pscrollbar->get_client_rect();
 
-      if ((crBackground & ARGB(255, 0, 0, 0)) != 0)
+      if (colorBackground.m_iA != 0)
       {
 
          pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
@@ -863,15 +892,11 @@ namespace experience
          if (Session.savings().is_trying_to_save(::aura::resource_processing))
          {
 
-            pgraphics->fill_rect(rectClient, ARGB(255, 255, 255, 255));
+            colorBackground.m_iA = 255;
 
          }
-         else
-         {
 
-            pgraphics->fill_rect(rectClient, ARGB(255, 210, 210, 210));
-
-         }
+         pgraphics->fill_rect(rectClient, colorBackground);
 
       }
 
@@ -883,23 +908,19 @@ namespace experience
 
       pscrollbar->get_window_rect(rectWindow);
 
-      COLORREF crBorder = pscrollbar->scrollbar_border_color(this, ::user::element_scrollbar_rect);
+      ::color colorBorder = pscrollbar->scrollbar_border_color(this, ::user::element_scrollbar_rect);
 
       auto pbar = pscrollbar->cast < ::simple_scroll_bar >();
 
-      //pbar->m_penDraw->create_solid(1, crBorder);
-
       ::draw2d::pen_pointer penDraw(e_create);
 
-      penDraw->create_solid(1, crBorder);
+      penDraw->create_solid(1, colorBorder);
 
-      COLORREF crTrack = pscrollbar->scrollbar_color(this, ::user::element_scrollbar_rect);
-
-      //pbar->m_brushDraw->create_solid(crTrack);
+      ::color colorTrack = pscrollbar->scrollbar_color(this, ::user::element_scrollbar_rect);
 
       ::draw2d::brush_pointer brushDraw(e_create);
 
-      brushDraw->create_solid(crTrack);
+      brushDraw->create_solid(colorTrack);
 
       pgraphics->set(penDraw);
 

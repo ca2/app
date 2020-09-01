@@ -207,7 +207,7 @@ namespace experience
 
       }
 
-      //bool bApply = !is_docking_appearance(m_pframewindow->display_request());
+      //bool bApply = !is_docking_appearance(m_pframewindow->layout().sketch().display());
 
       bool bApply = true;
 

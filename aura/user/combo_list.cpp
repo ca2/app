@@ -48,7 +48,7 @@ namespace user
    void combo_list::install_message_routing(::channel * pchannel)
    {
 
-      ::user::interaction::install_message_routing(pchannel);
+      ::user::scroll_base::install_message_routing(pchannel);
 
       install_simple_ui_default_mouse_handling(pchannel);
 
@@ -101,7 +101,7 @@ namespace user
 
       ::rect rectClient;
 
-      get_client_rect(rectClient);
+      layout().get_client_rect(rectClient, ::user::layout_design);
 
       ::draw2d::brush_pointer brBk(e_create);
 
@@ -128,7 +128,7 @@ namespace user
 
       auto pointCursor = Session.get_cursor_pos();
 
-      _001ScreenToClient(&pointCursor);
+      _001ScreenToClient(&pointCursor, ::user::layout_design);
 
       pgraphics->set_font(this);
 
@@ -163,9 +163,9 @@ namespace user
 
                //cr = _001GetColor(::user::color_list_item_text_selected_hover);
 
-               crBk = ARGB(255, 255, 255, 255);
+               crBk = ARGB(255, 120, 190, 220);
 
-               cr = ARGB(255, 0, 0, 0);
+               cr = ARGB(255, 255, 255, 255);
 
                strDebug += "sel;";
 
@@ -173,7 +173,7 @@ namespace user
             else
             {
 
-               crBk = ARGB(255, 255, 255, 255);
+               crBk = ARGB(255, 235, 245, 255);
 
                cr = ARGB(255, 0, 0, 0);
 
@@ -185,9 +185,9 @@ namespace user
 
             strDebug += "sel;";
 
-            crBk = ARGB(255, 255, 255, 255);
+            crBk = ARGB(255, 120, 150, 190);
 
-            cr = ARGB(255, 0, 0, 0);
+            cr = ARGB(255, 255, 255, 255);
 
          }
          else
@@ -415,7 +415,7 @@ namespace user
    bool combo_list::keyboard_focus_OnKillFocus(oswindow oswindowNew)
    {
 
-      if (is_window_visible())
+      if (is_window_visible(::user::layout_sketch))
       {
 
          display(false);
@@ -424,7 +424,7 @@ namespace user
 
          post_redraw();
 
-         if (m_pcombo != nullptr && m_pcombo->is_window_visible())
+         if (m_pcombo != nullptr && m_pcombo->is_window_visible(::user::layout_sketch))
          {
 
             m_pcombo->SetFocus();
@@ -498,7 +498,7 @@ namespace user
          if (oswindowThis != oswindowNew && !m_bMovingComboBox)
          {
 
-            if (is_this_screen_visible())
+            if (layout().sketch().is_screen_visible())
             {
 
                m_tickLastVisibilityChange.Now();
@@ -560,7 +560,7 @@ namespace user
 
          auto pointCursor = Session.get_cursor_pos();
 
-         m_pcombo->_001ScreenToClient(&pointCursor);
+         m_pcombo->_001ScreenToClient(&pointCursor, ::user::layout_sketch);
 
          //if(m_pcombo->hit_test(pointCursor) != element_drop_down)
          //{
@@ -686,7 +686,7 @@ namespace user
 
       SCAST_PTR(::message::mouse, pmouse, pmessage);
 
-      auto point = screen_to_client(pmouse->m_point);
+      auto point = screen_to_client(pmouse->m_point, layout_sketch);
 
       auto rectClient = get_client_rect();
 
@@ -713,8 +713,7 @@ namespace user
 
       SCAST_PTR(::message::mouse, pmouse, pmessage);
 
-
-      auto point = screen_to_client(pmouse->m_point);
+      auto point = screen_to_client(pmouse->m_point, layout_sketch);
 
       auto rectClient = get_client_rect();
 
@@ -769,7 +768,7 @@ namespace user
 
       auto point = pmouse->m_point;
 
-      _001ScreenToClient(point);
+      _001ScreenToClient(point, layout_sketch);
 
       auto rectClient = get_client_rect();
 
@@ -796,7 +795,7 @@ namespace user
 
       auto point = pmouse->m_point;
 
-      _001ScreenToClient(point);
+      _001ScreenToClient(point, layout_sketch);
 
       auto rectClient = get_client_rect();
 
@@ -935,7 +934,7 @@ namespace user
    bool combo_list::has_pending_graphical_update()
    {
 
-      return m_bRedraw;
+      return m_bNeedRedraw;
 
    }
 
@@ -998,7 +997,7 @@ namespace user
 
       m_pcombo->m_itemHover = current_item();
 
-      if (!m_pcombo->m_itemHover)
+      if (!m_pcombo->m_itemHover.is_set())
       {
 
          m_pcombo->m_itemHover = 0;
@@ -1049,7 +1048,7 @@ namespace user
 
       ::user::interaction::_on_show_window();
 
-      if (is_screen_visible(display_request()))
+      if (is_screen_visible(layout().sketch().display()))
       {
 
          {

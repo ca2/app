@@ -48,10 +48,10 @@ namespace user
       ::user::interaction::_001OnTimer(ptimer);;
       if(ptimer->m_nIDEvent == 1)
       {
-         if(m_itemHover)
+         if(m_itemHover.is_set())
          {
             update_hover();
-            if(!m_itemHover)
+            if(!m_itemHover.is_set())
                KillTimer(1);
          }
       }

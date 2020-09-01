@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "aura/os/console.h"
-#include "shell_linux.h"
+//#include "shell_linux.h"
 #include "console_window.h"
 #include "aura/node/posix/pipe.h"
 #include "aura/node/linux/process.h"
@@ -31,7 +31,7 @@ void __node_aura_factory_exchange()
    create_factory < ::file::os_watch            , ::file::watch            >();
 
 
-   create_factory < ::linux::shell              , ::user::shell            >();
+//   create_factory < ::linux::shell              , ::user::shell            >();
 
 }
 

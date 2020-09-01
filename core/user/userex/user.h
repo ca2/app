@@ -212,15 +212,15 @@ namespace core
       __pointer(::user::impact_system) get_template(index index) const;
 
 
-      __pointer(::user::document)   create_form(::object * pobject, ::type point, __pointer(::user::interaction) pwndParent, var var = ::var(::type_empty_argument), ::var varArgs = ::type_empty_argument);
-      __pointer(::user::document)   create_form(::object * pobject, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, var var = ::var(::type_empty_argument), ::var varArgs = ::type_empty_argument);
-      __pointer(::user::document)   create_form(::object * pobject, __pointer(::user::form) pview, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, var var = ::var(::type_empty_argument), ::var varArgs = ::type_empty_argument);
-      __pointer(::user::document)   create_child_form(::object * pobject, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, var var = ::var(::type_empty_argument), ::var varArgs = ::type_empty_argument);
-      __pointer(::user::document)   create_child_form(::object * pobject, ::type point, __pointer(::user::interaction) pwndParent, var var = ::var(::type_empty_argument), ::var varArgs = ::type_empty_argument);
-      __pointer(::user::document)   create_child_form(::object * pobject, __pointer(::user::form) pview, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, var var = ::var(::type_empty_argument), ::var varArgs = ::type_empty_argument);
+      __pointer(::form_document)   create_form(::object * pobject, ::type point, __pointer(::user::interaction) pwndParent, var var = ::var(::type_empty_argument), ::var varArgs = ::type_empty_argument);
+      __pointer(::form_document)   create_form(::object * pobject, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, var var = ::var(::type_empty_argument), ::var varArgs = ::type_empty_argument);
+      __pointer(::form_document)   create_form(::object * pobject, __pointer(::user::form) pview, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, var var = ::var(::type_empty_argument), ::var varArgs = ::type_empty_argument);
+      __pointer(::form_document)   create_child_form(::object * pobject, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, var var = ::var(::type_empty_argument), ::var varArgs = ::type_empty_argument);
+      __pointer(::form_document)   create_child_form(::object * pobject, ::type point, __pointer(::user::interaction) pwndParent, var var = ::var(::type_empty_argument), ::var varArgs = ::type_empty_argument);
+      __pointer(::form_document)   create_child_form(::object * pobject, __pointer(::user::form) pview, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, var var = ::var(::type_empty_argument), ::var varArgs = ::type_empty_argument);
 
       template < typename FORM >
-      __pointer(::user::document) create_child_form(::object * pobject, ::user::impact_data * pimpactdata, var var = ::var(::type_empty_argument))
+      __pointer(::form_document)   create_child_form(::object * pobject, ::user::impact_data * pimpactdata, var var = ::var(::type_empty_argument))
       {
 
          return create_child_form(pobject, __type(FORM), pimpactdata->m_pplaceholder, var);
@@ -271,7 +271,7 @@ namespace core
       virtual ::estatus userfs_process_init();
 
 
-      virtual ::estatus create_html();
+      //virtual ::estatus create_html();
 
       //virtual __pointer(::userex::userex) create_userex();
       //virtual __pointer(::userfs::userfs) create_userfs();

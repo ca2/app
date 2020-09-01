@@ -208,14 +208,14 @@ namespace filemanager
 
       auto pshell = user.shell();
 
-      estatus = pshell->initialize(pobjectContext);
+      //estatus = pshell->initialize(pobjectContext);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       auto pmulti = __new(::user::multiple_document_template(
                          "filemanager",

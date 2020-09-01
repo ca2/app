@@ -177,7 +177,7 @@ namespace user
 
       UNREFERENCED_PARAMETER(pmessage);
 
-      if (!m_itemHover)
+      if (!m_itemHover.is_set())
       {
 
          m_itemHover = ::user::element_client;

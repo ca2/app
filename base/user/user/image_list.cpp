@@ -129,7 +129,7 @@ namespace user
       if (Session.is_key_pressed(::user::key_shift) && m_bMultiSel)
       {
 
-         if (m_itemCurrent)
+         if (m_itemCurrent.is_set())
          {
 
             for (index i = m_itemCurrent; i <= item.m_iItem; i++)

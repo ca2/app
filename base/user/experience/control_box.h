@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 namespace experience
@@ -99,6 +99,7 @@ namespace experience
       virtual e_stock_icon get_control_box_button_stock_icon(e_button ebutton);
       virtual void set_control_box_button_id(e_button ebutton, id id);
       virtual id get_control_box_button_id(e_button ebutton);
+      virtual string get_control_box_button_tag(e_button ebutton);
       virtual e_button get_control_box_button_type(id id);
       __pointer(button) get_button(e_button ebutton);
       virtual __pointer(button) get_box_button(e_button ebutton);

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "aura/const/timer.h"
 
 
@@ -118,7 +118,7 @@ namespace user
 
       ::aura::draw_context drawcontext;
 
-      drawcontext.m_bListItemHover = hover_item();
+      drawcontext.m_bListItemHover = hover_item().is_set();
 
       __keep(pgraphics->m_pdrawcontext, &drawcontext);
 
@@ -247,7 +247,7 @@ namespace user
 
       ::aura::draw_context drawcontext;
 
-      drawcontext.m_bListItemHover = hover_item();
+      drawcontext.m_bListItemHover = hover_item().is_set();
 
       __keep(pgraphics->m_pdrawcontext, &drawcontext);
 

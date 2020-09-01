@@ -44,7 +44,10 @@ zorder::zorder(oswindow oswindow)
 bool zorder::is_stable() const
 {
 
-   return m_ezorder == zorder_normal_anchor || m_ezorder == zorder_top_most_anchor;
+   return
+      m_ezorder == zorder_none
+      || m_ezorder == zorder_normal_anchor 
+      || m_ezorder == zorder_top_most_anchor;
 
 }
 

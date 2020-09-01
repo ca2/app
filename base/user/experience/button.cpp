@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "control_box.h"
 
 
@@ -39,7 +39,7 @@ namespace experience
 
          auto item = hit_test(pmouse);
 
-         if (item)
+         if (item.is_set())
          {
 
             m_pcontrolbox->m_pframewindow->experience_on_start_dock(pmouse);

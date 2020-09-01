@@ -7,17 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A1B921B24F8EFC80032BAEA /* time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B921124F8EFC80032BAEA /* time.cpp */; };
+		9A1B921C24F8EFC80032BAEA /* sequencer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B921224F8EFC80032BAEA /* sequencer.h */; };
+		9A1B921D24F8EFC80032BAEA /* time.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B921324F8EFC80032BAEA /* time.h */; };
+		9A1B921E24F8EFC80032BAEA /* message_in.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B921424F8EFC80032BAEA /* message_in.cpp */; };
+		9A1B921F24F8EFC80032BAEA /* message_out.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B921524F8EFC80032BAEA /* message_out.cpp */; };
+		9A1B922024F8EFC80032BAEA /* input_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B921624F8EFC80032BAEA /* input_base.h */; };
+		9A1B922124F8EFC80032BAEA /* message_out.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B921724F8EFC80032BAEA /* message_out.h */; };
+		9A1B922224F8EFC80032BAEA /* sequencer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B921824F8EFC80032BAEA /* sequencer.cpp */; };
+		9A1B922324F8EFC80032BAEA /* message_in.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B921924F8EFC80032BAEA /* message_in.h */; };
+		9A1B922424F8EFC80032BAEA /* input_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B921A24F8EFC80032BAEA /* input_base.cpp */; };
 		9A27DA8924DCF86E0002AAE3 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A27DA8724DCF8340002AAE3 /* AudioUnit.framework */; };
 		9A27DA8B24DCF86E0002AAE3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A27DA8A24DCF86E0002AAE3 /* AudioToolbox.framework */; };
 		9A44075624DDD01600175A63 /* libveriwell_multimedia.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5209A922F144E5007056D2 /* libveriwell_multimedia.dylib */; };
-		9ABD6B692454F63E00380EB2 /* core_midi_sequencer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADDAEC222FD29C3008C078A /* core_midi_sequencer.cpp */; };
-		9ABD6B6A2454F63E00380EB2 /* core_midi_message_out.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADDAEC522FD29C3008C078A /* core_midi_message_out.cpp */; };
-		9ABD6B6B2454F63E00380EB2 /* core_midi_midi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADDAEC722FD29C3008C078A /* core_midi_midi.cpp */; };
 		9ABD6B6C2454F63E00380EB2 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A52096122F1440C007056D2 /* framework.cpp */; };
-		9ABD6B6D2454F63E00380EB2 /* core_midi_output_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A52097022F1440C007056D2 /* core_midi_output_base.cpp */; };
-		9ABD6B6E2454F63E00380EB2 /* music_midi_core_midi_factory_exchange.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A52096C22F1440C007056D2 /* music_midi_core_midi_factory_exchange.cpp */; };
-		9ABD6B6F2454F63E00380EB2 /* music_midi_core_midi_translation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A52097122F1440C007056D2 /* music_midi_core_midi_translation.cpp */; };
-		9ABD6B702454F63E00380EB2 /* music_midi_core_midi_midi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A52095722F1440C007056D2 /* music_midi_core_midi_midi.cpp */; };
+		9ABD6B6D2454F63E00380EB2 /* output_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A52097022F1440C007056D2 /* output_base.cpp */; };
+		9ABD6B6E2454F63E00380EB2 /* factory_exchange.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A52096C22F1440C007056D2 /* factory_exchange.cpp */; };
+		9ABD6B6F2454F63E00380EB2 /* translation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A52097122F1440C007056D2 /* translation.cpp */; };
+		9ABD6B702454F63E00380EB2 /* midi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A52095722F1440C007056D2 /* midi.cpp */; };
 		9ABD6B862455087C00380EB2 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ABD6B852455087C00380EB2 /* CoreFoundation.framework */; };
 		9ABD6B872455088B00380EB2 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5209B322F146F1007056D2 /* CoreMIDI.framework */; };
 		9ABD6B892455089C00380EB2 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ABD6B882455089C00380EB2 /* libaura.dylib */; };
@@ -56,19 +63,29 @@
 
 /* Begin PBXFileReference section */
 		07E25F501B4FFC2100752DE1 /* libios_music_midi_core_midi.lib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_music_midi_core_midi.lib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A1B921124F8EFC80032BAEA /* time.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = time.cpp; sourceTree = "<group>"; };
+		9A1B921224F8EFC80032BAEA /* sequencer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sequencer.h; sourceTree = "<group>"; };
+		9A1B921324F8EFC80032BAEA /* time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = time.h; sourceTree = "<group>"; };
+		9A1B921424F8EFC80032BAEA /* message_in.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = message_in.cpp; sourceTree = "<group>"; };
+		9A1B921524F8EFC80032BAEA /* message_out.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = message_out.cpp; sourceTree = "<group>"; };
+		9A1B921624F8EFC80032BAEA /* input_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = input_base.h; sourceTree = "<group>"; };
+		9A1B921724F8EFC80032BAEA /* message_out.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = message_out.h; sourceTree = "<group>"; };
+		9A1B921824F8EFC80032BAEA /* sequencer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sequencer.cpp; sourceTree = "<group>"; };
+		9A1B921924F8EFC80032BAEA /* message_in.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = message_in.h; sourceTree = "<group>"; };
+		9A1B921A24F8EFC80032BAEA /* input_base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = input_base.cpp; sourceTree = "<group>"; };
 		9A27DA8724DCF8340002AAE3 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		9A27DA8A24DCF86E0002AAE3 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		9A52095722F1440C007056D2 /* music_midi_core_midi_midi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = music_midi_core_midi_midi.cpp; sourceTree = "<group>"; };
+		9A52095722F1440C007056D2 /* midi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = midi.cpp; sourceTree = "<group>"; };
 		9A52096122F1440C007056D2 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
-		9A52096C22F1440C007056D2 /* music_midi_core_midi_factory_exchange.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = music_midi_core_midi_factory_exchange.cpp; sourceTree = "<group>"; };
-		9A52096E22F1440C007056D2 /* music_midi_core_midi_translation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = music_midi_core_midi_translation.h; sourceTree = "<group>"; };
-		9A52096F22F1440C007056D2 /* music_midi_core_midi_factory_exchange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = music_midi_core_midi_factory_exchange.h; sourceTree = "<group>"; };
-		9A52097022F1440C007056D2 /* core_midi_output_base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = core_midi_output_base.cpp; sourceTree = "<group>"; };
-		9A52097122F1440C007056D2 /* music_midi_core_midi_translation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = music_midi_core_midi_translation.cpp; sourceTree = "<group>"; };
-		9A52097622F1440C007056D2 /* music_midi_core_midi_midi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = music_midi_core_midi_midi.h; sourceTree = "<group>"; };
+		9A52096C22F1440C007056D2 /* factory_exchange.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = factory_exchange.cpp; sourceTree = "<group>"; };
+		9A52096E22F1440C007056D2 /* translation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = translation.h; sourceTree = "<group>"; };
+		9A52096F22F1440C007056D2 /* factory_exchange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = factory_exchange.h; sourceTree = "<group>"; };
+		9A52097022F1440C007056D2 /* output_base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = output_base.cpp; sourceTree = "<group>"; };
+		9A52097122F1440C007056D2 /* translation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = translation.cpp; sourceTree = "<group>"; };
+		9A52097622F1440C007056D2 /* midi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = midi.h; sourceTree = "<group>"; };
 		9A52097822F1440C007056D2 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
-		9A52097C22F1440C007056D2 /* music_midi_core_midi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = music_midi_core_midi.h; sourceTree = "<group>"; };
-		9A52097E22F1440C007056D2 /* core_midi_output_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = core_midi_output_base.h; sourceTree = "<group>"; };
+		9A52097C22F1440C007056D2 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
+		9A52097E22F1440C007056D2 /* output_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = output_base.h; sourceTree = "<group>"; };
 		9A5209A222F144E5007056D2 /* veriwell_multimedia.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = veriwell_multimedia.xcodeproj; path = "../../app-veriwell/multimedia/veriwell_multimedia.xcodeproj"; sourceTree = "<group>"; };
 		9A5209B322F146F1007056D2 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
 		9A8997BC177D0E7D00C7761E /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
@@ -76,14 +93,6 @@
 		9AA2192D1DC6B1A300C06987 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.1.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		9ABD6B852455087C00380EB2 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		9ABD6B882455089C00380EB2 /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9ADDAEC022FD29C3008C078A /* core_midi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = core_midi.h; sourceTree = "<group>"; };
-		9ADDAEC122FD29C3008C078A /* core_midi_sequencer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = core_midi_sequencer.h; sourceTree = "<group>"; };
-		9ADDAEC222FD29C3008C078A /* core_midi_sequencer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = core_midi_sequencer.cpp; sourceTree = "<group>"; };
-		9ADDAEC322FD29C3008C078A /* audio_unit_output_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = audio_unit_output_base.h; sourceTree = "<group>"; };
-		9ADDAEC422FD29C3008C078A /* core_midi_message_out.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = core_midi_message_out.h; sourceTree = "<group>"; };
-		9ADDAEC522FD29C3008C078A /* core_midi_message_out.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = core_midi_message_out.cpp; sourceTree = "<group>"; };
-		9ADDAEC622FD29C3008C078A /* core_midi_midi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = core_midi_midi.h; sourceTree = "<group>"; };
-		9ADDAEC722FD29C3008C078A /* core_midi_midi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = core_midi_midi.cpp; sourceTree = "<group>"; };
 		9AF4C42F1F83D6D400197385 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.0.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		9AF4C4311F83D76600197385 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.0.sdk/System/Library/Frameworks/CoreText.framework; sourceTree = DEVELOPER_DIR; };
 		9AF4C4331F83D79200197385 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.0.sdk/System/Library/Frameworks/CoreFoundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -119,18 +128,27 @@
 		9A52095422F1440C007056D2 /* music_midi_core_midi */ = {
 			isa = PBXGroup;
 			children = (
-				9ADDAEBE22FD29C3008C078A /* core_midi */,
-				9A52097822F1440C007056D2 /* framework.h */,
+				9A52097C22F1440C007056D2 /* _.h */,
+				9A52096C22F1440C007056D2 /* factory_exchange.cpp */,
+				9A52096F22F1440C007056D2 /* factory_exchange.h */,
 				9A52096122F1440C007056D2 /* framework.cpp */,
-				9A52097C22F1440C007056D2 /* music_midi_core_midi.h */,
-				9A52097022F1440C007056D2 /* core_midi_output_base.cpp */,
-				9A52097E22F1440C007056D2 /* core_midi_output_base.h */,
-				9A52096C22F1440C007056D2 /* music_midi_core_midi_factory_exchange.cpp */,
-				9A52096F22F1440C007056D2 /* music_midi_core_midi_factory_exchange.h */,
-				9A52097122F1440C007056D2 /* music_midi_core_midi_translation.cpp */,
-				9A52096E22F1440C007056D2 /* music_midi_core_midi_translation.h */,
-				9A52095722F1440C007056D2 /* music_midi_core_midi_midi.cpp */,
-				9A52097622F1440C007056D2 /* music_midi_core_midi_midi.h */,
+				9A52097822F1440C007056D2 /* framework.h */,
+				9A1B921A24F8EFC80032BAEA /* input_base.cpp */,
+				9A1B921624F8EFC80032BAEA /* input_base.h */,
+				9A1B921424F8EFC80032BAEA /* message_in.cpp */,
+				9A1B921924F8EFC80032BAEA /* message_in.h */,
+				9A1B921524F8EFC80032BAEA /* message_out.cpp */,
+				9A1B921724F8EFC80032BAEA /* message_out.h */,
+				9A52095722F1440C007056D2 /* midi.cpp */,
+				9A52097622F1440C007056D2 /* midi.h */,
+				9A52097022F1440C007056D2 /* output_base.cpp */,
+				9A52097E22F1440C007056D2 /* output_base.h */,
+				9A1B921824F8EFC80032BAEA /* sequencer.cpp */,
+				9A1B921224F8EFC80032BAEA /* sequencer.h */,
+				9A1B921124F8EFC80032BAEA /* time.cpp */,
+				9A1B921324F8EFC80032BAEA /* time.h */,
+				9A52097122F1440C007056D2 /* translation.cpp */,
+				9A52096E22F1440C007056D2 /* translation.h */,
 			);
 			name = music_midi_core_midi;
 			sourceTree = "<group>";
@@ -160,21 +178,6 @@
 				9AA2192D1DC6B1A300C06987 /* UIKit.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		9ADDAEBE22FD29C3008C078A /* core_midi */ = {
-			isa = PBXGroup;
-			children = (
-				9ADDAEC022FD29C3008C078A /* core_midi.h */,
-				9ADDAEC122FD29C3008C078A /* core_midi_sequencer.h */,
-				9ADDAEC222FD29C3008C078A /* core_midi_sequencer.cpp */,
-				9ADDAEC322FD29C3008C078A /* audio_unit_output_base.h */,
-				9ADDAEC422FD29C3008C078A /* core_midi_message_out.h */,
-				9ADDAEC522FD29C3008C078A /* core_midi_message_out.cpp */,
-				9ADDAEC622FD29C3008C078A /* core_midi_midi.h */,
-				9ADDAEC722FD29C3008C078A /* core_midi_midi.cpp */,
-			);
-			path = core_midi;
 			sourceTree = "<group>";
 		};
 		A1CFD76D154F5EA7007447E2 = {
@@ -212,6 +215,11 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A1B921C24F8EFC80032BAEA /* sequencer.h in Headers */,
+				9A1B922324F8EFC80032BAEA /* message_in.h in Headers */,
+				9A1B922024F8EFC80032BAEA /* input_base.h in Headers */,
+				9A1B921D24F8EFC80032BAEA /* time.h in Headers */,
+				9A1B922124F8EFC80032BAEA /* message_out.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,14 +325,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9ABD6B692454F63E00380EB2 /* core_midi_sequencer.cpp in Sources */,
-				9ABD6B6A2454F63E00380EB2 /* core_midi_message_out.cpp in Sources */,
-				9ABD6B6B2454F63E00380EB2 /* core_midi_midi.cpp in Sources */,
+				9A1B922224F8EFC80032BAEA /* sequencer.cpp in Sources */,
+				9A1B921E24F8EFC80032BAEA /* message_in.cpp in Sources */,
 				9ABD6B6C2454F63E00380EB2 /* framework.cpp in Sources */,
-				9ABD6B6D2454F63E00380EB2 /* core_midi_output_base.cpp in Sources */,
-				9ABD6B6E2454F63E00380EB2 /* music_midi_core_midi_factory_exchange.cpp in Sources */,
-				9ABD6B6F2454F63E00380EB2 /* music_midi_core_midi_translation.cpp in Sources */,
-				9ABD6B702454F63E00380EB2 /* music_midi_core_midi_midi.cpp in Sources */,
+				9ABD6B6D2454F63E00380EB2 /* output_base.cpp in Sources */,
+				9A1B921B24F8EFC80032BAEA /* time.cpp in Sources */,
+				9A1B921F24F8EFC80032BAEA /* message_out.cpp in Sources */,
+				9ABD6B6E2454F63E00380EB2 /* factory_exchange.cpp in Sources */,
+				9A1B922424F8EFC80032BAEA /* input_base.cpp in Sources */,
+				9ABD6B6F2454F63E00380EB2 /* translation.cpp in Sources */,
+				9ABD6B702454F63E00380EB2 /* midi.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,7 +453,7 @@
 				SKIP_INSTALL = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYSTEM_HEADER_SEARCH_PATHS = "$(HOME)/__archive/archive/third-$(PLATFORM_MODIFIER)/include $(WorkspaceDir)/third/include $(WorkspaceDir)/app/_include $(HOME)/__archive/archive/third-$(PLATFORM_MODIFIER)/third/include/";
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir) $(WorkspaceDir)/include $(WorkspaceDir)/platform-$(PLATFORM_MODIFIER) $(WorkspaceDir)/app/_include $(WorkspaceDir)/third/include $(WorkspaceDir)/app . $(PROJECT_DIR) $(HOME)/__archive/sensitive/sensitive/include";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir) $(WorkspaceDir)/include $(WorkspaceDir)/platform-$(PLATFORM_MODIFIER) $(WorkspaceDir)/platform-$(PLATFORM_MODIFIER)/_include $(WorkspaceDir)/app/_include $(WorkspaceDir)/third/include $(WorkspaceDir)/app . $(PROJECT_DIR) $(HOME)/__archive/sensitive/sensitive/include";
 				USE_HEADERMAP = NO;
 				WorkspaceDir = "$(SRCROOT)/../..";
 			};
@@ -511,7 +521,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SYSTEM_HEADER_SEARCH_PATHS = "$(HOME)/__archive/archive/third-$(PLATFORM_MODIFIER)/include $(WorkspaceDir)/third/include $(WorkspaceDir)/app/_include $(HOME)/__archive/archive/third-$(PLATFORM_MODIFIER)/third/include/";
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir) $(WorkspaceDir)/include $(WorkspaceDir)/platform-$(PLATFORM_MODIFIER) $(WorkspaceDir)/app/_include $(WorkspaceDir)/third/include $(WorkspaceDir)/app . $(PROJECT_DIR) $(HOME)/__archive/sensitive/sensitive/include";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir) $(WorkspaceDir)/include $(WorkspaceDir)/platform-$(PLATFORM_MODIFIER) $(WorkspaceDir)/platform-$(PLATFORM_MODIFIER)/_include $(WorkspaceDir)/app/_include $(WorkspaceDir)/third/include $(WorkspaceDir)/app . $(PROJECT_DIR) $(HOME)/__archive/sensitive/sensitive/include";
 				USE_HEADERMAP = NO;
 				WorkspaceDir = "$(SRCROOT)/../..";
 			};

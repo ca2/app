@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 namespace draw2d
@@ -1000,21 +1000,44 @@ namespace draw2d
       double centerx    = (m_x2 + m_x1) / 2.0;
       double centery    = (m_y2 + m_y1) / 2.0;
 
-      double radiusx    = fabs(m_x2 - m_x1) / 2.0;
-      double radiusy    = fabs(m_y2 - m_y1) / 2.0;
+      double rx    = fabs(m_x2 - m_x1) / 2.0;
+      double ry    = fabs(m_y2 - m_y1) / 2.0;
 
-      if (radiusx == 0.0 || radiusy == 0.0)
+      if (rx == 0.0 || ry == 0.0)
       {
 
          return false;
 
       }
-
+   
       double x = point.x;
 
       double y = point.y;
+      
+      double dx = x - centerx;
+      
+      double dy = y - centery;
+      
+      if(rx == ry)
+      {
+         
+         double r = rx;
+         
+         double square_distance = (dx * dx) + (dy * dy);
+         
+         double square_boundary = (r * r);
+         
+         return square_distance <= square_boundary;
+               
+      }
+      else
+      {
 
-      return ((x - centerx) * (x - centerx) / (radiusx * radiusx) + (y - centery) * (y - centery) / (radiusy * radiusy)) <= 1.0;
+         double normal_distance = ((dx * dx) / (rx * rx) + (dy * dy) / (ry * ry));
+         
+         return normal_distance <= 1.0;
+         
+      }
 
    }
 

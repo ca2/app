@@ -615,15 +615,11 @@ namespace windows
 
       }
 
-      m_puserinteraction->request_state().m_point.x = cs.x;
-      m_puserinteraction->request_state().m_point.y = cs.y;
-      m_puserinteraction->request_state().m_size.cx = cs.cx;
-      m_puserinteraction->request_state().m_size.cy = cs.cy;
+      m_puserinteraction->layout().sketch() = ::point(cs.x, cs.cy);
+      m_puserinteraction->layout().sketch() = ::size(cs.cx, cs.cy);
 
-      m_puserinteraction->window_state3().m_point.x = cs.x;
-      m_puserinteraction->window_state3().m_point.y = cs.y;
-      m_puserinteraction->window_state3().m_size.cx = cs.cx;
-      m_puserinteraction->window_state3().m_size.cy = cs.cy;
+      m_puserinteraction->layout().window() = ::point(cs.x, cs.cy);
+      m_puserinteraction->layout().window() = ::size(cs.cx, cs.cy);
 
       bool bUnicode = ::IsWindowUnicode(oswindow) != FALSE;
 
@@ -766,6 +762,7 @@ namespace windows
 
    }
 
+
    void interaction_impl::win_update_graphics()
    {
 
@@ -773,15 +770,18 @@ namespace windows
 
       if (!sl.lock())
       {
+         
          m_bUpdateGraphics = true;
+
          return;
+
       }
 
       m_bUpdateGraphics = false;
 
       ::rect rectWindow;
 
-      m_puserinteraction->get_window_rect(rectWindow);
+      m_puserinteraction->layout().design().screen_rect(rectWindow);
 
       m_point = rectWindow.top_left();
 
@@ -810,7 +810,7 @@ namespace windows
 
       }
 
-      if (m_puserinteraction->m_eflagLayouting)
+      if (m_puserinteraction->layout().m_eflag)
       {
 
          return;
@@ -819,22 +819,22 @@ namespace windows
 
       SCAST_PTR(::message::move, pmove, pmessage);
 
-      if (m_puserinteraction->request_state().m_point != pmove->m_point)
+      if (m_puserinteraction->layout().sketch().origin() != pmove->m_point)
       {
 
-         if (m_puserinteraction->window_is_moving())
+         if (m_puserinteraction->layout().is_moving())
          {
 
             INFO("Window is Moving :: _001OnMove");
 
          }
 
-         m_puserinteraction->move_to(pmove->m_point);
+         m_puserinteraction->layout().sketch().origin()= pmove->m_point;
 
-         if (m_puserinteraction->display_state() != display_normal)
+         if (m_puserinteraction->layout().sketch().display() != display_normal)
          {
 
-            m_puserinteraction->display();
+            m_puserinteraction->display(display_normal);
 
          }
 
@@ -857,7 +857,7 @@ namespace windows
 
       }
 
-      if (m_puserinteraction->m_eflagLayouting)
+      if (m_puserinteraction->layout().m_eflag)
       {
 
          return;
@@ -866,15 +866,15 @@ namespace windows
 
       SCAST_PTR(::message::size, psize, pmessage);
 
-      if (m_puserinteraction->request_state().m_size != psize->m_size)
+      if (m_puserinteraction->layout().sketch().size() != psize->m_size)
       {
 
-         m_puserinteraction->set_size(psize->m_size);
+         m_puserinteraction->layout().sketch().size() = psize->m_size;
 
-         if (m_puserinteraction->display_state() != display_normal)
+         if (m_puserinteraction->layout().sketch().display() != display_normal)
          {
 
-            m_puserinteraction->display();
+            m_puserinteraction->display(display_normal);
 
          }
 
@@ -1029,7 +1029,7 @@ namespace windows
       dumpcontext << "\nclass name = \"" << szBuf << "\"";
 
       ::rect rect;
-      ((::windows::interaction_impl *) this)->m_puserinteraction->get_window_rect(&rect);
+      ((::windows::interaction_impl *) this)->m_puserinteraction->layout().window().screen_rect(&rect);
       dumpcontext << "\nrect = " << rect;
       dumpcontext << "\nparent ::user::interaction_impl * = " << ::hex::lower_from((::iptr)((::windows::interaction_impl *)this)->GetParent());
 
@@ -2083,7 +2083,7 @@ namespace windows
 
       ::rect rectWindow;
 
-      m_puserinteraction->get_window_rect(rectWindow);
+      m_puserinteraction->layout().design().screen_rect(rectWindow);
 
       PAINTSTRUCT paint;
 
@@ -2106,7 +2106,7 @@ namespace windows
 
          rectPaint = rectWindow;
 
-         m_puserinteraction->_001ScreenToClient(rectPaint);
+         m_puserinteraction->_001ScreenToClient(rectPaint, ::user::layout_design);
 
       }
       else
@@ -2520,34 +2520,34 @@ namespace windows
    }
 
 
-   void interaction_impl::prodevian_prepare_window_minimize(::eactivation eactivation)
+   void interaction_impl::sketch_prepare_window_minimize(::eactivation eactivation)
    {
 
-      primitive_impl::prodevian_prepare_window_minimize(eactivation);
+      primitive_impl::sketch_prepare_window_minimize(eactivation);
 
    }
 
 
-   void interaction_impl::prodevian_prepare_window_maximize()
+   void interaction_impl::sketch_prepare_window_maximize()
    {
 
-      primitive_impl::prodevian_prepare_window_maximize();
+      primitive_impl::sketch_prepare_window_maximize();
 
    }
 
 
-   void interaction_impl::prodevian_prepare_window_full_screen(const ::rect & rectHint)
+   void interaction_impl::sketch_prepare_window_full_screen(const ::rect & rectHint)
    {
 
-      primitive_impl::prodevian_prepare_window_full_screen(rectHint);
+      primitive_impl::sketch_prepare_window_full_screen(rectHint);
 
    }
 
 
-   void interaction_impl::prodevian_prepare_window_restore(edisplay edisplay)
+   void interaction_impl::sketch_prepare_window_restore(edisplay edisplay)
    {
 
-      primitive_impl::prodevian_prepare_window_restore(edisplay);
+      primitive_impl::sketch_prepare_window_restore(edisplay);
 
    }
 
@@ -2567,24 +2567,24 @@ namespace windows
    }
 
 
-   bool interaction_impl::window_is_iconic()
+   bool interaction_impl::node_is_iconic()
    {
-
-      if (!::is_window(get_handle()))
-      {
-
-         return false;
-
-      }
 
       if (GetExStyle() & WS_EX_LAYERED)
       {
 
-         return m_puserinteraction->display_state() == ::display_iconic;
+         return ::user::interaction_impl::node_is_iconic();
 
       }
       else
       {
+
+         if (!::is_window(get_handle()))
+         {
+
+            return false;
+
+         }
 
          return ::IsIconic(get_handle()) != FALSE;
 
@@ -2593,17 +2593,10 @@ namespace windows
    }
 
 
-   bool interaction_impl::window_is_zoomed()
+   bool interaction_impl::node_is_zoomed()
    {
 
-      if (!::is_window(get_handle()))
-      {
-
-         return false;
-
-      }
-
-      return m_puserinteraction->display_state() == ::display_zoomed;
+      return ::user::interaction_impl::node_is_zoomed();
 
    }
 
@@ -3051,12 +3044,12 @@ namespace windows
    }
 
 
-   void interaction_impl::window_apply_visual(const ::user::window_state & windowstate)
-   {
+   // void interaction_impl::window_apply_visual(const ::user::window_state & windowstate)
+   // {
 
-      return ::user::interaction_impl::window_apply_visual(windowstate);
+   //    return ::user::interaction_impl::window_apply_visual(windowstate);
 
-   }
+   // }
 
 
    //bool interaction_impl::_is_window_visible()
@@ -3143,7 +3136,7 @@ namespace windows
 
       }
 
-      if (!m_puserinteraction->is_window_visible())
+      if (!m_puserinteraction->is_window_visible(::user::layout_sketch))
       {
 
          return true;
@@ -3200,7 +3193,7 @@ namespace windows
       else
       {
 
-         m_puserinteraction->m_bRedraw = true;
+         m_puserinteraction->set_need_redraw();
 
       }
 
@@ -4043,7 +4036,7 @@ namespace windows
       if (::IsIconic(get_handle()))
       {
 
-         if (!m_puserinteraction->window_is_iconic())
+         if (m_puserinteraction->layout().sketch().display() != ::display_iconic)
          {
 
             output_debug_string(" IsIconic or not IsIconic, thats the question interaction_impl::_001OnWindowPosChanged");
@@ -4054,7 +4047,7 @@ namespace windows
       else if (::IsZoomed(get_handle()))
       {
 
-         if (!m_puserinteraction->window_is_zoomed())
+         if (m_puserinteraction->layout().window().display() != ::display_zoomed)
          {
 
             output_debug_string(" IsZoomed or not IsZoomed, thats the question interaction_impl::_001OnWindowPosChanged");
@@ -4071,7 +4064,7 @@ namespace windows
 
       }
 
-      if (m_puserinteraction->m_eflagLayouting)
+      if (m_puserinteraction->layout().m_eflag)
       {
 
          return;
@@ -4082,17 +4075,17 @@ namespace windows
 
       bool bMove = false;
 
-      if (m_puserinteraction->request_state().m_point != point)
+      if (m_puserinteraction->layout().sketch().origin() != point)
       {
 
-         if (m_puserinteraction->window_is_moving())
+         if (m_puserinteraction->layout().is_moving())
          {
 
             INFO("Window is Moving :: _001OnMove");
 
          }
 
-         m_puserinteraction->move_to(point);
+         m_puserinteraction->layout().sketch().origin() = point;
 
          bMove = true;
 
@@ -4102,10 +4095,10 @@ namespace windows
 
       bool bSize = false;
 
-      if (m_puserinteraction->request_state().m_size != size)
+      if (m_puserinteraction->layout().sketch().size() != size)
       {
 
-         m_puserinteraction->set_size(size);
+         m_puserinteraction->layout().sketch().size() = size;
 
          bSize = true;
 
@@ -4865,10 +4858,11 @@ namespace windows
    }
 */
 
-   void interaction_impl::_do_show_window()
+
+   void interaction_impl::window_show_change_visibility(::edisplay edisplay, ::eactivation eactivation)
    {
 
-      ::user::interaction_impl::_do_show_window();
+      ::user::interaction_impl::window_show_change_visibility(edisplay, eactivation);
 
    }
 
@@ -5003,7 +4997,7 @@ namespace windows
 
       const rect& client = pncsp->rgrc[0];
 
-      if (window_is_zoomed())
+      if (node_is_zoomed())
       {
          WINDOWINFO wi = {};
          wi.cbSize = sizeof(wi);

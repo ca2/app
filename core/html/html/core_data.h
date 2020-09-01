@@ -50,7 +50,7 @@ namespace html
 CLASS_DECL_CORE void trim001(string& str);
 
 
-#include "core/html/html_lite/_.h"
+#include "axis/html/html_lite/_.h"
 
 
 
@@ -208,7 +208,7 @@ namespace html
 
 
       bool                             m_bImplement;
-      bool                             m_bLayout;
+      bool                             m_bLaidout;
 
 
       http::cookies* m_pcookies;

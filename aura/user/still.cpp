@@ -48,6 +48,8 @@ namespace user
 
    void still::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
+      
+      auto pstyle = get_style(pgraphics);
 
       if (m_estyle == style_image)
       {
@@ -63,15 +65,16 @@ namespace user
          get_window_text(strText);
 
          ::rect rectClient;
+         
          get_client_rect(rectClient);
 
-         ::rect rectMargin(2, 2,2, 2);
+         //::rect rectMargin(2, 2,2, 2);
 
-         ::rect rectBorder(2, 2,2, 2);
+//         ::rect rectBorder(2, 2,2, 2);
 
-         rectClient.deflate(rectMargin);
+  //       rectClient.deflate(rectMargin);
 
-         rectClient.deflate(rectBorder);
+    //     rectClient.deflate(rectBorder);
 
          //if(pstyle == nullptr)
          //{
@@ -104,7 +107,7 @@ namespace user
                pgraphics->set_text_color(ARGB(255, 160, 160, 160));
 
             }
-            else if (should_hover() && (m_itemHover || Session.m_puiLastLButtonDown == this))
+            else if (should_hover() && (m_itemHover.is_set() || Session.m_puiLastLButtonDown == this))
             {
 
                pgraphics->fill_rect(rectClient, ARGB(255, 200, 200, 230));
@@ -127,16 +130,27 @@ namespace user
 
          }
 
-         ::rect rectPadding(4, 4, 4, 4);
+         ::rect rectPadding(0, 0, 0, 0);
 
          rectClient.deflate(rectPadding);
 
          if (m_estockicon == stock_icon_none)
          {
 
-            int iDrawTextFlags =  DT_CENTER | DT_VCENTER | DT_SINGLELINE;
+            int iDrawTextFlags =  get_int(pstyle, ::user::int_edit_draw_text_flags,DT_LEFT | DT_VCENTER | DT_SINGLELINE);
 
-            pgraphics->set_font(this);
+            if(m_pfont)
+            {
+               
+               pgraphics->set(m_pfont);
+               
+            }
+            else
+            {
+            
+               pgraphics->set_font(this);
+               
+            }
 
             pgraphics->draw_text(strText, rectClient, iDrawTextFlags);
 
@@ -163,7 +177,6 @@ namespace user
             rectIcon.deflate(rectIcon.width() / 4, rectIcon.height() / 4);
 
             pgraphics->draw_stock_icon(rectIcon, m_estockicon);
-
 
          }
 
@@ -466,10 +479,11 @@ namespace user
          auto size = pgraphics->GetTextExtent(str);
 
          ::rect rect(0, 0, 0, 0);
+
          rect.right = LONG(size.cx * 1.6);
          rect.bottom = LONG(size.cy * 1.4);
 
-         set_size(rect.size());
+         layout().sketch() = rect.size();
 
       }
       else if (m_estyle == style_image)
@@ -477,7 +491,7 @@ namespace user
 
          auto size = m_pimage->size();
 
-         set_size(size);
+         layout().sketch() = size;
 
       }
       else
@@ -489,7 +503,7 @@ namespace user
 
          sizeTotal.cy = (LONG)(sizeTotal.cy * 1.4);
 
-         set_size(sizeTotal);
+         layout().sketch() = sizeTotal;
 
       }
 
@@ -637,7 +651,7 @@ namespace user
          // Backround Pressed
          crBk = ARGB(255, 192, 192, 250);
       }
-      else if (m_itemHover)
+      else if (m_itemHover.is_set())
       {
          crBk = ARGB(255, 220, 220, 250);
       }
@@ -677,7 +691,7 @@ namespace user
       {
          crBorder = ARGB(255, 255, 255, 255);
       }
-      else if (m_itemHover)
+      else if (m_itemHover.is_set())
       {
          crBorder = ARGB(255, 100, 100, 200);
       }
@@ -728,7 +742,7 @@ namespace user
          //         pgraphics->set_text_color(pstyle->m_crTextPress);
          brushText->create_solid(get_color(pstyle, element_text, e_state_pressed));
       }
-      else if (m_itemHover)
+      else if (m_itemHover.is_set())
       {
          //         pgraphics->set_text_color(pstyle->m_crTextHover);
          brushText->create_solid(get_color(pstyle, element_text, e_state_hover));
@@ -826,7 +840,7 @@ namespace user
             pgraphics->fill_rect(rectClient, get_color(pstyle, element_background, e_state_disabled));
 
          }
-         else if (m_itemHover || is_left_button_pressed())
+         else if (m_itemHover.is_set() || is_left_button_pressed())
          {
 
             //pgraphics->draw3d_rect(rectClient,pstyle->_001GetColor(color_border_hover),pstyle->_001GetColor(color_border_hover));

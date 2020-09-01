@@ -1377,7 +1377,7 @@ namespace core
 
       }
 
-      if (m_pshell)
+      if (!m_pshell)
       {
 
          return ::error_failed;

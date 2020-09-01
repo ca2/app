@@ -38,6 +38,7 @@ namespace html
       edisplay tag_to_display(e_tag etag);
       id concat(id id1,id id2);
 
+      virtual bool defer_get_html(string& strHtml, ::file::path& pathHtml, ::object* pobjectContext, const ::var& var);
 
       static bool tag_visible(e_tag etag);
 

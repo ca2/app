@@ -64,6 +64,8 @@ namespace app_app
 
       m_pwindow->create_window_ex(cs);
 
+      m_pwindow->start_layout();
+
       m_pwindow->display(display_normal);
 
       m_pwindow->place(rectWindow);
@@ -71,6 +73,8 @@ namespace app_app
       m_pwindow->set_need_layout();
 
       m_pwindow->set_need_redraw();
+
+      m_pwindow->set_layout_ready();
 
       m_pwindow->post_redraw();
 

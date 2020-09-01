@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="programming" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="basis">
+				<Option output="$(#time_dir)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(#time_dir)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(#time_dir)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-std=c++17" />
+					<Add option="-fPIC" />
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+				</Compiler>
+			</Target>
+			<Target title="stage">
+				<Option output="$(#time_dir)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(#time_dir)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(#time_dir)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-O0" />
+					<Add option="-std=c++17" />
+					<Add option="-pg" />
+					<Add option="-fPIC" />
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add option="-pg" />
+				</Linker>
+			</Target>
+			<Target title="memdleak">
+				<Option output="$(#time_dir)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(#time_dir)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(#time_dir)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+					<Add option="-DMEMDLEAK" />
+				</Compiler>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-fPIC" />
+			<Add option="-std=c++17" />
+			<Add option="-fexceptions" />
+			<Add option="-fnon-call-exceptions" />
+			<Add option="-fno-pie" />
+			<Add option="-fno-stack-protector" />
+			<Add option="-Wno-pointer-arith" />
+			<Add option="-Wno-attributes" />
+			<Add option="-Winvalid-pch" />
+			<Add option="-Wno-conversion-null" />
+			<Add directory="." />
+			<Add directory="$(PROJECT_DIR)" />
+			<Add directory="$(#archive)" />
+			<Add directory="$(#config)" />
+			<Add directory="$(WORKSPACE_DIR)/../.." />
+			<Add directory="$(WORKSPACE_DIR)/../../inc" />
+			<Add directory="$(WORKSPACE_DIR)/../../include" />
+			<Add directory="$(WORKSPACE_DIR)/../../platform-linux" />
+			<Add directory="$(WORKSPACE_DIR)/../../platform-linux/_include" />
+			<Add directory="$(WORKSPACE_DIR)/../../app/_include" />
+			<Add directory="$(WORKSPACE_DIR)/../../app" />
+
+			<Add directory="$(#sensitive)/sensitive/include" />
+		</Compiler>
+		<Linker>
+			<Add option="-Wl,-rpath=\\$$$ORIGIN" />
+			<Add option="-ldl" />
+			<Add option="-lace" />
+			<Add option="-laura" />
+			<Add option="-laxis" />
+			<Add option="-lbase" />
+			<Add option="-Wl,-z,defs" />
+			<Add directory="$(#time_dir)/x64/$(TARGET_NAME)" />
+			<Add directory="/usr/lib64/mysql/" />
+		</Linker>
+		<Unit filename="dynamic_source/dynamic_source.h" />
+		<Unit filename="dynamic_source/dynamic_source_exit_exception.cpp" />
+		<Unit filename="dynamic_source/dynamic_source_exit_exception.h" />
+		<Unit filename="dynamic_source/dynamic_source_httpd_socket.cpp" />
+		<Unit filename="dynamic_source/dynamic_source_httpd_socket.h" />
+		<Unit filename="dynamic_source/dynamic_source_library_class.cpp" />
+		<Unit filename="dynamic_source/dynamic_source_library_class.h" />
+		<Unit filename="dynamic_source/dynamic_source_script.cpp" />
+		<Unit filename="dynamic_source/dynamic_source_script.h" />
+		<Unit filename="dynamic_source/dynamic_source_script_cache.cpp" />
+		<Unit filename="dynamic_source/dynamic_source_script_cache.h" />
+		<Unit filename="dynamic_source/dynamic_source_script_compiler.cpp" />
+		<Unit filename="dynamic_source/dynamic_source_script_compiler.h" />
+		<Unit filename="dynamic_source/dynamic_source_script_instance.cpp" />
+		<Unit filename="dynamic_source/dynamic_source_script_instance.h" />
+		<Unit filename="dynamic_source/dynamic_source_script_interface.cpp" />
+		<Unit filename="dynamic_source/dynamic_source_script_interface.h" />
+		<Unit filename="dynamic_source/dynamic_source_script_manager.cpp" />
+		<Unit filename="dynamic_source/dynamic_source_script_manager.h" />
+		<Unit filename="dynamic_source/dynamic_source_session.cpp" />
+		<Unit filename="dynamic_source/dynamic_source_session.h" />
+		<Unit filename="framework.h">
+			<Option compile="1" />
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="introjection/introjection.h" />
+		<Unit filename="introjection/introjection_compiler.cpp" />
+		<Unit filename="introjection/introjection_compiler.h" />
+		<Unit filename="programming/programming.h" />
+		<Unit filename="programming/programming_application.cpp" />
+		<Unit filename="programming/programming_application.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+			<envvars />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

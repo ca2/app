@@ -38,7 +38,7 @@ namespace experience
       e_grip hittest_mode_grip(e_hittest emode);
       e_grip GetGripMask();
       void SetGripMask(e_grip egrip);
-      bool window_is_sizing();
+      bool layout().is_sizing();
       void SetSWPFlags(UINT uiFlags);
       virtual ::size GetMinSize();
       e_cursor translate(e_hittest ehittest);

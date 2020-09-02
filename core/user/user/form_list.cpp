@@ -532,7 +532,7 @@ namespace user
 
          }
 
-         pinteraction->layout().order_top();
+         pinteraction->order_top();
 
          pinteraction->place(rectControl);
 

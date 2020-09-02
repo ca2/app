@@ -67,7 +67,7 @@ namespace user
    ::sized picture_interaction::get_request_size()
    {
 
-      return window_request_rect().size();
+      return layout().sketch().size();
 
    }
 

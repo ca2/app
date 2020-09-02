@@ -529,6 +529,7 @@ namespace user
 
 //#include "form.h"
 #include "tab_view.h"
+#include "tab_drop_target_window.h"
 
 
 

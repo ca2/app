@@ -13,7 +13,9 @@ namespace user
 
       m_databasekey.m_bLocalData = true;
 
-      layout().m_windowrectStore.m_edisplay = ::display_undefined;
+      m_windowrectStore.m_edisplay = ::display_undefined;
+
+
 
    }
 
@@ -90,6 +92,93 @@ namespace user
    {
 
       UNREFERENCED_PARAMETER(pmessage);
+
+   }
+
+
+   ::edisplay box::window_stored_display() const
+   {
+
+      auto edisplayStored = m_windowrect.m_edisplay;
+
+      return edisplayStored;
+
+   }
+
+
+   ::edisplay box::window_previous_display() const
+   {
+
+      auto edisplayPrevious = m_windowrect.m_edisplayPrevious;
+
+      return edisplayPrevious;
+
+   }
+
+
+   void box::on_visual_applied()
+   {
+
+      ::user::interaction::on_visual_applied();
+
+      auto edisplay = layout().design().display();
+
+      get_window_rect(m_windowrect.m_rectWindow, layout_design);
+
+      if (is_docking_appearance(edisplay))
+      {
+
+         m_windowrect.m_rectSnapped = m_windowrect.m_rectWindow;
+
+      }
+      else if (is_equivalent(edisplay, display_normal))
+      {
+
+         calculate_broad_and_compact_restore();
+
+         if (m_windowrect.m_rectWindow.size() != m_sizeRestoreBroad
+            && m_windowrect.m_rectWindow.size() != m_sizeRestoreCompact)
+         {
+
+            if (m_windowrect.m_rectWindow.size() != m_windowrect.m_rectRestored.size())
+            {
+
+               m_windowrect.m_rectRestored = m_windowrect.m_rectWindow;
+
+            }
+            else if (m_windowrect.m_rectWindow != m_windowrect.m_rectRestored)
+            {
+
+               m_windowrect.m_rectRestored = m_windowrect.m_rectWindow;
+
+            }
+
+         }
+         else
+         {
+
+            if (m_windowrect.m_rectRestored.is_empty()
+               || m_windowrect.m_rectRestored.size() == m_sizeRestoreCompact
+               || m_windowrect.m_rectRestored.size() == m_sizeRestoreBroad)
+            {
+
+               m_windowrect.m_rectRestored = m_windowrect.m_rectWindow;
+
+            }
+
+         }
+
+      }
+
+   }
+
+
+   void box::window_show_change_visibility()
+   {
+
+      ::user::interaction::window_show_change_visibility();
+
+      m_windowrect.m_edisplay = layout().window().display();
 
    }
 
@@ -222,9 +311,9 @@ namespace user
 
          m_ewindowflag |= window_flag_loading_window_rect;
 
-         layout().m_windowrectStore = windowrect;
+         m_windowrectStore = windowrect;
 
-         layout().m_windowrect = layout().m_windowrectStore;
+         m_windowrect = m_windowrectStore;
 
          e_display edisplay = windowrect.m_edisplay;
 
@@ -331,16 +420,16 @@ namespace user
 
       }
 
-      if (layout().m_windowrectStore.m_edisplay == display_undefined)
+      if (m_windowrectStore.m_edisplay == display_undefined)
       {
 
-         Application.data_get(key, layout().m_windowrectStore);
+         Application.data_get(key, m_windowrectStore);
 
       }
 
-      auto windowrect = layout().m_windowrectStore;
+      auto windowrect = m_windowrectStore;
 
-      bool bGot = layout().m_windowrectStore.m_edisplay != display_undefined;
+      bool bGot = m_windowrectStore.m_edisplay != display_undefined;
 
       windowrect.m_edisplay = layout().sketch().display();
 
@@ -403,7 +492,7 @@ namespace user
 
       }
 
-      layout().m_windowrectStore = windowrect;
+      m_windowrectStore = windowrect;
 
       return true;
 

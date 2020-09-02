@@ -118,7 +118,7 @@ namespace user
       if (should_save_window_rect())
       {
 
-         if (display_state() == ::display_none)
+         if (layout().design().display() == ::display_none)
          {
 
             return false;
@@ -317,7 +317,7 @@ namespace user
 
       }
 
-      if (display_state() == ::display_none)
+      if (layout().design().display() == ::display_none)
       {
 
          return false;

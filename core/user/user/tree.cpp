@@ -263,7 +263,7 @@ namespace user
          auto pointOffset = get_viewport_offset();
 
          //pgraphics->OffsetViewportOrg((i32)-pointOffset.x,(i32)-(pointOffset.y % _001GetItemHeight()));
-         pgraphics->OffsetViewportOrg(-pointOffset.x, -pointOffset.y);
+         //pgraphics->OffsetViewportOrg(-pointOffset.x, -pointOffset.y);
 
          ::user::tree_draw_item drawitemdata;
 
@@ -825,7 +825,7 @@ namespace user
    void tree::install_message_routing(::channel * pchannel)
    {
 
-      ::user::interaction::install_message_routing(pchannel);
+      ::user::scroll_base::install_message_routing(pchannel);
 
       IGUI_MSG_LINK(WM_CREATE, pchannel, this, &tree::_001OnCreate);
       IGUI_MSG_LINK(WM_LBUTTONDBLCLK, pchannel, this, &tree::_001OnLButtonDblClk);
@@ -854,7 +854,7 @@ namespace user
 
       set_total_size(sizeTotal);
 
-      ::user::interaction::on_change_view_size();
+      ::user::scroll_base::on_change_view_size();
 
    }
 
@@ -1525,7 +1525,7 @@ namespace user
    int tree::_001CalcTotalViewHeight()
    {
 
-      return _001GetProperItemCount() & _001GetItemHeight();
+      return _001GetProperItemCount() * _001GetItemHeight();
 
    }
 

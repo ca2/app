@@ -91,10 +91,10 @@ namespace userex
 
    }
 
-   bool top_view::is_this_visible()
+   bool top_view::is_this_visible(::user::e_layout elayout)
    {
 
-      return ::user::split_view::is_this_visible() && !GetTopLevel()->frame_is_transparent();
+      return ::user::split_view::is_this_visible(elayout) && !GetTopLevel()->frame_is_transparent();
 
    }
 

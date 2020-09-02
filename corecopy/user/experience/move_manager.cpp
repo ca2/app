@@ -44,7 +44,7 @@ namespace experience
          
          m_pframewindow->get_window_rect(rectWindow);
 
-         //if(m_pframewindow->display_state() != ::display_normal && m_pframewindow->display_state() != ::display_minimal)
+         //if(m_pframewindow->layout().design().display() != ::display_normal && m_pframewindow->layout().design().display() != ::display_minimal)
          //{
 
          //   auto pointRate = rectWindow.to_point_rate(pointCursor);
@@ -97,7 +97,7 @@ namespace experience
 
          ASSERT(pmouse->m_id == WM_MOUSEMOVE || pmouse->m_id == WM_NCMOUSEMOVE);
 
-         if (!window_is_moving())
+         if (!layout().is_moving())
          {
 
             return false;
@@ -156,7 +156,7 @@ namespace experience
 
          }
 
-         if (!window_is_moving())
+         if (!layout().is_moving())
          {
 
             return false;
@@ -335,7 +335,7 @@ namespace experience
       }
 
 
-      bool move_manager::window_is_moving()
+      bool move_manager::layout().is_moving()
       {
 
          return m_bMoving;

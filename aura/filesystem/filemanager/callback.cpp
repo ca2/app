@@ -88,7 +88,7 @@ namespace filemanager
    }
 
 
-   void callback::on_file_manager_initialize_form_pre_data(::filemanager::data * pdata, id id, ::user::interaction * pinteractionForm)
+   void callback::on_file_manager_initialize_form_pre_data(::filemanager::data * pdata, id id, ::user::form * pinteractionForm)
    {
       
       UNREFERENCED_PARAMETER(pdata);

@@ -1232,6 +1232,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="user\user\image_list.h" />
     <ClInclude Include="user\user\impact_data.h" />
     <ClInclude Include="user\user\server.h" />
+    <ClInclude Include="user\user\tab_drop_target_window.h" />
     <ClInclude Include="user\user\toolbar.h" />
     <ClInclude Include="user\user\tool_window.h" />
     <ClInclude Include="user\_.h" />

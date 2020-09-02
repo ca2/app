@@ -200,7 +200,7 @@ namespace experience
 
       }
 
-      if(!window_is_sizing())
+      if(!layout().is_sizing())
       {
 
          return false;
@@ -490,7 +490,7 @@ namespace experience
 
       }
 
-      if(m_pframewindow->window_is_zoomed())
+      if(m_pframewindow->layout().is_zoomed())
       {
 
          m_pframewindow->display(display_restore);
@@ -527,7 +527,7 @@ namespace experience
    }
 
 
-   bool size_manager::window_is_sizing()
+   bool size_manager::layout().is_sizing()
    {
 
       return m_ehittestSizing != hittest_none;

@@ -90,7 +90,22 @@ namespace user
    }
 
 
-   inline bool interaction::is_window_visible(e_layout elayout) const noexcept
+   inline bool interaction::is_this_visible(e_layout elayout) const
+   {
+
+      return layout().is_this_visible(elayout);
+
+   }
+
+
+   inline bool interaction::is_this_screen_visible(e_layout elayout) const
+   {
+
+      return layout().is_this_screen_visible(elayout);
+
+   }
+
+   inline bool interaction::is_window_visible(e_layout elayout) const
    {
 
       if (m_pdescriptor.is_null())
@@ -105,12 +120,13 @@ namespace user
    }
 
 
-   inline bool interaction::is_window_screen_visible(e_layout elayout) const noexcept
+   inline bool interaction::is_window_screen_visible(e_layout elayout) const
    {
 
       return m_pdescriptor->m_puserinteractionParent != NULL && !m_pdescriptor->m_puserinteractionParent->is_window_screen_visible(elayout) ? false : is_screen_visible(layout().state(elayout).display());
 
    }
+
 
 } // namespace user
 

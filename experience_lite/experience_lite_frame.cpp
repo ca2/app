@@ -539,7 +539,7 @@
 
                appearance * pframewindow = m_pframewindow->get_display();
 
-               if (!pframewindow->window_is_full_screen() && !pframewindow->window_is_zoomed() && !pframewindow->window_is_iconic() && !m_pframewindow->GetWndDraw()->frame_is_transparent())
+               if (!pframewindow->layout().is_full_screen() && !pframewindow->layout().is_zoomed() && !pframewindow->layout().is_iconic() && !m_pframewindow->GetWndDraw()->frame_is_transparent())
                {
 
                   on_draw_frame(pgraphics);
@@ -548,7 +548,7 @@
 
                pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-               if (pframewindow->window_is_minimal())
+               if (pframewindow->layout().is_minimal())
                {
 
                   ::rect rectIcon;
@@ -588,7 +588,7 @@
                   }
 
                }
-               else if (!pframewindow->window_is_full_screen() && !m_pframewindow->GetWndDraw()->frame_is_transparent())
+               else if (!pframewindow->layout().is_full_screen() && !m_pframewindow->GetWndDraw()->frame_is_transparent())
                {
 
                   if (m_pframewindow->GetWndDraw()->is_active() && m_crActiveCaptionTextBk != 0)

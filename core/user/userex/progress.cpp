@@ -330,7 +330,7 @@ namespace userex
 
       m_rectStatus.deflate(cxBorder, h * 2, cxBorder, h);
 
-      m_pprogress->set_window_pos(zorder_top, rectIndicator, SWP_SHOWWINDOW);
+      m_pprogress->display_child(rectIndicator);
 
    }
 

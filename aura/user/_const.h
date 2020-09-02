@@ -35,7 +35,7 @@ namespace user
       layout_sketch, // layouting request ("staging area")
       layout_design, // ready to process
 //      layout_bitmap, // drawn/ready sketch
-//      layout_output, // screen output 
+      layout_output, // screen output 
       layout_window, // event window
 
       layout_count_child = layout_design + 1,

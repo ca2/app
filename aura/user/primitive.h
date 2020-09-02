@@ -589,7 +589,7 @@ namespace user
 
 
       //virtual void window_enable_full_screen(bool bEnable = true);
-      //virtual bool window_is_full_screen();
+      //virtual bool layout().is_full_screen();
       //virtual bool window_is_full_screen_enabled();
       //virtual bool onscreen_is_zoomed();
       //virtual bool onscreen_is_iconic();

@@ -54,7 +54,7 @@ namespace experience
 
       m_pframewindow->SetCapture();
 
-      m_edisplayOrigin = m_pframewindow->display_state();
+      m_edisplayOrigin = m_pframewindow->layout().design().display();
 
       m_mapWorkspaceRect.remove_all();
 
@@ -133,7 +133,7 @@ namespace experience
 
       rectCenter.bottom = pointScreenCenter.y + cyCenterArea / 2;
 
-      if (m_pframewindow->display_state() & display_bottom)
+      if (m_pframewindow->layout().design().display() & display_bottom)
       {
 
          rectCenter.bottom -= cyCenterArea / 4;
@@ -150,7 +150,7 @@ namespace experience
 
       }
 
-      if (m_pframewindow->display_state() & display_top)
+      if (m_pframewindow->layout().design().display() & display_top)
       {
 
          rectCenter.top += cyCenterArea / 4;
@@ -167,7 +167,7 @@ namespace experience
 
       }
 
-      if (m_pframewindow->display_state() & display_right)
+      if (m_pframewindow->layout().design().display() & display_right)
       {
 
          rectCenter.right -= cxCenterArea / 4;
@@ -184,7 +184,7 @@ namespace experience
 
       }
 
-      if (m_pframewindow->display_state() & display_left)
+      if (m_pframewindow->layout().design().display() & display_left)
       {
 
          rectCenter.left += cxCenterArea / 4;

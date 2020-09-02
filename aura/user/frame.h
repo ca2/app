@@ -90,9 +90,11 @@ namespace user
 
 
    class CLASS_DECL_AURA frame:
-      virtual public interaction
+      virtual public box
    {
    public:
+
+
 
 
       bool                                         m_bDefaultNotifyIcon;

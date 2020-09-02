@@ -418,7 +418,7 @@ namespace user
       if (puiTopLevel != nullptr)
       {
 
-         if (puiTopLevel->frame_is_transparent() && !GetTopLevelFrame()->window_is_full_screen())
+         if (puiTopLevel->frame_is_transparent() && !GetTopLevelFrame()->layout().is_full_screen())
          {
 
             if (m_bShowTabs)
@@ -437,7 +437,7 @@ namespace user
 
             }
 
-            m_edisplayParentFrameAutoHide = GetTopLevelFrame()->display_state();
+            m_edisplayParentFrameAutoHide = GetTopLevelFrame()->layout().design().display();
 
             return bNeedLayout;
 
@@ -464,7 +464,7 @@ namespace user
 
          }
 
-         m_edisplayParentFrameAutoHide = GetTopLevelFrame()->display_state();
+         m_edisplayParentFrameAutoHide = GetTopLevelFrame()->layout().design().display();
 
          return bNeedLayout;
 
@@ -473,7 +473,7 @@ namespace user
       if(m_bShowTabs)
       {
 
-         if(GetTopLevelFrame()!= nullptr && GetTopLevelFrame()->window_is_full_screen())
+         if(GetTopLevelFrame()!= nullptr && GetTopLevelFrame()->layout().is_full_screen())
          {
 
             ::rect rectTab(get_data()->m_rectTab);
@@ -508,7 +508,7 @@ namespace user
 
          auto pframe = GetParentFrame();
 
-         if(::is_set(pframe) && !pframe->window_is_full_screen())
+         if(::is_set(pframe) && !pframe->layout().is_full_screen())
          {
 
             m_bShowTabs = true;
@@ -568,7 +568,7 @@ namespace user
       if (GetParentFrame() != nullptr && (bNeedLayout || !GetParentFrame()->is_this_screen_visible()))
       {
 
-         m_edisplayParentFrameAutoHide = GetParentFrame()->display_state();
+         m_edisplayParentFrameAutoHide = GetParentFrame()->layout().design().display();
 
       }
 

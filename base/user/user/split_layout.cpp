@@ -553,7 +553,7 @@ namespace user
 
          pwnd->place(rectClient);
 
-         if (pwnd->is_request_visible())
+         if (pwnd->layout().sketch().is_visible())
          {
 
             pwnd->display();
@@ -712,7 +712,7 @@ namespace user
 
       }
 
-      if (!pholder->m_uiptraChild[0]->is_request_visible())
+      if (!pholder->m_uiptraChild[0]->layout().sketch().is_visible())
       {
 
          return false;

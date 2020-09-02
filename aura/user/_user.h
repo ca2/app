@@ -122,7 +122,8 @@ namespace user
    };
 
 
-   class CLASS_DECL_AURA alpha_source
+   class CLASS_DECL_AURA alpha_source :
+      virtual public ::generic_object
    {
    public:
 
@@ -226,6 +227,7 @@ namespace user
 //#include "place_holder_container.h"
 //#include "job.h"
 //#include "core/user/experience/experience_updown.h"
+#include "box.h"
 #include "frame.h"
 //#include "menu_command.h"
 //#include "menu_interaction.h"

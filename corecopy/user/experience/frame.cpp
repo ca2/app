@@ -222,7 +222,7 @@ namespace experience
    bool frame::_001OnLButtonDown(::message::mouse * pmouse)
    {
 
-      if(!m_pframewindow->window_is_zoomed() && !m_pframewindow->window_is_full_screen())
+      if(!m_pframewindow->layout().is_zoomed() && !m_pframewindow->layout().is_full_screen())
       {
 
          //if(m_pframewindow->dock_manager()->_001OnLButtonDown(pmouse->)
@@ -243,7 +243,7 @@ namespace experience
    bool frame::_001OnLButtonUp(::message::mouse * pmouse)
    {
 
-      if(!m_pframewindow->window_is_zoomed() && !m_pframewindow->window_is_full_screen())
+      if(!m_pframewindow->layout().is_zoomed() && !m_pframewindow->layout().is_full_screen())
       {
 
          if(m_pframewindow->dock_manager()->_001OnLButtonUp(pmouse))
@@ -266,7 +266,7 @@ namespace experience
 
       pmouse->m_point = Session.get_cursor_pos();
 
-      if(!m_pframewindow->window_is_zoomed() && !m_pframewindow->window_is_full_screen())
+      if(!m_pframewindow->layout().is_zoomed() && !m_pframewindow->layout().is_full_screen())
       {
 
          if (!m_pframewindow->move_manager()->window_is_moving()
@@ -371,7 +371,7 @@ namespace experience
    bool frame::_001OnNcLButtonDown(::message::mouse * pmouse)
    {
 
-      if(!m_pframewindow->window_is_zoomed() && !m_pframewindow->window_is_full_screen())
+      if(!m_pframewindow->layout().is_zoomed() && !m_pframewindow->layout().is_full_screen())
       {
 
          if(m_pframewindow->dock_manager()->_001OnLButtonDown(pmouse))
@@ -391,7 +391,7 @@ namespace experience
    bool frame::_001OnNcLButtonUp(::message::mouse * pmouse)
    {
 
-      if(!m_pframewindow->window_is_zoomed() && !m_pframewindow->window_is_full_screen())
+      if(!m_pframewindow->layout().is_zoomed() && !m_pframewindow->layout().is_full_screen())
       {
 
          if (m_pframewindow->dock_manager()->_001OnLButtonUp(pmouse))
@@ -425,7 +425,7 @@ namespace experience
    bool frame::_001OnNcMouseMove(::message::mouse * pmouse)
    {
 
-      if(!m_pframewindow->window_is_zoomed() && !m_pframewindow->window_is_full_screen())
+      if(!m_pframewindow->layout().is_zoomed() && !m_pframewindow->layout().is_full_screen())
       {
 
          if(!m_pframewindow->move_manager()->window_is_moving()
@@ -540,7 +540,7 @@ namespace experience
    i32 frame::calc_caption_height()
    {
 
-      return calc_caption_height(m_pframewindow->display_state());
+      return calc_caption_height(m_pframewindow->layout().design().display());
 
    }
 
@@ -639,7 +639,7 @@ namespace experience
       try
       {
 
-         if (m_pframewindow->window_is_full_screen())
+         if (m_pframewindow->layout().is_full_screen())
          {
 
             auto pointCursor = Session.get_cursor_pos();
@@ -687,7 +687,7 @@ namespace experience
 
          bool bInitialControlBoxPosition = true;
 
-         auto edisplayState = pframewindow->display_state();
+         auto edisplayState = pframewindow->layout().design().display();
 
          rect * prectControlBoxMargin = get_control_box_margin_rect();
 
@@ -753,7 +753,7 @@ namespace experience
 
          int iControlBoxRightMargin;
 
-         if (m_pframewindow->window_is_full_screen())
+         if (m_pframewindow->layout().is_full_screen())
          {
 
             prectControlBox = &m_rectControlBoxFullScreen;
@@ -763,7 +763,7 @@ namespace experience
             bShow = !(m_bInitialControlBoxPosition || bInitialControlBoxPosition);
 
          }
-         else if (m_pframewindow->window_is_zoomed())
+         else if (m_pframewindow->layout().is_zoomed())
          {
 
             prectControlBox = &m_rectControlBoxZoomed;
@@ -816,7 +816,7 @@ namespace experience
 
          ::rect rectIcon = nullptr;
 
-         if (m_pframewindow->window_is_minimal())
+         if (m_pframewindow->layout().is_minimal())
          {
 
             if (get_element_rect(rectIcon, ElementTopLeftIcon))
@@ -1042,7 +1042,7 @@ namespace experience
 
       int iLeftDeflate;
 
-      if(m_pframewindow->window_is_full_screen())
+      if(m_pframewindow->layout().is_full_screen())
       {
 
          iTopDeflate = 0;
@@ -1050,7 +1050,7 @@ namespace experience
          iLeftDeflate = 0;
 
       }
-      else if(m_pframewindow->window_is_minimal())
+      else if(m_pframewindow->layout().is_minimal())
       {
 
          iTopDeflate = prectMargin->top;
@@ -1069,7 +1069,7 @@ namespace experience
 
       int iRightDeflate;
 
-      if(m_pframewindow->window_is_minimal())
+      if(m_pframewindow->layout().is_minimal())
       {
 
          iRightDeflate = (rect.right - get_control_box_rect()->left) + 2 ;
@@ -1103,13 +1103,13 @@ namespace experience
    rect * frame::get_margin_rect()
    {
 
-      if (m_pframewindow->window_is_full_screen())
+      if (m_pframewindow->layout().is_full_screen())
       {
 
          return &m_rectMarginFullScreen;
 
       }
-      else if (m_pframewindow->window_is_zoomed())
+      else if (m_pframewindow->layout().is_zoomed())
       {
 
          return &m_rectMarginZoomed;
@@ -1128,13 +1128,13 @@ namespace experience
    rect * frame::get_control_box_margin_rect()
    {
 
-      if (m_pframewindow->window_is_full_screen())
+      if (m_pframewindow->layout().is_full_screen())
       {
 
          return &m_rectControlBoxMarginFullScreen;
 
       }
-      else if (m_pframewindow->window_is_zoomed())
+      else if (m_pframewindow->layout().is_zoomed())
       {
 
          return &m_rectControlBoxMarginZoomed;
@@ -1163,8 +1163,8 @@ namespace experience
          {
 
             if (!(m_pframewindow->m_ewindowflag & window_flag_disable_window_placement_snapping)
-               //&& !m_pframewindow->window_is_moving()
-               //&& !m_pframewindow->window_is_sizing()
+               //&& !m_pframewindow->layout().is_moving()
+               //&& !m_pframewindow->layout().is_sizing()
                && !m_pframewindow->window_is_docking()
                //&& !::is_docking_appearance(m_pframewindow->layout().sketch().display())
                && m_pframewindow->layout().sketch().display() != display_zoomed
@@ -1255,10 +1255,10 @@ namespace experience
          if (m_pframewindow->m_tickLastDisplayChange.elapsed() < 800_tick)
          {
 
-            if (edisplay != m_pframewindow->display_state())
+            if (edisplay != m_pframewindow->layout().design().display())
             {
 
-               edisplay = m_pframewindow->display_state();
+               edisplay = m_pframewindow->layout().design().display();
 
             }
 
@@ -1531,14 +1531,14 @@ namespace experience
 
    {
 
-      if (m_pframewindow->window_is_full_screen())
+      if (m_pframewindow->layout().is_full_screen())
       {
 
          m_pframewindow->best_monitor(prect);
 
 
       }
-      else if (m_pframewindow->window_is_zoomed())
+      else if (m_pframewindow->layout().is_zoomed())
       {
 
          m_pframewindow->get_window_rect(prect);
@@ -1559,13 +1559,13 @@ namespace experience
    rect * frame::get_control_box_rect()
    {
 
-      if(m_pframewindow->window_is_full_screen())
+      if(m_pframewindow->layout().is_full_screen())
       {
 
          return &m_rectControlBoxFullScreen;
 
       }
-      else if(m_pframewindow->window_is_zoomed())
+      else if(m_pframewindow->layout().is_zoomed())
       {
 
          return &m_rectControlBoxZoomed;

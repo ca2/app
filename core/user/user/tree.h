@@ -11,7 +11,7 @@ namespace user
 
 
    class CLASS_DECL_CORE tree :
-      virtual public ::user::interaction
+      virtual public ::user::scroll_base
    {
    public:
 

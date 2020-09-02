@@ -753,7 +753,7 @@ namespace experience
 
          rect & rectTabClient = ptab->get_data()->m_rectTabClient;
 
-         //bool bTabbedClient = ptab->m_bShowTabs && !ptab->GetTopLevelFrame()->window_is_full_screen();
+         //bool bTabbedClient = ptab->m_bShowTabs && !ptab->GetTopLevelFrame()->layout().is_full_screen();
          bool bTabbedClient = ptab->m_bShowTabs;
 
          rectTabClient.left = ptab->get_data()->m_rectTab.left;

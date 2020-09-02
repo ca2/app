@@ -2945,7 +2945,7 @@ namespace ios
    }
 
 
-//   bool interaction_impl::window_is_iconic()
+//   bool interaction_impl::layout().is_iconic()
 //   {
 //      ASSERT(::is_window(get_handle()));
 //      if(GetExStyle() & WS_EX_LAYERED)

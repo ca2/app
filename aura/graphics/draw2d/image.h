@@ -10,7 +10,7 @@ public:
 
 
    memory                              m_memoryMap;
-
+   ::rect                              m_rectTag;
 
 
    image();

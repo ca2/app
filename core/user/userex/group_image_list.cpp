@@ -461,7 +461,7 @@ namespace userex
 
       rectMenu.bottom = rectClient.top + 32;
 
-      m_buttonMenu.set_window_pos(zorder_top, rectMenu, SWP_SHOWWINDOW);
+      m_buttonMenu.display_child(rectMenu);
 
       ::rect rectList(rectClient);
 
@@ -474,7 +474,7 @@ namespace userex
 
          plist->place(rectList);
 
-         plist->layout().order_top();
+         plist->order_top();
 
          plist->display();
 

@@ -601,22 +601,38 @@ namespace windows
 
                string str;
 
-               str.Format("UpdateLayeredWindow %dx%d\n", size.cx, size.cy);
+               //str.Format("UpdateLayeredWindow %dx%d\n", size.cx, size.cy);
 
-               output_debug_string(str);
+               //output_debug_string(str);
 
-               ::UpdateLayeredWindow(m_pimpl->m_oswindow, m_hdcScreen, &point, &size, buffer.m_hdc, &pointSrc, RGB(0, 0, 0), &blendPixelFunction, ULW_ALPHA);
+               auto r = ::rect(point, size);
+
+               if (r == pimage->m_rectTag)
+               {
+
+                  ::UpdateLayeredWindow(m_pimpl->m_oswindow, m_hdcScreen, &point, &size, buffer.m_hdc, &pointSrc, RGB(0, 0, 0), &blendPixelFunction, ULW_ALPHA);
+
+               }
+               else
+               {
+
+                  TRACE("Update discarded");
+
+               }
 
                ::point pointBottomRight = point + size;
 
                if (g_pointLastBottomRight != pointBottomRight)
                {
 
-                  TRACE("UpdateLayeredWindow Bottom Right Changed");
+                  TRACE("UpdateLayeredWindow Changed");
 
                   g_pointLastBottomRight = pointBottomRight;
 
                }
+
+               TRACE("UpdateLayeredWindow Bottom Right (%d, %d)", pointBottomRight.x, pointBottomRight.y);
+
 
             }
 

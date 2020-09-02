@@ -56,7 +56,7 @@ namespace user
       __pointer(control_descriptor)             m_pdescriptor;
 
 
-      __pointer(::user::interaction_layout)     m_playout;
+      ::user::interaction_layout                m_layout;
 
       //class draw_select
       //{
@@ -143,7 +143,7 @@ namespace user
       // create a fast path/low latency callback system
       ::tick                                    m_tickMouseMove;
       ::tick                                    m_tickMouseMoveIgnore;
-      __reference(alpha_source)                 m_palphasource;
+      __pointer(alpha_source)                   m_palphasource;
       i32                                       m_iItemHeight;
       point                                     m_pointMoveCursor;
       bool                                      m_bDefaultWalkPreTranslateParentTree;
@@ -214,8 +214,8 @@ namespace user
 
       ::user::item* get_user_item(const ::user::item& item);
 
-      const class ::user::interaction_layout& layout() const { return *m_playout; }
-      class ::user::interaction_layout& layout() { return *m_playout; }
+      const class ::user::interaction_layout& layout() const { return m_layout; }
+      class ::user::interaction_layout& layout() { return m_layout; }
 
 
       inline void auto_prodevian_on_show() { m_ewindowflag |= window_flag_auto_prodevian_on_show; }
@@ -244,6 +244,10 @@ namespace user
       virtual void load_style(string strStyle);
 
 
+      virtual::edisplay window_stored_display() const;
+      virtual::edisplay window_previous_display() const;
+         
+         
       virtual bool is_full_screen_enabled() const;
 
       virtual bool get_element_rect(RECT* prect, e_element eelement);
@@ -353,6 +357,8 @@ namespace user
       virtual bool design_layout();
 
 
+
+
       virtual void prodevian_stop() override;
 
       virtual void prodevian_redraw(bool bUpdateBuffer) override;
@@ -387,15 +393,14 @@ namespace user
 
 
       virtual bool display(::edisplay edisplay = display_default, ::eactivation eactivation = ::activation_none);
-      virtual void place(const ::rect& rect, e_layout elayout = layout_sketch);
 
-      virtual ::zorder zorder(e_layout elayout = layout_sketch) const;
-      virtual void order(::zorder zorder, e_layout elayout = layout_sketch);
+      virtual ::zorder zorder(e_layout elayout = layout_design) const;
+      virtual void order(::zorder zorder);
 
-      inline void order_top(e_layout elayout = layout_sketch) { order(zorder_top, elayout); }
-      inline void order_front(e_layout elayout = layout_sketch) { order(zorder_top, elayout); }
-      inline void order_top_most(e_layout elayout = layout_sketch) { order(zorder_top_most, elayout); }
-      inline void order_bottom(e_layout elayout = layout_sketch) { order(zorder_bottom, elayout); }
+      inline void order_top() { order(zorder_top); }
+      inline void order_front() { order(zorder_top); }
+      inline void order_top_most() { order(zorder_top_most); }
+      inline void order_bottom() { order(zorder_bottom); }
 
 
       virtual void sketch_to_design(::draw2d::graphics_pointer & pgraphics, bool & bUpdateBuffer, bool & bUpdateWindow) override;
@@ -430,8 +435,11 @@ namespace user
       virtual bool sketch_on_display();
 
 
-      inline bool is_window_visible(e_layout elayout = layout_design) const noexcept;
-      inline bool is_window_screen_visible(e_layout elayout = layout_design) const noexcept;
+      inline bool is_this_visible(e_layout elayout = layout_design) const;
+      inline bool is_this_screen_visible(e_layout elayout = layout_design) const;
+
+      inline bool is_window_visible(e_layout elayout = layout_design) const;
+      inline bool is_window_screen_visible(e_layout elayout = layout_design) const;
 
 
       virtual bool create_message_queue(const char* lpszName) override;
@@ -1090,6 +1098,24 @@ namespace user
 
       virtual void keep_alive(::object* pliveobject = nullptr) override;
 
+      virtual void move_to(const ::point& point);
+      virtual void set_size(const ::size& size);
+      virtual void move_to(i32 x, i32 y);
+      virtual void set_size(i32 cx, i32 cy);
+      virtual void set_dim(const ::point& point, const ::size& size);
+      virtual void place(const ::rect& rect);
+      virtual void set_dim(i32 x, i32 y, i32 cx, i32 cy);
+      virtual interaction& operator =(const ::rect& rect);
+
+
+      virtual void activation(::eactivation eactivation);
+
+
+      virtual void display_child(const ::rect & rect);
+      virtual void display_child(const ::point& point, const ::size& size);
+      virtual void display_child(i32 x, i32 y, i32 cx, i32 cy);
+
+
       virtual ::user::interaction* best_top_level_parent(RECT* prect);
 
       //virtual void get_window_rect(RECT * prect) const override;
@@ -1097,6 +1123,8 @@ namespace user
       virtual index get_zoneing(::rect* prect, const ::rect& rect, edisplay edisplay);
 
       virtual edisplay initial_restore_display();
+
+
 
       virtual index calculate_broad_and_compact_restore(RECT* prectWkspace = nullptr, SIZE* psizeMin = nullptr, const ::rect& rectHint = nullptr);
 

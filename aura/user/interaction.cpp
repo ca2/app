@@ -520,7 +520,7 @@ namespace user
       if (::is_set(pdescriptor->m_playout))
       {
 
-         pdescriptor->m_playout->on_add_layout(pinteraction->m_playout);
+         pdescriptor->m_playout->on_add_layout(&pinteraction->m_layout);
 
       }
 
@@ -1197,21 +1197,21 @@ namespace user
    bool interaction::create_layout(bool bTopLevel)
    {
 
-      if (::is_null(m_playout))
-      {
+      //if (::is_null(m_playout))
+      //{
 
-         auto estatus = __construct_new(m_playout);
+      //   auto estatus = __construct_new(m_playout);
 
-         if (!estatus)
-         {
+      //   if (!estatus)
+      //   {
 
-            return false;
+      //      return false;
 
-         }
+      //   }
 
-      }
+      //}
 
-      m_playout->create_state(bTopLevel ? layout_count_owner : layout_count_child);
+      //m_playout->create_state(bTopLevel ? layout_count_owner : layout_count_child);
 
       return true;
 
@@ -1387,9 +1387,9 @@ namespace user
 
          auto edisplayCurrent = layout().sketch().display();
 
-         auto edisplayStored = layout().m_windowrect.m_edisplay;
+         auto edisplayStored = window_stored_display();
 
-         auto edisplayPrevious = layout().m_windowrect.m_edisplayPrevious;
+         auto edisplayPrevious = window_previous_display();
 
          if (edisplayCurrent == display_undefined)
          {
@@ -1444,14 +1444,6 @@ namespace user
       set_need_redraw();
 
       return true;
-
-   }
-
-
-   void interaction::place(const ::rect& rect, e_layout elayout)
-   {
-
-      layout().state(elayout) = rect;
 
    }
 
@@ -2449,6 +2441,8 @@ namespace user
          pgraphics->GetClipBox(rectClipbox);
          
          pgraphics->IntersectClipRect(rectIntersect);
+
+         pgraphics->OffsetClipRgn(m_pointScroll.x, m_pointScroll.y);
 
       }
       catch (...)
@@ -6469,7 +6463,7 @@ namespace user
    }
 
 
-   //bool interaction::window_is_zoomed()
+   //bool interaction::layout().is_zoomed()
    //{
 
    //   if (m_pimpl == nullptr)
@@ -6479,9 +6473,26 @@ namespace user
 
    //   }
 
-   //   return m_pimpl->window_is_zoomed();
+   //   return m_pimpl->layout().is_zoomed();
 
    //}
+
+
+   ::edisplay interaction::window_stored_display() const
+   {
+
+      return display_none;
+
+   }
+
+
+   ::edisplay interaction::window_previous_display() const
+   {
+
+      return display_none;
+
+   }
+
 
    bool interaction::is_full_screen_enabled() const
    {
@@ -6507,24 +6518,24 @@ namespace user
    }
 
 
-   void interaction::order(::zorder zorder, e_layout elayout)
+   void interaction::order(::zorder zorder)
    {
 
-      layout().state(elayout) = zorder;
+      layout().sketch() = zorder;
 
       auto pparent = GetParent();
 
       if (::is_set(pparent))
       {
 
-         pparent->layout().state(elayout).set_modified();
+         pparent->layout().sketch().set_modified();
 
       }
 
    }
 
 
-   //bool interaction::window_is_full_screen()
+   //bool interaction::layout().is_full_screen()
    //{
 
    //   if (m_pimpl.is_null())
@@ -6534,12 +6545,12 @@ namespace user
 
    //   }
 
-   //   return m_pimpl->window_is_full_screen();
+   //   return m_pimpl->layout().is_full_screen();
 
    //}
 
 
-   //bool interaction::window_is_iconic()
+   //bool interaction::layout().is_iconic()
    //{
 
    //   if (m_pimpl == nullptr)
@@ -6549,7 +6560,7 @@ namespace user
 
    //   }
 
-   //   return m_pimpl->window_is_iconic();
+   //   return m_pimpl->layout().is_iconic();
 
    //}
 
@@ -6913,6 +6924,10 @@ namespace user
          p = pParent;
          
       }
+
+      ::point screenOriginSketchBefore = layout().sketch().screen_origin();
+
+      ::point screenOriginDesignBefore = layout().design().screen_origin();
       
       layout().sketch().screen_origin() = pointScreen;
 
@@ -6946,7 +6961,7 @@ namespace user
 
       }
 
-      auto pgraphics = ::draw2d::create_memory_graphics();
+      auto pgraphics = create_memory_graphics();
 
       m_pimpl->on_layout(pgraphics);
 
@@ -7465,63 +7480,13 @@ namespace user
 
       clear_visual_changed();
 
-      if (!m_pimpl2)
+      if (m_pimpl2)
       {
 
-         return;
+         m_pimpl2->on_visual_applied();
 
       }
 
-      m_pimpl2->on_visual_applied();
-
-      auto edisplay = layout().design().display();
-
-      get_window_rect(layout().m_windowrect.m_rectWindow, layout_design);
-
-      if (is_docking_appearance(edisplay))
-      {
-
-         layout().m_windowrect.m_rectSnapped = layout().m_windowrect.m_rectWindow;
-
-      }
-      else if (is_equivalent(edisplay, display_normal))
-      {
-
-         calculate_broad_and_compact_restore();
-
-         if (layout().m_windowrect.m_rectWindow.size() != m_sizeRestoreBroad
-            && layout().m_windowrect.m_rectWindow.size() != m_sizeRestoreCompact)
-         {
-
-            if (layout().m_windowrect.m_rectWindow.size() != layout().m_windowrect.m_rectRestored.size())
-            {
-
-               layout().m_windowrect.m_rectRestored = layout().m_windowrect.m_rectWindow;
-
-            }
-            else if (layout().m_windowrect.m_rectWindow != layout().m_windowrect.m_rectRestored)
-            {
-
-               layout().m_windowrect.m_rectRestored = layout().m_windowrect.m_rectWindow;
-
-            }
-
-         }
-         else
-         {
-
-            if (layout().m_windowrect.m_rectRestored.is_empty()
-               || layout().m_windowrect.m_rectRestored.size() == m_sizeRestoreCompact
-               || layout().m_windowrect.m_rectRestored.size() == m_sizeRestoreBroad)
-            {
-
-               layout().m_windowrect.m_rectRestored = layout().m_windowrect.m_rectWindow;
-
-            }
-
-         }
-
-      }
 
    }
 
@@ -7708,8 +7673,6 @@ namespace user
          layout().window() = edisplayOutput;
 
       }
-
-      layout().m_windowrect.m_edisplay = edisplayOutput;
 
    }
 
@@ -8327,7 +8290,7 @@ namespace user
       if (!is_equivalent(layout().sketch().display(), layout().design().display()))
       {
 
-         layout().m_tickLastDisplayChange.Now();
+         layout().m_tickLastSketchToDesign.Now();
 
       }
 
@@ -8374,7 +8337,7 @@ namespace user
 
       layout().sketch().set_modified(false);
 
-      layout().sketch().set_ready(false);
+      //layout().sketch().set_ready(false);
 
       if (bDisplay || bAppearance)
       {
@@ -8443,6 +8406,15 @@ namespace user
 
          if (bLayout)
          {
+
+            //__pointer(::user::interaction_impl) pimpl = m_pimpl;
+
+            //if (pimpl)
+            //{
+
+            //   pimpl->m_re;
+
+            //}
 
             design_layout();
 
@@ -8557,7 +8529,6 @@ namespace user
          }
 
       }
-
 
    }
 
@@ -10205,6 +10176,106 @@ restart:
    }
 
 
+   void interaction::move_to(const ::point& point)
+   {
+
+      layout().sketch() = point;
+
+   }
+
+
+   void interaction::set_size(const ::size& size)
+   {
+
+      layout().sketch() = size;
+
+   }
+
+
+   void interaction::move_to(i32 x, i32 y)
+   {
+
+      move_to({ x, y });
+
+   }
+
+
+   void interaction::set_size(i32 cx, i32 cy)
+   {
+
+      set_size({ cx, cy });
+
+   }
+
+
+   void interaction::set_dim(const ::point& point, const ::size& size)
+   {
+
+      place(::rect(point, size));
+
+   }
+
+
+   void interaction::place(const ::rect& rect)
+   {
+
+      layout().sketch() = rect;
+
+   }
+
+
+   void interaction::set_dim(i32 x, i32 y, i32 cx, i32 cy)
+   {
+
+      place(::rect_dim(x, y, cx, cy));
+
+   }
+
+
+   interaction& interaction::operator =(const ::rect& rect) 
+   { 
+      
+      place(rect);
+
+      return *this;
+   
+   }
+
+
+   void interaction::activation(::eactivation eactivation)
+   {
+
+      layout().sketch() = eactivation;
+
+   }
+
+   
+   void interaction::display_child(const ::rect& rect)
+   {
+
+      place(rect);
+
+      display(display_normal);
+
+   }
+
+
+   void interaction::display_child(const ::point& point, const ::size& size)
+   {
+
+      display_child({ point, size });
+
+   }
+
+
+   void interaction::display_child(i32 x, i32 y, i32 cx, i32 cy)
+   {
+
+      display_child({ x, y }, { cx, cy });
+
+   }
+
+
    ::user::interaction * interaction::best_top_level_parent(RECT * prect)
    {
 
@@ -10811,11 +10882,15 @@ restart:
          if (rectNew.is_set() && iMatchingMonitor >= 0)
          {
 
+            start_layout();
+
             order(zorderParam);
 
             place(rectNew);
 
             display(display_normal, eactivation);
+
+            set_layout_ready();
 
             //SetWindowDisplayChanged();
 
@@ -12080,9 +12155,9 @@ restart:
 
             auto pinteraction = get_wnd();
 
-            //bool bMoving = pinteraction->window_is_moving();
+            //bool bMoving = pinteraction->layout().is_moving();
 
-            //bool bSizing = pinteraction->window_is_sizing();
+            //bool bSizing = pinteraction->layout().is_sizing();
 
             //bool bDocking = pinteraction->window_is_docking();
 

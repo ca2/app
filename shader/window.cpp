@@ -213,6 +213,8 @@ namespace app_shader
 
       sync_lock sl(mutex());
 
+      start_layout();
+
       if (m_rendera.get_count() <= m_iShader)
       {
 
@@ -244,6 +246,8 @@ namespace app_shader
       //str.Format("%d", m_iShader + 1);
 
       //m_rendera[m_iShader]->defer_load_fragment(str);
+
+      set_layout_ready();
 
       set_need_layout();
 

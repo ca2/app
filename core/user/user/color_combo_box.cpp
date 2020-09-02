@@ -130,14 +130,19 @@ namespace user
 
                m_pframe->m_sizeMinimum.cy = 150;
 
-               m_pframe->set_window_pos(zorder_top_most, rectWindow.left, rectWindow.bottom, 400, 200, SWP_SHOWWINDOW);
+               m_pframe->order(zorder_top_most);
+               
+               m_pframe->set_dim(rectWindow.left, rectWindow.bottom, 400, 200);
+               
+               m_pframe->display();
 
             }
             else
             {
 
-               m_pframe->set_window_pos(zorder_top_most, 0, 0, 0, 0,
-                                      SWP_NOSIZE | SWP_NOMOVE | SWP_SHOWWINDOW);
+               m_pframe->order(zorder_top_most);
+
+               m_pframe->display();
 
             }
 

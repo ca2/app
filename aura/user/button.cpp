@@ -199,7 +199,7 @@ namespace user
          rect.right = LONG(size.cx * 1.6);
          rect.bottom = LONG(size.cy * 1.4);
 
-         layout().sketch().size() = rect.size();
+         set_size(rect.size());
 
       }
       else if (m_estyle == style_bitmap)
@@ -207,7 +207,7 @@ namespace user
 
          ::size size = m_pbitmap->m_pimage->size();
 
-         layout().sketch().size() = size;
+         set_size(size);
 
       }
       else
@@ -219,7 +219,7 @@ namespace user
 
          sizeTotal.cy = (LONG)(sizeTotal.cy * 1.4);
 
-         layout().sketch().size() = sizeTotal;
+         set_size(sizeTotal);
 
       }
 

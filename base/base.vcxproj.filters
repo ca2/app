@@ -518,6 +518,9 @@
     <ClInclude Include="user\menu\menu_view.h">
       <Filter>Header Files\user\menu</Filter>
     </ClInclude>
+    <ClInclude Include="user\user\tab_drop_target_window.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="user\user\form_data.cpp">

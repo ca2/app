@@ -94,6 +94,8 @@ namespace user
       ::size                              m_sizeDrawn;
       reference_addressa                  m_ptraRedraw;
 
+      ::rect                              m_rectUpdateBuffer;
+
       bool                                m_bPointInside;
       ::point                             m_pointInside;
       ::user::primitive *                 m_pprimitiveFocus;

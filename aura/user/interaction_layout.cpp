@@ -8,9 +8,9 @@ namespace user
    interaction_layout::interaction_layout()
    {
 
-      m_iStateCount = 0;
+      m_iStateCount = 4;
 
-      m_pstate = nullptr;
+      //m_pstate = nullptr;
 
       m_bFillParent = true;
 
@@ -54,7 +54,7 @@ namespace user
 
          m_iStateCount = iStateCount;
 
-         m_pstate = new window_state[m_iStateCount];
+         //m_pstate = new window_state[m_iStateCount];
 
          //for (int iState = 0; iState < m_iStateCount; iState++)
          //{
@@ -75,16 +75,16 @@ namespace user
    void interaction_layout::destroy_state()
    {
 
-      sync_lock sl(mutex());
+//      sync_lock sl(mutex());
 
-      if (::is_set(m_pstate))
-      {
+      //if (::is_set(m_pstate))
+      //{
 
-         delete m_pstate;
+      //   delete m_pstate;
 
-      }
+      //}
 
-      m_pstate = nullptr;
+      //m_pstate = nullptr;
 
    }
 
@@ -204,7 +204,7 @@ namespace user
 
 
 
-   //bool interaction_layout::is_request_visible() const
+   //bool interaction_layout::layout().sketch().is_visible() const
    //{
    //   
    //   return ::is_visible(layout().sketch().display()); 
@@ -434,7 +434,7 @@ namespace user
    //bool interaction_layout::is_this_visible()
    //{
 
-   //   return m_ewindowflag & window_flag_is_window && ::is_visible(display_state());
+   //   return m_ewindowflag & window_flag_is_window && ::is_visible(layout().design().display());
 
    //}
 

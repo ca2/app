@@ -195,7 +195,7 @@ namespace user
       }
 
       // recalculate the non-client region
-      set_window_pos(zorder_none, 0, 0, 0, 0, SWP_DRAWFRAME|SWP_NOMOVE|SWP_NOSIZE|SWP_NOACTIVATE|SWP_NOZORDER);
+      //set_window_pos(zorder_none, 0, 0, 0, 0, SWP_DRAWFRAME|SWP_NOMOVE|SWP_NOSIZE|SWP_NOACTIVATE|SWP_NOZORDER);
       Invalidate();   // just to be nice if called when toolbar is visible
    }
 
@@ -1277,7 +1277,7 @@ return { 0,0 };
       if (((dwOldStyle & CBRS_BORDER_ANY) != (dwNewStyle & CBRS_BORDER_ANY)))
       {
          // recalc non-client area when border styles change
-         set_window_pos(zorder_none, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_DRAWFRAME);
+         //set_window_pos(zorder_none, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_DRAWFRAME);
       }
       m_bDelayedButtonLayout = TRUE;
    }
@@ -1609,12 +1609,12 @@ return { 0,0 };
 
       const ::size & size = CalcSimpleLayout(pgraphics);
 
-      set_window_pos(
+      /*set_window_pos(
       zorder_top,
       0, 0,
       size.cx, size.cy,
       SWP_SHOWWINDOW
-      | SWP_NOMOVE);
+      | SWP_NOMOVE);*/
       return size;
    }
 

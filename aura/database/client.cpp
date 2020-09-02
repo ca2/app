@@ -406,11 +406,11 @@ namespace database
 
    }
 
+   
    void client::data_on_after_change(client* pclient, const key& id, const var& var, ::update* pupdate)
    {
 
    }
-
 
 
 } // namespace database

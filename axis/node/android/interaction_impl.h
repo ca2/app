@@ -135,8 +135,8 @@ namespace android
 
 
       // Window size and position Functions
-      //virtual bool window_is_iconic();
-      //virtual bool window_is_zoomed();
+      //virtual bool layout().is_iconic();
+      //virtual bool layout().is_zoomed();
       //i32 SetWindowRgn(HRGN hRgn,bool bRedraw);
       //i32 GetWindowRgn(HRGN hRgn);
 

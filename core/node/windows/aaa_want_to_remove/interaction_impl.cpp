@@ -822,7 +822,7 @@ namespace windows
       if (m_puserinteraction->layout().sketch().m_point != pmove->m_point)
       {
 
-         if (m_puserinteraction->window_is_moving())
+         if (m_puserinteraction->layout().is_moving())
          {
 
             INFO("Window is Moving :: _001OnMove");
@@ -831,7 +831,7 @@ namespace windows
 
          m_puserinteraction->move_to(pmove->m_point);
 
-         if (m_puserinteraction->display_state() != display_normal)
+         if (m_puserinteraction->layout().design().display() != display_normal)
          {
 
             m_puserinteraction->display();
@@ -871,7 +871,7 @@ namespace windows
 
          m_puserinteraction->set_size(psize->m_size);
 
-         if (m_puserinteraction->display_state() != display_normal)
+         if (m_puserinteraction->layout().design().display() != display_normal)
          {
 
             m_puserinteraction->display();
@@ -2567,7 +2567,7 @@ namespace windows
    }
 
 
-   bool interaction_impl::window_is_iconic()
+   bool interaction_impl::layout().is_iconic()
    {
 
       if (!::is_window(get_handle()))
@@ -2580,7 +2580,7 @@ namespace windows
       if (GetExStyle() & WS_EX_LAYERED)
       {
 
-         return m_puserinteraction->display_state() == ::display_iconic;
+         return m_puserinteraction->layout().design().display() == ::display_iconic;
 
       }
       else
@@ -2593,7 +2593,7 @@ namespace windows
    }
 
 
-   bool interaction_impl::window_is_zoomed()
+   bool interaction_impl::layout().is_zoomed()
    {
 
       if (!::is_window(get_handle()))
@@ -2603,7 +2603,7 @@ namespace windows
 
       }
 
-      return m_puserinteraction->display_state() == ::display_zoomed;
+      return m_puserinteraction->layout().design().display() == ::display_zoomed;
 
    }
 
@@ -4043,7 +4043,7 @@ namespace windows
       if (::IsIconic(get_handle()))
       {
 
-         if (!m_puserinteraction->window_is_iconic())
+         if (!m_puserinteraction->layout().is_iconic())
          {
 
             output_debug_string(" IsIconic or not IsIconic, thats the question interaction_impl::_001OnWindowPosChanged");
@@ -4054,7 +4054,7 @@ namespace windows
       else if (::IsZoomed(get_handle()))
       {
 
-         if (!m_puserinteraction->window_is_zoomed())
+         if (!m_puserinteraction->layout().is_zoomed())
          {
 
             output_debug_string(" IsZoomed or not IsZoomed, thats the question interaction_impl::_001OnWindowPosChanged");
@@ -4085,7 +4085,7 @@ namespace windows
       if (m_puserinteraction->layout().sketch().m_point != point)
       {
 
-         if (m_puserinteraction->window_is_moving())
+         if (m_puserinteraction->layout().is_moving())
          {
 
             INFO("Window is Moving :: _001OnMove");
@@ -5003,7 +5003,7 @@ namespace windows
 
       const rect& client = pncsp->rgrc[0];
 
-      if (window_is_zoomed())
+      if (layout().is_zoomed())
       {
          WINDOWINFO wi = {};
          wi.cbSize = sizeof(wi);

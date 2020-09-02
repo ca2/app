@@ -35,15 +35,14 @@ namespace user
       bool                                      m_bRequestReady;
 
 
-      class window_state *                      m_pstate;
+      //class window_state *                      m_pstate;
+      class window_state                        m_statea[4];
       //struct window_state                     m_stateRequest2;
       //struct window_state                     m_stateProcess2;
       //struct window_state                     m_stateOffScreen;
       //struct window_state                     m_stateScreenBuffer;
       //struct window_state                     m_stateEventScreen;
 
-      struct window_rect                        m_windowrect;
-      struct window_rect                        m_windowrectStore;
 
       cflag < e_flag >                          m_eflag;
       bool                                      m_bFillParent;
@@ -54,7 +53,7 @@ namespace user
       ::sized                                   m_sizeWeight;
 
 
-      tick                                      m_tickLastDisplayChange;
+      tick                                      m_tickLastSketchToDesign;
       e_layout_experience                       m_elayoutexperience;
 
 
@@ -174,8 +173,8 @@ namespace user
 
 
 
-      inline const class window_state& state(e_layout elayout) const { ASSERT(elayout >= 0 && elayout < m_iStateCount); return m_pstate[elayout]; }
-      inline class window_state& state(e_layout elayout) { ASSERT(elayout >= 0 && elayout < m_iStateCount); return m_pstate[elayout]; }
+      inline const class window_state& state(e_layout elayout) const { ASSERT(elayout >= 0 && elayout < m_iStateCount); return m_statea[elayout]; }
+      inline class window_state& state(e_layout elayout) { ASSERT(elayout >= 0 && elayout < m_iStateCount); return m_statea[elayout]; }
 
 
       inline const class window_state& sketch() const { return state(layout_sketch); }
@@ -190,8 +189,8 @@ namespace user
       //inline class window_state& bitmap() { return state(layout_bitmap); }
 
 
-      //inline const class window_state& output() const { return state(layout_output); }
-      //inline class window_state& output() { return state(layout_output); }
+      inline const class window_state& output() const { return state(layout_output); }
+      inline class window_state& output() { return state(layout_output); }
 
 
       inline const class window_state & window() const { return state(layout_window); }
@@ -220,19 +219,6 @@ namespace user
 
 
       virtual void set_initial_dim(const ::point & p, const ::size & s);
-      //inline void move_to(const ::point& point) { m_pointRequest = point; visual_setup(); }
-      //inline void set_size(const ::size & size) { m_sizeRequest = size; visual_setup(); }
-      //inline void move_to(i32 x, i32 y) { m_pointRequest.set(x, y); visual_setup(); }
-      //inline void set_size(i32 cx, i32 cy) { m_sizeRequest.set(cx, cy); visual_setup(); }
-      //inline void set_dim(const ::point& point, const ::size& size) { m_pointRequest = point; m_sizeRequest = size; visual_setup(); }
-      //virtual void move_to(const ::point& point);
-      //virtual void set_size(const ::size& size);
-      //virtual void move_to(i32 x, i32 y);
-      //virtual void set_size(i32 cx, i32 cy);
-      //virtual void set_dim(const ::point& point, const ::size& size);
-      //virtual void place(const ::rect& rect);
-      //virtual void set_dim(i32 x, i32 y, i32 cx, i32 cy);
-      //inline layout & operator =(const ::rect& rect) { place(rect); return *this; }
 
 //      virtual zorder order(e_layout elayout) const;
 
@@ -244,18 +230,18 @@ namespace user
 
 
 
-      //inline bool has_appearance(eappearance eappearance) { request_state().m_eappearance & eappearance; }
-      //inline void set_appearance(eappearance eappearance) { request_state().m_eappearance = eappearance; m_bPendingRequest = true; }
-      //inline void add_appearance(eappearance eappearance) { request_state().m_eappearance |= eappearance; m_bPendingRequest = true; }
-      //inline void remove_appearance(eappearance eappearance) { request_state().m_eappearance -= eappearance; m_bPendingRequest = true; }
-      //inline void toggle_appearance(eappearance eappearance) { request_state().m_eappearance ^= eappearance; m_bPendingRequest = true; }
-      //inline void clear_appearance() { request_state().m_eappearance.clear(); m_bPendingRequest = true; }
+      inline bool has_appearance(eappearance eappearance) const { return design().appearance() & eappearance; }
+      inline void set_appearance(eappearance eappearance) { sketch() = eappearance; sketch().set_modified(); }
+      inline void add_appearance(eappearance eappearance) { sketch() |= eappearance; sketch().set_modified(); }
+      inline void remove_appearance(eappearance eappearance) { sketch() -= eappearance; sketch().set_modified(); }
+      inline void toggle_appearance(eappearance eappearance) { sketch() ^= eappearance; sketch().set_modified(); }
+      inline void clear_appearance() { sketch() = appearance_none; sketch().set_modified(); }
 
 
       //inline eappearance appearance() const { return request_state().m_eappearance; }
 
       //virtual void order(::zorder zorder);
-      //virtual bool is_request_visible() const;
+      //virtual bool layout().sketch().is_visible() const;
       //virtual bool display(::edisplay edisplay = display_default, ::eactivation eactivation = activation_none) ;
 
 

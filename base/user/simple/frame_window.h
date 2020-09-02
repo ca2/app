@@ -7,6 +7,7 @@ namespace userex
 
 } // namespace userex
 
+
 class CLASS_DECL_BASE simple_frame_window :
    virtual public ::experience::frame_window,
    virtual public ::user::notify_icon_listener
@@ -99,7 +100,7 @@ public:
    void ViewOnActivateFrame(__pointer(::user::impact) pview, UINT user, __pointer(::user::interaction) pframe);
 
    virtual void ToggleFullScreen();
-   //virtual bool window_is_full_screen() override;
+   //virtual bool layout().is_full_screen() override;
    virtual void WfiOnFullScreen() override;
    virtual void _001OnExitFullScreen() override;
    virtual void ShowControlBars(bool bShow = true, bool bLeaveFullScreenBarsOnHide = false);

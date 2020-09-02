@@ -1099,11 +1099,11 @@ namespace android
 
       if(m_puserinteraction != nullptr)
       {
-         if(m_puserinteraction->window_is_moving())
+         if(m_puserinteraction->layout().is_moving())
          {
             //TRACE("moving: skip pre translate message");
          }
-         else if(m_puserinteraction->window_is_sizing())
+         else if(m_puserinteraction->layout().is_sizing())
          {
             //TRACE("sizing: skip pre translate message");
          }
@@ -2757,7 +2757,7 @@ namespace android
    }
 
 
-   //bool interaction_impl::window_is_iconic()
+   //bool interaction_impl::layout().is_iconic()
    //{
 
    //   if (GetExStyle() & WS_EX_LAYERED)

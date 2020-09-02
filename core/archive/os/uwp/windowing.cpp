@@ -228,7 +228,7 @@ bool oswindow_data::is_iconic()
 
    }
 
-   return m_pimpl->m_puserinteraction->window_is_iconic();
+   return m_pimpl->m_puserinteraction->layout().is_iconic();
 }
 
 bool  oswindow_data::is_window_visible()

@@ -1955,7 +1955,7 @@ namespace user
 
          }
 
-         set_window_pos(zorder_none, ::rect(m_ppictureimpl->m_rect), SWP_NOZORDER);
+         place(m_ppictureimpl->m_rect);
 
       }
 
@@ -1996,7 +1996,9 @@ namespace user
 
          stream >> rectWindow;
 
-         set_window_pos(zorder_none, rectWindow, SWP_NOZORDER | SWP_SHOWWINDOW);
+         place(rectWindow);
+
+         display(display_normal);
 
          set_need_layout();
 

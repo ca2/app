@@ -820,7 +820,7 @@ namespace user
 
          }
 
-         set_window_pos(zorder_none, ::rect(m_ppictureimpl->m_rect), SWP_NOZORDER);
+         place(m_ppictureimpl->m_rect);
 
       }
 

@@ -919,7 +919,7 @@ namespace linux
 
          m_puserinteraction->ModifyStyle(0, WS_VISIBLE);
 
-         if(m_puserinteraction->display_state() == ::display_iconic && !m_oswindow->is_iconic())
+         if(m_puserinteraction->layout().design().display() == ::display_iconic && !m_oswindow->is_iconic())
          {
 
             m_puserinteraction->hide();
@@ -1417,11 +1417,11 @@ namespace linux
       if(m_puserinteraction != nullptr)
       {
 
-         if (m_puserinteraction->window_is_moving())
+         if (m_puserinteraction->layout().is_moving())
          {
             //TRACE("moving: skip pre translate message");
          }
-         else if (m_puserinteraction->window_is_sizing())
+         else if (m_puserinteraction->layout().is_sizing())
          {
             //TRACE("sizing: skip pre translate message");
          }
@@ -3060,7 +3060,7 @@ namespace linux
 //   }
 
 
-   bool interaction_impl::window_is_iconic()
+   bool interaction_impl::layout().is_iconic()
    {
 
       if(!::is_window(m_oswindow))
@@ -3072,7 +3072,7 @@ namespace linux
 
 #ifdef LINUX
 
-      return m_puserinteraction->display_state() == ::display_iconic;
+      return m_puserinteraction->layout().design().display() == ::display_iconic;
 
 #else
 

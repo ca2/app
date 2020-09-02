@@ -40,7 +40,7 @@ namespace simple_ui
 
       }
 
-      layout().sketch().m_eactivation = activation_on_center_of_screen;
+      layout().sketch() = activation_on_center_of_screen;
 
       m_evReady.ResetEvent();
 

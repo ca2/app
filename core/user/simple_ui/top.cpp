@@ -119,7 +119,7 @@ namespace simple_ui
 
       m_pointLButtonDown = pmouse->m_point;
       
-      m_sizeLButtonDownOffset = m_pointLButtonDown - origin();
+      m_sizeLButtonDownOffset = m_pointLButtonDown - layout().origin();
 
       SetCapture();
 

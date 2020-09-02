@@ -100,10 +100,13 @@ namespace user
 
       ::eappearance appearance() const { return m_eappearance; }
       visual_state& operator = (const e_appearance& eappearance) { m_eappearance = eappearance; if(m_eappearance) set_modified(); return *this; }
+      visual_state& operator |= (const e_appearance& eappearance) { m_eappearance |= eappearance; if (m_eappearance) set_modified(); return *this; }
+      visual_state& operator -= (const e_appearance& eappearance) { m_eappearance -= eappearance; if (m_eappearance) set_modified(); return *this; }
+      visual_state& operator ^= (const e_appearance& eappearance) { m_eappearance ^= eappearance; if (m_eappearance) set_modified(); return *this; }
 
 
       ::point origin() const { return m_point; }
-      visual_state& operator = (const ::point & point) { m_point = point; return *this; }
+      visual_state& operator = (const ::point & point) { set_modified(); m_point = point; return *this; }
 
 
       ::point screen_origin() const { return m_pointScreen; }

@@ -490,7 +490,9 @@ namespace experience
 
       }
 
-      if(m_pframewindow->window_is_zoomed())
+      m_pframewindow->start_layout();
+
+      if(m_pframewindow->layout().is_zoomed())
       {
 
          m_pframewindow->display(display_restore);
@@ -524,9 +526,15 @@ namespace experience
 
          pframewindow->place(rectParentClient);
 
+         TRACE("Size Manager Changed (%d, %d)", rectParentClient.right, rectParentClient.bottom);
+
          pframewindow->display();
 
+         pframewindow->set_need_layout();
+
          pframewindow->set_need_redraw();
+
+         pframewindow->post_redraw();
 
       }
 

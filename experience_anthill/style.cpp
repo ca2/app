@@ -174,6 +174,12 @@ namespace experience
             return __acolor(255, 127, 127, 127);
          
          }
+         else if (eelement == ::user::element_item_text)
+         {
+
+            return ::color::black;
+
+         }
 
          return ::color();
 
@@ -802,9 +808,9 @@ namespace experience
       {
          i32 iTabHeight = 16;
          i32 cy;
-         ::draw2d::graphics_pointer graphics(e_create);
-         pgraphics->CreateCompatibleDC(nullptr);
-         ::draw2d::graphics_pointer & pgraphics = graphics;
+//         ::draw2d::graphics_pointer graphics(e_create);
+  //       pgraphics->CreateCompatibleDC(nullptr);
+    //     ::draw2d::graphics_pointer & pgraphics = graphics;
 
          pgraphics->set(ptab->get_font(pstyle, ::user::e_state_selected));
 
@@ -824,7 +830,7 @@ namespace experience
 
             string str = tab_pane.get_title();
 
-            tab_pane.do_split_layout(ptab->m_dcextension,graphics);
+            tab_pane.do_split_layout(ptab->m_dcextension,pgraphics);
 
             size size;
 

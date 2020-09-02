@@ -208,30 +208,30 @@ namespace userex
    void font_format_tool::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      m_pbuttonBold->set_window_pos(zorder_top, 5, 5, 20, 20, SWP_SHOWWINDOW);
-      m_pbuttonItalic->set_window_pos(zorder_top, 25, 5, 20, 20, SWP_SHOWWINDOW);
-      m_pbuttonUnderline->set_window_pos(zorder_top, 45, 5, 20, 20, SWP_SHOWWINDOW);
-      m_pcomboFamily->set_window_pos(zorder_top, 70, 5, 120, 20, SWP_SHOWWINDOW);
-      m_pcomboSize->set_window_pos(zorder_top, 195, 5, 40, 20, SWP_SHOWWINDOW);
+      m_pbuttonBold->display_child(5, 5, 20, 20);
+      m_pbuttonItalic->display_child(25, 5, 20, 20);
+      m_pbuttonUnderline->display_child(45, 5, 20, 20);
+      m_pcomboFamily->display_child(70, 5, 120, 20);
+      m_pcomboSize->display_child(195, 5, 40, 20);
 
       int x = 245;
 
-      m_pbuttonForeground->set_window_pos(zorder_top, x, 5, 20, 20, SWP_SHOWWINDOW);
+      m_pbuttonForeground->display_child(x, 5, 20, 20);
       x += 20;
-      m_pbuttonBackground->set_window_pos(zorder_top, x, 5, 20, 20, SWP_SHOWWINDOW);
+      m_pbuttonBackground->display_child(x, 5, 20, 20);
       x += 20;
-      m_pbuttonSubscript->set_window_pos(zorder_top, x, 5, 20, 20, SWP_SHOWWINDOW);
+      m_pbuttonSubscript->display_child(x, 5, 20, 20);
       x += 20;
-      m_pbuttonSuperscript->set_window_pos(zorder_top, x, 5, 20, 20, SWP_SHOWWINDOW);
+      m_pbuttonSuperscript->display_child(x, 5, 20, 20);
       x += 20;
 
       x += 10;
 
-      m_pbuttonAlignLeft->set_window_pos(zorder_top, x, 5, 20, 20, SWP_SHOWWINDOW);
+      m_pbuttonAlignLeft->display_child(x, 5, 20, 20);
       x += 20;
-      m_pbuttonAlignCenter->set_window_pos(zorder_top, x, 5, 20, 20, SWP_SHOWWINDOW);
+      m_pbuttonAlignCenter->display_child(x, 5, 20, 20);
       x += 20;
-      m_pbuttonAlignRight->set_window_pos(zorder_top, x, 5, 20, 20, SWP_SHOWWINDOW);
+      m_pbuttonAlignRight->display_child(x, 5, 20, 20);
       x += 20;
 
       //m_pbuttonItalic->

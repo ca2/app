@@ -602,7 +602,7 @@ namespace macos
 //      if (m_puserinteraction->layout().sketch().m_point != pmove->m_point)
 //      {
 //
-//         if (m_puserinteraction->window_is_moving())
+//         if (m_puserinteraction->layout().is_moving())
 //         {
 //
 //            output_debug_string("\nWindow is Moving :: _001OnMove");
@@ -611,7 +611,7 @@ namespace macos
 //
 //         m_puserinteraction->move_to(pmove->m_point);
 //
-//         if (m_puserinteraction->display_state() != display_normal)
+//         if (m_puserinteraction->layout().design().display() != display_normal)
 //         {
 //
 //            m_puserinteraction->display();
@@ -653,7 +653,7 @@ namespace macos
 //
 //         m_puserinteraction->set_size(psize->m_size);
 //
-//         if (m_puserinteraction->display_state() != display_normal)
+//         if (m_puserinteraction->layout().design().display() != display_normal)
 //         {
 //
 //            m_puserinteraction->display();
@@ -1141,11 +1141,11 @@ namespace macos
       if (m_puserinteraction != nullptr)
       {
 
-         if (m_puserinteraction->window_is_moving())
+         if (m_puserinteraction->layout().is_moving())
          {
             //TRACE("moving: skip pre translate message");
          }
-         else if (m_puserinteraction->window_is_sizing())
+         else if (m_puserinteraction->layout().is_sizing())
          {
             //TRACE("sizing: skip pre translate message");
          }
@@ -2610,7 +2610,7 @@ namespace macos
          return false;
       }
 
-      return m_puserinteraction->window_is_iconic();
+      return m_puserinteraction->layout().is_iconic();
 
    }
 
@@ -5010,7 +5010,7 @@ namespace macos
 //
 //         m_puserinteraction->place(rectSize);
 //
-//         if (m_puserinteraction->display_state() != display_normal)
+//         if (m_puserinteraction->layout().design().display() != display_normal)
 //         {
 //
 //            m_puserinteraction->display();
@@ -5077,7 +5077,7 @@ namespace macos
 //
 //         m_puserinteraction->move_to(pointMove);
 //
-//         if (m_puserinteraction->display_state() != display_normal)
+//         if (m_puserinteraction->layout().design().display() != display_normal)
 //         {
 //
 //            m_puserinteraction->display();

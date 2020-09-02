@@ -210,7 +210,7 @@ namespace userstack
 
    void frame::OnHoverAction()
    {
-      if(window_is_full_screen())
+      if(layout().is_full_screen())
       {
          //      bergedge::get_context_application()->show_platform();
       }

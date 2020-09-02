@@ -1178,7 +1178,8 @@ namespace user
       if (m_bFrameMoveEnable)
       {
 
-         prodevian_prepare_window_restore(display_restore);
+         //sketch_prepare_window_restore(display_restore);
+         display(display_restore);
 
       }
 
@@ -2428,7 +2429,7 @@ namespace user
             edisplay = display_normal;
 
          }
-         else if (window_is_iconic())
+         else if (layout().is_iconic())
          {
 
             edisplay = display_restore;
@@ -2443,10 +2444,10 @@ namespace user
 
       }
 
-      if(!layout().sketch().m_zorder.is_change_request() || layout().sketch().m_zorder.m_ezorder != zorder_top)
+      if(!layout().sketch().zorder().is_change_request() || layout().sketch().zorder() != zorder_top)
       {
 
-         layout().order_top();
+         order_top();
 
       }
 
@@ -2838,9 +2839,9 @@ namespace user
 
       }
       
-      prodevian_update_visual(bUpdateBuffer, bUpdateWindow);
+      sketch_to_design(pgraphics, bUpdateBuffer, bUpdateWindow);
 
-      if (!is_window_visible() || window_is_iconic())
+      if (!is_window_visible() || layout().is_iconic())
       {
 
          return;

@@ -117,7 +117,7 @@ namespace user
          
          _001Update(pinteraction);
 
-         pinteraction->layout().order_top();
+         pinteraction->order_top();
          
          pinteraction->place(rect);
 

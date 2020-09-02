@@ -1780,7 +1780,7 @@ namespace user
    //}
 
 
-   //bool primitive::window_is_zoomed()
+   //bool primitive::layout().is_zoomed()
    //{
 
    //   return false;
@@ -1788,7 +1788,7 @@ namespace user
    //}
 
 
-   //bool primitive::window_is_full_screen()
+   //bool primitive::layout().is_full_screen()
    //{
 
    //   return false;
@@ -1796,7 +1796,7 @@ namespace user
    //}
 
 
-   //bool primitive::window_is_iconic()
+   //bool primitive::layout().is_iconic()
    //{
 
    //   return false;

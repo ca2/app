@@ -201,7 +201,7 @@ namespace experience
       if (ptimer->m_nIDEvent == timer_check_hover)
       {
 
-         if (GetTopLevel()->window_is_moving())
+         if (GetTopLevel()->layout().is_moving())
          {
 
             //TRACE("experience control_box : top level is moving : ignoring WM_TIMER");
@@ -209,7 +209,7 @@ namespace experience
             return;
 
          }
-         else if (GetTopLevel()->window_is_sizing())
+         else if (GetTopLevel()->layout().is_sizing())
          {
 
             //TRACE("experience control_box : top level is sizing : ignoring WM_TIMER");
@@ -237,7 +237,7 @@ namespace experience
                if (m_pframewindow != nullptr)
                {
 
-                  if (m_pframewindow->window_is_full_screen())
+                  if (m_pframewindow->layout().is_full_screen())
                   {
 
                      ::rect rectWindow;
@@ -276,7 +276,7 @@ namespace experience
                if (m_pframewindow != nullptr)
                {
 
-                  if (m_pframewindow->window_is_full_screen())
+                  if (m_pframewindow->layout().is_full_screen())
                   {
 
                      ::rect rectWindow;
@@ -307,7 +307,7 @@ namespace experience
          else
          {
 
-            if (m_pframewindow->window_is_full_screen())
+            if (m_pframewindow->layout().is_full_screen())
             {
 
                ::rect rectWindow;
@@ -419,7 +419,7 @@ namespace experience
 
          }
 
-         return !m_pframewindow->window_is_zoomed();
+         return !m_pframewindow->layout().is_zoomed();
 
       }
       else if (ebutton == button_restore)

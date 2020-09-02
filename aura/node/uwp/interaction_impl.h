@@ -187,8 +187,8 @@ namespace uwp
 
 
       // Window size and position Functions
-      //virtual bool window_is_iconic();
-      //virtual bool window_is_zoomed();
+      //virtual bool layout().is_iconic();
+      //virtual bool layout().is_zoomed();
       //void MoveWindow(int x, int y, int nWidth, int nHeight, bool bRepaint = TRUE);
       //void MoveWindow(LPCRECT lpRect, bool bRepaint = TRUE);
       //int SetWindowRgn(HRGN hRgn, bool bRedraw);

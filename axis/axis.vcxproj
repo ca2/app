@@ -1138,6 +1138,9 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="math\kissfft\fft_shared.cpp" />
     <ClCompile Include="math\kissfft\ifft.cpp" />
     <ClCompile Include="math\kissfft\ifftd.cpp" />
+    <ClCompile Include="net\netserver\socket.cpp" />
+    <ClCompile Include="net\netserver\socket_handler.cpp" />
+    <ClCompile Include="net\netserver\socket_thread.cpp" />
     <ClCompile Include="node\windows\windows_desktop.cpp" />
     <ClCompile Include="node\windows\factory_exchange.cpp" />
     <ClCompile Include="pcre\pcre.cpp" />

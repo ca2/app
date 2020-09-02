@@ -37,7 +37,7 @@ namespace datetime
          return true;
    }
 
-   string check_unit(::aura::str_context * pcontext, const char * input, const char * & scanner)
+   string check_unit(const ::aura::str_context * pcontext, const char * input, const char * & scanner)
    {
       static id idCalendarDays("calendar:days");
       scanner = input;
@@ -152,12 +152,12 @@ namespace datetime
    string check_month(const char * input, const char * & scanner)
    {
       scanner = input;
-      while(isspace_dup(*scanner) && *scanner != '\0')
+      while(ansi_char_is_space(*scanner) && *scanner != '\0')
          scanner++;
       if(*scanner == '\0')
          return "";
       const char * start = scanner;
-      while(isalpha_dup(*scanner))
+      while(ansi_char_is_alphabetic(*scanner))
          scanner++;
       string strCandidate = string(input, scanner - start);
       strCandidate.make_lower();
@@ -389,7 +389,7 @@ namespace datetime
                      input = scanner;
                      if(!check_expression_separator(input, scanner))
                      {
-                        _throw(simple_exception(get_app(), "invalid date"));
+                        __throw(::exception::exception("invalid date"));
                      }
                      return string(start, scanner - start);
                   }
@@ -404,13 +404,13 @@ namespace datetime
                      input = scanner;
                      if(!check_expression_separator(input, scanner))
                      {
-                        _throw(simple_exception(get_app(), "invalid date"));
+                        __throw(::exception::exception("invalid date"));
                      }
                      return string(start, scanner - start);
                   }
                   else
                   {
-                     _throw(simple_exception(get_app(), "invalid date"));
+                     __throw(::exception::exception("invalid date"));
                   }
                }
                else if(!strSep2.has_char())
@@ -418,13 +418,13 @@ namespace datetime
                   input = scanner;
                   if(!check_expression_separator(input, scanner))
                   {
-                     _throw(simple_exception(get_app(), "invalid date"));
+                     __throw(::exception::exception("invalid date"));
                   }
                   return string(start, scanner - start);
                }
                else
                {
-                  _throw(simple_exception(get_app(), "invalid date"));
+                  __throw(::exception::exception("invalid date"));
                }
             }
             else
@@ -444,7 +444,7 @@ namespace datetime
                         input = scanner;
                         if(!check_expression_separator(input, scanner))
                         {
-                           _throw(simple_exception(get_app(), "invalid date"));
+                           __throw(::exception::exception("invalid date"));
                         }
                         return string(start, scanner - start);
                      }
@@ -459,18 +459,18 @@ namespace datetime
                         input = scanner;
                         if(!check_expression_separator(input, scanner))
                         {
-                           _throw(simple_exception(get_app(), "invalid date"));
+                           __throw(::exception::exception("invalid date"));
                         }
                         return string(start, scanner - start);
                      }
                      else
                      {
-                        _throw(simple_exception(get_app(), "invalid date"));
+                        __throw(::exception::exception("invalid date"));
                      }
                   }
                   else
                   {
-                     _throw(simple_exception(get_app(), "invalid date"));
+                     __throw(::exception::exception("invalid date"));
                   }
                }
             }
@@ -487,7 +487,7 @@ namespace datetime
       }
    }
 
-   string check_offset(::aura::str_context * pcontext, const char * input, const char * & scanner)
+   string check_offset(const ::aura::str_context * pcontext, const char * input, const char * & scanner)
    {
       if(check_end_expression(input, scanner))
          return "";
@@ -515,7 +515,7 @@ namespace datetime
       return string(start, scanner - start);
    }
 
-   string consume_date_expression(::aura::str_context * pcontext, const char * & input)
+   string consume_date_expression(const ::aura::str_context * pcontext, const char * & input)
    {
       const char * scanner;
       if(check_end_expression(input, scanner))
@@ -533,7 +533,7 @@ namespace datetime
                return string(start, scanner - start);
             else
             {
-               _throw(simple_exception(get_app(), "invalid date expression"));
+               __throw(::exception::exception("invalid date expression"));
             }
          }
          else
@@ -543,7 +543,7 @@ namespace datetime
                return string(start, scanner - start);
             else
             {
-               _throw(simple_exception(get_app(), "invalid date expression"));
+               __throw(::exception::exception("invalid date expression"));
             }
          }
       }
@@ -561,7 +561,7 @@ namespace datetime
                   return string(start, scanner - start);
                else
                {
-                  _throw(simple_exception(get_app(), "invalid date expression"));
+                  __throw(::exception::exception("invalid date expression"));
                }
             }
             else
@@ -571,7 +571,7 @@ namespace datetime
                   return string(start, scanner - start);
                else
                {
-                  _throw(simple_exception(get_app(), "invalid date expression"));
+                  __throw(::exception::exception("invalid date expression"));
                }
             }
          }
@@ -586,7 +586,7 @@ namespace datetime
                   return string(start, scanner - start);
                else
                {
-                  _throw(simple_exception(get_app(), "invalid date expression"));
+                  __throw(::exception::exception("invalid date expression"));
                }
             }
             else
@@ -596,14 +596,14 @@ namespace datetime
                   return string(start, scanner - start);
                else
                {
-                  _throw(simple_exception(get_app(), "invalid date expression"));
+                  __throw(::exception::exception("invalid date expression"));
                }
             }
          }
       }
    }
 
-   scanner::scanner(::aura::application * papp, ::aura::str_context * pcontext)
+   scanner::scanner(const ::aura::str_context * pcontext)
    {
       m_pstrcontext     = pcontext;
       m_ptoken          = NULL;
@@ -643,53 +643,53 @@ namespace datetime
       token * token;
       token = new class token;
       if(token == NULL)
-         _throw(memory_exception(get_app()));
-      while(isspace_dup(*input))
+         __throw(memory_exception());
+      while(ansi_char_is_space(*input))
          input++;
       if(*input == '\0')
       {
-         token->value = token::end;
+         token->m_etoken = e_token_end;
          return token;
       }
       if(*input == '+')
       {
-         token->value = token::addition;
+         token->m_etoken = e_token_addition;
          input++;
          return token;
       }
       else if(*input == '-')
       {
-         token->value = token::subtraction;
+         token->m_etoken = e_token_subtraction;
          input++;
          return token;
       }
       else if(*input == '*')
       {
-         token->value = token::multiplication;
+         token->m_etoken = e_token_multiplication;
          input++;
          return token;
       }
       else if(*input == '/')
       {
-         token->value = token::division;
+         token->m_etoken = e_token_division;
          input++;
          return token;
       }
       else if(*input == '(')
       {
-         token->value = token::open_paren;
+         token->m_etoken = e_token_open_paren;
          input++;
          return token;
       }
       else if(*input == ',')
       {
-         token->value = token::virgula;
+         token->m_etoken = e_token_comma;
          input++;
          return token;
       }
       else if(*input == ')')
       {
-         token->value = token::close_paren;
+         token->m_etoken = e_token_close_paren;
          input++;
          return token;
       }
@@ -700,11 +700,11 @@ namespace datetime
             input = ::str::utf8_inc(input);
          if(*input == '(')
          {
-            token->value = token::function;
+            token->m_etoken = e_token_function;
          }
          else
          {
-            token->value = token::identifier;
+            token->m_etoken = e_token_identifier;
          }
          return token;
       }

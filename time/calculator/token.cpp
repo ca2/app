@@ -8,11 +8,18 @@ namespace datetime
 
    token::token()
    {
-      value = token::none;
+      
+      m_etoken = e_token_none;
+
    }
+
 
    token::~token()
    {
+
    }
 
+
 } // namespace datetime
+
+

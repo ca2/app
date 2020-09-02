@@ -233,7 +233,7 @@ namespace xml
 namespace xml
 {
 
-   inline i32 ch_isspace_dup(uchar uch)
+   inline i32 ch_ansi_char_is_space(uchar uch)
    {
       return uch == ' ' || uch == '\t' || uch == '\r' || uch == '\n';
    }
@@ -271,7 +271,7 @@ namespace xml
    inline char * _tcsskip(const char * psz)
    {
 
-      while(ch_isspace_dup((uchar)*psz)) psz++;
+      while(ch_ansi_char_is_space((uchar)*psz)) psz++;
 
       return (char *)psz;
 

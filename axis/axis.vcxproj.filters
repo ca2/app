@@ -176,7 +176,7 @@
     </Filter>
     <Filter Include="Source Files\math\calculator">
       <UniqueIdentifier>{be4d73ec-4856-48a0-ab01-334d9384a808}</UniqueIdentifier>
-    </Filter>    
+    </Filter>
     <Filter Include="Header Files\net\netserver">
       <UniqueIdentifier>{52364022-ed3b-4112-96d7-504d46a822c0}</UniqueIdentifier>
     </Filter>
@@ -811,7 +811,7 @@
     </ClInclude>
     <ClInclude Include="math\calculator\calculator.h">
       <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>    
+    </ClInclude>
     <ClInclude Include="net\netserver\_.h">
       <Filter>Header Files\net\netserver</Filter>
     </ClInclude>
@@ -1110,15 +1110,6 @@
     </ClCompile>
     <ClCompile Include="math\kissfft\ifftd.cpp">
       <Filter>Source Files\math\kissfft</Filter>
-    </ClCompile>    
-    <ClCompile Include="net\netserver\socket.cpp">
-      <Filter>Source Files\net\netserver</Filter>
-    </ClCompile>
-    <ClCompile Include="net\netserver\socket_handler.cpp">
-      <Filter>Source Files\net\netserver</Filter>
-    </ClCompile>
-    <ClCompile Include="net\netserver\socket_thread.cpp">
-      <Filter>Source Files\net\netserver</Filter>
     </ClCompile>
     <ClCompile Include="html\html_lite\attributes.cpp">
       <Filter>Source Files\html\html_lite</Filter>
@@ -1149,6 +1140,15 @@
     </ClCompile>
     <ClCompile Include="geoip\update.cpp">
       <Filter>Source Files\geoip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\netserver\socket.cpp">
+      <Filter>Source Files\net\netserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\netserver\socket_handler.cpp">
+      <Filter>Source Files\net\netserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\netserver\socket_thread.cpp">
+      <Filter>Source Files\net\netserver</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

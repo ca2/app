@@ -9,9 +9,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Header Files\time">
-      <UniqueIdentifier>{ea69b92a-78e5-4384-a578-f69e1f88c3e6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\datetime">
       <UniqueIdentifier>{bc15f401-5d98-4135-afe6-1d89d13cb933}</UniqueIdentifier>
     </Filter>
@@ -41,103 +38,109 @@
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="datetime\datetime.h">
-      <Filter>Header Files\datetime</Filter>
+    <ClInclude Include="_.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="datetime\datetime_calendar.h">
-      <Filter>Header Files\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="datetime\datetime_calendar_interface.h">
-      <Filter>Header Files\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="datetime\datetime_clock.h">
-      <Filter>Header Files\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="datetime\datetime_clock_interface.h">
-      <Filter>Header Files\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="datetime\datetime_float_time.h">
-      <Filter>Header Files\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="datetime\datetime_windows_file_time.h">
-      <Filter>Header Files\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="calculator\calculator.h">
+    <ClInclude Include="calculator\_.h">
       <Filter>Header Files\calculator</Filter>
     </ClInclude>
-    <ClInclude Include="calculator\datetime_element.h">
+    <ClInclude Include="calculator\element.h">
       <Filter>Header Files\calculator</Filter>
     </ClInclude>
-    <ClInclude Include="calculator\datetime_parser.h">
+    <ClInclude Include="calculator\parser.h">
       <Filter>Header Files\calculator</Filter>
     </ClInclude>
-    <ClInclude Include="calculator\datetime_parser_exception.h">
+    <ClInclude Include="calculator\parser_exception.h">
       <Filter>Header Files\calculator</Filter>
     </ClInclude>
-    <ClInclude Include="calculator\datetime_scanner.h">
+    <ClInclude Include="calculator\scanner.h">
       <Filter>Header Files\calculator</Filter>
     </ClInclude>
-    <ClInclude Include="calculator\datetime_token.h">
+    <ClInclude Include="calculator\token.h">
       <Filter>Header Files\calculator</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\visual\visual_calendar.h">
-      <Filter>Header Files\graphics\visual</Filter>
+    <ClInclude Include="datetime\_.h">
+      <Filter>Header Files\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\visual\visual.h">
-      <Filter>Header Files\graphics\visual</Filter>
+    <ClInclude Include="datetime\float_time.h">
+      <Filter>Header Files\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\graphics.h">
+    <ClInclude Include="datetime\windows_file_time.h">
+      <Filter>Header Files\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\_.h">
       <Filter>Header Files\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\visual\visual_clock.h">
+    <ClInclude Include="graphics\visual\_.h">
       <Filter>Header Files\graphics\visual</Filter>
     </ClInclude>
-    <ClInclude Include="time\time_time.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="graphics\visual\calendar.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\clock.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="datetime\calendar.h">
+      <Filter>Header Files\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="datetime\clock.h">
+      <Filter>Header Files\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="datetime\_const.h">
+      <Filter>Header Files\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="datetime\calendar_visual.h">
+      <Filter>Header Files\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="datetime\clock_visual.h">
+      <Filter>Header Files\datetime</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="calculator\datetime_element.cpp">
-      <Filter>Source Files\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="calculator\datetime_parser.cpp">
-      <Filter>Source Files\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="calculator\datetime_parser_exception.cpp">
-      <Filter>Source Files\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="calculator\datetime_scanner.cpp">
-      <Filter>Source Files\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="calculator\datetime_token.cpp">
-      <Filter>Source Files\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="datetime\datetime_calendar.cpp">
-      <Filter>Source Files\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="datetime\datetime_calendar_interface.cpp">
-      <Filter>Source Files\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="datetime\datetime_clock.cpp">
-      <Filter>Source Files\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="datetime\datetime_clock_interface.cpp">
-      <Filter>Source Files\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="datetime\datetime_float_time.cpp">
-      <Filter>Source Files\datetime</Filter>
-    </ClCompile>
     <ClCompile Include="datetime\datetime_windows_file_time.cpp">
       <Filter>Source Files\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\visual\visual_calendar.cpp">
+    <ClCompile Include="calculator\element.cpp">
+      <Filter>Source Files\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="calculator\parser.cpp">
+      <Filter>Source Files\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="calculator\parser_exception.cpp">
+      <Filter>Source Files\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="calculator\scanner.cpp">
+      <Filter>Source Files\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="calculator\token.cpp">
+      <Filter>Source Files\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="datetime\float_time.cpp">
+      <Filter>Source Files\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\calendar.cpp">
       <Filter>Source Files\graphics\visual</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\visual\visual_clock.cpp">
+    <ClCompile Include="graphics\visual\clock.cpp">
       <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="datetime\calendar_html.cpp">
+      <Filter>Source Files\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="datetime\calendar.cpp">
+      <Filter>Source Files\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="datetime\clock_html.cpp">
+      <Filter>Source Files\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="datetime\clock.cpp">
+      <Filter>Source Files\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="datetime\_.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -12,11 +12,11 @@ namespace datetime
    public:
 
       
-      scanner                       m_scanner;
-      spa(::datetime::element)      m_elementa;
+      scanner                                   m_scanner;
+      __pointer_array(::datetime::element)      m_elementa;
 
 
-      parser(::aura::application * papp, ::aura::str_context * pcontext);
+      parser(const ::aura::str_context * pcontext);
       virtual ~parser();
 
 
@@ -33,11 +33,11 @@ namespace datetime
 
 
       ::datetime::element *new_node();
-      int32_t precedence(token::e_type next, token::e_type current);
-      double parse(::datetime::element *current_node);
-      double node_traverse(::datetime::element *current_node, double value);
-      double apply_traverse_operator(::datetime::element *current_node, double total);
-      double apply_operator(::datetime::element *current_node, double total, double m_etype);
+      int32_t precedence(enum_token next, enum_token current);
+      ::datetime::value parse(::datetime::element *current_node);
+      ::datetime::value node_traverse(::datetime::element *current_node, double value);
+      ::datetime::value apply_traverse_operator(::datetime::element *current_node, double total);
+      ::datetime::value apply_operator(::datetime::element *current_node, double total, double m_etype);
 
       
    };

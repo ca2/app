@@ -2,12 +2,12 @@
 
 
 class CLASS_DECL_CA2_TIME datetime_parser_exception:
-   virtual public simple_exception
+   virtual public ::exception::exception
 {
 public:
 
 
-   datetime_parser_exception(::aura::application * papp,const string & strMessage);
+   datetime_parser_exception(const string & strMessage);
    virtual ~datetime_parser_exception();
 
 
@@ -22,7 +22,7 @@ class CLASS_DECL_CA2_TIME avoid_datetime_parser_exception
 {
 public:
 
-   int_ptr m_iBefore;
+   bool m_bBefore;
 
    avoid_datetime_parser_exception();
    virtual ~avoid_datetime_parser_exception();

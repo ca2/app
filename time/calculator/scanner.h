@@ -23,15 +23,15 @@ namespace datetime
    
    CLASS_DECL_CA2_TIME bool check_end_expression(const char * input, const char * & scanner);
    CLASS_DECL_CA2_TIME bool check_expression_separator(const char * input, const char * & scanner);
-   CLASS_DECL_CA2_TIME string check_unit(::aura::str_context * pcontext, const char * input, const char * & scanner);
+   CLASS_DECL_CA2_TIME string check_unit(const ::aura::str_context * pcontext, const char * input, const char * & scanner);
    CLASS_DECL_CA2_TIME string check_month(const char * input, const char * & scanner);
    CLASS_DECL_CA2_TIME string check_lang_date(const char * input, const char * & scanner);
    CLASS_DECL_CA2_TIME string check_natural(const char * input, const char * & scanner);
    CLASS_DECL_CA2_TIME string check_lang_offset(const char * input, const char * & scanner);
    CLASS_DECL_CA2_TIME string check_natural_separator(const char * input, const char * & scanner);
    CLASS_DECL_CA2_TIME string check_date(const char * input, const char * & scanner);
-   CLASS_DECL_CA2_TIME string check_offset(::aura::str_context * pcontext, const char * input, const char * & scanner);
-   CLASS_DECL_CA2_TIME string consume_date_expression(::aura::str_context * pcontext, const char * & input);
+   CLASS_DECL_CA2_TIME string check_offset(const ::aura::str_context * pcontext, const char * input, const char * & scanner);
+   CLASS_DECL_CA2_TIME string consume_date_expression(const ::aura::str_context * pcontext, const char * & input);
 
 
    class CLASS_DECL_CA2_TIME scanner :
@@ -40,14 +40,14 @@ namespace datetime
    public:
       
       
-      const char *            input;
-      const char *            next_input;
+      const char *                  input;
+      const char *                  next_input;
 
-      class token *           m_ptoken;
-      ::aura::str_context *   m_pstrcontext;
+      class token *                 m_ptoken;
+      const ::aura::str_context *   m_pstrcontext;
 
 
-      scanner(::aura::application * papp, ::aura::str_context * pstrcontext);
+      scanner(const ::aura::str_context * pstrcontext);
       virtual ~scanner();
 
       void initialize(const char * psz);
@@ -58,4 +58,7 @@ namespace datetime
    };
 
 
-} // namespace calculator
+} // namespace datetime
+
+
+

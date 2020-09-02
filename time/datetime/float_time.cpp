@@ -1091,18 +1091,23 @@ int32_t __cdecl FloatTimeToSystemTime(double vtime, struct _SYSTEMTIME * pst)
 namespace datetime
 {
 
+
    float_time &float_time::operator=(const FILETIME &filetimeSrc) RELEASENOTHROW
    {
+      
       FILETIME ftl;
+
       SYSTEMTIME st;
 
-      m_status =  ::FileTimeToLocalFileTime(&filetimeSrc, &ftl) && ::FileTimeToSystemTime(&ftl, &st) && ConvertSystemTimeToFloatTime(st) ? valid : invalid;
+      m_estatus =  ::FileTimeToLocalFileTime(&filetimeSrc, &ftl) && ::FileTimeToSystemTime(&ftl, &st) && ConvertSystemTimeToFloatTime(st) ? e_status_valid : e_status_invalid;
 
       return *this;
+
    }
 
-    float_time WINAPI float_time::GetCurrentTime() RELEASENOTHROW
-    {
+
+   float_time WINAPI float_time::GetCurrentTime() RELEASENOTHROW
+   {
         
 #ifdef WINDOWS
         
@@ -1114,7 +1119,7 @@ namespace datetime
         
 #endif
         
-    }
+   }
 
 
     

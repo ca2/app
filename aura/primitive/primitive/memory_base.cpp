@@ -1282,7 +1282,7 @@ string memory_base::to_string(memsize iStart, memsize iCount) const
    if ((memsize)iStart < 0)
    {
 
-      *((memsize*)iStart) += this->get_size();
+      iStart += this->get_size();
 
    }
 

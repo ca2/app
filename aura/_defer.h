@@ -1,7 +1,7 @@
 #pragma once
 
 
-#if !defined(DEBUG) && !defined(CUBE)
+#if !defined(CUBE)
 
 
 #include "aura/inline/_new_impl.h"

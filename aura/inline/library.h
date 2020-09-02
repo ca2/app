@@ -44,13 +44,13 @@ BOOL WINAPI DllMain(HINSTANCE hinstance, DWORD dwReason, LPVOID pReserved)
 #if !defined(__APPLE__)
 
 
-#if !defined(CUBE)
+//#if !defined(CUBE)
 
 
 #include "aura/asset/new.cpp"
 
 
-#endif
+//#endif
 
 
 #endif

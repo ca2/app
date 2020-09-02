@@ -2442,7 +2442,18 @@ namespace user
          
          pgraphics->IntersectClipRect(rectIntersect);
 
+         ::rect rectClipbox2;
+
+         pgraphics->GetClipBox(rectClipbox2);
+
          pgraphics->OffsetClipRgn(m_pointScroll.x, m_pointScroll.y);
+
+         ::rect rectClipbox3;
+
+         pgraphics->GetClipBox(rectClipbox3);
+
+         output_debug_string("trace");
+
 
       }
       catch (...)

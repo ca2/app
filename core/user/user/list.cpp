@@ -475,6 +475,8 @@ namespace user
 
       ::rect rectIntersect;
 
+      rectClient.offset(get_viewport_offset());
+
       m_pdrawlistitem->m_iDrawTextFlags = _001GetDrawTextFlags(m_eview);
 
       bool bHoverFont = false;
@@ -1268,7 +1270,7 @@ namespace user
 
       set_total_size(rect.size());
 
-      ::user::interaction::on_change_view_size();
+      ::user::scroll_base::on_change_view_size();
 
    }
 
@@ -2550,7 +2552,7 @@ namespace user
 
                   pdrawitem->m_rectItem.bottom = pdrawitem->m_rectItem.top + m_iItemHeight;
 
-                  pdrawitem->m_rectItem.offset(-pointOffset.x, -pointOffset.y);
+              //    pdrawitem->m_rectItem.offset(-pointOffset.x, -pointOffset.y);
 
                }
 
@@ -2672,7 +2674,7 @@ namespace user
 
             pdrawitem->m_rectItem.bottom = pdrawitem->m_rectItem.top + m_iItemHeight;
 
-            pdrawitem->m_rectItem.offset(-pointOffset.x, -pointOffset.y);
+            //pdrawitem->m_rectItem.offset(-pointOffset.x, -pointOffset.y);
 
             pdrawitem->m_iItemRectItem = pdrawitem->m_iDisplayItem;
 
@@ -6575,7 +6577,7 @@ namespace user
 
       update_hover();
 
-      ::user::interaction::on_change_viewport_offset();
+      ::user::scroll_base::on_change_viewport_offset();
 
       set_need_redraw();
 

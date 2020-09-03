@@ -148,6 +148,7 @@
 					<Add option="-g" />
 					<Add option="-D_DEBUG" />
 					<Add directory="$(WORKSPACE_DIR)/../../platform-raspbian" />
+					<Add directory="$(WORKSPACE_DIR)/../../platform-raspbian/_include" />
 				</Compiler>
 				<Linker>
 					<Add option="-pg" />
@@ -2778,6 +2779,9 @@
 		<Unit filename="xml/tree_schema.h" />
 		<Unit filename="xml/var_exchange.h" />
 		<Unit filename="xml/xmlite.h" />
-		<Extensions />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

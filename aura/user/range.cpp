@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 
 
 namespace user
@@ -211,10 +214,10 @@ namespace user
       operator =(subitemrange);
    }
 
-   
+
    sub_item_range& sub_item_range::operator =(const sub_item_range& subitemrange)
    {
-      
+
       m_iLowerBound = subitemrange.m_iLowerBound;
       m_iUpperBound = subitemrange.m_iUpperBound;
       m_listitemrange = subitemrange.m_listitemrange;

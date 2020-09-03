@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 
 
 zorder::zorder()
@@ -46,7 +49,7 @@ bool zorder::is_stable() const
 
    return
       m_ezorder == zorder_none
-      || m_ezorder == zorder_normal_anchor 
+      || m_ezorder == zorder_normal_anchor
       || m_ezorder == zorder_top_most_anchor;
 
 }

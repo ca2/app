@@ -5,6 +5,9 @@
 //  Created by Camilo Sasuke Tsumanuma on 10/08/20.
 //
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 #include "menu_shared.h"
 
 
@@ -33,32 +36,32 @@ char * const * alloc_c_string_array(const string_array & stra);
 
 __pointer(menu_shared) create_menu_shared(const string_array & straParent, const string_array & straMenu, const string_array & straId)
 {
-   
+
    int iCount = (int) straParent.get_count();
-   
+
    if(iCount <= 0
       || iCount != straMenu.get_size()
       || iCount != straId.get_size())
    {
-      
+
       return nullptr;
-      
+
    }
-   
+
    __pointer(menu_shared) pmenushared = __new(menu_shared);
-   
+
    pmenushared->m_iCount = iCount;
    pmenushared->m_ppszParent = alloc_c_string_array(straParent);
    pmenushared->m_ppszMenu = alloc_c_string_array(straMenu);
    pmenushared->m_ppszId = alloc_c_string_array(straId);
    pmenushared->m_ositema = new void *[iCount];
    pmenushared->m_statusa = new int[iCount];
-   
+
    memset(pmenushared->m_ositema, 0, sizeof(void *) * iCount);
    memset(pmenushared->m_statusa, 0, sizeof(menu_shared::enum_status) * iCount);
-   
+
    return pmenushared;
-   
+
 }
 
 
@@ -70,18 +73,18 @@ void * menu_shared::find_item(const char * pszParent, const char * pszId)
 
       if(!strcmp(pszParent, m_ppszParent[i]))
       {
-         
+
          if(!strcmp(pszId, m_ppszId[i]))
          {
-            
+
             return m_ositema[i];
-            
+
          }
-         
+
       }
 
    }
-   
+
    return nullptr;
 
 }
@@ -89,63 +92,63 @@ void * menu_shared::find_item(const char * pszParent, const char * pszId)
 
 void menu_shared::on_idle_update()
 {
-   
-   
+
+
    for(int i = 0; i < m_iCount; i++)
    {
-      
+
       void * pitem = m_ositema[i];
 
       if(pitem)
       {
-         
+
          bool bCheck = m_statusa[i] & status_checked;
          bool bSetCheck = m_statusa[i] & status_set_checked;
-         
+
          if(is_different(bCheck, bSetCheck))
          {
-            
+
             if(bCheck)
             {
-               
+
                m_statusa[i] |= status_set_checked;
-               
+
             }
             else
             {
-             
+
                m_statusa[i] &= ~status_set_checked;
-               
+
             }
 
             os_menu_item_check(pitem, bCheck);
-            
+
          }
 
          bool bDisabled = m_statusa[i] & status_disabled;
          bool bSetDisabled = m_statusa[i] & status_set_disabled;
-         
+
          if(is_different(bCheck, bSetDisabled))
          {
-            
+
             if(bDisabled)
             {
-               
+
                m_statusa[i] |= status_set_disabled;
-               
+
             }
             else
             {
-             
+
                m_statusa[i] &= ~status_set_disabled;
-               
+
             }
 
             os_menu_item_enable(pitem, !bDisabled);
-            
+
          }
 
-         
+
       }
 
    }
@@ -159,7 +162,7 @@ class menu_shared_command :
    public ::user::command        // class private to this file !
 {
 public: // re-implementations only
-   
+
    int * m_pestatus;
 
    menu_shared_command(int * pestatus):
@@ -170,33 +173,33 @@ public: // re-implementations only
    {
          if(bOn)
          {
-            
+
             *m_pestatus &= ~menu_shared::status_disabled;
-            
+
          }
          else
          {
-            
+
             *m_pestatus |= menu_shared::status_disabled;
-         
+
          }
-      
+
    }
    //   virtual void _001SetCheck(bool bCheck, const ::action_context & context = ::source_system);   // 0, 1 or 2 (indeterminate)
    virtual void _001SetCheck(enum_check echeck, const ::action_context & context = ::source_system)   // 0, 1 or 2 (indeterminate)
    {
-      
+
       if(echeck == check_checked)
       {
-         
+
          *m_pestatus |= menu_shared::status_checked;
 
       }
       else
       {
-         
+
          *m_pestatus &= ~menu_shared::status_checked;
-      
+
       }
    }
 //   virtual void SetRadio(bool bOn = TRUE, const ::action_context & context = ::source_system);
@@ -209,28 +212,28 @@ public: // re-implementations only
 
 void menu_shared_idle(::user::frame * pframe)
 {
-   
+
    menu_shared * pmenushared = pframe->m_pmenushared;
-   
+
    if(::is_null(pmenushared))
    {
-      
+
       return;
-      
+
    }
-   
+
    for(int i = 0; i < pmenushared->m_iCount; i++)
    {
-      
+
       void * pitem = pmenushared->m_ositema[i];
 
       if(pitem)
       {
-         
+
          ::message::id id(pmenushared->m_ppszId[i],::message::type_command_probe);
-         
+
          menu_shared_command command(&pmenushared->m_statusa[i]);
-         
+
          command.m_id = id;
 
          pframe->on_command_probe(&command);
@@ -238,7 +241,7 @@ void menu_shared_idle(::user::frame * pframe)
       }
 
    }
-   
+
    pmenushared->on_idle_update();
 
 }

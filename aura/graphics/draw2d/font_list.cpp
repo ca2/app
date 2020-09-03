@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 
 #include <math.h>
 
@@ -215,7 +218,7 @@ namespace draw2d
 
       if (m_iSel >= 0)
       {
-         
+
          auto pitem = plistdata->element_at(m_iSel);
 
          if (pitem)
@@ -376,9 +379,9 @@ namespace draw2d
          {
 
             COLORREF cr = pgraphics->m_puserinteraction->get_color(pgraphics->m_puserstyle, ::user::element_background, ::user::e_state_hover);
-            
+
             int iA = colorref_get_a_value(cr);
-            
+
             pgraphics->fill_rect(rect, cr);
 
          }
@@ -548,7 +551,7 @@ namespace draw2d
 
          }
          else
-         {  
+         {
 
             pbox->m_pfont->m_echarset = pitem->m_box[0].m_pfont->m_echarset;
 
@@ -622,7 +625,7 @@ namespace draw2d
 
       auto plistdata = m_plistdata;
 
-      if (plistdata.is_set() && 
+      if (plistdata.is_set() &&
          plistdata->get_count() == m_pitema->get_count()
             && plistdata->m_iUpdateId == m_pfontenumeration->m_iUpdateId
             && (m_etype == type_single_column ||
@@ -1074,7 +1077,7 @@ namespace draw2d
 
          font_list_item * pitem = plistdata->element_at(i);
 
-         if (pitem 
+         if (pitem
             && !m_pfontenumeration->has_font_name(pitem->m_strFont)
             && !m_pfontenumeration->has_font_name(pitem->m_strName))
          {
@@ -1344,7 +1347,7 @@ namespace draw2d
          {
 
             return ::user::item(::user::element_item, m_iHover);
-            
+
          }
 
       }
@@ -1405,7 +1408,7 @@ namespace draw2d
          {
 
             return { ::user::element_item, iItem };
-            
+
          }
 
       }

@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 
 
 namespace user
@@ -23,7 +26,7 @@ namespace user
 
    }
 
-   
+
    scroll_bar* scroll_x_base::get_horizontal_scroll_bar()
    {
 
@@ -67,9 +70,9 @@ namespace user
             rectNewPos.bottom = rectNewPos.top + GetSystemMetrics(SM_CYHSCROLL);
 
             m_pscrollbarHorz->order(zorder_top);
-            
+
             m_pscrollbarHorz->place(rectNewPos);
-            
+
             m_pscrollbarHorz->display();
 
             //m_pscrollbarHorz->set_need_redraw();
@@ -382,7 +385,7 @@ namespace user
             rectNewPos.bottom = rectNewPos.top+ rectClient.height() - get_final_x_scroll_bar_width();
 
             m_pscrollbarVert->order(zorder_top);
-            
+
             m_pscrollbarVert->place(rectNewPos);
 
             m_pscrollbarVert->display();

@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 
 
 namespace user
@@ -48,7 +51,7 @@ namespace user
 
    void still::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
-      
+
       auto pstyle = get_style(pgraphics);
 
       if (m_estyle == style_image)
@@ -65,7 +68,7 @@ namespace user
          get_window_text(strText);
 
          ::rect rectClient;
-         
+
          get_client_rect(rectClient);
 
          //::rect rectMargin(2, 2,2, 2);
@@ -141,15 +144,15 @@ namespace user
 
             if(m_pfont)
             {
-               
+
                pgraphics->set(m_pfont);
-               
+
             }
             else
             {
-            
+
                pgraphics->set_font(this);
-               
+
             }
 
             pgraphics->draw_text(strText, rectClient, iDrawTextFlags);
@@ -732,7 +735,7 @@ namespace user
 
       if (!is_window_enabled())
       {
-         
+
          //         pgraphics->set_text_color(pstyle->m_crTextDisabled);
          brushText->create_solid(get_color(pstyle, element_text, e_state_disabled));
 

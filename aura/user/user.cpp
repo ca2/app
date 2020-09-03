@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 #include "aura/update.h"
 //#include "simple_view.h"
 #include "aura/platform/static_setup.h"
@@ -28,7 +31,7 @@ namespace user
    ::estatus user::init1()
    {
 
-      
+
       //create_factory <::user::document >();
       create_factory <::user::message_queue >();
       //create_factory <::user::simple_view >();

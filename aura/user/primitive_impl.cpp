@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 #include "aura/id.h"
 
 
@@ -1569,7 +1572,7 @@ namespace user
 
    void primitive_impl::queue_message_handler(::message::base * pbase)
    {
-      
+
       return m_puserinteraction->message_handler(pbase);
 
    }

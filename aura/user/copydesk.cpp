@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 
 
 namespace user
@@ -381,9 +384,9 @@ namespace user
                // need a graphics context to measure the text extent
                // create image (1x1) with a graphics context for measuring the text extent
                // (the image raw allocation can be reused when the image
-               // 
+               //
                auto estatus = __construct(pimage);
-               
+
                if (estatus)
                {
 
@@ -402,7 +405,7 @@ namespace user
                      {
 
                         estatus = __construct(pimage);
-                        
+
                         if (estatus)
                         {
 
@@ -471,7 +474,7 @@ namespace user
 
    }
 
-   
+
    bool copydesk::_has_filea()
    {
 

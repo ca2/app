@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 
 
 namespace user
@@ -7,7 +10,7 @@ namespace user
 
    frame::frame()
    {
-      
+
       m_bShowControlBox = true;
       m_bDefaultNotifyIcon = false;
       m_bCloseApplicationIfLastVisibleFrame = true;
@@ -86,9 +89,9 @@ namespace user
       m_straMenuParent.add(strPath);
       m_straMenuName.add(strText);
       m_straMenuId.add(strId);
-   
+
       return ::success;
-   
+
    }
 
 
@@ -99,7 +102,7 @@ namespace user
 
    }
 
-   
+
    void frame::SetActiveView(::user::interaction* pViewNew, bool bNotify)
    {
 
@@ -193,7 +196,7 @@ namespace user
       }
 
    }
-   
+
 
 } // namespace user
 

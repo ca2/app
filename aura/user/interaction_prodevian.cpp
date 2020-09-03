@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 #include "aura/message.h"
 #include "interaction_prodevian.h"
 #include "interaction_thread.h"
@@ -207,7 +210,7 @@ void prodevian::term_thread()
 
 bool prodevian::prodevian_iteration()
 {
-   
+
    bool bHasProdevian = false;
 
    bool bRedraw = false;
@@ -216,7 +219,7 @@ bool prodevian::prodevian_iteration()
 
    try
    {
-      
+
       sync_lock sl(m_puserinteraction->mutex());
 
       strType = ::str::demangle(m_puserinteraction->type_name());
@@ -255,11 +258,11 @@ bool prodevian::prodevian_iteration()
          //sync_lock sl(m_pimpl->mutex());
 
       }
-      
+
    }
    catch(...)
    {
-      
+
    }
 
    if (!(m_puserinteraction->m_ewindowflag & window_flag_embedded_prodevian))
@@ -652,7 +655,7 @@ bool prodevian::prodevian_iteration()
       m_puserinteraction->post_task(m_ptaskApplyVisual);
 
    }
-   // ENDIF WINDOWS 
+   // ENDIF WINDOWS
 
    u64 uNow = get_nanos();
 
@@ -694,10 +697,10 @@ bool prodevian::prodevian_iteration()
 
    void prodevian::update_buffer(bool & bUpdateBuffer, bool & bUpdateWindow, bool bForce)
    {
-      
+
       try
       {
-         
+
          sync_lock sl(m_puserinteraction->mutex());
 
          if(!m_puserinteraction)
@@ -749,21 +752,21 @@ bool prodevian::prodevian_iteration()
             return;
 
          }
-         
+
          bool bDraw = false;
 
          m_bVisualUpdated = false;
-         
+
          if(!m_puserinteraction)
          {
-          
+
             return;
-            
+
          }
 
          if (!m_puserinteraction->m_bLockWindowUpdate)
          {
-            
+
             sl.unlock();
 
             ::draw2d::graphics_pointer pgraphicsNull;
@@ -771,14 +774,14 @@ bool prodevian::prodevian_iteration()
             //m_puserinteraction->update_modified();
 
             m_puserinteraction->sketch_to_design(pgraphicsNull, bUpdateBuffer, bUpdateWindow);
-            
+
             sl.lock();
-            
+
             if(!m_puserinteraction)
             {
-               
+
                return;
-               
+
             }
 
             if (!this->thread_get_run())
@@ -805,21 +808,21 @@ bool prodevian::prodevian_iteration()
             }
 
             bool bHasProdevian = m_pimpl->has_prodevian();
-            
+
             if(!m_puserinteraction)
             {
-               
+
                return;
-               
+
             }
 
             bool bRedraw = m_puserinteraction->m_bNeedRedraw;
 
             if(!m_puserinteraction)
             {
-               
+
                return;
-               
+
             }
 
             bool bHasPendingGraphicalUpdate = m_puserinteraction->has_pending_graphical_update();
@@ -903,7 +906,7 @@ bool prodevian::prodevian_iteration()
                }
 
             }
-            
+
          }
 
       }
@@ -917,7 +920,7 @@ bool prodevian::prodevian_iteration()
 
    bool prodevian::update_screen()
    {
-         
+
       try
       {
 
@@ -982,13 +985,13 @@ bool prodevian::prodevian_iteration()
             //output_debug_string("It took about " + __str(m_tickOufOfUpdateScreen) + " out of screen update\n");
 
          }
-         
+
       }
       catch(...)
       {
-         
+
          return false;
-         
+
       }
 
       return true;

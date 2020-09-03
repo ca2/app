@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 #include "aura/message.h"
 
 
@@ -3456,7 +3459,7 @@ namespace user
 
    i32 primitive::get_total_page_count(::task * ptask)
    {
-      
+
       return 1;
 
    }
@@ -3583,10 +3586,10 @@ namespace user
 
    }
 
-   
+
    void primitive::keyboard_focus_OnKeyUp(::message::message * pmessage)
    {
-      
+
       UNREFERENCED_PARAMETER(pmessage);
 
    }
@@ -3830,7 +3833,7 @@ namespace user
 
    }
 
-   
+
    ::user::interaction * primitive::get_parent() const
    {
 
@@ -3900,7 +3903,7 @@ namespace user
 
    }
 
-   
+
    bool primitive::hide()
    {
 

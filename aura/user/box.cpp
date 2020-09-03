@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 #include "aura/message.h"
 
 
@@ -185,13 +188,13 @@ namespace user
 
    bool box::should_save_window_rect()
    {
-      
+
 #if defined(_UWP) || defined(APPLE_IOS)
-      
+
       return false;
-      
+
 #else
-      
+
       return m_bSaveWindowRect && m_bEnableSaveWindowRect2;
 
 #endif
@@ -259,7 +262,7 @@ namespace user
       {
 
          m_ewindowflag |= window_flag_loading_window_rect;
-         
+
          main_async([this]()
                     {
 
@@ -273,9 +276,9 @@ namespace user
             display();
 
          }
-            
+
          });
-         
+
          bool bRestore = true;
 
          return bRestore;
@@ -687,7 +690,7 @@ namespace user
 
    }
 
-   
+
    string box::get_display_tag()
    {
 

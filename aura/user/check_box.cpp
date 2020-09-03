@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 #include "aura/const/timer.h"
 
 
@@ -379,9 +382,9 @@ namespace user
          }
 
          br1->m_color = (br1->m_color.operator COLORREF() & 0xffffff) | ((BYTE(255.0 * dRate)) << 24);
-         
+
          br1->set_modified();
-         
+
          p0->m_color = br1->m_color;
 
          p0->set_modified();
@@ -600,14 +603,14 @@ namespace user
 
    void check_box::_001OnKeyUp(::message::message * pmessage)
    {
-      
+
       SCAST_PTR(::message::key, pkey, pmessage);
-      
+
       if(pkey->m_ekey == ::user::key_space)
       {
-         
+
          _001ToggleCheck(::source_user);
-         
+
       }
 
    }

@@ -1,4 +1,7 @@
-#include "framework.h" 
+#include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 
 
 namespace user
@@ -7,7 +10,7 @@ namespace user
 
    scroll_bar::scroll_bar()
    {
-      
+
       m_bParentScroll = false;
 
       m_scrollinfo.nMin    = 0;
@@ -202,7 +205,7 @@ namespace user
 
    void scroll_bar::_001OnClip(::draw2d::graphics_pointer & pgraphics)
    {
-      
+
       try
       {
 

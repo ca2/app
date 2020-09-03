@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 #include "aura/platform/app_core.h"
 
 
@@ -139,10 +142,10 @@ namespace user
          }
 
          string strType = m_puserinteraction->type_name();
-         
+
          if(m_puserinteraction->is_host_top_level())
          {
-            
+
          INFO("host_top_level");
 
          }
@@ -171,7 +174,7 @@ namespace user
 
             m_puserinteraction->hide();
          }
-            
+
          }
 
          m_puserinteraction->send_message(WM_CREATE, 0, (lparam)(LPARAM)& createstruct);
@@ -600,7 +603,7 @@ namespace user
          }
 
          ::rect rectWindow;
-         
+
          m_puserinteraction->get_window_rect(rectWindow, ::user::layout_design);
 
          auto pwnd = get_wnd();

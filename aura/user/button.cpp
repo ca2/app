@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 
 
 namespace user
@@ -327,7 +330,7 @@ namespace user
 
       if (!is_window_enabled())
       {
-         
+
          // Disabled Background
          crBk = ARGB(255, 127, 127, 127);
 
@@ -348,7 +351,7 @@ namespace user
       }
       else
       {
-         
+
          crBk = ARGB(255, 255, 255, 255);
 
       }
@@ -512,7 +515,7 @@ namespace user
    }
 
 
-   COLORREF button::_001GetButtonBackgroundColor() 
+   COLORREF button::_001GetButtonBackgroundColor()
    {
 
       COLORREF crBackground;

@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 
 
 namespace user
@@ -70,8 +73,8 @@ namespace user
       sketch() = display_none;
 
    }
-   
-   
+
+
    void interaction_layout::destroy_state()
    {
 
@@ -127,10 +130,10 @@ namespace user
 
 
    //void interaction_layout::move_to(i32 x, i32 y)
-   //{ 
-   //   
-   //   layout().sketch().m_point.set(x, y); 
-   //   
+   //{
+   //
+   //   layout().sketch().m_point.set(x, y);
+   //
    //   set_pending_request();
    //
    //}
@@ -145,10 +148,10 @@ namespace user
 
 
    //void interaction_layout::set_size(i32 cx, i32 cy)
-   //{ 
-   //   
+   //{
+   //
    //   layout().sketch().m_size.set(cx, cy);
-   //   
+   //
    //   set_pending_request();
    //
    //}
@@ -162,38 +165,38 @@ namespace user
    //}
 
 
-   //void interaction_layout::set_dim(const ::point& point, const ::size& size) 
-   //{ 
-   //   
+   //void interaction_layout::set_dim(const ::point& point, const ::size& size)
+   //{
+   //
    //   layout().sketch().m_point = point;
-   //   
-   //   layout().sketch().m_size = size; 
-   //   
-   //   set_pending_request(); 
+   //
+   //   layout().sketch().m_size = size;
+   //
+   //   set_pending_request();
    //
    //}
 
 
-   //void interaction_layout::place(const ::rect& rect) 
-   //{ 
-   //   
-   //   set_dim(rect.origin(), rect.size()); 
+   //void interaction_layout::place(const ::rect& rect)
+   //{
+   //
+   //   set_dim(rect.origin(), rect.size());
    //
    //}
 
 
    //void interaction_layout::set_dim(i32 x, i32 y, i32 cx, i32 cy)
-   //{ 
-   //   
-   //   set_dim(::point(x, y), ::size(cx, cy)); 
+   //{
+   //
+   //   set_dim(::point(x, y), ::size(cx, cy));
    //
    //}
 
 
    //zorder interaction_layout::order(e_layout elayout)
-   //{ 
-   //   
-   //   return state(elayout).zorder(); 
+   //{
+   //
+   //   return state(elayout).zorder();
    //
    //}
 
@@ -206,8 +209,8 @@ namespace user
 
    //bool interaction_layout::layout().sketch().is_visible() const
    //{
-   //   
-   //   return ::is_visible(layout().sketch().display()); 
+   //
+   //   return ::is_visible(layout().sketch().display());
    //
    //}
 
@@ -478,7 +481,7 @@ namespace user
 
       if (is_top_level())
       {
-         
+
          //bitmap() = sketch();
 
          //window() = bitmap();

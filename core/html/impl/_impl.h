@@ -2,6 +2,9 @@
 
 
 #include "_.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/user/_.h"
+#endif
 
 
 #include "core/html/html/_.h"

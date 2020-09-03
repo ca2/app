@@ -13,8 +13,10 @@
 
 #include "core/_.h"
 
-
+#ifndef BROAD_PRECOMPILED_HEADER
 #define BROAD_PRECOMPILED_HEADER 1
+#endif // BROAD_PRECOMPILED_HEADER
+
 #if BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
 #include "core/user/rich_text/_rich_text.h"

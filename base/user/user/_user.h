@@ -649,7 +649,6 @@ typedef struct _AppIndicator AppIndicator;
 #include "static_control.h"
 
 
-#include "user.h"
 
 
 

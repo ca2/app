@@ -12,6 +12,6 @@ namespace filemanager
 } // namespace filemanager
 
 
-
+#include "component.h"
 
 

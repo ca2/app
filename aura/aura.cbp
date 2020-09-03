@@ -697,6 +697,7 @@
 		<Unit filename="graphics/draw2d/_.cpp" />
 		<Unit filename="graphics/draw2d/_.h" />
 		<Unit filename="graphics/draw2d/_const.h" />
+		<Unit filename="graphics/draw2d/_draw2d.h" />
 		<Unit filename="graphics/draw2d/_image.h" />
 		<Unit filename="graphics/draw2d/_image_impl.h" />
 		<Unit filename="graphics/draw2d/_impl.h" />
@@ -2012,6 +2013,8 @@
 		<Unit filename="primitive/primitive/logic.h" />
 		<Unit filename="primitive/primitive/malloc.h" />
 		<Unit filename="primitive/primitive/map.h" />
+		<Unit filename="primitive/primitive/match.cpp" />
+		<Unit filename="primitive/primitive/match.h" />
 		<Unit filename="primitive/primitive/math_math.h" />
 		<Unit filename="primitive/primitive/member.h" />
 		<Unit filename="primitive/primitive/memory.cpp" />
@@ -2245,6 +2248,10 @@
 		<Unit filename="user/create.h" />
 		<Unit filename="user/create_struct.cpp" />
 		<Unit filename="user/create_struct.h" />
+		<Unit filename="user/form.cpp" />
+		<Unit filename="user/form.h" />
+		<Unit filename="user/form_callback.cpp" />
+		<Unit filename="user/form_callback.h" />
 		<Unit filename="user/frame.cpp" />
 		<Unit filename="user/frame.h" />
 		<Unit filename="user/imm_client.cpp" />

@@ -1,5 +1,7 @@
 ﻿#include "framework.h"
-//#include "_filemanager.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/filesystem/filemanager/_filemanager.h"
+#endif
 #include "core/user/user/shell.h"
 
 
@@ -232,7 +234,7 @@ namespace filemanager
                           __type(operation_document),
                           __type(operation_child_frame),
                           __type(operation_view)));
-      
+
       __compose(m_pdocumenttemplateOperation, psingle);
 
       Session.add_document_template(psingle);
@@ -322,7 +324,7 @@ namespace filemanager
          pdoctemplate = __new(::user::multiple_document_template(
                              strTemplateId,
                              __type(document),
-                             __type(frame), 
+                             __type(frame),
                              __type(view)));
       }
 

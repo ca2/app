@@ -2,9 +2,10 @@
 
 
 #include "aura/filesystem/fs/_.h"
-
-
 #include "base/user/menu/_.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/user/_user.h"
+#endif
 #include "core/filesystem/userfs/_userfs.h"
 
 

@@ -1,5 +1,7 @@
 ﻿#include "framework.h"
-//#include "_filemanager.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/filesystem/filemanager/_filemanager.h"
+#endif
 #include "_data.h"
 #include "axis/xml/_.h"
 #include "core/user/user/_tree.h"
@@ -28,7 +30,7 @@ namespace filemanager
 
          }
 
-         
+
          ::estatus tree::initialize(::object * pobjectContext)
          {
 
@@ -73,9 +75,9 @@ namespace filemanager
 
          void tree::parse(const char * pszSource)
          {
-            
+
             string str;
-            
+
             xml::document doc;
 
             if(doc.load(pszSource))
@@ -127,7 +129,7 @@ namespace filemanager
             //         index iNode = 0;
             for(i32 i = 0 ; i < pnodeFolder->get_children_count(); i++)
             {
-               
+
                __pointer(::xml::node) pnodeItem = pnodeFolder->child_at(i);
 
                ::index iFolder = pnodeItem->attribute("id");
@@ -150,7 +152,7 @@ namespace filemanager
                   pfolder = m_foldera[iFolder];
 
                }
-               
+
                pfolder->m_iFolder = iFolder;
 
                pfolder->m_strName = pnodeItem->attribute("name");
@@ -159,19 +161,19 @@ namespace filemanager
 
                if(strType == "normal")
                {
-               
+
                   pfolder->m_etype = FolderTypeNormal;
-                           
+
                }
                else if(strType == "artist")
                {
-               
+
                   pfolder->m_etype = FolderTypeArtist;
-               
+
                }
                else
                {
-                  
+
                   // unknown folder type
                   ASSERT(FALSE);
 
@@ -204,13 +206,13 @@ namespace filemanager
 
                if(!ptreeitemChild->m_pdataitem)
                {
-                  
+
                   ptreeitemChild->m_pdataitem = __new(::data::simple_item(this));
 
                }
 
                ptreeitemParent->m_pdataitem.cast < ::data::simple_item >()->m_str = pfolder->m_strName;
-               
+
                ptreeitemParent->m_dwUser = (uptr) iNewItem;
 
                iNode++;

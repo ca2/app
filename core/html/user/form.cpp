@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "internal.h"
+#include "_user.h"
 #include "aura/update.h"
 
 
@@ -216,18 +216,18 @@ void html_form::on_layout(::draw2d::graphics_pointer & pgraphics)
 
 void html_form::_001OnCreate(::message::message * pmessage)
 {
-   
+
    SCAST_PTR(::message::create, pcreate, pmessage);
 
    System.defer_create_html();
 
    if(pcreate->previous())
    {
-      
+
       return;
-      
+
    }
-   
+
 }
 
 
@@ -266,9 +266,9 @@ void html_form::_001OnLButtonDown(::message::message * pmessage)
    }
    else
    {
-      
+
       Session.clear_focus();
-      
+
    }
 
    pmouse->m_bRet = true;
@@ -293,7 +293,7 @@ void html_form::_001OnMouseMove(::message::message * pmessage)
 
    if(::is_set(get_html_data()))
    {
-      
+
       sync_lock sl(get_html_data()->mutex());
 
       html::elemental * pelemental = get_html_data()->m_pcoredata->m_elemental.hit_test(get_html_data(), point);
@@ -429,31 +429,31 @@ void html_form::_001OnDestroy(::message::message * pmessage)
 
 string html_form::get_path()
 {
-   
+
    return m_strPath;
-   
+
 }
 
 
 void html_form::soft_reload()
 {
-   
+
    string str;
-   
+
    {
-   
+
       auto phtmldata = get_html_data();
-      
+
       auto psync = phtmldata->mutex();
-      
+
       sync_lock lock(psync);
-      
+
       str = phtmldata->m_pcoredata->m_strSource;
-      
+
    }
-   
+
    m_pformParent->open_html(str);
-   
+
 }
 
 
@@ -506,14 +506,14 @@ void html_form::set_need_load_form_data()
       }
 
    }
-   
+
    auto phtmldata = get_html_data();
-   
+
    if(!phtmldata->open_document(varFile))
    {
-      
+
       return false;
-      
+
    }
 
    m_strPath = path;
@@ -525,20 +525,20 @@ void html_form::set_need_load_form_data()
 
 ::estatus html_form::open_html(const ::string & str)
 {
-   
+
    auto phtmldata = get_html_data();
-   
+
    auto estatus = phtmldata->open_html(str);
 
    if(::failed(estatus))
    {
-      
+
       return estatus;
-      
+
    }
-   
+
    return estatus;
-   
+
 }
 
 
@@ -589,38 +589,38 @@ html_document * html_form::get_document()
 
 ::html_data * html_form::get_html_data()
 {
-   
+
    auto pdata = m_phtmldata;
-   
+
    if (pdata)
    {
-      
+
       return pdata;
-      
+
    }
-   
+
    pdata = __new(html_data);
 
    pdata->initialize(this);
-   
+
    pdata->m_pcoredata = new ::html::core_data;
 
    pdata->m_pcoredata->initialize_html_data(pdata);
-   
+
    pdata->m_pimplHtml = ::move(pdata->m_pcoredata);
-   
+
    pdata->::form_data::m_pimpl = pdata->m_pimplHtml;
-   
+
    pdata->m_pcoredata->m_puserinteraction = this;
-   
+
    pdata->m_pcoredata->m_pform = this;
-   
+
    pdata->m_pcoredata->m_pcallback = this;
-   
+
    m_phtmldata = pdata;
-   
+
    return pdata;
-   
+
 }
 
 

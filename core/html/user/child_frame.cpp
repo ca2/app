@@ -1,9 +1,10 @@
 #include "framework.h"
+#include "_user.h"
 
 //
 //html_child_frame::html_child_frame() :
 //   ::object(pobject),
-//   simple_child_frame(pobject), 
+//   simple_child_frame(pobject),
 //   m_toolbar(pobject)
 //{
 //}

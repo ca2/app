@@ -1,11 +1,11 @@
 #include "framework.h"
-#include "internal.h"
+#include "_graphics.h"
 
 
 namespace html
 {
 
-   
+
    void attribute::set_name(id idName)
    {
 
@@ -56,7 +56,7 @@ namespace html
    }
 
 
-   __pointer(attribute) attribute_array::get(id idName) const 
+   __pointer(attribute) attribute_array::get(id idName) const
    {
 
       return const_cast < attribute_array * > (this)->get(idName);

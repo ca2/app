@@ -31,7 +31,7 @@ class form_document;
 namespace user
 {
 
-   
+
    class user;
    class document_manager;
    class interaction_pointer_array;
@@ -82,6 +82,8 @@ namespace user
 
 
 
+
+#include "user.h"
 
 
 

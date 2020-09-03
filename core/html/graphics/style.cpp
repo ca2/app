@@ -1,7 +1,7 @@
 #include "framework.h"
+#include "_graphics.h"
 #include "aura/id.h"
-#include "internal.h"
-#include "core/html/html/core_data.h"
+#include "core/html/html/_.h"
 
 
 namespace html
@@ -46,7 +46,7 @@ namespace html
 
    }
 
-   
+
    bool style::get_dimension(bool bParent, id idName, const string & strSubClass, html_data * pdata, elemental * pelemental, float & f)
    {
 
@@ -846,7 +846,7 @@ namespace html
 
    }
 
-   
+
    bool style::matches(e_tag etag, const string & strClass, const string & strSubClass, id idName)
    {
 
@@ -865,7 +865,7 @@ namespace html
       return true;
    }
 
-   
+
    bool style::matches_border_width(e_tag etag, const string & strClass, const string & strSubClass, id idName, float & f)
    {
       if(etag != tag_none && m_etag != tag_none)
@@ -887,7 +887,7 @@ namespace html
       return true;
    }
 
-   
+
    bool style::matches_border_color(e_tag etag, const string & strClass, const string & strSubClass, id idName, COLORREF & cr)
    {
 

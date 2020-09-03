@@ -24,7 +24,7 @@ namespace message
 
 namespace user
 {
-   
+
    class form;
    class tooltip;
 
@@ -583,8 +583,8 @@ namespace user
 #include "tooltip.h"
 
 
+#include "shell.h"
 
-#include "core/user/userex/user.h"
 
 
 

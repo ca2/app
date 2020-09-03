@@ -5,23 +5,26 @@
 //  ca2 is an all-purpose multi-platform framework and set of libraries
 //  written in C++ language to help developers create great apps for users.
 //
-//  ca2/core/basis/axis/aura/C++/C/Assembly/os/Huffman Machine/Hardware/Universe/Multiverse stack
+//  ca2/..../core/base/axis/aura/C++/C/Assembly/os/Huffman Machine/Hardware/Universe/Multiverse stack
 //
 //
+//
+//
+//  c(s)t(s)<tb(s)!!
+//
+
 
 #pragma once
 
 
+#undef Sys
+#undef Sess
+#undef App
 
-#undef System
-#undef Session
-#undef Application
-#undef Usr
 
-#define System (*get_context_system()->m_pcoresystem)
-#define Session (*get_context_session()->m_pcoresession)
-#define Application (*get_app()->m_pcoreapplication)
-#define Usr(pobject) (*Sess(pobject).user()->m_pcoreuser)
+#define Sys(pobject) (*pobject->get_context_system()->m_pcoresystem)
+#define Sess(pobject) (*pobject->get_context_session()->m_pcoresession)
+#define App(pobject) (*pobject->get_app()->m_pcoreapplication)
 
 
 

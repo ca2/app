@@ -1,5 +1,8 @@
 #include "framework.h"
 #include "aura/platform/static_setup.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/user/_user.h"
+#endif
 
 
 namespace core

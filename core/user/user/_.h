@@ -91,9 +91,6 @@ inline ::user::primitive* __user_primitive(oswindow oswindow);
 
 //#include "message_queue_listener.h"
 
-#include "core/filesystem/filemanager/_.h"
-
-#include "core/user/userex/user.h"
 
 
 

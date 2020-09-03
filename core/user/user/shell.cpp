@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/user/_user.h"
+#endif
 #include "core/user/user/shell.h"
 #include "core/node/_node.h"
 #include "aura/compress/zip/_.h"

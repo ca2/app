@@ -106,7 +106,7 @@ namespace experience
 #include "control_property.h"
 
 
-#include "tool_window.h"
+//#include "tool_window.h"
 
 //#include "callback.h"
 
@@ -661,6 +661,13 @@ typedef struct _AppIndicator AppIndicator;
 //#include "command.h"
 
 #include "aura/primitive/primitive/update.h"
+
+
+#include "user.h"
+
+
+#undef Usr
+#define Usr(pobject) (*Sess(pobject).user()->m_pbaseuser)
 
 
 #include "_impl.h"

@@ -31,6 +31,8 @@ namespace user
       string_array                  m_straEscape;
       //::user::style_pointer       pstyle;
 
+      __composite(::html::html)     m_phtml; // defined in upper level
+
       ::type                        m_typeHtmlDocument;
       ::type                        m_typeHtmlView;
       
@@ -55,7 +57,10 @@ namespace user
       virtual ::estatus init2() override;
       virtual ::estatus init() override;
 
-  
+
+
+      inline ::html::html* html() { return m_phtml; } // defined in upper level
+
       inline ::type get_html_document_type() { return m_typeHtmlDocument; }
       inline ::type get_html_view_type() { return m_typeHtmlView; }
 

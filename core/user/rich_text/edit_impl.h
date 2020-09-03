@@ -89,7 +89,7 @@ namespace user
 
          virtual void draw_impl(::draw2d::graphics_pointer & pgraphics) override;
 
-         __pointer(::userex::font_format_tool) get_font_format_tool(bool bCreate);
+         __pointer(format_tool) get_format_tool(bool bCreate);
 
          using ::user::interaction::_001GetText;
          virtual void _001GetText(string & str) const override;

@@ -5,12 +5,26 @@
 //  ca2 is an all-purpose multi-platform framework and set of libraries written in
 //  C++ language with the aim to help developers create awesome apps for users.
 //
-//  ca2/C++/C/Assembly/Huffman Machine/Hardware/Universe/Multiverse stack
+//  ca2/./aura/C++/C/Assembly/Huffman Machine/Hardware/Universe/Multiverse stack
 //
+//
+//
+//
+//  c(s)t(s)<tb(s)!!
 //
 
 
 #pragma once
+
+
+#undef Sys
+#undef Sess
+#undef App
+
+
+#define Sys(pobject) (*pobject->get_context_system())
+#define Sess(pobject) (*pobject->get_context_session())
+#define App(pobject) (*pobject->get_app())
 
 
 #include "aura/primitive/primitive/estatus.h"
@@ -870,8 +884,6 @@ type operator + (const TYPE & t) const { auto copy = *this; copy.add(t); return 
 #include "aura/graphics/draw2d/_const.h"
 
 
-#define Usr(pobject) (*Sess(pobject).user())
-#define User (Usr(get_context()))
 
 
 
@@ -2050,13 +2062,23 @@ namespace html
 #define Mm(pobject) (*(::get_context_multimedia(pobject)))
 #define Multimedia (Mm(get_context()))
 
-#define System (*get_context_system())
 
-#define Session (*get_context_session())
+#undef Sys
+#define Sys(pobject) (*::get_context_system(pobject))
 
-#define Application (*get_app())
+#undef Sess
+#define Sess(pobject) (*::get_context_session(pobject))
+
+#undef App
+#define App(pobject) (*::get_context_application(pobject))
+
+
+#define System Sys(get_context())
+#define Session Sess(get_context())
+#define Application App(get_context())
 #define ThisApp (*::application_consumer < application >::get_app())
-#define NamespaceApp(N) (*::application_consumer < ::N::application >::get_app())
+#define NamespaceApp(namespace) (*::application_consumer < ::namespace::application >::get_app())
+
 
 #undef Ctx
 #define Ctx(pobject) (*(::get_context(pobject)))

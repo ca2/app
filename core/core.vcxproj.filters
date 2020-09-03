@@ -240,6 +240,9 @@
     <Filter Include="Source Files\platform">
       <UniqueIdentifier>{51be4361-eb21-484c-8772-1e1c35a7256e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\user\netuser">
+      <UniqueIdentifier>{7414d1f0-8f4e-4376-ad9a-c252779030d9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -686,9 +689,6 @@
     <ClInclude Include="user\userex\error_dialog.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="user\userex\font_format_tool.h">
-      <Filter>Header Files\user\userex</Filter>
-    </ClInclude>
     <ClInclude Include="user\userex\font_view.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
@@ -832,18 +832,6 @@
     </ClInclude>
     <ClInclude Include="user\databaseuser\_databaseuser.h">
       <Filter>Header Files\user\databaseuser</Filter>
-    </ClInclude>
-    <ClInclude Include="user\account\account.h">
-      <Filter>Header Files\user\account</Filter>
-    </ClInclude>
-    <ClInclude Include="user\account\account_dialog.h">
-      <Filter>Header Files\user\account</Filter>
-    </ClInclude>
-    <ClInclude Include="user\account\account_login.h">
-      <Filter>Header Files\user\account</Filter>
-    </ClInclude>
-    <ClInclude Include="user\account\account_simple_ui.h">
-      <Filter>Header Files\user\account</Filter>
     </ClInclude>
     <ClInclude Include="user\account\simple_ui_style.h">
       <Filter>Header Files\user\account</Filter>
@@ -1112,12 +1100,6 @@
     <ClInclude Include="html\elemental\elemental.h">
       <Filter>Header Files\html\elemental</Filter>
     </ClInclude>
-    <ClInclude Include="html\elemental\elemental_elemental.h">
-      <Filter>Header Files\html\elemental</Filter>
-    </ClInclude>
-    <ClInclude Include="html\elemental\internal.h">
-      <Filter>Header Files\html\elemental</Filter>
-    </ClInclude>
     <ClInclude Include="html\graphics\attribute.h">
       <Filter>Header Files\html\graphics</Filter>
     </ClInclude>
@@ -1130,25 +1112,10 @@
     <ClInclude Include="html\graphics\box.h">
       <Filter>Header Files\html\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="html\graphics\ex.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
     <ClInclude Include="html\graphics\font.h">
       <Filter>Header Files\html\graphics</Filter>
     </ClInclude>
     <ClInclude Include="html\graphics\form.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\graphics.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\html_html2.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\html2.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\internal.h">
       <Filter>Header Files\html\graphics</Filter>
     </ClInclude>
     <ClInclude Include="html\graphics\message.h">
@@ -1191,12 +1158,6 @@
       <Filter>Header Files\html\user</Filter>
     </ClInclude>
     <ClInclude Include="html\user\frame.h">
-      <Filter>Header Files\html\user</Filter>
-    </ClInclude>
-    <ClInclude Include="html\user\internal.h">
-      <Filter>Header Files\html\user</Filter>
-    </ClInclude>
-    <ClInclude Include="html\user\user.h">
       <Filter>Header Files\html\user</Filter>
     </ClInclude>
     <ClInclude Include="html\user\view.h">
@@ -1456,6 +1417,60 @@
     </ClInclude>
     <ClInclude Include="user\userex\calculator_edit_view.h">
       <Filter>Header Files\user\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="html\elemental\_.h">
+      <Filter>Header Files\html\elemental</Filter>
+    </ClInclude>
+    <ClInclude Include="html\elemental\_elemental.h">
+      <Filter>Header Files\html\elemental</Filter>
+    </ClInclude>
+    <ClInclude Include="html\graphics\_.h">
+      <Filter>Header Files\html\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="html\graphics\_graphics.h">
+      <Filter>Header Files\html\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html\_html.h">
+      <Filter>Header Files\html\html</Filter>
+    </ClInclude>
+    <ClInclude Include="html\user\_.h">
+      <Filter>Header Files\html\user</Filter>
+    </ClInclude>
+    <ClInclude Include="html\user\_user.h">
+      <Filter>Header Files\html\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\account\_.h">
+      <Filter>Header Files\user\account</Filter>
+    </ClInclude>
+    <ClInclude Include="user\account\_account.h">
+      <Filter>Header Files\user\account</Filter>
+    </ClInclude>
+    <ClInclude Include="user\account\dialog.h">
+      <Filter>Header Files\user\account</Filter>
+    </ClInclude>
+    <ClInclude Include="user\account\login.h">
+      <Filter>Header Files\user\account</Filter>
+    </ClInclude>
+    <ClInclude Include="user\account\simple_ui.h">
+      <Filter>Header Files\user\account</Filter>
+    </ClInclude>
+    <ClInclude Include="user\netuser\_.h">
+      <Filter>Header Files\user\netuser</Filter>
+    </ClInclude>
+    <ClInclude Include="user\netuser\network_configuration.h">
+      <Filter>Header Files\user\netuser</Filter>
+    </ClInclude>
+    <ClInclude Include="user\netuser\_netuser.h">
+      <Filter>Header Files\user\netuser</Filter>
+    </ClInclude>
+    <ClInclude Include="user\rich_text\rich_text.h">
+      <Filter>Header Files\user\rich_text</Filter>
+    </ClInclude>
+    <ClInclude Include="user\rich_text\format_tool.h">
+      <Filter>Header Files\user\rich_text</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple_ui\_simple_ui.h">
+      <Filter>Header Files\user\simple_ui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1741,9 +1756,6 @@
     <ClCompile Include="user\userex\-ehrror_dialog.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
-    <ClCompile Include="user\userex\font_format_tool.cpp">
-      <Filter>Source Files\user\userex</Filter>
-    </ClCompile>
     <ClCompile Include="user\userex\font_view.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
@@ -1940,9 +1952,6 @@
       <Filter>Source Files\html\impl</Filter>
     </ClCompile>
     <ClCompile Include="html\impl\image.cpp">
-      <Filter>Source Files\html\impl</Filter>
-    </ClCompile>
-    <ClCompile Include="html\impl\impl.cpp">
       <Filter>Source Files\html\impl</Filter>
     </ClCompile>
     <ClCompile Include="html\impl\input_button.cpp">
@@ -2250,6 +2259,12 @@
     </ClCompile>
     <ClCompile Include="user\userex\calculator_edit_view.cpp">
       <Filter>Source Files\user\userex</Filter>
+    </ClCompile>
+    <ClCompile Include="html\impl\_.cpp">
+      <Filter>Source Files\html\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="user\rich_text\format_tool.cpp">
+      <Filter>Source Files\user\rich_text</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

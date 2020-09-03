@@ -1,7 +1,9 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "_graphics.h"
+#endif
 #include "aura/id.h"
-#include "core/html/html/_.h"
+#include "core/html/html/_html.h"
 
 
 namespace html

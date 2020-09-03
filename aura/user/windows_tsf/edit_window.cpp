@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 #include "edit_window.h"
 #include "aura/message.h"
 #include "aura/platform/app_core.h"

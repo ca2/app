@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/simple/_simple.h"
+#endif
 
 
 //CLASS_DECL_CORE void aura_message_box(oswindow interaction_impl,const char * pText,const char * lpCaption,u32 uiFlags, function_arg functionargResult);

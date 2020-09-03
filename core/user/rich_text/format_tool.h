@@ -1,11 +1,15 @@
 #pragma once
 
 
-namespace userex
+namespace user
 {
 
 
-   class CLASS_DECL_CORE font_format_tool :
+   namespace rich_text
+   {
+
+
+      class CLASS_DECL_CORE format_tool :
       virtual public ::user::tool_window
    {
    public:
@@ -31,8 +35,8 @@ namespace userex
 
 
 
-      font_format_tool();
-      virtual ~font_format_tool();
+      format_tool();
+      virtual ~format_tool();
 
       
       virtual void install_message_routing(::channel * psender) override;
@@ -62,8 +66,11 @@ namespace userex
    };
 
 
+   } // namespace rich_text
 
 
 } // namespace user
+
+
 
 

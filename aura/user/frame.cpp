@@ -142,7 +142,7 @@ namespace user
    }
 
 
-   ::userex::font_format_tool * frame::font_format_tool(bool bCreate)
+   ::user::tool_window * frame::tool_window(enum_tool etool, bool bCreate)
    {
 
       return nullptr;

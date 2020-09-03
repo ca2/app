@@ -1,6 +1,8 @@
 #include "framework.h"
-#include "core/html/html/_.h"
+#include "core/html/html/_html.h"
+#include "core/html/impl/_impl.h"
 #include "hi5_twitter_authorization.h"
+#include "core/user/simple/_simple.h"
 //#include "core/user/simple/_simple.h"
 
 //#include <openssl/rsa.h>

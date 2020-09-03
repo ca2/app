@@ -52,8 +52,6 @@ namespace core
 
       ::status::result                             m_result;
 
-      __composite(::html::html)                    m_phtml;
-
       //__composite(::user::keyboard)              m_pkeyboard;
 
       //index                                      m_iEdge;
@@ -150,9 +148,6 @@ namespace core
       // ::user::shell* shell();
       
       
-      inline ::html::html * html() { return m_phtml; }
-
-
       virtual ::estatus init1() override;
       virtual ::estatus init2() override;
       virtual ::estatus init() override;

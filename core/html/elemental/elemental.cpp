@@ -3,7 +3,7 @@
 #include "core/html/html/_.h"
 #include "core/html/impl/_impl.h"
 #include "core/user/user/_.h"
-#include "internal.h"
+#include "_elemental.h"
 
 
 namespace html

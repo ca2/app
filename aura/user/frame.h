@@ -4,15 +4,15 @@
 #include "menu_shared.h"
 
 
-
-namespace userex
-{
-
-
-   class font_format_tool;
-
-
-} // namespace userex
+//
+//namespace userex
+//{
+//
+//
+//   class font_format_tool;
+//
+//
+//} // namespace userex
 
 
 #ifndef TBSTYLE_FLAT
@@ -134,7 +134,7 @@ namespace user
       virtual ::user::interaction * GetActiveView() const;
       virtual void SetActiveView(::user::interaction* pViewNew, bool bNotify = TRUE);
 
-      virtual ::userex::font_format_tool * font_format_tool(bool bCreate = false);
+      virtual ::user::tool_window * tool_window(enum_tool etool, bool bCreate = false);
 
       virtual void ActivateFrame(::edisplay edisplay = display_undefined);
 

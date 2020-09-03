@@ -1,7 +1,9 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
+#endif
 #include "core/user/rich_text/_rich_text.h"
-#include "font_format_tool.h"
+//#include "format_tool.h"
 
 
 #ifdef WINDOWS_DESKTOP
@@ -9,11 +11,17 @@
 #endif
 
 
-namespace userex
+
+
+namespace user
 {
 
 
-   font_format_tool::font_format_tool()
+   namespace rich_text
+   {
+
+      
+      format_tool::format_tool()
    {
 
       m_formata.add(__new(::user::rich_text::format(&m_formata)));
@@ -21,13 +29,13 @@ namespace userex
    }
 
 
-   font_format_tool::~font_format_tool()
+   format_tool::~format_tool()
    {
 
    }
 
 
-   ::user::e_translucency font_format_tool::get_translucency(::user::style* pstyle) const
+   ::user::e_translucency format_tool::get_translucency(::user::style* pstyle) const
    {
 
       return ::user::translucency_present;
@@ -35,17 +43,17 @@ namespace userex
    }
 
 
-   void font_format_tool::install_message_routing(::channel * psender)
+   void format_tool::install_message_routing(::channel * psender)
    {
 
       ::user::tool_window::install_message_routing(psender);
 
-      IGUI_MSG_LINK(WM_CREATE, psender, this, &::userex::font_format_tool::_001OnCreate);
+      IGUI_MSG_LINK(WM_CREATE, psender, this, &format_tool::_001OnCreate);
 
    }
 
 
-   void font_format_tool::_001OnCreate(::message::message * pmessage)
+   void format_tool::_001OnCreate(::message::message * pmessage)
    {
 
       SCAST_PTR(::message::create, pcreate, pmessage);
@@ -60,31 +68,31 @@ namespace userex
       }
       int iControl = 0;
       auto estatus = __compose(m_pbuttonBold);
-      iControl++; if (!estatus) { pcreate->failed("Failed to create control for font_format_tool (" + __str(iControl) + ")"); return; }
+      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __str(iControl) + ")"); return; }
       estatus = __compose(m_pbuttonItalic);
-      iControl++; if (!estatus) { pcreate->failed("Failed to create control for font_format_tool (" + __str(iControl) + ")"); return; }
+      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __str(iControl) + ")"); return; }
       estatus = __compose(m_pbuttonUnderline);
-      iControl++; if (!estatus) { pcreate->failed("Failed to create control for font_format_tool (" + __str(iControl) + ")"); return; }
+      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __str(iControl) + ")"); return; }
       estatus = __compose(m_pcomboFamily);
-      iControl++; if (!estatus) { pcreate->failed("Failed to create control for font_format_tool (" + __str(iControl) + ")"); return; }
+      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __str(iControl) + ")"); return; }
       estatus = __compose(m_pcomboSize);
-      iControl++; if (!estatus) { pcreate->failed("Failed to create control for font_format_tool (" + __str(iControl) + ")"); return; }
+      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __str(iControl) + ")"); return; }
       estatus = __compose(m_pbuttonForeground);
-      iControl++; if (!estatus) { pcreate->failed("Failed to create control for font_format_tool (" + __str(iControl) + ")"); return; }
+      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __str(iControl) + ")"); return; }
       estatus = __compose(m_pbuttonBackground);
-      iControl++; if (!estatus) { pcreate->failed("Failed to create control for font_format_tool (" + __str(iControl) + ")"); return; }
+      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __str(iControl) + ")"); return; }
       estatus = __compose(m_pbuttonSubscript);
-      iControl++; if (!estatus) { pcreate->failed("Failed to create control for font_format_tool (" + __str(iControl) + ")"); return; }
+      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __str(iControl) + ")"); return; }
       estatus = __compose(m_pbuttonSuperscript);
-      iControl++; if (!estatus) { pcreate->failed("Failed to create control for font_format_tool (" + __str(iControl) + ")"); return; }
+      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __str(iControl) + ")"); return; }
       estatus = __compose(m_pbuttonLineHeight);
-      iControl++; if (!estatus) { pcreate->failed("Failed to create control for font_format_tool (" + __str(iControl) + ")"); return; }
+      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __str(iControl) + ")"); return; }
       estatus = __compose(m_pbuttonAlignLeft);
-      iControl++; if (!estatus) { pcreate->failed("Failed to create control for font_format_tool (" + __str(iControl) + ")"); return; }
+      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __str(iControl) + ")"); return; }
       estatus = __compose(m_pbuttonAlignCenter);
-      iControl++; if (!estatus) { pcreate->failed("Failed to create control for font_format_tool (" + __str(iControl) + ")"); return; }
+      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __str(iControl) + ")"); return; }
       estatus = __compose(m_pbuttonAlignRight);
-      iControl++; if (!estatus) { pcreate->failed("Failed to create control for font_format_tool (" + __str(iControl) + ")"); return; }
+      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __str(iControl) + ")"); return; }
 
       m_pbuttonBold->create_window(this, "font_bold");
       m_pbuttonBold->LoadBitmaps("matter://fontformat/bold-text-option12.png");
@@ -188,7 +196,7 @@ namespace userex
    }
 
 
-   void font_format_tool::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void format_tool::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::draw2d::brush_pointer brBk(e_create);
@@ -205,7 +213,7 @@ namespace userex
    }
 
 
-   void font_format_tool::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void format_tool::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       m_pbuttonBold->display_child(5, 5, 20, 20);
@@ -247,7 +255,7 @@ namespace userex
    }
 
 
-   bool font_format_tool::is_showing_for_ui(::user::interaction * pinteraction)
+   bool format_tool::is_showing_for_ui(::user::interaction * pinteraction)
    {
 
       return GetOwner() == pinteraction;
@@ -257,7 +265,7 @@ namespace userex
 
 
 
-   void font_format_tool::on_control_event(::user::control_event * pevent)
+   void format_tool::on_control_event(::user::control_event * pevent)
    {
 
       if (pevent->m_actioncontext.is_user_source())
@@ -530,7 +538,7 @@ namespace userex
    }
 
 
-   void font_format_tool::set_font_size(double dFontSize)
+   void format_tool::set_font_size(double dFontSize)
    {
 
       dFontSize = MAX(6.0, MIN(1440.0, dFontSize));
@@ -581,7 +589,7 @@ namespace userex
    }
 
 
-   bool font_format_tool::update_data(bool bSaveAndValidate)
+   bool format_tool::update_data(bool bSaveAndValidate)
    {
 
       if (m_formata.isEmpty() || !m_formata[0])
@@ -690,7 +698,7 @@ namespace userex
    }
 
 
-   void font_format_tool::show_for_ui(::user::interaction* pinteraction)
+   void format_tool::show_for_ui(::user::interaction* pinteraction)
    {
 
       ::rect rectOther;
@@ -726,23 +734,23 @@ namespace userex
 
    }
 
-} // namespace user
+//} // namespace user
+//
 
 
 
 
-
-//::userex::font_format_tool * simple_frame_window::font_format_tool(bool bCreate)
+//::userex::format_tool * simple_frame_window::format_tool(bool bCreate)
 //{
 //
 //   sync_lock sl(mutex());
 //
-//   __pointer(::userex::font_format_tool) pfontformattool = m_ptoolwindowFont;
+//   __pointer(::userex::format_tool) pfontformattool = m_ptoolwindowFont;
 //
 //   if (pfontformattool.is_null() && bCreate)
 //   {
 //
-//      __construct_new < ::userex::font_format_tool> (pfontformattool);
+//      __construct_new < ::userex::format_tool> (pfontformattool);
 //
 //      m_ptoolwindowFont = pfontformattool;
 //
@@ -761,3 +769,11 @@ namespace userex
 //   return pfontformattool;
 //
 //}
+
+
+   } // namespace rich_text
+
+
+} // namespace user
+
+

@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_BASE tool_window :
+   class CLASS_DECL_AURA tool_window :
       virtual public ::user::box
    {
    public:

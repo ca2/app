@@ -141,7 +141,7 @@ public:
 
    ::object_meta * meta() { defer_object_meta(); return m_pmeta; }
 
-   ::context * get_context() const { return m_pcontextContext; }
+   inline ::context * get_context() const { return m_pcontextContext; }
 
    ::thread * get_context_thread() const { return m_pthreadContext; }
 

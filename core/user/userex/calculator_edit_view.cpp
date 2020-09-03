@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/userex/_userex.h"
+#endif
 #include "axis/math/calculator/_.h"
 #include "calculator_edit_view.h"
 #include "aura/update.h"

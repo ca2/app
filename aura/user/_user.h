@@ -226,6 +226,7 @@ namespace user
 //#include "job.h"
 //#include "core/user/experience/experience_updown.h"
 #include "box.h"
+#include "tool_window.h"
 #include "frame.h"
 //#include "menu_command.h"
 //#include "menu_interaction.h"
@@ -689,14 +690,6 @@ class COleDataObject;   // forward context_object (see afxole.h)
 
 
 
-//#include "xfplayer_view_line.h"
-//#include "xfplayer_view_lines.h"
-
-//#include "tool_tip_tool.h"
-//#include "tool_tip_window.h"
-
-
-
 struct __SIZEPARENTPARAMS;
 
 
@@ -709,172 +702,27 @@ namespace user
 
 } // namespace user
 
-//#include "app/aura/user/account/view.h"
 
-//#include "button.h"
-//#include "meta_button.h"
-//#include "bitmap_button.h"
 #include "combo_box.h"
 #include "combo_list.h"
-//#include "static_control.h"
 
-//#include "button_control.h"
-
-//#include "mdi_frame_window.h"
-//#include "mdi_child_window.h"
-
-
-//#include "tool_::user::command.h"
-
-
-//#include "control_bar.h"
-//#include "statusbar.h"
-
-//#include "view.h"
-//#include "document.h"
-//#include "document_template.h"
-
-//#include "split_bar.h"
-//#include "split_layout.h"
-
-
-//#include "form_control.h"
-
-
-//#include "form_document.h"
-//#include "form_window.h"
-//#include "form_mesh.h"
-//#include "form_list.h"
-//#include "form_view.h"
-//#include "form_list_view.h"
-//#include "split_bar.h"
-
-
-//#include "impact_host.h"
-
-
-//#include "split_view.h"
-
-
-//#include "edit_plain_text_view.h"
-
-
-//#include "form.h"
-//#include "tab_view.h"
-
-
-
-//#include "document_manager.h"
 
 #ifdef LINUX
 typedef struct _AppIndicator AppIndicator;
 #endif
 
 
-//#include "notification_area.h"
-//#include "notify_icon.h"
-//#include "notify_icon_listener.h"
-
-
-
-
-
-
-
 #include "slider.h"
-//#include "step_slider.h"
-//#include "elastic_slider.h"
-
-
-
-
-
-
-//#include "image_manager.h"
-
-//#include "aura.h"
-
-
-
-
-
-
-
-
-
-
-
-
-//#include "aura/filesystem/filemanager/filemanager.h"
-
-
-
-
-//#include "aura/user/netuser/_.h"
 
 
 #define new AURA_NEW
 
 
-//#include "form_mesh.h"
-
-
-//#include "font_list.h"
-
-//#include  "impact_system.h"
-//#include  "single_document_template.h"
-//#include  "multiple_document_template.h"
-
-
-//
-//namespace aura
-//{
-//
-//
-//   class CLASS_DECL_AURA session_docs :
-//      virtual public ::object
-//   {
-//   public:
-//
-//
-//      ::user::single_document_template *                 m_ptemplate_bergedge;
-//      ::user::single_document_template *                 m_ptemplate_platform;
-//      ::user::single_document_template *                 m_ptemplate_nature;
-//      ::user::single_document_template *                 m_ptemplate_html;
-//      __pointer(::user::document)                               m_pbergedgedocument;
-//      __pointer(::user::document)                               m_pplatformdocument;
-//      __pointer(::user::document)                               m_pnaturedocument;
-//
-//
-//      session_docs();
-//
-//      virtual ~session_docs();
-//
-//      void close_all_documents();
-//
-//   };
-//
-//
-//   session_docs * create_session_docs();
-//   void destroy_session_docs(session_docs * pdocs);
-//
-//
-//} // namespace aura
-//
-//
-
-
-
-
-
-
-//#include "edit_plain_text_view.h"
-
-
-//#include "static_control.h"
-
-
 #include "user.h"
+
+#define Usr(pobject) (*Sess(pobject).user())
+#define User (Usr(get_context()))
+
 
 
 

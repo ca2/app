@@ -1,5 +1,8 @@
 #include "framework.h"
-#include "core/user/userex/font_format_tool.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/rich_text/_rich_text.h"
+#include "core/user/userex/_userex.h"
+#endif
 #include "aura/const/timer.h"
 
 namespace user
@@ -150,7 +153,7 @@ namespace user
 
          }
 
-         auto pformattool = get_font_format_tool(true);
+         auto pformattool = get_format_tool(true);
 
          pformattool->show_for_ui(this);
 
@@ -162,7 +165,7 @@ namespace user
 
          SCAST_PTR(::message::kill_focus, pkillfocus, pmessage);
 
-         auto pformattool = get_font_format_tool(false);
+         auto pformattool = get_format_tool(false);
 
          if (pformattool != nullptr && pformattool->is_showing_for_ui(this))
          {
@@ -459,10 +462,10 @@ namespace user
       }
 
 
-      __pointer(::userex::font_format_tool) edit::get_font_format_tool(bool bCreate)
+      __pointer(format_tool) edit::get_format_tool(bool bCreate)
       {
 
-         auto pformattool = GetTopLevelFrame()->font_format_tool(bCreate);
+         auto pformattool = GetTopLevelFrame()->tool_window(e_tool_font, bCreate);
 
          return pformattool;
 

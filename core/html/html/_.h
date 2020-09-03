@@ -6,6 +6,8 @@
 #include "core/html/user/_.h"
 
 
+CLASS_DECL_CORE void trim001(string& str);
+
 class html_document;
 
 

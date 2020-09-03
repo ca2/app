@@ -206,7 +206,6 @@ namespace filemanager
 #include "save_as_name_view.h"
 #include "tab_view.h"
 #include "left_view.h"
-#include "view.h"
 #include "main_view.h"
 #include "child_frame.h"
 

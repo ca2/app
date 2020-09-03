@@ -1,5 +1,7 @@
 #include "framework.h"
-#include "group_image_list.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/userex/_userex.h"
+#endif
 
 
 namespace userex

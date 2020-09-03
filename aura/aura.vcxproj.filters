@@ -2654,9 +2654,6 @@
     <ClInclude Include="node\opengl\shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="node\opengl\_.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\filesystem\path_object.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
@@ -3183,6 +3180,9 @@
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\interaction_layout.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\tool_window.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
   </ItemGroup>
@@ -5282,6 +5282,9 @@
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\interaction_layout.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\tool_window.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
   </ItemGroup>

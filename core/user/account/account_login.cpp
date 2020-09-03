@@ -1,5 +1,7 @@
 #include "framework.h"
-#include "account_login.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/account/_account.h"
+#endif
 
 
 namespace account

@@ -122,7 +122,14 @@ namespace base
       create_factory < ::user::split_view  >();
 
 
-      m_pmenucentral2 = __new(::user::menu_central);
+      auto estatus = __compose_new(m_pmenucentral);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
 
       //auto estatus = create_user_shell();
 
@@ -228,7 +235,7 @@ namespace base
       try
       {
 
-         m_pmenucentral2.release();
+         __release(m_pmenucentral);
 
       }
       catch (...)
@@ -1372,12 +1379,8 @@ namespace base
    }
 
 
-   ::user::menu_central* user::menu()
-   {
+//   ::user::menu_central* user::menu()
 
-      return m_pmenucentral2;
-
-   }
 
 
    __namespace_object_factory(user, ::static_setup::flag_object_user);

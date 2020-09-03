@@ -1620,6 +1620,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="user\style.cpp" />
     <ClCompile Include="user\style_base.cpp" />
     <ClCompile Include="user\text.cpp" />
+    <ClCompile Include="user\tool_window.cpp" />
     <ClCompile Include="user\user.cpp" />
     <ClCompile Include="user\wait_cursor.cpp" />
     <ClCompile Include="user\windowing.cpp" />
@@ -1749,7 +1750,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="node\opengl\opengl.h" />
     <ClInclude Include="node\opengl\program.h" />
     <ClInclude Include="node\opengl\shader.h" />
-    <ClInclude Include="node\opengl\_.h" />
     <ClInclude Include="node\windows\a.h" />
     <ClInclude Include="node\windows\aaa_want_to_remove_handle.h" />
     <ClInclude Include="node\windows\aaa_want_to_remove_printer.h" />
@@ -2058,6 +2058,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="user\style.h" />
     <ClInclude Include="user\style_base.h" />
     <ClInclude Include="user\text.h" />
+    <ClInclude Include="user\tool_window.h" />
     <ClInclude Include="user\user.h" />
     <ClInclude Include="user\wait_cursor.h" />
     <ClInclude Include="user\windowing.h" />

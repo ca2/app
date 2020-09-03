@@ -1,11 +1,11 @@
 #pragma once
 
-namespace userex
-{
-
-   class font_format_tool;
-
-} // namespace userex
+//namespace userex
+//{
+//
+//   class font_format_tool;
+//
+//} // namespace userex
 
 
 class CLASS_DECL_BASE simple_frame_window :

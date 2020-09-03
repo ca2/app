@@ -2,7 +2,7 @@
 //
 //  ca2
 //
-//  ca2 is an all-purpose multi-platform framework and set of libraries written in 
+//  ca2 is an all-purpose multi-platform framework and set of libraries written in
 //  C++ language with the aim to help developers create awesome apps for users.
 //
 //  ca2/C++/C/Assembly/Huffman Machine/Hardware/Universe/Multiverse stack
@@ -1952,7 +1952,7 @@ namespace data
 namespace xml
 {
 
-   
+
    class node;
    class document;
 
@@ -2644,7 +2644,7 @@ class callback;
 namespace core
 {
 
-   
+
    class user;
 
 
@@ -3078,8 +3078,6 @@ namespace user
 
 #include "aura/graphics/_.h"
 
-#include "aura/user.h"
-
 
 
 #include "aura/primitive/math/random_number_generator.h"
@@ -3310,7 +3308,7 @@ class node_data_exchange;
 namespace xml
 {
 
-   
+
    class department;
 
 

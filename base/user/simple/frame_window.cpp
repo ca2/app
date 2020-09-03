@@ -1,8 +1,10 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/simple/_simple.h"
+#endif
 #include "aura/message.h"
 #include "aura/update.h"
 #include "axis/xml/_.h"
-#include "base/user/experience/control_box.h"
 
 
 
@@ -3938,7 +3940,7 @@ bool simple_frame_window::window_is_notify_icon_enabled()
 
 void simple_frame_window::on_select_user_style()
 {
-   
+
    if (m_puserstyle.is_null())
    {
 

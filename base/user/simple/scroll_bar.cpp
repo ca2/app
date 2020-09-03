@@ -1,4 +1,7 @@
-#include "framework.h" 
+#include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/simple/_simple.h"
+#endif
 
 
 simple_scroll_bar::simple_scroll_bar() :
@@ -56,7 +59,7 @@ bool simple_scroll_bar::create_window(const char * pszClassName, const char * ps
    {
 
       return false;
-      
+
    }
 
    return true;
@@ -69,9 +72,9 @@ bool simple_scroll_bar::create_window(e_orientation eorientation, u32 uStyle, ::
 
    if(!::user::scroll_bar::create_window(eorientation, uStyle, puiParent, id))
    {
-      
+
       return false;
-      
+
    }
 
    return true;
@@ -1641,7 +1644,7 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
          return;
 
       }
-      
+
       estatus = m_pimageDots->create({ (int)(rectDraw.width() * iDiv), (int)(rectDraw.height() * iDiv) });
 
       if (!estatus)
@@ -1716,7 +1719,7 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
 
    if(rectTrack.contains(item.m_pointClient))
    {
-      
+
       item = ::user::element_scrollbar_rect;
 
    }

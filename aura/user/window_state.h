@@ -157,15 +157,15 @@ namespace user
 
 
       void clear_ephemeral()
-      { 
+      {
 
          m_zorder.clear_request();
-         m_eactivation = activation_none; 
+         m_eactivation = activation_none;
 
       }
 
       const class visual_state& visual() const { return* this; }
-      
+
 
       using visual_state::operator =;
 
@@ -187,9 +187,9 @@ namespace user
       bool operator != (const window_state & windowstate) const { return !operator == (windowstate); }
 
 
-      window_state & operator = (window_state & windowstate) 
+      window_state & operator = (window_state & windowstate)
       {
-      
+
          if (this != &windowstate)
          {
 
@@ -204,7 +204,7 @@ namespace user
          }
 
          return *this;
-      
+
       }
 
 

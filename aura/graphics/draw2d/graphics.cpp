@@ -123,6 +123,28 @@ namespace draw2d
    }
 
 
+   bool graphics::AttachPrinter(HDC hdc)
+   {
+
+      ::exception::throw_not_implemented();
+
+      return false;
+
+   }
+
+
+   HDC graphics::DetachPrinter()
+   {
+
+      ::exception::throw_not_implemented();
+
+      return nullptr;
+
+   }
+
+#endif
+
+
    oswindow graphics::get_window_handle() const
    {
 
@@ -146,27 +168,6 @@ namespace draw2d
 
    }
 
-
-   bool graphics::AttachPrinter(HDC hdc)
-   {
-
-      ::exception::throw_not_implemented();
-
-      return false;
-
-   }
-
-
-   HDC graphics::DetachPrinter()
-   {
-
-      ::exception::throw_not_implemented();
-
-      return nullptr;
-
-   }
-
-#endif
 
    bool graphics::IsPrinting()
    {

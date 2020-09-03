@@ -30,7 +30,7 @@ namespace draw2d_cairo
       bool CreateBitmapIndirect(::draw2d::graphics * pgraphics, LPBITMAP lpBitmap);
       bool CreateCompatibleBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight);
       bool CreateDiscardableBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight);
-      bool CreateDIBSection(::draw2d::graphics * pgraphics, const ::size & size, UINT usage, void **ppvBits, int * stride, HANDLE hSection, u32 offset);
+      bool create_bitmap(::draw2d::graphics * pgraphics, const ::size & size, void **ppvBits, int * stride);
       bool CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, DWORD flInit, const void *pjBits, UINT iUsage);
 
 

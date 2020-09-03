@@ -1926,6 +1926,8 @@
 		<Unit filename="primitive/data/item.h" />
 		<Unit filename="primitive/data/listener.cpp" />
 		<Unit filename="primitive/data/listener.h" />
+		<Unit filename="primitive/data/node.cpp" />
+		<Unit filename="primitive/data/node.h" />
 		<Unit filename="primitive/data/simple_item.cpp" />
 		<Unit filename="primitive/data/simple_item.h" />
 		<Unit filename="primitive/data/tree.cpp" />
@@ -2397,6 +2399,8 @@
 		<Unit filename="user/interaction_debug.cpp" />
 		<Unit filename="user/interaction_impl.cpp" />
 		<Unit filename="user/interaction_impl.h" />
+		<Unit filename="user/interaction_layout.cpp" />
+		<Unit filename="user/interaction_layout.h" />
 		<Unit filename="user/interaction_prodevian.cpp" />
 		<Unit filename="user/interaction_prodevian.h" />
 		<Unit filename="user/interaction_thread.cpp" />
@@ -2411,7 +2415,6 @@
 		<Unit filename="user/language.h" />
 		<Unit filename="user/language_map.cpp" />
 		<Unit filename="user/language_map.h" />
-		<Unit filename="user/layout.cpp" />
 		<Unit filename="user/layout.h" />
 		<Unit filename="user/main_window.cpp" />
 		<Unit filename="user/main_window.h" />
@@ -2489,7 +2492,6 @@
 		<Unit filename="user/simple_ui/top.h" />
 		<Unit filename="user/slider.cpp" />
 		<Unit filename="user/slider.h" />
-		<Unit filename="user/split_layout.cpp" />
 		<Unit filename="user/still.cpp" />
 		<Unit filename="user/still.h" />
 		<Unit filename="user/style.cpp" />

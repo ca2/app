@@ -1,8 +1,11 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "axis/geoip/_.h"
+#endif
 #include "aura/net/sockets/_.h"
 #include <stdio.h>
 
-//#include"geoip.h"
+
 #ifdef BSD_STYLE_SOCKETS
 //#include<openssl/ssl.h>
 //#include<openssl/md5.h>

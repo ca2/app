@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/experience/_experience.h"
+#endif
 
 
 namespace experience
@@ -8,7 +11,7 @@ namespace experience
    menu_manager::menu_manager(frame_window * pframewindow) :
       ::object(pframewindow)
    {
-         
+
       m_pframewindow = pframewindow;
       m_enumState = state_initial;
 
@@ -68,9 +71,9 @@ namespace experience
                               auto point = __point(pbase->m_lparam);
                               if(OnLButtonDblClk((UINT)pbase->m_wparam, point))
                               {
-                                 
+
                                  pbase->m_lresult = 0;
-                                 
+
                                  pbase->m_bRet = true;
 
                                  return;

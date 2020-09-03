@@ -1,7 +1,9 @@
 #include "framework.h"
 #include <stdio.h>
-//#include"net/net_sockets.h"
-//#include"geoip.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "axis/geoip/_.h"
+#endif
+
 
 static
 const i32 FULL_RECORD_LENGTH = 50;

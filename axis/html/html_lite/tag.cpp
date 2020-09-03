@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "axis/html/html_lite/_.h"
+#endif
 
 
 lite_html_tag::lite_html_tag(lite_html_tag &rSource, bool bCopy)

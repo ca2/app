@@ -1,4 +1,7 @@
 ﻿#include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "axis/html/html_lite/_.h"
+#endif
 #include "aura/id.h"
 
 
@@ -317,8 +320,9 @@ namespace html
       }
       return str;
    }
-   i32 html::resolve_entity(const char* pszEntity, string& strChar)
 
+
+   i32 html::resolve_entity(const char* pszEntity, string& strChar)
    {
 
       return m_pentitysolver->resolveEntity(pszEntity, strChar);

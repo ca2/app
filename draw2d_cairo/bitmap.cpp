@@ -104,7 +104,7 @@ namespace draw2d_cairo
    }
 
 
-   bool bitmap::CreateDIBSection(::draw2d::graphics * pgraphics, const ::size & size, UINT usage, void ** ppdata, int * pstride, HANDLE hSection, u32 offset)
+   bool bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::size & size, void ** ppdata, int * pstride)
    {
 
       try

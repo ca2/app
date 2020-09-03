@@ -1,9 +1,10 @@
 #include "framework.h"
 
+
 namespace user
 {
 
-   
+
    main_window::main_window()
    {
 

@@ -25,10 +25,14 @@
 *   me to keep updating it.
 */
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "axis/html/html_lite/_.h"
+#endif
 #if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 #include <sys/mman.h>
 #include <unistd.h>
 #endif
+
 
 void ILiteHTMLReaderEvents::BeginParse(uptr dwAppData, bool &bAbort)
 {

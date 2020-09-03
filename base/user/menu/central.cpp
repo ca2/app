@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/menu/_menu.h"
+#endif
 #include "axis/xml/_.h"
 
 
@@ -11,7 +14,7 @@ namespace user
    {
 
       defer_create_mutex();
-      
+
    }
 
 
@@ -23,9 +26,9 @@ namespace user
 
    bool menu_central::MenuV033AddImageMap(::object * pobjectContext, ::xml::node * pnode)
    {
-      
+
       defer_initialize();
-      
+
       sync_lock sl(mutex());
 
       i32 iIndex;
@@ -90,9 +93,9 @@ namespace user
 
    ::draw2d::font * menu_central::GetMenuFont()
    {
-      
+
       return m_fontMenu;
-      
+
    }
 
 
@@ -132,7 +135,7 @@ namespace user
 
    void menu_central::defer_initialize()
    {
-      
+
       sync_lock sl(mutex());
 
       if (m_pil.is_set())

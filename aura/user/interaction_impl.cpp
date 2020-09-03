@@ -290,12 +290,12 @@ namespace user
 
    }
 
-   
+
    void interaction_impl::set_destroying()
    {
-   
+
       m_bDestroying = true;
-   
+
    }
 
 
@@ -551,7 +551,7 @@ namespace user
       m_puserinteraction->m_pimpl = this;
 
       m_puserinteraction->m_pimpl2 = this;
-      
+
       //#ifdef __APPLE__
 
             m_puserinteraction->m_ewindowflag |= window_flag_postpone_visual_update;
@@ -2407,9 +2407,9 @@ namespace user
 
    void interaction_impl::DragAcceptFiles(bool bAccept)
    {
-      
+
       UNREFERENCED_PARAMETER(bAccept);
-      
+
       ::exception::throw_interface_only();
 
    }
@@ -3184,7 +3184,7 @@ namespace user
             //stop_prodevian();
             //child_post_quit("prodevian");
 
-         }         
+         }
 
       }
       else
@@ -3410,7 +3410,7 @@ namespace user
          sync_lock sl(psync);
 
          ::draw2d::graphics_pointer pgraphics = m_pgraphics->on_begin_draw();
-         
+
          slGraphics.unlock();
 
          windowing_output_debug_string("\n_001UpdateBuffer : after on_begin_draw");
@@ -4295,7 +4295,7 @@ namespace user
       // if Xorg
       // if Wayland
 
-#if !defined(LINUX)
+//#if !defined(LINUX)
 
       //if(m_sizeDrawn != sizeOutput)
       //{
@@ -4318,7 +4318,7 @@ namespace user
       }
       else
       {
-         
+
          uiFlags |= SWP_ASYNCWINDOWPOS | SWP_FRAMECHANGED | SWP_NOREDRAW | SWP_NOCOPYBITS | SWP_DEFERERASE;
 
       }
@@ -4334,7 +4334,7 @@ namespace user
 
       }
 
-#endif
+//#endif
 
       bool bVisibilityChange = is_different(bWasVisible, shouldGetVisible);
 
@@ -4442,14 +4442,14 @@ namespace user
 
          //}
          // END Commented on Windows
-            
+
          ::point pointBottomRight = pointOutput + sizeOutput;
-            
+
          output_debug_string("SetWindowPos bottom_right " + __str(pointBottomRight.x) + ", " + __str(pointBottomRight.y) + "\n");
-            
+
          ::SetWindowPos(m_oswindow, oswindowInsertAfter,
-            pointOutput.x, pointOutput.y,  
-            sizeOutput.cx, sizeOutput.cy,    
+            pointOutput.x, pointOutput.y,
+            sizeOutput.cx, sizeOutput.cy,
             uiFlags);
 
          if (g_pointLastBottomRight != pointBottomRight)
@@ -5185,7 +5185,7 @@ namespace user
          return false;
 
       }
-      
+
       if (!m_puserinteraction->layout().state(elayout).is_visible())
       {
 

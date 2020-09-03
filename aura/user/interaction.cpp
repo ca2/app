@@ -53,7 +53,7 @@ namespace user
       m_ewindowflag += window_flag_enable | window_flag_graphical;
 
       m_bFocus = false;
-      
+
       m_bParentScroll = true;
 
       m_bUserInteractionSetFinish = false;
@@ -333,20 +333,20 @@ namespace user
    {
 
       return flag_none;
-   
+
    }
 
 
    style* interaction::_get_style() const
    {
-      
+
       auto pframe = GetTopLevelFrame();
-      
+
       if(pframe)
       {
-         
+
          return pframe->m_puserstyle;
-         
+
       }
 
       return Session.user()->m_pstyle;
@@ -700,7 +700,7 @@ namespace user
       auto edisplayWindow = pinteraction->layout().window().display();
 
       if (pinteraction->m_pimpl.is_set() &&
-         (layout().sketch().is_screen_visible() 
+         (layout().sketch().is_screen_visible()
             || edisplaySketch != edisplayWindow
             || pinteraction == get_user_interaction_host()))
       {
@@ -1113,7 +1113,7 @@ namespace user
          IGUI_MSG_LINK(WM_ENABLE, pchannel, this, &::user::interaction::_001OnEnable);
 
       }
-      
+
 
 
       IGUI_MSG_LINK(WM_COMMAND, pchannel, this, &interaction::_001OnCommand);
@@ -1270,7 +1270,7 @@ namespace user
    //{
 
    //   m_bLayoutModified = is_any_descendant_modified();
-   // 
+   //
    //}
 
 
@@ -1870,9 +1870,9 @@ namespace user
 
    bool interaction::hide()
    {
-      
-      return display(display_hide); 
-   
+
+      return display(display_hide);
+
    }
 
 
@@ -2232,10 +2232,10 @@ namespace user
          TRACE("::user::interaction::_001OnSize instructed to m_bIgnoreSizeEvent");
 
       }
-      
+
       if(this == Session.m_puiHost)
       {
-         
+
          for (auto& puserinteraction : m_uiptraChild)
          {
 
@@ -2329,7 +2329,7 @@ namespace user
       m_pimpl->set_viewport_org(pgraphics);
 
       //auto point = get_viewport_offset();
-      
+
      // pgraphics->OffsetViewportOrg(point.x, point.y);
 
    }
@@ -2337,27 +2337,27 @@ namespace user
 
    ::point interaction::get_parent_accumulated_scroll(e_layout elayout) const
    {
-      
+
       ::point pointScroll;
-      
+
       auto pChild = this;
-   
+
       while(::is_set(pChild) && ::is_set(pChild->GetParent()))
       {
-         
+
          if(pChild->m_bParentScroll)
          {
-         
+
             pointScroll += pChild->GetParent()->m_pointScroll;
-            
+
          }
-         
+
          pChild = pChild->GetParent();
-         
+
       }
-      
+
       return pointScroll;
-         
+
    }
 
 
@@ -2407,7 +2407,7 @@ namespace user
          ::rect rectIntersect;
 
          index i = 0;
-         
+
          while (pinteraction != nullptr)
          {
 
@@ -2416,7 +2416,7 @@ namespace user
             pinteraction->_001ClientToScreen(rectFocus);
 
             _001ScreenToClient(rectFocus);
-            
+
             if (i == 0)
             {
 
@@ -2435,11 +2435,11 @@ namespace user
             pinteraction = pinteraction->GetParent();
 
          }
-         
+
          ::rect rectClipbox;
-         
+
          pgraphics->GetClipBox(rectClipbox);
-         
+
          pgraphics->IntersectClipRect(rectIntersect);
 
          ::rect rectClipbox2;
@@ -2675,7 +2675,7 @@ namespace user
             auto tickStart = tick::now();
 
 #endif //__DEBUG
-            
+
             _001OnClip(pgraphics);
 
             get_client_rect(pgraphics->m_rectDraw);
@@ -2729,7 +2729,7 @@ namespace user
       }
 
 #endif //__DEBUG
-      
+
       pgraphics->OffsetViewportOrg(pointScroll.x, pointScroll.y);
 
    }
@@ -2760,9 +2760,9 @@ namespace user
 
    void interaction::on_viewport_offset(::draw2d::graphics_pointer & pgraphics)
    {
-      
+
       ::point pointOffset;
-      
+
       if (m_pdescriptor->m_puserinteractionParent != nullptr)
       {
 
@@ -2771,7 +2771,7 @@ namespace user
       }
 
       auto pointViewportOffset = get_viewport_offset();
-      
+
       auto offset = pointOffset - pointViewportOffset;
 
       pgraphics->OffsetViewportOrg((::i32) offset.cx, (::i32) offset.cy);
@@ -2842,9 +2842,9 @@ namespace user
    void interaction::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
    {
 
-      
+
       point pointScroll = m_pointScroll;
-      
+
       bool bParentScroll = false;
 
       try {
@@ -2881,27 +2881,27 @@ namespace user
 
             if (::is_set(pinteraction) && !pinteraction->is_custom_draw())
             {
-               
+
                if(!pointScroll.is_null())
                {
-               
+
                   if(!bParentScroll && pinteraction->m_bParentScroll)
                   {
-                     
+
                      pgraphics->OffsetViewportOrg(-pointScroll.x, -pointScroll.y);
-                     
+
                      bParentScroll = true;
 
                   }
                   else if(bParentScroll && !pinteraction->m_bParentScroll)
                   {
-                     
+
                      pgraphics->OffsetViewportOrg(pointScroll.x, pointScroll.y);
-                     
+
                      bParentScroll = false;
 
                   }
-                     
+
                }
 
                pinteraction->_000CallOnDraw1(pgraphics);
@@ -2946,14 +2946,14 @@ namespace user
          }
 
       }
-         
+
       }
       catch(...)
       {
-         
-         
+
+
       }
-      
+
       //pgraphics->OffsetViewportOrg(pointScroll.x, pointScroll.y);
 
       if (bParentScroll && !pointScroll.is_null())
@@ -3257,84 +3257,84 @@ namespace user
 
       if (!is_this_visible(layout_design) || m_bLockWindowUpdate)
       {
-         
+
          if(strType.contains_ci("experience"))
          {
-            
+
             if(strType.contains_ci("button"))
             {
-               
+
                string strTag = m_strInteractionTag;
-               
+
                strTag = "";
-               
+
                if(m_bLockWindowUpdate)
                {
-                  
+
                   output_debug_string("m_bLockWindowUpdate true\n");
-                  
+
                }
                else if(strTag == "button_close")
                {
-                  
+
                   output_debug_string("button_close not visible\n");
-               
+
                }
                else if(strTag == "button_maximize")
                {
-                  
+
                   output_debug_string("button_maximize not visible\n");
-               
+
                }
                else if(strTag == "button_minimize")
                {
-                   
+
                   output_debug_string("button_minimize not visible\n");
-                
+
                }
                else if(strTag == "button_restore")
                {
-                   
+
                   output_debug_string("button_restore not visible\n");
-                
+
                }
                else if(strTag == "button_dock")
                {
-                   
+
                   output_debug_string("button_dock not visible\n");
-                
+
                }
                else if(strTag == "button_transparent_frame")
                {
-                   
+
                   output_debug_string("button_transparent_frame not visible\n");
-                
+
                }
-               
+
             }
-            
+
          }
 
          return;
 
       }
 
-     
+
 //      if(m_strInteractionTag.begins_ci("button_"))
 //      {
-//      
+//
 //         output_debug_string("drawing: " + m_strInteractionTag + "\n");
-//                             
+//
 //      }
 //      else if(m_strInteractionTag.begins_ci("control_box"))
 //      {
-//      
+//
 //         output_debug_string("-------- drawing: " + m_strInteractionTag + "\n");
-//                             
+//
 //      }
 
       ::point pointOffset;
-      
+
       if (m_pdescriptor->m_puserinteractionParent != nullptr)
       {
 
@@ -3366,7 +3366,7 @@ namespace user
          pgraphics->OffsetViewportOrg(-pointOffset.x, -pointOffset.y);
 
       }
-      
+
 
 
    }
@@ -3467,12 +3467,12 @@ namespace user
             }
 
          }
-         
+
       }
       catch(...)
       {
-         
-         
+
+
       }
 
    }
@@ -4315,7 +4315,7 @@ namespace user
       }
 
       ::rect rectWindow;
-      
+
       get_window_rect(rectWindow, layout_sketch);
 
       return rectWindow.contains(point);
@@ -6522,9 +6522,9 @@ namespace user
 
 
    zorder interaction::zorder(e_layout elayout) const
-   { 
-   
-      return layout().state(elayout).zorder(); 
+   {
+
+      return layout().state(elayout).zorder();
 
    }
 
@@ -6628,7 +6628,7 @@ namespace user
 
       auto eactivationSketch = layout().sketch().activation();
 
-      bool bDisplay = 
+      bool bDisplay =
          edisplaySketch != edisplayDesign
          || eactivationSketch & activation_under_mouse_cursor
          || eactivationSketch & activation_display_change;
@@ -6647,7 +6647,7 @@ namespace user
 
    bool interaction::design_display()
    {
-      
+
       string strType = type_name();
 
       if (strType.contains_ci("page_home"))
@@ -6907,7 +6907,7 @@ namespace user
       }
 
       #endif
-      
+
       //::point point = process_state().m_point;
 
       ::point point = layout().sketch().origin();
@@ -6917,29 +6917,29 @@ namespace user
       const char* pszType = this->type_c_str();
 
       auto p = this;
-      
+
       while(p)
       {
-         
+
          pointScreen += p->layout().sketch().origin();
-         
+
          auto pParent = p->GetParent();
-         
+
          if(pParent && p->m_bParentScroll)
          {
-            
+
             pointScreen += pParent->m_pointScroll;
-            
+
          }
 
          p = pParent;
-         
+
       }
 
       ::point screenOriginSketchBefore = layout().sketch().screen_origin();
 
       ::point screenOriginDesignBefore = layout().design().screen_origin();
-      
+
       layout().sketch().screen_origin() = pointScreen;
 
       layout().design().screen_origin() = pointScreen;
@@ -7614,7 +7614,7 @@ namespace user
       {
 
          edisplayWindow = display_normal;
-         
+
       }
 
       ::e_display edisplayOutputForOsShowWindow = edisplayOutput;
@@ -7640,7 +7640,7 @@ namespace user
          (::is_different(
             ::is_screen_visible(edisplayOutputForOsShowWindow),
             ::is_screen_visible(edisplayWindowForOsShowWindow))))
-         || 
+         ||
          (!(GetExStyle() & WS_EX_LAYERED) &&
          (edisplayOutputForOsShowWindow != edisplayWindowForOsShowWindow)))
 #else
@@ -8284,7 +8284,7 @@ namespace user
 
 
       }
-      
+
       string strType = type_name();
 
       if (strType.contains("albertopibiri_keyboard") && strType.contains("main_frame"))
@@ -8308,17 +8308,17 @@ namespace user
       bool bAppearance = layout().sketch().appearance() != layout().design().appearance();
 
       bool bZorder = false;
-      
+
       for(auto pchild : m_uiptraChild)
       {
-         
+
          if(pchild->layout().sketch().zorder().is_change_request())
          {
-            
+
             bZorder = true;
-            
+
          }
-         
+
       }
 
       ::point pointSketch = layout().sketch().origin();
@@ -8357,7 +8357,7 @@ namespace user
          // as it can trigger too many calls to save_window_rect.
          // moving and sizing changes are handled at
          // on_end_layout_experience
-         // only changes to display and appearance 
+         // only changes to display and appearance
          // will set window_flag_loading_window_rect here
          // (because they are "rare" and it seems
          // good location to manage the change*)
@@ -9418,7 +9418,7 @@ restart:
          return (::user::interaction*) this;
 
       }
-          
+
       if(get_context_session() != nullptr
           && m_pdescriptor->m_puserinteractionParent == get_context_session()->m_puiHost)
       {
@@ -10243,13 +10243,13 @@ restart:
    }
 
 
-   interaction& interaction::operator =(const ::rect& rect) 
-   { 
-      
+   interaction& interaction::operator =(const ::rect& rect)
+   {
+
       place(rect);
 
       return *this;
-   
+
    }
 
 
@@ -10260,7 +10260,7 @@ restart:
 
    }
 
-   
+
    void interaction::display_child(const ::rect& rect)
    {
 
@@ -10312,15 +10312,15 @@ restart:
 
    ::rect interaction::get_window_rect(e_layout elayout) const
    {
-      
+
       auto rect = layout().get_window_rect(elayout);
-      
+
       ::point pointParentOffset = get_parent_viewport_offset();
-      
+
       ::offset(rect, -pointParentOffset.x, -pointParentOffset.y);
 
       return rect;
-      
+
    }
 
 
@@ -10503,7 +10503,7 @@ restart:
 
       if (bSet && (!::IsRectEmpty(&rect) || iMatchingMonitor >= 0))
       {
-         
+
 #if !MOBILE_PLATFORM
 
          if (iMatchingMonitor >= 0 && rectNew.bottom > 0)
@@ -10517,7 +10517,7 @@ restart:
             }
 
          }
-         
+
 #endif
 
          order(zorderParam);
@@ -11039,43 +11039,10 @@ restart:
    }
 
 
-   //void interaction::_001OnBaseWndGetProperty(::message::message * pmessage)
-   //{
-   //
-   //   SCAST_PTR(::message::base, pbase, pmessage);
-
-   //   pbase->m_lresult = _001BaseWndGetProperty((EProperty)pbase->m_wparam.m_number, pbase->m_lparam);
-
-   //}
-
-
-   //LRESULT interaction::_001BaseWndGetProperty(EProperty eprop, LPARAM lparam)
-
-   //{
-   //   switch (eprop)
-   //   {
-   //   case PropertyBaseWndInterface:
-   //   case PropertyDrawBaseWndInterface:
-   //   {
-   //      const primitive ** ppinterface = (const primitive **)lparam;
-
-   //      *ppinterface = this;
-   //   }
-   //   return 1;
-   //   default:
-   //      break;
-   //   }
-   //   return 0;
-   //}
-
-
-
    bool interaction::get_rect_normal(RECT * prect)
-
    {
 
       return m_pimpl->get_rect_normal(prect);
-
 
    }
 
@@ -11205,9 +11172,9 @@ restart:
 
    point interaction::get_viewport_offset()
    {
-      
+
       ::point point = m_pointScroll;
-      
+
       return point;
 
    }
@@ -11328,18 +11295,18 @@ restart:
          return ::point();
 
       }
-      
+
       ::point pointParentAccumulated;
-      
+
       if(puser != NULL)
       {
-         
+
          pointParentAccumulated = puser->get_viewport_offset();
-         
+
          pointParentAccumulated += puser->get_parent_viewport_offset();
-         
+
       }
-      
+
       return pointParentAccumulated;
 
    }
@@ -11466,7 +11433,7 @@ restart:
 
    }
 
-      
+
    void interaction::_001OnSetFocus(::message::message * pmessage)
    {
 
@@ -12880,9 +12847,9 @@ restart:
          }
          else
          {
-            
+
             Session.clear_focus();
-          
+
          }
 
       }
@@ -13201,11 +13168,11 @@ restart:
       sync_lock sl(mutex());
 
       auto itemOldHover = m_itemHover;
-      
+
       auto itemOldHoverMouse = m_itemHoverMouse;
 
       m_itemHover = ::user::element_none;
-      
+
       m_itemHoverMouse = ::user::element_none;
 
       m_bTrackMouseLeave = false;
@@ -13216,7 +13183,7 @@ restart:
          set_need_redraw();
 
          simple_on_control_event(pmessage, event_mouse_leave);
-         
+
          post_redraw();
 
       }
@@ -13248,13 +13215,6 @@ restart:
 
          if (pitem->m_ppath)
          {
-
-            //if (!item.m_pgraphics)
-            //{
-
-            //   item.m_pgraphics = create_memory_graphics();
-
-            //}
 
             if (pitem->m_ppath->contains(item.m_pgraphics, item.m_pointHitTest))
             {
@@ -13313,7 +13273,7 @@ restart:
          return true;
 
       }
-     
+
       if (!item.is_set())
       {
 
@@ -14236,7 +14196,7 @@ restart:
 
 // please refer to object::set_finish verses/documentation
 // ::user::interaction implements custom/dedicated set_finish protocol/feature/function
-// this is why default set_finish isn't/(and shouldn't be) called here 
+// this is why default set_finish isn't/(and shouldn't be) called here
 // (like is done for a regular object instance of *object* class)
 // (look at ::object::delete_this implementation to confirm/study the default set_finish call)
    void interaction::delete_this()
@@ -15372,32 +15332,20 @@ restart:
 
       ::user::primitive::route_command_message(pcommand);
 
-////      on_comman
-//      ////::user::box::route_command_message(pcommand);
-//
-//      ////if (pcommand->m_bRet)
-//      ////{
-//
-//      ////   return;
-//
-//      ////}
+      __pointer(::user::frame) puiFrame = GetParentFrame();
 
-      __pointer(::user::interaction) puiParent = get_parent();
-
-      while (puiParent.is_set() && puiParent->is_place_holder())
+      if (puiFrame)
       {
 
-         puiParent = puiParent->get_parent();
+         puiFrame->route_command_message(pcommand);
 
       }
-
-      if (puiParent && puiParent->is_frame_window())
+      else
       {
 
-         puiParent->route_command_message(pcommand);
+         Application.route_command_message(pcommand);
 
       }
-
 
    }
 

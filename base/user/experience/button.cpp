@@ -1,5 +1,7 @@
 #include "framework.h"
-#include "control_box.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/experience/_experience.h"
+#endif
 
 
 namespace experience

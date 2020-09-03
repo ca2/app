@@ -1,5 +1,7 @@
 #include "framework.h"
-#include "control_box.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/experience/_experience.h"
+#endif
 
 
 namespace experience
@@ -79,7 +81,7 @@ namespace experience
       ::point pointCursor = pmouse->m_point;
 
       ::point point;
-      
+
       ::rect rectDockButtonWindow;
 
       m_pframewindow->m_pframe->get_control_box()->get_button(::experience::button_dock)->get_window_rect(rectDockButtonWindow);

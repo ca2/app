@@ -1,4 +1,7 @@
 ﻿#include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/menu/_menu.h"
+#endif
 
 
 namespace user
@@ -21,7 +24,7 @@ namespace user
    }
 
 
-   menu_list_window::menu_list_window(menu_item * pitem) 
+   menu_list_window::menu_list_window(menu_item * pitem)
    {
 
       m_puiMenuNotify      = nullptr;

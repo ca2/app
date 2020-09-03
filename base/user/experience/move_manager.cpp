@@ -1,7 +1,7 @@
 #include "framework.h"
-
-
-//extern CLASS_DECL_CORE thread_int_ptr < DWORD_PTR > t_time1;
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/experience/_experience.h"
+#endif
 
 
 namespace experience
@@ -41,7 +41,7 @@ namespace experience
          auto pointCursor = pmouse->m_point;
 
          ::rect rectWindow;
-         
+
          m_pframewindow->get_window_rect(rectWindow);
 
          //if(m_pframewindow->layout().design().display() != ::display_normal && m_pframewindow->layout().design().display() != ::display_minimal)

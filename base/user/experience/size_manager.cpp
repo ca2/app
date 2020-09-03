@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/experience/_experience.h"
+#endif
 
 
 namespace experience
@@ -480,7 +483,7 @@ namespace experience
       }
 
       ::rect rectWindowNow;
-      
+
       m_pframewindow->get_window_rect(rectWindowNow);
 
       if (rectWindowNow == rectWindow)

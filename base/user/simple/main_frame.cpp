@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/simple/_simple.h"
+#endif
 
 
 simple_main_frame::simple_main_frame()

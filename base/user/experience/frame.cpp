@@ -1,5 +1,7 @@
 #include "framework.h"
-#include "control_box.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/experience/_experience.h"
+#endif
 
 
 namespace experience
@@ -138,7 +140,7 @@ namespace experience
       sync_lock sl(pframewindow->mutex());
 
       ::rect rectWindow;
-      
+
       pframewindow->get_window_rect(rectWindow);
 
       if (rectWindow.is_empty())
@@ -878,7 +880,7 @@ namespace experience
       {
 
          get_control_box()->display();
-         
+
          get_control_box()->order(::zorder_top_most);
 
       }
@@ -888,7 +890,7 @@ namespace experience
          get_control_box()->hide();
 
       }
-      
+
       get_control_box()->set_need_layout();
 
    }

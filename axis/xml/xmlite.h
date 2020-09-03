@@ -179,7 +179,7 @@ namespace xml
       }
       else
       {
-         
+
          ps->assign(psz,end - psz);
 
       }
@@ -233,10 +233,10 @@ namespace xml
 namespace xml
 {
 
-   inline i32 ch_ansi_char_is_space(uchar uch)
-   {
-      return uch == ' ' || uch == '\t' || uch == '\r' || uch == '\n';
-   }
+//   inline i32 ch_ansi_char_is_space(uchar uch)
+//   {
+//      return uch == ' ' || uch == '\t' || uch == '\r' || uch == '\n';
+//   }
 
 
    //========================================================
@@ -271,7 +271,7 @@ namespace xml
    inline char * _tcsskip(const char * psz)
    {
 
-      while(ch_ansi_char_is_space((uchar)*psz)) psz++;
+      while(ansi_char_is_space((uchar)*psz)) psz++;
 
       return (char *)psz;
 

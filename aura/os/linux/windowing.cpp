@@ -2461,7 +2461,7 @@ void wm_iconify_window(oswindow oswindow)
          if(oswindow->m_pimpl->m_puserinteraction->layout().design().display() !=::display_iconic)
          {
 
-            oswindow->m_pimpl->m_puserinteraction->set_appearance(::display_iconic);
+            oswindow->m_pimpl->m_puserinteraction->layout().design() = ::display_iconic;
 
          }
 
@@ -3408,12 +3408,14 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
                         // 1111111111111111111111111111111111111111111
 
-                        pinteraction->hide();
+                        //pinteraction->hide();
 
                         pinteraction->fork([=]()
                         {
 
-                           if(pinteraction->m_windowrect.m_edisplayPrevious == ::display_iconic)
+                           auto edisplayPrevious = pinteraction->window_previous_display();
+
+                           if(edisplayPrevious == ::display_iconic)
                            {
 
                               pinteraction->_001OnDeiconify(::display_normal);
@@ -3422,7 +3424,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                            else
                            {
 
-                              pinteraction->_001OnDeiconify(pinteraction->m_windowrect.m_edisplayPrevious);
+                              pinteraction->_001OnDeiconify(edisplayPrevious);
 
                            }
 
@@ -3435,7 +3437,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                            && pinteraction->layout().design().display() != ::display_full_screen)
                      {
 
-                        pinteraction->set_appearance(::display_full_screen);
+                        pinteraction->layout().sketch() = ::display_full_screen;
 
                      }
 
@@ -3447,7 +3449,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                      && pinteraction->layout().design().display() != ::display_none)
                      {
 
-                        pinteraction->set_appearance(::display_iconic);
+                        pinteraction->layout().sketch() = ::display_iconic;
 
                      }
 
@@ -3491,61 +3493,81 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
             if(pinteraction->layout().design().display() == ::display_iconic && !msg.hwnd->is_iconic())
             {
 
-               ::e_display edisplayPrevious = pinteraction->m_windowrect.m_edisplayPrevious;
+//               ::e_display edisplayPrevious = pinteraction->window_previous_display();
+//
+//               pinteraction->layout().sketch() = edisplayPrevious;
+//
+//               pinteraction->layout().design() = edisplayPrevious;
+//
+//               pinteraction->layout().output() = edisplayPrevious;
+//
+//               pinteraction->layout().window() = edisplayPrevious;
+//
+//               pinteraction->m_windowrect.m_edisplay = edisplayPrevious;
 
-               pinteraction->layout().sketch().m_edisplay3 = edisplayPrevious;
+                  pinteraction->fork([=]()
+                  {
 
-               pinteraction->process_state().m_edisplay3 = edisplayPrevious;
+                     auto edisplayPrevious = pinteraction->window_previous_display();
 
-               pinteraction->ui_state().m_edisplay3 = edisplayPrevious;
+                     if(edisplayPrevious == ::display_iconic)
+                     {
 
-               pinteraction->window_state3().m_edisplay3 = edisplayPrevious;
+                        pinteraction->_001OnDeiconify(::display_normal);
 
-               pinteraction->m_windowrect.m_edisplay = edisplayPrevious;
+                     }
+                     else
+                     {
 
-            }
+                        pinteraction->_001OnDeiconify(edisplayPrevious);
 
-            {
+                     }
 
-               //_x11_defer_check_configuration(msg.hwnd);
-
-               ::point point(e.xconfigure.x, e.xconfigure.y);
-
-               ::size size(e.xconfigure.width, e.xconfigure.height);
-
-               auto pointWindow = pinteraction->window_state3().m_point;
-
-               auto sizeWindow = pinteraction->window_state3().m_size;
-
-               if(pointWindow != point)
-               {
-
-                  msg.message       = WM_MOVE;
-                  msg.wParam        = 0;
-                  msg.lParam        = point.lparam();
-
-                  post_ui_message(msg);
+                  });
 
                }
 
-               if(sizeWindow != size)
                {
 
-                  msg.message       = WM_SIZE;
-                  msg.wParam        = 0;
-                  msg.lParam        = size.lparam();
+                  //_x11_defer_check_configuration(msg.hwnd);
 
-                  post_ui_message(msg);
+                  ::point point(e.xconfigure.x, e.xconfigure.y);
+
+                  ::size size(e.xconfigure.width, e.xconfigure.height);
+
+                  auto pointWindow = pinteraction->layout().window().screen_origin();
+
+                  auto sizeWindow = pinteraction->layout().window().size();
+
+                  if(pointWindow != point)
+                  {
+
+                     msg.message       = WM_MOVE;
+                     msg.wParam        = 0;
+                     msg.lParam        = point.lparam();
+
+                     post_ui_message(msg);
+
+                  }
+
+                  if(sizeWindow != size)
+                  {
+
+                     msg.message       = WM_SIZE;
+                     msg.wParam        = 0;
+                     msg.lParam        = size.lparam();
+
+                     post_ui_message(msg);
+
+                  }
+
+                  msg.hwnd->m_rect.set(point, size);
 
                }
-
-               msg.hwnd->m_rect.set(point, size);
 
             }
 
          }
-
-      }
 
       if(g_oswindowDesktop != nullptr && e.xconfigure.window == g_oswindowDesktop->window())
       {
@@ -5271,6 +5293,19 @@ void x11_store_name(oswindow oswindow, const char * pszName)
 //   });
 //
 //}
+
+
+
+void os_menu_item_enable(void * pitem, bool bEnable)
+{
+
+}
+
+
+void os_menu_item_check(void * pitem, bool bCheck)
+{
+
+}
 
 
 

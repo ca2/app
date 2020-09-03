@@ -1,6 +1,8 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/experience/_experience.h"
+#endif
 #include "aura/const/timer.h"
-#include "control_box.h"
 
 
 namespace experience
@@ -20,7 +22,7 @@ namespace experience
    {
 
       m_strInteractionTag = "control_box";
-      
+
       set_control_box_button_id(button_close, "frame::ButtonClose");
       set_control_box_button_id(button_up, "frame::button_up");
       set_control_box_button_id(button_down, "frame::button_down");
@@ -380,7 +382,7 @@ namespace experience
 
    }
 
-   
+
    bool control_box::should_show_button(e_button ebutton)
    {
 
@@ -390,7 +392,7 @@ namespace experience
          return false;
 
       }
-         
+
       if (ebutton == button_close)
       {
 
@@ -631,7 +633,7 @@ namespace experience
 //
 //               if (pbutton)
 //               {
-//               
+//
 //                  pbutton->place(rect);
 //                  pbutton->display();
 //                  pbutton->UpdateWndRgn();
@@ -972,21 +974,21 @@ namespace experience
       get_control_box_button_caption(ebutton, strCaption);
 
       id id = get_control_box_button_id(ebutton);
-      
+
       if (m_buttonmap.lookup(ebutton, pbutton))
       {
 
          if (!pbutton->is_window() && !pbutton->create_window(this, id))
          {
-            
+
             return false;
-            
+
          }
-         
+
          string strTag = get_control_box_button_tag(ebutton);
-         
+
          pbutton->m_strInteractionTag = strTag;
-         
+
          update_control_box_button(ebutton);
 
       }
@@ -1004,14 +1006,14 @@ namespace experience
 
    void control_box::update_control_box_buttons()
    {
-      
+
       for (auto & ebutton : m_buttonmap.keys())
       {
-         
+
          update_control_box_button(ebutton);
-         
+
       }
-      
+
    }
 
 
@@ -1085,17 +1087,17 @@ namespace experience
 
    void control_box::set_control_box_button_id(e_button ebutton, id id)
    {
-      
+
       m_mapButtonId[ebutton] = id;
-      
+
       m_mapIdButton[id] = ebutton;
 
    }
 
-   
+
    id control_box::get_control_box_button_id(e_button ebutton)
    {
-      
+
       return m_mapButtonId[ebutton];
 
    }
@@ -1103,7 +1105,7 @@ namespace experience
 
    string control_box::get_control_box_button_tag(e_button ebutton)
    {
-   
+
       switch(ebutton)
       {
          case button_close: // stock_icon_close
@@ -1127,15 +1129,15 @@ namespace experience
          default:
             break;
       }
-      
+
       return "(unknown)";
-   
+
    }
 
-   
+
    e_button control_box::get_control_box_button_type(id id)
    {
-      
+
       return m_mapIdButton[id];
 
    }

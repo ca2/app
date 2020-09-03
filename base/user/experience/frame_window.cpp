@@ -1,8 +1,9 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/experience/_experience.h"
+#endif
 #include "aura/update.h"
 #include "aura/message.h"
-//#include "aura/papaya/papaya_zoneing.h"
-#include "control_box.h"
 
 
 namespace experience

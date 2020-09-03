@@ -146,7 +146,7 @@ namespace draw2d_cairo
 
       i32 iScan = iGoodStride;
 
-      if(!m_pbitmap->CreateDIBSection(nullptr, size, DIB_RGB_COLORS, (void **) &pcolorrefRaw, &iScan, nullptr, 0))
+      if(!m_pbitmap->create_bitmap(nullptr, size, (void **) &pcolorrefRaw, &iScan))
       {
 
          m_sizeRaw.cx = 0;

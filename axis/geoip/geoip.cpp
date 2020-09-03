@@ -1,7 +1,9 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "axis/geoip/_.h"
+#endif
 #include <stdio.h>
-//#include"net/net_sockets.h"
-//#include"geoip.h"
+
 
 #ifdef WINDOWS
 

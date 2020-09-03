@@ -79,18 +79,10 @@ namespace linux
       DECL_GEN_SIGNAL(_001OnMove);
       DECL_GEN_SIGNAL(_001OnSize);
       DECL_GEN_SIGNAL(_001OnShowWindow);
-      //DECL_GEN_SIGNAL(_001OnProdevianSynch);
 
 
-      virtual void window_show_change_visibility() override;
+      virtual void window_show_change_visibility();
 
-
-//#if(WINVER >= 0x0500)
-//
-//      bool GetWindowInfo(PWINDOWINFO pwi) const;
-//      bool GetTitleBarInfo(PTITLEBARINFO pti) const;
-//
-//#endif   // WINVER >= 0x0500
 
       virtual ::user::interaction_impl * from_os_data(void * pdata) override;
       virtual void * get_os_data() const override;
@@ -206,7 +198,7 @@ namespace linux
 
 
       // oswindow size and position Functions
-      virtual bool layout().is_iconic();
+      virtual bool node_is_iconic() override;
       //virtual bool layout().is_zoomed();
       //virtual bool layout().is_full_screen();
       //void MoveWindow(i32 x, i32 y, i32 nWidth, i32 nHeight,
@@ -331,7 +323,7 @@ namespace linux
 //
 //#endif   // _WIN32_WINNT >= 0x0501
 
-      
+
 
 //      // Timer Functions
 //      virtual bool SetTimer(uptr nIDEvent, UINT nElapse, PFN_TIMER pfnTimer);

@@ -7,7 +7,7 @@ class prodevian;
 namespace user
 {
 
-   
+
    class control_bar;
 
 
@@ -246,8 +246,8 @@ namespace user
 
       virtual::edisplay window_stored_display() const;
       virtual::edisplay window_previous_display() const;
-         
-         
+
+
       virtual bool is_full_screen_enabled() const;
 
       virtual bool get_element_rect(RECT* prect, e_element eelement);
@@ -418,8 +418,10 @@ namespace user
       inline void get_client_rect(LPRECT lprect, e_layout elayout = layout_design) const { layout().state(elayout).client_rect(lprect); }
       inline ::rect get_client_rect(e_layout elayout = layout_design) const { return layout().state(elayout).client_rect(); }
 
-      inline void get_window_rect(LPRECT lprect, e_layout elayout = layout_design) const { *lprect = get_window_rect(elayout); }
-      inline ::rect get_window_rect(e_layout elayout = layout_design) const;
+
+      virtual void get_window_rect(LPRECT lprect, e_layout elayout = layout_design) const { *lprect = get_window_rect(elayout); }
+      virtual ::rect get_window_rect(e_layout elayout = layout_design) const;
+
 
       inline bool set_prodevian() { return add_prodevian(this); }
       inline bool clear_prodevian() { return remove_prodevian(this); }

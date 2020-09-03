@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "_impl.h"
 
 
 void trim001(string & str)

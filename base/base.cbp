@@ -334,7 +334,6 @@
 		<Unit filename="user/menu/menu_view.cpp" />
 		<Unit filename="user/menu/menu_view.h" />
 		<Unit filename="user/prelude.h" />
-		<Unit filename="user/simple/_.h" />
 		<Unit filename="user/simple/_impl.h" />
 		<Unit filename="user/simple/_simple.h" />
 		<Unit filename="user/simple/frame_window.cpp" />

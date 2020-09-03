@@ -1,5 +1,7 @@
 ﻿#include "framework.h"
-
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 
 
 namespace user
@@ -371,7 +373,7 @@ namespace user
       m_pdroptargetwindow->create_window_ex(createstruct);
 
       m_pdroptargetwindow->order(zorder_top_most);
-      
+
       m_pdroptargetwindow->place(rect);
 
       m_pdroptargetwindow->display(display_normal);

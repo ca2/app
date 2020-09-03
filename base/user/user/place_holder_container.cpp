@@ -1,5 +1,7 @@
-#include "framework.h" 
-
+#include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 
 
 namespace user
@@ -9,7 +11,7 @@ namespace user
    {
    }
 
- 
+
 
    place_holder_container::~place_holder_container()
    {
@@ -94,7 +96,7 @@ namespace user
 
    bool place_holder_container::on_place_hold(::user::interaction * pinteraction, ::user::place_holder * pholder)
    {
-      
+
       if(pholder->can_merge(pinteraction))
       {
 

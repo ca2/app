@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 
 
 namespace user
@@ -42,7 +45,7 @@ namespace user
 
    }
 
-   
+
    ::estatus form::open_document(const var& varFile)
    {
 
@@ -104,18 +107,18 @@ namespace user
    }
 
    ::user::form_callback* form::get_form_callback()
-   { 
-      
-      return m_pcallback.get(); 
-   
+   {
+
+      return m_pcallback.get();
+
    }
 
 
    ::user::callback* form::get_user_callback()
-   { 
-      
-      return get_form_callback(); 
-   
+   {
+
+      return get_form_callback();
+
    }
 
 

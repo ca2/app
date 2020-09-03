@@ -1,4 +1,9 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
+
+
 //#include "control_ddx_dbflags.h"
 
 //
@@ -874,7 +879,7 @@
 //
 //   }
 //
-//   
+//
 //   //::user::form * control::get_form()
 //   //{
 //

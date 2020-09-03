@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 
 
 namespace user
@@ -568,7 +571,7 @@ namespace user
          return nullptr;
       }*/
 
-   
+
    void impact::set_impact_title(const string& strImpactTitle)
    {
 
@@ -1061,7 +1064,7 @@ namespace user
       if (pmouseactivate->get_message() == MA_NOACTIVATE
             || pmouseactivate->get_message() == MA_NOACTIVATEANDEAT)
       {
-         
+
          pmouseactivate->m_lresult = pmouseactivate->get_message(); // frame does not want to activate
 
          pmouseactivate->m_bRet = true;

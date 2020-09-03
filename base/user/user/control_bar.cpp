@@ -1,5 +1,7 @@
-#include "framework.h" 
-
+#include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 
 
 #define WM_SETMESSAGESTRING 0x0362  // wParam = nIDS (or 0),
@@ -402,12 +404,12 @@ namespace user
 
    }
 
-   
+
    void control_bar::_001OnWindowPosChanging(::message::message * pmessage)
    {
-      
+
       //UNREFERENCED_PARAMETER(pmessage);
-      
+
       //default_window_procedure(pmessage);
 
    }
@@ -819,7 +821,7 @@ namespace user
          __reposition_window(playout, this, &rect);
 
       }
-      
+
       pbase->m_lresult = 0;
 
    }
@@ -908,7 +910,7 @@ namespace user
       if (uStyle & CBRS_BORDER_BOTTOM)
          rect2.bottom -= 2;
       //rect2.bottom -= afxData.cyBorder2;
-      
+
       // draw left and top
       if (uStyle & CBRS_BORDER_LEFT)
       {
@@ -956,7 +958,7 @@ namespace user
             pgraphics->set(pen);
             pgraphics->move_to(0, 7);
             pgraphics->line_to(7, 0);
-            
+
          }
       }
 

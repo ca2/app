@@ -1,5 +1,7 @@
 #include "framework.h"
-
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 
 
 form_document::form_document()
@@ -26,14 +28,14 @@ form_document::~form_document()
 
 bool form_document::on_open_document(const var & varFile)
 {
-   
+
    auto pformview = get_typed_view < ::user::form_view >();
-   
+
    if(!pformview)
    {
-      
+
       return false;
-      
+
    }
 
    auto pformcallback = pformview->get_form_callback();
@@ -51,14 +53,14 @@ bool form_document::on_open_document(const var & varFile)
       }
 
    }
-   
+
    if(!pformview->open_document(varFile))
    {
-      
+
       return false;
-      
+
    }
-   
+
    return true;
 
 }
@@ -66,7 +68,7 @@ bool form_document::on_open_document(const var & varFile)
 
 void form_document::soft_reload()
 {
-   
+
 }
 
 

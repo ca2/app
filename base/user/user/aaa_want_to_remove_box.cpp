@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 #include "aura/message.h"
 
 
@@ -96,13 +99,13 @@ namespace user
 
    bool box::should_save_window_rect()
    {
-      
+
 #if defined(_UWP) || defined(APPLE_IOS)
-      
+
       return false;
-      
+
 #else
-      
+
       return m_bSaveWindowRect && m_bEnableSaveWindowRect2;
 
 #endif

@@ -1,4 +1,7 @@
-﻿#include "framework.h" 
+﻿#include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 #include "aura/graphics/draw2d/printer.h"
 #include "print_task.h"
 
@@ -7,7 +10,7 @@
 namespace user
 {
 
-   
+
    print_task::print_task()
    {
 
@@ -31,7 +34,7 @@ namespace user
       }
 
       return estatus;
- 
+
    }
 
 

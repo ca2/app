@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 #include "aura/message.h"
 #include "aura/update.h"
 #include "aura/user/wait_cursor.h"
@@ -415,7 +418,7 @@ runall(CREATE_PROCEDURE);
 
    void document::delete_contents()
    {
-      
+
       if (!m_bCustomOpen)
       {
 

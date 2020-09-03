@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 
 
 
@@ -295,7 +298,7 @@ namespace user
       {
 
          m_impactdatamap.remove_key(pimpactdata->m_id);
-         
+
          __pointer(exception) phostexception = pe;
 
          if (phostexception.is_set())
@@ -470,7 +473,7 @@ namespace user
       //      ::str::begins_eat_ci(strView, "frame::");
 
       //      pdataclient->data_set("frame::" + strView + ".visible", bShow);
-      // 
+      //
       //   }
 
       //}
@@ -514,7 +517,7 @@ namespace user
 
       if (pimpactdata)
       {
-         
+
          return pimpactdata;
 
       }

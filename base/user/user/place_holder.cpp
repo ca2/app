@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 
 
 namespace user
@@ -35,7 +38,7 @@ namespace user
 
       //SCAST_PTR(::message::show_window, pshowwindow, pmessage);
 
-      
+
    }
 
 
@@ -240,21 +243,21 @@ namespace user
 
    void place_holder::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
    {
-    
+
       if(m_uiptraChild.get_size() >= 2)
       {
-         
+
          output_debug_string("place_holder with more than one child : what?!?!");
-         
+
       }
-      
+
       if(m_uiptraChild.has_element())
       {
-      
+
          m_uiptraChild[0]->_000CallOnDraw1(pgraphics);
-         
+
       }
-   
+
    }
 
 
@@ -368,7 +371,7 @@ namespace user
 
    }
 
-   
+
    void place_holder::get_child_rect(RECT* prect)
    {
 

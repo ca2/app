@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 
 
 namespace user
@@ -7,9 +10,9 @@ namespace user
 
    //form_callback::form_callback()
    //{
-   //   
+   //
    //   m_pformpropertyset = nullptr;
-   //   
+   //
    //}
    //
    //
@@ -27,7 +30,7 @@ namespace user
 
    }
 
-   
+
    void form_callback::_001OnInitializeControl(::user::interaction * pinteraction)
    {
 

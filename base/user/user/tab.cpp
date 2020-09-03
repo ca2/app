@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 #include "aura/update.h"
 #include "aura/const/timer.h"
 
@@ -527,7 +530,7 @@ namespace user
          {
 
             ::rect rectWindow;
-            
+
             get_window_rect(rectWindow);
 
             bool bShowTabs;
@@ -597,9 +600,9 @@ namespace user
       }
 
       //point pointViewportOffset = pgraphics->GetViewportOrg();
-      
+
       ::rect rClip;
-      
+
       pgraphics->GetClipBox(rClip);
 
       __pointer(::base::style) pstyle = get_style(pgraphics);
@@ -1581,7 +1584,7 @@ namespace user
       GetTabClientRect(rectChild);
 
       ::rect rectWindow;
-      
+
       pholder->get_window_rect(rectWindow);
 
       _001ScreenToClient(rectWindow);
@@ -1615,7 +1618,7 @@ namespace user
    {
 
       SCAST_PTR(::message::mouse, pmouse, pmessage);
-      
+
       pmouse->previous();
 
       m_itemClick = hit_test(pmouse);
@@ -2535,12 +2538,12 @@ namespace user
          }
 
       }
-      
+
       //fork([this]()
       //{
 
          on_change_cur_sel();
-         
+
       //});
 
    }

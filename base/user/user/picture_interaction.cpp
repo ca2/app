@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 
 
 namespace user
@@ -44,7 +47,7 @@ namespace user
 
    }
 
-   
+
    void picture_interaction::on_hit_test(::user::item & item)
    {
 

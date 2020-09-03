@@ -1,4 +1,7 @@
 ﻿#include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 
 
 namespace user
@@ -42,7 +45,7 @@ namespace user
 
    void split_layout::_001OnCreate(::message::message* pmessage)
    {
-      
+
       pmessage->previous();
 
    }
@@ -146,12 +149,12 @@ namespace user
 
          if(!m_splitbara[i])
          {
-            
+
             auto estatus = __construct(m_splitbara[i]);
 
             if (!estatus)
             {
-            
+
                ::user::split_bar & splitbar = m_splitbara(i);
 
                splitbar.m_iIndex = i;
@@ -328,7 +331,7 @@ namespace user
 
                   m_splitbara[m_iIndex]->m_dwPosition = nPos;
                   m_splitbara[m_iIndex]->m_dRate = 0.0;
-               
+
                   set_need_layout();
 
                }
@@ -1182,7 +1185,7 @@ namespace user
          if((fwKeys & MK_LBUTTON) > 0 && (m_iState == stateDragging) && (iSplitBar == m_iIndex))
          {
             //cslock lock(&m_mutex);
-            
+
             sync_lock sl(mutex());
 
             {
@@ -1218,11 +1221,11 @@ namespace user
 
                   m_splitbara[m_iIndex]->m_dwPosition = nPos;
                   m_splitbara[m_iIndex]->m_dRate = 0.0;
-                  
+
                   set_need_layout();
 
                }
-               
+
             }
 
          }

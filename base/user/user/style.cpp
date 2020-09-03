@@ -1,4 +1,7 @@
 ﻿#include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 
 
 namespace base
@@ -209,7 +212,7 @@ namespace base
 //   }
 //
 //   //virtual ::user::menu_interaction * create_menu_button(::user::style_pointer & pstyle, menu_item * pitem) override;
-      
+
    bool style::prepare_menu(::draw2d::graphics_pointer& pgraphics, ::user::menu_item* pitem)
    {
 

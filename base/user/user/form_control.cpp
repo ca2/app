@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 #include "aura/message.h"
 
 
@@ -21,29 +24,29 @@ namespace user
 
    }
 
-   
+
 
    //::form_property_set * form_control::get_form_property_set()
    //{
-   //   
+   //
    //   if(::is_set(m_pcallback))
    //   {
-   //      
+   //
    //      auto pset = m_pcallback->get_form_property_set();
-   //      
+   //
    //      if(pset)
    //      {
-   //       
+   //
    //         return pset;
-   //         
+   //
    //      }
-   //      
+   //
    //   }
-   //   
+   //
    //   return ::user::interaction::get_form_property_set();
-   //   
+   //
    //}
-   
+
 
    __pointer(class control_descriptor) form_control::new_form_control()
    {
@@ -763,7 +766,7 @@ namespace user
 
    }
 
-   
+
    bool form_control::update_data(bool bSaveAndValidate)
    {
 
@@ -922,18 +925,18 @@ namespace user
 
    void form_control::_001OnCreate(::message::message * pmessage)
    {
-      
+
       SCAST_PTR(::message::create, pmessagecreate, pmessage);
 
       auto pcreate = (::create *) pmessagecreate->m_lpcreatestruct->CREATE_STRUCT_P_CREATE_PARAMS;
-      
+
       if(::is_set(pcreate))
       {
-       
+
          set_form_callback(pcreate->m_varArgs["form_callback"].cast < ::user::form_callback >());
-         
+
       }
-      
+
       if (pmessagecreate->previous())
       {
 
@@ -1037,9 +1040,9 @@ namespace user
          TRACE("form_control::create_control: failed to create control, could not find proper type for allocation");
          return false;
       }
-      
+
       __pointer(object) pobject;
-      
+
       __id_construct(pobject, pdescriptor->m_type);
 
       if(!pobject)
@@ -1055,7 +1058,7 @@ namespace user
 
       if(!pinteraction)
       {
-         
+
          pobject.release();
 
          TRACE("form_control::create_control: failed to create control, object is not derived from user::control_descriptor");
@@ -1094,7 +1097,7 @@ namespace user
 
    string form_control::get_path()
    {
-      
+
       return "";
 
    }
@@ -1169,14 +1172,14 @@ namespace user
       //   }
 
       //}
-      
+
       ::user::interaction::on_control_event(pevent);
-      
+
       if(pevent->m_bRet)
       {
-         
+
          return;
-         
+
       }
 
       if(pevent->m_eevent == ::user::event_tab_key)
@@ -1485,20 +1488,20 @@ namespace user
 
    void form_control::_001OnTimer(::timer * ptimer)
    {
-      
+
       ::user::form::_001OnTimer(ptimer);
-      
+
       if(m_pcallback != nullptr)
       {
 
          ::user::control_event ev;
-         
+
          ev.m_puie = this;
 
          ev.m_eevent = ::user::event_timer;
 
          ev.m_uiEvent = ptimer->m_nIDEvent;
-         
+
          ev.m_etimer = ptimer->m_etimer;
 
          Application.on_control_event(&ev);

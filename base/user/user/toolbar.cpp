@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 #include "axis/xml/_.h"
 #define CLR_TO_RGBQUAD(clr)     (RGB(::blue(clr), ::green(clr), ::red(clr)))
 
@@ -80,7 +83,7 @@ namespace user
 
    bool toolbar::create_window(::user::interaction * puiParent,u32 uStyle, ::id id)
    {
-      
+
       return create_toolbar(puiParent, 0, uStyle, id);
 
    }
@@ -131,13 +134,13 @@ namespace user
 //
 //#endif
       return ::user::control_bar::SetOwner(pOwnerWnd);
-      
+
    }
-   
+
 
    void toolbar::SetSizes(const ::size & sizeButton, const ::size & sizeImage)
    {
-      
+
       ASSERT_VALID(this);
 
       // sizes must be non-zero and positive
@@ -169,7 +172,7 @@ namespace user
       }
    }
 
-   
+
    void toolbar::SetHeight(index cyHeight)
    {
 
@@ -512,11 +515,11 @@ namespace user
 
    ::user::estate toolbar::get_button_state(int iItem)
    {
-      
+
       ::user::estate estate = e_state_none;
-      
+
       int nStyle = GetButtonStyle(iItem);
-      
+
       bool bHover = m_itemHover == (::index) iItem;
 
       if ((nStyle & TBBS_SEPARATOR) == 0)
@@ -524,31 +527,31 @@ namespace user
 
          if ((nStyle & TBBS_DISABLED) == 0)
          {
-            
+
             estate |= e_state_disabled;
-            
+
          }
 
          // item is enabled
          if (m_iButtonPressItem >= 0)
          {
-               
+
             if (iItem == m_iButtonPressItem)
             {
-          
+
                estate |= e_state_pressed;
-                  
+
             }
-            
+
          }
-                  
+
          if (bHover)
          {
-                     
+
             estate |= e_state_hover;
-            
+
          }
-            
+
       }
 
       return estate;
@@ -557,11 +560,11 @@ namespace user
 
 
 //#ifdef WINDOWS_DESKTOP
-//   
-//   
+//
+//
 //   ::size toolbar::CalcSize(TBBUTTON * pData, index nCount)
 //   {
-//      
+//
 //      //ASSERT(pData != nullptr && nCount > 0);
 //
 //      //point cur(0,0);
@@ -756,9 +759,9 @@ namespace user
 //   //   {
 //
 //   //      ::size sizeMax;
-//   //      
+//   //
 //   //      ::size sizeMin;
-//   //      
+//   //
 //   //      ::size sizeMid;
 //
 //   //      // Wrap ToolBar vertically
@@ -808,7 +811,7 @@ namespace user
 //         ASSERT(dwMode & LM_HORZ);
 //
 //      index nCount;
-//      
+//
 //      TBBUTTON * pData = nullptr;
 //
 //      ::size sizeResult(0,0);
@@ -851,7 +854,7 @@ namespace user
 //            }
 //            else if (bDynamic && (nLength != -1))
 //            {
-//               
+//
 //               ::rect rect;
 //
 //               CalcInsideRect(rect, (dwMode & LM_HORZ) != 0);
@@ -1130,11 +1133,11 @@ return { 0,0 };
 
          // cache string away in string map
          m_pStringMap->set_at(wstrText, (void *)nString);
-         
+
          ASSERT(m_pStringMap->lookup(wstrText, p));
-         
+
       }
-      
+
 
       // change the toolbar button description
 
@@ -1175,17 +1178,17 @@ return { 0,0 };
 //#ifdef WINDOWS_DESKTOP
 //      if (m_pStringMap != nullptr)
 //      {
-//         
+//
 //         // get button information (need button.iString)
 //         TBBUTTON button;
-//         
+//
 //         _GetButton(nIndex, &button);
 //
 //         // look in map for matching iString
 //         POSITION pos = m_pStringMap->get_start_position();
-//         
-//         string str; 
-//         
+//
+//         string str;
+//
 //         void * p;
 //
 //         while (pos)
@@ -1195,9 +1198,9 @@ return { 0,0 };
 //
 //            if ((INT_PTR)p == button.iString)
 //            {
-//               
+//
 //               rWString = str;
-//               
+//
 //               return;
 //
 //            }
@@ -1222,11 +1225,11 @@ return { 0,0 };
 
    void toolbar::_001OnNcHitTest(::message::message * pmessage)
    {
-      
+
       SCAST_PTR(::message::base, pbase, pmessage);
-      
+
       pbase->m_lresult = HTCLIENT;
-      
+
       pbase->m_bRet = true;
 
    }
@@ -1236,7 +1239,7 @@ return { 0,0 };
    {
 
 #ifdef WINDOWS_DESKTOP
-      
+
       SCAST_PTR(::message::nc_calc_size, pnccalcsize, pmessage);
 
       // calculate border space (will add to top/bottom, subtract from right/bottom)
@@ -1346,23 +1349,23 @@ return { 0,0 };
 
    void toolbar::_001OnSetButtonSize(::message::message * pmessage)
    {
-      
+
       //SCAST_PTR(::message::base, pbase, pmessage);
-      
+
       //pbase->m_lresult = OnSetSizeHelper(m_sizeButton, pbase.m_lparam);
-      
+
    }
 
-   
+
    void toolbar::_001OnSetBitmapSize(::message::message * pmessage)
    {
-      
+
       //SCAST_PTR(::message::base, pbase, pmessage);
-      
+
       //pbase->m_lresult = OnSetSizeHelper(m_sizeImage, pbase.m_lparam);
-      
+
    }
-   
+
 
 //   LRESULT toolbar::OnSetSizeHelper(::size& size, LPARAM lParam)
 //   {

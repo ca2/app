@@ -1,6 +1,10 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 #include "aura/message.h"
 #include "aura/update.h"
+
 
 namespace user
 {
@@ -745,7 +749,7 @@ namespace user
 
    }
 
-   
+
    void form_window::data_on_after_change(::database::client* pclient, const ::database::key& key, const var& var, ::update* pupdate)
    {
 
@@ -917,7 +921,7 @@ namespace user
    {
 
       pmessage->previous();
-      
+
       if(pmessage->m_bRet)
       {
 
@@ -1075,7 +1079,7 @@ namespace user
 
       if(!estatus)
       {
-         
+
          return estatus;
 
       }
@@ -1295,30 +1299,30 @@ namespace user
 
    //}
    //
-   
+
    //::form_property_set * form_window::get_form_property_set()
    //{
-   //   
+   //
    //   auto pset = form_callback::get_form_property_set();
-   //   
+   //
    //   if(pset)
    //   {
-   //    
+   //
    //      return pset;
-   //      
+   //
    //   }
-   //   
+   //
    //   pset = form_control::get_form_property_set();
-   //   
+   //
    //   if(pset)
    //   {
-   //      
+   //
    //      return pset;
-   //      
+   //
    //   }
-   //   
+   //
    //   return nullptr;
-   //   
+   //
    //}
 
 
@@ -1339,7 +1343,7 @@ namespace user
 
    }
 
-   
+
    void form_window::install_message_routing(::channel * pchannel)
    {
       ::user::form_control::install_message_routing(pchannel);

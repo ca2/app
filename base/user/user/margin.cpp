@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 
 
 namespace user
@@ -12,7 +15,7 @@ namespace user
       m_rectMargin.top     = 0;
       m_rectMargin.right   = 0;
       m_rectMargin.bottom  = 0;
-      
+
    }
 
 

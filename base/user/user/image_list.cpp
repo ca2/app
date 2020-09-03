@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 #include "aura/update.h"
 #include "image_list.h"
 
@@ -113,7 +116,7 @@ namespace user
 
    }
 
-   
+
    bool image_list::on_click(const ::user::item & item)
    {
 
@@ -332,7 +335,7 @@ namespace user
    }
 
 
-   void image_list::on_hit_test(::user::item& item) 
+   void image_list::on_hit_test(::user::item& item)
    {
 
       ::count c = m_imagea.get_count();

@@ -19,8 +19,8 @@
 					<Add option="-m64" />
 					<Add option="-g" />
 					<Add option="-D_DEBUG" />
-					<Add directory="$(WORKSPACE_DIR)/../../platform-linux" />
-					<Add directory="$(WORKSPACE_DIR)/../../platform-linux/_include" />
+					<Add directory="$(WORKSPACE_DIR)/../../platform-freebsd" />
+					<Add directory="$(WORKSPACE_DIR)/../../platform-freebsd/_include" />
 				</Compiler>
 				<Linker>
 					<Add option="-m64" />
@@ -53,11 +53,6 @@
 					<Add directory="$(#time_dir)/x64/$(TARGET_NAME)" />
 					<Add directory="$(#archive)/storage-linux/third/library/x64/" />
 				</Linker>
-				<ExtraCommands>
-					<Add before="../../platform-linux/stage/prepare_framework_h.sh $(PROJECT_DIR) $(TARGET_OBJECT_DIR)" />
-					<Add before="mkdir -p $(#time_dir)/x64/$(TARGET_NAME)/" />
-					<Add before="cp -Rf $(#archive)/storage-linux/third/library/x64/* $(#time_dir)/x64/$(TARGET_NAME)/" />
-				</ExtraCommands>
 			</Target>
 			<Target title="stage">
 				<Option output="$(#time_dir)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
@@ -235,6 +230,54 @@
 					<Add before="../../platform-linux/stage/prepare_framework_h.sh $(PROJECT_DIR) $(TARGET_OBJECT_DIR)" />
 					<Add before="cp -Rf $(#archive)/third-linux/thirdparty/library/x64/* ../$(#time_dir)/x64/$(TARGET_NAME)/" />
 				</ExtraCommands>
+			</Target>
+			<Target title="bsd">
+				<Option output="$(#time_dir)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(#time_dir)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(#time_dir)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-fPIC" />
+					<Add option="-m64" />
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+					<Add directory="$(WORKSPACE_DIR)/../../platform-linux" />
+					<Add directory="$(WORKSPACE_DIR)/../../platform-linux/_include" />
+				</Compiler>
+				<Linker>
+					<Add option="-m64" />
+					<Add option="-Wl,-rpath=\\$$$ORIGIN" />
+					<Add option="-lz" />
+					<Add option="-ldl" />
+					<Add option="-lrt" />
+					<Add option="-lbfd" />
+					<Add option="-lX11" />
+					<Add option="-lX11-xcb" />
+					<Add option="-lxcb" />
+					<Add option="-lxcb-util" />
+					<Add option="-lXinerama" />
+					<Add option="-lXmu" />
+					<Add option="-lXrandr" />
+					<Add option="-lXext" />
+					<Add option="-lXxf86vm" />
+					<Add option="-lXrender" />
+					<Add option="-lXi" />
+					<Add option="-lidn" />
+					<Add option="-lpthread" />
+					<Add option="-lncurses" />
+					<Add option="-lssl" />
+					<Add option="-lcrypto" />
+					<Add option="-lpcre2-8" />
+					<Add option="-lsqlite3" />
+					<Add option="-lsn" />
+					<Add option="`pkg-config --libs glib-2.0 gtk+-3.0 gdk-3.0 appindicator3-0.1`" />
+					<Add option="-Wl,-z,defs" />
+					<Add directory="$(#time_dir)/x64/$(TARGET_NAME)" />
+					<Add directory="$(#archive)/storage-linux/third/library/x64/" />
+				</Linker>
 			</Target>
 		</Build>
 		<VirtualTargets>
@@ -2333,6 +2376,10 @@
 		<Unit filename="user/windowing.h" />
 		<Unit filename="version/version.config.h" />
 		<Unit filename="version/version.h" />
-		<Extensions />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

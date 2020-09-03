@@ -1,6 +1,7 @@
 #include "framework.h"
-
-
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 
 
 #if defined(LINUX)
@@ -25,7 +26,6 @@ namespace message
 
 
    void create::set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam)
-
    {
       base::set(pwnd,uiMessage,wparam,lparam);
 
@@ -36,7 +36,7 @@ namespace message
 
    void create::failed(const char * pcszErrorMessage)
    {
-   
+
       error(pcszErrorMessage);
 
    }
@@ -179,7 +179,7 @@ namespace message
 
 
    // https://stackoverflow.com/questions/15966642/how-do-you-tell-lshift-apart-from-rshift-in-wm-keydown-events
-   
+
    WPARAM MapLeftRightKeys(WPARAM vk, LPARAM lParam)
    {
       WPARAM new_vk = vk;
@@ -294,7 +294,7 @@ namespace message
 
       try
       {
-         
+
          if(m_puserinteraction)
          {
 
@@ -317,7 +317,7 @@ namespace message
                }
 
             }
-            
+
          }
 
       }
@@ -339,11 +339,11 @@ namespace message
       m_point    = __point(lparam);
 
 #ifdef LINUX
-      
+
       m_bTranslated = true;  // in root coordinates
 
 #elif defined(WINDOWS)
-      
+
       m_bTranslated = false; // not in root coordinates
 
 #else
@@ -357,7 +357,7 @@ namespace message
 
    void mouse_wheel::set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam)
    {
-      
+
       base::set(pwnd,uiMessage,wparam,lparam);
 
       m_nFlags    = wparam;
@@ -371,9 +371,9 @@ namespace message
 
    ::user::interaction * mouse_activate::get_desktop_window()
    {
-      
+
       ::exception::throw_not_implemented();
-      
+
       //      return interaction_impl::from_handle_dup(reinterpret_cast<oswindow>(m_wparam));
 
       return nullptr;
@@ -391,7 +391,7 @@ namespace message
 
    UINT mouse_activate::get_message()
    {
-      
+
       return HIWORD(m_lparam);
 
    }

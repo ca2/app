@@ -1,16 +1,15 @@
 #pragma once
 
 
-//#include "aura/node/ansios/ansios.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 
 
 string get_error_message(DWORD dwError);
 
 __pointer(::aura::application)     linux_instantiate_application(__pointer(::aura::application) pappSystem, const char * pszId);
 
-
-
-#pragma once
 
 
 namespace linux
@@ -85,6 +84,9 @@ CLASS_DECL_AURA const char * __get_app_name();
 #include "dir_context.h"
 #include "file_system.h"
 #include "file_context.h"
+
+
+#include "copydesk.h"
 
 
 #include "factory_exchange.h"

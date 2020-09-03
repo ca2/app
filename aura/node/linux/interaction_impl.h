@@ -12,7 +12,7 @@ namespace linux
 
 
    class x11data;
-   class  interaction_impl :
+   class interaction_impl :
       virtual public ::user::interaction_impl
    {
    public:

@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 #include "_linux.h"
 #include "aura/const/id.h"
 #include "aura/const/message.h"

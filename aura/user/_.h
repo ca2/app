@@ -107,7 +107,7 @@ namespace graphics
    (__PMSG)(__PMSGW)(void (__MSG_CALLwindow::*)())&memberFxn },
 
 
-#include "platform/drawable.h"
+#include "aura/platform/drawable.h"
 #include "aura/user/check.h"
 #include "aura/user/text.h"
 #include "aura/user/window_state.h"

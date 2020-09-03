@@ -1,6 +1,7 @@
 #include "framework.h"
-//#include "aura/net/sockets/_.h"
-//#include "aura/papaya/papaya_zoneing.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 #include "aura/const/id.h"
 #include "aura/platform/app_core.h"
 #include "aura/platform/static_setup.h"
@@ -65,9 +66,9 @@ namespace aura
 
    session::session()
    {
-      
+
       m_bAcceptsFirstResponder = true;
-      
+
       m_bSimpleMessageLoop = false;
       m_bMessageThread = true;
       m_iEdge = -1;
@@ -357,12 +358,12 @@ namespace aura
          return estatus;
 
       }
-      
+
       if(System.m_bAvoidFirstResponder)
       {
-         
+
          m_bAcceptsFirstResponder = false;
-         
+
       }
 
       INFO("aura::str_context Succeeded to Allocate!!");

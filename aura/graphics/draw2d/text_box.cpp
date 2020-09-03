@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "_draw2d.h"
 
 
 namespace draw2d
@@ -24,7 +25,7 @@ namespace draw2d
    {
 
       plist->__construct(m_pimage);
-      
+
       if (!m_pimage)
       {
 

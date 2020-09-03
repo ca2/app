@@ -2,10 +2,10 @@
 #include "_.h"
 #include "aura/os/linux/_linux.h"
 #include "aura/os/linux/gnome_gnome.h"
-#include "aura/node/linux/copydesk.h"
+#include "aura/node/linux/_linux.h"
+
 
 #include <gtk/gtk.h>
-
 
 
 //extern GMainContext * gtk_main_context;

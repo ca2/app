@@ -327,7 +327,7 @@ namespace experience
 
 #else
 
-         pframewindow->layout().order_top();
+         pframewindow->order_top();
 
          pframewindow->move_to(point);
 

@@ -28,7 +28,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "framework.h"
-#include "axis/net/sockets/_.h"
+#include "axis/net/_net.h"
 
 
 namespace sockets
@@ -75,7 +75,7 @@ namespace sockets
 
       if(p)
       {
-         
+
          Event * pe = *p;
 
          EventTime now;
@@ -104,14 +104,14 @@ namespace sockets
 
    void EventHandler::CheckEvents()
    {
-      
+
       EventTime now;
 
       auto p = m_eventplist.begin();
 
       for(; p.ok(); p = m_eventplist.begin())
       {
-         
+
          Event * pevent = *p;
 
          if (!(pevent->get_time() < now))
@@ -130,7 +130,7 @@ namespace sockets
          */
          if (!psocket || (psocket && Valid(psocket)))
          {
-            
+
             pevent->GetFrom()->OnEvent(pevent->GetID());
 
          }
@@ -148,7 +148,7 @@ namespace sockets
             }
 
          }
-         
+
          ::aura::del(pevent);
 
          if (p != nullptr)
@@ -165,9 +165,9 @@ namespace sockets
 
    long EventHandler::AddEvent(IEventOwner *from,long sec,long usec)
    {
-      
+
       Event * peventNew = new Event(from, sec, usec);
-      
+
       auto pevent = m_eventplist.begin();
 
       for(;pevent; pevent++)
@@ -256,7 +256,7 @@ namespace sockets
 
    void EventHandler::RemoveEvent(IEventOwner * pownerFrom, long lEid)
    {
-      
+
       auto pevent = ::deref(m_eventplist.begin());
 
       for(; pevent; pevent++)
@@ -264,7 +264,7 @@ namespace sockets
 
          if(pownerFrom == pevent->GetFrom() && lEid == pevent->GetID())
          {
-            
+
             ::delete_erase(pevent);
 
             break;

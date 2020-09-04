@@ -11,7 +11,6 @@ public:
    int                              m_iPathInstallFolderExeArg;
    bool                             m_bFork;
    os_local *                       m_poslocal;
-   bool                             m_bVerbose;
    int                              m_argc;
    char **                          m_argv;
    wchar_t **                       m_wargv;

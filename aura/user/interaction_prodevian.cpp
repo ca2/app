@@ -53,7 +53,7 @@ namespace user
 
       }, this);
 
-   m_ptaskApplyVisual = __task_procedure([this]()
+   m_ptaskWindowShow = __task_procedure([this]()
       {
 
          m_pimpl->window_show();
@@ -584,16 +584,19 @@ bool prodevian::prodevian_iteration()
 
    }
 
-   #ifdef LINUX
-   if (bStartWindowVisual)
+   if (!(m_puserinteraction->m_ewindowflag & window_flag_postpone_visual_update))
    {
+      //#ifdef LINUX
+      if (bStartWindowVisual)
+      {
 
-      m_pimpl->window_show();
+         m_pimpl->window_show();
 
+      }
+      //#endif
+      ////END IFDEF LINUX
    }
-   #endif
-   ////END IFDEF LINUX
-
+   
    if (m_bVisualUpdated)
    {
 
@@ -649,14 +652,17 @@ bool prodevian::prodevian_iteration()
 
    }
 
-   // IFDEF WINDOWS
-   if (bStartWindowVisual)
+   if ((m_puserinteraction->m_ewindowflag & window_flag_postpone_visual_update))
    {
+      // IFDEF WINDOWS
+      if (bStartWindowVisual)
+      {
 
-      m_puserinteraction->post_task(m_ptaskApplyVisual);
+         m_puserinteraction->post_task(m_ptaskWindowShow);
 
+      }
+      // ENDIF WINDOWS
    }
-   // ENDIF WINDOWS
 
    u64 uNow = get_nanos();
 

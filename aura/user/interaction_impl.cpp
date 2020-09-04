@@ -4274,18 +4274,18 @@ namespace user
 
       bool bLayered = GetExStyle() & WS_EX_LAYERED;
 
-      if (bLayered)
+      //if (bLayered)
       {
 
          uiFlags |= SWP_ASYNCWINDOWPOS | SWP_NOREDRAW | SWP_NOCOPYBITS | SWP_DEFERERASE;
 
       }
-      else
-      {
+      //else
+      //{
 
-         uiFlags |= SWP_ASYNCWINDOWPOS  | SWP_NOREDRAW | SWP_NOCOPYBITS | SWP_DEFERERASE;
+      //   uiFlags |= SWP_ASYNCWINDOWPOS  | SWP_NOREDRAW | SWP_NOCOPYBITS | SWP_DEFERERASE;
 
-      }
+      //}
 
       if (eactivationOutput & activation_no_activate)
       {
@@ -4398,19 +4398,19 @@ namespace user
 
       }
 
-      if (shouldGetVisible
+      if (!bLayered && shouldGetVisible
          && (
-//#ifdef WINDOWS_DESKTOP
-//               !bLayered
-//#else
-               //(uiFlags & (SWP_NOMOVE | SWP_NOSIZE)) != (SWP_NOMOVE | SWP_NOSIZE)
-//#endif
-               bMove
+            //#ifdef WINDOWS_DESKTOP
+            //               !bLayered
+            //#else
+                           //(uiFlags & (SWP_NOMOVE | SWP_NOSIZE)) != (SWP_NOMOVE | SWP_NOSIZE)
+            //#endif
+            bMove
             || bSize
-               || bVisibilityChange
-               || bZ
-               )
+            || bVisibilityChange
+            || bZ
             )
+         )
       {
 
          string strType = ::str::demangle(m_puserinteraction->type_name());
@@ -4421,7 +4421,7 @@ namespace user
             INFO("font_format going to SetWindowPos");
 
          }
-         else if(strType.contains("textformat"))
+         else if (strType.contains("textformat"))
          {
 
             INFO("text_format going to SetWindowPos");
@@ -4468,89 +4468,89 @@ namespace user
 
          m_bOkToUpdateScreen = true;
 
-         if (edisplayOutput != edisplayWindow)
-         {
+      }
+
+      if (edisplayOutput != edisplayWindow)
+      {
 
 #ifdef WINDOWS
 
-            bool bShowOutput = windows_show_window(edisplayOutput, eactivationOutput);
+         bool bShowOutput = windows_show_window(edisplayOutput, eactivationOutput);
 
-            bool bShowWindow = windows_show_window(edisplayWindow, eactivationWindow);
+         bool bShowWindow = windows_show_window(edisplayWindow, eactivationWindow);
 
-            if (is_different(bShowOutput, bShowWindow))
+         if (is_different(bShowOutput, bShowWindow))
 #endif
-            {
-
-               m_puserinteraction->window_show_change_visibility();
-
-            }
-
-         }
-
-         if (eactivationOutput & activation_set_foreground)
          {
 
-            m_puserinteraction->SetForegroundWindow();
+            m_puserinteraction->window_show_change_visibility();
 
          }
-
-         if (eactivationOutput & activation_set_active)
-         {
-
-            m_puserinteraction->SetActiveWindow();
-
-         }
-
-         if(!m_puserinteraction)
-         {
-
-            return;
-
-         }
-
-         m_puserinteraction->layout().window() = m_puserinteraction->layout().output();
-
-         m_puserinteraction->layout().output().clear_ephemeral();
-
-         oswindow oswindowFocus = nullptr;
-
-         oswindow oswindowImpl = nullptr;
-
-         ::user::interaction_impl* pimplFocus = nullptr;
-
-         if (has_pending_focus() && m_puserinteraction != nullptr && m_puserinteraction->is_window_visible())
-         {
-
-            Session.m_pimplPendingFocus2 = nullptr;
-
-            oswindowFocus = ::get_focus();
-
-            oswindowImpl = m_oswindow;
-
-            pimplFocus = oswindow_interaction_impl(oswindowFocus);
-
-            if (oswindowFocus == oswindowImpl)
-            {
-
-               output_debug_string("optimized out a SetFocus");
-
-            }
-            else
-            {
-
-               ::set_focus(m_oswindow);
-
-            }
-
-         }
-
-         m_puserinteraction->visual_changed();
-
-         m_puserinteraction->check_transparent_mouse_events();
-
-         //m_puserinteraction->m_bReposition = false;
 
       }
+
+      if (eactivationOutput & activation_set_foreground)
+      {
+
+         m_puserinteraction->SetForegroundWindow();
+
+      }
+
+      if (eactivationOutput & activation_set_active)
+      {
+
+         m_puserinteraction->SetActiveWindow();
+
+      }
+
+      if(!m_puserinteraction)
+      {
+
+         return;
+
+      }
+
+      m_puserinteraction->layout().window() = m_puserinteraction->layout().output();
+
+      m_puserinteraction->layout().output().clear_ephemeral();
+
+      oswindow oswindowFocus = nullptr;
+
+      oswindow oswindowImpl = nullptr;
+
+      ::user::interaction_impl* pimplFocus = nullptr;
+
+      if (has_pending_focus() && m_puserinteraction != nullptr && m_puserinteraction->is_window_visible())
+      {
+
+         Session.m_pimplPendingFocus2 = nullptr;
+
+         oswindowFocus = ::get_focus();
+
+         oswindowImpl = m_oswindow;
+
+         pimplFocus = oswindow_interaction_impl(oswindowFocus);
+
+         if (oswindowFocus == oswindowImpl)
+         {
+
+            output_debug_string("optimized out a SetFocus");
+
+         }
+         else
+         {
+
+            ::set_focus(m_oswindow);
+
+         }
+
+      }
+
+      m_puserinteraction->visual_changed();
+
+      m_puserinteraction->check_transparent_mouse_events();
+
+      //m_puserinteraction->m_bReposition = false;
 
    }
 

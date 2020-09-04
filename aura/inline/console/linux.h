@@ -16,7 +16,7 @@ public:
 
       aura_ref();
 
-      m_psystem = ::move_transfer(platform_create_system(::GetModuleHandle(NULL)));
+      m_psystem = ::move_transfer(platform_create_system(nullptr));
 
       //      m_psystem = __new(::aura::system());
 
@@ -98,11 +98,12 @@ public:
    }
 
 
+
 };
 
+void press_any_key_to_exit(const char * psz = nullptr);
 
-int main(int argc, char* argv[])
-=======
+//int main(int argc, char* argv[])
 //
 //int main(int argc, char* argv[])
 //{
@@ -162,8 +163,9 @@ static const char * s_pszBinRelocInitGetSymbol = "br_init_get_symbol";
 
 
 const char * br_init_get_symbol()
+{
 
-   return iErrorStatus;
+   return s_pszBinRelocInitGetSymbol;
 
 }
 

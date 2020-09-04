@@ -1523,16 +1523,7 @@
 		<Unit filename="platform/_system_object_impl.h" />
 		<Unit filename="platform/_system_smart_pointer_impl.h" />
 		<Unit filename="platform/_system_var_impl.h" />
-		<Unit filename="platform/_system_xml_impl.h" />
-		<Unit filename="platform/aaa_want_to_remove_application_common.h" />
-		<Unit filename="platform/aaa_want_to_remove_common.h" />
-		<Unit filename="platform/aaa_want_to_remove_console_window2.h" />
-		<Unit filename="platform/aaa_want_to_remove_extras.h" />
-		<Unit filename="platform/aaa_want_to_remove_runnable.h" />
-		<Unit filename="platform/aaa_want_to_remove_system_common.h" />
-		<Unit filename="platform/aaa_want_to_remove_template.h" />
 		<Unit filename="platform/all.h" />
-		<Unit filename="platform/app.h" />
 		<Unit filename="platform/app_core.cpp" />
 		<Unit filename="platform/app_core.h" />
 		<Unit filename="platform/app_launcher.cpp" />
@@ -1554,8 +1545,6 @@
 		<Unit filename="platform/assert_running_task.cpp" />
 		<Unit filename="platform/assert_running_task.h" />
 		<Unit filename="platform/async.h" />
-		<Unit filename="platform/atomic2.h" />
-		<Unit filename="platform/aura.h" />
 		<Unit filename="platform/aura_aura.h" />
 		<Unit filename="platform/aura_main_data.cpp" />
 		<Unit filename="platform/aura_main_data.h" />

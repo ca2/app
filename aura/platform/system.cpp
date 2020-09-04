@@ -2139,7 +2139,7 @@ namespace aura
       {
 
          estatus = do_factory_exchange("imaging", strLibrary);
-         
+
          if (estatus)
          {
 
@@ -2419,6 +2419,8 @@ namespace aura
       }
 
       set_context_app(m_papplicationStartup);
+
+      get_context_application()->get_property_set().merge(get_property_set());
 
       m_papplicationStartup.release();
 
@@ -5676,7 +5678,7 @@ namespace aura
 
       //System.get_library("gpu_opengl");
 
-      
+
 
       if (!estatus)
       {
@@ -8377,7 +8379,7 @@ string get_bundle_app_library_name();
       }
 
    }
-   
+
 #elif defined(__APPLE__)
 
    string strLibraryName = get_bundle_app_library_name();

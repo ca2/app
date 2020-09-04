@@ -4398,7 +4398,10 @@ namespace user
 
       }
 
-      if (!bLayered && shouldGetVisible
+      if (shouldGetVisible
+#ifdef WINDOWS_DESKTOP
+      && !bLayered
+#endif
          && (
             //#ifdef WINDOWS_DESKTOP
             //               !bLayered

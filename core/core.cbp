@@ -437,6 +437,7 @@
 		<Unit filename="html/html/core_data.h" />
 		<Unit filename="html/html/data.cpp" />
 		<Unit filename="html/html/data.h" />
+		<Unit filename="html/impl/_.cpp" />
 		<Unit filename="html/impl/_.h" />
 		<Unit filename="html/impl/_impl.h" />
 		<Unit filename="html/impl/cell.cpp" />
@@ -511,6 +512,10 @@
 		<Unit filename="net/ftp/output_stream.cpp" />
 		<Unit filename="net/ftp/output_stream.h" />
 		<Unit filename="net/ftp/transfer_notification.h" />
+		<Unit filename="node/linux/shell.cpp" />
+		<Unit filename="node/linux/shell.h" />
+		<Unit filename="node/linux/shell_linux.cpp" />
+		<Unit filename="node/linux/shell_linux.h" />
 		<Unit filename="os/cross/windows/windows_ole_automation.h.txt" />
 		<Unit filename="papaya/papaya_zoneing.h" />
 		<Unit filename="update.h" />
@@ -717,6 +722,8 @@
 		<Unit filename="user/userex/_impl.h" />
 		<Unit filename="user/userex/_userex.h" />
 		<Unit filename="user/userex/aaa_want_to_remove_form_update_hint.h" />
+		<Unit filename="user/userex/calculator_edit_view.cpp" />
+		<Unit filename="user/userex/calculator_edit_view.h" />
 		<Unit filename="user/userex/color_view.cpp" />
 		<Unit filename="user/userex/color_view.h" />
 		<Unit filename="user/userex/const.h" />

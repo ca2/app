@@ -88,6 +88,8 @@
 		<Linker>
 			<Add option="-Wl,-rpath=\\$$$ORIGIN" />
 			<Add option="-laura" />
+			<Add option="-laxis" />
+			<Add option="-lbase" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="$(#time_dir)/x64/$(TARGET_NAME)" />
 		</Linker>

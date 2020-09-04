@@ -95,7 +95,8 @@
 		<Linker>
 			<Add option="-Wl,-rpath=\\$$$ORIGIN" />
 			<Add option="-laura" />
-			<Add option="-lcore" />
+			<Add option="-laxis" />
+			<Add option="-lbase" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="$(#time_dir)/x64/$(TARGET_NAME)" />
 		</Linker>
@@ -133,7 +134,8 @@
 		</Unit>
 		<Unit filename="library.cpp" />
 		<Unit filename="library.h" />
-		<Unit filename="theme.cpp" />
+		<Unit filename="style.cpp" />
+		<Unit filename="style.h" />
 		<Unit filename="theme.h" />
 		<Unit filename="user_button.h" />
 		<Unit filename="user_control_box.h" />

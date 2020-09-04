@@ -14,6 +14,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance);
 aura_main_data::aura_main_data()
 {
 
+   m_bVerbose = false;
 
 }
 

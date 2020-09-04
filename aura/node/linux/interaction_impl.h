@@ -81,7 +81,7 @@ namespace linux
       DECL_GEN_SIGNAL(_001OnShowWindow);
 
 
-      virtual void window_show_change_visibility();
+      virtual void window_show_change_visibility(::edisplay edisplay, ::eactivation eactivation) override;
 
 
       virtual ::user::interaction_impl * from_os_data(void * pdata) override;

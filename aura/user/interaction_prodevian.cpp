@@ -583,14 +583,15 @@ bool prodevian::prodevian_iteration()
       return false;
 
    }
-   //// IFDEF LINUX
-   //if (bStartWindowVisual)
-   //{
 
-   //   m_pimpl->window_show();
+   #ifdef LINUX
+   if (bStartWindowVisual)
+   {
 
-   //}
+      m_pimpl->window_show();
 
+   }
+   #endif
    ////END IFDEF LINUX
 
    if (m_bVisualUpdated)

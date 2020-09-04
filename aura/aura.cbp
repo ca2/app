@@ -6,7 +6,7 @@
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
-			<Target title="basis">
+			<Target title="linux_basis">
 				<Option output="$(#time_dir)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="$(#time_dir)/x64/$(TARGET_NAME)/" />
 				<Option object_output="$(#time_dir)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
@@ -19,8 +19,9 @@
 					<Add option="-m64" />
 					<Add option="-g" />
 					<Add option="-D_DEBUG" />
-					<Add directory="$(WORKSPACE_DIR)/../../platform-freebsd" />
-					<Add directory="$(WORKSPACE_DIR)/../../platform-freebsd/_include" />
+					<Add directory="$(WORKSPACE_DIR)/../../platform-linux" />
+					<Add directory="$(WORKSPACE_DIR)/../../platform-linux/_include" />
+					<Add directory="$(#archive)/third-linux/third/include" />
 				</Compiler>
 				<Linker>
 					<Add option="-m64" />
@@ -54,7 +55,7 @@
 					<Add directory="$(#archive)/storage-linux/third/library/x64/" />
 				</Linker>
 			</Target>
-			<Target title="stage">
+			<Target title="linux_stage">
 				<Option output="$(#time_dir)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="$(#time_dir)/x64/$(TARGET_NAME)/" />
 				<Option object_output="$(#time_dir)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
@@ -231,7 +232,7 @@
 					<Add before="cp -Rf $(#archive)/third-linux/thirdparty/library/x64/* ../$(#time_dir)/x64/$(TARGET_NAME)/" />
 				</ExtraCommands>
 			</Target>
-			<Target title="bsd">
+			<Target title="freebsd_basis">
 				<Option output="$(#time_dir)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="$(#time_dir)/x64/$(TARGET_NAME)/" />
 				<Option object_output="$(#time_dir)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
@@ -244,8 +245,9 @@
 					<Add option="-m64" />
 					<Add option="-g" />
 					<Add option="-D_DEBUG" />
-					<Add directory="$(WORKSPACE_DIR)/../../platform-linux" />
-					<Add directory="$(WORKSPACE_DIR)/../../platform-linux/_include" />
+					<Add directory="$(WORKSPACE_DIR)/../../platform-freebsd" />
+					<Add directory="$(WORKSPACE_DIR)/../../platform-freebsd/_include" />
+					<Add directory="$(#archive)/third-freebsd/third/include" />
 				</Compiler>
 				<Linker>
 					<Add option="-m64" />
@@ -306,7 +308,6 @@
 			<Add directory="$(WORKSPACE_DIR)/../../app/_include" />
 			<Add directory="$(WORKSPACE_DIR)/../../app" />
 			<Add directory="$(#sensitive)/sensitive/include" />
-			<Add directory="$(#archive)/third-linux/third/include" />
 		</Compiler>
 		<Linker>
 			<Add directory="$(#time_dir)/x64/$(TARGET_NAME)" />
@@ -2360,6 +2361,8 @@
 		<Unit filename="user/style_base.h" />
 		<Unit filename="user/text.cpp" />
 		<Unit filename="user/text.h" />
+		<Unit filename="user/tool_window.cpp" />
+		<Unit filename="user/tool_window.h" />
 		<Unit filename="user/user.cpp" />
 		<Unit filename="user/user.h" />
 		<Unit filename="user/user/notify_icon.mm" />
@@ -2376,10 +2379,6 @@
 		<Unit filename="user/windowing.h" />
 		<Unit filename="version/version.config.h" />
 		<Unit filename="version/version.h" />
-		<Extensions>
-			<code_completion />
-			<envvars />
-			<debugger />
-		</Extensions>
+		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

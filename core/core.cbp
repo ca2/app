@@ -6,7 +6,7 @@
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
-			<Target title="basis">
+			<Target title="linux_basis">
 				<Option output="$(#time_dir)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="$(#time_dir)/x64/$(TARGET_NAME)/" />
 				<Option object_output="$(#time_dir)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
@@ -26,9 +26,9 @@
 				<Linker>
 					<Add option="-m64" />
 					<Add option="-Wl,-rpath=\\$$$ORIGIN" />
-					<Add option="-ldl" />
 					<Add option="-laura" />
-					<Add option="`pkg-config --libs glib-2.0 gtk+-3.0 gdk-3.0 appindicator3-0.1`" />
+					<Add option="-laxis" />
+					<Add option="-lbase" />
 					<Add option="-Wl,-z,defs" />
 					<Add directory="$(#time_dir)/x64/$(TARGET_NAME)" />
 					<Add directory="$(#archive)/storage-linux/third/library/x64/" />
@@ -39,7 +39,7 @@
 					<Add before="cp -Rf $(#archive)/storage-linux/third/library/x64/* $(#time_dir)/x64/$(TARGET_NAME)/" />
 				</ExtraCommands>
 			</Target>
-			<Target title="stage">
+			<Target title="linux_stage">
 				<Option output="$(#time_dir)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="$(#time_dir)/x64/$(TARGET_NAME)/" />
 				<Option object_output="$(#time_dir)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
@@ -48,12 +48,12 @@
 				<Option createDefFile="1" />
 				<Option createStaticLib="1" />
 				<Compiler>
+					<Add option="-std=c++17" />
 					<Add option="-pg" />
+					<Add option="-fPIC" />
 					<Add option="-m64" />
 					<Add option="-g" />
-					<Add option="-fPIC" />
 					<Add option="-O0" />
-					<Add option="-std=c++17" />
 					<Add directory="$(WORKSPACE_DIR)/../../platform-linux" />
 					<Add directory="$(WORKSPACE_DIR)/../../platform-linux/_include" />
 				</Compiler>
@@ -61,31 +61,9 @@
 					<Add option="-pg" />
 					<Add option="-m64" />
 					<Add option="-Wl,-rpath=\\$$$ORIGIN" />
-					<Add option="-lz" />
-					<Add option="-lbz2" />
-					<Add option="-ldl" />
-					<Add option="-lrt" />
-					<Add option="-lbfd" />
-					<Add option="-lX11" />
-					<Add option="-lX11-xcb" />
-					<Add option="-lxcb" />
-					<Add option="-lXinerama" />
-					<Add option="-lXmu" />
-					<Add option="-lXrandr" />
-					<Add option="-lXext" />
-					<Add option="-lXxf86vm" />
-					<Add option="-lXrender" />
-					<Add option="-lidn" />
-					<Add option="-lpthread" />
-					<Add option="-lncurses" />
-					<Add option="-lssl" />
-					<Add option="-lcrypto" />
-					<Add option="-lfreeimage" />
-					<Add option="-lpcre2-8" />
-					<Add option="`pkg-config --libs glib-2.0 gtk+-3.0 gdk-3.0 appindicator3-0.1`" />
-					<Add option="`$(#archive)/tool/bin/not_platform_setup raspbian -laurasn`" />
-					<Add option="-lace" />
-					<Add option="-laqua" />
+					<Add option="-laura" />
+					<Add option="-laxis" />
+					<Add option="-lbase" />
 					<Add option="-Wl,-z,defs" />
 					<Add directory="$(#time_dir)/x64/$(TARGET_NAME)" />
 				</Linker>
@@ -469,7 +447,6 @@
 		<Unit filename="html/impl/form.h" />
 		<Unit filename="html/impl/image.cpp" />
 		<Unit filename="html/impl/image.h" />
-		<Unit filename="html/impl/impl.cpp" />
 		<Unit filename="html/impl/input_button.cpp" />
 		<Unit filename="html/impl/input_button.h" />
 		<Unit filename="html/impl/input_checkbox.cpp" />
@@ -579,6 +556,8 @@
 		<Unit filename="user/rich_text/edit_impl.h" />
 		<Unit filename="user/rich_text/format.cpp" />
 		<Unit filename="user/rich_text/format.h" />
+		<Unit filename="user/rich_text/format_tool.cpp" />
+		<Unit filename="user/rich_text/format_tool.h" />
 		<Unit filename="user/rich_text/global.cpp" />
 		<Unit filename="user/rich_text/global.h" />
 		<Unit filename="user/rich_text/layout.h" />
@@ -704,6 +683,8 @@
 		<Unit filename="user/user/mesh_item.h" />
 		<Unit filename="user/user/notify_icon.mm" />
 		<Unit filename="user/user/notify_icon_mm_bridge.mm" />
+		<Unit filename="user/user/shell.cpp" />
+		<Unit filename="user/user/shell.h" />
 		<Unit filename="user/user/statusbar.cpp" />
 		<Unit filename="user/user/statusbar.h" />
 		<Unit filename="user/user/step_slider.cpp" />
@@ -742,8 +723,6 @@
 		<Unit filename="user/userex/dialog.cpp" />
 		<Unit filename="user/userex/dialog.h" />
 		<Unit filename="user/userex/error_dialog.h" />
-		<Unit filename="user/userex/font_format_tool.cpp" />
-		<Unit filename="user/userex/font_format_tool.h" />
 		<Unit filename="user/userex/font_view.cpp" />
 		<Unit filename="user/userex/font_view.h" />
 		<Unit filename="user/userex/form_child_frame.cpp" />

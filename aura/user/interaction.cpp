@@ -8351,6 +8351,8 @@ namespace user
 
       layout().sketch().set_modified(false);
 
+      layout().design().set_modified();
+
       //layout().sketch().set_ready(false);
 
       if (bDisplay || bAppearance)

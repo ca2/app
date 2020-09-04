@@ -4216,7 +4216,7 @@ namespace user
    {
 
       // Request / Incoming changes / Prepare Internal Buffer
-      auto & stateOutput = m_puserinteraction->layout().output();
+      auto & stateOutput = m_puserinteraction->layout().design();
 
       if (!stateOutput.is_modified())
       {

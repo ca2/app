@@ -3,7 +3,9 @@
 int main(int argc, char * argv[])
 {
 
-   auto psystem = __new(::aura::system());
+   //auto psystem = __new(::aura::system());
+
+   auto psystem = platform_create_system(nullptr);
 
    psystem->application_initialize();
 

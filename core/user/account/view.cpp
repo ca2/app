@@ -2,7 +2,9 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/user/account/_account.h"
 #endif
+#ifdef WINDOWS_DESKTOP
 #include "aura/os/windows/_windows.h"
+#endif
 
 
 namespace account

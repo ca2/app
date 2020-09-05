@@ -21,6 +21,9 @@ Status
 Tear Off Button
 2020-09-05 04:33        13,785kb                        219,099kb                            9,655kb
 
+Tear Off: CheckBox, style and style_base...
+2020-09-05 10:06        
+
 
 Tearing some controls from user...
 

@@ -1149,6 +1149,9 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="platform\session.cpp" />
     <ClCompile Include="platform\system.cpp" />
     <ClCompile Include="user\button.cpp" />
+    <ClCompile Include="user\check_box.cpp" />
+    <ClCompile Include="user\style.cpp" />
+    <ClCompile Include="user\style_base.cpp" />
     <ClCompile Include="user\user.cpp" />
     <ClCompile Include="xml\attr.cpp" />
     <ClCompile Include="xml\base_array.cpp" />
@@ -1313,6 +1316,9 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="update.h" />
     <ClInclude Include="user.h" />
     <ClInclude Include="user\button.h" />
+    <ClInclude Include="user\check_box.h" />
+    <ClInclude Include="user\style.h" />
+    <ClInclude Include="user\style_base.h" />
     <ClInclude Include="user\user.h" />
     <ClInclude Include="user\_user.h" />
     <ClInclude Include="version\version.h" />

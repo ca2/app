@@ -1572,7 +1572,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="user\box.cpp" />
     <ClCompile Include="user\callback.cpp" />
     <ClCompile Include="user\check.cpp" />
-    <ClCompile Include="user\check_box.cpp" />
     <ClCompile Include="user\combo_box.cpp" />
     <ClCompile Include="user\combo_list.cpp" />
     <ClCompile Include="user\command.cpp" />
@@ -1613,8 +1612,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="user\scroll_bar.cpp" />
     <ClCompile Include="user\slider.cpp" />
     <ClCompile Include="user\still.cpp" />
-    <ClCompile Include="user\style.cpp" />
-    <ClCompile Include="user\style_base.cpp" />
     <ClCompile Include="user\text.cpp" />
     <ClCompile Include="user\tool_window.cpp" />
     <ClCompile Include="user\user.cpp" />
@@ -2009,7 +2006,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="user\callback.h" />
     <ClInclude Include="user\check.h" />
     <ClInclude Include="user\check_box.h" />
-    <ClInclude Include="user\combo_box.h" />
     <ClInclude Include="user\combo_list.h" />
     <ClInclude Include="user\command.h" />
     <ClInclude Include="user\composition_imm_client.h" />
@@ -2050,8 +2046,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="user\scroll_info.h" />
     <ClInclude Include="user\slider.h" />
     <ClInclude Include="user\still.h" />
-    <ClInclude Include="user\style.h" />
-    <ClInclude Include="user\style_base.h" />
     <ClInclude Include="user\text.h" />
     <ClInclude Include="user\tool_window.h" />
     <ClInclude Include="user\user.h" />

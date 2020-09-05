@@ -1304,44 +1304,21 @@ namespace user
    class interaction_impl;
    class primitive;
    class frame;
-//   class menu;
-   //class controller;
-   //class document;
-
-   //class impact_system;
-   //class impact_data;
    class printer;
-//   class impact;
    class primitive;
    class interaction;
    class interaction_layout;
-   //class place_holder;
-   //class menu_item;
    class form;
    class form_callback;
    class style;
    class menu_interaction;
-   //class tab;
-   class tab_pane;
-   class check_box;
    class toolbar;
    class split_layout;
    class style_rect;
    class scroll_bar;
    class scroll_data;
 
-
-   //using color_map = map < e_color, e_color, COLORREF, COLORREF >;
-   //using font_map = map < e_font, e_font, ::draw2d::font_pointer >;
    using eflag = flags < enum_flag >;
-   //using flag_map = map < e_flag, e_flag, bool, bool >;
-   //using rect_map = ::map < e_rect, e_rect, style_rect >;
-   //using int_map = ::map < e_int, e_int, int, int >;
-   //using double_map = ::map < e_double, e_double, double, double >;
-   //using color_map = map < e_color, e_color, COLORREF, COLORREF >;
-   //using eelement = base_enum < e_element >;
-   //using translucency_map = ::map < e_element, e_element, e_translucency, e_translucency >;
-
 
 
 #if defined(_UWP) || defined(APPLE_IOS) || defined(ANDROID)

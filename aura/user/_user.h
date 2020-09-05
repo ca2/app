@@ -582,7 +582,7 @@ namespace user
 #include "combo_list.h"
 
 
-#include "check_box.h"
+//#include "check_box.h"
 
 
 struct CPrintPreviewState;  // forward context_object (see afxext.h)

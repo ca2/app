@@ -53,7 +53,6 @@ namespace user
    class style;
    class scroll_info;
    class window_map;
-   using style_pointer = __pointer(style);
    class system_interaction_impl;
 
 

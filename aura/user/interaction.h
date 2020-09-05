@@ -272,16 +272,16 @@ namespace user
       virtual estate get_state() const;
 
 
-      virtual style * _get_style() const;
+      virtual ::user::style* _get_style() const;
 
-      inline style* get_style(::draw2d::graphics_pointer& pgraphics) const
+      inline ::user::style* get_style(::draw2d::graphics_pointer& pgraphics) const
       {
 
-         return pgraphics ? get_style(pgraphics->m_puserstyle) : (pgraphics = ::draw2d::create_memory_graphics())->m_puserstyle = _get_style();
+         return pgraphics ? get_style(pgraphics->m_puserstyle) : ((pgraphics = ::draw2d::create_memory_graphics())->m_puserstyle = _get_style());
 
       }
 
-      inline style * get_style(::user::style * pstyle) const
+      inline ::user::style * get_style(::user::style * pstyle) const
       {
 
          return pstyle ? pstyle : pstyle = _get_style();

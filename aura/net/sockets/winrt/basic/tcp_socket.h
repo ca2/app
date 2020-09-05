@@ -41,7 +41,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
       /** socket implementation for TCP.
       \ingroup basic */
-      class CLASS_DECL_AXIS tcp_socket :
+      class CLASS_DECL_AURA tcp_socket :
          virtual public stream_socket
       {
       public:

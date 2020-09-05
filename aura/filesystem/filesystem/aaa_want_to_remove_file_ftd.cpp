@@ -6,11 +6,11 @@
 //
 //
 //#ifdef WINDOWS
-//CLASS_DECL_AXIS void file_read_n_number_dup(HANDLE hfile,MD5_CTX * pctx,i32 & iNumber);
-//CLASS_DECL_AXIS void file_read_gen_string_dup(HANDLE hfile,MD5_CTX * pctx,string & str);
+//CLASS_DECL_AURA void file_read_n_number_dup(HANDLE hfile,MD5_CTX * pctx,i32 & iNumber);
+//CLASS_DECL_AURA void file_read_gen_string_dup(HANDLE hfile,MD5_CTX * pctx,string & str);
 //#else
-//CLASS_DECL_AXIS void file_read_n_number_dup(FILE * hfile,MD5_CTX * pctx,i32 & iNumber);
-//CLASS_DECL_AXIS void file_read_gen_string_dup(FILE * hfile,MD5_CTX * pctx,string & str);
+//CLASS_DECL_AURA void file_read_n_number_dup(FILE * hfile,MD5_CTX * pctx,i32 & iNumber);
+//CLASS_DECL_AURA void file_read_gen_string_dup(FILE * hfile,MD5_CTX * pctx,string & str);
 //#endif
 //
 //

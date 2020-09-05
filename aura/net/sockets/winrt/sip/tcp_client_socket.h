@@ -5,7 +5,7 @@ namespace sockets
 {
 
 
-   class CLASS_DECL_AXIS sip_tcp_client_socket :
+   class CLASS_DECL_AURA sip_tcp_client_socket :
       virtual public tcp_socket,
       virtual public sip_base_client_socket
    {

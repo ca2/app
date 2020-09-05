@@ -15,7 +15,7 @@ namespace experience
       public:
 
 
-         //::draw2d::font_pointer                m_fontEdit;
+         //::draw2d::font_pointer                 m_font;
          //::draw2d::font_pointer                m_fontList;
 
 

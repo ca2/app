@@ -10,7 +10,7 @@ namespace base
 
 
    class CLASS_DECL_BASE user :
-      virtual public ::user::user,
+      virtual public ::axis::user,
       virtual public ::user::document_manager_container
    {
    public:

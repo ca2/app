@@ -47,7 +47,7 @@ namespace axis
    ::user::style* user::get_user_style()
    {
 
-      return m_puserstyle;
+      return m_pstyle;
 
    }
 

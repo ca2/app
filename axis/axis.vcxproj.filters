@@ -522,9 +522,6 @@
     <ClInclude Include="net\sockets\bsd\smtp\smtpd_socket.h">
       <Filter>Header Files\net\sockets\bsd\smtp</Filter>
     </ClInclude>
-    <ClInclude Include="user\_.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\_user.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -608,6 +605,9 @@
     </ClInclude>
     <ClInclude Include="inline\library.h">
       <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="user\_.h">
+      <Filter>Header Files\user</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

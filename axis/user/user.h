@@ -15,10 +15,6 @@ namespace axis
       string_map < ::user::style_pointer >            m_mapStyle;
 
 
-      ::user::style_pointer                        m_puserstyle;
-      string_map < ::user::style_pointer >         m_mapUserStyle;
-
-
       user();
       virtual ~user();
 

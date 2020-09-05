@@ -1,11 +1,12 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "axis/user/_user.h"
+#endif
 #include "aura/id.h"
-
 
 
 namespace axis
 {
-
 
 
    application::application(const char * pszAppId) :
@@ -2608,11 +2609,31 @@ namespace axis
    }
 
 
+   ::type application::control_type_from_id(const ::id& id, ::user::e_control_type& econtroltype)
+   {
+
+      string str(id);
+
+      if (str.begins_ci("button_"))
+      {
+
+         econtroltype = ::user::control_type_button;
+
+         return __type(::user::button);
+
+      }
+
+      return ::axis::application::control_type_from_id(id, econtroltype);
+
+   }
 
 
+   ::user::interaction* application::create_menu_interaction()
+   {
 
+      return new ::user::button;
 
-
+   }
 
 
 } // namespace axis

@@ -1148,6 +1148,8 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="platform\geo_department.cpp" />
     <ClCompile Include="platform\session.cpp" />
     <ClCompile Include="platform\system.cpp" />
+    <ClCompile Include="user\button.cpp" />
+    <ClCompile Include="user\user.cpp" />
     <ClCompile Include="xml\attr.cpp" />
     <ClCompile Include="xml\base_array.cpp" />
     <ClCompile Include="xml\data.cpp" />
@@ -1310,6 +1312,9 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="include\_include.h" />
     <ClInclude Include="update.h" />
     <ClInclude Include="user.h" />
+    <ClInclude Include="user\button.h" />
+    <ClInclude Include="user\user.h" />
+    <ClInclude Include="user\_user.h" />
     <ClInclude Include="version\version.h" />
     <ClInclude Include="const\thread.h" />
     <ClInclude Include="database\database\const.h" />

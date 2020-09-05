@@ -595,7 +595,7 @@ class simple_frame_window;
 class mini_dock_frame_window;    // forward context_object (see afxpriv.h)
 
 
-#include "button.h"
+//#include "button.h"
 #include "plain_edit.h"
 
 

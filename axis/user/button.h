@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AURA button :
+   class CLASS_DECL_AXIS button :
       virtual public ::user::interaction,
       virtual public check
    {

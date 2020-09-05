@@ -207,6 +207,12 @@
     <Filter Include="Source Files\geoip">
       <UniqueIdentifier>{d54a1f58-033d-4ab9-a817-6baa20632a09}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\user">
+      <UniqueIdentifier>{f0ca7cf0-b249-44da-9798-74fd56f9cbc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user">
+      <UniqueIdentifier>{57497a87-35c6-441f-8569-361721160c7a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="net\sockets\bsd\smtp\smtp_socket.h">
@@ -872,6 +878,15 @@
     <ClInclude Include="geoip\update.h">
       <Filter>Header Files\geoip</Filter>
     </ClInclude>
+    <ClInclude Include="user\button.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\_user.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="net\sockets\bsd\smtp\smtp_socket.cpp">
@@ -1149,6 +1164,12 @@
     </ClCompile>
     <ClCompile Include="net\netserver\socket_thread.cpp">
       <Filter>Source Files\net\netserver</Filter>
+    </ClCompile>
+    <ClCompile Include="user\button.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user.cpp">
+      <Filter>Source Files\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

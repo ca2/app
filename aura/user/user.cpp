@@ -71,7 +71,6 @@ namespace user
 
       create_factory <::user::combo_list >();
       create_factory <::user::plain_edit >();
-      create_factory <::user::button >();
 
 
 

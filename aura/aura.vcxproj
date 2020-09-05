@@ -659,7 +659,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <Lib>
       <ForceSymbolReferences>
       </ForceSymbolReferences>
-      <LinkTimeCodeGeneration>false</LinkTimeCodeGeneration>
     </Lib>
     <ProjectReference>
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
@@ -1087,9 +1086,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ProjectReference>
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
     </ProjectReference>
-    <Lib>
-      <LinkTimeCodeGeneration>false</LinkTimeCodeGeneration>
-    </Lib>
+    <Lib />
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="compress\compress_context.cpp" />
@@ -1573,7 +1570,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="process\process_pipe.cpp" />
     <ClCompile Include="process\process_process.cpp" />
     <ClCompile Include="user\box.cpp" />
-    <ClCompile Include="user\button.cpp" />
     <ClCompile Include="user\callback.cpp" />
     <ClCompile Include="user\check.cpp" />
     <ClCompile Include="user\check_box.cpp" />
@@ -2010,7 +2006,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="update.h" />
     <ClInclude Include="user.h" />
     <ClInclude Include="user\box.h" />
-    <ClInclude Include="user\button.h" />
     <ClInclude Include="user\callback.h" />
     <ClInclude Include="user\check.h" />
     <ClInclude Include="user\check_box.h" />

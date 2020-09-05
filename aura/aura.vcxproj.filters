@@ -2819,9 +2819,6 @@
     <ClInclude Include="user\_user.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\button.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\callback.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -4976,9 +4973,6 @@
       <Filter>Source Files\primitive\data</Filter>
     </ClCompile>
     <ClCompile Include="user\_.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\button.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\callback.cpp">

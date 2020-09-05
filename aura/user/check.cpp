@@ -23,7 +23,6 @@ namespace user
    }
 
 
-
    void check::_001SetCheck(bool bChecked, const ::action_context & context)
    {
 
@@ -76,7 +75,6 @@ namespace user
 
 
 } // namespace user
-
 
 
 

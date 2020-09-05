@@ -28,8 +28,6 @@ namespace user
 
       m_estyle = estyle;
 
-      //m_bIdBound = true;
-
    }
 
 

@@ -51,7 +51,7 @@ namespace draw2d
 
       bool                                m_bPrinting;
       void *                              m_osdata[8];
-      ::user::style_pointer               m_puserstyle;
+      ::user::style *                     m_puserstyle;
 
 
       graphics();
@@ -61,10 +61,10 @@ namespace draw2d
       virtual void assert_valid() const override;
       virtual void dump(dump_context & dumpcontext) const override;
 
-      inline operator ::user::style_pointer & ()
+      inline operator ::user::style & ()
       {
 
-         return m_puserstyle;
+         return *m_puserstyle;
 
       }
 

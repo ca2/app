@@ -114,8 +114,8 @@ namespace graphics
 #include "aura/user/callback.h"
 #include "aura/user/primitive.h"
 
-#include "aura/user/style_base.h"
-#include "aura/user/style.h"
+//#include "aura/user/style_base.h"
+//#include "aura/user/style.h"
 
 
 

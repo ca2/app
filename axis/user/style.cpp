@@ -1,6 +1,6 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/_user.h"
+#include "axis/user/_user.h"
 #endif
 
 
@@ -11,7 +11,7 @@ namespace user
    style::style()
    {
 
-      pstyle = this;
+      m_puserstyle = this;
       m_pgraphics = nullptr;
 
       default_style_construct();
@@ -23,7 +23,7 @@ namespace user
       ::object(pobject)
    {
 
-      pstyle = this;
+      m_puserstyle = this;
       m_pgraphics = nullptr;
 
       default_style_construct();
@@ -1026,7 +1026,7 @@ namespace user
    style * style::userstyle()
    {
 
-      return pstyle;
+      return m_puserstyle;
 
    }
 

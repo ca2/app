@@ -44,7 +44,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{40F49B85-A888-4A1D-A7F5-7631F14A3D4A}</ProjectGuid>
-    <RootNamespace>app-simple</RootNamespace>
+    <RootNamespace>app</RootNamespace>
     <Keyword>Win32Proj</Keyword>
     <ProjectName>app_app</ProjectName>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>

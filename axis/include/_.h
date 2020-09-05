@@ -87,6 +87,8 @@
 
 #include "axis/platform/geo_department.h"
 
+#include "axis/user/_.h"
+
 #include "axis/platform/application.h"
 
 #include "axis/account/_account.h"

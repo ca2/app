@@ -262,25 +262,27 @@ namespace user
 
       }
 
-      if (pstyle)
-      {
+      //if (pstyle)
+      //{
 
-         if (pstyle->m_pfontCombo)
-         {
+      //   if (pstyle->m_pfontCombo)
+      //   {
 
-            return pstyle->m_pfontCombo;
+      //      return pstyle->m_pfontCombo;
 
-         }
-         else if (pstyle->m_pfont)
-         {
+      //   }
+      //   else if (pstyle->m_pfont)
+      //   {
 
-            return pstyle->m_pfont;
+      //      return pstyle->m_pfont;
 
-         }
+      //   }
 
-      }
+      //}
 
-      return nullptr;
+      //return nullptr;
+
+      return ::user::interaction::get_font(pstyle, eelement, estate);
 
    }
 

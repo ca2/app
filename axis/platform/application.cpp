@@ -2614,6 +2614,14 @@ namespace axis
 
       string str(id);
 
+      if (str.begins_ci("check_") || str.begins_ci("checkbox_"))
+      {
+
+         econtroltype = ::user::control_type_check_box;
+
+         return __type(::user::check_box);
+
+      }
       if (str.begins_ci("button_"))
       {
 

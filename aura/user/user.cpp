@@ -27,6 +27,13 @@ namespace user
    }
 
 
+   ::user::style* user::get_user_style()
+   {
+
+      return nullptr;
+
+   }
+
 
    ::estatus user::init1()
    {

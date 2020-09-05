@@ -578,7 +578,7 @@ namespace draw2d
       virtual bool text_out(i32 x, i32 y, const string & str);
       virtual bool text_out(double x, double y, const char * pszString, strsize nCount);
 
-      inline bool text_out(const ::point& point, const string & str) { return text_out(point.x, point.y, str); }
+      inline bool text_out(const ::point& point, const string& str) { return text_out((::i32) point.x, (::i32) point.y, str); }
 
       virtual bool text_out(double x, double y, const string & str);
       virtual bool ExtTextOut(i32 x, i32 y, UINT nOptions, const ::rect & rect, const char * pszString, strsize nCount, i32 * lpDxWidths);

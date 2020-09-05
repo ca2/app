@@ -200,6 +200,21 @@ namespace aura
    }
 
 
+   ::user::style* session::get_user_style()
+   {
+
+      return nullptr;
+
+   }
+
+
+   void session::simple_ui_draw_focus_rect(::user::interaction* pinteraction, ::draw2d::graphics_pointer& pgraphics)
+   {
+
+
+   }
+
+
    void session::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema)
    {
 

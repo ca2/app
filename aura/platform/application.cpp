@@ -11206,14 +11206,6 @@ namespace aura
          return __type(::user::combo_box);
 
       }
-      else if (str.begins_ci("check_") || str.begins_ci("checkbox_"))
-      {
-
-         econtroltype = ::user::control_type_check_box;
-
-         return __type(::user::check_box);
-
-      }
       else if (str.begins_ci("still_"))
       {
 

@@ -1238,6 +1238,12 @@ namespace axis
    }
 
 
+   ::user::style * session::get_user_style()
+   {
+
+      return m_puserstyle;
+
+   }
 
 
    void session::on_user_logon(::account::user* puser)

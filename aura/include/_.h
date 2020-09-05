@@ -121,6 +121,7 @@ extern CLASS_DECL_AURA __LPFN_MAIN_DEFERRED_RUN __main_deferred_run;
 namespace opengl
 {
 
+
    class opengl;
 
 
@@ -1310,13 +1311,14 @@ namespace user
    class interaction_layout;
    class form;
    class form_callback;
-   class style;
    class menu_interaction;
    class toolbar;
    class split_layout;
    class style_rect;
    class scroll_bar;
    class scroll_data;
+   class style;
+
 
    using eflag = flags < enum_flag >;
 
@@ -3064,15 +3066,6 @@ class mq;
 #include "aura/primitive/primitive/factory.h"
 
 
-namespace user
-{
-
-
-   using style_pointer = __pointer(style);
-
-
-} // namespace user
-
 
 
 #include "aura/graphics/_.h"
@@ -3784,7 +3777,7 @@ CLASS_DECL_AURA ::aura::application * get_aura(void * p);
 #include "aura/platform/_impl.h"
 
 
-#include "aura/primitive/collection/_collection_impl.h"
+//#include "aura/primitive/collection/_collection_impl.h"
 
 
 #ifndef WINDOWS_DESKTOP

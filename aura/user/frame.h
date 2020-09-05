@@ -102,7 +102,7 @@ namespace user
       ::size                                       m_sizeMinimum;
 //      __pointer_array(::user::interaction)         m_interactionaCommandHandlers;
       bool                                         m_bCloseApplicationIfLastVisibleFrame;
-      __pointer(::user::style)                     m_puserstyle;
+      __reference(::user::style)                   m_puserstyle;
       bool                                         m_bShowControlBox;
       
       
@@ -147,7 +147,6 @@ namespace user
       virtual ::size get_window_minimum_size() override;
 
       DECL_GEN_SIGNAL(_001OnAppExit);
-
 
 
    };

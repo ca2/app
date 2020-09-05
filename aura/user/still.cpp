@@ -607,24 +607,24 @@ namespace user
    ::draw2d::font_pointer still::get_font(style * pstyle, e_element eelement, estate estate) const
    {
 
-      if (pstyle)
-      {
+      //if (pstyle)
+      //{
 
-         if (pstyle->m_pfontStill)
-         {
+      //   if (pstyle->m_pfontStill)
+      //   {
 
-            return pstyle->m_pfontStill;
+      //      return pstyle->m_pfontStill;
 
-         }
+      //   }
 
-         if (pstyle->m_pfont)
-         {
+      //   if (pstyle->m_pfont)
+      //   {
 
-            return pstyle->m_pfont;
+      //      return pstyle->m_pfont;
 
-         }
+      //   }
 
-      }
+      //}
 
       return nullptr;
 

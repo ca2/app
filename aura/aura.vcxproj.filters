@@ -2825,9 +2825,6 @@
     <ClInclude Include="user\check.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\check_box.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\combo_list.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -5300,9 +5297,6 @@
     </None>
     <None Include="filesystem\_impl.h">
       <Filter>Header Files\filesystem</Filter>
-    </None>
-    <None Include="primitive\collection\_collection_impl.h">
-      <Filter>Header Files\primitive\collection</Filter>
     </None>
     <None Include="primitive\collection\_array_impl.h">
       <Filter>Header Files\primitive\collection</Filter>

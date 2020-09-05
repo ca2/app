@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AURA style_base :
+   class CLASS_DECL_AXIS style_base :
       virtual public object
    {
    public:

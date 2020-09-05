@@ -24,6 +24,7 @@ namespace user
    {
    public:
 
+
       ::base::user *                m_pbaseuser;
       ::core::user *                m_pcoreuser;
       ::user::primitive *           m_pmousefocusLButtonDown;
@@ -37,16 +38,13 @@ namespace user
       ::type                        m_typeHtmlView;
       
       
-      ::user::style_pointer                           m_pstyle;
-      string_map < ::user::style_pointer >            m_mapStyle;
-
 
       user();
       virtual ~user();
 
 
 
-      
+      virtual ::user::style* get_user_style();
 
       //::user::style * get_user_style();
 
@@ -80,6 +78,9 @@ namespace user
       virtual ::type controltype_to_typeinfo(::user::e_control_type econtroltype);
 
       //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style * pstyle, menu_item * pitem);
+
+
+      
 
 
    };

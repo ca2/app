@@ -2005,7 +2005,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="user\box.h" />
     <ClInclude Include="user\callback.h" />
     <ClInclude Include="user\check.h" />
-    <ClInclude Include="user\check_box.h" />
     <ClInclude Include="user\combo_list.h" />
     <ClInclude Include="user\command.h" />
     <ClInclude Include="user\composition_imm_client.h" />
@@ -2891,7 +2890,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <None Include="graphics\draw2d\_impl.h" />
     <None Include="graphics\_impl.h" />
     <None Include="primitive\collection\_array_impl2.h" />
-    <None Include="primitive\collection\_collection_impl.h" />
     <None Include="primitive\collection\_collection_impl1.h" />
     <None Include="primitive\collection\_collection_impl2.h" />
     <None Include="primitive\collection\_array_impl.h" />

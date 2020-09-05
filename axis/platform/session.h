@@ -10,7 +10,9 @@ namespace axis
    {
    public:
 
-      __composite(::account::department)                    m_paccount;
+
+      __composite(::account::department)                 m_paccount;
+      __reference(::user::style)                         m_puserstyle;
 
 
       session();
@@ -37,6 +39,8 @@ namespace axis
 
       virtual void process_term() override;
 
+      virtual ::user::style* get_user_style() override;
+
       inline ::account::department * account() { return m_paccount; }
 
       virtual void on_user_logon(::account::user* puser);
@@ -56,12 +60,8 @@ namespace axis
       virtual void install_message_routing(::channel* pchannel) override;
 
 
+      virtual bool InitializeLocalDataCentral();
 
-      bool InitializeLocalDataCentral();
-
-
-
-     
 
    };
 

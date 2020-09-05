@@ -325,13 +325,19 @@ template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
 void comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
 merge(const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > & a)
 {
+   
    for(::index i = 0; i < a.get_size(); i++)
    {
+      
       if(!contains(a.element_at(i)))
       {
-         add(a.element_at(i));
+         
+         this->add(a.element_at(i));
+
       }
+
    }
+
 }
 
 

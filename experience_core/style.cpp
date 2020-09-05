@@ -1,5 +1,5 @@
-#include "framework.h" 
-#include "base/user/simple/scroll_bar.h" 
+#include "framework.h"
+#include "base/user/simple/scroll_bar.h"
 
 // pgraphics->GetTextExtent("->:<-"); // oh no!! omg!! The size is the size of the alien!!
 #define MAGIC_PALACE_TAB_SPLT "->:<-"
@@ -94,17 +94,17 @@ namespace experience
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
       index iTab = -1;
-      
+
       ::rect rcClient;
-      
+
       ptab->get_client_rect(rcClient);
 
       ::draw2d::brush_pointer brushText;
 
       static int iCurrentTab = -1;
-      
+
       int iTabWidth = 0;
-      
+
       int iTabHeight = 0;
 
       for(i32 iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
@@ -122,19 +122,19 @@ namespace experience
 
          if(!ptab->get_element_rect(iTab,rectBorder, ::user::element_border))
             continue;
-         
+
          if(rectBorder.right > iTabWidth)
          {
-            
+
             iTabWidth = rectBorder.right;
-            
+
          }
-         
+
          if(rectBorder.bottom > iTabHeight)
          {
-          
+
             iTabHeight = rectBorder.bottom;
-            
+
          }
 
          if(!ptab->get_element_rect(iTab,rectClient, ::user::element_client))
@@ -212,8 +212,8 @@ namespace experience
 
                path->close_figure();
 
-               if(ptab->m_itemHover == iTab  
-                  && ptab->m_itemHover != ::user::element_close_tab_button 
+               if(ptab->m_itemHover == iTab
+                  && ptab->m_itemHover != ::user::element_close_tab_button
                   && !ptab->m_itemHover.in_range(::user::element_split, 100))
                {
 
@@ -256,7 +256,7 @@ namespace experience
          }
          else
          {
-            
+
             if(ptab->get_element_rect(iTab,rectIcon, ::user::element_icon))
             {
 
@@ -413,28 +413,28 @@ namespace experience
          }
 
       }
-   
+
       ::rect rectScroll;
-      
+
       bool bScroll = ptab->has_tab_scrolling();
-      
+
       if(bScroll)
       {
-   
+
          if(ptab->get_element_rect(-1,rectScroll, ::user::element_tab_near_scroll))
          {
-    
+
             pgraphics->fill_rect(rectScroll, ARGB(255, 255, 255, 255));
 
          }
-   
+
          if(ptab->get_element_rect(-1,rectScroll, ::user::element_tab_far_scroll))
          {
-    
+
             pgraphics->fill_rect(rectScroll, ARGB(255, 255, 255, 255));
 
          }
-         
+
       }
 
       return true;
@@ -478,16 +478,30 @@ namespace experience
                rectEmp.deflate(1,1);
                ::draw2d::e_alpha_mode emode = pgraphics->m_ealphamode;
                pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+
+               ::color colorText;
+
                if(ptab->m_itemHover == (::index) ::user::element_split + i)
                {
+
                   pgraphics->fill_rect(rectEmp,ARGB(128, 150, 184, 255));
-                  pgraphics->set(ptab->get_data()->m_brushTextHover);
+
+                  colorText = ptab->get_color(pstyle, ::user::element_item_text, ::user::e_state_hover);
+
                }
                else
                {
-                  //pgraphics->fill_rect(rectEmp,ARGB(128,208,223,233));
-                  pgraphics->set(ptab->get_data()->m_brushText);
+
+                  colorText = ptab->get_color(pstyle, ::user::element_item_text);
+
                }
+
+               ::draw2d::brush_pointer brush(e_create);
+
+               brush->create_solid(colorText);
+
+               pgraphics->set(brush);
+
                pgraphics->set_font(ptab, ::user::element_close_tab_button);
                pgraphics->set_alpha_mode(emode);
                pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT,rectText,DT_CENTER | DT_VCENTER | DT_NOPREFIX);
@@ -496,7 +510,7 @@ namespace experience
          }
 
       }
-      
+
    }
 
 
@@ -778,27 +792,27 @@ namespace experience
       }
 
       ptab->layout_pane(ptab->_001GetSel(), ptab->is_this_visible());
-      
+
       ::rect rcClient;
-      
+
       ptab->get_client_rect(rcClient);
-      
+
       if(ptab->get_data()->m_bVertical)
       {
-         
+
          ptab->m_iTabSize = (int) (ptab->get_data()->m_panea.get_count() * ptab->get_data()->m_iTabHeight);
-         
+
          ptab->m_iTabScrollMax = ptab->m_iTabSize - rcClient.height();
-         
+
       }
       else
       {
-         
+
          ptab->m_iTabSize = ptab->get_data()->m_panea.last()->m_point.x +
          ptab->get_data()->m_panea.last()->m_size.cx;
-         
+
          ptab->m_iTabScrollMax = ptab->m_iTabSize - rcClient.width();
-         
+
       }
 
 
@@ -836,6 +850,34 @@ namespace experience
                return __acolor(255, 40, 40, 40);
 
             }
+
+         }
+         else if (econtroltype == ::user::control_type_tab)
+         {
+            if (eelement == ::user::element_item_text)
+            {
+
+               if(estate & ::user::e_state_hover)
+               {
+
+                  return ::color(255, 120, 150, 200);
+
+               }
+               else
+               {
+
+                  return ::color(255, 0, 0, 0);
+
+               }
+
+            }
+            else if (eelement == ::user::element_item_background)
+            {
+
+               return ::color(0, 0, 0, 0);
+
+            }
+
 
          }
 
@@ -948,7 +990,7 @@ namespace experience
                pbar->value("tracking_fade_in") = true;
                pbar->value("tracking_fade_out") = false;
                pbar->value("tracking_simple") = __random(1, 2) == 1;
-               
+
             }
 
          }
@@ -982,7 +1024,7 @@ namespace experience
 
          if (pbar->is_true("tracking_fade_in"))
          {
-            
+
             auto tickFade = pbar->value("tracking_start").tick().elapsed();
 
             if (tickFade < tickFadeIn)

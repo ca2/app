@@ -3,7 +3,11 @@
 int main(int argc, char * argv[])
 {
 
-   //auto psystem = __new(::aura::system());
+#ifdef MAINAPPID
+
+   set_main_app_id(MAINAPPID);
+
+#endif
 
    auto psystem = platform_create_system(nullptr);
 

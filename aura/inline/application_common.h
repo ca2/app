@@ -60,31 +60,35 @@ const char* br_init_get_symbol();
 
 CLASS_DECL_AURA ::estatus os_application_system_run(::aura::system* psystem);
 
+CLASS_DECL_AURA ::estatus set_main_app_id(const char * pszAppId);
+
 
 void application_common(::aura::system * psystem)
 {
 
 #ifdef MAIN_STRING
 
-   pmainstruct->m_pszMain = MAIN_STRING;
+   psystem->m_pszMain = MAIN_STRING;
 
 #endif
 
-#ifdef MAINAPPID
-
-   pmainstruct->m_pszMain = "app : app=" MAINAPPID;
-
-#endif
+//#ifdef MAINAPPID
+//
+//   psystem->m_pszMain = "app : app=" MAINAPPID;
+//
+//   set_main_app_id(MAIN_APP_ID);
+//
+//#endif
 
 #ifdef ACID_APP
 
-   pmainstruct->m_pfnNewAuraApplication = &new_aura_application;
+   psystem->m_pfnNewAuraApplication = &new_aura_application;
 
 #endif
 
 #ifdef ACID_LIBRARY
 
-   pmainstruct->m_pfnNewLibrary = &new_aura_library;
+   psystem->m_pfnNewLibrary = &new_aura_library;
 
 #endif
 
@@ -120,7 +124,7 @@ void application_common(::aura::system * psystem)
   psystem->set_factory_exchange("draw2d", &draw2d_factory_exchange);
 
 #endif
-  
+
 #endif
 
 #ifndef NO_IMAGING

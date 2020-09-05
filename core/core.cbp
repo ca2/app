@@ -518,6 +518,13 @@
 		<Unit filename="node/linux/shell_linux.h" />
 		<Unit filename="os/cross/windows/windows_ole_automation.h.txt" />
 		<Unit filename="papaya/papaya_zoneing.h" />
+		<Unit filename="platform/application.cpp" />
+		<Unit filename="platform/application.h" />
+		<Unit filename="platform/session.cpp" />
+		<Unit filename="platform/session.h" />
+		<Unit filename="platform/system.cpp" />
+		<Unit filename="platform/system.h" />
+		<Unit filename="platform/user.h" />
 		<Unit filename="update.h" />
 		<Unit filename="user.h" />
 		<Unit filename="user/_.h" />

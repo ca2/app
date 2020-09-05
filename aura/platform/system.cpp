@@ -22,6 +22,9 @@ int GetMainScreenRect(LPRECT lprect);
 
 const char* g_pszMultimediaLibraryName = nullptr;
 
+#ifdef LINUX
+const char * get_main_app_id();
+#endif
 
 CLASS_DECL_AURA void multimedia_set_library_name(const char* psz)
 {
@@ -8402,6 +8405,33 @@ string get_bundle_app_library_name();
 
    }
 
+#elif defined(LINUX)
+
+   string strMainAppId = get_main_app_id();
+
+   if (strMainAppId.has_char())
+   {
+
+      string strMessage;
+
+      string strLibraryName = strMainAppId;
+
+      strLibraryName.replace("/", "_");
+
+      strLibraryName.replace("-", "_");
+
+      auto plibrary = __node_library_open(strLibraryName, strMessage);
+
+      if (!plibrary)
+      {
+
+         os_message_box(NULL, strMessage, "Could not open required library.", MB_ICONEXCLAMATION);
+
+         return nullptr;
+
+      }
+
+   }
 
 #endif
 

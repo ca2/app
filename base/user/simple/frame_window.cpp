@@ -3951,7 +3951,13 @@ void simple_frame_window::on_select_user_style()
 
          auto pstyle = User.get_user_style(strSchema, get_context_application());
 
-         m_puserstyle = pstyle;
+         __refer(m_puserstyle, pstyle);
+
+         //if (!estatus)
+         //{
+
+
+         //}
 
       }
 

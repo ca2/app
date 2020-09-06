@@ -2825,9 +2825,6 @@
     <ClInclude Include="user\check.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\combo_list.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\command.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -4973,12 +4970,6 @@
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\check.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\combo_box.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\combo_list.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\command.cpp">

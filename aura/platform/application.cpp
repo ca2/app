@@ -11198,15 +11198,7 @@ namespace aura
 
       string str(id);
 
-      if (str.begins_ci("combo_"))
-      {
-
-         econtroltype = ::user::control_type_combo_box;
-
-         return __type(::user::combo_box);
-
-      }
-      else if (str.begins_ci("still_"))
+      if (str.begins_ci("still_"))
       {
 
          econtroltype = ::user::control_type_static;

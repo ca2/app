@@ -606,6 +606,12 @@
     <ClInclude Include="user\_.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
+    <ClInclude Include="user\combo_box.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\combo_list.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pcre\pcre.cpp">
@@ -868,6 +874,12 @@
     </ClCompile>
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="user\combo_box.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\combo_list.cpp">
+      <Filter>Source Files\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1572,8 +1572,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="user\box.cpp" />
     <ClCompile Include="user\callback.cpp" />
     <ClCompile Include="user\check.cpp" />
-    <ClCompile Include="user\combo_box.cpp" />
-    <ClCompile Include="user\combo_list.cpp" />
     <ClCompile Include="user\command.cpp" />
     <ClCompile Include="user\composition_imm_client.cpp" />
     <ClCompile Include="user\controller.cpp" />
@@ -2007,7 +2005,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="user\box.h" />
     <ClInclude Include="user\callback.h" />
     <ClInclude Include="user\check.h" />
-    <ClInclude Include="user\combo_list.h" />
     <ClInclude Include="user\command.h" />
     <ClInclude Include="user\composition_imm_client.h" />
     <ClInclude Include="user\controller.h" />

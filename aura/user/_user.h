@@ -574,8 +574,8 @@ namespace user
 #include "plain_edit.h"
 
 
-#include "combo_box.h"
-#include "combo_list.h"
+//#include "combo_box.h"
+//#include "combo_list.h"
 
 
 //#include "check_box.h"
@@ -699,8 +699,8 @@ namespace user
 } // namespace user
 
 
-#include "combo_box.h"
-#include "combo_list.h"
+//#include "combo_box.h"
+//#include "combo_list.h"
 
 
 #ifdef LINUX

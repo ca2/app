@@ -32,6 +32,9 @@ namespace axis
       }
 
       create_factory < ::user::button >();
+      create_factory < ::user::check_box >();
+      create_factory <::user::combo_list >();
+      create_factory <::user::combo_box >();
 
       return ::success;
 

@@ -25,7 +25,7 @@ Tear Off CheckBox                                                               
 2020-09-06 00:00        13,741kb                        215,564kb                            9,625kb                                    8,983kb
 
 Tear Off ComboBox
-
+2020-09-06 00:35        13,626kb                        212,771kb                            9,552kb                                    8,910kb
 
 
 Tearing some controls from user...

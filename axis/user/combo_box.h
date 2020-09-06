@@ -8,7 +8,7 @@ namespace user
    class combo_list;
 
 
-   class CLASS_DECL_AURA combo_box :
+   class CLASS_DECL_AXIS combo_box :
       virtual public ::user::plain_edit
    {
    public:

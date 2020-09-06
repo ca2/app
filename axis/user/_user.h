@@ -20,6 +20,10 @@ namespace user
 #include "check_box.h"
 
 
+#include "combo_box.h"
+#include "combo_list.h"
+
+
 #include "user.h"
 
 

@@ -57,7 +57,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -70,7 +70,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -90,7 +90,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -103,7 +103,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -635,6 +635,8 @@
     <ClInclude Include="platform\system.h" />
     <ClInclude Include="user\button.h" />
     <ClInclude Include="user\check_box.h" />
+    <ClInclude Include="user\combo_box.h" />
+    <ClInclude Include="user\combo_list.h" />
     <ClInclude Include="user\style.h" />
     <ClInclude Include="user\user.h" />
     <ClInclude Include="user\_.h" />
@@ -739,6 +741,8 @@
     <ClCompile Include="platform\system.cpp" />
     <ClCompile Include="user\button.cpp" />
     <ClCompile Include="user\check_box.cpp" />
+    <ClCompile Include="user\combo_box.cpp" />
+    <ClCompile Include="user\combo_list.cpp" />
     <ClCompile Include="user\style.cpp" />
     <ClCompile Include="user\user.cpp" />
     <ClCompile Include="xml\attr.cpp" />

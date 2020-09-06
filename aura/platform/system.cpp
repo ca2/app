@@ -1770,27 +1770,32 @@ namespace aura
 
       }
 
-      try
+      if (m_bImaging)
       {
 
-         if (!imaging_factory_exchange())
+         try
          {
 
-            WARN("Failed to initialize imaging library.");
+            if (!imaging_factory_exchange())
+            {
+
+               WARN("Failed to initialize imaging library.");
 
 #if !defined(MOBILE_PLATFORM)
 
-            message_box("Failed to initialize imaging library.");
+               message_box("Failed to initialize imaging library.");
 
 #endif
-// Non fatal? Missing images (if using images)?
-            //bOk = false;
+               // Non fatal? Missing images (if using images)?
+                           //bOk = false;
+
+            }
 
          }
+         catch (...)
+         {
 
-      }
-      catch (...)
-      {
+         }
 
       }
 
@@ -2343,7 +2348,7 @@ namespace aura
       if (!estatus)
       {
 
-         if (m_bUser && m_bDraw2d)
+         if (m_bUser && m_bDraw2d && m_bImaging)
          {
 
             return estatus;

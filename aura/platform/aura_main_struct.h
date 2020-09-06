@@ -35,6 +35,7 @@ struct CLASS_DECL_AURA aura_main_struct
    bool                          m_bVerbose;
    e_trace_level                 m_etracelevel;
    bool                          m_bDraw2d;
+   bool                          m_bImaging;
    bool                          m_bUser;
    bool                          m_bUserEx;
 #if defined(LINUX)

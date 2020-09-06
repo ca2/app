@@ -19,10 +19,13 @@ Status
 2020-09-05 03:33        13,836kb                        220,443kb                            9,689kb
 
 Tear Off Button
-2020-09-05 04:33        13,785kb                        219,099kb                            9,655kb
+2020-09-05 04:33        13,785kb                        219,099kb                            9,655kb                                        
 
-Tear Off: CheckBox, style and style_base...
-2020-09-05 10:06        
+Tear Off CheckBox                                                                                                                       app_app.exe Static Release (Win32)
+2020-09-06 00:00        13,741kb                        215,564kb                            9,625kb                                    8,983kb
+
+Tear Off ComboBox
+
 
 
 Tearing some controls from user...

@@ -90,10 +90,15 @@ namespace draw2d
 
       }
 
-      if(!System.imaging().window_set_mouse_cursor(pinteraction->get_handle(), hcursor))
+      if (System.m_bImaging)
       {
 
-         return false;
+         if (!System.imaging().window_set_mouse_cursor(pinteraction->get_handle(), hcursor))
+         {
+
+            return false;
+
+         }
 
       }
 

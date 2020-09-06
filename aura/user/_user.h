@@ -439,9 +439,6 @@ namespace user
 } // namespace user
 
 
-class simple_frame_window;
-
-
 namespace userex
 {
 
@@ -590,7 +587,7 @@ namespace user
    class control_bar;          // forward context_object (see afxext.h)
 }
 
-class simple_frame_window;
+
 class mini_dock_frame_window;    // forward context_object (see afxpriv.h)
 
 

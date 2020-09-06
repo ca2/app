@@ -1,12 +1,5 @@
 #pragma once
 
-//namespace userex
-//{
-//
-//   class font_format_tool;
-//
-//} // namespace userex
-
 
 class CLASS_DECL_BASE simple_frame_window :
    virtual public ::experience::frame_window,
@@ -14,8 +7,8 @@ class CLASS_DECL_BASE simple_frame_window :
 {
 public:
 
+
    bool                                            m_bProdevianFrame;
-   //bool                                            m_bTranslucentFrame;
    __pointer(::user::tool_window)                  m_ptoolwindowFont;
    bool                                            m_bFirstShow;
    tick                                            m_tickLastSaveWindowRect;
@@ -29,28 +22,20 @@ public:
    draw2d::fastblur                                m_blur;
    ::image_pointer                                 m_pimageBlur;
    ::user::e_translucency                          m_etranslucencyFrame;
-   //__composite(::user::style)                      m_pstyle;
-
    map < ::id, const ::id &, __composite(::user::toolbar) >
                                                    m_toolbarmap;
-
    ::image_pointer                                 m_pimageAlpha;
    ::database::key                                 m_datakeyFrame;
-
    bool                                            m_bDefaultNotifyIcon;
    bool                                            m_bShowTask;
    __pointer(::draw2d::icon)                       m_piconNotify;
    __pointer(::user::notify_icon)                  m_pnotifyicon;
-
    var                                             m_varFrame;
 
 
    simple_frame_window();
-   //simple_frame_window(bool bProdevian, bool bTranslucent);
    virtual ~simple_frame_window();
 
-
-   //void simple_frame_window_common_construct(bool bProdevian, bool bTranslucent);
 
    virtual ::estatus initialize(::object * pobjectContext) override;
 
@@ -64,8 +49,6 @@ public:
 
    virtual void default_notify_icon_topic();
    virtual bool would_display_notify_icon();
-
-   //virtual ::userex::font_format_tool * font_format_tool(bool bCreate = false) override;
 
 
    using ::experience::frame_window::create_window;
@@ -100,7 +83,6 @@ public:
    void ViewOnActivateFrame(__pointer(::user::impact) pview, UINT user, __pointer(::user::interaction) pframe);
 
    virtual void ToggleFullScreen();
-   //virtual bool layout().is_full_screen() override;
    virtual void WfiOnFullScreen() override;
    virtual void _001OnExitFullScreen() override;
    virtual void ShowControlBars(bool bShow = true, bool bLeaveFullScreenBarsOnHide = false);
@@ -108,9 +90,6 @@ public:
    virtual bool _001OnBeforeAppearance() override;
    virtual bool initialize_frame_window_experience() override;
 
-
-   //virtual void WfiOnAfterDown() override;
-   //virtual void WfiOnAfterUp() override;
 
    virtual void _001OnAfterAppearance() override;
 
@@ -276,24 +255,7 @@ public:
    virtual string notification_area_get_xml_menu();
 
    
-
 };
-
-
-
-
-
-//class CLASS_DECL_CORE prodevian_translucent_simple_frame_window :
-//   virtual public simple_frame_window
-//{
-//public:
-//
-//
-//   prodevian_translucent_simple_frame_window();
-//   virtual ~prodevian_translucent_simple_frame_window();
-//
-//
-//};
 
 
 

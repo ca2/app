@@ -3438,7 +3438,7 @@ namespace user
 
          pgraphics->m_pimageimplDraw2dGraphics->m_rectTag.Null();
 
-         pgraphics->m_puserstyle = nullptr;
+         pgraphics->m_puserstyle.release();
 
          if (pgraphics->m_pimageimplDraw2dGraphics)
          {

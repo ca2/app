@@ -6,7 +6,7 @@ namespace base
 
 
    class CLASS_DECL_BASE style :
-      virtual public ::user::style
+      virtual public ::axis::style
    {
    public:
 

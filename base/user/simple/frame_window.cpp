@@ -7,7 +7,6 @@
 #include "axis/xml/_.h"
 
 
-
 #ifdef WINDOWS_DESKTOP
 #include <dde.h>
 #endif
@@ -15,12 +14,20 @@
 
 #define TEST 0
 
-namespace base {
+
+namespace base
+{
+
+
    ::type user::get_simple_frame_window_type_info()
    {
-      return __type(simple_frame_window);
+
+      return __type(::simple_frame_window);
+
    }
-}
+
+
+}　// namespace base
 
 
 simple_frame_window::simple_frame_window()
@@ -72,7 +79,6 @@ simple_frame_window::simple_frame_window()
 
    m_pdocumenttemplate = nullptr;
 
-
 }
 
 
@@ -118,8 +124,6 @@ simple_frame_window::~simple_frame_window()
 }
 
 
-
-
 void simple_frame_window::install_message_routing(::channel * pchannel)
 {
 
@@ -145,7 +149,6 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
    IGUI_MSG_LINK(WM_KEYUP, pchannel, this, &simple_frame_window::_001OnKey);
    IGUI_MSG_LINK(WM_SYSKEYUP, pchannel, this, &simple_frame_window::_001OnKey);
 
-
    connect_command_probe("transparent_frame", &simple_frame_window::_001OnUpdateToggleTransparentFrame);
    connect_command("transparent_frame", &simple_frame_window::_001OnToggleTransparentFrame);
 
@@ -167,8 +170,6 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
 #endif
 
 }
-
-
 
 
 void simple_frame_window::defer_save_window_placement()
@@ -236,6 +237,7 @@ void simple_frame_window::defer_save_window_placement()
 
 }
 
+
 bool simple_frame_window::WindowDataLoadWindowRect(bool bForceRestore, bool bInitialFramePosition)
 {
 
@@ -295,9 +297,11 @@ bool simple_frame_window::WindowDataLoadWindowRect(bool bForceRestore, bool bIni
    INFO("interaction_child::WindowDataLoadWindowRect (4)");
    INFO("");
    INFO("");
+
    return ::experience::frame_window::WindowDataLoadWindowRect(bForceRestore, bInitialFramePosition);
 
 }
+
 
 bool simple_frame_window::WindowDataSaveWindowRect()
 {
@@ -354,9 +358,6 @@ bool simple_frame_window::_001OnBeforeAppearance()
 }
 
 
-
-
-
 void simple_frame_window::_thread_save_window_placement()
 {
 
@@ -411,31 +412,6 @@ void simple_frame_window::_thread_save_window_placement()
 }
 
 
-//simple_frame_window::simple_frame_window(bool bProdevian, bool bTranslucent)
-//{
-//
-//   simple_frame_window_common_construct(bProdevian, bTranslucent);
-//
-//}
-
-
-
-
-
-
-//prodevian_translucent_simple_frame_window::prodevian_translucent_simple_frame_window() :
-//   simple_frame_window(true, true)
-//{
-//
-//
-//}
-//
-//prodevian_translucent_simple_frame_window::~prodevian_translucent_simple_frame_window()
-//{
-//
-//}
-//
-
 void simple_frame_window::assert_valid() const
 {
 
@@ -452,19 +428,6 @@ void simple_frame_window::dump(dump_context & dumpcontext) const
 }
 
 
-
-
-
-
-
-//bool simple_frame_window::layout().is_full_screen()
-//{
-//
-//   return layout().is_full_screen();
-//
-//}
-//
-//
 __pointer(::user::interaction) simple_frame_window::WindowDataGetWnd()
 {
 

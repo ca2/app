@@ -363,11 +363,8 @@ namespace user
    class control_bar;          // forward context_object (see afxext.h)
 }
 
-//class CReBar;               // forward context_object (see afxext.h)
-class simple_frame_window;
-//class CDockBar;             // forward context_object (see afxpriv.h)
+
 class mini_dock_frame_window;    // forward context_object (see afxpriv.h)
-//class CDockState;           // forward context_object (see afxpriv.h)
 
 
 //#include "button.h"

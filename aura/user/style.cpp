@@ -1,10 +1,10 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "axis/user/_user.h"
+#include "aura/user/_user.h"
 #endif
 
 
-namespace axis
+namespace user
 {
 
 
@@ -171,7 +171,7 @@ namespace axis
    bool style::simple_ui_draw_focus_rect(::user::interaction * pinteraction, ::draw2d::graphics_pointer & pgraphics)
    {
 
-      bool bError = pinteraction->m_ptooltip.is_set() && pinteraction->m_ptooltip->is_window_visible(::user::layout_sketch);
+      bool bError = pinteraction->m_ptooltip.is_set() && pinteraction->m_ptooltip->is_window_visible(layout_sketch);
 
       ::draw2d::savedc savedc(pgraphics);
 
@@ -216,7 +216,7 @@ namespace axis
          if (pinteraction->hover_item().is_set() && !pinteraction->has_text_input())
          {
 
-            brush->create_solid(pinteraction->get_color(this, ::user::element_background, ::user::e_state_hover));
+            brush->create_solid(pinteraction->get_color(this, element_background, e_state_hover));
 
             pgraphics->set(brush);
 
@@ -239,7 +239,7 @@ namespace axis
 
                   pen.create();
 
-                  pen->create_solid(1.0, pinteraction->get_color(this, ::user::element_border, ::user::e_state_hover));
+                  pen->create_solid(1.0, pinteraction->get_color(this, element_border, e_state_hover));
 
                }
 
@@ -464,7 +464,7 @@ namespace axis
 
          ::draw2d::pen_pointer pen(e_create);
 
-         pen->create_solid(1.0, pinteraction->get_color(this, ::user::element_border));
+         pen->create_solid(1.0, pinteraction->get_color(this, element_border));
 
          pgraphics->draw_rect(rectClient, pen);
 
@@ -523,12 +523,12 @@ namespace axis
    //   }
 
 
-   bool style::_001DrawCheckBox(::draw2d::graphics_pointer & pgraphics, ::user::check_box * pcheckbox)
-   {
+   //bool style::_001DrawCheckBox(::draw2d::graphics_pointer & pgraphics, ::user::check_box * pcheckbox)
+   //{
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
    bool style::_001DrawToolbarItem(::draw2d::graphics_pointer & pgraphics, index iItem, ::user::toolbar * ptoolbar)
@@ -841,11 +841,10 @@ namespace axis
 
    //}
 
-   
-   ::user::e_control_type style::get_control_type() const
+   e_control_type style::get_control_type() const
    {
 
-      return ::user::control_type_none;
+      return control_type_none;
 
    }
 
@@ -1024,12 +1023,12 @@ namespace axis
    }
 
 
-   //style * style::userstyle()
-   //{
+   style * style::userstyle()
+   {
 
-   //   return m_pstyle;
+      return m_puserstyle;
 
-   //}
+   }
 
 
    //style_context::style_context()
@@ -1046,7 +1045,7 @@ namespace axis
    //}
 
 
-} // namespace axis
+} // namespace user
 
 
 

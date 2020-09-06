@@ -534,9 +534,6 @@
     <ClInclude Include="user\style.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\style_base.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -864,9 +861,6 @@
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\style.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\style_base.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user.cpp">

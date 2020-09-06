@@ -1319,9 +1319,9 @@ namespace user
    class scroll_data;
    class style;
 
+   using style_pointer = __pointer(style);
 
    using eflag = flags < enum_flag >;
-
 
 #if defined(_UWP) || defined(APPLE_IOS) || defined(ANDROID)
 

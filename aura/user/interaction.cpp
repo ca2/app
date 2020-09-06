@@ -8,8 +8,6 @@
 #include "aura/const/id.h"
 
 
-
-
 #define TEST_PRINT_BUFFER
 
 #ifdef WINDOWS_DESKTOP
@@ -215,17 +213,17 @@ namespace user
    ::draw2d::font_pointer interaction::get_font(style * pstyle, e_element eelement, estate estate) const
    {
 
-      //if (pstyle)
-      //{
+      if (pstyle)
+      {
 
-      //   if (pstyle->m_pfont)
-      //   {
+         if (pstyle->m_pfont)
+         {
 
-      //      return pstyle->m_pfont;
+            return pstyle->m_pfont;
 
-      //   }
+         }
 
-      //}
+      }
 
       return nullptr;
 
@@ -235,12 +233,12 @@ namespace user
    e_translucency interaction::get_translucency(style * pstyle) const
    {
 
-      //if (pstyle)
-      //{
+      if (pstyle)
+      {
 
-      //   return pstyle->m_etranslucency;
+         return pstyle->m_etranslucency;
 
-      //}
+      }
 
       return translucency_undefined;
 
@@ -290,46 +288,43 @@ namespace user
    ::color interaction::get_color(style * pstyle, e_element eelement, estate estate) const
    {
 
-      //if (pstyle)
-      //{
+      if (pstyle)
+      {
 
-      //   switch (eelement)
-      //   {
-      //   case element_background:
-      //      if (pstyle->m_colorBackground.is_set())
-      //      {
+         switch (eelement)
+         {
+         case element_background:
+            if (pstyle->m_colorBackground.is_set())
+            {
 
-      //         return pstyle->m_colorBackground;
+               return pstyle->m_colorBackground;
 
-      //      }
-      //      break;
-      //   case element_text:
-      //      if (pstyle->m_colorText.is_set())
-      //      {
+            }
+            break;
+         case element_text:
+            if (pstyle->m_colorText.is_set())
+            {
 
-      //         return pstyle->m_colorText;
+               return pstyle->m_colorText;
 
-      //      }
-      //      break;
-      //   default:
-      //      break;
-      //   }
+            }
+            break;
+         default:
+            break;
+         }
 
-      //}
+      }
 
-      //if (::is_set(pstyle))
-      //{
+      if (::is_set(pstyle))
+      {
 
-      //   return pstyle->get_color(this, eelement, estate);
+         return pstyle->get_color(this, eelement, estate);
 
-      //}
+      }
 
       return Session.get_color(eelement, estate);
 
    }
-
-
-
 
 
    eflag interaction::get_draw_flags(style * pstyle) const
@@ -13650,11 +13645,9 @@ restart:
    void interaction::simple_ui_draw_focus_rect(::draw2d::graphics_pointer & pgraphics)
    {
 
-      //auto pstyle = get_style(pgraphics);
+      auto pstyle = get_style(pgraphics);
 
-      Session.simple_ui_draw_focus_rect(this, pgraphics);
-
-      //pstyle->simple_ui_draw_focus_rect(this, pgraphics);
+      pstyle->simple_ui_draw_focus_rect(this, pgraphics);
 
    }
 

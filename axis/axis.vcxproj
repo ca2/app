@@ -636,7 +636,6 @@
     <ClInclude Include="user\button.h" />
     <ClInclude Include="user\check_box.h" />
     <ClInclude Include="user\style.h" />
-    <ClInclude Include="user\style_base.h" />
     <ClInclude Include="user\user.h" />
     <ClInclude Include="user\_.h" />
     <ClInclude Include="user\_user.h" />
@@ -741,7 +740,6 @@
     <ClCompile Include="user\button.cpp" />
     <ClCompile Include="user\check_box.cpp" />
     <ClCompile Include="user\style.cpp" />
-    <ClCompile Include="user\style_base.cpp" />
     <ClCompile Include="user\user.cpp" />
     <ClCompile Include="xml\attr.cpp" />
     <ClCompile Include="xml\base_array.cpp" />

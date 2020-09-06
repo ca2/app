@@ -1612,6 +1612,8 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="user\scroll_bar.cpp" />
     <ClCompile Include="user\slider.cpp" />
     <ClCompile Include="user\still.cpp" />
+    <ClCompile Include="user\style.cpp" />
+    <ClCompile Include="user\style_base.cpp" />
     <ClCompile Include="user\text.cpp" />
     <ClCompile Include="user\tool_window.cpp" />
     <ClCompile Include="user\user.cpp" />
@@ -2045,6 +2047,8 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="user\scroll_info.h" />
     <ClInclude Include="user\slider.h" />
     <ClInclude Include="user\still.h" />
+    <ClInclude Include="user\style.h" />
+    <ClInclude Include="user\style_base.h" />
     <ClInclude Include="user\text.h" />
     <ClInclude Include="user\tool_window.h" />
     <ClInclude Include="user\user.h" />

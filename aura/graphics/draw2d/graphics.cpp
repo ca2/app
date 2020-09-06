@@ -24,7 +24,7 @@ namespace draw2d
    graphics::graphics()
    {
 
-      m_puserstyle = nullptr;
+      //m_puserstyle = nullptr;
 
       //m_bLayoutModified = false;
 

@@ -3170,6 +3170,12 @@
     <ClInclude Include="user\tool_window.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
+    <ClInclude Include="user\style.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\style_base.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="graphics\draw2d\apple\image_gif.cpp">
@@ -5258,6 +5264,12 @@
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\tool_window.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\style_base.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\style.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
   </ItemGroup>

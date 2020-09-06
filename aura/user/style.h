@@ -1,30 +1,30 @@
 ﻿#pragma once
 
 
-namespace axis
+namespace user
 {
 
 
-   class CLASS_DECL_AXIS style :
-      virtual public ::user::style
+   class CLASS_DECL_AURA style :
+      virtual public style_base
    {
    public:
 
 
-      //__pointer(::aura::library)             m_plibrary;
+      __pointer(::aura::library)             m_plibrary;
 
-      //::draw2d::font_pointer                 m_pfont;
-      //::draw2d::font_pointer                 m_pfontMenu;
-      //::draw2d::font_pointer                 m_pfontButton;
-      //::draw2d::font_pointer                 m_pfontList;
-      //::draw2d::font_pointer                 m_pfontTree;
-      //::draw2d::font_pointer                 m_pfontStill;
-      //::draw2d::font_pointer                 m_pfontEdit;
-      //::draw2d::font_pointer                 m_pfontCombo;
-      //e_translucency                         m_etranslucency;
-      //e_translucency                         m_etranslucencyButton;
-      //::color                                m_colorBackground;
-      //::color                                m_colorText;
+      ::draw2d::font_pointer                 m_pfont;
+      ::draw2d::font_pointer                 m_pfontMenu;
+      ::draw2d::font_pointer                 m_pfontButton;
+      ::draw2d::font_pointer                 m_pfontList;
+      ::draw2d::font_pointer                 m_pfontTree;
+      ::draw2d::font_pointer                 m_pfontStill;
+      ::draw2d::font_pointer                 m_pfontEdit;
+      ::draw2d::font_pointer                 m_pfontCombo;
+      e_translucency                         m_etranslucency;
+      e_translucency                         m_etranslucencyButton;
+      ::color                                m_colorBackground;
+      ::color                                m_colorText;
       //__pointer(color_map)                 m_mapColor;
       //__pointer(font_map)                  m_mapFont;
       //__pointer(translucency_map)          m_mapTranslucency;
@@ -33,20 +33,20 @@ namespace axis
       //__pointer(::user::int_map)           m_mapInt;
       //__pointer(::user::double_map)        m_mapDouble;
 
-      //__pointer(::user::style)               m_puserstyle;
+      __pointer(::user::style)               m_puserstyle;
 
-      //::draw2d::graphics *                   m_pgraphics;
+      ::draw2d::graphics *                   m_pgraphics;
 
-      //::draw2d::pen_pointer                  m_penFocusRect0;
-      //::draw2d::pen_pointer                  m_penFocusRect1;
-      //::draw2d::pen_pointer                  m_penFocusRect2;
-      //::draw2d::pen_pointer                  m_penFocusRect3;
-      //::draw2d::pen_pointer                  m_penFocusRect4;
-      //::draw2d::pen_pointer                  m_penFocusRect5;
-      //::draw2d::pen_pointer                  m_penFocusRect6;
-      //::draw2d::pen_pointer                  m_penFocusRect7;
-      //::draw2d::pen_pointer                  m_penFocusRect8;
-      //::draw2d::pen_pointer                  m_penFocusRect9;
+      ::draw2d::pen_pointer                  m_penFocusRect0;
+      ::draw2d::pen_pointer                  m_penFocusRect1;
+      ::draw2d::pen_pointer                  m_penFocusRect2;
+      ::draw2d::pen_pointer                  m_penFocusRect3;
+      ::draw2d::pen_pointer                  m_penFocusRect4;
+      ::draw2d::pen_pointer                  m_penFocusRect5;
+      ::draw2d::pen_pointer                  m_penFocusRect6;
+      ::draw2d::pen_pointer                  m_penFocusRect7;
+      ::draw2d::pen_pointer                  m_penFocusRect8;
+      ::draw2d::pen_pointer                  m_penFocusRect9;
 
 
 
@@ -85,7 +85,7 @@ namespace axis
 
       //      virtual bool _001GetMainFrameTranslucency(::user::e_translucency & etranslucency) override;
 
-      virtual bool _001DrawCheckBox(::draw2d::graphics_pointer & pgraphics, ::user::check_box * pcheckbox);
+      //virtual bool _001DrawCheckBox(::draw2d::graphics_pointer & pgraphics, ::user::check_box * pcheckbox) override;
 
       virtual bool _001DrawToolbarItem(::draw2d::graphics_pointer & pgraphics, index iItem, ::user::toolbar * ptoolbar) override;
 
@@ -140,17 +140,19 @@ namespace axis
 
       virtual void select(::draw2d::graphics_pointer & pgraphics);
 
-      virtual ::user::e_control_type get_control_type() const override;
+      virtual e_control_type get_control_type() const override;
 
       virtual ::draw2d::graphics * style_get_graphics();
 
-      //virtual style * userstyle();
+      virtual style * userstyle();
 
 
    };
 
 
-} // namespace axis
+
+} // namespace user
+
 
 
 

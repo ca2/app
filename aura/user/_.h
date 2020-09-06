@@ -1,9 +1,6 @@
 ﻿#pragma once
 
 
-
-
-
 namespace graphics
 {
 
@@ -14,9 +11,7 @@ namespace graphics
 } // namespace graphics
 
 
-
 #define WM_SIZEPARENT       0x0361  // lParam = &__SIZEPARENTPARAMS
-
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -114,9 +109,8 @@ namespace graphics
 #include "aura/user/callback.h"
 #include "aura/user/primitive.h"
 
-//#include "aura/user/style_base.h"
-//#include "aura/user/style.h"
-
+#include "aura/user/style_base.h"
+#include "aura/user/style.h"
 
 
 class form_document;
@@ -134,7 +128,6 @@ namespace user
    class window_map;
    class plain_edit;
    class message_queue;
-
 
    CLASS_DECL_AURA COLORREF get_system_app_background_color();
 

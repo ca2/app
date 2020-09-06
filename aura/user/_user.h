@@ -708,7 +708,7 @@ typedef struct _AppIndicator AppIndicator;
 #endif
 
 
-#include "slider.h"
+//#include "slider.h"
 
 
 #define new AURA_NEW

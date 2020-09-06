@@ -637,6 +637,7 @@
     <ClInclude Include="user\check_box.h" />
     <ClInclude Include="user\combo_box.h" />
     <ClInclude Include="user\combo_list.h" />
+    <ClInclude Include="user\slider.h" />
     <ClInclude Include="user\still.h" />
     <ClInclude Include="user\style.h" />
     <ClInclude Include="user\user.h" />
@@ -744,6 +745,7 @@
     <ClCompile Include="user\check_box.cpp" />
     <ClCompile Include="user\combo_box.cpp" />
     <ClCompile Include="user\combo_list.cpp" />
+    <ClCompile Include="user\slider.cpp" />
     <ClCompile Include="user\still.cpp" />
     <ClCompile Include="user\style.cpp" />
     <ClCompile Include="user\user.cpp" />

@@ -2918,9 +2918,6 @@
     <ClInclude Include="user\scroll_info.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\slider.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\text.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -5054,9 +5051,6 @@
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\scroll_bar.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\slider.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\text.cpp">

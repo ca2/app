@@ -30,6 +30,9 @@ Tear Off ComboBox
 Tear Off Still
 2020-09-06 00:52        13,583kb                        211,477kb                            9,521kb                                    8,879kb
 
+Tear Off Slider
+2020-09-06 01:17        13,588kb                        210,307kb                            9,503kb                                    8,789kb
+
 
 Tearing some controls from user...
 

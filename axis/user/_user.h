@@ -25,6 +25,8 @@ namespace user
 #include "combo_box.h"
 #include "combo_list.h"
 
+#include "slider.h"
+
 
 #include "user.h"
 

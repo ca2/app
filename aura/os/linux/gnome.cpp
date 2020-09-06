@@ -48,6 +48,7 @@ namespace user
 
 }
 
+#ifndef RASPBIAN
 
 namespace linux
 {
@@ -61,6 +62,10 @@ namespace linux
    }
 
 } // namespace linux
+
+
+#endif
+
 
 namespace os
 {

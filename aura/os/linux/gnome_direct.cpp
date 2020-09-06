@@ -582,6 +582,12 @@ namespace user
             return desktop_unity_gnome;
 
          }
+         else if(strcasecmp(pszDesktop, "ubuntu:gnome") == 0)
+         {
+
+            return desktop_ubuntu_gnome;
+
+         }
 
       }
 
@@ -607,12 +613,6 @@ namespace user
       {
 
          return desktop_unity_gnome;
-
-      }
-      else if(strcasecmp(pszDesktop, "ubuntu:gnome") == 0)
-      {
-
-         return desktop_ubuntu_gnome;
 
       }
 

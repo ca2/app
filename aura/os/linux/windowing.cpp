@@ -18,7 +18,7 @@
 #include <X11/extensions/XInput.h>
 #include <X11/extensions/XInput2.h>
 #include <X11/XKBlib.h>
-
+#include "aura/os/x11/_x11.h"
 #define new AURA_NEW
 
 ::point g_pointX11Cursor;
@@ -34,7 +34,6 @@ void oswindow_set_active_window(oswindow oswindow);
 
 
 CLASS_DECL_AURA void update_application_session_cursor(void * pvoidApp, const point & pointCursor);
-
 
 bool is_return_key(XIRawEvent *event)
 {
@@ -1796,26 +1795,26 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 #define SIZEY  50
 
 
-void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & stra, bool_array  & baTab, int_array  & ya,SIZE * psize)
-{
-
-   sync_lock sl(x11_mutex());
-
-   pgraphics->fill_rect(::rect(*psize), RGB(84, 90, 80));
-
-   ::draw2d::brush_pointer pen(e_create_new);
-
-   pen->create_solid(0);
-
-   for(index i = 0; i < stra.get_count(); i++)
-   {
-
-      pgraphics->text_out(10.0 + 50.0 + (baTab[i] ? 25.0 : 0), 10.0 + 50.0 + ya[i], stra[i]);
-
-   }
-
-}
-
+//void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & stra, bool_array  & baTab, int_array  & ya,SIZE * psize)
+//{
+//
+//   sync_lock sl(x11_mutex());
+//
+//   pgraphics->fill_rect(::rect(*psize), RGB(84, 90, 80));
+//
+//   ::draw2d::brush_pointer pen(e_create_new);
+//
+//   pen->create_solid(0);
+//
+//   for(index i = 0; i < stra.get_count(); i++)
+//   {
+//
+//      pgraphics->text_out(10.0 + 50.0 + (baTab[i] ? 25.0 : 0), 10.0 + 50.0 + ya[i], stra[i]);
+//
+//   }
+//
+//}
+//
 #define _NET_WM_STATE_REMOVE        0    // remove/unset property
 #define _NET_WM_STATE_ADD           1    // add/set property
 #define _NET_WM_STATE_TOGGLE        2    // toggle property
@@ -2762,11 +2761,78 @@ bool wm_add_remove_list_raw(oswindow w, Atom atomList, Atom atomFlag, bool bSet)
 
 }
 
+__pointer_array(x11_hook) g_x11hooka;
+
+//LPFN_X11_PROCESS_EVENT g_x11processeventa[8];
+
+::estatus x11_hook::hook()
+{
+
+   sync_lock sl(x11_mutex());
+
+   g_x11hooka.add(this);
+
+   return ::success;
+
+}
+
+::estatus x11_hook::unhook()
+{
+
+   sync_lock sl(x11_mutex());
+
+   g_x11hooka.remove(this);
+
+   return ::success;
+
+}
+
+bool __x11_hook_process_event(osdisplay_data * pdisplaydata, XEvent & e, XGenericEventCookie * cookie)
+{
+
+   for(auto & phook : g_x11hooka)
+   {
+
+      if(phook->process_event(pdisplaydata, e, cookie))
+      {
+
+         return true;
+
+      }
+
+   }
+
+   return false;
+
+}
+
+//   for(int i = 0; i < g_cX11; i++)
+//   {
+//
+//      if(g_x11processeventa[i] == pfn)
+//      {
+//
+//         memmove(g_x11processeventa + i, g_x11processeventa + i + 1, g_cX11 - i - 1);
+//
+//         g_cX11--;
+//
+//         return ::success;
+//
+//      }
+//
+//   }
+//
+//   return ::error_failed;
+//
+//}
+
 #if !defined(RASPBIAN)
 bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e, XGenericEventCookie * cookie);
 #else
 bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e);
 #endif
+
+bool __x11_hook_process_event(osdisplay_data * pdisplaydata, XEvent & e);
 
 void x11_post_message(MESSAGE & msg);
 
@@ -2972,6 +3038,9 @@ void x11_thread(osdisplay_data * pdisplaydata)
 
                XNextEvent(pdisplay, &e);
 
+               if(!__x11_hook_process_event(pdisplaydata, e, cookie))
+               {
+
 #if !defined(RASPBIAN)
 
                x11_process_event(pdisplaydata, e, cookie);
@@ -2981,6 +3050,8 @@ void x11_thread(osdisplay_data * pdisplaydata)
                x11_process_event(pdisplaydata, e);
 
 #endif
+
+               }
 
             }
             catch(...)
@@ -5312,3 +5383,7 @@ void os_menu_item_check(void * pitem, bool bCheck)
 
 
 
+bool x11_hook::process_event(osdisplay_data * pdisplaydata, XEvent & e, XGenericEventCookie * cookie)
+{
+return false;
+}

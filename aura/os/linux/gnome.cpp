@@ -45,7 +45,6 @@ namespace user
 
    }
 
-
 }
 
 
@@ -85,6 +84,8 @@ namespace os
       case ::user::desktop_unity_gnome:
 
          bOk = ::user::gsettings_get(strTheme, "org.gnome.desktop.interface", "gtk-theme");
+
+         break;
 
       case ::user::desktop_mate:
 

@@ -27,7 +27,7 @@ namespace base
    }
 
 
-}　// namespace base
+} // namespace base
 
 
 simple_frame_window::simple_frame_window()

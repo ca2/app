@@ -88,7 +88,7 @@
 //
 //      pgraphics->chain(pdrawcontext);
 //
-//      _000OnDraw1(pgraphics);
+//      _000OnDraw(pgraphics);
 //
 //      pgraphics->unchain(pdrawcontext);
 //

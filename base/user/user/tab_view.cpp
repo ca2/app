@@ -843,7 +843,7 @@ namespace user
    }
 
 
-   void tab_view::_000OnDraw1(::draw2d::graphics_pointer & pgraphics)
+   void tab_view::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       bool bUpdateBuffer = false;

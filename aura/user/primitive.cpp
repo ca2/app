@@ -244,7 +244,7 @@ namespace user
    }
 
 
-   void primitive::_000OnDraw1(::draw2d::graphics_pointer & pgraphics)
+   void primitive::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       _001OnDraw(pgraphics);

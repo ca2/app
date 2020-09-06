@@ -708,8 +708,8 @@ namespace user
       virtual void _001PrintBuffer(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _001Print(::draw2d::graphics_pointer & pgraphics) override;
       virtual bool _000OnBeforeDraw(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void _000CallOnDraw1(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void _000OnDraw1(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _000CallOnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _001DrawThis(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _001DrawChildren(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics);

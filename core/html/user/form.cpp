@@ -69,7 +69,7 @@ void html_form::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
          if(pinteraction->is_this_visible() && (get_html_data() == nullptr || !get_html_data()->contains(pinteraction)))
          {
 
-            pinteraction->_000CallOnDraw1(pgraphics);
+            pinteraction->_000CallOnDraw(pgraphics);
 
          }
 

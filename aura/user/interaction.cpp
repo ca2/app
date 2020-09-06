@@ -2564,7 +2564,7 @@ namespace user
                      
                }
 
-               pinteraction->_000CallOnDraw1(pgraphics);
+               pinteraction->_000CallOnDraw(pgraphics);
 
                //{
 
@@ -2769,7 +2769,7 @@ namespace user
          try
          {
 
-            _000CallOnDraw1(pgraphics);
+            _000CallOnDraw(pgraphics);
 
          }
          catch (...)
@@ -2880,7 +2880,7 @@ namespace user
    }
 
 
-   void interaction::_000CallOnDraw1(::draw2d::graphics_pointer & pgraphics)
+   void interaction::_000CallOnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       if (!(m_ewindowflag & window_flag_window_created))
@@ -2941,7 +2941,7 @@ namespace user
       try
       {
 
-         _000OnDraw1(pgraphics);
+         _000OnDraw(pgraphics);
 
       }
       catch (...)
@@ -2961,7 +2961,7 @@ namespace user
    }
 
 
-   void interaction::_000OnDraw1(::draw2d::graphics_pointer & pgraphics)
+   void interaction::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       try
@@ -13717,7 +13717,7 @@ restart:
 
       pgraphics->chain(pdrawcontext);
 
-      _000OnDraw1(pgraphics);
+      _000OnDraw(pgraphics);
 
       pgraphics->unchain(pdrawcontext);
 

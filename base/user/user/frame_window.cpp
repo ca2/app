@@ -2804,7 +2804,7 @@ namespace user
    }
 
 
-   void frame_window::_000OnDraw1(::draw2d::graphics_pointer & pgraphics)
+   void frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       bool bUpdateBuffer;

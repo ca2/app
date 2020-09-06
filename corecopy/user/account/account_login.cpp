@@ -477,10 +477,10 @@ namespace account
    }
 
 
-   void login::_000OnDraw1(::draw2d::graphics_pointer & pgraphics)
+   void login::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      return ::user::interaction::_000OnDraw1(pgraphics);
+      return ::user::interaction::_000OnDraw(pgraphics);
 
    }
 

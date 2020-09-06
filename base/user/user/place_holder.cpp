@@ -251,7 +251,7 @@ namespace user
       if(m_uiptraChild.has_element())
       {
       
-         m_uiptraChild[0]->_000CallOnDraw1(pgraphics);
+         m_uiptraChild[0]->_000CallOnDraw(pgraphics);
          
       }
    

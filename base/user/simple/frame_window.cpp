@@ -2240,13 +2240,13 @@ void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::grap
 }
 
 
-void simple_frame_window::_000OnDraw1(::draw2d::graphics_pointer & pgraphicsParam)
+void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam)
 {
 
    if (!is_frame_experience_enabled())
    {
 
-      ::user::frame_window::_000OnDraw1(pgraphicsParam);
+      ::user::frame_window::_000OnDraw(pgraphicsParam);
 
       return;
 
@@ -3272,7 +3272,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
                      tick t1 = tick::now();
 
-                     pinteraction->_000CallOnDraw1(pgraphics);
+                     pinteraction->_000CallOnDraw(pgraphics);
 
                      tick d1 = t1.elapsed();
 
@@ -3385,7 +3385,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
                      tick t1 = tick::now();
 
-                     pinteraction->_000CallOnDraw1(pgraphics);
+                     pinteraction->_000CallOnDraw(pgraphics);
 
                      tick d1 = t1.elapsed();
 

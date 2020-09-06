@@ -62,7 +62,7 @@ namespace user
       virtual ::draw2d::font_pointer get_font(style* pstyle, e_element eelement = element_none, estate estate = e_state_none) const override;
 
 
-      virtual void _000OnDraw1(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       //virtual void _001OnDrawVerisimple(::draw2d::graphics_pointer & pgraphics);
       virtual void _001OnDrawCombo(::draw2d::graphics_pointer & pgraphics);

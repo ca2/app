@@ -153,7 +153,7 @@ public:
    virtual bool pre_create_window(::user::create_struct& cs) override;
    virtual void pre_translate_message(::message::message * pmessage) override;
 
-   virtual void _000OnDraw1(::draw2d::graphics_pointer & pgraphics) override;
+   virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
    virtual void draw_frame_and_control_box_over(::draw2d::graphics_pointer & pgraphics);
 
    virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;

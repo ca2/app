@@ -346,10 +346,10 @@ namespace user
    }
 
 
-   void combo_box::_000OnDraw1(::draw2d::graphics_pointer & pgraphics)
+   void combo_box::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::user::plain_edit::_000OnDraw1(pgraphics);
+      ::user::plain_edit::_000OnDraw(pgraphics);
 
    }
 

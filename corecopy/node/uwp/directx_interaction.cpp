@@ -51,7 +51,7 @@ namespace uwp
             if (!pinteraction->is_custom_draw())
             {
 
-               pinteraction->_000OnDraw1(pgraphics);
+               pinteraction->_000OnDraw(pgraphics);
 
             }
 
@@ -68,10 +68,10 @@ namespace uwp
    }
 
 
-   void directx_interaction::_000OnDraw1(::draw2d::graphics_pointer & pgraphics)
+   void directx_interaction::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::user::interaction::_000OnDraw1(pgraphics);
+      ::user::interaction::_000OnDraw(pgraphics);
 
    }
 

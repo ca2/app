@@ -59,7 +59,7 @@ namespace user
 
       virtual ::user::document * get_view_document() override;
 
-      virtual void _000OnDraw1(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
       virtual void _001OnDropTab(index iPane, e_position eposition) override;
 

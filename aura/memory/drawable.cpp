@@ -73,16 +73,16 @@ namespace aura
    //}
 
 
-   void drawable::_000OnDraw1(::draw2d::graphics_pointer & pgraphics)
+   void drawable::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
    }
 
 
-   void drawable::_000CallOnDraw1(::draw2d::graphics_pointer & pgraphics)
+   void drawable::_000CallOnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      _000OnDraw1(pgraphics);
+      _000OnDraw(pgraphics);
 
    }
 

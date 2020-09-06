@@ -2,6 +2,8 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/user/account/_account.h"
 #endif
+#include "axis/user/simple_ui_draw.h"
+
 
 
 namespace account
@@ -188,7 +190,11 @@ namespace account
    void login::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      simple_ui_draw_frame_window_rect(pgraphics);
+      ::simple_ui::draw draw;
+
+      ::rect r = get_client_rect();
+
+      draw.simple_ui_draw_frame_window_rect(r, pgraphics);
 
       COLORREF crOut, crIn, crBorderOut, crBorderIn, cr, crBk;
 
@@ -479,10 +485,10 @@ namespace account
    }
 
 
-   void login::_000OnDraw1(::draw2d::graphics_pointer & pgraphics)
+   void login::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      return ::user::interaction::_000OnDraw1(pgraphics);
+      return ::user::interaction::_000OnDraw(pgraphics);
 
    }
 

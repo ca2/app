@@ -101,7 +101,7 @@ public:
 
 };
 
-void press_any_key_to_exit(const char * psz = nullptr);
+
 
 //int main(int argc, char* argv[])
 //

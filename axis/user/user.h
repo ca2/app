@@ -11,8 +11,6 @@ namespace axis
    public:
 
       
-      ::user::style_pointer                           m_pstyle;
-      string_map < ::user::style_pointer >            m_mapStyle;
 
 
       user();

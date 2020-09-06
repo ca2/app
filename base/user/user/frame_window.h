@@ -268,7 +268,7 @@ namespace user
 
 
 
-      virtual void _000OnDraw1(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
 
       virtual void on_control_event(::user::control_event * pevent) override;

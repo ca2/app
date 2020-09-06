@@ -61,7 +61,7 @@ namespace account
 
       DECL_GEN_SIGNAL(_001OnCreate);
 
-      virtual void _000OnDraw1(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
       virtual void _001DrawChildren(::draw2d::graphics_pointer & pgraphics) override;
 

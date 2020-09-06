@@ -125,7 +125,7 @@ namespace aura
 
       m_map.remove_key(nIDEvent);
 
-      ptimer->finalize();
+      ptimer->set_finish();
 
       return true;
 

@@ -28,12 +28,12 @@ namespace user
 
    }
 
-   image_list & image_manager::GetImageList()
+   ::image_list & image_manager::GetImageList()
    {
       return *m_pimagelist;
    }
 
-   image_list & image_manager::GetImageListDisable()
+   ::image_list & image_manager::GetImageListDisable()
    {
       return *m_pimagelistDisable;
    }

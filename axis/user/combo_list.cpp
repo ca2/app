@@ -2,6 +2,7 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "axis/user/_user.h"
 #endif
+#include "aura/const/timer.h"
 
 
 namespace user
@@ -26,6 +27,8 @@ namespace user
    {
 
       defer_create_mutex();
+
+      m_bPendingKillFocusHiding = false;
 
       m_ewindowflag += window_flag_satellite_window;
 
@@ -409,6 +412,34 @@ namespace user
    }
 
 
+   void combo_list::_001OnTimer(::timer* ptimer)
+   {
+   
+      if (ptimer->m_etimer == timer_kill_focus)
+      {
+
+         if (m_bPendingKillFocusHiding)
+         {
+            
+            m_bPendingKillFocusHiding = false;
+
+            hide();
+
+            set_need_redraw();
+
+            post_redraw();
+
+
+         }
+
+         KillTimer(timer_kill_focus);
+
+      }
+
+      ::user::scroll_base::_001OnTimer(ptimer);
+   
+   }
+
    bool combo_list::keyboard_focus_is_focusable()
    {
 
@@ -494,43 +525,49 @@ namespace user
       if (m_pcombo)
       {
 
-         SCAST_PTR(::message::kill_focus, pkillfocus, pmessage);
+         m_tickKillFocus.Now();
 
-         oswindow oswindowThis = get_safe_handle();
+         m_bPendingKillFocusHiding = true;
 
-         oswindow oswindowNew = pkillfocus->m_oswindowNew;
+         set_timer(timer_kill_focus, 300_ms);
 
-         if (oswindowThis != oswindowNew && !m_bMovingComboBox)
-         {
+         //SCAST_PTR(::message::kill_focus, pkillfocus, pmessage);
 
-            if (layout().sketch().is_screen_visible())
-            {
+         //oswindow oswindowThis = get_safe_handle();
 
-               m_tickLastVisibilityChange.Now();
+         //oswindow oswindowNew = pkillfocus->m_oswindowNew;
 
-               display(false);
+         //if (oswindowThis != oswindowNew && !m_bMovingComboBox)
+         //{
 
-               set_need_redraw();
+         //   if (layout().sketch().is_screen_visible())
+         //   {
 
-               post_redraw();
+         //      m_tickLastVisibilityChange.Now();
 
-               m_pcombo->keyboard_set_focus();
+         //      hide();
 
-               m_pcombo->get_wnd()->SetActiveWindow();
+         //      set_need_redraw();
 
-            }
-            else
-            {
+         //      post_redraw();
 
-               //output_debug_string("A phantom is loosing focus. What a pitty!!");
+         //      m_pcombo->keyboard_set_focus();
 
-            }
+         //      m_pcombo->get_wnd()->SetActiveWindow();
 
-         }
+         //   }
+         //   else
+         //   {
 
-         pkillfocus->m_bRet = true;
+         //      //output_debug_string("A phantom is loosing focus. What a pitty!!");
 
-         pkillfocus->m_lresult = 0;
+         //   }
+
+         //}
+
+         //pkillfocus->m_bRet = true;
+
+         //pkillfocus->m_lresult = 0;
 
       }
 
@@ -1042,6 +1079,8 @@ namespace user
       display(display_normal);
 
       set_need_redraw();
+
+      set_layout_ready();
 
       post_redraw();
 

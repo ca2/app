@@ -577,7 +577,7 @@ namespace html
          if (::is_set(m_pedit) && m_pedit->is_window() && pdata->m_pcoredata->m_bEdit)
          {
 
-            m_pedit->_000CallOnDraw1(pdata->m_pcoredata->m_pgraphics);
+            m_pedit->_000CallOnDraw(pdata->m_pcoredata->m_pgraphics);
 
          }
          else

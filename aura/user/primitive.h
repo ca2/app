@@ -100,7 +100,7 @@ namespace user
 
 
       virtual bool enable_window(bool bEnable = true);
-      virtual void _000OnDraw1(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
       virtual void PreSubClassWindow();
 

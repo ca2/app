@@ -33,7 +33,7 @@ namespace base
    ::estatus user::initialize(::object* pobjectContext)
    {
 
-      auto estatus = ::user::user::initialize(pobjectContext);
+      auto estatus = ::axis::user::initialize(pobjectContext);
 
       if (!estatus)
       {
@@ -75,7 +75,7 @@ namespace base
 
       //}
 
-      if (!::user::user::init1())
+      if (!::axis::user::init1())
       {
 
          return false;
@@ -97,7 +97,7 @@ namespace base
    ::estatus user::init()
    {
 
-      if (!::user::user::init())
+      if (!::axis::user::init())
       {
 
          return false;
@@ -1141,7 +1141,7 @@ namespace base
    ::user::style_pointer user::get_user_style(const char* pszExperienceLibrary, ::aura::application* papp)
    {
 
-      auto& pstyle = m_mapStyle[pszExperienceLibrary];
+      auto& pstyle = m_mapUserStyle[pszExperienceLibrary];
 
       if (!pstyle)
       {
@@ -1323,7 +1323,7 @@ namespace base
 
          pstyle->m_plibrary = plibrary;
 
-         m_pstyle = pstyle;
+         m_puserstyle = pstyle;
 
          break;
 
@@ -1360,12 +1360,12 @@ namespace base
    void user::defer_instantiate_user_style(const char* pszUiInteractionLibrary)
    {
 
-      if (!m_pstyle)
+      if (!m_puserstyle)
       {
 
-         m_pstyle = get_user_style(pszUiInteractionLibrary);
+         m_puserstyle = get_user_style(pszUiInteractionLibrary);
 
-         if (!m_pstyle)
+         if (!m_puserstyle)
          {
 
             ERR("aura::session::defer_instantiate_user_theme");

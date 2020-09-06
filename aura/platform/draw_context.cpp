@@ -36,7 +36,7 @@ namespace aura
 
       pgraphics->chain(this);
 
-      puserinteraction->_000OnDraw1(pgraphics);
+      puserinteraction->_000OnDraw(pgraphics);
 
       pgraphics->unchain(this);
 

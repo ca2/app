@@ -2,6 +2,7 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/user/user/_user.h"
 #endif
+#include "axis/user/validate.h"
 #include "aura/update.h"
 #include "aura/const/id.h"
 
@@ -919,7 +920,9 @@ break_click:;
 
       pinteraction->_001GetText(str);
 
-      if (!pinteraction->Validate(str))
+      ::user::validate validate;
+
+      if (!validate.Validate(str, &pinteraction->descriptor()))
       {
 
          // que tal um balão para indicar o erro

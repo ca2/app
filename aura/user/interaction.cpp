@@ -2607,7 +2607,7 @@ namespace user
 
                }
 
-               pinteraction->_000CallOnDraw1(pgraphics);
+               pinteraction->_000CallOnDraw(pgraphics);
 
                //{
 
@@ -2813,7 +2813,7 @@ namespace user
          try
          {
 
-            _000CallOnDraw1(pgraphics);
+            _000CallOnDraw(pgraphics);
 
          }
          catch (...)
@@ -2898,7 +2898,7 @@ namespace user
    }
 
 
-   void interaction::_000CallOnDraw1(::draw2d::graphics_pointer & pgraphics)
+   void interaction::_000CallOnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       if (!(m_ewindowflag & window_flag_window_created))
@@ -2928,6 +2928,12 @@ namespace user
       {
 
          output_debug_string("plain_edit");
+
+      }
+      else if (strType.contains_ci("combo_box"))
+      {
+
+         output_debug_string("combo_box");
 
       }
 
@@ -3030,7 +3036,7 @@ namespace user
       try
       {
 
-         _000OnDraw1(pgraphics);
+         _000OnDraw(pgraphics);
 
       }
       catch (...)
@@ -3048,7 +3054,7 @@ namespace user
    }
 
 
-   void interaction::_000OnDraw1(::draw2d::graphics_pointer & pgraphics)
+   void interaction::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       try
@@ -7914,6 +7920,12 @@ namespace user
       {
 
          output_debug_string("albertopibiri_keyboard::main_frame");
+
+      }
+      else if (strType.contains("combo_box"))
+      {
+
+         output_debug_string("combo_box");
 
       }
 

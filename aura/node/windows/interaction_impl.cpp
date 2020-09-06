@@ -615,10 +615,10 @@ namespace windows
 
       }
 
-      m_puserinteraction->layout().sketch() = ::point(cs.x, cs.cy);
+      m_puserinteraction->layout().sketch() = ::point(cs.x, cs.y);
       m_puserinteraction->layout().sketch() = ::size(cs.cx, cs.cy);
 
-      m_puserinteraction->layout().window() = ::point(cs.x, cs.cy);
+      m_puserinteraction->layout().window() = ::point(cs.x, cs.y);
       m_puserinteraction->layout().window() = ::size(cs.cx, cs.cy);
 
       bool bUnicode = ::IsWindowUnicode(oswindow) != FALSE;

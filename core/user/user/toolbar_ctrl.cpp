@@ -743,7 +743,7 @@ namespace user
    }
 
 
-   image_list* toolbar_control::GetDisabledImageList()
+   ::image_list* toolbar_control::GetDisabledImageList()
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -759,7 +759,7 @@ namespace user
    }
 
 
-   image_list* toolbar_control::GetHotImageList()
+   ::image_list* toolbar_control::GetHotImageList()
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -775,7 +775,7 @@ namespace user
    }
 
 
-   image_list* toolbar_control::GetImageList()
+   ::image_list* toolbar_control::GetImageList()
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -891,7 +891,7 @@ namespace user
    }
 
 
-   image_list* toolbar_control::SetDisabledImageList(image_list* pImageList)
+   ::image_list* toolbar_control::SetDisabledImageList(::image_list* pImageList)
    {
       UNREFERENCED_PARAMETER(pImageList);
 #ifdef WINDOWS_DESKTOP
@@ -908,7 +908,7 @@ namespace user
    }
 
 
-   image_list* toolbar_control::SetHotImageList(image_list* pImageList)
+   ::image_list* toolbar_control::SetHotImageList(::image_list* pImageList)
    {
       UNREFERENCED_PARAMETER(pImageList);
 #ifdef WINDOWS_DESKTOP
@@ -925,7 +925,7 @@ namespace user
    }
 
 
-   image_list* toolbar_control::SetImageList(image_list* pImageList)
+   ::image_list* toolbar_control::SetImageList(::image_list* pImageList)
    {
 
       UNREFERENCED_PARAMETER(pImageList);

@@ -448,7 +448,7 @@ namespace user
       }
 
 
-      image_list * shell::GetImageList(int iSize)
+      ::image_list * shell::GetImageList(int iSize)
       {
 
          sync_lock sl(mutex());
@@ -493,7 +493,7 @@ namespace user
       }
 
 
-      image_list * shell::GetImageListHover(int iSize)
+      ::image_list * shell::GetImageListHover(int iSize)
       {
 
          sync_lock sl(mutex());

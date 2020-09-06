@@ -12,7 +12,6 @@ namespace axis
 
 
       __composite(::account::department)                 m_paccount;
-      __reference(::user::style)                         m_puserstyle;
 
 
       session();

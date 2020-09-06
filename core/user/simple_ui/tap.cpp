@@ -531,10 +531,10 @@ namespace simple_ui
    }
 
 
-   void tap::_000OnDraw1(::draw2d::graphics_pointer & pgraphics)
+   void tap::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      user::interaction::_000OnDraw1(pgraphics);
+      user::interaction::_000OnDraw(pgraphics);
 
    }
 

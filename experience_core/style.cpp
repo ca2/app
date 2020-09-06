@@ -486,13 +486,13 @@ namespace experience
 
                   pgraphics->fill_rect(rectEmp,ARGB(128, 150, 184, 255));
 
-                  colorText = ptab->get_color(pstyle, ::user::element_item_text, ::user::e_state_hover);
+                  colorText = ptab->get_color(this, ::user::element_item_text, ::user::e_state_hover);
 
                }
                else
                {
 
-                  colorText = ptab->get_color(pstyle, ::user::element_item_text);
+                  colorText = ptab->get_color(this, ::user::element_item_text);
 
                }
 

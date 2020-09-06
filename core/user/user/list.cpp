@@ -1500,7 +1500,7 @@ namespace user
 
       //});
 
-      image_list::info ii;
+      ::image_list::info ii;
 
       for (iColumn = 0; iColumn < m_columna.VisibleGetCount(); iColumn++)
       {
@@ -7235,7 +7235,7 @@ namespace user
    }
 
 
-   __pointer(image_list) draw_list_item::get_image_list()
+   __pointer(::image_list) draw_list_item::get_image_list()
    {
 
       if (m_bListItemHover && m_pcolumn->m_pilHover != nullptr)

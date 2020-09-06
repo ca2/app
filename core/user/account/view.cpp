@@ -5,7 +5,7 @@
 #ifdef WINDOWS_DESKTOP
 #include "aura/os/windows/_windows.h"
 #endif
-
+#include "axis/user/simple_ui_draw.h"
 
 namespace account
 {
@@ -221,7 +221,11 @@ namespace account
 
       //return;
 
-      simple_ui_draw_frame_window_rect(pgraphics);
+      ::simple_ui::draw draw;
+
+      ::rect r = get_client_rect();
+
+      draw.simple_ui_draw_frame_window_rect(r, pgraphics);
 
 
 
@@ -503,7 +507,7 @@ namespace account
             if (pinteraction->is_this_visible() && !pinteraction->is_custom_draw())
             {
 
-               pinteraction->_000CallOnDraw1(pgraphics);
+               pinteraction->_000CallOnDraw(pgraphics);
 
             }
 

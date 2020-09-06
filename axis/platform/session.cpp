@@ -1241,7 +1241,14 @@ namespace axis
    ::user::style * session::get_user_style()
    {
 
-      return m_puserstyle;
+      if (!m_puser)
+      {
+
+         return nullptr;
+
+      }
+
+      return m_puser->m_puserstyle;
 
    }
 

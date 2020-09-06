@@ -11,6 +11,8 @@ namespace user
    public:
 
 
+      ::tick                              m_tickKillFocus;
+      bool                                m_bPendingKillFocusHiding;
       bool                                m_bMovingComboBox;
       bool                                m_bComboList;
       __pointer(combo_box)                m_pcombo;
@@ -56,6 +58,8 @@ namespace user
       virtual void _001EnsureVisible(index iItem);
 
       //virtual void nextstyle(style_context* pcontext) override;
+
+      virtual void _001OnTimer(::timer* ptimer) override;
 
       DECL_GEN_SIGNAL(_001OnShowWindow);
       DECL_GEN_SIGNAL(_001OnSetFocus);

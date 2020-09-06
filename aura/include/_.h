@@ -1319,6 +1319,7 @@ namespace user
    class scroll_data;
    class style;
 
+   using style_pointer = __pointer(style);
 
    using eflag = flags < enum_flag >;
 
@@ -3440,8 +3441,8 @@ return __str(value);
 #include "aura/platform/debug.h"
 
 
-#include "aura/platform/printf.h"
-#include "aura/platform/sprintf.h"
+//#include "aura/platform/printf.h"
+//#include "aura/platform/sprintf.h"
 
 
 //#include "aura/math/_math.h"

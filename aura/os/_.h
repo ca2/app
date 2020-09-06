@@ -52,6 +52,7 @@ CLASS_DECL_AURA string get_command_line_dup();
 template < typename PRED >
 inline bool pred_Sleep(int iTime, PRED pred);
 
+CLASS_DECL_AURA void press_any_key_to_exit(const char* psz = nullptr);
 
 //void adapt_font_name(string & str);
 

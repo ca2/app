@@ -25,17 +25,18 @@ namespace user
    public:
 
 
-      ::base::user *                m_pbaseuser;
-      ::core::user *                m_pcoreuser;
-      ::user::primitive *           m_pmousefocusLButtonDown;
-      ::user::primitive *           m_pmousefocusRButtonDown;
-      string_array                  m_straEscape;
-      //::user::style_pointer       pstyle;
+      ::base::user *                         m_pbaseuser;
+      ::core::user *                         m_pcoreuser;
+      ::user::primitive *                    m_pmousefocusLButtonDown;
+      ::user::primitive *                    m_pmousefocusRButtonDown;
+      string_array                           m_straEscape;
+      ::user::style_pointer                  m_puserstyle;
+      string_map < ::user::style_pointer >   m_mapUserStyle;
 
-      __composite(::html::html)     m_phtml; // defined in upper level
+      __composite(::html::html)              m_phtml; // defined in upper level
 
-      ::type                        m_typeHtmlDocument;
-      ::type                        m_typeHtmlView;
+      ::type                                 m_typeHtmlDocument;
+      ::type                                 m_typeHtmlView;
       
       
 

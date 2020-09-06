@@ -4513,9 +4513,11 @@ namespace user
 
       }
 
-      m_puserinteraction->layout().window() = m_puserinteraction->layout().output();
+      m_puserinteraction->layout().window() = m_puserinteraction->layout().design();
 
-      m_puserinteraction->layout().output().clear_ephemeral();
+      m_puserinteraction->layout().design().clear_ephemeral();
+
+      m_puserinteraction->layout().design() = edisplayOutput;
 
       oswindow oswindowFocus = nullptr;
 

@@ -214,7 +214,7 @@ namespace html
 
          //pgraphics->SetViewportOrg(rectWindow.top_left());
 
-         m_pcombo->_000CallOnDraw1(pgraphics);
+         m_pcombo->_000CallOnDraw(pgraphics);
 
       }
 

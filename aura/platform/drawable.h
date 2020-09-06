@@ -20,9 +20,9 @@ namespace aura
 
       virtual bool _000OnBeforeDraw(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void _000OnDraw1(::draw2d::graphics_pointer & pgraphics);
+      virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void _000CallOnDraw1(::draw2d::graphics_pointer & pgraphics);
+      virtual void _000CallOnDraw(::draw2d::graphics_pointer & pgraphics);
 
       virtual void _001DeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics);
 

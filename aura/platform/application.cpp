@@ -125,6 +125,7 @@ namespace aura
       m_bUser = true;
       m_bUserEx = true;
       m_bDraw2d = true;
+      m_bImaging = true;
       m_bConsole = false;
 
 #ifdef LINUX

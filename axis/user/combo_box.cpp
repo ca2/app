@@ -349,10 +349,10 @@ namespace user
    }
 
 
-   void combo_box::_000OnDraw1(::draw2d::graphics_pointer & pgraphics)
+   void combo_box::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::user::plain_edit::_000OnDraw1(pgraphics);
+      ::user::plain_edit::_000OnDraw(pgraphics);
 
    }
 
@@ -719,6 +719,13 @@ namespace user
    void combo_box::_001ShowDropDown(bool bShow)
    {
 
+      if (m_plist)
+      {
+
+         m_plist->m_bPendingKillFocusHiding = false;
+
+      }
+
       if(bShow)
       {
 
@@ -759,7 +766,7 @@ namespace user
          if(m_plist.is_set())
          {
 
-            m_plist->display(false);
+            m_plist->hide();
 
             m_plist->set_need_redraw();
 

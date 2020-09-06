@@ -127,7 +127,6 @@ namespace aura
       __composite(::draw2d::font_list)                      m_pfontlistSingleColumn;
       __composite(::user::user)                             m_puser;
       ::draw2d::font_pointer                                m_pfontCopyDesk;
-      //__pointer(::user::style)                              m_puserstyle;
 
 
       session();

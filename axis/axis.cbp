@@ -655,6 +655,16 @@
 		<Unit filename="platform/system.h" />
 		<Unit filename="update.h" />
 		<Unit filename="user.h" />
+		<Unit filename="user/_.h" />
+		<Unit filename="user/_user.h" />
+		<Unit filename="user/button.cpp" />
+		<Unit filename="user/button.h" />
+		<Unit filename="user/check_box.cpp" />
+		<Unit filename="user/check_box.h" />
+		<Unit filename="user/style.cpp" />
+		<Unit filename="user/style.h" />
+		<Unit filename="user/user.cpp" />
+		<Unit filename="user/user.h" />
 		<Unit filename="version/version.config.h" />
 		<Unit filename="version/version.h" />
 		<Unit filename="xml/_.h" />

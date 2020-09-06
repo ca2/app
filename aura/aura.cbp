@@ -2249,13 +2249,11 @@
 		<Unit filename="user/_user.h" />
 		<Unit filename="user/box.cpp" />
 		<Unit filename="user/box.h" />
-		<Unit filename="user/button.cpp" />
 		<Unit filename="user/button.h" />
 		<Unit filename="user/callback.cpp" />
 		<Unit filename="user/callback.h" />
 		<Unit filename="user/check.cpp" />
 		<Unit filename="user/check.h" />
-		<Unit filename="user/check_box.cpp" />
 		<Unit filename="user/check_box.h" />
 		<Unit filename="user/combo_box.cpp" />
 		<Unit filename="user/combo_box.h" />

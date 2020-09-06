@@ -3440,8 +3440,8 @@ return __str(value);
 #include "aura/platform/debug.h"
 
 
-#include "aura/platform/printf.h"
-#include "aura/platform/sprintf.h"
+//#include "aura/platform/printf.h"
+//#include "aura/platform/sprintf.h"
 
 
 //#include "aura/math/_math.h"

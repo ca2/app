@@ -79,6 +79,17 @@ namespace tsf
        _Uninitialize();
    }
 
+
+   void edit_window::install_message_routing(::channel* pchannel)
+   {
+
+      IGUI_MSG_LINK(WM_CREATE, pchannel, this, &edit_window::_001OnCreate);
+      IGUI_MSG_LINK(WM_DESTROY, pchannel, this, &edit_window::_001OnDestroy);
+      IGUI_MSG_LINK(WM_SETFOCUS, pchannel, this, &edit_window::_001OnSetFocus);
+      IGUI_MSG_LINK(WM_KILLFOCUS, pchannel, this, &edit_window::_001OnKillFocus);
+
+   }
+
    BOOL edit_window::_Initialize(ITfThreadMgr *ptm, TfClientId tfcId)
    {
        HRESULT hr;

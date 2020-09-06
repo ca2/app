@@ -564,11 +564,11 @@ namespace user
 //#include "list_header.h"
 //#include "tool_window.h"
 
-#ifdef ENABLE_TEXT_SERVICES_FRAMEWORK
-#ifdef WINDOWS
-#include "windows_tsf/edit_window.h"
-#endif
-#endif
+// #ifdef ENABLE_TEXT_SERVICES_FRAMEWORK
+// #ifdef WINDOWS
+// #include "windows_tsf/edit_window.h"
+// #endif
+// #endif
 
 
 #include "plain_edit.h"

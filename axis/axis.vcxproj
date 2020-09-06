@@ -569,6 +569,7 @@
     <ClInclude Include="geoip\internal.h" />
     <ClInclude Include="geoip\update.h" />
     <ClInclude Include="geoip\_.h" />
+    <ClInclude Include="graphics\render\water_routine.h" />
     <ClInclude Include="html\html\html.h" />
     <ClInclude Include="html\html\_.h" />
     <ClInclude Include="html\html\_const.h" />
@@ -637,10 +638,12 @@
     <ClInclude Include="user\check_box.h" />
     <ClInclude Include="user\combo_box.h" />
     <ClInclude Include="user\combo_list.h" />
+    <ClInclude Include="user\simple_ui_draw.h" />
     <ClInclude Include="user\slider.h" />
     <ClInclude Include="user\still.h" />
     <ClInclude Include="user\style.h" />
     <ClInclude Include="user\user.h" />
+    <ClInclude Include="user\validate.h" />
     <ClInclude Include="user\_.h" />
     <ClInclude Include="user\_user.h" />
     <ClInclude Include="xml\attr.h" />
@@ -714,6 +717,7 @@
     <ClCompile Include="geoip\region_name.cpp" />
     <ClCompile Include="geoip\time_zone.cpp" />
     <ClCompile Include="geoip\update.cpp" />
+    <ClCompile Include="graphics\render\water_routine.cpp" />
     <ClCompile Include="html\html\html.cpp" />
     <ClCompile Include="html\html_lite\attributes.cpp" />
     <ClCompile Include="html\html_lite\entity_resolver.cpp" />
@@ -745,10 +749,12 @@
     <ClCompile Include="user\check_box.cpp" />
     <ClCompile Include="user\combo_box.cpp" />
     <ClCompile Include="user\combo_list.cpp" />
+    <ClCompile Include="user\simple_ui_draw.cpp" />
     <ClCompile Include="user\slider.cpp" />
     <ClCompile Include="user\still.cpp" />
     <ClCompile Include="user\style.cpp" />
     <ClCompile Include="user\user.cpp" />
+    <ClCompile Include="user\validate.cpp" />
     <ClCompile Include="xml\attr.cpp" />
     <ClCompile Include="xml\base_array.cpp" />
     <ClCompile Include="xml\data.cpp" />

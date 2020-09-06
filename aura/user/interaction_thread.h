@@ -3,10 +3,11 @@
 
 #ifdef WINDOWS_DESKTOP
 
+#ifdef ENABLE_TEXT_SERVICES_FRAMEWORK
 #include <msctf.h>
 #include "aura/os/windows_common/comptr.h"
 #include "windows_tsf/edit_window.h"
-
+#endif
 #endif
 
 

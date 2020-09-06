@@ -24,6 +24,8 @@ namespace app_app
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
+      virtual void _001DrawItem(::draw2d::graphics_pointer& pgraphics, ::user::item* pitem) override;
+
 
    };
 

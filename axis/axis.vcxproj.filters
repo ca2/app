@@ -151,6 +151,18 @@
     <Filter Include="Header Files\inline">
       <UniqueIdentifier>{c84c2a93-749c-4f56-9faf-0902e56622c3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\graphics">
+      <UniqueIdentifier>{0ac7c120-3471-4b98-9fa4-802b640e2378}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\render">
+      <UniqueIdentifier>{d07583b0-b40a-4973-b3a6-2796faaf895d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics">
+      <UniqueIdentifier>{f03b14bb-ad6e-4d1b-b312-3c486776c5bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\render">
+      <UniqueIdentifier>{61eb10b5-b625-4953-aeb5-ca7c37ae009a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -618,6 +630,15 @@
     <ClInclude Include="user\slider.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\render\water_routine.h">
+      <Filter>Header Files\graphics\render</Filter>
+    </ClInclude>
+    <ClInclude Include="user\validate.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple_ui_draw.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pcre\pcre.cpp">
@@ -891,6 +912,15 @@
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\slider.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\render\water_routine.cpp">
+      <Filter>Source Files\graphics\render</Filter>
+    </ClCompile>
+    <ClCompile Include="user\validate.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple_ui_draw.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
   </ItemGroup>

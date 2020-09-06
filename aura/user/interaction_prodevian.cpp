@@ -1049,3 +1049,10 @@ bool prodevian::prodevian_iteration()
 
 
 
+
+prodevian::~prodevian()
+{
+
+   m_pinteraction->remove_prodevian(this);
+
+}

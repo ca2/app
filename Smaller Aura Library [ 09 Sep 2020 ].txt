@@ -33,6 +33,18 @@ Tear Off Still
 Tear Off Slider
 2020-09-06 01:17        13,588kb                        210,307kb                            9,503kb                                    8,789kb
 
+Tear Off Water Routine
+2020-09-06 02:01        13,552kb                        210,202kb                            9,500kb                                    8,789kb
+
+Project cleanup, Remove *printf_dup *snprintf_dup
+2020-09-06 02:26        13,551kb                        210,122kb                            9,500kb                                    8,789kb
+
+Move interaction::Validate() to axis::class user::validate, move interaction::simple_ui* to axis::class simple_ui::draw and other refactorings/cleanups
+2020-09-06 04:16        13,545kb                        204,009kb                            9,425kb                                    8,875kb                      
+
+Remote Windows Text Services Framework dependency
+2020-09-06 04:16        13,479kb                        204,230kb                            9,452kb                                    8,875kb                      
+
 
 Tearing some controls from user...
 

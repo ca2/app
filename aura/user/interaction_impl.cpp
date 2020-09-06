@@ -606,7 +606,7 @@ namespace user
 
       }
 
-      m_puserinteraction->create_layout(true);
+      //m_puserinteraction->create_layout(true);
 
       m_puserinteraction->place(rect_dim(
                             createstruct.x,

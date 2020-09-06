@@ -1,7 +1,14 @@
 ﻿#pragma once
 
 
-#include "aura/primitive/data/_tree.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/filesystem/filemanager/_filemanager.h"
+#endif
+
+
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/user/_user.h"
+#endif
 
 
 #include "aura/filesystem/file/_data.h"

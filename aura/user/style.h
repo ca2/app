@@ -25,28 +25,28 @@ namespace user
       e_translucency                         m_etranslucencyButton;
       ::color                                m_colorBackground;
       ::color                                m_colorText;
-      //__pointer(color_map)                m_mapColor;
-      //__pointer(font_map)                 m_mapFont;
-      //__pointer(translucency_map)         m_mapTranslucency;
-      //__pointer(flag_map)                 m_mapFlag;
-      //__pointer(rect_map)                 m_mapRect;
-      //__pointer(::user::int_map)          m_mapInt;
-      //__pointer(::user::double_map)       m_mapDouble;
+      //__pointer(color_map)                 m_mapColor;
+      //__pointer(font_map)                  m_mapFont;
+      //__pointer(translucency_map)          m_mapTranslucency;
+      //__pointer(flag_map)                  m_mapFlag;
+      //__pointer(rect_map)                  m_mapRect;
+      //__pointer(::user::int_map)           m_mapInt;
+      //__pointer(::user::double_map)        m_mapDouble;
 
-      __pointer(::user::style)            pstyle;
+      __pointer(::user::style)               m_puserstyle;
 
-      ::draw2d::graphics *                m_pgraphics;
+      ::draw2d::graphics *                   m_pgraphics;
 
-      ::draw2d::pen_pointer               m_penFocusRect0;
-      ::draw2d::pen_pointer               m_penFocusRect1;
-      ::draw2d::pen_pointer               m_penFocusRect2;
-      ::draw2d::pen_pointer               m_penFocusRect3;
-      ::draw2d::pen_pointer               m_penFocusRect4;
-      ::draw2d::pen_pointer               m_penFocusRect5;
-      ::draw2d::pen_pointer               m_penFocusRect6;
-      ::draw2d::pen_pointer               m_penFocusRect7;
-      ::draw2d::pen_pointer               m_penFocusRect8;
-      ::draw2d::pen_pointer               m_penFocusRect9;
+      ::draw2d::pen_pointer                  m_penFocusRect0;
+      ::draw2d::pen_pointer                  m_penFocusRect1;
+      ::draw2d::pen_pointer                  m_penFocusRect2;
+      ::draw2d::pen_pointer                  m_penFocusRect3;
+      ::draw2d::pen_pointer                  m_penFocusRect4;
+      ::draw2d::pen_pointer                  m_penFocusRect5;
+      ::draw2d::pen_pointer                  m_penFocusRect6;
+      ::draw2d::pen_pointer                  m_penFocusRect7;
+      ::draw2d::pen_pointer                  m_penFocusRect8;
+      ::draw2d::pen_pointer                  m_penFocusRect9;
 
 
 
@@ -85,7 +85,7 @@ namespace user
 
       //      virtual bool _001GetMainFrameTranslucency(::user::e_translucency & etranslucency) override;
 
-      virtual bool _001DrawCheckBox(::draw2d::graphics_pointer & pgraphics, ::user::check_box * pcheckbox) override;
+      //virtual bool _001DrawCheckBox(::draw2d::graphics_pointer & pgraphics, ::user::check_box * pcheckbox) override;
 
       virtual bool _001DrawToolbarItem(::draw2d::graphics_pointer & pgraphics, index iItem, ::user::toolbar * ptoolbar) override;
 

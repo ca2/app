@@ -6,7 +6,7 @@
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
-			<Target title="basis">
+			<Target title="linux_basis">
 				<Option output="$(#time_dir)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="$(#time_dir)/x64/$(TARGET_NAME)/" />
 				<Option object_output="$(#time_dir)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
@@ -44,7 +44,7 @@
 					<Add before="cp -Rf $(#archive)/storage-linux/third/library/x64/* $(#time_dir)/x64/$(TARGET_NAME)/" />
 				</ExtraCommands>
 			</Target>
-			<Target title="stage">
+			<Target title="linux_stage">
 				<Option output="$(#time_dir)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="$(#time_dir)/x64/$(TARGET_NAME)/" />
 				<Option object_output="$(#time_dir)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
@@ -281,6 +281,7 @@
 		<Unit filename="inline/application/linux.h" />
 		<Unit filename="library.h" />
 		<Unit filename="message.h" />
+		<Unit filename="node/windows/frame_window.cpp" />
 		<Unit filename="platform/_features.h" />
 		<Unit filename="platform/_generic_object_constructor_impl.h" />
 		<Unit filename="platform/_impl.h" />
@@ -349,7 +350,6 @@
 		<Unit filename="user/user/_impl.h" />
 		<Unit filename="user/user/_tree.h" />
 		<Unit filename="user/user/_user.h" />
-		<Unit filename="user/user/aaa_want_to_remove_box.cpp" />
 		<Unit filename="user/user/aaa_want_to_remove_scroll.h" />
 		<Unit filename="user/user/composition_imm_client.h" />
 		<Unit filename="user/user/control.cpp" />
@@ -373,8 +373,6 @@
 		<Unit filename="user/user/edit_plain_text_view.cpp" />
 		<Unit filename="user/user/edit_plain_text_view.h" />
 		<Unit filename="user/user/edit_window.h" />
-		<Unit filename="user/user/form.cpp" />
-		<Unit filename="user/user/form_callback.cpp" />
 		<Unit filename="user/user/form_control.cpp" />
 		<Unit filename="user/user/form_control.h" />
 		<Unit filename="user/user/form_data.cpp" />
@@ -458,8 +456,6 @@
 		<Unit filename="user/user/tab_callback.h" />
 		<Unit filename="user/user/tab_view.cpp" />
 		<Unit filename="user/user/tab_view.h" />
-		<Unit filename="user/user/tool_window.cpp" />
-		<Unit filename="user/user/tool_window.h" />
 		<Unit filename="user/user/toolbar.cpp" />
 		<Unit filename="user/user/toolbar.h" />
 		<Unit filename="user/user/user.cpp" />

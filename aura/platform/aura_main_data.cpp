@@ -14,6 +14,8 @@ ATOM MyRegisterClass(HINSTANCE hInstance);
 aura_main_data::aura_main_data()
 {
 
+   m_bVerbose = false;
+   m_etracelevel = trace_level_error;
 
 }
 
@@ -177,11 +179,15 @@ void aura_main_data::system_construct(Array < String^ >^ refstra)
 
 #endif
 
+CLASS_DECL_AURA void set_global_trace_level(e_trace_level etracelevel);
+
 
 void aura_main_data::set_main_struct(const aura_main_struct & mainstruct)
 {
 
    *((::aura_main_struct*)(this)) = mainstruct;
+
+   set_global_trace_level(m_etracelevel);
 
 }
 

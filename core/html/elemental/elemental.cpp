@@ -2,7 +2,8 @@
 #include "aura/id.h"
 #include "core/html/html/_.h"
 #include "core/html/impl/_impl.h"
-#include "internal.h"
+#include "core/user/user/_.h"
+#include "_elemental.h"
 
 
 namespace html
@@ -1712,7 +1713,7 @@ namespace html
       //return m_pdata->m_pcoredata->m_pform->get_color(cr, ecolor);
 
    }
-   
+
 
    ::draw2d::font_pointer elemental::get_font()
    {
@@ -1723,7 +1724,7 @@ namespace html
 
       //if (font.is_null())
       //{
-      //   
+      //
       //   return m_pdata->m_pcoredata->m_pform->get_font(font, efont, pcontext);
 
       //}
@@ -1733,7 +1734,7 @@ namespace html
    }
 
 
-   //void elemental::nextstyle(::user::style_context * pcontext) 
+   //void elemental::nextstyle(::user::style_context * pcontext)
    //{
 
    //   pcontext->m_pstyle = m_pdata->m_pcoredata->m_pform;

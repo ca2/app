@@ -125,7 +125,7 @@ namespace html
          //m_pbutton->GetWindow()->_001ScreenToClient(rectWindow);
          //auto pointPreviousViewportOrg = pgraphics->GetViewportOrg();
          //pgraphics->OffsetViewportOrg((i32) m_box.left, (i32) m_box.top);
-         m_pbutton->_000CallOnDraw1(pgraphics);
+         m_pbutton->_000CallOnDraw(pgraphics);
          //pgraphics->SetViewportOrg(pointPreviousViewportOrg);
 
       }

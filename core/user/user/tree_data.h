@@ -30,9 +30,9 @@ namespace user
    public:
 
 
-      __pointer_array(::user::tree)      m_usertreea;
-      __pointer_array(::user::tree)      m_usertreeaBound;
-      __composite(image_list)       m_pimagelist;
+      __pointer_array(::user::tree)       m_usertreea;
+      __pointer_array(::user::tree)       m_usertreeaBound;
+      __composite(::image_list)           m_pimagelist;
 
 
 
@@ -53,7 +53,7 @@ namespace user
       virtual void _001OnOpenItem(::data::tree_item * pitem, const ::action_context & action_context) override;
       virtual void _001OnItemContextMenu(::data::tree_item * pitem, const ::action_context & action_context,::user::tree * ptree,const ::point & point);
 
-      image_list * get_image_list() const override;
+      ::image_list * get_image_list() const override;
 
       virtual void _001ExpandItem(::data::tree_item * pitem, const ::action_context & action_context,bool bExpand = true,bool bRedraw = true,bool bLayout = true) override;
       virtual void _001EnsureVisible(::data::tree_item * pitem) override;

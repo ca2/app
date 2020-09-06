@@ -739,9 +739,6 @@
     <ClCompile Include="user\simple\main_frame.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\tool_window.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\toolbar.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>

@@ -8,6 +8,7 @@
 namespace user
 {
 
+   class font_combo_box;
 
    namespace rich_text
    {
@@ -25,8 +26,6 @@ namespace user
 } // namespace user
 
 
-
-
 #include "global.h"
 
 #include "span.h"
@@ -37,12 +36,18 @@ namespace user
 #include "format.h"
 
 #include "data.h"
+
+
+#include "format_tool.h"
+
+
 #include "edit.h"
 
 #include "document.h"
 
 
 #include "edit_impl.h"
+
 
 
 #include "text_format.h"

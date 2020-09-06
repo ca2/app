@@ -1,67 +1,49 @@
 ﻿#pragma once
 
+//
+//#include "core/html/graphics/_.h"
+//#include "core/html/html/_.h"
+//
+//
+//
+//class html_document;
+//
+//
+//class html_data;
+//
+//
+//class html_view;
+//
+//
+//class html_form;
+//
+//
+//
+//
+//#include "core/html/elemental/elemental_elemental.h"
+//
+//
+//
+//
+//
 
-class html_document;
-
-
-class html_data;
-
-
-class html_view;
-
-
-class html_form;
-
-
-
-#include "core/html/graphics/graphics.h"
-
-
-#include "core/html/html/_.h"
-
-
-#include "core/html/elemental/elemental_elemental.h"
-
-
-
-
-
-namespace html
-{
-
-
-   class elemental;
-
-
-   namespace impl
-   {
-
-
-      class elemental;
-      class table;
-
-
-   } // namespace impl
-
-
-} // namespace html
-
-
-CLASS_DECL_CORE void trim001(string& str);
-
-
-#include "axis/html/html_lite/_.h"
-
-
-
-
-#include "core/html/graphics/graphics.h"
-
-
-#include "core/html/user/form.h"
-
-
-
+//
+//
+//CLASS_DECL_CORE void trim001(string& str);
+//
+//
+//#include "axis/html/html_lite/_.h"
+//
+//
+//
+//
+//#include "core/html/graphics/graphics.h"
+//
+//
+//#include "core/html/user/form.h"
+//
+//
+//
 
 
 
@@ -72,12 +54,12 @@ namespace html
 {
 
 
-   namespace impl
-   {
-
-      class table;
-
-   } // namespace impl
+//   namespace impl
+//   {
+//
+//      class table;
+//
+//   } // namespace impl
 
 
    class CLASS_DECL_CORE core_data :

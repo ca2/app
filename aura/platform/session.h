@@ -127,7 +127,6 @@ namespace aura
       __composite(::draw2d::font_list)                      m_pfontlistSingleColumn;
       __composite(::user::user)                             m_puser;
       ::draw2d::font_pointer                                m_pfontCopyDesk;
-      //__pointer(::user::style)                              m_puserstyle;
 
 
       session();
@@ -203,6 +202,11 @@ namespace aura
 
 
       //virtual ::user::style * get_user_style() const;
+
+      virtual ::user::style* get_user_style();
+
+
+      virtual void simple_ui_draw_focus_rect(::user::interaction * pinteraction, ::draw2d::graphics_pointer& pgraphics);
 
 
       virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema) override;
@@ -562,6 +566,8 @@ namespace aura
 
       
       virtual ::color get_color(::user::e_element eelement, ::user::estate estate);
+
+      
 
 
    };

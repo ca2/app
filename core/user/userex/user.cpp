@@ -1,4 +1,8 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/userex/_userex.h"
+#include "core/user/account/_account.h"
+#endif
 #include "aura/platform/static_setup.h"
 #include "aura/update.h"
 #include "axis/xml/_.h"
@@ -227,7 +231,7 @@ namespace core
       create_factory <::user::check_box >();
       create_factory <::user::place_holder_container >();
 
-      create_factory <::account::view >();
+      create_factory < ::account::view >();
 
       create_factory < form_document >();
       create_factory < ::userex::split_view::Pane  >();

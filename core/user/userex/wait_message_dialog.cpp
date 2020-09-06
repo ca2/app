@@ -1,6 +1,8 @@
 #include "framework.h"
-#include "aura/const/timer.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
+#endif
+#include "aura/const/timer.h"
 
 
 namespace userex

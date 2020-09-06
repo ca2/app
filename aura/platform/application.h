@@ -1431,7 +1431,7 @@ namespace aura
       virtual string sound_path(const char* psz);
       virtual string get_default_playlist_path();
 
-
+      
    };
 
 

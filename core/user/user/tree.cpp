@@ -1,4 +1,7 @@
 ﻿#include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/user/_user.h"
+#endif
 #include "_data.h"
 #include "_tree.h"
 #include "aura/const/timer.h"
@@ -362,9 +365,9 @@ namespace user
 
       __pointer(::data::tree_item) pitem = data.m_pitem;
 
-      __pointer(image_list) pimagelistItem = pitem->get_image_list();
+      __pointer(::image_list) pimagelistItem = pitem->get_image_list();
 
-      __pointer(image_list) pimagelistTree = get_image_list();
+      __pointer(::image_list) pimagelistTree = get_image_list();
 
       bool bSelected    = ptree->is_selected(pitem.m_p);
 

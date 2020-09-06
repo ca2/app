@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "_windows.h"
+#endif
 #include "aura/message.h"
 #include "aura/procedure.h"
 #include "system_interaction_impl.h"

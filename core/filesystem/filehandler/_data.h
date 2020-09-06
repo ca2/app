@@ -3,6 +3,9 @@
 
 #include "aura/primitive/data/_data.h"
 
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/filesystem/filehandler/_filehandler.h"
+#endif
 
 #include "tree_interface.h"
 

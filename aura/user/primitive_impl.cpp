@@ -330,13 +330,13 @@ namespace user
    }
 
 
-   void primitive_impl::_000OnDraw1(::draw2d::graphics_pointer & pgraphics)
+   void primitive_impl::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       if (m_puserinteraction)
       {
 
-         m_puserinteraction->_000CallOnDraw1(pgraphics);
+         m_puserinteraction->_000CallOnDraw(pgraphics);
 
       }
 

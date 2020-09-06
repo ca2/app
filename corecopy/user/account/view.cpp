@@ -497,7 +497,7 @@ namespace account
             if (pinteraction->is_this_visible() && !pinteraction->is_custom_draw())
             {
 
-               pinteraction->_000CallOnDraw1(pgraphics);
+               pinteraction->_000CallOnDraw(pgraphics);
 
             }
 

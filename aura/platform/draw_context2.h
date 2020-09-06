@@ -95,6 +95,9 @@ namespace aura
       virtual bool is_control_hover();
 
 
+      virtual void _001OnCustomDraw(::draw2d::graphics_pointer& pgraphics, ::user::interaction* puserinteraction);
+
+
    };
 
 

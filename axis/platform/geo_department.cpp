@@ -153,7 +153,7 @@ namespace geo
 
                v.parse_json(pszJson);
 
-               string strLine = v["name"] + ", " + v["country"];
+               string strLine = v["name"].get_string() + ", " + v["country"].get_string();
 
                m_straCity.add(strLine);
 

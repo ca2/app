@@ -53,10 +53,10 @@ namespace android
    }
 
 
-   void host_interaction::_000OnDraw1(::draw2d::graphics_pointer & pgraphics)
+   void host_interaction::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::user::interaction::_000OnDraw1(pgraphics);
+      ::user::interaction::_000OnDraw(pgraphics);
 
    }
 

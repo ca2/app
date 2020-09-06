@@ -145,7 +145,7 @@ namespace dynamic_source
 #define Sess(pobject) (*(::get_context_session(pobject))->m_pbasesession)
 
 #undef App
-#define App(pobject) (*(::get_context_application(pobject))->m_pbaseapp)
+#define App(pobject) (*(::get_context_application(pobject))->m_pbaseapplication)
 
 
 

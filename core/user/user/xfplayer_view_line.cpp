@@ -1,4 +1,8 @@
 ﻿#include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/user/_user.h"
+#endif
+
 
 const i32 xfplayer_view_line::AlignLeft = 1;
 const i32 xfplayer_view_line::AlignRight = 2;

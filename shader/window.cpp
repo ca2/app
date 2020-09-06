@@ -1,6 +1,7 @@
 #include "framework.h"
 #include <math.h>
 #include "aura/const/id.h"
+#include "aura/graphics/asset/close_icon.h"
 
 
 namespace app_shader
@@ -252,6 +253,26 @@ namespace app_shader
       set_need_layout();
 
    }
+
+   void window::_001DrawItem(::draw2d::graphics_pointer& pgraphics, ::user::item* pitem)
+   {
+
+      if (::is_null(pitem))
+      {
+
+         return;
+
+      }
+
+      if (pitem->m_eelement == ::user::element_close_icon)
+      {
+
+         ::user::draw_close_icon(pgraphics, this, pitem);
+
+      }
+
+   }
+
 
 
 } // namespace app_shader

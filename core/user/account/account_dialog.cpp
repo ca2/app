@@ -1,7 +1,8 @@
 ﻿#include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/account/_account.h"
+#endif
 #include "aura/const/timer.h"
-#include "account_login.h"
-#include "account_dialog.h"
 
 
 namespace account
@@ -594,10 +595,10 @@ namespace account
    }
 
 
-   void dialog::_000OnDraw1(::draw2d::graphics_pointer & pgraphics)
+   void dialog::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::user::interaction::_000OnDraw1(pgraphics);
+      ::user::interaction::_000OnDraw(pgraphics);
 
    }
 

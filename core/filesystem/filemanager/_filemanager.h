@@ -2,9 +2,10 @@
 
 
 #include "aura/filesystem/fs/_.h"
-
-
 #include "base/user/menu/_.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/user/_user.h"
+#endif
 #include "core/filesystem/userfs/_userfs.h"
 
 
@@ -205,7 +206,6 @@ namespace filemanager
 #include "save_as_name_view.h"
 #include "tab_view.h"
 #include "left_view.h"
-#include "view.h"
 #include "main_view.h"
 #include "child_frame.h"
 

@@ -1,5 +1,7 @@
 #include "framework.h"
-//#include "_filemanager.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/filesystem/filemanager/_filemanager.h"
+#endif
 
 
 namespace filemanager
@@ -21,14 +23,14 @@ namespace filemanager
    {
 
 #ifdef WINDOWS_DESKTOP
-      
+
       if (m_pcontextmenu.is_null())
       {
 
          return;
 
       }
-      
+
       string & str = rstrMessage;
 
       LPSTR psz = str.get_string_buffer(1024);
@@ -40,7 +42,7 @@ namespace filemanager
          psz,
 
          1024);
-      
+
       str.release_string_buffer();
 
 #endif
@@ -52,14 +54,14 @@ namespace filemanager
    {
 
 #ifdef WINDOWS_DESKTOP
-      
+
       if (m_pcontextmenu.is_null())
       {
 
          return;
 
       }
-      
+
       string & str = rwstrMessage;
 
       char * psz = str.get_string_buffer(1024);
@@ -71,7 +73,7 @@ namespace filemanager
          (LPSTR) psz,
 
          1024);
-      
+
       str.release_string_buffer();
 
 #endif

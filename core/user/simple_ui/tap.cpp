@@ -1,5 +1,7 @@
 #include "framework.h"
-
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/simple_ui/_simple_ui.h"
+#endif
 
 
 namespace simple_ui
@@ -529,10 +531,10 @@ namespace simple_ui
    }
 
 
-   void tap::_000OnDraw1(::draw2d::graphics_pointer & pgraphics)
+   void tap::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      user::interaction::_000OnDraw1(pgraphics);
+      user::interaction::_000OnDraw(pgraphics);
 
    }
 

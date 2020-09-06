@@ -127,8 +127,8 @@ namespace aura
 
       tick                                               m_tickMainStart;
       tick                                               m_tickAfterApplicationFirstRequest;
-      
-      
+
+
 
       //__pointer(::mutex)                                 m_spmutexOpenweatherCity;
 
@@ -404,7 +404,7 @@ namespace aura
 
       class ::user::window_map                     &  window_map();
 
-      
+
       __pointer(::aura::library) open_component_library(const char* pszComponent, const char* pszImplementation);
 
       ::estatus do_factory_exchange(const char* pszComponent, const char* pszImplementation);
@@ -995,6 +995,8 @@ namespace aura
       //virtual ::user::interaction * ui_from_handle(void * pdata) override;
 
       virtual void update(::update* pupdate) override;
+
+      virtual void defer_calc_os_dark_mode();
 
       // virtual void on_command_create(::create* pcreate);
 

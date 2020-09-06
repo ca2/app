@@ -35,7 +35,7 @@ namespace user
       //COLORREF                                m_crTextHighlight;
       //COLORREF                                m_crTextSelectedHighlight;
       u32_array                                 m_dwaItemState;
-      __pointer(image_list)                     m_pimagelist;
+      __pointer(::image_list)                   m_pimagelist;
       index                                     m_iImageCollapse;
       index                                     m_iImageExpand;
       ::draw2d::brush_pointer                   m_brushTextSelected;

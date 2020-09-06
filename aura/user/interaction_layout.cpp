@@ -27,6 +27,10 @@ namespace user
 
       m_elayoutexperience = layout_experience_none;
 
+      sketch() = display_none;
+      window() = display_none;
+      design() = display_none;
+
    }
 
 

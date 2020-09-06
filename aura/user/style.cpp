@@ -11,7 +11,7 @@ namespace user
    style::style()
    {
 
-      pstyle = this;
+      m_puserstyle = this;
       m_pgraphics = nullptr;
 
       default_style_construct();
@@ -23,7 +23,7 @@ namespace user
       ::object(pobject)
    {
 
-      pstyle = this;
+      m_puserstyle = this;
       m_pgraphics = nullptr;
 
       default_style_construct();
@@ -523,12 +523,12 @@ namespace user
    //   }
 
 
-   bool style::_001DrawCheckBox(::draw2d::graphics_pointer & pgraphics, ::user::check_box * pcheckbox)
-   {
+   //bool style::_001DrawCheckBox(::draw2d::graphics_pointer & pgraphics, ::user::check_box * pcheckbox)
+   //{
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
    bool style::_001DrawToolbarItem(::draw2d::graphics_pointer & pgraphics, index iItem, ::user::toolbar * ptoolbar)
@@ -1026,7 +1026,7 @@ namespace user
    style * style::userstyle()
    {
 
-      return pstyle;
+      return m_puserstyle;
 
    }
 

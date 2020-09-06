@@ -163,7 +163,7 @@ namespace html
 
          //pgraphics->SetViewportOrg(rectWindow.top_left());
 
-         m_pedit->_000CallOnDraw1(pdata->m_pcoredata->m_pgraphics);
+         m_pedit->_000CallOnDraw(pdata->m_pcoredata->m_pgraphics);
 
       }
 

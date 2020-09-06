@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 //#include "aura/net/sockets/_.h"
 #include "aura/const/id.h"
 #include "aura/platform/app_core.h"
@@ -710,9 +713,9 @@ namespace axis
 
       if(!estatus)
       {
-         
+
          return estatus;
-         
+
       }
 
       if (!InitializeLocalDataCentral())
@@ -1238,6 +1241,19 @@ namespace axis
    }
 
 
+   ::user::style * session::get_user_style()
+   {
+
+      if (!m_puser)
+      {
+
+         return nullptr;
+
+      }
+
+      return m_puser->m_puserstyle;
+
+   }
 
 
    void session::on_user_logon(::account::user* puser)

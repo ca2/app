@@ -2334,26 +2334,31 @@ namespace user
 
             ::rect rectText;
 
-            if(get_element_rect(iPane, rectText, element_text) && rectText.contains(item.m_pointHitTest))
+            if(get_element_rect(iPane, rectText, element_text))
             {
 
-               for(int iTitle = 0; iTitle < pane.m_straTitle.get_size(); iTitle++)
+               if(rectText.contains(item.m_pointHitTest))
                {
 
-                  rectText.left += pane.m_sizeaText[iTitle].cx;
-
-                  rectText.right = rectText.left + get_data()->m_sizeSep.cx;
-
-                  if(rectText.contains(item.m_pointHitTest))
+                  for(int iTitle = 0; iTitle < pane.m_straTitle.get_size(); iTitle++)
                   {
 
-                     item = { (e_element)((int)element_split + iTitle), iPane };
+                     rectText.left += pane.m_sizeaText[iTitle].cx;
 
-                     return;
+                     rectText.right = rectText.left + get_data()->m_sizeSep.cx;
+
+                     if(rectText.contains(item.m_pointHitTest))
+                     {
+
+                        item = { (e_element)((int)element_split + iTitle), iPane };
+
+                        return;
+
+                     }
+
+                     rectText.left += get_data()->m_sizeSep.cx;
 
                   }
-
-                  rectText.left += get_data()->m_sizeSep.cx;
 
                }
 
@@ -2361,21 +2366,31 @@ namespace user
 
          }
 
-         if(get_element_rect(iPane, rect, element_close_tab_button) && rect.contains(item.m_pointHitTest))
+         if(get_element_rect(iPane, rect, element_close_tab_button) )
          {
 
-            item = { element_close_tab_button, iPane };
+            if(rect.contains(item.m_pointHitTest))
+            {
 
-            return;
+               item = { element_close_tab_button, iPane };
+
+               return;
+
+            }
 
          }
 
-         if(get_element_rect(iPane, rect, element_tab) && rect.contains(item.m_pointHitTest))
+         if(get_element_rect(iPane, rect, element_tab))
          {
 
-            item = { element_tab, iPane };
+            if(rect.contains(item.m_pointHitTest))
+            {
 
-            return;
+               item = { element_tab, iPane };
+
+               return;
+
+            }
 
          }
 
@@ -2503,7 +2518,7 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      //install_simple_ui_default_mouse_handling(pchannel);
+      install_simple_ui_default_mouse_handling(pchannel);
 
       IGUI_MSG_LINK(WM_LBUTTONDOWN, pchannel, this, &tab::_001OnLButtonDown);
       IGUI_MSG_LINK(WM_LBUTTONUP, pchannel, this, &tab::_001OnLButtonUp);

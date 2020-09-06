@@ -221,7 +221,7 @@ namespace draw2d
 #include "fastblur.h"
 #include "imaging.h"
 #include "image_list.h"
-#include "water_routine.h"
+//#include "water_routine.h"
 
 #include "api.h"
 #include "graphics_extension.h"

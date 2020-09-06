@@ -1,5 +1,8 @@
 #include "framework.h"
-#include "core/user/userex/font_format_tool.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/rich_text/_rich_text.h"
+#include "core/user/userex/_userex.h"
+#endif
 #include "aura/const/timer.h"
 
 
@@ -143,7 +146,7 @@ namespace user
          fork([this]()
             {
 
-               GetTopLevelFrame()->font_format_tool(true);
+               GetTopLevelFrame()->tool_window(::user::e_tool_font, true);
 
             });
 
@@ -184,7 +187,7 @@ namespace user
          else
          {
 
-            auto pformattool = get_font_format_tool(false);
+            auto pformattool = get_format_tool(false);
 
             if (pformattool != nullptr && pformattool->is_showing_for_ui(this))
             {
@@ -213,7 +216,7 @@ namespace user
 
          }
 
-         auto pformattool = get_font_format_tool(true);
+         auto pformattool = get_format_tool(true);
 
          pformattool->show_for_ui(this);
 
@@ -225,7 +228,7 @@ namespace user
 
          SCAST_PTR(::message::kill_focus, pkillfocus, pmessage);
 
-         auto pformattool = get_font_format_tool(false);
+         auto pformattool = get_format_tool(false);
 
          if (pformattool != nullptr && pformattool->is_showing_for_ui(this))
          {
@@ -269,7 +272,7 @@ namespace user
       void edit_impl::on_selection_change()
       {
 
-         auto pformattool = get_font_format_tool(false);
+         auto pformattool = get_format_tool(false);
 
          if (pformattool.is_set())
          {
@@ -300,7 +303,7 @@ namespace user
          if (item.is_set())
          {
 
-            auto pformattool = get_font_format_tool(true);
+            auto pformattool = get_format_tool(true);
 
             pformattool->show_for_ui(this);
 
@@ -352,7 +355,7 @@ namespace user
          else if(m_bClickThrough)
          {
 
-            auto pformattool = get_font_format_tool(false);
+            auto pformattool = get_format_tool(false);
 
             if (pformattool->is_window_visible())
             {
@@ -754,7 +757,7 @@ namespace user
             if (is_text_editable() && is_window_visible())
             {
 
-               auto pformattool = get_font_format_tool(true);
+               auto pformattool = get_format_tool(true);
 
                //if (!ptool->is_window_visible() || !ptool->is_showing_for_ui(this))
                {
@@ -771,7 +774,7 @@ namespace user
          else
          {
 
-            auto pformattool = get_font_format_tool(false);
+            auto pformattool = get_format_tool(false);
 
             if (pformattool != nullptr && pformattool->is_showing_for_ui(this))
             {
@@ -875,7 +878,7 @@ namespace user
          if (pevent->m_eevent == ::user::event_after_change_cur_sel)
          {
 
-            auto pformattool = get_font_format_tool(false);
+            auto pformattool = get_format_tool(false);
 
             if (pevent->m_puie == pformattool)
             {
@@ -912,19 +915,19 @@ namespace user
       }
 
 
-      __pointer(::userex::font_format_tool) edit_impl::get_font_format_tool(bool bCreate)
+      __pointer(format_tool) edit_impl::get_format_tool(bool bCreate)
       {
 
-         auto pinteraction = GetTopLevelFrame();
+         auto pframe = GetTopLevelFrame();
 
-         if (is_null(pinteraction))
+         if (is_null(pframe))
          {
 
             return nullptr;
 
          }
 
-         auto pformattool = pinteraction->font_format_tool(bCreate);
+         auto pformattool = pframe->tool_window(::user::e_tool_font, bCreate);
 
          return pformattool;
 

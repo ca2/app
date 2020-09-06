@@ -77,8 +77,8 @@ inline bool failed(const ::estatus & estatus)
 inline bool succeeded(const ::estatus & estatus, int iRange)
 {
 
-   return ((::i64)estatus.m_estatus) >= SUCCESS_STATUS(iRange)
-      && ((::i64)estatus.m_estatus) < (SUCCESS_STATUS(iRange) + STATUS_RANGE);
+   return (::i64)estatus.m_estatus >= (::i64)SUCCESS_STATUS(iRange).m_estatus
+      && (::i64)estatus.m_estatus < ((::i64)SUCCESS_STATUS(iRange).m_estatus + (::i64)STATUS_RANGE);
 
 }
 
@@ -86,8 +86,8 @@ inline bool succeeded(const ::estatus & estatus, int iRange)
 inline bool failed(const ::estatus & estatus, int iRange)
 {
 
-   return ((::i64)estatus.m_estatus) >= FAILURE_STATUS(iRange)
-      && ((::i64)estatus.m_estatus < (FAILURE_STATUS(iRange) + STATUS_RANGE));
+   return (::i64)estatus.m_estatus >= (::i64)FAILURE_STATUS(iRange).m_estatus
+      && (::i64)estatus.m_estatus < ((::i64)FAILURE_STATUS(iRange).m_estatus + (::i64)STATUS_RANGE);
 
 }
 

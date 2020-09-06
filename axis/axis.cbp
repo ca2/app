@@ -6,7 +6,7 @@
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
-			<Target title="basis">
+			<Target title="linux_basis">
 				<Option output="$(#time_dir)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="$(#time_dir)/x64/$(TARGET_NAME)/" />
 				<Option object_output="$(#time_dir)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
@@ -49,7 +49,7 @@
 					<Add before="cp -Rf $(#archive)/storage-linux/third/library/x64/* $(#time_dir)/x64/$(TARGET_NAME)/" />
 				</ExtraCommands>
 			</Target>
-			<Target title="stage">
+			<Target title="linux_stage">
 				<Option output="$(#time_dir)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="$(#time_dir)/x64/$(TARGET_NAME)/" />
 				<Option object_output="$(#time_dir)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
@@ -375,6 +375,8 @@
 		<Unit filename="geoip/time_zone.cpp" />
 		<Unit filename="geoip/update.cpp" />
 		<Unit filename="geoip/update.h" />
+		<Unit filename="graphics/render/water_routine.cpp" />
+		<Unit filename="graphics/render/water_routine.h" />
 		<Unit filename="html/html/_.h" />
 		<Unit filename="html/html/_const.h" />
 		<Unit filename="html/html/html.cpp" />
@@ -655,6 +657,28 @@
 		<Unit filename="platform/system.h" />
 		<Unit filename="update.h" />
 		<Unit filename="user.h" />
+		<Unit filename="user/_.h" />
+		<Unit filename="user/_user.h" />
+		<Unit filename="user/button.cpp" />
+		<Unit filename="user/button.h" />
+		<Unit filename="user/check_box.cpp" />
+		<Unit filename="user/check_box.h" />
+		<Unit filename="user/combo_box.cpp" />
+		<Unit filename="user/combo_box.h" />
+		<Unit filename="user/combo_list.cpp" />
+		<Unit filename="user/combo_list.h" />
+		<Unit filename="user/simple_ui_draw.cpp" />
+		<Unit filename="user/simple_ui_draw.h" />
+		<Unit filename="user/slider.cpp" />
+		<Unit filename="user/slider.h" />
+		<Unit filename="user/still.cpp" />
+		<Unit filename="user/still.h" />
+		<Unit filename="user/style.cpp" />
+		<Unit filename="user/style.h" />
+		<Unit filename="user/user.cpp" />
+		<Unit filename="user/user.h" />
+		<Unit filename="user/validate.cpp" />
+		<Unit filename="user/validate.h" />
 		<Unit filename="version/version.config.h" />
 		<Unit filename="version/version.h" />
 		<Unit filename="xml/_.h" />

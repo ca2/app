@@ -1,5 +1,7 @@
 ﻿#include "framework.h"
-//#include "_filemanager.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/filesystem/filemanager/_filemanager.h"
+#endif
 #include "_data.h"
 #include "core/user/user/_tree.h"
 
@@ -75,7 +77,7 @@ namespace filemanager
       __compose(m_pusertree->m_ptree, ptree);
 
       ptree->initialize_filemanager_tree(pfilemanagerdocument);
-      
+
    }
 
 

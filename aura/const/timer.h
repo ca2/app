@@ -28,6 +28,7 @@ enum e_timer : ::i64
    timer_user_hour,
    timer_notify,
    timer_icon_flash,
+   timer_kill_focus,
    timer_hover_out,
    timer_wts_register_session_notification,
    timer_hide_window,

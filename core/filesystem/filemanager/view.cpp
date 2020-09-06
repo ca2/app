@@ -1,7 +1,8 @@
 #include "framework.h"
-//#include "_filemanager.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/filesystem/filemanager/_filemanager.h"
+#endif
 #include "aura/update.h"
-
 
 
 namespace filemanager
@@ -195,7 +196,7 @@ namespace filemanager
                }
 
                string strSuffix;
-               
+
                if (path.ext().has_char())
                {
 
@@ -208,7 +209,7 @@ namespace filemanager
                   strSuffix = "." + filemanager_data()->m_pdocumentTopic->get_save_file_extension();
 
                }
-               
+
                strName = strPrefix + System.datetime().international().get_gmt_date_time() + strSuffix;
 
                strName.replace(":", "-");

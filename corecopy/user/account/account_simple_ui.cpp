@@ -530,12 +530,12 @@ namespace account
 
 
 
-   void simple_ui::_000OnDraw1(::draw2d::graphics_pointer & pgraphics)
+   void simple_ui::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       //pgraphics->FillSolidRect(0, 0, 100, 100, ARGB(255, 255, 0, 0));
 
-      ::user::interaction::_000OnDraw1(pgraphics);
+      ::user::interaction::_000OnDraw(pgraphics);
 
       //pgraphics->FillSolidRect(100, 100, 100, 100, ARGB(255, 0, 255, 0));
 

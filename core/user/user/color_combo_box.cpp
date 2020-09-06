@@ -1,5 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
+#endif
 
 
 namespace user
@@ -106,14 +108,14 @@ namespace user
 
                Session.set_bound_ui(COLORSEL_IMPACT, this);
 
-               m_pframe = m_pview->GetTopLevelFrame()->cast < ::simple_frame_window >();
+               m_pframewindow = m_pview->GetTopLevelFrame()->cast < ::simple_frame_window >();
 
-               m_pframe->SetOwner(this);
+               m_pframewindow->SetOwner(this);
 
-               m_pframe->m_ebuttonaHide.add(::experience::button_dock);
-               m_pframe->m_ebuttonaHide.add(::experience::button_down);
-               m_pframe->m_ebuttonaHide.add(::experience::button_up);
-               m_pframe->m_ebuttonaHide.add(::experience::button_minimize);
+               m_pframewindow->m_ebuttonaHide.add(::experience::button_dock);
+               m_pframewindow->m_ebuttonaHide.add(::experience::button_down);
+               m_pframewindow->m_ebuttonaHide.add(::experience::button_up);
+               m_pframewindow->m_ebuttonaHide.add(::experience::button_minimize);
 
             }
 

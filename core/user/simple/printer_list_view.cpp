@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/simple/_simple.h"
+#endif
 #include "aura/graphics/draw2d/printer.h"
 #include "base/user/user/print_task.h"
 #ifdef WINDOWS_DESKTOP

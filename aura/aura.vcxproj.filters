@@ -363,6 +363,9 @@
     <Filter Include="Source Files\multithreading\service">
       <UniqueIdentifier>{711bcad9-5239-4e29-8d18-b825f0650185}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\graphics\asset">
+      <UniqueIdentifier>{ad399215-4a4d-4878-8874-f04f3315e0da}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -893,9 +896,6 @@
     <ClInclude Include="filesystem\file\listing_provider.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\file\md5.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\file\memory_file.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
@@ -1235,9 +1235,6 @@
     <ClInclude Include="graphics\draw2d\_const.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\draw2d\aaa_want_to_remove_const.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
     <ClInclude Include="graphics\draw2d\api.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
@@ -1356,12 +1353,6 @@
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
     <ClInclude Include="graphics\draw2d\thread_tool.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\water_routine.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\aaa_want_to_remove_image.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
     <ClInclude Include="graphics\draw2d\image.h">
@@ -2036,18 +2027,6 @@
     <ClInclude Include="node\windows\a.h">
       <Filter>Header Files\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\windows\aaa_want_to_remove_handle.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_want_to_remove_printer.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_want_to_remove_RoundWindowApp.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_want_to_remove_simple_hold_handle.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="node\windows\buffer.h">
       <Filter>Header Files\node\windows</Filter>
     </ClInclude>
@@ -2429,9 +2408,6 @@
     <ClInclude Include="platform\os_history.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\printf.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\process_data.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -2466,9 +2442,6 @@
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\simple_log.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\sprintf.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\static_setup.h">
@@ -2654,9 +2627,6 @@
     <ClInclude Include="node\opengl\shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="node\opengl\_.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\filesystem\path_object.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
@@ -2822,22 +2792,10 @@
     <ClInclude Include="user\_user.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\button.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\callback.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\check.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\check_box.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\combo_box.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\combo_list.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\command.h">
@@ -2933,18 +2891,6 @@
     <ClInclude Include="user\scroll_info.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\slider.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\still.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\style.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\style_base.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\text.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -2977,18 +2923,6 @@
     </ClInclude>
     <ClInclude Include="user\keyboard.h">
       <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\aaa_want_to_remove_strn.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\aaa_want_to_remove_struct.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\aaa_want_to_remove_util1.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\aaa_want_to_remove_v8stdint.h">
-      <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="primitive\geometry2d\_struct.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
@@ -3184,6 +3118,24 @@
     </ClInclude>
     <ClInclude Include="user\interaction_layout.h">
       <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\tool_window.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\style.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\style_base.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\math\_.h">
+      <Filter>Header Files\primitive\math</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\asset\close_button.h">
+      <Filter>Header Files\graphics\asset</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\asset\close_icon.h">
+      <Filter>Header Files\graphics\asset</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3463,9 +3415,6 @@
     <ClCompile Include="filesystem\file\item_array.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\md5.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\file\memory_file.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
@@ -3734,9 +3683,6 @@
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\thread_tool.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\water_routine.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\image_extension.cpp">
@@ -4729,9 +4675,6 @@
     <ClCompile Include="platform\os_history.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\printf.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="platform\profiler.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -4748,9 +4691,6 @@
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\simple_trace.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\sprintf.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\static_setup.cpp">
@@ -4978,22 +4918,10 @@
     <ClCompile Include="user\_.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\button.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\callback.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\check.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\check_box.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\combo_box.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\combo_list.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\command.cpp">
@@ -5081,18 +5009,6 @@
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\scroll_bar.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\slider.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\still.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\style.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\style_base.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\text.cpp">
@@ -5284,6 +5200,15 @@
     <ClCompile Include="user\interaction_layout.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
+    <ClCompile Include="user\tool_window.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\style_base.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\style.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\primitive\papaya.inl">
@@ -5321,9 +5246,6 @@
     </None>
     <None Include="filesystem\_impl.h">
       <Filter>Header Files\filesystem</Filter>
-    </None>
-    <None Include="primitive\collection\_collection_impl.h">
-      <Filter>Header Files\primitive\collection</Filter>
     </None>
     <None Include="primitive\collection\_array_impl.h">
       <Filter>Header Files\primitive\collection</Filter>

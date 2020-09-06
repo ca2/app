@@ -6,7 +6,7 @@
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
-			<Target title="basis">
+			<Target title="linux_basis">
 				<Option output="$(#time_dir)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="$(#time_dir)/x64/$(TARGET_NAME)/" />
 				<Option object_output="$(#time_dir)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
@@ -21,6 +21,7 @@
 					<Add option="-D_DEBUG" />
 					<Add directory="$(WORKSPACE_DIR)/../../platform-linux" />
 					<Add directory="$(WORKSPACE_DIR)/../../platform-linux/_include" />
+					<Add directory="$(#archive)/third-linux/third/include" />
 				</Compiler>
 				<Linker>
 					<Add option="-m64" />
@@ -53,13 +54,8 @@
 					<Add directory="$(#time_dir)/x64/$(TARGET_NAME)" />
 					<Add directory="$(#archive)/storage-linux/third/library/x64/" />
 				</Linker>
-				<ExtraCommands>
-					<Add before="../../platform-linux/stage/prepare_framework_h.sh $(PROJECT_DIR) $(TARGET_OBJECT_DIR)" />
-					<Add before="mkdir -p $(#time_dir)/x64/$(TARGET_NAME)/" />
-					<Add before="cp -Rf $(#archive)/storage-linux/third/library/x64/* $(#time_dir)/x64/$(TARGET_NAME)/" />
-				</ExtraCommands>
 			</Target>
-			<Target title="stage">
+			<Target title="linux_stage">
 				<Option output="$(#time_dir)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="$(#time_dir)/x64/$(TARGET_NAME)/" />
 				<Option object_output="$(#time_dir)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
@@ -236,6 +232,55 @@
 					<Add before="cp -Rf $(#archive)/third-linux/thirdparty/library/x64/* ../$(#time_dir)/x64/$(TARGET_NAME)/" />
 				</ExtraCommands>
 			</Target>
+			<Target title="freebsd_basis">
+				<Option output="$(#time_dir)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(#time_dir)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(#time_dir)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-fPIC" />
+					<Add option="-m64" />
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+					<Add directory="$(WORKSPACE_DIR)/../../platform-freebsd" />
+					<Add directory="$(WORKSPACE_DIR)/../../platform-freebsd/_include" />
+					<Add directory="$(#archive)/third-freebsd/third/include" />
+				</Compiler>
+				<Linker>
+					<Add option="-m64" />
+					<Add option="-Wl,-rpath=\\$$$ORIGIN" />
+					<Add option="-lz" />
+					<Add option="-ldl" />
+					<Add option="-lrt" />
+					<Add option="-lbfd" />
+					<Add option="-lX11" />
+					<Add option="-lX11-xcb" />
+					<Add option="-lxcb" />
+					<Add option="-lxcb-util" />
+					<Add option="-lXinerama" />
+					<Add option="-lXmu" />
+					<Add option="-lXrandr" />
+					<Add option="-lXext" />
+					<Add option="-lXxf86vm" />
+					<Add option="-lXrender" />
+					<Add option="-lXi" />
+					<Add option="-lidn" />
+					<Add option="-lpthread" />
+					<Add option="-lncurses" />
+					<Add option="-lssl" />
+					<Add option="-lcrypto" />
+					<Add option="-lpcre2-8" />
+					<Add option="-lsqlite3" />
+					<Add option="-lsn" />
+					<Add option="`pkg-config --libs glib-2.0 gtk+-3.0 gdk-3.0 appindicator3-0.1`" />
+					<Add option="-Wl,-z,defs" />
+					<Add directory="$(#time_dir)/x64/$(TARGET_NAME)" />
+					<Add directory="$(#archive)/storage-linux/third/library/x64/" />
+				</Linker>
+			</Target>
 		</Build>
 		<VirtualTargets>
 			<Add alias="all_sanitizers" targets="sanitizers;" />
@@ -263,7 +308,6 @@
 			<Add directory="$(WORKSPACE_DIR)/../../app/_include" />
 			<Add directory="$(WORKSPACE_DIR)/../../app" />
 			<Add directory="$(#sensitive)/sensitive/include" />
-			<Add directory="$(#archive)/third-linux/third/include" />
 		</Compiler>
 		<Linker>
 			<Add directory="$(#time_dir)/x64/$(TARGET_NAME)" />
@@ -530,7 +574,6 @@
 		<Unit filename="filesystem/file/item_array.cpp" />
 		<Unit filename="filesystem/file/item_array.h" />
 		<Unit filename="filesystem/file/listing_provider.h" />
-		<Unit filename="filesystem/file/md5.cpp" />
 		<Unit filename="filesystem/file/md5.h" />
 		<Unit filename="filesystem/file/memory_file.cpp" />
 		<Unit filename="filesystem/file/memory_file.h" />
@@ -697,6 +740,7 @@
 		<Unit filename="graphics/draw2d/_.cpp" />
 		<Unit filename="graphics/draw2d/_.h" />
 		<Unit filename="graphics/draw2d/_const.h" />
+		<Unit filename="graphics/draw2d/_draw2d.h" />
 		<Unit filename="graphics/draw2d/_image.h" />
 		<Unit filename="graphics/draw2d/_image_impl.h" />
 		<Unit filename="graphics/draw2d/_impl.h" />
@@ -798,7 +842,6 @@
 		<Unit filename="graphics/draw2d/text_box.h" />
 		<Unit filename="graphics/draw2d/thread_tool.cpp" />
 		<Unit filename="graphics/draw2d/thread_tool.h" />
-		<Unit filename="graphics/draw2d/water_routine.cpp" />
 		<Unit filename="graphics/draw2d/water_routine.h" />
 		<Unit filename="graphics/draw3d/_.h" />
 		<Unit filename="graphics/draw3d/ortho.cpp" />
@@ -835,19 +878,15 @@
 		<Unit filename="include/winrt.h" />
 		<Unit filename="inline/__debug_box_clear_impl.h" />
 		<Unit filename="inline/__debug_box_set_impl.h" />
-		<Unit filename="inline/__posix_app_impl.h" />
-		<Unit filename="inline/__uwp_app_impl.h" />
-		<Unit filename="inline/__windows_app_impl.h" />
 		<Unit filename="inline/_acid_app_impl.h" />
-		<Unit filename="inline/_app_common_impl.h" />
-		<Unit filename="inline/_app_impl.h" />
 		<Unit filename="inline/_app_impl1.h" />
 		<Unit filename="inline/_application.h" />
-		<Unit filename="inline/_console.h" />
 		<Unit filename="inline/_draw2d_impl.h" />
-		<Unit filename="inline/_lib_impl.h" />
 		<Unit filename="inline/_new_impl.h" />
 		<Unit filename="inline/application/linux.h" />
+		<Unit filename="inline/application/windows.h" />
+		<Unit filename="inline/application_common.h" />
+		<Unit filename="inline/console.h" />
 		<Unit filename="library.h" />
 		<Unit filename="memory/_heap.h" />
 		<Unit filename="memory/align_byte_count.h" />
@@ -1466,15 +1505,16 @@
 		<Unit filename="os/winpr_input.h" />
 		<Unit filename="os/winpr_keycode.cpp" />
 		<Unit filename="os/winpr_scancode.cpp" />
+		<Unit filename="os/x11/_x11.h" />
 		<Unit filename="os/x11/debug.cpp" />
-		<Unit filename="os/x11/x11.h" />
 		<Unit filename="os/x11/x11_exception.h" />
 		<Unit filename="os/x11/x11_keyboard.cpp" />
 		<Unit filename="os/x11/x11_keyboard.h" />
+		<Unit filename="os/x11/x11_message_box.cpp" />
+		<Unit filename="os/x11/x11_message_box.h" />
 		<Unit filename="os/x11/x11_windowing.cpp" />
 		<Unit filename="os/x11/x11_xrender.cpp" />
 		<Unit filename="papaya/papaya_zoneing.h" />
-		<Unit filename="platform/Header.h" />
 		<Unit filename="platform/_.cpp" />
 		<Unit filename="platform/_features.h" />
 		<Unit filename="platform/_impl.h" />
@@ -1483,16 +1523,7 @@
 		<Unit filename="platform/_system_object_impl.h" />
 		<Unit filename="platform/_system_smart_pointer_impl.h" />
 		<Unit filename="platform/_system_var_impl.h" />
-		<Unit filename="platform/_system_xml_impl.h" />
-		<Unit filename="platform/aaa_want_to_remove_application_common.h" />
-		<Unit filename="platform/aaa_want_to_remove_common.h" />
-		<Unit filename="platform/aaa_want_to_remove_console_window2.h" />
-		<Unit filename="platform/aaa_want_to_remove_extras.h" />
-		<Unit filename="platform/aaa_want_to_remove_runnable.h" />
-		<Unit filename="platform/aaa_want_to_remove_system_common.h" />
-		<Unit filename="platform/aaa_want_to_remove_template.h" />
 		<Unit filename="platform/all.h" />
-		<Unit filename="platform/app.h" />
 		<Unit filename="platform/app_core.cpp" />
 		<Unit filename="platform/app_core.h" />
 		<Unit filename="platform/app_launcher.cpp" />
@@ -1514,15 +1545,12 @@
 		<Unit filename="platform/assert_running_task.cpp" />
 		<Unit filename="platform/assert_running_task.h" />
 		<Unit filename="platform/async.h" />
-		<Unit filename="platform/atomic2.h" />
-		<Unit filename="platform/aura.h" />
 		<Unit filename="platform/aura_aura.h" />
 		<Unit filename="platform/aura_main_data.cpp" />
 		<Unit filename="platform/aura_main_data.h" />
 		<Unit filename="platform/aura_main_struct.cpp" />
 		<Unit filename="platform/aura_main_struct.h" />
 		<Unit filename="platform/aura_regex.h" />
-		<Unit filename="platform/aura_status.h" />
 		<Unit filename="platform/aura_str_pool.cpp" />
 		<Unit filename="platform/auto.h" />
 		<Unit filename="platform/auto_pointer.h" />
@@ -1540,25 +1568,16 @@
 		<Unit filename="platform/context.h" />
 		<Unit filename="platform/context_image.cpp" />
 		<Unit filename="platform/context_thread.cpp" />
-		<Unit filename="platform/conv.h" />
-		<Unit filename="platform/core.h" />
-		<Unit filename="platform/core1.h" />
-		<Unit filename="platform/cpu_architecture.h" />
-		<Unit filename="platform/cregexp.h" />
-		<Unit filename="platform/cregexp_util.h" />
 		<Unit filename="platform/debug.cpp" />
 		<Unit filename="platform/debug.h" />
 		<Unit filename="platform/definition.h" />
 		<Unit filename="platform/department.cpp" />
 		<Unit filename="platform/department.h" />
-		<Unit filename="platform/department_container.h" />
 		<Unit filename="platform/display.cpp" />
 		<Unit filename="platform/display.h" />
-		<Unit filename="platform/document_manager_container.h" />
 		<Unit filename="platform/draw_context.cpp" />
 		<Unit filename="platform/draw_context2.h" />
 		<Unit filename="platform/drawable.h" />
-		<Unit filename="platform/e_status.h" />
 		<Unit filename="platform/enum.h" />
 		<Unit filename="platform/error.h" />
 		<Unit filename="platform/exclusive.cpp" />
@@ -1571,7 +1590,6 @@
 		<Unit filename="platform/fixed_alloc_impl.h" />
 		<Unit filename="platform/flags.cpp" />
 		<Unit filename="platform/flags.h" />
-		<Unit filename="platform/gudo2.h" />
 		<Unit filename="platform/history.cpp" />
 		<Unit filename="platform/history.h" />
 		<Unit filename="platform/hyperlink.cpp" />
@@ -1589,7 +1607,6 @@
 		<Unit filename="platform/library.cpp" />
 		<Unit filename="platform/library.h" />
 		<Unit filename="platform/library_object_allocator.h" />
-		<Unit filename="platform/live_signal.h" />
 		<Unit filename="platform/log.cpp" />
 		<Unit filename="platform/log.h" />
 		<Unit filename="platform/logic.cpp" />
@@ -1603,9 +1620,7 @@
 		<Unit filename="platform/machine_event_data.cpp" />
 		<Unit filename="platform/machine_event_data2.h" />
 		<Unit filename="platform/main.h" />
-		<Unit filename="platform/match.h" />
 		<Unit filename="platform/math.cpp" />
-		<Unit filename="platform/message_loop.h" />
 		<Unit filename="platform/mq.cpp" />
 		<Unit filename="platform/muldiv32.h" />
 		<Unit filename="platform/muldiv64.cpp" />
@@ -1620,11 +1635,6 @@
 		<Unit filename="platform/os_context.h" />
 		<Unit filename="platform/os_history.cpp" />
 		<Unit filename="platform/os_history.h" />
-		<Unit filename="platform/patch.h" />
-		<Unit filename="platform/plane.h" />
-		<Unit filename="platform/printer.h" />
-		<Unit filename="platform/printf.cpp" />
-		<Unit filename="platform/printf.h" />
 		<Unit filename="platform/process_data.h" />
 		<Unit filename="platform/profiler.cpp" />
 		<Unit filename="platform/profiler2.h" />
@@ -1634,27 +1644,18 @@
 		<Unit filename="platform/regex.cpp" />
 		<Unit filename="platform/regex.h" />
 		<Unit filename="platform/restore.h" />
-		<Unit filename="platform/run_start_installer.h" />
-		<Unit filename="platform/runnable2.h" />
-		<Unit filename="platform/runnable_pred.h" />
 		<Unit filename="platform/savings.cpp" />
 		<Unit filename="platform/savings.h" />
 		<Unit filename="platform/serial.h" />
 		<Unit filename="platform/serial_impl.h" />
-		<Unit filename="platform/serializable.h" />
 		<Unit filename="platform/session.cpp" />
 		<Unit filename="platform/session.h" />
-		<Unit filename="platform/session_common.h" />
-		<Unit filename="platform/session_heap.h" />
 		<Unit filename="platform/shell_launcher.cpp" />
 		<Unit filename="platform/shell_launcher.h" />
 		<Unit filename="platform/simple_app.h" />
 		<Unit filename="platform/simple_log.cpp" />
 		<Unit filename="platform/simple_log.h" />
 		<Unit filename="platform/simple_trace.cpp" />
-		<Unit filename="platform/smart_pointer_query.h" />
-		<Unit filename="platform/sprintf.cpp" />
-		<Unit filename="platform/sprintf.h" />
 		<Unit filename="platform/static_setup.cpp" />
 		<Unit filename="platform/static_setup.h" />
 		<Unit filename="platform/static_start.cpp" />
@@ -1663,16 +1664,11 @@
 		<Unit filename="platform/status.h" />
 		<Unit filename="platform/str_context.cpp" />
 		<Unit filename="platform/str_context.h" />
-		<Unit filename="platform/strn.h" />
-		<Unit filename="platform/struct.h" />
 		<Unit filename="platform/system.cpp" />
 		<Unit filename="platform/system.h" />
-		<Unit filename="platform/system_heap.h" />
-		<Unit filename="platform/system_str.h" />
 		<Unit filename="platform/system_trace.cpp" />
 		<Unit filename="platform/theme.cpp" />
 		<Unit filename="platform/theme.h" />
-		<Unit filename="platform/this_build_number.h" />
 		<Unit filename="platform/tick.h" />
 		<Unit filename="platform/timer.cpp" />
 		<Unit filename="platform/timer.h" />
@@ -1688,11 +1684,6 @@
 		<Unit filename="platform/trace.h" />
 		<Unit filename="platform/trace_category.cpp" />
 		<Unit filename="platform/trace_category.h" />
-		<Unit filename="platform/types.h" />
-		<Unit filename="platform/update (2).h" />
-		<Unit filename="platform/user_edit_window.h" />
-		<Unit filename="platform/util1.h" />
-		<Unit filename="platform/v8stdint.h" />
 		<Unit filename="platform/version.cpp" />
 		<Unit filename="platform/version.h" />
 		<Unit filename="primitive/api/api.h" />
@@ -2012,6 +2003,8 @@
 		<Unit filename="primitive/primitive/logic.h" />
 		<Unit filename="primitive/primitive/malloc.h" />
 		<Unit filename="primitive/primitive/map.h" />
+		<Unit filename="primitive/primitive/match.cpp" />
+		<Unit filename="primitive/primitive/match.h" />
 		<Unit filename="primitive/primitive/math_math.h" />
 		<Unit filename="primitive/primitive/member.h" />
 		<Unit filename="primitive/primitive/memory.cpp" />
@@ -2217,18 +2210,10 @@
 		<Unit filename="user/_user.h" />
 		<Unit filename="user/box.cpp" />
 		<Unit filename="user/box.h" />
-		<Unit filename="user/button.cpp" />
-		<Unit filename="user/button.h" />
 		<Unit filename="user/callback.cpp" />
 		<Unit filename="user/callback.h" />
 		<Unit filename="user/check.cpp" />
 		<Unit filename="user/check.h" />
-		<Unit filename="user/check_box.cpp" />
-		<Unit filename="user/check_box.h" />
-		<Unit filename="user/combo_box.cpp" />
-		<Unit filename="user/combo_box.h" />
-		<Unit filename="user/combo_list.cpp" />
-		<Unit filename="user/combo_list.h" />
 		<Unit filename="user/command.cpp" />
 		<Unit filename="user/command.h" />
 		<Unit filename="user/composition_imm_client.cpp" />
@@ -2245,6 +2230,10 @@
 		<Unit filename="user/create.h" />
 		<Unit filename="user/create_struct.cpp" />
 		<Unit filename="user/create_struct.h" />
+		<Unit filename="user/form.cpp" />
+		<Unit filename="user/form.h" />
+		<Unit filename="user/form_callback.cpp" />
+		<Unit filename="user/form_callback.h" />
 		<Unit filename="user/frame.cpp" />
 		<Unit filename="user/frame.h" />
 		<Unit filename="user/imm_client.cpp" />
@@ -2300,16 +2289,14 @@
 		<Unit filename="user/scroll_bar.cpp" />
 		<Unit filename="user/scroll_bar.h" />
 		<Unit filename="user/scroll_info.h" />
-		<Unit filename="user/slider.cpp" />
-		<Unit filename="user/slider.h" />
-		<Unit filename="user/still.cpp" />
-		<Unit filename="user/still.h" />
 		<Unit filename="user/style.cpp" />
 		<Unit filename="user/style.h" />
 		<Unit filename="user/style_base.cpp" />
 		<Unit filename="user/style_base.h" />
 		<Unit filename="user/text.cpp" />
 		<Unit filename="user/text.h" />
+		<Unit filename="user/tool_window.cpp" />
+		<Unit filename="user/tool_window.h" />
 		<Unit filename="user/user.cpp" />
 		<Unit filename="user/user.h" />
 		<Unit filename="user/user/notify_icon.mm" />

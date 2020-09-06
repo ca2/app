@@ -1,5 +1,7 @@
 #include "framework.h"
-#include "internal.h"
+//#if !BROAD_PRECOMPILED_HEADER
+#include "_graphics.h"
+//#endif
 
 
 namespace html

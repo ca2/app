@@ -31,7 +31,7 @@ class form_document;
 namespace user
 {
 
-   
+
    class user;
    class document_manager;
    class interaction_pointer_array;
@@ -79,6 +79,7 @@ namespace user
 //#include "form_callback.h"
 #include "impact_creator.h"
 #include "document_manager_container.h"
+
 
 
 

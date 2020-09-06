@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "core/user/user/_user.h"
 #include "shell_linux.h"
 #include "aura/node/linux/_linux.h"
 
@@ -701,7 +702,7 @@ namespace linux
 
          if (::str::ends_ci(imagekey.m_strPath, ".sln"))
          {
-            
+
             // output_debug_string("test .sln");
 
          }
@@ -1104,3 +1105,39 @@ namespace linux
 
 
 
+namespace core
+{
+
+
+   ::estatus user::create_user_shell()
+   {
+
+      ::estatus estatus = ::success;
+
+      if (!m_pshell)
+      {
+
+         estatus = __compose(m_pshell, __new(::linux::shell));
+
+         if (!estatus)
+         {
+
+            return estatus;
+
+         }
+
+      }
+
+      if (!m_pshell)
+      {
+
+         return ::error_failed;
+
+      }
+
+      return ::success;
+
+   }
+
+
+} // namespace core

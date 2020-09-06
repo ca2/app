@@ -126,7 +126,7 @@ namespace user
       //virtual void _008OnDraw(::draw2d::graphics_pointer& pgraphics);
       //virtual void draw_control_background(::draw2d::graphics_pointer& pgraphics);
 
-      //virtual void _000OnDraw1(::draw2d::graphics_pointer& pgraphics) override;
+      //virtual void _000OnDraw(::draw2d::graphics_pointer& pgraphics) override;
       //virtual void _001DeferPaintLayeredWindowBackground(::draw2d::graphics_pointer& pgraphics) override;
 
       //virtual void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer& pgraphics) override;

@@ -43,6 +43,14 @@ namespace user
 
    };
 
+   enum enum_tool
+   {
+
+      e_tool_none,
+      e_tool_color,
+      e_tool_font,
+
+   };
 
    enum enum_state
    {

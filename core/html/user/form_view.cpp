@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "internal.h"
+#include "_user.h"
 
 
 html_form_view::html_form_view()
@@ -112,7 +112,7 @@ void html_form_view::on_document_complete(const char * pszUrl)
 
 void html_form_view::_001OnSetFocus(::message::message * pmessage)
 {
-   
+
    UNREFERENCED_PARAMETER(pmessage);
 
    if(get_html_data()->m_pcoredata->m_focusptra.get_size() > 0)

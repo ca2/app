@@ -11,6 +11,17 @@ CLASS_DECL_AURA int get_generate_sync_io_error();
 CLASS_DECL_AURA void set_generate_sync_io_error(int iError);
 
 
+/////////////////////////////////////////////////////
+//
+//    md5 implementation
+//    intentional duplication because spa
+//    needs md5
+//
+CLASS_DECL_AURA string file_md5_dup(const char* psz);
+//
+//
+/////////////////////////////////////////////////////
+
 class CLASS_DECL_AURA sync_io_error
 {
 public:
@@ -162,8 +173,6 @@ inline bool file_as_pod(POD & pod, const char * path)
 #include "exception.h"
 
 #include "status.h"
-
-#include "md5.h"
 
 #include "stream.h"
 

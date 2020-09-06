@@ -263,8 +263,8 @@ namespace user
 
          m_ewindowflag |= window_flag_loading_window_rect;
 
-         main_async([this]()
-                    {
+         //main_async([this]()
+         //           {
 
          bool bRestore = good_restore(nullptr, nullptr, true, activation_none, zorder_top, initial_restore_display()) >= 0;
 
@@ -277,9 +277,9 @@ namespace user
 
          }
 
-         });
+//         });
 
-         bool bRestore = true;
+         //bool bRestore = true;
 
          return bRestore;
 

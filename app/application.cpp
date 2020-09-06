@@ -1,4 +1,5 @@
 #include "framework.h"
+#define NO_IMAGING
 #include "aura/application.h"
 #include "aura/update.h"
 

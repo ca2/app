@@ -1,4 +1,7 @@
 ﻿#include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "_windows.h"
+#endif
 #include "aura/message.h"
 
 string get_message_text(UINT uMessage, bool bWithNumbers);

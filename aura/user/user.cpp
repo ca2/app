@@ -27,6 +27,13 @@ namespace user
    }
 
 
+   ::user::style* user::get_user_style()
+   {
+
+      return nullptr;
+
+   }
+
 
    ::estatus user::init1()
    {
@@ -35,8 +42,6 @@ namespace user
       //create_factory <::user::document >();
       create_factory <::user::message_queue >();
       //create_factory <::user::simple_view >();
-      create_factory <::user::still >();
-      create_factory <::user::combo_box >();
       //create_factory <::user::place_holder >();
       //create_factory <::user::font_combo_box >();
 
@@ -69,9 +74,7 @@ namespace user
 
       }
 
-      create_factory <::user::combo_list >();
       create_factory <::user::plain_edit >();
-      create_factory <::user::button >();
 
 
 

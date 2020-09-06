@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "internal.h"
+#include "_graphics.h"
 
 
 namespace html
@@ -91,15 +91,15 @@ namespace html
    }
 
 
-   style * style_sheet_array::greater( style * pstyle1,  style * pstyle2)  
+   style * style_sheet_array::greater( style * pstyle1,  style * pstyle2)
    {
-      
+
       if(pstyle1 == nullptr)
       {
-      
+
          if(pstyle2 == nullptr)
          {
-         
+
             return nullptr;
 
          }
@@ -124,7 +124,7 @@ namespace html
 
       for(i = get_upper_bound(); i >= 0; i--)
       {
-      
+
          style_sheet & sheet = *this->element_at(i);
 
          pstyle = sheet.greater(pstyle1, pstyle2);

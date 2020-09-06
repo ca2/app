@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/user/_user.h"
+#endif
 #include "core/user/user/shell.h"
 #include "core/node/_node.h"
 #include "aura/compress/zip/_.h"
@@ -445,7 +448,7 @@ namespace user
       }
 
 
-      image_list * shell::GetImageList(int iSize)
+      ::image_list * shell::GetImageList(int iSize)
       {
 
          sync_lock sl(mutex());
@@ -490,7 +493,7 @@ namespace user
       }
 
 
-      image_list * shell::GetImageListHover(int iSize)
+      ::image_list * shell::GetImageListHover(int iSize)
       {
 
          sync_lock sl(mutex());

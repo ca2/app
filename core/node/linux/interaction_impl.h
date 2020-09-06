@@ -82,7 +82,7 @@ namespace linux
       //DECL_GEN_SIGNAL(_001OnProdevianSynch);
 
 
-      virtual void window_show_change_visibility() override;
+      virtual void node_show_change_visibility();
 
 
 //#if(WINVER >= 0x0500)
@@ -206,7 +206,7 @@ namespace linux
 
 
       // oswindow size and position Functions
-      virtual bool layout().is_iconic();
+      virtual bool node_is_iconic();
       //virtual bool layout().is_zoomed();
       //virtual bool layout().is_full_screen();
       //void MoveWindow(i32 x, i32 y, i32 nWidth, i32 nHeight,

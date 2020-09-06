@@ -1,5 +1,7 @@
 ﻿#include "framework.h"
-//#include "_filemanager.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/filesystem/filemanager/_filemanager.h"
+#endif
 
 
 namespace filemanager
@@ -55,7 +57,7 @@ namespace filemanager
 
    void folder_list_data::GetSel(::user::list * plist, string_array & stra)
    {
-      
+
       string_array wstraTotal;
 
       if (!data_get(::id(), wstraTotal))

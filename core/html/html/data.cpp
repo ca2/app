@@ -1,7 +1,5 @@
 #include "framework.h"
-#include "_.h"
-#include "core_data.h"
-
+#include "_html.h"
 
 
 html_data::html_data()
@@ -96,7 +94,7 @@ void html_data::load(const char * psz)
 {
 
    m_pcoredata->load(psz);
-   
+
 }
 
 
@@ -151,7 +149,7 @@ void html_data::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
 html::elemental * html_data::get_element_by_name(id id)
 {
-   
+
    return m_pcoredata->get_element_by_name(id);
 
 }
@@ -176,22 +174,22 @@ image_pointer html_data::get_image(const char * pszUrl)
 bool html_data::contains(__pointer(::user::interaction) pinteraction)
 {
 
-   return m_pcoredata->contains(pinteraction); 
+   return m_pcoredata->contains(pinteraction);
 
 }
 
 
 bool html_data::on_create_interaction(__pointer(::user::interaction) pinteraction)
 {
-   
-   return m_pcoredata->on_create_interaction(pinteraction); 
+
+   return m_pcoredata->on_create_interaction(pinteraction);
 
 }
 
 
 bool html_data::open_link(const char * pszPath)
 {
-  
+
    return m_pcoredata->open_link(pszPath);
 
 }
@@ -207,9 +205,9 @@ bool html_data::open_document(const var & varFile)
 
 ::estatus     html_data::open_html(const ::string & str)
 {
-   
+
    return m_pcoredata->open_html(str);
-   
+
 }
 
 

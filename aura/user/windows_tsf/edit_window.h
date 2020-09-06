@@ -104,6 +104,9 @@ namespace tsf
       ~edit_window();
 
 
+      virtual void install_message_routing(::channel* pchannel);
+
+
       //public utility methods
       BOOL _Initialize(ITfThreadMgr * pThreadMgr, TfClientId tfcId);
       void _Uninitialize();
@@ -173,11 +176,17 @@ namespace tsf
       //private:
           //static LRESULT CALLBACK _WndProc(HWND hWnd, UINT uMessage, WPARAM wParam, LPARAM lParam);
       STDMETHODIMP _TestInsert(LONG acpTestStart, LONG acpTestEnd, ULONG cch, LONG * pacpResultStart, LONG * pacpResultEnd);
-      virtual LRESULT _OnCreate(VOID) override;
-      virtual LRESULT _OnDestroy(VOID) override;
-      //LRESULT _OnCommand(WORD, WORD, HWND);
-      virtual LRESULT _OnSetFocus(VOID) override;
-      virtual LRESULT _OnKillFocus(VOID) override;
+      //virtual LRESULT _OnCreate(VOID);
+      //virtual LRESULT _OnDestroy(VOID);
+      ////LRESULT _OnCommand(WORD, WORD, HWND);
+      //virtual LRESULT _OnSetFocus(VOID);
+      //virtual LRESULT _OnKillFocus(VOID);
+
+      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(_001OnDestroy);
+      DECL_GEN_SIGNAL(_001OnSetFocus);
+      DECL_GEN_SIGNAL(_001OnKillFocus);
+
 
       //void on_edit_set_focus(::user::interaction * pinteraction);
 

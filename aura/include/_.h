@@ -5,12 +5,26 @@
 //  ca2 is an all-purpose multi-platform framework and set of libraries written in
 //  C++ language with the aim to help developers create awesome apps for users.
 //
-//  ca2/C++/C/Assembly/Huffman Machine/Hardware/Universe/Multiverse stack
+//  ca2/./aura/C++/C/Assembly/Huffman Machine/Hardware/Universe/Multiverse stack
 //
+//
+//
+//
+//  c(s)t(s)<tb(s)!!
 //
 
 
 #pragma once
+
+
+#undef Sys
+#undef Sess
+#undef App
+
+
+#define Sys(pobject) (*pobject->get_context_system())
+#define Sess(pobject) (*pobject->get_context_session())
+#define App(pobject) (*pobject->get_app())
 
 
 #include "aura/primitive/primitive/estatus.h"
@@ -106,6 +120,7 @@ extern CLASS_DECL_AURA __LPFN_MAIN_DEFERRED_RUN __main_deferred_run;
 
 namespace opengl
 {
+
 
    class opengl;
 
@@ -870,8 +885,6 @@ type operator + (const TYPE & t) const { auto copy = *this; copy.add(t); return 
 #include "aura/graphics/draw2d/_const.h"
 
 
-#define Usr(pobject) (*Sess(pobject).user())
-#define User (Usr(get_context()))
 
 
 
@@ -1292,44 +1305,23 @@ namespace user
    class interaction_impl;
    class primitive;
    class frame;
-//   class menu;
-   //class controller;
-   //class document;
-
-   //class impact_system;
-   //class impact_data;
    class printer;
-//   class impact;
    class primitive;
    class interaction;
    class interaction_layout;
-   //class place_holder;
-   //class menu_item;
    class form;
    class form_callback;
-   class style;
    class menu_interaction;
-   //class tab;
-   class tab_pane;
-   class check_box;
    class toolbar;
    class split_layout;
    class style_rect;
    class scroll_bar;
    class scroll_data;
+   class style;
 
+   using style_pointer = __pointer(style);
 
-   //using color_map = map < e_color, e_color, COLORREF, COLORREF >;
-   //using font_map = map < e_font, e_font, ::draw2d::font_pointer >;
    using eflag = flags < enum_flag >;
-   //using flag_map = map < e_flag, e_flag, bool, bool >;
-   //using rect_map = ::map < e_rect, e_rect, style_rect >;
-   //using int_map = ::map < e_int, e_int, int, int >;
-   //using double_map = ::map < e_double, e_double, double, double >;
-   //using color_map = map < e_color, e_color, COLORREF, COLORREF >;
-   //using eelement = base_enum < e_element >;
-   //using translucency_map = ::map < e_element, e_element, e_translucency, e_translucency >;
-
 
 
 #if defined(_UWP) || defined(APPLE_IOS) || defined(ANDROID)
@@ -2050,13 +2042,23 @@ namespace html
 #define Mm(pobject) (*(::get_context_multimedia(pobject)))
 #define Multimedia (Mm(get_context()))
 
-#define System (*get_context_system())
 
-#define Session (*get_context_session())
+#undef Sys
+#define Sys(pobject) (*::get_context_system(pobject))
 
-#define Application (*get_app())
+#undef Sess
+#define Sess(pobject) (*::get_context_session(pobject))
+
+#undef App
+#define App(pobject) (*::get_context_application(pobject))
+
+
+#define System Sys(get_context())
+#define Session Sess(get_context())
+#define Application App(get_context())
 #define ThisApp (*::application_consumer < application >::get_app())
-#define NamespaceApp(N) (*::application_consumer < ::N::application >::get_app())
+#define NamespaceApp(namespace) (*::application_consumer < ::namespace::application >::get_app())
+
 
 #undef Ctx
 #define Ctx(pobject) (*(::get_context(pobject)))
@@ -3065,15 +3067,6 @@ class mq;
 #include "aura/primitive/primitive/factory.h"
 
 
-namespace user
-{
-
-
-   using style_pointer = __pointer(style);
-
-
-} // namespace user
-
 
 
 #include "aura/graphics/_.h"
@@ -3448,8 +3441,8 @@ return __str(value);
 #include "aura/platform/debug.h"
 
 
-#include "aura/platform/printf.h"
-#include "aura/platform/sprintf.h"
+//#include "aura/platform/printf.h"
+//#include "aura/platform/sprintf.h"
 
 
 //#include "aura/math/_math.h"
@@ -3785,7 +3778,7 @@ CLASS_DECL_AURA ::aura::application * get_aura(void * p);
 #include "aura/platform/_impl.h"
 
 
-#include "aura/primitive/collection/_collection_impl.h"
+//#include "aura/primitive/collection/_collection_impl.h"
 
 
 #ifndef WINDOWS_DESKTOP

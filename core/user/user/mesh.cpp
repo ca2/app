@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/user/_user.h"
+#endif
 #include "aura/const/timer.h"
 
 
@@ -5246,7 +5249,7 @@ namespace user
    }
 
 
-   __pointer(image_list) draw_mesh_item::get_image_list()
+   __pointer(::image_list) draw_mesh_item::get_image_list()
    {
       //if(m_bListItemHover && m_pcolumn->m_pilHover != nullptr)
       //if(m_bListItemHover)

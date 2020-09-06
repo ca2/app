@@ -1,6 +1,8 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/user/_user.h"
+#endif
 
-//CLASS_DECL_CORE COLORREF Session.get_default_color(u32 dw);
 
 namespace user
 {

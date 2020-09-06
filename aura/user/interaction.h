@@ -271,17 +271,16 @@ namespace user
 
       virtual estate get_state() const;
 
+      virtual ::user::style* _get_style() const;
 
-      virtual style* _get_style() const;
-
-      inline style* get_style(::draw2d::graphics_pointer& pgraphics) const
+      inline ::user::style* get_style(::draw2d::graphics_pointer& pgraphics) const
       {
 
          return pgraphics ? get_style(pgraphics->m_puserstyle) : ((pgraphics = ::draw2d::create_memory_graphics())->m_puserstyle = _get_style()).m_p;
 
       }
 
-      inline style * get_style(::user::style_pointer & pstyle) const
+      inline ::user::style * get_style(::user::style * pstyle) const
       {
 
          return pstyle ? pstyle : pstyle = _get_style();
@@ -379,9 +378,6 @@ namespace user
       //virtual bool commit_sketch();
       virtual void post_redraw(bool bAscendants = true) override;
       virtual void show_window();
-
-
-      bool create_layout(bool bTopLevel);
 
 
       virtual void start_layout();
@@ -790,9 +786,8 @@ namespace user
 
       virtual void _001PrintBuffer(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _001Print(::draw2d::graphics_pointer & pgraphics) override;
-      virtual bool _000OnBeforeDraw(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void _000CallOnDraw1(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void _000OnDraw1(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _000CallOnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _001DrawThis(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _001DrawChildren(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics);
@@ -871,11 +866,6 @@ namespace user
       virtual void _000OnDrag(::message::drag_and_drop* pdrag);
 
 
-      virtual LRESULT _OnCreate(VOID);
-      virtual LRESULT _OnDestroy(VOID);
-      //LRESULT _OnCommand(WORD, WORD, HWND);
-      virtual LRESULT _OnSetFocus(VOID);
-      virtual LRESULT _OnKillFocus(VOID);
 
 
       DECL_GEN_SIGNAL(_001OnLButtonDown);
@@ -1332,14 +1322,6 @@ namespace user
       virtual void simple_ui_draw_focus_rect(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual void simple_ui_draw_auth_box(::draw2d::graphics_pointer & pgraphics);
-      virtual void simple_ui_draw_frame_window_rect(::draw2d::graphics_pointer & pgraphics);
-      virtual void simple_ui_draw_dark_glass(::draw2d::graphics_pointer & pgraphics);
-      virtual void simple_ui_draw_pestana(::draw2d::graphics_pointer & pgraphics);
-      virtual void simple_ui_draw_fuzzy_color_spread(::draw2d::graphics_pointer & pgraphics);
-
-      virtual void simple_ui_draw_back_01_old(rect m_rect, ::draw2d::graphics_pointer & pgraphics);
-      virtual void simple_ui_draw_back_01_new(rect m_rect, ::draw2d::graphics_pointer & pgraphics);
 
       virtual bool on_action(const char* pszId);
 
@@ -1377,20 +1359,20 @@ namespace user
       /// ::user::control_descriptor.
       //virtual bool create_control(class control_descriptor* pdescriptor) override;
       //virtual elayout get_state() const override;
-      bool _003IsCustomMessage();
-      ::user::primitive* _003GetCustomMessageWnd();
+      //bool _003IsCustomMessage();
+      //::user::primitive* _003GetCustomMessageWnd();
       //virtual void _001OnDraw(::draw2d::graphics_pointer& pgraphics) override;
       virtual void route_command_message(::user::command* pcommand) override;
       virtual bool has_function(e_control_function econtrolfunction) const;
       virtual e_control_type get_control_type() const;
-      virtual void _003CallCustomDraw(::draw2d::graphics_pointer& pgraphics, ::aura::draw_context* pitem);
-      virtual bool _003CallCustomWindowProc(__pointer(::user::interaction) pwnd, UINT message, WPARAM wparam, LPARAM lparam, LRESULT& lresult);
-      virtual void _003OnCustomDraw(::draw2d::graphics_pointer& pgraphics, ::aura::draw_context* pitem);
-      virtual void _003CustomWindowProc(::message::message* pmessage);
+      //virtual void _003CallCustomDraw(::draw2d::graphics_pointer& pgraphics, ::aura::draw_context* pitem);
+      //virtual bool _003CallCustomWindowProc(__pointer(::user::interaction) pwnd, UINT message, WPARAM wparam, LPARAM lparam, LRESULT& lresult);
+      //virtual void _003OnCustomDraw(::draw2d::graphics_pointer& pgraphics, ::aura::draw_context* pitem);
+      //virtual void _003CustomWindowProc(::message::message* pmessage);
       //virtual form_list * get_form_list();
       //virtual bool _001IsPointInside(::point point) override;
       //control null() { return control(); }
-      bool Validate(string& str);
+      //bool Validate(string& str);
       bool get_data(__pointer(::user::interaction) pwnd, var& var);
       void SetEditItem(index iItem);
       void SetEditSubItem(index iItem);

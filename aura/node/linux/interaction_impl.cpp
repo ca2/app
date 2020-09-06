@@ -4765,14 +4765,14 @@ namespace linux
    }
 
 
-   void interaction_impl::window_show_change_visibility()
+   void interaction_impl::window_show_change_visibility(::edisplay edisplay, ::eactivation eactivation)
    {
 
       __keep_flag_on(m_puserinteraction->layout().m_eflag, ::user::interaction_layout::flag_show_window);
 
-      auto edisplay = m_puserinteraction->layout().design().display();
+      //auto edisplay = m_puserinteraction->layout().design().display();
 
-      auto eactivation = m_puserinteraction->layout().design().activation();
+      //auto eactivation = m_puserinteraction->layout().design().activation();
 
       //if(eactivation &)
 //      {
@@ -4801,7 +4801,7 @@ namespace linux
       else
       {
 
-         //::user::interaction_impl::window_show_change_visibility();
+         ::user::interaction_impl::window_show_change_visibility(edisplay, eactivation);
 
       }
 

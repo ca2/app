@@ -1,5 +1,7 @@
 ﻿#include "framework.h"
-//#include "core/user/simple/_simple.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/simple/_simple.h"
+#endif
 
 
 void simple_frame_window::defer_set_icon()

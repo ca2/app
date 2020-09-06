@@ -8,8 +8,6 @@
 #include "aura/const/id.h"
 
 
-
-
 #define TEST_PRINT_BUFFER
 
 #ifdef WINDOWS_DESKTOP
@@ -24,6 +22,7 @@
 #endif // _UWP
 
 #define new AURA_NEW
+
 
 namespace user
 {
@@ -44,8 +43,6 @@ namespace user
       user_interaction_common_construct();
 
    }
-
-
 
 
    void interaction::user_interaction_common_construct()
@@ -176,17 +173,8 @@ namespace user
    interaction::~interaction()
    {
 
-      //TRACE("::user::interaction::~interaction interaction=0x%016x %s", this, typeid(*this).name());
-
    }
 
-
-   //bool interaction::get_element_rect(RECT* prect, e_element eelement)
-   //{
-
-   //   return false;
-
-   //}
 
    class control_descriptor& interaction::descriptor()
    {
@@ -329,9 +317,6 @@ namespace user
    }
 
 
-
-
-
    eflag interaction::get_draw_flags(style * pstyle) const
    {
 
@@ -352,29 +337,9 @@ namespace user
 
       }
 
-      return Session.user()->m_pstyle;
+      return Session.get_user_style();
 
    }
-
-
-   //style * interaction::get_style(::user::draw_context* pgraphics) const
-   //{
-
-   //   if (::is_set(pgraphics))
-   //   {
-
-   //      if (::is_set(pgraphics->m_pdrawcontext))
-   //      {
-
-   //         return pgraphics->m_pdrawcontext->m_puserstyle;
-
-   //      }
-
-   //   }
-
-   //   return Application.get_style();
-
-   //}
 
 
    void interaction::on_tsf_activate(bool bActivate)
@@ -383,30 +348,6 @@ namespace user
       m_pimpl2->on_tsf_activate(bActivate);
 
    }
-
-   ///// if you (developer) don't know how to create a control,
-   ///// you should be able (control developer pay attention now),
-   ///// to build a default control with a default constructed
-   ///// ::user::control_descriptor.
-   //bool interaction::create_control(class control_descriptor * pdescriptor)
-   //{
-
-   //   m_pdescriptor = pdescriptor;
-
-   //   if (!create_window(pdescriptor->m_puserinteractionParent, pdescriptor->m_id))
-   //   {
-
-   //      m_pdescriptor.release();
-
-   //      return false;
-
-   //   }
-
-   //   //m_pdescriptor->m_pusercontrol = this;
-
-   //   return true;
-
-   //}
 
 
    string interaction::default_id_prefix() const
@@ -633,52 +574,6 @@ namespace user
    }
 
 
-
-   //bool interaction::window_move(i32 x, i32 y)
-   //{
-
-   //   if(!m_pimpl)
-   //   {
-
-   //      return ::user::layout::window_move(x, y);
-
-   //   }
-
-   //   if(!m_pimpl->window_move(x, y))
-   //   {
-
-   //      return false;
-
-   //   }
-
-   //   return true;
-
-   //}
-
-   //// returns true if this windows or any descendant
-   //// had sketch busy and set them all ready.
-   //bool interaction::commit_sketch()
-   //{
-
-   //   bool bChanged = layout().sketch().set_ready();
-
-   //   for (auto& pinteractionChild : m_uiptraChild)
-   //   {
-
-   //      if (pinteractionChild->commit_sketch())
-   //      {
-
-   //         bChanged = true;
-
-   //      }
-
-   //   }
-
-   //   return bChanged;
-
-   //}
-
-
    void interaction::post_redraw(bool bAscendants)
    {
 
@@ -796,22 +691,6 @@ namespace user
    }
 
 
-
-   //::form_property_set * interaction::get_form_property_set()
-   //{
-
-   //   if (m_pformParent == nullptr)
-   //   {
-
-   //      return get_form();
-
-   //   }
-
-   //   return m_pformParent;
-
-   //}
-
-
    ::user::interaction * interaction::get_bind_ui()
    {
 
@@ -912,21 +791,15 @@ namespace user
       interaction * puiParent = GetParent();
 
       if (puiParent == nullptr)
+      {
+
          return nullptr;
+
+      }
 
       return puiParent->get_safe_handle();
 
    }
-
-
-   //__pointer(place_holder) interaction::place_hold(::user::interaction * pinteraction)
-   //{
-
-   //   UNREFERENCED_PARAMETER(pinteraction);
-
-   //   return nullptr;
-
-   //}
 
 
    bool interaction::on_before_set_parent(::user::interaction * puiParent)
@@ -996,19 +869,7 @@ namespace user
 
          auto rectRequest = layout().sketch().screen_rect();
 
-//#ifdef WINDOWS_DESKTOP
-//
-//         wstring wstrClassName(pszClassName);
-//
-//         wstring wstrName(strName);
-//
-//         ::user::create_struct createstruct(get_window_long(GWL_EXSTYLE),wstrClassName, wstrName, get_window_long(GWL_STYLE), rectRequest);
-//
-//#else
-//
          ::user::create_struct createstruct(get_window_long(GWL_EXSTYLE), pszClassName, strName, get_window_long(GWL_STYLE), rectRequest);
-
-//#endif
 
          createstruct.style &= ~WS_CHILD;
 
@@ -1117,34 +978,8 @@ namespace user
 
       }
 
-
-
       IGUI_MSG_LINK(WM_COMMAND, pchannel, this, &interaction::_001OnCommand);
       IGUI_MSG_LINK(message_simple_command, pchannel, this, &interaction::_001OnSimpleCommand);
-
-
-
-      //      ::user::impact::install_message_routing(pchannel);
-      //::user::box::install_message_routing(pchannel);
-
-      //IGUI_MSG_LINK(WM_CREATE, pchannel, this, &::user::interaction::_001OnCreate);
-      //      IGUI_MSG_LINK(WM_MOUSEMOVE, pchannel, this, &::user::interaction::_001OnMouseMove);
-      //
-      //#ifdef WINDOWS
-      //
-      //      IGUI_MSG_LINK(WM_MOUSELEAVE, pchannel, this, &::user::interaction::_001OnMouseLeave);
-      //
-      //#else
-      //
-      //      //::exception::throw_not_implemented();
-      //
-      //#endif
-      //
-      //IGUI_MSG_LINK(WM_KEYDOWN, pchannel, this, &::user::interaction::_001OnKeyDown);
-      //IGUI_MSG_LINK(WM_ENABLE, pchannel, this, &::user::interaction::_001OnEnable);
-//      IGUI_MSG_LINK(WM_SETFOCUS, pchannel, this, &::user::interaction::_001OnSetFocus);
-  //    IGUI_MSG_LINK(WM_KILLFOCUS, pchannel, this, &::user::interaction::_001OnKillFocus);
-
 
    }
 
@@ -1153,70 +988,6 @@ namespace user
    {
 
       pmessage->m_bRet = true; // avoid any Microsoft-Window-concept-of-non-client-area
-
-   }
-
-
-   //bool interaction::is_design_enabled() const
-//{
-
-//   return get_wnd()->is_modified();
-
-//}
-
-
-//::count interaction::is_modified() const
-//{
-
-//   return m_bModified;
-
-//}
-
-
-//bool interaction::is_any_descendant_modified() const
-//{
-
-//   bool bModified = false;
-
-//   for (auto& pinteractionChild : m_uiptraChild)
-//   {
-
-//      if (pinteractionChild->layout().sketch().is_modified())
-//      {
-
-//         bModified = true;
-
-//         break;
-
-//      }
-
-//   }
-
-//   return bModified;
-
-//}
-
-
-   bool interaction::create_layout(bool bTopLevel)
-   {
-
-      //if (::is_null(m_playout))
-      //{
-
-      //   auto estatus = __construct_new(m_playout);
-
-      //   if (!estatus)
-      //   {
-
-      //      return false;
-
-      //   }
-
-      //}
-
-      //m_playout->create_state(bTopLevel ? layout_count_owner : layout_count_child);
-
-      return true;
 
    }
 
@@ -1267,15 +1038,6 @@ namespace user
       return pparent->is_layout_ready();
 
    }
-
-
-   //void interaction::update_modified()
-   //{
-
-   //   m_bLayoutModified = is_any_descendant_modified();
-   //
-   //}
-
 
 
    bool interaction::display(::edisplay edisplay, ::eactivation eactivation)
@@ -1619,22 +1381,18 @@ namespace user
 
       user_interaction_on_destroy();
 
-      _OnDestroy();
+      //_OnDestroy();
 
       pmessage->previous();
 
-
-
    }
-
-
 
 
    void interaction::user_interaction_on_hide()
    {
 
-
       m_pimpl->user_interaction_on_hide();
+
       ::user::interaction * pinteraction = get_wnd();
 
       if(::is_set(pinteraction) && pinteraction != this && pinteraction->get_focus_primitive()== this)
@@ -1710,7 +1468,6 @@ namespace user
       {
 
       }
-
 
       try
       {
@@ -1890,7 +1647,9 @@ namespace user
    {
 
       ::size sizeTotal = get_total_size();
+
       auto sizePage = get_page_size();
+
       auto pointOffset = get_viewport_offset();
 
       info.nMin = 0;
@@ -1898,12 +1657,17 @@ namespace user
       info.nPage = (::i32) sizePage.cx;
       info.nPos = pointOffset.x;
       info.nTrackPos = pointOffset.x;
+
    }
+
 
    void interaction::_001GetYScrollInfo(scroll_info & info)
    {
+
       auto sizeTotal = get_total_size();
+
       auto sizePage = get_page_size();
+
       auto pointOffset = get_viewport_offset();
 
       info.nMin = 0;
@@ -2094,22 +1858,6 @@ namespace user
 
             }
 
-            //if (get_context_application()->get_context_system() != nullptr)
-            //{
-
-            //   try
-            //   {
-
-            //      System.remove_frame(this); // guess this may be a frame, it doesn't hurt to remove if this is not there
-
-            //   }
-            //   catch (...)
-            //   {
-
-            //   }
-
-            //}
-
          }
 
       }
@@ -2177,8 +1925,6 @@ namespace user
 
       }
 
-
-
       interaction_pointer_array uiptra;
 
       {
@@ -2206,8 +1952,6 @@ namespace user
          }
 
       }
-
-
 
       //children_post_quit_and_wait(one_minute());
 
@@ -2257,32 +2001,6 @@ namespace user
       return false;
 
    }
-
-
-//void interaction::translate()
-//{
-
-//   m_pimpl->on_reposition();
-
-//   single_lock sl(mutex(), true);
-
-//   on_reposition();
-
-//}
-
-
-//void interaction::do_show_flags()
-//{
-
-//   m_pimpl->on_show_window();
-
-//   single_lock sl(mutex(), true);
-
-//   on_show_window();
-
-//}
-
-
 
 
    void interaction::show_window()
@@ -2456,7 +2174,6 @@ namespace user
          pgraphics->GetClipBox(rectClipbox3);
 
          output_debug_string("trace");
-
 
       }
       catch (...)
@@ -2826,25 +2543,8 @@ namespace user
    }
 
 
-   //bool interaction::AddControlBar(::user::control_bar* pcontrolbar)
-   //{
-
-   //   return false;
-
-   //}
-   //
-   //
-   //bool interaction::RemoveControlBar(::user::control_bar* pcontrolbar)
-   //{
-
-   //   return false;
-
-   //}
-
-
    void interaction::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
    {
-
 
       point pointScroll = m_pointScroll;
 
@@ -2907,7 +2607,7 @@ namespace user
 
                }
 
-               pinteraction->_000CallOnDraw1(pgraphics);
+               pinteraction->_000CallOnDraw(pgraphics);
 
                //{
 
@@ -3100,6 +2800,7 @@ namespace user
 
    }
 
+
    void interaction::_001Print(::draw2d::graphics_pointer & pgraphics)
    {
 
@@ -3112,7 +2813,7 @@ namespace user
          try
          {
 
-            _000CallOnDraw1(pgraphics);
+            _000CallOnDraw(pgraphics);
 
          }
          catch (...)
@@ -3197,33 +2898,7 @@ namespace user
    }
 
 
-   bool interaction::_000OnBeforeDraw(::draw2d::graphics_pointer & pgraphics)
-   {
-
-      //if (GetParent() != nullptr || Session.m_puiHost.is_set())
-      //{
-
-      //   bool bUpdateBuffer = false;
-
-      //   bool bUpdateWindow = false;
-
-      //   prodevian_update_visual(bUpdateBuffer, bUpdateWindow);
-
-      //}
-
-      //if (!is_this_visible() || m_bLockWindowUpdate)
-      //{
-
-      //   return false;
-
-      //}
-
-      return true;
-
-   }
-
-
-   void interaction::_000CallOnDraw1(::draw2d::graphics_pointer & pgraphics)
+   void interaction::_000CallOnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       if (!(m_ewindowflag & window_flag_window_created))
@@ -3253,6 +2928,12 @@ namespace user
       {
 
          output_debug_string("plain_edit");
+
+      }
+      else if (strType.contains_ci("combo_box"))
+      {
+
+         output_debug_string("combo_box");
 
       }
 
@@ -3355,7 +3036,7 @@ namespace user
       try
       {
 
-         _000OnDraw1(pgraphics);
+         _000OnDraw(pgraphics);
 
       }
       catch (...)
@@ -3370,12 +3051,10 @@ namespace user
 
       }
 
-
-
    }
 
 
-   void interaction::_000OnDraw1(::draw2d::graphics_pointer & pgraphics)
+   void interaction::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       try
@@ -3475,30 +3154,10 @@ namespace user
       catch(...)
       {
 
-
       }
 
    }
 
-
-   //void interaction::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
-   //{
-
-   //   if (m_flagNonClient.has(non_client_background))
-   //   {
-
-   //      draw_control_background(pgraphics);
-
-   //   }
-
-   //}
-
-
-   //void interaction::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
-   //{
-
-
-   //}
 
    void interaction::_008OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
@@ -3585,8 +3244,6 @@ namespace user
       return false;
 
    }
-
-
 
 
    bool interaction::add_prodevian(::context_object * pobject)
@@ -3721,36 +3378,7 @@ namespace user
    }
 
 
-   LRESULT interaction::_OnCreate(VOID)
-   {
 
-      return 0;
-
-   }
-
-
-   LRESULT interaction::_OnDestroy(VOID)
-   {
-
-      return 0;
-
-   }
-
-
-   LRESULT interaction::_OnSetFocus(VOID)
-   {
-
-      return 0;
-
-   }
-
-
-   LRESULT interaction::_OnKillFocus(VOID)
-   {
-
-      return 0;
-
-   }
 
    void interaction::_001OnCreate(::message::message * pmessage)
    {
@@ -3863,8 +3491,6 @@ namespace user
       }
 
       send_message(message_change_experience);
-
-      _OnCreate();
 
    }
 
@@ -8296,6 +7922,12 @@ namespace user
          output_debug_string("albertopibiri_keyboard::main_frame");
 
       }
+      else if (strType.contains("combo_box"))
+      {
+
+         output_debug_string("combo_box");
+
+      }
 
       __keep(m_bUpdatingVisual);
 
@@ -8350,6 +7982,8 @@ namespace user
       layout().sketch().clear_ephemeral();
 
       layout().sketch().set_modified(false);
+
+      layout().design().set_modified();
 
       //layout().sketch().set_ready(false);
 
@@ -11420,7 +11054,7 @@ restart:
 
       SCAST_PTR(::message::kill_focus, pkillfocus, pmessage);
 
-      _OnKillFocus();
+      //_OnKillFocus();
 
       ::user::control_event ev;
 
@@ -11456,7 +11090,7 @@ restart:
       // return true to set focus to this control
       Application.keyboard_focus_OnSetFocus(this);
 
-      _OnSetFocus();
+      //_OnSetFocus();
 
       ::user::control_event ev;
 
@@ -12704,39 +12338,6 @@ restart:
 
    }
 
-   byte brate(double dRate, double dMin, double dMax)
-   {
-
-      return (byte)(dRate * (dMax - dMin) + dMin);
-
-   }
-
-
-   //interaction::interaction() :
-   //   ::object(get_object()),
-   //   ::user::interaction(get_object())
-
-   //{
-
-   //   m_iIndex = -1;
-   //   //m_eelementHover = ::user::element_none;
-
-   //}
-
-
-   //interaction::~interaction()
-   //{
-   //}
-
-
-   //void interaction::install_message_routing(::channel* pchannel)
-   //{
-
-   //   ::user::interaction::install_message_routing(pchannel);
-
-   //   IGUI_MSG_LINK(WM_SHOWWINDOW, pchannel, this, &::user::interaction::_001OnShowWindow);
-
-   //}
 
 
    void interaction::install_simple_ui_default_mouse_handling(::channel* pchannel)
@@ -13322,87 +12923,6 @@ restart:
    }
 
 
-   //   ::user::style * interaction::get_user_style()
-   //   {
-   //
-   //      if (pstyle != nullptr)
-   //         return pstyle;
-   //
-   //      if (GetTypedParent < ::user::interaction >() == nullptr)
-   //         return nullptr;
-   //
-   //      return GetTypedParent < ::user::interaction >()->get_style();
-   //
-   //   }
-
-
-   void interaction::simple_ui_draw_back_01_old(::rect rect, ::draw2d::graphics_pointer & pgraphics)
-   {
-
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
-
-      COLORREF crOut;
-
-      COLORREF crIn;
-
-      /*   if (eschema == ::hotplugin::plugin::schema_darker)
-         {
-
-         crOut = ARGB(0, 90, 90, 80);
-
-         crIn = ARGB(133, 90, 90, 80);
-
-         }
-         else*/
-      {
-
-         crOut = ARGB(0, 255, 255, 233);
-
-         crIn = ARGB(133, 255, 255, 233);
-
-      }
-
-      i32 iBorderH = MIN(rect.height() / 2, 49);
-
-      ::draw2d::brush_pointer br(e_create);
-
-      br->CreateLinearGradientBrush(rect.top_left(), point(rect.left, rect.top + iBorderH), crOut, crIn);
-
-      pgraphics->fill_rect(::rect(rect.left, rect.top, (i32)rect.width(), iBorderH), br);
-
-      br->create_solid(crIn);
-
-      pgraphics->fill_rect(::rect(rect.left, rect.top + iBorderH, (i32)rect.width(), (i32)rect.height() - (iBorderH * 2)), br);
-
-      br->CreateLinearGradientBrush(point(rect.left, rect.bottom - iBorderH), rect.bottom_left(), crIn, crOut);
-
-      pgraphics->fill_rect(::rect(rect.left, rect.bottom - iBorderH, (i32)rect.width(), iBorderH), br);
-
-   }
-
-
-   void interaction::simple_ui_draw_back_01_new(::rect rect, ::draw2d::graphics_pointer & pgraphics)
-   {
-
-      /*simple_solid_brush br(g, ARGB(255, 255, 255, 255));
-
-      simple_pen pen;
-
-      pen.create_solid(ARGB(255, 0, 0, 0));
-
-      pgraphics->select(br);
-
-      pgraphics->select(pen);
-
-      m_rect.deflate(0, 0, 1, 1);
-
-      pgraphics->rectangle(m_rect);*/
-
-      //pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
-
-      //pgraphics->fill_rect(rect,ARGB(0,0,0,0));
-
-   }
 
 
    void interaction::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
@@ -13466,135 +12986,8 @@ restart:
    void interaction::_001DrawItem(::draw2d::graphics_pointer& pgraphics, ::user::item * pitem)
    {
 
-      if (::is_null(pitem))
-      {
-
-         return;
-
-      }
-
-      if (pitem->m_eelement == ::user::element_close_button)
-      {
-
-         pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
-
-         ::draw2d::pen_pointer ppen(e_create);
-
-         ::draw2d::brush_pointer pbrush(e_create);
-
-         auto pstyle = get_style(pgraphics);
-
-         ::rectd rectd(pitem->m_rect);
-
-         auto color = get_color(pstyle, ::user::element_background);
-
-         ppen->create_solid(rectd.minimum_dimension() / 10.0, color);
-
-         pbrush->create_solid(color);
-
-         pgraphics->set(pbrush);
-
-         if (m_itemHover == ::user::element_close_button)
-         {
-
-            color.m_iA = 180;
-
-         }
-         else
-         {
-
-            color.m_iA = 127;
-
-         }
-
-         pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
-
-         pgraphics->fill_rect(rectd, color);
-
-         if (color.get_hls().m_dL <= 0.5)
-         {
-
-            // If color is dark (dark mode?)
-            // blend lighter pixel at top-right edge
-            // so that the button looks more sharply square-edged
-
-            auto colorLighter = color;
-
-            colorLighter.hls_rate(0.0, 0.312569, 0.0);
-
-            colorLighter.m_iA = 127;
-
-            pgraphics->blend_pixel(pitem->m_rect.top_right() - ::size(1, 0), colorLighter);
-
-         }
-
-         rectd.deflate(rectd.minimum_dimension() / 5.0);
-
-         pgraphics->set(ppen);
-
-         pgraphics->set_smooth_mode(::draw2d::smooth_mode_high);
-
-         pgraphics->draw_stock_icon(rectd, stock_icon_close);
-
-      }
-      else if (pitem->m_eelement == ::user::element_close_icon)
-      {
-
-         pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
-
-         ::draw2d::brush_pointer pbrush(e_create);
-
-         auto pstyle = get_style(pgraphics);
-
-         if (!pitem->m_ppath)
-         {
-
-            ::rectd rect(pitem->m_rect);
-
-            double dMinimumDimension = rect.minimum_dimension();
-
-            double dDeflate = dMinimumDimension / 3.0;
-
-            double w = rect.width();
-
-            double h = rect.height();
-
-            rect.deflate(0, dDeflate);
-
-            double w2 = rect.width();
-
-            double h2 = rect.height();
-
-            pitem->m_ppath.create();
-
-            pitem->m_ppath->add_rect(rect, 45_degrees);
-
-            pitem->m_ppath->add_rect(rect, -45_degrees);
-
-         }
-
-         auto color = get_color(pstyle, ::user::element_background);
-
-         if (m_itemHover == ::user::element_close_icon)
-         {
-
-            color.m_iA = 180;
-
-         }
-         else
-         {
-
-            color.m_iA = 127;
-
-         }
-
-         pbrush->create_solid(color);
-
-         pgraphics->set(pbrush);
-
-         pgraphics->fill_path(pitem->m_ppath);
-
-      }
+      UNREFERENCED_PARAMETER(pgraphics);
+      UNREFERENCED_PARAMETER(pitem);
 
    }
 
@@ -13605,14 +12998,6 @@ restart:
       return false;
 
    }
-
-
-   //COLORREF interaction::get_action_hover_border_color()
-   //{
-
-   //   return _001GetColor(::user::color_action_hover_border_color);
-
-   //}
 
 
    void interaction::edit_on_set_focus(::user::interaction* pinteraction)
@@ -13653,375 +13038,6 @@ restart:
       pstyle->simple_ui_draw_focus_rect(this, pgraphics);
 
    }
-
-
-   void interaction::simple_ui_draw_frame_window_rect(::draw2d::graphics_pointer & pgraphics)
-   {
-
-      ::rect rectClient;
-
-      get_client_rect(rectClient);
-
-      rectClient.deflate(0, 0, 1, 1);
-
-      ::draw2d::brush_pointer b(e_create);
-
-      b->create_solid(ARGB(255, 255, 255, 255));
-
-      pgraphics->set(b);
-
-      ::draw2d::pen_pointer point(e_create);
-
-      point->create_solid(1.0, ARGB(255, 0, 0, 0));
-
-      pgraphics->set(point);
-
-      pgraphics->rectangle(rectClient);
-
-   }
-
-
-   void interaction::simple_ui_draw_fuzzy_color_spread(::draw2d::graphics_pointer & pgraphics)
-   {
-      /*
-      ::rect rectWindow;
-
-      get_window_rect(rectWindow);
-
-      int i = 0;
-      int j = 0;
-      int iCount = rectWindow.width();
-      int jCount = rectWindow.height();
-
-      BYTE * point = (BYTE *)m_pimage->get_data();
-
-      for (i = 0; i < iCount; i++)
-      {
-      for (j = 0; j < jCount; j++)
-      {
-      double dPhase = fmod((((double) ::get_tick() * 360 * 0.5984 / 1000.0) + (i * 360.0 / (double)iCount) + (j * 360.0 / (double)jCount) + ((double)(sin(((double) ::get_tick() * 3.1415 * 2.0  *0.0484 / 1000.0) + i * 3.1415 * 2.0 * 2.0 / (double)(iCount)) * sin(((double) ::get_tick() * 3.1415 * 2.0  * 0.0484 / 1000.0) + j * 3.1415 * 2.0 * 2.0 / (double)(jCount)) * 360))), 360.0);
-      i32 iR;
-      i32 iG;
-      i32 iB;
-      double dRate = fmod(dPhase, 60.0) / 60.0;
-      i32 iColor = (i32)(dRate * 155.0);
-      if (dPhase < 60)
-      {
-      // purple to blue
-      iR = 255 - iColor;
-      iG = 100;
-      iB = 255;
-      }
-      else if (dPhase < (120))
-      {
-      // blue to cyan
-      iR = 100;
-      iG = 100 + iColor;
-      iB = 255;
-      }
-      else if (dPhase < (180))
-      {
-      // cyan to green
-      iR = 100;
-      iG = 255;
-      iB = 255 - iColor;
-      }
-      else if (dPhase < (240))
-      {
-      // green to yellow
-      iR = 100 + iColor;
-      iG = 255;
-      iB = 100;
-      }
-      else if (dPhase < (300))
-      {
-      // yellow to red
-      iR = 255;
-      iG = 255 - iColor;
-      iB = 100;
-      }
-      else
-      {
-      // red to purple
-      iR = 255;
-      iG = 100;
-      iB = 100 + iColor;
-      }
-
-      point[0] = iR;
-      point[1] = iG;
-      point[2] = iB;
-      point[3] = 84;
-      point += 4;
-
-      }
-      }
-      */
-
-
-   }
-
-
-   void interaction::simple_ui_draw_dark_glass(::draw2d::graphics_pointer & pgraphics)
-   {
-
-      ::rect rectWindow;
-
-      get_client_rect(rectWindow);
-
-      pgraphics->fill_rect(rectWindow, ARGB(90, 127, 127, 127));
-
-   }
-
-
-
-   void interaction::simple_ui_draw_pestana(::draw2d::graphics_pointer & pgraphics)
-   {
-
-      ::rect rectWindow;
-
-      get_client_rect(rectWindow);
-
-      pgraphics->set_alpha_mode(draw2d::alpha_mode_blend);
-
-      int iCount = rectWindow.height();
-      ::draw2d::pen_pointer point(e_create);
-      for (int i = 0; i < iCount; i += 2)
-      {
-         double dRate = (double)i / (double)iCount;
-         dRate = 1.0 - dRate;
-         byte a1 = brate(1.0 - dRate, 23, 90);
-         byte r1 = brate(dRate, 23, 127);
-         byte g1 = brate(dRate, 23, 127);
-         byte b1 = brate(dRate, 23, 127);
-         point->create_solid(1.0, ARGB(a1, r1, g1, b1));
-         pgraphics->set(point);
-         pgraphics->draw_line(rectWindow.left, i, rectWindow.right, i);
-
-      }
-
-
-   }
-
-
-
-   void interaction::simple_ui_draw_auth_box(::draw2d::graphics_pointer & pgraphics)
-   {
-
-      ::rect rect;
-
-      get_client_rect(rect);
-
-      pgraphics->set_alpha_mode(draw2d::alpha_mode_blend);
-
-      // front
-      point pa[4];
-      //  0       1
-      //
-      //
-      //  3       2
-
-      // back
-      point pb[4];
-
-
-      // guards
-      point pc[4];
-
-
-      pa[0].x = rect.left;
-      pa[0].y = rect.top;
-      pa[1].x = rect.right - rect.width() / 10;
-      pa[1].y = rect.top + rect.height() / 10;
-      pa[2].x = rect.right - rect.width() / 8;
-      pa[2].y = rect.bottom - rect.height() / 10;
-      pa[3].x = rect.left;
-      pa[3].y = rect.bottom;
-
-
-      pb[0].x = rect.left + rect.width() / 6;
-      pb[0].y = rect.top + rect.height() / 6;
-      pb[1].x = rect.right - rect.width() / 6;
-      pb[1].y = rect.top + rect.height() / 6;
-      pb[2].x = rect.right - rect.width() / 5;
-      pb[2].y = rect.bottom - rect.height() / 4;
-      pb[3].x = rect.left + rect.width() / 5;
-      pb[3].y = rect.bottom - rect.height() / 4;
-
-      {
-
-         ::draw2d::brush_pointer b(e_create);
-
-         b->create_solid(ARGB(192, 220, 220, 220));
-
-         pgraphics->set(b);
-
-         pgraphics->fill_polygon(pb, 4);
-
-         ::draw2d::pen_pointer point(e_create);
-
-         point->create_solid(1.0, ARGB(192, 192, 192, 192));
-
-         pgraphics->set(point);
-
-         pgraphics->draw_polygon(pb, 4);
-
-
-      }
-
-
-
-
-
-
-
-
-
-
-
-
-
-      // top
-      ::memcpy_dup(pc, pa, sizeof(pb));
-      pc[2].x = pb[1].x;
-      pc[2].y = pb[1].y;
-      pc[3].x = pb[0].x;
-      pc[3].y = pb[0].y;
-
-      {
-
-         ::draw2d::brush_pointer b(e_create);
-
-         b->create_solid(ARGB(180, 210, 210, 210));
-
-         pgraphics->set(b);
-
-         pgraphics->fill_polygon(pc, 4);
-
-         ::draw2d::pen_pointer point(e_create);
-
-         point->create_solid(1.0, ARGB(180, 180, 177, 177));
-
-         pgraphics->set(point);
-
-         pgraphics->draw_polygon(pc, 4);
-
-
-      }
-      // left
-      ::memcpy_dup(pc, pa, sizeof(pb));
-      pc[1].x = pb[0].x;
-      pc[1].y = pb[0].y;
-      pc[2].x = pb[3].x;
-      pc[2].y = pb[3].y;
-      {
-
-         ::draw2d::brush_pointer b(e_create);
-
-         b->create_solid(ARGB(123, 120, 120, 123));
-
-         pgraphics->set(b);
-
-         pgraphics->fill_polygon(pc, 4);
-
-         ::draw2d::pen_pointer point(e_create);
-
-         point->create_solid(1.0, ARGB(123, 90, 90, 90));
-
-         pgraphics->set(point);
-
-         pgraphics->draw_polygon(pc, 4);
-
-
-      }
-      // bottom
-      ::memcpy_dup(pc, pa, sizeof(pb));
-      pc[0].x = pb[3].x;
-      pc[0].y = pb[3].y;
-      pc[1].x = pb[2].x;
-      pc[1].y = pb[2].y;
-      {
-
-         ::draw2d::brush_pointer b(e_create);
-
-         b->create_solid(ARGB(149, 192, 192, 192));
-
-         pgraphics->set(b);
-
-         pgraphics->fill_polygon(pc, 4);
-
-         ::draw2d::pen_pointer point(e_create);
-
-         point->create_solid(1.0, ARGB(149, 176, 176, 176));
-
-         pgraphics->set(point);
-
-         pgraphics->draw_polygon(pc, 4);
-
-
-      }
-      // right
-      ::memcpy_dup(pc, pa, sizeof(pb));
-      pc[0].x = pb[1].x;
-      pc[0].y = pb[1].y;
-      pc[3].x = pb[2].x;
-      pc[3].y = pb[2].y;
-      {
-
-         ::draw2d::brush_pointer b(e_create);
-
-         b->create_solid(ARGB(90, 150, 149, 149));
-
-         pgraphics->set(b);
-
-         pgraphics->fill_polygon(pc, 4);
-
-         ::draw2d::pen_pointer point(e_create);
-
-         point->create_solid(1.0, ARGB(90, 120, 120, 123));
-
-         pgraphics->set(point);
-
-         pgraphics->draw_polygon(pc, 4);
-
-
-      }
-
-
-
-
-
-      {
-
-         ::draw2d::pen_pointer point(e_create);
-
-         point->create_solid(1.0, ARGB(190, 90, 90, 90));
-
-         pgraphics->set(point);
-
-         pgraphics->draw_polygon(pa, 4);
-
-      }
-
-
-   }
-
-
-   //void interaction::on_hit_test(::user::item & item)
-   //{
-
-   //   auto rectClient = get_client_rect();
-
-   //   if (!rectClient.contains(point))
-   //   {
-
-   //      return ::user::element_none;
-
-   //   }
-
-   //   return ::user::element_client;
-
-   //}
 
 
    void interaction::get_text_composition_area(::rect & rect)
@@ -14238,152 +13254,6 @@ restart:
    // updown end
 
 
-   //interaction::control()
-   //{
-
-      //m_puiLabel = nullptr;
-      //m_pdrawcontext = nullptr;
-      //m_pdescriptor = nullptr;
-      //m_bControlExCommandEnabled = true;
-      //m_pform = nullptr;
-      //m_bDefaultWalkPreTranslateParentTree = true;
-      //m_bIdBound = false;
-
-   //}
-
-
-   //interaction::~control()
-   //{
-
-   //}
-
-
-   //void interaction::install_message_routing(::channel* pchannel)
-   //{
-
-   //   //      ::user::impact::install_message_routing(pchannel);
-   //   ::user::box::install_message_routing(pchannel);
-
-   //   IGUI_MSG_LINK(WM_CREATE, pchannel, this, &::user::interaction::_001OnCreate);
-   //   //      IGUI_MSG_LINK(WM_MOUSEMOVE, pchannel, this, &::user::interaction::_001OnMouseMove);
-   //   //
-   //   //#ifdef WINDOWS
-   //   //
-   //   //      IGUI_MSG_LINK(WM_MOUSELEAVE, pchannel, this, &::user::interaction::_001OnMouseLeave);
-   //   //
-   //   //#else
-   //   //
-   //   //      //::exception::throw_not_implemented();
-   //   //
-   //   //#endif
-   //   //
-   //   IGUI_MSG_LINK(WM_KEYDOWN, pchannel, this, &::user::interaction::_001OnKeyDown);
-
-   //   IGUI_MSG_LINK(WM_ENABLE, pchannel, this, &::user::interaction::_001OnEnable);
-   //   IGUI_MSG_LINK(WM_SETFOCUS, pchannel, this, &::user::interaction::_001OnSetFocus);
-   //   IGUI_MSG_LINK(WM_KILLFOCUS, pchannel, this, &::user::interaction::_001OnKillFocus);
-
-
-
-
-   //}
-
-
-   //void interaction::_001OnCreate(::message::message* pmessage)
-   //{
-
-   //   SCAST_PTR(::message::create, pcreate, pmessage);
-
-   //   pcreate->previous();
-
-   //   ::user::control_event ev;
-
-   //   ev.m_puie = this;
-
-   //   ev.m_eevent = ::user::event_create;
-
-   //   on_control_event(&ev);
-
-   //}
-
-
-   //bool interaction::has_action_hover()
-   //{
-
-   //   return m_eelementHover;
-
-   //}
-
-
-   void interaction::_003OnCustomDraw(::draw2d::graphics_pointer& pgraphics, ::aura::draw_context* pdrawcontext)
-   {
-
-      pgraphics->chain(pdrawcontext);
-
-      _000OnDraw1(pgraphics);
-
-      pgraphics->unchain(pdrawcontext);
-
-   }
-
-
-   bool interaction::_003IsCustomMessage()
-   {
-
-      return m_bCustomWindowProc;
-
-   }
-
-
-   void interaction::_003CallCustomDraw(::draw2d::graphics_pointer& pgraphics, ::aura::draw_context* pdrawcontext)
-   {
-
-      _003OnCustomDraw(pgraphics, pdrawcontext);
-
-   }
-
-
-   bool interaction::_003CallCustomWindowProc(__pointer(::user::interaction) pwnd, UINT message, WPARAM wparam, LPARAM lparam, LRESULT& lresult)
-
-   {
-
-      m_pwndCustomWindowProc = pwnd;
-
-      __keep(m_bCustomWindowProc);
-
-      ::message::base base(pwnd, message, wparam, lparam);
-
-      _003CustomWindowProc(&base);
-
-      return base.m_bRet;
-
-   }
-
-
-   void interaction::_003CustomWindowProc(::message::message* pmessage)
-   {
-
-      UNREFERENCED_PARAMETER(pmessage);
-
-   }
-
-
-   //bool interaction::operator == (const class control_descriptor& control_descriptor) const
-   //{
-
-   //   return *m_pdescriptor == control_descriptor;
-
-   //}
-
-
-   //bool interaction::operator == (const class control& control) const
-   //{
-
-   //   return operator == (*control.m_pdescriptor);
-
-   //}
-
-
 
    index interaction::GetEditItem()
    {
@@ -14467,49 +13337,6 @@ restart:
       }
 
    }
-
-
-
-   bool interaction::Validate(string& strParam)
-   {
-
-      switch (control_descriptor().get_data_type())
-      {
-      case control_data_type_string:
-         return true;
-      case control_data_type_natural:
-      {
-         string str = strParam;
-         str.trim_left();
-         str.trim_right();
-         for (i32 i = 0; i < str.get_length(); i++)
-         {
-            if (str[i] >= L'0'
-               && str[i] <= L'9')
-            {
-            }
-            else
-            {
-               return false;
-            }
-
-         }
-         return true;
-      }
-      break;
-      default:
-         return true;
-      }
-   }
-
-
-
-   //bool interaction::_001IsPointInside(::point point)
-   //{
-
-   //   return ::user::interaction::_001IsPointInside(point);
-
-   //}
 
 
 
@@ -14642,61 +13469,11 @@ restart:
    }
 
 
-
-
-
-
-   //bool interaction::get_window_rect(RECT * prect)
-
-   //{
-
-   //   if (m_pdrawcontext != nullptr)
-   //   {
-
-   //      *prect = m_pdrawcontext->m_rectWindow;
-
-
-   //      return true;
-
-   //   }
-
-   //   return ::user::box::get_window_rect(prect);
-
-
-   //}
-
-
-
-   //bool interaction::get_client_rect(RECT * prect)
-
-   //{
-
-   //   if (m_pdrawcontext != nullptr)
-   //   {
-
-   //      *prect = m_pdrawcontext->m_rectClient;
-
-
-   //      ::offset_rect(prect, -m_pdrawcontext->m_rectClient.top_left());
-
-
-   //      return true;
-
-   //   }
-
-
-   //   return ::user::box::get_client_rect(prect);
-
-
-   //}
-
-
-
-
-
    bool interaction::IsControlCommandEnabled()
    {
+
       return m_bControlExCommandEnabled;
+
    }
 
 
@@ -14708,49 +13485,6 @@ restart:
       set_need_redraw();
 
    }
-
-
-   //void interaction::_001OnSetFocus(::message::message* pmessage)
-   //{
-
-   //   //if (!::user::box::keyboard_focus_OnSetFocus())
-   //   //{
-
-   //   //   return false;
-
-   //   //}
-
-   //   ::user::control_event ev;
-
-   //   ev.m_puie = this;
-
-   //   ev.m_eevent = ::user::event_set_focus;
-
-   //   on_control_event(&ev);
-
-   //   pmessage->m_bRet = ev.m_bRet;
-
-   //}
-
-
-   //void interaction::_001OnKillFocus(::message::message* pmessage)
-   //{
-
-   //   SCAST_PTR(::message::kill_focus, pkillfocus, pmessage);
-
-   //   ::user::control_event ev;
-
-   //   ev.m_puie = this;
-
-   //   ev.m_id = m_id;
-
-   //   ev.m_eevent = ::user::event_kill_focus;
-
-   //   on_control_event(&ev);
-
-   //   pkillfocus->m_bRet = ev.m_bRet;
-
-   //}
 
 
    void control_cmd_ui::Enable(bool bOn)
@@ -14866,298 +13600,11 @@ restart:
    }
 
 
-   //   LRESULT control_view_impl::BaseControlExOnIdleUpdateCmdUI(WPARAM wParam, LPARAM)
-   //   {
-   //      __pointer(::user::interaction) pview = get_window();
-   //
-   //      // handle delay hide/show
-   //      bool bVis = (pview->GetStyle() & WS_VISIBLE) != 0;
-   //
-   //      // the style must be visible
-   //      if (bVis)
-   //      {
-   //         __pointer(::user::frame_window) pTarget = pview->GetOwner();
-   //         if (pTarget == nullptr)
-   //            pTarget = pview->GetParentFrame();
-   //         if (pTarget != nullptr)
-   //            BaseControlExOnUpdateCmdUI(pTarget, wParam != FALSE);
-   //      }
-   //
-   //      return 0L;
-   //
-   //   }
-   //
-   //
-   //   void control_view_impl::BaseControlExOnUpdateCmdUI(__pointer(::user::frame_window) pTarget, bool bDisableIfNoHndler)
-   //   {
-   //
-   //      __pointer(::user::interaction) pview = get_window();
-   //
-   //      ::user::command & state = m_commandui;
-   //
-   //      state.m_puiOther = pview;
-   //
-   //      __pointer(::user::interaction) pwndIterator = pview->GetTopWindow();
-   //
-   //      __pointer(::user::interaction) pwnd;
-   //
-   //      __pointer(control) pcontrolex;
-   //
-   //      for (; pwndIterator != nullptr; pwndIterator = pwndIterator->get_next_window())
-   //      {
-   //
-   //         pwnd = pwndIterator->GetTopLevel();
-   //
-   //         pcontrolex = nullptr;
-   //
-   //         if (pwnd != nullptr)
-   //         {
-   //            //#ifdef WINDOWS_DESKTOP
-   //            //            pwnd->send_message(interaction::g_uiMessage, interaction::MessageParamGetBaseControlExPtr, (LPARAM) &pcontrolex);
-   //            //#else
-   //            __throw(todo(pwnd->get_context_application()));
-   //            //#endif
-   //         }
-   //         if (pcontrolex != nullptr)
-   //         {
-   //
-   //            id idControl = pwnd->GetDlgCtrlId();
-   //
-   //            // xxx         state.m_nIndex = uiID;
-   //            state.m_iCount = -1;
-   //            state.m_id = m_commandui.GetControlCommand(idControl);
-   //            state.m_bContinueRouting = FALSE;
-   //
-   //            // ignore separators
-   //            if ((pwnd->GetStyle() & WS_VISIBLE))
-   //            {
-   //               // allow reflections
-   //               if (pview->on_command_probe(&state))
-   //               {
-   //                  continue;
-   //               }
-   //
-   //               // allow the toolbar itself to have update handlers
-   //               if (pview->on_command_probe(&state))
-   //                  //               {
-   //                    //                state.DoUpdate(pTarget, bDisableIfNoHndler);
-   //                  continue;
-   //               //           }
-   //
-   //                          // allow the owner to process the update
-   //               state.DoUpdate(pTarget, bDisableIfNoHndler);
-   //            }
-   //         }
-   //      }
-   //
-   //      // update the dialog controls added to the toolbar
-   //  //  UpdateDialogControls(pTarget, bDisableIfNoHndler);
-   //   }
-   //
-   //
-   //   __pointer(::user::interaction) control_view_impl::get_window()
-   //   {
-   //      return  (this);
-   //   }
-   //
-   //
-   //   bool control_view_impl::BaseControlExOnCommand(WPARAM wParam, LPARAM lParam)
-   //   {
-   //
-   //      UNREFERENCED_PARAMETER(lParam);
-   //
-   //      if (get_window() != nullptr)
-   //      {
-   //
-   //#ifdef WINDOWS
-   //
-   //         UINT uiMessage = ((wParam >> 16) & 0xffff);
-   //
-   //
-   //         if (uiMessage == BN_CLICKED)
-   //         {
-   //            //xxx id idCommand = m_commandui.GetControlCommand(wParam & 0xffff);
-   //            //::user::command command(idCommand);
-   //            //xxx get_window()->GetParentFrame()->_001SendCommand(&command);
-   //         }
-   //
-   //#endif
-   //
-   //      }
-   //
-   //      return FALSE;
-   //
-   //   }
-
-
-
-      //void interaction::BaseControlExOnMouseMove(UINT nFlags, const ::point & point)
-      //{
-      //   UNREFERENCED_PARAMETER(nFlags);
-      //   UNREFERENCED_PARAMETER(point);
-      //   __pointer(::user::interaction) pwnd = ControlExGetWnd();
-
-      //   ::point pointCursor;
-      //   Session.get_cursor_pos(&pointCursor);
-
-      //   e_element eelement;
-
-      //   index iHover = hit_test(pointCursor, eelement);
-
-      //   if (iHover != -1)
-      //   {
-
-      //      if (m_iHover != iHover || Session.GetCapture() != pwnd)
-      //      {
-
-      //         m_iHover = iHover;
-
-      //         pwnd->SetCapture();
-
-      //         pwnd->set_need_redraw();
-
-      //      }
-
-      //   }
-      //   else
-      //   {
-
-      //      if (m_iHover != -1)
-      //      {
-
-      //         m_iHover = -1;
-
-      //         Session.ReleaseCapture();
-
-      //         pwnd->set_need_redraw();
-
-      //      }
-
-      //   }
-
-      //}
-
-
-      //void interaction::_001OnMouseMove(::message::message * pmessage)
-      //{
-      //
-      //   if (is_window_enabled())
-      //   {
-
-      //      SCAST_PTR(::message::mouse, pmouse, pmessage);
-
-      //      auto point = screen_to_client(pmouse->m_point);
-
-      //      ::user::e_element eelementHover = hit_test(pmouse);
-
-      //      if (m_eelementHover != eelementHover)
-      //      {
-
-      //         m_eelementHover = eelementHover;
-
-      //         if (m_eelementHover)
-      //         {
-
-      //            track_mouse_leave();
-
-      //         }
-
-      //         set_need_redraw();
-
-      //      }
-
-      //   }
-
-      //}
-
-
-      //void interaction::_001OnMouseLeave(::message::message * pmessage)
-      //{
-
-      //   if (m_eelementHover)
-      //   {
-
-      //      m_eelementHover = element_none;
-
-      //      set_need_redraw();
-
-      //   }
-
-      //   ::user::control_event ev;
-
-      //   ev.m_id = m_id;
-
-      //   ev.m_puie = this;
-
-      //   ev.m_eevent = event_mouse_leave;
-
-      //   ev.m_pmessage = pmessage;
-
-      //   on_control_event(&ev);
-
-      //}
-
-
-      //void interaction::on_hit_test(::user::item & item)
-      //{
-
-      //   auto rectClient = get_client_rect();
-
-      //   if (!rectClient.contains(point))
-      //   {
-
-      //      return element_none;
-
-      //   }
-
-      //   return element_client;
-
-      //}
-
-
    control_cmd_ui::control_cmd_ui()
    {
 
    }
 
-
-   //::user::form * interaction::get_form()
-   //{
-
-   //   return m_pform;
-
-   //}
-
-
-   //void interaction::route_control_event(::user::control_event* pevent)
-   //{
-
-   //   ::user::box::route_control_event(pevent);
-
-   //}
-
-
-   //void interaction::on_notify_control_event(control_event* pevent)
-   //{
-
-   //   ::user::box::on_notify_control_event(pevent);
-
-   //}
-
-
-   //void interaction::on_control_event(::user::control_event* pevent)
-   //{
-
-   //   ::user::box::on_control_event(pevent);
-
-   //}
-
-
-   //void interaction::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
-   //{
-
-   //   ::user::box::_001OnDraw(pgraphics);
-   //}
 
    string interaction::get_class_style(string strClass)
    {
@@ -15353,16 +13800,6 @@ restart:
    }
 
 
-   //void interaction::_001OnKeyDown(::message::message* pmessage)
-   //{
-
-   //   UNREFERENCED_PARAMETER(pmessage);
-   //   //      SCAST_PTR(::message::key,pkey,pmessage);
-
-
-   //}
-
-
    void interaction::_001OnEnable(::message::message* pmessage)
    {
 
@@ -15461,28 +13898,7 @@ restart:
    }
 
 
-
 } // namespace user
 
 
-//CLASS_DECL_AURA void g_track_popup_lyricview(::user::interaction * pinteraction, ::message::mouse * pmouse)
-//{
-//
-//   //auto point = pmouse->m_point;
-//
-//   //pinteraction->_001ScreenToClient(point);
-//
-//   //pinteraction->track_popup_xml_menu("matter://popup_lyricview.xml", 0, point);
-//
-//}
 
-
-
-
-
-prodevian::~prodevian()
-{
-
-   m_pinteraction->remove_prodevian(this);
-
-}

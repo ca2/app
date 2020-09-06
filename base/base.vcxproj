@@ -1151,7 +1151,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="user\user\tab_view.cpp" />
     <ClCompile Include="user\user\image_list.cpp" />
     <ClCompile Include="user\user\toolbar.cpp" />
-    <ClCompile Include="user\user\tool_window.cpp" />
     <ClCompile Include="user\user\user.cpp" />
     <ClCompile Include="user\user\_.cpp" />
     <ClCompile Include="_.cpp" />

@@ -164,7 +164,7 @@ namespace html
 
     //     pgraphics->OffsetViewportOrg((i32) m_box.left, (i32) m_box.top);
 
-         m_pcheckbox->_000CallOnDraw1(pdata->m_pcoredata->m_pgraphics);
+         m_pcheckbox->_000CallOnDraw(pdata->m_pcoredata->m_pgraphics);
 
       //   pgraphics->SetViewportOrg(pointPreviousViewportOrg);
 

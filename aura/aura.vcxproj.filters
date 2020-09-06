@@ -2921,9 +2921,6 @@
     <ClInclude Include="user\slider.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\still.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\text.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -5060,9 +5057,6 @@
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\slider.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\still.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\text.cpp">

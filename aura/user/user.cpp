@@ -42,7 +42,6 @@ namespace user
       //create_factory <::user::document >();
       create_factory <::user::message_queue >();
       //create_factory <::user::simple_view >();
-      create_factory <::user::still >();
       //create_factory <::user::place_holder >();
       //create_factory <::user::font_combo_box >();
 

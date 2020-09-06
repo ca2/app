@@ -612,6 +612,9 @@
     <ClInclude Include="user\combo_list.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
+    <ClInclude Include="user\still.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pcre\pcre.cpp">
@@ -879,6 +882,9 @@
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\combo_list.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\still.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
   </ItemGroup>

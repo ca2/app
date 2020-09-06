@@ -11198,23 +11198,7 @@ namespace aura
 
       string str(id);
 
-      if (str.begins_ci("still_"))
-      {
-
-         econtroltype = ::user::control_type_static;
-
-         return __type(::user::still);
-
-      }
-      else if (str.begins_ci("label_"))
-      {
-
-         econtroltype = ::user::control_type_static;
-
-         return __type(::user::still);
-
-      }
-      else if (str.begins_ci("edit_"))
+      if (str.begins_ci("edit_"))
       {
 
          econtroltype = ::user::control_type_edit_plain_text;

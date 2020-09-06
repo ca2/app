@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AURA still :
+   class CLASS_DECL_AXIS still :
       virtual public ::user::interaction
    {
    public:

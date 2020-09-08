@@ -38,7 +38,7 @@ namespace experience
 
       auto pointCursor = pmouse->m_point;
 
-      auto rectWindow = m_pframewindow->request_state().rect();
+      auto rectWindow = m_pframewindow->layout().sketch().rect();
 
       auto pointDockOrigin = pointCursor;
 
@@ -54,7 +54,7 @@ namespace experience
 
       m_pframewindow->SetCapture();
 
-      m_edisplayOrigin = m_pframewindow->display_state();
+      m_edisplayOrigin = m_pframewindow->layout().design().display();
 
       m_mapWorkspaceRect.remove_all();
 
@@ -133,7 +133,7 @@ namespace experience
 
       rectCenter.bottom = pointScreenCenter.y + cyCenterArea / 2;
 
-      if (m_pframewindow->display_state() & display_bottom)
+      if (m_pframewindow->layout().design().display() & display_bottom)
       {
 
          rectCenter.bottom -= cyCenterArea / 4;
@@ -150,7 +150,7 @@ namespace experience
 
       }
 
-      if (m_pframewindow->display_state() & display_top)
+      if (m_pframewindow->layout().design().display() & display_top)
       {
 
          rectCenter.top += cyCenterArea / 4;
@@ -167,7 +167,7 @@ namespace experience
 
       }
 
-      if (m_pframewindow->display_state() & display_right)
+      if (m_pframewindow->layout().design().display() & display_right)
       {
 
          rectCenter.right -= cxCenterArea / 4;
@@ -184,7 +184,7 @@ namespace experience
 
       }
 
-      if (m_pframewindow->display_state() & display_left)
+      if (m_pframewindow->layout().design().display() & display_left)
       {
 
          rectCenter.left += cxCenterArea / 4;
@@ -299,7 +299,7 @@ namespace experience
       if (edisplayDock == ::display_normal)
       {
 
-         if (m_pframewindow->display_request() != display_normal)
+         if (m_pframewindow->layout().sketch().display() != display_normal)
          {
 
             m_pframewindow->set_size(m_pframewindow->m_windowrect.m_rectRestored.size());
@@ -338,7 +338,7 @@ namespace experience
          if (m_iDockMove <= 0 || m_iDockMove >= m_iConsiderDockMove)
          {
 
-            if (m_pframewindow->display_request() != edisplayDock || rectDock != rectWindow)
+            if (m_pframewindow->layout().sketch().display() != edisplayDock || rectDock != rectWindow)
             {
 
                m_pframewindow->order(zorder_top);
@@ -377,7 +377,7 @@ namespace experience
          if (window_is_docking())
          {
 
-            auto pointCursor = m_pframewindow->request_state().m_point + (dock_button()->parent_client_rect().origin() + m_pointCursorDockOrigin);
+            auto pointCursor = m_pframewindow->layout().sketch().m_point + (dock_button()->parent_client_rect().origin() + m_pointCursorDockOrigin);
 
             Session.set_cursor_pos(pointCursor);
 

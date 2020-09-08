@@ -3156,7 +3156,7 @@ repeat:
 
             pinteraction->enable_window();
 
-            pinteraction->order_top();
+            pinteraction->layout().order_top();
 
             pinteraction->display(display_normal, activation_set_foreground);
 
@@ -3330,7 +3330,7 @@ repeat:
 
          pinteraction->enable_window();
 
-         pinteraction->order_top();
+         pinteraction->layout().order_top();
 
          pinteraction->display(display_normal, activation_set_foreground);
 
@@ -3447,7 +3447,7 @@ repeat:
 
          pinteraction->enable_window();
 
-         pinteraction->order_top();
+         pinteraction->layout().order_top();
 
          pinteraction->display(display_normal, activation_set_foreground);
 
@@ -3564,7 +3564,7 @@ repeat:
 
          pinteraction->enable_window();
 
-         pinteraction->order_top();
+         pinteraction->layout().order_top();
 
          pinteraction->display(display_normal, activation_set_foreground);
 

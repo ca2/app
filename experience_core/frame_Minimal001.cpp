@@ -299,7 +299,7 @@ SizingNone:;
                if(!pframewindow->is_frame_experience_enabled())
                   return;
 
-               bool bZoomed = pframewindow->window_is_zoomed() != 0;
+               bool bZoomed = pframewindow->layout().is_zoomed() != 0;
 
                string str;
 
@@ -309,14 +309,14 @@ SizingNone:;
 
                rectWindow -= rectWindow.top_left();
 
-               if(!pframewindow->window_is_full_screen())
+               if(!pframewindow->layout().is_full_screen())
                {
 
                   DrawBorder(pgraphics, rectWindow);
 
                }
 
-               if(!bZoomed && !pframewindow->window_is_full_screen())
+               if(!bZoomed && !pframewindow->layout().is_full_screen())
                {
 
                   DrawGripSet(pgraphics, rectWindow);
@@ -333,7 +333,7 @@ SizingNone:;
 
                e_border eborder = pmovemanager->GetBorderMask();
 
-               if(m_pframewindow->window_is_zoomed())
+               if(m_pframewindow->layout().is_zoomed())
                {
                   eborder = (e_border)
                             (eborder &

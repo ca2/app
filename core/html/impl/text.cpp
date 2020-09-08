@@ -77,6 +77,8 @@ namespace html
 
             m_pedit->create_window(pdata->m_pcoredata->m_pform, 1004);
 
+            m_pedit->m_pform = pdata->m_pcoredata->m_pform;
+
          }
 
          if (pelemental->m_elementalptra.get_size() > 0 || pelemental->m_strBody.is_empty())

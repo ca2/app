@@ -261,7 +261,7 @@ namespace experience
 
          case ElementMoveGripMinimal:
 
-            if (m_pframewindow == nullptr || m_pframewindow->display_state() != ::display_minimal)
+            if (m_pframewindow == nullptr || m_pframewindow->layout().design().display() != ::display_minimal)
                return false;
 
             prect->left = m_pointMoveGripMinimal.x + 2;
@@ -549,10 +549,11 @@ namespace experience
 
          pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
 
-         if (!m_pframewindow->window_is_full_screen()
-            && !m_pframewindow->window_is_zoomed()
-            && !m_pframewindow->window_is_iconic()
-            && !m_pframewindow->frame_is_transparent())
+         if (!m_pframewindow->layout().is_full_screen()
+            && !m_pframewindow->layout().is_zoomed()
+            && !m_pframewindow->layout().is_iconic()
+            && !m_pframewindow->frame_is_transparent()
+            && m_pframewindow->m_bShowControlBox)
          {
 
             tick tick1;
@@ -567,7 +568,7 @@ namespace experience
 
          pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         if (m_pframewindow->window_is_minimal())
+         if (m_pframewindow->layout().is_minimal())
          {
 
             ::rect rectIcon;
@@ -619,7 +620,7 @@ namespace experience
             //printf("C. frame::on_draw_frame %d\n", tick3.elapsed().m_i);
 
          }
-         else if (!m_pframewindow->window_is_full_screen() && !m_pframewindow->frame_is_transparent())
+         else if (!m_pframewindow->layout().is_full_screen() && !m_pframewindow->frame_is_transparent() && m_pframewindow->m_bShowControlBox)
          {
 
             tick tick2;

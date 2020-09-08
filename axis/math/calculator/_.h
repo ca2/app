@@ -1,24 +1,15 @@
 #pragma once
 
 
-#include "axis/math/calculator/value.h"
-#include "axis/math/calculator/token.h"
-#include "axis/math/calculator/scanner.h"
-#include "axis/math/calculator/element.h"
-#include "axis/math/calculator/parser.h"
-#include "axis/math/calculator/parser_exception.h"
+#include "value.h"
+#include "token.h"
+#include "scanner.h"
+#include "element.h"
+#include "parser.h"
+#include "parser_exception.h"
 
 
-//#include "axis/math/calculator/plain_edit_view.h"
-//
-
-#include "axis/math/calculator/calculator.h"
-
-
-
-
-
-
+#include "calculator.h"
 
 
 

@@ -2,43 +2,19 @@
  * This code can be freely copied and modified.
  */
 #include "framework.h"
-#include "calculator.h"
+
 
 namespace calculator
 {
 
-   parser::parser()
+   parser::parser(::object * pobject) :
+      ::object(pobject),
+      m_scanner(pobject)
    {
    }
 
    parser::~parser()
    {
-   }
-
-
-   ::estatus parser::initialize(::object* pobjectContext)
-   {
-
-      auto estatus = ::object::initialize(pobjectContext);
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      estatus = m_scanner.initialize(pobjectContext);
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      return estatus;
-
    }
 
    

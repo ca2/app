@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 #if defined(LINUX)
 #include "aura/os/linux/_user.h"
 #elif defined(ANDROID)
@@ -560,51 +563,6 @@ CLASS_DECL_AURA string get_system_error_message(u32 dwError)
 
 
 #endif
-
-
-// please include ansios_message_loop.
-//CLASS_DECL_AURA int_bool TranslateMessage(const MESSAGE * pmsg)
-//{
-//
-//   if(pmsg == nullptr)
-//      return FALSE;
-//
-//   if(pmsg->hwnd == nullptr)
-//      return FALSE;
-//
-//   if(pmsg->hwnd->m_pimpl == nullptr)
-//      return FALSE;
-//
-//   if (pmsg->hwnd->m_pimpl->m_puserinteraction == nullptr)
-//      return FALSE;
-//
-//   return FALSE;
-//
-//}
-//
-// please include ansios_message_loop.
-//CLASS_DECL_AURA LRESULT DispatchMessage(const MESSAGE * pmsg)
-//{
-//
-//   if(pmsg == nullptr)
-//      return 0;
-//
-//   if(pmsg->hwnd == nullptr)
-//      return 0;
-//
-//   if(pmsg->hwnd->m_pimpl == nullptr)
-//      return 0;
-//
-//   if (pmsg->hwnd->m_pimpl->m_puserinteraction == nullptr)
-//      return 0;
-//
-//   return pmsg->hwnd->m_pimpl->m_puserinteraction->send_message(pmsg->message,pmsg->wParam,pmsg->lParam);
-//
-//}
-//
-
-
-
 
 
 CLASS_DECL_AURA int_bool IsRectEmpty(const RECT * prect)

@@ -1,4 +1,7 @@
-#include "framework.h" // previously aura/user/user.h
+#include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 
 
 namespace aura
@@ -16,7 +19,7 @@ namespace aura
 
    }
 
-   
+
    ::draw2d::graphics_pointer drawable::create_memory_graphics()
    {
 
@@ -139,27 +142,27 @@ namespace aura
    }
 
 
-   void drawable::hit_test(::user::item& item, ::message::mouse* pmouse) 
+   void drawable::hit_test(::user::item& item, ::message::mouse* pmouse)
    {
-      
-      hit_test(item, pmouse->m_point); 
-   
+
+      hit_test(item, pmouse->m_point);
+
    }
 
 
-   ::user::item drawable::hit_test(const ::point& point) 
-   { 
-      
-      ::user::item item; hit_test(item, point); return item; 
-   
+   ::user::item drawable::hit_test(const ::point& point)
+   {
+
+      ::user::item item; hit_test(item, point); return item;
+
    }
 
 
    ::user::item drawable::hit_test(::message::mouse* pmouse)
-   { 
-      
-      return hit_test(pmouse->m_point); 
-   
+   {
+
+      return hit_test(pmouse->m_point);
+
    }
 
 

@@ -2,23 +2,30 @@
 //
 //  ca2
 //
-//  ca2 is an all-purpose multi-platform framework and set of libraries written in 
+//  ca2 is an all-purpose multi-platform framework and set of libraries written in
 //  C++ language with the aim to help developers create awesome apps for users.
 //
-//  ca2/C++/C/Assembly/Huffman Machine/Hardware/Universe/Multiverse stack
+//  ca2/../axis/aura/C++/C/Assembly/Huffman Machine/Hardware/Universe/Multiverse stack
 //
+//
+//
+//
+//  c(s)t(s)<tb(s)!!
 //
 
 
 #pragma once
 
-#undef System
-#undef Session
-#undef Application
 
-#define System (*get_context_system()->m_paxissystem)
-#define Session (*get_context_session()->m_paxissession)
-#define Application (*get_app()->m_paxisapplication)
+#undef Sys
+#undef Sess
+#undef App
+
+
+#define Sys(pobject) (*pobject->get_context_system()->m_paxissystem)
+#define Sess(pobject) (*pobject->get_context_session()->m_paxissession)
+#define App(pobject) (*pobject->get_app()->m_paxisapplication)
+
 
 // C-includes
 #include "axis/os/_c.h"
@@ -72,6 +79,7 @@
 
 #include "axis/platform/openweather_city.h"
 
+#include "axis/math/_.h"
 
 #include "axis/database/database/_.h"
 
@@ -79,15 +87,17 @@
 
 #include "axis/platform/geo_department.h"
 
+#include "axis/user/_.h"
 
 #include "axis/platform/application.h"
 
 #include "axis/account/_account.h"
 
-
 #include "axis/platform/session.h"
 
 #include "axis/net/email_department.h"
+
+#include "axis/html/html/_.h"
 
 #include "axis/platform/system.h"
 

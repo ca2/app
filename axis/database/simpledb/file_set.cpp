@@ -44,9 +44,13 @@ namespace simpledb
 
       __pointer(::file::patha) ppatha;
 
+      __construct_new(ppatha);
+
       __pointer(bool_array) pbaRecursive;
 
-      if (!data_get("", ppatha))
+      __construct_new(pbaRecursive);
+
+      if (!data_get(::id(), ppatha))
       {
 
          return;

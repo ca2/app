@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 #include "aura/update.h"
 #include "aura/const/timer.h"
 
@@ -418,7 +421,7 @@ namespace user
       if (puiTopLevel != nullptr)
       {
 
-         if (puiTopLevel->frame_is_transparent() && !GetTopLevelFrame()->window_is_full_screen())
+         if (puiTopLevel->frame_is_transparent() && !GetTopLevelFrame()->layout().is_full_screen())
          {
 
             if (m_bShowTabs)
@@ -437,7 +440,7 @@ namespace user
 
             }
 
-            m_edisplayParentFrameAutoHide = GetTopLevelFrame()->display_state();
+            m_edisplayParentFrameAutoHide = GetTopLevelFrame()->layout().design().display();
 
             return bNeedLayout;
 
@@ -464,7 +467,7 @@ namespace user
 
          }
 
-         m_edisplayParentFrameAutoHide = GetTopLevelFrame()->display_state();
+         m_edisplayParentFrameAutoHide = GetTopLevelFrame()->layout().design().display();
 
          return bNeedLayout;
 
@@ -473,7 +476,7 @@ namespace user
       if(m_bShowTabs)
       {
 
-         if(GetTopLevelFrame()!= nullptr && GetTopLevelFrame()->window_is_full_screen())
+         if(GetTopLevelFrame()!= nullptr && GetTopLevelFrame()->layout().is_full_screen())
          {
 
             ::rect rectTab(get_data()->m_rectTab);
@@ -508,7 +511,7 @@ namespace user
 
          auto pframe = GetParentFrame();
 
-         if(::is_set(pframe) && !pframe->window_is_full_screen())
+         if(::is_set(pframe) && !pframe->layout().is_full_screen())
          {
 
             m_bShowTabs = true;
@@ -527,7 +530,7 @@ namespace user
          {
 
             ::rect rectWindow;
-            
+
             get_window_rect(rectWindow);
 
             bool bShowTabs;
@@ -568,7 +571,7 @@ namespace user
       if (GetParentFrame() != nullptr && (bNeedLayout || !GetParentFrame()->is_this_screen_visible()))
       {
 
-         m_edisplayParentFrameAutoHide = GetParentFrame()->display_state();
+         m_edisplayParentFrameAutoHide = GetParentFrame()->layout().design().display();
 
       }
 
@@ -597,9 +600,9 @@ namespace user
       }
 
       //point pointViewportOffset = pgraphics->GetViewportOrg();
-      
+
       ::rect rClip;
-      
+
       pgraphics->GetClipBox(rClip);
 
       __pointer(::base::style) pstyle = get_style(pgraphics);
@@ -1581,7 +1584,7 @@ namespace user
       GetTabClientRect(rectChild);
 
       ::rect rectWindow;
-      
+
       pholder->get_window_rect(rectWindow);
 
       _001ScreenToClient(rectWindow);
@@ -1615,7 +1618,7 @@ namespace user
    {
 
       SCAST_PTR(::message::mouse, pmouse, pmessage);
-      
+
       pmouse->previous();
 
       m_itemClick = hit_test(pmouse);
@@ -2331,26 +2334,31 @@ namespace user
 
             ::rect rectText;
 
-            if(get_element_rect(iPane, rectText, element_text) && rectText.contains(item.m_pointHitTest))
+            if(get_element_rect(iPane, rectText, element_text))
             {
 
-               for(int iTitle = 0; iTitle < pane.m_straTitle.get_size(); iTitle++)
+               if(rectText.contains(item.m_pointHitTest))
                {
 
-                  rectText.left += pane.m_sizeaText[iTitle].cx;
-
-                  rectText.right = rectText.left + get_data()->m_sizeSep.cx;
-
-                  if(rectText.contains(item.m_pointHitTest))
+                  for(int iTitle = 0; iTitle < pane.m_straTitle.get_size(); iTitle++)
                   {
 
-                     item = { (e_element)((int)element_split + iTitle), iPane };
+                     rectText.left += pane.m_sizeaText[iTitle].cx;
 
-                     return;
+                     rectText.right = rectText.left + get_data()->m_sizeSep.cx;
+
+                     if(rectText.contains(item.m_pointHitTest))
+                     {
+
+                        item = { (e_element)((int)element_split + iTitle), iPane };
+
+                        return;
+
+                     }
+
+                     rectText.left += get_data()->m_sizeSep.cx;
 
                   }
-
-                  rectText.left += get_data()->m_sizeSep.cx;
 
                }
 
@@ -2358,21 +2366,31 @@ namespace user
 
          }
 
-         if(get_element_rect(iPane, rect, element_close_tab_button) && rect.contains(item.m_pointHitTest))
+         if(get_element_rect(iPane, rect, element_close_tab_button) )
          {
 
-            item = { element_close_tab_button, iPane };
+            if(rect.contains(item.m_pointHitTest))
+            {
 
-            return;
+               item = { element_close_tab_button, iPane };
+
+               return;
+
+            }
 
          }
 
-         if(get_element_rect(iPane, rect, element_tab) && rect.contains(item.m_pointHitTest))
+         if(get_element_rect(iPane, rect, element_tab))
          {
 
-            item = { element_tab, iPane };
+            if(rect.contains(item.m_pointHitTest))
+            {
 
-            return;
+               item = { element_tab, iPane };
+
+               return;
+
+            }
 
          }
 
@@ -2500,7 +2518,7 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      //install_simple_ui_default_mouse_handling(pchannel);
+      install_simple_ui_default_mouse_handling(pchannel);
 
       IGUI_MSG_LINK(WM_LBUTTONDOWN, pchannel, this, &tab::_001OnLButtonDown);
       IGUI_MSG_LINK(WM_LBUTTONUP, pchannel, this, &tab::_001OnLButtonUp);
@@ -2535,12 +2553,12 @@ namespace user
          }
 
       }
-      
+
       //fork([this]()
       //{
 
          on_change_cur_sel();
-         
+
       //});
 
    }
@@ -3499,7 +3517,7 @@ namespace user
 
          index iClickTab = get_data()->m_iClickTab;
 
-         if(item && item == iClickTab)
+         if(item.is_set() && item == iClickTab)
          {
 
             get_data()->m_bDrag = true;

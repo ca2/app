@@ -1,5 +1,7 @@
 #include "framework.h"
-#include "group_image_list.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/userex/_userex.h"
+#endif
 
 
 namespace userex
@@ -461,7 +463,7 @@ namespace userex
 
       rectMenu.bottom = rectClient.top + 32;
 
-      m_buttonMenu.set_window_pos(zorder_top, rectMenu, SWP_SHOWWINDOW);
+      m_buttonMenu.display_child(rectMenu);
 
       ::rect rectList(rectClient);
 

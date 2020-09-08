@@ -16,8 +16,8 @@ namespace opengl
 
       virtual ::estatus initialize_graphics_graphics(::user::interaction_impl * pimpl) override;
 
-      virtual bool create_buffer(const ::size & size, int iStride = -1);
-      virtual void destroy_buffer();
+      virtual bool update_buffer(const ::size & size, int iStride = -1) override;
+      virtual void destroy_buffer() override;
 
 
       virtual sync * get_draw_lock() override;

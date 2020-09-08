@@ -3,7 +3,9 @@
 #include "aura/platform/app_core.h"
 
 
+CLASS_DECL_AURA e_trace_level get_global_trace_level();
 CLASS_DECL_AURA string thread_get_name();
+
 
 #include <stdio.h>
 // #include <stdarg.h>
@@ -334,12 +336,8 @@ namespace aura
       if (!m_bLog)
       {
 
-#ifndef DEBUG
-
-         if (elevel >= trace_level_error)
+         if (elevel >= get_global_trace_level())
          {
-
-#endif // !DEBUG
 
             string str;
 
@@ -369,11 +367,7 @@ namespace aura
 
             output_debug_string(str);
 
-#ifndef DEBUG
-
          }
-
-#endif // !DEBUG
 
          return;
 

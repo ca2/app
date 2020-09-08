@@ -1,4 +1,7 @@
 ﻿#include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/user/_user.h"
+#endif
 #include "aura/const/timer.h"
 #include "tool_tip_window.h"
 #include "tool_tip_tool.h"
@@ -146,7 +149,11 @@ namespace user
       }
 
 
-      set_window_pos(zorder_top_most, rect, SWP_NOACTIVATE);
+      order(zorder_top_most);
+      
+      place(rect);
+      
+      activation(activation_no_activate);
 
       update_drawing_objects();
 

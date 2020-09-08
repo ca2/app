@@ -705,7 +705,7 @@ namespace macos
 
       //virtual void _001ApplyVisual() override;
       
-      virtual void _do_show_window() override;
+      virtual void window_show_change_visibility() override;
       
       
    };

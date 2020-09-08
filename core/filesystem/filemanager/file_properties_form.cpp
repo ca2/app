@@ -1,5 +1,7 @@
 #include "framework.h"
-//#include "_filemanager.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/filesystem/filemanager/_filemanager.h"
+#endif
 
 
 namespace filemanager
@@ -169,31 +171,31 @@ namespace filemanager
       }
 
    }
-   
+
 
    /*::form_property_set * file_properties_form::get_form_property_set()
    {
-      
+
       auto pset = form_callback::get_form_property_set();
-      
+
       if(pset)
       {
-         
+
          return pset;
-         
+
       }
-      
+
       pset = ::user::impact_host::get_form_property_set();
-      
+
       if(pset)
       {
-         
+
          return pset;
-         
+
       }
-      
+
       return nullptr;
-      
+
    }*/
 
 

@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 #include "axis/xml/_.h"
 
 
@@ -321,7 +324,7 @@ namespace user
    }
 
 
-   menu_item_ptra::menu_item_ptra(menu_item * pitemParent) 
+   menu_item_ptra::menu_item_ptra(menu_item * pitemParent)
    {
 
       m_pitemParent = pitemParent;

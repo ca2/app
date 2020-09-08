@@ -50,8 +50,15 @@ CLASS_DECL_AURA void os_term_imaging()
 
 
 
-HBITMAP pixmap::create_windows_dib(const ::size& size)
+HBITMAP pixmap::update_windows_dib(const ::size& size)
 {
+
+   if (m_size == size)
+   {
+
+      return nullptr;
+
+   }
 
    BITMAPINFO bitmapinfo;
 

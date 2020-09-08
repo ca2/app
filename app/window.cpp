@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "aura/graphics/asset/close_button.h"
 
 
 namespace app_app
@@ -135,6 +136,26 @@ namespace app_app
       }
 
       ::user::interaction::_001OnDraw(pgraphics);
+
+   }
+
+
+   void window::_001DrawItem(::draw2d::graphics_pointer& pgraphics, ::user::item* pitem)
+   {
+
+      if (::is_null(pitem))
+      {
+
+         return;
+
+      }
+
+      if (pitem->m_eelement == ::user::element_close_button)
+      {
+
+         ::user::draw_close_button(pgraphics, this, pitem);
+
+      }
 
    }
 

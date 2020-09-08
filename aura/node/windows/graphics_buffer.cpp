@@ -4,6 +4,10 @@
 #include "buffer.h"
 #include <stdio.h>
 
+
+extern point g_pointLastBottomRight;
+
+
 #include "__debug_power.h"
 
 #undef REDRAW_HINTING
@@ -184,17 +188,13 @@ namespace windows
 
       auto pimageBuffer = get_buffer_image();
 
-      if (pimageBuffer->size() != sizeWindow)
-      {
+      update_buffer(sizeWindow);
+      //if (!update_buffer(sizeWindow))
+      //{
 
-         if (!create_buffer(sizeWindow))
-         {
+      //   return nullptr;
 
-            return nullptr;
-
-         }
-
-      }
+      //}
 
       defer_initialize_bitmap_source_buffer();
 
@@ -203,10 +203,8 @@ namespace windows
    }
 
 
-   bool buffer::create_buffer(const ::size & size, int iStrideParam)
+   bool buffer::update_buffer(const ::size & size, int iStrideParam)
    {
-
-      destroy_buffer();
 
       if (m_oswindow == nullptr || ::is_null(m_pimpl))
       {
@@ -217,18 +215,23 @@ namespace windows
 
       os_buffer & buffer = m_osbuffera[m_iCurrentBuffer];
 
-      buffer.m_hbitmap = buffer.m_pixmap.create_windows_dib(size);
+      HBITMAP hbitmap = buffer.m_pixmap.update_windows_dib(size);
 
-      if (buffer.m_hbitmap == nullptr)
+      if (hbitmap == nullptr)
       {
-
-         destroy_buffer();
 
          return false;
 
       }
 
-      buffer.m_hdc = ::CreateCompatibleDC(nullptr);
+      buffer.m_hbitmap = hbitmap;
+
+      if (buffer.m_hdc == nullptr)
+      {
+
+         buffer.m_hdc = ::CreateCompatibleDC(nullptr);
+
+      }
 
       if (buffer.m_hdc == nullptr)
       {
@@ -362,9 +365,15 @@ namespace windows
 
          }
 
-         auto point = m_pimpl->m_puserinteraction->origin();
+         auto& layout = m_pimpl->m_puserinteraction->layout();
 
-         auto size = m_pimpl->m_puserinteraction->size();
+         //auto point = layout.output().origin();
+
+         //auto size = layout.output().size();
+
+         auto point = layout.design().origin();
+
+         auto size = layout.design().size();
 
          //if (!m_bDibIsHostingBuffer)
          //{
@@ -587,16 +596,49 @@ namespace windows
 
             bool bOk = true;
 
-            if (::is_screen_visible(m_pimpl->m_puserinteraction->process_state().m_edisplay3))
+            if (layout.design().is_screen_visible())
             {
 
-               ::UpdateLayeredWindow(m_pimpl->m_oswindow, m_hdcScreen, &point, &size, buffer.m_hdc, &pointSrc, RGB(0, 0, 0), &blendPixelFunction, ULW_ALPHA);
+               string str;
+
+               //str.Format("UpdateLayeredWindow %dx%d\n", size.cx, size.cy);
+
+               //output_debug_string(str);
+
+               auto r = ::rect(point, size);
+
+               if (r == pimage->m_rectTag)
+               {
+
+                  ::UpdateLayeredWindow(m_pimpl->m_oswindow, m_hdcScreen, &point, &size, buffer.m_hdc, &pointSrc, RGB(0, 0, 0), &blendPixelFunction, ULW_ALPHA);
+
+               }
+               else
+               {
+
+                  TRACE("Update discarded");
+
+               }
+
+               ::point pointBottomRight = point + size;
+
+               if (g_pointLastBottomRight != pointBottomRight)
+               {
+
+                  TRACE("UpdateLayeredWindow Changed");
+
+                  g_pointLastBottomRight = pointBottomRight;
+
+               }
+
+               TRACE("UpdateLayeredWindow Bottom Right (%d, %d)", pointBottomRight.x, pointBottomRight.y);
+
 
             }
 
             //m_pimpl->m_puserinteraction->post_message(message_do_show_window);
 
-            m_pimpl->m_puserinteraction->_do_show_window();
+            m_pimpl->m_puserinteraction->window_show_change_visibility();
 
             //#ifdef WINDOWS_DESKTOP
             //               if ((m_pimpl->m_puserinteraction->GetExStyle() & WS_EX_LAYERED))

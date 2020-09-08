@@ -1,4 +1,7 @@
 ﻿#include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/user/_user.h"
+#endif
 #include "_data.h"
 #include "_tree.h"
 
@@ -295,7 +298,7 @@ namespace user
    }
 
 
-   image_list * tree_data::get_image_list() const
+   ::image_list * tree_data::get_image_list() const
    {
 
       return m_pimagelist;

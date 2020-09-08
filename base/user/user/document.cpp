@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 #include "aura/message.h"
 #include "aura/update.h"
 #include "aura/user/wait_cursor.h"
@@ -74,6 +77,54 @@ namespace user
          __pointer(::user::impact) pview = get_view(index);
          ASSERT_VALID(pview);
       }
+   }
+
+
+   ::user::interaction* document::impact_at(::index iImpact) const
+   {
+
+      return m_viewa[iImpact];
+
+   }
+
+
+   ::count document::impact_count() const
+   {
+
+      return m_viewa.get_count();
+
+   }
+
+
+   bool document::contains(::user::interaction* pinteraction) const
+   {
+
+      for (auto& pimpact : m_viewa)
+      {
+
+         if (::is_set(pimpact))
+         {
+
+            if (pimpact == pinteraction)
+            {
+
+               return true;
+
+            }
+
+            if (pimpact->contains(pinteraction))
+            {
+
+               return true;
+
+            }
+
+         }
+
+      }
+
+      return false;
+
    }
 
 
@@ -367,7 +418,7 @@ runall(CREATE_PROCEDURE);
 
    void document::delete_contents()
    {
-      
+
       if (!m_bCustomOpen)
       {
 

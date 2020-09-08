@@ -1,4 +1,9 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/userex/_userex.h"
+#include "core/filesystem/filemanager/_filemanager.h"
+#include "core/user/account/_account.h"
+#endif
 #include "aura/update.h"
 
 

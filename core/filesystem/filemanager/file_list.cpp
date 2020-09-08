@@ -1,7 +1,8 @@
-﻿#include "framework.h"
-#include "core/user/user/shell.h"
+#include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/filesystem/filemanager/_filemanager.h"
+#endif
 #include "aura/update.h"
-
 
 
 namespace filemanager
@@ -102,7 +103,7 @@ namespace filemanager
    bool file_list::on_right_click(const ::user::item & item)
    {
 
-      if(item)
+      if(item.is_set())
       {
 
          _017OpenContextMenuSelected(::source_user);

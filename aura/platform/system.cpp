@@ -22,6 +22,9 @@ int GetMainScreenRect(LPRECT lprect);
 
 const char* g_pszMultimediaLibraryName = nullptr;
 
+#ifdef LINUX
+const char * get_main_app_id();
+#endif
 
 CLASS_DECL_AURA void multimedia_set_library_name(const char* psz)
 {
@@ -1767,27 +1770,32 @@ namespace aura
 
       }
 
-      try
+      if (m_bImaging)
       {
 
-         if (!imaging_factory_exchange())
+         try
          {
 
-            WARN("Failed to initialize imaging library.");
+            if (!imaging_factory_exchange())
+            {
+
+               WARN("Failed to initialize imaging library.");
 
 #if !defined(MOBILE_PLATFORM)
 
-            message_box("Failed to initialize imaging library.");
+               message_box("Failed to initialize imaging library.");
 
 #endif
-// Non fatal? Missing images (if using images)?
-            //bOk = false;
+               // Non fatal? Missing images (if using images)?
+                           //bOk = false;
+
+            }
 
          }
+         catch (...)
+         {
 
-      }
-      catch (...)
-      {
+         }
 
       }
 
@@ -2139,7 +2147,7 @@ namespace aura
       {
 
          estatus = do_factory_exchange("imaging", strLibrary);
-         
+
          if (estatus)
          {
 
@@ -2340,7 +2348,7 @@ namespace aura
       if (!estatus)
       {
 
-         if (m_bUser && m_bDraw2d)
+         if (m_bUser && m_bDraw2d && m_bImaging)
          {
 
             return estatus;
@@ -2419,6 +2427,8 @@ namespace aura
       }
 
       set_context_app(m_papplicationStartup);
+
+      get_context_application()->get_property_set().merge(get_property_set());
 
       m_papplicationStartup.release();
 
@@ -5676,7 +5686,7 @@ namespace aura
 
       //System.get_library("gpu_opengl");
 
-      
+
 
       if (!estatus)
       {
@@ -8005,7 +8015,23 @@ namespace aura
    }
 
 
+void system::defer_calc_os_dark_mode()
+{
 
+#ifdef LINUX
+   string strTheme = ::os::get_os_desktop_theme();
+
+   if(strTheme.contains_ci("dark"))
+   {
+      ::user::set_app_dark_mode(true);
+   }
+   else
+   {
+   ::user::set_app_dark_mode(false);
+   }
+   #endif
+
+}
 
    /* colorramp.c -- color temperature calculation source
    This file is part of Redshift.
@@ -8377,7 +8403,7 @@ string get_bundle_app_library_name();
       }
 
    }
-   
+
 #elif defined(__APPLE__)
 
    string strLibraryName = get_bundle_app_library_name();
@@ -8400,6 +8426,33 @@ string get_bundle_app_library_name();
 
    }
 
+#elif defined(LINUX)
+
+   string strMainAppId = get_main_app_id();
+
+   if (strMainAppId.has_char())
+   {
+
+      string strMessage;
+
+      string strLibraryName = strMainAppId;
+
+      strLibraryName.replace("/", "_");
+
+      strLibraryName.replace("-", "_");
+
+      auto plibrary = __node_library_open(strLibraryName, strMessage);
+
+      if (!plibrary)
+      {
+
+         os_message_box(NULL, strMessage, "Could not open required library.", MB_ICONEXCLAMATION);
+
+         return nullptr;
+
+      }
+
+   }
 
 #endif
 

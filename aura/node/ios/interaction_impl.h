@@ -146,8 +146,8 @@ namespace ios
       virtual void defer_update_text_view();
 
       // oswindow size and position Functions
-      //virtual bool window_is_iconic() override;
-      //virtual bool window_is_zoomed() override;
+      //virtual bool layout().is_iconic() override;
+      //virtual bool layout().is_zoomed() override;
 //      void MoveWindow(i32 x, i32 y, i32 nWidth, i32 nHeight,
 //                      bool bRepaint = TRUE);
 //      void MoveWindow(const ::rect & rect, bool bRepaint = TRUE);
@@ -241,20 +241,6 @@ namespace ios
 #endif   // _WIN32_WINNT >= 0x0501
 
       // Layered oswindow
-
-#if(_WIN32_WINNT >= 0x0500)
-
-      virtual bool SetLayeredWindowAttributes(COLORREF crKey, BYTE bAlpha, DWORD dwFlags);
-      virtual bool UpdateLayeredWindow(::draw2d::graphics * pDCDst, POINT *pptDst, SIZE *psize,
-                                       ::draw2d::graphics * pDCSrc, POINT *pptSrc, COLORREF crKey, BLENDFUNCTION *pblend, DWORD dwFlags);
-
-#endif   // _WIN32_WINNT >= 0x0500
-
-#if(_WIN32_WINNT >= 0x0501)
-
-      virtual bool GetLayeredWindowAttributes(COLORREF *pcrKey, BYTE *pbAlpha, DWORD *pdwFlags) const;
-
-#endif   // _WIN32_WINNT >= 0x0501
 
 
       // Timer Functions

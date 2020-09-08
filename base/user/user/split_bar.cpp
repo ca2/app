@@ -1,4 +1,7 @@
 ﻿#include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 
 
 namespace user
@@ -88,12 +91,12 @@ namespace user
       IGUI_MSG_LINK(WM_MOUSEMOVE, pchannel, this, &split_bar::_001OnMouseMove);
    }
 
-   
+
    void split_bar::_001OnLButtonDown(::message::message * pmessage)
    {
-      
+
       SCAST_PTR(::message::mouse, pmouse, pmessage);
-      
+
       sync_lock sl(mutex());
 
       m_pparent->m_iIndex = m_iIndex;
@@ -117,7 +120,7 @@ namespace user
 
    void split_bar::_001OnLButtonUp(::message::message * pmessage)
    {
-      
+
       SCAST_PTR(::message::mouse, pmouse, pmessage);
 
       sync_lock sl(mutex());
@@ -203,7 +206,7 @@ namespace user
             }
             else if(dRate > m_dMaximumRate)
             {
-               
+
                dRate = m_dMaximumRate;
 
                nPos = (i32) (m_pparent->get_normal_dimension() * dRate);
@@ -214,22 +217,22 @@ namespace user
 
          if(bMove)
          {
-            
+
             bMove = nPos != (i32) m_pparent->m_splitbara[m_iIndex]->m_dwPosition;
 
          }
 
          TRACE("split_layout::RelayChildEvent nPos %d\nOldPos", m_pparent->m_splitbara[m_iIndex]->m_dwPosition);
-         
+
          TRACE("split_layout::RelayChildEvent nPos %d\n", nPos);
 
          if(bMove)
          {
 
             m_pparent->m_splitbara[m_iIndex]->m_dwPosition = nPos;
-            
+
             m_pparent->m_splitbara[m_iIndex]->m_dRate = dRate;
-      
+
             m_pparent->set_need_layout();
 
          }

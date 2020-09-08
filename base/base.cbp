@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="base" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="linux_basis">
+				<Option output="$(#time_dir)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(#time_dir)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(#time_dir)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-fPIC" />
+					<Add option="-m64" />
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+					<Add directory="$(WORKSPACE_DIR)/../../platform-linux" />
+					<Add directory="$(WORKSPACE_DIR)/../../platform-linux/_include" />
+				</Compiler>
+				<Linker>
+					<Add option="-m64" />
+					<Add option="-Wl,-rpath=\\$$$ORIGIN" />
+					<Add option="-lz" />
+					<Add option="-ldl" />
+					<Add option="-lrt" />
+					<Add option="-lbfd" />
+					<Add option="-lidn" />
+					<Add option="-lpthread" />
+					<Add option="-lncurses" />
+					<Add option="-laura" />
+					<Add option="-laxis" />
+					<Add option="-Wl,-z,defs" />
+					<Add directory="$(#time_dir)/x64/$(TARGET_NAME)" />
+					<Add directory="$(#archive)/storage-linux/third/library/x64/" />
+				</Linker>
+				<ExtraCommands>
+					<Add before="../../platform-linux/stage/prepare_framework_h.sh $(PROJECT_DIR) $(TARGET_OBJECT_DIR)" />
+					<Add before="mkdir -p $(#time_dir)/x64/$(TARGET_NAME)/" />
+					<Add before="cp -Rf $(#archive)/storage-linux/third/library/x64/* $(#time_dir)/x64/$(TARGET_NAME)/" />
+				</ExtraCommands>
+			</Target>
+			<Target title="linux_stage">
+				<Option output="$(#time_dir)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(#time_dir)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(#time_dir)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-pg" />
+					<Add option="-fPIC" />
+					<Add option="-m64" />
+					<Add option="-g" />
+					<Add option="-O0" />
+					<Add directory="$(WORKSPACE_DIR)/../../platform-linux" />
+					<Add directory="$(WORKSPACE_DIR)/../../platform-linux/_include" />
+				</Compiler>
+				<Linker>
+					<Add option="-pg" />
+					<Add option="-m64" />
+					<Add option="-Wl,-rpath=\\$$$ORIGIN" />
+					<Add option="-lz" />
+					<Add option="-lbz2" />
+					<Add option="-ldl" />
+					<Add option="-lrt" />
+					<Add option="-lbfd" />
+					<Add option="-lX11" />
+					<Add option="-lX11-xcb" />
+					<Add option="-lxcb" />
+					<Add option="-lXinerama" />
+					<Add option="-lXmu" />
+					<Add option="-lXrandr" />
+					<Add option="-lXext" />
+					<Add option="-lXxf86vm" />
+					<Add option="-lXrender" />
+					<Add option="-lidn" />
+					<Add option="-lpthread" />
+					<Add option="-lncurses" />
+					<Add option="-lssl" />
+					<Add option="-lcrypto" />
+					<Add option="-lfreeimage" />
+					<Add option="-lpcre2-8" />
+					<Add option="`pkg-config --libs glib-2.0 gtk+-3.0 gdk-3.0 appindicator3-0.1`" />
+					<Add option="`$(#archive)/tool/bin/not_platform_setup raspbian -laurasn`" />
+					<Add option="-lace" />
+					<Add option="-laqua" />
+					<Add option="-Wl,-z,defs" />
+					<Add directory="$(#time_dir)/x64/$(TARGET_NAME)" />
+				</Linker>
+				<ExtraCommands>
+					<Add before="../../platform-linux/stage/prepare_framework_h.sh $(PROJECT_DIR) $(TARGET_OBJECT_DIR)" />
+					<Add before="cp -Rf $(#archive)/storage-linux/third/library/x64/* $(#time_dir)/x64/$(TARGET_NAME)/" />
+				</ExtraCommands>
+			</Target>
+			<Target title="memdleak">
+				<Option output="$(#time_dir)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(#time_dir)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(#time_dir)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+					<Add option="-DMEMDLEAK" />
+					<Add directory="$(WORKSPACE_DIR)/../../platform-linux" />
+					<Add directory="$(WORKSPACE_DIR)/../../platform-linux/_include" />
+				</Compiler>
+				<Linker>
+					<Add directory="$(#time_dir)/x64/$(TARGET_NAME)" />
+				</Linker>
+				<ExtraCommands>
+					<Add before="../../platform-linux/stage/prepare_framework_h.sh $(PROJECT_DIR) $(TARGET_OBJECT_DIR)" />
+				</ExtraCommands>
+			</Target>
+			<Target title="arm64_basis">
+				<Option output="$(#time_dir)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(#time_dir)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(#time_dir)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-pg" />
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+					<Add directory="$(WORKSPACE_DIR)/../../platform-raspbian" />
+				</Compiler>
+				<Linker>
+					<Add option="-pg" />
+					<Add option="-Wl,-rpath=\\$$$ORIGIN" />
+					<Add option="-lz" />
+					<Add option="-ldl" />
+					<Add option="-lrt" />
+					<Add option="-lbfd" />
+					<Add option="-lX11" />
+					<Add option="-lX11-xcb" />
+					<Add option="-lxcb" />
+					<Add option="-lxcb-util" />
+					<Add option="-lXinerama" />
+					<Add option="-lXmu" />
+					<Add option="-lXrandr" />
+					<Add option="-lXext" />
+					<Add option="-lXxf86vm" />
+					<Add option="-lidn" />
+					<Add option="-lpthread" />
+					<Add option="-lncurses" />
+					<Add option="-lssl" />
+					<Add option="-lcrypto" />
+					<Add option="-lpcre2-8" />
+					<Add option="-lsqlite3" />
+					<Add option="`pkg-config --libs gtk+-3.0 gdk-3.0 gthread-2.0`" />
+					<Add option="-Wl,-z,defs" />
+					<Add directory="$(#time_dir)/x64/$(TARGET_NAME)" />
+				</Linker>
+				<ExtraCommands>
+					<Add before="mkdir -p $(#time_dir)/x64/$(TARGET_NAME)/" />
+					<Add before="cp -Rf $(#archive)/storage-raspbian/third/library/x64/* $(#time_dir)/x64/$(TARGET_NAME)/" />
+				</ExtraCommands>
+			</Target>
+			<Target title="sanitizers">
+				<Option output="$(#time_dir)/x64/basis/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(#time_dir)/x64/basis/" />
+				<Option object_output="$(#time_dir)/intermediate/basis/$(PROJECT_NAME)" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-fPIC" />
+					<Add option="-g" />
+					<Add option="-fsanitize=address" />
+					<Add option="-fsanitize-recover=address" />
+					<Add option="-fsanitize=undefined" />
+					<Add option="-D_DEBUG" />
+					<Add directory="$(WORKSPACE_DIR)/../../platform-linux" />
+					<Add directory="$(WORKSPACE_DIR)/../../platform-linux/_include" />
+				</Compiler>
+				<Linker>
+					<Add option="-Wl,-rpath=\\$$$ORIGIN" />
+					<Add option="-lasan" />
+					<Add option="-lubsan" />
+					<Add option="-lz" />
+					<Add option="-lbz2" />
+					<Add option="-ldl" />
+					<Add option="-lrt" />
+					<Add option="-lbfd" />
+					<Add option="-lX11" />
+					<Add option="-lX11-xcb" />
+					<Add option="-lxcb" />
+					<Add option="-lXinerama" />
+					<Add option="-lXmu" />
+					<Add option="-lXrandr" />
+					<Add option="-lXext" />
+					<Add option="-lXxf86vm" />
+					<Add option="-lXrender" />
+					<Add option="-lidn" />
+					<Add option="-lpthread" />
+					<Add option="-lncurses" />
+					<Add option="-lssl" />
+					<Add option="-lcrypto" />
+					<Add option="-lfreeimage" />
+					<Add option="`pkg-config --libs gtk+-3.0 gdk-3.0 appindicator3-0.1`" />
+					<Add option="`$(#archive)/tool/bin/not_platform_setup raspbian -laurasn`" />
+					<Add option="-lace" />
+					<Add option="-laqua" />
+					<Add option="-Wl,-z,defs" />
+					<Add directory="$(#time_dir)/x64/$(TARGET_NAME)" />
+				</Linker>
+				<ExtraCommands>
+					<Add before="../../platform-linux/stage/prepare_framework_h.sh $(PROJECT_DIR) $(TARGET_OBJECT_DIR)" />
+					<Add before="cp -Rf $(#archive)/third-linux/thirdparty/library/x64/* ../$(#time_dir)/x64/$(TARGET_NAME)/" />
+				</ExtraCommands>
+			</Target>
+		</Build>
+		<VirtualTargets>
+			<Add alias="all_sanitizers" targets="sanitizers;" />
+		</VirtualTargets>
+		<Compiler>
+			<Add option="-std=c++14" />
+			<Add option="-fPIC" />
+			<Add option="-fexceptions" />
+			<Add option="-fnon-call-exceptions" />
+			<Add option="-fno-stack-protector" />
+			<Add option="-fno-omit-frame-pointer" />
+			<Add option="-Wno-pointer-arith" />
+			<Add option="-Wno-attributes" />
+			<Add option="-Winvalid-pch" />
+			<Add option="-pthread" />
+			<Add option="`pkg-config --cflags glib-2.0 gtk+-3.0 gdk-3.0 gthread-2.0`" />
+			<Add option="-D_BASE_LIBRARY" />
+			<Add directory="." />
+			<Add directory="$(PROJECT_DIR)" />
+			<Add directory="$(#archive)" />
+			<Add directory="$(#config)" />
+			<Add directory="$(WORKSPACE_DIR)/../.." />
+			<Add directory="$(WORKSPACE_DIR)/../../inc" />
+			<Add directory="$(WORKSPACE_DIR)/../../include" />
+			<Add directory="$(WORKSPACE_DIR)/../../app/_include" />
+			<Add directory="$(WORKSPACE_DIR)/../../app" />
+			<Add directory="$(#sensitive)/sensitive/include" />
+			<Add directory="$(#archive)/third-linux/third/include" />
+		</Compiler>
+		<Linker>
+			<Add directory="$(#time_dir)/x64/$(TARGET_NAME)" />
+		</Linker>
+		<Unit filename="_.cpp" />
+		<Unit filename="_.h" />
+		<Unit filename="__matter_ca2.cpp" />
+		<Unit filename="_defer.h" />
+		<Unit filename="application.h" />
+		<Unit filename="console.h" />
+		<Unit filename="framework.cpp" />
+		<Unit filename="framework.h">
+			<Option compile="1" />
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="framework_c.h" />
+		<Unit filename="id.h" />
+		<Unit filename="include/_.h" />
+		<Unit filename="include/_c_bridge.h" />
+		<Unit filename="include/_include.h" />
+		<Unit filename="include/objc.h" />
+		<Unit filename="include/objcpp.h" />
+		<Unit filename="include/winrt.h" />
+		<Unit filename="inline/__debug_box_clear_impl.h" />
+		<Unit filename="inline/__debug_box_set_impl.h" />
+		<Unit filename="inline/_acid_app_impl.h" />
+		<Unit filename="inline/_app_impl1.h" />
+		<Unit filename="inline/_application.h" />
+		<Unit filename="inline/_draw2d_impl.h" />
+		<Unit filename="inline/_new_impl.h" />
+		<Unit filename="inline/application/linux.h" />
+		<Unit filename="library.h" />
+		<Unit filename="message.h" />
+		<Unit filename="node/windows/frame_window.cpp" />
+		<Unit filename="platform/_features.h" />
+		<Unit filename="platform/_generic_object_constructor_impl.h" />
+		<Unit filename="platform/_impl.h" />
+		<Unit filename="platform/_platform.h" />
+		<Unit filename="platform/application.cpp" />
+		<Unit filename="platform/application.h" />
+		<Unit filename="platform/session.cpp" />
+		<Unit filename="platform/session.h" />
+		<Unit filename="platform/system.cpp" />
+		<Unit filename="platform/system.h" />
+		<Unit filename="update.h" />
+		<Unit filename="user.h" />
+		<Unit filename="user/_.h" />
+		<Unit filename="user/experience/_.h" />
+		<Unit filename="user/experience/_const.h" />
+		<Unit filename="user/experience/_experience.h" />
+		<Unit filename="user/experience/button.cpp" />
+		<Unit filename="user/experience/button.h" />
+		<Unit filename="user/experience/control_box.cpp" />
+		<Unit filename="user/experience/control_box.h" />
+		<Unit filename="user/experience/department.cpp" />
+		<Unit filename="user/experience/department.h" />
+		<Unit filename="user/experience/dock_manager.cpp" />
+		<Unit filename="user/experience/dock_manager.h" />
+		<Unit filename="user/experience/experience.cpp" />
+		<Unit filename="user/experience/experience.h" />
+		<Unit filename="user/experience/experience_updown.cpp" />
+		<Unit filename="user/experience/experience_updown.h" />
+		<Unit filename="user/experience/frame.cpp" />
+		<Unit filename="user/experience/frame.h" />
+		<Unit filename="user/experience/frame_window.cpp" />
+		<Unit filename="user/experience/frame_window.h" />
+		<Unit filename="user/experience/menu_manager.cpp" />
+		<Unit filename="user/experience/menu_manager.h" />
+		<Unit filename="user/experience/move_manager.cpp" />
+		<Unit filename="user/experience/move_manager.h" />
+		<Unit filename="user/experience/orto_button.cpp" />
+		<Unit filename="user/experience/orto_button.h" />
+		<Unit filename="user/experience/size_manager.cpp" />
+		<Unit filename="user/experience/size_manager.h" />
+		<Unit filename="user/menu/_.h" />
+		<Unit filename="user/menu/_menu.h" />
+		<Unit filename="user/menu/button.cpp" />
+		<Unit filename="user/menu/button.h" />
+		<Unit filename="user/menu/central.cpp" />
+		<Unit filename="user/menu/central.h" />
+		<Unit filename="user/menu/list_view.cpp" />
+		<Unit filename="user/menu/list_view.h" />
+		<Unit filename="user/menu/list_window.cpp" />
+		<Unit filename="user/menu/list_window.h" />
+		<Unit filename="user/menu/menu_view.cpp" />
+		<Unit filename="user/menu/menu_view.h" />
+		<Unit filename="user/prelude.h" />
+		<Unit filename="user/simple/_impl.h" />
+		<Unit filename="user/simple/_simple.h" />
+		<Unit filename="user/simple/frame_window.cpp" />
+		<Unit filename="user/simple/frame_window.h" />
+		<Unit filename="user/simple/main_frame.cpp" />
+		<Unit filename="user/simple/main_frame.h" />
+		<Unit filename="user/simple/scroll_bar.cpp" />
+		<Unit filename="user/simple/scroll_bar.h" />
+		<Unit filename="user/user/_.cpp" />
+		<Unit filename="user/user/_.h" />
+		<Unit filename="user/user/_const.h" />
+		<Unit filename="user/user/_data.h" />
+		<Unit filename="user/user/_impl.h" />
+		<Unit filename="user/user/_tree.h" />
+		<Unit filename="user/user/_user.h" />
+		<Unit filename="user/user/aaa_want_to_remove_scroll.h" />
+		<Unit filename="user/user/composition_imm_client.h" />
+		<Unit filename="user/user/control.cpp" />
+		<Unit filename="user/user/control.h" />
+		<Unit filename="user/user/control_bar.cpp" />
+		<Unit filename="user/user/control_bar.h" />
+		<Unit filename="user/user/control_ddx_dbflags.h" />
+		<Unit filename="user/user/control_descriptor_set.cpp" />
+		<Unit filename="user/user/control_descriptor_set.h" />
+		<Unit filename="user/user/control_property.cpp" />
+		<Unit filename="user/user/control_property.h" />
+		<Unit filename="user/user/data_exchange.cpp" />
+		<Unit filename="user/user/data_exchange.h" />
+		<Unit filename="user/user/document.cpp" />
+		<Unit filename="user/user/document.h" />
+		<Unit filename="user/user/document_data_map.h" />
+		<Unit filename="user/user/document_manager.cpp" />
+		<Unit filename="user/user/document_manager.h" />
+		<Unit filename="user/user/document_manager_container.cpp" />
+		<Unit filename="user/user/document_manager_container.h" />
+		<Unit filename="user/user/edit_plain_text_view.cpp" />
+		<Unit filename="user/user/edit_plain_text_view.h" />
+		<Unit filename="user/user/edit_window.h" />
+		<Unit filename="user/user/form_control.cpp" />
+		<Unit filename="user/user/form_control.h" />
+		<Unit filename="user/user/form_data.cpp" />
+		<Unit filename="user/user/form_data.h" />
+		<Unit filename="user/user/form_document.cpp" />
+		<Unit filename="user/user/form_document.h" />
+		<Unit filename="user/user/form_update_hint.h" />
+		<Unit filename="user/user/form_view.cpp" />
+		<Unit filename="user/user/form_view.h" />
+		<Unit filename="user/user/form_window.cpp" />
+		<Unit filename="user/user/form_window.h" />
+		<Unit filename="user/user/frame_window.cpp" />
+		<Unit filename="user/user/frame_window.h" />
+		<Unit filename="user/user/hotplugin.cpp" />
+		<Unit filename="user/user/image_list.cpp" />
+		<Unit filename="user/user/image_list.h" />
+		<Unit filename="user/user/image_manager.h" />
+		<Unit filename="user/user/impact.cpp" />
+		<Unit filename="user/user/impact.h" />
+		<Unit filename="user/user/impact_creator.cpp" />
+		<Unit filename="user/user/impact_creator.h" />
+		<Unit filename="user/user/impact_data.cpp" />
+		<Unit filename="user/user/impact_data.h" />
+		<Unit filename="user/user/impact_host.cpp" />
+		<Unit filename="user/user/impact_host.h" />
+		<Unit filename="user/user/impact_system.cpp" />
+		<Unit filename="user/user/impact_system.h" />
+		<Unit filename="user/user/impact_update_hint.h" />
+		<Unit filename="user/user/main_frame.h" />
+		<Unit filename="user/user/margin.cpp" />
+		<Unit filename="user/user/margin.h" />
+		<Unit filename="user/user/menu.cpp" />
+		<Unit filename="user/user/menu.h" />
+		<Unit filename="user/user/menu_command.cpp" />
+		<Unit filename="user/user/menu_command.h" />
+		<Unit filename="user/user/menu_interaction.cpp" />
+		<Unit filename="user/user/menu_interaction.h" />
+		<Unit filename="user/user/menu_item.cpp" />
+		<Unit filename="user/user/menu_item.h" />
+		<Unit filename="user/user/multiple_document_template.cpp" />
+		<Unit filename="user/user/multiple_document_template.h" />
+		<Unit filename="user/user/network_configuration.cpp" />
+		<Unit filename="user/user/network_configuration.h" />
+		<Unit filename="user/user/notification_area.cpp" />
+		<Unit filename="user/user/notification_area.h" />
+		<Unit filename="user/user/notify_icon.cpp" />
+		<Unit filename="user/user/notify_icon.h" />
+		<Unit filename="user/user/notify_icon_listener.cpp" />
+		<Unit filename="user/user/notify_icon_listener.h" />
+		<Unit filename="user/user/notify_icon_mm.h" />
+		<Unit filename="user/user/notify_icon_mm_bridge.h" />
+		<Unit filename="user/user/picture.cpp" />
+		<Unit filename="user/user/picture.h" />
+		<Unit filename="user/user/picture_interaction.cpp" />
+		<Unit filename="user/user/picture_interaction.h" />
+		<Unit filename="user/user/place_holder.cpp" />
+		<Unit filename="user/user/place_holder.h" />
+		<Unit filename="user/user/place_holder_container.cpp" />
+		<Unit filename="user/user/place_holder_container.h" />
+		<Unit filename="user/user/print_task.cpp" />
+		<Unit filename="user/user/print_task.h" />
+		<Unit filename="user/user/server.cpp" />
+		<Unit filename="user/user/server.h" />
+		<Unit filename="user/user/simple_view.cpp" />
+		<Unit filename="user/user/simple_view.h" />
+		<Unit filename="user/user/single_document_template.cpp" />
+		<Unit filename="user/user/single_document_template.h" />
+		<Unit filename="user/user/split_bar.cpp" />
+		<Unit filename="user/user/split_bar.h" />
+		<Unit filename="user/user/split_layout.cpp" />
+		<Unit filename="user/user/split_layout.h" />
+		<Unit filename="user/user/split_view.cpp" />
+		<Unit filename="user/user/split_view.h" />
+		<Unit filename="user/user/static_control.cpp" />
+		<Unit filename="user/user/static_control.h" />
+		<Unit filename="user/user/style.cpp" />
+		<Unit filename="user/user/style.h" />
+		<Unit filename="user/user/tab.cpp" />
+		<Unit filename="user/user/tab.h" />
+		<Unit filename="user/user/tab_callback.cpp" />
+		<Unit filename="user/user/tab_callback.h" />
+		<Unit filename="user/user/tab_view.cpp" />
+		<Unit filename="user/user/tab_view.h" />
+		<Unit filename="user/user/toolbar.cpp" />
+		<Unit filename="user/user/toolbar.h" />
+		<Unit filename="user/user/user.cpp" />
+		<Unit filename="user/user/user.h" />
+		<Unit filename="user/user/validate.cpp" />
+		<Unit filename="user/user/windows/shell.h" />
+		<Unit filename="version/version.config.h" />
+		<Unit filename="version/version.h" />
+		<Unit filename="xml.h" />
+		<Extensions />
+	</Project>
+</CodeBlocks_project_file>

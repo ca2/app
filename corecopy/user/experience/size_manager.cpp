@@ -200,14 +200,14 @@ namespace experience
 
       }
 
-      if(!window_is_sizing())
+      if(!layout().is_sizing())
       {
 
          return false;
 
       }
 
-      //bool bApply = !is_docking_appearance(m_pframewindow->display_request());
+      //bool bApply = !is_docking_appearance(m_pframewindow->layout().sketch().display());
 
       bool bApply = true;
 
@@ -490,7 +490,7 @@ namespace experience
 
       }
 
-      if(m_pframewindow->window_is_zoomed())
+      if(m_pframewindow->layout().is_zoomed())
       {
 
          m_pframewindow->display(display_restore);
@@ -527,7 +527,7 @@ namespace experience
    }
 
 
-   bool size_manager::window_is_sizing()
+   bool size_manager::layout().is_sizing()
    {
 
       return m_ehittestSizing != hittest_none;

@@ -138,15 +138,6 @@
     <Filter Include="Header Files\include">
       <UniqueIdentifier>{0c0346ef-bd1c-4a0a-85b1-cfd8ef8ec242}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\math">
-      <UniqueIdentifier>{3d410628-8164-46f3-be56-385ff9aabd44}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\math\kissfft">
-      <UniqueIdentifier>{b0df61f6-a74a-4b42-bada-cb4a51f1ab33}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\math\calculator">
-      <UniqueIdentifier>{04901ebe-b155-461a-b811-7766ad4ea85d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\version">
       <UniqueIdentifier>{1a6906fa-8c35-4bf2-bc58-b25cfc385b90}</UniqueIdentifier>
     </Filter>
@@ -195,9 +186,6 @@
     <Filter Include="Source Files\os\ansios">
       <UniqueIdentifier>{3e3eb7e6-b2d0-4ef9-8057-41cbc4350638}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\geoip">
-      <UniqueIdentifier>{80df2ab9-1f47-4aa8-9eac-b8d0abaa0c22}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\user\rich_text">
       <UniqueIdentifier>{1f8857d1-9865-4be5-9c1d-5011d1678273}</UniqueIdentifier>
     </Filter>
@@ -206,12 +194,6 @@
     </Filter>
     <Filter Include="Header Files\inline\console">
       <UniqueIdentifier>{b02501a0-3913-4e17-bb27-ebe27d6ed3d6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\html\html_lite">
-      <UniqueIdentifier>{d53ee6d8-5e9a-429e-86be-f7599fe38980}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\html\html_lite">
-      <UniqueIdentifier>{23237cda-cd1d-446b-8a23-5b01b28853dd}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\html\impl">
       <UniqueIdentifier>{f795e5f2-1ded-4faf-90bc-5e0abb4234ff}</UniqueIdentifier>
@@ -257,6 +239,9 @@
     </Filter>
     <Filter Include="Source Files\platform">
       <UniqueIdentifier>{51be4361-eb21-484c-8772-1e1c35a7256e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\netuser">
+      <UniqueIdentifier>{7414d1f0-8f4e-4376-ad9a-c252779030d9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -704,9 +689,6 @@
     <ClInclude Include="user\userex\error_dialog.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="user\userex\font_format_tool.h">
-      <Filter>Header Files\user\userex</Filter>
-    </ClInclude>
     <ClInclude Include="user\userex\font_view.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
@@ -851,18 +833,6 @@
     <ClInclude Include="user\databaseuser\_databaseuser.h">
       <Filter>Header Files\user\databaseuser</Filter>
     </ClInclude>
-    <ClInclude Include="user\account\account.h">
-      <Filter>Header Files\user\account</Filter>
-    </ClInclude>
-    <ClInclude Include="user\account\account_dialog.h">
-      <Filter>Header Files\user\account</Filter>
-    </ClInclude>
-    <ClInclude Include="user\account\account_login.h">
-      <Filter>Header Files\user\account</Filter>
-    </ClInclude>
-    <ClInclude Include="user\account\account_simple_ui.h">
-      <Filter>Header Files\user\account</Filter>
-    </ClInclude>
     <ClInclude Include="user\account\simple_ui_style.h">
       <Filter>Header Files\user\account</Filter>
     </ClInclude>
@@ -898,57 +868,6 @@
     </ClInclude>
     <ClInclude Include="_.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="math\_math.h">
-      <Filter>Header Files\math</Filter>
-    </ClInclude>
-    <ClInclude Include="math\math_math.h">
-      <Filter>Header Files\math</Filter>
-    </ClInclude>
-    <ClInclude Include="math\kissfft\fft.h">
-      <Filter>Header Files\math\kissfft</Filter>
-    </ClInclude>
-    <ClInclude Include="math\kissfft\fft_guts.h">
-      <Filter>Header Files\math\kissfft</Filter>
-    </ClInclude>
-    <ClInclude Include="math\kissfft\fftd.h">
-      <Filter>Header Files\math\kissfft</Filter>
-    </ClInclude>
-    <ClInclude Include="math\kissfft\ifft.h">
-      <Filter>Header Files\math\kissfft</Filter>
-    </ClInclude>
-    <ClInclude Include="math\kissfft\ifftd.h">
-      <Filter>Header Files\math\kissfft</Filter>
-    </ClInclude>
-    <ClInclude Include="math\kissfft\kissfft.h">
-      <Filter>Header Files\math\kissfft</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\calculator.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\calculator_calculator.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\calculator_element.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\calculator_parser.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\calculator_parser_exception.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\calculator_plain_edit_view.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\calculator_scanner.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\calculator_token.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\calculator_value.h">
-      <Filter>Header Files\math\calculator</Filter>
     </ClInclude>
     <ClInclude Include="include\_include.h">
       <Filter>Header Files\include</Filter>
@@ -1136,30 +1055,6 @@
     <ClInclude Include="inline\console_common.h">
       <Filter>Header Files\inline</Filter>
     </ClInclude>
-    <ClInclude Include="html\html_lite\_.h">
-      <Filter>Header Files\html\html_lite</Filter>
-    </ClInclude>
-    <ClInclude Include="html\html_lite\attributes.h">
-      <Filter>Header Files\html\html_lite</Filter>
-    </ClInclude>
-    <ClInclude Include="html\html_lite\common.h">
-      <Filter>Header Files\html\html_lite</Filter>
-    </ClInclude>
-    <ClInclude Include="html\html_lite\entity_resolver.h">
-      <Filter>Header Files\html\html_lite</Filter>
-    </ClInclude>
-    <ClInclude Include="html\html_lite\enum.h">
-      <Filter>Header Files\html\html_lite</Filter>
-    </ClInclude>
-    <ClInclude Include="html\html_lite\html.h">
-      <Filter>Header Files\html\html_lite</Filter>
-    </ClInclude>
-    <ClInclude Include="html\html_lite\reader.h">
-      <Filter>Header Files\html\html_lite</Filter>
-    </ClInclude>
-    <ClInclude Include="html\html_lite\tag.h">
-      <Filter>Header Files\html\html_lite</Filter>
-    </ClInclude>
     <ClInclude Include="html\impl\_.h">
       <Filter>Header Files\html\impl</Filter>
     </ClInclude>
@@ -1205,12 +1100,6 @@
     <ClInclude Include="html\elemental\elemental.h">
       <Filter>Header Files\html\elemental</Filter>
     </ClInclude>
-    <ClInclude Include="html\elemental\elemental_elemental.h">
-      <Filter>Header Files\html\elemental</Filter>
-    </ClInclude>
-    <ClInclude Include="html\elemental\internal.h">
-      <Filter>Header Files\html\elemental</Filter>
-    </ClInclude>
     <ClInclude Include="html\graphics\attribute.h">
       <Filter>Header Files\html\graphics</Filter>
     </ClInclude>
@@ -1223,25 +1112,10 @@
     <ClInclude Include="html\graphics\box.h">
       <Filter>Header Files\html\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="html\graphics\ex.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
     <ClInclude Include="html\graphics\font.h">
       <Filter>Header Files\html\graphics</Filter>
     </ClInclude>
     <ClInclude Include="html\graphics\form.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\graphics.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\html_html2.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\html2.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\internal.h">
       <Filter>Header Files\html\graphics</Filter>
     </ClInclude>
     <ClInclude Include="html\graphics\message.h">
@@ -1284,12 +1158,6 @@
       <Filter>Header Files\html\user</Filter>
     </ClInclude>
     <ClInclude Include="html\user\frame.h">
-      <Filter>Header Files\html\user</Filter>
-    </ClInclude>
-    <ClInclude Include="html\user\internal.h">
-      <Filter>Header Files\html\user</Filter>
-    </ClInclude>
-    <ClInclude Include="html\user\user.h">
       <Filter>Header Files\html\user</Filter>
     </ClInclude>
     <ClInclude Include="html\user\view.h">
@@ -1549,6 +1417,60 @@
     </ClInclude>
     <ClInclude Include="user\userex\calculator_edit_view.h">
       <Filter>Header Files\user\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="html\elemental\_.h">
+      <Filter>Header Files\html\elemental</Filter>
+    </ClInclude>
+    <ClInclude Include="html\elemental\_elemental.h">
+      <Filter>Header Files\html\elemental</Filter>
+    </ClInclude>
+    <ClInclude Include="html\graphics\_.h">
+      <Filter>Header Files\html\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="html\graphics\_graphics.h">
+      <Filter>Header Files\html\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html\_html.h">
+      <Filter>Header Files\html\html</Filter>
+    </ClInclude>
+    <ClInclude Include="html\user\_.h">
+      <Filter>Header Files\html\user</Filter>
+    </ClInclude>
+    <ClInclude Include="html\user\_user.h">
+      <Filter>Header Files\html\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\account\_.h">
+      <Filter>Header Files\user\account</Filter>
+    </ClInclude>
+    <ClInclude Include="user\account\_account.h">
+      <Filter>Header Files\user\account</Filter>
+    </ClInclude>
+    <ClInclude Include="user\account\dialog.h">
+      <Filter>Header Files\user\account</Filter>
+    </ClInclude>
+    <ClInclude Include="user\account\login.h">
+      <Filter>Header Files\user\account</Filter>
+    </ClInclude>
+    <ClInclude Include="user\account\simple_ui.h">
+      <Filter>Header Files\user\account</Filter>
+    </ClInclude>
+    <ClInclude Include="user\netuser\_.h">
+      <Filter>Header Files\user\netuser</Filter>
+    </ClInclude>
+    <ClInclude Include="user\netuser\network_configuration.h">
+      <Filter>Header Files\user\netuser</Filter>
+    </ClInclude>
+    <ClInclude Include="user\netuser\_netuser.h">
+      <Filter>Header Files\user\netuser</Filter>
+    </ClInclude>
+    <ClInclude Include="user\rich_text\rich_text.h">
+      <Filter>Header Files\user\rich_text</Filter>
+    </ClInclude>
+    <ClInclude Include="user\rich_text\format_tool.h">
+      <Filter>Header Files\user\rich_text</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple_ui\_simple_ui.h">
+      <Filter>Header Files\user\simple_ui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1834,9 +1756,6 @@
     <ClCompile Include="user\userex\-ehrror_dialog.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
-    <ClCompile Include="user\userex\font_format_tool.cpp">
-      <Filter>Source Files\user\userex</Filter>
-    </ClCompile>
     <ClCompile Include="user\userex\font_view.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
@@ -2035,9 +1954,6 @@
     <ClCompile Include="html\impl\image.cpp">
       <Filter>Source Files\html\impl</Filter>
     </ClCompile>
-    <ClCompile Include="html\impl\impl.cpp">
-      <Filter>Source Files\html\impl</Filter>
-    </ClCompile>
     <ClCompile Include="html\impl\input_button.cpp">
       <Filter>Source Files\html\impl</Filter>
     </ClCompile>
@@ -2161,21 +2077,6 @@
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="geoip\geoip.cpp">
-      <Filter>Source Files\geoip</Filter>
-    </ClCompile>
-    <ClCompile Include="geoip\geoip_city.cpp">
-      <Filter>Source Files\geoip</Filter>
-    </ClCompile>
-    <ClCompile Include="geoip\geoip_region_name.cpp">
-      <Filter>Source Files\geoip</Filter>
-    </ClCompile>
-    <ClCompile Include="geoip\geoip_time_zone.cpp">
-      <Filter>Source Files\geoip</Filter>
-    </ClCompile>
-    <ClCompile Include="geoip\geoip_update.cpp">
-      <Filter>Source Files\geoip</Filter>
-    </ClCompile>
     <ClCompile Include="user\userex\progress.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
@@ -2199,21 +2100,6 @@
     </ClCompile>
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="html\html_lite\attributes.cpp">
-      <Filter>Source Files\html\html_lite</Filter>
-    </ClCompile>
-    <ClCompile Include="html\html_lite\entity_resolver.cpp">
-      <Filter>Source Files\html\html_lite</Filter>
-    </ClCompile>
-    <ClCompile Include="html\html_lite\html.cpp">
-      <Filter>Source Files\html\html_lite</Filter>
-    </ClCompile>
-    <ClCompile Include="html\html_lite\reader.cpp">
-      <Filter>Source Files\html\html_lite</Filter>
-    </ClCompile>
-    <ClCompile Include="html\html_lite\tag.cpp">
-      <Filter>Source Files\html\html_lite</Filter>
     </ClCompile>
     <ClCompile Include="user\simple_ui\edit_box.cpp">
       <Filter>Source Files\user\simple_ui</Filter>
@@ -2373,6 +2259,12 @@
     </ClCompile>
     <ClCompile Include="user\userex\calculator_edit_view.cpp">
       <Filter>Source Files\user\userex</Filter>
+    </ClCompile>
+    <ClCompile Include="html\impl\_.cpp">
+      <Filter>Source Files\html\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="user\rich_text\format_tool.cpp">
+      <Filter>Source Files\user\rich_text</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

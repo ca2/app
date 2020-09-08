@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 #include "aura/message.h"
 
 
@@ -14,6 +17,8 @@ namespace user
       m_databasekey.m_bLocalData = true;
 
       m_windowrectStore.m_edisplay = ::display_undefined;
+
+
 
    }
 
@@ -94,15 +99,102 @@ namespace user
    }
 
 
+   ::edisplay box::window_stored_display() const
+   {
+
+      auto edisplayStored = m_windowrect.m_edisplay;
+
+      return edisplayStored;
+
+   }
+
+
+   ::edisplay box::window_previous_display() const
+   {
+
+      auto edisplayPrevious = m_windowrect.m_edisplayPrevious;
+
+      return edisplayPrevious;
+
+   }
+
+
+   void box::on_visual_applied()
+   {
+
+      ::user::interaction::on_visual_applied();
+
+      auto edisplay = layout().design().display();
+
+      get_window_rect(m_windowrect.m_rectWindow, layout_design);
+
+      if (is_docking_appearance(edisplay))
+      {
+
+         m_windowrect.m_rectSnapped = m_windowrect.m_rectWindow;
+
+      }
+      else if (is_equivalent(edisplay, display_normal))
+      {
+
+         calculate_broad_and_compact_restore();
+
+         if (m_windowrect.m_rectWindow.size() != m_sizeRestoreBroad
+            && m_windowrect.m_rectWindow.size() != m_sizeRestoreCompact)
+         {
+
+            if (m_windowrect.m_rectWindow.size() != m_windowrect.m_rectRestored.size())
+            {
+
+               m_windowrect.m_rectRestored = m_windowrect.m_rectWindow;
+
+            }
+            else if (m_windowrect.m_rectWindow != m_windowrect.m_rectRestored)
+            {
+
+               m_windowrect.m_rectRestored = m_windowrect.m_rectWindow;
+
+            }
+
+         }
+         else
+         {
+
+            if (m_windowrect.m_rectRestored.is_empty()
+               || m_windowrect.m_rectRestored.size() == m_sizeRestoreCompact
+               || m_windowrect.m_rectRestored.size() == m_sizeRestoreBroad)
+            {
+
+               m_windowrect.m_rectRestored = m_windowrect.m_rectWindow;
+
+            }
+
+         }
+
+      }
+
+   }
+
+
+   void box::window_show_change_visibility()
+   {
+
+      ::user::interaction::window_show_change_visibility();
+
+      m_windowrect.m_edisplay = layout().window().display();
+
+   }
+
+
    bool box::should_save_window_rect()
    {
-      
+
 #if defined(_UWP) || defined(APPLE_IOS)
-      
+
       return false;
-      
+
 #else
-      
+
       return m_bSaveWindowRect && m_bEnableSaveWindowRect2;
 
 #endif
@@ -118,7 +210,7 @@ namespace user
       if (should_save_window_rect())
       {
 
-         if (display_state() == ::display_none)
+         if (layout().sketch().display() == ::display_none)
          {
 
             return false;
@@ -171,6 +263,9 @@ namespace user
 
          m_ewindowflag |= window_flag_loading_window_rect;
 
+         //main_async([this]()
+         //           {
+
          bool bRestore = good_restore(nullptr, nullptr, true, activation_none, zorder_top, initial_restore_display()) >= 0;
 
          if (!bRestore)
@@ -181,6 +276,10 @@ namespace user
             display();
 
          }
+
+//         });
+
+         //bool bRestore = true;
 
          return bRestore;
 
@@ -221,7 +320,7 @@ namespace user
 
          e_display edisplay = windowrect.m_edisplay;
 
-         set_appearance(windowrect.m_eappearance);
+         layout().sketch().appearance() = windowrect.m_eappearance;
 
          if (edisplay == display_iconic && bInitialFramePosition)
          {
@@ -253,15 +352,15 @@ namespace user
             if(bInitialFramePosition)
             {
 
-               ui_state().m_edisplay3 = edisplay;
+               layout().sketch().display() = edisplay;
 
             }
 
-            place(windowrect.m_rectWindow);
+            layout().sketch() = windowrect.m_rectWindow;
 
-            request_state().m_edisplay3 = edisplay;
+            layout().sketch() = edisplay;
 
-            m_bRequestReady = true;
+            layout().sketch().set_ready();
 
          }
          else if (!bForceRestore && is_docking_appearance(edisplay))
@@ -270,15 +369,15 @@ namespace user
             if(bInitialFramePosition)
             {
 
-               ui_state().m_edisplay3 = edisplay;
+               layout().sketch() = edisplay;
 
             }
 
-            place(windowrect.m_rectSnapped);
+            layout().sketch() = windowrect.m_rectSnapped;
 
-            request_state().m_edisplay3 = edisplay;
+            layout().sketch() = edisplay;
 
-            m_bRequestReady = true;
+            layout().sketch().set_ready();
 
          }
          else
@@ -317,7 +416,7 @@ namespace user
 
       }
 
-      if (display_state() == ::display_none)
+      if (layout().sketch().display() == ::display_none)
       {
 
          return false;
@@ -335,11 +434,11 @@ namespace user
 
       bool bGot = m_windowrectStore.m_edisplay != display_undefined;
 
-      windowrect.m_edisplay = display_request();
+      windowrect.m_edisplay = layout().sketch().display();
 
-      windowrect.m_eappearance = request_state().m_eappearance;
+      windowrect.m_eappearance = layout().sketch().appearance();
 
-      get_window_rect(windowrect.m_rectWindow);
+      get_window_rect(windowrect.m_rectWindow, layout_sketch);
 
       auto edisplay = windowrect.m_edisplay;
 
@@ -403,10 +502,15 @@ namespace user
    }
 
 
-   void box::prodevian_prepare_window_restore(edisplay edisplay)
+   void box::sketch_prepare_window_restore(edisplay edisplay)
    {
 
-      good_restore(NULL, window_request_rect(), true, request_state().m_eactivation, request_state().m_zorder, edisplay);
+      main_async([this, edisplay]()
+      {
+
+         good_restore(NULL, layout().sketch().screen_rect(), true, layout().sketch().activation(), layout().sketch().zorder(), edisplay);
+
+      });
 
    }
 
@@ -586,7 +690,7 @@ namespace user
 
    }
 
-   
+
    string box::get_display_tag()
    {
 

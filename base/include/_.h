@@ -8,19 +8,24 @@
 //  ca2/.../base/axis/aura/C++/C/Assembly/Huffman Machine/Hardware/Universe/Multiverse stack
 //
 //
+//
+//
+//  c(s)t(s)<tb(s)!!
+//
 
 
 #pragma once
 
-#undef System
-#undef Session
-#undef Application
-#undef Usr
 
-#define System (*get_context_system()->m_pbasesystem)
-#define Session (*get_context_session()->m_pbasesession)
-#define Application (*get_app()->m_pbaseapplication)
-#define Usr(pobject) (*Sess(pobject).user()->m_pbaseuser)
+#undef Sys
+#undef Sess
+#undef App
+
+
+#define Sys(pobject) (*pobject->get_context_system()->m_pbasesystem)
+#define Sess(pobject) (*pobject->get_context_session()->m_pbasesession)
+#define App(pobject) (*pobject->get_app()->m_pbaseapplication)
+
 
 
 #include "base/user/experience/_const.h"
@@ -33,6 +38,9 @@
 
 
 #include "aura/platform/application_menu.h"
+
+
+#include "aura/user/form_callback.h"
 
 
 #include "base/platform/application.h"

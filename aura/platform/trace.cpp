@@ -362,19 +362,34 @@ CLASS_DECL_AURA const char *  get_windows_message_name(UINT nMsg)
 #define SIMPLE_TRACE_FUNCTION_NAME 0
 #define SIMPLE_TRACE_FILE_NAME 0
 
+
+e_trace_level g_etracelevel = trace_level_error;
+
+e_trace_level get_global_trace_level()
+{
+
+   return g_etracelevel;
+
+}
+
+
+void set_global_trace_level(e_trace_level etracelevel)
+{
+
+   g_etracelevel = etracelevel;
+
+}
+
+
 CLASS_DECL_AURA void __simple_tracea(::generic_object * pobjectContext, e_trace_level elevel, const char * pszFunction, const char *pszFileName, i32 iLine, const char * psz)
 {
 
-#ifndef DEBUG
-
-   if (elevel < trace_level_error)
+   if (elevel < get_global_trace_level())
    {
 
       return;
 
    }
-
-#endif
 
    string strMessage;
 

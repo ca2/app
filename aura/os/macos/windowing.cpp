@@ -416,6 +416,12 @@ oswindow get_active_window()
 
 }
 
+int_bool session_accepts_first_responder()
+{
+   
+   return ::get_context_system()->get_context_session()->m_bAcceptsFirstResponder ? 1 : 0;
+   
+}
 
 void deactivate_window(oswindow window)
 {
@@ -785,12 +791,16 @@ string MYCFStringCopyUTF8String(CFStringRef aString)
    
 }
 
-#define FUNCTION_TRACE(...) strFormat.Format(__VA_ARGS__); str+=strFormat;
+
+//#define FUNCTION_TRACE(...) strFormat.Format(__VA_ARGS__); str+=strFormat;
+#undef FUNCTION_TRACE
 
 
 rect_array cg_get_window_rect_list_intersect_above(CGWindowID windowid)
 {
    
+   bool bFound = false;
+
 #ifdef FUNCTION_TRACE
    
    string str;
@@ -798,8 +808,6 @@ rect_array cg_get_window_rect_list_intersect_above(CGWindowID windowid)
    string strFormat;
 
    bool bFullTrace = false;
-
-   bool bFound = false;
 
 #endif
    
@@ -1053,11 +1061,14 @@ end1:
 #endif
 
 
-#define FUNCTION_TRACE(...) strFormat.Format(__VA_ARGS__); str+=strFormat;
+//#define FUNCTION_TRACE(...) strFormat.Format(__VA_ARGS__); str+=strFormat;
+#undef FUNCTION_TRACE
 
 
 void cg_get_window_rect_list(rect_array & recta, array < CGWindowID > & windowida)
 {
+
+   bool bFound = false;
 
 #ifdef FUNCTION_TRACE
    
@@ -1066,8 +1077,6 @@ void cg_get_window_rect_list(rect_array & recta, array < CGWindowID > & windowid
    string strFormat;
    
    bool bFullTrace = false;
-   
-   bool bFound = false;
    
 #endif
 
@@ -1244,7 +1253,7 @@ void cg_get_window_rect_list(rect_array & recta, array < CGWindowID > & windowid
       
    }
    
-end1:
+end1:;
    
 #ifdef FUNCTION_TRACE
    

@@ -19,6 +19,9 @@ namespace user
       virtual void assert_valid() const override;
 
 
+      virtual ::user::interaction* impact_at(::index iImpact) const;
+      virtual ::count impact_count() const;
+
 
    };
 

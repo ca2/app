@@ -386,13 +386,11 @@ namespace linux
                           | CWOverrideRedirect
                                           , &attr);
 
-            auto & windowstate3 = m_puserinteraction->window_state3();
+            m_puserinteraction->layout().window() = ::point(INT_MIN, INT_MIN);
 
-            windowstate3.m_point.set(INT_MIN, INT_MIN);
+            m_puserinteraction->layout().window() = ::size(INT_MIN, INT_MIN);
 
-            windowstate3.m_size.set(INT_MIN, INT_MIN);
-
-            windowstate3.m_pointScreen.set(INT_MIN, INT_MIN);
+            m_puserinteraction->layout().window().screen_origin() = ::point(INT_MIN, INT_MIN);
 
    //         {
    //
@@ -408,13 +406,11 @@ namespace linux
    //
             {
 
-               auto & state = m_puserinteraction->request_state();
+               m_puserinteraction->layout().sketch() = ::point(cs.x, cs.y);
 
-               state.m_point.set(cs.x, cs.y);
+               m_puserinteraction->layout().sketch() = ::size(cs.cx, cs.cy);
 
-               state.m_size.set(cs.cx, cs.cy);
-
-               //state.m_pointScreen = windowstate.m_pointScreen;
+               m_puserinteraction->layout().sketch().screen_origin() = ::point(cs.x, cs.y);
 
             }
 
@@ -531,7 +527,7 @@ namespace linux
                wm_desktopwindow(m_oswindow, true);
 
             }
-            else if(m_puserinteraction->request_state().m_eactivation & activation_on_center_of_screen)
+            else if(m_puserinteraction->layout().sketch().activation() & activation_on_center_of_screen)
             {
 
                wm_centerwindow(m_oswindow, true);
@@ -603,7 +599,7 @@ namespace linux
             else
             {
 
-               m_puserinteraction->window_state3().m_edisplay3 = display_none;
+               m_puserinteraction->layout().window() = display_none;
 
             }
 
@@ -613,7 +609,7 @@ namespace linux
                if(!attr.override_redirect)
                {
 
-                  if(is_docking_appearance(m_puserinteraction->display_request()))
+                  if(is_docking_appearance(m_puserinteraction->layout().sketch().display()))
                   {
 
                      // window managers generally "don't like" windows that starts "docked/snapped".
@@ -647,7 +643,7 @@ namespace linux
                      // (Hinting for monitor placement, if no stored information
                      // available).
 
-                     if(m_puserinteraction->request_state().m_edisplay3 == display_undefined)
+                     if(m_puserinteraction->layout().sketch().display() == display_undefined)
                      {
 
                         m_puserinteraction->move_to(get_context_session()->get_cursor_pos());
@@ -738,7 +734,7 @@ namespace linux
    void interaction_impl::defer_delayed_placement()
    {
 
-      if(!m_puserinteraction->is_layout_experience_active())
+      if(!m_puserinteraction->layout().is_changing())
       {
 
          if(m_bMoveEvent || m_bSizeEvent)
@@ -761,7 +757,7 @@ namespace linux
    void interaction_impl::_thread_delayed_placement()
    {
 
-      while(m_tickLastPlacementEvent.elapsed() < 40 || m_puserinteraction->is_layout_experience_active())
+      while(m_tickLastPlacementEvent.elapsed() < 40 || m_puserinteraction->layout().is_changing())
       {
 
          if(!thread_sleep(10))
@@ -780,7 +776,7 @@ namespace linux
 
       }
 
-      bool bMove = m_bMoveEvent && m_puserinteraction->request_state().m_point != m_pointLastMove;
+      bool bMove = m_bMoveEvent && m_puserinteraction->layout().sketch().origin() != m_pointLastMove;
 
       m_bMoveEvent = false;
 
@@ -795,7 +791,7 @@ namespace linux
 
       }
 
-      bool bSize = m_bSizeEvent && m_puserinteraction->request_state().m_size != m_sizeLastSize;
+      bool bSize = m_bSizeEvent && m_puserinteraction->layout().sketch().size() != m_sizeLastSize;
 
       m_bSizeEvent = false;
 
@@ -836,7 +832,7 @@ namespace linux
 
       }
 
-      if (m_puserinteraction->m_eflagLayouting)
+      if (m_puserinteraction->layout().m_eflag)
       {
 
          pmessage->m_bRet = true;
@@ -847,19 +843,19 @@ namespace linux
 
       SCAST_PTR(::message::move, pmove, pmessage);
 
-//      m_puserinteraction->window_state3().m_point = pmove->m_point;
-//
-//      if(m_puserinteraction->window_state3().m_point != m_puserinteraction->request_state().m_point)
-//      {
-//
-//         m_puserinteraction->move_to(pmove->m_point);
-//
-//         m_puserinteraction->set_reposition();
-//
-//         m_puserinteraction->post_redraw();
-//
-//      }
-//
+      m_puserinteraction->layout().window() = pmove->m_point;
+
+      if(m_puserinteraction->layout().window().origin() != m_puserinteraction->layout().sketch().origin())
+      {
+
+         m_puserinteraction->move_to(pmove->m_point);
+
+         m_puserinteraction->set_reposition();
+
+         m_puserinteraction->post_redraw();
+
+      }
+
    }
 
 
@@ -873,7 +869,7 @@ namespace linux
 
       }
 
-      if (m_puserinteraction->m_eflagLayouting)
+      if (m_puserinteraction->layout().m_eflag)
       {
 
          pmessage->m_bRet = true;
@@ -886,7 +882,7 @@ namespace linux
 
 //      m_puserinteraction->window_state3().m_size = psize->m_size;
 //
-//      if(m_puserinteraction->window_state3().m_size != m_puserinteraction->request_state().m_size)
+//      if(m_puserinteraction->window_state3().m_size != m_puserinteraction->layout().sketch().m_size)
 //      {
 //
 //         m_puserinteraction->set_size(psize->m_size);
@@ -915,16 +911,16 @@ namespace linux
       if(pshowwindow->m_bShow)
       {
 
-         INFO("linux::interaction_impl::_001OnShowWindow VISIBLE edisplay=%s", __cstr(m_puserinteraction->ui_state().m_edisplay3.m_eenum));
+         INFO("linux::interaction_impl::_001OnShowWindow VISIBLE edisplay=%s", __cstr(m_puserinteraction->layout().design().display().m_eenum));
 
          m_puserinteraction->ModifyStyle(0, WS_VISIBLE);
 
-         if(m_puserinteraction->display_state() == ::display_iconic && !m_oswindow->is_iconic())
+         if(m_puserinteraction->layout().design().display() == ::display_iconic && !m_oswindow->is_iconic())
          {
 
             m_puserinteraction->hide();
 
-            if(m_puserinteraction->m_windowrect.m_edisplayPrevious == ::display_iconic)
+            if(m_puserinteraction->window_previous_display() == ::display_iconic)
             {
 
                m_puserinteraction->_001OnDeiconify(::display_normal);
@@ -933,7 +929,7 @@ namespace linux
             else
             {
 
-               m_puserinteraction->_001OnDeiconify(m_puserinteraction->m_windowrect.m_edisplayPrevious);
+               m_puserinteraction->_001OnDeiconify(m_puserinteraction->window_previous_display());
 
             }
 
@@ -1417,11 +1413,11 @@ namespace linux
       if(m_puserinteraction != nullptr)
       {
 
-         if (m_puserinteraction->window_is_moving())
+         if (m_puserinteraction->layout().is_moving())
          {
             //TRACE("moving: skip pre translate message");
          }
-         else if (m_puserinteraction->window_is_sizing())
+         else if (m_puserinteraction->layout().is_sizing())
          {
             //TRACE("sizing: skip pre translate message");
          }
@@ -1521,10 +1517,10 @@ namespace linux
 
          ::message::mouse * pmouse = (::message::mouse *) pbase;
 
-         Session.on_ui_mouse_message(pmouse);
-
          if(get_context_session() != nullptr)
          {
+
+            Session.on_ui_mouse_message(pmouse);
 
             Session.m_pointCursor = pmouse->m_point;
 
@@ -3060,7 +3056,7 @@ namespace linux
 //   }
 
 
-   bool interaction_impl::window_is_iconic()
+   bool interaction_impl::node_is_iconic()
    {
 
       if(!::is_window(m_oswindow))
@@ -3072,7 +3068,7 @@ namespace linux
 
 #ifdef LINUX
 
-      return m_puserinteraction->display_state() == ::display_iconic;
+      return m_puserinteraction->layout().design().display() == ::display_iconic;
 
 #else
 
@@ -4769,14 +4765,14 @@ namespace linux
    }
 
 
-   void interaction_impl::_do_show_window()
+   void interaction_impl::window_show_change_visibility(::edisplay edisplay, ::eactivation eactivation)
    {
 
-      __keep_flag_on(m_puserinteraction->m_eflagLayouting, ::user::layout::layout_show_window);
+      __keep_flag_on(m_puserinteraction->layout().m_eflag, ::user::interaction_layout::flag_show_window);
 
-      auto edisplay = m_puserinteraction->process_display();
+      //auto edisplay = m_puserinteraction->layout().design().display();
 
-      auto eactivation = m_puserinteraction->process_state().m_eactivation;
+      //auto eactivation = m_puserinteraction->layout().design().activation();
 
       //if(eactivation &)
 //      {
@@ -4805,7 +4801,7 @@ namespace linux
       else
       {
 
-         ::user::interaction_impl::_do_show_window();
+         ::user::interaction_impl::window_show_change_visibility(edisplay, eactivation);
 
       }
 

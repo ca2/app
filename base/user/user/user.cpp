@@ -1,4 +1,8 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/simple/_simple.h"
+#include "base/user/menu/_menu.h"
+#endif
 #include "aura/update.h"
 #include "simple_view.h"
 #include "aura/platform/static_setup.h"
@@ -29,7 +33,7 @@ namespace base
    ::estatus user::initialize(::object* pobjectContext)
    {
 
-      auto estatus = ::user::user::initialize(pobjectContext);
+      auto estatus = ::axis::user::initialize(pobjectContext);
 
       if (!estatus)
       {
@@ -55,7 +59,7 @@ namespace base
    ::estatus user::init1()
    {
 
-      
+
       create_factory <::user::document >();
       create_factory <::user::message_queue >();
       create_factory <::user::simple_view >();
@@ -71,7 +75,7 @@ namespace base
 
       //}
 
-      if (!::user::user::init1())
+      if (!::axis::user::init1())
       {
 
          return false;
@@ -93,7 +97,7 @@ namespace base
    ::estatus user::init()
    {
 
-      if (!::user::user::init())
+      if (!::axis::user::init())
       {
 
          return false;
@@ -118,7 +122,14 @@ namespace base
       create_factory < ::user::split_view  >();
 
 
-      m_pmenucentral2 = __new(::user::menu_central);
+      auto estatus = __compose_new(m_pmenucentral);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
 
       //auto estatus = create_user_shell();
 
@@ -224,7 +235,7 @@ namespace base
       try
       {
 
-         m_pmenucentral2.release();
+         __release(m_pmenucentral);
 
       }
       catch (...)
@@ -1130,7 +1141,7 @@ namespace base
    ::user::style_pointer user::get_user_style(const char* pszExperienceLibrary, ::aura::application* papp)
    {
 
-      auto& pstyle = m_mapStyle[pszExperienceLibrary];
+      auto& pstyle = m_mapUserStyle[pszExperienceLibrary];
 
       if (!pstyle)
       {
@@ -1312,7 +1323,7 @@ namespace base
 
          pstyle->m_plibrary = plibrary;
 
-         m_pstyle = pstyle;
+         m_puserstyle = pstyle;
 
          break;
 
@@ -1349,12 +1360,12 @@ namespace base
    void user::defer_instantiate_user_style(const char* pszUiInteractionLibrary)
    {
 
-      if (!m_pstyle)
+      if (!m_puserstyle)
       {
 
-         m_pstyle = get_user_style(pszUiInteractionLibrary);
+         m_puserstyle = get_user_style(pszUiInteractionLibrary);
 
-         if (!m_pstyle)
+         if (!m_puserstyle)
          {
 
             ERR("aura::session::defer_instantiate_user_theme");
@@ -1368,12 +1379,8 @@ namespace base
    }
 
 
-   ::user::menu_central* user::menu()
-   {
+//   ::user::menu_central* user::menu()
 
-      return m_pmenucentral2;
-
-   }
 
 
    __namespace_object_factory(user, ::static_setup::flag_object_user);

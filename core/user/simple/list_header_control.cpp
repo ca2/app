@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/simple/_simple.h"
+#endif
 
 
 const i32 simple_list_header_control::s_iDividerWidth = 4;

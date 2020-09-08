@@ -1,4 +1,8 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/userex/_userex.h"
+#endif
+#include "axis/math/calculator/_.h"
 #include "calculator_edit_view.h"
 #include "aura/update.h"
 #include "aura/const/id.h"
@@ -65,26 +69,6 @@ namespace calculator
    }
 
 
-} // namespace calculator
-
-
-::user::plain_edit* new_calculator_plain_edit()
-{
-
-   return new ::calculator::plain_edit_view();
-
-}
-
-
-
-
-
-
-
-namespace calculator
-{
-
-
    void plain_edit_view::update(::update* pupdate)
    {
 
@@ -99,9 +83,7 @@ namespace calculator
 
             _001GetText(strExp);
 
-            parser parser;
-
-            parser.initialize(this);
+            parser parser(get_context_object());
 
             error e;
 
@@ -378,8 +360,16 @@ namespace calculator
    }
 
 
-
 } // namespace calculator
+
+
+
+::user::plain_edit* new_calculator_plain_edit()
+{
+
+   return new ::calculator::plain_edit_view();
+
+}
 
 
 

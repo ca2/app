@@ -128,7 +128,7 @@ namespace windows
 
       virtual void on_visual_applied() override;
 
-      virtual void window_apply_visual(const ::user::window_state & windowstate) override;
+      //virtual void window_apply_visual(const ::user::window_state & windowstate) override;
 
       DECL_GEN_SIGNAL(_001OnDestroy);
       DECL_GEN_SIGNAL(_001OnCreate);
@@ -248,8 +248,8 @@ namespace windows
 
 
       // Window size and position Functions
-      virtual bool window_is_iconic();
-      virtual bool window_is_zoomed();
+      virtual bool node_is_iconic() override;
+      virtual bool node_is_zoomed() override;
       //i32 SetWindowRgn(HRGN hRgn,bool bRedraw);
       //i32 GetWindowRgn(HRGN hRgn);
 
@@ -300,10 +300,10 @@ namespace windows
       virtual bool display(::edisplay edisplay);
 
 
-      virtual void prodevian_prepare_window_minimize(::eactivation eactivation) override;
-      virtual void prodevian_prepare_window_maximize() override;
-      virtual void prodevian_prepare_window_full_screen(const ::rect & rectHint = nullptr) override;
-      virtual void prodevian_prepare_window_restore(edisplay edisplay) override;
+      virtual void sketch_prepare_window_minimize(::eactivation eactivation) override;
+      virtual void sketch_prepare_window_maximize() override;
+      virtual void sketch_prepare_window_full_screen(const ::rect & rectHint = nullptr) override;
+      virtual void sketch_prepare_window_restore(edisplay edisplay) override;
 
 
       //virtual bool _is_window_visible() override;
@@ -769,7 +769,7 @@ namespace windows
       virtual bool get_rect_normal(RECT * prect);
       virtual void register_drop_target();
       virtual void show_task(bool bShow);
-      virtual void _do_show_window() override;
+      virtual void window_show_change_visibility(::edisplay edisplay, ::eactivation eactivation) override;
 
 
       virtual void non_top_most_upper_window_rects(::rect_array& recta) override;

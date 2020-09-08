@@ -1,8 +1,7 @@
-
 #include "framework.h"
-
-
-
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/simple_ui/_simple_ui.h"
+#endif
 
 
 namespace simple_ui
@@ -119,7 +118,7 @@ namespace simple_ui
 
       m_pointLButtonDown = pmouse->m_point;
       
-      m_sizeLButtonDownOffset = m_pointLButtonDown - origin();
+      m_sizeLButtonDownOffset = m_pointLButtonDown - layout().origin();
 
       SetCapture();
 

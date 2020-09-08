@@ -207,6 +207,13 @@ namespace exception
 
       }
 
+#elif defined(FREEBSD_UNIX)
+      standard_access_violation (i32 signal, void * psiginfo, void * pc) :
+         standard_exception(signal, psiginfo, pc, 3, (void *) pc)
+      {
+
+      }
+
 
 #elif defined(LINUX) || defined(APPLEOS) || defined(SOLARIS)
       standard_access_violation (i32 signal, void * psiginfo, void * pc) :
@@ -276,6 +283,25 @@ namespace exception
       //   bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
       // uptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }
    };
+
+#elif defined(FREEBSD)
+
+   class standard_sigfpe : public standard_exception
+   {
+   public:
+      standard_sigfpe (i32 iSignal, siginfo_t * psiginfo, void * pc) :
+         standard_exception(iSignal, psiginfo, pc, 3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.rip),
+         ::callstack(3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.eip),
+      {
+
+      }
+
+
+   public:
+      //   bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
+      // uptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }
+   };
+
 
 #elif defined(LINUX) || defined(APPLEOS)
 

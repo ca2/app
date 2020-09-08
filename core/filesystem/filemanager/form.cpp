@@ -1,5 +1,7 @@
 #include "framework.h"
-//#include "_filemanager.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/filesystem/filemanager/_filemanager.h"
+#endif
 #include "aura/update.h"
 
 
@@ -49,7 +51,7 @@ namespace filemanager
             get_document()->update_all_views(pupdate);
 
             auto pinteraction = get_child_by_name("lfs");
-            
+
             pinteraction->_001SetText(filemanager_item()->m_filepathUser,::source_user);
 
          }
@@ -71,11 +73,11 @@ namespace filemanager
             {
                string_array stra;
                Application.data_get(filemanager_data()->m_dataidStatic,stra);
-               
+
                auto pinteraction = get_child_by_name("lfs");
-               
+
                string str;
-               
+
                pinteraction->_001GetText(str);
 
                stra.add_unique(str);
@@ -92,11 +94,11 @@ namespace filemanager
                pupdate->m_id = id_replace_name;
 
                auto pinteraction = get_child_by_name("find");
-               
+
                pinteraction->_001GetText(pupdate->value(id_find));
 
                pinteraction = get_child_by_name("replace");
-               
+
                pinteraction->_001GetText(pupdate->value(id_replace));
 
                auto pdocument =  filemanager_document();
@@ -111,7 +113,7 @@ namespace filemanager
                pupdate->m_id = id_new_folder;
 
                auto pinteraction = get_child_by_name("name");
-               
+
                pinteraction->_001GetText(pupdate->value(id_text));
 
                auto pdocument = filemanager_document();

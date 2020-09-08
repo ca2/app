@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 #include "device_context.h"
 
 
@@ -43,7 +46,7 @@ namespace graphics
 
       }
 
-      m_spgraphics->on_begin_draw(m_pimpl->m_oswindow, m_pimpl->m_puserinteraction->ui_state().m_size);
+      m_spgraphics->on_begin_draw(m_pimpl->m_oswindow, m_pimpl->m_puserinteraction->layout().design().size());
 
       return m_spgraphics;
 

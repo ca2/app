@@ -1,5 +1,7 @@
 ﻿#include "framework.h"
-//#include "_filemanager.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/filesystem/filemanager/_filemanager.h"
+#endif
 #include "core/user/user/shell.h"
 #include "_data.h"
 #include "aura/template/list.h"
@@ -486,9 +488,9 @@ namespace filemanager
       }
       break;
       }
-      
+
       pbase->m_lresult = 0;
-      
+
       pbase->m_bRet = true;
 
    }

@@ -1,4 +1,7 @@
-﻿#include "framework.h"
+#include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/user/_user.h"
+#endif
 #include "aura/const/timer.h"
 
 
@@ -115,7 +118,7 @@ namespace user
    void mesh::install_message_routing(::channel * pchannel)
    {
 
-      ::user::interaction::install_message_routing(pchannel);
+      ::user::scroll_base::install_message_routing(pchannel);
 
       bool bList = dynamic_cast <list *> (this) != nullptr;
 
@@ -5116,7 +5119,7 @@ namespace user
 
       m_rangeSelection.clear();
 
-      if (!item)
+      if (!item.is_set())
       {
 
          return;
@@ -5246,7 +5249,7 @@ namespace user
    }
 
 
-   __pointer(image_list) draw_mesh_item::get_image_list()
+   __pointer(::image_list) draw_mesh_item::get_image_list()
    {
       //if(m_bListItemHover && m_pcolumn->m_pilHover != nullptr)
       //if(m_bListItemHover)

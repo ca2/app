@@ -5,11 +5,27 @@
 //  ca2 is an all-purpose multi-platform framework and set of libraries
 //  written in C++ language to help developers create great apps for users.
 //
-//  ca2/core/basis/axis/aura/C++/C/Assembly/os/Huffman Machine/Hardware/Universe/Multiverse stack
+//  ca2/..../core/base/axis/aura/C++/C/Assembly/os/Huffman Machine/Hardware/Universe/Multiverse stack
 //
+//
+//
+//
+//  c(s)t(s)<tb(s)!!
 //
 
+
 #pragma once
+
+
+#undef Sys
+#undef Sess
+#undef App
+
+
+#define Sys(pobject) (*pobject->get_context_system()->m_pcoresystem)
+#define Sess(pobject) (*pobject->get_context_session()->m_pcoresession)
+#define App(pobject) (*pobject->get_app()->m_pcoreapplication)
+
 
 
 namespace user
@@ -63,8 +79,6 @@ namespace audio
 
 } // namespace audio
 
-#undef Usr
-#define Usr(pobject) (*Sess(pobject).user()->m_pcoreuser)
 
 
 
@@ -156,7 +170,7 @@ CLASS_DECL_CORE bool __node_core_pos_term();
 
 #include "core/os/process.h"
 
-#include "core/geoip/geoip.h"
+//#include "core/geoip/geoip.h"
 
 class ftpfs;
 
@@ -179,7 +193,7 @@ class ifs;
 
 //#include "core/database/simpledb/_.h"
 
-#include "core/html/html_lite/_.h"
+//#include "core/html/html_lite/_.h"
 
 #include "core/filesystem/userfs/_.h"
 
@@ -212,9 +226,12 @@ class ifs;
 
 
 
+<<<<<<< HEAD
 //#include "core/math/_math.h"
 
 
+=======
+>>>>>>> origin/basis
 // C++ Includes
 #include "core/os/_.h"
 

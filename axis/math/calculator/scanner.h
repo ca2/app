@@ -32,11 +32,9 @@ numbers:
       __pointer(class token) m_ptoken;
 
 
-      scanner();
+      scanner(::object * pobject);
       virtual ~scanner();
 
-
-      virtual ::estatus initialize(::object* pobjectContext) override;
 
 
       void initialize(const char * psz);

@@ -1,4 +1,7 @@
 ﻿#include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 #include "imm_client.h"
 #include "aura/os/windows/imm_context.h"
 
@@ -311,7 +314,7 @@ void imm_client::_001OnIme(::message::message * pmessage)
          output_debug_string("\n" "WM_IME_NOTIFY" " > " "IMN_OPENCANDIDATE");
 
          m_bImeCandidateOpened = true;
-         
+
       }
       else if (pbase->m_wparam == IMN_CHANGECANDIDATE)
       {

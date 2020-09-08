@@ -1,6 +1,7 @@
 #include "framework.h"
-//#include "aura/net/sockets/_.h"
-//#include "aura/papaya/papaya_zoneing.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 #include "aura/const/id.h"
 #include "aura/platform/app_core.h"
 #include "aura/platform/static_setup.h"
@@ -65,6 +66,9 @@ namespace aura
 
    session::session()
    {
+
+      m_bAcceptsFirstResponder = true;
+
       m_bSimpleMessageLoop = false;
       m_bMessageThread = true;
       m_iEdge = -1;
@@ -192,6 +196,21 @@ namespace aura
       }
 
       return estatus;
+
+   }
+
+
+   ::user::style* session::get_user_style()
+   {
+
+      return nullptr;
+
+   }
+
+
+   void session::simple_ui_draw_focus_rect(::user::interaction* pinteraction, ::draw2d::graphics_pointer& pgraphics)
+   {
+
 
    }
 
@@ -352,6 +371,13 @@ namespace aura
          INFO("aura::str_context Failed to Allocate!!");
 
          return estatus;
+
+      }
+
+      if(System.m_bAvoidFirstResponder)
+      {
+
+         m_bAcceptsFirstResponder = false;
 
       }
 
@@ -3366,7 +3392,7 @@ namespace aura
 
          ::rect rect;
 
-         pinteraction->get_window_rect(rect);
+         pinteraction->layout().sketch().screen_rect(rect);
 
          return get_best_wkspace(nullptr, rect);
 
@@ -4394,7 +4420,7 @@ ret:
    void session::translate_os_key_message(::user::key * pkey)
    {
 
-//      Session.keyboard().translate_os_key_message(pkey);
+      keyboard().translate_os_key_message(pkey);
 
    }
 
@@ -4412,21 +4438,7 @@ ret:
    }
 
 
-   // ::user::style* session::get_user_style() const
-   // {
-
-   //    return m_puserstyle;
-
-   // }
-
-
 } // namespace aura
-
-
-
-
-
-
 
 
 #define MAGIC_PALACE_TAB_SPLT "->:<-"

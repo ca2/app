@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 #include "aura/update.h"
 #include "image_list.h"
 
@@ -113,7 +116,7 @@ namespace user
 
    }
 
-   
+
    bool image_list::on_click(const ::user::item & item)
    {
 
@@ -129,7 +132,7 @@ namespace user
       if (Session.is_key_pressed(::user::key_shift) && m_bMultiSel)
       {
 
-         if (m_itemCurrent)
+         if (m_itemCurrent.is_set())
          {
 
             for (index i = m_itemCurrent; i <= item.m_iItem; i++)
@@ -332,7 +335,7 @@ namespace user
    }
 
 
-   void image_list::on_hit_test(::user::item& item) 
+   void image_list::on_hit_test(::user::item& item)
    {
 
       ::count c = m_imagea.get_count();

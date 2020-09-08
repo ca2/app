@@ -18,8 +18,8 @@ namespace opengl
 
 
 
-      virtual bool create_buffer(const ::size & size, int iStride = -1);
-      virtual void destroy_buffer();
+      virtual bool update_buffer(const ::size & size, int iStride = -1) override;
+      virtual void destroy_buffer() override;
 
 
       virtual ::draw2d::graphics * on_begin_draw(sync ** ppsync) override;

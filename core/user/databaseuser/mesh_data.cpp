@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/databaseuser/_databaseuser.h"
+#endif
 
 
 namespace databaseuser
@@ -7,8 +10,11 @@ namespace databaseuser
 
    mesh_data::mesh_data()
    {
+
       m_iItemCount = 0;
+
    }
+
 
    mesh_data::~mesh_data()
    {

@@ -1,7 +1,6 @@
 #include "framework.h"
 #include "aura/id.h"
-#include "_.h"
-#include "core_data.h"
+#include "_html.h"
 
 
 namespace html
@@ -39,7 +38,7 @@ namespace html
       m_puserinteraction = nullptr;
       m_bImplemented = false;
       m_bImplement = false;
-      m_bLayout = false;
+      m_bLaidout = false;
       m_ptag = nullptr;
       m_pcallback = nullptr;
    }
@@ -211,6 +210,8 @@ namespace html
 
       m_bImplemented = false;
 
+      m_bLaidout = false;
+
    }
 
 
@@ -267,6 +268,8 @@ namespace html
 
       m_pform->set_need_redraw();
 
+      m_pform->post_redraw();
+
    }
 
 
@@ -318,29 +321,12 @@ namespace html
 
       sync_lock sl(mutex());
 
-      i32 iCount = 24;
-
-      while (m_bLayout && iCount >= 0)
-      {
-
-         Sleep(100);
-
-         iCount--;
-
-      }
-
-      if (m_bLayout)
-         return;
-
-      bool bImplemented = false;
       if (!m_bImplemented)
       {
-         bImplemented = true;
+
          implement(pgraphics);
 
       }
-
-      __keep(m_bLayout);
 
       m_pgraphics = pgraphics;
 
@@ -361,19 +347,22 @@ namespace html
 
       }
 
+      m_bLaidout = true;
+
    }
 
 
    void core_data::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      if (m_bImplement || m_bLayout)
+      if (!m_bImplemented || !m_bLaidout)
+      {
+
          return;
 
-      sync_lock sl(mutex());
+      }
 
-      //      if(is_locked())
-            //       return;
+      sync_lock sl(mutex());
 
       m_pgraphics = pgraphics;
 

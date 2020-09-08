@@ -42,7 +42,7 @@ namespace dynamic_source
    };
 
 
-   class CLASS_DECL_CORE script_compiler :
+   class CLASS_DECL_APP_PROGRAMMING script_compiler :
       virtual public ::object,
       virtual public ::file::listener
    {

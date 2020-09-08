@@ -1,5 +1,4 @@
 #include "framework.h"
-#include "calculator.h"
 #include "aura/const/id.h"
 
 

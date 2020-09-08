@@ -1,7 +1,9 @@
 ﻿#pragma once
 
 
-#include "aura/user/_user.h"
+//#if !BROAD_PRECOMPILED_HEADER
+#include "axis/user/_user.h"
+//#endif
 
 
 namespace user
@@ -104,13 +106,13 @@ namespace experience
 #include "control_property.h"
 
 
-#include "tool_window.h"
+//#include "tool_window.h"
 
 //#include "callback.h"
 
 
 #include "form_data.h"
-#include "form.h"
+//#include "form.h"
 
 
 #ifdef WINDOWS_DESKTOP
@@ -361,11 +363,8 @@ namespace user
    class control_bar;          // forward context_object (see afxext.h)
 }
 
-//class CReBar;               // forward context_object (see afxext.h)
-class simple_frame_window;
-//class CDockBar;             // forward context_object (see afxpriv.h)
+
 class mini_dock_frame_window;    // forward context_object (see afxpriv.h)
-//class CDockState;           // forward context_object (see afxpriv.h)
 
 
 //#include "button.h"
@@ -529,6 +528,7 @@ namespace user
 
 //#include "form.h"
 #include "tab_view.h"
+#include "tab_drop_target_window.h"
 
 
 
@@ -646,7 +646,6 @@ typedef struct _AppIndicator AppIndicator;
 #include "static_control.h"
 
 
-#include "user.h"
 
 
 
@@ -659,6 +658,13 @@ typedef struct _AppIndicator AppIndicator;
 //#include "command.h"
 
 #include "aura/primitive/primitive/update.h"
+
+
+#include "user.h"
+
+
+#undef Usr
+#define Usr(pobject) (*Sess(pobject).user()->m_pbaseuser)
 
 
 #include "_impl.h"

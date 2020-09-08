@@ -1,8 +1,12 @@
 ﻿#pragma once
 
 
-#include "core/html/html_lite/_.h"
+#include "axis/html/html_lite/_.h"
+#include "core/html/graphics/_.h"
+#include "core/html/user/_.h"
 
+
+CLASS_DECL_CORE void trim001(string& str);
 
 class html_document;
 
@@ -17,7 +21,6 @@ class html_form;
 
 
 
-#include "core/html/graphics/graphics.h"
 
 
 
@@ -39,8 +42,6 @@ namespace html
 
 
 
-
-#include "core/html/user/user.h"
 
 
 #include "core/html/hi5/hi5_twitter_authorization.h"

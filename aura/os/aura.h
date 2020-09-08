@@ -56,6 +56,8 @@ CLASS_DECL_AURA void writeln(const char * psz);
 
 #elif defined(LINUX)
 
+#elif defined(FREEBSD)
+
 #elif defined(_UWP)
 
 #define BSD_STYLE_SOCKETS

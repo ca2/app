@@ -1,5 +1,7 @@
 #include "framework.h"
-//#include "core/user/userex/_userex.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/menu/_menu.h"
+#endif
 
 
 namespace user
@@ -239,7 +241,7 @@ namespace user
       }
       else
       {
-         
+
          auto pstyle = get_style(pgraphics);
 
          pstyle->draw_check(get_echeck(), m_rectCheckBox, pgraphics);

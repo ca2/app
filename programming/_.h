@@ -1,11 +1,17 @@
 #pragma once
 
 
-#include "aura/_.h"
+#include "axis/_.h"
 
 
+#ifdef _APP_PROGRAMMING_LIBRARY
+#define CLASS_DECL_APP_PROGRAMMING  CLASS_DECL_EXPORT
+#else
+#define CLASS_DECL_APP_PROGRAMMING  CLASS_DECL_IMPORT
+#endif
 
-#include "core/programming/dynamic_source/_.h"
 
-#include "core/programming/introjection/_.h"
+#include "dynamic_source/_.h"
+
+#include "introjection/_.h"
 

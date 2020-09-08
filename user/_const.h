@@ -28,6 +28,30 @@ enum e_position
 namespace user
 {
 
+
+   enum e_layout
+   {
+
+      layout_sketch, // layouting request ("staging area")
+      layout_design, // ready to process
+//      layout_bitmap, // drawn/ready sketch
+      layout_output, // screen output 
+      layout_window, // event window
+
+      layout_count_child = layout_design + 1,
+      layout_count_owner = layout_window + 1,
+
+   };
+
+   enum enum_tool
+   {
+
+      e_tool_none,
+      e_tool_color,
+      e_tool_font,
+
+   };
+
    enum enum_state
    {
 

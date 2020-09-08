@@ -12,7 +12,7 @@ namespace linux
 
 
    class x11data;
-   class  interaction_impl :
+   class interaction_impl :
       virtual public ::user::interaction_impl
    {
    public:
@@ -79,18 +79,10 @@ namespace linux
       DECL_GEN_SIGNAL(_001OnMove);
       DECL_GEN_SIGNAL(_001OnSize);
       DECL_GEN_SIGNAL(_001OnShowWindow);
-      //DECL_GEN_SIGNAL(_001OnProdevianSynch);
 
 
-      virtual void _do_show_window() override;
+      virtual void window_show_change_visibility(::edisplay edisplay, ::eactivation eactivation) override;
 
-
-//#if(WINVER >= 0x0500)
-//
-//      bool GetWindowInfo(PWINDOWINFO pwi) const;
-//      bool GetTitleBarInfo(PTITLEBARINFO pti) const;
-//
-//#endif   // WINVER >= 0x0500
 
       virtual ::user::interaction_impl * from_os_data(void * pdata) override;
       virtual void * get_os_data() const override;
@@ -206,9 +198,9 @@ namespace linux
 
 
       // oswindow size and position Functions
-      virtual bool window_is_iconic();
-      //virtual bool window_is_zoomed();
-      //virtual bool window_is_full_screen();
+      virtual bool node_is_iconic() override;
+      //virtual bool layout().is_zoomed();
+      //virtual bool layout().is_full_screen();
       //void MoveWindow(i32 x, i32 y, i32 nWidth, i32 nHeight,
         //              bool bRepaint = TRUE);
       //void MoveWindow(const ::rect & rect, bool bRepaint = TRUE);
@@ -331,22 +323,7 @@ namespace linux
 //
 //#endif   // _WIN32_WINNT >= 0x0501
 
-      // Layered oswindow
-//
-//#if(_WIN32_WINNT >= 0x0500)
-//
-//      virtual bool SetLayeredWindowAttributes(COLORREF crKey, BYTE bAlpha, DWORD dwFlags);
-//      virtual bool UpdateLayeredWindow(::draw2d::graphics * pDCDst, POINT *pptDst, SIZE *psize,
-//                                       ::draw2d::graphics * pDCSrc, POINT *pptSrc, COLORREF crKey, BLENDFUNCTION *pblend, DWORD dwFlags);
-//
-//#endif   // _WIN32_WINNT >= 0x0500
-//
-//#if(_WIN32_WINNT >= 0x0501)
-//
-//      virtual bool GetLayeredWindowAttributes(COLORREF *pcrKey, BYTE *pbAlpha, DWORD *pdwFlags) const;
-//
-//#endif   // _WIN32_WINNT >= 0x0501
-//
+
 
 //      // Timer Functions
 //      virtual bool SetTimer(uptr nIDEvent, UINT nElapse, PFN_TIMER pfnTimer);

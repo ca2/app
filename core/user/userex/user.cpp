@@ -1,4 +1,8 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/userex/_userex.h"
+#include "core/user/account/_account.h"
+#endif
 #include "aura/platform/static_setup.h"
 #include "aura/update.h"
 #include "axis/xml/_.h"
@@ -227,7 +231,7 @@ namespace core
       create_factory <::user::check_box >();
       create_factory <::user::place_holder_container >();
 
-      create_factory <::account::view >();
+      create_factory < ::account::view >();
 
       create_factory < form_document >();
       create_factory < ::userex::split_view::Pane  >();
@@ -492,7 +496,7 @@ namespace core
 
 
 
-   __pointer(::user::document) user::create_form(::object * pobject, ::type type, __pointer(::user::interaction) pwndParent, var var, ::var varArgs)
+   __pointer(::form_document) user::create_form(::object * pobject, ::type type, __pointer(::user::interaction) pwndParent, var var, ::var varArgs)
    {
 
       if (!type)
@@ -556,7 +560,7 @@ namespace core
 
       psystem->do_request(pcreate);
 
-      __pointer(::user::document) pdocument = ::user::__document(pcreate);
+      __pointer(::form_document) pdocument = ::user::__document(pcreate);
 
       if (pdocument.is_null())
       {
@@ -1000,7 +1004,7 @@ namespace core
    }
 
 
-   __pointer(::user::document) user::create_form(::object * pobject, __pointer(::user::form) pview, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, var var, ::var varArgs)
+   __pointer(::form_document) user::create_form(::object * pobject, __pointer(::user::form) pview, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, var var, ::var varArgs)
    {
 
       if (m_ptemplateForm == nullptr)
@@ -1040,7 +1044,7 @@ namespace core
 
       m_ptemplateForm->do_request(pcreate);
 
-      __pointer(::user::document) pdocument = ::user::__document(pcreate);
+      __pointer(::form_document) pdocument = ::user::__document(pcreate);
 
       if (pdocument.is_null())
       {
@@ -1063,7 +1067,7 @@ namespace core
    }
 
 
-   __pointer(::user::document) user::create_form(::object * pobject, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, var var, ::var varArgs)
+   __pointer(::form_document) user::create_form(::object * pobject, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, var var, ::var varArgs)
    {
 
       auto ptemplateForm = m_ptemplateForm;
@@ -1124,7 +1128,7 @@ namespace core
 
       ptemplateForm->do_request(pcreate);
 
-      __pointer(::user::document) pdocument = ::user::__document(pcreate);
+      __pointer(::form_document) pdocument = ::user::__document(pcreate);
 
       if (pdocument.is_null())
       {
@@ -1147,7 +1151,7 @@ namespace core
    }
 
 
-   __pointer(::user::document) user::create_child_form(::object * pobject, __pointer(::user::form) pview, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, var var, ::var varArgs)
+   __pointer(::form_document) user::create_child_form(::object * pobject, __pointer(::user::form) pview, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, var var, ::var varArgs)
    {
 
       if (m_ptemplateChildForm == nullptr)
@@ -1213,7 +1217,7 @@ namespace core
 
       m_ptemplateChildForm->do_request(pcreate);
 
-      __pointer(::user::document) pdocument = ::user::__document(pcreate);
+      __pointer(::form_document) pdocument = ::user::__document(pcreate);
 
       if (pdocument.is_null())
       {
@@ -1236,7 +1240,7 @@ namespace core
    }
 
 
-   __pointer(::user::document) user::create_child_form(::object * pobject, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, var var, ::var varArgs)
+   __pointer(::form_document) user::create_child_form(::object * pobject, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, var var, ::var varArgs)
    {
 
       ::aura::application * papp = ::get_context_application(pobject);
@@ -1288,7 +1292,7 @@ namespace core
 
       m_ptemplateChildForm->do_request(pcreate);
 
-      __pointer(::user::document) pdocument = ::user::__document(pcreate);
+      __pointer(::form_document) pdocument = ::user::__document(pcreate);
 
       if (pdocument.is_null())
       {
@@ -1316,7 +1320,7 @@ namespace core
       return file_extension_dup(strFilePath).contains_ci("htm");
    }
 
-   __pointer(::user::document) user::create_child_form(::object * pobject, ::type type, __pointer(::user::interaction) pwndParent, var var, ::var varArgs)
+   __pointer(::form_document) user::create_child_form(::object * pobject, ::type type, __pointer(::user::interaction) pwndParent, var var, ::var varArgs)
    {
 
       if (!type)
@@ -1393,7 +1397,7 @@ namespace core
 
       psystem->do_request(pcreate);
 
-      __pointer(::user::document) pdocument = ::user::__document(pcreate);
+      __pointer(::form_document) pdocument = ::user::__document(pcreate);
 
       if (pdocument.is_null())
       {
@@ -1420,7 +1424,7 @@ namespace core
 
       m_ptemplatePlaceHolder->do_request(pcreate);
 
-      __pointer(::user::document) pdocument = ::user::__document(pcreate);
+      __pointer(::form_document) pdocument = ::user::__document(pcreate);
 
       __pointer(::user::place_holder) pholder = pdocument->get_typed_view < ::user::place_holder  >();
 

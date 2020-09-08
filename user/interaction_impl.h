@@ -94,6 +94,8 @@ namespace user
       ::size                              m_sizeDrawn;
       reference_addressa                  m_ptraRedraw;
 
+      ::rect                              m_rectUpdateBuffer;
+
       bool                                m_bPointInside;
       ::point                             m_pointInside;
       ::user::primitive *                 m_pprimitiveFocus;
@@ -136,7 +138,7 @@ namespace user
       virtual double get_config_fps() override;
       virtual double get_output_fps() override;
 
-      virtual void SetWindowDisplayChanged() override;
+      //virtual void SetWindowDisplayChanged() override;
 
       void user_common_construct();
 
@@ -317,8 +319,8 @@ namespace user
 
 
       // Window size and position Functions
-      //virtual bool window_is_iconic() override;
-      //virtual bool window_is_zoomed() override;
+      virtual bool node_is_iconic();
+      virtual bool node_is_zoomed();
       //virtual i32 SetWindowRgn(HRGN hRgn,bool bRedraw);
       //virtual i32 GetWindowRgn(HRGN hRgn);
 
@@ -621,13 +623,13 @@ namespace user
 
 
       virtual bool start_window_visual() override;
-      virtual void prodevian_update_visual(bool & bUpdateBuffer, bool & bUpdateWindow) override;
+      //virtual void sketch_to_design(::draw2d::graphics_pointer& pgraphics, bool & bUpdateBuffer, bool & bUpdateWindow) override;
       virtual void _001UpdateBuffer();
       virtual void _001UpdateScreen();
       //virtual void window_apply_visual(const window_state & windowstate) override;
 
 
-      virtual void window_thread_apply_visual();
+      virtual void window_show();
 
 
       //virtual void update_graphics_resources();
@@ -656,9 +658,9 @@ namespace user
 
       virtual void on_after_graphical_update() override;
 
-      virtual bool is_this_visible() override;
+      virtual bool is_this_visible(e_layout elayout) override;
 
-      virtual void _do_show_window() override;
+      virtual void window_show_change_visibility(::edisplay edisplay, ::eactivation eactivation) override;
 
 
       virtual bool ShowWindow(int iShow);
@@ -667,13 +669,13 @@ namespace user
 //virtual void clear_need_layout() override;
       virtual void set_need_layout() override;
 
-      virtual bool window_move(i32 x, i32 y) override;
+      //virtual bool window_move(i32 x, i32 y) override;
 
       //virtual bool check_show_flags() override;
 
       virtual void on_visual_applied();
 
-      virtual void set_need_redraw(bool bAscendants = true) override;
+      //virtual void set_need_redraw(bool bAscendants = true) override;
       virtual void post_redraw(bool bAscendants = true) override;
 
 

@@ -62,11 +62,20 @@ namespace draw2d_quartz2d
       if(d2 <= 0)
          return true;
       
-      CGAffineTransform t = CGAffineTransformMakeScale(1.0, d2 / d1);
-      
       CGFloat x = (rect.right + rect.left) / 2.0;
-      
+   
       CGFloat y = (rect.bottom + rect.top) / 2.0;
+   
+      if(d1 == d2)
+      {
+         
+         CGPathAddArc(m_path, nullptr, x, y, d1/2.0, dBeg, dEnd, bClockwise ? 1 : 0);
+
+      }
+      else
+      {
+      
+         CGAffineTransform t = CGAffineTransformMakeScale(1.0, d2 / d1);
       
 //      CGFloat x1 = x + d1 * cos(dBeg);
 //      
@@ -79,7 +88,9 @@ namespace draw2d_quartz2d
 //
 //      }
       
-      CGPathAddArc(m_path, &t, x, y, d1/2.0, dBeg, dEnd, bClockwise ? 1 : 0);
+         CGPathAddArc(m_path, &t, x, y, d1/2.0, dBeg, dEnd, bClockwise ? 1 : 0);
+         
+      }
       
       return true;
       
@@ -263,7 +274,7 @@ namespace draw2d_quartz2d
       rect.top = parc->m_pointCenter.y - parc->m_sizeRadius.cy;
       rect.bottom = parc->m_pointCenter.y + parc->m_sizeRadius.cy;
       
-      return internal_add_arc(rect, parc->m_angleBeg, parc->m_angleEnd, parc->m_angleEnd < parc->m_angleBeg);
+      return internal_add_arc(rect, parc->m_angleBeg.radian(), parc->m_angleEnd.radian(), parc->m_angleEnd < parc->m_angleBeg);
       
    }
    

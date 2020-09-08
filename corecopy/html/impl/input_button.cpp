@@ -87,7 +87,7 @@ namespace html
 
          m_pbutton->resize_to_fit(pdata->m_pcoredata->m_pgraphics);
 
-         auto size = m_pbutton->request_state().m_size;
+         auto size = m_pbutton->layout().sketch().m_size;
 
          m_box.set_size(size);
 

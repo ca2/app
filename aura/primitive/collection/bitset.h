@@ -116,13 +116,15 @@ public:
 
 	context_object operator[](size_t _Pos)
 		{	// subscript mutable sequence
- #if _ITERATOR_DEBUG_LEVEL == 2
+ //#if _ITERATOR_DEBUG_LEVEL == 2
+	//	if (_Bits <= _Pos)
+		//	DEBUG_ERROR("bitset index outside range");
 		if (_Bits <= _Pos)
-			DEBUG_ERROR("bitset index outside range");
+			__throw(::exception::exception("bitset index outside range"));
 
- #elif _ITERATOR_DEBUG_LEVEL == 1
-		_SCL_SECURE_VALIDATE_RANGE(_Pos < _Bits);
- #endif /* _ITERATOR_DEBUG_LEVEL == 2 */
+ //#elif _ITERATOR_DEBUG_LEVEL == 1
+//		_SCL_SECURE_VALIDATE_RANGE(_Pos < _Bits);
+// #endif /* _ITERATOR_DEBUG_LEVEL == 2 */
 
 		return (context_object(*this, _Pos));
 		}

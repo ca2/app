@@ -187,8 +187,8 @@ namespace uwp
 
 
       // Window size and position Functions
-      //virtual bool window_is_iconic();
-      //virtual bool window_is_zoomed();
+      //virtual bool layout().is_iconic();
+      //virtual bool layout().is_zoomed();
       //void MoveWindow(int x, int y, int nWidth, int nHeight, bool bRepaint = TRUE);
       //void MoveWindow(LPCRECT lpRect, bool bRepaint = TRUE);
       //int SetWindowRgn(HRGN hRgn, bool bRedraw);
@@ -266,19 +266,6 @@ namespace uwp
 
       // Layered Window
 
-#if(_WIN32_WINNT >= 0x0500)
-
-      virtual bool SetLayeredWindowAttributes(COLORREF crKey, BYTE bAlpha, u32 dwFlags);
-      virtual bool UpdateLayeredWindow(::draw2d::graphics * pDCDst, POINT *pptDst, SIZE *psize,
-                                       ::draw2d::graphics * pDCSrc, POINT *pptSrc, COLORREF crKey, BLENDFUNCTION *pblend, u32 dwFlags);
-
-#endif   // _WIN32_WINNT >= 0x0500
-
-#if(_WIN32_WINNT >= 0x0501)
-
-      virtual bool GetLayeredWindowAttributes(COLORREF *pcrKey, BYTE *pbAlpha, u32 *pdwFlags) const;
-
-#endif   // _WIN32_WINNT >= 0x0501
 
 
       // Timer Functions

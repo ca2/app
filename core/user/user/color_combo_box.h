@@ -10,11 +10,12 @@ namespace user
    {
    public:
 
-      ::user::document *         m_pdocument;
-      ::userex::color_view *     m_pview;
-      ::simple_frame_window *    m_pframe;
-      ::hls                      m_hls;
-      bool                       m_bMouseDown;
+
+      ::user::document *            m_pdocument;
+      ::userex::color_view *        m_pview;
+      ::experience::frame_window *  m_pframewindow;
+      ::hls                         m_hls;
+      bool                          m_bMouseDown;
 
 
       color_combo_box();

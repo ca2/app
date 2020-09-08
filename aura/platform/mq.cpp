@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 #include "aura/os/_c.h"
 #include "aura/os/_.h"
 #include "aura/os/_os.h"
@@ -18,7 +21,7 @@ mq::mq()
 {
 
    m_bQuit = false;
-   
+
    m_bKickIdle = false;
 
    defer_create_mutex();
@@ -34,12 +37,12 @@ mq::~mq()
 
 int_bool mq::post_message(oswindow oswindow, UINT uMessage, WPARAM wParam, LPARAM lParam)
 {
-   
+
    if(m_bQuit)
    {
-      
+
       return FALSE;
-      
+
    }
 
    MESSAGE message;
@@ -58,12 +61,12 @@ int_bool mq::post_message(oswindow oswindow, UINT uMessage, WPARAM wParam, LPARA
 
 int_bool mq::post_message(const MESSAGE & message)
 {
-   
+
    if(m_bQuit)
    {
-      
+
       return FALSE;
-      
+
    }
 
    sync_lock ml(mutex());
@@ -103,7 +106,7 @@ int_bool mq::get_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, 
             m_bQuit = true;
 
             m_messagea.remove_at(i);
-            
+
             continue;
 
          }
@@ -118,16 +121,16 @@ int_bool mq::get_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, 
             return TRUE;
 
          }
-         
+
          i++;
 
       }
-      
+
       if(m_bQuit)
       {
-         
+
          return FALSE;
-         
+
       }
 
       if (m_bKickIdle)
@@ -154,7 +157,7 @@ int_bool mq::get_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, 
          m_eventNewMessage.wait();
 
          sl.lock();
-         
+
          m_eventNewMessage.ResetEvent();
 
       }
@@ -192,7 +195,7 @@ int_bool mq::peek_message(LPMESSAGE pMsg,oswindow oswindow,UINT wMsgFilterMin,UI
          {
 
             m_messagea.remove_at(i);
-            
+
          }
 
          return TRUE;

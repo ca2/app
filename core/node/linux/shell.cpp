@@ -1,6 +1,6 @@
 #include "framework.h"
 //#include "aura/node/ansios/ansios.h"
-#include "_linux.h"
+#include "aura/node/linux/_linux.h"
 
 /***
 *i32 _validdrive( unsigned drive ) -

@@ -319,7 +319,7 @@ bool simple_frame_window::WindowDataSaveWindowRect()
 bool simple_frame_window::_001OnBeforeAppearance()
 {
 
-   edisplay edisplay = display_request();
+   edisplay edisplay = layout().sketch().display();
 
    if (edisplay == ::display_up || edisplay == ::display_down)
    {
@@ -455,10 +455,10 @@ void simple_frame_window::dump(dump_context & dumpcontext) const
 
 
 
-//bool simple_frame_window::window_is_full_screen()
+//bool simple_frame_window::layout().is_full_screen()
 //{
 //
-//   return window_is_full_screen();
+//   return layout().is_full_screen();
 //
 //}
 //
@@ -945,7 +945,7 @@ void simple_frame_window::_001OnDisplayChange(::message::message * pmessage)
    if (is_host_top_level())
    {
 
-      ::edisplay edisplay = display_request();
+      ::edisplay edisplay = layout().sketch().display();
 
       display(edisplay, activation_display_change);
 
@@ -1132,7 +1132,7 @@ void simple_frame_window::_001OnGetMinMaxInfo(::message::message * pmessage)
    SCAST_PTR(::message::base, pbase, pmessage);
    MINMAXINFO FAR * pMMI = (MINMAXINFO FAR*) pbase->m_lparam.m_lparam;
 
-   if (window_is_full_screen())
+   if (layout().is_full_screen())
    {
       pMMI->ptMaxSize.y = m_FullScreenWindowRect.height();
 
@@ -1296,7 +1296,7 @@ void simple_frame_window::_001OnUpdateViewFullScreen(::message::message * pmessa
 {
    SCAST_PTR(::user::command, pcommand, pmessage);
    pcommand->Enable();
-   pcommand->_001SetCheck(window_is_full_screen());
+   pcommand->_001SetCheck(layout().is_full_screen());
    pcommand->m_bRet = true;
 }
 
@@ -1304,7 +1304,7 @@ void simple_frame_window::_001OnUpdateViewFullScreen(::message::message * pmessa
 void simple_frame_window::ToggleFullScreen()
 {
 
-   if (window_is_full_screen())
+   if (layout().is_full_screen())
    {
 
       display(display_normal);
@@ -1705,7 +1705,7 @@ void simple_frame_window::_001OnActivateApp(::message::message * pmessage)
       //if (bActive)
       //{
 
-      //   if (window_is_iconic())
+      //   if (layout().is_iconic())
       //   {
 
       //      display(display_normal);
@@ -1726,7 +1726,7 @@ void simple_frame_window::_001OnActivateApp(::message::message * pmessage)
 void simple_frame_window::_000OnMouseLeave(::message::message * pmessage)
 {
 
-   if (!window_is_moving() && !window_is_sizing() && !window_is_docking())
+   if (!layout().is_moving() && !layout().is_sizing() && !window_is_docking())
    {
 
       ::experience::frame_window::_000OnMouseLeave(pmessage);
@@ -1765,7 +1765,7 @@ void simple_frame_window::_001OnActivate(::message::message * pmessage)
             if (iActive == WA_CLICKACTIVE)
             {
 
-               //   if (bMinimized || window_is_iconic())
+               //   if (bMinimized || layout().is_iconic())
                //   {
 
                //      display(display_normal);
@@ -1807,7 +1807,7 @@ void simple_frame_window::_001OnActivate(::message::message * pmessage)
       //   if (pactivate->m_lparam == 0)
       //   {
 
-      //      if (!window_is_iconic())
+      //      if (!layout().is_iconic())
       //      {
 
       //         display(display_iconic | display_no_activate);
@@ -1823,7 +1823,7 @@ void simple_frame_window::_001OnActivate(::message::message * pmessage)
 
       //
 
-//         if (!bMinimized && !window_is_iconic())
+//         if (!bMinimized && !layout().is_iconic())
 //         {
 //
 ////            display(display_iconic);
@@ -1913,10 +1913,10 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, 
 
          WindowDataLoadWindowRect(bForceRestore, bInitialFramePosition);
 
-         rectFrame = request_state().rect();
+         rectFrame = layout().sketch().rect();
 
          INFO("simple_frame_window::LoadFrame rectFrame (l=%d, t=%d) (w=%d, h=%d)", rectFrame.left, rectFrame.top, rectFrame.width(), rectFrame.height());
-         INFO("simple_frame_window::LoadFrame edisplay=%s", __cstr(request_state().m_edisplay3.eflag()));
+         INFO("simple_frame_window::LoadFrame edisplay=%s", __cstr(layout().sketch().m_edisplay3.eflag()));
 
          if (wfi_is_up_down())
          {
@@ -1970,12 +1970,12 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, 
 
       }
 
-      rectFrame = request_state().rect();
+      rectFrame = layout().sketch().rect();
 
       createstruct.set_rect(rectFrame);
 
       INFO("(2) simple_frame_window::LoadFrame rectFrame (l=%d, t=%d) (w=%d, h=%d)", rectFrame.left, rectFrame.top, rectFrame.width(), rectFrame.height());
-      INFO("(2) simple_frame_window::LoadFrame edisplay=%s", __cstr(request_state().m_edisplay3.eflag()));
+      INFO("(2) simple_frame_window::LoadFrame edisplay=%s", __cstr(layout().sketch().m_edisplay3.eflag()));
 
       if (pcreate->m_bMakeVisible)
       {
@@ -2082,12 +2082,12 @@ void simple_frame_window::on_frame_position()
 
    display(display_default, activation_set_active);
 
-   order_top();
+   layout().order_top();
 
    if (is_frame_experience_enabled())
    {
 
-      if (display_state() == ::display_iconic)
+      if (layout().design().display() == ::display_iconic)
       {
 
          display(display_normal);
@@ -2578,7 +2578,7 @@ void simple_frame_window::on_after_set_parent()
 bool simple_frame_window::get_client_rect(RECT * prect)
 {
 
-   if (m_bWindowFrame && m_pframe != nullptr && !window_is_full_screen() && !frame_is_transparent())
+   if (m_bWindowFrame && m_pframe != nullptr && !layout().is_full_screen() && !frame_is_transparent())
    {
 
       return m_pframe->get_window_client_rect(prect);
@@ -3663,7 +3663,7 @@ void simple_frame_window::draw_frame(::draw2d::graphics_pointer & pgraphics)
 //      __pointer(::user::interaction) pwndParentFrame = GetParentFrame();
 //      if (pwndParentFrame == nullptr)
 //      {
-//         if (!window_is_full_screen())
+//         if (!layout().is_full_screen())
 //         {
 //            display(display_full_screen);
 //            return true;
@@ -3676,7 +3676,7 @@ void simple_frame_window::draw_frame(::draw2d::graphics_pointer & pgraphics)
 //      simple_frame_window * pframe = dynamic_cast <simple_frame_window *> (pwndParentFrame.m_p);
 //      if (pframe == nullptr)
 //      {
-//         if (!window_is_full_screen())
+//         if (!layout().is_full_screen())
 //         {
 //            display(display_full_screen);
 //            return true;
@@ -3690,7 +3690,7 @@ void simple_frame_window::draw_frame(::draw2d::graphics_pointer & pgraphics)
 //      if (pframe->DeferFullScreen(bFullScreen, bRestore))
 //         return true;
 //
-//      if (!window_is_full_screen())
+//      if (!layout().is_full_screen())
 //      {
 //         display(display_full_screen);
 //         return true;
@@ -3702,7 +3702,7 @@ void simple_frame_window::draw_frame(::draw2d::graphics_pointer & pgraphics)
 //   }
 //   else
 //   {
-//      if (window_is_full_screen())
+//      if (layout().is_full_screen())
 //      {
 //         display(display_normal);
 //         return true;
@@ -4013,7 +4013,7 @@ void simple_frame_window::OnUpdateToolWindow(bool bVisible)
 #else
 
    m_pimpl->show_task(bVisible && m_bShowTask
-                      && !window_is_iconic());
+                      && !layout().is_iconic());
 
 #endif
 

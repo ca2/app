@@ -146,8 +146,8 @@ namespace ios
       virtual void defer_update_text_view();
 
       // oswindow size and position Functions
-      //virtual bool window_is_iconic() override;
-      //virtual bool window_is_zoomed() override;
+      //virtual bool layout().is_iconic() override;
+      //virtual bool layout().is_zoomed() override;
 //      void MoveWindow(i32 x, i32 y, i32 nWidth, i32 nHeight,
 //                      bool bRepaint = TRUE);
 //      void MoveWindow(const ::rect & rect, bool bRepaint = TRUE);

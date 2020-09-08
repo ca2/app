@@ -75,9 +75,9 @@ namespace user
       virtual bool create_window_ex(::user::interaction * pinteraction, ::user::create_struct & cs, ::user::interaction * puiParent, id id) override;
 
 
-      virtual bool is_this_visible() override;
+      virtual bool is_this_visible(e_layout elayout) override;
 
-      virtual void _do_show_window() override;
+      virtual void window_show_change_visibility(::edisplay edisplay, ::eactivation eactivation) override;
 
       virtual bool _is_window() const override;
 

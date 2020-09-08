@@ -124,5 +124,11 @@ namespace degree
 
 
 
+inline byte __byte_rate(double dRate, double dMin, double dMax)
+{
+
+   return (byte)(dRate * (dMax - dMin) + dMin);
+
+}
 
 

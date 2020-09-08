@@ -11,15 +11,18 @@ namespace axis
    public:
 
 
-      __composite(class ::account::user_set)             m_puserset;
+      __composite(class ::account::user_set)            m_puserset;
 
-      __composite(class ::xml::department)               m_pxml;
-
-
-      __composite(class ::geo::department)               m_pgeo;
+      __composite(class ::xml::department)              m_pxml;
 
 
-      __composite(::net::email_department)               m_pemaildepartment;
+      __composite(class ::geo::department)              m_pgeo;
+
+
+      __composite(::net::email_department)              m_pemaildepartment;
+
+
+      __composite(::html::html)                         m_phtml;
 
 
       system();
@@ -100,7 +103,9 @@ namespace axis
 
       virtual void process_term() override;
 
+      virtual ::estatus create_html();
 
+      virtual ::estatus defer_create_html();
 
 
       void assert_valid() const override;

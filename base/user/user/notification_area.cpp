@@ -3,11 +3,13 @@ Copyright(C) Nishant Sivakumar.
 URLs - http://blog.voidnish.com and http://www.voidnish.com
 Contact : nish@voidnish.com
 */
-
 // ShellTrayInfoView.cpp : implementation of the notification_area class
 //
-
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
+
 
 namespace user
 {

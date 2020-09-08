@@ -1,6 +1,8 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/experience/_experience.h"
+#endif
 #include "aura/const/timer.h"
-#include "control_box.h"
 
 
 namespace experience
@@ -18,6 +20,8 @@ namespace experience
       m_penButtonBackFocus(e_create),
       m_penButtonBackDisabled(e_create)
    {
+
+      m_strInteractionTag = "control_box";
 
       set_control_box_button_id(button_close, "frame::ButtonClose");
       set_control_box_button_id(button_up, "frame::button_up");
@@ -199,7 +203,7 @@ namespace experience
       if (ptimer->m_nIDEvent == timer_check_hover)
       {
 
-         if (GetTopLevel()->window_is_moving())
+         if (GetTopLevel()->layout().is_moving())
          {
 
             //TRACE("experience control_box : top level is moving : ignoring WM_TIMER");
@@ -207,7 +211,7 @@ namespace experience
             return;
 
          }
-         else if (GetTopLevel()->window_is_sizing())
+         else if (GetTopLevel()->layout().is_sizing())
          {
 
             //TRACE("experience control_box : top level is sizing : ignoring WM_TIMER");
@@ -235,7 +239,7 @@ namespace experience
                if (m_pframewindow != nullptr)
                {
 
-                  if (m_pframewindow->window_is_full_screen())
+                  if (m_pframewindow->layout().is_full_screen())
                   {
 
                      ::rect rectWindow;
@@ -274,7 +278,7 @@ namespace experience
                if (m_pframewindow != nullptr)
                {
 
-                  if (m_pframewindow->window_is_full_screen())
+                  if (m_pframewindow->layout().is_full_screen())
                   {
 
                      ::rect rectWindow;
@@ -305,7 +309,7 @@ namespace experience
          else
          {
 
-            if (m_pframewindow->window_is_full_screen())
+            if (m_pframewindow->layout().is_full_screen())
             {
 
                ::rect rectWindow;
@@ -378,7 +382,7 @@ namespace experience
 
    }
 
-   
+
    bool control_box::should_show_button(e_button ebutton)
    {
 
@@ -388,7 +392,7 @@ namespace experience
          return false;
 
       }
-         
+
       if (ebutton == button_close)
       {
 
@@ -417,7 +421,7 @@ namespace experience
 
          }
 
-         return !m_pframewindow->window_is_zoomed();
+         return !m_pframewindow->layout().is_zoomed();
 
       }
       else if (ebutton == button_restore)
@@ -432,7 +436,7 @@ namespace experience
 
          return true;
 
-         //auto edisplay = m_pframewindow->display_request();
+         //auto edisplay = m_pframewindow->layout().sketch().display();
 
          //return is_iconic(edisplay)
             // || is_full_screen(edisplay)
@@ -548,7 +552,7 @@ namespace experience
    void control_box::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto edisplay = m_pframewindow->display_request();
+      auto edisplay = m_pframewindow->layout().sketch().display();
 
       ::rect rectWindow;
 
@@ -629,7 +633,7 @@ namespace experience
 //
 //               if (pbutton)
 //               {
-//               
+//
 //                  pbutton->place(rect);
 //                  pbutton->display();
 //                  pbutton->UpdateWndRgn();
@@ -976,10 +980,14 @@ namespace experience
 
          if (!pbutton->is_window() && !pbutton->create_window(this, id))
          {
-            
+
             return false;
-            
+
          }
+
+         string strTag = get_control_box_button_tag(ebutton);
+
+         pbutton->m_strInteractionTag = strTag;
 
          update_control_box_button(ebutton);
 
@@ -998,14 +1006,14 @@ namespace experience
 
    void control_box::update_control_box_buttons()
    {
-      
+
       for (auto & ebutton : m_buttonmap.keys())
       {
-         
+
          update_control_box_button(ebutton);
-         
+
       }
-      
+
    }
 
 
@@ -1079,25 +1087,57 @@ namespace experience
 
    void control_box::set_control_box_button_id(e_button ebutton, id id)
    {
-      
+
       m_mapButtonId[ebutton] = id;
-      
+
       m_mapIdButton[id] = ebutton;
 
    }
 
-   
+
    id control_box::get_control_box_button_id(e_button ebutton)
    {
-      
+
       return m_mapButtonId[ebutton];
 
    }
 
-   
+
+   string control_box::get_control_box_button_tag(e_button ebutton)
+   {
+
+      switch(ebutton)
+      {
+         case button_close: // stock_icon_close
+            return "button_close";
+         case button_up: // stock_icon_level_up
+            return "button_up";
+         case button_down: // stock_icon_level_down
+            return "button_down";
+         case button_minimize: // stock_icon_iconify
+            return "button_minimize";
+         case button_restore: // stock_icon_restore
+            return "button_restore";
+         case button_maximize: // stock_icon_maximize
+            return "button_maximize";
+         case button_notify_icon: // stock_icon_notify
+            return "button_notify_icon";
+         case button_transparent_frame: // stock_icon_transparent_frame
+            return "button_transparent_frame";
+         case button_dock: // stock_icon_dock
+            return "button_dock";
+         default:
+            break;
+      }
+
+      return "(unknown)";
+
+   }
+
+
    e_button control_box::get_control_box_button_type(id id)
    {
-      
+
       return m_mapIdButton[id];
 
    }

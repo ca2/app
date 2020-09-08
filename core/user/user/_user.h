@@ -4,10 +4,6 @@
 #include "base/user/user/_user.h"
 
 
-#include "core/filesystem/filemanager/component.h"
-
-
-
 #define SWP_CHANGEVIEWPORTOFFSET  0x100000
 
 
@@ -24,7 +20,7 @@ namespace message
 
 namespace user
 {
-   
+
    class form;
    class tooltip;
 
@@ -89,7 +85,17 @@ namespace user
 #endif
 
 
-}
+   namespace rich_text
+   {
+
+      
+      class format;
+
+
+   } // namespace rich_text
+
+
+} // namespace user
 
 
 namespace experience
@@ -369,7 +375,7 @@ namespace user
 } // namespace user
 
 
-#include "core/user/rich_text/edit.h"
+//#include "core/user/rich_text/edit.h"
 
 
 #include "list_column.h"
@@ -420,83 +426,7 @@ class CDockBar;             // forward context_object (see afxpriv.h)
 class mini_dock_frame_window;    // forward context_object (see afxpriv.h)
 class CDockState;           // forward context_object (see afxpriv.h)
 
-#include "core/user/simple_ui/_.h"
 
-//#include "core/user/experience/_.h"
-
-
-
-/*
-
-
-/////////////////////////////////////////////////////////////////////////////
-// CMiniFrameWnd
-
-// MiniFrame window styles
-#define MFS_SYNCACTIVE      0x00000100L // syncronize activation w/ parent
-#define MFS_4THICKFRAME     0x00000200L // thick frame all around (no tiles)
-#define MFS_THICKFRAME      0x00000400L // use instead of WS_THICKFRAME
-#define MFS_MOVEFRAME       0x00000800L // no sizing, just moving
-#define MFS_BLOCKSYSMENU    0x00001000L // block hit testing on system menu
-
-#pragma warning( disable: 4263 )
-#pragma warning( disable: 4264 )
-class CLASS_DECL_CORE CMiniFrameWnd : public frame_window
-{
-public:
-
-
-   CMiniFrameWnd();
-   ~CMiniFrameWnd();
-
-
-   virtual bool create(const char * pClassName, const char * lpWindowName,
-
-      u32 dwStyle, const ::rect & rect,
-      ::user::interaction_child* pParentWnd = nullptr, UINT nID = 0);
-   virtual bool create_window_ex(u32 dwExStyle, const char * pClassName, const char * lpWindowName,
-
-      u32 dwStyle, const ::rect & rect,
-      ::user::interaction_child* pParentWnd = nullptr, UINT nID = 0);
-
-
-   bool OnNcActivate(bool bActive);
-   LRESULT OnNcHitTest(const ::point & point);
-   void OnSysCommand(UINT nID, LPARAM lParam);
-   void OnGetMinMaxInfo(MINMAXINFO* pMMI);
-   LRESULT OnFloatStatus(WPARAM wParam, LPARAM lParam);
-   LRESULT OnQueryCenterWnd(WPARAM wParam, LPARAM lParam);
-   bool OnNcCreate(::user::create_struct * pcs);
-
-
-public:
-   static void CalcBorders(RECT * pClientRect, u32 dwStyle = 0, u32 dwExStyle = 0);
-
-
-protected:
-   virtual bool pre_create_window(::user::create_struct& cs);
-
-protected:
-   bool m_bSysTracking;
-   bool m_bInSys;
-   bool m_bActive;
-   string m_strCaption;
-};
-#pragma warning( default: 4263 )
-#pragma warning( default: 4264 )
-
-
-typedef u32 DROPEFFECT;
-class COleDataObject;   // forward context_object (see afxole.h)
-
-*/
-
-
-
-
-
-//
-//#include "network_configuration.h"
 
 
 
@@ -520,51 +450,21 @@ namespace user
 
 } // namespace user
 
-#include "core/user/account/view.h"
-
-
 
 #include "toolbar_control.h"
 
-//#include "toolbar.h"
 #include "statusbar.h"
-
 
 #include "form_mesh.h"
 #include "form_list.h"
 #include "form_list_view.h"
 
 
-
-
-
-
 #include "step_slider.h"
 #include "elastic_slider.h"
 
 
-
-
-
-
 #include "image_manager.h"
-
-//#include "aura.h"
-
-
-
-
-
-
-
-
-
-
-
-
-//#include "aura/filesystem/filemanager/filemanager.h"
-
-
 
 
 #include "core/user/netuser/_.h"
@@ -583,8 +483,18 @@ namespace user
 #include "tooltip.h"
 
 
+#include "shell.h"
+
+
+#include "core/filesystem/filemanager/component.h"
+
+
 
 #include "core/user/userex/user.h"
+
+
+#undef Usr
+#define Usr(pobject) (*Sess(pobject).user()->m_pcoreuser)
 
 
 

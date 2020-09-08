@@ -659,7 +659,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <Lib>
       <ForceSymbolReferences>
       </ForceSymbolReferences>
-      <LinkTimeCodeGeneration>false</LinkTimeCodeGeneration>
     </Lib>
     <ProjectReference>
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
@@ -1087,9 +1086,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ProjectReference>
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
     </ProjectReference>
-    <Lib>
-      <LinkTimeCodeGeneration>false</LinkTimeCodeGeneration>
-    </Lib>
+    <Lib />
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="compress\compress_context.cpp" />
@@ -1529,7 +1526,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="platform\obj_typ_ctr.cpp" />
     <ClCompile Include="platform\os_context.cpp" />
     <ClCompile Include="platform\os_history.cpp" />
-    <ClCompile Include="platform\printf.cpp" />
     <ClCompile Include="platform\profiler.cpp" />
     <ClCompile Include="platform\progress.cpp" />
     <ClCompile Include="platform\regex.cpp" />
@@ -1538,7 +1534,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="platform\shell_launcher.cpp" />
     <ClCompile Include="platform\simple_log.cpp" />
     <ClCompile Include="platform\simple_trace.cpp" />
-    <ClCompile Include="platform\sprintf.cpp" />
     <ClCompile Include="platform\static_setup.cpp" />
     <ClCompile Include="platform\static_start.cpp" />
     <ClCompile Include="platform\str_context.cpp" />
@@ -1572,6 +1567,164 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="process\process_department.cpp" />
     <ClCompile Include="process\process_pipe.cpp" />
     <ClCompile Include="process\process_process.cpp" />
+    <ClCompile Include="user\box.cpp" />
+    <ClCompile Include="user\callback.cpp" />
+    <ClCompile Include="user\check.cpp" />
+    <ClCompile Include="user\command.cpp" />
+    <ClCompile Include="user\composition_imm_client.cpp" />
+    <ClCompile Include="user\controller.cpp" />
+    <ClCompile Include="user\control_descriptor.cpp" />
+    <ClCompile Include="user\control_event.cpp" />
+    <ClCompile Include="user\copydesk.cpp" />
+    <ClCompile Include="user\create.cpp" />
+    <ClCompile Include="user\create_struct.cpp" />
+    <ClCompile Include="user\form.cpp" />
+    <ClCompile Include="user\form_callback.cpp" />
+    <ClCompile Include="user\frame.cpp" />
+    <ClCompile Include="user\imm_client.cpp" />
+    <ClCompile Include="user\interaction.cpp" />
+    <ClCompile Include="user\interaction_child.cpp" />
+    <ClCompile Include="user\interaction_debug.cpp" />
+    <ClCompile Include="user\interaction_impl.cpp" />
+    <ClCompile Include="user\interaction_prodevian.cpp" />
+    <ClCompile Include="user\interaction_thread.cpp" />
+    <ClCompile Include="user\item.cpp" />
+    <ClCompile Include="user\key.cpp" />
+    <ClCompile Include="user\keyboard.cpp" />
+    <ClCompile Include="user\language.cpp" />
+    <ClCompile Include="user\language_map.cpp" />
+    <ClCompile Include="user\interaction_layout.cpp" />
+    <ClCompile Include="user\main_window.cpp" />
+    <ClCompile Include="user\message_queue.cpp" />
+    <ClCompile Include="user\mouse.cpp" />
+    <ClCompile Include="user\os_colors.cpp" />
+    <ClCompile Include="user\plain_edit.cpp" />
+    <ClCompile Include="user\plain_text_data.cpp" />
+    <ClCompile Include="user\primitive.cpp" />
+    <ClCompile Include="user\primitive_impl.cpp" />
+    <ClCompile Include="user\progress.cpp" />
+    <ClCompile Include="user\range.cpp" />
+    <ClCompile Include="user\scroll.cpp" />
+    <ClCompile Include="user\scroll_bar.cpp" />
+    <ClCompile Include="user\style.cpp" />
+    <ClCompile Include="user\style_base.cpp" />
+    <ClCompile Include="user\text.cpp" />
+    <ClCompile Include="user\tool_window.cpp" />
+    <ClCompile Include="user\user.cpp" />
+    <ClCompile Include="user\wait_cursor.cpp" />
+    <ClCompile Include="user\windowing.cpp" />
+    <ClCompile Include="user\windows_tsf\context_owner_composition_sink.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\windows_tsf\dataobj.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\windows_tsf\edit_window.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\windows_tsf\function_provider.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\windows_tsf\persist.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\windows_tsf\propldr.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\windows_tsf\test.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\windows_tsf\text_store_acp.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\windows_tsf\ui_element_sink.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\window_map.cpp" />
+    <ClCompile Include="user\window_state.cpp" />
+    <ClCompile Include="user\window_util.cpp" />
+    <ClCompile Include="user\_.cpp" />
     <ClCompile Include="_.cpp" />
     <ClCompile Include="__matter_ca2.cpp" />
     <ClInclude Include="astr.h" />
@@ -1608,6 +1761,8 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="gpu\gpu\program.h" />
     <ClInclude Include="gpu\gpu\shader.h" />
     <ClInclude Include="gpu\gpu\_.h" />
+    <ClInclude Include="graphics\asset\close_button.h" />
+    <ClInclude Include="graphics\asset\close_icon.h" />
     <ClInclude Include="id.h" />
     <ClInclude Include="inline\application\linux.h" />
     <ClInclude Include="inline\application\macos.h" />
@@ -1685,12 +1840,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="node\opengl\opengl.h" />
     <ClInclude Include="node\opengl\program.h" />
     <ClInclude Include="node\opengl\shader.h" />
-    <ClInclude Include="node\opengl\_.h" />
     <ClInclude Include="node\windows\a.h" />
-    <ClInclude Include="node\windows\aaa_want_to_remove_handle.h" />
-    <ClInclude Include="node\windows\aaa_want_to_remove_printer.h" />
-    <ClInclude Include="node\windows\aaa_want_to_remove_RoundWindowApp.h" />
-    <ClInclude Include="node\windows\aaa_want_to_remove_simple_hold_handle.h" />
     <ClInclude Include="node\windows\buffer.h" />
     <ClInclude Include="node\windows\command.h" />
     <ClInclude Include="node\windows\console.h" />
@@ -1850,7 +2000,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="platform\obj_typ_ctr.h" />
     <ClInclude Include="platform\os_context.h" />
     <ClInclude Include="platform\os_history.h" />
-    <ClInclude Include="platform\printf.h" />
     <ClInclude Include="platform\process_data.h" />
     <ClInclude Include="platform\profiler2.h" />
     <ClInclude Include="platform\progress.h" />
@@ -1864,12 +2013,9 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="platform\shell_launcher.h" />
     <ClInclude Include="platform\simple_app.h" />
     <ClInclude Include="platform\simple_log.h" />
-    <ClInclude Include="platform\sprintf.h" />
     <ClInclude Include="platform\static_setup.h" />
     <ClInclude Include="platform\static_start.h" />
     <ClInclude Include="platform\status.h" />
-    <ClInclude Include="platform\aaa_want_to_remove_strn.h" />
-    <ClInclude Include="platform\aaa_want_to_remove_struct.h" />
     <ClInclude Include="platform\str_context.h" />
     <ClInclude Include="platform\system.h" />
     <ClInclude Include="platform\theme.h" />
@@ -1881,8 +2027,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="platform\timer_item.h" />
     <ClInclude Include="platform\trace.h" />
     <ClInclude Include="platform\trace_category.h" />
-    <ClInclude Include="platform\aaa_want_to_remove_util1.h" />
-    <ClInclude Include="platform\aaa_want_to_remove_v8stdint.h" />
     <ClInclude Include="platform\version.h" />
     <ClInclude Include="platform\_generic_object_constructor_impl.h" />
     <ClInclude Include="platform\_platform.h" />
@@ -1934,6 +2078,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="primitive\geometry3d\location.h" />
     <ClInclude Include="primitive\geometry3d\quaternions.h" />
     <ClInclude Include="primitive\geometry3d\_.h" />
+    <ClInclude Include="primitive\math\_.h" />
     <ClInclude Include="primitive\primitive\block.h" />
     <ClInclude Include="primitive\primitive\compare_pred.h" />
     <ClInclude Include="primitive\primitive\estatus.h" />
@@ -1945,6 +2090,66 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="primitive\primitive\task.h" />
     <ClInclude Include="update.h" />
     <ClInclude Include="user.h" />
+    <ClInclude Include="user\box.h" />
+    <ClInclude Include="user\callback.h" />
+    <ClInclude Include="user\check.h" />
+    <ClInclude Include="user\command.h" />
+    <ClInclude Include="user\composition_imm_client.h" />
+    <ClInclude Include="user\controller.h" />
+    <ClInclude Include="user\control_descriptor.h" />
+    <ClInclude Include="user\control_event.h" />
+    <ClInclude Include="user\copydesk.h" />
+    <ClInclude Include="user\create.h" />
+    <ClInclude Include="user\create_struct.h" />
+    <ClInclude Include="user\form.h" />
+    <ClInclude Include="user\form_callback.h" />
+    <ClInclude Include="user\frame.h" />
+    <ClInclude Include="user\imm_client.h" />
+    <ClInclude Include="user\interaction.h" />
+    <ClInclude Include="user\interaction_child.h" />
+    <ClInclude Include="user\interaction_impl.h" />
+    <ClInclude Include="user\interaction_prodevian.h" />
+    <ClInclude Include="user\interaction_thread.h" />
+    <ClInclude Include="user\item.h" />
+    <ClInclude Include="user\key.h" />
+    <ClInclude Include="user\keyboard.h" />
+    <ClInclude Include="user\language.h" />
+    <ClInclude Include="user\language_map.h" />
+    <ClInclude Include="user\interaction_layout.h" />
+    <ClInclude Include="user\main_window.h" />
+    <ClInclude Include="user\message_queue.h" />
+    <ClInclude Include="user\message_queue_listener.h" />
+    <ClInclude Include="user\mouse.h" />
+    <ClInclude Include="user\plain_edit.h" />
+    <ClInclude Include="user\plain_text_data.h" />
+    <ClInclude Include="user\primitive.h" />
+    <ClInclude Include="user\primitive_impl.h" />
+    <ClInclude Include="user\prodevian.h" />
+    <ClInclude Include="user\progress.h" />
+    <ClInclude Include="user\range.h" />
+    <ClInclude Include="user\scroll.h" />
+    <ClInclude Include="user\scroll_bar.h" />
+    <ClInclude Include="user\scroll_info.h" />
+    <ClInclude Include="user\style.h" />
+    <ClInclude Include="user\style_base.h" />
+    <ClInclude Include="user\text.h" />
+    <ClInclude Include="user\tool_window.h" />
+    <ClInclude Include="user\user.h" />
+    <ClInclude Include="user\wait_cursor.h" />
+    <ClInclude Include="user\windowing.h" />
+    <ClInclude Include="user\window_map.h" />
+    <ClInclude Include="user\window_state.h" />
+    <ClInclude Include="user\window_util.h" />
+    <ClInclude Include="user\_.h" />
+    <ClInclude Include="user\_const.h" />
+    <ClInclude Include="user\_const_key.h" />
+    <ClInclude Include="user\_data.h" />
+    <ClInclude Include="user\_ewindowflag.h" />
+    <ClInclude Include="user\_experience_const.h" />
+    <ClInclude Include="user\_impl.h" />
+    <ClInclude Include="user\_interaction_impl.h" />
+    <ClInclude Include="user\_prelude.h" />
+    <ClInclude Include="user\_user.h" />
     <ClInclude Include="version\version.h" />
     <ClInclude Include="const\thread.h" />
     <ClInclude Include="filesystem\filesystem\dir_context.h" />
@@ -1959,7 +2164,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="filesystem\file\html_file.cpp" />
     <ClCompile Include="filesystem\file\item.cpp" />
     <ClCompile Include="filesystem\file\item_array.cpp" />
-    <ClCompile Include="filesystem\file\md5.cpp" />
     <ClCompile Include="filesystem\file\memory_file.cpp" />
     <ClCompile Include="filesystem\file\memory_map.cpp" />
     <ClCompile Include="filesystem\file\path.cpp" />
@@ -1981,6 +2185,109 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="filesystem\fs\remote_native_file.cpp" />
     <ClCompile Include="filesystem\fs\remote_native_fs.cpp" />
     <ClCompile Include="filesystem\fs\set.cpp" />
+    <ClCompile Include="graphics\draw2d\alpha.cpp" />
+    <ClCompile Include="graphics\draw2d\api.cpp" />
+    <ClCompile Include="graphics\draw2d\apple\image.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\apple\image_gif.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\bitmap.cpp" />
+    <ClCompile Include="graphics\draw2d\brush.cpp" />
+    <ClCompile Include="graphics\draw2d\buffered_graphics.cpp" />
+    <ClCompile Include="graphics\draw2d\color.cpp" />
+    <ClCompile Include="graphics\draw2d\color_matrix.cpp" />
+    <ClCompile Include="graphics\draw2d\cursor.cpp" />
+    <ClCompile Include="graphics\draw2d\cursor_set.cpp" />
+    <ClCompile Include="graphics\draw2d\debug.cpp" />
+    <ClCompile Include="graphics\draw2d\draw2d.cpp" />
+    <ClCompile Include="graphics\draw2d\fastblur.cpp" />
+    <ClCompile Include="graphics\draw2d\font.cpp" />
+    <ClCompile Include="graphics\draw2d\font_department.cpp" />
+    <ClCompile Include="graphics\draw2d\font_enumeration.cpp" />
+    <ClCompile Include="graphics\draw2d\font_list.cpp" />
+    <ClCompile Include="graphics\draw2d\glyph.cpp" />
+    <ClCompile Include="graphics\draw2d\glyph_set.cpp" />
+    <ClCompile Include="graphics\draw2d\graphics.cpp" />
+    <ClCompile Include="graphics\draw2d\graphics_extension.cpp" />
+    <ClCompile Include="graphics\draw2d\icon.cpp" />
+    <ClCompile Include="graphics\draw2d\image.cpp" />
+    <ClCompile Include="graphics\draw2d\image_array.cpp" />
+    <ClCompile Include="graphics\draw2d\image_extension.cpp" />
+    <ClCompile Include="graphics\draw2d\image_dynamic.cpp" />
+    <ClCompile Include="graphics\draw2d\image_frame.cpp" />
+    <ClCompile Include="graphics\draw2d\image_gif_antialias_8bit.cpp" />
+    <ClCompile Include="graphics\draw2d\image_gif_detect_8bit_borders.cpp" />
+    <ClCompile Include="graphics\draw2d\image_list.cpp" />
+    <ClCompile Include="graphics\draw2d\image_map.cpp" />
+    <ClCompile Include="graphics\draw2d\image_nanosvg.cpp" />
+    <ClCompile Include="graphics\draw2d\image_object.cpp" />
+    <ClCompile Include="graphics\draw2d\image_pointer_array.cpp" />
+    <ClCompile Include="graphics\draw2d\imaging.cpp" />
+    <ClCompile Include="graphics\draw2d\keep.cpp" />
+    <ClCompile Include="graphics\draw2d\load_gif_frame.cpp" />
+    <ClCompile Include="graphics\draw2d\matrix.cpp" />
+    <ClCompile Include="graphics\draw2d\nanosvg.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cover|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\object.cpp" />
+    <ClCompile Include="graphics\draw2d\palette.cpp" />
+    <ClCompile Include="graphics\draw2d\path.cpp" />
+    <ClCompile Include="graphics\draw2d\pen.cpp" />
+    <ClCompile Include="graphics\draw2d\printer.cpp" />
+    <ClCompile Include="graphics\draw2d\region.cpp" />
+    <ClCompile Include="graphics\draw2d\rgb_quad_array.cpp" />
+    <ClCompile Include="graphics\draw2d\text_box.cpp" />
+    <ClCompile Include="graphics\draw2d\thread_tool.cpp" />
+    <ClCompile Include="graphics\draw2d\winrt\image_gif.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\_.cpp" />
+    <ClCompile Include="graphics\draw3d\ortho.cpp" />
+    <ClCompile Include="graphics\graphics\double_buffer.cpp" />
+    <ClCompile Include="graphics\graphics\console.cpp" />
+    <ClCompile Include="graphics\graphics\bitmap_source_buffer.cpp" />
+    <ClCompile Include="graphics\graphics\multiple_buffer.cpp" />
+    <ClCompile Include="graphics\graphics\buffer.cpp" />
+    <ClCompile Include="graphics\graphics\device_context.cpp" />
+    <ClCompile Include="graphics\graphics\graphics.cpp" />
     <ClCompile Include="net\address.cpp" />
     <ClCompile Include="net\email.cpp" />
     <ClCompile Include="net\email_address.cpp" />
@@ -2199,7 +2506,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="filesystem\file\item.h" />
     <ClInclude Include="filesystem\file\item_array.h" />
     <ClInclude Include="filesystem\file\listing_provider.h" />
-    <ClInclude Include="filesystem\file\md5.h" />
     <ClInclude Include="filesystem\file\memory_file.h" />
     <ClInclude Include="filesystem\file\memory_map.h" />
     <ClInclude Include="filesystem\file\opened.h" />
@@ -2237,6 +2543,70 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="filesystem\fs\set.h" />
     <ClInclude Include="filesystem\fs\_.h" />
     <ClInclude Include="filesystem\fs\_fs.h" />
+    <ClInclude Include="graphics\draw2d\api.h" />
+    <ClInclude Include="graphics\draw2d\bitmap.h" />
+    <ClInclude Include="graphics\draw2d\brush.h" />
+    <ClInclude Include="graphics\draw2d\buffered_graphics.h" />
+    <ClInclude Include="graphics\draw2d\color.h" />
+    <ClInclude Include="graphics\draw2d\colorref_array.h" />
+    <ClInclude Include="graphics\draw2d\color_matrix.h" />
+    <ClInclude Include="graphics\draw2d\common.h" />
+    <ClInclude Include="graphics\draw2d\cursor.h" />
+    <ClInclude Include="graphics\draw2d\cursor_set.h" />
+    <ClInclude Include="graphics\draw2d\draw2d.h" />
+    <ClInclude Include="graphics\draw2d\fastblur.h" />
+    <ClInclude Include="graphics\draw2d\font.h" />
+    <ClInclude Include="graphics\draw2d\font_department.h" />
+    <ClInclude Include="graphics\draw2d\font_enumeration.h" />
+    <ClInclude Include="graphics\draw2d\font_list.h" />
+    <ClInclude Include="graphics\draw2d\fwd.h" />
+    <ClInclude Include="graphics\draw2d\glyph.h" />
+    <ClInclude Include="graphics\draw2d\glyph_set.h" />
+    <ClInclude Include="graphics\draw2d\graphics.h" />
+    <ClInclude Include="graphics\draw2d\graphics_extension.h" />
+    <ClInclude Include="graphics\draw2d\icon.h" />
+    <ClInclude Include="graphics\draw2d\igui.h" />
+    <ClInclude Include="graphics\draw2d\image_array.h" />
+    <ClInclude Include="graphics\draw2d\printer.h" />
+    <ClInclude Include="graphics\draw2d\_image.h" />
+    <ClInclude Include="graphics\draw2d\image_extension.h" />
+    <ClInclude Include="graphics\draw2d\image_header.h" />
+    <ClInclude Include="graphics\draw2d\image_dynamic.h" />
+    <ClInclude Include="graphics\draw2d\image.h" />
+    <ClInclude Include="graphics\draw2d\image_list.h" />
+    <ClInclude Include="graphics\draw2d\image_map.h" />
+    <ClInclude Include="graphics\draw2d\image_map_ex1.h" />
+    <ClInclude Include="graphics\draw2d\image_palette.h" />
+    <ClInclude Include="graphics\draw2d\image_frame.h" />
+    <ClInclude Include="graphics\draw2d\image_frame_array.h" />
+    <ClInclude Include="graphics\draw2d\imaging.h" />
+    <ClInclude Include="graphics\draw2d\keep.h" />
+    <ClInclude Include="graphics\draw2d\matrix.h" />
+    <ClInclude Include="graphics\draw2d\object.h" />
+    <ClInclude Include="graphics\draw2d\palette.h" />
+    <ClInclude Include="graphics\draw2d\path.h" />
+    <ClInclude Include="graphics\draw2d\pen.h" />
+    <ClInclude Include="graphics\draw2d\pixmap.h" />
+    <ClInclude Include="graphics\draw2d\region.h" />
+    <ClInclude Include="graphics\draw2d\text_box.h" />
+    <ClInclude Include="graphics\draw2d\thread_tool.h" />
+    <ClInclude Include="graphics\draw2d\_const.h" />
+    <ClInclude Include="graphics\draw2d\_.h" />
+    <ClInclude Include="graphics\draw2d\_image_impl.h" />
+    <ClInclude Include="graphics\_.h" />
+    <ClInclude Include="graphics\graphics\double_buffer.h" />
+    <ClInclude Include="graphics\graphics\double_pass_scale.h" />
+    <ClInclude Include="graphics\graphics\filters.h" />
+    <ClInclude Include="graphics\graphics\console.h" />
+    <ClInclude Include="graphics\graphics\bitmap_source_buffer.h" />
+    <ClInclude Include="graphics\graphics\multiple_buffer.h" />
+    <ClInclude Include="graphics\graphics\window.h" />
+    <ClInclude Include="graphics\graphics\buffer.h" />
+    <ClInclude Include="graphics\graphics\device_context.h" />
+    <ClInclude Include="graphics\graphics\graphics.h" />
+    <ClInclude Include="graphics\draw3d\_.h" />
+    <ClInclude Include="graphics\draw3d\ortho.h" />
+    <ClInclude Include="graphics\graphics\_.h" />
     <ClInclude Include="inline\_acid_app_impl.h" />
     <ClInclude Include="inline\application.h" />
     <ClInclude Include="inline\_draw2d_impl.h" />
@@ -2598,8 +2968,9 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <None Include="filesystem\_impl.h" />
     <None Include="filesystem\file\_impl.h" />
     <None Include="filesystem\file\_serializable_impl.h" />
+    <None Include="graphics\draw2d\_impl.h" />
+    <None Include="graphics\_impl.h" />
     <None Include="primitive\collection\_array_impl2.h" />
-    <None Include="primitive\collection\_collection_impl.h" />
     <None Include="primitive\collection\_collection_impl1.h" />
     <None Include="primitive\collection\_collection_impl2.h" />
     <None Include="primitive\collection\_array_impl.h" />

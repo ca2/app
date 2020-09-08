@@ -38,7 +38,7 @@ namespace graphics
 
       virtual void on_end_draw();
 
-      virtual bool create_buffer(const ::size & size, int iStrideParam = -1);
+      virtual bool update_buffer(const ::size & size, int iStrideParam = -1);
 
 
       virtual ::image_pointer & get_buffer_image();

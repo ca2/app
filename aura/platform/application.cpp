@@ -125,6 +125,7 @@ namespace aura
       m_bUser = true;
       m_bUserEx = true;
       m_bDraw2d = true;
+      m_bImaging = true;
       m_bConsole = false;
 
 #ifdef LINUX
@@ -463,31 +464,6 @@ namespace aura
       return m_puserlanguagemap->__get_text(str);
 
    }
-
-
-   //::user::style* application::get_user_style() const
-   //{
-
-   //   if (m_psessionContext)
-   //   {
-
-   //      return m_psessionContext->get_user_style();
-
-   //   }
-
-   //   return nullptr;
-
-   //}
-
-
-   //string application::dialog_box(const char * pszMatter, property_set & propertyset)
-   //{
-
-   //   throw_todo();
-
-   //   return "";
-
-   //}
 
 
    void application::install_message_routing(::channel * pchannel)
@@ -6396,16 +6372,6 @@ retry_license:
    //}
 
 
-   //::type application::control_type_from_id(const ::id & id, ::user::e_control_type & econtroltype)
-   //{
-
-   //   econtroltype = ::user::control_type_none;
-
-   //   return __type(::user::interaction);
-
-   //}
-
-
    ::id application::translate_property_id(const ::id & id)
    {
 
@@ -8321,18 +8287,44 @@ namespace aura
 
       if (m_puiMain1 != nullptr)
       {
+         
+         ::id idCommand(pszCommand);
 
-         ::user::command command;
-
-         command.m_id = ::id(pszCommand);
-
-         m_puiMain1->route_command_message(&command);
-
-         if (command.m_bRet)
+         __pointer(::user::interaction) pinteraction = m_puiMain1;
+         
+         if(pinteraction)
          {
+         
+            pinteraction->post_pred([pinteraction, idCommand]()
+            {
 
+               ::user::command command;
+
+               command.m_id = idCommand;
+
+               pinteraction->route_command_message(&command);
+
+            });
+                               
             return true;
+            
+         }
+         else
+         {
+            
+            ::user::command command;
 
+            command.m_id = idCommand;
+            
+            m_puiMain1->route_command_message(&command);
+            
+            if(command.m_bRet)
+            {
+             
+               return true;
+               
+            }
+            
          }
 
       }
@@ -11057,7 +11049,7 @@ namespace aura
          __pointer(::user::interaction) pwnd = wnda.element_at(i);
          if (pwnd != nullptr
             && pwnd->is_window()
-            && pwnd->is_window_visible())
+            && pwnd->is_window_visible(::user::layout_sketch))
          {
             iCount++;
          }
@@ -11207,52 +11199,12 @@ namespace aura
 
       string str(id);
 
-      if (str.begins_ci("combo_"))
-      {
-
-         econtroltype = ::user::control_type_combo_box;
-
-         return __type(::user::combo_box);
-
-      }
-      else if (str.begins_ci("check_") || str.begins_ci("checkbox_"))
-      {
-
-         econtroltype = ::user::control_type_check_box;
-
-         return __type(::user::check_box);
-
-      }
-      else if (str.begins_ci("still_"))
-      {
-
-         econtroltype = ::user::control_type_static;
-
-         return __type(::user::still);
-
-      }
-      else if (str.begins_ci("label_"))
-      {
-
-         econtroltype = ::user::control_type_static;
-
-         return __type(::user::still);
-
-      }
-      else if (str.begins_ci("edit_"))
+      if (str.begins_ci("edit_"))
       {
 
          econtroltype = ::user::control_type_edit_plain_text;
 
          return __type(::user::plain_edit);
-
-      }
-      else if (str.begins_ci("button_"))
-      {
-
-         econtroltype = ::user::control_type_button;
-
-         return __type(::user::button);
 
       }
 
@@ -11614,7 +11566,7 @@ namespace aura
             try
             {
 
-               bOk = pinteraction != nullptr && pinteraction->is_window_visible();
+               bOk = pinteraction != nullptr && pinteraction->is_window_visible(::user::layout_sketch);
             }
             catch (...)
             {
@@ -11826,7 +11778,7 @@ namespace aura
    ::user::interaction* application::create_menu_interaction()
    {
 
-      return __new(::user::button);
+      return nullptr;
 
    }
 
@@ -11852,13 +11804,6 @@ namespace aura
    {
 
    }
-
-
-   //::type application::control_type_from_id(const ::id& id, ::user::e_control_type& econtroltype)
-   //{
-
-   //
-   //}
 
 
    //::form_property_set * application::get_form_property_set()
@@ -11909,16 +11854,6 @@ namespace aura
       return "playlist/default";
 
    }
-
-
-   //bool application::do_prompt_file_name(var& varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument)
-   //{
-
-   //   __throw(todo("core and os"));
-
-   //   return false;
-
-   //}
 
 
 } // namespace aura

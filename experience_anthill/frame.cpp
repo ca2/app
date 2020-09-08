@@ -224,7 +224,7 @@ namespace experience
 
                case ElementMoveGripMinimal:
 
-                  if (m_pframewindow == nullptr || m_pframewindow->display_state() != ::display_minimal)
+                  if (m_pframewindow == nullptr || m_pframewindow->layout().design().display() != ::display_minimal)
                      return false;
 
                   lprect->left = m_pointMoveGripMinimal.x + 2;
@@ -510,7 +510,7 @@ namespace experience
 
                auto pframewindow = m_pframewindow;
 
-               if (!pframewindow->window_is_full_screen() && !pframewindow->window_is_zoomed() && !pframewindow->window_is_iconic() && !m_pframewindow->frame_is_transparent())
+               if (!pframewindow->layout().is_full_screen() && !pframewindow->layout().is_zoomed() && !pframewindow->layout().is_iconic() && !m_pframewindow->frame_is_transparent() && m_pframewindow->m_bShowControlBox)
                {
 
                   on_draw_frame(pgraphics);
@@ -519,7 +519,7 @@ namespace experience
 
                pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-               if (pframewindow->window_is_minimal())
+               if (pframewindow->layout().is_minimal())
                {
 
                   ::rect rectIcon;
@@ -559,7 +559,7 @@ namespace experience
                   }
 
                }
-               else if (!pframewindow->window_is_full_screen() && !m_pframewindow->frame_is_transparent())
+               else if (!pframewindow->layout().is_full_screen() && !m_pframewindow->frame_is_transparent())
                {
 
                   if (m_pframewindow->is_active() && m_crActiveCaptionTextBk != 0)

@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 #include "_data.h"
 #include "aura/update.h"
 //#include "aura/printer2.h"
@@ -6,7 +9,9 @@
 #include "aura/message.h"
 #include "aura/user/interaction_thread.h"
 #ifdef WINDOWS_DESKTOP
+#ifdef ENABLE_TEXT_SERVICES_FRAMEWORK
 #include "aura/user/windows_tsf/edit_window.h"
+#endif
 #endif
 #include "aura/const/timer.h"
 //#include "_tree.h"
@@ -225,7 +230,17 @@ namespace user
 
       interaction::install_message_routing(pchannel);
 
-
+#ifdef ENABLE_TEXT_SERVICES_FRAMEWORK
+#ifdef WINDOWS
+      ::tsf::edit_window::install_message_routing(pchannel);
+#else
+      //::user::edit_window
+#endif
+#else
+#ifdef WINDOWS_DESKTOP
+      //, virtual public imm_client
+#endif
+#endif
       IGUI_MSG_LINK(WM_CREATE, pchannel, this, &plain_edit::_001OnCreate);
       IGUI_MSG_LINK(WM_LBUTTONDOWN, pchannel, this, &plain_edit::_001OnLButtonDown);
       IGUI_MSG_LINK(WM_LBUTTONUP, pchannel, this, &plain_edit::_001OnLButtonUp);
@@ -1068,6 +1083,7 @@ namespace user
    {
 
       INFO("_001OnKeyDown (1)");
+
       {
 
          ::user::control_event ev;
@@ -5942,7 +5958,7 @@ finished_update:
 
          ::CreateCaret(hwnd, 0, 1, m_iLineHeight);
 
-         ::point pointCaret = origin();
+         ::point pointCaret = layout().design().origin();
 
          _001ClientToScreen(pointCaret);
 

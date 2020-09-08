@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 
 
 #define STR_BOM "\xEF\xBB\xBF"
@@ -305,7 +308,7 @@ namespace user
 
    }
 
-   
+
    string language_map::load_podata(string strLang, bool bOnlyHeader)
    {
 

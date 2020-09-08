@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 #include "aura/platform/static_start.h"
 //#include <math.h>
 
@@ -20,6 +23,10 @@ namespace draw2d
 
    graphics::graphics()
    {
+
+      //m_puserstyle = nullptr;
+
+      //m_bLayoutModified = false;
 
       m_bOutline = false;
 
@@ -141,6 +148,31 @@ namespace draw2d
    }
 
 #endif
+
+
+   oswindow graphics::get_window_handle() const
+   {
+
+      if (!m_puserinteraction)
+      {
+
+         return nullptr;
+
+      }
+
+      oswindow oswindow = m_puserinteraction->get_safe_handle();
+
+      if (!oswindow)
+      {
+
+         return nullptr;
+
+      }
+
+      return oswindow;
+
+   }
+
 
    bool graphics::IsPrinting()
    {

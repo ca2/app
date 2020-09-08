@@ -1,11 +1,14 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 #include "aura/message.h"
 #include "interaction_thread.h"
 #include "interaction_prodevian.h"
 #include "aura/os/_os.h"
 #include "aura/platform/mq.h"
 
-
+point g_pointLastBottomRight;
 
 #undef ALOG_CONTEXT
 #define ALOG_CONTEXT (::trace_object(::trace_category_windowing))
@@ -211,20 +214,20 @@ namespace user
    }
 
 
-   bool interaction_impl::window_move(i32 x, i32 y)
-   {
+   //bool interaction_impl::window_move(i32 x, i32 y)
+   //{
 
-      auto & stateRequest = m_puserinteraction->request_state();
+   //   auto & stateRequest = m_puserinteraction->request_state();
 
-      stateRequest.m_point.x = x;
+   //   stateRequest.m_point.x = x;
 
-      stateRequest.m_point.y = y;
+   //   stateRequest.m_point.y = y;
 
-      m_puserinteraction->set_reposition();
+   //   m_puserinteraction->set_reposition();
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
    bool interaction_impl::has_pending_focus()
@@ -290,12 +293,12 @@ namespace user
 
    }
 
-   
+
    void interaction_impl::set_destroying()
    {
-   
+
       m_bDestroying = true;
-   
+
    }
 
 
@@ -551,12 +554,12 @@ namespace user
       m_puserinteraction->m_pimpl = this;
 
       m_puserinteraction->m_pimpl2 = this;
-      
-      #ifdef __APPLE__
+
+      //#ifdef __APPLE__
 
             m_puserinteraction->m_ewindowflag |= window_flag_postpone_visual_update;
 
-      #endif
+      //#endif
 
 
 
@@ -602,6 +605,8 @@ namespace user
          bProdevianThread = false;
 
       }
+
+      //m_puserinteraction->create_layout(true);
 
       m_puserinteraction->place(rect_dim(
                             createstruct.x,
@@ -2038,32 +2043,32 @@ namespace user
    }
 
 
-   void interaction_impl::SetWindowDisplayChanged()
-   {
+   // void interaction_impl::SetWindowDisplayChanged()
+   // {
 
-      if (m_puserinteraction->is_this_visible() && m_puserinteraction->window_state3().m_edisplay3 != ::display_iconic)
-      {
+   //    if (m_puserinteraction->is_this_visible() && m_puserinteraction->window_state3().m_edisplay3 != ::display_iconic)
+   //    {
 
-         if (m_puserinteraction->GetParent() == nullptr)
-         {
+   //       if (m_puserinteraction->GetParent() == nullptr)
+   //       {
 
-            m_puserinteraction->check_transparent_mouse_events();
+   //          m_puserinteraction->check_transparent_mouse_events();
 
-         }
+   //       }
 
-      }
-      else
-      {
+   //    }
+   //    else
+   //    {
 
-         //stop_prodevian();
-         //child_post_quit("prodevian");
+   //       //stop_prodevian();
+   //       //child_post_quit("prodevian");
 
-      }
+   //    }
 
-   }
+   // }
 
 
-   //bool interaction_impl::window_is_iconic()
+   //bool interaction_impl::layout().is_iconic()
    //{
 
    //   //::exception::throw_interface_only();
@@ -2293,13 +2298,13 @@ namespace user
 
       spbase = m_puserinteraction->get_message_base(message, wparam, lparam);
 
-      if(m_puserinteraction->window_is_moving())
+      if(m_puserinteraction->layout().is_moving())
       {
 
          TRACE("moving: skip walk pre translate tree");
 
       }
-      else if(m_puserinteraction->window_is_sizing())
+      else if(m_puserinteraction->layout().is_sizing())
       {
 
          TRACE("sizing: skip walk pre translate tree");
@@ -2405,8 +2410,41 @@ namespace user
 
    void interaction_impl::DragAcceptFiles(bool bAccept)
    {
+
       UNREFERENCED_PARAMETER(bAccept);
+
       ::exception::throw_interface_only();
+
+   }
+
+
+   bool interaction_impl::node_is_iconic()
+   {
+
+      if (!m_puserinteraction)
+      {
+
+         return false;
+
+      }
+
+      return m_puserinteraction->layout().sketch().display() == ::display_iconic;
+
+   }
+
+
+   bool interaction_impl::node_is_zoomed()
+   {
+
+      if (!m_puserinteraction)
+      {
+
+         return false;
+
+      }
+
+      return m_puserinteraction->layout().sketch().display() == ::display_zoomed;
+
    }
 
 
@@ -2566,21 +2604,14 @@ namespace user
    }
 
 
-   void interaction_impl::set_need_redraw(bool bAscendants)
-   {
+   //void interaction_impl::set_need_redraw(bool bAscendants)
+   //{
 
-   }
+   //}
 
 
    void interaction_impl::post_redraw(bool bAscendants)
    {
-
-      //if (::is_null(m_puserthread))
-      //{
-
-      //   return;
-
-      //}
 
       if (!m_puserinteraction)
       {
@@ -2592,7 +2623,6 @@ namespace user
       m_puserinteraction->post_message(::message_redraw, 1);
 
    }
-
 
 
    bool interaction_impl::RedrawWindow(const ::rect & rectUpdate, ::draw2d::region * prgnUpdate, UINT flags)
@@ -3140,6 +3170,25 @@ namespace user
 
          INFO("user::interaction_impl::_001OnShowWindow bShow = true");
 
+         if (m_puserinteraction->layout().design().display() != ::display_iconic)
+         {
+
+            if (m_puserinteraction->GetParent() == nullptr)
+            {
+
+               m_puserinteraction->check_transparent_mouse_events();
+
+            }
+
+         }
+         else
+         {
+
+            //stop_prodevian();
+            //child_post_quit("prodevian");
+
+         }
+
       }
       else
       {
@@ -3364,7 +3413,7 @@ namespace user
          sync_lock sl(psync);
 
          ::draw2d::graphics_pointer pgraphics = m_pgraphics->on_begin_draw();
-         
+
          slGraphics.unlock();
 
          windowing_output_debug_string("\n_001UpdateBuffer : after on_begin_draw");
@@ -3387,6 +3436,8 @@ namespace user
 
          }
 
+         pgraphics->m_pimageimplDraw2dGraphics->m_rectTag.Null();
+
          pgraphics->m_puserstyle.release();
 
          if (pgraphics->m_pimageimplDraw2dGraphics)
@@ -3399,9 +3450,17 @@ namespace user
          if(m_puserinteraction)
          {
 
+            auto r = m_puserinteraction->layout().design().screen_rect();
+
             m_puserinteraction->_001PrintBuffer(pgraphics);
 
+            m_rectUpdateBuffer = r;
+
+            TRACE("PrintBuffer (%d, %d)",  r.right, r.bottom);
+
             m_pgraphics->m_bNewBuffer = true;
+
+            pgraphics->m_pimageimplDraw2dGraphics->m_rectTag = r;
 
          }
 
@@ -3468,25 +3527,27 @@ namespace user
    }
 
 
-   void interaction_impl::prodevian_update_visual(bool & bUpdateBuffer, bool & bUpdateWindow)
-   {
+   //void interaction_impl::prodevian_update_visual(bool & bUpdateBuffer, bool & bUpdateWindow)
+   //{
 
-   }
+   //}
 
 
    bool interaction_impl::start_window_visual()
    {
 
-      if (!m_puserthread)
+      if (m_puserthread)
+      {
+
+         m_puserthread->start_window_visual();
+
+      }
+      else
       {
 
          m_puserinteraction->post_message(message_apply_visual);
 
-         return true;
-
       }
-
-      m_puserthread->start_window_visual();
 
       return true;
 
@@ -3511,12 +3572,14 @@ namespace user
 
       }
 
-      if (m_pgraphics.is_set() && m_puserinteraction->is_this_screen_visible())
+      if (m_pgraphics.is_set() && m_puserinteraction->layout().is_this_screen_visible())
       {
 
          CINFO(prodevian)("going to update_window (1)");
 
          m_pgraphics->update_window();
+
+         m_puserinteraction->layout().output() = m_puserinteraction->layout().design();
 
       }
 
@@ -3670,7 +3733,12 @@ namespace user
    bool interaction_impl::prodevian_update_screen()
    {
 
-      _001UpdateScreen();
+      //if (m_bUpdateBufferScreen || m_puserinteraction->layout().is_moving())
+      {
+
+         _001UpdateScreen();
+
+      }
 
       return true;
 
@@ -4144,307 +4212,350 @@ namespace user
 
 
 
-   void interaction_impl::window_thread_apply_visual()
+   void interaction_impl::window_show()
    {
 
-      auto stateRequest = m_puserinteraction->process_state();
+      // Request / Incoming changes / Prepare Internal Buffer
+      auto & stateOutput = m_puserinteraction->layout().design();
 
-      if (!(m_puserinteraction->m_ewindowflag & window_flag_postpone_visual_update))
+      if (!stateOutput.is_modified())
       {
 
-         m_sizeDrawn = stateRequest.rect();
+         return;
 
       }
 
-      if (m_puserinteraction->window_state3() != stateRequest || m_sizeDrawn != m_puserinteraction->window_state3().m_size)
+      // Current/Previous Window State
+      auto & stateWindow = m_puserinteraction->layout().window();
+
+      if (stateOutput == stateWindow)
       {
 
-         ::e_display edisplayRequest = stateRequest.m_edisplay3;
+         return;
 
-         auto eactivationRequest = stateRequest.m_eactivation;
+      }
 
-         auto rectRequest = stateRequest.rect();
+      auto eactivationOutput = stateOutput.activation();
 
-         if(rectRequest.is_empty())
+      auto eactivationWindow = stateWindow.activation();
+
+      auto edisplayOutput = stateOutput.display();
+
+      auto edisplayWindow = stateWindow.display();
+
+      auto pointOutput = stateOutput.origin();
+
+      auto pointWindow = stateWindow.origin();
+
+      auto sizeOutput = stateOutput.size();
+
+      auto sizeWindow = stateWindow.size();
+
+      auto zOutput = stateOutput.zorder();
+
+      auto zWindow = stateWindow.zorder();
+
+      bool shouldGetVisible = ::is_screen_visible(edisplayOutput);
+
+      if(sizeOutput.is_empty())
+      {
+
+         INFO("window_show rectUi isEmpty");
+
+         return;
+
+      }
+
+      bool bWasVisible = ::is_screen_visible(edisplayWindow);
+
+      __keep_flag_on(m_puserinteraction->layout().m_eflag, ::user::interaction_layout::flag_apply_visual);
+
+      UINT uiFlags = 0;
+
+      bool bLayered = GetExStyle() & WS_EX_LAYERED;
+
+      //if (bLayered)
+      {
+
+         uiFlags |= SWP_ASYNCWINDOWPOS | SWP_NOREDRAW | SWP_NOCOPYBITS | SWP_DEFERERASE;
+
+      }
+      //else
+      //{
+
+      //   uiFlags |= SWP_ASYNCWINDOWPOS  | SWP_NOREDRAW | SWP_NOCOPYBITS | SWP_DEFERERASE;
+
+      //}
+
+      if (eactivationOutput & activation_no_activate)
+      {
+
+         uiFlags |= SWP_NOACTIVATE;
+
+      }
+
+      // if GNOME
+      // if Xorg
+      // if Wayland
+
+//#if !defined(LINUX)
+
+      //if(m_sizeDrawn != sizeOutput)
+      //{
+
+      //   output_debug_string("blank borders (1), drawing extrapoation (1) or cut border (1)??\n");
+
+      //}
+
+      //sizeOutput = m_sizeDrawn;
+
+      bool bSize = true;
+
+      if (sizeWindow == sizeOutput)
+      {
+
+         bSize = false;
+
+         uiFlags |= SWP_NOSIZE;
+
+      }
+      else
+      {
+
+         uiFlags |= SWP_ASYNCWINDOWPOS | SWP_FRAMECHANGED | SWP_NOREDRAW | SWP_NOCOPYBITS | SWP_DEFERERASE;
+
+      }
+
+      bool bMove = true;
+
+      if (pointWindow == pointOutput)
+      {
+
+         bMove = false;
+
+         uiFlags |= SWP_NOMOVE;
+
+      }
+
+//#endif
+
+      bool bVisibilityChange = is_different(bWasVisible, shouldGetVisible);
+
+      if (bVisibilityChange)
+      {
+
+         if (shouldGetVisible)
          {
 
-            INFO("window_thread_apply_visual rectRequest isEmpty");
-
-            return;
-
-         }
-
-         ::e_display edisplayCurrent = m_puserinteraction->window_state3().m_edisplay3;
-
-         auto rectCurrent = m_puserinteraction->window_state3().rect();
-
-         bool bWasVisible = ::is_screen_visible(m_puserinteraction->window_state3().m_edisplay3);
-
-         __keep_flag_on(m_puserinteraction->m_eflagLayouting, ::user::layout::layout_apply_visual);
-
-         UINT uiFlags = 0;
-
-         bool bLayered = GetExStyle() & WS_EX_LAYERED;
-
-         if (bLayered)
-         {
-
-            uiFlags |= SWP_NOREDRAW | SWP_NOCOPYBITS | SWP_DEFERERASE;
+            uiFlags |= SWP_SHOWWINDOW;
 
          }
          else
          {
 
-            uiFlags |= SWP_NOREDRAW | SWP_NOCOPYBITS | SWP_DEFERERASE;
+            uiFlags |= SWP_HIDEWINDOW;
 
          }
 
-         if (stateRequest.m_eactivation & activation_no_activate)
+      }
+
+      bool bZ = zOutput.is_change_request();
+
+      if (!bZ)
+      {
+
+         uiFlags |= SWP_NOZORDER;
+
+      }
+
+      string strType = ::str::demangle(m_puserinteraction->type_name());
+
+      if (strType.contains("font_format"))
+      {
+
+         INFO("font_format going to gather Z-Ordering information");
+
+      }
+
+      if(!m_puserinteraction)
+      {
+
+         return;
+
+      }
+
+      oswindow oswindowInsertAfter = (bZ ? zOutput.get_os_data() : 0);
+
+      if (edisplayWindow == display_zoomed)
+      {
+
+         if (edisplayOutput != display_zoomed)
          {
 
-            uiFlags |= SWP_NOACTIVATE;
+            _001OnExitZoomed();
 
          }
 
-         // if GNOME
-         // if Xorg
-         // if Wayland
+      }
 
-#if !defined(LINUX)
-
-         if(m_sizeDrawn != stateRequest.m_size)
-         {
-
-            //xxxlog output_debug_string("black borders (1)");
-
-         }
-
-         if (m_puserinteraction->window_state3().m_size == m_sizeDrawn)
-         {
-
-            uiFlags |= SWP_NOSIZE;
-
-         }
-
-         if (m_puserinteraction->window_state3().m_point == stateRequest.m_point)
-         {
-
-            uiFlags |= SWP_NOMOVE;
-
-         }
-
+      if (shouldGetVisible
+#ifdef WINDOWS_DESKTOP
+      && !bLayered
 #endif
-
-         bool bVisibilityChange = is_different(bWasVisible, is_screen_visible(stateRequest.m_edisplay3));
-
-         if (bVisibilityChange)
-         {
-
-            if (is_screen_visible(stateRequest.m_edisplay3))
-            {
-
-               uiFlags |= SWP_SHOWWINDOW;
-
-            }
-            else
-            {
-
-               uiFlags |= SWP_HIDEWINDOW;
-
-            }
-
-         }
-
-         bool bZ = m_puserinteraction->process_state().m_zorder.is_change_request();
-
-         if (!bZ)
-         {
-
-            uiFlags |= SWP_NOZORDER;
-
-         }
+         && (
+            //#ifdef WINDOWS_DESKTOP
+            //               !bLayered
+            //#else
+                           //(uiFlags & (SWP_NOMOVE | SWP_NOSIZE)) != (SWP_NOMOVE | SWP_NOSIZE)
+            //#endif
+            bMove
+            || bSize
+            || bVisibilityChange
+            || bZ
+            )
+         )
+      {
 
          string strType = ::str::demangle(m_puserinteraction->type_name());
 
          if (strType.contains("font_format"))
          {
 
-            INFO("font_format going to gather Z-Ordering information");
+            INFO("font_format going to SetWindowPos");
 
          }
-
-         if(!m_puserinteraction)
+         else if (strType.contains("textformat"))
          {
 
-            return;
+            INFO("text_format going to SetWindowPos");
 
          }
 
-         oswindow oswindowInsertAfter = (bZ ? m_puserinteraction->ui_state().m_zorder.get_os_data() : 0);
+         // Commented on Windows
+         //if(m_puserinteraction->m_ewindowflag & window_flag_postpone_visual_update)
+         //{
 
-         if (edisplayCurrent == display_zoomed)
+         //   m_bEatMoveEvent = !(uiFlags & SWP_NOMOVE) || !(uiFlags & SWP_NOSIZE);
+
+         //   m_bEatSizeEvent = !(uiFlags & SWP_NOSIZE);
+
+         //}
+
+         //if(m_puserinteraction->m_ewindowflag & window_flag_postpone_visual_update)
+         //{
+
+         //   m_bPendingRedraw = true;
+
+         //}
+         // END Commented on Windows
+
+         ::point pointBottomRight = pointOutput + sizeOutput;
+
+         output_debug_string("SetWindowPos bottom_right " + __str(pointBottomRight.x) + ", " + __str(pointBottomRight.y) + "\n");
+
+         ::SetWindowPos(m_oswindow, oswindowInsertAfter,
+            pointOutput.x, pointOutput.y,
+            sizeOutput.cx, sizeOutput.cy,
+            uiFlags);
+
+         if (g_pointLastBottomRight != pointBottomRight)
          {
 
-            if (edisplayRequest != edisplayCurrent)
-            {
+            TRACE("Different Bottom Right");
 
-               _001OnExitZoomed();
-
-            }
+            g_pointLastBottomRight = pointBottomRight;
 
          }
 
-         if (is_screen_visible(stateRequest.m_edisplay3)
-            && (
-#ifdef WINDOWS_DESKTOP
-                !bLayered
-#else
-                (uiFlags & (SWP_NOMOVE | SWP_NOSIZE)) != (SWP_NOMOVE | SWP_NOSIZE)
-#endif
-                || bVisibilityChange
-                || bZ
-                )
-             )
-         {
-
-
-            string strType = ::str::demangle(m_puserinteraction->type_name());
-
-            if (strType.contains("font_format"))
-            {
-
-               INFO("font_format going to SetWindowPos");
-
-            }
-            else if(strType.contains("textformat"))
-            {
-
-               INFO("text_format going to SetWindowPos");
-
-            }
-            auto stateSet = stateRequest;
-
-            if(m_sizeDrawn != stateSet.m_size)
-            {
-
-               // xxxlog output_debug_string("black borders (2)");
-
-            }
-
-            //if (m_puserinteraction->process_state().m_eactivation == activation_no_activate)
-            //{
-
-            //   uiFlags |= SWP_NOACTIVATE;
-
-            //}
-
-            if(m_puserinteraction->m_ewindowflag & window_flag_postpone_visual_update)
-            {
-
-               m_bEatMoveEvent = !(uiFlags & SWP_NOMOVE) || !(uiFlags & SWP_NOSIZE);
-
-               m_bEatSizeEvent = !(uiFlags & SWP_NOSIZE);
-
-            }
-
-            if(m_puserinteraction->m_ewindowflag & window_flag_postpone_visual_update)
-            {
-
-               m_bPendingRedraw = true;
-
-            }
-            
-            ::SetWindowPos(m_oswindow, oswindowInsertAfter,
-                           stateSet.m_point.x, stateSet.m_point.y,
-                           m_sizeDrawn.cx, m_sizeDrawn.cy, uiFlags);
-
-            m_puserinteraction->process_state().m_zorder.clear_request();
-
-         }
+         zOutput.clear_request();
 
          m_bOkToUpdateScreen = true;
 
-         if (m_puserinteraction->window_state3().m_edisplay3 != m_puserinteraction->process_state().m_edisplay3)
-         {
+      }
+
+      if (edisplayOutput != edisplayWindow)
+      {
 
 #ifdef WINDOWS
-            if (windows_show_window(m_puserinteraction->window_state3().m_edisplay3, m_puserinteraction->window_state3().m_eactivation)
-               != windows_show_window(m_puserinteraction->process_state().m_edisplay3, m_puserinteraction->process_state().m_eactivation))
-#else
-            //if(bVisibilityChange)
+
+         bool bShowOutput = windows_show_window(edisplayOutput, eactivationOutput);
+
+         bool bShowWindow = windows_show_window(edisplayWindow, eactivationWindow);
+
+         if (is_different(bShowOutput, bShowWindow))
 #endif
-            {
-
-               m_puserinteraction->_do_show_window();
-
-            }
-
-         }
-
-         if (eactivationRequest & activation_set_foreground)
          {
 
-            m_puserinteraction->SetForegroundWindow();
+            m_puserinteraction->window_show_change_visibility();
 
          }
-
-         if (eactivationRequest & activation_set_active)
-         {
-
-            m_puserinteraction->SetActiveWindow();
-
-         }
-
-         if(!m_puserinteraction)
-         {
-
-            return;
-
-         }
-
-         m_puserinteraction->window_state3().m_zorder.clear_request();
-
-         m_puserinteraction->window_state3().m_eactivation = activation_none;
-
-         oswindow oswindowFocus = nullptr;
-
-         oswindow oswindowImpl = nullptr;
-
-         ::user::interaction_impl* pimplFocus = nullptr;
-
-         if (has_pending_focus() && m_puserinteraction != nullptr && m_puserinteraction->is_window_visible())
-         {
-
-            Session.m_pimplPendingFocus2 = nullptr;
-
-            oswindowFocus = ::get_focus();
-
-            oswindowImpl = m_oswindow;
-
-            pimplFocus = oswindow_interaction_impl(oswindowFocus);
-
-            if (oswindowFocus == oswindowImpl)
-            {
-
-               output_debug_string("optimized out a SetFocus");
-
-            }
-            else
-            {
-
-               ::set_focus(m_oswindow);
-
-            }
-
-         }
-
-         m_puserinteraction->visual_changed();
-
-         m_puserinteraction->check_transparent_mouse_events();
-
-         //m_puserinteraction->m_bReposition = false;
 
       }
+
+      if (eactivationOutput & activation_set_foreground)
+      {
+
+         m_puserinteraction->SetForegroundWindow();
+
+      }
+
+      if (eactivationOutput & activation_set_active)
+      {
+
+         m_puserinteraction->SetActiveWindow();
+
+      }
+
+      if(!m_puserinteraction)
+      {
+
+         return;
+
+      }
+
+      m_puserinteraction->layout().window() = m_puserinteraction->layout().design();
+
+      m_puserinteraction->layout().design().clear_ephemeral();
+
+      m_puserinteraction->layout().design() = edisplayOutput;
+
+      oswindow oswindowFocus = nullptr;
+
+      oswindow oswindowImpl = nullptr;
+
+      ::user::interaction_impl* pimplFocus = nullptr;
+
+      if (has_pending_focus() && m_puserinteraction != nullptr && m_puserinteraction->is_window_visible())
+      {
+
+         Session.m_pimplPendingFocus2 = nullptr;
+
+         oswindowFocus = ::get_focus();
+
+         oswindowImpl = m_oswindow;
+
+         pimplFocus = oswindow_interaction_impl(oswindowFocus);
+
+         if (oswindowFocus == oswindowImpl)
+         {
+
+            output_debug_string("optimized out a SetFocus");
+
+         }
+         else
+         {
+
+            ::set_focus(m_oswindow);
+
+         }
+
+      }
+
+      m_puserinteraction->visual_changed();
+
+      m_puserinteraction->check_transparent_mouse_events();
+
+      //m_puserinteraction->m_bReposition = false;
 
    }
 
@@ -4464,14 +4575,10 @@ namespace user
    }
 
 
-   void interaction_impl::_do_show_window()
+   void interaction_impl::window_show_change_visibility(::edisplay edisplay, ::eactivation eactivation)
    {
 
-      __keep_flag_on(m_puserinteraction->m_eflagLayouting, ::user::layout::layout_show_window);
-
-      auto edisplay = m_puserinteraction->process_display();
-
-      auto eactivation = m_puserinteraction->process_state().m_eactivation;
+      __keep_flag_on(m_puserinteraction->layout().m_eflag, ::user::interaction_layout::flag_show_window);
 
       if (edisplay == display_iconic)
       {
@@ -4520,7 +4627,7 @@ namespace user
       if(m_puserinteraction)
       {
 
-         m_puserinteraction->ui_state().m_eactivation = activation_none;
+         m_puserinteraction->layout().design() = activation_none;
 
       }
 
@@ -4538,7 +4645,7 @@ namespace user
    void interaction_impl::_001OnDoShowWindow(::message::message * pmessage)
    {
 
-      m_puserinteraction->_do_show_window();
+      m_puserinteraction->window_show_change_visibility();
 
    }
 
@@ -4565,7 +4672,7 @@ namespace user
       if (m_puserinteraction->is_graphical())
       {
 
-         window_thread_apply_visual();
+         window_show();
 
          if (::is_set(m_puserthread))
          {
@@ -4598,7 +4705,7 @@ namespace user
 
       }
 
-      if (m_puserinteraction->m_eflagLayouting)
+      if (m_puserinteraction->layout().m_eflag)
       {
 
          return;
@@ -4614,45 +4721,39 @@ namespace user
 
       }
 
-      bool bLayered = m_puserinteraction->GetExStyle() & WS_EX_LAYERED;
+//      bool bLayered = m_puserinteraction->GetExStyle() & WS_EX_LAYERED;
+//
+//#ifndef WINDOWS_DESKTOP
+//
+//      bLayered = false;
+//
+//#endif
+//
+//      if(!bLayered)
+//      {
+//
+//         m_puserinteraction->layout().sketch().origin() = pmove->m_point;
+//
+//         m_puserinteraction->layout().sketch().screen_origin() = pmove->m_point;
+//
+//      }
 
-#ifndef WINDOWS_DESKTOP
-
-      bLayered = false;
-
-#endif
-
-      if(!bLayered)
+      if (m_puserinteraction->layout().sketch().origin() != pmove->m_point)
       {
 
-         m_puserinteraction->window_state3().m_point = pmove->m_point;
-
-         m_puserinteraction->request_state().m_pointScreen = pmove->m_point;
-
-         m_puserinteraction->process_state().m_pointScreen = pmove->m_point;
-
-         m_puserinteraction->ui_state().m_pointScreen = pmove->m_point;
-
-         m_puserinteraction->window_state3().m_pointScreen = pmove->m_point;
-
-      }
-
-      if (m_puserinteraction->request_state().m_point != pmove->m_point)
-      {
-
-         if (m_puserinteraction->window_is_moving())
+         if (m_puserinteraction->layout().is_moving())
          {
 
             INFO("\nWindow is Moving :: _001OnMove");
 
          }
 
-         m_puserinteraction->move_to(pmove->m_point);
+         m_puserinteraction->layout().sketch().origin() = pmove->m_point;
 
-         if (m_puserinteraction->display_state() != display_normal)
+         if (m_puserinteraction->layout().sketch().display() != display_normal)
          {
 
-            m_puserinteraction->display();
+            m_puserinteraction->display(display_normal);
 
          }
 
@@ -4686,7 +4787,7 @@ namespace user
 
       }
 
-      if (m_puserinteraction->m_eflagLayouting)
+      if (m_puserinteraction->layout().m_eflag)
       {
 
          return;
@@ -4706,19 +4807,19 @@ namespace user
       if(!bLayered)
       {
 
-         m_puserinteraction->window_state3().m_size = psize->m_size;
+         m_puserinteraction->layout().window() = psize->m_size;
 
       }
 
-      if (m_puserinteraction->request_state().m_size != psize->m_size)
+      if (m_puserinteraction->layout().sketch().size() != psize->m_size)
       {
 
-         m_puserinteraction->set_size(psize->m_size);
+         m_puserinteraction->layout().sketch() = psize->m_size;
 
-         if (m_puserinteraction->display_state() != display_normal)
+         if (m_puserinteraction->layout().sketch().display() != display_normal)
          {
 
-            m_puserinteraction->display();
+            m_puserinteraction->display(display_normal);
 
          }
 
@@ -5071,12 +5172,12 @@ namespace user
    double interaction_impl::approximate_occlusion_rate()
    {
 
-      return (double)approximate_occlusion_area() / (double)m_puserinteraction->area();
+      return (double)approximate_occlusion_area() / (double)m_puserinteraction->layout().area();
 
    }
 
 
-   bool interaction_impl::is_this_visible()
+   bool interaction_impl::is_this_visible(e_layout elayout)
    {
 
       if (!m_puserinteraction)
@@ -5092,8 +5193,8 @@ namespace user
          return false;
 
       }
-      
-      if (!::is_visible(m_puserinteraction->display_state()))
+
+      if (!m_puserinteraction->layout().state(elayout).is_visible())
       {
 
          return false;

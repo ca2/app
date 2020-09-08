@@ -1,7 +1,9 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 #include "aura/update.h"
 #include "aura/const/id.h"
-//#include "core/user/userex/_userex.h"
 
 
 namespace user
@@ -10,7 +12,7 @@ namespace user
 
    form_view::form_view()
    {
-      
+
    }
 
 
@@ -70,56 +72,78 @@ namespace user
    }
 
 
-   bool form_view::open_document(const var & varFile)
+   ::estatus form_view::open_document(const var & varFile)
    {
-      
-      auto pformOld = m_pformChild;
-      
-      ::file::path path = varFile.get_file_path();
-      
-      bool bHtml = path.ends_ci(".html") || path.ends_ci(".htm") || path.ends_ci(".xhtml");
-      
+
+      System.defer_create_html();
+
+      __pointer(::user::form) pformOld;
+
+      if (m_pform != this)
+      {
+
+         pformOld = m_pform;
+
+      }
+
+      string strHtml;
+
+      ::file::path pathHtml;
+
+      bool bHtml = System.m_phtml->defer_get_html(strHtml, pathHtml, this, varFile);
+
       bool bOk = true;
 
       if(bHtml)
       {
-         
+
          bOk = false;
-      
-         m_pformChild = create_view(Session.user()->get_html_view_type());
-         
-         if(m_pformChild)
+
+         m_pform = create_view(Session.user()->get_html_view_type());
+
+         if(m_pform)
          {
-         
-            m_pformChild->set_parent_form(this);
 
-            m_pformChild->set_form_callback(m_pcallback);
+            m_pform->set_parent_form(this);
 
-            if(m_pformChild->open_document(varFile))
+            m_pform->set_form_callback(m_pcallback);
+
+            if (strHtml.has_char())
             {
-               
+
+               if (m_pform->open_html(strHtml))
+               {
+
+                  bOk = true;
+
+               }
+
+            }
+            else if (m_pform->open_document(pathHtml))
+            {
+
                bOk = true;
-               
+
             }
             else
             {
-             
-               m_pformChild->DestroyWindow();
-               
-               m_pformChild.release();
-               
+
+               m_pform->DestroyWindow();
+
+               m_pform.release();
+
             }
-            
+
          }
-         
+
       }
       else
       {
-         
-         m_pformChild.release();
-         
+
+         m_pform.release();
+
       }
-      
+
       if(pformOld)
       {
 
@@ -131,11 +155,11 @@ namespace user
             get_document()->remove_view(pview);
 
          }
-         
+
          pformOld->DestroyWindow();
-         
+
          pformOld.release();
-         
+
       }
 
       if (bOk)
@@ -153,48 +177,48 @@ namespace user
 
    }
 
-   
-   ::estatus     form_view::open_html(const string & str)
+
+   ::estatus form_view::open_html(const string & str)
    {
-      
+
       sync_lock sl(mutex());
-      
-      auto pformOld = m_pformChild;
-      
+
+      auto pformOld = m_pform;
+
       ::estatus     estatus = error_failed;
-      
+
       //__pointer(::user::form_view) pformChild = create_view(Session.userex()->get_html_view_type());
-      //   
+      //
       //if(pformChild)
       //{
-      //   
+      //
       //   pformChild->set_form_callback(pformOld->get_form_callback());
-      //      
+      //
       //   if(pformChild->open_html(str))
       //   {
-      //      
+      //
       //      try
       //      {
-      //      
+      //
       //         if(pformOld)
       //         {
-      //            
+      //
       //            pformOld->hide();
-      //            
+      //
       //            pformOld->DestroyWindow();
-      //            
+      //
       //            pformOld.release();
-      //            
+      //
       //         }
-      //         
+      //
       //      }
       //      catch (...)
       //      {
-      //      
+      //
       //      }
-      //      
-      //      m_pformChild = pformChild;
-      //      
+      //
+      //      m_pform = pformChild;
+      //
       //      set_need_layout();
 
       //      set_need_redraw();
@@ -202,21 +226,21 @@ namespace user
       //      post_redraw();
 
       //      estatus = success;
-      //      
+      //
       //   }
       //   else
       //   {
-      //      
+      //
       //      pformChild->DestroyWindow();
-      //      
+      //
       //      pformChild.release();
-      //      
+      //
       //   }
-      //   
+      //
       //}
-      
+
       return estatus;
-      
+
    }
 
 
@@ -225,37 +249,36 @@ namespace user
 
       BASE_VIEW::on_layout(pgraphics);
 
-      if (m_pformChild)
+      if (m_pform)
       {
 
          auto rectClient = get_client_rect();
 
-         m_pformChild->place(rectClient);
+         m_pform->place(rectClient);
 
-         m_pformChild->display();
+         m_pform->display();
 
-         m_pformChild->set_reposition();
+         m_pform->set_reposition();
 
-         m_pformChild->set_need_layout();
+         m_pform->set_need_layout();
 
-         m_pformChild->set_need_redraw();
+         m_pform->set_need_redraw();
 
       }
-
 
    }
-   
-   
+
+
    void form_view::soft_reload()
    {
-      
-      if(m_pformChild)
+
+      if(m_pform)
       {
-      
-         m_pformChild->soft_reload();
-         
+
+         m_pform->soft_reload();
+
       }
-      
+
    }
 
 
@@ -282,10 +305,10 @@ namespace user
    void form_view::set_need_load_form_data()
    {
 
-      if (m_pformChild)
+      if (m_pform)
       {
 
-         m_pformChild->set_need_load_form_data();
+         m_pform->set_need_load_form_data();
 
       }
       else

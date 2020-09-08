@@ -6,8 +6,11 @@
 #define PCRE2_STATIC
 #endif
 
+#ifdef __APPLE__
+#include <pcre/pcre2.h>
+#else
 #include <pcre2.h>
-
+#endif
 
 
 

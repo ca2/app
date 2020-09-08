@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 
 
 namespace user
@@ -18,7 +21,6 @@ namespace user
 
 
    }
-
 
 
    void check::_001SetCheck(bool bChecked, const ::action_context & context)
@@ -73,7 +75,6 @@ namespace user
 
 
 } // namespace user
-
 
 
 

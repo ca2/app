@@ -12,6 +12,7 @@ namespace draw2d
    public:
 
 
+      ::size               m_size;
       int                  m_iStride;
 
 #ifdef WINDOWS_DESKTOP
@@ -51,8 +52,8 @@ namespace draw2d
       virtual bool CreateCompatibleBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight);
       virtual bool CreateDiscardableBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight);
 
-      virtual bool CreateDIBSection(::draw2d::graphics * pgraphics, const ::size& size, UINT usage, void** ppcolorref, int* piScan, HANDLE hSection, u32 offset);
-      virtual bool HostDIBSection(::draw2d::graphics * pgraphics, const pixmap * ppximap, UINT usage, HANDLE hSection, u32 offset);
+      virtual bool create_bitmap(::draw2d::graphics * pgraphics, const ::size& size, void** ppcolorref, int* piScan);
+      virtual bool host_bitmap(::draw2d::graphics* pgraphics, const pixmap* ppximap);
       virtual bool CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, u32 flInit, const void *pjBits, UINT iUsage);
 
       virtual bool attach(void * posdata);

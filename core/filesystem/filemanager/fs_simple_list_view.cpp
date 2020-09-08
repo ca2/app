@@ -1,6 +1,8 @@
 ﻿#include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/filesystem/filemanager/_filemanager.h"
+#endif
 #include "axis/xml/_.h"
-
 
 
 namespace filemanager
@@ -87,7 +89,7 @@ namespace filemanager
                pcolumn->m_iSmallImageWidth = 16;
                pcolumn->m_crSmallMask = RGB(255, 0, 255);
                pcolumn->m_pil = m_pil;
-               
+
 
             }
 
@@ -97,7 +99,7 @@ namespace filemanager
                //      pcolumn->m_uiText = IDS_PLAYLIST_SONG_NAME;
                pcolumn->m_iWidth = 200;
                pcolumn->m_iSubItem = SubItemArtist;
-               
+
 
             }
 
@@ -108,7 +110,7 @@ namespace filemanager
                //      pcolumn->m_uiText = IDS_PLAYLIST_SONG_NAME;
                pcolumn->m_iWidth = 400;
                pcolumn->m_iSubItem = SubItemFileName;
-               
+
 
             }
 
@@ -119,7 +121,7 @@ namespace filemanager
 
                pcolumn->m_iWidth = 400;
                pcolumn->m_iSubItem = SubItemFilePath;
-               
+
 
             }
 
@@ -249,7 +251,7 @@ namespace filemanager
 
          bool list_view::on_click(const ::user::item & item)
          {
-            
+
             if(m_itema[item.item_index()]->IsFolder())
             {
 
@@ -264,7 +266,7 @@ namespace filemanager
             }
 
             return true;
-            
+
          }
 
 
@@ -568,9 +570,9 @@ namespace filemanager
             m_bKickActive = true;
             if(pbase->m_wparam == 0)
             {
-               
+
                m_cache._001Invalidate(this);
-               
+
                _001OnUpdateItemCount();
 
                set_need_layout();

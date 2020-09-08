@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 
 
 namespace user
@@ -18,8 +21,8 @@ namespace user
 
    //void edit_plain_text_view::install_message_routing(::channel * pchannel)
    //{
-   //   
-   //   
+   //
+   //
    //   ::user::plain_edit::install_message_routing(pchannel);
    //   impact::install_message_routing(pchannel);
    //   //IGUI_MSG_LINK(WM_CREATE, pchannel, this, &edit_plain_text_view::_001OnCreate);

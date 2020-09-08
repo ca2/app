@@ -38,7 +38,7 @@ namespace tranquillum
    void button::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      if (GetTopLevel()->frame_is_transparent() && GetTopLevel() != GetActiveWindow())
+      if ((GetTopLevel()->frame_is_transparent() && GetTopLevel() != GetActiveWindow()) || !GetTopLevelFrame()->m_bShowControlBox)
       {
 
          return;
@@ -66,7 +66,7 @@ namespace tranquillum
          crText = m_pcontrolbox->m_crButtonForeDisabled;
 
       }
-      else if (m_itemHover)
+      else if (m_itemHover.is_set())
       {
 
          pgraphics->set(m_pcontrolbox->m_brushButtonBackSel);

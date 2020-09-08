@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 #include "aura/message.h"
 #include "aura/update.h"
 
@@ -663,7 +666,7 @@ bool object::enable_application_events(bool bEnable)
 }
 
 
-::estatus     object::request(arguments arguments)
+::estatus object::request(arguments arguments)
 {
 
    auto pcreate = __new(::create(this, arguments));
@@ -967,7 +970,7 @@ void object::release_references()
          {
 
             release_composite(p);
-            
+
          }
          catch (...)
          {
@@ -1086,7 +1089,7 @@ bool object::__is_composite(::generic_object * pobject) const
 // ->at simple objects (from set_finish point of view)...
 // ->for objects that doesn't have custom finalization
 // set_finish calls set_finish_composites and finalize.
-// 
+//
 // ->for complex objects (from set_finish point of view)...
 // ->for objects that have custom finalization
 // set_finish wouldn't call *finalize*,
@@ -1749,16 +1752,16 @@ string object::get_text(const var& var, const ::id& id)
 
    if (!estatus)
    {
-      
+
       string strMessage(pszMessage);
-      
+
       string strTitle(pszTitle);
-      
+
       if(strTitle.is_empty())
       {
-         
+
          strTitle = Application.get_app_user_friendly_task_bar_name();
-         
+
       }
 
       estatus = ::os_message_box(puiOwner->get_safe_handle(), strMessage, strTitle, emessagebox, callback);

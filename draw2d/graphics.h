@@ -61,10 +61,10 @@ namespace draw2d
       virtual void assert_valid() const override;
       virtual void dump(dump_context & dumpcontext) const override;
 
-      inline operator ::user::style_pointer & ()
+      inline operator ::user::style & ()
       {
 
-         return m_puserstyle;
+         return *m_puserstyle;
 
       }
 
@@ -101,7 +101,7 @@ namespace draw2d
 
       virtual ::file::path get_font_path(const string& strName);
 
-      inline oswindow get_window_handle() const;
+      virtual oswindow get_window_handle() const;
 
 
       void draw_ca2(int x,int y,int z,const ::color & colorBk,const ::color & color);
@@ -578,7 +578,7 @@ namespace draw2d
       virtual bool text_out(i32 x, i32 y, const string & str);
       virtual bool text_out(double x, double y, const char * pszString, strsize nCount);
 
-      inline bool text_out(const ::point& point, const string & str) { return text_out(point.x, point.y, str); }
+      inline bool text_out(const ::point& point, const string& str) { return text_out((::i32) point.x, (::i32) point.y, str); }
 
       virtual bool text_out(double x, double y, const string & str);
       virtual bool ExtTextOut(i32 x, i32 y, UINT nOptions, const ::rect & rect, const char * pszString, strsize nCount, i32 * lpDxWidths);

@@ -518,15 +518,15 @@
     <ClInclude Include="user\menu\menu_view.h">
       <Filter>Header Files\user\menu</Filter>
     </ClInclude>
+    <ClInclude Include="user\user\tab_drop_target_window.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="user\user\form_data.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\control_descriptor_set.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\form.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\menu.cpp">
@@ -548,9 +548,6 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\validate.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\form_callback.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\control.cpp">
@@ -741,9 +738,6 @@
     </ClCompile>
     <ClCompile Include="user\simple\main_frame.cpp">
       <Filter>Source Files\user\simple</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\tool_window.cpp">
-      <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\toolbar.cpp">
       <Filter>Source Files\user\user</Filter>

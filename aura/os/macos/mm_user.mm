@@ -180,21 +180,37 @@ CGContextRef get_nswindow_cgcontext(oswindow oswindow)
 }
 
 
-WINBOOL SetForegroundWindow(oswindow window)
+WINBOOL SetForegroundWindow(oswindow oswindow)
 {
    
-   if(!::is_window(window))
+   if(!::is_window(oswindow))
+   {
+      
       return FALSE;
+      
+   }
    
    ns_main_async(^{
 
       [NSApp activateIgnoringOtherApps:YES];
       
-      [__nswindow(window) makeKeyWindow];
-      
-      [__nswindow(window) makeMainWindow];
+      NSWindow * window = __nswindow(oswindow);
 
-      set_active_window(window);
+      if([window canBecomeKeyWindow])
+      {
+      
+         [window makeKeyWindow];
+         
+      }
+      
+      if([window canBecomeMainWindow])
+      {
+      
+         [window makeMainWindow];
+         
+      }
+
+      set_active_window(oswindow);
       
    });
    

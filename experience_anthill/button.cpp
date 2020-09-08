@@ -40,7 +40,7 @@ namespace experience
    void button::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      if (GetTopLevel()->frame_is_transparent() && !GetTopLevel()->is_active())
+      if ((GetTopLevel()->frame_is_transparent() && !GetTopLevel()->is_active()) || !GetTopLevelFrame()->m_bShowControlBox)
       {
 
          return;
@@ -70,7 +70,7 @@ namespace experience
          crText = m_pcontrolbox->m_crButtonForeDisabled;
 
       }
-      else if (hover_item())
+      else if (hover_item().is_set())
       {
 
          pgraphics->set(m_pcontrolbox->m_brushButtonBackSel);

@@ -1,6 +1,8 @@
-﻿#include "framework.h"
+#include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/experience/_experience.h"
+#endif
 #include "aura/const/timer.h"
-#include "orto_button.h"
 
 
 namespace experience
@@ -47,7 +49,7 @@ namespace experience
          crText = ARGB(255, 49, 50, 23);
 
       }
-      else if (m_itemHover)
+      else if (m_itemHover.is_set())
       {
 
          pgraphics->fill_rect(rectClient, ARGB(190, 49, 50, 23));
@@ -236,7 +238,7 @@ namespace experience
 
    void orto_button::on_hit_test(::user::item & item)
    {
-      
+
       if (m_spregion.is_null())
       {
 

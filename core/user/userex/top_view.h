@@ -25,7 +25,7 @@ namespace userex
 
       virtual void update(::update * pupdate) override;
 
-      virtual bool is_this_visible() override;
+      virtual bool is_this_visible(::user::e_layout elayout = ::user::layout_design) override;
 
 
       virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;

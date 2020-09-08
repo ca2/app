@@ -1,8 +1,8 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/account/_account.h"
+#endif
 #include "aura/const/timer.h"
-#include "account_login.h"
-#include "account_simple_ui.h"
-
 
 
 namespace account

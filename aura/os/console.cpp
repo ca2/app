@@ -39,12 +39,12 @@ namespace console
 
    }
 
-   
-   void console_composite::redirect_io() 
+
+   void console_composite::redirect_io()
    {
-      
-      m_pconsole->redirect_io(); 
-   
+
+      m_pconsole->redirect_io();
+
    }
 
 
@@ -58,52 +58,52 @@ namespace console
    }
 
 
-   void console_composite::SetWindowSize(int iHeight, int iWidth) 
+   void console_composite::SetWindowSize(int iHeight, int iWidth)
    {
-      
-      m_pconsole->SetWindowSize(iHeight, iWidth); 
-   
+
+      m_pconsole->SetWindowSize(iHeight, iWidth);
+
    }
 
-   
-   void console_composite::SetCursorVisibility(bool show) 
+
+   void console_composite::SetCursorVisibility(bool show)
    {
-      
-      m_pconsole->SetCursorVisibility(show); 
-   
+
+      m_pconsole->SetCursorVisibility(show);
+
    }
 
 
    void console_composite::SetCursorPosition(int y, int x)
    {
-      
-      m_pconsole->SetCursorPosition(y, x); 
-   
+
+      m_pconsole->SetCursorPosition(y, x);
+
    }
 
 
-   void console_composite::SetTextColor(int color) 
+   void console_composite::SetTextColor(int color)
    {
       m_iTextColor = color;
-      
-      m_pconsole->SetTextColor(color); 
-   
+
+      m_pconsole->SetTextColor(color);
+
    }
 
 
    void console_composite::SetScreenColor(int color, int iLineStart, int iLineCount)
    {
-      
-      m_pconsole->SetScreenColor(color, iLineStart, iLineCount); 
-   
+
+      m_pconsole->SetScreenColor(color, iLineStart, iLineCount);
+
    }
 
-   
-   void console_composite::write(const char * psz) 
-   { 
-      
-      m_pconsole->write(psz); 
-   
+
+   void console_composite::write(const char * psz)
+   {
+
+      m_pconsole->write(psz);
+
    }
 
 
@@ -112,3 +112,29 @@ namespace console
 
 
 
+
+
+void press_any_key_to_exit(const char * pszPrompt)
+{
+
+
+   string strPrompt;
+
+   if(pszPrompt)
+   {
+
+      strPrompt = pszPrompt;
+
+   }
+   else
+   {
+
+      strPrompt = "Press any key to exit.";
+
+   }
+
+   printf("%s\n", strPrompt.c_str());
+
+   getchar();
+
+}

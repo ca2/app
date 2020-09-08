@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/user/_user.h"
+#endif
 
 
 #define SBPF_UPDATE 0x0001  // pending update of text
@@ -198,7 +201,7 @@ namespace user
 //      ::user::control_bar::CalcInsideRect(rect, bHorz);
 //#ifdef WINDOWS_DESKTOP
 //      // subtract size grip if present
-//      if ((GetStyle() & SBARS_SIZEGRIP) && !GetParent()->window_is_zoomed())
+//      if ((GetStyle() & SBARS_SIZEGRIP) && !GetParent()->layout().is_zoomed())
 //      {
 //         // get border metrics from common control
 //         i32 rgBorders[3];

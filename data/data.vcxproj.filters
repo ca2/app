@@ -15,9 +15,6 @@
     <Filter Include="Source Files\mysql">
       <UniqueIdentifier>{25aca08e-98e7-4263-8191-7e2fd09aed75}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\data">
-      <UniqueIdentifier>{9dfc1ee3-8265-4eb4-8400-170034655c80}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{466b10fb-c2c3-4b42-83a3-78bdfb22bb1d}</UniqueIdentifier>
     </Filter>
@@ -32,8 +29,8 @@
     <ClInclude Include="mysql\mysql_dataset.h">
       <Filter>Header Files\mysql</Filter>
     </ClInclude>
-    <ClInclude Include="data\_.h">
-      <Filter>Header Files\data</Filter>
+    <ClInclude Include="_.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

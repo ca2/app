@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/user/_user.h"
+#endif
 
 
 namespace user
@@ -46,7 +49,7 @@ namespace user
    bool form_mesh::on_click(const ::user::item & item)
    {
       
-      if (!item)
+      if (!item.is_set())
       {
 
          return false;
@@ -418,7 +421,7 @@ namespace user
 
       draw_mesh_item item(this);
 
-      return m_itemControl 
+      return m_itemControl.is_set()
          && m_itemControl.m_iSubItem == pinteraction->descriptor().m_iSubItem;
 
       //i32 iEditItem;

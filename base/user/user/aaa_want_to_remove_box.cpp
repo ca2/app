@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 #include "aura/message.h"
 
 
@@ -96,13 +99,13 @@ namespace user
 
    bool box::should_save_window_rect()
    {
-      
+
 #if defined(_UWP) || defined(APPLE_IOS)
-      
+
       return false;
-      
+
 #else
-      
+
       return m_bSaveWindowRect && m_bEnableSaveWindowRect2;
 
 #endif
@@ -118,7 +121,7 @@ namespace user
       if (should_save_window_rect())
       {
 
-         if (display_state() == ::display_none)
+         if (layout().design().display() == ::display_none)
          {
 
             return false;
@@ -259,7 +262,7 @@ namespace user
 
             place(windowrect.m_rectWindow);
 
-            request_state().m_edisplay3 = edisplay;
+            layout().sketch().m_edisplay3 = edisplay;
 
             m_bRequestReady = true;
 
@@ -276,7 +279,7 @@ namespace user
 
             place(windowrect.m_rectSnapped);
 
-            request_state().m_edisplay3 = edisplay;
+            layout().sketch().m_edisplay3 = edisplay;
 
             m_bRequestReady = true;
 
@@ -317,7 +320,7 @@ namespace user
 
       }
 
-      if (display_state() == ::display_none)
+      if (layout().design().display() == ::display_none)
       {
 
          return false;
@@ -335,9 +338,9 @@ namespace user
 
       bool bGot = m_windowrectStore.m_edisplay != display_undefined;
 
-      windowrect.m_edisplay = display_request();
+      windowrect.m_edisplay = layout().sketch().display();
 
-      windowrect.m_eappearance = request_state().m_eappearance;
+      windowrect.m_eappearance = layout().sketch().appearance();
 
       get_window_rect(windowrect.m_rectWindow);
 
@@ -406,7 +409,7 @@ namespace user
    void box::prodevian_prepare_window_restore(edisplay edisplay)
    {
 
-      good_restore(NULL, window_request_rect(), true, request_state().m_eactivation, request_state().m_zorder, edisplay);
+      good_restore(NULL, window_request_rect(), true, layout().sketch().m_eactivation, layout().sketch().m_zorder, edisplay);
 
    }
 

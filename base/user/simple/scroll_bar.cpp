@@ -1,4 +1,7 @@
-#include "framework.h" 
+#include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/simple/_simple.h"
+#endif
 
 
 simple_scroll_bar::simple_scroll_bar() :
@@ -56,7 +59,7 @@ bool simple_scroll_bar::create_window(const char * pszClassName, const char * ps
    {
 
       return false;
-      
+
    }
 
    return true;
@@ -69,9 +72,9 @@ bool simple_scroll_bar::create_window(e_orientation eorientation, u32 uStyle, ::
 
    if(!::user::scroll_bar::create_window(eorientation, uStyle, puiParent, id))
    {
-      
+
       return false;
-      
+
    }
 
    return true;
@@ -107,7 +110,7 @@ void simple_scroll_bar::_001OnMouseMove(::message::message * pmessage)
 
       auto eelement = hit_test(pmouse);
 
-      if(eelement)
+      if(eelement.is_set())
       {
 
          pmouse->m_ecursor = cursor_arrow;
@@ -146,7 +149,7 @@ void simple_scroll_bar::_001OnLButtonDown(::message::message * pmessage)
 
    m_itemCurrent = hit_test(pmouse);
 
-   if(!m_itemCurrent)
+   if(!m_itemCurrent.is_set())
    {
 
       pmouse->m_bRet = false;
@@ -1193,7 +1196,7 @@ void simple_scroll_bar::_001OnClip(::draw2d::graphics_pointer & pgraphics)
       while (pinteraction != nullptr)
       {
 
-         if (i == 0)
+         if (i == 1)
          {
 
             pinteraction->::user::interaction::get_client_rect(rectFocus);
@@ -1641,7 +1644,7 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
          return;
 
       }
-      
+
       estatus = m_pimageDots->create({ (int)(rectDraw.width() * iDiv), (int)(rectDraw.height() * iDiv) });
 
       if (!estatus)
@@ -1716,7 +1719,7 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
 
    if(rectTrack.contains(item.m_pointClient))
    {
-      
+
       item = ::user::element_scrollbar_rect;
 
    }
@@ -1806,7 +1809,7 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
    if(m_itemCurrent == eelement || m_itemHover== eelement)
    {
 
-      auto color = get_color(pstyle, ::user::e_state_hover);
+      auto color = get_color(pstyle, eelement, ::user::e_state_hover);
 
       return color ? color : __acolor(100, 190, 180, 250);
 
@@ -1814,7 +1817,7 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
    else
    {
 
-      auto color = get_color(pstyle);
+      auto color = get_color(pstyle, eelement);
 
       return color ? color : __acolor(150, 150, 150, 150);
 

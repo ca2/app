@@ -105,6 +105,6 @@
 
 -(NSMenu *) applicationDockMenu:(NSApplication*)sender;
 @property(strong) NSWindowController *windowcontroller;
-- (void)play:(id)sender;
+- (void)on_os_menu_item:(id)sender;
 
 @end

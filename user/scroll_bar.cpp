@@ -1,4 +1,7 @@
-#include "framework.h" 
+#include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 
 
 namespace user
@@ -7,7 +10,7 @@ namespace user
 
    scroll_bar::scroll_bar()
    {
-      
+
       m_bParentScroll = false;
 
       m_scrollinfo.nMin    = 0;
@@ -202,7 +205,7 @@ namespace user
 
    void scroll_bar::_001OnClip(::draw2d::graphics_pointer & pgraphics)
    {
-      
+
       try
       {
 
@@ -219,7 +222,7 @@ namespace user
 
             rectClient = pdrawcontext->m_rectWindow;
 
-            _001ScreenToClient(rectClient);
+            _001ScreenToClient(rectClient, layout_design);
 
             rectClient.bottom++;
             rectClient.right++;
@@ -242,13 +245,13 @@ namespace user
             if (i != 1)
             {
 
-               pinteraction->get_window_rect(rectClient);
+               pinteraction->get_window_rect(rectClient, layout_design);
 
                pinteraction->get_client_rect(rectFocus);
 
                rectFocus.offset(rectClient.top_left());
 
-               _001ScreenToClient(rectFocus);
+               _001ScreenToClient(rectFocus, layout_design);
 
                rectFocus.bottom++;
                rectFocus.right++;

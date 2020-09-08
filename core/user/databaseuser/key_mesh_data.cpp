@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/databaseuser/_databaseuser.h"
+#endif
 
 
 namespace databaseuser
@@ -36,7 +39,9 @@ namespace databaseuser
       }
 
       ::user::range range;
+
       plist->_001GetSelection(range);
+
       for(index i = 0; i < range.get_item_count() ; i++)
       {
          auto & itemrange = range.ItemAt(i);

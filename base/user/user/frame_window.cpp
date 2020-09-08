@@ -1,12 +1,15 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 #include "aura/message.h"
 
 
-//extern CLASS_DECL_BASE thread_int_ptr < DWORD_PTR > t_time1;
-
 #ifdef MACOS
 
-void ns_create_main_menu();
+__pointer(menu_shared) create_menu_shared(const string_array & straParent, const string_array & straMenu, const string_array & straId);
+
+void ns_create_main_menu(menu_shared * pmenushared);
 
 #endif
 
@@ -881,13 +884,23 @@ namespace user
          return;
 
 #ifdef MACOS
-      
-      ns_main_async(^()
-              {
 
-      ns_create_main_menu();
-         
-      });
+      if(get_parent() == nullptr)
+      {
+
+         m_pmenushared = create_menu_shared(
+                                            m_straMenuParent,
+                                            m_straMenuName,
+                                            m_straMenuId);
+
+         ns_main_async(^()
+         {
+
+            ns_create_main_menu(m_pmenushared);
+
+         });
+
+      }
 
 #endif
 
@@ -1122,22 +1135,22 @@ namespace user
          // give ::user::impact a chance to save the focus (CFormView needs this)
          if (pview != nullptr)
          {
-            
+
             pview->OnActivateFrame(WA_INACTIVE, this);
-            
+
          }
 
          // finally, activate the frame
          // (send the default show command unless the main desktop interaction_impl)
          ActivateFrame(display_default);
-         
+
          if (pview != nullptr)
          {
-            
+
             pview->OnActivateView(TRUE, pview, pview);
-            
+
          }
-         
+
       }
 
       m_bLayoutEnable = true;
@@ -1166,7 +1179,8 @@ namespace user
       if (m_bFrameMoveEnable)
       {
 
-         prodevian_prepare_window_restore(display_restore);
+         //sketch_prepare_window_restore(display_restore);
+         display(display_restore);
 
       }
 
@@ -2410,13 +2424,13 @@ namespace user
       if (edisplay == display_default)
       {
 
-         if (!::is_visible(display_request()))
+         if (!::is_visible(layout().sketch().display()))
          {
 
             edisplay = display_normal;
 
          }
-         else if (window_is_iconic())
+         else if (layout().is_iconic())
          {
 
             edisplay = display_restore;
@@ -2424,14 +2438,14 @@ namespace user
          }
          else
          {
-          
-            edisplay = display_request();
-            
+
+            edisplay = layout().sketch().display();
+
          }
 
       }
 
-      if(!request_state().m_zorder.is_change_request() || request_state().m_zorder.m_ezorder != zorder_top)
+      if(!layout().sketch().zorder().is_change_request() || layout().sketch().zorder() != zorder_top)
       {
 
          order_top();
@@ -2810,25 +2824,25 @@ namespace user
       bool bUpdateBuffer;
 
       bool bUpdateWindow;
-      
+
       string strType = type_name();
-      
+
       if(strType.contains_ci("albertopibiri_keyboard") && strType.contains_ci("main_frame"))
       {
-         
+
          ::output_debug_string("albertopibiri_keyboard::main_frame");
-         
+
       }
       else if(strType.contains_ci("simple_child_frame"))
       {
-         
+
          ::output_debug_string("simple_child_frame");
 
       }
-      
-      prodevian_update_visual(bUpdateBuffer, bUpdateWindow);
 
-      if (!is_window_visible() || window_is_iconic())
+      sketch_to_design(pgraphics, bUpdateBuffer, bUpdateWindow);
+
+      if (!is_window_visible() || layout().is_iconic())
       {
 
          return;
@@ -2879,24 +2893,24 @@ namespace user
       {
 
 #if TEST
-         
+
          pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
          pgraphics->fill_solid_rect_dim(0, 0, 100, 100, ARGB(128, 255, 0, 0));
 
 #endif
-         
+
          //return;
 
          _001DrawThis(pgraphics);
-         
+
          _001DrawChildren(pgraphics);
-         
+
          if(m_bOverdraw)
          {
 
             _008CallOnDraw(pgraphics);
-            
+
          }
 
 #if TEST

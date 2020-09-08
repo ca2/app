@@ -35,7 +35,7 @@ namespace experience
       void SetBorderMask(const eborder & emask);
       eborder GetBorderMask();
 
-      bool window_is_moving();
+      bool layout().is_moving();
       void MoveWindow(void * oswindow, const ::point & point);
       void SetSWPFlags(UINT uiFlags);
 

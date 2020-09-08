@@ -5,7 +5,7 @@ namespace introjection
 {
 
 
-   class CLASS_DECL_CORE library:
+   class CLASS_DECL_APP_PROGRAMMING library:
       virtual public ::object
    {
    public:
@@ -26,7 +26,7 @@ namespace introjection
 
 
 
-   class CLASS_DECL_CORE compiler:
+   class CLASS_DECL_APP_PROGRAMMING compiler:
       virtual public ::object
    {
    public:

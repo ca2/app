@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 #include "_linux.h"
 #include "aura/const/id.h"
 #include "aura/const/message.h"
@@ -15,8 +18,13 @@
 #include <X11/extensions/XInput.h>
 #include <X11/extensions/XInput2.h>
 #include <X11/XKBlib.h>
+<<<<<<< HEAD
 
 #define new ACME_NEW
+=======
+#include "aura/os/x11/_x11.h"
+#define new AURA_NEW
+>>>>>>> origin/basis
 
 ::point g_pointX11Cursor;
 //::tick g_tickLastMouseMove;
@@ -31,7 +39,6 @@ void oswindow_set_active_window(oswindow oswindow);
 
 
 CLASS_DECL_AURA void update_application_session_cursor(void * pvoidApp, const point & pointCursor);
-
 
 bool is_return_key(XIRawEvent *event)
 {
@@ -1793,26 +1800,26 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 #define SIZEY  50
 
 
-void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & stra, bool_array  & baTab, int_array  & ya,SIZE * psize)
-{
-
-   sync_lock sl(x11_mutex());
-
-   pgraphics->fill_rect(::rect(*psize), RGB(84, 90, 80));
-
-   ::draw2d::brush_pointer pen(e_create_new);
-
-   pen->create_solid(0);
-
-   for(index i = 0; i < stra.get_count(); i++)
-   {
-
-      pgraphics->text_out(10.0 + 50.0 + (baTab[i] ? 25.0 : 0), 10.0 + 50.0 + ya[i], stra[i]);
-
-   }
-
-}
-
+//void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & stra, bool_array  & baTab, int_array  & ya,SIZE * psize)
+//{
+//
+//   sync_lock sl(x11_mutex());
+//
+//   pgraphics->fill_rect(::rect(*psize), RGB(84, 90, 80));
+//
+//   ::draw2d::brush_pointer pen(e_create_new);
+//
+//   pen->create_solid(0);
+//
+//   for(index i = 0; i < stra.get_count(); i++)
+//   {
+//
+//      pgraphics->text_out(10.0 + 50.0 + (baTab[i] ? 25.0 : 0), 10.0 + 50.0 + ya[i], stra[i]);
+//
+//   }
+//
+//}
+//
 #define _NET_WM_STATE_REMOVE        0    // remove/unset property
 #define _NET_WM_STATE_ADD           1    // add/set property
 #define _NET_WM_STATE_TOGGLE        2    // toggle property
@@ -2458,10 +2465,10 @@ void wm_iconify_window(oswindow oswindow)
       else
       {
 
-         if(oswindow->m_pimpl->m_puserinteraction->display_state() !=::display_iconic)
+         if(oswindow->m_pimpl->m_puserinteraction->layout().design().display() !=::display_iconic)
          {
 
-            oswindow->m_pimpl->m_puserinteraction->set_appearance(::display_iconic);
+            oswindow->m_pimpl->m_puserinteraction->layout().design() = ::display_iconic;
 
          }
 
@@ -2759,11 +2766,78 @@ bool wm_add_remove_list_raw(oswindow w, Atom atomList, Atom atomFlag, bool bSet)
 
 }
 
+__pointer_array(x11_hook) g_x11hooka;
+
+//LPFN_X11_PROCESS_EVENT g_x11processeventa[8];
+
+::estatus x11_hook::hook()
+{
+
+   sync_lock sl(x11_mutex());
+
+   g_x11hooka.add(this);
+
+   return ::success;
+
+}
+
+::estatus x11_hook::unhook()
+{
+
+   sync_lock sl(x11_mutex());
+
+   g_x11hooka.remove(this);
+
+   return ::success;
+
+}
+
+bool __x11_hook_process_event(osdisplay_data * pdisplaydata, XEvent & e, XGenericEventCookie * cookie)
+{
+
+   for(auto & phook : g_x11hooka)
+   {
+
+      if(phook->process_event(pdisplaydata, e, cookie))
+      {
+
+         return true;
+
+      }
+
+   }
+
+   return false;
+
+}
+
+//   for(int i = 0; i < g_cX11; i++)
+//   {
+//
+//      if(g_x11processeventa[i] == pfn)
+//      {
+//
+//         memmove(g_x11processeventa + i, g_x11processeventa + i + 1, g_cX11 - i - 1);
+//
+//         g_cX11--;
+//
+//         return ::success;
+//
+//      }
+//
+//   }
+//
+//   return ::error_failed;
+//
+//}
+
 #if !defined(RASPBIAN)
 bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e, XGenericEventCookie * cookie);
 #else
 bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e);
 #endif
+
+bool __x11_hook_process_event(osdisplay_data * pdisplaydata, XEvent & e);
 
 void x11_post_message(MESSAGE & msg);
 
@@ -2969,6 +3043,9 @@ void x11_thread(osdisplay_data * pdisplaydata)
 
                XNextEvent(pdisplay, &e);
 
+               if(!__x11_hook_process_event(pdisplaydata, e, cookie))
+               {
+
 #if !defined(RASPBIAN)
 
                x11_process_event(pdisplaydata, e, cookie);
@@ -2978,6 +3055,8 @@ void x11_thread(osdisplay_data * pdisplaydata)
                x11_process_event(pdisplaydata, e);
 
 #endif
+
+               }
 
             }
             catch(...)
@@ -3401,19 +3480,21 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                   if(iIconic == 0)
                   {
 
-                     if(pinteraction->display_state() == ::display_iconic)
+                     if(pinteraction->layout().design().display() == ::display_iconic)
                      {
 
                         //file_put_contents_dup("/home/camilo/xxx.txt", "");
 
                         // 1111111111111111111111111111111111111111111
 
-                        pinteraction->hide();
+                        //pinteraction->hide();
 
                         pinteraction->fork([=]()
                         {
 
-                           if(pinteraction->m_windowrect.m_edisplayPrevious == ::display_iconic)
+                           auto edisplayPrevious = pinteraction->window_previous_display();
+
+                           if(edisplayPrevious == ::display_iconic)
                            {
 
                               pinteraction->_001OnDeiconify(::display_normal);
@@ -3422,7 +3503,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                            else
                            {
 
-                              pinteraction->_001OnDeiconify(pinteraction->m_windowrect.m_edisplayPrevious);
+                              pinteraction->_001OnDeiconify(edisplayPrevious);
 
                            }
 
@@ -3431,11 +3512,11 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                         bHandled = true;
 
                      }
-                     else if(pinteraction->display_request() == ::display_full_screen
-                           && pinteraction->display_state() != ::display_full_screen)
+                     else if(pinteraction->layout().sketch().display() == ::display_full_screen
+                           && pinteraction->layout().design().display() != ::display_full_screen)
                      {
 
-                        pinteraction->set_appearance(::display_full_screen);
+                        pinteraction->layout().sketch() = ::display_full_screen;
 
                      }
 
@@ -3443,11 +3524,11 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                   else
                   {
 
-                     if(pinteraction->display_state() != ::display_iconic
-                     && pinteraction->display_state() != ::display_none)
+                     if(pinteraction->layout().design().display() != ::display_iconic
+                     && pinteraction->layout().design().display() != ::display_none)
                      {
 
-                        pinteraction->set_appearance(::display_iconic);
+                        pinteraction->layout().sketch() = ::display_iconic;
 
                      }
 
@@ -3488,64 +3569,84 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
          if(pinteraction != nullptr)
          {
 
-            if(pinteraction->display_state() == ::display_iconic && !msg.hwnd->is_iconic())
+            if(pinteraction->layout().design().display() == ::display_iconic && !msg.hwnd->is_iconic())
             {
 
-               ::e_display edisplayPrevious = pinteraction->m_windowrect.m_edisplayPrevious;
+//               ::e_display edisplayPrevious = pinteraction->window_previous_display();
+//
+//               pinteraction->layout().sketch() = edisplayPrevious;
+//
+//               pinteraction->layout().design() = edisplayPrevious;
+//
+//               pinteraction->layout().output() = edisplayPrevious;
+//
+//               pinteraction->layout().window() = edisplayPrevious;
+//
+//               pinteraction->m_windowrect.m_edisplay = edisplayPrevious;
 
-               pinteraction->request_state().m_edisplay3 = edisplayPrevious;
+                  pinteraction->fork([=]()
+                  {
 
-               pinteraction->process_state().m_edisplay3 = edisplayPrevious;
+                     auto edisplayPrevious = pinteraction->window_previous_display();
 
-               pinteraction->ui_state().m_edisplay3 = edisplayPrevious;
+                     if(edisplayPrevious == ::display_iconic)
+                     {
 
-               pinteraction->window_state3().m_edisplay3 = edisplayPrevious;
+                        pinteraction->_001OnDeiconify(::display_normal);
 
-               pinteraction->m_windowrect.m_edisplay = edisplayPrevious;
+                     }
+                     else
+                     {
 
-            }
+                        pinteraction->_001OnDeiconify(edisplayPrevious);
 
-            {
+                     }
 
-               //_x11_defer_check_configuration(msg.hwnd);
-
-               ::point point(e.xconfigure.x, e.xconfigure.y);
-
-               ::size size(e.xconfigure.width, e.xconfigure.height);
-
-               auto pointWindow = pinteraction->window_state3().m_point;
-
-               auto sizeWindow = pinteraction->window_state3().m_size;
-
-               if(pointWindow != point)
-               {
-
-                  msg.message       = WM_MOVE;
-                  msg.wParam        = 0;
-                  msg.lParam        = point.lparam();
-
-                  post_ui_message(msg);
+                  });
 
                }
 
-               if(sizeWindow != size)
                {
 
-                  msg.message       = WM_SIZE;
-                  msg.wParam        = 0;
-                  msg.lParam        = size.lparam();
+                  //_x11_defer_check_configuration(msg.hwnd);
 
-                  post_ui_message(msg);
+                  ::point point(e.xconfigure.x, e.xconfigure.y);
+
+                  ::size size(e.xconfigure.width, e.xconfigure.height);
+
+                  auto pointWindow = pinteraction->layout().window().screen_origin();
+
+                  auto sizeWindow = pinteraction->layout().window().size();
+
+                  if(pointWindow != point)
+                  {
+
+                     msg.message       = WM_MOVE;
+                     msg.wParam        = 0;
+                     msg.lParam        = point.lparam();
+
+                     post_ui_message(msg);
+
+                  }
+
+                  if(sizeWindow != size)
+                  {
+
+                     msg.message       = WM_SIZE;
+                     msg.wParam        = 0;
+                     msg.lParam        = size.lparam();
+
+                     post_ui_message(msg);
+
+                  }
+
+                  msg.hwnd->m_rect.set(point, size);
 
                }
-
-               msg.hwnd->m_rect.set(point, size);
 
             }
 
          }
-
-      }
 
       if(g_oswindowDesktop != nullptr && e.xconfigure.window == g_oswindowDesktop->window())
       {
@@ -3674,10 +3775,10 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
       int YRoot = e.xbutton.y_root;
 
-//      int l = msg.hwnd->m_pimpl->m_puserinteraction->request_state().m_point.x;
-//      int t = msg.hwnd->m_pimpl->m_puserinteraction->request_state().m_point.y;
-//      int w = msg.hwnd->m_pimpl->m_puserinteraction->request_state().m_size.cx;
-//      int h = msg.hwnd->m_pimpl->m_puserinteraction->request_state().m_size.cy;
+//      int l = msg.hwnd->m_pimpl->m_puserinteraction->layout().sketch().m_point.x;
+//      int t = msg.hwnd->m_pimpl->m_puserinteraction->layout().sketch().m_point.y;
+//      int w = msg.hwnd->m_pimpl->m_puserinteraction->layout().sketch().m_size.cx;
+//      int h = msg.hwnd->m_pimpl->m_puserinteraction->layout().sketch().m_size.cy;
 //
 //      ::rect r;
 //
@@ -5123,7 +5224,7 @@ void x11_store_name(oswindow oswindow, const char * pszName)
 //   if(!bMoveDiff)
 //   {
 //
-//      if(pinteraction->request_state().m_point != point)
+//      if(pinteraction->layout().sketch().m_point != point)
 //      {
 //
 //         bMoveDiff = true;
@@ -5139,7 +5240,7 @@ void x11_store_name(oswindow oswindow, const char * pszName)
 //   if(!bSizeDiff)
 //   {
 //
-//      if(pinteraction->request_state().m_size != size)
+//      if(pinteraction->layout().sketch().m_size != size)
 //      {
 //
 //         bSizeDiff = true;
@@ -5274,3 +5375,20 @@ void x11_store_name(oswindow oswindow, const char * pszName)
 
 
 
+void os_menu_item_enable(void * pitem, bool bEnable)
+{
+
+}
+
+
+void os_menu_item_check(void * pitem, bool bCheck)
+{
+
+}
+
+
+
+bool x11_hook::process_event(osdisplay_data * pdisplaydata, XEvent & e, XGenericEventCookie * cookie)
+{
+return false;
+}

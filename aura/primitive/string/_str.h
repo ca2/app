@@ -140,7 +140,7 @@ namespace str
    inline  void           to(u32 & i, i32 iBase, const ansichar * psz);
    inline  void           to(u64 & i, i32 iBase, const ansichar * psz);
 
-#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN)
+#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
    inline  void           to(long & l, const ansichar * psz);
    inline  void           to(long & l, i32 iBase, const ansichar * psz);
 #endif

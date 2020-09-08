@@ -1922,7 +1922,7 @@ void wm_iconify_window(oswindow oswindow)
    else
    {
 
-      if(oswindow->m_pimpl->m_puserinteraction->display_state() !=::display_iconic)
+      if(oswindow->m_pimpl->m_puserinteraction->layout().design().display() !=::display_iconic)
       {
 
          oswindow->m_pimpl->m_puserinteraction->set_appearance(::display_iconic);
@@ -2605,7 +2605,7 @@ bool x11_process_message(Display * pdisplay)
             if(pimpl != nullptr)
             {
 
-               if(pinteraction->display_state() == ::display_iconic && !msg.hwnd->is_iconic())
+               if(pinteraction->layout().design().display() == ::display_iconic && !msg.hwnd->is_iconic())
                {
 
                   //file_put_contents_dup("/home/camilo/xxx.txt", "");
@@ -2636,8 +2636,8 @@ bool x11_process_message(Display * pdisplay)
 
                }
 
-               if(pinteraction->display_state() != ::display_iconic
-                     && pinteraction->display_state() != ::display_none
+               if(pinteraction->layout().design().display() != ::display_iconic
+                     && pinteraction->layout().design().display() != ::display_none
                      && msg.hwnd->is_iconic())
                {
 
@@ -2645,8 +2645,8 @@ bool x11_process_message(Display * pdisplay)
 
                }
 
-               if(pinteraction->display_request() == ::display_full_screen
-                     && pinteraction->display_state() != ::display_full_screen
+               if(pinteraction->layout().sketch().display() == ::display_full_screen
+                     && pinteraction->layout().design().display() != ::display_full_screen
                      && !msg.hwnd->is_iconic())
                {
 
@@ -2687,12 +2687,12 @@ bool x11_process_message(Display * pdisplay)
          if(pinteraction != nullptr)
          {
 
-            if(pinteraction->display_state() == ::display_iconic && !msg.hwnd->is_iconic())
+            if(pinteraction->layout().design().display() == ::display_iconic && !msg.hwnd->is_iconic())
             {
 
                ::e_display edisplayPrevious = pinteraction->m_windowrect.m_edisplayPrevious;
 
-               pinteraction->request_state().m_edisplay3 = edisplayPrevious;
+               pinteraction->layout().sketch().m_edisplay3 = edisplayPrevious;
 
                pinteraction->process_state().m_edisplay3 = edisplayPrevious;
 

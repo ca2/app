@@ -1,6 +1,11 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
+#include "axis/user/validate.h"
 #include "aura/message.h"
 #include "aura/update.h"
+
 
 namespace user
 {
@@ -335,7 +340,9 @@ namespace user
 
       pinteraction->_001GetText(str);
 
-      if(!pinteraction->Validate(str))
+      ::user::validate validate;
+
+      if(!validate.Validate(str, &pinteraction->descriptor()))
       {
          // que tal um balão para indicar o erro
          return false;
@@ -745,7 +752,7 @@ namespace user
 
    }
 
-   
+
    void form_window::data_on_after_change(::database::client* pclient, const ::database::key& key, const var& var, ::update* pupdate)
    {
 
@@ -917,7 +924,7 @@ namespace user
    {
 
       pmessage->previous();
-      
+
       if(pmessage->m_bRet)
       {
 
@@ -1068,13 +1075,19 @@ namespace user
    }
 
 
-   bool form_window::open_document(const var & varFile)
+   ::estatus form_window::open_document(const var & varFile)
    {
 
-      if(!::user::form_control::open_document(varFile))
-         return false;
+      auto estatus = ::user::form_control::open_document(varFile);
 
-      return true;
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 
@@ -1289,30 +1302,30 @@ namespace user
 
    //}
    //
-   
+
    //::form_property_set * form_window::get_form_property_set()
    //{
-   //   
+   //
    //   auto pset = form_callback::get_form_property_set();
-   //   
+   //
    //   if(pset)
    //   {
-   //    
+   //
    //      return pset;
-   //      
+   //
    //   }
-   //   
+   //
    //   pset = form_control::get_form_property_set();
-   //   
+   //
    //   if(pset)
    //   {
-   //      
+   //
    //      return pset;
-   //      
+   //
    //   }
-   //   
+   //
    //   return nullptr;
-   //   
+   //
    //}
 
 
@@ -1333,7 +1346,7 @@ namespace user
 
    }
 
-   
+
    void form_window::install_message_routing(::channel * pchannel)
    {
       ::user::form_control::install_message_routing(pchannel);

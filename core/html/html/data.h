@@ -1,7 +1,6 @@
 #pragma once
 
 
-   
 class CLASS_DECL_CORE html_data :
    virtual public ::form_data
 {
@@ -27,8 +26,8 @@ public:
 
    virtual bool open_document(const var & varFile);
    virtual ::estatus     open_html(const ::string & str);
-   
-   
+
+
    virtual bool open_link(const char * pszPath);
 
 

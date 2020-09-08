@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A44E7FE24F706D20077A431 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A44E7FA24F706D20077A431 /* _.h */; };
+		9A44E7FF24F706D20077A431 /* _user.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A44E7FD24F706D20077A431 /* _user.h */; };
 		9A4889F924EB4A7400119EC4 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4889F324EB4A7400119EC4 /* framework.h */; };
 		9A4889FA24EB4A7400119EC4 /* window.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4889F424EB4A7400119EC4 /* window.h */; };
 		9A4889FB24EB4A7400119EC4 /* application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4889F524EB4A7400119EC4 /* application.h */; };
@@ -48,6 +50,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9A44E7FA24F706D20077A431 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = SOURCE_ROOT; };
+		9A44E7FD24F706D20077A431 /* _user.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _user.h; sourceTree = SOURCE_ROOT; };
 		9A48898624EB48DE00119EC4 /* libapp_app.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libapp_app.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4889F324EB4A7400119EC4 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = SOURCE_ROOT; };
 		9A4889F424EB4A7400119EC4 /* window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = window.h; sourceTree = SOURCE_ROOT; };
@@ -91,6 +95,8 @@
 		9A48898824EB48DE00119EC4 /* app_app_app */ = {
 			isa = PBXGroup;
 			children = (
+				9A44E7FA24F706D20077A431 /* _.h */,
+				9A44E7FD24F706D20077A431 /* _user.h */,
 				9A4889F824EB4A7400119EC4 /* application.cpp */,
 				9A4889F524EB4A7400119EC4 /* application.h */,
 				9A4889F624EB4A7400119EC4 /* framework.cpp */,
@@ -125,6 +131,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A44E7FE24F706D20077A431 /* _.h in Headers */,
+				9A44E7FF24F706D20077A431 /* _user.h in Headers */,
 				9A4889FA24EB4A7400119EC4 /* window.h in Headers */,
 				9A4889FB24EB4A7400119EC4 /* application.h in Headers */,
 				9A4889F924EB4A7400119EC4 /* framework.h in Headers */,

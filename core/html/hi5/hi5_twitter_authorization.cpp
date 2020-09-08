@@ -1,5 +1,8 @@
 #include "framework.h"
+#include "core/html/html/_html.h"
+#include "core/html/impl/_impl.h"
 #include "hi5_twitter_authorization.h"
+#include "core/user/simple/_simple.h"
 //#include "core/user/simple/_simple.h"
 
 //#include <openssl/rsa.h>
@@ -91,14 +94,14 @@ namespace hi5
             return;
 
          string strUrl;
-         
+
          strUrl = "http://spaignition.api.server.ca2.cc/query?node=install_application&id=";
-         
+
          string strAppName;
-         
+
          if(Application.m_strAppName == "winactionarea")
          {
-            
+
             strAppName = "_set_windesk";
 
          }
@@ -211,10 +214,10 @@ namespace hi5
 
       void authorization::on_create_impact(::user::impact_data * pimpactdata)
       {
-         
+
          if (pimpactdata->m_id == "twitter_authorization")
          {
-            
+
             m_pdocAuth = User.create_child_form(this, this, pimpactdata->m_pplaceholder);
 
             if (m_pdocAuth != nullptr)

@@ -13,6 +13,8 @@
 //
 #import "_mm.h"
 
+int session_accepts_first_responder();
+
 NSWindow * get_os_window_ns_window(oswindow hwnd);
 
 CGWindowID get_os_window_window_number(oswindow oswindow)
@@ -246,7 +248,7 @@ return 0;
 - (BOOL) canBecomeKeyWindow
 {
    
-   return YES;
+   return session_accepts_first_responder();
    
 }
 
@@ -259,7 +261,7 @@ return 0;
 - (BOOL) canBecomeMainWindow
 {
 
-   return YES;
+   return session_accepts_first_responder();
 
 }
 

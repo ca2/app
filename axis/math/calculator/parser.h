@@ -15,11 +15,9 @@ namespace calculator
       __pointer_array(::calculator::element)       m_elementa;
 
 
-      parser();
+      parser(::object * pobject);
       virtual ~parser();
 
-
-      virtual ::estatus initialize(::object* pobjectContext) override;
 
       ::calculator::element * parse(const char * psz);
 

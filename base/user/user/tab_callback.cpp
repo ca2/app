@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 
 
 namespace user
@@ -17,7 +20,7 @@ namespace user
 
    bool tab_callback::_001IsAddTab(tab * ptab, ::index iTab)
    {
-      
+
       UNREFERENCED_PARAMETER(ptab);
       UNREFERENCED_PARAMETER(iTab);
 
@@ -27,14 +30,14 @@ namespace user
 
    void tab_callback::_001OnTabClick(tab * ptab, ::index iTab)
    {
-      
+
       ptab->_001SelectTab(iTab);
 
    }
 
    void tab_callback::_001OnTabClose(tab * ptab, ::index iTab)
    {
-      
+
       ptab->_001CloseTab(iTab);
 
    }

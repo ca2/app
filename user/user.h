@@ -24,27 +24,28 @@ namespace user
    {
    public:
 
-      ::base::user *                m_pbaseuser;
-      ::core::user *                m_pcoreuser;
-      ::user::primitive *           m_pmousefocusLButtonDown;
-      ::user::primitive *           m_pmousefocusRButtonDown;
-      string_array                  m_straEscape;
-      //::user::style_pointer       pstyle;
 
-      ::type                        m_typeHtmlDocument;
-      ::type                        m_typeHtmlView;
+      ::base::user *                         m_pbaseuser;
+      ::core::user *                         m_pcoreuser;
+      ::user::primitive *                    m_pmousefocusLButtonDown;
+      ::user::primitive *                    m_pmousefocusRButtonDown;
+      string_array                           m_straEscape;
+      ::user::style_pointer                  m_puserstyle;
+      string_map < ::user::style_pointer >   m_mapUserStyle;
+
+      __composite(::html::html)              m_phtml; // defined in upper level
+
+      ::type                                 m_typeHtmlDocument;
+      ::type                                 m_typeHtmlView;
       
       
-      ::user::style_pointer                           m_pstyle;
-      string_map < ::user::style_pointer >            m_mapStyle;
-
 
       user();
       virtual ~user();
 
 
 
-      
+      virtual ::user::style* get_user_style();
 
       //::user::style * get_user_style();
 
@@ -55,7 +56,10 @@ namespace user
       virtual ::estatus init2() override;
       virtual ::estatus init() override;
 
-  
+
+
+      inline ::html::html* html() { return m_phtml; } // defined in upper level
+
       inline ::type get_html_document_type() { return m_typeHtmlDocument; }
       inline ::type get_html_view_type() { return m_typeHtmlView; }
 
@@ -75,6 +79,9 @@ namespace user
       virtual ::type controltype_to_typeinfo(::user::e_control_type econtroltype);
 
       //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style * pstyle, menu_item * pitem);
+
+
+      
 
 
    };

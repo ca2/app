@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 
 
 namespace user
@@ -23,7 +26,7 @@ namespace user
 
    }
 
-   
+
    scroll_bar* scroll_x_base::get_horizontal_scroll_bar()
    {
 
@@ -67,10 +70,14 @@ namespace user
             rectNewPos.bottom = rectNewPos.top + GetSystemMetrics(SM_CYHSCROLL);
 
             m_pscrollbarHorz->order(zorder_top);
-            
+
             m_pscrollbarHorz->place(rectNewPos);
-            
+
             m_pscrollbarHorz->display();
+
+            //m_pscrollbarHorz->set_need_redraw();
+
+            //m_pscrollbarHorz->set_need_layout();
 
          }
          else
@@ -378,7 +385,7 @@ namespace user
             rectNewPos.bottom = rectNewPos.top+ rectClient.height() - get_final_x_scroll_bar_width();
 
             m_pscrollbarVert->order(zorder_top);
-            
+
             m_pscrollbarVert->place(rectNewPos);
 
             m_pscrollbarVert->display();
@@ -1059,8 +1066,8 @@ namespace user
 
       prect->left = 0;
       prect->top = 0;
-      prect->right = ui_state().m_size.cx;
-      prect->bottom = ui_state().m_size.cy;
+      prect->right = layout().sketch().size().cx;
+      prect->bottom = layout().sketch().size().cy;
 
       return true;
 
@@ -1113,8 +1120,8 @@ namespace user
 
          rect.top = rectClient.bottom;
          rect.left = rectClient.right;
-         rect.right = (LONG) (rect.left + m_pscrollbarVert->ui_state().m_size.cx);
-         rect.bottom = (LONG) (rect.top + m_pscrollbarHorz->ui_state().m_size.cy);
+         rect.right = (LONG) (rect.left + m_pscrollbarVert->layout().design().size().cx);
+         rect.bottom = (LONG) (rect.top + m_pscrollbarHorz->layout().design().size().cy);
 
          pgraphics->fill_rect(rect, ARGB(127, 127, 127, 127));
 

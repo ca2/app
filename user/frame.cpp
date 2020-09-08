@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 
 
 namespace user
@@ -7,7 +10,8 @@ namespace user
 
    frame::frame()
    {
-      
+
+      m_bShowControlBox = true;
       m_bDefaultNotifyIcon = false;
       m_bCloseApplicationIfLastVisibleFrame = true;
       m_pframe = this;
@@ -79,6 +83,18 @@ namespace user
    }
 
 
+   ::estatus frame::add_menu_item(const string & strPath, const string & strText, const string & strId)
+   {
+
+      m_straMenuParent.add(strPath);
+      m_straMenuName.add(strText);
+      m_straMenuId.add(strId);
+
+      return ::success;
+
+   }
+
+
    ::user::interaction* frame::GetActiveView() const
    {
 
@@ -86,7 +102,7 @@ namespace user
 
    }
 
-   
+
    void frame::SetActiveView(::user::interaction* pViewNew, bool bNotify)
    {
 
@@ -126,7 +142,7 @@ namespace user
    }
 
 
-   ::userex::font_format_tool * frame::font_format_tool(bool bCreate)
+   ::user::tool_window * frame::tool_window(enum_tool etool, bool bCreate)
    {
 
       return nullptr;
@@ -166,7 +182,7 @@ namespace user
          return m_sizeMinimum;
 
       }
-      else if (display_state() == ::display_minimal)
+      else if (layout().sketch().display() == ::display_minimal)
       {
 
          return ::size(8, 8);
@@ -180,7 +196,7 @@ namespace user
       }
 
    }
-   
+
 
 } // namespace user
 

@@ -58,19 +58,24 @@ namespace html
 
          __defer_compose_new(m_pbutton);
 
-
          m_pbutton->m_id = pelemental->m_pbase->get_tag()->get_attr_value("id");
-         //m_pbutton->m_puserstyle = pelemental;
+
          if (m_pbutton->m_id.is_empty())
          {
+
             m_pbutton->m_id = pelemental->m_pbase->get_tag()->get_attr_value("name");
+
          }
 
          if(!m_pbutton->is_window())
          {
+
             m_pbutton->create_window(pdata->m_pcoredata->m_puserinteraction, m_pbutton->m_id);
+
             pdata->on_create_interaction(m_pbutton);
+
          }
+
          elemental::implement_phase1(pdata, pelemental);
 
          auto value = pelemental->m_pbase->get_tag()->get_attr_value("value");
@@ -78,7 +83,9 @@ namespace html
          m_pbutton->set_window_text(value);
 
          m_cxMax = 200;
+
          m_cxMin = 200;
+
       }
 
 
@@ -87,7 +94,7 @@ namespace html
 
          m_pbutton->resize_to_fit(pdata->m_pcoredata->m_pgraphics);
 
-         auto size = m_pbutton->request_state().m_size;
+         auto size = m_pbutton->layout().sketch().size();
 
          m_box.set_size(size);
 

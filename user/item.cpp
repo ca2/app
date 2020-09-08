@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 
 
 namespace user
@@ -37,10 +40,10 @@ namespace user
    }
 
 
-   item & item::operator = (::index iItem) 
-   { 
-      
-      m_iItem = iItem; 
+   item & item::operator = (::index iItem)
+   {
+
+      m_iItem = iItem;
 
       if (m_iItem < 0)
       {
@@ -59,9 +62,9 @@ namespace user
          }
 
       }
-      
-      return *this; 
-   
+
+      return *this;
+
    }
 
 

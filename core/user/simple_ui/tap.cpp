@@ -1,5 +1,7 @@
 #include "framework.h"
-
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/simple_ui/_simple_ui.h"
+#endif
 
 
 namespace simple_ui
@@ -53,8 +55,8 @@ namespace simple_ui
    void tap::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      INFO("simple_ui::_001OnDraw pos(%d,%d)", request_state().m_point.x, request_state().m_point.y);
-      INFO("simple_ui::_001OnDraw scr_pos(%d,%d)", request_state().m_pointScreen.x, request_state().m_pointScreen.y);
+      INFO("simple_ui::_001OnDraw pos(%d,%d)", layout().sketch().origin().x, layout().sketch().origin().y);
+      INFO("simple_ui::_001OnDraw scr_pos(%d,%d)", layout().sketch().screen_origin().x, layout().sketch().screen_origin().y);
 
       simple_ui_draw_volume(pgraphics);
 
@@ -124,7 +126,7 @@ namespace simple_ui
 
       m_bMouseMove = true;
 
-      if (!m_itemHover)
+      if (!m_itemHover.is_set())
       {
 
          track_mouse_hover();

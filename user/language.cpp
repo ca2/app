@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 
 
 #define STR_BOM "\xEF\xBB\xBF"
@@ -115,7 +118,7 @@ namespace user
 #elif defined(MACOS)
 
       string strLang = m_strLanguageCode;
-      
+
       ::file::path pathCa2 = ::get_context_system()->m_pdirsystem->m_pathCa2;
 
       ::file::path path = pathCa2 / "Resources/po" / (strLang + ".po");

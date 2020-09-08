@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 
 
 namespace base
@@ -5933,7 +5936,7 @@ namespace base
 //
 //   }
 //
-   
+
 
    ::user::document *application::place_hold(::user::interaction * pinteraction)
    {

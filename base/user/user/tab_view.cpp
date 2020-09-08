@@ -1,5 +1,7 @@
 ﻿#include "framework.h"
-
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 
 
 namespace user
@@ -370,9 +372,11 @@ namespace user
 
       m_pdroptargetwindow->create_window_ex(createstruct);
 
-      m_pdroptargetwindow->display(display_normal);
+      m_pdroptargetwindow->order(zorder_top_most);
 
-      m_pdroptargetwindow->set_window_pos(zorder_top_most, rect, SWP_SHOWWINDOW);
+      m_pdroptargetwindow->place(rect);
+
+      m_pdroptargetwindow->display(display_normal);
 
       m_pdroptargetwindow->SetCapture();
 
@@ -592,7 +596,7 @@ namespace user
 
          m_pimpactdata->m_pplaceholder->order(zorder_top);
 
-         m_pimpactdata->m_pplaceholder->set_placement(rectTabClient);
+         m_pimpactdata->m_pplaceholder->place(rectTabClient);
 
          m_pimpactdata->m_pplaceholder->display();
 
@@ -850,7 +854,7 @@ namespace user
 
       bool bUpdateWindow = false;
 
-      prodevian_update_visual(bUpdateBuffer, bUpdateWindow);
+      sketch_to_design(pgraphics, bUpdateBuffer, bUpdateWindow);
 
       if (!is_this_visible())
       {

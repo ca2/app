@@ -128,7 +128,7 @@ namespace windows
 
       virtual void on_visual_applied() override;
 
-      virtual void window_apply_visual(const ::user::window_state & windowstate) override;
+      //virtual void window_apply_visual(const ::user::window_state & windowstate) override;
 
       DECL_GEN_SIGNAL(_001OnDestroy);
       DECL_GEN_SIGNAL(_001OnCreate);
@@ -248,8 +248,8 @@ namespace windows
 
 
       // Window size and position Functions
-      virtual bool window_is_iconic();
-      virtual bool window_is_zoomed();
+      virtual bool layout().is_iconic();
+      virtual bool layout().is_zoomed();
       //i32 SetWindowRgn(HRGN hRgn,bool bRedraw);
       //i32 GetWindowRgn(HRGN hRgn);
 

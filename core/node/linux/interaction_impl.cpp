@@ -531,7 +531,7 @@ namespace linux
                wm_desktopwindow(m_oswindow, true);
 
             }
-            else if(m_puserinteraction->request_state().m_eactivation & activation_on_center_of_screen)
+            else if(m_puserinteraction->layout().sketch().m_eactivation & activation_on_center_of_screen)
             {
 
                wm_centerwindow(m_oswindow, true);
@@ -613,7 +613,7 @@ namespace linux
                if(!attr.override_redirect)
                {
 
-                  if(is_docking_appearance(m_puserinteraction->display_request()))
+                  if(is_docking_appearance(m_puserinteraction->layout().sketch().display()))
                   {
 
                      // window managers generally "don't like" windows that starts "docked/snapped".
@@ -647,7 +647,7 @@ namespace linux
                      // (Hinting for monitor placement, if no stored information
                      // available).
 
-                     if(m_puserinteraction->request_state().m_edisplay3 == display_undefined)
+                     if(m_puserinteraction->layout().sketch().m_edisplay3 == display_undefined)
                      {
 
                         m_puserinteraction->move_to(get_context_session()->get_cursor_pos());
@@ -780,7 +780,7 @@ namespace linux
 
       }
 
-      bool bMove = m_bMoveEvent && m_puserinteraction->request_state().m_point != m_pointLastMove;
+      bool bMove = m_bMoveEvent && m_puserinteraction->layout().sketch().m_point != m_pointLastMove;
 
       m_bMoveEvent = false;
 
@@ -795,7 +795,7 @@ namespace linux
 
       }
 
-      bool bSize = m_bSizeEvent && m_puserinteraction->request_state().m_size != m_sizeLastSize;
+      bool bSize = m_bSizeEvent && m_puserinteraction->layout().sketch().m_size != m_sizeLastSize;
 
       m_bSizeEvent = false;
 
@@ -849,7 +849,7 @@ namespace linux
 
 //      m_puserinteraction->window_state3().m_point = pmove->m_point;
 //
-//      if(m_puserinteraction->window_state3().m_point != m_puserinteraction->request_state().m_point)
+//      if(m_puserinteraction->window_state3().m_point != m_puserinteraction->layout().sketch().m_point)
 //      {
 //
 //         m_puserinteraction->move_to(pmove->m_point);
@@ -886,7 +886,7 @@ namespace linux
 
 //      m_puserinteraction->window_state3().m_size = psize->m_size;
 //
-//      if(m_puserinteraction->window_state3().m_size != m_puserinteraction->request_state().m_size)
+//      if(m_puserinteraction->window_state3().m_size != m_puserinteraction->layout().sketch().m_size)
 //      {
 //
 //         m_puserinteraction->set_size(psize->m_size);
@@ -919,7 +919,7 @@ namespace linux
 
          m_puserinteraction->ModifyStyle(0, WS_VISIBLE);
 
-         if(m_puserinteraction->display_state() == ::display_iconic && !m_oswindow->is_iconic())
+         if(m_puserinteraction->layout().design().display() == ::display_iconic && !m_oswindow->is_iconic())
          {
 
             m_puserinteraction->hide();
@@ -1417,11 +1417,11 @@ namespace linux
       if(m_puserinteraction != nullptr)
       {
 
-         if (m_puserinteraction->window_is_moving())
+         if (m_puserinteraction->layout().is_moving())
          {
             //TRACE("moving: skip pre translate message");
          }
-         else if (m_puserinteraction->window_is_sizing())
+         else if (m_puserinteraction->layout().is_sizing())
          {
             //TRACE("sizing: skip pre translate message");
          }
@@ -3060,7 +3060,7 @@ namespace linux
 //   }
 
 
-   bool interaction_impl::window_is_iconic()
+   bool interaction_impl::layout().is_iconic()
    {
 
       if(!::is_window(m_oswindow))
@@ -3072,7 +3072,7 @@ namespace linux
 
 #ifdef LINUX
 
-      return m_puserinteraction->display_state() == ::display_iconic;
+      return m_puserinteraction->layout().design().display() == ::display_iconic;
 
 #else
 
@@ -4769,7 +4769,7 @@ namespace linux
    }
 
 
-   void interaction_impl::_do_show_window()
+   void interaction_impl::window_show_change_visibility()
    {
 
       __keep_flag_on(m_puserinteraction->m_eflagLayouting, ::user::layout::layout_show_window);
@@ -4805,7 +4805,7 @@ namespace linux
       else
       {
 
-         ::user::interaction_impl::_do_show_window();
+         ::user::interaction_impl::window_show_change_visibility();
 
       }
 

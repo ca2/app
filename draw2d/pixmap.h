@@ -100,7 +100,7 @@ struct pixmap
       inline pixmap & operator =(const ::rect & rect) { map(rect);  return *this; }
 
 #ifdef WINDOWS_DESKTOP
-      HBITMAP create_windows_dib(const ::size & size);
+      HBITMAP update_windows_dib(const ::size & size);
 #endif
 
       void map(const ::rect & rect)

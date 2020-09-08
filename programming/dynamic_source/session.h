@@ -5,7 +5,7 @@ namespace dynamic_source
 {
 
 
-   class CLASS_DECL_CORE session :
+   class CLASS_DECL_APP_PROGRAMMING session :
       virtual public ::object
    {
    public:
@@ -27,7 +27,7 @@ namespace dynamic_source
    };
 
 
-   class CLASS_DECL_CORE session_map :
+   class CLASS_DECL_APP_PROGRAMMING session_map :
       virtual public strsp(session)
    {
    public:

@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/user/_user.h"
+#endif
 #include "aura/const/timer.h"
 
 
@@ -474,6 +477,8 @@ namespace user
       get_client_rect(rectClient);
 
       ::rect rectIntersect;
+
+      rectClient.offset(get_viewport_offset());
 
       m_pdrawlistitem->m_iDrawTextFlags = _001GetDrawTextFlags(m_eview);
 
@@ -1268,7 +1273,7 @@ namespace user
 
       set_total_size(rect.size());
 
-      ::user::interaction::on_change_view_size();
+      ::user::scroll_base::on_change_view_size();
 
    }
 
@@ -1495,7 +1500,7 @@ namespace user
 
       //});
 
-      image_list::info ii;
+      ::image_list::info ii;
 
       for (iColumn = 0; iColumn < m_columna.VisibleGetCount(); iColumn++)
       {
@@ -2550,7 +2555,7 @@ namespace user
 
                   pdrawitem->m_rectItem.bottom = pdrawitem->m_rectItem.top + m_iItemHeight;
 
-                  pdrawitem->m_rectItem.offset(-pointOffset.x, -pointOffset.y);
+              //    pdrawitem->m_rectItem.offset(-pointOffset.x, -pointOffset.y);
 
                }
 
@@ -2672,7 +2677,7 @@ namespace user
 
             pdrawitem->m_rectItem.bottom = pdrawitem->m_rectItem.top + m_iItemHeight;
 
-            pdrawitem->m_rectItem.offset(-pointOffset.x, -pointOffset.y);
+            //pdrawitem->m_rectItem.offset(-pointOffset.x, -pointOffset.y);
 
             pdrawitem->m_iItemRectItem = pdrawitem->m_iDisplayItem;
 
@@ -6575,7 +6580,7 @@ namespace user
 
       update_hover();
 
-      ::user::interaction::on_change_viewport_offset();
+      ::user::scroll_base::on_change_viewport_offset();
 
       set_need_redraw();
 
@@ -7096,7 +7101,7 @@ namespace user
 
       m_rangeSelection.clear();
 
-      if (!item)
+      if (!item.is_set())
       {
 
          return;
@@ -7230,7 +7235,7 @@ namespace user
    }
 
 
-   __pointer(image_list) draw_list_item::get_image_list()
+   __pointer(::image_list) draw_list_item::get_image_list()
    {
 
       if (m_bListItemHover && m_pcolumn->m_pilHover != nullptr)

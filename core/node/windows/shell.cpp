@@ -1,8 +1,10 @@
 ﻿#include "framework.h"
+#include "aura/os/windows/_windows.h"
+#include "core/user/user/_user.h"
 #undef User
 #undef Usr
 #include "shell.h"
-//#include "aura/os/windows/_windows.h"
+
 
 
 CLASS_DECL_AURA HICON ExtractResourceIcon(string strPath, int& cx, int& cy, int iIcon);
@@ -1354,6 +1356,7 @@ namespace windows
 
 } // namespace windows
 
+
 namespace core
 {
 
@@ -1377,7 +1380,7 @@ namespace core
 
       }
 
-      if (m_pshell)
+      if (!m_pshell)
       {
 
          return ::error_failed;

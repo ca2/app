@@ -15,6 +15,8 @@
 		9A258EB824DA97980013F50E /* libimaging_coreimage.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A8B638324CBD68100A93185 /* libimaging_coreimage.dylib */; };
 		9A488A4D24EB4B7500119EC4 /* libapp_app.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A4889EC24EB4A2200119EC4 /* libapp_app.dylib */; };
 		9A488A5024EB4B8700119EC4 /* libapp_shader.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A4889F224EB4A3800119EC4 /* libapp_shader.dylib */; };
+		9A86CF8724F8A30B009272A0 /* libcrypto.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A86CF7D24F8A30B009272A0 /* libcrypto.dylib */; };
+		9A86CF8824F8A30B009272A0 /* libssl.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A86CF8624F8A30B009272A0 /* libssl.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -167,6 +169,8 @@
 			dstPath = "$(WorkspaceDir)/time/$(PLATFORM_MODIFIER)";
 			dstSubfolderSpec = 0;
 			files = (
+				9A86CF8724F8A30B009272A0 /* libcrypto.dylib in CopyFiles */,
+				9A86CF8824F8A30B009272A0 /* libssl.dylib in CopyFiles */,
 				9A488A5024EB4B8700119EC4 /* libapp_shader.dylib in CopyFiles */,
 				9A488A4D24EB4B7500119EC4 /* libapp_app.dylib in CopyFiles */,
 				9A258EB124DA97980013F50E /* libaura.dylib in CopyFiles */,
@@ -187,6 +191,8 @@
 		9A4889E724EB4A2200119EC4 /* app_app_app.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = app_app_app.xcodeproj; path = ../app/app_app_app.xcodeproj; sourceTree = "<group>"; };
 		9A4889ED24EB4A3800119EC4 /* app_app_shader.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = app_app_shader.xcodeproj; path = ../shader/app_app_shader.xcodeproj; sourceTree = "<group>"; };
 		9A6FABCC2304797E00340A3D /* draw2d_quartz2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = draw2d_quartz2d.xcodeproj; path = ../draw2d_quartz2d/draw2d_quartz2d.xcodeproj; sourceTree = "<group>"; };
+		9A86CF7D24F8A30B009272A0 /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = "../../../archive/storage-macos/library/Debug/libcrypto.dylib"; sourceTree = "<group>"; };
+		9A86CF8624F8A30B009272A0 /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = "../../../archive/storage-macos/library/Debug/libssl.dylib"; sourceTree = "<group>"; };
 		9A8B637224CBD68100A93185 /* imaging_coreimage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = imaging_coreimage.xcodeproj; path = ../imaging_coreimage/imaging_coreimage.xcodeproj; sourceTree = "<group>"; };
 		9A8B643424CBE7B500A93185 /* gpu_opengl.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = gpu_opengl.xcodeproj; path = ../gpu_opengl/gpu_opengl.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -195,6 +201,8 @@
 		070B8EE11B6E53F900D26137 = {
 			isa = PBXGroup;
 			children = (
+				9A86CF7D24F8A30B009272A0 /* libcrypto.dylib */,
+				9A86CF8624F8A30B009272A0 /* libssl.dylib */,
 				9A4889E724EB4A2200119EC4 /* app_app_app.xcodeproj */,
 				9A4889ED24EB4A3800119EC4 /* app_app_shader.xcodeproj */,
 				9A247CE02452C41600F23D28 /* aura.xcodeproj */,

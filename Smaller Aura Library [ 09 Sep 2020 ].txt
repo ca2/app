@@ -1,0 +1,52 @@
+                          /------------------ - - -     /------------------------- - - - -   /-------------------------------------- - - - 
+E>ThomasBS_/----------- - - -  /aura.dll Release (Win32)     /aura.lib Static Release (Win32)     /helloaura.exe Static Release (Win32)   ---- - - - 
+    /2020-08-18 01:38   /17,180kb     ----- - - -     /189,893kb       --------- - - -     /12,187kb                 ------------------ - - -
+   /2020-08-20 07:41   /13,915kb                     /137,668kb                           /9,715kb        ------------------ - - - 
+  /rebuild mark       /---------------- - - - - ---------------------- - - - ---------------------------------- - - -   
+ /------------------ - - -
+
+
+                        aura.dll Release (Win32)        aura.lib Static Release (Win32)     helloaura.exe Static Release (Win32)
+2020-08-18 01:38        17,180kb                        189,893kb                           12,187kb                        
+update Status
+
+Last status from August
+2020-08-21 06:08        13,691kb                        135,398kb                            9,617kb
+
+
+
+Status
+2020-09-05 03:33        13,836kb                        220,443kb                            9,689kb
+
+Tear Off Button
+2020-09-05 04:33        13,785kb                        219,099kb                            9,655kb                                        
+
+Tear Off CheckBox                                                                                                                       app_app.exe Static Release (Win32)
+2020-09-06 00:00        13,741kb                        215,564kb                            9,625kb                                    8,983kb
+
+Tear Off ComboBox
+2020-09-06 00:35        13,626kb                        212,771kb                            9,552kb                                    8,910kb
+
+Tear Off Still
+2020-09-06 00:52        13,583kb                        211,477kb                            9,521kb                                    8,879kb
+
+Tear Off Slider
+2020-09-06 01:17        13,588kb                        210,307kb                            9,503kb                                    8,789kb
+
+Tear Off Water Routine
+2020-09-06 02:01        13,552kb                        210,202kb                            9,500kb                                    8,789kb
+
+Project cleanup, Remove *printf_dup *snprintf_dup
+2020-09-06 02:26        13,551kb                        210,122kb                            9,500kb                                    8,789kb
+
+Move interaction::Validate() to axis::class user::validate, move interaction::simple_ui* to axis::class simple_ui::draw and other refactorings/cleanups
+2020-09-06 04:16        13,545kb                        204,009kb                            9,425kb                                    8,875kb                      
+
+Remote Windows Text Services Framework dependency
+2020-09-06 04:16        13,479kb                        204,230kb                            9,452kb                                    8,875kb                      
+
+
+Tearing some controls from user...
+
+
+

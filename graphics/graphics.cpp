@@ -1,4 +1,7 @@
 ﻿#include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 
 
 namespace graphics
@@ -84,7 +87,7 @@ namespace graphics
 
       }
 
-      auto & size = m_pimpl->m_puserinteraction->m_state2.m_size;
+      auto size = m_pimpl->m_puserinteraction->layout().design().size();
 
       return size;
 
@@ -141,7 +144,8 @@ namespace graphics
 
    }
 
-   bool graphics::create_buffer(const ::size & size, int iStrideParam)
+
+   bool graphics::update_buffer(const ::size & size, int iStrideParam)
    {
 
       return false;

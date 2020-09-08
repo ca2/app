@@ -1,6 +1,7 @@
 #include "framework.h"
 #include <math.h>
 #include "aura/const/id.h"
+#include "aura/graphics/asset/close_icon.h"
 
 
 namespace app_shader
@@ -125,7 +126,7 @@ namespace app_shader
    void window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectClient = get_client_rect();
+      auto rectClient = layout().get_client_rect();
 
       if (m_bSaveFrame)
       {
@@ -213,6 +214,8 @@ namespace app_shader
 
       sync_lock sl(mutex());
 
+      start_layout();
+
       if (m_rendera.get_count() <= m_iShader)
       {
 
@@ -245,9 +248,31 @@ namespace app_shader
 
       //m_rendera[m_iShader]->defer_load_fragment(str);
 
+      set_layout_ready();
+
       set_need_layout();
 
    }
+
+   void window::_001DrawItem(::draw2d::graphics_pointer& pgraphics, ::user::item* pitem)
+   {
+
+      if (::is_null(pitem))
+      {
+
+         return;
+
+      }
+
+      if (pitem->m_eelement == ::user::element_close_icon)
+      {
+
+         ::user::draw_close_icon(pgraphics, this, pitem);
+
+      }
+
+   }
+
 
 
 } // namespace app_shader

@@ -69,10 +69,10 @@ namespace experience
       virtual void defer_save_window_placement() override;
 
       virtual void window_enable_full_screen(bool bEnable = true);
-      virtual bool window_is_full_screen_enabled() override;
+      virtual bool is_full_screen_enabled() const override;
 
 
-      virtual bool window_do_display() override;
+      virtual bool sketch_on_display() override;
 
 
       virtual void display_previous_restore();

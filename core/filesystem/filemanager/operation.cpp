@@ -1,5 +1,7 @@
 #include "framework.h"
-//#include "_filemanager.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/filesystem/filemanager/_filemanager.h"
+#endif
 
 
 namespace filemanager
@@ -165,7 +167,7 @@ namespace filemanager
 
             //         if (!make_duplicate_name(strDst, pszDir))
             //         {
-            //            
+            //
             //            return false;
 
             //         }

@@ -1322,7 +1322,7 @@ namespace draw2d
             if ((eborder & border_top_left) == border_top_left)
             {
 
-               add_arc(::rect(rectCorner.top_left(), ::size(iDiameter, iDiameter)), 180, 90);
+               add_arc(::rect(rectCorner.top_left(), ::size(iDiameter, iDiameter)), 180_degrees, 90_degrees);
 
                bOn = true;
 
@@ -1362,7 +1362,7 @@ namespace draw2d
             if ((eborder & border_top_right) == border_top_right)
             {
 
-               add_arc(::rect(rectCorner.top_right(), ::size(iDiameter, iDiameter)), 270, 90);
+               add_arc(::rect(rectCorner.top_right(), ::size(iDiameter, iDiameter)), 270_degrees, 90_degrees);
 
                bOn = true;
 
@@ -1403,7 +1403,7 @@ namespace draw2d
             if ((eborder & border_bottom_right) == border_bottom_right)
             {
 
-               add_arc(::rect(rectCorner.bottom_right(), ::size(iDiameter, iDiameter)), 0_degree, 90_degree);
+               add_arc(::rect(rectCorner.bottom_right(), ::size(iDiameter, iDiameter)), 0_degrees, 90_degrees);
 
                bOn = true;
 
@@ -1442,7 +1442,7 @@ namespace draw2d
             if ((eborder & border_bottom_left) == border_bottom_left)
             {
 
-               add_arc(::rect(rectCorner.bottom_left(), ::size(iDiameter, iDiameter)), 90, 90);
+               add_arc(::rect(rectCorner.bottom_left(), ::size(iDiameter, iDiameter)), 90_degrees, 90_degrees);
 
                bOn = true;
 
@@ -1501,7 +1501,7 @@ namespace draw2d
             if ((eborder & border_top_left) == border_top_left)
             {
 
-               add_arc(::rectd(rectCorner.top_left(), ::sized(dDiameter, dDiameter)), 180, 90);
+               add_arc(::rectd(rectCorner.top_left(), ::sized(dDiameter, dDiameter)), 180_degrees, 90_degrees);
 
                bOn = true;
 
@@ -1541,7 +1541,7 @@ namespace draw2d
             if ((eborder & border_top_right) == border_top_right)
             {
 
-               add_arc(::rectd(rectCorner.top_right(), ::sized(dDiameter, dDiameter)), 270, 90);
+               add_arc(::rectd(rectCorner.top_right(), ::sized(dDiameter, dDiameter)), 270_degrees, 90_degrees);
 
                bOn = true;
 
@@ -1621,7 +1621,7 @@ namespace draw2d
             if ((eborder & border_bottom_left) == border_bottom_left)
             {
 
-               add_arc(::rectd(rectCorner.bottom_left(), ::sized(dDiameter, dDiameter)), 90, 90);
+               add_arc(::rectd(rectCorner.bottom_left(), ::sized(dDiameter, dDiameter)), 90_degrees, 90_degrees);
 
                bOn = true;
 

@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 #include <math.h>
 
 
@@ -32,7 +35,7 @@ namespace user
 {
 
 
-   picture::picture() 
+   picture::picture()
    {
 
       set(e_object_default_io_exchange);
@@ -414,7 +417,7 @@ namespace user
       m_ppictureimpl->m_pointDrag2.y = point.y * size.cy / m_ppictureimpl->m_rect.height();
 
    }
-   
+
    ::pointd picture::get_drag_point()
    {
 
@@ -877,7 +880,7 @@ namespace user
 
    }
 
-   
+
    void picture::hit_test(::user::item & item, const ::point & point)
    {
 
@@ -888,7 +891,7 @@ namespace user
       item.m_pointHitTest = item.m_pointClient;
 
       on_hit_test(item);
-      
+
    }
 
 
@@ -958,7 +961,7 @@ namespace user
       auto pointDrag = get_drag_point();
 
       pgraphics->prepend(::draw2d::matrix::translation(
-         pointDrag.x, 
+         pointDrag.x,
          pointDrag.y));
 
       ::draw2d::matrix mTrans;
@@ -1032,7 +1035,7 @@ namespace user
 
    }
 
-   
+
    picture::picture_impl::~picture_impl()
    {
 

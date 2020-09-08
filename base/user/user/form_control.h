@@ -20,7 +20,7 @@ namespace user
       ::file::path               m_pathDefaultDocument;
 
 
-      __pointer(form_control)    m_pformChild;
+      //__pointer(form_control)    m_pformChild;
 
 
       form_control();
@@ -31,7 +31,7 @@ namespace user
 
 
       virtual string get_path();
-      virtual bool open_document(const var & varFile);
+      virtual ::estatus open_document(const var & varFile);
       //::type controltype_to_typeinfo(::user::e_control_type econtroltype);
 
       virtual ::estatus open_html(const ::string & str) override;
@@ -45,7 +45,7 @@ namespace user
 
       
       virtual ::user::form * get_form() override;
-      virtual void soft_reload();
+      virtual void soft_reload() override;
 
 
       virtual bool _001Initialize();
@@ -132,6 +132,8 @@ namespace user
       DECL_GEN_SIGNAL(_001OnUser123);
       //      virtual void install_message_routing(::channel * pchannel);
 
+
+//      virtual void soft_reload();
 
       //virtual ::form_property_set * get_form_property_set() override;
 

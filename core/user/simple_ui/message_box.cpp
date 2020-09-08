@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/simple_ui/_simple_ui.h"
+#endif
 
 
 void maximum_line_length(string_array & stra, int iLen)
@@ -40,7 +43,7 @@ namespace simple_ui
 
       }
 
-      request_state().m_eactivation = activation_on_center_of_screen;
+      layout().sketch() = activation_on_center_of_screen;
 
       m_evReady.ResetEvent();
 

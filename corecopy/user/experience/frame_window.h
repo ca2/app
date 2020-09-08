@@ -72,7 +72,7 @@ namespace experience
       virtual bool window_is_full_screen_enabled() override;
 
 
-      virtual bool window_do_display() override;
+      virtual bool sketch_on_display() override;
 
 
       virtual void display_previous_restore();

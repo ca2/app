@@ -1,5 +1,7 @@
 #include "framework.h" 
-
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/simple_ui/_simple_ui.h"
+#endif
 
 
 namespace simple_ui

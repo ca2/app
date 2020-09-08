@@ -5,6 +5,9 @@
 //  Created by Camilo Sasuke Tsumanuma on 19/06/18.
 //
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 
 
 namespace user
@@ -13,7 +16,7 @@ namespace user
 
    create_struct::create_struct(const create_struct & createstruct)
    {
-      
+
 #ifdef WINDOWS
       CREATESTRUCTW::operator = (createstruct);
       set_class_name(string(createstruct.lpszClass));
@@ -23,14 +26,14 @@ namespace user
       set_class_name(createstruct.lpszClass);
       set_window_name(createstruct.lpszName);
 #endif
-      
+
    }
-   
-   
+
+
    create_struct::create_struct(u32 uiExStyle, const char * pszClassName, const char * pszWindowName, u32 uStyle, ::rect rect, LPVOID pvCreateParams) :
    create_struct(rect)
    {
-      
+
       dwExStyle = uiExStyle;
       set_class_name(pszClassName);
       set_window_name(pszWindowName);
@@ -40,10 +43,10 @@ namespace user
 #else
       lpCreateParams = pvCreateParams;
 #endif
-      
+
    }
 
-   
+
    create_struct::create_struct(const ::rect & rect)
    {
 
@@ -57,26 +60,26 @@ namespace user
 
    }
 
-   
+
    void create_struct::set_class_name(const char * pszClassName)
    {
-      
+
       m_strClassName = pszClassName;
-      
+
       lpszClass = m_strClassName;
-      
+
    }
-   
-   
+
+
    void create_struct::set_window_name(const char * pszWindowName)
    {
 
       m_strWindowName = pszWindowName;
-      
+
       lpszName = m_strWindowName;
 
    }
-   
+
 
    void create_struct::set_rect(const ::rect & rect)
    {

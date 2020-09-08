@@ -1,4 +1,7 @@
-﻿#include "framework.h" 
+#include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 
 
 namespace user
@@ -8,7 +11,7 @@ namespace user
    style::style()
    {
 
-      pstyle = this;
+      m_puserstyle = this;
       m_pgraphics = nullptr;
 
       default_style_construct();
@@ -20,14 +23,14 @@ namespace user
       ::object(pobject)
    {
 
-      pstyle = this;
+      m_puserstyle = this;
       m_pgraphics = nullptr;
 
       default_style_construct();
 
    }
 
-   
+
    style::~style()
    {
 
@@ -165,13 +168,10 @@ namespace user
    //}
 
 
-
    bool style::simple_ui_draw_focus_rect(::user::interaction * pinteraction, ::draw2d::graphics_pointer & pgraphics)
    {
 
-      bool bError = pinteraction->m_ptooltip.is_set()
-         && pinteraction->m_ptooltip->is_window_visible();
-                    //&& pinteraction->get_tooltip()->m_bError;
+      bool bError = pinteraction->m_ptooltip.is_set() && pinteraction->m_ptooltip->is_window_visible(layout_sketch);
 
       ::draw2d::savedc savedc(pgraphics);
 
@@ -205,14 +205,15 @@ namespace user
       i32 iStyle = 1;
 
       rectClient.left--;
+
       rectClient.top--;
 
-      if (get_context_application() != nullptr && (pinteraction->hover_item() || pinteraction->has_focus()))
+      if (get_context_application() != nullptr && (pinteraction->hover_item().is_set() || pinteraction->has_focus()))
       {
 
          ::draw2d::brush_pointer brush(e_create);
 
-         if (pinteraction->hover_item() && !pinteraction->has_text_input())
+         if (pinteraction->hover_item().is_set() && !pinteraction->has_text_input())
          {
 
             brush->create_solid(pinteraction->get_color(this, element_background, e_state_hover));
@@ -226,7 +227,7 @@ namespace user
          if (iStyle == 1)
          {
 
-            bool bHover = pinteraction->hover_item();
+            bool bHover = pinteraction->hover_item().is_set();
 
             if (bHover)
             {
@@ -522,12 +523,12 @@ namespace user
    //   }
 
 
-   bool style::_001DrawCheckBox(::draw2d::graphics_pointer & pgraphics, ::user::check_box * pcheckbox)
-   {
+   //bool style::_001DrawCheckBox(::draw2d::graphics_pointer & pgraphics, ::user::check_box * pcheckbox)
+   //{
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
    bool style::_001DrawToolbarItem(::draw2d::graphics_pointer & pgraphics, index iItem, ::user::toolbar * ptoolbar)
@@ -1025,7 +1026,7 @@ namespace user
    style * style::userstyle()
    {
 
-      return pstyle;
+      return m_puserstyle;
 
    }
 

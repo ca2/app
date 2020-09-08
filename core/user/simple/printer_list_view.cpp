@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/simple/_simple.h"
+#endif
 #include "aura/graphics/draw2d/printer.h"
 #include "base/user/user/print_task.h"
 #ifdef WINDOWS_DESKTOP
@@ -76,7 +79,7 @@ void simple_printer_list_view::_001OnCreate(::message::message * pmessage)
 bool simple_printer_list_view::on_click(const ::user::item & itemClick)
 {
 
-   if (!itemClick)
+   if (!itemClick.is_set())
    {
 
       return false;

@@ -36,6 +36,7 @@ public:
    inline cflag & operator += (const cflag & e) { return operator |= ((ENUM)e.m_eenum); }
    inline cflag & operator -= (const cflag & e) { return operator &= ((ENUM)~(i64)(e.m_eenum)); }
 
+   inline cflag & operator ^= (ENUM e) { toggle(e);  return *this; }
    inline cflag & operator ^= (const cflag & e) { toggle(e);  return *this; }
 
 //   inline cflag operator + (ENUM e) const { return (ENUM)(m_eenum | e); }

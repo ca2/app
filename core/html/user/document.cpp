@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "internal.h"
+#include "_user.h"
 #include "aura/update.h"
 #include "aura/const/id.h"
 
@@ -49,7 +49,7 @@ html_document::~html_document()
 
 void html_document::assert_valid() const
 {
-   
+
    ::user::document::assert_valid();
 
 }
@@ -57,7 +57,7 @@ void html_document::assert_valid() const
 
 void html_document::dump(dump_context & dumpcontext) const
 {
-   
+
    ::user::document::dump(dumpcontext);
 
 }
@@ -127,52 +127,52 @@ property_set * html_document::form_document_get_property_set()
 //{
 //
 //   auto phtmlform = get_typed_view < ::html_form >();
-//   
+//
 //   if (!phtmlform)
 //   {
-//      
+//
 //      auto pform = get_typed_view < ::user::form_view >();
-//      
+//
 //      if (!pform)
 //      {
-//         
+//
 //         return false;
-//         
+//
 //      }
-//      
+//
 //      pform->create_child_form <html_view>();
-//      
+//
 //      phtmlform = pform->m_pformChild;
-//      
+//
 //      phtmlform->m_pcallback = pform;
-//      
+//
 //   }
-//   
+//
 //   get_html_data()->m_pcoredata->m_pform = phtmlform;
-//   
+//
 //   if(::is_null(get_html_data()->m_pcoredata->m_pform))
 //   {
-//      
+//
 //      return false;
-//      
+//
 //   }
-//   
+//
 //   if(::is_null(phtmlform->m_pcallback))
 //   {
-//   
+//
 //      auto pcallback = pcreate->m_varArgs["form_callback"].cast < ::user::form_callback >();
-//      
+//
 //      if(pcallback)
 //      {
-//       
+//
 //         phtmlform->m_pcallback = pcallback;
-//         
+//
 //      }
-//      
+//
 //   }
-//   
+//
 //   return open_document(pcreate->m_pcommandline->m_varFile);
-//   
+//
 //}
 
 
@@ -195,7 +195,7 @@ bool html_document::on_open_document(const var & varFile)
 
       pform->create_child_form <html_view>();
 
-      phtmlform = pform->m_pformChild;
+      phtmlform = pform->m_pform;
 
       phtmlform->set_form_callback(pform);
 
@@ -243,11 +243,11 @@ bool html_document::on_open_document(const var & varFile)
    set_path_name(get_html_data()->m_pcoredata->m_strPathName);
 
    auto pupdate = new_update();
-   
+
    pupdate->m_id = id_document_complete;
-   
+
    pupdate->value(id_url) = varFile;
-   
+
    update_all_views(pupdate);
 
    //data_set({ "LastOpenedFile", true }, get_file_path());
@@ -261,27 +261,27 @@ bool html_document::on_open_document(const var & varFile)
 
 void html_document::soft_reload()
 {
-   
+
    auto psync = get_html_data()->mutex();
 
    sync_lock lock(psync);
 
    string str = get_html_data()->m_pcoredata->m_strSource;
-   
+
    auto pform = get_html_data()->m_pcoredata->m_pform;
-   
+
    property_set_replace(str);
 
    TRACE("%s", str.c_str());
-   
+
    get_html_data()->load(str);
-   
+
    pform->set_need_layout();
-   
+
    pform->set_need_redraw();
-   
+
    pform->post_redraw();
-   
+
 //   auto pupdate = new_update();
 //
 //   pupdate->m_id = id_document_complete;
@@ -415,7 +415,7 @@ void html_document::form_document_set_callback(form_callback * pcallback)
 
 CLASS_DECL_CORE ::type __form_document_type()
 {
- 
+
    return __type(::html_document);
 
 }

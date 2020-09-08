@@ -1,5 +1,7 @@
 #include "framework.h"
-//#include "_rich_text.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/user/rich_text/_rich_text.h"
+#endif
 
 
 namespace user

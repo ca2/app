@@ -91,15 +91,15 @@ bool os_init_application()
 ::estatus os_application_system_run(::aura::system * psystem)
 {
 
-   ::estatus estatus = psystem->begin_synch();
-   
-   if(!estatus)
-   {
-      
-      return estatus;
-      
-   }
-   
+//   ::estatus estatus = psystem->begin_synch();
+//   
+//   if(!estatus)
+//   {
+//      
+//      return estatus;
+//      
+//   }
+//   
 //   set_main_hthread(psystem->m_hthread);
 //
 //   set_main_ithread(psystem->m_uThread);
@@ -110,5 +110,12 @@ bool os_init_application()
 
 }
 
+void os_begin_system()
+{
+   
+   auto psystem = ::get_context_system();
 
+   psystem->begin_synch();
+   
+}
 

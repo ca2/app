@@ -1,5 +1,8 @@
-#include "framework.h" 
-#include "wait_cursor.h" 
+#include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
+#include "wait_cursor.h"
 
 
 wait_cursor::wait_cursor(::object * pobject)
@@ -13,7 +16,7 @@ wait_cursor::wait_cursor(::object * pobject)
       throw ::exception::exception(estatus);
 
    }
-   
+
 	Application.BeginWaitCursor();
 
 }
@@ -29,7 +32,7 @@ wait_cursor::wait_cursor(::object * pobject)
 
 void wait_cursor::Restore()
 {
-	
+
 	Application.RestoreWaitCursor();
 
 }

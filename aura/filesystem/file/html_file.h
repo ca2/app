@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "aura/platform/str_context.h"
+
+
 namespace html
 {
 

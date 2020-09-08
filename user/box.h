@@ -11,8 +11,11 @@ namespace user
    public:
 
 
-      string               m_strDisplay;
-      ::database::key      m_databasekey;
+      string                        m_strDisplay;
+      ::database::key               m_databasekey;
+      struct window_rect            m_windowrect;
+      struct window_rect            m_windowrectStore;
+
 
 
       box();
@@ -30,7 +33,16 @@ namespace user
       DECL_GEN_SIGNAL(_001OnShowWindow);
 
 
-      virtual void prodevian_prepare_window_restore(edisplay edisplay) override;
+      virtual::edisplay window_stored_display() const override;
+      virtual::edisplay window_previous_display() const override;
+
+
+      virtual void on_visual_applied() override;
+
+      virtual void window_show_change_visibility() override;
+
+
+      virtual void sketch_prepare_window_restore(edisplay edisplay) override;
 
 
       virtual string get_display_tag() override;

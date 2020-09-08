@@ -1793,11 +1793,23 @@ retry:
                if (strLink.is_empty())
                {
 
-                  pshelllink->GetIDList(&path.m_idlist.m_pidl);
+                  if (FAILED(pshelllink->GetIDList(&path.m_idlist.m_pidl)))
+                  {
+
+                     return false;
+
+                  }
 
                }
                else
                {
+
+                  if (strLink.is_empty())
+                  {
+
+                     return false;
+
+                  }
 
                   path = strLink;
 

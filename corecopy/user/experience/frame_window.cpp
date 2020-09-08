@@ -108,7 +108,7 @@ namespace experience
 
                         pkey->m_bRet = true;
 
-                        if (!window_is_full_screen())
+                        if (!layout().is_full_screen())
                         {
 
                            display(display_full_screen);
@@ -138,7 +138,7 @@ namespace experience
                else if (pkey->m_ekey == ::user::key_alt || pkey->m_ekey == ::user::key_lalt || pkey->m_ekey == ::user::key_ralt)
                {
 
-                  if (window_is_full_screen() && Session.is_key_pressed(::user::key_control) && !m_bFullScreenAlt && !m_bFullScreenCtrl)
+                  if (layout().is_full_screen() && Session.is_key_pressed(::user::key_control) && !m_bFullScreenAlt && !m_bFullScreenCtrl)
                   {
 
                      pkey->m_bRet = true;
@@ -167,7 +167,7 @@ namespace experience
                else if (pkey->m_ekey == ::user::key_control || pkey->m_ekey == ::user::key_lcontrol || pkey->m_ekey == ::user::key_rcontrol)
                {
 
-                  if (window_is_full_screen() && Session.is_key_pressed(::user::key_alt) && !m_bFullScreenAlt && !m_bFullScreenCtrl)
+                  if (layout().is_full_screen() && Session.is_key_pressed(::user::key_alt) && !m_bFullScreenAlt && !m_bFullScreenCtrl)
                   {
 
                      pkey->m_bRet = true;
@@ -279,7 +279,7 @@ namespace experience
 
 #else
 
-      if (!is_window_visible() || _001GetTopLeftWeightedOccludedOpaqueRate() > 0.025 || window_is_iconic())
+      if (!is_window_visible() || _001GetTopLeftWeightedOccludedOpaqueRate() > 0.025 || layout().is_iconic())
       {
 
          ModifyStyleEx(WS_EX_TOOLWINDOW, 0);
@@ -293,7 +293,7 @@ namespace experience
          else
          {
 
-            order_top();
+            layout().order_top();
 
             display(display_normal, activation_set_foreground);
 
@@ -389,10 +389,10 @@ namespace experience
 
       }
 
-      if (!window_is_full_screen() || !window_is_zoomed())
+      if (!layout().is_full_screen() || !layout().is_zoomed())
       {
 
-         if (!window_is_full_screen())
+         if (!layout().is_full_screen())
          {
 
             if (m_pmenumanager.is_set() && is_sysmenu_enabled())
@@ -419,7 +419,7 @@ namespace experience
    void frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      if (is_frame_experience_enabled() && m_pframe != nullptr && !window_is_full_screen())
+      if (is_frame_experience_enabled() && m_pframe != nullptr && !layout().is_full_screen())
       {
 
          try
@@ -494,7 +494,7 @@ namespace experience
    bool frame_window::is_moving_enabled()
    {
 
-      return is_frame_experience_enabled() && m_bMoveEnable && !window_is_full_screen() && !window_is_zoomed();
+      return is_frame_experience_enabled() && m_bMoveEnable && !layout().is_full_screen() && !layout().is_zoomed();
 
    }
 
@@ -502,7 +502,7 @@ namespace experience
    bool frame_window::is_sizing_enabled()
    {
 
-      return is_frame_experience_enabled() && m_bSizeEnable && display_state() != display_fixed_size;
+      return is_frame_experience_enabled() && m_bSizeEnable && layout().design().display() != display_fixed_size;
    }
 
 
@@ -1553,7 +1553,7 @@ namespace experience
       if (!_001OnBeforeAppearance())
       {
 
-         set_display_request(display_state());
+         set_display_request(layout().design().display());
 
          return false;
 
@@ -1566,19 +1566,19 @@ namespace experience
    }
 
 
-      bool frame_window::window_do_display()
+      bool frame_window::sketch_on_display()
       {
 
          if (!is_frame_experience_enabled())
          {
 
-            return ::user::frame_window::window_do_display();
+            return ::user::frame_window::sketch_on_display();
 
          }
 
-         auto edisplay = display_request();
+         auto edisplay = layout().sketch().display();
 
-         auto eactivation = request_state().m_eactivation;
+         auto eactivation = layout().sketch().m_eactivation;
 
          if (edisplay == display_iconic)
          {
@@ -1615,10 +1615,10 @@ namespace experience
 
          }
 
-         if (display_state() != display_iconic)
+         if (layout().design().display() != display_iconic)
          {
 
-            m_windowrect.m_edisplayPrevious = display_state();
+            m_windowrect.m_edisplayPrevious = layout().design().display();
 
          }
 
@@ -1629,7 +1629,7 @@ namespace experience
 
          }
 
-         if (!::user::frame_window::window_do_display())
+         if (!::user::frame_window::sketch_on_display())
          {
 
             return false;
@@ -1702,9 +1702,9 @@ namespace experience
 
          }
 
-         ::edisplay edisplayPrevious = edisplay != display_none ? edisplay : display_state();
+         ::edisplay edisplayPrevious = edisplay != display_none ? edisplay : layout().design().display();
 
-         bool bCursorPosition = window_is_moving();
+         bool bCursorPosition = layout().is_moving();
 
          ::point pointCursor(no_init);
 
@@ -1898,7 +1898,7 @@ namespace experience
          else if (bTopAndBottom && bLeftAndRight && !bPreserveSize)
          {
 
-            if (display_request() == display_full_screen)
+            if (layout().sketch().display() == display_full_screen)
             {
 
                edisplay = display_full_screen;
@@ -1979,7 +1979,7 @@ namespace experience
       bool frame_window::_001OnBeforeAppearance()
       {
 
-         auto edisplay = display_request();
+         auto edisplay = layout().sketch().display();
 
          if (edisplay == display_notify_icon)
          {
@@ -2138,7 +2138,7 @@ namespace experience
 
       auto rectRequest = window_request_rect();
 
-      edisplay edisplay = display_state();
+      edisplay edisplay = layout().design().display();
 
       if (!::is_equivalent(edisplay, display_normal))
       {

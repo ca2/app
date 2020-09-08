@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/experience/_experience.h"
+#endif
 
 
 namespace experience
@@ -207,7 +210,7 @@ namespace experience
 
       }
 
-      //bool bApply = !is_docking_appearance(m_pframewindow->display_request());
+      //bool bApply = !is_docking_appearance(m_pframewindow->layout().sketch().display());
 
       bool bApply = true;
 
@@ -480,7 +483,7 @@ namespace experience
       }
 
       ::rect rectWindowNow;
-      
+
       m_pframewindow->get_window_rect(rectWindowNow);
 
       if (rectWindowNow == rectWindow)
@@ -490,7 +493,9 @@ namespace experience
 
       }
 
-      if(m_pframewindow->window_is_zoomed())
+      m_pframewindow->start_layout();
+
+      if(m_pframewindow->layout().is_zoomed())
       {
 
          m_pframewindow->display(display_restore);
@@ -518,11 +523,23 @@ namespace experience
 
       m_pframewindow->m_rectPending.unite(rectBefore, rectAfter);
 
-      pframewindow->place(rectParentClient);
+      {
 
-      pframewindow->display();
+         sync_lock sl(pframewindow->get_mutex());
 
-      pframewindow->set_need_redraw();
+         pframewindow->place(rectParentClient);
+
+         TRACE("Size Manager Changed (%d, %d)", rectParentClient.right, rectParentClient.bottom);
+
+         pframewindow->display();
+
+         pframewindow->set_need_layout();
+
+         pframewindow->set_need_redraw();
+
+         pframewindow->post_redraw();
+
+      }
 
    }
 

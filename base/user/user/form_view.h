@@ -26,9 +26,9 @@ namespace user
 
       virtual void update(::update * pupdate) override;
 
-      virtual bool open_document(const var & varFile) override;
+      virtual ::estatus open_document(const var & varFile) override;
       
-      virtual ::estatus     open_html(const string & str) override;
+      virtual ::estatus open_html(const string & str) override;
 
       virtual bool Navigate(const char* pszUrl);
 
@@ -38,7 +38,7 @@ namespace user
       void create_child_form()
       {
 
-         m_pformChild = create_view < FORM >(this, "child_form");
+         m_pform = create_view < FORM >(this, "child_form");
 
       }
       

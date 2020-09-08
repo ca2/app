@@ -1,5 +1,4 @@
 ﻿#include "framework.h"
-#include "calculator.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
 

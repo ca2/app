@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_CORE mesh :
-      virtual public ::user::interaction,
+      virtual public ::user::scroll_base,
       public ::sort::compare_interface
    {
    public:

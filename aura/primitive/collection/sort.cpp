@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 
 
 namespace  sort
@@ -11,7 +14,7 @@ namespace  sort
                   void __swap(void * pVoidSwapArg, index iA, index iB),
                   void * pVoidSwapArg);
 
-   
+
    void BubbleSort(LPINT pint, i32 size);
 
 
@@ -21,7 +24,7 @@ namespace  sort
       void __swap(void * pVoidSwapArg, index iA, index iB),
       void * pVoidSwapArg)
    {
-      
+
       index_array stackLowerBound;
       index_array stackUpperBound;
       index iLowerBound;
@@ -128,13 +131,13 @@ namespace  sort
       void_ptra & comparearga,
       void_ptra & swaparga)
    {
-      
+
       index_array stackLowerBound;
       index_array stackUpperBound;
       index iLowerBound;
       index iUpperBound;
       index iLPos, iUPos, iMPos;
-      
+
       i32 iCmp;
       i32 iCompare;
 

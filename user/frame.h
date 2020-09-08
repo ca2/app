@@ -1,14 +1,18 @@
 #pragma once
 
 
-namespace userex
-{
+#include "menu_shared.h"
 
 
-   class font_format_tool;
-
-
-} // namespace userex
+//
+//namespace userex
+//{
+//
+//
+//   class font_format_tool;
+//
+//
+//} // namespace userex
 
 
 #ifndef TBSTYLE_FLAT
@@ -86,9 +90,11 @@ namespace user
 
 
    class CLASS_DECL_AURA frame:
-      virtual public interaction
+      virtual public box
    {
    public:
+
+
 
 
       bool                                         m_bDefaultNotifyIcon;
@@ -96,8 +102,15 @@ namespace user
       ::size                                       m_sizeMinimum;
 //      __pointer_array(::user::interaction)         m_interactionaCommandHandlers;
       bool                                         m_bCloseApplicationIfLastVisibleFrame;
-      __pointer(::user::style)                     m_puserstyle;
-
+      __reference(::user::style)                   m_puserstyle;
+      bool                                         m_bShowControlBox;
+      
+      
+      __pointer(menu_shared)                       m_pmenushared;
+      string_array                                 m_straMenuParent;
+      string_array                                 m_straMenuName;
+      string_array                                 m_straMenuId;
+      
   
       frame();
       virtual ~frame();
@@ -115,10 +128,13 @@ namespace user
 
       virtual ::color get_border_main_body_color();
 
+      ::estatus add_menu_item(const string & strPath, const string & strText, const string & strId);
+
+      
       virtual ::user::interaction * GetActiveView() const;
       virtual void SetActiveView(::user::interaction* pViewNew, bool bNotify = TRUE);
 
-      virtual ::userex::font_format_tool * font_format_tool(bool bCreate = false);
+      virtual ::user::tool_window * tool_window(enum_tool etool, bool bCreate = false);
 
       virtual void ActivateFrame(::edisplay edisplay = display_undefined);
 
@@ -131,7 +147,6 @@ namespace user
       virtual ::size get_window_minimum_size() override;
 
       DECL_GEN_SIGNAL(_001OnAppExit);
-
 
 
    };

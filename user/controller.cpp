@@ -1,10 +1,13 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 
 
 namespace user
 {
-   
-   
+
+
    controller::controller()
    {
 
@@ -14,6 +17,22 @@ namespace user
 
    controller::~controller()
    {
+
+   }
+
+
+   ::user::interaction* controller::impact_at(::index iImpact) const
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::count controller::impact_count() const
+   {
+
+      return 0;
 
    }
 

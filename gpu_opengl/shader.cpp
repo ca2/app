@@ -51,8 +51,10 @@ namespace opengl
       {
 
          GLenum eerror = glGetError();
+
+         auto errString = gluErrorString(eerror);
          
-         TRACE("error %d", eerror);
+         TRACE("error %d \"%s\"", eerror, errString);
 
          return ::error_failed;
 

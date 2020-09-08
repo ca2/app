@@ -16,19 +16,14 @@
 #if !defined(BROAD_PRECOMPILED_HEADER)
 #define BROAD_PRECOMPILED_HEADER 1
 #endif
-//#include "axis/user/_user.h"
 #if BROAD_PRECOMPILED_HEADER
-//#include "core/user/simple/_simple.h"
-//#include "aura/user/rich_text/_rich_text.h"
-//#include "aura/filesystem/filemanager/_filemanager.h"
-//#include "aura/filesystem/filehandler/_filehandler.h"
-//#include "core/user/userex/_userex.h"
-//#include "core/user/experience/_experience.h"
-//#include "aura/user/databaseuser/_databaseuser.h"
+#include "axis/user/_user.h"
+#include "axis/html/html_lite/_.h"
+#include "axis/geoip/_.h"
+#endif
 #include "axis/math/_.h"
 #include "axis/math/calculator/_.h"
 #include "axis/math/kissfft/_.h"
-#endif
 //#include "aura/crypto/crypto_openssl.h"
 #include "aura/_defer.h"
 

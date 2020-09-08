@@ -1,4 +1,7 @@
 #include "framework.h" // previously aura/user/user.h
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 
 
 namespace aura
@@ -26,6 +29,19 @@ namespace aura
       return m_bListItemHover;
 
    }
+
+
+   void draw_context::_001OnCustomDraw(::draw2d::graphics_pointer& pgraphics, ::user::interaction * puserinteraction)
+   {
+
+      pgraphics->chain(this);
+
+      puserinteraction->_000OnDraw(pgraphics);
+
+      pgraphics->unchain(this);
+
+   }
+
 
 
 } // namespace user

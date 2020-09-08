@@ -1,10 +1,9 @@
 #include "framework.h"
-#include "calculator.h"
+
 
 
 namespace calculator
 {
-
 
    element::element()
    {

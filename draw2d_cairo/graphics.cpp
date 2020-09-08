@@ -3423,7 +3423,10 @@ i32 graphics::IntersectClipRect(i32 x1, i32 y1, i32 x2, i32 y2)
 i32 graphics::OffsetClipRgn(i32 x, i32 y)
 {
 
-    ::exception::throw_not_implemented();
+    //::exception::throw_not_implemented();
+
+    // does cairo automatically offset clip region
+    // according to current transformation?
 
     return 0;
 
@@ -6172,17 +6175,15 @@ FT_Face graphics::ftface(const char* pszFontName)
 
 } // namespace draw2d_cairo
 
-
+FT_Library g_ftlibrary = nullptr;
 
 FT_Library __ftlibrary()
 {
 
-   FT_Library ftlibrary = (FT_Library) ::get_context_system()->ftlibrary();
-
-   if (!ftlibrary)
+   if (!g_ftlibrary)
    {
 
-      auto error = FT_Init_FreeType(&ftlibrary);
+      auto error = FT_Init_FreeType(&g_ftlibrary);
 
       if (error)
       {
@@ -6191,12 +6192,9 @@ FT_Library __ftlibrary()
 
       }
 
-
-      ::get_context_system()->m_ftlibrary = ftlibrary;
-
    }
 
-   return ftlibrary;
+   return g_ftlibrary;
 
 }
 

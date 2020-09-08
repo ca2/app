@@ -1,5 +1,7 @@
 #include "framework.h"
-//#include "_filemanager.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "core/filesystem/filemanager/_filemanager.h"
+#endif
 
 
 namespace filemanager
@@ -35,10 +37,10 @@ namespace filemanager
       initialize_split_layout();
 
       m_plistview = create_view < operation_list_view >();
-      
+
       if(m_plistview == nullptr)
       {
-      
+
          message_box("Could not create transfer list ::user::impact");
 
       }

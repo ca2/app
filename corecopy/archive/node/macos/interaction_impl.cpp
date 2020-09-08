@@ -599,10 +599,10 @@ namespace macos
 //
 //      m_puserinteraction->window_state().m_point = pmove->m_point;
 //
-//      if (m_puserinteraction->request_state().m_point != pmove->m_point)
+//      if (m_puserinteraction->layout().sketch().m_point != pmove->m_point)
 //      {
 //
-//         if (m_puserinteraction->window_is_moving())
+//         if (m_puserinteraction->layout().is_moving())
 //         {
 //
 //            output_debug_string("\nWindow is Moving :: _001OnMove");
@@ -611,7 +611,7 @@ namespace macos
 //
 //         m_puserinteraction->move_to(pmove->m_point);
 //
-//         if (m_puserinteraction->display_state() != display_normal)
+//         if (m_puserinteraction->layout().design().display() != display_normal)
 //         {
 //
 //            m_puserinteraction->display();
@@ -648,12 +648,12 @@ namespace macos
 //
 //      m_puserinteraction->window_state().m_size = psize->m_size;
 //
-//      if (m_puserinteraction->request_state().m_size != psize->m_size)
+//      if (m_puserinteraction->layout().sketch().m_size != psize->m_size)
 //      {
 //
 //         m_puserinteraction->set_size(psize->m_size);
 //
-//         if (m_puserinteraction->display_state() != display_normal)
+//         if (m_puserinteraction->layout().design().display() != display_normal)
 //         {
 //
 //            m_puserinteraction->display();
@@ -1141,11 +1141,11 @@ namespace macos
       if (m_puserinteraction != nullptr)
       {
 
-         if (m_puserinteraction->window_is_moving())
+         if (m_puserinteraction->layout().is_moving())
          {
             //TRACE("moving: skip pre translate message");
          }
-         else if (m_puserinteraction->window_is_sizing())
+         else if (m_puserinteraction->layout().is_sizing())
          {
             //TRACE("sizing: skip pre translate message");
          }
@@ -2610,7 +2610,7 @@ namespace macos
          return false;
       }
 
-      return m_puserinteraction->window_is_iconic();
+      return m_puserinteraction->layout().is_iconic();
 
    }
 
@@ -5005,12 +5005,12 @@ namespace macos
 //      }
 //
 //
-//      if (m_puserinteraction->request_state().rect() != rectSize)
+//      if (m_puserinteraction->layout().sketch().rect() != rectSize)
 //      {
 //
 //         m_puserinteraction->place(rectSize);
 //
-//         if (m_puserinteraction->display_state() != display_normal)
+//         if (m_puserinteraction->layout().design().display() != display_normal)
 //         {
 //
 //            m_puserinteraction->display();
@@ -5072,12 +5072,12 @@ namespace macos
 //
 //      ///SCAST_PTR(::message::move, pmove, pmessage);
 //
-//      if (m_puserinteraction->request_state().m_point != pointMove)
+//      if (m_puserinteraction->layout().sketch().m_point != pointMove)
 //      {
 //
 //         m_puserinteraction->move_to(pointMove);
 //
-//         if (m_puserinteraction->display_state() != display_normal)
+//         if (m_puserinteraction->layout().design().display() != display_normal)
 //         {
 //
 //            m_puserinteraction->display();
@@ -5254,7 +5254,7 @@ namespace macos
 //      if(!(m_puserinteraction->m_ewindowflag & window_flag_miniaturizable))
 //      {
 //
-//         if(m_puserinteraction->display_request() == display_iconic)
+//         if(m_puserinteraction->layout().sketch().display() == display_iconic)
 //         {
 //
 //            m_puserinteraction->m_windowState3
@@ -5569,7 +5569,7 @@ namespace macos
 //   }
 
 
-   void interaction_impl::_do_show_window()
+   void interaction_impl::window_show_change_visibility()
    {
 
       auto edisplay = m_puserinteraction->process_display();

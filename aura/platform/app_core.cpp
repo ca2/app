@@ -38,25 +38,10 @@
 #endif
 
 
-#ifdef DEBUG
-
-
-   static bool g_bVerbose = true;
-
-
-#else
-
-
-   static bool g_bVerbose = false;
-
-
-#endif
-
-
 bool is_verbose()
 {
 
-   return g_bVerbose;
+   return get_context_system()->m_bVerbose;
 
 }
 
@@ -64,7 +49,7 @@ bool is_verbose()
 void set_verbose(bool bVerbose)
 {
 
-   g_bVerbose = bVerbose;
+   get_context_system()->m_bVerbose = bVerbose;
 
 }
 

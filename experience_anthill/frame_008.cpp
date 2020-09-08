@@ -440,7 +440,7 @@ SizingNone:
                ////////////////////
 
 
-               if(!pframewindow->window_is_full_screen())
+               if(!pframewindow->layout().is_full_screen())
                {
                   DrawBorder(pgraphics, rectNClient);
                }
@@ -457,7 +457,7 @@ SizingNone:
 
                e_border eborder = pmovemanager->GetBorderMask();
 
-               if(m_pframewindow->window_is_zoomed())
+               if(m_pframewindow->layout().is_zoomed())
                {
                   eborder = (e_border)
                             (eborder &

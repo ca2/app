@@ -5,7 +5,7 @@ namespace dynamic_source
 {
 
 
-   class CLASS_DECL_CORE script_main :
+   class CLASS_DECL_APP_PROGRAMMING script_main :
       virtual public script_interface
    {
    public:

@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 #include "aura/user/wait_cursor.h"
 
 
@@ -136,7 +139,7 @@ namespace user
       ::aura::application * papp = pcreate->get_context_application() != nullptr ? pcreate->get_context_application() : get_context_application();
 
       __pointer(::user::document) pdocument;
-      
+
       auto estatus = papp->__id_construct(pdocument, m_typeDocument);
 
       if (!estatus || !pdocument)
@@ -212,7 +215,7 @@ namespace user
 //      ::aura::application * papp = pcreate->get_context_application() != nullptr ? pcreate->get_context_application() : get_context_application();
 
       __pointer(::user::frame_window) pframe;
-      
+
       auto estatus = pcreate->__id_construct(pframe, m_typeFrame);
 
       if (!estatus || !pframe)
@@ -454,9 +457,9 @@ namespace user
 
       if (!pdocument->open_document(pcreate))
       {
-         
+
          return false;
-         
+
       }
 
       return true;

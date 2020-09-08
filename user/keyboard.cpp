@@ -1,5 +1,7 @@
 #include "framework.h"
-//#include "aura/xml/_.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 
 
 #if defined(LINUX) || defined(SOLARIS)
@@ -25,7 +27,7 @@ namespace user
 
 #endif
 
-   keyboard::keyboard() 
+   keyboard::keyboard()
    {
 
       SET_ENUM_TEXT(key_0);
@@ -418,7 +420,7 @@ namespace user
 
    //class keyboard_layout & keyboard::on_layout()
    //{
-   //   
+   //
    //   return *m_playout;
 
    //}
@@ -764,17 +766,17 @@ namespace user
 
    void keyboard::translate_os_key_message(key * pkey)
    {
-      
+
       if(pkey->m_ekey == ::user::key_refer_to_text_member
          && pkey->m_strText.has_char())
       {
-         
+
          return;
-         
+
       }
 
    #if defined(MACOS)
-     
+
       auto ekey = ::user::vkcode_to_userkey(pkey->m_wparam);
 
       if(ekey != ::user::key_none)
@@ -785,7 +787,7 @@ namespace user
           return;
 
       }
-      
+
    #elif !defined(LINUX)
 
 

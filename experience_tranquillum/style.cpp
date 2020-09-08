@@ -54,7 +54,7 @@ namespace tranquillum
       //create_int(::user::int_element_padding, 4);
 
       m_colorBackground = ARGB(255, 255, 255, 255);
-      m_colorText = ARGB(255, 0, 0, 0);
+      //m_colorText = ARGB(255, 0, 0, 0);
 
 
       //create_color(::user::color_background, ARGB(255, 255, 255, 255));
@@ -133,6 +133,23 @@ namespace tranquillum
       {
 
          return ::color(255, 255, 255, 255);
+
+      }
+      else if (eelement == ::user::element_text)
+      {
+
+         if (estate & ::user::e_state_new_input)
+         {
+
+            return __acolor(255, 192, 192, 192);
+
+         }
+         else
+         {
+
+            return __acolor(255, 0, 0, 0);
+
+         }
 
       }
 
@@ -385,7 +402,7 @@ namespace tranquillum
 
          rect & rectTabClient = ptab->get_data()->m_rectTabClient;
 
-         //bool bTabbedClient = ptab->m_bShowTabs && !ptab->GetTopLevelFrame()->window_is_full_screen();
+         //bool bTabbedClient = ptab->m_bShowTabs && !ptab->GetTopLevelFrame()->layout().is_full_screen();
          bool bTabbedClient = ptab->m_bShowTabs;
 
          rectTabClient.left = ptab->get_data()->m_rectTab.left;

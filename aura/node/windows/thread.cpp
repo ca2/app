@@ -143,5 +143,18 @@ bool __node_term_thread(::thread * pthread)
 }
 
 
+CLASS_DECL_AURA void main_branch(::generic_object* pobjectTask, e_priority epriority)
+{
+
+   ::get_context_system()->synch_pred([pobjectTask]()
+      {
+
+         pobjectTask->call();
+
+      });
+
+}
+
+
 
 

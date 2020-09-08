@@ -10,7 +10,7 @@ namespace base
 
 
    class CLASS_DECL_BASE user :
-      virtual public ::user::user,
+      virtual public ::axis::user,
       virtual public ::user::document_manager_container
    {
    public:
@@ -25,7 +25,7 @@ namespace base
       //::type                                        m_typeHtmlDocument;
       //::type                                        m_typeHtmlView;
 
-      __pointer(::user::menu_central)                 m_pmenucentral2;
+      __composite(::user::menu_central)               m_pmenucentral;
 
       __composite(::experience::department)           m_pexperience;
 
@@ -43,7 +43,7 @@ namespace base
 
       //virtual ::estatus create_user_shell();
 
-      ::user::menu_central* menu();
+      inline ::user::menu_central* menu() { return m_pmenucentral; }
 
       inline ::experience::department* experience() { return m_pexperience; }
 

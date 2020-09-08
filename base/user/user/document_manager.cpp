@@ -1,4 +1,8 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
+
 
 #define _wcsdec(_cpc1, _cpc2) ((_cpc1)>=(_cpc2) ? nullptr : (_cpc2)-1)
 
@@ -546,7 +550,7 @@ namespace user
       //}
       pMainWnd->display(nCmdShow);
        trans      if (nCmdShow != SW_MINIMIZE)
-      pMainWnd->SetForegroundWindow(); 
+      pMainWnd->SetForegroundWindow();
 
       // then open the document
       System.open_document_file(get_context_application(), cmdInfo.m_varFile);

@@ -2,7 +2,6 @@
  * This code can be freely copied and modified.
  */
 #include  "framework.h"
-#include "calculator.h"
 
 /* conversas dos Js Jefferson Dalavechia e Joice sobre calculadora cient凬ica, financeira e com pilha
 mais tico de calculadora no command */
@@ -25,34 +24,16 @@ namespace calculator
    }
 
 
-   scanner::scanner()
+   scanner::scanner(::object * pobject) :
+      ::object(pobject)
    {
-
       input       = nullptr;
-
    }
-
 
    scanner::~scanner()
    {
    }
 
-
-   ::estatus scanner::initialize(::object* pobjectContext)
-   {
-
-      auto estatus = ::object::initialize(pobjectContext);
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      return estatus;
-
-   }
 
    void scanner::initialize(const char * psz)
    {

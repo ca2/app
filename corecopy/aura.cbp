@@ -21,6 +21,7 @@
 					<Add option="-fPIC" />
 					<Add option="-D_DEBUG" />
 					<Add directory="$(WORKSPACE_DIR)/../../platform-linux" />
+			<Add directory="$(WORKSPACE_DIR)/../../platform-linux/_include" />
 				</Compiler>
 				<Linker>
 					<Add option="-m64" />
@@ -77,6 +78,7 @@
 					<Add option="-O0" />
 					<Add option="-std=c++17" />
 					<Add directory="$(WORKSPACE_DIR)/../../platform-linux" />
+			<Add directory="$(WORKSPACE_DIR)/../../platform-linux/_include" />
 				</Compiler>
 				<Linker>
 					<Add option="-pg" />
@@ -128,6 +130,7 @@
 					<Add option="-D_DEBUG" />
 					<Add option="-DMEMDLEAK" />
 					<Add directory="$(WORKSPACE_DIR)/../../platform-linux" />
+			<Add directory="$(WORKSPACE_DIR)/../../platform-linux/_include" />
 				</Compiler>
 				<Linker>
 					<Add directory="$(#time_dir)/x64/$(TARGET_NAME)" />
@@ -201,6 +204,7 @@
 					<Add option="-fsanitize=undefined" />
 					<Add option="-D_DEBUG" />
 					<Add directory="$(WORKSPACE_DIR)/../../platform-linux" />
+			<Add directory="$(WORKSPACE_DIR)/../../platform-linux/_include" />
 				</Compiler>
 				<Linker>
 					<Add option="-Wl,-rpath=\\$$$ORIGIN" />

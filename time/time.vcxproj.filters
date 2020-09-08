@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files\datetime">
+      <UniqueIdentifier>{bc15f401-5d98-4135-afe6-1d89d13cb933}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\calculator">
+      <UniqueIdentifier>{e9c79601-1523-4115-b00b-cab433335ec4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\calculator">
+      <UniqueIdentifier>{534e266d-f55f-434a-9f1d-841e5f40eb59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\datetime">
+      <UniqueIdentifier>{6001a4cb-f3c7-42ba-9be8-86ae960dfd8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics">
+      <UniqueIdentifier>{a9c577a6-56db-45c9-8029-da20346a9620}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\visual">
+      <UniqueIdentifier>{79ee89df-0e11-476e-ac9f-2bac8fb3f5f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics">
+      <UniqueIdentifier>{6e5bd918-358c-4d2c-ac7d-af2653205645}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\visual">
+      <UniqueIdentifier>{567a638a-71f5-41a2-aecc-8430b49dfb3c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\_.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\element.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\parser.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\parser_exception.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\scanner.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\token.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="datetime\_.h">
+      <Filter>Header Files\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="datetime\float_time.h">
+      <Filter>Header Files\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="datetime\windows_file_time.h">
+      <Filter>Header Files\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\_.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\_.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\calendar.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\clock.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="datetime\calendar.h">
+      <Filter>Header Files\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="datetime\clock.h">
+      <Filter>Header Files\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="datetime\_const.h">
+      <Filter>Header Files\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="datetime\calendar_visual.h">
+      <Filter>Header Files\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="datetime\clock_visual.h">
+      <Filter>Header Files\datetime</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="datetime\datetime_windows_file_time.cpp">
+      <Filter>Source Files\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="calculator\element.cpp">
+      <Filter>Source Files\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="calculator\parser.cpp">
+      <Filter>Source Files\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="calculator\parser_exception.cpp">
+      <Filter>Source Files\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="calculator\scanner.cpp">
+      <Filter>Source Files\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="calculator\token.cpp">
+      <Filter>Source Files\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="datetime\float_time.cpp">
+      <Filter>Source Files\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\calendar.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\clock.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="datetime\calendar_html.cpp">
+      <Filter>Source Files\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="datetime\calendar.cpp">
+      <Filter>Source Files\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="datetime\clock_html.cpp">
+      <Filter>Source Files\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="datetime\clock.cpp">
+      <Filter>Source Files\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="datetime\_.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="time.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

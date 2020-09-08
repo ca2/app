@@ -1,7 +1,7 @@
 #include "framework.h"
-
-
-//extern CLASS_DECL_CORE thread_int_ptr < DWORD_PTR > t_time1;
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/experience/_experience.h"
+#endif
 
 
 namespace experience
@@ -36,15 +36,15 @@ namespace experience
 
          }
 
-         m_stateBefore = m_pframewindow->request_state();
+         m_stateBefore = m_pframewindow->layout().sketch();
 
          auto pointCursor = pmouse->m_point;
 
          ::rect rectWindow;
-         
+
          m_pframewindow->get_window_rect(rectWindow);
 
-         //if(m_pframewindow->display_state() != ::display_normal && m_pframewindow->display_state() != ::display_minimal)
+         //if(m_pframewindow->layout().design().display() != ::display_normal && m_pframewindow->layout().design().display() != ::display_minimal)
          //{
 
          //   auto pointRate = rectWindow.to_point_rate(pointCursor);
@@ -126,7 +126,9 @@ namespace experience
 
          m_iConsiderMove++;
 
-         if (::is_docking_appearance(pframewindow->display_request()))
+         pframewindow->start_layout();
+
+         if (::is_docking_appearance(pframewindow->layout().sketch().display()))
          {
 
             pframewindow->m_pframe->defer_frame_placement_snapping();
@@ -135,9 +137,15 @@ namespace experience
          else
          {
 
-            pframewindow->window_move(pointMove.x, pointMove.y);
+            pframewindow->move_to(pointMove.x, pointMove.y);
 
          }
+
+         pframewindow->set_layout_ready();
+
+         pframewindow->set_need_redraw();
+
+         pframewindow->post_redraw();
 
          pmouse->m_bRet = true;
 
@@ -163,7 +171,7 @@ namespace experience
 
          }
 
-         bool bApply = !is_docking_appearance(m_pframewindow->display_request());
+         bool bApply = !is_docking_appearance(m_pframewindow->layout().sketch().display());
 
          window_stop_moving(bApply, pmouse);
 
@@ -190,9 +198,9 @@ namespace experience
          if (!consider_move())
          {
 
-            m_pframewindow->set_request_state(m_stateBefore);
+            m_pframewindow->layout().sketch() = m_stateBefore;
 
-            m_pframewindow->request_ready();
+            m_pframewindow->set_layout_ready();
 
             m_pframewindow->set_need_redraw();
 
@@ -200,7 +208,7 @@ namespace experience
          else if (bApply)
          {
 
-            auto rectRequest = m_pframewindow->request_state().rect();
+            auto rectRequest = m_pframewindow->layout().sketch().screen_rect();
 
             index iMatchingMonitor = m_pframewindow->good_move(rectRequest, nullptr, true);
 

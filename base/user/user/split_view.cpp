@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 
 
 namespace user
@@ -126,7 +129,7 @@ namespace user
 
    bool split_view::pre_create_window(::user::create_struct& cs)
    {
-      
+
       cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
 
       return impact::pre_create_window(cs);

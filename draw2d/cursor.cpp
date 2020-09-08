@@ -1,5 +1,7 @@
 #include "framework.h"
-
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 
 int_bool delete_hcursor(HCURSOR hcursor);
 
@@ -88,10 +90,15 @@ namespace draw2d
 
       }
 
-      if(!System.imaging().window_set_mouse_cursor(pinteraction->get_handle(), hcursor))
+      if (System.m_bImaging)
       {
 
-         return false;
+         if (!System.imaging().window_set_mouse_cursor(pinteraction->get_handle(), hcursor))
+         {
+
+            return false;
+
+         }
 
       }
 

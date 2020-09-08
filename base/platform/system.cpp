@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 #include "aura/platform/static_setup.h"
 
 
@@ -21,75 +24,75 @@ namespace base
 
    system::~system()
    {
-   
-//   
+
+//
 //      ::aura::del(m_ppatch);
-//   
+//
 //      if (g_p == this)
 //      {
-//   
+//
 //         g_p = nullptr;
-//   
+//
 //      }
-//   
+//
 //      //::aura::del(m_purldepartment);
-//   
+//
 //      //::aura::del(m_pcompress);
-//   
+//
 //      ::aura::del(g_pmutexImage);
-//   
+//
 //      //try
 //      //{
-//   
+//
 //      //   ::aura::del(m_pmachineeventcentral);
-//   
+//
 //      //}
 //      //catch (...)
 //      //{
-//   
+//
 //      //}
-//   
+//
 //      //try
 //      //{
-//   
+//
 //      //   if (m_pfactory.is_set())
 //      //   {
-//   
+//
 //      //      m_pfactory->enable_simple_factory_request(false);
-//   
+//
 //      //      m_pfactory.release();
-//   
+//
 //      //   }
-//   
+//
 //      //}
 //      //catch (...)
 //      //{
 //      //   TRACE("system::~system: Potentially catastrophical error : error disabling simple factory request");
 //      //}
-//   
+//
 //      if (g_p == this)
 //      {
-//   
+//
 //         g_p = nullptr;
-//   
+//
 //      }
-//   
+//
 //#ifdef LINUX
-//   
+//
 //      os_post_quit();
-//   
+//
 //#elif defined(__APPLE__)
-//   
+//
 //      os_post_quit();
-//   
+//
 //#endif
-//   
+//
 //#ifndef WINDOWS
-//   
+//
 //      exception::translator::detach();
-//   
+//
 //#endif
-   
+
    }
 
 

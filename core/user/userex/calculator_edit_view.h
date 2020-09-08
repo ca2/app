@@ -1,9 +1,6 @@
 #pragma once
 
 
-#include "axis/math/calculator/_.h"
-
-
 namespace calculator
 {
 

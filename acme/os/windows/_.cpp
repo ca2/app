@@ -20,8 +20,8 @@ void __term_windowing();
 bool is_verbose();
 
 
-::acme::system * app_common_prelude(int & iError, ::create * & pmaininitdata, app_core & appcore,  HINSTANCE hinstance = nullptr, HINSTANCE hinstancePrev = nullptr, const char * pszCmdLine = nullptr, int nShowCmd = display_normal);
-int app_common_term(int iError, ::acme::system * psystem, app_core & appcore);
+//::acme::system * app_common_prelude(int & iError, ::create * & pmaininitdata, app_core & appcore,  HINSTANCE hinstance = nullptr, HINSTANCE hinstancePrev = nullptr, const char * pszCmdLine = nullptr, int nShowCmd = display_normal);
+//int app_common_term(int iError, ::acme::system * psystem, app_core & appcore);
 
 
 
@@ -110,10 +110,10 @@ LPFN_RegGetValueW g_pfnRegGetValueW = nullptr;
 bool defer_init_winsock();
 
 
-bool __node_aura_pre_init()
+bool __node_acme_pre_init()
 {
 
-   //xxdebug_box("__node_aura_pre_init","box",MB_OK);
+   //xxdebug_box("__node_acme_pre_init","box",MB_OK);
 
    g_pgdiplusStartupInput     = new Gdiplus::GdiplusStartupInput();
 
@@ -172,7 +172,7 @@ bool __node_aura_pre_init()
 
 }
 
-bool __node_aura_pos_init()
+bool __node_acme_pos_init()
 {
 
    _set_purecall_handler(_ca2_purecall);
@@ -191,7 +191,7 @@ bool __node_aura_pos_init()
 }
 
 
-bool __node_aura_pre_term()
+bool __node_acme_pre_term()
 {
 
 
@@ -200,7 +200,7 @@ bool __node_aura_pre_term()
 
 }
 
-bool __node_aura_pos_term()
+bool __node_acme_pos_term()
 {
 
 
@@ -740,6 +740,108 @@ CLASS_DECL_ACME string expand_env(string str)
    return wstr;
 
 }
+
+
+
+
+
+
+
+
+
+
+//void output_debug_string(const char * psz)
+//{
+//
+//   output_debug_string(psz);
+//
+//}
+//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+bool __node_pos_init()
+{
+
+   return true;
+
+}
+
+bool __node_pre_term()
+{
+
+   return true;
+
+}
+
+
+bool __node_pos_term()
+{
+
+   return true;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

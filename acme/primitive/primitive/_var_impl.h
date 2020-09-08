@@ -60,7 +60,7 @@ inline var::var(std::nullptr_t)
 
 inline ::count var::get_count() const
 {
-   switch(m_etype)
+   switch (m_etype)
    {
    case type_bool:
       return 1;
@@ -85,52 +85,52 @@ inline ::count var::get_count() const
 
 inline ::count var::array_get_count() const
 {
-   if(m_etype == type_new
-         || m_etype == type_null
-         || m_etype == type_empty
-         || m_etype == type_empty_argument)
+   if (m_etype == type_new
+      || m_etype == type_null
+      || m_etype == type_empty
+      || m_etype == type_empty_argument)
    {
       return -1; // indicates that this var is not an array
    }
-   else if(is_array())
+   else if (is_array())
       return this->get_count();
    else
-      return 1; // this var is an scalar or generic that can be retrieved through "array_" methods
+      return 1; // this var is an scalar or object that can be retrieved through "array_" methods
 }
 
 
 
 inline index var::array_get_upper_bound() const
 {
-   if(m_etype == type_new
-         || m_etype == type_null
-         || m_etype == type_empty
-         || m_etype == type_empty_argument)
+   if (m_etype == type_new
+      || m_etype == type_null
+      || m_etype == type_empty
+      || m_etype == type_empty_argument)
    {
       return -1; // indicates that this var is not an array
    }
-   else if(is_array())
+   else if (is_array())
       return this->get_count() - 1;
    else
-      return 0; // this var is an scalar or generic that can be retrieved through "array_" methods
+      return 0; // this var is an scalar or object that can be retrieved through "array_" methods
 }
 
 
 inline bool var::is_array() const
 {
 
-   if(m_etype == type_stra
-         || m_etype == type_inta
-         || m_etype == type_vara
-         || m_etype == type_propset)
+   if (m_etype == type_stra
+      || m_etype == type_inta
+      || m_etype == type_vara
+      || m_etype == type_propset)
    {
       return true;
    }
-   else if(m_etype == type_prop)
+   else if (m_etype == type_prop)
    {
       return prop().is_array();
    }
-   else if(m_etype == type_element)
+   else if (m_etype == type_element)
    {
       return false;
    }
@@ -142,7 +142,7 @@ inline bool var::is_array() const
 
 
 
-inline bool CLASS_DECL_ACME operator == (const string & str, const var & var)
+inline bool operator == (const string& str, const var& var)
 {
 
    return str == var.get_string();
@@ -151,19 +151,19 @@ inline bool CLASS_DECL_ACME operator == (const string & str, const var & var)
 
 
 
-inline id & id::operator = (const var & var)
+inline id& id::operator = (const var& var)
 {
 
-   if(var.is_null())
+   if (var.is_null())
    {
       m_all = {};
       return *this;
    }
-   else if(var.is_empty())
+   else if (var.is_empty())
    {
       return operator =("");
    }
-   else if(var.is_integer())
+   else if (var.is_integer())
    {
       return operator = (var.iptr());
    }
@@ -174,18 +174,18 @@ inline id & id::operator = (const var & var)
 
 }
 
-inline id & id::operator = (const property & prop)
+inline id& id::operator = (const property& prop)
 {
 
-   return operator = ((const var &)prop);
+   return operator = ((const var&)prop);
 
 }
 
 
 
-inline id::id(const var & var)
+inline id::id(const var& var)
 {
-   m_all= {};
+   m_all = {};
    operator = (var);
 
 }

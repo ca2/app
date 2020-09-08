@@ -289,3 +289,23 @@ bool __os_init_thread()
 
 
 
+
+
+
+//bool __os_init_thread()
+//{
+//
+//   return true;
+//
+//}
+
+
+
+bool __os_term_thread()
+{
+
+   //thread_shutdown();
+
+   return true;
+
+}

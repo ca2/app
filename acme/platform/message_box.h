@@ -65,7 +65,7 @@ inline var operator + (const char* psz, const ::enum_message_box& emessagebox)
 
 
 CLASS_DECL_ACME ::estatus os_message_box(oswindow oswindow, const char* pszText, const char* pszTitle = nullptr, ::emessagebox emessagebox = message_box_ok, ::callback callback = ::callback());
-CLASS_DECL_ACME ::estatus message_box(::user::primitive * puiOwner, const char* pszText, const char* pszTitle = nullptr, ::emessagebox emessagebox = message_box_ok, ::callback callback = ::callback());
+//CLASS_DECL_ACME ::estatus message_box(::user::primitive * puiOwner, const char* pszText, const char* pszTitle = nullptr, ::emessagebox emessagebox = message_box_ok, ::callback callback = ::callback());
 
 
 inline ::estatus os_message_box(const char* pszText, const char* pszTitle = nullptr, ::emessagebox emessagebox = message_box_ok, ::callback callback = ::callback())
@@ -79,7 +79,11 @@ inline ::estatus os_message_box(const char* pszText, const char* pszTitle = null
 inline ::estatus message_box(const char* pszText, const char* pszTitle = nullptr, ::emessagebox emessagebox = message_box_ok, ::callback callback = ::callback())
 {
 
-   return message_box(nullptr, pszText, pszTitle, emessagebox, callback);
+   //return message_box(nullptr, pszText, pszTitle, emessagebox, callback);
+
+   __throw(todo("message_box"));
+
+   return ::error_failed;
 
 }
 

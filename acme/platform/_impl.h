@@ -126,70 +126,70 @@ public:
 };
 
 
-namespace acme
-{
-
-
-   template < class APP >
-   __result(::acme::application) single_application_library < APP > ::get_new_application(::generic * pobject, const char * pszAppId)
-   {
-
-      if(!contains_app(pszAppId))
-      {
-
-         return error_not_found;
-
-      }
-
-      auto pappNew = __new(APP);
-
-      if(pappNew == nullptr)
-      {
-
-         return error_no_memory;
-
-      }
-
-      __pointer(::acme::application) papp;
-
-      papp = pappNew;
-
-      if (!papp)
-      {
-
-         return error_wrong_type;
-
-      }
-
-      auto estatus = papp->initialize(pobject);
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      return papp;
-
-   }
-
-
-   template < class APP >
-   void single_application_library < APP > ::get_extension_list(string_array & stra)
-   {
-
-      if (m_strFileExt.has_char())
-      {
-
-         stra.add(m_strFileExt);
-
-      }
-
-   }
-
-
-} // namespace acme
+//namespace acme
+//{
+//
+//
+//   template < class APP >
+//   __result(::acme::application) single_application_library < APP > ::get_new_application(::generic * pobject, const char * pszAppId)
+//   {
+//
+//      if(!contains_app(pszAppId))
+//      {
+//
+//         return error_not_found;
+//
+//      }
+//
+//      auto pappNew = __new(APP);
+//
+//      if(pappNew == nullptr)
+//      {
+//
+//         return error_no_memory;
+//
+//      }
+//
+//      __pointer(::acme::application) papp;
+//
+//      papp = pappNew;
+//
+//      if (!papp)
+//      {
+//
+//         return error_wrong_type;
+//
+//      }
+//
+//      auto estatus = papp->initialize(pobject);
+//
+//      if (!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//      return papp;
+//
+//   }
+//
+//
+//   template < class APP >
+//   void single_application_library < APP > ::get_extension_list(string_array & stra)
+//   {
+//
+//      if (m_strFileExt.has_char())
+//      {
+//
+//         stra.add(m_strFileExt);
+//
+//      }
+//
+//   }
+//
+//
+//} // namespace acme
 
 
 inline bool IsDirSep(WCHAR ch)

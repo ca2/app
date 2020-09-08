@@ -40,9 +40,9 @@ bool os_usleep::sleep(unsigned long usec)
 
 
 
-CLASS_DECL_ACME void sleep(const ::duration& dur)
-{
-
-   Sleep((DWORD)dur.total_milliseconds());
-
-}
+//CLASS_DECL_ACME void sleep(const ::duration& dur)
+//{
+//
+//   Sleep((DWORD)dur.total_milliseconds());
+//
+//}

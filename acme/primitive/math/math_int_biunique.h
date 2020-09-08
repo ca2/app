@@ -8,7 +8,7 @@ class biunique :
 public:
 
 
-   biunique(::generic * pobject = nullptr);
+   biunique();
    virtual ~biunique()
    {
    }
@@ -79,8 +79,7 @@ public:
 
 
 template < class T, class T_to_T >
-biunique < T, T_to_T > ::biunique(::generic * pobject) :
-   ::generic(pobject)
+biunique < T, T_to_T > ::biunique()
 {
    m_bBiunivoca = true;
    m_iEmptyA = -1;
@@ -577,18 +576,18 @@ T biunique < T, T_to_T > ::calc_max_b()
 }
 
 
-
 class CLASS_DECL_ACME index_biunique :
    public biunique < index >
 {
 public:
 
    
-
-
-   index_biunique(::generic * pobject = nullptr);
+   index_biunique();
    virtual ~index_biunique() {}
+
+
 };
+
 
 class CLASS_DECL_ACME int_biunique :
    public biunique < i32, int_to_int >
@@ -596,25 +595,14 @@ class CLASS_DECL_ACME int_biunique :
 public:
 
 
-   
-
-
-   int_biunique(::generic * pobject = nullptr);
+   int_biunique();
    virtual ~int_biunique() {}
+
+
 };
 
 
-
-
-
-
-
-
-
-
 CLASS_DECL_ACME index array_translate_a(index_biunique & ia, index aNew, index aOld);
-
-
 
 
 

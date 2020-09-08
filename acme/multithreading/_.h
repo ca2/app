@@ -293,7 +293,7 @@ class thread;
 //#define Thread
 
 CLASS_DECL_ACME ::thread* get_thread();
-CLASS_DECL_ACME ::thread* get_thread(ITHREAD idthread);
+//CLASS_DECL_ACME ::thread* get_thread(ITHREAD idthread);
 CLASS_DECL_ACME void set_thread(thread * pthread);
 
 

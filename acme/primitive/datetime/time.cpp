@@ -121,7 +121,8 @@ namespace datetime
    time::time(const SYSTEMTIME& sysTime, i32 nDST)
    {
 
-      m_time = ::datetime::department::s_gmt_mktime(sysTime.wHour, sysTime.wMinute, sysTime.wSecond, sysTime.wMonth, sysTime.wDay, sysTime.wYear);
+      __throw(todo("datetime"));
+      //m_time = ::datetime::department::s_gmt_mktime(sysTime.wHour, sysTime.wMinute, sysTime.wSecond, sysTime.wMonth, sysTime.wDay, sysTime.wYear);
 
 //      tm tm;
   //    GetGmtTm(&tm);
@@ -694,7 +695,7 @@ namespace datetime
 
 #endif
 
-         TRACELASTERROR();
+         //TRACELASTERROR();
 
          xxf_zero(ft);
 

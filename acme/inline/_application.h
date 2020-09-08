@@ -6,13 +6,13 @@
 
 
 class CLASS_DECL_ACME application :
-   public aura_main_struct
+   public acme_main_struct
 {
 public:
 
 
-   class aura_aura                  m_aura;
-   __pointer(aura_main_data)        m_pmaindata;
+   class acme_acme                  m_acme;
+   __pointer(acme_main_data)        m_pmaindata;
    __pointer(::acme::application)   m_papp;
 
 

@@ -393,9 +393,9 @@ public:
    virtual void on_catch_all_exception();
 
 
-   //virtual void write_object(const ::id & id, ::generic * pobject);
+   virtual void write_object(const ::id & id, ::generic * pobject);
 
-   //virtual __pointer(::generic) read_object(const ::id & id);
+   virtual __pointer(::generic) read_object(const ::id & id);
 
 
 
@@ -721,7 +721,7 @@ public:
    template < typename BASE_TYPE >
    inline __pointer(BASE_TYPE) load_object();
 
-//   virtual __pointer(::generic) create_object_from_text(string strText);
+   virtual __pointer(::generic) create_object_from_text(string strText);
 
 
 

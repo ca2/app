@@ -5,7 +5,7 @@
 //int main(int argc, char* argv[])
 //{
 //
-//   class aura_aura aura_aura;
+//   class acme_acme acme_acme;
 //
 //   string strMainString;
 //
@@ -19,7 +19,7 @@
 //
 //   psystem->construct_system(argc, argv);
 //
-////   return aura_run_system(psystem);
+////   return acme_run_system(psystem);
 //
 //   auto psystem = __new(::acme::system());
 //
@@ -27,7 +27,7 @@
 //
 //   psystem->construct_system(&mainstruct, hinstance, hPrevInstance, pCmdLine, nCmdShow);
 //
-//   return aura_run_system(psystem);
+//   return acme_run_system(psystem);
 //
 //
 //}
@@ -40,11 +40,11 @@
 //int main(int argc, char* argv[])
 //{
 //
-//   class aura_aura aura_aura;
+//   class acme_acme acme_acme;
 //
 //   {
 //
-//      ::aura_main_struct mainstruct;
+//      ::acme_main_struct mainstruct;
 //
 //      application_initialize(mainstruct);
 //
@@ -56,7 +56,7 @@
 //
 //         psystem->system_construct(argc, argv);
 //
-//         return aura_run_system(psystem);
+//         return acme_run_system(psystem);
 //
 //      }
 //

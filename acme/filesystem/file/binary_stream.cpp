@@ -1238,22 +1238,22 @@ void binary_stream::read_to_hex(string & str, filesize tickStart, filesize tickE
 }
 
 
-//__pointer(::generic) binary_stream::create_object_from_text(string strText)
-//{
-//
-//   if (strText.is_empty())
-//   {
-//
-//      return nullptr;
-//
-//   }
-//
-//   auto id = text_to_factory_id(strText);
-//
-//   return get_context_object()->__id_create < ::generic >(id);
-//
-//}
-//
+__pointer(::generic) binary_stream::create_object_from_text(string strText)
+{
+
+   if (strText.is_empty())
+   {
+
+      return nullptr;
+
+   }
+
+   auto id = text_to_factory_id(strText);
+
+   return __id_create < ::generic >(id);
+
+}
+
 
 
 

@@ -40,14 +40,14 @@ namespace str
 
          virtual bool add_locale_variant(id idLocale, id Style);
          virtual bool end_prepare(bool bRtlLayout);
-         virtual void end_prepare();
+         //virtual void end_prepare();
 
          bool defer_add_locale(id idLocale, id idStyle);
          bool defer_add_locale(const char * psz, strsize iLen, id idStyle);
          bool _add_locale_variant(id pszLocale, id idStyle);
          bool _add_locale_variant(const char * psz, strsize iLen, id idStyle);
          bool process_final_locale_schema(bool bRTLLayout);
-         bool process_final_locale_schema();
+         //bool process_final_locale_schema();
 
 
          locale_schema & operator = (const locale_schema & ls);

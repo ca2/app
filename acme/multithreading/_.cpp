@@ -465,23 +465,23 @@ namespace multithreading
 //}
 
 
-::acme::application * g_papp;
+//::acme::application * g_papp;
 
 
-void set_global_application(::acme::application* papp)
-{
-
-    g_papp = papp;
-
-}
-
-
-::acme::application * get_global_application()
-{
-
-   return g_papp;
-
-}
+//void set_global_application(::acme::application* papp)
+//{
+//
+//    g_papp = papp;
+//
+//}
+//
+//
+//::acme::application * get_global_application()
+//{
+//
+//   return g_papp;
+//
+//}
 
 
 //::acme::application * get_context_application()
@@ -517,7 +517,7 @@ void set_global_application(::acme::application* papp)
 //
 //}
 
-//::acme::system * g_paurasystem = nullptr;
+//::acme::system * g_pacmesystem = nullptr;
 //
 //CLASS_DECL_ACME ::acme::system * get_context_system()
 //{
@@ -527,7 +527,7 @@ void set_global_application(::acme::application* papp)
 //   if (pthread == nullptr)
 //   {
 //
-//      return g_paurasystem;
+//      return g_pacmesystem;
 //
 //   }
 //
@@ -536,7 +536,7 @@ void set_global_application(::acme::application* papp)
 //   if (!psystem)
 //   {
 //
-//      psystem = g_paurasystem;
+//      psystem = g_pacmesystem;
 //
 //   }
 //
@@ -1031,5 +1031,22 @@ void thread_name_abbreviate(string & strName, int len)
    }
 
    return estatus;
+
+}
+
+thread_local thread* t_pthread;
+
+
+CLASS_DECL_ACME::thread* get_thread()
+{
+
+   return t_pthread;
+
+}
+//CLASS_DECL_ACME ::thread* get_thread(ITHREAD idthread);
+CLASS_DECL_ACME void set_thread(thread* pthread)
+{
+
+    t_pthread = pthread;
 
 }

@@ -1,7 +1,8 @@
 #pragma once
 
 
-
+CLASS_DECL_ACME bool avoid_bad_status_exception();
+CLASS_DECL_ACME void set_avoid_bad_status_exception(bool bSet);
 
 
 #include "callstack.h"

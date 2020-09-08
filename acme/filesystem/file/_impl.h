@@ -517,41 +517,41 @@ inline stream & operator << (stream & s, ::file::file * pfile)
 
 
 
-//template < typename BASE_TYPE >
-//__pointer(BASE_TYPE) __load_object(stream & stream)
-//{
-//
-//   string strText;
-//
-//   stream >> strText;
-//
-//   if (strText.is_empty())
-//   {
-//
-//      stream.setstate(::file::failbit);
-//
-//      return nullptr;
-//
-//   }
-//
-//   //auto id = stream.text_to_factory_id(strText);
-//
-//   __pointer(generic) p = stream.create_object_from_text(strText);
-//
-//   if (!p)
-//   {
-//
-//      stream.setstate(::file::failbit);
-//
-//      return nullptr;
-//
-//   }
-//
-//   p->read(stream);
-//
-//   return p;
-//
-//}
+template < typename BASE_TYPE >
+__pointer(BASE_TYPE) __load_object(stream & stream)
+{
+
+   string strText;
+
+   stream >> strText;
+
+   if (strText.is_empty())
+   {
+
+      stream.setstate(::file::failbit);
+
+      return nullptr;
+
+   }
+
+   //auto id = stream.text_to_factory_id(strText);
+
+   __pointer(generic) p = stream.create_object_from_text(strText);
+
+   if (!p)
+   {
+
+      stream.setstate(::file::failbit);
+
+      return nullptr;
+
+   }
+
+   p->read(stream);
+
+   return p;
+
+}
 
 
 

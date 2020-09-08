@@ -30,32 +30,32 @@ void stream::on_catch_all_exception()
 }
 
 
-//void stream::write_object(const ::id & id, ::generic * pobject)
-//{
-//
-//   auto strId = factory_id_to_text(pobject->type_name());
-//
-//   exchange(property_id, strId);
-//
-//   pobject->exchange(*this);
-//
-//}
-//
-//
-//__pointer(::generic) stream::read_object(const ::id & id)
-//{
-//
-//   string strId;
-//
-//   exchange(property_id, strId);
-//
-//   auto pobject = create_object_from_text(strId);
-//
-//   pobject->exchange(*this);
-//
-//   return pobject;
-//
-//}
+void stream::write_object(const ::id & id, ::generic * pobject)
+{
+
+   auto strId = factory_id_to_text(pobject->type_name());
+
+   exchange(property_id, strId);
+
+   pobject->exchange(*this);
+
+}
+
+
+__pointer(::generic) stream::read_object(const ::id & id)
+{
+
+   string strId;
+
+   exchange(property_id, strId);
+
+   auto pobject = create_object_from_text(strId);
+
+   pobject->exchange(*this);
+
+   return pobject;
+
+}
 
 
 bool stream::is_open() const
@@ -980,21 +980,21 @@ var & stream::options()
 }
 
 
-//__pointer(::generic) stream::create_object_from_text(string strText)
-//{
-//
-//   if (strText.is_empty())
-//   {
-//
-//      return nullptr;
-//
-//   }
-//
-//   auto id = text_to_factory_id(strText);
-//
-//   return get_context_object()->__id_create < ::generic >(id);
-//
-//}
+__pointer(::generic) stream::create_object_from_text(string strText)
+{
+
+   if (strText.is_empty())
+   {
+
+      return nullptr;
+
+   }
+
+   auto id = text_to_factory_id(strText);
+
+   return __id_create < ::generic >(id);
+
+}
 
 
 void stream::exchange(const ::id & id, const char * psz)

@@ -77,11 +77,13 @@ namespace acme
 
    extern bool g_bOutputDebugString;
 
-   extern critical_section* g_pcsTrace;
+   // acme commented
+   //extern critical_section* g_pcsTrace;
 
-   extern ::generic* g_ptrace;
+   //extern ::generic* g_ptrace;
 
-   extern simple_trace* g_psimpletrace;
+   //// acme commented
+   //extern simple_trace* g_psimpletrace;
 
 #ifdef __APPLE__
 
@@ -209,7 +211,7 @@ namespace acme
       acme();
       ~acme();
 
-      static acme g_aura;
+      static acme g_acme;
       
       void this_ref();
 
@@ -236,9 +238,9 @@ namespace acme
 } // namespace acme
 
 
-//extern ::acme::acme __aura;
+//extern ::acme::acme __acme;
 
 //::get_context_system()
 
-//__aura.g_psystem
+//__acme.g_psystem
 

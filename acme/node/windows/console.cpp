@@ -33,7 +33,7 @@ namespace windows
 
       if(!SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE),FALSE,&info))
       {
-         TRACELASTERROR();
+         //TRACELASTERROR();
       }
 
    }

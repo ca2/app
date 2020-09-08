@@ -122,9 +122,11 @@ namespace acme
 
    critical_section* g_pcsTrace;
 
-   ::generic* g_ptrace;
+   // acme commented
+   //::generic* g_ptrace;
 
-   simple_trace* g_psimpletrace;
+   // acme commented
+   //simple_trace* g_psimpletrace;
 
 #ifdef __APPLE__
 
@@ -193,7 +195,7 @@ namespace acme
 
 #endif
 
-   CLASS_DECL_ACME aura_str_pool* g_paurastrpool;
+   CLASS_DECL_ACME acme_str_pool* g_pacmestrpool;
 
    // #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
@@ -285,9 +287,11 @@ namespace acme
 
       g_pcsTrace = nullptr;
 
-      g_ptrace = nullptr;
+      // acme commented
+      //g_ptrace = nullptr;
 
-      g_psimpletrace = nullptr;
+      // acme commented
+      //g_psimpletrace = nullptr;
 
 #ifdef __APPLE__
 
@@ -357,7 +361,7 @@ namespace acme
 
 #endif
 
-      g_paurastrpool = nullptr;
+      g_pacmestrpool = nullptr;
 
       // #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
@@ -501,9 +505,10 @@ namespace acme
 
       trace_category_static_init();
 
-      g_psimpletrace = new simple_trace;
+      // acme commented
+      //g_psimpletrace = new simple_trace;
 
-      g_ptrace = g_psimpletrace;
+      //g_ptrace = g_psimpletrace;
 
       //acme commented
 //#ifdef BSD_STYLE_SOCKETS
@@ -576,7 +581,7 @@ namespace acme
 
 #ifdef PRIMITIVE_DEBUG
 
-      aura_auto_debug_teste();
+      acme_auto_debug_teste();
 
 #endif
 
@@ -603,7 +608,7 @@ namespace acme
 
 #endif
 
-      g_paurastrpool = new aura_str_pool();
+      g_pacmestrpool = new acme_str_pool();
 
       //acme commented
       //::user::init_windowing();
@@ -744,12 +749,13 @@ namespace acme
 
       g_bAura = 0;
 
-      ::acme::del(g_paurastrpool);
+      ::acme::del(g_pacmestrpool);
 
       //acme commented
       //::channel::s_pmutexChannel.release();
 
-      g_ptrace = g_psimpletrace;
+      // acme commented
+      //g_ptrace = g_psimpletrace;
 
       del(g_pmapRTL);
 
@@ -844,7 +850,8 @@ namespace acme
 //
 //#endif
 
-      ::acme::del(g_psimpletrace);
+      // acme commented
+      //::acme::del(g_psimpletrace);
 
       ::acme::del(g_pcsTrace);
 
@@ -922,7 +929,7 @@ namespace acme
    }
 
 
-   //::acme::system * aura_create_system(app_core * pappcore)
+   //::acme::system * acme_create_system(app_core * pappcore)
    //{
 
    //   auto psystem = new ::acme::system();
@@ -940,7 +947,7 @@ namespace acme
 
       //::acme::static_start::init();
 
-      if (!__node_aura_pre_init())
+      if (!__node_acme_pre_init())
       {
 
          return ::error_failed;
@@ -949,7 +956,7 @@ namespace acme
 
       ::multithreading::init_multithreading();
 
-      if (!__node_aura_pos_init())
+      if (!__node_acme_pos_init())
       {
 
          return ::error_failed;
@@ -964,7 +971,7 @@ namespace acme
 
 #endif
 
-      //g_pfn_create_system = &aura_create_aura_system;
+      //g_pfn_create_system = &acme_create_acme_system;
 
       return true;
 
@@ -987,7 +994,7 @@ namespace acme
 
       ::multithreading::term_multithreading();
 
-      __node_aura_pre_term();
+      __node_acme_pre_term();
 
 #ifdef WINDOWS
 
@@ -999,7 +1006,7 @@ namespace acme
 
       processor_cache_oriented_destroy_all_memory_pools();
 
-      __node_aura_pos_term();
+      __node_acme_pos_term();
 
       //::acme::static_start::term();
 
@@ -1056,9 +1063,9 @@ CLASS_DECL_ACME ::mutex * get_cred_mutex()
 
 
 
-//level * aura_level::s_plevel = nullptr;
+//level * acme_level::s_plevel = nullptr;
 
-//aura_level auralevelAura(::aura_level::level_aura, &defer_aura_init);
+//acme_level acmelevelAura(::acme_level::level_acme, &defer_acme_init);
 
 
 
@@ -1089,7 +1096,7 @@ CLASS_DECL_ACME ::estatus  get_last_status()
 
 
 
-//aura_level auralevelAxis(::aura_level::level_axis, &defer_axis_init);
+//acme_level acmelevelAxis(::acme_level::level_axis, &defer_axis_init);
 //
 //namespace axis
 //{
@@ -1227,7 +1234,7 @@ locale_t get_c_locale()
 
 
 
-// aura_level auralevelCore(::aura_level::level_core, &defer_aura_init);
+// acme_level acmelevelCore(::acme_level::level_core, &defer_acme_init);
 
 
 //#ifdef ANDROID
@@ -1391,10 +1398,10 @@ locale_t get_c_locale()
 
 
 
-void aura_ref()
+void acme_ref()
 {
 
-   ::acme::acme::g_aura.this_ref();
+   ::acme::acme::g_acme.this_ref();
 
 }
 

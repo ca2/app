@@ -391,7 +391,7 @@ public:
    template < typename BASE_TYPE >
    inline __pointer(BASE_TYPE) load_object();
 
-   //virtual __pointer(::generic) create_object_from_text(string strText) override;
+   virtual __pointer(::generic) create_object_from_text(string strText) override;
 
 
 };

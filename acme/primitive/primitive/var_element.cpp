@@ -102,8 +102,8 @@ e_type set_element(var & var, ::generic * pobject)
       return ::release(m_pmemory);
    case type_path:
       return ::release(m_ppath);
-   case type_image:
-      return ::release(m_pimage);
+   //case type_image:
+   //   return ::release(m_pimage);
    default:
       return -1;
    };

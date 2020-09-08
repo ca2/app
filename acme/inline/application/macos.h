@@ -3,11 +3,11 @@
 int main(int argc, char * argv[])
 {
 
-   //class aura_aura aura_aura;
+   //class acme_acme acme_acme;
 
    //{
 
-   //   ::aura_main_struct mainstruct;
+   //   ::acme_main_struct mainstruct;
 
    //   application_initialize(mainstruct);
 
@@ -19,7 +19,7 @@ int main(int argc, char * argv[])
 
    //      psystem->system_construct(argc, argv);
 
-   //      return aura_run_system(psystem);
+   //      return acme_run_system(psystem);
 
    //   }
 

@@ -132,3 +132,8 @@ inline byte __byte_rate(double dRate, double dMin, double dMax)
 }
 
 
+template < typename TYPE >
+inline TYPE range_rate(TYPE iMin, TYPE iMax, double dRate)
+{
+   return (TYPE)((iMax - iMin) * dRate) + iMin;
+}

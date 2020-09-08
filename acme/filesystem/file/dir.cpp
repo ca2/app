@@ -219,7 +219,7 @@ namespace dir
 
       {
 
-//         str = ::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libaura.dylib", "rfs"); // readable - normal file - non zero sized
+//         str = ::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero sized
 //
 //         if(str.has_char())
 //         {
@@ -229,7 +229,7 @@ namespace dir
 //         }
 //
 //
-//         str = ::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libaura.dylib", "rfs"); // readable - normal file - non zero sized
+//         str = ::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero sized
 //
 //         if(str.has_char())
 //         {
@@ -260,7 +260,7 @@ namespace dir
 
       auto wstrModuleFolder = strModuleFolder.get_string_buffer(MAX_PATH * 8);
 
-      void * handle = dlopen("libaura.so", RTLD_NOW);
+      void * handle = dlopen("libacme.so", RTLD_NOW);
 
       if(handle == nullptr)
       {
@@ -448,7 +448,7 @@ namespace dir
 
    #elif defined(LINUX)
 
-      void * handle = dlopen("libaura.so", RTLD_NOW);
+      void * handle = dlopen("libacme.so", RTLD_NOW);
 
       if(handle == nullptr)
          return "";
@@ -480,7 +480,7 @@ namespace dir
 
          }
 
-         str = ::dir::pathfind(::file::path(str).folder(), "libaura.dylib", "rfs"); // readable - normal file - non zero sized
+         str = ::dir::pathfind(::file::path(str).folder(), "libacme.dylib", "rfs"); // readable - normal file - non zero sized
 
          if(str.has_char())
          {
@@ -489,7 +489,7 @@ namespace dir
 
          }
 
-         str = ::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libaura.dylib", "rfs"); // readable - normal file - non zero sized
+         str = ::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero sized
 
          if(str.has_char())
          {
@@ -507,7 +507,7 @@ namespace dir
 
          }
 
-         str = ::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libaura.dylib", "rfs"); // readable - normal file - non zero sized
+         str = ::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero sized
 
          if(str.has_char())
          {

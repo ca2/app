@@ -3,14 +3,14 @@
 #include <stdarg.h>
 
 
-//thread_int_ptr < int > thread_set("generate_sync_io_error");
-//thread_int_ptr < int > thread_set("sync_io_error");
+thread_local int t_generate_sync_io_error;
+thread_local int t_sync_io_error;
 
 
 CLASS_DECL_ACME int get_sync_io_error()
 {
 
-   return thread_value("sync_io_error");
+   return t_sync_io_error;
 
 }
 
@@ -18,7 +18,7 @@ CLASS_DECL_ACME int get_sync_io_error()
 CLASS_DECL_ACME void set_sync_io_error(int iError)
 {
 
-   thread_value("sync_io_error") = iError;
+   t_sync_io_error = iError;
 
 }
 
@@ -26,7 +26,7 @@ CLASS_DECL_ACME void set_sync_io_error(int iError)
 CLASS_DECL_ACME int get_generate_sync_io_error()
 {
 
-   return thread_value("generate_sync_io_error");
+   return t_generate_sync_io_error;
 
 }
 
@@ -34,7 +34,7 @@ CLASS_DECL_ACME int get_generate_sync_io_error()
 CLASS_DECL_ACME void set_generate_sync_io_error(int iError)
 {
 
-   thread_value("generate_sync_io_error") = iError;
+   t_generate_sync_io_error = iError;
 
 }
 

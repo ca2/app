@@ -117,7 +117,7 @@ public:
 
          // can use string because messed all with cache out hot hit !!/^`}{{ **!
          //::acme::application * papp = get_context_application();
-         TRACE("handler oriented cache: memory out of cache palace garden (size=%d)", c);
+         //TRACE("handler oriented cache: memory out of cache palace garden (size=%d)", c);
       }
       return pb;
 
@@ -150,7 +150,7 @@ public:
 };
 
 static x86_cache_oriented_memory_pool * s_processororientedmemorypoola[MAX_PROC_CACHE_ORIENTED_MEM_POOL];
-//thread_int_ptr < iptr > t_iProcessorOrientedMemoryPool;
+thread_local iptr t_iProcessorOrientedMemoryPool;
 
 //void thread_set_process
 
@@ -159,7 +159,7 @@ static x86_cache_oriented_memory_pool * s_processororientedmemorypoola[MAX_PROC_
 CLASS_DECL_ACME x86_cache_oriented_memory_pool * x86_cache_oriented_get_thread_memory_pool()
 {
 
-   return s_processororientedmemorypoola[thread_value("x86_cache_oriented_get_thread_memory_pool").i32()];
+   return s_processororientedmemorypoola[t_iProcessorOrientedMemoryPool];
 
 }
 
@@ -191,7 +191,7 @@ CLASS_DECL_ACME int_bool x86_cache_oriented_set_thread_memory_pool(int iPoolInde
 
    }
 
-   thread_value("x86_cache_oriented_get_thread_memory_pool") = iPoolIndex;
+   t_iProcessorOrientedMemoryPool = iPoolIndex;
 
    return true;
 

@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ACME aura_str_pool
+class CLASS_DECL_ACME acme_str_pool
 {
 public:
 
@@ -36,13 +36,13 @@ namespace acme
 {
 
 
-   extern CLASS_DECL_ACME aura_str_pool* g_paurastrpool;
+   extern CLASS_DECL_ACME acme_str_pool* g_pacmestrpool;
 
 
 } // namespace acme
 
 
-#define astr (*::acme::g_paurastrpool)
+#define astr (*::acme::g_pacmestrpool)
 
 
 

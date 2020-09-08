@@ -33,8 +33,7 @@ namespace str
 
       }
 
-      locale_schema::locale_schema(const locale_schema & ls) :
-         ::generic(ls.get_context_object())
+      locale_schema::locale_schema(const locale_schema & ls)
       {
 
          operator = (ls);
@@ -128,12 +127,12 @@ namespace str
       }
 
 
-      void locale_schema::end_prepare()
-      {
+      //void locale_schema::end_prepare()
+      //{
 
-         process_final_locale_schema();
+      //   process_final_locale_schema();
 
-      }
+      //}
 
 
       ::id locale_schema::localeid(const char * pszLocale, strsize iLen)
@@ -649,7 +648,7 @@ restart:
 
             if(m_idaLocale.get_count() > 256)
             {
-               TRACE("What!!!!!!");
+               //TRACE("What!!!!!!");
             }
 
             for(index i = 0; i < m_idaLocale.get_count(); i++)
@@ -696,12 +695,12 @@ restart:
       }
 
 
-      bool locale_schema::process_final_locale_schema()
-      {
+      //bool locale_schema::process_final_locale_schema(bool bRightToLeftLayout)
+      //{
 
-         return process_final_locale_schema(Application.is_true("right_to_left_layout"));
+      //   return process_final_locale_schema(bRightToLeftLayout);
 
-      }
+      //}
 
 
       locale_schema & locale_schema::operator = (const locale_schema & ls)

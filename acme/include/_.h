@@ -33,7 +33,7 @@
 #include <tuple>
 
 
-CLASS_DECL_ACME void aura_ref();
+CLASS_DECL_ACME void acme_ref();
 
 
 #ifdef WINDOWS_DESKTOP
@@ -382,13 +382,13 @@ namespace dynamic_source
 #define GET_Y_LPARAM64(lparam)                        ((i32)(i16)HIDWORD(lparam))
 
 
-//CLASS_DECL_ACME int get_aura_init();
+//CLASS_DECL_ACME int get_acme_init();
 
 //extern "C"
-//CLASS_DECL_ACME int_bool defer_aura_init();
+//CLASS_DECL_ACME int_bool defer_acme_init();
 
 //extern "C"
-//CLASS_DECL_ACME int_bool defer_aura_term();
+//CLASS_DECL_ACME int_bool defer_acme_term();
 
 
 
@@ -487,43 +487,43 @@ void __finalize_and_release(T& p)
 
 
 CLASS_DECL_ACME extern u32 g_tickStartTime;
-
-#define ALOG_CONTEXT context_trace_object()
-
-#define _S_ALOG_CONTEXT ::context_trace_object()
-
-
-
-CLASS_DECL_ACME ::generic * general_trace_object();
-
-CLASS_DECL_ACME int_bool c_enable_trace_category(e_trace_category ecategory, int_bool iEnable);
-
-inline ::generic * context_trace_object() { return general_trace_object(); }
+//
+//#define ALOG_CONTEXT context_trace_object()
+//
+//#define _S_ALOG_CONTEXT ::context_trace_object()
 
 
-CLASS_DECL_ACME void __tracea(::generic * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
-CLASS_DECL_ACME void __tracef(::generic * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, ...);
-CLASS_DECL_ACME void __tracev(::generic * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, va_list vargs);
-CLASS_DECL_ACME const char * trace_category_name(e_trace_category ecategory);
+//
+//CLASS_DECL_ACME ::generic * general_trace_object();
+//
+//CLASS_DECL_ACME int_bool c_enable_trace_category(e_trace_category ecategory, int_bool iEnable);
+//
+//inline ::generic * context_trace_object() { return general_trace_object(); }
 
 
-CLASS_DECL_ACME ::generic * trace_object(e_trace_category ecategory);
-
-const char * topic_text(::generic * pcontextobject);
-
-e_trace_category object_trace_category(::generic * pcontextobject);
-
+//CLASS_DECL_ACME void __tracea(::generic * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
+//CLASS_DECL_ACME void __tracef(::generic * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, ...);
+//CLASS_DECL_ACME void __tracev(::generic * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, va_list vargs);
+//CLASS_DECL_ACME const char * trace_category_name(e_trace_category ecategory);
 
 
-#define __alog(...) __tracef(__VA_ARGS__)
+//CLASS_DECL_ACME ::generic * trace_object(e_trace_category ecategory);
 
-#define INFO(...) __alog(trace_object(ALOG_CONTEXT), trace_level_information, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
-#define WARN(...) __alog(trace_object(ALOG_CONTEXT), trace_level_warning, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
-#define ERR(...) __alog(trace_object(ALOG_CONTEXT), trace_level_error, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
-#define FATAL(...) __alog(trace_object(ALOG_CONTEXT), trace_level_fatal, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+//const char * topic_text(::generic * pcontextobject);
+//
+//e_trace_category object_trace_category(::generic * pcontextobject);
+//
 
-#define TRACE(...) INFO(__VA_ARGS__)
-
+//
+//#define __alog(...) __tracef(__VA_ARGS__)
+//
+//#define INFO(...) __alog(trace_object(ALOG_CONTEXT), trace_level_information, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+//#define WARN(...) __alog(trace_object(ALOG_CONTEXT), trace_level_warning, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+//#define ERR(...) __alog(trace_object(ALOG_CONTEXT), trace_level_error, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+//#define FATAL(...) __alog(trace_object(ALOG_CONTEXT), trace_level_fatal, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+//
+//#define TRACE(...) INFO(__VA_ARGS__)
+//
 
 namespace acme
 {
@@ -576,7 +576,7 @@ namespace core
 #include "acme/primitive/string/_c_impl.h"
 
 
-//#include "acme/platform/aura_main_struct.h"
+//#include "acme/platform/acme_main_struct.h"
 
 
 //#ifdef WINDOWS
@@ -798,12 +798,12 @@ class create;
 class sync;
 
 
-//CLASS_DECL_ACME i32 aura_run_system(::acme::system* psystem);
+//CLASS_DECL_ACME i32 acme_run_system(::acme::system* psystem);
 
 
-//CLASS_DECL_ACME ::estatus aura_run_system_init(::acme::system * psystem);
-//CLASS_DECL_ACME ::estatus aura_run_system_proc(::acme::system * psystem);
-//CLASS_DECL_ACME ::estatus aura_run_system_term(::acme::system * psystem);
+//CLASS_DECL_ACME ::estatus acme_run_system_init(::acme::system * psystem);
+//CLASS_DECL_ACME ::estatus acme_run_system_proc(::acme::system * psystem);
+//CLASS_DECL_ACME ::estatus acme_run_system_term(::acme::system * psystem);
 
 
 template < typename VAR >
@@ -920,18 +920,18 @@ class generic;
 
 
 //extern "C"
-//CLASS_DECL_ACME void register_aura_library(const char * psz, ::acme::library * plibrary);
+//CLASS_DECL_ACME void register_acme_library(const char * psz, ::acme::library * plibrary);
 //
 //
 //extern "C"
-//CLASS_DECL_ACME void register_get_new_aura_library(const char* psz, PFN_NEW_AURA_LIBRARY pfnNewAuraLibrary);
+//CLASS_DECL_ACME void register_get_new_acme_library(const char* psz, PFN_NEW_AURA_LIBRARY pfnNewAuraLibrary);
 
 
 #define DECLARE_NEW_AURA_LIBRARY(X) extern "C" \
-::acme::library * X##_new_aura_library()
+::acme::library * X##_new_acme_library()
 
 
-#define REGISTER_GET_NEW_AURA_LIBRARY(X) register_get_new_aura_library(#X, &X##_get_new_library)
+#define REGISTER_GET_NEW_AURA_LIBRARY(X) register_get_new_acme_library(#X, &X##_get_new_library)
 
 
 namespace install
@@ -1339,9 +1339,9 @@ namespace acme
 {
 
 
-   class application;
-   class system;
-   class application_message;
+   //class application;
+   //class system;
+   //class application_message;
 
    class command;
 
@@ -1422,8 +1422,8 @@ namespace colorertake5
 class memory;
 
 
-CLASS_DECL_ACME ::acme::system* platform_create_system(HINSTANCE hinstance);
-CLASS_DECL_ACME ::acme::session* platform_create_session();
+//CLASS_DECL_ACME ::acme::system* platform_create_system(HINSTANCE hinstance);
+//CLASS_DECL_ACME ::acme::session* platform_create_session();
 
 
 //namespace plane
@@ -1886,15 +1886,15 @@ namespace acme
 
 CLASS_DECL_ACME bool enable_trace_category(e_trace_category ecategory, bool bEnable = true);
 
-// only usable from axis and axis dependants
-namespace acme
-{
-
-   class application;
-   class session;
-   class system;
-
-}
+//// only usable from axis and axis dependants
+//namespace acme
+//{
+//
+//   class application;
+//   class session;
+//   class system;
+//
+//}
 
 
 // only usable from base and base dependants
@@ -2115,22 +2115,22 @@ using arguments = var_array;
 
 
 
-//CLASS_DECL_ACME bool aura_init();
-//CLASS_DECL_ACME bool aura_term();
+//CLASS_DECL_ACME bool acme_init();
+//CLASS_DECL_ACME bool acme_term();
 
-CLASS_DECL_ACME bool __node_aura_pre_init();
-CLASS_DECL_ACME bool __node_aura_pos_init();
+CLASS_DECL_ACME bool __node_acme_pre_init();
+CLASS_DECL_ACME bool __node_acme_pos_init();
 
-CLASS_DECL_ACME bool __node_aura_pre_term();
-CLASS_DECL_ACME bool __node_aura_pos_term();
+CLASS_DECL_ACME bool __node_acme_pre_term();
+CLASS_DECL_ACME bool __node_acme_pos_term();
 
 
-//extern "C" CLASS_DECL_ACME PFN_NEW_AURA_LIBRARY get_get_new_aura_library(const char * psz);
-//extern "C" CLASS_DECL_ACME void register_get_new_aura_library(const char* psz, PFN_NEW_AURA_LIBRARY pfnNewAuraLibrary);
+//extern "C" CLASS_DECL_ACME PFN_NEW_AURA_LIBRARY get_get_new_acme_library(const char * psz);
+//extern "C" CLASS_DECL_ACME void register_get_new_acme_library(const char* psz, PFN_NEW_AURA_LIBRARY pfnNewAuraLibrary);
 //
 //
 //CLASS_DECL_ACME ::acme::library & get_library(const char* psz);
-//CLASS_DECL_ACME void register_aura_library(const char* psz, ::acme::library* plibrary);
+//CLASS_DECL_ACME void register_acme_library(const char* psz, ::acme::library* plibrary);
 
 //CLASS_DECL_ACME ::context * get_context();
 //CLASS_DECL_ACME inline ::context * get_context(::generic * pobject);
@@ -2686,7 +2686,7 @@ class message_box;
 
 #include "acme/primitive/primitive/object_meta.h"
 
-#include "acme/platform/trace.h"
+//#include "acme/platform/trace.h"
 
 #include "acme/platform/pred_procedure.h"
 
@@ -2821,9 +2821,9 @@ inline void dump_elements(dump_context & dumpcontext, const TYPE* pElements, ::c
 
 #include "acme/filesystem/file/cpp.h"
 
-#include "acme/platform/library_object_allocator.h"
+//#include "acme/platform/library_object_allocator.h"
 
-#include "acme/platform/library.h"
+//#include "acme/platform/library.h"
 
 
 #include "acme/filesystem/filesystem.h"
@@ -3008,7 +3008,7 @@ CLASS_DECL_ACME string get_system_error_message(u32 dwError);
 #include "acme/primitive/math/objects.h"
 
 
-#include "acme/platform/simple_log.h"
+//#include "acme/platform/simple_log.h"
 
 
 #include "acme/primitive/collection/file_path_map.h"
@@ -3052,7 +3052,7 @@ class mq;
 
 //#include "acme/user/impact_data.h"
 
-#include "acme/platform/log.h"
+//#include "acme/platform/log.h"
 
 
 #include "acme/primitive/primitive/memory_base.h"
@@ -3109,7 +3109,7 @@ CLASS_DECL_ACME string get_exe_path();
 
 //#include "acme/net/_.h"
 
-#include "acme/platform/launcher.h"
+//#include "acme/platform/launcher.h"
 
 //#include "acme/platform/ipc.h"
 
@@ -3313,8 +3313,8 @@ CLASS_DECL_ACME::file::path application_installer_folder(const ::file::path & pa
 CLASS_DECL_ACME bool is_application_installed(const ::file::path & pathExe, string strAppId, string & strBuild, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema);
 CLASS_DECL_ACME bool set_application_installed(const ::file::path & pathExe, string strAppId, const char * pszBuild, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema);
 CLASS_DECL_ACME::file::path get_application_path(string strAppId, const char * pszPlatform, const char * pszConfiguration);
-CLASS_DECL_ACME::file::path get_last_run_application_path_file(string strAppId);
-CLASS_DECL_ACME::file::path get_last_run_application_path(string strAppId);
+//CLASS_DECL_ACME::file::path get_last_run_application_path_file(string strAppId);
+//CLASS_DECL_ACME::file::path get_last_run_application_path(string strAppId);
 CLASS_DECL_ACME bool set_last_run_application_path(string strAppId);
 
 CLASS_DECL_ACME ::estatus load_factory_library(string strLibrary);
@@ -3741,9 +3741,9 @@ CLASS_DECL_ACME string get_last_error_string();
 
 CLASS_DECL_ACME string get_error_string(u64 uiError);
 
-CLASS_DECL_ACME void set_aura(void * p,::acme::application * papp);
-
-CLASS_DECL_ACME ::acme::application * get_aura(void * p);
+//CLASS_DECL_ACME void set_acme(void * p,::acme::application * papp);
+//
+//CLASS_DECL_ACME ::acme::application * get_acme(void * p);
 
 
 #include "acme/platform/error.h"
@@ -3832,10 +3832,10 @@ CLASS_DECL_ACME ::acme::application * get_aura(void * p);
 
 
 
-#include "acme/platform/_system_smart_pointer_impl.h"
-#include "acme/platform/_system_object_impl.h"
-#include "acme/platform/_system_id_impl.h"
-#include "acme/platform/_system_var_impl.h"
+//#include "acme/platform/_system_smart_pointer_impl.h"
+//#include "acme/platform/_system_object_impl.h"
+//#include "acme/platform/_system_id_impl.h"
+//#include "acme/platform/_system_var_impl.h"
 
 
 
@@ -3922,5 +3922,12 @@ CLASS_DECL_ACME ::acme::application * get_aura(void * p);
 
 
 #include "acme/os/_impl.h"
+
+
+#include "acme/primitive/primitive/_id_impl.h"
+
+
+#include "acme/primitive/primitive/_var_impl.h"
+
 
 

@@ -12,13 +12,13 @@
 #include "__/__bit.h"
 #include "__/__stdint.h"
 #include "__/__inttypes.h"
-#include "_aura_type.h"
+#include "_acme_type.h"
 
 #include "platform/system.h"
 #include "platform/types.h"
 #include "acme/primitive/geometry2d/_struct.h"
-#include "_aura_type.h"
-#include "_aura_memory.h"
+#include "_acme_type.h"
+#include "_acme_memory.h"
 
 
 class trait;

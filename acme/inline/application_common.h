@@ -82,13 +82,13 @@ void application_common(::acme::system * psystem)
 
 #ifdef ACID_APP
 
-   psystem->m_pfnNewAuraApplication = &new_aura_application;
+   psystem->m_pfnNewAuraApplication = &new_acme_application;
 
 #endif
 
 #ifdef ACID_LIBRARY
 
-   psystem->m_pfnNewLibrary = &new_aura_library;
+   psystem->m_pfnNewLibrary = &new_acme_library;
 
 #endif
 

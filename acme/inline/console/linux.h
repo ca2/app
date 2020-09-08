@@ -14,7 +14,7 @@ public:
    void create_system()
    {
 
-      aura_ref();
+      acme_ref();
 
       m_psystem = ::move_transfer(platform_create_system(nullptr));
 
@@ -108,11 +108,11 @@ public:
 //int main(int argc, char* argv[])
 //{
 //
-//   //class aura_aura aura_aura;
+//   //class acme_acme acme_acme;
 //
 //   //{
 //
-//   //   ::aura_main_struct mainstruct;
+//   //   ::acme_main_struct mainstruct;
 //
 //   //   console_initialize(mainstruct);
 //
@@ -122,7 +122,7 @@ public:
 //
 //   //      psystem->system_construct(&mainstruct, argc, argv);
 //
-//   //      return aura_run_system(psystem);
+//   //      return acme_run_system(psystem);
 //
 //   //   }
 //

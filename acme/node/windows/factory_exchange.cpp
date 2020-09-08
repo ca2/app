@@ -37,7 +37,7 @@
 //} // namespace acme
 
 
-void __node_aura_factory_exchange()
+void __node_acme_factory_exchange()
 {
 
    //create_factory < ::windows::dir_system, ::dir_system >();

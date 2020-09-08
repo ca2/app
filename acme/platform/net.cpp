@@ -520,3 +520,42 @@ void openURL(const string &url_str)
 
 
 
+
+
+
+CLASS_DECL_ACME bool is_url(const char* pszCandidate)
+{
+
+   string strCandidate(pszCandidate);
+
+   strsize iLen = strCandidate.get_length();
+
+   strsize i = 0;
+
+   char ch;
+
+   while (i < iLen)
+   {
+
+      ch = strCandidate[i];
+
+      if (isalpha((uchar)ch))
+         i++;
+      else if (ch == '.')
+         i++;
+      else if (ch == ':' && (((i + 1) == iLen) ||
+         (iLen > (i + 3)
+            && strCandidate[i + 1] == '/'
+            && strCandidate[i + 2] == '/')))
+         return true;
+      else
+         return false;
+
+   }
+
+   return false;
+
+}
+
+
+

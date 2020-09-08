@@ -260,20 +260,20 @@ namespace exception
 // thread_object < string > t_strNote;
 
 
-string __get_thread_note()
-{
-   
-   return thread_value("strNote");
-
-}
-
-
-void __set_thread_note(const char * pszNote)
-{
-   
-   thread_value("strNote") = pszNote;
-
-}
+//string __get_thread_note()
+//{
+//   
+//   return thread_value("strNote");
+//
+//}
+//
+//
+//void __set_thread_note(const char * pszNote)
+//{
+//   
+//   thread_value("strNote") = pszNote;
+//
+//}
 
 
 #endif
@@ -505,14 +505,14 @@ namespace status
 
 
 
-CLASS_DECL_ACME __pointer(::exception::exception) __trace_context_move_throw_exception(::generic * trace_context, ::exception::exception * pexceptionNew)
-{
-
-   __trace_logger_level(trace_context, trace_level_error);
-
-   return ::__move_transfer(pexceptionNew);
-
-}
+//CLASS_DECL_ACME __pointer(::exception::exception) __trace_context_move_throw_exception(::generic * trace_context, ::exception::exception * pexceptionNew)
+//{
+//
+//   __trace_logger_level(trace_context, trace_level_error);
+//
+//   return ::__move_transfer(pexceptionNew);
+//
+//}
 
 
 
@@ -554,4 +554,25 @@ const char* status_message(const ::estatus& estatus)
    return "(Missing Error Text)";
 
 }
+
+
+thread_local bool t_bAvoidBadStatusException = false;
+
+
+CLASS_DECL_ACME bool avoid_bad_status_exception()
+{
+
+   return t_bAvoidBadStatusException;
+
+}
+
+
+CLASS_DECL_ACME void set_avoid_bad_status_exception(bool bSet)
+{
+
+   t_bAvoidBadStatusException = bSet;
+
+}
+
+
 

@@ -1003,30 +1003,30 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 
 
 
-CLASS_DECL_ACME ::file::path core_app_path(string strAppId)
-{
-
-   ::file::path path = get_last_run_application_path(strAppId);
-
-   if (path.has_char())
-   {
-
-      return path;
-
-   }
-
-   strAppId.replace("-", "_");
-
-   strAppId.replace("/", "_");
-
-   path = "C:\\acme\\time\\x64\\basis\\" + strAppId + ".exe";
-
-   return path;
-
-}
-
-
-
+//CLASS_DECL_ACME ::file::path core_app_path(string strAppId)
+//{
+//
+//   ::file::path path = get_last_run_application_path(strAppId);
+//
+//   if (path.has_char())
+//   {
+//
+//      return path;
+//
+//   }
+//
+//   strAppId.replace("-", "_");
+//
+//   strAppId.replace("/", "_");
+//
+//   path = "C:\\acme\\time\\x64\\basis\\" + strAppId + ".exe";
+//
+//   return path;
+//
+//}
+//
+//
+//
 //CLASS_DECL_ACME DWORD get_current_process_id()
 //{
 //
@@ -1039,324 +1039,324 @@ CLASS_DECL_ACME ::file::path core_app_path(string strAppId)
 
 
 
-CLASS_DECL_ACME BOOL LaunchAppIntoDifferentSession(const char* pszProcess, const char* pszCommand, const char* pszDir, STARTUPINFOW* psi, PROCESS_INFORMATION* ppi, int iSession)
-{
-   //PROCESS_INFORMATION pi;
-   //STARTUPINFO si;
-   BOOL bResult = FALSE;
-   DWORD dwSessionId, winlogonPid;
-   HANDLE hUserToken, hUserTokenDup, hPToken, hProcess;
-   DWORD dwCreationFlags;
-
-   // Log the client on to the local computer.
-
-   if (iSession < 0)
-   {
-      dwSessionId = WTSGetActiveConsoleSessionId();
-   }
-   else
-   {
-      dwSessionId = iSession;
-   }
-
-   //////////////////////////////////////////
-   // Find the winlogon process
-   ////////////////////////////////////////
-
-   PROCESSENTRY32W procEntry;
-
-   HANDLE hSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
-   if (hSnap == INVALID_HANDLE_VALUE)
-   {
-      return 1;
-   }
-
-   procEntry.dwSize = sizeof(PROCESSENTRY32W);
-
-   if (!Process32FirstW(hSnap, &procEntry))
-   {
-      return 1;
-   }
-
-   do
-   {
-      if (wcsicmp(procEntry.szExeFile,L"winlogon.exe") == 0)
-      {
-         // We found a winlogon process...
-         // make sure it's running in the console session
-         DWORD winlogonSessId = 0;
-         HANDLE h = ::OpenProcess(PROCESS_QUERY_INFORMATION, FALSE, procEntry.th32ProcessID);
-         if (ProcessIdToSessionId(procEntry.th32ProcessID, &winlogonSessId))
-         {
-            if (winlogonSessId == dwSessionId)
-            {
-               winlogonPid = procEntry.th32ProcessID;
-               break;
-
-            }
-         }
-         else
-         {
-            DWORD dwLastError = get_last_error();
-
-            //            TRACE(get_object())("%d", dwLastError);
-         }
-      }
-
-   } while (Process32NextW(hSnap, &procEntry));
-
-   ////////////////////////////////////////////////////////////////////////
-
-   LIBCALL(wtsapi32, WTSQueryUserToken)(dwSessionId, &hUserToken);
-   dwCreationFlags = NORMAL_PRIORITY_CLASS | CREATE_NEW_CONSOLE;
-   //ZeroMemory(&si,sizeof(STARTUPINFO));
-   psi->cb = sizeof(STARTUPINFO);
-   psi->lpDesktop = L"winsta0\\default";
-
-   //ZeroMemory(&pi,sizeof(pi));
-   TOKEN_PRIVILEGES tp;
-   LUID luid;
-   hProcess = OpenProcess(MAXIMUM_ALLOWED, FALSE, winlogonPid);
-
-   if (!::OpenProcessToken(hProcess, TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY
-      | TOKEN_DUPLICATE | TOKEN_ASSIGN_PRIMARY | TOKEN_ADJUST_SESSIONID
-      | TOKEN_READ | TOKEN_WRITE, &hPToken))
-   {
-      int abcd = get_last_error();
-      debug_print("Process token open Error: %u\n", get_last_error());
-   }
-
-   if (!LookupPrivilegeValue(nullptr, SE_DEBUG_NAME, &luid))
-   {
-      debug_print("lookup Privilege value Error: %u\n", get_last_error());
-   }
-   tp.PrivilegeCount = 1;
-   tp.Privileges[0].Luid = luid;
-   tp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
-
-   DuplicateTokenEx(hPToken, MAXIMUM_ALLOWED, nullptr,
-      SecurityIdentification, TokenPrimary, &hUserTokenDup);
-   int dup = get_last_error();
-
-   //Adjust Token privilege
-   SetTokenInformation(hUserTokenDup,
-      TokenSessionId, (void*)(DWORD_PTR)dwSessionId, sizeof(DWORD));
-
-   if (!AdjustTokenPrivileges(hUserTokenDup, FALSE, &tp, sizeof(TOKEN_PRIVILEGES),
-      (PTOKEN_PRIVILEGES)nullptr, nullptr))
-   {
-      int abc = get_last_error();
-      debug_print("Adjust Privilege value Error: %u\n", get_last_error());
-   }
-
-   if (get_last_error() == ERROR_NOT_ALL_ASSIGNED)
-   {
-      debug_print("Token does not have the provilege\n");
-   }
-
-   LPVOID pEnv = nullptr;
-
-   if (LIBCALL(userenv, CreateEnvironmentBlock)(&pEnv, hUserTokenDup, TRUE))
-   {
-      dwCreationFlags |= CREATE_UNICODE_ENVIRONMENT;
-   }
-   else
-      pEnv = nullptr;
-
-   // Launch the process in the client's logon session.
-
-   bResult = CreateProcessAsUserW(
-      hUserTokenDup,                     // client's access token
-      wstring(pszProcess),    // file to execute
-      (wchar_t*)(const wchar_t *) wstring(pszCommand),                 // command line
-      nullptr,            // pointer to process SECURITY_ATTRIBUTES
-      nullptr,               // pointer to thread SECURITY_ATTRIBUTES
-      FALSE,              // handles are not inheritable
-      dwCreationFlags,     // creation flags
-      pEnv,               // pointer to _new environment block
-      wstring(pszDir),               // name of current directory
-      psi,               // pointer to STARTUPINFO structure
-      ppi                // receives information about _new process
-   );
-   // End impersonation of client.
-
-   //get_last_error Shud be 0
-
-   int iResultOfCreateProcessAsUser = get_last_error();
-
-   //Perform All the Close Handles tasks
-
-   CloseHandle(hProcess);
-   CloseHandle(hUserToken);
-   CloseHandle(hUserTokenDup);
-   CloseHandle(hPToken);
-
-   return 0;
-}
-
-CLASS_DECL_ACME bool enable_windows_token_privilege(HANDLE h, LPTSTR pcszName)
-{
-
-   TOKEN_PRIVILEGES tp;
-
-   if (!LookupPrivilegeValue(nullptr, SE_DEBUG_NAME, &tp.Privileges[0].Luid))
-   {
-
-      int iError = get_last_error();
-
-      debug_print("lookup Privilege value Error: %u\n", iError);
-
-      return false;
-
-   }
-
-   tp.PrivilegeCount = 1;
-
-   tp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
-
-   if (!AdjustTokenPrivileges(h, FALSE, &tp, sizeof(TOKEN_PRIVILEGES), (PTOKEN_PRIVILEGES)nullptr, nullptr))
-   {
-
-      int iError = get_last_error();
-
-      debug_print("Adjust Privilege value Error: %u\n", iError);
-
-      return false;
-
-   }
-
-   return true;
-
-}
-
-CLASS_DECL_ACME BOOL LaunchAppIntoSystemAcc(const char* pszProcess, const char* pszCommand, const char* pszDir, STARTUPINFOW* psi, PROCESS_INFORMATION* ppi)
-{
-   //PROCESS_INFORMATION pi;
-   //STARTUPINFO si;
-   BOOL bResult = FALSE;
-   //   DWORD dwSessionId,winlogonPid;
-   HANDLE hUserTokenDup, hProcess, hPToken;
-   DWORD dwCreationFlags;
-   HANDLE hUserToken = nullptr;
-
-
-   // Log the client on to the local computer.
-
-   dwCreationFlags = NORMAL_PRIORITY_CLASS | CREATE_NEW_CONSOLE;
-   //ZeroMemory(&si,sizeof(STARTUPINFO));
-   psi->cb = sizeof(STARTUPINFOW);
-   psi->lpDesktop = L"winsta0\\default";
-
-   //ZeroMemory(&pi,sizeof(pi));
-
+//CLASS_DECL_ACME BOOL LaunchAppIntoDifferentSession(const char* pszProcess, const char* pszCommand, const char* pszDir, STARTUPINFOW* psi, PROCESS_INFORMATION* ppi, int iSession)
+//{
+//   //PROCESS_INFORMATION pi;
+//   //STARTUPINFO si;
+//   BOOL bResult = FALSE;
+//   DWORD dwSessionId, winlogonPid;
+//   HANDLE hUserToken, hUserTokenDup, hPToken, hProcess;
+//   DWORD dwCreationFlags;
+//
+//   // Log the client on to the local computer.
+//
+//   if (iSession < 0)
+//   {
+//      dwSessionId = WTSGetActiveConsoleSessionId();
+//   }
+//   else
+//   {
+//      dwSessionId = iSession;
+//   }
+//
+//   //////////////////////////////////////////
+//   // Find the winlogon process
+//   ////////////////////////////////////////
+//
+//   PROCESSENTRY32W procEntry;
+//
+//   HANDLE hSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+//   if (hSnap == INVALID_HANDLE_VALUE)
+//   {
+//      return 1;
+//   }
+//
+//   procEntry.dwSize = sizeof(PROCESSENTRY32W);
+//
+//   if (!Process32FirstW(hSnap, &procEntry))
+//   {
+//      return 1;
+//   }
+//
+//   do
+//   {
+//      if (wcsicmp(procEntry.szExeFile,L"winlogon.exe") == 0)
+//      {
+//         // We found a winlogon process...
+//         // make sure it's running in the console session
+//         DWORD winlogonSessId = 0;
+//         HANDLE h = ::OpenProcess(PROCESS_QUERY_INFORMATION, FALSE, procEntry.th32ProcessID);
+//         if (ProcessIdToSessionId(procEntry.th32ProcessID, &winlogonSessId))
+//         {
+//            if (winlogonSessId == dwSessionId)
+//            {
+//               winlogonPid = procEntry.th32ProcessID;
+//               break;
+//
+//            }
+//         }
+//         else
+//         {
+//            DWORD dwLastError = get_last_error();
+//
+//            //            TRACE(get_object())("%d", dwLastError);
+//         }
+//      }
+//
+//   } while (Process32NextW(hSnap, &procEntry));
+//
+//   ////////////////////////////////////////////////////////////////////////
+//
+//   LIBCALL(wtsapi32, WTSQueryUserToken)(dwSessionId, &hUserToken);
+//   dwCreationFlags = NORMAL_PRIORITY_CLASS | CREATE_NEW_CONSOLE;
+//   //ZeroMemory(&si,sizeof(STARTUPINFO));
+//   psi->cb = sizeof(STARTUPINFO);
+//   psi->lpDesktop = L"winsta0\\default";
+//
+//   //ZeroMemory(&pi,sizeof(pi));
+//   TOKEN_PRIVILEGES tp;
 //   LUID luid;
-   //hProcess = OpenProcess(MAXIMUM_ALLOWED,FALSE,winlogonPid);
-   hProcess = ::GetCurrentProcess();
+//   hProcess = OpenProcess(MAXIMUM_ALLOWED, FALSE, winlogonPid);
+//
+//   if (!::OpenProcessToken(hProcess, TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY
+//      | TOKEN_DUPLICATE | TOKEN_ASSIGN_PRIMARY | TOKEN_ADJUST_SESSIONID
+//      | TOKEN_READ | TOKEN_WRITE, &hPToken))
+//   {
+//      int abcd = get_last_error();
+//      debug_print("Process token open Error: %u\n", get_last_error());
+//   }
+//
+//   if (!LookupPrivilegeValue(nullptr, SE_DEBUG_NAME, &luid))
+//   {
+//      debug_print("lookup Privilege value Error: %u\n", get_last_error());
+//   }
+//   tp.PrivilegeCount = 1;
+//   tp.Privileges[0].Luid = luid;
+//   tp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
+//
+//   DuplicateTokenEx(hPToken, MAXIMUM_ALLOWED, nullptr,
+//      SecurityIdentification, TokenPrimary, &hUserTokenDup);
+//   int dup = get_last_error();
+//
+//   //Adjust Token privilege
+//   SetTokenInformation(hUserTokenDup,
+//      TokenSessionId, (void*)(DWORD_PTR)dwSessionId, sizeof(DWORD));
+//
+//   if (!AdjustTokenPrivileges(hUserTokenDup, FALSE, &tp, sizeof(TOKEN_PRIVILEGES),
+//      (PTOKEN_PRIVILEGES)nullptr, nullptr))
+//   {
+//      int abc = get_last_error();
+//      debug_print("Adjust Privilege value Error: %u\n", get_last_error());
+//   }
+//
+//   if (get_last_error() == ERROR_NOT_ALL_ASSIGNED)
+//   {
+//      debug_print("Token does not have the provilege\n");
+//   }
+//
+//   LPVOID pEnv = nullptr;
+//
+//   if (LIBCALL(userenv, CreateEnvironmentBlock)(&pEnv, hUserTokenDup, TRUE))
+//   {
+//      dwCreationFlags |= CREATE_UNICODE_ENVIRONMENT;
+//   }
+//   else
+//      pEnv = nullptr;
+//
+//   // Launch the process in the client's logon session.
+//
+//   bResult = CreateProcessAsUserW(
+//      hUserTokenDup,                     // client's access token
+//      wstring(pszProcess),    // file to execute
+//      (wchar_t*)(const wchar_t *) wstring(pszCommand),                 // command line
+//      nullptr,            // pointer to process SECURITY_ATTRIBUTES
+//      nullptr,               // pointer to thread SECURITY_ATTRIBUTES
+//      FALSE,              // handles are not inheritable
+//      dwCreationFlags,     // creation flags
+//      pEnv,               // pointer to _new environment block
+//      wstring(pszDir),               // name of current directory
+//      psi,               // pointer to STARTUPINFO structure
+//      ppi                // receives information about _new process
+//   );
+//   // End impersonation of client.
+//
+//   //get_last_error Shud be 0
+//
+//   int iResultOfCreateProcessAsUser = get_last_error();
+//
+//   //Perform All the Close Handles tasks
+//
+//   CloseHandle(hProcess);
+//   CloseHandle(hUserToken);
+//   CloseHandle(hUserTokenDup);
+//   CloseHandle(hPToken);
+//
+//   return 0;
+//}
 
-   //hPToken = hUserToken;
-
-   if (!::OpenProcessToken(hProcess, TOKEN_ALL_ACCESS, &hPToken))
-   {
-      int abcd = get_last_error();
-      debug_print("Process token open Error: %u\n", get_last_error());
-   }
-
-   if (!enable_windows_token_privilege(hPToken, SE_DEBUG_NAME))
-   {
-
-      return FALSE;
-
-   }
-
-   if (!enable_windows_token_privilege(hPToken, SE_CREATE_TOKEN_NAME))
-   {
-      return FALSE;
-   }
-
-   if (!enable_windows_token_privilege(hPToken, SE_TCB_NAME))
-   {
-
-      return FALSE;
-
-   }
-
-   if (!enable_windows_token_privilege(hPToken, SE_ASSIGNPRIMARYTOKEN_NAME))
-   {
-
-      return FALSE;
-
-   }
-
-   if (!enable_windows_token_privilege(hPToken, SE_INCREASE_QUOTA_NAME))
-   {
-
-      return FALSE;
-
-   }
-
-   //if(get_last_error() == ERROR_NOT_ALL_ASSIGNED)
-   //{
-   //   debug_print("Token does not have the provilege\n");
-   //}
-   // "LOCAL SERVICE" or "LocalService" ?
-   // "NETWORK SERVICE" or "NetworkService" ?
-   if (!LogonUserW(L"LocalService", L"NT AUTHORITY", nullptr, LOGON32_LOGON_SERVICE, LOGON32_PROVIDER_DEFAULT, &hUserToken))
-   {
-      DWORD dwError = ::get_last_error();
-      string str;
-      str.Format("lookup Privilege value Error: %u\n", dwError);
-      message_box(str, "Help Me", MB_OK);
-      return FALSE;
-   }
-   if (!DuplicateTokenEx(hUserToken, TOKEN_ALL_ACCESS, nullptr, SecurityDelegation, TokenPrimary, &hUserTokenDup))
-   {
-      int dup = get_last_error();
-      debug_print("DuplicateTokenEx Error: %u\n", get_last_error());
-   }
-
-   //Adjust Token privilege
-   //SetTokenInformation(hUserTokenDup,
-   //   TokenSessionId,(void*)dwSessionId,sizeof(DWORD));
-
-
-
-   LPVOID pEnv = nullptr;
-
-   if (LIBCALL(userenv, CreateEnvironmentBlock)(&pEnv, hUserTokenDup, TRUE))
-   {
-      dwCreationFlags |= CREATE_UNICODE_ENVIRONMENT;
-   }
-   else
-      pEnv = nullptr;
-
-   // Launch the process in the client's logon session.
-
-   bResult = CreateProcessAsUserW(
-      hUserTokenDup,                     // client's access token
-      wstring(pszProcess),    // file to execute
-      (wchar_t*)(const wchar_t*) wstring(pszCommand),                 // command line
-      nullptr,            // pointer to process SECURITY_ATTRIBUTES
-      nullptr,               // pointer to thread SECURITY_ATTRIBUTES
-      FALSE,              // handles are not inheritable
-      dwCreationFlags,     // creation flags
-      pEnv,               // pointer to _new environment block
-      wstring(pszDir),               // name of current directory
-      psi,               // pointer to STARTUPINFO structure
-      ppi                // receives information about _new process
-   );
-   // End impersonation of client.
-
-   //get_last_error Shud be 0
-
-   //int iResultOfCreateProcessAsUser = get_last_error();
-
-   //Perform All the Close Handles tasks
-
-   //CloseHandle(hProcess);
-   //CloseHandle(hUserToken);
-   //CloseHandle(hUserTokenDup);
-   //CloseHandle(hPToken);
-
-   return TRUE;
-}
-
+//CLASS_DECL_ACME bool enable_windows_token_privilege(HANDLE h, LPTSTR pcszName)
+//{
+//
+//   TOKEN_PRIVILEGES tp;
+//
+//   if (!LookupPrivilegeValue(nullptr, SE_DEBUG_NAME, &tp.Privileges[0].Luid))
+//   {
+//
+//      int iError = get_last_error();
+//
+//      debug_print("lookup Privilege value Error: %u\n", iError);
+//
+//      return false;
+//
+//   }
+//
+//   tp.PrivilegeCount = 1;
+//
+//   tp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
+//
+//   if (!AdjustTokenPrivileges(h, FALSE, &tp, sizeof(TOKEN_PRIVILEGES), (PTOKEN_PRIVILEGES)nullptr, nullptr))
+//   {
+//
+//      int iError = get_last_error();
+//
+//      debug_print("Adjust Privilege value Error: %u\n", iError);
+//
+//      return false;
+//
+//   }
+//
+//   return true;
+//
+//}
+//
+//CLASS_DECL_ACME BOOL LaunchAppIntoSystemAcc(const char* pszProcess, const char* pszCommand, const char* pszDir, STARTUPINFOW* psi, PROCESS_INFORMATION* ppi)
+//{
+//   //PROCESS_INFORMATION pi;
+//   //STARTUPINFO si;
+//   BOOL bResult = FALSE;
+//   //   DWORD dwSessionId,winlogonPid;
+//   HANDLE hUserTokenDup, hProcess, hPToken;
+//   DWORD dwCreationFlags;
+//   HANDLE hUserToken = nullptr;
+//
+//
+//   // Log the client on to the local computer.
+//
+//   dwCreationFlags = NORMAL_PRIORITY_CLASS | CREATE_NEW_CONSOLE;
+//   //ZeroMemory(&si,sizeof(STARTUPINFO));
+//   psi->cb = sizeof(STARTUPINFOW);
+//   psi->lpDesktop = L"winsta0\\default";
+//
+//   //ZeroMemory(&pi,sizeof(pi));
+//
+////   LUID luid;
+//   //hProcess = OpenProcess(MAXIMUM_ALLOWED,FALSE,winlogonPid);
+//   hProcess = ::GetCurrentProcess();
+//
+//   //hPToken = hUserToken;
+//
+//   if (!::OpenProcessToken(hProcess, TOKEN_ALL_ACCESS, &hPToken))
+//   {
+//      int abcd = get_last_error();
+//      debug_print("Process token open Error: %u\n", get_last_error());
+//   }
+//
+//   if (!enable_windows_token_privilege(hPToken, SE_DEBUG_NAME))
+//   {
+//
+//      return FALSE;
+//
+//   }
+//
+//   if (!enable_windows_token_privilege(hPToken, SE_CREATE_TOKEN_NAME))
+//   {
+//      return FALSE;
+//   }
+//
+//   if (!enable_windows_token_privilege(hPToken, SE_TCB_NAME))
+//   {
+//
+//      return FALSE;
+//
+//   }
+//
+//   if (!enable_windows_token_privilege(hPToken, SE_ASSIGNPRIMARYTOKEN_NAME))
+//   {
+//
+//      return FALSE;
+//
+//   }
+//
+//   if (!enable_windows_token_privilege(hPToken, SE_INCREASE_QUOTA_NAME))
+//   {
+//
+//      return FALSE;
+//
+//   }
+//
+//   //if(get_last_error() == ERROR_NOT_ALL_ASSIGNED)
+//   //{
+//   //   debug_print("Token does not have the provilege\n");
+//   //}
+//   // "LOCAL SERVICE" or "LocalService" ?
+//   // "NETWORK SERVICE" or "NetworkService" ?
+//   if (!LogonUserW(L"LocalService", L"NT AUTHORITY", nullptr, LOGON32_LOGON_SERVICE, LOGON32_PROVIDER_DEFAULT, &hUserToken))
+//   {
+//      DWORD dwError = ::get_last_error();
+//      string str;
+//      str.Format("lookup Privilege value Error: %u\n", dwError);
+//      message_box(str, "Help Me", MB_OK);
+//      return FALSE;
+//   }
+//   if (!DuplicateTokenEx(hUserToken, TOKEN_ALL_ACCESS, nullptr, SecurityDelegation, TokenPrimary, &hUserTokenDup))
+//   {
+//      int dup = get_last_error();
+//      debug_print("DuplicateTokenEx Error: %u\n", get_last_error());
+//   }
+//
+//   //Adjust Token privilege
+//   //SetTokenInformation(hUserTokenDup,
+//   //   TokenSessionId,(void*)dwSessionId,sizeof(DWORD));
+//
+//
+//
+//   LPVOID pEnv = nullptr;
+//
+//   if (LIBCALL(userenv, CreateEnvironmentBlock)(&pEnv, hUserTokenDup, TRUE))
+//   {
+//      dwCreationFlags |= CREATE_UNICODE_ENVIRONMENT;
+//   }
+//   else
+//      pEnv = nullptr;
+//
+//   // Launch the process in the client's logon session.
+//
+//   bResult = CreateProcessAsUserW(
+//      hUserTokenDup,                     // client's access token
+//      wstring(pszProcess),    // file to execute
+//      (wchar_t*)(const wchar_t*) wstring(pszCommand),                 // command line
+//      nullptr,            // pointer to process SECURITY_ATTRIBUTES
+//      nullptr,               // pointer to thread SECURITY_ATTRIBUTES
+//      FALSE,              // handles are not inheritable
+//      dwCreationFlags,     // creation flags
+//      pEnv,               // pointer to _new environment block
+//      wstring(pszDir),               // name of current directory
+//      psi,               // pointer to STARTUPINFO structure
+//      ppi                // receives information about _new process
+//   );
+//   // End impersonation of client.
+//
+//   //get_last_error Shud be 0
+//
+//   //int iResultOfCreateProcessAsUser = get_last_error();
+//
+//   //Perform All the Close Handles tasks
+//
+//   //CloseHandle(hProcess);
+//   //CloseHandle(hUserToken);
+//   //CloseHandle(hUserTokenDup);
+//   //CloseHandle(hPToken);
+//
+//   return TRUE;
+//}
+//

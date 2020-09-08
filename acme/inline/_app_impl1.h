@@ -58,9 +58,9 @@ char * linux_get_command_line(int argc, char ** argv); // malloc/strdup equivale
 int main(Array < String ^ > ^ refstra)
 {
 
-   class aura_aura acme;
+   class acme_acme acme;
 
-   ap(aura_main_data) pmaindata = new aura_main_data(refstra);
+   ap(acme_main_data) pmaindata = new acme_main_data(refstra);
 
 #ifdef MAIN_STRING
 
@@ -68,7 +68,7 @@ int main(Array < String ^ > ^ refstra)
 
 #endif
 
-   return (int)aura_aura(pmaindata);
+   return (int)acme_acme(pmaindata);
 
 }
 
@@ -88,7 +88,7 @@ int main(int argc, char * argv[])
 
 }
 
-int aura_main(int argc, char * argv[], char * pszCommandLine, bool bConsole, bool bDraw2d);
+int acme_main(int argc, char * argv[], char * pszCommandLine, bool bConsole, bool bDraw2d);
 
 #ifdef NO_DRAW2D
 
@@ -141,18 +141,18 @@ i32 WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPTSTR pCmdLi
 //
 //   {
 //
-//      __pointer(class aura_aura) paura;
+//      __pointer(class acme_acme) pacme;
 //
-//      __pointer(class aura_main_data) pmaindata;
+//      __pointer(class acme_main_data) pmaindata;
 //
 //      {
 //
 //         //__keep(thread_flag_prevent_create_thread);
 //
 //
-//         paura = __new(class aura_aura);
+//         pacme = __new(class acme_acme);
 //
-//         pmaindata = __new(aura_main_data(hinstance, hPrevInstance, pCmdLine, nCmdShow));
+//         pmaindata = __new(acme_main_data(hinstance, hPrevInstance, pCmdLine, nCmdShow));
 //
 //#ifdef MAIN_RUNNER0
 //
@@ -170,11 +170,11 @@ i32 WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPTSTR pCmdLi
 //
 //#ifdef ACID
 //
-//      return aura_aura(pmaindata, &get_acid_app);
+//      return acme_acme(pmaindata, &get_acid_app);
 //
 //#else
 //
-//      iRet = aura_aura(pmaindata);
+//      iRet = acme_acme(pmaindata);
 //
 //#endif
 //   }
@@ -210,13 +210,13 @@ i32 WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPTSTR pCmdLi
 //#define APP_PRELUDE_LEVEL(prefix) \
 //extern "C" \
 //::acme::application * prefix##_get_new_app(::generic * pobject); \
-//prelude auraprelude(&prefix##_get_new_app);
+//prelude acmeprelude(&prefix##_get_new_app);
 //
 //
 //#define LIBRARY_PRELUDE(prefix) \
 //extern "C" \
 //::acme::library * prefix##_get_new_library(::generic * pobject); \
-//prelude auraprelude(&prefix##_get_new_library);
+//prelude acmeprelude(&prefix##_get_new_library);
 
 
 #if defined(LINUX) && !defined(LINUX_COMMAND_LINE)

@@ -136,7 +136,7 @@ public:
 
    virtual void remove_offset();
 
-   virtual void random_bytes(::count c = -1);
+   //virtual void random_bytes(::count c = -1);
 
 
    virtual ::stream & write(::stream & stream) const override;

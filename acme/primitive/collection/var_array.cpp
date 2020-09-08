@@ -399,12 +399,14 @@ void var_array::parse_json(const char * & pszJson, const char * pszEnd)
 
    }
 
-   ::thread * pthread = nullptr;
+   //::thread * pthread = nullptr;
 
    while(true)
    {
 
-      g_iRandomNumberGenerator++;
+      
+      //__throw(todo("thread"));
+     /* g_iRandomNumberGenerator++;
 
       if(pthread == nullptr)
       {
@@ -422,7 +424,7 @@ void var_array::parse_json(const char * & pszJson, const char * pszEnd)
 
          __throw(::exit_exception(pthread));
 
-      }
+      }*/
 
       ::var & var = add_new();
 

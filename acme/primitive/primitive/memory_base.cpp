@@ -313,24 +313,24 @@ void memory_base::remove_offset()
 
 }
 
-void memory_base::random_bytes(::count c)
-{
-
-   if (c >= 0)
-   {
-
-      set_size(c);
-
-   }
-
-   if (get_size() > 0)
-   {
-
-      ::get_context_system()->math().random_bytes(get_data(), get_size());
-
-   }
-
-}
+//void memory_base::random_bytes(::count c)
+//{
+//
+//   if (c >= 0)
+//   {
+//
+//      set_size(c);
+//
+//   }
+//
+//   if (get_size() > 0)
+//   {
+//
+//      ::get_context_system()->math().random_bytes(get_data(), get_size());
+//
+//   }
+//
+//}
 
 
 memsize memory_base::calc_allocation(memsize size)
@@ -1191,7 +1191,9 @@ void memory_base::to_base64(string & str, memsize pos, memsize size)
 
    }
 
-   str = ::get_context_system()->base64().encode(&get_data()[pos], MIN(get_size() - pos, size));
+   ::str::base64 base64;
+
+   str = base64.encode(&get_data()[pos], MIN(get_size() - pos, size));
 
 }
 
@@ -1210,7 +1212,9 @@ string memory_base::to_base64(memsize pos, memsize size)
 void memory_base::from_base64(const char * psz, strsize nCount)
 {
 
-   ::get_context_system()->base64().decode(*this, psz, nCount);
+   ::str::base64 base64;
+
+   base64.decode(*this, psz, nCount);
 
 }
 

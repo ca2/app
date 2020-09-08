@@ -101,16 +101,6 @@ CLASS_DECL_APEX bool node_fill(::apex::system * pappcore);
 
 //CLASS_DECL_APEX int aura_entry_point(int argc, char* argv[], char* pszCommandLin, PFN_NEW_AURA_APPLICATION pfnNewAuraApplication = nullptr, PFN_NEW_AURA_LIBRARY pfnNewLibrary = nullptr);
 
-CLASS_DECL_APEX string transform_to_c_arg(const char * psz);
-CLASS_DECL_APEX string_array get_c_args_from_string(const char * psz);
-CLASS_DECL_APEX string_array get_c_args_from_c(const char * psz);
-CLASS_DECL_APEX string_array get_c_args_for_c(const char * psz);
-CLASS_DECL_APEX string_array get_c_args(int argc, char ** argv);
-#ifdef WINDOWS_DESKTOP
-CLASS_DECL_APEX string ca2_command_line(HINSTANCE hinstance);
-#else
-CLASS_DECL_APEX string ca2_command_line();
-#endif
 
 
 class CLASS_DECL_APEX aura_level

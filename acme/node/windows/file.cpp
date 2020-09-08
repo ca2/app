@@ -64,7 +64,7 @@ namespace windows
       if (pszFileName.is_empty())
       {
 
-         TRACE("windows::file::open file with empty name!!");
+         //TRACE("windows::file::open file with empty name!!");
 
          return ::error_failed;
 

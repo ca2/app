@@ -244,39 +244,39 @@ namespace  sort
 
 
 
-void ___compile_test_sort_array_21304528734()
-{
-
-
-   sort_pointer_array < ::user::interaction > sorteduia;
-
-   auto puiA = __new(::user::interaction);
-
-   puiA->set_window_text("01");
-
-   auto puiH = __new(::user::interaction);
-
-   puiH->set_window_text("10");
-
-   sorteduia.add(puiA);
-
-   sorteduia.add(puiH);
-
-   sorteduia.add_sort("name", [](auto & pui1, auto & pui2)
-      {
-         string str1;
-         pui1->get_window_text(str1);
-         string str2;
-         pui1->get_window_text(str2);
-         return str1.compare_ci(str2);
-      });
-
-   auto puiC = __new(::user::interaction);
-
-   puiC->set_window_text("03");
-
-   ::index iC = -1;
-
-   bool bFind = sorteduia.find(puiC, iC, "name");
-
-}
+//void ___compile_test_sort_array_21304528734()
+//{
+//
+//
+//   sort_pointer_array < ::user::interaction > sorteduia;
+//
+//   auto puiA = __new(::user::interaction);
+//
+//   puiA->set_window_text("01");
+//
+//   auto puiH = __new(::user::interaction);
+//
+//   puiH->set_window_text("10");
+//
+//   sorteduia.add(puiA);
+//
+//   sorteduia.add(puiH);
+//
+//   sorteduia.add_sort("name", [](auto & pui1, auto & pui2)
+//      {
+//         string str1;
+//         pui1->get_window_text(str1);
+//         string str2;
+//         pui1->get_window_text(str2);
+//         return str1.compare_ci(str2);
+//      });
+//
+//   auto puiC = __new(::user::interaction);
+//
+//   puiC->set_window_text("03");
+//
+//   ::index iC = -1;
+//
+//   bool bFind = sorteduia.find(puiC, iC, "name");
+//
+//}

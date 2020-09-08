@@ -11,7 +11,7 @@ DWORD TerminateGuiApp(DWORD dwPID, DWORD tickTimeout);
 //   WORD w16Task, DWORD tickTimeout);
 
 //#endif
-int SendCtrlShiftQToChrome(HWND chrome, int iSleep, ::acme::application * papp);
+//int SendCtrlShiftQToChrome(HWND chrome, int iSleep, ::acme::application * papp);
 //int SendURLToChrome(HWND chrome, string strUrl, ::acme::application * papp);
 class block_input :
    virtual public generic
@@ -81,152 +81,152 @@ bool is_good_active_w(oswindow w)
 
 }
 
-int SendCtrlShiftQToChrome(oswindow w, int iSleep, ::acme::application * papp)
-{
-   /*HWND h = ::GetWindow(chrome, GW_CHILD);
-   SendMessage(chrome, 0x0272, 0, 0);
-   SendMessage(h, 0x0090, 0, 0);
-   return 1;
-   }*/
-   //   App(papp).message_box_timeout(nullptr, "Quiting browser...", seconds(3), MB_ICONASTERISK);
-   block_input blockinput;
-
-   UINT ui;
-   UINT character_count;
-   WORD vka[3];
-   char text[3];
-   DWORD flag[3];
-
-   vka[0] = VK_CONTROL;
-   vka[1] = VK_SHIFT;
-   vka[2] = 'Q';
-
-   flag[0] = 0;
-   flag[1] = 0;
-   flag[2] = 0;
-
-   text[0] = 0;
-   text[1] = 0;
-   text[2] = 0;
-
-
-   ::ShowWindow(w, SW_SHOWNORMAL);
-
-   ::SetWindowPos(w, HWND_TOP, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
-
-   ::BringWindowToTop(w);
-
-   ::SetForegroundWindow(w);
-
-   if (!is_good_active_w(w))
-      return 0;
-
-   INPUT input;
-   DWORD tick = 0;
-
-   character_count = 3;
-   for (ui = 0; ui < character_count; ui++)
-   {
-      if (GetKeyState(vka[character_count - ui - 1]) & 0x8000)
-      {
-         if (!is_good_active_w(w))
-            return 0;
-         input.type = INPUT_KEYBOARD;
-         input.ki.wVk = vka[character_count - ui - 1];
-         input.ki.wScan = text[character_count - ui - 1];
-         input.ki.dwFlags = flag[character_count - ui - 1] | KEYEVENTF_KEYUP;
-         input.ki.time = tick;
-         input.ki.dwExtraInfo = GetMessageExtraInfo();
-         if (!is_good_active_w(w))
-            return 0;
-         SendInput(1, &input, sizeof(input));
-         if (!is_good_active_w(w))
-            return 0;
-
-         Sleep(iSleep / 8);
-      }
-   }
-
-   for (ui = 0; ui < character_count; ui++)
-   {
-      //keystroke[i].type = INPUT_KEYBOARD;
-      //keystroke[i].ki.wVk = vka[i];
-      //keystroke[i].ki.wScan = text[i];
-      //keystroke[i].ki.dwFlags = flag[i];
-      //keystroke[i].ki.time = tick;
-      //keystroke[i].ki.dwExtraInfo = GetMessageExtraInfo();
-      if (!is_good_active_w(w))
-         return 0;
-      input.type = INPUT_KEYBOARD;
-      input.ki.wVk = vka[ui];
-      input.ki.wScan = text[ui];
-      input.ki.dwFlags = flag[ui];
-      input.ki.time = tick;
-      input.ki.dwExtraInfo = GetMessageExtraInfo();
-      if (!is_good_active_w(w))
-         return 0;
-      SendInput(1, &input, sizeof(input));
-      if (!is_good_active_w(w))
-         return 0;
-      Sleep(iSleep / 8);
-      if (!is_good_active_w(w))
-         return 0;
-   }
-   for (ui = 0; ui < character_count; ui++)
-   {
-
-      //if (GetForegroundWindow() != chrome)
-      //{
-
-      //   return 0;
-
-      //}
-      input.type = INPUT_KEYBOARD;
-      input.ki.wVk = vka[character_count - ui - 1];
-      input.ki.wScan = text[character_count - ui - 1];
-      input.ki.dwFlags = flag[character_count - ui - 1] | KEYEVENTF_KEYUP;
-      input.ki.time = tick;
-      input.ki.dwExtraInfo = GetMessageExtraInfo();
-      //if (GetForegroundWindow() != chrome)
-      //{
-
-      //   return 0;
-
-      //}
-      SendInput(1, &input, sizeof(input));
-      //if (GetForegroundWindow() != chrome)
-      //{
-
-      //   return 0;
-
-      //}
-      Sleep(iSleep / 8);
-      //if (GetForegroundWindow() != chrome)
-      //{
-
-      //   return 0;
-
-      //}
-      //keystroke[i + character_count].type = INPUT_KEYBOARD;
-      //keystroke[i + character_count].ki.wVk = vka[character_count-i-1];
-      //keystroke[i + character_count].ki.wScan = text[character_count-i-1];
-      //keystroke[i + character_count].ki.dwFlags = flag[character_count - i - 1] | KEYEVENTF_KEYUP;
-      //keystroke[i + character_count].ki.time = tick;
-      //keystroke[i + character_count].ki.dwExtraInfo = GetMessageExtraInfo();
-      //      SendInput((UINT)keystrokes_to_send, keystroke, sizeof(*keystroke));
-   }
-
-   //keystrokes_sent = SendInput((UINT)keystrokes_to_send, keystroke, sizeof(*keystroke));
-
-   //Send the keystrokes.
-   //delete[] keystroke;
-
-   Sleep(iSleep);
-
-   //return keystrokes_sent == keystrokes_to_send;
-   return 1;
-
-}
+//int SendCtrlShiftQToChrome(oswindow w, int iSleep, ::acme::application * papp)
+//{
+//   /*HWND h = ::GetWindow(chrome, GW_CHILD);
+//   SendMessage(chrome, 0x0272, 0, 0);
+//   SendMessage(h, 0x0090, 0, 0);
+//   return 1;
+//   }*/
+//   //   App(papp).message_box_timeout(nullptr, "Quiting browser...", seconds(3), MB_ICONASTERISK);
+//   block_input blockinput;
+//
+//   UINT ui;
+//   UINT character_count;
+//   WORD vka[3];
+//   char text[3];
+//   DWORD flag[3];
+//
+//   vka[0] = VK_CONTROL;
+//   vka[1] = VK_SHIFT;
+//   vka[2] = 'Q';
+//
+//   flag[0] = 0;
+//   flag[1] = 0;
+//   flag[2] = 0;
+//
+//   text[0] = 0;
+//   text[1] = 0;
+//   text[2] = 0;
+//
+//
+//   ::ShowWindow(w, SW_SHOWNORMAL);
+//
+//   ::SetWindowPos(w, HWND_TOP, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
+//
+//   ::BringWindowToTop(w);
+//
+//   ::SetForegroundWindow(w);
+//
+//   if (!is_good_active_w(w))
+//      return 0;
+//
+//   INPUT input;
+//   DWORD tick = 0;
+//
+//   character_count = 3;
+//   for (ui = 0; ui < character_count; ui++)
+//   {
+//      if (GetKeyState(vka[character_count - ui - 1]) & 0x8000)
+//      {
+//         if (!is_good_active_w(w))
+//            return 0;
+//         input.type = INPUT_KEYBOARD;
+//         input.ki.wVk = vka[character_count - ui - 1];
+//         input.ki.wScan = text[character_count - ui - 1];
+//         input.ki.dwFlags = flag[character_count - ui - 1] | KEYEVENTF_KEYUP;
+//         input.ki.time = tick;
+//         input.ki.dwExtraInfo = GetMessageExtraInfo();
+//         if (!is_good_active_w(w))
+//            return 0;
+//         SendInput(1, &input, sizeof(input));
+//         if (!is_good_active_w(w))
+//            return 0;
+//
+//         Sleep(iSleep / 8);
+//      }
+//   }
+//
+//   for (ui = 0; ui < character_count; ui++)
+//   {
+//      //keystroke[i].type = INPUT_KEYBOARD;
+//      //keystroke[i].ki.wVk = vka[i];
+//      //keystroke[i].ki.wScan = text[i];
+//      //keystroke[i].ki.dwFlags = flag[i];
+//      //keystroke[i].ki.time = tick;
+//      //keystroke[i].ki.dwExtraInfo = GetMessageExtraInfo();
+//      if (!is_good_active_w(w))
+//         return 0;
+//      input.type = INPUT_KEYBOARD;
+//      input.ki.wVk = vka[ui];
+//      input.ki.wScan = text[ui];
+//      input.ki.dwFlags = flag[ui];
+//      input.ki.time = tick;
+//      input.ki.dwExtraInfo = GetMessageExtraInfo();
+//      if (!is_good_active_w(w))
+//         return 0;
+//      SendInput(1, &input, sizeof(input));
+//      if (!is_good_active_w(w))
+//         return 0;
+//      Sleep(iSleep / 8);
+//      if (!is_good_active_w(w))
+//         return 0;
+//   }
+//   for (ui = 0; ui < character_count; ui++)
+//   {
+//
+//      //if (GetForegroundWindow() != chrome)
+//      //{
+//
+//      //   return 0;
+//
+//      //}
+//      input.type = INPUT_KEYBOARD;
+//      input.ki.wVk = vka[character_count - ui - 1];
+//      input.ki.wScan = text[character_count - ui - 1];
+//      input.ki.dwFlags = flag[character_count - ui - 1] | KEYEVENTF_KEYUP;
+//      input.ki.time = tick;
+//      input.ki.dwExtraInfo = GetMessageExtraInfo();
+//      //if (GetForegroundWindow() != chrome)
+//      //{
+//
+//      //   return 0;
+//
+//      //}
+//      SendInput(1, &input, sizeof(input));
+//      //if (GetForegroundWindow() != chrome)
+//      //{
+//
+//      //   return 0;
+//
+//      //}
+//      Sleep(iSleep / 8);
+//      //if (GetForegroundWindow() != chrome)
+//      //{
+//
+//      //   return 0;
+//
+//      //}
+//      //keystroke[i + character_count].type = INPUT_KEYBOARD;
+//      //keystroke[i + character_count].ki.wVk = vka[character_count-i-1];
+//      //keystroke[i + character_count].ki.wScan = text[character_count-i-1];
+//      //keystroke[i + character_count].ki.dwFlags = flag[character_count - i - 1] | KEYEVENTF_KEYUP;
+//      //keystroke[i + character_count].ki.time = tick;
+//      //keystroke[i + character_count].ki.dwExtraInfo = GetMessageExtraInfo();
+//      //      SendInput((UINT)keystrokes_to_send, keystroke, sizeof(*keystroke));
+//   }
+//
+//   //keystrokes_sent = SendInput((UINT)keystrokes_to_send, keystroke, sizeof(*keystroke));
+//
+//   //Send the keystrokes.
+//   //delete[] keystroke;
+//
+//   Sleep(iSleep);
+//
+//   //return keystrokes_sent == keystrokes_to_send;
+//   return 1;
+//
+//}
 
 //bool xor(bool a, bool b)
 //{

@@ -28,6 +28,20 @@ generic::~generic()
 }
 
 
+void generic::assert_valid() const
+{
+
+
+}
+
+
+void generic::dump(dump_context & dumpcontext) const
+{
+
+
+}
+
+
 ::estatus generic::initialize(::generic* pobjectContext)
 {
 
@@ -368,7 +382,8 @@ void generic::delete_this()
 void generic::__tracea(::generic * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz)
 {
 
-   ::__tracea(pobject, elevel, pszFunction, pszFile, iLine, psz);
+   // acme commented
+   //::__tracea(pobject, elevel, pszFunction, pszFile, iLine, psz);
 
 }
 

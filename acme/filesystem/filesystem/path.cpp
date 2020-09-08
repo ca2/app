@@ -844,7 +844,7 @@ namespace file
          return path_data;
 
       }
-      else if(is_url_dup(str))
+      else if(is_url(str))
       {
 
          return path_url;
@@ -993,7 +993,7 @@ namespace file
 
       strPath = path;
 
-      if(is_url_dup(strPath))
+      if(is_url(strPath))
       {
 
          strPath += "/";

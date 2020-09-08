@@ -1,10 +1,10 @@
 #pragma once
 
 
-inline var & thread_value(const ::id & id);
-inline void thread_set(const ::id & id) { thread_value(id) = true; }
-inline void thread_unset(const ::id & id) { thread_value(id) = false; }
-inline bool thread_is_set(const ::id & id);
+//inline var & thread_value(const ::id & id);
+//inline void thread_set(const ::id & id) { thread_value(id) = true; }
+//inline void thread_unset(const ::id & id) { thread_value(id) = false; }
+//inline bool thread_is_set(const ::id & id);
 
 
 template  < typename TYPE >
@@ -464,63 +464,63 @@ ___keep_on < TYPE > keep_on(TYPE * pKept, TYPE_KEEP keepValue, bool bStartKept =
 #define __keep_on(...) auto TOKEN_AT_LINE(__keep_on) = keep_on(__VA_ARGS__)
 
 
-
-class CLASS_DECL_ACME ___keep_thread_flag
-{
-public:
-
-
-   bool m_bChanged;
-
-
-   ::var &      m_varThread;
-
-
-   ___keep_thread_flag(const ::id & id) :
-      m_varThread(thread_value(id))
-   {
-
-      if ((bool) m_varThread)
-      {
-
-         m_bChanged = false;
-
-      }
-      else
-      {
-
-         m_varThread = true;
-
-         m_bChanged = true;
-
-      }
-
-   }
-
-
-   ~___keep_thread_flag()
-   {
-
-      if (m_bChanged)
-      {
-
-         m_varThread = false;
-
-      }
-
-   }
-
-
-};
-
-
-
-inline ___keep_thread_flag keep_thread_flag(const ::id & id)
-{
-
-   return id;
-
-}
+//
+//class CLASS_DECL_ACME ___keep_thread_flag
+//{
+//public:
+//
+//
+//   bool m_bChanged;
+//
+//
+//   ::var &      m_varThread;
+//
+//
+//   ___keep_thread_flag(const ::id & id) :
+//      m_varThread(thread_value(id))
+//   {
+//
+//      if ((bool) m_varThread)
+//      {
+//
+//         m_bChanged = false;
+//
+//      }
+//      else
+//      {
+//
+//         m_varThread = true;
+//
+//         m_bChanged = true;
+//
+//      }
+//
+//   }
+//
+//
+//   ~___keep_thread_flag()
+//   {
+//
+//      if (m_bChanged)
+//      {
+//
+//         m_varThread = false;
+//
+//      }
+//
+//   }
+//
+//
+//};
+//
+//
+//
+//inline ___keep_thread_flag keep_thread_flag(const ::id & id)
+//{
+//
+//   return id;
+//
+//}
 
 //#define __keep(...) auto TOKEN_AT_LINE(__keep_thread_flag) = keep_thread_flag(__VA_ARGS__)
 

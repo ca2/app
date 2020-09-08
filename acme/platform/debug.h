@@ -244,7 +244,7 @@ typedef struct _MEMORY_STATE
 
 
 
-void CLASS_DECL_ACME TRACELASTERROR();
+//void CLASS_DECL_ACME TRACELASTERROR();//
 
 
 
@@ -342,33 +342,33 @@ namespace papaya
    }
 
 }
+//
+//
+//inline e_trace_level trace_level_constraint(e_trace_level elevel)
+//{
+//
+//   return ::papaya::constraint(elevel, trace_level_none, trace_level_count);
+//
+//}
+
+//
+//extern const char * g_pszTraceLevelName[];
+//
+//
+//inline const char * trace_level_name(e_trace_level elevel)
+//{
+//
+//   return g_pszTraceLevelName[trace_level_constraint(elevel)];
+//
+//}
 
 
-inline e_trace_level trace_level_constraint(e_trace_level elevel)
-{
-
-   return ::papaya::constraint(elevel, trace_level_none, trace_level_count);
-
-}
-
-
-extern const char * g_pszTraceLevelName[];
-
-
-inline const char * trace_level_name(e_trace_level elevel)
-{
-
-   return g_pszTraceLevelName[trace_level_constraint(elevel)];
-
-}
-
-
-extern char g_chaTraceLevel[];
-
-
-inline char trace_level_char(e_trace_level elevel)
-{
-
-   return g_chaTraceLevel[trace_level_constraint(elevel)];
-
-}
+//extern char g_chaTraceLevel[];;;
+//
+//
+//inline char trace_level_char(e_trace_level elevel)
+//{
+//
+//   return g_chaTraceLevel[trace_level_constraint(elevel)];
+//
+//}

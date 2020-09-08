@@ -186,18 +186,18 @@ inline bool __not_found(::i64 i) { return i < 0; }
 #ifdef __cplusplus
 
 
-namespace acme
-{
-
-
-   //class patch;
-   class history;
-   class application;
-   class session;
-   class system;
-
-
-} // namespace acme
+//namespace acme
+//{
+//
+//
+//   //class patch;
+//   //class history;
+//   //class application;
+//   //class session;
+//   //class system;
+//
+//
+//} // namespace acme
 
 
 #undef SYSTEM_TYPE

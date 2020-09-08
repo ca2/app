@@ -19,18 +19,33 @@ parsing_exception::~parsing_exception()
 }
 
 
+thread_local bool t_bAvoidParsingException = false;
+
 CLASS_DECL_ACME bool get_avoid_parsing_exception()
 {
 
-   return thread_value("avoid_parsing_exception");
+   return t_bAvoidParsingException;
 
 }
+
+
+CLASS_DECL_ACME void set_avoid_parsing_exception(bool bSet)
+{
+
+   t_bAvoidParsingException = bSet;
+
+}
+
 
 CLASS_DECL_ACME bool throw_parsing_exception(const string & strMessage)
 {
 
-   if(get_avoid_parsing_exception())
+   if (get_avoid_parsing_exception())
+   {
+
       return false;
+
+   }
 
    __throw(parsing_exception(strMessage));
 
@@ -41,19 +56,17 @@ CLASS_DECL_ACME bool throw_parsing_exception(const string & strMessage)
 
 
 avoid_parsing_exception::avoid_parsing_exception() :
-   m_varAvoidParsingException(thread_value("avoid_parsing_exception"))
+   m_bAvoidParsingExceptionPrevious(get_avoid_parsing_exception())
 {
 
-   m_iBefore = m_varAvoidParsingException;
-
-   m_varAvoidParsingException = true;
+   set_avoid_parsing_exception(true);
 
 }
 
 avoid_parsing_exception::~avoid_parsing_exception()
 {
 
-   m_varAvoidParsingException = m_iBefore;
+   set_avoid_parsing_exception(m_bAvoidParsingExceptionPrevious);
 
 }
 
@@ -81,7 +94,11 @@ CLASS_DECL_ACME bool throw_json_parsing_exception(const string & strMessage)
 {
 
    if (get_avoid_parsing_exception())
+   {
+
       return false;
+
+   }
 
    __throw(json_parsing_exception(strMessage));
 

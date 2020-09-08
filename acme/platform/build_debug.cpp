@@ -23,13 +23,13 @@ void debug_puts(const char*psz) noexcept
 //}
 
 
-void teste_aura_cmp();
+void teste_acme_cmp();
 
 
-void aura_auto_debug_teste()
+void acme_auto_debug_teste()
 {
 
-   printf("\n\nvoid aura_auto_debug_teste()\n\n");
+   printf("\n\nvoid acme_auto_debug_teste()\n\n");
    {
 
       wd16string wstr1;
@@ -78,7 +78,7 @@ void aura_auto_debug_teste()
 
    //string str()
 
-//   teste_aura_cmp();
+//   teste_acme_cmp();
 
 //   if(!file_exists("/ca2/debug_test"))
 //   {
@@ -109,7 +109,7 @@ void aura_auto_debug_teste()
 
 
 
-void teste_aura_cmp()
+void teste_acme_cmp()
 {
    //auto a = MAKE(PARAMETER);
 

@@ -27,32 +27,33 @@ CLASS_DECL_ACME void __simple_tracea(generic * pobject, e_trace_level elevel, co
 //}
 
 #ifndef ANDROID
-
-void os_trace(e_trace_level elevel, const char * pszTag, const char * psz)
-{
-
-   string strMessage;
-
-   string strTag;
-
-   strTag = strTag.Left(23);
-
-   strTag = string(' ', MAX(0, 23 - strTag.get_length()));
-
-   strMessage.Format("-%c- %s %s\n", trace_level_char(elevel), strTag.c_str(), psz);
-
-   output_debug_string(strMessage);
-
-}
-
-
-
+//
+//void os_trace(e_trace_level elevel, const char * pszTag, const char * psz)
+//{
+//
+//   string strMessage;
+//
+//   string strTag;
+//
+//   strTag = strTag.Left(23);
+//
+//   strTag = string(' ', MAX(0, 23 - strTag.get_length()));
+//
+//   strMessage.Format("-%c- %s %s\n", trace_level_char(elevel), strTag.c_str(), psz);
+//
+//   output_debug_string(strMessage);
+//
+//}
+//
 
 
+
+//
 void simple_debug_print(const char * psz)
 {
 
-   os_trace(trace_level_information, "simple_debug_string", psz);
+//   os_trace(trace_level_information, "simple_debug_string", psz);
+   output_debug_string(psz);
 
 }
 

@@ -1,6 +1,6 @@
 //
 //  ios_windowing.hpp
-//  ios_aura
+//  ios_acme
 //
 //  Created by Camilo Sasuke Tsumanuma on 10/12/17.
 //

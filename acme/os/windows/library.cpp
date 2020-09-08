@@ -67,7 +67,7 @@ void * __node_library_open(const char * pszPath, string & strMessage)
    if (plibrary != nullptr)
    {
 
-      TRACE("Loaded Library (1) %s", strPath.c_str());
+      //TRACE("Loaded Library (1) %s", strPath.c_str());
 
       goto finished;
 

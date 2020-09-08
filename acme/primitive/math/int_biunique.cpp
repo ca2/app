@@ -1,16 +1,15 @@
 #include "framework.h"
 
 
-index_biunique::index_biunique(::generic * pobject) :
-   biunique < index >(pobject)
+index_biunique::index_biunique()
 {
+
 }
 
-int_biunique::int_biunique(::generic * pobject) :
-   biunique < i32, int_to_int >(pobject)
+
+int_biunique::int_biunique()
 {
 }
-
 
 
 CLASS_DECL_ACME index array_translate_a(index_biunique & ia, index aNew, index aOld)

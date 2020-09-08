@@ -1382,8 +1382,8 @@ bool var::is_empty() const
       return ::is_null(m_pmemory) || m_pmemory->is_empty();
    case type_path:
       return ::is_null(m_ppath) || m_ppath->is_empty();
-   case type_image:
-      return !::is_ok(m_pimage);
+   //case type_image:
+   //   return !::is_ok(m_pimage);
 
    default:
       return false;
@@ -2428,19 +2428,19 @@ float var::get_float(float fDefault) const
 }
 
 
-image * var::image() const
-{
-
-   if (m_etype != ::type_element)
-   {
-
-      return nullptr;
-
-   }
-
-   return cast < ::image >();
-
-}
+//image * var::image() const
+//{
+//
+//   if (m_etype != ::type_element)
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   return cast < ::image >();
+//
+//}
 
 
 double var::get_double(double dDefault) const
@@ -5801,8 +5801,8 @@ bool var::is_false() const
       return ::is_null(m_pmemory) || m_pmemory->is_empty();
    case type_path:
       return ::is_null(m_ppath) || m_ppath->is_empty();
-   case type_image:
-      return !::is_ok(m_pimage);
+   //case type_image:
+   //   return !::is_ok(m_pimage);
 
    // enum
    case type_enum_command:
@@ -5926,8 +5926,8 @@ bool var::is_set_false() const
       return ::is_null(m_pmemory) || m_pmemory->is_empty();
    case type_path:
       return ::is_null(m_ppath) || m_ppath->is_empty();
-   case type_image:
-      return !::is_ok(m_pimage);
+   //case type_image:
+   //   return !::is_ok(m_pimage);
 
    // enum
    case type_enum_command:
@@ -6043,14 +6043,14 @@ namespace user
 } // namespace user
 
 
-void unit_test_primitive_var_aura_block_arg(var var)
+void unit_test_primitive_var_acme_block_arg(var var)
 {
 
 
 }
 
 
-void unit_test_primitive_var_aura_block()
+void unit_test_primitive_var_acme_block()
 {
 
    ::user::window_rect2 r2;
@@ -6061,7 +6061,7 @@ void unit_test_primitive_var_aura_block()
 
    var2 = r2;
 
-   debug_primitive_var_aura_block_arg(r2);
+   debug_primitive_var_acme_block_arg(r2);
 
 }
 
@@ -6079,37 +6079,37 @@ var::operator ::datetime::time() const
 
 
 
-::image * & var::image()
-{
+//::image * & var::image()
+//{
+//
+//   if (m_etype == ::type_pvar)
+//   {
+//
+//      return m_pvar->image();
+//
+//   }
+//   else if (m_etype != ::type_path)
+//   {
+//
+//      auto ppath = __create < ::file::path_object >();
+//
+//      *ppath = get_file_path();
+//
+//      set_element(ppath);
+//
+//   }
+//
+//   return m_pimage;
+//
+//}
 
-   if (m_etype == ::type_pvar)
-   {
 
-      return m_pvar->image();
-
-   }
-   else if (m_etype != ::type_path)
-   {
-
-      auto ppath = __create < ::file::path_object >();
-
-      *ppath = get_file_path();
-
-      set_element(ppath);
-
-   }
-
-   return m_pimage;
-
-}
-
-
-var::operator ::image * & ()
-{
-
-   return image();
-
-}
+//var::operator ::image * & ()
+//{
+//
+//   return image();
+//
+//}
 
 
 

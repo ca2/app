@@ -15,10 +15,10 @@
 
 
 //extern "C"
-CLASS_DECL_ACME int_bool defer_aura_init();
+CLASS_DECL_ACME int_bool defer_acme_init();
 
 //extern "C"
-CLASS_DECL_ACME int_bool defer_aura_term();
+CLASS_DECL_ACME int_bool defer_acme_term();
 
 
 namespace acme
@@ -106,7 +106,7 @@ int g_iAuraRefCount = 0;
 
 
 //extern "C"
-//int_bool defer_aura_init()
+//int_bool defer_acme_init()
 //{
 //
 //   g_iAuraRefCount++;
@@ -114,7 +114,7 @@ int g_iAuraRefCount = 0;
 //   if (g_iAuraRefCount > 1)
 //      return true;
 //
-//   if (!aura_init())
+//   if (!acme_init())
 //      return false;
 //
 //   return true;
@@ -122,7 +122,7 @@ int g_iAuraRefCount = 0;
 //}
 
 //extern "C"
-//CLASS_DECL_ACME int_bool defer_aura_term()
+//CLASS_DECL_ACME int_bool defer_acme_term()
 //{
 //
 //   g_iAuraRefCount--;
@@ -130,7 +130,7 @@ int g_iAuraRefCount = 0;
 //   if (g_iAuraRefCount >= 1)
 //      return true;
 //
-//   ::aura_term();
+//   ::acme_term();
 //
 //   return true;
 //
@@ -147,7 +147,7 @@ int g_iAuraRefCount = 0;
 
 
 
-//::acme::system* create_aura_system()
+//::acme::system* create_acme_system()
 //{
 //
 //   return g_pfn_create_system();
@@ -218,7 +218,7 @@ void __post_quit_message(i32 nExitCode)
 //::mutex* &::get_context_system()->m_mutexLibrary = nullptr;
 
 
-//CLASS_DECL_ACME string_map < PFN_NEW_AURA_LIBRARY >& __get_new_aura_library()
+//CLASS_DECL_ACME string_map < PFN_NEW_AURA_LIBRARY >& __get_new_acme_library()
 //{
 //
 //   return ::get_context_system()->m_mapNewAuraLibrary;
@@ -235,7 +235,7 @@ void __post_quit_message(i32 nExitCode)
 //
 //
 //
-//CLASS_DECL_ACME PFN_NEW_AURA_LIBRARY get_get_new_aura_library(const char* psz)
+//CLASS_DECL_ACME PFN_NEW_AURA_LIBRARY get_get_new_acme_library(const char* psz)
 //{
 //
 //   sync_lock sl(&::get_context_system()->m_mutexLibrary);
@@ -264,12 +264,12 @@ void __post_quit_message(i32 nExitCode)
 //}
 
 
-//CLASS_DECL_ACME void register_get_new_aura_library(const char* psz, PFN_NEW_AURA_LIBRARY pfnNewAuraLibrary)
+//CLASS_DECL_ACME void register_get_new_acme_library(const char* psz, PFN_NEW_AURA_LIBRARY pfnNewAuraLibrary)
 //{
 //
 //   sync_lock sl(&::get_context_system()->m_mutexLibrary);
 //
-//   __get_new_aura_library()[psz] = pfnNewAuraLibrary;
+//   __get_new_acme_library()[psz] = pfnNewAuraLibrary;
 //
 //}
 //
@@ -284,7 +284,7 @@ void __post_quit_message(i32 nExitCode)
 //}
 
 
-CLASS_DECL_ACME int get_aura_init()
+CLASS_DECL_ACME int get_acme_init()
 {
 
    return g_iAuraRefCount;
@@ -293,7 +293,7 @@ CLASS_DECL_ACME int get_aura_init()
 
 
 //extern "C"
-//CLASS_DECL_ACME::acme::system * aura_create_aura_system()
+//CLASS_DECL_ACME::acme::system * acme_create_acme_system()
 //{
 //
 //   return new ::acme::system();
@@ -302,7 +302,7 @@ CLASS_DECL_ACME int get_aura_init()
 
 
 ////extern "C"
-//CLASS_DECL_ACME int_bool defer_aura_init()
+//CLASS_DECL_ACME int_bool defer_acme_init()
 //{
 //
 //   g_iAuraRefCount++;
@@ -314,14 +314,14 @@ CLASS_DECL_ACME int get_aura_init()
 //
 //   }
 //
-//   if (!aura_init())
+//   if (!acme_init())
 //   {
 //
 //      return false;
 //
 //   }
 //
-//   s_paurastrpool = new aura_str_pool();
+//   s_pacmestrpool = new acme_str_pool();
 //
 //   ::user::init_windowing();
 //
@@ -333,7 +333,7 @@ CLASS_DECL_ACME int get_aura_init()
 
 
 //extern "C"
-//CLASS_DECL_ACME int_bool defer_aura_term()
+//CLASS_DECL_ACME int_bool defer_acme_term()
 //{
 //
 //   g_iAuraRefCount--;
@@ -349,9 +349,9 @@ CLASS_DECL_ACME int get_aura_init()
 //
 //   g_bAura = 0;
 //
-//   ::acme::del(s_paurastrpool);
+//   ::acme::del(s_pacmestrpool);
 //
-//   aura_term();
+//   acme_term();
 //
 //   return TRUE;
 //
@@ -366,7 +366,7 @@ CLASS_DECL_ACME int get_aura_init()
 // ::map < void*, void*, ::acme::application*, ::acme::application* >* g_pmapAura = nullptr;
 
 
-// void set_aura(void* p, ::acme::application* papp)
+// void set_acme(void* p, ::acme::application* papp)
 // {
 
 //    g_pmapAura->set_at(p, papp);
@@ -374,7 +374,7 @@ CLASS_DECL_ACME int get_aura_init()
 // }
 
 
-// ::acme::application* get_aura(void* p)
+// ::acme::application* get_acme(void* p)
 // {
 
 //    return g_pmapAura->operator [](p);

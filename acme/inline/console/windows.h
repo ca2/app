@@ -13,7 +13,7 @@ public:
    void create_system()
    {
 
-      aura_ref();
+      acme_ref();
 
       m_psystem = ::move_transfer(platform_create_system(::GetModuleHandle(NULL)));
 

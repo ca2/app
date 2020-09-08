@@ -81,3 +81,35 @@ void debug_object_event_promisse_pred()
 
 
 
+
+
+
+#ifdef DEBUG
+
+
+static bool g_bVerbose = true;
+
+
+#else
+
+
+static bool g_bVerbose = false;
+
+
+#endif
+
+
+bool is_verbose()
+{
+
+   return g_bVerbose;
+
+}
+
+
+void set_verbose(bool bVerbose)
+{
+
+   g_bVerbose = bVerbose;
+
+}

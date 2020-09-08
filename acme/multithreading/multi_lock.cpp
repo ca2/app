@@ -105,7 +105,7 @@ sync_result multi_lock::lock(const duration & duration, bool bWaitForAll, u32 dw
 
       DWORD dw = ::get_last_error();
 
-      TRACELASTERROR();
+      // TRACELASTERROR();
 
    }
    else if (iResult >= WAIT_OBJECT_0 && iResult < iUpperBound)

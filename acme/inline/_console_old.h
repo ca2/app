@@ -6,11 +6,11 @@
 
 
 class CLASS_DECL_ACME console :
-   public aura_main_struct
+   public acme_main_struct
 {
 public:
 
-   class aura_aura                  m_aura;
+   class acme_acme                  m_acme;
    __pointer(::acme::system)        m_psystem;
    //__pointer(::acme::application)   m_papp;
 

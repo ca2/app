@@ -153,7 +153,7 @@ public:
 #include "x.h"
 #include "hex.h"
 
-#include "istring.h"
+//#include "istring.h"
 
 #include "parse.h"
 

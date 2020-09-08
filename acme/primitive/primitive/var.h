@@ -80,7 +80,7 @@ public:
       ::i64_array *              m_pi64a;
       ::memory *                 m_pmemory;
       ::file::path_object *      m_ppath;
-      ::image *                  m_pimage;
+      //::image *                  m_pimage;
       ::function_base            m_functionbase;
       ::i64                      m_all[2];
 
@@ -124,7 +124,7 @@ public:
    var(property * pproperty);
    var(::generic * pobject);
    var(const ::generic & generic);
-   var(::image * pimage);
+   //var(::image * pimage);
    var(const ::file::path & path);
    var(const string_array & var);
    var(const int_array & var);
@@ -279,8 +279,8 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    double                           get_double(double dDefault = 0.0)   const;
    procedure                        get_procedure() const;
    callback                         get_callback() const;
-   ::image *                        image() const;
-   ::image * &                      image();
+   //::image *                        image() const;
+   //::image * &                      image();
    string                           to_r_string() const;
    string                           get_string(const char * pszOnNull = nullptr) const;
    string &                         get_ref_string(const char * pszOnNull = nullptr);
@@ -403,7 +403,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    operator ::file::path & ();
    operator ::file::path () const;
 
-   operator ::image * & ();
+   //operator ::image * & ();
 
 
    inline operator bool &();
@@ -484,7 +484,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
       return operator =(estatus.m_estatus);
    }
 
-   inline var & operator = (::image * pimage);
+   //inline var & operator = (::image * pimage);
 
 
    var & operator = (para_return & eret);

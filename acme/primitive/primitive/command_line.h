@@ -58,7 +58,7 @@ public:
    var                           m_varQuery;
    ::file::item_array *            m_pitema;
 
-   __pointer(::acme::application)       m_pappFork;
+   __pointer(::layered)          m_playeredAppFork;
    string                        m_strExe;
    string                        m_strApp;
    string                        m_strAppType;

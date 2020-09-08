@@ -2,7 +2,7 @@
 
 
 
-
+//
 //id::id(uptr ui)
 //{
 //   m_all ={};
@@ -10,7 +10,7 @@
 //   operator = ((iptr)ui);
 //}
 //
-#if defined(_LP64) || defined(_AMD64_)
+//#if defined(_LP64) || defined(_AMD64_)
 //id::id(::i32 i)
 //{
 //   m_all = {};
@@ -24,20 +24,29 @@
 //
 //   operator = ((iptr)ui);
 //}
-#endif
+//#endif
 
 //id::id(const string & str)
 //{
 //   m_all ={};
 //
-//   operator = (::acme::system::id((const char *)str));
+//   operator = (::acme::id((const char *)str));
+//}
+
+//
+//id::id(const char* psz)
+//{
+//   m_all = {};
+//
+//   operator = (::acme::id(psz));
+//
 //}
 
 //id::id(const string_interface & str)
 //{
 //   m_all ={};
 //
-//   operator = (::acme::system::id(string(str)));
+//   operator = (::acme::id(string(str)));
 //}
 
 id & id::operator = (const char * psz)
@@ -60,10 +69,10 @@ id & id::operator = (const string & str)
 
 
 
-
-CLASS_DECL_ACME::id id(const char* psz)
-{
-
-
-
-}
+//
+//CLASS_DECL_ACME::id id(const char* psz)
+//{
+//
+//
+//
+//}

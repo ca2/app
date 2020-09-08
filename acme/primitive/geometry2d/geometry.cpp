@@ -149,13 +149,13 @@ namespace geometry
    {
       ::rect rect(prect);
 
-      prect->left = System.math().RangeRate(rect.left, rect.right, dLeftRate);
+      prect->left = range_rate(rect.left, rect.right, dLeftRate);
 
-      prect->right = System.math().RangeRate(rect.right, rect.left, dRightRate);
+      prect->right = range_rate(rect.right, rect.left, dRightRate);
 
-      prect->top = System.math().RangeRate(rect.top, rect.bottom, dTopRate);
+      prect->top = range_rate(rect.top, rect.bottom, dTopRate);
 
-      prect->bottom = System.math().RangeRate(rect.bottom, rect.top, dBottomRate);
+      prect->bottom = range_rate(rect.bottom, rect.top, dBottomRate);
 
 
    }

@@ -93,16 +93,16 @@ inline string pointer < T >::type_str()
 //
 //}
 
-
-inline var::var(::image * pimage)
-{
-
-   m_etype = type_new;
-
-   operator =(pimage);
-
-}
-
+//
+//inline var::var(::image * pimage)
+//{
+//
+//   m_etype = type_new;
+//
+//   operator =(pimage);
+//
+//}
+//
 
 inline type::type(const ::generic * pobject)
 {
@@ -984,17 +984,17 @@ inline string property_set::_001Replace(const string & str) const
 //}
 //
 //
-//template < class T >
-//template < typename TEMPLATER >
-//inline __pointer(T) & pointer < T >::create(TEMPLATER)
-//{
-//
-//   __construct(*this);
-//
-//   return *this;
-//
-//}
-//
+template < class T >
+template < typename TEMPLATER >
+inline __pointer(T) & pointer < T >::create(TEMPLATER)
+{
+
+   __construct(*this);
+
+   return *this;
+
+}
+
 //
 //template < class T >
 //template < typename TYPE, typename OBJECT >
@@ -1553,8 +1553,8 @@ inline string property_set::_001Replace(const string & str) const
 //}
 //
 //
-//template < typename T >
-//inline __pointer(T) move_transfer(T * p) { return ::pointer < T >(e_move_transfer, p); }
+template < typename T >
+inline __pointer(T) move_transfer(T * p) { return ::pointer < T >(e_move_transfer, p); }
 //
 //
 //inline const char * generic::topic_text() { return ::is_null(m_pmeta) ? nullptr : m_pmeta->m_strTopicText; }

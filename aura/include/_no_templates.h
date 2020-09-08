@@ -23,7 +23,7 @@
 
 class trait;
 class object;
-class stream;
+//class stream;
 class string;
 typedef iptr strsize;
 

@@ -186,9 +186,9 @@ VOID WINAPI output_debug_string(LPCWSTR pOutputString)
 
 
 
-////CLASS_DECL_BASE extern fixed_alloc_array * g_pfixedallocaWstring;
+////CLASS_DECL_AURA extern fixed_alloc_array * g_pfixedallocaWstring;
 //
-////CLASS_DECL_BASE fixed_alloc_array * new_wstring_manager();
+////CLASS_DECL_AURA fixed_alloc_array * new_wstring_manager();
 //
 //void CLASS_DECL_AURA __cdecl _ca2_purecall()
 //{

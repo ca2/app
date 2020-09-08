@@ -1064,7 +1064,7 @@ pinstance->runall(CREATE_PROCEDURE);
 
 #undef new
          ::new(ppair->element2().m_p) ::dynamic_source::session(pszId, this);
-#define new AURA_NEW
+#define new ACME_NEW
 
 
          return ppair->element2();

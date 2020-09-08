@@ -37,6 +37,6 @@ namespace message
 } // namespace message
 
 
-#define new AURA_NEW
+#define new ACME_NEW
 
 

@@ -1,0 +1,12 @@
+; acme.def : Declares the module parameters for the DLL.
+
+LIBRARY  "acme"
+; For Win32 DLLs, only EXPORTs really required.
+
+EXPORTS
+get_new_library
+defer_core_init
+defer_core_term
+
+
+

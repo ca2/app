@@ -1,0 +1,35 @@
+#pragma once
+
+
+namespace uwp
+{
+
+
+   class directx_interaction :
+      virtual public ::user::interaction
+   {
+   public:
+
+
+      directx_interaction();
+      virtual ~directx_interaction();
+
+
+      virtual void _001DrawThis(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _001DrawChildren(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+
+
+      virtual bool is_this_visible() override;
+
+
+   };
+
+
+} // namespace uwp
+
+
+
+

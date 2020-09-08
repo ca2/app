@@ -581,7 +581,7 @@ typedef struct _AppIndicator AppIndicator;
 //#include "aura/user/netuser/_.h"
 
 
-#define new AURA_NEW
+#define new ACME_NEW
 
 
 //#include "form_mesh.h"

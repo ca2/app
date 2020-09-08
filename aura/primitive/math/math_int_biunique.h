@@ -8,7 +8,7 @@ class biunique :
 public:
 
 
-   biunique(::object * pobject = nullptr);
+   biunique();
    virtual ~biunique()
    {
    }

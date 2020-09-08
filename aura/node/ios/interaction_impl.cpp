@@ -246,7 +246,7 @@ namespace ios
 
    // Change a window's style
 
-   /*__STATIC bool CLASS_DECL_BASE __modify_style(oswindow hWnd, i32 nStyleOffset,
+   /*__STATIC bool CLASS_DECL_AURA __modify_style(oswindow hWnd, i32 nStyleOffset,
     DWORD dwRemove, DWORD dwAdd, UINT nFlags)
     {
     ASSERT(hWnd != nullptr);
@@ -1415,7 +1415,7 @@ namespace ios
 
     */
 
-   /* trans oswindow CLASS_DECL_BASE __get_parent_owner(::user::interaction * hWnd)
+   /* trans oswindow CLASS_DECL_AURA __get_parent_owner(::user::interaction * hWnd)
     {
     // check for permanent-owned user::interaction first
     ::user::interaction * pWnd = ::macos::interaction_impl::FromHandlePermanent(hWnd);

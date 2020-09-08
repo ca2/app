@@ -122,4 +122,4 @@ namespace uwp
 
 
 
-//CLASS_DECL_BASE ::mutex & draw2d_mutex();
+//CLASS_DECL_AURA ::mutex & draw2d_mutex();

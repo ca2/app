@@ -39,7 +39,7 @@ public:
 };
 
 
-#define new AURA_NEW
+#define new ACME_NEW
 
 
 

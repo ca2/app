@@ -1,0 +1,90 @@
+/* Alloc.h -- Memory allocation functions
+2009-02-07 : Igor Pavlov : Public domain */
+// from 7-zip on 2010-12-19
+#pragma once
+
+
+CLASS_DECL_APEX void * MyAlloc(size_t size);
+CLASS_DECL_APEX void * MyRealloc(void * address, size_t sizeOld, size_t sizeNew);
+CLASS_DECL_APEX void MyFree(void *address);
+
+#if defined(_WIN32) && !defined(_UWP)
+
+void SetLargePageSize();
+
+
+CLASS_DECL_APEX void * MidAlloc(size_t size);
+CLASS_DECL_APEX void * MidRealloc(void * address, size_t sizeOld, size_t sizeNew);
+CLASS_DECL_APEX void MidFree(void *address);
+CLASS_DECL_APEX void * BigAlloc(size_t size);
+CLASS_DECL_APEX void BigFree(void *address);
+
+#else
+
+#define MidAlloc(size) MyAlloc(size)
+#define MidRealloc(addr, sizeOld, sizeNew) MyRealloc(addr, sizeOld, sizeNew)
+#define MidFree(address) MyFree(address)
+#define BigAlloc(size) MyAlloc(size)
+#define BigFree(address) MyFree(address)
+
+#endif
+
+
+#define __NORMAL_BLOCK    1
+#define ___CLIENT_BLOCK (_CLIENT_BLOCK|(0xc0<<16))
+
+
+
+#ifdef AAA_WANT_TO_REMOVE
+
+#ifdef XDEBUG
+
+#ifndef ___NO_DEBUG_CRT
+
+CLASS_DECL_APEX void * __alloc_memory_debug(size_t nSize, bool bIsObject,  const char * pszFileName, i32 nLine);
+
+CLASS_DECL_APEX void __free_memory_debug(void * pbData, bool bIsObject);
+
+CLASS_DECL_APEX bool __default_alloc_hook(size_t, bool, LONG);
+
+// A failure hook returns whether to permit allocation
+typedef bool (* __ALLOC_HOOK)(size_t nSize, bool bObject, LONG lRequestNumber);
+
+// set new hook, return old (never nullptr)
+//CLASS_DECL_APEX __ALLOC_HOOK __set_alloc_hook(__ALLOC_HOOK pfnAllocHook);
+
+
+CLASS_DECL_APEX i32 __cdecl __alloc_alloc_hook(i32 nAllocType, void * pvData, size_t nSize, i32 nBlockUse, long lRequest, const uchar * szFilename, i32 nLine);
+CLASS_DECL_APEX __ALLOC_HOOK __set_alloc_hook(__ALLOC_HOOK pfnNewHook);
+
+CLASS_DECL_APEX bool __enable_memory_leak_override(bool bEnable);
+CLASS_DECL_APEX bool __enable_memory_tracking(bool bTrack);
+
+/////////////////////////////////////////////////////////////////////////////
+// Enumerate all objects allocated in the diagnostic memory heap
+
+//struct CLASS_DECL_APEX ___ENUM_CONTEXT
+//{
+//   void (*m_pfn)(object*,void *);
+//   void * m_pContext;
+//};
+
+//CLASS_DECL_APEX void __do_for_all_objects_proxy(void * pObject, void * pContext);
+//CLASS_DECL_APEX void __do_for_all_objects(void (c_cdecl *pfn)(object*, void *), void * pContext);
+
+/////////////////////////////////////////////////////////////////////////////
+// Automatic debug memory diagnostics
+
+#endif // ___NO_DEBUG_CRT
+#endif // XDEBUG
+
+/////////////////////////////////////////////////////////////////////////////
+// Non-diagnostic memory routines
+
+CLASS_DECL_APEX i32 c_cdecl __new_handler(size_t /* nSize */);
+
+
+
+#endif // AAA_WANT_TO_REMOVE
+
+

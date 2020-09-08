@@ -9,7 +9,7 @@ namespace base
    {
 
 
-      class CLASS_DECL_BASE factory_exchange:
+      class CLASS_DECL_AURA factory_exchange:
          virtual public ::object
       {
       public:

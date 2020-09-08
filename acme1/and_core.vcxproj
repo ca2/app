@@ -1,0 +1,1432 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="basis|Android">
+      <Configuration>basis</Configuration>
+      <Platform>Android</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="memdleak|Android">
+      <Configuration>memdleak</Configuration>
+      <Platform>Android</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="no_precompiled_header|Android">
+      <Configuration>no_precompiled_header</Configuration>
+      <Platform>Android</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="profiler|Android">
+      <Configuration>profiler</Configuration>
+      <Platform>Android</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="stage|Android">
+      <Configuration>stage</Configuration>
+      <Platform>Android</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="static_basis|Android">
+      <Configuration>static_basis</Configuration>
+      <Platform>Android</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{E000FFAF-392F-4E32-BF51-FD7ED638991F}</ProjectGuid>
+    
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>acme</RootNamespace>
+    <ProjectName>acme</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Android'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CLRSupport>false</CLRSupport>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>arm-linux-androideabi-4.8</PlatformToolset>
+    <AndroidStlType>gnustl_static</AndroidStlType>
+    <AndroidAPILevel>android-19</AndroidAPILevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|Android'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CLRSupport>false</CLRSupport>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>arm-linux-androideabi-4.8</PlatformToolset>
+    <AndroidStlType>gnustl_static</AndroidStlType>
+    <AndroidAPILevel>android-9</AndroidAPILevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CLRSupport>false</CLRSupport>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>arm-linux-androideabi-4.8</PlatformToolset>
+    <AndroidStlType>gnustl_static</AndroidStlType>
+    <AndroidAPILevel>android-9</AndroidAPILevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CLRSupport>false</CLRSupport>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>arm-linux-androideabi-4.8</PlatformToolset>
+    <AndroidStlType>gnustl_static</AndroidStlType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CLRSupport>false</CLRSupport>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>arm-linux-androideabi-4.8</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Android'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CLRSupport>false</CLRSupport>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>arm-linux-androideabi-4.8</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|Android'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\platform-windows\Common.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='stage|Android'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\platform-windows\Common.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\platform-windows\Common.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\platform-windows\Common.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\platform-windows\Common.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Android'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\platform-windows\Common.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Android'">
+    <GenerateManifest>false</GenerateManifest>
+    <EmbedManifest>false</EmbedManifest>
+    <IncludePath>$(AndroidIncludeDir);$(AndroidStlIncludeDir);</IncludePath>
+    <ReferencePath>$(VCInstallDir)lib</ReferencePath>
+    <LibraryPath>$(AndroidLibDir);$(AndroidStlLibPath);</LibraryPath>
+    <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
+    <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)..\..\..\stage\$(PlatformName)\</OutDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <TargetName>lib$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|Android'">
+    <GenerateManifest>false</GenerateManifest>
+    <EmbedManifest>false</EmbedManifest>
+    <IncludePath>$(AndroidIncludeDir);$(AndroidStlIncludeDir);</IncludePath>
+    <ReferencePath>$(VCInstallDir)lib</ReferencePath>
+    <LibraryPath>$(AndroidLibDir);$(AndroidStlLibPath);</LibraryPath>
+    <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
+    <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)..\..\..\stage\$(PlatformName)\</OutDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <TargetName>lib$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">
+    <GenerateManifest>false</GenerateManifest>
+    <EmbedManifest>false</EmbedManifest>
+    <IncludePath>$(AndroidIncludeDir);$(AndroidStlIncludeDir);</IncludePath>
+    <ReferencePath>$(VCInstallDir)lib</ReferencePath>
+    <LibraryPath>$(AndroidLibDir);$(AndroidStlLibPath);</LibraryPath>
+    <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
+    <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)..\..\..\stage\$(PlatformName)\</OutDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <TargetName>lib$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">
+    <GenerateManifest>false</GenerateManifest>
+    <EmbedManifest>false</EmbedManifest>
+    <IncludePath>$(AndroidIncludeDir);$(AndroidStlIncludeDir);</IncludePath>
+    <ReferencePath>$(VCInstallDir)lib</ReferencePath>
+    <LibraryPath>$(AndroidLibDir);$(AndroidStlLibPath);</LibraryPath>
+    <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
+    <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)..\..\..\stage\$(PlatformName)\</OutDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <TargetName>lib$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">
+    <GenerateManifest>false</GenerateManifest>
+    <EmbedManifest>false</EmbedManifest>
+    <IncludePath>$(AndroidIncludeDir);$(AndroidStlIncludeDir);</IncludePath>
+    <ReferencePath>$(VCInstallDir)lib</ReferencePath>
+    <LibraryPath>$(AndroidLibDir);$(AndroidStlLibPath);</LibraryPath>
+    <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
+    <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)..\..\..\stage\$(PlatformName)\</OutDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <TargetName>lib$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">
+    <GenerateManifest>false</GenerateManifest>
+    <EmbedManifest>false</EmbedManifest>
+    <IncludePath>$(AndroidIncludeDir);$(AndroidStlIncludeDir);</IncludePath>
+    <ReferencePath>$(VCInstallDir)lib</ReferencePath>
+    <LibraryPath>$(AndroidLibDir);$(AndroidStlLibPath);</LibraryPath>
+    <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
+    <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)..\..\..\stage\$(PlatformName)\</OutDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <TargetName>lib$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|Android'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>_DEBUG;_CORE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(SolutionDir)../../;$(SolutionDir)../../app;$(SolutionDir)../../app;$(SolutionDir)../../;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAsManaged>false</CompileAsManaged>
+      <StringPooling>false</StringPooling>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalOptions>-Wnarrowing -std=c++11 -fpermissive</AdditionalOptions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <GccExceptionHandling>true</GccExceptionHandling>
+      <CppStandard>CppStandard11</CppStandard>
+      <ConversionNull>NoConversionNull</ConversionNull>
+      <Attributes>NoAttributes</Attributes>
+      <Permissive>Yes</Permissive>
+      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <OptimizationLevel>O0</OptimizationLevel>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <ImportLibrary>$(SolutionDir)../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <IgnoreSpecificDefaultLibraries>LIBCMTD.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalOptions>-Wl,-z,defs</AdditionalOptions>
+      <AndroidSystemLibs>c;m;log;gcc;acme;axis;base;axiszlib;axisopenssl;acecharguess;base</AndroidSystemLibs>
+    </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
+    <ProjectReference>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|Android'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>_DEBUG;_CORE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(SolutionDir)../../;$(SolutionDir)../../app;$(SolutionDir)../../app;$(SolutionDir)../../;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAsManaged>false</CompileAsManaged>
+      <StringPooling>false</StringPooling>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalOptions>-Wnarrowing -std=c++11</AdditionalOptions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <GccExceptionHandling>true</GccExceptionHandling>
+      <CppStandard>CppStandard11</CppStandard>
+      <ConversionNull>NoConversionNull</ConversionNull>
+      <Attributes>NoAttributes</Attributes>
+      <Permissive>Yes</Permissive>
+      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>acme;axis;base;axiszlib;axisfreeimage;axisfreetype;axiscairo;axisopenssl;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImportLibrary>$(SolutionDir)../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\stage\$(PlatformName)\</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <IgnoreSpecificDefaultLibraries>LIBCMTD.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalOptions>-Wl,-z,defs</AdditionalOptions>
+    </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
+    <ProjectReference>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>_DEBUG;__CA2__DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(SolutionDir)../../;$(SolutionDir)../../app;$(SolutionDir)../../app/thirdparty/include;$(SolutionDir)../../app;$(SolutionDir)../../;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAsManaged>false</CompileAsManaged>
+      <StringPooling>false</StringPooling>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalOptions>-Wnarrowing -std=c++11</AdditionalOptions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <GccExceptionHandling>true</GccExceptionHandling>
+      <CppStandard>CppStandard11</CppStandard>
+      <ConversionNull>NoConversionNull</ConversionNull>
+      <Attributes>NoAttributes</Attributes>
+      <Permissive>Yes</Permissive>
+      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+      <ImportLibrary>$(SolutionDir)../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\stage\$(PlatformName)\</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <IgnoreSpecificDefaultLibraries>LIBCMTD.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AndroidSystemLibs>c;m;log;gcc;_c;_ca2zlib;_ca2freeimage;_ca2freetype;_ca2cairo;_ca2openssl;_ca2ca</AndroidSystemLibs>
+      <AdditionalOptions>-Wl,-z,defs</AdditionalOptions>
+    </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
+    <ProjectReference>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>_DEBUG;__CA2__DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(SolutionDir)../../;$(SolutionDir)../../app;$(SolutionDir)../../app/thirdparty/include;$(SolutionDir)../../app;$(SolutionDir)../../;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAsManaged>false</CompileAsManaged>
+      <StringPooling>false</StringPooling>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <RuntimeTypeInfo>EnableRuntimeTypeInfo</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalOptions>-Wnarrowing</AdditionalOptions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <GccExceptionHandling>true</GccExceptionHandling>
+      <CppStandard>CppStandard11</CppStandard>
+      <ConversionNull>NoConversionNull</ConversionNull>
+      <Attributes>NoAttributes</Attributes>
+      <Permissive>Yes</Permissive>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+      <ImportLibrary>$(SolutionDir)../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\stage\$(PlatformName)\</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <IgnoreSpecificDefaultLibraries>LIBCMTD.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AndroidSystemLibs>c;m;log;gcc;_c;_ca2zlib;_ca2freeimage;_ca2freetype;_ca2cairo;_ca2openssl;_ca2ca</AndroidSystemLibs>
+      <AdditionalOptions>-Wl,-z,defs</AdditionalOptions>
+    </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
+    <ProjectReference>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>MEMDLEAK;__CA__DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../app;$(SolutionDir)../../app/thirdparty/include;$(SolutionDir)../../app;$(SolutionDir)../../app/ca2;$(SolutionDir)../../;$(SolutionDir)../../;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAsManaged>false</CompileAsManaged>
+      <StringPooling>false</StringPooling>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <AdditionalOptions>/bigobj </AdditionalOptions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Gdiplus.lib;WinInet.lib;libmysql.lib;libcrypto.lib;FreeImage.lib;libssl.lib;Crypt32.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImportLibrary>$(SolutionDir)../../time/library/x86/$(TargetName).lib</ImportLibrary>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)../../time/library/x86/;$(SolutionDir)../../app/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <IgnoreSpecificDefaultLibraries>LIBCMTD.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+    </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>__CA__DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../app;$(SolutionDir)../../app/thirdparty/include;$(SolutionDir)../../app;$(SolutionDir)../../app/ca2;$(SolutionDir)../../;$(SolutionDir)../../;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAsManaged>false</CompileAsManaged>
+      <StringPooling>false</StringPooling>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/bigobj </AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Shlwapi.lib;Gdiplus.lib;WinInet.lib;libmysql.lib;libcrypto.lib;FreeImage.lib;libssl.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImportLibrary>$(SolutionDir)../../time/library/x86/$(TargetName).lib</ImportLibrary>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)../../time/library/x86/;$(SolutionDir)../../app/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <Profile>true</Profile>
+      <IgnoreSpecificDefaultLibraries>LIBCMTD.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+    </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="acme\acme\core_platform.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="acme\acme\_core.cpp" />
+    <ClCompile Include="acme\plugin\_plugin.cpp" />
+    <ClCompile Include="database\databaseuser\_databaseuser.cpp" />
+    <ClCompile Include="filesystem\filehandler\_filehandler.cpp" />
+    <ClCompile Include="filesystem\filemanager\_filemanager.cpp" />
+    <ClCompile Include="filesystem\file\file_html_buffer.cpp" />
+    <ClCompile Include="filesystem\userfs\_userfs.cpp" />
+    <ClCompile Include="user\user\user_orto_button.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\experience\frame\experience_frame_appearance.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\experience\frame\experience_frame_constants.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\experience\frame\experience_frame_control_box.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\experience\frame\experience_frame_control_box_button.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\experience\frame\experience_frame_dock_manager.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\experience\frame\experience_frame_frame.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\experience\frame\experience_frame_move_manager.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\experience\frame\experience_frame_size_manager.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\experience\frame\experience_frame_sys_menu_manager.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\experience\frame\experience_frame_work_set.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\experience\frame\experience_frame_work_set_client_interface.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\experience\frame\experience_frame_work_set_listener.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\experience\frame\experience_frame_work_set_listener_array.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\experience\experience_interaction.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\experience\experience_experience.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\_user.cpp" />
+    <ClInclude Include="acme\acme\acme.h" />
+    <ClInclude Include="acme\acme\core_application.h" />
+    <ClInclude Include="acme\acme\core_back_insert_iterator.h" />
+    <ClInclude Include="acme\acme\core_bstr.h" />
+    <ClInclude Include="acme\acme\core_constraint.h" />
+    <ClInclude Include="acme\acme\core_debug.h" />
+    <ClInclude Include="acme\acme\core_history.h" />
+    <ClInclude Include="acme\acme\core_insert_iterator.h" />
+    <ClInclude Include="acme\acme\core_iterator.h" />
+    <ClInclude Include="acme\acme\core_less.h" />
+    <ClInclude Include="acme\acme\core_library.h" />
+    <ClInclude Include="acme\acme\core_logic.h" />
+    <ClInclude Include="acme\acme\core_main.h" />
+    <ClInclude Include="acme\acme\core_match.h" />
+    <ClInclude Include="acme\acme\core_muldiv32.h" />
+    <ClInclude Include="acme\acme\core_os_history.h" />
+    <ClInclude Include="acme\acme\core_patch.h" />
+    <ClInclude Include="acme\acme\core_platform.h" />
+    <ClInclude Include="acme\acme\core_process_data.h" />
+    <ClInclude Include="acme\acme\core_profiler.h" />
+    <ClInclude Include="acme\acme\core_progress_interface.h" />
+    <ClInclude Include="acme\acme\core_simple_app.h" />
+    <ClInclude Include="acme\acme\core_smart_pointer_query.h" />
+    <ClInclude Include="acme\acme\core_std_pair.h" />
+    <ClInclude Include="acme\acme\core_strn.h" />
+    <ClInclude Include="acme\acme\core_system.h" />
+    <ClInclude Include="acme\acme\core_timer_callback.h" />
+    <ClInclude Include="acme\acme\core_timer_listener.h" />
+    <ClInclude Include="acme\acme\core_timer.h" />
+    <ClInclude Include="acme\acme\core_types.h" />
+    <ClInclude Include="acme\plugin\plugin.h" />
+    <ClInclude Include="acme\plugin\plugin_gen.h" />
+    <ClInclude Include="acme\plugin\plugin_history.h" />
+    <ClInclude Include="acme\plugin\plugin_host_interaction.h" />
+    <ClInclude Include="acme\plugin\plugin_instance.h" />
+    <ClInclude Include="acme\plugin\plugin_plugin.h" />
+    <ClInclude Include="acme\plugin\plugin_run_start_installer.h" />
+    <ClInclude Include="acme\plugin\plugin_system.h" />
+    <ClInclude Include="database\databaseuser\databaseuser.h" />
+    <ClInclude Include="database\databaseuser\data_key_list_data.h" />
+    <ClInclude Include="database\databaseuser\list_data.h" />
+    <ClInclude Include="database\simpledb\DBFileSystemSize.h" />
+    <ClInclude Include="database\simpledb\db_long_set.h" />
+    <ClInclude Include="database\simpledb\db_server.h" />
+    <ClInclude Include="database\simpledb\db_set.h" />
+    <ClInclude Include="database\simpledb\db_stra_set.h" />
+    <ClInclude Include="database\simpledb\db_str_set.h" />
+    <ClInclude Include="database\simpledb\file_set.h" />
+    <ClInclude Include="database\simpledb\im_post.h" />
+    <ClInclude Include="database\simpledb\simpledb.h" />
+    <ClInclude Include="database\simpledb\simpledb_base.h" />
+    <ClInclude Include="database\simpledb\simpledb_database.h" />
+    <ClInclude Include="database\simpledb\simpledb_manager.h" />
+    <ClInclude Include="database\simpledb\simpledb_record.h" />
+    <ClInclude Include="database\simpledb\simpledb_result.h" />
+    <ClInclude Include="database\simpledb\simpledb_server.h" />
+    <ClInclude Include="database\simpledb\simpledb_service.h" />
+    <ClInclude Include="database\simpledb\simpledb_session.h" />
+    <ClInclude Include="database\simpledb\simpledb_set.h" />
+    <ClInclude Include="database\simpledb\simpledb_simpledb.h" />
+    <ClInclude Include="database\simpledb\simpledb_socket.h" />
+    <ClInclude Include="database\simpledb\simpledb_socket_thread.h" />
+    <ClInclude Include="database\simpledb\simpledb_table.h" />
+    <ClInclude Include="database\simpledb\veiev_post.h" />
+    <ClInclude Include="filesystem\filehandler\filehandler.h" />
+    <ClInclude Include="filesystem\filehandler\filehandler_handler.h" />
+    <ClInclude Include="filesystem\filehandler\filehandler_library.h" />
+    <ClInclude Include="filesystem\filehandler\filehandler_menu_library.h" />
+    <ClInclude Include="filesystem\filehandler\filehandler_tree_interface.h" />
+    <ClInclude Include="filesystem\filehandler\filehandler_item.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_context_menu.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_callback.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_child_frame.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_file_list.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_file_list_callback.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_frame.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_main_view.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_manager.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_left_view.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_main_frame.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_path_view.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_save_as_name_view.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_tab_view.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_manager_template.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_view.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_impact.h" />
+
+    <ClInclude Include="filesystem\filemanager\filemanager_const.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_data.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_filemanager.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_folder_list_data.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_folder_list_view.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_folder_selection_list_view.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_form_child_frame.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_form_document.h" />
+
+    <ClInclude Include="filesystem\filemanager\filemanager_form_view.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_fs_simple_list_view.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_fs_simple_tree.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_fs_simple_view.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_icon.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_iconoverlayer.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_item_action.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_operation_child_frame.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_operation_document.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_operation_info_view.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_operation_list_view.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_operation_thread.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_operation_view.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_operation.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_file_properties_form.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_folder_list.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_tree.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_preview.h" />
+    <ClInclude Include="filesystem\file\file_html_buffer.h" />
+    <ClInclude Include="filesystem\userfs\userfs.h" />
+    <ClInclude Include="filesystem\userfs\userfs_document.h" />
+    <ClInclude Include="filesystem\userfs\userfs_userfs.h" />
+    <ClInclude Include="filesystem\userfs\userfs_list.h" />
+    <ClInclude Include="filesystem\userfs\userfs_list_data.h" />
+    <ClInclude Include="filesystem\userfs\userfs_list_item.h" />
+    <ClInclude Include="filesystem\userfs\userfs_list_item_array.h" />
+    <ClInclude Include="filesystem\userfs\userfs_main_view.h" />
+    <ClInclude Include="filesystem\userfs\userfs_tree.h" />
+    <ClInclude Include="filesystem\userfs\userfs_item.h" />
+    <ClCompile Include="acme\acme\acme.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="acme\acme\core_application.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="acme\acme\core_constraint.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="acme\acme\core_Debug.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="acme\acme\core_history.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="acme\acme\core_library.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="acme\acme\core_logic.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="acme\acme\core_match.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="acme\acme\core_os_history.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="acme\acme\core_patch.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="acme\acme\core_profiler.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="acme\acme\core_simple_app.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="acme\acme\core_strn.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="acme\acme\core_str_format.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="acme\acme\core_system.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="acme\acme\core_timer_callback.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="acme\acme\core_timer_listener.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="acme\acme\core_Timer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_main_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="framework.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|Android'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">Create</PrecompiledHeader>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CompileAsCppHeader</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='stage|Android'">CompileAsCppHeader</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">CompileAsCppHeader</CompileAs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClInclude Include="framework\framework.h" />
+    <ClInclude Include="math\binary_operation.h" />
+    <ClInclude Include="math\math_math.h" />
+    <ClInclude Include="math\number.h" />
+    <ClInclude Include="math\value.h" />
+    <ClInclude Include="math\_double.h" />
+    <ClInclude Include="math\_float.h" />
+    <ClInclude Include="math\_integer.h" />
+    <ClInclude Include="net\hi5\hi5_twit.h" />
+    <ClInclude Include="net\hi5\hi5.h" />
+    <ClInclude Include="net\hi5\hi5_oauth.h" />
+    <ClInclude Include="net\usernet\usernet.h" />
+    <ClInclude Include="net\usernet\usernet_network_configuration.h" />
+    <ClInclude Include=".\primitive\int_biunique.h" />
+    <ClInclude Include="primitive\primitive.h" />
+    <ClInclude Include="user\menu\user_menu.h" />
+    <ClInclude Include="user\menu\user_menu_button.h" />
+    <ClInclude Include="user\menu\user_menu_central.h" />
+    <ClInclude Include="user\menu\user_menu_item.h" />
+    <ClInclude Include="user\menu\user_menu_list_view.h" />
+    <ClInclude Include="user\menu\user_menu_list_window.h" />
+    <ClInclude Include="user\simple\simple_child_frame.h" />
+    <ClInclude Include="user\simple\simple_form_list_view.h" />
+    <ClInclude Include="user\simple\simple_frame_window.h" />
+    <ClInclude Include="user\simple\simple_list_control.h" />
+    <ClInclude Include="user\simple\simple_list_header_control.h" />
+    <ClInclude Include="user\simple\simple_list_view.h" />
+    <ClInclude Include="user\simple\simple_main_frame.h" />
+    <ClInclude Include="user\simple\simple_menu_bar.h" />
+    <ClInclude Include="user\simple\simple_printer_list_view.h" />
+    <ClInclude Include="user\simple\simple_static.h" />
+    <ClInclude Include="user\simple\simple_status_bar.h" />
+    <ClInclude Include="user\simple\simple_tab_control.h" />
+    <ClInclude Include="user\simple\simple_tab_view.h" />
+    <ClInclude Include="user\simple\simple_toolbar.h" />
+    <ClInclude Include="user\simple\simple_tree_view.h" />
+    <ClInclude Include="user\simple\simple.h" />
+    <ClInclude Include="user\userex\userex_keyboard_layout.h" />
+    <ClInclude Include="user\userex\userex_message_box.h" />
+    <ClInclude Include="user\userex\userex_userex.h" />
+    <ClInclude Include="user\userex\userex_wait_message_dialog.h" />
+    <ClInclude Include="user\user\user.h" />
+    <ClInclude Include="user\user\user_00.h" />
+    <ClInclude Include="user\user\user_button.h" />
+    <ClInclude Include="user\user\user_check_box.h" />
+    <ClInclude Include="user\user\user_combo_box.h" />
+    <ClInclude Include="user\user\user_combo_list.h" />
+    <ClInclude Include="user\user\user_control_property.h" />
+    <ClInclude Include="user\user\user_core.h" />
+    <ClInclude Include="user\user\user_data_exchange.h" />
+    <ClInclude Include="user\user\user_dock_context.h" />
+    <ClInclude Include="user\user\user_dock_state.h" />
+    <ClInclude Include="user\user\user_document_manager.h" />
+    <ClInclude Include="user\user\user_edit_plain_text_view.h" />
+    <ClInclude Include="user\user\user_elastic_slider.h" />
+    <ClInclude Include="user\user\user_form.h" />
+    <ClInclude Include="user\user\user_form1.h" />
+    <ClInclude Include="user\user\user_form_callback.h" />
+    <ClInclude Include="user\user\user_form_list.h" />
+    <ClInclude Include="user\user\user_front_end.h" />
+    <ClInclude Include="user\user\user_front_end_schema.h" />
+    <ClInclude Include="user\user\user_image_manager.h" />
+    <ClInclude Include="user\user\user_inline.h" />
+    <ClInclude Include="user\user\user_keyboard_layout_cfg.h" />
+    <ClInclude Include="user\user\user_list.h" />
+    <ClInclude Include="user\user\user_list_cache.h" />
+    <ClInclude Include="user\user\user_list_cache_interface.h" />
+    <ClInclude Include="user\user\user_list_data.h" />
+    <ClInclude Include="user\user\user_list_data_interface.h" />
+    <ClInclude Include="user\user\user_list_header.h" />
+    <ClInclude Include="user\user\user_main_frame.h" />
+    <ClInclude Include="user\user\user_meta_button.h" />
+    <ClInclude Include="user\user\user_meta_control_box.h" />
+    <ClInclude Include="user\user\user_multiple_document_template.h" />
+    <ClInclude Include="user\user\user_network_configuration.h" />
+    <ClInclude Include="user\user\user_notification_area.h" />
+    <ClInclude Include="user\user\user_notify_icon.h" />
+    <ClInclude Include="user\user\user_notify_icon_listener.h" />
+    <ClInclude Include="user\user\user_orto_button.h" />
+    <ClInclude Include="user\user\user_shell.h" />
+    <ClInclude Include="user\user\user_simple_list_data.h" />
+    <ClInclude Include="user\user\user_single_document_template.h" />
+    <ClInclude Include="user\user\user_split_bar.h" />
+    <ClInclude Include="user\user\user_split_layout.h" />
+    <ClInclude Include="user\user\user_split_view.h" />
+    <ClInclude Include="user\user\user_split_window.h" />
+    <ClInclude Include="user\user\user_static_control.h" />
+    <ClInclude Include="user\user\user_statusbar.h" />
+    <ClInclude Include="user\user\user_step_slider.h" />
+    <ClInclude Include="user\user\user_tab.h" />
+    <ClInclude Include="user\user\user_tab_callback.h" />
+    <ClInclude Include="user\user\user_tab_view.h" />
+
+    <ClInclude Include="user\user\user_template.h" />
+    <ClInclude Include="user\user\user_thread.h" />
+    <ClInclude Include="user\user\user_toolbar.h" />
+    <ClInclude Include="user\user\user_toolbar_control.h" />
+    <ClInclude Include="user\user\user_tool_cmd_ui.h" />
+    <ClInclude Include="user\user\user_tool_tip_tool.h" />
+    <ClInclude Include="user\user\user_tool_tip_window.h" />
+    <ClInclude Include="user\user\user_tree.h" />
+    <ClInclude Include="user\user\user_tree_data.h" />
+    <ClInclude Include="user\user\user_xfplayer_view_line.h" />
+    <ClInclude Include="user\user\user_xfplayer_view_lines.h" />
+    <ClInclude Include="user\user\user_xfplayer_view_line_selection.h" />
+    <ClInclude Include="user\userex\userex.h" />
+    <ClInclude Include="user\userex\userex_dialog.h" />
+    <ClInclude Include="user\userex\userex_form_child_frame.h" />
+    <ClInclude Include="user\userex\userex_form_document.h" />
+    <ClInclude Include="user\userex\userex_form_frame.h" />
+
+    <ClInclude Include="user\userex\userex_form_view.h" />
+    <ClInclude Include="user\userex\userex_menu_document.h" />
+    <ClInclude Include="user\userex\userex_menu_frame.h" />
+    <ClInclude Include="user\userex\userex_menu_view.h" />
+    <ClInclude Include="user\userex\userex_mini_dock_frame_window.h" />
+    <ClInclude Include="user\userex\userex_pane_split_view.h" />
+    <ClInclude Include="user\userex\userex_pane_tab_view.h" />
+    <ClInclude Include="user\userex\userex_pane_view.h" />
+    <ClInclude Include="user\userex\userex_property_page.h" />
+    <ClInclude Include="user\userex\userex_property_sheet.h" />
+    <ClInclude Include="user\userex\userex_split_view.h" />
+    <ClInclude Include="user\experience\frame\experience_frame.h" />
+    <ClInclude Include="user\experience\frame\experience_frame_appearance.h" />
+    <ClInclude Include="user\experience\frame\experience_frame_constants.h" />
+    <ClInclude Include="user\experience\frame\experience_frame_control_box.h" />
+    <ClInclude Include="user\experience\frame\experience_frame_control_box_button.h" />
+    <ClInclude Include="user\experience\frame\experience_frame_dock_manager.h" />
+    <ClInclude Include="user\experience\frame\experience_frame_enum.h" />
+    <ClInclude Include="user\experience\frame\experience_frame_frame.h" />
+    <ClInclude Include="user\experience\frame\experience_frame_move_manager.h" />
+    <ClInclude Include="user\experience\frame\experience_frame_size_manager.h" />
+    <ClInclude Include="user\experience\frame\experience_frame_sys_menu_manager.h" />
+    <ClInclude Include="user\experience\frame\experience_frame_work_set.h" />
+    <ClInclude Include="user\experience\frame\experience_frame_work_set_client_interface.h" />
+    <ClInclude Include="user\experience\frame\experience_frame_work_set_listener.h" />
+    <ClInclude Include="user\experience\frame\experience_frame_work_set_listener_array.h" />
+    <ClInclude Include="user\experience\experience.h" />
+    <ClInclude Include="user\experience\experience_interaction.h" />
+    <ClInclude Include="user\experience\experience_experience.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="acme\plugin\plugin_history.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="acme\plugin\plugin_host_interaction.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="acme\plugin\plugin_instance.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="acme\plugin\plugin_plugin.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="acme\plugin\plugin_run_start_installer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="acme\plugin\plugin_system.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\databaseuser\database_key_list_data.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\databaseuser\database_list_data.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_file_system_size.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filehandler\filehandler_handler.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filehandler\filehandler_library.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filehandler\filehandler_menu_library.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filehandler\filehandler_tree_interface.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filehandler\filehandler_item.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_callback.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_child_frame.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_file_list_callback.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_frame.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_manager.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_left_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_main_frame.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_path_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_save_as_name_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_tab_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_manager_template.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_impact.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_context_menu.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_data.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_filemanager.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_folder_list_data.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_folder_list_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_folder_selection_list_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_form_child_frame.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_form_document.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_form_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_list_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_tree.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_icon.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_iconoverlayer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_item_action.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_operation_child_frame.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_operation_document.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_operation_info_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_operation_list_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_operation_thread.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_operation_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_operation.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_file_list.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_file_properties_form.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_folder_list.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_tree.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_preview.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_document.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_userfs.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_list.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_list_data.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_list_item.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_list_item_array.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_main_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_tree.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_item.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="math\binary_operation.cpp" />
+    <ClCompile Include="math\math.cpp" />
+    <ClCompile Include="math\number.cpp" />
+    <ClCompile Include="math\value.cpp" />
+    <ClCompile Include="math\_double.cpp" />
+    <ClCompile Include="math\_float.cpp" />
+    <ClCompile Include="math\_integer.cpp" />
+    <ClCompile Include="net\hi5\hi5_twit.cpp" />
+    <ClCompile Include="net\hi5\hi5_oauth.cpp" />
+    <ClCompile Include="net\usernet\usernet_network_configuration.cpp" />
+    <ClCompile Include="primitive\int_biunique.cpp" />
+    <ClCompile Include="user\menu\user_menu.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\menu\user_menu_button.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\menu\user_menu_central.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\menu\user_menu_item.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\menu\user_menu_list_window.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_child_frame.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_form_list_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_frame_window.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_list_ctrl.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_list_header_ctrl.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_list_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_main_frame.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_menu_bar.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_printer_list_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_static.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_status_bar.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_tab_ctrl.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_tab_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_toolbar.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_tree_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_userex.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_button.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_check_box.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_combo_box.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_combo_list.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_control_property.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_core.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_data_exchange.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_document_manager.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_edit_plain_text_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_elastic_slider.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_form.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_form_callback.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_form_list.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_front_end.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_front_end_schema.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_image_manager.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_keyboard_layout_cfg.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_list.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_list_cache.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_list_cache_interface.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_list_data.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_list_data_interface.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_list_header.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_main_frame.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_menu_list_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_meta_button.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_meta_control_box.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_multiple_document_template.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_network_configuration.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_notification_area.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_notify_icon.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_notify_icon_listener.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_shell.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_single_document_template.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_split_bar.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_split_layout.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_split_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_split_window.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_static_control.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_statusbar.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_step_slider.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_tab.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_tab_callback.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_tab_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_toolbar.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_toolbar_ctrl.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_tool_cmd_ui.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_tool_tip_tool.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_tool_tip_window.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_tree.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_tree_data.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_tree_window.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_xfplayer_view_line.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_dialog.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_form_child_frame.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_form_document.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_form_frame.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_form_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_keyboard_layout.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_menu_document.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_menu_frame.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_menu_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_message_box.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_mini_dock_frame_window.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_pane_split_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_pane_tab_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_pane_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_property_page.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_property_sheet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_split_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_wait_message_dialog.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_xfplayer_view_lines.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_xfplayer_view_line_selection.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="acme.def" />
+    <None Include="acme\acme\acme.inl" />
+    <None Include="user\user\interaction.inl" />
+    <None Include="user\user\user_interaction.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\acme\charguess\acecharguess.vcxproj">
+      <Project>{ac6a52b4-c049-439c-88ff-5a262d968c8f}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\axis\bzip2\axisbzip2.vcxproj">
+      <Project>{a5a649e1-d516-4f29-a627-da6884dd421c}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\acme\acme.vcxproj">
+      <Project>{03e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\base\base.vcxproj">
+      <Project>{4d7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -7,7 +7,7 @@
 #include "aura/user/_user.h"
 
 
-#define new AURA_NEW
+#define new ACME_NEW
 
 
 class simple_scroll_bar;

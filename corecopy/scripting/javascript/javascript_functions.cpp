@@ -32,7 +32,7 @@
 
 #ifdef __DEBUG
 #	ifdef _MSC_VER
-#		define new AURA_NEW
+#		define new ACME_NEW
 #	endif
 #endif //__DEBUG
 

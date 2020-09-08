@@ -3,7 +3,7 @@
 
 #undef new
 
-#define new AURA_NEW
+#define new ACME_NEW
 
 template < typename PRED >
 class pred_thread:
@@ -210,7 +210,7 @@ CLASS_DECL_AURA int get_current_process_affinity_order();
 
 #undef new
 
-#define new AURA_NEW
+#define new ACME_NEW
 
 
 template < typename PRED >

@@ -5978,7 +5978,7 @@ namespace base
 //
 //#ifdef WINDOWS
 //#undef new
-//#define new AURA_NEW
+//#define new ACME_NEW
 //#endif
 //
 //#ifdef LINUX

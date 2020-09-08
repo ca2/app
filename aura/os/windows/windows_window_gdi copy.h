@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE window_gdi :
+class CLASS_DECL_AURA window_gdi :
    public window_graphics
 {
 public:

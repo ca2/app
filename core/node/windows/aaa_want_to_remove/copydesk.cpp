@@ -683,7 +683,7 @@ namespace windows
 
    }
 
-#define new AURA_NEW
+#define new ACME_NEW
 
 
 } // namespace windows

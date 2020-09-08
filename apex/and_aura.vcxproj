@@ -1,0 +1,1741 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x86">
+      <Configuration>Debug</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x86">
+      <Configuration>Release</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="apex\apex\apex.h" />
+    <ClInclude Include="apex\apex\aura_action_context.h" />
+    <ClInclude Include="apex\apex\aura_action_source.h" />
+    <ClInclude Include="apex\apex\aura_allocate.h" />
+    <ClInclude Include="apex\apex\aura_application.h" />
+    <ClInclude Include="apex\apex\aura_application_ptra.h" />
+    <ClInclude Include="apex\apex\aura_application_signal_details.h" />
+    <ClInclude Include="apex\apex\aura_assert_running_task.h" />
+    <ClInclude Include="apex\apex\aura_async.h" />
+    <ClInclude Include="apex\apex\aura_aura.h" />
+    <ClInclude Include="apex\apex\aura_auto_pointer.h" />
+    <ClInclude Include="apex\apex\aura_class.h" />
+    <ClInclude Include="apex\apex\aura_command.h" />
+    <ClInclude Include="apex\apex\aura_command_msg.h" />
+    <ClInclude Include="apex\apex\aura_command_target.h" />
+    <ClInclude Include="apex\apex\aura_command_ui.h" />
+    <ClInclude Include="apex\apex\aura_command_ui_test.h" />
+    <ClInclude Include="apex\apex\aura_common.h" />
+    <ClInclude Include="apex\apex\aura_conv.h" />
+    <ClInclude Include="apex\apex\aura_core.h" />
+    <ClInclude Include="apex\apex\aura_core_os.h" />
+    <ClInclude Include="apex\apex\aura_cpu_architecture.h" />
+    <ClInclude Include="apex\apex\aura_create_context.h" />
+    <ClInclude Include="apex\apex\aura_cregexp.h" />
+    <ClInclude Include="apex\apex\aura_cregexp_util.h" />
+    <ClInclude Include="apex\apex\aura_debug.h" />
+    <ClInclude Include="apex\apex\aura_definition.h" />
+    <ClInclude Include="apex\apex\aura_department.h" />
+    <ClInclude Include="apex\apex\aura_department_container.h" />
+    <ClInclude Include="apex\apex\aura_draw2d.h" />
+    <ClInclude Include="apex\apex\aura_draw_context.h" />
+    <ClInclude Include="apex\apex\aura_draw_interface.h" />
+    <ClInclude Include="apex\apex\aura_element.h" />
+    <ClInclude Include="apex\apex\aura_enum.h" />
+    <ClInclude Include="apex\apex\aura_file_watcher.h" />
+    <ClInclude Include="apex\apex\aura_file_watcher_impl.h" />
+    <ClInclude Include="apex\apex\aura_file_watcher_listener_thread.h" />
+    <ClInclude Include="apex\apex\aura_file_watcher_thread.h" />
+    <ClInclude Include="apex\apex\aura_fixed_alloc.h" />
+    <ClInclude Include="apex\apex\aura_fixed___allocatable.h" />
+    <ClInclude Include="apex\apex\aura_flags.h" />
+    <ClInclude Include="apex\apex\aura_gudo.h" />
+    <ClInclude Include="apex\apex\aura_heap_item.h" />
+    <ClInclude Include="apex\apex\aura_heap_item_array.h" />
+    <ClInclude Include="apex\apex\aura_id_pool.h" />
+    <ClInclude Include="apex\apex\aura_international.h" />
+    <ClInclude Include="apex\apex\aura_keep.h" />
+    <ClInclude Include="apex\apex\aura_keep_true.h" />
+    <ClInclude Include="apex\apex\aura_launcher.h" />
+    <ClInclude Include="apex\apex\aura_libc.h" />
+    <ClInclude Include="apex\apex\aura_library.h" />
+    <ClInclude Include="apex\apex\aura_live_object.h" />
+    <ClInclude Include="apex\apex\aura_live_signal.h" />
+    <ClInclude Include="apex\apex\aura_local_memory_map.h" />
+    <ClInclude Include="apex\apex\aura_log.h" />
+    <ClInclude Include="apex\apex\aura_lparam.h" />
+    <ClInclude Include="apex\apex\aura_machine_event.h" />
+    <ClInclude Include="apex\apex\aura_machine_event_central.h" />
+    <ClInclude Include="apex\apex\aura_machine_event_data.h" />
+    <ClInclude Include="apex\apex\aura_main_init_data.h" />
+    <ClInclude Include="apex\apex\aura_math.h" />
+    <ClInclude Include="apex\apex\aura_message_loop.h" />
+    <ClInclude Include="apex\apex\aura_message_queue.h" />
+    <ClInclude Include="apex\apex\aura_message_queue_listener.h" />
+    <ClInclude Include="apex\apex\aura_microtimer.h" />
+    <ClInclude Include="apex\apex\aura_muldiv64.h" />
+    <ClInclude Include="apex\apex\aura_net.h" />
+    <ClInclude Include="apex\apex\aura_new.h" />
+    <ClInclude Include="apex\apex\aura_number.h" />
+    <ClInclude Include="apex\apex\aura_os.h" />
+    <ClInclude Include="apex\apex\aura_plex.h" />
+    <ClInclude Include="apex\apex\aura_plex_heap.h" />
+    <ClInclude Include="apex\apex\aura_plex_heap_impl.h" />
+    <ClInclude Include="apex\apex\aura_printer.h" />
+    <ClInclude Include="apex\apex\aura_printf.h" />
+    <ClInclude Include="apex\apex\aura_progress.h" />
+    <ClInclude Include="apex\apex\aura_savings.h" />
+    <ClInclude Include="apex\apex\aura_session.h" />
+    <ClInclude Include="apex\apex\aura_simple_app.h" />
+    <ClInclude Include="apex\apex\aura_simple_pixel_font.h" />
+    <ClInclude Include="apex\apex\aura_smart_pointer1.h" />
+    <ClInclude Include="apex\apex\aura_smart_pointer2.h" />
+    <ClInclude Include="apex\apex\aura_sprintf.h" />
+    <ClInclude Include="apex\apex\aura_static_start.h" />
+    <ClInclude Include="apex\apex\aura_str_context.h" />
+    <ClInclude Include="apex\apex\aura_system.h" />
+    <ClInclude Include="apex\apex\aura_system_str.h" />
+    <ClInclude Include="apex\apex\aura_system_trace.h" />
+    <ClInclude Include="apex\apex\aura_template.h" />
+    <ClInclude Include="apex\apex\aura_timer_array.h" />
+    <ClInclude Include="apex\apex\aura_timer_item.h" />
+    <ClInclude Include="apex\apex\aura_trace.h" />
+    <ClInclude Include="apex\apex\aura_types.h" />
+    <ClInclude Include="apex\apex\aura_url.h" />
+    <ClInclude Include="apex\apex\aura_user.h" />
+    <ClInclude Include="apex\apex\axis.h" />
+    <ClInclude Include="apex\aura_policy\aura_c.h" />
+    <ClInclude Include="apex\aura_policy\aura_cpp.h" />
+    <ClInclude Include="apex\aura_policy\aura_policy.h" />
+    <ClInclude Include="apex\aura_policy\aura_policy_objc.h" />
+    <ClInclude Include="apex\aura_policy\aura_policy_objcpp.h" />
+    <ClInclude Include="apex\aura_policy\aura_policy_winrt.h" />
+    <ClInclude Include="apex\exception\exception.h" />
+    <ClInclude Include="apex\exception\exception2.h" />
+    <ClInclude Include="apex\exception\exception_assert.h" />
+    <ClInclude Include="apex\exception\exception_base.h" />
+    <ClInclude Include="apex\exception\exception_call_stack.h" />
+    <ClInclude Include="apex\exception\exception_cancel.h" />
+    <ClInclude Include="apex\exception\exception_debug.h" />
+    <ClInclude Include="apex\exception\exception_debug_stream.h" />
+    <ClInclude Include="apex\exception\exception_dump_context.h" />
+    <ClInclude Include="apex\exception\exception_engine.h" />
+    <ClInclude Include="apex\exception\exception_error.h" />
+    <ClInclude Include="apex\exception\exception_exception.h" />
+    <ClInclude Include="apex\exception\exception_exit.h" />
+    <ClInclude Include="apex\exception\exception_hresult.h" />
+    <ClInclude Include="apex\exception\exception_installing.h" />
+    <ClInclude Include="apex\exception\exception_interface_only.h" />
+    <ClInclude Include="apex\exception\exception_invalid_argument.h" />
+    <ClInclude Include="apex\exception\exception_invalid_character.h" />
+    <ClInclude Include="apex\exception\exception_invalid_handle.h" />
+    <ClInclude Include="apex\exception\exception_invalid_index.h" />
+    <ClInclude Include="apex\exception\exception_io.h" />
+    <ClInclude Include="apex\exception\exception_last_error.h" />
+    <ClInclude Include="apex\exception\exception_memory.h" />
+    <ClInclude Include="apex\exception\exception_memory_state.h" />
+    <ClInclude Include="apex\exception\exception_misc.h" />
+    <ClInclude Include="apex\exception\exception_not_implemented.h" />
+    <ClInclude Include="apex\exception\exception_not_installed.h" />
+    <ClInclude Include="apex\exception\exception_not_licensed.h" />
+    <ClInclude Include="apex\exception\exception_not_supported.h" />
+    <ClInclude Include="apex\exception\exception_operation_canceled.h" />
+    <ClInclude Include="apex\exception\exception_os.h" />
+    <ClInclude Include="apex\exception\exception_overflow_error.h" />
+    <ClInclude Include="apex\exception\exception_parsing.h" />
+    <ClInclude Include="apex\exception\exception_range_error.h" />
+    <ClInclude Include="apex\exception\exception_resource.h" />
+    <ClInclude Include="apex\exception\exception_runtime_error.h" />
+    <ClInclude Include="apex\exception\exception_simple.h" />
+    <ClInclude Include="apex\exception\exception_standard.h" />
+    <ClInclude Include="apex\exception\exception_standard_translator.h" />
+    <ClInclude Include="apex\exception\exception_system.h" />
+    <ClInclude Include="apex\exception\exception_temporary.h" />
+    <ClInclude Include="apex\exception\exception_throw.h" />
+    <ClInclude Include="apex\exception\exception_todo.h" />
+    <ClInclude Include="apex\exception\exception_trap.h" />
+    <ClInclude Include="apex\exception\exception_unhandled_report.h" />
+    <ClInclude Include="apex\exception\exception_user.h" />
+    <ClInclude Include="apex\exception\exception_verisimple.h" />
+    <ClInclude Include="apex\exception\exception_void_implementation.h" />
+    <ClInclude Include="apex\message\message.h" />
+    <ClInclude Include="apex\message\message_base.h" />
+    <ClInclude Include="apex\message\message_cross_windows.h" />
+    <ClInclude Include="apex\message\message_definition.h" />
+    <ClInclude Include="apex\message\message_dispatch.h" />
+    <ClInclude Include="apex\node\android\android.h" />
+    <ClInclude Include="apex\node\android\android1.h" />
+    <ClInclude Include="apex\node\android\android_application.h" />
+    <ClInclude Include="apex\node\android\android_dir.h" />
+    <ClInclude Include="apex\node\android\android_factory_exchange.h" />
+    <ClInclude Include="apex\node\android\android_file.h" />
+    <ClInclude Include="apex\node\android\android_file_system.h" />
+    <ClInclude Include="apex\node\android\android_implementation.h" />
+    <ClInclude Include="apex\node\android\android_internal.h" />
+    <ClInclude Include="apex\node\android\android_os.h" />
+    <ClInclude Include="apex\node\android\android_shell.h" />
+    <ClInclude Include="apex\node\android\android_stdio_file.h" />
+    <ClInclude Include="apex\node\android\android_thread.h" />
+    <ClInclude Include="apex\node\ansios\ansios.h" />
+    <ClInclude Include="apex\node\ansios\ansios_pipe.h" />
+    <ClInclude Include="apex\node\ansios\ansios_process.h" />
+    <ClInclude Include="apex\node\ansios\ansios_thread_impl.h" />
+    <ClInclude Include="apex\node\node.h" />
+    <ClInclude Include="apex\os\android\aaa_want_to_remove_android_window_impl.h">
+      <DeploymentContent>true</DeploymentContent>
+    </ClInclude>
+    <ClInclude Include="apex\os\android\android.h" />
+    <ClInclude Include="apex\os\android\android_android.h" />
+    <ClInclude Include="apex\os\android\android_cross_win_file.h" />
+    <ClInclude Include="apex\os\android\android_cross_win_gdi.h" />
+    <ClInclude Include="apex\os\android\android_cross_win_gdi_internal.h" />
+    <ClInclude Include="apex\os\android\android_file.h" />
+    <ClInclude Include="apex\os\android\android_file_watcher.h" />
+    <ClInclude Include="apex\os\android\android_graphics.h" />
+    <ClInclude Include="apex\os\android\android_internal.h" />
+    <ClInclude Include="apex\os\android\android_process.h" />
+    <ClInclude Include="apex\os\ansios\ansios.h" />
+    <ClInclude Include="apex\os\ansios\ansios_file.h" />
+    <ClInclude Include="apex\os\ansios\ansios_multithreading.h" />
+    <ClInclude Include="apex\os\ansios\ansios_thread.h" />
+    <ClInclude Include="apex\os\cross.h" />
+    <ClInclude Include="apex\os\cross\ansios\ansios.h" />
+    <ClInclude Include="apex\os\cross\ansios\ansios_datetime.h" />
+    <ClInclude Include="apex\os\cross\ansios\ansios_file.h" />
+    <ClInclude Include="apex\os\cross\cross.h" />
+    <ClInclude Include="apex\os\cross\windows\e.h" />
+    <ClInclude Include="apex\os\cross\windows\windows.h" />
+    <ClInclude Include="apex\os\cross\windows\windows_base.h" />
+    <ClInclude Include="apex\os\cross\windows\windows_base_tsd.h" />
+    <ClInclude Include="apex\os\cross\windows\windows_common_controls.h" />
+    <ClInclude Include="apex\os\cross\windows\windows_crt.h" />
+    <ClInclude Include="apex\os\cross\windows\windows_crtdefs.h" />
+    <ClInclude Include="apex\os\cross\windows\windows_defs.h" />
+    <ClInclude Include="apex\os\cross\windows\windows_errno.h" />
+    <ClInclude Include="apex\os\cross\windows\windows_error.h" />
+    <ClInclude Include="apex\os\cross\windows\windows_file.h" />
+    <ClInclude Include="apex\os\cross\windows\windows_gdi.h" />
+    <ClInclude Include="apex\os\cross\windows\windows_guid_def.h" />
+    <ClInclude Include="apex\os\cross\windows\windows_internals.h" />
+    <ClInclude Include="apex\os\cross\windows\windows_mmeapi.h" />
+    <ClInclude Include="apex\os\cross\windows\windows_mmsystem.h" />
+    <ClInclude Include="apex\os\cross\windows\windows_nls.h" />
+    <ClInclude Include="apex\os\cross\windows\windows_nt.h" />
+    <ClInclude Include="apex\os\cross\windows\windows_ntstatus.h" />
+    <ClInclude Include="apex\os\cross\windows\windows_ole_automation.h" />
+    <ClInclude Include="apex\os\cross\windows\windows_poppack.h" />
+    <ClInclude Include="apex\os\cross\windows\windows_pshpack2.h" />
+    <ClInclude Include="apex\os\cross\windows\windows_pshpack4.h" />
+    <ClInclude Include="apex\os\cross\windows\windows_pshpack8.h" />
+    <ClInclude Include="apex\os\cross\windows\windows_shared_memory.h" />
+    <ClInclude Include="apex\os\cross\windows\windows_thread.h" />
+    <ClInclude Include="apex\os\cross\windows\windows_thread_impl.h" />
+    <ClInclude Include="apex\os\cross\windows\windows_time.h" />
+    <ClInclude Include="apex\os\cross\windows\windows_types.h" />
+    <ClInclude Include="apex\os\cross\windows\windows_user.h" />
+    <ClInclude Include="apex\os\cross\windows\windows_winnt.h" />
+    <ClInclude Include="apex\os\os.h" />
+    <ClInclude Include="apex\os\os_binreloc.h" />
+    <ClInclude Include="apex\os\os_process.h" />
+    <ClInclude Include="apex\process\process.h" />
+    <ClInclude Include="apex\process\process_bidi_pipe.h" />
+    <ClInclude Include="apex\process\process_department.h" />
+    <ClInclude Include="apex\process\process_pipe.h" />
+    <ClInclude Include="apex\process\process_process.h" />
+    <ClInclude Include="apex\xml\xml.h" />
+    <ClInclude Include="apex\xml\xml_attr.h" />
+    <ClInclude Include="apex\xml\xml_base_array.h" />
+    <ClInclude Include="apex\xml\xml_data.h" />
+    <ClInclude Include="apex\xml\xml_department.h" />
+    <ClInclude Include="apex\xml\xml_disp_option.h" />
+    <ClInclude Include="apex\xml\xml_document.h" />
+    <ClInclude Include="apex\xml\xml_edit.h" />
+    <ClInclude Include="apex\xml\xml_entity.h" />
+    <ClInclude Include="apex\xml\xml_enum.h" />
+    <ClInclude Include="apex\xml\xml_exportable.h" />
+    <ClInclude Include="apex\xml\xml_importable.h" />
+    <ClInclude Include="apex\xml\xml_input_tree.h" />
+    <ClInclude Include="apex\xml\xml_node.h" />
+    <ClInclude Include="apex\xml\xml_output_tree.h" />
+    <ClInclude Include="apex\xml\xml_parse_info.h" />
+    <ClInclude Include="apex\xml\xml_property_exchange.h" />
+    <ClInclude Include="apex\xml\xml_tree_base.h" />
+    <ClInclude Include="apex\xml\xml_tree_schema.h" />
+    <ClInclude Include="apex\xml\xml_var_exchange.h" />
+    <ClInclude Include="apex\xml\xml_xmlite.h" />
+    <ClInclude Include="filesystem\filesystem.h" />
+    <ClInclude Include="filesystem\file\file.h" />
+    <ClInclude Include="filesystem\file\file_binary_buffer.h" />
+    <ClInclude Include="filesystem\file\file_buffer.h" />
+    <ClInclude Include="filesystem\file\file_buffered_buffer.h" />
+    <ClInclude Include="filesystem\file\file_byte_stream.h" />
+    <ClInclude Include="filesystem\file\file_byte_stream_memory_buffer.h" />
+    <ClInclude Include="filesystem\file\file_c.h" />
+    <ClInclude Include="filesystem\file\file_circular_buffer.h" />
+    <ClInclude Include="filesystem\file\file_composite.h" />
+    <ClInclude Include="filesystem\file\file_dir.h" />
+    <ClInclude Include="filesystem\file\file_exception.h" />
+    <ClInclude Include="filesystem\file\file_file_stream.h" />
+    <ClInclude Include="filesystem\file\file_file_stream_base.h" />
+    <ClInclude Include="filesystem\file\file_folder_watch.h" />
+    <ClInclude Include="filesystem\file\file_memory_buffer.h" />
+    <ClInclude Include="filesystem\file\file_opened.h" />
+    <ClInclude Include="filesystem\file\file_plain_text_stream.h" />
+    <ClInclude Include="filesystem\file\file_plain_text_stream_base.h" />
+    <ClInclude Include="filesystem\file\file_plain_text_stream_memory_buffer.h" />
+    <ClInclude Include="filesystem\file\file_plain_text_stream_string_buffer.h" />
+    <ClInclude Include="filesystem\file\file_reader.h" />
+    <ClInclude Include="filesystem\file\file_seekable.h" />
+    <ClInclude Include="filesystem\file\file_serializable.h" />
+    <ClInclude Include="filesystem\file\file_set.h" />
+    <ClInclude Include="filesystem\file\file_simple_binary_buffer.h" />
+    <ClInclude Include="filesystem\file\file_status.h" />
+    <ClInclude Include="filesystem\file\file_stream.h" />
+    <ClInclude Include="filesystem\file\file_stream2.h" />
+    <ClInclude Include="filesystem\file\file_streambuf.h" />
+    <ClInclude Include="filesystem\file\file_stream_base.h" />
+    <ClInclude Include="filesystem\file\file_stream_buffer.h" />
+    <ClInclude Include="filesystem\file\file_stream_buffer_base.h" />
+    <ClInclude Include="filesystem\file\file_string_buffer.h" />
+    <ClInclude Include="filesystem\file\file_text_buffer.h" />
+    <ClInclude Include="filesystem\file\file_timeout_buffer.h" />
+    <ClInclude Include="filesystem\file\file_transfer_buffer.h" />
+    <ClInclude Include="filesystem\file\file_writer.h" />
+    <ClInclude Include="filesystem\file\file_writer_flush.h" />
+    <ClInclude Include="framework.h" />
+    <ClInclude Include="framework_c.h" />
+    <ClInclude Include="graphics\draw2d\draw2d.h" />
+    <ClInclude Include="graphics\draw2d\draw2d_bitmap.h" />
+    <ClInclude Include="graphics\draw2d\draw2d_brush.h" />
+    <ClInclude Include="graphics\draw2d\draw2d_const.h" />
+    <ClInclude Include="graphics\draw2d\draw2d_dib.h" />
+    <ClInclude Include="graphics\draw2d\draw2d_font.h" />
+    <ClInclude Include="graphics\draw2d\draw2d_fwd.h" />
+    <ClInclude Include="graphics\draw2d\draw2d_graphics.h" />
+    <ClInclude Include="graphics\draw2d\draw2d_igui.h" />
+    <ClInclude Include="graphics\draw2d\draw2d_object.h" />
+    <ClInclude Include="graphics\draw2d\draw2d_palette.h" />
+    <ClInclude Include="graphics\draw2d\draw2d_path.h" />
+    <ClInclude Include="graphics\draw2d\draw2d_pen.h" />
+    <ClInclude Include="graphics\draw2d\draw2d_region.h" />
+    <ClInclude Include="graphics\graphics.h" />
+    <ClInclude Include="graphics\visual\visual.h" />
+    <ClInclude Include="graphics\visual\visual_const.h" />
+    <ClInclude Include="graphics\visual\visual_cursor.h" />
+    <ClInclude Include="graphics\visual\visual_icon.h" />
+    <ClInclude Include="multithreading\multithreading.h" />
+    <ClInclude Include="multithreading\multithreading_condition.h" />
+    <ClInclude Include="multithreading\multithreading_critical_section.h" />
+    <ClInclude Include="multithreading\multithreading_data.h" />
+    <ClInclude Include="multithreading\multithreading_event.h" />
+    <ClInclude Include="multithreading\multithreading_event_base.h" />
+    <ClInclude Include="multithreading\multithreading_event_collection.h" />
+    <ClInclude Include="multithreading\multithreading_file_change_event.h" />
+    <ClInclude Include="multithreading\multithreading_go_thread.h" />
+    <ClInclude Include="multithreading\multithreading_initial_single_lock.h" />
+    <ClInclude Include="multithreading\multithreading_manual_reset_event.h" />
+    <ClInclude Include="multithreading\multithreading_multi_lock.h" />
+    <ClInclude Include="multithreading\multithreading_mutex.h" />
+    <ClInclude Include="multithreading\multithreading_retry_multi_lock.h" />
+    <ClInclude Include="multithreading\multithreading_retry_single_lock.h" />
+    <ClInclude Include="multithreading\multithreading_semaphore.h" />
+    <ClInclude Include="multithreading\multithreading_service_base.h" />
+    <ClInclude Include="multithreading\multithreading_service_status.h" />
+    <ClInclude Include="multithreading\multithreading_set_event_on_exit.h" />
+    <ClInclude Include="multithreading\multithreading_signal_thread.h" />
+    <ClInclude Include="multithreading\multithreading_simple_thread.h" />
+    <ClInclude Include="multithreading\multithreading_single_lock.h" />
+    <ClInclude Include="multithreading\multithreading_socket_event.h" />
+    <ClInclude Include="multithreading\multithreading_synch_index_iterator.h" />
+    <ClInclude Include="multithreading\multithreading_synch_index_ptr_array.h" />
+    <ClInclude Include="multithreading\multithreading_synch_lock.h" />
+    <ClInclude Include="multithreading\multithreading_synch_ptr_array.h" />
+    <ClInclude Include="multithreading\multithreading_sync_object.h" />
+    <ClInclude Include="multithreading\multithreading_thread.h" />
+    <ClInclude Include="multithreading\multithreading_thread_impl.h" />
+    <ClInclude Include="multithreading\multithreading_thread_os.h" />
+    <ClInclude Include="multithreading\multithreading_waitable.h" />
+    <ClInclude Include="multithreading\multithreading_wait_result.h" />
+    <ClInclude Include="multithreading\service\service_plain_service.h" />
+    <ClInclude Include="multithreading\service\service_thread_pool.h" />
+    <ClInclude Include="primitive\api\api.h" />
+    <ClInclude Include="primitive\api\api_rotate.h" />
+    <ClInclude Include="primitive\collection\collection.h" />
+    <ClInclude Include="primitive\collection\collection_array_decl.h" />
+    <ClInclude Include="primitive\collection\collection_attrib_map.h" />
+    <ClInclude Include="primitive\collection\collection_base_2array.h" />
+    <ClInclude Include="primitive\collection\collection_base_enum.h" />
+    <ClInclude Include="primitive\collection\collection_bitset.h" />
+    <ClInclude Include="primitive\collection\collection_bit_array.h" />
+    <ClInclude Include="primitive\collection\collection_comparable_array.h" />
+    <ClInclude Include="primitive\collection\collection_comparable_eq_array.h" />
+    <ClInclude Include="primitive\collection\collection_comparable_eq_list.h" />
+    <ClInclude Include="primitive\collection\collection_comparable_list.h" />
+    <ClInclude Include="primitive\collection\collection_comparable_array.h" />
+    <ClInclude Include="primitive\collection\collection_comparable_raw_array.h" />
+    <ClInclude Include="primitive\collection\collection_decl.h" />
+    <ClInclude Include="primitive\collection\collection_deque.h" />
+    <ClInclude Include="primitive\collection\collection_elements.h" />
+    <ClInclude Include="primitive\collection\collection_fifo_map.h" />
+    <ClInclude Include="primitive\collection\collection_id_array.h" />
+    <ClInclude Include="primitive\collection\collection_int_map.h" />
+    <ClInclude Include="primitive\collection\collection_iterator.h" />
+    <ClInclude Include="primitive\collection\collection_key_sort_array.h" />
+    <ClInclude Include="primitive\collection\collection_papaya_array.h" />
+    <ClInclude Include="primitive\collection\collection_papaya_array_decl.h" />
+    <ClInclude Include="primitive\collection\collection_list.h" />
+    <ClInclude Include="primitive\collection\collection_logic_array.h" />
+    <ClInclude Include="primitive\collection\collection_map.h" />
+    <ClInclude Include="primitive\collection\collection_map_association.h" />
+    <ClInclude Include="primitive\collection\collection_map_to_smart_pointer.h" />
+    <ClInclude Include="primitive\collection\collection_numeric_array.h" />
+    <ClInclude Include="primitive\collection\collection_numeric_array_range.h" />
+    <ClInclude Include="primitive\collection\collection_object_list.h" />
+    <ClInclude Include="primitive\collection\collection_packset.h" />
+    <ClInclude Include="primitive\collection\collection_pair.h" />
+    <ClInclude Include="primitive\collection\collection_pointer_list.h" />
+    <ClInclude Include="primitive\collection\collection_point_array.h" />
+    <ClInclude Include="primitive\collection\collection_array.h" />
+    <ClInclude Include="primitive\collection\collection_priority_queue.h" />
+    <ClInclude Include="primitive\collection\collection_queue.h" />
+    <ClInclude Include="primitive\collection\collection_raw_array_decl.h" />
+    <ClInclude Include="primitive\collection\collection_rect_array.h" />
+    <ClInclude Include="primitive\collection\collection_set.h" />
+    <ClInclude Include="primitive\collection\collection_simple_eq_array.h" />
+    <ClInclude Include="primitive\collection\collection_simple_object_array.h" />
+    <ClInclude Include="primitive\collection\collection_simple_pointer_array.h" />
+    <ClInclude Include="primitive\collection\collection_simple_template.h" />
+    <ClInclude Include="primitive\collection\collection_simple_typed_pointer_array.h" />
+    <ClInclude Include="primitive\collection\collection_smart_pointer_array.h" />
+    <ClInclude Include="primitive\collection\collection_sort.h" />
+    <ClInclude Include="primitive\collection\collection_sort_array.h" />
+    <ClInclude Include="primitive\collection\collection_sort_map.h" />
+    <ClInclude Include="primitive\collection\collection_spreadset.h" />
+    <ClInclude Include="primitive\collection\collection_stack.h" />
+    <ClInclude Include="primitive\collection\collection_strid_map.h" />
+    <ClInclude Include="primitive\collection\collection_stringa.h" />
+    <ClInclude Include="primitive\collection\collection_stringl.h" />
+    <ClInclude Include="primitive\collection\collection_string_array.h" />
+    <ClInclude Include="primitive\collection\collection_string_list.h" />
+    <ClInclude Include="primitive\collection\collection_string_map.h" />
+    <ClInclude Include="primitive\collection\collection_string_sort_array.h" />
+    <ClInclude Include="primitive\collection\collection_string_to_string_map.h" />
+    <ClInclude Include="primitive\collection\collection_template.h" />
+    <ClInclude Include="primitive\collection\collection_typed_pointer_array.h" />
+    <ClInclude Include="primitive\collection\collection_typed_pointer_list.h" />
+    <ClInclude Include="primitive\collection\collection_typed_pointer_map.h" />
+    <ClInclude Include="primitive\collection\collection_typed_ptr_array.h" />
+    <ClInclude Include="primitive\collection\collection_typed_ptr_list.h" />
+    <ClInclude Include="primitive\collection\collection_unique_array.h" />
+    <ClInclude Include="primitive\collection\collection_var_array.h" />
+    <ClInclude Include="primitive\comparison\compare.h" />
+    <ClInclude Include="primitive\comparison\comparison.h" />
+    <ClInclude Include="primitive\comparison\comparison_binary.h" />
+    <ClInclude Include="primitive\comparison\comparison_compare.h" />
+    <ClInclude Include="primitive\comparison\comparison_equals.h" />
+    <ClInclude Include="primitive\comparison\comparison_hash.h" />
+    <ClInclude Include="primitive\comparison\comparison_less.h" />
+    <ClInclude Include="primitive\comparison\comparison_md5.h" />
+    <ClInclude Include="primitive\comparison\comparison_var_strict.h" />
+    <ClInclude Include="primitive\data\data_data.h" />
+    <ClInclude Include="primitive\data\data_data_container.h" />
+    <ClInclude Include="primitive\data\data_data_listener.h" />
+    <ClInclude Include="primitive\data\data_item.h" />
+    <ClInclude Include="primitive\datetime\datetime.h" />
+    <ClInclude Include="primitive\datetime\datetime_duration.h" />
+    <ClInclude Include="primitive\datetime\datetime_mktime.h" />
+    <ClInclude Include="primitive\datetime\datetime_time.h" />
+    <ClInclude Include="primitive\datetime\datetime_value.h" />
+    <ClInclude Include="primitive\geometry\geometry.h" />
+    <ClInclude Include="primitive\geometry\geometry_align.h" />
+    <ClInclude Include="primitive\geometry\geometry_geometry.h" />
+    <ClInclude Include="primitive\geometry\geometry_point.h" />
+    <ClInclude Include="primitive\geometry\geometry_rect.h" />
+    <ClInclude Include="primitive\geometry\geometry_size.h" />
+    <ClInclude Include="primitive\geometry\geometry_types.h" />
+    <ClInclude Include="primitive\math\math_complex.h" />
+    <ClInclude Include="primitive\math\math_count.h" />
+    <ClInclude Include="primitive\math\math_department.h" />
+    <ClInclude Include="primitive\math\math_index.h" />
+    <ClInclude Include="primitive\math\math_math.h" />
+    <ClInclude Include="primitive\math\math_math_rng.h" />
+    <ClInclude Include="primitive\math\math_mkint_c.h" />
+    <ClInclude Include="primitive\math\math_natural.h" />
+    <ClInclude Include="primitive\math\math_number.h" />
+    <ClInclude Include="primitive\math\math_numeric_info.h" />
+    <ClInclude Include="primitive\math\math_scalar.h" />
+    <ClInclude Include="primitive\math\math_scalar_enum.h" />
+    <ClInclude Include="primitive\math\math_static_numeric_info.h" />
+    <ClInclude Include="primitive\application_bias.h" />
+    <ClInclude Include="primitive\bit.h" />
+    <ClInclude Include="primitive\check.h" />
+    <ClInclude Include="primitive\color.h" />
+    <ClInclude Include="primitive\command.h" />
+    <ClInclude Include="primitive\command_line.h" />
+    <ClInclude Include="primitive\command_thread.h" />
+    <ClInclude Include="primitive\create.h" />
+    <ClInclude Include="primitive\edit.h" />
+    <ClInclude Include="primitive\factory.h" />
+    <ClInclude Include="primitive\id.h" />
+    <ClInclude Include="primitive\id_space.h" />
+    <ClInclude Include="primitive\interlocked_long.h" />
+    <ClInclude Include="primitive\interlocked_long_pulse.h" />
+    <ClInclude Include="primitive\job.h" />
+    <ClInclude Include="primitive\logic.h" />
+    <ClInclude Include="primitive\memory.h" />
+    <ClInclude Include="primitive\memory_base.h" />
+    <ClInclude Include="primitive\memory_c.h" />
+    <ClInclude Include="primitive\memory_container.h" />
+    <ClInclude Include="primitive\object.h" />
+    <ClInclude Include="primitive\property.h" />
+    <ClInclude Include="primitive\property_set.h" />
+    <ClInclude Include="primitive\relation_set.h" />
+    <ClInclude Include="primitive\request_interface.h" />
+    <ClInclude Include="primitive\request_signal.h" />
+    <ClInclude Include="primitive\shared_memory.h" />
+    <ClInclude Include="primitive\signal.h" />
+    <ClInclude Include="primitive\type.h" />
+    <ClInclude Include="primitive\var.h" />
+    <ClInclude Include="primitive\var2.h" />
+    <ClInclude Include="primitive\virtual_memory.h" />
+    <ClInclude Include="primitive\str\str.h" />
+    <ClInclude Include="primitive\str\str_base64.h" />
+    <ClInclude Include="primitive\str\str_c.h" />
+    <ClInclude Include="primitive\str\str_ch.h" />
+    <ClInclude Include="primitive\str\str_ch_class.h" />
+    <ClInclude Include="primitive\str\str_composite.h" />
+    <ClInclude Include="primitive\str\str_format.h" />
+    <ClInclude Include="primitive\str\str_from_integer.h" />
+    <ClInclude Include="primitive\str\str_hex.h" />
+    <ClInclude Include="primitive\str\str_interface.h" />
+    <ClInclude Include="primitive\str\str_international.h" />
+    <ClInclude Include="primitive\str\str_international2.h" />
+    <ClInclude Include="primitive\str\str_international_locale_schema.h" />
+    <ClInclude Include="primitive\str\str_istring.h" />
+    <ClInclude Include="primitive\str\str_parse.h" />
+    <ClInclude Include="primitive\str\str_simple.h" />
+    <ClInclude Include="primitive\str\str_stdstring.h" />
+    <ClInclude Include="primitive\str\str_str.h" />
+    <ClInclude Include="primitive\str\str_str1.h" />
+    <ClInclude Include="primitive\str\str_str2.h" />
+    <ClInclude Include="primitive\str\str_string.h" />
+    <ClInclude Include="primitive\str\str_stringtow.h" />
+    <ClInclude Include="primitive\str\str_tokenizer.h" />
+    <ClInclude Include="primitive\str\str_to_integer.h" />
+    <ClInclude Include="primitive\str\str_wstring.h" />
+    <ClInclude Include="primitive\str\str_wtostring.h" />
+    <ClInclude Include="primitive\str\x\x_charcategory.h" />
+    <ClInclude Include="primitive\str\x\x_charcategory2.h" />
+    <ClInclude Include="primitive\str\x\x_charcategory_names.h" />
+    <ClInclude Include="primitive\str\x\x_defines.h" />
+    <ClInclude Include="primitive\str\x\x_encodings.h" />
+    <ClInclude Include="primitive\str\x\x_tables.h" />
+    <ClInclude Include="user\colorertake5\colorertake5.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_base_editor.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_colorertake5.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_cregexp.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_default_error_handler.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_editor_listener.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_error_handler.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_error_handler_writer.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_exception.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_features.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_file_input_source.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_file_type.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_file_type_impl.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_file_writer.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_hrc_parser.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_hrc_parser_helpers.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_hrc_parser_impl.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_line_region.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_line_regions_compact_support.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_line_regions_support.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_line_source.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_logging.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_memory_chunks.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_memory_file.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_outliner.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_outline_item.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_pair_match.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_parsed_line_writer.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_parser_factory.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_parser_factory_exception.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_region.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_region_define.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_region_handler.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_region_mapper.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_region_mapper_impl.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_scheme.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_shared_input_source.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_string_buffer.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_styled_hrd_mapper.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_styled_region.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_text_console_viewer.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_text_hrd_mapper.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_text_lines.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_text_parser.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_text_parser_helpers.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_text_parser_impl.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_text_region.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_Writer.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_xmldom.h" />
+    <ClInclude Include="user\simple\message_box.h" />
+    <ClInclude Include="user\user.h" />
+    <ClInclude Include="user\user\user_frame.h" />
+    <ClInclude Include="user\user\user_primitive.h" />
+    <ClInclude Include="version.config.h" />
+    <ClInclude Include="version.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="apex\apex\aura_gudo_application.inl" />
+    <None Include="apex.def" />
+    <None Include="apex\apex\apex.inl" />
+    <None Include="apex\apex\aura_system_factory.inl" />
+    <None Include="apex\apex\aura_system_id.inl" />
+    <None Include="apex\apex\aura_system_object.inl" />
+    <None Include="apex\apex\aura_system_var.inl" />
+    <None Include="apex\apex\aura_system_smart_pointer.inl" />
+    <None Include="apex\apex\aura_system_xml.inl" />
+    <None Include="apex\message\message.inl" />
+    <None Include="multithreading\multithreading.inl" />
+    <None Include="primitive\collection\collection.inl" />
+    <None Include="primitive\collection\collection_array_impl.inl" />
+    <None Include="primitive\collection\collection_map_impl.inl" />
+    <None Include="primitive\collection\collection_raw_array_impl.inl" />
+    <None Include="primitive\factory_impl.inl" />
+    <None Include="primitive\str\str.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="apex\apex\aaa_want_to_remove_user_check_interface.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\apex.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_action_context.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_allocate_mid_big.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_allocate_processor_cache_oriented.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_allocate_system_heap.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_allocate_x86_cache_oriented.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_application.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_app_core.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_app_launcher.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_argcargv.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_assert.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_assert_running_task.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_checked.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_command.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_command_msg.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_command_target.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_command_target_interface.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_command_ui.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_command_ui_test.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_console_window.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_conv.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_core_os.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_cpu_architecture.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_create_context.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_cregexp.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_cregexp_util.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_debug.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_department.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_department_container.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_draw_context.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_draw_interface.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_element.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_file_watcher.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_file_watcher_impl.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_file_watcher_listener_thread.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_file_watcher_thread.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_fixed_alloc.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_flags.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_gudo.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_heap.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_id_pool.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_international.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_ipc.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_ipi.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_library.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_live_object.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_live_signal.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_local_memory_map.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_log.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_machine_event.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_machine_event_central.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_machine_event_data.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_math.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_message_queue.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_microtimer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_mktime.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_muldiv64.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_net.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_new.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_plex.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_plex_heap.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_printer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_printf.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_profiler.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_progress.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_savings.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_session.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_shell_launcher.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_speaker.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_sprintf.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_static_start.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_str_context.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_system.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_template.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_timer_array.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_timer_item.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\aura_trace.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\apex\_aura_aura_aura.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\node\android\android_file_system.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\android\android.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\android\android_base.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\android\android_base_file.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\android\android_c.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\android\android_cross_win_file.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\android\android_cross_win_gdi.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\android\android_file_watcher.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\android\android_launcher.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\android\android_library.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\android\android_locale.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\android\android_lock.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\android\android_MessageBoxA.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\android\android_message_loop.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\android\android_multithreading.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\android\android_process.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\android\android_process_pid.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\android\android_simple_shell_launcher.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\android\android_small_ipca_channel.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\android\android_window_android.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\android\android_window_impl.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\android\android_win_base.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\android\_android_os.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\ansios\ansios_base_file.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\ansios\ansios_cross_win.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\ansios\ansios_cross_windows_user.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\ansios\ansios_cross_win_file.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\ansios\ansios_file_std.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\ansios\ansios_local_memory_map.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\ansios\ansios_message_loop.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\ansios\ansios_multithreading.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\ansios\_ansios_os.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\cross\windows\cross_windows_crt.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\cross\windows\cross_windows_crt_debug.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\cross\windows\cross_windows_datetime.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\cross\windows\cross_windows_error.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\cross\windows\cross_windows_locale.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\cross\windows\cross_windows_nt.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\cross\windows\cross_windows_shared_memory.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\cross\windows\cross_windows_threading.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\cross\windows\cross_windows_user.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\cross\windows\cross_windows_windows.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\os\cross\windows\_cross_windows.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="apex\_aura_aura.cpp" />
+    <ClCompile Include="filesystem\filesystem\_filesystem.cpp" />
+    <ClCompile Include="filesystem\file\file.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_binary_buffer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_buffered_buffer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_byte_istream.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_byte_istream_binary_buffer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_byte_ostream.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_byte_ostream_binary_buffer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_byte_stream.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_byte_stream_memory_buffer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_c.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_circular_buffer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_composite.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_dir.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_dir2.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_edit_buffer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_exception.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_file_istream.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_file_ostream.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_file_stream.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_file_stream_base.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_folder_watch.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_html_buffer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_istream.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_memory_buffer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_ostream.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_path.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_plain_text_istream.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_plain_text_ostream.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_plain_text_ostream_string_buffer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_plain_text_stream.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_plain_text_stream_base.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_plain_text_stream_memory_buffer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_plain_text_stream_string_buffer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_reader.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_seekable.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_serializable.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_set.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_simple_binary_buffer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_stream.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_stream2.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_streambuf.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_stream_base.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_stream_buffer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_stream_buffer_base.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_string_buffer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_text_buffer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_timeout_buffer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_transfer_buffer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_writer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_writer_flush.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\_file.cpp" />
+    <ClCompile Include="framework.cpp" />
+    <ClCompile Include="graphics\draw2d\_draw2d.cpp" />
+    <ClCompile Include="graphics\visual\visual_cursor.cpp" />
+    <ClCompile Include="graphics\visual\visual_icon.cpp" />
+    <ClCompile Include="multithreading\service\service_plain_service.cpp" />
+    <ClCompile Include="multithreading\_multithreading.cpp" />
+    <ClCompile Include="net\net_url.cpp" />
+    <ClCompile Include="primitive\str\str_ch.cpp" />
+    <ClCompile Include="primitive\str\str_ch_class.cpp" />
+    <ClCompile Include="primitive\_primitive.cpp" />
+    <ClCompile Include="teste.cpp" />
+    <ClCompile Include="user\colorertake5\_colorertake5.cpp" />
+    <ClCompile Include="user\simple\message_box.cpp" />
+    <ClCompile Include="user\user\user_frame.cpp" />
+    <ClCompile Include="user\user\user_primitive.cpp" />
+    <ClCompile Include="version.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{a2c73358-c840-4509-9cde-06cb1cceb901}</ProjectGuid>
+    <Keyword>Android</Keyword>
+    <ApplicationType>Android</ApplicationType>
+    <ApplicationTypeRevision>1.0</ApplicationTypeRevision>
+    <ProjectName>apex</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>Clang_3_4</PlatformToolset>
+    <UseOfStl>c++_shared</UseOfStl>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>Clang_3_4</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>Clang_3_4</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>Clang_3_4</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <OutDir>$(SolutionDir)..\..\..\stage\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(TimeDir)$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <ExceptionHandling>Enabled</ExceptionHandling>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(SolutionDir)../../;$(SolutionDir)../../app;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../..;$(ProjectDir)..;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+</Project>

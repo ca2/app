@@ -543,8 +543,8 @@ namespace android
       bool CreateDlg(const char * lpszTemplateName,::user::interaction * pParentWnd);
 
 
-      //CLASS_DECL_BASE friend LRESULT CALLBACK __send_message_hook(i32,WPARAM,LPARAM);
-      //CLASS_DECL_BASE friend LRESULT CALLBACK __cbt_filter_hook(i32,WPARAM,LPARAM);
+      //CLASS_DECL_AURA friend LRESULT CALLBACK __send_message_hook(i32,WPARAM,LPARAM);
+      //CLASS_DECL_AURA friend LRESULT CALLBACK __cbt_filter_hook(i32,WPARAM,LPARAM);
 
       // standard message implementation
       LRESULT OnNTCtlColor(WPARAM wParam,LPARAM lParam);

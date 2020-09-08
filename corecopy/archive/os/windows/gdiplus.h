@@ -11,7 +11,7 @@
 
 #include <gdiplus.h>
 
-#define new AURA_NEW
+#define new ACME_NEW
 
 #undef min
 #undef max

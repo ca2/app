@@ -122,7 +122,7 @@ namespace draw2d_direct2d
 #include "graphics.h"
 
 
-#define new AURA_NEW
+#define new ACME_NEW
 
 
 inline D2D1_COLOR_F * copy(D2D1_COLOR_F * pcolorTarget, const ::color * pcolor)

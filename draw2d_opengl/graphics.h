@@ -570,6 +570,6 @@ namespace draw2d_opengl
 } // namespace draw2d_opengl
 
 
-#define new AURA_NEW
+#define new ACME_NEW
 
 

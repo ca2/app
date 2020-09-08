@@ -5,7 +5,7 @@
 //{
 //
 //
-//   class CLASS_DECL_BASE impact_bitmap :
+//   class CLASS_DECL_AURA impact_bitmap :
 //      public window_graphics,
 //      virtual public object
 //   {

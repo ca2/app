@@ -1,7 +1,7 @@
 #pragma once
 
 
-using id_array = ::comparable_array < id >;
+
 
 #include "aura/primitive/collection/runnable_array.h"
 

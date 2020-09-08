@@ -4,6 +4,12 @@
 enum enum_procedure : ::i32;
 enum enum_callback : ::i32;
 
+namespace user
+{
+
+   class primitive;
+
+}
 
 class CLASS_DECL_AURA object :
    virtual public context_object
@@ -192,7 +198,7 @@ public:
    }
 
 
-   virtual ::user::interaction* get_user_interaction_host();
+   virtual ::user::primitive* get_user_interaction_host();
    
 
    virtual void dev_log(string str) const;

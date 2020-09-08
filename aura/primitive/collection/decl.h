@@ -799,7 +799,7 @@ namespace allocator
 } // namespace allocator
 
 
-#define new AURA_NEW
+#define new ACME_NEW
 
 
 #include "array_base.h"

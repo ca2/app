@@ -6257,7 +6257,7 @@ MC_COLOR_TEMPERATURE kelvin_mc_color(DWORD kelvin)
 
 #ifdef WINDOWS
 #undef new
-#define new AURA_NEW
+#define new ACME_NEW
 #endif
 
 #ifdef LINUX

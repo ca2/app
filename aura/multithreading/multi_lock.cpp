@@ -6,7 +6,7 @@
 
 #undef new
 
-#define new AURA_NEW
+#define new ACME_NEW
 
 multi_lock::multi_lock(const sync_array & synca,bool bInitialLock)
 {

@@ -1,0 +1,10 @@
+LIBRARY  "acme"
+
+
+EXPORTS
+o_debug_string
+defer_ace_init
+defer_ace_term
+make_path
+
+

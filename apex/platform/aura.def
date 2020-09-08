@@ -1,0 +1,15 @@
+﻿LIBRARY  "apex"
+
+
+EXPORTS
+o_debug_string
+defer_aura_init
+defer_aura_term
+waveout_open
+waveout_start
+waveout_write
+waveout_stop
+waveout_close
+make_path
+
+

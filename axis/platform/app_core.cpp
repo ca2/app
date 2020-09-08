@@ -1022,7 +1022,7 @@ struct heap_test_struct :
 };
 
 
-#define new AURA_NEW
+#define new ACME_NEW
 
 
 string_array get_c_args_from_string(const char * psz)

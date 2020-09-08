@@ -1613,7 +1613,7 @@ return TRUE;
    //   return nullptr;
    //}
 
-   ///* trans oswindow CLASS_DECL_BASE __get_parent_owner(::user::interaction * hWnd)
+   ///* trans oswindow CLASS_DECL_AURA __get_parent_owner(::user::interaction * hWnd)
    //{
    //// check for permanent-owned interaction_impl first
    //::user::interaction_impl * pWnd = ::uwp::interaction_impl::FromHandlePermanent(hWnd);
@@ -5103,7 +5103,7 @@ ExitModal:
 
 #ifdef WINDOWS_DESKTOP
 
-   CLASS_DECL_BASE LRESULT __call_window_procedure(::user::interaction * pinteraction, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam)
+   CLASS_DECL_AURA LRESULT __call_window_procedure(::user::interaction * pinteraction, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam)
    {
 
 
@@ -5416,14 +5416,14 @@ LRESULT CALLBACK __window_procedure(oswindow hWnd, UINT nMsg, WPARAM wParam, LPA
 }
 
 // always indirectly accessed via __get_window_procedure
-WNDPROC CLASS_DECL_BASE __get_window_procedure()
+WNDPROC CLASS_DECL_AURA __get_window_procedure()
 {
    return __get_module_state()->m_pfn_window_procedure;
 }
 /////////////////////////////////////////////////////////////////////////////
 // Special helpers for certain windows messages
 
-__STATIC void CLASS_DECL_BASE __pre_init_dialog(
+__STATIC void CLASS_DECL_AURA __pre_init_dialog(
 ::user::interaction * pWnd, LPRECT lpRectOld, u32* pdwStyleOld)
 {
    ASSERT(lpRectOld != nullptr);
@@ -5433,7 +5433,7 @@ __STATIC void CLASS_DECL_BASE __pre_init_dialog(
    *pdwStyleOld = WIN_WINDOW(pWnd)->GetStyle();
 }
 
-__STATIC void CLASS_DECL_BASE __post_init_dialog(
+__STATIC void CLASS_DECL_AURA __post_init_dialog(
 ::user::interaction * pWnd, const RECT& rectOld, u32 dwStyleOld)
 {
    // must be hidden to start with
@@ -5464,19 +5464,19 @@ __STATIC void CLASS_DECL_BASE __post_init_dialog(
 
 
 
-CLASS_DECL_BASE void hook_window_create(::user::interaction * pWnd)
+CLASS_DECL_AURA void hook_window_create(::user::interaction * pWnd)
 {
 
 }
 
-CLASS_DECL_BASE bool unhook_window_create()
+CLASS_DECL_AURA bool unhook_window_create()
 {
    return TRUE;
 }
 
 
 
-CLASS_DECL_BASE const char * __register_window_class(UINT nClassStyle,
+CLASS_DECL_AURA const char * __register_window_class(UINT nClassStyle,
       HCURSOR hCursor, HBRUSH hbrBackground, HICON hIcon)
 {
    // Returns a temporary string name for the class
@@ -5530,7 +5530,7 @@ CLASS_DECL_BASE const char * __register_window_class(UINT nClassStyle,
 
 
 
-__STATIC void CLASS_DECL_BASE
+__STATIC void CLASS_DECL_AURA
 __handle_activate(::user::interaction_impl * pWnd, WPARAM nState, ::user::interaction_impl * pWndOther)
 {
    ASSERT(pWnd != nullptr);
@@ -5559,7 +5559,7 @@ __handle_activate(::user::interaction_impl * pWnd, WPARAM nState, ::user::intera
    }
 }
 
-__STATIC bool CLASS_DECL_BASE
+__STATIC bool CLASS_DECL_AURA
 __handle_set_cursor(::user::interaction_impl * pWnd, UINT nHitTest, UINT nMsg)
 {
    if (nHitTest == HTERROR &&
@@ -5585,7 +5585,7 @@ __handle_set_cursor(::user::interaction_impl * pWnd, UINT nHitTest, UINT nMsg)
 /////////////////////////////////////////////////////////////////////////////
 // Standard init called by WinMain
 
-__STATIC bool CLASS_DECL_BASE __register_with_icon(WNDCLASS* pWndCls,
+__STATIC bool CLASS_DECL_AURA __register_with_icon(WNDCLASS* pWndCls,
       const char * lpszClassName, UINT nIDIcon)
 {
    pWndCls->lpszClassName = lpszClassName;
@@ -5594,7 +5594,7 @@ __STATIC bool CLASS_DECL_BASE __register_with_icon(WNDCLASS* pWndCls,
 }
 
 
-bool CLASS_DECL_BASE __end_defer_register_class(LONG fToRegisterParam, const char ** ppszClass)
+bool CLASS_DECL_AURA __end_defer_register_class(LONG fToRegisterParam, const char ** ppszClass)
 {
    // mask off all classes that are already registered
    __MODULE_STATE* pModuleState = __get_module_state();
@@ -5804,7 +5804,7 @@ __activation_window_procedure(oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lP
 // Additional helpers for WNDCLASS init
 
 // like RegisterClass, except will automatically call UnregisterClass
-bool CLASS_DECL_BASE __register_class(WNDCLASS* lpWndClass)
+bool CLASS_DECL_AURA __register_class(WNDCLASS* lpWndClass)
 {
    WNDCLASS wndcls;
    if (GetClassInfo(lpWndClass->hInstance, lpWndClass->lpszClassName,

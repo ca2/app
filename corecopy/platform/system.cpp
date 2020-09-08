@@ -6395,7 +6395,7 @@ CLASS_DECL_CORE bool __rich_text_initialize();
 
 #ifdef WINDOWS
 #undef new
-#define new AURA_NEW
+#define new ACME_NEW
 #endif
 
 #ifdef LINUX

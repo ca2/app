@@ -2659,7 +2659,7 @@ namespace draw2d_opengl
 //
 
 
-#define new AURA_NEW
+#define new ACME_NEW
 
    void image::map(bool bApplyTransform) const
    {

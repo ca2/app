@@ -5,7 +5,7 @@ namespace windows
 {
 
 
-   class CLASS_DECL_BASE print_job :
+   class CLASS_DECL_AURA print_job :
       virtual public ::user::print_task
    {
    public:

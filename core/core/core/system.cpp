@@ -105,7 +105,7 @@ CLASS_DECL_CORE bool __rich_text_initialize(::aura::system * psystem);
 
 #ifdef WINDOWS
 #undef new
-#define new AURA_NEW
+#define new ACME_NEW
 #endif
 
 #ifdef LINUX

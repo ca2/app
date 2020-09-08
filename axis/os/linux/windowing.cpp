@@ -16,7 +16,7 @@
 #include <X11/extensions/XInput2.h>
 #include <X11/XKBlib.h>
 
-#define new AURA_NEW
+#define new ACME_NEW
 
 ::point g_pointX11Cursor;
 //::tick g_tickLastMouseMove;

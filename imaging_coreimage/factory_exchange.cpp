@@ -5,7 +5,7 @@
 //{
 //
 //
-//#define new AURA_NEW
+//#define new ACME_NEW
 //
 //
 //   factory_exchange::factory_exchange()

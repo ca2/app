@@ -570,7 +570,7 @@ namespace user
 #include "core/user/netuser/_.h"
 
 
-#define new AURA_NEW
+#define new ACME_NEW
 
 
 #include "form_mesh.h"

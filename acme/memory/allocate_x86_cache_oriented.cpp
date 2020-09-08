@@ -240,6 +240,6 @@ CLASS_DECL_ACME void x86_cache_oriented_memory_reset()
 
 }
 
-#define new AURA_NEW
+#define new ACME_NEW
 
 

@@ -4,7 +4,7 @@
 #ifdef WINDOWS_DESKTOP
 #include <gdiplus.h>
 #endif
-#define new AURA_NEW
+#define new ACME_NEW
 
 
 template < typename BASE_TYPE, typename SIZE_BASE_TYPE, typename RECT_BASE_TYPE >

@@ -1292,7 +1292,6 @@ class base_enum;
 class form_property_set;
 
 
-<<<<<<< HEAD
 //namespace user
 //{
 //
@@ -1353,48 +1352,48 @@ class form_property_set;
 //
 //
 //} // namespace user
-=======
-namespace user
-{
+//=======
+//namespace user
+//{
+//
+//
+//   class create;
+//   class control_event;
+//   class item;
+//   class check;
+//   class create_struct;
+//   class command;
+//   class interaction_impl;
+//   class primitive;
+//   class frame;
+//   class printer;
+//   class primitive;
+//   class interaction;
+//   class interaction_layout;
+//   class form;
+//   class form_callback;
+//   class menu_interaction;
+//   class toolbar;
+//   class split_layout;
+//   class style_rect;
+//   class scroll_bar;
+//   class scroll_data;
+//   class style;
+//
+//   using style_pointer = __pointer(style);
+//
+//   using eflag = flags < enum_flag >;
+//
+//
+//#if defined(_UWP) || defined(APPLE_IOS) || defined(ANDROID)
+//
+//   class native_window_initialize;
+//
+//#endif
+//
+//
+//} // namespace user
 
-
-   class create;
-   class control_event;
-   class item;
-   class check;
-   class create_struct;
-   class command;
-   class interaction_impl;
-   class primitive;
-   class frame;
-   class printer;
-   class primitive;
-   class interaction;
-   class interaction_layout;
-   class form;
-   class form_callback;
-   class menu_interaction;
-   class toolbar;
-   class split_layout;
-   class style_rect;
-   class scroll_bar;
-   class scroll_data;
-   class style;
-
-   using style_pointer = __pointer(style);
-
-   using eflag = flags < enum_flag >;
-
-
-#if defined(_UWP) || defined(APPLE_IOS) || defined(ANDROID)
-
-   class native_window_initialize;
-
-#endif
-
-
-} // namespace user
->>>>>>> origin/basis
 
 
 namespace aura
@@ -2544,7 +2543,7 @@ using emessagebox = cflag < enum_message_box >;
 
 
 
-#include "aura/primitive/primitive/generic_object.h"
+#include "aura/primitive/primitive/generic.h"
 #include "aura/primitive/primitive/task.h"
 #include "aura/primitive/primitive/compare_pred.h"
 

@@ -1,7 +1,7 @@
 #pragma once
 
 
-#define new AURA_NEW
+#define new ACME_NEW
 
 
 template < typename PAIR, const int DEFAULT_HASH_TABLE_SIZE = 17 >

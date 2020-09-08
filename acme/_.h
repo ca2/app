@@ -13,11 +13,11 @@
 #include "platform/_.h"
 #include "include/_setup.h"
 
-#if defined(_AURA_LIBRARY)
-#define CLASS_DECL_AURA  CLASS_DECL_EXPORT
+#if defined(_ACME_LIBRARY)
+#define CLASS_DECL_ACME  CLASS_DECL_EXPORT
 #define LIBIDN_BUILDING
 #else
-#define CLASS_DECL_AURA  CLASS_DECL_IMPORT
+#define CLASS_DECL_ACME  CLASS_DECL_IMPORT
 #endif
 
 
@@ -37,7 +37,7 @@
 #define NNDEBUG
 #endif
 
-#define CA2_AURA
+#define CA2_ACME
 
 #define __class(EXPORT, DERIVED, ...) \
    using DERIVED##_t =  __VA_ARGS__; \

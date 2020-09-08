@@ -4,7 +4,7 @@
 #ifdef WINDOWS_DESKTOP
 #include <gdiplus.h>
 #endif
-#define new AURA_NEW
+#define new ACME_NEW
 #ifdef WINDOWS
 #include <D2d1.h>
 #endif

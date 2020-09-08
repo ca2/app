@@ -1,6 +1,6 @@
 
 
-#if !defined(NO_AURA_MEMORY_MANAGEMENT)
+#if !defined(NO_ACME_MEMORY_MANAGEMENT)
 
 #undef new
 
@@ -42,7 +42,7 @@ void MEMORY_DECL operator delete[](void * p, i32 nType, const char * pszFileName
 #endif
 
 
-#define new AURA_NEW
+#define new ACME_NEW
 
 
 

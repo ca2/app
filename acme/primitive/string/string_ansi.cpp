@@ -711,7 +711,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //{
 //   new (pstring) class string;
 //}
-//#define new AURA_NEW
+//#define new ACME_NEW
 //
 ////string::string(const string & strSrc,strsize -1,strsize len) :
 ////   string(strSrc.Mid(-1,len),str::GetDefaultManager())

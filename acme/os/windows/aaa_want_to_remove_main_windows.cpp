@@ -42,21 +42,21 @@
 //
 ////#ifdef ACID_APP
 ////
-////      PFN_NEW_AURA_APPLICATION pfnNewAuraApplication = &get_acid_app;
+////      PFN_NEW_ACME_APPLICATION pfnNewAuraApplication = &get_acid_app;
 ////
 ////#else
 ////
-////      PFN_NEW_AURA_APPLICATION pfnNewAuraApplication = (PFN_NEW_AURA_APPLICATION) ::GetProcAddress(hinstance, "new_aura_application");;
+////      PFN_NEW_ACME_APPLICATION pfnNewAuraApplication = (PFN_NEW_ACME_APPLICATION) ::GetProcAddress(hinstance, "new_aura_application");;
 ////
 ////#endif
 //
 ////#ifdef ACID_LIBRARY
 ////
-////      PFN_NEW_AURA_LIBRARY pfnNewLibrary = &get_acid_library;
+////      PFN_NEW_ACME_LIBRARY pfnNewLibrary = &get_acid_library;
 ////
 ////#else
 ////
-////      PFN_NEW_AURA_LIBRARY pfnNewLibrary = nullptr;
+////      PFN_NEW_ACME_LIBRARY pfnNewLibrary = nullptr;
 ////
 ////#endif
 //

@@ -3,8 +3,8 @@
 
 
 extern "C"
-typedef  void  AURA_MAIN();
-typedef AURA_MAIN* PFN_AURA_MAIN;
+typedef  void  ACME_MAIN();
+typedef ACME_MAIN* PFN_ACME_MAIN;
 
 
 int main_posix(int argc, char* argv[])
@@ -14,7 +14,7 @@ int main_posix(int argc, char* argv[])
 
    HMODULE hmodule = ::GetModuleHandle(NULL);
 
-   PFN_AURA_MAIN pauramain = (PFN_AURA_MAIN) ::GetProcAddress(hmodule, "aura_main");
+   PFN_ACME_MAIN pauramain = (PFN_ACME_MAIN) ::GetProcAddress(hmodule, "aura_main");
 
    if (!pauramain)
    {

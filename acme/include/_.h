@@ -75,9 +75,9 @@ extern CLASS_DECL_ACME __LPFN_MAIN_DEFERRED_RUN __main_deferred_run;
 
 
 #if defined _M_IX86
-#define _AURA_LINKER_SYMBOL_PREFIX "_"
+#define _ACME_LINKER_SYMBOL_PREFIX "_"
 #elif defined _M_X64 || defined _M_ARM || defined _M_ARM64
-#define _AURA_LINKER_SYMBOL_PREFIX ""
+#define _ACME_LINKER_SYMBOL_PREFIX ""
 #else
 #error Unsupported architecture
 #endif
@@ -106,13 +106,13 @@ extern CLASS_DECL_ACME __LPFN_MAIN_DEFERRED_RUN __main_deferred_run;
 #endif
 
 
-#if defined(DEBUG) && !defined(NO_AURA_MEMORY_MANAGEMENT)
-#define AURA_NEW new(__FILE__, __LINE__)
+#if defined(DEBUG) && !defined(NO_ACME_MEMORY_MANAGEMENT)
+#define ACME_NEW new(__FILE__, __LINE__)
 #else
-#define AURA_NEW new
+#define ACME_NEW new
 #endif
 
-#define new AURA_NEW
+#define new ACME_NEW
 
 
 #include "acme/platform/obj_ref_dbg.h"
@@ -924,14 +924,14 @@ class generic;
 //
 //
 //extern "C"
-//CLASS_DECL_ACME void register_get_new_acme_library(const char* psz, PFN_NEW_AURA_LIBRARY pfnNewAuraLibrary);
+//CLASS_DECL_ACME void register_get_new_acme_library(const char* psz, PFN_NEW_ACME_LIBRARY pfnNewAuraLibrary);
 
 
-#define DECLARE_NEW_AURA_LIBRARY(X) extern "C" \
+#define DECLARE_NEW_ACME_LIBRARY(X) extern "C" \
 ::acme::library * X##_new_acme_library()
 
 
-#define REGISTER_GET_NEW_AURA_LIBRARY(X) register_get_new_acme_library(#X, &X##_get_new_library)
+#define REGISTER_GET_NEW_ACME_LIBRARY(X) register_get_new_acme_library(#X, &X##_get_new_library)
 
 
 namespace install
@@ -2125,8 +2125,8 @@ CLASS_DECL_ACME bool __node_acme_pre_term();
 CLASS_DECL_ACME bool __node_acme_pos_term();
 
 
-//extern "C" CLASS_DECL_ACME PFN_NEW_AURA_LIBRARY get_get_new_acme_library(const char * psz);
-//extern "C" CLASS_DECL_ACME void register_get_new_acme_library(const char* psz, PFN_NEW_AURA_LIBRARY pfnNewAuraLibrary);
+//extern "C" CLASS_DECL_ACME PFN_NEW_ACME_LIBRARY get_get_new_acme_library(const char * psz);
+//extern "C" CLASS_DECL_ACME void register_get_new_acme_library(const char* psz, PFN_NEW_ACME_LIBRARY pfnNewAuraLibrary);
 //
 //
 //CLASS_DECL_ACME ::acme::library & get_library(const char* psz);
@@ -3352,7 +3352,7 @@ namespace xml
 
 
 
-#define new AURA_NEW
+#define new ACME_NEW
 
 
 

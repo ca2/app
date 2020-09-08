@@ -138,7 +138,7 @@ struct ConstructDestruct
    {
 #undef new
       new (pObject) TYPE;
-#define new AURA_NEW
+#define new ACME_NEW
    }
    static void Destruct(TYPE * pObject)
    {

@@ -201,6 +201,9 @@
     <Filter Include="Header Files\os\windows_common">
       <UniqueIdentifier>{52ca7eb0-c1c7-4e43-abec-e9b5ba44a8c5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\inline\NewFilter1">
+      <UniqueIdentifier>{1f1a5d9c-187c-42b3-a17a-dd8e896a1c10}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -1685,9 +1688,6 @@
     <ClInclude Include="inline\application.h">
       <Filter>Header Files\inline</Filter>
     </ClInclude>
-    <ClInclude Include="inline\application_common.h">
-      <Filter>Header Files\inline</Filter>
-    </ClInclude>
     <ClInclude Include="inline\_app_impl1.h">
       <Filter>Header Files\inline</Filter>
     </ClInclude>
@@ -2251,6 +2251,9 @@
     </ClInclude>
     <ClInclude Include="os\windows_common\variant.h">
       <Filter>Header Files\os\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\application_common.h">
+      <Filter>Header Files\inline</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

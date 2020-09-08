@@ -1216,7 +1216,7 @@ Type & string_array_base < Type,RawType >::insert_empty(::index nIndex)
       {
 #undef new
          new (this->ptr_at(nIndex)) RawType();
-#define new AURA_NEW
+#define new ACME_NEW
 
       }
 

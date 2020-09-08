@@ -5,7 +5,7 @@
 #include <GdiPlus.h>
 #include <Gdipluseffects.h>
 
-#define new AURA_NEW
+#define new ACME_NEW
 
 #include <wincrypt.h>
 

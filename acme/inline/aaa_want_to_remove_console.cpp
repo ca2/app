@@ -45,21 +45,21 @@ console::console(int argc, wchar_t* argv[])
 
 #ifdef ACID_APP
 
-   PFN_NEW_AURA_APPLICATION pfnNewAuraApplication = &new_aura_application;
+   PFN_NEW_ACME_APPLICATION pfnNewAuraApplication = &new_aura_application;
 
 #else
 
-   PFN_NEW_AURA_APPLICATION pfnNewAuraApplication = nullptr;
+   PFN_NEW_ACME_APPLICATION pfnNewAuraApplication = nullptr;
 
 #endif
 
 #ifdef ACID_LIBRARY
 
-   PFN_NEW_AURA_LIBRARY pfnNewLibrary = &new_aura_library;
+   PFN_NEW_ACME_LIBRARY pfnNewLibrary = &new_aura_library;
 
 #else
 
-   PFN_NEW_AURA_LIBRARY pfnNewLibrary = nullptr;
+   PFN_NEW_ACME_LIBRARY pfnNewLibrary = nullptr;
 
 #endif
 
@@ -124,21 +124,21 @@ console::console(int argc, char * argv[])
 
 #ifdef ACID_APP
 
-   PFN_NEW_AURA_APPLICATION pfnNewAuraApplication = &new_aura_application;
+   PFN_NEW_ACME_APPLICATION pfnNewAuraApplication = &new_aura_application;
 
 #else
 
-   PFN_NEW_AURA_APPLICATION pfnNewAuraApplication = nullptr;
+   PFN_NEW_ACME_APPLICATION pfnNewAuraApplication = nullptr;
 
 #endif
 
 #ifdef ACID_LIBRARY
 
-   PFN_NEW_AURA_LIBRARY pfnNewLibrary = &new_aura_library;
+   PFN_NEW_ACME_LIBRARY pfnNewLibrary = &new_aura_library;
 
 #else
 
-   PFN_NEW_AURA_LIBRARY pfnNewLibrary = nullptr;
+   PFN_NEW_ACME_LIBRARY pfnNewLibrary = nullptr;
 
 #endif
 

@@ -40,7 +40,7 @@
 #ifndef NON_CONVERGING_LANG_IS_TERMINAL_LANG
 
 
-#define AURA_LANGUAGE
+#define ACME_LANGUAGE
 
 
 #endif
@@ -50,7 +50,7 @@
 
 
 
-#ifdef AURA_LANGUAGE
+#ifdef ACME_LANGUAGE
 
 
 #if defined(__cplusplus)

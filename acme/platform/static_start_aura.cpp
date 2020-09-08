@@ -11,7 +11,7 @@ namespace acme
 
 //#pragma comment (linker, "/export:_g_acme")
 
-// _AURA_LINKER_FORCE_INCLUDE(g_acme);
+// _ACME_LINKER_FORCE_INCLUDE(g_acme);
 
 
 

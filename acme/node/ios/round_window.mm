@@ -13,9 +13,9 @@
 #import "acme/os/apple/NSObject+DDExtensions.h"
 
 
-#ifdef AURA_LANGUAGE
+#ifdef ACME_LANGUAGE
 
-#error "AURA_LANGUAGE?!?!?!!!???"
+#error "ACME_LANGUAGE?!?!?!!!???"
 
 #endif
 

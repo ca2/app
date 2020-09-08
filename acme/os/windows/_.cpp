@@ -11,7 +11,7 @@
 #undef new
 #include "gdiplus.h"
 #include <ddeml.h>
-#define new AURA_NEW
+#define new ACME_NEW
 
 
 void __term_threading();

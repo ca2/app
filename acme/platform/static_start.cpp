@@ -81,7 +81,7 @@ namespace acme
    ::mutex* g_pmutexChildren;
    ::mutex* g_pmutexThreadWaitClose;
    //string_map < __pointer(::acme::library) >* g_pmapLibrary;
-   //string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
+   //string_map < PFN_NEW_ACME_LIBRARY >* g_pmapNewAuraLibrary;
 
 
 #if !defined(WINDOWS)
@@ -562,7 +562,7 @@ namespace acme
 
       //g_pmapLibrary = new string_map < __pointer(::acme::library) >();
 
-      //g_pmapNewAuraLibrary = new string_map < PFN_NEW_AURA_LIBRARY >();
+      //g_pmapNewAuraLibrary = new string_map < PFN_NEW_ACME_LIBRARY >();
 
 #ifndef _UWP
 

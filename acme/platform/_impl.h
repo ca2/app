@@ -200,7 +200,7 @@ inline bool IsDirSep(WCHAR ch)
 }
 
 
-#define new AURA_NEW
+#define new ACME_NEW
 
 
 template < typename T >

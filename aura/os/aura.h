@@ -11,7 +11,7 @@ CLASS_DECL_AURA WINBOOL IsProcessRunning(DWORD pid);
 #include "file.h"
 
 
-#include "threading.h"
+//#include "threading.h"
 
 #include "cross.h"
 

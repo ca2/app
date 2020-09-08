@@ -8,7 +8,7 @@
 
 #define MAX_LOADSTRING 100
 
-#define new AURA_NEW
+#define new ACME_NEW
 
 #include "windows_window_gdi.h"
 

@@ -212,13 +212,13 @@ void __post_quit_message(i32 nExitCode)
 
 
 //string_map < __pointer(::acme::library) >* g_pmapLibrary = nullptr;
-//string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary = nullptr;
+//string_map < PFN_NEW_ACME_LIBRARY >* g_pmapNewAuraLibrary = nullptr;
 
 
 //::mutex* &::get_context_system()->m_mutexLibrary = nullptr;
 
 
-//CLASS_DECL_ACME string_map < PFN_NEW_AURA_LIBRARY >& __get_new_acme_library()
+//CLASS_DECL_ACME string_map < PFN_NEW_ACME_LIBRARY >& __get_new_acme_library()
 //{
 //
 //   return ::get_context_system()->m_mapNewAuraLibrary;
@@ -235,7 +235,7 @@ void __post_quit_message(i32 nExitCode)
 //
 //
 //
-//CLASS_DECL_ACME PFN_NEW_AURA_LIBRARY get_get_new_acme_library(const char* psz)
+//CLASS_DECL_ACME PFN_NEW_ACME_LIBRARY get_get_new_acme_library(const char* psz)
 //{
 //
 //   sync_lock sl(&::get_context_system()->m_mutexLibrary);
@@ -264,7 +264,7 @@ void __post_quit_message(i32 nExitCode)
 //}
 
 
-//CLASS_DECL_ACME void register_get_new_acme_library(const char* psz, PFN_NEW_AURA_LIBRARY pfnNewAuraLibrary)
+//CLASS_DECL_ACME void register_get_new_acme_library(const char* psz, PFN_NEW_ACME_LIBRARY pfnNewAuraLibrary)
 //{
 //
 //   sync_lock sl(&::get_context_system()->m_mutexLibrary);

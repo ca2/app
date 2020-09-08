@@ -5,7 +5,7 @@ CLASS_DECL_ACME void main_async_runnable(::generic * pobjectTask);
 CLASS_DECL_ACME void main_sync_runnable(::generic * pobjectTask, ::duration durationTimeout = one_minute());
 
 
-#define new AURA_NEW
+#define new ACME_NEW
 
 
 template < typename PRED >

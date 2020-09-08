@@ -408,7 +408,7 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR >::~raw_array()
 //      //__memset((void *)m_pData, 0, (size_t)nAllocSize * sizeof(TYPE));
 ////      for( ::index i = 0; i < nNewSize; i++ )
 //  //       ::new( (void *)( m_pData + i ) ) TYPE;
-////#define new AURA_NEW
+////#define new ACME_NEW
 //      m_nSize = nNewSize;
 //      m_nMaxSize = nAllocSize;
 //   }
@@ -422,7 +422,7 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR >::~raw_array()
 ////         for( i32 i = 0; i < nNewSize-m_nSize; i++ )
 ////#undef new
 ////            ::new( (void *)( m_pData + m_nSize + i ) ) TYPE;
-////#define new AURA_NEW
+////#define new ACME_NEW
 //      }
 //      else if (m_nSize > nNewSize)
 //      {
@@ -459,7 +459,7 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR >::~raw_array()
 //#endif
 //#undef new
 //      TYPE* pNewData = (TYPE*) new BYTE[(size_t)nNewMax * sizeof(TYPE)];
-//#define new AURA_NEW
+//#define new ACME_NEW
 //
 //      // copy new data from old
 //      ::acme::memcpy_s(pNewData, (size_t)nNewMax * sizeof(TYPE),
@@ -471,7 +471,7 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR >::~raw_array()
 ////      for( i32 i = 0; i < nNewSize-m_nSize; i++ )
 ////#undef new
 ////         ::new( (void *)( pNewData + m_nSize + i ) ) TYPE;
-////#define new AURA_NEW
+////#define new ACME_NEW
 //      // get rid of old stuff (note: no destructors called)
 //      delete[] (BYTE*)m_pData;
 //      m_pData = pNewData;

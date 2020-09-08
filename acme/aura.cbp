@@ -297,7 +297,7 @@
 			<Add option="-Winvalid-pch" />
 			<Add option="-pthread" />
 			<Add option="`pkg-config --cflags glib-2.0 gtk+-3.0 gdk-3.0 gthread-2.0`" />
-			<Add option="-D_AURA_LIBRARY" />
+			<Add option="-D_ACME_LIBRARY" />
 			<Add directory="." />
 			<Add directory="$(PROJECT_DIR)" />
 			<Add directory="$(#archive)" />

@@ -34,7 +34,7 @@ namespace file
          tick m_tickTimeout;
 
 
-         is_dir_map(::object * pobject);
+         is_dir_map(::layered * pobjectContext);
 
 
          bool lookup(const ::file::path & strPath, bool &bIsDir, u32 & dwLastError);
@@ -59,7 +59,7 @@ namespace file
          ::file::path         m_pathUser;
          ::file::path         m_pathHome;
 
-         dir_system_heap(::object * pobject) :
+         dir_system_heap(::layered * pobjectContext) :
             m_isdirmap(pobject)
          {
 

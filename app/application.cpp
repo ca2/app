@@ -1,5 +1,4 @@
 #include "framework.h"
-#define NO_IMAGING
 #include "aura/application.h"
 #include "aura/update.h"
 
@@ -11,6 +10,8 @@ namespace app_app
 
    application::application()
    {
+
+      m_bImaging = false;
 
       m_strAppId = "app/app";
 
@@ -117,7 +118,7 @@ namespace app_app
 
 //
 //extern "C"
-//::aura::library * app_simple_drawing_get_new_library()
+//::apex::library * app_simple_drawing_get_new_library()
 //{
 //
 //   return new ::aura::single_application_library < ::app_app::application >("app-simple/drawing");

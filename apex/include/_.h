@@ -13,39 +13,53 @@
 #pragma once
 
 
-#include "apex/primitive/primitive/estatus.h"
+#undef Sys
+#undef Sess
+#undef App
 
 
-#include <tuple>
+#define Sys(playered) (*::get_context_system(playered))
+#define Sess(playered) (*::get_context_session(playered))
+#define App(playered) (*::get_context_application(playered))
 
 
-CLASS_DECL_APEX void aura_ref();
+
+#define __spin_namespace apex // back bone / four-letter "spin*" namespace name
 
 
-#ifdef WINDOWS_DESKTOP
-
-typedef i32 WINAPI __MAIN_DEFERRED_RUN(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPTSTR pCmdLine, i32 nCmdShow);
-
-#else
-
-typedef i32 __MAIN_DEFERRED_RUN(int argc, char ** argv);
-
-#endif
+//#include "apex/primitive/primitive/estatus.h"
 
 
-typedef __MAIN_DEFERRED_RUN * __LPFN_MAIN_DEFERRED_RUN;
-extern CLASS_DECL_APEX __LPFN_MAIN_DEFERRED_RUN __main_deferred_run;
+//#include <tuple>
 
 
-#ifdef __DEBUG
+CLASS_DECL_APEX void apex_ref();
 
-#define INLINE
 
-#else
+//#ifdef WINDOWS_DESKTOP
+//
+//typedef i32 WINAPI __MAIN_DEFERRED_RUN(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPTSTR pCmdLine, i32 nCmdShow);
+//
+//#else
+//
+//typedef i32 __MAIN_DEFERRED_RUN(int argc, char ** argv);
+//
+//#endif
 
-#define INLINE inline
 
-#endif
+//typedef __MAIN_DEFERRED_RUN * __LPFN_MAIN_DEFERRED_RUN;
+//extern CLASS_DECL_APEX __LPFN_MAIN_DEFERRED_RUN __main_deferred_run;
+
+
+//#ifdef __DEBUG
+//
+//#define INLINE
+//
+//#else
+//
+//#define INLINE inline
+//
+//#endif
 
 
 //#include "apex/platform/cpu_architecture.h"
@@ -54,16 +68,16 @@ extern CLASS_DECL_APEX __LPFN_MAIN_DEFERRED_RUN __main_deferred_run;
 #include "apex/message/global.h"
 
 
-#include "apex/exception/_c.h"
+//#include "apex/exception/_c.h"
 
 
 #ifdef WINDOWS_DESKTOP
 
 
 #if defined _M_IX86
-#define _AURA_LINKER_SYMBOL_PREFIX "_"
+#define _APEX_LINKER_SYMBOL_PREFIX "_"
 #elif defined _M_X64 || defined _M_ARM || defined _M_ARM64
-#define _AURA_LINKER_SYMBOL_PREFIX ""
+#define _APEX_LINKER_SYMBOL_PREFIX ""
 #else
 #error Unsupported architecture
 #endif
@@ -106,169 +120,150 @@ namespace opengl
 } // namespace opengl
 
 
-struct INT_STRING
-{
 
-   int            m_i;
-   const char* m_psz;
+//struct INT_STRING
+//{
+//
+//   int            m_i;
+//   const char* m_psz;
+//
+//};
+
+
+
+//CLASS_DECL_APEX void throw_todo(void);
+
+
+//CLASS_DECL_APEX void set_last_status(const ::estatus & estatus)
+//CLASS_DECL_APEX void windowing_output_debug_string(const char * pszDebugString);
+//CLASS_DECL_APEX void c_function_call(void * p);
+extern CLASS_DECL_APEX int g_bApex;
+//CLASS_DECL_APEX int __assert_failed_line(const char * pszFileName,int iLineNumber);
+//CLASS_DECL_APEX int is_debugger_attached(void);
+//CLASS_DECL_APEX void debug_print(const char * psz,...);
+
+
+//CLASS_DECL_APEX int throw_assert_exception(const char * pszFileName,int iLineNumber);
+//CLASS_DECL_APEX void throw_what_exclamation_exclamation(const char * psz);
+
+
+
+//#ifndef __cplusplus
+//
+//
+//#define ASSERT assert
+//
+//
+//#else
+//
+//
+//#ifdef __DEBUG
+//
+//
+//#define ASSERT(f)          ((void) ((f) || (is_debugger_attached() && !::__assert_failed_line(__FILE__, __LINE__) && (::debug_break(), 0)) || (!is_debugger_attached() && (throw_assert_exception(__FILE__, __LINE__), 0))))
+//#define _ASSUME(cond)       do { bool _gen__condVal=!!(cond); ASSERT(_gen__condVal); __analysis_assume(_gen__condVal); } while(0)
+//#define ASSERT_VALID(pOb)  ::__assert_valid_object(pOb, __FILE__, __LINE__)
+//
+//
+//#else
+//
+//
+//#define ASSERT(f)
+//#define _ASSUME(cond)
+//#if defined(ANDROID)
+//#define ASSERT_VALID(cond)
+//#elif defined(APPLEOS)
+//#define ASSERT_VALID(cond)
+//#elif defined(LINUX)
+//#define ASSERT_VALID(cond)
+//#else
+//#define ASSERT_VALID(cond) __noop;
+//#endif
+//#endif
+//
+//
+//#endif
+//
+//
+//#define low_byte(w)              ((byte)((w) & 0xff))
+//
+//
+//#if defined(WINDOWS) || defined(LINUX) || defined(__i386__)
+//
+//
+//#define IMAGE_A_BYTE_INDEX 3
+//#define IMAGE_R_BYTE_INDEX 2
+//#define IMAGE_G_BYTE_INDEX 1
+//#define IMAGE_B_BYTE_INDEX 0
+//
+//
+//#define IMAGE_ARGB(a, r, g, b)         ((COLORREF)((low_byte(b)|((WORD)(low_byte(g))<<8))|(((u32)low_byte(r))<<16)|(((u32)low_byte(a))<<24)))
+//
+//
+//#define image_r_value(rgb)    (low_byte((rgb)>>16))
+//#define image_g_value(rgb)    (low_byte((rgb)>>8))
+//#define image_b_value(rgb)    (low_byte((rgb)))
+//#define image_a_value(rgb)    (low_byte((rgb)>>24))
+//
+//
+//#else
+//
+//
+//#define IMAGE_A_BYTE_INDEX 3
+//#define IMAGE_R_BYTE_INDEX 0
+//#define IMAGE_G_BYTE_INDEX 1
+//#define IMAGE_B_BYTE_INDEX 2
+//
+//
+//#define IMAGE_ARGB(a, r, g, b)         ((COLORREF)((low_byte(r)|((WORD)(low_byte(g))<<8))|(((u32)low_byte(b))<<16)|(((u32)low_byte(a))<<24)))
+//
+//
+//#define image_r_value(rgb)    (low_byte((rgb)))
+//#define image_g_value(rgb)    (low_byte((rgb)>>8))
+//#define image_b_value(rgb)    (low_byte((rgb)>>16))
+//#define image_a_value(rgb)    (low_byte((rgb)>>24))
+//
+//
+//#endif
+
+
+//#define __CONCAT3(xxx, yyy, zzz) xxx ## yyy ## zzz
+//
+//
+//#define colorref_get_r_value(rgb)    (low_byte(rgb))
+//#define colorref_get_g_value(rgb)    (low_byte((rgb)>>8))
+//#define colorref_get_b_value(rgb)    (low_byte((rgb)>>16))
+//#define colorref_get_a_value(rgb)    (low_byte((rgb)>>24))
+//#define RGBA(r, g, b, a)         ((COLORREF)((low_byte(r)|((WORD)(low_byte(g))<<8))|(((u32)low_byte(b))<<16)|(((u32)low_byte(a))<<24)))
+//#define ARGB(a, r, g, b)      RGBA(r, g, b, a)
+//
+//
+//#define __acolor(a, r, g, b)      ::color(r, g, b, a)
+
+
+
+
+//CLASS_DECL_APEX int is_ptr_null(const void * p, size_t s);
+//
+//
+//
+//
+//
+//
+//#define void_ptr_is_null(p) (((uptr)(void *) p) < 4096)
+//
+//namespace dynamic_source
+//{
+//
+//
+//   class script_interface;
+//
+//
+//} // namespace dynamic_source
 
-};
-
-
-
-CLASS_DECL_APEX void throw_todo(void);
-
-
-CLASS_DECL_APEX void set_last_status(const ::estatus & estatus);
-CLASS_DECL_APEX void windowing_output_debug_string(const char * pszDebugString);
-CLASS_DECL_APEX void c_function_call(void * p);
-extern CLASS_DECL_APEX int g_bAura;
-CLASS_DECL_APEX int __assert_failed_line(const char * pszFileName,int iLineNumber);
-CLASS_DECL_APEX int is_debugger_attached(void);
-CLASS_DECL_APEX void debug_print(const char * psz,...);
-
-
-CLASS_DECL_APEX int throw_assert_exception(const char * pszFileName,int iLineNumber);
-CLASS_DECL_APEX void throw_what_exclamation_exclamation(const char * psz);
-
-
-
-#ifndef __cplusplus
-
-
-#define ASSERT assert
-
-
-#else
-
-
-#ifdef __DEBUG
-
-
-#define ASSERT(f)          ((void) ((f) || (is_debugger_attached() && !::__assert_failed_line(__FILE__, __LINE__) && (::debug_break(), 0)) || (!is_debugger_attached() && (throw_assert_exception(__FILE__, __LINE__), 0))))
-#define _ASSUME(cond)       do { bool _gen__condVal=!!(cond); ASSERT(_gen__condVal); __analysis_assume(_gen__condVal); } while(0)
-#define ASSERT_VALID(pOb)  ::__assert_valid_object(pOb, __FILE__, __LINE__)
-
-
-#else
-
-
-#define ASSERT(f)
-#define _ASSUME(cond)
-#if defined(ANDROID)
-#define ASSERT_VALID(cond)
-#elif defined(APPLEOS)
-#define ASSERT_VALID(cond)
-#elif defined(LINUX)
-#define ASSERT_VALID(cond)
-#else
-#define ASSERT_VALID(cond) __noop;
-#endif
-#endif
-
-
-#endif
-
-
-#define low_byte(w)              ((byte)((w) & 0xff))
-
-
-#if defined(WINDOWS) || defined(LINUX) || defined(__i386__)
-
-
-#define IMAGE_A_BYTE_INDEX 3
-#define IMAGE_R_BYTE_INDEX 2
-#define IMAGE_G_BYTE_INDEX 1
-#define IMAGE_B_BYTE_INDEX 0
-
-
-#define IMAGE_ARGB(a, r, g, b)         ((COLORREF)((low_byte(b)|((WORD)(low_byte(g))<<8))|(((u32)low_byte(r))<<16)|(((u32)low_byte(a))<<24)))
-
-
-#define image_r_value(rgb)    (low_byte((rgb)>>16))
-#define image_g_value(rgb)    (low_byte((rgb)>>8))
-#define image_b_value(rgb)    (low_byte((rgb)))
-#define image_a_value(rgb)    (low_byte((rgb)>>24))
-
-
-#else
-
-
-#define IMAGE_A_BYTE_INDEX 3
-#define IMAGE_R_BYTE_INDEX 0
-#define IMAGE_G_BYTE_INDEX 1
-#define IMAGE_B_BYTE_INDEX 2
-
-
-#define IMAGE_ARGB(a, r, g, b)         ((COLORREF)((low_byte(r)|((WORD)(low_byte(g))<<8))|(((u32)low_byte(b))<<16)|(((u32)low_byte(a))<<24)))
-
-
-#define image_r_value(rgb)    (low_byte((rgb)))
-#define image_g_value(rgb)    (low_byte((rgb)>>8))
-#define image_b_value(rgb)    (low_byte((rgb)>>16))
-#define image_a_value(rgb)    (low_byte((rgb)>>24))
-
-
-#endif
-
-
-#define __CONCAT3(xxx, yyy, zzz) xxx ## yyy ## zzz
-
-
-#define colorref_get_r_value(rgb)    (low_byte(rgb))
-#define colorref_get_g_value(rgb)    (low_byte((rgb)>>8))
-#define colorref_get_b_value(rgb)    (low_byte((rgb)>>16))
-#define colorref_get_a_value(rgb)    (low_byte((rgb)>>24))
-#define RGBA(r, g, b, a)         ((COLORREF)((low_byte(r)|((WORD)(low_byte(g))<<8))|(((u32)low_byte(b))<<16)|(((u32)low_byte(a))<<24)))
-#define ARGB(a, r, g, b)      RGBA(r, g, b, a)
-
-
-#define __acolor(a, r, g, b)      ::color(r, g, b, a)
-
-
-inline int trailingBytesForUTF8(char ch);
-
-
-extern CLASS_DECL_APEX const char g_trailingBytesForUTF8[256];
-
-
-inline int trailingBytesForUTF8(char ch)
-{
-
-   return ::g_trailingBytesForUTF8[(byte)ch];
-
-}
-
-
-CLASS_DECL_APEX int is_ptr_null(const void * p, size_t s);
-
-
-inline CLASS_DECL_APEX int c_is_null(const void * p)
-{
-   return ((uptr)p) < 65536;
-
-}
-
-
-
-#define void_ptr_is_null(p) (((uptr)(void *) p) < 4096)
-
-namespace dynamic_source
-{
-
-
-   class script_interface;
-
-
-} // namespace dynamic_source
-
-
-#include "apex/primitive/math/mkint_c.h"
 
 // C-includes
 #include "apex/os/_c.h"
-#include "apex/memory/heap_c.h"
-
 
 
 #undef MIN
@@ -280,19 +275,8 @@ namespace dynamic_source
 #define DOUBLEABS(d) (((d) >= 0.0) ? (d) : (-d))
 
 
-#ifdef __cplusplus
-#define MAX(a, b) (((b) < (a)) ? (a) : (b))
-#define MIN(a, b) (((a) < (b)) ? (a) : (b))
-#include "apex/primitive/comparison/_c.h"
-#else
-#define MAX(a, b) (((a) > (b)) ? (a) : (b))
-#define MIN(a, b) (((a) < (b)) ? (a) : (b))
-#endif
 
 
-#define LIM(a, min, max) MIN(max, MAX(min, a))
-#define SORT_LIM(x,minmax,maxmin) ((minmax) < (maxmin) ? LIM(x,minmax,maxmin) : LIM(x,maxmin,minmax))
-#define CLIP_USHRT(x) LIM(x,0,USHRT_MAX)
 
 
 
@@ -358,21 +342,21 @@ namespace dynamic_source
 #define GET_Y_LPARAM64(lparam)                        ((i32)(i16)HIDWORD(lparam))
 
 
-//CLASS_DECL_APEX int get_aura_init();
+//CLASS_DECL_APEX int get_apex_init();
 
 //extern "C"
-//CLASS_DECL_APEX int_bool defer_aura_init();
+//CLASS_DECL_APEX int_bool defer_apex_init();
 
 //extern "C"
-//CLASS_DECL_APEX int_bool defer_aura_term();
+//CLASS_DECL_APEX int_bool defer_apex_term();
 
 
 
 
-typedef struct rdp_freerdp freerdp;
+//typedef struct rdp_freerdp freerdp;
 
 
-CLASS_DECL_APEX int_bool freerdp_authenticate(void * instance, char** username,char** password,char** domain, const char * pszServerName, int bInteractive);
+//CLASS_DECL_APEX int_bool freerdp_authenticate(void * instance, char** username,char** password,char** domain, const char * pszServerName, int bInteractive);
 
 
 #if !defined(O_BINARY) && !defined(WINDOWS)
@@ -380,89 +364,49 @@ CLASS_DECL_APEX int_bool freerdp_authenticate(void * instance, char** username,c
 #endif
 
 
-CLASS_DECL_APEX i32     ansi_open(const char * psz,i32 i);
-CLASS_DECL_APEX FILE *  ansi_fopen(const char * psz,const char * pszMode);
-CLASS_DECL_APEX int     ansi_file_flag(int iFlag);
-CLASS_DECL_APEX void    ansi_get_errno(i32 * perrno);
-CLASS_DECL_APEX void    ansi_unlink(const char * psz);
+//CLASS_DECL_APEX i32     ansi_open(const char * psz,i32 i);
+//CLASS_DECL_APEX FILE *  ansi_fopen(const char * psz,const char * pszMode);
+//CLASS_DECL_APEX int     ansi_file_flag(int iFlag);
+//CLASS_DECL_APEX void    ansi_get_errno(i32 * perrno);
+//CLASS_DECL_APEX void    ansi_unlink(const char * psz);
 
 
-CLASS_DECL_APEX DWORD get_last_error();
-CLASS_DECL_APEX void set_last_error(DWORD dw);
+//CLASS_DECL_APEX DWORD get_last_error();
+//CLASS_DECL_APEX void set_last_error(DWORD dw);
 
-typedef char ansichar;
-
-i32 CLASS_DECL_APEX MultiByteToWideChar2(UINT CodePage, DWORD dwFlags, const ansichar * pMultByteStr, i32 cbMultiByte, widechar * pWideCharStr, i32 cchWideChar);
-i32 CLASS_DECL_APEX WideCharToMultiByte2(UINT CodePage, DWORD dwFlags, const widechar * pWideCharStr, i32 cchWideChar, ansichar * pMultByteStr, i32 cbMultiByte, LPCSTR pDefaultChar, LPBOOL pUsedDefaultChar);
-
-
-enum e_image_type
-{
-
-   image_type_complex,
-   image_type_plain_color
-
-};
+//typedef char ansichar;
+//
+//i32 CLASS_DECL_APEX MultiByteToWideChar2(UINT CodePage, DWORD dwFlags, const ansichar * pMultByteStr, i32 cbMultiByte, widechar * pWideCharStr, i32 cchWideChar);
+//i32 CLASS_DECL_APEX WideCharToMultiByte2(UINT CodePage, DWORD dwFlags, const widechar * pWideCharStr, i32 cchWideChar, ansichar * pMultByteStr, i32 cbMultiByte, LPCSTR pDefaultChar, LPBOOL pUsedDefaultChar);
 
 
 
 
 
-#include "apex/primitive/primitive/_c_memory.h"
 
-#include "apex/primitive/string/_c.h"
-
-#include "apex/primitive/datetime/_c.h"
-
-#include "apex/filesystem/file/_c.h"
-
-#include "apex/const/thread.h"
+//#include "apex/multimedia/_c.h"
 
 
+//class generic;
+//
+//
+//template < typename T >
+//void __finalize_and_release(T& p)
+//{
+//
+//   if (p)
+//   {
+//
+//      p->finalize();
+//
+//      p.release();
+//
+//   }
+//
+//}
 
 
-
-#if !defined(APPLEOS) && !defined(LINUX) && !defined(ANDROID)
-
-int ftruncate(int file, filesize len);
-
-#endif
-
-
-CLASS_DECL_APEX i32 get_os_thread_priority(::e_priority epriority);
-CLASS_DECL_APEX i32 get_os_priority_class(::e_priority epriority);
-CLASS_DECL_APEX ::e_priority get_os_thread_scheduling_priority(i32 iCa2Priority);
-CLASS_DECL_APEX ::e_priority get_os_class_scheduling_priority(i32 iCa2Priority);
-
-
-
-//#include "apex/primitive/datetime/mktime.h"
-#include "apex/primitive/api/api.h"
-
-
-#include "apex/multimedia/_c.h"
-
-
-class generic_object;
-
-
-template < typename T >
-void __finalize_and_release(T& p)
-{
-
-   if (p)
-   {
-
-      p->finalize();
-
-      p.release();
-
-   }
-
-}
-
-
-CLASS_DECL_APEX extern u32 g_tickStartTime;
+//CLASS_DECL_APEX extern u32 g_tickStartTime;
 
 #define ALOG_CONTEXT context_trace_object()
 
@@ -470,24 +414,24 @@ CLASS_DECL_APEX extern u32 g_tickStartTime;
 
 
 
-CLASS_DECL_APEX ::generic_object * general_trace_object();
+CLASS_DECL_APEX ::generic * general_trace_object();
 
 CLASS_DECL_APEX int_bool c_enable_trace_category(e_trace_category ecategory, int_bool iEnable);
 
-inline ::generic_object * context_trace_object() { return general_trace_object(); }
+inline ::generic * context_trace_object() { return general_trace_object(); }
 
 
-CLASS_DECL_APEX void __tracea(::generic_object * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
-CLASS_DECL_APEX void __tracef(::generic_object * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, ...);
-CLASS_DECL_APEX void __tracev(::generic_object * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, va_list vargs);
-CLASS_DECL_APEX const char * trace_category_name(e_trace_category ecategory);
+CLASS_DECL_APEX void __tracea(::generic * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
+CLASS_DECL_APEX void __tracef(::generic * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, ...);
+CLASS_DECL_APEX void __tracev(::generic * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, va_list vargs);
+//CLASS_DECL_APEX const char * trace_category_name(e_trace_category ecategory);
 
 
-CLASS_DECL_APEX ::generic_object * trace_object(e_trace_category ecategory);
+//CLASS_DECL_APEX ::generic * trace_object(e_trace_category ecategory);
 
-const char * topic_text(::generic_object * pcontextobject);
+//CLASS_DECL_APEX const char * topic_text(::generic * pcontextobject);
 
-e_trace_category object_trace_category(::generic_object * pcontextobject);
+
 
 
 
@@ -501,14 +445,16 @@ e_trace_category object_trace_category(::generic_object * pcontextobject);
 #define TRACE(...) INFO(__VA_ARGS__)
 
 
-namespace apex
+namespace aura
 {
 
 
-   class theme;
+   class application;
+   class session;
+   class system;
 
 
-} // namespace apex
+} // namespace aura
 
 
 namespace axis
@@ -549,10 +495,10 @@ namespace core
 
 
 
-#include "apex/primitive/string/_c_impl.h"
+//#include "apex/primitive/string/_c_impl.h"
 
 
-#include "apex/platform/aura_main_struct.h"
+#include "apex/platform/apex_main_struct.h"
 
 
 //#ifdef WINDOWS
@@ -569,89 +515,89 @@ enum e_impact : ::i64;
 enum e_id : ::u64;
 enum enum_check: ::i32;
 
-template <typename TYPE>
-struct remove_const_struct { // remove top-level const qualifier
-   using NON_CONST_TYPE = TYPE;
-};
+//template <typename TYPE>
+//struct remove_const_struct { // remove top-level const qualifier
+//   using NON_CONST_TYPE = TYPE;
+//};
+//
+//template <typename TYPE>
+//struct remove_const_struct< TYPE &> {
+//   using NON_CONST_TYPE = TYPE &;
+//};
+//
+//
+//template <typename TYPE>
+//struct remove_const_struct<const TYPE> {
+//   using NON_CONST_TYPE = TYPE;
+//};
+//
+//template <typename TYPE>
+//struct remove_const_struct<const TYPE &> {
+//   using NON_CONST_TYPE = TYPE &;
+//};
+//
+//template <class TYPE>
+//using non_const = typename remove_const_struct<TYPE>::NON_CONST_TYPE;
+//
+//struct true_type { };
+//struct false_type { };
+//template < typename POINTER >
+//class raw_pointer
+//{
+//public:
+//
+//   using RAW_POINTER = POINTER;
+//
+//};
 
-template <typename TYPE>
-struct remove_const_struct< TYPE &> {
-   using NON_CONST_TYPE = TYPE &;
-};
-
-
-template <typename TYPE>
-struct remove_const_struct<const TYPE> {
-   using NON_CONST_TYPE = TYPE;
-};
-
-template <typename TYPE>
-struct remove_const_struct<const TYPE &> {
-   using NON_CONST_TYPE = TYPE &;
-};
-
-template <class TYPE>
-using non_const = typename remove_const_struct<TYPE>::NON_CONST_TYPE;
-
-struct true_type { };
-struct false_type { };
-template < typename POINTER >
-class raw_pointer
-{
-public:
-
-   using RAW_POINTER = POINTER;
-
-};
-
-template < typename TYPE >
-class raw_type
-{
-public:
-
-   using RAW_TYPE = TYPE;
-
-};
-
-template < typename TYPE >
-class raw_type < TYPE * >
-{
-public:
-
-   using RAW_TYPE = TYPE;
-
-};
-
-template < typename TYPE >
-class raw_type < TYPE * & >
-{
-public:
-
-   using RAW_TYPE = TYPE;
-
-};
-
-template < typename TYPE >
-class raw_type < const TYPE * >
-{
-public:
-
-   using RAW_TYPE = TYPE;
-
-};
-
-template < typename TYPE >
-class raw_type < const TYPE * & >
-{
-public:
-
-   using RAW_TYPE = TYPE;
-
-};
-
-
-template < typename LEFT, typename RIGHT >
-inline void assign(LEFT & l, const RIGHT & r) { l = r; }
+//template < typename TYPE >
+//class raw_type
+//{
+//public:
+//
+//   using RAW_TYPE = TYPE;
+//
+//};
+//
+//template < typename TYPE >
+//class raw_type < TYPE * >
+//{
+//public:
+//
+//   using RAW_TYPE = TYPE;
+//
+//};
+//
+//template < typename TYPE >
+//class raw_type < TYPE * & >
+//{
+//public:
+//
+//   using RAW_TYPE = TYPE;
+//
+//};
+//
+//template < typename TYPE >
+//class raw_type < const TYPE * >
+//{
+//public:
+//
+//   using RAW_TYPE = TYPE;
+//
+//};
+//
+//template < typename TYPE >
+//class raw_type < const TYPE * & >
+//{
+//public:
+//
+//   using RAW_TYPE = TYPE;
+//
+//};
+//
+//
+//template < typename LEFT, typename RIGHT >
+//inline void assign(LEFT & l, const RIGHT & r) { l = r; }
 
 
 //template < typename, typename >
@@ -662,51 +608,51 @@ inline void assign(LEFT & l, const RIGHT & r) { l = r; }
 //template < typename TYPE >
 //inline constexpr auto is_void = is_strictly_same_type< TYPE, void>;
 
-#ifdef CPP17
-
-template <typename PRED, typename ... Args >
-inline bool _returns_true(PRED pred, const true_type & pred_returns_void, bool bOnVoid, Args... args)
-{
-   pred(args...);
-   return bOnVoid;
-}
-
-template <typename PRED, typename ... Args >
-inline bool _returns_true(PRED pred, const false_type & pred_returns_void, bool, Args... args)
-{
-   return (bool)pred(args...);
-}
-
-template <typename PRED, typename ... Args >
-inline bool returns_true(PRED pred, bool bOnVoid, Args... args)
-{
-
-   return _returns_true(pred, is_void<decltype(pred(args...))>, bOnVoid, args...);
-
-}
-
-template <typename PRED, typename ... Args >
-inline bool _returns_false(PRED pred, const true_type & pred_returns_void, bool bOnVoid, Args... args)
-{
-   pred(args...);
-   return bOnVoid;
-}
-
-template <typename PRED, typename ... Args >
-inline bool _returns_false(PRED pred, const false_type & pred_returns_void, bool, Args... args)
-{
-   return !(bool)pred(args...);
-}
-
-template <typename PRED, typename ... Args >
-inline bool returns_false(PRED pred, bool bOnVoid, Args... args)
-{
-
-   return _returns_false(pred, is_void < decltype(pred(args...)) >, bOnVoid, args...);
-
-}
-
-#endif
+//#ifdef CPP17
+//
+//template <typename PRED, typename ... Args >
+//inline bool _returns_true(PRED pred, const true_type & pred_returns_void, bool bOnVoid, Args... args)
+//{
+//   pred(args...);
+//   return bOnVoid;
+//}
+//
+//template <typename PRED, typename ... Args >
+//inline bool _returns_true(PRED pred, const false_type & pred_returns_void, bool, Args... args)
+//{
+//   return (bool)pred(args...);
+//}
+//
+//template <typename PRED, typename ... Args >
+//inline bool returns_true(PRED pred, bool bOnVoid, Args... args)
+//{
+//
+//   return _returns_true(pred, is_void<decltype(pred(args...))>, bOnVoid, args...);
+//
+//}
+//
+//template <typename PRED, typename ... Args >
+//inline bool _returns_false(PRED pred, const true_type & pred_returns_void, bool bOnVoid, Args... args)
+//{
+//   pred(args...);
+//   return bOnVoid;
+//}
+//
+//template <typename PRED, typename ... Args >
+//inline bool _returns_false(PRED pred, const false_type & pred_returns_void, bool, Args... args)
+//{
+//   return !(bool)pred(args...);
+//}
+//
+//template <typename PRED, typename ... Args >
+//inline bool returns_false(PRED pred, bool bOnVoid, Args... args)
+//{
+//
+//   return _returns_false(pred, is_void < decltype(pred(args...)) >, bOnVoid, args...);
+//
+//}
+//
+//#endif
 
 template < typename CHAR_TYPE >
 class string_base;
@@ -733,13 +679,13 @@ inline const ansichar* __c_str(const string& str);
 class machine_event_central;
 
 
-template < typename ARG_KEY >
-inline uptr uptr_hash(ARG_KEY key) { return (uptr)((uptr)key); }
-
-//#if OSBIT == 64
-
-template < typename ARG_KEY >
-inline u32 u32_hash(ARG_KEY key) { return (u32)(uptr_hash<ARG_KEY>(key)); }
+//template < typename ARG_KEY >
+//inline uptr uptr_hash(ARG_KEY key) { return (uptr)((uptr)key); }
+//
+////#if OSBIT == 64
+//
+//template < typename ARG_KEY >
+//inline u32 u32_hash(ARG_KEY key) { return (u32)(uptr_hash<ARG_KEY>(key)); }
 
 //#endif
 
@@ -749,11 +695,11 @@ inline u32 u32_hash(ARG_KEY key) { return (u32)(uptr_hash<ARG_KEY>(key)); }
 #define __exception(TYPE) __base(TYPE, pe, e)
 
 
-#undef _
+//#undef _
 
-#define _(str) (__get_text(str))
+//#define _(str) (__get_text(str))
 
-CLASS_DECL_APEX string __get_text(string str);
+//CLASS_DECL_APEX string __get_text(string str);
 
 
 
@@ -769,30 +715,30 @@ CLASS_DECL_APEX string __get_text(string str);
 //} // namespace command
 
 
-class trait;
-class create;
-class sync;
+//class trait;
+//class create;
+//class sync;
 
 
-//CLASS_DECL_APEX i32 aura_run_system(::apex::system* psystem);
+//CLASS_DECL_APEX i32 apex_run_system(::apex::system* psystem);
 
 
-//CLASS_DECL_APEX ::estatus aura_run_system_init(::apex::system * psystem);
-//CLASS_DECL_APEX ::estatus aura_run_system_proc(::apex::system * psystem);
-//CLASS_DECL_APEX ::estatus aura_run_system_term(::apex::system * psystem);
+//CLASS_DECL_APEX ::estatus apex_run_system_init(::apex::system * psystem);
+//CLASS_DECL_APEX ::estatus apex_run_system_proc(::apex::system * psystem);
+//CLASS_DECL_APEX ::estatus apex_run_system_term(::apex::system * psystem);
 
 
-template < typename VAR >
-class var_type
-{
-public:
-
-   using VAR_TYPE = VAR;
-
-   VAR_TYPE * this_var() { return (VAR_TYPE *)this; }
-   const VAR_TYPE * this_var() const { return (const VAR_TYPE *)this; }
-
-};
+//template < typename VAR >
+//class var_type
+//{
+//public:
+//
+//   using VAR_TYPE = VAR;
+//
+//   VAR_TYPE * this_var() { return (VAR_TYPE *)this; }
+//   const VAR_TYPE * this_var() const { return (const VAR_TYPE *)this; }
+//
+//};
 
 //// very short name ([{c}])ontext (switchers, as it as action_context) enums
 //enum nullptr_t
@@ -800,59 +746,59 @@ public:
 //   nullptr
 //};
 
-// very short name ([{c}])ontext (switchers, as it as action_context) enums
-enum e_context_switcher_empty
-{
-   cempty
-};
+//// very short name ([{c}])ontext (switchers, as it as action_context) enums
+//enum e_context_switcher_empty
+//{
+//   cempty
+//};
 
 
-enum enum_create_new
-{
-
-   e_create_new
-
-};
-
-
-enum enum_create
-{
-
-   e_create
-
-};
-
-enum enum_defer_new // new - for factoryless_allocation FACTORYLESS_ALLOCATION_ID
-{
-
-   e_defer_new
-
-};
-
-enum enum_move_transfer
-{
-
-   e_move_transfer
-
-};
+//enum enum_create_new
+//{
+//
+//   e_create_new
+//
+//};
 
 
-enum enum_copy_clone
-{
+//enum enum_create
+//{
+//
+//   e_create
+//
+//};
 
-   e_copy_clone
+//enum enum_defer_new // new - for factoryless_allocation FACTORYLESS_ALLOCATION_ID
+//{
+//
+//   e_defer_new
+//
+//};
 
-};
+//enum enum_move_transfer
+//{
+//
+//   e_move_transfer
+//
+//};
 
-#define IMPL_OPERATOR_PLUS(type) \
-template < typename TYPE > \
-type operator + (const TYPE & t) const { auto copy = *this; copy.add(t); return copy; }
+
+//enum enum_copy_clone
+//{
+//
+//   e_copy_clone
+//
+//};
+
+//#define IMPL_OPERATOR_PLUS(type) \
+//template < typename TYPE > \
+//type operator + (const TYPE & t) const { auto copy = *this; copy.add(t); return copy; }
 
 #include "apex/primitive/math/_.h"
 
-#include "apex/memory/_heap.h"
+//#include "apex/memory/_heap.h"
 
-#include "apex/exception/_const.h"
+//#include "apex/exception/_const.h"
 
 //#include "apex/user/_const.h"
 
@@ -867,23 +813,23 @@ type operator + (const TYPE & t) const { auto copy = *this; copy.add(t); return 
 #define User (Usr(get_context()))
 
 
+//
+//enum enum_command
+//{
+//
+//   command_none,
+//   command_default,
+//   command_on_agree_exit,
+//   command_france_exit,
+//   command_check_exit,
+//   command_protocol
+//
+//};
 
-enum enum_command
-{
 
-   command_none,
-   command_default,
-   command_on_agree_exit,
-   command_france_exit,
-   command_check_exit,
-   command_protocol
-
-};
-
-
-class composite_base;
-class context_object;
-class object;
+//class composite_base;
+//class context_object;
+//class object;
 
 
 //namespace apex
@@ -898,18 +844,18 @@ class object;
 
 
 extern "C"
-CLASS_DECL_APEX void register_aura_library(const char * psz, ::apex::library * plibrary);
+CLASS_DECL_APEX void register_apex_library(const char * psz, ::apex::library * plibrary);
 
 
 extern "C"
-CLASS_DECL_APEX void register_get_new_aura_library(const char* psz, PFN_NEW_AURA_LIBRARY pfnNewAuraLibrary);
+CLASS_DECL_APEX void register_get_new_apex_library(const char* psz, PFN_NEW_APEX_LIBRARY pfnNewAuraLibrary);
 
 
-#define DECLARE_NEW_AURA_LIBRARY(X) extern "C" \
-::apex::library * X##_new_aura_library()
+#define DECLARE_NEW_APEX_LIBRARY(X) extern "C" \
+::apex::library * X##_new_apex_library()
 
 
-#define REGISTER_GET_NEW_AURA_LIBRARY(X) register_get_new_aura_library(#X, &X##_get_new_library)
+#define REGISTER_GET_NEW_APEX_LIBRARY(X) register_get_new_apex_library(#X, &X##_get_new_library)
 
 
 namespace install
@@ -922,279 +868,279 @@ namespace install
 } // namespace install
 
 
-template<class T>
-struct remove_reference
-{
-   typedef T TYPE;
-};
-
-template<class T>
-struct remove_reference<T&>
-{
-   typedef T TYPE;
-};
-
-template<class T>
-struct remove_reference<T&&>
-{
-   typedef T TYPE;
-};
-
-template<class T> inline
-typename remove_reference<T>::TYPE&& move(T && t)
-{
-
-   return (static_cast<typename remove_reference<T>::TYPE&&>(t));
-
-}
-
-
+//template<class T>
+//struct remove_reference
+//{
+//   typedef T TYPE;
+//};
+//
+//template<class T>
+//struct remove_reference<T&>
+//{
+//   typedef T TYPE;
+//};
+//
+//template<class T>
+//struct remove_reference<T&&>
+//{
+//   typedef T TYPE;
+//};
+//
+//template<class T> inline
+//typename remove_reference<T>::TYPE&& move(T && t)
+//{
+//
+//   return (static_cast<typename remove_reference<T>::TYPE&&>(t));
+//
+//}
 
 
-template < class T >
-class pointer;
 
-template < class T >
-class pointer_array;
+
+//template < class T >
+//class pointer;
+//
+//template < class T >
+//class pointer_array;
 
 
 //#define __composite(TYPE) ::reference < TYPE >
 
-#define __pointer(TYPE) ::pointer < TYPE >
-#define __pointer_array(TYPE) ::pointer_array < TYPE >
-#define __address_array(TYPE) ::comparable_array < TYPE * >
-
-namespace draw2d
-{
-
-   class font_enum_item;
-
-   using font_enum_item_array = __pointer_array(font_enum_item);
-
-} // namespace draw2d
-
-template < typename T >
-class result_pointer;
-
-#define __result(T) ::result_pointer < T >
-
-template < class TYPE >
-inline auto & __typed(TYPE & t) { return t; }
-
-template < class POINTER_TYPE >
-inline auto & __typed(POINTER_TYPE * p) { return *p; }
-
-template < class POINTER_POINTER_TYPE >
-inline auto & __typed(POINTER_POINTER_TYPE ** p) { return **p; }
-
-
-template < class TYPE >
-inline auto & __typed_defer_new(TYPE & t) { return t; }
-
-template < class POINTER_TYPE >
-inline auto & __typed_defer_new(POINTER_TYPE *& p) { if (!p) p = new POINTER_TYPE; return *p; }
-
-template < class POINTER_POINTER_TYPE >
-inline auto & __typed_defer_new(POINTER_POINTER_TYPE ** p) { if (!*p) *p = new POINTER_POINTER_TYPE;  return **p; }
-
-template < class T >
-inline auto & __typed_defer_new(__pointer(T) & p) { if (!p) p = new T; return *p; }
-
-template < class T >
-inline auto & __typed_defer_create(__pointer(T) & p) { if (!p) __construct(p); return *p; }
-
-template < typename T >
-inline __pointer(T) move_transfer(T * p);
-
-#define __new(...) move_transfer( new __VA_ARGS__ )
-
-
-template < typename TYPE1, typename TYPE2 >
-inline void __dynamic_cast(TYPE1*& ptype1, const TYPE2* ptype2)
-{
-
-   ptype1 = dynamic_cast <TYPE2*> (ptype2);
-
-}
-
-
-template < typename TYPE1, typename TYPE2 >
-inline void __dynamic_cast(__pointer(TYPE1)& ptype1, const TYPE2* ptype2)
-{
-
-   ptype1 = ptype2;
-
-}
-
-
-template < typename TYPE1, typename TYPE2 >
-inline void __dynamic_cast(__pointer(TYPE1)& ptype1, const __pointer(TYPE2)& ptype2)
-{
-
-   ptype1 = ptype2;
-
-}
-
-
-template < typename TYPE1, typename TYPE2 >
-inline void __dynamic_cast(TYPE1*& ptype1, const __pointer(TYPE2)& ptype2);
-
-
-template < typename T >
-inline bool __found(const __pointer(T) & p);
-
-
-template < typename T >
-inline bool __not_found(const __pointer(T) & p);
-
-
-template < typename TDST, typename TSRC >
-inline __pointer(TDST) & clone(__pointer(TDST) & dst, const __pointer(TSRC) & src);
-
-template < typename T >
-inline __pointer(T) clone(const __pointer(T) & t);
-
-
-template < class T >
-class guard_pointer;
-
-
-#define gp(TYPE) ::guard_pointer < TYPE >
-
-
-#define clone_impl(name) inline name * clone() { return __new(name(*this)); }
-
-
-#define DOUBLE_PI 3.141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117067982148086513282306647093844
-
-
-template < typename TYPE > inline TYPE* __random_bytes(TYPE* p, memsize s);
-template < typename TYPE > inline TYPE& __random(TYPE& t);
-template < typename TYPE > inline TYPE __random();
-inline float __random(float f1, float f2);
-inline double __random(double d1, double d2);
-template < typename INT > inline INT __random_int(INT i1, INT i2);
-inline i64 __random(i64 i1, i64 i2);
-inline i32 __random(i32 i1, i32 i2);
-
-template < typename TYPE >
-inline void swap(TYPE& a, TYPE& b)
-{
-   auto t = a;
-   a = b;
-   b = t;
-
-}
-
-inline bool is_null(const void * p, size_t s)
-{
-
-   const auto max = (size_t)(-1);
-
-   return ((size_t)p) <= s || ((size_t)p) >= (max - s);
-
-}
-
-
-
-template < typename TYPE >
-inline bool is_null(const TYPE * p)
-{
-
-   const auto max = (size_t)(-1) - 65536;
-
-   return ((size_t) p <= 65536) || ((size_t)p) >= (max);
-
-}
-
-
-template < >
-inline bool is_null(const void * p)
-{
-
-   return is_null(p, 65536);
-
-}
-
-
-template < typename TYPE >
-inline bool is_set(const TYPE * p)
-{
-
-   return !is_null(p);
-
-}
-
-
-template < typename TYPE >
-inline bool is_ref_set(const TYPE & t)
-{
-
-   return is_set(&t);
-
-}
-
-
-template < typename TYPE >
-inline bool is_ok(const TYPE* p)
-{
-
-   return ::is_set(p);
-
-}
-template < typename TYPE >
-inline bool is_ok(const __pointer(TYPE) & p)
-{
-
-   return ::is_ok(p.m_p);
-
-}
-
-
-template < typename TYPE >
-inline bool nok(const TYPE* p)
-{
-
-   return !::is_ok(p);
-
-}
-
-
-
-class istring;
-class var;
-class property_set;
-class object;
-//class base_edit;
-class var_array;
-class property;
-
-
-class timer_callback;
-
-
-//namespace handle
+//#define __pointer(TYPE) ::pointer < TYPE >
+//#define __pointer_array(TYPE) ::pointer_array < TYPE >
+//#define __address_array(TYPE) ::comparable_array < TYPE * >
+
+//namespace draw2d
 //{
 //
-//   class ini;
+//   class font_enum_item;
 //
-//} // namespace handle
+//   using font_enum_item_array = __pointer_array(font_enum_item);
+//
+//} // namespace draw2d
 
-namespace apex
-{
+//template < typename T >
+//class result_pointer;
+//
+//#define __result(T) ::result_pointer < T >
+//
+//template < class TYPE >
+//inline auto & __typed(TYPE & t) { return t; }
+//
+//template < class POINTER_TYPE >
+//inline auto & __typed(POINTER_TYPE * p) { return *p; }
+//
+//template < class POINTER_POINTER_TYPE >
+//inline auto & __typed(POINTER_POINTER_TYPE ** p) { return **p; }
+//
+//
+//template < class TYPE >
+//inline auto & __typed_defer_new(TYPE & t) { return t; }
+//
+//template < class POINTER_TYPE >
+//inline auto & __typed_defer_new(POINTER_TYPE *& p) { if (!p) p = new POINTER_TYPE; return *p; }
+//
+//template < class POINTER_POINTER_TYPE >
+//inline auto & __typed_defer_new(POINTER_POINTER_TYPE ** p) { if (!*p) *p = new POINTER_POINTER_TYPE;  return **p; }
+//
+//template < class T >
+//inline auto & __typed_defer_new(__pointer(T) & p) { if (!p) p = new T; return *p; }
+//
+//template < class T >
+//inline auto & __typed_defer_create(__pointer(T) & p) { if (!p) __construct(p); return *p; }
 
-   class Timer;
+//template < typename T >
+//inline __pointer(T) move_transfer(T * p);
+//
+//#define __new(...) move_transfer( new __VA_ARGS__ )
 
-};
 
-class timer;
+//template < typename TYPE1, typename TYPE2 >
+//inline void __dynamic_cast(TYPE1*& ptype1, const TYPE2* ptype2)
+//{
+//
+//   ptype1 = dynamic_cast <TYPE2*> (ptype2);
+//
+//}
 
-typedef bool FN_TIMER(timer * ptimer);
-typedef FN_TIMER * PFN_TIMER;
 
-#define NOK_IMAGE_OBJECT (NONE_ID)
-#define IMAGE_OBJECT_OK (SUCCESS)
-#define DEFAULT_CREATE_IMAGE_OBJECT_FLAG (IMAGE_OBJECT_OK)
+//template < typename TYPE1, typename TYPE2 >
+//inline void __dynamic_cast(__pointer(TYPE1)& ptype1, const TYPE2* ptype2)
+//{
+//
+//   ptype1 = ptype2;
+//
+//}
+
+
+//template < typename TYPE1, typename TYPE2 >
+//inline void __dynamic_cast(__pointer(TYPE1)& ptype1, const __pointer(TYPE2)& ptype2)
+//{
+//
+//   ptype1 = ptype2;
+//
+//}
+
+
+//template < typename TYPE1, typename TYPE2 >
+//inline void __dynamic_cast(TYPE1*& ptype1, const __pointer(TYPE2)& ptype2);
+
+
+//template < typename T >
+//inline bool __found(const __pointer(T) & p);
+
+
+//template < typename T >
+//inline bool __not_found(const __pointer(T) & p);
+
+
+//template < typename TDST, typename TSRC >
+//inline __pointer(TDST) & clone(__pointer(TDST) & dst, const __pointer(TSRC) & src);
+
+//template < typename T >
+//inline __pointer(T) clone(const __pointer(T) & t);
+
+
+//template < class T >
+//class guard_pointer;
+
+
+//#define gp(TYPE) ::guard_pointer < TYPE >
+
+
+//#define clone_impl(name) inline name * clone() { return __new(name(*this)); }
+
+
+//#define DOUBLE_PI 3.141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117067982148086513282306647093844
+
+
+//template < typename TYPE > inline TYPE* __random_bytes(TYPE* p, memsize s);
+//template < typename TYPE > inline TYPE& __random(TYPE& t);
+//template < typename TYPE > inline TYPE __random();
+//inline float __random(float f1, float f2);
+//inline double __random(double d1, double d2);
+//template < typename INT > inline INT __random_int(INT i1, INT i2);
+//inline i64 __random(i64 i1, i64 i2);
+//inline i32 __random(i32 i1, i32 i2);
+
+//template < typename TYPE >
+//inline void swap(TYPE& a, TYPE& b)
+//{
+//   auto t = a;
+//   a = b;
+//   b = t;
+//
+//}
+
+//inline bool is_null(const void * p, size_t s)
+//{
+//
+//   const auto max = (size_t)(-1);
+//
+//   return ((size_t)p) <= s || ((size_t)p) >= (max - s);
+//
+//}
+
+
+
+//template < typename TYPE >
+//inline bool is_null(const TYPE * p)
+//{
+//
+//   const auto max = (size_t)(-1) - 65536;
+//
+//   return ((size_t) p <= 65536) || ((size_t)p) >= (max);
+//
+//}
+
+
+//template < >
+//inline bool is_null(const void * p)
+//{
+//
+//   return is_null(p, 65536);
+//
+//}
+
+
+//template < typename TYPE >
+//inline bool is_set(const TYPE * p)
+//{
+//
+//   return !is_null(p);
+//
+//}
+
+
+//template < typename TYPE >
+//inline bool is_ref_set(const TYPE & t)
+//{
+//
+//   return is_set(&t);
+//
+//}
+
+
+//template < typename TYPE >
+//inline bool is_ok(const TYPE* p)
+//{
+//
+//   return ::is_set(p);
+//
+//}
+//template < typename TYPE >
+//inline bool is_ok(const __pointer(TYPE) & p)
+//{
+//
+//   return ::is_ok(p.m_p);
+//
+//}
+
+
+//template < typename TYPE >
+//inline bool nok(const TYPE* p)
+//{
+//
+//   return !::is_ok(p);
+//
+//}
+
+
+
+//class istring;
+//class var;
+//class property_set;
+//class object;
+////class base_edit;
+//class var_array;
+//class property;
+//
+//
+//class timer_callback;
+//
+//
+////namespace handle
+////{
+////
+////   class ini;
+////
+////} // namespace handle
+//
+//namespace apex
+//{
+//
+//   class Timer;
+//
+//};
+//
+//class timer;
+//
+//typedef bool FN_TIMER(timer * ptimer);
+//typedef FN_TIMER * PFN_TIMER;
+//
+//#define NOK_IMAGE_OBJECT (NONE_ID)
+//#define IMAGE_OBJECT_OK (SUCCESS)
+//#define DEFAULT_CREATE_IMAGE_OBJECT_FLAG (IMAGE_OBJECT_OK)
 
 #include "apex/const/_const.h"
 
@@ -1202,19 +1148,19 @@ typedef FN_TIMER * PFN_TIMER;
 #include "apex/primitive/primitive/_memory.h"
 
 
-inline bool is_impact_group(::u64 u, ::u64 uGroup) { return u >= uGroup && u < uGroup + 1000; }
-inline bool is_impact_subgroup(::u64 u, ::u64 uGroup) { return u >= uGroup && u < uGroup + 100; }
+//inline bool is_impact_group(::u64 u, ::u64 uGroup) { return u >= uGroup && u < uGroup + 1000; }
+//inline bool is_impact_subgroup(::u64 u, ::u64 uGroup) { return u >= uGroup && u < uGroup + 100; }
 
 
-class image;
-namespace draw2d{class icon;}
+//class image;
+//namespace draw2d{class icon;}
 
-using image_pointer = __pointer(::image);
-using icon_pointer = __pointer(::draw2d::icon);
+//using image_pointer = __pointer(::image);
+//using icon_pointer = __pointer(::draw2d::icon);
 
 
-using image_result = __result(::image);
-using icon_result=__result(::draw2d::icon);
+//using image_result = __result(::image);
+//using icon_result=__result(::draw2d::icon);
 
 
 class command_line;
@@ -1340,7 +1286,7 @@ namespace apex
 
    class application;
    class system;
-   class application_message;
+   //class application_message;
 
    class command;
 
@@ -1350,12 +1296,12 @@ namespace apex
 
 } // namespace apex
 
-namespace gpu
-{
-
-   class approach;
-
-} // namespace gpu
+//namespace gpu
+//{
+//
+//   class approach;
+//
+//} // namespace gpu
 
 
 namespace data
@@ -1454,396 +1400,396 @@ namespace datetime
 
 
 
-template < typename Type,typename RawType = Type >
-class string_array_base;
-
-
-typedef string_array_base < string > string_array;
-
-
-namespace file
-{
-
-   class listing;
-   class path;
-   typedef CLASS_DECL_APEX ::string_array_base < ::file::path,string > patha;
-   class file;
-
-   enum e_type
-   {
-
-      type_none,
-      type_folder,
-      type_file,
-      type_element,
-
-   };
-
-} // namespace file
-
-
-class machine_event_data;
-
-namespace hotplugin
-{
-
-   class host;
-   class plugin;
-
-}
-
-
-
-namespace html
-{
-
-
-   class html;
-
-
-} // namespace html
-
-
-namespace audio
-{
-
-
-   class plugin;
-
-
-} // namespace audio
-
-
-#include "apex/primitive/collection/forward.h"
-
-enum e_optional
-{
-
-   optional,
-
-};
-
-enum e_no_init
-{
-
-   no_init,
-
-};
-
-class CLASS_DECL_APEX set
-{
-public:
-
-   e_set    m_eset;
-
-   inline set(e_optional) { m_eset = set_none; }
-   inline set() { m_eset = set_none; }
-   inline set(int i) { operator = (i); }
-   inline set(bool b) { operator = (b); }
-
-   inline bool isFalse() const { return is_false(); }
-
-   inline bool is_false() const { return m_eset < set_empty; }
-
-   inline bool undefined() const { return is_empty(); }
-
-   inline bool is_empty() const { return m_eset == set_empty; }
-
-   inline bool is_none() const { return is_empty(); }
-
-   inline bool is_true() const { return m_eset > set_empty; }
-
-   inline bool is_true(bool bDefault) const { return m_eset ? isTrue() : bDefault; }
-
-   inline bool isTrue() const { return is_true(); }
-
-   inline bool is_optional() const { return !m_eset; }
-
-   inline bool isOptional() const { return is_optional(); }
-
-   inline operator bool() const { return isTrue(); }
-
-   inline bool operator !() const { return isFalse(); }
-
-   inline bool operator < (int i) const { return (int)m_eset < i; }
-
-   inline bool operator <= (int i) const { return (int)m_eset <= i; }
-
-   inline bool operator > (int i) const { return (int)m_eset > i; }
-
-   inline bool operator >= (int i) const { return (int)m_eset >= i; }
-
-   inline bool operator == (int i) const { return (int)m_eset == i; }
-
-   inline bool operator != (int i) const { return !operator ==(i); }
-
-   inline set & operator = (int i) { m_eset = (e_set)i; return *this; }
-
-   inline set & operator = (bool b) { m_eset = (b ? set_true : set_false); return *this; }
-
-   inline void defer(int i) { if(is_empty()) operator =(i); }
-
-   inline set deferred(int i) const { if(is_empty()) return i; else return m_eset; }
-
-   inline set operator()(int i) const { return deferred(i); }
-
-};
-
-inline bool __is_true(bool b) { return b; }
-inline bool __is_true(const ::set& set) { return set; }
-
-inline bool __is_false(bool b) { return !b; }
-inline bool __is_false(const ::set& set) { return !set; }
-
-inline bool __is_optional(bool b) { return false; }
-inline bool __is_optional(const ::set& set) { return set.isOptional(); }
-
-
-#define __optional_is_true(flag, option) ((bool)(flag) || (__is_optional(flag) && (option)))
-
-
-#include "apex/platform/auto.h"
-#include "apex/primitive/comparison/compare.h"
-#include "apex/primitive/primitive/papaya.h"
-
-
-
-
-
-
-template <class t>
-inline void delptr(t *& p)
-{
-   if(p != nullptr)
-   {
-      delete p;
-      p = nullptr;
-   }
-}
-
-template < typename T >
-inline int type_is_null(const T * p)
-{
-   return (((UINT_PTR)(void *)p) < MAX(4096, sizeof(T)));
-}
-
-
-#include "apex/primitive/string/_uhash.h"
-
-
-class allocer;
-
-
-
-
-
-namespace apex
-{
-
-   template < typename T >
-   inline void del(T * & p)
-   {
-
-      //Thank you Fiora a Eterna!!
-
-      //Fiora Aeterna☄ ‏@FioraAeterna 20m20 minutes ago
-
-      //   maybe it's cynical but I'm starting to think the real reason so many newer games have constant autosaves is because they crash all the time
-      //   Details
-
-      // BRT 2015-02-18 19:08
-      // catch all (...) here in apex::del ... but should remove try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
-
-      try
-      {
-
-         //Thank you Dunno_Aye for the is_null!!
-
-         if(!is_null(p))
-         {
-
-            T * pdel = p;
-
-            p = nullptr;
-
-            delete pdel;
-
-         }
-
-      }
-      catch(...)
-      {
-
-      }
-
-   }
-
-
-   template < typename T >
-   inline void delobj(T * & p);
-
-   template < typename T >
-   inline void adel(T * & p)
-   {
-
-      //Thank you Fiora a Eterna!!
-
-      //Fiora Aeterna☄ ‏@FioraAeterna 20m20 minutes ago
-
-      //   maybe it's cynical but I'm starting to think the real reason so many newer games have constant autosaves is because they crash all the time
-      //   Details
-
-      // BRT 2015-02-18 19:08
-      // catch all (...) here in apex::del ... but should remove try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
-
-      try
-      {
-
-         if(p != nullptr)
-         {
-
-            delete[] p;
-
-            p = nullptr;
-
-         }
-
-      }
-      catch(...)
-      {
-
-      }
-
-   }
-
-
-   template < typename T >
-   inline void free(T * & p)
-   {
-
-      //Thank you Mummi!!
-
-      //Nice late afternoon coffee of ever!!
-
-      //Thank you Fiora a Eterna!!
-
-      //Fiora Aeterna☄ ‏@FioraAeterna some minutes ago
-
-      //   maybe it's cynical but I'm starting to think the real reason so many newer games have constant autosaves is because they crash all the time
-      //   Details
-
-      // BRT 2016-11-23 19:08
-      // catch all (...) here in apex::del ... but should remove try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
-
-      try
-      {
-
-         if (p != nullptr)
-         {
-
-            void * pdel = (void *) p;
-
-            p = nullptr;
-
-            ::free(pdel);
-
-         }
-
-      }
-      catch (...)
-      {
-
-      }
-
-   }
-
-
-   template < typename T >
-   inline void memory_free(T * & p)
-   {
-
-      //Thank you Mummi!!
-
-      //Nice late afternoon coffee of ever!!
-
-      //Thank you Fiora a Eterna!!
-
-      //Fiora Aeterna☄ ‏@FioraAeterna some minutes ago
-
-      //   maybe it's cynical but I'm starting to think the real reason so many newer games have constant autosaves is because they crash all the time
-      //   Details
-
-      // BRT 2016-11-23 19:08
-      // catch all (...) here in apex::del ... but should remove try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
-
-      try
-      {
-
-         if (p != nullptr)
-         {
-
-            void * pdel = (void *)p;
-
-            p = nullptr;
-
-            ::memory_free(pdel);
-
-         }
-
-      }
-      catch (...)
-      {
-
-      }
-
-   }
-
-
-   template < typename T >
-   inline T * reset(T * & p, T * pNew)
-   {
-
-      ::apex::del(p);
-
-      return p = pNew;
-
-   }
-
-   template < typename T >
-   inline T * reset(T * & p)
-   {
-
-      ::apex::del(p);
-
-      return p = new T;
-
-   }
-
-} // namespace apex
-
-
-
-
-
-#include "apex/memory/malloc.h"
-
-class image_list;
-
-
-
-
-struct SIZEPARENTPARAMS
-{
-
-   RECT  rect;       // parent client rectangle (trim as appropriate)
-   SIZE  sizeTotal;  // total size on each side as on_layout proceeds
-   bool  bStretch;   // should stretch to fill all space
-
-};
-
-
-typedef struct RECTD RECTD;
-
+//template < typename Type,typename RawType = Type >
+//class string_array_base;
+//
+//
+//typedef string_array_base < string > string_array;
+//
+//
+//namespace file
+//{
+//
+//   class listing;
+//   class path;
+//   typedef CLASS_DECL_APEX ::string_array_base < ::file::path,string > patha;
+//   class file;
+//
+//   enum e_type
+//   {
+//
+//      type_none,
+//      type_folder,
+//      type_file,
+//      type_element,
+//
+//   };
+//
+//} // namespace file
+
+
+//class machine_event_data;
+//
+//namespace hotplugin
+//{
+//
+//   class host;
+//   class plugin;
+//
+//}
+
+
+
+//namespace html
+//{
+//
+//
+//   class html;
+//
+//
+//} // namespace html
+
+
+//namespace audio
+//{
+//
+//
+//   class plugin;
+//
+//
+//} // namespace audio
+
+
+//#include "apex/primitive/collection/forward.h"
+
+//enum e_optional
+//{
+//
+//   optional,
+//
+//};
+
+//enum e_no_init
+//{
+//
+//   no_init,
+//
+//};
+
+//class CLASS_DECL_APEX set
+//{
+//public:
+//
+//   e_set    m_eset;
+//
+//   inline set(e_optional) { m_eset = set_none; }
+//   inline set() { m_eset = set_none; }
+//   inline set(int i) { operator = (i); }
+//   inline set(bool b) { operator = (b); }
+//
+//   inline bool isFalse() const { return is_false(); }
+//
+//   inline bool is_false() const { return m_eset < set_empty; }
+//
+//   inline bool undefined() const { return is_empty(); }
+//
+//   inline bool is_empty() const { return m_eset == set_empty; }
+//
+//   inline bool is_none() const { return is_empty(); }
+//
+//   inline bool is_true() const { return m_eset > set_empty; }
+//
+//   inline bool is_true(bool bDefault) const { return m_eset ? isTrue() : bDefault; }
+//
+//   inline bool isTrue() const { return is_true(); }
+//
+//   inline bool is_optional() const { return !m_eset; }
+//
+//   inline bool isOptional() const { return is_optional(); }
+//
+//   inline operator bool() const { return isTrue(); }
+//
+//   inline bool operator !() const { return isFalse(); }
+//
+//   inline bool operator < (int i) const { return (int)m_eset < i; }
+//
+//   inline bool operator <= (int i) const { return (int)m_eset <= i; }
+//
+//   inline bool operator > (int i) const { return (int)m_eset > i; }
+//
+//   inline bool operator >= (int i) const { return (int)m_eset >= i; }
+//
+//   inline bool operator == (int i) const { return (int)m_eset == i; }
+//
+//   inline bool operator != (int i) const { return !operator ==(i); }
+//
+//   inline set & operator = (int i) { m_eset = (e_set)i; return *this; }
+//
+//   inline set & operator = (bool b) { m_eset = (b ? set_true : set_false); return *this; }
+//
+//   inline void defer(int i) { if(is_empty()) operator =(i); }
+//
+//   inline set deferred(int i) const { if(is_empty()) return i; else return m_eset; }
+//
+//   inline set operator()(int i) const { return deferred(i); }
+//
+//};
+//
+//inline bool __is_true(bool b) { return b; }
+//inline bool __is_true(const ::set& set) { return set; }
+//
+//inline bool __is_false(bool b) { return !b; }
+//inline bool __is_false(const ::set& set) { return !set; }
+//
+//inline bool __is_optional(bool b) { return false; }
+//inline bool __is_optional(const ::set& set) { return set.isOptional(); }
+//
+//
+//#define __optional_is_true(flag, option) ((bool)(flag) || (__is_optional(flag) && (option)))
+
+
+//#include "apex/platform/auto.h"
+//#include "apex/primitive/comparison/compare.h"
+//#include "apex/primitive/primitive/papaya.h"
+
+
+
+
+
+
+//template <class t>
+//inline void delptr(t *& p)
+//{
+//   if(p != nullptr)
+//   {
+//      delete p;
+//      p = nullptr;
+//   }
+//}
+//
+//template < typename T >
+//inline int type_is_null(const T * p)
+//{
+//   return (((UINT_PTR)(void *)p) < MAX(4096, sizeof(T)));
+//}
+
+
+//#include "apex/primitive/string/_uhash.h"
+
+
+//class allocer;
+//
+//
+//
+//
+//
+//namespace apex
+//{
+//
+//   template < typename T >
+//   inline void del(T * & p)
+//   {
+//
+//      //Thank you Fiora a Eterna!!
+//
+//      //Fiora Aeterna☄ ‏@FioraAeterna 20m20 minutes ago
+//
+//      //   maybe it's cynical but I'm starting to think the real reason so many newer games have constant autosaves is because they crash all the time
+//      //   Details
+//
+//      // BRT 2015-02-18 19:08
+//      // catch all (...) here in acme::del ... but should remove try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
+//
+//      try
+//      {
+//
+//         //Thank you Dunno_Aye for the is_null!!
+//
+//         if(!is_null(p))
+//         {
+//
+//            T * pdel = p;
+//
+//            p = nullptr;
+//
+//            delete pdel;
+//
+//         }
+//
+//      }
+//      catch(...)
+//      {
+//
+//      }
+//
+//   }
+//
+//
+//   template < typename T >
+//   inline void delobj(T * & p);
+//
+//   template < typename T >
+//   inline void adel(T * & p)
+//   {
+//
+//      //Thank you Fiora a Eterna!!
+//
+//      //Fiora Aeterna☄ ‏@FioraAeterna 20m20 minutes ago
+//
+//      //   maybe it's cynical but I'm starting to think the real reason so many newer games have constant autosaves is because they crash all the time
+//      //   Details
+//
+//      // BRT 2015-02-18 19:08
+//      // catch all (...) here in acme::del ... but should remove try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
+//
+//      try
+//      {
+//
+//         if(p != nullptr)
+//         {
+//
+//            delete[] p;
+//
+//            p = nullptr;
+//
+//         }
+//
+//      }
+//      catch(...)
+//      {
+//
+//      }
+//
+//   }
+//
+//
+//   template < typename T >
+//   inline void free(T * & p)
+//   {
+//
+//      //Thank you Mummi!!
+//
+//      //Nice late afternoon coffee of ever!!
+//
+//      //Thank you Fiora a Eterna!!
+//
+//      //Fiora Aeterna☄ ‏@FioraAeterna some minutes ago
+//
+//      //   maybe it's cynical but I'm starting to think the real reason so many newer games have constant autosaves is because they crash all the time
+//      //   Details
+//
+//      // BRT 2016-11-23 19:08
+//      // catch all (...) here in acme::del ... but should remove try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
+//
+//      try
+//      {
+//
+//         if (p != nullptr)
+//         {
+//
+//            void * pdel = (void *) p;
+//
+//            p = nullptr;
+//
+//            ::free(pdel);
+//
+//         }
+//
+//      }
+//      catch (...)
+//      {
+//
+//      }
+//
+//   }
+//
+//
+//   template < typename T >
+//   inline void memory_free(T * & p)
+//   {
+//
+//      //Thank you Mummi!!
+//
+//      //Nice late afternoon coffee of ever!!
+//
+//      //Thank you Fiora a Eterna!!
+//
+//      //Fiora Aeterna☄ ‏@FioraAeterna some minutes ago
+//
+//      //   maybe it's cynical but I'm starting to think the real reason so many newer games have constant autosaves is because they crash all the time
+//      //   Details
+//
+//      // BRT 2016-11-23 19:08
+//      // catch all (...) here in acme::del ... but should remove try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
+//
+//      try
+//      {
+//
+//         if (p != nullptr)
+//         {
+//
+//            void * pdel = (void *)p;
+//
+//            p = nullptr;
+//
+//            ::memory_free(pdel);
+//
+//         }
+//
+//      }
+//      catch (...)
+//      {
+//
+//      }
+//
+//   }
+//
+//
+//   template < typename T >
+//   inline T * reset(T * & p, T * pNew)
+//   {
+//
+//      ::acme::del(p);
+//
+//      return p = pNew;
+//
+//   }
+//
+//   template < typename T >
+//   inline T * reset(T * & p)
+//   {
+//
+//      ::acme::del(p);
+//
+//      return p = new T;
+//
+//   }
+//
+//} // namespace apex
+//
+//
+
+
+
+//#include "apex/memory/malloc.h"
+
+//class image_list;
+
+
+
+//
+//struct SIZEPARENTPARAMS
+//{
+//
+//   RECT  rect;       // parent client rectangle (trim as appropriate)
+//   SIZE  sizeTotal;  // total size on each side as on_layout proceeds
+//   bool  bStretch;   // should stretch to fill all space
+//
+//};
+//
+//
+//typedef struct RECTD RECTD;
+//
 
 namespace apex
 {
@@ -1955,15 +1901,15 @@ namespace xml
 
 
 
-
-enum e_extract
-{
-
-   extract_none,
-   extract_first,
-   extract_all
-
-};
+//
+//enum e_extract
+//{
+//
+//   extract_none,
+//   extract_first,
+//   extract_all
+//
+//};
 
 
 namespace str
@@ -2042,11 +1988,11 @@ namespace html
 #define Mm(pobject) (*(::get_context_multimedia(pobject)))
 #define Multimedia (Mm(get_context()))
 
-#define System (*get_context_system())
+#define System (Sys(get_context()))
 
-#define Session (*get_context_session())
+#define Session (Sess(get_context()))
 
-#define Application (*get_app())
+#define Application (App(get_context()))
 #define ThisApp (*::application_consumer < application >::get_app())
 
 #undef Ctx
@@ -2084,44 +2030,33 @@ struct plane_system;
 
 typedef  void(*PFN_factory_exchange)();
 
-#ifdef WINDOWS
-CLASS_DECL_APEX bool defer_co_initialize_ex(bool bMultiThread, bool bDisableOleDDE = false);
-#endif
+// #ifdef WINDOWS
+// CLASS_DECL_APEX bool defer_co_initialize_ex(bool bMultiThread, bool bDisableOleDDE = false);
+// #endif
 
-class generic_object;
 
-class var;
+class object;
 
-using argument = var;
-
-class var_array;
-
-using arguments = var_array;
 
 class context;
 
 
+CLASS_DECL_APEX bool __node_apex_pre_init();
+CLASS_DECL_APEX bool __node_apex_pos_init();
+
+CLASS_DECL_APEX bool __node_apex_pre_term();
+CLASS_DECL_APEX bool __node_apex_pos_term();
 
 
-//CLASS_DECL_APEX bool aura_init();
-//CLASS_DECL_APEX bool aura_term();
-
-CLASS_DECL_APEX bool __node_aura_pre_init();
-CLASS_DECL_APEX bool __node_aura_pos_init();
-
-CLASS_DECL_APEX bool __node_aura_pre_term();
-CLASS_DECL_APEX bool __node_aura_pos_term();
-
-
-extern "C" CLASS_DECL_APEX PFN_NEW_AURA_LIBRARY get_get_new_aura_library(const char * psz);
-extern "C" CLASS_DECL_APEX void register_get_new_aura_library(const char* psz, PFN_NEW_AURA_LIBRARY pfnNewAuraLibrary);
+extern "C" CLASS_DECL_APEX PFN_NEW_APEX_LIBRARY get_get_new_apex_library(const char * psz);
+extern "C" CLASS_DECL_APEX void register_get_new_apex_library(const char* psz, PFN_NEW_APEX_LIBRARY pfnNewAuraLibrary);
 
 
 CLASS_DECL_APEX ::apex::library & get_library(const char* psz);
-CLASS_DECL_APEX void register_aura_library(const char* psz, ::apex::library* plibrary);
+CLASS_DECL_APEX void register_apex_library(const char* psz, ::apex::library* plibrary);
 
 CLASS_DECL_APEX ::context * get_context();
-CLASS_DECL_APEX inline ::context * get_context(::object * pobject);
+CLASS_DECL_APEX inline ::context * get_context(::layered * pobjectContext);
 CLASS_DECL_APEX inline ::context * get_context(::context * pcontext);
 
 
@@ -2130,17 +2065,17 @@ CLASS_DECL_APEX ::apex::application * get_global_application();
 
 
 CLASS_DECL_APEX ::apex::application * get_context_application();
-CLASS_DECL_APEX inline ::apex::application * get_context_application(::object * pobject);
+CLASS_DECL_APEX inline ::apex::application * get_context_application(::layered * pobjectContext);
 CLASS_DECL_APEX inline ::apex::application * get_context_application(::apex::application * papp);
 CLASS_DECL_APEX inline ::apex::application * get_app() { return get_context_application(); }
 
 
 CLASS_DECL_APEX::apex::session * get_context_session();
-CLASS_DECL_APEX inline ::apex::session * get_context_session(::object * pobject);
+CLASS_DECL_APEX inline ::apex::session * get_context_session(::layered * pobjectContext);
 CLASS_DECL_APEX inline ::apex::session * get_context_session(::apex::session * psession);
 
 CLASS_DECL_APEX::apex::system * get_context_system();
-CLASS_DECL_APEX inline ::apex::system * get_context_system(::object * pobject);
+CLASS_DECL_APEX inline ::apex::system * get_context_system(::layered * pobjectContext);
 CLASS_DECL_APEX inline ::apex::system * get_context_system(::apex::system * psystem);
 
 
@@ -2182,20 +2117,20 @@ class cotaskptr;
 class type;
 
 
-#include "apex/primitive/string/_.h"
+//#include "apex/primitive/string/_.h"
 
 
 #include "apex/platform/definition.h"
 
-#include "apex/memory/new.h"
+//#include "apex/memory/new.h"
 
-#include "apex/platform/lparam.h"
-#include "apex/platform/muldiv64.h"
-
-
+//#include "apex/platform/lparam.h"
+//#include "apex/platform/muldiv64.h"
 
 
-#include "apex/platform/auto_pointer.h"
+
+
+//#include "apex/platform/auto_pointer.h"
 
 
 // C-includes
@@ -2203,14 +2138,14 @@ class type;
 
 class thread_parameter;
 
-#include "apex/primitive/primitive/enum.h"
+//#include "apex/primitive/primitive/enum.h"
 
 
-#include "apex/primitive/primitive/interlocked_long.h"
-#include "apex/primitive/primitive/interlocked_long_pulse.h"
-#include "apex/primitive/primitive/type.h"
-#include "apex/primitive/primitive/id.h"
-#include "apex/primitive/primitive/uid.h"
+//#include "apex/primitive/primitive/interlocked_long.h"
+//#include "apex/primitive/primitive/interlocked_long_pulse.h"
+//#include "apex/primitive/primitive/type.h"
+//#include "apex/primitive/primitive/id.h"
+//#include "apex/primitive/primitive/uid.h"
 
 
 namespace primitive
@@ -2232,145 +2167,145 @@ namespace primitive
 } // namespace primitive
 
 
-#define __member(TYPE) ::primitive::member < TYPE >
-#define __composite(TYPE) ::primitive::composite < TYPE >
-#define __reference(TYPE) ::primitive::reference < TYPE >
+//#define __member(TYPE) ::primitive::member < TYPE >
+//#define __composite(TYPE) ::primitive::composite < TYPE >
+//#define __reference(TYPE) ::primitive::reference < TYPE >
+
+
+
+//
+//template < typename TYPE >
+//inline bool is_null(const __pointer(TYPE) & p)
+//{
+//
+//   return ::is_null(p.m_p);
+//
+//}
+
+//template < typename TYPE >
+//inline bool is_null(const __composite(TYPE) & p)
+//{
+//
+//   return p.is_null();
+//
+//}
+
+//template < typename TYPE >
+//inline bool is_null(const __reference(TYPE) & p)
+//{
+//
+//   return p.is_null();
+//
+//}
+
+
+//template < typename TYPE >
+//inline bool is_set(const __pointer(TYPE) & p)
+//{
+//
+//   return p.is_set();
+//
+//}
+
+//template < typename TYPE >
+//inline bool is_set(const __composite(TYPE) & p)
+//{
+//
+//   return p.is_set();
+//
+//}
+//
+//template < typename TYPE >
+//inline bool is_set(const __reference(TYPE) & p)
+//{
+//
+//   return p.is_set();
+//
+//}
+
+//template < typename TYPE >
+//inline bool is_null_ref(const TYPE & t)
+//{
+//
+//   return is_null(&t);
+//
+//}
+
+
+//template < typename TYPE >
+//inline bool is_set_ref(const TYPE & t)
+//{
+//   return !is_null_ref(t);
+//}
 
 
 
 
-template < typename TYPE >
-inline bool is_null(const __pointer(TYPE) & p)
-{
+//#include "apex/primitive/primitive/pointer.h"
+//#include "apex/primitive/primitive/pointer2.h"
 
-   return ::is_null(p.m_p);
-
-}
-
-template < typename TYPE >
-inline bool is_null(const __composite(TYPE) & p)
-{
-
-   return p.is_null();
-
-}
-
-template < typename TYPE >
-inline bool is_null(const __reference(TYPE) & p)
-{
-
-   return p.is_null();
-
-}
-
-
-template < typename TYPE >
-inline bool is_set(const __pointer(TYPE) & p)
-{
-
-   return p.is_set();
-
-}
-
-template < typename TYPE >
-inline bool is_set(const __composite(TYPE) & p)
-{
-
-   return p.is_set();
-
-}
-
-template < typename TYPE >
-inline bool is_set(const __reference(TYPE) & p)
-{
-
-   return p.is_set();
-
-}
-
-template < typename TYPE >
-inline bool is_null_ref(const TYPE & t)
-{
-
-   return is_null(&t);
-
-}
-
-
-template < typename TYPE >
-inline bool is_set_ref(const TYPE & t)
-{
-   return !is_null_ref(t);
-}
-
-
-
-
-#include "apex/primitive/primitive/pointer.h"
-#include "apex/primitive/primitive/pointer2.h"
-
-
-template < class POINTER_TYPE >
-inline auto & __typed(__pointer(POINTER_TYPE) & p) { return *p; }
-
+//
+//template < class POINTER_TYPE >
+//inline auto & __typed(__pointer(POINTER_TYPE) & p) { return *p; }
+//
 
 #include "apex/multithreading/thread_parameter.h"
 
-#include "apex/platform/keep_true.h"
+//#include "apex/platform/keep_true.h"
 
-using file_pointer = __pointer(::file::file);
+//using file_pointer = __pointer(::file::file);
+//
+//using file_result = __result(::file::file);
 
-using file_result = __result(::file::file);
-
-class stream;
-class binary_stream;
-
-template < typename BASE_TYPE >
-inline stream & __save_object(stream & stream, BASE_TYPE * p);
-
-template < typename BASE_TYPE >
-inline stream & __save_object(stream & stream, const __pointer(BASE_TYPE) & p)
-{
-   return __save_object(stream, (BASE_TYPE *) p.m_p);
-}
-
-#include "apex/primitive/primitive/logic.h"
-
-
-
-#include "apex/primitive/math/static_numeric_info.h"
-#include "apex/primitive/math/numeric_info.h"
+//class stream;
+//class binary_stream;
+//
+//template < typename BASE_TYPE >
+//inline stream & __save_object(stream & stream, BASE_TYPE * p);
+//
+//template < typename BASE_TYPE >
+//inline stream & __save_object(stream & stream, const __pointer(BASE_TYPE) & p)
+//{
+//   return __save_object(stream, (BASE_TYPE *) p.m_p);
+//}
+//
+////#include "apex/primitive/primitive/logic.h"
 
 
 
-
-#include "apex/primitive/math/c_number.h"
-
-using wparam = c_number < WPARAM >;
+//#include "apex/primitive/math/static_numeric_info.h"
+//#include "apex/primitive/math/numeric_info.h"
 
 
 
 
-#include "apex/primitive/math/math_clip.h"
+//#include "apex/primitive/math/c_number.h"
+//
+//using wparam = c_number < WPARAM >;
+//
+//
+
+//
+//#include "apex/primitive/math/math_clip.h"
 
 
-#include "apex/platform/tick.h"
+//#include "apex/platform/tick.h"
 
 
-#include "apex/primitive/datetime/duration.h"
+//#include "apex/primitive/datetime/duration.h"
 
-#include "apex/platform/common.h"
+//#include "apex/platform/common.h"
 
 
 //#include "apex/primitive/string/_.h"
 
 
-#include "apex/primitive/datetime/date_span.h"
-#include "apex/primitive/datetime/time_span.h"
-#include "apex/primitive/datetime/time.h"
-#include "apex/primitive/datetime/zonetime.h"
-#include "apex/primitive/datetime/file_time_span.h"
-#include "apex/primitive/datetime/file_time.h"
+//#include "apex/primitive/datetime/date_span.h"
+//#include "apex/primitive/datetime/time_span.h"
+//#include "apex/primitive/datetime/time.h"
+//#include "apex/primitive/datetime/zonetime.h"
+//#include "apex/primitive/datetime/file_time_span.h"
+//#include "apex/primitive/datetime/file_time.h"
 
 
 
@@ -2380,68 +2315,68 @@ using wparam = c_number < WPARAM >;
 //#include "apex/os/_.h"
 
 
-class update;
+//class update;
+//
+//namespace status
+//{
+//
+//   class result;
+//
+//} // namespace status
+//
+//namespace message
+//{
+//   class message;
+//
+//} // namespace status
+//
+//class parents;
+//
+//class children;
+//
+//
+//namespace exception
+//{
+//
+//   class exception;
+//   using exception_pointer = __pointer(exception);
+//
+//} // namespace exception
+//
+//
+//using exception_pointer = ::exception::exception_pointer;
+//
+//
+//class event_map;
+//class thread_ptra;
+////class traits;
+//
+//
+//namespace papaya
+//{
+//
+//   class topic;
+//
+//} // namespace papaya
+//
+//
+//class memory_base;
+//
+//
+//
+//template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECT_BASE_TYPE >
+//class size_type;
+//
+//using size = size_type < SIZE, POINT, RECT >;
+//
 
-namespace status
-{
-
-   class result;
-
-} // namespace status
-
-namespace message
-{
-   class message;
-
-} // namespace status
-
-class parents;
-
-class children;
+//#include "apex/primitive/math/cast.h"
 
 
-namespace exception
-{
-
-   class exception;
-   using exception_pointer = __pointer(exception);
-
-} // namespace exception
-
-
-using exception_pointer = ::exception::exception_pointer;
-
-
-class event_map;
-class thread_ptra;
-//class traits;
-
-
-namespace papaya
-{
-
-   class topic;
-
-} // namespace papaya
-
-
-class memory_base;
-
-
-
-template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECT_BASE_TYPE >
-class size_type;
-
-using size = size_type < SIZE, POINT, RECT >;
-
-
-#include "apex/primitive/math/cast.h"
-
-
-#include "apex/primitive/primitive/block.h"
-#include "apex/memory/memory.h"
-
-#include "apex/primitive/primitive/cflag.h"
+//#include "apex/primitive/primitive/block.h"
+//#include "apex/memory/memory.h"
+//
+//#include "apex/primitive/primitive/cflag.h"
 
 //namespace user
 //{
@@ -2457,59 +2392,59 @@ using size = size_type < SIZE, POINT, RECT >;
 
 
 
-//using eobject = cflag < ::enum_object >;
-class action_context;
-
-#include "apex/primitive/primitive/eobject.h"
-
-using emessagebox = cflag < enum_message_box >;
-
-#include "apex/primitive/primitive/function_base.h"
-
-
+////using eobject = cflag < ::enum_object >;
+//class action_context;
+//
+//#include "apex/primitive/primitive/eobject.h"
+//
+//using emessagebox = cflag < enum_message_box >;
+//
+//#include "apex/primitive/primitive/function_base.h"
 
 
 
-#include "apex/primitive/primitive/generic_object.h"
-#include "apex/primitive/primitive/task.h"
-#include "apex/primitive/primitive/compare_pred.h"
 
 
-#include "apex/platform/status.h"
-#include "apex/primitive/primitive/enum_type.h"
+//#include "apex/primitive/primitive/generic.h"
+//#include "apex/primitive/primitive/task.h"
+//#include "apex/primitive/primitive/compare_pred.h"
 
-using efileopen = cflag < ::file::e_open >;
 
-using eiostate = ::cflag < ::file::e_iostate >;
+//#include "apex/platform/status.h"
+//#include "apex/primitive/primitive/enum_type.h"
 
-using ecommand = ::enum_type < enum_command >;
-
-using echeck = ::enum_type < enum_check >;
-
+//using efileopen = cflag < ::file::e_open >;
+//
+//using eiostate = ::cflag < ::file::e_iostate >;
+//
+//using ecommand = ::enum_type < enum_command >;
+//
+//using echeck = ::enum_type < enum_check >;
+//
 
 typedef ::estatus THREAD_PROCEDURE(thread_parameter parameter);
 
 
-inline bool succeeded(const ::var & var);
-inline bool succeeded(const ::property & set);
+//inline bool succeeded(const ::var & var);
+//inline bool succeeded(const ::property & set);
+//
+//inline bool failed(const ::var & var) { return !::succeeded(var); }
+//inline bool failed(const ::property & set) { return !::succeeded(set); }
+//
 
-inline bool failed(const ::var & var) { return !::succeeded(var); }
-inline bool failed(const ::property & set) { return !::succeeded(set); }
-
-
-#define __inner_release(outer, inner) ::release(outer, outer->inner)
-
-
-#include "apex/primitive/primitive/function_base.h"
+//#define __inner_release(outer, inner) ::release(outer, outer->inner)
 
 
-#include "apex/primitive/primitive/member.h"
+//#include "apex/primitive/primitive/function_base.h"
+
+
+//#include "apex/primitive/primitive/member.h"
 
 
 #include "apex/primitive/primitive/context_object.h"
 
 
-#include "apex/primitive/primitive/trait.h"
+//#include "apex/primitive/primitive/trait.h"
 
 
 
@@ -2517,7 +2452,7 @@ inline bool failed(const ::property & set) { return !::succeeded(set); }
 
 
 
-#include "apex/primitive/primitive/_papaya.h"
+//#include "apex/primitive/primitive/_papaya.h"
 
 
 
@@ -2526,39 +2461,39 @@ inline bool failed(const ::property & set) { return !::succeeded(set); }
 
 
 
-#include "apex/primitive/geometry2d/_.h"
+//#include "apex/primitive/geometry2d/_.h"
 
 
 //#include "apex/primitive/primitive/context_object.h"
 
 
-#include "apex/primitive/primitive/_factory_prefix.h"
+///#include "apex/primitive/primitive/_factory_prefix.h"
 
 
-#include "apex/primitive/collection/decl.h"
-
-#include "apex/primitive/collection/raw_array_decl.h"
-
-
-#include "apex/primitive/collection/comparable_eq_array.h"
-#include "apex/primitive/collection/comparable_array.h"
-#include "apex/primitive/collection/comparable_raw_array.h"
+//#include "apex/primitive/collection/decl.h"
+//
+//#include "apex/primitive/collection/raw_array_decl.h"
 
 
-#include "apex/primitive/collection/pointer_array_process.h"
-
-#include "apex/primitive/collection/pointer_array.h"
+//#include "apex/primitive/collection/comparable_eq_array.h"
+//#include "apex/primitive/collection/comparable_array.h"
+//#include "apex/primitive/collection/comparable_raw_array.h"
+//
+//
+//#include "apex/primitive/collection/pointer_array_process.h"
+//
+//#include "apex/primitive/collection/pointer_array.h"
 
 
 
 //#include "apex/primitive/collection/_papaya_array_decl.h"
-#include "apex/primitive/collection/_papaya_heap.h"
-
-
-#include "apex/primitive/collection/address_array.h"
-
-
-#include "apex/primitive/collection/_papaya.h"
+//#include "apex/primitive/collection/_papaya_heap.h"
+//
+//
+//#include "apex/primitive/collection/address_array.h"
+//
+//
+//#include "apex/primitive/collection/_papaya.h"
 
 
 //#include "apex/primitive/collection/pointer2_array.h"
@@ -2566,20 +2501,20 @@ inline bool failed(const ::property & set) { return !::succeeded(set); }
 class sticker;
 
 
-inline ::generic_object * trace_object(::generic_object * pobjectContext) { return pobjectContext; }
+//inline ::generic * trace_object(::generic * pobjectContext) { return pobjectContext; }
 
 template < typename POINTER_TYPE >
 class ptr_array;
 
-//using composite_ptra = __pointer_array(::generic_object); // Please use just for composition (ownership).
+//using composite_ptra = __pointer_array(::generic); // Please use just for composition (ownership).
 
-//using reference_ptra = __pointer_array(::generic_object); // Please use just for reference (member-based).
+//using reference_ptra = __pointer_array(::generic); // Please use just for reference (member-based).
 
 //using object_ptra = __pointer_array(::context_object); // Please use just for keeping non-member-based references.
 
-using object_ptra = __pointer_array(::generic_object); // Please use just for keeping non-member-based references.
+using object_ptra = __pointer_array(::generic); // Please use just for keeping non-member-based references.
 
-using object_addra = __address_array(::generic_object); // Please use just for keeping non-member-based references.
+using object_addra = __address_array(::generic); // Please use just for keeping non-member-based references.
 
 class object_meta;
 
@@ -2594,9 +2529,9 @@ namespace http
 
 } // namespace http
 
-template < typename PRED > inline auto __task_procedure(PRED pred, ::generic_object * pobjectHold = nullptr);
+//template < typename PRED > inline auto __task_procedure(PRED pred, ::generic * pobjectHold = nullptr);
 
-template < typename PRED > inline auto __task_callback(PRED pred, ::generic_object* pobjectHold = nullptr);
+//template < typename PRED > inline auto __task_callback(PRED pred, ::generic* pobjectHold = nullptr);
 
 class context;
 
@@ -2617,16 +2552,16 @@ namespace draw2d
 
 //class create_thread;
 
-using generic_pointer = __pointer(::generic_object);
+using generic_pointer = __pointer(::generic);
 
 
-#ifdef WINDOWS_DESKTOP
-
-
-#include "apex/os/windows/itemidlist.h"
-
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//
+//#include "apex/os/windows/itemidlist.h"
+//
+//
+//#endif
 
 class procedure;
 class callback;
@@ -2642,25 +2577,25 @@ namespace core
 } // namespace core
 
 
-#include "apex/exception/_.h"
+//#include "apex/exception/_.h"
 
-#include "apex/primitive/comparison/var_strict.h"
+//#include "apex/primitive/comparison/var_strict.h"
 
-#include "apex/filesystem/filesystem/path.h"
+//#include "apex/filesystem/filesystem/path.h"
 
-#include "apex/filesystem/filesystem/path_object.h"
+//#include "apex/filesystem/filesystem/path_object.h"
 
-#include "apex/primitive/collection/_.h"
+//#include "apex/primitive/collection/_.h"
 
-#include "apex/primitive/primitive/procedure.h"
+//#include "apex/primitive/primitive/procedure.h"
 
-#include "apex/primitive/primitive/callback.h"
+//#include "apex/primitive/primitive/callback.h"
 
-#include "apex/primitive/geometry2d/collection.h"
+//#include "apex/primitive/geometry2d/collection.h"
 
-#include "apex/primitive/geometry3d/_.h"
+//#include "apex/primitive/geometry3d/_.h"
 
-class message_box;
+//class message_box;
 
 #include "apex/primitive/primitive/object.h"
 
@@ -2668,19 +2603,19 @@ class message_box;
 
 #include "apex/platform/trace.h"
 
-#include "apex/platform/pred_procedure.h"
+//#include "apex/platform/pred_procedure.h"
 
 #include "apex/platform/debug.h"
 
-#include "apex/platform/class.h"
+//#include "apex/platform/class.h"
 
-#include "apex/primitive/comparison/md5.h"
+//#include "apex/primitive/comparison/md5.h"
 
 //#include "apex/platform/conv.h"
 
-#include "apex/primitive/primitive/request_interface.h"
+//#include "apex/primitive/primitive/request_interface.h"
 
-#include "apex/multithreading/sync_result.h"
+//#include "apex/multithreading/sync_result.h"
 
 //#include "apex/multithreading/sync.h"
 
@@ -2688,53 +2623,53 @@ class message_box;
 
 //#include "apex/xml/importable.h"
 
-#include "apex/primitive/comparison/_.h"
+//#include "apex/primitive/comparison/_.h"
 
-#include "apex/primitive/primitive/traits.h"
+//#include "apex/primitive/primitive/traits.h"
 
 //#include "apex/static_setup.h"
 
-CLASS_DECL_APEX string merge_colon_args(const array < string_array > & str2a);
+//CLASS_DECL_APEX string merge_colon_args(const array < string_array > & str2a);
 
-class callstack;
+//class callstack;
 
-CLASS_DECL_APEX __pointer(callstack) get_callstack(const char* pszFormat = "%f(%l) %s\n", iptr iSkip = -1000, void* caller_address = nullptr, iptr iCount = -1);
+//CLASS_DECL_APEX __pointer(callstack) get_callstack(const char* pszFormat = "%f(%l) %s\n", iptr iSkip = -1000, void* caller_address = nullptr, iptr iCount = -1);
 
-CLASS_DECL_APEX __pointer(callstack) get_callstack(e_callstack ecallstack, int iCallStackAddUp = 0);
+//CLASS_DECL_APEX __pointer(callstack) get_callstack(e_callstack ecallstack, int iCallStackAddUp = 0);
 
-CLASS_DECL_APEX void set_callstack_mask(cflag < e_callstack > ecallstack);
+//CLASS_DECL_APEX void set_callstack_mask(cflag < e_callstack > ecallstack);
 
-CLASS_DECL_APEX e_callstack get_callstack_mask();
+//CLASS_DECL_APEX e_callstack get_callstack_mask();
 
-inline bool is_callstack_enabled(e_callstack ecallstack) { return (i64) get_callstack_mask()& (i64) ecallstack; }
-
-
-#include "apex/platform/fixed_alloc.h"
+//inline bool is_callstack_enabled(e_callstack ecallstack) { return (i64) get_callstack_mask()& (i64) ecallstack; }
 
 
-
-#include "apex/memory/allocate.h"
-#include "apex/memory/plex.h"
-
-
-#include "apex/primitive/primitive/id.h"
-
-
-inline bool is_filemanager(::id id) { return is_impact_group(id.i64(), FILEMANAGER_IMPACT); }
-inline bool is_filemanager_group(::id id, ::i64 iGroup) { return is_impact_subgroup(id.i64(), FILEMANAGER_IMPACT + iGroup); }
-inline bool is_color_sel(::id id) { return is_impact_group(id.i64(), COLORSEL_IMPACT); }
-inline bool is_font_sel(::id id) { return is_impact_group(id.i64(), FONTSEL_IMPACT); }
-
-
-#include "apex/primitive/string/composite.h"
-#include "apex/primitive/string/base64.h"
-
-#include "apex/primitive/collection/composite_array.h"
+//#include "apex/platform/fixed_alloc.h"
 
 
 
-template < class POINTER_TYPE >
-inline auto & __typed(__composite(POINTER_TYPE) * pp) { return *pp->operator POINTER_TYPE * (); }
+//#include "apex/memory/allocate.h"
+//#include "apex/memory/plex.h"
+
+
+//#include "apex/primitive/primitive/id.h"
+
+
+//inline bool is_filemanager(::id id) { return is_impact_group(id.i64(), FILEMANAGER_IMPACT); }
+//inline bool is_filemanager_group(::id id, ::i64 iGroup) { return is_impact_subgroup(id.i64(), FILEMANAGER_IMPACT + iGroup); }
+//inline bool is_color_sel(::id id) { return is_impact_group(id.i64(), COLORSEL_IMPACT); }
+//inline bool is_font_sel(::id id) { return is_impact_group(id.i64(), FONTSEL_IMPACT); }
+
+
+//#include "apex/primitive/string/composite.h"
+//#include "apex/primitive/string/base64.h"
+
+//#include "apex/primitive/collection/composite_array.h"
+
+
+
+//template < class POINTER_TYPE >
+//inline auto & __typed(__composite(POINTER_TYPE) * pp) { return *pp->operator POINTER_TYPE * (); }
 
 
 
@@ -2747,38 +2682,38 @@ inline auto & __typed(__composite(POINTER_TYPE) * pp) { return *pp->operator POI
 
 
 
-#include "apex/filesystem/file/file.h"
-#include "apex/filesystem/file/stream.h"
-#include "apex/filesystem/file/binary_stream.h"
-#include "apex/filesystem/file/var_stream.h"
-#include "apex/filesystem/file/string_file.h"
-#include "apex/filesystem/file/text_stream.h"
+//#include "apex/filesystem/file/file.h"
+//#include "apex/filesystem/file/stream.h"
+//#include "apex/filesystem/file/binary_stream.h"
+//#include "apex/filesystem/file/var_stream.h"
+//#include "apex/filesystem/file/string_file.h"
+//#include "apex/filesystem/file/text_stream.h"
 
 
-#include "apex/exception/_dump_context.h"
+//#include "apex/exception/_dump_context.h"
 
-inline int read_char(u8 * & pdata, memsize & s, char * pch)
-{
-
-   if (s < 1)
-   {
-
-      return 0;
-
-   }
-
-   *pch = (char)*pdata;
-
-   pdata++;
-
-   s--;
-
-   return 1;
-
-}
-
-template<class TYPE>
-inline void dump_elements(dump_context & dumpcontext, const TYPE* pElements, ::count nCount);
+//inline int read_char(u8 * & pdata, memsize & s, char * pch)
+//{
+//
+//   if (s < 1)
+//   {
+//
+//      return 0;
+//
+//   }
+//
+//   *pch = (char)*pdata;
+//
+//   pdata++;
+//
+//   s--;
+//
+//   return 1;
+//
+//}
+//
+//template<class TYPE>
+//inline void dump_elements(dump_context & dumpcontext, const TYPE* pElements, ::count nCount);
 
 
 //#include "apex/common.h"
@@ -2798,40 +2733,40 @@ inline void dump_elements(dump_context & dumpcontext, const TYPE* pElements, ::c
 
 //#include "apex/primitive/collection/base_enum.h"
 
-#include "apex/const/source.h"
-#include "apex/const/context.h"
-#include "apex/primitive/primitive/action_context.h"
+//#include "apex/const/source.h"
+//#include "apex/const/context.h"
+//#include "apex/primitive/primitive/action_context.h"
 
 
 
-#include "apex/platform/cmp.h"
+//#include "apex/platform/cmp.h"
 
 
-#include "apex/filesystem/file/string_file.h"
+//#include "apex/filesystem/file/string_file.h"
 
 
-#include "apex/filesystem/file/var_stream.h"
+//#include "apex/filesystem/file/var_stream.h"
 
 
 //#include "apex/primitive/str/str_format.h"
 
 
-#include "apex/primitive/primitive/var2.h"
+//#include "apex/primitive/primitive/var2.h"
 
 
-#include "apex/primitive/primitive/id_space.h"
+//#include "apex/primitive/primitive/id_space.h"
 
 
-#include "apex/primitive/math/scalar_enum.h"
+//#include "apex/primitive/math/scalar_enum.h"
 
 
-#include "apex/primitive/math/scalar.h"
+//#include "apex/primitive/math/scalar.h"
 
 
 #include "apex/platform/progress.h"
 
 
-#include "apex/platform/enum.h"
+//#include "apex/platform/enum.h"
 
 
 #include "apex/multithreading/_.h"
@@ -2945,11 +2880,11 @@ namespace uwp
 
 
 
-CLASS_DECL_APEX string get_system_error_message(u32 dwError);
+//CLASS_DECL_APEX string get_system_error_message(u32 dwError);
 
 
-#include "apex/platform/flags.h"
-#include "apex/const/check.h"
+//#include "apex/platform/flags.h"
+//#include "apex/const/check.h"
 
 
 #include "apex/message/_message.h"
@@ -2964,21 +2899,21 @@ CLASS_DECL_APEX string get_system_error_message(u32 dwError);
 
 
 #include "apex/platform/keep.h"
-#include "apex/platform/restore.h"
+//#include "apex/platform/restore.h"
 
 
-#include "apex/primitive/data/_.h"
+//#include "apex/primitive/data/_.h"
 
 
-#include "apex/primitive/math/objects.h"
+//#include "apex/primitive/math/objects.h"
 
 
 #include "apex/platform/simple_log.h"
 
 
-#include "apex/primitive/collection/file_path_map.h"
+//#include "apex/primitive/collection/file_path_map.h"
 
-#include "apex/primitive/primitive/edit.h"
+//#include "apex/primitive/primitive/edit.h"
 #include "apex/platform/department.h"
 //#include "apex/platform/department_container.h"
 
@@ -2987,7 +2922,7 @@ CLASS_DECL_APEX string get_system_error_message(u32 dwError);
 class mq;
 
 //#include "apex/platform/live_signal.h"
-#include "apex/multithreading/pred_holder.h"
+//#include "apex/multithreading/pred_holder.h"
 //#include "apex/primitive/primitive/command.h"
 #include "apex/multithreading/thread.h"
 #include "apex/multithreading/handler.h"
@@ -3020,11 +2955,11 @@ class mq;
 #include "apex/platform/log.h"
 
 
-#include "apex/primitive/primitive/memory_base.h"
-#include "apex/primitive/primitive/memory.h"
-#include "apex/primitive/primitive/shared_memory.h"
-#include "apex/primitive/primitive/virtual_memory.h"
-#include "apex/primitive/primitive/memory_container.h"
+//#include "apex/primitive/primitive/memory_base.h"
+//#include "apex/primitive/primitive/memory.h"
+//#include "apex/primitive/primitive/shared_memory.h"
+//#include "apex/primitive/primitive/virtual_memory.h"
+//#include "apex/primitive/primitive/memory_container.h"
 
 
 
@@ -3032,17 +2967,17 @@ class mq;
 
 
 
-#include "apex/filesystem/file/memory_file.h"
-#include "apex/filesystem/file/circular_file.h"
+//#include "apex/filesystem/file/memory_file.h"
+//#include "apex/filesystem/file/circular_file.h"
 
 
 
 //#include "apex/filesystem/file/timeout_buffer.h"
 //#include "apex/filesystem/file/transfer_buffer.h"
 
-#include "apex/filesystem/file/memory_map.h"
+//#include "apex/filesystem/file/memory_map.h"
 
-#include "apex/primitive/string/international2.h"
+//#include "apex/primitive/string/international2.h"
 
 
 
@@ -3053,12 +2988,14 @@ class mq;
 //#endif
 
 
-#include "apex/primitive/primitive/factory.h"
+//#include "apex/primitive/primitive/factory.h"
 
 
 namespace user
 {
 
+   
+   class style;
 
    using style_pointer = __pointer(style);
 
@@ -3067,18 +3004,18 @@ namespace user
 
 
 
-#include "apex/graphics/_.h"
+//#include "apex/graphics/_.h"
 
 #include "apex/user.h"
 
 
 
-#include "apex/primitive/math/random_number_generator.h"
-#include "apex/primitive/math/department.h"
-#include "apex/primitive/geometry2d/geometry.h"
+//#include "apex/primitive/math/random_number_generator.h"
+//#include "apex/primitive/math/department.h"
+//#include "apex/primitive/geometry2d/geometry.h"
 
 
-CLASS_DECL_APEX string get_exe_path();
+//CLASS_DECL_APEX string get_exe_path();
 
 
 #include "apex/platform/savings.h"
@@ -3116,7 +3053,7 @@ namespace file
 
 #include "apex/filesystem/filesystem/dir_context.h"
 
-#include "apex/filesystem/filesystem/listing.h"
+//#include "apex/filesystem/filesystem/listing.h"
 
 #include "apex/filesystem/file/set.h"
 
@@ -3125,43 +3062,43 @@ namespace file
 //#include "apex/primitive/primitive/command.h"
 
 
-#include "apex/exception/engine.h"
+//#include "apex/exception/engine.h"
+#include "apex/user/ewindowflag.h"
 
-
-#include "apex/platform/fixed_alloc_impl.h"
+//#include "apex/platform/fixed_alloc_impl.h"
 #include "apex/primitive/primitive/command_line.h"
 //#include "apex/user/create.h"
-//#include "apex/primitive/primitive/create.h"
-#include "apex/primitive/primitive/request_signal.h"
+#include "apex/primitive/primitive/create.h"
+//#include "apex/primitive/primitive/request_signal.h"
 
 
 #include "apex/platform/net.h"
 
 
-#include "apex/filesystem/file/buffered_file.h"
+//#include "apex/filesystem/file/buffered_file.h"
 
 
 #include "apex/primitive/datetime/_.h"
 
 
-#include "apex/primitive/string/international_locale_schema.h"
+#include "apex/platform/international_locale_schema.h"
 
 
 //#include "apex/platform/cregexp.h"
 //#include "apex/platform/cregexp_util.h"
 
-
-class CLASS_DECL_APEX ptra :
-   virtual public __pointer_array(object)
-{
-public:
-
-
-};
-
-
-typedef ::map < __pointer(object), __pointer(object), __pointer(object), __pointer(object) > element_map;
-typedef ::map < __pointer(object), __pointer(object), ptra, ptra > map_many;
+//
+//class CLASS_DECL_APEX ptra :
+//   virtual public __pointer_array(object)
+//{
+//public:
+//
+//
+//};
+//
+//
+//typedef ::map < __pointer(object), __pointer(object), __pointer(object), __pointer(object) > element_map;
+//typedef ::map < __pointer(object), __pointer(object), ptra, ptra > map_many;
 
 
 namespace zip
@@ -3182,7 +3119,7 @@ namespace zip
 
 #endif
 
-#include "apex/platform/regex.h"
+//#include "apex/platform/regex.h"
 
 #include "apex/process/process.h"
 
@@ -3201,17 +3138,17 @@ namespace zip
 
 
 
-#include "apex/multimedia/_.h"
+//#include "apex/multimedia/_.h"
 
 
 
 
 //#include "apex/user/style_coord.h"
 //#include "apex/user/style_rect.h"
-#include "apex/user/item.h"
+//#include "apex/user/item.h"
 
 
-#include "apex/platform/exclusive.h"
+//#include "apex/platform/exclusive.h"
 
 
 #include "apex/platform/application_menu.h"
@@ -3242,6 +3179,25 @@ namespace fs
 
 class ifs;
 
+
+namespace apex
+{
+
+
+   enum enum_end
+   {
+
+      e_end_close,
+      e_end_app,
+      e_end_session,
+      e_end_system,
+
+   };
+
+
+} // namespace apex
+
+
 //#include "axis/programming/javascript/javascript.h"
 
 #include "apex/filesystem/fs/_fs.h"
@@ -3256,21 +3212,29 @@ class ifs;
 
 //#include "apex/filesystem/filehandler/_.h"
 
-#include "apex/game/_.h"
+//#include "apex/game/_.h"
 
 #include "apex/_.h"
+
+#include "apex/user/text.h"
+
+#include "apex/user/check.h"
+
+#include "apex/user/command.h"
 
 #include "apex/message/_.h"
 
 #include "apex/platform/context_thread.h"
 
+
 #include "apex/filesystem/filemanager/callback.h"
+
 
 #include "apex/platform/application.h"
 
 //#include "apex/platform/app.h"
 
-#include "apex/platform/application_message.h"
+//#include "apex/platform/application_message.h"
 
 //#include "apex/account/_account.h"
 
@@ -3279,6 +3243,8 @@ class ifs;
 //#include "apex/filesystem/filemanager/component.h"
 
 //#include "core/user/userex/userex.h"
+
+#include "apex/user/_const_key.h"
 
 #include "apex/platform/session.h"
 
@@ -3308,18 +3274,22 @@ namespace xml
 } // namespace xml
 
 
-#include "apex/multimedia/audio/speaker.h"
+//#include "apex/multimedia/audio/speaker.h"
 
 
-#include "apex/multimedia/audio.h"
+//#include "apex/multimedia/audio.h"
 
-#include "apex/multimedia/multimedia.h"
+//#include "apex/multimedia/multimedia.h"
 
 #include "apex/platform/app_core.h"
 
 //#include "apex/primitive/collection/map.h"
 
 //#include "apex/primitive/collection/strid_map.h"
+
+#include "apex/process/_.h"
+
+#include "apex/primitive/math/department.h"
 
 #include "apex/platform/system.h"
 
@@ -3435,7 +3405,7 @@ return __str(value);
 #include "apex/platform/assert_running_task.h"
 
 
-#include "apex/platform/number.h"
+//#include "apex/platform/number.h"
 
 
 #include "apex/platform/debug.h"
@@ -3446,6 +3416,8 @@ return __str(value);
 
 
 //#include "apex/math/_math.h"
+
+
 
 
 // C++ Includes
@@ -3487,9 +3459,9 @@ extern "C"
 }
 
 
-CLASS_DECL_APEX string _ca_get_file_name(const char * psz,bool bCreate = false,i32 * pfd = nullptr);
+//CLASS_DECL_APEX string _ca_get_file_name(const char * psz,bool bCreate = false,i32 * pfd = nullptr);
 
-CLASS_DECL_APEX string get_system_error_message(u32 dwError);
+//CLASS_DECL_APEX string get_system_error_message(u32 dwError);
 
 
 #include "apex/platform/simple_app.h"
@@ -3512,19 +3484,19 @@ namespace math
 
 } // namespace math
 
-namespace _std
-{
-
-
-   template <class T> void __swap(T& a, T& b)
-   {
-      T c(a);
-      a = b;
-      b = c;
-   }
-
-
-}
+//namespace _std
+//{
+//
+//
+//   template <class T> void __swap(T& a, T& b)
+//   {
+//      T c(a);
+//      a = b;
+//      b = c;
+//   }
+//
+//
+//}
 
 
 //namespace file
@@ -3702,24 +3674,24 @@ namespace std
 }*/
 
 
-template < typename T >
-inline string & to_json(string & str, const T & value, bool bNewLine)
-{
+//template < typename T >
+//inline string & to_json(string & str, const T & value, bool bNewLine)
+//{
+//
+//   return str = __str(value);
+//
+//}
 
-   return str = __str(value);
 
-}
+//CLASS_DECL_APEX int trace_hr(const char * psz,HRESULT hr);
 
+//CLASS_DECL_APEX string get_last_error_string();
 
-CLASS_DECL_APEX int trace_hr(const char * psz,HRESULT hr);
+//CLASS_DECL_APEX string get_error_string(u64 uiError);
 
-CLASS_DECL_APEX string get_last_error_string();
-
-CLASS_DECL_APEX string get_error_string(u64 uiError);
-
-CLASS_DECL_APEX void set_aura(void * p,::apex::application * papp);
-
-CLASS_DECL_APEX ::apex::application * get_aura(void * p);
+//CLASS_DECL_APEX void set_apex(void * p,::apex::application * papp);
+//
+//CLASS_DECL_APEX ::apex::application * get_apex(void * p);
 
 
 #include "apex/platform/error.h"
@@ -3731,22 +3703,22 @@ CLASS_DECL_APEX ::apex::application * get_aura(void * p);
 //#include "apex/scripting/javascript/javascript.h"
 
 
-#include "apex/compress/compress.h"
+#include "apex/compress/_.h"
 
 
-#include "apex/graphics/graphics/graphics.h"
+//#include "apex/graphics/graphics/graphics.h"
 
 
 #include "apex/platform/application_consumer.h"
 
 
-#if !defined(_UWP)
-
-
-#include "apex/platform/serial.h"
-
-
-#endif
+//#if !defined(_UWP)
+//
+//
+//#include "apex/platform/serial.h"
+//
+//
+//#endif
 
 
 #include "apex/platform/async.h"
@@ -3769,6 +3741,9 @@ CLASS_DECL_APEX ::apex::application * get_aura(void * p);
 #include "apex/platform/application.h"
 
 
+#include "apex/multithreading/pred_procedure.h"
+
+
 #include "apex/primitive/primitive/_defer.h"
 
 
@@ -3778,7 +3753,7 @@ CLASS_DECL_APEX ::apex::application * get_aura(void * p);
 #include "apex/platform/_impl.h"
 
 
-#include "apex/primitive/collection/_collection_impl.h"
+//#include "apex/primitive/collection/_collection_impl.h"
 
 
 #ifndef WINDOWS_DESKTOP
@@ -3788,24 +3763,24 @@ CLASS_DECL_APEX ::apex::application * get_aura(void * p);
 #endif
 
 
-#include "apex/primitive/collection/_papaya_impl.h"
-
-
-#include "apex/primitive/collection/_array_base_impl.h"
-#include "apex/primitive/collection/_array_impl.h"
-#include "apex/primitive/collection/_raw_array_impl.h"
-#include "apex/primitive/collection/_sort_array_impl.h"
-#include "apex/primitive/collection/_papaya_array_impl.h"
-
-#include "apex/primitive/collection/_list_impl.h"
-#include "apex/primitive/collection/_map_impl.h"
-
-#include "apex/primitive/collection/_sort_map_impl.h"
-
-#include "apex/primitive/collection/_fifo_map_impl.h"
-
-#include "apex/primitive/collection/_papaya_array2d_impl.h"
-
+//#include "apex/primitive/collection/_papaya_impl.h"
+//
+//
+//#include "apex/primitive/collection/_array_base_impl.h"
+//#include "apex/primitive/collection/_array_impl.h"
+//#include "apex/primitive/collection/_raw_array_impl.h"
+//#include "apex/primitive/collection/_sort_array_impl.h"
+//#include "apex/primitive/collection/_papaya_array_impl.h"
+//
+//#include "apex/primitive/collection/_list_impl.h"
+//#include "apex/primitive/collection/_map_impl.h"
+//
+//#include "apex/primitive/collection/_sort_map_impl.h"
+//
+//#include "apex/primitive/collection/_fifo_map_impl.h"
+//
+//#include "apex/primitive/collection/_papaya_array2d_impl.h"
+//
 
 
 #include "apex/platform/_system_smart_pointer_impl.h"
@@ -3816,10 +3791,10 @@ CLASS_DECL_APEX ::apex::application * get_aura(void * p);
 
 
 
-#include "apex/primitive/string/_impl.h"
+//#include "apex/primitive/string/_impl.h"
 
 
-#include "apex/primitive/string/_base_impl.h"
+//#include "apex/primitive/string/_base_impl.h"
 
 
 #include "apex/primitive/primitive/_factory_impl.h"
@@ -3828,19 +3803,19 @@ CLASS_DECL_APEX ::apex::application * get_aura(void * p);
 #include "apex/primitive/math/_impl.h"
 
 
-#include "apex/primitive/collection/_string_array_impl.h"
+//#include "apex/primitive/collection/_string_array_impl.h"
 
 
 #include "apex/primitive/primitive/_impl.h"
 
 
-#include "apex/primitive/primitive/_papaya_impl.h"
+//#include "apex/primitive/primitive/_papaya_impl.h"
 
 
 #include "apex/primitive/datetime/_impl.h"
 
 
-#include "apex/primitive/geometry2d/_impl.h"
+//#include "apex/primitive/geometry2d/_impl.h"
 
 
 #include "apex/filesystem/_impl.h"
@@ -3858,19 +3833,19 @@ CLASS_DECL_APEX ::apex::application * get_aura(void * p);
 #include "apex/net/_impl.h"
 
 
-#include "apex/graphics/draw2d/_impl.h"
+//#include "apex/graphics/draw2d/_impl.h"
 
 
-#include "apex/exception/_.inl"
+//#include "apex/exception/_.inl"
 
 
-#include "apex/graphics/draw2d/_image_impl.h"
-
-
-#include "apex/primitive/string/_str_impl.h"
-
-
-#include "apex/graphics/_impl.h"
+//#include "apex/graphics/draw2d/_image_impl.h"
+//
+//
+//#include "apex/primitive/string/_str_impl.h"
+//
+//
+//#include "apex/graphics/_impl.h"
 
 
 #include "apex/filesystem/file/_serializable_impl.h"

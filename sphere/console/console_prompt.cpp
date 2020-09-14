@@ -5,7 +5,7 @@ namespace console
 {
 
 
-   prompt::prompt(::object * pobject) :
+   prompt::prompt(::layered * pobjectContext) :
       ::object(pobject)
    {
 

@@ -5,7 +5,7 @@ namespace install
 {
 
 
-   starter_start::starter_start(::object * pobject) :
+   starter_start::starter_start(::layered * pobjectContext) :
       ::object(pobject)
    {
 

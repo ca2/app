@@ -14,7 +14,7 @@ namespace draw2d_xlib
 
 
 
-   image::image_pointer(::object * pobject) :
+   image::image_pointer(::layered * pobjectContext) :
       ::object(pobject),
       m_pbitmap(e_create),
       m_spgraphics(e_create)

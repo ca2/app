@@ -124,13 +124,13 @@ void file_beg_contents_raw(const char * path, const char * psz)
 
       fseek(f, lEnd - lRemain - lLen, SEEK_SET);
 
-      fread(buf, 1, MIN(lRemain, lSize), f);
+      fread(buf, 1, min(lRemain, lSize), f);
 
       fseek(f, lEnd - lRemain, SEEK_SET);
 
-      fwrite(buf, 1, MIN(lRemain, lSize), f);
+      fwrite(buf, 1, min(lRemain, lSize), f);
 
-      lRemain -= MIN(lRemain, lSize);
+      lRemain -= min(lRemain, lSize);
 
    }
 

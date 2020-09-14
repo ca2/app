@@ -1,14 +1,20 @@
 #include "framework.h"
 #include "static_start.h"
 #include "apex/net/sockets/_.h"
-#include "apex/memory/plex_heap1.h"
-#include "apex/memory/plex_heap_impl1.h"
 #include "apex/platform/app_core.h"
-#include "apex/primitive/primitive/malloc.h"
 #include "apex/astr.h"
 #include "apex/os/_os.h"
 
 //#include <sqlite3.h>
+
+
+
+typedef bool THREAD_GET_RUN();
+using PFN_THREAD_GET_RUN = THREAD_GET_RUN*;
+
+CLASS_DECL_ACME void set_thread_get_run(PFN_THREAD_GET_RUN pthreadrun);
+
+bool apex_thread_get_run();
 
 #ifdef RASPBIAN
 #define PLATFORM_NAMESPACE linux
@@ -27,11 +33,9 @@
 
 
 
-void trace_category_static_init();
-void trace_category_static_term();
 
 
-extern thread_local __pointer(::thread) t_pthread;
+//extern thread_local __pointer(::thread) t_pthread;
 
 
 #undef new
@@ -57,31 +61,21 @@ namespace apex
 {
 
 
-#if OBJ_TYP_CTR
+   bool g_bApex;
 
-   map < const char*, const char*, ::i64, ::i64 >* g_pmapObjTypCtr;
-
-#endif
-
-
-   //critical_section* g_pcsRefDbg;
-   bool g_bAura;
-
-
-#if OBJ_TYP_CTR
-
-   int g_iObjTypCtrInit;
-
-#endif
 
    CLASS_DECL_APEX critical_section* g_pcsFont = nullptr;
 
+
    CLASS_DECL_APEX string_to_string * g_pmapFontFaceName = nullptr;
 
+
    ::mutex* g_pmutexChildren;
+
    ::mutex* g_pmutexThreadWaitClose;
+
    //string_map < __pointer(::apex::library) >* g_pmapLibrary;
-   //string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
+   //string_map < PFN_NEW_APEX_LIBRARY >* g_pmapNewAuraLibrary;
 
 
 #if !defined(WINDOWS)
@@ -112,34 +106,34 @@ namespace apex
 
    //::mutex * &::get_context_system()->g_mutexLibrary;
 
-   __LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
+   //__LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
 
-   ::mutex* g_pmutexGlobals;
+   //::mutex* get_globals_mutex();
 
-   critical_section* g_pcsGlobal;
+   //critical_section* g_pcsGlobal;
 
-   bool g_bOutputDebugString;
+   //bool g_bOutputDebugString;
 
    critical_section* g_pcsTrace;
 
-   ::generic_object* g_ptrace;
+   ::generic* g_ptrace;
 
    simple_trace* g_psimpletrace;
 
-#ifdef __APPLE__
-
-   // http://stackoverflow.com/questions/5167269/clock-gettime-alternative-in-mac-os-x
-   // http://stackoverflow.com/users/346736/jbenet
-
-   //#include <mach/clock.h>
-   //#include <mach/mach.h>
-#include <mach/mach_time.h>
-
-//clock_serv_t   g_cclock;
-   double g_machtime_conversion_factor;
-   //   clock_get_time(cclock, &mts);
-
-#endif
+//#ifdef __APPLE__
+//
+//   // http://stackoverflow.com/questions/5167269/clock-gettime-alternative-in-mac-os-x
+//   // http://stackoverflow.com/users/346736/jbenet
+//
+//   //#include <mach/clock.h>
+//   //#include <mach/mach.h>
+//#include <mach/mach_time.h>
+//
+////clock_serv_t   g_cclock;
+//   double g_machtime_conversion_factor;
+//   //   clock_get_time(cclock, &mts);
+//
+//#endif
 
 
    ::mutex* g_pmutexCred;
@@ -150,24 +144,24 @@ namespace apex
    ::mutex* g_pmutexMessageDispatch;
 
 
-   array < generic_object* >* g_paAura;
+   array < generic* >* g_paAura;
 
 
    ::map < ::id, const ::id&, ::id, const ::id& >* g_pmapRTL;
 
-   plex_heap_alloc_array* g_pheap;
+//   plex_heap_alloc_array* g_pheap;
 
-   critical_section* g_pmutexSystemHeap;
+//   critical_section* g_pmutexSystemHeap;
 
-#if defined(WINDOWS)
-
-   _locale_t g_localeC;
-
-#else
-
-   locale_t g_localeC;
-
-#endif
+//#if defined(WINDOWS)
+//
+//   _locale_t g_localeC;
+//
+//#else
+//
+//   locale_t g_localeC;
+//
+//#endif
 
    //map < ITHREAD, ITHREAD, ITHREAD, ITHREAD > * g_pmapThreadOn;
 
@@ -193,7 +187,7 @@ namespace apex
 
 #endif
 
-   CLASS_DECL_APEX aura_str_pool* g_paurastrpool;
+   //CLASS_DECL_APEX apex_str_pool* g_papexstrpool;
 
    // #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
@@ -245,7 +239,9 @@ namespace apex
    void apex::construct()
    {
 
-      g_bAura = 0;
+      set_thread_get_run(&apex_thread_get_run);
+
+      g_bApex = 0;
 
 #if OBJ_TYP_CTR
 
@@ -253,7 +249,7 @@ namespace apex
 
 #endif
 
-      g_bAura = false;
+      g_bApex = false;
 
 #if OBJ_TYP_CTR
 
@@ -275,13 +271,13 @@ namespace apex
 
 #endif
 
-      g_main_deferred_run = nullptr;
+      //g_main_deferred_run = nullptr;
 
-      g_pmutexGlobals = nullptr;
+      //get_globals_mutex() = nullptr;
 
-      g_pcsGlobal = nullptr;
+      //g_pcsGlobal = nullptr;
 
-      g_bOutputDebugString = true;
+      //g_bOutputDebugString = true;
 
       g_pcsTrace = nullptr;
 
@@ -289,22 +285,6 @@ namespace apex
 
       g_psimpletrace = nullptr;
 
-#ifdef __APPLE__
-
-      // http://stackoverflow.com/questions/5167269/clock-gettime-alternative-in-mac-os-x
-      // http://stackoverflow.com/users/346736/jbenet
-
-      //#include <mach/clock.h>
-      //#include <mach/mach.h>
-#include <mach/mach_time.h>
-
-//clock_serv_t   g_cclock;
-      g_machtime_conversion_factor = 0.0;
-      //   clock_get_time(cclock, &mts);
-
-#endif
-
-      g_pmutexCred = nullptr;
 
       g_pexceptionengine = nullptr;
       g_pmutexMessageDispatch = nullptr;
@@ -317,21 +297,21 @@ namespace apex
 
       //string_map < __pointer(::apex::library) > * g_pmapLibCall;
 
-      g_pheap = nullptr;
+      //g_pheap = nullptr;
 
-      g_pmutexSystemHeap = nullptr;
+      //g_pmutexSystemHeap = nullptr;
 
       //::mutex * g_pmutexThreadOn;
 
-#if defined(WINDOWS)
-
-      g_localeC = 0;
-
-#else
-
-      g_localeC = 0;
-
-#endif
+//#if defined(WINDOWS)
+//
+//      g_localeC = 0;
+//
+//#else
+//
+//      g_localeC = 0;
+//
+//#endif
 
       //map < ITHREAD, ITHREAD, ITHREAD, ITHREAD > * g_pmapThreadOn;
 
@@ -357,7 +337,7 @@ namespace apex
 
 #endif
 
-      g_paurastrpool = nullptr;
+      //g_papexstrpool = nullptr;
 
       // #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
@@ -402,7 +382,7 @@ namespace apex
 
       g_pmapFontFaceName = nullptr;
 
-
+      create_factory < ::apex::idpool >();
 
    }
 
@@ -417,19 +397,19 @@ namespace apex
       //g_pcsRefDbg = nullptr;
 
 
-#if defined(WINDOWS)
-
-      g_localeC = _wcreate_locale(LC_ALL, L"C");
-
-#elif defined(__APPLE__)
-
-      g_localeC = newlocale(LC_ALL, "C", NULL);
-
-#else
-
-      g_localeC = newlocale(LC_ALL_MASK, "C", NULL);
-
-#endif
+//#if defined(WINDOWS)
+//
+//      g_localeC = _wcreate_locale(LC_ALL, L"C");
+//
+//#elif defined(__APPLE__)
+//
+//      g_localeC = newlocale(LC_ALL, "C", NULL);
+//
+//#else
+//
+//      g_localeC = newlocale(LC_ALL_MASK, "C", NULL);
+//
+//#endif
 
 #ifndef WINDOWS
 
@@ -465,41 +445,39 @@ namespace apex
 
 #endif
 
-      g_iFirstNano = get_nanos();
+      //g_iFirstNano = get_nanos();
 
-      //xxdebug_box("apex.dll base_static_start (0)", "box", MB_OK);
+      ////xxdebug_box("apex.dll base_static_start (0)", "box", MB_OK);
 
-      g_pexceptionengine = new ::PLATFORM_NAMESPACE::exception_engine();
+      //g_pexceptionengine = new ::PLATFORM_NAMESPACE::exception_engine();
 
-      g_pmutexGlobals = new ::mutex();
+      //get_globals_mutex() = new ::mutex();
 
-      g_pmutexChildren = new ::mutex();
+      //g_pmutexChildren = new ::mutex();
 
-      g_pcsGlobal = new critical_section();
+      //g_pcsGlobal = new critical_section();
 
-#ifndef __MCRTDBG
+//#ifndef __MCRTDBG
+//    // at acme
+//      g_pheap = new plex_heap_alloc_array();
+//
+//#endif
+      // at acme
+      //::id_space::s_pidspace = new id_space();
 
-      g_pheap = new plex_heap_alloc_array();
+      ::apex::idpool::init();
+//
+//#ifdef ANDROID
+//
+//      g_pmutexOutputDebugStringA = new ::mutex();
+//
+//#endif
 
-#endif
-
-      ::id_space::s_pidspace = new id_space();
-
-      init_id_pool();
-
-#ifdef ANDROID
-
-      g_pmutexOutputDebugStringA = new ::mutex();
-
-#endif
-
-#if OBJ_TYP_CTR
-
-      g_pmapObjTypCtr = new map < const char*, const char*, ::i64, ::i64 >;
-
-#endif
-
-      trace_category_static_init();
+//#if OBJ_TYP_CTR
+//
+//      g_pmapObjTypCtr = new map < const char*, const char*, ::i64, ::i64 >;
+//
+//#endif
 
       g_psimpletrace = new simple_trace;
 
@@ -524,7 +502,7 @@ namespace apex
 
       //g_pmapThreadOn = new ::map < ITHREAD, ITHREAD, ITHREAD, ITHREAD >;
 
-      g_pmutexSystemHeap = new critical_section();
+      //g_pmutexSystemHeap = new critical_section();
 
 #if MEMDLEAK
 
@@ -532,9 +510,9 @@ namespace apex
 
 #endif
 
-      ::factory::factory_init();
+      //::factory::factory_init();
 
-      g_paAura = new array < generic_object * >;
+      g_paAura = new array < generic * >;
 
       //g_pmapAura =new ::map < void *,void *,::apex::application *,::apex::application * >;
 
@@ -556,13 +534,7 @@ namespace apex
 
       //g_pmapLibrary = new string_map < __pointer(::apex::library) >();
 
-      //g_pmapNewAuraLibrary = new string_map < PFN_NEW_AURA_LIBRARY >();
-
-#ifndef _UWP
-
-      br_init(nullptr);
-
-#endif
+      //g_pmapNewAuraLibrary = new string_map < PFN_NEW_APEX_LIBRARY >();
 
       // Only draw2d implementations needing "big" synch should init_draw2d_mutex();
       // init_draw2d_mutex();
@@ -575,7 +547,7 @@ namespace apex
 
 #ifdef PRIMITIVE_DEBUG
 
-      aura_auto_debug_teste();
+      apex_auto_debug_teste();
 
 #endif
 
@@ -601,13 +573,13 @@ namespace apex
 
 #endif
 
-      g_paurastrpool = new aura_str_pool();
+      //g_papexstrpool = new apex_str_pool();
 
-      ::user::init_windowing();
+      //::user::init_windowing();
 
       //g_pcsRefDbg = new critical_section();
 
-      g_bAura = 1;
+      g_bApex = true;
 
       //::thread::g_pmutex = new mutex();
 
@@ -634,15 +606,15 @@ namespace apex
 
       term();
 
-      ::apex::del(g_pmapFontFaceName);
+      ::acme::del(g_pmapFontFaceName);
 
-      ::apex::del(g_pcsFont);
+      ::acme::del(g_pcsFont);
 
 #if OBJ_TYP_CTR
       g_iObjTypCtrInit = 0;
 #endif
 
-      ::release(t_pthread);
+      //::release(t_pthread);
 
       // if(g_pmapAura)
       // {
@@ -719,44 +691,33 @@ namespace apex
 
       }
 
-      try
-      {
+      //::acme::del(::thread::g_pmutex);
 
-         ::factory::factory_close();
+      //::acme::del(::thread::g_pthreadmap);
 
-      }
-      catch (...)
-      {
+      //::user::term_windowing();
 
-      }
+      g_bApex = 0;
 
-      //::apex::del(::thread::g_pmutex);
-
-      //::apex::del(::thread::g_pthreadmap);
-
-      ::user::term_windowing();
-
-      g_bAura = 0;
-
-      ::apex::del(g_paurastrpool);
+      //::acme::del(g_papexstrpool);
 
       ::channel::s_pmutexChannel.release();
 
       g_ptrace = g_psimpletrace;
 
-      del(g_pmapRTL);
+      ::acme::del(g_pmapRTL);
 
 #if defined(LINUX) || defined(__APPLE__)
 
-      del(g_pmutexTz);
+      ::acme::del(g_pmutexTz);
 
 #endif // defined(LINUX) || defined(__APPLE__)
 
-      del(g_pmutexCred);
+      ::acme::del(g_pmutexCred);
 
-      del(g_pmutexMessageDispatch);
+      ::acme::del(g_pmutexMessageDispatch);
 
-      del(g_pmutexUiDestroyed);
+      ::acme::del(g_pmutexUiDestroyed);
 
       //del(g_pmapAura);
 
@@ -769,7 +730,7 @@ namespace apex
             try
             {
 
-               del(po);
+               ::acme::del(po);
 
             }
             catch (...)
@@ -779,20 +740,11 @@ namespace apex
 
          }
 
-         del(g_paAura);
+         ::acme::del(g_paAura);
 
       }
 
-      try
-      {
 
-         ::factory::factory_term();
-
-      }
-      catch (...)
-      {
-
-      }
 
       //del(g_pmapLibCall);
 
@@ -802,11 +754,9 @@ namespace apex
 
       //del(&::get_context_system()->g_mutexLibrary);
 
-      trace_category_static_term();
-
 #if OBJ_TYP_CTR
 
-      ::apex::del(g_pmapObjTypCtr);
+      ::acme::del(g_pmapObjTypCtr);
 
 #endif
 
@@ -816,13 +766,13 @@ namespace apex
 
 #endif
 
-      del(g_pmutexSystemHeap);
+      //::acme::del(g_pmutexSystemHeap);
 
       //del(g_pmutexThreadOn);
 
       //del(g_pmapThreadOn);
 
-      del(g_pmutexThreadWaitClose);
+      ::acme::del(g_pmutexThreadWaitClose);
 
 #ifdef __APPLE__
 
@@ -832,15 +782,13 @@ namespace apex
 
 #ifdef BSD_STYLE_SOCKETS
 
-      del(::sockets::base_socket::s_pmutex);
+      ::acme::del(::sockets::base_socket::s_pmutex);
 
 #endif
 
-      ::apex::del(g_psimpletrace);
+      ::acme::del(g_psimpletrace);
 
-      ::apex::del(g_pcsTrace);
-
-      trace_category_static_term();
+      ::acme::del(g_pcsTrace);
 
 #ifdef ANDROID
 
@@ -848,25 +796,23 @@ namespace apex
 
 #endif
 
-      term_id_pool();
+//      ::acme::del(::id_space::s_pidspace);
+//
+////#if !defined(__MCRTDBG) && !MEMDLEAK
+////
+////      auto pheap = g_pheap;
+////
+////      g_pheap = nullptr;
+////
+////      ::acme::del(pheap);
+////
+////#endif
 
-      del(::id_space::s_pidspace);
+      //::acme::del(g_pcsGlobal);
 
-#if !defined(__MCRTDBG) && !MEMDLEAK
+      //::acme::del(g_pmutexChildren);
 
-      auto pheap = g_pheap;
-
-      g_pheap = nullptr;
-
-      del(pheap);
-
-#endif
-
-      del(g_pcsGlobal);
-
-      del(g_pmutexChildren);
-
-      del(g_pmutexGlobals);
+      //::acme::del(get_globals_mutex());
 
 #if MEMDLEAK
 
@@ -884,23 +830,23 @@ namespace apex
 
 #ifndef WINDOWS
 
-      ::apex::free(g_pszDemangle);
+      ::acme::free(g_pszDemangle);
 
 #endif
 
 #ifndef WINDOWS
 
-      ::apex::del(g_pcsDemangle);
+      ::acme::del(g_pcsDemangle);
 
 #endif
 
-#ifdef WINDOWS
-      _free_locale(g_localeC);
-#elif defined(ANDROID)
-      //_freelocale(g_localeC);
-#else
-      freelocale(g_localeC);
-#endif
+//#ifdef WINDOWS
+//      _free_locale(g_localeC);
+//#elif defined(ANDROID)
+//      //_freelocale(g_localeC);
+//#else
+//      freelocale(g_localeC);
+//#endif
 
    }
 
@@ -914,7 +860,7 @@ namespace apex
    }
 
 
-   //::apex::system * aura_create_system(app_core * pappcore)
+   //::apex::system * apex_create_system(app_core * pappcore)
    //{
 
    //   auto psystem = new ::apex::system();
@@ -932,7 +878,7 @@ namespace apex
 
       //::apex::static_start::init();
 
-      if (!__node_aura_pre_init())
+      if (!__node_apex_pre_init())
       {
 
          return ::error_failed;
@@ -941,22 +887,22 @@ namespace apex
 
       ::multithreading::init_multithreading();
 
-      if (!__node_aura_pos_init())
+      if (!__node_apex_pos_init())
       {
 
          return ::error_failed;
 
       }
 
-#ifdef WINDOWS
+//#ifdef WINDOWS
+//
+//      set_extended_output_debug_string_a();
+//
+//      set_extended_output_debug_string_w();
+//
+//#endif
 
-      set_extended_output_debug_string_a();
-
-      set_extended_output_debug_string_w();
-
-#endif
-
-      //g_pfn_create_system = &aura_create_aura_system;
+      //g_pfn_create_system = &apex_create_apex_system;
 
       return true;
 
@@ -968,30 +914,30 @@ namespace apex
 
       //::multithreading::wait_threads(1_min);
 
-      if (g_axisontermthread)
-      {
+      //if (g_axisontermthread)
+      //{
 
-         g_axisontermthread();
+      //   g_axisontermthread();
 
-      }
+      //}
 
       on_term_thread();
 
       ::multithreading::term_multithreading();
 
-      __node_aura_pre_term();
+      __node_apex_pre_term();
 
-#ifdef WINDOWS
-
-      set_simple_output_debug_string_a();
-
-      set_simple_output_debug_string_w();
-
-#endif
+//#ifdef WINDOWS
+//
+//      set_simple_output_debug_string_a();
+//
+//      set_simple_output_debug_string_w();
+//
+//#endif
 
       processor_cache_oriented_destroy_all_memory_pools();
 
-      __node_aura_pos_term();
+      __node_apex_pos_term();
 
       //::apex::static_start::term();
 
@@ -1029,59 +975,59 @@ namespace apex
 //CLASS_DECL_APEX void terg_draw2d_mutex()
 //{
 //
-//   ::apex::del(s_pmutexDraw2d);
+//   ::acme::del(s_pmutexDraw2d);
 //
 //}
 
 
-
-CLASS_DECL_APEX ::mutex * get_cred_mutex()
-{
-
-   return ::apex::g_pmutexCred;
-
-}
-
-
-
-
-
-
-
-//level * aura_level::s_plevel = nullptr;
-
-//aura_level auralevelAura(::aura_level::level_aura, &defer_aura_init);
+//
+//CLASS_DECL_APEX ::mutex * get_cred_mutex()
+//{
+//
+//   return ::apex::g_pmutexCred;
+//
+//}
+//
+//
+//
+//
+//
 
 
+//level * apex_level::s_plevel = nullptr;
 
-CLASS_DECL_APEX COLORREF dk_red() // <3 tbs
-{
-   return ARGB(255, 200, 16, 46);
-}
+//apex_level apexlevelAura(::apex_level::level_apex, &defer_apex_init);
+
+
+//
+//CLASS_DECL_APEX COLORREF dk_red() // <3 tbs
+//{
+//   return ARGB(255, 200, 16, 46);
+//}
 
 
 //thread_int_ptr < ::estatus    > t_estatus;
 
 
-CLASS_DECL_APEX void set_last_status(const ::estatus & estatus)
-{
-
-   ::get_thread()->m_estatus = estatus;
-
-}
-
-
-CLASS_DECL_APEX ::estatus  get_last_status()
-{
-
-   return ::get_thread()->m_estatus;
-
-}
+//CLASS_DECL_APEX void set_last_status(const ::estatus & estatus)
+//{
+//
+//   ::get_thread()->m_estatus = estatus;
+//
+//}
 
 
+//CLASS_DECL_APEX ::estatus  get_last_status()
+//{
+//
+//   return ::get_thread()->m_estatus;
+//
+//}
 
 
-//aura_level auralevelAxis(::aura_level::level_axis, &defer_axis_init);
+
+
+//apex_level apexlevelAxis(::apex_level::level_axis, &defer_axis_init);
 //
 //namespace axis
 //{
@@ -1205,21 +1151,10 @@ CLASS_DECL_APEX ::estatus  get_last_status()
 //
 //
 
-#ifdef WINDOWS
-_locale_t get_c_locale()
-#else
-locale_t get_c_locale()
-#endif
-{
-
-   return ::apex::g_localeC;
-
-}
 
 
 
-
-// aura_level auralevelCore(::aura_level::level_core, &defer_aura_init);
+// apex_level apexlevelCore(::apex_level::level_core, &defer_apex_init);
 
 
 //#ifdef ANDROID
@@ -1383,12 +1318,17 @@ locale_t get_c_locale()
 
 
 
-void aura_ref()
+void apex_ref()
 {
 
-   ::apex::apex::g_aura.this_ref();
+   ::apex::apex::g_apex.this_ref();
 
 }
+
+
+
+
+
 
 
 

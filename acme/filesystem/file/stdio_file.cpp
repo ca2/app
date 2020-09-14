@@ -30,17 +30,16 @@ stdio_file::~stdio_file()
 
    string str;
 
-   if(eopen & ::file::mode_read)
-   {
-
-      str += "r";
-
-   }
-
-   if(eopen & ::file::mode_write)
+   if (eopen & ::file::mode_write)
    {
 
       str += "w";
+
+   }
+   else if(eopen & ::file::mode_read)
+   {
+
+      str += "r";
 
    }
 
@@ -128,7 +127,7 @@ void stdio_file::close()
 memsize stdio_file::read(void * pdata, memsize nCount)
 {
 
-   auto size = fread_dup(pdata, nCount, 1, m_pfile);
+   auto size = fread_dup(pdata, 1, nCount, m_pfile);
 
    int iError = ferror(m_pfile);
 

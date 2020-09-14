@@ -17,7 +17,7 @@
 //      UINT                    m_uiLastSent;
 //
 //
-//      timer_item(::object * pobject);
+//      timer_item(::layered * pobjectContext);
 //      virtual ~timer_item();
 //
 //

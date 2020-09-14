@@ -54,7 +54,6 @@ namespace windows
 
 
       interaction_impl();
-      interaction_impl(::object * pobject);
       virtual ~interaction_impl();
 
 

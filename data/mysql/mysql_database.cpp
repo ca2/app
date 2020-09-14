@@ -47,7 +47,7 @@ namespace mysql
    }
 
 
-   ::estatus database::initialize(::object * pobject)
+   ::estatus database::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::database::database::initialize(pobject);

@@ -6,7 +6,7 @@ namespace html
 
 
    class CLASS_DECL_AXIS html:
-      public ::aura::department
+      public ::apex::department
    {
    public:
 
@@ -22,7 +22,7 @@ namespace html
       virtual ~html();
 
 
-      virtual ::estatus initialize(::object * pobjectContext) override;
+      virtual ::estatus initialize(::layered * pobjectContext) override;
 
 
       string special_chars(const char * psz);

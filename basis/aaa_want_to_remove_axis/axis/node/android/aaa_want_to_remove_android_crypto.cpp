@@ -6,7 +6,7 @@ namespace android
 {
 
 
-   crypto::crypto(::object * pobject) :
+   crypto::crypto(::layered * pobjectContext) :
       ::object(pobject),
       ::crypto::crypto(pobject)
    {

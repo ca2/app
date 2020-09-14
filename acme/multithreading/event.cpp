@@ -42,6 +42,8 @@ void clock_getrealtime(struct timespec * pts)
 #endif
 
 
+CLASS_DECL_ACME::layered* get_layered_thread();
+
 
 event::event(char * sz, bool bInitiallyOwn, bool bManualReset, const char * pstrName,LPSECURITY_ATTRIBUTES psaAttribute)
 
@@ -413,13 +415,12 @@ sync_result event::wait ()
       else if (iResult == WAIT_TIMEOUT)
       {
 
-         //__throw(todo("thread"));
-         //if (!thread_get_run())
-         //{
+         if (!thread_get_run())
+         {
 
-         //   __throw(exit_exception(::get_thread()));
+            __throw(exit_exception(::get_layered_thread()));
 
-         //}
+         }
 
       }
       else

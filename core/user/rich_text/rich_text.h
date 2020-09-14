@@ -10,7 +10,7 @@ namespace user
 
 
       class CLASS_DECL_CORE rich_text :
-         virtual public ::aura::department
+         virtual public ::apex::department
       {
       public:
 

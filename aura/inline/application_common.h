@@ -1,6 +1,6 @@
 #include "aura/_.h"
-#include "aura/platform/app_core.h"
-#include "aura/platform/static_setup.h"
+#include "apex/platform/app_core.h"
+#include "apex/platform/static_setup.h"
 #include "aura/_defer.h"
 
 
@@ -58,12 +58,12 @@ const char* br_init_get_symbol();
 #endif
 
 
-CLASS_DECL_AURA ::estatus os_application_system_run(::aura::system* psystem);
+CLASS_DECL_APEX ::estatus os_application_system_run(::apex::system* psystem);
 
-CLASS_DECL_AURA ::estatus set_main_app_id(const char * pszAppId);
+CLASS_DECL_APEX ::estatus set_main_app_id(const char * pszAppId);
 
 
-void application_common(::aura::system * psystem)
+void application_common(::apex::system * psystem)
 {
 
 #ifdef MAIN_STRING

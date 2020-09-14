@@ -6,7 +6,7 @@ typedef int (WINAPI * LPFN_ChangeWindowMessageFilter)(UINT message, DWORD dwFlag
 
 
 
-extern LPFN_ChangeWindowMessageFilter g_pfnChangeWindowMessageFilter;
+//extern LPFN_ChangeWindowMessageFilter g_pfnChangeWindowMessageFilter;
 
 namespace aura
 {
@@ -247,10 +247,6 @@ namespace aura
       {
 
 
-         if(g_pfnChangeWindowMessageFilter != nullptr)
-         {
-            g_pfnChangeWindowMessageFilter(WM_COPYDATA,MSGFLT_ADD);
-         }
 
          //HINSTANCE hinstance = ::GetModuleHandleA("aura.dll");
 
@@ -278,6 +274,9 @@ namespace aura
             unsigned int dwLastError = ::get_last_error();
             return false;
          }
+
+         xxx
+         ChangeMessageFilterEx(m_oswindow, WM_COPYDATA,MSGFLT_ADD);
 
          SetTimer(m_oswindow,888888,84,nullptr);
 

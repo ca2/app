@@ -2836,8 +2836,8 @@
 		<Unit filename="primitive/primitive/factory.h" />
 		<Unit filename="primitive/primitive/form_property_set.cpp" />
 		<Unit filename="primitive/primitive/form_property_set.h" />
-		<Unit filename="primitive/primitive/generic_object.cpp" />
-		<Unit filename="primitive/primitive/generic_object.h" />
+		<Unit filename="primitive/primitive/generic.cpp" />
+		<Unit filename="primitive/primitive/generic.h" />
 		<Unit filename="primitive/primitive/handler.cpp" />
 		<Unit filename="primitive/primitive/id.cpp" />
 		<Unit filename="primitive/primitive/id.h" />

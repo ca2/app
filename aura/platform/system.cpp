@@ -4,18 +4,21 @@
 #include "aura/platform/machine_event2.h"
 #include "aura/platform/machine_event_central2.h"
 //#include "aura/xml/_.h"
-#include "aura/platform/app_core.h"
+#include "apex/platform/app_core.h"
 #include "aura/const/id.h"
 #include "aura/node/_node.h"
 //#include "aura/net/ftp/_.h"
-#include "aura/platform/profiler2.h"
-#include "aura/platform/static_setup.h"
+#include "acme/platform/profiler.h"
+#include "apex/platform/static_setup.h"
+#include "apex/platform/str_context.h"
+#include "acme/node/windows/registry.h"
+#include "apex/platform/history.h"
 
 //#ifdef _OPENGL
 #include "aura/gpu/gpu/_.h"
 //#endif
 
-extern ::aura::system* g_paurasystem;
+//extern ::aura::system* g_paurasystem;
 
 int GetMainScreenRect(LPRECT lprect);
 
@@ -36,16 +39,16 @@ CLASS_DECL_AURA void multimedia_set_library_name(const char* psz)
 
 #ifdef CUBE
 extern "C"
-::aura::library * experience_get_new_library();
+::apex::library * experience_get_new_library();
 #endif
 
 
-void ___compile_test_sort_array_21304528734();
+//void ___compile_test_sort_array_21304528734();
 
 void enum_display_monitors(::aura::system * psystem);
 
 #ifdef WINDOWS_DESKTOP
-CLASS_DECL_AURA ::user::interaction * create_system_message_window(::object * pobject);
+CLASS_DECL_AURA ::user::interaction * create_system_message_window(::layered * pobjectContext);
 #endif
 
 
@@ -53,10 +56,10 @@ CLASS_DECL_AURA ::user::interaction * create_system_message_window(::object * po
 #include <sys/time.h>
 #endif
 
-extern string_map < __pointer(::aura::library) > * g_pmapLibrary;
+extern string_map < __pointer(::apex::library) > * g_pmapLibrary;
 
 
-CLASS_DECL_AURA void __simple_tracea(::generic_object * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
+CLASS_DECL_AURA void __simple_tracea(::generic * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
 
 
 #ifdef WINDOWS
@@ -115,24 +118,25 @@ namespace aura
    {
 
 
-      m_paxissystem = nullptr;
-      m_pbasesystem = nullptr;
-      m_pcoresystem = nullptr;
+      m_paurasystem = this;
 
-      //create_factory < ::userex::userex >();
+      m_bAvoidFirstResponder = false;
 
-      g_paurasystem = this;
+      create_factory < ::aura::session, ::apex::session >();
+      create_factory < ::aura::application, ::apex::application >();
+
+      //g_paurasystem = this;
 
       m_bMessageThread = true;
 
       set_context_system(this);
 
-      if (g_paurasystem == nullptr)
+ /*     if (g_paurasystem == nullptr)
       {
 
          g_paurasystem = this;
 
-      }
+      }*/
 
       common_construct();
 
@@ -157,10 +161,10 @@ namespace aura
    }
 
 
-   ::estatus system::initialize(::object * pobjectContext)
+   ::estatus system::initialize(::layered * pobjectContext)
    {
 
-      auto estatus = ::aura::context_thread::initialize(pobjectContext);
+      auto estatus = ::apex::system::initialize(pobjectContext);
 
       if (!estatus)
       {
@@ -392,7 +396,7 @@ namespace aura
       create_factory < ::stdio_file, ::file::file >();
       create_factory < ::i64_array >();
       create_factory < ::double_array >();
-      create_factory < ::aura::library >();
+      create_factory < ::apex::library >();
 
       create_factory < ::file::path_object >();
 
@@ -654,14 +658,14 @@ namespace aura
    }
 
 
-   __pointer(::aura::library) system::open_component_library(const char* pszComponent, const char* pszImplementation)
+   __pointer(::apex::library) system::open_component_library(const char* pszComponent, const char* pszImplementation)
    {
 
       // Ex. "draw2d" (Component) and implementation: either "draw2dcairo", "cairo", "draw2d_cairo"
 
       sync_lock sl(&::get_context_system()->m_mutexLibrary);
 
-      __pointer(::aura::library)& plibrary = ::get_context_system()->m_mapLibrary[pszComponent];
+      __pointer(::apex::library)& plibrary = ::get_context_system()->m_mapLibrary[pszComponent];
 
       if (plibrary && plibrary->is_opened())
       {
@@ -711,7 +715,7 @@ namespace aura
       if (!plibrary)
       {
 
-         plibrary = __new(::aura::library);
+         plibrary = __new(::apex::library);
 
          plibrary->initialize(this);
 
@@ -856,97 +860,97 @@ namespace aura
    }
 
 
-   void system::session_add(index iEdge, ::aura::session * psession)
-   {
+   //void system::session_add(index iEdge, ::aura::session * psession)
+   //{
 
-      if (!::is_set(psession))
-      {
+   //   if (!::is_set(psession))
+   //   {
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      if (m_sessionmap.is_empty())
-      {
+   //   if (m_sessionmap.is_empty())
+   //   {
 
-         m_bFinalizeIfNoSession = m_bFinalizeIfNoSessionSetting;
+   //      m_bFinalizeIfNoSession = m_bFinalizeIfNoSessionSetting;
 
-      }
+   //   }
 
-      m_sessionmap[iEdge] = psession;
+   //   m_sessionmap[iEdge] = psession;
 
-      if (iEdge == 0)
-      {
+   //   if (iEdge == 0)
+   //   {
 
-         set_context_session(psession);
+   //      set_context_session(psession);
 
-      }
+   //   }
 
-   }
-
-
-   void system::session_remove(index iEdge)
-   {
-
-      m_sessionmap.remove_key(iEdge);
-
-      if (m_sessionmap.is_empty() && m_bFinalizeIfNoSession)
-      {
-
-         set_finish();
-
-      }
-
-   }
+   //}
 
 
-#ifdef DEBUG
+   //void system::session_remove(index iEdge)
+   //{
+
+   //   m_sessionmap.remove_key(iEdge);
+
+   //   if (m_sessionmap.is_empty() && m_bFinalizeIfNoSession)
+   //   {
+
+   //      set_finish();
+
+   //   }
+
+   //}
 
 
-   void system::set_context(::context* pcontext)
-   {
+//#ifdef DEBUG
+//
+//
+//   void system::set_context(::la* pcontext)
+//   {
+//
+//      m_pcontextContext = pcontext;
+//
+//   }
+//
+//
+//   void system::set_context_thread(::thread* pthread)
+//   {
+//
+//      m_pthreadContext = pthread;
+//
+//   }
+//
+//
+//   void system::set_context_app(::aura::application* pappContext)
+//   {
+//
+//      m_pappContext = pappContext;
+//
+//   }
+//
+//
+//   void system::set_context_session(::aura::session* psessionContext)
+//   {
+//
+//      m_psessionContext = psessionContext;
+//
+//   }
+//
+//
+//   void system::set_context_system(::aura::system* psystemContext)
+//   {
+//
+//      m_psystemContext = psystemContext;
+//
+//   }
+//
+//
+//#endif
 
-      m_pcontextContext = pcontext;
 
-   }
-
-
-   void system::set_context_thread(::thread* pthread)
-   {
-
-      m_pthreadContext = pthread;
-
-   }
-
-
-   void system::set_context_app(::aura::application* pappContext)
-   {
-
-      m_pappContext = pappContext;
-
-   }
-
-
-   void system::set_context_session(::aura::session* psessionContext)
-   {
-
-      m_psessionContext = psessionContext;
-
-   }
-
-
-   void system::set_context_system(::aura::system* psystemContext)
-   {
-
-      m_psystemContext = psystemContext;
-
-   }
-
-
-#endif
-
-
-   //::aura::library * system::on_get_library(const char * pszLibrary)
+   //::apex::library * system::on_get_library(const char * pszLibrary)
    //{
 
    //   return nullptr;
@@ -964,13 +968,13 @@ namespace aura
 
       }
 
-      return ::aura::context_thread::on_get_thread_name(strThreadName);
+      return ::apex::system::on_get_thread_name(strThreadName);
 
    }
 
 
 
-   ::aura::library * system::get_library(const char * pszLibrary1, bool bOpenCa2)
+   ::apex::library * system::get_library(const char * pszLibrary1, bool bOpenCa2)
    {
 
       sync_lock sl(&::get_context_system()->m_mutexLibrary);
@@ -982,7 +986,7 @@ namespace aura
       strLibrary.ends_eat_ci(".dylib");
       strLibrary.begins_eat_ci("lib");
 
-      __pointer(::aura::library) & plibrary = ::get_context_system()->m_mapLibrary[strLibrary];
+      __pointer(::apex::library) & plibrary = ::get_context_system()->m_mapLibrary[strLibrary];
 
       bool bLibraryOk = true;
 
@@ -1058,25 +1062,25 @@ namespace aura
    {
 
 
-      //::aura::del(m_ppatch);
+      //::acme::del(m_ppatch);
 
-      if (g_paurasystem == this)
-      {
+      //if (g_paurasystem == this)
+      //{
 
-         g_paurasystem = nullptr;
+      //   g_paurasystem = nullptr;
 
-      }
+      //}
 
-      //::aura::del(m_purldepartment);
+      //::acme::del(m_purldepartment);
 
-      //::aura::del(m_pcompress);
+      //::acme::del(m_pcompress);
 
-      ::aura::del(g_pmutexImage);
+      ::acme::del(g_pmutexImage);
 
       //try
       //{
 
-      //   ::aura::del(m_pmachineeventcentral);
+      //   ::acme::del(m_pmachineeventcentral);
 
       //}
       //catch (...)
@@ -1212,20 +1216,20 @@ namespace aura
    //}
 
 
-   ::datetime::department & system::datetime()
-   {
+   //::datetime::department & system::datetime()
+   //{
 
-      return *m_pdatetime;
+   //   return *m_pdatetime;
 
-   }
+   //}
 
 
-   ::aura::str & system::str()
-   {
+   //::aura::str & system::str()
+   //{
 
-      return *m_puserstr;
+   //   return *m_puserstr;
 
-   }
+   //}
 
 
 
@@ -1245,7 +1249,7 @@ namespace aura
    ::estatus system::process_init()
    {
 
-      auto estatus = system_prep();
+      auto estatus = ::apex::system::process_init();
 
       if (!estatus)
       {
@@ -1254,40 +1258,49 @@ namespace aura
 
       }
 
-      estatus = system_init();
+      //auto estatus = system_prep();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
+
+      //estatus = system_init();
+
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
 
 
 
-      if (!create_session())
-      {
+      //if (!create_session())
+      //{
 
-         message_box("Failed to allocate Session!!");
+      //   message_box("Failed to allocate Session!!");
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
-      m_papplicationStartup = get_new_application(get_context_session(), m_strAppId);
+      //m_papplicationStartup = get_new_application(get_context_session(), m_strAppId);
 
-      if (!m_papplicationStartup)
-      {
+      //if (!m_papplicationStartup)
+      //{
 
-         message_box("Failed to allocate Application!!");
+      //   message_box("Failed to allocate Application!!");
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
-      set_main_struct(*m_papplicationStartup);
+      //set_main_struct(*m_papplicationStartup);
 
-      string strAppId = m_papplicationStartup->m_strAppId;
+      //string strAppId = m_papplicationStartup->m_strAppId;
 
       //auto pcommand = get_command();
 
@@ -1301,28 +1314,28 @@ namespace aura
       //TRACE("m_pcreate WARNING");
       //TRACE("m_pcreate WARNING");
       //TRACE("m_pcreate COMMENT BEGIN");
-      auto pcreate = m_pcreate;
+      //auto pcreate = m_pcreate;
 
-      pcreate->m_strAppId = strAppId;
+      //pcreate->m_strAppId = strAppId;
       //TRACE("m_pcreate COMMENT END");
 
       //create_factory < ::database::field >();
 
 
-      if (is_true("show_application_information"))
-      {
+      //if (is_true("show_application_information"))
+      //{
 
-         printf("%s", "\n\nApplication Information\n");
-         output_debug_string("\n\nApplication Information\n");
+      //   printf("%s", "\n\nApplication Information\n");
+      //   output_debug_string("\n\nApplication Information\n");
 
-         int iPid;
+      //   int iPid;
 
-         iPid = ::get_current_process_id();
+      //   iPid = ::get_current_process_id();
 
-         printf("%s", ("Process PID: " + __str(iPid) + "\n").c_str());
-         output_debug_string("Process PID: " + __str(iPid) + "\n");
+      //   printf("%s", ("Process PID: " + __str(iPid) + "\n").c_str());
+      //   output_debug_string("Process PID: " + __str(iPid) + "\n");
 
-      }
+      //}
 
 //#ifdef LINUX
 //
@@ -1389,34 +1402,34 @@ namespace aura
 //
 //#endif
 
-      {
-
-         {
-
-#ifdef WINDOWS_DESKTOP
-
-            {
-
-               ASSERT(m_hPrevInstance == nullptr);
-
-               HINSTANCE hinstance = m_hinstance;
-
-               auto edisplay = m_edisplay;
-
-               // handle critical errors and avoid Windows message boxes
-               SetErrorMode(SetErrorMode(0) | SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);
-
-               m_edisplay = edisplay;
-
-               //SetCurrentHandles();
-
-            }
-
-#endif
-
-         }
-
-      }
+//      {
+//
+//         {
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//            {
+//
+//               ASSERT(m_hPrevInstance == nullptr);
+//
+//               HINSTANCE hinstance = m_hinstance;
+//
+//               auto edisplay = m_edisplay;
+//
+//               // handle critical errors and avoid Windows message boxes
+//               SetErrorMode(SetErrorMode(0) | SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);
+//
+//               m_edisplay = edisplay;
+//
+//               //SetCurrentHandles();
+//
+//            }
+//
+//#endif
+//
+//         }
+//
+//      }
 
       //estatus = __compose_new(m_pxml);
 
@@ -1442,194 +1455,194 @@ namespace aura
 
       //}
 
-      create_factory < ::create >();
-      //create_factory < application_bias >();
-      create_factory < command_line >();
-      create_factory < http::context >();
-//      create_factory < manual_reset_event >();
-      //create_factory < ::mutex >();
-      //create_factory < event >();
+//      create_factory < ::create >();
+//      //create_factory < application_bias >();
+//      create_factory < command_line >();
+//      create_factory < http::context >();
+////      create_factory < manual_reset_event >();
+//      //create_factory < ::mutex >();
+//      //create_factory < event >();
+//
+//      //if (!::aura::application::process_init())
+//      //{
+//
+//      //   return false;
+//
+//      //}
+//
+//      //m_spos.create();
+//
+//      //if(is_installing() || is_unstalling())
+//      {
+//
+//#ifdef MACOS
+//
+//         /*         if(0 != setuid(0))
+//                     return false;
+//
+//                  uid_t uid = getuid();
+//
+//                  string str("installing or unstalling as root : getuid() %d", uid);
+//
+//                  ::dir::mk("/ca2core");
+//
+//                  file_put_contents_dup("/ca2core/teste.txt", str, str.length());
+//                  */
+//#endif
+//
+//#if 0
+//
+//         // Create authorization context_object
+//         OSStatus status;
+//
+//         AuthorizationRef authorizationRef;
+//
+//         // AuthorizationCreate and pass nullptr as the initial
+//         // AuthorizationRights set so that the AuthorizationRef gets created
+//         // successfully, and then later call AuthorizationCopyRights to
+//         // determine or extend the allowable rights.
+//         // http://developer.apple.com/qa/qa2001/qa1172.html
+//         status = AuthorizationCreate(nullptr, kAuthorizationEmptyEnvironment,
+//                                      kAuthorizationFlagDefaults, &authorizationRef);
+//
+//         if(status != errAuthorizationSuccess)
+//         {
+//            TRACE("Error Creating Initial Authorization: %d", status);
+//
+//            return false;
+//
+//         }
+//
+//         // kAuthorizationRightExecute == "system.privilege.admin"
+//         AuthorizationItem right = {kAuthorizationRightExecute, 0, nullptr, 0};
+//
+//         AuthorizationRights rights = {1, &right};
+//
+//         AuthorizationFlags flags = kAuthorizationFlagDefaults |
+//                                    kAuthorizationFlagInteractionAllowed |
+//                                    kAuthorizationFlagPreAuthorize |
+//                                    kAuthorizationFlagExtendRights;
+//
+//         // Call AuthorizationCopyRights to determine or extend the allowable rights.
+//
+//         status = AuthorizationCopyRights(authorizationRef, &rights, nullptr, flags, nullptr);
+//
+//         if (status != errAuthorizationSuccess)
+//         {
+//
+//            TRACE("Copy Rights Unsuccessful: %d", status);
+//
+//            return false;
+//
+//         }
+//
+//#endif
+//
+//      }
 
-      //if (!::aura::application::process_init())
+//      if(!m_pmachineeventcentral)
+//      {
+//
+//#ifndef APPLE_IOS
+//
+//         auto estatus = __compose_new(m_pmachineeventcentral);
+//
+//         if (!estatus)
+//         {
+//
+//            return false;
+//
+//         }
+//
+//         //if(!m_pmachineeventcentral->initialize())
+//         //{
+//
+//         //   return false;
+//
+//         //}
+//
+//         if(m_pmachineeventcentral->is_close_application())
+//         {
+//
+//            return false;
+//
+//         }
+//
+//#endif
+//
+//      }
+
+      //if(!__compose(m_pfilesystem))
       //{
+
+      //   ERR("failed to initialize file-system");
 
       //   return false;
 
       //}
 
-      //m_spos.create();
+      //if(!__compose(m_pdirsystem))
+      //{
 
-      //if(is_installing() || is_unstalling())
-      {
+      //   ERR("failed to initialize dir-system");
 
-#ifdef MACOS
+      //   return false;
 
-         /*         if(0 != setuid(0))
-                     return false;
+      //}
 
-                  uid_t uid = getuid();
+      //INFO("aura::session::process_init .3");
 
-                  string str("installing or unstalling as root : getuid() %d", uid);
+      //estatus = m_pfilesystem->init_system();
 
-                  ::dir::mk("/ca2core");
+      //if (!estatus)
+      //{
 
-                  file_put_contents_dup("/ca2core/teste.txt", str, str.length());
-                  */
-#endif
+      //   m_estatus = estatus;
 
-#if 0
+      //   return estatus;
 
-         // Create authorization context_object
-         OSStatus status;
+      //}
 
-         AuthorizationRef authorizationRef;
+      //estatus = m_pdirsystem->init_system();
 
-         // AuthorizationCreate and pass nullptr as the initial
-         // AuthorizationRights set so that the AuthorizationRef gets created
-         // successfully, and then later call AuthorizationCopyRights to
-         // determine or extend the allowable rights.
-         // http://developer.apple.com/qa/qa2001/qa1172.html
-         status = AuthorizationCreate(nullptr, kAuthorizationEmptyEnvironment,
-                                      kAuthorizationFlagDefaults, &authorizationRef);
+      //if (!estatus)
+      //{
 
-         if(status != errAuthorizationSuccess)
-         {
-            TRACE("Error Creating Initial Authorization: %d", status);
+      //   m_estatus = estatus;
 
-            return false;
+      //   return estatus;
 
-         }
+      //}
 
-         // kAuthorizationRightExecute == "system.privilege.admin"
-         AuthorizationItem right = {kAuthorizationRightExecute, 0, nullptr, 0};
+      //estatus = ::context::initialize_context();
 
-         AuthorizationRights rights = {1, &right};
+      //if (!estatus)
+      //{
 
-         AuthorizationFlags flags = kAuthorizationFlagDefaults |
-                                    kAuthorizationFlagInteractionAllowed |
-                                    kAuthorizationFlagPreAuthorize |
-                                    kAuthorizationFlagExtendRights;
+      //   return estatus;
 
-         // Call AuthorizationCopyRights to determine or extend the allowable rights.
+      //}
 
-         status = AuthorizationCopyRights(authorizationRef, &rights, nullptr, flags, nullptr);
+      //if (!m_ptrace->process_init())
+      //{
 
-         if (status != errAuthorizationSuccess)
-         {
+      //   WARN("failed to process_init ::aura::log trace");
 
-            TRACE("Copy Rights Unsuccessful: %d", status);
+      //}
 
-            return false;
+      ////output_debug_string("CommonAppData (matter) : " + Context.dir().commonappdata()  + "\n");
+      ////output_debug_string("commonappdata (matter) : " + Context.dir().commonappdata() + "\n");
+      ////output_debug_string("Common App Data (matter) : " + Context.dir().commonappdata() + "\n");
+      ////output_debug_string("common app data (matter) : " + Context.dir().commonappdata() + "\n");
 
-         }
+      //__compose_new(m_pcrypto);
 
-#endif
+      //if (!::is_set(m_pcrypto))
+      //{
 
-      }
+      //   return false;
 
-      if(!m_pmachineeventcentral)
-      {
-
-#ifndef APPLE_IOS
-
-         auto estatus = __compose_new(m_pmachineeventcentral);
-
-         if (!estatus)
-         {
-
-            return false;
-
-         }
-
-         //if(!m_pmachineeventcentral->initialize())
-         //{
-
-         //   return false;
-
-         //}
-
-         if(m_pmachineeventcentral->is_close_application())
-         {
-
-            return false;
-
-         }
-
-#endif
-
-      }
-
-      if(!__compose(m_pfilesystem))
-      {
-
-         ERR("failed to initialize file-system");
-
-         return false;
-
-      }
-
-      if(!__compose(m_pdirsystem))
-      {
-
-         ERR("failed to initialize dir-system");
-
-         return false;
-
-      }
-
-      INFO("aura::session::process_init .3");
-
-      estatus = m_pfilesystem->init_system();
-
-      if (!estatus)
-      {
-
-         m_estatus = estatus;
-
-         return estatus;
-
-      }
-
-      estatus = m_pdirsystem->init_system();
-
-      if (!estatus)
-      {
-
-         m_estatus = estatus;
-
-         return estatus;
-
-      }
-
-      estatus = ::context::initialize_context();
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      if (!m_ptrace->process_init())
-      {
-
-         WARN("failed to process_init ::aura::log trace");
-
-      }
-
-      //output_debug_string("CommonAppData (matter) : " + Context.dir().commonappdata()  + "\n");
-      //output_debug_string("commonappdata (matter) : " + Context.dir().commonappdata() + "\n");
-      //output_debug_string("Common App Data (matter) : " + Context.dir().commonappdata() + "\n");
-      //output_debug_string("common app data (matter) : " + Context.dir().commonappdata() + "\n");
-
-      __compose_new(m_pcrypto);
-
-      if (!::is_set(m_pcrypto))
-      {
-
-         return false;
-
-      }
+      //}
 
       if(m_bDraw2d)
       {
@@ -1647,65 +1660,66 @@ namespace aura
 
       on_update_matter_locator();
 
-      estatus = initialize_sockets();
+//
+//    estatus = initialize_sockets();
+//
+//      if (!estatus)
+//      {
+//
+//         m_estatus = estatus;
+//
+//         return estatus;
+//
+//      }
+//
+//      bool bMatterFromHttpCache = false;
+//
+//      if(m_iMatterFromHttpCache == -1)
+//      {
+//
+//         ::file::path pathSide = Context.side_get_matter_path("app/_matter/main");
+//
+//         ::file::path pathLocal = local_get_matter_path("app/_matter/main");
+//
+//         bool bFileSystemMatter = ::dir::is(pathSide) || ::dir::is(pathLocal);
+//
+//         bMatterFromHttpCache = !bFileSystemMatter;
+//
+//      }
+//      else
+//      {
+//
+//         bMatterFromHttpCache = m_iMatterFromHttpCache != 0;
+//
+//      }
+//
+//      m_pdirsystem->m_bMatterFromHttpCache = bMatterFromHttpCache;
+//
+//      //estatus = create_html();
+//
+//      //if (!estatus)
+//      //{
+//
+//      //   FATAL("axis::application::process_init .2");
+//
+//      //   return false;
+//
+//      //}
+//
+//      INFO("start");
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//      if (m_uiWindowsTaskbarCreatedMessage == 0)
+//      {
+//
+//         m_uiWindowsTaskbarCreatedMessage = RegisterWindowMessageW(L"TaskbarCreated");
+//
+//      }
+//
+//#endif
 
-      if (!estatus)
-      {
-
-         m_estatus = estatus;
-
-         return estatus;
-
-      }
-
-      bool bMatterFromHttpCache = false;
-
-      if(m_iMatterFromHttpCache == -1)
-      {
-
-         ::file::path pathSide = Context.side_get_matter_path("app/_matter/main");
-
-         ::file::path pathLocal = local_get_matter_path("app/_matter/main");
-
-         bool bFileSystemMatter = ::dir::is(pathSide) || ::dir::is(pathLocal);
-
-         bMatterFromHttpCache = !bFileSystemMatter;
-
-      }
-      else
-      {
-
-         bMatterFromHttpCache = m_iMatterFromHttpCache != 0;
-
-      }
-
-      m_pdirsystem->m_bMatterFromHttpCache = bMatterFromHttpCache;
-
-      //estatus = create_html();
-
-      //if (!estatus)
-      //{
-
-      //   FATAL("axis::application::process_init .2");
-
-      //   return false;
-
-      //}
-
-      INFO("start");
-
-#ifdef WINDOWS_DESKTOP
-
-      if (m_uiWindowsTaskbarCreatedMessage == 0)
-      {
-
-         m_uiWindowsTaskbarCreatedMessage = RegisterWindowMessageW(L"TaskbarCreated");
-
-      }
-
-#endif
-
-      ::aura::profiler::initialize();
+      ::acme::profiler::initialize();
 
 #ifdef LINUX
 
@@ -1889,7 +1903,7 @@ namespace aura
 //#else
 
 
-      //__pointer(::aura::library) plibrary;
+      //__pointer(::apex::library) plibrary;
 
       //bool bLibraryOk = false;
 
@@ -1932,7 +1946,7 @@ namespace aura
 
       //sync_lock sl(&::get_context_system()->m_mutexLibrary);
 
-      //__pointer(::aura::library) & plibrary = ::get_context_system()->m_mapLibrary["draw2d"];
+      //__pointer(::apex::library) & plibrary = ::get_context_system()->m_mapLibrary["draw2d"];
 
       //if (plibrary->is_opened())
       //{
@@ -2099,7 +2113,7 @@ namespace aura
 
       //sync_lock sl(&::get_context_system()->m_mutexLibrary);
 
-      //__pointer(::aura::library)& plibrary = ::get_context_system()->m_mapLibrary["imaging"];
+      //__pointer(::apex::library)& plibrary = ::get_context_system()->m_mapLibrary["imaging"];
 
       //auto estatus = __defer_construct_new(plibrary);
 
@@ -2327,12 +2341,12 @@ namespace aura
 
    ::estatus system::init1()
    {
-
-#ifdef DEBUG
-
-      ___compile_test_sort_array_21304528734();
-
-#endif
+//
+//#ifdef DEBUG
+//
+//      ___compile_test_sort_array_21304528734();
+//
+//#endif
 
       auto estatus = __compose_new(m_puserstr);
 
@@ -2343,7 +2357,7 @@ namespace aura
 
       }
 
-      estatus = __compose(m_pimaging);
+      estatus = __compose_new(m_pimaging);
 
       if (!estatus)
       {
@@ -2357,7 +2371,12 @@ namespace aura
 
       }
 
-      get_context_session()->m_puserstrcontext->defer_ok(m_puserstr);
+      if (Session.m_puserstrcontext)
+      {
+
+         Session.m_puserstrcontext->defer_ok(m_puserstr);
+
+      }
 
       //__throw(todo("filehandler"));
 
@@ -2417,7 +2436,7 @@ namespace aura
    ::estatus system::inline_init()
    {
 
-      ::estatus estatus = ::aura::context_thread::inline_init();
+      ::estatus estatus = ::apex::system::inline_init();
 
       if (!estatus)
       {
@@ -2425,12 +2444,6 @@ namespace aura
          return estatus;
 
       }
-
-      set_context_app(m_papplicationStartup);
-
-      get_context_application()->get_property_set().merge(get_property_set());
-
-      m_papplicationStartup.release();
 
       return estatus;
 
@@ -2440,7 +2453,7 @@ namespace aura
    ::estatus system::inline_term()
    {
 
-      ::estatus estatus = ::aura::context_thread::inline_term();
+      ::estatus estatus = ::apex::system::inline_term();
 
       if (!estatus)
       {
@@ -2913,7 +2926,7 @@ namespace aura
       if(!m_ptrace || !m_ptrace->m_bExtendedLog)
       {
 
-         return ::aura::SimpleDebugReport(iReportType,pszFileName,iLineNumber,pszModuleName,pszFormat,list);
+         return ::apex::SimpleDebugReport(iReportType,pszFileName,iLineNumber,pszModuleName,pszFormat,list);
 
       }
 
@@ -3085,54 +3098,54 @@ namespace aura
    //}
 
 
-   ::xml::department & system::xml()
-   {
+   //::xml::department & system::xml()
+   //{
 
-      return *m_pxml;
+   //   return *m_pxml;
 
-   }
-
-
-   class ::str::base64 & system::base64()
-   {
-
-      return *m_pbase64;
-
-   }
+   //}
 
 
-   ::aura::log & system::log()
-   {
+   //class ::str::base64 & system::base64()
+   //{
 
-      return *m_ptrace;
+   //   return *m_pbase64;
 
-   }
-
-
-
-   machine_event_central & system::machine_event_central()
-   {
-      return *m_pmachineeventcentral;
-   }
+   //}
 
 
-   __pointer(regex) system::create_regular_expression(const char* pszStyle, const string& str)
-   {
+   //::aura::log & system::log()
+   //{
 
-      return nullptr;
+   //   return *m_ptrace;
 
-   }
-
-
-   __pointer(regex_context) system::create_regular_expression_context(const char* pszStyle, int iCount)
-   {
-
-      return nullptr;
-
-   }
+   //}
 
 
-   ::aura::session * system::session(index iEdge)
+
+   //machine_event_central & system::machine_event_central()
+   //{
+   //   return *m_pmachineeventcentral;
+   //}
+
+
+   //__pointer(regex) system::create_regular_expression(const char* pszStyle, const string& str)
+   //{
+
+   //   return nullptr;
+
+   //}
+
+
+   //__pointer(regex_context) system::create_regular_expression_context(const char* pszStyle, int iCount)
+   //{
+
+   //   return nullptr;
+
+   //}
+
+
+   ::apex::session * system::session(index iEdge)
    {
 
       auto ppair = m_sessionmap.plookup(iEdge);
@@ -3165,12 +3178,12 @@ namespace aura
 //}
 
 
-   ::process::department & system::process()
-   {
+   //::process::department & system::process()
+   //{
 
-      return *m_pprocess;
+   //   return *m_pprocess;
 
-   }
+   //}
 
 
    ::estatus system::initialize_log(const char * pszId)
@@ -3194,7 +3207,7 @@ namespace aura
 
       m_ptrace->set_extended_log();
 
-      estatus = m_ptrace->initialize_aura_log(trace_level_warning, pszId);
+      estatus = m_ptrace->initialize_apex_log(trace_level_warning, pszId);
 
       if(!estatus)
       {
@@ -3273,7 +3286,7 @@ namespace aura
 
 #if defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(__APPLE__)
 
-            ::aura::shell_launcher launcher(nullptr,nullptr, Context.dir().module()/strApp,strParameters,nullptr,display_normal);
+            ::apex::shell_launcher launcher(nullptr,nullptr, Context.dir().module()/strApp,strParameters,nullptr,display_normal);
 
             launcher.execute();
 
@@ -3306,7 +3319,7 @@ namespace aura
 
 #else
 
-            ::aura::shell_launcher launcher(nullptr,nullptr,Context.dir().module()/strApp,nullptr,nullptr, display_normal);
+            ::apex::shell_launcher launcher(nullptr,nullptr,Context.dir().module()/strApp,nullptr,nullptr, display_normal);
 
             launcher.execute();
 
@@ -3344,7 +3357,7 @@ namespace aura
 
 #else
 
-            ::aura::shell_launcher launcher(nullptr,nullptr, Context.dir().ca2module() / strApp,strParameters,nullptr, display_normal);
+            ::apex::shell_launcher launcher(nullptr,nullptr, Context.dir().ca2module() / strApp,strParameters,nullptr, display_normal);
 
             launcher.execute();
 
@@ -3376,7 +3389,7 @@ namespace aura
 
 #else
 
-            ::aura::shell_launcher launcher(nullptr,nullptr, Context.dir().ca2module() / strApp,strParameters,nullptr, display_normal);
+            ::apex::shell_launcher launcher(nullptr,nullptr, Context.dir().ca2module() / strApp,strParameters,nullptr, display_normal);
 
             launcher.execute();
 
@@ -3481,10 +3494,10 @@ namespace aura
    }
 
 
-   __result(::aura::session) system::on_create_session(index iEdge)
+   __result(::apex::session) system::on_create_session(index iEdge)
    {
 
-      __pointer(::aura::session) psession;
+      __pointer(::apex::session) psession;
 
       auto estatus = __construct(psession);
 
@@ -3569,7 +3582,7 @@ namespace aura
    void system::on_request(::create * pcreate)
    {
 
-      ::aura::session * psession = session();
+      ::apex::session * psession = session();
 
       if(psession == nullptr)
       {
@@ -3735,9 +3748,9 @@ namespace aura
    bool system::map_application_library(const char * pszLibrary)
    {
 
-      ::aura::library library;
+      ::apex::library library;
 
-      library.initialize_aura_library(this, 0);
+      library.initialize_apex_library(this, 0);
 
       if(!strcmp(pszLibrary,"app_core_rdpclient"))
       {
@@ -3859,7 +3872,7 @@ namespace aura
 
    //   //__throw(interface_only_exception());
 
-   //   return url_encode_dup(str);
+   //   return url_encode(str);
 
    //}
 
@@ -3961,7 +3974,7 @@ namespace aura
 
       auto appptra = Session.get_applicationa();
 
-      ::aura::application * papp = nullptr;
+      ::apex::application * papp = nullptr;
 
       appptra.pred_remove([](auto & papp)
       {
@@ -4098,7 +4111,7 @@ namespace aura
 
       auto applicationa = Session.get_applicationa();
 
-      ::aura::application * papp = nullptr;
+      ::apex::application * papp = nullptr;
 
       if(applicationa.get_size() > 0)
       {
@@ -4144,7 +4157,7 @@ namespace aura
       for (auto & papp : Session.m_applicationa)
       {
 
-         papp->waveout_open(iChannel, pformat, pcallback);
+         Au(papp).waveout_open(iChannel, pformat, pcallback);
 
       }
 
@@ -4659,7 +4672,7 @@ namespace aura
 
    }
 
-   ::image_pointer system::matter_cache_image(::object * pobjectContext, const string & strMatter)
+   ::image_pointer system::matter_cache_image(::layered * pobjectContext, const string & strMatter)
    {
 
       string str(strMatter);
@@ -4677,7 +4690,7 @@ namespace aura
 
 
 
-   ::image_pointer system::get_cache_image(::object * pobjectContext, const ::var & varFile)
+   ::image_pointer system::get_cache_image(::layered * pobjectContext, const ::var & varFile)
    {
 
       ::file::path path = varFile.get_file_path();
@@ -4696,7 +4709,7 @@ namespace aura
       if (!pimage)
       {
 
-         pobjectContext->__construct(pimage);
+         __construct(pimage);
 
          pimage->set_nok();
 
@@ -4707,7 +4720,7 @@ namespace aura
    }
 
 
-   ::image_pointer system::get_image(::object * pobjectContext, const ::var & varFile, bool bCache, bool bSync)
+   ::image_pointer system::get_image(::layered * pobjectContext, const ::var & varFile, bool bCache, bool bSync)
    {
 
       auto pimage = get_cache_image(pobjectContext, varFile);
@@ -4715,7 +4728,7 @@ namespace aura
       if (!::is_ok(pimage))
       {
 
-         Ctx(pobjectContext)._load_image(pimage, varFile, bSync);
+         Application.image()._load_image(pimage, varFile, bSync);
 
       }
 
@@ -4724,7 +4737,7 @@ namespace aura
    }
 
 
-   ::image_pointer system::matter_image(::object * pobjectContext, const string & strMatter, bool bCache, bool bSync)
+   ::image_pointer system::matter_image(::layered * pobjectContext, const string & strMatter, bool bCache, bool bSync)
    {
 
       string str(strMatter);
@@ -4870,7 +4883,7 @@ namespace aura
    //}
 
 
-   void system::__tracea(::generic_object * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
+   void system::__tracea(::generic * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
    {
 
       if (m_ptrace.is_null())
@@ -5944,7 +5957,7 @@ namespace aura
 
    //         //axis::application::term_application();
 
-   //         //::aura::del(m_phtml);
+   //         //::acme::del(m_phtml);
 
    //   try
    //   {
@@ -6066,99 +6079,99 @@ namespace aura
 } // namespace aura
 
 
-CLASS_DECL_AURA ::file::path application_installer_folder(const ::file::path & pathExe, string strAppId, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema)
-{
-
-   string strFolder = pathExe.folder();
-
-   strFolder.replace(":", "");
-
-   return dir::ca2roaming() / "appdata" / strFolder / strAppId / pszPlatform / pszConfiguration / pszLocale / pszSchema;
-
-}
-
-
-CLASS_DECL_AURA bool is_application_installed(const ::file::path & pathExe, string strAppId, string & strBuild, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema)
-{
-
-   ::file::path path;
-
-   path = application_installer_folder(pathExe, strAppId, pszPlatform, pszConfiguration, pszLocale, pszSchema) / "installed.txt";
-
-   strBuild = file_as_string(path);
-
-   return strBuild.has_char();
-
-}
-
-
-CLASS_DECL_AURA bool set_application_installed(const ::file::path & pathExe, string strAppId, const char * pszBuild, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema)
-{
-
-   ::file::path path;
-
-   path = application_installer_folder(pathExe, strAppId, pszPlatform, pszConfiguration, pszLocale, pszSchema) / "installed.txt";
-
-   return file_put_contents_dup(path, pszBuild);
-
-}
-
-
-CLASS_DECL_AURA::file::path get_application_path(string strAppId, const char * pszPlatform, const char * pszConfiguration)
-{
-
-   ::file::path pathFolder;
-
-   pathFolder = dir::stage(strAppId, pszPlatform, pszConfiguration);
-
-   string strName;
-
-   strName = ::process::app_id_to_app_name(strAppId);
-
-   ::file::path path;
-
-   path = pathFolder / (strName + ".exe");
-
-   return path;
-
-}
-
-
-CLASS_DECL_AURA ::file::path get_last_run_application_path_file(string strAppId)
-{
-
-   ::file::path pathFile = ::dir::local() / "appdata" / strAppId / "last_run_path.txt";
-
-   return pathFile;
-
-}
-
-
-CLASS_DECL_AURA::file::path get_last_run_application_path(string strAppId)
-{
-
-   ::file::path pathFile = get_last_run_application_path_file(strAppId);
-
-   ::file::path path = ::file_as_string(pathFile);
-
-   return path;
-
-}
-
-
-CLASS_DECL_AURA bool set_last_run_application_path(string strAppId)
-{
-
-   ::file::path path = ::file::app_module();
-
-   ::file::path pathFile = get_last_run_application_path_file(strAppId);
-
-   return file_put_contents_dup(pathFile, path);
-
-}
-
-
-
+//CLASS_DECL_AURA ::file::path application_installer_folder(const ::file::path & pathExe, string strAppId, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema)
+//{
+//
+//   string strFolder = pathExe.folder();
+//
+//   strFolder.replace(":", "");
+//
+//   return dir::ca2roaming() / "appdata" / strFolder / strAppId / pszPlatform / pszConfiguration / pszLocale / pszSchema;
+//
+//}
+//
+//
+//CLASS_DECL_AURA bool is_application_installed(const ::file::path & pathExe, string strAppId, string & strBuild, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema)
+//{
+//
+//   ::file::path path;
+//
+//   path = application_installer_folder(pathExe, strAppId, pszPlatform, pszConfiguration, pszLocale, pszSchema) / "installed.txt";
+//
+//   strBuild = file_as_string(path);
+//
+//   return strBuild.has_char();
+//
+//}
+//
+//
+//CLASS_DECL_AURA bool set_application_installed(const ::file::path & pathExe, string strAppId, const char * pszBuild, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema)
+//{
+//
+//   ::file::path path;
+//
+//   path = application_installer_folder(pathExe, strAppId, pszPlatform, pszConfiguration, pszLocale, pszSchema) / "installed.txt";
+//
+//   return file_put_contents_dup(path, pszBuild);
+//
+//}
+//
+//
+//CLASS_DECL_AURA::file::path get_application_path(string strAppId, const char * pszPlatform, const char * pszConfiguration)
+//{
+//
+//   ::file::path pathFolder;
+//
+//   pathFolder = dir::stage(strAppId, pszPlatform, pszConfiguration);
+//
+//   string strName;
+//
+//   strName = ::process::app_id_to_app_name(strAppId);
+//
+//   ::file::path path;
+//
+//   path = pathFolder / (strName + ".exe");
+//
+//   return path;
+//
+//}
+//
+//
+//CLASS_DECL_AURA ::file::path get_last_run_application_path_file(string strAppId)
+//{
+//
+//   ::file::path pathFile = ::dir::local() / "appdata" / strAppId / "last_run_path.txt";
+//
+//   return pathFile;
+//
+//}
+//
+//
+//CLASS_DECL_AURA::file::path get_last_run_application_path(string strAppId)
+//{
+//
+//   ::file::path pathFile = get_last_run_application_path_file(strAppId);
+//
+//   ::file::path path = ::file_as_string(pathFile);
+//
+//   return path;
+//
+//}
+//
+//
+//CLASS_DECL_AURA bool set_last_run_application_path(string strAppId)
+//{
+//
+//   ::file::path path = ::file::app_module();
+//
+//   ::file::path pathFile = get_last_run_application_path_file(strAppId);
+//
+//   return file_put_contents_dup(pathFile, path);
+//
+//}
+//
+//
+//
 
 
 
@@ -6729,7 +6742,7 @@ namespace aura
 
    }
 
-   void system::on_map_application_library(::aura::library& library)
+   void system::on_map_application_library(::apex::library& library)
    {
 
       __throw(todo("filehandler"));
@@ -6910,15 +6923,15 @@ namespace aura
 
 
 
-   ::aura::history& system::hist()
-   {
+   //::aura::history& system::hist()
+   //{
 
-      return *m_phistory;
+   //   return *m_phistory;
 
-   }
+   //}
 
 
-   estatus system::set_history(::aura::history* phistory)
+   estatus system::set_history(::apex::history* phistory)
    {
 
       auto estatus = __compose(m_phistory, phistory);
@@ -6935,10 +6948,10 @@ namespace aura
    }
 
 
-   ::aura::library * system::on_get_library(const char* pszLibrary)
+   ::apex::library * system::on_get_library(const char* pszLibrary)
    {
 
-      __pointer(::aura::library) plibrary;
+      __pointer(::apex::library) plibrary;
 
       bool bLibraryOk = false;
 
@@ -7170,7 +7183,7 @@ namespace aura
    }
 
 
-   ::estatus system::add_view_library(::aura::library* plibrary)
+   ::estatus system::add_view_library(::apex::library* plibrary)
    {
 
       m_libraryspa.add(plibrary);
@@ -7288,7 +7301,7 @@ namespace aura
    ::estatus     system::main()
    {
 
-      return ::thread::main();
+      return ::apex::system::main();
 
    }
 
@@ -7301,12 +7314,12 @@ namespace aura
    //}
 
 
-   void system::hist_hist(const char* psz)
-   {
+   //void system::hist_hist(const char* psz)
+   //{
 
-      hist().hist(psz);
+   //   hist().hist(psz);
 
-   }
+   //}
 
 
    //::type system::get_pane_tab_view_type_info()
@@ -7428,416 +7441,416 @@ namespace aura
    //}
 
 
-   DWORD system::get_monitor_color_temperature(index iMonitor)
-   {
-
-#ifdef _UWP
-
-      return 0;
-
-#elif defined(LINUX)
-
-      return 0;
-
-#elif defined(MACOS)
-
-      return 0;
-
-#elif defined(APPLE_IOS)
-
-      return 0;
-
-#elif defined(ANDROID)
-
-      return 0;
-
-#else
-
-      if (iMonitor < 0)
-      {
-
-         return 0;
-
-      }
-
-      if (iMonitor >= m_hmonitora.get_count())
-      {
-
-         return 0;
-
-      }
-
-      MC_COLOR_TEMPERATURE e;
-
-      if (!GetMonitorColorTemperature(m_hmonitora[iMonitor], &e))
-      {
-
-         return 0;
-
-      }
-
-      return mc_color_kelvin(e);
-
-#endif
-
-   }
-
-   ::mutex g_monitor_adjust;
-
-   bool system::adjust_monitor(index iMonitor, DWORD dwTemperature, double dBrightness, double dGamma)
-   {
-
-#ifdef _UWP
-
-      return true;
-
-#elif defined(LINUX)
-
-      return true;
-
-#elif defined(MACOS)
-
-      return true;
-
-#elif defined(APPLE_IOS)
-
-      return true;
-
-#elif defined(ANDROID)
-
-      return true;
-
-#else
-
-      sync_lock sl(&g_monitor_adjust);
-
-      if (iMonitor < 0)
-      {
-
-         return 0;
-
-      }
-
-      if (iMonitor >= m_hmonitora.get_count())
-      {
-
-         return 0;
-
-      }
-
-      if (dBrightness <= 0.0)
-      {
-
-         dBrightness = 0.1;
-
-      }
-
-      if (dBrightness >= 1.0)
-      {
-
-         dBrightness = 1.0;
-
-      }
-
-      if (dGamma <= 0.1)
-      {
-
-         dGamma = 0.1;
-
-      }
-
-      if (dGamma >= 10.0)
-      {
-
-         dGamma = 10.0;
-
-      }
-
-
-      DWORD dwMinDriveR;
-      DWORD dwCurDriveR;
-      DWORD dwMaxDriveR;
-      DWORD dwMinDriveG;
-      DWORD dwCurDriveG;
-      DWORD dwMaxDriveG;
-      DWORD dwMinDriveB;
-      DWORD dwCurDriveB;
-      DWORD dwMaxDriveB;
-      DWORD dwMinGainR;
-      DWORD dwCurGainR;
-      DWORD dwMaxGainR;
-      DWORD dwMinGainG;
-      DWORD dwCurGainG;
-      DWORD dwMaxGainG;
-      DWORD dwMinGainB;
-      DWORD dwCurGainB;
-      DWORD dwMaxGainB;
-
-      float fR;
-      float fG;
-      float fB;
-
-      //dwTemperature = 4000;
-
-      black_body(&fR, &fG, &fB, dwTemperature);
-
-      MC_COLOR_TEMPERATURE e = kelvin_mc_color(dwTemperature);
-
-      HMONITOR hMonitor = nullptr;
-      DWORD cPhysicalMonitors;
-      LPPHYSICAL_MONITOR pPhysicalMonitors = nullptr;
-
-      // Get the number of physical monitors.
-      BOOL bSuccess = GetNumberOfPhysicalMonitorsFromHMONITOR(
-         m_hmonitora[iMonitor],
-         &cPhysicalMonitors
-      );
-
-      if (!bSuccess || cPhysicalMonitors <= 0)
-      {
-
-         return 0;
-
-      }
-
-      PHYSICAL_MONITOR monitor;
-
-      bSuccess = GetPhysicalMonitorsFromHMONITOR(m_hmonitora[iMonitor], 1, &monitor);
-
-      Sleep(500);
-
-      //MC_COLOR_TEMPERATURE e = kelvin_mc_color(dwTemperature);
-
-
-
-      //if (!SetMonitorColorTemperature(monitor.hPhysicalMonitor, e))
-      //{
-
-      //   return false;
-
-      //}
-      //return true;
-
-
-      if (!GetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_RED_GAIN, &dwMinGainR, &dwCurGainR, &dwMaxGainR))
-      {
-
-         DWORD dwLastError = get_last_error();
-
-         TRACELASTERROR();
-
-         goto error;
-
-      }
-
-      if (!GetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_GREEN_GAIN, &dwMinGainG, &dwCurGainG, &dwMaxGainG))
-      {
-
-         return false;
-
-      }
-
-      if (!GetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_BLUE_GAIN, &dwMinGainB, &dwCurGainB, &dwMaxGainB))
-      {
-
-         return false;
-
-      }
-
-      if (!GetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_RED_DRIVE, &dwMinDriveR, &dwCurDriveR, &dwMaxDriveR))
-      {
-
-         return false;
-
-      }
-
-      if (!GetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_GREEN_DRIVE, &dwMinDriveG, &dwCurDriveG, &dwMaxDriveG))
-      {
-
-         return false;
-
-      }
-
-      if (!GetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_BLUE_DRIVE, &dwMinDriveB, &dwCurDriveB, &dwMaxDriveB))
-      {
-
-         return false;
-
-      }
-
-
-      //    SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_RED_GAIN, dwMinGainR);
-      //    SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_GREEN_GAIN, dwMinGainG);
-      //    SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_BLUE_GAIN, dwMinGainB);
-            //SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_RED_DRIVE, (DWORD)(dwMinDriveR + (dwMaxDriveR - dwMinDriveR) * r));
-            //SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_GREEN_DRIVE, (DWORD)(dwMinDriveG + (dwMaxDriveG - dwMinDriveG) * g));
-            //SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_BLUE_DRIVE, (DWORD)(dwMinDriveB + (dwMaxDriveB - dwMinDriveB) * b));
-            //SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_RED_GAIN, dwMaxGainR);
-            //SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_GREEN_GAIN, dwMaxGainG);
-            //SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_BLUE_GAIN, dwMaxGainB);
-      bool bDifferent = false;
-      if (dwMaxDriveR != dwCurDriveR)
-      {
-         SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_RED_DRIVE, dwMaxDriveR);
-         bDifferent = true;
-      }
-      if (dwMaxDriveG != dwCurDriveG)
-      {
-         SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_GREEN_DRIVE, dwMaxDriveG);
-         bDifferent = true;
-      }
-      if (dwMaxDriveB != dwCurDriveB)
-      {
-         SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_BLUE_DRIVE, dwMaxDriveB);
-         bDifferent = true;
-      }
-
-
-      /* Helper macro used in the fill functions */
-//#define F(Y, C)  pow(dBrightness * C, 1.0 / dGamma)
-#define F(C)  pow(dBrightness * C, 1.0 / dGamma)
-
-      DWORD dwR = (DWORD)(dwMinGainR + (dwMaxGainR - dwMinGainR) * F(fR));
-      DWORD dwG = (DWORD)(dwMinGainG + (dwMaxGainG - dwMinGainG) * F(fG));
-      DWORD dwB = (DWORD)(dwMinGainB + (dwMaxGainB - dwMinGainB) * F(fB));
-
-      if (dwR != dwCurGainR)
-      {
-         SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_RED_GAIN, dwR);
-         bDifferent = true;
-      }
-      if (dwG != dwCurGainG)
-      {
-         SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_GREEN_GAIN, dwG);
-         bDifferent = true;
-      }
-      if (dwB != dwCurGainB)
-      {
-         SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_BLUE_GAIN, dwB);
-         bDifferent = true;
-      }
-
-#undef F
-
-      if (!bDifferent)
-      {
-
-         goto finalize;
-
-      }
-
-      int iRepeat = 0;
-   repeat:
-
-      bDifferent = false;
-
-      if (GetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_RED_DRIVE, &dwMinDriveR, &dwCurDriveR, &dwMaxDriveR))
-      {
-
-         if (dwCurDriveR != dwMaxDriveR)
-         {
-            Sleep(500);
-            SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_RED_DRIVE, dwMaxDriveR);
-            Sleep(500);
-            bDifferent = true;
-         }
-
-      }
-
-      if (GetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_GREEN_DRIVE, &dwMinDriveG, &dwCurDriveG, &dwMaxDriveG))
-      {
-
-         if (dwCurDriveG != dwMaxDriveG)
-         {
-            Sleep(500);
-            SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_GREEN_DRIVE, dwMaxDriveG);
-            Sleep(500);
-            bDifferent = true;
-         }
-
-      }
-
-      if (GetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_BLUE_DRIVE, &dwMinDriveB, &dwCurDriveB, &dwMaxDriveB))
-      {
-
-         if (dwCurDriveB != dwMaxDriveB)
-         {
-            Sleep(500);
-            SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_BLUE_DRIVE, dwMaxDriveB);
-            Sleep(500);
-            bDifferent = true;
-         }
-
-      }
-
-      if (GetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_RED_GAIN, &dwMinGainR, &dwCurGainR, &dwMaxGainR))
-      {
-
-         if (dwCurGainR != dwR)
-         {
-            Sleep(500);
-            SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_RED_GAIN, dwR);
-            Sleep(500);
-            bDifferent = true;
-         }
-
-
-      }
-
-      if (GetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_GREEN_GAIN, &dwMinGainG, &dwCurGainG, &dwMaxGainG))
-      {
-
-         if (dwCurGainG != dwG)
-         {
-            Sleep(500);
-            SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_GREEN_GAIN, dwG);
-            Sleep(500);
-            bDifferent = true;
-         }
-
-      }
-
-      if (GetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_BLUE_GAIN, &dwMinGainB, &dwCurGainB, &dwMaxGainB))
-      {
-
-         if (dwCurGainB != dwB)
-         {
-            Sleep(500);
-            SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_BLUE_GAIN, dwB);
-            Sleep(500);
-            bDifferent = true;
-         }
-
-      }
-
-      if (bDifferent)
-      {
-
-         iRepeat++;
-
-         if (iRepeat < 3)
-         {
-
-            goto repeat;
-
-         }
-
-      }
-      Sleep(500);
-   finalize:
-      ;
-      DestroyPhysicalMonitors(1, &monitor);
-      return true;
-   error:
-      ;
-      Sleep(500);
-      // Close the monitor handles.
-      DestroyPhysicalMonitors(1, &monitor);
-      return false;
-
-#endif
-
-   }
+//   DWORD system::get_monitor_color_temperature(index iMonitor)
+//   {
+//
+//#ifdef _UWP
+//
+//      return 0;
+//
+//#elif defined(LINUX)
+//
+//      return 0;
+//
+//#elif defined(MACOS)
+//
+//      return 0;
+//
+//#elif defined(APPLE_IOS)
+//
+//      return 0;
+//
+//#elif defined(ANDROID)
+//
+//      return 0;
+//
+//#else
+//
+//      if (iMonitor < 0)
+//      {
+//
+//         return 0;
+//
+//      }
+//
+//      if (iMonitor >= m_hmonitora.get_count())
+//      {
+//
+//         return 0;
+//
+//      }
+//
+//      MC_COLOR_TEMPERATURE e;
+//
+//      if (!GetMonitorColorTemperature(m_hmonitora[iMonitor], &e))
+//      {
+//
+//         return 0;
+//
+//      }
+//
+//      return mc_color_kelvin(e);
+//
+//#endif
+//
+//   }
+
+//   ::mutex g_monitor_adjust;
+//
+//   bool system::adjust_monitor(index iMonitor, DWORD dwTemperature, double dBrightness, double dGamma)
+//   {
+//
+//#ifdef _UWP
+//
+//      return true;
+//
+//#elif defined(LINUX)
+//
+//      return true;
+//
+//#elif defined(MACOS)
+//
+//      return true;
+//
+//#elif defined(APPLE_IOS)
+//
+//      return true;
+//
+//#elif defined(ANDROID)
+//
+//      return true;
+//
+//#else
+//
+//      sync_lock sl(&g_monitor_adjust);
+//
+//      if (iMonitor < 0)
+//      {
+//
+//         return 0;
+//
+//      }
+//
+//      if (iMonitor >= m_hmonitora.get_count())
+//      {
+//
+//         return 0;
+//
+//      }
+//
+//      if (dBrightness <= 0.0)
+//      {
+//
+//         dBrightness = 0.1;
+//
+//      }
+//
+//      if (dBrightness >= 1.0)
+//      {
+//
+//         dBrightness = 1.0;
+//
+//      }
+//
+//      if (dGamma <= 0.1)
+//      {
+//
+//         dGamma = 0.1;
+//
+//      }
+//
+//      if (dGamma >= 10.0)
+//      {
+//
+//         dGamma = 10.0;
+//
+//      }
+//
+//
+//      DWORD dwMinDriveR;
+//      DWORD dwCurDriveR;
+//      DWORD dwMaxDriveR;
+//      DWORD dwMinDriveG;
+//      DWORD dwCurDriveG;
+//      DWORD dwMaxDriveG;
+//      DWORD dwMinDriveB;
+//      DWORD dwCurDriveB;
+//      DWORD dwMaxDriveB;
+//      DWORD dwMinGainR;
+//      DWORD dwCurGainR;
+//      DWORD dwMaxGainR;
+//      DWORD dwMinGainG;
+//      DWORD dwCurGainG;
+//      DWORD dwMaxGainG;
+//      DWORD dwMinGainB;
+//      DWORD dwCurGainB;
+//      DWORD dwMaxGainB;
+//
+//      float fR;
+//      float fG;
+//      float fB;
+//
+//      //dwTemperature = 4000;
+//
+//      black_body(&fR, &fG, &fB, dwTemperature);
+//
+//      MC_COLOR_TEMPERATURE e = kelvin_mc_color(dwTemperature);
+//
+//      HMONITOR hMonitor = nullptr;
+//      DWORD cPhysicalMonitors;
+//      LPPHYSICAL_MONITOR pPhysicalMonitors = nullptr;
+//
+//      // Get the number of physical monitors.
+//      BOOL bSuccess = GetNumberOfPhysicalMonitorsFromHMONITOR(
+//         m_hmonitora[iMonitor],
+//         &cPhysicalMonitors
+//      );
+//
+//      if (!bSuccess || cPhysicalMonitors <= 0)
+//      {
+//
+//         return 0;
+//
+//      }
+//
+//      PHYSICAL_MONITOR monitor;
+//
+//      bSuccess = GetPhysicalMonitorsFromHMONITOR(m_hmonitora[iMonitor], 1, &monitor);
+//
+//      Sleep(500);
+//
+//      //MC_COLOR_TEMPERATURE e = kelvin_mc_color(dwTemperature);
+//
+//
+//
+//      //if (!SetMonitorColorTemperature(monitor.hPhysicalMonitor, e))
+//      //{
+//
+//      //   return false;
+//
+//      //}
+//      //return true;
+//
+//
+//      if (!GetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_RED_GAIN, &dwMinGainR, &dwCurGainR, &dwMaxGainR))
+//      {
+//
+//         DWORD dwLastError = get_last_error();
+//
+//         TRACELASTERROR();
+//
+//         goto error;
+//
+//      }
+//
+//      if (!GetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_GREEN_GAIN, &dwMinGainG, &dwCurGainG, &dwMaxGainG))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      if (!GetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_BLUE_GAIN, &dwMinGainB, &dwCurGainB, &dwMaxGainB))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      if (!GetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_RED_DRIVE, &dwMinDriveR, &dwCurDriveR, &dwMaxDriveR))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      if (!GetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_GREEN_DRIVE, &dwMinDriveG, &dwCurDriveG, &dwMaxDriveG))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      if (!GetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_BLUE_DRIVE, &dwMinDriveB, &dwCurDriveB, &dwMaxDriveB))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//
+//      //    SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_RED_GAIN, dwMinGainR);
+//      //    SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_GREEN_GAIN, dwMinGainG);
+//      //    SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_BLUE_GAIN, dwMinGainB);
+//            //SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_RED_DRIVE, (DWORD)(dwMinDriveR + (dwMaxDriveR - dwMinDriveR) * r));
+//            //SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_GREEN_DRIVE, (DWORD)(dwMinDriveG + (dwMaxDriveG - dwMinDriveG) * g));
+//            //SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_BLUE_DRIVE, (DWORD)(dwMinDriveB + (dwMaxDriveB - dwMinDriveB) * b));
+//            //SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_RED_GAIN, dwMaxGainR);
+//            //SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_GREEN_GAIN, dwMaxGainG);
+//            //SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_BLUE_GAIN, dwMaxGainB);
+//      bool bDifferent = false;
+//      if (dwMaxDriveR != dwCurDriveR)
+//      {
+//         SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_RED_DRIVE, dwMaxDriveR);
+//         bDifferent = true;
+//      }
+//      if (dwMaxDriveG != dwCurDriveG)
+//      {
+//         SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_GREEN_DRIVE, dwMaxDriveG);
+//         bDifferent = true;
+//      }
+//      if (dwMaxDriveB != dwCurDriveB)
+//      {
+//         SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_BLUE_DRIVE, dwMaxDriveB);
+//         bDifferent = true;
+//      }
+//
+//
+//      /* Helper macro used in the fill functions */
+////#define F(Y, C)  pow(dBrightness * C, 1.0 / dGamma)
+//#define F(C)  pow(dBrightness * C, 1.0 / dGamma)
+//
+//      DWORD dwR = (DWORD)(dwMinGainR + (dwMaxGainR - dwMinGainR) * F(fR));
+//      DWORD dwG = (DWORD)(dwMinGainG + (dwMaxGainG - dwMinGainG) * F(fG));
+//      DWORD dwB = (DWORD)(dwMinGainB + (dwMaxGainB - dwMinGainB) * F(fB));
+//
+//      if (dwR != dwCurGainR)
+//      {
+//         SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_RED_GAIN, dwR);
+//         bDifferent = true;
+//      }
+//      if (dwG != dwCurGainG)
+//      {
+//         SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_GREEN_GAIN, dwG);
+//         bDifferent = true;
+//      }
+//      if (dwB != dwCurGainB)
+//      {
+//         SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_BLUE_GAIN, dwB);
+//         bDifferent = true;
+//      }
+//
+//#undef F
+//
+//      if (!bDifferent)
+//      {
+//
+//         goto finalize;
+//
+//      }
+//
+//      int iRepeat = 0;
+//   repeat:
+//
+//      bDifferent = false;
+//
+//      if (GetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_RED_DRIVE, &dwMinDriveR, &dwCurDriveR, &dwMaxDriveR))
+//      {
+//
+//         if (dwCurDriveR != dwMaxDriveR)
+//         {
+//            Sleep(500);
+//            SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_RED_DRIVE, dwMaxDriveR);
+//            Sleep(500);
+//            bDifferent = true;
+//         }
+//
+//      }
+//
+//      if (GetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_GREEN_DRIVE, &dwMinDriveG, &dwCurDriveG, &dwMaxDriveG))
+//      {
+//
+//         if (dwCurDriveG != dwMaxDriveG)
+//         {
+//            Sleep(500);
+//            SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_GREEN_DRIVE, dwMaxDriveG);
+//            Sleep(500);
+//            bDifferent = true;
+//         }
+//
+//      }
+//
+//      if (GetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_BLUE_DRIVE, &dwMinDriveB, &dwCurDriveB, &dwMaxDriveB))
+//      {
+//
+//         if (dwCurDriveB != dwMaxDriveB)
+//         {
+//            Sleep(500);
+//            SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_BLUE_DRIVE, dwMaxDriveB);
+//            Sleep(500);
+//            bDifferent = true;
+//         }
+//
+//      }
+//
+//      if (GetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_RED_GAIN, &dwMinGainR, &dwCurGainR, &dwMaxGainR))
+//      {
+//
+//         if (dwCurGainR != dwR)
+//         {
+//            Sleep(500);
+//            SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_RED_GAIN, dwR);
+//            Sleep(500);
+//            bDifferent = true;
+//         }
+//
+//
+//      }
+//
+//      if (GetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_GREEN_GAIN, &dwMinGainG, &dwCurGainG, &dwMaxGainG))
+//      {
+//
+//         if (dwCurGainG != dwG)
+//         {
+//            Sleep(500);
+//            SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_GREEN_GAIN, dwG);
+//            Sleep(500);
+//            bDifferent = true;
+//         }
+//
+//      }
+//
+//      if (GetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_BLUE_GAIN, &dwMinGainB, &dwCurGainB, &dwMaxGainB))
+//      {
+//
+//         if (dwCurGainB != dwB)
+//         {
+//            Sleep(500);
+//            SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_BLUE_GAIN, dwB);
+//            Sleep(500);
+//            bDifferent = true;
+//         }
+//
+//      }
+//
+//      if (bDifferent)
+//      {
+//
+//         iRepeat++;
+//
+//         if (iRepeat < 3)
+//         {
+//
+//            goto repeat;
+//
+//         }
+//
+//      }
+//      Sleep(500);
+//   finalize:
+//      ;
+//      DestroyPhysicalMonitors(1, &monitor);
+//      return true;
+//   error:
+//      ;
+//      Sleep(500);
+//      // Close the monitor handles.
+//      DestroyPhysicalMonitors(1, &monitor);
+//      return false;
+//
+//#endif
+//
+//   }
 
 
 //   bool system::get_monitor_rect(index iMonitor, RECT* prect)
@@ -8363,7 +8376,7 @@ void system::defer_calc_os_dark_mode()
    void system::finalize()
    {
 
-      ::aura::context_thread::finalize();
+      ::apex::system::finalize();
 
    }
 
@@ -8378,131 +8391,131 @@ string get_bundle_app_library_name();
 
 #endif
 
+//
+//::aura::system* platform_create_system(HINSTANCE hinstance)
+//{
+//
+//#if defined(WINDOWS) && !defined(CUBE)
+//
+//   string strLevel = read_resource_as_string(hinstance, 108, "LEVEL");
+//
+//   if (strLevel.has_char())
+//   {
+//
+//      string strMessage;
+//
+//      auto plibrary = __node_library_open(strLevel, strMessage);
+//
+//      if (!plibrary)
+//      {
+//
+//         MessageBoxA(NULL, strMessage, "Could not open required library.", MB_ICONEXCLAMATION);
+//
+//         return nullptr;
+//
+//      }
+//
+//   }
+//
+//#elif defined(__APPLE__)
+//
+//   string strLibraryName = get_bundle_app_library_name();
+//
+//   if (strLibraryName.has_char())
+//   {
+//
+//      string strMessage;
+//
+//      auto plibrary = __node_library_open(strLibraryName, strMessage);
+//
+//      if (!plibrary)
+//      {
+//
+//         os_message_box(NULL, strMessage, "Could not open required library.", MB_ICONEXCLAMATION);
+//
+//         return nullptr;
+//
+//      }
+//
+//   }
+//
+//#elif defined(LINUX)
+//
+//   string strMainAppId = get_main_app_id();
+//
+//   if (strMainAppId.has_char())
+//   {
+//
+//      string strMessage;
+//
+//      string strLibraryName = strMainAppId;
+//
+//      strLibraryName.replace("/", "_");
+//
+//      strLibraryName.replace("-", "_");
+//
+//      auto plibrary = __node_library_open(strLibraryName, strMessage);
+//
+//      if (!plibrary)
+//      {
+//
+//         os_message_box(NULL, strMessage, "Could not open required library.", MB_ICONEXCLAMATION);
+//
+//         return nullptr;
+//
+//      }
+//
+//   }
+//
+//#endif
+//
+//   auto pstaticsetup = ::static_setup::get_first(::static_setup::flag_system, "");
+//
+//   if (!pstaticsetup)
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   auto pobject = move_transfer(pstaticsetup->new_object());
+//
+//   if (!pobject)
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   return pobject.cast < ::aura::system >();
+//
+//}
 
-::aura::system* platform_create_system(HINSTANCE hinstance)
-{
 
-#if defined(WINDOWS) && !defined(CUBE)
-
-   string strLevel = read_resource_as_string(hinstance, 108, "LEVEL");
-
-   if (strLevel.has_char())
-   {
-
-      string strMessage;
-
-      auto plibrary = __node_library_open(strLevel, strMessage);
-
-      if (!plibrary)
-      {
-
-         MessageBoxA(NULL, strMessage, "Could not open required library.", MB_ICONEXCLAMATION);
-
-         return nullptr;
-
-      }
-
-   }
-
-#elif defined(__APPLE__)
-
-   string strLibraryName = get_bundle_app_library_name();
-
-   if (strLibraryName.has_char())
-   {
-
-      string strMessage;
-
-      auto plibrary = __node_library_open(strLibraryName, strMessage);
-
-      if (!plibrary)
-      {
-
-         os_message_box(NULL, strMessage, "Could not open required library.", MB_ICONEXCLAMATION);
-
-         return nullptr;
-
-      }
-
-   }
-
-#elif defined(LINUX)
-
-   string strMainAppId = get_main_app_id();
-
-   if (strMainAppId.has_char())
-   {
-
-      string strMessage;
-
-      string strLibraryName = strMainAppId;
-
-      strLibraryName.replace("/", "_");
-
-      strLibraryName.replace("-", "_");
-
-      auto plibrary = __node_library_open(strLibraryName, strMessage);
-
-      if (!plibrary)
-      {
-
-         os_message_box(NULL, strMessage, "Could not open required library.", MB_ICONEXCLAMATION);
-
-         return nullptr;
-
-      }
-
-   }
-
-#endif
-
-   auto pstaticsetup = ::static_setup::get_first(::static_setup::flag_system, "");
-
-   if (!pstaticsetup)
-   {
-
-      return nullptr;
-
-   }
-
-   auto pobject = move_transfer(pstaticsetup->new_object());
-
-   if (!pobject)
-   {
-
-      return nullptr;
-
-   }
-
-   return pobject.cast < ::aura::system >();
-
-}
-
-
-::aura::session * platform_create_session()
-{
-
-   auto pstaticsetup = ::static_setup::get_first(::static_setup::flag_system, "");
-
-   if (!pstaticsetup)
-   {
-
-      return nullptr;
-
-   }
-
-   auto pobject = move_transfer(pstaticsetup->new_object());
-
-   if (!pobject)
-   {
-
-      return nullptr;
-
-   }
-
-   return pobject.cast < ::aura::session >();
-
-}
+//::aura::session * platform_create_session()
+//{
+//
+//   auto pstaticsetup = ::static_setup::get_first(::static_setup::flag_system, "");
+//
+//   if (!pstaticsetup)
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   auto pobject = move_transfer(pstaticsetup->new_object());
+//
+//   if (!pobject)
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   return pobject.cast < ::aura::session >();
+//
+//}
 
 
 

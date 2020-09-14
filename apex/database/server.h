@@ -21,7 +21,7 @@ namespace database
       server();
       virtual ~server();
 
-      virtual ::estatus initialize(::object * pobjectContext) override;
+      virtual ::estatus initialize(::layered * pobjectContext) override;
 
 
       virtual bool _data_server_load(client * pclient, const key & key, get_memory getmemory, ::update * pupdate = nullptr);

@@ -1,7 +1,7 @@
 #include "framework.h"
 #include <memory.h>
 
-char * const * alloc_c_string_array(const string_array & stra)
+CLASS_DECL_ACME char * const * alloc_c_string_array(const string_array & stra)
 {
    
    auto iCount = stra.get_count();
@@ -20,7 +20,7 @@ char * const * alloc_c_string_array(const string_array & stra)
 }
 
 
-void free_c_string_array(char * const * ppszList, int iCount)
+CLASS_DECL_ACME void free_c_string_array(char * const * ppszList, int iCount)
 {
    
    if(::is_null(ppszList))

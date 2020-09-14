@@ -705,7 +705,7 @@ namespace uwp
    }
 
 
-   directx_application_source ^ new_directx_application_source(::apex::system * paurasystem, const string & strId)
+   directx_application_source ^ new_directx_application_source(::apex::system * papexsystem, const string & strId)
    {
 
       string str = strId;
@@ -714,7 +714,7 @@ namespace uwp
 
       //str += " full_screen";
 
-      return ref new directx_application_source(paurasystem, str);
+      return ref new directx_application_source(papexsystem, str);
 
    }
 

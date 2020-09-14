@@ -44,7 +44,7 @@ namespace os
 
 
 
-      simple_ui(::object * pobject);
+      simple_ui(::layered * pobjectContext);
 
       virtual ~simple_ui();
 

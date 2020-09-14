@@ -5,7 +5,7 @@ namespace tc4
 {
 
 
-   application::application(::object * pobject) :
+   application::application(::layered * pobjectContext) :
       ::object(this),
       ::thread(this),
       ::aura::application(pobject),
@@ -175,7 +175,7 @@ namespace tc4
 
 
 extern "C"
-::aura::library * get_new_library(::object * pobject)
+::apex::library * get_new_library(::layered * pobjectContext)
 {
 
    return new ::aura::single_application_library < ::tc4::application > (pobject, "app-core");

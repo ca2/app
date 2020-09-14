@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aura/platform/app_core.h"
+#include "apex/platform/app_core.h"
 
 
 dir_system::dir_system()
@@ -16,7 +16,7 @@ dir_system::~dir_system()
 }
 
 
-::estatus dir_system::initialize(::object * pobjectContext)
+::estatus dir_system::initialize(::layered * pobjectContext)
 {
 
    auto estatus = ::object::initialize(pobjectContext);

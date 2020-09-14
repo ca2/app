@@ -5,7 +5,7 @@
 
 CLASS_DECL_APEX string ca2_command_line(HINSTANCE hinstance);
 
-CLASS_DECL_APEX HRESULT os_create_link(::file::path pathObj, ::file::path pathLink, string strDesc, ::file::path pathIcon = nullptr, int iIcon = 0);
+//CLASS_DECL_APEX HRESULT os_create_link(::file::path pathObj, ::file::path pathLink, string strDesc, ::file::path pathIcon = nullptr, int iIcon = 0);
 
 const char* get_cube_app_id();
 
@@ -19,25 +19,25 @@ const char* get_cube_app_id();
 CLASS_DECL_APEX i32 ca2_main();
 
 
-void CLASS_DECL_APEX __cdecl _ca2_purecall()
-{
-
-   __throw(::exception::exception());
-
-}
-
-
-void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers);
+//void CLASS_DECL_APEX __cdecl _ca2_purecall()
+//{
+//
+//   __throw(::exception::exception());
+//
+//}
 
 
+//void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers);
+//
+//
 
 
 
-void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers)
-{
-   UNREFERENCED_PARAMETER(uiCode);
-   UNREFERENCED_PARAMETER(ppointers);
-}
+//void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers)
+//{
+//   UNREFERENCED_PARAMETER(uiCode);
+//   UNREFERENCED_PARAMETER(ppointers);
+//}
 
 
 
@@ -133,13 +133,13 @@ namespace apex
 
 
 
-
-void os_post_quit()
-{
-
-
-
-}
+//
+//void os_post_quit()
+//{
+//
+//
+//
+//}
 
 
 CLASS_DECL_APEX void main_async_runnable(::context_object * pobjectTaskParam)

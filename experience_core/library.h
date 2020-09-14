@@ -11,7 +11,7 @@
 
 
          class CLASS_DECL_APP_EXPERIENCE_CORE library:
-            virtual public ::aura::library
+            virtual public ::apex::library
          {
          public:
 
@@ -20,9 +20,9 @@
             virtual ~library();
 
 
-            virtual ::generic_object * new_object(::object * pobject, const char * pszClass) override;
+            virtual ::generic * new_object(::layered * pobjectContext, const char * pszClass) override;
 
-
+            
          };
 
 

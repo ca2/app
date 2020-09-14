@@ -14,7 +14,7 @@ namespace data
 
 
    class CLASS_DECL_APEX item :
-      virtual public generic_object
+      virtual public generic
    {
    public:
 
@@ -22,9 +22,9 @@ namespace data
       item();
       virtual ~item();
 
-      virtual string data_item_get_text(object * pobject) const;
-      virtual index data_item_get_image(object * pobject) const;
-      virtual image_list * data_item_get_image_list(object * pobject) const;
+      virtual string data_item_get_text(::object * pobject) const;
+      virtual index data_item_get_image(::object* pobject) const;
+      virtual ::image_list * data_item_get_image_list(::object* pobject) const;
 
 
       virtual void data_item_on_fill_children(::data::tree_item * pitem);
@@ -37,7 +37,7 @@ namespace data
    };
 
 
-   class CLASS_DECL_APEX item_array :
+   class CLASS_DECL_ACME item_array :
       public __pointer_array(item)
    {
    public:
@@ -46,6 +46,6 @@ namespace data
    };
 
 
-} // namespace apex
+} // namespace acme
 
 

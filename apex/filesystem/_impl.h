@@ -1,98 +1,98 @@
 #pragma once
 
-
-namespace file
-{
-
-   //   inline path::path(const var & var,e_path epath): path(var.get_file_path(),epath){}
-   //   inline path::path(const property & property,e_path epath, int iDir): path(property.get_file_path(),epath, iDir) {}
-   inline path & path::operator = (const var & var) { return operator = (var.get_string()); }
-   inline path & path::operator += (const var & var) { return operator += (var.get_string()); }
-   inline path & path::operator = (const property & property) { return operator = ((const var &)property); }
-   inline path & path::operator += (const property & property) { return operator += ((const var &) property); }
-   inline path path::operator + (const var & var) const { return operator + (var.get_string()); }
-   inline path path::operator + (const property & property) const { return operator + (property.get_string()); }
-   inline path path::operator + (const id & id) const { return operator + (id.str()); }
-   inline path path::operator / (const var & var) const { return operator /(::file::path(var)); }
-   inline path path::operator / (const property & property) const { return operator /(::file::path(property)); }
-   inline path path::operator * (const property & property) const { return operator *(::file::path(property)); }
-   inline path & path::operator *= (const property & property) { return operator *=(::file::path(property)); }
-   inline path path::folder() const { return { ::dir::name(*this), m_epath }; }
-   inline path path::sibling(const path & path) const { return { ::dir::name(*this) + sep() + ::sz::trim_left_path_sep(path), m_epath }; }
-   inline path path::sibling(const string & str) const { return { ::dir::name(*this) + sep() + ::sz::trim_left_path_sep(str), m_epath }; }
-   inline path path::sibling(const char * psz) const { return { ::dir::name(*this) + sep() + ::sz::trim_left_path_sep(psz), m_epath }; }
-   inline string path::extension() const { return &m_pdata[find_skip_or_length('.', rfind(sep()) + 1)]; }
-   inline string path::final_extension() const { return file_final_extension_dup(operator const char * ()); }
-   inline patha path::ascendants_path() const { patha patha; return ascendants_path(patha); }
-   inline string_array path::ascendants_name() const { string_array patha; return ascendants_name(patha); }
-   //   inline path path::folder() const { return ::dir::name(*this); }
-   inline bool path::operator == (const var & var) const { return operator == (string(var)); }
-   inline bool path::operator != (const var & var) const { return operator != (string(var)); }
-
-} // namespace file
-
-
+//
+//namespace file
+//{
+//
+//   //   inline path::path(const var & var,e_path epath): path(var.get_file_path(),epath){}
+//   //   inline path::path(const property & property,e_path epath, int iDir): path(property.get_file_path(),epath, iDir) {}
+//   inline path & path::operator = (const var & var) { return operator = (var.get_string()); }
+//   inline path & path::operator += (const var & var) { return operator += (var.get_string()); }
+//   inline path & path::operator = (const property & property) { return operator = ((const var &)property); }
+//   inline path & path::operator += (const property & property) { return operator += ((const var &) property); }
+//   inline path path::operator + (const var & var) const { return operator + (var.get_string()); }
+//   inline path path::operator + (const property & property) const { return operator + (property.get_string()); }
+//   inline path path::operator + (const id & id) const { return operator + (id.str()); }
+//   inline path path::operator / (const var & var) const { return operator /(::file::path(var)); }
+//   inline path path::operator / (const property & property) const { return operator /(::file::path(property)); }
+//   inline path path::operator * (const property & property) const { return operator *(::file::path(property)); }
+//   inline path & path::operator *= (const property & property) { return operator *=(::file::path(property)); }
+//   inline path path::folder() const { return { ::dir::name(*this), m_epath }; }
+//   inline path path::sibling(const path & path) const { return { ::dir::name(*this) + sep() + ::sz::trim_left_path_sep(path), m_epath }; }
+//   inline path path::sibling(const string & str) const { return { ::dir::name(*this) + sep() + ::sz::trim_left_path_sep(str), m_epath }; }
+//   inline path path::sibling(const char * psz) const { return { ::dir::name(*this) + sep() + ::sz::trim_left_path_sep(psz), m_epath }; }
+//   inline string path::extension() const { return &m_pdata[find_skip_or_length('.', rfind(sep()) + 1)]; }
+//   inline string path::final_extension() const { return file_final_extension_dup(operator const char * ()); }
+//   inline patha path::ascendants_path() const { patha patha; return ascendants_path(patha); }
+//   inline string_array path::ascendants_name() const { string_array patha; return ascendants_name(patha); }
+//   //   inline path path::folder() const { return ::dir::name(*this); }
+//   inline bool path::operator == (const var & var) const { return operator == (string(var)); }
+//   inline bool path::operator != (const var & var) const { return operator != (string(var)); }
+//
+//} // namespace file
+//
+//
 template < class T >
 bool file_context::output(::file::file * pfileOut, T * p, bool (T:: * pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
 {
 
-   ::file::path pathDownloading;
+  ::file::path pathDownloading;
 
-   try
-   {
+  try
+  {
 
-      //stream outputstream(pobject, FIRST_VERSION);
+     //stream outputstream(pobject, FIRST_VERSION);
 
-      //if (!prepare_output(pobject, outputstream, pathDownloading, os))
-      //{
+     //if (!prepare_output(pobject, outputstream, pathDownloading, os))
+     //{
 
-      //   return false;
+     //   return false;
 
-      //}
+     //}
 
-      //stream inputstream(pobject, FIRST_VERSION);
+     //stream inputstream(pobject, FIRST_VERSION);
 
-      //if (!prepare_input(pobject, inputstream, is))
-      //{
+     //if (!prepare_input(pobject, inputstream, is))
+     //{
 
-      //   return false;
+     //   return false;
 
-      //}
+     //}
 
-      if (!(p->*pfnOuput)(pfileOut, pfileIn))
-      {
+     if (!(p->*pfnOuput)(pfileOut, pfileIn))
+     {
 
-         return false;
+        return false;
 
-      }
+     }
 
-   }
-   catch (...)
-   {
+  }
+  catch (...)
+  {
 
-      return false;
+     return false;
 
-   }
+  }
 
-   //try
-   //{
+  //try
+  //{
 
-   //   if (!post_output(pobject, os.m_pfile->GetFilePath(), pathDownloading))
-   //   {
+  //   if (!post_output(pobject, os.m_pfile->GetFilePath(), pathDownloading))
+  //   {
 
-   //      return false;
+  //      return false;
 
-   //   }
+  //   }
 
-   //}
-   //catch (...)
-   //{
+  //}
+  //catch (...)
+  //{
 
-   //   return false;
+  //   return false;
 
-   //}
+  //}
 
-   return true;
+  return true;
 
 }
 
@@ -715,20 +715,20 @@ bool file_context::output(::file::file * pfileOut, T * p, bool (T:: * pfnOuput)(
 
 
 
-inline stream & operator << (stream & s, const ::file::path_object & path)
-{
-
-   return s << (const ::file::path&)path;
-
-}
-
-
-inline stream & operator >>(stream & s, ::file::path_object & path)
-{
-
-   return s >> (::file::path &)path;
-
-}
+//inline stream & operator << (stream & s, const ::file::path_object & path)
+//{
+//
+//  return s << (const ::file::path&)path;
+//
+//}
+//
+//
+//inline stream & operator >>(stream & s, ::file::path_object & path)
+//{
+//
+//  return s >> (::file::path &)path;
+//
+//}
 
 // namespace file
 //{
@@ -752,72 +752,72 @@ inline stream & operator >>(stream & s, ::file::path_object & path)
 
 
 
-inline const char * FormatArgument(const ::file::path & value) noexcept
-{
-   return value.c_str();
-}
+//inline const char * FormatArgument(const ::file::path & value) noexcept
+//{
+//  return value.c_str();
+//}
 
 
-template<>
-inline uptr uptr_hash < const ::file::path & >(const ::file::path & key)
-{
-
-   return uptr_hash < const string & >(key);
-
-}
-
-
-inline stream & operator << (stream & s, const ::file::path & path)
-{
-
-   return s << (const string &)path;
-
-}
+//template<>
+//inline uptr uptr_hash < const ::file::path & >(const ::file::path & key)
+//{
+//
+//  return uptr_hash < const string & >(key);
+//
+//}
 
 
-inline stream & operator >> (stream & s, ::file::path & path)
-{
-
-   string str;
-
-   s >> str;
-
-   path = str;
-
-   return s;
-
-}
-
-
-inline filesize stream_meta::precision(filesize prec)
-{
-
-   return m_precision = prec;
-
-}
-
-
-inline filesize stream_meta::width() const
-{
-
-   return m_width;
-
-}
-
-inline filesize stream_meta::width(filesize prec)
-{
-
-   return m_width = prec;
-
-}
+//inline stream & operator << (stream & s, const ::file::path & path)
+//{
+//
+//  return s << (const string &)path;
+//
+//}
+//
+//
+//inline stream & operator >> (stream & s, ::file::path & path)
+//{
+//
+//  string str;
+//
+//  s >> str;
+//
+//  path = str;
+//
+//  return s;
+//
+//}
 
 
-inline filesize stream_meta::precision() const
-{
-
-   return m_precision;
-
-}
+//inline filesize stream_meta::precision(filesize prec)
+//{
+//
+//  return m_precision = prec;
+//
+//}
+//
+//
+//inline filesize stream_meta::width() const
+//{
+//
+//  return m_width;
+//
+//}
+//
+//inline filesize stream_meta::width(filesize prec)
+//{
+//
+//  return m_width = prec;
+//
+//}
+//
+//
+//inline filesize stream_meta::precision() const
+//{
+//
+//  return m_precision;
+//
+//}
 
 
 

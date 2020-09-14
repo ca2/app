@@ -5,9 +5,9 @@ namespace simpledb
 {
 
 
-   simpledb::simpledb(::object * pobject) :
+   simpledb::simpledb(::layered * pobjectContext) :
       ::object(pobject),
-      ::aura::department(pobject)
+      ::apex::department(pobject)
    {
 
       m_pserver         = nullptr;

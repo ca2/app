@@ -1,7 +1,7 @@
 #include "framework.h"
-#include "aura/app_core.h"
-#include "aura/compress/zip/_.h"
-#include "aura/const/id.h"
+#include "apex/app_core.h"
+#include "apex/compress/zip/_.h"
+#include "apex/const/id.h"
 
 
 #ifdef WINDOWS
@@ -47,7 +47,7 @@ namespace file
       system_dir::~system_dir()
       {
 
-         ::aura::del(m_pziputil);
+         ::acme::del(m_pziputil);
 
       }
 
@@ -1158,7 +1158,7 @@ namespace file
 
       }
 
-      //::file::path system_dir::userfolder(::object * pobject)
+      //::file::path system_dir::userfolder(::layered * pobjectContext)
       //{
 
       //   UNREFERENCED_PARAMETER(pobject);
@@ -1190,7 +1190,7 @@ namespace file
       }
 
 
-      ::file::path system_dir::time_square(::object * pobject)
+      ::file::path system_dir::time_square(::layered * pobjectContext)
       {
 
          UNREFERENCED_PARAMETER(pobject);
@@ -1450,7 +1450,7 @@ namespace file
 
          }
 
-         ::aura::application * papp = ::get_context_application(pobject);
+         ::apex::application * papp = ::get_context_application(pobject);
 
          ::file::path pathLs0 = straMatterLocator.first();
 
@@ -1518,7 +1518,7 @@ namespace file
 
          papp->locale_schema_matter(straLs, straMatterLocator, strLocale, strSchema);
 
-         ::aura::str_context * pcontext = Sess(pobject).str_context();
+         ::apex::str_context * pcontext = Sess(pobject).str_context();
 
          if (m_bMatterFromHttpCache)
          {
@@ -1681,7 +1681,7 @@ ret:
       string system_dir::matter(::object * pobject, const ::file::patha & patha, bool bDir)
       {
 
-         ::aura::application * papp = ::get_context_application(pobject);
+         ::apex::application * papp = ::get_context_application(pobject);
 
          string_array straMatterLocator;
          {
@@ -1700,7 +1700,7 @@ ret:
       string system_dir::matter(::object * pobject, ::file::path path, bool bDir)
       {
 
-         ::aura::application * papp = ::get_context_application(pobject);
+         ::apex::application * papp = ::get_context_application(pobject);
 
          string_array straMatterLocator;
 
@@ -1780,7 +1780,7 @@ ret:
       }
 
 
-      ::estatus system_dir::initialize(::object * pobjectContext)
+      ::estatus system_dir::initialize(::layered * pobjectContext)
       {
 
          auto estatus = ::object::initialize(pobjectContext);
@@ -2022,7 +2022,7 @@ ret:
       //}
 
 
-      //::file::path system_dir::userappdata(::object * pobject)
+      //::file::path system_dir::userappdata(::layered * pobjectContext)
       //{
 
       //   UNREFERENCED_PARAMETER(pobject);
@@ -2032,7 +2032,7 @@ ret:
       //}
 
 
-      //::file::path system_dir::userdata(::object * pobject)
+      //::file::path system_dir::userdata(::layered * pobjectContext)
       //{
 
       //   UNREFERENCED_PARAMETER(pobject);
@@ -2042,7 +2042,7 @@ ret:
       //}
 
 
-      //::file::path system_dir::default_os_user_path_prefix(::object * pobject)
+      //::file::path system_dir::default_os_user_path_prefix(::layered * pobjectContext)
       //{
 
       //   UNREFERENCED_PARAMETER(pobject);
@@ -2085,13 +2085,13 @@ ret:
       //   __throw(interface_only_exception("this is an interface"));
       //}
 
-      ::file::path system_dir::userquicklaunch(::object * pobjectContext)
+      ::file::path system_dir::userquicklaunch(::layered * pobjectContext)
       {
          UNREFERENCED_PARAMETER(pobjectContext);
          __throw(interface_only_exception("this is an interface"));
       }
 
-      ::file::path system_dir::userprograms(::object * pobjectContext)
+      ::file::path system_dir::userprograms(::layered * pobjectContext)
       {
          UNREFERENCED_PARAMETER(pobjectContext);
          __throw(interface_only_exception("this is an interface"));
@@ -2127,7 +2127,7 @@ ret:
       ::file::path system_dir::pathfind(const string & pszEnv, const string & pszTopic, const string & pszMode, ::object * pobject)
       {
 
-         ::aura::application * papp = ::get_context_application(pobject);
+         ::apex::application * papp = ::get_context_application(pobject);
 
          ::file::patha stra;
 
@@ -2249,7 +2249,7 @@ ret:
       }
 
 
-      ::file::path system_dir::dropbox(::object * pobject)
+      ::file::path system_dir::dropbox(::layered * pobjectContext)
       {
 
          ::file::path pathJson = App(pobject).file().dropbox_info_json();
@@ -2265,7 +2265,7 @@ ret:
       }
 
       
-      ::file::path system_dir::onedrive(::object * pobject)
+      ::file::path system_dir::onedrive(::layered * pobjectContext)
       {
          ::file::path pathIni = App(pobject).file().onedrive_cid_ini();
          

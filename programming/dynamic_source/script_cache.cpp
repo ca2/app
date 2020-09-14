@@ -20,7 +20,7 @@ namespace dynamic_source
    }
 
 
-   ::estatus script_cache::initialize(::object * pobjectContext)
+   ::estatus script_cache::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);

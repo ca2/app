@@ -45,8 +45,8 @@ namespace str
 //{
 
 
-   zip_context::zip_context(::object * pobject) :
-      ::object(pobject)
+   zip_context::zip_context(::layered * pobjectContext) :
+      ::object(pobjectContext)
    {
    }
 

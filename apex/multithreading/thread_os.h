@@ -22,9 +22,9 @@ typedef THREAD_PROC * thread_proc;
 
 
 
-CLASS_DECL_APEX ITHREAD get_current_ithread();
+//CLASS_DECL_APEX ITHREAD get_current_ithread();
 
-CLASS_DECL_APEX HTHREAD get_current_hthread();
+//CLASS_DECL_APEX HTHREAD get_current_hthread();
 
 
 
@@ -46,12 +46,12 @@ CLASS_DECL_APEX bool __node_init_thread(::thread * pthread);
 CLASS_DECL_APEX bool __node_term_thread(::thread * pthread);
 
 
-//CLASS_DECL_APEX void __init_threading_count();
-//CLASS_DECL_APEX void __term_threading_count();
+CLASS_DECL_APEX void __init_threading_count();
+CLASS_DECL_APEX void __term_threading_count();
 
 
-//CLASS_DECL_APEX void __inc_threading_count();
-//CLASS_DECL_APEX void __dec_threading_count();
+CLASS_DECL_APEX void __inc_threading_count();
+CLASS_DECL_APEX void __dec_threading_count();
 
 
 
@@ -74,12 +74,12 @@ CLASS_DECL_APEX bool __node_term_thread(::thread * pthread);
 //CLASS_DECL_APEX bool __wait_threading_count_except(::thread * pthread,::duration dur);
 
 
-CLASS_DECL_APEX ::thread * get_thread();
-CLASS_DECL_APEX void set_thread(thread * pthread);
-CLASS_DECL_APEX void thread_release();
+//CLASS_DECL_APEX ::thread * get_thread();
+//CLASS_DECL_APEX void set_thread(thread * pthread);
+//CLASS_DECL_APEX void thread_release();
 
 
-CLASS_DECL_APEX bool thread_get_run();
+//CLASS_DECL_APEX bool thread_get_run();
 
 
 CLASS_DECL_APEX void __node_init_multithreading();
@@ -127,47 +127,47 @@ namespace multithreading
 
 
 
-//CLASS_DECL_APEX void __end_thread(::object * pobject);
+//CLASS_DECL_APEX void __end_thread(::layered * pobjectContext);
 
-//CLASS_DECL_APEX void __term_thread(::object * pobject);
-
-
+//CLASS_DECL_APEX void __term_thread(::layered * pobjectContext);
 
 
 
 
-#ifdef WINDOWS
 
-///  \brief    global function to wait on a object item for a specified time
-///  \lparam    waitableItem item to wait for (can be event, socket, file, semaphore, ...)
-///  \lparam    duration time period to wait for item (default: infinite)
-///  \return   result of waiting action as defined in sync_result
-inline sync_result wait(sync * psync,const duration & duration = duration::infinite())
-{
-   return psync->wait(duration);
-}
-
-///  \brief    global function to wait on a object item for a specified time
-///  \lparam    waitableItem item to wait for (item can be thread, event, socket, file, semaphore, ...)
-///  \lparam    duration time period to wait for item (default: infinite)
-///  \return   result of waiting action as defined in sync_result
-sync_result wait(i32 numberOfItems, sync * psync, const duration & duration = duration::infinite(),bool waitForAll = false);
-
-#else
-
-///  \brief    global function to wait on a object item for a specified time
-///  \lparam    waitableItem item to wait for (can be event, socket, file, semaphore, ...)
-///  \lparam    duration time period to wait for item (default: infinite)
-///  \return   result of waiting action as defined in sync_result
-sync_result wait(sync * psync,const duration & duration = duration::infinite());
-
-///  \brief    global function to wait on a object item for a specified time
-///  \lparam    waitableItem item to wait for (item can be thread, event, socket, file, semaphore, ...)
-///  \lparam    duration time period to wait for item (default: infinite)
-///  \return   result of waiting action as defined in sync_result
-sync_result wait(size_t numberOfItems, sync ** psync, const duration& duration = duration::infinite(),bool waitForAll = false);
-
-#endif
+//
+//#ifdef WINDOWS
+//
+/////  \brief    global function to wait on a object item for a specified time
+/////  \lparam    waitableItem item to wait for (can be event, socket, file, semaphore, ...)
+/////  \lparam    duration time period to wait for item (default: infinite)
+/////  \return   result of waiting action as defined in sync_result
+//inline sync_result wait(sync * psync,const duration & duration = duration::infinite())
+//{
+//   return psync->wait(duration);
+//}
+//
+/////  \brief    global function to wait on a object item for a specified time
+/////  \lparam    waitableItem item to wait for (item can be thread, event, socket, file, semaphore, ...)
+/////  \lparam    duration time period to wait for item (default: infinite)
+/////  \return   result of waiting action as defined in sync_result
+//sync_result wait(i32 numberOfItems, sync * psync, const duration & duration = duration::infinite(),bool waitForAll = false);
+//
+//#else
+//
+/////  \brief    global function to wait on a object item for a specified time
+/////  \lparam    waitableItem item to wait for (can be event, socket, file, semaphore, ...)
+/////  \lparam    duration time period to wait for item (default: infinite)
+/////  \return   result of waiting action as defined in sync_result
+//sync_result wait(sync * psync,const duration & duration = duration::infinite());
+//
+/////  \brief    global function to wait on a object item for a specified time
+/////  \lparam    waitableItem item to wait for (item can be thread, event, socket, file, semaphore, ...)
+/////  \lparam    duration time period to wait for item (default: infinite)
+/////  \return   result of waiting action as defined in sync_result
+//sync_result wait(size_t numberOfItems, sync ** psync, const duration& duration = duration::infinite(),bool waitForAll = false);
+//
+//#endif
 
 
 
@@ -183,7 +183,7 @@ CLASS_DECL_APEX void thread_alloc_ready(bool bReady);
 
 
 //CLASS_DECL_APEX ::mutex & user_mutex();
-CLASS_DECL_APEX ::mutex & message_dispatch_mutex();
+//CLASS_DECL_APEX ::mutex & message_dispatch_mutex();
 
 
 
@@ -191,8 +191,8 @@ CLASS_DECL_APEX ::mutex & message_dispatch_mutex();
 typedef void SIMPLE_PROCEDURE(void);
 typedef SIMPLE_PROCEDURE * PPROC_SIMPLE;
 
-CLASS_DECL_APEX extern PPROC_SIMPLE g_axisoninitthread;
-CLASS_DECL_APEX extern PPROC_SIMPLE g_axisontermthread;
+//CLASS_DECL_APEX extern PPROC_SIMPLE g_axisoninitthread;
+//CLASS_DECL_APEX extern PPROC_SIMPLE g_axisontermthread;
 
 
 

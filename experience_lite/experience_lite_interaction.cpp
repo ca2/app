@@ -13,7 +13,7 @@
       {
 
 
-         experience::experience(::object * pobject) :
+         experience::experience(::layered * pobjectContext) :
             object(pobject),
             ::experience::experience(pobject)
          {

@@ -110,8 +110,8 @@ namespace user
 
    mesh::~mesh()
    {
-      ::aura::del(m_piaFilterIcon);
-      ::aura::del(m_piaFilterMesh);
+      ::acme::del(m_piaFilterIcon);
+      ::acme::del(m_piaFilterMesh);
    }
 
 
@@ -261,7 +261,7 @@ namespace user
       }
       else
       {
-         iItemLast = MIN(m_nItemCount - 1,iItemFirst + m_nDisplayCount - 1);
+         iItemLast = min(m_nItemCount - 1,iItemFirst + m_nDisplayCount - 1);
       }
 
       if(iItemFirst < 0)
@@ -626,7 +626,7 @@ namespace user
       if(m_eview == impact_grid)
       {
 
-         pdrawitem->m_iOrder = MAX(get_viewport_offset().x, 0);
+         pdrawitem->m_iOrder = max(get_viewport_offset().x, 0);
 
       }
       else
@@ -845,12 +845,12 @@ namespace user
       //      get_client_rect(rectClient);
       //      index iIconSize;
       //      if (m_nColumnCount > 0)
-      //         //                  iIconSize = MAX(32,m_columna[0]->m_sizeIcon.cy);
+      //         //                  iIconSize = max(32,m_columna[0]->m_sizeIcon.cy);
       //         iIconSize = 32;
       //      else
       //         iIconSize = 32;
       //      index iItemSize = iIconSize * 2;
-      //      m_piconlayout->m_iWidth = (i32)(MAX(1, rectClient.width() / iItemSize));
+      //      m_piconlayout->m_iWidth = (i32)(max(1, rectClient.width() / iItemSize));
       //   }
       //}
 
@@ -875,9 +875,9 @@ namespace user
 
          m_nGridColumnCount = _001GetColumnCount();
 
-         m_nColumnCount = MAX(m_nColumnCount,sizePage.cx * 2);
+         m_nColumnCount = max(m_nColumnCount,sizePage.cx * 2);
 
-         m_nColumnCount = MIN(m_nColumnCount,m_nGridColumnCount);
+         m_nColumnCount = min(m_nColumnCount,m_nGridColumnCount);
 
       }
       else
@@ -919,9 +919,9 @@ namespace user
 
          m_nGridItemCount = _001GetItemCount();
 
-         m_nItemCount = MAX(m_nItemCount, sizePage.cy * 2);
+         m_nItemCount = max(m_nItemCount, sizePage.cy * 2);
 
-         m_nItemCount = MIN(m_nItemCount,m_nGridItemCount);
+         m_nItemCount = min(m_nItemCount,m_nGridItemCount);
 
       }
       else
@@ -1031,7 +1031,7 @@ namespace user
             if(m_iItemHeight <= 0)
                sizeTotal.cx = rectClient.right;
             else
-               sizeTotal.cx  = (LONG)MIN(
+               sizeTotal.cx  = (LONG)min(
                                m_nItemCount * itemFirst.m_rectItem.width() * m_iItemHeight /
                                rectClient.height()
                                + itemFirst.m_rectItem.width(),MAXLONG);
@@ -1117,11 +1117,11 @@ namespace user
 
             get_client_rect(&rectClient);
 
-            itemTopRight.m_iItem = (index)MAX(1,rectClient.width() / get_item_size().cx) - 1;
+            itemTopRight.m_iItem = (index)max(1,rectClient.width() / get_item_size().cx) - 1;
          }
          /*       else
                 {
-                   itemTopRight.m_iItem = MAX(1,m_piconlayout->m_iWidth) - 1;
+                   itemTopRight.m_iItem = max(1,m_piconlayout->m_iWidth) - 1;
                 }
          */       itemTopRight.m_iDisplayItem = itemTopRight.m_iDisplayItem;
          _001GetItemRect(&itemTopRight);
@@ -1320,7 +1320,7 @@ namespace user
       if(m_eview == impact_grid)
       {
 
-         return (::index) MIN(MAX(0,get_viewport_offset().y),m_nGridItemCount);
+         return (::index) min(max(0,get_viewport_offset().y),m_nGridItemCount);
 
       }
       else
@@ -1395,7 +1395,7 @@ namespace user
          ::rect rectView;
          get_client_rect(&rectView);
          const ::size & sizeItem = get_item_size();
-         return MAX((rectView.width() / sizeItem.cx) * (rectView.height() / sizeItem.cy),
+         return max((rectView.width() / sizeItem.cx) * (rectView.height() / sizeItem.cy),
                     m_piconlayout->m_iaDisplayToStrict.get_max_a() + 1);
       }
       else if(m_eview == impact_report || m_eview == impact_grid)
@@ -1707,28 +1707,28 @@ namespace user
          {
             rectClient.top += m_rectTopText.height();
          }
-//         index iIconSize = MAX(32,m_columna[0]->m_sizeIcon.cy);
+//         index iIconSize = max(32,m_columna[0]->m_sizeIcon.cy);
          index iIconSize = 32;
          index iItemSize = iIconSize * 2;
 
          index ix = (index)(point.x + pointScroll.x);
-         ix = (index)MAX(pointScroll.x,ix);
-         ix = (index)MIN(rectClient.right,ix);
-         ix = (index)MAX(rectClient.left,ix);
+         ix = (index)max(pointScroll.x,ix);
+         ix = (index)min(rectClient.right,ix);
+         ix = (index)max(rectClient.left,ix);
          ix /= iItemSize;
 
          index iy = point.y + pointScroll.y;
-         iy = MAX(pointScroll.y,iy);
-         iy = MAX(rectClient.top,iy);
+         iy = max(pointScroll.y,iy);
+         iy = max(rectClient.top,iy);
          iy /= iItemSize;
 
          //if(m_flags.has(flag_auto_arrange))
          {
-            iItemParam = iy * (MAX(1,rectClient.width() / iItemSize)) + ix;
+            iItemParam = iy * (max(1,rectClient.width() / iItemSize)) + ix;
          }
          //else
          {
-            // iItemParam = iy * (MAX(1,m_piconlayout->m_iWidth)) + ix;
+            // iItemParam = iy * (max(1,m_piconlayout->m_iWidth)) + ix;
          }
 
 
@@ -1771,7 +1771,7 @@ namespace user
       _001GetItemRect(&itemLast);
 
       pdrawitem->m_rectGroup.unite(itemFirst.m_rectItem,itemLast.m_rectItem);
-      pdrawitem->m_rectGroup.bottom = MAX(itemLast.m_rectItem.bottom,itemFirst.m_rectItem.top + m_iGroupMinHeight);
+      pdrawitem->m_rectGroup.bottom = max(itemLast.m_rectItem.bottom,itemFirst.m_rectItem.top + m_iGroupMinHeight);
       pdrawitem->m_rectGroup.left = 0;
       pdrawitem->m_rectGroup.right = m_iLateralGroupWidth;
       pdrawitem->m_bOk = true;
@@ -2055,11 +2055,11 @@ namespace user
             {
                rectClient.top += m_rectTopText.height();
             }
-            //index iIconSize = MAX(32,m_columna[0]->m_sizeIcon.cy);
+            //index iIconSize = max(32,m_columna[0]->m_sizeIcon.cy);
             index iIconSize = 32;
             index iItemSize = iIconSize * 2;
-            pdrawitem->m_rectItem.left = (LONG)(iItemSize * (pdrawitem->m_iItem % (MAX(1,rectClient.width() / iItemSize))));
-            pdrawitem->m_rectItem.top = (LONG)(iItemSize * (pdrawitem->m_iItem / (MAX(1,rectClient.width() / iItemSize))));
+            pdrawitem->m_rectItem.left = (LONG)(iItemSize * (pdrawitem->m_iItem % (max(1,rectClient.width() / iItemSize))));
+            pdrawitem->m_rectItem.top = (LONG)(iItemSize * (pdrawitem->m_iItem / (max(1,rectClient.width() / iItemSize))));
             pdrawitem->m_rectItem.bottom = (LONG)(pdrawitem->m_rectItem.top + iItemSize);
             pdrawitem->m_rectItem.right = (LONG)(pdrawitem->m_rectItem.left + iItemSize);
          }
@@ -2704,9 +2704,9 @@ namespace user
 
                   item_range itemrange;
 
-                  index iLItem = MIN(m_iShiftFirstSelection,iItem);
+                  index iLItem = min(m_iShiftFirstSelection,iItem);
 
-                  index iUItem = MAX(m_iShiftFirstSelection,iItem);
+                  index iUItem = max(m_iShiftFirstSelection,iItem);
 
                   itemrange.set(iLItem,iUItem,0,m_nColumnCount - 1,- 1,-1);
 
@@ -2727,9 +2727,9 @@ namespace user
 
                   item_range itemrange;
 
-                  index iLItem = MIN(m_iShiftFirstSelection,iItem);
+                  index iLItem = min(m_iShiftFirstSelection,iItem);
 
-                  index iUItem = MAX(m_iShiftFirstSelection,iItem);
+                  index iUItem = max(m_iShiftFirstSelection,iItem);
 
                   itemrange.set(iLItem,iUItem,0,m_nColumnCount - 1,- 1,-1);
 
@@ -3274,9 +3274,9 @@ namespace user
    //   }
    //   if(pcolumn->m_pil == nullptr)
    //   {
-   //      pcolumn->m_pil = new image_list(get_object());
+   //      pcolumn->m_pil = new ::image_list(get_object());
    //   }
-   //   //      __pointer(image_list) pil = pcolumn->m_pil;
+   //   //      __pointer(::image_list) pil = pcolumn->m_pil;
    //   //   if(pil != nullptr)
    //   //      pil->DeleteImageMesh();
    //   ::exception::throw_not_implemented();
@@ -3440,10 +3440,10 @@ namespace user
                         item_range itemrange;
 
                         itemrange.set(
-                        MIN(iItemSel,m_iItemSel),
-                        MAX(iItemSel,m_iItemSel),
-                        MIN(iSubItemSel,m_iSubItemSel),
-                        MAX(iSubItemSel,m_iSubItemSel),
+                        min(iItemSel,m_iItemSel),
+                        max(iItemSel,m_iItemSel),
+                        min(iSubItemSel,m_iSubItemSel),
+                        max(iSubItemSel,m_iSubItemSel),
                         -1,
                         -1);
 
@@ -3456,10 +3456,10 @@ namespace user
                         item_range itemrange;
 
                         itemrange.set(
-                        MIN(iItemSel,m_iItemSel),
-                        MAX(iItemSel,m_iItemSel),
-                        MIN(iSubItemSel,m_iSubItemSel),
-                        MAX(iSubItemSel,m_iSubItemSel),
+                        min(iItemSel,m_iItemSel),
+                        max(iItemSel,m_iItemSel),
+                        min(iSubItemSel,m_iSubItemSel),
+                        max(iSubItemSel,m_iSubItemSel),
                         -1,
                         -1);
 
@@ -3883,7 +3883,7 @@ namespace user
 
       auto pointScroll = get_viewport_offset();
 
-      index iyScroll = pointScroll.y / MAX(1,m_iItemHeight);
+      index iyScroll = pointScroll.y / max(1,m_iItemHeight);
       if(iItem < iyScroll)
       {
          iyScroll = iItem - m_nDisplayCount + 1;
@@ -3892,13 +3892,13 @@ namespace user
       {
          iyScroll = iItem;
       }
-      if(pointScroll.y / MAX(1,m_iItemHeight) != iyScroll)
+      if(pointScroll.y / max(1,m_iItemHeight) != iyScroll)
       {
          item_range item;
          set_viewport_offset_y((int)(iyScroll * m_iItemHeight));
          on_change_viewport_offset();
          item.set_lower_bound(iyScroll);
-         item.set_upper_bound(MIN(iyScroll + m_nDisplayCount - 1,m_nItemCount - 1));
+         item.set_upper_bound(min(iyScroll + m_nDisplayCount - 1,m_nItemCount - 1));
          range.add_item(item);
       }
    }
@@ -4219,7 +4219,7 @@ namespace user
 
       string wstrItem;
 
-      index iItemCount = MIN(m_nItemCount,m_iFilter1Step + 1000);
+      index iItemCount = min(m_nItemCount,m_iFilter1Step + 1000);
 
       index iFilter1Step;
 
@@ -4814,7 +4814,7 @@ namespace user
             if((sizeTotal.cy - pointScroll.y - sizePage.cy) <= 1)
             {
 
-               m_nItemCount = MIN(m_nGridItemCount,m_nItemCount + sizePage.cy);
+               m_nItemCount = min(m_nGridItemCount,m_nItemCount + sizePage.cy);
 
                on_change_view_size();
 
@@ -4848,7 +4848,7 @@ namespace user
             if((sizeTotal.cx - pointScroll.x - sizePage.cx) <= 1)
             {
 
-               m_nColumnCount = MIN(m_nGridColumnCount,m_nColumnCount + sizePage.cx);
+               m_nColumnCount = min(m_nGridColumnCount,m_nColumnCount + sizePage.cx);
 
                on_change_view_size();
 
@@ -4957,12 +4957,12 @@ namespace user
 //               get_client_rect(rectClient);
 //               index iIconSize;
 //               if(m_nColumnCount > 0)
-////                  iIconSize = MAX(32,m_columna[0]->m_sizeIcon.cy);
+////                  iIconSize = max(32,m_columna[0]->m_sizeIcon.cy);
 //                     iIconSize = 32;
 //               else
 //                  iIconSize = 32;
 //               index iItemSize = iIconSize * 2;
-//               m_piconlayout->m_iWidth = (i32)(MAX(1,rectClient.width() / iItemSize));
+//               m_piconlayout->m_iWidth = (i32)(max(1,rectClient.width() / iItemSize));
 //            }
             return do_drop(iDisplayDrop,iDisplayDrag);
          }
@@ -5022,7 +5022,7 @@ namespace user
 
          }
 
-//         index iIconSize = MAX(32,m_columna[0]->m_sizeIcon.cy);
+//         index iIconSize = max(32,m_columna[0]->m_sizeIcon.cy);
 
          index iIconSize = 32;
 
@@ -5200,7 +5200,7 @@ namespace user
    i32 mesh::_001GetGroupHeight(index iGroup)
    {
       i32 iMeshHeight = (i32)(_001GetGroupItemCount(iGroup) * m_iItemHeight);
-      return MAX(m_iGroupMinHeight,iMeshHeight);
+      return max(m_iGroupMinHeight,iMeshHeight);
    }
 
    mesh_item::mesh_item(mesh * pmesh)
@@ -5350,13 +5350,13 @@ namespace user
             size.cy += 4;
 
             ::image_pointer pimage1;
-            pimage1 = m_pmesh->create_image({size.cx, size.cy});
+            pimage1 = create_image(size);
             pimage1->fill(0,0,0,0);
             ::draw2d::brush_pointer brushText(e_create);
             brushText->create_solid(ARGB(255,255,255,255));
             pimage1->get_graphics()->set(brushText);
             ::image_pointer pimage2;
-            pimage2 = m_pmesh->create_image({size.cx, size.cy});
+            pimage2 = create_image(size);
             pimage2->fill(0,0,0,0);
 
             ::rect rectCache;

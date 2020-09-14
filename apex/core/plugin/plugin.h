@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-// plugin - aura plugin
+// plugin - apex plugin
 // simple hotplugin implementation for NPAPI
 
 

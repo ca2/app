@@ -43,7 +43,7 @@ typedef iptr strsize;
 #include "aura/primitive/primitive/uid.h"
 #include "aura/primitive/primitive/estatus.h"
 #include "aura/primitive/primitive/eobject.h"
-#include "aura/primitive/primitive/generic_object.h"
+#include "aura/primitive/primitive/generic.h"
 
 
 

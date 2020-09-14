@@ -73,12 +73,12 @@ namespace account
 
       Sleep(49);*/
 
-      ::aura::del(m_plabelUser);
-      ::aura::del(m_peditUser);
-      ::aura::del(m_plabelPassword);
-      ::aura::del(m_ppassword);
-      ::aura::del(m_ptap);
-      ::aura::del(m_ptapClose);
+      ::acme::del(m_plabelUser);
+      ::acme::del(m_peditUser);
+      ::acme::del(m_plabelPassword);
+      ::acme::del(m_ppassword);
+      ::acme::del(m_ptap);
+      ::acme::del(m_ptapClose);
 
    }
 

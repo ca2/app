@@ -5,30 +5,61 @@ namespace process
 {
 
 
-   struct CLASS_DECL_APEX exit_status
+   class CLASS_DECL_APEX process :
+      virtual public ::object
    {
+   public:
 
 
-      int      m_iExitCode;
-      int      m_iExitSignal;
-      int      m_iExitStop;
+      
+      bidi_pipe               m_pipe;
+      bool                    m_bPiped;
+      int                     m_iPid;
+      exit_status             m_exitstatus;
 
-      exit_status();
 
+      process();
+      virtual ~process();
+
+
+      virtual bool create_child_process(const char * pszCmdLine, bool bPiped = false, const char * pszDir = nullptr, ::e_priority epriority = ::priority_none);
+
+      virtual void wait_until_exit(i32 iWaitMax = 0);
+      virtual bool has_exited();
+
+      virtual bool write(const char * psz);
+      virtual string read(bool bUntilExit = false);
+
+      virtual bool synch_elevated(const char * pszCmdLine,int iShow,const ::duration & durationTimeOut,bool * pbTimeOut);
+
+      virtual bool kill();
 
    };
 
 
-   CLASS_DECL_APEX bool set_priority(::e_priority epriority);
-
-   CLASS_DECL_APEX string app_id_to_app_name(string strId);
+   typedef __pointer(process) process_pointer;
 
 
 } // namespace process
 
 
 
-#include "process_pipe.h"
-#include "process_bidi_pipe.h"
-#include "process_process.h"
-#include "process_department.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

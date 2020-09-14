@@ -28,7 +28,7 @@ namespace mail
       i32                     m_iListSize;
 
 
-      simple_pop3(::object * pobject);
+      simple_pop3(::layered * pobjectContext);
 
 
       virtual string get_user();

@@ -29,7 +29,7 @@ namespace filemanager
       //virtual i64 add_ref(OBJ_REF_DBG_PARAMS) override
       //{
 
-      //   return ::aura::department::add_ref(OBJ_REF_DBG_ARGS);
+      //   return ::apex::department::add_ref(OBJ_REF_DBG_ARGS);
 
       //}
 
@@ -37,12 +37,12 @@ namespace filemanager
       /*     virtual i64 dec_ref(OBJ_REF_DBG_PARAMS) override
            {
 
-              return ::aura::department::dec_ref(OBJ_REF_DBG_ARGS);
+              return ::apex::department::dec_ref(OBJ_REF_DBG_ARGS);
 
            }*/
 
 
-      virtual ::estatus initialize_filemanager_component(::object * pobjectParent);
+      virtual ::estatus initialize_filemanager_component(::layered * pobjectContext);
 
       virtual void filemanager_finalize();
 

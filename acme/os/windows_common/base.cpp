@@ -57,22 +57,22 @@ namespace acme
 {
 
 
-   void set_simple_output_debug_string_a()
+   CLASS_DECL_ACME void set_simple_output_debug_string_a()
    {
       g_pfnOutputDebugStringA = ::OutputDebugStringA;
    }
 
-   void set_extended_output_debug_string_a()
+   CLASS_DECL_ACME void set_extended_output_debug_string_a()
    {
       g_pfnOutputDebugStringA = ::output_debug_string_a;
    }
 
-   void set_simple_output_debug_string_w()
+   CLASS_DECL_ACME void set_simple_output_debug_string_w()
    {
       g_pfnOutputDebugStringW = ::OutputDebugStringW;
    }
 
-   void set_extended_output_debug_string_w()
+   CLASS_DECL_ACME void set_extended_output_debug_string_w()
    {
       g_pfnOutputDebugStringW = ::OutputDebugStringW;
    }
@@ -159,3 +159,16 @@ CLASS_DECL_ACME i64 get_nanos()
    return muldiv64(largeinteger.QuadPart, 1'000'000'000, ::acme::g_largeintegerFrequency.QuadPart);
 
 }
+
+
+string FormatMessageFromSystem(u32 dwError)
+{
+
+
+   return ::get_system_error_message(dwError);
+
+
+}
+
+
+

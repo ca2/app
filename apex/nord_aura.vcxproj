@@ -100,7 +100,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <ClCompile>
       <AdditionalIncludeDirectories>$(__archive)\platform-android\include;$(__archive)\platform-android\third\include\include;$(__archive)\platform-android\third\include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(SolutionDir)../../platform-android/;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>DEBUG;__ANDROID_API__=19;_AURA_LIBRARY</PreprocessorDefinitions>
+      <PreprocessorDefinitions>DEBUG;__ANDROID_API__=19;_APEX_LIBRARY</PreprocessorDefinitions>
       <ExceptionHandling>Enabled</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CppLanguageStandard>c++1z</CppLanguageStandard>
@@ -113,7 +113,7 @@
     <Link>
       <AdditionalDependencies>
       </AdditionalDependencies>
-      <LibraryDependencies>aurasqlite;ssl;crypto;auraidn;aurabzip2;aurazlib;aurapcre;auraiconv;jnigraphics;android;log;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
+      <LibraryDependencies>apexsqlite;ssl;crypto;apexidn;apexbzip2;apexzlib;apexpcre;apexiconv;jnigraphics;android;log;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
       <UnresolvedSymbolReferences>true</UnresolvedSymbolReferences>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-android\third\library\$(Platform)\$(Configuration)\;$(__archive)\storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
     </Link>
@@ -128,7 +128,7 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -Wno-char-subscripts</AdditionalOptions>
       <AdditionalIncludeDirectories>$(__archive)\platform-android\include;$(__archive)\platform-android\third\include\include;$(__archive)\platform-android\third\include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(SolutionDir)../../platform-android/;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>DEBUG;__ANDROID_API__=19;_AURA_LIBRARY</PreprocessorDefinitions>
+      <PreprocessorDefinitions>DEBUG;__ANDROID_API__=19;_APEX_LIBRARY</PreprocessorDefinitions>
       <CLanguageStandard>c11</CLanguageStandard>
       <CppLanguageStandard>c++1z</CppLanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -145,7 +145,7 @@
     <ClCompile>
       <DebugInformationFormat>FullDebug</DebugInformationFormat>
       <AdditionalIncludeDirectories>$(__archive)\platform-android\include;$(__archive)\platform-android\third\include\include;$(__archive)\platform-android\third\include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(SolutionDir)../../platform-android/;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>__ANDROID_API__=19;_AURA_LIBRARY</PreprocessorDefinitions>
+      <PreprocessorDefinitions>__ANDROID_API__=19;_APEX_LIBRARY</PreprocessorDefinitions>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CLanguageStandard>c11</CLanguageStandard>
       <CppLanguageStandard>c++1z</CppLanguageStandard>
@@ -173,7 +173,7 @@
       <CLanguageStandard>c11</CLanguageStandard>
       <CppLanguageStandard>c++1z</CppLanguageStandard>
       <AdditionalIncludeDirectories>$(__archive)\platform-android\include;$(__archive)\platform-android\third\include\include;$(__archive)\platform-android\third\include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(SolutionDir)../../platform-android/;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>__ANDROID_API__=19;_AURA_LIBRARY</PreprocessorDefinitions>
+      <PreprocessorDefinitions>__ANDROID_API__=19;_APEX_LIBRARY</PreprocessorDefinitions>
       <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -Wno-char-subscripts</AdditionalOptions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
@@ -795,9 +795,9 @@
     <ClCompile Include="platform\app_launcher.cpp" />
     <ClCompile Include="platform\assert.cpp" />
     <ClCompile Include="platform\assert_running_task.cpp" />
-    <ClCompile Include="platform\aura_main_data.cpp" />
-    <ClCompile Include="platform\aura_main_struct.cpp" />
-    <ClCompile Include="platform\aura_str_pool.cpp" />
+    <ClCompile Include="platform\apex_main_data.cpp" />
+    <ClCompile Include="platform\apex_main_struct.cpp" />
+    <ClCompile Include="platform\apex_str_pool.cpp" />
     <ClCompile Include="platform\build_debug.cpp" />
     <ClCompile Include="platform\checked.cpp" />
     <ClCompile Include="platform\console_application.cpp" />
@@ -859,7 +859,7 @@
     <ClCompile Include="platform\sprintf.cpp" />
     <ClCompile Include="platform\static_setup.cpp" />
     <ClCompile Include="platform\static_start.cpp" />
-    <ClCompile Include="platform\static_start_aura.cpp" />
+    <ClCompile Include="platform\static_start_apex.cpp" />
     <ClCompile Include="platform\status.cpp" />
     <ClCompile Include="platform\strn.cpp" />
     <ClCompile Include="platform\str_context.cpp" />
@@ -954,7 +954,7 @@
     <ClCompile Include="primitive\primitive\edit.cpp" />
     <ClCompile Include="primitive\primitive\factory.cpp" />
     <ClCompile Include="primitive\primitive\form_property_set.cpp" />
-    <ClCompile Include="primitive\primitive\generic_object.cpp" />
+    <ClCompile Include="primitive\primitive\generic.cpp" />
     <ClCompile Include="primitive\primitive\handler.cpp" />
     <ClCompile Include="primitive\primitive\id.cpp" />
     <ClCompile Include="primitive\primitive\id_space.cpp" />
@@ -1351,9 +1351,9 @@
     <ClInclude Include="apex\apex\assert_running_task.h" />
     <ClInclude Include="apex\apex\async.h" />
     <ClInclude Include="apex\apex\atomic2.h" />
-    <ClInclude Include="apex\apex\aura_aura.h" />
-    <ClInclude Include="apex\apex\aura_regex.h" />
-    <ClInclude Include="apex\apex\aura_status.h" />
+    <ClInclude Include="apex\apex\apex_apex.h" />
+    <ClInclude Include="apex\apex\apex_regex.h" />
+    <ClInclude Include="apex\apex\apex_status.h" />
     <ClInclude Include="apex\apex\auto.h" />
     <ClInclude Include="apex\apex\auto_pointer.h" />
     <ClInclude Include="apex\apex\block.h" />
@@ -1464,12 +1464,12 @@
     <ClInclude Include="apex\apex\_system_smart_pointer_impl.h" />
     <ClInclude Include="apex\apex\_system_var_impl.h" />
     <ClInclude Include="apex\apex\_system_xml_impl.h" />
-    <ClInclude Include="apex\aura_policy\aura_c.h" />
-    <ClInclude Include="apex\aura_policy\aura_cpp.h" />
-    <ClInclude Include="apex\aura_policy\aura_policy.h" />
-    <ClInclude Include="apex\aura_policy\aura_policy_objc.h" />
-    <ClInclude Include="apex\aura_policy\aura_policy_objcpp.h" />
-    <ClInclude Include="apex\aura_policy\aura_policy_winrt.h" />
+    <ClInclude Include="apex\apex_policy\apex_c.h" />
+    <ClInclude Include="apex\apex_policy\apex_cpp.h" />
+    <ClInclude Include="apex\apex_policy\apex_policy.h" />
+    <ClInclude Include="apex\apex_policy\apex_policy_objc.h" />
+    <ClInclude Include="apex\apex_policy\apex_policy_objcpp.h" />
+    <ClInclude Include="apex\apex_policy\apex_policy_winrt.h" />
     <ClInclude Include="apex\charguess\big5Prober.h" />
     <ClInclude Include="apex\charguess\charDistribution.h" />
     <ClInclude Include="apex\charguess\charguess.h" />
@@ -2201,11 +2201,11 @@
     <ClInclude Include="platform\async.h" />
     <ClInclude Include="platform\atomic2.h" />
     <ClInclude Include="platform\apex.h" />
-    <ClInclude Include="platform\aura_aura.h" />
-    <ClInclude Include="platform\aura_main_data.h" />
-    <ClInclude Include="platform\aura_main_struct.h" />
-    <ClInclude Include="platform\aura_regex.h" />
-    <ClInclude Include="platform\aura_status.h" />
+    <ClInclude Include="platform\apex_apex.h" />
+    <ClInclude Include="platform\apex_main_data.h" />
+    <ClInclude Include="platform\apex_main_struct.h" />
+    <ClInclude Include="platform\apex_regex.h" />
+    <ClInclude Include="platform\apex_status.h" />
     <ClInclude Include="platform\auto.h" />
     <ClInclude Include="platform\auto_pointer.h" />
     <ClInclude Include="platform\back_insert_iterator.h" />
@@ -2538,7 +2538,7 @@
     <ClInclude Include="primitive\primitive\function.h" />
     <ClInclude Include="primitive\primitive\function_arg.h" />
     <ClInclude Include="primitive\primitive\function_base.h" />
-    <ClInclude Include="primitive\primitive\generic_object.h" />
+    <ClInclude Include="primitive\primitive\generic.h" />
     <ClInclude Include="primitive\primitive\id.h" />
     <ClInclude Include="primitive\primitive\id_space.h" />
     <ClInclude Include="primitive\primitive\interlocked_long.h" />
@@ -2790,8 +2790,8 @@
     <None Include="inline\aaa_want_to_remove_app_prelude.inl" />
     <None Include="multithreading\multithreading.inl" />
     <None Include="net\net.inl" />
-    <None Include="platform\aura1.inl" />
-    <None Include="platform\aura2.inl" />
+    <None Include="platform\apex1.inl" />
+    <None Include="platform\apex2.inl" />
     <None Include="platform\gudo_application2.inl" />
     <None Include="primitive\geometry\geometry_size.inl" />
     <None Include="primitive\primitive.inl" />

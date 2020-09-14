@@ -1,6 +1,6 @@
 //#include "apex/platform/static_start.h"
 //
-//extern ::apex::apex g_aura;
+//extern ::apex::apex g_apex;
 
 extern "C" void draw2d_factory_exchange();
 extern "C" void imaging_factory_exchange();
@@ -9,8 +9,8 @@ extern "C" void imaging_factory_exchange();
 int main(int argc, char * argv[])
 {
 
-   //class aura_aura aura_aura;
-   //g_aura.ref();
+   //class apex_apex apex_apex;
+   //g_apex.ref();
    //::apex::apex apex;
 
    //{
@@ -19,7 +19,7 @@ int main(int argc, char * argv[])
       
       g_pfnfactoryexchangeImaging = &imaging_factory_exchange;
 
-      //::aura_main_struct mainstruct;
+      //::apex_main_struct mainstruct;
 
       //application_initialize(mainstruct);
 
@@ -35,7 +35,7 @@ int main(int argc, char * argv[])
 
          psystem->system_construct(argc, argv);
 
-         //return aura_run_system(psystem);
+         //return apex_run_system(psystem);
          
      ::estatus estatus=    os_application_system_run(psystem);
    

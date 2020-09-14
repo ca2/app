@@ -20,7 +20,7 @@ namespace draw2d_gdiplus
    }
 
 
-   ::estatus printer::initialize(::object * pobjectContext)
+   ::estatus printer::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::aura::printer::initialize(pobjectContext);

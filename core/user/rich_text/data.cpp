@@ -155,7 +155,7 @@ namespace user
       strsize data::get_sel_beg()
       {
 
-         return MIN(MAX(min_non_neg(m_iSelBeg, m_iSelEnd), 0), _001GetTextLength());
+         return min(max(min_non_neg(m_iSelBeg, m_iSelEnd), 0), _001GetTextLength());
 
       }
 
@@ -163,7 +163,7 @@ namespace user
       strsize data::get_sel_end()
       {
 
-         return MIN(MAX(MAX(m_iSelBeg, m_iSelEnd), 0), _001GetTextLength());
+         return min(max(max(m_iSelBeg, m_iSelEnd), 0), _001GetTextLength());
 
       }
 
@@ -493,7 +493,7 @@ namespace user
 
          }
 
-         return MIN(plinea->element_at(iLine)->first()->m_iPosBeg + iColumn, iMax);
+         return min(plinea->element_at(iLine)->first()->m_iPosBeg + iColumn, iMax);
 
       }
 
@@ -503,7 +503,7 @@ namespace user
 
          strsize iSelBeg = min_non_neg(i1, i2);
 
-         strsize iSelEnd = MAX(i1, i2);
+         strsize iSelEnd = max(i1, i2);
 
          if (iSelBeg == iSelEnd)
          {
@@ -1594,7 +1594,7 @@ namespace user
                for (auto& pbox : pline->ptra())
                {
 
-                  iMaxCy = MAX(iMaxCy, (int) pbox->m_sizeBox.cy);
+                  iMaxCy = max(iMaxCy, (int) pbox->m_sizeBox.cy);
 
                   pbox->m_rectBox.top = y;
 
@@ -1661,9 +1661,9 @@ namespace user
                      if (iBoxPosBeg <= get_sel_end() && get_sel_beg() <= iBoxPosEnd)
                      {
 
-                        iBoxPosBeg = MAX(iBoxPosBeg, get_sel_beg());
+                        iBoxPosBeg = max(iBoxPosBeg, get_sel_beg());
 
-                        iBoxPosEnd = MIN(iBoxPosEnd, get_sel_end());
+                        iBoxPosEnd = min(iBoxPosEnd, get_sel_end());
 
                         index iBeg = pline->pred_find_first([&](auto & pbox)
                         {

@@ -30,7 +30,7 @@ void android_on_text(e_os_text etext, const wchar_t* pwch, size_t len);
 #define  LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
 
 
-void android_aura_main();
+void android_apex_main();
 
 void android_fill_plasma(AndroidBitmapInfo * info, void* pixels, double  t);
 

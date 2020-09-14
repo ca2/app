@@ -280,7 +280,7 @@ namespace math
 
    }
 
-   ::estatus math::initialize(::object * pobjectContext)
+   ::estatus math::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::apex::department::initialize(pobjectContext);

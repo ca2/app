@@ -79,18 +79,18 @@ public:
    virtual ::file::path side_get_matter_path(string strMatter);
 
 
-   class ::hyperlink hyperlink() { return get_context_object(); }
+   //sclass ::hyperlink hyperlink() { return get_context_object(); }
 
 
    // get a file and if there are exceptions, should show end user friendly messages
    virtual file_pointer friendly_get_file(var varFile, UINT nOpenFlags);
 
 
-   virtual bool os_resolve_alias(::file::path & path, const char * psz, ::user::primitive * pinteraction, bool bNoUI = false, bool bNoMount = false);
+   virtual bool os_resolve_alias(::file::path & path, const char * psz, bool bNoUI = false, bool bNoMount = false);
 
    //CLASS_DECL_APEX bool os_is_folder_alias(::object * pobject, const char * psz, bool bNoUI = false, bool bNoMount = false);
 
-   virtual bool _os_resolve_alias(::file::path & path, const char * psz, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount);
+   virtual bool _os_resolve_alias(::file::path & path, const char * psz, bool bNoUI, bool bNoMount);
 
    virtual bool os_is_alias(const char * psz);
 
@@ -104,36 +104,36 @@ public:
    virtual ::file::listing & perform_file_relative_name_listing(::file::listing & listing) override;
 
 
-   virtual ::image_result get_image(const ::var & varFile, bool bCache = true, bool bSync = true);
-   virtual ::image_result matter_image(const string & strMatter, bool bCache = true, bool bSync = true);
+   //virtual ::image_result get_image(const ::var & varFile, bool bCache = true, bool bSync = true);
+   //virtual ::image_result matter_image(const string & strMatter, bool bCache = true, bool bSync = true);
 
-   virtual ::image_result load_image(const ::var & varFile, bool bCache = true, bool bSync = true, bool bCreateHelperMaps = false) override;
-   virtual ::image_result load_matter_image(const string & strMatter, bool bCache = true, bool bSync = true, bool bCreateHelperMaps = false);
-   virtual ::image_result load_matter_icon(string_array & straMatter, string strIcon) override;
-   virtual ::image_result load_thumbnail(const ::var & varFile, int w, int h) override;
-   virtual ::image_result load_thumbnail(const string & strPath);
-   virtual ::image_result load_dib(const ::file::path & pathDib) override;
-   virtual ::icon_result load_icon(const ::var & varFile);
-
-
-   virtual ::estatus _get_image(image * pimage, const ::var & varFile, bool bSync = true);
-   virtual ::estatus _matter_image(image * pimage, const string & strMatter, bool bSync = true);
+   //virtual ::image_result load_image(const ::var & varFile, bool bCache = true, bool bSync = true, bool bCreateHelperMaps = false) override;
+   //virtual ::image_result load_matter_image(const string & strMatter, bool bCache = true, bool bSync = true, bool bCreateHelperMaps = false);
+   //virtual ::image_result load_matter_icon(string_array & straMatter, string strIcon) override;
+   //virtual ::image_result load_thumbnail(const ::var & varFile, int w, int h) override;
+   //virtual ::image_result load_thumbnail(const string & strPath);
+   //virtual ::image_result load_dib(const ::file::path & pathDib) override;
+   //virtual ::icon_result load_icon(const ::var & varFile);
 
 
-   virtual ::estatus _load_image(image * pimage, const ::var & varFile, bool bSync = true, bool bCreateHelperMaps = false);
-   virtual ::estatus _load_matter_image(image * pimage, const string & pszMatter, bool bSync = true, bool bCreateHelperMaps = false);
-   virtual ::estatus _load_matter_icon(image * pimage, string_array & straMatter, string strIcon);
-   virtual ::estatus _load_thumbnail(image * pimage, const ::var & varFile, int w, int h);
-   virtual ::estatus _load_thumbnail(image * pimage, const ::var & varFile);
-   virtual ::estatus _load_dib(image * pimage, const ::file::path & pathDib);
+   //virtual ::estatus _get_image(image * pimage, const ::var & varFile, bool bSync = true);
+   //virtual ::estatus _matter_image(image * pimage, const string & strMatter, bool bSync = true);
 
 
-   virtual ::estatus save_image(const ::var & varFile, const image * pimage, ::save_image * psaveimage = nullptr);
-   virtual ::estatus save_dib(const ::file::path & path, const image * pimage);
+   //virtual ::estatus _load_image(image * pimage, const ::var & varFile, bool bSync = true, bool bCreateHelperMaps = false);
+   //virtual ::estatus _load_matter_image(image * pimage, const string & pszMatter, bool bSync = true, bool bCreateHelperMaps = false);
+   //virtual ::estatus _load_matter_icon(image * pimage, string_array & straMatter, string strIcon);
+   //virtual ::estatus _load_thumbnail(image * pimage, const ::var & varFile, int w, int h);
+   //virtual ::estatus _load_thumbnail(image * pimage, const ::var & varFile);
+   //virtual ::estatus _load_dib(image * pimage, const ::file::path & pathDib);
 
 
-   virtual ::image_result _load_image_from_file(const ::var & varFile, const var & varOptions);
-   virtual ::estatus _save_to_file(const ::var & varFile, const image * pimage, const var & varOptions);
+   //virtual ::estatus save_image(const ::var & varFile, const image * pimage, ::save_image * psaveimage = nullptr);
+   //virtual ::estatus save_dib(const ::file::path & path, const image * pimage);
+
+
+   //virtual ::image_result _load_image_from_file(const ::var & varFile, const var & varOptions);
+   //virtual ::estatus _save_to_file(const ::var & varFile, const image * pimage, const var & varOptions);
 
 
    virtual string matter_locator(string strApp);
@@ -145,14 +145,14 @@ public:
    virtual void add_matter_locator(::apex::application * papp);
 
 
-   virtual ::estatus _load_from_file(::generic_object * pobject, const ::var& varFile, const var& varOptions);
-   virtual ::estatus _save_to_file(const ::var& varFile, const var& varOptions, const ::generic_object* pobject);
+   virtual ::estatus _load_from_file(::generic * pobject, const ::var& varFile, const var& varOptions);
+   virtual ::estatus _save_to_file(const ::var& varFile, const var& varOptions, const ::generic* pobject);
 
 
-   inline ::estatus load_from_file(::generic_object* pobject, const ::var& varFile, const var* pvarOptions);
-   inline ::estatus load_from_file(::generic_object* pobject, const ::var& varFile);
-   inline ::estatus save_to_file(const ::var& varFile, const var* pvarOptions, const ::generic_object* pobject);
-   inline ::estatus save_to_file(const ::var& varFile, const ::generic_object* pobject);
+   inline ::estatus load_from_file(::generic* pobject, const ::var& varFile, const var* pvarOptions);
+   inline ::estatus load_from_file(::generic* pobject, const ::var& varFile);
+   inline ::estatus save_to_file(const ::var& varFile, const var* pvarOptions, const ::generic* pobject);
+   inline ::estatus save_to_file(const ::var& varFile, const ::generic* pobject);
 
 
    virtual void finalize() override;

@@ -67,7 +67,7 @@ namespace aura
       application();
       virtual ~application();
 
-      virtual ::estatus initialize(::object * pobjectContext) override;
+      virtual ::estatus initialize(::layered * pobjectContext) override;
 
       virtual ::estatus process_init() override;
 
@@ -455,7 +455,7 @@ namespace aura
       //       virtual __pointer(::bergedge::document) get_document();
 
 
-      //virtual ::estatus add_library(::aura::library * plibrary);
+      //virtual ::estatus add_library(::apex::library * plibrary);
 
       virtual ::estatus initialize_userex();
       virtual ::estatus userfs_init1();
@@ -560,7 +560,7 @@ namespace aura
       //virtual ~application();
 
 
-      //virtual ::estatus     initialize(::object* pobjectContext) override;
+      //virtual ::estatus     initialize(::layered * pobjectContext) override;
 
 
       //virtual void install_message_routing(::channel * pchannel) override;

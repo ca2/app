@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/platform/profiler2.h"
+#include "acme/platform/profiler.h"
 #include <stdio.h>
 
 

@@ -33,7 +33,7 @@ namespace draw2d_xlib
 
 
 
-      image(::object * pobject);
+      image(::layered * pobjectContext);
       virtual void construct(i32 cx, i32 cy);
       virtual ~image();
 

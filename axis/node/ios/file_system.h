@@ -20,7 +20,7 @@ namespace ios
       virtual ~file_system();
 
       
-      virtual ::estatus initialize(::object * pobjectContext) override;
+      virtual ::estatus initialize(::layered * pobjectContext) override;
       
 
       virtual ::estatus update_module_path() override;

@@ -86,8 +86,8 @@ CLASS_DECL_ACME bool root_execute_async(const char * pszFile, const char * pszPa
 CLASS_DECL_ACME bool root_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout = one_minute());
 
 
-CLASS_DECL_ACME bool os_init_application();
-CLASS_DECL_ACME void os_term_application();
+//CLASS_DECL_ACME bool os_init_application();
+//CLASS_DECL_ACME void os_term_application();
 
 
 
@@ -106,11 +106,11 @@ CLASS_DECL_ACME string_array get_c_args_from_string(const char* psz);
 CLASS_DECL_ACME string_array get_c_args_from_c(const char* psz);
 CLASS_DECL_ACME string_array get_c_args_for_c(const char* psz);
 CLASS_DECL_ACME string_array get_c_args(int argc, char** argv);
-#ifdef WINDOWS_DESKTOP
-CLASS_DECL_ACME string ca2_command_line(HINSTANCE hinstance);
-#else
-CLASS_DECL_ACME string ca2_command_line();
-#endif
+//#ifdef WINDOWS_DESKTOP
+//CLASS_DECL_ACME string ca2_command_line(HINSTANCE hinstance);
+//#else
+//CLASS_DECL_ACME string ca2_command_line();
+//#endif
 
 
 

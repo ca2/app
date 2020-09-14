@@ -19,7 +19,7 @@ namespace uwp
          HDC            m_hdc;
 
 
-         document_properties(::object * pobject);
+         document_properties(::layered * pobjectContext);
          virtual ~document_properties();
 
 
@@ -34,7 +34,7 @@ namespace uwp
       document_properties     m_documentproperties;
 
 
-      printer(::object * pobject);
+      printer(::layered * pobjectContext);
       virtual ~printer();
 
 

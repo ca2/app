@@ -491,7 +491,7 @@ namespace draw2d_opengl
       bool SelectClipPath(i32 nMode);
 
       // Misc Helper Functions
-      static ::draw2d::brush* GetHalftoneBrush(::object * pobject);
+      static ::draw2d::brush* GetHalftoneBrush(::layered * pobjectContext);
       void DrawDragRect(const RECT &  rect, const ::size & size,
                         const RECT &  lpRectLast, const ::size & sizeLast,
                         ::draw2d::brush* pBrush = nullptr, ::draw2d::brush* pBrushLast = nullptr);

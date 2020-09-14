@@ -18,7 +18,7 @@ namespace uwp
    }
 
 
-   ::estatus dir_system::initialize(::object * pobjectContext)
+   ::estatus dir_system::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::dir_system::initialize(pobjectContext);
@@ -135,7 +135,7 @@ namespace uwp
    //}
 
 
-   //::file::path dir_system::userdata(::object * pobject)
+   //::file::path dir_system::userdata(::layered * pobjectContext)
    //{
 
    //   return userfolder(pobject) / "data";
@@ -143,7 +143,7 @@ namespace uwp
    //}
 
 
-   //::file::path dir_system::userfolder(::object * pobject)
+   //::file::path dir_system::userfolder(::layered * pobjectContext)
    //{
 
    //   string str = appdata();
@@ -160,7 +160,7 @@ namespace uwp
    //}
 
 
-   //::file::path dir_system::default_os_user_path_prefix(::object * pobject)
+   //::file::path dir_system::default_os_user_path_prefix(::layered * pobjectContext)
    //{
 
    //   UNREFERENCED_PARAMETER(pobject);

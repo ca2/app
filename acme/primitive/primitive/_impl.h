@@ -6,7 +6,9 @@
 
 inline bool __enum_is_failed(const ::estatus & e)
 {
+   
    return ::failed(e);
+
 }
 
 
@@ -995,49 +997,49 @@ inline __pointer(T) & pointer < T >::create(TEMPLATER)
 
 }
 
-//
-//template < class T >
-//template < typename TYPE, typename OBJECT >
-//inline __pointer(T) & pointer < T >::create(OBJECT * pobjectContext)
-//{
-//
-//   auto p = __create < TYPE >();
-//
-//   if (p)
-//   {
-//
-//      p->initialize(pobjectContext);
-//
-//   }
-//
-//   return operator =(p);
-//
-//}
-//
-//
-//template < class T >
-//template < typename TYPE, typename OBJECT >
-//inline __pointer(T) & pointer < T >::create(OBJECT * pobjectContext, bool bCreate)
-//{
-//
-//   if (bCreate)
-//   {
-//
-//      defer_create(pobjectContext);
-//
-//   }
-//   else
-//   {
-//
-//      release();
-//
-//   }
-//
-//   return *this;
-//
-//}
-//
-//
+
+template < class T >
+template < typename TYPE, typename OBJECT >
+inline __pointer(T) & pointer < T >::create(OBJECT * pobjectContext)
+{
+
+  auto p = __create < TYPE >();
+
+  if (p)
+  {
+
+     p->initialize(pobjectContext);
+
+  }
+
+  return operator =(p);
+
+}
+
+
+template < class T >
+template < typename TYPE, typename OBJECT >
+inline __pointer(T) & pointer < T >::create(OBJECT * pobjectContext, bool bCreate)
+{
+
+  if (bCreate)
+  {
+
+     defer_create(pobjectContext);
+
+  }
+  else
+  {
+
+     release();
+
+  }
+
+  return *this;
+
+}
+
+
 //template < typename BASE_TYPE >
 //inline ::estatus generic::__compose(__composite(BASE_TYPE) & pbase)
 //{
@@ -2270,74 +2272,74 @@ inline var __visible(var varOptions, bool bVisible)
 }
 
 
-
-template < typename PRED >
-inline ::count fork_count_end(::generic* pobject, ::count iCount, PRED pred, index iStart, ::e_priority epriority)
-{
-
-   if (iCount <= 0)
-   {
-
-      return -1;
-
-   }
-
-   auto pgroup = System.thread_group(epriority);
-
-   sync_lock slGroup(pgroup->mutex());
-
-   ///   auto ptool = System.thread_tool(op_fork_count);
-
-   if (pgroup == nullptr || pgroup->get_count() <= 1)
-   {
-
-      for (index i = iStart; i < iCount; i++)
-      {
-
-         pred(i);
-
-      }
-
-      return 1;
-
-   }
-
-   if (!pgroup->prepare(::e_thread_op_fork_count, iCount - iStart))
-   {
-
-      return -1;
-
-   }
-
-   sync_array ptra;
-
-   ::count iScan = MAX(1, MIN(iCount - iStart, pgroup->thread_count()));
-
-   for (index iOrder = 0; iOrder < iScan; iOrder++)
-   {
-
-      __pointer(pred_holder_base) pbase = __new(forking_count_pred < PRED > (pobject, iOrder, iOrder + iStart, iScan, iCount, pred));
-
-      if (!pgroup->add_pred(pbase))
-      {
-
-         return -1;
-
-      }
-
-   }
-
-   if (!(*pgroup)())
-   {
-
-      return -1;
-
-   }
-
-   return iScan;
-
-}
-
+//
+//template < typename PRED >
+//inline ::count fork_count_end(::generic* pobject, ::count iCount, PRED pred, index iStart, ::e_priority epriority)
+//{
+//
+//   if (iCount <= 0)
+//   {
+//
+//      return -1;
+//
+//   }
+//
+//   auto pgroup = System.thread_group(epriority);
+//
+//   sync_lock slGroup(pgroup->mutex());
+//
+//   ///   auto ptool = System.thread_tool(op_fork_count);
+//
+//   if (pgroup == nullptr || pgroup->get_count() <= 1)
+//   {
+//
+//      for (index i = iStart; i < iCount; i++)
+//      {
+//
+//         pred(i);
+//
+//      }
+//
+//      return 1;
+//
+//   }
+//
+//   if (!pgroup->prepare(::e_thread_op_fork_count, iCount - iStart))
+//   {
+//
+//      return -1;
+//
+//   }
+//
+//   sync_array ptra;
+//
+//   ::count iScan = MAX(1, MIN(iCount - iStart, pgroup->thread_count()));
+//
+//   for (index iOrder = 0; iOrder < iScan; iOrder++)
+//   {
+//
+//      __pointer(pred_holder_base) pbase = __new(forking_count_pred < PRED > (iOrder, iOrder + iStart, iScan, iCount, pred));
+//
+//      if (!pgroup->add_pred(pbase))
+//      {
+//
+//         return -1;
+//
+//      }
+//
+//   }
+//
+//   if (!(*pgroup)())
+//   {
+//
+//      return -1;
+//
+//   }
+//
+//   return iScan;
+//
+//}
+//
 
 inline void callback::receive_response(const var & var) const
 {
@@ -2382,9 +2384,9 @@ inline void callback::receive_response(const var & var) const
 
 
 template < typename PRED >
-procedure::procedure(const ::id& id, PRED pred, ::generic* pobjectHold) : function_base(id, __new(__pred_procedure < PRED >(pred, pobjectHold))) { }
+procedure::procedure(const ::id& id, PRED pred) : function_base(id, __new(__pred_procedure < PRED >(pred))) { }
 template < typename PRED >
-procedure::procedure(PRED pred, ::generic* pobjectHold) : procedure(::id(), pred, pobjectHold) { }
+procedure::procedure(PRED pred) : procedure(::id(), pred) { }
 
 
 
@@ -2414,7 +2416,7 @@ procedure::procedure(PRED pred, ::generic* pobjectHold) : procedure(::id(), pred
 
       }
 
-      m_playeredUserPrimitive = var["parent"].cast < ::layered >();
+      m_puserprimitive = var["parent"].cast < ::layered >();
       m_strTitle = var["title"];
       m_emessagebox = (::emessagebox) var["flags"].i64();
 

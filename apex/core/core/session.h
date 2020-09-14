@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace aura
+namespace apex
 {
 
 
@@ -11,7 +11,7 @@ namespace aura
 
 
    class CLASS_DECL_APEX session :
-      virtual public ::aura::session,
+      virtual public ::apex::session,
       virtual public ::filemanager::item_action,
       virtual public ::filemanager::component,
       virtual public ::document_manager_container
@@ -27,8 +27,8 @@ namespace aura
          index                               m_iEdge;
          string                              m_strApp;
          string                              m_strQuery;
-         __pointer(::aura::session)          m_pbergedgeParent;
-         __pointer(::aura::application)      m_papp;
+         __pointer(::apex::session)          m_pbergedgeParent;
+         __pointer(::apex::application)      m_papp;
          bool                                m_bMakeVisible;
          __pointer(::user::interaction)      m_puserinteractionParent;
          property_set                        m_setParameters;
@@ -49,7 +49,7 @@ namespace aura
       virtual ~session();
 
 
-      virtual ::estatus initialize(::object * pobjectContext) override;
+      virtual ::estatus initialize(::layered * pobjectContext) override;
 
       virtual void install_message_routing(::channel * pchannel) override;
 
@@ -104,7 +104,7 @@ namespace aura
 
       virtual void will_use_view_hint(::id idView);
 
-      //virtual void on_app_request_bergedge_callback(::object * pobject);
+      //virtual void on_app_request_bergedge_callback(::layered * pobjectContext);
 
       virtual ::draw2d::font_list * get_single_column_font_list();
 
@@ -154,13 +154,13 @@ namespace aura
 
       void on_request(::create * pcreate) override;
 
-      __pointer(::aura::application) get_current_application();
+      __pointer(::apex::application) get_current_application();
 
    
 
       virtual void set_app_title(const char * pszAppId, const char * pszTitle);
 
-      virtual __pointer(::aura::session) get_context_session();
+      virtual __pointer(::apex::session) get_context_session();
 
       virtual void term() override;
 
@@ -202,7 +202,7 @@ namespace aura
       //virtual __pointer(::user::impact)                      get_view();
 
 
-      //virtual ::estatus     initialize(::object* pobjectContext) override;
+      //virtual ::estatus     initialize(::layered * pobjectContext) override;
 
 
       virtual void frame_pre_translate_message(::message::message* pmessage) override;
@@ -234,7 +234,7 @@ namespace aura
    };
 
 
-} // namespace aura
+} // namespace apex
 
 
 

@@ -20,15 +20,15 @@ namespace html
    html::~html()
    {
 
-      //::aura::del(m_pentitysolver);
+      //::acme::del(m_pentitysolver);
 
    }
 
 
-   ::estatus html::initialize(::object* pobjectContext)
+   ::estatus html::initialize(::layered * pobjectContext)
    {
 
-      auto estatus = ::aura::department::initialize(pobjectContext);
+      auto estatus = ::apex::department::initialize(pobjectContext);
 
       if (!estatus)
       {
@@ -363,7 +363,7 @@ namespace html
    }
 
 
-   //::estatus html::initialize(::object * pobjectContext)
+   //::estatus html::initialize(::layered * pobjectContext)
    //{
 
 

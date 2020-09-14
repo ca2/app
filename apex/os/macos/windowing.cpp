@@ -94,7 +94,7 @@ oswindow_data::oswindow_data(const oswindow_data & oswindow)
 oswindow_data::~oswindow_data()
 {
 
-   ::apex::del(m_plongmap);
+   ::acme::del(m_plongmap);
 
 }
 
@@ -653,9 +653,9 @@ WINBOOL os_init_windowing()
 void os_term_windowing()
 {
 
-   ::apex::del(g_poswindowdataptra);
+   ::acme::del(g_poswindowdataptra);
 
-   ::apex::del(g_pmutexOsWindowData);
+   ::acme::del(g_pmutexOsWindowData);
 
 }
 

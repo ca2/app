@@ -10,7 +10,7 @@ namespace userex
 {
 
 
-   font_format_tool::font_format_tool(::object * pobject) :
+   font_format_tool::font_format_tool(::layered * pobjectContext) :
       ::object(pobject),
       m_buttonBold(pobject),
       m_buttonItalic(pobject),

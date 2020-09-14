@@ -21,7 +21,7 @@ namespace simpledb
    }
 
 
-   ::estatus server::initialize_simpledb_server(::object * pobjectContext, const char * pszDatabase)
+   ::estatus server::initialize_simpledb_server(::layered * pobjectContext, const char * pszDatabase)
    {
 
       auto estatus = ::database::server::initialize(pobjectContext);

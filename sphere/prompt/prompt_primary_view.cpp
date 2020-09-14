@@ -10,7 +10,7 @@ namespace prompt
 {
 
 
-   primary_view::primary_view(::object * pobject) :
+   primary_view::primary_view(::layered * pobjectContext) :
       ::object(pobject),
       ::user::plain_edit(pobject)
    {

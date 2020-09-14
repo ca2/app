@@ -17,7 +17,7 @@ namespace html
    }
 
 
-   const ::aura::str_context * file::str_context()
+   const ::apex::str_context * file::str_context()
    {
       
       return m_pstrcontext;

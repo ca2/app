@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "apex/primitive/data/_.h"
+
+
 namespace fs
 {
 
@@ -9,6 +12,7 @@ namespace fs
 
 
    class CLASS_DECL_APEX data :
+      virtual public ::object,
       virtual public ::data::data,
       virtual public ::file::listing_provider
    {
@@ -16,6 +20,10 @@ namespace fs
 
 
       data();
+
+
+      virtual void assert_valid() const;
+      virtual void dump(dump_context& dumpcontext) const;
 
 
       // optional if ls_dir is implemented

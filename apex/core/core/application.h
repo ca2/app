@@ -1,12 +1,12 @@
 #pragma once
 
 
-namespace aura
+namespace apex
 {
 
 
    class CLASS_DECL_APEX application:
-      virtual public ::aura::application,
+      virtual public ::apex::application,
       virtual public ::user::form_callback,
       virtual public ::user::impact_creator,
       virtual public ::filemanager::callback,
@@ -55,7 +55,7 @@ namespace aura
       i32                                    m_iResourceId;
 
       __pointer(::experience::department)    m_pexperience;
-      __composite(::aura::theme)             m_ptheme;
+      __composite(::apex::theme)             m_ptheme;
 
 
       string_array                                m_straAppInterest;
@@ -67,7 +67,7 @@ namespace aura
       application();
       virtual ~application();
 
-      virtual ::estatus initialize(::object * pobjectContext) override;
+      virtual ::estatus initialize(::layered * pobjectContext) override;
 
       virtual ::estatus process_init() override;
 
@@ -86,7 +86,7 @@ namespace aura
 
       virtual ::estatus     main() override;
 
-      //virtual ::aura::application * get_context_application() const override;
+      //virtual ::apex::application * get_context_application() const override;
 
       virtual bool is_system() const override;
       virtual bool is_session() const override;
@@ -240,7 +240,7 @@ namespace aura
       // exiting
       virtual bool save_all_modified(); // save before exit
       virtual void HideApplication() override;
-      virtual void close(::aura::e_end eend) override; // close documents before exiting
+      virtual void close(::apex::e_end eend) override; // close documents before exiting
 
       // Advanced: to override message boxes and other hooks
       //virtual i32 DoMessageBox(const char * pszPrompt,UINT nType,UINT nIDPrompt);
@@ -305,7 +305,7 @@ namespace aura
 
       void OnAppExit();
       // System Policy Settings
-      virtual bool LoadSysPolicies(); // Override to load policies other than the system policies that aura API loads.
+      virtual bool LoadSysPolicies(); // Override to load policies other than the system policies that apex API loads.
       bool GetSysPolicyValue(u32 dwPolicyID,bool *pbValue); // returns the policy's setting in the out parameter
       bool _LoadSysPolicies() noexcept; // Implementation helper
       static const char gen_FileSection[];
@@ -344,7 +344,7 @@ namespace aura
 
 
 
-      //      virtual ::aura::file_system & file_system();
+      //      virtual ::apex::file_system & file_system();
       virtual bool _001OnDDECommand(const char * pcsz) override;
 
       virtual ::user::document * _001OpenDocumentFile(var varFile);
@@ -359,7 +359,7 @@ namespace aura
 
       virtual ::estatus     run() override;
 
-      //::aura::application * get_context_system();
+      //::apex::application * get_context_system();
 
       virtual bool set_keyboard_layout(const char * pszPath, const ::action_context & action_context) override;
 
@@ -370,7 +370,7 @@ namespace aura
       virtual void on_change_theme() override;
 
 
-      inline ::aura::theme * theme() { return m_ptheme.get(); }
+      inline ::apex::theme * theme() { return m_ptheme.get(); }
       virtual string get_theme() override;
       
       
@@ -412,7 +412,7 @@ namespace aura
       virtual i32 send_simple_command(const char * psz,void * osdataSender);
       virtual i32 send_simple_command(void * osdata,const char * psz,void * osdataSender);
 
-      virtual ::aura::printer * get_printer(const char * pszDeviceName) override;
+      virtual ::apex::printer * get_printer(const char * pszDeviceName) override;
 
 
       virtual void assert_valid() const override;
@@ -427,7 +427,7 @@ namespace aura
 
 
 
-      virtual __pointer(::aura::application) create_platform(::aura::session * psession) override;
+      virtual __pointer(::apex::application) create_platform(::apex::session * psession) override;
 
 
 
@@ -455,7 +455,7 @@ namespace aura
       //       virtual __pointer(::bergedge::document) get_document();
 
 
-      //virtual ::estatus add_library(::aura::library * plibrary);
+      //virtual ::estatus add_library(::apex::library * plibrary);
 
       virtual ::estatus initialize_userex();
       virtual ::estatus userfs_init1();
@@ -481,9 +481,9 @@ namespace aura
 
       //virtual void on_request(::create * pcreate);
 
-      //__pointer(::aura::application) get_context_system();
+      //__pointer(::apex::application) get_context_system();
 
-      //virtual __pointer(::aura::application) assert_running(const char * pszAppdId);
+      //virtual __pointer(::apex::application) assert_running(const char * pszAppdId);
 
 
 
@@ -560,7 +560,7 @@ namespace aura
       //virtual ~application();
 
 
-      //virtual ::estatus     initialize(::object* pobjectContext) override;
+      //virtual ::estatus     initialize(::layered * pobjectContext) override;
 
 
       //virtual void install_message_routing(::channel * pchannel) override;
@@ -590,14 +590,14 @@ namespace aura
 
       virtual bool process_message() override;
 
-      //i32 hotplugin_host_host_starter_start_sync(const char* pszCommandLine, ::aura::application* papp, ::hotplugin::host* phost, ::hotplugin::plugin* pplugin) override;
+      //i32 hotplugin_host_host_starter_start_sync(const char* pszCommandLine, ::apex::application* papp, ::hotplugin::host* phost, ::hotplugin::plugin* pplugin) override;
 
 
       //virtual ::form_property_set * get_form_property_set() override;
 
 
 
-      using ::aura::application::on_control_event;
+      using ::apex::application::on_control_event;
       using ::user::form_callback::on_control_event;
 
 
@@ -624,12 +624,12 @@ namespace aura
    };
 
 
-} // namespace aura
+} // namespace apex
 
 
 CLASS_DECL_APEX UINT c_cdecl application_thread_procedure(LPVOID pvoid);
 
-typedef __pointer(::aura::application) (*LPFN_instantiate_application)(__pointer(::aura::application) pappParent, const char * pszId);
+typedef __pointer(::apex::application) (*LPFN_instantiate_application)(__pointer(::apex::application) pappParent, const char * pszId);
 
 extern CLASS_DECL_APEX LPFN_instantiate_application g_lpfn_instantiate_application;
 

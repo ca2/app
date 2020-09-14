@@ -285,8 +285,8 @@ namespace experience
 
                      get_window_rect(rectWindow);
 
-                     rectWindow.left = MIN(rectWindow.left, rectWindow.right);
-                     rectWindow.bottom = MIN(rectWindow.top, rectWindow.bottom);
+                     rectWindow.left = min(rectWindow.left, rectWindow.right);
+                     rectWindow.bottom = min(rectWindow.top, rectWindow.bottom);
 
 
                      if (pointCursor.x >= rectWindow.left && pointCursor.y <= rectWindow.right && pointCursor.y == 0)
@@ -316,8 +316,8 @@ namespace experience
 
                get_window_rect(rectWindow);
 
-               rectWindow.left = MIN(rectWindow.left, rectWindow.right);
-               rectWindow.bottom = MIN(rectWindow.top, rectWindow.bottom);
+               rectWindow.left = min(rectWindow.left, rectWindow.right);
+               rectWindow.bottom = min(rectWindow.top, rectWindow.bottom);
 
                ::point point;
 
@@ -1239,7 +1239,7 @@ namespace experience
       for(; point != nullptr; point = m_buttonmap.get_next(point))
       {
 
-         iHeight = MAX(iHeight,get_button_size(point->element1()).cy + get_button_margin(point->element1()).top + get_button_margin(point->element1()).bottom);
+         iHeight = max(iHeight,get_button_size(point->element1()).cy + get_button_margin(point->element1()).top + get_button_margin(point->element1()).bottom);
 
       }
 

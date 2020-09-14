@@ -27,14 +27,14 @@ namespace dynamic_source
 
       tick m_tickLastLibraryVersionCheck;
       bool                                      m_bLastLibraryVersionCheck;
-      __pointer(::aura::library)                       m_plibraryLib;
+      __pointer(::apex::library)                       m_plibraryLib;
 
 
       raw_array < __time_t >                    m_ftaLibCreation;
       raw_array < __time_t >                    m_ftaLibAccess;
       raw_array < __time_t >                    m_ftaLibModified;
 
-      library(::object * pobject);
+      library(::layered * pobjectContext);
       virtual ~library();
 
       void load_library();
@@ -97,7 +97,7 @@ namespace dynamic_source
       virtual ~script_compiler();
 
 
-      virtual ::estatus initialize(::object * pobjectContext) override;
+      virtual ::estatus initialize(::layered * pobjectContext) override;
       void prepare_compile_and_link_environment();
 
       void run_persistent();

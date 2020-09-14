@@ -1,10 +1,10 @@
 #include "framework.h"
-#include "aura/message.h"
-#include "aura/update.h"
-#include "aura/os/_c.h"
-#include "aura/os/_.h"
-#include "aura/os/_os.h"
-#include "aura/platform/mq.h"
+#include "apex/message.h"
+#include "apex/update.h"
+#include "apex/os/_c.h"
+#include "apex/os/_.h"
+#include "apex/os/_os.h"
+#include "apex/platform/mq.h"
 
 
 ::mutex * g_pmutexThreadWaitClose = nullptr;
@@ -42,15 +42,15 @@ struct send_thread_message :
 
    manual_reset_event      m_ev;
 
-   send_thread_message(::object * pobject);
+   send_thread_message(::layered * pobjectContext);
 
    virtual ~send_thread_message();
 
 };
 
 
-send_thread_message::send_thread_message(::object * pobject) :
-   ::object(pobject)
+send_thread_message::send_thread_message(::layered * pobjectContext) :
+   ::object(pobjectContext)
 {
 
    xxf_zero(m_message);
@@ -88,11 +88,13 @@ thread::file_info::~file_info()
 thread::thread()
 {
 
+   set_layer(LAYERED_THREAD, this);
+
    m_bThreadClosed = false;
 
    m_bAuraMessageQueue = false;
 
-#ifdef AURA_MESSAGE_QUEUE
+#ifdef APEX_MESSAGE_QUEUE
 
    m_bClosedMq = false;
 
@@ -197,9 +199,9 @@ thread::~thread()
 
    memcnts_dec(this);
 
-   ::aura::del(m_puiptraThread);
+   ::acme::del(m_puiptraThread);
 
-   ::aura::del(m_pmutexThreadUiPtra);
+   ::acme::del(m_pmutexThreadUiPtra);
 
 }
 
@@ -917,7 +919,9 @@ void thread::process_message(::message::base * pbase)
    else
    {
 
-      process_window_message(pbase);
+      __throw(todo("apex"));
+      // apex commented
+      //process_window_message(pbase);
 
    }
 
@@ -932,7 +936,10 @@ void thread::process_thread_message(::message::base * pbase)
    if (pbase->m_puserinteraction != nullptr)
    {
 
-      process_window_message(pbase);
+      __throw(todo("apex"));
+      // apex commented
+
+//      process_window_message(pbase);
 
       return;
 
@@ -967,51 +974,52 @@ void thread::process_thread_message(::message::base * pbase)
 }
 
 
-void thread::process_window_message(::message::base * pbase)
-{
-
-   ASSERT(pbase->m_puserinteraction != nullptr);
-
-   if (pbase->m_puserinteraction == nullptr)
-   {
-
-      process_thread_message(pbase);
-
-      return;
-
-   }
-
-   try
-   {
-
-      pbase->m_puserinteraction->m_puiThis->message_handler(pbase);
-
-   }
-   catch (::exception_pointer pe)
-   {
-
-      process_window_procedure_exception(pe, pbase);
-
-      TRACE("application::process_window_message : ::status::result processing window message (const ::exception::exception & )");
-
-      if (!handle_exception(pe))
-      {
-
-         __post_quit_message(-1);
-
-         pbase->m_lresult = -1;
-
-      }
-
-   }
-   catch (...)
-   {
-
-      TRACE("application::process_window_message : ::status::result processing window message (...)");
-
-   }
-
-}
+// apex commented
+//void thread::process_window_message(::message::base * pbase)
+//{
+//
+//   ASSERT(pbase->m_puserinteraction != nullptr);
+//
+//   if (pbase->m_puserinteraction == nullptr)
+//   {
+//
+//      process_thread_message(pbase);
+//
+//      return;
+//
+//   }
+//
+//   try
+//   {
+//
+//      pbase->m_puserinteraction->m_puiThis->message_handler(pbase);
+//
+//   }
+//   catch (::exception_pointer pe)
+//   {
+//
+//      process_window_procedure_exception(pe, pbase);
+//
+//      TRACE("application::process_window_message : ::status::result processing window message (const ::exception::exception & )");
+//
+//      if (!handle_exception(pe))
+//      {
+//
+//         __post_quit_message(-1);
+//
+//         pbase->m_lresult = -1;
+//
+//      }
+//
+//   }
+//   catch (...)
+//   {
+//
+//      TRACE("application::process_window_message : ::status::result processing window message (...)");
+//
+//   }
+//
+//}
 
 
 bool thread::defer_pump_message()
@@ -1051,15 +1059,15 @@ bool thread::on_thread_on_idle(thread *pimpl, LONG lCount)
 ::user::primitive * thread::get_active_ui()
 {
 
-   return m_puiActive;
+   return __user_primitive(m_puiActive);
 
 }
 
 
-::user::primitive * thread::set_active_ui(::user::primitive * pinteraction)
+::user::primitive * thread::set_active_ui(::layered * pinteraction)
 {
 
-   return m_puiActive = pinteraction;
+   return __user_primitive(m_puiActive = pinteraction);
 
 }
 
@@ -1588,10 +1596,10 @@ void thread::finalize()
       }
 
    }
-   else if (strType == "::aura::system")
+   else if (strType == "::apex::system")
    {
 
-      ::output_debug_string("I am system xxpost_quit from ::aura::system\n");
+      ::output_debug_string("I am system xxpost_quit from ::apex::system\n");
 
    }
 
@@ -1684,7 +1692,7 @@ bool thread::is_system() const
 u32 __thread_entry(void * p);
 
 
-::estatus thread::initialize(::object * pobjectContext)
+::estatus thread::initialize(::layered * pobjectContext)
 {
 
    auto estatus = ::channel::initialize(pobjectContext);
@@ -1822,10 +1830,10 @@ void thread::dispatch_thread_message(::message::message * pbase)
    //   message::e_prototype eprototype = pSignal->m_eprototype;
    //   if(eprototype == message::PrototypeNone)
    //   {
-   //      //::message::base aura(get_object());
+   //      //::message::base apex(get_object());
    //      pbase->m_psignal = psignal;
    //      //lresult = 0;
-   //      //aura.set(pmsg->message, pmsg->wParam, pmsg->lParam, lresult);
+   //      //apex.set(pmsg->message, pmsg->wParam, pmsg->lParam, lresult);
    //      psignal->emit(pbase);
    //      if(pbase->m_bRet)
    //         return;
@@ -2095,7 +2103,7 @@ void thread::process_message_filter(i32 code,::message::message * pmessage)
 
 
 
-//thread_startup::thread_startup(::object * pobject) :
+//thread_startup::thread_startup(::layered * pobjectContext) :
 //   ::object(pobject)
 //{
 //
@@ -2641,12 +2649,14 @@ void thread::__set_thread_on()
 
    ::multithreading::thread_register(m_ithread1, this);
 
-   if (g_axisoninitthread)
-   {
 
-      g_axisoninitthread();
+   // apex commented
+   //if (g_axisoninitthread)
+   //{
 
-   }
+   //   g_axisoninitthread();
+
+   //}
 
    if (!on_init_thread())
    {
@@ -2667,12 +2677,13 @@ void thread::__set_thread_off()
    try
    {
 
-      if (g_axisontermthread)
-      {
+      // apex commented
+      //if (g_axisontermthread)
+      //{
 
-         g_axisontermthread();
+      //   g_axisontermthread();
 
-      }
+      //}
 
       on_term_thread();
 
@@ -2786,7 +2797,7 @@ void thread::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
 
 
 
-bool thread::post_task(::generic_object * pobjectTask)
+bool thread::post_task(::generic * pobjectTask)
 {
 
    if (::is_null(pobjectTask))
@@ -2807,7 +2818,7 @@ bool thread::post_task(::generic_object * pobjectTask)
 }
 
 
-bool thread::send_task(::generic_object * pobjectTask, ::duration durationTimeout)
+bool thread::send_task(::generic * pobjectTask, ::duration durationTimeout)
 {
 
    return send_object(message_system, system_message_runnable, pobjectTask, durationTimeout);
@@ -3214,7 +3225,7 @@ error:;
    catch (::exit_exception* pe)
    {
 
-      if (pe->m_pthreadExit != this)
+      if (__thread(pe->m_pthreadExit) != this)
       {
 
          System.set_finish();
@@ -3681,11 +3692,7 @@ bool thread::process_message()
          if(msg.lParam)
          {
 
-            auto pupdate = new_update();
-
-            pupdate->m_id = (::iptr) msg.wParam;
-
-            pupdate->m_pobjectTopic = (::object *) msg.lParam;
+            auto pupdate = System.new_update(msg);
 
             call_update(pupdate);
 
@@ -3768,29 +3775,32 @@ bool thread::process_message()
       if (msg.message == ::message_redraw)
       {
 
-         auto pinteraction = System.ui_from_handle(msg.hwnd);
 
-         if(::is_set(pinteraction))
-         {
+         __throw(todo("interaction"));
+         __throw(todo("thread"));
+         //auto pinteraction = System.ui_from_handle(msg.hwnd);
 
-            string strType = ::str::demangle(pinteraction->type_name());
+         //if(::is_set(pinteraction))
+         //{
 
-            if(strType.contains_ci("filemanager"))
-            {
+         //   string strType = ::str::demangle(pinteraction->type_name());
 
-               //INFO("filemanager");
+         //   if(strType.contains_ci("filemanager"))
+         //   {
 
-            }
+         //      //INFO("filemanager");
 
-            pinteraction->prodevian_redraw(msg.wParam & 1);
+         //   }
 
-         }
-         else
-         {
+         //   pinteraction->prodevian_redraw(msg.wParam & 1);
 
-            INFO("message_redraw pinteraction == nullptr");
+         //}
+         //else
+         //{
 
-         }
+         //   INFO("message_redraw pinteraction == nullptr");
+
+         //}
 
          return true;
 
@@ -3818,21 +3828,27 @@ bool thread::process_message()
          {
 
             auto iMessage = pbase->m_id;
+            __throw(todo("interaction"));
+            __throw(todo("thread"));
 
             // short circuit for frequent messages
             if (iMessage == message_apply_visual)
             {
 
-               __pointer(::user::interaction) pinteraction = pbase->m_puserinteraction;
+               __throw(todo("interaction"));
+               __throw(todo("thread"));
 
-               if(pinteraction)
-               {
 
-                  pinteraction->m_pimpl2->_001OnApplyVisual(pbase);
+               //__pointer(::user::interaction) pinteraction = pbase->m_puserinteraction;
 
-                  return true;
+               //if(pinteraction)
+               //{
 
-               }
+               //   pinteraction->m_pimpl2->_001OnApplyVisual(pbase);
+
+               //   return true;
+
+               //}
 
             }
             //else if (iMessage == message_update_notify_icon)
@@ -3871,8 +3887,10 @@ bool thread::process_message()
             //{
 
 //               return true;
+            __throw(todo("interaction"));
+            __throw(todo("thread"));
 
-               pbase->m_puserinteraction->message_handler(pbase);
+               //pbase->m_puserinteraction->message_handler(pbase);
 
   //          }
 

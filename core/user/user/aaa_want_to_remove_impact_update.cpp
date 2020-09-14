@@ -3,7 +3,7 @@
 
 
 
-impact_update::impact_update(::object * pobject) :
+impact_update::impact_update(::layered * pobjectContext) :
    ::context_object(pobject),
    ::update(pobject)
 {

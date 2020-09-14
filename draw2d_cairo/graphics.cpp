@@ -119,7 +119,7 @@ string_to_int * g_pmapFontError = nullptr;
 
 string_to_int * g_pmapFontError2 = nullptr;
 
-extern CLASS_DECL_AURA array < generic_object * > * g_paAura;
+extern CLASS_DECL_AURA array < generic * > * g_paAura;
 
 
 
@@ -2972,7 +2972,7 @@ void graphics::HIMETRICtoLP(LPSIZE lpSize)
 // special graphics drawing primitives/helpers
 
 
-::draw2d::brush * PASCAL graphics::GetHalftoneBrush(::object * pobject)
+::draw2d::brush * PASCAL graphics::GetHalftoneBrush(::layered * pobjectContext)
 {
 
     return nullptr;

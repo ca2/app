@@ -8,7 +8,7 @@ i32 g_idbchange;
 #define new ACME_NEW
 
 
-db_server::db_server(::object * pobject) :
+db_server::db_server(::layered * pobjectContext) :
    ::object(pobject),
    server(pobject)
 {

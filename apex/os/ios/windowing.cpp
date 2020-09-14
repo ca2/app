@@ -1,6 +1,6 @@
 //
 //  ios_windowing.cpp
-//  ios_aura
+//  ios_apex
 //
 //  Created by Camilo Sasuke Tsumanuma on 10/12/17.
 //
@@ -571,9 +571,9 @@ WINBOOL os_init_windowing()
 void os_term_windowing()
 {
 
-   ::apex::del(g_poswindowdataptra);
+   ::acme::del(g_poswindowdataptra);
 
-   ::apex::del(g_pmutexOsWindowData);
+   ::acme::del(g_pmutexOsWindowData);
 
 }
 

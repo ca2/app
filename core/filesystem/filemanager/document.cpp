@@ -9,7 +9,6 @@ namespace filemanager
 {
 
 
-
    document::document()
    {
 

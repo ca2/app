@@ -32,11 +32,11 @@ namespace multithreading
 
       __node_term_multithreading();
 
-      //::apex::del(s_pthreadptra2);
+      //::acme::del(s_pthreadptra2);
 
-      //::apex::del(s_piaThread2);
+      //::acme::del(s_piaThread2);
 
-      //::apex::del(s_pcs2);
+      //::acme::del(s_pcs2);
 
    }
 
@@ -250,15 +250,15 @@ namespace multithreading
 } // namespace multithreading
 
 
-CLASS_DECL_APEX ::thread * get_thread_raw()
-{
+//CLASS_DECL_APEX ::thread * get_thread_raw()
+//{
+//
+//   return ::get_thread();
+//
+//}
 
-   return ::get_thread();
 
-}
-
-
-bool thread_get_run()
+bool apex_thread_get_run()
 {
 
    try
@@ -383,18 +383,18 @@ namespace multithreading
 
 
 } // namespace multithreading
-
-
-::mutex * s_pmutexMessageDispatch = nullptr;
-
-
-::mutex & message_dispatch_mutex()
-{
-
-
-   return *s_pmutexMessageDispatch;
-
-}
+//
+//
+//::mutex * s_pmutexMessageDispatch = nullptr;
+//
+//
+//::mutex & message_dispatch_mutex()
+//{
+//
+//
+//   return *s_pmutexMessageDispatch;
+//
+//}
 
 
 ::context * get_context()
@@ -487,7 +487,7 @@ void set_global_application(::apex::application* papp)
 
 }
 
-::apex::system * g_paurasystem = nullptr;
+::apex::system * g_papexsystem = nullptr;
 
 CLASS_DECL_APEX ::apex::system * get_context_system()
 {
@@ -497,7 +497,7 @@ CLASS_DECL_APEX ::apex::system * get_context_system()
    if (pthread == nullptr)
    {
 
-      return g_paurasystem;
+      return g_papexsystem;
 
    }
 
@@ -506,7 +506,7 @@ CLASS_DECL_APEX ::apex::system * get_context_system()
    if (!psystem)
    {
 
-      psystem = g_paurasystem;
+      psystem = g_papexsystem;
 
    }
 
@@ -688,7 +688,7 @@ void thread_ptra::set_finish()
 void thread_ptra::wait(const duration & duration, sync_lock & sl)
 {
 
-   ::datetime::time timeEnd = ::datetime::time::get_current_time() + MAX(seconds(2), duration);
+   ::datetime::time timeEnd = ::datetime::time::get_current_time() + max(seconds(2), duration);
 
    try
    {
@@ -723,7 +723,7 @@ void thread_ptra::wait(const duration & duration, sync_lock & sl)
 }
 
 
-CLASS_DECL_APEX ::estatus call(::object * pobject)
+CLASS_DECL_APEX ::estatus call(::layered * pobjectContext)
 {
 
    ::estatus estatus;
@@ -731,7 +731,7 @@ CLASS_DECL_APEX ::estatus call(::object * pobject)
    try
    {
 
-      estatus = pobject->call();
+      estatus = pobjectContext->call();
 
    }
    catch (...)
@@ -744,261 +744,261 @@ CLASS_DECL_APEX ::estatus call(::object * pobject)
    return estatus;
 
 }
-
-
-bool isvowel_dup(int i)
-{
-
-   if (i == 'a')
-   {
-      return true;
-   }
-   else if (i == 'e')
-   {
-      return true;
-   }
-   else if (i == 'i')
-   {
-      return true;
-   }
-   else if (i == 'o')
-   {
-      return true;
-   }
-   else if (i == 'u')
-   {
-      return true;
-   }
-   if (i == 'A')
-   {
-      return true;
-   }
-   else if (i == 'E')
-   {
-      return true;
-   }
-   else if (i == 'I')
-   {
-      return true;
-   }
-   else if (i == 'O')
-   {
-      return true;
-   }
-   else if (i == 'U')
-   {
-      return true;
-   }
-   else
-   {
-      return false;
-   }
-
-}
-
-
-string _001OnlyAlnumString(const char * psz)
-{
-
-   string strOnlyAlnum;
-
-   while (*psz)
-   {
-
-      if (ansi_char_is_alphanumeric(*psz))
-      {
-
-         strOnlyAlnum += *psz;
-
-      }
-
-      psz++;
-
-   }
-
-   return strOnlyAlnum;
-
-}
-
-
-string _001OnlyAlnumNonVowelString(const char * psz)
-{
-
-   string strOnlyAlnum;
-
-   while (*psz)
-   {
-
-      if (ansi_char_is_alphanumeric(*psz))
-      {
-
-         if (!isvowel_dup(*psz))
-         {
-
-            strOnlyAlnum += *psz;
-
-         }
-
-      }
-
-      psz++;
-
-   }
-
-   return strOnlyAlnum;
-
-}
-
-
-string _001CompactString(const string & str, int iSkip, int iSkipBegin = 0)
-{
-
-   string strCompact;
-
-   strsize i = 0;
-
-   for (; i < iSkipBegin; i++)
-   {
-
-      strCompact += str[i];
-
-   }
-
-   for (; i < str.get_length(); i += (iSkip + 1))
-   {
-
-      strCompact += str[i];
-
-   }
-
-   return strCompact;
-
-}
-
-
-void thread_name_abbreviate(string & strName, int len)
-{
-
-   if (strName.get_length() <= len)
-   {
-
-      return;
-
-   }
-
-   string_array stra;
-
-   strsize iFindLast = 0;
-
-   strsize iFind = 0;
-
-   string strOnlyAlnum;
-
-   while (iFind >= 0)
-   {
-
-      iFind = strName.find("::", iFindLast);
-
-      stra.add(strName.Mid(iFindLast, iFind - iFindLast + 1));
-
-      iFindLast = iFind + 2;
-
-   }
-
-   strName = stra.implode(":");
-
-   if (strName.get_length() <= len)
-   {
-
-      return;
-
-   }
-
-   for (index i = 0; i < stra.get_size(); i++)
-   {
-
-      stra[i] = _001OnlyAlnumString(stra[i]);
-
-      strName = stra.implode(":");
-
-      if (strName.get_length() <= len)
-      {
-
-         return;
-
-      }
-
-   }
-
-   for (index i = 0; i < stra.get_size(); i++)
-   {
-
-      stra[i] = _001OnlyAlnumNonVowelString(stra[i]);
-
-      strName = stra.implode(":");
-
-      if (strName.get_length() <= len)
-      {
-
-         return;
-
-      }
-
-   }
-
-   for (index i = 0; i < stra.get_size(); i++)
-   {
-
-      stra[i] = _001CompactString(stra[i], 1, 1);
-
-      strName = stra.implode(":");
-
-      if (strName.get_length() <= len)
-      {
-
-         return;
-
-      }
-
-   }
-
-   strName.truncate(len);
-
-}
-
-
-
-
-
-
-
-::estatus     run_runnable(::generic_object* pobjectTask)
-{
-
-   ::estatus     estatus = error_exception;
-
-   try
-   {
-
-      __pointer(generic_object) pobject(e_move_transfer, pobjectTask);
-
-      try
-      {
-
-         estatus = pobject->call();
-
-      }
-      catch (...)
-      {
-
-      }
-
-   }
-   catch (...)
-   {
-
-   }
-
-   return estatus;
-
-}
+//
+//
+//bool isvowel_dup(int i)
+//{
+//
+//   if (i == 'a')
+//   {
+//      return true;
+//   }
+//   else if (i == 'e')
+//   {
+//      return true;
+//   }
+//   else if (i == 'i')
+//   {
+//      return true;
+//   }
+//   else if (i == 'o')
+//   {
+//      return true;
+//   }
+//   else if (i == 'u')
+//   {
+//      return true;
+//   }
+//   if (i == 'A')
+//   {
+//      return true;
+//   }
+//   else if (i == 'E')
+//   {
+//      return true;
+//   }
+//   else if (i == 'I')
+//   {
+//      return true;
+//   }
+//   else if (i == 'O')
+//   {
+//      return true;
+//   }
+//   else if (i == 'U')
+//   {
+//      return true;
+//   }
+//   else
+//   {
+//      return false;
+//   }
+//
+//}
+
+//
+//string _001OnlyAlnumString(const char * psz)
+//{
+//
+//   string strOnlyAlnum;
+//
+//   while (*psz)
+//   {
+//
+//      if (ansi_char_is_alphanumeric(*psz))
+//      {
+//
+//         strOnlyAlnum += *psz;
+//
+//      }
+//
+//      psz++;
+//
+//   }
+//
+//   return strOnlyAlnum;
+//
+//}
+
+//
+//string _001OnlyAlnumNonVowelString(const char * psz)
+//{
+//
+//   string strOnlyAlnum;
+//
+//   while (*psz)
+//   {
+//
+//      if (ansi_char_is_alphanumeric(*psz))
+//      {
+//
+//         if (!isvowel_dup(*psz))
+//         {
+//
+//            strOnlyAlnum += *psz;
+//
+//         }
+//
+//      }
+//
+//      psz++;
+//
+//   }
+//
+//   return strOnlyAlnum;
+//
+//}
+
+//
+//string _001CompactString(const string & str, int iSkip, int iSkipBegin = 0)
+//{
+//
+//   string strCompact;
+//
+//   strsize i = 0;
+//
+//   for (; i < iSkipBegin; i++)
+//   {
+//
+//      strCompact += str[i];
+//
+//   }
+//
+//   for (; i < str.get_length(); i += (iSkip + 1))
+//   {
+//
+//      strCompact += str[i];
+//
+//   }
+//
+//   return strCompact;
+//
+//}
+
+
+//void thread_name_abbreviate(string & strName, int len)
+//{
+//
+//   if (strName.get_length() <= len)
+//   {
+//
+//      return;
+//
+//   }
+//
+//   string_array stra;
+//
+//   strsize iFindLast = 0;
+//
+//   strsize iFind = 0;
+//
+//   string strOnlyAlnum;
+//
+//   while (iFind >= 0)
+//   {
+//
+//      iFind = strName.find("::", iFindLast);
+//
+//      stra.add(strName.Mid(iFindLast, iFind - iFindLast + 1));
+//
+//      iFindLast = iFind + 2;
+//
+//   }
+//
+//   strName = stra.implode(":");
+//
+//   if (strName.get_length() <= len)
+//   {
+//
+//      return;
+//
+//   }
+//
+//   for (index i = 0; i < stra.get_size(); i++)
+//   {
+//
+//      stra[i] = _001OnlyAlnumString(stra[i]);
+//
+//      strName = stra.implode(":");
+//
+//      if (strName.get_length() <= len)
+//      {
+//
+//         return;
+//
+//      }
+//
+//   }
+//
+//   for (index i = 0; i < stra.get_size(); i++)
+//   {
+//
+//      stra[i] = _001OnlyAlnumNonVowelString(stra[i]);
+//
+//      strName = stra.implode(":");
+//
+//      if (strName.get_length() <= len)
+//      {
+//
+//         return;
+//
+//      }
+//
+//   }
+//
+//   for (index i = 0; i < stra.get_size(); i++)
+//   {
+//
+//      stra[i] = _001CompactString(stra[i], 1, 1);
+//
+//      strName = stra.implode(":");
+//
+//      if (strName.get_length() <= len)
+//      {
+//
+//         return;
+//
+//      }
+//
+//   }
+//
+//   strName.truncate(len);
+//
+//}
+//
+//
+//
+//
+
+//
+//
+//::estatus     run_runnable(::generic* pobjectTask)
+//{
+//
+//   ::estatus     estatus = error_exception;
+//
+//   try
+//   {
+//
+//      __pointer(generic) pobject(e_move_transfer, pobjectTask);
+//
+//      try
+//      {
+//
+//         estatus = pobject->call();
+//
+//      }
+//      catch (...)
+//      {
+//
+//      }
+//
+//   }
+//   catch (...)
+//   {
+//
+//   }
+//
+//   return estatus;
+//
+//}

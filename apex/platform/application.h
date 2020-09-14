@@ -5,21 +5,11 @@ namespace apex
 {
 
 
-   enum e_end
-   {
-
-      end_close,
-      end_app,
-      end_session,
-      end_system
-
-   };
-
-
    class CLASS_DECL_APEX application :
-      virtual public ::aura_main_struct,
+      virtual public ::apex_main_struct,
       virtual public ::apex::context_thread,
-      virtual public ::user::callback,
+      // apex commented
+      //virtual public ::user::callback,
       virtual public int_scalar_source,
       //virtual public ::account::interactive,
       virtual public ::application_container,
@@ -34,9 +24,11 @@ namespace apex
 
       void* m_pnativeapp;
 
-      ::axis::application *         m_paxisapplication;
-      ::base::application *         m_pbaseapplication;
-      ::core::application *         m_pcoreapplication;
+
+      ::aura::application *                           m_pauraapplication;
+      ::axis::application *                           m_paxisapplication;
+      ::base::application *                           m_pbaseapplication;
+      ::core::application *                           m_pcoreapplication;
 
 
       // 2020-01-25: removing from ::apex::system, placing here (at ::context)
@@ -66,7 +58,7 @@ namespace apex
 
       __pointer(application_menu)                     m_papplicationmenu;
 
-      __composite(::game::game)                       m_pgame;
+      //__composite(::game::game)                       m_pgame;
 
       ::user::primitive *                             m_puiCurrent;
       bool                                            m_bContextTheme;
@@ -93,20 +85,21 @@ namespace apex
       __pointer(ipi)                                  m_pipi;
       __pointer(service_base)                         m_pservice;
 
-      ::mutex                                         m_mutexFrame;
-      __composite(::user::interaction_pointer_array)  m_puiptraFrame;
+      // apex commented
+      //::mutex                                         m_mutexFrame;
+      //__composite(::user::interaction_pointer_array)  m_puiptraFrame;
 
       e_thread                                        m_ethreadClose;
 
       EExclusiveInstance                              m_eexclusiveinstance;
 
-      string_map < __pointer(::apex::exclusive) >     m_mapExclusive;
+      string_map < __pointer(::acme::exclusive) >     m_mapExclusive;
 
       bool                                            m_bService;
 
       bool                                            m_bUpdateMatterOnInstall;
 
-      ::user::interaction *                           m_puiMainContainer;
+      //::user::interaction *                           m_puiMainContainer;
 
       ::mutex                                         m_mutexMatterLocator;
 
@@ -158,7 +151,7 @@ namespace apex
       i32                                             m_iResourceId;
 
       //__composite(::experience::department)           m_pexperience;
-      __composite(::apex::theme)                      m_ptheme;
+      //__composite(::apex::theme)                      m_ptheme;
 
 
       string_array                                    m_straAppInterest;
@@ -171,7 +164,7 @@ namespace apex
       virtual ~application();
 
 
-      virtual ::estatus initialize(::object * pobjectContext) override;
+      virtual ::estatus initialize(::layered * pobjectContext) override;
 
 
       virtual void assert_valid() const override;
@@ -332,13 +325,14 @@ namespace apex
 
       //virtual void set_env_var(const string & var, const string & value) override;
 
+      // apex commented
+      //virtual ::draw2d::printer * get_printer(const char * pszDeviceName);
 
-      virtual ::draw2d::printer * get_printer(const char * pszDeviceName);
+      // apex commented
+      //virtual ::draw2d::icon * set_icon(object * pobject, ::draw2d::icon * picon, bool bBigIcon);
 
-
-      virtual ::draw2d::icon * set_icon(object * pobject, ::draw2d::icon * picon, bool bBigIcon);
-
-      virtual ::draw2d::icon * get_icon(object * pobject, bool bBigIcon) const;
+      // apex commented
+      //virtual ::draw2d::icon * get_icon(object * pobject, bool bBigIcon) const;
 
       virtual void on_service_request(::create * pcreate);
 
@@ -352,9 +346,10 @@ namespace apex
 
       //virtual void on_update_view(::user::impact * pview, ::user::impact * pviewSender, LPARAM lHint, object * pHint);
 
-      virtual void on_control_event(::user::control_event* pevent) override;
-      virtual void on_notify_control_event(::user::control_event* pevent);
-      virtual void route_control_event(::user::control_event* pevent);
+      // apex commented
+      //virtual void on_control_event(::user::control_event* pevent) override;
+      //virtual void on_notify_control_event(::user::control_event* pevent);
+      //virtual void route_control_event(::user::control_event* pevent);
 
 
 
@@ -388,7 +383,7 @@ namespace apex
       //virtual string get_locale_schema_dir();
 
 
-      //virtual ::estatus initialize(::object * pobjectContext) override;
+      //virtual ::estatus initialize(::layered * pobjectContext) override;
 
 
       application_menu & applicationmenu();
@@ -444,7 +439,7 @@ namespace apex
       virtual string get_theme();
 
 
-      virtual __pointer(::apex::exclusive) get_exclusive(string str, LPSECURITY_ATTRIBUTES psa);
+      virtual __pointer(::acme::exclusive) get_exclusive(string str, LPSECURITY_ATTRIBUTES psa);
       virtual bool exclusive_fails(string str, LPSECURITY_ATTRIBUTES psa);
 
 
@@ -567,15 +562,15 @@ namespace apex
       //virtual ::estatus init();
       //virtual void term();
 
-      virtual ::estatus ca_process_init();
-      virtual ::estatus ca_init1();
-      virtual ::estatus ca_init2();
-      virtual ::estatus ca_init3();
+      virtual ::estatus notify_process_init();
+      virtual ::estatus notify_init1();
+      virtual ::estatus notify_init2();
+      virtual ::estatus notify_init3();
 
-      virtual void ca_term3();
-      virtual void ca_term2();
-      virtual void ca_term1();
-      virtual void ca_process_term();
+      virtual void notify_term3();
+      virtual void notify_term2();
+      virtual void notify_term1();
+      virtual void notify_process_term();
 
       // virtual bool is_installing();
       // virtual bool is_unstalling();
@@ -804,14 +799,14 @@ namespace apex
       virtual bool keyboard_focus_is_focusable(::user::primitive * pue);
       virtual bool keyboard_focus_OnSetFocus(::user::primitive * pue);
 
-      virtual ::user::interaction * main_window();
+      //virtual ::user::interaction * main_window();
 
 //         virtual __pointer(::message::base) get_message_base(LPMESSAGE pmsg) override;
 
 
-      virtual bool get_frame(__pointer(::user::interaction) & pinteraction);
-      virtual void add_frame(::user::interaction * pwnd);
-      virtual void remove_frame(::user::interaction * pwnd);
+      //virtual bool get_frame(__pointer(::user::interaction) & pinteraction);
+      //virtual void add_frame(::user::interaction * pwnd);
+      //virtual void remove_frame(::user::interaction * pwnd);
 
       virtual bool send_message_to_windows(UINT message, WPARAM wparam, LPARAM lparam); // with tbs in <3
 
@@ -821,7 +816,8 @@ namespace apex
       virtual void send_language_change_message();
 
 
-      virtual LPWAVEOUT waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);
+      // apex commented
+      //virtual LPWAVEOUT waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);
 
 
       virtual string preferred_experience();
@@ -852,7 +848,8 @@ namespace apex
       virtual void on_graphics_ready();
 
       //virtual ::type user_default_controltype_to_typeinfo(::user::e_control_type econtroltype);
-      virtual ::type control_type_from_id(const ::id & id, ::user::e_control_type & econtroltype);
+      // apex commented
+      //virtual ::type control_type_from_id(const ::id & id, ::user::e_control_type & econtroltype);
 
 
       virtual ::id translate_property_id(const ::id & id) override;
@@ -860,7 +857,8 @@ namespace apex
 
       virtual void get_time(struct timeval *point);
 
-      virtual void close(e_end eend);
+      
+      virtual void close(::apex::enum_end eend);
 
 
       //user virtual __pointer(::user::document) defer_create_view(string strView, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::id & id = nullptr);
@@ -869,7 +867,7 @@ namespace apex
       virtual void HideApplication();
 
       
-      //virtual ::estatus initialize(::object* pobjectContext) override;
+      //virtual ::estatus initialize(::layered * pobjectContext) override;
 
       //virtual ::estatus process_init() override;
 
@@ -926,7 +924,7 @@ namespace apex
       //virtual string sync_message_box(const string & pszMatter,property_set & propertyset) override;
 
 
-      virtual __pointer(::user::interaction) uie_from_point(const ::point& point);
+      //virtual __pointer(::user::interaction) uie_from_point(const ::point& point);
 
       //virtual bool on_application_menu_action(const char* pszCommand) override;
 
@@ -1141,7 +1139,7 @@ namespace apex
 
 
 
-      virtual ::user::interaction* get_request_parent_ui(::user::interaction* pinteraction, ::create* pcreate);
+      //virtual ::user::interaction* get_request_parent_ui(::user::interaction* pinteraction, ::create* pcreate);
 
 
 
@@ -1157,7 +1155,7 @@ namespace apex
       //virtual string get_version();
 
 
-      virtual ::user::interaction * get_desktop_window();
+      //virtual ::user::interaction * get_desktop_window();
 
       //virtual ::estatus     run() override;
 
@@ -1172,7 +1170,7 @@ namespace apex
       //virtual void on_change_theme() override;
 
 
-      inline ::apex::theme* theme() { return m_ptheme.get(); }
+      //inline ::apex::theme* theme() { return m_ptheme.get(); }
       //virtual string get_theme() override;
 
 
@@ -1183,7 +1181,7 @@ namespace apex
 
       //virtual string dialog_box(const char* pszMatter, property_set& propertyset) override;
 
-      virtual i32 track_popup_menu(const char* pszMatter, const ::point& point, __pointer(::user::interaction) puie);
+      //virtual i32 track_popup_menu(const char* pszMatter, const ::point& point, __pointer(::user::interaction) puie);
 
       virtual bool get_fs_size(string& strSize, const char* pszPath, bool& bPending);
       virtual bool get_fs_size(i64& i64Size, const char* pszPath, bool& bPending);
@@ -1191,7 +1189,7 @@ namespace apex
       virtual void set_title(const char* pszTitle);
 
 
-      virtual bool _001CloseApplicationByUser(__pointer(::user::interaction) pwndExcept);
+      //virtual bool _001CloseApplicationByUser(__pointer(::user::interaction) pwndExcept);
 
 
 #ifdef WINDOWS_DESKTOP
@@ -1316,8 +1314,8 @@ namespace apex
 
 
 
-      virtual i32 GetVisibleTopLevelFrameCountExcept(__pointer(::user::interaction) pwndExcept);
-      virtual i32 GetVisibleFrameCount();
+      //virtual i32 GetVisibleTopLevelFrameCountExcept(::user::interaction * pwndExcept);
+      //virtual i32 GetVisibleFrameCount();
 
       //virtual void on_create_keyboard() override;
 
@@ -1344,7 +1342,8 @@ namespace apex
       //virtual bool _001OnAgreeExit() override;
       //virtual void _001OnFranceExit() override;
 
-      virtual void prepare_form(id id, ::form_document* pdocument);
+      // apex commented
+      //virtual void prepare_form(id id, ::form_document* pdocument);
 
 
       virtual void report_error(::exception::exception* pexception, int iMessageFlags, const char* pszTopic);
@@ -1360,7 +1359,7 @@ namespace apex
       //virtual ~application();
 
 
-      //virtual ::estatus     initialize(::object* pobjectContext) override;
+      //virtual ::estatus     initialize(::layered * pobjectContext) override;
 
 
       //virtual void install_message_routing(::channel * pchannel) override;
@@ -1413,7 +1412,7 @@ namespace apex
 
       //virtual void on_control_event(::user::control_event* pevent) override;
 
-      virtual ::user::interaction* create_menu_interaction();
+      //virtual ::user::interaction* create_menu_interaction();
 
 //      virtual __pointer(::user::document) defer_create_view(string strView, ::user::interaction* puiParent, ewindowflag ewindowflag = window_flag_none, const ::id& id = nullptr) override;
 

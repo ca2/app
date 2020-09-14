@@ -6,7 +6,7 @@ namespace userfs
 
 
    class CLASS_DECL_CORE userfs :
-      virtual public ::aura::department
+      virtual public ::apex::department
    {
    public:
 
@@ -14,7 +14,7 @@ namespace userfs
       userfs();
       virtual ~userfs();
 
-      virtual ::estatus initialize(::object * pobjectContext) override;
+      virtual ::estatus initialize(::layered * pobjectContext) override;
 
       virtual ::estatus init1() override;
 

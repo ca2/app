@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aura/net/sockets/_.h"
+#include "apex/net/sockets/_.h"
 
 
 namespace sockets
@@ -23,14 +23,14 @@ namespace sockets
 
       m_spportforward.release();
 
-      ::aura::del(m_psslinit);
+      ::acme::del(m_psslinit);
 
-      //::aura::del(m_pajpaxissocketinit);
+      //::acme::del(m_pajpaxissocketinit);
 
    }
 
 
-   ::estatus sockets::initialize(::object * pobjectContext)
+   ::estatus sockets::initialize(::layered * pobjectContext)
    {
 
       auto estatus = sockets_base::initialize(pobjectContext);
@@ -66,7 +66,7 @@ namespace sockets
 
       }
 
-      //if (!::aura::department::initialize())
+      //if (!::apex::department::initialize())
       //{
 
       //   return error_failed;
@@ -173,7 +173,7 @@ namespace sockets
 
       }
 
-      ///::aura::del(m_pajpaxissocketinit);
+      ///::acme::del(m_pajpaxissocketinit);
 
    }
 

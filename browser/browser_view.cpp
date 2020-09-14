@@ -14,7 +14,7 @@ namespace browser
 {
 
 
-   view::view(::object * pobject):
+   view::view(::layered * pobjectContext):
       object(pobject),
       impact_base(pobject)
    {

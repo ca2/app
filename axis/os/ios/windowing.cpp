@@ -571,9 +571,9 @@ WINBOOL os_init_windowing()
 void os_term_windowing()
 {
 
-   ::aura::del(g_poswindowdataptra);
+   ::acme::del(g_poswindowdataptra);
 
-   ::aura::del(g_pmutexOsWindowData);
+   ::acme::del(g_pmutexOsWindowData);
 
 }
 

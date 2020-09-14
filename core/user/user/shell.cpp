@@ -4,9 +4,9 @@
 #endif
 #include "core/user/user/shell.h"
 #include "core/node/_node.h"
-#include "aura/compress/zip/_.h"
-#include "aura/compress/compress_gz.h"
-#include "aura/primitive/primitive/atomic.h"
+#include "acme/compress/zip/_.h"
+#include "acme/compress/gz.h"
+#include "acme/primitive/primitive/atomic.h"
 
 
 #if defined(RASPBIAN)
@@ -104,7 +104,7 @@ namespace user
 
          strsize iFind2 = strPath.rfind('\\');
 
-         strsize iFind = MAX(iFind1, iFind2) + 1;
+         strsize iFind = max(iFind1, iFind2) + 1;
 
          strsize iDot = strPath.find('.', iFind);
 
@@ -153,7 +153,7 @@ namespace user
       }
 
 
-      ::estatus shell::initialize(::object * pobjectContext)
+      ::estatus shell::initialize(::layered * pobjectContext)
       {
 
          if (m_bInitialized)
@@ -359,7 +359,7 @@ namespace user
             if (m_pil[iSize].is_null())
             {
 
-               m_pil[iSize] = __new(image_list);
+               m_pil[iSize] = __new(::image_list);
                m_pil[iSize]->create(iSize, iSize, 0, 10, 10);
 
             }
@@ -373,7 +373,7 @@ namespace user
             if (m_pilHover[iSize].is_null())
             {
 
-               m_pilHover[iSize] = __new(image_list);
+               m_pilHover[iSize] = __new(::image_list);
                m_pilHover[iSize]->create(iSize, iSize, 0, 10, 10);
 
             }

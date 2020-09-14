@@ -38,8 +38,8 @@ namespace hotplugin
       else
       {
 
-         left = rect.left + MIN(m / 2, width(rect) / 2);
-         right = rect.right - MIN(m / 2, width(rect) / 2);
+         left = rect.left + min(m / 2, width(rect) / 2);
+         right = rect.right - min(m / 2, width(rect) / 2);
 
       }
 

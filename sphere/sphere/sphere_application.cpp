@@ -6,7 +6,7 @@ namespace sphere
 
 
 
-   application::application(::object * pobject) :
+   application::application(::layered * pobjectContext) :
       ::aura::application(pobject),
       ::axis::application(pobject),
       ::base::application(pobject),
@@ -529,7 +529,7 @@ namespace sphere
 
    //   //      string strId;
    //   //
-   //   //      __pointer(::aura::department) pcaapp;
+   //   //      __pointer(::apex::department) pcaapp;
    //   //
    //   //      POSITION pos = m_mapApplication.get_start_position();
    //   //
@@ -542,7 +542,7 @@ namespace sphere
    //   //
    //   //         m_mapApplication.get_next_assoc(pos, strId, pcaapp);
    //   //
-   //   //         __pointer(::aura::department) papp = (pcaapp);
+   //   //         __pointer(::apex::department) papp = (pcaapp);
    //   //
    //   //         papp->set_finish();
    //   //

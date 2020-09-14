@@ -6,7 +6,7 @@ namespace xml
 {
 
 
-   tree_base::tree_base(::object * pobjectContext) :
+   tree_base::tree_base(::layered * pobjectContext) :
       ::object(pobjectContext),
       m_varexchange(pobjectContext)
    {
@@ -16,7 +16,7 @@ namespace xml
    }
 
 
-   tree_base::tree_base(::object * pobjectContext, tree_schema * pschema) :
+   tree_base::tree_base(::layered * pobjectContext, tree_schema * pschema) :
       ::object(pobjectContext),
       m_varexchange(pobjectContext)
    {

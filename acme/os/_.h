@@ -2,6 +2,7 @@
 #pragma once
 
 CLASS_DECL_ACME string get_command_line_dup();
+CLASS_DECL_ACME bool is_verbose();
 
 #if defined(MACOS)
 
@@ -65,7 +66,7 @@ namespace str
 } // namespace str
 
 
-CLASS_DECL_ACME void defer_dock_application(int_bool bDock);
+//CLASS_DECL_ACME void defer_dock_application(int_bool bDock);
 
 
 CLASS_DECL_ACME string get_current_login_name();

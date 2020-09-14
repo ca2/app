@@ -70,13 +70,13 @@
 			
 			
 			<Add directory="../../axis" />
-			<Add directory="../../aura" />
+			<Add directory="../../apex" />
 			<Add directory="../.." />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-rpath=\\$$$ORIGIN" />
 			
-			<Add option="-laura" />
+			<Add option="-lapex" />
 			<Add option="-laxisbzip2" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="$(#time_dir)/x64/$(TARGET_NAME)" />

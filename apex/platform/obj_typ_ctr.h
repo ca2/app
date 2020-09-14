@@ -3,10 +3,10 @@
 
 #if OBJ_TYP_CTR
 
-class generic_object;
+class generic;
 
-void obj_type_ctr_inc(::generic_object* pobject);
-void obj_type_ctr_dec(::generic_object* pobject);
+void obj_type_ctr_inc(::generic* pobject);
+void obj_type_ctr_dec(::generic* pobject);
 
 #define OBJ_TYP_CTR_INC obj_type_ctr_inc(this)
 #define OBJ_TYP_CTR_DEC obj_type_ctr_dec(this)

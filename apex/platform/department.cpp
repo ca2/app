@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "apex/message/application.h"
 
 
 namespace apex
@@ -21,7 +22,7 @@ namespace apex
    // not contain advanced initialization as the
    // papp application pointer may be incompletely
    // initialized specially its virtual functions.
-   ::estatus department::initialize(::object * pobjectContext)
+   ::estatus department::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);
@@ -121,47 +122,47 @@ namespace apex
    void department::on_application_message(::message::message * pmessage)
    {
 
-      SCAST_PTR(::apex::application_message,papplicationsignal,pmessage);
+      SCAST_PTR(::message::application,papplicationsignal,pmessage);
 
       try
       {
-         if(papplicationsignal->m_esignal == ::apex::application_message_process_init)
+         if(papplicationsignal->m_eapplication == ::message::application_process_init)
          {
 
             papplicationsignal->m_bOk = process_init();
 
          }
-         else if(papplicationsignal->m_esignal == ::apex::application_message_init)
+         else if(papplicationsignal->m_eapplication == ::message::application_init)
          {
 
             papplicationsignal->m_bOk = init();
 
          }
-         else if(papplicationsignal->m_esignal == ::apex::application_message_init1)
+         else if(papplicationsignal->m_eapplication == ::message::application_init1)
          {
 
             papplicationsignal->m_bOk = init1();
 
          }
-         else if(papplicationsignal->m_esignal == ::apex::application_message_init2)
+         else if(papplicationsignal->m_eapplication == ::message::application_init2)
          {
 
             papplicationsignal->m_bOk = init2();
 
          }
-         else if(papplicationsignal->m_esignal == ::apex::application_message_init3)
+         else if(papplicationsignal->m_eapplication == ::message::application_init3)
          {
 
             papplicationsignal->m_bOk = init3();
 
          }
-         else if(papplicationsignal->m_esignal == ::apex::application_message_init_instance)
+         else if(papplicationsignal->m_eapplication == ::message::application_init_instance)
          {
 
             papplicationsignal->m_bOk = init_instance();
 
          }
-         else if(papplicationsignal->m_esignal == ::apex::application_message_term_instance)
+         else if(papplicationsignal->m_eapplication == ::message::application_term_instance)
          {
 
             term_instance();
@@ -169,7 +170,7 @@ namespace apex
             papplicationsignal->m_bOk = true;
 
          }
-         else if(papplicationsignal->m_esignal == ::apex::application_message_term3)
+         else if(papplicationsignal->m_eapplication == ::message::application_term3)
          {
 
             term3();
@@ -177,7 +178,7 @@ namespace apex
             papplicationsignal->m_bOk = true;
 
          }
-         else if(papplicationsignal->m_esignal == ::apex::application_message_term2)
+         else if(papplicationsignal->m_eapplication == ::message::application_term2)
          {
 
             term2();
@@ -185,7 +186,7 @@ namespace apex
             papplicationsignal->m_bOk = true;
 
          }
-         else if(papplicationsignal->m_esignal == ::apex::application_message_term1)
+         else if(papplicationsignal->m_eapplication == ::message::application_term1)
          {
 
             term1();
@@ -193,7 +194,7 @@ namespace apex
             papplicationsignal->m_bOk = true;
 
          }
-         else if(papplicationsignal->m_esignal == ::apex::application_message_process_term)
+         else if(papplicationsignal->m_eapplication == ::message::application_process_term)
          {
 
             term();
@@ -213,11 +214,8 @@ namespace apex
    }
 
 
-
-
-
-
-
 } // namespace apex
+
+
 
 

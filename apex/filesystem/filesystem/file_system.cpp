@@ -14,7 +14,7 @@ file_system::~file_system()
 }
 
 
-::estatus file_system::initialize(::object * pobjectContext)
+::estatus file_system::initialize(::layered * pobjectContext)
 {
    
    auto estatus = ::object::initialize(pobjectContext);

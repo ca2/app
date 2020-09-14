@@ -1,15 +1,20 @@
 #pragma once
 
 
+#include "base/id.h"
+
+
 namespace core
 {
 
+
    class CLASS_DECL_CORE idpool :
-      public ::idpool
+      public ::base::idpool
    {
    public:
 
 
+      static idpool* g_pthis;
       
 
       idpool();
@@ -22,8 +27,6 @@ namespace core
 } // namespace core
 
 
-#undef __id
-#define __id(x) (((::core::idpool *)::idpool::g_p)->x)
 
 
 

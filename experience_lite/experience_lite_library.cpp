@@ -13,9 +13,9 @@
       {
 
 
-         library::library(::object * pobject):
+         library::library(::layered * pobjectContext):
             object(pobject),
-            ::aura::library(pobject,0,"")
+            ::apex::library(pobject,0,"")
          {
          }
 
@@ -75,7 +75,7 @@
 #ifdef CUBE
 
 extern "C"
-::aura::library * experience_lite_get_new_library(::object * pobject)
+::apex::library * experience_lite_get_new_library(::layered * pobjectContext)
 {
 
    return new ::user::experience::experience_lite::library(pobject);
@@ -87,7 +87,7 @@ extern "C"
 
 
 extern "C"
-::aura::library * get_new_library(::object * pobject)
+::apex::library * get_new_library(::layered * pobjectContext)
 {
    return new ::user::experience::experience_lite::library (pobject);
 }

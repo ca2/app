@@ -15,7 +15,7 @@ namespace aura
       virtual ~department();
 
 
-      virtual ::estatus initialize(::object* pobjectContext);
+      virtual ::estatus initialize(::layered * pobjectContext);
 
 
       virtual void connect_to_application_signal();

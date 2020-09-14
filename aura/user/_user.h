@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 
+#include "_.h"
 #include "aura/platform/_platform.h"
 
 
@@ -122,7 +123,7 @@ namespace user
 
 
    class CLASS_DECL_AURA alpha_source :
-      virtual public ::generic_object
+      virtual public ::generic
    {
    public:
 
@@ -167,22 +168,23 @@ namespace user
 
 } // namespace user
 
-#include "aura/primitive/primitive/command.h"
-#include "aura/primitive/primitive/command_line.h"
+
+//#include "aura/primitive/primitive/command.h"
+//#include "aura/primitive/primitive/command_line.h"
 
 
-#include "command.h"
+//#include "command.h"
 
 
 #include "aura/message/user.h"
 //#include "style_base.h"
 
 
-#include "aura/primitive/primitive/create.h"
+//#include "aura/primitive/primitive/create.h"
 #include "create.h"
 
-#include "check.h"
-#include "text.h"
+//#include "check.h"
+//#include "text.h"
 #include "window_util.h"
 #include "aura/graphics/draw2d/color.h"
 #include "aura/graphics/draw2d/text_box.h"
@@ -191,7 +193,7 @@ namespace user
 #include "primitive_impl.h"
 
 
-#include "aura/database/key.h"
+//#include "aura/database/key.h"
 
 
 #include "control_descriptor.h"
@@ -711,7 +713,7 @@ typedef struct _AppIndicator AppIndicator;
 //#include "slider.h"
 
 
-#define new AURA_NEW
+//#define new AURA_NEW
 
 
 #include "user.h"
@@ -723,14 +725,16 @@ typedef struct _AppIndicator AppIndicator;
 
 
 #include "aura/message/user.h"
-#include "aura/message/timer.h"
+//#include "aura/message/timer.h"
 
 #include "main_window.h"
 
 
-#include "command.h"
+//#include "command.h"
 
-#include "aura/primitive/primitive/update.h"
+
+//#include "aura/primitive/primitive/update.h"
+
 
 #include "box.h"
 

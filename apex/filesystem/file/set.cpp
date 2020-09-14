@@ -114,13 +114,13 @@ namespace file
          if(bRecursive)
          {
 
-            m_straFile.rls_pattern(pathFolder, m_straFilter);
+            Context.dir().rls_pattern(m_straFile, pathFolder, m_straFilter);
 
          }
          else
          {
 
-            m_straFile.ls_pattern(pathFolder, m_straFilter);
+            Context.dir().ls_pattern(m_straFile, pathFolder, m_straFilter);
 
          }
 

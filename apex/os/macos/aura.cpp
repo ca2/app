@@ -11,7 +11,7 @@ void ns_app_run();
 
 
 
-CLASS_DECL_APEX bool __node_aura_pre_init()
+CLASS_DECL_APEX bool __node_apex_pre_init()
 {
 
    setlocale(LC_ALL,"");
@@ -22,7 +22,7 @@ CLASS_DECL_APEX bool __node_aura_pre_init()
 
 
 
-CLASS_DECL_APEX bool __node_aura_pos_init()
+CLASS_DECL_APEX bool __node_apex_pos_init()
 {
 
 //   t_posthread = new os_thread(nullptr, nullptr);
@@ -37,7 +37,7 @@ CLASS_DECL_APEX bool __node_aura_pos_init()
 
 
 
-CLASS_DECL_APEX bool __node_aura_pre_term()
+CLASS_DECL_APEX bool __node_apex_pre_term()
 {
 
 //   if(t_posthread != nullptr)
@@ -64,7 +64,7 @@ CLASS_DECL_APEX bool __node_aura_pre_term()
 
 
 
-CLASS_DECL_APEX bool __node_aura_pos_term()
+CLASS_DECL_APEX bool __node_apex_pos_term()
 {
 
 //#ifdef MACOS

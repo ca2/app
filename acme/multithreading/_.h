@@ -20,14 +20,15 @@
 // int_bool thread_data_free(thread_data_index dataindex);
 
 
-//extern thread_local __pointer(property_set) t_ppropertyset;
-
-
-
-property_set& _thread_property_set();
-
-
-property_set & thread_property_set();
+//
+//thread_local __pointer(property_set) t_ppropertyset;
+//
+//
+//
+//property_set& _thread_property_set();
+//
+//
+//property_set & thread_property_set();
 
 
 #if defined(ANDROID)
@@ -72,52 +73,52 @@ CLASS_DECL_ACME ::estatus __call(::generic * pobject);
 
 
 
-namespace multithreading
-{
-
-
-   namespace array
-   {
-
-      template < typename ARRAY >
-      __pointer(::generic) is_running(ARRAY & array, const char * pszTag)
-      {
-
-         for (::index i = 0; i < array.get_size(); i++)
-         {
-
-            __pointer(::generic) pobject;
-
-            pobject = &__typed(array[i]);
-
-            if (pobject && pobject->is_thread())
-            {
-
-               if (pobject->thread_get_run())
-               {
-
-                  if (pobject->get_tag().compare(pszTag) == 0)
-                  {
-
-                     return pobject;
-
-                  }
-
-               }
-
-            }
-
-         }
-
-         return nullptr;
-
-      }
-
-
-   }
-
-
-} // namespace multithreading
+//namespace multithreading
+//{
+//
+//
+//   namespace array
+//   {
+//
+//      template < typename ARRAY >
+//      __pointer(::generic) is_running(ARRAY & array, const char * pszTag)
+//      {
+//
+//         for (::index i = 0; i < array.get_size(); i++)
+//         {
+//
+//            __pointer(::generic) pobject;
+//
+//            pobject = &__typed(array[i]);
+//
+//            if (pobject && pobject->is_thread())
+//            {
+//
+//               if (pobject->thread_get_run())
+//               {
+//
+//                  if (pobject->get_tag().compare(pszTag) == 0)
+//                  {
+//
+//                     return pobject;
+//
+//                  }
+//
+//               }
+//
+//            }
+//
+//         }
+//
+//         return nullptr;
+//
+//      }
+//
+//
+//   }
+//
+//
+//} // namespace multithreading
 
 
 
@@ -130,8 +131,6 @@ CLASS_DECL_ACME void __post_quit_message(i32 nExitCode);
 typedef ::estatus     (*__THREADPROC)(void *);
 
 
-CLASS_DECL_ACME bool do_events();
-//CLASS_DECL_ACME bool do_events(const duration & duration);
 
 class tool_thread;
 class thread_tool;
@@ -252,7 +251,7 @@ class sync_lock;
 
 
 
-CLASS_DECL_ACME u32 random_processor_index_generator();
+//CLASS_DECL_ACME u32 random_processor_index_generator();
 
 
 CLASS_DECL_ACME int_bool post_message(oswindow oswindow, UINT message, WPARAM wparam, LPARAM lparam);
@@ -294,7 +293,8 @@ class thread;
 
 CLASS_DECL_ACME ::thread* get_thread();
 //CLASS_DECL_ACME ::thread* get_thread(ITHREAD idthread);
-CLASS_DECL_ACME void set_thread(thread * pthread);
+CLASS_DECL_ACME void set_thread(layered * pthread);
+CLASS_DECL_ACME void thread_release();
 
 
 

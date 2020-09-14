@@ -34,7 +34,7 @@ namespace install
 
          plugin * m_pplugin;
 
-         thread_start_ca2(::object * pobject);
+         thread_start_ca2(::layered * pobjectContext);
 
          //virtual bool on_run_step();
 
@@ -73,7 +73,7 @@ namespace install
       //bool                 m_bHasCredEval;
 
 
-      plugin(::object * pobject);
+      plugin(::layered * pobjectContext);
       virtual ~plugin();
 
 

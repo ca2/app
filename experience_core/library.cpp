@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aura/platform/static_setup.h"
+#include "apex/platform/static_setup.h"
 
 
 namespace experience
@@ -20,7 +20,7 @@ namespace experience
       }
 
 
-      ::generic_object * library::new_object(::object * pobject, const char * pszClass)
+      ::generic * library::new_object(::layered * pobjectContext, const char * pszClass)
       {
 
          if(string(pszClass) == "experience")
@@ -68,13 +68,13 @@ namespace experience
 
 
 //#ifdef CUBE
-//extern "C" ::aura::library * experience_get_new_library()
+//extern "C" ::apex::library * experience_get_new_library()
 //#else
-//extern "C" ::aura::library * experience_core_get_new_library()
+//extern "C" ::apex::library * experience_core_get_new_library()
 //#endif
 //{
 //
-//   return new ::experience::aura::library;
+//   return new ::experience::apex::library;
 //
 //}
 

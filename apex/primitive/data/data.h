@@ -1,15 +1,15 @@
 #pragma once
 
 
-typedef CLASS_DECL_APEX __pointer_array(::generic_object) object_array;
+typedef CLASS_DECL_ACME __pointer_array(::generic) object_array;
 
 
 namespace data
 {
 
 
-   typedef CLASS_DECL_APEX __pointer_array(listener) listener_array;
-   typedef CLASS_DECL_APEX id_map < __pointer(data) > data_map;
+   typedef CLASS_DECL_ACME __pointer_array(listener) listener_array;
+   typedef CLASS_DECL_ACME id_map < __pointer(data) > data_map;
 
 
    class CLASS_DECL_APEX data :
@@ -20,13 +20,14 @@ namespace data
 
       friend class ::data::data_container_base;
 
-      __reference(::data::data_container_base)     m_pdatacontainerbase;
+      __pointer(::data::data_container_base)     m_pdatacontainerbase;
 
 
    public:
 
 
       listener_array                               m_listenera;
+      ::id                 m_id;
 
 
       data();
@@ -41,7 +42,7 @@ namespace data
 
 
       virtual ::count get_data_bound_view_count() const;
-      virtual ::user::interaction * get_data_bound_view(index iInteraction);
+      virtual ::user::primitive * get_data_bound_view(index iInteraction);
 
       virtual void update(::update * pupdate) override;
 

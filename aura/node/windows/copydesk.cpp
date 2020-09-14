@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aura/platform/app_core.h"
+#include "apex/platform/app_core.h"
 #include "_windows.h"
 
 
@@ -64,7 +64,7 @@ namespace windows
    }
 
 
-   ::estatus copydesk::initialize(::object * pobjectContext)
+   ::estatus copydesk::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::user::copydesk::initialize(pobjectContext);

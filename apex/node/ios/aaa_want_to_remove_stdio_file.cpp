@@ -7,7 +7,7 @@ namespace ios
 
 
 
-   stdio_file::stdio_file(::object * pobject) :
+   stdio_file::stdio_file(::layered * pobjectContext) :
       ::object(pobject),
       ::ios::file(pobject)
    {

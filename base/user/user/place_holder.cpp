@@ -253,15 +253,9 @@ namespace user
 
       if(m_uiptraChild.has_element())
       {
-<<<<<<< HEAD
-      
-         m_uiptraChild[0]->_000CallOnDraw(pgraphics);
-         
-=======
 
          m_uiptraChild[0]->_000CallOnDraw(pgraphics);
 
->>>>>>> origin/basis
       }
 
    }

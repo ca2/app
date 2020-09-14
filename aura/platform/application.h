@@ -5,38 +5,15 @@ namespace aura
 {
 
 
-   enum e_end
-   {
-
-      end_close,
-      end_app,
-      end_session,
-      end_system
-
-   };
-
-
    class CLASS_DECL_AURA application :
-      virtual public ::aura_main_struct,
-      virtual public ::aura::context_thread,
-      virtual public ::user::callback,
-      virtual public int_scalar_source,
-      //virtual public ::account::interactive,
-      virtual public ::application_container,
-      virtual public ::database::client,
-      //virtual public ::user::form_callback,
-//      virtual public ::user::impact_creator,
-      virtual public ::filemanager::callback
-      //, virtual public ::user::document_manager_container
+      virtual public ::apex::application,
+      virtual public ::user::callback
    {
    public:
 
 
       void* m_pnativeapp;
 
-      ::axis::application *         m_paxisapplication;
-      ::base::application *         m_pbaseapplication;
-      ::core::application *         m_pcoreapplication;
 
 
       // 2020-01-25: removing from ::aura::system, placing here (at ::context)
@@ -44,32 +21,32 @@ namespace aura
       __pointer(::user::language_map)                 m_puserlanguagemap;
 
       ::aura::application *                           m_pappParent;
-      string                                          m_strAppName;
-      string                                          m_strAppTitle;
-      string                                          m_strAppId;
-      string                                          m_strBaseSupportId;
-      string                                          m_strRoot;
-      string                                          m_strDomain;
-      string                                          m_strLibraryName;
-      string                                          m_strRelativeFolder;
-      string                                          m_strBuild;
-      string                                          m_strInstallToken;
-      string                                          m_strInstallTraceLabel;
-      string                                          m_strInstallBuild;
-      string                                          m_strHttpUserAgentToken;
-      string                                          m_strHttpUserAgentVersion;
-      string_array                                    m_straAppCategory;
-      bool                                            m_bLicense;
-      bool                                            m_bRequiresInstallation;
+      //string                                          m_strAppName;
+      //string                                          m_strAppTitle;
+      //string                                          m_strAppId;
+      //string                                          m_strBaseSupportId;
+      //string                                          m_strRoot;
+      //string                                          m_strDomain;
+      //string                                          m_strLibraryName;
+      //string                                          m_strRelativeFolder;
+      //string                                          m_strBuild;
+      //string                                          m_strInstallToken;
+      //string                                          m_strInstallTraceLabel;
+      //string                                          m_strInstallBuild;
+      //string                                          m_strHttpUserAgentToken;
+      //string                                          m_strHttpUserAgentVersion;
+      //string_array                                    m_straAppCategory;
+      //bool                                            m_bLicense;
+      //bool                                            m_bRequiresInstallation;
 
-      bool                                            m_bReadStringTable;
+      //bool                                            m_bReadStringTable;
 
-      __pointer(application_menu)                     m_papplicationmenu;
+      __pointer(::apex::application_menu)             m_papplicationmenu;
 
       __composite(::game::game)                       m_pgame;
 
       ::user::primitive *                             m_puiCurrent;
-      bool                                            m_bContextTheme;
+      //bool                                            m_bContextTheme;
 
 #ifdef LINUX
       bool                                            m_bSnLauncheeSetup;
@@ -79,99 +56,101 @@ namespace aura
 
       DWORD                                           m_dwInstallGoodToCheckAgain;
 
-      bool                                            m_bAppHasInstallerProtected;
-      bool                                            m_bAppHasInstallerChangedProtected;
+      //bool                                            m_bAppHasInstallerProtected;
+      //bool                                            m_bAppHasInstallerChangedProtected;
       ::install::installer *                          m_pinstaller;
 
       reference_addressa                              m_objectptraEventHook;
 
-      bool                                            m_bAgreeExit;
-      bool                                            m_bAgreeExitOk;
-      bool                                            m_bFranceExit;
+      //bool                                            m_bAgreeExit;
+      //bool                                            m_bAgreeExitOk;
+      //bool                                            m_bFranceExit;
 
       bool                                            m_bIpi;
-      __pointer(ipi)                                  m_pipi;
+      __pointer(::apex::ipi)                          m_pipi;
       __pointer(service_base)                         m_pservice;
 
       ::mutex                                         m_mutexFrame;
       __composite(::user::interaction_pointer_array)  m_puiptraFrame;
 
-      e_thread                                        m_ethreadClose;
+      //e_thread                                        m_ethreadClose;
 
-      EExclusiveInstance                              m_eexclusiveinstance;
+      //EExclusiveInstance                              m_eexclusiveinstance;
 
-      string_map < __pointer(::aura::exclusive) >     m_mapExclusive;
+      //string_map < __pointer(::acme::exclusive) >     m_mapExclusive;
 
-      bool                                            m_bService;
+      //bool                                            m_bService;
 
-      bool                                            m_bUpdateMatterOnInstall;
+      //bool                                            m_bUpdateMatterOnInstall;
 
       ::user::interaction *                           m_puiMainContainer;
 
       ::mutex                                         m_mutexMatterLocator;
 
-      ::mutex                                         m_mutexStr;
-      string_table                                    m_stringtable;
-      string_table                                    m_stringtableStd;
-      map < id, id, string, string >                  m_stringmap;
+      //::mutex                                         m_mutexStr;
+      //string_table                                    m_stringtable;
+      //string_table                                    m_stringtableStd;
+      //map < id, id, string, string >                  m_stringmap;
 
       id_map < __pointer(::channel) >                 m_mapNotify;
 
-      bool                                            m_bInitializeDataCentral;
+      __pointer(context_image)                        m_pcontextimage;
 
-      string                                          m_strLicense;
+      //bool                                            m_bInitializeDataCentral;
 
-      i32                                             m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
+      //string                                          m_strLicense;
+
+      //i32                                             m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
 
       //__pointer(::simpledb::server)                   m_psimpledb;
 
       //::userex::pane_tab_view *                       m_pmainpane;
 
 
-      string                                          m_strHelpFilePath;
+//      string                                          m_strHelpFilePath;
+//
+//#ifdef WINDOWS
+//
+//      HGLOBAL                                         m_hDevMode;             // printer Dev Mode
+//      HGLOBAL                                         m_hDevNames;            // printer Device Names
+//
+//#endif
+//
+//      u32                                             m_dwPromptContext;        // help action_context override for message box
+//      // LKG
+//      u32                                             m_dwPolicies;            // block for storing boolean system policies
+//
+//      // Support for Shift+F1 help mode.
+//      // TRUE if we're in SHIFT+F1 mode.
+//      bool                                            m_bHelpMode;
+//
+//      //::userex::pane_tab_view *                       m_ppaneviewMain;
+//
+//      string                                          m_strProfileName;
+//
+//      ATOM                                            m_atomApp;
+//      ATOM                                            m_atomSystemTopic;   // for DDE open
+//      UINT                                            m_nNumPreviewPages; // number of default printed pages
+//
+//      string                                          m_strId;
 
-#ifdef WINDOWS
-
-      HGLOBAL                                         m_hDevMode;             // printer Dev Mode
-      HGLOBAL                                         m_hDevNames;            // printer Device Names
-
-#endif
-
-      u32                                             m_dwPromptContext;        // help action_context override for message box
-      // LKG
-      u32                                             m_dwPolicies;            // block for storing boolean system policies
-
-      // Support for Shift+F1 help mode.
-      // TRUE if we're in SHIFT+F1 mode.
-      bool                                            m_bHelpMode;
-
-      //::userex::pane_tab_view *                       m_ppaneviewMain;
-
-      string                                          m_strProfileName;
-
-      ATOM                                            m_atomApp;
-      ATOM                                            m_atomSystemTopic;   // for DDE open
-      UINT                                            m_nNumPreviewPages; // number of default printed pages
-
-      string                                          m_strId;
-
-      i32                                             m_iResourceId;
+//      i32                                             m_iResourceId;
 
       //__composite(::experience::department)           m_pexperience;
-      __composite(::aura::theme)                      m_ptheme;
+      __composite(::aura::theme)                        m_ptheme;
 
 
-      string_array                                    m_straAppInterest;
-      string_map < oswindow, oswindow >               m_mapAppInterest;
+      //string_array                                    m_straAppInterest;
+      //string_map < oswindow, oswindow >               m_mapAppInterest;
 
-      i32                                             m_iGcomBackgroundUpdateMillis;
+      //i32                                             m_iGcomBackgroundUpdateMillis;
 
 
       application(const char * pszAppId = nullptr);
       virtual ~application();
 
 
-      virtual ::estatus initialize(::object * pobjectContext) override;
+      virtual ::estatus initialize(::layered * pobjectContext) override;
 
 
       virtual void assert_valid() const override;
@@ -210,6 +189,7 @@ namespace aura
 
       //virtual ::simpledb::server * simpledb();
       virtual ::database::server * dataserver();
+      inline ::context_image& image() { return *m_pcontextimage; }
 
 
       virtual ::estatus verb() override;
@@ -231,13 +211,13 @@ namespace aura
       virtual ::estatus init_instance();
 
 
-      virtual ::estatus     run() override;
-      virtual ::estatus     main() override;
-      virtual ::estatus     on_run();
+      //virtual ::estatus     run() override;
+      //virtual ::estatus     main() override;
+      //virtual ::estatus     on_run();
 
-      virtual ::estatus application_pre_run();
+      //virtual ::estatus application_pre_run();
       //virtual bool initial_check_directrix() override;
-      virtual ::estatus os_native_bergedge_start();
+      //virtual ::estatus os_native_bergedge_start();
 
 
 
@@ -251,7 +231,7 @@ namespace aura
 
 
 
-      virtual bool InitApplication();
+      //virtual bool InitApplication();
 
 
       virtual bool do_install();
@@ -347,8 +327,8 @@ namespace aura
       //virtual ::user::interaction * user_interaction_from_oswindow(oswindow oswindow);
 
 
-      virtual i32 hotplugin_host_starter_start_sync(const char * pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
-      virtual i32 hotplugin_host_host_starter_start_sync(const char * pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
+      //virtual i32 hotplugin_host_starter_start_sync(const char * pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
+      //virtual i32 hotplugin_host_host_starter_start_sync(const char * pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
 
       //virtual void on_update_view(::user::impact * pview, ::user::impact * pviewSender, LPARAM lHint, object * pHint);
 
@@ -388,10 +368,10 @@ namespace aura
       //virtual string get_locale_schema_dir();
 
 
-      //virtual ::estatus initialize(::object * pobjectContext) override;
+      //virtual ::estatus initialize(::layered * pobjectContext) override;
 
 
-      application_menu & applicationmenu();
+      //::apex::application_menu & applicationmenu();
 
 
       virtual ::file::path appconfig_folder();
@@ -444,7 +424,7 @@ namespace aura
       virtual string get_theme();
 
 
-      virtual __pointer(::aura::exclusive) get_exclusive(string str, LPSECURITY_ATTRIBUTES psa);
+      virtual __pointer(::acme::exclusive) get_exclusive(string str, LPSECURITY_ATTRIBUTES psa);
       virtual bool exclusive_fails(string str, LPSECURITY_ATTRIBUTES psa);
 
 
@@ -533,7 +513,7 @@ namespace aura
 
       virtual string get_version();
 
-      virtual __pointer(::aura::ipi) create_ipi();
+      virtual __pointer(::apex::ipi) create_ipi();
 
       //virtual ::estatus process_init();
       virtual void process_term();
@@ -567,15 +547,15 @@ namespace aura
       //virtual ::estatus init();
       //virtual void term();
 
-      virtual ::estatus ca_process_init();
-      virtual ::estatus ca_init1();
-      virtual ::estatus ca_init2();
-      virtual ::estatus ca_init3();
+      //virtual ::estatus notify_process_init();
+      //virtual ::estatus notify_init1();
+      //virtual ::estatus notify_init2();
+      //virtual ::estatus notify_init3();
 
-      virtual void ca_term3();
-      virtual void ca_term2();
-      virtual void ca_term1();
-      virtual void ca_process_term();
+      //virtual void notify_term3();
+      //virtual void notify_term2();
+      //virtual void notify_term1();
+      //virtual void notify_process_term();
 
       // virtual bool is_installing();
       // virtual bool is_unstalling();
@@ -821,8 +801,6 @@ namespace aura
       virtual void send_language_change_message();
 
 
-      virtual LPWAVEOUT waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);
-
 
       virtual string preferred_experience();
 
@@ -860,7 +838,7 @@ namespace aura
 
       virtual void get_time(struct timeval *point);
 
-      virtual void close(e_end eend);
+      virtual void close(::apex::enum_end eend);
 
 
       //user virtual __pointer(::user::document) defer_create_view(string strView, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::id & id = nullptr);
@@ -869,7 +847,7 @@ namespace aura
       virtual void HideApplication();
 
       
-      //virtual ::estatus initialize(::object* pobjectContext) override;
+      //virtual ::estatus initialize(::layered * pobjectContext) override;
 
       //virtual ::estatus process_init() override;
 
@@ -1229,7 +1207,7 @@ namespace aura
 
 
 
-      virtual __pointer(::aura::application) create_platform(::aura::session* psession) override;
+      virtual __pointer(::apex::application) create_platform(::apex::session* psession) override;
 
 
 
@@ -1257,12 +1235,12 @@ namespace aura
       //       virtual __pointer(::bergedge::document) get_document();
 
 
-      //virtual ::estatus add_library(::aura::library * plibrary);
+      //virtual ::estatus add_library(::apex::library * plibrary);
 
       //virtual ::estatus initialize_userex();
-      virtual ::estatus userfs_init1();
+      //virtual ::estatus userfs_init1();
       //virtual ::estatus initialize1_experience();
-      virtual ::estatus userfs_process_init();
+      //virtual ::estatus userfs_process_init();
 
       //virtual __pointer(::userex::userex) create_userex();
       //virtual __pointer(::userfs::userfs) create_userfs();
@@ -1360,7 +1338,7 @@ namespace aura
       //virtual ~application();
 
 
-      //virtual ::estatus     initialize(::object* pobjectContext) override;
+      //virtual ::estatus     initialize(::layered * pobjectContext) override;
 
 
       //virtual void install_message_routing(::channel * pchannel) override;
@@ -1443,19 +1421,19 @@ namespace aura
 
 
 
-CLASS_DECL_AURA UINT c_cdecl application_thread_procedure(LPVOID pvoid);
+//CLASS_DECL_AURA UINT c_cdecl application_thread_procedure(LPVOID pvoid);
 
-typedef __pointer(::aura::application) (*LPFN_instantiate_application)(__pointer(::aura::application) pappParent, const char* pszId);
+//typedef __pointer(::aura::application) (*LPFN_instantiate_application)(__pointer(::aura::application) pappParent, const char* pszId);
 
-extern CLASS_DECL_AURA LPFN_instantiate_application g_lpfn_instantiate_application;
+//extern CLASS_DECL_AURA LPFN_instantiate_application g_lpfn_instantiate_application;
 
-#ifdef WINDOWS_DESKTOP
-
-CLASS_DECL_AURA BOOL LaunchAppIntoDifferentSession(const char* pszProcess, const char* pszCommand, const char* pszDir, STARTUPINFO* psi, PROCESS_INFORMATION* ppi, int iSession = -1);
-
-CLASS_DECL_AURA BOOL LaunchAppIntoSystemAcc(const char* pszProcess, const char* pszCommand, const char* pszDir, STARTUPINFO* psi, PROCESS_INFORMATION* ppi);
-
-#endif // WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
+//
+//CLASS_DECL_AURA BOOL LaunchAppIntoDifferentSession(const char* pszProcess, const char* pszCommand, const char* pszDir, STARTUPINFO* psi, PROCESS_INFORMATION* ppi, int iSession = -1);
+//
+//CLASS_DECL_AURA BOOL LaunchAppIntoSystemAcc(const char* pszProcess, const char* pszCommand, const char* pszDir, STARTUPINFO* psi, PROCESS_INFORMATION* ppi);
+//
+//#endif // WINDOWS_DESKTOP
 
 
 

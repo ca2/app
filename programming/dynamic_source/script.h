@@ -48,7 +48,7 @@ namespace dynamic_source
    public:
 
 
-      __pointer(::aura::library)              m_plibrary;
+      __pointer(::apex::library)              m_plibrary;
 
 
       file_time                        m_ft;

@@ -65,11 +65,11 @@ inline natural_meta_data < string_meta_data < wd16char > > * __nil < natural_met
 template < >
 inline natural_meta_data < string_meta_data < wd32char > > * __nil < natural_meta_data < string_meta_data < wd32char > > >();
 
-extern natural_meta_data < string_meta_data < ansichar > > g_ansistringNil;
+extern natural_meta_data < string_meta_data < ansichar > > * g_pansistringNil;
 
-extern natural_meta_data < string_meta_data < wd16char > > g_wd16stringNil;
+extern natural_meta_data < string_meta_data < wd16char > > * g_pwd16stringNil;
 
-extern natural_meta_data < string_meta_data < wd32char > > g_wd32stringNil;
+extern natural_meta_data < string_meta_data < wd32char > > * g_pwd32stringNil;
 
 
 

@@ -40,7 +40,7 @@ namespace draw2d_xlib
 
 
       //graphics();
-      graphics(::object * pobject);
+      graphics(::layered * pobjectContext);
       virtual ~graphics();
 
 
@@ -479,7 +479,7 @@ namespace draw2d_xlib
 
       // Misc Helper Functions
       using ::draw2d::graphics::GetHalftoneBrush;
-      static ::draw2d::brush* PASCAL GetHalftoneBrush(::object * pobject);
+      static ::draw2d::brush* PASCAL GetHalftoneBrush(::layered * pobjectContext);
       void DrawDragRect(const ::rect & rect, const ::size & size,
                         rect lpRectLast, const ::size & sizeLast,
                         ::draw2d::brush* pBrush = nullptr, ::draw2d::brush* pBrushLast = nullptr);

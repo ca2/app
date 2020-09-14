@@ -20,7 +20,7 @@ namespace android
    public:
 
 
-      ip_enum(::object * pobject);
+      ip_enum(::layered * pobjectContext);
       virtual ~ip_enum();
 
 

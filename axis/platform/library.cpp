@@ -2,7 +2,7 @@
 #include "aura/platform/static_setup.h"
 
 
-//extern string_map < __pointer(::aura::library) > * g_pmapLibrary;
+//extern string_map < __pointer(::apex::library) > * g_pmapLibrary;
 
 //extern ::mutex * &::get_context_system()->m_mutexLibrary;
 
@@ -17,7 +17,7 @@ namespace axis
    const char * psz_empty_app_id = "";
 
 
-   ::estatus     library::initialize(::object * pobjectContext)
+   ::estatus     library::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);
@@ -31,7 +31,7 @@ namespace axis
    }
 
 
-   ::estatus library::initialize_aura_library(::object * pobjectContext,int iDesambig,const char * pszRoot, const char * pszName, const char * pszFolder)
+   ::estatus library::initialize_aura_library(::layered * pobjectContext,int iDesambig,const char * pszRoot, const char * pszName, const char * pszFolder)
    {
 
       auto estatus = initialize(pobjectContext);
@@ -152,7 +152,7 @@ namespace axis
          if(m_plibrary == nullptr)
          {
 
-            ERR("aura::library::open");
+            ERR("apex::library::open");
 
             return false;
 
@@ -164,13 +164,13 @@ namespace axis
       catch(...)
       {
 
-         ERR("aura::library::open Failed to open library %s with errors %s", (bCa2Path ? " (ca2 path)" : ""), m_strMessage.c_str());
+         ERR("apex::library::open Failed to open library %s with errors %s", (bCa2Path ? " (ca2 path)" : ""), m_strMessage.c_str());
 
          return false;
 
       }
 
-      INFO("aura::library::open success");
+      INFO("apex::library::open success");
 
       if (m_strCa2Name.has_char())
       {
@@ -728,7 +728,7 @@ namespace axis
    }
 
 
-   ::generic_object* library::new_object(::object* pobjectContext, const char* pszClassId)
+   ::generic* library::new_object(::object* pobjectContext, const char* pszClassId)
    {
 
       return nullptr;
@@ -736,7 +736,7 @@ namespace axis
    }
 
 
-   __pointer(::generic_object) library::create_object(::object * pobjectContext, const char * pszClass)
+   __pointer(::generic) library::create_object(::layered * pobjectContext, const char * pszClass)
    {
 
       sync_lock sl(&::get_context_system()->m_mutexLibrary);
@@ -748,7 +748,7 @@ namespace axis
 
       }
       
-      ::generic_object * p = nullptr;
+      ::generic * p = nullptr;
 
       if(get_ca2_library() != nullptr)
       {
@@ -872,7 +872,7 @@ namespace axis
    }
 
    
-   ::generic_object* library::factory_new(::object* pobjectContext, const char* lpszClass)
+   ::generic* library::factory_new(::object* pobjectContext, const char* lpszClass)
    {
 
       return nullptr;
@@ -880,7 +880,7 @@ namespace axis
    }
 
 
-   __pointer(::generic_object) library::factory_create(::object * pobjectContext, const char * lpszClass)
+   __pointer(::generic) library::factory_create(::layered * pobjectContext, const char * lpszClass)
    {
 
       library_object_allocator_base * pallocator = find_allocator(lpszClass);
@@ -965,10 +965,10 @@ namespace axis
 } // namespace axis
 
 
-//string_map < __pointer(::aura::library) > * g_pmapLibCall = nullptr;
+//string_map < __pointer(::apex::library) > * g_pmapLibCall = nullptr;
 
 
-::aura::library * lib(const char * psz)
+::apex::library * lib(const char * psz)
 {
 
    //if (::get_context_system()->m_mapLibCall == nullptr)
@@ -978,12 +978,12 @@ namespace axis
 
    //}
 
-   __pointer(::aura::library) & plibrary = ::get_context_system()->m_mapLibCall[psz];
+   __pointer(::apex::library) & plibrary = ::get_context_system()->m_mapLibCall[psz];
 
    if(!plibrary)
    {
       
-      plibrary = __new(::aura::library);
+      plibrary = __new(::apex::library);
 
       plibrary->initialize(::get_thread());
 

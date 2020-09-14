@@ -8,16 +8,20 @@
 
 
 
-FILE *fopen_dup(const char *path, const char *attrs, int iShare)
+FILE *fopen_dup(const char *path, const char *attr, int iShare)
 {
 
 #if defined(WINDOWS)
 
-   return _wfsopen(wstring(path), wstring(attrs), iShare);
+   wstring wstrPath(path);
+
+   wstring wstrAttr(attr);
+
+   return _wfsopen(wstrPath, wstrAttr, iShare);
 
 #else
 
-   return fopen(path, attrs);
+   return fopen(path, attr);
 
 #endif
 

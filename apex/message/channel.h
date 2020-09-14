@@ -1,9 +1,15 @@
 #pragma once
 
 
+//#include "apex/primitive/collection/runnable_array.h"
+namespace user
+{
 
 
-#include "aura/primitive/collection/runnable_array.h"
+   class command;
+
+
+} // namespace user
 
 
 namespace message
@@ -25,11 +31,12 @@ public:
 
 
    static __pointer(::mutex)                       s_pmutexChannel;
+   __pointer(::channel)                            m_pchannel;
    id_array                                        m_idaHandledCommands;
    ::message::id_route                             m_idroute;
    ::message::id_route                             m_idrouteNew;
    bool                                            m_bNewChannel;
-   id_map < __pointer_array(::generic_object) >    m_mapUpdate;
+   id_map < __pointer_array(::generic) >           m_mapUpdate;
    id_map < runnable_array >                       m_mapRunnable;
 
 
@@ -154,7 +161,7 @@ public:
    }
 
 
-   void default_toggle_check_handling(const ::id & id);
+   void default_toggle_check_handling(const ::id& id);
 
 
    template < typename RECEIVER >

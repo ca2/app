@@ -2,7 +2,7 @@
 
 
 
-// void application_bias::callback::connect_to(::object * pobject)
+// void application_bias::callback::connect_to(::layered * pobjectContext)
 // {
 
 //    set_context_object(pobject);
@@ -37,7 +37,7 @@
 //    m_puserinteractionParent                            = nullptr;
 // }
 
-// application_bias::application_bias(::object * pobject) :
+// application_bias::application_bias(::layered * pobjectContext) :
 //    ::object(pobject)
 // {
 //    m_set["SessionSynchronizedInput"]      = true;

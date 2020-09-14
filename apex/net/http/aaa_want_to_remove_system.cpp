@@ -1,9 +1,9 @@
 #include "framework.h"
-#include "aura/id.h"
-#include "aura/net/sockets/_.h"
+#include "apex/id.h"
+#include "apex/net/sockets/_.h"
 #include <time.h>
 #include <stdio.h>
-#include "aura/xml/_.h"
+#include "apex/xml/_.h"
 
 #define DEBUG_LEVEL_SICK 9
 #define DEBUG_LEVEL_NORMAL 4
@@ -13,7 +13,7 @@ namespace http
 {
 
 
-   system::system(::object * pobject) :
+   system::system(::layered * pobjectContext) :
       ::object(pobject)
    {
 
@@ -128,7 +128,7 @@ namespace http
 
    }
 
-   system::pac::pac(::object * pobject) :
+   system::pac::pac(::layered * pobjectContext) :
       ::object(pobject)
    {
 
@@ -204,7 +204,7 @@ namespace http
    }
 
 
-   system::proxy::proxy(::object * pobject) :
+   system::proxy::proxy(::layered * pobjectContext) :
       ::object(pobject)
    {
 
@@ -523,7 +523,7 @@ namespace http
    }
 
 
-   void system::on_auth(property_set & set, ::aura::application * papp, string & strUrl, string & strSessId, __pointer(::account::user) & puser)
+   void system::on_auth(property_set & set, ::apex::application * papp, string & strUrl, string & strSessId, __pointer(::account::user) & puser)
    {
 
       if(::is_null(papp))
@@ -587,7 +587,7 @@ namespace http
 
       string strProtocol = pszProtocol;
 
-      __pointer(::aura::application) papp = set["app"].cast < ::aura::application >();
+      __pointer(::apex::application) papp = set["app"].cast < ::apex::application >();
 
       i32 iPort;
 
@@ -777,7 +777,7 @@ retry:
 
          auto tickTimeProfile1 = ::tick::now();
 
-         ::aura::application * papp = handler.get_context_application();
+         ::apex::application * papp = handler.get_context_application();
 
          string strRequest = System.url().get_object(pszRequest);
 
@@ -932,7 +932,7 @@ retry:
 
          i32 iIteration = 0;
          
-         ::aura::live_signal keeplive;
+         ::apex::live_signal keeplive;
 
          if(papp != nullptr)
          {
@@ -1265,9 +1265,9 @@ retry:
 
       string strObject = System.url().get_object(pszUrl);
 
-      __pointer(::aura::application) papp = set["app"].cast < ::aura::application >();
+      __pointer(::apex::application) papp = set["app"].cast < ::apex::application >();
 
-      __pointer(::aura::application) pappAgent = papp;
+      __pointer(::apex::application) pappAgent = papp;
 
       i32 iPort;
       
@@ -1571,7 +1571,7 @@ retry_session:
 
       i32 iIteration = 1;
 
-      ::aura::live_signal keeplive;
+      ::apex::live_signal keeplive;
 
       if ((bool)set["noloop"])
       {
@@ -2017,7 +2017,7 @@ retry_session:
    bool system::download(sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession,const char * pszRequest,var varFile,property_set & set)
    {
 
-      file_pointer spfile = set.cast < ::aura::application >("app",get_context_application())->get_context_session()->file().get_file(varFile,
+      file_pointer spfile = set.cast < ::apex::application >("app",get_context_application())->get_context_session()->file().get_file(varFile,
                        ::file::type_binary | ::file::mode_create | ::file::mode_read_write | ::file::defer_create_directory);
 
       set["file"] = spfile;
@@ -2042,7 +2042,7 @@ retry_session:
 
       {
 
-         auto rfile = set.cast < ::aura::application >("app", get_context_application())->get_context_session()->file().get_file(varFile,
+         auto rfile = set.cast < ::apex::application >("app", get_context_application())->get_context_session()->file().get_file(varFile,
                           ::file::type_binary | ::file::mode_create | ::file::mode_read_write | ::file::defer_create_directory);
 
          if(!rfile)

@@ -1,13 +1,13 @@
 #include "framework.h"
-#include "aura/os/windows_common/file_c.h"
-#include "aura/machine_event2.h"
-#include "aura/machine_event_central2.h"
+#include "apex/os/windows_common/file_c.h"
+#include "apex/machine_event2.h"
+#include "apex/machine_event_central2.h"
 #include <stdio.h>
 
 #define UTF8_BOM "\xef\xbb\xbf"
 
-#include "aura/compress/zip/zip.h"
-#include "aura/const/id.h"
+#include "apex/compress/zip/zip.h"
+#include "apex/const/id.h"
 
 
 
@@ -35,7 +35,7 @@
 //#endif
 
 
-#include "aura/crypto/crypto_openssl.h"
+#include "apex/crypto/crypto_openssl.h"
 
 
 #ifndef WINDOWS
@@ -64,7 +64,7 @@ namespace file
    bool system_file::exists(::file::path path, ::object * pobject)
    {
 
-      ::aura::application * papp = ::get_context_application(pobject);
+      ::apex::application * papp = ::get_context_application(pobject);
 
       path = Sys(papp).defer_process_matter_path(path, papp);
 
@@ -945,7 +945,7 @@ retry_get_file:
    ::status::result system_file::copy(var varTarget, var varSource,bool bFailIfExists,e_extract eextract,::object * pobject)
    {
 
-      ::aura::application * papp = ::get_context_application(pobject);
+      ::apex::application * papp = ::get_context_application(pobject);
 
       if (Context.dir().is(varSource.get_file_path(), pobject) && (eextract == extract_first || eextract == extract_all || !(::str::ends_ci(varSource.get_file_path(), ".zip"))))
       {
@@ -2080,7 +2080,7 @@ retry_get_file:
    }
 
 
-   ::estatus system_file::initialize(::object * pobjectContext)
+   ::estatus system_file::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);
@@ -2105,7 +2105,7 @@ retry_get_file:
 
    //   i64 iTry = 0;
 
-   //   ::aura::application * papp = ::get_context_application(pobject);
+   //   ::apex::application * papp = ::get_context_application(pobject);
 
    //   while (true)
    //   {
@@ -2640,7 +2640,7 @@ retry_get_file:
             //else if (::str::begins_eat_ci(path, "matter://"))
             //{
 
-            //   __pointer(::aura::application) pappLookup;
+            //   __pointer(::apex::application) pappLookup;
 
             //   string strApp = System.url().get_server("matter://" + strPath);
 
@@ -2833,7 +2833,7 @@ retry_get_file:
    }
 
 
-   ::file::path system_file::dropbox_info_json(::object * pobject)
+   ::file::path system_file::dropbox_info_json(::layered * pobjectContext)
    {
 
       ::file::path pathJson;
@@ -2845,7 +2845,7 @@ retry_get_file:
    }
 
    
-   ::file::path system_file::onedrive_global_ini(::object * pobject)
+   ::file::path system_file::onedrive_global_ini(::layered * pobjectContext)
    {
       
       ::file::path pathGlobalIni;
@@ -2857,7 +2857,7 @@ retry_get_file:
    }
 
    
-   ::file::path system_file::onedrive_cid_ini(::object * pobject)
+   ::file::path system_file::onedrive_cid_ini(::layered * pobjectContext)
    {
       
       ::file::path pathGlobalIni = onedrive_global_ini(pobject);

@@ -325,7 +325,7 @@ namespace str
    }
 
 
-   ::estatus base64::initialize(::generic * pobjectContext)
+   ::estatus base64::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::generic::initialize(pobjectContext);

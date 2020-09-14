@@ -4,11 +4,11 @@
 
 
 
-namespace aura
+namespace apex
 {
 
 
-} // namespace aura
+} // namespace apex
 
 
 
@@ -17,21 +17,21 @@ namespace aura
 
 #if defined(CUBE) || defined(APPLE_IOS)
 extern "C"
-::aura::library * core_get_new_library(::object * pobject);
+::apex::library * core_get_new_library(::layered * pobjectContext);
 
 #else
 #ifndef _WIN32
 extern "C"
 #endif
-::aura::library * get_new_library();
+::apex::library * get_new_library();
 #endif
 
-namespace aura
+namespace apex
 {
 
 
    library::library() :
-      ::aura::single_application_library < application >("app")
+      ::apex::single_application_library < application >("app")
    {
 
    }
@@ -84,15 +84,15 @@ namespace aura
 
 #if defined(CUBE) || defined(APPLE_IOS)
 extern "C"
-::aura::library * core_get_new_library(::object * pobject)
+::apex::library * core_get_new_library(::layered * pobjectContext)
 #else
 #ifndef _WIN32
 extern "C"
 #endif
-::aura::library * get_new_library()
+::apex::library * get_new_library()
 #endif
 {
 
-   return new ::aura::library();
+   return new ::apex::library();
 
 }

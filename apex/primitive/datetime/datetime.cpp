@@ -13,52 +13,11 @@
 
 
 
-#if 0
-
-extern "C" CLASS_DECL_APEX time_t timegm(struct tm *tmp)
-{
-
-   static time_t gmtime_offset;
-
-   tmp->tm_isdst = 0;
-
-   return __mktime_internal(tmp,gmtime_r,&gmtime_offset);
-
-}
-
-
-#endif
-
-
-
-
-#ifdef ANDROID
-
-time_t timegm(tm * point)
-{
-
-   time_t t1 = 60 * 60 * 24 * 2; // (sec * min * hours) * (safety 2 days); // 1970-01-03 00:00:00 +0000 (UTC).
-
-   tm tm1;
-
-   gmtime_r(&t1,&tm1);
-
-   time_t t2 = mktime(&tm1); // in reverse in Brazil (UTC -3) 1970-01-03 03:00:00 +0000
-
-   time_t t3 = mktime(point); // now (in Brazil) direct (UTC -3)
-
-   return t3 - t2 + t1;
-
-}
-
-#endif
-
-
 namespace datetime
 {
 
 
-   value span_strtotime(::object * pobject, const ::apex::str_context * pcontext, const char * pszSpanExpression)
+   value span_strtotime(::layered * pobjectContext, const ::apex::str_context * pcontext, const char * pszSpanExpression)
    {
 
       static id idCalendarDay("calendar:day");
@@ -70,7 +29,7 @@ namespace datetime
       static id idCalendarHour("calendar:hour");
       static id idCalendarHours("calendar:hours");
       static id idCalendarNow("calendar:now");
-      UNREFERENCED_PARAMETER(pobject);
+      UNREFERENCED_PARAMETER(pobjectContext);
       value time;
       time.m_bSpan = true;
       string str(pszSpanExpression);
@@ -266,7 +225,7 @@ namespace datetime
    }
 
 
-   value strtotime(::object * pobject, const ::apex::str_context * pcontext,const char * psz,i32 & iPath,i32 & iPathCount,bool bUTC)
+   value strtotime(::layered * pobjectContext, const ::apex::str_context * pcontext,const char * psz,i32 & iPath,i32 & iPathCount,bool bUTC)
    {
       ::datetime::time time;
       string str(psz);
@@ -287,7 +246,7 @@ namespace datetime
                && str.Mid(13,1) == ":")
          {
             bBaseTime = true;
-            Sys(pobject).datetime().international().parse_str(str,set);
+            Sys(pobjectContext).datetime().international().parse_str(str,set);
             string strWord = str.Mid(19);
             strWord.trim_left();
             strWord = ::str::get_word(strWord," ");
@@ -332,7 +291,7 @@ namespace datetime
                && str.Mid(7,1) == "-")
          {
             bBaseTime = true;
-            Sys(pobject).datetime().international().parse_str(str,set);
+            Sys(pobjectContext).datetime().international().parse_str(str,set);
             time = ::datetime::time(
                    set["year"],
                    set["month"],
@@ -413,14 +372,14 @@ namespace datetime
          if(i1 != i2
                && i1 >= 1 && i1 <= 12
                && i2 >= 1 && i2 <=
-               Sys(pobject).datetime().get_month_day_count(time.GetYear(),i1))
+               Sys(pobjectContext).datetime().get_month_day_count(time.GetYear(),i1))
          {
             bFirst = true;
             iCount++;
          }
          if(i2 >= 1 && i2 <= 12
                && i1 >= 1 && i1 <=
-               Sys(pobject).datetime().get_month_day_count(time.GetYear(),i2))
+               Sys(pobjectContext).datetime().get_month_day_count(time.GetYear(),i2))
          {
             iCount++;
          }
@@ -456,20 +415,20 @@ namespace datetime
 
          }
 
-         return value(time) + span_strtotime(pobject,pcontext,str.Mid(iStart));
+         return value(time) + span_strtotime(pobjectContext,pcontext,str.Mid(iStart));
 
       }
       else
       {
 
-         return span_strtotime(pobject,pcontext,str.Mid(iStart));
+         return span_strtotime(pobjectContext,pcontext,str.Mid(iStart));
 
       }
 
    }
 
 
-   string to_string(::object * pobject, const ::apex::str_context * pcontext,const ::datetime::value & value)
+   string to_string(::layered * pobjectContext, const ::apex::str_context * pcontext,const ::datetime::value & value)
    {
       string str;
       if(value.m_bSpan)
@@ -565,20 +524,20 @@ namespace datetime
             if(time.GetHour() == 0 && time.GetMinute() == 0)
             {
                str = time.Format("%Y-");
-               Sys(pobject).datetime().get_month_str(pcontext,time.GetMonth());
+               Sys(pobjectContext).datetime().get_month_str(pcontext,time.GetMonth());
                str += time.Format("-%d");
             }
             else
             {
                str = time.Format("%Y-");
-               str += Sys(pobject).datetime().get_month_str(pcontext,time.GetMonth());
+               str += Sys(pobjectContext).datetime().get_month_str(pcontext,time.GetMonth());
                str += time.Format("-%d %H:%M");
             }
          }
          else
          {
             str = time.Format("%Y-");
-            str += Sys(pobject).datetime().get_month_str(pcontext,time.GetMonth());
+            str += Sys(pobjectContext).datetime().get_month_str(pcontext,time.GetMonth());
             str += time.Format("-%d %H:%M:%S");
          }
       }
@@ -592,68 +551,68 @@ namespace datetime
 
 
 
+//
+//i64 g_iFirstNano;
+//
+//
+////extern "C"
+//CLASS_DECL_APEX i64 first_nano()
+//{
+//
+//   return g_iFirstNano;
+//
+//}
+//
 
-i64 g_iFirstNano;
 
 
+//
+//
+////extern "C"
+//CLASS_DECL_APEX DWORD get_fast_tick_count()
+//{
+//
+//#ifdef WINDOWS
+//
+//   return GetTickCount();
+//
+//#else
+//
+//   struct timeval tv;
+//
+//   if (gettimeofday(&tv, nullptr) != 0)
+//   {
+//
+//      return 0;
+//
+//   }
+//
+//   return (DWORD)(tv.tv_sec * 1000 + tv.tv_usec / 1000);
+//
+//#endif
+//
+//}
+
+
+//
+//
+//// http://stackoverflow.com/questions/32424125/c-code-to-get-local-time-offset-in-minutes-relative-to-utc
+//// http://stackoverflow.com/questions/32424125/c-code-to-get-local-time-offset-in-minutes-relative-to-utc/32433950#32433950
+//// http://stackoverflow.com/users/619295/trenki
 //extern "C"
-CLASS_DECL_APEX i64 first_nano()
-{
-
-   return g_iFirstNano;
-
-}
-
-
-
-
-
-
-//extern "C"
-CLASS_DECL_APEX DWORD get_fast_tick_count()
-{
-
-#ifdef WINDOWS
-
-   return GetTickCount();
-
-#else
-
-   struct timeval tv;
-
-   if (gettimeofday(&tv, nullptr) != 0)
-   {
-
-      return 0;
-
-   }
-
-   return (DWORD)(tv.tv_sec * 1000 + tv.tv_usec / 1000);
-
-#endif
-
-}
-
-
-
-
-// http://stackoverflow.com/questions/32424125/c-code-to-get-local-time-offset-in-minutes-relative-to-utc
-// http://stackoverflow.com/questions/32424125/c-code-to-get-local-time-offset-in-minutes-relative-to-utc/32433950#32433950
-// http://stackoverflow.com/users/619295/trenki
-extern "C"
-CLASS_DECL_APEX int c_localtime_offset()
-{
-
-   time_t rawtime = time(nullptr);
-
-   struct tm *ptm = gmtime(&rawtime);
-
-   // Request that mktime() looksup dst in timezone database
-
-   ptm->tm_isdst = -1;
-
-   time_t gmt = mktime(ptm);
-
-   return (int)(rawtime - gmt);
-
-}
+//CLASS_DECL_APEX int c_localtime_offset()
+//{
+//
+//   time_t rawtime = time(nullptr);
+//
+//   struct tm *ptm = gmtime(&rawtime);
+//
+//   // Request that mktime() looksup dst in timezone database
+//
+//   ptm->tm_isdst = -1;
+//
+//   time_t gmt = mktime(ptm);
+//
+//   return (int)(rawtime - gmt);
+//
+//}

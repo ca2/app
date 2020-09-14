@@ -28,8 +28,8 @@
 #include "apex/os/windows_common/_c.h"
 #include "apex/os/uwp/_.h"
 #elif defined(WINDOWS_DESKTOP)
-#include "apex/os/windows_common/_c.h"
-#include "apex/os/windows/_c.h"
+//#include "apex/os/windows_common/_c.h"
+//#include "apex/os/windows/_c.h"
 #elif defined(SOLARIS)
 #include "apex/os/solaris/solaris.h"
 #elif defined(APPLE_IOS)
@@ -38,4 +38,11 @@
 #else
 #error Not Supported Operational System
 #endif
+
+
+CLASS_DECL_APEX HMONITOR GetPrimaryMonitorHandle();
+CLASS_DECL_APEX HMONITOR GetUiMonitorHandle(HWND hwnd);
+
+
+
 

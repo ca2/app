@@ -9,7 +9,7 @@ namespace data
    tree::tree()
    {
 
-      defer_create_mutex();
+      //defer_create_mutex();
 
       m_bFill = false;
 
@@ -308,7 +308,7 @@ namespace data
    ::count tree::get_proper_item_count()
    {
 
-      sync_lock sl(mutex());
+      sync_lock sl(get_mutex());
 
       return get_base_item()->get_proper_item_count();
 
@@ -400,7 +400,7 @@ namespace data
       }
 
 
-      sync_lock sl(mutex());
+      sync_lock sl(get_mutex());
 
       if(pitemNew == nullptr)
          return false;
@@ -723,19 +723,25 @@ namespace data
    }
 
 
-   void tree::start_fill_children()
+   //void tree::start_fill_children()
+   //{
+
+   //   sync_lock sl(mutex());
+
+   //   m_bFill = true;
+
+   //   fork([this]()
+   //   {
+
+   //      fill_children();
+
+   //   });
+
+   //}
+
+
+   void tree::on_tree_layout()
    {
-
-      sync_lock sl(mutex());
-
-      m_bFill = true;
-
-      fork([this]()
-      {
-
-         fill_children();
-
-      });
 
    }
 
@@ -758,9 +764,11 @@ namespace data
       try
       {
 
-         auto pgraphics = ::draw2d::create_memory_graphics();
+         //auto pgraphics = ::draw2d::create_memory_graphics();
 
-         tree_layout(pgraphics);
+         //tree_layout(pgraphics);
+
+         on_tree_layout();
 
       }
       catch (...)
@@ -773,10 +781,10 @@ namespace data
    }
 
 
-   void tree::tree_layout(::draw2d::graphics_pointer & pgraphics)
-   {
+   //void tree::tree_layout(::draw2d::graphics_pointer & pgraphics)
+   //{
 
-   }
+   //}
 
 
 } // namespace data

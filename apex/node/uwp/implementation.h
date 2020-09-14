@@ -6,7 +6,7 @@
 
 
 // Temporary ::map management (locks temp ::map on current thread)
-//CLASS_DECL_APEX void ::ca2::LockTempMaps(::object * pobject);
+//CLASS_DECL_APEX void ::ca2::LockTempMaps(::layered * pobjectContext);
 //CLASS_DECL_APEX bool ::ca2::UnlockTempMaps(::object * pobject, bool bDeleteTemps = TRUE);
 
 

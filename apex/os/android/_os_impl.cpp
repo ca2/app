@@ -46,7 +46,7 @@ void android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t)
    if (::get_context_system() == nullptr)
    {
 
-      output_debug_string("android_fill_plasma : aura_system is null");
+      output_debug_string("android_fill_plasma : apex_system is null");
 
       return;
 
@@ -172,7 +172,7 @@ void* load_lib(const char* l)
 
 int SetMainScreenRect(LPCRECT lpcrect);
 
-void android_aura_main()
+void android_apex_main()
 {
 
    auto premote = g_posremote;

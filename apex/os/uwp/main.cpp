@@ -282,12 +282,12 @@ string ca2_command_line()
 
 
 
-bool os_init_application()
-{
+// bool os_init_application()
+// {
 
-   return true;
+//    return true;
 
-}
+// }
 
 void os_post_quit()
 {

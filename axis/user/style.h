@@ -11,7 +11,7 @@ namespace axis
    public:
 
 
-      //__pointer(::aura::library)             m_plibrary;
+      //__pointer(::apex::library)             m_plibrary;
 
       //::draw2d::font_pointer                 m_pfont;
       //::draw2d::font_pointer                 m_pfontMenu;
@@ -51,7 +51,7 @@ namespace axis
 
 
       style();
-      style(::object * pobject);
+      style(::layered * pobjectContext);
       virtual ~style();
 
       void default_style_construct();

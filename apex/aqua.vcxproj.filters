@@ -1331,7 +1331,7 @@
     <ClInclude Include="primitive\primitive\simple_object.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\generic_object.h">
+    <ClInclude Include="primitive\primitive\generic.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="net\sockets\http\_.h">
@@ -1907,7 +1907,7 @@
     <ClInclude Include="os\apex.h">
       <Filter>Header Files\os</Filter>
     </ClInclude>
-    <ClInclude Include="os\aura_gdk.h">
+    <ClInclude Include="os\apex_gdk.h">
       <Filter>Header Files\os</Filter>
     </ClInclude>
     <ClInclude Include="os\binreloc.h">
@@ -2036,13 +2036,13 @@
     <ClInclude Include="platform\async.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\aura_aura.h">
+    <ClInclude Include="platform\apex_apex.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\aura_main_struct.h">
+    <ClInclude Include="platform\apex_main_struct.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\aura_regex.h">
+    <ClInclude Include="platform\apex_regex.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\auto.h">
@@ -2357,7 +2357,7 @@
     <ClInclude Include="node\windows\file_os_watcher.h">
       <Filter>Header Files\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="platform\aura_main_data.h">
+    <ClInclude Include="platform\apex_main_data.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\_generic_object_constructor_impl.h">
@@ -2417,7 +2417,7 @@
     <ClInclude Include="filesystem\filesystem\path_object.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
-    <ClInclude Include="platform\aura_str_pool.h">
+    <ClInclude Include="platform\apex_str_pool.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="astr.h">
@@ -3376,7 +3376,7 @@
     <ClCompile Include="primitive\primitive\context_object.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\generic_object.cpp">
+    <ClCompile Include="primitive\primitive\generic.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\comparison\var_strict.cpp">
@@ -4249,13 +4249,13 @@
     <ClCompile Include="node\windows\file_os_watcher.cpp">
       <Filter>Source Files\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="platform\aura_main_data.cpp">
+    <ClCompile Include="platform\apex_main_data.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\obj_typ_ctr.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\aura_main_struct.cpp">
+    <ClCompile Include="platform\apex_main_struct.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive\procedure.cpp">
@@ -4276,7 +4276,7 @@
     <ClCompile Include="filesystem\filesystem\path_object.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
-    <ClCompile Include="platform\aura_str_pool.cpp">
+    <ClCompile Include="platform\apex_str_pool.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\os_context.cpp">
@@ -4306,7 +4306,7 @@
     <ClCompile Include="os\win32\window.cpp">
       <Filter>Source Files\os\win32</Filter>
     </ClCompile>
-    <ClCompile Include="platform\static_start_aura.cpp">
+    <ClCompile Include="platform\static_start_apex.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\progress.cpp">

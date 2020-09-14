@@ -112,19 +112,27 @@ namespace user
 #endif
 
          // A ::user::impact should be created in a given context!
-         if (pcreate != nullptr && pcreate->m_pusercreate->m_pdocumentCurrent != nullptr)
+         if (pcreate != nullptr)
          {
 
-            __pointer(::user::document) pdocument = pcreate->m_pusercreate->m_pdocumentCurrent;
+            auto pusercreate = __user_create(pcreate->m_pusercreate);
 
-            pdocument->add_view(this);
+            if (pusercreate && pusercreate->m_pdocumentCurrent != nullptr)
+            {
 
-            ASSERT(::user::impact::get_document() != nullptr);
+               __pointer(::user::document) pdocument = pusercreate->m_pdocumentCurrent;
+
+               pdocument->add_view(this);
+
+            }
 
          }
-         else
+
+         if(::user::impact::get_document() == nullptr)
          {
+
             TRACE(trace_category_appmsg, trace_level_warning, "Warning: Creating a pane with no ::user::document.\n");
+
          }
 
          auto pframe = GetTypedParent < ::user::frame_window >();
@@ -341,7 +349,7 @@ namespace user
       }
 
       // last but not least, pump through cast
-      ::aura::application* papp = get_context_application();
+      ::apex::application* papp = get_context_application();
 
       if (papp != nullptr)
       {
@@ -707,13 +715,15 @@ namespace user
 
       __pointer(::create) pcreate(e_create);
 
-      pcreate->m_pusercreate = __new(::user::create);
+      auto pusercreate = __new(::user::create);
 
-      pcreate->m_pusercreate->m_puiNew = pimpactAlloc;
+      pusercreate = pusercreate;
 
-      pcreate->m_pusercreate->m_puiLastView = pviewLast;
+      pusercreate->m_puiNew = pimpactAlloc;
 
-      pcreate->m_pusercreate->m_pdocumentCurrent = get_document();
+      pusercreate->m_puiLastView = pviewLast;
+
+      pusercreate->m_pdocumentCurrent = get_document();
 
       return ::user::create_view(pcreate, pimpactdata->m_pplaceholder, pimpactdata->m_id);
 
@@ -725,36 +735,31 @@ namespace user
 
       __pointer(::create) pcreate(e_create);
 
-      auto estatus = __construct_new(pcreate->m_pusercreate);
+      auto pusercreate = __new(::user::create);
 
-      if (!estatus)
-      {
-
-         return nullptr;
-
-      }
+      pcreate->m_pusercreate = pusercreate;
 
       if (::is_set(pimpactdata))
       {
 
-         pcreate->m_pusercreate->m_pimpactdata = pimpactdata;
+         pusercreate->m_pimpactdata = pimpactdata;
 
       }
 
-      pcreate->m_pusercreate->m_typeNewView = type;
+      pusercreate->m_typeNewView = type;
 
-      pcreate->m_pusercreate->m_puiLastView = pviewLast;
+      pusercreate->m_puiLastView = pviewLast;
 
       if (pdocument == nullptr)
       {
 
-         pcreate->m_pusercreate->m_pdocumentCurrent = get_document();
+         pusercreate->m_pdocumentCurrent = get_document();
 
       }
       else
       {
 
-         pcreate->m_pusercreate->m_pdocumentCurrent = pdocument;
+         pusercreate->m_pdocumentCurrent = pdocument;
 
       }
 
@@ -768,7 +773,7 @@ namespace user
       if (id.is_empty())
       {
 
-         id = (const ::id &) pcreate->m_pusercreate->m_typeNewView.name();
+         id = (const ::id &) pusercreate->m_typeNewView.name();
 
       }
 
@@ -782,13 +787,15 @@ namespace user
 
       __pointer(::create) pcreate(e_create_new, pdocument);
 
-      pcreate->m_pusercreate = __new(::user::create);
+      auto pusercreate= __new(::user::create);
 
-      pcreate->m_pusercreate->m_typeNewView = type;
+      pusercreate = pusercreate;
 
-      pcreate->m_pusercreate->m_puiLastView = pviewLast;
+      pusercreate->m_typeNewView = type;
 
-      pcreate->m_pusercreate->m_pdocumentCurrent = pdocument;
+      pusercreate->m_puiLastView = pviewLast;
+
+      pusercreate->m_pdocumentCurrent = pdocument;
 
       return ::user::create_view(pcreate, pwndParent, id);
 
@@ -800,24 +807,28 @@ namespace user
 
       ASSERT(pcreate != nullptr);
 
-      ASSERT(pcreate->m_pusercreate->m_typeNewView || pcreate->m_pusercreate->m_puiNew != nullptr);
+      auto pusercreate = __user_create(pcreate->m_pusercreate);
 
-      ::aura::application * papp = pwndParent->get_context_application();
+      ASSERT(pusercreate != nullptr);
+
+      ASSERT(pusercreate->m_typeNewView || pusercreate->m_puiNew != nullptr);
+
+      ::apex::application * papp = pwndParent->get_context_application();
 
       __pointer(::user::interaction) pinteraction;
 
       ::estatus estatus = ::success;
 
-      if (pcreate->m_pusercreate->m_puiNew != nullptr)
+      if (pusercreate->m_puiNew != nullptr)
       {
 
-         pinteraction = pcreate->m_pusercreate->m_puiNew;
+         pinteraction = pusercreate->m_puiNew;
 
       }
       else
       {
 
-         __pointer(::object) pobject = pcreate->m_pusercreate->m_pdocumentCurrent;
+         __pointer(::object) pobject = pusercreate->m_pdocumentCurrent;
 
          if(pobject.is_null())
          {
@@ -833,7 +844,7 @@ namespace user
 
          }
 
-         estatus = pobject->__id_construct(pinteraction, pcreate->m_pusercreate->m_typeNewView);
+         estatus = pobject->__id_construct(pinteraction, pusercreate->m_typeNewView);
 
       }
 

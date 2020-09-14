@@ -27,8 +27,8 @@ namespace user
 
       //}
 
-      ::aura::del(m_pbitmap);
-      ::aura::del(m_plist);
+      ::acme::del(m_pbitmap);
+      ::acme::del(m_plist);
       set_button_style(style_none);
 
    }
@@ -424,8 +424,8 @@ namespace user
          {
             ::rect rectDib;
             rectDib = m_rectText;
-            rectDib.bottom = MIN(rectText.top + m_pbitmap->m_pimage->width(), rectText.bottom);
-            rectDib.right = MIN(rectText.left + m_pbitmap->m_pimage->height(), rectText.right);
+            rectDib.bottom = min(rectText.top + m_pbitmap->m_pimage->width(), rectText.bottom);
+            rectDib.right = min(rectText.left + m_pbitmap->m_pimage->height(), rectText.right);
             //m_pimage->to(pgraphics, rectDib);
             m_pbitmap->m_pimage->bitmap_blend(pgraphics, rectDib);
             rectText.left += m_pbitmap->m_pimage->width();
@@ -767,7 +767,7 @@ namespace user
 
          double dH = (double) rectClient.height() / (double) pimage->height();
 
-         double dMin = MIN(MIN(dW, dH), 1.0);
+         double dMin = min(min(dW, dH), 1.0);
 
          rectAspect.right = (LONG) (pimage->width() * dMin);
 
@@ -831,7 +831,7 @@ namespace user
 
             double dH = (double)rectPadded.height() / (double)pimage->height();
 
-            double dMin = MIN(MIN(dW, dH), 1.0);
+            double dMin = min(min(dW, dH), 1.0);
 
             rectAspect.right = (LONG) (pimage->width() * dMin);
 
@@ -1001,13 +1001,13 @@ namespace user
       if(estyle == style_bitmap || estyle == style_image_and_text)
       {
 
-         ::aura::del(m_pbitmap);
+         ::acme::del(m_pbitmap);
 
       }
       else if(estyle == style_list)
       {
 
-         ::aura::del(m_plist);
+         ::acme::del(m_plist);
 
       }
       else if(estyle == style_push)
@@ -1037,14 +1037,14 @@ namespace user
       if(!var.is_empty())
       {
 
-         m_pbitmap->m_pimage = load_image(var);
+         m_pbitmap->m_pimage = Application.image().get_image(var);
 
       }
 
       if(!varSel.is_empty())
       {
 
-         m_pbitmap->m_pimageSel = load_image(varSel);
+         m_pbitmap->m_pimageSel = Application.image().get_image(varSel);
 
       }
 
@@ -1052,15 +1052,15 @@ namespace user
       if(!varFocus.is_empty())
       {
 
-         m_pbitmap->m_pimageFocus = load_image(varFocus);
+         m_pbitmap->m_pimageFocus = Application.image().get_image(varFocus);
 
       }
 
 
       if(!varDisabled.is_empty())
       {
-
-         m_pbitmap->m_pimageDisabled = load_image(varDisabled);
+         
+         m_pbitmap->m_pimageDisabled = Application.image().get_image(varDisabled);
 
       }
 
@@ -1068,7 +1068,7 @@ namespace user
       if(!varHover.is_empty())
       {
 
-         m_pbitmap->m_pimageHover = load_image(varHover);
+         m_pbitmap->m_pimageHover = Application.image().get_image(varHover);
 
       }
 

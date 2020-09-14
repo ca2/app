@@ -25,7 +25,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #ifdef BSD_STYLE_SOCKETS
 
 
-//#include "aura/net/sockets/bsd/config.h"
+//#include "apex/net/sockets/bsd/config.h"
 
 //#include "openssl/ssl.h"
 
@@ -53,7 +53,7 @@ namespace sockets
          bio_err
          create random file
       */
-      SSLInitializer(::object * pobject);
+      SSLInitializer(::layered * pobjectContext);
 
       /**
          remove random file

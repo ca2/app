@@ -365,8 +365,8 @@ void simple_menu_bar::_001OnDestroy(::message::message * pmessage)
 }
 
 bool simple_menu_bar::Initialize(
-__pointer(image_list)   imagelist,
-__pointer(image_list)   imagelistDisabled,
+__pointer(::image_list)   imagelist,
+__pointer(::image_list)   imagelistDisabled,
 i32_spreadset * prel,
 ::draw2d::font *        pfont)
 {

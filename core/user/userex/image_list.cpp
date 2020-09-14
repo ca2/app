@@ -100,7 +100,7 @@ namespace userex
 
             m_plisting->remove_all();
 
-            m_plisting->ls_pattern_file(m_pathFolder, get_ls_pattern_stra());
+            Application.dir().ls_file_pattern(*m_plisting, m_pathFolder, get_ls_pattern_stra());
 
          }
 
@@ -134,7 +134,7 @@ namespace userex
 
             ::file::path path = m_plisting->element_at(i);
 
-            pimage1 = load_image(path, false);
+            pimage1 = Application.image().load_image(path, false);
 
             if (pimage1)
             {

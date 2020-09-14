@@ -1,11 +1,11 @@
 #include "framework.h"
 #include "axis/xml/_.h"
-#include "aura/platform/app_core.h"
+#include "apex/platform/app_core.h"
 #include "aura/const/id.h"
 //#include "axis/node/_node.h"
 //#include "aura/net/ftp/_.h"
-#include "aura/platform/profiler2.h"
-#include "aura/platform/static_setup.h"
+#include "acme/platform/profiler.h"
+#include "apex/platform/static_setup.h"
 
 void __node_axis_factory_exchange();
 
@@ -26,7 +26,7 @@ int GetMainScreenRect(LPRECT lprect);
 
 #ifdef CUBE
 extern "C"
-::aura::library * experience_get_new_library();
+::apex::library * experience_get_new_library();
 #endif
 
 
@@ -35,7 +35,7 @@ void ___compile_test_sort_array_21304528734();
 void enum_display_monitors(::aura::system * psystem);
 
 #ifdef WINDOWS_DESKTOP
-CLASS_DECL_AXIS ::user::interaction * create_system_message_window(::object * pobject);
+CLASS_DECL_AXIS ::user::interaction * create_system_message_window(::layered * pobjectContext);
 #endif
 
 
@@ -43,10 +43,10 @@ CLASS_DECL_AXIS ::user::interaction * create_system_message_window(::object * po
 #include <sys/time.h>
 #endif
 
-extern string_map < __pointer(::aura::library) > * g_pmapLibrary;
+extern string_map < __pointer(::apex::library) > * g_pmapLibrary;
 
 
-CLASS_DECL_AXIS void __simple_tracea(::generic_object * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
+CLASS_DECL_AXIS void __simple_tracea(::generic * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
 
 
 #ifdef WINDOWS
@@ -103,8 +103,8 @@ namespace axis
    {
 
       m_paxissystem = this;
-      create_factory < ::axis::application, ::aura::application >();
-      create_factory < ::axis::session, ::aura::session >();
+      create_factory < ::axis::application, ::apex::application >();
+      create_factory < ::axis::session, ::apex::session >();
       create_factory < ::geo::department >();
 
    }
@@ -135,7 +135,7 @@ namespace axis
    }
 
 
-   ::estatus system::initialize(::object * pobjectContext)
+   ::estatus system::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::aura::system::initialize(pobjectContext);

@@ -9,7 +9,7 @@ critical_section g_csObjTypCtr;
 
 map < const char*, const char*, ::i64, ::i64 > * g_pmapObjTypCtr = nullptr;
 
-void obj_type_ctr_inc(::generic_object * pobject)
+void obj_type_ctr_inc(::generic * pobject)
 {
 
    if (!g_iObjTypCtrInit)
@@ -41,7 +41,7 @@ void obj_type_ctr_inc(::generic_object * pobject)
    atomic_increment(&g_iObjTypCtr);
 
 }
-void obj_type_ctr_dec(::generic_object* pobject)
+void obj_type_ctr_dec(::generic* pobject)
 {
    if (!g_iObjTypCtrInit)
    {

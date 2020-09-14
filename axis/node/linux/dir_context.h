@@ -19,7 +19,7 @@ namespace linux
       virtual ~dir_context();
 
 
-      virtual ::estatus initialize(::object * pobjectContext) override;
+      virtual ::estatus initialize(::layered * pobjectContext) override;
 
       virtual ::estatus init_system() override;
       virtual ::estatus init_context() override;
@@ -76,18 +76,18 @@ namespace linux
 
 //      virtual ::file::path usersystemappdata(const string & pcszPrefix);
 
-//      virtual ::file::path userappdata(::object * pobject);
-//      virtual ::file::path userdata(::object * pobject);
-//      //virtual ::file::path userfolder(::object * pobject);
-//      virtual ::file::path default_os_user_path_prefix(::object * pobject);
+//      virtual ::file::path userappdata(::layered * pobjectContext);
+//      virtual ::file::path userdata(::layered * pobjectContext);
+//      //virtual ::file::path userfolder(::layered * pobjectContext);
+//      virtual ::file::path default_os_user_path_prefix(::layered * pobjectContext);
 //      virtual ::file::path default_userappdata(const string & pcszPrefix, const string & lpcszLogin);
 
 //      virtual ::file::path default_userdata(const string & pcszPrefix, const string & lpcszLogin);
 
 //      virtual ::file::path default_userfolder(const string & pcszPrefix, const string & lpcszLogin);
 
-      virtual ::file::path userquicklaunch(::object * pobject);
-      virtual ::file::path userprograms(::object * pobject);
+      virtual ::file::path userquicklaunch(::layered * pobjectContext);
+      virtual ::file::path userprograms(::layered * pobjectContext);
 
       virtual ::file::path commonprograms() override;
 

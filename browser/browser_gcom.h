@@ -15,7 +15,7 @@ namespace browser
       ::image_pointer        m_pimageBk;
 
 
-      gcom(::object * pobject);
+      gcom(::layered * pobjectContext);
       virtual ~gcom();
 
 

@@ -19,7 +19,7 @@ public:
    ::image_pointer              m_spimageBuffer;
 
 
-   window_gdi(::object * pobject);
+   window_gdi(::layered * pobjectContext);
    virtual ~window_gdi();
 
    virtual void create_window_graphics(oswindow interaction_impl, i64 cx, i64 cy, int iStride = -1);

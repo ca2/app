@@ -19,7 +19,7 @@ namespace audio
 
 
 
-CLASS_DECL_APEX bool __node_aura_pre_init()
+CLASS_DECL_APEX bool __node_apex_pre_init()
 {
 
    return true;
@@ -27,7 +27,7 @@ CLASS_DECL_APEX bool __node_aura_pre_init()
 }
 
 
-CLASS_DECL_APEX bool __node_aura_pos_init()
+CLASS_DECL_APEX bool __node_apex_pos_init()
 {
 
 //   t_hthread = new hthread();
@@ -43,7 +43,7 @@ CLASS_DECL_APEX bool __node_aura_pos_init()
 //void __clear_mq(const char * pszDebug, ITHREAD id, bool bClose);
 //void __clear_mq(const char * pszDebug, bool bClose);
 
-CLASS_DECL_APEX bool __node_aura_pre_term()
+CLASS_DECL_APEX bool __node_apex_pre_term()
 {
 
    __node_term_cross_windows_threading();
@@ -56,7 +56,7 @@ CLASS_DECL_APEX bool __node_aura_pre_term()
 
 
 
-CLASS_DECL_APEX bool __node_aura_pos_term()
+CLASS_DECL_APEX bool __node_apex_pos_term()
 {
 
    return true;

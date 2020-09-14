@@ -10,7 +10,7 @@ namespace hellobase
 
 
 
-   impact_base::impact_base(::object * pobject):
+   impact_base::impact_base(::layered * pobjectContext):
       object(pobject),
       m_pimagePost,
       m_pimageTime,

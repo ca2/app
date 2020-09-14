@@ -5,11 +5,15 @@
 namespace xml
 {
 
-   property_set_exchange::property_set_exchange(::object * pobject) :
-      ::object(pobject)
+
+   property_set_exchange::property_set_exchange(::layered * pobjectContext) :
+      ::object(pobjectContext)
    {
+
       m_ppropertyset = nullptr;
+
    }
+
 
    property_set_exchange::~property_set_exchange()
    {

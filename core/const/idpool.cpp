@@ -8,9 +8,14 @@
 namespace core
 {
 
+
+   idpool* idpool::g_pthis = nullptr;
+
+
    idpool::idpool()
    {
 
+      g_pthis = this;
 
    }
 

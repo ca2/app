@@ -6,7 +6,7 @@ namespace plugin
 
    history::history(::object * pobject, plugin * pplugin) :
       ::object(pobject),
-      ::aura::history(pobject),
+      ::apex::history(pobject),
       m_pplugin(pplugin)
    {
    }

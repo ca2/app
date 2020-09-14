@@ -195,7 +195,7 @@ namespace exception
 
 #endif
 
-   engine::engine(::object * pobject) :
+   engine::engine(::layered * pobjectContext) :
       object(pobject)
 #ifdef WINDOWS_DESKTOP
       ,m_bOk(false)

@@ -76,7 +76,7 @@ namespace turboc
       bool                    m_bAlternate;
 
 
-      view(::object * pobject);
+      view(::layered * pobjectContext);
       virtual ~view();
 
       virtual void assert_valid() const;

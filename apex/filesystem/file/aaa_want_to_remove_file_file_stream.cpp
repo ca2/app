@@ -12,7 +12,7 @@ namespace file
    }
 
 
-   //file::file(const char * pszFileName, u32 nOpenFlags, ::aura::application * papp)
+   //file::file(const char * pszFileName, u32 nOpenFlags, ::apex::application * papp)
    //{
 
    //   open(pszFileName, nOpenFlags, papp);
@@ -36,7 +36,7 @@ namespace file
    }
 
 
-   //void file::open(const ::file::path & pszFileName, u32 nOpenFlags, ::aura::application * papp)
+   //void file::open(const ::file::path & pszFileName, u32 nOpenFlags, ::apex::application * papp)
 
    //{
 

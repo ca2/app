@@ -46,7 +46,7 @@ public:
    //typename ARRAY_TYPE::iterator erase(typename ARRAY_TYPE::iterator it);
    //typename ARRAY_TYPE::iterator erase(typename ARRAY_TYPE::iterator first, typename ARRAY_TYPE::iterator last);
    //::index remove(ARG_TYPE t, ::index find = 0, ::index last = -1, ::count countMin = 0, ::count countMax = -1);
-   ::count remove(const comparable_eq_array & a);
+   ::count remove_array(const comparable_eq_array & a);
 
 
 
@@ -362,7 +362,7 @@ template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
 inline comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > &  comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
 operator -= (const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > & a)
 {
-   remove(a);
+   remove_array(a);
    return *this;
 }
 
@@ -372,7 +372,7 @@ inline comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > comparable_eq_array < 
 operator - (const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > & a) const
 {
    comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > aRet(*this);
-   aRet.remove(a);
+   aRet.remove_array(a);
    return aRet;
 }
 
@@ -420,6 +420,7 @@ remove_first(ARG_TYPE t, ::index find, ::index last)
    }
    return find;
 }
+
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
 ::count comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
@@ -488,7 +489,7 @@ remove(ARG_TYPE t)
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
 ::index comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
-remove(const comparable_eq_array & a)
+remove_array(const comparable_eq_array & a)
 {
 
    ::count count = 0;

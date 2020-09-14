@@ -1,7 +1,7 @@
 //  Created by Camilo Sasuke Tsumanuma on 05/01/18.
 #pragma once
 
-CLASS_DECL_AURA string get_command_line_dup();
+//CLASS_DECL_AURA string get_command_line_dup();
 
 #if defined(MACOS)
 
@@ -49,40 +49,40 @@ CLASS_DECL_AURA string get_command_line_dup();
 
 #endif
 
-template < typename PRED >
-inline bool pred_Sleep(int iTime, PRED pred);
+//template < typename PRED >
+//inline bool pred_Sleep(int iTime, PRED pred);
 
-CLASS_DECL_AURA void press_any_key_to_exit(const char* psz = nullptr);
+//CLASS_DECL_AURA void press_any_key_to_exit(const char* psz = nullptr);
 
 //void adapt_font_name(string & str);
 
+//
+//namespace str
+//{
+//
+//   string CLASS_DECL_AURA get_window_text_timeout(oswindow oswindow, tick tickTimeout = 1000);
+//
+//} // namespace str
+//
 
-namespace str
-{
-
-   string CLASS_DECL_AURA get_window_text_timeout(oswindow oswindow, tick tickTimeout = 1000);
-
-} // namespace str
-
-
-CLASS_DECL_AURA void defer_dock_application(int_bool bDock);
-
-
-CLASS_DECL_AURA string get_current_login_name();
+//CLASS_DECL_AURA void defer_dock_application(int_bool bDock);
 
 
-#if defined(WINDOWS)
+//CLASS_DECL_AURA string get_current_login_name();
 
 
-CLASS_DECL_AURA _locale_t get_c_locale();
-
-
-#else
-
-
-CLASS_DECL_AURA locale_t get_c_locale();
-
-#endif
+//#if defined(WINDOWS)
+//
+//
+//CLASS_DECL_AURA _locale_t get_c_locale();
+//
+//
+//#else
+//
+//
+//CLASS_DECL_AURA locale_t get_c_locale();
+//
+//#endif
 
 
 

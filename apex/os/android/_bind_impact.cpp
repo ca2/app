@@ -153,7 +153,7 @@ JNIEXPORT void JNICALL Java_com_android_1app_impact_lButtonDown(JNIEnv * env, jo
 }
 
 extern "C"
-JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_aura_1on_1text_1composition(JNIEnv * env, jobject  obj, jstring str, jint i)
+JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_apex_1on_1text_1composition(JNIEnv * env, jobject  obj, jstring str, jint i)
 {
 
    set_context(env);
@@ -244,7 +244,7 @@ JNIEXPORT void JNICALL Java_com_android_1app_impact_onText(JNIEnv * env, jobject
 
 
 extern "C"
-JNIEXPORT void JNICALL Java_com_android_1app_impact_aura_1size_1changed(JNIEnv * env, jobject  obj)
+JNIEXPORT void JNICALL Java_com_android_1app_impact_apex_1size_1changed(JNIEnv * env, jobject  obj)
 {
 
    set_context(env);

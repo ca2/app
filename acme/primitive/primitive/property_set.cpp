@@ -931,13 +931,13 @@ void property_set::_parse_url_query(const char * pszUrlQuery)
       {
          if(pszKeyEnd == nullptr)
          {
-            strKey = url_decode_dup(pszParam, strlen(pszUrlQuery) - (pszParam - pszUrlQuery));
+            strKey = url_decode(pszParam, strlen(pszUrlQuery) - (pszParam - pszUrlQuery));
             _008Add(strKey, "");
          }
          else
          {
-            string strKey = url_decode_dup(pszParam, pszKeyEnd - pszParam);
-            string strValue = url_decode_dup(pszKeyEnd + 1, strlen(pszUrlQuery) - (pszKeyEnd + 1 - pszUrlQuery));
+            string strKey = url_decode(pszParam, pszKeyEnd - pszParam);
+            string strValue = url_decode(pszKeyEnd + 1, strlen(pszUrlQuery) - (pszKeyEnd + 1 - pszUrlQuery));
             _008Add(strKey, strValue);
          }
          return;
@@ -946,13 +946,13 @@ void property_set::_parse_url_query(const char * pszUrlQuery)
       {
          if(pszKeyEnd == nullptr || pszKeyEnd > pszParamEnd)
          {
-            strKey = url_decode_dup(pszParam, pszParamEnd - pszParam);
+            strKey = url_decode(pszParam, pszParamEnd - pszParam);
             _008Add(strKey, "");
          }
          else
          {
-            string strKey = url_decode_dup(pszParam, pszKeyEnd - pszParam);
-            string strValue = url_decode_dup(pszKeyEnd + 1, pszParamEnd - (pszKeyEnd + 1));
+            string strKey = url_decode(pszParam, pszKeyEnd - pszParam);
+            string strValue = url_decode(pszKeyEnd + 1, pszParamEnd - (pszKeyEnd + 1));
             _008Add(strKey, strValue);
          }
       }

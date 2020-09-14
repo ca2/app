@@ -24,7 +24,7 @@ namespace filemanager
 
             SetCacheInterface(&m_cache);
 
-            m_pil = __new(image_list);
+            m_pil = __new(::image_list);
 
             m_pil->create(16, 16, 0, 0, 0);
 

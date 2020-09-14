@@ -26,11 +26,11 @@
 
 #if defined(APPLE_IOS)
 
-#include "aura/os/ios/ios_m.h"
+#include "apex/os/ios/ios_m.h"
 
 #else
 
-#include "aura/os/macos/_mm.h"
+#include "apex/os/macos/_mm.h"
 
 #endif
 

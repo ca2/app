@@ -17,7 +17,7 @@ namespace draw2d_xlib
       ::size                  m_size;
 
 
-      bitmap(::object * pobject);
+      bitmap(::layered * pobjectContext);
       virtual ~bitmap();
 
 

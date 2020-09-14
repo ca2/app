@@ -16,7 +16,7 @@ namespace user
       ::draw2d::brush_pointer                  m_brush;
 
 
-      button(::object * pobject);
+      button(::layered * pobjectContext);
       virtual ~button();
 
 

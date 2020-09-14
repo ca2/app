@@ -18,7 +18,6 @@ namespace base
 
    class CLASS_DECL_BASE application :
       virtual public ::axis::application,
-      virtual public ::user::callback,
       virtual public ::user::form_callback,
       virtual public ::user::impact_creator,
       virtual public ::filemanager::callback,
@@ -27,14 +26,14 @@ namespace base
    public:
 
 
-      __pointer(::aura::application_menu)       m_papplicationmenu;
+      //__pointer(::aura::application_menu)       m_papplicationmenu;
 
 
       application(const char * pszAppId = nullptr);
       virtual ~application();
 
 
-      virtual ::estatus initialize(::object * pobjectContext) override;
+      virtual ::estatus initialize(::layered * pobjectContext) override;
 
 
       virtual void assert_valid() const override;
@@ -254,7 +253,7 @@ namespace base
 //      //virtual string get_locale_schema_dir();
 //
 //
-//      //virtual ::estatus initialize(::object * pobjectContext) override;
+//      //virtual ::estatus initialize(::layered * pobjectContext) override;
 //
 //
 //      application_menu & applicationmenu();
@@ -310,7 +309,7 @@ namespace base
 //      virtual string get_theme();
 //
 //
-//      virtual __pointer(::aura::exclusive) get_exclusive(string str, LPSECURITY_ATTRIBUTES psa);
+//      virtual __pointer(::acme::exclusive) get_exclusive(string str, LPSECURITY_ATTRIBUTES psa);
 //      virtual bool exclusive_fails(string str, LPSECURITY_ATTRIBUTES psa);
 //
 //
@@ -399,7 +398,7 @@ namespace base
 //
 //      virtual string get_version();
 //
-//      virtual __pointer(::aura::ipi) create_ipi();
+//      virtual __pointer(::apex::ipi) create_ipi();
 //
 //      //virtual ::estatus process_init();
 //      virtual void process_term();
@@ -735,7 +734,7 @@ namespace base
 //      virtual void HideApplication();
 //
 //
-//      //virtual ::estatus initialize(::object* pobjectContext) override;
+//      //virtual ::estatus initialize(::layered * pobjectContext) override;
 //
 //      //virtual ::estatus process_init() override;
 //
@@ -1123,7 +1122,7 @@ namespace base
 //      //       virtual __pointer(::bergedge::document) get_document();
 //
 //
-//      //virtual ::estatus add_library(::aura::library * plibrary);
+//      //virtual ::estatus add_library(::apex::library * plibrary);
 //
 //      //virtual ::estatus initialize_userex();
 //virtual ::estatus userfs_init1();
@@ -1226,7 +1225,7 @@ virtual void on_change_cur_sel(::user::tab* ptab);
 ////virtual ~application();
 //
 //
-////virtual ::estatus     initialize(::object* pobjectContext) override;
+////virtual ::estatus     initialize(::layered * pobjectContext) override;
 //
 //
 ////virtual void install_message_routing(::channel * pchannel) override;
@@ -1320,7 +1319,7 @@ virtual void on_create_impact(::user::impact_data* pimpactdata) override;
 //
 //
 //
-      virtual void close(::aura::e_end eend) override;
+      virtual void close(::apex::enum_end eend) override;
 
 
    };

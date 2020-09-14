@@ -44,5 +44,7 @@ namespace imaging_wic
 comptr < IWICImagingFactory > wic_get_imaging_factory();
 
 
-#include "imaging.h"
+#include "context_image.h"
+
+
 

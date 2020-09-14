@@ -401,7 +401,7 @@ bool timer::thread_active() const
 
 //#if defined(LINUX) || defined(ANDROID)
 
-//void aura_timer_handler(sigval sigval);
+//void apex_timer_handler(sigval sigval);
 
 
 void timer::impl_init()
@@ -417,7 +417,7 @@ void timer::impl_init()
 
    // m_sev.sigev_value.sival_ptr = this;
 
-   // m_sev.sigev_notify_function = aura_timer_handler;
+   // m_sev.sigev_notify_function = apex_timer_handler;
 
    //m_bInit = !timer_create(CLOCK_REALTIME, &m_sev, &m_timerid);
 
@@ -589,7 +589,7 @@ bool timer::impl_restart()
    return m_estatus;
 
 }
-//void aura_timer_handler(sigval sigval)
+//void apex_timer_handler(sigval sigval)
 //{
 //
 //   ::timer * ptimer = (::timer *) sigval.sival_ptr;

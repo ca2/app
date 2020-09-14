@@ -625,7 +625,7 @@ namespace ios
 
        SC_HANDLE hdlServ = ::CreateService(
        hdlSCM,                    // SCManager database
-       "aura-" + papp->m_strAppName,               // name of service
+       "apex-" + papp->m_strAppName,               // name of service
        "ccwarehouse ca2 account " + papp->m_strAppName,        // service name to display
        STANDARD_RIGHTS_REQUIRED,  // desired access
        SERVICE_WIN32_OWN_PROCESS | SERVICE_INTERACTIVE_PROCESS, // service type
@@ -675,7 +675,7 @@ namespace ios
 
        SC_HANDLE hdlServ = ::OpenService(
        hdlSCM,                    // SCManager database
-       "aura-" + papp->m_strAppName,               // name of service
+       "apex-" + papp->m_strAppName,               // name of service
        DELETE);                     // no password
 
        if (!hdlServ)
@@ -717,7 +717,7 @@ namespace ios
 
        SC_HANDLE hdlServ = ::OpenService(
        hdlSCM,                    // SCManager database
-       "aura-" + papp->m_strAppName,               // name of service
+       "apex-" + papp->m_strAppName,               // name of service
        SERVICE_START);                     // no password
 
 
@@ -759,7 +759,7 @@ namespace ios
 
        SC_HANDLE hdlServ = ::OpenService(
        hdlSCM,                    // SCManager database
-       "aura-" + papp->m_strAppName,               // name of service
+       "apex-" + papp->m_strAppName,               // name of service
        SERVICE_STOP);                     // no password
 
        if (!hdlServ)
@@ -870,7 +870,7 @@ namespace ios
 
 //
 //  macos_os.cpp
-//  aura
+//  apex
 //
 //  Created by Camilo Sasuke Tsumanuma on 2013-09-17.
 //

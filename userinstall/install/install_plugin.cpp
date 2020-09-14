@@ -64,7 +64,7 @@ namespace install
    }
 
 
-   plugin::plugin(::object * pobject) :
+   plugin::plugin(::layered * pobjectContext) :
       ::object(pobject),
       ::simple_ui::style(pobject),
       ::aura::session(pobject),
@@ -375,7 +375,7 @@ namespace install
 
    }
 
-   plugin::thread_start_ca2::thread_start_ca2(::object * pobject) :
+   plugin::thread_start_ca2::thread_start_ca2(::layered * pobjectContext) :
       ::object(pobject),
       thread(pobject)
    {
@@ -1451,30 +1451,30 @@ retry_get_prompt:
 
          }
 
-         if(strApp.is_empty() && (!url_query_get_param_dup(strApp,"app",strApp) || strApp.is_empty()))
-            if(!url_query_get_param_dup(strApp,"app",m_phost->m_pbasecomposer->m_strPluginUrl) || strApp.is_empty())
+         if(strApp.is_empty() && (!url_query_get_param(strApp,"app",strApp) || strApp.is_empty()))
+            if(!url_query_get_param(strApp,"app",m_phost->m_pbasecomposer->m_strPluginUrl) || strApp.is_empty())
                strApp = "bergedge";
 
          string strLocale;
 
-         if (strPrompt.is_empty() || !url_query_get_param_dup(strLocale, "locale", strPrompt) || strLocale.is_empty())
-            if(strPrompt.is_empty() || !url_query_get_param_dup(strLocale,"lang",strPrompt) || strLocale.is_empty())
-               if(!url_query_get_param_dup(strLocale,"locale",m_phost->m_pbasecomposer->m_strPluginUrl) || strLocale.is_empty())
-                  if(!url_query_get_param_dup(strLocale,"lang",m_phost->m_pbasecomposer->m_strPluginUrl) || strLocale.is_empty())
+         if (strPrompt.is_empty() || !url_query_get_param(strLocale, "locale", strPrompt) || strLocale.is_empty())
+            if(strPrompt.is_empty() || !url_query_get_param(strLocale,"lang",strPrompt) || strLocale.is_empty())
+               if(!url_query_get_param(strLocale,"locale",m_phost->m_pbasecomposer->m_strPluginUrl) || strLocale.is_empty())
+                  if(!url_query_get_param(strLocale,"lang",m_phost->m_pbasecomposer->m_strPluginUrl) || strLocale.is_empty())
                      strLocale = str_get_system_default_locale_dup();
 
          string strSchema;
 
-         if (strPrompt.is_empty() || !url_query_get_param_dup(strSchema, "schema", strPrompt) || strSchema.is_empty())
-            if(strPrompt.is_empty() || !url_query_get_param_dup(strSchema,"styl",strPrompt) || strSchema.is_empty())
-               if(!url_query_get_param_dup(strSchema,"schema",m_phost->m_pbasecomposer->m_strPluginUrl) || strSchema.is_empty())
-                  if(!url_query_get_param_dup(strSchema,"styl",m_phost->m_pbasecomposer->m_strPluginUrl) || strSchema.is_empty())
+         if (strPrompt.is_empty() || !url_query_get_param(strSchema, "schema", strPrompt) || strSchema.is_empty())
+            if(strPrompt.is_empty() || !url_query_get_param(strSchema,"styl",strPrompt) || strSchema.is_empty())
+               if(!url_query_get_param(strSchema,"schema",m_phost->m_pbasecomposer->m_strPluginUrl) || strSchema.is_empty())
+                  if(!url_query_get_param(strSchema,"styl",m_phost->m_pbasecomposer->m_strPluginUrl) || strSchema.is_empty())
                      strSchema = str_get_system_default_schema_dup();
 
          string strVersion;
 
-         if(strPrompt.is_empty() || !url_query_get_param_dup(strVersion,"version",strPrompt) || strVersion.is_empty())
-            if(!url_query_get_param_dup(strVersion,"schema",m_phost->m_pbasecomposer->m_strPluginUrl) || strVersion.is_empty())
+         if(strPrompt.is_empty() || !url_query_get_param(strVersion,"version",strPrompt) || strVersion.is_empty())
+            if(!url_query_get_param(strVersion,"schema",m_phost->m_pbasecomposer->m_strPluginUrl) || strVersion.is_empty())
                strVersion = ::install::get_version();
 
          if (strLocale.is_empty())
@@ -1659,7 +1659,7 @@ restart:
 
 #if !defined(CUBE) && !defined(ANDROID)
 
-::hotplugin::plugin * new_hotplugin(::object * pobject)
+::hotplugin::plugin * new_hotplugin(::layered * pobjectContext)
 {
    return new ::install::plugin(pobject);
 }

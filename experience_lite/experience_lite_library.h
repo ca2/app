@@ -14,12 +14,12 @@
 
 
          class CLASS_DECL_APP_EXPERIENCE_LITE library:
-            virtual public ::aura::library
+            virtual public ::apex::library
          {
          public:
 
 
-            library(::object * pobject);
+            library(::layered * pobjectContext);
             virtual ~library();
 
 

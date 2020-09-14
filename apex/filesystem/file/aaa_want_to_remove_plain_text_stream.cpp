@@ -6,7 +6,7 @@ namespace file
 
 
 
-   //text_stream_memory_text_stream_memory_file(::object * pobject) :
+   //text_stream_memory_text_stream_memory_file(::layered * pobjectContext) :
    //   ::object(pobject)
    //{
 
@@ -224,7 +224,7 @@ namespace file
 
 
 
-//} // namespace aura
+//} // namespace apex
 
 
 void replace_char(char * sz, char ch1, char ch2)
@@ -297,5 +297,5 @@ void replace_char(char * sz, char ch1, char ch2)
 
 
 
-//} // namespace aura
+//} // namespace apex
 

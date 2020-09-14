@@ -2824,7 +2824,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="primitive\primitive\interlocked_long.cpp" />
     <ClCompile Include="primitive\primitive\interlocked_long_pulse.cpp" />
     <ClCompile Include="primitive\primitive\job.cpp" />
-    <ClCompile Include="primitive\primitive\generic_object.cpp" />
+    <ClCompile Include="primitive\primitive\generic.cpp" />
     <ClCompile Include="primitive\primitive\memory.cpp" />
     <ClCompile Include="primitive\primitive\memory_base.cpp" />
     <ClCompile Include="primitive\primitive\memory_c.cpp" />
@@ -3458,7 +3458,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="primitive\primitive\interlocked_long.h" />
     <ClInclude Include="primitive\primitive\interlocked_long_pulse.h" />
     <ClInclude Include="primitive\primitive\job.h" />
-    <ClInclude Include="primitive\primitive\generic_object.h" />
+    <ClInclude Include="primitive\primitive\generic.h" />
     <ClInclude Include="primitive\primitive\object_meta.h" />
     <ClInclude Include="primitive\primitive\papaya.h" />
     <ClInclude Include="primitive\primitive\logic.h" />

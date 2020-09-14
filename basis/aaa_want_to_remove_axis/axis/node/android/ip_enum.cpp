@@ -26,7 +26,7 @@ namespace android
 {
 
 
-   ip_enum::ip_enum(::object * pobject) :
+   ip_enum::ip_enum(::layered * pobjectContext) :
       ::object(pobject),
       ::net::ip_enum(pobject)
    {

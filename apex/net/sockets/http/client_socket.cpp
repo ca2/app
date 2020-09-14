@@ -1,6 +1,6 @@
 #include "framework.h"
-#include "aura/id.h"
-#include "aura/net/sockets/_.h"
+#include "apex/id.h"
+#include "apex/net/sockets/_.h"
 
 
 #define HEAVY_HTTP_LOG 0
@@ -815,8 +815,8 @@ namespace sockets
 namespace http
 {
 
-   session::session(::object * pobject) :
-      m_handler(pobject)
+   session::session(::layered * pobjectContext) :
+      m_handler(pobjectContext)
    {
 
       //m_handler.EnablePool();

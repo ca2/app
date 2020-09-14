@@ -7,7 +7,13 @@
 #pragma once
 
 
+
+
+
+
 class plex_heap_alloc_array;
+
+
 
 namespace acme
 {
@@ -47,13 +53,13 @@ namespace acme
 #ifdef WINDOWS
 
 
-   void set_simple_output_debug_string_a();
+   CLASS_DECL_ACME void set_simple_output_debug_string_a();
 
-   void set_extended_output_debug_string_a();
+   CLASS_DECL_ACME void set_extended_output_debug_string_a();
 
-   void set_simple_output_debug_string_w();
+   CLASS_DECL_ACME void set_simple_output_debug_string_w();
 
-   void set_extended_output_debug_string_w();
+   CLASS_DECL_ACME void set_extended_output_debug_string_w();
 
 
    //#endif
@@ -70,8 +76,6 @@ namespace acme
    //extern ::mutex * &::get_context_system()->g_mutexLibrary;
 
    extern __LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
-
-   extern ::mutex* g_pmutexGlobals;
 
    //extern critical_section* g_pcsGlobal;
 
@@ -224,12 +228,10 @@ namespace acme
       ::estatus term();
 
 
-      void init_windowing();
-      void terg_windowing();
+      //void init_windowing();
+      //void term_windowing();
 
 
-      void init_id_pool();
-      void term_id_pool();
 
 
    };

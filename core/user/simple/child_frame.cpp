@@ -29,18 +29,26 @@ bool simple_child_frame::pre_create_window(::user::create_struct& cs)
    cs.style &= ~WS_BORDER;
    cs.style &= ~WS_THICKFRAME;
 
-   if(!simple_frame_window::pre_create_window(cs))
+   if (!simple_frame_window::pre_create_window(cs))
+   {
+
       return FALSE;
+
+   }
 
 #ifdef WINDOWS_DESKTOP
 
    if(cs.hwndParent == nullptr)
    {
 
-      if(Application.m_puiMain1 != nullptr)
+      auto puiMain1 = Application.m_puiMain1;
+
+      if(puiMain1 != nullptr)
       {
 
-         cs.hwndParent = Application.m_puiMain1->get_handle();
+         auto pui = __user_interaction(Application.m_puiMain1);
+
+         cs.hwndParent = pui->get_handle();
 
       }
 

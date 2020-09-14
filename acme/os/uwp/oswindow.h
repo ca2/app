@@ -35,19 +35,3 @@ public:
 
 
 };
-//
-//
-//class oswindow_dataptra;
-//
-//
-//
-/////static oswindow_dataptra * s_pdataptra;
-CLASS_DECL_ACME index oswindow_find(::user::interaction_impl* pinteraction);
-CLASS_DECL_ACME oswindow oswindow_get(::user::interaction_impl* pinteraction);
-CLASS_DECL_ACME oswindow oswindow_remove(::user::interaction_impl* pinteraction);
-CLASS_DECL_ACME::user::interaction_impl* oswindow_interaction_impl(oswindow oswindow);
-CLASS_DECL_ACME::user::interaction* oswindow_interaction(oswindow oswindow);
-#if defined(__cplusplus_winrt)
-CLASS_DECL_ACME Agile < Windows::UI::Core::CoreWindow > oswindow_core_window(oswindow window);
-#endif
-

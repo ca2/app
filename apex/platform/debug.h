@@ -4,28 +4,32 @@
 #include "apex/net/sockets/trace_interface.h"
 
 
-#define _DEBUG_WIDE_(s) L ## s
-#define _DEBUG_WIDE(s) _DEBUG_WIDE_(s)
-
-#define _NORMAL_BLOCK 1
+//CLASS_DECL_APEX void os_trace(e_trace_level elevel, const char * pszTag, const char * pszMessage);
+CLASS_DECL_APEX void trace(e_trace_level elevel, const char * pszTag, const char * psz, const char * pszFile = nullptr, int iLine = -1);
 
 
-CLASS_DECL_APEX i32 DECL_C debug_report(
-i32 _ReportType,
-const char * _Filename,
-i32 _LineNumber,
-const char * _ModuleName,
-const char * _Format,
-...);
-
-
-CLASS_DECL_APEX i32 DECL_C debug_report(
-i32 _ReportType,
-const wchar_t * _Filename,
-i32 _LineNumber,
-const wchar_t * _ModuleName,
-const wchar_t * _Format,
-...);
+//#define _DEBUG_WIDE_(s) L ## s
+//#define _DEBUG_WIDE(s) _DEBUG_WIDE_(s)
+//
+//#define _NORMAL_BLOCK 1
+//
+//
+//CLASS_DECL_APEX i32 DECL_C debug_report(
+//i32 _ReportType,
+//const char * _Filename,
+//i32 _LineNumber,
+//const char * _ModuleName,
+//const char * _Format,
+//...);
+//
+//
+//CLASS_DECL_APEX i32 DECL_C debug_report(
+//i32 _ReportType,
+//const wchar_t * _Filename,
+//i32 _LineNumber,
+//const wchar_t * _ModuleName,
+//const wchar_t * _Format,
+//...);
 
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -111,16 +115,16 @@ for some applications. You can still turn this feature on manually.
 
 struct MEMORY_BLOCK_HEADER;
 
-typedef struct _MEMORY_STATE
-{
-
-   struct MEMORY_BLOCK_HEADER * pBlockHeader;
-   size_t lCounts[_MAX_BLOCKS];
-   size_t lSizes[_MAX_BLOCKS];
-   size_t lHighWaterCount;
-   size_t lTotalCount;
-
-} MEMORY_STATE;
+//typedef struct _MEMORY_STATE
+//{
+//
+//   struct MEMORY_BLOCK_HEADER * pBlockHeader;
+//   size_t lCounts[_MAX_BLOCKS];
+//   size_t lSizes[_MAX_BLOCKS];
+//   size_t lHighWaterCount;
+//   size_t lTotalCount;
+//
+//} MEMORY_STATE;
 
 
 /****************************************************************************
@@ -248,18 +252,18 @@ void CLASS_DECL_APEX TRACELASTERROR();
 
 
 
-CLASS_DECL_APEX string FormatMessageFromSystem(u32 dwError);
+//CLASS_DECL_APEX string FormatMessageFromSystem(u32 dwError);
 
 
-#ifdef MEMDLEAK
-
-CLASS_DECL_APEX string get_mem_info_report1();
-CLASS_DECL_APEX ::count get_mem_info(i32 ** ppiUse, const char *** ppszFile, const char *** pszCallStack, u32 ** ppuiLine, size_t ** ppsize);
-CLASS_DECL_APEX ::count get_mem_info2(i32 ** ppiUse, const char *** ppszFile, DWORD64 ** ppuiStack[64], i64 ** ppiStack, i32 ** ppiLine, i64 ** ppiSize);
-
-
-
-#endif
+//#ifdef MEMDLEAK
+//
+//CLASS_DECL_APEX string get_mem_info_report1();
+//CLASS_DECL_APEX ::count get_mem_info(i32 ** ppiUse, const char *** ppszFile, const char *** pszCallStack, u32 ** ppuiLine, size_t ** ppsize);
+//CLASS_DECL_APEX ::count get_mem_info2(i32 ** ppiUse, const char *** ppszFile, DWORD64 ** ppuiStack[64], i64 ** ppiStack, i32 ** ppiLine, i64 ** ppiSize);
+//
+//
+//
+//#endif
 
 
 
@@ -278,11 +282,11 @@ CLASS_DECL_APEX ::count get_mem_info2(i32 ** ppiUse, const char *** ppszFile, DW
 //};
 
 
-extern critical_section * g_pcsTrace;
-extern context_object * g_pobjecTracer;
+//extern critical_section * g_pcsTrace;
+//extern context_object * g_pobjecTracer;
 
-CLASS_DECL_APEX void os_trace(e_trace_level elevel, const char * pszTag, const char * pszMessage);
-CLASS_DECL_APEX void trace(e_trace_level elevel, const char * pszTag, const char * psz, const char * pszFile = nullptr, int iLine = -1);
+//CLASS_DECL_APEX void os_trace(e_trace_level elevel, const char * pszTag, const char * pszMessage);
+//CLASS_DECL_APEX void trace(e_trace_level elevel, const char * pszTag, const char * psz, const char * pszFile = nullptr, int iLine = -1);
 
 
 
@@ -315,11 +319,11 @@ CLASS_DECL_APEX void trace(e_trace_level elevel, const char * pszTag, const char
 
 
 
-extern CLASS_DECL_APEX ::mutex * g_pmutexMemoryCounters;
+//extern CLASS_DECL_APEX ::mutex * g_pmutexMemoryCounters;
 
-CLASS_DECL_APEX bool memcnts();
+//CLASS_DECL_APEX bool memcnts();
 
-CLASS_DECL_APEX ::file::path memcnts_base_path();
+//CLASS_DECL_APEX ::file::path memcnts_base_path();
 
 template < typename T >
 ::file::path memcnts_path(T * pthis);
@@ -331,17 +335,17 @@ template < typename T >
 void memcnts_dec(T * pthis);
 
 
-namespace papaya
-{
-   template < typename T >
-   T constraint(T t, T tMin, T tMax)
-   {
-
-      return (t < tMin) ? tMin : ((t > tMax) ? tMax : t);
-
-   }
-
-}
+//namespace papaya
+//{
+//   template < typename T >
+//   T constraint(T t, T tMin, T tMax)
+//   {
+//
+//      return (t < tMin) ? tMin : ((t > tMax) ? tMax : t);
+//
+//   }
+//
+//}
 
 
 inline e_trace_level trace_level_constraint(e_trace_level elevel)
@@ -352,23 +356,23 @@ inline e_trace_level trace_level_constraint(e_trace_level elevel)
 }
 
 
-extern const char * g_pszTraceLevelName[];
+//extern const char * g_pszTraceLevelName[];
+//
+//
+//inline const char * trace_level_name(e_trace_level elevel)
+//{
+//
+//   return g_pszTraceLevelName[trace_level_constraint(elevel)];
+//
+//}
 
 
-inline const char * trace_level_name(e_trace_level elevel)
-{
-
-   return g_pszTraceLevelName[trace_level_constraint(elevel)];
-
-}
-
-
-extern char g_chaTraceLevel[];
-
-
-inline char trace_level_char(e_trace_level elevel)
-{
-
-   return g_chaTraceLevel[trace_level_constraint(elevel)];
-
-}
+//extern char g_chaTraceLevel[];
+//
+//
+//inline char trace_level_char(e_trace_level elevel)
+//{
+//
+//   return g_chaTraceLevel[trace_level_constraint(elevel)];
+//
+//}

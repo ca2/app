@@ -13,7 +13,7 @@ namespace macos
 
 
 
-//   thread::thread(::object * pobject) :
+//   thread::thread(::layered * pobjectContext) :
 //   ::object(pobject),
 //   ::thread_impl(pobject),
 //   ::ansios::thread_impl(pobject)

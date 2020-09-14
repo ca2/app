@@ -5,7 +5,8 @@ namespace message
 {
 
 
-   class CLASS_DECL_AURA timer : virtual public base
+   class CLASS_DECL_AURA timer :
+      virtual public base
    {
    public:
 
@@ -13,10 +14,10 @@ namespace message
       UINT m_nIDEvent;
 
 
-      timer() { }
+      timer() {}
 
       using ::message::base::set;
-      virtual void set(::user::primitive * pwnd, UINT uiMessage, WPARAM wparam, ::lparam lparam);
+      virtual void set(::user::primitive* pwnd, UINT uiMessage, WPARAM wparam, ::lparam lparam);
 
 
 

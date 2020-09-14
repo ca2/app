@@ -109,7 +109,7 @@ namespace helloworld
       //bool                             m_bFastOnEmpty;
 
 
-      render(::object * pobject);
+      render(::layered * pobjectContext);
       virtual ~render();
 
 

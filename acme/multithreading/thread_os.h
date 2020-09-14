@@ -30,17 +30,17 @@ CLASS_DECL_ACME HTHREAD get_current_hthread();
 
 
 
-CLASS_DECL_ACME bool on_init_thread();
-CLASS_DECL_ACME bool on_term_thread();
-
-
-CLASS_DECL_ACME void __init_thread();
-CLASS_DECL_ACME void __term_thread();
-
-
-CLASS_DECL_ACME bool __os_init_thread();
-CLASS_DECL_ACME bool __os_term_thread();
-
+//CLASS_DECL_ACME bool on_init_thread();
+//CLASS_DECL_ACME bool on_term_thread();
+//
+//
+//CLASS_DECL_ACME void __init_thread();
+//CLASS_DECL_ACME void __term_thread();
+//
+//
+//CLASS_DECL_ACME bool __os_init_thread();
+//CLASS_DECL_ACME bool __os_term_thread();
+//
 
 //CLASS_DECL_ACME bool __node_init_thread(::thread * pthread);
 //CLASS_DECL_ACME bool __node_term_thread(::thread * pthread);
@@ -82,49 +82,46 @@ CLASS_DECL_ACME bool __os_term_thread();
 CLASS_DECL_ACME bool thread_get_run();
 
 
-CLASS_DECL_ACME void __node_init_multithreading();
-CLASS_DECL_ACME void __node_term_multithreading();
-
-
-//thread_local __pointer(property_set) t_ppropertyset;
+//CLASS_DECL_ACME void __node_init_multithreading();
+//CLASS_DECL_ACME void __node_term_multithreading();
 
 
 
-
-namespace multithreading
-{
-
-
-   CLASS_DECL_ACME void init_multithreading();
-   CLASS_DECL_ACME void term_multithreading();
-
-   //CLASS_DECL_ACME bool thread_registered(::thread * pthread);
-   //CLASS_DECL_ACME bool thread_id_registered(ITHREAD id);
-
-   //CLASS_DECL_ACME void thread_register(ITHREAD ithread, ::thread * pthread);
-
-   //CLASS_DECL_ACME void thread_unregister(ITHREAD ithread, ::thread * pthread);
-
-   //CLASS_DECL_ACME bool is_child(::thread * pthread);
-
-   //CLASS_DECL_ACME void post_quit_to_all_threads();
-
-   //CLASS_DECL_ACME void post_to_all_threads(UINT message, WPARAM wparam, LPARAM lparam);
-
-   ////CLASS_DECL_ACME bool wait_threads(::duration duration, __pointer_array(::thread) threadaExcept = __pointer_array(::thread)());
-
-   //CLASS_DECL_ACME __pointer(::thread) calc_parent(::thread * pthread);
-
-   //CLASS_DECL_ACME void __node_on_init_thread(thread * pthread);
-   //CLASS_DECL_ACME void __node_on_term_thread(thread * pthread);
-
-   //CLASS_DECL_ACME extern comparable_eq_array <ITHREAD> * s_piaThread;
-   //CLASS_DECL_ACME extern address_array < ::thread * > * s_pthreadptra;
-   //CLASS_DECL_ACME extern ::mutex * s_pmutex;
-
-
-} // namespace multithreading
-
+//
+//namespace multithreading
+//{
+//
+//
+//   //CLASS_DECL_ACME void init_multithreading();
+//   //CLASS_DECL_ACME void term_multithreading();
+//
+//   //CLASS_DECL_ACME bool thread_registered(::thread * pthread);
+//   //CLASS_DECL_ACME bool thread_id_registered(ITHREAD id);
+//
+//   //CLASS_DECL_ACME void thread_register(ITHREAD ithread, ::thread * pthread);
+//
+//   //CLASS_DECL_ACME void thread_unregister(ITHREAD ithread, ::thread * pthread);
+//
+//   //CLASS_DECL_ACME bool is_child(::thread * pthread);
+//
+//   //CLASS_DECL_ACME void post_quit_to_all_threads();
+//
+//   //CLASS_DECL_ACME void post_to_all_threads(UINT message, WPARAM wparam, LPARAM lparam);
+//
+//   ////CLASS_DECL_ACME bool wait_threads(::duration duration, __pointer_array(::thread) threadaExcept = __pointer_array(::thread)());
+//
+//   //CLASS_DECL_ACME __pointer(::thread) calc_parent(::thread * pthread);
+//
+//   //CLASS_DECL_ACME void __node_on_init_thread(thread * pthread);
+//   //CLASS_DECL_ACME void __node_on_term_thread(thread * pthread);
+//
+//   //CLASS_DECL_ACME extern comparable_eq_array <ITHREAD> * s_piaThread;
+//   //CLASS_DECL_ACME extern address_array < ::thread * > * s_pthreadptra;
+//   //CLASS_DECL_ACME extern ::mutex * s_pmutex;
+//
+//
+//} // namespace multithreading
+//
 
 
 //CLASS_DECL_ACME void __end_thread(::generic * pobject);
@@ -172,7 +169,7 @@ sync_result wait(size_t numberOfItems, sync ** psync, const duration& duration =
 
 
 
-CLASS_DECL_ACME void thread_alloc_ready(bool bReady);
+//CLASS_DECL_ACME void thread_alloc_ready(bool bReady);
 
 
 
@@ -191,8 +188,8 @@ CLASS_DECL_ACME ::mutex & message_dispatch_mutex();
 typedef void SIMPLE_PROCEDURE(void);
 typedef SIMPLE_PROCEDURE * PPROC_SIMPLE;
 
-CLASS_DECL_ACME extern PPROC_SIMPLE g_axisoninitthread;
-CLASS_DECL_ACME extern PPROC_SIMPLE g_axisontermthread;
+//CLASS_DECL_ACME extern PPROC_SIMPLE g_axisoninitthread;
+//CLASS_DECL_ACME extern PPROC_SIMPLE g_axisontermthread;
 
 
 

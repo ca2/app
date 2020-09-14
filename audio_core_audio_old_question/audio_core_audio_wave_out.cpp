@@ -16,7 +16,7 @@ namespace multimedia
    {
 
 
-      out::out(::object * pobject) :
+      out::out(::layered * pobjectContext) :
          object(pobject),
          ::thread(pobject),
          wave_base(pobject),

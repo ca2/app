@@ -24,7 +24,7 @@ namespace net
       virtual ~email();
 
 
-      virtual ::estatus initialize(::object * pobjectContext) override;
+      virtual ::estatus initialize(::layered * pobjectContext) override;
 
 
       void prepare_headers();

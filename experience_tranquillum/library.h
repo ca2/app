@@ -10,7 +10,7 @@ namespace experience
 
 
       class CLASS_DECL_APP_EXPERIENCE_TRANQUILLUM library:
-            virtual public ::aura::library
+            virtual public ::apex::library
          {
          public:
 
@@ -19,7 +19,7 @@ namespace experience
             virtual ~library();
 
 
-            virtual ::generic_object * new_object(::object * pobject,const char * lpszClass) override;
+            virtual ::generic * new_object(::layered * pobjectContext,const char * lpszClass) override;
 
 
          };

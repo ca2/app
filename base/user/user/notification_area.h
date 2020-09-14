@@ -41,19 +41,19 @@ namespace user
    public:
 
 
-      oswindow             m_oswindowTray;
-      __pointer(image_list)         m_pil16;
+      oswindow                         m_oswindowTray;
+      __pointer(::image_list)          m_pil16;
 #ifdef WINDOWS_DESKTOP
       __pointer_array(TrayItemInfo)    m_infoa;
 #endif
-      HFONT                m_hfontHidden;
-      HFONT                m_hfontRegular;
+      HFONT                            m_hfontHidden;
+      HFONT                            m_hfontRegular;
 
 
       notification_area();
       virtual ~notification_area();
 
-      virtual void Initialize(::object * pobject);
+      virtual void Initialize(::layered * pobjectContext);
 
       void ListTrayIcons(i32 defindex = 0);
       void EditCopy(i32 iItem);

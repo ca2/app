@@ -27,7 +27,7 @@ namespace user
    }
 
 
-   ::estatus box::initialize(::object * pobjectContext)
+   ::estatus box::initialize(::layered * pobjectContext)
    {
 
       auto estatus = interaction::initialize(pobjectContext);

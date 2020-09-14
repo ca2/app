@@ -27,11 +27,11 @@
 
 #ifdef MACOS
 
-#include "aura/os/macos/_mm.h"
+#include "apex/os/macos/_mm.h"
 
 #else
 
-#include "aura/os/ios/_mm.h"
+#include "apex/os/ios/_mm.h"
 
 #endif
 

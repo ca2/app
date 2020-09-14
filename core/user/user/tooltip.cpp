@@ -8,8 +8,8 @@ namespace user
 {
 
 
-   tooltip::tooltip(::object * pobject):
-      ::object(pobject),
+   tooltip::tooltip(::layered * pobjectContext):
+      ::object(pobjectContext),
       m_font(e_create)
    {
 
@@ -162,7 +162,7 @@ namespace user
 
          sizeLine = g->GetTextExtent(strLine);
 
-         size.cx = MAX(size.cx,sizeLine.cx);
+         size.cx = max(size.cx,sizeLine.cx);
 
          size.cy += sizeLine.cy;
 

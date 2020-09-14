@@ -38,7 +38,7 @@ namespace filemanager
 
       pdocument->add_data(this);
 
-      __refer(m_pdatacontainerbase, pdocument);
+      m_pdatacontainerbase = pdocument;
 
       defer_create_mutex();
 
@@ -112,7 +112,7 @@ namespace filemanager
 
          strDir = pathUser;
 
-         listing.ls(pathUser);
+         Application.dir().ls(listing, pathUser);
 
       }
 

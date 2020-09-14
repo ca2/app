@@ -1,6 +1,6 @@
 #include "framework.h"
-#include "aura/id.h"
-#include "aura/net/sockets/_.h"
+#include "apex/id.h"
+#include "apex/net/sockets/_.h"
 #include <openssl/ssl.h>
 
 #define DEEP_DATA_DEBUG 0
@@ -549,7 +549,9 @@ namespace sockets
 
          memory m;
 
-         m.random_bytes(16);
+         m.set_size(16);
+
+         System.math().random_bytes(m.get_data(), m.get_size());
 
          m_strBase64 = System.base64().encode(m);
 

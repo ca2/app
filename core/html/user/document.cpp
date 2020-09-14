@@ -348,7 +348,7 @@ void html_document::on_command(::user::command * pcommand)
 
 #ifndef _UWP
 
-      ::aura::shell_launcher launcher(nullptr, "open", get_file_path(), nullptr, get_file_path().folder(), SW_SHOWNORMAL);
+      ::apex::shell_launcher launcher(nullptr, "open", get_file_path(), nullptr, get_file_path().folder(), SW_SHOWNORMAL);
 
       launcher.execute();
 

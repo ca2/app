@@ -195,7 +195,7 @@ namespace uwp
    }
 
 
-   ::estatus copydesk::initialize(::object * pobjectContext)
+   ::estatus copydesk::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::user::copydesk::initialize(pobjectContext);

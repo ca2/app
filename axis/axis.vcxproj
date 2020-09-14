@@ -45,7 +45,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{4C6F5F2B-56EE-485F-924A-F8F0A9C24EB6}</ProjectGuid>
+    <ProjectGuid>{A2CBD4ED-ED0F-482B-9B16-F48F21C32835}</ProjectGuid>
     <RootNamespace>axis</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -536,9 +536,10 @@
     <ClInclude Include="account\user_set.h" />
     <ClInclude Include="account\_.h" />
     <ClInclude Include="account\_account.h" />
-    <ClInclude Include="compress\compress.h" />
-    <ClInclude Include="compress\compress_bz.h" />
-    <ClInclude Include="compress\compress_bzip.h" />
+    <ClInclude Include="compress\_.h" />
+    <ClInclude Include="compress\bz.h" />
+    <ClInclude Include="compress\bzip.h" />
+    <ClInclude Include="const\idpool.h" />
     <ClInclude Include="database\database\const.h" />
     <ClInclude Include="database\database\database.h" />
     <ClInclude Include="database\database\dataset.h" />
@@ -579,6 +580,7 @@
     <ClInclude Include="html\html_lite\reader.h" />
     <ClInclude Include="html\html_lite\tag.h" />
     <ClInclude Include="html\html_lite\_.h" />
+    <ClInclude Include="id.h" />
     <ClInclude Include="include\objc.h" />
     <ClInclude Include="include\objcpp.h" />
     <ClInclude Include="include\winrt.h" />
@@ -627,8 +629,14 @@
     <ClInclude Include="net\_.h" />
     <ClInclude Include="net\_impl.h" />
     <ClInclude Include="net\_net.h" />
-    <ClInclude Include="pcre\pcre.h" />
-    <ClInclude Include="pcre\pcre_util.h" />
+    <ClInclude Include="pcre\code.h" />
+    <ClInclude Include="pcre\code_impl.h" />
+    <ClInclude Include="pcre\context.h" />
+    <ClInclude Include="pcre\context_impl.h" />
+    <ClInclude Include="pcre\regex.h" />
+    <ClInclude Include="pcre\util_impl.h" />
+    <ClInclude Include="pcre\_.h" />
+    <ClInclude Include="pcre\_pcre.h" />
     <ClInclude Include="platform\application.h" />
     <ClInclude Include="platform\geo_department.h" />
     <ClInclude Include="platform\openweather_city.h" />
@@ -689,7 +697,8 @@
     <ClCompile Include="account\usera.cpp" />
     <ClCompile Include="account\user_array.cpp" />
     <ClCompile Include="account\user_set.cpp" />
-    <ClCompile Include="compress\compress_bz.cpp" />
+    <ClCompile Include="compress\bz.cpp" />
+    <ClCompile Include="const\idpool.cpp" />
     <ClCompile Include="database\database\database.cpp" />
     <ClCompile Include="database\database\dataset.cpp" />
     <ClCompile Include="database\database\definition.cpp" />
@@ -740,7 +749,13 @@
     <ClCompile Include="net\netserver\socket_thread.cpp" />
     <ClCompile Include="net\sockets\bsd\smtp\smtpd_socket.cpp" />
     <ClCompile Include="net\sockets\bsd\smtp\smtp_socket.cpp" />
-    <ClCompile Include="pcre\pcre.cpp" />
+    <ClCompile Include="pcre\code.cpp" />
+    <ClCompile Include="pcre\code_impl.cpp" />
+    <ClCompile Include="pcre\context.cpp" />
+    <ClCompile Include="pcre\context_impl.cpp" />
+    <ClCompile Include="pcre\regex.cpp" />
+    <ClCompile Include="pcre\system.cpp" />
+    <ClCompile Include="pcre\util_impl.cpp" />
     <ClCompile Include="platform\application.cpp" />
     <ClCompile Include="platform\geo_department.cpp" />
     <ClCompile Include="platform\session.cpp" />
@@ -778,6 +793,12 @@
     <ClCompile Include="_.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\acme\acme.vcxproj">
+      <Project>{638b242f-0f21-41c3-9f66-724660046133}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\apex\apex.vcxproj">
+      <Project>{e000ffaf-392f-4e32-bf51-777ca238991f}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\aura\aura.vcxproj">
       <Project>{e000ffaf-392f-4e32-bf51-fd7ed638991f}</Project>
     </ProjectReference>

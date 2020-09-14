@@ -5,7 +5,7 @@
 
 
 
-//#include "aura/node/ansios/_.h"
+//#include "apex/node/ansios/_.h"
 ////#define CLASS_DECL_APEX
 
 //struct plane_system
@@ -24,7 +24,7 @@
 
 string get_error_message(DWORD dwError);
 
-::aura::application *     ios_instantiate_application(::aura::application * pappSystem, const char * pszId);
+::apex::application *     ios_instantiate_application(::apex::application * pappSystem, const char * pszId);
 
 
 #define NULL_REF(class) (*((class *) nullptr))

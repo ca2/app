@@ -20,7 +20,7 @@ namespace userfs
    }
 
 
-   ::estatus document::initialize(::object * pobjectContext)
+   ::estatus document::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::user::document::initialize(pobjectContext);
@@ -117,7 +117,7 @@ namespace userfs
       else
       {
 
-         listingUser.ls(pitem->m_filepathFinal);
+         Application.dir().ls(listingUser, pitem->m_filepathFinal);
 
          listingUser.m_pathUser = pitem->m_filepathUser;
 

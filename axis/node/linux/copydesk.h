@@ -17,7 +17,7 @@ namespace linux
       virtual ~copydesk();
 
 
-      virtual ::estatus initialize(::object * pobjectContext) override;
+      virtual ::estatus initialize(::layered * pobjectContext) override;
       virtual void finalize() override;
 
       virtual bool _set_filea(const ::file::patha & patha, e_op eop) override;

@@ -13,7 +13,7 @@ namespace music
       {
          
    
-         sequence_thread::sequence_thread(::object * pobject) :
+         sequence_thread::sequence_thread(::layered * pobjectContext) :
             object(pobject),
             thread(pobject),
             ::music::midi::sequence_thread(pobject)

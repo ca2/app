@@ -634,7 +634,7 @@
 		9A201CE6247733DD00A31CBF /* create.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1E1B6F22F0AC39004243B8 /* create.cpp */; };
 		9A201CE7247733DD00A31CBF /* edit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1E1B3E22F0AC39004243B8 /* edit.cpp */; };
 		9A201CE8247733DD00A31CBF /* factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1E1B8322F0AC39004243B8 /* factory.cpp */; };
-		9A201CEA247733DD00A31CBF /* generic_object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3765912409C0ED002D15D3 /* generic_object.cpp */; };
+		9A201CEA247733DD00A31CBF /* generic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3765912409C0ED002D15D3 /* generic.cpp */; };
 		9A201CEB247733DD00A31CBF /* handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1E1B8A22F0AC3A004243B8 /* handler.cpp */; };
 		9A201CEC247733DD00A31CBF /* id_space.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1E1B5322F0AC39004243B8 /* id_space.cpp */; };
 		9A201CED247733DD00A31CBF /* id.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1E1B5122F0AC39004243B8 /* id.cpp */; };
@@ -1477,7 +1477,7 @@
 		9A3765A82409C0EF002D15D3 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3765812409C0EB002D15D3 /* _.cpp */; };
 		9A3765A92409C0EF002D15D3 /* enum_type.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3765822409C0EB002D15D3 /* enum_type.h */; };
 		9A3765AA2409C0EF002D15D3 /* object_meta.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3765832409C0EB002D15D3 /* object_meta.cpp */; };
-		9A3765AB2409C0EF002D15D3 /* generic_object.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3765842409C0EB002D15D3 /* generic_object.h */; };
+		9A3765AB2409C0EF002D15D3 /* generic.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3765842409C0EB002D15D3 /* generic.h */; };
 		9A3765AC2409C0EF002D15D3 /* natural.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3765852409C0EB002D15D3 /* natural.h */; };
 		9A3765AD2409C0EF002D15D3 /* var_element.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3765862409C0EB002D15D3 /* var_element.cpp */; };
 		9A3765AF2409C0EF002D15D3 /* _memory.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3765882409C0EC002D15D3 /* _memory.h */; };
@@ -1486,7 +1486,7 @@
 		9A3765B52409C0EF002D15D3 /* stick.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A37658E2409C0ED002D15D3 /* stick.h */; };
 		9A3765B62409C0EF002D15D3 /* property_set_composite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A37658F2409C0ED002D15D3 /* property_set_composite.cpp */; };
 		9A3765B72409C0EF002D15D3 /* _factory_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3765902409C0ED002D15D3 /* _factory_impl.h */; };
-		9A3765B82409C0EF002D15D3 /* generic_object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3765912409C0ED002D15D3 /* generic_object.cpp */; };
+		9A3765B82409C0EF002D15D3 /* generic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3765912409C0ED002D15D3 /* generic.cpp */; };
 		9A3765BA2409C0EF002D15D3 /* _property_set_composite_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3765932409C0EE002D15D3 /* _property_set_composite_impl.h */; };
 		9A3765BC2409C0EF002D15D3 /* update.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3765952409C0EE002D15D3 /* update.cpp */; };
 		9A3765BD2409C0EF002D15D3 /* action_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3765962409C0EE002D15D3 /* action_context.h */; };
@@ -3497,7 +3497,7 @@
 		9A3765812409C0EB002D15D3 /* _.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
 		9A3765822409C0EB002D15D3 /* enum_type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = enum_type.h; sourceTree = "<group>"; };
 		9A3765832409C0EB002D15D3 /* object_meta.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = object_meta.cpp; sourceTree = "<group>"; };
-		9A3765842409C0EB002D15D3 /* generic_object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = generic_object.h; sourceTree = "<group>"; };
+		9A3765842409C0EB002D15D3 /* generic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = generic.h; sourceTree = "<group>"; };
 		9A3765852409C0EB002D15D3 /* natural.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = natural.h; sourceTree = "<group>"; };
 		9A3765862409C0EB002D15D3 /* var_element.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = var_element.cpp; sourceTree = "<group>"; };
 		9A3765882409C0EC002D15D3 /* _memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _memory.h; sourceTree = "<group>"; };
@@ -3506,7 +3506,7 @@
 		9A37658E2409C0ED002D15D3 /* stick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stick.h; sourceTree = "<group>"; };
 		9A37658F2409C0ED002D15D3 /* property_set_composite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = property_set_composite.cpp; sourceTree = "<group>"; };
 		9A3765902409C0ED002D15D3 /* _factory_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _factory_impl.h; sourceTree = "<group>"; };
-		9A3765912409C0ED002D15D3 /* generic_object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = generic_object.cpp; sourceTree = "<group>"; };
+		9A3765912409C0ED002D15D3 /* generic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = generic.cpp; sourceTree = "<group>"; };
 		9A3765932409C0EE002D15D3 /* _property_set_composite_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _property_set_composite_impl.h; sourceTree = "<group>"; };
 		9A3765952409C0EE002D15D3 /* update.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = update.cpp; sourceTree = "<group>"; };
 		9A3765962409C0EE002D15D3 /* action_context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = action_context.h; sourceTree = "<group>"; };
@@ -5014,8 +5014,8 @@
 				9A1E1B8322F0AC39004243B8 /* factory.cpp */,
 				9A1E1B9322F0AC3A004243B8 /* factory.h */,
 				9A52537F24A7FF240088E35A /* function_base.h */,
-				9A3765912409C0ED002D15D3 /* generic_object.cpp */,
-				9A3765842409C0EB002D15D3 /* generic_object.h */,
+				9A3765912409C0ED002D15D3 /* generic.cpp */,
+				9A3765842409C0EB002D15D3 /* generic.h */,
 				9A1E1B8A22F0AC3A004243B8 /* handler.cpp */,
 				9A1E1B5322F0AC39004243B8 /* id_space.cpp */,
 				9A1E1B9622F0AC3A004243B8 /* id_space.h */,
@@ -8042,7 +8042,7 @@
 				9A98531A240978D500328439 /* _c_trait_wide_impl.h in Headers */,
 				9AD1170A24F5147800177261 /* create.h in Headers */,
 				9A3767652409C19E002D15D3 /* sort_map.h in Headers */,
-				9A3765AB2409C0EF002D15D3 /* generic_object.h in Headers */,
+				9A3765AB2409C0EF002D15D3 /* generic.h in Headers */,
 				9A3765F52409C11C002D15D3 /* mkint_c.h in Headers */,
 				9A41734F20004E7A0056265A /* x509_vfy.h in Headers */,
 				9A985305240978D500328439 /* _impl_prio.h in Headers */,
@@ -9091,7 +9091,7 @@
 				9A201CE6247733DD00A31CBF /* create.cpp in Sources */,
 				9A201CE7247733DD00A31CBF /* edit.cpp in Sources */,
 				9A201CE8247733DD00A31CBF /* factory.cpp in Sources */,
-				9A201CEA247733DD00A31CBF /* generic_object.cpp in Sources */,
+				9A201CEA247733DD00A31CBF /* generic.cpp in Sources */,
 				9A201CEB247733DD00A31CBF /* handler.cpp in Sources */,
 				9A449B1A2477397E0002A827 /* RoundViewController.mm in Sources */,
 				9A201CEC247733DD00A31CBF /* id_space.cpp in Sources */,
@@ -9462,7 +9462,7 @@
 				9A376A792409C2D7002D15D3 /* item_array.cpp in Sources */,
 				9A37648C2409BF0C002D15D3 /* image.cpp in Sources */,
 				9A2483A22452C48800F23D28 /* _application.cpp in Sources */,
-				9A3765B82409C0EF002D15D3 /* generic_object.cpp in Sources */,
+				9A3765B82409C0EF002D15D3 /* generic.cpp in Sources */,
 				9A2485712452C48D00F23D28 /* allocate_x86_cache_oriented.cpp in Sources */,
 				9A37647C2409BF0C002D15D3 /* _.cpp in Sources */,
 				9A2486F72452C49200F23D28 /* interaction_impl.cpp in Sources */,

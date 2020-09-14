@@ -11,7 +11,7 @@ namespace calculator
    public:
 
 
-      document(::object * pobject);   
+      document(::layered * pobjectContext);   
       virtual ~document();
 
 

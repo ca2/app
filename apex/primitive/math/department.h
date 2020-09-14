@@ -49,7 +49,7 @@ namespace math
       virtual ~math();
 
 
-      virtual ::estatus initialize(::object * pobjectContext) override;
+      virtual ::estatus initialize(::layered * pobjectContext) override;
       virtual void finalize() override;
 
 
@@ -148,9 +148,9 @@ inline float __random(float f1, float f2)
 
    if (f1 == f2) return f1;
 
-   auto fMin = MIN(f1, f2);
+   auto fMin = min(f1, f2);
 
-   auto fMax = MAX(f1, f2);
+   auto fMax = max(f1, f2);
 
    double dRange = fMax - fMin;
 
@@ -168,9 +168,9 @@ inline double __random(double d1, double d2)
 
    if (d1 == d2) return d1;
 
-   auto dMin = MIN(d1, d2);
+   auto dMin = min(d1, d2);
 
-   auto dMax = MAX(d1, d2);
+   auto dMax = max(d1, d2);
 
    auto dRange = dMax - dMin;
 
@@ -189,9 +189,9 @@ INT __random_int(INT i1, INT i2)
 
    if (i1 == i2) return i1;
 
-   auto iMin = MIN(i1, i2);
+   auto iMin = min(i1, i2);
 
-   auto iMax = MAX(i1, i2);
+   auto iMax = max(i1, i2);
 
    auto iRange = iMax - iMin;
 

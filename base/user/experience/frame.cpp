@@ -530,7 +530,7 @@ namespace experience
       if (m_pcontrolbox)
       {
 
-         iCaptionHeight = MAX(m_pcontrolbox->calc_control_box_height() + iMargin, iCaptionHeight);
+         iCaptionHeight = max(m_pcontrolbox->calc_control_box_height() + iMargin, iCaptionHeight);
 
       }
 

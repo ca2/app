@@ -233,7 +233,7 @@
       <IgnoreSpecificDefaultLibraries>LIBCMTD.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalOptions>-Wl,-z,defs</AdditionalOptions>
-      <AndroidSystemLibs>c;m;log;gcc;apex;axis;base;axiszlib;axisopenssl;auracharguess;base</AndroidSystemLibs>
+      <AndroidSystemLibs>c;m;log;gcc;apex;axis;base;axiszlib;axisopenssl;apexcharguess;base</AndroidSystemLibs>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -1413,7 +1413,7 @@
     <None Include="user\user\user_interaction.inl" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\apex\charguess\auracharguess.vcxproj">
+    <ProjectReference Include="..\..\apex\charguess\apexcharguess.vcxproj">
       <Project>{ac6a52b4-c049-439c-88ff-5a262d968c8f}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\axis\bzip2\axisbzip2.vcxproj">

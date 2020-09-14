@@ -15,7 +15,7 @@ namespace simple_ui
       string                        m_strRuri;
 
 
-      style(::object * pobject);
+      style(::layered * pobjectContext);
 
       virtual ~style();
 

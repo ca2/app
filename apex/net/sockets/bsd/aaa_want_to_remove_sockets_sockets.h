@@ -7,7 +7,7 @@ namespace sockets
    class SSLInitializer;
 
    class CLASS_DECL_APEX sockets :
-      virtual public ::aura::department
+      virtual public ::apex::department
    {
    public:
 
@@ -36,7 +36,7 @@ namespace sockets
       socket_map                                   m_pool; ///< Active sockets map
 
 
-      sockets(::object * pobject);
+      sockets(::layered * pobjectContext);
       virtual ~sockets();
 
       class ::sockets::net                         & net();

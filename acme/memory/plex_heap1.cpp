@@ -454,7 +454,7 @@ void * plex_heap_alloc_array::_realloc(void * p, memsize size, memsize sizeOld, 
 
 }
 
-void * g_pf1 = nullptr;
+//void * g_pf1 = nullptr;
 
 
 
@@ -503,12 +503,12 @@ void Alloc_check_pointer_in_cpp(void * p)
 void Free_check_pointer_in_cpp(void * p)
 {
 
-   if((u8 *) p <  (u8 *)  g_pf1)
-   {
+   //if((u8 *) p <  (u8 *)  g_pf1)
+   //{
 
-      simple_debug_print("hit g_pf1");
+   //   simple_debug_print("hit g_pf1");
 
-   }
+   //}
 
    if ((byte *)0x0000000200000020 == ((byte *)p))
    {

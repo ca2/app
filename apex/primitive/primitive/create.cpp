@@ -1,7 +1,8 @@
 #include "framework.h"
 
-create::create(::object * pobject) :
-   ::object(pobject)
+
+create::create(::layered * pobjectContext) :
+   ::object(pobjectContext)
 {
 
    create_common_construct(::type_empty_argument, nullptr);
@@ -9,6 +10,7 @@ create::create(::object * pobject) :
    defer_initialize();
 
 }
+
 
 create::create()
 {

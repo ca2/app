@@ -463,7 +463,7 @@ namespace draw2d_direct2d
             //else
             {
 
-               auto pimage1 = __create_image(rectBlt.size());
+               auto pimage1 = create_image(rectBlt.size());
 
                pimage1->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
@@ -509,7 +509,7 @@ namespace draw2d_direct2d
 
          ::draw2d::lock draw2dlock;
 
-         auto pimage1 = __create_image(size);
+         auto pimage1 = create_image(size);
 
          ::rect rectDib1(::point(), size);
 
@@ -3109,7 +3109,7 @@ namespace draw2d_direct2d
    /////////////////////////////////////////////////////////////////////////////
    // special graphics drawing primitives/helpers
 
-   ::draw2d::brush* graphics::GetHalftoneBrush(::object * pobject)
+   ::draw2d::brush* graphics::GetHalftoneBrush(::layered * pobjectContext)
    {
       /*
       ::aura::LockGlobals(CRIT_HALFTONEBRUSH);

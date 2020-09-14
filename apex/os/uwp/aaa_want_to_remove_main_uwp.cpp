@@ -9,7 +9,7 @@ CLASS_DECL_APEX i32 main_uwp(Array < String^ >^ stra, const string & strCommandL
 
    //int iStatus = -1;
 
-   //::aura_main_struct mainstruct = {};
+   //::apex_main_struct mainstruct = {};
 
    //mainstruct.m_bConsole = false;
    //mainstruct.m_bDraw2d = true;

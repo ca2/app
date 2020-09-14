@@ -80,7 +80,7 @@ class CLASS_DECL_APEX progress :
 {
 public:
 
-   progress(::user::interaction * puiParent, const char* pszTitle, int iStepCount);
+   progress(::user::primitive * puiParent, const char* pszTitle, int iStepCount);
 
    ~progress()
    {

@@ -13,7 +13,7 @@ namespace experience
    public:
 
 
-      __pointer(::aura::library)           m_plibrary;
+      __pointer(::apex::library)           m_plibrary;
       property_set                  m_set;
 
 

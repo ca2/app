@@ -5,7 +5,7 @@ namespace turboc
 {
 
 
-   top_view::top_view(::object * pobject):
+   top_view::top_view(::layered * pobjectContext):
       ::object(pobject),
       ::user::split_layout(pobject),
       ::user::split_view(pobject),

@@ -17,14 +17,18 @@
 #pragma once
 
 
-#undef Sys
-#undef Sess
-#undef App
+
+#define __spin_namespace acme // back bone / four-letter "spin*" namespace name
 
 
-#define Sys(pobject) (*pobject->get_context_system())
-#define Sess(pobject) (*pobject->get_context_session())
-#define App(pobject) (*pobject->get_app())
+//#undef Sys
+//#undef Sess
+//#undef App
+//
+//
+//#define Sys(pobject) (*pobject->get_context_system())
+//#define Sess(pobject) (*pobject->get_context_session())
+//#define App(pobject) (*pobject->get_app())
 
 
 #include "acme/primitive/primitive/estatus.h"
@@ -143,8 +147,8 @@ CLASS_DECL_ACME void throw_todo(void);
 
 CLASS_DECL_ACME void set_last_status(const ::estatus & estatus);
 CLASS_DECL_ACME void windowing_output_debug_string(const char * pszDebugString);
-CLASS_DECL_ACME void c_function_call(void * p);
-extern CLASS_DECL_ACME int g_bAura;
+//CLASS_DECL_ACME void c_function_call(void * p);
+extern CLASS_DECL_ACME int g_bAcme;
 CLASS_DECL_ACME int __assert_failed_line(const char * pszFileName,int iLineNumber);
 CLASS_DECL_ACME int is_debugger_attached(void);
 CLASS_DECL_ACME void debug_print(const char * psz,...);
@@ -504,15 +508,13 @@ CLASS_DECL_ACME extern u32 g_tickStartTime;
 //CLASS_DECL_ACME void __tracea(::generic * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
 //CLASS_DECL_ACME void __tracef(::generic * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, ...);
 //CLASS_DECL_ACME void __tracev(::generic * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, va_list vargs);
-//CLASS_DECL_ACME const char * trace_category_name(e_trace_category ecategory);
 
 
-//CLASS_DECL_ACME ::generic * trace_object(e_trace_category ecategory);
+CLASS_DECL_ACME const char * trace_category_name(e_trace_category ecategory);
+CLASS_DECL_ACME ::generic * trace_object(e_trace_category ecategory);
+CLASS_DECL_ACME const char * topic_text(::generic * pcontextobject);
+CLASS_DECL_ACME e_trace_category object_trace_category(::generic * pcontextobject);
 
-//const char * topic_text(::generic * pcontextobject);
-//
-//e_trace_category object_trace_category(::generic * pcontextobject);
-//
 
 //
 //#define __alog(...) __tracef(__VA_ARGS__)
@@ -525,20 +527,40 @@ CLASS_DECL_ACME extern u32 g_tickStartTime;
 //#define TRACE(...) INFO(__VA_ARGS__)
 //
 
-namespace acme
+
+namespace apex
 {
 
 
    class theme;
+   class idpool;
+   class application;
+   class session;
+   class system;
 
 
-} // namespace acme
+} // namespace apex
+
+
+namespace aura
+{
+
+
+   class theme;
+   class idpool;
+   class application;
+   class session;
+   class system;
+
+
+} // namespace aura
 
 
 namespace axis
 {
 
 
+   class idpool;
    class application;
    class session;
    class system;
@@ -551,6 +573,7 @@ namespace base
 {
 
 
+   class idpool;
    class application;
    class session;
    class system;
@@ -564,6 +587,7 @@ namespace core
 {
 
 
+   class idpool;
    class application;
    class session;
    class system;
@@ -777,6 +801,13 @@ inline u32 u32_hash(ARG_KEY key) { return (u32)(uptr_hash<ARG_KEY>(key)); }
 
 #define _(str) (__get_text(str))
 
+typedef string __GET_TEXT(string str);
+
+using __PFN_GET_TEXT = __GET_TEXT*;
+
+
+
+CLASS_DECL_ACME void __set_get_text(__PFN_GET_TEXT pgettext);
 CLASS_DECL_ACME string __get_text(string str);
 
 
@@ -1228,15 +1259,15 @@ inline bool is_impact_group(::u64 u, ::u64 uGroup) { return u >= uGroup && u < u
 inline bool is_impact_subgroup(::u64 u, ::u64 uGroup) { return u >= uGroup && u < uGroup + 100; }
 
 
-class image;
-namespace draw2d{class icon;}
-
-using image_pointer = __pointer(::image);
-using icon_pointer = __pointer(::draw2d::icon);
-
-
-using image_result = __result(::image);
-using icon_result=__result(::draw2d::icon);
+//class image;
+//namespace draw2d{class icon;}
+//
+//using image_pointer = __pointer(::image);
+//using icon_pointer = __pointer(::draw2d::icon);
+//
+//
+//using image_result = __result(::image);
+//using icon_result=__result(::draw2d::icon);
 
 
 class command_line;
@@ -1820,13 +1851,12 @@ namespace acme
 
    }
 
+
 } // namespace acme
 
 
-
-
-
 #include "acme/memory/malloc.h"
+
 
 class image_list;
 
@@ -1884,7 +1914,7 @@ namespace acme
 
 } // namespace acme
 
-CLASS_DECL_ACME bool enable_trace_category(e_trace_category ecategory, bool bEnable = true);
+//CLASS_DECL_ACME bool enable_trace_category(e_trace_category ecategory, bool bEnable = true);
 
 //// only usable from axis and axis dependants
 //namespace acme
@@ -2037,33 +2067,33 @@ namespace html
 #define SCAST_PTR(TYPE, ptarget, psource) TYPE * ptarget = dynamic_cast < TYPE * > (psource);
 #define SCAST_REF(TYPE, rtarget, psource) TYPE & rtarget = *(dynamic_cast < TYPE * > (psource))
 
-#define Au(pobject) (*(::get_context_audio(pobject)))
-#define Audio (Au(get_context()))
-
-#define Mm(pobject) (*(::get_context_multimedia(pobject)))
-#define Multimedia (Mm(get_context()))
-
-
-#undef Sys
-#define Sys(pobject) (*::get_context_system(pobject))
-
-#undef Sess
-#define Sess(pobject) (*::get_context_session(pobject))
-
-#undef App
-#define App(pobject) (*::get_context_application(pobject))
-
-
-#define System Sys(get_context())
-#define Session Sess(get_context())
-#define Application App(get_context())
-#define ThisApp (*::application_consumer < application >::get_app())
-#define NamespaceApp(namespace) (*::application_consumer < ::namespace::application >::get_app())
-
-
-#undef Ctx
-#define Ctx(pobject) (*(::get_context(pobject)))
-#define Context (Ctx(get_context()))
+//#define Au(pobject) (*(::get_context_audio(pobject)))
+//#define Audio (Au(get_context()))
+//
+//#define Mm(pobject) (*(::get_context_multimedia(pobject)))
+//#define Multimedia (Mm(get_context()))
+//
+//
+//#undef Sys
+//#define Sys(pobject) (*::get_context_system(pobject))
+//
+//#undef Sess
+//#define Sess(pobject) (*::get_context_session(pobject))
+//
+//#undef App
+//#define App(pobject) (*::get_context_application(pobject))
+//
+//
+//#define System Sys(get_context())
+//#define Session Sess(get_context())
+//#define Application App(get_context())
+//#define ThisApp (*::application_consumer < application >::get_app())
+//#define NamespaceApp(namespace) (*::application_consumer < ::namespace::application >::get_app())
+//
+//
+//#undef Ctx
+//#define Ctx(pobject) (*(::get_context(pobject)))
+//#define Context (Ctx(get_context()))
 
 
 // return - result - if not ok
@@ -2486,7 +2516,15 @@ using emessagebox = cflag < enum_message_box >;
 #include "acme/primitive/primitive/function_base.h"
 
 
+namespace user
+{
 
+   class interaction;
+
+} // namespace user
+
+
+#include "acme/platform/_global.h"
 
 
 #include "acme/primitive/primitive/generic.h"
@@ -2614,9 +2652,9 @@ namespace http
 
 } // namespace http
 
-template < typename PRED > inline auto __task_procedure(PRED pred, ::generic * pobjectHold = nullptr);
+template < typename PRED >  __pointer(::generic) __task_procedure(PRED pred);
 
-template < typename PRED > inline auto __task_callback(PRED pred, ::generic* pobjectHold = nullptr);
+template < typename PRED > inline __pointer(::generic) __task_callback(PRED pred);
 
 //class context;
 
@@ -2682,13 +2720,13 @@ namespace core
 
 class message_box;
 
-#include "acme/primitive/primitive/generic.h"
+//#include "acme/primitive/primitive/generic.h"
 
-#include "acme/primitive/primitive/object_meta.h"
+//#include "acme/primitive/primitive/object_meta.h"
 
 //#include "acme/platform/trace.h"
 
-#include "acme/platform/pred_procedure.h"
+//#include "acme/platform/pred_procedure.h"
 
 #include "acme/platform/debug.h"
 
@@ -3002,7 +3040,7 @@ CLASS_DECL_ACME string get_system_error_message(u32 dwError);
 #include "acme/platform/restore.h"
 
 
-#include "acme/primitive/data/_.h"
+//#include "acme/primitive/data/_.h"
 
 
 #include "acme/primitive/math/objects.h"
@@ -3153,7 +3191,7 @@ namespace file
 
 
 #include "acme/platform/fixed_alloc_impl.h"
-#include "acme/primitive/primitive/command_line.h"
+//#include "acme/primitive/primitive/command_line.h"
 //#include "acme/user/create.h"
 //#include "acme/primitive/primitive/create.h"
 #include "acme/primitive/primitive/request_signal.h"
@@ -3168,7 +3206,7 @@ namespace file
 #include "acme/primitive/datetime/_.h"
 
 
-#include "acme/primitive/string/international_locale_schema.h"
+//#include "acme/primitive/string/international_locale_schema.h"
 
 
 //#include "acme/platform/cregexp.h"
@@ -3309,15 +3347,15 @@ class ifs;
 //#include "acme/multithreading/retry.h"
 
 
-CLASS_DECL_ACME::file::path application_installer_folder(const ::file::path & pathExe, string strAppId, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema);
-CLASS_DECL_ACME bool is_application_installed(const ::file::path & pathExe, string strAppId, string & strBuild, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema);
-CLASS_DECL_ACME bool set_application_installed(const ::file::path & pathExe, string strAppId, const char * pszBuild, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema);
-CLASS_DECL_ACME::file::path get_application_path(string strAppId, const char * pszPlatform, const char * pszConfiguration);
+//CLASS_DECL_ACME::file::path application_installer_folder(const ::file::path & pathExe, string strAppId, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema);
+//CLASS_DECL_ACME bool is_application_installed(const ::file::path & pathExe, string strAppId, string & strBuild, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema);
+//CLASS_DECL_ACME bool set_application_installed(const ::file::path & pathExe, string strAppId, const char * pszBuild, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema);
+//CLASS_DECL_ACME::file::path get_application_path(string strAppId, const char * pszPlatform, const char * pszConfiguration);
 //CLASS_DECL_ACME::file::path get_last_run_application_path_file(string strAppId);
 //CLASS_DECL_ACME::file::path get_last_run_application_path(string strAppId);
-CLASS_DECL_ACME bool set_last_run_application_path(string strAppId);
+//CLASS_DECL_ACME bool set_last_run_application_path(string strAppId);
 
-CLASS_DECL_ACME ::estatus load_factory_library(string strLibrary);
+//CLASS_DECL_ACME ::estatus load_factory_library(string strLibrary);
 
 
 class node_data_exchange;
@@ -3778,13 +3816,16 @@ CLASS_DECL_ACME string get_error_string(u64 uiError);
 
 
 
-#include "acme/const/idpool.h"
+//#include "acme/const/idpool.h"
 
 
 //#include "acme/user/_.h"
 
 
 #include "acme/platform/message_box.h"
+
+
+#include "acme/multithreading/pred_procedure.h"
 
 
 //#include "acme/platform/console_application.h"

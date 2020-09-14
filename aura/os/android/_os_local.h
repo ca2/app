@@ -2,7 +2,7 @@
 
 
 class os_local :
-   virtual public generic_object
+   virtual public generic
 {
 public:
 

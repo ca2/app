@@ -1,6 +1,9 @@
 #pragma once
 
 
+//#include "apex/platform/pred_procedure.h"
+
+
 class prodevian;
 
 
@@ -38,10 +41,12 @@ namespace user
 
       enum e_updown
       {
+         
          updown_normal_frame,
          updown_none,
          updown_up,
          updown_down,
+
       };
 
 
@@ -328,7 +333,7 @@ namespace user
 
       virtual void set_place_child_title(const char* pszTitle);
 
-      virtual ::user::interaction* get_bind_ui();
+      virtual ::user::primitive * get_bind_ui();
 
       virtual string get_display_tag();
 
@@ -1437,18 +1442,18 @@ namespace user
       virtual e_stock_icon get_stock_icon();
 
 
-      virtual void post_task(::generic_object * pobjectTask);
-      virtual void prodevian_schedule(::generic_object * pobjectTask);
+      virtual void post_task(::generic * pobjectTask);
+      virtual void prodevian_schedule(::generic* pobjectTask);
 
 
-      virtual void send_task(::generic_object * pobjectTask, ::duration durationTimeout = ::duration::infinite());
+      virtual void send_task(::generic * pobjectTask, ::duration durationTimeout = ::duration::infinite());
 
 
       template < typename PRED >
       void post_pred(PRED pred)
       {
 
-         post_task(__task_procedure(pred, this));
+         post_task(__task_procedure(pred));
 
       }
 

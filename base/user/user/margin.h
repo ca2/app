@@ -36,8 +36,8 @@ namespace user
       {
       }
 
-      margin(::object * pobject):
-         ::object(pobject)
+      margin(::layered * pobjectContext):
+         ::object(pobjectContext)
       {
       }
 

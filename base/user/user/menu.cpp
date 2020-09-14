@@ -760,10 +760,9 @@ namespace user
                   + rectPadding.top + rectPadding.bottom;
 
 
-      m_size.cx = MAX(m_sizeMinimum.cx, m_size.cx);
+      m_size.cx = max(m_sizeMinimum.cx, m_size.cx);
 
-
-      m_size.cy = MAX(m_sizeMinimum.cy, m_size.cy);
+      m_size.cy = max(m_sizeMinimum.cy, m_size.cy);
 
       ::count iItemCount = pmenuitema->get_size();
 
@@ -778,7 +777,7 @@ namespace user
 
          pbasestyle->prepare_menu(pgraphics, pitem);
 
-         pitem->m_rectUi.right = MAX(pitem->m_rectUi.right, pitem->m_rectUi.left + m_sizeMinimum.cx);
+         pitem->m_rectUi.right = max(pitem->m_rectUi.right, pitem->m_rectUi.left + m_sizeMinimum.cx);
 
          pitem->m_puserinteraction->place(pitem->m_rectUi);
 

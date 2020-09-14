@@ -5,7 +5,7 @@ class CLASS_DECL_ACME message_box
 {
 public:
 
-   __pointer(::layered)             m_playeredUserPrimitive;
+   __pointer(::layered)             m_puserprimitive;
    string                           m_strMessage;
    string                           m_strTitle;
    ::emessagebox                    m_emessagebox;

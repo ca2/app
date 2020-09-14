@@ -124,7 +124,7 @@ namespace sockets
       };
 
       class CLASS_DECL_APEX reverse_cache_item:
-         virtual public ::generic_object
+         virtual public ::generic
       {
       public:
 
@@ -157,7 +157,7 @@ namespace sockets
       virtual ~net();
 
 
-      virtual ::estatus     initialize(::object * pobject) override;
+      virtual ::estatus     initialize(::layered * pobjectContext) override;
       virtual void     finalize() override;
 
       virtual bool gudo_set();

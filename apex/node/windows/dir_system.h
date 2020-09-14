@@ -24,7 +24,7 @@ namespace windows
       virtual ~dir_system();
       
       
-      virtual ::estatus initialize(::object * pobjectContext) override;
+      virtual ::estatus initialize(::layered * pobjectContext) override;
 
 
       virtual ::estatus init_system() override;

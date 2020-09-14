@@ -3,7 +3,7 @@
 #include "core/user/userex/_userex.h"
 #include "core/user/account/_account.h"
 #endif
-#include "aura/platform/static_setup.h"
+#include "apex/platform/static_setup.h"
 #include "aura/update.h"
 #include "axis/xml/_.h"
 #include "core/user/user/shell.h"
@@ -96,10 +96,10 @@ namespace core
    }
 
 
-   estatus user::initialize(::object* pobjectContext)
+   estatus user::initialize(::layered * pobjectContext)
    {
 
-      auto estatus = ::aura::department::initialize(pobjectContext);
+      auto estatus = ::apex::department::initialize(pobjectContext);
 
       if (!estatus)
       {
@@ -438,7 +438,7 @@ namespace core
    ::estatus user::init2()
    {
 
-      if (!::aura::department::init2())
+      if (!::apex::department::init2())
       {
 
          return false;
@@ -467,7 +467,7 @@ namespace core
       try
       {
 
-         ::aura::department::term();
+         ::apex::department::term();
 
       }
       catch (...)
@@ -576,10 +576,10 @@ namespace core
    }
 
 
-   ::estatus user::dialog_box(::object * pobjectContext, const char * pszMatter, property_set & propertyset, ::callback callback)
+   ::estatus user::dialog_box(::layered * pobjectContext, const char * pszMatter, property_set & propertyset, ::callback callback)
    {
 
-      auto pbox = pobjectContext->__create_new < class ::userex::message_box >();
+      auto pbox = __object(pobjectContext)->__create_new < class ::userex::message_box >();
 
       pbox->add_property_set(&propertyset);
 
@@ -597,10 +597,10 @@ namespace core
    }
 
 
-   ::estatus user::ui_message_box(::object* pobjectContext, ::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, ::callback callback)
+   ::estatus user::ui_message_box(::layered* pobjectContext, ::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, ::callback callback)
    {
 
-      auto pbox = pobjectContext->__create_new < ::userex::message_box >();
+      auto pbox = __object(pobjectContext)->__create_new < ::userex::message_box >();
 
       property_set & propertyset = pbox->get_property_set();
 
@@ -611,13 +611,13 @@ namespace core
       if (::is_set(puiOwner))
       {
 
-         propertyset["application_name"] = App(pobjectContext).m_strAppName;
+         propertyset["application_name"] = App(__object(pobjectContext)).m_strAppName;
 
       }
       else if (::is_set(Session.m_pappCurrent))
       {
 
-         string strAppName = Sess(pobjectContext).m_pappCurrent->m_strAppName;
+         string strAppName = Sess(__object(pobjectContext)).m_pappCurrent->m_strAppName;
 
          propertyset["application_name"] = strAppName;
 
@@ -718,18 +718,18 @@ namespace core
    }
 
 
-   ::estatus user::ui_message_box_timeout(::object* pobjectContext, ::user::primitive * puiOwner, const char* pszMessage, const char* pszTitle, const ::duration & durationTimeout, ::emessagebox emessagebox, ::callback callback)
+   ::estatus user::ui_message_box_timeout(::layered * pobjectContext, ::user::primitive * puiOwner, const char* pszMessage, const char* pszTitle, const ::duration & durationTimeout, ::emessagebox emessagebox, ::callback callback)
    {
 
       UNREFERENCED_PARAMETER(puiOwner);
 
-      auto pbox = pobjectContext->__create_new < ::userex::message_box >();
+      auto pbox = __object(pobjectContext)->__create_new < ::userex::message_box >();
 
       pbox->value("message") = pszMessage;
 
       pbox->add(callback);
 
-      string strTitle = App(pobjectContext).get_title();
+      string strTitle = App(__object(pobjectContext)).get_title();
 
       pbox->value("application_name") = strTitle;
 
@@ -1161,7 +1161,7 @@ namespace core
 
       }
 
-      ::aura::application * papp = ::get_context_application(pobject);
+      ::apex::application * papp = ::get_context_application(pobject);
 
       if (papp == nullptr)
       {
@@ -1243,7 +1243,7 @@ namespace core
    __pointer(::form_document) user::create_child_form(::object * pobject, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, var var, ::var varArgs)
    {
 
-      ::aura::application * papp = ::get_context_application(pobject);
+      ::apex::application * papp = ::get_context_application(pobject);
 
       if (papp == nullptr)
       {
@@ -1443,26 +1443,26 @@ namespace core
    }
 
 
-   __pointer(::user::list_header) user::default_create_list_header(::object * pobject)
+   __pointer(::user::list_header) user::default_create_list_header(::layered * pobjectContext)
    {
 
-      return pobject->__id_create < ::user::list_header > (default_type_list_header());
+      return __object(pobjectContext)->__id_create < ::user::list_header > (default_type_list_header());
 
    }
 
 
-   __pointer(::user::mesh_data) user::default_create_mesh_data(::object * pobject)
+   __pointer(::user::mesh_data) user::default_create_mesh_data(::layered * pobjectContext)
    {
 
-      return pobject->__id_create < ::user::mesh_data > (default_type_list_data());
+      return __object(pobjectContext)->__id_create < ::user::mesh_data > (default_type_list_data());
 
    }
 
 
-   __pointer(::user::list_data) user::default_create_list_data(::object * pobject)
+   __pointer(::user::list_data) user::default_create_list_data(::layered * pobjectContext)
    {
 
-      return pobject->__id_create <::user::list_data >(default_type_list_data());
+      return __object(pobjectContext)->__id_create <::user::list_data >(default_type_list_data());
 
    }
 

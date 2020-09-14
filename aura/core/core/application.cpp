@@ -52,7 +52,7 @@ namespace aura
    }
 
 
-   ::estatus application::initialize(::object * pobjectContext)
+   ::estatus application::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::aura::application::initialize(pobjectContext);
@@ -3409,7 +3409,7 @@ m_tickHeartBeat.Now();
 
 
 
-   //::estatus application::add_library(::aura::library * plibrary)
+   //::estatus application::add_library(::apex::library * plibrary)
    //{
 
    //   plibrary->set_context_object(this);
@@ -3771,7 +3771,7 @@ m_tickHeartBeat.Now();
    //}
 
 
-   //::estatus application::initialize(::object* pobjectContext)
+   //::estatus application::initialize(::layered * pobjectContext)
    //{
 
    //   auto estatus = ::aura::application::initialize(pobjectContext);

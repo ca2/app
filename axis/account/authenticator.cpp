@@ -11,8 +11,8 @@ namespace account
 {
 
 
-   authenticator::authenticator(object * pobject) :
-      ::object(pobject)
+   authenticator::authenticator(::layered * pobjectContext) :
+      ::object(pobjectContext)
    {
 
    }

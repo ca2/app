@@ -7,7 +7,7 @@
 #pragma once
 
 
-#include "aura/net/http/status.h"
+#include "apex/net/http/status.h"
 
 
 namespace account
@@ -22,7 +22,7 @@ namespace account
 
 
 
-      network_authenticator(::object * pobject);
+      network_authenticator(::layered * pobjectContext);
       virtual ~network_authenticator();
 
 

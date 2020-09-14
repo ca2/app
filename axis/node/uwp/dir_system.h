@@ -21,7 +21,7 @@ namespace uwp
 
 
 
-      virtual ::estatus initialize(::object * pobjectContext) override;
+      virtual ::estatus initialize(::layered * pobjectContext) override;
 
 
       virtual bool update_module_path() override;

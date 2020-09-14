@@ -5,7 +5,7 @@ namespace ios
 {
 
 
-   copydesk::copydesk(::object * pobject) :
+   copydesk::copydesk(::layered * pobjectContext) :
       ::object(pobject),
       ::user::copydesk(pobject)
    {

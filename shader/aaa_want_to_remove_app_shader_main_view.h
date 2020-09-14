@@ -15,7 +15,7 @@ namespace simple_shader
       view *                  m_pview;
 
 
-      main_view(::object * pobject);
+      main_view(::layered * pobjectContext);
       virtual ~main_view();
 
 

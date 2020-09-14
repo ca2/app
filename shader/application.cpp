@@ -10,6 +10,8 @@ namespace app_shader
 
    application::application() 
    {
+
+      m_bImaging = false;
             
       m_strAppId = "app/shader";
 

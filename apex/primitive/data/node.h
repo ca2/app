@@ -20,7 +20,7 @@ namespace data
 
 
    class CLASS_DECL_APEX node :
-      virtual public ::generic_object
+      virtual public ::generic
    {
    protected:
       ::xml::node* m_pxmlnode;
@@ -75,7 +75,7 @@ namespace data
 
    inline ::xml::node* __xml(::data::node* pnode) { return pnode->get_xml_node(); }
 
-} // namespace apex
+} // namespace acme
 
 
 

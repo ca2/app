@@ -15,7 +15,7 @@ public:
    PRED m_pred;
 
 
-   pred_thread(::object * pobject, PRED pred) :
+   pred_thread(::layered * pobjectContext, PRED pred) :
       m_pred(pred)
    {
 
@@ -23,7 +23,7 @@ public:
 
       m_bFork = true;
 
-      auto estatus = initialize(pobject);
+      auto estatus = initialize(pobjectContext);
 
       if (!estatus)
       {
@@ -55,10 +55,10 @@ public:
 
 
 template < typename PRED >
-inline auto new_pred_thread(::object * pobject, PRED pred)
+inline auto new_pred_thread(::layered * pobjectContext, PRED pred)
 {
 
-   return __new(pred_thread < PRED > (pobject, pred));
+   return __new(pred_thread < PRED > (pobjectContext, pred));
 
 }
 
@@ -68,7 +68,7 @@ class CLASS_DECL_APEX runner :
 public:
 
 
-   __pointer(::thread)                                 m_pthread;
+   __pointer(::thread)                          m_pthread;
    bool                                         m_bExecuting;
    bool                                         m_bPending;
    ::tick                                       m_tickStart;
@@ -132,7 +132,7 @@ public:
 
              };
 
-      get_context_object()->defer_fork(m_pthread, predDelayed);
+      __object(get_context_object())->defer_fork(m_pthread, predDelayed);
 
    }
 
@@ -140,10 +140,10 @@ public:
 
 
 template < typename PRED >
-__pointer(::thread) & fork(__pointer(::thread) & pthread, ::object * pobject, PRED pred)
+__pointer(::thread) & fork(__pointer(::thread) & pthread, ::layered * pobjectContext, PRED pred)
 {
 
-   pthread = __new(pred_thread < PRED >(pobject, pred));
+   pthread = __new(pred_thread < PRED >(pobjectContext, pred));
 
    pthread->begin();
 
@@ -154,21 +154,10 @@ __pointer(::thread) & fork(__pointer(::thread) & pthread, ::object * pobject, PR
 
 
 template < typename PRED >
-::thread * fork(::object * pobject, __pointer(object) pholdref, PRED pred)
-{
-
-   ::thread * pthread = nullptr;
-
-   return fork(pthread, pobject, pholdref, pred);
-
-}
-
-
-template < typename PRED >
 ::thread * fork(::object * pobject, PRED pred)
 {
 
-   __pointer(::thread) pthread;
+   ::thread * pthread = nullptr;
 
    return fork(pthread, pobject, pred);
 
@@ -206,7 +195,7 @@ template < typename PRED >
 ::thread * pred_run(::object * pobjectParent, bool bSync, PRED pred);
 
 
-CLASS_DECL_APEX int get_current_process_affinity_order();
+//CLASS_DECL_APEX int get_current_process_affinity_order();
 
 #undef new
 
@@ -217,9 +206,11 @@ template < typename PRED >
 ::thread * & fork(::thread * & pthread, ::object * pobject, PRED pred)
 {
 
-   pthread = __new(pred_thread < PRED >(pobject, pred));
+   pthread = new pred_thread < PRED >(pobject, pred);
 
    pthread->begin();
+
+   pthread->release();
 
    return pthread;
 
@@ -413,9 +404,7 @@ public:
 
    fork_index m_index;
 
-   forking_count_pred(::object * pobject, index iOrder, index iIndex, ::count iScan, ::count cCount, PRED pred) :
-   ::object(pobject),
-   ::pred_holder_base(pobject),
+   forking_count_pred(index iOrder, index iIndex, ::count iScan, ::count cCount, PRED pred) :
    m_pred(pred)
    {
 
@@ -549,7 +538,7 @@ auto fork_count(::object * pobjectParent, ::count iCount, PRED pred, index iStar
 
    }
 
-   ::count iScan = MAX(1, MIN(iCount - iStart, iAffinityOrder));
+   ::count iScan = max(1, min(iCount - iStart, iAffinityOrder));
 
    auto pcounter = __new(::counter(long(iScan)));
 
@@ -593,7 +582,7 @@ template < typename PRED, typename PRED_END >
 
    }
 
-   ::count iScan = MAX(1, MIN(iCount - iStart, iAffinityOrder));
+   ::count iScan = max(1, min(iCount - iStart, iAffinityOrder));
 
    auto pobjectTaskEnd = create_task(predEnd);
 
@@ -695,7 +684,7 @@ auto fork_for(::object * pobjectParent, ::count iCount, PRED pred, index iStart 
 
    }
 
-   ::count iScan = MAX(1, MIN(iCount - iStart, iAffinityOrder));
+   ::count iScan = max(1, min(iCount - iStart, iAffinityOrder));
 
    auto pcounter = __new(::counter(iScan));
 
@@ -727,7 +716,7 @@ auto fork_for_end(::object* pobjectParent, ::count iCount, PRED pred, PRED_END p
 
    }
 
-   ::count iScan = MAX(1, MIN(iCount - iStart, iAffinityOrder));
+   ::count iScan = max(1, min(iCount - iStart, iAffinityOrder));
 
    auto pcounter = __new(::counter(iScan));
 
@@ -771,7 +760,7 @@ __pointer_array(::thread) fork_proc(::object * pobjectParent, PRED pred, index i
 
    }
 
-   iCount = MAX(1, iCount);
+   iCount = max(1, iCount);
 
    if (::get_thread() == nullptr || ::get_thread()->m_bAvoidProcFork)
    {

@@ -97,7 +97,7 @@ namespace simple_ui
       try
       {
 
-         url_query_get_param_dup(m_strLocale, "locale", str);
+         url_query_get_param(m_strLocale, "locale", str);
 
       }
       catch (...)
@@ -107,7 +107,7 @@ namespace simple_ui
       try
       {
 
-         url_query_get_param_dup(m_strSchema, "schema", str);
+         url_query_get_param(m_strSchema, "schema", str);
 
       }
       catch (...)
@@ -117,7 +117,7 @@ namespace simple_ui
       try
       {
 
-         url_query_get_param_dup(m_strRuri, "ruri", str);
+         url_query_get_param(m_strRuri, "ruri", str);
 
       }
       catch (...)

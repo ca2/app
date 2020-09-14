@@ -6,7 +6,7 @@ namespace file
 
 
    class CLASS_DECL_APEX path_object :
-      virtual public generic_object,
+      virtual public generic,
       virtual public path
    {
    public:
@@ -25,8 +25,8 @@ namespace file
       virtual void to_sz(char* sz, strsize size) const override;
       virtual void to_string(string& str) const override;
 
-      using generic_object::set;
-      using generic_object::has;
+      using generic::set;
+      using generic::has;
 
       using path::set;
       using path::has;

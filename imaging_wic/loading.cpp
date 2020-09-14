@@ -10,12 +10,12 @@ namespace imaging_wic
    bool windows_image_from_bitmap_source(::image * pimageFrame, IWICBitmapSource * pbitmapsource, IWICImagingFactory * pimagingfactory);
 
 
-   ::estatus imaging::_load_image(::context * pcontext, ::image * pimageParam, const var & varFile, bool bSync, bool bCreateHelperMaps)
+   ::estatus context_image::_load_image(::image * pimageParam, const var & varFile, bool bSync, bool bCreateHelperMaps)
    {
 
-      __pointer(class load_image) ploadimage;
+      auto ploadimage = __new(load_image(this));
 
-      auto estatus = pcontext->__construct_new(ploadimage);
+      auto estatus = ploadimage->initialize(this);
 
       if (!estatus)
       {
@@ -30,15 +30,25 @@ namespace imaging_wic
 
       pimageParam->m_bCreateHelperMaps = bCreateHelperMaps;
 
-      m_managerImageLoad.handle(ploadimage, bSync);
+      m_pmanagerImageLoad->handle(ploadimage, bSync);
 
       return ploadimage->m_estatus;
 
    }
 
 
-   ::estatus imaging::load_image::run()
+   context_image::load_image::load_image(context_image * pcontextimage) :
+      m_pcontextimage(pcontextimage)
    {
+
+
+   }
+
+
+   ::estatus context_image::load_image::run()
+   {
+
+      //defer_co_initialize_ex(false);
 
       ::image * pimage = m_pimage;
 
@@ -87,7 +97,7 @@ namespace imaging_wic
 
             }
 
-            auto estatus = System.imaging().load_svg(pimage, pmemory);
+            auto estatus = Application.image().load_svg(pimage, pmemory);
 
             if (::succeeded(estatus))
             {
@@ -105,7 +115,7 @@ namespace imaging_wic
             if (pmemory->get_size() > 3 && strnicmp(psz, "gif", 3) == 0)
             {
 
-               if (!pimage->_defer_load_multi_frame_image_(pmemory))
+               if (!m_pcontextimage->_load_multi_frame_image(pimage, pmemory))
                {
 
                   pimage->set_nok();
@@ -174,9 +184,8 @@ namespace imaging_wic
    }
 
 
-   void imaging::load_image::on_os_load_image(memory_pointer pmemory)
+   void context_image::load_image::on_os_load_image(memory_pointer pmemory)
    {
-
 
       ::image * pimage = m_pimage;
 
@@ -708,7 +717,7 @@ namespace imaging_wic
             VARIANT varValue;
             VariantInit(&varValue);
             varValue.vt = VT_R4;
-            varValue.fltVal = MAX(0.f, MIN(1.f, psaveimage->m_iQuality / 100.0f));
+            varValue.fltVal = max(0.f, min(1.f, psaveimage->m_iQuality / 100.0f));
 
             if (SUCCEEDED(hr))
             {

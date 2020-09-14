@@ -1,9 +1,9 @@
 #include "framework.h"
 
 
-natural_meta_data < string_meta_data < wd16char > > g_wd16stringNil(zero_init);
+natural_meta_data < string_meta_data < wd16char > > * g_pwd16stringNil = nullptr;
 
-natural_meta_data < string_meta_data < wd32char > > g_wd32stringNil(zero_init);
+natural_meta_data < string_meta_data < wd32char > > * g_pwd32stringNil = nullptr;
 
 
 //const unichar * wstring::g_pszWindowsBBQBUNC(L"\\\\?\\UNC");

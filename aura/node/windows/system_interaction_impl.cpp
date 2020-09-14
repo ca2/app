@@ -102,12 +102,12 @@ namespace user
 } // namespace base
 
 
-CLASS_DECL_AURA ::user::interaction * create_system_message_window(::object * pobject)
+CLASS_DECL_AURA ::user::interaction * create_system_message_window(::layered * pobjectContext)
 {
 
    ::user::system_interaction_impl * pimpl = new ::user::system_interaction_impl;
 
-    pimpl->initialize(pobject);
+    pimpl->initialize(pobjectContext);
 
     ::user::create_struct createstruct;
 

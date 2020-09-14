@@ -35,7 +35,7 @@ namespace sockets
 {
 
 
-   EventHandler::EventHandler(::object * pobject, ::aura::log *point) :
+   EventHandler::EventHandler(::layered * pobject, ::apex::log *point) :
       ::object(pobject),
       socket_handler(pobject, point),
       m_bQuit(false), m_ptcpsocket(nullptr)
@@ -52,7 +52,7 @@ namespace sockets
 
             pevent->GetFrom()->SetHandlerInvalid();
 
-            ::aura::del(pevent);
+            ::acme::del(pevent);
 
          });
 
@@ -149,7 +149,7 @@ namespace sockets
 
          }
 
-         ::aura::del(pevent);
+         ::acme::del(pevent);
 
          if (p != nullptr)
          {

@@ -155,7 +155,7 @@ bool retry_multi_lock::unlock(LONG lCount, LPLONG pPrevCount /* =nullptr */)
       if (m_baLocked[i])
       {
          
-         semaphore* pSemaphore = m_synca[i].cast < semaphore >();
+         semaphore* pSemaphore = m_synca.sync_at(i).cast < semaphore >();
          
          if (pSemaphore != nullptr)
          {

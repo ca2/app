@@ -9,7 +9,7 @@
 //
 //   int iStatus = -1;
 //
-//   class aura_aura aura_aura;
+//   class apex_apex apex_apex;
 //
 //   {
 //
@@ -42,21 +42,21 @@
 //
 ////#ifdef ACID_APP
 ////
-////      PFN_NEW_AURA_APPLICATION pfnNewAuraApplication = &get_acid_app;
+////      PFN_NEW_APEX_APPLICATION pfnNewAuraApplication = &get_acid_app;
 ////
 ////#else
 ////
-////      PFN_NEW_AURA_APPLICATION pfnNewAuraApplication = (PFN_NEW_AURA_APPLICATION) ::GetProcAddress(hinstance, "new_aura_application");;
+////      PFN_NEW_APEX_APPLICATION pfnNewAuraApplication = (PFN_NEW_APEX_APPLICATION) ::GetProcAddress(hinstance, "new_apex_application");;
 ////
 ////#endif
 //
 ////#ifdef ACID_LIBRARY
 ////
-////      PFN_NEW_AURA_LIBRARY pfnNewLibrary = &get_acid_library;
+////      PFN_NEW_APEX_LIBRARY pfnNewLibrary = &get_acid_library;
 ////
 ////#else
 ////
-////      PFN_NEW_AURA_LIBRARY pfnNewLibrary = nullptr;
+////      PFN_NEW_APEX_LIBRARY pfnNewLibrary = nullptr;
 ////
 ////#endif
 //
@@ -67,7 +67,7 @@
 //
 //      //}
 //
-//      //if (!pauramain)
+//      //if (!papexmain)
 //      //{
 //
 //        // message_box("Please!!\n\nImplement entry function with the macro \n\n__main\n{\n\n\t<\"Main Body\">\n\n}\n\n." + message_box_icon_error);
@@ -76,7 +76,7 @@
 //
 //      //}
 //
-//      ::aura_main_struct mainstruct = {};
+//      ::apex_main_struct mainstruct = {};
 //
 //      mainstruct.m_bConsole = false;
 //      mainstruct.m_bDraw2d = true;

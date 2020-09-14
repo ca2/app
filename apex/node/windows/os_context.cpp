@@ -1,8 +1,8 @@
 #include "framework.h"
 #include "apex/node/windows/_windows.h"
-#include "apex/os/windows_common/_file_c.h"
-#include "apex/os/windows_common/cotaskptr.h"
-#include "apex/os/windows_common/file.h"
+#include "acme/os/windows_common/_file_c.h"
+#include "acme/os/windows_common/cotaskptr.h"
+#include "acme/os/windows_common/file.h"
 #include <wincred.h>
 #include <wtsapi32.h>
 #include <shobjidl.h>
@@ -957,7 +957,6 @@ namespace windows
 
 
 
-
    bool getCredentialsForService(const string & strService,WCHAR * szUsername,WCHAR *szPassword)
    {
 
@@ -1672,10 +1671,10 @@ retry:
    }
 
 
-   bool os_context::resolve_link(::file::path & path, const string & strSource, string * pstrDirectory, string * pstrParams, ::user::primitive * puiMessageParentOptional)
+   bool os_context::resolve_link(::file::path & path, const string & strSource, string * pstrDirectory, string * pstrParams)
    {
 
-      if (::os_context::resolve_link(path, strSource, pstrDirectory, pstrParams, puiMessageParentOptional))
+      if (::os_context::resolve_link(path, strSource, pstrDirectory, pstrParams))
       {
 
          return true;
@@ -1685,7 +1684,7 @@ retry:
       if (strSource.ends_ci(".lnk"))
       {
 
-         if (resolve_lnk_link(path, strSource, pstrDirectory, pstrParams, puiMessageParentOptional))
+         if (resolve_lnk_link(path, strSource, pstrDirectory, pstrParams))
          {
 
             return true;
@@ -1699,12 +1698,10 @@ retry:
    }
 
 
-   bool os_context::resolve_lnk_link(::file::path & path, const string & strSource, string * pstrDirectory, string * pstrParams, ::user::primitive * puiMessageParentOptional)
+   bool os_context::resolve_lnk_link(::file::path & path, const string & strSource, string * pstrDirectory, string * pstrParams)
    {
 
       ASSERT(strSource.ends_ci(".lnk"));
-
-      __pointer(::user::primitive) pinteraction = puiMessageParentOptional;
 
       if (strSource.contains("0318") && strSource.contains("removal"))
       {
@@ -1765,11 +1762,14 @@ retry:
          if (SUCCEEDED(hr = ppersistfile->Load(wstrFileIn, STGM_READ)))
          {
 
-            HWND hwnd = pinteraction == nullptr ? nullptr : pinteraction->get_handle();
+            //HWND hwnd = pinteraction == nullptr ? nullptr : pinteraction->get_handle();
+
+            HWND hwnd = nullptr;
 
             u32 fFlags = 0;
 
-            fFlags |= pinteraction == nullptr ? (SLR_NO_UI | (10 << 16)) : 0;
+            //fFlags |= pinteraction == nullptr ? (SLR_NO_UI | (10 << 16)) : 0;
+            fFlags |= SLR_NO_UI;
 
             fFlags |= SLR_NOUPDATE;
 
@@ -2927,36 +2927,36 @@ repeat:
    }
 
 
-   bool os_context::browse_file_open(::user::interaction* puiOwner, property_set & set)
+   bool os_context::browse_file_open(property_set & set)
    {
 
-      ::user::interaction* pinteraction = nullptr;
-      
-      if (::is_set(puiOwner))
-      {
+      //::user::interaction* pinteraction = nullptr;
+      //
+      //if (::is_set(puiOwner))
+      //{
 
-         pinteraction = puiOwner->get_wnd();
+      //   pinteraction = puiOwner->get_wnd();
 
-      }
+      //}
 
       bool bOk = false;
 
-      try
-      {
+      //try
+      //{
 
-         if (::is_set(pinteraction))
-         {
+      //   if (::is_set(pinteraction))
+      //   {
 
-            pinteraction->enable_window(false);
+      //      pinteraction->enable_window(false);
 
-         }
+      //   }
 
-      }
-      catch (...)
-      {
+      //}
+      //catch (...)
+      //{
 
 
-      }
+      //}
 
       try
       {
@@ -2986,7 +2986,7 @@ repeat:
 
             ::papaya::array::copy(wstraNames, set["file_filter_names"].stra());
 
-            rgSpec.set_size(MIN(wstraSpecs.get_size(), wstraNames.get_size()));
+            rgSpec.set_size(min(wstraSpecs.get_size(), wstraNames.get_size()));
 
             for (index i = 0; i < rgSpec.get_size(); i++)
             {
@@ -3149,52 +3149,52 @@ repeat:
 
       }
 
-      try
-      {
+      //try
+      //{
 
-         if (::is_set(pinteraction))
-         {
+      //   if (::is_set(pinteraction))
+      //   {
 
-            pinteraction->enable_window();
+      //      pinteraction->enable_window();
 
-            pinteraction->order_top();
+      //      pinteraction->order_top();
 
-            pinteraction->display(display_normal, activation_set_foreground);
+      //      pinteraction->display(display_normal, activation_set_foreground);
 
-            pinteraction->set_need_redraw();
+      //      pinteraction->set_need_redraw();
 
-            pinteraction->post_redraw();
+      //      pinteraction->post_redraw();
 
-         }
+      //   }
 
-      }
-      catch (...)
-      {
+      //}
+      //catch (...)
+      //{
 
-      }
+      //}
 
       return bOk;
 
    }
 
 
-   bool os_context::browse_file_save(::user::interaction* puiOwner, property_set & set)
+   bool os_context::browse_file_save(property_set & set)
    {
 
-      ::user::interaction* pinteraction = puiOwner->get_wnd();
+      //::user::interaction* pinteraction = puiOwner->get_wnd();
 
       bool bOk = false;
 
-      try
-      {
+      //try
+      //{
 
-         pinteraction->enable_window(false);
+      //   pinteraction->enable_window(false);
 
-      }
-      catch (...)
-      {
+      //}
+      //catch (...)
+      //{
 
-      }
+      //}
 
       try
       {
@@ -3232,7 +3232,7 @@ repeat:
 
             ::papaya::array::copy(wstraNames, set["file_filter_names"].stra());
 
-            rgSpec.set_size(MIN(wstraSpecs.get_size(), wstraNames.get_size()));
+            rgSpec.set_size(min(wstraSpecs.get_size(), wstraNames.get_size()));
 
             for (index i = 0; i < rgSpec.get_size(); i++)
             {
@@ -3310,7 +3310,7 @@ repeat:
 
                      set["file_name"] = string(pwszFilePath);
 
-                     bOk = true;
+                      bOk = true;
 
                   }
 
@@ -3326,24 +3326,24 @@ repeat:
 
       }
 
-      try
-      {
+      //try
+      //{
 
-         pinteraction->enable_window();
+      //   pinteraction->enable_window();
 
-         pinteraction->order_top();
+      //   pinteraction->order_top();
 
-         pinteraction->display(display_normal, activation_set_foreground);
+      //   pinteraction->display(display_normal, activation_set_foreground);
 
-         pinteraction->set_need_redraw();
+      //   pinteraction->set_need_redraw();
 
-         pinteraction->post_redraw();
+      //   pinteraction->post_redraw();
 
-      }
-      catch (...)
-      {
+      //}
+      //catch (...)
+      //{
 
-      }
+      //}
 
       return bOk;
 
@@ -3351,24 +3351,24 @@ repeat:
 
 
 
-   bool os_context::browse_folder(::user::interaction* puiOwner, property_set & set)
+   bool os_context::browse_folder( property_set & set)
    {
 
-      ::user::interaction* pinteraction = puiOwner->get_wnd();
+      //::user::interaction* pinteraction = puiOwner->get_wnd();
 
       bool bOk = false;
 
-      try
-      {
+      //try
+      //{
 
-         pinteraction->enable_window(false);
+      //   pinteraction->enable_window(false);
 
-      }
-      catch (...)
-      {
+      //}
+      //catch (...)
+      //{
 
 
-      }
+      //}
 
       try
       {
@@ -3443,49 +3443,49 @@ repeat:
 
       }
 
-      try
-      {
+      //try
+      //{
 
-         pinteraction->enable_window();
+      //   pinteraction->enable_window();
 
-         pinteraction->order_top();
+      //   pinteraction->order_top();
 
-         pinteraction->display(display_normal, activation_set_foreground);
+      //   pinteraction->display(display_normal, activation_set_foreground);
 
-         pinteraction->set_need_redraw();
+      //   pinteraction->set_need_redraw();
 
-         pinteraction->post_redraw();
-
-
-      }
-      catch (...)
-      {
+      //   pinteraction->post_redraw();
 
 
-      }
+      //}
+      //catch (...)
+      //{
+
+
+      //}
 
       return bOk;
 
    }
 
-   bool os_context::browse_file_or_folder(::user::interaction* puiOwner, property_set & set)
+   bool os_context::browse_file_or_folder(property_set & set)
    {
 
-      ::user::interaction* pinteraction = puiOwner->get_wnd();
+      //::user::interaction* pinteraction = puiOwner->get_wnd();
 
       bool bOk = false;
 
-      try
-      {
+      //try
+      //{
 
-         pinteraction->enable_window(false);
+      //   pinteraction->enable_window(false);
 
-      }
-      catch (...)
-      {
+      //}
+      //catch (...)
+      //{
 
 
-      }
+      //}
 
       try
       {
@@ -3560,25 +3560,25 @@ repeat:
 
       }
 
-      try
-      {
+      //try
+      //{
 
-         pinteraction->enable_window();
+      //   pinteraction->enable_window();
 
-         pinteraction->order_top();
+      //   pinteraction->order_top();
 
-         pinteraction->display(display_normal, activation_set_foreground);
+      //   pinteraction->display(display_normal, activation_set_foreground);
 
-         pinteraction->set_need_redraw();
+      //   pinteraction->set_need_redraw();
 
-         pinteraction->post_redraw();
+      //   pinteraction->post_redraw();
 
-      }
-      catch (...)
-      {
+      //}
+      //catch (...)
+      //{
 
 
-      }
+      //}
 
       return bOk;
 
@@ -3605,51 +3605,7 @@ repeat:
    }
 
 
-   icon_result os_context::load_icon(const ::var & varFile)
-   {
-
-      string_array straMatter;
-
-      straMatter.add("main");
-
-      if (::is_set(get_context_application()))
-      {
-
-         straMatter.add(get_context_application()->m_straMatterLocator);
-
-      }
-
-      HICON hicon = ::load_icon(this, straMatter, "icon.ico", 24, 24);
-
-      if (hicon == nullptr)
-      {
-
-         return ::error_failed;
-
-      }
-
-      auto picon = __create_new < ::draw2d::icon >();
-
-      if (!picon)
-      {
-
-         return ::error_failed;
-
-      }
-
-      picon->attach_os_data(hicon);
-
-      return picon;
-
-   }
-
-
-
 } // namespace windows
-
-
-
-
 
 
 // CreateLink - Uses the Shell's IShellLink and IPersistFile interfaces

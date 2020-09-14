@@ -31,13 +31,14 @@ public:
    ::user::primitive *                                         m_puserinteractionParent;
    ::user::primitive *                                         m_puiAlloc;
    __pointer(command_line)                                     m_pcommandline;
-   __pointer(::user::create)                                   m_pusercreate;
+   // ::user::create
+   __pointer(::layered)                                        m_pusercreate;
    ewindowflag                                                 m_ewindowflag;
    ::id                                                        m_id;
 
    create();
    create(::object * pobject, arguments arguments);
-   create(::object * pobject);
+   create(::layered * pobjectContext);
    create(::object * pobject, string strAppId, var varFile, const var & varOptions = __visible(true), ::user::primitive * puiParent = nullptr, ewindowflag eflag = window_flag_none, ::id = ::id());
    virtual ~create();
 

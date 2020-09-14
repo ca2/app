@@ -1376,23 +1376,6 @@ bool GetDrive(const char * pszDosName, string& csDrive, bool bDriveLetterOnly)
 
 
 
-#ifdef WINDOWS_DESKTOP
-
-int_bool IsWow64()
-{
-
-   int_bool bIsWow64 = FALSE;
-
-   if (!IsWow64Process(GetCurrentProcess(), &bIsWow64))
-   {
-      return FALSE;
-   }
-
-   return bIsWow64 != FALSE;
-
-}
-
-#endif
 
 
 
@@ -1400,46 +1383,6 @@ int_bool IsWow64()
 
 
 
-int_bool EnableTokenPrivilege(LPCTSTR pszPrivilege)
-{
-   // do it only once
-   static int_bool bEnabled = FALSE;
-   if (bEnabled)
-   {
-      return TRUE;
-   }
-   bEnabled = TRUE;
-
-   HANDLE hToken = 0;
-   TOKEN_PRIVILEGES tkp = { 0 };
-
-   // Get a token for this process.
-   if (!OpenProcessToken(GetCurrentProcess(),
-                         TOKEN_ADJUST_PRIVILEGES |
-                         TOKEN_QUERY, &hToken))
-   {
-      return FALSE;
-   }
-
-   // Get the LUID for the privilege.
-   if (LookupPrivilegeValue(nullptr, pszPrivilege,
-                            &tkp.Privileges[0].Luid))
-   {
-      tkp.PrivilegeCount = 1;  // one privilege to set
-      tkp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
-
-      // set the privilege for this process.
-      AdjustTokenPrivileges(hToken, FALSE, &tkp, 0,
-                            (PTOKEN_PRIVILEGES)nullptr, 0);
-
-      if (get_last_error() != ERROR_SUCCESS)
-         return FALSE;
-
-      return TRUE;
-   }
-
-   return FALSE;
-}
 
 
 

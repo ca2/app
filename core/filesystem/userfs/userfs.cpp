@@ -19,10 +19,10 @@ namespace userfs
    }
 
    
-   ::estatus userfs::initialize(::object * pobjectContext)
+   ::estatus userfs::initialize(::layered * pobjectContext)
    {
 
-      auto estatus = ::aura::department::initialize(pobjectContext);
+      auto estatus = ::apex::department::initialize(pobjectContext);
 
       if (!estatus)
       {
@@ -41,7 +41,7 @@ namespace userfs
 
       }
 
-      if (!::aura::department::init())
+      if (!::apex::department::init())
       {
 
          return false;

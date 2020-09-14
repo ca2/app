@@ -701,7 +701,7 @@ namespace linux
 
    }
 
-   bool os_context::create_service(::object * pobject)
+   bool os_context::create_service(::layered * pobjectContext)
    {
 
       //__throw(not_implemented());
@@ -754,7 +754,7 @@ namespace linux
    }
 
 
-   bool os_context::remove_service(::object * pobject)
+   bool os_context::remove_service(::layered * pobjectContext)
    {
 //      __throw(not_implemented());
       return false;
@@ -795,7 +795,7 @@ namespace linux
       */
    }
 
-   bool os_context::start_service(::object * pobject)
+   bool os_context::start_service(::layered * pobjectContext)
    {
       //__throw(not_implemented());
       return false;
@@ -836,7 +836,7 @@ namespace linux
             */
    }
 
-   bool os_context::stop_service(::object * pobject)
+   bool os_context::stop_service(::layered * pobjectContext)
    {
       __throw(not_implemented());
       return false;

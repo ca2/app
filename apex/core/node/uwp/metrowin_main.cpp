@@ -17,7 +17,7 @@ CLASS_DECL_APEX int app_core_main(const char * pszCmdLine)
       debug_box("zzzAPPzzz app","zzzAPPzzz app",MB_ICONINFORMATION);
    }
 
-   ::aura::system * psystem                     = new ::aura::system;
+   ::apex::system * psystem                     = new ::apex::system;
 
    auto source = ::metrowin::new_directx_application_source(psystem,pszCmdLine);
 

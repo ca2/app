@@ -16,7 +16,7 @@ namespace android
       public:
 
 
-         file_system(::object * pobject);
+         file_system(::layered * pobjectContext);
 
          virtual file_pointer get_file(var varFile, UINT nOpenFlags, ::status::result * pfesp, ::aura::application * papp);
 

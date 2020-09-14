@@ -71,7 +71,7 @@ oswindow_data::oswindow_data(::user::interaction_impl * pimpl)
 oswindow_data::~oswindow_data()
 {
 
-   ::aura::del(m_plongptrmap);
+   ::acme::del(m_plongptrmap);
 
 }
 

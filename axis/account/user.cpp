@@ -9,7 +9,7 @@ string chunk_split(const string & body,i32 chunklen,const string & end)
    strsize iRead;
    while(pos < body.get_length())
    {
-      iRead = MIN(chunklen,body.get_length() - pos);
+      iRead = min(chunklen,body.get_length() - pos);
       strRet += body.Mid(pos,iRead);
       strRet += end;
       pos += iRead;
@@ -50,7 +50,7 @@ namespace account
    }
 
 
-   ::estatus user::initialize(::object * pobjectContext)
+   ::estatus user::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);
@@ -438,7 +438,7 @@ namespace account
 
             auto authenticationDoneElapsed = ::datetime::time::get_current_time() - m_timeAuthentication;
 
-            auto authenticationElapsed = MIN(authenticationRequestElapsed, authenticationDoneElapsed);
+            auto authenticationElapsed = min(authenticationRequestElapsed, authenticationDoneElapsed);
 
             auto authenticationTimeout = Session.account()->get_session_timeout();
 

@@ -14,9 +14,7 @@ namespace userex
       m_size.cx = 7;
       m_size.cy = 5;
 
-      m_pimage = load_image("project->jpg", false);
-
-
+      m_pimage = Application.image().load_image("project->jpg", false);
 
    }
 
@@ -269,7 +267,7 @@ namespace userex
 
       m_itemCurrent = plist->m_iIndex;
 
-      ::image_pointer pimage = Application.matter_image(pgroup->m_strIcon);
+      ::image_pointer pimage = Application.image().matter_image(pgroup->m_strIcon);
 
       m_buttonMenu.set_window_text(get_group_title(pgroup));
 

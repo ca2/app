@@ -12,6 +12,7 @@
 #include "aura/message.h"
 #include "aura/update.h"
 #include "core/user/userex/_userex.h"
+#include "apex/message/simple_command.h"
 
 
 namespace userex

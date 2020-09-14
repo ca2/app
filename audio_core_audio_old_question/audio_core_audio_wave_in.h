@@ -19,7 +19,7 @@ namespace multimedia
          bool                             m_bIsRunning;
 
 
-         in(::object * pobject);
+         in(::layered * pobjectContext);
          virtual ~in();
 
 

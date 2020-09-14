@@ -1,9 +1,13 @@
 #include "framework.h"
-#include "aura/platform/app_core.h"
-#include "aura/compress/zip/_.h"
-#include "aura/const/id.h"
+#include "apex/platform/app_core.h"
+#include "apex/compress/zip/_.h"
+#include "apex/const/id.h"
 
-extern const char* g_pszServerCa2Cc;
+//extern const char* g_pszServerCa2Cc;
+
+
+CLASS_DECL_ACME const char* get_server_ca2_cc();
+
 
 namespace zip
 {
@@ -55,12 +59,12 @@ dir_context::dir_context()
 dir_context::~dir_context()
 {
 
-   //::aura::del(m_pziputil);
+   //::acme::del(m_pziputil);
 
 }
 
 
-::estatus dir_context::initialize(::object * pobjectContext)
+::estatus dir_context::initialize(::layered * pobjectContext)
 {
 
    auto estatus = ::object::initialize(pobjectContext);
@@ -512,12 +516,155 @@ inline bool myspace(char ch)
 }
 
 
+::file::listing& dir_context::rls(::file::listing& listing)
+{
+
+   listing.m_bRecursive = true;
+
+   listing.m_bDir = true;
+
+   listing.m_bFile = true;
+
+   return ls(listing);
+
+}
+
+
+::file::listing& dir_context::rls_relative_name(::file::listing& listing)
+{
+
+   listing.m_bRecursive = true;
+
+   listing.m_bDir = true;
+
+   listing.m_bFile = true;
+
+   return ls_relative_name(listing);
+
+}
+
+
+::file::listing& dir_context::ls_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern)
+{
+
+   listing.m_pathUser = path;
+
+   listing.m_bRecursive = false;
+
+   listing.m_bDir = true;
+
+   listing.m_bFile = true;
+
+   listing.m_straPattern = straPattern;
+
+   return ls(listing);
+
+}
+
+
+::file::listing& dir_context::ls_file_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern)
+{
+
+   listing.m_pathUser = path;
+
+   listing.m_bRecursive = false;
+
+   listing.m_bDir = false;
+
+   listing.m_bFile = true;
+
+   listing.m_straPattern = straPattern;
+
+   return ls(listing);
+
+}
+
+::file::listing& dir_context::rls_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern)
+{
+
+   listing.m_bRecursive = true;
+
+   listing.m_bDir = true;
+
+   listing.m_bFile = true;
+
+   listing.m_straPattern = straPattern;
+
+   return ls(listing);
+
+}
+
+
+::file::listing& dir_context::ls_file(::file::listing& listing)
+{
+
+   listing.m_bRecursive = false;
+
+   listing.m_bDir = false;
+
+   listing.m_bFile = true;
+
+   listing.m_straPattern.remove_all();
+
+   return ls(listing);
+
+}
+
+
+::file::listing& dir_context::ls_dir(::file::listing& listing)
+{
+
+   listing.m_bRecursive = false;
+
+   listing.m_bDir = true;
+
+   listing.m_bFile = false;
+
+   listing.m_straPattern.remove_all();
+
+   return ls(listing);
+
+}
+
+
+::file::listing& dir_context::rls_file(::file::listing& listing)
+{
+
+   listing.m_bRecursive = true;
+
+   listing.m_bDir = false;
+
+   listing.m_bFile = true;
+
+   listing.m_straPattern.remove_all();
+
+   return ls(listing);
+
+}
+
+
+::file::listing& dir_context::rls_dir(::file::listing& listing)
+{
+
+   listing.m_bRecursive = true;
+
+   listing.m_bDir = true;
+
+   listing.m_bFile = false;
+
+   listing.m_straPattern.remove_all();
+
+   return ls(listing);
+
+}
+
+
 bool dir_context::has_subdir(const ::file::path & pathFolder)
 {
 
    ::file::listing ls(get_context());
 
-   ls.ls_dir(pathFolder);
+   Context.dir().ls_dir(ls, pathFolder);
 
    return ls.get_count() > 0;
 
@@ -1209,7 +1356,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 
 }
 
-//::file::path dir_context::userfolder(::object * pobject)
+//::file::path dir_context::userfolder(::layered * pobjectContext)
 //{
 
 //   UNREFERENCED_PARAMETER(pobject);
@@ -1297,8 +1444,7 @@ bool dir_context::rm(const ::file::path & path, bool bRecursive)
 }
 
 
-
-void dir_context::matter_ls(const ::file::path & path, ::file::patha & stra)
+void dir_context::matter_ls(const ::file::path & path, ::file::listing & stra)
 {
 
    sync_lock sl(System.m_spmutexMatter);
@@ -1405,14 +1551,14 @@ void dir_context::matter_ls(const ::file::path & path, ::file::patha & stra)
 
       strDir = Context.get_matter_cache_path(strDir);
 
-      stra = ::file::listing(get_context()).ls(strDir);
+      Context.dir().ls(stra, strDir);
 
    }
 
 }
 
 
-void dir_context::matter_ls_file(const ::file::path & str, ::file::patha & stra)
+void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & stra)
 {
 
    ::file::path strDir = matter(str, true);
@@ -1473,7 +1619,7 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::patha & stra)
    else
    {
 
-      stra =::file:: listing(get_context()).ls(strDir);
+      Context.dir().ls(stra, strDir);
 
    }
 
@@ -1579,7 +1725,7 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::patha & stra)
 
    Context.locale_schema_matter(straLs, straMatterLocator, strLocale, strSchema);
 
-   ::aura::str_context * pcontext = Session.str_context();
+   ::apex::str_context * pcontext = Session.str_context();
 
    if (System.m_pdirsystem->m_bMatterFromHttpCache)
    {
@@ -1656,7 +1802,7 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::patha & stra)
 
       strMatter = Context.http().get(strUrl, set);
 
-      strMatter.replace("https://server.ca2.cc/", string(g_pszServerCa2Cc));
+      strMatter.replace("https://server.ca2.cc/", string(get_server_ca2_cc()));
 
       TRACE("");
       TRACE("");
@@ -1666,7 +1812,7 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::patha & stra)
 
       strMatter.trim();
 
-      if (strMatter.has_char() && ::str::begins_eat_ci(strMatter, string(g_pszServerCa2Cc) + "matter/"))
+      if (strMatter.has_char() && ::str::begins_eat_ci(strMatter, string(get_server_ca2_cc()) + "matter/"))
       {
 
          path = "appmatter://" + strMatter;
@@ -1981,7 +2127,7 @@ ret:
 
       strsize iFind2 = strRelative.reverse_find("/", iFind);
 
-      strsize iStart = MAX(iFind1 + 1, iFind2 + 1);
+      strsize iStart = max(iFind1 + 1, iFind2 + 1);
 
       strRelative = strRelative.Left(iFind - 1) + "_" + strRelative.Mid(iStart, iFind - iStart) + strRelative.Mid(iFind + 1);
 
@@ -2002,7 +2148,7 @@ ret:
 //}
 
 
-//::file::path dir_context::userappdata(::object * pobject)
+//::file::path dir_context::userappdata(::layered * pobjectContext)
 //{
 
 //   UNREFERENCED_PARAMETER(pobject);
@@ -2012,7 +2158,7 @@ ret:
 //}
 
 
-//::file::path dir_context::userdata(::object * pobject)
+//::file::path dir_context::userdata(::layered * pobjectContext)
 //{
 
 //   UNREFERENCED_PARAMETER(pobject);
@@ -2022,7 +2168,7 @@ ret:
 //}
 
 
-//::file::path dir_context::default_os_user_path_prefix(::object * pobject)
+//::file::path dir_context::default_os_user_path_prefix(::layered * pobjectContext)
 //{
 
 //   UNREFERENCED_PARAMETER(pobject);

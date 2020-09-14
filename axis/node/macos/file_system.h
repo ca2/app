@@ -18,7 +18,7 @@ namespace macos
       virtual ~file_system();
       
       
-      virtual ::estatus initialize(::object * pobjectContext) override;
+      virtual ::estatus initialize(::layered * pobjectContext) override;
 
 
 

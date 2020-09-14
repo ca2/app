@@ -9,7 +9,7 @@ namespace plugin
 
 
    class CLASS_DECL_APEX system :
-      virtual public ::aura::system
+      virtual public ::apex::system
    {
    public:
 

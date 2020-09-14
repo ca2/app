@@ -82,6 +82,14 @@ namespace file
       listing & operator = (const ::estatus & estatus) { m_statusresult.set_error(estatus); return *this; }
 
 
+      void operator()(const ::file::path& path)
+      {
+
+         m_pathUser = path;
+         m_pathFinal = path;
+
+      }
+
 
       index add_child(const ::file::path & path)
       {

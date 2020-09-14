@@ -922,7 +922,7 @@ namespace windows
       if (iFind >= 0 || iFind2 >= 2)
       {
 
-         string strProtocol = imagekey.m_strPath.Left(MAX(iFind, iFind2));
+         string strProtocol = imagekey.m_strPath.Left(max(iFind, iFind2));
 
          i32 i = 0;
 
@@ -1051,7 +1051,7 @@ namespace windows
    //}
 
 
-   ::estatus shell::initialize(::object * pobjectContext)
+   ::estatus shell::initialize(::layered * pobjectContext)
    {
 
       if (m_bInitialized)

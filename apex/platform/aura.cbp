@@ -102,7 +102,7 @@
 					<Add option="-lfreeimage" />
 					<Add option="-lpcre2-8" />
 					<Add option="`pkg-config --libs glib-2.0 gtk+-3.0 gdk-3.0 appindicator3-0.1`" />
-					<Add option="`$(#archive)/tool/bin/not_platform_setup raspbian -laurasn`" />
+					<Add option="`$(#archive)/tool/bin/not_platform_setup raspbian -lapexsn`" />
 					<Add option="-lace" />
 					<Add option="-lapex" />
 					<Add option="-Wl,-z,defs" />
@@ -215,7 +215,7 @@
 					<Add option="-lcrypto" />
 					<Add option="-lfreeimage" />
 					<Add option="`pkg-config --libs gtk+-3.0 gdk-3.0 appindicator3-0.1`" />
-					<Add option="`$(#archive)/tool/bin/not_platform_setup raspbian -laurasn`" />
+					<Add option="`$(#archive)/tool/bin/not_platform_setup raspbian -lapexsn`" />
 					<Add option="-lace" />
 					<Add option="-lapex" />
 					<Add option="-Wl,-z,defs" />
@@ -264,7 +264,7 @@
 		<Unit filename="Header.h" />
 		<Unit filename="_.h" />
 		<Unit filename="_app_common_impl.h" />
-		<Unit filename="_aura.cpp" />
+		<Unit filename="_apex.cpp" />
 		<Unit filename="_core.cpp" />
 		<Unit filename="_defer.h" />
 		<Unit filename="_features.h" />
@@ -330,7 +330,7 @@
 		<Unit filename="apex/account/usera.cpp" />
 		<Unit filename="apex/account/usera.h" />
 		<Unit filename="apex/_.h" />
-		<Unit filename="apex/_aura.h" />
+		<Unit filename="apex/_apex.h" />
 		<Unit filename="apex/_core.cpp" />
 		<Unit filename="apex/_heap.h" />
 		<Unit filename="apex/_impl.h" />
@@ -378,7 +378,7 @@
 		<Unit filename="apex/atomic2.h" />
 		<Unit filename="apex/.cpp" />
 		<Unit filename="apex/.h" />
-		<Unit filename="apex/_aura.h" />
+		<Unit filename="apex/_apex.h" />
 		<Unit filename="apex/_regex.h" />
 		<Unit filename="apex/_status.h" />
 		<Unit filename="apex/auto.h" />
@@ -593,12 +593,12 @@
 		<Unit filename="apex/user.h" />
 		<Unit filename="apex/util1.h" />
 		<Unit filename="apex/v8stdint.h" />
-		<Unit filename="apex/_policy/aura_c.h" />
-		<Unit filename="apex/_policy/aura_cpp.h" />
-		<Unit filename="apex/_policy/aura_policy.h" />
-		<Unit filename="apex/_policy/aura_policy_objc.h" />
-		<Unit filename="apex/_policy/aura_policy_objcpp.h" />
-		<Unit filename="apex/_policy/aura_policy_winrt.h" />
+		<Unit filename="apex/_policy/apex_c.h" />
+		<Unit filename="apex/_policy/apex_cpp.h" />
+		<Unit filename="apex/_policy/apex_policy.h" />
+		<Unit filename="apex/_policy/apex_policy_objc.h" />
+		<Unit filename="apex/_policy/apex_policy_objcpp.h" />
+		<Unit filename="apex/_policy/apex_policy_winrt.h" />
 		<Unit filename="apex/compress/aaa_want_to_remove_compress_bzip.h" />
 		<Unit filename="apex/compress/aaa_want_to_remove_compress_gzip.h" />
 		<Unit filename="apex/compress/bsdiff/libbsdiff.h" />
@@ -1121,8 +1121,8 @@
 		<Unit filename="apex/os/apple/ns_exception.h" />
 		<Unit filename="apex/os/apple/time.h" />
 		<Unit filename="apex/os/apex.h" />
-		<Unit filename="apex/os/aura_gdk.cpp" />
-		<Unit filename="apex/os/aura_gdk.h" />
+		<Unit filename="apex/os/apex_gdk.cpp" />
+		<Unit filename="apex/os/apex_gdk.h" />
 		<Unit filename="apex/os/binreloc.cpp" />
 		<Unit filename="apex/os/binreloc.h" />
 		<Unit filename="apex/os/cross.h" />
@@ -1355,7 +1355,7 @@
 		<Unit filename="apex/os/metrowin/metrowin_user_impl.h" />
 		<Unit filename="apex/os/openssl_crypt.cpp" />
 		<Unit filename="apex/os/os2.h" />
-		<Unit filename="apex/os/os_aura.h" />
+		<Unit filename="apex/os/os_apex.h" />
 		<Unit filename="apex/os/os_binreloc.h" />
 		<Unit filename="apex/os/os_file.h" />
 		<Unit filename="apex/os/os_graphics.h" />
@@ -2835,8 +2835,8 @@
 		<Unit filename="primitive/primitive/factory.h" />
 		<Unit filename="primitive/primitive/form_property_set.cpp" />
 		<Unit filename="primitive/primitive/form_property_set.h" />
-		<Unit filename="primitive/primitive/generic_object.cpp" />
-		<Unit filename="primitive/primitive/generic_object.h" />
+		<Unit filename="primitive/primitive/generic.cpp" />
+		<Unit filename="primitive/primitive/generic.h" />
 		<Unit filename="primitive/primitive/handler.cpp" />
 		<Unit filename="primitive/primitive/id.cpp" />
 		<Unit filename="primitive/primitive/id.h" />

@@ -35,7 +35,7 @@ namespace user
       draw_list_item(list * plist);
 
 
-      __pointer(image_list) get_image_list();
+      __pointer(::image_list) get_image_list();
       bool draw_image();
       bool draw_group_image();
       void update_item_color();

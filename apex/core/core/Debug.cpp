@@ -5,7 +5,7 @@
 *  TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR
 *  A PARTICULAR PURPOSE.
 *
-*  Copyright (C) 1993 - 1997 aura.
+*  Copyright (C) 1993 - 1997 apex.
 *
 ******************************************************************************
 *

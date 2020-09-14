@@ -5,7 +5,7 @@ namespace simpledb
 {
 
 
-   database::database(::object * pobject) :
+   database::database(::layered * pobjectContext) :
       ::object(pobject),
       m_spfileMeta(pobject),
       m_xmldocumentMeta(pobject)

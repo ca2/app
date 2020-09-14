@@ -3,14 +3,15 @@
  */
 #include  "framework.h"
 
-/* conversas dos Js Jefferson Dalavechia e Joice sobre calculadora cient凬ica, financeira e com pilha
-mais tico de calculadora no command */
+/* conversas dos Js Jefferson Dalavechia e Joice sobre calculadora científica, financeira e com pilha
+mais típico de calculadora no "command" */
 
-/* o LeoFischer falouu sobre participar do cl・(modinha de jogos de conquista de terra na internet) -
-para mim sugest縊 na minha linguagem - para "criar um cl・? */
+/* o LeoFischer falouu sobre participar do clã(modinha de jogos de conquista de terra na internet) -
+para mim sugestão na minha linguagem - para "criar um clã" */
 
 namespace calculator
 {
+
 
    token::token()
    {
@@ -19,16 +20,21 @@ namespace calculator
 
    }
 
+
    token::~token()
    {
+
    }
 
 
-   scanner::scanner(::object * pobject) :
-      ::object(pobject)
+   scanner::scanner(::layered * pobjectContext) :
+      ::object(pobjectContext)
    {
+
       input       = nullptr;
+
    }
+
 
    scanner::~scanner()
    {

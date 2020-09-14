@@ -2,7 +2,7 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "base/user/experience/_experience.h"
 #endif
-#include "aura/platform/static_setup.h"
+#include "apex/platform/static_setup.h"
 
 
 namespace base
@@ -25,7 +25,7 @@ namespace base
    }
 
 
-   ::estatus session::initialize(::object * pobjectContext)
+   ::estatus session::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::thread::initialize(pobjectContext);
@@ -860,7 +860,7 @@ namespace base
 //   }
 //
 //
-////   __pointer(::aura::application) session::get_new_application(::object * pobjectContext, const char * pszAppId)
+////   __pointer(::aura::application) session::get_new_application(::layered * pobjectContext, const char * pszAppId)
 ////   {
 ////
 ////      string strAppId(pszAppId);
@@ -899,7 +899,7 @@ namespace base
 ////         }
 ////         sync_lock sl(&::get_context_system()->m_mutexLibrary);
 ////
-////         __pointer(::aura::library) & plibrary = &::get_context_system()->m_mapLibrary[pszAppId];
+////         __pointer(::apex::library) & plibrary = &::get_context_system()->m_mapLibrary[pszAppId];
 ////
 ////         if (!plibrary)
 ////         {
@@ -954,7 +954,7 @@ namespace base
 ////                  else
 ////                  {
 ////
-////                     plibrary = __new(::aura::library);
+////                     plibrary = __new(::apex::library);
 ////
 ////                     plibrary->initialize_aura_library(pobjectContext, 0, nullptr);
 ////
@@ -1042,7 +1042,7 @@ namespace base
 ////
 ////         {
 ////
-////            ::aura::library & library = *plibrary;
+////            ::apex::library & library = *plibrary;
 ////
 ////
 ////            papp = library.get_new_application(this, strAppId);
@@ -4259,7 +4259,7 @@ namespace base
 //      try
 //      {
 //
-//         ::aura::del(m_pmapKeyPressed);
+//         ::acme::del(m_pmapKeyPressed);
 //
 //      }
 //      catch (...)
@@ -4366,7 +4366,7 @@ namespace base
 //
 //
 //
-//   //::estatus session::initialize(::object* pobjectContext)
+//   //::estatus session::initialize(::layered * pobjectContext)
 //   //{
 //
 //   //   auto estatus = ::aura::session::initialize(pobjectContext);
@@ -5374,7 +5374,7 @@ namespace base
 //   //}
 //
 //
-//   //::estatus session::initialize(::object* pobjectContext)
+//   //::estatus session::initialize(::layered * pobjectContext)
 //   //{
 //
 //   //   auto estatus = ::aura::session::initialize(pobjectContext);

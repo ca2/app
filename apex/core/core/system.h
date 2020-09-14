@@ -1,12 +1,12 @@
 #pragma once
 
 
-namespace aura
+namespace apex
 {
 
 
    class CLASS_DECL_APEX system :
-      virtual public ::aura::system
+      virtual public ::apex::system
    {
    public:
 
@@ -26,21 +26,21 @@ namespace aura
       ::mutex                                        m_mutexDelete;
 
 
-//    class ::aura::stra                           m_stra;
-//    class ::aura::service                        m_service;
+//    class ::apex::stra                           m_stra;
+//    class ::apex::service                        m_service;
 
 
-      class ::aura::patch   *                      m_ppatch;
+      class ::apex::patch   *                      m_ppatch;
 
-//      __pointer(::aura::run_start_installer)              m_prunstartinstaller;
+//      __pointer(::apex::run_start_installer)              m_prunstartinstaller;
 
-      //__pointer(::aura::session::map)                     m_pbergedgemap;
-      //__pointer_array(::aura::session)                         m_planesessionptra;
+      //__pointer(::apex::session::map)                     m_pbergedgemap;
+      //__pointer_array(::apex::session)                         m_planesessionptra;
 
-      __pointer(class ::aura::history)                    m_phistory;
+      __pointer(class ::apex::history)                    m_phistory;
 
       //      ::sockets::net                               m_net;
-      //      __pointer(::aura::filehandler::handler)  m_spfilehandler;
+      //      __pointer(::apex::filehandler::handler)  m_spfilehandler;
 
 
       // certain instantiators like npca2plugin and iexca2plugin rely
@@ -51,9 +51,9 @@ namespace aura
       //bool                                         m_bProcessInitialize;
       //bool                                         m_bProcessInitializeResult;
 
-      strid_map < ::aura::library * >              m_idmapCreateViewLibrary;
+      strid_map < ::apex::library * >              m_idmapCreateViewLibrary;
 
-      __pointer_array(::aura::library)                         m_libraryspa;
+      __pointer_array(::apex::library)                         m_libraryspa;
 
 #ifdef _UWP
       
@@ -65,7 +65,7 @@ namespace aura
       system();
       virtual ~system();
 
-      virtual ::estatus  initialize_system(::object * pobjectContext, app_core * pappcore) override;
+      virtual ::estatus  initialize_system(::layered * pobjectContext, app_core * pappcore) override;
 
       virtual void discard_to_factory(__pointer(object) pca);
 
@@ -97,7 +97,7 @@ namespace aura
 
       //virtual index get_new_bergedge(application_bias * pbiasCreation = nullptr);
 
-      //__pointer_array(::aura::session) &    planesessionptra();
+      //__pointer_array(::apex::session) &    planesessionptra();
 
 
       //virtual bool base_support() override;
@@ -106,13 +106,13 @@ namespace aura
       DECL_GEN_SIGNAL(on_application_signal);
 
 
-      bool set_history(::aura::history * phistory);
+      bool set_history(::apex::history * phistory);
 
 
-      __pointer(::aura::library) on_get_library(const char * pszLibrary) override;
+      __pointer(::apex::library) on_get_library(const char * pszLibrary) override;
 
 
-      //virtual ::aura::session *  get_platform(index iEdge,application_bias * pbiasCreation = nullptr);
+      //virtual ::apex::session *  get_platform(index iEdge,application_bias * pbiasCreation = nullptr);
 
 
       virtual void on_request(::create * pcreate) override;
@@ -127,14 +127,14 @@ namespace aura
 
       virtual void on_allocation_error(const ::string & str, ::object * pobjectSometimes) override;
 
-      //virtual __pointer(::aura::session) on_create_session() override;
+      //virtual __pointer(::apex::session) on_create_session() override;
 
 
-//      ::aura::stra                           & stra();
-      //    ::aura::service                        & service();
-      ::aura::history                        & hist();
+//      ::apex::stra                           & stra();
+      //    ::apex::service                        & service();
+      ::apex::history                        & hist();
 
-      class ::aura::patch                    & patch();
+      class ::apex::patch                    & patch();
 
       //::http::system                         & http();
 
@@ -177,7 +177,7 @@ namespace aura
 
       virtual string get_host_location_url();
 
-      virtual ::estatus add_view_library(::aura::library * plibrary);
+      virtual ::estatus add_view_library(::apex::library * plibrary);
 
       //virtual void get_cursor_pos(LPPOINT ppoint);
 
@@ -203,7 +203,7 @@ namespace aura
 
       virtual void on_end_find_applications_to_cache(stream & os) override;
 
-      virtual void on_map_application_library(::aura::library & library) override;
+      virtual void on_map_application_library(::apex::library & library) override;
 
       virtual void on_graphics_ready() override;
 
@@ -219,7 +219,7 @@ namespace aura
       //virtual ::estatus process_init() override;
       //virtual void term_system() override;
 
-      //virtual __pointer(::aura::session) on_create_session() override;
+      //virtual __pointer(::apex::session) on_create_session() override;
 
       virtual void set_active_guie(::user::interaction* pinteraction);
       virtual void set_focus_guie(::user::interaction* pinteraction);
@@ -254,7 +254,7 @@ namespace aura
    };
 
 
-} // namespace aura
+} // namespace apex
 
 
 

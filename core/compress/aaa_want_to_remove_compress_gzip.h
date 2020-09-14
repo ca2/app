@@ -70,7 +70,7 @@ class CLASS_DECL_CORE uncompress_gz :
 public:
 
    
-   uncompress_gz(::object * pobject);
+   uncompress_gz(::layered * pobjectContext);
    virtual ~uncompress_gz();
    
 

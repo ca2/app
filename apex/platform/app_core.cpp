@@ -7,9 +7,14 @@
 #include <stdio.h>
 #include <time.h>
 
+CLASS_DECL_ACME bool is_verbose();
+
+CLASS_DECL_APEX int_bool os_init_windowing();
+CLASS_DECL_APEX void os_term_windowing();
+
 
 //extern string_map < __pointer(::apex::library) >* g_pmapLibrary ;
-//extern string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
+//extern string_map < PFN_NEW_APEX_LIBRARY >* g_pmapNewAuraLibrary;
 //extern ::mutex* &::get_context_system()->m_mutexLibrary;
 
 
@@ -37,36 +42,36 @@
 
 #endif
 
+//
+//#ifdef DEBUG
+//
+//
+//   static bool g_bVerbose = true;
+//
+//
+//#else
+//
+//
+//   static bool g_bVerbose = false;
+//
+//
+//#endif
+//
 
-#ifdef DEBUG
+//bool is_verbose()
+//{
+//
+//   return g_bVerbose;
+//
+//}
+//
 
-
-   static bool g_bVerbose = true;
-
-
-#else
-
-
-   static bool g_bVerbose = false;
-
-
-#endif
-
-
-bool is_verbose()
-{
-
-   return g_bVerbose;
-
-}
-
-
-void set_verbose(bool bVerbose)
-{
-
-   g_bVerbose = bVerbose;
-
-}
+//void set_verbose(bool bVerbose)
+//{
+//
+//   g_bVerbose = bVerbose;
+//
+//}
 
 
 extern ::app_core * g_pappcore;
@@ -81,7 +86,7 @@ typedef int_bool DEFER_INIT();
 typedef DEFER_INIT * PFN_DEFER_INIT;
 
 
-void debug_context_object(::object * pobject);
+void debug_context_object(::layered * pobjectContext);
 
 
 #ifdef __APPLE__
@@ -118,7 +123,7 @@ string ca2_command_line2();
 
 
 
-//app_core::app_core(aura_main_data* pdata)
+//app_core::app_core(apex_main_data* pdata)
 app_core::app_core()
 {
 
@@ -236,11 +241,10 @@ bool app_core::on_result(const ::estatus & estatus)
 
 
 extern "C"
-::apex::system * aura_create_aura_system();
+::apex::system * apex_create_apex_system();
 
 
-extern ::file::path * g_ppathInstallFolder;
-
+CLASS_DECL_ACME void set_path_install_folder(const char * pszPath);
 
 CLASS_DECL_APEX void set_debug_pointer(void * p);
 
@@ -266,7 +270,7 @@ CLASS_DECL_APEX void set_debug_pointer(void * p);
 
       ::file::path pathModule = get_arg(m_iPathInstallFolderExeArg);
 
-      g_ppathInstallFolder = new ::file::path(pathModule.folder(4));
+      set_path_install_folder(pathModule.folder(4));
 
    }
 
@@ -436,7 +440,7 @@ CLASS_DECL_APEX void set_debug_pointer(void * p);
 //
 //#endif
 
-   os_init_application();
+   //os_init_application();
 
 //   {
 //
@@ -496,7 +500,7 @@ CLASS_DECL_APEX void set_debug_pointer(void * p);
 
    // get_context_system() = __move_transfer(g_pfn_create_system());
 
-   //get_context_system() = __move_transfer(aura_create_aura_system());
+   //get_context_system() = __move_transfer(apex_create_apex_system());
 
    if (!get_context_system())
    {
@@ -537,7 +541,7 @@ CLASS_DECL_APEX void set_debug_pointer(void * p);
 
    ::file::path pathGlobalOutputDebugString = ::dir::config() / "output_debug_string.txt" ;
 
-   ::apex::g_bOutputDebugString = file_exists(pathOutputDebugString)||  file_exists(pathGlobalOutputDebugString);
+   //::apex::g_bOutputDebugString = file_exists(pathOutputDebugString)||  file_exists(pathGlobalOutputDebugString);
 
    return true;
 
@@ -648,9 +652,9 @@ void app_core::set_command_line(const char * psz)
 //      //   if ((hmodule = __node_library_touch("apex", strMessage)) != nullptr)
 //      //   {
 //
-//      //      pfnDeferInit = (PFN_DEFER_INIT) __node_library_raw_get(hmodule, "defer_aura_init");
+//      //      pfnDeferInit = (PFN_DEFER_INIT) __node_library_raw_get(hmodule, "defer_apex_init");
 //
-//      //      pfnDeferTerm = (PFN_DEFER_TERM) __node_library_raw_get(hmodule, "defer_aura_term");
+//      //      pfnDeferTerm = (PFN_DEFER_TERM) __node_library_raw_get(hmodule, "defer_apex_term");
 //
 //      //   }
 //      //   //else if ((hmodule = __node_library_touch("base", strMessage)) != nullptr)
@@ -672,9 +676,9 @@ void app_core::set_command_line(const char * psz)
 //      //   else if ((hmodule = __node_library_touch("apex", strMessage)) != nullptr)
 //      //   {
 //
-//      //      pfnDeferInit = (PFN_DEFER_INIT) __node_library_raw_get(hmodule, "defer_aura_init");
+//      //      pfnDeferInit = (PFN_DEFER_INIT) __node_library_raw_get(hmodule, "defer_apex_init");
 //
-//      //      pfnDeferTerm = (PFN_DEFER_TERM) __node_library_raw_get(hmodule, "defer_aura_term");
+//      //      pfnDeferTerm = (PFN_DEFER_TERM) __node_library_raw_get(hmodule, "defer_apex_term");
 //
 //      //   }
 //
@@ -700,7 +704,7 @@ void app_core::set_command_line(const char * psz)
 //
 //      //}
 //
-//      //if(!::aura_level::defer_init(pfnDeferInit))
+//      //if(!::apex_level::defer_init(pfnDeferInit))
 //      //{
 //
 //      //   on_result(error_failed);
@@ -912,19 +916,19 @@ typedef int_bool DEFER_INIT();
 typedef DEFER_INIT * PFN_DEFER_INIT;
 
 
-//CLASS_DECL_APEX int aura_entry_point(int argc, char * argv[], const char * pszMainAppId)
+//CLASS_DECL_APEX int apex_entry_point(int argc, char * argv[], const char * pszMainAppId)
 //{
 //
 //   int iResult = 0;
 //
 //   {
 //
-//      aura_main_struct aura_main_struct = {};
+//      apex_main_struct apex_main_struct = {};
 //
-//      aura_main_struct.m_bConsole = false;
-//      aura_main_struct.m_bDraw2d = true;
-//      aura_main_struct.m_bUser = true;
-//      aura_main_struct.m_bUserEx = true;
+//      apex_main_struct.m_bConsole = false;
+//      apex_main_struct.m_bDraw2d = true;
+//      apex_main_struct.m_bUser = true;
+//      apex_main_struct.m_bUserEx = true;
 //
 //      auto psystem = __new(::apex::system());
 //
@@ -932,7 +936,7 @@ typedef DEFER_INIT * PFN_DEFER_INIT;
 //
 //      psystem->m_strAppId = pszMainAppId;
 //
-//      iResult = (int) ::aura_aura(psystem);
+//      iResult = (int) ::apex_apex(psystem);
 //
 //   }
 //
@@ -941,7 +945,7 @@ typedef DEFER_INIT * PFN_DEFER_INIT;
 //}
 
 
-//CLASS_DECL_APEX long aura_prefix(::apex::system * psystem)
+//CLASS_DECL_APEX long apex_prefix(::apex::system * psystem)
 //{
 //
 //   //pmaindata->m_pappcore = __new(app_core(pmaindata));
@@ -965,7 +969,7 @@ typedef DEFER_INIT * PFN_DEFER_INIT;
 //}
 
 
-//CLASS_DECL_APEX long aura_fork(::apex::system * psystem, PFN_NEW_AURA_APPLICATION pfnNewAuraApplication)
+//CLASS_DECL_APEX long apex_fork(::apex::system * psystem, PFN_NEW_APEX_APPLICATION pfnNewAuraApplication)
 //{
 //
 //   //pmaindata->m_pappcore = __new(app_core(pmaindata));
@@ -996,7 +1000,7 @@ typedef DEFER_INIT * PFN_DEFER_INIT;
 //}
 
 
-//CLASS_DECL_APEX long aura_aura(::apex::system * psystem)
+//CLASS_DECL_APEX long apex_apex(::apex::system * psystem)
 //{
 //
 //   if (!psystem->system_prep())
@@ -1022,397 +1026,397 @@ struct heap_test_struct :
 };
 
 
-#define new ACME_NEW
-
-
-string_array get_c_args_from_string(const char * psz)
-{
-
-   string_array stra;
-
-   if (psz == nullptr)
-   {
-
-      return stra;
-
-   }
-
-   string_array straBeforeColon;
-
-   string_array straAfterColon;
-
-   const char * pszEnd = psz + strlen(psz);
-
-   string str;
-
-   int i = 0;
-
-   bool bColon = false;
-
-   while (psz < pszEnd)
-   {
-
-      ::str::consume_spaces(psz, 0, pszEnd);
-
-      if (psz >= pszEnd)
-      {
-
-         break;
-
-      }
-      if (*psz == '\"')
-      {
-
-         str = ::str::consume_quoted_value(psz, pszEnd);
-
-      }
-      else if (*psz == '\'')
-      {
-
-         str = ::str::consume_quoted_value(psz, pszEnd);
-
-      }
-      else
-      {
-
-         const char * pszValueStart = psz;
-
-         while (!::str::ch::is_whitespace(psz))
-         {
-
-            psz = str::utf8_inc(psz);
-
-            if (psz >= pszEnd)
-            {
-
-               break;
-
-            }
-
-            if (*psz == '\"')
-            {
-
-               ::str::consume_quoted_value_ex(psz, pszEnd);
-
-            }
-            else if (*psz == '\'')
-            {
-
-               ::str::consume_quoted_value_ex(psz, pszEnd);
-
-            }
-
-         }
-
-         str = string(pszValueStart, psz - pszValueStart);
-
-      }
-
-      if (str == ":")
-      {
-
-         bColon = true;
-
-      }
-      else if (!bColon && (i == 0 || str[0] != '-'))
-      {
-
-         straBeforeColon.add(str);
-
-      }
-      else
-      {
-
-         straAfterColon.add(str);
-
-      }
-
-      i++;
-
-   }
-
-   stra = straBeforeColon;
-
-   if (straAfterColon.has_elements())
-   {
-
-      stra.add(":");
-
-      stra += straAfterColon;
-
-   }
-
-   return stra;
-
-}
-
-
-string_array get_c_args_from_c(const char * psz)
-{
-
-   string_array stra;
-
-   if(psz == nullptr)
-   {
-
-      return stra;
-
-   }
-
-   string_array straBeforeColon;
-
-   string_array straAfterColon;
-
-   const char * pszEnd = psz + strlen(psz);
-
-   string str;
-
-   int i = 0;
-
-   bool bColon = false;
-
-   while(psz < pszEnd)
-   {
-
-      ::str::consume_spaces(psz, 0, pszEnd);
-
-      if(psz >= pszEnd)
-      {
-
-         break;
-
-      }
-      if(*psz == '\"')
-      {
-
-         str = ::str::consume_c_quoted_value(psz, pszEnd);
-
-      }
-      else if(*psz == '\'')
-      {
-
-         str = ::str::consume_c_quoted_value(psz, pszEnd);
-
-      }
-      else
-      {
-
-         const char * pszValueStart = psz;
-
-         while (!::str::ch::is_whitespace(psz))
-         {
-
-            psz = str::utf8_inc(psz);
-
-            if (psz >= pszEnd)
-            {
-
-               break;
-
-            }
-
-            if (*psz == '\"')
-            {
-
-               ::str::consume_quoted_value_ex(psz, pszEnd);
-
-            }
-            else if (*psz == '\'')
-            {
-
-               ::str::consume_quoted_value_ex(psz, pszEnd);
-
-            }
-
-         }
-
-         str = string(pszValueStart, psz - pszValueStart);
-
-      }
-
-      if (str == ":")
-      {
-
-         bColon = true;
-
-      }
-      else if (!bColon && (i == 0 || str[0] != '-'))
-      {
-
-         straBeforeColon.add(str);
-
-      }
-      else
-      {
-
-         straAfterColon.add(str);
-
-      }
-
-      i++;
-
-   }
-
-   stra = straBeforeColon;
-
-   if (straAfterColon.has_elements())
-   {
-
-      stra.add(":");
-
-      stra += straAfterColon;
-
-   }
-
-   return stra;
-
-}
-
-
-string_array get_c_args_for_c(const char * psz)
-{
-
-   string_array stra;
-
-   if(psz == nullptr)
-   {
-
-      return stra;
-
-   }
-
-   const char * pszEnd = psz + strlen(psz);
-
-   string str;
-
-   while(psz < pszEnd)
-   {
-
-      ::str::consume_spaces(psz, 0, pszEnd);
-
-      if(psz >= pszEnd)
-      {
-
-         break;
-
-      }
-
-      if(*psz == '\"')
-      {
-
-         str = ::str::consume_c_quoted_value(psz, pszEnd);
-
-      }
-      else if(*psz == '\'')
-      {
-
-         str = ::str::consume_c_quoted_value(psz, pszEnd);
-
-      }
-      else
-      {
-
-         const char * pszValueStart = psz;
-
-         while(!::str::ch::is_whitespace(psz))
-         {
-
-            psz = str::utf8_inc(psz);
-
-            if(psz >= pszEnd)
-            {
-
-               break;
-
-            }
-
-            if(*psz == '\"')
-            {
-
-               ::str::consume_quoted_value_ex(psz, pszEnd);
-
-            }
-            else if(*psz == '\'')
-            {
-
-               ::str::consume_quoted_value_ex(psz, pszEnd);
-
-            }
-
-         }
-
-         str = string(pszValueStart, psz - pszValueStart);
-
-      }
-
-      stra.add(str);
-
-   }
-
-   return stra;
-
-}
-
-
-string_array get_c_args(int argc, char ** argv)
-{
-
-   string_array straBeforeColon;
-
-   string_array straAfterColon;
-
-   if(argc > 0)
-   {
-
-      straBeforeColon.add(argv[0]);
-
-   }
-
-   bool bColon = false;
-
-   for(int i = 1; i < argc; i++)
-   {
-
-      if(strcmp(argv[i], ":") == 0)
-      {
-         bColon = true;
-      }
-#ifdef WINDOWS
-      else if(bColon || straAfterColon.has_elements() || argv[i][0] == '-' || (argv[i][0] == '/' && strlen(argv[i]) == 2))
-#else
-      else if(bColon || straAfterColon.has_elements() || argv[i][0] == '-')
-#endif
-      {
-
-         straAfterColon.add(argv[i]);
-
-      }
-      else
-      {
-
-         straBeforeColon.add(argv[i]);
-
-      }
-
-   }
-
-   string_array stra;
-
-   stra = straBeforeColon;
-
-   if (straAfterColon.has_elements())
-   {
-
-      stra.add(":");
-
-      stra += straAfterColon;
-
-   }
-
-   return stra;
-
-}
-
+//#define new ACME_NEW
+//
+//
+//string_array get_c_args_from_string(const char * psz)
+//{
+//
+//   string_array stra;
+//
+//   if (psz == nullptr)
+//   {
+//
+//      return stra;
+//
+//   }
+//
+//   string_array straBeforeColon;
+//
+//   string_array straAfterColon;
+//
+//   const char * pszEnd = psz + strlen(psz);
+//
+//   string str;
+//
+//   int i = 0;
+//
+//   bool bColon = false;
+//
+//   while (psz < pszEnd)
+//   {
+//
+//      ::str::consume_spaces(psz, 0, pszEnd);
+//
+//      if (psz >= pszEnd)
+//      {
+//
+//         break;
+//
+//      }
+//      if (*psz == '\"')
+//      {
+//
+//         str = ::str::consume_quoted_value(psz, pszEnd);
+//
+//      }
+//      else if (*psz == '\'')
+//      {
+//
+//         str = ::str::consume_quoted_value(psz, pszEnd);
+//
+//      }
+//      else
+//      {
+//
+//         const char * pszValueStart = psz;
+//
+//         while (!::str::ch::is_whitespace(psz))
+//         {
+//
+//            psz = str::utf8_inc(psz);
+//
+//            if (psz >= pszEnd)
+//            {
+//
+//               break;
+//
+//            }
+//
+//            if (*psz == '\"')
+//            {
+//
+//               ::str::consume_quoted_value_ex(psz, pszEnd);
+//
+//            }
+//            else if (*psz == '\'')
+//            {
+//
+//               ::str::consume_quoted_value_ex(psz, pszEnd);
+//
+//            }
+//
+//         }
+//
+//         str = string(pszValueStart, psz - pszValueStart);
+//
+//      }
+//
+//      if (str == ":")
+//      {
+//
+//         bColon = true;
+//
+//      }
+//      else if (!bColon && (i == 0 || str[0] != '-'))
+//      {
+//
+//         straBeforeColon.add(str);
+//
+//      }
+//      else
+//      {
+//
+//         straAfterColon.add(str);
+//
+//      }
+//
+//      i++;
+//
+//   }
+//
+//   stra = straBeforeColon;
+//
+//   if (straAfterColon.has_elements())
+//   {
+//
+//      stra.add(":");
+//
+//      stra += straAfterColon;
+//
+//   }
+//
+//   return stra;
+//
+//}
+//
+//
+//string_array get_c_args_from_c(const char * psz)
+//{
+//
+//   string_array stra;
+//
+//   if(psz == nullptr)
+//   {
+//
+//      return stra;
+//
+//   }
+//
+//   string_array straBeforeColon;
+//
+//   string_array straAfterColon;
+//
+//   const char * pszEnd = psz + strlen(psz);
+//
+//   string str;
+//
+//   int i = 0;
+//
+//   bool bColon = false;
+//
+//   while(psz < pszEnd)
+//   {
+//
+//      ::str::consume_spaces(psz, 0, pszEnd);
+//
+//      if(psz >= pszEnd)
+//      {
+//
+//         break;
+//
+//      }
+//      if(*psz == '\"')
+//      {
+//
+//         str = ::str::consume_c_quoted_value(psz, pszEnd);
+//
+//      }
+//      else if(*psz == '\'')
+//      {
+//
+//         str = ::str::consume_c_quoted_value(psz, pszEnd);
+//
+//      }
+//      else
+//      {
+//
+//         const char * pszValueStart = psz;
+//
+//         while (!::str::ch::is_whitespace(psz))
+//         {
+//
+//            psz = str::utf8_inc(psz);
+//
+//            if (psz >= pszEnd)
+//            {
+//
+//               break;
+//
+//            }
+//
+//            if (*psz == '\"')
+//            {
+//
+//               ::str::consume_quoted_value_ex(psz, pszEnd);
+//
+//            }
+//            else if (*psz == '\'')
+//            {
+//
+//               ::str::consume_quoted_value_ex(psz, pszEnd);
+//
+//            }
+//
+//         }
+//
+//         str = string(pszValueStart, psz - pszValueStart);
+//
+//      }
+//
+//      if (str == ":")
+//      {
+//
+//         bColon = true;
+//
+//      }
+//      else if (!bColon && (i == 0 || str[0] != '-'))
+//      {
+//
+//         straBeforeColon.add(str);
+//
+//      }
+//      else
+//      {
+//
+//         straAfterColon.add(str);
+//
+//      }
+//
+//      i++;
+//
+//   }
+//
+//   stra = straBeforeColon;
+//
+//   if (straAfterColon.has_elements())
+//   {
+//
+//      stra.add(":");
+//
+//      stra += straAfterColon;
+//
+//   }
+//
+//   return stra;
+//
+//}
+//
+//
+//string_array get_c_args_for_c(const char * psz)
+//{
+//
+//   string_array stra;
+//
+//   if(psz == nullptr)
+//   {
+//
+//      return stra;
+//
+//   }
+//
+//   const char * pszEnd = psz + strlen(psz);
+//
+//   string str;
+//
+//   while(psz < pszEnd)
+//   {
+//
+//      ::str::consume_spaces(psz, 0, pszEnd);
+//
+//      if(psz >= pszEnd)
+//      {
+//
+//         break;
+//
+//      }
+//
+//      if(*psz == '\"')
+//      {
+//
+//         str = ::str::consume_c_quoted_value(psz, pszEnd);
+//
+//      }
+//      else if(*psz == '\'')
+//      {
+//
+//         str = ::str::consume_c_quoted_value(psz, pszEnd);
+//
+//      }
+//      else
+//      {
+//
+//         const char * pszValueStart = psz;
+//
+//         while(!::str::ch::is_whitespace(psz))
+//         {
+//
+//            psz = str::utf8_inc(psz);
+//
+//            if(psz >= pszEnd)
+//            {
+//
+//               break;
+//
+//            }
+//
+//            if(*psz == '\"')
+//            {
+//
+//               ::str::consume_quoted_value_ex(psz, pszEnd);
+//
+//            }
+//            else if(*psz == '\'')
+//            {
+//
+//               ::str::consume_quoted_value_ex(psz, pszEnd);
+//
+//            }
+//
+//         }
+//
+//         str = string(pszValueStart, psz - pszValueStart);
+//
+//      }
+//
+//      stra.add(str);
+//
+//   }
+//
+//   return stra;
+//
+//}
+//
+//
+//string_array get_c_args(int argc, char ** argv)
+//{
+//
+//   string_array straBeforeColon;
+//
+//   string_array straAfterColon;
+//
+//   if(argc > 0)
+//   {
+//
+//      straBeforeColon.add(argv[0]);
+//
+//   }
+//
+//   bool bColon = false;
+//
+//   for(int i = 1; i < argc; i++)
+//   {
+//
+//      if(strcmp(argv[i], ":") == 0)
+//      {
+//         bColon = true;
+//      }
+//#ifdef WINDOWS
+//      else if(bColon || straAfterColon.has_elements() || argv[i][0] == '-' || (argv[i][0] == '/' && strlen(argv[i]) == 2))
+//#else
+//      else if(bColon || straAfterColon.has_elements() || argv[i][0] == '-')
+//#endif
+//      {
+//
+//         straAfterColon.add(argv[i]);
+//
+//      }
+//      else
+//      {
+//
+//         straBeforeColon.add(argv[i]);
+//
+//      }
+//
+//   }
+//
+//   string_array stra;
+//
+//   stra = straBeforeColon;
+//
+//   if (straAfterColon.has_elements())
+//   {
+//
+//      stra.add(":");
+//
+//      stra += straAfterColon;
+//
+//   }
+//
+//   return stra;
+//
+//}
+//
 
 typedef size_t FN_GET_STRING(char * psz, size_t s);
 
@@ -1434,164 +1438,164 @@ string apple_get_bundle_identifier()
 #endif
 
 
-string transform_to_c_arg(const char * psz)
-{
-
-   bool bNeedQuote = false;
-
-   const char * pszParse = psz;
-
-   char chQuote = '\0';
-
-   while(*pszParse)
-   {
-
-      if(chQuote != '\0')
-      {
-
-         if(*pszParse == '\\')
-         {
-
-            pszParse = ::str::utf8_inc(pszParse);
-
-         }
-         else if(*pszParse == chQuote)
-         {
-
-            chQuote = '\0';
-
-         }
-
-      }
-      else if (*pszParse == '\'')
-      {
-
-         chQuote = '\'';
-
-      }
-      else if (*pszParse == '\"')
-      {
-
-         chQuote = '\"';
-
-      }
-      else if(::str::ch::is_whitespace(pszParse)
-         || isspace((unsigned char) *pszParse)
-              || *pszParse == ':')
-      {
-
-         bNeedQuote = true;
-
-         break;
-
-      }
-
-      pszParse = ::str::utf8_inc(pszParse);
-
-   }
-
-   if (bNeedQuote)
-   {
-
-      return string("\"") + ::str::replace("\"", "\\\"", psz) + "\"";
-
-   }
-   else
-   {
-
-      return psz;
-
-   }
-
-}
-
-
-string merge_colon_args(const array < string_array > & str2a)
-{
-
-   string_array straBeforeColon;
-
-   string_array straAfterColon;
-
-   string strCommandLine;
-
-   for (auto & stra : str2a)
-   {
-
-      index iFindColon = stra.find_first(":");
-
-      if (stra.get_size() > 0 && iFindColon != 0)
-      {
-
-         if (strCommandLine.is_empty())
-         {
-
-            strCommandLine = transform_to_c_arg(stra[0]);
-
-         }
-
-      }
-
-      if (iFindColon < 0)
-      {
-
-         iFindColon = stra.get_size();
-
-      }
-
-      for (index i = 1; i < stra.get_count(); i++)
-      {
-
-         string str = stra[i];
-
-         if (i < iFindColon)
-         {
-
-            straBeforeColon.add(str);
-
-         }
-         else if (i > iFindColon)
-         {
-
-            if (str.begins_eat_ci("app="))
-            {
-
-               if (straAfterColon.find_first_begins("app=") >= 0) // fixed case when added below :D..O
-               {
-
-                  straAfterColon.add("fallback_app=" + str);
-
-               }
-               else
-               {
-
-                  straAfterColon.add("app=" + str); // fixed case :) (excuses, excuses...)
-
-               }
-
-            }
-            else
-            {
-
-               straAfterColon.add(str);
-
-            }
-
-         }
-
-      }
-
-   }
-
-   strCommandLine += ::str::has_char(straBeforeColon.pred_implode(&transform_to_c_arg, " "), " ");
-
-   strCommandLine += " : ";
-
-   strCommandLine += straAfterColon.pred_implode(&transform_to_c_arg, " ");
-
-   return strCommandLine;
-
-}
+//string transform_to_c_arg(const char * psz)
+//{
+//
+//   bool bNeedQuote = false;
+//
+//   const char * pszParse = psz;
+//
+//   char chQuote = '\0';
+//
+//   while(*pszParse)
+//   {
+//
+//      if(chQuote != '\0')
+//      {
+//
+//         if(*pszParse == '\\')
+//         {
+//
+//            pszParse = ::str::utf8_inc(pszParse);
+//
+//         }
+//         else if(*pszParse == chQuote)
+//         {
+//
+//            chQuote = '\0';
+//
+//         }
+//
+//      }
+//      else if (*pszParse == '\'')
+//      {
+//
+//         chQuote = '\'';
+//
+//      }
+//      else if (*pszParse == '\"')
+//      {
+//
+//         chQuote = '\"';
+//
+//      }
+//      else if(::str::ch::is_whitespace(pszParse)
+//         || isspace((unsigned char) *pszParse)
+//              || *pszParse == ':')
+//      {
+//
+//         bNeedQuote = true;
+//
+//         break;
+//
+//      }
+//
+//      pszParse = ::str::utf8_inc(pszParse);
+//
+//   }
+//
+//   if (bNeedQuote)
+//   {
+//
+//      return string("\"") + ::str::replace("\"", "\\\"", psz) + "\"";
+//
+//   }
+//   else
+//   {
+//
+//      return psz;
+//
+//   }
+//
+//}
+//
+//
+//string merge_colon_args(const array < string_array > & str2a)
+//{
+//
+//   string_array straBeforeColon;
+//
+//   string_array straAfterColon;
+//
+//   string strCommandLine;
+//
+//   for (auto & stra : str2a)
+//   {
+//
+//      index iFindColon = stra.find_first(":");
+//
+//      if (stra.get_size() > 0 && iFindColon != 0)
+//      {
+//
+//         if (strCommandLine.is_empty())
+//         {
+//
+//            strCommandLine = transform_to_c_arg(stra[0]);
+//
+//         }
+//
+//      }
+//
+//      if (iFindColon < 0)
+//      {
+//
+//         iFindColon = stra.get_size();
+//
+//      }
+//
+//      for (index i = 1; i < stra.get_count(); i++)
+//      {
+//
+//         string str = stra[i];
+//
+//         if (i < iFindColon)
+//         {
+//
+//            straBeforeColon.add(str);
+//
+//         }
+//         else if (i > iFindColon)
+//         {
+//
+//            if (str.begins_eat_ci("app="))
+//            {
+//
+//               if (straAfterColon.find_first_begins("app=") >= 0) // fixed case when added below :D..O
+//               {
+//
+//                  straAfterColon.add("fallback_app=" + str);
+//
+//               }
+//               else
+//               {
+//
+//                  straAfterColon.add("app=" + str); // fixed case :) (excuses, excuses...)
+//
+//               }
+//
+//            }
+//            else
+//            {
+//
+//               straAfterColon.add(str);
+//
+//            }
+//
+//         }
+//
+//      }
+//
+//   }
+//
+//   strCommandLine += ::str::has_char(straBeforeColon.pred_implode(&transform_to_c_arg, " "), " ");
+//
+//   strCommandLine += " : ";
+//
+//   strCommandLine += straAfterColon.pred_implode(&transform_to_c_arg, " ");
+//
+//   return strCommandLine;
+//
+//}
 
 
 #if defined(LINUX)
@@ -1671,7 +1675,7 @@ string merge_colon_args(const array < string_array > & str2a)
 //}
 
 
-bool app_core::has_aura_application_factory() const
+bool app_core::has_apex_application_factory() const
 {
 
    if (m_pfnNewAuraApplication)
@@ -1880,7 +1884,7 @@ __result(::apex::application) app_core::get_new_application(::object* pobjectCon
 
                papp = get_context_system()->__create < ::apex::application > ();
 
-               *((::aura_main_struct*)papp) = *((::aura_main_struct*)this);
+               *((::apex_main_struct*)papp) = *((::apex_main_struct*)this);
 
             }
 
@@ -1894,7 +1898,7 @@ __result(::apex::application) app_core::get_new_application(::object* pobjectCon
          if (plibrary)
          {
 
-            plibrary->initialize_aura_library(pobjectContext, 0, nullptr);
+            plibrary->initialize_apex_library(pobjectContext, 0, nullptr);
 
          }
          else
@@ -1902,7 +1906,7 @@ __result(::apex::application) app_core::get_new_application(::object* pobjectCon
 
             //plibrary = __new(::apex::library);
 
-            //plibrary->initialize_aura_library(pobjectContext, 0, nullptr);
+            //plibrary->initialize_apex_library(pobjectContext, 0, nullptr);
 
             string strLibrary = strAppId;
 
@@ -2090,10 +2094,10 @@ __result(::apex::application) app_core::get_new_application(::object* pobjectCon
 }
 
 
-static aura_level * s_plevel = NULL;
+static apex_level * s_plevel = NULL;
 
 
-aura_level::aura_level(e_level elevel, PFN_DEFER_INIT pfnDeferInit) :
+apex_level::apex_level(e_level elevel, PFN_DEFER_INIT pfnDeferInit) :
    m_elevel(elevel),
    m_pfnDeferInit(pfnDeferInit),
    m_plevelNext(s_plevel)
@@ -2104,7 +2108,7 @@ aura_level::aura_level(e_level elevel, PFN_DEFER_INIT pfnDeferInit) :
 }
 
 
-aura_level * aura_level::get_maximum_level()
+apex_level * apex_level::get_maximum_level()
 {
 
 #ifdef LINUX
@@ -2122,9 +2126,9 @@ try
 
    }
 
-   aura_level * plevel = s_plevel;
+   apex_level * plevel = s_plevel;
 
-   aura_level * plevelMax = plevel;
+   apex_level * plevelMax = plevel;
 
    while(true)
    {
@@ -2159,7 +2163,7 @@ try
 }
 
 
-aura_level * aura_level::find_level(PFN_DEFER_INIT pfnDeferInit)
+apex_level * apex_level::find_level(PFN_DEFER_INIT pfnDeferInit)
 {
 
    if(s_plevel == nullptr)
@@ -2169,7 +2173,7 @@ aura_level * aura_level::find_level(PFN_DEFER_INIT pfnDeferInit)
 
    }
 
-   aura_level * plevel = s_plevel;
+   apex_level * plevel = s_plevel;
 
    while(plevel != nullptr)
    {
@@ -2190,7 +2194,7 @@ aura_level * aura_level::find_level(PFN_DEFER_INIT pfnDeferInit)
 }
 
 
-bool aura_level::defer_init()
+bool apex_level::defer_init()
 {
 
    auto plevel = get_maximum_level();
@@ -2207,7 +2211,7 @@ bool aura_level::defer_init()
 }
 
 
-bool aura_level::defer_init(PFN_DEFER_INIT pfnDeferInit)
+bool apex_level::defer_init(PFN_DEFER_INIT pfnDeferInit)
 {
 
    auto plevel = get_maximum_level();
@@ -2291,7 +2295,7 @@ bool aura_level::defer_init(PFN_DEFER_INIT pfnDeferInit)
 
 
 
-void set_aura_system_as_thread()
+void set_apex_system_as_thread()
 {
 
    ::set_thread(::get_context_system());
@@ -2321,10 +2325,10 @@ void cube_set_app_id(const char * pszAppId)
 }
 
 //
-//aura_aura::aura_aura()
+//apex_apex::apex_apex()
 //{
 //
-//   if (!defer_aura_init())
+//   if (!defer_apex_init())
 //   {
 //
 //      throw raw_fail();
@@ -2334,10 +2338,10 @@ void cube_set_app_id(const char * pszAppId)
 //}
 
 //
-//aura_aura::~aura_aura()
+//apex_apex::~apex_apex()
 //{
 //
-//   defer_aura_term();
+//   defer_apex_term();
 //
 //}
 //

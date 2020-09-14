@@ -36,7 +36,7 @@ namespace opengl
       virtual ~opengl();
 
 
-      virtual ::estatus initialize(::object* pobjectContext) override;
+      virtual ::estatus initialize(::layered * pobjectContext) override;
 
 
       virtual ::gpu::context* create_context() override;

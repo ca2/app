@@ -5,13 +5,13 @@
 namespace apex
 {
 
-   ::apex::apex apex::g_aura;
+   ::apex::apex apex::g_apex;
 
 } // namespace apex
 
-//#pragma comment (linker, "/export:_g_aura")
+//#pragma comment (linker, "/export:_g_apex")
 
-// _AURA_LINKER_FORCE_INCLUDE(g_aura);
+// _APEX_LINKER_FORCE_INCLUDE(g_apex);
 
 
 

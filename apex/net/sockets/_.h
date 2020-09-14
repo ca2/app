@@ -56,8 +56,8 @@ CLASS_DECL_APEX const SSL_METHOD * TLS_server_method();
 #include "http/_.h"
 
 
-#include "aura/net/ip_enum.h"
-#include "aura/net/port_forward.h"
+#include "apex/net/ip_enum.h"
+#include "apex/net/port_forward.h"
 
 
 #include "websocket_client.h"

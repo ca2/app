@@ -3,17 +3,17 @@
 
 //#include "match.h"
 
-#include "history.h"
+//#include "history.h"
 
 #include "theme.h"
 
-#include "os_history.h"
+//#include "os_history.h"
 
 //#include "strn.h"
 
 #include "process_data.h"
 
-#include "profiler2.h"
+#include "acme/platform/profiler.h"
 
 
 //
@@ -306,9 +306,9 @@ struct memory_state;
 ////
 
 
-#include "history.h"
+//#include "history.h"
 
-#include "os_history.h"
+//#include "os_history.h"
 
 
 namespace aura
@@ -331,10 +331,10 @@ namespace aura
 
 #include "debug.h"
 
-#include "aura/primitive/collection/std_iterator.h"
-#include "aura/primitive/collection/insert_iterator.h"
-#include "aura/primitive/collection/back_insert_iterator.h"
-#include "aura/primitive/collection/std_pair.h"
+//#include "aura/primitive/collection/std_iterator.h"
+//#include "aura/primitive/collection/insert_iterator.h"
+//#include "aura/primitive/collection/back_insert_iterator.h"
+//#include "aura/primitive/collection/std_pair.h"
 
 
 #include "muldiv32.h"

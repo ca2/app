@@ -92,7 +92,7 @@ public:
 
    pointer_array < db_long_set_queue_item >           m_itema;
 
-   db_long_sync_queue(::object * pobject):
+   db_long_sync_queue(::layered * pobjectContext):
       ::object(pobject),
       thread(pobject),
       ::thread(pobject),
@@ -200,7 +200,7 @@ element(pserver->get_context_application())
 db_long_set::~db_long_set()
 {
 
-   ::aura::del(m_pcore);
+   ::acme::del(m_pcore);
 
 }
 

@@ -102,7 +102,7 @@ CLASS_DECL_APEX void defer_dock_application(int_bool bDock)
 
 }
 
-CLASS_DECL_APEX void main_branch(::generic_object* pobjectTask, e_priority epriority)
+CLASS_DECL_APEX void main_branch(::generic* pobjectTask, e_priority epriority)
 {
 
    ::wait(

@@ -72,7 +72,7 @@ class CLASS_DECL_CORE uncompress_bz :
 public:
 
 
-   uncompress_bz(::object * pobject);
+   uncompress_bz(::layered * pobjectContext);
    virtual ~uncompress_bz();
 
 

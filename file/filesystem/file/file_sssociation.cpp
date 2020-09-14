@@ -4,7 +4,7 @@ namespace aura
 {
 
    /*
-   file_association::file_association(::object * pobject) :
+   file_association::file_association(::layered * pobjectContext) :
       ::object(pobject)
    {
       m_hkeyClassesRoot = nullptr;

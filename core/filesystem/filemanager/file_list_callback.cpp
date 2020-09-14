@@ -25,11 +25,11 @@ namespace filemanager
    bool file_list_callback::initialize_file_list_callback()
    {
 
-      m_pimagelistSubItemHover = __new(image_list);
+      m_pimagelistSubItemHover = __new(::image_list);
 
-      m_pimagelistItemHover = __new(image_list);
+      m_pimagelistItemHover = __new(::image_list);
 
-      m_pimagelistNormal = __new(image_list);
+      m_pimagelistNormal = __new(::image_list);
 
       ::draw2d::graphics_pointer spgraphics(e_create);
 
@@ -111,7 +111,7 @@ namespace filemanager
    }
 
 
-   __pointer(image_list) file_list_callback::GetActionButtonImageList(id i)
+   __pointer(::image_list) file_list_callback::GetActionButtonImageList(id i)
    {
 
       UNREFERENCED_PARAMETER(i);

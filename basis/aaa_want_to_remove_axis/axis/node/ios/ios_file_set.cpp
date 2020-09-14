@@ -5,7 +5,7 @@ namespace ios
 {
    
    
-   file_set::file_set(::object * pobject) :
+   file_set::file_set(::layered * pobjectContext) :
    ::object(pobject),
    ::file::set(pobject),
    m_straFile(pobject)

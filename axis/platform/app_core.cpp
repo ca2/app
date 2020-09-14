@@ -8,7 +8,7 @@
 #include <time.h>
 
 
-//extern string_map < __pointer(::aura::library) >* g_pmapLibrary ;
+//extern string_map < __pointer(::apex::library) >* g_pmapLibrary ;
 //extern string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
 //extern ::mutex* &::get_context_system()->m_mutexLibrary;
 
@@ -81,7 +81,7 @@ typedef int_bool DEFER_INIT();
 typedef DEFER_INIT * PFN_DEFER_INIT;
 
 
-void debug_context_object(::object * pobject);
+void debug_context_object(::layered * pobjectContext);
 
 
 #ifdef __APPLE__
@@ -436,7 +436,7 @@ CLASS_DECL_AXIS void set_debug_pointer(void * p);
 //
 //#endif
 
-   os_init_application();
+   //os_init_application();
 
 //   {
 //
@@ -612,7 +612,7 @@ void app_core::set_command_line(const char * psz)
 //
 //         string strLibrary = ::process::app_id_to_app_name(strAppId);
 //
-//         m_plibrary = __new(::aura::library);
+//         m_plibrary = __new(::apex::library);
 //
 //         m_plibrary->initialize(get_context_system());
 //
@@ -1833,7 +1833,7 @@ __result(::aura::application) app_core::get_new_application(::object* pobjectCon
 
    sync_lock sl(&::get_context_system()->m_mutexLibrary);
 
-   __pointer(::aura::library)& plibrary = ::get_context_system()->m_mapLibrary[strAppId];
+   __pointer(::apex::library)& plibrary = ::get_context_system()->m_mapLibrary[strAppId];
 
    if (papp)
    {
@@ -1841,7 +1841,7 @@ __result(::aura::application) app_core::get_new_application(::object* pobjectCon
       if (!plibrary)
       {
 
-         plibrary = new ::aura::library();
+         plibrary = new ::apex::library();
 
          plibrary->m_strName = "";
 
@@ -1900,7 +1900,7 @@ __result(::aura::application) app_core::get_new_application(::object* pobjectCon
          else
          {
 
-            //plibrary = __new(::aura::library);
+            //plibrary = __new(::apex::library);
 
             //plibrary->initialize_aura_library(pobjectContext, 0, nullptr);
 
@@ -1988,7 +1988,7 @@ __result(::aura::application) app_core::get_new_application(::object* pobjectCon
    if (!papp)
    {
 
-      ::aura::library& library = *plibrary;
+      ::apex::library& library = *plibrary;
 
       papp = library.get_new_application(get_context_system()->get_context_session(), strAppId);
 

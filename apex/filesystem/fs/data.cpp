@@ -13,6 +13,18 @@ namespace fs
    }
 
 
+   void data::assert_valid() const
+   {
+
+   }
+
+
+   void data::dump(dump_context& dumpcontext) const
+   {
+
+   }
+
+
    bool data::has_subdir(const ::file::path & pszPath)
    {
 
@@ -198,7 +210,7 @@ namespace fs
 
       ::file::listing listing(this);
 
-      listing.ls(path.folder());
+      Context.dir().ls(listing, path.folder());
 
       return listing.contains_ci(path.name());
 
@@ -210,7 +222,7 @@ namespace fs
 
       ::file::listing listing(this);
 
-      listing.ls(path.folder());
+      Context.dir().ls(listing, path.folder());
 
       index iFind = listing.find_first_ci(path.name());
 

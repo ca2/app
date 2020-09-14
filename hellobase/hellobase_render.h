@@ -95,7 +95,7 @@ namespace hellobase
       //bool                             m_bFastOnEmpty;
 
 
-      render(::object * pobject);
+      render(::layered * pobjectContext);
       virtual ~render();
 
 

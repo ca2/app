@@ -37,7 +37,7 @@ namespace uwp
 
 
       interaction_impl();
-      interaction_impl(::object * pobject);
+      interaction_impl(::layered * pobjectContext);
       virtual ~interaction_impl();
 
 

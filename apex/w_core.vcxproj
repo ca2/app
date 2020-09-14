@@ -617,7 +617,7 @@
     <ClInclude Include="user\user\_interaction_impl.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\apex\w_aura.vcxproj">
+    <ProjectReference Include="..\apex\w_apex.vcxproj">
       <Project>{b3e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
     </ProjectReference>
   </ItemGroup>

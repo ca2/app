@@ -673,53 +673,6 @@ typedef struct tagDRAWTEXTPARAMS
 
 
 
-/*
-oswindow
-WINAPI
-get_desktop_window(
-VOID);
-*/
-
-
-oswindow
-WINAPI
-GetParent(
-oswindow hWnd);
-
-
-oswindow
-WINAPI
-SetParent(
-oswindow hWndChild,
-oswindow hWndNewParent);
-
-//#ifndef
-//
-//WINBOOL
-//WINAPI
-//EnumChildWindows(
-//oswindow hWndParent,
-//WNDENUMPROC lpEnumFunc,
-//LPARAM lParam);
-
-
-/*oswindow
-WINAPI
-FindWindowA(
-LPCSTR lpClassName,
-LPCSTR lpWindowName);
-
-oswindow
-WINAPI
-FindWindowW(
-LPCWSTR lpClassName,
-LPCWSTR lpWindowName);*/
-#ifdef UNICODE
-#define FindWindow  FindWindowW
-#else
-#define FindWindow  FindWindowA
-#endif // !UNICODE
-
 
 
 /*

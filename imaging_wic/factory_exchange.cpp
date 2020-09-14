@@ -21,7 +21,7 @@ namespace imaging_wic
    factory_exchange::factory_exchange()
    {
 
-      create_factory < ::imaging_wic::imaging, ::imaging >();
+      create_factory < ::imaging_wic::context_image, ::context_image >();
 
    }
 
@@ -39,7 +39,7 @@ extern "C"
 void imaging_wic_factory_exchange()
 {
 
-   create_factory < ::imaging_wic::imaging, ::imaging >();
+   create_factory < ::imaging_wic::context_image, ::context_image >();
 
 }
 

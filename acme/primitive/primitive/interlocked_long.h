@@ -43,7 +43,16 @@ public:
 
 using interlocked_long = ::interlocked < long >;
 
+
+#if defined(WINDOWS) && OSBIT == 32
+
+using interlocked_count = ::interlocked < long >;
+
+#else
+
 using interlocked_count = ::interlocked < ::count >;
+
+#endif
 
 
 

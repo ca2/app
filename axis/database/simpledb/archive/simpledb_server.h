@@ -18,10 +18,10 @@ namespace simpledb
       int       m_protocol;
 
 
-      database(::object * pobject);
+      database(::layered * pobjectContext);
       virtual ~database();
 
-      server(::object * pobject);
+      server(::layered * pobjectContext);
       virtual ~server();
 
 

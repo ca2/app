@@ -12,7 +12,7 @@ void os_on_finish_launching();
 
 
 extern "C"
-JNIEXPORT jboolean JNICALL Java_com_android_1app_app_aura_1is_1started(JNIEnv* env, jobject obj) 
+JNIEXPORT jboolean JNICALL Java_com_android_1app_app_apex_1is_1started(JNIEnv* env, jobject obj) 
 {
 
    return g_bAuraStart;
@@ -21,7 +21,7 @@ JNIEXPORT jboolean JNICALL Java_com_android_1app_app_aura_1is_1started(JNIEnv* e
 
 
 extern "C"
-JNIEXPORT void JNICALL Java_com_android_1app_app_aura_1init(JNIEnv * penv, jobject obj, jobject os)
+JNIEXPORT void JNICALL Java_com_android_1app_app_apex_1init(JNIEnv * penv, jobject obj, jobject os)
 {
 
    set_context(penv);
@@ -63,7 +63,7 @@ JNIEXPORT void JNICALL Java_com_android_1app_app_aura_1init(JNIEnv * penv, jobje
 
 
 extern "C"
-JNIEXPORT void JNICALL Java_com_android_1app_app_aura_1start(JNIEnv * penv, jobject obj)
+JNIEXPORT void JNICALL Java_com_android_1app_app_apex_1start(JNIEnv * penv, jobject obj)
 {
 
    set_context(penv);
@@ -77,7 +77,7 @@ JNIEXPORT void JNICALL Java_com_android_1app_app_aura_1start(JNIEnv * penv, jobj
 
    g_bAuraStart = true;
 
-   android_aura_main();
+   android_apex_main();
 
 }
 

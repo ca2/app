@@ -3,11 +3,11 @@
 
 
 
-CLASS_DECL_AURA string ca2_command_line(HINSTANCE hinstance);
-
-CLASS_DECL_AURA HRESULT os_create_link(::file::path pathObj, ::file::path pathLink, string strDesc, ::file::path pathIcon = nullptr, int iIcon = 0);
-
-const char* get_cube_app_id();
+//CLASS_DECL_AURA string ca2_command_line(HINSTANCE hinstance);
+//
+//CLASS_DECL_AURA HRESULT os_create_link(::file::path pathObj, ::file::path pathLink, string strDesc, ::file::path pathIcon = nullptr, int iIcon = 0);
+//
+//const char* get_cube_app_id();
 
 
 
@@ -51,45 +51,45 @@ void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers)
 
 
 
-CLASS_DECL_AURA bool os_init_application()
-{
-
-   return true;
-
-}
-
-
-CLASS_DECL_AURA void os_term_application()
-{
+//CLASS_DECL_AURA bool os_init_application()
+//{
+//
+//   return true;
+//
+//}
 
 
+//CLASS_DECL_AURA void os_term_application()
+//{
+//
+//
+//
+//}
 
-}
 
-
-string ca2_command_line(HINSTANCE hinstance)
-{
-
-#ifdef CUBE
-
-   string strAppId = get_cube_app_id();
-
-#else
-
-   string strAppId = read_resource_as_string(hinstance, 1, "APPID");
-
-#endif
-
-   if (strAppId.is_empty())
-   {
-
-      return "";
-
-   }
-
-   return "app.exe : app=" + strAppId;
-
-}
+//string ca2_command_line(HINSTANCE hinstance)
+//{
+//
+//#ifdef CUBE
+//
+//   string strAppId = get_cube_app_id();
+//
+//#else
+//
+//   string strAppId = read_resource_as_string(hinstance, 1, "APPID");
+//
+//#endif
+//
+//   if (strAppId.is_empty())
+//   {
+//
+//      return "";
+//
+//   }
+//
+//   return "app.exe : app=" + strAppId;
+//
+//}
 
 
 namespace aura

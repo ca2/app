@@ -19,7 +19,7 @@ namespace user
       }
 
 
-      //edit::edit(::object * pobject) :
+      //edit::edit(::layered * pobjectContext) :
       //   ::object(pobject),
       //   ::user::picture(pobject),
       //   ::user::picture_interaction(pobject)

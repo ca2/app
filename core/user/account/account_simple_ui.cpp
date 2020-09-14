@@ -247,7 +247,9 @@ namespace account
       if((rectFontopus.width() < 300 || rectFontopus.height() < 300) && puiParent != nullptr)
       {
 
-         System.hyperlink().open_link("ca2account:this", "", "");
+         ::hyperlink hyperlink;
+
+         hyperlink.open_link("ca2account:this", "", "");
 
          return "";
 

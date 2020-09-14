@@ -13,7 +13,7 @@
 
 
 class CLASS_DECL_AURA simple_trace :
-   virtual public ::generic_object
+   virtual public ::generic
 {
 public:
 
@@ -22,7 +22,7 @@ public:
    virtual ~simple_trace();
 
 
-   virtual void __tracea(::generic_object * pcontextobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) override;
+   virtual void __tracea(::generic * pcontextobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) override;
 
 
 };
@@ -45,13 +45,13 @@ class CLASS_DECL_AURA trace_logger
 public:
 
 
-   ::generic_object *            m_pobject;
+   ::generic *            m_pobject;
    const char * const         m_pszFunction;
    const char * const         m_pszFile;
    const i32                  m_iLine;
 
 
-   trace_logger(const char * pszFunction, const char * pszFile, i32 iLine, ::generic_object * pcontextobject) :
+   trace_logger(const char * pszFunction, const char * pszFile, i32 iLine, ::generic * pcontextobject) :
       m_pszFunction(pszFunction), m_pszFile(pszFile), m_iLine(iLine), m_pobject(pcontextobject)
    {
 
@@ -122,7 +122,7 @@ public:
    e_trace_level           m_elevel;
 
 
-   trace_logger_level(const char * pszFunction, const char * pszFile, i32 iLine, ::generic_object * pcontextobject, e_trace_level elevel) :
+   trace_logger_level(const char * pszFunction, const char * pszFile, i32 iLine, ::generic * pcontextobject, e_trace_level elevel) :
       trace_logger(pszFunction, pszFile, iLine, pcontextobject),
       m_elevel(elevel)
    {

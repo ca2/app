@@ -1,6 +1,6 @@
 /*
 Module : IPENUM.H
-Purpose: Interface for an aura API class wrapper for IP address enumeration
+Purpose: Interface for an apex API class wrapper for IP address enumeration
 Created: PJN / 21-04-1998
 History: None
 

@@ -11,7 +11,7 @@ namespace hellobase
    public:
 
 
-      document(::object * pobject);
+      document(::layered * pobjectContext);
       virtual ~document();
 
 

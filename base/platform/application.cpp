@@ -17,7 +17,7 @@ namespace base
    }
 
 
-   ::estatus     application::initialize(::object * pobjectContext)
+   ::estatus     application::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::thread::initialize(pobjectContext);
@@ -2296,7 +2296,7 @@ namespace base
 //
 //         //thisexc << 1 << m_iErrorCode;
 //
-//         ::aura::del(pe);
+//         ::acme::del(pe);
 //
 //         return false;
 //
@@ -2332,7 +2332,7 @@ namespace base
 //      catch (const ::exception::exception * pe)
 //      {
 //
-//         ::aura::del(pe);
+//         ::acme::del(pe);
 //
 //         return false;
 //
@@ -3276,7 +3276,7 @@ namespace base
 //
 //      //m_spdir.release();
 //
-//      //::aura::del(m_pimaging);
+//      //::acme::del(m_pimaging);
 //
 //
 //      /// commented out the code below
@@ -3412,13 +3412,13 @@ namespace base
 //   }
 //
 //
-//   __pointer(::aura::ipi) application::create_ipi()
+//   __pointer(::apex::ipi) application::create_ipi()
 //   {
 //
 //      try
 //      {
 //
-//         return __new(::aura::ipi(m_strAppName));
+//         return __new(::apex::ipi(m_strAppName));
 //
 //      }
 //      catch (...)
@@ -3829,7 +3829,7 @@ namespace base
 ////   void application::term()
 ////   {
 ////
-////      //::aura::del(m_pimaging);
+////      //::acme::del(m_pimaging);
 ////
 //////      bool bOk = true;
 //////
@@ -4145,7 +4145,7 @@ namespace base
 //
 //   }
 //
-//   __pointer(::aura::exclusive) application::get_exclusive(string strId, LPSECURITY_ATTRIBUTES psa)
+//   __pointer(::acme::exclusive) application::get_exclusive(string strId, LPSECURITY_ATTRIBUTES psa)
 //   {
 //
 //      auto & pexclusive = m_mapExclusive[strId];
@@ -4153,7 +4153,7 @@ namespace base
 //      if(!pexclusive)
 //      {
 //
-//         pexclusive = __new(::aura::exclusive(strId, psa));
+//         pexclusive = __new(::acme::exclusive(strId, psa));
 //
 //      }
 //
@@ -8070,7 +8070,7 @@ namespace base
 //   //}
 //
 //
-//   //::estatus application::initialize(::object* pobjectContext)
+//   //::estatus application::initialize(::layered * pobjectContext)
 //   //{
 //
 //   //   auto estatus = ::aura::application::initialize(pobjectContext);
@@ -10761,7 +10761,7 @@ namespace base
 //
 //
 //
-//   //::estatus application::add_library(::aura::library * plibrary)
+//   //::estatus application::add_library(::apex::library * plibrary)
 //   //{
 //
 //   //   plibrary->set_context_object(this);
@@ -11130,7 +11130,7 @@ namespace base
 //   //}
 //
 //
-//   //::estatus application::initialize(::object* pobjectContext)
+//   //::estatus application::initialize(::layered * pobjectContext)
 //   //{
 //
 //   //   auto estatus = ::aura::application::initialize(pobjectContext);
@@ -11440,20 +11440,20 @@ namespace base
    }
 
 
-   void application::close(::aura::e_end eend)
+   void application::close(::apex::enum_end eend)
    {
 
       if (Session.m_puser && User.document_manager())
       {
 
-         User.document_manager()->close_all_documents(eend != ::aura::end_close);
+         User.document_manager()->close_all_documents(eend != ::apex::e_end_close);
 
       }
 
       if (document_manager())
       {
 
-         document_manager()->close_all_documents(eend != ::aura::end_close);
+         document_manager()->close_all_documents(eend != ::apex::e_end_close);
 
       }
 

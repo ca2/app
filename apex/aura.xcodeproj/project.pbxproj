@@ -13,21 +13,21 @@
 		9A16E06624BBFE8000C3DD5B /* file_watcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16E06424BBFE7F00C3DD5B /* file_watcher.cpp */; };
 		9A16E06724BBFE8000C3DD5B /* file_watcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A16E06524BBFE7F00C3DD5B /* file_watcher.h */; };
 		9A16E06824BBFE8900C3DD5B /* file_watcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16E06424BBFE7F00C3DD5B /* file_watcher.cpp */; };
-		9A16E07024BBFEB500C3DD5B /* aura_str_pool.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A16E06924BBFEAE00C3DD5B /* aura_str_pool.h */; };
+		9A16E07024BBFEB500C3DD5B /* apex_str_pool.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A16E06924BBFEAE00C3DD5B /* apex_str_pool.h */; };
 		9A16E07124BBFEB500C3DD5B /* pred_procedure.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A16E06A24BBFEAF00C3DD5B /* pred_procedure.h */; };
 		9A16E07224BBFEB500C3DD5B /* _generic_object_constructor_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A16E06B24BBFEAF00C3DD5B /* _generic_object_constructor_impl.h */; };
-		9A16E07324BBFEB500C3DD5B /* static_start_aura.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16E06C24BBFEB000C3DD5B /* static_start_aura.cpp */; };
+		9A16E07324BBFEB500C3DD5B /* static_start_apex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16E06C24BBFEB000C3DD5B /* static_start_apex.cpp */; };
 		9A16E07424BBFEB500C3DD5B /* pred_callback.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A16E06D24BBFEB100C3DD5B /* pred_callback.h */; };
-		9A16E07524BBFEB500C3DD5B /* aura_str_pool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16E06E24BBFEB200C3DD5B /* aura_str_pool.cpp */; };
+		9A16E07524BBFEB500C3DD5B /* apex_str_pool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16E06E24BBFEB200C3DD5B /* apex_str_pool.cpp */; };
 		9A16E07624BBFEB500C3DD5B /* os_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16E06F24BBFEB400C3DD5B /* os_context.cpp */; };
-		9A16E07724BBFEBA00C3DD5B /* aura_str_pool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16E06E24BBFEB200C3DD5B /* aura_str_pool.cpp */; };
+		9A16E07724BBFEBA00C3DD5B /* apex_str_pool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16E06E24BBFEB200C3DD5B /* apex_str_pool.cpp */; };
 		9A16E07824BBFEBA00C3DD5B /* os_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16E06F24BBFEB400C3DD5B /* os_context.cpp */; };
 		9A16E07B24BBFEEF00C3DD5B /* __matter_ca2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16E07A24BBFEEE00C3DD5B /* __matter_ca2.cpp */; };
 		9A16E07E24BC025900C3DD5B /* path_object.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A16E07C24BC025900C3DD5B /* path_object.h */; };
 		9A16E07F24BC025900C3DD5B /* path_object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16E07D24BC025900C3DD5B /* path_object.cpp */; };
 		9A16E08024BC026A00C3DD5B /* path_object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16E07D24BC025900C3DD5B /* path_object.cpp */; };
 		9A16E0D324BC11E100C3DD5B /* __matter_ca2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16E07A24BBFEEE00C3DD5B /* __matter_ca2.cpp */; };
-		9A16E0D724BC792E00C3DD5B /* static_start_aura.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16E06C24BBFEB000C3DD5B /* static_start_aura.cpp */; };
+		9A16E0D724BC792E00C3DD5B /* static_start_apex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16E06C24BBFEB000C3DD5B /* static_start_apex.cpp */; };
 		9A1E1B9722F0AC3A004243B8 /* type.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1E1B3822F0AC39004243B8 /* type.h */; };
 		9A1E1B9922F0AC3A004243B8 /* memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1E1B3922F0AC39004243B8 /* memory.cpp */; };
 		9A1E1B9B22F0AC3A004243B8 /* interlocked_long.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1E1B3A22F0AC39004243B8 /* interlocked_long.cpp */; };
@@ -120,7 +120,7 @@
 		9A1E1D9522F0AF69004243B8 /* graphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1E1D6C22F0AF69004243B8 /* graphics.h */; };
 		9A1E1D9722F0AF69004243B8 /* filters.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1E1D6D22F0AF69004243B8 /* filters.h */; };
 		9A1E1D9922F0AF69004243B8 /* device_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1E1D6E22F0AF69004243B8 /* device_context.cpp */; };
-		9A20198F24772E9000A31CBF /* ios_aura.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A20198C24772E9000A31CBF /* ios_aura.h */; };
+		9A20198F24772E9000A31CBF /* ios_apex.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A20198C24772E9000A31CBF /* ios_apex.h */; };
 		9A2019F5247733D700A31CBF /* api.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2482CF2452C48600F23D28 /* api.cpp */; };
 		9A2019F6247733D700A31CBF /* ioapi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2482D02452C48600F23D28 /* ioapi.cpp */; };
 		9A2019F7247733D700A31CBF /* context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2482D42452C48600F23D28 /* context.cpp */; };
@@ -634,7 +634,7 @@
 		9A201CE6247733DD00A31CBF /* create.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1E1B6F22F0AC39004243B8 /* create.cpp */; };
 		9A201CE7247733DD00A31CBF /* edit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1E1B3E22F0AC39004243B8 /* edit.cpp */; };
 		9A201CE8247733DD00A31CBF /* factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1E1B8322F0AC39004243B8 /* factory.cpp */; };
-		9A201CEA247733DD00A31CBF /* generic_object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3765912409C0ED002D15D3 /* generic_object.cpp */; };
+		9A201CEA247733DD00A31CBF /* generic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3765912409C0ED002D15D3 /* generic.cpp */; };
 		9A201CEB247733DD00A31CBF /* handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1E1B8A22F0AC3A004243B8 /* handler.cpp */; };
 		9A201CEC247733DD00A31CBF /* id_space.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1E1B5322F0AC39004243B8 /* id_space.cpp */; };
 		9A201CED247733DD00A31CBF /* id.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1E1B5122F0AC39004243B8 /* id.cpp */; };
@@ -1018,7 +1018,7 @@
 		9A2485EE2452C48F00F23D28 /* machine_event2.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A247FFC2452C48100F23D28 /* machine_event2.h */; };
 		9A2485EF2452C48F00F23D28 /* _impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A247FFD2452C48100F23D28 /* _impl.h */; };
 		9A2485F02452C48F00F23D28 /* theme.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A247FFE2452C48100F23D28 /* theme.h */; };
-		9A2485F12452C48F00F23D28 /* aura_main_struct.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A247FFF2452C48100F23D28 /* aura_main_struct.h */; };
+		9A2485F12452C48F00F23D28 /* apex_main_struct.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A247FFF2452C48100F23D28 /* apex_main_struct.h */; };
 		9A2485F22452C48F00F23D28 /* context_image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2480002452C48100F23D28 /* context_image.cpp */; };
 		9A2485F32452C48F00F23D28 /* fixed_alloc.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2480012452C48100F23D28 /* fixed_alloc.h */; };
 		9A2485F62452C48F00F23D28 /* app_core.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2480042452C48100F23D28 /* app_core.cpp */; };
@@ -1028,7 +1028,7 @@
 		9A2485FC2452C48F00F23D28 /* static_start.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A24800B2452C48100F23D28 /* static_start.h */; };
 		9A2485FF2452C48F00F23D28 /* restore.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A24800E2452C48100F23D28 /* restore.h */; };
 		9A2486002452C48F00F23D28 /* version.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A24800F2452C48100F23D28 /* version.h */; };
-		9A2486012452C48F00F23D28 /* aura_aura.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2480102452C48100F23D28 /* aura_aura.h */; };
+		9A2486012452C48F00F23D28 /* apex_apex.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2480102452C48100F23D28 /* apex_apex.h */; };
 		9A2486022452C48F00F23D28 /* muldiv32.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2480112452C48100F23D28 /* muldiv32.h */; };
 		9A2486042452C48F00F23D28 /* trace_category.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2480132452C48100F23D28 /* trace_category.h */; };
 		9A2486052452C48F00F23D28 /* definition.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2480142452C48100F23D28 /* definition.h */; };
@@ -1085,7 +1085,7 @@
 		9A2486532452C49000F23D28 /* department.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2480652452C48200F23D28 /* department.cpp */; };
 		9A2486542452C49000F23D28 /* display.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2480662452C48200F23D28 /* display.cpp */; };
 		9A2486562452C49000F23D28 /* serial_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2480682452C48200F23D28 /* serial_impl.h */; };
-		9A2486572452C49000F23D28 /* aura_regex.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2480692452C48200F23D28 /* aura_regex.h */; };
+		9A2486572452C49000F23D28 /* apex_regex.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2480692452C48200F23D28 /* apex_regex.h */; };
 		9A2486582452C49000F23D28 /* net.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A24806A2452C48200F23D28 /* net.cpp */; };
 		9A2486592452C49000F23D28 /* launcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A24806B2452C48200F23D28 /* launcher.h */; };
 		9A24865A2452C49000F23D28 /* static_setup.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A24806C2452C48200F23D28 /* static_setup.h */; };
@@ -1477,7 +1477,7 @@
 		9A3765A82409C0EF002D15D3 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3765812409C0EB002D15D3 /* _.cpp */; };
 		9A3765A92409C0EF002D15D3 /* enum_type.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3765822409C0EB002D15D3 /* enum_type.h */; };
 		9A3765AA2409C0EF002D15D3 /* object_meta.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3765832409C0EB002D15D3 /* object_meta.cpp */; };
-		9A3765AB2409C0EF002D15D3 /* generic_object.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3765842409C0EB002D15D3 /* generic_object.h */; };
+		9A3765AB2409C0EF002D15D3 /* generic.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3765842409C0EB002D15D3 /* generic.h */; };
 		9A3765AC2409C0EF002D15D3 /* natural.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3765852409C0EB002D15D3 /* natural.h */; };
 		9A3765AD2409C0EF002D15D3 /* var_element.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3765862409C0EB002D15D3 /* var_element.cpp */; };
 		9A3765AF2409C0EF002D15D3 /* _memory.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3765882409C0EC002D15D3 /* _memory.h */; };
@@ -1486,7 +1486,7 @@
 		9A3765B52409C0EF002D15D3 /* stick.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A37658E2409C0ED002D15D3 /* stick.h */; };
 		9A3765B62409C0EF002D15D3 /* property_set_composite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A37658F2409C0ED002D15D3 /* property_set_composite.cpp */; };
 		9A3765B72409C0EF002D15D3 /* _factory_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3765902409C0ED002D15D3 /* _factory_impl.h */; };
-		9A3765B82409C0EF002D15D3 /* generic_object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3765912409C0ED002D15D3 /* generic_object.cpp */; };
+		9A3765B82409C0EF002D15D3 /* generic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3765912409C0ED002D15D3 /* generic.cpp */; };
 		9A3765BA2409C0EF002D15D3 /* _property_set_composite_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3765932409C0EE002D15D3 /* _property_set_composite_impl.h */; };
 		9A3765BC2409C0EF002D15D3 /* update.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3765952409C0EE002D15D3 /* update.cpp */; };
 		9A3765BD2409C0EF002D15D3 /* action_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3765962409C0EE002D15D3 /* action_context.h */; };
@@ -2095,14 +2095,14 @@
 		9A449B3E247745FB0002A827 /* NSString+SymlinksAndAliases.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A247CFA2452C47E00F23D28 /* NSString+SymlinksAndAliases.mm */; };
 		9A449B3F247745FB0002A827 /* UncaughtExceptionHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A247D112452C47E00F23D28 /* UncaughtExceptionHandler.mm */; };
 		9A52537A24A7FED90088E35A /* factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A52537424A7FED80088E35A /* factory.cpp */; };
-		9A52537B24A7FED90088E35A /* aura_main_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A52537724A7FED80088E35A /* aura_main_data.h */; };
-		9A52537C24A7FED90088E35A /* aura_main_struct.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A52537824A7FED90088E35A /* aura_main_struct.cpp */; };
-		9A52537D24A7FED90088E35A /* aura_main_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A52537924A7FED90088E35A /* aura_main_data.cpp */; };
+		9A52537B24A7FED90088E35A /* apex_main_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A52537724A7FED80088E35A /* apex_main_data.h */; };
+		9A52537C24A7FED90088E35A /* apex_main_struct.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A52537824A7FED90088E35A /* apex_main_struct.cpp */; };
+		9A52537D24A7FED90088E35A /* apex_main_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A52537924A7FED90088E35A /* apex_main_data.cpp */; };
 		9A52538324A7FF250088E35A /* function_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A52537F24A7FF240088E35A /* function_base.h */; };
 		9A52538824A8017E0088E35A /* obj_typ_ctr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A52538624A8017E0088E35A /* obj_typ_ctr.cpp */; };
 		9A52538924A8017E0088E35A /* obj_typ_ctr.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A52538724A8017E0088E35A /* obj_typ_ctr.h */; };
-		9A5253D124A820480088E35A /* aura_main_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A52537924A7FED90088E35A /* aura_main_data.cpp */; };
-		9A5253D224A8204C0088E35A /* aura_main_struct.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A52537824A7FED90088E35A /* aura_main_struct.cpp */; };
+		9A5253D124A820480088E35A /* apex_main_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A52537924A7FED90088E35A /* apex_main_data.cpp */; };
+		9A5253D224A8204C0088E35A /* apex_main_struct.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A52537824A7FED90088E35A /* apex_main_struct.cpp */; };
 		9A5253D324A820540088E35A /* factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A52537424A7FED80088E35A /* factory.cpp */; };
 		9A5253D624A820EE0088E35A /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A52538A24A801D80088E35A /* _.cpp */; };
 		9A5253D724A821230088E35A /* obj_typ_ctr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A52538624A8017E0088E35A /* obj_typ_ctr.cpp */; };
@@ -2567,7 +2567,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				9A20198F24772E9000A31CBF /* ios_aura.h in CopyFiles */,
+				9A20198F24772E9000A31CBF /* ios_apex.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2585,12 +2585,12 @@
 		9A16414B19C4A4CE00966C5E /* base_iosTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = base_iosTests.m; sourceTree = "<group>"; };
 		9A16E06424BBFE7F00C3DD5B /* file_watcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file_watcher.cpp; sourceTree = "<group>"; };
 		9A16E06524BBFE7F00C3DD5B /* file_watcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file_watcher.h; sourceTree = "<group>"; };
-		9A16E06924BBFEAE00C3DD5B /* aura_str_pool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_str_pool.h; sourceTree = "<group>"; };
+		9A16E06924BBFEAE00C3DD5B /* apex_str_pool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = apex_str_pool.h; sourceTree = "<group>"; };
 		9A16E06A24BBFEAF00C3DD5B /* pred_procedure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pred_procedure.h; sourceTree = "<group>"; };
 		9A16E06B24BBFEAF00C3DD5B /* _generic_object_constructor_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _generic_object_constructor_impl.h; sourceTree = "<group>"; };
-		9A16E06C24BBFEB000C3DD5B /* static_start_aura.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = static_start_aura.cpp; sourceTree = "<group>"; };
+		9A16E06C24BBFEB000C3DD5B /* static_start_apex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = static_start_apex.cpp; sourceTree = "<group>"; };
 		9A16E06D24BBFEB100C3DD5B /* pred_callback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pred_callback.h; sourceTree = "<group>"; };
-		9A16E06E24BBFEB200C3DD5B /* aura_str_pool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aura_str_pool.cpp; sourceTree = "<group>"; };
+		9A16E06E24BBFEB200C3DD5B /* apex_str_pool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = apex_str_pool.cpp; sourceTree = "<group>"; };
 		9A16E06F24BBFEB400C3DD5B /* os_context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = os_context.cpp; sourceTree = "<group>"; };
 		9A16E07A24BBFEEE00C3DD5B /* __matter_ca2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = __matter_ca2.cpp; sourceTree = "<group>"; };
 		9A16E07C24BC025900C3DD5B /* path_object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = path_object.h; sourceTree = "<group>"; };
@@ -2687,9 +2687,9 @@
 		9A1E1D6C22F0AF69004243B8 /* graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = graphics.h; sourceTree = "<group>"; };
 		9A1E1D6D22F0AF69004243B8 /* filters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filters.h; sourceTree = "<group>"; };
 		9A1E1D6E22F0AF69004243B8 /* device_context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = device_context.cpp; sourceTree = "<group>"; };
-		9A20198A24772E9000A31CBF /* libios_aura.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_aura.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A20198C24772E9000A31CBF /* ios_aura.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ios_aura.h; sourceTree = "<group>"; };
-		9A20198D24772E9000A31CBF /* ios_aura.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ios_aura.m; sourceTree = "<group>"; };
+		9A20198A24772E9000A31CBF /* libios_apex.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_apex.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A20198C24772E9000A31CBF /* ios_apex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ios_apex.h; sourceTree = "<group>"; };
+		9A20198D24772E9000A31CBF /* ios_apex.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ios_apex.m; sourceTree = "<group>"; };
 		9A214B1824BEB0CA002C1331 /* RoundTextPosition.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundTextPosition.mm; sourceTree = "<group>"; };
 		9A214B1C24BEB0E9002C1331 /* RoundTextRange.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundTextRange.mm; sourceTree = "<group>"; };
 		9A214B1E24BEB10A002C1331 /* RoundTextPosition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoundTextPosition.h; sourceTree = "<group>"; };
@@ -3046,7 +3046,7 @@
 		9A247FFC2452C48100F23D28 /* machine_event2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = machine_event2.h; sourceTree = "<group>"; };
 		9A247FFD2452C48100F23D28 /* _impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _impl.h; sourceTree = "<group>"; };
 		9A247FFE2452C48100F23D28 /* theme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = theme.h; sourceTree = "<group>"; };
-		9A247FFF2452C48100F23D28 /* aura_main_struct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_main_struct.h; sourceTree = "<group>"; };
+		9A247FFF2452C48100F23D28 /* apex_main_struct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = apex_main_struct.h; sourceTree = "<group>"; };
 		9A2480002452C48100F23D28 /* context_image.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = context_image.cpp; sourceTree = "<group>"; };
 		9A2480012452C48100F23D28 /* fixed_alloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fixed_alloc.h; sourceTree = "<group>"; };
 		9A2480042452C48100F23D28 /* app_core.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = app_core.cpp; sourceTree = "<group>"; };
@@ -3056,7 +3056,7 @@
 		9A24800B2452C48100F23D28 /* static_start.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = static_start.h; sourceTree = "<group>"; };
 		9A24800E2452C48100F23D28 /* restore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = restore.h; sourceTree = "<group>"; };
 		9A24800F2452C48100F23D28 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
-		9A2480102452C48100F23D28 /* aura_aura.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_aura.h; sourceTree = "<group>"; };
+		9A2480102452C48100F23D28 /* apex_apex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = apex_apex.h; sourceTree = "<group>"; };
 		9A2480112452C48100F23D28 /* muldiv32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = muldiv32.h; sourceTree = "<group>"; };
 		9A2480132452C48100F23D28 /* trace_category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trace_category.h; sourceTree = "<group>"; };
 		9A2480142452C48100F23D28 /* definition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = definition.h; sourceTree = "<group>"; };
@@ -3113,7 +3113,7 @@
 		9A2480652452C48200F23D28 /* department.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = department.cpp; sourceTree = "<group>"; };
 		9A2480662452C48200F23D28 /* display.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = display.cpp; sourceTree = "<group>"; };
 		9A2480682452C48200F23D28 /* serial_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = serial_impl.h; sourceTree = "<group>"; };
-		9A2480692452C48200F23D28 /* aura_regex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_regex.h; sourceTree = "<group>"; };
+		9A2480692452C48200F23D28 /* apex_regex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = apex_regex.h; sourceTree = "<group>"; };
 		9A24806A2452C48200F23D28 /* net.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = net.cpp; sourceTree = "<group>"; };
 		9A24806B2452C48200F23D28 /* launcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = launcher.h; sourceTree = "<group>"; };
 		9A24806C2452C48200F23D28 /* static_setup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = static_setup.h; sourceTree = "<group>"; };
@@ -3329,14 +3329,14 @@
 		9A2482FA2452C48700F23D28 /* compress_zip_is_dir.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = compress_zip_is_dir.cpp; sourceTree = "<group>"; };
 		9A2482FB2452C48700F23D28 /* compress_context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = compress_context.cpp; sourceTree = "<group>"; };
 		9A2488C12452C4F100F23D28 /* winrt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = winrt.h; sourceTree = "<group>"; };
-		9A2488C22452C4F100F23D28 /* aura_vanity_e_f_g_etc.doc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = aura_vanity_e_f_g_etc.doc; sourceTree = "<group>"; };
-		9A2488C32452C4F100F23D28 /* aura_vanity_ada.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = aura_vanity_ada.txt; sourceTree = "<group>"; };
+		9A2488C22452C4F100F23D28 /* apex_vanity_e_f_g_etc.doc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = apex_vanity_e_f_g_etc.doc; sourceTree = "<group>"; };
+		9A2488C32452C4F100F23D28 /* apex_vanity_ada.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = apex_vanity_ada.txt; sourceTree = "<group>"; };
 		9A2488C42452C4F100F23D28 /* _c_bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _c_bridge.h; sourceTree = "<group>"; };
 		9A2488C52452C4F100F23D28 /* objc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = objc.h; sourceTree = "<group>"; };
 		9A2488C62452C4F100F23D28 /* _.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
 		9A2488C72452C4F100F23D28 /* _include.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _include.h; sourceTree = "<group>"; };
-		9A2488C82452C4F100F23D28 /* aura_vanity_basic.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = aura_vanity_basic.txt; sourceTree = "<group>"; };
-		9A2488C92452C4F100F23D28 /* aura_vanity_c#_cnet_d.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = "aura_vanity_c#_cnet_d.rtf"; sourceTree = "<group>"; };
+		9A2488C82452C4F100F23D28 /* apex_vanity_basic.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = apex_vanity_basic.txt; sourceTree = "<group>"; };
+		9A2488C92452C4F100F23D28 /* apex_vanity_c#_cnet_d.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = "apex_vanity_c#_cnet_d.rtf"; sourceTree = "<group>"; };
 		9A2488CA2452C4F100F23D28 /* objcpp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = objcpp.h; sourceTree = "<group>"; };
 		9A2488CB2452C4F100F23D28 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A24892D2452CE7900F23D28 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
@@ -3542,7 +3542,7 @@
 		9A3765812409C0EB002D15D3 /* _.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
 		9A3765822409C0EB002D15D3 /* enum_type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = enum_type.h; sourceTree = "<group>"; };
 		9A3765832409C0EB002D15D3 /* object_meta.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = object_meta.cpp; sourceTree = "<group>"; };
-		9A3765842409C0EB002D15D3 /* generic_object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = generic_object.h; sourceTree = "<group>"; };
+		9A3765842409C0EB002D15D3 /* generic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = generic.h; sourceTree = "<group>"; };
 		9A3765852409C0EB002D15D3 /* natural.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = natural.h; sourceTree = "<group>"; };
 		9A3765862409C0EB002D15D3 /* var_element.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = var_element.cpp; sourceTree = "<group>"; };
 		9A3765882409C0EC002D15D3 /* _memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _memory.h; sourceTree = "<group>"; };
@@ -3551,7 +3551,7 @@
 		9A37658E2409C0ED002D15D3 /* stick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stick.h; sourceTree = "<group>"; };
 		9A37658F2409C0ED002D15D3 /* property_set_composite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = property_set_composite.cpp; sourceTree = "<group>"; };
 		9A3765902409C0ED002D15D3 /* _factory_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _factory_impl.h; sourceTree = "<group>"; };
-		9A3765912409C0ED002D15D3 /* generic_object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = generic_object.cpp; sourceTree = "<group>"; };
+		9A3765912409C0ED002D15D3 /* generic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = generic.cpp; sourceTree = "<group>"; };
 		9A3765932409C0EE002D15D3 /* _property_set_composite_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _property_set_composite_impl.h; sourceTree = "<group>"; };
 		9A3765952409C0EE002D15D3 /* update.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = update.cpp; sourceTree = "<group>"; };
 		9A3765962409C0EE002D15D3 /* action_context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = action_context.h; sourceTree = "<group>"; };
@@ -4155,9 +4155,9 @@
 		9A41730620004E7A0056265A /* libssl.pc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = libssl.pc; sourceTree = "<group>"; };
 		9A41730720004E7A0056265A /* openssl.pc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = openssl.pc; sourceTree = "<group>"; };
 		9A52537424A7FED80088E35A /* factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = factory.cpp; sourceTree = "<group>"; };
-		9A52537724A7FED80088E35A /* aura_main_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_main_data.h; sourceTree = "<group>"; };
-		9A52537824A7FED90088E35A /* aura_main_struct.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aura_main_struct.cpp; sourceTree = "<group>"; };
-		9A52537924A7FED90088E35A /* aura_main_data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aura_main_data.cpp; sourceTree = "<group>"; };
+		9A52537724A7FED80088E35A /* apex_main_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = apex_main_data.h; sourceTree = "<group>"; };
+		9A52537824A7FED90088E35A /* apex_main_struct.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = apex_main_struct.cpp; sourceTree = "<group>"; };
+		9A52537924A7FED90088E35A /* apex_main_data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = apex_main_data.cpp; sourceTree = "<group>"; };
 		9A52537F24A7FF240088E35A /* function_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = function_base.h; sourceTree = "<group>"; };
 		9A52538624A8017E0088E35A /* obj_typ_ctr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = obj_typ_ctr.cpp; sourceTree = "<group>"; };
 		9A52538724A8017E0088E35A /* obj_typ_ctr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = obj_typ_ctr.h; sourceTree = "<group>"; };
@@ -4334,7 +4334,7 @@
 		9A9852D0240978D400328439 /* _c_trait_wd32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _c_trait_wd32.h; sourceTree = "<group>"; };
 		9A9852D4240978D500328439 /* string_wide_conversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = string_wide_conversion.h; sourceTree = "<group>"; };
 		9A98538A24099B5600328439 /* member.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = member.h; sourceTree = "<group>"; };
-		9A98A6151771D67E000AE16E /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A98A6151771D67E000AE16E /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AAC20E5247513850013AB72 /* exception_engine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = exception_engine.h; sourceTree = "<group>"; };
 		9AAC20E6247513D80013AB72 /* exception_engine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = exception_engine.cpp; sourceTree = "<group>"; };
 		9AAC2142247570800013AB72 /* process.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = process.cpp; sourceTree = "<group>"; };
@@ -4504,7 +4504,7 @@
 		9AD12C4C24F52DFA00177261 /* node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = node.h; sourceTree = "<group>"; };
 		9AD185BB1F9C1F5C001CEA8E /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		9AD185BF1F9C2001001CEA8E /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
-		9AE24D431904CEFE001AEFFB /* aura_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = aura_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AE24D431904CEFE001AEFFB /* apex_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = apex_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE92A632454CF4A0097706A /* speaker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = speaker.cpp; sourceTree = "<group>"; };
 		9AE92A642454CF4A0097706A /* speaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = speaker.h; sourceTree = "<group>"; };
 		9AE92A652454CF4B0097706A /* out.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = out.h; sourceTree = "<group>"; };
@@ -5005,14 +5005,14 @@
 			path = http;
 			sourceTree = "<group>";
 		};
-		9A16414919C4A4CE00966C5E /* aura_iosTests */ = {
+		9A16414919C4A4CE00966C5E /* apex_iosTests */ = {
 			isa = PBXGroup;
 			children = (
-				9AE24D431904CEFE001AEFFB /* aura_iosTests.xctest */,
+				9AE24D431904CEFE001AEFFB /* apex_iosTests.xctest */,
 				9A16414A19C4A4CE00966C5E /* base_iosTests-Info.plist */,
 				9A16414B19C4A4CE00966C5E /* base_iosTests.m */,
 			);
-			path = aura_iosTests;
+			path = apex_iosTests;
 			sourceTree = "<group>";
 		};
 		9A1E1B3722F0AC39004243B8 /* primitive */ = {
@@ -5061,8 +5061,8 @@
 				9A1E1B8322F0AC39004243B8 /* factory.cpp */,
 				9A1E1B9322F0AC3A004243B8 /* factory.h */,
 				9A52537F24A7FF240088E35A /* function_base.h */,
-				9A3765912409C0ED002D15D3 /* generic_object.cpp */,
-				9A3765842409C0EB002D15D3 /* generic_object.h */,
+				9A3765912409C0ED002D15D3 /* generic.cpp */,
+				9A3765842409C0EB002D15D3 /* generic.h */,
 				9A1E1B8A22F0AC3A004243B8 /* handler.cpp */,
 				9A1E1B5322F0AC39004243B8 /* id_space.cpp */,
 				9A1E1B9622F0AC3A004243B8 /* id_space.h */,
@@ -5174,13 +5174,13 @@
 			path = service;
 			sourceTree = "<group>";
 		};
-		9A20198B24772E9000A31CBF /* ios_aura */ = {
+		9A20198B24772E9000A31CBF /* ios_apex */ = {
 			isa = PBXGroup;
 			children = (
-				9A20198C24772E9000A31CBF /* ios_aura.h */,
-				9A20198D24772E9000A31CBF /* ios_aura.m */,
+				9A20198C24772E9000A31CBF /* ios_apex.h */,
+				9A20198D24772E9000A31CBF /* ios_apex.m */,
 			);
-			path = ios_aura;
+			path = ios_apex;
 			sourceTree = "<group>";
 		};
 		9A247CEC2452C47E00F23D28 /* crypto */ = {
@@ -5670,14 +5670,14 @@
 				9A2480C52452C48200F23D28 /* assert_running_task.h */,
 				9A2480552452C48200F23D28 /* assert.cpp */,
 				9A24807B2452C48200F23D28 /* async.h */,
-				9A2480102452C48100F23D28 /* aura_aura.h */,
-				9A52537924A7FED90088E35A /* aura_main_data.cpp */,
-				9A52537724A7FED80088E35A /* aura_main_data.h */,
-				9A52537824A7FED90088E35A /* aura_main_struct.cpp */,
-				9A247FFF2452C48100F23D28 /* aura_main_struct.h */,
-				9A2480692452C48200F23D28 /* aura_regex.h */,
-				9A16E06E24BBFEB200C3DD5B /* aura_str_pool.cpp */,
-				9A16E06924BBFEAE00C3DD5B /* aura_str_pool.h */,
+				9A2480102452C48100F23D28 /* apex_apex.h */,
+				9A52537924A7FED90088E35A /* apex_main_data.cpp */,
+				9A52537724A7FED80088E35A /* apex_main_data.h */,
+				9A52537824A7FED90088E35A /* apex_main_struct.cpp */,
+				9A247FFF2452C48100F23D28 /* apex_main_struct.h */,
+				9A2480692452C48200F23D28 /* apex_regex.h */,
+				9A16E06E24BBFEB200C3DD5B /* apex_str_pool.cpp */,
+				9A16E06924BBFEAE00C3DD5B /* apex_str_pool.h */,
 				9A2480CA2452C48200F23D28 /* auto_pointer.h */,
 				9A2480CC2452C48200F23D28 /* auto.h */,
 				9A2480282452C48100F23D28 /* build_debug.cpp */,
@@ -5792,7 +5792,7 @@
 				9A2480CE2452C48200F23D28 /* sprintf.h */,
 				9A2480A32452C48200F23D28 /* static_setup.cpp */,
 				9A24806C2452C48200F23D28 /* static_setup.h */,
-				9A16E06C24BBFEB000C3DD5B /* static_start_aura.cpp */,
+				9A16E06C24BBFEB000C3DD5B /* static_start_apex.cpp */,
 				9A2480D32452C48200F23D28 /* static_start.cpp */,
 				9A24800B2452C48100F23D28 /* static_start.h */,
 				9A2480162452C48100F23D28 /* status.h */,
@@ -6045,14 +6045,14 @@
 			isa = PBXGroup;
 			children = (
 				9A2488C12452C4F100F23D28 /* winrt.h */,
-				9A2488C22452C4F100F23D28 /* aura_vanity_e_f_g_etc.doc */,
-				9A2488C32452C4F100F23D28 /* aura_vanity_ada.txt */,
+				9A2488C22452C4F100F23D28 /* apex_vanity_e_f_g_etc.doc */,
+				9A2488C32452C4F100F23D28 /* apex_vanity_ada.txt */,
 				9A2488C42452C4F100F23D28 /* _c_bridge.h */,
 				9A2488C52452C4F100F23D28 /* objc.h */,
 				9A2488C62452C4F100F23D28 /* _.cpp */,
 				9A2488C72452C4F100F23D28 /* _include.h */,
-				9A2488C82452C4F100F23D28 /* aura_vanity_basic.txt */,
-				9A2488C92452C4F100F23D28 /* aura_vanity_c#_cnet_d.rtf */,
+				9A2488C82452C4F100F23D28 /* apex_vanity_basic.txt */,
+				9A2488C92452C4F100F23D28 /* apex_vanity_c#_cnet_d.rtf */,
 				9A2488CA2452C4F100F23D28 /* objcpp.h */,
 				9A2488CB2452C4F100F23D28 /* _.h */,
 				9A2489B0245338E000F23D28 /* _c.h */,
@@ -6584,7 +6584,7 @@
 		9A4E846F1D1FD3A7008A419B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A98A6151771D67E000AE16E /* libaura.dylib */,
+				9A98A6151771D67E000AE16E /* libapex.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -7154,11 +7154,11 @@
 				9A16E07A24BBFEEE00C3DD5B /* __matter_ca2.cpp */,
 				9A52538A24A801D80088E35A /* _.cpp */,
 				9A24892D2452CE7900F23D28 /* framework.h */,
-				9A16414919C4A4CE00966C5E /* aura_iosTests */,
-				9A20198B24772E9000A31CBF /* ios_aura */,
+				9A16414919C4A4CE00966C5E /* apex_iosTests */,
+				9A20198B24772E9000A31CBF /* ios_apex */,
 				9A4E846F1D1FD3A7008A419B /* Products */,
 				9A9799131DAC3C2B001CD6D9 /* Frameworks */,
-				9A20198A24772E9000A31CBF /* libios_aura.a */,
+				9A20198A24772E9000A31CBF /* libios_apex.a */,
 			);
 			sourceTree = "<group>";
 		};
@@ -7517,12 +7517,12 @@
 				9A24892E2452CE7900F23D28 /* framework.h in Headers */,
 				9A2486B82452C49100F23D28 /* const.h in Headers */,
 				9A8B636924CBCD3C00A93185 /* _.h in Headers */,
-				9A16E07024BBFEB500C3DD5B /* aura_str_pool.h in Headers */,
+				9A16E07024BBFEB500C3DD5B /* apex_str_pool.h in Headers */,
 				9A24862B2452C48F00F23D28 /* application.h in Headers */,
 				9A2489D72453417E00F23D28 /* global.h in Headers */,
 				9A2485772452C48D00F23D28 /* error.h in Headers */,
 				9A37677F2409C19F002D15D3 /* set.h in Headers */,
-				9A52537B24A7FED90088E35A /* aura_main_data.h in Headers */,
+				9A52537B24A7FED90088E35A /* apex_main_data.h in Headers */,
 				9A2486242452C48F00F23D28 /* app_core.h in Headers */,
 				9A2487072452C49200F23D28 /* os_context.h in Headers */,
 				9A376A662409C2D7002D15D3 /* path.h in Headers */,
@@ -7557,7 +7557,7 @@
 				9A2483D92452C48900F23D28 /* _c.h in Headers */,
 				9A1E1D8B22F0AF69004243B8 /* double_pass_scale.h in Headers */,
 				9A2488A52452C49700F23D28 /* api.h in Headers */,
-				9A2485F12452C48F00F23D28 /* aura_main_struct.h in Headers */,
+				9A2485F12452C48F00F23D28 /* apex_main_struct.h in Headers */,
 				9AF13604249DDCB8009410E0 /* serial.h in Headers */,
 				9AD116FA24F5147800177261 /* still.h in Headers */,
 				9A5C951B24725AF100107FDE /* tree_item.h in Headers */,
@@ -7790,7 +7790,7 @@
 				9A3769902409C2A4002D15D3 /* stream_socket.h in Headers */,
 				9A3765F62409C11C002D15D3 /* random_number_generator.h in Headers */,
 				9A37649F2409BF0C002D15D3 /* fwd.h in Headers */,
-				9A2486012452C48F00F23D28 /* aura_aura.h in Headers */,
+				9A2486012452C48F00F23D28 /* apex_apex.h in Headers */,
 				9A2485B82452C48E00F23D28 /* user.h in Headers */,
 				9A3764A02409BF0C002D15D3 /* _const.h in Headers */,
 				FA121C0E236E95F200DBF21A /* base64.h in Headers */,
@@ -8106,7 +8106,7 @@
 				9A98531A240978D500328439 /* _c_trait_wide_impl.h in Headers */,
 				9AD1170A24F5147800177261 /* create.h in Headers */,
 				9A3767652409C19E002D15D3 /* sort_map.h in Headers */,
-				9A3765AB2409C0EF002D15D3 /* generic_object.h in Headers */,
+				9A3765AB2409C0EF002D15D3 /* generic.h in Headers */,
 				9A3765F52409C11C002D15D3 /* mkint_c.h in Headers */,
 				9A41734F20004E7A0056265A /* x509_vfy.h in Headers */,
 				9A985305240978D500328439 /* _impl_prio.h in Headers */,
@@ -8454,7 +8454,7 @@
 				9A2487232452C49200F23D28 /* _m.h in Headers */,
 				9A2483A92452C48800F23D28 /* implementation.h in Headers */,
 				9A9852FF240978D500328439 /* static_string.h in Headers */,
-				9A2486572452C49000F23D28 /* aura_regex.h in Headers */,
+				9A2486572452C49000F23D28 /* apex_regex.h in Headers */,
 				9A2488AC2452C49700F23D28 /* impl.h in Headers */,
 				9A985311240978D500328439 /* _c_impl.h in Headers */,
 				9A3768E82409C24E002D15D3 /* listener.h in Headers */,
@@ -8490,9 +8490,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		9A20198924772E9000A31CBF /* ios_aura */ = {
+		9A20198924772E9000A31CBF /* ios_apex */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9A20199024772E9000A31CBF /* Build configuration list for PBXNativeTarget "ios_aura" */;
+			buildConfigurationList = 9A20199024772E9000A31CBF /* Build configuration list for PBXNativeTarget "ios_apex" */;
 			buildPhases = (
 				9A20198624772E9000A31CBF /* Sources */,
 				9A20198724772E9000A31CBF /* Frameworks */,
@@ -8502,9 +8502,9 @@
 			);
 			dependencies = (
 			);
-			name = ios_aura;
-			productName = ios_aura;
-			productReference = 9A20198A24772E9000A31CBF /* libios_aura.a */;
+			name = ios_apex;
+			productName = ios_apex;
+			productReference = 9A20198A24772E9000A31CBF /* libios_apex.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		9A98A6031771D67E000AE16E /* apex */ = {
@@ -8524,12 +8524,12 @@
 			);
 			name = apex;
 			productName = c;
-			productReference = 9A98A6151771D67E000AE16E /* libaura.dylib */;
+			productReference = 9A98A6151771D67E000AE16E /* libapex.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
-		9AE24D421904CEFE001AEFFB /* aura_iosTests */ = {
+		9AE24D421904CEFE001AEFFB /* apex_iosTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9AE24D591904CEFF001AEFFB /* Build configuration list for PBXNativeTarget "aura_iosTests" */;
+			buildConfigurationList = 9AE24D591904CEFF001AEFFB /* Build configuration list for PBXNativeTarget "apex_iosTests" */;
 			buildPhases = (
 				9AE24D3F1904CEFE001AEFFB /* Sources */,
 				9AE24D401904CEFE001AEFFB /* Frameworks */,
@@ -8539,9 +8539,9 @@
 			);
 			dependencies = (
 			);
-			name = aura_iosTests;
+			name = apex_iosTests;
 			productName = base_iosTests;
-			productReference = 9AE24D431904CEFE001AEFFB /* aura_iosTests.xctest */;
+			productReference = 9AE24D431904CEFE001AEFFB /* apex_iosTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -8584,8 +8584,8 @@
 			projectRoot = "";
 			targets = (
 				9A98A6031771D67E000AE16E /* apex */,
-				9A20198924772E9000A31CBF /* ios_aura */,
-				9AE24D421904CEFE001AEFFB /* aura_iosTests */,
+				9A20198924772E9000A31CBF /* ios_apex */,
+				9AE24D421904CEFE001AEFFB /* apex_iosTests */,
 			);
 		};
 /* End PBXProject section */
@@ -8811,7 +8811,7 @@
 				9A201AD8247733D900A31CBF /* palette.cpp in Sources */,
 				9A8B636A24CBCD4B00A93185 /* program.cpp in Sources */,
 				9A201AD9247733D900A31CBF /* path.cpp in Sources */,
-				9A16E0D724BC792E00C3DD5B /* static_start_aura.cpp in Sources */,
+				9A16E0D724BC792E00C3DD5B /* static_start_apex.cpp in Sources */,
 				9A201ADA247733D900A31CBF /* pen.cpp in Sources */,
 				9A201ADB247733D900A31CBF /* printer.cpp in Sources */,
 				9A201ADC247733D900A31CBF /* region.cpp in Sources */,
@@ -9020,7 +9020,7 @@
 				9A201C06247733DC00A31CBF /* graphics.cpp in Sources */,
 				9A201C07247733DC00A31CBF /* language.cpp in Sources */,
 				9A201C08247733DC00A31CBF /* launcher.cpp in Sources */,
-				9A16E07724BBFEBA00C3DD5B /* aura_str_pool.cpp in Sources */,
+				9A16E07724BBFEBA00C3DD5B /* apex_str_pool.cpp in Sources */,
 				9A201C09247733DC00A31CBF /* library.cpp in Sources */,
 				9A201C0A247733DC00A31CBF /* lock.cpp in Sources */,
 				9A201C0B247733DC00A31CBF /* application_system_run.cpp in Sources */,
@@ -9045,7 +9045,7 @@
 				9A201C3F247733DC00A31CBF /* http.cpp in Sources */,
 				9A201C40247733DC00A31CBF /* openssl_crypt.cpp in Sources */,
 				9A201C41247733DC00A31CBF /* os_os.cpp in Sources */,
-				9A5253D224A8204C0088E35A /* aura_main_struct.cpp in Sources */,
+				9A5253D224A8204C0088E35A /* apex_main_struct.cpp in Sources */,
 				9A201C42247733DC00A31CBF /* process.cpp in Sources */,
 				9A201C43247733DC00A31CBF /* thread.cpp in Sources */,
 				9A201C44247733DC00A31CBF /* time.cpp in Sources */,
@@ -9198,7 +9198,7 @@
 				9A201CE6247733DD00A31CBF /* create.cpp in Sources */,
 				9A201CE7247733DD00A31CBF /* edit.cpp in Sources */,
 				9A201CE8247733DD00A31CBF /* factory.cpp in Sources */,
-				9A201CEA247733DD00A31CBF /* generic_object.cpp in Sources */,
+				9A201CEA247733DD00A31CBF /* generic.cpp in Sources */,
 				9A201CEB247733DD00A31CBF /* handler.cpp in Sources */,
 				9A449B1A2477397E0002A827 /* RoundViewController.mm in Sources */,
 				9A201CEC247733DD00A31CBF /* id_space.cpp in Sources */,
@@ -9262,7 +9262,7 @@
 				9A201D29247733DE00A31CBF /* process_bidi_pipe.cpp in Sources */,
 				9A201D2A247733DE00A31CBF /* process_department.cpp in Sources */,
 				9A214B1D24BEB0E9002C1331 /* RoundTextRange.mm in Sources */,
-				9A5253D124A820480088E35A /* aura_main_data.cpp in Sources */,
+				9A5253D124A820480088E35A /* apex_main_data.cpp in Sources */,
 				9A8B636B24CBCD5000A93185 /* context.cpp in Sources */,
 				9A214B2224BEC6C9002C1331 /* RoundTextView.mm in Sources */,
 				9A449B3D247745FB0002A827 /* NSObject+DDExtensions.mm in Sources */,
@@ -9569,7 +9569,7 @@
 				9A376A792409C2D7002D15D3 /* item_array.cpp in Sources */,
 				9A37648C2409BF0C002D15D3 /* image.cpp in Sources */,
 				9A2483A22452C48800F23D28 /* _application.cpp in Sources */,
-				9A3765B82409C0EF002D15D3 /* generic_object.cpp in Sources */,
+				9A3765B82409C0EF002D15D3 /* generic.cpp in Sources */,
 				9A2485712452C48D00F23D28 /* allocate_x86_cache_oriented.cpp in Sources */,
 				9A37647C2409BF0C002D15D3 /* _.cpp in Sources */,
 				9A2486F72452C49200F23D28 /* interaction_impl.cpp in Sources */,
@@ -9629,7 +9629,7 @@
 				9A3764BC2409BF0C002D15D3 /* imaging.cpp in Sources */,
 				9A2582D824DA1EBA0013F50E /* task.cpp in Sources */,
 				9A3764C62409BF0C002D15D3 /* image_dynamic.cpp in Sources */,
-				9A16E07324BBFEB500C3DD5B /* static_start_aura.cpp in Sources */,
+				9A16E07324BBFEB500C3DD5B /* static_start_apex.cpp in Sources */,
 				9A2486122452C48F00F23D28 /* international.cpp in Sources */,
 				9A2486D52452C49100F23D28 /* RoundWindowFrameView.mm in Sources */,
 				9A5C951824725AF100107FDE /* data.cpp in Sources */,
@@ -9759,7 +9759,7 @@
 				9A2488A72452C49700F23D28 /* file.cpp in Sources */,
 				9A2486282452C48F00F23D28 /* version.cpp in Sources */,
 				9A3769C92409C2C5002D15D3 /* exception.cpp in Sources */,
-				9A52537C24A7FED90088E35A /* aura_main_struct.cpp in Sources */,
+				9A52537C24A7FED90088E35A /* apex_main_struct.cpp in Sources */,
 				9A3767AA2409C1B2002D15D3 /* url_domain.cpp in Sources */,
 				9AD116DA24F5147800177261 /* composition_imm_client.cpp in Sources */,
 				9A1E1BF322F0AC3A004243B8 /* bit.cpp in Sources */,
@@ -9822,7 +9822,7 @@
 				9A5C94E724724B5600107FDE /* shared_memory.cpp in Sources */,
 				FA121C10236E95F200DBF21A /* dup.cpp in Sources */,
 				9A37675B2409C19E002D15D3 /* sort.cpp in Sources */,
-				9A16E07524BBFEB500C3DD5B /* aura_str_pool.cpp in Sources */,
+				9A16E07524BBFEB500C3DD5B /* apex_str_pool.cpp in Sources */,
 				9AD1173724F5147900177261 /* _.cpp in Sources */,
 				9A3767852409C19F002D15D3 /* map_test_51778915.cpp in Sources */,
 				9A2486EF2452C49200F23D28 /* file_system.cpp in Sources */,
@@ -9860,7 +9860,7 @@
 				9A2486BA2452C49100F23D28 /* os_history.cpp in Sources */,
 				9AF13609249DDCB8009410E0 /* application.cpp in Sources */,
 				9A2485A22452C48E00F23D28 /* base.cpp in Sources */,
-				9A52537D24A7FED90088E35A /* aura_main_data.cpp in Sources */,
+				9A52537D24A7FED90088E35A /* apex_main_data.cpp in Sources */,
 				9A3764932409BF0C002D15D3 /* fastblur.cpp in Sources */,
 				9A2483192452C48700F23D28 /* _.cpp in Sources */,
 				9A2489D62453417E00F23D28 /* channel.cpp in Sources */,
@@ -10328,7 +10328,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9A20199024772E9000A31CBF /* Build configuration list for PBXNativeTarget "ios_aura" */ = {
+		9A20199024772E9000A31CBF /* Build configuration list for PBXNativeTarget "ios_apex" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9A20199124772E9000A31CBF /* Debug */,
@@ -10346,7 +10346,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9AE24D591904CEFF001AEFFB /* Build configuration list for PBXNativeTarget "aura_iosTests" */ = {
+		9AE24D591904CEFF001AEFFB /* Build configuration list for PBXNativeTarget "apex_iosTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9AE24D561904CEFF001AEFFB /* Debug */,

@@ -60,7 +60,7 @@ namespace sockets
    public:
 
 
-      EventHandler(::axis::application * papp, ::aura::log * p = nullptr);
+      EventHandler(::axis::application * papp, ::apex::log * p = nullptr);
       //EventHandler(::axis::application * papp, ::mutex &,logger * = nullptr);
       ~EventHandler();
 

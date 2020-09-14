@@ -10,9 +10,9 @@ class CLASS_DECL_CORE simple_static :
 public:
    
    
-   bool                 m_bTransparent;
+   bool                          m_bTransparent;
    ::draw2d::brush_pointer       m_brushBkg;
-   __pointer(image_list)         m_pimagelist;
+   __pointer(::image_list)       m_pimagelist;
    
 
    simple_static();

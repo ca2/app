@@ -10,16 +10,16 @@ CLASS_DECL_AURA void main_sync_runnable(::context_object * pobjectTask, ::durati
 
 template < typename PRED >
 class __pred_procedure :
-   virtual public ::generic_object
+   virtual public ::generic
 {
 public:
 
 
    PRED                                m_pred;
-   __pointer(::generic_object)         m_pobjectHold;
+   __pointer(::generic)         m_pobjectHold;
 
 
-   __pred_procedure(PRED pred, ::generic_object * pobjectHold = nullptr) :
+   __pred_procedure(PRED pred, ::generic * pobjectHold = nullptr) :
       m_pred(pred),
       m_pobjectHold(pobjectHold)
    {
@@ -60,11 +60,11 @@ public:
 
 
 
-::estatus run_task(::generic_object * pobjectTask);
+::estatus run_task(::generic * pobjectTask);
 
 
 template < typename PRED >
-inline auto __task_procedure(PRED pred, ::generic_object * pobjectHold)
+inline auto __task_procedure(PRED pred, ::generic * pobjectHold)
 {
 
    return __new(__pred_procedure < PRED >(pred, pobjectHold));
@@ -74,7 +74,7 @@ inline auto __task_procedure(PRED pred, ::generic_object * pobjectHold)
 
 
 template < >
-inline auto __task_procedure(nullptr_t, ::generic_object * pobjectHold)
+inline auto __task_procedure(nullptr_t, ::generic * pobjectHold)
 {
 
    return nullptr;
@@ -85,7 +85,7 @@ class processor
 {
 public:
 
-   virtual void schedule(::generic_object * pobjectTask, e_priority epriority = priority_normal) = 0;
+   virtual void schedule(::generic * pobjectTask, e_priority epriority = priority_normal) = 0;
 
 };
 
@@ -114,7 +114,7 @@ inline auto schedule(processor * pprocessor, PRED pred, e_priority epriority = p
 
 
 
-CLASS_DECL_AURA void main_branch(::generic_object * pobjectTask, e_priority epriority);
+CLASS_DECL_AURA void main_branch(::generic * pobjectTask, e_priority epriority);
 
 
 

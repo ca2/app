@@ -26,8 +26,7 @@ namespace aura
 
 
    class CLASS_DECL_AURA multimedia :
-      virtual public ::object
-      // virtual public ::aura::department
+      virtual public ::apex::department
    {
    public:
 
@@ -78,7 +77,7 @@ extern "C"
 CLASS_DECL_AURA::aura::multimedia * get_get_new_multimedia();
 
 
-CLASS_DECL_AURA::aura::multimedia * get_context_multimedia(::object * pobjectContext);
+CLASS_DECL_AURA::aura::multimedia * get_context_multimedia(::layered * pobjectContext);
 
 
 CLASS_DECL_AURA bool has_multimedia();

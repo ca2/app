@@ -11,7 +11,7 @@ namespace turboc
    public:
 
 
-      full_view(::object * pobject);
+      full_view(::layered * pobjectContext);
       virtual ~full_view();
 
 

@@ -5,7 +5,7 @@
 //{
 //
 //   
-//   namespace aura
+//   namespace apex
 //   {
 //   
 //   class CLASS_DECL_APEX factory_exchange :
@@ -20,7 +20,7 @@
 //      
 //   };
 //   
-//   } // namespace aura
+//   } // namespace apex
 //
 //} // namespace ios
 //

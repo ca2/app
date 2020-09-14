@@ -21,9 +21,9 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "framework.h"
-#include "aura/net/sockets/_.h"
-#include "aura/os/_c.h"
-#include "aura/os/_.h"
+#include "apex/net/sockets/_.h"
+#include "apex/os/_c.h"
+#include "apex/os/_.h"
 //
 //#ifdef WINDOWS
 //extern "C"
@@ -110,8 +110,8 @@ namespace sockets
 
 #endif
 
-   SSLInitializer::SSLInitializer(::object * pobject) :
-      ::object(pobject)
+   SSLInitializer::SSLInitializer(::layered * pobjectContext) :
+      ::object(pobjectContext)
    {
 
 //#if defined(_UWP)

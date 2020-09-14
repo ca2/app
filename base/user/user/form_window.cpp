@@ -826,7 +826,7 @@ namespace user
 
             string str;
 
-            str.load_string(get_context_application(), descriptor.m_id);
+            str = Application.load_string(descriptor.m_id);
 
             descriptor.m_pinteraction->set_window_text(str);
 
@@ -836,7 +836,7 @@ namespace user
 
             string str;
 
-            str.load_string(get_context_application(), descriptor.m_uiText);
+            str = Application.load_string(descriptor.m_uiText);
 
             descriptor.m_pinteraction->set_window_text(str);
 

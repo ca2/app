@@ -498,7 +498,7 @@ namespace draw2d_direct2d
       bool SelectClipPath(int nMode) override;
 
       // Misc Helper Functions
-      static ::draw2d::brush* GetHalftoneBrush(::object * pobject);
+      static ::draw2d::brush* GetHalftoneBrush(::layered * pobjectContext);
       //void DrawDragRect(const ::rect & rect, const ::size & size,
       //                  const ::rect & rectLast, const ::size & sizeLast,
       //                  ::draw2d::brush* pBrush = nullptr, ::draw2d::brush* pBrushLast = nullptr) override;

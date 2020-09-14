@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "aura/_.h"
+#include "apex/_.h"
 
 
 #ifdef _CORE_LIBRARY
@@ -157,7 +157,7 @@ namespace dynamic_source
 
 
 
-namespace aura
+namespace apex
 {
 
    //class run_start_installer;
@@ -167,7 +167,7 @@ namespace aura
    CLASS_DECL_APEX bool term_core();
 
 
-} // namespace aura
+} // namespace apex
 
 
 CLASS_DECL_APEX int get_core_init();
@@ -177,7 +177,7 @@ extern "C"
 CLASS_DECL_APEX int_bool defer_core_term();
 
 
-namespace aura
+namespace apex
 {
 
 
@@ -193,20 +193,20 @@ namespace aura
    } // namespace static_start
 
 
-} // namespace aura
+} // namespace apex
 
 
 
 
 
 #undef SYSTEM_TYPE
-#define SYSTEM_TYPE ::aura::system
+#define SYSTEM_TYPE ::apex::system
 
 #undef SESSION_TYPE
-#define SESSION_TYPE ::aura::session
+#define SESSION_TYPE ::apex::session
 
 #undef APP_TYPE
-#define APP_TYPE ::aura::application
+#define APP_TYPE ::apex::application
 
 
 class job;
@@ -246,7 +246,7 @@ struct memory_state;
 
 class resource_exception;
 class user_exception;
-namespace aura
+namespace apex
 {
    class menu;                 // a menu
 
@@ -267,7 +267,7 @@ namespace draw2d
    class paint_graphics;          // embeddable BeginPaint struct helper
 }
 
-namespace aura
+namespace apex
 {
    class job;
 }
@@ -328,14 +328,14 @@ namespace user
 } // namespace user
 
 
-#include "aura/user/control_property.h"
+#include "apex/user/control_property.h"
 
 #include "history.h"
 
 #include "os_history.h"
 
 
-namespace aura
+namespace apex
 {
 
    
@@ -370,15 +370,15 @@ namespace aura
 
 #include "util1.h"
 
-#include "app/aura/math/math_math.h"
+#include "app/apex/math/math_math.h"
 
 #include "theme.h"
 
-#include "app/aura/user/_.h"
+#include "app/apex/user/_.h"
 
 #include "debug.h"
 
-#include "aura/filesystem/filehandler/filehandler.h"
+#include "apex/filesystem/filehandler/filehandler.h"
 
 #include "patch.h"
 
@@ -394,27 +394,27 @@ namespace aura
 
 //#include "simple_app.h"
 
-#include "aura/math/math_math.h"
+#include "apex/math/math_math.h"
 
 #include "library.h"
 
-#include "aura/filesystem/filemanager/_.h"
+#include "apex/filesystem/filemanager/_.h"
 
 #include "session.h"
 
 #include "system.h"
 
-//#include "aura/hotplugin/hotplugin.h"
+//#include "apex/hotplugin/hotplugin.h"
 
-//#include "aura/plugin/plugin.h"
+//#include "apex/plugin/plugin.h"
 
 #include "_impl.h"
 
 
-#include "aura/user/_impl.h"
+#include "apex/user/_impl.h"
 
 
-#include "aura/user/_impl.h"
+#include "apex/user/_impl.h"
 
 
 #endif

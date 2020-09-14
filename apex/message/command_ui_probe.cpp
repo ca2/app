@@ -2,7 +2,7 @@
 
 
 
-//probe_::user::command::probe_::user::command(::object * pobject):
+//probe_::user::command::probe_::user::command(::layered * pobjectContext):
 //::user::command(pobject)
 //{
 //

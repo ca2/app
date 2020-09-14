@@ -331,7 +331,7 @@ namespace windows
       else
       {
 
-         size = MIN(size, pimage->size());
+         size = min(size, pimage->size());
 
          pimage->map();
 

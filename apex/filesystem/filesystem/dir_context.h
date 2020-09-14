@@ -15,7 +15,7 @@
       virtual ~dir_context();
 
 
-      virtual ::estatus initialize(::object * pobjectContext) override;
+      virtual ::estatus initialize(::layered * pobjectContext) override;
 
 
       virtual ::estatus init_system();
@@ -28,6 +28,29 @@
 
       virtual ::file::listing & ls(::file::listing & listing);
       virtual ::file::listing & ls_relative_name(::file::listing & listing);
+
+      virtual ::file::listing& rls(::file::listing& listing);
+      virtual ::file::listing& rls_relative_name(::file::listing& listing);
+
+      virtual ::file::listing& ls_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern);
+      virtual ::file::listing& ls_file_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern);
+      virtual ::file::listing& rls_pattern(::file::listing& listing, const ::file::path& path, const string_array & straPattern);
+
+      virtual ::file::listing& ls_file(::file::listing& listing);
+      virtual ::file::listing& ls_dir(::file::listing& listing);
+
+      virtual ::file::listing& rls_file(::file::listing& listing);
+      virtual ::file::listing& rls_dir(::file::listing& listing);
+
+      inline ::file::listing& ls(::file::listing& listing, const ::file::path& path) { listing(path); return ls(listing); }
+
+      inline ::file::listing& rls(::file::listing& listing, const ::file::path& path) { listing(path); return rls(listing); }
+
+      inline ::file::listing& ls_file(::file::listing& listing, const ::file::path & path) { listing(path); return ls_file(listing); }
+      inline ::file::listing& ls_dir(::file::listing& listing, const ::file::path& path) { listing(path); return ls_dir(listing); }
+
+      inline ::file::listing& rls_file(::file::listing& listing, const ::file::path& path) { listing(path); return rls_file(listing); }
+      inline ::file::listing& rls_dir(::file::listing& listing, const ::file::path& path) { listing(path); return rls_dir(listing); }
 
 
       virtual bool  is(const ::file::path & pcsz);
@@ -80,8 +103,8 @@
 
       virtual ::file::path appmatter(string strApp, ::file::path pathRel);
 
-      virtual void   matter_ls(const ::file::path & str, ::file::patha & stra);
-      virtual void   matter_ls_file(const ::file::path & str, ::file::patha & stra);
+      virtual void matter_ls(const ::file::path & str, ::file::listing & stra);
+      virtual void matter_ls_file(const ::file::path & str, ::file::listing& stra);
 
       virtual ::file::path commonappdata(const char * pszAppId, const char * pszBuild = nullptr, const char * pszPlatform = nullptr, const char * pszConfiguration = nullptr);
       virtual ::file::path commonappdata_locale_schema(const char * pszAppId, const char * pszBuild = nullptr, const char * pszPlatform = nullptr, const char * pszConfiguration = nullptr, const char * pszLocale = nullptr, const char * pszSchema = nullptr);
@@ -101,7 +124,7 @@
 
       virtual ::file::path pathfind(const string & pszEnv, const string & pszTopic, const string & pszMode);
 
-      //virtual ::estatus initialize(::object * pobjectContext) override;
+      //virtual ::estatus initialize(::layered * pobjectContext) override;
 
       //virtual ::file::path get_api_cc();
 

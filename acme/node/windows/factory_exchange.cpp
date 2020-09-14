@@ -46,7 +46,7 @@ void __node_acme_factory_exchange()
    //create_factory < ::windows::dir_context, ::dir_context >();
    //create_factory < ::windows::file_context, ::file_context >();
 
-   create_factory < ::windows::stdio_file, ::file::text_file >();
+   //create_factory < ::windows::stdio_file, ::file::text_file >();
    create_factory < ::windows::file, ::file::file >();
    //create_factory < ::windows::os_context, ::os_context >();
    create_factory < ::windows::pipe, ::process::pipe >();

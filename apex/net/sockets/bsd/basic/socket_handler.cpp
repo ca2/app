@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aura/net/sockets/_.h"
+#include "apex/net/sockets/_.h"
 #include <time.h>
 
 #ifdef ANDROID
@@ -24,7 +24,7 @@ namespace sockets
 
 
 
-   socket_handler::socket_handler(::object * pobject, ::aura::log *plogger) :
+   socket_handler::socket_handler(::layered * pobject, ::apex::log *plogger) :
       ::object(pobject),
       base_socket_handler(pobject, plogger),
       m_b_use_mutex(false)

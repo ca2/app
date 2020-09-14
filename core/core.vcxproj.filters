@@ -180,9 +180,6 @@
     <Filter Include="Source Files\node\windows_common">
       <UniqueIdentifier>{effb1ba7-4829-40c5-8b89-1530557ff297}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\compress">
-      <UniqueIdentifier>{6c63ec8b-0cad-40df-9485-b9a8fd37179b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\os\ansios">
       <UniqueIdentifier>{3e3eb7e6-b2d0-4ef9-8057-41cbc4350638}</UniqueIdentifier>
     </Filter>
@@ -215,9 +212,6 @@
     </Filter>
     <Filter Include="Source Files\user\simple_ui">
       <UniqueIdentifier>{ea12e832-2365-46d3-ac89-e25c7d3780a9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\compress">
-      <UniqueIdentifier>{4ed76431-5f74-4e44-905a-a29025c61a72}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\os\cross">
       <UniqueIdentifier>{b0540f08-ec3c-405e-bf72-94e3e74d8ba7}</UniqueIdentifier>
@@ -1238,15 +1232,6 @@
     <ClInclude Include="filesystem\filemanager\aaa_want_to_remove_item_action.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="compress\compress_bz.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress_context.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
     <ClInclude Include="const\charset.h">
       <Filter>Header Files\const</Filter>
     </ClInclude>
@@ -2046,12 +2031,6 @@
     </ClCompile>
     <ClCompile Include="node\windows_common\application.cpp">
       <Filter>Source Files\node\windows_common</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_bz.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_context.cpp">
-      <Filter>Source Files\compress</Filter>
     </ClCompile>
     <ClCompile Include="os\ansios\base.cpp">
       <Filter>Source Files\os\ansios</Filter>

@@ -336,8 +336,8 @@ namespace experience
          {
             rectWindow.top = m_rectWindowOrigin.bottom - sizeMin.cy;
          }
-         rectWindow.left = MIN(rectWindow.left, rectMonitor.right - m_sizeMinimumBorder.cx);
-         rectWindow.top = MIN(rectWindow.top, rectMonitor.bottom - m_sizeMinimumBorder.cy);
+         rectWindow.left = min(rectWindow.left, rectMonitor.right - m_sizeMinimumBorder.cx);
+         rectWindow.top = min(rectWindow.top, rectMonitor.bottom - m_sizeMinimumBorder.cy);
       }
       else if(ehittest == hittest_sizing_top)
       {
@@ -349,7 +349,7 @@ namespace experience
          {
             rectWindow.top = m_rectWindowOrigin.bottom - sizeMin.cy;
          }
-         rectWindow.top = MIN(rectWindow.top, rectMonitor.bottom - m_sizeMinimumBorder.cy);
+         rectWindow.top = min(rectWindow.top, rectMonitor.bottom - m_sizeMinimumBorder.cy);
          auto pframewindow = m_pframewindow;
          if (pframewindow->find_i32("ysnap") > 1)
          {
@@ -371,8 +371,8 @@ namespace experience
          {
             rectWindow.top = m_rectWindowOrigin.bottom - sizeMin.cy;
          }
-         rectWindow.right = MAX(rectWindow.right, rectMonitor.left + m_sizeMinimumBorder.cx);
-         rectWindow.top = MIN(rectWindow.top, rectMonitor.bottom - m_sizeMinimumBorder.cy);
+         rectWindow.right = max(rectWindow.right, rectMonitor.left + m_sizeMinimumBorder.cx);
+         rectWindow.top = min(rectWindow.top, rectMonitor.bottom - m_sizeMinimumBorder.cy);
       }
       else if(ehittest == hittest_sizing_right)
       {
@@ -385,7 +385,7 @@ namespace experience
             rectWindow.right = m_rectWindowOrigin.left + sizeMin.cx;
 
          }
-         rectWindow.right = MAX(rectWindow.right, rectMonitor.left + m_sizeMinimumBorder.cx);
+         rectWindow.right = max(rectWindow.right, rectMonitor.left + m_sizeMinimumBorder.cx);
       }
       else if(ehittest == hittest_sizing_bottom_right)
       {
@@ -402,8 +402,8 @@ namespace experience
          {
             rectWindow.bottom = m_rectWindowOrigin.top + sizeMin.cy;
          }
-         rectWindow.right = MAX(rectWindow.right, rectMonitor.left + m_sizeMinimumBorder.cx);
-         rectWindow.bottom = MAX(rectWindow.bottom, rectMonitor.top + m_sizeMinimumBorder.cy);
+         rectWindow.right = max(rectWindow.right, rectMonitor.left + m_sizeMinimumBorder.cx);
+         rectWindow.bottom = max(rectWindow.bottom, rectMonitor.top + m_sizeMinimumBorder.cy);
       }
       else if(ehittest == hittest_sizing_bottom)
       {
@@ -415,7 +415,7 @@ namespace experience
          {
             rectWindow.bottom = m_rectWindowOrigin.top + sizeMin.cy;
          }
-         rectWindow.bottom = MAX(rectWindow.bottom, rectMonitor.top + m_sizeMinimumBorder.cy);
+         rectWindow.bottom = max(rectWindow.bottom, rectMonitor.top + m_sizeMinimumBorder.cy);
          auto pframewindow = m_pframewindow;
 
          if (pframewindow->find_i32("ysnap") > 1)
@@ -440,8 +440,8 @@ namespace experience
          {
             rectWindow.bottom = m_rectWindowOrigin.top + sizeMin.cy;
          }
-         rectWindow.left = MIN(rectWindow.left, rectMonitor.right - m_sizeMinimumBorder.cx);
-         rectWindow.bottom = MAX(rectWindow.bottom, rectMonitor.top + m_sizeMinimumBorder.cy);
+         rectWindow.left = min(rectWindow.left, rectMonitor.right - m_sizeMinimumBorder.cx);
+         rectWindow.bottom = max(rectWindow.bottom, rectMonitor.top + m_sizeMinimumBorder.cy);
       }
       else if(ehittest == hittest_sizing_left)
       {
@@ -454,7 +454,7 @@ namespace experience
             rectWindow.left = m_rectWindowOrigin.right - sizeMin.cx;
 
          }
-         rectWindow.left = MIN(rectWindow.left, rectMonitor.right - m_sizeMinimumBorder.cx);
+         rectWindow.left = min(rectWindow.left, rectMonitor.right - m_sizeMinimumBorder.cx);
       }
       else
       {

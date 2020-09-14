@@ -85,13 +85,13 @@ VOID WINAPI Sleep(DWORD dwMilliseconds)
 }
 #endif
 
-typedef bool
-(WINAPI * LPFN_ChangeWindowMessageFilter)(
-_In_ UINT message,
-_In_ DWORD dwFlag);
+// typedef bool
+// (WINAPI * LPFN_ChangeWindowMessageFilter)(
+// _In_ UINT message,
+// _In_ DWORD dwFlag);
 
 
-LPFN_ChangeWindowMessageFilter g_pfnChangeWindowMessageFilter = nullptr;
+// LPFN_ChangeWindowMessageFilter g_pfnChangeWindowMessageFilter = nullptr;
 
 /*
 typedef

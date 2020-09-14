@@ -88,7 +88,7 @@ namespace account
    }
 
 
-   ::estatus login::initialize(::object * pobjectContext)
+   ::estatus login::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::user::interaction::initialize(pobjectContext);

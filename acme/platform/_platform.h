@@ -3,7 +3,7 @@
 
 //#include "match.h"
 
-#include "history.h"
+//#include "history.h"
 
 //#include "theme.h"
 
@@ -13,7 +13,7 @@
 
 #include "process_data.h"
 
-#include "profiler2.h"
+#include "profiler.h"
 
 
 //
@@ -306,7 +306,7 @@ struct memory_state;
 ////
 
 
-#include "history.h"
+//#include "history.h"
 
 //#include "os_history.h"
 

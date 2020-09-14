@@ -13,7 +13,6 @@ namespace userfs
 
 
    list_item::list_item(const list_item & listitem) :
-      ::object(listitem.get_context_object()),
       ::file::item(listitem)
    {
 

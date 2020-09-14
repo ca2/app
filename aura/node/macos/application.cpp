@@ -10,7 +10,7 @@ namespace aura
 {
 
 
-//   application::application(::object * pobject) :
+//   application::application(::layered * pobjectContext) :
 //      ::object(pobject)
 //   {
 ////      m_pthreadimpl.create(this);

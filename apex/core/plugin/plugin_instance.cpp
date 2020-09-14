@@ -2,7 +2,7 @@
 
 
 
-//::hotplugin::plugin * new_hotplugin(::object * pobject);
+//::hotplugin::plugin * new_hotplugin(::layered * pobjectContext);
 
 
 namespace plugin
@@ -94,7 +94,7 @@ namespace plugin
 
 
 
-//::hotplugin::plugin * new_hotplugin(::object * pobject)
+//::hotplugin::plugin * new_hotplugin(::layered * pobjectContext)
 //{
 //
 //   return new ::plugin::instance(pobject);

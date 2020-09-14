@@ -8,14 +8,14 @@
 #include "apex/const/id.h"
 #include "apex/node/_node.h"
 //#include "apex/net/ftp/_.h"
-#include "apex/platform/profiler2.h"
+#include "acme/platform/profiler.h"
 #include "apex/platform/static_setup.h"
 
-//#ifdef _OPENGL
-#include "apex/gpu/gpu/_.h"
-//#endif
+////#ifdef _OPENGL
+//#include "apex/gpu/gpu/_.h"
+////#endif
 
-extern ::apex::system* g_paurasystem;
+extern ::apex::system* g_papexsystem;
 
 int GetMainScreenRect(LPRECT lprect);
 
@@ -37,13 +37,13 @@ extern "C"
 #endif
 
 
-void ___compile_test_sort_array_21304528734();
+//void ___compile_test_sort_array_21304528734();
 
 void enum_display_monitors(::apex::system * psystem);
 
-#ifdef WINDOWS_DESKTOP
-CLASS_DECL_APEX ::user::interaction * create_system_message_window(::object * pobject);
-#endif
+//#ifdef WINDOWS_DESKTOP
+//CLASS_DECL_APEX ::user::interaction * create_system_message_window(::layered * pobjectContext);
+//#endif
 
 
 #ifdef LINUX
@@ -53,7 +53,7 @@ CLASS_DECL_APEX ::user::interaction * create_system_message_window(::object * po
 extern string_map < __pointer(::apex::library) > * g_pmapLibrary;
 
 
-CLASS_DECL_APEX void __simple_tracea(::generic_object * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
+CLASS_DECL_APEX void __simple_tracea(::generic * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
 
 
 #ifdef WINDOWS
@@ -70,7 +70,7 @@ void os_post_quit();
 
 
 #ifdef UNIT_TEST
-void unit_test_primitive_var_aura_block();
+void unit_test_primitive_var_apex_block();
 #endif
 
 
@@ -85,7 +85,7 @@ string get_user_name()
    ::GetUserNameW(wsz,&dwSize);
    return string(wsz);
 }
-#include "apex/os/windows/_c.h"
+#include "acme/os/windows/_c.h"
 #endif
 
 
@@ -93,12 +93,6 @@ namespace apex
 {
 
 
-
-
-
-   //class ::id system::idEmpty;
-
-   //system * system::g_p = nullptr;
    ::mutex * g_pmutexImage = nullptr;
 
    ::mutex * get_image_mutex()
@@ -111,23 +105,19 @@ namespace apex
    system::system()
    {
 
-
+      m_paurasystem = nullptr;
       m_paxissystem = nullptr;
       m_pbasesystem = nullptr;
       m_pcoresystem = nullptr;
-
-      //create_factory < ::userex::userex >();
-
-      g_paurasystem = this;
 
       m_bMessageThread = true;
 
       set_context_system(this);
 
-      if (g_paurasystem == nullptr)
+      if (g_papexsystem == nullptr)
       {
 
-         g_paurasystem = this;
+         g_papexsystem = this;
 
       }
 
@@ -154,7 +144,7 @@ namespace apex
    }
 
 
-   ::estatus system::initialize(::object * pobjectContext)
+   ::estatus system::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::apex::context_thread::initialize(pobjectContext);
@@ -181,20 +171,21 @@ namespace apex
 
       __compose_new(m_pthreading);
 
-      ::datetime::time timeNow = ::datetime::time::get_current_time();
+      // __thread(todo("datetime"));
+      //::datetime::time timeNow = ::datetime::time::get_current_time();
 
-      if (timeNow.GetHour() >= 6 && timeNow.GetHour() <= 17)
-      {
+      //if (timeNow.GetHour() >= 6 && timeNow.GetHour() <= 17)
+      //{
 
-         set_simple_ui_darkness(0);
+      //   set_simple_ui_darkness(0);
 
-      }
-      else
-      {
+      //}
+      //else
+      //{
 
-         set_simple_ui_darkness(255);
+      //   set_simple_ui_darkness(255);
 
-      }
+      //}
 
       enable_trace_category(trace_category_windowing, true);
 
@@ -245,7 +236,7 @@ namespace apex
 
 #ifdef UNIT_TEST
 
-      unit_test_primitive_var_aura_block();
+      unit_test_primitive_var_apex_block();
 
 #endif
 
@@ -255,7 +246,8 @@ namespace apex
 
 #endif
 
-      m_pDraw2dFactoryExchange = nullptr;
+      // __thread(todo("datetime"));
+      //m_pDraw2dFactoryExchange = nullptr;
 
       estatus = __compose_new(m_pbase64);
 
@@ -383,10 +375,10 @@ namespace apex
 
       }
 
-      create_factory < ::user::control_descriptor >();
+      //create_factory < ::user::control_descriptor >();
       create_factory < ::file::path_object >();
-      create_factory < ::stdio_file, ::file::text_file >();
-      create_factory < ::stdio_file, ::file::file >();
+//      create_factory < ::stdio_file, ::file::text_file >();
+  //    create_factory < ::stdio_file, ::file::file >();
       create_factory < ::i64_array >();
       create_factory < ::double_array >();
       create_factory < ::apex::library >();
@@ -398,9 +390,9 @@ namespace apex
       create_factory < memory_file >();
       create_factory < int_array >();
 
-      create_factory < ::draw2d::icon >();
+      //create_factory < ::draw2d::icon >();
 
-      __node_aura_factory_exchange();
+      __node_apex_factory_exchange();
 
       estatus = __compose_new(m_pdatetime);
 
@@ -428,20 +420,22 @@ namespace apex
 
       }
 
-      ::draw2d::static_initialize();
+      // __thread(todo("graphics"));
+      //::draw2d::static_initialize();
 
-      estatus = __compose_new(m_pwindowmap);
+      // acme commented
+      //estatus = __compose_new(m_pwindowmap);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      //g_pszCooperativeLevel = "axis";
+      ////g_pszCooperativeLevel = "axis";
 
-      m_pDraw2dFactoryExchange = nullptr;
+      //m_pDraw2dFactoryExchange = nullptr;
 
       //m_puserstr = nullptr;
 
@@ -463,7 +457,7 @@ namespace apex
      //m_strBaseSupportId = "base_system";
      //m_strInstallToken = "base_system";
 
-      create_factory < ::draw2d::icon >();
+      //create_factory < ::draw2d::icon >();
 
       //#if defined(_UWP) || defined(APPLE_IOS) || defined(ANDROID)
       //
@@ -566,19 +560,19 @@ namespace apex
    }
 
 
-   ::apex::audio * system::defer_get_audio()
-   {
+   //::apex::audio * system::defer_get_audio()
+   //{
 
-      if (!m_paudio)
-      {
+   //   if (!m_paudio)
+   //   {
 
-         defer_audio();
+   //      defer_audio();
 
-      }
+   //   }
 
-      return m_paudio;
+   //   return m_paudio;
 
-   }
+   //}
 
 
    ::estatus system::do_factory_exchange(const char* pszComponent, const char* pszImplementation)
@@ -745,97 +739,100 @@ namespace apex
    }
 
 
-   void system::defer_audio()
-   {
-
-      auto plibrary = get_library("audio");
-
-      bool bOk = true;
-
-      bOk = !!plibrary;
-
-      if (bOk)
-      {
-
-         auto pgetnewaudio = plibrary->get<PFUNCTION_GET_NEW_AUDIO>("get_new_audio");
-
-         bOk = !!pgetnewaudio;
-
-         if (bOk)
-         {
-
-            auto estatus = __compose(m_paudio, ::move_transfer(pgetnewaudio()));
-
-            bOk = !!estatus;
-
-            if (bOk)
-            {
-
-               bOk = !!m_paudio->init3();
-
-            }
-
-         }
-
-      }
-
-//      if (!bOk)
-  //    {
-
-         //message_box("Could not open platform audio library.");
-
-    //  }
-
-   }
-
-
-   ::apex::multimedia * system::defer_get_multimedia()
-   {
-
-      if (!m_pmultimedia)
-      {
-
-         defer_multimedia();
-
-      }
-
-      return m_pmultimedia;
-
-   }
+   // acme commented
+//   void system::defer_audio()
+//   {
+//
+//      auto plibrary = get_library("audio");
+//
+//      bool bOk = true;
+//
+//      bOk = !!plibrary;
+//
+//      if (bOk)
+//      {
+//
+//         auto pgetnewaudio = plibrary->get<PFUNCTION_GET_NEW_AUDIO>("get_new_audio");
+//
+//         bOk = !!pgetnewaudio;
+//
+//         if (bOk)
+//         {
+//
+//            auto estatus = __compose(m_paudio, ::move_transfer(pgetnewaudio()));
+//
+//            bOk = !!estatus;
+//
+//            if (bOk)
+//            {
+//
+//               bOk = !!m_paudio->init3();
+//
+//            }
+//
+//         }
+//
+//      }
+//
+////      if (!bOk)
+//  //    {
+//
+//         //message_box("Could not open platform audio library.");
+//
+//    //  }
+//
+//   }
 
 
-   void system::defer_multimedia()
-   {
+   // acme commented
+   //::apex::multimedia * system::defer_get_multimedia()
+   //{
 
-      string strName;
+   //   if (!m_pmultimedia)
+   //   {
 
-      if (::is_set(g_pszMultimediaLibraryName) && !strcmp(g_pszMultimediaLibraryName, "veriwell_multimedia"))
-      {
+   //      defer_multimedia();
 
-         strName = "veriwell_multimedia";
+   //   }
 
-      }
-      else
-      {
+   //   return m_pmultimedia;
 
-         strName = "multimedia";
+   //}
 
-      }
 
-      auto plibrary = get_library(strName);
+   // acme commented
+   //void system::defer_multimedia()
+   //{
 
-      if (plibrary)
-      {
+   //   string strName;
 
-         auto pgetnewmultimedia = plibrary->get<PFUNCTION_GET_NEW_MULTIMEDIA>("get_new_multimedia");
+   //   if (::is_set(g_pszMultimediaLibraryName) && !strcmp(g_pszMultimediaLibraryName, "veriwell_multimedia"))
+   //   {
 
-         __compose(m_pmultimedia, ::move_transfer(pgetnewmultimedia()));
+   //      strName = "veriwell_multimedia";
 
-         m_pmultimedia->initialize_multimedia(this);
+   //   }
+   //   else
+   //   {
 
-      }
+   //      strName = "multimedia";
 
-   }
+   //   }
+
+   //   auto plibrary = get_library(strName);
+
+   //   if (plibrary)
+   //   {
+
+   //      auto pgetnewmultimedia = plibrary->get<PFUNCTION_GET_NEW_MULTIMEDIA>("get_new_multimedia");
+
+   //      __compose(m_pmultimedia, ::move_transfer(pgetnewmultimedia()));
+
+   //      m_pmultimedia->initialize_multimedia(this);
+
+   //   }
+
+   //}
 
 
    void system::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema)
@@ -1055,25 +1052,25 @@ namespace apex
    {
 
 
-      //::apex::del(m_ppatch);
+      //::acme::del(m_ppatch);
 
-      if (g_paurasystem == this)
+      if (g_papexsystem == this)
       {
 
-         g_paurasystem = nullptr;
+         g_papexsystem = nullptr;
 
       }
 
-      //::apex::del(m_purldepartment);
+      //::acme::del(m_purldepartment);
 
-      //::apex::del(m_pcompress);
+      //::acme::del(m_pcompress);
 
-      ::apex::del(g_pmutexImage);
+      ::acme::del(g_pmutexImage);
 
       //try
       //{
 
-      //   ::apex::del(m_pmachineeventcentral);
+      //   ::acme::del(m_pmachineeventcentral);
 
       //}
       //catch (...)
@@ -1128,12 +1125,12 @@ namespace apex
 
 
 
-   class ::user::window_map & system::window_map()
-   {
+   //class ::user::window_map & system::window_map()
+   //{
 
-      return *m_pwindowmap;
+   //   return *m_pwindowmap;
 
-   }
+   //}
 
 
    //void system::defer_check_exit()
@@ -1628,19 +1625,26 @@ namespace apex
 
       }
 
-      if(m_bDraw2d)
+      if (m_bGdiplus)
       {
 
-         if (!init_draw2d())
-         {
-
-            return false;
-
-         }
+         init_gdi_plus();
 
       }
 
-      enum_display_monitors();
+      //if(m_bDraw2d)
+      //{
+
+      //   if (!init_draw2d())
+      //   {
+
+      //      return false;
+
+      //   }
+
+      //}
+
+      //enum_display_monitors();
 
       on_update_matter_locator();
 
@@ -1702,7 +1706,7 @@ namespace apex
 
 #endif
 
-      ::apex::profiler::initialize();
+      //::apex::profiler::initialize();
 
 #ifdef LINUX
 
@@ -1733,527 +1737,527 @@ namespace apex
    }
 
 
-   ::estatus system::init_draw2d()
-   {
-
-      ::estatus estatus = ::success;
-
-      try
-      {
-
-         if (!draw2d_factory_exchange())
-         {
-
-            message_box("Failed to initialize draw2d library.");
-
-            estatus = error_failed;
-
-         }
-
-      }
-      catch (...)
-      {
-
-         estatus = error_exception;
-
-      }
-
-      if (!estatus)
-      {
-
-         TRACE("draw2d_factory_exchange has failed.\n\nSome reasons:\n   - No draw2d library present;\n   - Failure to open any suitable draw2d library.", MB_OK);
-
-         return estatus;
-
-      }
-
-      try
-      {
-
-         if (!imaging_factory_exchange())
-         {
-
-            WARN("Failed to initialize imaging library.");
-
-#if !defined(MOBILE_PLATFORM)
-
-            message_box("Failed to initialize imaging library.");
-
-#endif
-// Non fatal? Missing images (if using images)?
-            //bOk = false;
-
-         }
-
-      }
-      catch (...)
-      {
-
-      }
-
-      sync_lock sl(&::get_context_system()->m_mutexLibrary);
-
-      estatus = __construct_new(m_pdraw2d);
-
-      if (!estatus)
-      {
-
-         TRACE("Couldn't construct new draw2d.");
-
-         return false;
-
-      }
-
-      estatus = m_pdraw2d->init1();
-
-      if(!estatus)
-      {
-
-         TRACE("Couldn't initialize draw2d (init1).");
-
-         return estatus;
-
-      }
-
-      if (::succeeded(estatus))
-      {
-
-         create_factory < ::draw2d::thread_tool_item >(::e_thread_tool_draw2d);
-
-      }
-
-      return estatus;
-
-   }
-
-
-   string system::draw2d_get_default_library_name()
-   {
-
-      string str;
-
-      if (file_exists(::dir::system() / "config\\system\\draw2d.txt"))
-      {
-
-         str = file_as_string(::dir::system() / "config\\system\\draw2d.txt");
-
-   }
-      else
-      {
-
-         ::file::path strPath;
-
-         strPath = ::dir::appdata() / "draw2d.txt";
-
-         str = file_as_string(strPath);
-
-      }
-
-      if (str.has_char())
-         return "draw2d_" + str;
-      else
-      #ifdef WINDOWS_DESKTOP
-         return "draw2d_gdiplus";
-#elif __APPLE__
-      return "draw2d_quartz2d";
-#elif defined(_UWP)
-         return "draw2d_direct2d";
-#else
-         return "draw2d_cairo";
-      #endif
-   }
-
-
-   ::estatus system::draw2d_factory_exchange()
-   {
-
-//#ifdef CUBE
+//   ::estatus system::init_draw2d()
+//   {
 //
-//      if (g_pfnfactoryexchangeDraw2d)
+//      ::estatus estatus = ::success;
+//
+//      try
 //      {
 //
-//         g_pfnfactoryexchangeDraw2d();
+//         if (!draw2d_factory_exchange())
+//         {
+//
+//            message_box("Failed to initialize draw2d library.");
+//
+//            estatus = error_failed;
+//
+//         }
+//
+//      }
+//      catch (...)
+//      {
+//
+//         estatus = error_exception;
 //
 //      }
 //
-//      return true;
+//      if (!estatus)
+//      {
 //
-//#else
-
-
-      //__pointer(::apex::library) plibrary;
-
-      //bool bLibraryOk = false;
-
-      //auto plibraryfactory = ::static_setup::get_first(::static_setup::flag_library, pszLibrary);
-
-      //if (!plibraryfactory)
-      //{
-
-      //   return nullptr;
-
-      //}
-
-      //plibrary = plibraryfactory->new_library();
-
-      //if (!plibrary)
-      //{
-
-      //   return nullptr;
-
-      //}
-
-      //auto estatus = plibrary->initialize(this);
-
-      //if (estatus)
-      //{
-
-      //   bLibraryOk = true;
-
-      //}
-
-      //if (plibrary && bLibraryOk)
-      //{
-
-      //   return plibrary;
-
-      //}
-
-
-
-
-      //sync_lock sl(&::get_context_system()->m_mutexLibrary);
-
-      //__pointer(::apex::library) & plibrary = ::get_context_system()->m_mapLibrary["draw2d"];
-
-      //if (plibrary->is_opened())
-      //{
-
-      //   return true;
-
-      //}
-
-      string strLibrary;
-
-      if (has_property("draw2d"))
-      {
-
-         strLibrary = value("draw2d");
-
-         //strDraw2d.trim();
-
-         //if (strDraw2d.has_char())
-         //{
-
-         //   ::str::begins_eat_ci(strDraw2d, "draw2d_");
-
-         //   ::str::begins_eat_ci(strDraw2d, "draw2d");
-
-         //   strLibrary = "draw2d_" + strDraw2d;
-
-         //}
-
-      }
-
-      ::estatus estatus;
-
-      if (strLibrary.has_char())
-      {
-
-         estatus = do_factory_exchange("draw2d", strLibrary);
-
-         if (estatus)
-         {
-
-            return ::success;
-
-         }
-
-      }
-
-      strLibrary = draw2d_get_default_library_name();
-
-      if (strLibrary.is_empty())
-      {
-
-#ifdef WINDOWS
-
-         strLibrary = "draw2d_gdiplus";
-
-#else
-
-         strLibrary = "draw2d_cairo";
-
-#endif
-
-      }
-
-      estatus = do_factory_exchange("draw2d", strLibrary);
-
-      if (estatus)
-      {
-
-         return ::success;
-
-      }
-
-      //if (plibrary->is_opened())
-      //   goto finalize;
-
-#ifdef WINDOWS_DESKTOP
-
-
-      if (strLibrary != "draw2d_gdiplus")
-      {
-
-         estatus = do_factory_exchange("draw2d", "gdiplus");
-
-         if (estatus)
-         {
-
-            return ::success;
-
-         }
-
-      }
-
-
-      if (strLibrary != "draw2d_direct2d")
-      {
-
-         estatus = do_factory_exchange("draw2d", "direct2d");
-
-         if (estatus)
-         {
-
-            return ::success;
-
-         }
-
-      }
-
-
-#endif
-
-      if (strLibrary != "draw2d_cairo")
-      {
-
-
-         estatus = do_factory_exchange("draw2d", "cairo");
-
-         if (estatus)
-         {
-
-            return ::success;
-
-         }
-
-      }
-
-      //output_debug_string("No draw2d pluging available!!.");
-      return error_failed;
-
-   //finalize:
-
-   //   PFN_factory_exchange pfn_factory_exchange = plibrary->get < PFN_factory_exchange >("draw2d_factory_exchange");
-
-   //   if (pfn_factory_exchange == nullptr)
-   //   {
-
-   //      return false;
-
-   //   }
-
-   //   pfn_factory_exchange();
-
-   //   return true;
-
+//         TRACE("draw2d_factory_exchange has failed.\n\nSome reasons:\n   - No draw2d library present;\n   - Failure to open any suitable draw2d library.", MB_OK);
+//
+//         return estatus;
+//
+//      }
+//
+//      try
+//      {
+//
+//         if (!imaging_factory_exchange())
+//         {
+//
+//            WARN("Failed to initialize imaging library.");
+//
+//#if !defined(MOBILE_PLATFORM)
+//
+//            message_box("Failed to initialize imaging library.");
+//
 //#endif
-
-   }
-
-
-   bool system::imaging_factory_exchange()
-   {
-
-//#ifdef CUBE
+//// Non fatal? Missing images (if using images)?
+//            //bOk = false;
 //
-//      if (g_pfnfactoryexchangeImaging)
+//         }
+//
+//      }
+//      catch (...)
 //      {
-//
-//         g_pfnfactoryexchangeImaging();
 //
 //      }
 //
-//      return true;
+//      sync_lock sl(&::get_context_system()->m_mutexLibrary);
+//
+//      //estatus = __construct_new(m_pdraw2d);
+//
+//      //if (!estatus)
+//      //{
+//
+//      //   TRACE("Couldn't construct new draw2d.");
+//
+//      //   return false;
+//
+//      //}
+//
+//      //estatus = m_pdraw2d->init1();
+//
+//      //if(!estatus)
+//      //{
+//
+//      //   TRACE("Couldn't initialize draw2d (init1).");
+//
+//      //   return estatus;
+//
+//      //}
+//
+//      //if (::succeeded(estatus))
+//      //{
+//
+//      //   create_factory < ::draw2d::thread_tool_item >(::e_thread_tool_draw2d);
+//
+//      //}
+//
+//      return estatus;
+//
+//   }
+
+
+//   string system::draw2d_get_default_library_name()
+//   {
+//
+//      string str;
+//
+//      if (file_exists(::dir::system() / "config\\system\\draw2d.txt"))
+//      {
+//
+//         str = file_as_string(::dir::system() / "config\\system\\draw2d.txt");
+//
+//   }
+//      else
+//      {
+//
+//         ::file::path strPath;
+//
+//         strPath = ::dir::appdata() / "draw2d.txt";
+//
+//         str = file_as_string(strPath);
+//
+//      }
+//
+//      if (str.has_char())
+//         return "draw2d_" + str;
+//      else
+//      #ifdef WINDOWS_DESKTOP
+//         return "draw2d_gdiplus";
+//#elif __APPLE__
+//      return "draw2d_quartz2d";
+//#elif defined(_UWP)
+//         return "draw2d_direct2d";
+//#else
+//         return "draw2d_cairo";
+//      #endif
+//   }
+
+
+//   ::estatus system::draw2d_factory_exchange()
+//   {
+//
+////#ifdef CUBE
+////
+////      if (g_pfnfactoryexchangeDraw2d)
+////      {
+////
+////         g_pfnfactoryexchangeDraw2d();
+////
+////      }
+////
+////      return true;
+////
+////#else
+//
+//
+//      //__pointer(::apex::library) plibrary;
+//
+//      //bool bLibraryOk = false;
+//
+//      //auto plibraryfactory = ::static_setup::get_first(::static_setup::flag_library, pszLibrary);
+//
+//      //if (!plibraryfactory)
+//      //{
+//
+//      //   return nullptr;
+//
+//      //}
+//
+//      //plibrary = plibraryfactory->new_library();
+//
+//      //if (!plibrary)
+//      //{
+//
+//      //   return nullptr;
+//
+//      //}
+//
+//      //auto estatus = plibrary->initialize(this);
+//
+//      //if (estatus)
+//      //{
+//
+//      //   bLibraryOk = true;
+//
+//      //}
+//
+//      //if (plibrary && bLibraryOk)
+//      //{
+//
+//      //   return plibrary;
+//
+//      //}
+//
+//
+//
+//
+//      //sync_lock sl(&::get_context_system()->m_mutexLibrary);
+//
+//      //__pointer(::apex::library) & plibrary = ::get_context_system()->m_mapLibrary["draw2d"];
+//
+//      //if (plibrary->is_opened())
+//      //{
+//
+//      //   return true;
+//
+//      //}
+//
+//      string strLibrary;
+//
+//      if (has_property("draw2d"))
+//      {
+//
+//         strLibrary = value("draw2d");
+//
+//         //strDraw2d.trim();
+//
+//         //if (strDraw2d.has_char())
+//         //{
+//
+//         //   ::str::begins_eat_ci(strDraw2d, "draw2d_");
+//
+//         //   ::str::begins_eat_ci(strDraw2d, "draw2d");
+//
+//         //   strLibrary = "draw2d_" + strDraw2d;
+//
+//         //}
+//
+//      }
+//
+//      ::estatus estatus;
+//
+//      if (strLibrary.has_char())
+//      {
+//
+//         estatus = do_factory_exchange("draw2d", strLibrary);
+//
+//         if (estatus)
+//         {
+//
+//            return ::success;
+//
+//         }
+//
+//      }
+//
+//      strLibrary = draw2d_get_default_library_name();
+//
+//      if (strLibrary.is_empty())
+//      {
+//
+//#ifdef WINDOWS
+//
+//         strLibrary = "draw2d_gdiplus";
 //
 //#else
-
-      //sync_lock sl(&::get_context_system()->m_mutexLibrary);
-
-      //__pointer(::apex::library)& plibrary = ::get_context_system()->m_mapLibrary["imaging"];
-
-      //auto estatus = __defer_construct_new(plibrary);
-
-      //if (!estatus)
-      //{
-
-      //   return false;
-
-      //}
-
-      //if (plibrary->is_opened())
-      //{
-
-      //   return true;
-
-      //}
-
-      string strLibrary;
-
-      if (has_property("imaging"))
-      {
-
-         string strImaging = value("imaging");
-
-         strImaging.trim();
-
-         if (strImaging.has_char())
-         {
-
-            ::str::ends_eat_ci(strImaging, "_imaging");
-
-            ::str::ends_eat_ci(strImaging, "imaging");
-
-            ::str::begins_eat_ci(strImaging, "imaging_");
-
-            ::str::begins_eat_ci(strImaging, "imaging");
-
-         }
-
-      }
-
-      ::estatus estatus = ::error_failed;
-
-      if (strLibrary.has_char())
-      {
-
-         estatus = do_factory_exchange("imaging", strLibrary);
-         
-         if (estatus)
-         {
-
-            return true;
-
-         }
-
-      }
-
-      strLibrary = imaging_get_default_library_name();
-
-      if (strLibrary.is_empty())
-      {
-
-#ifdef WINDOWS
-
-         strLibrary = "imaging_wic";
-
-#elif defined(__APPLE__)
-
-         strLibrary = "imaging_coreimage";
-
-#else
-
-         strLibrary = "imaging_freeimage";
-
-#endif
-
-      }
-
-      estatus = do_factory_exchange("imaging", strLibrary);
-
-      if (estatus)
-      {
-
-         return true;
-
-      }
-
-#ifdef WINDOWS_DESKTOP
-
-      if (strLibrary != "imaging_wic")
-      {
-
-         estatus = do_factory_exchange("imaging", "wic");
-
-         if (estatus)
-         {
-
-            return true;
-
-         }
-
-      }
-
-#endif
-
-      if (strLibrary != "imaging_freeimage")
-      {
-
-         estatus = do_factory_exchange("imaging", "freeimage");
-
-         if (estatus)
-         {
-
-            return true;
-
-         }
-
-      }
-
-      output_debug_string("No imaging pluging available!!.");
-
-      return false;
-
-//   finalize:
 //
-//      PFN_factory_exchange pfn_factory_exchange = plibrary->get < PFN_factory_exchange >("imaging_factory_exchange");
+//         strLibrary = "draw2d_cairo";
 //
-//      if (pfn_factory_exchange == nullptr)
-//      {
-//
-//         return false;
+//#endif
 //
 //      }
 //
-//      pfn_factory_exchange();
+//      estatus = do_factory_exchange("draw2d", strLibrary);
 //
-//      return true;
+//      if (estatus)
+//      {
 //
-//#endif // CUBE
+//         return ::success;
+//
+//      }
+//
+//      //if (plibrary->is_opened())
+//      //   goto finalize;
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//
+//      if (strLibrary != "draw2d_gdiplus")
+//      {
+//
+//         estatus = do_factory_exchange("draw2d", "gdiplus");
+//
+//         if (estatus)
+//         {
+//
+//            return ::success;
+//
+//         }
+//
+//      }
+//
+//
+//      if (strLibrary != "draw2d_direct2d")
+//      {
+//
+//         estatus = do_factory_exchange("draw2d", "direct2d");
+//
+//         if (estatus)
+//         {
+//
+//            return ::success;
+//
+//         }
+//
+//      }
+//
+//
+//#endif
+//
+//      if (strLibrary != "draw2d_cairo")
+//      {
+//
+//
+//         estatus = do_factory_exchange("draw2d", "cairo");
+//
+//         if (estatus)
+//         {
+//
+//            return ::success;
+//
+//         }
+//
+//      }
+//
+//      //output_debug_string("No draw2d pluging available!!.");
+//      return error_failed;
+//
+//   //finalize:
+//
+//   //   PFN_factory_exchange pfn_factory_exchange = plibrary->get < PFN_factory_exchange >("draw2d_factory_exchange");
+//
+//   //   if (pfn_factory_exchange == nullptr)
+//   //   {
+//
+//   //      return false;
+//
+//   //   }
+//
+//   //   pfn_factory_exchange();
+//
+//   //   return true;
+//
+////#endif
+//
+//   }
 
-   }
+
+//   bool system::imaging_factory_exchange()
+//   {
+//
+////#ifdef CUBE
+////
+////      if (g_pfnfactoryexchangeImaging)
+////      {
+////
+////         g_pfnfactoryexchangeImaging();
+////
+////      }
+////
+////      return true;
+////
+////#else
+//
+//      //sync_lock sl(&::get_context_system()->m_mutexLibrary);
+//
+//      //__pointer(::apex::library)& plibrary = ::get_context_system()->m_mapLibrary["imaging"];
+//
+//      //auto estatus = __defer_construct_new(plibrary);
+//
+//      //if (!estatus)
+//      //{
+//
+//      //   return false;
+//
+//      //}
+//
+//      //if (plibrary->is_opened())
+//      //{
+//
+//      //   return true;
+//
+//      //}
+//
+//      string strLibrary;
+//
+//      if (has_property("imaging"))
+//      {
+//
+//         string strImaging = value("imaging");
+//
+//         strImaging.trim();
+//
+//         if (strImaging.has_char())
+//         {
+//
+//            ::str::ends_eat_ci(strImaging, "_imaging");
+//
+//            ::str::ends_eat_ci(strImaging, "imaging");
+//
+//            ::str::begins_eat_ci(strImaging, "imaging_");
+//
+//            ::str::begins_eat_ci(strImaging, "imaging");
+//
+//         }
+//
+//      }
+//
+//      ::estatus estatus = ::error_failed;
+//
+//      if (strLibrary.has_char())
+//      {
+//
+//         estatus = do_factory_exchange("imaging", strLibrary);
+//         
+//         if (estatus)
+//         {
+//
+//            return true;
+//
+//         }
+//
+//      }
+//
+//      strLibrary = imaging_get_default_library_name();
+//
+//      if (strLibrary.is_empty())
+//      {
+//
+//#ifdef WINDOWS
+//
+//         strLibrary = "imaging_wic";
+//
+//#elif defined(__APPLE__)
+//
+//         strLibrary = "imaging_coreimage";
+//
+//#else
+//
+//         strLibrary = "imaging_freeimage";
+//
+//#endif
+//
+//      }
+//
+//      estatus = do_factory_exchange("imaging", strLibrary);
+//
+//      if (estatus)
+//      {
+//
+//         return true;
+//
+//      }
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//      if (strLibrary != "imaging_wic")
+//      {
+//
+//         estatus = do_factory_exchange("imaging", "wic");
+//
+//         if (estatus)
+//         {
+//
+//            return true;
+//
+//         }
+//
+//      }
+//
+//#endif
+//
+//      if (strLibrary != "imaging_freeimage")
+//      {
+//
+//         estatus = do_factory_exchange("imaging", "freeimage");
+//
+//         if (estatus)
+//         {
+//
+//            return true;
+//
+//         }
+//
+//      }
+//
+//      output_debug_string("No imaging pluging available!!.");
+//
+//      return false;
+//
+////   finalize:
+////
+////      PFN_factory_exchange pfn_factory_exchange = plibrary->get < PFN_factory_exchange >("imaging_factory_exchange");
+////
+////      if (pfn_factory_exchange == nullptr)
+////      {
+////
+////         return false;
+////
+////      }
+////
+////      pfn_factory_exchange();
+////
+////      return true;
+////
+////#endif // CUBE
+//
+//   }
 
 
-   string system::imaging_get_default_library_name()
-   {
-
-#ifdef WINDOWS
-
-      return "imaging_wic";
-
-#elif defined(__APPLE__)
-
-      return "imaging_coreimage";
-
-#else
-
-      return "imaging_freeimage";
-
-#endif
-
-   }
-
+//   string system::imaging_get_default_library_name()
+//   {
+//
+//#ifdef WINDOWS
+//
+//      return "imaging_wic";
+//
+//#elif defined(__APPLE__)
+//
+//      return "imaging_coreimage";
+//
+//#else
+//
+//      return "imaging_freeimage";
+//
+//#endif
+//
+//   }
+//
 
    ::estatus system::init_thread()
    {
@@ -2300,17 +2304,17 @@ namespace apex
    ::estatus system::init()
    {
 
-      if (::is_set(m_pdraw2d))
-      {
+      //if (::is_set(m_pdraw2d))
+      //{
 
-         if (!m_pdraw2d->init())
-         {
+      //   if (!m_pdraw2d->init())
+      //   {
 
-            return false;
+      //      return false;
 
-         }
+      //   }
 
-      }
+      //}
 
       return true;
 
@@ -2320,11 +2324,11 @@ namespace apex
    ::estatus system::init1()
    {
 
-#ifdef DEBUG
-
-      ___compile_test_sort_array_21304528734();
-
-#endif
+//#ifdef DEBUG
+//
+//      ___compile_test_sort_array_21304528734();
+//
+//#endif
 
       auto estatus = __compose_new(m_puserstr);
 
@@ -2335,19 +2339,20 @@ namespace apex
 
       }
 
-      estatus = __compose(m_pimaging);
+      //// apex commented
+      //estatus = __compose(m_pimaging);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         if (m_bUser && m_bDraw2d)
-         {
+      //   if (m_bUser && m_bDraw2d)
+      //   {
 
-            return estatus;
+      //      return estatus;
 
-         }
+      //   }
 
-      }
+      //}
 
       get_context_session()->m_puserstrcontext->defer_ok(m_puserstr);
 
@@ -2419,6 +2424,8 @@ namespace apex
       }
 
       set_context_app(m_papplicationStartup);
+
+      get_context_application()->get_property_set().merge(get_property_set());
 
       m_papplicationStartup.release();
 
@@ -2571,34 +2578,34 @@ namespace apex
 
       m_serviceptra.remove_all();
 
-      try
-      {
+      //try
+      //{
 
-         if (m_pdraw2d.is_set())
-         {
+      //   if (m_pdraw2d.is_set())
+      //   {
 
-            m_pdraw2d->term();
+      //      m_pdraw2d->term();
 
-         }
+      //   }
 
-      }
-      catch (...)
-      {
+      //}
+      //catch (...)
+      //{
 
-      }
+      //}
 
-      try
-      {
+      //try
+      //{
 
-         m_mapImage.remove_all();
+      //   m_mapImage.remove_all();
 
-      }
-      catch (...)
-      {
+      //}
+      //catch (...)
+      //{
 
-      }
+      //}
 
-      m_pdraw2d.release();
+      //m_pdraw2d.release();
 
 //      try
 //      {
@@ -2625,30 +2632,30 @@ namespace apex
       //m_pmath.release();
 
 
-      try
-      {
+      //try
+      //{
 
-         sync_lock sl(&::get_context_system()->m_mutexLibrary);
+      //   sync_lock sl(&::get_context_system()->m_mutexLibrary);
 
-         if (::get_context_system()->m_mapLibrary["draw2d"].is_set() && ::get_context_system()->m_mapLibrary["draw2d"]->is_opened())
-         {
+      //   if (::get_context_system()->m_mapLibrary["draw2d"].is_set() && ::get_context_system()->m_mapLibrary["draw2d"]->is_opened())
+      //   {
 
-            if (m_pDraw2dFactoryExchange != nullptr)
-            {
+      //      if (m_pDraw2dFactoryExchange != nullptr)
+      //      {
 
-               delete m_pDraw2dFactoryExchange;
+      //         delete m_pDraw2dFactoryExchange;
 
-               m_pDraw2dFactoryExchange = nullptr;
+      //         m_pDraw2dFactoryExchange = nullptr;
 
-            }
+      //      }
 
-         }
+      //   }
 
-      }
-      catch (...)
-      {
+      //}
+      //catch (...)
+      //{
 
-      }
+      //}
 
  /*     try
       {
@@ -3184,7 +3191,7 @@ namespace apex
 
       m_ptrace->set_extended_log();
 
-      estatus = m_ptrace->initialize_aura_log(trace_level_warning, pszId);
+      estatus = m_ptrace->initialize_apex_log(trace_level_warning, pszId);
 
       if(!estatus)
       {
@@ -3727,7 +3734,7 @@ namespace apex
 
       ::apex::library library;
 
-      library.initialize_aura_library(this, 0);
+      library.initialize_apex_library(this, 0);
 
       if(!strcmp(pszLibrary,"app_core_rdpclient"))
       {
@@ -3849,7 +3856,7 @@ namespace apex
 
    //   //__throw(interface_only_exception());
 
-   //   return url_encode_dup(str);
+   //   return url_encode(str);
 
    //}
 
@@ -4128,19 +4135,19 @@ namespace apex
    }
 
 
-   LPWAVEOUT system::waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback)
-   {
+   //LPWAVEOUT system::waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback)
+   //{
 
-      for (auto & papp : Session.m_applicationa)
-      {
+   //   for (auto & papp : Session.m_applicationa)
+   //   {
 
-         papp->waveout_open(iChannel, pformat, pcallback);
+   //      papp->waveout_open(iChannel, pformat, pcallback);
 
-      }
+   //   }
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
 
    // bool system::initialize_native_window1()
@@ -4216,45 +4223,6 @@ namespace apex
 
 
 
-   ::user::interaction_impl * system::impl_from_handle(void * pdata)
-   {
-
-      return oswindow_interaction_impl((oswindow)pdata);
-
-   }
-
-   ::user::interaction * system::ui_from_handle(void * pdata)
-   {
-
-      ::user::interaction_impl * pimpl = impl_from_handle(pdata);
-
-      if (pimpl == nullptr)
-      {
-
-         return nullptr;
-
-      }
-
-      try
-      {
-
-         return pimpl->m_puserinteraction;
-
-      }
-      catch (...)
-      {
-
-         __throw(resource_exception("not good window anymore"));
-
-      }
-
-      return nullptr;
-
-   }
-
-
-
-
    void system::enum_display_monitors()
    {
 
@@ -4320,7 +4288,6 @@ namespace apex
 
 
    index system::get_main_monitor(RECT * prect)
-
    {
 
       index iMainMonitor = 0;
@@ -4620,115 +4587,115 @@ namespace apex
 
    }
 
-   index system::get_ui_wkspace(::user::interaction * pinteraction)
-   {
+//   index system::get_ui_wkspace(::user::interaction * pinteraction)
+//   {
+//
+//      index iMainWkspace = 0;
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//      HMONITOR hwkspacePrimary = GetUiMonitorHandle(pinteraction->get_handle());
+//
+//      for (index iWkspace = 0; iWkspace < get_wkspace_count(); iWkspace++)
+//      {
+//
+//         if (m_hmonitora[iWkspace] == hwkspacePrimary)
+//         {
+//
+//            iMainWkspace = iWkspace;
+//
+//            break;
+//
+//         }
+//
+//      }
+//
+//#endif
+//
+//      return iMainWkspace;
+//
+//   }
 
-      index iMainWkspace = 0;
+   //::image_pointer system::matter_cache_image(::layered * pobjectContext, const string & strMatter)
+   //{
 
-#ifdef WINDOWS_DESKTOP
+   //   string str(strMatter);
 
-      HMONITOR hwkspacePrimary = GetUiMonitorHandle(pinteraction->get_handle());
+   //   if (!str.begins_ci("matter://"))
+   //   {
 
-      for (index iWkspace = 0; iWkspace < get_wkspace_count(); iWkspace++)
-      {
+   //      str = "matter://" + str;
 
-         if (m_hmonitora[iWkspace] == hwkspacePrimary)
-         {
+   //   }
 
-            iMainWkspace = iWkspace;
+   //   return get_cache_image(pobjectContext, str);
 
-            break;
-
-         }
-
-      }
-
-#endif
-
-      return iMainWkspace;
-
-   }
-
-   ::image_pointer system::matter_cache_image(::object * pobjectContext, const string & strMatter)
-   {
-
-      string str(strMatter);
-
-      if (!str.begins_ci("matter://"))
-      {
-
-         str = "matter://" + str;
-
-      }
-
-      return get_cache_image(pobjectContext, str);
-
-   }
-
-
-
-   ::image_pointer system::get_cache_image(::object * pobjectContext, const ::var & varFile)
-   {
-
-      ::file::path path = varFile.get_file_path();
-
-      if (path.is_empty())
-      {
-
-         return nullptr;
-
-      }
-
-      sync_lock sl(get_image_mutex());
-
-      auto & pimage = m_mapImage[path];
-
-      if (!pimage)
-      {
-
-         pobjectContext->__construct(pimage);
-
-         pimage->set_nok();
-
-      }
-
-      return pimage;
-
-   }
+   //}
 
 
-   ::image_pointer system::get_image(::object * pobjectContext, const ::var & varFile, bool bCache, bool bSync)
-   {
 
-      auto pimage = get_cache_image(pobjectContext, varFile);
+   //::image_pointer system::get_cache_image(::layered * pobjectContext, const ::var & varFile)
+   //{
 
-      if (!::is_ok(pimage))
-      {
+   //   ::file::path path = varFile.get_file_path();
 
-         Ctx(pobjectContext)._load_image(pimage, varFile, bSync);
+   //   if (path.is_empty())
+   //   {
 
-      }
+   //      return nullptr;
 
-      return pimage;
+   //   }
 
-   }
+   //   sync_lock sl(get_image_mutex());
+
+   //   auto & pimage = m_mapImage[path];
+
+   //   if (!pimage)
+   //   {
+
+   //      pobjectContext->__construct(pimage);
+
+   //      pimage->set_nok();
+
+   //   }
+
+   //   return pimage;
+
+   //}
 
 
-   ::image_pointer system::matter_image(::object * pobjectContext, const string & strMatter, bool bCache, bool bSync)
-   {
+   //::image_pointer system::get_image(::layered * pobjectContext, const ::var & varFile, bool bCache, bool bSync)
+   //{
 
-      string str(strMatter);
+   //   auto pimage = get_cache_image(pobjectContext, varFile);
 
-      if (!str.begins_ci("matter://"))
-      {
+   //   if (!::is_ok(pimage))
+   //   {
 
-         str = "matter://" + str;
+   //      Ctx(pobjectContext)._load_image(pimage, varFile, bSync);
 
-      }
+   //   }
 
-      return get_image(pobjectContext, str, bSync);
+   //   return pimage;
 
-   }
+   //}
+
+
+   //::image_pointer system::matter_image(::layered * pobjectContext, const string & strMatter, bool bCache, bool bSync)
+   //{
+
+   //   string str(strMatter);
+
+   //   if (!str.begins_ci("matter://"))
+   //   {
+
+   //      str = "matter://" + str;
+
+   //   }
+
+   //   return get_image(pobjectContext, str, bSync);
+
+   //}
 
 
    string system::standalone_setting(string str)
@@ -4860,7 +4827,7 @@ namespace apex
    //}
 
 
-   void system::__tracea(::generic_object * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
+   void system::__tracea(::generic * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
    {
 
       if (m_ptrace.is_null())
@@ -5659,45 +5626,45 @@ namespace apex
    }
 
 
-//#ifdef _OPENGL
-   ::estatus system::create_gpu()
-   {
-
-      if (m_pgpu)
-      {
-
-         return ::success;
-
-      }
-
-      //System.load_library("gpu_opengl");
-
-      auto estatus = System.do_factory_exchange("gpu", "opengl");
-
-      //System.get_library("gpu_opengl");
-
-      
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      estatus = __compose(m_pgpu);
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      return ::success;
-
-   }
-//#endif
+////#ifdef _OPENGL
+//   ::estatus system::create_gpu()
+//   {
+//
+//      if (m_pgpu)
+//      {
+//
+//         return ::success;
+//
+//      }
+//
+//      //System.load_library("gpu_opengl");
+//
+//      auto estatus = System.do_factory_exchange("gpu", "opengl");
+//
+//      //System.get_library("gpu_opengl");
+//
+//      
+//
+//      if (!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//      estatus = __compose(m_pgpu);
+//
+//      if (!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//      return ::success;
+//
+//   }
+////#endif
 
 
 
@@ -5752,6 +5719,25 @@ namespace apex
       return threadtoola.last();
 
    }
+
+
+   ::update * system::new_update(const MESSAGE& message)
+   {
+
+      //auto pupdate = new_update();
+
+      //pupdate->m_id = (::iptr) msg.wParam;
+
+      //pupdate->m_pobjectTopic = (::object*) msg.lParam;
+
+      //return pupdate;
+
+      __throw(interface_only_exception);
+
+      return nullptr;
+
+   }
+
 
 
    //::thread_toolset * system::toolset(e_tool etool)
@@ -5934,7 +5920,7 @@ namespace apex
 
    //         //axis::application::term_application();
 
-   //         //::apex::del(m_phtml);
+   //         //::acme::del(m_phtml);
 
    //   try
    //   {
@@ -6251,7 +6237,7 @@ MC_COLOR_TEMPERATURE kelvin_mc_color(DWORD kelvin)
 
 //#ifdef CUBE
 //
-//extern "C" DECLARE_NEW_AURA_LIBRARY(experience);
+//extern "C" DECLARE_NEW_APEX_LIBRARY(experience);
 //
 //#endif
 
@@ -7160,25 +7146,25 @@ namespace apex
    }
 
 
-   ::estatus system::add_view_library(::apex::library* plibrary)
-   {
+   //::estatus system::add_view_library(::apex::library* plibrary)
+   //{
 
-      m_libraryspa.add(plibrary);
+   //   m_libraryspa.add(plibrary);
 
-      ::array < ::id > ida;
+   //   ::array < ::id > ida;
 
-      plibrary->get_create_view_id_list(ida);
+   //   plibrary->get_create_view_id_list(ida);
 
-      for (i32 i = 0; i < ida.get_count(); i++)
-      {
+   //   for (i32 i = 0; i < ida.get_count(); i++)
+   //   {
 
-         m_idmapCreateViewLibrary.set_at(ida[i], plibrary);
+   //      m_idmapCreateViewLibrary.set_at(ida[i], plibrary);
 
-      }
+   //   }
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
    //   void system::post_fork_uri(const char * pszUri,application_bias * papplicationbias)
@@ -7360,54 +7346,54 @@ namespace apex
    //}
 
 
-   void system::set_active_guie(::user::interaction* pinteraction)
-   {
-
-#ifdef WINDOWS_DESKTOP
-
-      if (pinteraction == nullptr)
-      {
-
-         ::set_active_window(nullptr);
-
-      }
-      else
-      {
-
-         ::set_active_window(pinteraction->get_wnd()->get_safe_handle());
-
-      }
-
-#endif
-
-   }
-
-
-   void system::set_focus_guie(::user::interaction* pinteraction)
-   {
-
-      if (pinteraction == nullptr)
-      {
-
-         ::set_focus(nullptr);
-
-         return;
-
-      }
-
-
-      ::set_focus(pinteraction->get_safe_handle());
-
-      if (pinteraction->get_wnd() != nullptr)
-      {
-
-         pinteraction->SetFocus();
-
-      }
-
-      return;
-
-   }
+//   void system::set_active_guie(::user::interaction* pinteraction)
+//   {
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//      if (pinteraction == nullptr)
+//      {
+//
+//         ::set_active_window(nullptr);
+//
+//      }
+//      else
+//      {
+//
+//         ::set_active_window(pinteraction->get_wnd()->get_safe_handle());
+//
+//      }
+//
+//#endif
+//
+//   }
+//
+//
+//   void system::set_focus_guie(::user::interaction* pinteraction)
+//   {
+//
+//      if (pinteraction == nullptr)
+//      {
+//
+//         ::set_focus(nullptr);
+//
+//         return;
+//
+//      }
+//
+//
+//      ::set_focus(pinteraction->get_safe_handle());
+//
+//      if (pinteraction->get_wnd() != nullptr)
+//      {
+//
+//         pinteraction->SetFocus();
+//
+//      }
+//
+//      return;
+//
+//   }
 
 
    //::count system::get_monitor_count()
@@ -8326,12 +8312,12 @@ namespace apex
 
       //}
 
-   ::type system::get_pane_tab_view_type_info()
-   {
+   //::type system::get_pane_tab_view_type_info()
+   //{
 
-      return m_typePaneTabView;
+   //   return m_typePaneTabView;
 
-   }
+   //}
 
 
    void system::finalize()
@@ -8420,6 +8406,8 @@ string get_bundle_app_library_name();
       return nullptr;
 
    }
+
+   ::apex::idpool::init();
 
    return pobject.cast < ::apex::system >();
 

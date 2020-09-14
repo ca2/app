@@ -21,7 +21,7 @@ namespace process
 
    CLASS_DECL_ACME bool set_priority(::e_priority epriority);
 
-   CLASS_DECL_ACME string app_id_to_app_name(string strId);
+   //CLASS_DECL_ACME string app_id_to_app_name(string strId);
 
 
 } // namespace process

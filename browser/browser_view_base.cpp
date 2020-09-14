@@ -7,7 +7,7 @@ namespace browser
 {
 
 
-   impact_base::impact_base(::object * pobject):
+   impact_base::impact_base(::layered * pobjectContext):
       object(pobject),
 
       m_fontDrawStatus(e_create)

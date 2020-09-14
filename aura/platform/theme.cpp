@@ -20,7 +20,7 @@ namespace aura
    }
 
 
-   estatus theme::initialize(::object * pobjectContext)
+   estatus theme::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);
@@ -435,7 +435,7 @@ namespace aura
       //Sess(this).userex()->shell()->m_straThemeableIconName.add("Folders-OS-Windows-8-Metro.ico");
       //Sess(this).userex()->shell()->m_straThemeableIconName.add("firefox_weather.ico");
 
-      ::file::patha patha;
+      ::file::listing patha;
 
       Context.dir().matter_ls("sphere/theme", patha);
 

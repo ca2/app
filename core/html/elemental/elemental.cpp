@@ -538,7 +538,7 @@ namespace html
 
                x = pdata->m_pcoredata->m_layoutstate1.m_cxa.pop();
 
-               fLastX = MAX(xMax, x);
+               fLastX = max(xMax, x);
 
                pdata->m_pcoredata->m_layoutstate1.m_cxMax.last() = fLastX;
 
@@ -571,13 +571,13 @@ namespace html
          {
 
             //pdata->m_pcoredata->m_layoutstate1.m_cya.last() += m_pimpl->m_box.get_cy();
-            pdata->m_pcoredata->m_layoutstate1.m_cya.last() = MAX(pdata->m_pcoredata->m_layoutstate1.m_cya.last(), pdata->m_pcoredata->m_layoutstate1.m_cy);
+            pdata->m_pcoredata->m_layoutstate1.m_cya.last() = max(pdata->m_pcoredata->m_layoutstate1.m_cya.last(), pdata->m_pcoredata->m_layoutstate1.m_cy);
 
          }
          else
          {
 
-            pdata->m_pcoredata->m_layoutstate1.m_cya.last() = MAX(pdata->m_pcoredata->m_layoutstate1.m_cya.last(), pdata->m_pcoredata->m_layoutstate1.m_cy);
+            pdata->m_pcoredata->m_layoutstate1.m_cya.last() = max(pdata->m_pcoredata->m_layoutstate1.m_cya.last(), pdata->m_pcoredata->m_layoutstate1.m_cy);
 
             pdata->m_pcoredata->m_layoutstate1.m_cxa.last() += m_pimpl->m_box.width() + m_pimpl->get_extra_content_width();
 
@@ -587,7 +587,7 @@ namespace html
 
          x = pdata->m_pcoredata->m_layoutstate1.m_cxa.last();
 
-         fLastX = MAX(xMax, x);
+         fLastX = max(xMax, x);
 
          pdata->m_pcoredata->m_layoutstate1.m_cxMax.last() = fLastX;
 
@@ -619,7 +619,7 @@ namespace html
 
             }
 
-            m_pimpl->set_x(pdata, MAX(m_pimpl->get_bound_size().cx, m_pimpl->get_x()));*/
+            m_pimpl->set_x(pdata, max(m_pimpl->get_bound_size().cx, m_pimpl->get_x()));*/
 
 
    }

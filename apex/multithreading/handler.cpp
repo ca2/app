@@ -34,7 +34,9 @@ handler_manager::~handler_manager()
    else
    {
 
-      pobject->m_estatus = ::error_not_ready;
+      pobject->m_estatus = ::success_not_ready;
+
+      pobject->m_eobject = NOK_IMAGE_OBJECT;
 
       async(pobject);
 
@@ -45,19 +47,21 @@ handler_manager::~handler_manager()
 }
 
 
-void handler_manager::sync(::object * pobject)
+void handler_manager::sync(::layered * pobjectContext)
 {
 
    if (m_bUseDedicatedThread)
    {
 
+      //__throw(todo("thread"));
+      //__throw(todo("dedicated_thread"));
       auto pevReady = __new(::manual_reset_event);
 
       pevReady->ResetEvent();
 
-      pobject->value("ready_event") = pevReady;
+      __object(pobjectContext)->value("ready_event") = pevReady;
 
-      async(pobject);
+      async(pobjectContext);
 
       pevReady->wait();
 
@@ -68,7 +72,7 @@ void handler_manager::sync(::object * pobject)
       try
       {
 
-         pobject->call();
+         pobjectContext->call();
 
       }
       catch (...)
@@ -81,14 +85,18 @@ void handler_manager::sync(::object * pobject)
 }
 
 
-void handler_manager::async(::object * pobject)
+void handler_manager::async(::layered * pobjectContext)
 {
 
-   sync_lock sl(mutex());
+   {
 
-   m_objecta.add(pobject);
+      sync_lock sl(mutex());
 
-   m_pev->SetEvent();
+      m_objecta.add(pobjectContext);
+
+      m_pev->SetEvent();
+
+   }
 
    if (!m_pthread)
    {
@@ -173,7 +181,7 @@ void handler_manager::loop()
 
       {
 
-         single_lock sl(mutex());
+         sync_lock sl(mutex());
 
          if (m_objecta.isEmpty())
          {

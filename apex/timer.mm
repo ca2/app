@@ -1,5 +1,5 @@
 //
-//  aura_timer.m
+//  apex_timer.m
 //  apex
 //
 //  Created by Camilo Sasuke Tsumanuma on 07/07/15.

@@ -202,7 +202,7 @@ namespace user
             if(phostexception->m_id == id)
             {
 
-               //::aura::del(pimpactdata);
+               //::acme::del(pimpactdata);
                // todo
                //remove_impact_data(pimpactdata);
 
@@ -229,7 +229,7 @@ namespace user
       if (!pimpactdata->m_bOk)
       {
 
-         //::aura::del(pimpactdata);
+         //::acme::del(pimpactdata);
          // todo
          //remove_impact_data(pimpactdata);
 
@@ -307,7 +307,7 @@ namespace user
             if (phostexception->m_id == pimpactdata->m_id)
             {
 
-               //::aura::del(pimpactdata);
+               //::acme::del(pimpactdata);
 
                return false;
 

@@ -1,8 +1,9 @@
 #include "framework.h"
-#include "aura/platform/static_setup.h"
+#include "apex/platform/static_setup.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/user/user/_user.h"
 #endif
+#include "core/const/idpool.h"
 
 
 namespace core
@@ -32,14 +33,15 @@ namespace core
    void system::common_construct()
    {
 
-      create_factory < ::core::application, ::aura::application >();
-      create_factory < ::core::session, ::aura::session >();
+      create_factory < ::core::application, ::apex::application >();
+      create_factory < ::core::session, ::apex::session >();
       create_factory < ::core::user, ::user::user >();
+      create_factory < ::core::idpool, ::apex::idpool >();
 
    }
 
 
-   ::estatus system::initialize(::object* pobjectContext)
+   ::estatus system::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::base::system::initialize(pobjectContext);

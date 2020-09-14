@@ -102,9 +102,6 @@
     <Filter Include="Header Files\node">
       <UniqueIdentifier>{8d083486-dfc2-424c-afff-3af7c44fc9da}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\node\windows">
-      <UniqueIdentifier>{9cf34409-2b05-4959-b93c-8605c3551661}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\node\windows_common">
       <UniqueIdentifier>{c2d7f5a1-76e1-4a24-8d82-47142e6e7821}</UniqueIdentifier>
     </Filter>
@@ -212,6 +209,9 @@
     </Filter>
     <Filter Include="Source Files\user">
       <UniqueIdentifier>{57497a87-35c6-441f-8569-361721160c7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\node\windows_common\windows">
+      <UniqueIdentifier>{9cf34409-2b05-4959-b93c-8605c3551661}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -474,16 +474,16 @@
       <Filter>Header Files\os\windows</Filter>
     </ClInclude>
     <ClInclude Include="node\windows\_.h">
-      <Filter>Header Files\node\windows</Filter>
+      <Filter>Header Files\node\windows_common\windows</Filter>
     </ClInclude>
     <ClInclude Include="node\windows\_node_windows.h">
-      <Filter>Header Files\node\windows</Filter>
+      <Filter>Header Files\node\windows_common\windows</Filter>
     </ClInclude>
     <ClInclude Include="node\windows\_windows.h">
-      <Filter>Header Files\node\windows</Filter>
+      <Filter>Header Files\node\windows_common\windows</Filter>
     </ClInclude>
     <ClInclude Include="node\windows\factory_exchange.h">
-      <Filter>Header Files\node\windows</Filter>
+      <Filter>Header Files\node\windows_common\windows</Filter>
     </ClInclude>
     <ClInclude Include="os\_.h">
       <Filter>Header Files\os</Filter>
@@ -624,7 +624,7 @@
       <Filter>Header Files\const</Filter>
     </ClInclude>
     <ClInclude Include="node\windows\_node_windows_private.h">
-      <Filter>Header Files\node\windows</Filter>
+      <Filter>Header Files\node\windows_common\windows</Filter>
     </ClInclude>
     <ClInclude Include="xml\_impl.h">
       <Filter>Header Files\xml</Filter>
@@ -697,9 +697,6 @@
     </ClInclude>
     <ClInclude Include="xml\xmlite.h">
       <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="pcre\pcre.h">
-      <Filter>Header Files\pcre</Filter>
     </ClInclude>
     <ClInclude Include="database\database\database.h">
       <Filter>Header Files\database\database</Filter>
@@ -890,10 +887,46 @@
     <ClInclude Include="user\style.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\style_base.h">
+    <ClInclude Include="user\_.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\_.h">
+    <ClInclude Include="pcre\code_impl.h">
+      <Filter>Header Files\pcre</Filter>
+    </ClInclude>
+    <ClInclude Include="pcre\context_impl.h">
+      <Filter>Header Files\pcre</Filter>
+    </ClInclude>
+    <ClInclude Include="pcre\_.h">
+      <Filter>Header Files\pcre</Filter>
+    </ClInclude>
+    <ClInclude Include="pcre\context.h">
+      <Filter>Header Files\pcre</Filter>
+    </ClInclude>
+    <ClInclude Include="pcre\regex.h">
+      <Filter>Header Files\pcre</Filter>
+    </ClInclude>
+    <ClInclude Include="pcre\code.h">
+      <Filter>Header Files\pcre</Filter>
+    </ClInclude>
+    <ClInclude Include="pcre\_pcre.h">
+      <Filter>Header Files\pcre</Filter>
+    </ClInclude>
+    <ClInclude Include="pcre\util_impl.h">
+      <Filter>Header Files\pcre</Filter>
+    </ClInclude>
+    <ClInclude Include="user\slider.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\still.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\combo_box.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\combo_list.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple_ui_draw.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1057,9 +1090,6 @@
     <ClCompile Include="xml\xmlite.cpp">
       <Filter>Source Files\xml</Filter>
     </ClCompile>
-    <ClCompile Include="pcre\pcre.cpp">
-      <Filter>Source Files\pcre</Filter>
-    </ClCompile>
     <ClCompile Include="database\database\database.cpp">
       <Filter>Source Files\database\database</Filter>
     </ClCompile>
@@ -1183,10 +1213,40 @@
     <ClCompile Include="user\check_box.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
+    <ClCompile Include="pcre\context.cpp">
+      <Filter>Source Files\pcre</Filter>
+    </ClCompile>
+    <ClCompile Include="pcre\regex.cpp">
+      <Filter>Source Files\pcre</Filter>
+    </ClCompile>
+    <ClCompile Include="pcre\code.cpp">
+      <Filter>Source Files\pcre</Filter>
+    </ClCompile>
+    <ClCompile Include="pcre\context_impl.cpp">
+      <Filter>Source Files\pcre</Filter>
+    </ClCompile>
+    <ClCompile Include="pcre\code_impl.cpp">
+      <Filter>Source Files\pcre</Filter>
+    </ClCompile>
+    <ClCompile Include="pcre\util_impl.cpp">
+      <Filter>Source Files\pcre</Filter>
+    </ClCompile>
+    <ClCompile Include="pcre\system.cpp">
+      <Filter>Source Files\pcre</Filter>
+    </ClCompile>
+    <ClCompile Include="user\combo_box.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
     <ClCompile Include="user\style.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\style_base.cpp">
+    <ClCompile Include="user\slider.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\still.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\combo_list.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
   </ItemGroup>

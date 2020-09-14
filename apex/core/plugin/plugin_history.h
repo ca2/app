@@ -5,7 +5,7 @@ namespace plugin
 {
 
    class CLASS_DECL_APEX history :
-      virtual public ::aura::history
+      virtual public ::apex::history
    {
    public:
 

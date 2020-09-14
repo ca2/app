@@ -15,7 +15,7 @@ namespace hellobase
 {
 
 
-   render::render(::object * pobject) :
+   render::render(::layered * pobjectContext) :
       object(pobject),
       thread(pobject),
       helloaura::render(pobject),

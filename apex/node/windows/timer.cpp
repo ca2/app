@@ -1,7 +1,7 @@
 ﻿#include "framework.h"
 // Thank you TBS!!
 
-VOID CALLBACK aura_timer_TimerRoutine(PVOID pParam, BOOLEAN TimerOrWaitFired);
+VOID CALLBACK apex_timer_TimerRoutine(PVOID pParam, BOOLEAN TimerOrWaitFired);
 
 
 
@@ -21,7 +21,7 @@ VOID CALLBACK aura_timer_TimerRoutine(PVOID pParam, BOOLEAN TimerOrWaitFired);
 //
 //   //add_ref(OBJ_REF_DBG_ARGS);
 //
-//   //if(!CreateTimerQueueTimer(&m_hTimer,m_hTimerQueue,(WAITORTIMERCALLBACK)aura_timer_TimerRoutine,this,m_dwMillis,0,WT_EXECUTEONLYONCE | WT_EXECUTELONGFUNCTION))
+//   //if(!CreateTimerQueueTimer(&m_hTimer,m_hTimerQueue,(WAITORTIMERCALLBACK)apex_timer_TimerRoutine,this,m_dwMillis,0,WT_EXECUTEONLYONCE | WT_EXECUTELONGFUNCTION))
 //   //{
 //
 //   //   release();
@@ -98,7 +98,7 @@ VOID CALLBACK aura_timer_TimerRoutine(PVOID pParam, BOOLEAN TimerOrWaitFired);
 //
 //   add_ref(OBJ_REF_DBG_ARGS);
 //
-//   if(!CreateTimerQueueTimer(&m_hTimer,m_hTimerQueue,(WAITORTIMERCALLBACK)aura_timer_TimerRoutine,this,m_dwMillis,0,WT_EXECUTEONLYONCE | WT_EXECUTELONGFUNCTION))
+//   if(!CreateTimerQueueTimer(&m_hTimer,m_hTimerQueue,(WAITORTIMERCALLBACK)apex_timer_TimerRoutine,this,m_dwMillis,0,WT_EXECUTEONLYONCE | WT_EXECUTELONGFUNCTION))
 //   {
 //
 //      return false;
@@ -114,7 +114,7 @@ VOID CALLBACK aura_timer_TimerRoutine(PVOID pParam, BOOLEAN TimerOrWaitFired);
 bool on_init_timer_thread();
 
 
-//VOID CALLBACK aura_timer_TimerRoutine(PVOID pParam, BOOLEAN TimerOrWaitFired)
+//VOID CALLBACK apex_timer_TimerRoutine(PVOID pParam, BOOLEAN TimerOrWaitFired)
 //{
 //
 //   auto ptimer = __move_transfer((::timer *)pParam);
@@ -122,7 +122,7 @@ bool on_init_timer_thread();
 //   if (!g_bAura)
 //   {
 //
-//      output_debug_string("there is timer on (aura_timer_TimerRoutine) and apex is going away (!g_bAura)\n");
+//      output_debug_string("there is timer on (apex_timer_TimerRoutine) and apex is going away (!g_bAura)\n");
 //
 //      return;
 //
@@ -141,7 +141,7 @@ bool on_init_timer_thread();
 //
 //   //if (!on_init_thread())
 //   //{
-//   //   ::apex::del(ptimer);
+//   //   ::acme::del(ptimer);
 //   //   //return -34;
 //   //   return;
 //

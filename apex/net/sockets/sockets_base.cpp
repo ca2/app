@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aura/net/sockets/_.h"
+#include "apex/net/sockets/_.h"
 
 
 namespace sockets
@@ -22,7 +22,7 @@ namespace sockets
    }
 
 
-   ::estatus sockets_base::initialize(::object * pobjectContext)
+   ::estatus sockets_base::initialize(::layered * pobjectContext)
    {
 
       auto estatus = object::initialize(pobjectContext);

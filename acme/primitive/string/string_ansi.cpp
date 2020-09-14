@@ -3,7 +3,7 @@
 
 
 
-natural_meta_data < string_meta_data < ansichar > > g_ansistringNil(zero_init);
+natural_meta_data < string_meta_data < ansichar > > * g_pansistringNil = nullptr;
 
 
 

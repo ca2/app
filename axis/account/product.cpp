@@ -13,7 +13,7 @@ namespace account
 {
 
 
-   product::product(::object * pcontextobject) :
+   product::product(::layered * pcontextobject) :
       ::object(pcontextobject)
    {
 

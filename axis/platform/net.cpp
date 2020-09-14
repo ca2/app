@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-CLASS_DECL_AXIS string url_decode_dup(const char * psz)
+CLASS_DECL_AXIS string url_decode(const char * psz)
 {
    string str(psz);
 
@@ -55,7 +55,7 @@ CLASS_DECL_AXIS string url_decode_dup(const char * psz)
 
 
 
-string url_decode_dup(const char * pszUrl,strsize iLen)
+string url_decode(const char * pszUrl,strsize iLen)
 
 {
 
@@ -125,7 +125,7 @@ string url_decode_dup(const char * pszUrl,strsize iLen)
 
 
 
-CLASS_DECL_AXIS bool url_query_get_param_dup(string & strParam,const char * pszKey,const char * pszUrl)
+CLASS_DECL_AXIS bool url_query_get_param(string & strParam,const char * pszKey,const char * pszUrl)
 {
 
    const char * pszBeg;
@@ -241,7 +241,7 @@ success:
 
 
 
-string url_encode_dup(const char * psz)
+string url_encode(const char * psz)
 {
 
    string str;

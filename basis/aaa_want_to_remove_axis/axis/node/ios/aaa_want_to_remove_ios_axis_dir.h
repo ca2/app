@@ -85,7 +85,7 @@ namespace ios
          //      string         m_strNetSeedFolder;
 
 
-         dir(::object * pobject);
+         dir(::layered * pobjectContext);
 
 
          //virtual string relpath(const char * lpcszSource,const char * lpcszRelative,const char * lpcsz2 = nullptr);
@@ -133,7 +133,7 @@ namespace ios
          //virtual string userappdata(::object * pobject,const char * pcsz = nullptr,const char * lpcsz2 = nullptr);
          //virtual string userdata(::object * pobject,const char * pcsz = nullptr,const char * lpcsz2 = nullptr);
          //virtual string userfolder(::object * pobject,const char * pcsz = nullptr,const char * lpcsz2 = nullptr);
-         //virtual string default_os_user_path_prefix(::object * pobject);
+         //virtual string default_os_user_path_prefix(::layered * pobjectContext);
          //virtual string default_userappdata(::object * pobject,const string & lpcszPrefix,const string & lpcszLogin,const char * pszRelativePath = nullptr);
          //virtual string default_userdata(::object * pobject,const string & lpcszPrefix,const string & lpcszLogin,const char * pszRelativePath = nullptr);
          //virtual string default_userfolder(::object * pobject,const string & lpcszPrefix,const string & lpcszLogin,const char * pszRelativePath = nullptr);

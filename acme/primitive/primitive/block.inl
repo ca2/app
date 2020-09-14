@@ -4,7 +4,7 @@
 INLINE void fork_block::destroy()
 {
 
-   ::acme::memory_free(m_pdata);
+   memory_free(m_pdata);
 
 }
 

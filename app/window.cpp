@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aura/graphics/asset/close_button.h"
+#include "aura/graphics/snippet/close_button.h"
 
 
 namespace app_app

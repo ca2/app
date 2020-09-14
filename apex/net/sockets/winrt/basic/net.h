@@ -116,7 +116,7 @@ namespace sockets
       ::string_map < dns_cache_item >                 m_mapCache;
 
 
-      net(::object * pobject);
+      net(::layered * pobjectContext);
       virtual ~net();
 
 

@@ -13,7 +13,7 @@ namespace core
 
 
    class CLASS_DECL_CORE user1 :
-      virtual public ::aura::department,
+      virtual public ::apex::department,
       virtual public ::filemanager::component
    {
    public:
@@ -112,7 +112,7 @@ namespace core
 
 
 
-      virtual ::estatus     initialize(::object* pobjectContext) override;
+      virtual ::estatus     initialize(::layered * pobjectContext) override;
 
 
       virtual bool do_prompt_file_name(var& varFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
@@ -213,7 +213,7 @@ namespace core
       //virtual string get_locale_schema_dir() override;
 
 
-      ////virtual ::estatus     initialize(::object * pobjectContext) override;
+      ////virtual ::estatus     initialize(::layered * pobjectContext) override;
 
 
       //virtual ::user::interaction * get_session_window();
@@ -252,7 +252,7 @@ namespace core
 
       //virtual bool open_by_file_extension(::create * pcc);
 
-      ////__pointer(::aura::application) get_new_application(::object * pobjectContext, const char * pszAppId);
+      ////__pointer(::aura::application) get_new_application(::layered * pobjectContext, const char * pszAppId);
 
       //inline ::aura::savings &                  savings()      { return *m_psavings; }
 
@@ -388,7 +388,7 @@ namespace core
 
 
 
-      ////virtual ::estatus initialize(::object* pobjectContext) override;
+      ////virtual ::estatus initialize(::layered * pobjectContext) override;
 
       //virtual void install_message_routing(::channel* pchannel) override;
 
@@ -443,7 +443,7 @@ namespace core
 
       //virtual void will_use_view_hint(::id idView);
 
-      ////virtual void on_app_request_bergedge_callback(::object * pobject);
+      ////virtual void on_app_request_bergedge_callback(::layered * pobjectContext);
 
       //virtual ::draw2d::font_list* get_single_column_font_list();
 
@@ -541,7 +541,7 @@ namespace core
       ////virtual __pointer(::user::impact)                      get_view();
 
 
-      ////virtual ::estatus     initialize(::object* pobjectContext) override;
+      ////virtual ::estatus     initialize(::layered * pobjectContext) override;
 
 
       ////virtual void frame_pre_translate_message(::message::message* pmessage) override;

@@ -1438,9 +1438,9 @@ WINBOOL os_init_windowing()
 void os_term_windowing()
 {
 
-   ::apex::del(oswindow_data::s_pmutex);
+   ::acme::del(oswindow_data::s_pmutex);
 
-   ::apex::del(oswindow_data::s_pdataptra);
+   ::acme::del(oswindow_data::s_pdataptra);
 
 }
 

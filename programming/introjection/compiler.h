@@ -11,14 +11,14 @@ namespace introjection
    public:
 
 
-      __pointer(::aura::library)                m_plibrary;
+      __pointer(::apex::library)                m_plibrary;
       ::file::path                              m_pathScript;
       ::string_stream                               m_memfileError;
       string                                    m_strError;
       file_time                                 m_filetime;
 
 
-      library(::object * pobject);
+      library(::layered * pobjectContext);
       virtual ~library();
 
 
@@ -75,13 +75,13 @@ namespace introjection
       compiler();
       virtual ~compiler();
 
-      virtual ::estatus initialize(::object* pobjectContext) override;
+      virtual ::estatus initialize(::layered * pobjectContext) override;
 
       void initialize_compiler(const char * pszRepos, const char * pszApp, const char * pszProjectName);
       void prepare1(const char * lpcszSource,const char * lpcszDest);
       void prepare_compile_and_link_environment();
 
-      ::aura::library * compile(string str,bool bNew);
+      ::apex::library * compile(string str,bool bNew);
 
 
    };

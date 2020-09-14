@@ -35,7 +35,7 @@ namespace helloaxis
    }
 
 
-   render::render(::object * pobject) :
+   render::render(::layered * pobjectContext) :
       object(pobject),
       thread(pobject),
       m_font(e_create),

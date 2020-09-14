@@ -16,7 +16,7 @@ namespace dynamic_source
    } LOADPARMS32;
 
 
-   library_class::library_class(::object * pobject) :
+   library_class::library_class(::layered * pobjectContext) :
       ::object(pobject)
    {
 

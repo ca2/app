@@ -278,11 +278,11 @@ CLASS_DECL_ACME ::count get_mem_info2(i32 ** ppiUse, const char *** ppszFile, DW
 //};
 
 
-extern critical_section * g_pcsTrace;
-extern generic * g_pobjecTracer;
-
+//extern critical_section * g_pcsTrace;
+//extern generic * g_pobjecTracer;
+//
 CLASS_DECL_ACME void os_trace(e_trace_level elevel, const char * pszTag, const char * pszMessage);
-CLASS_DECL_ACME void trace(e_trace_level elevel, const char * pszTag, const char * psz, const char * pszFile = nullptr, int iLine = -1);
+//CLASS_DECL_ACME void trace(e_trace_level elevel, const char * pszTag, const char * psz, const char * pszFile = nullptr, int iLine = -1);
 
 
 
@@ -355,18 +355,18 @@ namespace papaya
 //extern const char * g_pszTraceLevelName[];
 //
 //
-//inline const char * trace_level_name(e_trace_level elevel)
-//{
-//
+CLASS_DECL_ACME const char * trace_level_name(e_trace_level elevel);
+// {
+
 //   return g_pszTraceLevelName[trace_level_constraint(elevel)];
-//
-//}
+
+// }
 
 
 //extern char g_chaTraceLevel[];;;
 //
 //
-//inline char trace_level_char(e_trace_level elevel)
+CLASS_DECL_ACME char trace_level_char(e_trace_level elevel);
 //{
 //
 //   return g_chaTraceLevel[trace_level_constraint(elevel)];

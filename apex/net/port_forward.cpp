@@ -310,7 +310,7 @@ namespace net
 		   "New IP address = %s \n"
 		   "It is recommended to update your list of mappings", pszNewExternalIPAddress);
 
-      ::message_box(nullptr,tempStr,"Change Detected in External IP Address",MB_OK | MB_ICONEXCLAMATION);
+      ::message_box(tempStr,"Change Detected in External IP Address",MB_OK | MB_ICONEXCLAMATION);
 
 	   return S_OK;
    }

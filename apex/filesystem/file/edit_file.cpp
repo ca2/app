@@ -741,13 +741,16 @@ namespace file
    delete_item * edit_file::Delete(memsize uiCount)
    {
 
-
-
       __pointer(delete_item) pdelete;
 
-      uiCount = MIN(uiCount,(memsize) (get_length() - m_position));
-      if(uiCount == 0)
+      uiCount = min(uiCount,(memsize) (get_length() - m_position));
+
+      if (uiCount == 0)
+      {
+
          return nullptr;
+
+      }
 
       pdelete = __new(delete_item);
       pdelete->m_position = m_position;
@@ -858,7 +861,7 @@ namespace file
    void edit_file::flush()
    {
       
-      sync_lock sl(mutex());
+      sync_lock sl(get_mutex());
 
       auto pfile = create_memory_file();
 
@@ -1070,7 +1073,7 @@ namespace file
    }
 
 
-} // namespace aura
+} // namespace acme
 
 
 

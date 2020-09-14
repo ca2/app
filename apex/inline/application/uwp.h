@@ -4,7 +4,7 @@
 int main(Array < String ^ > ^ stra)
 {
 
-   auto psystem = __new(::aura::system());
+   auto psystem = __new(::apex::system());
 
    psystem->application_initialize();
 

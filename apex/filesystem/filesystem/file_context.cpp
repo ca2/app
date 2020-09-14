@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "apex/platform/aura_str_pool.h"
+#include "acme/platform/acme_str_pool.h"
 #include "apex/platform/machine_event2.h"
 #include "apex/platform/machine_event_central2.h"
 #ifdef WINDOWS_DESKTOP
@@ -21,7 +21,7 @@
 #include <sys/stat.h>
 #endif
 
-#define astr (*::apex::g_paurastrpool)
+//#define astr (*::apex::g_papexstrpool)
 
 #ifdef RASPBIAN
 //#include <openssl/md5.h>
@@ -42,7 +42,7 @@ file_context::~file_context()
 }
 
 
-::estatus file_context::initialize(::object * pobjectContext)
+::estatus file_context::initialize(::layered * pobjectContext)
 {
 
    auto estatus = ::object::initialize(pobjectContext);
@@ -180,7 +180,7 @@ var file_context::length(const ::file::path & path, var * pvarQuery)
    if (path.m_iSize != -1)
    {
 
-      return MAX(0, path.m_iSize);
+      return max(0, path.m_iSize);
 
    }
 
@@ -306,7 +306,7 @@ restart:
 
       }
 
-      ls.ls(str);
+      Context.dir().ls(ls, str);
 
       if (i < iMaxLevel)
       {
@@ -358,7 +358,7 @@ restart:
       else // if i == iMaxLevel
       {
 
-         ls.ls(str);
+         Context.dir().ls(ls, str);
 
          i32 iMax = bTryDelete ? 0 : filterex_time_square(pszPrefix, ls);
 
@@ -962,8 +962,11 @@ bool file_context::put_contents_utf8(const var & varFile, const char * pcszConte
 
    if (Context.dir().is(varSource.get_file_path()) && (eextract == extract_first || eextract == extract_all || !(::str::ends_ci(varSource.get_file_path(), ".zip"))))
    {
+      
       ::file::listing patha(get_context());
-      patha.rls(varSource);
+      
+      Context.dir().rls(patha, varSource);
+      
       ::file::path strDst;
       ::file::path strSrc;
       ::file::path strDirSrc(varSource.get_file_path());
@@ -1501,7 +1504,7 @@ bool file_context::get_status(const ::file::path & path, ::file::file_status & s
    ::status::result e;
 
    ::file::listing straTitle(get_context());
-   straTitle.ls(pszContext);
+   Context.dir().ls(straTitle, pszContext);
    string strOld;
    string strNew;
    //string strFail;
@@ -1758,7 +1761,7 @@ void file_context::dtf(const ::file::path & pszFile, const ::file::path & pszDir
 
    ::file::listing ls(get_context());
 
-   ls.rls(pszDir);
+   Context.dir().rls(ls, pszDir);
 
    dtf(pszFile, ls);
 
@@ -1878,7 +1881,7 @@ void file_context::ftd(const ::file::path & pszDir, const ::file::path & pszFile
          read_n_number(spfile, &ctx, iLen);
          while (iLen > 0)
          {
-            uiRead = spfile->read(buf, (UINT)(MIN(iBufSize, iLen)));
+            uiRead = spfile->read(buf, (UINT)(min(iBufSize, iLen)));
             if (uiRead == 0)
                break;
             pfile2->write(buf, uiRead);
@@ -1975,7 +1978,7 @@ void file_context::read_gen_string(::file::file * pfile, void * pctx, string & s
       i64 iProcessed = 0;
       while (iLen - iProcessed > 0)
       {
-         i32 iProcess = (i32)MIN(1024 * 1024, iLen - iProcessed);
+         i32 iProcess = (i32)min(1024 * 1024, iLen - iProcessed);
          MD5_Update((MD5_CTX *)pctx, &psz[iProcessed], iProcess);
 
          iProcessed += iProcess;
@@ -1987,13 +1990,12 @@ void file_context::read_gen_string(::file::file * pfile, void * pctx, string & s
 }
 
 
-bool file_context::resolve_link(::file::path & pathTarget, const string & strSource, string * pstrDirectory, string * pstrParams, ::user::primitive * puiMessageParentOptional)
+bool file_context::resolve_link(::file::path & pathTarget, const string & strSource, string * pstrDirectory, string * pstrParams)
 {
 
-   return Context.os().resolve_link(pathTarget, strSource, pstrDirectory, pstrParams, puiMessageParentOptional);
+   return Context.os().resolve_link(pathTarget, strSource, pstrDirectory, pstrParams);
 
 }
-
 
 
 string file_context::md5(const var & varFile)

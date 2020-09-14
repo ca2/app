@@ -17,7 +17,7 @@ public:
 
    }
 
-   virtual ::generic_object * new_object(::object * pobjectContext) = 0;
+   virtual ::generic * new_object(::layered * pobjectContext) = 0;
 
 
 };
@@ -37,7 +37,7 @@ public:
    }
 
 
-   virtual ::generic_object * new_object(::object * pobjectContext) override
+   virtual ::generic * new_object(::layered * pobjectContext) override
    {
 
       return new TYPE(pobjectContext);

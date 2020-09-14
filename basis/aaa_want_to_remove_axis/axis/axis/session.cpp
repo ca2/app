@@ -13,7 +13,7 @@ namespace axis
    }
 
 
-   ::estatus session::initialize(::object * pobjectContext)
+   ::estatus session::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::aura::session::initialize(pobjectContext);
@@ -394,7 +394,7 @@ namespace axis
       try
       {
 
-         ::aura::del(m_pmapKeyPressed);
+         ::acme::del(m_pmapKeyPressed);
 
       }
       catch (...)

@@ -1365,7 +1365,7 @@ namespace user
 
 
    class call_message_handler_task :
-   virtual public generic_object
+      virtual public generic
    {
    public:
 

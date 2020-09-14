@@ -176,7 +176,7 @@ namespace user
 
       Application.data_get(m_id + ".cur_text", strText);
 
-      m_pimageLogo = load_image("matter://main/logo.png", false);
+      m_pimageLogo = Application.image().load_image("matter://main/logo.png", false);
 
       m_fontTitle.create(this);
 
@@ -675,7 +675,7 @@ namespace user
 
             get_item_rect(iPos, rect);
 
-            ::image_pointer pimage1 = load_image(pnode->child_at(iCommand)->attribute("image"), false);
+            ::image_pointer pimage1 = Application.image().load_image(pnode->child_at(iCommand)->attribute("image"), false);
 
             if (pimage1)
             {

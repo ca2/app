@@ -33,10 +33,10 @@ _AFX_INLINE invalid_argument_exception::~invalid_argument_exception()
 
 _AFX_INLINE CArchiveException::~CArchiveException()
    { }*/
-/*_AFX_INLINE ::aura::file_exception_pointer::aura::file_exception_pointer(i32 cause, LONG lOsError,
+/*_AFX_INLINE ::apex::file_exception_pointer::apex::file_exception_pointer(i32 cause, LONG lOsError,
    LPCTSTR pstrFileName /* = nullptr *///)
 /*{ m_cause = cause; m_lOsError = lOsError; m_strFileName = pstrFileName; }
-_AFX_INLINE ::aura::file_exception_pointer::~::aura::file_exception_pointer()
+_AFX_INLINE ::apex::file_exception_pointer::~::apex::file_exception_pointer()
 { }
 
 // file_pointer

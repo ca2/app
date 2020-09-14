@@ -6,9 +6,9 @@ namespace netserver
 {
 
 
-   socket_handler::socket_handler(::object * pobject, ::aura::log * plogger) :
-      ::object(pobject),
-      sockets::socket_handler(pobject, plogger)
+   socket_handler::socket_handler(::layered * pobjectContext, ::apex::log * plogger) :
+      ::object(pobjectContext),
+      sockets::socket_handler(pobjectContext, plogger)
    {
 
    }

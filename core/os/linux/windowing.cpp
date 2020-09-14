@@ -135,10 +135,10 @@ bool is_space_key(XIRawEvent *event)
 
 // Tutor Exilius Q(t)List streaming contribution
 ::mutex * g_pmutexX11Runnable = nullptr;
-list < __pointer(::generic_object) > * g_prunnableptrlX11 = nullptr;
+list < __pointer(::generic) > * g_prunnableptrlX11 = nullptr;
 ::mutex * g_pmutexX11Sync = nullptr;
 manual_reset_event * g_peventX11Sync = nullptr;
-__pointer(::generic_object) g_prunnableX11Sync;
+__pointer(::generic) g_prunnableX11Sync;
 Display * g_pdisplayX11= nullptr;
 int g_fdX11[2] = {};
 
@@ -168,7 +168,7 @@ WINBOOL x11_get_cursor_pos(LPPOINT ppointCursor);
 
 int xi_opcode = -1;
 __pointer(object_array) g_pobjectaExtendedEventListener;
-void x11_register_extended_event_listener(::generic_object * pdata, bool bMouse, bool bKeyboard)
+void x11_register_extended_event_listener(::generic * pdata, bool bMouse, bool bKeyboard)
 {
 
    if(!g_pobjectaExtendedEventListener)
@@ -2803,7 +2803,7 @@ bool x11_step()
       while(g_prunnableptrlX11->has_elements() && ::thread_get_run())
       {
 
-         __pointer(::generic_object) prunnable = g_prunnableptrlX11->pop_front();
+         __pointer(::generic) prunnable = g_prunnableptrlX11->pop_front();
 
          sl.unlock();
 
@@ -4425,7 +4425,7 @@ int_bool os_init_windowing()
 
    g_pmutexX11Runnable = new ::mutex();
 
-   g_prunnableptrlX11 = new list < __pointer(::generic_object) >();
+   g_prunnableptrlX11 = new list < __pointer(::generic) >();
 
    g_pmutexX11Sync = new ::mutex();
 
@@ -4456,27 +4456,27 @@ int_bool os_init_windowing()
 void os_term_windowing()
 {
 
-   ::aura::del(osdisplay_data::s_pmutex);
+   ::acme::del(osdisplay_data::s_pmutex);
 
-   ::aura::del(osdisplay_data::s_pdataptra);
+   ::acme::del(osdisplay_data::s_pdataptra);
 
-   ::aura::del(oswindow_data::s_pmutex);
+   ::acme::del(oswindow_data::s_pmutex);
 
-   ::aura::del(oswindow_data::s_pdataptra);
+   ::acme::del(oswindow_data::s_pdataptra);
 
    {
 
       sync_lock sl(g_pmutexX11Runnable);
 
-      ::aura::del(g_prunnableptrlX11);
+      ::acme::del(g_prunnableptrlX11);
 
    }
 
-   ::aura::del(g_pmutexX11Runnable);
+   ::acme::del(g_pmutexX11Runnable);
 
-   ::aura::del(g_peventX11Sync);
+   ::acme::del(g_peventX11Sync);
 
-   ::aura::del(g_pmutexX11Sync);
+   ::acme::del(g_pmutexX11Sync);
 
 }
 
@@ -4857,13 +4857,13 @@ void x11_kick_idle()
 
 
 extern ::mutex * g_pmutexX11Runnable;
-extern list < __pointer(::generic_object) > * g_prunnableptrlX11;
+extern list < __pointer(::generic) > * g_prunnableptrlX11;
 extern ::mutex * g_pmutexX11Sync;
 extern manual_reset_event * g_peventX11Sync;
-extern __pointer(::generic_object) g_prunnableX11Sync;
+extern __pointer(::generic) g_prunnableX11Sync;
 
 
-void x11_async_runnable(::generic_object * prunnable)
+void x11_async_runnable(::generic * prunnable)
 {
 
    {

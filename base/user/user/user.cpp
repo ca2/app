@@ -5,7 +5,7 @@
 #endif
 #include "aura/update.h"
 #include "simple_view.h"
-#include "aura/platform/static_setup.h"
+#include "apex/platform/static_setup.h"
 
 
 namespace base
@@ -30,7 +30,7 @@ namespace base
    }
 
 
-   ::estatus user::initialize(::object* pobjectContext)
+   ::estatus user::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::axis::user::initialize(pobjectContext);
@@ -198,7 +198,7 @@ namespace base
    ::estatus user::init2()
    {
 
-      if (!::aura::department::init2())
+      if (!::apex::department::init2())
       {
 
          return false;
@@ -215,15 +215,15 @@ namespace base
 
 
       //pstyle.release();
-//      ::aura::del(m_pufeschema);
+//      ::acme::del(m_pufeschema);
 //
-//      ::aura::del(m_pufe);
+//      ::acme::del(m_pufe);
 
 
       try
       {
 
-         ::aura::department::term();
+         ::apex::department::term();
 
       }
       catch(...)
@@ -285,11 +285,13 @@ namespace base
       for (auto& papp : Session.m_applicationa)
       {
 
-         sync_lock sl(&papp->m_mutexFrame);
+         auto & app = App(papp);
+
+         sync_lock sl(&app.m_mutexFrame);
 
          __pointer(::user::interaction) pinteraction;
 
-         while (papp->get_frame(pinteraction))
+         while (app.get_frame(pinteraction))
          {
 
             if (pinteraction != nullptr && pinteraction->is_window())
@@ -308,7 +310,7 @@ namespace base
    }
 
 
-//   ::user::front_end_schema * GetUfeSchema(::object * pobject)
+//   ::user::front_end_schema * GetUfeSchema(::layered * pobjectContext)
 //   {
 //
 //      if (papp == nullptr)
@@ -337,7 +339,7 @@ namespace base
 //   }
 //
 //
-//   ::user::front_end * GetUfe(::object * pobject)
+//   ::user::front_end * GetUfe(::layered * pobjectContext)
 //   {
 //
 //      return Sess(papp).user()->GetUfe();
@@ -599,7 +601,7 @@ namespace base
    //void destroy_session_docs(session_docs * pdocs)
    //{
 
-   //   ::aura::del(pdocs);
+   //   ::acme::del(pdocs);
 
    //}
 
@@ -623,7 +625,7 @@ namespace base
    //}
 
 
-//   void session::on_app_request_bergedge_callback(::object * pobject)
+//   void session::on_app_request_bergedge_callback(::layered * pobjectContext)
 //   {
 //
 //      if (&App(pobject) != nullptr)
@@ -1138,7 +1140,7 @@ namespace base
    }
 
 
-   ::user::style_pointer user::get_user_style(const char* pszExperienceLibrary, ::aura::application* papp)
+   ::user::style_pointer user::get_user_style(const char* pszExperienceLibrary, ::apex::application* papp)
    {
 
       auto& pstyle = m_mapUserStyle[pszExperienceLibrary];
@@ -1157,7 +1159,7 @@ namespace base
    }
 
 
-   ::user::style_pointer user::instantiate_user_style(const char* pszExperienceLibrary, ::aura::application* papp)
+   ::user::style_pointer user::instantiate_user_style(const char* pszExperienceLibrary, ::apex::application* papp)
    {
 
       INFO("aura::session::instantiate_user_theme");

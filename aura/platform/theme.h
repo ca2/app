@@ -60,7 +60,7 @@ namespace aura
       virtual ~theme();
 
 
-      virtual ::estatus initialize(::object * pobjectContext) override;
+      virtual ::estatus initialize(::layered * pobjectContext) override;
 
 
       virtual ::estatus initialize_contextualized_theme();

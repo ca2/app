@@ -954,7 +954,7 @@
     <ClCompile Include="primitive\primitive\edit.cpp" />
     <ClCompile Include="primitive\primitive\factory.cpp" />
     <ClCompile Include="primitive\primitive\form_property_set.cpp" />
-    <ClCompile Include="primitive\primitive\generic_object.cpp" />
+    <ClCompile Include="primitive\primitive\generic.cpp" />
     <ClCompile Include="primitive\primitive\handler.cpp" />
     <ClCompile Include="primitive\primitive\id.cpp" />
     <ClCompile Include="primitive\primitive\id_space.cpp" />
@@ -2538,7 +2538,7 @@
     <ClInclude Include="primitive\primitive\function.h" />
     <ClInclude Include="primitive\primitive\function_arg.h" />
     <ClInclude Include="primitive\primitive\function_base.h" />
-    <ClInclude Include="primitive\primitive\generic_object.h" />
+    <ClInclude Include="primitive\primitive\generic.h" />
     <ClInclude Include="primitive\primitive\id.h" />
     <ClInclude Include="primitive\primitive\id_space.h" />
     <ClInclude Include="primitive\primitive\interlocked_long.h" />

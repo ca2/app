@@ -17,6 +17,18 @@ namespace databaseuser
    }
 
 
+   void data_key_mesh_data::assert_valid() const
+   {
+
+   }
+
+
+   void data_key_mesh_data::dump(dump_context& dumpcontext) const
+   {
+
+   }
+
+
    void data_key_mesh_data::_001GetItemText(::user::mesh_item * pitem)
    {
       string_array stra;

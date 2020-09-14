@@ -21,7 +21,7 @@ namespace axis
    // not contain advanced initialization as the
    // papp application pointer may be incompletely
    // initialized specially its virtual functions.
-   ::estatus department::initialize(::object * pobjectContext)
+   ::estatus department::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);

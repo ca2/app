@@ -778,7 +778,7 @@ namespace crypto
 
 
 
-   bool crypto::file_set(var varFile, const char * pszData, const char * pszSalt, ::aura::application * papp)
+   bool crypto::file_set(var varFile, const char * pszData, const char * pszSalt, ::apex::application * papp)
    {
       memory memoryEncrypt;
       if (!encrypt(memoryEncrypt, pszData, pszSalt))
@@ -793,7 +793,7 @@ namespace crypto
    }
 
 
-   ::estatus     crypto::file_get(var varFile, string & str, const char * pszSalt, ::aura::application * papp)
+   ::estatus     crypto::file_get(var varFile, string & str, const char * pszSalt, ::apex::application * papp)
    {
 
       memory memoryEncrypt;
@@ -1201,7 +1201,7 @@ namespace crypto
    }
 
 
-   rsa::rsa(::object * pobjectContext) :
+   rsa::rsa(::layered * pobjectContext) :
       ::object(pobjectContext)
    {
       defer_create_mutex();
@@ -1215,7 +1215,7 @@ namespace crypto
    }
 
 
-   rsa::rsa(::object * pobjectContext, const string & nParam) :
+   rsa::rsa(::layered * pobjectContext, const string & nParam) :
       ::object(pobjectContext)
    {
 defer_create_mutex();
@@ -1364,7 +1364,7 @@ defer_create_mutex();
 
 #ifdef HAVE_OPENSSL
 
-   rsa::rsa(::object * pobjectContext,
+   rsa::rsa(::layered * pobjectContext,
             const string & strN,
             const string & strE,
             const string & strD,

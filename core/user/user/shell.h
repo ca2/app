@@ -74,8 +74,8 @@ namespace user
       using image_key_map = map< image_key, const image_key&, VALUE, ARG_VALUE >;
    protected:
 
-      ::int_map < __pointer(image_list) >                                   m_pil; // int is the size
-      ::int_map < __pointer(image_list) >                                   m_pilHover; // int is the size;
+      ::int_map < __pointer(::image_list) >                                   m_pil; // int is the size
+      ::int_map < __pointer(::image_list) >                                   m_pilHover; // int is the size;
 
    public:
 
@@ -140,7 +140,7 @@ namespace user
 
 
 
-      virtual ::estatus initialize(::object * pobjectContext) override;
+      virtual ::estatus initialize(::layered * pobjectContext) override;
       virtual void do_initialize();
 
 
@@ -177,8 +177,8 @@ namespace user
       virtual i32 impl_get_file_image(const image_key & imagekey) = 0;
 
 
-      image_list * GetImageList(int iSize);
-      image_list * GetImageListHover(int iSize);
+      ::image_list * GetImageList(int iSize);
+      ::image_list * GetImageListHover(int iSize);
 
 
       virtual e_folder get_folder_type(::object * pobject, const widechar * pcszPath);

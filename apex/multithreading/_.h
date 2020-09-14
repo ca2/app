@@ -67,7 +67,7 @@ class single_lock;
 class multi_lock;
 
 
-CLASS_DECL_APEX ::estatus __call(::generic_object * pobject);
+//CLASS_DECL_APEX ::estatus __call(::generic * pobject);
 
 
 
@@ -120,16 +120,16 @@ namespace multithreading
 
 
 
-CLASS_DECL_APEX bool thread_set_name(const char * psz);
-CLASS_DECL_APEX bool set_thread_name(HTHREAD hthread, const char* pszName);
+//CLASS_DECL_APEX bool thread_set_name(const char * psz);
+//CLASS_DECL_APEX bool set_thread_name(HTHREAD hthread, const char* pszName);
 
 // Use instead of PostQuitMessage in OLE server applications
-CLASS_DECL_APEX void __post_quit_message(i32 nExitCode);
+//CLASS_DECL_APEX void __post_quit_message(i32 nExitCode);
 
 typedef ::estatus     (*__THREADPROC)(void *);
 
 
-CLASS_DECL_APEX bool do_events();
+//CLASS_DECL_APEX bool do_events();
 //CLASS_DECL_APEX bool do_events(const duration & duration);
 
 class tool_thread;
@@ -157,9 +157,9 @@ namespace multithreading
 {
 
 
-   CLASS_DECL_APEX bool set_priority(e_priority epriority);
+   //CLASS_DECL_APEX bool set_priority(e_priority epriority);
 
-   CLASS_DECL_APEX i32 priority();
+   //CLASS_DECL_APEX i32 priority();
 
 
    //inline i32 get_priority_none()
@@ -208,23 +208,23 @@ public:
 
 
 
-#include "pred_holder.h"
+//#include "pred_holder.h"
 
-#include "sync.h"
-#include "sync_array.h"
-#include "semaphore.h"
-#include "mutex.h"
-#include "event.h"
-#include "set_event_on_exit.h"
-#include "condition.h"
-#include "file_change_event.h"
+//#include "sync.h"
+//#include "sync_array.h"
+//#include "semaphore.h"
+//#include "mutex.h"
+//#include "event.h"
+//#include "set_event_on_exit.h"
+//#include "condition.h"
+//#include "file_change_event.h"
 #include "socket_event.h"
-#include "critical_section.h"
-#include "single_lock.h"
+//#include "critical_section.h"
+//#include "single_lock.h"
 #include "retry_single_lock.h"
-#include "initial_single_lock.h"
-#include "sync_lock.h"
-#include "multi_lock.h"
+//#include "initial_single_lock.h"
+//#include "sync_lock.h"
+//#include "multi_lock.h"
 #include "retry_multi_lock.h"
 
 //#include "synch_index_ptr_array.h"
@@ -238,10 +238,10 @@ public:
 #endif
 
 
-#include "manual_reset_event.h"
+//#include "manual_reset_event.h"
 
 
-#include "sync_task.h"
+//#include "sync_task.h"
 
 
 #ifdef WINDOWS
@@ -261,10 +261,10 @@ public:
 
 
 
-CLASS_DECL_APEX u32 random_processor_index_generator();
+//CLASS_DECL_APEX u32 random_processor_index_generator();
 
 
-CLASS_DECL_APEX int_bool post_message(oswindow oswindow, UINT message, WPARAM wparam, LPARAM lparam);
+//CLASS_DECL_APEX int_bool post_message(oswindow oswindow, UINT message, WPARAM wparam, LPARAM lparam);
 
 
 
@@ -285,9 +285,9 @@ CLASS_DECL_APEX int_bool post_message(oswindow oswindow, UINT message, WPARAM wp
 // } // namespace multithreading
 
 
-CLASS_DECL_APEX ::thread* get_thread();
-CLASS_DECL_APEX ::thread * get_thread(ITHREAD idthread);
-CLASS_DECL_APEX void set_thread(thread * pthread);
+//CLASS_DECL_APEX ::thread* get_thread();
+//CLASS_DECL_APEX ::thread * get_thread(ITHREAD idthread);
+//CLASS_DECL_APEX void set_thread(thread * pthread);
 
 
 

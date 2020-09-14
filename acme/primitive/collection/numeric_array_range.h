@@ -77,16 +77,16 @@ public:
       }
 
       if(iStart < 0)
-         __throw(invalid_argument_exception(a.get_context_application() == nullptr ? get_context_application() : a.get_context_application()));
+         __throw(invalid_argument_exception());
 
       if(iStart >= a.get_count())
-         __throw(invalid_argument_exception(a.get_context_application() == nullptr ? get_context_application() : a.get_context_application()));
+         __throw(invalid_argument_exception());
 
       if(iEnd < 0)
-         __throw(invalid_argument_exception(a.get_context_application() == nullptr ? get_context_application() : a.get_context_application()));
+         __throw(invalid_argument_exception());
 
       if(iEnd >= a.get_count())
-         __throw(invalid_argument_exception(a.get_context_application() == nullptr ? get_context_application() : a.get_context_application()));
+         __throw(invalid_argument_exception());
 
       m_iBeg = iStart;
 

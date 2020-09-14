@@ -89,7 +89,7 @@ namespace message
 
 
    //::user::impact_data * create::get_impact_data()
-   ::generic_object * create::get_impact_data()
+   ::generic * create::get_impact_data()
    {
 
       auto pcreate = get_create();
@@ -108,7 +108,7 @@ namespace message
 
       }
 
-      return pcreate->m_pusercreate->m_pimpactdata;
+      return __user_create(pcreate->m_pusercreate)->m_pimpactdata;
 
    }
 

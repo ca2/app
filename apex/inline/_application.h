@@ -1,19 +1,19 @@
 #pragma once
 
 
-#include "aura/_.h"
-#include "aura/platform/app_core.h"
+#include "apex/_.h"
+#include "apex/platform/app_core.h"
 
 
 class CLASS_DECL_APEX application :
-   public aura_main_struct
+   public apex_main_struct
 {
 public:
 
 
-   class aura_aura                  m_aura;
-   __pointer(aura_main_data)        m_pmaindata;
-   __pointer(::aura::application)   m_papp;
+   class apex_apex                  m_apex;
+   __pointer(apex_main_data)        m_pmaindata;
+   __pointer(::apex::application)   m_papp;
 
 
    //static application *             s_papplication;

@@ -13,9 +13,9 @@ namespace account
 {
 
 
-   network_authenticator::network_authenticator(::object * pobject) :
-      ::object(pobject),
-      authenticator(pobject)
+   network_authenticator::network_authenticator(::layered * pobjectContext) :
+      ::object(pobjectContext),
+      authenticator(pobjectContext)
    {
 
 

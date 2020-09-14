@@ -26,12 +26,12 @@ namespace data
 
       virtual i64 add_ref(OBJ_REF_DBG_PARAMS) override
       {
-         return ::object::add_ref(OBJ_REF_DBG_ARGS);
+         return ::generic::add_ref(OBJ_REF_DBG_ARGS);
       }
 
       virtual i64 dec_ref(OBJ_REF_DBG_PARAMS) override
       {
-         return ::object::dec_ref(OBJ_REF_DBG_ARGS);
+         return ::generic::dec_ref(OBJ_REF_DBG_ARGS);
       }
 
 
@@ -80,7 +80,7 @@ namespace data
       virtual tree_item * insert_item(item * pitemdataNew, ERelative erelativeNewItem = RelativeLastChild, tree_item * pitemRelative = nullptr, bool bVoidTreeDataChangeEvent = false);
       virtual bool insert_item(tree_item * pitemNew, ERelative erelativeNewItem = RelativeLastChild, tree_item * pitemRelative = nullptr, bool bVoidTreeDataChangeEvent = false);
 
-      image_list * get_image_list() const override;
+      ::image_list * get_image_list() const override;
 
       virtual void _001ExpandItem(tree_item * pitem, const ::action_context & action_context, bool bExpand = true, bool bRedraw = true, bool bLayout = true);
       virtual void _001EnsureVisible(::data::tree_item * pitem);
@@ -99,18 +99,20 @@ namespace data
 
 
       virtual void on_fill_children() override;
-      virtual void start_fill_children();
+      //virtual void start_fill_children();
+
+      virtual void on_tree_layout();
 
       virtual void fill_children();
 
 
-      virtual void tree_layout(::draw2d::graphics_pointer & pgraphics);
+      //virtual void tree_layout(::draw2d::graphics_pointer & pgraphics);
 
 
    };
 
 
-} // namespace apex
+} // namespace acme
 
 
 

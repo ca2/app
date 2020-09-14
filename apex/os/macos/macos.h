@@ -15,7 +15,7 @@ void ns_set_this_default_browser();
 
 i32 raw_main_command_line(const char * pszCommandLine, int argc, char *argv[]);
 
-i32 aura_main_command_line(const char * pszParams, int argc, char *argv[]);
+i32 apex_main_command_line(const char * pszParams, int argc, char *argv[]);
 
 #ifdef cplusplus
 string macos_error_string(OSStatus status);

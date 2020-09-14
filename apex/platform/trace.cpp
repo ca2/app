@@ -357,12 +357,14 @@ CLASS_DECL_APEX const char *  get_windows_message_name(UINT nMsg)
 }
 
 
+CLASS_DECL_ACME const char* trace_level_name(e_trace_level elevel);
+
 #undef DEFINE_MESSAGE
 
 #define SIMPLE_TRACE_FUNCTION_NAME 0
 #define SIMPLE_TRACE_FILE_NAME 0
 
-CLASS_DECL_APEX void __simple_tracea(::generic_object * pobjectContext, e_trace_level elevel, const char * pszFunction, const char *pszFileName, i32 iLine, const char * psz)
+CLASS_DECL_APEX void __simple_tracea(::generic * pobjectContext, e_trace_level elevel, const char * pszFunction, const char *pszFileName, i32 iLine, const char * psz)
 {
 
 #ifndef DEBUG
@@ -439,7 +441,7 @@ CLASS_DECL_APEX void __simple_tracea(::generic_object * pobjectContext, e_trace_
 }
 
 
-CLASS_DECL_APEX void __simple_tracev(::generic_object * pobjectContext, e_trace_level elevel, const char * pszFunction, const char *pszFileName, i32 iLine, const char * pszFormat, va_list args)
+CLASS_DECL_APEX void __simple_tracev(::generic * pobjectContext, e_trace_level elevel, const char * pszFunction, const char *pszFileName, i32 iLine, const char * pszFormat, va_list args)
 {
 
    //if (s_pstringmanager == nullptr)

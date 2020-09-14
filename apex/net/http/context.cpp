@@ -1,8 +1,8 @@
 #include "framework.h"
-#include "aura/net/sockets/_.h"
-//#include "aura/xml/_.h"
-#include "aura/const/idpool.h"
-#include "aura/astr.h"
+#include "apex/net/sockets/_.h"
+//#include "apex/xml/_.h"
+#include "apex/const/idpool.h"
+#include "apex/astr.h"
 #include <time.h>
 
 
@@ -602,8 +602,8 @@ namespace http
 
    }
 
-   context::pac::pac(::object * pobject) :
-      ::object(pobject)
+   context::pac::pac(::layered * pobjectContext) :
+      ::object(pobjectContext)
    {
 
       __throw(todo("scripting"));
@@ -683,8 +683,8 @@ namespace http
    }
 
 
-   context::proxy::proxy(::object * pobject) :
-      ::object(pobject)
+   context::proxy::proxy(::layered * pobjectContext) :
+      ::object(pobjectContext)
    {
 
       m_bDirect = true;
@@ -1006,7 +1006,7 @@ namespace http
    }
 
 
-   //void context::on_auth(property_set & set, ::aura::application *      papp, string & strUrl, string & strSessId, __pointer(::account::user) & puser)
+   //void context::on_auth(property_set & set, ::apex::application *      papp, string & strUrl, string & strSessId, __pointer(::account::user) & puser)
    //{
 
    //   if (::is_null(papp))
@@ -1070,7 +1070,7 @@ namespace http
 
       string strProtocol = pszProtocol;
 
-      __pointer(::aura::application) papp = set["app"].cast < ::aura::application >();
+      __pointer(::apex::application) papp = set["app"].cast < ::apex::application >();
 
       i32 iPort;
 
@@ -1146,7 +1146,7 @@ namespace http
       if (!psession->open(bConfigProxy))
       {
 
-         TRACE("Not Opened/Connected Result Total time ::http::context::get(\"%s\") " __prtick, strUrl.Left(MIN(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
+         TRACE("Not Opened/Connected Result Total time ::http::context::get(\"%s\") " __prtick, strUrl.Left(min(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
 
          return false;
 
@@ -1260,7 +1260,7 @@ namespace http
 
          auto tickTimeProfile1 = ::tick::now();
 
-         ::aura::application * papp = handler.get_context_application();
+         ::apex::application * papp = handler.get_context_application();
 
          string strRequest = System.url().get_object(pszRequest);
 
@@ -1415,7 +1415,7 @@ namespace http
 
          i32 iIteration = 0;
 
-         //::aura::live_signal keeplive;
+         //::apex::live_signal keeplive;
 
          //if (papp != nullptr)
          //{
@@ -1575,7 +1575,7 @@ namespace http
                if (::str::begins_ci(strCa2Realm, "n7ot licensed: "))
                {
 
-                  TRACE("Not Licensed Result Total time ::http::context::get(\"%s\") " __prtick, strUrl.Left(MIN(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
+                  TRACE("Not Licensed Result Total time ::http::context::get(\"%s\") " __prtick, strUrl.Left(min(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
 
                   string strLocation = psession->outheader("Location");
 
@@ -1599,7 +1599,7 @@ namespace http
 
          set["get_status"] = (i64)estatus;
 
-         TRACE("Total time ::http::context::get(\"%s\") " __prtick, strUrl.Left(MIN(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
+         TRACE("Total time ::http::context::get(\"%s\") " __prtick, strUrl.Left(min(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
 
       }
       catch (...)
@@ -1748,9 +1748,9 @@ namespace http
 
       string strObject = System.url().get_object(pszUrl);
 
-      __pointer(::aura::application) papp = set["app"].cast < ::aura::application >();
+      __pointer(::apex::application) papp = set["app"].cast < ::apex::application >();
 
-      __pointer(::aura::application) pappAgent = papp;
+      __pointer(::apex::application) pappAgent = papp;
 
       i32 iPort;
 
@@ -2041,7 +2041,7 @@ namespace http
 
             auto tick2 = ::tick::now();
 
-            TRACE(__prhttpget "Not Opened/Connected Result Total time ::http::context::get(\"%s\") " __prtick, iHttpGetSerial, strUrl.Left(MIN(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
+            TRACE(__prhttpget "Not Opened/Connected Result Total time ::http::context::get(\"%s\") " __prtick, iHttpGetSerial, strUrl.Left(min(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
 
             return false;
 
@@ -2053,7 +2053,7 @@ namespace http
 
          set["get_status"] = (i64)error_http;
 
-         TRACE(__prhttpget "Not Opened/Connected Result Total time ::http::context::get(\"%s\") " __prtick, iHttpGetSerial, strUrl.Left(MIN(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
+         TRACE(__prhttpget "Not Opened/Connected Result Total time ::http::context::get(\"%s\") " __prtick, iHttpGetSerial, strUrl.Left(min(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
 
          return false;
 
@@ -2063,7 +2063,7 @@ namespace http
 
       i32 iIteration = 1;
 
-      //::aura::live_signal keeplive;
+      //::apex::live_signal keeplive;
 
       if ((bool)set["noloop"])
       {
@@ -2111,11 +2111,11 @@ namespace http
 
          iEnteredLoop = 1;
 
-         auto iSelectTimeoutMillis = MIN(tickTotalTimeout, (tickTotalTimeout - tickStart.elapsed()));
+         auto iSelectTimeoutMillis = min(tickTotalTimeout, (tickTotalTimeout - tickStart.elapsed()));
 
          auto iSelectTimeoutSeconds = iSelectTimeoutMillis.seconds();
 
-         iSelectTimeoutSeconds = MAX(1, iSelectTimeoutSeconds);
+         iSelectTimeoutSeconds = max(1, iSelectTimeoutSeconds);
 
          iContentLength = psocket->m_content_length;
 
@@ -2301,7 +2301,7 @@ namespace http
 
             auto tick2 = ::tick::now();
 
-            TRACE(__prhttpget "Not Licensed Result Total time ::http::context::get(\"%s\") " __prtick, iHttpGetSerial, strUrl.Left(MIN(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
+            TRACE(__prhttpget "Not Licensed Result Total time ::http::context::get(\"%s\") " __prtick, iHttpGetSerial, strUrl.Left(min(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
 
             string strLocation = psocket->outheader("Location");
 

@@ -29,7 +29,7 @@ CLASS_DECL_ACME::file::path get_known_folder(REFKNOWNFOLDERID kfid);
 //#include "RoundWindowApp.h"
 //#include "shell.h"
 //#include "simple_hold_handle.h"
-#include "stdio_file.h"
+//#include "stdio_file.h"
 //#include "dir_system.h"
 //#include "file_system.h"
 //#include "dir_context.h"

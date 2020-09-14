@@ -18,7 +18,7 @@ namespace ios
       file_context();
       virtual ~file_context();
 
-      virtual ::estatus initialize(::object * pobjectContext) override;
+      virtual ::estatus initialize(::layered * pobjectContext) override;
       
       virtual ::estatus update_module_path() override;
 

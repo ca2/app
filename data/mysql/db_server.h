@@ -43,7 +43,7 @@ public:
    string                     m_strUser;
 
 
-   db_server(::object * pobject);
+   db_server(::layered * pobjectContext);
    virtual ~db_server();
 
 

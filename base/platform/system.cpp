@@ -2,7 +2,7 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_user.h"
 #endif
-#include "aura/platform/static_setup.h"
+#include "apex/platform/static_setup.h"
 
 
 void __node_base_factory_exchange();
@@ -26,7 +26,7 @@ namespace base
    {
 
 //
-//      ::aura::del(m_ppatch);
+//      ::acme::del(m_ppatch);
 //
 //      if (g_p == this)
 //      {
@@ -35,16 +35,16 @@ namespace base
 //
 //      }
 //
-//      //::aura::del(m_purldepartment);
+//      //::acme::del(m_purldepartment);
 //
-//      //::aura::del(m_pcompress);
+//      //::acme::del(m_pcompress);
 //
-//      ::aura::del(g_pmutexImage);
+//      ::acme::del(g_pmutexImage);
 //
 //      //try
 //      //{
 //
-//      //   ::aura::del(m_pmachineeventcentral);
+//      //   ::acme::del(m_pmachineeventcentral);
 //
 //      //}
 //      //catch (...)
@@ -99,14 +99,14 @@ namespace base
    void system::common_construct()
    {
 
-      create_factory < ::base::session, ::aura::session >();
-      create_factory < ::base::application, ::aura::application >();
+      create_factory < ::base::session, ::apex::session >();
+      create_factory < ::base::application, ::apex::application >();
       create_factory < ::base::user, ::user::user >();
 
    }
 
 
-   ::estatus system::initialize(::object * pobjectContext)
+   ::estatus system::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::axis::system::initialize(pobjectContext);
@@ -338,7 +338,7 @@ namespace base
 //#endif
 //
 //
-//   //::aura::library * system::on_get_library(const char * pszLibrary)
+//   //::apex::library * system::on_get_library(const char * pszLibrary)
 //   //{
 //
 //   //   return nullptr;
@@ -362,7 +362,7 @@ namespace base
 //
 //
 //
-//   ::aura::library * system::get_library(const char * pszLibrary1, bool bOpenCa2)
+//   ::apex::library * system::get_library(const char * pszLibrary1, bool bOpenCa2)
 //   {
 //
 //      sync_lock sl(&::get_context_system()->m_mutexLibrary);
@@ -374,7 +374,7 @@ namespace base
 //      strLibrary.ends_eat_ci(".dylib");
 //      strLibrary.begins_eat_ci("lib");
 //
-//      __pointer(::aura::library) & plibrary = ::get_context_system()->m_mapLibrary[strLibrary];
+//      __pointer(::apex::library) & plibrary = ::get_context_system()->m_mapLibrary[strLibrary];
 //
 //      bool bLibraryOk = true;
 //
@@ -450,7 +450,7 @@ namespace base
 //   {
 //
 //
-//      ::aura::del(m_ppatch);
+//      ::acme::del(m_ppatch);
 //
 //      if (g_p == this)
 //      {
@@ -459,16 +459,16 @@ namespace base
 //
 //      }
 //
-//      //::aura::del(m_purldepartment);
+//      //::acme::del(m_purldepartment);
 //
-//      //::aura::del(m_pcompress);
+//      //::acme::del(m_pcompress);
 //
-//      ::aura::del(g_pmutexImage);
+//      ::acme::del(g_pmutexImage);
 //
 //      //try
 //      //{
 //
-//      //   ::aura::del(m_pmachineeventcentral);
+//      //   ::acme::del(m_pmachineeventcentral);
 //
 //      //}
 //      //catch (...)
@@ -1277,7 +1277,7 @@ namespace base
 //
 //      sync_lock sl(&::get_context_system()->m_mutexLibrary);
 //
-//      __pointer(::aura::library) & plibrary = ::get_context_system()->m_mapLibrary["draw2d"];
+//      __pointer(::apex::library) & plibrary = ::get_context_system()->m_mapLibrary["draw2d"];
 //
 //      if (plibrary->is_opened())
 //      {
@@ -1411,7 +1411,7 @@ namespace base
 //
 //      sync_lock sl(&::get_context_system()->m_mutexLibrary);
 //
-//      __pointer(::aura::library)& plibrary = ::get_context_system()->m_mapLibrary["imaging"];
+//      __pointer(::apex::library)& plibrary = ::get_context_system()->m_mapLibrary["imaging"];
 //
 //      auto estatus = __defer_construct_new(plibrary);
 //
@@ -3034,7 +3034,7 @@ namespace base
 //   bool system::map_application_library(const char * pszLibrary)
 //   {
 //
-//      ::aura::library library;
+//      ::apex::library library;
 //
 //      library.initialize_aura_library(this, 0);
 //
@@ -3577,7 +3577,7 @@ namespace base
 //
 //   //   //__throw(interface_only_exception());
 //
-//   //   return url_encode_dup(str);
+//   //   return url_encode(str);
 //
 //   //}
 //
@@ -4385,7 +4385,7 @@ namespace base
 //
 //   }
 //
-//   ::image_pointer system::matter_cache_image(::object * pobjectContext, const string & strMatter)
+//   ::image_pointer system::matter_cache_image(::layered * pobjectContext, const string & strMatter)
 //   {
 //
 //      string str(strMatter);
@@ -4403,7 +4403,7 @@ namespace base
 //
 //
 //
-//   ::image_pointer system::get_cache_image(::object * pobjectContext, const ::var & varFile)
+//   ::image_pointer system::get_cache_image(::layered * pobjectContext, const ::var & varFile)
 //   {
 //
 //      ::file::path path = varFile.get_file_path();
@@ -4433,7 +4433,7 @@ namespace base
 //   }
 //
 //
-//   ::image_pointer system::get_image(::object * pobjectContext, const ::var & varFile, bool bCache, bool bSync)
+//   ::image_pointer system::get_image(::layered * pobjectContext, const ::var & varFile, bool bCache, bool bSync)
 //   {
 //
 //      auto pimage = get_cache_image(pobjectContext, varFile);
@@ -4450,7 +4450,7 @@ namespace base
 //   }
 //
 //
-//   ::image_pointer system::matter_image(::object * pobjectContext, const string & strMatter, bool bCache, bool bSync)
+//   ::image_pointer system::matter_image(::layered * pobjectContext, const string & strMatter, bool bCache, bool bSync)
 //   {
 //
 //      string str(strMatter);
@@ -4596,7 +4596,7 @@ namespace base
 //   //}
 //
 //
-//   void system::__tracea(::generic_object * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
+//   void system::__tracea(::generic * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
 //   {
 //
 //      if (m_ptrace.is_null())
@@ -5658,7 +5658,7 @@ namespace base
 //
 //   //         //axis::application::term_application();
 //
-//   //         //::aura::del(m_phtml);
+//   //         //::acme::del(m_phtml);
 //
 //   //   try
 //   //   {
@@ -6433,7 +6433,7 @@ namespace base
 //
 //   }
 //
-//   void system::on_map_application_library(::aura::library& library)
+//   void system::on_map_application_library(::apex::library& library)
 //   {
 //
 //      __throw(todo("filehandler"));
@@ -6639,10 +6639,10 @@ namespace base
 //   }
 //
 //
-//   ::aura::library * system::on_get_library(const char* pszLibrary)
+//   ::apex::library * system::on_get_library(const char* pszLibrary)
 //   {
 //
-//      __pointer(::aura::library) plibrary;
+//      __pointer(::apex::library) plibrary;
 //
 //      bool bLibraryOk = false;
 //
@@ -6873,7 +6873,7 @@ namespace base
 //   }
 //
 //
-//   ::estatus system::add_view_library(::aura::library* plibrary)
+//   ::estatus system::add_view_library(::apex::library* plibrary)
 //   {
 //
 //      m_libraryspa.add(plibrary);

@@ -1,7 +1,7 @@
 #include "framework.h"
-//#include "aura/xml/_.h"
-#include "aura/net/sockets/_.h"
-#include "aura/filesystem/fs/_fs.h"
+//#include "apex/xml/_.h"
+#include "apex/net/sockets/_.h"
+#include "apex/filesystem/fs/_fs.h"
 #include "remote_native_file.h"
 
 
@@ -217,7 +217,7 @@ namespace fs
          {
             ::file::listing l(this);
 
-            l.ls(path);
+            Context.dir().ls(l, path);
          }
          else
          {
@@ -231,7 +231,7 @@ namespace fs
          {
             ::file::listing l(this);
 
-            l.ls(path);
+            Context.dir().ls(l, path);
          }
          else
          {

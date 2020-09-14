@@ -113,7 +113,7 @@
     <frame>
       <ip>0x57B8D0D</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), aura::library* (*)(object*))</fn>
+      <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), apex::library* (*)(object*))</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_app_core.cpp</file>
       <line>916</line>
@@ -619,7 +619,7 @@
     <frame>
       <ip>0x57B8D0D</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), aura::library* (*)(object*))</fn>
+      <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), apex::library* (*)(object*))</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_app_core.cpp</file>
       <line>916</line>
@@ -1735,7 +1735,7 @@
     <frame>
       <ip>0x5AFD605</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void aura::del&lt;pthread_mutex_t&gt;(pthread_mutex_t*&amp;)</fn>
+      <fn>void acme::del&lt;pthread_mutex_t&gt;(pthread_mutex_t*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -1933,7 +1933,7 @@
     <frame>
       <ip>0x5AFD660</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void aura::del&lt;pthread_cond_t&gt;(pthread_cond_t*&amp;)</fn>
+      <fn>void acme::del&lt;pthread_cond_t&gt;(pthread_cond_t*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -2211,7 +2211,7 @@
     <frame>
       <ip>0x57B8D0D</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), aura::library* (*)(object*))</fn>
+      <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), apex::library* (*)(object*))</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_app_core.cpp</file>
       <line>916</line>
@@ -5542,7 +5542,7 @@
     <frame>
       <ip>0x57CE970</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::library::get_new_application(object*, char const*)</fn>
+      <fn>apex::library::get_new_application(object*, char const*)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_library.cpp</file>
       <line>532</line>
@@ -16314,7 +16314,7 @@
     <frame>
       <ip>0x5824FD3</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void aura::del&lt;critical_section&gt;(critical_section*&amp;)</fn>
+      <fn>void acme::del&lt;critical_section&gt;(critical_section*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -16712,7 +16712,7 @@
     <frame>
       <ip>0x57C96BA</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::ipi::~ipi()</fn>
+      <fn>apex::ipi::~ipi()</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_ipi.cpp</file>
       <line>54</line>
@@ -16744,7 +16744,7 @@
     <frame>
       <ip>0x5832160</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>long release&lt;aura::ipi&gt;(aura::ipi*&amp;)</fn>
+      <fn>long release&lt;apex::ipi&gt;(apex::ipi*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/primitive</dir>
       <file>object.h</file>
       <line>572</line>
@@ -16752,7 +16752,7 @@
     <frame>
       <ip>0x58178BD</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>pointer&lt;aura::ipi&gt;::release()</fn>
+      <fn>pointer&lt;apex::ipi&gt;::release()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_smart_pointer2.h</file>
       <line>317</line>
@@ -17010,7 +17010,7 @@
     <frame>
       <ip>0x57CE970</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::library::get_new_application(object*, char const*)</fn>
+      <fn>apex::library::get_new_application(object*, char const*)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_library.cpp</file>
       <line>532</line>
@@ -18108,7 +18108,7 @@
     <frame>
       <ip>0x5817FEB</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void aura::del&lt;imaging&gt;(imaging*&amp;)</fn>
+      <fn>void acme::del&lt;imaging&gt;(imaging*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -21003,7 +21003,7 @@
     <frame>
       <ip>0xD9E2D6B</ip>
       <obj>/xcore/time/x64/basis/libaxis.so</obj>
-      <fn>void aura::del&lt;ftpnet&gt;(ftpnet*&amp;)</fn>
+      <fn>void acme::del&lt;ftpnet&gt;(ftpnet*&amp;)</fn>
       <dir>/xcore/app/axis/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -25787,7 +25787,7 @@
     <frame>
       <ip>0x5816B9F</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void aura::del&lt;user::interaction_pointer_array&gt;(user::interaction_pointer_array*&amp;)</fn>
+      <fn>void acme::del&lt;user::interaction_pointer_array&gt;(user::interaction_pointer_array*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -28374,7 +28374,7 @@
     <frame>
       <ip>0x59F9DD7</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void aura::del&lt;zip::util&gt;(zip::util*&amp;)</fn>
+      <fn>void acme::del&lt;zip::util&gt;(zip::util*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -28565,7 +28565,7 @@
     <frame>
       <ip>0x2637B842</ip>
       <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
-      <fn>experience::aura::library::~library()</fn>
+      <fn>experience::apex::library::~library()</fn>
       <dir>/xcore/app/experience_core</dir>
       <file>experience_core_library.cpp</file>
       <line>25</line>
@@ -28597,7 +28597,7 @@
     <frame>
       <ip>0x58359A5</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>long release&lt;aura::library&gt;(aura::library*&amp;)</fn>
+      <fn>long release&lt;apex::library&gt;(apex::library*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/primitive</dir>
       <file>object.h</file>
       <line>572</line>
@@ -28605,7 +28605,7 @@
     <frame>
       <ip>0x5820B9B</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>pointer&lt;aura::library&gt;::release()</fn>
+      <fn>pointer&lt;apex::library&gt;::release()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_smart_pointer2.h</file>
       <line>317</line>
@@ -28613,7 +28613,7 @@
     <frame>
       <ip>0x57CE0A8</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::library::close()</fn>
+      <fn>apex::library::close()</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_library.cpp</file>
       <line>358</line>
@@ -28621,7 +28621,7 @@
     <frame>
       <ip>0x57CD203</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::library::~library()</fn>
+      <fn>apex::library::~library()</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_library.cpp</file>
       <line>71</line>
@@ -28629,7 +28629,7 @@
     <frame>
       <ip>0x57CD373</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::library::~library()</fn>
+      <fn>apex::library::~library()</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_library.cpp</file>
       <line>73</line>
@@ -28764,7 +28764,7 @@
     <frame>
       <ip>0x582A65A</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;aura::library&gt;, pointer&lt;aura::library&gt; const&amp;, pair&lt;string, pointer&lt;aura::library&gt;, string const&amp;, pointer&lt;aura::library&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;apex::library&gt;, pointer&lt;apex::library&gt; const&amp;, pair&lt;string, pointer&lt;apex::library&gt;, string const&amp;, pointer&lt;apex::library&gt; const&amp;&gt; &gt;::remove_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -28963,7 +28963,7 @@
     <frame>
       <ip>0x5820F73</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void aura::del&lt;aura::trace::trace&gt;(aura::trace::trace*&amp;)</fn>
+      <fn>void acme::del&lt;aura::trace::trace&gt;(aura::trace::trace*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -29194,7 +29194,7 @@
     <frame>
       <ip>0xDA11176</ip>
       <obj>/xcore/time/x64/basis/libaxis.so</obj>
-      <fn>void aura::del&lt;LiteHTMLEntityResolver&gt;(LiteHTMLEntityResolver*&amp;)</fn>
+      <fn>void acme::del&lt;LiteHTMLEntityResolver&gt;(LiteHTMLEntityResolver*&amp;)</fn>
       <dir>/xcore/app/axis/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -29218,7 +29218,7 @@
     <frame>
       <ip>0xD979FD3</ip>
       <obj>/xcore/time/x64/basis/libaxis.so</obj>
-      <fn>void aura::del&lt;html::html&gt;(html::html*&amp;)</fn>
+      <fn>void acme::del&lt;html::html&gt;(html::html*&amp;)</fn>
       <dir>/xcore/app/axis/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -29361,7 +29361,7 @@
     <frame>
       <ip>0xDA11183</ip>
       <obj>/xcore/time/x64/basis/libaxis.so</obj>
-      <fn>void aura::del&lt;LiteHTMLEntityResolver&gt;(LiteHTMLEntityResolver*&amp;)</fn>
+      <fn>void acme::del&lt;LiteHTMLEntityResolver&gt;(LiteHTMLEntityResolver*&amp;)</fn>
       <dir>/xcore/app/axis/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -29385,7 +29385,7 @@
     <frame>
       <ip>0xD979FD3</ip>
       <obj>/xcore/time/x64/basis/libaxis.so</obj>
-      <fn>void aura::del&lt;html::html&gt;(html::html*&amp;)</fn>
+      <fn>void acme::del&lt;html::html&gt;(html::html*&amp;)</fn>
       <dir>/xcore/app/axis/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -29592,7 +29592,7 @@
     <frame>
       <ip>0xD979FD3</ip>
       <obj>/xcore/time/x64/basis/libaxis.so</obj>
-      <fn>void aura::del&lt;html::html&gt;(html::html*&amp;)</fn>
+      <fn>void acme::del&lt;html::html&gt;(html::html*&amp;)</fn>
       <dir>/xcore/app/axis/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -29767,7 +29767,7 @@
     <frame>
       <ip>0xD979FD3</ip>
       <obj>/xcore/time/x64/basis/libaxis.so</obj>
-      <fn>void aura::del&lt;html::html&gt;(html::html*&amp;)</fn>
+      <fn>void acme::del&lt;html::html&gt;(html::html*&amp;)</fn>
       <dir>/xcore/app/axis/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -54634,7 +54634,7 @@
     <frame>
       <ip>0x586F4D0</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>alloc_factory&lt;aura::library, aura::library&gt;::~alloc_factory()</fn>
+      <fn>alloc_factory&lt;apex::library, apex::library&gt;::~alloc_factory()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_class.h</file>
       <line>36</line>
@@ -56034,7 +56034,7 @@
     <frame>
       <ip>0x11E3C562</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>void aura::del&lt;aura::patch&gt;(aura::patch*&amp;)</fn>
+      <fn>void acme::del&lt;aura::patch&gt;(aura::patch*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -58204,7 +58204,7 @@
     <frame>
       <ip>0x5991373</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void aura::del&lt;xml::disp_option&gt;(xml::disp_option*&amp;)</fn>
+      <fn>void acme::del&lt;xml::disp_option&gt;(xml::disp_option*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -58402,7 +58402,7 @@
     <frame>
       <ip>0x599141B</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void aura::del&lt;xml::parse_info&gt;(xml::parse_info*&amp;)</fn>
+      <fn>void acme::del&lt;xml::parse_info&gt;(xml::parse_info*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -58806,7 +58806,7 @@
     <frame>
       <ip>0x121D22D7</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>void aura::del&lt;aura::session_docs&gt;(aura::session_docs*&amp;)</fn>
+      <fn>void acme::del&lt;aura::session_docs&gt;(aura::session_docs*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -60786,7 +60786,7 @@
     <frame>
       <ip>0x5824DCA</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void aura::del&lt;mutex&gt;(mutex*&amp;)</fn>
+      <fn>void acme::del&lt;mutex&gt;(mutex*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -60834,7 +60834,7 @@
     <frame>
       <ip>0x57B8D0D</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), aura::library* (*)(object*))</fn>
+      <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), apex::library* (*)(object*))</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_app_core.cpp</file>
       <line>916</line>
@@ -60968,7 +60968,7 @@
     <frame>
       <ip>0x5824FD3</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void aura::del&lt;critical_section&gt;(critical_section*&amp;)</fn>
+      <fn>void acme::del&lt;critical_section&gt;(critical_section*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -61008,7 +61008,7 @@
     <frame>
       <ip>0x594E53C</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void aura::del&lt;osdisplay_dataptra&gt;(osdisplay_dataptra*&amp;)</fn>
+      <fn>void acme::del&lt;osdisplay_dataptra&gt;(osdisplay_dataptra*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -61190,7 +61190,7 @@
     <frame>
       <ip>0x594E53C</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void aura::del&lt;osdisplay_dataptra&gt;(osdisplay_dataptra*&amp;)</fn>
+      <fn>void acme::del&lt;osdisplay_dataptra&gt;(osdisplay_dataptra*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -61238,7 +61238,7 @@
     <frame>
       <ip>0x57B8D0D</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), aura::library* (*)(object*))</fn>
+      <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), apex::library* (*)(object*))</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_app_core.cpp</file>
       <line>916</line>
@@ -61372,7 +61372,7 @@
     <frame>
       <ip>0x594E53C</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void aura::del&lt;osdisplay_dataptra&gt;(osdisplay_dataptra*&amp;)</fn>
+      <fn>void acme::del&lt;osdisplay_dataptra&gt;(osdisplay_dataptra*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -61420,7 +61420,7 @@
     <frame>
       <ip>0x57B8D0D</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), aura::library* (*)(object*))</fn>
+      <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), apex::library* (*)(object*))</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_app_core.cpp</file>
       <line>916</line>
@@ -61562,7 +61562,7 @@
     <frame>
       <ip>0x5824DCA</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void aura::del&lt;mutex&gt;(mutex*&amp;)</fn>
+      <fn>void acme::del&lt;mutex&gt;(mutex*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -61610,7 +61610,7 @@
     <frame>
       <ip>0x57B8D0D</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), aura::library* (*)(object*))</fn>
+      <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), apex::library* (*)(object*))</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_app_core.cpp</file>
       <line>916</line>
@@ -61768,7 +61768,7 @@
     <frame>
       <ip>0x594E5A4</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void aura::del&lt;oswindow_dataptra&gt;(oswindow_dataptra*&amp;)</fn>
+      <fn>void acme::del&lt;oswindow_dataptra&gt;(oswindow_dataptra*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -61816,7 +61816,7 @@
     <frame>
       <ip>0x57B8D0D</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), aura::library* (*)(object*))</fn>
+      <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), apex::library* (*)(object*))</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_app_core.cpp</file>
       <line>916</line>
@@ -61950,7 +61950,7 @@
     <frame>
       <ip>0x594E5A4</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void aura::del&lt;oswindow_dataptra&gt;(oswindow_dataptra*&amp;)</fn>
+      <fn>void acme::del&lt;oswindow_dataptra&gt;(oswindow_dataptra*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -61998,7 +61998,7 @@
     <frame>
       <ip>0x57B8D0D</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), aura::library* (*)(object*))</fn>
+      <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), apex::library* (*)(object*))</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_app_core.cpp</file>
       <line>916</line>
@@ -62164,7 +62164,7 @@
     <frame>
       <ip>0x58359A5</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>long release&lt;aura::library&gt;(aura::library*&amp;)</fn>
+      <fn>long release&lt;apex::library&gt;(apex::library*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/primitive</dir>
       <file>object.h</file>
       <line>572</line>
@@ -62172,7 +62172,7 @@
     <frame>
       <ip>0x5820B9B</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>pointer&lt;aura::library&gt;::release()</fn>
+      <fn>pointer&lt;apex::library&gt;::release()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_smart_pointer2.h</file>
       <line>317</line>
@@ -62180,7 +62180,7 @@
     <frame>
       <ip>0x57CE0A8</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::library::close()</fn>
+      <fn>apex::library::close()</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_library.cpp</file>
       <line>358</line>
@@ -62188,7 +62188,7 @@
     <frame>
       <ip>0x57CD203</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::library::~library()</fn>
+      <fn>apex::library::~library()</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_library.cpp</file>
       <line>71</line>
@@ -62196,7 +62196,7 @@
     <frame>
       <ip>0x57CD373</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::library::~library()</fn>
+      <fn>apex::library::~library()</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_library.cpp</file>
       <line>73</line>
@@ -62330,7 +62330,7 @@
     <frame>
       <ip>0x57CD384</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::library::~library()</fn>
+      <fn>apex::library::~library()</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_library.cpp</file>
       <line>73</line>
@@ -62362,7 +62362,7 @@
     <frame>
       <ip>0x58359A5</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>long release&lt;aura::library&gt;(aura::library*&amp;)</fn>
+      <fn>long release&lt;apex::library&gt;(apex::library*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/primitive</dir>
       <file>object.h</file>
       <line>572</line>
@@ -62370,7 +62370,7 @@
     <frame>
       <ip>0x5820B9B</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>pointer&lt;aura::library&gt;::release()</fn>
+      <fn>pointer&lt;apex::library&gt;::release()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_smart_pointer2.h</file>
       <line>317</line>
@@ -62378,7 +62378,7 @@
     <frame>
       <ip>0x581A4A5</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>pointer&lt;aura::library&gt;::~pointer()</fn>
+      <fn>pointer&lt;apex::library&gt;::~pointer()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_smart_pointer2.h</file>
       <line>124</line>
@@ -62536,7 +62536,7 @@
     <frame>
       <ip>0x5D9F084</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void aura::del&lt;map&lt;oswindow_data*, oswindow_data*, user::interaction_impl*, user::interaction_impl*, pair&lt;oswindow_data*, user::interaction_impl*, oswindow_data*, user::interaction_impl*&gt; &gt; &gt;(map&lt;oswindow_data*, oswindow_data*, user::interaction_impl*, user::interaction_impl*, pair&lt;oswindow_data*, user::interaction_impl*, oswindow_data*, user::interaction_impl*&gt; &gt;*&amp;)</fn>
+      <fn>void acme::del&lt;map&lt;oswindow_data*, oswindow_data*, user::interaction_impl*, user::interaction_impl*, pair&lt;oswindow_data*, user::interaction_impl*, oswindow_data*, user::interaction_impl*&gt; &gt; &gt;(map&lt;oswindow_data*, oswindow_data*, user::interaction_impl*, user::interaction_impl*, pair&lt;oswindow_data*, user::interaction_impl*, oswindow_data*, user::interaction_impl*&gt; &gt;*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -62694,7 +62694,7 @@
     <frame>
       <ip>0x5D9F0EC</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void aura::del&lt;map&lt;user::interaction_impl*, user::interaction_impl*, oswindow_data*, oswindow_data*, pair&lt;user::interaction_impl*, oswindow_data*, user::interaction_impl*, oswindow_data*&gt; &gt; &gt;(map&lt;user::interaction_impl*, user::interaction_impl*, oswindow_data*, oswindow_data*, pair&lt;user::interaction_impl*, oswindow_data*, user::interaction_impl*, oswindow_data*&gt; &gt;*&amp;)</fn>
+      <fn>void acme::del&lt;map&lt;user::interaction_impl*, user::interaction_impl*, oswindow_data*, oswindow_data*, pair&lt;user::interaction_impl*, oswindow_data*, user::interaction_impl*, oswindow_data*&gt; &gt; &gt;(map&lt;user::interaction_impl*, user::interaction_impl*, oswindow_data*, oswindow_data*, pair&lt;user::interaction_impl*, oswindow_data*, user::interaction_impl*, oswindow_data*&gt; &gt;*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -62844,7 +62844,7 @@
     <frame>
       <ip>0x5824FD3</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void aura::del&lt;critical_section&gt;(critical_section*&amp;)</fn>
+      <fn>void acme::del&lt;critical_section&gt;(critical_section*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -62994,7 +62994,7 @@
     <frame>
       <ip>0x5815A65</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void aura::del&lt;aura_str_pool&gt;(aura_str_pool*&amp;)</fn>
+      <fn>void acme::del&lt;aura_str_pool&gt;(aura_str_pool*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -63856,7 +63856,7 @@
     <frame>
       <ip>0x5AFD016</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void aura::del&lt;address_array&lt;thread*, comparable_array&lt;thread*, thread*, comparable_eq_array&lt;thread*, thread*, raw_array&lt;thread*, thread*, allocator::zero&lt;thread*&gt; &gt; &gt; &gt; &gt; &gt;(address_array&lt;thread*, comparable_array&lt;thread*, thread*, comparable_eq_array&lt;thread*, thread*, raw_array&lt;thread*, thread*, allocator::zero&lt;thread*&gt; &gt; &gt; &gt; &gt;*&amp;)</fn>
+      <fn>void acme::del&lt;address_array&lt;thread*, comparable_array&lt;thread*, thread*, comparable_eq_array&lt;thread*, thread*, raw_array&lt;thread*, thread*, allocator::zero&lt;thread*&gt; &gt; &gt; &gt; &gt; &gt;(address_array&lt;thread*, comparable_array&lt;thread*, thread*, comparable_eq_array&lt;thread*, thread*, raw_array&lt;thread*, thread*, allocator::zero&lt;thread*&gt; &gt; &gt; &gt; &gt;*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -64022,7 +64022,7 @@
     <frame>
       <ip>0x5AFD2BC</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void aura::del&lt;comparable_eq_array&lt;unsigned long, unsigned long const&amp;, array&lt;unsigned long, unsigned long const&amp;, allocator::def&lt;unsigned long&gt; &gt; &gt; &gt;(comparable_eq_array&lt;unsigned long, unsigned long const&amp;, array&lt;unsigned long, unsigned long const&amp;, allocator::def&lt;unsigned long&gt; &gt; &gt;*&amp;)</fn>
+      <fn>void acme::del&lt;comparable_eq_array&lt;unsigned long, unsigned long const&amp;, array&lt;unsigned long, unsigned long const&amp;, allocator::def&lt;unsigned long&gt; &gt; &gt; &gt;(comparable_eq_array&lt;unsigned long, unsigned long const&amp;, array&lt;unsigned long, unsigned long const&amp;, allocator::def&lt;unsigned long&gt; &gt; &gt;*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -64188,7 +64188,7 @@
     <frame>
       <ip>0x5824DCA</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void aura::del&lt;mutex&gt;(mutex*&amp;)</fn>
+      <fn>void acme::del&lt;mutex&gt;(mutex*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -64346,7 +64346,7 @@
     <frame>
       <ip>0x58585EC</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, aura::library* (*)(object*), aura::library* (* const&amp;)(object*), pair&lt;string, aura::library* (*)(object*), string const&amp;, aura::library* (* const&amp;)(object*)&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, apex::library* (*)(object*), apex::library* (* const&amp;)(object*), pair&lt;string, apex::library* (*)(object*), string const&amp;, apex::library* (* const&amp;)(object*)&gt; &gt;::remove_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -64354,7 +64354,7 @@
     <frame>
       <ip>0x583BC05</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, aura::library* (*)(object*), aura::library* (* const&amp;)(object*), pair&lt;string, aura::library* (*)(object*), string const&amp;, aura::library* (* const&amp;)(object*)&gt; &gt;::~map()</fn>
+      <fn>map&lt;string, string const&amp;, apex::library* (*)(object*), apex::library* (* const&amp;)(object*), pair&lt;string, apex::library* (*)(object*), string const&amp;, apex::library* (* const&amp;)(object*)&gt; &gt;::~map()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1207</line>
@@ -64362,7 +64362,7 @@
     <frame>
       <ip>0x583BD43</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, aura::library* (*)(object*), aura::library* (* const&amp;)(object*), pair&lt;string, aura::library* (*)(object*), string const&amp;, aura::library* (* const&amp;)(object*)&gt; &gt;::~map()</fn>
+      <fn>map&lt;string, string const&amp;, apex::library* (*)(object*), apex::library* (* const&amp;)(object*), pair&lt;string, apex::library* (*)(object*), string const&amp;, apex::library* (* const&amp;)(object*)&gt; &gt;::~map()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1209</line>
@@ -64370,7 +64370,7 @@
     <frame>
       <ip>0x5824E9A</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void aura::del&lt;map&lt;string, string const&amp;, aura::library* (*)(object*), aura::library* (* const&amp;)(object*), pair&lt;string, aura::library* (*)(object*), string const&amp;, aura::library* (* const&amp;)(object*)&gt; &gt; &gt;(map&lt;string, string const&amp;, aura::library* (*)(object*), aura::library* (* const&amp;)(object*), pair&lt;string, aura::library* (*)(object*), string const&amp;, aura::library* (* const&amp;)(object*)&gt; &gt;*&amp;)</fn>
+      <fn>void acme::del&lt;map&lt;string, string const&amp;, apex::library* (*)(object*), apex::library* (* const&amp;)(object*), pair&lt;string, apex::library* (*)(object*), string const&amp;, apex::library* (* const&amp;)(object*)&gt; &gt; &gt;(map&lt;string, string const&amp;, apex::library* (*)(object*), apex::library* (* const&amp;)(object*), pair&lt;string, apex::library* (*)(object*), string const&amp;, apex::library* (* const&amp;)(object*)&gt; &gt;*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -64536,7 +64536,7 @@
     <frame>
       <ip>0x58250DC</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void aura::del&lt;simple_object&gt;(simple_object*&amp;)</fn>
+      <fn>void acme::del&lt;simple_object&gt;(simple_object*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -64702,7 +64702,7 @@
     <frame>
       <ip>0x58250DC</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void aura::del&lt;simple_object&gt;(simple_object*&amp;)</fn>
+      <fn>void acme::del&lt;simple_object&gt;(simple_object*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -64868,7 +64868,7 @@
     <frame>
       <ip>0x58250DC</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void aura::del&lt;simple_object&gt;(simple_object*&amp;)</fn>
+      <fn>void acme::del&lt;simple_object&gt;(simple_object*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -65034,7 +65034,7 @@
     <frame>
       <ip>0x58250DC</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void aura::del&lt;simple_object&gt;(simple_object*&amp;)</fn>
+      <fn>void acme::del&lt;simple_object&gt;(simple_object*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -65200,7 +65200,7 @@
     <frame>
       <ip>0x58250DC</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void aura::del&lt;simple_object&gt;(simple_object*&amp;)</fn>
+      <fn>void acme::del&lt;simple_object&gt;(simple_object*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -65358,7 +65358,7 @@
     <frame>
       <ip>0x5824FD3</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void aura::del&lt;critical_section&gt;(critical_section*&amp;)</fn>
+      <fn>void acme::del&lt;critical_section&gt;(critical_section*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -65382,7 +65382,7 @@
     <frame>
       <ip>0x58251AC</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void aura::del&lt;id_space&gt;(id_space*&amp;)</fn>
+      <fn>void acme::del&lt;id_space&gt;(id_space*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -65671,7 +65671,7 @@
     <frame>
       <ip>0x582526F</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void aura::del&lt;plex_heap_alloc_array&gt;(plex_heap_alloc_array*&amp;)</fn>
+      <fn>void acme::del&lt;plex_heap_alloc_array&gt;(plex_heap_alloc_array*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -65928,7 +65928,7 @@
     <frame>
       <ip>0x582526F</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void aura::del&lt;plex_heap_alloc_array&gt;(plex_heap_alloc_array*&amp;)</fn>
+      <fn>void acme::del&lt;plex_heap_alloc_array&gt;(plex_heap_alloc_array*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -66185,7 +66185,7 @@
     <frame>
       <ip>0x582526F</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void aura::del&lt;plex_heap_alloc_array&gt;(plex_heap_alloc_array*&amp;)</fn>
+      <fn>void acme::del&lt;plex_heap_alloc_array&gt;(plex_heap_alloc_array*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -66442,7 +66442,7 @@
     <frame>
       <ip>0x582526F</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void aura::del&lt;plex_heap_alloc_array&gt;(plex_heap_alloc_array*&amp;)</fn>
+      <fn>void acme::del&lt;plex_heap_alloc_array&gt;(plex_heap_alloc_array*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -66723,7 +66723,7 @@
     <frame>
       <ip>0x582526F</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void aura::del&lt;plex_heap_alloc_array&gt;(plex_heap_alloc_array*&amp;)</fn>
+      <fn>void acme::del&lt;plex_heap_alloc_array&gt;(plex_heap_alloc_array*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -66996,7 +66996,7 @@
     <frame>
       <ip>0x582526F</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>void aura::del&lt;plex_heap_alloc_array&gt;(plex_heap_alloc_array*&amp;)</fn>
+      <fn>void acme::del&lt;plex_heap_alloc_array&gt;(plex_heap_alloc_array*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/_policy</dir>
       <file>aura_cpp.h</file>
       <line>1005</line>
@@ -67722,7 +67722,7 @@
     <frame>
       <ip>0x57B8D0D</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), aura::library* (*)(object*))</fn>
+      <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), apex::library* (*)(object*))</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_app_core.cpp</file>
       <line>916</line>
@@ -69376,7 +69376,7 @@
     <frame>
       <ip>0x57B8D0D</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), aura::library* (*)(object*))</fn>
+      <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), apex::library* (*)(object*))</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_app_core.cpp</file>
       <line>916</line>
@@ -70084,7 +70084,7 @@
     <frame>
       <ip>0x57B8D0D</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), aura::library* (*)(object*))</fn>
+      <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), apex::library* (*)(object*))</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_app_core.cpp</file>
       <line>916</line>
@@ -74289,7 +74289,7 @@
     <frame>
       <ip>0x57C9022</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::ipi::ipi(object*, string const&amp;)</fn>
+      <fn>apex::ipi::ipi(object*, string const&amp;)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_ipi.cpp</file>
       <line>40</line>
@@ -75294,7 +75294,7 @@
     <frame>
       <ip>0x2637B8FA</ip>
       <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
-      <fn>experience::aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/experience_core</dir>
       <file>experience_core_library.cpp</file>
       <line>34</line>
@@ -75302,7 +75302,7 @@
     <frame>
       <ip>0x57CECFD</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_library.cpp</file>
       <line>638</line>
@@ -90935,7 +90935,7 @@
     <frame>
       <ip>0x2637B98E</ip>
       <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
-      <fn>experience::aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/experience_core</dir>
       <file>experience_core_library.cpp</file>
       <line>40</line>
@@ -90943,7 +90943,7 @@
     <frame>
       <ip>0x57CECFD</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_library.cpp</file>
       <line>638</line>
@@ -91041,7 +91041,7 @@
     <frame>
       <ip>0x2637B98E</ip>
       <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
-      <fn>experience::aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/experience_core</dir>
       <file>experience_core_library.cpp</file>
       <line>40</line>
@@ -91049,7 +91049,7 @@
     <frame>
       <ip>0x57CECFD</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_library.cpp</file>
       <line>638</line>
@@ -91147,7 +91147,7 @@
     <frame>
       <ip>0x2637B98E</ip>
       <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
-      <fn>experience::aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/experience_core</dir>
       <file>experience_core_library.cpp</file>
       <line>40</line>
@@ -91155,7 +91155,7 @@
     <frame>
       <ip>0x57CECFD</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_library.cpp</file>
       <line>638</line>
@@ -91253,7 +91253,7 @@
     <frame>
       <ip>0x2637B98E</ip>
       <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
-      <fn>experience::aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/experience_core</dir>
       <file>experience_core_library.cpp</file>
       <line>40</line>
@@ -91261,7 +91261,7 @@
     <frame>
       <ip>0x57CECFD</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_library.cpp</file>
       <line>638</line>
@@ -93999,7 +93999,7 @@
     <frame>
       <ip>0x2637BA22</ip>
       <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
-      <fn>experience::aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/experience_core</dir>
       <file>experience_core_library.cpp</file>
       <line>46</line>
@@ -94007,7 +94007,7 @@
     <frame>
       <ip>0x57CECFD</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_library.cpp</file>
       <line>638</line>
@@ -94105,7 +94105,7 @@
     <frame>
       <ip>0x2637BA22</ip>
       <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
-      <fn>experience::aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/experience_core</dir>
       <file>experience_core_library.cpp</file>
       <line>46</line>
@@ -94113,7 +94113,7 @@
     <frame>
       <ip>0x57CECFD</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_library.cpp</file>
       <line>638</line>
@@ -94211,7 +94211,7 @@
     <frame>
       <ip>0x2637BA22</ip>
       <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
-      <fn>experience::aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/experience_core</dir>
       <file>experience_core_library.cpp</file>
       <line>46</line>
@@ -94219,7 +94219,7 @@
     <frame>
       <ip>0x57CECFD</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_library.cpp</file>
       <line>638</line>
@@ -94317,7 +94317,7 @@
     <frame>
       <ip>0x2637BA22</ip>
       <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
-      <fn>experience::aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/experience_core</dir>
       <file>experience_core_library.cpp</file>
       <line>46</line>
@@ -94325,7 +94325,7 @@
     <frame>
       <ip>0x57CECFD</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_library.cpp</file>
       <line>638</line>
@@ -94423,7 +94423,7 @@
     <frame>
       <ip>0x2637BA22</ip>
       <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
-      <fn>experience::aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/experience_core</dir>
       <file>experience_core_library.cpp</file>
       <line>46</line>
@@ -94431,7 +94431,7 @@
     <frame>
       <ip>0x57CECFD</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_library.cpp</file>
       <line>638</line>
@@ -94529,7 +94529,7 @@
     <frame>
       <ip>0x2637BA22</ip>
       <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
-      <fn>experience::aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/experience_core</dir>
       <file>experience_core_library.cpp</file>
       <line>46</line>
@@ -94537,7 +94537,7 @@
     <frame>
       <ip>0x57CECFD</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_library.cpp</file>
       <line>638</line>
@@ -94635,7 +94635,7 @@
     <frame>
       <ip>0x2637BA22</ip>
       <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
-      <fn>experience::aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/experience_core</dir>
       <file>experience_core_library.cpp</file>
       <line>46</line>
@@ -94643,7 +94643,7 @@
     <frame>
       <ip>0x57CECFD</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_library.cpp</file>
       <line>638</line>
@@ -94741,7 +94741,7 @@
     <frame>
       <ip>0x2637BA22</ip>
       <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
-      <fn>experience::aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/experience_core</dir>
       <file>experience_core_library.cpp</file>
       <line>46</line>
@@ -94749,7 +94749,7 @@
     <frame>
       <ip>0x57CECFD</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_library.cpp</file>
       <line>638</line>
@@ -94847,7 +94847,7 @@
     <frame>
       <ip>0x2637BA22</ip>
       <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
-      <fn>experience::aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/experience_core</dir>
       <file>experience_core_library.cpp</file>
       <line>46</line>
@@ -94855,7 +94855,7 @@
     <frame>
       <ip>0x57CECFD</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_library.cpp</file>
       <line>638</line>
@@ -97678,7 +97678,7 @@
     <frame>
       <ip>0x2637B98E</ip>
       <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
-      <fn>experience::aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/experience_core</dir>
       <file>experience_core_library.cpp</file>
       <line>40</line>
@@ -97686,7 +97686,7 @@
     <frame>
       <ip>0x57CECFD</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_library.cpp</file>
       <line>638</line>
@@ -97784,7 +97784,7 @@
     <frame>
       <ip>0x2637B98E</ip>
       <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
-      <fn>experience::aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/experience_core</dir>
       <file>experience_core_library.cpp</file>
       <line>40</line>
@@ -97792,7 +97792,7 @@
     <frame>
       <ip>0x57CECFD</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_library.cpp</file>
       <line>638</line>
@@ -97890,7 +97890,7 @@
     <frame>
       <ip>0x2637B98E</ip>
       <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
-      <fn>experience::aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/experience_core</dir>
       <file>experience_core_library.cpp</file>
       <line>40</line>
@@ -97898,7 +97898,7 @@
     <frame>
       <ip>0x57CECFD</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_library.cpp</file>
       <line>638</line>
@@ -97996,7 +97996,7 @@
     <frame>
       <ip>0x2637B98E</ip>
       <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
-      <fn>experience::aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/experience_core</dir>
       <file>experience_core_library.cpp</file>
       <line>40</line>
@@ -98004,7 +98004,7 @@
     <frame>
       <ip>0x57CECFD</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_library.cpp</file>
       <line>638</line>
@@ -102481,7 +102481,7 @@
     <frame>
       <ip>0x2637BAB6</ip>
       <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
-      <fn>experience::aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/experience_core</dir>
       <file>experience_core_library.cpp</file>
       <line>52</line>
@@ -102489,7 +102489,7 @@
     <frame>
       <ip>0x57CECFD</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_library.cpp</file>
       <line>638</line>
@@ -102587,7 +102587,7 @@
     <frame>
       <ip>0x2637BAB6</ip>
       <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
-      <fn>experience::aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/experience_core</dir>
       <file>experience_core_library.cpp</file>
       <line>52</line>
@@ -102595,7 +102595,7 @@
     <frame>
       <ip>0x57CECFD</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_library.cpp</file>
       <line>638</line>
@@ -102693,7 +102693,7 @@
     <frame>
       <ip>0x2637BAB6</ip>
       <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
-      <fn>experience::aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/experience_core</dir>
       <file>experience_core_library.cpp</file>
       <line>52</line>
@@ -102701,7 +102701,7 @@
     <frame>
       <ip>0x57CECFD</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_library.cpp</file>
       <line>638</line>
@@ -102945,7 +102945,7 @@
     <frame>
       <ip>0x2637B98E</ip>
       <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
-      <fn>experience::aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/experience_core</dir>
       <file>experience_core_library.cpp</file>
       <line>40</line>
@@ -102953,7 +102953,7 @@
     <frame>
       <ip>0x57CECFD</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_library.cpp</file>
       <line>638</line>
@@ -103050,7 +103050,7 @@
     <frame>
       <ip>0x57B8D0D</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), aura::library* (*)(object*))</fn>
+      <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), apex::library* (*)(object*))</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_app_core.cpp</file>
       <line>916</line>
@@ -103148,7 +103148,7 @@
     <frame>
       <ip>0x2637BAB6</ip>
       <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
-      <fn>experience::aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/experience_core</dir>
       <file>experience_core_library.cpp</file>
       <line>52</line>
@@ -103156,7 +103156,7 @@
     <frame>
       <ip>0x57CECFD</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_library.cpp</file>
       <line>638</line>
@@ -103238,7 +103238,7 @@
     <frame>
       <ip>0x2637BAB6</ip>
       <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
-      <fn>experience::aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/experience_core</dir>
       <file>experience_core_library.cpp</file>
       <line>52</line>
@@ -103246,7 +103246,7 @@
     <frame>
       <ip>0x57CECFD</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_library.cpp</file>
       <line>638</line>
@@ -103344,7 +103344,7 @@
     <frame>
       <ip>0x2637BAB6</ip>
       <obj>/xcore/time/x64/basis/libexperience_core.so</obj>
-      <fn>experience::aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>experience::apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/experience_core</dir>
       <file>experience_core_library.cpp</file>
       <line>52</line>
@@ -103352,7 +103352,7 @@
     <frame>
       <ip>0x57CECFD</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::library::alloc(object*, char const*, object*)</fn>
+      <fn>apex::library::alloc(object*, char const*, object*)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_library.cpp</file>
       <line>638</line>
@@ -103402,7 +103402,7 @@
     <frame>
       <ip>0x58735D2</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>alloc_factory&lt;aura::library, aura::library&gt;::alloc(object*)</fn>
+      <fn>alloc_factory&lt;apex::library, apex::library&gt;::alloc(object*)</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_class.h</file>
       <line>50</line>
@@ -103410,7 +103410,7 @@
     <frame>
       <ip>0x585A81D</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>pointer&lt;aura::library&gt; alloc&lt;aura::library&gt;(object*)</fn>
+      <fn>pointer&lt;apex::library&gt; alloc&lt;apex::library&gt;(object*)</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_system.h</file>
       <line>663</line>
@@ -103418,7 +103418,7 @@
     <frame>
       <ip>0x5844805</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>pointer&lt;aura::library&gt;&amp; alloc&lt;aura::library&gt;(pointer&lt;aura::library&gt;&amp;, object*)</fn>
+      <fn>pointer&lt;apex::library&gt;&amp; alloc&lt;apex::library&gt;(pointer&lt;apex::library&gt;&amp;, object*)</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura.inl</file>
       <line>877</line>
@@ -103426,7 +103426,7 @@
     <frame>
       <ip>0x5829784</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>pointer&lt;aura::library&gt;&amp; pointer&lt;aura::library&gt;::alloc&lt;aura::system&gt;(aura::system*)</fn>
+      <fn>pointer&lt;apex::library&gt;&amp; pointer&lt;apex::library&gt;::alloc&lt;aura::system&gt;(aura::system*)</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_system_smart_pointer.inl</file>
       <line>9</line>
@@ -103629,7 +103629,7 @@
     <frame>
       <ip>0x57B8D0D</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), aura::library* (*)(object*))</fn>
+      <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), apex::library* (*)(object*))</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_app_core.cpp</file>
       <line>916</line>

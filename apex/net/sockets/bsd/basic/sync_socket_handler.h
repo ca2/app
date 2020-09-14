@@ -17,7 +17,7 @@ namespace sockets
          socket_handler          m_handler;
          i32                 m_iDefaultTimeout;
 
-         sync_socket_handler(::object * pobject, ::aura::log *log = nullptr);
+         sync_socket_handler(::object * pobject, ::apex::log *log = nullptr);
          virtual ~sync_socket_handler();
 
 

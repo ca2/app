@@ -45,7 +45,7 @@ namespace account
       virtual ~login();
 
 
-      virtual ::estatus initialize(::object * pobjectContext) override;
+      virtual ::estatus initialize(::layered * pobjectContext) override;
 
       virtual void install_message_routing(::channel * pchannel) override;
 

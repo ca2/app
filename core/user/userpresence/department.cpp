@@ -33,10 +33,10 @@ namespace userpresence
    }
 
 
-   estatus department::initialize(::object * pobjectContext)
+   estatus department::initialize(::layered * pobjectContext)
    {
 
-      auto estatus = ::aura::department::initialize(pobjectContext);
+      auto estatus = ::apex::department::initialize(pobjectContext);
 
       if (!estatus)
       {

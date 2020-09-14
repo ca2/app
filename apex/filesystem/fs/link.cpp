@@ -121,7 +121,7 @@ namespace fs
 
       m_plisting->clear_results();
 
-      m_plisting->ls();
+      Context.dir().ls(*m_plisting);
 
    }
 

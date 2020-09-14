@@ -6,7 +6,7 @@ namespace colorertake5
 {
 
 
-   HRCParserImpl::HRCParserImpl(::object * pobject) :
+   HRCParserImpl::HRCParserImpl(::layered * pobjectContext) :
       object(pobject),
       fileTypeHash(pobject),
       schemeHash(pobject),

@@ -140,7 +140,7 @@ CLASS_DECL_AURA::aura::multimedia * get_new_multimedia()
 }
 
 
-CLASS_DECL_AURA::aura::multimedia * get_context_multimedia(::object * pobjectContext)
+CLASS_DECL_AURA::aura::multimedia * get_context_multimedia(::layered * pobjectContext)
 {
 
    return Sys(pobjectContext).defer_get_multimedia();
@@ -151,7 +151,7 @@ CLASS_DECL_AURA::aura::multimedia * get_context_multimedia(::object * pobjectCon
 CLASS_DECL_AURA bool has_multimedia()
 {
 
-   return ::is_set(::get_context_system()->m_pmultimedia);
+   return ::is_set(System.m_pmultimedia);
 
 }
 

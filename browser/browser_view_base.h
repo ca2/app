@@ -50,7 +50,7 @@ namespace browser
 
 
 
-      impact_base(::object * pobject);
+      impact_base(::layered * pobjectContext);
       virtual ~impact_base();
 
       virtual i64 add_ref(OBJ_REF_DBG_PARAMS)

@@ -9,7 +9,8 @@ namespace userfs
 
 
    class CLASS_DECL_CORE tree :
-      virtual public ::user::tree_data
+      virtual public ::user::tree_data,
+      virtual public ::channel
    {
    public:
       
@@ -23,6 +24,17 @@ namespace userfs
 
       tree();
       virtual ~tree();
+
+
+#ifdef DEBUG
+      virtual i64 add_ref(OBJ_REF_DBG_PARAMS) override;
+      virtual i64 dec_ref(OBJ_REF_DBG_PARAMS) override;
+      virtual i64 release(OBJ_REF_DBG_PARAMS) override;
+#else
+      virtual i64 add_ref(OBJ_REF_DBG_PARAMS);
+      virtual i64 dec_ref(OBJ_REF_DBG_PARAMS);
+      virtual i64 release(OBJ_REF_DBG_PARAMS);
+#endif
 
 
       virtual void assert_valid() const override;

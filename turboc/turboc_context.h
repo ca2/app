@@ -23,7 +23,7 @@ namespace turboc
 
 
 
-      action_context(::object * pobject);
+      action_context(::layered * pobjectContext);
       virtual ~action_context();
 
       bool gok();

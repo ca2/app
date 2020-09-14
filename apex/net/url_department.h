@@ -6,7 +6,7 @@ namespace url
 
 
    class CLASS_DECL_APEX department :
-      virtual public ::aura::department
+      virtual public ::apex::department
    {
    public:
 

@@ -20,7 +20,7 @@ namespace database
    }
 
 
-   ::estatus server::initialize(::object * pobjectContext)
+   ::estatus server::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);

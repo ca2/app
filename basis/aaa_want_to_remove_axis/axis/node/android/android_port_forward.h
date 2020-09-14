@@ -16,7 +16,7 @@ namespace android
    public:
 
 
-      port_forward(::object * pobject);
+      port_forward(::layered * pobjectContext);
       virtual ~port_forward();
 
 

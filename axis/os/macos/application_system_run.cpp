@@ -70,12 +70,12 @@
 //}
 
 
-bool os_init_application()
-{
+// bool os_init_application()
+// {
    
-   return true;
+//    return true;
    
-}
+// }
 
 
 

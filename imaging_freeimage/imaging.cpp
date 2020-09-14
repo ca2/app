@@ -5,7 +5,7 @@ namespace imaging_freeimage
 {
 
 
-   imaging::imaging()
+   context_image::context_image()
    {
 
       FreeImage_Initialise(FALSE);
@@ -13,7 +13,7 @@ namespace imaging_freeimage
    }
 
 
-   imaging::~imaging()
+   context_image::~context_image()
    {
 
       FreeImage_DeInitialise();

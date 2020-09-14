@@ -4,7 +4,7 @@
 
 
 
-window_opengl::window_opengl(::object * pobject) :
+window_opengl::window_opengl(::layered * pobjectContext) :
    object(pobject),
    window_graphics(pobject)
 {

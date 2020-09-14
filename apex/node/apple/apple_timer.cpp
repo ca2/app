@@ -7,7 +7,7 @@ void * ResetDispatchTimer(void * timer, u64 interval, u64 leeway);
 
 void ReleaseDispatch(void * p);
 
-void aura_timer(void * p);
+void apex_timer(void * p);
 
 //
 //void timer::impl_init()
@@ -35,7 +35,7 @@ void aura_timer(void * p);
 ////
 ////   }
 ////
-////   m_timer = CreateDispatchTimer(m_dwMillis, MAX(1, m_dwMillis / 20), m_queue, aura_timer, this);
+////   m_timer = CreateDispatchTimer(m_dwMillis, MAX(1, m_dwMillis / 20), m_queue, apex_timer, this);
 ////
 ////   if (m_timer == nullptr)
 ////   {
@@ -105,7 +105,7 @@ void aura_timer(void * p);
 
 
 //
-//void aura_timer(void * p)
+//void apex_timer(void * p)
 //{
 //
 //   ::timer * ptimer = (::timer *)p;

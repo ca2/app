@@ -9,24 +9,24 @@ layered::~layered()
 }
 
 
-void layered::set_os_data(byte bIndex, void* p)
+void layered::set_layer(byte bLayeredIndex, void* p)
 {
 
-   if (bIndex >= MAX_LAYERED_COUNT)
+   if (bLayeredIndex >= MAX_LAYERED_COUNT)
    {
 
       __throw(index_out_of_bounds("layered::set_os_data"));
 
    }
 
-   if (m_osdataa[bIndex])
+   if (m_pa[bLayeredIndex])
    {
 
-      __throw(exception::exception("layered collision!!"));
+      __throw(exception::exception("layered layer collision!!"));
 
    }
 
-   m_osdataa[bIndex] = p;
+   m_pa[bLayeredIndex] = p;
 
 }
 

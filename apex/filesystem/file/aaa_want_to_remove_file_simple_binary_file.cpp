@@ -30,7 +30,7 @@ namespace file
 {
 
 
-   simple_binary_file::simple_binary_file(::object * pobject) :
+   simple_binary_file::simple_binary_file(::layered * pobjectContext) :
       object(pobject)
    {
 
@@ -446,16 +446,16 @@ namespace file
          rStatus.m_attribute = 0;
          /*         else
                   {
-                     DWORD dwAttribute = ::GetFileAttributesW(::aura::international::utf8_to_unicode(m_strFileName));
+                     DWORD dwAttribute = ::GetFileAttributesW(::apex::international::utf8_to_unicode(m_strFileName));
 
-                     // don't return an error for this because previous versions of aura API didn't
+                     // don't return an error for this because previous versions of apex API didn't
                      if (dwAttribute == 0xFFFFFFFF)
                         rStatus.m_attribute = 0;
                      else
                      {
                         rStatus.m_attribute = (BYTE) dwAttribute;
          #ifdef _DEBUG
-                        // aura API BUG: m_attribute is only a BYTE wide
+                        // apex API BUG: m_attribute is only a BYTE wide
                         if (dwAttribute & ~0xFF)
                            TRACE0("Warning: file::GetStatus() returns m_attribute without high-order flags.\n");
          #endif
@@ -491,7 +491,7 @@ namespace file
 //         rStatus.m_strFullName.Empty();
 //         return FALSE;
 //      }
-//      ::aura::international::unicode_to_utf8(rStatus.m_strFullName, wstrFullName);*/
+//      ::apex::international::unicode_to_utf8(rStatus.m_strFullName, wstrFullName);*/
 //
 //      rStatus.m_strFullName = lpszFileName;
 //

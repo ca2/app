@@ -21,7 +21,7 @@ namespace user
    }
 
 
-   ::estatus print_task::initialize(::object * pobjectContext)
+   ::estatus print_task::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::task::initialize(pobjectContext);

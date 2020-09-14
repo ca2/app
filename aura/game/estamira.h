@@ -6,7 +6,7 @@ namespace aura
 
 
    class CLASS_DECL_AURA estamira :
-      virtual public ::aura::department
+      virtual public ::apex::department
    {
    public:
 

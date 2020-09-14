@@ -16,6 +16,10 @@ namespace filemanager
       virtual ~folder_list_data();
 
 
+      virtual void assert_valid() const override;
+      virtual void dump(dump_context & dumpcontext) const override;
+
+
       virtual void _001GetItemText(::user::mesh_item * pitem);
 
       virtual count _001GetItemCount();

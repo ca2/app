@@ -14,7 +14,7 @@ namespace colorertake5
    class CLASS_DECL_SPHERE HRCParserImpl : public HRCParser
    {
    public:
-      HRCParserImpl(::object * pobject);
+      HRCParserImpl(::layered * pobjectContext);
       virtual ~HRCParserImpl();
 
       void setErrorHandler(ErrorHandler *eh);

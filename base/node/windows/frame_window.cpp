@@ -46,7 +46,11 @@ void simple_frame_window::defer_set_icon()
 //
 //      defer_set_icon();
 
-      auto picon = Context.load_icon("matter://icon.ico");
+      auto& app = Application;
+
+      auto& image = app.image();
+
+      auto picon = image.load_icon("matter://icon.ico");
 
 //      HICON hicon = load_icon(get_context_application(), straMatter, "icon.ico", 16, 16);
 
@@ -59,7 +63,7 @@ void simple_frame_window::defer_set_icon()
 
          //hicon = load_icon(get_context_application(), straMatter, "icon.ico", 24, 24);
 
-         __compose(m_picon, Context.load_icon("matter://icon.ico"));
+         __compose(m_picon, Application.image().load_icon("matter://icon.ico"));
 
       }
 

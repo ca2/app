@@ -7,7 +7,7 @@
 //public:
 //
 //
-//   procedure_array(::object * pobject) :
+//   procedure_array(::layered * pobjectContext) :
 //      ::object(pobject)
 //   {
 //

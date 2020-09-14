@@ -13,32 +13,32 @@ namespace multithreading
    //CLASS_DECL_ACME::critical_section * s_pcs2 = nullptr;
 
 
-   CLASS_DECL_ACME void init_multithreading()
-   {
+   //CLASS_DECL_ACME void init_multithreading()
+   //{
 
-      //s_pcs2 = new ::critical_section();
+   //   //s_pcs2 = new ::critical_section();
 
-      //s_piaThread2 = new comparable_eq_array<ITHREAD>;
+   //   //s_piaThread2 = new comparable_eq_array<ITHREAD>;
 
-      //s_pthreadptra2 = new __pointer_array(thread);
+   //   //s_pthreadptra2 = new __pointer_array(thread);
 
-      __node_init_multithreading();
+   //   __node_init_multithreading();
 
-   }
+   //}
 
 
-   CLASS_DECL_ACME void term_multithreading()
-   {
+   //CLASS_DECL_ACME void term_multithreading()
+   //{
 
-      __node_term_multithreading();
+   //   __node_term_multithreading();
 
-      //::acme::del(s_pthreadptra2);
+   //   //::acme::del(s_pthreadptra2);
 
-      //::acme::del(s_piaThread2);
+   //   //::acme::del(s_piaThread2);
 
-      //::acme::del(s_pcs2);
+   //   //::acme::del(s_pcs2);
 
-   }
+   //}
 
    //CLASS_DECL_ACME bool thread_id_registered(ITHREAD id)
    //{
@@ -280,7 +280,7 @@ bool thread_get_run()
 }
 
 
-void set_thread_get_run(PFN_THREAD_GET_RUN pthreadrun)
+CLASS_DECL_ACME void set_thread_get_run(PFN_THREAD_GET_RUN pthreadrun)
 {
 
    g_pthreadgetrun = pthreadrun;
@@ -545,103 +545,9 @@ namespace multithreading
 //}
 
 
-//bool do_events()
-//{
-//
-//   bool bProcess = false;
-//
-//   bool bProcessed = false;
-//
-//   do
-//   {
-//
-//      bool bProcess1 = false;
-//
-//      try
-//      {
-//
-//         ::thread* pthread = ::get_thread();
-//
-//         if (::is_set(pthread))
-//         {
-//
-//            bProcess1 = pthread->do_events();
-//
-//         }
-//
-//      }
-//      catch (...)
-//      {
-//
-//      }
-//
-//      bool bProcess2 = false;
-//
-//      bool bProcess3 = false;
-//
-//      try
-//      {
-//
-//         ::acme::system* psystem = ::get_context_system();
-//
-//         if (::is_set(psystem))
-//         {
-//
-//            bProcess2 = psystem->do_events();
-//
-//            try
-//            {
-//
-//               ::acme::session* psession = psystem->get_context_session();
-//
-//               if (::is_set(psession))
-//               {
-//
-//                  bProcess3 = psystem->do_events();
-//
-//               }
-//
-//            }
-//            catch (...)
-//            {
-//
-//            }
-//
-//         }
-//
-//      }
-//      catch (...)
-//      {
-//
-//      }
-//
-//      bool bProcess = bProcess1 || bProcess2 || bProcess3;
-//
-//      if (bProcess)
-//      {
-//
-//         bProcessed = bProcess;
-//
-//      }
-//
-//   } while (bProcess);
-//
-//   return bProcessed;
-//
-//}
 
 
-//bool do_events(const duration & duration)
-//{
-//
-//   ::thread * pthread = ::get_thread();
-//
-//   if(pthread == nullptr)
-//      return;
-//
-//   pthread->do_events(duration);
-//
-//}
+
 
 
 //
@@ -1034,19 +940,40 @@ void thread_name_abbreviate(string & strName, int len)
 
 }
 
-thread_local thread* t_pthread;
+
+thread_local __pointer(layered) t_pthread;
 
 
-CLASS_DECL_ACME::thread* get_thread()
+CLASS_DECL_ACME ::layered * get_layered_thread()
 {
 
    return t_pthread;
 
 }
-//CLASS_DECL_ACME ::thread* get_thread(ITHREAD idthread);
-CLASS_DECL_ACME void set_thread(thread* pthread)
+
+
+CLASS_DECL_ACME ::thread* get_thread()
+{
+
+   return __thread(get_layered_thread());
+
+}
+
+
+CLASS_DECL_ACME void set_thread(layered * pthread)
 {
 
     t_pthread = pthread;
 
 }
+
+
+CLASS_DECL_ACME void thread_release()
+{
+
+   t_pthread.release();
+
+}
+
+
+

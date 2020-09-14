@@ -6,7 +6,7 @@ namespace calculator
 
 
    class CLASS_DECL_AXIS element:
-      virtual public ::generic_object
+      virtual public ::generic
    {
    public:
 

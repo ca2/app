@@ -40,7 +40,7 @@ namespace user
 
       }
 
-      if (!::aura::department::init1())
+      if (!::apex::department::init1())
       {
 
          return false;
@@ -55,7 +55,7 @@ namespace user
    ::estatus user::init()
    {
 
-      if (!::aura::department::init())
+      if (!::apex::department::init())
       {
 
          return false;
@@ -110,7 +110,7 @@ namespace user
 
       debug_print("user::initialize bHasUninstall %c", bHasUninstall);
 
-      if (!::aura::department::init())
+      if (!::apex::department::init())
       {
 
          return false;
@@ -125,7 +125,7 @@ namespace user
    ::estatus user::init2()
    {
 
-      if(!::aura::department::init2())
+      if(!::apex::department::init2())
          return false;
 
       return true;
@@ -138,15 +138,15 @@ namespace user
 
 
       //m_puserstyle.release();
-//      ::aura::del(m_pufeschema);
+//      ::acme::del(m_pufeschema);
 //
-//      ::aura::del(m_pufe);
+//      ::acme::del(m_pufe);
 
 
       try
       {
 
-         ::aura::department::term();
+         ::apex::department::term();
 
       }
       catch(...)
@@ -221,7 +221,7 @@ namespace user
 
 
 
-//   ::user::front_end_schema * GetUfeSchema(::object * pobject)
+//   ::user::front_end_schema * GetUfeSchema(::layered * pobjectContext)
 //   {
 //
 //      if (papp == nullptr)
@@ -250,7 +250,7 @@ namespace user
 //   }
 //
 //
-//   ::user::front_end * GetUfe(::object * pobject)
+//   ::user::front_end * GetUfe(::layered * pobjectContext)
 //   {
 //
 //      return Sess(papp).user()->GetUfe();
@@ -503,7 +503,7 @@ namespace aura
    //void destroy_session_docs(session_docs * pdocs)
    //{
 
-   //   ::aura::del(pdocs);
+   //   ::acme::del(pdocs);
 
    //}
 
@@ -527,7 +527,7 @@ namespace aura
    }
 
 
-//   void session::on_app_request_bergedge_callback(::object * pobject)
+//   void session::on_app_request_bergedge_callback(::layered * pobjectContext)
 //   {
 //
 //      if (&App(pobject) != nullptr)

@@ -141,7 +141,7 @@ bool on_init_timer_thread();
 //
 //   //if (!on_init_thread())
 //   //{
-//   //   ::aura::del(ptimer);
+//   //   ::acme::del(ptimer);
 //   //   //return -34;
 //   //   return;
 //

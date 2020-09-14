@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "apex/id.h"
+#include "acme/id.h"
 
 
 namespace data
@@ -33,7 +33,7 @@ namespace data
    void data::assert_valid() const
    {
 
-      ::object::assert_valid();
+      ::generic::assert_valid();
 
    }
 
@@ -41,7 +41,7 @@ namespace data
    void data::dump(dump_context & dumpcontext) const
    {
 
-      ::object::dump(dumpcontext);
+      ::generic::dump(dumpcontext);
 
       //dumpcontext << "m_strTitle = " << m_strTitle;
       //dumpcontext << "\nm_path = " << m_path;
@@ -62,18 +62,18 @@ namespace data
 
       }
 
-      estatus = __refer(m_pdatacontainerbase, pdatacontainerbase);
+      m_pdatacontainerbase = pdatacontainerbase;
 
-      if (!estatus)
+      if (!m_pdatacontainerbase)
       {
 
-         return estatus;
+         return ::error_failed;
 
       }
 
-      run_property("on_create");
+      //run_property("on_create");
 
-      runall(CREATE_PROCEDURE);
+      //runall(CREATE_PROCEDURE);
 
       return ::success;
 
@@ -96,7 +96,7 @@ namespace data
    }
 
 
-   ::user::interaction *  data::get_data_bound_view(index iView)
+   ::user::primitive *  data::get_data_bound_view(index iView)
    {
 
       return nullptr;

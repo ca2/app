@@ -13,7 +13,7 @@ namespace plugin
 {
 
 
-   host_interaction::host_interaction(::object * pobject) :
+   host_interaction::host_interaction(::layered * pobjectContext) :
       ::object(pobject)
    {
 

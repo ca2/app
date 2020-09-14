@@ -5,7 +5,7 @@ namespace browser
 {
 
 
-   switcher_view::switcher_view(::object * pobject):
+   switcher_view::switcher_view(::layered * pobjectContext):
       object(pobject),
       ::user::split_layout(pobject),
       ::user::split_view(pobject),

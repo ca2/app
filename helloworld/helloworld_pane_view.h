@@ -24,7 +24,7 @@ namespace helloworld
       array < ::user::check_box * >                   m_checkptraBilbo;
 
 
-      pane_view(::object * pobject);
+      pane_view(::layered * pobjectContext);
       virtual ~pane_view();
 
 

@@ -15,7 +15,7 @@ namespace axis
       virtual ~system();
 
 
-      virtual ::estatus  initialize_system(::object * pobjectContext, app_core * pappcore) override;
+      virtual ::estatus  initialize_system(::layered * pobjectContext, app_core * pappcore) override;
 
       virtual ::estatus init() override;
       //virtual ::estatus init_instance() override;
@@ -110,7 +110,7 @@ namespace axis
 
 
 
-      //virtual string dir_appmatter_locator(::object * pobject);
+      //virtual string dir_appmatter_locator(::layered * pobjectContext);
 
 
       virtual void hist_hist(const char * psz);

@@ -231,10 +231,7 @@ namespace imaging_freeimage
    //#endif // WINDOWS_DESKTOP
 
 
-
-
-
-   ::estatus imaging::_load_image(::context * pcontext, ::image * pimage, const var & varFile, bool bSync, bool bCreateHelperMaps)
+   ::estatus context_image::_load_image(::image * pimage, const var & varFile, bool bSync, bool bCreateHelperMaps)
    {
 
       auto pmemory = create_memory();
@@ -252,7 +249,7 @@ namespace imaging_freeimage
 
       }
 
-      pcontext->file().as_memory(varFile, *pmemory);
+      Context.file().as_memory(varFile, *pmemory);
 
       const char * psz = (const char *)pmemory->get_data();
 
@@ -277,7 +274,7 @@ namespace imaging_freeimage
 
       }
 
-      auto estatus = System.imaging().load_svg(pimage, pmemory);
+      auto estatus = Application.image().load_svg(pimage, pmemory);
 
       if (::succeeded(estatus))
       {
@@ -289,7 +286,7 @@ namespace imaging_freeimage
       if (pmemory->get_size() > 3 && strnicmp(psz, "gif", 3) == 0)
       {
 
-         if (!pimage->_defer_load_multi_frame_image_(pmemory))
+         if (!_load_multi_frame_image(pimage, pmemory))
          {
 
             pimage->set_nok();

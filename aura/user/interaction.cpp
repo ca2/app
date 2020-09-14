@@ -2,10 +2,11 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
 #endif
-#include "aura/platform/app_core.h"
+#include "apex/platform/app_core.h"
 #include "aura/message.h"
 #include "aura/const/timer.h"
 #include "aura/const/id.h"
+#include "apex/message/simple_command.h"
 
 
 #define TEST_PRINT_BUFFER
@@ -21,7 +22,7 @@
 
 #endif // _UWP
 
-#define new AURA_NEW
+//#define new AURA_NEW
 
 
 namespace user
@@ -47,6 +48,8 @@ namespace user
 
    void interaction::user_interaction_common_construct()
    {
+
+      set_layer(LAYERED_USER_INTERACTION, this);
 
       m_bLayoutModified = false;
 
@@ -691,7 +694,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::get_bind_ui()
+   ::user::primitive * interaction::get_bind_ui()
    {
 
       if (::is_null(get_context_session()))
@@ -708,7 +711,7 @@ namespace user
 
       }
 
-      return get_context_session()->get_bound_ui(m_idView);
+      return Session.get_bound_ui(m_idView);
 
    }
 
@@ -1531,7 +1534,7 @@ namespace user
                      if (GetParent() == nullptr || !is_window_visible(layout_sketch))
                      {
 
-                        get_context_application()->get_context_session()->set_keyboard_focus(nullptr);
+                        Session.set_keyboard_focus(nullptr);
 
                      }
                      else
@@ -3308,7 +3311,7 @@ namespace user
 
             strText = *pstringText;
 
-            ::aura::del(pstringText);
+            ::acme::del(pstringText);
 
             bOk = true;
 
@@ -5427,7 +5430,7 @@ namespace user
    strsize interaction::get_window_text(char * pszStringBuf, strsize nMaxCount)
    {
 
-      strsize n = MIN(nMaxCount, m_strWindowText.get_length());
+      strsize n = min(nMaxCount, m_strWindowText.get_length());
 
       ansi_count_copy(pszStringBuf, m_strWindowText, n);
 
@@ -7579,7 +7582,7 @@ namespace user
 
       }
 
-      auto papp = get_context_application();
+      auto papp = &Application;
 
       if (papp && papp != pusercallback)
       {
@@ -8250,7 +8253,9 @@ namespace user
    void interaction::OnLinkClick(const char * psz, const char * pszTarget)
    {
 
-      Context.hyperlink().open_link(psz, "", pszTarget);
+      hyperlink hyperlink;
+
+      hyperlink.open_link(psz, "", pszTarget);
 
    }
 
@@ -9172,7 +9177,7 @@ restart:
             if (pitem->m_eevent == ::user::event_close_app)
             {
 
-               Application.close(::aura::end_app);
+               Application.close(::apex::e_end_app);
 
             }
 
@@ -11382,7 +11387,7 @@ restart:
    bool interaction::is_left_button_pressed() const
    {
 
-      return get_context_application()->get_context_session()->m_puiLastLButtonDown == this;
+      return Session.m_puiLastLButtonDown == this;
 
    }
 
@@ -12184,7 +12189,7 @@ restart:
    }
 
 
-   void interaction::post_task(::generic_object * pobjectTask)
+   void interaction::post_task(::generic * pobjectTask)
    {
 
       if (::is_set(m_pthreadUserInteraction))
@@ -12205,7 +12210,7 @@ restart:
 
       wstring wstr(m_strWindowText);
 
-      n = (int) MIN(wstr.get_length() + 1, n);
+      n = (int) min(wstr.get_length() + 1, n);
 
       wcsncpy(pwsz, wstr.c_str(), n);
 
@@ -12251,7 +12256,7 @@ restart:
 #endif
 
 
-   void interaction::send_task(::generic_object * pobjectTask, ::duration durationTimeout)
+   void interaction::send_task(::generic * pobjectTask, ::duration durationTimeout)
    {
 
       ::thread * pthread = get_wnd() == nullptr ? (::thread *) nullptr : get_wnd()->m_pthreadUserInteraction;

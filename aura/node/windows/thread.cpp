@@ -25,7 +25,7 @@ void CLASS_DECL_AURA __term_thread()
 //{
 //
 
-//thread::thread(::object * pobject):
+//thread::thread(::layered * pobjectContext):
 //   ::object(pobject),
 //   ::thread_impl(pobject)
 //{
@@ -143,17 +143,7 @@ bool __node_term_thread(::thread * pthread)
 }
 
 
-CLASS_DECL_AURA void main_branch(::generic_object* pobjectTask, e_priority epriority)
-{
 
-   ::get_context_system()->synch_pred([pobjectTask]()
-      {
-
-         pobjectTask->call();
-
-      });
-
-}
 
 
 

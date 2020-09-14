@@ -5,7 +5,7 @@ template < >
 inline natural_meta_data < string_meta_data < ansichar > > * __nil < natural_meta_data < string_meta_data < ansichar > > >()
 {
 
-   return &g_ansistringNil;
+   return g_pansistringNil;
 
 }
 
@@ -13,7 +13,7 @@ template < >
 inline natural_meta_data < string_meta_data < wd16char > > * __nil < natural_meta_data < string_meta_data < wd16char > > >()
 {
 
-   return &g_wd16stringNil;
+   return g_pwd16stringNil;
 
 }
 
@@ -21,7 +21,7 @@ template < >
 inline natural_meta_data < string_meta_data < wd32char > > * __nil < natural_meta_data < string_meta_data < wd32char > > >()
 {
 
-   return &g_wd32stringNil;
+   return g_pwd32stringNil;
 
 }
 

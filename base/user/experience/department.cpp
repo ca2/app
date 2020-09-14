@@ -20,7 +20,7 @@ namespace experience
    }
 
 
-   ::experience::experience * department::get_new_experience2(::object* pobjectContext, const char * pszExperienceLibrary)
+   ::experience::experience * department::get_new_experience2(::layered * pobjectContext, const char * pszExperienceLibrary)
    {
 
       string strId(pszExperienceLibrary);
@@ -112,7 +112,7 @@ namespace experience
    }
 
 
-   ::experience::experience * department::get_experience2(::object* pobjectContext, const char * pszUinteraction)
+   ::experience::experience * department::get_experience2(::layered * pobjectContext, const char * pszUinteraction)
    {
 
       auto & pexperience = m_mapExperience[pszUinteraction];
@@ -130,7 +130,7 @@ namespace experience
    }
 
 
-   ::experience::frame * department::experience_get_frame2(::object* pobjectContext, const char * pszLibrary, const char * pszFrame, const char * pszStyle)
+   ::experience::frame * department::experience_get_frame2(::layered * pobjectContext, const char * pszLibrary, const char * pszFrame, const char * pszStyle)
    {
 
       string_array straLibrary;

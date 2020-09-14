@@ -20,7 +20,7 @@ namespace colorertake5
    public:
    
       
-      TextHRDMapper(::object * pobject);
+      TextHRDMapper(::layered * pobjectContext);
       ~TextHRDMapper();
 
 

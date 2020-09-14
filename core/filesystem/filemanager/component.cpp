@@ -29,14 +29,14 @@ namespace filemanager
    }
 
 
-   string create_manager_id(::object* pobject)
+   string create_manager_id(::layered * pobjectContext)
    {
 
       memory mem;
 
       mem.set_size(get_manager_id_byte_len());
 
-      Sys(pobject).math().random_bytes(mem.get_data(), mem.get_size());
+      Sys(__object(pobjectContext)).math().random_bytes(mem.get_data(), mem.get_size());
 
       return mem.to_hex().uppered();
 
@@ -165,7 +165,7 @@ namespace filemanager
    }
 
 
-   ::estatus component::initialize_filemanager_component(::object * pobjectContext)
+   ::estatus component::initialize_filemanager_component(::layered * pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);

@@ -64,7 +64,7 @@
 
 
 
-CLASS_DECL_APEX bool __node_aura_pre_init()
+CLASS_DECL_APEX bool __node_apex_pre_init()
 {
 
 //   ace_set_alloc(ace_memory_alloc, &ace_memory_realloc, &ace, <#size_t s#>, <#PFN_MEMORY_REALLOC prealloc#>, <#PFN_MEMORY_FREE pfree#>, <#PFN_MEMORY_SIZE psize#>)
@@ -156,7 +156,7 @@ unsigned int sleep(unsigned int seconds)
 
 
 
-//CLASS_DECL_APEX bool __node_aura_pre_init()
+//CLASS_DECL_APEX bool __node_apex_pre_init()
 //{
 //
 //
@@ -166,7 +166,7 @@ unsigned int sleep(unsigned int seconds)
 
 
 
-CLASS_DECL_APEX bool __node_aura_pos_init()
+CLASS_DECL_APEX bool __node_apex_pos_init()
 {
 
    //   t_posthread = new os_thread(nullptr, nullptr);
@@ -181,7 +181,7 @@ CLASS_DECL_APEX bool __node_aura_pos_init()
 
 
 
-CLASS_DECL_APEX bool __node_aura_pre_term()
+CLASS_DECL_APEX bool __node_apex_pre_term()
 {
 
    //   if(t_posthread != nullptr)
@@ -208,7 +208,7 @@ CLASS_DECL_APEX bool __node_aura_pre_term()
 
 
 
-CLASS_DECL_APEX bool __node_aura_pos_term()
+CLASS_DECL_APEX bool __node_apex_pos_term()
 {
 
 
@@ -242,10 +242,10 @@ CLASS_DECL_APEX bool __node_aura_pos_term()
 //
 
 
-//class ios_aura_init
+//class ios_apex_init
 //{
 //public:
-//   ios_aura_init()
+//   ios_apex_init()
 //   {
 //
 //      ace_set_alloc(&memory_alloc, &memory_realloc, &memory_free, &memory_size);
@@ -255,5 +255,5 @@ CLASS_DECL_APEX bool __node_aura_pos_term()
 //
 //};
 //
-//ios_aura_init g_ios_aura_init;
+//ios_apex_init g_ios_apex_init;
 //

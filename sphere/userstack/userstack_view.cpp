@@ -6,7 +6,7 @@ namespace userstack
 {
 
 
-   view::view(::object * pobject) :
+   view::view(::layered * pobjectContext) :
       ::object(pobject),
       m_font(e_create)
    {

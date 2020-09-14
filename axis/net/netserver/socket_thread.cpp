@@ -22,7 +22,7 @@ namespace netserver
    }
 
 
-   ::netserver::socket_handler * socket_thread::create_socket_handler()
+   ::netserver::socket_handler * socket_thread::new_socket_handler()
    {
 
       return new netserver::socket_handler(get_context_object());
@@ -31,7 +31,7 @@ namespace netserver
    }
 
 
-   ::sockets::listen_socket_base * socket_thread::create_listen_socket()
+   ::sockets::listen_socket_base * socket_thread::new_listen_socket()
    {
 
       return new ::sockets::listen_socket < socket > (*m_psockethandler);
@@ -83,13 +83,13 @@ namespace netserver
          try
          {
 
-            m_psockethandler = ::move_transfer(create_socket_handler());
+            m_psockethandler = ::move_transfer(new_socket_handler());
 
             m_psockethandler->initialize(this);
 
             m_psockethandler->EnablePool();
 
-            m_plistensocket = ::move_transfer(create_listen_socket());
+            m_plistensocket = ::move_transfer(new_listen_socket());
 
             m_plistensocket->initialize(this);
 

@@ -30,8 +30,8 @@ namespace netserver
 
       virtual ::estatus     run() override;
 
-      virtual ::netserver::socket_handler * create_socket_handler();
-      virtual ::sockets::listen_socket_base * create_listen_socket();
+      virtual ::netserver::socket_handler * new_socket_handler();
+      virtual ::sockets::listen_socket_base * new_listen_socket();
 
       virtual bool initialize_listen_socket();
 

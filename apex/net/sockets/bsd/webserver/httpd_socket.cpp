@@ -26,12 +26,12 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "framework.h"
-#include "aura/id.h"
-#include "aura/net/sockets/_.h"
-#include "aura/platform/static_start.h"
+#include "apex/id.h"
+#include "apex/net/sockets/_.h"
+#include "apex/platform/static_start.h"
 #include <openssl/ssl.h>
 
-//extern ::mutex * g_pmutexGlobals;
+//extern ::mutex * get_globals_mutex();
 
 namespace sockets
 {
@@ -181,7 +181,7 @@ namespace sockets
    map < int, int, DH *, DH * > * dh_map()
    {
 
-      sync_lock sl(::aura::g_pmutexGlobals);
+      sync_lock sl(::get_globals_mutex());
 
       if (g_pmapdh == nullptr)
       {
@@ -198,7 +198,7 @@ namespace sockets
    DH * get_dh(int keylength)
    {
 
-      sync_lock sl(::aura::g_pmutexGlobals);
+      sync_lock sl(::get_globals_mutex());
 
       return dh_map()->operator[](keylength);
 
@@ -208,7 +208,7 @@ namespace sockets
    void set_dh(int keylength, DH * pdh)
    {
 
-      sync_lock sl(::aura::g_pmutexGlobals);
+      sync_lock sl(::get_globals_mutex());
 
       dh_map()->operator[](keylength) = pdh;
 
@@ -540,7 +540,7 @@ namespace sockets
                {
                   if(iEnd >= iStart)
                   {
-                     uiRead = MIN(mem.get_size(),(memsize) (iEnd - iPos + 1));
+                     uiRead = min(mem.get_size(),(memsize) (iEnd - iPos + 1));
                   }
                   else
                   {
@@ -585,7 +585,7 @@ namespace sockets
                {
                   if(iEnd != -1 && iEnd >= iStart)
                   {
-                     uiRead = MIN(mem.get_size(),(memsize) (iEnd - iPos + 1));
+                     uiRead = min(mem.get_size(),(memsize) (iEnd - iPos + 1));
                   }
                   else
                   {

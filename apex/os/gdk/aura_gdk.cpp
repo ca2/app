@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aura_gdk.h"
+#include "apex_gdk.h"
 
 
 void copy(RECT * prectTarget, const GdkRectangle * prectSource)

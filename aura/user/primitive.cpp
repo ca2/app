@@ -3,6 +3,8 @@
 #include "aura/user/_user.h"
 #endif
 #include "aura/message.h"
+#include "apex/message/simple_command.h"
+#include "aura/message/timer.h"
 
 
 namespace user
@@ -1653,13 +1655,13 @@ namespace user
       if (::is_set(get_context_session()))
       {
 
-         if (this == get_context_session()->m_puiHost)
+         if (this == __user_primitive(get_context_session()->m_puiHost))
          {
 
             return true;
 
          }
-         else if (puiParent == get_context_session()->m_puiHost)
+         else if (puiParent == __user_primitive(get_context_session()->m_puiHost))
          {
 
             return true;
@@ -3222,8 +3224,11 @@ namespace user
       break;
       case ::message::PrototypeTimer:
       {
+         
          //__throw(::exception::exception("do not use WM_TIMER or Windows SetTimer/KillTimer"));
+         
          pbase = __new(::message::timer);
+
       }
       break;
       case ::message::PrototypeShowWindow:

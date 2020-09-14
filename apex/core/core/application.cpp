@@ -1,10 +1,10 @@
 #include "framework.h"
-#include "aura/profiler2.h"
+#include "apex/profiler2.h"
 #include "core/user/userex/_userex.h"
 
 
 
-namespace aura
+namespace apex
 {
 
 
@@ -33,7 +33,7 @@ namespace aura
 
       m_iResourceId = 8001;
 
-      ::aura::profiler::initialize();
+      ::apex::profiler::initialize();
 
 //      m_pdocmanager = nullptr;
 
@@ -52,10 +52,10 @@ namespace aura
    }
 
 
-   ::estatus application::initialize(::object * pobjectContext)
+   ::estatus application::initialize(::layered * pobjectContext)
    {
 
-      auto estatus = ::aura::application::initialize(pobjectContext);
+      auto estatus = ::apex::application::initialize(pobjectContext);
 
       if (!estatus)
       {
@@ -95,7 +95,7 @@ namespace aura
    }
 
 
-   //::aura::application * application::get_context_application() const
+   //::apex::application * application::get_context_application() const
    //{
 
    //   return (application *) this;
@@ -135,7 +135,7 @@ namespace aura
    //   bool application::is_installing()
    //   {
    //
-   //      return ::aura::application::is_installing();
+   //      return ::apex::application::is_installing();
    //
    //   }
    //
@@ -143,7 +143,7 @@ namespace aura
    //   bool application::is_unstalling()
    //   {
    //
-   //      return ::aura::application::is_unstalling();
+   //      return ::apex::application::is_unstalling();
    //
    //   }
 
@@ -151,7 +151,7 @@ namespace aura
    bool application::is_serviceable() const
    {
 
-      return ::aura::application::is_serviceable();
+      return ::apex::application::is_serviceable();
 
    }
 
@@ -159,7 +159,7 @@ namespace aura
    ::estatus     application::main()
    {
 
-      return ::aura::application::main();
+      return ::apex::application::main();
 
    }
 
@@ -167,7 +167,7 @@ namespace aura
    ::estatus application::os_native_bergedge_start()
    {
 
-      if (!::aura::application::os_native_bergedge_start())
+      if (!::apex::application::os_native_bergedge_start())
       {
 
          return false;
@@ -184,7 +184,7 @@ namespace aura
 
       INFO("start");
 
-      if (!::aura::application::process_init())
+      if (!::apex::application::process_init())
       {
 
          ERR(".1");
@@ -224,7 +224,7 @@ namespace aura
 
       INFO("start");
 
-      if (!::aura::application::init1())
+      if (!::apex::application::init1())
       {
 
          ERR(".1");
@@ -279,7 +279,7 @@ namespace aura
    ::estatus application::init2()
    {
 
-      if (!::aura::application::init2())
+      if (!::apex::application::init2())
          return false;
 
       return true;
@@ -290,7 +290,7 @@ namespace aura
    ::estatus application::init3()
    {
 
-      if (!::aura::application::init3())
+      if (!::apex::application::init3())
          return false;
 
       return true;
@@ -312,7 +312,7 @@ namespace aura
 
 
 
-      ::aura::application::on_request(pcreate);
+      ::apex::application::on_request(pcreate);
 
    }
 
@@ -334,7 +334,7 @@ namespace aura
    {
 
 
-      auto estatus = ::aura::application::init_instance();
+      auto estatus = ::apex::application::init_instance();
 
       if (!estatus)
       {
@@ -357,7 +357,7 @@ namespace aura
    {
 
       string str;
-      // if system locale has changed (compared to last recorded one by aura)
+      // if system locale has changed (compared to last recorded one by apex)
       // use the system locale
       if (data_get({ "system_locale", true }, str))
       {
@@ -428,7 +428,7 @@ namespace aura
          }
 
       }
-      // if system schema has changed (compared to last recorded one by aura)
+      // if system schema has changed (compared to last recorded one by apex)
       // use the system schema
       if (data_get({ "system_schema", true }, str))
       {
@@ -497,7 +497,7 @@ namespace aura
    {
 
       string str;
-      // if system locale has changed (compared to last recorded one by aura)
+      // if system locale has changed (compared to last recorded one by apex)
       // use the system locale
       if (data_get({ "system_locale", true }, str))
       {
@@ -568,7 +568,7 @@ namespace aura
          }
 
       }
-      // if system schema has changed (compared to last recorded one by aura)
+      // if system schema has changed (compared to last recorded one by apex)
       // use the system schema
       if (data_get({ "system_schema", true }, str))
       {
@@ -662,7 +662,7 @@ namespace aura
 
       //}
 
-      if (!::aura::application::init_application())
+      if (!::apex::application::init_application())
       {
 
          ERR(".1");
@@ -729,7 +729,7 @@ namespace aura
       try
       {
 
-         close(::aura::end_app);
+         close(::apex::end_app);
 
       }
       catch (...)
@@ -757,7 +757,7 @@ namespace aura
       try
       {
 
-         ::aura::application::term_application();
+         ::apex::application::term_application();
 
       }
       catch (...)
@@ -890,7 +890,7 @@ namespace aura
    ::estatus     application::run()
    {
 
-      return ::aura::application::run();
+      return ::apex::application::run();
 
    }
 
@@ -906,7 +906,7 @@ namespace aura
    bool application::process_exception(::exception_pointer e)
    {
 
-      return ::aura::application::process_exception(e);
+      return ::apex::application::process_exception(e);
 
    }
 
@@ -965,7 +965,7 @@ namespace aura
    void application::route_command_message(::user::command * pcommand)
    {
 
-      ::aura::application::route_command_message(pcommand);
+      ::apex::application::route_command_message(pcommand);
 
    }
 
@@ -1583,7 +1583,7 @@ namespace aura
    //bool application::process_exception(::exception_pointer e)
    //{
 
-   //   return ::aura::application::on_run_exception(pexception))
+   //   return ::apex::application::on_run_exception(pexception))
    //   {
 
    //      return false;
@@ -1653,7 +1653,7 @@ namespace aura
    }
 
 
-   // This is aura API library.
+   // This is apex API library.
    //
    //
    //
@@ -1666,14 +1666,14 @@ namespace aura
 
 
 
-   /*void ::aura::FormatString1(string & rString, UINT nIDS, const char * psz1)
+   /*void ::apex::FormatString1(string & rString, UINT nIDS, const char * psz1)
 
    {
    __format_strings(rString, nIDS, &psz1, 1);
 
    }
 
-   void ::aura::FormatString2(string & rString, UINT nIDS, const char * psz1,
+   void ::apex::FormatString2(string & rString, UINT nIDS, const char * psz1,
 
    const char * psz2)
 
@@ -1690,7 +1690,7 @@ namespace aura
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // Basic Help support (for backward compatibility to aura API 2.0)
+   // Basic Help support (for backward compatibility to apex API 2.0)
 
    void application::OnHelp()  // use context to derive help context
    {
@@ -1749,7 +1749,7 @@ namespace aura
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // Context Help Mode support (backward compatibility to aura API 2.0)
+   // Context Help Mode support (backward compatibility to apex API 2.0)
 
    void application::OnContextHelp()
    {
@@ -1766,7 +1766,7 @@ namespace aura
    /////////////////////////////////////////////////////////////////////////////
 
 
-   // This is aura API library.
+   // This is apex API library.
    //
    //
    //
@@ -1824,7 +1824,7 @@ namespace aura
    /////////////////////////////////////////////////////////////////////////////
 
 
-   // This is aura API library.
+   // This is apex API library.
    //
    //
    //
@@ -1976,7 +1976,7 @@ namespace aura
    //}
 
 
-   /* i32 ::aura::message_box(const char * pszText, UINT nType, UINT nIDHelp)
+   /* i32 ::apex::message_box(const char * pszText, UINT nType, UINT nIDHelp)
 
    {
    application* papp = &System;
@@ -2035,7 +2035,7 @@ namespace aura
    }
 
 
-   // This is aura API library.
+   // This is apex API library.
    //
    //
    //
@@ -2072,7 +2072,7 @@ namespace aura
       //ASSERT(m_pszRegistryKey == nullptr);
       //::exception::throw_not_implemented();
       ///*char szRegistryKey[256];
-      //VERIFY(::aura::LoadString(nIDRegistryKey, szRegistryKey));
+      //VERIFY(::apex::LoadString(nIDRegistryKey, szRegistryKey));
       //SetRegistryKey(szRegistryKey);*/
    }
 
@@ -2255,7 +2255,7 @@ namespace aura
 
    // ensure destruction
 
-   // linux ::aura::CRegKey rkSecKey(hSecKey);
+   // linux ::apex::CRegKey rkSecKey(hSecKey);
 
    u32 dwType=0;
    u32 dwCount=0;
@@ -2486,7 +2486,7 @@ namespace aura
       try
       {
 
-         ::aura::application::term();
+         ::apex::application::term();
 
       }
       catch (...)
@@ -2575,7 +2575,7 @@ namespace aura
       return false;
    }
 
-   //   ::aura::file_system & application::file_system()
+   //   ::apex::file_system & application::file_system()
    // {
    //  return m_spfilesystem;
    //}
@@ -2630,7 +2630,7 @@ namespace aura
    void application::dump(dump_context & dumpcontext) const
    {
 
-      ::aura::application::dump(dumpcontext);
+      ::apex::application::dump(dumpcontext);
 
       dumpcontext << "\nm_bHelpMode = " << m_bHelpMode;
       dumpcontext << "\nm_pszHelpFilePath = " << m_strHelpFilePath;
@@ -2658,7 +2658,7 @@ namespace aura
    void application::install_message_routing(::channel * pchannel)
    {
 
-      aura::application::install_message_routing(pchannel);
+      apex::application::install_message_routing(pchannel);
 
       connect_command("switch_context_theme", &application::_001OnSwitchContextTheme);
 
@@ -2758,14 +2758,14 @@ namespace aura
    ::estatus application::init()
    {
 
-      if (!::aura::application::init())
+      if (!::apex::application::init())
       {
 
          return false;
 
       }
 
-      xxdebug_box("::aura::application::initialize ok", "::aura::application::initialize ok", MB_ICONINFORMATION);
+      xxdebug_box("::apex::application::initialize ok", "::apex::application::initialize ok", MB_ICONINFORMATION);
 
       xxdebug_box("m_pcalculator::initialize ok", "m_pcalculator::initialize ok", MB_ICONINFORMATION);
 
@@ -2825,7 +2825,7 @@ m_tickHeartBeat.Now();
    void application::_001CloseApplication()
    {
 
-      aura::application::_001CloseApplication();
+      apex::application::_001CloseApplication();
 
    }
 
@@ -2902,7 +2902,7 @@ m_tickHeartBeat.Now();
    bool application::on_install()
    {
 
-      if (!::aura::application::on_install())
+      if (!::apex::application::on_install())
       {
 
          return false;
@@ -2954,7 +2954,7 @@ m_tickHeartBeat.Now();
    bool application::on_uninstall()
    {
 
-      bool bOk = ::aura::application::on_uninstall();
+      bool bOk = ::apex::application::on_uninstall();
 
       string strId = m_strId;
 
@@ -3006,7 +3006,7 @@ m_tickHeartBeat.Now();
    }
 
 
-   ::aura::printer * application::get_printer(const char * pszDeviceName)
+   ::apex::printer * application::get_printer(const char * pszDeviceName)
    {
 
       return nullptr;
@@ -3141,7 +3141,7 @@ m_tickHeartBeat.Now();
       // hide the application's windows before closing all the documents
       HideApplication();
 
-      close(::aura::end_app);
+      close(::apex::end_app);
 
       return true;
 
@@ -3219,7 +3219,7 @@ m_tickHeartBeat.Now();
 
 
 
-   //::aura::application * application::get_context_system()
+   //::apex::application * application::get_context_system()
    //{
 
    //   return ::object::get_context_system();
@@ -3244,11 +3244,11 @@ m_tickHeartBeat.Now();
 
 
    /*
-   __pointer(::aura::application) application::assert_running(const char * pszAppId)
+   __pointer(::apex::application) application::assert_running(const char * pszAppId)
    {
 
 
-   __pointer(::aura::application) papp = nullptr;
+   __pointer(::apex::application) papp = nullptr;
 
 
    try
@@ -3370,15 +3370,15 @@ m_tickHeartBeat.Now();
 
 
 
-   //__pointer(::aura::application) application::create_application(const char * pszType,const char * pszId,bool bSynch,application_bias * pbias)
+   //__pointer(::apex::application) application::create_application(const char * pszType,const char * pszId,bool bSynch,application_bias * pbias)
    //{
 
-   //   __pointer(::aura::application) pbaseapp = instantiate_application(pszType,pszId,pbias);
+   //   __pointer(::apex::application) pbaseapp = instantiate_application(pszType,pszId,pbias);
 
    //   if(pbaseapp == nullptr)
    //      return nullptr;
 
-   //   ::aura::application * papp = (pbaseapp);
+   //   ::apex::application * papp = (pbaseapp);
 
    //   if(!papp->start_application(bSynch,pbias))
    //   {
@@ -3409,7 +3409,7 @@ m_tickHeartBeat.Now();
 
 
 
-   //::estatus application::add_library(::aura::library * plibrary)
+   //::estatus application::add_library(::apex::library * plibrary)
    //{
 
    //   plibrary->set_context_object(this);
@@ -3429,7 +3429,7 @@ m_tickHeartBeat.Now();
       if (pchange->m_datakey.m_strDataKey == "ca2.savings")
       {
 
-         Session.savings().m_eresourceflagsShouldSave = (::aura::e_resource) pchange->data_get().i32();
+         Session.savings().m_eresourceflagsShouldSave = (::apex::e_resource) pchange->data_get().i32();
 
       }
 
@@ -3520,10 +3520,10 @@ m_tickHeartBeat.Now();
    //}
 
 
-   __pointer(::aura::application) application::create_platform(::aura::session * psession)
+   __pointer(::apex::application) application::create_platform(::apex::session * psession)
    {
 
-      return __new(::aura::session);
+      return __new(::apex::session);
 
    }
 
@@ -3554,7 +3554,7 @@ m_tickHeartBeat.Now();
    void application::_001OnFranceExit()
    {
 
-      ::aura::application::_001OnFranceExit();
+      ::apex::application::_001OnFranceExit();
 
    }
 
@@ -3658,7 +3658,7 @@ m_tickHeartBeat.Now();
 
       }
 
-      return ::aura::application::control_type_from_id(id, econtroltype);
+      return ::apex::application::control_type_from_id(id, econtroltype);
 
    }
 
@@ -3669,7 +3669,7 @@ m_tickHeartBeat.Now();
       if (!m_ptheme)
       {
 
-         return ::aura::application::get_theme();
+         return ::apex::application::get_theme();
 
       }
 
@@ -3771,10 +3771,10 @@ m_tickHeartBeat.Now();
    //}
 
 
-   //::estatus application::initialize(::object* pobjectContext)
+   //::estatus application::initialize(::layered * pobjectContext)
    //{
 
-   //   auto estatus = ::aura::application::initialize(pobjectContext);
+   //   auto estatus = ::apex::application::initialize(pobjectContext);
 
    //   if (!estatus)
    //   {
@@ -3798,7 +3798,7 @@ m_tickHeartBeat.Now();
       //void application::update(::update * pupdate)
       //{
 
-      //   ::aura::application::update(pupdate);
+      //   ::apex::application::update(pupdate);
 
       //   if (pupdate->m_bRet)
       //   {
@@ -3822,7 +3822,7 @@ m_tickHeartBeat.Now();
    //::estatus application::process_init()
    //{
 
-   //   if (::aura::application::process_init())
+   //   if (::apex::application::process_init())
    //   {
 
    //      return true;
@@ -3837,7 +3837,7 @@ m_tickHeartBeat.Now();
    //::estatus application::init_instance()
    //{
 
-   //   if (!::aura::application::init_instance())
+   //   if (!::apex::application::init_instance())
    //   {
 
    //      return false;
@@ -4091,7 +4091,7 @@ m_tickHeartBeat.Now();
    //void application::SetCurrentHandles()
    //{
 
-   //   ::aura::application::SetCurrentHandles();
+   //   ::apex::application::SetCurrentHandles();
 
    //}
 
@@ -4102,7 +4102,7 @@ m_tickHeartBeat.Now();
    //   try
    //   {
 
-   //      aura::application::term_application();
+   //      apex::application::term_application();
 
    //   }
    //   catch (...)
@@ -4235,7 +4235,7 @@ m_tickHeartBeat.Now();
    __pointer(::user::document) application::defer_create_view(string strView, ::user::interaction* puiParent, ewindowflag ewindowflag, const ::id& id)
    {
 
-      auto pcontroller = ::aura::application::defer_create_view(strView, puiParent, ewindowflag, id);
+      auto pcontroller = ::apex::application::defer_create_view(strView, puiParent, ewindowflag, id);
 
       if (pcontroller)
       {
@@ -4278,7 +4278,7 @@ m_tickHeartBeat.Now();
 
    //}
 
-} // namespace aura
+} // namespace apex
 
 
 

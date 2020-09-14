@@ -11,7 +11,7 @@ namespace colorertake5
 
 
 
-   base_editor::base_editor(::object * pobject) :
+   base_editor::base_editor(::layered * pobjectContext) :
       object(pobject)
    {
       textParser = nullptr;

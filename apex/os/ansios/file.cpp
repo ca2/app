@@ -258,12 +258,12 @@ bool context::_os_resolve_alias(::file::path & path, const char * psz, ::user::p
 #endif
 
 
-// CLASS_DECL_APEX bool context::os_resolve_alias(::file::path & path, const char * psz, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount)
-// {
+bool context::os_resolve_alias(::file::path & path, const char * psz, bool bNoUI, bool bNoMount)
+{
 
-//    return _os_resolve_alias(path, psz, bNoUI, bNoMount);
+   return _os_resolve_alias(path, psz, bNoUI, bNoMount);
 
-// }
+}
 
 
 

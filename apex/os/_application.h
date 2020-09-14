@@ -1,10 +1,10 @@
 #pragma once
 
 
-void __set_aura_application_factory(__PFN_NEW_AURA_APPLICATION pfnNewAuraApplication);
-void set_aura_application_factory(PFN_NEW_AURA_APPLICATION pfnNewAuraApplication);
-__PFN_NEW_AURA_APPLICATION __get_aura_application_factory();
-PFN_NEW_AURA_APPLICATION get_aura_application_factory();
+void __set_apex_application_factory(__PFN_NEW_APEX_APPLICATION pfnNewAuraApplication);
+void set_apex_application_factory(PFN_NEW_APEX_APPLICATION pfnNewAuraApplication);
+__PFN_NEW_APEX_APPLICATION __get_apex_application_factory();
+PFN_NEW_APEX_APPLICATION get_apex_application_factory();
 
 
 

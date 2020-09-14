@@ -6,7 +6,7 @@ namespace xml
 
 
    class CLASS_DECL_AXIS department :
-      public ::aura::department
+      public ::apex::department
    {
    public:
 

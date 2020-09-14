@@ -9,7 +9,7 @@
 //   {
 //   public:
 //
-//      folder_watch(::object * pobject);
+//      folder_watch(::layered * pobjectContext);
 //
 //      virtual bool watch(const char * pszPath);
 //

@@ -6,7 +6,7 @@ namespace userpresence
 {
 
 
-   presence::presence(::object * pobject) :
+   presence::presence(::layered * pobjectContext) :
       ::object(pobject)
    {
 

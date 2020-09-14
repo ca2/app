@@ -11,7 +11,7 @@ namespace browser
    public:
 
 
-      document(::object * pobject);
+      document(::layered * pobjectContext);
       virtual ~document();
 
 

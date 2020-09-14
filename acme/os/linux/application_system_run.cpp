@@ -225,18 +225,18 @@ i32 _c_XErrorHandler(Display * display, XErrorEvent * perrorevent);
 void sn_start_context();
 
 
-bool os_init_application()
-{
+// bool os_init_application()
+// {
 
-   #ifndef RASPBIAN
+//    #ifndef RASPBIAN
 
-    sn_start_context();
+//     sn_start_context();
 
-   #endif
+//    #endif
 
-   return true;
+//    return true;
 
-}
+// }
 
 
 void os_term_application()

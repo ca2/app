@@ -5,7 +5,7 @@ namespace hellobase
 {
 
 
-   application::application(::object * pobject) :
+   application::application(::layered * pobjectContext) :
       ::object(this),
       ::thread(this),
       ::aura::application(pobject),
@@ -152,7 +152,7 @@ namespace hellobase
 
 
 extern "C"
-::aura::library * app_hellobase_get_new_library(::object * pobject)
+::apex::library * app_hellobase_get_new_library(::layered * pobjectContext)
 {
 
    return new ::aura::single_application_library < ::hellobase::application > (pobject, "app/hellobase");

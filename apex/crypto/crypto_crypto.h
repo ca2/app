@@ -55,8 +55,8 @@ namespace crypto
       virtual void hmac(void * result,const memory & memMessage,const memory & key);
       virtual void hmac(void * result,const string & memMessage,const string & key);
 
-      virtual bool file_set(var varFile,const char * pszData,const char * pszSalt,::aura::application * papp);
-      virtual ::estatus     file_get(var varFile,string & str,const char * pszSalt,::aura::application * papp);
+      virtual bool file_set(var varFile,const char * pszData,const char * pszSalt,::apex::application * papp);
+      virtual ::estatus     file_get(var varFile,string & str,const char * pszSalt,::apex::application * papp);
 
       // get a new salt - 8 hexadecimal characters long
       // current PHP installations should not exceed 8 characters
@@ -136,9 +136,9 @@ namespace crypto
       string dmq1;
       string iqmp;
 
-      rsa(::object * pobjectContext);
-      rsa(::object * pobjectContext, const string & n);
-      rsa(::object * pobjectContext,
+      rsa(::layered * pobjectContext);
+      rsa(::layered * pobjectContext, const string & n);
+      rsa(::layered * pobjectContext,
           const string & n,
           const string & e,
           const string & d,

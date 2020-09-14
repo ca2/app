@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "aura/net/sockets/base/base_socket_handler.h"
+#include "apex/net/sockets/base/base_socket_handler.h"
 
 namespace sockets
 {
@@ -15,7 +15,7 @@ namespace sockets
    {
    public:
 
-      __pointer(::aura::log)     m_splogger; ///< Registered log class, or nullptr
+      __pointer(::apex::log)     m_splogger; ///< Registered log class, or nullptr
 
       socket_map                 m_sockets; ///< Active sockets map
       socket_map                 m_add; ///< Sockets to be added to sockets map
@@ -55,7 +55,7 @@ namespace sockets
       bool                       m_slave; ///< Indicates that this is a base_socket_handler run in socket_thread
 
 
-      socket_handler(::object * pobject, ::aura::log * plogger = nullptr);
+      socket_handler(::layered * pobject, ::apex::log * plogger = nullptr);
       virtual ~socket_handler();
 
 

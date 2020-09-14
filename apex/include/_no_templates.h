@@ -12,13 +12,13 @@
 #include "__/__bit.h"
 #include "__/__stdint.h"
 #include "__/__inttypes.h"
-#include "_aura_type.h"
+#include "_apex_type.h"
 
 #include "platform/system.h"
 #include "platform/types.h"
 #include "apex/primitive/geometry2d/_struct.h"
-#include "_aura_type.h"
-#include "_aura_memory.h"
+#include "_apex_type.h"
+#include "_apex_memory.h"
 
 
 class trait;
@@ -48,7 +48,7 @@ typedef iptr strsize;
 #include "apex/primitive/primitive/uid.h"
 #include "apex/primitive/primitive/estatus.h"
 #include "apex/primitive/primitive/eobject.h"
-#include "apex/primitive/primitive/generic_object.h"
+#include "apex/primitive/primitive/generic.h"
 
 
 

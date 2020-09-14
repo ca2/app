@@ -34,9 +34,9 @@ public:
    ::i64                                              m_cRun;
 
 
-   object() : m_pmeta(nullptr) { }
-   object(::object * pobjectContext);
-   object(e_default_init);
+   object() : m_pmeta(nullptr) { set_layer(0, this); }
+   object(::layered * pobjectContext);
+   object(e_default_init) : ::object() {};
    virtual ~object();
 
 
@@ -94,7 +94,7 @@ public:
 
 
    template < typename PRED >
-   inline void add_procedure(const ::id & id, PRED pred, ::generic_object* pobjectHold = nullptr)
+   inline void add_procedure(const ::id & id, PRED pred, ::generic* pobjectHold = nullptr)
    {
 
       add(::procedure(id, pred, pobjectHold));
@@ -102,7 +102,7 @@ public:
    }
 
    template < typename PRED >
-   inline void add_callback(const ::id & id, PRED pred, ::generic_object * pobjectHold = nullptr)
+   inline void add_callback(const ::id & id, PRED pred, ::generic * pobjectHold = nullptr)
    {
 
       add(::callback(id, pred, pobjectHold));
@@ -110,18 +110,18 @@ public:
    }
 
    template < typename PRED >
-   inline void add(enum_procedure eprocedure, PRED pred, ::generic_object* pobjectHold = nullptr)
+   inline void add(enum_procedure eprocedure, PRED pred)
    {
 
-      add(::procedure((::i64) eprocedure, pred, pobjectHold));
+      add(::procedure((::i64) eprocedure, pred));
 
    }
 
    template < typename PRED >
-   inline void add(enum_callback ecallback, PRED pred, ::generic_object* pobjectHold = nullptr)
+   inline void add(enum_callback ecallback, PRED pred)
    {
 
-      add(::callback((::i64) ecallback, pred, pobjectHold));
+      add(::callback((::i64) ecallback, pred));
 
    }
 
@@ -130,7 +130,7 @@ public:
    template < typename BASE_TYPE >
    void save_to(const var & varFile, BASE_TYPE * pobject);
 
-   virtual ::estatus initialize(::object * pobjectContext) override;
+   virtual ::estatus initialize(::layered * pobjectContext) override;
    virtual void finalize() override;
 
    inline const char * topic_text();
@@ -180,10 +180,10 @@ public:
 #endif
 
 
-   virtual void set_context_object(::object * pobjectContext) override;
+   virtual void set_context_object(::layered * pobjectContext) override;
 
 
-   inline void defer_set_context_object(::object * pobjectContext);
+   inline void defer_set_context_object(::layered * pobjectContext);
 
    virtual ::estatus call() override;
 
@@ -213,11 +213,11 @@ public:
 
    virtual void to_string(string & str) const override;
 
-   ::image_result create_image();
-   ::image_result create_image(const ::size & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
+   //::image_result create_image();
+   //::image_result create_image(const ::size & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
 
-   ::image_result get_image(const var & varFile, bool bCache = true, bool bSync = true);
-   ::image_result matter_image(const string & strMatter, bool bCache = true, bool bSync = true);
+   //::image_result get_image(const var & varFile, bool bCache = true, bool bSync = true);
+   //::image_result matter_image(const string & strMatter, bool bCache = true, bool bSync = true);
 
    template < typename BASE_TYPE >
    inline __result(BASE_TYPE) __create();
@@ -228,11 +228,11 @@ public:
    template < typename TYPE >
    inline __result(TYPE) __create_new();
 
-   inline ::estatus __compose(__composite(::image) & pimage);
+   //inline ::estatus __compose(__composite(::image) & pimage);
 
-   inline ::estatus __compose(__composite(::image) & pimage, ::image * pimageSource);
+   //inline ::estatus __compose(__composite(::image) & pimage, ::image * pimageSource);
 
-   inline ::estatus __defer_compose(__composite(::image) & pimage) { return !pimage ? __compose(pimage) : ::estatus(::success); }
+   //inline ::estatus __defer_compose(__composite(::image) & pimage) { return !pimage ? __compose(pimage) : ::estatus(::success); }
 
    // for composition (ownership)
 
@@ -300,12 +300,12 @@ public:
    inline ::estatus release_reference(__pointer(SOURCE) & psource);
 
 
-   virtual ::estatus add_composite(::generic_object* pobject) override;
-   virtual ::estatus add_reference(::generic_object* pobject) override;
+   virtual ::estatus add_composite(::generic* pobject) override;
+   virtual ::estatus add_reference(::generic* pobject) override;
 
 
-   virtual ::estatus release_composite(::generic_object* pobject) override;
-   virtual ::estatus release_reference(::generic_object* pobject) override;
+   virtual ::estatus release_composite(::generic* pobject) override;
+   virtual ::estatus release_reference(::generic* pobject) override;
 
 
 
@@ -330,8 +330,6 @@ public:
 
    template < typename SOURCE >
    inline ::estatus add_reference(__reference(SOURCE)& psource);
-
-   inline class ::sync * get_mutex();
 
    virtual void delete_this() override;
 
@@ -402,9 +400,9 @@ public:
 
    virtual __pointer(::object) running(const char * pszTag) const;
 
-   virtual bool ___is_reference(::generic_object * pobject) const;
+   virtual bool ___is_reference(::generic * pobject) const;
 
-   virtual bool __is_composite(::generic_object * pobject) const;
+   virtual bool __is_composite(::generic * pobject) const;
 
    virtual void on_finalize();
 
@@ -425,15 +423,15 @@ public:
 
    virtual string __get_text(string str);
 
-   template < typename PRED >
-   ::image_result get_image(const var & varFile, ::u64 uTrait, PRED pred);
+   //template < typename PRED >
+   //::image_result get_image(const var & varFile, ::u64 uTrait, PRED pred);
 
-   virtual ::image_result load_image(const var & varFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
-   virtual ::image_result load_matter_image(const char * pszMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
-   virtual ::image_result load_matter_icon(string_array & straMatter, string strIcon);
-   virtual ::image_result load_thumbnail(const var & varFile, int w, int h);
-   virtual ::image_result load_thumbnail(const char * pszPath);
-   virtual ::image_result load_dib(const ::file::path & pathDib);
+   //virtual ::image_result load_image(const var & varFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
+   //virtual ::image_result load_matter_image(const char * pszMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
+   //virtual ::image_result load_matter_icon(string_array & straMatter, string strIcon);
+   //virtual ::image_result load_thumbnail(const var & varFile, int w, int h);
+   //virtual ::image_result load_thumbnail(const char * pszPath);
+   //virtual ::image_result load_dib(const ::file::path & pathDib);
 
 
    virtual void start_clock(e_clock eclock, duration duration);
@@ -577,9 +575,9 @@ public:
 
    }
 
-   ::estatus __construct(::image_pointer & p, const ::size & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
+   //::estatus __construct(::image_pointer & p, const ::size & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
 
-   ::estatus __preserve(::image_pointer & p, const ::size & size, ::eobject eobjectCreate = OK, int iGoodStride = -1);
+   //::estatus __preserve(::image_pointer & p, const ::size & size, ::eobject eobjectCreate = OK, int iGoodStride = -1);
 
 
    template < typename TYPE >

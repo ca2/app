@@ -1040,25 +1040,35 @@ namespace windows
       volatile i32 signal;
    };
 
+
    u32 WINAPI callstack::stack_trace_ThreadProc(void * pvoidParam)
-
    {
-
 
       current_context * pcontext = reinterpret_cast<current_context *>(pvoidParam);
 
-
-      __try
+      try
       {
+         
          // Konstantin, 14.01.2002 17:21:32
+         
          // must wait in spin lock until Main thread will leave a ResumeThread (must return back to ::account::user context)
-         i32 iInverseAgility = 26 + 33; // former iPatienceQuota
+
+         i32 iInverseAgility = 26 + 24; // former iPatienceQuota
+         
          i32 iPatience = iInverseAgility;
+
          while (pcontext->signal && iPatience > 0)
          {
+
             if (!SwitchToThread())
+            {
+
                Sleep(10); // forces switch to another thread
+
+            }
+
             iPatience--;
+
          }
 
          //         char sz[200];
@@ -1067,28 +1077,44 @@ namespace windows
 
          if (-1 == SuspendThread(pcontext->thread))
          {
+            
             pcontext->signal = -1;
-            __leave;
+
+            return 0;
+
          }
 
-         __try
+         try
          {
+
 #ifdef AMD64
+
             GET_CURRENT_CONTEXT(pcontext, USED_CONTEXT_FLAGS);
+
 #else
+
             pcontext->signal = GetThreadContext(pcontext->thread, pcontext) ? 1 : -1;
+
 #endif
+
          }
-         __finally
+         catch(...)
          {
+            
             VERIFY(-1 != ResumeThread(pcontext->thread));
+
          }
+
       }
-      __except (EXCEPTION_EXECUTE_HANDLER)
+      catch (...)
       {
+         
          pcontext->signal = -1;
+
       }
+      
       return 0;
+
    }
 
 

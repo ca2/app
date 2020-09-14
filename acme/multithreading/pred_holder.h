@@ -8,11 +8,9 @@ public:
 
    
    ::tool_thread *         m_ptoolthread;
-   __pointer(generic)       m_pholdref;
 
 
-   pred_holder_base(__pointer(generic) pholdref = nullptr) :
-      m_pholdref(pholdref)
+   pred_holder_base()
    {
 
       m_ptoolthread = nullptr;
@@ -20,7 +18,7 @@ public:
    }
 
    
-   virtual ::estatus     run() { return ::success; }
+   virtual ::estatus run() { return ::success; }
 
 
 };
@@ -32,22 +30,18 @@ class pred_holder :
 {
 public:
 
+   
    PRED m_pred;
 
+   
    pred_holder(PRED pred) :
       m_pred(pred)
    {
 
    }
 
-   pred_holder(__pointer(generic) pholdref, PRED pred) :
-      pred_holder_base(pholdref),
-      m_pred(pred)
-   {
-
-   }
-
-   virtual ::estatus     run() override
+   
+   virtual ::estatus run() override
    {
 
       m_pred();
@@ -56,8 +50,8 @@ public:
 
    }
 
-};
 
+};
 
 
 
@@ -67,7 +61,7 @@ class CLASS_DECL_ACME pred_array :
 public:
 
 
-   pred_array(::generic * pobject);
+   pred_array();
    virtual ~pred_array();
 
 
@@ -75,7 +69,7 @@ public:
    void pred_add(PRED pred)
    {
 
-      add(__new(pred_holder < PRED >(get_context_application(), pred)));
+      add(__new(pred_holder < PRED >(pred)));
 
    }
 

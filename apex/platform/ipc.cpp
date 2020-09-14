@@ -28,7 +28,7 @@ namespace apex
       }
 
 
-      //ipc::ipc(::object * pobject) :
+      //ipc::ipc(::layered * pobjectContext) :
       //   ::object(pobject),
       //   base(pobject),
       //   tx(pobject),
@@ -58,7 +58,7 @@ namespace apex
 
       }
 
-      void ipc::restart_aura_ipc()
+      void ipc::restart_apex_ipc()
       {
       }
 
@@ -71,7 +71,7 @@ namespace apex
          if(!send(pszMessage, durationTimeout))
          {
 
-            restart_aura_ipc();
+            restart_apex_ipc();
 
             return false;
 
@@ -91,7 +91,7 @@ namespace apex
             if(!is_tx_ok())
             {
 
-               restart_aura_ipc();
+               restart_apex_ipc();
 
                return false;
 
@@ -101,7 +101,7 @@ namespace apex
          else if(!send(message, pdata, len, durationTimeout))
          {
 
-            restart_aura_ipc();
+            restart_apex_ipc();
 
             return false;
 

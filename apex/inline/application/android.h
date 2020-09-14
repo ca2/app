@@ -5,7 +5,7 @@
 //int main(int argc, char* argv[])
 //{
 //
-//   class aura_aura aura_aura;
+//   class apex_apex apex_apex;
 //
 //   string strMainString;
 //
@@ -19,7 +19,7 @@
 //
 //   psystem->construct_system(argc, argv);
 //
-////   return aura_run_system(psystem);
+////   return apex_run_system(psystem);
 //
 //   auto psystem = __new(::apex::system());
 //
@@ -27,7 +27,7 @@
 //
 //   psystem->construct_system(&mainstruct, hinstance, hPrevInstance, pCmdLine, nCmdShow);
 //
-//   return aura_run_system(psystem);
+//   return apex_run_system(psystem);
 //
 //
 //}
@@ -40,11 +40,11 @@
 //int main(int argc, char* argv[])
 //{
 //
-//   class aura_aura aura_aura;
+//   class apex_apex apex_apex;
 //
 //   {
 //
-//      ::aura_main_struct mainstruct;
+//      ::apex_main_struct mainstruct;
 //
 //      application_initialize(mainstruct);
 //
@@ -56,7 +56,7 @@
 //
 //         psystem->system_construct(argc, argv);
 //
-//         return aura_run_system(psystem);
+//         return apex_run_system(psystem);
 //
 //      }
 //

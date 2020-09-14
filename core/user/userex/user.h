@@ -154,11 +154,11 @@ namespace core
 
       virtual ::user::shell* shell();
 
-      virtual ::estatus dialog_box(::object * pobjectContext, const char * pszMatter, property_set & propertyset, ::callback callback = ::callback());
+      virtual ::estatus dialog_box(::layered * pobjectContext, const char * pszMatter, property_set & propertyset, ::callback callback = ::callback());
 
 
-      virtual ::estatus ui_message_box(::object * pobjectContext, ::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle = nullptr, ::emessagebox emessagebox = message_box_ok, ::callback callback = ::callback());
-      virtual ::estatus ui_message_box_timeout(::object * pobjectContext, ::user::primitive * puiOwner, const char* pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), ::emessagebox emessagebox = message_box_ok, ::callback callback = ::callback());
+      virtual ::estatus ui_message_box(::layered * pobjectContext, ::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle = nullptr, ::emessagebox emessagebox = message_box_ok, ::callback callback = ::callback());
+      virtual ::estatus ui_message_box_timeout(::layered * pobjectContext, ::user::primitive * puiOwner, const char* pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), ::emessagebox emessagebox = message_box_ok, ::callback callback = ::callback());
       //virtual ::estatus ui_message_box_timeout(::object* pobjectContext, ::user::primitive* puiOwner, var var, ::duration durationTimeout, UINT fuStyle = MB_OK, ::aura::application* papp = nullptr, const function_arg& functionargResult = function_arg());
 
       virtual void on_file_manager_open(::filemanager::data* pdata, ::file::item_array& itema);
@@ -186,9 +186,9 @@ namespace core
       virtual void _001OnFileNew();
 
 
-      __pointer(::user::list_header) default_create_list_header(::object * pobject);
-      __pointer(::user::mesh_data) default_create_mesh_data(::object * pobject);
-      __pointer(::user::list_data) default_create_list_data(::object * pobject);
+      __pointer(::user::list_header) default_create_list_header(::layered * pobjectContext);
+      __pointer(::user::mesh_data) default_create_mesh_data(::layered * pobjectContext);
+      __pointer(::user::list_data) default_create_list_data(::layered * pobjectContext);
 
 
       ::type default_type_mesh_data();
@@ -254,7 +254,7 @@ namespace core
 
 
 
-      virtual ::estatus     initialize(::object* pobjectContext) override;
+      virtual ::estatus     initialize(::layered * pobjectContext) override;
 
 
       virtual bool do_prompt_file_name(var& varFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
@@ -352,7 +352,7 @@ namespace core
       //virtual string get_locale_schema_dir() override;
 
 
-      ////virtual ::estatus     initialize(::object * pobjectContext) override;
+      ////virtual ::estatus     initialize(::layered * pobjectContext) override;
 
 
       //virtual ::user::interaction * get_session_window();
@@ -391,7 +391,7 @@ namespace core
 
       //virtual bool open_by_file_extension(::create * pcc);
 
-      ////__pointer(::aura::application) get_new_application(::object * pobjectContext, const char * pszAppId);
+      ////__pointer(::aura::application) get_new_application(::layered * pobjectContext, const char * pszAppId);
 
       //inline ::aura::savings &                  savings()      { return *m_psavings; }
 
@@ -524,7 +524,7 @@ namespace core
 
 
 
-      ////virtual ::estatus initialize(::object* pobjectContext) override;
+      ////virtual ::estatus initialize(::layered * pobjectContext) override;
 
       //virtual void install_message_routing(::channel* pchannel) override;
 
@@ -579,7 +579,7 @@ namespace core
 
       //virtual void will_use_view_hint(::id idView);
 
-      ////virtual void on_app_request_bergedge_callback(::object * pobject);
+      ////virtual void on_app_request_bergedge_callback(::layered * pobjectContext);
 
       //virtual ::draw2d::font_list* get_single_column_font_list();
 
@@ -677,7 +677,7 @@ namespace core
       ////virtual __pointer(::user::impact)                      get_view();
 
 
-      ////virtual ::estatus     initialize(::object* pobjectContext) override;
+      ////virtual ::estatus     initialize(::layered * pobjectContext) override;
 
 
       ////virtual void frame_pre_translate_message(::message::message* pmessage) override;

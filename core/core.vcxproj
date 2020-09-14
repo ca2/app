@@ -1076,8 +1076,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="asset\cube_new.cpp" />
-    <ClCompile Include="compress\compress_bz.cpp" />
-    <ClCompile Include="compress\compress_context.cpp" />
     <ClCompile Include="const\idpool.cpp" />
     <ClCompile Include="filesystem\filehandler\handler.cpp" />
     <ClCompile Include="filesystem\filehandler\item.cpp" />
@@ -1725,9 +1723,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="_.cpp" />
     <ClCompile Include="__matter_ca2.cpp" />
     <ClInclude Include="astr.h" />
-    <ClInclude Include="compress\compress.h" />
-    <ClInclude Include="compress\compress_bz.h" />
-    <ClInclude Include="compress\compress_context.h" />
     <ClInclude Include="console.h" />
     <ClInclude Include="const\charset.h" />
     <ClInclude Include="const\procedure.h" />
@@ -2153,11 +2148,17 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ResourceCompile Include="..\..\platform-windows\version.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\acme\acme.vcxproj">
+      <Project>{638b242f-0f21-41c3-9f66-724660046133}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\apex\apex.vcxproj">
+      <Project>{e000ffaf-392f-4e32-bf51-777ca238991f}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\aura\aura.vcxproj">
       <Project>{e000ffaf-392f-4e32-bf51-fd7ed638991f}</Project>
     </ProjectReference>
     <ProjectReference Include="..\axis\axis.vcxproj">
-      <Project>{4c6f5f2b-56ee-485f-924a-f8f0a9c24eb6}</Project>
+      <Project>{a2cbd4ed-ed0f-482b-9b16-f48f21c32835}</Project>
     </ProjectReference>
     <ProjectReference Include="..\base\base.vcxproj">
       <Project>{a216abd4-26c4-4746-96b3-9d30ed28cf92}</Project>

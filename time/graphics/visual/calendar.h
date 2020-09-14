@@ -28,7 +28,7 @@ namespace datetime
          virtual ~graphics();
 
 
-         virtual ::estatus initialize(::object* pobjectContext) override;
+         virtual ::estatus initialize(::layered * pobjectContext) override;
 
 
          virtual void GetRectDay(::datetime::time& time, LPRECT lprect);

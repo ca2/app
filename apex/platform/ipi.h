@@ -104,7 +104,7 @@ namespace apex
       virtual ~ipi();
 
 
-      virtual ::estatus initialize(::object * pobjectContext) override;
+      virtual ::estatus initialize(::layered * pobjectContext) override;
 
       virtual void finalize() override;
 

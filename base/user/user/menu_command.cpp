@@ -9,8 +9,8 @@ namespace user
 {
 
 
-   menu_command::menu_command(::object * pobject) :
-      ::user::command(pobject)
+   menu_command::menu_command(::layered * pobjectContext) :
+      ::user::command(pobjectContext)
    {
 
    }

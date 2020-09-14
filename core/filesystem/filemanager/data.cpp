@@ -57,7 +57,21 @@ namespace filemanager
    }
 
 
-   ::estatus data::initialize_filemanager_data(::object * pobjectContext)
+   void data::assert_valid() const
+   {
+
+
+   }
+
+
+   void data::dump(dump_context& dumpcontext) const
+   {
+
+
+   }
+
+
+   ::estatus data::initialize_filemanager_data(::layered * pobjectContext)
    {
 
       auto estatus = ::data::data::initialize(pobjectContext);
@@ -118,7 +132,7 @@ namespace filemanager
    }
 
 
-   bool data::open(::aura::application * pappOnBehalfOf, ::file::path path, const ::action_context & context)
+   bool data::open(::apex::application * pappOnBehalfOf, ::file::path path, const ::action_context & context)
    {
 
       if (::is_null(m_pdocument))
@@ -175,10 +189,10 @@ namespace filemanager
          if (::is_null(puiParent))
          {
 
-            if (::is_set(pappOnBehalfOf->m_puiMainContainer))
+            if (::is_set(App(pappOnBehalfOf).m_puiMainContainer))
             {
 
-               puiParent = pappOnBehalfOf->m_puiMainContainer;
+               puiParent = App(pappOnBehalfOf).m_puiMainContainer;
 
             }
 

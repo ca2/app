@@ -4,16 +4,10 @@
 //#pragma pack(show)
 
 
+#include "acme/_.h"
 
 
-#include "apex/version/version.h"
-#include "apex/platform/_features.h"
-#include "platform/platform_setup.h"
-#include "setup/debug.h"
-#include "platform/_.h"
-#include "include/_setup.h"
-
-#if defined(_AURA_LIBRARY)
+#if defined(_APEX_LIBRARY)
 #define CLASS_DECL_APEX  CLASS_DECL_EXPORT
 #define LIBIDN_BUILDING
 #else
@@ -37,7 +31,7 @@
 #define NNDEBUG
 #endif
 
-#define CA2_AURA
+#define CA2_APEX
 
 #define __class(EXPORT, DERIVED, ...) \
    using DERIVED##_t =  __VA_ARGS__; \
@@ -100,19 +94,7 @@ typedef i64 filesize;
 #endif
 
 
-#if defined(__cplusplus)
 
-inline bool __found(::i32 i) { return i >= 0; }
-inline bool __not_found(::i32 i) { return i < 0; }
-inline bool __found(::i64 i) { return i >= 0; }
-inline bool __not_found(::i64 i) { return i < 0; }
-
-#else
-
-#define __found_index(i) ((i) >= 0)
-#define __not_found_index(i) ((i) < 0)
-
-#endif
 
 
 #if defined(DEBUG)
@@ -178,9 +160,6 @@ inline bool __not_found(::i64 i) { return i < 0; }
 #endif
 
 
-#if defined(__cplusplus) && !defined(_ACID_LIBRARY)
-#include "apex/memory/allocation.h"
-#endif
 
 
 #ifdef __cplusplus
@@ -229,11 +208,7 @@ namespace apex
 
 #include "apex/os/apex.h"
 
-#include "apex/memory/heap_c.h"
-
-#include "apex/memory/allocate_processor_cache_oriented.h"
-
-#include "apex/platform/number.h"
+//#include "apex/platform/number.h"
 
 #include "apex/include/_include.h"
 

@@ -14,7 +14,7 @@ namespace draw2d_opengl
 
    brush::~brush()
    { 
-      //::aura::del(m_pbrush);
+      //::acme::del(m_pbrush);
    }
 
    //bool brush::create_solid(COLORREF crColor)
@@ -121,7 +121,7 @@ namespace draw2d_opengl
    //   
    //   //if(m_pbrush == nullptr || !m_bUpdated)
    //   //{
-   //   //   ::aura::del(((brush *) this)->m_pbrush);
+   //   //   ::acme::del(((brush *) this)->m_pbrush);
    //   //   if(m_etype == type_solid)
    //   //   {
    //   //      try

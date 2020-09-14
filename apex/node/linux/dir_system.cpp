@@ -22,7 +22,7 @@ namespace linux
    }
 
 
-   ::estatus dir_system::initialize(::object * pobjectContext)
+   ::estatus dir_system::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::dir_system::initialize(pobjectContext);
@@ -34,7 +34,7 @@ namespace linux
 
       }
 
-      void * handle = dlopen("libaura.so", RTLD_NOW);
+      void * handle = dlopen("libapex.so", RTLD_NOW);
 
       if(handle == nullptr)
       {

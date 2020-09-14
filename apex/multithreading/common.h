@@ -125,7 +125,7 @@ CLASS_DECL_APEX bool do_events();
 //{
 //public:
 //
-//   pred_holder_base(::object * pobject) :
+//   pred_holder_base(::layered * pobjectContext) :
 //      ::object(pobject),
 //      m_pholdref(pholdref)
 //   {

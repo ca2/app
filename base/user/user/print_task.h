@@ -26,7 +26,7 @@ namespace user
       print_task();
       virtual ~print_task();
 
-      virtual ::estatus     initialize(::object * pobjectContext) override;
+      virtual ::estatus     initialize(::layered * pobjectContext) override;
 
       virtual ::estatus     run() override;
 

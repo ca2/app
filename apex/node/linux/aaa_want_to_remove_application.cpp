@@ -11,7 +11,7 @@
 namespace apex
 {
 
-//   application::application(::object * pobject) :
+//   application::application(::layered * pobjectContext) :
 //      ::object(pobject)
 //   {
 //
@@ -356,7 +356,7 @@ namespace apex
 //      DWORD dwRet = ::GetModuleFileName(m_hInstance, szBuff, _MAX_PATH);
 //      ASSERT( dwRet != 0 && dwRet != _MAX_PATH );
 //      if( dwRet == 0 || dwRet == _MAX_PATH )
-//         __throw(aura_exception());*/
+//         __throw(apex_exception());*/
 //
 //      /*
 //      LPTSTR pszExt = ::PathFindExtension(szBuff);
@@ -365,7 +365,7 @@ namespace apex
 
 //      if( pszExt == nullptr )
 
-//         __throw(aura_exception());
+//         __throw(apex_exception());
 //
 //      ASSERT(*pszExt == '.');
 

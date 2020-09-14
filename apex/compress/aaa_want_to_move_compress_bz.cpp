@@ -175,7 +175,7 @@ stop1:
 
 
 
-uncompress_bz::uncompress_bz(::object * pobject) :
+uncompress_bz::uncompress_bz(::layered * pobjectContext) :
    ::object(pobject)
 {
 

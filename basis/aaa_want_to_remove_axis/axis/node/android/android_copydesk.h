@@ -11,7 +11,7 @@ namespace android
    public:
 
 
-      copydesk(::object * pobject);
+      copydesk(::layered * pobjectContext);
       virtual ~copydesk();
 
 

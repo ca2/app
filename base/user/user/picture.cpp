@@ -834,7 +834,7 @@ namespace user
 
          rectDib.inflate(iShift, iShift);
 
-         __construct(pimageDropShadow, rectDib.size());
+         pimageDropShadow = create_image(rectDib.size());
 
          if (pimageDropShadow)
          {
@@ -1058,7 +1058,7 @@ namespace user
 
          }
 
-         stream(bEnable);
+         stream.exchange(id(), bEnable);
 
          if (!stream.is_storing())
          {

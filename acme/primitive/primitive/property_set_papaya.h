@@ -52,20 +52,6 @@ namespace papaya
       }
 
 
-      //inline string get_evaluation(const ::generic & generic, const string & strExpression)
-      //{
-
-      //   return generic.property_set_get_evaluation(strExpression);
-
-      //}
-
-      //inline bool get_evaluation(string & strResult, const ::generic& generic, const string& strExpression)
-      //{
-
-      //   return generic.property_set_get_evaluation(strResult, strExpression);
-
-      //}
-
       // ::property_set set;
       //
       // set["var5"] = "searching value";

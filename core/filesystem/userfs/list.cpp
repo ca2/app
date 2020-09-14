@@ -661,7 +661,7 @@ namespace userfs
    }
 
 
-   __pointer(image_list) list::GetActionButtonImageList(index i)
+   __pointer(::image_list) list::GetActionButtonImageList(index i)
    {
 
       if (i == 0)

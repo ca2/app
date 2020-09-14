@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_APEX aura_str_pool
+class CLASS_DECL_APEX apex_str_pool
 {
 public:
 
@@ -36,13 +36,13 @@ namespace apex
 {
 
 
-   extern CLASS_DECL_APEX aura_str_pool* g_paurastrpool;
+   extern CLASS_DECL_APEX apex_str_pool* g_papexstrpool;
 
 
 } // namespace apex
 
 
-#define astr (*::apex::g_paurastrpool)
+#define astr (*::apex::g_papexstrpool)
 
 
 

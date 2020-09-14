@@ -8,6 +8,10 @@
 #include "acme/astr.h"
 #include "acme/os/_os.h"
 
+
+void __node_acme_factory_exchange();
+
+
 //#include <sqlite3.h>
 
 #ifdef RASPBIAN
@@ -27,8 +31,8 @@
 
 
 
-void trace_category_static_init();
-void trace_category_static_term();
+CLASS_DECL_ACME void trace_category_static_init();
+CLASS_DECL_ACME void trace_category_static_term();
 
 
 extern thread_local __pointer(::thread) t_pthread;
@@ -65,7 +69,7 @@ namespace acme
 
 
    //critical_section* g_pcsRefDbg;
-   bool g_bAura;
+   bool g_bAcme;
 
 
 #if OBJ_TYP_CTR
@@ -120,7 +124,7 @@ namespace acme
 
    bool g_bOutputDebugString;
 
-   critical_section* g_pcsTrace;
+   //critical_section* g_pcsTrace;
 
    // acme commented
    //::generic* g_ptrace;
@@ -144,7 +148,7 @@ namespace acme
 #endif
 
 
-   ::mutex* g_pmutexCred;
+   //::mutex* g_pmutexCred;
 
 
    class ::exception_engine* g_pexceptionengine;
@@ -247,7 +251,7 @@ namespace acme
    void acme::construct()
    {
 
-      g_bAura = 0;
+      g_bAcme = 0;
 
 #if OBJ_TYP_CTR
 
@@ -255,7 +259,7 @@ namespace acme
 
 #endif
 
-      g_bAura = false;
+      g_bAcme = false;
 
 #if OBJ_TYP_CTR
 
@@ -285,7 +289,7 @@ namespace acme
 
       g_bOutputDebugString = true;
 
-      g_pcsTrace = nullptr;
+      //g_pcsTrace = nullptr;
 
       // acme commented
       //g_ptrace = nullptr;
@@ -308,7 +312,7 @@ namespace acme
 
 #endif
 
-      g_pmutexCred = nullptr;
+      //g_pmutexCred = nullptr;
 
       g_pexceptionengine = nullptr;
       g_pmutexMessageDispatch = nullptr;
@@ -414,6 +418,18 @@ namespace acme
    acme::acme()
    {
 
+      static natural_meta_data < string_meta_data < ansichar > > s_ansistringNil;
+
+      static natural_meta_data < string_meta_data < wd16char > > s_wd16stringNil;
+
+      static natural_meta_data < string_meta_data < wd32char > > s_wd32stringNil;
+
+      ::g_pansistringNil = &s_ansistringNil;
+
+      ::g_pwd16stringNil = &s_wd16stringNil;
+
+      ::g_pwd32stringNil = &s_wd32stringNil;
+
       m_bRef = false;
 
       construct();
@@ -440,8 +456,6 @@ namespace acme
       g_pcsDemangle = new critical_section;
 
 #endif
-
-      g_pcsTrace = new critical_section;
 
 #ifdef WINDOWS
 
@@ -489,7 +503,7 @@ namespace acme
 
       ::id_space::s_pidspace = new id_space();
 
-      init_id_pool();
+//      ::acme::idpool::init();
 
 #ifdef ANDROID
 
@@ -548,7 +562,7 @@ namespace acme
 
       g_pmutexMessageDispatch = new ::mutex();
 
-      g_pmutexCred = new ::mutex();
+      //g_pmutexCred = new ::mutex();
 
 #if defined(LINUX) || defined(__APPLE__)
 
@@ -564,7 +578,7 @@ namespace acme
 
       //g_pmapNewAuraLibrary = new string_map < PFN_NEW_ACME_LIBRARY >();
 
-#ifndef _UWP
+#ifdef LINUX
 
       br_init(nullptr);
 
@@ -615,7 +629,7 @@ namespace acme
 
       //g_pcsRefDbg = new critical_section();
 
-      g_bAura = 1;
+      g_bAcme = 1;
 
       //::thread::g_pmutex = new mutex();
 
@@ -634,6 +648,8 @@ namespace acme
       g_pmapFontFaceName = new string_to_string();
 
       init();
+
+
 
    }
 
@@ -747,7 +763,7 @@ namespace acme
       ////acme commented
       //::user::term_windowing();
 
-      g_bAura = 0;
+      g_bAcme = 0;
 
       ::acme::del(g_pacmestrpool);
 
@@ -757,19 +773,19 @@ namespace acme
       // acme commented
       //g_ptrace = g_psimpletrace;
 
-      del(g_pmapRTL);
+      ::acme::del(g_pmapRTL);
 
 #if defined(LINUX) || defined(__APPLE__)
 
-      del(g_pmutexTz);
+      ::acme::del(g_pmutexTz);
 
 #endif // defined(LINUX) || defined(__APPLE__)
 
-      del(g_pmutexCred);
+      //::acme::del(g_pmutexCred);
 
-      del(g_pmutexMessageDispatch);
+      ::acme::del(g_pmutexMessageDispatch);
 
-      del(g_pmutexUiDestroyed);
+      ::acme::del(g_pmutexUiDestroyed);
 
       //del(g_pmapAura);
 
@@ -782,7 +798,7 @@ namespace acme
             try
             {
 
-               del(po);
+               ::acme::del(po);
 
             }
             catch (...)
@@ -792,7 +808,7 @@ namespace acme
 
          }
 
-         del(g_paAura);
+         ::acme::del(g_paAura);
 
       }
 
@@ -815,7 +831,7 @@ namespace acme
 
       //del(&::get_context_system()->g_mutexLibrary);
 
-      trace_category_static_term();
+      //trace_category_static_term();
 
 #if OBJ_TYP_CTR
 
@@ -829,17 +845,17 @@ namespace acme
 
 #endif
 
-      del(g_pmutexSystemHeap);
+      ::acme::del(g_pmutexSystemHeap);
 
-      //del(g_pmutexThreadOn);
+      //::acme::del(g_pmutexThreadOn);
 
-      //del(g_pmapThreadOn);
+      //::acme::del(g_pmapThreadOn);
 
-      del(g_pmutexThreadWaitClose);
+      ::acme::del(g_pmutexThreadWaitClose);
 
 #ifdef __APPLE__
 
-      del(g_pmutexCvt);
+      ::acme::del(g_pmutexCvt);
 
 #endif
 
@@ -853,7 +869,7 @@ namespace acme
       // acme commented
       //::acme::del(g_psimpletrace);
 
-      ::acme::del(g_pcsTrace);
+      //::acme::del(g_pcsTrace);
 
       trace_category_static_term();
 
@@ -863,9 +879,9 @@ namespace acme
 
 #endif
 
-      term_id_pool();
+      //term_id_pool();
 
-      del(::id_space::s_pidspace);
+      ::acme::del(::id_space::s_pidspace);
 
 #if !defined(__MCRTDBG) && !MEMDLEAK
 
@@ -873,15 +889,15 @@ namespace acme
 
       g_pheap = nullptr;
 
-      del(pheap);
+      ::acme::del(pheap);
 
 #endif
 
-      del(g_pcsGlobal);
+      ::acme::del(g_pcsGlobal);
 
-      del(g_pmutexChildren);
+      ::acme::del(g_pmutexChildren);
 
-      del(g_pmutexGlobals);
+      ::acme::del(g_pmutexGlobals);
 
 #if MEMDLEAK
 
@@ -954,7 +970,8 @@ namespace acme
 
       }
 
-      ::multithreading::init_multithreading();
+      // acme commented for apex
+      //::multithreading::init_multithreading();
 
       if (!__node_acme_pos_init())
       {
@@ -971,6 +988,10 @@ namespace acme
 
 #endif
 
+      create_factory < ::stdio_file >();
+
+      __node_acme_factory_exchange();
+
       //g_pfn_create_system = &acme_create_acme_system;
 
       return true;
@@ -983,16 +1004,18 @@ namespace acme
 
       //::multithreading::wait_threads(1_min);
 
-      if (g_axisontermthread)
-      {
+      //if (g_axisontermthread)
+      //{
 
-         g_axisontermthread();
+      //   g_axisontermthread();
 
-      }
+      //}
 
-      on_term_thread();
+      // acme commented for apex
+      //on_term_thread();
 
-      ::multithreading::term_multithreading();
+      // acme commented for apex
+      //::multithreading::term_multithreading();
 
       __node_acme_pre_term();
 
@@ -1050,12 +1073,12 @@ namespace acme
 
 
 
-CLASS_DECL_ACME ::mutex * get_cred_mutex()
-{
-
-   return ::acme::g_pmutexCred;
-
-}
+//CLASS_DECL_ACME ::mutex * get_cred_mutex()
+//{
+//
+//   return ::acme::g_pmutexCred;
+//
+//}
 
 
 
@@ -1406,4 +1429,19 @@ void acme_ref()
 }
 
 
+CLASS_DECL_ACME ::mutex* get_globals_mutex()
+{
 
+   return ::acme::g_pmutexGlobals;
+
+}
+
+
+
+
+CLASS_DECL_ACME mutex* get_children_mutex()
+{
+
+   return ::acme::g_pmutexChildren;
+
+}

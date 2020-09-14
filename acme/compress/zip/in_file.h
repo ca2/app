@@ -71,7 +71,7 @@ namespace zip
 
       //virtual void add_file(const ::file::path & pszDir,const ::file::path & pszRelative);
 
-      virtual void add_file(const ::file::path& pszDir, const ::file::path& pszRelative, ::file::file * pfile);
+      virtual void add_file(const ::file::path& pszRelative, ::file::file * pfile);
 
       bool dump(file_pointer pfile);
 

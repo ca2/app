@@ -11,6 +11,7 @@ namespace message
    public:
 
 
+      __pointer(::channel)       m_pchannel;
       ::user::primitive *        m_puserinteraction;
       bool                       m_bConditional;
       bool                       m_bReflect;

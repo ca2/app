@@ -32,11 +32,11 @@ void __node_init_cross_windows_threading()
 void __node_term_cross_windows_threading()
 {
 
-   //::apex::del(g_puaThreadLocalDataFreeIndexes);
+   //::acme::del(g_puaThreadLocalDataFreeIndexes);
 
-   //::apex::del(g_pmapThreadLocalData);
+   //::acme::del(g_pmapThreadLocalData);
 
-   //::apex::del(g_pmutexThreadLocalData);
+   //::acme::del(g_pmutexThreadLocalData);
 
 }
 

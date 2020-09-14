@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.22823.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "and_aura", "and_aura\and_aura.vcxproj", "{A2C73358-C840-4509-9CDE-06CB1CCEB901}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "and_apex", "and_apex\and_apex.vcxproj", "{A2C73358-C840-4509-9CDE-06CB1CCEB901}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

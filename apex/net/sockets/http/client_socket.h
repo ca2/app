@@ -3,7 +3,7 @@
 
 //#include "sockets_http_tunnel.h"
 
-//#include "aura/net/sockets/bsd/basic/socket_handler.h"
+//#include "apex/net/sockets/bsd/basic/socket_handler.h"
 
 
 namespace sockets
@@ -143,7 +143,7 @@ namespace http
       ::sockets::socket_handler           m_handler;
       __pointer(::sockets::http_client_socket)   m_psocket;
 
-      session(::object * pobject);
+      session(::layered * pobjectContext);
       virtual ~session();
 
    };

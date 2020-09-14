@@ -13,7 +13,7 @@ namespace simpledb
       base *     m_pbase;
 
 
-      server(::object * pobject);
+      server(::layered * pobjectContext);
       virtual ~server();
 
       

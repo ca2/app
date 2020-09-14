@@ -10,7 +10,7 @@ class simple_tool_command : public ::user::command        // class private to th
 {
 public: // re-implementations only
 
-   simple_tool_command(::object * pobject);
+   simple_tool_command(::layered * pobjectContext);
    virtual void Enable(bool bOn = TRUE, const ::action_context & context = ::source_system);
    //   virtual void _001SetCheck(bool bCheck, const ::action_context & context = ::source_system);   // 0, 1 or 2 (indeterminate)
    virtual void _001SetCheck(enum_check echeck, const ::action_context & context = ::source_system);   // 0, 1 or 2 (indeterminate)
@@ -492,7 +492,7 @@ size simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, index nCou
 
    index buttonx, buttony;
 
-   auto iC = MIN(nCount, m_itema.get_size());
+   auto iC = min(nCount, m_itema.get_size());
 
    ::rect rectItemPad = get_item_pad();
 
@@ -573,9 +573,9 @@ size simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, index nCou
 
       cur.x += (LONG) buttonx; //  +sPress.cx;
 
-      sizeResult.cx = MAX(cur.x, sizeResult.cx);
+      sizeResult.cx = max(cur.x, sizeResult.cx);
 
-      cur.y = (LONG) MAX(cur.y, buttony);
+      cur.y = (LONG) max(cur.y, buttony);
 
       if (m_itema[i]->m_fsState & TBSTATE_WRAP)
       {
@@ -1600,7 +1600,7 @@ void simple_toolbar::_001DiscardImageList()
 }
 
 
-void simple_toolbar::_001SetImageList(__pointer(image_list) imagelist)
+void simple_toolbar::_001SetImageList(__pointer(::image_list) imagelist)
 {
 
    UNREFERENCED_PARAMETER(imagelist);
@@ -1626,7 +1626,7 @@ void simple_toolbar::_001OnImageListAttrib()
    if(m_pimagelistHue == nullptr)
    {
 
-      m_pimagelistHue = new image_list();
+      m_pimagelistHue = new ::image_list();
 
    }
 
@@ -1645,7 +1645,7 @@ void simple_toolbar::_001OnImageListAttrib()
    if(m_pimagelistBlend == nullptr)
    {
 
-      m_pimagelistBlend = new image_list();
+      m_pimagelistBlend = new ::image_list();
 
    }
 
@@ -1659,7 +1659,7 @@ void simple_toolbar::_001OnImageListAttrib()
    if(m_pimagelistHueLight == nullptr)
    {
 
-      m_pimagelistHueLight = new image_list();
+      m_pimagelistHueLight = new ::image_list();
 
    }
 
@@ -1679,8 +1679,8 @@ void simple_toolbar::_001OnImageListAttrib()
 /////////////////////////////////////////////////////////////////////////////
 // simple_toolbar idle update through simple_tool_command class
 
-simple_tool_command::simple_tool_command(::object * pobject) :
-   ::user::command(pobject)
+simple_tool_command::simple_tool_command(::layered * pobjectContext) :
+   ::user::command(pobjectContext)
 {
 
 }
@@ -1905,7 +1905,7 @@ index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, index 
 
    string str;
 
-   auto iC = MIN(nCount, m_itema.get_count());
+   auto iC = min(nCount, m_itema.get_count());
 
    bool bFirstInRow = true;
 
@@ -2462,9 +2462,9 @@ size simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 dwMo
 
       const ::size & size = ::user::control_bar::CalcFixedLayout(pgraphics, (dwMode & LM_STRETCH) != 0, (dwMode & LM_HORZ) != 0);
 
-      sizeResult.cx = MAX(sizeResult.cx, size.cx);
+      sizeResult.cx = max(sizeResult.cx, size.cx);
 
-      sizeResult.cy = MAX(sizeResult.cy, size.cy);
+      sizeResult.cy = max(sizeResult.cy, size.cy);
 
    }
 

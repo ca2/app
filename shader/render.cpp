@@ -27,7 +27,7 @@ namespace app_shader
    }
 
 
-   ::estatus render::initialize(::object* pobjectContext)
+   ::estatus render::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);
@@ -122,9 +122,9 @@ namespace app_shader
 
       }
 
-      ::file::listing listing(get_context());
+      ::file::listing listing;
 
-      listing.ls_pattern("dropbox://shader/simple shader/", { "*.frag" });
+      Application.dir().ls_pattern(listing, "dropbox://shader/simple shader/", { "*.frag" });
 
       for (auto& path : listing)
       {

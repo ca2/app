@@ -60,28 +60,28 @@ extern thread_data_index g_tlsindexLastError;
 // } // namespace multithreading
 
 
-thread_local __pointer(property_set) t_ppropertyset;
-
-
-property_set& _thread_property_set()
-{
-
-   auto& ppropertyset = t_ppropertyset;
-
-   ppropertyset.defer_create_new();
-
-   return *ppropertyset;
-
-}
-
-property_set& thread_property_set()
-{
-
-   auto & ppropertyset = t_ppropertyset;
-
-   return ppropertyset ? *ppropertyset : _thread_property_set();
-
-}
+//thread_local __pointer(property_set) t_ppropertyset;
+//
+//
+//property_set& _thread_property_set()
+//{
+//
+//   auto& ppropertyset = t_ppropertyset;
+//
+//   ppropertyset.defer_create_new();
+//
+//   return *ppropertyset;
+//
+//}
+//
+//property_set& thread_property_set()
+//{
+//
+//   auto & ppropertyset = t_ppropertyset;
+//
+//   return ppropertyset ? *ppropertyset : _thread_property_set();
+//
+//}
 
 
 

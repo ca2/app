@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "core/user/userex/_userex.h"
-#include "aura/filesystem/filemanager/_.h"
-#include "aura/user/account/account.h"
+#include "apex/filesystem/filemanager/_.h"
+#include "apex/user/account/account.h"
 
 
 #define MAGIC_PALACE_TAB_SPLT "->:<-"
@@ -9,7 +9,7 @@
 #define MAGIC_PALACE_TAB_TEXT "/"
 
 
-namespace aura
+namespace apex
 {
 
    //session_docs * create_session_docs();
@@ -21,7 +21,7 @@ namespace aura
 
 
       create_factory < ::user::user >();
-      create_factory < ::aura::session, ::aura::session >();
+      create_factory < ::apex::session, ::apex::session >();
 
       //m_strAppId                    = "core_session";
       //m_strAppName                  = "core_session";
@@ -48,10 +48,10 @@ namespace aura
    }
 
 
-   ::estatus session::initialize(::object * pobjectContext)
+   ::estatus session::initialize(::layered * pobjectContext)
    {
 
-      auto estatus = ::aura::session::initialize(pobjectContext);
+      auto estatus = ::apex::session::initialize(pobjectContext);
 
       if (!estatus)
       {
@@ -78,7 +78,7 @@ namespace aura
 
       m_puiMouseMoveCapture = nullptr;
 
-      m_psavings = __new(class ::aura::savings(this));
+      m_psavings = __new(class ::apex::savings(this));
 
       return estatus;
 
@@ -88,8 +88,8 @@ namespace aura
    void session::install_message_routing(::channel * pchannel)
    {
 
-      //aura::application::install_message_routing(pchannel);
-      aura::session::install_message_routing(pchannel);
+      //apex::application::install_message_routing(pchannel);
+      apex::session::install_message_routing(pchannel);
 
    }
 
@@ -97,10 +97,10 @@ namespace aura
    ::estatus session::process_init()
    {
 
-      /*if(!::aura::application::process_init())
+      /*if(!::apex::application::process_init())
          return false;*/
 
-      if(!::aura::session::process_init())
+      if(!::apex::session::process_init())
          return false;
 
       //auto estatus = process_init_userex();
@@ -131,14 +131,14 @@ namespace aura
    ::estatus session::init1()
    {
 
-      //if (!::aura::application::init1())
+      //if (!::apex::application::init1())
       //{
 
       //   return false;
 
       //}
 
-      if (!::aura::session::init1())
+      if (!::apex::session::init1())
       {
 
          return false;
@@ -147,10 +147,10 @@ namespace aura
 
 
 
-         if (!::aura::session::init1())
+         if (!::apex::session::init1())
             return false;
 
-         //if (!::aura::application::init1())
+         //if (!::apex::application::init1())
            // return false;
 
          //if (m_puserstyle.is_null())
@@ -207,14 +207,14 @@ namespace aura
    ::estatus session::init()
    {
 
-      //if (!::aura::application::init())
+      //if (!::apex::application::init())
       //{
 
       //   return false;
 
       //}
 
-      if (!::aura::session::init())
+      if (!::apex::session::init())
       {
 
          return false;
@@ -231,14 +231,14 @@ namespace aura
    ::estatus session::init2()
    {
 
-      //if (!::aura::application::init2())
+      //if (!::apex::application::init2())
       //{
 
       //   return false;
 
       //}
 
-      if (!::aura::session::init2())
+      if (!::apex::session::init2())
       {
 
          return false;
@@ -254,14 +254,14 @@ namespace aura
    ::estatus session::init_session()
    {
 
-      //if (!::aura::application::init_application())
+      //if (!::apex::application::init_application())
       //{
 
       //   return false;
 
       //}
 
-      if (!::aura::session::init_session())
+      if (!::apex::session::init_session())
       {
 
          return false;
@@ -286,10 +286,10 @@ namespace aura
       if(is_remote_session())
       {
 
-         //Session.savings().save(::aura::resource_display_bandwidth);
-         //Session.savings().save(::aura::resource_blur_background);
-         //Session.savings().save(::aura::resource_blurred_text_embossing);
-         //Session.savings().save(::aura::resource_translucent_background);
+         //Session.savings().save(::apex::resource_display_bandwidth);
+         //Session.savings().save(::apex::resource_blur_background);
+         //Session.savings().save(::apex::resource_blurred_text_embossing);
+         //Session.savings().save(::apex::resource_translucent_background);
 
       }
 
@@ -312,7 +312,7 @@ namespace aura
       try
       {
 
-         ::aura::session::term_session();
+         ::apex::session::term_session();
 
       }
       catch (...)
@@ -365,7 +365,7 @@ namespace aura
       try
       {
 
-         ::aura::session::term();
+         ::apex::session::term();
 
       }
       catch(...)
@@ -378,7 +378,7 @@ namespace aura
       //try
       //{
 
-      //   ::aura::application::term();
+      //   ::apex::application::term();
 
       //}
       //catch(...)
@@ -443,14 +443,14 @@ namespace aura
    void session::on_request(::create * pcreate)
    {
 
-      ::aura::session::on_request(pcreate);
+      ::apex::session::on_request(pcreate);
 
    }
 
    ::estatus     session::do_request(::create * pcreate)
    {
 
-      return ::aura::session::do_request(pcreate);
+      return ::apex::session::do_request(pcreate);
 
    }
 
@@ -530,7 +530,7 @@ namespace aura
 
       }
 
-      ::aura::application * papp = application_get(strId, true, true, pcreate);
+      ::apex::application * papp = application_get(strId, true, true, pcreate);
 
       if (papp == nullptr)
       {
@@ -570,7 +570,7 @@ namespace aura
    //
    //#if defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(APPLEOS)
    //
-   //         ::aura::ipc::tx channel;
+   //         ::apex::ipc::tx channel;
    //
    //         if(channel.open("::draw2d::account::message_wnd::session::"))
    //         {
@@ -593,7 +593,7 @@ namespace aura
 //   void session::request(::create * pcreate)
 //   {
 //
-//      ::aura::session::do_request(pcreate);
+//      ::apex::session::do_request(pcreate);
 //
 //   }
 
@@ -617,7 +617,7 @@ namespace aura
    /*void session::request_application(const char * pszId, var varFile, var varQuery, application_bias * papplicationbias)
    {
 
-   ::aura::application_request request;
+   ::apex::application_request request;
 
    request.m_iEdge         = m_iEdge;
    request.m_strApp        = pszId;
@@ -629,9 +629,9 @@ namespace aura
 
    }*/
    /*
-   __pointer(::aura::application) session::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * papplicationbias)
+   __pointer(::apex::application) session::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * papplicationbias)
    {
-   ::aura::application * papp = nullptr;
+   ::apex::application * papp = nullptr;
 
    if(m_mapApplication.lookup(string(pszType) + ":" + string(pszId), papp))
    return papp;
@@ -687,7 +687,7 @@ namespace aura
    }
 
 
-   __pointer(::aura::application) session::get_current_application()
+   __pointer(::apex::application) session::get_current_application()
    {
       return Session.m_pappCurrent;
    }
@@ -704,12 +704,12 @@ namespace aura
 
    //   strSentinelPath = Context.dir().install() / "stage/x86/app.sentinel.exe";
 
-   //   Context.os().local_machine_set_run("aura app.sentinel", "\"" + strSentinelPath + "\"", true);
+   //   Context.os().local_machine_set_run("apex app.sentinel", "\"" + strSentinelPath + "\"", true);
 
    //   Context.os().defer_register_ca2_plugin_for_mozilla();
 
-   //   //return ::aura::application::on_install();
-   //   return aura::session::on_install();
+   //   //return ::apex::application::on_install();
+   //   return apex::session::on_install();
 
    //}
 
@@ -834,7 +834,7 @@ namespace aura
    /*void session::request_application(const char * pszId, var varFile, var varQuery, application_bias * papplicationbias)
    {
 
-   ::aura::application_request request;
+   ::apex::application_request request;
 
    request.m_iEdge         = m_iEdge;
    request.m_strApp        = pszId;
@@ -870,7 +870,7 @@ namespace aura
    //   ::user::place_holder_ptra holderptra;
 
 
-   //   ::aura::application & app = App(pmainframe->get_context_application());
+   //   ::apex::application & app = App(pmainframe->get_context_application());
 
    //   string strAppName = app.m_strAppName;
 
@@ -909,7 +909,7 @@ namespace aura
    void session::set_app_title(const char * pszAppId, const char * pszTitle)
    {
 
-      __pointer(::aura::application) papp;
+      __pointer(::apex::application) papp;
 
       if(m_applicationa.lookup(pszAppId, papp) && papp)
       {
@@ -940,7 +940,7 @@ namespace aura
 
 
 
-   __pointer(::aura::session) session::get_context_session()
+   __pointer(::apex::session) session::get_context_session()
    {
 
       return this;
@@ -970,7 +970,7 @@ namespace aura
    //   try
    //   {
 
-   //      bOk1 = ::aura::session::on_uninstall();
+   //      bOk1 = ::apex::session::on_uninstall();
 
    //   }
    //   catch(...)
@@ -990,7 +990,7 @@ namespace aura
    //::estatus session::os_native_bergedge_start()
    //{
 
-   //   if (!::aura::application::os_native_bergedge_start())
+   //   if (!::apex::application::os_native_bergedge_start())
    //   {
 
    //      return false;
@@ -1006,7 +1006,7 @@ namespace aura
    //{
 
 
-   //   return ::aura::application::allocate_new_service();
+   //   return ::apex::application::allocate_new_service();
 
 
    //}
@@ -1026,15 +1026,15 @@ namespace aura
    ::estatus     session::main()
    {
 
-      return ::aura::session::main();
+      return ::apex::session::main();
 
    }
 
 
-   //::aura::session * session::query_bergedge()
+   //::apex::session * session::query_bergedge()
    //{
 
-   //   ::aura::session * psession = nullptr;
+   //   ::apex::session * psession = nullptr;
 
    //   if(System.m_pbergedgemap == nullptr)
    //      return nullptr;
@@ -1052,7 +1052,7 @@ namespace aura
    void session::on_user_logon(::account::user * puser)
    {
 
-      ::aura::session::on_user_logon(puser);
+      ::apex::session::on_user_logon(puser);
 
    }
 
@@ -1102,7 +1102,7 @@ namespace aura
       //attach_thread_input_to_main_thread(false);
 #endif
 
-      ::aura::session::interactive_credentials(pcredentials);
+      ::apex::session::interactive_credentials(pcredentials);
 
       if (pcredentials->m_estatus == ::success_credentials)
       {
@@ -1317,10 +1317,10 @@ namespace aura
     //}
 
 
-    //::estatus session::initialize(::object* pobjectContext)
+    //::estatus session::initialize(::layered * pobjectContext)
     //{
 
-    //   auto estatus = ::aura::session::initialize(pobjectContext);
+    //   auto estatus = ::apex::session::initialize(pobjectContext);
 
     //   if (!estatus)
     //   {
@@ -1347,7 +1347,7 @@ namespace aura
 
     //   m_puiMouseMoveCapture = nullptr;
 
-    //   m_psavings = __new(class ::aura::savings(this));
+    //   m_psavings = __new(class ::apex::savings(this));
 
     //   m_pcopydesk = nullptr;
 
@@ -1363,7 +1363,7 @@ namespace aura
 
     //   INFO(".1");
 
-    //   if (!::aura::session::process_init())
+    //   if (!::apex::session::process_init())
     //   {
 
     //      ERR(".2");
@@ -1372,7 +1372,7 @@ namespace aura
 
     //   }
 
-    //   //if (!::aura::application::process_init())
+    //   //if (!::apex::application::process_init())
     //   //{
 
     //   //   ERR(".3");
@@ -1416,10 +1416,10 @@ namespace aura
     //{
 
 
-    //   if (!::aura::session::init1())
+    //   if (!::apex::session::init1())
     //      return false;
 
-    //   //if (!::aura::application::init1())
+    //   //if (!::apex::application::init1())
     //     // return false;
 
     //   //if (m_puserstyle.is_null())
@@ -1444,14 +1444,14 @@ namespace aura
     //::estatus session::init()
     //{
 
-    //   if (!::aura::session::init())
+    //   if (!::apex::session::init())
     //   {
 
     //      return false;
 
     //   }
 
-    //   //if (!::aura::application::init())
+    //   //if (!::apex::application::init())
     //   //{
 
     //   //   return false;
@@ -1475,9 +1475,9 @@ namespace aura
     //void session::term_session()
     //{
 
-    //   //::aura::application::term_application();
+    //   //::apex::application::term_application();
 
-    //   ::aura::session::term_session();
+    //   ::apex::session::term_session();
 
     //   try
     //   {
@@ -1642,7 +1642,7 @@ namespace aura
     /*void session::interactive_credentials(::account::credentials* pcredentials)
     {
 
-       ::aura::session::interactive_credentials(pcredentials);
+       ::apex::session::interactive_credentials(pcredentials);
 
        if (pcredentials->m_estatus == ::success_credentials)
        {
@@ -1695,7 +1695,7 @@ namespace aura
 
        user()->set_mouse_focus_LButtonDown(pelementalFocus);
 
-       aura::session::on_finally_focus_set(pelementalFocus);
+       apex::session::on_finally_focus_set(pelementalFocus);
 
     }
 
@@ -1703,7 +1703,7 @@ namespace aura
     bool session::on_ui_mouse_message(::message::mouse* pmouse)
     {
 
-       ::aura::session::on_ui_mouse_message(pmouse);
+       ::apex::session::on_ui_mouse_message(pmouse);
 
        if (m_puserpresence.is_set())
        {
@@ -1717,7 +1717,7 @@ namespace aura
     }
 
 
-} // namespace aura
+} // namespace apex
 
 
 

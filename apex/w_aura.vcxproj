@@ -694,11 +694,11 @@
     <ClInclude Include="platform\async.h" />
     <ClInclude Include="platform\atomic2.h" />
     <ClInclude Include="platform\apex.h" />
-    <ClInclude Include="platform\aura_aura.h" />
-    <ClInclude Include="platform\aura_main_data.h" />
-    <ClInclude Include="platform\aura_main_struct.h" />
-    <ClInclude Include="platform\aura_regex.h" />
-    <ClInclude Include="platform\aura_status.h" />
+    <ClInclude Include="platform\apex_apex.h" />
+    <ClInclude Include="platform\apex_main_data.h" />
+    <ClInclude Include="platform\apex_main_struct.h" />
+    <ClInclude Include="platform\apex_regex.h" />
+    <ClInclude Include="platform\apex_status.h" />
     <ClInclude Include="platform\auto.h" />
     <ClInclude Include="platform\auto_pointer.h" />
     <ClInclude Include="platform\class.h" />
@@ -998,7 +998,7 @@
     <ClInclude Include="primitive\primitive\function.h" />
     <ClInclude Include="primitive\primitive\function_arg.h" />
     <ClInclude Include="primitive\primitive\function_base.h" />
-    <ClInclude Include="primitive\primitive\generic_object.h" />
+    <ClInclude Include="primitive\primitive\generic.h" />
     <ClInclude Include="primitive\primitive\id.h" />
     <ClInclude Include="primitive\primitive\id_space.h" />
     <ClInclude Include="primitive\primitive\interlocked_long.h" />
@@ -1504,8 +1504,8 @@
     <None Include="graphics\draw2d\draw2d.inl" />
     <None Include="graphics\draw2d\visual.inl" />
     <None Include="inline\aaa_want_to_remove_app_prelude.inl" />
-    <None Include="platform\aura1.inl" />
-    <None Include="platform\aura2.inl" />
+    <None Include="platform\apex1.inl" />
+    <None Include="platform\apex2.inl" />
     <None Include="platform\gudo_application2.inl" />
     <None Include="primitive\geometry2d\_rect_impl.h" />
     <None Include="primitive\geometry2d\_size_impl.h" />
@@ -2110,9 +2110,9 @@
     <ClCompile Include="platform\app_launcher.cpp" />
     <ClCompile Include="platform\assert.cpp" />
     <ClCompile Include="platform\assert_running_task.cpp" />
-    <ClCompile Include="platform\aura_main_data.cpp" />
-    <ClCompile Include="platform\aura_main_struct.cpp" />
-    <ClCompile Include="platform\aura_str_pool.cpp" />
+    <ClCompile Include="platform\apex_main_data.cpp" />
+    <ClCompile Include="platform\apex_main_struct.cpp" />
+    <ClCompile Include="platform\apex_str_pool.cpp" />
     <ClCompile Include="platform\build_debug.cpp" />
     <ClCompile Include="platform\checked.cpp" />
     <ClCompile Include="platform\console_application.cpp" />
@@ -2174,7 +2174,7 @@
     <ClCompile Include="platform\sprintf.cpp" />
     <ClCompile Include="platform\static_setup.cpp" />
     <ClCompile Include="platform\static_start.cpp" />
-    <ClCompile Include="platform\static_start_aura.cpp" />
+    <ClCompile Include="platform\static_start_apex.cpp" />
     <ClCompile Include="platform\status.cpp" />
     <ClCompile Include="platform\strn.cpp" />
     <ClCompile Include="platform\str_context.cpp" />
@@ -2269,7 +2269,7 @@
     <ClCompile Include="primitive\primitive\edit.cpp" />
     <ClCompile Include="primitive\primitive\factory.cpp" />
     <ClCompile Include="primitive\primitive\form_property_set.cpp" />
-    <ClCompile Include="primitive\primitive\generic_object.cpp" />
+    <ClCompile Include="primitive\primitive\generic.cpp" />
     <ClCompile Include="primitive\primitive\handler.cpp" />
     <ClCompile Include="primitive\primitive\id.cpp" />
     <ClCompile Include="primitive\primitive\id_space.cpp" />
@@ -2738,7 +2738,7 @@
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>true</CompileAsWinRT>
-      <PreprocessorDefinitions>_AURA_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_APEX_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include/include;$(__archive)/third-uwp/third/include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
@@ -2779,7 +2779,7 @@
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CompileAsManaged>false</CompileAsManaged>
-      <PreprocessorDefinitions>_AURA_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_APEX_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
     </ClCompile>
@@ -2798,7 +2798,7 @@
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>true</CompileAsWinRT>
-      <PreprocessorDefinitions>_AURA_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_APEX_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAsManaged>false</CompileAsManaged>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include/include;$(__archive)/third-uwp/third/include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
@@ -2832,7 +2832,7 @@
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CompileAsManaged>false</CompileAsManaged>
-      <PreprocessorDefinitions>_AURA_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_APEX_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
     </ClCompile>
@@ -2851,7 +2851,7 @@
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>true</CompileAsWinRT>
-      <PreprocessorDefinitions>_AURA_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_APEX_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAsManaged>false</CompileAsManaged>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include/include;$(__archive)/third-uwp/third/include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
@@ -2886,7 +2886,7 @@
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CompileAsManaged>false</CompileAsManaged>
-      <PreprocessorDefinitions>_AURA_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_APEX_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
     </ClCompile>

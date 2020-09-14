@@ -18,7 +18,7 @@ namespace axis
       virtual ~session();
 
 
-      virtual ::estatus     initialize(::object * pobjectContext) override;
+      virtual ::estatus     initialize(::layered * pobjectContext) override;
 
 
       virtual ::estatus process_init() override;
@@ -54,7 +54,7 @@ namespace axis
 
       virtual void interactive_credentials(::account::credentials * pcredentials);
 
-      ::aura::application * application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate) override;
+      //::aura::application * application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate) override;
 
       virtual void install_message_routing(::channel* pchannel) override;
 

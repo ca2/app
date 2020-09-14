@@ -5,7 +5,7 @@ namespace browser
 {
 
 
-   application::application(::object * pobject) :
+   application::application(::layered * pobjectContext) :
       ::object(this),
       ::thread(this),
       ::aura::application(pobject),
@@ -227,7 +227,7 @@ namespace browser
 
 
 extern "C"
-::aura::library * app_browser_get_new_library(::object * pobject)
+::apex::library * app_browser_get_new_library(::layered * pobjectContext)
 {
 
    return new ::aura::single_application_library < ::browser::application > (pobject, "app/browser");
@@ -235,7 +235,7 @@ extern "C"
 }
 
 
-::aura::application * get_acid_app(::object * pobject)
+::aura::application * get_acid_app(::layered * pobjectContext)
 {
 
    return new ::browser::application(pobject);

@@ -19,22 +19,6 @@ namespace axis
    }
 
 
-   style::style(::object * pobject) :
-      ::object(pobject)
-   {
-
-      m_puserstyle = this;
-      m_pgraphics = nullptr;
-
-      default_style_construct();
-
-   }
-
-
-   style::~style()
-   {
-
-   }
 
 
    void style::default_style_construct()
@@ -1044,6 +1028,539 @@ namespace axis
 
 
    //}
+
+
+      style::~style()
+      {
+
+      }
+
+
+
+      //void style::select_default()
+      //{
+
+      //   if (pstyle.is_set())
+      //   {
+
+      //      m_puserstyleSelect = pstyle;
+
+      //   }
+      //   else
+      //   {
+
+      //      m_puserstyleSelect = this;
+
+      //   }
+
+      //}
+
+
+
+
+
+
+
+
+      //void style::initialize_style()
+      //{
+
+      //   ::user::style::initialize_style();
+
+      //   color color;
+      //   color.set_rgb(Session.get_default_color(COLOR_HIGHLIGHT));
+
+      //   class color colorHover(color);
+      //   colorHover.hls_rate(0.0, 0.3, 0.0);
+
+      //   class color colorPress(color);
+      //   colorPress.hls_rate(0.0, 0.7, 0.0);
+
+      //   m_eschema = schema_default;
+
+      //   create_opaque_color(color_text, ::color_black);
+
+      //}
+
+
+
+      //bool style::_001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics, tab * ptab)
+      //{
+
+      //   return false;
+
+      //}
+
+
+      //bool style::_001OnDrawMenuInteraction(::draw2d::graphics_pointer & pgraphics, menu_interaction * pinteraction)
+      //{
+
+      //   return false;
+
+      //}
+
+
+      //void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rect & rect, ::draw2d::brush_pointer & brushText)
+      //{
+
+      //   Session._001OnDefaultTabPaneDrawTitle(pane, ptab, pgraphics, rect, brushText);
+
+      //}
+
+
+      //bool style::_001OnTabLayout(::draw2d::graphics_pointer& pgraphics, ::user::tab * ptab)
+      //{
+
+      //   return false;
+
+      //}
+
+
+      //   bool style::_001GetMainFrameTranslucency(::user::e_translucency & etranslucency)
+      //   {
+      //
+      //      return false;
+      //
+      //   }
+
+
+      //   bool style::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics, ::user::frame_window * pframe)
+      //   {
+      //
+      //      return false;
+      //
+      //   }
+
+
+      //bool style::_001DrawCheckBox(::draw2d::graphics_pointer & pgraphics, ::user::check_box * pcheckbox)
+      //{
+
+      //   return false;
+
+      //}
+
+
+      //__pointer(::user::menu_interaction) style::create_menu_button(::user::style_pointer & pstyle, menu_item * pitem)
+      //{
+
+      //   return Session.create_menu_button(pstyle, pitem);
+
+      //}
+
+
+      //bool style::prepare_menu(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem)
+      //{
+
+      //   if (!prepare_menu_button(pgraphics,pitem))
+      //   {
+
+      //      return false;
+
+      //   }
+
+      //   return true;
+
+      //}
+
+
+      //bool style::prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem)
+      //{
+
+      //   pgraphics->m_puserstyle = this;
+
+      //   Session.prepare_menu_button(pgraphics, pitem);
+
+      //   return true;
+
+      //}
+
+
+      //bool style::create_color(e_color ecolor, COLORREF cr)
+      //{
+
+      //   if (userstyle()->m_mapColor.is_null())
+      //   {
+
+      //      userstyle()->m_mapColor = __new(color_map);
+
+      //   }
+
+      //   (*userstyle()->m_mapColor)[ecolor] = cr;
+
+      //   return true;
+
+      //}
+
+
+     // ::draw2d::font_pointer style::create_point_font(e_font efont, const char * pszFamilyName, double dFontSize, int iFontWeight)
+     // {
+
+     //    if (userstyle()->m_mapFont.is_null())
+     //    {
+
+     //       userstyle()->m_mapFont = __new(font_map);
+
+     //    }
+
+     //    auto & font = (*userstyle()->m_mapFont)[efont];
+
+     ///*    if (font.is_null())
+     //    {*/
+
+     //    __defer_construct(font);
+
+     //  //  }
+
+     //    font->create_point_font(pszFamilyName, dFontSize, iFontWeight);
+
+     //    return font;
+
+     // }
+
+
+      //bool style::create_opaque_color(e_color ecolor, COLORREF cr)
+      //{
+
+      //   if (!create_color(ecolor, opaque_color(cr)))
+      //   {
+
+      //      return false;
+
+      //   }
+
+      //   return true;
+
+      //}
+
+
+      //bool style::create_opaque_color(e_color eusercolor, ::e_color ecolor)
+      //{
+
+      //   if (!create_color(eusercolor, opaque_color(ecolor)))
+      //   {
+
+      //      return false;
+
+      //   }
+
+      //   return true;
+
+      //}
+
+
+      //bool style::create_session_default_opaque_color(e_color eusercolor, u64 ui)
+      //{
+
+      //   if (!create_opaque_color(eusercolor, Session.get_default_color(ui)))
+      //   {
+
+      //      return false;
+
+      //   }
+
+      //   return true;
+
+      //}
+
+
+      //bool style::create_session_default_color(e_color eusercolor, BYTE bAlpha, u64 ui)
+      //{
+
+      //   if (!create_color(eusercolor, alpha_color(bAlpha, Session.get_default_color(ui))))
+      //   {
+
+      //      return false;
+
+      //   }
+
+      //   return true;
+
+      //}
+
+
+      //bool style::create_translucency(e_element eelement, e_translucency etranslucency)
+      //{
+
+      //   if (userstyle()->m_mapTranslucency.is_null())
+      //   {
+
+      //      userstyle()->m_mapTranslucency = __new(translucency_map);
+
+      //   }
+
+      //   (*userstyle()->m_mapTranslucency)[eelement] = etranslucency;
+
+      //   return true;
+
+      //}
+
+
+      //bool style::create_flag(e_flag eflag, bool bFlag)
+      //{
+
+      //   if (userstyle()->m_mapFlag.is_null())
+      //   {
+
+      //      userstyle()->m_mapFlag = __new(translucency_map);
+
+      //   }
+
+      //   (*userstyle()->m_mapFlag)[eflag] = bFlag;
+
+      //   return true;
+
+      //}
+
+
+      //bool style::create_pixel_rect_coord(e_rect erect, double l, double t, double r, double b)
+      //{
+
+      //   return create_rect_coord(erect, l, t, r, b, ::draw2d::unit_pixel);
+
+      //}
+
+
+      //bool style::create_pixel_rect_dim(e_rect erect, double l, double t, double w, double h)
+      //{
+
+      //   return create_rect_dim(erect, l, t, w, h, ::draw2d::unit_pixel);
+
+      //}
+
+
+      //bool style::create_pixel_rect(e_rect erect, rectd r)
+      //{
+
+      //   return create_rect(erect, r, ::draw2d::unit_pixel);
+
+      //}
+
+
+      //bool style::create_point_rect_coord(e_rect erect, double l, double t, double r, double b)
+      //{
+
+      //   return create_rect_coord(erect, l, t, r, b, ::draw2d::unit_point);
+
+      //}
+
+
+      //bool style::create_point_rect_dim(e_rect erect, double l, double t, double w, double h)
+      //{
+
+      //   return create_rect_dim(erect, l, t, w, h, ::draw2d::unit_point);
+
+      //}
+
+
+      //bool style::create_point_rect(e_rect erect, rectd r)
+      //{
+
+      //   return create_rect(erect, r, ::draw2d::unit_point);
+
+      //}
+
+
+      //bool style::create_rect_coord(e_rect erect, double l, double t, double r, double b, ::draw2d::e_unit eunit)
+      //{
+
+      //   if (userstyle()->m_mapRect.is_null())
+      //   {
+
+      //      userstyle()->m_mapRect = __new(rect_map);
+
+      //   }
+
+      //   (*userstyle()->m_mapRect)[erect].set_rect_coord(l, t, r, b, eunit);
+
+      //   return true;
+
+      //}
+
+
+      //bool style::create_rect_dim(e_rect erect, double l, double t, double w, double h, ::draw2d::e_unit eunit)
+      //{
+
+      //   return create_rect_coord(erect, l, t, l + w, t + h, eunit);
+
+      //}
+
+
+      //bool style::create_rect(e_rect erect, ::rectd rect, ::draw2d::e_unit eunit)
+      //{
+
+      //   return create_rect_coord(erect, rect.left, rect.top, rect.right, rect.bottom, eunit);
+
+      //}
+
+
+      //bool style::create_int(e_int eint, int i)
+      //{
+
+      //   if (userstyle()->m_mapInt.is_null())
+      //   {
+
+      //      userstyle()->m_mapInt = __new(::user::int_map);
+
+      //   }
+
+      //   (*userstyle()->m_mapInt)[eint] = i;
+
+      //   return true;
+
+      //}
+
+
+      //bool style::create_double(e_double edouble, double d)
+      //{
+
+      //   if (userstyle()->m_mapDouble.is_null())
+      //   {
+
+      //      userstyle()->m_mapDouble = __new(::user::double_map);
+
+      //   }
+
+      //   (*userstyle()->m_mapDouble)[edouble] = d;
+
+      //   return true;
+
+      //}
+
+
+
+      //void style::nextstyle(style_context * pcontext)
+      //{
+
+      //   if (::is_set(m_pgraphics) && ::is_set(m_pgraphics->m_puserinteraction))
+      //   {
+
+      //      m_pgraphics->m_puserinteraction->nextstyle(pcontext);
+
+      //   }
+      //   else
+      //   {
+
+      //      pcontext->pstyle.release();
+
+      //   }
+
+      //}
+
+
+      //void style::defer_create_user_schema(::user::e_schema eschema)
+      //{
+
+      //   ::user::style * puserstyle = pstyle;
+
+      //   if (puserstyle == nullptr)
+      //   {
+
+      //      puserstyle = this;
+
+      //   }
+
+      //   if (eschema == schema_default)
+      //   {
+
+      //      m_puserstyleSelect = puserstyle;
+
+      //   }
+      //   else
+      //   {
+
+      //      auto & spuserstyle = puserstyle->m_map[eschema];
+
+      //      if (spuserstyle.is_null())
+      //      {
+
+      //         spuserstyle = __new(style(get_object()));
+
+      //      }
+
+      //      m_puserstyleSelect = spuserstyle;
+
+      //   }
+
+      //}
+
+
+      //void style::select_user_schema()
+      //{
+
+      //   auto eschema = m_eschema;
+
+      //   ::user::style * puserstyle = pstyle;
+
+      //   if (puserstyle == nullptr)
+      //   {
+
+      //      puserstyle = this;
+
+      //   }
+
+      //   if (eschema == schema_default)
+      //   {
+
+      //      m_puserstyleSelect = puserstyle;
+
+      //   }
+      //   else
+      //   {
+
+      //      auto & spuserstyle = puserstyle->m_map[eschema];
+
+      //      if (spuserstyle.is_set())
+      //      {
+
+      //         m_puserstyleSelect = spuserstyle;
+
+      //      }
+      //      else
+      //      {
+
+      //         m_puserstyleSelect = puserstyle;
+
+      //      }
+
+      //   }
+
+      //}
+
+
+      //void style::set_user_schema(::user::e_schema eschema)
+      //{
+
+      //   m_eschema = eschema;
+
+      //}
+
+
+      //style * style::style_get(::user::e_schema eschema)
+      //{
+
+      //   if (eschema == schema_default)
+      //   {
+
+      //      return this;
+
+      //   }
+
+      //   style_pointer pstyle;
+
+      //   if (m_map.lookup(eschema, pstyle))
+      //   {
+
+      //      return pstyle;
+
+      //   }
+
+      //   return this;
+
+      //}
+
+
+
+
 
 
 } // namespace axis

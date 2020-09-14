@@ -174,6 +174,7 @@ enum enum_status
    success_none,
    success_exit_thread,
    success_not_found,
+   success_not_ready,
 
    success_http = INT_SUCCESS_STATUS(STATUS_RANGE_HTTP),
    success_http_redirection,

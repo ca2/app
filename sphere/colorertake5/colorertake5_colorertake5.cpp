@@ -5,9 +5,9 @@ namespace colorertake5
 {
 
 
-   colorertake5::colorertake5(::object * pobject) :
+   colorertake5::colorertake5(::layered * pobjectContext) :
       object(pobject),
-      ::aura::department(pobject)
+      ::apex::department(pobject)
    {
 
    }

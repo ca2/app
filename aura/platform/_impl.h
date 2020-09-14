@@ -47,7 +47,7 @@ inline BLOCK_TYPE & memory_template < BLOCK_TYPE > ::operator = (const ::block &
 }
 
 struct lparam_dbg :
-   virtual generic_object
+   virtual generic
 {
 
 };
@@ -461,7 +461,7 @@ namespace aura
       //   Details
 
       // BRT 2015-02-18 19:08
-      // catch all (...) here in aura::del ... but should remove try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
+      // catch all (...) here in acme::del ... but should remove try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
 
       try
       {
@@ -493,7 +493,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 
 
 template < typename BASE >
-inline __pointer(BASE) alloc_object(::object * pobject)
+inline __pointer(BASE) alloc_object(::layered * pobjectContext)
 {
 
    return BASE::g_pallocfactory->alloc_object(pobject);
@@ -552,7 +552,7 @@ inline __pointer(T) clone(const __pointer(T) & t)
 }
 
 
-CLASS_DECL_AURA inline ::context * get_context(::object * pobject)
+CLASS_DECL_AURA inline ::context * get_context(::layered * pobjectContext)
 {
 
    if (pobject == nullptr)
@@ -576,7 +576,7 @@ CLASS_DECL_AURA inline ::context * get_context(::object * pobject)
 }
 
 
-CLASS_DECL_AURA inline ::aura::application * get_context_application(::object * pobject)
+CLASS_DECL_AURA inline ::aura::application * get_context_application(::layered * pobjectContext)
 {
 
    if (pobject == nullptr)
@@ -600,7 +600,7 @@ CLASS_DECL_AURA inline ::aura::application * get_context_application(::object * 
 }
 
 
-CLASS_DECL_AURA inline ::aura::session * get_context_session(::object * pobject)
+CLASS_DECL_AURA inline ::aura::session * get_context_session(::layered * pobjectContext)
 {
 
    if (pobject == nullptr)
@@ -624,7 +624,7 @@ CLASS_DECL_AURA inline ::aura::session * get_context_session(::object * pobject)
 }
 
 
-CLASS_DECL_AURA inline ::aura::system * get_context_system(::object * pobject)
+CLASS_DECL_AURA inline ::aura::system * get_context_system(::layered * pobjectContext)
 {
 
    if (pobject == nullptr)
@@ -689,7 +689,7 @@ CLASS_DECL_AURA inline ::aura::system * get_context_system(::aura::system * psys
 
 
 template < typename T >
-inline __pointer(T) & pointer < T >::clone(::object * pobjectContext)
+inline __pointer(T) & pointer < T >::clone(::layered * pobjectContext)
 {
 
    if (::is_null(pobjectContext))

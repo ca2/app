@@ -88,7 +88,7 @@
 //
 //      EExclusiveInstance                              m_eexclusiveinstance;
 //
-//      string_map < __pointer(::aura::exclusive) >     m_mapExclusive;
+//      string_map < __pointer(::acme::exclusive) >     m_mapExclusive;
 //
 //      bool                                            m_bService;
 //
@@ -160,7 +160,7 @@
 //      virtual ~application();
 //
 //
-//      virtual ::estatus initialize(::object * pobjectContext) override;
+//      virtual ::estatus initialize(::layered * pobjectContext) override;
 //
 //
 //      virtual void assert_valid() const override;
@@ -375,7 +375,7 @@
 //      //virtual string get_locale_schema_dir();
 //
 //
-//      //virtual ::estatus initialize(::object * pobjectContext) override;
+//      //virtual ::estatus initialize(::layered * pobjectContext) override;
 //
 //
 //      application_menu & applicationmenu();
@@ -431,7 +431,7 @@
 //      virtual string get_theme();
 //
 //
-//      virtual __pointer(::aura::exclusive) get_exclusive(string str, LPSECURITY_ATTRIBUTES psa);
+//      virtual __pointer(::acme::exclusive) get_exclusive(string str, LPSECURITY_ATTRIBUTES psa);
 //      virtual bool exclusive_fails(string str, LPSECURITY_ATTRIBUTES psa);
 //
 //
@@ -520,7 +520,7 @@
 //
 //      virtual string get_version();
 //
-//      virtual __pointer(::aura::ipi) create_ipi();
+//      virtual __pointer(::apex::ipi) create_ipi();
 //
 //      //virtual ::estatus process_init();
 //      virtual void process_term();
@@ -856,7 +856,7 @@
 //      virtual void HideApplication();
 //
 //      
-//      //virtual ::estatus initialize(::object* pobjectContext) override;
+//      //virtual ::estatus initialize(::layered * pobjectContext) override;
 //
 //      //virtual ::estatus process_init() override;
 //
@@ -1244,7 +1244,7 @@
 //      //       virtual __pointer(::bergedge::document) get_document();
 //
 //
-//      //virtual ::estatus add_library(::aura::library * plibrary);
+//      //virtual ::estatus add_library(::apex::library * plibrary);
 //
 //      virtual ::estatus initialize_userex();
 //      virtual ::estatus userfs_init1();
@@ -1347,7 +1347,7 @@
 //      //virtual ~application();
 //
 //
-//      //virtual ::estatus     initialize(::object* pobjectContext) override;
+//      //virtual ::estatus     initialize(::layered * pobjectContext) override;
 //
 //
 //      //virtual void install_message_routing(::channel * pchannel) override;

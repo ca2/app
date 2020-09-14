@@ -74,16 +74,16 @@ namespace sockets
 
 
       int                           m_iSelectErrno;
-      __pointer(::aura::log)        m_splogger; ///< Registered log class, or nullptr
+      __pointer(::apex::log)        m_splogger; ///< Registered log class, or nullptr
 
 
-      base_socket_handler(::object * pobject, ::aura::log * plogger = nullptr);
+      base_socket_handler(::layered * pobjectContext, ::apex::log * plogger = nullptr);
       virtual ~base_socket_handler();
 
       ///** get ::mutex context_object for threadsafe operations. */
       //virtual clasync & GetMutex() const = 0;
 
-      virtual void set_logger(::aura::log * plog);
+      virtual void set_logger(::apex::log * plog);
 
       /** Log error to log class for print out / storage. */
       //virtual void log(base_socket *point,const string & user_text,int err,const string & sys_err, e_trace_level elevel = trace_level_warning);

@@ -16,7 +16,7 @@ namespace xml
       var * m_pvar;
 
 
-      var_exchange(::object * pobjectContext);
+      var_exchange(::layered * pobjectContext);
       virtual ~var_exchange();
 
 

@@ -2,12 +2,12 @@
 #include "apex/message.h"
 #include <stdio.h>
 
-
-#ifdef WINDOWS_DESKTOP
-
-#pragma comment(lib, "Dxva2.lib")
-
-#endif
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//#pragma comment(lib, "Dxva2.lib")
+//
+//#endif
 
 //extern string_map < __pointer(::apex::library) >* g_pmapLibrary;
 
@@ -15,106 +15,106 @@
 
 
 //extern "C"
-CLASS_DECL_APEX int_bool defer_aura_init();
+CLASS_DECL_APEX int_bool defer_apex_init();
 
 //extern "C"
-CLASS_DECL_APEX int_bool defer_aura_term();
+CLASS_DECL_APEX int_bool defer_apex_term();
 
-
-namespace apex
-{
-
-
-
-   bool extract_sub_string(string& rString, const char* pszFullString, i32 iSubString, char chSep)
-   {
-
-      if (pszFullString == nullptr)
-      {
-
-         return false;
-
-      }
-
-      while (iSubString--)
-      {
-         pszFullString = strchr(pszFullString, chSep);
-
-         if (pszFullString == nullptr)
-
-         {
-            rString.Empty();        // return is_empty string as well
-            return FALSE;
-         }
-         pszFullString++;       // point past the separator
-
-      }
-
-      const char* pchEnd = strchr(pszFullString, chSep);
-
-
-      strsize nLen = (pchEnd == nullptr) ? strlen(pszFullString) : (i32)(pchEnd - pszFullString);
-
-
-      ASSERT(nLen >= 0);
-
-      ::apex::memcpy_s(rString.get_string_buffer(nLen), nLen * sizeof(char), pszFullString, nLen * sizeof(char));
-
-      rString.release_string_buffer();   // Need to call ReleaseBuffer after calling get_string_buffer
-
-      return TRUE;
-
-   }
-
-
-} // namespace apex
-
-
-
-
-
-
-#ifdef WINDOWS
-
-extern "C" const GUID LIBID_Lib = { 0x44EC0535,0x400F,0x11D0,{0x9D,0xCD,0x00,0xA0,0xC9,0x03,0x91,0xD3} };
-extern "C" const CLSID CLSID_Registrar = { 0x44EC053A,0x400F,0x11D0,{0x9D,0xCD,0x00,0xA0,0xC9,0x03,0x91,0xD3} };
-extern "C" const IID IID_IRegistrar = { 0x44EC053B,0x400F,0x11D0,{0x9D,0xCD,0x00,0xA0,0xC9,0x03,0x91,0xD3} };
-extern "C" const IID IID_IAxWinHostWindow = { 0xb6ea2050,0x048a,0x11d1,{0x82,0xb9,0x00,0xc0,0x4f,0xb9,0x94,0x2e} };
-extern "C" const IID IID_IAxWinAmbientDispatch = { 0xb6ea2051,0x048a,0x11d1,{0x82,0xb9,0x00,0xc0,0x4f,0xb9,0x94,0x2e} };
-extern "C" const IID IID_IInternalConnection = { 0x72AD0770,0x6A9F,0x11d1,{0xBC,0xEC,0x00,0x60,0x08,0x8F,0x44,0x4E} };
-extern "C" const IID IID_IDocHostUIHandlerDispatch = { 0x425B5AF0,0x65F1,0x11d1,{0x96,0x11,0x00,0x00,0xF8,0x1E,0x0D,0x0D} };
-extern "C" const IID IID_IAxWinHostWindowLic = { 0x3935BDA8,0x4ED9,0x495c,{0x86,0x50,0xE0,0x1F,0xC1,0xE3,0x8A,0x4B} };
-extern "C" const IID IID_IAxWinAmbientDispatchEx = { 0xB2D0778B,0xAC99,0x4c58,{0xA5,0xC8,0xE7,0x72,0x4E,0x53,0x16,0xB5} };
-
-
-#endif
-
-
-void gen_CrtErrorCheck(i32 i);
-
-
-void gen_CrtErrorCheck(i32 i)
-{
-   UNREFERENCED_PARAMETER(i);
-}
-
-
-
-
-
-int g_iAuraRefCount = 0;
-
-
-//extern "C"
-//int_bool defer_aura_init()
+//
+//namespace apex
 //{
 //
-//   g_iAuraRefCount++;
 //
-//   if (g_iAuraRefCount > 1)
+//
+//   bool extract_sub_string(string& rString, const char* pszFullString, i32 iSubString, char chSep)
+//   {
+//
+//      if (pszFullString == nullptr)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      while (iSubString--)
+//      {
+//         pszFullString = strchr(pszFullString, chSep);
+//
+//         if (pszFullString == nullptr)
+//
+//         {
+//            rString.Empty();        // return is_empty string as well
+//            return FALSE;
+//         }
+//         pszFullString++;       // point past the separator
+//
+//      }
+//
+//      const char* pchEnd = strchr(pszFullString, chSep);
+//
+//
+//      strsize nLen = (pchEnd == nullptr) ? strlen(pszFullString) : (i32)(pchEnd - pszFullString);
+//
+//
+//      ASSERT(nLen >= 0);
+//
+//      ::acme::memcpy_s(rString.get_string_buffer(nLen), nLen * sizeof(char), pszFullString, nLen * sizeof(char));
+//
+//      rString.release_string_buffer();   // Need to call ReleaseBuffer after calling get_string_buffer
+//
+//      return TRUE;
+//
+//   }
+//
+//
+//} // namespace apex
+
+
+
+
+//
+//
+//#ifdef WINDOWS
+//
+//extern "C" const GUID LIBID_Lib = { 0x44EC0535,0x400F,0x11D0,{0x9D,0xCD,0x00,0xA0,0xC9,0x03,0x91,0xD3} };
+//extern "C" const CLSID CLSID_Registrar = { 0x44EC053A,0x400F,0x11D0,{0x9D,0xCD,0x00,0xA0,0xC9,0x03,0x91,0xD3} };
+//extern "C" const IID IID_IRegistrar = { 0x44EC053B,0x400F,0x11D0,{0x9D,0xCD,0x00,0xA0,0xC9,0x03,0x91,0xD3} };
+//extern "C" const IID IID_IAxWinHostWindow = { 0xb6ea2050,0x048a,0x11d1,{0x82,0xb9,0x00,0xc0,0x4f,0xb9,0x94,0x2e} };
+//extern "C" const IID IID_IAxWinAmbientDispatch = { 0xb6ea2051,0x048a,0x11d1,{0x82,0xb9,0x00,0xc0,0x4f,0xb9,0x94,0x2e} };
+//extern "C" const IID IID_IInternalConnection = { 0x72AD0770,0x6A9F,0x11d1,{0xBC,0xEC,0x00,0x60,0x08,0x8F,0x44,0x4E} };
+//extern "C" const IID IID_IDocHostUIHandlerDispatch = { 0x425B5AF0,0x65F1,0x11d1,{0x96,0x11,0x00,0x00,0xF8,0x1E,0x0D,0x0D} };
+//extern "C" const IID IID_IAxWinHostWindowLic = { 0x3935BDA8,0x4ED9,0x495c,{0x86,0x50,0xE0,0x1F,0xC1,0xE3,0x8A,0x4B} };
+//extern "C" const IID IID_IAxWinAmbientDispatchEx = { 0xB2D0778B,0xAC99,0x4c58,{0xA5,0xC8,0xE7,0x72,0x4E,0x53,0x16,0xB5} };
+//
+//
+//#endif
+
+//
+//void gen_CrtErrorCheck(i32 i);
+
+//
+//void gen_CrtErrorCheck(i32 i)
+//{
+//   UNREFERENCED_PARAMETER(i);
+//}
+//
+//
+
+
+
+int g_iApexRefCount = 0;
+
+
+//extern "C"
+//int_bool defer_apex_init()
+//{
+//
+//   g_iApexRefCount++;
+//
+//   if (g_iApexRefCount > 1)
 //      return true;
 //
-//   if (!aura_init())
+//   if (!apex_init())
 //      return false;
 //
 //   return true;
@@ -122,15 +122,15 @@ int g_iAuraRefCount = 0;
 //}
 
 //extern "C"
-//CLASS_DECL_APEX int_bool defer_aura_term()
+//CLASS_DECL_APEX int_bool defer_apex_term()
 //{
 //
-//   g_iAuraRefCount--;
+//   g_iApexRefCount--;
 //
-//   if (g_iAuraRefCount >= 1)
+//   if (g_iApexRefCount >= 1)
 //      return true;
 //
-//   ::aura_term();
+//   ::apex_term();
 //
 //   return true;
 //
@@ -147,7 +147,7 @@ int g_iAuraRefCount = 0;
 
 
 
-//::apex::system* create_aura_system()
+//::apex::system* create_apex_system()
 //{
 //
 //   return g_pfn_create_system();
@@ -155,73 +155,50 @@ int g_iAuraRefCount = 0;
 //}
 
 
-
-CLASS_DECL_APEX int g_bAura = 0;
-
-
-
+//
+//CLASS_DECL_APEX int g_bApex = 0;
+//
 
 
 
-CLASS_DECL_APEX u32 g_tickStartTime = 0;
+//
+//
+//CLASS_DECL_APEX u32 g_tickStartTime = 0;
+//
 
 
 
 
 
-//extern "C"
-CLASS_DECL_APEX void debug_print(const char* pszFormat, ...)
-{
-
-   if (is_ptr_null(pszFormat, 1024))
-   {
-
-      return;
-
-   }
-
-   va_list argList;
-
-   va_start(argList, pszFormat);
-
-   char sz[4096];
-
-   vsnprintf(sz, sizeof(sz), pszFormat, argList);
-
-   ::output_debug_string(sz);
-
-   va_end(argList);
-
-}
 
 
-void __post_quit_message(i32 nExitCode)
-{
-
-#ifdef WINDOWS_DESKTOP
-
-   ::PostQuitMessage(nExitCode);
-
-#else
-
-   ::multithreading::set_finish(::get_context_application());
-
-#endif
-
-}
-
+//void __post_quit_message(i32 nExitCode)
+//{
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//   ::PostQuitMessage(nExitCode);
+//
+//#else
+//
+//   ::multithreading::set_finish(::get_context_application());
+//
+//#endif
+//
+//}
+//
 
 //string_map < __pointer(::apex::library) >* g_pmapLibrary = nullptr;
-//string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary = nullptr;
+//string_map < PFN_NEW_APEX_LIBRARY >* g_pmapNewApexLibrary = nullptr;
 
 
 //::mutex* &::get_context_system()->m_mutexLibrary = nullptr;
 
 
-CLASS_DECL_APEX string_map < PFN_NEW_AURA_LIBRARY >& __get_new_aura_library()
+CLASS_DECL_APEX string_map < PFN_NEW_APEX_LIBRARY >& __get_new_apex_library()
 {
 
-   return ::get_context_system()->m_mapNewAuraLibrary;
+   return ::get_context_system()->m_mapNewApexLibrary;
 
 }
 
@@ -235,12 +212,12 @@ CLASS_DECL_APEX string_map < __pointer(::apex::library) >& __library()
 
 
 
-CLASS_DECL_APEX PFN_NEW_AURA_LIBRARY get_get_new_aura_library(const char* psz)
+CLASS_DECL_APEX PFN_NEW_APEX_LIBRARY get_get_new_apex_library(const char* psz)
 {
 
    sync_lock sl(&::get_context_system()->m_mutexLibrary);
 
-   auto ppair = ::get_context_system()->m_mapNewAuraLibrary.plookup(psz);
+   auto ppair = ::get_context_system()->m_mapNewApexLibrary.plookup(psz);
 
    if (::is_null(ppair))
    {
@@ -264,12 +241,12 @@ CLASS_DECL_APEX::apex::library& get_library(const char* psz)
 }
 
 
-CLASS_DECL_APEX void register_get_new_aura_library(const char* psz, PFN_NEW_AURA_LIBRARY pfnNewAuraLibrary)
+CLASS_DECL_APEX void register_get_new_apex_library(const char* psz, PFN_NEW_APEX_LIBRARY pfnNewApexLibrary)
 {
 
    sync_lock sl(&::get_context_system()->m_mutexLibrary);
 
-   __get_new_aura_library()[psz] = pfnNewAuraLibrary;
+   __get_new_apex_library()[psz] = pfnNewApexLibrary;
 
 }
 
@@ -284,16 +261,16 @@ CLASS_DECL_APEX void register_library(const char* psz, ::apex::library* plibrary
 }
 
 
-CLASS_DECL_APEX int get_aura_init()
+CLASS_DECL_APEX int get_apex_init()
 {
 
-   return g_iAuraRefCount;
+   return g_iApexRefCount;
 
 }
 
 
 extern "C"
-CLASS_DECL_APEX::apex::system * aura_create_aura_system()
+CLASS_DECL_APEX::apex::system * apex_create_apex_system()
 {
 
    return new ::apex::system();
@@ -302,30 +279,30 @@ CLASS_DECL_APEX::apex::system * aura_create_aura_system()
 
 
 ////extern "C"
-//CLASS_DECL_APEX int_bool defer_aura_init()
+//CLASS_DECL_APEX int_bool defer_apex_init()
 //{
 //
-//   g_iAuraRefCount++;
+//   g_iApexRefCount++;
 //
-//   if (g_iAuraRefCount > 1)
+//   if (g_iApexRefCount > 1)
 //   {
 //
 //      return true;
 //
 //   }
 //
-//   if (!aura_init())
+//   if (!apex_init())
 //   {
 //
 //      return false;
 //
 //   }
 //
-//   s_paurastrpool = new aura_str_pool();
+//   s_papexstrpool = new apex_str_pool();
 //
 //   ::user::init_windowing();
 //
-//   g_bAura = 1;
+//   g_bApex = 1;
 //
 //   return true;
 //
@@ -333,12 +310,12 @@ CLASS_DECL_APEX::apex::system * aura_create_aura_system()
 
 
 //extern "C"
-//CLASS_DECL_APEX int_bool defer_aura_term()
+//CLASS_DECL_APEX int_bool defer_apex_term()
 //{
 //
-//   g_iAuraRefCount--;
+//   g_iApexRefCount--;
 //
-//   if (g_iAuraRefCount >= 1)
+//   if (g_iApexRefCount >= 1)
 //   {
 //
 //      return TRUE;
@@ -347,11 +324,11 @@ CLASS_DECL_APEX::apex::system * aura_create_aura_system()
 //
 //   ::user::term_windowing();
 //
-//   g_bAura = 0;
+//   g_bApex = 0;
 //
-//   ::apex::del(s_paurastrpool);
+//   ::acme::del(s_papexstrpool);
 //
-//   aura_term();
+//   apex_term();
 //
 //   return TRUE;
 //
@@ -363,21 +340,21 @@ CLASS_DECL_APEX::apex::system * aura_create_aura_system()
 
 
 
-// ::map < void*, void*, ::apex::application*, ::apex::application* >* g_pmapAura = nullptr;
+// ::map < void*, void*, ::apex::application*, ::apex::application* >* g_pmapApex = nullptr;
 
 
-// void set_aura(void* p, ::apex::application* papp)
+// void set_apex(void* p, ::apex::application* papp)
 // {
 
-//    g_pmapAura->set_at(p, papp);
+//    g_pmapApex->set_at(p, papp);
 
 // }
 
 
-// ::apex::application* get_aura(void* p)
+// ::apex::application* get_apex(void* p)
 // {
 
-//    return g_pmapAura->operator [](p);
+//    return g_pmapApex->operator [](p);
 
 // }
 
@@ -389,105 +366,105 @@ CLASS_DECL_APEX::apex::system * aura_create_aura_system()
 //CLASS_DECL_APEX int g_iDerivedApplication = 0;
 
 
-string get_debug_report_type_text(int iType)
-{
+//string get_debug_report_type_text(int iType)
+//{
+//
+//   string strType;
+//
+//   if (iType == _CRT_ASSERT)
+//   {
+//
+//      strType = "ASSERT";
+//
+//   }
+//   else
+//   {
+//
+//      __throw(invalid_argument_exception());
+//
+//   }
+//
+//   return strType;
+//
+//}
+//
 
-   string strType;
+//int __cdecl debug_report(int iType, char const* psz, int iLine, char const* pszModuleName, char const* pszFormat, ...)
+//{
+//
+//   string strExtra;
+//   va_list argList;
+//   va_start(argList, pszFormat);
+//   strExtra.Format(pszFormat, argList);
+//   va_end(argList);
+//
+//   string strModule;
+//
+//   if (pszModuleName != nullptr && *pszModuleName != '\0')
+//   {
+//
+//      strModule.Format("%s: ", pszModuleName);
+//
+//   }
+//
+//   string strType = get_debug_report_type_text(iType);
+//
+//   output_debug_string(strType + ": file: " + string(psz) + " line:" + __str(iLine) + strModule + strExtra);
+//
+//   return 1;
+//
+//}
 
-   if (iType == _CRT_ASSERT)
-   {
-
-      strType = "ASSERT";
-
-   }
-   else
-   {
-
-      __throw(invalid_argument_exception());
-
-   }
-
-   return strType;
-
-}
-
-
-int __cdecl debug_report(int iType, char const* psz, int iLine, char const* pszModuleName, char const* pszFormat, ...)
-{
-
-   string strExtra;
-   va_list argList;
-   va_start(argList, pszFormat);
-   strExtra.Format(pszFormat, argList);
-   va_end(argList);
-
-   string strModule;
-
-   if (pszModuleName != nullptr && *pszModuleName != '\0')
-   {
-
-      strModule.Format("%s: ", pszModuleName);
-
-   }
-
-   string strType = get_debug_report_type_text(iType);
-
-   output_debug_string(strType + ": file: " + string(psz) + " line:" + __str(iLine) + strModule + strExtra);
-
-   return 1;
-
-}
-
-
-int __cdecl debug_report(int iType, wchar_t const* pszFile, int iLine, wchar_t const* pszModuleName, wchar_t const* pszFormat, ...)
-{
-
-
-   string strExtra;
-   va_list argList;
-   va_start(argList, pszFormat);
-   string strFormat;
-   strFormat = pszFormat;
-   strFormat.replace("%s", "%S");
-   strExtra.Format(strFormat, argList);
-   va_end(argList);
-
-   string strModule;
-
-   string strType = get_debug_report_type_text(iType);
-
-   if (pszModuleName != nullptr && *pszModuleName != '\0')
-   {
-
-      strModule.Format("%S: ", pszModuleName);
-
-   }
-
-
-   output_debug_string(strType + ": file: " + string(pszFile) + " line:" + __str(iLine) + strModule + strExtra);
-
-   return 1;
-
-
-}
-
-
-CLASS_DECL_APEX void writeln(const char* psz)
-{
-
-   output_debug_string(string(psz) + "\n");
-
-}
-
-
-CLASS_DECL_APEX int is_ptr_null(const void* p, size_t s)
-{
-
-   return (((size_t)p) < s);
-
-}
-
-
+//
+//int __cdecl debug_report(int iType, wchar_t const* pszFile, int iLine, wchar_t const* pszModuleName, wchar_t const* pszFormat, ...)
+//{
+//
+//
+//   string strExtra;
+//   va_list argList;
+//   va_start(argList, pszFormat);
+//   string strFormat;
+//   strFormat = pszFormat;
+//   strFormat.replace("%s", "%S");
+//   strExtra.Format(strFormat, argList);
+//   va_end(argList);
+//
+//   string strModule;
+//
+//   string strType = get_debug_report_type_text(iType);
+//
+//   if (pszModuleName != nullptr && *pszModuleName != '\0')
+//   {
+//
+//      strModule.Format("%S: ", pszModuleName);
+//
+//   }
+//
+//
+//   output_debug_string(strType + ": file: " + string(pszFile) + " line:" + __str(iLine) + strModule + strExtra);
+//
+//   return 1;
+//
+//
+//}
+//
+//
+//CLASS_DECL_APEX void writeln(const char* psz)
+//{
+//
+//   output_debug_string(string(psz) + "\n");
+//
+//}
+//
+//
+//CLASS_DECL_APEX int is_ptr_null(const void* p, size_t s)
+//{
+//
+//   return (((size_t)p) < s);
+//
+//}
+//
+//
 void c_post_system_event(::u64 u, void* pparam)
 {
 

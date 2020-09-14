@@ -23,7 +23,7 @@ namespace imaging_wic
    COLORREF windows_image_metadata_get_background_color(IWICMetadataQueryReader * pqueryreader, IWICBitmapDecoder * pbitmapdecoder, IWICImagingFactory * pimagingfactory);
 
 
-   ::estatus imaging::_load_image(::image * pimageCompose, __pointer(image_frame_array) & pframea, memory_pointer pmemory)
+   ::estatus context_image::_load_image(::image * pimageCompose, __pointer(image_frame_array) & pframea, memory_pointer pmemory)
    {
 
       HRESULT hr = E_FAIL;

@@ -265,7 +265,7 @@ string & property::get_http_post(string & str) const
 
    str += "=";
 
-   str += url_encode_dup(get_string());
+   str += url_encode(get_string());
 
    return str;
 

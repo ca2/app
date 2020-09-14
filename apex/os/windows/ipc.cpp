@@ -2,11 +2,11 @@
 #include "apex/platform/app_core.h"
 
 
-typedef int (WINAPI * LPFN_ChangeWindowMessageFilter)(UINT message, DWORD dwFlag);
+// typedef int (WINAPI * LPFN_ChangeWindowMessageFilter)(UINT message, DWORD dwFlag);
 
 
 
-extern LPFN_ChangeWindowMessageFilter g_pfnChangeWindowMessageFilter;
+//extern LPFN_ChangeWindowMessageFilter g_pfnChangeWindowMessageFilter;
 
 namespace apex
 {
@@ -177,7 +177,7 @@ namespace apex
          COPYDATASTRUCT cds;
 
          cds.dwData = (unsigned int)message;
-         cds.cbData = (unsigned int)MAX(0,len);
+         cds.cbData = (unsigned int)max(0,len);
          cds.lpData = (void *)pdata;
 
 
@@ -247,10 +247,10 @@ namespace apex
       {
 
 
-         if(g_pfnChangeWindowMessageFilter != nullptr)
+     /*    if(g_pfnChangeWindowMessageFilter != nullptr)
          {
             g_pfnChangeWindowMessageFilter(WM_COPYDATA,MSGFLT_ADD);
-         }
+         }*/
 
          //HINSTANCE hinstance = ::GetModuleHandleA("apex.dll");
 
@@ -277,6 +277,13 @@ namespace apex
          {
             unsigned int dwLastError = ::get_last_error();
             return false;
+         }
+
+         if (!ChangeWindowMessageFilterEx(m_oswindow, WM_COPYDATA, MSGFLT_ADD, NULL))
+         {
+
+            TRACE("Failed to change WM_COPYDATA message filter");
+
          }
 
          SetTimer(m_oswindow,888888,84,nullptr);

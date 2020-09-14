@@ -17,7 +17,7 @@ namespace user
       bool                 m_bError;
 
 
-      tooltip(::object * pobject);
+      tooltip(::layered * pobjectContext);
       virtual ~tooltip();
 
 

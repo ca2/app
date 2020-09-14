@@ -27,8 +27,8 @@ namespace apex
       library() {}
       virtual ~library();
 
-      virtual ::estatus     initialize(::object * pobjectContext);
-      virtual ::estatus     initialize_aura_library(::object * pobjectContext, int iDesmabi, const char * pszRoot = nullptr, const char * pszName = nullptr, const char * pszFolder = nullptr);
+      virtual ::estatus     initialize(::layered * pobjectContext);
+      virtual ::estatus     initialize_apex_library(::layered * pobjectContext, int iDesmabi, const char * pszRoot = nullptr, const char * pszName = nullptr, const char * pszFolder = nullptr);
 
       virtual bool open(const char * pszPath,bool bAutoClose = true,bool bCa2Path = false);
 
@@ -72,14 +72,14 @@ namespace apex
 
 
       // impl
-      virtual __result(::apex::application) get_new_application(::object * pobjectContext, const char * pszAppId);
+      virtual __result(::apex::application) get_new_application(::layered * pobjectContext, const char * pszAppId);
       virtual void get_app_list(string_array & stra);
 
 
-      virtual ::generic_object* new_object(::object* pobjectContext, const char* pszClass);
+      virtual ::generic* new_object(::layered * pobjectContext, const char* pszClass);
 
 
-      virtual __pointer(::generic_object) create_object(::object* pobjectContext, const char* pszClass);
+      virtual __pointer(::generic) create_object(::layered * pobjectContext, const char* pszClass);
       virtual bool has_object_class(const char * lpszClass);
 
 
@@ -91,10 +91,10 @@ namespace apex
       virtual void get_extension_list(string_array & stra);
 
 
-      virtual ::generic_object * factory_new(::object * pobjectContext, const char * lpszClass);
+      virtual ::generic * factory_new(::layered * pobjectContext, const char * lpszClass);
 
 
-      virtual __pointer(::generic_object) factory_create(::object * pobjectContext, const char * lpszClass);
+      virtual __pointer(::generic) factory_create(::layered * pobjectContext, const char * lpszClass);
       virtual bool factory_has_object_class(const char * lpszClass);
 
       library_object_allocator_base * find_allocator(const char * lpszClass);
@@ -131,7 +131,7 @@ namespace apex
       }
 
       // impl
-      virtual __result(::apex::application) get_new_application(::object * pobject, const char * pszAppId) override;
+      virtual __result(::apex::application) get_new_application(::layered * pobjectContext, const char * pszAppId) override;
 
 
       virtual void get_extension_list(string_array & stra) override;
@@ -175,7 +175,7 @@ class library :                                                         \
 public:                                                                 \
                                                                         \
                                                                         \
-     library(::object * pobject) : ::apex::library(pobject) {}          \
+     library(::layered * pobjectContext) : ::apex::library(pobject) {}          \
      virtual ~library(){}                                               \
                                                                         \
                                                                         \
@@ -202,7 +202,7 @@ virtual void initialize_factory() override                              \
 #define END_ONLY_FACT(libname) END_CREATE_OBJECT \
  END_LIBRARY \
  \
-CLASS_DECL_EXPORT ::apex::library * libname ## _ ## get_new_library(::object * pobject) \
+CLASS_DECL_EXPORT ::apex::library * libname ## _ ## get_new_library(::layered * pobjectContext) \
 { \
 \
    return new library(pobject); \

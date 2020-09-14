@@ -118,7 +118,7 @@ namespace html
          if (strSize.has_char())
          {
 
-            iSize = MAX(1, atoi(strSize));
+            iSize = max(1, atoi(strSize));
 
          }
 

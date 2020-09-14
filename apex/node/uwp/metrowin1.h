@@ -58,7 +58,7 @@ CLASS_DECL_APEX void __end_thread(::object * pobject, UINT nExitCode, bool bDele
 
 CLASS_DECL_APEX void __init_thread();
 //CLASS_DECL_APEX void __term_thread(::object * pobject, HINSTANCE hInstTerm = nullptr);
-//CLASS_DECL_APEX void __term_thread(::object * pobject);
+//CLASS_DECL_APEX void __term_thread(::layered * pobjectContext);
 
 
 //CLASS_DECL_APEX __pointer(::user::interaction) __get_main_window();

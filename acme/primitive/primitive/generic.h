@@ -4,6 +4,11 @@
 class update;
 class action_context;
 class var;
+class layered;
+class object;
+
+
+inline ::object* __object(::layered* playered);
 
 
 // ATTENTION
@@ -17,7 +22,7 @@ public:
 
    i64                     m_countReference;
    ::eobject               m_eobject;
-   ::generic *              m_pobjectContext;
+   ::layered *             m_pobjectContext;
 
 
 #if OBJ_REF_DBG
@@ -29,6 +34,7 @@ public:
 #endif
 
    virtual ~generic();
+
 
    virtual void assert_valid() const;
    virtual void dump(dump_context& dumpcontext) const;
@@ -44,8 +50,12 @@ public:
 
 #endif
 
-   inline generic* get_context_object() const { return m_pobjectContext; }
-   virtual void set_context_object(::generic* pobjectContext);
+
+   inline ::object * get_context_object() const { return __object(m_pobjectContext); }
+   virtual void set_context_object(::layered * pobjectContext);
+
+
+   inline bool is_shared() const { return m_countReference > 1; }
 
 
    inline const char * type_c_str() const { return typeid(*this).name(); }
@@ -96,7 +106,7 @@ public:
    inline i64 release(OBJ_REF_DBG_PARAMS);
 #endif
 
-   virtual ::estatus initialize(::generic* pobjectContext);
+   virtual ::estatus initialize(::layered * pobjectContext);
    virtual void finalize();
 
 
@@ -110,7 +120,7 @@ public:
 
 #endif
 
-   virtual mutex* get_mutex() const { return nullptr; }
+   virtual sync* get_mutex() const { return nullptr; }
 
 
    virtual ::estatus __thread_proc();

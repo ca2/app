@@ -385,7 +385,7 @@
    }
 
 
-   bool os_context::resolve_link(::file::path & path, const string & strSource, string * pstrDirectory, string * pstrParams, ::user::primitive * puiMessageParentOptional)
+   bool os_context::resolve_link(::file::path & path, const string & strSource, string * pstrDirectory, string * pstrParams)
    {
 
       if(::str::ends_ci(strSource, ".desktop"))
@@ -628,7 +628,7 @@
    }
 
 
-   bool os_context::browse_file_open(::user::interaction* pinteraction, property_set & set)
+   bool os_context::browse_file_open(property_set & set)
    {
 
       __throw(interface_only_exception());
@@ -638,7 +638,7 @@
    }
 
 
-   bool os_context::browse_file_save(::user::interaction* pinteraction, property_set & set)
+   bool os_context::browse_file_save(property_set & set)
    {
 
       __throw(interface_only_exception());
@@ -648,7 +648,7 @@
    }
 
 
-   bool os_context::browse_folder(::user::interaction* pinteraction, property_set & set)
+   bool os_context::browse_folder(property_set & set)
    {
 
       __throw(interface_only_exception());
@@ -657,7 +657,7 @@
 
    }
 
-   bool os_context::browse_file_or_folder(::user::interaction* pinteraction, property_set & set)
+   bool os_context::browse_file_or_folder(property_set & set)
    {
 
       __throw(interface_only_exception());
@@ -688,21 +688,21 @@
    }
 
 
-   ::icon_result os_context::load_icon(const ::var & varFile)
-   {
+   //::icon_result os_context::load_icon(const ::var & varFile)
+   //{
 
 
-      return error_failed;
+   //   return error_failed;
 
-   }
+   //}
 
 //
 //} // namespace apex
 //
 //
 
-   void os_context::enum_draw2d_fonts(::draw2d::font_enum_item_array& itema)
-   {
+   //void os_context::enum_draw2d_fonts(::draw2d::font_enum_item_array& itema)
+   //{
 
 
-   }
+   //}

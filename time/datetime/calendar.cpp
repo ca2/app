@@ -28,7 +28,7 @@ namespace datetime
       }
 
 
-      ::estatus calendar::initialize(::object* pobjectContext)
+      ::estatus calendar::initialize(::layered * pobjectContext)
       {
 
          return ::success;

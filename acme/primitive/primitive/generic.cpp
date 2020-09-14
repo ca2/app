@@ -42,7 +42,7 @@ void generic::dump(dump_context & dumpcontext) const
 }
 
 
-::estatus generic::initialize(::generic* pobjectContext)
+::estatus generic::initialize(::layered * pobjectContext)
 {
 
    set_context_object(pobjectContext);
@@ -143,7 +143,7 @@ i64 generic::release(OBJ_REF_DBG_PARAMS_DEF)
 }
 
 
-void generic::set_context_object(::generic * pobjectContext)
+void generic::set_context_object(::layered * pobjectContext)
 {
 
    auto pold = m_pobjectContext;
@@ -660,6 +660,16 @@ void generic::to_string(string& str) const
 {
 
    str = type_c_str();
+
+}
+
+
+
+
+CLASS_DECL_ACME ::estatus __call(::generic* pobjectTask)
+{
+
+   return pobjectTask->call();
 
 }
 

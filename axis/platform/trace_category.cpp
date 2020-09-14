@@ -115,6 +115,6 @@ void trace_category_static_init()
 void trace_category_static_term()
 {
 
-   ::aura::del(trace_category::s_ptracecategorya);
+   ::acme::del(trace_category::s_ptracecategorya);
 
 }

@@ -39,7 +39,7 @@ namespace dynamic_source
 
          __pointer(script_manager)   m_pmanager;
 
-         clear_include_matches_file_watcher(::object * pobject);
+         clear_include_matches_file_watcher(::layered * pobjectContext);
 
          virtual void handle_file_action(::file::action * paction) override;
 
@@ -160,7 +160,7 @@ namespace dynamic_source
       virtual ~script_manager();
 
       
-      virtual ::estatus initialize(::object * pobjectContext) override;
+      virtual ::estatus initialize(::layered * pobjectContext) override;
 
 
       virtual ::estatus init1();

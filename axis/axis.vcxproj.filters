@@ -19,12 +19,6 @@
     <Filter Include="Header Files\xml">
       <UniqueIdentifier>{d2165fd0-68b4-46fb-966c-62c1e368dfbb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\pcre">
-      <UniqueIdentifier>{ce64f268-bf25-46ab-9d08-d96e68a97df8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\pcre">
-      <UniqueIdentifier>{68855d65-95dd-4faa-806f-50ce98cbc452}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\platform">
       <UniqueIdentifier>{8b516fa3-e998-4d2b-bfe8-a2baafe48311}</UniqueIdentifier>
     </Filter>
@@ -163,16 +157,22 @@
     <Filter Include="Source Files\graphics\render">
       <UniqueIdentifier>{61eb10b5-b625-4953-aeb5-ca7c37ae009a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\pcre">
+      <UniqueIdentifier>{17dc4182-3fe0-4adc-841b-88c83cfa6238}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\pcre">
+      <UniqueIdentifier>{fff3a34c-a1cd-4230-ae14-0b593f81ad95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\const">
+      <UniqueIdentifier>{a750a202-9e18-49c5-9e98-56d9beca276b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\const">
+      <UniqueIdentifier>{1f7a5706-62b9-4115-a745-628e4325230b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pcre\pcre.h">
-      <Filter>Header Files\pcre</Filter>
-    </ClInclude>
-    <ClInclude Include="pcre\pcre_util.h">
-      <Filter>Header Files\pcre</Filter>
     </ClInclude>
     <ClInclude Include="xml\_.h">
       <Filter>Header Files\xml</Filter>
@@ -492,15 +492,6 @@
     <ClInclude Include="html\html\html.h">
       <Filter>Header Files\html\html</Filter>
     </ClInclude>
-    <ClInclude Include="compress\compress.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress_bz.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress_bzip.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
     <ClInclude Include="net\_.h">
       <Filter>Header Files\net</Filter>
     </ClInclude>
@@ -639,11 +630,47 @@
     <ClInclude Include="user\simple_ui_draw.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
+    <ClInclude Include="pcre\code.h">
+      <Filter>Header Files\pcre</Filter>
+    </ClInclude>
+    <ClInclude Include="pcre\code_impl.h">
+      <Filter>Header Files\pcre</Filter>
+    </ClInclude>
+    <ClInclude Include="pcre\context_impl.h">
+      <Filter>Header Files\pcre</Filter>
+    </ClInclude>
+    <ClInclude Include="pcre\context.h">
+      <Filter>Header Files\pcre</Filter>
+    </ClInclude>
+    <ClInclude Include="pcre\regex.h">
+      <Filter>Header Files\pcre</Filter>
+    </ClInclude>
+    <ClInclude Include="pcre\util_impl.h">
+      <Filter>Header Files\pcre</Filter>
+    </ClInclude>
+    <ClInclude Include="pcre\_.h">
+      <Filter>Header Files\pcre</Filter>
+    </ClInclude>
+    <ClInclude Include="pcre\_pcre.h">
+      <Filter>Header Files\pcre</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\_.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\bz.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\bzip.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="const\idpool.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="id.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pcre\pcre.cpp">
-      <Filter>Source Files\pcre</Filter>
-    </ClCompile>
     <ClCompile Include="xml\_from.cpp">
       <Filter>Source Files\xml</Filter>
     </ClCompile>
@@ -866,9 +893,6 @@
     <ClCompile Include="html\html\html.cpp">
       <Filter>Source Files\html\html</Filter>
     </ClCompile>
-    <ClCompile Include="compress\compress_bz.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
     <ClCompile Include="net\email_department.cpp">
       <Filter>Source Files\net</Filter>
     </ClCompile>
@@ -922,6 +946,33 @@
     </ClCompile>
     <ClCompile Include="user\simple_ui_draw.cpp">
       <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="pcre\code.cpp">
+      <Filter>Source Files\pcre</Filter>
+    </ClCompile>
+    <ClCompile Include="pcre\code_impl.cpp">
+      <Filter>Source Files\pcre</Filter>
+    </ClCompile>
+    <ClCompile Include="pcre\context.cpp">
+      <Filter>Source Files\pcre</Filter>
+    </ClCompile>
+    <ClCompile Include="pcre\context_impl.cpp">
+      <Filter>Source Files\pcre</Filter>
+    </ClCompile>
+    <ClCompile Include="pcre\regex.cpp">
+      <Filter>Source Files\pcre</Filter>
+    </ClCompile>
+    <ClCompile Include="pcre\system.cpp">
+      <Filter>Source Files\pcre</Filter>
+    </ClCompile>
+    <ClCompile Include="pcre\util_impl.cpp">
+      <Filter>Source Files\pcre</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\bz.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="const\idpool.cpp">
+      <Filter>Source Files\const</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -6,7 +6,7 @@ namespace filehandler
 {
 
 
-   view::view(::object * pobject) :
+   view::view(::layered * pobjectContext) :
       ::object(pobject),
       m_pfont(e_create)
    {
@@ -19,7 +19,7 @@ namespace filehandler
    view::~view()
    {
 
-      ::aura::del(m_pxmldoc);
+      ::acme::del(m_pxmldoc);
 
    }
 
@@ -105,7 +105,7 @@ namespace filehandler
 
    }
 
-   view::item::item(::object * pobject) :
+   view::item::item(::layered * pobjectContext) :
       ::object(pobject)
    {
 
@@ -160,7 +160,7 @@ namespace filehandler
    }
 
 
-   view::list::list(::object * pobject) :
+   view::list::list(::layered * pobjectContext) :
       ::object(pobject)
    {
       m_iItemHeight = 30;

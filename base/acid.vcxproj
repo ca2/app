@@ -1633,7 +1633,7 @@
     <ClCompile Include="primitive\primitive\interlocked_long.cpp" />
     <ClCompile Include="primitive\primitive\interlocked_long_pulse.cpp" />
     <ClCompile Include="primitive\primitive\job.cpp" />
-    <ClCompile Include="primitive\primitive\generic_object.cpp" />
+    <ClCompile Include="primitive\primitive\generic.cpp" />
     <ClCompile Include="primitive\primitive\memory.cpp" />
     <ClCompile Include="primitive\primitive\memory_base.cpp" />
     <ClCompile Include="primitive\primitive\memory_c.cpp" />

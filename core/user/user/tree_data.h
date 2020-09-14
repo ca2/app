@@ -72,7 +72,7 @@ namespace user
 
       virtual void on_fill_children() override;
 
-      virtual void tree_layout(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void on_tree_layout() override;
 
       virtual void on_merge_user_tree(::user::tree * pusertree);
       virtual void on_bind_user_tree(::user::tree * pusertree);

@@ -51,9 +51,9 @@ namespace aura
       //bool                                         m_bProcessInitialize;
       //bool                                         m_bProcessInitializeResult;
 
-      strid_map < ::aura::library * >              m_idmapCreateViewLibrary;
+      strid_map < ::apex::library * >              m_idmapCreateViewLibrary;
 
-      __pointer_array(::aura::library)                         m_libraryspa;
+      __pointer_array(::apex::library)                         m_libraryspa;
 
 #ifdef _UWP
       
@@ -65,7 +65,7 @@ namespace aura
       system();
       virtual ~system();
 
-      virtual ::estatus  initialize_system(::object * pobjectContext, app_core * pappcore) override;
+      virtual ::estatus  initialize_system(::layered * pobjectContext, app_core * pappcore) override;
 
       virtual void discard_to_factory(__pointer(object) pca);
 
@@ -109,7 +109,7 @@ namespace aura
       bool set_history(::aura::history * phistory);
 
 
-      __pointer(::aura::library) on_get_library(const char * pszLibrary) override;
+      __pointer(::apex::library) on_get_library(const char * pszLibrary) override;
 
 
       //virtual ::aura::session *  get_platform(index iEdge,application_bias * pbiasCreation = nullptr);
@@ -177,7 +177,7 @@ namespace aura
 
       virtual string get_host_location_url();
 
-      virtual ::estatus add_view_library(::aura::library * plibrary);
+      virtual ::estatus add_view_library(::apex::library * plibrary);
 
       //virtual void get_cursor_pos(LPPOINT ppoint);
 
@@ -203,7 +203,7 @@ namespace aura
 
       virtual void on_end_find_applications_to_cache(stream & os) override;
 
-      virtual void on_map_application_library(::aura::library & library) override;
+      virtual void on_map_application_library(::apex::library & library) override;
 
       virtual void on_graphics_ready() override;
 

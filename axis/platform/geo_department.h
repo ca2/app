@@ -6,7 +6,7 @@ namespace geo
 
 
    class CLASS_DECL_AXIS department :
-      virtual public ::aura::department
+      virtual public ::apex::department
    {
    public:
 

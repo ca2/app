@@ -2,8 +2,8 @@
 #include "trace_category.h"
 
 
-void trace_category_static_init();
-void trace_category_static_term();
+CLASS_DECL_ACME void trace_category_static_init();
+CLASS_DECL_ACME void trace_category_static_term();
 
 
 
@@ -118,3 +118,119 @@ void trace_category_static_term()
    ::acme::del(trace_category::s_ptracecategorya);
 
 }
+
+
+
+
+CLASS_DECL_ACME const char* trace_category_name(e_trace_category ecategory)
+{
+
+   if (ecategory < trace_category_first && ecategory < trace_category_count)
+   {
+
+      return nullptr;
+
+   }
+
+   return trace_category::s_ptracecategorya->element_at((iptr)ecategory)->m_strTopicText;
+
+}
+
+
+CLASS_DECL_ACME bool enable_trace_category(e_trace_category ecategory, bool bEnable)
+{
+
+   trace_category::s_ptracecategorya->element_at((iptr)ecategory)->m_bEnable = bEnable;
+
+   return true;
+
+}
+
+
+CLASS_DECL_ACME int_bool c_enable_trace_category(e_trace_category ecategory, int_bool iEnable)
+{
+
+   if (!enable_trace_category(ecategory, iEnable != FALSE))
+   {
+
+      return FALSE;
+
+   }
+
+   return TRUE;
+
+}
+
+
+CLASS_DECL_ACME ::generic* general_trace_object()
+{
+
+   return trace_category::s_ptracecategorya->element_at(0);
+
+}
+
+
+CLASS_DECL_ACME ::generic* trace_object(e_trace_category ecategory)
+{
+
+   return trace_category::s_ptracecategorya->element_at((iptr)ecategory);
+
+}
+
+
+const char* g_pszTraceLevelName[] =
+{
+
+   "none",
+   "info",
+   "warning",
+   "error",
+   "fatal",
+   "undefined log level"
+
+};
+
+
+char g_chaTraceLevel[] =
+{
+
+   ' ',
+   'I',
+   'W',
+   'E',
+   'F',
+   'U'
+
+};
+
+
+
+
+
+
+
+e_trace_category object_trace_category(::generic * pobject)
+{
+
+   return pobject->trace_category();
+
+}
+
+
+const char* topic_text(::generic * pobject)
+{
+
+   if (::is_null(pobject))
+   {
+
+      return nullptr;
+
+   }
+
+   return pobject->topic_text();
+
+}
+
+
+
+

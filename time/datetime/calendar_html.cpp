@@ -31,7 +31,7 @@ namespace datetime
 
 
 
-   ::estatus visual::initialize(::object* pobjectContext)
+   ::estatus visual::initialize(::layered * pobjectContext)
    {
 
       return ::success;

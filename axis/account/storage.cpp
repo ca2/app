@@ -11,7 +11,7 @@ namespace account
 {
    
 
-//   storage::storage(::object * pobject) :
+//   storage::storage(::layered * pobjectContext) :
 //      ::object(pobject)
 //   {
 //      

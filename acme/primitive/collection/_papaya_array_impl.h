@@ -71,7 +71,7 @@ namespace papaya
 
          ::count c = a.get_count();
 
-         stream.operator()(c);
+         stream.exchange(::id(), c);
 
          if (stream.fail())
          {

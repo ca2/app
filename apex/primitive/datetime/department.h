@@ -32,7 +32,7 @@ namespace datetime
          virtual public ::object
       {
       public:
-         international(::object * pobject);
+         international(::layered * pobjectContext);
          void parse_str(const char * psz,property_set & set);
 
 
@@ -62,7 +62,7 @@ namespace datetime
          virtual public ::object
       {
       public:
-         str(::object * pobject);
+         str(::layered * pobjectContext);
          department * m_pdatetime;
          string get_gmt_date_time();
       };

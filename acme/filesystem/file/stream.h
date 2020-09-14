@@ -153,12 +153,15 @@ struct CLASS_DECL_ACME stream_meta :
    public ::generic
 {
 
+
    e_str_flag                 m_estrflag;
    ::file::e_iostate          m_iostate;
    ::file::fmtflags           m_fmtflags;
    filesize                   m_width;
    filesize                   m_precision;
    memsize                    m_gcount;
+   ::estatus                  m_estatus;
+
 
    stream_meta()
    {

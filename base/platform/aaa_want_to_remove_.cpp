@@ -9,7 +9,7 @@
 
 #endif
 
-//extern string_map < __pointer(::aura::library) >* g_pmapLibrary;
+//extern string_map < __pointer(::apex::library) >* g_pmapLibrary;
 
 //extern ::mutex* &::get_context_system()->m_mutexLibrary;
 
@@ -211,7 +211,7 @@ void __post_quit_message(i32 nExitCode)
 }
 
 
-//string_map < __pointer(::aura::library) >* g_pmapLibrary = nullptr;
+//string_map < __pointer(::apex::library) >* g_pmapLibrary = nullptr;
 //string_map < PFN_NEW_BASE_LIBRARY >* g_pmapNewAuraLibrary = nullptr;
 
 
@@ -226,7 +226,7 @@ void __post_quit_message(i32 nExitCode)
 //}
 //
 //
-//CLASS_DECL_BASE string_map < __pointer(::aura::library) >& __library()
+//CLASS_DECL_BASE string_map < __pointer(::apex::library) >& __library()
 //{
 //
 //   return ::get_context_system()->m_mapLibrary;
@@ -254,7 +254,7 @@ void __post_quit_message(i32 nExitCode)
 //}
 
 
-CLASS_DECL_BASE::aura::library& get_library(const char* psz)
+CLASS_DECL_BASE::apex::library& get_library(const char* psz)
 {
 
    sync_lock sl(&::get_context_system()->m_mutexLibrary);
@@ -274,7 +274,7 @@ CLASS_DECL_BASE::aura::library& get_library(const char* psz)
 //}
 
 
-CLASS_DECL_BASE void register_library(const char* psz, ::aura::library* plibrary)
+CLASS_DECL_BASE void register_library(const char* psz, ::apex::library* plibrary)
 {
 
    sync_lock sl(&::get_context_system()->m_mutexLibrary);
@@ -349,7 +349,7 @@ CLASS_DECL_BASE::aura::system * aura_create_aura_system()
 //
 //   g_bAura = 0;
 //
-//   ::aura::del(s_paurastrpool);
+//   ::acme::del(s_paurastrpool);
 //
 //   aura_term();
 //
@@ -518,12 +518,12 @@ CLASS_DECL_BASE ::estatus load_factory_library(string strLibrary)
 
    sync_lock sl(&::get_context_system()->m_mutexLibrary);
 
-   __pointer(::aura::library)& plibrary = ::get_context_system()->m_mapLibrary[strLibrary];
+   __pointer(::apex::library)& plibrary = ::get_context_system()->m_mapLibrary[strLibrary];
 
    if (!plibrary)
    {
 
-      plibrary = new ::aura::library();
+      plibrary = new ::apex::library();
 
    }
 

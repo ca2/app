@@ -114,7 +114,7 @@ namespace linux
    }
 
 
-   interaction_impl::interaction_impl(::object * pobject) :
+   interaction_impl::interaction_impl(::layered * pobjectContext) :
       ::object(pobject)
    {
 

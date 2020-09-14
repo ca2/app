@@ -2,14 +2,14 @@
 
 
 
-__PFN_NEW_AURA_APPLICATION __g_pfnNewAuraApplication = nullptr;
+__PFN_NEW_APEX_APPLICATION __g_pfnNewAuraApplication = nullptr;
 
 
-PFN_NEW_AURA_APPLICATION g_pfnNewAuraApplication = nullptr;
+PFN_NEW_APEX_APPLICATION g_pfnNewAuraApplication = nullptr;
 
 
 extern "C"
-::apex::application * __aura_application_factory()
+::apex::application * __apex_application_factory()
 {
 
    return __g_pfnNewAuraApplication();
@@ -17,17 +17,17 @@ extern "C"
 }
 
 
-void __set_aura_application_factory(__PFN_NEW_AURA_APPLICATION pfnNewAuraApplication)
+void __set_apex_application_factory(__PFN_NEW_APEX_APPLICATION pfnNewAuraApplication)
 {
 
    __g_pfnNewAuraApplication = pfnNewAuraApplication;
 
-   g_pfnNewAuraApplication = &__aura_application_factory;
+   g_pfnNewAuraApplication = &__apex_application_factory;
 
 }
 
 
-void set_aura_application_factory(PFN_NEW_AURA_APPLICATION pfnNewAuraApplication)
+void set_apex_application_factory(PFN_NEW_APEX_APPLICATION pfnNewAuraApplication)
 {
 
    g_pfnNewAuraApplication = pfnNewAuraApplication;
@@ -35,7 +35,7 @@ void set_aura_application_factory(PFN_NEW_AURA_APPLICATION pfnNewAuraApplication
 }
 
 
-__PFN_NEW_AURA_APPLICATION __get_aura_application_factory()
+__PFN_NEW_APEX_APPLICATION __get_apex_application_factory()
 {
 
    return __g_pfnNewAuraApplication;
@@ -43,7 +43,7 @@ __PFN_NEW_AURA_APPLICATION __get_aura_application_factory()
 }
 
 
-PFN_NEW_AURA_APPLICATION get_aura_application_factory()
+PFN_NEW_APEX_APPLICATION get_apex_application_factory()
 {
 
    return g_pfnNewAuraApplication;

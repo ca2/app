@@ -87,6 +87,18 @@ namespace aura
    }
 
 
+   LPWAVEOUT audio::waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback)
+   {
+
+      __throw(interface_only_exception(nullptr));
+
+      return nullptr;
+
+   }
+
+
+
+
 } // namespace aura
 
 
@@ -116,7 +128,7 @@ CLASS_DECL_AURA ::aura::audio * get_new_audio()
 }
 
 
-CLASS_DECL_AURA ::aura::audio * get_context_audio(::object * pobjectContext)
+CLASS_DECL_AURA ::aura::audio * get_context_audio(::layered * pobjectContext)
 {
 
    return Sys(pobjectContext).defer_get_audio();
@@ -127,7 +139,7 @@ CLASS_DECL_AURA ::aura::audio * get_context_audio(::object * pobjectContext)
 CLASS_DECL_AURA bool has_audio()
 {
 
-   return ::is_set(::get_context_system()->m_paudio);
+   return ::is_set(System.m_paudio);
 
 }
 

@@ -195,7 +195,7 @@ namespace apex
 #endif
          bool close();
 
-         virtual void restart_aura_ipc();
+         virtual void restart_apex_ipc();
 
          bool ensure_tx(const char * pszMessage, duration durationTimeout = one_hour());
          bool ensure_tx(int message, void * pdata, int len, duration durationTimeout = one_hour());

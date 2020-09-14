@@ -1,6 +1,6 @@
 ﻿#include "framework.h"
 #include "windowing.h"
-#include "top_level_enum.h"
+//#include "top_level_enum.h"
 
 
 #define ___TEMP_CLASS_NAME_SIZE 4096
@@ -45,12 +45,12 @@ CLASS_DECL_APEX i64 oswindow_id(HWND hwnd)
 }
 
 
-CLASS_DECL_APEX WINBOOL is_window(oswindow oswindow)
-{
-
-   return ::IsWindow(oswindow);
-
-}
+//CLASS_DECL_APEX WINBOOL is_window(oswindow oswindow)
+//{
+//
+//   return ::IsWindow(oswindow);
+//
+//}
 
 
 CLASS_DECL_APEX bool get_gui_thread_info(PGUITHREADINFO pinfo)
@@ -205,121 +205,121 @@ CLASS_DECL_APEX WINBOOL show_window(oswindow oswindow, int iShowCmd)
 }
 
 
-/// from top to bottom
-CLASS_DECL_APEX __pointer(::user::oswindow_array) get_top_level_windows(bool bDesktop, bool bVisible)
-{
-
-   /// from top to bottom
-   top_level_enum toplevelenum(bDesktop, bVisible);
-
-   return toplevelenum.m_poswindowa;
-
-}
-
-
-top_level_enum::top_level_enum(bool bDesktop, bool bVisible) :
-   m_bVisible(bVisible)
-{
-
-   __construct_new(m_poswindowa);
-
-   if (bDesktop)
-   {
-
-      ::EnumDesktopWindows(nullptr, &::top_level_enum::EnumWindowsProc, (LPARAM)this);
-
-   }
-   else
-   {
-
-      ::EnumWindows(&::top_level_enum::EnumWindowsProc, (LPARAM)this);
-
-   }
+///// from top to bottom
+//CLASS_DECL_APEX __pointer(::user::oswindow_array) get_top_level_windows(bool bDesktop, bool bVisible)
+//{
+//
+//   /// from top to bottom
+//   top_level_enum toplevelenum(bDesktop, bVisible);
+//
+//   return toplevelenum.m_poswindowa;
+//
+//}
 
 
-}
-
-
-top_level_enum::~top_level_enum()
-{
-
-
-}
-
-
-BOOL CALLBACK top_level_enum::EnumWindowsProc(oswindow oswindow, LPARAM lParam)
-{
-
-   top_level_enum * ptoplevelenum = (top_level_enum *) lParam;
-
-   if (ptoplevelenum->m_bVisible && !IsWindowVisible(oswindow))
-   {
-
-      return true;
-
-   }
-
-   ptoplevelenum->m_poswindowa->add(oswindow);
-
-   return true;
-
-}
-
-
-int_bool point_is_window_origin(POINT ptHitTest, oswindow oswindowExclude, int iMargin)
-{
-
-   auto poswindowa = get_top_level_windows();
-
-   if (poswindowa->is_empty())
-   {
-
-      return false;
-
-   }
-
-   ::rect rectWindow;
-
-   for(auto & oswindow : *poswindowa)
-   {
-
-      if(oswindow != oswindowExclude)
-      {
-
-         if (!IsWindowVisible(oswindow))
-         {
-
-            continue;
-
-         }
-
-         if (::GetWindowRect(oswindow, rectWindow))
-         {
-
-            ::rect rectHitTest;
-            
-            rectHitTest.set(rectWindow.origin(), ::size());
-
-            rectHitTest.inflate(iMargin + 1);
-
-            if (rectHitTest.contains(ptHitTest))
-            {
-
-               return true;
-
-            }
-
-            //return true;
-
-         }
-
-      }
-
-   }
-
-   return false;
-
-}
+//top_level_enum::top_level_enum(bool bDesktop, bool bVisible) :
+//   m_bVisible(bVisible)
+//{
+//
+//   __construct_new(m_poswindowa);
+//
+//   if (bDesktop)
+//   {
+//
+//      ::EnumDesktopWindows(nullptr, &::top_level_enum::EnumWindowsProc, (LPARAM)this);
+//
+//   }
+//   else
+//   {
+//
+//      ::EnumWindows(&::top_level_enum::EnumWindowsProc, (LPARAM)this);
+//
+//   }
+//
+//
+//}
+//
+//
+//top_level_enum::~top_level_enum()
+//{
+//
+//
+//}
+//
+//
+//BOOL CALLBACK top_level_enum::EnumWindowsProc(oswindow oswindow, LPARAM lParam)
+//{
+//
+//   top_level_enum * ptoplevelenum = (top_level_enum *) lParam;
+//
+//   if (ptoplevelenum->m_bVisible && !IsWindowVisible(oswindow))
+//   {
+//
+//      return true;
+//
+//   }
+//
+//   ptoplevelenum->m_poswindowa->add(oswindow);
+//
+//   return true;
+//
+//}
+//
+//
+//int_bool point_is_window_origin(POINT ptHitTest, oswindow oswindowExclude, int iMargin)
+//{
+//
+//   auto poswindowa = get_top_level_windows();
+//
+//   if (poswindowa->is_empty())
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   ::rect rectWindow;
+//
+//   for(auto & oswindow : *poswindowa)
+//   {
+//
+//      if(oswindow != oswindowExclude)
+//      {
+//
+//         if (!IsWindowVisible(oswindow))
+//         {
+//
+//            continue;
+//
+//         }
+//
+//         if (::GetWindowRect(oswindow, rectWindow))
+//         {
+//
+//            ::rect rectHitTest;
+//            
+//            rectHitTest.set(rectWindow.origin(), ::size());
+//
+//            rectHitTest.inflate(iMargin + 1);
+//
+//            if (rectHitTest.contains(ptHitTest))
+//            {
+//
+//               return true;
+//
+//            }
+//
+//            //return true;
+//
+//         }
+//
+//      }
+//
+//   }
+//
+//   return false;
+//
+//}
 
 
 
@@ -352,32 +352,35 @@ void window_create_gray_caret(oswindow oswindow, i32 nWidth, i32 nHeight)
 }
 
 
-CLASS_DECL_APEX string message_box_result_to_string(int iResult);
+//CLASS_DECL_APEX string message_box_result_to_string(int iResult);
+//
+//
+//CLASS_DECL_APEX ::estatus _os_message_box(oswindow oswindow, const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, ::callback callback)
+//{
+//
+//   string strMessage(pszMessage);
+//
+//   strMessage.replace_ci("<br>", "\n");
+//
+//   string strTitle(pszTitle);
+//
+//   strTitle.replace_ci("<br>", "\n");
+//
+//   ::i32 iResult = ::MessageBoxW(oswindow, wstring(strMessage), wstring(strTitle), emessagebox);
+//
+//   string strResult = message_box_result_to_string(iResult);
+//
+//   callback.receive_response(strResult);
+//
+//   return ::success;
+//
+//}
+//
+
+CLASS_DECL_ACME::estatus _os_message_box(oswindow oswindow, const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, ::callback callback);
 
 
-CLASS_DECL_APEX ::estatus _os_message_box(oswindow oswindow, const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, ::callback callback)
-{
-
-   string strMessage(pszMessage);
-
-   strMessage.replace_ci("<br>", "\n");
-
-   string strTitle(pszTitle);
-
-   strTitle.replace_ci("<br>", "\n");
-
-   ::i32 iResult = ::MessageBoxW(oswindow, wstring(strMessage), wstring(strTitle), emessagebox);
-
-   string strResult = message_box_result_to_string(iResult);
-
-   callback.receive_response(strResult);
-
-   return ::success;
-
-}
-
-
-CLASS_DECL_APEX ::estatus os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, ::callback callback)
+CLASS_DECL_APEX ::estatus apex_os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, ::callback callback)
 {
 
    if (::get_context_system()->is_dedicated_thread())

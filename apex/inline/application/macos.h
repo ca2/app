@@ -3,23 +3,23 @@
 int main(int argc, char * argv[])
 {
 
-   //class aura_aura aura_aura;
+   //class apex_apex apex_apex;
 
    //{
 
-   //   ::aura_main_struct mainstruct;
+   //   ::apex_main_struct mainstruct;
 
    //   application_initialize(mainstruct);
 
    //   {
 
-   //      auto psystem = __new(::aura::system());
+   //      auto psystem = __new(::apex::system());
 
    //      psystem->set_main_struct(&mainstruct);
 
    //      psystem->system_construct(argc, argv);
 
-   //      return aura_run_system(psystem);
+   //      return apex_run_system(psystem);
 
    //   }
 

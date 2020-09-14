@@ -14,9 +14,9 @@ namespace aura
    {
 
 
-      extern bool (WINAPI * g_pfnChangeWindowMessageFilter)(
-      _In_ UINT message,
-      _In_ DWORD dwFlag);
+      // extern bool (WINAPI * g_pfnChangeWindowMessageFilter)(
+      // _In_ UINT message,
+      // _In_ DWORD dwFlag);
 
 
       base::base()

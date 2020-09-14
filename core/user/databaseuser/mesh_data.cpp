@@ -21,6 +21,19 @@ namespace databaseuser
 
    }
 
+
+   void mesh_data::assert_valid() const
+   {
+
+   }
+
+
+   void mesh_data::dump(dump_context& dumpcontext) const
+   {
+
+   }
+
+
    void mesh_data::_001GetItemText(::user::mesh_item * pitem)
    {
 

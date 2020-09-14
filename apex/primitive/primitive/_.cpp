@@ -1,18 +1,18 @@
 #include "framework.h"
 
 
-::mutex * g_pmutexChildren = nullptr;
-
-void _debug_debug_string_string()
-{
-
-   ::id id("a-ha");
-
-   auto bEndsInHa1 = ::str::ends(id, "ha");
-   auto bEndsInHa2 = ::str::ends_ci(id, "Ha");
-
-
-}
+//::mutex * g_pmutexChildren = nullptr;
+//
+//void _debug_debug_string_string()
+//{
+//
+//   ::id id("a-ha");
+//
+//   auto bEndsInHa1 = ::str::ends(id, "ha");
+//   auto bEndsInHa2 = ::str::ends_ci(id, "Ha");
+//
+//
+//}
 
 void __assert_valid_object(const ::context_object * pOb, const char * pszFileName, i32 nLine)
 

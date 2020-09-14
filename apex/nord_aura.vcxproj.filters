@@ -787,7 +787,7 @@
     <ClCompile Include="primitive\primitive\handler.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\generic_object.cpp">
+    <ClCompile Include="primitive\primitive\generic.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive\form_property_set.cpp">
@@ -3106,10 +3106,10 @@
     <ClCompile Include="multithreading\threading.cpp">
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
-    <ClCompile Include="platform\aura_main_data.cpp">
+    <ClCompile Include="platform\apex_main_data.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\aura_main_struct.cpp">
+    <ClCompile Include="platform\apex_main_struct.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\factory.cpp">
@@ -3133,7 +3133,7 @@
     <ClCompile Include="user\user\os_colors.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="platform\static_start_aura.cpp">
+    <ClCompile Include="platform\static_start_apex.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filesystem\file_watcher.cpp">
@@ -3145,7 +3145,7 @@
     <ClCompile Include="os\android\_bind_impact.cpp">
       <Filter>Source Files\os\android</Filter>
     </ClCompile>
-    <ClCompile Include="platform\aura_str_pool.cpp">
+    <ClCompile Include="platform\apex_str_pool.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\ttf_util.cpp">
@@ -3540,23 +3540,23 @@
     <ClInclude Include="apex\message\message_definition.h">
       <Filter>Header Files\apex\message</Filter>
     </ClInclude>
-    <ClInclude Include="apex\aura_policy\aura_c.h">
-      <Filter>Header Files\apex\aura_policy</Filter>
+    <ClInclude Include="apex\apex_policy\apex_c.h">
+      <Filter>Header Files\apex\apex_policy</Filter>
     </ClInclude>
-    <ClInclude Include="apex\aura_policy\aura_cpp.h">
-      <Filter>Header Files\apex\aura_policy</Filter>
+    <ClInclude Include="apex\apex_policy\apex_cpp.h">
+      <Filter>Header Files\apex\apex_policy</Filter>
     </ClInclude>
-    <ClInclude Include="apex\aura_policy\aura_policy.h">
-      <Filter>Header Files\apex\aura_policy</Filter>
+    <ClInclude Include="apex\apex_policy\apex_policy.h">
+      <Filter>Header Files\apex\apex_policy</Filter>
     </ClInclude>
-    <ClInclude Include="apex\aura_policy\aura_policy_objc.h">
-      <Filter>Header Files\apex\aura_policy</Filter>
+    <ClInclude Include="apex\apex_policy\apex_policy_objc.h">
+      <Filter>Header Files\apex\apex_policy</Filter>
     </ClInclude>
-    <ClInclude Include="apex\aura_policy\aura_policy_objcpp.h">
-      <Filter>Header Files\apex\aura_policy</Filter>
+    <ClInclude Include="apex\apex_policy\apex_policy_objcpp.h">
+      <Filter>Header Files\apex\apex_policy</Filter>
     </ClInclude>
-    <ClInclude Include="apex\aura_policy\aura_policy_winrt.h">
-      <Filter>Header Files\apex\aura_policy</Filter>
+    <ClInclude Include="apex\apex_policy\apex_policy_winrt.h">
+      <Filter>Header Files\apex\apex_policy</Filter>
     </ClInclude>
     <ClInclude Include="apex\process\process.h">
       <Filter>Header Files\apex\process</Filter>
@@ -4869,13 +4869,13 @@
     <ClInclude Include="apex\apex\atomic2.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_aura.h">
+    <ClInclude Include="apex\apex\apex_apex.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_regex.h">
+    <ClInclude Include="apex\apex\apex_regex.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_status.h">
+    <ClInclude Include="apex\apex\apex_status.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
     <ClInclude Include="apex\apex\auto.h">
@@ -5913,16 +5913,16 @@
     <ClInclude Include="platform\apex.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\aura_aura.h">
+    <ClInclude Include="platform\apex_apex.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\aura_main_struct.h">
+    <ClInclude Include="platform\apex_main_struct.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\aura_regex.h">
+    <ClInclude Include="platform\apex_regex.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\aura_status.h">
+    <ClInclude Include="platform\apex_status.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\auto.h">
@@ -6789,7 +6789,7 @@
     <ClInclude Include="primitive\primitive\function_base.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\generic_object.h">
+    <ClInclude Include="primitive\primitive\generic.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\id.h">
@@ -6924,7 +6924,7 @@
     <ClInclude Include="multithreading\threading.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
-    <ClInclude Include="platform\aura_main_data.h">
+    <ClInclude Include="platform\apex_main_data.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="os\cross\cross.h">
@@ -7706,7 +7706,7 @@
     <Filter Include="Header Files\apex\message">
       <UniqueIdentifier>{3f1e79c8-1c73-46f6-93b7-a614bf6ef455}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\apex\aura_policy">
+    <Filter Include="Header Files\apex\apex_policy">
       <UniqueIdentifier>{fb6a4544-c2c4-4957-bb05-ce2803c60b69}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\apex\process">
@@ -8212,10 +8212,10 @@
     <None Include="inline\aaa_want_to_remove_app_prelude.inl">
       <Filter>Header Files\inline</Filter>
     </None>
-    <None Include="platform\aura1.inl">
+    <None Include="platform\apex1.inl">
       <Filter>Header Files\platform</Filter>
     </None>
-    <None Include="platform\aura2.inl">
+    <None Include="platform\apex2.inl">
       <Filter>Header Files\platform</Filter>
     </None>
     <None Include="platform\gudo_application2.inl">

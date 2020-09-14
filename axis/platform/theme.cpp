@@ -22,7 +22,7 @@ namespace axis
    }
 
 
-   estatus theme::initialize(::object * pobjectContext)
+   estatus theme::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);

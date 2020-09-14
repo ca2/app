@@ -20,7 +20,7 @@ namespace multimedia
 
       string                           m_strNewDecoder;
       string                           m_strTitle;
-      __pointer(::aura::library)       m_plibrary;
+      __pointer(::apex::library)       m_plibrary;
       LPFN_MULTIMEDIA_NEW_DECODER      m_lpfnNewDecoder;
 
 

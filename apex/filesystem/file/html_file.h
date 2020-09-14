@@ -16,14 +16,14 @@ namespace html
 
       string                              m_strOptions;
       string                              m_strStyle;
-      __pointer(::aura::str_context)      m_pstrcontext;
+      __pointer(::apex::str_context)      m_pstrcontext;
 
 
       file();
       virtual ~file();
 
 
-      virtual const ::aura::str_context * str_context();
+      virtual const ::apex::str_context * str_context();
 
       virtual void print(const string & str);
 

@@ -10,42 +10,42 @@
 
 
 
-static oswindow g_oswindowSplash = nullptr;
+//static oswindow g_oswindowSplash = nullptr;
 
 
-void set_splash(oswindow oswindow)
-{
-
-   g_oswindowSplash = oswindow;
-
-}
-
-
-oswindow get_splash()
-{
-
-   return g_oswindowSplash;
-
-}
+//void set_splash(oswindow oswindow)
+//{
+//
+//   g_oswindowSplash = oswindow;
+//
+//}
 
 
+//oswindow get_splash()
+//{
+//
+//   return g_oswindowSplash;
+//
+//}
+//
 
-bool g_bWindowingOutputDebugString = false;
 
-
-void windowing_output_debug_string(const char * pszDebugString)
-{
-
-   if(g_bWindowingOutputDebugString)
-   {
-
-      output_debug_string(pszDebugString);
-
-      fflush(stdout);
-
-   }
-
-}
+//bool g_bWindowingOutputDebugString = false;
+//
+//
+//void windowing_output_debug_string(const char * pszDebugString)
+//{
+//
+//   if(g_bWindowingOutputDebugString)
+//   {
+//
+//      output_debug_string(pszDebugString);
+//
+//      fflush(stdout);
+//
+//   }
+//
+//}
 
 
 
@@ -106,11 +106,11 @@ void windowing_output_debug_string(const char * pszDebugString)
 
 #endif
 
-   auto psystem = ::get_context_system();
+   auto & system = System;
 
-   sync_lock slSystem(psystem->mutex());
+   sync_lock slSystem(system.mutex());
 
-   auto pmap = psystem->m_pwindowmap;
+   auto pmap = system.m_pwindowmap;
 
    if (!pmap)
    {

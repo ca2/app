@@ -31,7 +31,7 @@ namespace user
    }
 
 
-   ::estatus document_manager_container::initialize(::object* pobjectContext)
+   ::estatus document_manager_container::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);

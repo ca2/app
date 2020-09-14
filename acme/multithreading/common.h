@@ -67,57 +67,6 @@ class multi_lock;
 
 
 
-//typedef UINT(c_cdecl *__THREADPROC)(LPVOID);
-
-
-CLASS_DECL_ACME bool do_events();
-//CLASS_DECL_ACME bool do_events(const duration & duration);
-
-
-//
-//namespace multithreading
-//{
-//
-//
-//   CLASS_DECL_ACME bool set_priority(::e_priority epriority);
-//
-//   CLASS_DECL_ACME ::e_priority priority();
-//
-//
-//   inline i32 get_priority_none()
-//   {
-//
-//      return priority_none;
-//
-//   }
-//
-//
-//   inline i32 get_priority_normal()
-//   {
-//
-//      return priority_normal;
-//
-//   }
-//
-//
-//} // namespace multithreading
-//
-//
-//
-//
-//
-//
-//
-//namespace user
-//{
-//
-//
-//   class frame_array;
-//
-//
-//} // namespace user
-//
-
 
 
 //class pred_holder_base :

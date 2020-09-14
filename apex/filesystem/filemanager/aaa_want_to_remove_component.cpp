@@ -1,6 +1,6 @@
 ﻿#include "framework.h"
 //#include "_filemanager.h"
-#include "aura/user/shell.h"
+#include "apex/user/shell.h"
 
 
 CLASS_DECL_APEX ::type __form_document_type();
@@ -162,7 +162,7 @@ namespace filemanager
    }
 
 
-   ::estatus component::initialize_filemanager_component(::object * pobjectContext)
+   ::estatus component::initialize_filemanager_component(::layered * pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);
@@ -773,7 +773,7 @@ namespace filemanager
 
 
 
-//document * component::open_main(::aura::application * pappOnBehalfOf, ::id id, ::create * pcreate, ::fs::data * pfsdata, ::filemanager::__pointer(data) pdata, callback * pcallback)
+//document * component::open_main(::apex::application * pappOnBehalfOf, ::id id, ::create * pcreate, ::fs::data * pfsdata, ::filemanager::__pointer(data) pdata, callback * pcallback)
 //{
 
 //   ::file::path pathFolder;
@@ -902,7 +902,7 @@ namespace filemanager
 //}
 
 
-//document * component::open(::aura::application * pappOnBehalfOf, id id, ::create * pcreateParam, ::fs::data * pfsdata, ::filemanager::__pointer(data) pdata, callback * pcallback)
+//document * component::open(::apex::application * pappOnBehalfOf, id id, ::create * pcreateParam, ::fs::data * pfsdata, ::filemanager::__pointer(data) pdata, callback * pcallback)
 //{
 
 //   ::file::path pathFolder;

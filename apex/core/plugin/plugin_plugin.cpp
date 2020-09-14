@@ -1,9 +1,9 @@
 #include "framework.h"
-#include "aura/id.h"
+#include "apex/id.h"
 
 
 #ifdef WINDOWS_DESKTOP
-#include "aura/app_core.h"
+#include "apex/app_core.h"
 #endif
 
 
@@ -85,7 +85,7 @@ namespace plugin
 
       string strMutex = m_phost->m_strChannel;
 
-      ::str::begins_eat_ci(strMutex, "\\aura\\");
+      ::str::begins_eat_ci(strMutex, "\\apex\\");
 
       m_pmutexBitmap = new ::mutex(e_create_new, false, "Global\\" + strMutex);
 
@@ -104,7 +104,7 @@ namespace plugin
 
 #endif
 
-         ::aura::system * psystem = new ::aura::system();
+         ::apex::system * psystem = new ::apex::system();
 
          m_phost->set_context_system(psystem);
 
@@ -124,7 +124,7 @@ namespace plugin
 
 #ifdef WINDOWS
 
-         psystem->m_hinstance = ::GetModuleHandleW(L"aura.dll");
+         psystem->m_hinstance = ::GetModuleHandleW(L"apex.dll");
 
 #endif
 
@@ -453,7 +453,7 @@ namespace plugin
 
       __task_guard(m_bMainReady);
 
-      xxdebug_box("aura plugin plugin", "ready_on_main_thread", 0);
+      xxdebug_box("apex plugin plugin", "ready_on_main_thread", 0);
 
       ::count iCount = get_memory_length();
 
@@ -478,7 +478,7 @@ namespace plugin
          {
             // remark alarm
             // STRESS : http_get_dup
-            // in aura library normally System or Context.http() is used
+            // in apex library normally System or Context.http() is used
             string strPluginData;
 
 //            ::estatus     estatus = ::http::status_fail;
@@ -673,9 +673,9 @@ namespace plugin
             if(str1 == "ca2login")
             {
                // graphical - 2 - user interface for login - account - through the plugin
-               /*if(!System.install().is(nullptr, strBuild, "application", "app/aura/account", strLocale, strSchema))
+               /*if(!System.install().is(nullptr, strBuild, "application", "app/apex/account", strLocale, strSchema))
                {
-               /*                  System.install().start(": app=session session_start=app/aura/account app_type=application install");
+               /*                  System.install().start(": app=session session_start=app/apex/account app_type=application install");
                #ifdef WINDOWS
                   ::TerminateProcess(::GetCurrentProcess(), 0);
                #else
@@ -683,11 +683,11 @@ namespace plugin
                #endif
                   m_bMainReady = false;*/
 
-               /*                  string strCommandLine(": app=session session_start=app/aura/account app_type=application install ruri=\"" + strRuri + "\" locale=" + strLocale + " schema=" + strSchema);
+               /*                  string strCommandLine(": app=session session_start=app/apex/account app_type=application install ruri=\"" + strRuri + "\" locale=" + strLocale + " schema=" + strSchema);
 
 
                #ifdef WINDOWS_DESKTOP
-                                 PostMessage(m_phost->::aura::ipc::tx::m_oswindow, WM_USER + 100, 1, 1);
+                                 PostMessage(m_phost->::apex::ipc::tx::m_oswindow, WM_USER + 100, 1, 1);
                #else
                                  ::exception::throw_not_implemented();
                #endif
@@ -714,10 +714,10 @@ namespace plugin
             else if(str1 == "ca2logout")
             {
                // graphical - 2 - user interface for logout - account - through the plugin
-               /*if(!System.install().is(nullptr, strBuild, "application", "app/aura/account", strLocale, strSchema))
+               /*if(!System.install().is(nullptr, strBuild, "application", "app/apex/account", strLocale, strSchema))
                {
                   /*
-                  System.install().start(": app=session session_start=app/aura/account app_type=application install");
+                  System.install().start(": app=session session_start=app/apex/account app_type=application install");
                #ifdef WINDOWS
                   ::TerminateProcess(::GetCurrentProcess(), 0);
                #else
@@ -725,10 +725,10 @@ namespace plugin
                #endif
                   m_bMainReady = false;*/
 
-               /*                  string strCommandLine(": app=session session_start=app/aura/account app_type=application install ruri=\"" + strRuri + "\" locale=" + strLocale + " schema=" + strSchema);
+               /*                  string strCommandLine(": app=session session_start=app/apex/account app_type=application install ruri=\"" + strRuri + "\" locale=" + strLocale + " schema=" + strSchema);
 
                #ifdef WINDOWS_DESKTOP
-                                 PostMessage(m_phost->::aura::ipc::tx::m_oswindow, WM_USER + 100, 1, 1);
+                                 PostMessage(m_phost->::apex::ipc::tx::m_oswindow, WM_USER + 100, 1, 1);
                #else
                                  ::exception::throw_not_implemented();
                #endif
@@ -868,7 +868,7 @@ namespace plugin
 
 
 #ifdef WINDOWS_DESKTOP
-//                        PostMessage(m_phost->::aura::ipc::tx::m_oswindow, WM_USER + 100, 1, 1);
+//                        PostMessage(m_phost->::apex::ipc::tx::m_oswindow, WM_USER + 100, 1, 1);
 #else
                         ::exception::throw_not_implemented();
 #endif

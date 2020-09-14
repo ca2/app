@@ -1,26 +1,26 @@
 ﻿#include "framework.h"
 #include "_windows.h"
-#include "apex/os/windows_common/cotaskptr.h"
+#include "acme/os/windows_common/cotaskptr.h"
 //#include "apex/xml/_.h"
 
 
 
-CLASS_DECL_APEX::file::path get_known_folder(REFKNOWNFOLDERID kfid)
-{
-
-   ::file::path str;
-
-   ::cotaskptr < PWSTR > pwszPath;
-
-   HANDLE hToken = nullptr;
-
-   ::OpenProcessToken(::GetCurrentProcess(), TOKEN_QUERY | TOKEN_IMPERSONATE | TOKEN_DUPLICATE, &hToken);
-
-   HRESULT hr = SHGetKnownFolderPath(kfid, 0, hToken, &pwszPath);
-
-   return pwszPath;
-
-}
+//CLASS_DECL_APEX::file::path get_known_folder(REFKNOWNFOLDERID kfid)
+//{
+//
+//   ::file::path str;
+//
+//   ::cotaskptr < PWSTR > pwszPath;
+//
+//   HANDLE hToken = nullptr;
+//
+//   ::OpenProcessToken(::GetCurrentProcess(), TOKEN_QUERY | TOKEN_IMPERSONATE | TOKEN_DUPLICATE, &hToken);
+//
+//   HRESULT hr = SHGetKnownFolderPath(kfid, 0, hToken, &pwszPath);
+//
+//   return pwszPath;
+//
+//}
 
 namespace windows
 {
@@ -40,7 +40,7 @@ namespace windows
 
 
 
-   ::estatus dir_system::initialize(::object * pobjectContext)
+   ::estatus dir_system::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::dir_system::initialize(pobjectContext);

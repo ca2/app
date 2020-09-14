@@ -78,7 +78,7 @@ namespace apex
    }
 
 
-   ::estatus log::initialize_aura_log(e_trace_level etracelevelMin, const ::id & id)
+   ::estatus log::initialize_apex_log(e_trace_level etracelevelMin, const ::id & id)
    {
 
       auto estatus = __compose_new(m_ptrace);
@@ -219,7 +219,7 @@ namespace apex
    log::~log()
    {
 
-      //::apex::del(m_ptrace);
+      //::acme::del(m_ptrace);
 
    }
 
@@ -308,7 +308,7 @@ namespace apex
    //}
 
 
-   void log::__tracea(::generic_object * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
+   void log::__tracea(::generic * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
    {
 
       const char * pszTopicText = ::is_set(pobjectContext) ? pobjectContext->topic_text() : nullptr;
@@ -543,7 +543,7 @@ namespace apex
 
 #if !defined(_UWP)
 
-         if (is_debugger_attached() && !::get_context_system()->has_aura_application_factory())
+         if (is_debugger_attached() && !::get_context_system()->has_apex_application_factory())
          {
 
             fork([this]()
@@ -635,7 +635,7 @@ skip_further_possible_recursive_impossible_logging_in_file:
    }
 
 
-   //::estatus log::initialize_aura_log(e_trace_level etracelevelMin, const char * pszId)
+   //::estatus log::initialize_apex_log(e_trace_level etracelevelMin, const char * pszId)
    //{
 
    //   //if (!initialize(id(pszId)))
@@ -653,7 +653,7 @@ skip_further_possible_recursive_impossible_logging_in_file:
    bool log::process_init()
    {
 
-      if (is_debugger_attached() && !::get_context_system()->has_aura_application_factory())
+      if (is_debugger_attached() && !::get_context_system()->has_apex_application_factory())
       {
 
          /*fork([this]()

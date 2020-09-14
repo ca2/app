@@ -103,7 +103,7 @@
 					<Add option="-lfreeimage" />
 					<Add option="-lpcre2-8" />
 					<Add option="`pkg-config --libs glib-2.0 gtk+-3.0 gdk-3.0 appindicator3-0.1`" />
-					<Add option="`$(#archive)/tool/bin/not_platform_setup raspbian -laurasn`" />
+					<Add option="`$(#archive)/tool/bin/not_platform_setup raspbian -lapexsn`" />
 					<Add option="-lace" />
 					<Add option="-lapex" />
 					<Add option="-Wl,-z,defs" />
@@ -216,7 +216,7 @@
 					<Add option="-lcrypto" />
 					<Add option="-lfreeimage" />
 					<Add option="`pkg-config --libs gtk+-3.0 gdk-3.0 appindicator3-0.1`" />
-					<Add option="`$(#archive)/tool/bin/not_platform_setup raspbian -laurasn`" />
+					<Add option="`$(#archive)/tool/bin/not_platform_setup raspbian -lapexsn`" />
 					<Add option="-lace" />
 					<Add option="-lapex" />
 					<Add option="-Wl,-z,defs" />
@@ -1791,10 +1791,10 @@
 		<Unit filename="platform/async.h" />
 		<Unit filename="platform/atomic2.h" />
 		<Unit filename="platform/apex.h" />
-		<Unit filename="platform/aura_aura.h" />
-		<Unit filename="platform/aura_main_struct.h" />
-		<Unit filename="platform/aura_regex.h" />
-		<Unit filename="platform/aura_status.h" />
+		<Unit filename="platform/apex_apex.h" />
+		<Unit filename="platform/apex_main_struct.h" />
+		<Unit filename="platform/apex_regex.h" />
+		<Unit filename="platform/apex_status.h" />
 		<Unit filename="platform/auto.h" />
 		<Unit filename="platform/auto_pointer.h" />
 		<Unit filename="platform/build_debug.cpp" />
@@ -2269,8 +2269,8 @@
 		<Unit filename="primitive/primitive/form_property_set.cpp" />
 		<Unit filename="primitive/primitive/form_property_set.h" />
 		<Unit filename="primitive/primitive/function.h" />
-		<Unit filename="primitive/primitive/generic_object.cpp" />
-		<Unit filename="primitive/primitive/generic_object.h" />
+		<Unit filename="primitive/primitive/generic.cpp" />
+		<Unit filename="primitive/primitive/generic.h" />
 		<Unit filename="primitive/primitive/handler.cpp" />
 		<Unit filename="primitive/primitive/id.cpp" />
 		<Unit filename="primitive/primitive/id.h" />

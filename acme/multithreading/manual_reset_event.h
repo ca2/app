@@ -24,15 +24,16 @@ public:
 };
 
 
-class CLASS_DECL_ACME counter :
+class CLASS_DECL_ACME long_counter :
    public manual_reset_event
 {
 public:
 
 
-      interlocked_long m_long;
+   interlocked_long m_long;
 
-   counter(long lCount) : m_long(lCount) {}
+   
+   long_counter(long lCount) : m_long(lCount) {}
 
 
    long operator ++()
@@ -65,3 +66,42 @@ public:
 };
 
 
+class CLASS_DECL_ACME counter :
+   public manual_reset_event
+{
+public:
+
+
+   interlocked_count m_count;
+
+   counter(::count lCount) : m_count(lCount) {}
+
+
+   ::count operator ++()
+   {
+
+      ::count c = --m_count;
+
+      if (c <= 0)
+      {
+
+         SetEvent();
+
+      }
+
+      return c;
+
+   }
+
+   ::count operator ++(int)
+   {
+
+      ::count c = m_count;
+
+      ++(*this);
+
+      return c;
+
+   }
+
+};

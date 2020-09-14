@@ -28,7 +28,7 @@ extern "C"
 void imaging_factory_exchange()
 {
 
-   create_factory < ::imaging_freeimage::imaging, ::imaging >();
+   create_factory < ::imaging_freeimage::context_image, ::context_image >();
 
 }
 

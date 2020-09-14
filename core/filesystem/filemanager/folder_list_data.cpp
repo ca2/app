@@ -20,6 +20,20 @@ namespace filemanager
    }
 
 
+   void folder_list_data::assert_valid() const
+   {
+
+
+   }
+
+
+   void folder_list_data::dump(dump_context& dumpcontext) const
+   {
+
+
+   }
+
+
    void folder_list_data::_001GetItemText(::user::mesh_item * pitem)
    {
 

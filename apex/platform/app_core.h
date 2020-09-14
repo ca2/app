@@ -14,7 +14,7 @@ class raw_fail {};
 
 
 // ATTENTION
-// aura_aura class should be instantiated before any other ca2 framework 
+// apex_apex class should be instantiated before any other ca2 framework 
 // class instantiation or any other ca2 framework function call.
 // It should be maintained allocated while process is running.
 // Not even new/delete/strings/ids can be used after it goes out of scope.
@@ -27,7 +27,7 @@ typedef int MAIN_RUNNER(HINSTANCE hInstance);
 typedef MAIN_RUNNER * LPFN_MAIN_RUNNER;
 
 
-#include "aura_main_data.h"
+#include "apex_main_data.h"
 
 
 #define APP_CORE_MAXIMUM_STATUS_COUNT 100
@@ -35,7 +35,7 @@ typedef MAIN_RUNNER * LPFN_MAIN_RUNNER;
 
 
 class CLASS_DECL_APEX app_core :
-   virtual public ::aura_main_data
+   virtual public ::apex_main_data
 {
 public:
 
@@ -46,14 +46,14 @@ public:
    tick                             m_tickStart;
    tick                             m_tickAfterApplicationFirstRequest;
    //::apex::system *                    m_psystem;
-   //__pointer(aura_main_data)        m_pmaindata;
+   //__pointer(apex_main_data)        m_pmaindata;
    __pointer(::apex::library)       m_plibrary;
    ::estatus                        m_estatusa[APP_CORE_MAXIMUM_STATUS_COUNT];
    int                              m_iStatusCount;
    int                              m_iTotalStatusCount;
 
 
-   //app_core(aura_main_data * pdata);
+   //app_core(apex_main_data * pdata);
    app_core();
    ~app_core();
 
@@ -67,7 +67,7 @@ public:
 
    ::estatus system_proc();
 
-   bool has_aura_application_factory() const;
+   bool has_apex_application_factory() const;
 
    virtual ::estatus system_init();
 
@@ -89,28 +89,28 @@ public:
 };
 
 //
-//typedef bool FN_AURA_APP_CORE(app_core * pappcore);
+//typedef bool FN_APEX_APP_CORE(app_core * pappcore);
 //
-//typedef FN_AURA_APP_CORE * PFN_AURA_APP_CORE;
+//typedef FN_APEX_APP_CORE * PFN_APEX_APP_CORE;
 
-CLASS_DECL_APEX long aura_aura(::apex::system * pmaindata);
+CLASS_DECL_APEX long apex_apex(::apex::system * pmaindata);
 
 CLASS_DECL_APEX bool node_fill(::apex::system * pappcore);
 
-//CLASS_DECL_APEX i32 aura_entry_point(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPTSTR pCmdLine, int nCmdShow, PFN_NEW_AURA_APPLICATION pfnNewAuraApplication = nullptr, PFN_NEW_AURA_LIBRARY pfnNewLibrary = nullptr);
+//CLASS_DECL_APEX i32 apex_entry_point(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPTSTR pCmdLine, int nCmdShow, PFN_NEW_APEX_APPLICATION pfnNewAuraApplication = nullptr, PFN_NEW_APEX_LIBRARY pfnNewLibrary = nullptr);
 
-//CLASS_DECL_APEX int aura_entry_point(int argc, char* argv[], char* pszCommandLin, PFN_NEW_AURA_APPLICATION pfnNewAuraApplication = nullptr, PFN_NEW_AURA_LIBRARY pfnNewLibrary = nullptr);
+//CLASS_DECL_APEX int apex_entry_point(int argc, char* argv[], char* pszCommandLin, PFN_NEW_APEX_APPLICATION pfnNewAuraApplication = nullptr, PFN_NEW_APEX_LIBRARY pfnNewLibrary = nullptr);
 
 
 
-class CLASS_DECL_APEX aura_level
+class CLASS_DECL_APEX apex_level
 {
 public:
 
 
    enum e_level
    {
-      level_aura,
+      level_apex,
       level_axis,
       level_base,
       level_core,
@@ -119,14 +119,14 @@ public:
 
    e_level                    m_elevel;
    PFN_DEFER_INIT             m_pfnDeferInit;
-   aura_level *               m_plevelNext;
+   apex_level *               m_plevelNext;
 
 
-   aura_level(e_level elevel, PFN_DEFER_INIT pfnDeferInit);
+   apex_level(e_level elevel, PFN_DEFER_INIT pfnDeferInit);
 
-   static aura_level * get_maximum_level();
+   static apex_level * get_maximum_level();
 
-   static aura_level * find_level(PFN_DEFER_INIT pfnDeferInit);
+   static apex_level * find_level(PFN_DEFER_INIT pfnDeferInit);
 
    static bool defer_init();
 

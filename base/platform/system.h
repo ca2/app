@@ -68,9 +68,9 @@ namespace base
 //      __composite(::gpu::approach)                       m_pgpu;
 //
 //      ::mutex                                            m_mutexLibrary;
-//      string_map < __pointer(::aura::library) >          m_mapLibrary;
+//      string_map < __pointer(::apex::library) >          m_mapLibrary;
 //      string_map < PFN_NEW_BASE_LIBRARY >                m_mapNewAuraLibrary;
-//      string_map < __pointer(::aura::library) >          m_mapLibCall;
+//      string_map < __pointer(::apex::library) >          m_mapLibCall;
 //
 //
 //
@@ -185,7 +185,7 @@ namespace base
 //      //double_array                                       m_daLon;
 //      //double_array                                       m_daLat;
 //
-//      //string_map < __pointer(::aura::library) >          m_mapLibrary;
+//      //string_map < __pointer(::apex::library) >          m_mapLibrary;
 //
 //      //string_map < __pointer(openweather_city) >                   m_mapCity;
 //
@@ -236,9 +236,9 @@ namespace base
 //      //bool                                         m_bProcessInitialize;
 //      //bool                                         m_bProcessInitializeResult;
 //
-//      strid_map < ::aura::library* >              m_idmapCreateViewLibrary;
+//      strid_map < ::apex::library* >              m_idmapCreateViewLibrary;
 //
-//      __pointer_array(::aura::library)                         m_libraryspa;
+//      __pointer_array(::apex::library)                         m_libraryspa;
 //
 //#ifdef _UWP
 //
@@ -254,7 +254,7 @@ namespace base
 //
       void common_construct();
 //
-      virtual ::estatus initialize(::object * pobjectContext) override;
+      virtual ::estatus initialize(::layered * pobjectContext) override;
 //
 //      virtual ::estatus init();
 //      //virtual ::estatus init_instance() override;
@@ -365,7 +365,7 @@ namespace base
 //
 //
 //
-//      //virtual string dir_appmatter_locator(::object * pobject);
+//      //virtual string dir_appmatter_locator(::layered * pobjectContext);
 //
 //
 //      virtual void hist_hist(const char * psz);
@@ -384,7 +384,7 @@ namespace base
 //      virtual string get_locale_schema_dir() override;
 //
 //
-//      //virtual ::estatus     initialize_system(::object * pobjectContext, app_core * pappcore);
+//      //virtual ::estatus     initialize_system(::layered * pobjectContext, app_core * pappcore);
 //
 //
 //      //__pointer(::thread_tools) create_thread_tools(::enum_thread_tool etool);
@@ -528,17 +528,17 @@ namespace base
 //
 //      virtual ::estatus initialize_sockets();
 //
-//      ::image_pointer get_cache_image(::object * pobjectContext, const ::var & varFile);
-//      ::image_pointer matter_cache_image(::object * pobjectContext, const ::string & strMatter);
+//      ::image_pointer get_cache_image(::layered * pobjectContext, const ::var & varFile);
+//      ::image_pointer matter_cache_image(::layered * pobjectContext, const ::string & strMatter);
 //
-//      ::image_pointer get_image(::object * pobjectContext, const ::var & varFile, bool bCache = true, bool bSync = false);
-//      ::image_pointer matter_image(::object * pobjectContext, const string & strMatter, bool bCache = true, bool bSync = false);
+//      ::image_pointer get_image(::layered * pobjectContext, const ::var & varFile, bool bCache = true, bool bSync = false);
+//      ::image_pointer matter_image(::layered * pobjectContext, const string & strMatter, bool bCache = true, bool bSync = false);
 //
 //      virtual bool on_get_thread_name(string& strThreadName) override;
 //
-//      virtual ::aura::library * on_get_library(const char * pszLibrary);
+//      virtual ::apex::library * on_get_library(const char * pszLibrary);
 //
-//      virtual ::aura::library * get_library(const char * pszLibrary, bool bOpenCa2 = false);
+//      virtual ::apex::library * get_library(const char * pszLibrary, bool bOpenCa2 = false);
 //
 //
 //      virtual UINT os_post_to_all_threads(UINT uiMessage,WPARAM wparam = 0,lparam lparam = 0);
@@ -684,7 +684,7 @@ namespace base
 //
 //      virtual void on_end_find_applications_to_cache(stream & os);
 //
-//      virtual void on_map_application_library(::aura::library & library);
+//      virtual void on_map_application_library(::apex::library & library);
 //
 //      //virtual void defer_check_exit();
 //
@@ -769,7 +769,7 @@ namespace base
 //
 //
 //
-//      virtual void __tracea(::generic_object * pcontextobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz) override;
+//      virtual void __tracea(::generic * pcontextobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz) override;
 //
 //
 //      virtual string get_user_language();
@@ -831,7 +831,7 @@ namespace base
 //      estatus set_history(::aura::history* phistory);
 //
 //
-//      //__pointer(::aura::library) on_get_library(const char* pszLibrary) override;
+//      //__pointer(::apex::library) on_get_library(const char* pszLibrary) override;
 //
 //
 //      //virtual ::aura::session *  get_platform(index iEdge,application_bias * pbiasCreation = nullptr);
@@ -899,7 +899,7 @@ namespace base
 //
 //      virtual string get_host_location_url();
 //
-//      virtual ::estatus add_view_library(::aura::library* plibrary);
+//      virtual ::estatus add_view_library(::apex::library* plibrary);
 //
 //      //virtual void get_cursor_pos(LPPOINT ppoint);
 //
@@ -936,7 +936,7 @@ namespace base
 //
 //      //virtual void on_end_find_applications_to_cache(stream& os) override;
 //
-//      //virtual void on_map_application_library(::aura::library& library) override;
+//      //virtual void on_map_application_library(::apex::library& library) override;
 //
 //      //virtual void on_graphics_ready() override;
 //
@@ -983,7 +983,7 @@ namespace base
 //
 //      //virtual bool initialize_native_window1() override;
 //
-//      //virtual ::aura::library* load_library(const char* pszLibrary);
+//      //virtual ::apex::library* load_library(const char* pszLibrary);
 
    };
 

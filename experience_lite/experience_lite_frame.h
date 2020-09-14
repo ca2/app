@@ -65,7 +65,7 @@
 
 
 
-               frame(::object * pobject);
+               frame(::layered * pobjectContext);
 
                virtual ~frame();
 

@@ -43,7 +43,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{E000FFAF-392F-4E32-BF51-777ED638991F}</ProjectGuid>
+    <ProjectGuid>{E000FFAF-392F-4E32-BF51-777CA238991F}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>app</RootNamespace>
     <ProjectName>apex</ProjectName>
@@ -237,7 +237,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_AURA_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_APEX_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)/third-windows/include;$(__archive)/third-windows/third/include;$(__archive)/third-windows/third/include/include;$(SolutionDir)../../platform-windows/_include;$(SolutionDir)../../platform-windows;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -273,7 +273,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalDependencies>zlib.lib;libcrypto.lib;libssl.lib;dwrite.lib;d2d1.lib;d3d11.lib;dxgi.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;libcrypto.lib;libssl.lib;dwrite.lib;d2d1.lib;d3d11.lib;dxgi.lib;Dxva2.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <EntryPointSymbol>
@@ -309,14 +309,14 @@
       <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
     </Xdcmake>
     <PostBuildEvent>
-      <Command>copy $(__archive)\storage-windows\binary\$(PlatformName)\$(Configuration)\*.* $(OutDir)
-copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\*.* $(OutDir)</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>CUBE;_AURA_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>CUBE;_APEX_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)/third-windows/include;$(__archive)/third-windows/third/include;$(__archive)/third-windows/third/include/include;$(SolutionDir)../../platform-windows/_include;$(SolutionDir)../../platform-windows;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -400,7 +400,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_AURA_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_APEX_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)/third-windows/include;$(__archive)/third-windows/third/include;$(__archive)/third-windows/third/include/include;$(SolutionDir)../../platform-windows/_include;$(SolutionDir)../../platform-windows;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
@@ -436,7 +436,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalDependencies>zlib.lib;libcrypto.lib;libssl.lib;dwrite.lib;d2d1.lib;d3d11.lib;dxgi.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;libcrypto.lib;libssl.lib;dwrite.lib;d2d1.lib;d3d11.lib;dxgi.lib;Dxva2.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <EntryPointSymbol>
@@ -480,7 +480,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_AURA_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_APEX_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)/third-windows/include;$(__archive)/third-windows/third/include;$(__archive)/third-windows/third/include/include;$(SolutionDir)../../platform-windows/_include;$(SolutionDir)../../platform-windows;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>MaxSpeed</Optimization>
@@ -523,7 +523,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalDependencies>zlib.lib;libcrypto.lib;libssl.lib;dwrite.lib;d2d1.lib;d3d11.lib;dxgi.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;libcrypto.lib;libssl.lib;dwrite.lib;d2d1.lib;d3d11.lib;dxgi.lib;Dxva2.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
@@ -572,7 +572,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>CUBE;_AURA_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>CUBE;_APEX_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)/third-windows/include;$(__archive)/third-windows/third/include;$(__archive)/third-windows/third/include/include;$(SolutionDir)../../platform-windows/_include;$(SolutionDir)../../platform-windows;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>MinSpace</Optimization>
@@ -667,7 +667,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_AURA_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_APEX_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)/third-windows/include;$(__archive)/third-windows/third/include;$(__archive)/third-windows/third/include/include;$(SolutionDir)../../platform-windows/_include;$(SolutionDir)../../platform-windows;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -704,7 +704,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalDependencies>zlib.lib;libcrypto.lib;libssl.lib;dwrite.lib;d2d1.lib;d3d11.lib;dxgi.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;libcrypto.lib;libssl.lib;dwrite.lib;d2d1.lib;d3d11.lib;dxgi.lib;Dxva2.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
@@ -732,8 +732,8 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
       </TreatOutputAsContent>
     </CustomBuildStep>
     <PostBuildEvent>
-      <Command>copy $(__archive)\storage-windows\binary\$(PlatformName)\$(Configuration)\*.* $(OutDir)
-copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\*.* $(OutDir)</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
     <Manifest>
       <AdditionalManifestFiles>
@@ -746,7 +746,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>CUBE;_AURA_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>CUBE;_APEX_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)/third-windows/include;$(__archive)/third-windows/third/include;$(__archive)/third-windows/third/include/include;$(SolutionDir)../../platform-windows/_include;$(SolutionDir)../../platform-windows;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -833,7 +833,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cover|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_AURA_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_APEX_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)/third-windows/include;$(__archive)/third-windows/third/include;$(__archive)/third-windows/third/include/include;$(SolutionDir)../../platform-windows/_include;$(SolutionDir)../../platform-windows;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -870,7 +870,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalDependencies>zlib.lib;libcrypto.lib;libssl.lib;dwrite.lib;d2d1.lib;d3d11.lib;dxgi.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;libcrypto.lib;libssl.lib;dwrite.lib;d2d1.lib;d3d11.lib;dxgi.lib;Dxva2.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
@@ -911,7 +911,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_AURA_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_APEX_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)/third-windows/include;$(__archive)/third-windows/third/include;$(__archive)/third-windows/third/include/include;$(SolutionDir)../../platform-windows/_include;$(SolutionDir)../../platform-windows;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -954,7 +954,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalDependencies>zlib.lib;libcrypto.lib;libssl.lib;dwrite.lib;d2d1.lib;d3d11.lib;dxgi.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;libcrypto.lib;libssl.lib;dwrite.lib;d2d1.lib;d3d11.lib;dxgi.lib;Dxva2.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
@@ -998,7 +998,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>CUBE;_AURA_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>CUBE;_APEX_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)/third-windows/include;$(__archive)/third-windows/third/include;$(__archive)/third-windows/third/include/include;$(SolutionDir)../../platform-windows/_include;$(SolutionDir)../../platform-windows;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -1089,7 +1089,8 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <Lib />
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="compress\compress_context.cpp" />
+    <ClCompile Include="compress\context.cpp" />
+    <ClCompile Include="compress\zip_is_dir.cpp" />
     <ClCompile Include="compress\zip\context.cpp" />
     <ClCompile Include="const\idpool.cpp" />
     <ClCompile Include="crypto\crypto_crypto.cpp" />
@@ -1102,69 +1103,15 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="database\selection_item.cpp" />
     <ClCompile Include="database\server.cpp" />
     <ClCompile Include="database\stringhelper.cpp" />
-    <ClCompile Include="exception\-ehrror.cpp" />
-    <ClCompile Include="exception\-last_ehrror.cpp" />
-    <ClCompile Include="exception\-overflow_ehrror.cpp" />
-    <ClCompile Include="exception\-range_ehrror.cpp" />
-    <ClCompile Include="exception\-runtime_ehrror.cpp" />
-    <ClCompile Include="exception\archive.cpp" />
-    <ClCompile Include="exception\archive_exception.cpp" />
-    <ClCompile Include="exception\base.cpp" />
-    <ClCompile Include="exception\callstack.cpp" />
-    <ClCompile Include="exception\cancel.cpp" />
-    <ClCompile Include="exception\const.cpp" />
-    <ClCompile Include="exception\debug.cpp" />
-    <ClCompile Include="exception\dump.cpp" />
-    <ClCompile Include="exception\dump_context.cpp" />
-    <ClCompile Include="exception\dump_floating_point.cpp" />
-    <ClCompile Include="exception\dump_output.cpp" />
-    <ClCompile Include="exception\exception.cpp" />
-    <ClCompile Include="exception\exception_engine.cpp" />
-    <ClCompile Include="exception\exit.cpp" />
-    <ClCompile Include="exception\hresult.cpp" />
-    <ClCompile Include="exception\installing.cpp" />
-    <ClCompile Include="exception\interface_only.cpp" />
-    <ClCompile Include="exception\invalid_argument.cpp" />
-    <ClCompile Include="exception\invalid_character.cpp" />
-    <ClCompile Include="exception\invalid_handle.cpp" />
-    <ClCompile Include="exception\invalid_index.cpp" />
-    <ClCompile Include="exception\io.cpp" />
-    <ClCompile Include="exception\memory.cpp" />
-    <ClCompile Include="exception\not_implemented.cpp" />
-    <ClCompile Include="exception\not_installed.cpp" />
-    <ClCompile Include="exception\not_licensed.cpp" />
-    <ClCompile Include="exception\not_supported.cpp" />
-    <ClCompile Include="exception\operation_canceled.cpp" />
-    <ClCompile Include="exception\os.cpp" />
-    <ClCompile Include="exception\parsing.cpp" />
-    <ClCompile Include="exception\resource.cpp" />
-    <ClCompile Include="exception\simple.cpp" />
-    <ClCompile Include="exception\standard_translator.cpp" />
-    <ClCompile Include="exception\temporary.cpp" />
-    <ClCompile Include="exception\throw.cpp" />
-    <ClCompile Include="exception\todo.cpp" />
-    <ClCompile Include="exception\user.cpp" />
-    <ClCompile Include="exception\void_implementation.cpp" />
-    <ClCompile Include="exception\wtf.cpp" />
     <ClCompile Include="filesystem\filemanager\callback.cpp" />
     <ClCompile Include="filesystem\filemanager\item_action.cpp" />
     <ClCompile Include="filesystem\filesystem\dir_context.cpp" />
     <ClCompile Include="filesystem\filesystem\dir_system.cpp" />
     <ClCompile Include="filesystem\filesystem\file_context.cpp" />
     <ClCompile Include="filesystem\filesystem\file_system.cpp" />
-    <ClCompile Include="filesystem\filesystem\path.cpp" />
     <ClCompile Include="filesystem\filesystem\file_watcher.cpp" />
-    <ClCompile Include="filesystem\filesystem\path_object.cpp" />
-    <ClCompile Include="filesystem\file\binary_stream.cpp" />
-    <ClCompile Include="filesystem\file\buffered_buffer.cpp" />
-    <ClCompile Include="filesystem\file\c.cpp" />
-    <ClCompile Include="filesystem\file\circular_buffer.cpp" />
-    <ClCompile Include="filesystem\file\composite.cpp" />
-    <ClCompile Include="filesystem\file\cpp.cpp" />
-    <ClCompile Include="filesystem\file\dir.cpp" />
-    <ClCompile Include="filesystem\file\dir2.cpp" />
     <ClCompile Include="filesystem\file\edit_file.cpp" />
-    <ClCompile Include="filesystem\file\exception.cpp" />
+    <ClCompile Include="filesystem\file\html_file.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">Create</PrecompiledHeader>
@@ -1177,175 +1124,24 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="game\estamira.cpp" />
-    <ClCompile Include="game\game.cpp" />
-    <ClCompile Include="gpu\gpu\approach.cpp" />
-    <ClCompile Include="gpu\gpu\buffer.cpp" />
-    <ClCompile Include="gpu\gpu\context.cpp" />
-    <ClCompile Include="gpu\gpu\program.cpp" />
-    <ClCompile Include="gpu\gpu\shader.cpp" />
     <ClCompile Include="include\_.cpp" />
-    <ClCompile Include="memory\alloc.cpp" />
-    <ClCompile Include="memory\allocate_mid_big.cpp" />
-    <ClCompile Include="memory\allocate_processor_cache_oriented.cpp" />
-    <ClCompile Include="memory\allocate_system_heap.cpp" />
-    <ClCompile Include="memory\allocate_x86_cache_oriented.cpp" />
-    <ClCompile Include="memory\allocation.cpp" />
-    <ClCompile Include="memory\drawable.cpp" />
-    <ClCompile Include="memory\heap.cpp" />
-    <ClCompile Include="memory\inline\heap_bare.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="memory\inline\heap_mcheck.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="memory\inline\heap_mcrtdbg.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="memory\inline\heap_memdleak.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="memory\inline\heap_std.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="memory\inline\heap_vld.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="memory\os_alloc\bounds_check.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="memory\os_alloc\malloc.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="memory\os_alloc\no_bounds_check.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="memory\os_alloc\WindowsHeapAlloc.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="memory\plex.cpp" />
-    <ClCompile Include="memory\plex_heap1.cpp" />
+    <ClCompile Include="message\application.cpp" />
     <ClCompile Include="message\base.cpp" />
     <ClCompile Include="message\channel.cpp" />
+    <ClCompile Include="message\debug.cpp" />
     <ClCompile Include="message\id.cpp" />
     <ClCompile Include="message\message.cpp" />
     <ClCompile Include="message\receiver.cpp" />
     <ClCompile Include="message\sender.cpp" />
     <ClCompile Include="message\simple_command.cpp" />
-    <ClCompile Include="message\user.cpp" />
     <ClCompile Include="message\_.cpp" />
-    <ClCompile Include="multimedia\audio.cpp" />
-    <ClCompile Include="multimedia\audio\audio_wave_out.cpp" />
-    <ClCompile Include="multimedia\audio\sound_track_player.cpp" />
-    <ClCompile Include="multimedia\audio\speaker.cpp" />
-    <ClCompile Include="multimedia\decoder.cpp" />
-    <ClCompile Include="multimedia\decoder_plugin.cpp" />
-    <ClCompile Include="multimedia\exception.cpp" />
-    <ClCompile Include="multimedia\file_application.cpp" />
-    <ClCompile Include="multimedia\multimedia.cpp" />
     <ClCompile Include="multithreading\handler.cpp" />
-    <ClCompile Include="multithreading\pred_holder.cpp" />
     <ClCompile Include="multithreading\procedure_array.cpp" />
     <ClCompile Include="multithreading\retry_multi_lock.cpp" />
     <ClCompile Include="multithreading\retry_single_lock.cpp" />
     <ClCompile Include="multithreading\service\plain_service.cpp" />
     <ClCompile Include="multithreading\service_base.cpp" />
     <ClCompile Include="multithreading\socket_event.cpp" />
-    <ClCompile Include="multithreading\sync.cpp" />
-    <ClCompile Include="multithreading\sync_array.cpp" />
-    <ClCompile Include="multithreading\sync_lock.cpp" />
-    <ClCompile Include="multithreading\sync_result.cpp" />
-    <ClCompile Include="multithreading\sync_task.cpp" />
     <ClCompile Include="multithreading\thread.cpp" />
     <ClCompile Include="multithreading\threading.cpp" />
     <ClCompile Include="multithreading\thread_impl.cpp" />
@@ -1353,164 +1149,81 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="multithreading\tools.cpp" />
     <ClCompile Include="multithreading\waitable.cpp" />
     <ClCompile Include="multithreading\_.cpp" />
+    <ClCompile Include="node\windows\dir_system.cpp" />
     <ClCompile Include="node\windows\file_os_watcher.cpp" />
-    <ClCompile Include="node\windows\windows_desktop.cpp" />
     <ClCompile Include="node\windows\application.cpp" />
-    <ClCompile Include="node\windows\console.cpp" />
-    <ClCompile Include="node\windows\copydesk.cpp" />
     <ClCompile Include="node\windows\crypto.cpp" />
     <ClCompile Include="node\windows\dir_context.cpp" />
-    <ClCompile Include="node\windows\dir_system.cpp" />
     <ClCompile Include="node\windows\factory_exchange.cpp" />
-    <ClCompile Include="node\windows\file.cpp" />
     <ClCompile Include="node\windows\file_context.cpp" />
-    <ClCompile Include="node\windows\file_find.cpp" />
     <ClCompile Include="node\windows\file_system.cpp" />
-    <ClCompile Include="node\windows\graphics_buffer.cpp" />
-    <ClCompile Include="node\windows\interaction_impl.cpp" />
-    <ClCompile Include="node\windows\interaction_impl_message_bypass.cpp" />
     <ClCompile Include="node\windows\ip_enum.cpp" />
     <ClCompile Include="node\windows\os_context.cpp" />
-    <ClCompile Include="node\windows\pipe.cpp" />
     <ClCompile Include="node\windows\process.cpp" />
-    <ClCompile Include="node\windows\registry.cpp" />
-    <ClCompile Include="node\windows\serial.cpp" />
-    <ClCompile Include="node\windows\stdio_file.cpp" />
-    <ClCompile Include="node\windows\system_interaction_impl.cpp" />
     <ClCompile Include="node\windows\thread.cpp" />
     <ClCompile Include="node\windows\timer.cpp" />
     <ClCompile Include="node\windows\trace.cpp" />
     <ClCompile Include="node\windows\tts_speaker.cpp" />
-    <ClCompile Include="node\windows\uac_tools.cpp" />
-    <ClCompile Include="node\windows\windows.cpp" />
     <ClCompile Include="node\windows_common\application.cpp" />
     <ClCompile Include="os\ansios\base.cpp" />
-    <ClCompile Include="os\ansios\datetime.cpp" />
     <ClCompile Include="os\ansios\exception_engine.cpp" />
     <ClCompile Include="os\ansios\file.cpp" />
-    <ClCompile Include="os\ansios\file_raw.cpp" />
-    <ClCompile Include="os\ansios\file_std.cpp" />
     <ClCompile Include="os\ansios\language.cpp" />
-    <ClCompile Include="os\ansios\memory.cpp" />
     <ClCompile Include="os\ansios\process.cpp" />
-    <ClCompile Include="os\ansios\user.cpp" />
     <ClCompile Include="os\ansios\win.cpp" />
-    <ClCompile Include="os\binreloc.cpp" />
-    <ClCompile Include="os\console.cpp" />
     <ClCompile Include="os\debug.cpp" />
-    <ClCompile Include="os\file.cpp" />
     <ClCompile Include="os\http.cpp" />
     <ClCompile Include="os\openssl_crypt.cpp" />
     <ClCompile Include="os\os_os.cpp" />
-    <ClCompile Include="os\process.cpp" />
     <ClCompile Include="os\thread.cpp" />
-    <ClCompile Include="os\time.cpp" />
     <ClCompile Include="os\win32\dialog.cpp" />
     <ClCompile Include="os\win32\font.cpp" />
     <ClCompile Include="os\win32\window.cpp" />
-    <ClCompile Include="os\windowing.cpp" />
-    <ClCompile Include="os\windows\-ehrror.cpp" />
-    <ClCompile Include="os\windows\ansi_file.cpp" />
-    <ClCompile Include="os\windows\api.cpp" />
     <ClCompile Include="os\windows\application.cpp" />
-    <ClCompile Include="os\windows\aura.cpp" />
-    <ClCompile Include="os\windows\callstack.cpp" />
-    <ClCompile Include="os\windows\debug.cpp" />
-    <ClCompile Include="os\windows\dir.cpp" />
     <ClCompile Include="os\windows\dpi.cpp" />
-    <ClCompile Include="os\windows\environment_variable.cpp" />
-    <ClCompile Include="os\windows\exception_engine.cpp" />
-    <ClCompile Include="os\windows\extract_icon.cpp" />
-    <ClCompile Include="os\windows\file.cpp" />
     <ClCompile Include="os\windows\gdi.cpp" />
-    <ClCompile Include="os\windows\gdi_icon.cpp" />
-    <ClCompile Include="os\windows\graphics.cpp" />
-    <ClCompile Include="os\windows\imm_context.cpp" />
-    <ClCompile Include="os\windows\internal.cpp" />
     <ClCompile Include="os\windows\ipc.cpp" />
-    <ClCompile Include="os\windows\itemidlist.cpp" />
-    <ClCompile Include="os\windows\language.cpp" />
     <ClCompile Include="os\windows\launcher.cpp" />
     <ClCompile Include="os\windows\library.cpp" />
-    <ClCompile Include="os\windows\list_serial_ports.cpp" />
-    <ClCompile Include="os\windows\local_memory_map.cpp" />
-    <ClCompile Include="os\windows\lock.cpp" />
     <ClCompile Include="os\windows\main.cpp" />
-    <ClCompile Include="os\windows\message_loop.cpp" />
-    <ClCompile Include="os\windows\multimedia.cpp" />
-    <ClCompile Include="os\windows\multithreading.cpp" />
-    <ClCompile Include="os\windows\printer.cpp" />
-    <ClCompile Include="os\windows\process.cpp" />
-    <ClCompile Include="os\windows\registry.cpp" />
-    <ClCompile Include="os\windows\simple_app.cpp" />
     <ClCompile Include="os\windows\simple_shell_launcher.cpp" />
-    <ClCompile Include="os\windows\time.cpp" />
+    <ClCompile Include="os\windows\thread.cpp" />
     <ClCompile Include="os\windows\user.cpp" />
-    <ClCompile Include="os\windows\util.cpp" />
     <ClCompile Include="os\windows\windowing.cpp" />
-    <ClCompile Include="os\windows\window_opengl.cpp" />
-    <ClCompile Include="os\windows_common\-ehrror.cpp" />
-    <ClCompile Include="os\windows_common\aura.cpp" />
-    <ClCompile Include="os\windows_common\base.cpp" />
-    <ClCompile Include="os\windows_common\bstring.cpp" />
-    <ClCompile Include="os\windows_common\com.cpp" />
-    <ClCompile Include="os\windows_common\draw2d_direct2d_global.cpp" />
+    <ClCompile Include="os\windows\_.cpp" />
     <ClCompile Include="os\windows_common\file.cpp" />
-    <ClCompile Include="os\windows_common\file_c.cpp" />
-    <ClCompile Include="os\windows_common\graphics.cpp" />
-    <ClCompile Include="os\windows_common\multithreading.cpp" />
-    <ClCompile Include="os\windows_common\networking.cpp" />
-    <ClCompile Include="os\windows_common\unicode.cpp" />
-    <ClCompile Include="os\windows_common\_dll.cpp" />
+    <ClCompile Include="os\windows_common\net.cpp" />
     <ClCompile Include="os\_application.cpp" />
+    <ClCompile Include="platform\apex_main_data.cpp" />
+    <ClCompile Include="platform\apex_main_struct.cpp" />
     <ClCompile Include="platform\application.cpp" />
     <ClCompile Include="platform\application_array.cpp" />
     <ClCompile Include="platform\application_container.cpp" />
     <ClCompile Include="platform\application_menu.cpp" />
     <ClCompile Include="platform\app_core.cpp" />
     <ClCompile Include="platform\app_launcher.cpp" />
-    <ClCompile Include="platform\assert.cpp" />
     <ClCompile Include="platform\assert_running_task.cpp" />
-    <ClCompile Include="platform\aura_main_struct.cpp" />
-    <ClCompile Include="platform\aura_str_pool.cpp" />
     <ClCompile Include="platform\build_debug.cpp" />
-    <ClCompile Include="platform\checked.cpp" />
     <ClCompile Include="platform\console_application.cpp" />
     <ClCompile Include="platform\context.cpp" />
-    <ClCompile Include="platform\context_image.cpp" />
     <ClCompile Include="platform\context_thread.cpp" />
     <ClCompile Include="platform\debug.cpp" />
     <ClCompile Include="platform\department.cpp" />
-    <ClCompile Include="platform\display.cpp" />
-    <ClCompile Include="platform\draw_context.cpp" />
-    <ClCompile Include="platform\exclusive.cpp" />
-    <ClCompile Include="platform\factory.cpp" />
-    <ClCompile Include="platform\fixed_alloc.cpp" />
-    <ClCompile Include="platform\flags.cpp" />
     <ClCompile Include="platform\history.cpp" />
-    <ClCompile Include="platform\hyperlink.cpp" />
-    <ClCompile Include="platform\international.cpp" />
+    <ClCompile Include="platform\international_locale_schema.cpp" />
     <ClCompile Include="platform\ipc.cpp" />
     <ClCompile Include="platform\ipi.cpp" />
     <ClCompile Include="platform\library.cpp" />
     <ClCompile Include="platform\log.cpp" />
-    <ClCompile Include="platform\logic.cpp" />
-    <ClCompile Include="platform\lparam.cpp" />
     <ClCompile Include="platform\machine_event.cpp" />
     <ClCompile Include="platform\machine_event_central.cpp" />
     <ClCompile Include="platform\machine_event_data.cpp" />
-    <ClCompile Include="platform\aura_main_data.cpp" />
-    <ClCompile Include="platform\math.cpp" />
-    <ClCompile Include="platform\message_box.cpp" />
     <ClCompile Include="platform\mq.cpp" />
-    <ClCompile Include="platform\muldiv64.cpp" />
     <ClCompile Include="platform\net.cpp" />
     <ClCompile Include="platform\obj_typ_ctr.cpp" />
     <ClCompile Include="platform\os_context.cpp" />
     <ClCompile Include="platform\os_history.cpp" />
-    <ClCompile Include="platform\profiler.cpp" />
     <ClCompile Include="platform\progress.cpp" />
-    <ClCompile Include="platform\regex.cpp" />
     <ClCompile Include="platform\savings.cpp" />
     <ClCompile Include="platform\session.cpp" />
     <ClCompile Include="platform\shell_launcher.cpp" />
@@ -1518,20 +1231,18 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="platform\simple_trace.cpp" />
     <ClCompile Include="platform\static_setup.cpp" />
     <ClCompile Include="platform\static_start.cpp" />
+    <ClCompile Include="platform\static_start_aura.cpp" />
     <ClCompile Include="platform\str_context.cpp" />
     <ClCompile Include="platform\system.cpp" />
     <ClCompile Include="platform\system_trace.cpp" />
-    <ClCompile Include="platform\theme.cpp" />
+    <ClCompile Include="platform\text.cpp" />
     <ClCompile Include="platform\timer.cpp" />
     <ClCompile Include="platform\timer_array.cpp" />
     <ClCompile Include="platform\timer_callback.cpp" />
     <ClCompile Include="platform\timer_event.cpp" />
     <ClCompile Include="platform\timer_item.cpp" />
     <ClCompile Include="platform\trace.cpp" />
-    <ClCompile Include="platform\trace_category.cpp" />
-    <ClCompile Include="platform\version.cpp" />
     <ClCompile Include="platform\_.cpp" />
-    <ClCompile Include="platform\static_start_aura.cpp" />
     <ClCompile Include="primitive\data\container.cpp" />
     <ClCompile Include="primitive\data\data.cpp" />
     <ClCompile Include="primitive\data\item.cpp" />
@@ -1540,182 +1251,25 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="primitive\data\simple_item.cpp" />
     <ClCompile Include="primitive\data\tree.cpp" />
     <ClCompile Include="primitive\data\tree_item.cpp" />
-    <ClCompile Include="primitive\primitive\block.cpp" />
-    <ClCompile Include="primitive\primitive\match.cpp" />
-    <ClCompile Include="primitive\primitive\procedure.cpp" />
-    <ClCompile Include="primitive\primitive\callback.cpp" />
-    <ClCompile Include="primitive\primitive\task.cpp" />
-    <ClCompile Include="process\process_bidi_pipe.cpp" />
+    <ClCompile Include="primitive\datetime\datetime.cpp" />
+    <ClCompile Include="primitive\datetime\department.cpp" />
+    <ClCompile Include="primitive\primitive\object.cpp" />
     <ClCompile Include="process\process_department.cpp" />
-    <ClCompile Include="process\process_pipe.cpp" />
     <ClCompile Include="process\process_process.cpp" />
-    <ClCompile Include="user\box.cpp" />
-    <ClCompile Include="user\callback.cpp" />
     <ClCompile Include="user\check.cpp" />
     <ClCompile Include="user\command.cpp" />
-    <ClCompile Include="user\composition_imm_client.cpp" />
-    <ClCompile Include="user\controller.cpp" />
-    <ClCompile Include="user\control_descriptor.cpp" />
-    <ClCompile Include="user\control_event.cpp" />
-    <ClCompile Include="user\copydesk.cpp" />
-    <ClCompile Include="user\create.cpp" />
-    <ClCompile Include="user\create_struct.cpp" />
-    <ClCompile Include="user\form.cpp" />
-    <ClCompile Include="user\form_callback.cpp" />
-    <ClCompile Include="user\frame.cpp" />
-    <ClCompile Include="user\imm_client.cpp" />
-    <ClCompile Include="user\interaction.cpp" />
-    <ClCompile Include="user\interaction_child.cpp" />
-    <ClCompile Include="user\interaction_debug.cpp" />
-    <ClCompile Include="user\interaction_impl.cpp" />
-    <ClCompile Include="user\interaction_prodevian.cpp" />
-    <ClCompile Include="user\interaction_thread.cpp" />
-    <ClCompile Include="user\item.cpp" />
-    <ClCompile Include="user\key.cpp" />
-    <ClCompile Include="user\keyboard.cpp" />
     <ClCompile Include="user\language.cpp" />
     <ClCompile Include="user\language_map.cpp" />
-    <ClCompile Include="user\interaction_layout.cpp" />
-    <ClCompile Include="user\main_window.cpp" />
-    <ClCompile Include="user\message_queue.cpp" />
-    <ClCompile Include="user\mouse.cpp" />
-    <ClCompile Include="user\os_colors.cpp" />
-    <ClCompile Include="user\plain_edit.cpp" />
-    <ClCompile Include="user\plain_text_data.cpp" />
-    <ClCompile Include="user\primitive.cpp" />
-    <ClCompile Include="user\primitive_impl.cpp" />
-    <ClCompile Include="user\progress.cpp" />
-    <ClCompile Include="user\range.cpp" />
-    <ClCompile Include="user\scroll.cpp" />
-    <ClCompile Include="user\scroll_bar.cpp" />
-    <ClCompile Include="user\style.cpp" />
-    <ClCompile Include="user\style_base.cpp" />
     <ClCompile Include="user\text.cpp" />
-    <ClCompile Include="user\tool_window.cpp" />
-    <ClCompile Include="user\user.cpp" />
-    <ClCompile Include="user\wait_cursor.cpp" />
-    <ClCompile Include="user\windowing.cpp" />
-    <ClCompile Include="user\windows_tsf\context_owner_composition_sink.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="user\windows_tsf\dataobj.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="user\windows_tsf\edit_window.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="user\windows_tsf\function_provider.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="user\windows_tsf\persist.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="user\windows_tsf\propldr.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="user\windows_tsf\test.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="user\windows_tsf\text_store_acp.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="user\windows_tsf\ui_element_sink.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="user\window_map.cpp" />
-    <ClCompile Include="user\window_state.cpp" />
-    <ClCompile Include="user\window_util.cpp" />
-    <ClCompile Include="user\_.cpp" />
     <ClCompile Include="_.cpp" />
-    <ClCompile Include="__matter_ca2.cpp" />
     <ClInclude Include="astr.h" />
     <ClInclude Include="callback.h" />
-    <ClInclude Include="compress\aaa_want_to_move_compress_bz.h" />
+    <ClInclude Include="compress\_.h" />
+    <ClInclude Include="compress\context.h" />
+    <ClInclude Include="compress\zip_is_dir.h" />
     <ClInclude Include="console.h" />
     <ClInclude Include="console_slim.h" />
     <ClInclude Include="const\callback.h" />
-    <ClInclude Include="const\GLOBAL_ID.h" />
     <ClInclude Include="const\procedure.h" />
     <ClInclude Include="database\change_event.h" />
     <ClInclude Include="database\client.h" />
@@ -1730,21 +1284,10 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="filesystem\filemanager\callback.h" />
     <ClInclude Include="filesystem\filemanager\item_action.h" />
     <ClInclude Include="filesystem\filesystem\path_object.h" />
+    <ClInclude Include="filesystem\file\html_file.h" />
     <ClInclude Include="filesystem\file\_data.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="framework_c.h" />
-    <ClInclude Include="game\estamira.h" />
-    <ClInclude Include="game\game.h" />
-    <ClInclude Include="game\_.h" />
-    <ClInclude Include="game\_game.h" />
-    <ClInclude Include="gpu\gpu\approach.h" />
-    <ClInclude Include="gpu\gpu\buffer.h" />
-    <ClInclude Include="gpu\gpu\context.h" />
-    <ClInclude Include="gpu\gpu\program.h" />
-    <ClInclude Include="gpu\gpu\shader.h" />
-    <ClInclude Include="gpu\gpu\_.h" />
-    <ClInclude Include="graphics\asset\close_button.h" />
-    <ClInclude Include="graphics\asset\close_icon.h" />
     <ClInclude Include="id.h" />
     <ClInclude Include="inline\application\linux.h" />
     <ClInclude Include="inline\application\macos.h" />
@@ -1759,54 +1302,42 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="inline\_app_impl1.h" />
     <ClInclude Include="inline\_console_old.h" />
     <ClInclude Include="inline\_new_impl.h" />
-    <ClInclude Include="memory\os_alloc.h" />
     <ClInclude Include="message.h" />
-    <ClInclude Include="multimedia\audio.h" />
-    <ClInclude Include="multimedia\audio\audio.h" />
-    <ClInclude Include="multimedia\audio\audio_c.h" />
-    <ClInclude Include="multimedia\audio\out.h" />
-    <ClInclude Include="multimedia\audio\sound_track_player.h" />
-    <ClInclude Include="multimedia\audio\speaker.h" />
-    <ClInclude Include="multimedia\decoder.h" />
-    <ClInclude Include="multimedia\decoder_plugin.h" />
-    <ClInclude Include="multimedia\exception.h" />
-    <ClInclude Include="multimedia\file_application.h" />
-    <ClInclude Include="multimedia\multimedia.h" />
-    <ClInclude Include="multimedia\_.h" />
-    <ClInclude Include="multimedia\_c.h" />
+    <ClInclude Include="message\application.h" />
+    <ClInclude Include="message\base.h" />
+    <ClInclude Include="message\channel.h" />
+    <ClInclude Include="message\command_ui_probe.h" />
+    <ClInclude Include="message\const.h" />
+    <ClInclude Include="message\cross_windows.h" />
+    <ClInclude Include="message\definition.h" />
+    <ClInclude Include="message\global.h" />
+    <ClInclude Include="message\id.h" />
+    <ClInclude Include="message\listener_smart_pointer_array.h" />
+    <ClInclude Include="message\message.h" />
+    <ClInclude Include="message\receiver.h" />
+    <ClInclude Include="message\route.h" />
+    <ClInclude Include="message\simple_command.h" />
+    <ClInclude Include="message\aaa_timer.h" />
+    <ClInclude Include="message\_.h" />
+    <ClInclude Include="message\_impl.h" />
+    <ClInclude Include="message\_message.h" />
     <ClInclude Include="multithreading\aaa_want_to_remove_waitable.h" />
     <ClInclude Include="multithreading\common.h" />
-    <ClInclude Include="multithreading\condition.h" />
     <ClInclude Include="multithreading\create_thread.h" />
-    <ClInclude Include="multithreading\critical_section.h" />
     <ClInclude Include="multithreading\data.h" />
     <ClInclude Include="multithreading\delay_thread.h" />
-    <ClInclude Include="multithreading\event.h" />
-    <ClInclude Include="multithreading\file_change_event.h" />
     <ClInclude Include="multithreading\fork.h" />
     <ClInclude Include="multithreading\handler.h" />
-    <ClInclude Include="multithreading\initial_single_lock.h" />
-    <ClInclude Include="multithreading\manual_reset_event.h" />
-    <ClInclude Include="multithreading\multi_lock.h" />
-    <ClInclude Include="multithreading\mutex.h" />
-    <ClInclude Include="multithreading\pred_holder.h" />
+    <ClInclude Include="multithreading\pred_procedure.h" />
     <ClInclude Include="multithreading\procedure_array.h" />
     <ClInclude Include="multithreading\retry.h" />
     <ClInclude Include="multithreading\retry_multi_lock.h" />
     <ClInclude Include="multithreading\retry_single_lock.h" />
-    <ClInclude Include="multithreading\semaphore.h" />
     <ClInclude Include="multithreading\service\plain_service.h" />
     <ClInclude Include="multithreading\service\thread_pool.h" />
     <ClInclude Include="multithreading\service_base.h" />
     <ClInclude Include="multithreading\service_status.h" />
-    <ClInclude Include="multithreading\set_event_on_exit.h" />
-    <ClInclude Include="multithreading\single_lock.h" />
     <ClInclude Include="multithreading\socket_event.h" />
-    <ClInclude Include="multithreading\sync.h" />
-    <ClInclude Include="multithreading\sync_array.h" />
-    <ClInclude Include="multithreading\sync_lock.h" />
-    <ClInclude Include="multithreading\sync_result.h" />
-    <ClInclude Include="multithreading\sync_task.h" />
     <ClInclude Include="multithreading\thread.h" />
     <ClInclude Include="multithreading\threading.h" />
     <ClInclude Include="multithreading\thread_impl.h" />
@@ -1823,88 +1354,44 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="node\opengl\program.h" />
     <ClInclude Include="node\opengl\shader.h" />
     <ClInclude Include="node\windows\a.h" />
-    <ClInclude Include="node\windows\buffer.h" />
-    <ClInclude Include="node\windows\command.h" />
-    <ClInclude Include="node\windows\console.h" />
-    <ClInclude Include="node\windows\copydesk.h" />
     <ClInclude Include="node\windows\crypto.h" />
     <ClInclude Include="node\windows\dir_context.h" />
     <ClInclude Include="node\windows\dir_system.h" />
-    <ClInclude Include="node\windows\exception.h" />
     <ClInclude Include="node\windows\factory_exchange.h" />
-    <ClInclude Include="node\windows\file.h" />
     <ClInclude Include="node\windows\file_context.h" />
-    <ClInclude Include="node\windows\file_find.h" />
     <ClInclude Include="node\windows\file_system.h" />
     <ClInclude Include="node\windows\file_os_watcher.h" />
     <ClInclude Include="node\windows\folder_watch.h" />
-    <ClInclude Include="node\windows\interaction_impl.h" />
     <ClInclude Include="node\windows\ip_enum.h" />
     <ClInclude Include="node\windows\os_context.h" />
-    <ClInclude Include="node\windows\pipe.h" />
     <ClInclude Include="node\windows\process.h" />
-    <ClInclude Include="node\windows\registry.h" />
-    <ClInclude Include="node\windows\serial.h" />
-    <ClInclude Include="node\windows\stdio_file.h" />
-    <ClInclude Include="node\windows\system_interaction_impl.h" />
     <ClInclude Include="node\windows\thread.h" />
     <ClInclude Include="node\windows\tts_speaker.h" />
-    <ClInclude Include="node\windows\uac_tools.h" />
-    <ClInclude Include="node\windows\user.h" />
     <ClInclude Include="node\windows\_.h" />
     <ClInclude Include="node\windows\_node_windows.h" />
     <ClInclude Include="node\windows\_node_windows_private.h" />
     <ClInclude Include="node\windows\_windows.h" />
-    <ClInclude Include="os\aura.h" />
-    <ClInclude Include="os\aura_gdk.h" />
+    <ClInclude Include="os\apex.h" />
+    <ClInclude Include="os\apex_gdk.h" />
     <ClInclude Include="os\binreloc.h" />
     <ClInclude Include="os\chronometer.h" />
-    <ClInclude Include="os\console.h" />
     <ClInclude Include="os\cross.h" />
     <ClInclude Include="os\file.h" />
     <ClInclude Include="os\graphics.h" />
     <ClInclude Include="os\os_windowing2.h" />
     <ClInclude Include="os\process.h" />
     <ClInclude Include="os\text.h" />
-    <ClInclude Include="os\threading.h" />
-    <ClInclude Include="os\time.h" />
+    <ClInclude Include="os\thread.h" />
+    <ClInclude Include="os\win32\dialog.h" />
+    <ClInclude Include="os\win32\font.h" />
+    <ClInclude Include="os\win32\window.h" />
+    <ClInclude Include="os\win32\_.h" />
     <ClInclude Include="os\windowing.h" />
-    <ClInclude Include="os\windows\aaa_want_to_remove_process_env_reader.h" />
-    <ClInclude Include="os\windows\api.h" />
-    <ClInclude Include="os\windows\callstack.h" />
-    <ClInclude Include="os\windows\d2d1_1.h" />
-    <ClInclude Include="os\windows\dir.h" />
-    <ClInclude Include="os\windows\environment_variable.h" />
-    <ClInclude Include="os\windows\exception_engine.h" />
-    <ClInclude Include="os\windows\extract_icon.h" />
-    <ClInclude Include="os\windows\file.h" />
-    <ClInclude Include="os\windows\gdiplus.h" />
-    <ClInclude Include="os\windows\graphics.h" />
-    <ClInclude Include="os\windows\handle.h" />
-    <ClInclude Include="os\windows\imm_context.h" />
-    <ClInclude Include="os\windows\implementation.h" />
-    <ClInclude Include="os\windows\internal.h" />
-    <ClInclude Include="os\windows\itemidlist.h" />
-    <ClInclude Include="os\windows\multithreading.h" />
-    <ClInclude Include="os\windows\opengl_buffer.h" />
-    <ClInclude Include="os\windows\port_forward.h" />
-    <ClInclude Include="os\windows\printer.h" />
-    <ClInclude Include="os\windows\print_job.h" />
-    <ClInclude Include="os\windows\process.h" />
-    <ClInclude Include="os\windows\registry.h" />
-    <ClInclude Include="os\windows\shell1.h" />
-    <ClInclude Include="os\windows\simple_hold_handle.h" />
-    <ClInclude Include="os\windows\simple_ui.h" />
-    <ClInclude Include="os\windows\top_level_enum.h" />
-    <ClInclude Include="os\windows\utils.h" />
     <ClInclude Include="os\windows\windowing.h" />
-    <ClInclude Include="os\windows\windows_window_gdi copy.h" />
-    <ClInclude Include="os\windows\windows_window_opengl.h" />
-    <ClInclude Include="os\windows\window_opengl.h" />
     <ClInclude Include="os\windows\_.h" />
-    <ClInclude Include="os\windows\_c.h" />
     <ClInclude Include="os\windows\_windows.h" />
-    <ClInclude Include="os\windows\_windows_impl.h" />
+    <ClInclude Include="os\windows_common\_.h" />
+    <ClInclude Include="os\windows_common\_windows_common.h" />
     <ClInclude Include="os\winpr_input.h" />
     <ClInclude Include="os\_.h" />
     <ClInclude Include="os\_application.h" />
@@ -1919,44 +1406,34 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="platform\application_heap.h" />
     <ClInclude Include="platform\application_impl.h" />
     <ClInclude Include="platform\application_menu.h" />
-    <ClInclude Include="platform\application_message.h" />
+    <ClInclude Include="platform\aaa_application_message.h" />
     <ClInclude Include="platform\application_signal_details.h" />
     <ClInclude Include="platform\app_core.h" />
     <ClInclude Include="platform\app_launcher.h" />
     <ClInclude Include="platform\assert_running_task.h" />
     <ClInclude Include="platform\async.h" />
-    <ClInclude Include="platform\aura_aura.h" />
-    <ClInclude Include="platform\aura_main_struct.h" />
-    <ClInclude Include="platform\aura_regex.h" />
-    <ClInclude Include="platform\aura_str_pool.h" />
-    <ClInclude Include="platform\auto.h" />
-    <ClInclude Include="platform\auto_pointer.h" />
-    <ClInclude Include="platform\class.h" />
-    <ClInclude Include="platform\cmp.h" />
-    <ClInclude Include="platform\cmp2.h" />
-    <ClInclude Include="platform\common.h" />
+    <ClInclude Include="platform\apex_apex.h" />
+    <ClInclude Include="platform\apex_regex.h" />
+    <ClInclude Include="platform\apex_str_pool.h" />
+    <ClInclude Include="platform\apex_aura.h" />
+    <ClInclude Include="platform\apex_main_data.h" />
     <ClInclude Include="platform\console_application.h" />
     <ClInclude Include="platform\const.h" />
-    <ClInclude Include="platform\constraint.h" />
     <ClInclude Include="platform\context.h" />
     <ClInclude Include="platform\context_thread.h" />
     <ClInclude Include="platform\debug.h" />
     <ClInclude Include="platform\definition.h" />
     <ClInclude Include="platform\department.h" />
     <ClInclude Include="platform\display.h" />
-    <ClInclude Include="platform\drawable.h" />
+    <ClInclude Include="platform\aaa_drawable.h" />
     <ClInclude Include="platform\draw_context2.h" />
-    <ClInclude Include="platform\enum.h" />
     <ClInclude Include="platform\error.h" />
-    <ClInclude Include="platform\exclusive.h" />
     <ClInclude Include="platform\factory.h" />
     <ClInclude Include="platform\filestream.h" />
-    <ClInclude Include="platform\fixed_alloc.h" />
-    <ClInclude Include="platform\fixed_alloc_impl.h" />
-    <ClInclude Include="platform\flags.h" />
     <ClInclude Include="platform\history.h" />
     <ClInclude Include="platform\hyperlink.h" />
     <ClInclude Include="platform\international.h" />
+    <ClInclude Include="platform\international_locale_schema.h" />
     <ClInclude Include="platform\ipc.h" />
     <ClInclude Include="platform\ipi.h" />
     <ClInclude Include="platform\keep.h" />
@@ -1966,42 +1443,32 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="platform\library.h" />
     <ClInclude Include="platform\library_object_allocator.h" />
     <ClInclude Include="platform\log.h" />
-    <ClInclude Include="platform\logic.h" />
-    <ClInclude Include="platform\lparam.h" />
     <ClInclude Include="platform\machine_event2.h" />
     <ClInclude Include="platform\machine_event_central2.h" />
     <ClInclude Include="platform\machine_event_data2.h" />
     <ClInclude Include="platform\main.h" />
-    <ClInclude Include="platform\aura_main_data.h" />
     <ClInclude Include="platform\mq.h" />
-    <ClInclude Include="platform\muldiv32.h" />
-    <ClInclude Include="platform\muldiv64.h" />
     <ClInclude Include="platform\net.h" />
     <ClInclude Include="platform\number.h" />
     <ClInclude Include="platform\obj_ref_dbg.h" />
     <ClInclude Include="platform\obj_typ_ctr.h" />
     <ClInclude Include="platform\os_context.h" />
     <ClInclude Include="platform\os_history.h" />
+    <ClInclude Include="platform\pred_procedure.h" />
     <ClInclude Include="platform\process_data.h" />
-    <ClInclude Include="platform\profiler2.h" />
     <ClInclude Include="platform\progress.h" />
     <ClInclude Include="platform\progress_interface.h" />
-    <ClInclude Include="platform\regex.h" />
-    <ClInclude Include="platform\restore.h" />
     <ClInclude Include="platform\savings.h" />
-    <ClInclude Include="platform\serial.h" />
-    <ClInclude Include="platform\serial_impl.h" />
     <ClInclude Include="platform\session.h" />
     <ClInclude Include="platform\shell_launcher.h" />
     <ClInclude Include="platform\simple_app.h" />
     <ClInclude Include="platform\simple_log.h" />
+    <ClInclude Include="platform\simple_trace.h" />
     <ClInclude Include="platform\static_setup.h" />
     <ClInclude Include="platform\static_start.h" />
     <ClInclude Include="platform\status.h" />
     <ClInclude Include="platform\str_context.h" />
     <ClInclude Include="platform\system.h" />
-    <ClInclude Include="platform\theme.h" />
-    <ClInclude Include="platform\tick.h" />
     <ClInclude Include="platform\timer.h" />
     <ClInclude Include="platform\timer_array.h" />
     <ClInclude Include="platform\timer_callback.h" />
@@ -2025,23 +1492,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="include\_.h" />
     <ClInclude Include="include\_c_bridge.h" />
     <ClInclude Include="include\_include.h" />
-    <ClInclude Include="memory\allocate.h" />
-    <ClInclude Include="memory\allocate_processor_cache_oriented.h" />
-    <ClInclude Include="memory\allocation.h" />
-    <ClInclude Include="memory\heap_.h" />
-    <ClInclude Include="memory\heap_c.h" />
-    <ClInclude Include="memory\heap_item.h" />
-    <ClInclude Include="memory\heap_item_array.h" />
-    <ClInclude Include="memory\heap_memory.h" />
-    <ClInclude Include="memory\malloc.h" />
-    <ClInclude Include="memory\memory.h" />
-    <ClInclude Include="memory\memory_allocator.h" />
-    <ClInclude Include="memory\new.h" />
-    <ClInclude Include="memory\plex.h" />
-    <ClInclude Include="memory\plex_heap1.h" />
-    <ClInclude Include="memory\plex_heap_impl1.h" />
-    <ClInclude Include="primitive\collection\std_iterator.h" />
-    <ClInclude Include="primitive\comparison\sign.h" />
     <ClInclude Include="primitive\data\container.h" />
     <ClInclude Include="primitive\data\data.h" />
     <ClInclude Include="primitive\data\item.h" />
@@ -2054,84 +1504,25 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="primitive\data\_data.h" />
     <ClInclude Include="primitive\data\_impl.h" />
     <ClInclude Include="primitive\data\_tree.h" />
-    <ClInclude Include="primitive\geometry2d\_struct.h" />
-    <ClInclude Include="primitive\geometry3d\box.h" />
-    <ClInclude Include="primitive\geometry3d\dimension.h" />
-    <ClInclude Include="primitive\geometry3d\location.h" />
-    <ClInclude Include="primitive\geometry3d\quaternions.h" />
-    <ClInclude Include="primitive\geometry3d\_.h" />
     <ClInclude Include="primitive\math\_.h" />
-    <ClInclude Include="primitive\primitive\block.h" />
     <ClInclude Include="primitive\primitive\compare_pred.h" />
-    <ClInclude Include="primitive\primitive\estatus.h" />
-    <ClInclude Include="primitive\primitive\match.h" />
-    <ClInclude Include="primitive\primitive\procedure.h" />
-    <ClInclude Include="primitive\primitive\callback.h" />
-    <ClInclude Include="primitive\primitive\function_base.h" />
-    <ClInclude Include="primitive\primitive\member.h" />
-    <ClInclude Include="primitive\primitive\task.h" />
+    <ClInclude Include="primitive\primitive\property_set_papaya.h" />
+    <ClInclude Include="primitive\primitive\_property_set_composite_impl.h" />
+    <ClInclude Include="process\_.h" />
+    <ClInclude Include="process\department.h" />
+    <ClInclude Include="process\process.h" />
     <ClInclude Include="update.h" />
     <ClInclude Include="user.h" />
-    <ClInclude Include="user\box.h" />
-    <ClInclude Include="user\callback.h" />
+    <ClInclude Include="user\aaa_item.h" />
     <ClInclude Include="user\check.h" />
     <ClInclude Include="user\command.h" />
-    <ClInclude Include="user\composition_imm_client.h" />
-    <ClInclude Include="user\controller.h" />
-    <ClInclude Include="user\control_descriptor.h" />
-    <ClInclude Include="user\control_event.h" />
-    <ClInclude Include="user\copydesk.h" />
-    <ClInclude Include="user\create.h" />
-    <ClInclude Include="user\create_struct.h" />
-    <ClInclude Include="user\form.h" />
-    <ClInclude Include="user\form_callback.h" />
-    <ClInclude Include="user\frame.h" />
-    <ClInclude Include="user\imm_client.h" />
-    <ClInclude Include="user\interaction.h" />
-    <ClInclude Include="user\interaction_child.h" />
-    <ClInclude Include="user\interaction_impl.h" />
-    <ClInclude Include="user\interaction_prodevian.h" />
-    <ClInclude Include="user\interaction_thread.h" />
-    <ClInclude Include="user\item.h" />
-    <ClInclude Include="user\key.h" />
-    <ClInclude Include="user\keyboard.h" />
     <ClInclude Include="user\language.h" />
     <ClInclude Include="user\language_map.h" />
-    <ClInclude Include="user\interaction_layout.h" />
-    <ClInclude Include="user\main_window.h" />
-    <ClInclude Include="user\message_queue.h" />
-    <ClInclude Include="user\message_queue_listener.h" />
-    <ClInclude Include="user\mouse.h" />
-    <ClInclude Include="user\plain_edit.h" />
-    <ClInclude Include="user\plain_text_data.h" />
-    <ClInclude Include="user\primitive.h" />
-    <ClInclude Include="user\primitive_impl.h" />
-    <ClInclude Include="user\prodevian.h" />
-    <ClInclude Include="user\progress.h" />
-    <ClInclude Include="user\range.h" />
-    <ClInclude Include="user\scroll.h" />
-    <ClInclude Include="user\scroll_bar.h" />
-    <ClInclude Include="user\scroll_info.h" />
-    <ClInclude Include="user\style.h" />
-    <ClInclude Include="user\style_base.h" />
+    <ClInclude Include="user\aaa_range.h" />
     <ClInclude Include="user\text.h" />
-    <ClInclude Include="user\tool_window.h" />
-    <ClInclude Include="user\user.h" />
-    <ClInclude Include="user\wait_cursor.h" />
-    <ClInclude Include="user\windowing.h" />
-    <ClInclude Include="user\window_map.h" />
-    <ClInclude Include="user\window_state.h" />
-    <ClInclude Include="user\window_util.h" />
     <ClInclude Include="user\_.h" />
-    <ClInclude Include="user\_const.h" />
+    <ClInclude Include="user\ewindowflag.h" />
     <ClInclude Include="user\_const_key.h" />
-    <ClInclude Include="user\_data.h" />
-    <ClInclude Include="user\_ewindowflag.h" />
-    <ClInclude Include="user\_experience_const.h" />
-    <ClInclude Include="user\_impl.h" />
-    <ClInclude Include="user\_interaction_impl.h" />
-    <ClInclude Include="user\_prelude.h" />
-    <ClInclude Include="user\_user.h" />
     <ClInclude Include="version\version.h" />
     <ClInclude Include="const\thread.h" />
     <ClInclude Include="filesystem\filesystem\dir_context.h" />
@@ -2140,24 +1531,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="filesystem\filesystem\file_system.h" />
     <ClInclude Include="filesystem\file\_var_stream_impl.h" />
     <ClInclude Include="filesystem\file\___serialization_draft.h" />
-    <ClCompile Include="filesystem\file\text_stream.cpp" />
-    <ClCompile Include="filesystem\file\_.cpp" />
-    <ClCompile Include="filesystem\file\file.cpp" />
-    <ClCompile Include="filesystem\file\html_file.cpp" />
-    <ClCompile Include="filesystem\file\item.cpp" />
-    <ClCompile Include="filesystem\file\item_array.cpp" />
-    <ClCompile Include="filesystem\file\memory_file.cpp" />
-    <ClCompile Include="filesystem\file\memory_map.cpp" />
-    <ClCompile Include="filesystem\file\path.cpp" />
-    <ClCompile Include="filesystem\file\seekable.cpp" />
-    <ClCompile Include="filesystem\file\serializable.cpp" />
-    <ClCompile Include="filesystem\file\serialize.cpp" />
     <ClCompile Include="filesystem\file\set.cpp" />
-    <ClCompile Include="filesystem\file\stdio_file.cpp" />
-    <ClCompile Include="filesystem\file\stream.cpp" />
-    <ClCompile Include="filesystem\file\string_file.cpp" />
-    <ClCompile Include="filesystem\file\text_file.cpp" />
-    <ClCompile Include="filesystem\file\var_stream.cpp" />
     <ClCompile Include="filesystem\fs\data.cpp" />
     <ClCompile Include="filesystem\fs\fs.cpp" />
     <ClCompile Include="filesystem\fs\ifs.cpp" />
@@ -2167,109 +1541,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="filesystem\fs\remote_native_file.cpp" />
     <ClCompile Include="filesystem\fs\remote_native_fs.cpp" />
     <ClCompile Include="filesystem\fs\set.cpp" />
-    <ClCompile Include="graphics\draw2d\alpha.cpp" />
-    <ClCompile Include="graphics\draw2d\api.cpp" />
-    <ClCompile Include="graphics\draw2d\apple\image.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\apple\image_gif.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\bitmap.cpp" />
-    <ClCompile Include="graphics\draw2d\brush.cpp" />
-    <ClCompile Include="graphics\draw2d\buffered_graphics.cpp" />
-    <ClCompile Include="graphics\draw2d\color.cpp" />
-    <ClCompile Include="graphics\draw2d\color_matrix.cpp" />
-    <ClCompile Include="graphics\draw2d\cursor.cpp" />
-    <ClCompile Include="graphics\draw2d\cursor_set.cpp" />
-    <ClCompile Include="graphics\draw2d\debug.cpp" />
-    <ClCompile Include="graphics\draw2d\draw2d.cpp" />
-    <ClCompile Include="graphics\draw2d\fastblur.cpp" />
-    <ClCompile Include="graphics\draw2d\font.cpp" />
-    <ClCompile Include="graphics\draw2d\font_department.cpp" />
-    <ClCompile Include="graphics\draw2d\font_enumeration.cpp" />
-    <ClCompile Include="graphics\draw2d\font_list.cpp" />
-    <ClCompile Include="graphics\draw2d\glyph.cpp" />
-    <ClCompile Include="graphics\draw2d\glyph_set.cpp" />
-    <ClCompile Include="graphics\draw2d\graphics.cpp" />
-    <ClCompile Include="graphics\draw2d\graphics_extension.cpp" />
-    <ClCompile Include="graphics\draw2d\icon.cpp" />
-    <ClCompile Include="graphics\draw2d\image.cpp" />
-    <ClCompile Include="graphics\draw2d\image_array.cpp" />
-    <ClCompile Include="graphics\draw2d\image_extension.cpp" />
-    <ClCompile Include="graphics\draw2d\image_dynamic.cpp" />
-    <ClCompile Include="graphics\draw2d\image_frame.cpp" />
-    <ClCompile Include="graphics\draw2d\image_gif_antialias_8bit.cpp" />
-    <ClCompile Include="graphics\draw2d\image_gif_detect_8bit_borders.cpp" />
-    <ClCompile Include="graphics\draw2d\image_list.cpp" />
-    <ClCompile Include="graphics\draw2d\image_map.cpp" />
-    <ClCompile Include="graphics\draw2d\image_nanosvg.cpp" />
-    <ClCompile Include="graphics\draw2d\image_object.cpp" />
-    <ClCompile Include="graphics\draw2d\image_pointer_array.cpp" />
-    <ClCompile Include="graphics\draw2d\imaging.cpp" />
-    <ClCompile Include="graphics\draw2d\keep.cpp" />
-    <ClCompile Include="graphics\draw2d\load_gif_frame.cpp" />
-    <ClCompile Include="graphics\draw2d\matrix.cpp" />
-    <ClCompile Include="graphics\draw2d\nanosvg.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cover|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\object.cpp" />
-    <ClCompile Include="graphics\draw2d\palette.cpp" />
-    <ClCompile Include="graphics\draw2d\path.cpp" />
-    <ClCompile Include="graphics\draw2d\pen.cpp" />
-    <ClCompile Include="graphics\draw2d\printer.cpp" />
-    <ClCompile Include="graphics\draw2d\region.cpp" />
-    <ClCompile Include="graphics\draw2d\rgb_quad_array.cpp" />
-    <ClCompile Include="graphics\draw2d\text_box.cpp" />
-    <ClCompile Include="graphics\draw2d\thread_tool.cpp" />
-    <ClCompile Include="graphics\draw2d\winrt\image_gif.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\_.cpp" />
-    <ClCompile Include="graphics\draw3d\ortho.cpp" />
-    <ClCompile Include="graphics\graphics\double_buffer.cpp" />
-    <ClCompile Include="graphics\graphics\console.cpp" />
-    <ClCompile Include="graphics\graphics\bitmap_source_buffer.cpp" />
-    <ClCompile Include="graphics\graphics\multiple_buffer.cpp" />
-    <ClCompile Include="graphics\graphics\buffer.cpp" />
-    <ClCompile Include="graphics\graphics\device_context.cpp" />
-    <ClCompile Include="graphics\graphics\graphics.cpp" />
     <ClCompile Include="net\address.cpp" />
     <ClCompile Include="net\email.cpp" />
     <ClCompile Include="net\email_address.cpp" />
@@ -2331,136 +1602,20 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="net\url_department.cpp" />
     <ClCompile Include="net\url_domain.cpp" />
     <ClCompile Include="net\_.cpp" />
-    <ClCompile Include="primitive\collection\2d_array.cpp" />
-    <ClCompile Include="primitive\collection\array.cpp" />
-    <ClCompile Include="primitive\collection\bit_array.cpp" />
-    <ClCompile Include="primitive\collection\class_sort_array.cpp" />
-    <ClCompile Include="primitive\collection\comparable_array.cpp" />
-    <ClCompile Include="primitive\collection\event_map.cpp" />
-    <ClCompile Include="primitive\collection\id_array.cpp" />
-    <ClCompile Include="primitive\collection\key_sort_array.cpp" />
-    <ClCompile Include="primitive\collection\map_test_51778915.cpp" />
-    <ClCompile Include="primitive\collection\map_misc.cpp" />
-    <ClCompile Include="primitive\collection\numeric_array.cpp" />
-    <ClCompile Include="primitive\collection\point_array.cpp" />
-    <ClCompile Include="primitive\collection\rect_array.cpp" />
-    <ClCompile Include="primitive\collection\sort.cpp" />
-    <ClCompile Include="primitive\collection\stringl.cpp" />
-    <ClCompile Include="primitive\collection\string_array_base.cpp" />
-    <ClCompile Include="primitive\collection\string_list.cpp" />
-    <ClCompile Include="primitive\collection\string_to_string_map.cpp" />
-    <ClCompile Include="primitive\collection\var_array.cpp" />
-    <ClCompile Include="primitive\datetime\_.cpp" />
-    <ClCompile Include="primitive\datetime\datetime.cpp" />
-    <ClCompile Include="primitive\datetime\date_span.cpp" />
-    <ClCompile Include="primitive\datetime\department.cpp" />
-    <ClCompile Include="primitive\datetime\duration.cpp" />
-    <ClCompile Include="primitive\datetime\file_time.cpp" />
-    <ClCompile Include="primitive\datetime\file_time_span.cpp" />
-    <ClCompile Include="primitive\datetime\mktime.cpp" />
-    <ClCompile Include="primitive\datetime\time.cpp" />
-    <ClCompile Include="primitive\datetime\time_span.cpp" />
-    <ClCompile Include="primitive\datetime\value.cpp" />
-    <ClCompile Include="primitive\datetime\zonetime.cpp" />
-    <ClCompile Include="primitive\datetime\_c.cpp" />
-    <ClCompile Include="primitive\geometry2d\geometry.cpp" />
-    <ClCompile Include="primitive\geometry2d\point.cpp" />
-    <ClCompile Include="primitive\geometry2d\rect.cpp" />
-    <ClCompile Include="primitive\geometry2d\size.cpp" />
-    <ClCompile Include="primitive\geometry2d\types.cpp" />
-    <ClCompile Include="primitive\geometry2d\_.cpp" />
-    <ClCompile Include="primitive\geometry3d\box.cpp" />
-    <ClCompile Include="primitive\geometry3d\location.cpp" />
-    <ClCompile Include="primitive\math\binary_operation.cpp" />
-    <ClCompile Include="primitive\math\cvt.cpp" />
-    <ClCompile Include="primitive\math\cvt_g.cpp" />
     <ClCompile Include="primitive\math\department.cpp" />
-    <ClCompile Include="primitive\math\int_biunique.cpp" />
-    <ClCompile Include="primitive\math\math.cpp" />
-    <ClCompile Include="primitive\math\mkint_c.cpp" />
-    <ClCompile Include="primitive\math\natural.cpp" />
-    <ClCompile Include="primitive\math\number.cpp" />
-    <ClCompile Include="primitive\math\number_double.cpp" />
-    <ClCompile Include="primitive\math\number_float.cpp" />
-    <ClCompile Include="primitive\math\number_integer.cpp" />
-    <ClCompile Include="primitive\math\random_number_generator.cpp" />
-    <ClCompile Include="primitive\math\scalar.cpp" />
-    <ClCompile Include="primitive\math\value.cpp" />
     <ClCompile Include="primitive\primitive\application_bias.cpp" />
-    <ClCompile Include="primitive\primitive\bit.cpp" />
-    <ClCompile Include="primitive\primitive\command.cpp" />
     <ClCompile Include="primitive\primitive\command_line.cpp" />
-    <ClCompile Include="primitive\primitive\context_object_traits.cpp" />
     <ClCompile Include="primitive\primitive\create.cpp" />
-    <ClCompile Include="primitive\primitive\edit.cpp" />
-    <ClCompile Include="primitive\primitive\factory.cpp" />
-    <ClCompile Include="primitive\primitive\handler.cpp" />
     <ClCompile Include="primitive\primitive\id.cpp" />
-    <ClCompile Include="primitive\primitive\id_space.cpp" />
-    <ClCompile Include="primitive\primitive\interlocked_long.cpp" />
-    <ClCompile Include="primitive\primitive\interlocked_long_pulse.cpp" />
-    <ClCompile Include="primitive\primitive\generic_object.cpp" />
-    <ClCompile Include="primitive\primitive\memory.cpp" />
-    <ClCompile Include="primitive\primitive\memory_base.cpp" />
-    <ClCompile Include="primitive\primitive\memory_c.cpp" />
-    <ClCompile Include="primitive\primitive\memory_container.cpp" />
-    <ClCompile Include="primitive\primitive\object.cpp" />
     <ClCompile Include="primitive\primitive\object_meta.cpp" />
-    <ClCompile Include="primitive\primitive\property.cpp" />
-    <ClCompile Include="primitive\primitive\property_set.cpp" />
-    <ClCompile Include="primitive\primitive\property_set_composite.cpp" />
-    <ClCompile Include="primitive\primitive\property_set_papaya.cpp" />
     <ClCompile Include="primitive\primitive\context_object.cpp" />
-    <ClCompile Include="primitive\primitive\runnable.cpp" />
-    <ClCompile Include="primitive\primitive\shared_memory.cpp" />
-    <ClCompile Include="primitive\primitive\traits.cpp" />
-    <ClCompile Include="primitive\primitive\type.cpp" />
     <ClCompile Include="primitive\primitive\update.cpp" />
-    <ClCompile Include="primitive\primitive\var.cpp" />
-    <ClCompile Include="primitive\primitive\var_element.cpp" />
-    <ClCompile Include="primitive\primitive\virtual_memory.cpp" />
     <ClCompile Include="primitive\primitive\_.cpp" />
-    <ClCompile Include="primitive\string\base64.cpp" />
-    <ClCompile Include="primitive\string\bstring.cpp" />
-    <ClCompile Include="primitive\string\ch.cpp" />
-    <ClCompile Include="primitive\string\ch_class.cpp" />
-    <ClCompile Include="primitive\string\dup.cpp" />
-    <ClCompile Include="primitive\string\from_integer.cpp" />
-    <ClCompile Include="primitive\string\hex.cpp" />
-    <ClCompile Include="primitive\string\international.cpp" />
-    <ClCompile Include="primitive\string\international_locale_schema.cpp" />
-    <ClCompile Include="primitive\string\istring.cpp" />
-    <ClCompile Include="primitive\string\manager.cpp" />
-    <ClCompile Include="primitive\string\parse.cpp" />
-    <ClCompile Include="primitive\string\simple.cpp" />
-    <ClCompile Include="primitive\string\str.cpp" />
-    <ClCompile Include="primitive\string\stringtow.cpp" />
-    <ClCompile Include="primitive\string\string_ansi.cpp" />
-    <ClCompile Include="primitive\string\string_wide.cpp" />
-    <ClCompile Include="primitive\string\string_wide_conversion.cpp" />
-    <ClCompile Include="primitive\string\strw.cpp" />
-    <ClCompile Include="primitive\string\strx.cpp" />
-    <ClCompile Include="primitive\string\sz.cpp" />
-    <ClCompile Include="primitive\string\tokenizer.cpp" />
-    <ClCompile Include="primitive\string\to_integer.cpp" />
-    <ClCompile Include="primitive\string\x.cpp" />
-    <ClCompile Include="primitive\string\_.cpp" />
-    <ClCompile Include="primitive\string\_c.cpp" />
-    <ClCompile Include="primitive\string\_conv_ansi.cpp" />
-    <ClCompile Include="primitive\string\_c_trait_ansi.cpp" />
-    <ClCompile Include="primitive\string\_c_trait_wide.cpp" />
-    <ClCompile Include="primitive\string\_unicode.cpp" />
-    <ClCompile Include="primitive\string\_unicode16.cpp" />
-    <ClCompile Include="primitive\string\_unicode16_32.cpp" />
-    <ClCompile Include="primitive\string\_unicode32.cpp" />
-    <ClInclude Include="const\check.h" />
-    <ClInclude Include="const\context.h" />
     <ClInclude Include="const\id.h" />
     <ClInclude Include="const\idpool.h" />
     <ClInclude Include="const\impact.h" />
     <ClInclude Include="const\message.h" />
     <ClInclude Include="const\simple_command.h" />
-    <ClInclude Include="const\source.h" />
     <ClInclude Include="const\status.h" />
     <ClInclude Include="const\status_range_authentication.h" />
     <ClInclude Include="const\timer.h" />
@@ -2469,44 +1624,20 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="filesystem\filesystem\file_watcher.h" />
     <ClInclude Include="filesystem\filesystem\listing.h" />
     <ClInclude Include="filesystem\filesystem\path.h" />
-    <ClInclude Include="filesystem\file\binary_stream.h" />
-    <ClInclude Include="filesystem\file\buffer.h" />
-    <ClInclude Include="filesystem\file\buffered_file.h" />
-    <ClInclude Include="filesystem\file\byte_stream_memory_file.h" />
-    <ClInclude Include="filesystem\file\circular_file.h" />
-    <ClInclude Include="filesystem\file\composite.h" />
     <ClInclude Include="filesystem\file\_const.h" />
     <ClInclude Include="filesystem\file\cpp.h" />
-    <ClInclude Include="filesystem\file\dir.h" />
     <ClInclude Include="filesystem\file\edit_file.h" />
-    <ClInclude Include="filesystem\file\exception.h" />
     <ClInclude Include="filesystem\file\_.h" />
     <ClInclude Include="filesystem\file\file1.h" />
-    <ClInclude Include="filesystem\file\file.h" />
-    <ClInclude Include="filesystem\file\stream.h" />
-    <ClInclude Include="filesystem\file\html_file.h" />
-    <ClInclude Include="filesystem\file\item.h" />
     <ClInclude Include="filesystem\file\item_array.h" />
     <ClInclude Include="filesystem\file\listing_provider.h" />
-    <ClInclude Include="filesystem\file\memory_file.h" />
-    <ClInclude Include="filesystem\file\memory_map.h" />
-    <ClInclude Include="filesystem\file\opened.h" />
     <ClInclude Include="filesystem\file\ostream_flush.h" />
-    <ClInclude Include="filesystem\file\path.h" />
-    <ClInclude Include="filesystem\file\text_stream.h" />
     <ClInclude Include="filesystem\file\primitive.h" />
-    <ClInclude Include="filesystem\file\serializable.h" />
     <ClInclude Include="filesystem\file\serialize.h" />
     <ClInclude Include="filesystem\file\set.h" />
-    <ClInclude Include="filesystem\file\status.h" />
-    <ClInclude Include="filesystem\file\stdio_file.h" />
     <ClInclude Include="filesystem\file\file_stream1.h" />
     <ClInclude Include="filesystem\file\stream2.h" />
-    <ClInclude Include="filesystem\file\string_file.h" />
-    <ClInclude Include="filesystem\file\text_file.h" />
     <ClInclude Include="filesystem\file\transfer_file.h" />
-    <ClInclude Include="filesystem\file\var_stream.h" />
-    <ClInclude Include="filesystem\file\_c.h" />
     <ClInclude Include="filesystem\file\_papaya.h" />
     <ClInclude Include="filesystem\file\_papaya_impl.h" />
     <ClInclude Include="filesystem\file\_stream_process_impl.h" />
@@ -2525,70 +1656,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="filesystem\fs\set.h" />
     <ClInclude Include="filesystem\fs\_.h" />
     <ClInclude Include="filesystem\fs\_fs.h" />
-    <ClInclude Include="graphics\draw2d\api.h" />
-    <ClInclude Include="graphics\draw2d\bitmap.h" />
-    <ClInclude Include="graphics\draw2d\brush.h" />
-    <ClInclude Include="graphics\draw2d\buffered_graphics.h" />
-    <ClInclude Include="graphics\draw2d\color.h" />
-    <ClInclude Include="graphics\draw2d\colorref_array.h" />
-    <ClInclude Include="graphics\draw2d\color_matrix.h" />
-    <ClInclude Include="graphics\draw2d\common.h" />
-    <ClInclude Include="graphics\draw2d\cursor.h" />
-    <ClInclude Include="graphics\draw2d\cursor_set.h" />
-    <ClInclude Include="graphics\draw2d\draw2d.h" />
-    <ClInclude Include="graphics\draw2d\fastblur.h" />
-    <ClInclude Include="graphics\draw2d\font.h" />
-    <ClInclude Include="graphics\draw2d\font_department.h" />
-    <ClInclude Include="graphics\draw2d\font_enumeration.h" />
-    <ClInclude Include="graphics\draw2d\font_list.h" />
-    <ClInclude Include="graphics\draw2d\fwd.h" />
-    <ClInclude Include="graphics\draw2d\glyph.h" />
-    <ClInclude Include="graphics\draw2d\glyph_set.h" />
-    <ClInclude Include="graphics\draw2d\graphics.h" />
-    <ClInclude Include="graphics\draw2d\graphics_extension.h" />
-    <ClInclude Include="graphics\draw2d\icon.h" />
-    <ClInclude Include="graphics\draw2d\igui.h" />
-    <ClInclude Include="graphics\draw2d\image_array.h" />
-    <ClInclude Include="graphics\draw2d\printer.h" />
-    <ClInclude Include="graphics\draw2d\_image.h" />
-    <ClInclude Include="graphics\draw2d\image_extension.h" />
-    <ClInclude Include="graphics\draw2d\image_header.h" />
-    <ClInclude Include="graphics\draw2d\image_dynamic.h" />
-    <ClInclude Include="graphics\draw2d\image.h" />
-    <ClInclude Include="graphics\draw2d\image_list.h" />
-    <ClInclude Include="graphics\draw2d\image_map.h" />
-    <ClInclude Include="graphics\draw2d\image_map_ex1.h" />
-    <ClInclude Include="graphics\draw2d\image_palette.h" />
-    <ClInclude Include="graphics\draw2d\image_frame.h" />
-    <ClInclude Include="graphics\draw2d\image_frame_array.h" />
-    <ClInclude Include="graphics\draw2d\imaging.h" />
-    <ClInclude Include="graphics\draw2d\keep.h" />
-    <ClInclude Include="graphics\draw2d\matrix.h" />
-    <ClInclude Include="graphics\draw2d\object.h" />
-    <ClInclude Include="graphics\draw2d\palette.h" />
-    <ClInclude Include="graphics\draw2d\path.h" />
-    <ClInclude Include="graphics\draw2d\pen.h" />
-    <ClInclude Include="graphics\draw2d\pixmap.h" />
-    <ClInclude Include="graphics\draw2d\region.h" />
-    <ClInclude Include="graphics\draw2d\text_box.h" />
-    <ClInclude Include="graphics\draw2d\thread_tool.h" />
-    <ClInclude Include="graphics\draw2d\_const.h" />
-    <ClInclude Include="graphics\draw2d\_.h" />
-    <ClInclude Include="graphics\draw2d\_image_impl.h" />
-    <ClInclude Include="graphics\_.h" />
-    <ClInclude Include="graphics\graphics\double_buffer.h" />
-    <ClInclude Include="graphics\graphics\double_pass_scale.h" />
-    <ClInclude Include="graphics\graphics\filters.h" />
-    <ClInclude Include="graphics\graphics\console.h" />
-    <ClInclude Include="graphics\graphics\bitmap_source_buffer.h" />
-    <ClInclude Include="graphics\graphics\multiple_buffer.h" />
-    <ClInclude Include="graphics\graphics\window.h" />
-    <ClInclude Include="graphics\graphics\buffer.h" />
-    <ClInclude Include="graphics\graphics\device_context.h" />
-    <ClInclude Include="graphics\graphics\graphics.h" />
-    <ClInclude Include="graphics\draw3d\_.h" />
-    <ClInclude Include="graphics\draw3d\ortho.h" />
-    <ClInclude Include="graphics\graphics\_.h" />
     <ClInclude Include="inline\_acid_app_impl.h" />
     <ClInclude Include="inline\application.h" />
     <ClInclude Include="inline\_draw2d_impl.h" />
@@ -2667,319 +1734,32 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="net\sockets\bsd\sockets.h" />
     <ClInclude Include="net\sockets\bsd\webserver\httpd_socket.h" />
     <ClInclude Include="net\sockets\bsd\webserver\http_base_socket.h" />
-    <ClInclude Include="primitive\api\api.h" />
-    <ClInclude Include="primitive\api\api_rotate.h" />
-    <ClInclude Include="primitive\collection\address_array.h" />
-    <ClInclude Include="primitive\collection\array.h" />
-    <ClInclude Include="primitive\collection\array_base.h" />
-    <ClInclude Include="primitive\collection\attrib_map.h" />
-    <ClInclude Include="primitive\collection\base_2array.h" />
-    <ClInclude Include="primitive\collection\base_enum.h" />
-    <ClInclude Include="primitive\collection\bitset.h" />
-    <ClInclude Include="primitive\collection\bit_array.h" />
-    <ClInclude Include="primitive\collection\composite_array.h" />
-    <ClInclude Include="primitive\collection\ptr_array.h" />
-    <ClInclude Include="primitive\collection\runnable_array.h" />
-    <ClInclude Include="primitive\collection\string_array_base.h" />
-    <ClInclude Include="primitive\collection\_.h" />
-    <ClInclude Include="primitive\collection\common.h" />
-    <ClInclude Include="primitive\collection\comparable_array.h" />
-    <ClInclude Include="primitive\collection\comparable_eq_array.h" />
-    <ClInclude Include="primitive\collection\comparable_eq_list.h" />
-    <ClInclude Include="primitive\collection\comparable_list.h" />
-    <ClInclude Include="primitive\collection\comparable_primitive_array.h" />
-    <ClInclude Include="primitive\collection\comparable_raw_array.h" />
-    <ClInclude Include="primitive\collection\decl.h" />
-    <ClInclude Include="primitive\collection\deque.h" />
-    <ClInclude Include="primitive\collection\fifo_map.h" />
-    <ClInclude Include="primitive\collection\file_path_map.h" />
-    <ClInclude Include="primitive\collection\forward.h" />
-    <ClInclude Include="primitive\collection\int_map.h" />
-    <ClInclude Include="primitive\collection\iterable.h" />
-    <ClInclude Include="primitive\collection\iterator.h" />
-    <ClInclude Include="primitive\collection\list.h" />
-    <ClInclude Include="primitive\collection\logic_array.h" />
-    <ClInclude Include="primitive\collection\map.h" />
-    <ClInclude Include="primitive\collection\map_association.h" />
-    <ClInclude Include="primitive\collection\map_to_smart_pointer.h" />
-    <ClInclude Include="primitive\collection\numeric_array.h" />
-    <ClInclude Include="primitive\collection\numeric_array_range.h" />
-    <ClInclude Include="primitive\collection\packset.h" />
-    <ClInclude Include="primitive\collection\pair.h" />
-    <ClInclude Include="primitive\collection\pointer_array.h" />
-    <ClInclude Include="primitive\collection\priority_queue.h" />
-    <ClInclude Include="primitive\collection\queue.h" />
-    <ClInclude Include="primitive\collection\raw_array_decl.h" />
-    <ClInclude Include="primitive\collection\set.h" />
-    <ClInclude Include="primitive\collection\sort.h" />
-    <ClInclude Include="primitive\collection\sort_array.h" />
-    <ClInclude Include="primitive\collection\sort_list.h" />
-    <ClInclude Include="primitive\collection\sort_map.h" />
-    <ClInclude Include="primitive\collection\spreadset.h" />
-    <ClInclude Include="primitive\collection\stack.h" />
-    <ClInclude Include="primitive\collection\strid_map.h" />
-    <ClInclude Include="primitive\collection\stringl.h" />
-    <ClInclude Include="primitive\collection\string_iterable.h" />
-    <ClInclude Include="primitive\collection\string_list.h" />
-    <ClInclude Include="primitive\collection\string_map.h" />
-    <ClInclude Include="primitive\collection\string_to_string_map.h" />
-    <ClInclude Include="primitive\collection\template.h" />
-    <ClInclude Include="primitive\collection\unique_array.h" />
-    <ClInclude Include="primitive\collection\var_array.h" />
-    <ClInclude Include="primitive\collection\_array_base_impl.h" />
-    <ClInclude Include="primitive\collection\_papaya_array.h" />
-    <ClInclude Include="primitive\comparison\_c.h" />
-    <ClInclude Include="primitive\comparison\_.h" />
-    <ClInclude Include="primitive\comparison\binary.h" />
-    <ClInclude Include="primitive\comparison\compare.h" />
-    <ClInclude Include="primitive\comparison\equals.h" />
-    <ClInclude Include="primitive\comparison\hash.h" />
-    <ClInclude Include="primitive\comparison\less.h" />
-    <ClInclude Include="primitive\comparison\md5.h" />
-    <ClInclude Include="primitive\comparison\var_strict.h" />
     <ClInclude Include="primitive\datetime\_.h" />
-    <ClInclude Include="primitive\datetime\date_span.h" />
     <ClInclude Include="primitive\datetime\department.h" />
-    <ClInclude Include="primitive\datetime\duration.h" />
-    <ClInclude Include="primitive\datetime\file_time.h" />
-    <ClInclude Include="primitive\datetime\file_time_span.h" />
-    <ClInclude Include="primitive\datetime\time.h" />
-    <ClInclude Include="primitive\datetime\time_span.h" />
-    <ClInclude Include="primitive\datetime\value.h" />
-    <ClInclude Include="primitive\datetime\zonetime.h" />
     <ClInclude Include="primitive\datetime\_c.h" />
-    <ClInclude Include="primitive\geometry2d\align.h" />
-    <ClInclude Include="primitive\geometry2d\collection.h" />
-    <ClInclude Include="primitive\geometry2d\geometry.h" />
-    <ClInclude Include="primitive\geometry2d\point.h" />
-    <ClInclude Include="primitive\geometry2d\point_array.h" />
-    <ClInclude Include="primitive\geometry2d\polygon.h" />
-    <ClInclude Include="primitive\geometry2d\rect.h" />
-    <ClInclude Include="primitive\geometry2d\rect_array.h" />
-    <ClInclude Include="primitive\geometry2d\size.h" />
-    <ClInclude Include="primitive\geometry2d\size_array.h" />
-    <ClInclude Include="primitive\geometry2d\types.h" />
-    <ClInclude Include="primitive\geometry2d\_.h" />
-    <ClInclude Include="primitive\math\binary_operation.h" />
-    <ClInclude Include="primitive\math\cast.h" />
-    <ClInclude Include="primitive\math\classes.h" />
-    <ClInclude Include="primitive\math\complex.h" />
-    <ClInclude Include="primitive\math\count.h" />
-    <ClInclude Include="primitive\math\c_number.h" />
     <ClInclude Include="primitive\math\department.h" />
-    <ClInclude Include="primitive\math\filestream.h" />
-    <ClInclude Include="primitive\math\index.h" />
-    <ClInclude Include="primitive\math\math_clip.h" />
-    <ClInclude Include="primitive\math\math_int_biunique.h" />
-    <ClInclude Include="primitive\math\mkint_c.h" />
-    <ClInclude Include="primitive\math\natural.h" />
-    <ClInclude Include="primitive\math\number.h" />
-    <ClInclude Include="primitive\math\number_double.h" />
-    <ClInclude Include="primitive\math\number_float.h" />
-    <ClInclude Include="primitive\math\number_integer.h" />
-    <ClInclude Include="primitive\math\numeric_info.h" />
-    <ClInclude Include="primitive\math\objects.h" />
-    <ClInclude Include="primitive\math\random_number_generator.h" />
-    <ClInclude Include="primitive\math\scalar.h" />
-    <ClInclude Include="primitive\math\scalar_enum.h" />
-    <ClInclude Include="primitive\math\static_numeric_info.h" />
-    <ClInclude Include="primitive\math\std_template.h" />
-    <ClInclude Include="primitive\math\value.h" />
-    <ClInclude Include="primitive\math\_math.h" />
     <ClInclude Include="primitive\primitive\application_bias.h" />
-    <ClInclude Include="primitive\primitive\atomic.h" />
-    <ClInclude Include="primitive\primitive\bit.h" />
-    <ClInclude Include="primitive\primitive\cflag.h" />
-    <ClInclude Include="primitive\primitive\collection.h" />
-    <ClInclude Include="primitive\primitive\collection_file.h" />
     <ClInclude Include="primitive\primitive\command.h" />
     <ClInclude Include="primitive\primitive\command_line.h" />
     <ClInclude Include="primitive\primitive\action_context.h" />
     <ClInclude Include="primitive\primitive\context_object.h" />
     <ClInclude Include="primitive\primitive\create.h" />
-    <ClInclude Include="primitive\primitive\edit.h" />
-    <ClInclude Include="primitive\primitive\enum.h" />
-    <ClInclude Include="primitive\primitive\eobject.h" />
-    <ClInclude Include="primitive\primitive\factory.h" />
-    <ClInclude Include="primitive\primitive\enum_type.h" />
-    <ClInclude Include="primitive\primitive\id.h" />
-    <ClInclude Include="primitive\primitive\id_space.h" />
-    <ClInclude Include="primitive\primitive\interlocked_long.h" />
-    <ClInclude Include="primitive\primitive\interlocked_long_pulse.h" />
-    <ClInclude Include="primitive\primitive\generic_object.h" />
     <ClInclude Include="primitive\primitive\object_meta.h" />
-    <ClInclude Include="primitive\primitive\papaya.h" />
-    <ClInclude Include="primitive\primitive\logic.h" />
-    <ClInclude Include="primitive\primitive\malloc.h" />
-    <ClInclude Include="primitive\primitive\map.h" />
-    <ClInclude Include="primitive\primitive\math_math.h" />
-    <ClInclude Include="primitive\primitive\memory.h" />
-    <ClInclude Include="primitive\primitive\memory_base.h" />
-    <ClInclude Include="primitive\primitive\memory_c.h" />
-    <ClInclude Include="primitive\primitive\memory_container.h" />
-    <ClInclude Include="primitive\primitive\natural.h" />
-    <ClInclude Include="primitive\primitive\number.h" />
     <ClInclude Include="primitive\primitive\object.h" />
-    <ClInclude Include="primitive\primitive\pointer.h" />
-    <ClInclude Include="primitive\primitive\pointer1.h" />
-    <ClInclude Include="primitive\primitive\pointer2.h" />
-    <ClInclude Include="primitive\primitive\simple_object.h" />
-    <ClInclude Include="primitive\primitive\stick.h" />
-    <ClInclude Include="primitive\primitive\topic_text_string.h" />
     <ClInclude Include="primitive\primitive\_.h" />
-    <ClInclude Include="primitive\primitive\primitive_update.h" />
-    <ClInclude Include="primitive\primitive\promise.h" />
-    <ClInclude Include="primitive\primitive\property.h" />
-    <ClInclude Include="primitive\primitive\property_set.h" />
-    <ClInclude Include="primitive\primitive\request_interface.h" />
-    <ClInclude Include="primitive\primitive\request_signal.h" />
-    <ClInclude Include="primitive\primitive\runnable.h" />
-    <ClInclude Include="primitive\primitive\shared_memory.h" />
-    <ClInclude Include="primitive\primitive\str.h" />
-    <ClInclude Include="primitive\primitive\trait.h" />
-    <ClInclude Include="primitive\primitive\traits.h" />
-    <ClInclude Include="primitive\primitive\trait_pred.h" />
-    <ClInclude Include="primitive\primitive\type.h" />
-    <ClInclude Include="primitive\primitive\uid.h" />
     <ClInclude Include="primitive\primitive\update.h" />
-    <ClInclude Include="primitive\primitive\util.h" />
-    <ClInclude Include="primitive\primitive\value.h" />
-    <ClInclude Include="primitive\primitive\var.h" />
-    <ClInclude Include="primitive\primitive\var2.h" />
-    <ClInclude Include="primitive\primitive\virtual_memory.h" />
-    <ClInclude Include="primitive\primitive\_c_memory.h" />
-    <ClInclude Include="primitive\primitive\property_set_papaya.h" />
     <ClInclude Include="primitive\primitive\_defer.h" />
     <ClInclude Include="primitive\primitive\_factory_prefix.h" />
     <ClInclude Include="primitive\primitive\_memory.h" />
-    <ClInclude Include="primitive\primitive\_papaya.h" />
-    <ClInclude Include="primitive\primitive\_papaya_impl.h" />
-    <ClInclude Include="primitive\primitive\_property_set_composite_impl.h" />
-    <ClInclude Include="primitive\string\_c_trait_wd32.h" />
-    <ClInclude Include="primitive\string\_c_trait_wd32_impl.h" />
-    <ClInclude Include="primitive\string\_c_trait.h" />
-    <ClInclude Include="primitive\string\_c_trait_impl.h" />
-    <ClInclude Include="primitive\string\_trait_wd16.h" />
-    <ClInclude Include="primitive\string\base64.h" />
-    <ClInclude Include="primitive\string\bstring.h" />
-    <ClInclude Include="primitive\string\c.h" />
-    <ClInclude Include="primitive\string\ch.h" />
-    <ClInclude Include="primitive\string\ch_class.h" />
-    <ClInclude Include="primitive\string\composite.h" />
-    <ClInclude Include="primitive\string\from_integer.h" />
-    <ClInclude Include="primitive\string\hex.h" />
-    <ClInclude Include="primitive\string\interface.h" />
-    <ClInclude Include="primitive\string\international.h" />
-    <ClInclude Include="primitive\string\international2.h" />
-    <ClInclude Include="primitive\string\international_locale_schema.h" />
-    <ClInclude Include="primitive\string\istring.h" />
-    <ClInclude Include="primitive\string\parse.h" />
-    <ClInclude Include="primitive\string\static_string.h" />
-    <ClInclude Include="primitive\string\str.h" />
-    <ClInclude Include="primitive\string\stdstring.h" />
-    <ClInclude Include="primitive\string\x\x_charcategory.h" />
-    <ClInclude Include="primitive\string\x\x_charcategory2.h" />
-    <ClInclude Include="primitive\string\x\x_charcategory_names.h" />
-    <ClInclude Include="primitive\string\x\x_defines.h" />
-    <ClInclude Include="primitive\string\x\x_encodings.h" />
-    <ClInclude Include="primitive\string\x\x_tables.h" />
-    <ClInclude Include="primitive\string\_base_impl.h" />
-    <ClInclude Include="primitive\string\string_file.h" />
-    <ClInclude Include="primitive\string\string_inst.h" />
-    <ClInclude Include="primitive\string\string_wide_conversion.h" />
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_ch_class.h" />
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_str.h" />
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_str3.h" />
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_tokenizer.h" />
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_wstring.h" />
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_x.h" />
-    <ClInclude Include="primitive\string\_c_impl.h" />
-    <ClInclude Include="primitive\string\_c_trait_ansi.h" />
-    <ClInclude Include="primitive\string\_c_trait_ansi_impl.h" />
-    <ClInclude Include="primitive\string\_c_trait_wd16.h" />
-    <ClInclude Include="primitive\string\_c_trait_wd16_impl.h" />
-    <ClInclude Include="primitive\string\_.h" />
-    <ClInclude Include="primitive\string\_base.h" />
-    <ClInclude Include="primitive\string\_c.h" />
-    <ClInclude Include="primitive\string\_compare.h" />
-    <ClInclude Include="primitive\string\_conv_ansi.h" />
-    <ClInclude Include="primitive\string\_c_inline.h" />
-    <ClInclude Include="primitive\string\_c_str_impl.h" />
-    <ClInclude Include="primitive\string\_c_unicode.h" />
-    <ClInclude Include="primitive\string\_impl.h" />
-    <ClInclude Include="primitive\string\_impl_prio.h" />
-    <ClInclude Include="primitive\string\_natural.h" />
-    <ClInclude Include="primitive\string\_international.h" />
-    <ClInclude Include="primitive\string\string.h" />
-    <ClInclude Include="primitive\string\stringtow.h" />
-    <ClInclude Include="primitive\string\_str.h" />
-    <ClInclude Include="primitive\string\_c_str.h" />
-    <ClInclude Include="primitive\string\sz.h" />
-    <ClInclude Include="primitive\string\tokenizer.h" />
-    <ClInclude Include="primitive\string\to_integer.h" />
-    <ClInclude Include="primitive\string\wstring.h" />
-    <ClInclude Include="primitive\string\wtostring.h" />
-    <ClInclude Include="primitive\string\x.h" />
-    <ClInclude Include="primitive\string\_string_wide.h" />
-    <ClInclude Include="primitive\string\_str_impl.h" />
-    <ClInclude Include="primitive\string\_trait.h" />
-    <ClInclude Include="primitive\string\_trait_ansi.h" />
-    <ClInclude Include="primitive\string\_trait_ansi_impl.h" />
-    <ClInclude Include="primitive\string\_trait_CHAR_TYPE.template" />
-    <ClInclude Include="primitive\string\_trait_impl.h" />
-    <ClInclude Include="primitive\string\_trait_wd16_impl.h" />
-    <ClInclude Include="primitive\string\_trait_wd32.h" />
-    <ClInclude Include="primitive\string\_trait_wd32_impl.h" />
-    <ClInclude Include="primitive\string\_uhash.h" />
-    <ClInclude Include="primitive\string\_unicode.h" />
-    <ClInclude Include="primitive\string\_unicode_impl.h" />
-    <ClCompile Include="filesystem\filesystem\listing.cpp" />
-    <ClInclude Include="primitive\string\__c_ansi.h" />
-    <ClInclude Include="primitive\string\__c_ansi_impl.h" />
-    <ClInclude Include="primitive\string\__c_wd16.h" />
-    <ClInclude Include="primitive\string\__c_wd16_impl.h" />
-    <ClInclude Include="primitive\string\__c_wd32.h" />
-    <ClInclude Include="primitive\string\__c_wd32_impl.h" />
-    <ClInclude Include="primitive\string\__c_wide.h" />
-    <ClInclude Include="primitive\string\__c_wide_impl.h" />
-    <ClInclude Include="primitive\string\___ch_impl.h" />
-    <ClInclude Include="user\user\impact_data.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="_defer.h" />
-    <None Include="aura.def" />
+    <None Include="apex.def" />
     <None Include="filesystem\_impl.h" />
     <None Include="filesystem\file\_impl.h" />
     <None Include="filesystem\file\_serializable_impl.h" />
-    <None Include="graphics\draw2d\_impl.h" />
-    <None Include="graphics\_impl.h" />
-    <None Include="primitive\collection\_array_impl2.h" />
-    <None Include="primitive\collection\_collection_impl1.h" />
-    <None Include="primitive\collection\_collection_impl2.h" />
-    <None Include="primitive\collection\_array_impl.h" />
-    <None Include="primitive\collection\_raw_array_impl2.h" />
-    <None Include="primitive\collection\_fifo_map_impl.h" />
-    <None Include="primitive\collection\_papaya_array_impl.h" />
-    <None Include="primitive\collection\_list_impl.h" />
-    <None Include="primitive\collection\_map_impl.h" />
-    <None Include="primitive\collection\_point_array.h" />
-    <None Include="primitive\collection\_raw_array_impl.h" />
-    <None Include="primitive\collection\_sort_array_impl.h" />
-    <None Include="primitive\collection\_sort_map_impl.h" />
-    <None Include="primitive\collection\_string_array_impl.h" />
-    <None Include="primitive\math\cast.inl" />
     <None Include="primitive\math\_impl.h" />
-    <None Include="primitive\primitive\block.inl" />
     <None Include="primitive\primitive\_factory_impl.h" />
-    <None Include="primitive\primitive\papaya.inl" />
     <None Include="primitive\primitive\_impl.h" />
-    <None Include="primitive\string\aaa_want_to_remove_str.inl" />
-    <None Include="primitive\string\x\x_encodings.pl" />
-    <None Include="primitive\string\x\x_tables_generator.pl" />
-    <None Include="primitive\string\_compare_impl.h" />
-    <None Include="primitive\string\_defer.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="primitive\comparison\var_strict.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\datetime\_impl.h" />
@@ -2989,7 +1769,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\acme\acme.vcxproj">
-      <Project>{e000ffaf-392f-4e32-bf51-fd7ed638991f}</Project>
+      <Project>{638b242f-0f21-41c3-9f66-724660046133}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

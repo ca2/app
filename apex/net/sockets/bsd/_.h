@@ -267,11 +267,11 @@ using socket_list = ::comparable_list < SOCKET >;
 
 #include "ssl/client_context.h"
 #include "ssl/client_context_map.h"
-#include "aura/net/address.h"
-#include "aura/net/sockets/base/base_socket.h"
-#include "aura/net/sockets/bsd/ssl/context.h"
+#include "apex/net/address.h"
+#include "apex/net/sockets/base/base_socket.h"
+#include "apex/net/sockets/bsd/ssl/context.h"
 #include "basic/socket.h"
-#include "aura/net/sockets/base/base_socket_handler.h"
+#include "apex/net/sockets/base/base_socket_handler.h"
 #include "basic/stream_socket.h"
 #include "basic/sctp_socket.h"
 #include "ssl/ticket_key.h"
@@ -281,18 +281,18 @@ using socket_list = ::comparable_list < SOCKET >;
 #include "basic/tls_socket.h"
 
 
-#include "aura/net/sockets/base/base_socket_handler.h"
+#include "apex/net/sockets/base/base_socket_handler.h"
 #include "basic/socket_handler.h"
 #include "basic/listen_socket.h"
 
 
-#include "aura/net/sockets/http/_.h"
+#include "apex/net/sockets/http/_.h"
 
 
 //#include "webserver/ajp_base_socket.h"
 //#include "webserver/ajp13_socket.h"
 //#include "webserver/ajp13.h"
-#include "aura/net/sockets/http/socket.h"
+#include "apex/net/sockets/http/socket.h"
 #include "webserver/http_base_socket.h"
 #include "webserver/httpd_socket.h"
 
@@ -326,8 +326,8 @@ using socket_list = ::comparable_list < SOCKET >;
 #include "basic/sync_socket_handler.h"
 
 
-#include "aura/net/sockets/link_out_socket.h"
-#include "aura/net/sockets/link_in_socket.h"
+#include "apex/net/sockets/link_out_socket.h"
+#include "apex/net/sockets/link_in_socket.h"
 
 
 #include "basic/net.h"

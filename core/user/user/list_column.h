@@ -6,7 +6,7 @@ namespace user
 
    
    class CLASS_DECL_CORE list_column :
-      virtual public generic_object
+      virtual public generic
 {
 public:
 
@@ -29,8 +29,8 @@ public:
    i32                                 m_iSmallImageWidth;
    index                       m_iSubItem;
    index                       m_iColumn;
-   __pointer(image_list)               m_pil;
-   __pointer(image_list)               m_pilHover;
+   __pointer(::image_list)               m_pil;
+   __pointer(::image_list)               m_pilHover;
    ::draw2d::icon_int_map              m_mapIcon;
    ::size                              m_sizeIcon;
    bool                                m_bIcon;

@@ -28,7 +28,7 @@ namespace axis
       }
 
 
-      //ipc::ipc(::object * pobject) :
+      //ipc::ipc(::layered * pobjectContext) :
       //   ::object(pobject),
       //   base(pobject),
       //   tx(pobject),

@@ -222,21 +222,21 @@ i32 _c_XErrorHandler(Display * display, XErrorEvent * perrorevent);
 }
 
 
-void sn_start_context();
+// void sn_start_context();
 
 
-bool os_init_application()
-{
+// bool os_init_application()
+// {
 
-   #ifndef RASPBIAN
+//    #ifndef RASPBIAN
 
-    sn_start_context();
+//     sn_start_context();
 
-   #endif
+//    #endif
 
-   return true;
+//    return true;
 
-}
+// }
 
 
 void os_term_application()
@@ -273,20 +273,20 @@ void os_post_quit()
 
 }
 
-::estatus     run_runnable(::generic_object * pobjectTask);
+::estatus     run_runnable(::generic * pobjectTask);
 
 
 gboolean gdk_callback_run_runnable(gpointer pdata)
 {
 
-   run_runnable((generic_object *) pdata);
+   run_runnable((generic *) pdata);
 
    return FALSE;
 
 }
 
 
-void gdk_branch(generic_object * prunnable, e_priority epriority)
+void gdk_branch(generic * prunnable, e_priority epriority)
 {
 
    prunnable->add_ref(OBJ_REF_DBG_P_NOTE(nullptr, "gdk_branch"));
@@ -302,7 +302,7 @@ void gdk_branch(generic_object * prunnable, e_priority epriority)
 }
 
 
-CLASS_DECL_APEX void main_branch(::generic_object * prunnable, e_priority epriority)
+CLASS_DECL_APEX void main_branch(::generic * prunnable, e_priority epriority)
 {
 
    prunnable->add_ref(OBJ_REF_DBG_P_NOTE(nullptr, "main_branch"));

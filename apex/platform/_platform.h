@@ -5,15 +5,15 @@
 
 #include "history.h"
 
-#include "theme.h"
+//#include "theme.h"
 
 #include "os_history.h"
 
 //#include "strn.h"
 
-#include "process_data.h"
+//#include "process_data.h"
 
-#include "profiler2.h"
+//#include "profiler2.h"
 
 
 //
@@ -210,7 +210,7 @@ class stdio_file;
 struct memory_state;
 
 
-#include "const.h"
+//#include "const.h"
 
 
 //#include "core/user/userex/const.h"
@@ -219,7 +219,7 @@ struct memory_state;
 //#include "strn.h"
 
 
-#include "less.h"
+//#include "less.h"
 
 
 //#include "smart_pointer_query.h"
@@ -230,7 +230,7 @@ struct memory_state;
 #define ZERO_INIT_JUST_THIS(base_class) __memset(((base_class*)this)+1, 0, sizeof(*this) - sizeof(class base_class));
 
 
-#include "constraint.h"
+//#include "constraint.h"
 
 //
 //class resource_exception;
@@ -335,7 +335,7 @@ namespace apex
 }
 
 
-#include "process_data.h"
+//#include "process_data.h"
 
 //#include "types.h"
 
@@ -343,22 +343,22 @@ namespace apex
 
 #include "debug.h"
 
-#include "apex/primitive/collection/std_iterator.h"
-#include "apex/primitive/collection/insert_iterator.h"
-#include "apex/primitive/collection/back_insert_iterator.h"
-#include "apex/primitive/collection/std_pair.h"
+//#include "apex/primitive/collection/std_iterator.h"
+//#include "apex/primitive/collection/insert_iterator.h"
+//#include "apex/primitive/collection/back_insert_iterator.h"
+//#include "apex/primitive/collection/std_pair.h"
 
 
-#include "muldiv32.h"
-
-
-#include "logic.h"
+//#include "muldiv32.h"
+//
+//
+//#include "logic.h"
 
 //#include "util1.h"
 
 //#include "app/apex/math/math_math.h"
 
-#include "theme.h"
+//#include "theme.h"
 
 //#include "app/apex/user/_.h"
 

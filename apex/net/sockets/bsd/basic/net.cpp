@@ -1,6 +1,6 @@
 #include "framework.h"
-#include "aura/net/sockets/_.h"
-#include "aura/net/_net_impl.h"
+#include "apex/net/sockets/_.h"
+#include "apex/net/_net_impl.h"
 #include <stdio.h>
 
 #ifdef RASPBIAN
@@ -9,7 +9,7 @@
 #endif
 
 #ifdef WIN32
-bool defer_init_winsock();
+CLASS_DECL_APEX bool defer_init_winsock();
 #endif
 
 #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
@@ -54,7 +54,7 @@ namespace sockets
    }
 
 
-   ::estatus     net::initialize(::object * pobjectContext)
+   ::estatus     net::initialize(::layered * pobjectContext)
    {
 
       if(m_bInitialized)

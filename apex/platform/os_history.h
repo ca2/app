@@ -5,7 +5,7 @@ class CLASS_DECL_APEX os_history :
 {
 public:
 
-   os_history(::object * pobject);
+   os_history(::layered * pobjectContext);
          
    
    virtual bool hist(const char *psz);

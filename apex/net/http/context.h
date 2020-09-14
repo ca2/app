@@ -26,7 +26,7 @@ namespace http
          tick           m_tickLastChecked;
 
 
-         pac(::object * pobject);
+         pac(::layered * pobjectContext);
          virtual ~pac();
 
 
@@ -46,7 +46,7 @@ namespace http
          tick m_tickLastChecked;
 
 
-         proxy(::object * pobject);
+         proxy(::layered * pobjectContext);
 
 
       };
@@ -63,7 +63,7 @@ namespace http
 
 
 
-      //context(::object * pobject);
+      //context(::layered * pobjectContext);
       context();
       virtual ~context();
 
@@ -114,7 +114,7 @@ namespace http
       virtual pac * get_pac(const char * pszUrl);
       virtual proxy * get_proxy(const char * pszUrl);
 
-      //virtual void on_auth(property_set & set, ::aura::application * papp, string & strUrl, string & strSessId, __pointer(::account::user) & puser);
+      //virtual void on_auth(property_set & set, ::apex::application * papp, string & strUrl, string & strSessId, __pointer(::account::user) & puser);
 
       //application();
       //virtual ~application();

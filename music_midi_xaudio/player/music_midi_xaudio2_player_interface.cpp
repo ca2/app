@@ -17,7 +17,7 @@ namespace music
          {
 
 
-            player_interface::player_interface(::object * pobject) :
+            player_interface::player_interface(::layered * pobjectContext) :
                ::object(pobject),
                callback(pobject),
                ::music::midi::player::player_interface(pobject)

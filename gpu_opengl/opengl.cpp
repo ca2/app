@@ -65,7 +65,7 @@ namespace opengl
 #endif // WINDOWS_DESKTOP
 
 
-   ::estatus opengl::initialize(::object* pobjectContext)
+   ::estatus opengl::initialize(::layered * pobjectContext)
    {
 
       ::estatus estatus = ::object::initialize(pobjectContext);

@@ -1,12 +1,12 @@
 //
-//  ios_aura.m
-//  ios_aura
+//  ios_apex.m
+//  ios_apex
 //
 //  Created by Camilo Sasuke Tsumanuma on 21/05/20.
 //
 
-#import "ios_aura.h"
+#import "ios_apex.h"
 
-@implementation ios_aura
+@implementation ios_apex
 
 @end

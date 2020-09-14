@@ -7,7 +7,7 @@ struct voidarg : public var_type < voidarg >{ voidarg(); };
 #define TEMPLATE_ARG __TEMPLATE_TYPE__ t = nullptr
 
 
-
+class layered;
 namespace factory
 {
 
@@ -62,7 +62,7 @@ public:
    }
 
 
-   inline pointer(enum_create_new, ::generic * pobject) :
+   inline pointer(enum_create_new, ::layered * pobject) :
       m_p(nullptr)
    {
 
@@ -386,7 +386,7 @@ public:
    pointer & copy(const CONTAINER & pcontainer, const OBJECT & pobject)
    {
 
-      ::generic * pobjectParent = m_p->get_context_object();
+      ::layered * pobjectParent = m_p->get_context_object();
 
       auto pOld = m_p;
 

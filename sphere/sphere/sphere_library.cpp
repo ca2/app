@@ -5,9 +5,9 @@ namespace sphere
 {
 
 
-   library::library(::object * pobject) :
+   library::library(::layered * pobjectContext) :
       ::object(pobject),
-      ::aura::library(pobject, 0, "app"),
+      ::apex::library(pobject, 0, "app"),
       ::aura::single_application_library < application > (pobject, "app"),
       ::filehandler::library(pobject),
       ::filehandler::menu_library(pobject)
@@ -85,7 +85,7 @@ namespace sphere
 #ifndef _WIN32
 extern "C"
 #endif
-::aura::library * get_new_library(::object * pobject)
+::apex::library * get_new_library(::layered * pobjectContext)
 {
 
    return new ::sphere::library(pobject);

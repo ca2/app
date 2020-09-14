@@ -5,7 +5,7 @@ namespace acme
 {
 
 
-   class exclusive :
+   class CLASS_DECL_ACME exclusive :
       virtual public ::generic
    {
    public:

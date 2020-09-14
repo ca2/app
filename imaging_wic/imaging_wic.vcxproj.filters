@@ -23,7 +23,7 @@
     <ClInclude Include="_.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="imaging.h">
+    <ClInclude Include="context_image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -43,10 +43,10 @@
     <ClCompile Include="saving.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="imaging.cpp">
+    <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="_.cpp">
+    <ClCompile Include="context_image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

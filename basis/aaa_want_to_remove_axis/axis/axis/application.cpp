@@ -13,7 +13,7 @@ namespace axis
    }
 
 
-   ::estatus application::initialize(::object * pobjectContext)
+   ::estatus application::initialize(::layered * pobjectContext)
    {
 
       auto estatus = aura::application::initialize(pobjectContext);

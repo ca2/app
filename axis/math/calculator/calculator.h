@@ -9,7 +9,7 @@ namespace calculator
 
 
    class CLASS_DECL_AXIS calculator :
-      virtual public ::aura::department
+      virtual public ::apex::department
    {
    public:
 
@@ -18,7 +18,7 @@ namespace calculator
       virtual ~calculator();
 
 
-      virtual ::estatus initialize(::object * pobjectContext) ;
+      virtual ::estatus initialize(::layered * pobjectContext) ;
 
 
    };

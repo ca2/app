@@ -389,7 +389,7 @@
       <AddModuleNamesToAssembly>
       </AddModuleNamesToAssembly>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
-      <AdditionalDependencies>apex.lib;base.lib;auracharguess.lib;kernel32.lib;OleAut32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>apex.lib;base.lib;apexcharguess.lib;kernel32.lib;OleAut32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
@@ -430,7 +430,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\apex\charguess\m_auracharguess.vcxproj">
+    <ProjectReference Include="..\..\apex\charguess\m_apexcharguess.vcxproj">
       <Project>{67c95418-596b-4860-afae-b53262ae5e43}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\axis\bzip2\m_axisbzip2.vcxproj">

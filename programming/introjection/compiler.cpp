@@ -36,9 +36,9 @@ namespace introjection
 {
 
 
-   library::library(::object * pobject):
+   library::library(::layered * pobjectContext):
       object(pobject),
-      m_plibrary(__new(::aura::library()))
+      m_plibrary(__new(::apex::library()))
    {
 
       defer_create_mutex();
@@ -70,7 +70,7 @@ namespace introjection
    }
 
 
-   ::estatus compiler::initialize(::object* pobjectContext)
+   ::estatus compiler::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);
@@ -528,7 +528,7 @@ namespace introjection
 
 
 
-   ::aura::library * compiler::compile(string strFilePath,bool bNew)
+   ::apex::library * compiler::compile(string strFilePath,bool bNew)
    {
 
       if (m_strApp.is_empty())

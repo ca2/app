@@ -86,7 +86,7 @@
       virtual void set_file_status(const char * pszFileName, const ::file::file_status& status);
 
 
-      virtual bool resolve_link(::file::path & path, const string & strSource, string * pstrDirectory = nullptr, string * pstrParams = nullptr, ::user::primitive * puiMessageParentOptional = nullptr);
+      virtual bool resolve_link(::file::path & path, const string & strSource, string * pstrDirectory = nullptr, string * pstrParams = nullptr);
 
       virtual bool initialize_wallpaper_fileset(::file::set* pfileset, bool bAddSearch);
 
@@ -113,20 +113,20 @@
       /// set["default_file_extension"] : default file extension (with dot)
       /// set["folder"] : folder path
       /// set["file_name"] : in/out file name
-      virtual bool browse_file_open(::user::interaction* pinteraction, property_set & set);
+      virtual bool browse_file_open(property_set & set);
 
       /// set["file_filter_specs"] : string array of extensions (with dot)
       /// set["file_filter_names"] : string array of the file extensions titles
       /// set["default_file_extension"] : default file extension (with dot)
       /// set["folder"] : folder path
       /// set["file_name"] : in/out file name
-      virtual bool browse_file_save(::user::interaction* pinteraction, property_set & set);
+      virtual bool browse_file_save(property_set & set);
 
       /// set["folder"] : in/out folder path
-      virtual bool browse_folder(::user::interaction* pinteraction, property_set & set);
+      virtual bool browse_folder(property_set & set);
 
       /// set["folder"] : in/out folder path
-      virtual bool browse_file_or_folder(::user::interaction* pinteraction, property_set & set);
+      virtual bool browse_file_or_folder(property_set & set);
 
 
       virtual void list_process(::file::patha & patha, u32_array & uaPid);
@@ -134,9 +134,9 @@
 
       ::file::patha list_process_path();
 
-      virtual ::icon_result load_icon(const ::var & varFile);
+      //virtual ::icon_result load_icon(const ::var & varFile);
 
-      virtual void enum_draw2d_fonts(::draw2d::font_enum_item_array& itema);
+      //virtual void enum_draw2d_fonts(::draw2d::font_enum_item_array& itema);
 
 
    };

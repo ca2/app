@@ -52,7 +52,7 @@ namespace sockets
       string                  m_strOverrideBoundary_is_the_bounday_the_issue_i_e_should_it_be_the_same_across_appends;
       string_map < item >     m_map;
 
-      multipart(::object * pobject): ::object(pobject) {}
+      multipart(::layered * pobjectContext): ::object(pobjectContext) {}
       virtual ~multipart() {}
 
    };

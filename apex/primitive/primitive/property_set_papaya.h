@@ -9,12 +9,12 @@ namespace papaya
    {
 
 
-      inline string get_string(const ::property_set & set, const string & strKey)
-      {
+      //inline string get_string(const ::property_set & set, const string & strKey)
+      //{
 
-         return set[strKey].get_string();
+      //   return set[strKey].get_string();
 
-      }
+      //}
 
 
       inline string get_string(const ::context_object & object, const string & strKey)
@@ -33,23 +33,23 @@ namespace papaya
       }
 
 
-      inline bool get_evaluation(string & strResult, const ::property_set & set, const string & strExpression)
-      {
+      //inline bool get_evaluation(string & strResult, const ::property_set & set, const string & strExpression)
+      //{
 
-         auto pproperty = set.find_property(strExpression);
+      //   auto pproperty = set.find_property(strExpression);
 
-         if (::is_null(pproperty))
-         {
+      //   if (::is_null(pproperty))
+      //   {
 
-            return false;
+      //      return false;
 
-         }
+      //   }
 
-         strResult = pproperty->get_string();
+      //   strResult = pproperty->get_string();
 
-         return true;
+      //   return true;
 
-      }
+      //}
 
 
       inline string get_evaluation(const ::context_object & object, const string & strExpression)
@@ -66,142 +66,142 @@ namespace papaya
 
       }
 
-      // ::property_set set;
-      //
-      // set["var5"] = "searching value";
-      //
-      // str = "SELECT field1, field2, field3 FROM table1 WHERE table1.field5 = '$var5'"
-      //
-      // real-ization: "SELECT field1, field2, field3 FROM table1 WHERE table1.field5 = 'searching value'"
-      template < typename PROPERTY_SOURCE >
-      string evaluate(const PROPERTY_SOURCE & set, const string & strSource)
-      {
+      //// ::property_set set;
+      ////
+      //// set["var5"] = "searching value";
+      ////
+      //// str = "SELECT field1, field2, field3 FROM table1 WHERE table1.field5 = '$var5'"
+      ////
+      //// real-ization: "SELECT field1, field2, field3 FROM table1 WHERE table1.field5 = 'searching value'"
+      //template < typename PROPERTY_SOURCE >
+      //string evaluate(const PROPERTY_SOURCE & set, const string & strSource)
+      //{
 
-         string str(strSource);
+      //   string str(strSource);
 
-         strsize iPos;
+      //   strsize iPos;
 
-         char ch;
+      //   char ch;
 
-         char chNext;
+      //   char chNext;
 
-         for (iPos = 0; iPos < str.get_length(); iPos++)
-         {
+      //   for (iPos = 0; iPos < str.get_length(); iPos++)
+      //   {
 
-            ch = str[iPos];
+      //      ch = str[iPos];
 
-            if (iPos + 1 < str.get_length())
-            {
+      //      if (iPos + 1 < str.get_length())
+      //      {
 
-               chNext = str[iPos + 1];
+      //         chNext = str[iPos + 1];
 
-            }
-            else
-            {
+      //      }
+      //      else
+      //      {
 
-               chNext = '\0';
+      //         chNext = '\0';
 
-            }
+      //      }
 
-            if (ch == '\\')
-            {
+      //      if (ch == '\\')
+      //      {
 
-               iPos++;
+      //         iPos++;
 
-               continue;
+      //         continue;
 
-            }
-            else if (ch == '{' && chNext == '$')
-            {
+      //      }
+      //      else if (ch == '{' && chNext == '$')
+      //      {
 
-               strsize iEnd = str.find('}', iPos + 1);
+      //         strsize iEnd = str.find('}', iPos + 1);
 
-               if (iEnd < 0)
-               {
+      //         if (iEnd < 0)
+      //         {
 
-                  //error
+      //            //error
 
-                  break;
+      //            break;
 
-               }
+      //         }
 
-               string strKey = str.Mid(iPos + 2, iEnd - iPos - 2);
+      //         string strKey = str.Mid(iPos + 2, iEnd - iPos - 2);
 
-               string strEval;
+      //         string strEval;
 
-               if (get_string(strEval, set, strKey))
-               {
+      //         if (get_string(strEval, set, strKey))
+      //         {
 
-                  str = str.Left(iPos) + strEval + str.Mid(iEnd + 1);
+      //            str = str.Left(iPos) + strEval + str.Mid(iEnd + 1);
 
-                  iPos += strEval.get_length() - 1;
+      //            iPos += strEval.get_length() - 1;
 
-               }
-               else
-               {
+      //         }
+      //         else
+      //         {
 
-                  iPos = iEnd;
+      //            iPos = iEnd;
 
-               }
+      //         }
 
 
-            }
-            else if (ch == '$')
-            {
+      //      }
+      //      else if (ch == '$')
+      //      {
 
-               if (!(ansi_char_is_alphabetic(chNext) || chNext == '_'))
-               {
+      //         if (!(ansi_char_is_alphabetic(chNext) || chNext == '_'))
+      //         {
 
-                  // error
+      //            // error
 
-                  break;
+      //            break;
 
-               }
+      //         }
 
-               strsize iStart = iPos;
+      //         strsize iStart = iPos;
 
-               strsize iEnd = iStart + 2;
+      //         strsize iEnd = iStart + 2;
 
-               for (; iEnd < str.get_length(); iEnd++)
-               {
+      //         for (; iEnd < str.get_length(); iEnd++)
+      //         {
 
-                  ch = str[iEnd];
+      //            ch = str[iEnd];
 
-                  if (!(ansi_char_is_alphabetic(ch) || ch == '_' || ansi_char_is_digit(ch)))
-                  {
+      //            if (!(ansi_char_is_alphabetic(ch) || ch == '_' || ansi_char_is_digit(ch)))
+      //            {
 
-                     break;
+      //               break;
 
-                  }
+      //            }
 
-               }
+      //         }
 
-               string strExpression = str.Mid(iStart, iEnd - iStart);
+      //         string strExpression = str.Mid(iStart, iEnd - iStart);
 
-               string strEval;
+      //         string strEval;
 
-               if (get_evaluation(strEval, set, strExpression))
-               {
+      //         if (get_evaluation(strEval, set, strExpression))
+      //         {
 
-                  str = str.Left(iPos) + strEval + str.Mid(iEnd);
+      //            str = str.Left(iPos) + strEval + str.Mid(iEnd);
 
-                  iPos += strEval.get_length() - 1;
+      //            iPos += strEval.get_length() - 1;
 
-               }
-               else
-               {
+      //         }
+      //         else
+      //         {
 
-                  iPos = iEnd;
+      //            iPos = iEnd;
 
-               }
+      //         }
 
-            }
+      //      }
 
-         }
+      //   }
 
-         return str;
+      //   return str;
 
-      }
+      //}
 
 
 

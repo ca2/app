@@ -318,8 +318,10 @@ namespace user
    }
 
 
-   void tree_data::tree_layout(::draw2d::graphics_pointer & pgraphics)
+   void tree_data::on_tree_layout()
    {
+
+      auto pgraphics = ::draw2d::create_memory_graphics();
 
       for(index i = 0; i < m_usertreea.get_count(); i++)
       {

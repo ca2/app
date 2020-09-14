@@ -4,17 +4,25 @@
 
 
 
-extern ::mutex * g_pmutexChildren;
+//extern ::mutex * g_pmutexChildren;
+
+#ifdef DEBUG
+
+CLASS_DECL_APEX void object_on_add_composite(const generic* pbase);
+
+#endif
 
 
-object::object(::object * pobject)
+object::object(::layered * pobjectContext)
 {
 
    m_pmeta = nullptr;
 
+   set_layer(0, this);
+
    //m_pObjectThis = nullptr;
 
-   set_context_object(pobject);
+   set_context_object(__object(pobjectContext));
 
    //__refer(m_pobjectContext, pobject);
 
@@ -33,7 +41,7 @@ object::~object()
    if (m_pmeta)
    {
 
-      ::apex::del(m_pmeta);
+      ::acme::del(m_pmeta);
 
    }
 
@@ -94,6 +102,14 @@ i64 object::release(OBJ_REF_DBG_PARAMS_DEF)
 }
 
 
+//sync * object::get_mutex()
+//{
+//
+//   return mutex();
+//
+//}
+
+
 void object::create_object_meta()
 {
 
@@ -117,7 +133,7 @@ void object::to_string(string & str) const
 }
 
 
-::estatus object::add_composite(::generic_object* pobject)
+::estatus object::add_composite(::generic* pobject)
 {
 
    sync_lock sl(mutex());
@@ -142,7 +158,7 @@ void object::to_string(string & str) const
 }
 
 
-::estatus object::add_reference(::generic_object* pobject)
+::estatus object::add_reference(::generic* pobject)
 {
 
    sync_lock sl(mutex());
@@ -161,7 +177,7 @@ void object::to_string(string & str) const
 }
 
 
-::estatus object::release_composite(::generic_object* pobject)
+::estatus object::release_composite(::generic* pobject)
 {
 
    if (::is_null(pobject))
@@ -192,7 +208,7 @@ void object::to_string(string & str) const
 }
 
 
-::estatus object::release_reference(::generic_object* pobject)
+::estatus object::release_reference(::generic* pobject)
 {
 
    if (::is_null(pobject))
@@ -223,7 +239,7 @@ void object::to_string(string & str) const
 }
 
 
-::user::interaction* object::get_user_interaction_host()
+::user::primitive* object::get_user_interaction_host()
 {
 
    if (m_psessionContext.is_null())
@@ -233,7 +249,7 @@ void object::to_string(string & str) const
 
    }
 
-   return m_psessionContext->m_puiHost;
+   return __user_primitive(m_psessionContext->m_puiHost);
 
 }
 
@@ -439,7 +455,7 @@ void object::set_topic_text(const ::string & strTopicText)
 }
 
 
-void object::set_context_object(::object* pobjectContext)
+void object::set_context_object(::layered * pobjectContext)
 {
 
    ::context_object::set_context_object(pobjectContext);
@@ -474,7 +490,7 @@ void object::set_context_object(::object* pobjectContext)
 
 
 
-::estatus object::initialize(::object * pobjectContext)
+::estatus object::initialize(::layered * pobjectContext)
 {
 
    auto estatus = ::success;
@@ -889,12 +905,12 @@ void object::delete_this()
 }
 
 
-sync * object::get_mutex() const
-{
-
-   return mutex();
-
-}
+//sync * object::get_mutex() const
+//{
+//
+//   return mutex();
+//
+//}
 
 
 string object::lstr(const ::id & id, string strDefault)
@@ -1005,9 +1021,11 @@ void object::release_references()
 
 }
 
+CLASS_DECL_ACME mutex* get_children_mutex();
+
 
 /// tells if pobject is dependant of this object or of any dependant objects
-bool object::___is_reference(::generic_object * pobject) const
+bool object::___is_reference(::generic * pobject) const
 {
 
    if (::is_null(pobject))
@@ -1017,7 +1035,7 @@ bool object::___is_reference(::generic_object * pobject) const
 
    }
 
-   sync_lock sl(g_pmutexChildren);
+   sync_lock sl(get_children_mutex());
 
    if (!m_preferencea)
    {
@@ -1038,7 +1056,7 @@ bool object::___is_reference(::generic_object * pobject) const
 }
 
 
-bool object::__is_composite(::generic_object * pobject) const
+bool object::__is_composite(::generic * pobject) const
 {
 
    if (::is_null(pobject))
@@ -1569,20 +1587,13 @@ __pointer(::object) object::running(const char * pszTag) const
 
 
 
-CLASS_DECL_APEX ::estatus __call(::generic_object * pobjectTask)
-{
-
-   return pobjectTask->call();
-
-}
-
 
 
 struct context_object_test_struct :
    virtual public object
 {
 
-   context_object_test_struct(::object * p) :
+   context_object_test_struct(::layered * p) :
       ::object(p)
    {
 
@@ -1598,19 +1609,19 @@ struct context_object_test_struct :
 
 };
 
-void debug_context_object(::object * pobject)
+void debug_context_object(::layered * pobjectContext)
 {
 
-   auto p1 = __new(struct context_object_test_struct(pobject));
+   auto p1 = __new(struct context_object_test_struct(pobjectContext));
 
-   auto p2 = __new(struct context_object_test_struct(pobject));
+   auto p2 = __new(struct context_object_test_struct(pobjectContext));
 
    p2 = p1;
 
 }
 
 
-CLASS_DECL_APEX void object_on_add_composite(const generic_object * pbase)
+CLASS_DECL_APEX void object_on_add_composite(const generic * pbase)
 {
 
    string strType = ::str::demangle(pbase->type_name());
@@ -1761,7 +1772,7 @@ string object::get_text(const var& var, const ::id& id)
          
       }
 
-      estatus = ::os_message_box(puiOwner->get_safe_handle(), strMessage, strTitle, emessagebox, callback);
+      estatus = ::os_message_box(strMessage, strTitle, emessagebox, callback);
 
    }
 
@@ -1785,7 +1796,7 @@ string object::get_text(const var& var, const ::id& id)
    if (!estatus)
    {
 
-      estatus = ::os_message_box(puiOwner->get_safe_handle(), pszMessage, pszTitle, emessagebox, callback);
+      estatus = ::os_message_box(pszMessage, pszTitle, emessagebox, callback);
 
    }
 
@@ -1848,4 +1859,35 @@ void object::set_context_system(::apex::system* psystemContext)
 #endif
 
 
+// CLASS_DECL_APEX const char* topic_text(::generic* pgeneric)
+// {
+
+//    if (::is_null(pgeneric))
+//    {
+
+//       return nullptr;
+
+//    }
+
+//    auto playered = pgeneric->m_pobjectContext;
+
+//    if (!playered)
+//    {
+
+//       return nullptr;
+
+//    }
+
+//    auto pobject = __object(playered);
+
+//    if (::is_null(pobject))
+//    {
+
+//       return nullptr;
+
+//    }
+
+//    return pobject->topic_text();
+
+// }
 

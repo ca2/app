@@ -46,7 +46,7 @@ namespace user
 
 #include "aura/const/_const.h"
 
-#include "aura/primitive/primitive/_memory.h"
+#include "acme/primitive/primitive/_memory.h"
 
 #include "core/user/user/_const.h"
 
@@ -91,7 +91,7 @@ CLASS_DECL_CORE bool __node_core_pos_term();
 
 
 //CLASS_DECL_CORE ::core::user * get_context_user();
-//CLASS_DECL_CORE inline ::core::user * get_context_user(::object * pobject);
+//CLASS_DECL_CORE inline ::core::user * get_context_user(::layered * pobjectContext);
 //CLASS_DECL_CORE inline ::core::user * get_context_user(::aura::application * papp);
 //
 //
@@ -226,23 +226,14 @@ class ifs;
 
 
 
-<<<<<<< HEAD
 //#include "core/math/_math.h"
 
 
-=======
->>>>>>> origin/basis
 // C++ Includes
 #include "core/os/_.h"
 
 // C++ Includes
 #include "core/node/_.h"
-
-
-//#include "core/scripting/javascript/javascript.h"
-
-
-#include "core/compress/compress.h"
 
 
 #include "core/user/_.h"

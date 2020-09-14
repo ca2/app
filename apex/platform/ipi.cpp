@@ -249,7 +249,7 @@ namespace apex
    }
 
 
-   ::estatus ipi::initialize(::object * pobjectContext)
+   ::estatus ipi::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);

@@ -6,12 +6,8 @@
 
 
 
-#include "aura/version/version.h"
-#include "aura/platform/_features.h"
-#include "platform/platform_setup.h"
-#include "setup/debug.h"
-#include "platform/_.h"
-#include "include/_setup.h"
+#include "apex/_.h"
+
 
 #if defined(_AURA_LIBRARY)
 #define CLASS_DECL_AURA  CLASS_DECL_EXPORT
@@ -59,23 +55,6 @@
 #define __DEBUG_POWER
 
 
-#if defined(__cplusplus)
-
-#define DECL_EXTERN_C      extern "C"
-#define BEGIN_EXTERN_C      extern "C" {
-#define END_EXTERN_C         }
-
-#else
-
-#define DECL_EXTERN_C
-#define BEGIN_EXTERN_C
-#define END_EXTERN_C
-
-#endif
-
-
-//#include "app/aura/version.h"
-
 
 #include "__standard_type.h"
 
@@ -100,19 +79,7 @@ typedef i64 filesize;
 #endif
 
 
-#if defined(__cplusplus)
 
-inline bool __found(::i32 i) { return i >= 0; }
-inline bool __not_found(::i32 i) { return i < 0; }
-inline bool __found(::i64 i) { return i >= 0; }
-inline bool __not_found(::i64 i) { return i < 0; }
-
-#else
-
-#define __found_index(i) ((i) >= 0)
-#define __not_found_index(i) ((i) < 0)
-
-#endif
 
 
 #if defined(DEBUG)
@@ -178,9 +145,9 @@ inline bool __not_found(::i64 i) { return i < 0; }
 #endif
 
 
-#if defined(__cplusplus) && !defined(_ACID_LIBRARY)
-#include "aura/memory/allocation.h"
-#endif
+//#if defined(__cplusplus) && !defined(_ACID_LIBRARY)
+//#include "aura/memory/allocation.h"
+//#endif
 
 
 #ifdef __cplusplus
@@ -227,11 +194,11 @@ namespace aura
 
 //#include "aura/platform/struct.h"
 
-#include "aura/os/aura.h"
+#include "aura/os/os.h"
 
-#include "aura/memory/heap_c.h"
-
-#include "aura/memory/allocate_processor_cache_oriented.h"
+//#include "aura/memory/heap_c.h"
+//
+//#include "aura/memory/allocate_processor_cache_oriented.h"
 
 #include "aura/platform/number.h"
 

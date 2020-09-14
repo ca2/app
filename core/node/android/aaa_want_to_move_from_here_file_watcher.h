@@ -38,7 +38,7 @@
 //   ////public:
 //   //   ///
 //   //   ///
-//   //   os_watch(::object * pobject);
+//   //   os_watch(::layered * pobjectContext);
 //
 //   //   ///
 //   //   ///

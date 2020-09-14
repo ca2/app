@@ -14,7 +14,7 @@ BOOL                InitInstance(::object * pobject, HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
-int my_main(::object * pobject)
+int my_main(::layered * pobjectContext)
 {
 
    HINSTANCE hInstance = Sys(papp).m_hinstance;

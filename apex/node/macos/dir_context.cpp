@@ -32,7 +32,7 @@ namespace macos
    }
 
 
-   ::estatus dir_context::initialize(::object * pobjectContext)
+   ::estatus dir_context::initialize(::layered * pobjectContext)
    {
       
       auto estatus = ::dir_context::initialize(pobjectContext);
@@ -717,7 +717,7 @@ try1:
 //      return path(userfolder(papp, "data"), pcsz, lpcsz2);
 //   }
 
-//   ::file::path dir_context::userfolder(::object * pobject)
+//   ::file::path dir_context::userfolder(::layered * pobjectContext)
 //   {
 //
 //      return App(papp).dir_context().userfolder();
@@ -725,7 +725,7 @@ try1:
 //   }
 
 
-//   ::file::path dir_context::default_os_user_path_prefix(::object * pobject)
+//   ::file::path dir_context::default_os_user_path_prefix(::layered * pobjectContext)
 //   {
 //
 //      return ::getlogin();
@@ -1262,24 +1262,24 @@ try1:
 //        return appdata() / lpcszPrefix;
 //    }
 //
-//    ::file::path dir_context::appdata(::object * pobject)
+//    ::file::path dir_context::appdata(::layered * pobjectContext)
 //    {
 //        return userfolder(pobject) / "appdata";
 //    }
 //
-//    ::file::path dir_context::userdata(::object * pobject)
+//    ::file::path dir_context::userdata(::layered * pobjectContext)
 //    {
 //        return userfolder(pobject) / "data";
 //    }
 
-//    ::file::path dir_context::userfolder(::object * pobject)
+//    ::file::path dir_context::userfolder(::layered * pobjectContext)
 //    {
 //
 //
 //
 //    }
 //
-//    ::file::path dir_context::default_os_user_path_prefix(::object * pobject)
+//    ::file::path dir_context::default_os_user_path_prefix(::layered * pobjectContext)
 //    {
 //        UNREFERENCED_PARAMETER(pobject);
 //        unichar buf[MAX_PATH];

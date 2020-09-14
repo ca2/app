@@ -874,7 +874,7 @@ namespace user
       {
          prect->left   = drawitem.m_rect.left;
 
-         prect->right  = MIN(prect->left + 16, drawitem.m_rect.right);
+         prect->right  = min(prect->left + 16, drawitem.m_rect.right);
 
          prect->top    = drawitem.m_rect.top;
 
@@ -886,7 +886,7 @@ namespace user
       {
          prect->left   = drawitem.m_rect.left + 18;
 
-         prect->right  = MIN(prect->left + 16, drawitem.m_rect.right);
+         prect->right  = min(prect->left + 16, drawitem.m_rect.right);
 
 
          int iHDiff = 0;
@@ -999,7 +999,7 @@ namespace user
                if(iNewScroll > (iParentIndex * _001GetItemHeight()))
                   iNewScroll = (iParentIndex * _001GetItemHeight());
 
-               set_viewport_offset_y((int) MAX(iNewScroll, 0));
+               set_viewport_offset_y((int) max(iNewScroll, 0));
                //            _001SetYScroll(MAX(iNewScroll, 0), false);
                //m_pscrollbarVert->_001SetScrollPos(pointOffset.y);
             }
@@ -1477,7 +1477,7 @@ namespace user
 
       if (size.cy > iItemHeight)
       {
-         iItemHeight = MAX(size.cy, iItemHeight);
+         iItemHeight = max(size.cy, iItemHeight);
       }
 
       auto pstyle = get_style(g);
@@ -1600,7 +1600,7 @@ namespace user
    }
 
 
-   __pointer(image_list) tree::get_image_list()
+   __pointer(::image_list) tree::get_image_list()
    {
 
       return m_pimagelist;
@@ -2122,7 +2122,7 @@ namespace user
 
          index iNewScrollIndex = iIndex;
 
-         set_viewport_offset_y((int) MAX(iNewScrollIndex,0) * m_iItemHeight);
+         set_viewport_offset_y((int) max(iNewScrollIndex,0) * m_iItemHeight);
 
          set_need_layout();
 

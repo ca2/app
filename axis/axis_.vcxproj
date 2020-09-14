@@ -1143,15 +1143,24 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="net\netserver\socket_thread.cpp" />
     <ClCompile Include="node\windows\windows_desktop.cpp" />
     <ClCompile Include="node\windows\factory_exchange.cpp" />
-    <ClCompile Include="pcre\pcre.cpp" />
+    <ClCompile Include="pcre\code.cpp" />
+    <ClCompile Include="pcre\code_impl.cpp" />
+    <ClCompile Include="pcre\context.cpp" />
+    <ClCompile Include="pcre\context_impl.cpp" />
+    <ClCompile Include="pcre\regex.cpp" />
+    <ClCompile Include="pcre\system.cpp" />
+    <ClCompile Include="pcre\util_impl.cpp" />
     <ClCompile Include="platform\application.cpp" />
     <ClCompile Include="platform\geo_department.cpp" />
     <ClCompile Include="platform\session.cpp" />
     <ClCompile Include="platform\system.cpp" />
     <ClCompile Include="user\button.cpp" />
     <ClCompile Include="user\check_box.cpp" />
+    <ClCompile Include="user\combo_box.cpp" />
+    <ClCompile Include="user\combo_list.cpp" />
+    <ClCompile Include="user\slider.cpp" />
+    <ClCompile Include="user\still.cpp" />
     <ClCompile Include="user\style.cpp" />
-    <ClCompile Include="user\style_base.cpp" />
     <ClCompile Include="user\user.cpp" />
     <ClCompile Include="xml\attr.cpp" />
     <ClCompile Include="xml\base_array.cpp" />
@@ -1294,7 +1303,14 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="os\_c.h" />
     <ClInclude Include="os\_impl.h" />
     <ClInclude Include="os\_os.h" />
-    <ClInclude Include="pcre\pcre.h" />
+    <ClInclude Include="pcre\code.h" />
+    <ClInclude Include="pcre\code_impl.h" />
+    <ClInclude Include="pcre\context_impl.h" />
+    <ClInclude Include="pcre\context.h" />
+    <ClInclude Include="pcre\regex.h" />
+    <ClInclude Include="pcre\util_impl.h" />
+    <ClInclude Include="pcre\_.h" />
+    <ClInclude Include="pcre\_pcre.h" />
     <ClInclude Include="platform\all.h" />
     <ClInclude Include="platform\application.h" />
     <ClInclude Include="platform\geo_department.h" />
@@ -1316,9 +1332,13 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="update.h" />
     <ClInclude Include="user\button.h" />
     <ClInclude Include="user\check_box.h" />
+    <ClInclude Include="user\combo_box.h" />
+    <ClInclude Include="user\combo_list.h" />
+    <ClInclude Include="user\simple_ui_draw.h" />
+    <ClInclude Include="user\slider.h" />
+    <ClInclude Include="user\still.h" />
     <ClInclude Include="user\_.h" />
     <ClInclude Include="user\style.h" />
-    <ClInclude Include="user\style_base.h" />
     <ClInclude Include="user\user.h" />
     <ClInclude Include="user\_user.h" />
     <ClInclude Include="version\version.h" />
@@ -1416,6 +1436,12 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ResourceCompile Include="..\..\platform-windows\version.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\acme\acme.vcxproj">
+      <Project>{638b242f-0f21-41c3-9f66-724660046133}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\apex\apex.vcxproj">
+      <Project>{e000ffaf-392f-4e32-bf51-777ca238991f}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\aura\aura.vcxproj">
       <Project>{e000ffaf-392f-4e32-bf51-fd7ed638991f}</Project>
     </ProjectReference>

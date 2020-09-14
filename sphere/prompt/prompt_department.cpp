@@ -5,8 +5,8 @@ namespace prompt
 {
 
 
-   department::department(::object * pobject) :
-      ::aura::department(pobject)
+   department::department(::layered * pobjectContext) :
+      ::apex::department(pobject)
    {
 
    }
@@ -37,7 +37,7 @@ namespace prompt
       create_factory <prompt::pane_view >();
       create_factory <prompt::primary_view >();
 
-      if (!::aura::department::init_instance())
+      if (!::apex::department::init_instance())
       {
 
          return false;
@@ -71,7 +71,7 @@ namespace prompt
    void department::term_instance()
    {
 
-      aura::department::term_instance();
+      apex::department::term_instance();
 
    }
 
@@ -79,7 +79,7 @@ namespace prompt
    //void department::route_command_message(::user::command * pcommand)
    //{
 
-   //   ::aura::department::route_command_message(pcommand);
+   //   ::apex::department::route_command_message(pcommand);
 
    //}
 

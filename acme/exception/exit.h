@@ -8,7 +8,7 @@ public:
 
 
    int                           m_iCheck;
-   __pointer(::layered)          m_playeredThreadExit;
+   __pointer(::layered)          m_pthreadExit;
 
 
    exit_exception(__pointer(::layered) playeredThreadExit = nullptr, const char * pszMessage = nullptr);

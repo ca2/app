@@ -117,7 +117,7 @@ void operator delete(void* ptr, std::align_val_t) noexcept;
 #define C_NEW new(c_class::s_cclass)
 
 
-#if !defined(NO_AURA_MEMORY_MANAGEMENT)
+#if !defined(NO_APEX_MEMORY_MANAGEMENT)
 
 
 void* MEMORY_DECL operator new(size_t nSize, const char* pszFileName, i32 nLine) new_throw_spec

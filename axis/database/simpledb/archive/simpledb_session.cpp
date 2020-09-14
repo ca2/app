@@ -5,7 +5,7 @@ namespace simpledb
 {
 
 
-   session::session(::object * pobject) :
+   session::session(::layered * pobjectContext) :
       ::object(pobject)
    {
 

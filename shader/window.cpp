@@ -1,7 +1,7 @@
 #include "framework.h"
 #include <math.h>
 #include "aura/const/id.h"
-#include "aura/graphics/asset/close_icon.h"
+#include "aura/graphics/snippet/close_icon.h"
 
 
 namespace app_shader
@@ -148,7 +148,7 @@ namespace app_shader
 
                string strDate = System.datetime().international().get_gmt_date_time(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE);
 
-               Context.save_image("image://app_simple_shader-" + strDate + ".png", pimage, &saveimage);
+               Application.image().save_image("image://app_simple_shader-" + strDate + ".png", pimage, &saveimage);
 
             });
 

@@ -4,8 +4,8 @@
 #endif
 //#include "aura/net/sockets/_.h"
 #include "aura/const/id.h"
-#include "aura/platform/app_core.h"
-#include "aura/platform/static_setup.h"
+#include "apex/platform/app_core.h"
+#include "apex/platform/static_setup.h"
 
 
 CLASS_DECL_AXIS ::user::interaction * create_system_message_window(::object* pobject);
@@ -42,9 +42,9 @@ extern "C"
 void defer_term_ui();
 
 
-bool is_verbose();
+//bool is_verbose();
 
-//extern string_map < __pointer(::aura::library) >* g_pmapLibrary;
+//extern string_map < __pointer(::apex::library) >* g_pmapLibrary;
 //extern ::mutex * &::get_context_system()->m_mutexLibrary;
 //extern string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
 
@@ -83,7 +83,7 @@ namespace axis
    }
 
 
-   ::estatus session::initialize(::object * pobjectContext)
+   ::estatus session::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::thread::initialize(pobjectContext);
@@ -228,82 +228,82 @@ namespace axis
    }
 
 
-   ::aura::application * session::application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate)
-   {
+   //::aura::application * session::application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate)
+   //{
 
-      __pointer(::aura::application) papp;
+   //   __pointer(::apex::application) papp;
 
-      if (m_applicationa.lookup(pszAppId, papp))
-      {
+   //   if (m_applicationa.lookup(pszAppId, papp))
+   //   {
 
-         return papp;
+   //      return papp;
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         if (!bCreate)
-         {
+   //      if (!bCreate)
+   //      {
 
-            return nullptr;
+   //         return nullptr;
 
-         }
+   //      }
 
-         papp = nullptr;
+   //      papp = nullptr;
 
-         try
-         {
+   //      try
+   //      {
 
-            papp = create_application(pszAppId, bSynch, pcreate);
+   //         papp = create_application(pszAppId, bSynch, pcreate);
 
-         }
-         catch (::exception_pointer pe)
-         {
+   //      }
+   //      catch (::exception_pointer pe)
+   //      {
 
-            // aura::session, axis::session and ::base::session, could get more specialized handling in aura::application (aura::system)
-            // Thank you Mummi (em Santos, cuidando do Lucinho e ajudando um monte a Carô e o Lúcio e Eu 2019-01-15) !! Thank you God!! <3tbs
+   //         // aura::session, axis::session and ::base::session, could get more specialized handling in aura::application (aura::system)
+   //         // Thank you Mummi (em Santos, cuidando do Lucinho e ajudando um monte a Carô e o Lúcio e Eu 2019-01-15) !! Thank you God!! <3tbs
 
-            handle_exception(pe);
+   //         handle_exception(pe);
 
-            //if (!Sys(this).on_run_exception(esp))
-            //{
+   //         //if (!Sys(this).on_run_exception(esp))
+   //         //{
 
-            //   if (!App(this).on_run_exception(esp))
-            //   {
+   //         //   if (!App(this).on_run_exception(esp))
+   //         //   {
 
-            //      papp = nullptr;
+   //         //      papp = nullptr;
 
-            //   }
+   //         //   }
 
-            //}
+   //         //}
 
-            //papp = nullptr;
+   //         //papp = nullptr;
 
-         }
-         catch (...)
-         {
+   //      }
+   //      catch (...)
+   //      {
 
-            //papp = nullptr;
+   //         //papp = nullptr;
 
-         }
+   //      }
 
-         if (!papp)
-         {
+   //      if (!papp)
+   //      {
 
-            return nullptr;
+   //         return nullptr;
 
-         }
+   //      }
 
-         app_add(papp);
+   //      app_add(papp);
 
-         return papp;
+   //      return papp;
 
-      }
+   //   }
 
-   }
+   //}
 
 
-//   __pointer(::aura::application) session::get_new_application(::object * pobjectContext, const char * pszAppId)
+//   __pointer(::aura::application) session::get_new_application(::layered * pobjectContext, const char * pszAppId)
 //   {
 //
 //      string strAppId(pszAppId);
@@ -342,7 +342,7 @@ namespace axis
 //         }
 //         sync_lock sl(&::get_context_system()->m_mutexLibrary);
 //
-//         __pointer(::aura::library) & plibrary = &::get_context_system()->m_mapLibrary[pszAppId];
+//         __pointer(::apex::library) & plibrary = &::get_context_system()->m_mapLibrary[pszAppId];
 //
 //         if (!plibrary)
 //         {
@@ -397,7 +397,7 @@ namespace axis
 //                  else
 //                  {
 //
-//                     plibrary = __new(::aura::library);
+//                     plibrary = __new(::apex::library);
 //
 //                     plibrary->initialize_aura_library(pobjectContext, 0, nullptr);
 //
@@ -485,7 +485,7 @@ namespace axis
 //
 //         {
 //
-//            ::aura::library & library = *plibrary;
+//            ::apex::library & library = *plibrary;
 //
 //
 //            papp = library.get_new_application(this, strAppId);
@@ -797,7 +797,7 @@ namespace axis
 
 
 
-   //::estatus session::initialize(::object* pobjectContext)
+   //::estatus session::initialize(::layered * pobjectContext)
    //{
 
    //   auto estatus = ::aura::session::initialize(pobjectContext);

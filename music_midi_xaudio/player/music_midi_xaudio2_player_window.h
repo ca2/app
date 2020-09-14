@@ -29,7 +29,7 @@ namespace music
                ::music::midi::player::callback_interface * m_pcallback;
 
 
-               window(::object * pobject);
+               window(::layered * pobjectContext);
                virtual ~window();
 
                ::music::midi::player::callback_interface * get_callback();

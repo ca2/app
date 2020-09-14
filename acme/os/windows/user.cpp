@@ -91,55 +91,55 @@ namespace user
 } // namespace user
 
 
-CLASS_DECL_ACME HMONITOR GetUiMonitorHandle(HWND hwnd)
-{
-
-   return MonitorFromWindow(hwnd, MONITOR_DEFAULTTOPRIMARY);
-
-}
-
-
-CLASS_DECL_ACME HMONITOR GetPrimaryMonitorHandle()
-{
-
-   const POINT pointZero = { 0,0 };
-
-   return MonitorFromPoint(pointZero, MONITOR_DEFAULTTOPRIMARY);
-
-}
+//CLASS_DECL_ACME HMONITOR GetUiMonitorHandle(HWND hwnd)
+//{
+//
+//   return MonitorFromWindow(hwnd, MONITOR_DEFAULTTOPRIMARY);
+//
+//}
 
 
-CLASS_DECL_ACME bool GetPrimaryMonitorRect(LPRECT lprect)
-{
+//CLASS_DECL_ACME HMONITOR GetPrimaryMonitorHandle()
+//{
+//
+//   const POINT pointZero = { 0,0 };
+//
+//   return MonitorFromPoint(pointZero, MONITOR_DEFAULTTOPRIMARY);
+//
+//}
 
-   MONITORINFO mi;
 
-   xxf_zero(mi);
-
-   mi.cbSize = sizeof(MONITORINFO);
-
-   if (GetMonitorInfo(GetPrimaryMonitorHandle(), &mi))
-   {
-
-      *lprect = mi.rcMonitor;
-
-   }
-   else
-   {
-
-      if (!::GetWindowRect(::get_desktop_window(), lprect))
-      {
-
-         return false;
-
-      }
-
-   }
-
-   return true;
-
-}
-
+//CLASS_DECL_ACME bool GetPrimaryMonitorRect(LPRECT lprect)
+//{
+//
+//   MONITORINFO mi;
+//
+//   xxf_zero(mi);
+//
+//   mi.cbSize = sizeof(MONITORINFO);
+//
+//   if (GetMonitorInfo(GetPrimaryMonitorHandle(), &mi))
+//   {
+//
+//      *lprect = mi.rcMonitor;
+//
+//   }
+//   else
+//   {
+//
+//      if (!::GetWindowRect(::get_desktop_window(), lprect))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//   }
+//
+//   return true;
+//
+//}
+//
 
 
 

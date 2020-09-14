@@ -1988,8 +1988,8 @@
 		<Unit filename="primitive/primitive/function.h" />
 		<Unit filename="primitive/primitive/function_arg.h" />
 		<Unit filename="primitive/primitive/function_base.h" />
-		<Unit filename="primitive/primitive/generic_object.cpp" />
-		<Unit filename="primitive/primitive/generic_object.h" />
+		<Unit filename="primitive/primitive/generic.cpp" />
+		<Unit filename="primitive/primitive/generic.h" />
 		<Unit filename="primitive/primitive/handler.cpp" />
 		<Unit filename="primitive/primitive/id.cpp" />
 		<Unit filename="primitive/primitive/id.h" />

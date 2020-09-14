@@ -6,7 +6,7 @@ namespace xml
 {
 
 
-   output_tree::output_tree(::object * pobjectContext) :
+   output_tree::output_tree(::layered * pobjectContext) :
       ::object(pobjectContext),
       tree_base(pobjectContext)
    {
@@ -17,7 +17,7 @@ namespace xml
    }
 
 
-   output_tree::output_tree(::object * pobjectContext, tree_schema * pschema) :
+   output_tree::output_tree(::layered * pobjectContext, tree_schema * pschema) :
       ::object(pobjectContext),
       tree_base(pobjectContext, pschema)
    {

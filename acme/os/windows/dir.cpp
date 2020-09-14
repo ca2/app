@@ -40,3 +40,20 @@ CLASS_DECL_ACME::file::path get_known_folder(REFKNOWNFOLDERID kfid)
    return pwszPath;
 
 }
+
+
+
+::file::path dir::bookmark()
+{
+
+   return ::dir::localconfig() / "bookmark";
+
+}
+
+
+::file::path dir::home()
+{
+
+   return ::get_known_folder(FOLDERID_Profile);
+
+}

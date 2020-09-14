@@ -11,7 +11,7 @@ public:
    virtual ~file_context();
 
    
-   virtual ::estatus initialize(::object * pobjectContext) override;
+   virtual ::estatus initialize(::layered * pobjectContext) override;
 
 
 
@@ -173,7 +173,7 @@ public:
    //virtual string nessie(::file::file * pfile);
    virtual string nessie(const var & varFile);
 
-   virtual bool resolve_link(::file::path & pathTarget, const string & strSource, string * pstrDirectory = nullptr, string * pstrParams = nullptr, ::user::primitive * puiMessageParentOptional = nullptr);
+   virtual bool resolve_link(::file::path & pathTarget, const string & strSource, string * pstrDirectory = nullptr, string * pstrParams = nullptr);
 
    virtual bool is_link(string strPath);
 

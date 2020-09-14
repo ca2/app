@@ -23,7 +23,7 @@ namespace experience
          }
 
 
-         ::context_object * library::new_object(::object * pobjectContext, const char * pszClass)
+         ::context_object * library::new_object(::layered * pobjectContext, const char * pszClass)
          {
 
             if(string(pszClass) == "experience")
@@ -72,7 +72,7 @@ namespace experience
 
 //
 //extern "C"
-//::aura::library * experience_anthill_get_new_library()
+//::apex::library * experience_anthill_get_new_library()
 //{
 //
 //   return new ::experience::anthill::library();

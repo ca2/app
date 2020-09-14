@@ -20,7 +20,7 @@ namespace opengl
    }
 
 
-   //::estatus context::initialize(::object* pobjectContext)
+   //::estatus context::initialize(::layered * pobjectContext)
    //{
 
    //   ::estatus estatus = ::object::initialize(pobjectContext);

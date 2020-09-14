@@ -1,5 +1,5 @@
 //
-//  aura_app.h
+//  apex_app.h
 //  apex
 //
 //  Created by Camilo Sasuke Tsumanuma on 18/08/19.
@@ -10,7 +10,7 @@
 class node_data_exchange;
 
 
-void aura_set_get_new_application(PFN_NEW_AURA_APPLICATION pnewapplication);
+void apex_set_get_new_application(PFN_NEW_APEX_APPLICATION pnewapplication);
 
 
 class CLASS_DECL_APEX static_setup 
@@ -52,11 +52,11 @@ public:
 
    static static_setup* get_first(::static_setup::e_flag eflag, const char* pszName = nullptr);
 
-   virtual ::generic_object * create_new_object();
+   virtual ::generic * create_new_object();
    virtual ::apex::application* create_new_application();
    virtual ::apex::library* create_new_library();
 
-   virtual ::generic_object* new_object();
+   virtual ::generic* new_object();
    virtual ::apex::application* new_application();
    virtual ::apex::library* new_library();
 
@@ -92,7 +92,7 @@ class static_object_factory :
 public:
 
 
-   virtual ::generic_object * new_object() override { return new OBJECT; }
+   virtual ::generic * new_object() override { return new OBJECT; }
 
 
    static_object_factory(::static_setup::e_flag eflag, const char* pszName = "") :

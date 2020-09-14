@@ -8,7 +8,7 @@ namespace user
 
 
    class CLASS_DECL_CORE mesh_item :
-      virtual public ::generic_object
+      virtual public ::generic
    {
    public:
 
@@ -80,7 +80,7 @@ namespace user
       draw_mesh_item(mesh * pmesh);
 
 
-      __pointer(image_list) get_image_list();
+      __pointer(::image_list) get_image_list();
       bool draw_image();
       bool draw_group_image();
       void update_item_color();

@@ -50,7 +50,7 @@ namespace programming
 
          bool bNew = true;
 
-         __pointer(::aura::library) lib = pcompiler->compile(::dir::system() / "config\\xmpp_resident\\room\\ca2@livecoding.tv\\xmpp_bot.cpp", bNew);
+         __pointer(::apex::library) lib = pcompiler->compile(::dir::system() / "config\\xmpp_resident\\room\\ca2@livecoding.tv\\xmpp_bot.cpp", bNew);
 
          if (lib->m_pca2library == nullptr)
          {

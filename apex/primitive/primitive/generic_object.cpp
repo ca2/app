@@ -4,7 +4,7 @@
 void defer_delete(obj_ref_dbg* p);
 #endif
 
-generic_object::~generic_object()
+generic::~generic()
 {
 
 #if OBJ_REF_DBG
@@ -24,7 +24,7 @@ generic_object::~generic_object()
 }
 
 
-::estatus generic_object::initialize(::object* pobjectContext)
+::estatus generic::initialize(::layered * pobjectContext)
 {
 
    set_context_object(pobjectContext);
@@ -35,20 +35,20 @@ generic_object::~generic_object()
 
 
 
-void generic_object::finalize()
+void generic::finalize()
 {
 
 
 }
 
-const char* generic_object::debug_note() const
+const char* generic::debug_note() const
 {
 
    return nullptr;
 
 }
 
-//bool generic_object::is_ok() const
+//bool generic::is_ok() const
 //{
 //
 //   return has_id(OK);
@@ -58,7 +58,7 @@ const char* generic_object::debug_note() const
 
 #ifdef _DEBUG
 
-i64 generic_object::add_ref(OBJ_REF_DBG_PARAMS_DEF)
+i64 generic::add_ref(OBJ_REF_DBG_PARAMS_DEF)
 {
 
    auto c = atomic_increment(&m_countReference);
@@ -74,7 +74,7 @@ i64 generic_object::add_ref(OBJ_REF_DBG_PARAMS_DEF)
 }
 
 
-i64 generic_object::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
+i64 generic::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
 {
 
    auto c = atomic_decrement(&m_countReference);
@@ -95,7 +95,7 @@ i64 generic_object::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
 }
 
 
-i64 generic_object::release(OBJ_REF_DBG_PARAMS_DEF)
+i64 generic::release(OBJ_REF_DBG_PARAMS_DEF)
 {
 
    i64 i = dec_ref(OBJ_REF_DBG_ARGS);
@@ -115,7 +115,7 @@ i64 generic_object::release(OBJ_REF_DBG_PARAMS_DEF)
 #endif
 
 
-::generic_object * generic_object::clone() const
+::generic * generic::clone() const
 {
 
    __throw(interface_only_exception());
@@ -125,7 +125,7 @@ i64 generic_object::release(OBJ_REF_DBG_PARAMS_DEF)
 }
 
 
-void generic_object::set_context_object(::object * pobjectContext)
+void generic::set_context_object(::layered * pobjectContext)
 {
 
    auto pold = m_pobjectContext;
@@ -146,13 +146,13 @@ void generic_object::set_context_object(::object * pobjectContext)
 
 
 
-void generic_object::set_finish()
+void generic::set_finish()
 {
 
 }
 
 
-::estatus generic_object::call()
+::estatus generic::call()
 {
 
    ::estatus estatus;
@@ -175,19 +175,19 @@ void generic_object::set_finish()
 }
 
 
-void generic_object::call(const ::var & var)
+void generic::call(const ::var & var)
 {
 
 }
 
 
-void generic_object::receive_response(const ::var& var)
+void generic::receive_response(const ::var& var)
 {
 
 }
 
 
-::estatus generic_object::run()
+::estatus generic::run()
 {
 
    return ::success;
@@ -198,10 +198,10 @@ void generic_object::receive_response(const ::var& var)
 #ifdef WINDOWS
 
 
-DWORD WINAPI generic_object::s_os_thread_proc(void* p)
+DWORD WINAPI generic::s_os_thread_proc(void* p)
 {
 
-   ::generic_object* pobject = (::generic_object *) p;
+   ::generic* pobject = (::generic *) p;
 
    return pobject->__thread_proc();
 
@@ -211,10 +211,10 @@ DWORD WINAPI generic_object::s_os_thread_proc(void* p)
 #else
 
 
-void * generic_object::s_os_thread_proc(void* p)
+void * generic::s_os_thread_proc(void* p)
 {
 
-   ::generic_object* pobject = (::generic_object*) p;
+   ::generic* pobject = (::generic*) p;
 
    return (void*)(iptr)pobject->__thread_proc();
 
@@ -225,7 +225,7 @@ void * generic_object::s_os_thread_proc(void* p)
 
 
 
-::estatus generic_object::add_composite(::generic_object* pobject)
+::estatus generic::add_composite(::generic* pobject)
 {
 
    return ::success_none;
@@ -233,12 +233,12 @@ void * generic_object::s_os_thread_proc(void* p)
 }
 
 
-::estatus generic_object::os_fork(::e_priority epriority, UINT nStackSize, u32 uiCreateFlags, LPSECURITY_ATTRIBUTES psa, ITHREAD * pithread, HTHREAD * phthread)
+::estatus generic::os_fork(::e_priority epriority, UINT nStackSize, u32 uiCreateFlags, LPSECURITY_ATTRIBUTES psa, ITHREAD * pithread, HTHREAD * phthread)
 {
 
    add_ref(OBJ_REF_DBG_P_NOTE(this, "os_fork"));
 
-   ::generic_object* p = this;
+   ::generic* p = this;
 
    HTHREAD hthread = NULL_HTHREAD;
 
@@ -248,7 +248,7 @@ void * generic_object::s_os_thread_proc(void* p)
 
    DWORD dwThread = 0;
 
-   hthread = ::CreateThread(psa, nStackSize, &::generic_object::s_os_thread_proc, (LPVOID)p, uiCreateFlags, &dwThread);
+   hthread = ::CreateThread(psa, nStackSize, &::generic::s_os_thread_proc, (LPVOID)p, uiCreateFlags, &dwThread);
 
    ithread = dwThread;
 
@@ -270,7 +270,7 @@ void * generic_object::s_os_thread_proc(void* p)
    pthread_create(
       &hthread,
       &threadAttr,
-      &generic_object::s_os_thread_proc,
+      &generic::s_os_thread_proc,
       (LPVOID)p);
 
 #endif
@@ -306,7 +306,7 @@ void * generic_object::s_os_thread_proc(void* p)
 
 
 
-::estatus generic_object::add_reference(::generic_object* pobject)
+::estatus generic::add_reference(::generic* pobject)
 {
 
    return ::success_none;
@@ -314,7 +314,7 @@ void * generic_object::s_os_thread_proc(void* p)
 }
 
 
-::estatus generic_object::release_composite(::generic_object* pobject)
+::estatus generic::release_composite(::generic* pobject)
 {
 
    return ::success_none;
@@ -322,7 +322,7 @@ void * generic_object::s_os_thread_proc(void* p)
 }
 
 
-::estatus generic_object::release_reference(::generic_object* pobject)
+::estatus generic::release_reference(::generic* pobject)
 {
 
    return ::success_none;
@@ -330,7 +330,7 @@ void * generic_object::s_os_thread_proc(void* p)
 }
 
 
-::estatus generic_object::set_generic_object_name(const char* pszName)
+::estatus generic::set_generic_object_name(const char* pszName)
 {
 
    return ::success_none;
@@ -338,7 +338,7 @@ void * generic_object::s_os_thread_proc(void* p)
 }
 
 
-void generic_object::delete_this()
+void generic::delete_this()
 {
 
    try
@@ -361,7 +361,7 @@ void generic_object::delete_this()
 
 
 
-void generic_object::__tracea(::generic_object * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz)
+void generic::__tracea(::generic * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz)
 {
 
    ::__tracea(pobject, elevel, pszFunction, pszFile, iLine, psz);
@@ -369,7 +369,7 @@ void generic_object::__tracea(::generic_object * pobject, e_trace_level elevel, 
 }
 
 
-void generic_object::__tracef(::generic_object * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...)
+void generic::__tracef(::generic * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...)
 {
 
    va_list valist;
@@ -383,7 +383,7 @@ void generic_object::__tracef(::generic_object * pobject, e_trace_level elevel, 
 }
 
 
-void generic_object::__tracev(::generic_object * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list valist)
+void generic::__tracev(::generic * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list valist)
 {
 
    string str;
@@ -394,7 +394,7 @@ void generic_object::__tracev(::generic_object * pobject, e_trace_level elevel, 
 
 }
 
-e_trace_category generic_object::trace_category()
+e_trace_category generic::trace_category()
 {
 
    return trace_category_general;
@@ -402,7 +402,7 @@ e_trace_category generic_object::trace_category()
 }
 
 
-e_trace_category generic_object::trace_category(::generic_object * pobject)
+e_trace_category generic::trace_category(::generic * pobject)
 {
 
    return pobject->trace_category();
@@ -410,7 +410,7 @@ e_trace_category generic_object::trace_category(::generic_object * pobject)
 }
 
 
-const char * generic_object::topic_text() const
+const char * generic::topic_text() const
 {
 
    return typeid(*this).name();
@@ -418,7 +418,7 @@ const char * generic_object::topic_text() const
 }
 
 
-void generic_object::call_update(const ::id & id, const ::action_context & context)
+void generic::call_update(const ::id & id, const ::action_context & context)
 {
 
    auto pupdate = new_update();
@@ -435,7 +435,7 @@ void generic_object::call_update(const ::id & id, const ::action_context & conte
 
 
 
-void generic_object::call_update(const ::id & id)
+void generic::call_update(const ::id & id)
 {
 
    auto pupdate = new_update();
@@ -447,14 +447,14 @@ void generic_object::call_update(const ::id & id)
 }
 
 
-void generic_object::update(::update * pupdate)
+void generic::update(::update * pupdate)
 {
 
 
 }
 
 
-bool generic_object::already_handled(::update * pupdate) const
+bool generic::already_handled(::update * pupdate) const
 {
 
   if (::is_set(pupdate))
@@ -474,7 +474,7 @@ bool generic_object::already_handled(::update * pupdate) const
 }
 
 
-void generic_object::call_update(::update * pupdate)
+void generic::call_update(::update * pupdate)
 {
 
    if (!pupdate->handled_by(this))
@@ -489,7 +489,7 @@ void generic_object::call_update(::update * pupdate)
 }
 
 
-strsize generic_object::sz_len() const
+strsize generic::sz_len() const
 {
 
    return strlen(typeid(*this).name());
@@ -497,7 +497,7 @@ strsize generic_object::sz_len() const
 }
 
 
-void generic_object::to_sz(char * sz, strsize len) const
+void generic::to_sz(char * sz, strsize len) const
 {
 
    strncpy(sz, typeid(*this).name(), len);
@@ -505,7 +505,7 @@ void generic_object::to_sz(char * sz, strsize len) const
 }
 
 
-::estatus generic_object::__thread_main()
+::estatus generic::__thread_main()
 {
 
    ::estatus estatus = call();
@@ -515,7 +515,7 @@ void generic_object::to_sz(char * sz, strsize len) const
 }
 
 
-::estatus generic_object::__thread_proc()
+::estatus generic::__thread_proc()
 {
 
    ::u32 u = -1;
@@ -583,7 +583,7 @@ void generic_object::to_sz(char * sz, strsize len) const
 
 
 
-::estatus generic_object::osthread_init()
+::estatus generic::osthread_init()
 {
 
    return ::success;
@@ -591,7 +591,7 @@ void generic_object::to_sz(char * sz, strsize len) const
 }
 
 
-::estatus generic_object::__thread_init()
+::estatus generic::__thread_init()
 {
 
    return ::success;
@@ -599,7 +599,7 @@ void generic_object::to_sz(char * sz, strsize len) const
 }
 
 
-::estatus generic_object::__thread_term()
+::estatus generic::__thread_term()
 {
 
    return ::success;
@@ -607,7 +607,7 @@ void generic_object::to_sz(char * sz, strsize len) const
 }
 
 
-::estatus generic_object::osthread_term()
+::estatus generic::osthread_term()
 {
 
    return ::success;
@@ -615,13 +615,13 @@ void generic_object::to_sz(char * sz, strsize len) const
 }
 
 
-void generic_object::exchange(stream& s)
+void generic::exchange(stream& s)
 {
 
 }
 
 
-stream & generic_object::write(stream& s) const
+stream & generic::write(stream& s) const
 {
 
    return s;
@@ -629,7 +629,7 @@ stream & generic_object::write(stream& s) const
 }
 
 
-stream& generic_object::read(stream& s)
+stream& generic::read(stream& s)
 {
 
    return s;
@@ -637,7 +637,7 @@ stream& generic_object::read(stream& s)
 }
 
 
-void generic_object::to_string(string& str) const
+void generic::to_string(string& str) const
 {
 
    str = type_c_str();

@@ -28,7 +28,7 @@
          {
 
 
-            frame_008::frame_008(::object * pobject) :
+            frame_008::frame_008(::layered * pobjectContext) :
                object(pobject),
                frame(pobject)
             {

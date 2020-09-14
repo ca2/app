@@ -4,16 +4,18 @@
 namespace data
 {
 
+
    class data;
 
 
    class CLASS_DECL_APEX listener :
-      virtual public ::object
+      virtual public ::generic
    {
    public:
 
 
       data_map             m_datamap;
+      
 
 
       listener();

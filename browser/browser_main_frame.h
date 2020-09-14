@@ -14,7 +14,7 @@ namespace browser
       bool                       m_bExplicitTranslucency;
 
 
-      main_frame(::object * pobject);
+      main_frame(::layered * pobjectContext);
       virtual ~main_frame();
 
 

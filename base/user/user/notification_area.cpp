@@ -34,7 +34,7 @@ namespace user
 #endif
    }
 
-   void notification_area::Initialize(::object * pobject)
+   void notification_area::Initialize(::layered * pobjectContext)
    {
 
 #ifdef WINDOWS_DESKTOP

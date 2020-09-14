@@ -101,7 +101,7 @@ public:
    pointer_array < db_str_set_queue_item >      m_itema;
 
 
-   db_str_sync_queue(::object * pobject):
+   db_str_sync_queue(::layered * pobjectContext):
       ::object(pobject),
       thread(pobject),
       ::thread(pobject),
@@ -249,7 +249,7 @@ m_mutex(pserver->get_context_application())
 db_str_set::~db_str_set()
 {
 
-   ::aura::del(m_pcore);
+   ::acme::del(m_pcore);
 
 }
 

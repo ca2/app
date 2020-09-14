@@ -41,7 +41,7 @@ COLORREF SetAValue(BYTE a, COLORREF cr)
 
 
 
-            frame_002::frame_002(::object * pobject) :
+            frame_002::frame_002(::layered * pobjectContext) :
                object(pobject),
                frame(pobject)
             {

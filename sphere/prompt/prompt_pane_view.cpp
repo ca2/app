@@ -6,7 +6,7 @@ namespace prompt
 {
 
 
-   pane_view::pane_view(::object * pobject) :
+   pane_view::pane_view(::layered * pobjectContext) :
       ::object(pobject),
       ::user::tab_view(pobject),
       ::userex::pane_tab_view(pobject),

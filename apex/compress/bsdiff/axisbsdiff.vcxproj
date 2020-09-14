@@ -536,7 +536,7 @@
     <ClInclude Include="libbsdiff.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\aura\aura.vcxproj">
+    <ProjectReference Include="..\..\apex\apex.vcxproj">
       <Project>{03e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
     </ProjectReference>
     <ProjectReference Include="..\bzip2\axisbzip2.vcxproj">

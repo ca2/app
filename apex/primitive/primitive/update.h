@@ -9,12 +9,12 @@ public:
 
    ::u64                                  m_uId; // this 'id' <=== 'update {id}'
    bool                                   m_bRet;
-   ::generic_object *                     m_psender;
-   ::object *                             m_pobjectTopic;
+   __pointer(::layered)                   m_psender;
+   __pointer(::object)                    m_pobjectTopic;
    ::action_context                       m_actioncontext;
-   address_array < ::generic_object * >   m_handledbya;
-   __pointer(::user::interaction)         m_puserinteraction;
-   ::user::control_event *                m_pcontrolevent;
+   address_array < ::generic * >          m_handledbya;
+   __pointer(::layered)                   m_puserinteraction; // user::interaction
+   __pointer(::layered)                   m_pcontrolevent; // user::control_event
    __pointer(::file::item)                m_pfileitem;
    ::user::e_key                          m_ekey;
 
@@ -27,8 +27,8 @@ public:
    inline bool operator ==(::u64 uId) const { return m_uId == uId || m_uId == FULL_ID; }
 
 
-   void set_handled_by(const ::generic_object * pobject) { m_handledbya.add((::generic_object *) pobject); }
-   bool handled_by(const ::generic_object * pobject) const { return m_handledbya.has((::generic_object *) pobject); }
+   void set_handled_by(const ::generic * pobject) { m_handledbya.add((::generic *) pobject); }
+   bool handled_by(const ::generic * pobject) const { return m_handledbya.has((::generic *) pobject); }
 
 
    template < typename CAST >

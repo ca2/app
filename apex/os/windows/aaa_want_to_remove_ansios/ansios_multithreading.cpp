@@ -257,7 +257,7 @@ void __node_term_multithreading()
 
 bool (* g_pfn_defer_process_x_message)(HTHREAD hthread,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek) = nullptr;
 
-bool aura_defer_process_x_message(HTHREAD hthread,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek)
+bool apex_defer_process_x_message(HTHREAD hthread,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek)
 {
 
    if(g_pfn_defer_process_x_message == nullptr)

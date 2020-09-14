@@ -1843,3 +1843,16 @@ extern "C" int make_path(const char * psz)
 
 
 
+CLASS_DECL_ACME void set_path_install_folder(const char * pszPath)
+{
+
+   if (g_ppathInstallFolder == nullptr)
+   {
+
+      g_ppathInstallFolder = new ::file::path();
+
+   }
+
+   g_ppathInstallFolder->operator=(pszPath);
+
+}

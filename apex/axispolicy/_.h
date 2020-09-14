@@ -191,6 +191,7 @@ class ifs;
 
 #include "axis/axis/application.h"
 
+#include "apex/user/_const_key.h"
 
 #include "axis/axis/session.h"
 

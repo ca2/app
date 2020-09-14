@@ -3,11 +3,12 @@
 #include "aura/user/_user.h"
 #endif
 #include "aura/const/id.h"
-#include "aura/platform/app_core.h"
-#include "aura/platform/static_setup.h"
+#include "apex/platform/app_core.h"
+#include "apex/platform/static_setup.h"
+#include "apex/platform/str_context.h"
 
 
-CLASS_DECL_AURA ::user::interaction * create_system_message_window(::object* pobject);
+CLASS_DECL_AURA ::user::interaction * create_system_message_window(::layered * pobject);
 
 
 #if defined(APPLE_IOS)
@@ -41,9 +42,9 @@ extern "C"
 void defer_term_ui();
 
 
-bool is_verbose();
+//bool is_verbose();
 
-//extern string_map < __pointer(::aura::library) >* g_pmapLibrary;
+//extern string_map < __pointer(::apex::library) >* g_pmapLibrary;
 //extern ::mutex * &::get_context_system()->m_mutexLibrary;
 //extern string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
 
@@ -66,6 +67,8 @@ namespace aura
 
    session::session()
    {
+
+      m_paurasession = this;
 
       m_bAcceptsFirstResponder = true;
 
@@ -105,7 +108,7 @@ namespace aura
    }
 
 
-   ::estatus session::initialize(::object * pobjectContext)
+   ::estatus session::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::thread::initialize(pobjectContext);
@@ -354,7 +357,7 @@ namespace aura
 
       INFO("aura::session::process_init");
 
-      auto estatus = ::context::initialize_context();
+      auto estatus = ::apex::session::process_init();
 
       if (!estatus)
       {
@@ -362,6 +365,7 @@ namespace aura
          return estatus;
 
       }
+
 
       estatus = __compose_new(m_puserstrcontext);
 
@@ -374,7 +378,9 @@ namespace aura
 
       }
 
-      if(System.m_bAvoidFirstResponder)
+      auto& system = System;
+
+      if(system.m_bAvoidFirstResponder)
       {
 
          m_bAcceptsFirstResponder = false;
@@ -560,7 +566,7 @@ namespace aura
 
       }
 
-      return ::aura::context_thread::on_get_thread_name(strThreadName);
+      return ::apex::session::on_get_thread_name(strThreadName);
 
    }
 
@@ -568,214 +574,216 @@ namespace aura
    void session::on_request(::create * pcreate)
    {
 
-      // it was here
-      //auto estatus = defer_initialize_host_window();
-      //
-      //if(!estatus)
+      ::apex::session::on_request(pcreate);
+
+      //// it was here
+      ////auto estatus = defer_initialize_host_window();
+      ////
+      ////if(!estatus)
+      ////{
+      ////
+      ////   __throw(::exception::exception(estatus));
+      ////
+      ////}
+
+      //if (pcreate->m_ecommand == command_protocol)
       //{
-      //
-      //   __throw(::exception::exception(estatus));
-      //
+
+      //   m_pappCurrent->do_request(pcreate);
+
+      //   return;
+
       //}
 
-      if (pcreate->m_ecommand == command_protocol)
-      {
+      //TRACE("::aura::session::on_request(__pointer(::create)) " + string(type_name()));
 
-         m_pappCurrent->do_request(pcreate);
+      //INFO("::aura::session::on_request(__pointer(::create)) %s ", __c_str(THIS_FRIENDLY_NAME()));
 
-         return;
-
-      }
-
-      TRACE("::aura::session::on_request(__pointer(::create)) " + string(type_name()));
-
-      INFO("::aura::session::on_request(__pointer(::create)) %s ", __c_str(THIS_FRIENDLY_NAME()));
-
-      if (pcreate->m_strAppId.has_char())
-      {
-
-         INFO("m_strAppId = " + pcreate->m_strAppId);
-
-         start_application(pcreate->m_strAppId, pcreate, m_strLocale, m_strSchema);
-
-         return;
-
-      }
-
-      INFO("m_strAppId Is Empty!!");
-
-      string strApp = pcreate->m_pcommandline->m_strApp;
-
-      if (strApp == "app/sphere/userstack")
-      {
-
-         start_application("app/sphere/userstack", pcreate, m_strLocale, m_strSchema);
-
-      }
-
-      m_varCurrentViewFile = pcreate->m_pcommandline->m_varFile;
-
-
-      //string strApp;
-
-      //if ((pcreate->m_pcommandline->m_varQuery["app"].array_get_count() > 1
-      //      || pcreate->m_pcommandline->m_varQuery["show_platform"] == 1 || m_varTopicQuery["show_platform"] == 1)
-      //      && (!(bool)pcreate->m_pcommandline->m_varQuery.has_property("client_only") && !(bool)has_property("client_only"))
-      //      && (!pcreate->m_pcommandline->m_varQuery.has_property("client_only") && !has_property("client_only")))
+      //if (pcreate->m_strAppId.has_char())
       //{
-      //   m_bShowPlatform = true;
+
+      //   INFO("m_strAppId = " + pcreate->m_strAppId);
+
+      //   start_application(pcreate->m_strAppId, pcreate, m_strLocale, m_strSchema);
+
+      //   return;
+
       //}
 
-      bool bCreate = true;
-      if (pcreate->m_pcommandline->m_strApp.is_empty())
-      {
-         if (!pcreate->m_pcommandline->m_varFile.is_empty())
-         {
-            if (!open_by_file_extension(pcreate))
-            {
-               if (m_pappCurrent != nullptr)
-               {
-                  App(m_pappCurrent).request({pcreate});
-               }
-            }
-         }
-         else if (m_bShowPlatform)
-         {
-            //create_bergedge(pcreate);
-            //if(get_document() != nullptr && get_document()->get_typed_view < ::bergedge::view >() != nullptr)
-            //{
-            //   __pointer(::simple_frame_window) pframe =  (get_document()->get_typed_view < ::bergedge::view >()->GetParentFrame());
-            //   if(pframe != nullptr)
-            //   {
-            //      pframe->display(display_normal);
-            //      pframe->InitialFramePosition();
-            //   }
-            //}
-         }
-         if (pcreate->m_pcommandline->m_varQuery["app"].array_get_count() <= 0)
-         {
-            bCreate = false;
-         }
-      }
-      if (bCreate)
-      {
-         if (pcreate->m_pcommandline->m_strApp == "bergedge")
-         {
-            if (pcreate->m_pcommandline->m_varQuery.has_property("session_start"))
-            {
-               strApp = pcreate->m_pcommandline->m_varQuery["session_start"];
-            }
-            else
-            {
-               strApp = "bergedge";
-            }
-         }
-         else
-         {
-            strApp = pcreate->m_pcommandline->m_strApp;
-         }
+      //INFO("m_strAppId Is Empty!!");
+
+      //string strApp = pcreate->m_pcommandline->m_strApp;
+
+      //if (strApp == "app/sphere/userstack")
+      //{
+
+      //   start_application("app/sphere/userstack", pcreate, m_strLocale, m_strSchema);
+
+      //}
+
+      //m_varCurrentViewFile = pcreate->m_pcommandline->m_varFile;
 
 
-         if (pcreate->m_pcommandline->m_varQuery["app"].stra().find_first_ci(strApp) < 0)
-         {
+      ////string strApp;
 
-            pcreate->m_pcommandline->m_varQuery["app"].stra().insert_at(0, strApp);
+      ////if ((pcreate->m_pcommandline->m_varQuery["app"].array_get_count() > 1
+      ////      || pcreate->m_pcommandline->m_varQuery["show_platform"] == 1 || m_varTopicQuery["show_platform"] == 1)
+      ////      && (!(bool)pcreate->m_pcommandline->m_varQuery.has_property("client_only") && !(bool)has_property("client_only"))
+      ////      && (!pcreate->m_pcommandline->m_varQuery.has_property("client_only") && !has_property("client_only")))
+      ////{
+      ////   m_bShowPlatform = true;
+      ////}
 
-         }
+      //bool bCreate = true;
+      //if (pcreate->m_pcommandline->m_strApp.is_empty())
+      //{
+      //   if (!pcreate->m_pcommandline->m_varFile.is_empty())
+      //   {
+      //      if (!open_by_file_extension(pcreate))
+      //      {
+      //         if (m_pappCurrent != nullptr)
+      //         {
+      //            App(m_pappCurrent).request({pcreate});
+      //         }
+      //      }
+      //   }
+      //   else if (m_bShowPlatform)
+      //   {
+      //      //create_bergedge(pcreate);
+      //      //if(get_document() != nullptr && get_document()->get_typed_view < ::bergedge::view >() != nullptr)
+      //      //{
+      //      //   __pointer(::simple_frame_window) pframe =  (get_document()->get_typed_view < ::bergedge::view >()->GetParentFrame());
+      //      //   if(pframe != nullptr)
+      //      //   {
+      //      //      pframe->display(display_normal);
+      //      //      pframe->InitialFramePosition();
+      //      //   }
+      //      //}
+      //   }
+      //   if (pcreate->m_pcommandline->m_varQuery["app"].array_get_count() <= 0)
+      //   {
+      //      bCreate = false;
+      //   }
+      //}
+      //if (bCreate)
+      //{
+      //   if (pcreate->m_pcommandline->m_strApp == "bergedge")
+      //   {
+      //      if (pcreate->m_pcommandline->m_varQuery.has_property("session_start"))
+      //      {
+      //         strApp = pcreate->m_pcommandline->m_varQuery["session_start"];
+      //      }
+      //      else
+      //      {
+      //         strApp = "bergedge";
+      //      }
+      //   }
+      //   else
+      //   {
+      //      strApp = pcreate->m_pcommandline->m_strApp;
+      //   }
 
-         for (i32 i = 0; i < pcreate->m_pcommandline->m_varQuery["app"].stra().get_count(); i++)
-         {
 
-            strApp = pcreate->m_pcommandline->m_varQuery["app"].stra()[i];
+      //   if (pcreate->m_pcommandline->m_varQuery["app"].stra().find_first_ci(strApp) < 0)
+      //   {
 
-            if (strApp.is_empty() || strApp == "bergedge")
-            {
+      //      pcreate->m_pcommandline->m_varQuery["app"].stra().insert_at(0, strApp);
 
-               return;
+      //   }
 
-            }
+      //   for (i32 i = 0; i < pcreate->m_pcommandline->m_varQuery["app"].stra().get_count(); i++)
+      //   {
 
-            if (strApp == "session")
-            {
+      //      strApp = pcreate->m_pcommandline->m_varQuery["app"].stra()[i];
 
-               continue;
+      //      if (strApp.is_empty() || strApp == "bergedge")
+      //      {
 
-            }
+      //         return;
 
-            ::aura::application * papp = application_get(strApp, true, true, pcreate);
+      //      }
 
-            if (papp == nullptr)
-            {
+      //      if (strApp == "session")
+      //      {
 
-               if(System.has_property("install")
-                     || System.has_property("uninstall"))
-               {
+      //         continue;
 
-                  ::multithreading::set_finish(&System);
+      //      }
 
-               }
-               else
-               {
+      //      ::aura::application * papp = application_get(strApp, true, true, pcreate);
 
-                  message_box("Could not create requested application: \"" + strApp + "\"");
+      //      if (papp == nullptr)
+      //      {
 
-                  ::count c = System.value("app").array_get_count();
+      //         if(System.has_property("install")
+      //               || System.has_property("uninstall"))
+      //         {
 
-                  if (c == 1 && System.value("app").at(0) == strApp)
-                  {
+      //            ::multithreading::set_finish(&System);
 
-                     ::multithreading::set_finish(&System);
+      //         }
+      //         else
+      //         {
 
-                  }
+      //            message_box("Could not create requested application: \"" + strApp + "\"");
 
-               }
+      //            ::count c = System.value("app").array_get_count();
 
-               return;
+      //            if (c == 1 && System.value("app").at(0) == strApp)
+      //            {
 
-            }
+      //               ::multithreading::set_finish(&System);
 
-            pcreate->m_pcommandline->m_eventReady.ResetEvent();
+      //            }
 
-            if (strApp != "bergedge")
-            {
+      //         }
 
-               if(!papp->on_start_application())
-               {
+      //         return;
 
-                  TRACE("One or more errors occurred during on_start_application execution.");
+      //      }
 
-               }
+      //      pcreate->m_pcommandline->m_eventReady.ResetEvent();
 
-               //if (System.is_true("install"))
-               if (is_true("install"))
-               {
+      //      if (strApp != "bergedge")
+      //      {
 
-                  papp->do_install();
+      //         if(!papp->on_start_application())
+      //         {
 
-                  System.finalize();
+      //            TRACE("One or more errors occurred during on_start_application execution.");
 
-               }
-               else
-               {
+      //         }
 
-                  if (!papp->is_system() && !papp->is_session())
-                  {
+      //         //if (System.is_true("install"))
+      //         if (is_true("install"))
+      //         {
 
-                     System.merge_accumulated_on_open_file(pcreate);
+      //            papp->do_install();
 
-                  }
+      //            System.finalize();
 
-                  papp->request({pcreate});
+      //         }
+      //         else
+      //         {
 
-               }
+      //            if (!papp->is_system() && !papp->is_session())
+      //            {
 
-               m_pappCurrent = papp;
+      //               System.merge_accumulated_on_open_file(pcreate);
 
-            }
+      //            }
 
-         }
+      //            papp->request({pcreate});
 
-      }
+      //         }
+
+      //         m_pappCurrent = papp;
+
+      //      }
+
+      //   }
+
+      //}
 
    }
 
@@ -871,7 +879,7 @@ namespace aura
 
       }
 
-      ::aura::application* papp = application_get(strId, true, true, pcreate);
+      ::apex::application* papp = application_get(strId, true, true, pcreate);
 
       if (papp == nullptr)
       {
@@ -887,82 +895,82 @@ namespace aura
    }
 
 
-   ::aura::application * session::application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate)
-   {
+   //::aura::application * session::application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate)
+   //{
 
-      __pointer(::aura::application) papp;
+   //   __pointer(::aura::application) papp;
 
-      if (m_applicationa.lookup(pszAppId, papp))
-      {
+   //   if (m_applicationa.lookup(pszAppId, papp))
+   //   {
 
-         return papp;
+   //      return papp;
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         if (!bCreate)
-         {
+   //      if (!bCreate)
+   //      {
 
-            return nullptr;
+   //         return nullptr;
 
-         }
+   //      }
 
-         papp = nullptr;
+   //      papp = nullptr;
 
-         try
-         {
+   //      try
+   //      {
 
-            papp = create_application(pszAppId, bSynch, pcreate);
+   //         papp = create_application(pszAppId, bSynch, pcreate);
 
-         }
-         catch (::exception_pointer pe)
-         {
+   //      }
+   //      catch (::exception_pointer pe)
+   //      {
 
-            // aura::session, axis::session and ::base::session, could get more specialized handling in aura::application (aura::system)
-            // Thank you Mummi (em Santos, cuidando do Lucinho e ajudando um monte a Carô e o Lúcio e Eu 2019-01-15) !! Thank you God!! <3tbs
+   //         // aura::session, axis::session and ::base::session, could get more specialized handling in aura::application (aura::system)
+   //         // Thank you Mummi (em Santos, cuidando do Lucinho e ajudando um monte a Carô e o Lúcio e Eu 2019-01-15) !! Thank you God!! <3tbs
 
-            handle_exception(pe);
+   //         handle_exception(pe);
 
-            //if (!Sys(this).on_run_exception(esp))
-            //{
+   //         //if (!Sys(this).on_run_exception(esp))
+   //         //{
 
-            //   if (!App(this).on_run_exception(esp))
-            //   {
+   //         //   if (!App(this).on_run_exception(esp))
+   //         //   {
 
-            //      papp = nullptr;
+   //         //      papp = nullptr;
 
-            //   }
+   //         //   }
 
-            //}
+   //         //}
 
-            //papp = nullptr;
+   //         //papp = nullptr;
 
-         }
-         catch (...)
-         {
+   //      }
+   //      catch (...)
+   //      {
 
-            //papp = nullptr;
+   //         //papp = nullptr;
 
-         }
+   //      }
 
-         if (!papp)
-         {
+   //      if (!papp)
+   //      {
 
-            return nullptr;
+   //         return nullptr;
 
-         }
+   //      }
 
-         app_add(papp);
+   //      app_add(papp);
 
-         return papp;
+   //      return papp;
 
-      }
+   //   }
 
-   }
+   //}
 
 
-//   __pointer(::aura::application) session::get_new_application(::object * pobjectContext, const char * pszAppId)
+//   __pointer(::aura::application) session::get_new_application(::layered * pobjectContext, const char * pszAppId)
 //   {
 //
 //      string strAppId(pszAppId);
@@ -1001,7 +1009,7 @@ namespace aura
 //         }
 //         sync_lock sl(&::get_context_system()->m_mutexLibrary);
 //
-//         __pointer(::aura::library) & plibrary = &::get_context_system()->m_mapLibrary[pszAppId];
+//         __pointer(::apex::library) & plibrary = &::get_context_system()->m_mapLibrary[pszAppId];
 //
 //         if (!plibrary)
 //         {
@@ -1056,7 +1064,7 @@ namespace aura
 //                  else
 //                  {
 //
-//                     plibrary = __new(::aura::library);
+//                     plibrary = __new(::apex::library);
 //
 //                     plibrary->initialize_aura_library(pobjectContext, 0, nullptr);
 //
@@ -1144,7 +1152,7 @@ namespace aura
 //
 //         {
 //
-//            ::aura::library & library = *plibrary;
+//            ::apex::library & library = *plibrary;
 //
 //
 //            papp = library.get_new_application(this, strAppId);
@@ -3017,8 +3025,8 @@ namespace aura
          || rectIntersect.width() > sizeMax.cx || rectIntersect.height() > sizeMax.cy )
       {
 
-         if (rectMonitor.width() / 7 + MAX(sizeMin.cx, rectMonitor.width() * 2 / 5) > rectMonitor.width()
-               || rectMonitor.height() / 7 + MAX(sizeMin.cy, rectMonitor.height() * 2 / 5) > rectMonitor.width())
+         if (rectMonitor.width() / 7 + max(sizeMin.cx, rectMonitor.width() * 2 / 5) > rectMonitor.width()
+               || rectMonitor.height() / 7 + max(sizeMin.cy, rectMonitor.height() * 2 / 5) > rectMonitor.width())
          {
 
             rectRestore = rectMonitor;
@@ -3031,9 +3039,9 @@ namespace aura
 
             rectRestore.top = rectMonitor.top + rectMonitor.height() / 7;
 
-            rectRestore.right = rectRestore.left + MAX(sizeMin.cx, rectMonitor.width() * 2 / 5);
+            rectRestore.right = rectRestore.left + max(sizeMin.cx, rectMonitor.width() * 2 / 5);
 
-            rectRestore.bottom = rectRestore.top + MAX(sizeMin.cy, rectMonitor.height() * 2 / 5);
+            rectRestore.bottom = rectRestore.top + max(sizeMin.cy, rectMonitor.height() * 2 / 5);
 
             if (rectRestore.right > rectMonitor.right - rectMonitor.width() / 7)
             {
@@ -3732,7 +3740,7 @@ ret:
    }
 
 
-   ::user::interaction * session::get_bound_ui(::id idView)
+   ::user::primitive * session::get_bound_ui(::id idView)
    {
 
       auto p = m_mapboundui.plookup(idView);
@@ -4064,7 +4072,7 @@ ret:
       if (System.m_bUser)
       {
 
-         Context.os().enum_draw2d_fonts(m_fontenumitema);
+         System.draw2d().enum_draw2d_fonts(m_fontenumitema);
 
       }
 
@@ -4363,7 +4371,7 @@ ret:
       try
       {
 
-         ::aura::del(m_pmapKeyPressed);
+         ::acme::del(m_pmapKeyPressed);
 
       }
       catch (...)
@@ -4454,7 +4462,7 @@ namespace aura
 
 
 
-   //::estatus session::initialize(::object* pobjectContext)
+   //::estatus session::initialize(::layered * pobjectContext)
    //{
 
    //   auto estatus = ::aura::session::initialize(pobjectContext);
@@ -5007,7 +5015,7 @@ namespace aura
    void session::set_app_title(const char* pszAppId, const char* pszTitle)
    {
 
-      __pointer(::aura::application) papp;
+      __pointer(::apex::application) papp;
 
       if (m_applicationa.lookup(pszAppId, papp) && papp)
       {
@@ -5037,14 +5045,12 @@ namespace aura
    }
 
 
-
-   __pointer(::aura::session) session::get_context_session()
+   __pointer(::apex::session) session::get_context_session()
    {
 
       return this;
 
    }
-
 
 
    //   bool session::is_serviceable() const
@@ -5462,7 +5468,7 @@ namespace aura
    //}
 
 
-   //::estatus session::initialize(::object* pobjectContext)
+   //::estatus session::initialize(::layered * pobjectContext)
    //{
 
    //   auto estatus = ::aura::session::initialize(pobjectContext);
@@ -5935,11 +5941,13 @@ namespace aura
    void session::finalize()
    {
 
-      ::aura::context_thread::finalize();
+      ::apex::context_thread::finalize();
 
    }
 
+
    __namespace_session_factory(session);
+
 
 } // namespace aura
 
@@ -5953,7 +5961,7 @@ void os_on_finish_launching()
 
    auto psession = psystem->get_context_session();
 
-   auto puiHost = psession->m_puiHost;
+   auto puiHost = __user_interaction(psession->m_puiHost);
 
    puiHost->display(display_full_screen);
 
@@ -5964,3 +5972,6 @@ void os_on_finish_launching()
    puiHost->post_redraw();
 
 }
+
+
+

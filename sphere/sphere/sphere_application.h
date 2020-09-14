@@ -39,7 +39,7 @@ namespace sphere
       string_map < __pointer(::experience::experience) >  m_mapExperience;
 
 
-      application(::object * pobject);
+      application(::layered * pobjectContext);
       virtual ~application();
 
       virtual ::estatus init_instance() override;

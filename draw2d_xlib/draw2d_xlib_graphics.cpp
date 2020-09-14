@@ -10,7 +10,7 @@ namespace draw2d_xlib
 {
 
 
-   graphics::graphics(::object * pobject) :
+   graphics::graphics(::layered * pobjectContext) :
       ::object(pobject),
       ::draw2d::graphics(pobject)
       //,     m_ui(pobject)
@@ -3164,7 +3164,7 @@ namespace draw2d_xlib
    /////////////////////////////////////////////////////////////////////////////
    // special graphics drawing primitives/helpers
 
-   ::draw2d::brush* PASCAL graphics::GetHalftoneBrush(::object * pobject)
+   ::draw2d::brush* PASCAL graphics::GetHalftoneBrush(::layered * pobjectContext)
    {
       /*      ::aura::LockGlobals(CRIT_HALFTONEBRUSH);
             if (gen_HalftoneBrush == nullptr)

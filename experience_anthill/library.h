@@ -11,7 +11,7 @@ namespace experience
 
 
          class CLASS_DECL_APP_EXPERIENCE_ANTHILL library:
-            virtual public ::aura::library
+            virtual public ::apex::library
          {
          public:
 
@@ -20,7 +20,7 @@ namespace experience
             virtual ~library();
 
 
-            virtual ::context_object * new_object(::object * pobjectContext, const char * pszClass) override;
+            virtual ::context_object * new_object(::layered * pobjectContext, const char * pszClass) override;
 
 
          };

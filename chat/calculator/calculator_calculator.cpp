@@ -5,9 +5,9 @@ namespace calculator
 {
 
 
-   calculator::calculator(::object * pobject) :
+   calculator::calculator(::layered * pobjectContext) :
       ::object(pobject),
-      ::aura::department(pobject)
+      ::apex::department(pobject)
    {
    
    }

@@ -17,7 +17,7 @@
 void __term_threading();
 void __term_windowing();
 
-bool is_verbose();
+CLASS_DECL_ACME bool is_verbose();
 
 
 //::acme::system * app_common_prelude(int & iError, ::create * & pmaininitdata, app_core & appcore,  HINSTANCE hinstance = nullptr, HINSTANCE hinstancePrev = nullptr, const char * pszCmdLine = nullptr, int nShowCmd = display_normal);
@@ -27,35 +27,14 @@ bool is_verbose();
 
 CLASS_DECL_ACME i32 __cdecl _memory_type(const void * p);
 
-Gdiplus::GdiplusStartupInput *   g_pgdiplusStartupInput     = nullptr;
-Gdiplus::GdiplusStartupOutput *  g_pgdiplusStartupOutput    = nullptr;
-DWORD_PTR                        g_gdiplusToken             = NULL;
-DWORD_PTR                        g_gdiplusHookToken         = NULL;
+
+// typedef int
+// (WINAPI * LPFN_ChangeWindowMessageFilter)(
+// UINT message,
+// DWORD dwFlag);
 
 
-typedef int
-(WINAPI * LPFN_ChangeWindowMessageFilter)(
-UINT message,
-DWORD dwFlag);
-
-
-LPFN_ChangeWindowMessageFilter g_pfnChangeWindowMessageFilter = nullptr;
-
-typedef
-LSTATUS
-( APIENTRY * LPFN_RegGetValueW) (
-HKEY hkey,
-LPCWSTR pSubKey,
-
-LPCWSTR pValue,
-
-u32 dwFlags,
-LPDWORD pdwType,
-PVOID pvData,
-LPDWORD pcbData
-);
-
-LPFN_RegGetValueW g_pfnRegGetValueW = nullptr;
+//LPFN_ChangeWindowMessageFilter g_pfnChangeWindowMessageFilter = nullptr;
 
 
 // bool defer_co_initialize_ex(bool bMultiThread, bool bDisableOleDDE)
@@ -107,7 +86,7 @@ LPFN_RegGetValueW g_pfnRegGetValueW = nullptr;
 
 // }
 
-bool defer_init_winsock();
+// bool defer_init_winsock();
 
 
 bool __node_acme_pre_init()
@@ -115,37 +94,37 @@ bool __node_acme_pre_init()
 
    //xxdebug_box("__node_acme_pre_init","box",MB_OK);
 
-   g_pgdiplusStartupInput     = new Gdiplus::GdiplusStartupInput();
+   //g_pgdiplusStartupInput     = new Gdiplus::GdiplusStartupInput();
 
-   g_pgdiplusStartupOutput    = new Gdiplus::GdiplusStartupOutput();
+   //g_pgdiplusStartupOutput    = new Gdiplus::GdiplusStartupOutput();
 
-   g_gdiplusToken             = NULL;
+   //g_gdiplusToken             = NULL;
 
-   g_gdiplusHookToken         = NULL;
+   //g_gdiplusHookToken         = NULL;
 
-   g_pgdiplusStartupInput->SuppressBackgroundThread = TRUE;
+   //g_pgdiplusStartupInput->SuppressBackgroundThread = TRUE;
 
-   Gdiplus::Status statusStartup = GdiplusStartup(&g_gdiplusToken,g_pgdiplusStartupInput,g_pgdiplusStartupOutput);
+   //Gdiplus::Status statusStartup = GdiplusStartup(&g_gdiplusToken,g_pgdiplusStartupInput,g_pgdiplusStartupOutput);
 
-   if(statusStartup != Gdiplus::Ok)
-   {
+   //if(statusStartup != Gdiplus::Ok)
+   //{
 
-      message_box("Gdiplus Failed to Startup. ca cannot continue.","Gdiplus Failure",MB_ICONERROR);
+   //   message_box("Gdiplus Failed to Startup. ca cannot continue.","Gdiplus Failure",MB_ICONERROR);
 
-      return 0;
+   //   return 0;
 
-   }
+   //}
 
-   statusStartup = g_pgdiplusStartupOutput->NotificationHook(&g_gdiplusHookToken);
+   //statusStartup = g_pgdiplusStartupOutput->NotificationHook(&g_gdiplusHookToken);
 
-   if(statusStartup != Gdiplus::Ok)
-   {
+   //if(statusStartup != Gdiplus::Ok)
+   //{
 
-      os_message_box(nullptr,"Gdiplus Failed to Hook. ca cannot continue.","Gdiplus Failure",MB_ICONERROR);
+   //   os_message_box(nullptr,"Gdiplus Failed to Hook. ca cannot continue.","Gdiplus Failure",MB_ICONERROR);
 
-      return 0;
+   //   return 0;
 
-   }
+   //}
 
 // #ifndef USE_OS_IMAGE_LOADER
 
@@ -172,17 +151,21 @@ bool __node_acme_pre_init()
 
 }
 
+
+void windows_registry_init();
+
+
+
 bool __node_acme_pos_init()
 {
 
    _set_purecall_handler(_ca2_purecall);
 
-   HMODULE hmoduleUser32 = ::LoadLibraryW(L"User32");
-   g_pfnChangeWindowMessageFilter = (LPFN_ChangeWindowMessageFilter) ::GetProcAddress(hmoduleUser32, "ChangeWindowMessageFilter");
+   //HMODULE hmoduleUser32 = ::LoadLibraryW(L"User32");
+   //g_pfnChangeWindowMessageFilter = (LPFN_ChangeWindowMessageFilter) ::GetProcAddress(hmoduleUser32, "ChangeWindowMessageFilter");
 
 
-   HMODULE hmoduleAdvApi32 = ::LoadLibraryW(L"AdvApi32");
-   g_pfnRegGetValueW = (LPFN_RegGetValueW) ::GetProcAddress(hmoduleAdvApi32, "RegGetValueW");
+   windows_registry_init();
 
 
 
@@ -220,18 +203,18 @@ bool __node_acme_pos_term()
 // #endif // USE_OS_IMAGE_LOADER
 
 
-   if (g_pgdiplusStartupOutput != nullptr)
-   {
+   //if (g_pgdiplusStartupOutput != nullptr)
+   //{
 
-      g_pgdiplusStartupOutput->NotificationUnhook(g_gdiplusHookToken);
-
-
-      ::Gdiplus::GdiplusShutdown(g_gdiplusToken);
+   //   g_pgdiplusStartupOutput->NotificationUnhook(g_gdiplusHookToken);
 
 
-      ::acme::del(g_pgdiplusStartupInput);
-      ::acme::del(g_pgdiplusStartupOutput);
-   }
+   //   ::Gdiplus::GdiplusShutdown(g_gdiplusToken);
+
+
+   //   ::acme::del(g_pgdiplusStartupInput);
+   //   ::acme::del(g_pgdiplusStartupOutput);
+   //}
 
    if (is_verbose())
    {
@@ -250,30 +233,6 @@ bool __node_acme_pos_term()
 
 }
 
-
-int WinRegGetValueW(HKEY hkey, LPCWSTR pSubKey, LPCWSTR lpValue, DWORD dwFlags, LPDWORD pdwType, PVOID pvData, LPDWORD pcbData)
-
-{
-
-   if(g_pfnRegGetValueW != nullptr)
-   {
-      return g_pfnRegGetValueW(hkey, pSubKey, lpValue, dwFlags, pdwType, pvData, pcbData);
-
-   }
-   else
-   {
-      LSTATUS lstatus = RegQueryValueExW(hkey, pSubKey, nullptr, pdwType, (byte *) pvData, pcbData);
-
-      if(lstatus == ERROR_SUCCESS)
-      {
-         if(pvData != nullptr && (dwFlags & RRF_RT_REG_SZ) != 0 && *pdwType == REG_SZ)
-         {
-            ((WCHAR *)pvData)[*pcbData] = L'\0';
-         }
-      }
-      return lstatus;
-   }
-}
 
 
 
@@ -587,13 +546,18 @@ int_bool is_windows_nt_lesser_than_2000()
    osversioninfo.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
 
    if (!GetVersionEx(&osversioninfo))
+   {
+
       return 0;
+
+   }
 
    return osversioninfo.dwPlatformId == VER_PLATFORM_WIN32_NT && osversioninfo.dwMajorVersion < 5;
 
 #endif
 
 }
+
 
 int_bool is_windows_native_unicode()
 {
@@ -643,65 +607,124 @@ int_bool is_windows_native_unicode()
 }
 
 
-
-
-
 // __is_valid_atom() returns TRUE if the passed parameter is
 // a valid local or global atom.
-
 bool __is_valid_atom(ATOM nAtom)
 {
+   
    wchar_t sBuffer[256];
+
    if(GetAtomNameW(nAtom,sBuffer,_countof(sBuffer)))
    {
+      
       return TRUE;
+
    }
+   
    DWORD dwError = get_last_error();
+
    if(dwError == ERROR_INSUFFICIENT_BUFFER || dwError == ERROR_MORE_DATA)
    {
+
       return TRUE;
+
    }
+
    if(GlobalGetAtomNameW(nAtom,sBuffer,_countof(sBuffer)))
    {
+
       return TRUE;
+
    }
+
    dwError = get_last_error();
+
    if(dwError == ERROR_INSUFFICIENT_BUFFER || dwError == ERROR_MORE_DATA)
    {
+
       return TRUE;
+
    }
+
    return FALSE;
+
 }
+
 
 // __is_valid_address() returns TRUE if the passed parameter is
 // a valid representation of a local or a global atom within a const char *.
 
-//bool __is_valid_atom(const char * psz)
-//{
-//   return HIWORD(psz) == 0L && __is_valid_atom(ATOM(LOWORD(psz)));
-//}
+bool __is_valid_atom(const char * psz)
+{
 
+   return HIWORD(psz) == 0L && __is_valid_atom(ATOM(LOWORD(psz)));
+
+}
 
 
 bool __is_valid_atom(const wchar_t * psz)
 {
+   
    return HIWORD(psz) == 0L && __is_valid_atom(ATOM(LOWORD(psz)));
+
 }
 
 
+int_bool IsWow64()
+{
+
+   int_bool bIsWow64 = FALSE;
+
+   if (!IsWow64Process(GetCurrentProcess(), &bIsWow64))
+   {
+      return FALSE;
+   }
+
+   return bIsWow64 != FALSE;
+
+}
 
 
-//int get_processor_count()
-//{
-//
-//   SYSTEM_INFO sysinfo;
-//   GetSystemInfo(&sysinfo);
-//
-//   return sysinfo.dwNumberOfProcessors;
-//
-//}
+int_bool EnableTokenPrivilege(LPCTSTR pszPrivilege)
+{
+   // do it only once
+   static int_bool bEnabled = FALSE;
+   if (bEnabled)
+   {
+      return TRUE;
+   }
+   bEnabled = TRUE;
 
+   HANDLE hToken = 0;
+   TOKEN_PRIVILEGES tkp = { 0 };
 
+   // Get a token for this process.
+   if (!OpenProcessToken(GetCurrentProcess(),
+      TOKEN_ADJUST_PRIVILEGES |
+      TOKEN_QUERY, &hToken))
+   {
+      return FALSE;
+   }
+
+   // Get the LUID for the privilege.
+   if (LookupPrivilegeValue(nullptr, pszPrivilege,
+      &tkp.Privileges[0].Luid))
+   {
+      tkp.PrivilegeCount = 1;  // one privilege to set
+      tkp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
+
+      // set the privilege for this process.
+      AdjustTokenPrivileges(hToken, FALSE, &tkp, 0,
+         (PTOKEN_PRIVILEGES)nullptr, 0);
+
+      if (get_last_error() != ERROR_SUCCESS)
+         return FALSE;
+
+      return TRUE;
+   }
+
+   return FALSE;
+}
 
 
 
@@ -743,46 +766,13 @@ CLASS_DECL_ACME string expand_env(string str)
 
 
 
-
-
-
-
-
-
-
-//void output_debug_string(const char * psz)
-//{
-//
-//   output_debug_string(psz);
-//
-//}
-//
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 bool __node_pos_init()
 {
 
    return true;
 
 }
+
 
 bool __node_pre_term()
 {
@@ -798,50 +788,6 @@ bool __node_pos_term()
    return true;
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

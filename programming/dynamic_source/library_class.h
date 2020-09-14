@@ -35,7 +35,7 @@ namespace dynamic_source
       string_array                                m_straSourcePath;
       string_array                                m_straCppPath;
       string                                 m_strLibraryPath;
-      __pointer(::aura::library )                       m_plibrary;
+      __pointer(::apex::library )                       m_plibrary;
 
       array < __time_t, __time_t & >         m_ftaCreation;
       array < __time_t, __time_t & >         m_ftaAccess;
@@ -45,7 +45,7 @@ namespace dynamic_source
 
 
 
-      library_class(::object * pobject);
+      library_class(::layered * pobjectContext);
       ~library_class();
 
 

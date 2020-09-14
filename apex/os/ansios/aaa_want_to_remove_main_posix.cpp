@@ -3,8 +3,8 @@
 
 
 extern "C"
-typedef  void  AURA_MAIN();
-typedef AURA_MAIN* PFN_AURA_MAIN;
+typedef  void  APEX_MAIN();
+typedef APEX_MAIN* PFN_APEX_MAIN;
 
 
 int main_posix(int argc, char* argv[])
@@ -14,9 +14,9 @@ int main_posix(int argc, char* argv[])
 
    HMODULE hmodule = ::GetModuleHandle(NULL);
 
-   PFN_AURA_MAIN pauramain = (PFN_AURA_MAIN) ::GetProcAddress(hmodule, "aura_main");
+   PFN_APEX_MAIN papexmain = (PFN_APEX_MAIN) ::GetProcAddress(hmodule, "apex_main");
 
-   if (!pauramain)
+   if (!papexmain)
    {
 
       message_box("Please!!\n\nImplement entry function with the macro \n\n__main\n{\n\n\t<\"Main Body\">\n\n}\n\n." + message_box_icon_error);
@@ -27,7 +27,7 @@ int main_posix(int argc, char* argv[])
 
    Application.m_estatus = ::undefined;
 
-   (*pauramain)();
+   (*papexmain)();
 
    int iStatus = (int)Application.m_estatus;
 

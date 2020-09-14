@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aura/net/sockets/_.h"
+#include "apex/net/sockets/_.h"
 
 
 #include <openssl/ssl.h>
@@ -1789,7 +1789,7 @@ namespace sockets
       int iSetSessionResult = -1;
       u32 uSessionIdMaxLen = SSL_MAX_SSL_SESSION_ID_LENGTH;
       if (context.get_length())
-         iSetSessionResult = SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext, (const uchar *)(const  char *)context, MIN((u32)context.get_length(), uSessionIdMaxLen));
+         iSetSessionResult = SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext, (const uchar *)(const  char *)context, min((u32)context.get_length(), uSessionIdMaxLen));
       else
          iSetSessionResult = SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext, (const uchar *)"--is_empty--", 9);
 

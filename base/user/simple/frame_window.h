@@ -37,7 +37,7 @@ public:
    virtual ~simple_frame_window();
 
 
-   virtual ::estatus initialize(::object * pobjectContext) override;
+   virtual ::estatus initialize(::layered * pobjectContext) override;
 
 
    virtual ::user::e_translucency get_translucency(::user::style* pstyle) const override;

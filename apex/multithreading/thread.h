@@ -4,10 +4,11 @@
 
 class mq;
 
-
+typedef __pointer_array(::generic) object_array;
 typedef isomap < ITHREAD, __pointer(thread) > thread_map;
 typedef isomap < thread *, ITHREAD > thread_id_map;
 
+namespace user { class frame;  }
 
 ///
 /// a thread must be always allocated in the heap
@@ -69,8 +70,8 @@ public:
    ::tick                                             m_tickHeartBeat;
    bool                                               m_bReady;
    ::status::result                                   m_result;
-   __pointer(::user::primitive)                       m_puiMain1;           // Main interaction_impl (usually same System.m_puiMain)
-   __pointer(::user::primitive)                       m_puiActive;         // Active Main interaction_impl (may not be m_puiMain)
+   __pointer(::layered)                               m_puiMain1;           // Main interaction_impl (usually same System.m_puiMain)
+   __pointer(::layered)                               m_puiActive;         // Active Main interaction_impl (may not be m_puiMain)
    string                                             m_strWorkUrl;
    bool                                               m_bSimpleMessageLoop;
    bool                                               m_bZipIsDir2;
@@ -164,7 +165,7 @@ public:
    ::duration set_file_sharing_violation_timeout(::duration duration);
 
 
-   //virtual void dependant_add(::object * pobject) override;
+   //virtual void dependant_add(::layered * pobjectContext) override;
 
    ///  \brief    starts thread on first call
    virtual void start();
@@ -222,8 +223,8 @@ public:
 
    virtual bool send_object(UINT message, WPARAM wParam, lparam lParam, ::duration durationTimeout = ::duration::infinite());
 
-   virtual bool post_task(::generic_object * pobjectTask);
-   virtual bool send_task(::generic_object * pobjectTask, ::duration durationTimeout = ::duration::infinite());
+   virtual bool post_task(::generic * pobjectTask);
+   virtual bool send_task(::generic * pobjectTask, ::duration durationTimeout = ::duration::infinite());
 
    template < typename PRED >
    bool pred(PRED pred)
@@ -234,36 +235,20 @@ public:
    template < typename PRED >
    bool post_pred(PRED pred)
    {
-      return post_object(SYSTEM_MESSAGE, system_message_pred, __new(pred_holder < PRED >(get_context_application(), pred)));
+      return post_object(SYSTEM_MESSAGE, system_message_pred, __new(pred_holder < PRED >(pred)));
    }
 
    template < typename PRED >
    bool send_pred(PRED pred, ::duration durationTimeout = ::duration::infinite())
    {
-      return send_object(SYSTEM_MESSAGE, system_message_pred, __new(pred_holder < PRED >(get_context_application(), pred)), durationTimeout);
+      return send_object(SYSTEM_MESSAGE, system_message_pred, __new(pred_holder < PRED >(pred)), durationTimeout);
    }
 
-   template < typename PRED >
-   bool schedule_pred(__pointer(::context_object) phold, PRED pred)
-   {
-      return post_pred(phold, pred);
-   }
 
    template < typename PRED >
    bool schedule_pred(PRED pred)
    {
       return post_pred(pred);
-   }
-
-   template < typename PRED >
-   bool synch_pred(__pointer(object) phold, PRED pred, ::duration durationTimeout = ::duration::infinite())
-   {
-      if (this == ::get_thread())
-      {
-         pred();
-         return true;
-      }
-      return send_pred(phold, pred, durationTimeout);
    }
 
    template < typename PRED >
@@ -302,7 +287,8 @@ public:
    virtual bool defer_pump_message();     // deferred message pump
    virtual void process_message(::message::base * pbase);
    virtual void process_thread_message(::message::base * pbase);
-   virtual void process_window_message(::message::base * pbase);
+   // apex commented
+   //virtual void process_window_message(::message::base * pbase);
    virtual bool process_message();     // route message
    virtual bool raw_process_message();     // route message
    // virtual bool on_idle(LONG lCount); // return TRUE if more idle processing
@@ -330,7 +316,7 @@ public:
    //virtual void unset_timer(::user::primitive * pinteraction, uptr nIDEvent);
    //virtual void set_auto_delete(bool bAutoDelete = true);
    virtual ::user::primitive * get_active_ui();
-   virtual ::user::primitive * set_active_ui(::user::primitive * pinteraction);
+   virtual ::user::primitive * set_active_ui(::layered * pinteraction);
    //virtual void step_timer();
    //virtual bool on_run_step();
 
@@ -370,7 +356,7 @@ public:
 
 
    virtual bool do_events();
-   //virtual bool do_events(const duration & duration);
+   // virtual bool do_events(const duration& duration);
 
    virtual string get_tag() const override;
    virtual bool thread_get_run() const override;
@@ -415,7 +401,7 @@ public:
    operator HTHREAD() const;
 
 
-   virtual ::estatus initialize(::object * pobjectContext) override;
+   virtual ::estatus initialize(::layered * pobjectContext) override;
 
 
    //virtual ::estatus __thread_proc() override;
@@ -544,7 +530,7 @@ namespace multithreading
 using id_thread_map = id_map < __pointer(thread) >;
 
 
-CLASS_DECL_APEX void sleep(const duration& duration);
+//CLASS_DECL_APEX void sleep(const duration& duration);
 
 
 CLASS_DECL_APEX bool is_active(::thread * pthread);
@@ -598,7 +584,7 @@ inline ::sync_result while_pred_Sleep(int iTime, PRED pred)
 }
 
 
-CLASS_DECL_APEX void defer_create_thread(::object * pobjectContext);
+CLASS_DECL_APEX void defer_create_thread(::layered * pobjectContext);
 
 
 CLASS_DECL_APEX void thread_name_abbreviate(string & strName, int len);

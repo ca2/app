@@ -706,39 +706,39 @@ inline __pointer(T) & pointer < T >::clone(::generic * pobjectContext)
 }
 
 
-template < typename PRED >
-::image_pointer get_image(::generic * pobject, const var & varFile, bool bAsync = false)
-{
-
-   ::file::path path = varFile.get_file_path();
-
-   if (path.is_empty())
-   {
-
-      return nullptr;
-
-   }
-
-   sync_lock sl(::acme::get_image_mutex());
-
-   ::image_pointer & pimage = ::get_context_system()->m_mapImage[path];
-
-   if (!pimage)
-   {
-
-      pimage = pobject->create_image();
-
-      pimage->set_nok();
-
-      sl.unlock();
-
-      System.m_pimaging->_load_image(pobject->get_context(), pimage, varFile, !bAsync, false);
-
-   }
-
-   return pimage;
-
-}
+//template < typename PRED >
+//::image_pointer get_image(::generic * pobject, const var & varFile, bool bAsync = false)
+//{
+//
+//   ::file::path path = varFile.get_file_path();
+//
+//   if (path.is_empty())
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   sync_lock sl(::acme::get_image_mutex());
+//
+//   ::image_pointer & pimage = ::get_context_system()->m_mapImage[path];
+//
+//   if (!pimage)
+//   {
+//
+//      pimage = pobject->create_image();
+//
+//      pimage->set_nok();
+//
+//      sl.unlock();
+//
+//      System.m_pimaging->_load_image(pobject->get_context(), pimage, varFile, !bAsync, false);
+//
+//   }
+//
+//   return pimage;
+//
+//}
 
 
 #ifndef __DEBUG

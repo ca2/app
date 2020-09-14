@@ -59,7 +59,7 @@ public:
 
 
    listener *           m_plistener;
-   //id                   m_id;
+   ::id                   m_id;
 
    scalar_source();
 

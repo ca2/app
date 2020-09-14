@@ -2,7 +2,7 @@
 
 
 //class CLASS_DECL_APEX create_thread :
-//   virtual public ::generic_object
+//   virtual public ::generic
 //{
 //public:
 //

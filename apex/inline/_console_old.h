@@ -1,18 +1,18 @@
 #pragma once
 
 
-#include "aura/_.h"
-#include "aura/platform/app_core.h"
+#include "apex/_.h"
+#include "apex/platform/app_core.h"
 
 
 class CLASS_DECL_APEX console :
-   public aura_main_struct
+   public apex_main_struct
 {
 public:
 
-   class aura_aura                  m_aura;
-   __pointer(::aura::system)        m_psystem;
-   //__pointer(::aura::application)   m_papp;
+   class apex_apex                  m_apex;
+   __pointer(::apex::system)        m_psystem;
+   //__pointer(::apex::application)   m_papp;
 
    console(int argc, wchar_t * argv[]);
    console(int argc, char * argv[]);

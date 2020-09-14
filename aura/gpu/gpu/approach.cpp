@@ -18,7 +18,7 @@ namespace gpu
    }
 
 
-   ::estatus approach::initialize(::object* pobjectContext)
+   ::estatus approach::initialize(::layered * pobjectContext)
    {
 
       ::estatus estatus = ::object::initialize(pobjectContext);

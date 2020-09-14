@@ -39,7 +39,7 @@ namespace userfs
 
       virtual void install_message_routing(::channel * pchannel) override;
 
-      __pointer(image_list) GetActionButtonImageList(index i);
+      __pointer(::image_list) GetActionButtonImageList(index i);
 
 
       virtual void get_selected_user_path(::file::patha & stra);

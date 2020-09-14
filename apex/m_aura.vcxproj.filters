@@ -94,7 +94,7 @@
     <Filter Include="Header Files\apex\message">
       <UniqueIdentifier>{ac093c15-92d1-4c5e-a0db-60335ba6a6fa}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\apex\aura_policy">
+    <Filter Include="Header Files\apex\apex_policy">
       <UniqueIdentifier>{5a8f7bdc-5d84-4b6a-af2a-e20f02dd399d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\apex\process">
@@ -1287,235 +1287,235 @@
     <ClInclude Include="apex\apex\apex.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_action_context.h">
+    <ClInclude Include="apex\apex\apex_action_context.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_action_source.h">
+    <ClInclude Include="apex\apex\apex_action_source.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_allocate.h">
+    <ClInclude Include="apex\apex\apex_allocate.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_application.h">
+    <ClInclude Include="apex\apex\apex_application.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_application_signal_details.h">
+    <ClInclude Include="apex\apex\apex_application_signal_details.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_async.h">
+    <ClInclude Include="apex\apex\apex_async.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_auto_pointer.h">
+    <ClInclude Include="apex\apex\apex_auto_pointer.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_command.h">
+    <ClInclude Include="apex\apex\apex_command.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_command_target.h">
+    <ClInclude Include="apex\apex\apex_command_target.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_common.h">
+    <ClInclude Include="apex\apex\apex_common.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_conv.h">
+    <ClInclude Include="apex\apex\apex_conv.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_core.h">
+    <ClInclude Include="apex\apex\apex_core.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_core_os.h">
+    <ClInclude Include="apex\apex\apex_core_os.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_cpu_architecture.h">
+    <ClInclude Include="apex\apex\apex_cpu_architecture.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_cregexp.h">
+    <ClInclude Include="apex\apex\apex_cregexp.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_cregexp_util.h">
+    <ClInclude Include="apex\apex\apex_cregexp_util.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_debug.h">
+    <ClInclude Include="apex\apex\apex_debug.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_definition.h">
+    <ClInclude Include="apex\apex\apex_definition.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_departament.h">
+    <ClInclude Include="apex\apex\apex_departament.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_departament_container.h">
+    <ClInclude Include="apex\apex\apex_departament_container.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_draw2d.h">
+    <ClInclude Include="apex\apex\apex_draw2d.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_element.h">
+    <ClInclude Include="apex\apex\apex_element.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_enum.h">
+    <ClInclude Include="apex\apex\apex_enum.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_file_watcher.h">
+    <ClInclude Include="apex\apex\apex_file_watcher.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_file_watcher_impl.h">
+    <ClInclude Include="apex\apex\apex_file_watcher_impl.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_file_watcher_listener_thread.h">
+    <ClInclude Include="apex\apex\apex_file_watcher_listener_thread.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_file_watcher_thread.h">
+    <ClInclude Include="apex\apex\apex_file_watcher_thread.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_fixed_alloc.h">
+    <ClInclude Include="apex\apex\apex_fixed_alloc.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_fixed___allocatable.h">
+    <ClInclude Include="apex\apex\apex_fixed___allocatable.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_flags.h">
+    <ClInclude Include="apex\apex\apex_flags.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_gudo.h">
+    <ClInclude Include="apex\apex\apex_gudo.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_gudo_application.inl">
+    <ClInclude Include="apex\apex\apex_gudo_application.inl">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_heap_item.h">
+    <ClInclude Include="apex\apex\apex_heap_item.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_heap_item_array.h">
+    <ClInclude Include="apex\apex\apex_heap_item_array.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_id_pool.h">
+    <ClInclude Include="apex\apex\apex_id_pool.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_international.h">
+    <ClInclude Include="apex\apex\apex_international.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_keep.h">
+    <ClInclude Include="apex\apex\apex_keep.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_net.h">
+    <ClInclude Include="apex\apex\apex_net.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_progress.h">
+    <ClInclude Include="apex\apex\apex_progress.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_keep_true.h">
+    <ClInclude Include="apex\apex\apex_keep_true.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_launcher.h">
+    <ClInclude Include="apex\apex\apex_launcher.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_libc.h">
+    <ClInclude Include="apex\apex\apex_libc.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_library.h">
+    <ClInclude Include="apex\apex\apex_library.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_live_object.h">
+    <ClInclude Include="apex\apex\apex_live_object.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_live_signal.h">
+    <ClInclude Include="apex\apex\apex_live_signal.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_log.h">
+    <ClInclude Include="apex\apex\apex_log.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_lparam.h">
+    <ClInclude Include="apex\apex\apex_lparam.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_machine_event.h">
+    <ClInclude Include="apex\apex\apex_machine_event.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_machine_event_central.h">
+    <ClInclude Include="apex\apex\apex_machine_event_central.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_machine_event_data.h">
+    <ClInclude Include="apex\apex\apex_machine_event_data.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_main_init_data.h">
+    <ClInclude Include="apex\apex\apex_main_init_data.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_math.h">
+    <ClInclude Include="apex\apex\apex_math.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_message_loop.h">
+    <ClInclude Include="apex\apex\apex_message_loop.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_microtimer.h">
+    <ClInclude Include="apex\apex\apex_microtimer.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_muldiv64.h">
+    <ClInclude Include="apex\apex\apex_muldiv64.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_new.h">
+    <ClInclude Include="apex\apex\apex_new.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_number.h">
+    <ClInclude Include="apex\apex\apex_number.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_os.h">
+    <ClInclude Include="apex\apex\apex_os.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_plex.h">
+    <ClInclude Include="apex\apex\apex_plex.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_plex_heap.h">
+    <ClInclude Include="apex\apex\apex_plex_heap.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_plex_heap_impl.h">
+    <ClInclude Include="apex\apex\apex_plex_heap_impl.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_printf.h">
+    <ClInclude Include="apex\apex\apex_printf.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_savings.h">
+    <ClInclude Include="apex\apex\apex_savings.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_session.h">
+    <ClInclude Include="apex\apex\apex_session.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_simple_app.h">
+    <ClInclude Include="apex\apex\apex_simple_app.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_simple_pixel_font.h">
+    <ClInclude Include="apex\apex\apex_simple_pixel_font.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_smart_pointer1.h">
+    <ClInclude Include="apex\apex\apex_smart_pointer1.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_smart_pointer2.h">
+    <ClInclude Include="apex\apex\apex_smart_pointer2.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_sprintf.h">
+    <ClInclude Include="apex\apex\apex_sprintf.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_static_start.h">
+    <ClInclude Include="apex\apex\apex_static_start.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_system.h">
+    <ClInclude Include="apex\apex\apex_system.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_system_str.h">
+    <ClInclude Include="apex\apex\apex_system_str.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_system_trace.h">
+    <ClInclude Include="apex\apex\apex_system_trace.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_class.h">
+    <ClInclude Include="apex\apex\apex_class.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_trace.h">
+    <ClInclude Include="apex\apex\apex_trace.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_types.h">
+    <ClInclude Include="apex\apex\apex_types.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_url.h">
+    <ClInclude Include="apex\apex\apex_url.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
     <ClInclude Include="apex\os\cross.h">
@@ -1650,23 +1650,23 @@
     <ClInclude Include="apex\message\message_dispatch.h">
       <Filter>Header Files\apex\message</Filter>
     </ClInclude>
-    <ClInclude Include="apex\aura_policy\aura_c.h">
-      <Filter>Header Files\apex\aura_policy</Filter>
+    <ClInclude Include="apex\apex_policy\apex_c.h">
+      <Filter>Header Files\apex\apex_policy</Filter>
     </ClInclude>
-    <ClInclude Include="apex\aura_policy\aura_cpp.h">
-      <Filter>Header Files\apex\aura_policy</Filter>
+    <ClInclude Include="apex\apex_policy\apex_cpp.h">
+      <Filter>Header Files\apex\apex_policy</Filter>
     </ClInclude>
-    <ClInclude Include="apex\aura_policy\aura_policy.h">
-      <Filter>Header Files\apex\aura_policy</Filter>
+    <ClInclude Include="apex\apex_policy\apex_policy.h">
+      <Filter>Header Files\apex\apex_policy</Filter>
     </ClInclude>
-    <ClInclude Include="apex\aura_policy\aura_policy_objc.h">
-      <Filter>Header Files\apex\aura_policy</Filter>
+    <ClInclude Include="apex\apex_policy\apex_policy_objc.h">
+      <Filter>Header Files\apex\apex_policy</Filter>
     </ClInclude>
-    <ClInclude Include="apex\aura_policy\aura_policy_objcpp.h">
-      <Filter>Header Files\apex\aura_policy</Filter>
+    <ClInclude Include="apex\apex_policy\apex_policy_objcpp.h">
+      <Filter>Header Files\apex\apex_policy</Filter>
     </ClInclude>
-    <ClInclude Include="apex\aura_policy\aura_policy_winrt.h">
-      <Filter>Header Files\apex\aura_policy</Filter>
+    <ClInclude Include="apex\apex_policy\apex_policy_winrt.h">
+      <Filter>Header Files\apex\apex_policy</Filter>
     </ClInclude>
     <ClInclude Include="apex\process\process.h">
       <Filter>Header Files\apex\process</Filter>
@@ -1717,118 +1717,118 @@
       <Filter>Header Files\apex\node\metrowin</Filter>
     </ClInclude>
     <ClInclude Include="apex\node\metrowin\metrowin_exception.h">
-      <Filter>Header Files\aura\node\metrowin</Filter>
+      <Filter>Header Files\apex\node\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\metrowin\metrowin_factory_exchange.h">
-      <Filter>Header Files\aura\node\metrowin</Filter>
+    <ClInclude Include="apex\node\metrowin\metrowin_factory_exchange.h">
+      <Filter>Header Files\apex\node\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\metrowin\metrowin_file.h">
-      <Filter>Header Files\aura\node\metrowin</Filter>
+    <ClInclude Include="apex\node\metrowin\metrowin_file.h">
+      <Filter>Header Files\apex\node\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\metrowin\metrowin_file_find.h">
-      <Filter>Header Files\aura\node\metrowin</Filter>
+    <ClInclude Include="apex\node\metrowin\metrowin_file_find.h">
+      <Filter>Header Files\apex\node\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\metrowin\metrowin_folder_watch.h">
-      <Filter>Header Files\aura\node\metrowin</Filter>
+    <ClInclude Include="apex\node\metrowin\metrowin_folder_watch.h">
+      <Filter>Header Files\apex\node\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\metrowin\metrowin_implementation.h">
-      <Filter>Header Files\aura\node\metrowin</Filter>
+    <ClInclude Include="apex\node\metrowin\metrowin_implementation.h">
+      <Filter>Header Files\apex\node\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\metrowin\metrowin_internal.h">
-      <Filter>Header Files\aura\node\metrowin</Filter>
+    <ClInclude Include="apex\node\metrowin\metrowin_internal.h">
+      <Filter>Header Files\apex\node\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\metrowin\metrowin_os.h">
-      <Filter>Header Files\aura\node\metrowin</Filter>
+    <ClInclude Include="apex\node\metrowin\metrowin_os.h">
+      <Filter>Header Files\apex\node\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\metrowin\metrowin_pen.h">
-      <Filter>Header Files\aura\node\metrowin</Filter>
+    <ClInclude Include="apex\node\metrowin\metrowin_pen.h">
+      <Filter>Header Files\apex\node\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\metrowin\metrowin_printer.h">
-      <Filter>Header Files\aura\node\metrowin</Filter>
+    <ClInclude Include="apex\node\metrowin\metrowin_printer.h">
+      <Filter>Header Files\apex\node\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\metrowin\metrowin_registry.h">
-      <Filter>Header Files\aura\node\metrowin</Filter>
+    <ClInclude Include="apex\node\metrowin\metrowin_registry.h">
+      <Filter>Header Files\apex\node\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\metrowin\metrowin_shell.h">
-      <Filter>Header Files\aura\node\metrowin</Filter>
+    <ClInclude Include="apex\node\metrowin\metrowin_shell.h">
+      <Filter>Header Files\apex\node\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\metrowin\metrowin_stdio_file.h">
-      <Filter>Header Files\aura\node\metrowin</Filter>
+    <ClInclude Include="apex\node\metrowin\metrowin_stdio_file.h">
+      <Filter>Header Files\apex\node\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\metrowin\metrowin_thread.h">
-      <Filter>Header Files\aura\node\metrowin</Filter>
+    <ClInclude Include="apex\node\metrowin\metrowin_thread.h">
+      <Filter>Header Files\apex\node\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\metrowin\metrowin_uac_tools.h">
-      <Filter>Header Files\aura\node\metrowin</Filter>
+    <ClInclude Include="apex\node\metrowin\metrowin_uac_tools.h">
+      <Filter>Header Files\apex\node\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\metrowin\metrowin1.h">
-      <Filter>Header Files\aura\node\metrowin</Filter>
+    <ClInclude Include="apex\node\metrowin\metrowin1.h">
+      <Filter>Header Files\apex\node\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="aura\os\metrowin\metrowin_metrowin.h">
-      <Filter>Header Files\aura\os\metrowin</Filter>
+    <ClInclude Include="apex\os\metrowin\metrowin_metrowin.h">
+      <Filter>Header Files\apex\os\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="aura\os\metrowin\metrowin_base_file.h">
-      <Filter>Header Files\aura\os\metrowin</Filter>
+    <ClInclude Include="apex\os\metrowin\metrowin_base_file.h">
+      <Filter>Header Files\apex\os\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="aura\os\metrowin\metrowin_multithreading.h">
-      <Filter>Header Files\aura\os\metrowin</Filter>
+    <ClInclude Include="apex\os\metrowin\metrowin_multithreading.h">
+      <Filter>Header Files\apex\os\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="aura\os\metrowin\metrowin_multithreading_winrt.h">
-      <Filter>Header Files\aura\os\metrowin</Filter>
+    <ClInclude Include="apex\os\metrowin\metrowin_multithreading_winrt.h">
+      <Filter>Header Files\apex\os\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_assert_running_task.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="apex\apex\apex_assert_running_task.h">
+      <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="aura\os\metrowin\aaa_want_to_remove_metrowin_window_impl.h">
-      <Filter>Header Files\aura\os\metrowin</Filter>
+    <ClInclude Include="apex\os\metrowin\aaa_want_to_remove_metrowin_window_impl.h">
+      <Filter>Header Files\apex\os\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_local_memory_map.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="apex\apex\apex_local_memory_map.h">
+      <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_application_ptra.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="apex\apex\apex_application_ptra.h">
+      <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_aura.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="apex\apex\apex_apex.h">
+      <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_command_msg.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="apex\apex\apex_command_msg.h">
+      <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_command_ui.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="apex\apex\apex_command_ui.h">
+      <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_command_ui_test.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="apex\apex\apex_command_ui_test.h">
+      <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_create_context.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="apex\apex\apex_create_context.h">
+      <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_draw_context.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="apex\apex\apex_draw_context.h">
+      <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_draw_interface.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="apex\apex\apex_draw_interface.h">
+      <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_printer.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="apex\apex\apex_printer.h">
+      <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_template.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="apex\apex\apex_template.h">
+      <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_timer_array.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="apex\apex\apex_timer_array.h">
+      <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_timer_item.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="apex\apex\apex_timer_item.h">
+      <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_user.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="apex\apex\apex_user.h">
+      <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\axis.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="apex\apex\axis.h">
+      <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_str_context.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="apex\apex\apex_str_context.h">
+      <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filesystem\filesystem_application.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
@@ -1848,26 +1848,26 @@
     <ClInclude Include="net\net_url.h">
       <Filter>Header Files\net</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\metrowin\metrowin_dir.h">
-      <Filter>Header Files\aura\node\metrowin</Filter>
+    <ClInclude Include="apex\node\metrowin\metrowin_dir.h">
+      <Filter>Header Files\apex\node\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\metrowin\metrowin_file_system.h">
-      <Filter>Header Files\aura\node\metrowin</Filter>
+    <ClInclude Include="apex\node\metrowin\metrowin_file_system.h">
+      <Filter>Header Files\apex\node\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_allocate_heap.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="apex\apex\apex_allocate_heap.h">
+      <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
     <ClInclude Include="primitive\create.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_cmp.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="apex\apex\apex_cmp.h">
+      <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_cmp2.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="apex\apex\apex_cmp2.h">
+      <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="aura\os\os_time.h">
-      <Filter>Header Files\aura\os</Filter>
+    <ClInclude Include="apex\os\os_time.h">
+      <Filter>Header Files\apex\os</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_frame.h">
       <Filter>Header Files\user\user</Filter>
@@ -2034,11 +2034,11 @@
     <ClInclude Include="filesystem\file\file_writer_flush.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_ipc.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="apex\apex\apex_ipc.h">
+      <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_ipi.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="apex\apex\apex_ipi.h">
+      <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -2054,31 +2054,31 @@
     <None Include="multithreading\multithreading.inl">
       <Filter>Header Files\multithreading</Filter>
     </None>
-    <None Include="aura\aura\aura.inl">
-      <Filter>Header Files\aura\aura</Filter>
+    <None Include="apex\apex\apex.inl">
+      <Filter>Header Files\apex\apex</Filter>
     </None>
-    <None Include="aura\aura\aura_system_factory.inl">
-      <Filter>Header Files\aura\aura</Filter>
+    <None Include="apex\apex\apex_system_factory.inl">
+      <Filter>Header Files\apex\apex</Filter>
     </None>
-    <None Include="aura\aura\aura_system_id.inl">
-      <Filter>Header Files\aura\aura</Filter>
+    <None Include="apex\apex\apex_system_id.inl">
+      <Filter>Header Files\apex\apex</Filter>
     </None>
-    <None Include="aura\aura\aura_system_object.inl">
-      <Filter>Header Files\aura\aura</Filter>
+    <None Include="apex\apex\apex_system_object.inl">
+      <Filter>Header Files\apex\apex</Filter>
     </None>
-    <None Include="aura\aura\aura_system_var.inl">
-      <Filter>Header Files\aura\aura</Filter>
+    <None Include="apex\apex\apex_system_var.inl">
+      <Filter>Header Files\apex\apex</Filter>
     </None>
-    <None Include="aura\aura\aura_system_smart_pointer.inl">
-      <Filter>Header Files\aura\aura</Filter>
+    <None Include="apex\apex\apex_system_smart_pointer.inl">
+      <Filter>Header Files\apex\apex</Filter>
     </None>
-    <None Include="aura\aura\aura_system_xml.inl">
-      <Filter>Header Files\aura\aura</Filter>
+    <None Include="apex\apex\apex_system_xml.inl">
+      <Filter>Header Files\apex\apex</Filter>
     </None>
-    <None Include="aura\message\message.inl">
-      <Filter>Header Files\aura\message</Filter>
+    <None Include="apex\message\message.inl">
+      <Filter>Header Files\apex\message</Filter>
     </None>
-    <None Include="aura.def">
+    <None Include="apex.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
@@ -2794,572 +2794,572 @@
     <ClCompile Include="filesystem\file\file_writer_flush.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="aura\xml\xml_attr.cpp">
-      <Filter>Source Files\aura\xml</Filter>
+    <ClCompile Include="apex\xml\xml_attr.cpp">
+      <Filter>Source Files\apex\xml</Filter>
     </ClCompile>
-    <ClCompile Include="aura\xml\xml_base_array.cpp">
-      <Filter>Source Files\aura\xml</Filter>
+    <ClCompile Include="apex\xml\xml_base_array.cpp">
+      <Filter>Source Files\apex\xml</Filter>
     </ClCompile>
-    <ClCompile Include="aura\xml\xml_data.cpp">
-      <Filter>Source Files\aura\xml</Filter>
+    <ClCompile Include="apex\xml\xml_data.cpp">
+      <Filter>Source Files\apex\xml</Filter>
     </ClCompile>
-    <ClCompile Include="aura\xml\xml_disp_option.cpp">
-      <Filter>Source Files\aura\xml</Filter>
+    <ClCompile Include="apex\xml\xml_disp_option.cpp">
+      <Filter>Source Files\apex\xml</Filter>
     </ClCompile>
-    <ClCompile Include="aura\xml\xml_document.cpp">
-      <Filter>Source Files\aura\xml</Filter>
+    <ClCompile Include="apex\xml\xml_document.cpp">
+      <Filter>Source Files\apex\xml</Filter>
     </ClCompile>
-    <ClCompile Include="aura\xml\xml_edit.cpp">
-      <Filter>Source Files\aura\xml</Filter>
+    <ClCompile Include="apex\xml\xml_edit.cpp">
+      <Filter>Source Files\apex\xml</Filter>
     </ClCompile>
-    <ClCompile Include="aura\xml\xml_entity.cpp">
-      <Filter>Source Files\aura\xml</Filter>
+    <ClCompile Include="apex\xml\xml_entity.cpp">
+      <Filter>Source Files\apex\xml</Filter>
     </ClCompile>
-    <ClCompile Include="aura\xml\xml_exportable.cpp">
-      <Filter>Source Files\aura\xml</Filter>
+    <ClCompile Include="apex\xml\xml_exportable.cpp">
+      <Filter>Source Files\apex\xml</Filter>
     </ClCompile>
-    <ClCompile Include="aura\xml\xml_importable.cpp">
-      <Filter>Source Files\aura\xml</Filter>
+    <ClCompile Include="apex\xml\xml_importable.cpp">
+      <Filter>Source Files\apex\xml</Filter>
     </ClCompile>
-    <ClCompile Include="aura\xml\xml_input_tree.cpp">
-      <Filter>Source Files\aura\xml</Filter>
+    <ClCompile Include="apex\xml\xml_input_tree.cpp">
+      <Filter>Source Files\apex\xml</Filter>
     </ClCompile>
-    <ClCompile Include="aura\xml\xml_node.cpp">
-      <Filter>Source Files\aura\xml</Filter>
+    <ClCompile Include="apex\xml\xml_node.cpp">
+      <Filter>Source Files\apex\xml</Filter>
     </ClCompile>
-    <ClCompile Include="aura\xml\xml_output_tree.cpp">
-      <Filter>Source Files\aura\xml</Filter>
+    <ClCompile Include="apex\xml\xml_output_tree.cpp">
+      <Filter>Source Files\apex\xml</Filter>
     </ClCompile>
-    <ClCompile Include="aura\xml\xml_parse_info.cpp">
-      <Filter>Source Files\aura\xml</Filter>
+    <ClCompile Include="apex\xml\xml_parse_info.cpp">
+      <Filter>Source Files\apex\xml</Filter>
     </ClCompile>
-    <ClCompile Include="aura\xml\xml_property_exchange.cpp">
-      <Filter>Source Files\aura\xml</Filter>
+    <ClCompile Include="apex\xml\xml_property_exchange.cpp">
+      <Filter>Source Files\apex\xml</Filter>
     </ClCompile>
-    <ClCompile Include="aura\xml\xml_tree_base.cpp">
-      <Filter>Source Files\aura\xml</Filter>
+    <ClCompile Include="apex\xml\xml_tree_base.cpp">
+      <Filter>Source Files\apex\xml</Filter>
     </ClCompile>
-    <ClCompile Include="aura\xml\xml_tree_schema.cpp">
-      <Filter>Source Files\aura\xml</Filter>
+    <ClCompile Include="apex\xml\xml_tree_schema.cpp">
+      <Filter>Source Files\apex\xml</Filter>
     </ClCompile>
-    <ClCompile Include="aura\xml\xml_var_exchange.cpp">
-      <Filter>Source Files\aura\xml</Filter>
+    <ClCompile Include="apex\xml\xml_var_exchange.cpp">
+      <Filter>Source Files\apex\xml</Filter>
     </ClCompile>
-    <ClCompile Include="aura\xml\xml_xml.cpp">
-      <Filter>Source Files\aura\xml</Filter>
+    <ClCompile Include="apex\xml\xml_xml.cpp">
+      <Filter>Source Files\apex\xml</Filter>
     </ClCompile>
-    <ClCompile Include="aura\xml\xml_xmlite.cpp">
-      <Filter>Source Files\aura\xml</Filter>
+    <ClCompile Include="apex\xml\xml_xmlite.cpp">
+      <Filter>Source Files\apex\xml</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\os_file.cpp">
-      <Filter>Source Files\aura\os</Filter>
+    <ClCompile Include="apex\os\os_file.cpp">
+      <Filter>Source Files\apex\os</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\os_http.cpp">
-      <Filter>Source Files\aura\os</Filter>
+    <ClCompile Include="apex\os\os_http.cpp">
+      <Filter>Source Files\apex\os</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\os_process.cpp">
-      <Filter>Source Files\aura\os</Filter>
+    <ClCompile Include="apex\os\os_process.cpp">
+      <Filter>Source Files\apex\os</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\os_thread.cpp">
-      <Filter>Source Files\aura\os</Filter>
+    <ClCompile Include="apex\os\os_thread.cpp">
+      <Filter>Source Files\apex\os</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\cross\metrowin\cross_metrowin_user.cpp">
-      <Filter>Source Files\aura\os\cross\metrowin</Filter>
+    <ClCompile Include="apex\os\cross\metrowin\cross_metrowin_user.cpp">
+      <Filter>Source Files\apex\os\cross\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\cross\windows\cross_windows_windows.cpp">
-      <Filter>Source Files\aura\os\cross\windows</Filter>
+    <ClCompile Include="apex\os\cross\windows\cross_windows_windows.cpp">
+      <Filter>Source Files\apex\os\cross\windows</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\cross\windows\cross_windows_crt.cpp">
-      <Filter>Source Files\aura\os\cross\windows</Filter>
+    <ClCompile Include="apex\os\cross\windows\cross_windows_crt.cpp">
+      <Filter>Source Files\apex\os\cross\windows</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\cross\windows\cross_windows_error.cpp">
-      <Filter>Source Files\aura\os\cross\windows</Filter>
+    <ClCompile Include="apex\os\cross\windows\cross_windows_error.cpp">
+      <Filter>Source Files\apex\os\cross\windows</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\cross\windows\cross_windows_locale.cpp">
-      <Filter>Source Files\aura\os\cross\windows</Filter>
+    <ClCompile Include="apex\os\cross\windows\cross_windows_locale.cpp">
+      <Filter>Source Files\apex\os\cross\windows</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\cross\windows\cross_windows_shared_memory.cpp">
-      <Filter>Source Files\aura\os\cross\windows</Filter>
+    <ClCompile Include="apex\os\cross\windows\cross_windows_shared_memory.cpp">
+      <Filter>Source Files\apex\os\cross\windows</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\cross\windows\cross_windows_threading.cpp">
-      <Filter>Source Files\aura\os\cross\windows</Filter>
+    <ClCompile Include="apex\os\cross\windows\cross_windows_threading.cpp">
+      <Filter>Source Files\apex\os\cross\windows</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\cross\windows\cross_windows_datetime.cpp">
-      <Filter>Source Files\aura\os\cross\windows</Filter>
+    <ClCompile Include="apex\os\cross\windows\cross_windows_datetime.cpp">
+      <Filter>Source Files\apex\os\cross\windows</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\cross\windows\cross_windows_user.cpp">
-      <Filter>Source Files\aura\os\cross\windows</Filter>
+    <ClCompile Include="apex\os\cross\windows\cross_windows_user.cpp">
+      <Filter>Source Files\apex\os\cross\windows</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\cross\ansios\ansios_datetime.cpp">
-      <Filter>Source Files\aura\os\cross\ansios</Filter>
+    <ClCompile Include="apex\os\cross\ansios\ansios_datetime.cpp">
+      <Filter>Source Files\apex\os\cross\ansios</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_cancel.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_cancel.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_parsing.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_parsing.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_verisimple.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_verisimple.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_archive.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_archive.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_archive_exception.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_archive_exception.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_base.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_base.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_call_stack.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_call_stack.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_debug.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_debug.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_dump.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_dump.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_dump_context.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_dump_context.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_dump_floating_point.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_dump_floating_point.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_dump_output.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_dump_output.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_engine.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_engine.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_error.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_error.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_exit.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_exit.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_hresult.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_hresult.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_installing.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_installing.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_interface_only.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_interface_only.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_invalid_argument.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_invalid_argument.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_invalid_character.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_invalid_character.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_invalid_handle.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_invalid_handle.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_invalid_index.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_invalid_index.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_io.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_io.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_last_error.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_last_error.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_memory.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_memory.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_not_implemented.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_not_implemented.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_not_installed.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_not_installed.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_not_licensed.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_not_licensed.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_not_supported.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_not_supported.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_operation_canceled.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_operation_canceled.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_os.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_os.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_overflow_error.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_overflow_error.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_range_error.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_range_error.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_resource.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_resource.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_runtime_error.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_runtime_error.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_simple.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_simple.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_standard_translator.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_standard_translator.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_temporary.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_temporary.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_todo.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_todo.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_user.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_user.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_void_implementation.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_void_implementation.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_application_interface.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_application_interface.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_gudo.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_gudo.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_id_pool.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_id_pool.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_library.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_library.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_net.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_net.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_platform_interface.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_platform_interface.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_session_interface.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_session_interface.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_static_start.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_static_start.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_action_context.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_action_context.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_allocate_mid_big.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_allocate_mid_big.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_allocate_system_heap.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_allocate_system_heap.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_application.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_application.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_argcargv.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_argcargv.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_assert.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_assert.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_checked.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_checked.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_command_target.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_command_target.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_conv.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_conv.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_core_os.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_core_os.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_cpu_architecture.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_cpu_architecture.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_cregexp.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_cregexp.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_cregexp_util.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_cregexp_util.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_debug.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_debug.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_departament.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_departament.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_departament_container.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_departament_container.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_element.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_element.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_fixed_alloc.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_fixed_alloc.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_flags.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_flags.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_heap.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_heap.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_international.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_international.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_progress.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_progress.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_live_object.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_live_object.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_live_signal.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_live_signal.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_log.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_log.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_machine_event.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_machine_event.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_machine_event_central.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_machine_event_central.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_machine_event_data.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_machine_event_data.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_math.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_math.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_message_queue.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_message_queue.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_microtimer.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_microtimer.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_mktime.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_mktime.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_muldiv64.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_muldiv64.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_plex.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_plex.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_plex_heap.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_plex_heap.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_printf.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_printf.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_root.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_root.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_savings.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_savings.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_session.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_session.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_sprintf.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_sprintf.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_system.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_system.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_template.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_template.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_trace.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_trace.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\message\message.cpp">
-      <Filter>Source Files\aura\message</Filter>
+    <ClCompile Include="apex\message\message.cpp">
+      <Filter>Source Files\apex\message</Filter>
     </ClCompile>
-    <ClCompile Include="aura\message\message_base.cpp">
-      <Filter>Source Files\aura\message</Filter>
+    <ClCompile Include="apex\message\message_base.cpp">
+      <Filter>Source Files\apex\message</Filter>
     </ClCompile>
-    <ClCompile Include="aura\message\message_dispatch.cpp">
-      <Filter>Source Files\aura\message</Filter>
+    <ClCompile Include="apex\message\message_dispatch.cpp">
+      <Filter>Source Files\apex\message</Filter>
     </ClCompile>
-    <ClCompile Include="aura\process\process_bidi_pipe.cpp">
-      <Filter>Source Files\aura\process</Filter>
+    <ClCompile Include="apex\process\process_bidi_pipe.cpp">
+      <Filter>Source Files\apex\process</Filter>
     </ClCompile>
-    <ClCompile Include="aura\process\process_departament.cpp">
-      <Filter>Source Files\aura\process</Filter>
+    <ClCompile Include="apex\process\process_departament.cpp">
+      <Filter>Source Files\apex\process</Filter>
     </ClCompile>
-    <ClCompile Include="aura\process\process_pipe.cpp">
-      <Filter>Source Files\aura\process</Filter>
+    <ClCompile Include="apex\process\process_pipe.cpp">
+      <Filter>Source Files\apex\process</Filter>
     </ClCompile>
-    <ClCompile Include="aura\process\process_process.cpp">
-      <Filter>Source Files\aura\process</Filter>
+    <ClCompile Include="apex\process\process_process.cpp">
+      <Filter>Source Files\apex\process</Filter>
     </ClCompile>
-    <ClCompile Include="aura\node\metrowin\metrowin_application.cpp">
-      <Filter>Source Files\aura\node\metrowin</Filter>
+    <ClCompile Include="apex\node\metrowin\metrowin_application.cpp">
+      <Filter>Source Files\apex\node\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="aura\node\metrowin\metrowin_dll.cpp">
-      <Filter>Source Files\aura\node\metrowin</Filter>
+    <ClCompile Include="apex\node\metrowin\metrowin_dll.cpp">
+      <Filter>Source Files\apex\node\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="aura\node\metrowin\metrowin_error.cpp">
-      <Filter>Source Files\aura\node\metrowin</Filter>
+    <ClCompile Include="apex\node\metrowin\metrowin_error.cpp">
+      <Filter>Source Files\apex\node\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="aura\node\metrowin\metrowin_factory_exchange.cpp">
-      <Filter>Source Files\aura\node\metrowin</Filter>
+    <ClCompile Include="apex\node\metrowin\metrowin_factory_exchange.cpp">
+      <Filter>Source Files\apex\node\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="aura\node\metrowin\metrowin_file.cpp">
-      <Filter>Source Files\aura\node\metrowin</Filter>
+    <ClCompile Include="apex\node\metrowin\metrowin_file.cpp">
+      <Filter>Source Files\apex\node\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="aura\node\metrowin\metrowin_file_find.cpp">
-      <Filter>Source Files\aura\node\metrowin</Filter>
+    <ClCompile Include="apex\node\metrowin\metrowin_file_find.cpp">
+      <Filter>Source Files\apex\node\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="aura\node\metrowin\metrowin_folder_watch.cpp">
-      <Filter>Source Files\aura\node\metrowin</Filter>
+    <ClCompile Include="apex\node\metrowin\metrowin_folder_watch.cpp">
+      <Filter>Source Files\apex\node\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="aura\node\metrowin\metrowin_main.cpp">
-      <Filter>Source Files\aura\node\metrowin</Filter>
+    <ClCompile Include="apex\node\metrowin\metrowin_main.cpp">
+      <Filter>Source Files\apex\node\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="aura\node\metrowin\metrowin_os.cpp">
-      <Filter>Source Files\aura\node\metrowin</Filter>
+    <ClCompile Include="apex\node\metrowin\metrowin_os.cpp">
+      <Filter>Source Files\apex\node\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="aura\node\metrowin\metrowin_registry.cpp">
-      <Filter>Source Files\aura\node\metrowin</Filter>
+    <ClCompile Include="apex\node\metrowin\metrowin_registry.cpp">
+      <Filter>Source Files\apex\node\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="aura\node\metrowin\metrowin_shell.cpp">
-      <Filter>Source Files\aura\node\metrowin</Filter>
+    <ClCompile Include="apex\node\metrowin\metrowin_shell.cpp">
+      <Filter>Source Files\apex\node\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="aura\node\metrowin\metrowin_stdio_file.cpp">
-      <Filter>Source Files\aura\node\metrowin</Filter>
+    <ClCompile Include="apex\node\metrowin\metrowin_stdio_file.cpp">
+      <Filter>Source Files\apex\node\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="aura\node\metrowin\metrowin_trace.cpp">
-      <Filter>Source Files\aura\node\metrowin</Filter>
+    <ClCompile Include="apex\node\metrowin\metrowin_trace.cpp">
+      <Filter>Source Files\apex\node\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="aura\node\metrowin\metrowin_uac_tools.cpp">
-      <Filter>Source Files\aura\node\metrowin</Filter>
+    <ClCompile Include="apex\node\metrowin\metrowin_uac_tools.cpp">
+      <Filter>Source Files\apex\node\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="aura\node\metrowin\metrowin_util.cpp">
-      <Filter>Source Files\aura\node\metrowin</Filter>
+    <ClCompile Include="apex\node\metrowin\metrowin_util.cpp">
+      <Filter>Source Files\apex\node\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\metrowin\metrowin_user.cpp">
-      <Filter>Source Files\aura\os\metrowin</Filter>
+    <ClCompile Include="apex\os\metrowin\metrowin_user.cpp">
+      <Filter>Source Files\apex\os\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\metrowin\metrowin_time.cpp">
-      <Filter>Source Files\aura\os\metrowin</Filter>
+    <ClCompile Include="apex\os\metrowin\metrowin_time.cpp">
+      <Filter>Source Files\apex\os\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\metrowin\metrowin_sockets.cpp">
-      <Filter>Source Files\aura\os\metrowin</Filter>
+    <ClCompile Include="apex\os\metrowin\metrowin_sockets.cpp">
+      <Filter>Source Files\apex\os\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\metrowin\metrowin_small_ipca_channel.cpp">
-      <Filter>Source Files\aura\os\metrowin</Filter>
+    <ClCompile Include="apex\os\metrowin\metrowin_small_ipca_channel.cpp">
+      <Filter>Source Files\apex\os\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\metrowin\metrowin_simple_shell_launcher.cpp">
-      <Filter>Source Files\aura\os\metrowin</Filter>
+    <ClCompile Include="apex\os\metrowin\metrowin_simple_shell_launcher.cpp">
+      <Filter>Source Files\apex\os\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\metrowin\metrowin_simple_app.cpp">
-      <Filter>Source Files\aura\os\metrowin</Filter>
+    <ClCompile Include="apex\os\metrowin\metrowin_simple_app.cpp">
+      <Filter>Source Files\apex\os\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\metrowin\metrowin_process.cpp">
-      <Filter>Source Files\aura\os\metrowin</Filter>
+    <ClCompile Include="apex\os\metrowin\metrowin_process.cpp">
+      <Filter>Source Files\apex\os\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\metrowin\metrowin_multithreading.cpp">
-      <Filter>Source Files\aura\os\metrowin</Filter>
+    <ClCompile Include="apex\os\metrowin\metrowin_multithreading.cpp">
+      <Filter>Source Files\apex\os\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\metrowin\metrowin_lock.cpp">
-      <Filter>Source Files\aura\os\metrowin</Filter>
+    <ClCompile Include="apex\os\metrowin\metrowin_lock.cpp">
+      <Filter>Source Files\apex\os\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\metrowin\metrowin_library.cpp">
-      <Filter>Source Files\aura\os\metrowin</Filter>
+    <ClCompile Include="apex\os\metrowin\metrowin_library.cpp">
+      <Filter>Source Files\apex\os\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\metrowin\metrowin_launcher.cpp">
-      <Filter>Source Files\aura\os\metrowin</Filter>
+    <ClCompile Include="apex\os\metrowin\metrowin_launcher.cpp">
+      <Filter>Source Files\apex\os\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\metrowin\metrowin_file_watcher.cpp">
-      <Filter>Source Files\aura\os\metrowin</Filter>
+    <ClCompile Include="apex\os\metrowin\metrowin_file_watcher.cpp">
+      <Filter>Source Files\apex\os\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_file_watcher.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_file_watcher.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_file_watcher_impl.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_file_watcher_impl.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_file_watcher_listener_thread.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_file_watcher_listener_thread.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_file_watcher_thread.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_file_watcher_thread.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\node\metrowin\metrowin_thread.cpp">
-      <Filter>Source Files\aura\node\metrowin</Filter>
+    <ClCompile Include="apex\node\metrowin\metrowin_thread.cpp">
+      <Filter>Source Files\apex\node\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\metrowin\metrowin_base.cpp">
-      <Filter>Source Files\aura\os\metrowin</Filter>
+    <ClCompile Include="apex\os\metrowin\metrowin_base.cpp">
+      <Filter>Source Files\apex\os\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\metrowin\metrowin_base_file.cpp">
-      <Filter>Source Files\aura\os\metrowin</Filter>
+    <ClCompile Include="apex\os\metrowin\metrowin_base_file.cpp">
+      <Filter>Source Files\apex\os\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\metrowin\metrowin_debug.cpp">
-      <Filter>Source Files\aura\os\metrowin</Filter>
+    <ClCompile Include="apex\os\metrowin\metrowin_debug.cpp">
+      <Filter>Source Files\apex\os\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\metrowin\metrowin_direct2d_tls.cpp">
-      <Filter>Source Files\aura\os\metrowin</Filter>
+    <ClCompile Include="apex\os\metrowin\metrowin_direct2d_tls.cpp">
+      <Filter>Source Files\apex\os\metrowin</Filter>
     </ClCompile>
     <ClCompile Include="primitive\collection\collection_array_base.cpp">
       <Filter>Source Files\primitive\collection</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_throw.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\exception_throw.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_assert_running_task.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_assert_running_task.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\metrowin\metrowin_local_memory_map.cpp">
-      <Filter>Source Files\aura\os\metrowin</Filter>
+    <ClCompile Include="apex\os\metrowin\metrowin_local_memory_map.cpp">
+      <Filter>Source Files\apex\os\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_local_memory_map.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_local_memory_map.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_command.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_command.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_command_msg.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_command_msg.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_command_target_interface.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_command_target_interface.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_command_ui.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_command_ui.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_command_ui_test.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_command_ui_test.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_create_context.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_create_context.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_draw_context.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_draw_context.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_draw_interface.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_draw_interface.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_frame_window.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_frame_window.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_interaction.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_interaction.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_printer.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_printer.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_simple_shell_launcher.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_simple_shell_launcher.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_timer_array.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_timer_array.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_timer_item.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_timer_item.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
     <ClCompile Include="primitive\create.cpp">
       <Filter>Source Files\primitive</Filter>
@@ -3367,11 +3367,11 @@
     <ClCompile Include="primitive\datetime\datetime_mktime.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\metrowin\metrowin_MessageBoxW.cpp">
-      <Filter>Source Files\aura\os\metrowin</Filter>
+    <ClCompile Include="apex\os\metrowin\metrowin_MessageBoxW.cpp">
+      <Filter>Source Files\apex\os\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_str_context.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_str_context.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\_file.cpp">
       <Filter>Source Files\filesystem\file</Filter>
@@ -3385,41 +3385,41 @@
     <ClCompile Include="user\colorertake5\_colorertake5.cpp">
       <Filter>Source Files\user\colorertake5</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\windows\windows_ansi_file.cpp">
-      <Filter>Source Files\aura\os\windows</Filter>
+    <ClCompile Include="apex\os\windows\windows_ansi_file.cpp">
+      <Filter>Source Files\apex\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="aura\_aura_aura.cpp">
-      <Filter>Source Files\aura</Filter>
+    <ClCompile Include="apex\_apex_apex.cpp">
+      <Filter>Source Files\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\_os.cpp">
-      <Filter>Source Files\aura\os</Filter>
+    <ClCompile Include="apex\os\_os.cpp">
+      <Filter>Source Files\apex\os</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\metrowin\_metrowin_os.cpp">
-      <Filter>Source Files\aura\os\metrowin</Filter>
+    <ClCompile Include="apex\os\metrowin\_metrowin_os.cpp">
+      <Filter>Source Files\apex\os\metrowin</Filter>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\_draw2d.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\_aura_aura_aura.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\_apex_apex_apex.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\message\_message.cpp">
-      <Filter>Source Files\aura\message</Filter>
+    <ClCompile Include="apex\message\_message.cpp">
+      <Filter>Source Files\apex\message</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\_exception.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="apex\exception\_exception.cpp">
+      <Filter>Source Files\apex\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\node\metrowin\_metrowin_node.cpp">
-      <Filter>Source Files\aura\node\metrowin</Filter>
+    <ClCompile Include="apex\node\metrowin\_metrowin_node.cpp">
+      <Filter>Source Files\apex\node\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="aura\node\_node.cpp">
-      <Filter>Source Files\aura\node</Filter>
+    <ClCompile Include="apex\node\_node.cpp">
+      <Filter>Source Files\apex\node</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\ansios\ansios_message_loop.cpp">
-      <Filter>Source Files\aura\os\ansios</Filter>
+    <ClCompile Include="apex\os\ansios\ansios_message_loop.cpp">
+      <Filter>Source Files\apex\os\ansios</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\ansios\ansios_multithreading.cpp">
-      <Filter>Source Files\aura\os\NewFilter1</Filter>
+    <ClCompile Include="apex\os\ansios\ansios_multithreading.cpp">
+      <Filter>Source Files\apex\os\NewFilter1</Filter>
     </ClCompile>
     <ClCompile Include="multithreading\multithreading_thread_os.cpp">
       <Filter>Source Files\multithreading</Filter>
@@ -3439,14 +3439,14 @@
     <ClCompile Include="net\net_url.cpp">
       <Filter>Source Files\net</Filter>
     </ClCompile>
-    <ClCompile Include="aura\node\metrowin\metrowin_dir.cpp">
-      <Filter>Source Files\aura\node\metrowin</Filter>
+    <ClCompile Include="apex\node\metrowin\metrowin_dir.cpp">
+      <Filter>Source Files\apex\node\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="aura\node\metrowin\metrowin_file_system.cpp">
-      <Filter>Source Files\aura\node\metrowin</Filter>
+    <ClCompile Include="apex\node\metrowin\metrowin_file_system.cpp">
+      <Filter>Source Files\apex\node\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_allocate_x86_cache_oriented.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_allocate_x86_cache_oriented.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filesystem\_filesystem.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
@@ -3466,24 +3466,24 @@
     <ClCompile Include="user\user\user_primitive.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_timer.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_timer.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_ipc.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_ipc.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_ipi.cpp">
-      <Filter>Source Files\aura\aura</Filter>
+    <ClCompile Include="apex\apex\apex_ipi.cpp">
+      <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\windows\windows_ipc.cpp">
-      <Filter>Source Files\aura\os\windows</Filter>
+    <ClCompile Include="apex\os\windows\windows_ipc.cpp">
+      <Filter>Source Files\apex\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\metrowin\metrowin_dummy_ipc.cpp">
-      <Filter>Source Files\aura\os\metrowin</Filter>
+    <ClCompile Include="apex\os\metrowin\metrowin_dummy_ipc.cpp">
+      <Filter>Source Files\apex\os\metrowin</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="aura.rc">
+    <ResourceCompile Include="apex.rc">
       <Filter>Source Files</Filter>
     </ResourceCompile>
   </ItemGroup>

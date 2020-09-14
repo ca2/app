@@ -10,7 +10,7 @@ namespace colorertake5
       virtual public ::object
    {
    public:
-      RegionMapperImpl(::object * pobject) : object(pobject) {};
+      RegionMapperImpl(::layered * pobjectContext) : object(pobject) {};
       ~RegionMapperImpl() {};
 
       /** Loads region defines from @ca is input_source

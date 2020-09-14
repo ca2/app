@@ -58,13 +58,6 @@ public:
 
       Release();
 
-      if (!defer_co_initialize_ex(false))
-      {
-
-         return E_FAIL;
-
-      }
-
       return ::CoCreateInstance(rclsid, pUnkOuter, dwClsContext, __uuidof(TYPE), (void **)&m_p);
 
    }

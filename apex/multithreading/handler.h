@@ -22,8 +22,8 @@ public:
    virtual ~handler_manager();
 
 
-   void sync(::object * pobject);
-   void async(::object * pobject);
+   void sync(::layered * pobjectContext);
+   void async(::layered * pobjectContext);
 
 
    ::estatus handle(::object * pboject, bool bSync);

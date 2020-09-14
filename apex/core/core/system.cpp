@@ -1,14 +1,14 @@
 #include "framework.h"
-#include "aura/profiler2.h"
+#include "apex/profiler2.h"
 
 
 //#include "base/node/_node.h"
 
 
 #ifdef WINDOWS_DESKTOP
-//#include "aura/os/windows/windows_system_interaction_impl.h"
+//#include "apex/os/windows/windows_system_interaction_impl.h"
 #elif defined(_UWP)
-#include "aura/os/uwp/_uwp.h"
+#include "apex/os/uwp/_uwp.h"
 #endif
 
 
@@ -95,7 +95,7 @@ MC_COLOR_TEMPERATURE kelvin_mc_color(DWORD kelvin)
 #endif
 
 
-CLASS_DECL_APEX bool __rich_text_initialize(::aura::system * psystem);
+CLASS_DECL_APEX bool __rich_text_initialize(::apex::system * psystem);
 
 // #ifdef CUBE
 
@@ -118,14 +118,14 @@ typedef void BASECORE_INIT();
 #endif // LINUX
 
 
-namespace aura
+namespace apex
 {
 
    CLASS_DECL_APEX void black_body(float* r, float* g, float* b, DWORD dwTemp);
 
  /*  bool system::on_application_menu_action(const char * pszCommand)
    {
-      return ::aura::system::on_application_menu_action(pszCommand);
+      return ::apex::system::on_application_menu_action(pszCommand);
    }*/
 
 
@@ -135,7 +135,7 @@ namespace aura
       m_bFinalizeIfNoSessionSetting = true;
       m_bFinalizeIfNoSession = false;
 
-      create_factory < ::aura::session, ::aura::session >();
+      create_factory < ::apex::session, ::apex::session >();
 
    }
 
@@ -143,7 +143,7 @@ namespace aura
    ::estatus system::initialize_system(::object * pobject, app_core * pappcore)
    {
 
-      auto estatus = ::aura::system::initialize_system(pobject, pappcore);
+      auto estatus = ::apex::system::initialize_system(pobject, pappcore);
 
       if (!estatus)
       {
@@ -152,7 +152,7 @@ namespace aura
 
       }
 
-      //estatus = ::aura::application::initialize(pobjectContext);
+      //estatus = ::apex::application::initialize(pobjectContext);
 
      //if (!estatus)
      //{
@@ -176,7 +176,7 @@ namespace aura
 
 
 
-      //estatus = ::aura::application::initialize(pobject);
+      //estatus = ::apex::application::initialize(pobject);
 
       //if (!estatus)
       //{
@@ -191,8 +191,8 @@ namespace aura
       //m_strInstallToken             = "core_system";
 
       m_phistory = nullptr;
-      m_ppatch = new aura::patch();
-      g_pszCooperativeLevel = "aura";
+      m_ppatch = new apex::patch();
+      g_pszCooperativeLevel = "apex";
 
       estatus = __compose(m_puserset, __new(::account::user_set(this)));
 
@@ -207,7 +207,7 @@ namespace aura
 //      m_window                                  = nullptr;
 //#endif
 
-      //::aura::application * papp = ::get_context_application(pobject);
+      //::apex::application * papp = ::get_context_application(pobject);
 
       //if(papp == nullptr)
       //{
@@ -272,7 +272,7 @@ namespace aura
    system::~system()
    {
 
-      ::aura::del(m_ppatch);
+      ::acme::del(m_ppatch);
 
    }
 
@@ -296,10 +296,10 @@ namespace aura
    ::estatus system::init2()
    {
 
-      //if(!::aura::application::init2())
+      //if(!::apex::application::init2())
       //   return false;
 
-      auto estatus = ::aura::system::init2();
+      auto estatus = ::apex::system::init2();
 
       if(!estatus)
       {
@@ -326,7 +326,7 @@ namespace aura
    //   m_bInitApplicationResult      = FALSE;
    //   m_bInitApplication            = true;
 
-   //   m_bInitApplicationResult = ::aura::system::InitApplication();
+   //   m_bInitApplicationResult = ::apex::system::InitApplication();
 
    //   return m_bInitApplicationResult;
    //}
@@ -359,7 +359,7 @@ namespace aura
 
 #endif
 
-      //if (!::aura::application::process_init())
+      //if (!::apex::application::process_init())
       //{
 
       //   ERR(".1");
@@ -368,7 +368,7 @@ namespace aura
 
       //}
 
-      if (!::aura::system::process_init())
+      if (!::apex::system::process_init())
       {
 
          ERR(".2");
@@ -377,7 +377,7 @@ namespace aura
 
       }
 
-      ::aura::profiler::initialize();
+      ::apex::profiler::initialize();
 
 
 #ifdef LINUX
@@ -417,7 +417,7 @@ namespace aura
 //
 //#endif
 
-      //if (!::aura::application::init())
+      //if (!::apex::application::init())
       //{
 
       //   return false;
@@ -434,14 +434,14 @@ namespace aura
 
       m_pfilehandler = __new(::filehandler::handler(this));
 
-      //if (!::aura::application::init1())
+      //if (!::apex::application::init1())
       //{
 
       //   return false;
 
       //}
 
-      if (!::aura::system::init1())
+      if (!::apex::system::init1())
       {
 
          return false;
@@ -503,7 +503,7 @@ namespace aura
 
    }
 
-   void system::on_map_application_library(::aura::library & library)
+   void system::on_map_application_library(::apex::library & library)
    {
 
       m_pfilehandler->defer_add_library(library.m_pca2library);
@@ -514,7 +514,7 @@ namespace aura
    void system::on_graphics_ready()
    {
 
-      ::aura::system::on_graphics_ready();
+      ::apex::system::on_graphics_ready();
 
       //if (Session.userex()->shell()->m_bPendingUpdate)
       //{
@@ -529,7 +529,7 @@ namespace aura
    //::estatus system::init3()
    //{
 
-   //   //if(!::aura::application::init3())
+   //   //if(!::apex::application::init3())
    //   //{
 
    //   //   return false;
@@ -549,7 +549,7 @@ namespace aura
    ::estatus system::init_system()
    {
 
-      if(!::aura::system::init_system())
+      if(!::apex::system::init_system())
       {
 
          return false;
@@ -565,14 +565,14 @@ namespace aura
       set_enum_name(::type_bool      , "bool");
       set_enum_name(::type_double    , "double");*/
 
-      //if (!::aura::application::init_application())
+      //if (!::apex::application::init_application())
       //{
 
       //   return false;
 
       //}
 
-      //m_pbergedgemap = __new(::aura::session::map);
+      //m_pbergedgemap = __new(::apex::session::map);
 
 
       return true;
@@ -629,11 +629,11 @@ namespace aura
 //      }
 //
 //#endif
-      //::aura::application::term_application();
+      //::apex::application::term_application();
       try
       {
 
-         ::aura::system::term_system();
+         ::apex::system::term_system();
 
       }
       catch(...)
@@ -662,18 +662,18 @@ namespace aura
    }
 
 
-   //__pointer(::aura::session) system::on_create_session()
+   //__pointer(::apex::session) system::on_create_session()
    //{
 
-   //   return __new(::aura::session);
+   //   return __new(::apex::session);
 
    //}
 
 
-   //::aura::session * system::query_session(index iEdge)
+   //::apex::session * system::query_session(index iEdge)
    //{
 
-   //   ::aura::session * pbergedge = nullptr;
+   //   ::apex::session * pbergedge = nullptr;
 
    //   if (m_pbergedgemap == nullptr)
    //   {
@@ -695,7 +695,7 @@ namespace aura
 
 
 
-   ::aura::history & system::hist()
+   ::apex::history & system::hist()
    {
 
       return *m_phistory;
@@ -703,7 +703,7 @@ namespace aura
    }
 
 
-   bool system::set_history(::aura::history * phistory)
+   bool system::set_history(::apex::history * phistory)
    {
 
       m_phistory = phistory;
@@ -713,10 +713,10 @@ namespace aura
    }
 
 
-   __pointer(::aura::library) system::on_get_library(const char * pszLibrary)
+   __pointer(::apex::library) system::on_get_library(const char * pszLibrary)
    {
 
-      __pointer(::aura::library) plibrary;
+      __pointer(::apex::library) plibrary;
 
       bool bLibraryOk = false;
 
@@ -747,7 +747,7 @@ namespace aura
 
       }
 
-      plibrary = ::aura::system::on_get_library(pszLibrary);
+      plibrary = ::apex::system::on_get_library(pszLibrary);
 
       if (plibrary)
       {
@@ -772,7 +772,7 @@ namespace aura
       try
       {
 
-         ::aura::system::term();
+         ::apex::system::term();
 
       }
       catch(...)
@@ -802,7 +802,7 @@ namespace aura
 
       //get_platform(pcreate->m_pcommandline->m_iEdge,pcreate->m_pcommandline->m_papplicationbias);
 
-      ::aura::system::on_request(pcreate);
+      ::apex::system::on_request(pcreate);
 
    }
 
@@ -851,7 +851,7 @@ namespace aura
    }
 
 
-   ::aura::patch & system::patch()
+   ::apex::patch & system::patch()
    {
 
       return *m_ppatch;
@@ -880,7 +880,7 @@ namespace aura
 
    //   index iNewEdge = m_iNewEdge;
 
-   //   ::aura::session * pbergedge = nullptr;
+   //   ::apex::session * pbergedge = nullptr;
 
    //   while(m_pbergedgemap->lookup(iNewEdge,pbergedge))
    //   {
@@ -921,7 +921,7 @@ namespace aura
 
    //   //   xxdebug_box("system::on_install","system::on_install",0);
 
-   //   //   if (!::aura::application::on_install())
+   //   //   if (!::apex::application::on_install())
    //   //   {
 
    //   //      return false;
@@ -949,7 +949,7 @@ namespace aura
    }
 
 
-   ::estatus system::add_view_library(::aura::library * plibrary)
+   ::estatus system::add_view_library(::apex::library * plibrary)
    {
 
       m_libraryspa.add(plibrary);
@@ -1043,7 +1043,7 @@ namespace aura
    ::estatus     system::do_request(::create * pcreate)
    {
 
-      return aura::system::do_request(pcreate);
+      return apex::system::do_request(pcreate);
 
    }
 
@@ -1051,7 +1051,7 @@ namespace aura
    void system::assert_valid() const
    {
 
-      ::aura::system::assert_valid();
+      ::apex::system::assert_valid();
 
    }
 
@@ -1059,7 +1059,7 @@ namespace aura
    void system::dump(dump_context & context) const
    {
 
-      ::aura::system::dump(context);
+      ::apex::system::dump(context);
 
    }
 
@@ -1067,12 +1067,12 @@ namespace aura
    ::estatus     system::main()
    {
 
-      return ::aura::system::main();
+      return ::apex::system::main();
 
    }
 
 
-   //__pointer_array(::aura::session) & system::planesessionptra()
+   //__pointer_array(::apex::session) & system::planesessionptra()
    //{
 
    //   return m_planesessionptra;
@@ -1102,7 +1102,7 @@ namespace aura
 //   ::estatus system::initialize_system(::object* pobjectContext, ::app_core* pappcore)
 //   {
 //
-//      auto estatus = ::aura::system::initialize_system(pobjectContext, pappcore);
+//      auto estatus = ::apex::system::initialize_system(pobjectContext, pappcore);
 //
 //      if (!estatus)
 //      {
@@ -1111,7 +1111,7 @@ namespace aura
 //
 //      }
 //
-//      //estatus = ::aura::application::initialize(pobjectContext);
+//      //estatus = ::apex::application::initialize(pobjectContext);
 //
 //      //if (!estatus)
 //      //{
@@ -1127,7 +1127,7 @@ namespace aura
 //
 //      create_factory < ::draw2d::icon >();
 //
-//      g_pszCooperativeLevel = "aura";
+//      g_pszCooperativeLevel = "apex";
 //
 //#if defined(_UWP) || defined(APPLE_IOS) || defined(ANDROID)
 //
@@ -1143,8 +1143,8 @@ namespace aura
    //void system::term_system()
    //{
 
-   //   //aura::application::term_application();
-   //   aura::system::term_system();
+   //   //apex::application::term_application();
+   //   apex::system::term_system();
 
    //}
 
@@ -1198,7 +1198,7 @@ namespace aura
    ::count system::get_monitor_count()
    {
 
-      return ::aura::system::get_monitor_count();
+      return ::apex::system::get_monitor_count();
 
    }
 
@@ -1627,7 +1627,7 @@ namespace aura
 #elif defined(LINUX)
 
 
-      return ::aura::system::get_monitor_rect(iMonitor, prect);
+      return ::apex::system::get_monitor_rect(iMonitor, prect);
 
       //return os_get_monitor_rect(iMonitor, prect);
 
@@ -1635,7 +1635,7 @@ namespace aura
 
 #else
 
-      return ::aura::system::get_monitor_rect(iMonitor, prect);
+      return ::apex::system::get_monitor_rect(iMonitor, prect);
 
 
 #endif
@@ -1667,7 +1667,7 @@ namespace aura
       //
       //#else
 
-      return ::aura::system::get_wkspace_rect(iWkspace, prect);
+      return ::apex::system::get_wkspace_rect(iWkspace, prect);
 
 
       //#endif
@@ -1679,7 +1679,7 @@ namespace aura
 //   {
 //
 //
-//      //::aura::application * papp = ::get_context_application(get_object());
+//      //::apex::application * papp = ::get_context_application(get_object());
 //
 //      //if (papp == nullptr)
 //      //{
@@ -1716,10 +1716,10 @@ namespace aura
 //      //}
 //
 //
-//      //if (!::aura::application::process_init())
+//      //if (!::apex::application::process_init())
 //        // return false;
 //
-//      if (!::aura::system::process_init())
+//      if (!::apex::system::process_init())
 //         return false;
 //
 //
@@ -1768,7 +1768,7 @@ namespace aura
 
       //        __pointer(::user::interaction) pinteraction;
 
-      //        __pointer(::aura::session) psession = m_psession;
+      //        __pointer(::apex::session) psession = m_psession;
 
       //        if(psession == nullptr)
       //        {
@@ -2097,7 +2097,7 @@ namespace aura
 
 
 
-} // namespace aura
+} // namespace apex
 
 
 

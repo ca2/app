@@ -4,16 +4,16 @@
 
 template < typename PRED >
 class __pred_callback :
-   virtual public ::generic_object
+   virtual public ::generic
 {
 public:
 
 
    PRED                             m_pred;
-   __pointer(::generic_object)      m_pobjectHold;
+   __pointer(::generic)      m_pobjectHold;
 
 
-   __pred_callback(PRED pred, ::generic_object* pobjectHold = nullptr) :
+   __pred_callback(PRED pred, ::generic* pobjectHold = nullptr) :
       m_pred(pred),
       m_pobjectHold(pobjectHold)
    {
@@ -51,7 +51,7 @@ public:
 
 
 template < typename PRED >
-inline auto __task_callback(PRED pred, ::generic_object* pobjectHold)
+inline auto __task_callback(PRED pred, ::generic* pobjectHold)
 {
 
    return __new(__pred_callback < PRED >(pred, pobjectHold));

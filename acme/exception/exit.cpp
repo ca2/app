@@ -3,7 +3,7 @@
 
 exit_exception::exit_exception(__pointer(::layered) playeredThreadExit, const char * pszMessage) :
    exception(pszMessage),
-   m_playeredThreadExit(playeredThreadExit)
+   m_pthreadExit(playeredThreadExit)
 {
 
    //if(m_pthreadExit)
@@ -30,16 +30,16 @@ void exit_exception::set_finish()
    try
    {
 
-      if(m_playeredThreadExit.is_null())
+      if(m_pthreadExit.is_null())
       {
 
          return;
 
       }
 
-      m_playeredThreadExit->set_finish();
+      m_pthreadExit->set_finish();
 
-      m_playeredThreadExit.release();
+      m_pthreadExit.release();
 
    }
    catch(...)

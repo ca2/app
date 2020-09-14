@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-relation_set::relation_set(::object * pobject) :
+relation_set::relation_set(::layered * pobjectContext) :
    property_set(pobject, true, true)
 {
 

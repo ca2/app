@@ -11,7 +11,7 @@
 
 #ifdef ACID
 
-::aura::application * get_acid_app();
+::apex::application * get_acid_app();
 
 #endif
 
@@ -47,7 +47,7 @@ char * linux_get_command_line(int argc, char ** argv); // malloc/strdup equivale
 
 #ifdef _UWP
 
-//#include "aura/_.h"
+//#include "apex/_.h"
 //
 //#undef CoreApplication
 //
@@ -58,9 +58,9 @@ char * linux_get_command_line(int argc, char ** argv); // malloc/strdup equivale
 int main(Array < String ^ > ^ refstra)
 {
 
-   class aura_aura aura;
+   class apex_apex apex;
 
-   ap(aura_main_data) pmaindata = new aura_main_data(refstra);
+   ap(apex_main_data) pmaindata = new apex_main_data(refstra);
 
 #ifdef MAIN_STRING
 
@@ -68,7 +68,7 @@ int main(Array < String ^ > ^ refstra)
 
 #endif
 
-   return (int)aura_aura(pmaindata);
+   return (int)apex_apex(pmaindata);
 
 }
 
@@ -88,7 +88,7 @@ int main(int argc, char * argv[])
 
 }
 
-int aura_main(int argc, char * argv[], char * pszCommandLine, bool bConsole, bool bDraw2d);
+int apex_main(int argc, char * argv[], char * pszCommandLine, bool bConsole, bool bDraw2d);
 
 #ifdef NO_DRAW2D
 
@@ -141,18 +141,18 @@ i32 WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPTSTR pCmdLi
 //
 //   {
 //
-//      __pointer(class aura_aura) paura;
+//      __pointer(class apex_apex) papex;
 //
-//      __pointer(class aura_main_data) pmaindata;
+//      __pointer(class apex_main_data) pmaindata;
 //
 //      {
 //
 //         //__keep(thread_flag_prevent_create_thread);
 //
 //
-//         paura = __new(class aura_aura);
+//         papex = __new(class apex_apex);
 //
-//         pmaindata = __new(aura_main_data(hinstance, hPrevInstance, pCmdLine, nCmdShow));
+//         pmaindata = __new(apex_main_data(hinstance, hPrevInstance, pCmdLine, nCmdShow));
 //
 //#ifdef MAIN_RUNNER0
 //
@@ -170,11 +170,11 @@ i32 WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPTSTR pCmdLi
 //
 //#ifdef ACID
 //
-//      return aura_aura(pmaindata, &get_acid_app);
+//      return apex_apex(pmaindata, &get_acid_app);
 //
 //#else
 //
-//      iRet = aura_aura(pmaindata);
+//      iRet = apex_apex(pmaindata);
 //
 //#endif
 //   }
@@ -209,14 +209,14 @@ i32 WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPTSTR pCmdLi
 
 //#define APP_PRELUDE_LEVEL(prefix) \
 //extern "C" \
-//::aura::application * prefix##_get_new_app(::object * pobject); \
-//prelude auraprelude(&prefix##_get_new_app);
+//::apex::application * prefix##_get_new_app(::layered * pobjectContext); \
+//prelude apexprelude(&prefix##_get_new_app);
 //
 //
 //#define LIBRARY_PRELUDE(prefix) \
 //extern "C" \
-//::aura::library * prefix##_get_new_library(::object * pobject); \
-//prelude auraprelude(&prefix##_get_new_library);
+//::apex::library * prefix##_get_new_library(::layered * pobjectContext); \
+//prelude apexprelude(&prefix##_get_new_library);
 
 
 #if defined(LINUX) && !defined(LINUX_COMMAND_LINE)

@@ -61,7 +61,7 @@ public:
 
 
    command_line();
-   command_line(::object * pobject);
+   command_line(::layered * pobjectContext);
    command_line(::object * pobject, const string & strCommandLine);
    ~command_line();
 

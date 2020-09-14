@@ -40,7 +40,7 @@ namespace dynamic_source
    }
 
    
-   ::estatus script_compiler::initialize(::object* pobjectContext)
+   ::estatus script_compiler::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);
@@ -3106,7 +3106,7 @@ ch_else:
    }
 
 
-   library::library(::object * pobject):
+   library::library(::layered * pobjectContext):
       object(pobject)
    {
 

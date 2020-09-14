@@ -7,7 +7,7 @@ namespace prompt
 {
 
 
-   view::view(::object * pobject) :
+   view::view(::layered * pobjectContext) :
       ::object(pobject),
       ::user::interaction(pobject)
    {

@@ -20,7 +20,7 @@ namespace user
    }
 
 
-   ::user::document* server::open_new_document(::aura::application* pappOnBehalfOf, bool bMakeVisible, ::user::interaction* puiParent, ewindowflag eflag, ::id id)
+   ::user::document* server::open_new_document(::apex::application* pappOnBehalfOf, bool bMakeVisible, ::user::interaction* puiParent, ewindowflag eflag, ::id id)
    {
 
       return open_document_file(pappOnBehalfOf, nullptr, bMakeVisible, puiParent, eflag, id);
@@ -47,7 +47,7 @@ namespace user
    }
 
 
-   ::user::document* server::open_document_file(::aura::application* pappOnBehalfOf, var varFile, bool bMakeVisible, ::user::interaction* puiParent, ewindowflag eflag, ::id id)
+   ::user::document* server::open_document_file(::apex::application* pappOnBehalfOf, var varFile, bool bMakeVisible, ::user::interaction* puiParent, ewindowflag eflag, ::id id)
    {
 
       auto pcreate = __new(::create(pappOnBehalfOf, pappOnBehalfOf->m_strAppId, varFile, bMakeVisible, puiParent, eflag, id));

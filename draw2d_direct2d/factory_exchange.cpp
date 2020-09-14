@@ -58,21 +58,21 @@ namespace draw2d_direct2d
 } // namespace draw2d_direct2d
 
 
-extern "C"
-void draw2d_factory_exchange()
-{
+//extern "C"
+//void draw2d_factory_exchange()
+//{
+//
+//   ::get_context_system()->m_pDraw2dFactoryExchange = new ::draw2d_direct2d::factory_exchange();
+//
+//}
 
-   ::get_context_system()->m_pDraw2dFactoryExchange = new ::draw2d_direct2d::factory_exchange();
-
-}
-
-extern "C"
-void factory_exchange()
-{
-
-   draw2d_factory_exchange();
-
-}
+//extern "C"
+//void factory_exchange()
+//{
+//
+//   draw2d_factory_exchange();
+//
+//}
 
 
 

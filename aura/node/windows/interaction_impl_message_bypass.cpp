@@ -4,7 +4,18 @@
 #endif
 #include "aura/message.h"
 
-string get_message_text(UINT uMessage, bool bWithNumbers);
+
+UINT g_puiaMessageTrace[] =
+{
+   WM_MOVE,
+   WM_SIZE,
+   WM_ACTIVATE,
+   WM_SETFOCUS,
+   WM_KILLFOCUS,
+   (UINT)-1
+};
+
+CLASS_DECL_APEX string get_message_text(UINT uMessage, bool bWithNumbers);
 
 bool __windows_message_bypass(HWND oswindow, UINT message, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
 {

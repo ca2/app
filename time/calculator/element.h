@@ -6,7 +6,7 @@ namespace datetime
 
 
    class CLASS_DECL_CA2_TIME element :
-      virtual public ::generic_object
+      virtual public ::generic
    {
    public:
 

@@ -24,7 +24,7 @@ namespace draw2d_opengl
       virtual ~image();
 
 
-      //virtual void construct_image_impl(::object * pobject);
+      //virtual void construct_image_impl(::layered * pobjectContext);
 
 
       virtual ::draw2d::graphics * _get_graphics() const;

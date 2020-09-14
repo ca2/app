@@ -229,7 +229,7 @@ namespace tranquillum
             if (tab_pane.m_pimage->is_set())
             {
                size.cx += tab_pane.m_pimage->width() + 2;
-               size.cy = MAX(size.cy, tab_pane.m_pimage->height());
+               size.cy = max(size.cy, tab_pane.m_pimage->height());
             }
             cx = size.cx + 2;
 
@@ -320,7 +320,7 @@ namespace tranquillum
             if (tab_pane.m_pimage->is_set())
             {
 
-               size.cy = MAX(size.cy, tab_pane.m_pimage->size().cy);
+               size.cy = max(size.cy, tab_pane.m_pimage->size().cy);
 
             }
 

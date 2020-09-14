@@ -5,9 +5,9 @@ namespace sockets
 {
 
 
-   sockets::sockets(::object * pobject) :
+   sockets::sockets(::layered * pobjectContext) :
       ::object(pobject),
-      ::aura::department(pobject),
+      ::apex::department(pobject),
       
       m_mutexResolvCache(pobject)
    {

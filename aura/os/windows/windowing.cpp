@@ -9,12 +9,12 @@
 #define ___TEMP_CLASS_NAME_SIZE 4096
 
 
-CLASS_DECL_AURA void defer_dock_application(int_bool bDock)
-{
-
-   UNREFERENCED_PARAMETER(bDock);
-
-}
+//CLASS_DECL_AURA void defer_dock_application(int_bool bDock)
+//{
+//
+//   UNREFERENCED_PARAMETER(bDock);
+//
+//}
 
 
 
@@ -47,13 +47,13 @@ CLASS_DECL_AURA i64 oswindow_id(HWND hwnd)
 
 }
 
-
-CLASS_DECL_AURA WINBOOL is_window(oswindow oswindow)
-{
-
-   return ::IsWindow(oswindow);
-
-}
+//
+//CLASS_DECL_AURA WINBOOL is_window(oswindow oswindow)
+//{
+//
+//   return ::IsWindow(oswindow);
+//
+//}
 
 
 CLASS_DECL_AURA bool get_gui_thread_info(PGUITHREADINFO pinfo)
@@ -358,48 +358,48 @@ void window_create_gray_caret(oswindow oswindow, i32 nWidth, i32 nHeight)
 CLASS_DECL_AURA string message_box_result_to_string(int iResult);
 
 
-CLASS_DECL_AURA ::estatus _os_message_box(oswindow oswindow, const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, ::callback callback)
-{
+// CLASS_DECL_AURA ::estatus _os_message_box(oswindow oswindow, const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, ::callback callback)
+// {
 
-   string strMessage(pszMessage);
+//    string strMessage(pszMessage);
 
-   strMessage.replace_ci("<br>", "\n");
+//    strMessage.replace_ci("<br>", "\n");
 
-   string strTitle(pszTitle);
+//    string strTitle(pszTitle);
 
-   strTitle.replace_ci("<br>", "\n");
+//    strTitle.replace_ci("<br>", "\n");
 
-   ::i32 iResult = ::MessageBoxW(oswindow, wstring(strMessage), wstring(strTitle), emessagebox);
+//    ::i32 iResult = ::MessageBoxW(oswindow, wstring(strMessage), wstring(strTitle), emessagebox);
 
-   string strResult = message_box_result_to_string(iResult);
+//    string strResult = message_box_result_to_string(iResult);
 
-   callback.receive_response(strResult);
+//    callback.receive_response(strResult);
 
-   return ::success;
+//    return ::success;
 
-}
+// }
 
 
-CLASS_DECL_AURA ::estatus os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, ::callback callback)
-{
+// CLASS_DECL_AURA ::estatus os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, ::callback callback)
+// {
 
-   if (::get_context_system()->is_dedicated_thread())
-   {
+//    if (::get_context_system()->is_dedicated_thread())
+//    {
 
-      ::get_context_system()->fork([=]()
-         {
+//       ::get_context_system()->fork([=]()
+//          {
 
-            _os_message_box(oswindow, pszMessage, pszTitle, emessagebox, callback);
+//             _os_message_box(oswindow, pszMessage, pszTitle, emessagebox, callback);
 
-         });
+//          });
 
-      return ::success;
+//       return ::success;
 
-   }
+//    }
 
-   return _os_message_box(oswindow, pszMessage, pszTitle, emessagebox, callback);
+//    return _os_message_box(oswindow, pszMessage, pszTitle, emessagebox, callback);
 
-}
+// }
 
 
 
@@ -410,5 +410,68 @@ void defer_term_ui()
 
 }
 
-
-
+//
+//::user::interaction_impl* oswindow_interaction_impl(oswindow oswindow)
+//{
+//
+//   if (::is_null(oswindow))
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//#ifndef WINDOWS_DESKTOP
+//
+//   if (::is_set(oswindow->m_pimpl))
+//   {
+//
+//      return oswindow->m_pimpl;
+//
+//   }
+//
+//#endif
+//
+//   auto & system = System;
+//
+//   sync_lock slSystem(system.mutex());
+//
+//   auto pmap = system.m_pwindowmap;
+//
+//   if (!pmap)
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   //sync_lock slMap(pmap->mutex());
+//
+//   ::user::primitive* pbase;
+//
+//   if (!pmap->m_map.lookup(oswindow, pbase))
+//   {
+//
+//      auto pimpl = thread_value("wnd_init").cast < ::user::interaction_impl >();
+//
+//      if (::is_set(pimpl))
+//      {
+//
+//         thread_value("wnd_init") = nullptr;
+//
+//         pimpl->attach(oswindow);
+//
+//         return oswindow_interaction_impl(oswindow);
+//
+//      }
+//
+//      return nullptr;
+//
+//   }
+//
+//   return dynamic_cast <::user::interaction_impl*>(pbase);
+//
+//}
+//
+//
+//

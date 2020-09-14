@@ -14,7 +14,7 @@ static_setup::static_setup(::static_setup::e_flag eflag, const char * pszName) :
 
 }
 
-//static_setup::static_setup(const char * lpszName, PFN_NEW_AURA_APPLICATION pfnNewAuraApplication) :
+//static_setup::static_setup(const char * lpszName, PFN_NEW_APEX_APPLICATION pfnNewAuraApplication) :
 //   m_pszName(lpszName),
 //   m_pfnNewAuraApplication(pfnNewAuraApplication),
 //   m_pfnNewAuraLibrary(nullptr),
@@ -26,7 +26,7 @@ static_setup::static_setup(::static_setup::e_flag eflag, const char * pszName) :
 //}
 //
 //
-//static_setup::static_setup(const char * lpszName, PFN_NEW_AURA_LIBRARY pfnNewLibrary):
+//static_setup::static_setup(const char * lpszName, PFN_NEW_APEX_LIBRARY pfnNewLibrary):
 //   m_pszName(lpszName),
 //   m_pfnNewAuraApplication(nullptr),
 //   m_pfnNewAuraLibrary(pfnNewLibrary),
@@ -135,7 +135,7 @@ static_setup* static_setup::get_first(::static_setup::e_flag eflag, const char* 
 //}
 
 
-::generic_object * static_setup::create_new_object()
+::generic * static_setup::create_new_object()
 {
 
    auto pobject = new_object();
@@ -187,7 +187,7 @@ static_setup* static_setup::get_first(::static_setup::e_flag eflag, const char* 
 
 
 
-::generic_object * static_setup::new_object()
+::generic * static_setup::new_object()
 {
 
    return nullptr;

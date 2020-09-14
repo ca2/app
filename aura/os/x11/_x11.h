@@ -14,7 +14,7 @@
 #include "x11_message_box.h"
 
 class x11_hook :
-virtual public ::generic_object
+virtual public ::generic
 {
 public:
 

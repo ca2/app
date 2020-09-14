@@ -125,7 +125,7 @@ namespace filemanager
 
       ::file::listing patha(get_context());
 
-      patha.ls(strParent);
+      Application.dir().ls(patha, strParent);
 
       for (i32 i = 0; i < patha.get_count(); i++)
       {
@@ -158,9 +158,9 @@ namespace filemanager
          //      UINT uiFlags;
          if (pcolumn->m_pil == nullptr)
          {
-            pcolumn->m_pil = __new(image_list);
+            pcolumn->m_pil = __new(::image_list);
          }
-         __pointer(image_list) pil = pcolumn->m_pil;
+         __pointer(::image_list) pil = pcolumn->m_pil;
          //if(pil->GetSafeHandle() != nullptr)
          //pil->DeleteImageList();
          //if(pil->create(16, 16, ILC_COLOR32 | ILC_MASK, 0, 1))

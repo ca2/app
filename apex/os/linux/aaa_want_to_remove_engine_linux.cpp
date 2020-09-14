@@ -195,7 +195,7 @@ namespace exception
 
 #endif
 
-   engine::engine(::object * pobject) :
+   engine::engine(::layered * pobjectContext) :
       object(pobject)
 #ifdef WINDOWS_DESKTOP
       ,m_bOk(false)
@@ -1678,7 +1678,7 @@ namespace exception
 
 
 /* globals retained across calls to resolve. */
-static const char * moda[]= {"/ca2/stage/x86/libaura.so", "/ca2/stage/x86/libbase.so", "/ca2/stage/x86/libcore.so", nullptr};
+static const char * moda[]= {"/ca2/stage/x86/libapex.so", "/ca2/stage/x86/libbase.so", "/ca2/stage/x86/libcore.so", nullptr};
 static bfd* abfda[64];
 static asymbol **symsa[64];
 static asection *texta[64];

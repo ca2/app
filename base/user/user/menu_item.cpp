@@ -162,7 +162,7 @@ namespace user
          if (strImage.has_char())
          {
 
-            __compose(m_pimage, Application.matter_image(strImage));
+            __compose(m_pimage, Application.image().matter_image(strImage));
 
          }
 

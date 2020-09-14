@@ -14,7 +14,7 @@ namespace turboc
       top_view * m_ptopview;
 
 
-      edit_view(::object * pobject);
+      edit_view(::layered * pobjectContext);
       virtual ~edit_view();
 
       virtual void _001OnAfterChangeText(const ::action_context & action_context);

@@ -11,7 +11,7 @@ namespace helloworld
    public:
 
 
-      document(::object * pobject);
+      document(::layered * pobjectContext);
       virtual ~document();
 
 

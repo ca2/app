@@ -6,7 +6,7 @@ namespace userpresence
 
 
    class CLASS_DECL_CORE department :
-      virtual public ::aura::department,
+      virtual public ::apex::department,
       virtual public ::aura::timer_array
    {
    public:
@@ -21,7 +21,7 @@ namespace userpresence
       virtual ~department();
 
 
-      virtual ::estatus initialize(::object * pobjectContext) override;
+      virtual ::estatus initialize(::layered * pobjectContext) override;
       virtual void finalize() override;
 
 

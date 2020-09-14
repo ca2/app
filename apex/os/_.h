@@ -1,7 +1,7 @@
 //  Created by Camilo Sasuke Tsumanuma on 05/01/18.
 #pragma once
 
-CLASS_DECL_APEX string get_command_line_dup();
+//CLASS_DECL_APEX string get_command_line_dup();
 
 #if defined(MACOS)
 
@@ -56,32 +56,32 @@ inline bool pred_Sleep(int iTime, PRED pred);
 //void adapt_font_name(string & str);
 
 
-namespace str
-{
-
-   string CLASS_DECL_APEX get_window_text_timeout(oswindow oswindow, tick tickTimeout = 1000);
-
-} // namespace str
+//namespace str
+//{
+//
+//   string CLASS_DECL_APEX get_window_text_timeout(oswindow oswindow, tick tickTimeout = 1000);
+//
+//} // namespace str
 
 
 CLASS_DECL_APEX void defer_dock_application(int_bool bDock);
 
 
-CLASS_DECL_APEX string get_current_login_name();
+//CLASS_DECL_APEX string get_current_login_name();
 
 
-#if defined(WINDOWS)
-
-
-CLASS_DECL_APEX _locale_t get_c_locale();
-
-
-#else
-
-
-CLASS_DECL_APEX locale_t get_c_locale();
-
-#endif
+//#if defined(WINDOWS)
+//
+//
+//CLASS_DECL_APEX _locale_t get_c_locale();
+//
+//
+//#else
+//
+//
+//CLASS_DECL_APEX locale_t get_c_locale();
+//
+//#endif
 
 
 

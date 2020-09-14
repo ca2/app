@@ -12,7 +12,7 @@ namespace aura
 
 
    class CLASS_DECL_AURA audio :
-      virtual public ::aura::department
+      virtual public ::apex::department
    {
    public:
 
@@ -42,6 +42,10 @@ namespace aura
       virtual LPFN_MULTIMEDIA_NEW_DECODER get_multimedia_decoder_factory(const char * pszTitle);
 
 
+      virtual LPWAVEOUT waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);
+
+
+
    };
 
 
@@ -58,7 +62,7 @@ extern "C"
 CLASS_DECL_AURA ::aura::audio * get_get_new_audio();
 
 
-CLASS_DECL_AURA ::aura::audio * get_context_audio(::object * pobjectContext);
+CLASS_DECL_AURA ::aura::audio * get_context_audio(::layered * pobjectContext);
 
 
 CLASS_DECL_AURA bool has_audio();

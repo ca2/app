@@ -13,7 +13,7 @@ namespace music
       {
          
 
-      file::file(::object * pobject) :
+      file::file(::layered * pobjectContext) :
          object(pobject),
          ::music::midi::file(pobject)
       {

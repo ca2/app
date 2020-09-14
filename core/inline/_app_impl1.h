@@ -209,13 +209,13 @@ i32 WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPTSTR pCmdLi
 
 //#define APP_PRELUDE_LEVEL(prefix) \
 //extern "C" \
-//::aura::application * prefix##_get_new_app(::object * pobject); \
+//::aura::application * prefix##_get_new_app(::layered * pobjectContext); \
 //prelude auraprelude(&prefix##_get_new_app);
 //
 //
 //#define LIBRARY_PRELUDE(prefix) \
 //extern "C" \
-//::aura::library * prefix##_get_new_library(::object * pobject); \
+//::apex::library * prefix##_get_new_library(::layered * pobjectContext); \
 //prelude auraprelude(&prefix##_get_new_library);
 
 

@@ -1,8 +1,8 @@
 #include "framework.h"
-#include "aura/app_core.h"
+#include "apex/app_core.h"
 
 
-aura_level auralevelCore(::aura_level::level_core, &defer_core_init);
+apex_level apexlevelCore(::apex_level::level_core, &defer_core_init);
 
 
 //#ifdef ANDROID
@@ -14,7 +14,7 @@ aura_level auralevelCore(::aura_level::level_core, &defer_core_init);
 //#endif
 
 
-namespace aura
+namespace apex
 {
 
 
@@ -26,7 +26,7 @@ namespace aura
       CLASS_DECL_APEX void init()
       {
 
-         xxdebug_box("aura.dll base_static_start (0)", "box", MB_OK);
+         xxdebug_box("apex.dll base_static_start (0)", "box", MB_OK);
 
 //#ifdef ANDROID
 //

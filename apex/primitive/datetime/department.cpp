@@ -107,6 +107,7 @@ namespace datetime
       return strtotime(nullptr, strInternationalDate, 0, i);
    }
 
+   
    i64 department::strtotime(const ::apex::str_context * pcontext, const char * psz, i32 iPath, i32 & iPathCount)
    {
 
@@ -163,8 +164,8 @@ namespace datetime
       return time.get_time();
    }
 
-   department::international::international(::object * pobject) :
-      ::object(pobject)
+   department::international::international(::layered * pobjectContext) :
+      ::object(pobjectContext)
    {
    }
 
@@ -282,9 +283,9 @@ namespace datetime
    }
 
 
-   department::str::str(::object * pobject)
+   department::str::str(::layered * pobjectContext)
    {
-      UNREFERENCED_PARAMETER(pobject);
+      UNREFERENCED_PARAMETER(pobjectContext);
       m_pdatetime = nullptr;
    }
 

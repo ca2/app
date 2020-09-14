@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aura/net/net_sockets.h"
+#include "apex/net/net_sockets.h"
 
 #if defined(LINUX) || defined(MACOS)
 #if defined(MACOS)
@@ -17,7 +17,7 @@ namespace sockets
 {
 
 
-   net::net(::object * pobject) :
+   net::net(::layered * pobjectContext) :
       ::object(pobject),
       m_mutexCache(pobject)
    {

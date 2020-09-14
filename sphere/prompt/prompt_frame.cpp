@@ -6,7 +6,7 @@ namespace prompt
 {
 
 
-   frame::frame(::object * pobject) :
+   frame::frame(::layered * pobjectContext) :
       ::object(pobject),
       simple_frame_window(pobject),
       m_spqueue(e_create)

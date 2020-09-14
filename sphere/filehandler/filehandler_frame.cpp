@@ -5,7 +5,7 @@ namespace filehandler
 {
 
 
-   frame::frame(::object * pobject) :
+   frame::frame(::layered * pobjectContext) :
       ::object(pobject),
       simple_frame_window(pobject)
    {

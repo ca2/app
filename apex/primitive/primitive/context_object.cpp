@@ -19,7 +19,7 @@ void context_object::dump(dump_context& context) const
 }
 
 
-::estatus     context_object::initialize(::object * pobjectContext)
+::estatus     context_object::initialize(::layered * pobjectContext)
 {
 
    return ::success;
@@ -361,16 +361,16 @@ stream & context_object::read(::stream & stream)
 
 
 
-void debug_trait()
-{
-
-
-   auto pimage = __create_image();
-
-
-   //System.imaging().start_traits(System.imaging(), pimage);
-
-}
+//void debug_trait()
+//{
+//
+//
+//   auto pimage = __create_image();
+//
+//
+//   //System.imaging().start_traits(System.imaging(), pimage);
+//
+//}
 
 
 
@@ -679,5 +679,45 @@ void context_object::to_sz(char * sz, strsize len) const
 
 }
 
+
+void context_object::call_update(const ::id& id)
+{
+
+   auto pupdate = new_update();
+
+   pupdate->m_id = id;
+
+   call_update(pupdate);
+
+}
+
+
+void context_object::call_update(const ::id& id, const ::action_context& context)
+{
+
+   auto pupdate = new_update();
+
+   pupdate->m_id = id;
+
+   pupdate->m_actioncontext = context;
+
+   call_update(pupdate);
+
+}
+
+
+void context_object::call_update(::update* pupdate)
+{
+
+   if (!pupdate->handled_by(this))
+   {
+
+      pupdate->set_handled_by(this);
+
+      this->update(pupdate);
+
+   }
+
+}
 
 

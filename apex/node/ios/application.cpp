@@ -7,7 +7,7 @@ namespace apex
 {
 
 
-//   application::application(::object * pobject) :
+//   application::application(::layered * pobjectContext) :
 //      ::object(pobject)
 //   {
 //

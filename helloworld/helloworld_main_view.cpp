@@ -5,7 +5,7 @@ namespace helloworld
 {
 
 
-   main_view::main_view(::object * pobject):
+   main_view::main_view(::layered * pobjectContext):
       object(pobject),
       ::user::split_layout(pobject),
       ::user::split_view(pobject),

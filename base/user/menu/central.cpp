@@ -24,7 +24,7 @@ namespace user
    }
 
 
-   bool menu_central::MenuV033AddImageMap(::object * pobjectContext, ::xml::node * pnode)
+   bool menu_central::MenuV033AddImageMap(::layered * pobjectContext, ::xml::node * pnode)
    {
 
       defer_initialize();

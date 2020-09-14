@@ -48,7 +48,7 @@ namespace userstack
       ::mutex                      m_mutexDraw;
 
 
-      view(::object * pobject);
+      view(::layered * pobjectContext);
       virtual ~view();
 
 

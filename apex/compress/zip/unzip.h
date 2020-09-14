@@ -56,7 +56,7 @@ extern "C" {
 #endif
 
 #ifndef __cplusplus
-#include "aura/ca_c.h"
+#include "apex/ca_c.h"
 #endif
 
 #if defined(STRICTUNZIP) || defined(STRICTZIPUNZIP)

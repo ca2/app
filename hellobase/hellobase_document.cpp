@@ -5,7 +5,7 @@ namespace hellobase
 {
 
 
-   document::document(::object * pobject) :
+   document::document(::layered * pobjectContext) :
       object(pobject),
       ::data::data_container_base(pobject),
       ::user::document(pobject),

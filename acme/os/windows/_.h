@@ -4,6 +4,9 @@
 typedef DWORD thread_data_index;
 
 
+CLASS_DECL_ACME::estatus init_gdi_plus();
+CLASS_DECL_ACME void term_gdi_plus();
+
 CLASS_DECL_ACME string get_command_line(HANDLE handleProcess);
 CLASS_DECL_ACME string get_display_error(u32 NTStatusMessage);
 CLASS_DECL_ACME void attach_thread_input_to_main_thread(bool bAttach = true);

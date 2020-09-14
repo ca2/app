@@ -503,7 +503,7 @@ inline string id::str() const
    {
       return "(null)";
    }
-   else if(m_etype == type_null)
+   else if(m_etype == type_empty)
    {
       return "(empty)";
    }

@@ -1,6 +1,6 @@
 //
 //  ios_plane_system.hpp
-//  ios_aura
+//  ios_apex
 //
 //  Created by Camilo Sasuke Tsumanuma on 03/10/17.
 //
@@ -12,12 +12,12 @@
 #ifdef __OBJC__
 
 typedef UIWindow * ui_window_ptr;
-typedef void * aura_system_ptr;
+typedef void * apex_system_ptr;
 
 #else
 
 typedef void * ui_window_ptr;
-typedef ::aura::system * aura_system_ptr;
+typedef ::apex::system * apex_system_ptr;
 
 #endif
 
@@ -25,7 +25,7 @@ typedef ::aura::system * aura_system_ptr;
 struct plane_system
 {
    
-   aura_system_ptr    m_psystem;
+   apex_system_ptr    m_psystem;
    
    plane_system();
    

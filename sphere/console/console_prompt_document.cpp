@@ -6,7 +6,7 @@ namespace console
 {
 
 
-   prompt_document::prompt_document(::object * pobject) :
+   prompt_document::prompt_document(::layered * pobjectContext) :
       ::object(pobject),
       ::data::data_container_base(pobject),
       ::user::document(pobject),

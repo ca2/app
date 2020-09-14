@@ -32,7 +32,7 @@ namespace dynamic_source
    }
 
 
-   ::estatus script_interface::initialize(::object* pobjectContext)
+   ::estatus script_interface::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::html::file::initialize(pobjectContext);

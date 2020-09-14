@@ -6,7 +6,7 @@ namespace console
 
 
    class CLASS_DECL_SPHERE department :
-      virtual public ::aura::department
+      virtual public ::apex::department
    {
    public:
 
@@ -14,7 +14,7 @@ namespace console
       __pointer(prompt) m_spprompt;
 
 
-      department(::object * pobject);
+      department(::layered * pobjectContext);
       virtual ~department();
 
       virtual ::estatus init_instance() override;

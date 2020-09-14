@@ -3,7 +3,9 @@
 #include "apex/platform/app_core.h"
 
 
-extern const char* g_pszServerCa2Cc;
+//extern const char* g_pszServerCa2Cc;
+
+CLASS_DECL_ACME const char* get_server_ca2_cc();
 
 
 string context::get_latest_build_number(const char * pszConfiguration, const char * pszAppId)
@@ -32,13 +34,13 @@ string context::get_latest_build_number(const char * pszConfiguration, const cha
    if (strConfiguration == "basis")
    {
 
-      strSpaIgnitionBaseUrl = string(g_pszServerCa2Cc) + "api/spaignition";
+      strSpaIgnitionBaseUrl = string(get_server_ca2_cc()) + "api/spaignition";
 
    }
    else
    {
 
-      strSpaIgnitionBaseUrl = string(g_pszServerCa2Cc) + "api/spaignition";
+      strSpaIgnitionBaseUrl = string(get_server_ca2_cc()) + "api/spaignition";
 
    }
 
@@ -598,7 +600,7 @@ string context::defer_get_file_title(string strParam)
 
       ::str::begins_eat_ci(path, "appmatter://");
 
-      path = string(g_pszServerCa2Cc) + "matter" / path;
+      path = string(get_server_ca2_cc()) + "matter" / path;
 
       //if (file().exists(path, this))
       {
@@ -1057,7 +1059,7 @@ void context::add_matter_locator(::apex::application * papp)
 
 
 
-::estatus context::_load_from_file(::generic_object* pobject, const ::var& varFile, const var& varOptions)
+::estatus context::_load_from_file(::generic* pobject, const ::var& varFile, const var& varOptions)
 {
 
    binary_stream reader(Context.file().get_reader(varFile));
@@ -1069,7 +1071,7 @@ void context::add_matter_locator(::apex::application * papp)
 }
 
 
-::estatus context::_save_to_file(const ::var& varFile, const var& varOptions, const ::generic_object * pobject)
+::estatus context::_save_to_file(const ::var& varFile, const var& varOptions, const ::generic * pobject)
 {
 
    binary_stream writer(Context.file().get_writer(varFile));

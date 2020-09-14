@@ -28,7 +28,7 @@ namespace userstack
       __pointer(pane_view)                m_ppaneview;
 
 
-      frame(::object * pobject);
+      frame(::layered * pobjectContext);
       virtual void install_message_routing(::channel * pchannel);
 
       DECL_GEN_SIGNAL(_001OnApp1);

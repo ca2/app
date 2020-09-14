@@ -9,7 +9,7 @@
 #include "apex/os/apple/_mm_common.h"
 
 
-void set_aura_system_as_thread();
+void set_apex_system_as_thread();
 
 
 #import <Foundation/Foundation.h>

@@ -54,8 +54,8 @@
 
 
 
-CLASS_DECL_APEX PPROC_SIMPLE g_axisoninitthread = nullptr;
-CLASS_DECL_APEX PPROC_SIMPLE g_axisontermthread = nullptr;
+//CLASS_DECL_APEX PPROC_SIMPLE g_axisoninitthread = nullptr;
+//CLASS_DECL_APEX PPROC_SIMPLE g_axisontermthread = nullptr;
 
 //u32 thread_proc_runner::thread_proc()
 //{
@@ -99,31 +99,31 @@ CLASS_DECL_APEX PPROC_SIMPLE g_axisontermthread = nullptr;
 //}
 
 
-thread_local __pointer(::thread) t_pthread;
-
-
-::thread* get_thread()
-{
-   
-   return t_pthread; 
-
-}
-
-
-void set_thread(thread* pthread)
-{
-
-   t_pthread = pthread;
-
-}
-
-
-void thread_release()
-{
-
-   t_pthread.release();
-
-}
-
-
-
+//thread_local __pointer(::thread) t_pthread;
+//
+//
+//::thread* get_thread()
+//{
+//   
+//   return t_pthread; 
+//
+//}
+//
+//
+//void set_thread(thread* pthread)
+//{
+//
+//   t_pthread = pthread;
+//
+//}
+//
+//
+//void thread_release(::thread * pthread)
+//{
+//
+//   t_pthread.release();
+//
+//}
+//
+//
+//

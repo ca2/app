@@ -413,7 +413,7 @@ namespace userex
    void pane_tab_view::on_create_impact(::user::impact_data * pimpactdata)
    {
 
-      ::aura::library * plibrary = nullptr;
+      ::apex::library * plibrary = nullptr;
 
       if(pimpactdata->m_id.is_text() && System.m_idmapCreateViewLibrary.lookup(pimpactdata->m_id,plibrary) && plibrary != nullptr)
       {

@@ -559,7 +559,7 @@ i32 simple_scroll_bar::SetTrackingPos(const ::point & point)
 
       double dRate = (double)(point.x - GetSystemMetrics(SM_CXHSCROLL)) / (double)iWidth;
 
-      dRate = MIN(1.0, dRate);
+      dRate = min(1.0, dRate);
 
       nPos = (i32)(dRate * (m_scrollinfo.nMax - m_scrollinfo.nMin - m_scrollinfo.nPage));
 
@@ -573,7 +573,7 @@ i32 simple_scroll_bar::SetTrackingPos(const ::point & point)
 
       double dRate = (double)(point.y - GetSystemMetrics(SM_CYVSCROLL)) / (double) iHeight;
 
-      dRate = MIN(1.0, dRate);
+      dRate = min(1.0, dRate);
 
       nPos = (i32) (dRate * (m_scrollinfo.nMax - m_scrollinfo.nMin - m_scrollinfo.nPage));
 
@@ -651,13 +651,13 @@ void simple_scroll_bar::on_layout(::draw2d::graphics_pointer & pgraphics)
 
       m_rectA.left   = 0;
       m_rectA.top    = 0;
-      m_rectA.right  = MIN(GetSystemMetrics(SM_CXHSCROLL),size.cx / 2);
+      m_rectA.right  = min(GetSystemMetrics(SM_CXHSCROLL),size.cx / 2);
       m_rectA.bottom = size.cy;
 
       /*
       m_ptaA[0].x = 0;
       m_ptaA[0].y = size.cy / 2;
-      m_ptaA[1].x = MIN(GetSystemMetrics(SM_CXHSCROLL), size.cx / 2);
+      m_ptaA[1].x = min(GetSystemMetrics(SM_CXHSCROLL), size.cx / 2);
       m_ptaA[1].y = size.cy - 1;
       m_ptaA[2].x = m_ptaA[1].x;
       m_ptaA[2].y = 1;
@@ -672,7 +672,7 @@ void simple_scroll_bar::on_layout(::draw2d::graphics_pointer & pgraphics)
       m_ptaA[2].x = m_rectA.left + (m_rectA.width() + iArrowForce) / 2;
       m_ptaA[2].y = m_rectA.top + (m_rectA.height() + iArrowStability) / 2;;
 
-      m_rectB.left   = MAX(size.cx - GetSystemMetrics(SM_CXHSCROLL),size.cx / 2);
+      m_rectB.left   = max(size.cx - GetSystemMetrics(SM_CXHSCROLL),size.cx / 2);
       m_rectB.top    = 0;
       m_rectB.right  = size.cx;
       m_rectB.bottom = size.cy;
@@ -702,13 +702,13 @@ void simple_scroll_bar::on_layout(::draw2d::graphics_pointer & pgraphics)
       m_rectA.left   = 0;
       m_rectA.top    = 0;
       m_rectA.right  = size.cx;
-      m_rectA.bottom = MIN(GetSystemMetrics(SM_CYVSCROLL),size.cy / 2);
+      m_rectA.bottom = min(GetSystemMetrics(SM_CYVSCROLL),size.cy / 2);
 
       /*
       m_ptaA[0].x = size.cx / 2;
       m_ptaA[0].y = 0;
       m_ptaA[1].x = 1;
-      m_ptaA[1].y = MIN(GetSystemMetrics(SM_CYVSCROLL), size.cy / 2);
+      m_ptaA[1].y = min(GetSystemMetrics(SM_CYVSCROLL), size.cy / 2);
       m_ptaA[2].x = size.cx - 1;
       m_ptaA[2].y = m_ptaA[1].y;
       m_ptaA[3].x = m_ptaA[0].x;
@@ -723,7 +723,7 @@ void simple_scroll_bar::on_layout(::draw2d::graphics_pointer & pgraphics)
       m_ptaA[2].y = m_rectA.top + (m_rectA.height() + iArrowForce) / 2;;
 
       m_rectB.left   = 0;
-      m_rectB.top    = MAX(size.cy - GetSystemMetrics(SM_CYVSCROLL),size.cy / 2);
+      m_rectB.top    = max(size.cy - GetSystemMetrics(SM_CYVSCROLL),size.cy / 2);
       m_rectB.right  = size.cx;
       m_rectB.bottom = size.cy;
 
@@ -731,7 +731,7 @@ void simple_scroll_bar::on_layout(::draw2d::graphics_pointer & pgraphics)
       m_ptaB[0].x = size.cx / 2;
       m_ptaB[0].y = size.cy;
       m_ptaB[1].x = size.cx - 1;
-      m_ptaB[1].y = MAX(size.cy - GetSystemMetrics(SM_CYVSCROLL), size.cy / 2);
+      m_ptaB[1].y = max(size.cy - GetSystemMetrics(SM_CYVSCROLL), size.cy / 2);
       m_ptaB[2].x = 1;
       m_ptaB[2].y = m_ptaB[1].y;
       m_ptaB[3].x = m_ptaA[0].x;
@@ -1342,7 +1342,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    //   DWORD tickFadeOut = 300;
 
-   //   byte uchAlpha = MAX(0, MIN(255, prop("tracking_alpha").u32()));
+   //   byte uchAlpha = max(0, min(255, prop("tracking_alpha").u32()));
 
    //   if (m_bTracking)
    //   {
@@ -1414,7 +1414,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
    //      if (dwFade < tickFadeIn)
    //      {
 
-   //         uchAlpha = (byte)MIN(255, MAX(0, (dwFade * 255 / tickFadeIn)));
+   //         uchAlpha = (byte)min(255, max(0, (dwFade * 255 / tickFadeIn)));
 
    //      }
    //      else
@@ -1435,7 +1435,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
    //      if (dwFade < tickFadeOut)
    //      {
 
-   //         uchAlpha = (byte)(255 - MIN(255, MAX(0, (dwFade * 255 / tickFadeOut))));
+   //         uchAlpha = (byte)(255 - min(255, max(0, (dwFade * 255 / tickFadeOut))));
 
    //      }
    //      else
@@ -1472,7 +1472,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    //      rectIntersect.intersect(rectMachineThumb, rectTrack);
 
-   //      i32 iArea = (i32)(MAX(1, rectIntersect.area()));
+   //      i32 iArea = (i32)(max(1, rectIntersect.area()));
 
    //      rectMachineThumb.inflate(1 + iSize * (iSize * iSize) * 4 / (iArea * 5), 1 + iSize * (iSize * iSize) * 2 / (iArea * 3));
 
@@ -1681,7 +1681,7 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
          for (int j = 0; j <= iDiv2; j++)
          {
 
-            iSize = MAX(abs(m_pimageDots->width() / 2 - x), abs(m_pimageDots->width() / 2 - y));
+            iSize = max(abs(m_pimageDots->width() / 2 - x), abs(m_pimageDots->width() / 2 - y));
 
             iSize = (m_pimageDots->width() / 2) - iSize;
 

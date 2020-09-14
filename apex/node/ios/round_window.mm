@@ -6,16 +6,16 @@
 //  Copyright (c) 2013 ca2 Desenvolvimento de Sofware Ltda. All rights reserved.
 //
 #import "_mm.h"
-#import "aura/node/ios/RoundWindowApp.h"
+#import "apex/node/ios/RoundWindowApp.h"
 
 
-#import "aura/os/apple/DDInvocationGrabber.h"
-#import "aura/os/apple/NSObject+DDExtensions.h"
+#import "apex/os/apple/DDInvocationGrabber.h"
+#import "apex/os/apple/NSObject+DDExtensions.h"
 
 
-#ifdef AURA_LANGUAGE
+#ifdef APEX_LANGUAGE
 
-#error "AURA_LANGUAGE?!?!?!!!???"
+#error "APEX_LANGUAGE?!?!?!!!???"
 
 #endif
 

@@ -275,11 +275,11 @@ namespace html
             if (pelemental == pelemental->get_first_sibling())
             {
 
-               cxMaxMax = MAX(cxMax, cxMaxMax);
+               cxMaxMax = max(cxMax, cxMaxMax);
 
                cxMax = pelemental->m_cxMax;
 
-               cxMinMax = MAX(cxMin, cxMinMax);
+               cxMinMax = max(cxMin, cxMinMax);
 
                cxMin = pelemental->m_cxMin;
 
@@ -295,9 +295,9 @@ namespace html
 
          }
 
-         cxMaxMax = MAX(cxMax, cxMaxMax);
+         cxMaxMax = max(cxMax, cxMaxMax);
 
-         cxMinMax = MAX(cxMin, cxMinMax);
+         cxMinMax = max(cxMin, cxMinMax);
 
          m_cxMin = cxMinMax;
 
@@ -512,7 +512,7 @@ namespace html
             if (!bBlock)
             {
 
-               auto cx = MIN(m_pelemental->m_pparent->m_pimpl->m_bound.width(), m_cxMax);
+               auto cx = min(m_pelemental->m_pparent->m_pimpl->m_bound.width(), m_cxMax);
 
                m_box.set_width(cx);
 
@@ -622,7 +622,7 @@ namespace html
 
          float cxTotal = pdata->m_pcoredata->m_layoutstate1.m_cxa.last() + get_extra_content_width();
 
-         cxMax = MAX(cxMax, cxTotal);
+         cxMax = max(cxMax, cxTotal);
 
          pdata->m_pcoredata->m_layoutstate1.m_cxMax.last() = cxMax;
 
@@ -711,7 +711,7 @@ namespace html
 
          pdata->m_pcoredata->m_layoutstate3.m_cx = width();
 
-         pdata->m_pcoredata->m_layoutstate3.m_cya.last() = MAX(pdata->m_pcoredata->m_layoutstate3.m_cya.last(), height());
+         pdata->m_pcoredata->m_layoutstate3.m_cya.last() = max(pdata->m_pcoredata->m_layoutstate3.m_cya.last(), height());
 
 
       }
@@ -763,7 +763,7 @@ namespace html
             //   if (m_pelemental->get_color(cr, ::user::color_background, pdata->m_pcoredata->m_pform))
             //   {
 
-            //      App(pdata->get_context_application()).imaging().color_blend(pgraphics, rect, cr, MAX(0, MIN(255, (BYTE)(d * 255))));
+            //      App(pdata->get_context_application()).imaging().color_blend(pgraphics, rect, cr, max(0, MIN(255, (BYTE)(d * 255))));
 
             //   }
 
@@ -1276,8 +1276,8 @@ namespace html
 
          auto size = m_box.size();
 
-         size.cx = MAX(0, size.cx - m_padding.left - m_padding.right - m_border.left - m_border.right - m_margin.left - m_margin.right);
-         size.cy = MAX(0, size.cy - m_padding.top - m_padding.bottom - m_border.top - m_border.bottom - m_margin.top - m_margin.bottom);
+         size.cx = max(0, size.cx - m_padding.left - m_padding.right - m_border.left - m_border.right - m_margin.left - m_margin.right);
+         size.cy = max(0, size.cy - m_padding.top - m_padding.bottom - m_border.top - m_border.bottom - m_margin.top - m_margin.bottom);
 
          return size;
 

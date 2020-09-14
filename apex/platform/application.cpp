@@ -1,12 +1,12 @@
 #include "framework.h"
-//#include "apex/xml/_.h"
+#include "apex/message/application.h"
 #include "apex/id.h"
-#include "apex/platform/version.h"
+#include "acme/platform/version.h"
 #include "apex/platform/machine_event_data2.h"
 #include "apex/platform/machine_event2.h"
 #include "apex/platform/machine_event_central2.h"
 #include "apex/platform/app_core.h"
-#include "apex/platform/profiler2.h"
+#include "acme/platform/profiler.h"
 
 
 
@@ -60,7 +60,7 @@ void set_draw2d_factory_exchange(PFN_factory_exchange pfnfactoryDraw2d)
 
 #ifdef WINDOWS_DESKTOP
 
-CLASS_DECL_APEX void windows_install_crash_dump_reporting(::object * pobject);
+CLASS_DECL_ACME void windows_install_crash_dump_reporting(const string & strModuleNameWithTheExeExtension);
 
 #endif
 
@@ -107,7 +107,7 @@ CLASS_DECL_APEX int ui_open_url(const char * psz);
 #endif
 
 
-extern void * g_pf1;
+//extern void * g_pf1;
 
 
 namespace apex
@@ -119,6 +119,7 @@ namespace apex
       m_strAppId(::is_set(pszAppId) ? pszAppId : "")
    {
 
+      m_pauraapplication = nullptr;
       m_paxisapplication = nullptr;
       m_pbaseapplication = nullptr;
       m_pcoreapplication = nullptr;
@@ -136,7 +137,7 @@ namespace apex
       m_bSimpleMessageLoop = false;
       m_ethreadClose = thread_none;
 
-      m_puiMainContainer = nullptr;
+      //m_puiMainContainer = nullptr;
 
       m_bRequiresInstallation = false;
       m_bReadStringTable = true;
@@ -203,7 +204,7 @@ namespace apex
       //m_bAuraInitializeInstance = false;
       //m_bAuraInitializeInstanceResult = false;
 
-      create_factory < ::user::user >();
+      //create_factory < ::user::user >();
       //create_factory < ::userfs::userfs >();
 
       //m_pmainpane = nullptr;
@@ -219,7 +220,7 @@ namespace apex
 
       m_iResourceId = 8001;
 
-      ::apex::profiler::initialize();
+      ::acme::profiler::initialize();
 
       //m_pdocmanager = nullptr;
 
@@ -231,7 +232,7 @@ namespace apex
    }
 
 
-   ::estatus     application::initialize(::object * pobjectContext)
+   ::estatus application::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::thread::initialize(pobjectContext);
@@ -277,14 +278,15 @@ namespace apex
 
       }
 
-      estatus = __compose_new(m_puiptraFrame);
+      //// apex commented
+      //estatus = __compose_new(m_puiptraFrame);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
 
 
@@ -309,14 +311,6 @@ namespace apex
    }
 
 
-   application_message::application_message(e_application_message esignal)
-   {
-
-      m_id = ::message::type_application;
-      m_esignal = esignal;
-      m_bOk = true;
-
-   }
 
 
    application_menu & application::applicationmenu()
@@ -697,7 +691,10 @@ namespace apex
 
          string str = pcreate->m_varFile;
 
-         if (!m_pipi)
+            // apex commented
+            __throw(todo("interaction"));
+
+         /*if (!m_pipi)
          {
 
             __pointer(::user::interaction) pinteraction;
@@ -727,7 +724,7 @@ namespace apex
 
             }
 
-         }
+         }*/
 
          if (::str::begins_eat_ci(str, m_pipi->m_prx->m_strBaseChannel))
          {
@@ -1758,7 +1755,7 @@ namespace apex
 //      try
 //      {
 //
-//         application_message message(application_message_begin);
+//         ::message::application message(::message::application_begin);
 //
 //         route_message(&message);
 //
@@ -2452,29 +2449,6 @@ namespace apex
 
    }
 
-   ::estatus application::ca_init3()
-   {
-
-      application_message message(application_message_init3);
-
-      route_message(&message);
-
-      return message.m_bOk;
-
-   }
-
-
-   void application::ca_process_term()
-   {
-
-      application_message message(application_message_process_term);
-
-      route_message(&message);
-
-      //return message.m_bOk;
-
-   }
-
 
    void application::TermApplication()
    {
@@ -2528,7 +2502,7 @@ namespace apex
 
          //thisexc << 1 << m_iErrorCode;
 
-         ::apex::del(pe);
+         ::acme::del(pe);
 
          return false;
 
@@ -2564,7 +2538,7 @@ namespace apex
       catch (const ::exception::exception * pe)
       {
 
-         ::apex::del(pe);
+         ::acme::del(pe);
 
          return false;
 
@@ -2874,7 +2848,7 @@ retry_license:
 
 #ifdef WINDOWS_DESKTOP
 
-         windows_install_crash_dump_reporting(this);
+         windows_install_crash_dump_reporting(Context.file().module().name());
 
 #endif
 
@@ -3255,7 +3229,7 @@ retry_license:
          //else
          {
 
-            set_has_installer(!get_context_system()->has_aura_application_factory());
+            set_has_installer(!get_context_system()->has_apex_application_factory());
 
          }
 
@@ -3320,7 +3294,7 @@ retry_license:
 
       }
 
-      if (!ca_process_init())
+      if (!notify_process_init())
       {
 
          FATAL("apex::application::process_init .1");
@@ -3417,7 +3391,7 @@ retry_license:
       try
       {
 
-         ca_process_term();
+         notify_process_term();
 
       }
       catch(...)
@@ -3509,7 +3483,7 @@ retry_license:
 
       //m_spdir.release();
 
-      //::apex::del(m_pimaging);
+      //::acme::del(m_pimaging);
 
 
       /// commented out the code below
@@ -3697,11 +3671,11 @@ retry_license:
 
       }
 
-      g_pf1 = (void *)(uptr) ::str::to_u64(Context.file().as_string(::dir::system() / "config\\system\\pf1.txt"));
+      //g_pf1 = (void *)(uptr) ::str::to_u64(Context.file().as_string(::dir::system() / "config\\system\\pf1.txt"));
 
       m_tickHeartBeat.Now();
 
-      if (!ca_init1())
+      if (!notify_init1())
       {
 
          return ::error_failed;
@@ -3932,7 +3906,7 @@ retry_license:
       try
       {
 
-         ca_term1();
+         notify_term1();
 
       }
       catch(...)
@@ -3952,7 +3926,7 @@ retry_license:
 
       //}
 
-      if (!ca_init2())
+      if (!notify_init2())
       {
 
          return false;
@@ -3982,7 +3956,7 @@ retry_license:
       try
       {
 
-         ca_term2();
+         notify_term2();
 
       }
       catch(...)
@@ -4010,7 +3984,7 @@ retry_license:
 
       //}
 
-      if (!ca_init3())
+      if (!notify_init3())
       {
 
          return false;
@@ -4039,7 +4013,7 @@ retry_license:
       try
       {
 
-         ca_term3();
+         notify_term3();
 
       }
       catch(...)
@@ -4062,7 +4036,7 @@ retry_license:
 //   void application::term()
 //   {
 //
-//      //::apex::del(m_pimaging);
+//      //::acme::del(m_pimaging);
 //
 ////      bool bOk = true;
 ////
@@ -4088,7 +4062,7 @@ retry_license:
       try
       {
 
-         close(::apex::end_app);
+         close(::apex::e_end_app);
 
       }
       catch (...)
@@ -4126,18 +4100,18 @@ retry_license:
 
       release_exclusive();
 
-      ::apex::application_message signal(::apex::application_message_term_instance);
+      //::apex::::message::application signal(::apex::::message::application_term_instance);
 
-      try
-      {
+      //try
+      //{
 
-         route_message(&signal);
+      //   route_message(&signal);
 
-      }
-      catch (...)
-      {
+      //}
+      //catch (...)
+      //{
 
-      }
+      //}
 
       try
       {
@@ -4343,42 +4317,9 @@ retry_license:
    }
 
 
-   ::estatus application::ca_init2()
-   {
-
-      application_message message(application_message_init2);
-
-      route_message(&message);
-
-      return message.m_bOk;
-
-   }
-
-   void application::ca_term2()
-   {
-
-      application_message message(application_message_term2);
-
-      route_message(&message);
-
-   }
 
 
-   void application::ca_term3()
-   {
-
-      application_message message(application_message_init3);
-
-      route_message(&message);
-
-//      if (!message.m_bOk)
-//         return false;
-//
-//      return true;
-
-   }
-
-   __pointer(::apex::exclusive) application::get_exclusive(string strId, LPSECURITY_ATTRIBUTES psa)
+   __pointer(::acme::exclusive) application::get_exclusive(string strId, LPSECURITY_ATTRIBUTES psa)
    {
 
       auto & pexclusive = m_mapExclusive[strId];
@@ -4386,7 +4327,7 @@ retry_license:
       if(!pexclusive)
       {
 
-         pexclusive = __new(::apex::exclusive(strId, psa));
+         pexclusive = __new(::acme::exclusive(strId, psa));
 
       }
 
@@ -4605,10 +4546,10 @@ retry_license:
    }
 
 
-   ::estatus application::ca_process_init()
+   ::estatus application::notify_process_init()
    {
 
-      application_message message(application_message_process_init);
+      ::message::application message(::message::application_process_init);
 
       route_message(&message);
 
@@ -4617,10 +4558,32 @@ retry_license:
    }
 
 
-   ::estatus application::ca_init1()
+   ::estatus application::notify_init1()
    {
 
-      application_message message(application_message_init1);
+      ::message::application message(::message::application_init1);
+
+      route_message(&message);
+
+      return message.m_bOk;
+
+   }
+
+
+   ::estatus application::notify_init2()
+   {
+
+      ::message::application message(::message::application_init2);
+
+      route_message(&message);
+
+      return message.m_bOk;
+
+   }
+   ::estatus application::notify_init3()
+   {
+
+      ::message::application message(::message::application_init3);
 
       route_message(&message);
 
@@ -4630,10 +4593,36 @@ retry_license:
 
 
 
-   void application::ca_term1()
+  
+   void application::notify_term3()
    {
 
-      application_message message(application_message_term1);
+      ::message::application message(::message::application_init3);
+
+      route_message(&message);
+
+      //      if (!message.m_bOk)
+      //         return false;
+      //
+      //      return true;
+
+   }
+
+
+   void application::notify_term2()
+   {
+
+      ::message::application message(::message::application_term2);
+
+      route_message(&message);
+
+   }
+
+
+   void application::notify_term1()
+   {
+
+      ::message::application message(::message::application_term1);
 
       try
       {
@@ -4649,6 +4638,21 @@ retry_license:
       //return message.m_bOk;
 
    }
+
+
+   void application::notify_process_term()
+   {
+
+      ::message::application message(::message::application_process_term);
+
+      route_message(&message);
+
+      //return message.m_bOk;
+
+   }
+
+
+
 
 
 
@@ -5347,7 +5351,7 @@ retry_license:
 
       HideApplication();
 
-      close(::apex::end_app);
+      close(::apex::e_end_app);
 
    }
 
@@ -5784,14 +5788,14 @@ retry_license:
    }
 
 
-   LPWAVEOUT application::waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback)
-   {
+   //LPWAVEOUT application::waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback)
+   //{
 
-      __throw(interface_only_exception(nullptr));
+   //   __throw(interface_only_exception(nullptr));
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
 
    void application::defer_create_keyboard()
@@ -5873,130 +5877,130 @@ retry_license:
    }
 
 
-   bool application::get_frame(__pointer(::user::interaction) & pinteraction)
-   {
-
-#ifdef ANDROID
-
-      if (Session.m_puiHost != nullptr)
-      {
-
-         if (Session.m_puiHost != nullptr)
-         {
-
-            return Session.m_puiHost->m_uiptraChild.get_child(pinteraction);
-
-         }
-
-      }
-
-#endif
-
-      sync_lock sl(&m_mutexFrame);
-
-      return m_puiptraFrame->get_child(pinteraction);
-
-   }
-
-
-
-
-   void application::add_frame(::user::interaction * pwnd)
-   {
-
-      if (pwnd == Session.m_puiHost)
-      {
-
-         return;
-
-      }
-
-      if (pwnd->is_system_message_window())
-      {
-
-         return;
-
-      }
-
-      if (pwnd == nullptr)
-      {
-
-         return;
-
-      }
-
-      sync_lock sl(&m_mutexFrame); // recursive lock (on m_framea.add(pwnd)) but m_puiMain is "cared" by m_frame.m_mutex
-
-      if (m_puiptraFrame->add_unique(pwnd))
-      {
-
-         TRACE("::base::application::add_frame ::user::interaction = 0x%" PRIxPTR " (%s) app=%s", pwnd, typeid(*pwnd).name(), typeid(*this).name());
-
-         if (!(pwnd->m_ewindowflag & window_flag_satellite_window))
-         {
-
-            Session.on_create_frame_window();
-
-         }
-
-         if (m_puiMain1 == nullptr)
-         {
-
-            m_puiMain1 = pwnd;
-
-         }
-
-         if (Session.m_puiHost)
-         {
-
-            Session.m_puiHost->m_uiptraChild.add_unique(pwnd);
-
-            //pwnd->set_need_redraw();
-
-            //pwnd->post_redraw();
-
-         }
-
-      }
-
-   }
-
-
-   void application::remove_frame(::user::interaction * pwnd)
-   {
-
-      sync_lock sl(&m_mutexFrame); // recursive lock (on m_framea.remove(pwnd)) but m_puiMain is "cared" by m_frame.m_mutex
-
-
-      //if(get_active_uie() == pwnd)
-      //{
-
-      //   set_a
-
-      //}
-
-
-      if (m_puiMain1 == pwnd)
-      {
-
-         m_puiMain1 = nullptr;
-
-      }
-
-      if (m_puiptraFrame != nullptr)
-      {
-
-         if (m_puiptraFrame->remove(pwnd) > 0)
-         {
-
-            TRACE("::base::application::remove_frame ::user::interaction = 0x%016x (%s) app=%s", pwnd, typeid(*pwnd).name(), typeid(*this).name());
-
-         }
-
-      }
-
-
-   }
+//   bool application::get_frame(__pointer(::user::interaction) & pinteraction)
+//   {
+//
+//#ifdef ANDROID
+//
+//      if (Session.m_puiHost != nullptr)
+//      {
+//
+//         if (Session.m_puiHost != nullptr)
+//         {
+//
+//            return Session.m_puiHost->m_uiptraChild.get_child(pinteraction);
+//
+//         }
+//
+//      }
+//
+//#endif
+//
+//      sync_lock sl(&m_mutexFrame);
+//
+//      return m_puiptraFrame->get_child(pinteraction);
+//
+//   }
+//
+//
+//
+//
+//   void application::add_frame(::user::interaction * pwnd)
+//   {
+//
+//      if (pwnd == Session.m_puiHost)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      if (pwnd->is_system_message_window())
+//      {
+//
+//         return;
+//
+//      }
+//
+//      if (pwnd == nullptr)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      sync_lock sl(&m_mutexFrame); // recursive lock (on m_framea.add(pwnd)) but m_puiMain is "cared" by m_frame.m_mutex
+//
+//      if (m_puiptraFrame->add_unique(pwnd))
+//      {
+//
+//         TRACE("::base::application::add_frame ::user::interaction = 0x%" PRIxPTR " (%s) app=%s", pwnd, typeid(*pwnd).name(), typeid(*this).name());
+//
+//         if (!(pwnd->m_ewindowflag & window_flag_satellite_window))
+//         {
+//
+//            Session.on_create_frame_window();
+//
+//         }
+//
+//         if (m_puiMain1 == nullptr)
+//         {
+//
+//            m_puiMain1 = pwnd;
+//
+//         }
+//
+//         if (Session.m_puiHost)
+//         {
+//
+//            Session.m_puiHost->m_uiptraChild.add_unique(pwnd);
+//
+//            //pwnd->set_need_redraw();
+//
+//            //pwnd->post_redraw();
+//
+//         }
+//
+//      }
+//
+//   }
+//
+//
+//   void application::remove_frame(::user::interaction * pwnd)
+//   {
+//
+//      sync_lock sl(&m_mutexFrame); // recursive lock (on m_framea.remove(pwnd)) but m_puiMain is "cared" by m_frame.m_mutex
+//
+//
+//      //if(get_active_uie() == pwnd)
+//      //{
+//
+//      //   set_a
+//
+//      //}
+//
+//
+//      if (m_puiMain1 == pwnd)
+//      {
+//
+//         m_puiMain1 = nullptr;
+//
+//      }
+//
+//      if (m_puiptraFrame != nullptr)
+//      {
+//
+//         if (m_puiptraFrame->remove(pwnd) > 0)
+//         {
+//
+//            TRACE("::base::application::remove_frame ::user::interaction = 0x%016x (%s) app=%s", pwnd, typeid(*pwnd).name(), typeid(*this).name());
+//
+//         }
+//
+//      }
+//
+//
+//   }
 
 
 
@@ -6004,62 +6008,64 @@ retry_license:
 
    {
 
-      __pointer(::user::interaction) pwnd;
+      //__pointer(::user::interaction) pwnd;
 
-      try
-      {
+      //try
+      //{
 
-         while (get_frame(pwnd))
-         {
+      //   while (get_frame(pwnd))
+      //   {
 
-            try
-            {
+      //      try
+      //      {
 
-               if (pwnd && pwnd->is_window())
-               {
+      //         if (pwnd && pwnd->is_window())
+      //         {
 
-                  try
-                  {
+      //            try
+      //            {
 
-                     pwnd->send_message(message, wparam, lparam);
-
-
-                  }
-                  catch (...)
-                  {
-
-                  }
-
-                  try
-                  {
-
-                     pwnd->send_message_to_descendants(message, wparam, lparam);
+      //               pwnd->send_message(message, wparam, lparam);
 
 
-                  }
-                  catch (...)
-                  {
+      //            }
+      //            catch (...)
+      //            {
+
+      //            }
+
+      //            try
+      //            {
+
+      //               pwnd->send_message_to_descendants(message, wparam, lparam);
 
 
-                  }
+      //            }
+      //            catch (...)
+      //            {
 
-               }
 
-            }
-            catch (...)
-            {
+      //            }
 
-            }
+      //         }
 
-         }
+      //      }
+      //      catch (...)
+      //      {
 
-      }
-      catch (...)
-      {
+      //      }
 
-      }
+      //   }
 
-      return true;
+      //}
+      //catch (...)
+      //{
+
+      //}
+
+      __throw(interface_only_exception);
+
+      return false;
 
    }
 
@@ -6067,61 +6073,63 @@ retry_license:
    bool application::route_message_to_windows(::message::message * pmessage) // with tbs in <3
    {
 
-      __pointer(::user::interaction) pwnd;
+      __throw(interface_only_exception);
 
-      try
-      {
+      //__pointer(::user::interaction) pwnd;
 
-         while (get_frame(pwnd))
-         {
+      //try
+      //{
 
-            try
-            {
+      //   while (get_frame(pwnd))
+      //   {
 
-               if (pwnd && pwnd->is_window())
-               {
+      //      try
+      //      {
 
-                  try
-                  {
+      //         if (pwnd && pwnd->is_window())
+      //         {
 
-                     pwnd->route_message(pmessage);
+      //            try
+      //            {
 
-                  }
-                  catch (...)
-                  {
+      //               pwnd->route_message(pmessage);
 
-                  }
+      //            }
+      //            catch (...)
+      //            {
 
-                  try
-                  {
+      //            }
 
-                     pwnd->route_message_to_descendants(pmessage);
+      //            try
+      //            {
 
-                  }
-                  catch (...)
-                  {
+      //               pwnd->route_message_to_descendants(pmessage);
 
-
-                  }
-
-               }
-
-            }
-            catch (...)
-            {
-
-            }
-
-         }
-
-      }
-      catch (...)
-      {
+      //            }
+      //            catch (...)
+      //            {
 
 
-      }
+      //            }
 
-      return true;
+      //         }
+
+      //      }
+      //      catch (...)
+      //      {
+
+      //      }
+
+      //   }
+
+      //}
+      //catch (...)
+      //{
+
+
+      //}
+
+      return false;
 
    }
 
@@ -6136,19 +6144,19 @@ retry_license:
    }
 
 
-   ::user::interaction * application::main_window()
-   {
+   //::user::interaction * application::main_window()
+   //{
 
-      if (!m_puiMain1)
-      {
+   //   if (!m_puiMain1)
+   //   {
 
-         return nullptr;
+   //      return nullptr;
 
-      }
+   //   }
 
-      return m_puiMain1->m_puiThis;
+   //   return m_puiMain1->m_puiThis;
 
-   }
+   //}
 
 
    string application::preferred_experience()
@@ -6538,26 +6546,26 @@ retry_license:
    {
 
 
-      try
-      {
+      //try
+      //{
+      __throw(todo("interaction"));
 
+      //   if (m_puiMain1)
+      //   {
 
-         if (m_puiMain1)
-         {
+      //      m_puiMain1->display(::display_hide);
 
-            m_puiMain1->display(::display_hide);
+      //      m_puiMain1->set_need_redraw();
 
-            m_puiMain1->set_need_redraw();
+      //      m_puiMain1->post_redraw();
 
-            m_puiMain1->post_redraw();
+      //   }
 
-         }
+      //}
+      //catch (...)
+      //{
 
-      }
-      catch (...)
-      {
-
-      }
+      //}
 
    }
 
@@ -6791,7 +6799,7 @@ retry_license:
    void application::_001CloseApplication()
    {
 
-      close(end_app);
+      close(::apex::e_end_app);
 
    }
 
@@ -6815,18 +6823,18 @@ retry_license:
    ::estatus application::on_run()
    {
 
-      try
-      {
+      //try
+      //{
 
-         ::apex::application_message signal(::apex::application_message_begin);
+      //   ::apex::::message::application signal(::apex::::message::application_begin);
 
-         route_message(&signal);
+      //   route_message(&signal);
 
-      }
-      catch (...)
-      {
+      //}
+      //catch (...)
+      //{
 
-      }
+      //}
 
       thread * pthread = ::get_thread();
 
@@ -7261,37 +7269,39 @@ retry_license:
 
       //m_bAxisInitializeResult = false;
 
-      ::apex::application_message signal(::apex::application_message_init);
+      //::apex::::message::application signal(::apex::::message::application_init);
 
-      route_message(&signal);
+      //route_message(&signal);
 
-      if (!signal.m_bOk)
-         return false;
+      //if (!signal.m_bOk)
+      //   return false;
       m_tickHeartBeat.Now();
 
       if (is_system())
       {
 
-         if (has_property("save_processing"))
-         {
+         // apex commented
+         //__throw(todo("savings"))
+         //if (has_property("save_processing"))
+         //{
 
-            Session.savings().save(::apex::resource_processing);
+         //   Session.savings().save(::apex::resource_processing);
 
-         }
+         //}
 
-         if (has_property("save_blur_back"))
-         {
+         //if (has_property("save_blur_back"))
+         //{
 
-            Session.savings().save(::apex::resource_blur_background);
+         //   Session.savings().save(::apex::resource_blur_background);
 
-         }
+         //}
 
-         if (has_property("save_transparent_back"))
-         {
+         //if (has_property("save_transparent_back"))
+         //{
 
-            Session.savings().save(::apex::resource_translucent_background);
+         //   Session.savings().save(::apex::resource_translucent_background);
 
-         }
+         //}
 
       }
 
@@ -7464,7 +7474,7 @@ retry_license:
 
    //   release_exclusive();
 
-   //   ::apex::application_message signal(::apex::application_message_term_instance);
+   //   ::apex::::message::application signal(::apex::::message::application_term_instance);
 
    //   try
    //   {
@@ -7864,14 +7874,14 @@ retry_license:
 
 
 
-   ::draw2d::printer * application::get_printer(const char * pszDeviceName)
-   {
+   //::draw2d::printer * application::get_printer(const char * pszDeviceName)
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
 
    estatus application::userfs_init1()
@@ -8089,35 +8099,35 @@ retry_license:
    //}
 
 
-   void application::on_notify_control_event(::user::control_event* pevent)
-   {
+   //void application::on_notify_control_event(::user::control_event* pevent)
+   //{
 
 
-   }
+   //}
 
 
-   void application::route_control_event(::user::control_event* pevent)
-   {
+   //void application::route_control_event(::user::control_event* pevent)
+   //{
 
-      on_control_event(pevent);
+   //   on_control_event(pevent);
 
-      if (pevent->m_bRet)
-      {
+   //   if (pevent->m_bRet)
+   //   {
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      on_notify_control_event(pevent);
+   //   on_notify_control_event(pevent);
 
-      if (pevent->m_bRet)
-      {
+   //   if (pevent->m_bRet)
+   //   {
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-   }
+   //}
 
 
 
@@ -8299,7 +8309,7 @@ namespace apex
    //}
 
 
-   //::estatus application::initialize(::object* pobjectContext)
+   //::estatus application::initialize(::layered * pobjectContext)
    //{
 
    //   auto estatus = ::apex::application::initialize(pobjectContext);
@@ -8326,7 +8336,7 @@ namespace apex
 
          command.m_id = ::id(pszCommand);
 
-         m_puiMain1->route_command_message(&command);
+         __channel(m_puiMain1)->route_command_message(&command);
 
          if (command.m_bRet)
          {
@@ -9434,9 +9444,9 @@ namespace apex
 
       // same as double-clicking on main window close box
 
-      ASSERT(m_puiMain1 != nullptr);
+      //ASSERT(m_puiMain1 != nullptr);
 
-      m_puiMain1->m_puiThis->send_message(WM_CLOSE);
+      //m_puiMain1->m_puiThis->send_message(WM_CLOSE);
 
    }
 
@@ -9994,12 +10004,12 @@ namespace apex
    bool application::activate_app()
    {
 
-      if (m_puiMain1 != nullptr)
-      {
+      //if (m_puiMain1 != nullptr)
+      //{
 
-         m_puiMain1->m_puiThis->display(SW_SHOWNORMAL);
+      //   m_puiMain1->m_puiThis->display(SW_SHOWNORMAL);
 
-      }
+      //}
 
       return true;
 
@@ -10056,31 +10066,31 @@ namespace apex
    //}
 
 
-   ::user::interaction* application::get_request_parent_ui(::user::interaction* pinteraction, ::create* pcreate)
-   {
+   //::user::interaction* application::get_request_parent_ui(::user::interaction* pinteraction, ::create* pcreate)
+   //{
 
-      ::user::interaction* puiParent = nullptr;
+   //   ::user::interaction* puiParent = nullptr;
 
-      if (puiParent == nullptr)
-      {
-         puiParent = dynamic_cast <::user::interaction*> (pcreate->m_puserinteractionParent);
-      }
+   //   if (puiParent == nullptr)
+   //   {
+   //      puiParent = dynamic_cast <::user::interaction*> (pcreate->m_puserinteractionParent);
+   //   }
 
-      //      if (puiParent == nullptr && pcreate->m_papplicationbias.is_set())
-      //      {
-      //         puiParent = dynamic_cast < ::user::interaction * > (pcreate->m_papplicationbias->m_puserinteractionParent);
-      //      }
+   //   //      if (puiParent == nullptr && pcreate->m_papplicationbias.is_set())
+   //   //      {
+   //   //         puiParent = dynamic_cast < ::user::interaction * > (pcreate->m_papplicationbias->m_puserinteractionParent);
+   //   //      }
 
-            //if(puiParent == nullptr && m_psession != nullptr && m_psession->m_psession != nullptr && !pcreate->m_bClientOnly
-            /*if (puiParent == nullptr && m_psession != nullptr && m_psession != nullptr
-                  && !pcreate->m_bOuterPopupAlertLike && m_psession != dynamic_cast < session * > (this))
-            {
-               puiParent = Session.get_request_parent_ui(pinteraction, pcreate);
-            }*/
+   //         //if(puiParent == nullptr && m_psession != nullptr && m_psession->m_psession != nullptr && !pcreate->m_bClientOnly
+   //         /*if (puiParent == nullptr && m_psession != nullptr && m_psession != nullptr
+   //               && !pcreate->m_bOuterPopupAlertLike && m_psession != dynamic_cast < session * > (this))
+   //         {
+   //            puiParent = Session.get_request_parent_ui(pinteraction, pcreate);
+   //         }*/
 
-      return puiParent;
+   //   return puiParent;
 
-   }
+   //}
 
 
 
@@ -10143,30 +10153,30 @@ namespace apex
 
 
 
-   ::user::interaction * application::get_desktop_window()
-   {
-#if defined(_UWP) || defined(APPLEOS)
-      __throw(todo());
-      /*#elif defined(LINUX)
-
-      //      sync_lock sl(&user_mutex());
-
-      xdisplay pdisplay.
-      pdisplay.open(nullptr) = x11_get_display();
-
-      oswindow window(pdisplay, DefaultRootWindow(pdisplay));
-
-      XCloseDisplay(pdisplay);
-
-      return window_from_os_data(window);
-      */
-#else
-
-      return System.ui_from_handle(::get_desktop_window());
-
-#endif
-
-   }
+//   ::user::interaction * application::get_desktop_window()
+//   {
+//#if defined(_UWP) || defined(APPLEOS)
+//      __throw(todo());
+//      /*#elif defined(LINUX)
+//
+//      //      sync_lock sl(&user_mutex());
+//
+//      xdisplay pdisplay.
+//      pdisplay.open(nullptr) = x11_get_display();
+//
+//      oswindow window(pdisplay, DefaultRootWindow(pdisplay));
+//
+//      XCloseDisplay(pdisplay);
+//
+//      return window_from_os_data(window);
+//      */
+//#else
+//
+//      return System.ui_from_handle(::get_desktop_window());
+//
+//#endif
+//
+//   }
 
 
 
@@ -10468,36 +10478,36 @@ namespace apex
    }
 
 
-   __pointer(::user::interaction) application::uie_from_point(const ::point& point)
-   {
+   //__pointer(::user::interaction) application::uie_from_point(const ::point& point)
+   //{
 
-      user::interaction_pointer_array wnda = *m_puiptraFrame;
+   //   user::interaction_pointer_array wnda = *m_puiptraFrame;
 
-      user::oswindow_array oswindowa;
+   //   user::oswindow_array oswindowa;
 
-      oswindowa = wnda.get_hwnda();
+   //   oswindowa = wnda.get_hwnda();
 
-      user::window_util::SortByZOrder(oswindowa);
+   //   user::window_util::SortByZOrder(oswindowa);
 
-      for (i32 i = 0; i < oswindowa.get_count(); i++)
-      {
+   //   for (i32 i = 0; i < oswindowa.get_count(); i++)
+   //   {
 
-         __pointer(::user::interaction) puieWindow = wnda.find_first(oswindowa[i]);
+   //      __pointer(::user::interaction) puieWindow = wnda.find_first(oswindowa[i]);
 
-         __pointer(::user::interaction) puie = puieWindow->_001FromPoint(point);
+   //      __pointer(::user::interaction) puie = puieWindow->_001FromPoint(point);
 
-         if (puie != nullptr)
-         {
+   //      if (puie != nullptr)
+   //      {
 
-            return puie;
+   //         return puie;
 
-         }
+   //      }
 
-      }
+   //   }
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
 
    //bool application::on_install()
@@ -10623,16 +10633,16 @@ namespace apex
    //}
 
 
-   i32 application::track_popup_menu(const char* pszMatter, const ::point& point, __pointer(::user::interaction) puie)
-   {
+   //i32 application::track_popup_menu(const char* pszMatter, const ::point& point, __pointer(::user::interaction) puie)
+   //{
 
-      UNREFERENCED_PARAMETER(pszMatter);
-      UNREFERENCED_PARAMETER(point);
-      UNREFERENCED_PARAMETER(puie);
+   //   UNREFERENCED_PARAMETER(pszMatter);
+   //   UNREFERENCED_PARAMETER(point);
+   //   UNREFERENCED_PARAMETER(puie);
 
-      return 1;
+   //   return 1;
 
-   }
+   //}
 
 
    bool application::get_fs_size(string& strSize, const char* pszPath, bool& bPending)
@@ -10723,30 +10733,30 @@ namespace apex
    }
 
 
-   bool application::_001CloseApplicationByUser(__pointer(::user::interaction) pwndExcept)
-   {
+   //bool application::_001CloseApplicationByUser(__pointer(::user::interaction) pwndExcept)
+   //{
 
-      // Closing just this application.
-      // It is different of a system exit.
-      // System (a single ca2 process) can host
-      // multiple ca2 application objects.
+   //   // Closing just this application.
+   //   // It is different of a system exit.
+   //   // System (a single ca2 process) can host
+   //   // multiple ca2 application objects.
 
-      // attempt to save all documents
-      if (!save_all_modified())
-      {
+   //   // attempt to save all documents
+   //   if (!save_all_modified())
+   //   {
 
-         return false;     // don't close it
+   //      return false;     // don't close it
 
-      }
+   //   }
 
-      // hide the application's windows before closing all the documents
-      HideApplication();
+   //   // hide the application's windows before closing all the documents
+   //   HideApplication();
 
-      close(::apex::end_app);
+   //   close(::apex::end_app);
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
    oswindow application::get_ca2_app_wnd(const char* psz)
@@ -11005,65 +11015,67 @@ namespace apex
    void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const var& var, ::update* pupdate)
    {
 
-      if (key.m_strDataKey == "ca2.savings")
-      {
-
-         Session.savings().m_eresourceflagsShouldSave = (::apex::e_resource) var.i32();
-
-      }
-
-   }
-
-
-   i32 application::GetVisibleTopLevelFrameCountExcept(__pointer(::user::interaction) pwndExcept)
-   {
-
-      //::user::interaction_pointer_array wnda = *m_puiptraFrame;
-
-      //i32 iCount = 0;
-      //for (i32 i = 0; i < wnda.get_size(); i++)
+      //if (key.m_strDataKey == "ca2.savings")
       //{
-      //   __pointer(::user::interaction) pwnd = wnda.element_at(i);
-      //   __pointer(::user::frame) pframewindow = pwnd;
-      //   bool bDefaultNotifyIcon = (pframewindow.is_set() && pframewindow->m_bDefaultNotifyIcon);
-      //   if (pwnd != nullptr &&
-      //      pwnd != pwndExcept &&
-      //      pwnd->is_window() &&
-      //      (pwnd->is_window_visible() || bDefaultNotifyIcon) &&
-      //      pwnd->get_window_type() == ::user::interaction::type_frame &&
-      //      !(pwnd->GetStyle() & WS_CHILD))
-      //   {
-      //      iCount++;
-      //   }
+
+      //   Session.savings().m_eresourceflagsShouldSave = (::apex::e_resource) var.i32();
+
       //}
 
-      int iCount = 0;
-
-
-      
-      return iCount;
-
    }
 
 
-   i32 application::GetVisibleFrameCount()
-   {
+   //i32 application::GetVisibleTopLevelFrameCountExcept(__pointer(::user::interaction) pwndExcept)
+   //{
 
-      ::user::interaction_pointer_array wnda = *m_puiptraFrame;
+   //   //::user::interaction_pointer_array wnda = *m_puiptraFrame;
 
-      i32 iCount = 0;
-      for (i32 i = 0; i < wnda.get_size(); i++)
-      {
-         __pointer(::user::interaction) pwnd = wnda.element_at(i);
-         if (pwnd != nullptr
-            && pwnd->is_window()
-            && pwnd->is_window_visible())
-         {
-            iCount++;
-         }
-      }
-      return iCount;
-   }
+   //   //i32 iCount = 0;
+   //   //for (i32 i = 0; i < wnda.get_size(); i++)
+   //   //{
+   //   //   __pointer(::user::interaction) pwnd = wnda.element_at(i);
+   //   //   __pointer(::user::frame) pframewindow = pwnd;
+   //   //   bool bDefaultNotifyIcon = (pframewindow.is_set() && pframewindow->m_bDefaultNotifyIcon);
+   //   //   if (pwnd != nullptr &&
+   //   //      pwnd != pwndExcept &&
+   //   //      pwnd->is_window() &&
+   //   //      (pwnd->is_window_visible() || bDefaultNotifyIcon) &&
+   //   //      pwnd->get_window_type() == ::user::interaction::type_frame &&
+   //   //      !(pwnd->GetStyle() & WS_CHILD))
+   //   //   {
+   //   //      iCount++;
+   //   //   }
+   //   //}
+
+   //   int iCount = 0;
+
+
+   //   
+   //   return iCount;
+
+   //}
+
+
+   //i32 application::GetVisibleFrameCount()
+   //{
+
+   //   return 0;
+
+   //   //::user::interaction_pointer_array wnda = *m_puiptraFrame;
+
+   //   //i32 iCount = 0;
+   //   //for (i32 i = 0; i < wnda.get_size(); i++)
+   //   //{
+   //   //   __pointer(::user::interaction) pwnd = wnda.element_at(i);
+   //   //   if (pwnd != nullptr
+   //   //      && pwnd->is_window()
+   //   //      && pwnd->is_window_visible())
+   //   //   {
+   //   //      iCount++;
+   //   //   }
+   //   //}
+   //   //return iCount;
+   //}
 
 
    //void application::on_create_keyboard()
@@ -11144,12 +11156,12 @@ namespace apex
    //}
 
 
-   void application::prepare_form(id id, ::form_document* pdocument)
-   {
+   //void application::prepare_form(id id, ::form_document* pdocument)
+   //{
 
 
 
-   }
+   //}
 
 
    void application::report_error(::exception::exception* pexception, int iMessageFlags, const char* pszTopic)
@@ -11163,7 +11175,9 @@ namespace apex
 
       strMessage += pexception->get_message();
 
-      m_puiMain1->message_box(strMessage + ::enum_message_box(iMessageFlags));
+      __throw(todo("interaction"));
+
+      //m_puiMain1->message_box(strMessage + ::enum_message_box(iMessageFlags));
 
    }
 
@@ -11171,107 +11185,102 @@ namespace apex
    bool application::on_close_frame_window(::user::frame* pframe)
    {
 
-      if (pframe->m_bCloseApplicationIfLastVisibleFrame)
-      {
+      __throw(todo("interaction"));
 
-         if (GetVisibleTopLevelFrameCountExcept(pframe) <= 0)
-         {
+      //if (pframe->m_bCloseApplicationIfLastVisibleFrame)
+      //{
 
-            pframe->DestroyWindow();
+      //   if (GetVisibleTopLevelFrameCountExcept(pframe) <= 0)
+      //   {
 
-            _001CloseApplication();
+      //      pframe->DestroyWindow();
 
-         }
-         else
-         {
+      //      _001CloseApplication();
 
-            pframe->hide();
+      //   }
+      //   else
+      //   {
 
-         }
+      //      pframe->hide();
 
-      }
-      else
-      {
+      //   }
 
-         pframe->DestroyWindow();
+      //}
+      //else
+      //{
 
-      }
+      //   pframe->DestroyWindow();
+
+      //}
 
       return true;
 
    }
 
 
-   ::type application::control_type_from_id(const ::id& id, ::user::e_control_type& econtroltype)
-   {
+   //::type application::control_type_from_id(const ::id& id, ::user::e_control_type& econtroltype)
+   //{
 
-      string str(id);
+   //   string str(id);
 
-      if (str.begins_ci("combo_"))
-      {
+   //   if (str.begins_ci("combo_"))
+   //   {
 
-         econtroltype = ::user::control_type_combo_box;
+   //      econtroltype = ::user::control_type_combo_box;
 
-         return __type(::user::combo_box);
+   //      return __type(::user::combo_box);
 
-      }
-      else if (str.begins_ci("check_") || str.begins_ci("checkbox_"))
-      {
+   //   }
+   //   else if (str.begins_ci("check_") || str.begins_ci("checkbox_"))
+   //   {
 
-         econtroltype = ::user::control_type_check_box;
+   //      econtroltype = ::user::control_type_check_box;
 
-         return __type(::user::check_box);
+   //      return __type(::user::check_box);
 
-      }
-      else if (str.begins_ci("still_"))
-      {
+   //   }
+   //   else if (str.begins_ci("still_"))
+   //   {
 
-         econtroltype = ::user::control_type_static;
+   //      econtroltype = ::user::control_type_static;
 
-         return __type(::user::still);
+   //      return __type(::user::still);
 
-      }
-      else if (str.begins_ci("label_"))
-      {
+   //   }
+   //   else if (str.begins_ci("label_"))
+   //   {
 
-         econtroltype = ::user::control_type_static;
+   //      econtroltype = ::user::control_type_static;
 
-         return __type(::user::still);
+   //      return __type(::user::still);
 
-      }
-      else if (str.begins_ci("edit_"))
-      {
+   //   }
+   //   else if (str.begins_ci("edit_"))
+   //   {
 
-         econtroltype = ::user::control_type_edit_plain_text;
+   //      econtroltype = ::user::control_type_edit_plain_text;
 
-         return __type(::user::plain_edit);
+   //      return __type(::user::plain_edit);
 
-      }
-      else if (str.begins_ci("button_"))
-      {
+   //   }
+   //   else if (str.begins_ci("button_"))
+   //   {
 
-         econtroltype = ::user::control_type_button;
+   //      econtroltype = ::user::control_type_button;
 
-         return __type(::user::button);
+   //      return __type(::user::button);
 
-      }
+   //   }
 
-      return ::apex::application::control_type_from_id(id, econtroltype);
+   //   return ::apex::application::control_type_from_id(id, econtroltype);
 
-   }
+   //}
 
 
    string application::get_theme()
    {
 
-      if (!m_ptheme)
-      {
-
-         return ::apex::application::get_theme();
-
-      }
-
-      return m_ptheme->get_theme();
+      return "";
 
    }
 
@@ -11279,30 +11288,7 @@ namespace apex
    estatus application::initialize_contextualized_theme()
    {
 
-      auto estatus = __compose_new(m_ptheme);
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      if (m_bContextTheme)
-      {
-
-         estatus = m_ptheme->initialize_contextualized_theme();
-
-         if (!estatus)
-         {
-
-            return estatus;
-
-         }
-
-      }
-
-      return estatus;
+      return ::success;
 
    }
 
@@ -11324,19 +11310,19 @@ namespace apex
 
       }
 
-      if (!m_ptheme)
-      {
+      //if (!m_ptheme)
+      //{
 
-         return;
+      //   return;
 
-      }
+      //}
 
-      if (m_bContextTheme)
-      {
+      //if (m_bContextTheme)
+      //{
 
-         m_ptheme->switch_context_theme();
+      //   m_ptheme->switch_context_theme();
 
-      }
+      //}
 
    }
 
@@ -11369,7 +11355,7 @@ namespace apex
    //}
 
 
-   //::estatus application::initialize(::object* pobjectContext)
+   //::estatus application::initialize(::layered * pobjectContext)
    //{
 
    //   auto estatus = ::apex::application::initialize(pobjectContext);
@@ -11602,69 +11588,70 @@ namespace apex
    bool application::on_thread_on_idle(::thread* pthread, LONG lCount)
    {
 
-      if (lCount <= 0)
-      {
+      __throw(todo("interaction"));
+      //if (lCount <= 0)
+      //{
 
-         __pointer(::user::interaction) pinteraction;
+      //   __pointer(::user::interaction) pinteraction;
 
-         while (get_frame(pinteraction))
-         {
-            //::user::interaction * pinteraction = (::user::interaction *) pimpl->m_spuiptra->element_at(i)->m_pvoidUserInteraction;
-            bool bOk = false;
-            try
-            {
+      //   while (get_frame(pinteraction))
+      //   {
+      //      //::user::interaction * pinteraction = (::user::interaction *) pimpl->m_spuiptra->element_at(i)->m_pvoidUserInteraction;
+      //      bool bOk = false;
+      //      try
+      //      {
 
-               bOk = pinteraction != nullptr && pinteraction->is_window_visible();
-            }
-            catch (...)
-            {
-            }
-            if (!bOk)
-            {
-               //   try
-               //   {
-               //      Application.remove_frame(pinteraction);
-               //   }
-               //   catch(...)
-               //   {
-               //   }
-               //   try
-               //   {
-               //      Session.remove_frame(pinteraction);
-               //   }
-               //   catch(...)
-               //   {
-               //   }
-               //   try
-               //   {
-               //      System.remove_frame(pinteraction);
-               //   }
-               //   catch(...)
-               //   {
-               //   }
-            }
-            else
-            {
-               //               sl.unlock();
-               try
-               {
-                  pinteraction->send_message(WM_IDLEUPDATECMDUI, (WPARAM)TRUE);
-               }
-               catch (...)
-               {
+      //         bOk = pinteraction != nullptr && pinteraction->is_window_visible();
+      //      }
+      //      catch (...)
+      //      {
+      //      }
+      //      if (!bOk)
+      //      {
+      //         //   try
+      //         //   {
+      //         //      Application.remove_frame(pinteraction);
+      //         //   }
+      //         //   catch(...)
+      //         //   {
+      //         //   }
+      //         //   try
+      //         //   {
+      //         //      Session.remove_frame(pinteraction);
+      //         //   }
+      //         //   catch(...)
+      //         //   {
+      //         //   }
+      //         //   try
+      //         //   {
+      //         //      System.remove_frame(pinteraction);
+      //         //   }
+      //         //   catch(...)
+      //         //   {
+      //         //   }
+      //      }
+      //      else
+      //      {
+      //         //               sl.unlock();
+      //         try
+      //         {
+      //            pinteraction->send_message(WM_IDLEUPDATECMDUI, (WPARAM)TRUE);
+      //         }
+      //         catch (...)
+      //         {
 
-               }
-               //             sl.lock();
-            }
-         }
+      //         }
+      //         //             sl.lock();
+      //      }
+      //   }
 
 
-      }
-      else if (lCount >= 0)
-      {
-      }
+      //}
+      //else if (lCount >= 0)
+      //{
+      //}
 
-      return lCount < 0;  // nothing more to do if lCount >= 0
+      //return lCount < 0;  // nothing more to do if lCount >= 0
 
    }
 
@@ -11712,123 +11699,123 @@ namespace apex
    //}
 
 
-   ::draw2d::icon* application::set_icon(object* pobject, ::draw2d::icon* picon, bool bBigIcon)
-   {
+   //::draw2d::icon* application::set_icon(object* pobject, ::draw2d::icon* picon, bool bBigIcon)
+   //{
 
-      ::draw2d::icon* piconOld = get_icon(pobject, bBigIcon);
+   //   ::draw2d::icon* piconOld = get_icon(pobject, bBigIcon);
 
-      if (bBigIcon)
-      {
+   //   if (bBigIcon)
+   //   {
 
-         pobject->value("big_icon") = (__pointer(object)) picon;
+   //      pobject->value("big_icon") = (__pointer(object)) picon;
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         pobject->value("small_icon") = (__pointer(object)) picon;
+   //      pobject->value("small_icon") = (__pointer(object)) picon;
 
-      }
+   //   }
 
-      return piconOld;
+   //   return piconOld;
 
-   }
-
-
-   ::draw2d::icon* application::get_icon(object* pobject, bool bBigIcon) const
-   {
-
-      if (bBigIcon)
-      {
-
-         return const_cast <object*> (pobject)->cast < ::draw2d::icon >("big_icon");
-
-      }
-      else
-      {
-
-         return const_cast <object*> (pobject)->cast < ::draw2d::icon >("small_icon");
-
-      }
-
-   }
+   //}
 
 
-   void application::on_control_event(::user::control_event* pevent)
-   {
+   //::draw2d::icon* application::get_icon(object* pobject, bool bBigIcon) const
+   //{
 
-      if (pevent->m_eevent == ::user::event_initialize_control)
-      {
+   //   if (bBigIcon)
+   //   {
 
-         if (pevent->m_puie->m_id == __id(system_startup_checkbox))
-         {
+   //      return const_cast <object*> (pobject)->cast < ::draw2d::icon >("big_icon");
 
-            try
-            {
-               __pointer(::user::check) pcheck = pevent->m_puie;
+   //   }
+   //   else
+   //   {
 
-               if (pcheck.is_set())
-               {
+   //      return const_cast <object*> (pobject)->cast < ::draw2d::icon >("small_icon");
 
-                  pcheck->_001SetCheck(
-                     Context.os().is_user_auto_start(get_executable_appid()),
-                     ::source_initialize);
+   //   }
 
-               }
-            }
-            catch (...)
-            {
-
-            }
-
-         }
-
-      }
-      else if (pevent->m_eevent == ::user::event_set_check)
-      {
-
-         if (pevent->m_puie->m_id == __id(system_startup_checkbox)
-            && pevent->m_actioncontext.is_user_source())
-         {
-
-            try
-            {
-
-               __pointer(::user::check) pcheck = pevent->m_puie;
-
-               if (pcheck.is_set())
-               {
-
-                  Context.os().register_user_auto_start(
-                     get_executable_appid(),
-                     get_executable_path(),
-                     pcheck->echeck() == ::check_checked);
-
-               }
-
-               pevent->m_bRet = true;
-
-               return;
-
-            }
-            catch (...)
-            {
-
-            }
-
-         }
-
-      }
-
-   }
+   //}
 
 
-   ::user::interaction* application::create_menu_interaction()
-   {
+   //void application::on_control_event(::user::control_event* pevent)
+   //{
 
-      return __new(::user::button);
+   //   if (pevent->m_eevent == ::user::event_initialize_control)
+   //   {
 
-   }
+   //      if (pevent->m_puie->m_id == __id(system_startup_checkbox))
+   //      {
+
+   //         try
+   //         {
+   //            __pointer(::user::check) pcheck = pevent->m_puie;
+
+   //            if (pcheck.is_set())
+   //            {
+
+   //               pcheck->_001SetCheck(
+   //                  Context.os().is_user_auto_start(get_executable_appid()),
+   //                  ::source_initialize);
+
+   //            }
+   //         }
+   //         catch (...)
+   //         {
+
+   //         }
+
+   //      }
+
+   //   }
+   //   else if (pevent->m_eevent == ::user::event_set_check)
+   //   {
+
+   //      if (pevent->m_puie->m_id == __id(system_startup_checkbox)
+   //         && pevent->m_actioncontext.is_user_source())
+   //      {
+
+   //         try
+   //         {
+
+   //            __pointer(::user::check) pcheck = pevent->m_puie;
+
+   //            if (pcheck.is_set())
+   //            {
+
+   //               Context.os().register_user_auto_start(
+   //                  get_executable_appid(),
+   //                  get_executable_path(),
+   //                  pcheck->echeck() == ::check_checked);
+
+   //            }
+
+   //            pevent->m_bRet = true;
+
+   //            return;
+
+   //         }
+   //         catch (...)
+   //         {
+
+   //         }
+
+   //      }
+
+   //   }
+
+   //}
+
+
+   //::user::interaction* application::create_menu_interaction()
+   //{
+
+   //   return __new(::user::button);
+
+   //}
 
 
    //__pointer(::user::document) application::defer_create_view(string strView, ::user::interaction* puiParent, ewindowflag ewindowflag, const ::id& id)
@@ -11921,7 +11908,87 @@ namespace apex
    //}
 
 
+
+
+   void application::close(::apex::enum_end eend)
+   {
+
+      if (eend == ::apex::e_end_close)
+      {
+
+         return;
+
+      }
+
+      m_ethreadClose = thread_application;
+
+      //if (get_context_session())
+      //{
+
+      //   if (Session.m_pdocmanager)
+      //   {
+
+      //      Session.m_pdocmanager->close_all_documents(true);
+
+      //   }
+
+      //}
+
+      if (eend == ::apex::e_end_app)
+      {
+
+         set_finish();
+
+         return;
+
+      }
+
+      if (eend == ::apex::e_end_session)
+      {
+
+         try
+         {
+
+            if (get_context_session())
+            {
+
+               Session.set_finish();
+
+            }
+
+         }
+         catch (...)
+         {
+
+         }
+
+         return;
+
+      }
+
+
+      if (eend == ::apex::e_end_system)
+      {
+
+         try
+         {
+
+            if (get_context_system())
+            {
+
+               System.set_finish();
+
+            }
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
+
+   }
+
+
 } // namespace apex
-
-
-

@@ -5,7 +5,7 @@ namespace calculator
 {
 
 
-   plain_edit_view::plain_edit_view(::object * pobject):
+   plain_edit_view::plain_edit_view(::layered * pobjectContext):
       object(pobject),
       ::user::interaction(pobject),
       ::user::plain_edit(pobject)

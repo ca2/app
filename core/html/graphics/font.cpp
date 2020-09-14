@@ -19,10 +19,10 @@ namespace html
    }
 
 
-   bool font::create(::object * pobject)
+   bool font::create(::layered * pobjectContext)
    {
 
-      set_context_object(pobject);
+      set_context_object(pobjectContext);
 
       m_font.create(this);
 
@@ -40,7 +40,7 @@ namespace html
       }
       else
       {
-         iWeight = MAX(100, atoi(m_strWeight));
+         iWeight = max(100, atoi(m_strWeight));
       }
 
       double dSize;

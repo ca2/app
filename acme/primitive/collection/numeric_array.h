@@ -835,9 +835,9 @@ numeric_array < TYPE >  numeric_array < TYPE >::operator - (const numeric_array 
 
    numeric_array < TYPE > aRet(*this);
 
-   aRet.remove(a);
+   aRet.remove_array(a);
 
-   return *this;
+   return aRet;
 
 }
 
@@ -857,7 +857,7 @@ template < class TYPE >
 numeric_array < TYPE >  & numeric_array < TYPE >::operator -= (const numeric_array < TYPE >  & a)
 {
 
-   this->remove(a);
+   this->remove_array(a);
 
    return *this;
 

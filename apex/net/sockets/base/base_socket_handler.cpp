@@ -1,5 +1,5 @@
 #include "framework.h" 
-#include "aura/net/sockets/_.h"
+#include "apex/net/sockets/_.h"
 
 
 namespace sockets
@@ -38,14 +38,14 @@ namespace sockets
    }
 
 
-   base_socket_handler::base_socket_handler(::object * pobject, ::aura::log * plogger) :
+   base_socket_handler::base_socket_handler(::layered * pobject, ::apex::log * plogger) :
       ::object(pobject)
    {
 
       if(plogger == nullptr)
       {
 
-         ::aura::application * papp = ::get_context_application(pobject);
+         ::apex::application * papp = ::get_context_application(pobject);
 
          if(papp != nullptr && papp->get_context_system() != nullptr)
          {
@@ -71,7 +71,7 @@ namespace sockets
 
    }
 
-   void base_socket_handler::set_logger(::aura::log * plogger)
+   void base_socket_handler::set_logger(::apex::log * plogger)
    {
 
       m_splogger = plogger;

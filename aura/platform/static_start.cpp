@@ -1,10 +1,10 @@
 #include "framework.h"
 #include "static_start.h"
-#include "aura/net/sockets/_.h"
-#include "aura/memory/plex_heap1.h"
-#include "aura/memory/plex_heap_impl1.h"
-#include "aura/platform/app_core.h"
-#include "aura/primitive/primitive/malloc.h"
+#include "apex/net/sockets/_.h"
+#include "acme/memory/plex_heap1.h"
+#include "acme/memory/plex_heap_impl1.h"
+#include "apex/platform/app_core.h"
+#include "acme/primitive/primitive/malloc.h"
 #include "aura/astr.h"
 #include "aura/os/_os.h"
 
@@ -31,7 +31,7 @@ void trace_category_static_init();
 void trace_category_static_term();
 
 
-extern thread_local __pointer(::thread) t_pthread;
+//extern thread_local __pointer(::thread) t_pthread;
 
 
 #undef new
@@ -56,23 +56,23 @@ log_handler (const gchar   *log_domain,
 namespace aura
 {
 
-
-#if OBJ_TYP_CTR
-
-   map < const char*, const char*, ::i64, ::i64 >* g_pmapObjTypCtr;
-
-#endif
-
+   // aura commented
+//#if OBJ_TYP_CTR
+//
+//   map < const char*, const char*, ::i64, ::i64 >* g_pmapObjTypCtr;
+//
+//#endif
+//
 
    //critical_section* g_pcsRefDbg;
    bool g_bAura;
 
-
-#if OBJ_TYP_CTR
-
-   int g_iObjTypCtrInit;
-
-#endif
+   // aura commented
+//#if OBJ_TYP_CTR
+//
+//   int g_iObjTypCtrInit;
+//
+//#endif
 
    CLASS_DECL_AURA critical_section* g_pcsFont = nullptr;
 
@@ -80,7 +80,7 @@ namespace aura
 
    ::mutex* g_pmutexChildren;
    ::mutex* g_pmutexThreadWaitClose;
-   //string_map < __pointer(::aura::library) >* g_pmapLibrary;
+   //string_map < __pointer(::apex::library) >* g_pmapLibrary;
    //string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
 
 
@@ -114,50 +114,50 @@ namespace aura
 
    __LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
 
-   ::mutex* g_pmutexGlobals;
+   //::mutex* g_pmutexGlobals;
 
-   critical_section* g_pcsGlobal;
+   //critical_section* g_pcsGlobal;
 
-   bool g_bOutputDebugString;
+   //bool g_bOutputDebugString;
 
-   critical_section* g_pcsTrace;
+   //critical_section* g_pcsTrace;
 
-   ::generic_object* g_ptrace;
+   //::generic* g_ptrace;
 
-   simple_trace* g_psimpletrace;
-
-#ifdef __APPLE__
-
-   // http://stackoverflow.com/questions/5167269/clock-gettime-alternative-in-mac-os-x
-   // http://stackoverflow.com/users/346736/jbenet
-
-   //#include <mach/clock.h>
-   //#include <mach/mach.h>
-#include <mach/mach_time.h>
-
-//clock_serv_t   g_cclock;
-   double g_machtime_conversion_factor;
-   //   clock_get_time(cclock, &mts);
-
-#endif
-
-
-   ::mutex* g_pmutexCred;
+   //simple_trace* g_psimpletrace;
+   // aura commented
+//#ifdef __APPLE__
+//
+//   // http://stackoverflow.com/questions/5167269/clock-gettime-alternative-in-mac-os-x
+//   // http://stackoverflow.com/users/346736/jbenet
+//
+//   //#include <mach/clock.h>
+//   //#include <mach/mach.h>
+//#include <mach/mach_time.h>
+//
+////clock_serv_t   g_cclock;
+//   double g_machtime_conversion_factor;
+//   //   clock_get_time(cclock, &mts);
+//
+//#endif
 
 
-   class ::exception_engine* g_pexceptionengine;
+   //::mutex* g_pmutexCred;
+
+
+   //class ::exception_engine* g_pexceptionengine;
 
    ::mutex* g_pmutexMessageDispatch;
 
 
-   array < generic_object* >* g_paAura;
+   //array < generic* >* g_paAura;
 
 
-   ::map < ::id, const ::id&, ::id, const ::id& >* g_pmapRTL;
+   //::map < ::id, const ::id&, ::id, const ::id& >* g_pmapRTL;
 
-   plex_heap_alloc_array* g_pheap;
+   //plex_heap_alloc_array* g_pheap;
 
-   critical_section* g_pmutexSystemHeap;
+   //critical_section* g_pmutexSystemHeap;
 
 #if defined(WINDOWS)
 
@@ -171,20 +171,24 @@ namespace aura
 
    //map < ITHREAD, ITHREAD, ITHREAD, ITHREAD > * g_pmapThreadOn;
 
-#ifdef WINDOWS
+   // aura commented
+//#ifdef WINDOWS
+//
+//   LARGE_INTEGER g_largeintegerFrequency;
+//
+//#endif
 
-   LARGE_INTEGER g_largeintegerFrequency;
-
-#endif
-
-   i64 g_iFirstNano;
+   // aura commented
+   //i64 g_iFirstNano;
 
    //plex_heap_alloc_array * g_pplexheapallocarray;
 
-   int g_iMemoryCountersStartable;
+   // aura commented
+   //int g_iMemoryCountersStartable;
    //mutex * g_pmutexTrait;
    //::mutex * g_pmutexFactory;
 
+   // aura commented
    ::mutex* g_pmutexUiDestroyed;
 
 #ifdef ANDROID
@@ -277,75 +281,75 @@ namespace aura
 
       g_main_deferred_run = nullptr;
 
-      g_pmutexGlobals = nullptr;
+      //g_pmutexGlobals = nullptr;
 
-      g_pcsGlobal = nullptr;
+//      g_pcsGlobal = nullptr;
 
-      g_bOutputDebugString = true;
+      //g_bOutputDebugString = true;
 
-      g_pcsTrace = nullptr;
+      //g_pcsTrace = nullptr;
 
-      g_ptrace = nullptr;
+      //g_ptrace = nullptr;
 
-      g_psimpletrace = nullptr;
+      //g_psimpletrace = nullptr;
 
-#ifdef __APPLE__
+//#ifdef __APPLE__
+//
+//      // http://stackoverflow.com/questions/5167269/clock-gettime-alternative-in-mac-os-x
+//      // http://stackoverflow.com/users/346736/jbenet
+//
+//      //#include <mach/clock.h>
+//      //#include <mach/mach.h>
+//#include <mach/mach_time.h>
+//
+////clock_serv_t   g_cclock;
+//      g_machtime_conversion_factor = 0.0;
+//      //   clock_get_time(cclock, &mts);
+//
+//#endif
 
-      // http://stackoverflow.com/questions/5167269/clock-gettime-alternative-in-mac-os-x
-      // http://stackoverflow.com/users/346736/jbenet
+      //g_pmutexCred = nullptr;
 
-      //#include <mach/clock.h>
-      //#include <mach/mach.h>
-#include <mach/mach_time.h>
+      //g_pexceptionengine = nullptr;
+      //g_pmutexMessageDispatch = nullptr;
 
-//clock_serv_t   g_cclock;
-      g_machtime_conversion_factor = 0.0;
-      //   clock_get_time(cclock, &mts);
+//      g_paAura = nullptr;
 
-#endif
-
-      g_pmutexCred = nullptr;
-
-      g_pexceptionengine = nullptr;
-      g_pmutexMessageDispatch = nullptr;
-
-      g_paAura = nullptr;
-
-      g_pmapRTL = nullptr;
+      //g_pmapRTL = nullptr;
 
       //::map < void *, void *,::aura::application *, ::aura::application * > * g_pmapAura;
 
-      //string_map < __pointer(::aura::library) > * g_pmapLibCall;
+      //string_map < __pointer(::apex::library) > * g_pmapLibCall;
 
-      g_pheap = nullptr;
+      //g_pheap = nullptr;
 
-      g_pmutexSystemHeap = nullptr;
+      //g_pmutexSystemHeap = nullptr;
 
       //::mutex * g_pmutexThreadOn;
 
-#if defined(WINDOWS)
-
-      g_localeC = 0;
-
-#else
-
-      g_localeC = 0;
-
-#endif
+//#if defined(WINDOWS)
+//
+//      g_localeC = 0;
+//
+//#else
+//
+//      g_localeC = 0;
+//
+//#endif
 
       //map < ITHREAD, ITHREAD, ITHREAD, ITHREAD > * g_pmapThreadOn;
 
-#ifdef WINDOWS
-
-      g_largeintegerFrequency = {};
-
-#endif
-
-      g_iFirstNano = 0;
+//#ifdef WINDOWS
+//
+//      g_largeintegerFrequency = {};
+//
+//#endif
+//
+//      g_iFirstNano = 0;
 
       //plex_heap_alloc_array * g_pplexheapallocarray = nullptr;
 
-      g_iMemoryCountersStartable = 0;
+      //g_iMemoryCountersStartable = 0;
       //mutex * g_pmutexTrait;
       //::mutex * g_pmutexFactory;
 
@@ -437,19 +441,19 @@ namespace aura
 
 #endif
 
-      g_pcsTrace = new critical_section;
+      //g_pcsTrace = new critical_section;
 
 #ifdef WINDOWS
 
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
+//
+//      SetThreadLocale(65001);
+//
+//      ::SetConsoleOutputCP(65001);
+//
+//#endif
 
-      SetThreadLocale(65001);
-
-      ::SetConsoleOutputCP(65001);
-
-#endif
-
-      ::QueryPerformanceFrequency(&g_largeintegerFrequency);
+      //::QueryPerformanceFrequency(&g_largeintegerFrequency);
 
 #elif defined(__APPLE__)
 
@@ -465,27 +469,27 @@ namespace aura
 
 #endif
 
-      g_iFirstNano = get_nanos();
+      //g_iFirstNano = get_nanos();
 
       //xxdebug_box("aura.dll base_static_start (0)", "box", MB_OK);
 
-      g_pexceptionengine = new ::PLATFORM_NAMESPACE::exception_engine();
+      //g_pexceptionengine = new ::PLATFORM_NAMESPACE::exception_engine();
 
-      g_pmutexGlobals = new ::mutex();
+      //g_pmutexGlobals = new ::mutex();
 
       g_pmutexChildren = new ::mutex();
 
-      g_pcsGlobal = new critical_section();
+      //g_pcsGlobal = new critical_section();
 
-#ifndef __MCRTDBG
+//#ifndef __MCRTDBG
+//
+//      g_pheap = new plex_heap_alloc_array();
+//
+//#endif
 
-      g_pheap = new plex_heap_alloc_array();
+      //::id_space::s_pidspace = new id_space();
 
-#endif
-
-      ::id_space::s_pidspace = new id_space();
-
-      init_id_pool();
+      //init_id_pool();
 
 #ifdef ANDROID
 
@@ -499,17 +503,17 @@ namespace aura
 
 #endif
 
-      trace_category_static_init();
+      //trace_category_static_init();
 
-      g_psimpletrace = new simple_trace;
+      //g_psimpletrace = new simple_trace;
 
-      g_ptrace = g_psimpletrace;
+      //g_ptrace = g_psimpletrace;
 
-#ifdef BSD_STYLE_SOCKETS
-
-      ::sockets::base_socket::s_pmutex = new ::mutex();
-
-#endif
+//#ifdef BSD_STYLE_SOCKETS
+//
+//      ::sockets::base_socket::s_pmutex = new ::mutex();
+//
+//#endif
 
 
 #ifdef __APPLE__
@@ -524,7 +528,7 @@ namespace aura
 
       //g_pmapThreadOn = new ::map < ITHREAD, ITHREAD, ITHREAD, ITHREAD >;
 
-      g_pmutexSystemHeap = new critical_section();
+      //g_pmutexSystemHeap = new critical_section();
 
 #if MEMDLEAK
 
@@ -532,9 +536,9 @@ namespace aura
 
 #endif
 
-      ::factory::factory_init();
+      //::factory::factory_init();
 
-      g_paAura = new array < generic_object * >;
+      //g_paAura = new array < generic * >;
 
       //g_pmapAura =new ::map < void *,void *,::aura::application *,::aura::application * >;
 
@@ -542,7 +546,7 @@ namespace aura
 
       g_pmutexMessageDispatch = new ::mutex();
 
-      g_pmutexCred = new ::mutex();
+      //g_pmutexCred = new ::mutex();
 
 #if defined(LINUX) || defined(__APPLE__)
 
@@ -550,19 +554,19 @@ namespace aura
 
 #endif // defined(LINUX) || defined(__APPLE__)
 
-      g_pmapRTL = nullptr;
+      //g_pmapRTL = nullptr;
 
       //&::get_context_system()->g_mutexLibrary = new ::mutex;
 
-      //g_pmapLibrary = new string_map < __pointer(::aura::library) >();
+      //g_pmapLibrary = new string_map < __pointer(::apex::library) >();
 
       //g_pmapNewAuraLibrary = new string_map < PFN_NEW_AURA_LIBRARY >();
 
-#ifndef _UWP
-
-      br_init(nullptr);
-
-#endif
+//#ifndef _UWP
+//
+//      br_init(nullptr);
+//
+//#endif
 
       // Only draw2d implementations needing "big" synch should init_draw2d_mutex();
       // init_draw2d_mutex();
@@ -579,7 +583,7 @@ namespace aura
 
 #endif
 
-      //g_pmapLibCall = new string_map < __pointer(::aura::library) >();
+      //g_pmapLibCall = new string_map < __pointer(::apex::library) >();
 
 #ifdef MEMORY_COUNTERS
 
@@ -587,7 +591,7 @@ namespace aura
 
 #else
 
-      g_iMemoryCountersStartable = 0;
+      //g_iMemoryCountersStartable = 0;
 
 #endif
 
@@ -634,15 +638,15 @@ namespace aura
 
       term();
 
-      ::aura::del(g_pmapFontFaceName);
+      ::acme::del(g_pmapFontFaceName);
 
-      ::aura::del(g_pcsFont);
+      ::acme::del(g_pcsFont);
 
 #if OBJ_TYP_CTR
       g_iObjTypCtrInit = 0;
 #endif
 
-      ::release(t_pthread);
+      //::release(t_pthread);
 
       // if(g_pmapAura)
       // {
@@ -687,64 +691,53 @@ namespace aura
 
       //}
 
-      if(g_pmapRTL)
-      {
+      //if(g_pmapRTL)
+      //{
 
-         try
-         {
+      //   try
+      //   {
 
-            g_pmapRTL->remove_all();
+      //      g_pmapRTL->remove_all();
 
-         }
-         catch(...)
-         {
+      //   }
+      //   catch(...)
+      //   {
 
-         }
+      //   }
 
-      }
+      //}
 
-      if(g_pmapRTL)
-      {
+      //if(g_pmapRTL)
+      //{
 
-         try
-         {
+      //   try
+      //   {
 
-            g_pmapRTL->remove_all();
+      //      g_pmapRTL->remove_all();
 
-         }
-         catch(...)
-         {
+      //   }
+      //   catch(...)
+      //   {
 
-         }
+      //   }
 
-      }
+      //}
 
-      try
-      {
+      //::acme::del(::thread::g_pmutex);
 
-         ::factory::factory_close();
-
-      }
-      catch (...)
-      {
-
-      }
-
-      //::aura::del(::thread::g_pmutex);
-
-      //::aura::del(::thread::g_pthreadmap);
+      //::acme::del(::thread::g_pthreadmap);
 
       ::user::term_windowing();
 
       g_bAura = 0;
 
-      ::aura::del(g_paurastrpool);
+      ::acme::del(g_paurastrpool);
 
-      ::channel::s_pmutexChannel.release();
+      //::channel::s_pmutexChannel.release();
 
-      g_ptrace = g_psimpletrace;
+      //g_ptrace = g_psimpletrace;
 
-      del(g_pmapRTL);
+      //del(g_pmapRTL);
 
 #if defined(LINUX) || defined(__APPLE__)
 
@@ -752,47 +745,38 @@ namespace aura
 
 #endif // defined(LINUX) || defined(__APPLE__)
 
-      del(g_pmutexCred);
+//      ::acme::del(g_pmutexCred);
 
-      del(g_pmutexMessageDispatch);
+      ::acme::del(g_pmutexMessageDispatch);
 
-      del(g_pmutexUiDestroyed);
+      ::acme::del(g_pmutexUiDestroyed);
 
       //del(g_pmapAura);
 
-      if (g_paAura != nullptr)
-      {
+      //if (g_paAura != nullptr)
+      //{
 
-         for (auto* po : *g_paAura)
-         {
+      //   for (auto* po : *g_paAura)
+      //   {
 
-            try
-            {
+      //      try
+      //      {
 
-               del(po);
+      //         ::acme::del(po);
 
-            }
-            catch (...)
-            {
+      //      }
+      //      catch (...)
+      //      {
 
-            }
+      //      }
 
-         }
+      //   }
 
-         del(g_paAura);
+      //   ::acme::del(g_paAura);
 
-      }
+      //}
 
-      try
-      {
 
-         ::factory::factory_term();
-
-      }
-      catch (...)
-      {
-
-      }
 
       //del(g_pmapLibCall);
 
@@ -806,7 +790,7 @@ namespace aura
 
 #if OBJ_TYP_CTR
 
-      ::aura::del(g_pmapObjTypCtr);
+      ::acme::del(g_pmapObjTypCtr);
 
 #endif
 
@@ -816,13 +800,13 @@ namespace aura
 
 #endif
 
-      del(g_pmutexSystemHeap);
+      //::acme::del(g_pmutexSystemHeap);
 
       //del(g_pmutexThreadOn);
 
       //del(g_pmapThreadOn);
 
-      del(g_pmutexThreadWaitClose);
+      ::acme::del(g_pmutexThreadWaitClose);
 
 #ifdef __APPLE__
 
@@ -830,15 +814,15 @@ namespace aura
 
 #endif
 
-#ifdef BSD_STYLE_SOCKETS
+//#ifdef BSD_STYLE_SOCKETS
+//
+//      ::acme::del(::sockets::base_socket::s_pmutex);
+//
+//#endif
 
-      del(::sockets::base_socket::s_pmutex);
+      //::acme::del(g_psimpletrace);
 
-#endif
-
-      ::aura::del(g_psimpletrace);
-
-      ::aura::del(g_pcsTrace);
+      //::acme::del(g_pcsTrace);
 
       trace_category_static_term();
 
@@ -848,49 +832,49 @@ namespace aura
 
 #endif
 
-      term_id_pool();
+      //term_id_pool();
 
-      del(::id_space::s_pidspace);
+      //del(::id_space::s_pidspace);
 
-#if !defined(__MCRTDBG) && !MEMDLEAK
+//#if !defined(__MCRTDBG) && !MEMDLEAK
+//
+//      auto pheap = g_pheap;
+//
+//      g_pheap = nullptr;
+//
+//      del(pheap);
+//
+//#endif
 
-      auto pheap = g_pheap;
+      //del(g_pcsGlobal);
 
-      g_pheap = nullptr;
+      ::acme::del(g_pmutexChildren);
 
-      del(pheap);
+      //del(g_pmutexGlobals);
 
-#endif
+//#if MEMDLEAK
+//
+//      ::set_thread(nullptr);
+//
+//#ifdef __USE_BFD
 
-      del(g_pcsGlobal);
+//      init_resolve_addr_file_func_line();
+//
+//#endif
+//
+//      memdleak_dump();
+//
+//#endif
 
-      del(g_pmutexChildren);
+#ifndef WINDOWS
 
-      del(g_pmutexGlobals);
-
-#if MEMDLEAK
-
-      ::set_thread(nullptr);
-
-#ifdef __USE_BFD
-
-      init_resolve_addr_file_func_line();
-
-#endif
-
-      memdleak_dump();
+      ::acme::free(g_pszDemangle);
 
 #endif
 
 #ifndef WINDOWS
 
-      ::aura::free(g_pszDemangle);
-
-#endif
-
-#ifndef WINDOWS
-
-      ::aura::del(g_pcsDemangle);
+      ::acme::del(g_pcsDemangle);
 
 #endif
 
@@ -950,9 +934,9 @@ namespace aura
 
 #ifdef WINDOWS
 
-      set_extended_output_debug_string_a();
+      ::acme::set_extended_output_debug_string_a();
 
-      set_extended_output_debug_string_w();
+      ::acme::set_extended_output_debug_string_w();
 
 #endif
 
@@ -968,12 +952,12 @@ namespace aura
 
       //::multithreading::wait_threads(1_min);
 
-      if (g_axisontermthread)
-      {
+      //if (g_axisontermthread)
+      //{
 
-         g_axisontermthread();
+      //   g_axisontermthread();
 
-      }
+      //}
 
       on_term_thread();
 
@@ -983,9 +967,9 @@ namespace aura
 
 #ifdef WINDOWS
 
-      set_simple_output_debug_string_a();
+      ::acme::set_simple_output_debug_string_a();
 
-      set_simple_output_debug_string_w();
+      ::acme::set_simple_output_debug_string_w();
 
 #endif
 
@@ -1029,18 +1013,18 @@ namespace aura
 //CLASS_DECL_AURA void terg_draw2d_mutex()
 //{
 //
-//   ::aura::del(s_pmutexDraw2d);
+//   ::acme::del(s_pmutexDraw2d);
 //
 //}
 
 
 
-CLASS_DECL_AURA ::mutex * get_cred_mutex()
-{
-
-   return ::aura::g_pmutexCred;
-
-}
+//CLASS_DECL_AURA ::mutex * get_cred_mutex()
+//{
+//
+//   return ::aura::g_pmutexCred;
+//
+//}
 
 
 
@@ -1063,20 +1047,20 @@ CLASS_DECL_AURA COLORREF dk_red() // <3 tbs
 //thread_int_ptr < ::estatus    > t_estatus;
 
 
-CLASS_DECL_AURA void set_last_status(const ::estatus & estatus)
-{
+//CLASS_DECL_AURA void set_last_status(const ::estatus & estatus)
+//{
+//
+//   ::get_thread()->m_estatus = estatus;
+//
+//}
 
-   ::get_thread()->m_estatus = estatus;
 
-}
-
-
-CLASS_DECL_AURA ::estatus  get_last_status()
-{
-
-   return ::get_thread()->m_estatus;
-
-}
+//CLASS_DECL_AURA ::estatus  get_last_status()
+//{
+//
+//   return ::get_thread()->m_estatus;
+//
+//}
 
 
 
@@ -1205,16 +1189,16 @@ CLASS_DECL_AURA ::estatus  get_last_status()
 //
 //
 
-#ifdef WINDOWS
-_locale_t get_c_locale()
-#else
-locale_t get_c_locale()
-#endif
-{
-
-   return ::aura::g_localeC;
-
-}
+//#ifdef WINDOWS
+//_locale_t get_c_locale()
+//#else
+//locale_t get_c_locale()
+//#endif
+//{
+//
+//   return ::aura::g_localeC;
+//
+//}
 
 
 

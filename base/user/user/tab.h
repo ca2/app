@@ -9,7 +9,7 @@ namespace user
 
 
    class CLASS_DECL_BASE tab_pane:
-      virtual public ::generic_object
+      virtual public ::generic
    {
    public: 
 
@@ -127,7 +127,7 @@ namespace user
          ::rect                           m_rectBorder;
          ::rect                           m_rectMargin;
          ::rect                           m_rectTextMargin;
-         __pointer(image_list)            m_pimagelist;
+         __pointer(::image_list)          m_pimagelist;
          tab_callback *                   m_pcallback;
          ::index                          m_iClickTab;
          bool                             m_bDrag;

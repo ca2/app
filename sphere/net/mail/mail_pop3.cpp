@@ -9,7 +9,7 @@ namespace mail
 {
 
 
-   pop3::pop3(::object * pobject) :
+   pop3::pop3(::layered * pobjectContext) :
       ::object(pobject)
    {
 

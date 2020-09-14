@@ -4,8 +4,8 @@
 namespace calculator
 {
 
-   department::department(::object * pobject) :
-      ::aura::department(pobject)
+   department::department(::layered * pobjectContext) :
+      ::apex::department(pobject)
    {
    }
 
@@ -17,7 +17,7 @@ namespace calculator
    bool department::init_instance()
    {
 
-      if (!::aura::department::init_instance())
+      if (!::apex::department::init_instance())
       {
 
          return false;

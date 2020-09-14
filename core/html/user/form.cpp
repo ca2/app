@@ -21,12 +21,12 @@ html_form::html_form()
 html_form::~html_form()
 {
 
-   //::aura::del(m_phtmlform);
+   //::acme::del(m_phtmlform);
 
 }
 
 
-::estatus html_form::initialize(::object* pobjectContext)
+::estatus html_form::initialize(::layered * pobjectContext)
 {
 
    auto estatus = ::user::form_view::initialize(pobjectContext);

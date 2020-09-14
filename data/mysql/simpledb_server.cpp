@@ -4,7 +4,7 @@
 namespace simpledb
 {
 
-   server::server(::object * pobject) :
+   server::server(::layered * pobjectContext) :
       ::object(pobject)
    {
       m_pbase = nullptr;

@@ -19,7 +19,7 @@
 //      string         m_strFileName;
 //
 //
-//      simple_file(::object * pobject);
+//      simple_file(::layered * pobjectContext);
 //      virtual ~simple_file();
 //
 //

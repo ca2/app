@@ -1,7 +1,7 @@
 #pragma once
 
 
-CLASS_DECL_ACME void defer_dock_application(int_bool bDock);
+//CLASS_DECL_ACME void defer_dock_application(int_bool bDock);
 
 
 CLASS_DECL_ACME WINBOOL IsProcessRunning(DWORD pid);
@@ -112,9 +112,9 @@ CLASS_DECL_ACME void get_command_line_dup(char * psz, int iBuffer);
 
 #pragma once
 
-
+#ifdef LINUX
 #include "acme/os/binreloc.h"
-
+#endif
 
 
 

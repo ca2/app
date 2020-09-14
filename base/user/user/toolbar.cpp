@@ -1744,7 +1744,7 @@ return { 0,0 };
             if(pchild->attribute("image").get_string().has_char())
             {
 
-               item->m_pimage = load_image(pchild->attribute("image"), false);
+               item->m_pimage = Application.image().load_image(pchild->attribute("image"), false);
 
             }
 

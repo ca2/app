@@ -43,7 +43,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{E000FFAF-392F-4E32-BF51-FD7ED638991F}</ProjectGuid>
+    <ProjectGuid>{638B242F-0F21-41C3-9F66-724660046133}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>app</RootNamespace>
     <ProjectName>acme</ProjectName>
@@ -1152,7 +1152,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="filesystem\file\cpp.cpp" />
     <ClCompile Include="filesystem\file\dir.cpp" />
     <ClCompile Include="filesystem\file\dir2.cpp" />
-    <ClCompile Include="filesystem\file\edit_file.cpp" />
     <ClCompile Include="filesystem\file\exception.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">Create</PrecompiledHeader>
@@ -1317,15 +1316,14 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="multithreading\thread_os.cpp" />
     <ClCompile Include="multithreading\waitable.cpp" />
     <ClCompile Include="multithreading\_.cpp" />
-    <ClCompile Include="node\windows\windows_desktop.cpp" />
     <ClCompile Include="node\windows\console.cpp" />
+    <ClCompile Include="node\windows\windows_desktop.cpp" />
     <ClCompile Include="node\windows\factory_exchange.cpp" />
     <ClCompile Include="node\windows\file.cpp" />
     <ClCompile Include="node\windows\file_find.cpp" />
     <ClCompile Include="node\windows\pipe.cpp" />
     <ClCompile Include="node\windows\registry.cpp" />
     <ClCompile Include="node\windows\serial.cpp" />
-    <ClCompile Include="node\windows\stdio_file.cpp" />
     <ClCompile Include="node\windows\timer.cpp" />
     <ClCompile Include="node\windows\trace.cpp" />
     <ClCompile Include="node\windows\tts_speaker.cpp" />
@@ -1342,7 +1340,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="os\ansios\process.cpp" />
     <ClCompile Include="os\ansios\user.cpp" />
     <ClCompile Include="os\ansios\win.cpp" />
-    <ClCompile Include="os\binreloc.cpp" />
     <ClCompile Include="os\console.cpp" />
     <ClCompile Include="os\debug.cpp" />
     <ClCompile Include="os\file.cpp" />
@@ -1351,17 +1348,17 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="os\thread.cpp" />
     <ClCompile Include="os\time.cpp" />
     <ClCompile Include="os\windowing.cpp" />
-    <ClCompile Include="os\windows\-ehrror.cpp" />
     <ClCompile Include="os\windows\ansi_file.cpp" />
     <ClCompile Include="os\windows\api.cpp" />
     <ClCompile Include="os\windows\application.cpp" />
     <ClCompile Include="os\windows\callstack.cpp" />
     <ClCompile Include="os\windows\debug.cpp" />
     <ClCompile Include="os\windows\dir.cpp" />
-    <ClCompile Include="os\windows\dpi.cpp" />
     <ClCompile Include="os\windows\environment_variable.cpp" />
     <ClCompile Include="os\windows\exception_engine.cpp" />
+    <ClCompile Include="os\windows\extract_icon.cpp" />
     <ClCompile Include="os\windows\file.cpp" />
+    <ClCompile Include="os\windows\gdiplus.cpp" />
     <ClCompile Include="os\windows\internal.cpp" />
     <ClCompile Include="os\windows\itemidlist.cpp" />
     <ClCompile Include="os\windows\language.cpp" />
@@ -1380,14 +1377,12 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="os\windows\util.cpp" />
     <ClCompile Include="os\windows\windowing.cpp" />
     <ClCompile Include="os\windows\_.cpp" />
-    <ClCompile Include="os\windows_common\-ehrror.cpp" />
+    <ClCompile Include="os\windows_common\debug.cpp" />
     <ClCompile Include="os\windows_common\base.cpp" />
     <ClCompile Include="os\windows_common\bstring.cpp" />
     <ClCompile Include="os\windows_common\com.cpp" />
-    <ClCompile Include="os\windows_common\file.cpp" />
     <ClCompile Include="os\windows_common\file_c.cpp" />
-    <ClCompile Include="os\windows_common\multithreading.cpp" />
-    <ClCompile Include="os\windows_common\networking.cpp" />
+    <ClCompile Include="os\windows_common\thread.cpp" />
     <ClCompile Include="os\windows_common\unicode.cpp" />
     <ClCompile Include="os\windows_common\_dll.cpp" />
     <ClCompile Include="platform\assert.cpp" />
@@ -1400,7 +1395,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="platform\factory.cpp" />
     <ClCompile Include="platform\fixed_alloc.cpp" />
     <ClCompile Include="platform\flags.cpp" />
-    <ClCompile Include="platform\history.cpp" />
     <ClCompile Include="platform\hyperlink.cpp" />
     <ClCompile Include="platform\international.cpp" />
     <ClCompile Include="platform\logic.cpp" />
@@ -1413,26 +1407,20 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="platform\profiler.cpp" />
     <ClCompile Include="platform\regex.cpp" />
     <ClCompile Include="platform\static_start.cpp" />
+    <ClCompile Include="platform\text.cpp" />
     <ClCompile Include="platform\trace_category.cpp" />
     <ClCompile Include="platform\version.cpp" />
     <ClCompile Include="platform\_.cpp" />
     <ClCompile Include="platform\static_start_aura.cpp" />
-    <ClCompile Include="primitive\data\container.cpp" />
-    <ClCompile Include="primitive\data\data.cpp" />
-    <ClCompile Include="primitive\data\item.cpp" />
-    <ClCompile Include="primitive\data\listener.cpp" />
-    <ClCompile Include="primitive\data\node.cpp" />
-    <ClCompile Include="primitive\data\simple_item.cpp" />
-    <ClCompile Include="primitive\data\tree.cpp" />
-    <ClCompile Include="primitive\data\tree_item.cpp" />
     <ClCompile Include="primitive\primitive\block.cpp" />
     <ClCompile Include="primitive\primitive\layered.cpp" />
     <ClCompile Include="primitive\primitive\match.cpp" />
     <ClCompile Include="primitive\primitive\procedure.cpp" />
     <ClCompile Include="primitive\primitive\callback.cpp" />
     <ClCompile Include="primitive\primitive\task.cpp" />
-    <ClCompile Include="process\process_bidi_pipe.cpp" />
-    <ClCompile Include="process\process_pipe.cpp" />
+    <ClCompile Include="process\exit_status.cpp" />
+    <ClCompile Include="process\bidi_pipe.cpp" />
+    <ClCompile Include="process\pipe.cpp" />
     <ClCompile Include="_.cpp" />
     <ClCompile Include="__matter_ca2.cpp" />
     <ClInclude Include="astr.h" />
@@ -1452,7 +1440,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="compress\_.h" />
     <ClInclude Include="compress\gz.h" />
     <ClInclude Include="console.h" />
-    <ClInclude Include="console_slim.h" />
     <ClInclude Include="const\callback.h" />
     <ClInclude Include="const\GLOBAL_ID.h" />
     <ClInclude Include="const\procedure.h" />
@@ -1515,7 +1502,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="filesystem\filesystem\path_object.h" />
     <ClInclude Include="filesystem\filesystem\_.h" />
     <ClInclude Include="filesystem\filesystem\_impl.h" />
-    <ClInclude Include="filesystem\file\_data.h" />
+    <ClInclude Include="filesystem\file\aaa_data.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="framework_c.h" />
     <ClInclude Include="id.h" />
@@ -1549,6 +1536,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="multithreading\multi_lock.h" />
     <ClInclude Include="multithreading\mutex.h" />
     <ClInclude Include="multithreading\pred_holder.h" />
+    <ClInclude Include="multithreading\pred_procedure.h" />
     <ClInclude Include="multithreading\procedure_array.h" />
     <ClInclude Include="multithreading\retry.h" />
     <ClInclude Include="multithreading\retry_multi_lock.h" />
@@ -1576,7 +1564,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="net\_net_impl.h" />
     <ClInclude Include="node\opengl\opengl.h" />
     <ClInclude Include="node\windows\a.h" />
-    <ClInclude Include="node\windows\command.h" />
     <ClInclude Include="node\windows\console.h" />
     <ClInclude Include="node\windows\exception.h" />
     <ClInclude Include="node\windows\factory_exchange.h" />
@@ -1585,7 +1572,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="node\windows\pipe.h" />
     <ClInclude Include="node\windows\registry.h" />
     <ClInclude Include="node\windows\serial.h" />
-    <ClInclude Include="node\windows\stdio_file.h" />
+    <ClInclude Include="node\windows\aaa_stdio_file.h" />
     <ClInclude Include="node\windows\tts_speaker.h" />
     <ClInclude Include="node\windows\uac_tools.h" />
     <ClInclude Include="node\windows\user.h" />
@@ -1620,7 +1607,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="os\windows\implementation.h" />
     <ClInclude Include="os\windows\internal.h" />
     <ClInclude Include="os\windows\itemidlist.h" />
-    <ClInclude Include="os\windows\multithreading.h" />
+    <ClInclude Include="os\windows\thread.h" />
     <ClInclude Include="os\windows\port_forward.h" />
     <ClInclude Include="os\windows\printer.h" />
     <ClInclude Include="os\windows\print_job.h" />
@@ -1631,25 +1618,14 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="os\windows\simple_ui.h" />
     <ClInclude Include="os\windows\utils.h" />
     <ClInclude Include="os\windows\windowing.h" />
-    <ClInclude Include="os\windows\windows_window_gdi copy.h" />
-    <ClInclude Include="os\windows\windows_window_opengl.h" />
-    <ClInclude Include="os\windows\window_opengl.h" />
     <ClInclude Include="os\windows\_.h" />
     <ClInclude Include="os\windows\_c.h" />
     <ClInclude Include="os\windows\_windows.h" />
     <ClInclude Include="os\windows\_windows_impl.h" />
-    <ClInclude Include="os\windows_common\aaa_want_to_remove_windows_common_c.h" />
-    <ClInclude Include="os\windows_common\aaa_want_to_remove_windows_common_error.h" />
-    <ClInclude Include="os\windows_common\aaa_want_to_remove_windows_common_file.h" />
-    <ClInclude Include="os\windows_common\bstring.h" />
-    <ClInclude Include="os\windows_common\comptr.h" />
-    <ClInclude Include="os\windows_common\cotaskptr.h" />
-    <ClInclude Include="os\windows_common\draw2d_direct2d_global.h" />
     <ClInclude Include="os\windows_common\file.h" />
     <ClInclude Include="os\windows_common\graphics.h" />
-    <ClInclude Include="os\windows_common\multithreading.h" />
+    <ClInclude Include="os\windows_common\thread.h" />
     <ClInclude Include="os\windows_common\new_api.h" />
-    <ClInclude Include="os\windows_common\variant.h" />
     <ClInclude Include="os\windows_common\_.h" />
     <ClInclude Include="os\windows_common\_c.h" />
     <ClInclude Include="os\windows_common\_default_dll_impl.h" />
@@ -1662,12 +1638,9 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="os\_impl.h" />
     <ClInclude Include="os\_os.h" />
     <ClInclude Include="platform\all.h" />
-    <ClInclude Include="platform\app_core.h" />
-    <ClInclude Include="platform\app_launcher.h" />
     <ClInclude Include="platform\aura_aura.h" />
-    <ClInclude Include="platform\aura_main_struct.h" />
     <ClInclude Include="platform\aura_regex.h" />
-    <ClInclude Include="platform\aura_str_pool.h" />
+    <ClInclude Include="platform\acme_str_pool.h" />
     <ClInclude Include="platform\auto.h" />
     <ClInclude Include="platform\auto_pointer.h" />
     <ClInclude Include="platform\class.h" />
@@ -1689,18 +1662,14 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="platform\fixed_alloc.h" />
     <ClInclude Include="platform\fixed_alloc_impl.h" />
     <ClInclude Include="platform\flags.h" />
-    <ClInclude Include="platform\history.h" />
     <ClInclude Include="platform\hyperlink.h" />
     <ClInclude Include="platform\international.h" />
-    <ClInclude Include="platform\ipc.h" />
-    <ClInclude Include="platform\ipi.h" />
     <ClInclude Include="platform\keep.h" />
     <ClInclude Include="platform\keep_true.h" />
     <ClInclude Include="platform\less.h" />
     <ClInclude Include="platform\logic.h" />
     <ClInclude Include="platform\lparam.h" />
     <ClInclude Include="platform\main.h" />
-    <ClInclude Include="platform\aura_main_data.h" />
     <ClInclude Include="platform\muldiv32.h" />
     <ClInclude Include="platform\muldiv64.h" />
     <ClInclude Include="platform\net.h" />
@@ -1708,7 +1677,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="platform\obj_ref_dbg.h" />
     <ClInclude Include="platform\obj_typ_ctr.h" />
     <ClInclude Include="platform\process_data.h" />
-    <ClInclude Include="platform\profiler2.h" />
+    <ClInclude Include="platform\profiler.h" />
     <ClInclude Include="platform\progress.h" />
     <ClInclude Include="platform\progress_interface.h" />
     <ClInclude Include="platform\regex.h" />
@@ -1723,6 +1692,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="platform\trace_category.h" />
     <ClInclude Include="platform\version.h" />
     <ClInclude Include="platform\_generic_object_constructor_impl.h" />
+    <ClInclude Include="platform\_global.h" />
     <ClInclude Include="platform\_platform.h" />
     <ClInclude Include="platform\_defer.h" />
     <ClInclude Include="platform\_features.h" />
@@ -1750,18 +1720,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="memory\plex_heap_impl1.h" />
     <ClInclude Include="primitive\collection\std_iterator.h" />
     <ClInclude Include="primitive\comparison\sign.h" />
-    <ClInclude Include="primitive\data\container.h" />
-    <ClInclude Include="primitive\data\data.h" />
-    <ClInclude Include="primitive\data\item.h" />
-    <ClInclude Include="primitive\data\listener.h" />
-    <ClInclude Include="primitive\data\node.h" />
-    <ClInclude Include="primitive\data\simple_item.h" />
-    <ClInclude Include="primitive\data\tree.h" />
-    <ClInclude Include="primitive\data\tree_item.h" />
-    <ClInclude Include="primitive\data\_.h" />
-    <ClInclude Include="primitive\data\_data.h" />
-    <ClInclude Include="primitive\data\_impl.h" />
-    <ClInclude Include="primitive\data\_tree.h" />
     <ClInclude Include="primitive\geometry2d\_struct.h" />
     <ClInclude Include="primitive\geometry3d\box.h" />
     <ClInclude Include="primitive\geometry3d\dimension.h" />
@@ -1858,7 +1816,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="primitive\primitive\application_bias.cpp" />
     <ClCompile Include="primitive\primitive\bit.cpp" />
     <ClCompile Include="primitive\primitive\command.cpp" />
-    <ClCompile Include="primitive\primitive\command_line.cpp" />
     <ClCompile Include="primitive\primitive\context_object_traits.cpp" />
     <ClCompile Include="primitive\primitive\edit.cpp" />
     <ClCompile Include="primitive\primitive\factory.cpp" />
@@ -1871,7 +1828,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="primitive\primitive\memory_base.cpp" />
     <ClCompile Include="primitive\primitive\memory_c.cpp" />
     <ClCompile Include="primitive\primitive\memory_container.cpp" />
-    <ClCompile Include="primitive\primitive\object_meta.cpp" />
     <ClCompile Include="primitive\primitive\property.cpp" />
     <ClCompile Include="primitive\primitive\property_set.cpp" />
     <ClCompile Include="primitive\primitive\property_set_composite.cpp" />
@@ -1893,7 +1849,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="primitive\string\from_integer.cpp" />
     <ClCompile Include="primitive\string\hex.cpp" />
     <ClCompile Include="primitive\string\international.cpp" />
-    <ClCompile Include="primitive\string\international_locale_schema.cpp" />
     <ClCompile Include="primitive\string\manager.cpp" />
     <ClCompile Include="primitive\string\parse.cpp" />
     <ClCompile Include="primitive\string\simple.cpp" />
@@ -1939,7 +1894,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="filesystem\file\_const.h" />
     <ClInclude Include="filesystem\file\cpp.h" />
     <ClInclude Include="filesystem\file\dir.h" />
-    <ClInclude Include="filesystem\file\edit_file.h" />
+    <ClInclude Include="filesystem\file\aaa_edit_file.h" />
     <ClInclude Include="filesystem\file\exception.h" />
     <ClInclude Include="filesystem\file\_.h" />
     <ClInclude Include="filesystem\file\file1.h" />
@@ -2100,7 +2055,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="primitive\primitive\collection.h" />
     <ClInclude Include="primitive\primitive\collection_file.h" />
     <ClInclude Include="primitive\primitive\command.h" />
-    <ClInclude Include="primitive\primitive\command_line.h" />
+    <ClInclude Include="primitive\primitive\aaa_command_line.h" />
     <ClInclude Include="primitive\primitive\action_context.h" />
     <ClInclude Include="primitive\primitive\edit.h" />
     <ClInclude Include="primitive\primitive\enum.h" />
@@ -2111,7 +2066,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="primitive\primitive\id_space.h" />
     <ClInclude Include="primitive\primitive\interlocked_long.h" />
     <ClInclude Include="primitive\primitive\interlocked_long_pulse.h" />
-    <ClInclude Include="primitive\primitive\object_meta.h" />
     <ClInclude Include="primitive\primitive\papaya.h" />
     <ClInclude Include="primitive\primitive\logic.h" />
     <ClInclude Include="primitive\primitive\malloc.h" />
@@ -2150,7 +2104,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="primitive\primitive\var.h" />
     <ClInclude Include="primitive\primitive\var2.h" />
     <ClInclude Include="primitive\primitive\virtual_memory.h" />
-    <ClInclude Include="primitive\primitive\_c_memory.h" />
     <ClInclude Include="primitive\primitive\property_set_papaya.h" />
     <ClInclude Include="primitive\primitive\_defer.h" />
     <ClInclude Include="primitive\primitive\_factory_prefix.h" />

@@ -26,9 +26,6 @@
     <Filter Include="Source Files\filesystem\file">
       <UniqueIdentifier>{7164038b-3f76-4ce1-96d5-cc885cbf7871}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive\data">
-      <UniqueIdentifier>{b47f1200-db28-45cf-88cd-eaf066d0e7a1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\filesystem\filesystem">
       <UniqueIdentifier>{a1c58f3a-f4e9-4de5-a300-cf9b6065e04b}</UniqueIdentifier>
     </Filter>
@@ -53,9 +50,6 @@
     </Filter>
     <Filter Include="Header Files\primitive\api">
       <UniqueIdentifier>{b26a6098-cf09-41e7-9741-3dd479fc2a8f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\primitive\data">
-      <UniqueIdentifier>{a96fca9e-248b-448a-b0bd-dee53b174b85}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\filesystem">
       <UniqueIdentifier>{e735cbc7-6be2-44c9-b19a-0c3d6ee00183}</UniqueIdentifier>
@@ -237,9 +231,6 @@
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\command.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\command_line.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\edit.h">
@@ -587,9 +578,6 @@
     <ClInclude Include="primitive\string\_c_impl.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\_c_memory.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive\_memory.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
@@ -657,9 +645,6 @@
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\dir.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\edit_file.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\exception.h">
@@ -1022,9 +1007,6 @@
     <ClInclude Include="primitive\primitive\_papaya_impl.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\object_meta.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\file\_papaya.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
@@ -1307,9 +1289,6 @@
     <ClInclude Include="os\windows\itemidlist.h">
       <Filter>Header Files\os\windows</Filter>
     </ClInclude>
-    <ClInclude Include="os\windows\multithreading.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
     <ClInclude Include="os\windows\port_forward.h">
       <Filter>Header Files\os\windows</Filter>
     </ClInclude>
@@ -1337,16 +1316,7 @@
     <ClInclude Include="os\windows\utils.h">
       <Filter>Header Files\os\windows</Filter>
     </ClInclude>
-    <ClInclude Include="os\windows\window_opengl.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
     <ClInclude Include="os\windows\windowing.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\windows_window_gdi copy.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\windows_window_opengl.h">
       <Filter>Header Files\os\windows</Filter>
     </ClInclude>
     <ClInclude Include="node\windows\_.h">
@@ -1359,9 +1329,6 @@
       <Filter>Header Files\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="node\windows\a.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\command.h">
       <Filter>Header Files\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="node\windows\console.h">
@@ -1386,9 +1353,6 @@
       <Filter>Header Files\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="node\windows\serial.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\stdio_file.h">
       <Filter>Header Files\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="node\windows\tts_speaker.h">
@@ -1457,12 +1421,6 @@
     <ClInclude Include="os\winpr_input.h">
       <Filter>Header Files\os</Filter>
     </ClInclude>
-    <ClInclude Include="platform\app_core.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\app_launcher.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\_impl.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -1491,9 +1449,6 @@
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\aura_aura.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\aura_main_struct.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\aura_regex.h">
@@ -1562,19 +1517,10 @@
     <ClInclude Include="platform\flags.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\history.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\hyperlink.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\international.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\ipc.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\ipi.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\keep.h">
@@ -1608,9 +1554,6 @@
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\process_data.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\profiler2.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\progress.h">
@@ -1721,12 +1664,6 @@
     <ClInclude Include="const\thread.h">
       <Filter>Header Files\filesystem\const</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\file\_data.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\aura_main_data.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\_generic_object_constructor_impl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1763,9 +1700,6 @@
     <ClInclude Include="node\opengl\opengl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="platform\aura_str_pool.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="astr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1783,45 +1717,6 @@
     </ClInclude>
     <ClInclude Include="node\windows\_node_windows_private.h">
       <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\_.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\_data.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\_impl.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\_tree.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\container.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\data.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\item.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\listener.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\simple_item.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\tree.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\tree_item.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\node.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="console_slim.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="console.h">
       <Filter>Header Files</Filter>
@@ -2216,44 +2111,47 @@
     <ClInclude Include="os\windows_common\_unicode_c.h">
       <Filter>Header Files\os\windows_common</Filter>
     </ClInclude>
-    <ClInclude Include="os\windows_common\aaa_want_to_remove_windows_common_c.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\aaa_want_to_remove_windows_common_error.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\aaa_want_to_remove_windows_common_file.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\bstring.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\comptr.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\cotaskptr.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\draw2d_direct2d_global.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
     <ClInclude Include="os\windows_common\file.h">
       <Filter>Header Files\os\windows_common</Filter>
     </ClInclude>
     <ClInclude Include="os\windows_common\graphics.h">
       <Filter>Header Files\os\windows_common</Filter>
     </ClInclude>
-    <ClInclude Include="os\windows_common\multithreading.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
     <ClInclude Include="os\windows_common\new_api.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\variant.h">
       <Filter>Header Files\os\windows_common</Filter>
     </ClInclude>
     <ClInclude Include="inline\application_common.h">
       <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="os\windows\thread.h">
+      <Filter>Header Files\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="os\windows_common\thread.h">
+      <Filter>Header Files\os\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\aaa_command_line.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\acme_str_pool.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\_global.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="node\windows\aaa_stdio_file.h">
+      <Filter>Header Files\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\profiler.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\pred_procedure.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\aaa_data.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\aaa_edit_file.h">
+      <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -2264,9 +2162,6 @@
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive\command.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive\command_line.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive\edit.cpp">
@@ -2348,9 +2243,6 @@
       <Filter>Source Files\primitive\string</Filter>
     </ClCompile>
     <ClCompile Include="primitive\string\international.cpp">
-      <Filter>Source Files\primitive\string</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\string\international_locale_schema.cpp">
       <Filter>Source Files\primitive\string</Filter>
     </ClCompile>
     <ClCompile Include="primitive\string\manager.cpp">
@@ -2467,9 +2359,6 @@
     <ClCompile Include="filesystem\file\c.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\circular_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\file\composite.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
@@ -2480,9 +2369,6 @@
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\dir2.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\edit_file.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\exception.cpp">
@@ -2662,9 +2548,6 @@
     <ClCompile Include="filesystem\file\text_stream.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\object_meta.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
-    </ClCompile>
     <ClCompile Include="const\idpool.cpp">
       <Filter>Source Files\const</Filter>
     </ClCompile>
@@ -2708,12 +2591,6 @@
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="os\windows\dir.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\dpi.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\-ehrror.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="os\windows\environment_variable.cpp">
@@ -2815,9 +2692,6 @@
     <ClCompile Include="os\console.cpp">
       <Filter>Source Files\os</Filter>
     </ClCompile>
-    <ClCompile Include="os\binreloc.cpp">
-      <Filter>Source Files\os</Filter>
-    </ClCompile>
     <ClCompile Include="os\debug.cpp">
       <Filter>Source Files\os</Filter>
     </ClCompile>
@@ -2851,19 +2725,7 @@
     <ClCompile Include="os\windows_common\com.cpp">
       <Filter>Source Files\os\windows_common</Filter>
     </ClCompile>
-    <ClCompile Include="os\windows_common\-ehrror.cpp">
-      <Filter>Source Files\os\windows_common</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows_common\file.cpp">
-      <Filter>Source Files\os\windows_common</Filter>
-    </ClCompile>
     <ClCompile Include="os\windows_common\file_c.cpp">
-      <Filter>Source Files\os\windows_common</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows_common\multithreading.cpp">
-      <Filter>Source Files\os\windows_common</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows_common\networking.cpp">
       <Filter>Source Files\os\windows_common</Filter>
     </ClCompile>
     <ClCompile Include="os\windows_common\unicode.cpp">
@@ -3004,12 +2866,6 @@
     <ClCompile Include="include\_.cpp">
       <Filter>Source Files\include</Filter>
     </ClCompile>
-    <ClCompile Include="process\process_pipe.cpp">
-      <Filter>Source Files\process</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\console.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
     <ClCompile Include="node\windows\factory_exchange.cpp">
       <Filter>Source Files\node\windows</Filter>
     </ClCompile>
@@ -3026,9 +2882,6 @@
       <Filter>Source Files\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="node\windows\serial.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\stdio_file.cpp">
       <Filter>Source Files\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="node\windows\timer.cpp">
@@ -3121,9 +2974,6 @@
     <ClCompile Include="platform\flags.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\history.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="platform\hyperlink.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -3196,27 +3046,6 @@
     <ClCompile Include="multithreading\sync.cpp">
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\data\container.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\data\data.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\data\item.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\data\listener.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\data\simple_item.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\data\tree.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\data\tree_item.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
     <ClCompile Include="node\windows\windows_desktop.cpp">
       <Filter>Source Files\node\windows</Filter>
     </ClCompile>
@@ -3252,9 +3081,6 @@
     </ClCompile>
     <ClCompile Include="primitive\primitive\task.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\data\node.cpp">
-      <Filter>Source Files\primitive\data</Filter>
     </ClCompile>
     <ClCompile Include="platform\message_box.cpp">
       <Filter>Source Files\platform</Filter>
@@ -3331,13 +3157,40 @@
     <ClCompile Include="compress\gz.cpp">
       <Filter>Source Files\compress</Filter>
     </ClCompile>
-    <ClCompile Include="process\process_bidi_pipe.cpp">
-      <Filter>Source Files\process</Filter>
-    </ClCompile>
     <ClCompile Include="os\windows\_.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="os\windows\thread.cpp">
+      <Filter>Source Files\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="os\windows_common\debug.cpp">
+      <Filter>Source Files\os\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="os\windows_common\thread.cpp">
+      <Filter>Source Files\os\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\circular_buffer.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="process\exit_status.cpp">
+      <Filter>Source Files\process</Filter>
+    </ClCompile>
+    <ClCompile Include="process\bidi_pipe.cpp">
+      <Filter>Source Files\process</Filter>
+    </ClCompile>
+    <ClCompile Include="process\pipe.cpp">
+      <Filter>Source Files\process</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\text.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="node\windows\console.cpp">
+      <Filter>Source Files\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="os\windows\gdiplus.cpp">
+      <Filter>Source Files\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="os\windows\extract_icon.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
   </ItemGroup>

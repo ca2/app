@@ -22,7 +22,7 @@
             public:
 
 
-               frame_001(::object * pobject);
+               frame_001(::layered * pobjectContext);
                virtual ~frame_001();
 
                virtual void on_style_change();

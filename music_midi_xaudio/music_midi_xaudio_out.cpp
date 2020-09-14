@@ -13,7 +13,7 @@ namespace music
       {
 
 
-         out::out(::object * pobject) :
+         out::out(::layered * pobjectContext) :
             ::object(pobject),
             ::music::midi::out(pobject)
          {

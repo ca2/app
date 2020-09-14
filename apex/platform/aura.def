@@ -3,8 +3,8 @@
 
 EXPORTS
 o_debug_string
-defer_aura_init
-defer_aura_term
+defer_apex_init
+defer_apex_term
 waveout_open
 waveout_start
 waveout_write

@@ -8,7 +8,7 @@ namespace simpledb
 {
 
 
-   manager::manager(::object * pobject) :
+   manager::manager(::layered * pobjectContext) :
       ::object(pobject),
       thread(pobject),
       

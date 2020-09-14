@@ -92,7 +92,7 @@ namespace xlib
 //
 //      m_pixmap.init(size, (COLORREF *) m_mem.get_data(), m_iGoodStride);
 //
-//      //::apex::del(m_pdc);
+//      //::acme::del(m_pdc);
 //
 //      {
 //

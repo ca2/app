@@ -18,7 +18,7 @@ namespace net
    }
 
 
-   ::estatus email::initialize(::object * pobjectContext)
+   ::estatus email::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);

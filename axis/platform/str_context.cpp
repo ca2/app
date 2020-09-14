@@ -188,7 +188,7 @@ namespace axis
    }
 
 
-   ::estatus str::initialize(::object * pobjectContext)
+   ::estatus str::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);

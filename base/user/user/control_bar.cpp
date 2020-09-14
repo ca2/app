@@ -772,14 +772,14 @@ namespace user
 
          ::size size = CalcDynamicLayout(pgraphics, -1, dwMode);
 
-         size.cx = MIN(size.cx, sizeAvail.cx);
-         size.cy = MIN(size.cy, sizeAvail.cy);
+         size.cx = min(size.cx, sizeAvail.cx);
+         size.cy = min(size.cy, sizeAvail.cy);
 
          if (uStyle & CBRS_ORIENT_HORZ)
          {
             playout->sizeTotal.cy += size.cy;
 
-            playout->sizeTotal.cx = MAX(playout->sizeTotal.cx, size.cx);
+            playout->sizeTotal.cx = max(playout->sizeTotal.cx, size.cx);
 
             if (uStyle & CBRS_ALIGN_TOP)
                playout->rect.top += size.cy;
@@ -795,7 +795,7 @@ namespace user
          {
             playout->sizeTotal.cx += size.cx;
 
-            playout->sizeTotal.cy = MAX(playout->sizeTotal.cy, size.cy);
+            playout->sizeTotal.cy = max(playout->sizeTotal.cy, size.cy);
 
             if (uStyle & CBRS_ALIGN_LEFT)
                playout->rect.left += size.cx;

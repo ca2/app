@@ -6,7 +6,7 @@ namespace turboc
 {
 
 
-   full_view::full_view(::object * pobject):
+   full_view::full_view(::layered * pobjectContext):
       ::object(pobject),
       view(pobject)
    {

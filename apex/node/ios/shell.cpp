@@ -1,6 +1,6 @@
 //
 //  user_shell_ios.cpp
-//  aura
+//  apex
 //
 //  Created by Camilo Sasuke Tsumanuma on 30/12/16.
 //  Copyright © 2016 ca2 Desenvolvimento de Sofware Ltda. All rights reserved.
@@ -8,7 +8,7 @@
 
 #include "framework.h"
 
-#include "aura/compress/zip/context.h"
+#include "apex/compress/zip/context.h"
 
 #include "shell.h"
 
@@ -151,7 +151,7 @@ namespace ios
 
       }
 
-      if (::str::ends_ci(imagekey.m_strPath, ".aura"))
+      if (::str::ends_ci(imagekey.m_strPath, ".apex"))
       {
          string str = Context.file().as_string(imagekey.m_strPath);
          if (::str::begins_eat_ci(str, "ca2prompt\r\n"))
@@ -1503,7 +1503,7 @@ namespace ios
 //
 //
 //
-//      if (::str::ends_ci(imagekey.m_strPath, ".aura"))
+//      if (::str::ends_ci(imagekey.m_strPath, ".apex"))
 //      {
 //         string str = Context.file().as_string(imagekey.m_strPath);
 //         if (::str::begins_eat_ci(str, "ca2prompt\r\n"))

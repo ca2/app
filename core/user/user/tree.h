@@ -114,7 +114,7 @@ namespace user
 
       virtual void on_change_viewport_offset() override;
 
-      __pointer(image_list) get_image_list();
+      __pointer(::image_list) get_image_list();
 
       // Overrides
       DECL_GEN_SIGNAL(_001OnMouseMove);

@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aura/platform/static_setup.h"
+#include "apex/platform/static_setup.h"
 
 
 namespace core
@@ -29,7 +29,7 @@ namespace core
    }
 
 
-   ::estatus application::initialize(::object* pobjectContext)
+   ::estatus application::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::base::application::initialize(pobjectContext);

@@ -19,7 +19,7 @@ namespace draw2d_xlib
       //static region * PASCAL from_handle(::object * pobject, HRGN hRgn);
       //operator HRGN() const;
 
-      region(::object * pobject);
+      region(::layered * pobjectContext);
       virtual ~region();
 
 

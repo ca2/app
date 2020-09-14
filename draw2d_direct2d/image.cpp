@@ -291,9 +291,8 @@ namespace draw2d_direct2d
 
       }
 
-
       // White blend image
-      auto pimage1 = __create_image({cx,  cy});
+      auto pimage1 = create_image({cx,  cy});
 
       pimage1->fill(0, 255, 255, 255);
 
@@ -314,7 +313,7 @@ namespace draw2d_direct2d
 #endif
 
       // Black blend image
-      auto pimage2 = __create_image({cx,  cy});
+      auto pimage2 = create_image({cx,  cy});
 
       pimage2->fill(0, 0, 0, 0);
 
@@ -337,7 +336,7 @@ namespace draw2d_direct2d
 #endif
 
       // Mask image
-      auto pimageM = __create_image({cx,  cy});
+      auto pimageM = create_image({cx,  cy});
 
       pimageM->g()->DrawIcon(
       0, 0,
@@ -366,11 +365,11 @@ namespace draw2d_direct2d
          {
             bMax = 0;
             b = (BYTE)(r1[0] - r2[0]);
-            bMax = MAX(b, bMax);
+            bMax = max(b, bMax);
             b = (BYTE)(r1[1] - r2[1]);
-            bMax = MAX(b, bMax);
+            bMax = max(b, bMax);
             b = (BYTE)(r1[2] - r2[2]);
-            bMax = MAX(b, bMax);
+            bMax = max(b, bMax);
             bMax = 255 - bMax;
          }
          dest[0] = bMax;
@@ -394,7 +393,7 @@ namespace draw2d_direct2d
    //   /*      int cx = cx;
    //   int cy = cy; */
 
-   //   int l = MAX(cx, cy);
+   //   int l = max(cx, cy);
 
 
    //   int jmax = MIN(l, cy / 2);
@@ -479,7 +478,7 @@ namespace draw2d_direct2d
    //   /*      int cx = cx;
    //   int cy = cy;*/
 
-   //   int l = MAX(cx, cy);
+   //   int l = max(cx, cy);
 
 
    //   int jmax = MIN(l, cy / 2);
@@ -555,7 +554,7 @@ namespace draw2d_direct2d
    //   int cx = rect.width();
    //   int cy = rect.height();
 
-   //   int l = MAX(cx, cy);
+   //   int l = max(cx, cy);
 
    //   int jmax = MIN(l, cy / 2);
    //   int jmin = - jmax;

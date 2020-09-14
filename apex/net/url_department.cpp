@@ -1,6 +1,6 @@
 #include "framework.h"
-#include "aura/id.h"
-#include "aura/astr.h"
+#include "apex/id.h"
+#include "apex/astr.h"
 
 #ifdef WINDOWS_DESKTOP
 #include "idn/idna.h"
@@ -244,7 +244,7 @@ namespace url
    string department::url_encode(const char * psz)
    {
 
-      return url_encode_dup(psz);
+      return ::url_encode(psz);
 
    }
 
@@ -252,7 +252,7 @@ namespace url
    string department::url_decode(const char * psz)
    {
 
-      return url_decode_dup(psz);
+      return ::url_decode(psz);
 
    }
 
@@ -261,7 +261,7 @@ namespace url
 
    {
 
-      return url_decode_dup(pszUrl,iLen);
+      return ::url_decode(pszUrl,iLen);
 
 
    }

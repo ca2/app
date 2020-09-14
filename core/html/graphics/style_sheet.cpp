@@ -6,8 +6,8 @@ namespace html
 {
 
 
-   style_sheet::style_sheet(::object * pobject) :
-      ::object(pobject)
+   style_sheet::style_sheet(::layered * pobjectContext) :
+      ::object(pobjectContext)
    {
 
    }

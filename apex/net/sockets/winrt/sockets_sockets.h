@@ -6,7 +6,7 @@ namespace sockets
 
 
    class CLASS_DECL_APEX sockets :
-      virtual public ::aura::department
+      virtual public ::apex::department
    {
    public:
 
@@ -27,7 +27,7 @@ namespace sockets
       __pointer(::sockets::net)                           m_spnet;
 
 
-      sockets(::object * pobject);
+      sockets(::layered * pobjectContext);
 
 
       bool init1();

@@ -25,7 +25,7 @@ namespace user
       }
 
 
-      ::estatus edit_impl::initialize(::object * pobjectContext)
+      ::estatus edit_impl::initialize(::layered * pobjectContext)
       {
 
          auto estatus = ::user::rich_text::edit::initialize(pobjectContext);
@@ -312,16 +312,16 @@ namespace user
             if (Session.is_key_pressed(key_shift))
             {
 
-               if (item < MIN(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd))
+               if (item < min(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd))
                {
 
-                  m_pdata->m_iSelBeg = MAX(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd);
+                  m_pdata->m_iSelBeg = max(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd);
 
                }
-               else if (item > MAX(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd))
+               else if (item > max(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd))
                {
 
-                  m_pdata->m_iSelBeg = MIN(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd);
+                  m_pdata->m_iSelBeg = min(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd);
 
                }
 

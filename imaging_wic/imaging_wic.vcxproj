@@ -1155,7 +1155,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="imaging.h" />
+    <ClInclude Include="context_image.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="factory_exchange.h" />
     <ClInclude Include="framework.h" />
@@ -1174,7 +1174,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="imaging.cpp" />
+    <ClCompile Include="context_image.cpp" />
     <ClCompile Include="loading_gif.cpp" />
     <ClCompile Include="loading.cpp" />
     <ClCompile Include="saving.cpp" />
@@ -1187,6 +1187,12 @@
     <ResourceCompile Include="..\..\platform-windows\version.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\acme\acme.vcxproj">
+      <Project>{638b242f-0f21-41c3-9f66-724660046133}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\apex\apex.vcxproj">
+      <Project>{e000ffaf-392f-4e32-bf51-777ca238991f}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\aura\aura.vcxproj">
       <Project>{e000ffaf-392f-4e32-bf51-fd7ed638991f}</Project>
     </ProjectReference>

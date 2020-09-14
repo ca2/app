@@ -20,7 +20,7 @@ public:
 
 protected:
 
-   pcre_context(::object * pobject);
+   pcre_context(::layered * pobjectContext);
 
 };
 
@@ -73,7 +73,7 @@ public:
 
 protected:
 
-   pcre_code(::object * pobject);
+   pcre_code(::layered * pobjectContext);
 
 
 };

@@ -272,7 +272,7 @@ namespace aura
    system::~system()
    {
 
-      ::aura::del(m_ppatch);
+      ::acme::del(m_ppatch);
 
    }
 
@@ -503,7 +503,7 @@ namespace aura
 
    }
 
-   void system::on_map_application_library(::aura::library & library)
+   void system::on_map_application_library(::apex::library & library)
    {
 
       m_pfilehandler->defer_add_library(library.m_pca2library);
@@ -713,10 +713,10 @@ namespace aura
    }
 
 
-   __pointer(::aura::library) system::on_get_library(const char * pszLibrary)
+   __pointer(::apex::library) system::on_get_library(const char * pszLibrary)
    {
 
-      __pointer(::aura::library) plibrary;
+      __pointer(::apex::library) plibrary;
 
       bool bLibraryOk = false;
 
@@ -949,7 +949,7 @@ namespace aura
    }
 
 
-   ::estatus system::add_view_library(::aura::library * plibrary)
+   ::estatus system::add_view_library(::apex::library * plibrary)
    {
 
       m_libraryspa.add(plibrary);

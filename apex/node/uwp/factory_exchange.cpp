@@ -30,7 +30,7 @@
 
 
 
-void __node_aura_factory_exchange()
+void __node_apex_factory_exchange()
 {
 
    create_factory < ::uwp::interaction_impl, ::user::interaction_impl >();

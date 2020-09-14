@@ -77,7 +77,7 @@ void Sleep(DWORD dwMillis)
 
 
 
-bool __node_aura_pre_init()
+bool __node_apex_pre_init()
 {
 
    //c_xstart();
@@ -157,7 +157,7 @@ bool __node_pos_term()
 
 
 
-bool __node_aura_pos_init()
+bool __node_apex_pos_init()
 {
 
 
@@ -166,7 +166,7 @@ bool __node_aura_pos_init()
 }
 
 
-bool __node_aura_pre_term()
+bool __node_apex_pre_term()
 {
 
 
@@ -174,7 +174,7 @@ bool __node_aura_pre_term()
 
 }
 
-bool __node_aura_pos_term()
+bool __node_apex_pos_term()
 {
 
    return true;

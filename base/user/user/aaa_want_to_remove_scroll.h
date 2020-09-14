@@ -144,7 +144,7 @@ namespace user
 
 
       scroll();
-      scroll(::object * pobject);
+      scroll(::layered * pobjectContext);
       virtual ~scroll();
 
 

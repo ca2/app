@@ -8,13 +8,14 @@
 namespace userfs
 {
 
+
    item::item(::userfs::tree * ptree) :
-      ::object(ptree->get_context_application()),
       m_ptree(ptree)
    {
       //m_iImage = -1;
       //m_iImageSelected = -1;
    }
+
 
    item::~item()
    {
@@ -103,7 +104,7 @@ namespace userfs
    }
 
 
-   image_list * item::data_item_get_image_list(object * pobject) const
+   ::image_list * item::data_item_get_image_list(object * pobject) const
    {
 
       return m_ptree->m_pimagelist;

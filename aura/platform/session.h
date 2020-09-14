@@ -5,12 +5,13 @@ namespace aura
 {
 
 
-   class CLASS_DECL_AURA session:
-      virtual public ::aura::context_thread,
-      virtual public ::application_container,
-      virtual public ::filemanager::item_action //,
-      //virtual public ::filemanager::component,
-      //virtual public ::user::document_manager_container
+   class CLASS_DECL_AURA session :
+      virtual public ::apex::session
+      //,
+      //virtual public ::application_container,
+      //virtual public ::filemanager::item_action //,
+      ////virtual public ::filemanager::component,
+      ////virtual public ::user::document_manager_container
    {
    public:
 
@@ -36,11 +37,7 @@ namespace aura
 
 #endif
 
-
-      ::axis::session* m_paxissession;
-      ::base::session* m_pbasesession;
-      ::core::session* m_pcoresession;
-
+    
       // For Mobile systems it is particularly meaningful...
       // ... is is the "Main Window" (sometimes just a concept) holding the App.
       // For Desktop Applications a meaning should be given or this member could be ignored?
@@ -93,7 +90,7 @@ namespace aura
       var                                                   m_varCurrentViewFile;
       bool                                                  m_bShowPlatform;
 
-      __composite(::aura::str_context)                      m_puserstrcontext;
+      __composite(::apex::str_context)                      m_puserstrcontext;
 
 
       bool                                                  m_bSystemSynchronizedScreen;
@@ -133,7 +130,7 @@ namespace aura
       virtual ~session();
 
 
-      virtual ::estatus     initialize(::object * pobjectContext) override;
+      virtual ::estatus     initialize(::layered * pobjectContext) override;
 
       //inline ::userpresence::department & userpresence() { return *m_puserpresence; }
 
@@ -213,13 +210,13 @@ namespace aura
       virtual string get_locale_schema_dir() override;
 
 
-      //virtual ::estatus     initialize(::object * pobjectContext) override;
+      //virtual ::estatus     initialize(::layered * pobjectContext) override;
 
 
       virtual ::user::interaction * get_session_window();
 
 
-      ::aura::str_context *                        str_context() { return m_puserstrcontext; }
+      ::apex::str_context * str_context() { return m_puserstrcontext; }
 
       //virtual bool is_session() const override;
 
@@ -252,7 +249,7 @@ namespace aura
 
       virtual bool open_by_file_extension(::create * pcc);
 
-      //__pointer(::aura::application) get_new_application(::object * pobjectContext, const char * pszAppId);
+      //__pointer(::aura::application) get_new_application(::layered * pobjectContext, const char * pszAppId);
 
       inline ::aura::savings &                  savings()      { return *m_psavings; }
 
@@ -280,7 +277,7 @@ namespace aura
 
       //virtual void interactive_credentials(::account::credentials * pcredentials);
 
-      ::aura::application * application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate) override;
+      //::aura::application * application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate) override;
 
       virtual bool is_key_pressed(::user::e_key ekey);
 
@@ -374,7 +371,7 @@ namespace aura
 
 
       virtual void set_bound_ui(::id idView, ::user::interaction * pinteraction);
-      virtual ::user::interaction * get_bound_ui(::id idView);
+      virtual ::user::primitive * get_bound_ui(::id idView);
 
       virtual void on_show_user_input_popup(::user::interaction * pinteraction);
 
@@ -382,7 +379,7 @@ namespace aura
 
 
 
-      //virtual ::estatus initialize(::object* pobjectContext) override;
+      //virtual ::estatus initialize(::layered * pobjectContext) override;
 
       virtual void install_message_routing(::channel* pchannel) override;
 
@@ -439,7 +436,7 @@ namespace aura
 
       //virtual void will_use_view_hint(::id idView);
 
-      //virtual void on_app_request_bergedge_callback(::object * pobject);
+      //virtual void on_app_request_bergedge_callback(::layered * pobjectContext);
 
       virtual ::draw2d::font_list* get_single_column_font_list();
 
@@ -495,7 +492,7 @@ namespace aura
 
       virtual void set_app_title(const char* pszAppId, const char* pszTitle);
 
-      virtual __pointer(::aura::session) get_context_session();
+      virtual __pointer(::apex::session) get_context_session();
 
       //virtual void term() override;
 
@@ -537,7 +534,7 @@ namespace aura
       //virtual __pointer(::user::impact)                      get_view();
 
 
-      //virtual ::estatus     initialize(::object* pobjectContext) override;
+      //virtual ::estatus     initialize(::layered * pobjectContext) override;
 
 
       //virtual void frame_pre_translate_message(::message::message* pmessage) override;

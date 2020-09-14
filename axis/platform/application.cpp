@@ -29,7 +29,7 @@ namespace axis
 
 
 
-   ::estatus     application::initialize(::object * pobjectContext)
+   ::estatus     application::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::aura::application::initialize(pobjectContext);
@@ -749,16 +749,24 @@ namespace axis
    ::estatus application::process_init()
    {
 
+      auto estatus = ::aura::application::process_init();
 
-      string_array stra;
+      if (!estatus)
+      {
 
-      stra.explode("/", m_strAppId);
+         return estatus;
 
-      m_strRoot = stra[0];
+      }
 
-      m_strDomain = stra.slice(1).implode("/");
+      //string_array stra;
 
-      add_matter_locator(this);
+      //stra.explode("/", m_strAppId);
+
+      //m_strRoot = stra[0];
+
+      //m_strDomain = stra.slice(1).implode("/");
+
+      //add_matter_locator(this);
 
 
       //if (is_system() || is_session())
@@ -773,110 +781,89 @@ namespace axis
 
       //}
 
-      if (!m_bAppHasInstallerChangedProtected)
-      {
+//      if (!m_bAppHasInstallerChangedProtected)
+//      {
+//
+//#ifdef _UWP
+//
+//         set_has_installer(false);
+//
+//#else
+//
+//         //if (get_context_system()->m_pappcore == nullptr)
+//         //{
+//
+//         //   set_has_installer(false);
+//
+//         //}
+//         //else
+//         {
+//
+//            set_has_installer(!System.has_apex_application_factory());
+//
+//         }
+//
+//#endif
+//
+//      }
 
-#ifdef _UWP
+      //auto estatus = initialize_context();
 
-         set_has_installer(false);
-
-#else
-
-         //if (get_context_system()->m_pappcore == nullptr)
-         //{
-
-         //   set_has_installer(false);
-
-         //}
-         //else
-         {
-
-            set_has_installer(!get_context_system()->has_aura_application_factory());
-
-         }
-
-#endif
-
-      }
-
-      auto estatus = initialize_context();
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      //if (m_bAuraProcessInitialize)
+      //if (!estatus)
       //{
 
-      //   return m_bAuraProcessInitializeResult;
+      //   return estatus;
 
       //}
 
-      INFO("aura::application::process_init");
+      ////if (m_bAuraProcessInitialize)
+      ////{
+
+      ////   return m_bAuraProcessInitializeResult;
+
+      ////}
+
+      INFO("axis::application::process_init");
 
       //m_bAuraProcessInitialize = true;
 
       //m_bAuraProcessInitializeResult = false;
 
-      //if (!is_system())
-      {
-
-         if (get_context_system() != nullptr)
-         {
-
-            m_bThreadToolsForIncreasedFps = get_context_system()->m_bThreadToolsForIncreasedFps;
-
-         }
-
-      }
-
-
-
-      //if (!__construct(m_spdir))
+      ////if (!is_system())
       //{
 
-      //   return false;
+      //   if (get_context_system() != nullptr)
+      //   {
+
+      //      m_bThreadToolsForIncreasedFps = get_context_system()->m_bThreadToolsForIncreasedFps;
+
+      //   }
 
       //}
 
-      //if (!__construct(m_spfile))
+
+
+      ////if (!__construct(m_spdir))
+      ////{
+
+      ////   return false;
+
+      ////}
+
+      ////if (!__construct(m_spfile))
+      ////{
+
+      ////   return false;
+
+      ////}
+
+      //if (::get_thread() == nullptr)
       //{
 
-      //   return false;
+      //   ::set_thread(dynamic_cast <thread *> (this));
 
       //}
 
-      if (::get_thread() == nullptr)
-      {
-
-         ::set_thread(dynamic_cast <thread *> (this));
-
-      }
-
-      if (!ca_process_init())
-      {
-
-         FATAL("aura::application::process_init .1");
-
-         return false;
-
-      }
-
-      //if (!impl_process_init())
-      //{
-
-      //   FATAL("aura::application::process_init .2");
-
-      //   return false;
-
-      //}
-
-//      m_bAuraProcessInitializeResult = true;
-
-      INFO("aura::application::process_init success");
 
       create_factory < ::database::field_array >();
       create_factory < ::database::row >();
@@ -914,11 +901,11 @@ namespace axis
 
       //m_bAxisProcessInitializeResult = true;
 
-      INFO("axis::application::process_init success");
+      //INFO("axis::application::process_init success");
 
       //return true;
 
-      estatus = userfs_process_init();
+     /* estatus = userfs_process_init();
 
       if(!estatus && estatus != error_not_implemented)
       {
@@ -927,7 +914,7 @@ namespace axis
 
          return false;
 
-      }
+      }*/
 
       INFO("success");
 
@@ -952,16 +939,16 @@ namespace axis
 
       //}
 
-      try
-      {
+      //try
+      //{
 
-         ca_process_term();
+      //   ca_process_term();
 
-      }
-      catch(...)
-      {
+      //}
+      //catch(...)
+      //{
 
-      }
+      //}
 
       try
       {
@@ -1047,7 +1034,7 @@ namespace axis
 
       //m_spdir.release();
 
-      //::aura::del(m_pimaging);
+      //::acme::del(m_pimaging);
 
 
       /// commented out the code below
@@ -1332,12 +1319,12 @@ namespace axis
 
       //}
 
-      if (!ca_init2())
-      {
+      //if (!ca_init2())
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
 
 
@@ -1391,12 +1378,12 @@ namespace axis
 
       //}
 
-      if (!ca_init3())
-      {
+      //if (!ca_init3())
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
       return true;
 
@@ -1445,7 +1432,7 @@ namespace axis
 //   void application::term()
 //   {
 //
-//      //::aura::del(m_pimaging);
+//      //::acme::del(m_pimaging);
 //
 ////      bool bOk = true;
 ////
@@ -1472,7 +1459,7 @@ namespace axis
       try
       {
 
-         close(::aura::end_app);
+         close(::apex::e_end_app);
 
       }
       catch (...)
@@ -1510,18 +1497,18 @@ namespace axis
 
       release_exclusive();
 
-      ::aura::application_message signal(::aura::application_message_term_instance);
+      //::apex::application_message signal(::apex::application_message_term_instance);
 
-      try
-      {
+      //try
+      //{
 
-         route_message(&signal);
+      //   route_message(&signal);
 
-      }
-      catch (...)
-      {
+      //}
+      //catch (...)
+      //{
 
-      }
+      //}
 
       try
       {
@@ -1854,18 +1841,18 @@ namespace axis
    ::estatus application::on_run()
    {
 
-      try
-      {
+      //try
+      //{
 
-         ::aura::application_message signal(::aura::application_message_begin);
+      //   ::apex::application_message signal(::apex::application_message_begin);
 
-         route_message(&signal);
+      //   route_message(&signal);
 
-      }
-      catch (...)
-      {
+      //}
+      //catch (...)
+      //{
 
-      }
+      //}
 
       thread * pthread = ::get_thread();
 
@@ -2300,12 +2287,17 @@ namespace axis
 
       //m_bAxisInitializeResult = false;
 
-      ::aura::application_message signal(::aura::application_message_init);
+      //::apex::application_message signal(::apex::application_message_init);
 
-      route_message(&signal);
+      //route_message(&signal);
 
-      if (!signal.m_bOk)
-         return false;
+      //if (!signal.m_bOk)
+      //{
+
+      //   return false;
+
+      //}
+
       m_tickHeartBeat.Now();
 
       if (is_system())

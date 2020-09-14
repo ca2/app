@@ -12,8 +12,8 @@ public:
 
 
 
-   ftpnet(::object * pobject) :
-      m_sockethandler(pobject)
+   ftpnet(::layered * pobjectContext) :
+      m_sockethandler(pobjectContext)
    {
 
 

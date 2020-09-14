@@ -24,7 +24,7 @@ namespace user
       bool                                m_bIgnoreMoveEvent;
       ap(critical_section)                m_pcsDisplay;
 
-      __pointer(::aura::timer_array)      m_ptimerarray;
+      __pointer(::apex::timer_array)      m_ptimerarray;
 
       ::mutex                             m_mutexLongPtr;
       int_ptr_to_int_ptr                  m_longptr;

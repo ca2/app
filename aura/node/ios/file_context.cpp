@@ -21,7 +21,7 @@ namespace ios
    }
 
 
-   ::estatus file_context::initialize(::object * pobjectContext)
+   ::estatus file_context::initialize(::layered * pobjectContext)
    {
       
       auto estatus = ::file_context::initialize(pobjectContext);

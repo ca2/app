@@ -16,7 +16,7 @@ namespace turboc
       view *                  m_pview;
 
 
-      top_view(::object * pobject);
+      top_view(::layered * pobjectContext);
       virtual ~top_view();
 
 

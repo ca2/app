@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aura/message.h"
+#include "apex/message.h"
 
 //
 //namespace message
@@ -21,7 +21,7 @@
 //
 //      remove_all_routes();
 //
-//      ::aura::del(m_pmutexIdRoute);
+//      ::acme::del(m_pmutexIdRoute);
 //
 //   }
 //
@@ -324,53 +324,55 @@ __pointer(::mutex) channel::s_pmutexChannel;
    __pointer(::message::base) channel::get_message_base(LPMESSAGE pmsg)
    {
 
+      //__throw(todo("message"));
+      //__throw(todo("interaction"));
       ::user::primitive * pinteraction = nullptr;
 
-      if (pinteraction == nullptr && pmsg->hwnd != nullptr)
-      {
+      //if (pinteraction == nullptr && pmsg->hwnd != nullptr)
+      //{
 
-         if (pmsg->message == 126)
-         {
+      //   if (pmsg->message == 126)
+      //   {
 
-            TRACE("WM_DISPLAYCHANGE");
+      //      TRACE("WM_DISPLAYCHANGE");
 
-         }
+      //   }
 
-         ::user::interaction_impl * pimpl = System.impl_from_handle(pmsg->hwnd);
+      //   ::user::interaction_impl * pimpl = System.impl_from_handle(pmsg->hwnd);
 
-         if (pimpl != nullptr)
-         {
+      //   if (pimpl != nullptr)
+      //   {
 
-            try
-            {
+      //      try
+      //      {
 
-               pinteraction = pimpl->m_puserinteraction;
+      //         pinteraction = pimpl->m_puserinteraction;
 
-            }
-            catch (...)
-            {
+      //      }
+      //      catch (...)
+      //      {
 
-               pinteraction = nullptr;
+      //         pinteraction = nullptr;
 
-            }
+      //      }
 
-         }
+      //   }
 
-         if (pinteraction == nullptr)
-         {
+      //   if (pinteraction == nullptr)
+      //   {
 
-            pinteraction = pimpl;
+      //      pinteraction = pimpl;
 
-         }
+      //   }
 
-      }
+      //}
 
-      if (pinteraction != nullptr)
-      {
+      //if (pinteraction != nullptr)
+      //{
 
-         return pinteraction->get_message_base(pmsg->message, pmsg->wParam, pmsg->lParam);
+      //   return pinteraction->get_message_base(pmsg->message, pmsg->wParam, pmsg->lParam);
 
-      }
+      //}
 
       auto pbase = __new(::message::base);
 
@@ -525,16 +527,16 @@ __pointer(::mutex) channel::s_pmutexChannel;
    }
 
 
-   void channel::_001SendCommand(::user::command * pcommand)
+   void channel::_001SendCommand(::user::command * pbase)
    {
 
-      pcommand->m_pcommandtargetSource = this;
+      pbase->m_pchannel = this;
 
       {
 
-         __set_restore(pcommand->m_id.m_emessagetype, ::message::type_command);
+         __set_restore(pbase->m_id.m_emessagetype, ::message::type_command);
 
-         route_command_message(pcommand);
+         route_command_message(pbase);
 
       }
 

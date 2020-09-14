@@ -1,6 +1,9 @@
 #pragma once
 
 
+#undef __spin_namespace
+
+
 #ifdef __cplusplus
 
 

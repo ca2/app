@@ -50,9 +50,9 @@ osdisplay_data::osdisplay_data()
 osdisplay_data::~ osdisplay_data()
 {
 
-//   ::aura::del(m_pmutexInput);
+//   ::acme::del(m_pmutexInput);
 
-   ::aura::del(m_pcsOsDisplayData);
+   ::acme::del(m_pcsOsDisplayData);
 
 }
 

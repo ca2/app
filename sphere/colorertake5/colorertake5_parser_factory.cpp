@@ -114,7 +114,7 @@ namespace colorertake5
 
    }
 
-   ParserFactory::ParserFactory(::object * pobject) :
+   ParserFactory::ParserFactory(::layered * pobjectContext) :
       object(pobject)
    {
 

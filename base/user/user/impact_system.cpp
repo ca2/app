@@ -136,7 +136,7 @@ namespace user
 
       }
 
-      ::aura::application * papp = pcreate->get_context_application() != nullptr ? pcreate->get_context_application() : get_context_application();
+      ::apex::application * papp = pcreate->get_context_application() != nullptr ? pcreate->get_context_application() : get_context_application();
 
       __pointer(::user::document) pdocument;
 
@@ -180,7 +180,7 @@ namespace user
 
       }
 
-      ::user::create & usercreate = *pcreate->m_pusercreate;
+      ::user::create & usercreate = *__user_create(pcreate->m_pusercreate);
 
       usercreate.m_puiCurrentFrame = pOther;
 

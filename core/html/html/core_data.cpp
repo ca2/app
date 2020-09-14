@@ -18,7 +18,7 @@ namespace html
    bool core_data::image::load_image()
    {
 
-      m_pimage = ::object::load_image(m_strPath);
+      m_pimage = Application.image().load_image(m_strPath);
 
       return m_pimage;
 
@@ -47,7 +47,7 @@ namespace html
    core_data::~core_data()
    {
 
-      ::aura::del(m_ptag);
+      ::acme::del(m_ptag);
 
       m_pform = nullptr;
 
@@ -588,7 +588,9 @@ namespace html
       if (::str::begins_eat(strPath, "ext://"))
       {
 
-         Context.hyperlink().open_link(strPath);
+         ::hyperlink hyperlink;
+
+         hyperlink.open_link(strPath);
 
          /*         ::aura::shell_launcher launcher(nullptr, "open", strUrl, "", "", SW_SHOWNORMAL);
          launcher.execute();*/

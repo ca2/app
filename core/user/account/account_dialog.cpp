@@ -305,12 +305,14 @@ namespace account
       if((rectFontopus.width() < 300 || rectFontopus.height() < 300) && puiParent != nullptr)
       {
 
-         __pointer(::aura::application) papp = puiParent->get_context_application();
+         __pointer(::apex::application) papp = puiParent->get_context_application();
 
          if(papp != nullptr)
          {
 
-            Ctx(papp).hyperlink().open_link("ca2account:this", "", "");
+            ::hyperlink hyperlink;
+
+            hyperlink.open_link("ca2account:this", "", "");
 
             Sleep(5000);
 
@@ -318,7 +320,9 @@ namespace account
          else
          {
 
-            Context.hyperlink().open_link("ca2account:this", "", "");
+            ::hyperlink hyperlink;
+
+            hyperlink.open_link("ca2account:this", "", "");
 
          }
 
@@ -452,7 +456,7 @@ namespace account
          if (stra.get_size() >= 2)
          {
 
-            m_plogin->m_pimage = load_matter_image(stra[0]);
+            m_plogin->m_pimage = Application.image().load_matter_image(stra[0]);
 
             m_plogin->m_strCred = stra.implode("|", 1);
 

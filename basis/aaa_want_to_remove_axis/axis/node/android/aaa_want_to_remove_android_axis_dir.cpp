@@ -9,7 +9,7 @@ namespace android
    {
 
 
-      dir::dir(::object * pobject) :
+      dir::dir(::layered * pobjectContext) :
          ::object(pobject),
          ::file::system_dir(pobject),
          ::file::dir::axis::system(pobject),
@@ -20,7 +20,7 @@ namespace android
 
       }
 
-      //path::path(::object * pobject) :
+      //path::path(::layered * pobjectContext) :
       //   ::object(pobject)
       //{
       //}

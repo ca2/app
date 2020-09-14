@@ -85,7 +85,7 @@ public:
 
 
 
-   file_size_table(::object * pobject);
+   file_size_table(::layered * pobjectContext);
    ~file_size_table();
 
    bool check_map();
@@ -104,7 +104,7 @@ public:
    index                     m_iMaxIteration;
 
 
-   DBFileSystemSizeSet(::object * pobject);
+   DBFileSystemSizeSet(::layered * pobjectContext);
    ~DBFileSystemSizeSet();
 
 
@@ -127,7 +127,7 @@ class CLASS_DECL_AURA FileSystemSizeServerThread :
 {
 public:
 
-   FileSystemSizeServerThread(::object * pobject);
+   FileSystemSizeServerThread(::layered * pobjectContext);
 
    bool initialize_thread() override;
 
@@ -160,7 +160,7 @@ public:
    size_map                         m_map;
 
 
-   FileSystemSizeWnd(::object * pobject);
+   FileSystemSizeWnd(::layered * pobjectContext);
 
    bool CreateClient();
    bool CreateServer();

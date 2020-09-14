@@ -3,25 +3,25 @@
 #include "windowing.h"
 
 
-bool os_init_application()
-{
+// bool os_init_application()
+// {
 
-   return true;
+//    return true;
 
-}
+// }
 
 
-void os_term_application()
-{
+// void os_term_application()
+// {
 
-   //   if(g_pappBloatPad != nullptr)
-   //   {
-   //
-   //      g_application_quit(G_APPLICATION(g_pappBloatPad));
-   //
-   //   }
+//    //   if(g_pappBloatPad != nullptr)
+//    //   {
+//    //
+//    //      g_application_quit(G_APPLICATION(g_pappBloatPad));
+//    //
+//    //   }
 
-}
+// }
 
 
 

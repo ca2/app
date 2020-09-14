@@ -19,7 +19,7 @@ machine_event_central::~machine_event_central()
 }
 
 
-::estatus machine_event_central::initialize(::object * pobjectContext)
+::estatus machine_event_central::initialize(::layered * pobjectContext)
 {
 
    if (m_bInitialized)

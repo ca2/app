@@ -1,6 +1,6 @@
 //
 //  user.cpp
-//  ios_aura
+//  ios_apex
 //
 //  Created by Camilo Sasuke Tsumanuma on 20/05/20.
 //
@@ -8,7 +8,7 @@
 #include <stdio.h>
 
 
-CLASS_DECL_APEX void main_branch(::generic_object* pobjectTask, e_priority epriority)
+CLASS_DECL_APEX void main_branch(::generic* pobjectTask, e_priority epriority)
 {
 
    ns_main_sync(^()

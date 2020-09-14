@@ -32,7 +32,7 @@ numbers:
       __pointer(class token) m_ptoken;
 
 
-      scanner(::object * pobject);
+      scanner(::layered * pobjectContext);
       virtual ~scanner();
 
 

@@ -23,7 +23,7 @@ namespace file
       uptr            ProcessedSize;
 
 
-      stream_binder(::object * pobject);
+      stream_binder(::layered * pobjectContext);
       HRes CreateEvents();
 
       virtual void CreateStreams(__pointer(::file::file) & inStream, __pointer(::file::file) & outStream);

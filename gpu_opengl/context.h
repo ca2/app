@@ -35,7 +35,7 @@ namespace opengl
       virtual ~context();
 
 
-      //virtual ::estatus initialize(::object* pobjectContext) override;
+      //virtual ::estatus initialize(::layered * pobjectContext) override;
 
       virtual string _001GetIntroProjection() override;
       virtual string _001GetIntroFragment() override;

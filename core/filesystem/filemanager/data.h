@@ -79,13 +79,18 @@ namespace filemanager
       data();
       virtual ~data();
 
+
+      virtual void assert_valid() const override;
+      virtual void dump(dump_context& dumpcontext) const override;
+
+
       bool is_topic();
 
 
 
-      virtual ::estatus initialize_filemanager_data(::object * pobjectContext);
+      virtual ::estatus initialize_filemanager_data(::layered * pobjectContext);
 
-      bool open(::aura::application * pappOnBehalfOf = nullptr, ::file::path path = "", const ::action_context & action_context = ::source_system);
+      bool open(::apex::application * pappOnBehalfOf = nullptr, ::file::path path = "", const ::action_context & action_context = ::source_system);
       //::filemanager::document * open(::file::path path = "");
       //virtual ::filemanager::document * document();
 

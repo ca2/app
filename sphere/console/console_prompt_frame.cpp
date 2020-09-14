@@ -5,7 +5,7 @@ namespace console
 {
 
 
-   prompt_frame::prompt_frame(::object * pobject) :
+   prompt_frame::prompt_frame(::layered * pobjectContext) :
       ::object(pobject),
       simple_frame_window(pobject)
    {

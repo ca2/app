@@ -1,7 +1,7 @@
 ﻿#include "framework.h"
 
 
-::aura::application * get_acid_app(::object * pobject)
+::aura::application * get_acid_app(::layered * pobjectContext)
 {
 
    return new ::helloaura::application();

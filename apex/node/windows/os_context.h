@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-CLASS_DECL_APEX HRESULT os_create_link(::file::path pathObj, ::file::path pathLink, string strDesc, ::file::path pathIcon = nullptr, int iIcon = 0);
+//CLASS_DECL_APEX HRESULT os_create_link(::file::path pathObj, ::file::path pathLink, string strDesc, ::file::path pathIcon = nullptr, int iIcon = 0);
 
 namespace windows
 {
@@ -56,10 +56,10 @@ namespace windows
 
       virtual bool file_open(::file::path path, string strParams = "", string strFolder = "") override;
 
-      virtual bool browse_file_open(::user::interaction * pinteraction, property_set & set) override;
-      virtual bool browse_file_save(::user::interaction * pinteraction, property_set & set) override;
-      virtual bool browse_folder(::user::interaction * pinteraction, property_set & set) override;
-      virtual bool browse_file_or_folder(::user::interaction * pinteraction, property_set & set) override;
+      virtual bool browse_file_open(property_set & set) override;
+      virtual bool browse_file_save(property_set & set) override;
+      virtual bool browse_folder(property_set & set) override;
+      virtual bool browse_file_or_folder(property_set & set) override;
 
       virtual ::estatus create_service() override;
       virtual ::estatus remove_service() override;
@@ -76,9 +76,9 @@ namespace windows
       virtual string calc_service_name();
 
 
-      virtual bool resolve_link(::file::path & path, const string & strSource, string * pstrDirectory = nullptr, string * pstrParams = nullptr, ::user::primitive * puiMessageParentOptional = nullptr) override;
+      virtual bool resolve_link(::file::path & path, const string & strSource, string * pstrDirectory = nullptr, string * pstrParams = nullptr) override;
 
-      virtual bool resolve_lnk_link(::file::path & path, const string & strSource, string * pstrDirectory = nullptr, string * pstrParams = nullptr, ::user::primitive * puiMessageParentOptional = nullptr);
+      virtual bool resolve_lnk_link(::file::path & path, const string & strSource, string * pstrDirectory = nullptr, string * pstrParams = nullptr);
 
 
       DECLSPEC_NO_RETURN void raise_exception(u32 dwExceptionCode, u32 dwExceptionFlags);
@@ -105,7 +105,7 @@ namespace windows
 
       virtual void list_process(::file::patha & patha, u32_array & uaPid) override;
 
-      virtual icon_result load_icon(const ::var & varFile) override;
+      //virtual icon_result load_icon(const ::var & varFile) override;
 
 
    };

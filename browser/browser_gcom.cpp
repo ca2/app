@@ -5,7 +5,7 @@ namespace browser
 {
 
 
-   gcom::gcom(::object * pobject) :
+   gcom::gcom(::layered * pobjectContext) :
       object(pobject),
       impact_base(pobject)
    {

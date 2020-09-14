@@ -27,9 +27,9 @@ namespace xml
    department::~department()
    {
 
-      //::aura::del(m_poptionDefault);
+      //::acme::del(m_poptionDefault);
 
-      //::aura::del(m_pparseinfoDefault);
+      //::acme::del(m_pparseinfoDefault);
 
    }
 
@@ -44,7 +44,7 @@ namespace xml
 
       //}
 
-      if (!::aura::department::init1())
+      if (!::apex::department::init1())
       {
 
          return ::error_failed;
@@ -78,7 +78,7 @@ namespace xml
    ::estatus department::init()
    {
 
-      if(!::aura::department::init())
+      if(!::apex::department::init())
          return false;
 
       return true;

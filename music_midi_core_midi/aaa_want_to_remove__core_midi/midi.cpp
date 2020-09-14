@@ -21,7 +21,7 @@
 //      {
 //
 //
-//         midi::midi(::object * pobject) :
+//         midi::midi(::layered * pobjectContext) :
 //         ::object(pobject),
 //         department(pobject),
 //         ::music::midi::object(pobject),

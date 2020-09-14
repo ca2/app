@@ -9,8 +9,8 @@ command_line::command_line()
 }
 
 
-command_line::command_line(::object * pobject) :
-   ::object(pobject)
+command_line::command_line(::layered * pobjectContext) :
+   ::object(pobjectContext)
 {
 
    common_construct();

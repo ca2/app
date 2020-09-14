@@ -80,7 +80,7 @@ namespace axis
 
    ::mutex* g_pmutexChildren;
    ::mutex* g_pmutexThreadWaitClose;
-   //string_map < __pointer(::aura::library) >* g_pmapLibrary;
+   //string_map < __pointer(::apex::library) >* g_pmapLibrary;
    //string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
 
 
@@ -122,7 +122,7 @@ namespace axis
 
    critical_section* g_pcsTrace;
 
-   ::generic_object* g_ptrace;
+   ::generic* g_ptrace;
 
    simple_trace* g_psimpletrace;
 
@@ -150,7 +150,7 @@ namespace axis
    ::mutex* g_pmutexMessageDispatch;
 
 
-   array < generic_object* >* g_paAura;
+   array < generic* >* g_paAura;
 
 
    ::map < ::id, const ::id&, ::id, const ::id& >* g_pmapRTL;
@@ -315,7 +315,7 @@ namespace axis
 
       //::map < void *, void *,::aura::application *, ::aura::application * > * g_pmapAura;
 
-      //string_map < __pointer(::aura::library) > * g_pmapLibCall;
+      //string_map < __pointer(::apex::library) > * g_pmapLibCall;
 
       g_pheap = nullptr;
 
@@ -534,7 +534,7 @@ namespace axis
 
       ::factory::factory_init();
 
-      g_paAura = new array < generic_object * >;
+      g_paAura = new array < generic * >;
 
       //g_pmapAura =new ::map < void *,void *,::aura::application *,::aura::application * >;
 
@@ -554,7 +554,7 @@ namespace axis
 
       //&::get_context_system()->g_mutexLibrary = new ::mutex;
 
-      //g_pmapLibrary = new string_map < __pointer(::aura::library) >();
+      //g_pmapLibrary = new string_map < __pointer(::apex::library) >();
 
       //g_pmapNewAuraLibrary = new string_map < PFN_NEW_AURA_LIBRARY >();
 
@@ -579,7 +579,7 @@ namespace axis
 
 #endif
 
-      //g_pmapLibCall = new string_map < __pointer(::aura::library) >();
+      //g_pmapLibCall = new string_map < __pointer(::apex::library) >();
 
 #ifdef MEMORY_COUNTERS
 
@@ -634,9 +634,9 @@ namespace axis
 
       term();
 
-      ::aura::del(g_pmapFontFaceName);
+      ::acme::del(g_pmapFontFaceName);
 
-      ::aura::del(g_pcsFont);
+      ::acme::del(g_pcsFont);
 
 #if OBJ_TYP_CTR
       g_iObjTypCtrInit = 0;
@@ -730,15 +730,15 @@ namespace axis
 
       }
 
-      //::aura::del(::thread::g_pmutex);
+      //::acme::del(::thread::g_pmutex);
 
-      //::aura::del(::thread::g_pthreadmap);
+      //::acme::del(::thread::g_pthreadmap);
 
       ::user::term_windowing();
 
       g_bAura = 0;
 
-      ::aura::del(g_paurastrpool);
+      ::acme::del(g_paurastrpool);
 
       ::channel::s_pmutexChannel.release();
 
@@ -806,7 +806,7 @@ namespace axis
 
 #if OBJ_TYP_CTR
 
-      ::aura::del(g_pmapObjTypCtr);
+      ::acme::del(g_pmapObjTypCtr);
 
 #endif
 
@@ -836,9 +836,9 @@ namespace axis
 
 #endif
 
-      ::aura::del(g_psimpletrace);
+      ::acme::del(g_psimpletrace);
 
-      ::aura::del(g_pcsTrace);
+      ::acme::del(g_pcsTrace);
 
       trace_category_static_term();
 
@@ -884,13 +884,13 @@ namespace axis
 
 #ifndef WINDOWS
 
-      ::aura::free(g_pszDemangle);
+      ::acme::free(g_pszDemangle);
 
 #endif
 
 #ifndef WINDOWS
 
-      ::aura::del(g_pcsDemangle);
+      ::acme::del(g_pcsDemangle);
 
 #endif
 
@@ -1029,7 +1029,7 @@ namespace axis
 //CLASS_DECL_AXIS void terg_draw2d_mutex()
 //{
 //
-//   ::aura::del(s_pmutexDraw2d);
+//   ::acme::del(s_pmutexDraw2d);
 //
 //}
 

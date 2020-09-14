@@ -1,21 +1,12 @@
 #include "framework.h"
 
 
-void prepare_argc_argv(int & argc, char ** argv, char * cmd_line);
+//void prepare_argc_argv(int & argc, char ** argv, char * cmd_line);
 
 
 namespace process
 {
 
-
-   exit_status::exit_status()
-   {
-
-      m_iExitCode = 0;
-      m_iExitSignal = 0;
-      m_iExitStop = 0;
-
-   }
 
 
    process::process()

@@ -8,7 +8,7 @@
 #if defined(LINUX) // || defined(ANDROID)
 
 
-bool aura_defer_process_x_message(HTHREAD hthread,LPMESSAGE pMsg,oswindow oswindow,bool bPeek);
+bool apex_defer_process_x_message(HTHREAD hthread,LPMESSAGE pMsg,oswindow oswindow,bool bPeek);
 
 
 #endif
@@ -205,7 +205,7 @@ int_bool mq::peek_message(LPMESSAGE pMsg,oswindow oswindow,UINT wMsgFilterMin,UI
 
 //#if defined(LINUX) // || defined(ANDROID)
 //
-//   if(aura_defer_process_x_message(hthread,pMsg,oswindow,!(wRemoveMsg & PM_REMOVE)))
+//   if(apex_defer_process_x_message(hthread,pMsg,oswindow,!(wRemoveMsg & PM_REMOVE)))
 //   {
 //
 //      return TRUE;
@@ -443,37 +443,6 @@ int_bool mq_post_thread_message(ITHREAD idthread, UINT message, WPARAM wparam, L
 }
 
 
-CLASS_DECL_APEX int_bool mq_post_message(oswindow oswindow, UINT message, WPARAM wparam, LPARAM lparam)
-{
-
-   ::user::interaction* pinteraction = oswindow_interaction(oswindow);
-
-   if (pinteraction == nullptr)
-   {
-
-      return FALSE;
-
-   }
-
-   auto pmq = pinteraction->m_pthreadUserInteraction->get_mq();
-
-   if (!pmq)
-   {
-
-      return FALSE;
-
-   }
-
-   if (!pmq->post_message(oswindow, message, wparam, lparam))
-   {
-
-      return FALSE;
-
-   }
-
-   return TRUE;
-
-}
 
 
 CLASS_DECL_APEX int_bool mq_peek_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg)

@@ -21,7 +21,7 @@
 //    bool                    m_bRadioChanged;
 
 
-//    probe_::user::command(::object * pobject);
+//    probe_::user::command(::layered * pobjectContext);
 
 
 //    virtual void Enable(bool bOn, const ::action_context & action_context = ::source_system);
@@ -75,7 +75,7 @@
 //   UINT nCtrlIDLast;
 //};
 //
-//// DSC Sink state/reason codes passed to aura API ::account::user event handlers
+//// DSC Sink state/reason codes passed to apex API ::account::user event handlers
 //enum DSCSTATE
 //{
 //   dscNoState = 0,
@@ -102,11 +102,11 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // interaction_impl implementation
-namespace aura
+namespace apex
 {
    class create_context;      // action_context for creating user interface things
 }
-namespace aura
+namespace apex
 {
    class create_context;      // action_context for creating things
 }
@@ -138,7 +138,7 @@ struct CPrintInfo;          // print preview customization info
 #define MLF_NOKICKIDLE      0x0002  // don't send WM_KICKIDLE messages
 #define MLF_SHOWONIDLE      0x0004  // show interaction_impl if not visible at idle time
 
-// extra aura API defined TTF_ flags for TOOLINFO::uFlags
+// extra apex API defined TTF_ flags for TOOLINFO::uFlags
 #define TTF_NOTBUTTON       0x80000000L // no status help on buttondown
 #define TTF_ALWAYSTIP       0x40000000L // always show the tip even if not active
 

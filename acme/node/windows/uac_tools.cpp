@@ -96,7 +96,7 @@ The first release.
 */
 
 #include "framework.h"
-
+#include "uac_tools.h"
 #include <VersionHelpers.h>
 
 #ifdef IMPLEMENT_VISTA_TOOLS

@@ -16,7 +16,7 @@ namespace apex
 
 
 
-
+      ::aura::system* m_paurasystem;
       ::axis::system* m_paxissystem;
       ::base::system* m_pbasesystem;
       ::core::system* m_pcoresystem;
@@ -24,15 +24,17 @@ namespace apex
 
       __composite(::apex::system)                        m_psystemParent;
 
-      __composite(::apex::audio)                         m_paudio;
+      // apex commented
+      //__composite(::apex::audio)                         m_paudio;
 
-      __composite(::apex::multimedia)                    m_pmultimedia;
+      // apex commented
+      //__composite(::apex::multimedia)                    m_pmultimedia;
 
       string_map < string_map < PFN_factory_exchange > > m_mapFactoryExchange;
 
       // __composite(::apex::estamira)                      m_pestamira;
 
-      ::type                                             m_typePaneTabView;
+      //::type                                             m_typePaneTabView;
 #ifdef APPLE_IOS
 
       plane_system *                                     m_pplanesystem;
@@ -47,8 +49,10 @@ namespace apex
 
       __composite(::sockets::sockets)                    m_psockets;
 
-      ::object *                                         m_pDraw2dFactoryExchange;
-      __pointer(::draw2d::draw2d)                        m_pdraw2d;
+      // apex commented
+      //::object *                                         m_pDraw2dFactoryExchange;
+      // apex commented
+      //__pointer(::draw2d::draw2d)                        m_pdraw2d;
 
       ::file::path                                       m_pathConfig;
       ::file::path                                       m_pathCa2Roaming;
@@ -60,7 +64,7 @@ namespace apex
       isomap < ITHREAD, ITHREAD >                        m_mapThreadOn;
 
       ::mutex                                            m_mutexUserChildren;
-      __composite(class imaging)                         m_pimaging;
+      //__composite(class imaging)                         m_pimaging;
 
       __composite(class ::datetime::department)          m_pdatetime;
       __composite(::crypto::crypto)                      m_pcrypto;
@@ -69,18 +73,21 @@ namespace apex
       __pointer_array(service_base)                      m_serviceptra;
       __composite(class ::xml::department)               m_pxml;
       __composite(class ::apex::log)                     m_ptrace;
+
+      // apex commented
       __composite(math::math)                            m_pmath;
+
       __composite(geometry::geometry)                    m_pgeometry;
 
       __composite(::apex::str)                           m_puserstr;
 
       ::apex::session::map                               m_sessionmap;
 
-      __composite(::gpu::approach)                       m_pgpu;
+      //__composite(::gpu::approach)                       m_pgpu;
 
       ::mutex                                            m_mutexLibrary;
       string_map < __pointer(::apex::library) >          m_mapLibrary;
-      string_map < PFN_NEW_AURA_LIBRARY >                m_mapNewAuraLibrary;
+      string_map < PFN_NEW_APEX_LIBRARY >                m_mapNewApexLibrary;
       string_map < __pointer(::apex::library) >          m_mapLibCall;
 
 
@@ -171,9 +178,11 @@ namespace apex
 
       //factory_map                                      m_factorymap;
 
-      keymap < ::file::path, ::image_pointer >           m_mapImage;
+      // acme commented
+      //keymap < ::file::path, ::image_pointer >           m_mapImage;
 
-      __composite(::user::window_map)                    m_pwindowmap;
+      // apex commented
+      //__composite(::user::window_map)                    m_pwindowmap;
 
 
       critical_section                                   m_csEnumText;
@@ -244,7 +253,7 @@ namespace apex
       //bool                                         m_bProcessInitialize;
       //bool                                         m_bProcessInitializeResult;
 
-      strid_map < ::apex::library* >              m_idmapCreateViewLibrary;
+      //strid_map < ::apex::library* >              m_idmapCreateViewLibrary;
 
       __pointer_array(::apex::library)                         m_libraryspa;
 
@@ -262,7 +271,7 @@ namespace apex
 
       void common_construct();
 
-      virtual ::estatus  initialize(::object * pobjectContext) override;
+      virtual ::estatus  initialize(::layered * pobjectContext) override;
 
       virtual ::estatus init();
       //virtual ::estatus init_instance() override;
@@ -282,14 +291,16 @@ namespace apex
       void set_thread(ITHREAD ithread, ::thread * pthread);
       void unset_thread(ITHREAD ithread, ::thread * pthread);
 
-      inline ::gpu::approach* get_gpu() { if (!m_pgpu) create_gpu(); return m_pgpu.get(); };
-      inline ::gpu::approach* gpu() { return m_pgpu.get(); };
-      virtual ::estatus create_gpu();
+      //inline ::gpu::approach* get_gpu() { if (!m_pgpu) create_gpu(); return m_pgpu.get(); };
+      //inline ::gpu::approach* gpu() { return m_pgpu.get(); };
+      //virtual ::estatus create_gpu();
 
       ::thread_group * thread_group(::e_priority epriority = ::priority_none);
 
       ::thread_tool * thread_tool(::enum_thread_tool etool);
 
+
+      virtual ::update* new_update(const MESSAGE& message);
 
       //virtual string install_get_platform() override;
       //virtual void install_set_platform(const char * pszPlatform) override;
@@ -374,7 +385,7 @@ namespace apex
 
 
 
-      //virtual string dir_appmatter_locator(::object * pobject);
+      //virtual string dir_appmatter_locator(::layered * pobjectContext);
 
 
       virtual void hist_hist(const char * psz);
@@ -393,14 +404,15 @@ namespace apex
       virtual string get_locale_schema_dir() override;
 
 
-      //virtual ::estatus     initialize_system(::object * pobjectContext, app_core * pappcore);
+      //virtual ::estatus     initialize_system(::layered * pobjectContext, app_core * pappcore);
 
 
       //__pointer(::thread_tools) create_thread_tools(::enum_thread_tool etool);
       //thread_tools * tools(::e_priority epriority);
       //thread_toolset * toolset(e_tool etool);
 
-      class ::user::window_map                     &  window_map();
+      // apex commented
+      //class ::user::window_map                     &  window_map();
 
       
       __pointer(::apex::library) open_component_library(const char* pszComponent, const char* pszImplementation);
@@ -409,13 +421,17 @@ namespace apex
 
       ::estatus set_factory_exchange(const char* pszComponent, const char * pszImplementation, PFN_factory_exchange pfnFactoryExchange);
 
-      virtual void defer_audio();
+      // apex commented
+      //virtual void defer_audio();
 
-      virtual ::apex::audio * defer_get_audio();
+      // apex commented
+      //virtual ::apex::audio * defer_get_audio();
 
-      virtual void defer_multimedia();
+      // apex commented
+      //virtual void defer_multimedia();
 
-      virtual ::apex::multimedia * defer_get_multimedia();
+      // apex commented
+      //virtual ::apex::multimedia * defer_get_multimedia();
 
       //class ::apex::os                             &  os();
       //class base_factory                           &  factory();
@@ -437,7 +453,7 @@ namespace apex
          return *m_pgeometry;
 
       }
-      inline  class imaging & imaging() { return *m_pimaging; }
+      //inline  class imaging & imaging() { return *m_pimaging; }
 
       virtual ::sockets::sockets & sockets() { return *m_psockets; }
 
@@ -448,8 +464,8 @@ namespace apex
 
       }
 
-
-      inline class ::draw2d::draw2d                & draw2d() { return *m_pdraw2d; }
+      // apex commented
+      //inline class ::draw2d::draw2d                & draw2d() { return *m_pdraw2d; }
 
 
       inline ::url::department                     &  url()
@@ -543,11 +559,11 @@ namespace apex
 
       virtual ::estatus initialize_sockets();
 
-      ::image_pointer get_cache_image(::object * pobjectContext, const ::var & varFile);
-      ::image_pointer matter_cache_image(::object * pobjectContext, const ::string & strMatter);
+      //::image_pointer get_cache_image(::layered * pobjectContext, const ::var & varFile);
+      //::image_pointer matter_cache_image(::layered * pobjectContext, const ::string & strMatter);
 
-      ::image_pointer get_image(::object * pobjectContext, const ::var & varFile, bool bCache = true, bool bSync = false);
-      ::image_pointer matter_image(::object * pobjectContext, const string & strMatter, bool bCache = true, bool bSync = false);
+      //::image_pointer get_image(::layered * pobjectContext, const ::var & varFile, bool bCache = true, bool bSync = false);
+      //::image_pointer matter_image(::layered * pobjectContext, const string & strMatter, bool bCache = true, bool bSync = false);
 
       virtual bool on_get_thread_name(string& strThreadName) override;
 
@@ -569,12 +585,12 @@ namespace apex
 
       //virtual ::estatus process_init();
 
-      virtual ::estatus init_draw2d();
-      virtual ::estatus draw2d_factory_exchange();
-      virtual string draw2d_get_default_library_name();
+      //virtual ::estatus init_draw2d();
+      //virtual ::estatus draw2d_factory_exchange();
+      //virtual string draw2d_get_default_library_name();
 
-      virtual bool imaging_factory_exchange();
-      virtual string imaging_get_default_library_name();
+      //virtual bool imaging_factory_exchange();
+      //virtual string imaging_get_default_library_name();
 
       virtual ::estatus init_thread() override;
       virtual void term_thread() override;
@@ -725,7 +741,8 @@ namespace apex
 
       virtual bool on_open_file(var varFile, string strExtra);
 
-      virtual LPWAVEOUT waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);
+      // apex commented
+      //virtual LPWAVEOUT waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);
 
       //virtual bool initialize_native_window1();
 
@@ -734,8 +751,10 @@ namespace apex
 
       virtual void on_os_text(e_os_text etext, string strText);
 
-      virtual ::user::interaction_impl * impl_from_handle(void * posdata);
-      virtual ::user::interaction * ui_from_handle(void * posdata);
+      // apex commented
+      //virtual ::user::interaction_impl * impl_from_handle(void * posdata);
+      //virtual ::user::interaction * ui_from_handle(void * posdata);
+
 
       void enum_display_monitors();
 
@@ -764,7 +783,7 @@ namespace apex
       virtual ::count get_desk_wkspace_count();
       virtual bool  get_desk_wkspace_rect(index iWkspace, RECT * prect);
 
-      virtual index get_ui_wkspace(::user::interaction * pinteraction);
+      //virtual index get_ui_wkspace(::user::interaction * pinteraction);
 
       virtual void on_extra(string str);
 
@@ -783,7 +802,7 @@ namespace apex
 
 
 
-      virtual void __tracea(::generic_object * pcontextobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz) override;
+      virtual void __tracea(::generic * pcontextobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz) override;
 
 
       virtual string get_user_language();
@@ -914,7 +933,7 @@ namespace apex
 
       virtual string get_host_location_url();
 
-      virtual ::estatus add_view_library(::apex::library* plibrary);
+      //virtual ::estatus add_view_library(::apex::library* plibrary);
 
       //virtual void get_cursor_pos(LPPOINT ppoint);
 
@@ -942,8 +961,8 @@ namespace apex
       //virtual void hist_hist(const char* psz) override;
 
 
-      virtual ::type get_pane_tab_view_type_info();
-      virtual ::type get_simple_frame_window_type_info();
+      //virtual ::type get_pane_tab_view_type_info();
+      //virtual ::type get_simple_frame_window_type_info();
       //virtual ::type get_simple_child_frame_type_info();
 
       //virtual void on_start_find_applications_from_cache() override;
@@ -969,8 +988,8 @@ namespace apex
 
       //virtual __pointer(::apex::session) on_create_session() override;
 
-      virtual void set_active_guie(::user::interaction* pinteraction);
-      virtual void set_focus_guie(::user::interaction* pinteraction);
+      //virtual void set_active_guie(::user::interaction* pinteraction);
+      //virtual void set_focus_guie(::user::interaction* pinteraction);
 
 
 
@@ -1019,8 +1038,8 @@ namespace apex
 
 
 
-//CLASS_DECL_APEX ::apex::system * create_aura_system(app_core * pappcore);
-CLASS_DECL_APEX ::apex::system * create_aura_system();
+//CLASS_DECL_APEX ::apex::system * create_apex_system(app_core * pappcore);
+CLASS_DECL_APEX ::apex::system * create_apex_system();
 
 
 template < typename ENUM >

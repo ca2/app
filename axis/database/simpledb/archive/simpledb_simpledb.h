@@ -19,7 +19,7 @@ namespace simpledb
 
 
    class CLASS_DECL_CORE simpledb :
-      virtual public ::aura::department,
+      virtual public ::apex::department,
       virtual public ::database::database
    {
    public:
@@ -29,7 +29,7 @@ namespace simpledb
       __pointer(db_server)        m_pserver;
 
 
-      simpledb(::object * pobject);
+      simpledb(::layered * pobjectContext);
       virtual ~simpledb();
 
       virtual bool init2();

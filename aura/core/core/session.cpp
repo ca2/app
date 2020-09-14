@@ -48,7 +48,7 @@ namespace aura
    }
 
 
-   ::estatus session::initialize(::object * pobjectContext)
+   ::estatus session::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::aura::session::initialize(pobjectContext);
@@ -1317,7 +1317,7 @@ namespace aura
     //}
 
 
-    //::estatus session::initialize(::object* pobjectContext)
+    //::estatus session::initialize(::layered * pobjectContext)
     //{
 
     //   auto estatus = ::aura::session::initialize(pobjectContext);

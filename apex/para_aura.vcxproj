@@ -13,7 +13,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{8E89EEAD-234C-4036-8343-804CF9F2B1CE}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>orto_aura</RootNamespace>
+    <RootNamespace>orto_apex</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -79,65 +79,65 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="apex\apex\apex.cpp" />
-    <ClCompile Include="apex\apex\aura_action_context.cpp" />
-    <ClCompile Include="apex\apex\aura_allocate_mid_big.cpp" />
-    <ClCompile Include="apex\apex\aura_allocate_system_heap.cpp" />
-    <ClCompile Include="apex\apex\aura_application.cpp" />
-    <ClCompile Include="apex\apex\aura_application_interface.cpp" />
-    <ClCompile Include="apex\apex\aura_argcargv.cpp" />
-    <ClCompile Include="apex\apex\aura_assert.cpp" />
-    <ClCompile Include="apex\apex\aura_checked.cpp" />
-    <ClCompile Include="apex\apex\aura_cmdtarg.cpp" />
-    <ClCompile Include="apex\apex\aura_command_target.cpp" />
-    <ClCompile Include="apex\apex\aura_conv.cpp" />
-    <ClCompile Include="apex\apex\aura_core_os.cpp" />
-    <ClCompile Include="apex\apex\aura_cpu_architecture.cpp" />
-    <ClCompile Include="apex\apex\aura_cregexp.cpp" />
-    <ClCompile Include="apex\apex\aura_cregexp_util.cpp" />
-    <ClCompile Include="apex\apex\aura_debug.cpp" />
-    <ClCompile Include="apex\apex\aura_department.cpp" />
-    <ClCompile Include="apex\apex\aura_department_container.cpp" />
-    <ClCompile Include="apex\apex\aura_element.cpp" />
-    <ClCompile Include="apex\apex\aura_file_watcher.cpp" />
-    <ClCompile Include="apex\apex\aura_file_watcher_impl.cpp" />
-    <ClCompile Include="apex\apex\aura_file_watcher_listener_thread.cpp" />
-    <ClCompile Include="apex\apex\aura_file_watcher_thread.cpp" />
-    <ClCompile Include="apex\apex\aura_fixed_alloc.cpp" />
-    <ClCompile Include="apex\apex\aura_flags.cpp" />
-    <ClCompile Include="apex\apex\aura_gudo.cpp" />
-    <ClCompile Include="apex\apex\aura_heap.cpp" />
-    <ClCompile Include="apex\apex\aura_id_pool.cpp" />
-    <ClCompile Include="apex\apex\aura_international.cpp" />
-    <ClCompile Include="apex\apex\aura_library.cpp" />
-    <ClCompile Include="apex\apex\aura_live_object.cpp" />
-    <ClCompile Include="apex\apex\aura_live_signal.cpp" />
-    <ClCompile Include="apex\apex\aura_log.cpp" />
-    <ClCompile Include="apex\apex\aura_machine_event.cpp" />
-    <ClCompile Include="apex\apex\aura_machine_event_central.cpp" />
-    <ClCompile Include="apex\apex\aura_machine_event_data.cpp" />
-    <ClCompile Include="apex\apex\aura_math.cpp" />
-    <ClCompile Include="apex\apex\aura_message_queue.cpp" />
-    <ClCompile Include="apex\apex\aura_microtimer.cpp" />
-    <ClCompile Include="apex\apex\aura_mktime.cpp" />
-    <ClCompile Include="apex\apex\aura_muldiv64.cpp" />
-    <ClCompile Include="apex\apex\aura_net.cpp" />
-    <ClCompile Include="apex\apex\aura_new.cpp" />
-    <ClCompile Include="apex\apex\aura_platform_interface.cpp" />
-    <ClCompile Include="apex\apex\aura_plex.cpp" />
-    <ClCompile Include="apex\apex\aura_plex_heap.cpp" />
-    <ClCompile Include="apex\apex\aura_printf.cpp" />
-    <ClCompile Include="apex\apex\aura_progress.cpp" />
-    <ClCompile Include="apex\apex\aura_root.cpp" />
-    <ClCompile Include="apex\apex\aura_savings.cpp" />
-    <ClCompile Include="apex\apex\aura_session.cpp" />
-    <ClCompile Include="apex\apex\aura_session_interface.cpp" />
-    <ClCompile Include="apex\apex\aura_simple_shell_launcher.cpp" />
-    <ClCompile Include="apex\apex\aura_small_ipc_channel.cpp" />
-    <ClCompile Include="apex\apex\aura_sprintf.cpp" />
-    <ClCompile Include="apex\apex\aura_static_start.cpp" />
-    <ClCompile Include="apex\apex\aura_system.cpp" />
-    <ClCompile Include="apex\apex\aura_template.cpp" />
-    <ClCompile Include="apex\apex\aura_trace.cpp" />
+    <ClCompile Include="apex\apex\apex_action_context.cpp" />
+    <ClCompile Include="apex\apex\apex_allocate_mid_big.cpp" />
+    <ClCompile Include="apex\apex\apex_allocate_system_heap.cpp" />
+    <ClCompile Include="apex\apex\apex_application.cpp" />
+    <ClCompile Include="apex\apex\apex_application_interface.cpp" />
+    <ClCompile Include="apex\apex\apex_argcargv.cpp" />
+    <ClCompile Include="apex\apex\apex_assert.cpp" />
+    <ClCompile Include="apex\apex\apex_checked.cpp" />
+    <ClCompile Include="apex\apex\apex_cmdtarg.cpp" />
+    <ClCompile Include="apex\apex\apex_command_target.cpp" />
+    <ClCompile Include="apex\apex\apex_conv.cpp" />
+    <ClCompile Include="apex\apex\apex_core_os.cpp" />
+    <ClCompile Include="apex\apex\apex_cpu_architecture.cpp" />
+    <ClCompile Include="apex\apex\apex_cregexp.cpp" />
+    <ClCompile Include="apex\apex\apex_cregexp_util.cpp" />
+    <ClCompile Include="apex\apex\apex_debug.cpp" />
+    <ClCompile Include="apex\apex\apex_department.cpp" />
+    <ClCompile Include="apex\apex\apex_department_container.cpp" />
+    <ClCompile Include="apex\apex\apex_element.cpp" />
+    <ClCompile Include="apex\apex\apex_file_watcher.cpp" />
+    <ClCompile Include="apex\apex\apex_file_watcher_impl.cpp" />
+    <ClCompile Include="apex\apex\apex_file_watcher_listener_thread.cpp" />
+    <ClCompile Include="apex\apex\apex_file_watcher_thread.cpp" />
+    <ClCompile Include="apex\apex\apex_fixed_alloc.cpp" />
+    <ClCompile Include="apex\apex\apex_flags.cpp" />
+    <ClCompile Include="apex\apex\apex_gudo.cpp" />
+    <ClCompile Include="apex\apex\apex_heap.cpp" />
+    <ClCompile Include="apex\apex\apex_id_pool.cpp" />
+    <ClCompile Include="apex\apex\apex_international.cpp" />
+    <ClCompile Include="apex\apex\apex_library.cpp" />
+    <ClCompile Include="apex\apex\apex_live_object.cpp" />
+    <ClCompile Include="apex\apex\apex_live_signal.cpp" />
+    <ClCompile Include="apex\apex\apex_log.cpp" />
+    <ClCompile Include="apex\apex\apex_machine_event.cpp" />
+    <ClCompile Include="apex\apex\apex_machine_event_central.cpp" />
+    <ClCompile Include="apex\apex\apex_machine_event_data.cpp" />
+    <ClCompile Include="apex\apex\apex_math.cpp" />
+    <ClCompile Include="apex\apex\apex_message_queue.cpp" />
+    <ClCompile Include="apex\apex\apex_microtimer.cpp" />
+    <ClCompile Include="apex\apex\apex_mktime.cpp" />
+    <ClCompile Include="apex\apex\apex_muldiv64.cpp" />
+    <ClCompile Include="apex\apex\apex_net.cpp" />
+    <ClCompile Include="apex\apex\apex_new.cpp" />
+    <ClCompile Include="apex\apex\apex_platform_interface.cpp" />
+    <ClCompile Include="apex\apex\apex_plex.cpp" />
+    <ClCompile Include="apex\apex\apex_plex_heap.cpp" />
+    <ClCompile Include="apex\apex\apex_printf.cpp" />
+    <ClCompile Include="apex\apex\apex_progress.cpp" />
+    <ClCompile Include="apex\apex\apex_root.cpp" />
+    <ClCompile Include="apex\apex\apex_savings.cpp" />
+    <ClCompile Include="apex\apex\apex_session.cpp" />
+    <ClCompile Include="apex\apex\apex_session_interface.cpp" />
+    <ClCompile Include="apex\apex\apex_simple_shell_launcher.cpp" />
+    <ClCompile Include="apex\apex\apex_small_ipc_channel.cpp" />
+    <ClCompile Include="apex\apex\apex_sprintf.cpp" />
+    <ClCompile Include="apex\apex\apex_static_start.cpp" />
+    <ClCompile Include="apex\apex\apex_system.cpp" />
+    <ClCompile Include="apex\apex\apex_template.cpp" />
+    <ClCompile Include="apex\apex\apex_trace.cpp" />
     <ClCompile Include="apex\exception\exception.cpp" />
     <ClCompile Include="apex\exception\exception_archive.cpp" />
     <ClCompile Include="apex\exception\exception_archive_exception.cpp" />
@@ -481,8 +481,8 @@
     <ClCompile Include="user\user\user_timer_item.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="apex\apex\aura_system_factory.inl" />
-    <None Include="para_aura.def" />
+    <None Include="apex\apex\apex_system_factory.inl" />
+    <None Include="para_apex.def" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />

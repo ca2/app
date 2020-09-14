@@ -153,9 +153,9 @@ namespace html
             for(index i = 0; i < get_table()->m_columna.get_size(); i++)
             {
 
-               cxMax += MAX(0.f, get_table()->m_columna[i].m_cxMax);
+               cxMax += max(0.f, get_table()->m_columna[i].m_cxMax);
 
-               cxMin += MAX(0.f, get_table()->m_columna[i].m_cxMin);
+               cxMin += max(0.f, get_table()->m_columna[i].m_cxMin);
 
             }
 

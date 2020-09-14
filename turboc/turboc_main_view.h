@@ -15,7 +15,7 @@ namespace turboc
       view *                  m_pview;
 
 
-      switcher_view(::object * pobject);
+      switcher_view(::layered * pobjectContext);
       virtual ~switcher_view();
 
 

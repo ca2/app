@@ -6,23 +6,17 @@ namespace aura
 
 
    class CLASS_DECL_AURA system:
-      virtual public ::app_core,
-      virtual public ::aura::context_thread
-#ifndef WINDOWS
-      ,virtual public ::exception::translator
-#endif
+      virtual public ::apex::system
    {
    public:
 
 
 
+      bool m_bAvoidFirstResponder;
 
-      ::axis::system* m_paxissystem;
-      ::base::system* m_pbasesystem;
-      ::core::system* m_pcoresystem;
-      __pointer(::aura::application)                     m_papplicationStartup;
+      //__pointer(::aura::application)                     m_papplicationStartup;
 
-      __composite(::aura::system)                        m_psystemParent;
+      //__composite(::aura::system)                        m_psystemParent;
 
       __composite(::aura::audio)                         m_paudio;
 
@@ -41,148 +35,148 @@ namespace aura
 
 #ifdef __DEBUG
 
-      __composite(::dump_context)                        m_pdumpcontext;
+      //__composite(::dump_context)                        m_pdumpcontext;
 
 #endif // __DEBUG
 
-      __composite(::sockets::sockets)                    m_psockets;
+      //__composite(::sockets::sockets)                    m_psockets;
 
-      ::object *                                         m_pDraw2dFactoryExchange;
-      __pointer(::draw2d::draw2d)                        m_pdraw2d;
+      __pointer(::generic)                                 m_pDraw2dFactoryExchange;
+      __pointer(::draw2d::draw2d)                          m_pdraw2d;
 
-      ::file::path                                       m_pathConfig;
-      ::file::path                                       m_pathCa2Roaming;
+      //::file::path                                       m_pathConfig;
+      //::file::path                                       m_pathCa2Roaming;
 
-      ::mutex                                            m_mutexThread;
-      thread_map                                         m_threadmap;
-      thread_id_map                                      m_threadidmap;
-      ::mutex                                            m_mutexThreadOn;
-      isomap < ITHREAD, ITHREAD >                        m_mapThreadOn;
+      //::mutex                                            m_mutexThread;
+      //thread_map                                         m_threadmap;
+      //thread_id_map                                      m_threadidmap;
+      //::mutex                                            m_mutexThreadOn;
+      //isomap < ITHREAD, ITHREAD >                        m_mapThreadOn;
 
       ::mutex                                            m_mutexUserChildren;
       __composite(class imaging)                         m_pimaging;
 
-      __composite(class ::datetime::department)          m_pdatetime;
-      __composite(::crypto::crypto)                      m_pcrypto;
+      //__composite(class ::datetime::department)          m_pdatetime;
+      //__composite(::crypto::crypto)                      m_pcrypto;
       //__composite(class ::account::user_set)             m_puserset;
 
-      __pointer_array(service_base)                      m_serviceptra;
-      __composite(class ::xml::department)               m_pxml;
-      __composite(class ::aura::log)                     m_ptrace;
-      __composite(math::math)                            m_pmath;
-      __composite(geometry::geometry)                    m_pgeometry;
+      //__pointer_array(service_base)                      m_serviceptra;
+      //__composite(class ::xml::department)               m_pxml;
+      //__composite(class ::aura::log)                     m_ptrace;
+      //__composite(math::math)                            m_pmath;
+      //__composite(geometry::geometry)                    m_pgeometry;
 
-      __composite(::aura::str)                           m_puserstr;
+      //__composite(::aura::str)                           m_puserstr;
 
-      ::aura::session::map                               m_sessionmap;
+      //::aura::session::map                               m_sessionmap;
 
       __composite(::gpu::approach)                       m_pgpu;
 
-      ::mutex                                            m_mutexLibrary;
-      string_map < __pointer(::aura::library) >          m_mapLibrary;
-      string_map < PFN_NEW_AURA_LIBRARY >                m_mapNewAuraLibrary;
-      string_map < __pointer(::aura::library) >          m_mapLibCall;
+      //::mutex                                            m_mutexLibrary;
+      //string_map < __pointer(::apex::library) >          m_mapLibrary;
+      //string_map < PFN_NEW_AURA_LIBRARY >                m_mapNewAuraLibrary;
+      //string_map < __pointer(::apex::library) >          m_mapLibCall;
 
 
 
       // for lesser cooperative GUI applications
-      bool                                               m_bProdevianMouse;
-      __composite(class ::str::base64)                   m_pbase64;
+      //bool                                               m_bProdevianMouse;
+      //__composite(class ::str::base64)                   m_pbase64;
 
-      ::string_to_string                                 m_mapAppLibrary;
-      __composite(class machine_event_central)           m_pmachineeventcentral;
+      //::string_to_string                                 m_mapAppLibrary;
+      //__composite(class machine_event_central)           m_pmachineeventcentral;
 
-      float                                              m_dpi;
+      //float                                              m_dpi;
 
       //void *                                             m_ftlibrary;
 
-      var                                                m_varFile;
-//      var                                                m_
+//      var                                                m_varFile;
+////      var                                                m_
+//
+//      __pointer(::mutex)                                 m_spmutexUserAppData;
+//      __pointer(::mutex)                                 m_spmutexSystemAppData;
+//
+//      __pointer(::mutex)                                 m_spmutexMatter;
+//
+//      bool                                               m_bGudoNetCache;
+//
+//      __composite(::process::department)                 m_pprocess;
+//
+//      __composite(::multithreading::threading)           m_pthreading;
+//      ::edisplay                                         m_edisplay;
+//      size_t                                             m_nSafetyPoolSize; // ideal size
+//
+//      bool                                               m_bFinalizeIfNoSessionSetting;
+//      bool                                               m_bFinalizeIfNoSession;
 
-      __pointer(::mutex)                                 m_spmutexUserAppData;
-      __pointer(::mutex)                                 m_spmutexSystemAppData;
-
-      __pointer(::mutex)                                 m_spmutexMatter;
-
-      bool                                               m_bGudoNetCache;
-
-      __composite(::process::department)                 m_pprocess;
-
-      __composite(::multithreading::threading)           m_pthreading;
-      ::edisplay                                         m_edisplay;
-      size_t                                             m_nSafetyPoolSize; // ideal size
-
-      bool                                               m_bFinalizeIfNoSessionSetting;
-      bool                                               m_bFinalizeIfNoSession;
-
-
-//      __composite(::html::html)                          m_phtml;
-      __composite(::url::department)                     m_purldepartment;
-
-      __composite(::dir_system)                          m_pdirsystem;
-      __composite(::file_system)                         m_pfilesystem;
-
-      string                                             m_strInstallVersion;
-      string                                             m_strInstallPlatform;
-
-      tick                                               m_tickMainStart;
-      tick                                               m_tickAfterApplicationFirstRequest;
-
-
-
-      //__pointer(::mutex)                                 m_spmutexOpenweatherCity;
-
-      //string_array                                       m_straCityLo;
-      //string_array                                       m_straCity;
-      //i64_array                                          m_iaIds;
-      //double_array                                       m_daLon;
-      //double_array                                       m_daLat;
-
-      //string_map < __pointer(openweather_city) >         m_mapCity;
-
-      string                                             m_strIosHome;
-      string                                             m_strIosTemp;
-
-//      __composite(::net::email_department)               m_pemaildepartment;
-
-      string_array                                            m_straCommandLineAccumul;
-      string_array                                            m_straCommandLineExtra;
-      tick                                               m_tickCommandLineLast;
-      int                                                m_iCommandLineDelay;
-      __pointer(::thread)                                m_pthreadCommandLine;
-
-
-      bool                                               m_bSystemSynchronizedCursor;
-      bool                                               m_bSystemSynchronizedScreen;
-
-      // 2020-01-25: removing from here (::aura::system), placing at ::context
-      //__pointer(::user::language_map)                    m_puserlanguagemap;
-#ifdef WINDOWS_DESKTOP
-
-//#pragma message("at macos??")
-      raw_array < MONITORINFO >                          m_monitorinfoa;
-      raw_array < HMONITOR >                             m_hmonitora;
-      raw_array < MONITORINFO >                          m_monitorinfoaDesk;
-
-#else
-
-      rect_array                                         m_rectaMonitor;
-      rect_array                                         m_rectaWork;
-
-#endif
-
-      //factory_map                                      m_factorymap;
+//
+////      __composite(::html::html)                          m_phtml;
+//      __composite(::url::department)                     m_purldepartment;
+//
+//      __composite(::dir_system)                          m_pdirsystem;
+//      __composite(::file_system)                         m_pfilesystem;
+//
+//      string                                             m_strInstallVersion;
+//      string                                             m_strInstallPlatform;
+//
+//      tick                                               m_tickMainStart;
+//      tick                                               m_tickAfterApplicationFirstRequest;
+//
+//
+//
+//      //__pointer(::mutex)                                 m_spmutexOpenweatherCity;
+//
+//      //string_array                                       m_straCityLo;
+//      //string_array                                       m_straCity;
+//      //i64_array                                          m_iaIds;
+//      //double_array                                       m_daLon;
+//      //double_array                                       m_daLat;
+//
+//      //string_map < __pointer(openweather_city) >         m_mapCity;
+//
+//      string                                             m_strIosHome;
+//      string                                             m_strIosTemp;
+//
+////      __composite(::net::email_department)               m_pemaildepartment;
+//
+//      string_array                                            m_straCommandLineAccumul;
+//      string_array                                            m_straCommandLineExtra;
+//      tick                                               m_tickCommandLineLast;
+//      int                                                m_iCommandLineDelay;
+//      __pointer(::thread)                                m_pthreadCommandLine;
+//
+//
+//      bool                                               m_bSystemSynchronizedCursor;
+//      bool                                               m_bSystemSynchronizedScreen;
+//
+//      // 2020-01-25: removing from here (::aura::system), placing at ::context
+//      //__pointer(::user::language_map)                    m_puserlanguagemap;
+//#ifdef WINDOWS_DESKTOP
+//
+////#pragma message("at macos??")
+//      raw_array < MONITORINFO >                          m_monitorinfoa;
+//      raw_array < HMONITOR >                             m_hmonitora;
+//      raw_array < MONITORINFO >                          m_monitorinfoaDesk;
+//
+//#else
+//
+//      rect_array                                         m_rectaMonitor;
+//      rect_array                                         m_rectaWork;
+//
+//#endif
+//
+//      //factory_map                                      m_factorymap;
 
       keymap < ::file::path, ::image_pointer >           m_mapImage;
 
       __composite(::user::window_map)                    m_pwindowmap;
 
 
-      critical_section                                   m_csEnumText;
-      string_map < i64_map < string > >                  m_mapEnumToText;
-      string_map < string_map < i64 > >                  m_mapTextToEnum;
-      thread_group_map                                   m_threadgroupmap;
-      thread_tool_map                                    m_threadtoolmap;
+      //critical_section                                   m_csEnumText;
+      //string_map < i64_map < string > >                  m_mapEnumToText;
+      //string_map < string_map < i64 > >                  m_mapTextToEnum;
+      //thread_group_map                                   m_threadgroupmap;
+      //thread_tool_map                                    m_threadtoolmap;
 
 
       //stridsp(type)                                      m_typemap;
@@ -195,7 +189,7 @@ namespace aura
       //double_array                                       m_daLon;
       //double_array                                       m_daLat;
 
-      //string_map < __pointer(::aura::library) >          m_mapLibrary;
+      //string_map < __pointer(::apex::library) >          m_mapLibrary;
 
       //string_map < __pointer(openweather_city) >                   m_mapCity;
 
@@ -214,11 +208,11 @@ namespace aura
 
 #endif
 
-      ::mutex                                        m_mutex;
-      //__composite(::filehandler::handler)            m_pfilehandler;
+      //::mutex                                        m_mutex;
+      ////__composite(::filehandler::handler)            m_pfilehandler;
 
 
-      ::mutex                                        m_mutexDelete;
+      //::mutex                                        m_mutexDelete;
 
 
       //    class ::aura::stra                           m_stra;
@@ -232,7 +226,7 @@ namespace aura
             //__pointer(::aura::session::map)                     m_pbergedgemap;
             //__pointer_array(::aura::session)                         m_planesessionptra;
 
-      __composite(class ::aura::history)                m_phistory;
+      //__composite(class ::aura::history)                m_phistory;
 
       //      ::sockets::net                               m_net;
       //      __pointer(::aura::filehandler::handler)  m_spfilehandler;
@@ -246,9 +240,9 @@ namespace aura
       //bool                                         m_bProcessInitialize;
       //bool                                         m_bProcessInitializeResult;
 
-      strid_map < ::aura::library* >              m_idmapCreateViewLibrary;
+      strid_map < ::apex::library* >              m_idmapCreateViewLibrary;
 
-      __pointer_array(::aura::library)                         m_libraryspa;
+      //__pointer_array(::apex::library)                         m_libraryspa;
 
 #ifdef _UWP
 
@@ -264,7 +258,7 @@ namespace aura
 
       void common_construct();
 
-      virtual ::estatus  initialize(::object * pobjectContext) override;
+      virtual ::estatus  initialize(::layered * pobjectContext) override;
 
       virtual ::estatus init();
       //virtual ::estatus init_instance() override;
@@ -376,10 +370,10 @@ namespace aura
 
 
 
-      //virtual string dir_appmatter_locator(::object * pobject);
+      //virtual string dir_appmatter_locator(::layered * pobjectContext);
 
 
-      virtual void hist_hist(const char * psz);
+      //virtual void hist_hist(const char * psz);
 
 
       //virtual void on_request(::create * pcreate);
@@ -395,7 +389,7 @@ namespace aura
       virtual string get_locale_schema_dir() override;
 
 
-      //virtual ::estatus     initialize_system(::object * pobjectContext, app_core * pappcore);
+      //virtual ::estatus     initialize_system(::layered * pobjectContext, app_core * pappcore);
 
 
       //__pointer(::thread_tools) create_thread_tools(::enum_thread_tool etool);
@@ -405,7 +399,7 @@ namespace aura
       class ::user::window_map                     &  window_map();
 
 
-      __pointer(::aura::library) open_component_library(const char* pszComponent, const char* pszImplementation);
+      __pointer(::apex::library) open_component_library(const char* pszComponent, const char* pszImplementation);
 
       ::estatus do_factory_exchange(const char* pszComponent, const char* pszImplementation);
 
@@ -423,43 +417,43 @@ namespace aura
       //class base_factory                           &  factory();
 
 
-      ::aura::str                                  &  str();
-      ::process::department                        &  process();
+      //::aura::str                                  &  str();
+      //::process::department                        &  process();
 
 
-      ::xml::department                            &  xml();
-      class ::str::base64                          &  base64();
-      class ::aura::log                            &  log();
-      class ::machine_event_central                &  machine_event_central();
-      inline ::multithreading::threading           *  threading() { return m_pthreading; }
+      //::xml::department                            &  xml();
+      //class ::str::base64                          &  base64();
+      //class ::aura::log                            &  log();
+      //class ::machine_event_central                &  machine_event_central();
+      //inline ::multithreading::threading           *  threading() { return m_pthreading; }
 
-      geometry::geometry                           &  geometry()
-      {
+      //geometry::geometry                           &  geometry()
+      //{
 
-         return *m_pgeometry;
+      //   return *m_pgeometry;
 
-      }
+      //}
       inline  class imaging & imaging() { return *m_pimaging; }
 
-      virtual ::sockets::sockets & sockets() { return *m_psockets; }
+      //virtual ::sockets::sockets & sockets() { return *m_psockets; }
 
-      math::math                                   &  math()
-      {
+      //math::math                                   &  math()
+      //{
 
-         return *m_pmath;
+      //   return *m_pmath;
 
-      }
+      //}
 
 
       inline class ::draw2d::draw2d                & draw2d() { return *m_pdraw2d; }
 
 
-      inline ::url::department                     &  url()
-      {
+      //inline ::url::department                     &  url()
+      //{
 
-         return *m_purldepartment;   // only usable from base.dll and dependants
+      //   return *m_purldepartment;   // only usable from base.dll and dependants
 
-      }
+      //}
 
 
       //inline class ::compress_department           &  compress()
@@ -480,7 +474,7 @@ namespace aura
 
       //__pointer(::account::user_set)                userset();
 
-      ::datetime::department                 & datetime();
+      //::datetime::department                 & datetime();
 
 
       //virtual string url_encode(const string & str);
@@ -543,26 +537,26 @@ namespace aura
       bool on_application_menu_action(const char * pszCommand);
 
 
-      virtual ::estatus initialize_sockets();
+      //virtual ::estatus initialize_sockets();
 
-      ::image_pointer get_cache_image(::object * pobjectContext, const ::var & varFile);
-      ::image_pointer matter_cache_image(::object * pobjectContext, const ::string & strMatter);
+      ::image_pointer get_cache_image(::layered * pobjectContext, const ::var & varFile);
+      ::image_pointer matter_cache_image(::layered * pobjectContext, const ::string & strMatter);
 
-      ::image_pointer get_image(::object * pobjectContext, const ::var & varFile, bool bCache = true, bool bSync = false);
-      ::image_pointer matter_image(::object * pobjectContext, const string & strMatter, bool bCache = true, bool bSync = false);
+      ::image_pointer get_image(::layered * pobjectContext, const ::var & varFile, bool bCache = true, bool bSync = false);
+      ::image_pointer matter_image(::layered * pobjectContext, const string & strMatter, bool bCache = true, bool bSync = false);
 
       virtual bool on_get_thread_name(string& strThreadName) override;
 
-      virtual ::aura::library * on_get_library(const char * pszLibrary);
+      virtual ::apex::library * on_get_library(const char * pszLibrary);
 
-      virtual ::aura::library * get_library(const char * pszLibrary, bool bOpenCa2 = false);
+      virtual ::apex::library * get_library(const char * pszLibrary, bool bOpenCa2 = false);
 
 
       virtual UINT os_post_to_all_threads(UINT uiMessage,WPARAM wparam = 0,lparam lparam = 0);
 
 
-      virtual void session_add(index iEdge, ::aura::session * psession);
-      virtual void session_remove(index iEdge);
+      //virtual void session_add(index iEdge, ::apex::session * psession) overr;
+      //virtual void session_remove(index iEdge);
 
 
 
@@ -670,14 +664,14 @@ namespace aura
 
       virtual ::estatus create_session(index iEdge = 0);
 
-      virtual __result(::aura::session) on_create_session(index iEdge);
+      virtual __result(::apex::session) on_create_session(index iEdge);
 
-      virtual ::aura::session * session(index iEdge = 0);
+      virtual ::apex::session * session(index iEdge = 0);
 
       //virtual void on_request(::create * pcreate) override;
 
-      __pointer(regex) create_regular_expression(const char * pszStyle, const string& str);
-      __pointer(regex_context) create_regular_expression_context(const char* pszStyle, int iCount);
+      //__pointer(regex) create_regular_expression(const char * pszStyle, const string& str);
+      //__pointer(regex_context) create_regular_expression_context(const char* pszStyle, int iCount);
       //virtual int pcre_add_tokens(string_array& stra, const string& strTopic, const string& strRegexp, int nCount);
 
 
@@ -700,7 +694,7 @@ namespace aura
 
       virtual void on_end_find_applications_to_cache(stream & os);
 
-      virtual void on_map_application_library(::aura::library & library);
+      virtual void on_map_application_library(::apex::library & library);
 
       //virtual void defer_check_exit();
 
@@ -785,7 +779,7 @@ namespace aura
 
 
 
-      virtual void __tracea(::generic_object * pcontextobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz) override;
+      virtual void __tracea(::generic * pcontextobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz) override;
 
 
       virtual string get_user_language();
@@ -844,10 +838,10 @@ namespace aura
       DECL_GEN_SIGNAL(on_application_signal);
 
 
-      estatus set_history(::aura::history* phistory);
+      estatus set_history(::apex::history* phistory);
 
 
-      //__pointer(::aura::library) on_get_library(const char* pszLibrary) override;
+      //__pointer(::apex::library) on_get_library(const char* pszLibrary) override;
 
 
       //virtual ::aura::session *  get_platform(index iEdge,application_bias * pbiasCreation = nullptr);
@@ -870,7 +864,7 @@ namespace aura
 
 //      ::aura::stra                           & stra();
       //    ::aura::service                        & service();
-      ::aura::history& hist();
+      //::aura::history& hist();
 
       //class ::aura::patch& patch();
 
@@ -916,7 +910,7 @@ namespace aura
 
       virtual string get_host_location_url();
 
-      virtual ::estatus add_view_library(::aura::library* plibrary);
+      virtual ::estatus add_view_library(::apex::library* plibrary);
 
       //virtual void get_cursor_pos(LPPOINT ppoint);
 
@@ -925,15 +919,15 @@ namespace aura
       //virtual ::estatus do_request(::create* pcommand) override;
 
 
-#ifdef DEBUG
-
-      virtual void set_context(::context* pcontext) override;
-      virtual void set_context_thread(::thread* pthread) override;
-      virtual void set_context_app(::aura::application* pappContext) override;
-      virtual void set_context_session(::aura::session* psessionContext) override;
-      virtual void set_context_system(::aura::system* psystemContext) override;
-
-#endif
+//#ifdef DEBUG
+//
+//      virtual void set_context(::context* pcontext) override;
+//      virtual void set_context_thread(::thread* pthread) override;
+//      virtual void set_context_app(::aura::application* pappContext) override;
+//      virtual void set_context_session(::aura::session* psessionContext) override;
+//      virtual void set_context_system(::aura::system* psystemContext) override;
+//
+//#endif
 
 
       void assert_valid() const override;
@@ -953,7 +947,7 @@ namespace aura
 
       //virtual void on_end_find_applications_to_cache(stream& os) override;
 
-      //virtual void on_map_application_library(::aura::library& library) override;
+      //virtual void on_map_application_library(::apex::library& library) override;
 
       //virtual void on_graphics_ready() override;
 
@@ -982,8 +976,8 @@ namespace aura
 
 
 
-      virtual DWORD get_monitor_color_temperature(index iMonitor);
-      virtual bool adjust_monitor(index iMonitor, DWORD dwTemperature, double dBrightness, double dwGamma);
+      //virtual DWORD get_monitor_color_temperature(index iMonitor);
+      //virtual bool adjust_monitor(index iMonitor, DWORD dwTemperature, double dBrightness, double dwGamma);
       //virtual bool get_monitor_rect(index iMonitor, RECT* prect) override;
 
       //virtual ::count get_monitor_count() override;
@@ -1002,7 +996,7 @@ namespace aura
 
       //virtual bool initialize_native_window1() override;
 
-      //virtual ::aura::library* load_library(const char* pszLibrary);
+      //virtual ::apex::library* load_library(const char* pszLibrary);
 
    };
 
@@ -1027,79 +1021,79 @@ namespace aura
 CLASS_DECL_AURA ::aura::system * create_aura_system();
 
 
-template < typename ENUM >
-inline void set_enum_text(ENUM e, const char * psz)
-{
+//template < typename ENUM >
+//inline void set_enum_text(ENUM e, const char * psz)
+//{
+//
+//   auto psystem = ::get_context_system();
+//
+//   cslock sl(&psystem->m_csEnumText);
+//
+//   psystem->m_mapEnumToText[typeid(e).name()][(i64)e] = psz;
+//
+//   psystem->m_mapTextToEnum[typeid(e).name()][psz] = (i64)e;
+//
+//}
 
-   auto psystem = ::get_context_system();
+//
+//template < typename ENUM >
+//inline string enum_text(ENUM e)
+//{
+//
+//   auto psystem = ::get_context_system();
+//
+//   cslock sl(&psystem->m_csEnumText);
+//
+//   return psystem->m_mapEnumToText[typeid(e).name()][(i64)e];
+//
+//}
 
-   cslock sl(&psystem->m_csEnumText);
+//
+//template < class ENUM >
+//inline ENUM text_enum(ENUM & e, const char * psz, ENUM eDefault = (ENUM)0)
+//{
+//
+//   auto psystem = ::get_context_system();
+//
+//   cslock sl(&psystem->m_csEnumText);
+//
+//   i64 iValue;
+//
+//   if (psystem->m_mapTextToEnum[typeid(e).name()].lookup(psz, iValue))
+//   {
+//
+//      e = (ENUM)iValue;
+//
+//   }
+//   else
+//   {
+//
+//      e = eDefault;
+//
+//   }
+//
+//   return e;
+//
+//}
 
-   psystem->m_mapEnumToText[typeid(e).name()][(i64)e] = psz;
-
-   psystem->m_mapTextToEnum[typeid(e).name()][psz] = (i64)e;
-
-}
-
-
-template < typename ENUM >
-inline string enum_text(ENUM e)
-{
-
-   auto psystem = ::get_context_system();
-
-   cslock sl(&psystem->m_csEnumText);
-
-   return psystem->m_mapEnumToText[typeid(e).name()][(i64)e];
-
-}
-
-
-template < class ENUM >
-inline ENUM text_enum(ENUM & e, const char * psz, ENUM eDefault = (ENUM)0)
-{
-
-   auto psystem = ::get_context_system();
-
-   cslock sl(&psystem->m_csEnumText);
-
-   i64 iValue;
-
-   if (psystem->m_mapTextToEnum[typeid(e).name()].lookup(psz, iValue))
-   {
-
-      e = (ENUM)iValue;
-
-   }
-   else
-   {
-
-      e = eDefault;
-
-   }
-
-   return e;
-
-}
-
-
-template < class ENUM, ENUM edefault = 0>
-inline base_enum < ENUM, edefault > & text_enum(base_enum < ENUM, edefault > & b, const char * psz, ENUM eDefault = edefault)
-{
-
-   return b = text_enum(b.m_evalue, psz, eDefault);
-
-}
-
-
-template < class ENUM, ENUM edefault = 0>
-inline string enum_text(const base_enum < ENUM, edefault > & b)
-{
-
-   return enum_text(b.m_evalue, (i64)(ENUM)b);
-
-}
-
+//
+//template < class ENUM, ENUM edefault = 0>
+//inline base_enum < ENUM, edefault > & text_enum(base_enum < ENUM, edefault > & b, const char * psz, ENUM eDefault = edefault)
+//{
+//
+//   return b = text_enum(b.m_evalue, psz, eDefault);
+//
+//}
+//
+//
+//template < class ENUM, ENUM edefault = 0>
+//inline string enum_text(const base_enum < ENUM, edefault > & b)
+//{
+//
+//   return enum_text(b.m_evalue, (i64)(ENUM)b);
+//
+//}
+//
 
 #define STRINGIFY(x) #x
 #define TOSTRING(x) STRINGIFY(x)

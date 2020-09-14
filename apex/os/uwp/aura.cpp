@@ -85,13 +85,13 @@ VOID WINAPI Sleep(DWORD dwMilliseconds)
 }
 #endif
 
-typedef bool
-(WINAPI * LPFN_ChangeWindowMessageFilter)(
-_In_ UINT message,
-_In_ DWORD dwFlag);
+// typedef bool
+// (WINAPI * LPFN_ChangeWindowMessageFilter)(
+// _In_ UINT message,
+// _In_ DWORD dwFlag);
 
 
-LPFN_ChangeWindowMessageFilter g_pfnChangeWindowMessageFilter = nullptr;
+// LPFN_ChangeWindowMessageFilter g_pfnChangeWindowMessageFilter = nullptr;
 
 /*
 typedef
@@ -489,7 +489,7 @@ bool defer_co_initialize_ex(bool bMultiThread)
 bool defer_init_winsock();
 
 
-bool __node_aura_pre_init()
+bool __node_apex_pre_init()
 {
 
    HRESULT hresult = ::CoInitializeEx(nullptr,COINIT_MULTITHREADED);
@@ -529,7 +529,7 @@ bool __node_aura_pre_init()
 
 void CLASS_DECL_APEX __cdecl _ca2_purecall();
 
-bool __node_aura_pos_init()
+bool __node_apex_pos_init()
 {
 
    _set_purecall_handler(_ca2_purecall);
@@ -576,14 +576,14 @@ bool __node_aura_pos_init()
 }
 
 
-bool __node_aura_pre_term()
+bool __node_apex_pre_term()
 {
 
    return true;
 
 }
 
-bool __node_aura_pos_term()
+bool __node_apex_pos_term()
 {
 
    ::CoUninitialize();

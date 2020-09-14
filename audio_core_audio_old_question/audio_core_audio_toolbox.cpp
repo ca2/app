@@ -16,7 +16,7 @@ namespace multimedia
    {
 
 
-      toolbox::toolbox(::object * pobject) :
+      toolbox::toolbox(::layered * pobjectContext) :
          object(pobject),
          ::thread(pobject),
          wave_base(pobject)

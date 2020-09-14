@@ -12,59 +12,59 @@ CLASS_DECL_APEX string & get_command_line_string()
 }
 
 
-CLASS_DECL_APEX string get_command_line_dup()
-{
-
-   return get_command_line_string();
-
-}
-
-
-
+//CLASS_DECL_APEX string get_command_line_dup()
+//{
+//
+//   return get_command_line_string();
+//
+//}
+//
 
 
-CLASS_DECL_APEX void set_command_line_dup(const char * psz)
-{
-
-   get_command_line_string() = psz;
-
-   ::file::path pathFolder = ::dir::program_data();
-
-   string strAppId = get_command_line_param(psz, "app");
-
-   if (strAppId.has_char())
-   {
-
-      pathFolder /= strAppId;
-
-      ::file::path path = pathFolder / "last_command_line.txt";
-
-      file_put_contents_dup(path, get_command_line_string());
-
-      ::file::path pathExecutable = consume_param(psz, nullptr);
-
-      string strAppTitle = executable_title_from_appid(strAppId);
-
-      path = pathFolder / "last_executable.txt";
-
-      if (file_is_equal_path_dup(pathExecutable.title(), strAppTitle))
-      {
-
-         file_put_contents_dup(path, pathExecutable);
-
-      }
-
-   }
-
-}
 
 
-CLASS_DECL_APEX void get_command_line_dup(char * psz, int iBuffer)
-{
+//CLASS_DECL_APEX void set_command_line_dup(const char * psz)
+//{
+//
+//   get_command_line_string() = psz;
+//
+//   ::file::path pathFolder = ::dir::program_data();
+//
+//   string strAppId = get_command_line_param(psz, "app");
+//
+//   if (strAppId.has_char())
+//   {
+//
+//      pathFolder /= strAppId;
+//
+//      ::file::path path = pathFolder / "last_command_line.txt";
+//
+//      file_put_contents_dup(path, get_command_line_string());
+//
+//      ::file::path pathExecutable = consume_param(psz, nullptr);
+//
+//      string strAppTitle = executable_title_from_appid(strAppId);
+//
+//      path = pathFolder / "last_executable.txt";
+//
+//      if (file_is_equal_path_dup(pathExecutable.title(), strAppTitle))
+//      {
+//
+//         file_put_contents_dup(path, pathExecutable);
+//
+//      }
+//
+//   }
+//
+//}
 
-   strncpy(psz, get_command_line_dup(), iBuffer);
 
-}
+//CLASS_DECL_APEX void get_command_line_dup(char * psz, int iBuffer)
+//{
+//
+//   strncpy(psz, get_command_line_dup(), iBuffer);
+//
+//}
 
 
 

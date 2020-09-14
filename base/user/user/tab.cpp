@@ -310,7 +310,7 @@ namespace user
 
       ppane->m_id          = id;
       ppane->m_pplaceholder = nullptr;
-      ppane->m_pimage       = load_image(pszImage, false);
+      ppane->m_pimage       = Application.image().load_image(pszImage, false);
 
       get_data()->m_panea.add(ppane);
 
@@ -1315,7 +1315,7 @@ namespace user
 
                size.cx += tab_pane.m_pimage->width()+ 2;
 
-               size.cy = MAX(size.cy, tab_pane.m_pimage->height());
+               size.cy = max(size.cy, tab_pane.m_pimage->height());
 
             }
 
@@ -1422,7 +1422,7 @@ namespace user
             if(tab_pane.m_pimage->is_ok())
             {
 
-               size.cy = MAX(size.cy, tab_pane.m_pimage->size().cy);
+               size.cy = max(size.cy, tab_pane.m_pimage->size().cy);
 
             }
 
@@ -2539,7 +2539,7 @@ namespace user
 
       {
 
-         sync_lock lock(get_data()->mutex());
+         sync_lock lock(get_data()->get_mutex());
 
          get_data()->m_idaSel.remove_all();
 

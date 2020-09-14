@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/os/windows/windowing.h"
 #include "aura/node/windows/_windows.h"
 #include "system_interaction_impl.h"
 #include "aura/message.h"
@@ -8,7 +9,7 @@
 #include "aura/os/windows/imm_context.h"
 #include "aura/node/windows/buffer.h"
 #include "aura/const/timer.h"
-#include "aura/platform/app_core.h"
+#include "apex/platform/app_core.h"
 
 
 #ifdef WINDOWS_DESKTOP
@@ -23,7 +24,11 @@
 #define WM_NCUAHDRAWFRAME (0x00AF)
 #endif
 
-WNDPROC get_window_procedure();
+
+CLASS_DECL_AURA WNDPROC windows_user_interaction_impl_get_window_procedure();
+
+
+CLASS_DECL_AURA wstring windows_register_window_class(::layered * pobjectContext, UINT nClassStyle, HCURSOR hCursor, HBRUSH hbrBackground, HICON hIcon);
 
 
 static bool has_autohide_appbar(UINT edge, const rect& mon) // Interface Update - Infinisys Ltd.
@@ -333,15 +338,6 @@ namespace windows
    }
 
 
-   interaction_impl::interaction_impl(::object * pobject) :
-      ::object(pobject)
-   {
-
-      user_common_construct();
-
-   }
-
-
    interaction_impl::~interaction_impl()
    {
 
@@ -469,7 +465,7 @@ namespace windows
 
       thread_value("wnd_init") = this;
 
-      ::aura::application * papp = get_context_application();
+      //::aura::application * papp = &Application;
 
       wstring wstrWindowName(cs.lpszName);
 
@@ -567,12 +563,12 @@ namespace windows
       if (oswindow == nullptr)
       {
 
-         if (papp == nullptr)
-         {
+         //if (papp == nullptr)
+         //{
 
-            return false;
+         //   return false;
 
-         }
+         //}
 
          string strLastError = FormatMessageFromSystem(dwLastError);
 
@@ -2215,9 +2211,9 @@ namespace windows
 
       WNDPROC * plpfn = GetSuperWndProcAddr();
 
-      WNDPROC oldWndProc = (WNDPROC)::SetWindowLongPtr(oswindow, GWLP_WNDPROC, (iptr)get_window_procedure());
+      WNDPROC oldWndProc = (WNDPROC)::SetWindowLongPtr(oswindow, GWLP_WNDPROC, (iptr)windows_user_interaction_impl_get_window_procedure());
 
-      ASSERT(oldWndProc != get_window_procedure());
+      ASSERT(oldWndProc != windows_user_interaction_impl_get_window_procedure());
 
       if (*plpfn == nullptr)
       {
@@ -2803,7 +2799,7 @@ namespace windows
 
       get_window_text(str);
 
-      ansi_count_copy(pszString, str, (size_t) MIN(nMaxCount, str.get_length()));
+      ansi_count_copy(pszString, str, (size_t) min(nMaxCount, str.get_length()));
 
 
       return str.get_length();
@@ -4789,31 +4785,17 @@ namespace windows
 
       defer_co_initialize_ex(false);
 
-      HRESULT Result = S_OK;
-
       comptr < ITaskbarList>                     tasklist;
 
-      tasklist.CoCreateInstance(CLSID_TaskbarList, nullptr, CLSCTX_SERVER);
+      HRESULT hr = tasklist.CoCreateInstance(CLSID_TaskbarList, nullptr, CLSCTX_INPROC_SERVER);
 
+      if(SUCCEEDED(hr) && SUCCEEDED(hr = tasklist->HrInit()))
       {
-
-         if (FAILED(tasklist->HrInit()))
-         {
-
-            return;
-
-         }
-
-      }
-
-      if (SUCCEEDED(Result))
-      {
-
 
          if (bShow)
          {
 
-            HRESULT hr = tasklist->AddTab(get_handle());
+            hr = tasklist->AddTab(get_handle());
 
             TRACE("result = %d", hr);
 
@@ -6110,7 +6092,7 @@ wstring CLASS_DECL_AURA windows_get_user_interaction_window_class(::user::intera
    
    __memset(&wndcls, 0, sizeof(WNDCLASSEXW));   // start with nullptr defaults
    
-   wndcls.lpfnWndProc = get_window_procedure();
+   wndcls.lpfnWndProc = windows_user_interaction_impl_get_window_procedure();
 
    wndcls.hInstance = GetModuleHandleW(L"aura.dll");
 
@@ -6136,142 +6118,128 @@ wstring CLASS_DECL_AURA windows_get_user_interaction_window_class(::user::intera
 
 
 bool CLASS_DECL_AURA windows_register_with_icon(WNDCLASSEXW * pwndclass, const unichar * pszClassName, UINT nIDIcon)
-
 {
+
    pwndclass->lpszClassName = pszClassName;
-
-   pwndclass->hIcon = ::LoadIconW(nullptr, MAKEINTRESOURCEW(32512));
-   return windows_register_class(pwndclass);
-}
-
-
-CLASS_DECL_AURA wstring windows_register_window_class(::object * pobject, UINT nClassStyle, HCURSOR hCursor, HBRUSH hbrBackground, HICON hIcon)
-{
-
-   ::aura::application * papp = ::get_context_application(pobject);
-
-   const int iLen = 4096;
-
-   wstring wstrClassName;
-
-   {
-
-      LPWSTR lpwsz = wstrClassName.get_string_buffer(iLen);
-
-      if (hCursor == nullptr && hbrBackground == nullptr && hIcon == nullptr)
-      {
-
-         C_RUNTIME_ERRORCHECK_SPRINTF(_snwprintf_s(lpwsz, iLen, iLen - 1, L"windows_interaction_impl:%p,%x", System.m_hinstance, nClassStyle));
-
-      }
-      else
-      {
-
-         C_RUNTIME_ERRORCHECK_SPRINTF(_snwprintf_s(lpwsz, iLen, iLen - 1, L"windows_interaction_impl:%p,%x,%p,%p,%p", System.m_hinstance, nClassStyle, hCursor, hbrBackground, hIcon));
-
-      }
-
-      wstrClassName.release_string_buffer();
-
-   }
-
-   // see if the class already exists
-   WNDCLASSEXW wndcls = {};
-
-   if (::GetClassInfoExW(papp->get_context_system()->m_hinstance, wstrClassName, &wndcls))
-   {
-      // already registered, assert everything is good
-      ASSERT(wndcls.style == nClassStyle);
-
-      // NOTE: We have to trust that the hIcon, hbrBackground, and the
-      //  hCursor are semantically the same, because sometimes Windows does
-      //  some internal translation or copying of those handles before
-      //  storing them in the internal WNDCLASS retrieved by GetClassInfo.
-      return wstrClassName;
-
-   }
-   wndcls.cbSize = sizeof(wndcls);
-   // otherwise we need to register a new class
-   wndcls.style = nClassStyle;
-   wndcls.lpfnWndProc = get_window_procedure();
-
-   wndcls.cbClsExtra = wndcls.cbWndExtra = 0;
-   wndcls.hInstance = ::GetModuleHandleW(L"aura.dll");
-   //wndcls.hIcon = hIcon;
-   //wndcls.hCursor = hCursor;
-   wndcls.hCursor = nullptr;
-   wndcls.hbrBackground = hbrBackground;
-   wndcls.lpszMenuName = nullptr;
-
-   wndcls.lpszClassName = wstrClassName;
-
-   if (!windows_register_class(&wndcls))
-   {
-
-      __throw(resource_exception());
-
-   }
-
-   // return thread-local pointer
-   return wstrClassName;
-
-}
-
-
-CLASS_DECL_AURA bool windows_register_class(WNDCLASSEXW * pwndclass)
-{
-
-   WNDCLASSEXW wndcls;
-
-   if (GetClassInfoExW(pwndclass->hInstance, pwndclass->lpszClassName, &wndcls))
-
-   {
-
-      return TRUE;
-
-   }
    
-   pwndclass->cbSize = sizeof(WNDCLASSEXW);
+   pwndclass->hIcon = ::LoadIconW(nullptr, MAKEINTRESOURCEW(32512));
 
-   if (!::RegisterClassExW(pwndclass))
-   {
-
-      DWORD dw = GetLastError();
-
-      return FALSE;
-
-   }
-
-   bool bRet = TRUE;
-
-   return bRet;
+   return windows_register_class(pwndclass);
 
 }
+
+
+CLASS_DECL_ACME WNDPROC get_window_procedure();
+
+
+CLASS_DECL_AURA wstring windows_register_window_class(::layered * pobjectContext, UINT nClassStyle, HCURSOR hCursor, HBRUSH hbrBackground, HICON hIcon)
+{
+
+  ::apex::application * papp = ::get_context_application(pobjectContext);
+
+  const int iLen = 4096;
+
+  wstring wstrClassName;
+
+  {
+
+     LPWSTR lpwsz = wstrClassName.get_string_buffer(iLen);
+
+     if (hCursor == nullptr && hbrBackground == nullptr && hIcon == nullptr)
+     {
+
+        C_RUNTIME_ERRORCHECK_SPRINTF(_snwprintf_s(lpwsz, iLen, iLen - 1, L"windows_interaction_impl:%p,%x", System.m_hinstance, nClassStyle));
+
+     }
+     else
+     {
+
+        C_RUNTIME_ERRORCHECK_SPRINTF(_snwprintf_s(lpwsz, iLen, iLen - 1, L"windows_interaction_impl:%p,%x,%p,%p,%p", System.m_hinstance, nClassStyle, hCursor, hbrBackground, hIcon));
+
+     }
+
+     wstrClassName.release_string_buffer();
+
+  }
+
+  // see if the class already exists
+  WNDCLASSEXW wndcls = {};
+
+  if (::GetClassInfoExW(papp->get_context_system()->m_hinstance, wstrClassName, &wndcls))
+  {
+     // already registered, assert everything is good
+     ASSERT(wndcls.style == nClassStyle);
+
+     // NOTE: We have to trust that the hIcon, hbrBackground, and the
+     //  hCursor are semantically the same, because sometimes Windows does
+     //  some internal translation or copying of those handles before
+     //  storing them in the internal WNDCLASS retrieved by GetClassInfo.
+     return wstrClassName;
+
+  }
+  wndcls.cbSize = sizeof(wndcls);
+  // otherwise we need to register a new class
+  wndcls.style = nClassStyle;
+  wndcls.lpfnWndProc = get_window_procedure();
+
+  wndcls.cbClsExtra = wndcls.cbWndExtra = 0;
+  wndcls.hInstance = ::GetModuleHandleW(L"aura.dll");
+  //wndcls.hIcon = hIcon;
+  //wndcls.hCursor = hCursor;
+  wndcls.hCursor = nullptr;
+  wndcls.hbrBackground = hbrBackground;
+  wndcls.lpszMenuName = nullptr;
+
+  wndcls.lpszClassName = wstrClassName;
+
+  if (!windows_register_class(&wndcls))
+  {
+
+     __throw(resource_exception());
+
+  }
+
+  // return thread-local pointer
+  return wstrClassName;
+
+}
+
+
 
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
-bool windows_register_class(HINSTANCE hinstance)
+//bool windows_register_class(HINSTANCE hinstance)
+//{
+//   
+//   WNDCLASSEXW wcex = {};
+//
+//   wcex.cbSize = sizeof(WNDCLASSEXW);
+//   wcex.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
+//   wcex.lpfnWndProc = get_window_procedure();
+//   wcex.cbClsExtra = 0;
+//   wcex.cbWndExtra = 0;
+//   wcex.hInstance = hinstance;
+//   wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW);
+//   wcex.lpszClassName = L"windows_interaction_impl";
+//
+//   if (!RegisterClassExW(&wcex))
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   return true;
+//
+//}
+
+
+CLASS_DECL_AURA WNDPROC windows_user_interaction_impl_get_window_procedure()
 {
-   
-   WNDCLASSEXW wcex = {};
 
-   wcex.cbSize = sizeof(WNDCLASSEXW);
-   wcex.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
-   wcex.lpfnWndProc = get_window_procedure();
-   wcex.cbClsExtra = 0;
-   wcex.cbWndExtra = 0;
-   wcex.hInstance = hinstance;
-   wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW);
-   wcex.lpszClassName = L"windows_interaction_impl";
-
-   if (!RegisterClassExW(&wcex))
-   {
-
-      return false;
-
-   }
-
-   return true;
+   return &__window_procedure;
 
 }
+
+

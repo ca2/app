@@ -49,10 +49,10 @@ CLASS_DECL_APEX bool main_initialize();
 CLASS_DECL_APEX bool main_finalize();
 
 /*
-bool os_on_start_application(::object * pobject);
-::file::path app_desktop_file_path(::object * pobject);
+bool os_on_start_application(::layered * pobjectContext);
+::file::path app_desktop_file_path(::layered * pobjectContext);
 ::file::path app_desktop_file_path(::object * pobject, string strAppId);
-bool linux_prepare_app_desktop_file(::object * pobject);
+bool linux_prepare_app_desktop_file(::layered * pobjectContext);
 bool linux_prepare_app_desktop_file(::object * pobject, string strAppId);
 */
 

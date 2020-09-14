@@ -404,14 +404,14 @@ namespace apple
 
       ::file::path path = str;
 
-      if(Context.file().exists(path.folder() / "libaura.dylib"))
+      if(Context.file().exists(path.folder() / "libapex.dylib"))
       {
 
          ::file::path folderNew = path.folder();
 
          folderNew -= 3;
 
-         if(Context.file().exists(folderNew / "libaura.dylib"))
+         if(Context.file().exists(folderNew / "libapex.dylib"))
          {
 
             strFallback = folderNew;

@@ -40,17 +40,17 @@
 //   operator = (::apex::system::id(string(str)));
 //}
 
-id & id::operator = (const char * psz)
-{
-   operator = (::apex::system::id(psz));
-   return *this;
-}
-
-id & id::operator = (const string & str)
-{
-   operator = (::apex::system::id(str));
-   return *this;
-}
+//id & id::operator = (const char * psz)
+//{
+//   operator = (::apex::system::id(psz));
+//   return *this;
+//}
+//
+//id & id::operator = (const string & str)
+//{
+//   operator = (::apex::system::id(str));
+//   return *this;
+//}
 
 //id & id::operator = (const string_interface & str)
 //{

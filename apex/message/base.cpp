@@ -6,7 +6,7 @@ namespace message
 {
 
 
-   //base::base(::object * pobjectContext) :
+   //base::base(::layered * pobjectContext) :
    //   ::message::message(psignal)
    //{
 
@@ -128,15 +128,14 @@ namespace message
 
    //}
 
+   //void timer::set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam)
+   //{
 
-   void timer::set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam)
-   {
+   //   base::set(pwnd,uiMessage,wparam,lparam);
 
-      base::set(pwnd,uiMessage,wparam,lparam);
+   //   m_nIDEvent = static_cast<UINT>(wparam);
 
-      m_nIDEvent = static_cast<UINT>(wparam);
-
-   }
+   //}
 
 
 

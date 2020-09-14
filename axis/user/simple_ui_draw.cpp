@@ -400,7 +400,7 @@ namespace simple_ui
 
       }
 
-      i32 iBorderH = MIN(rect.height() / 2, 49);
+      i32 iBorderH = min(rect.height() / 2, 49);
 
       ::draw2d::brush_pointer br(e_create);
 

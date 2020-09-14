@@ -9,7 +9,7 @@ namespace simpledb
 {
 
 
-   service::service(::object * pobject) :
+   service::service(::layered * pobjectContext) :
       ::object(pobject),
       plain_service(pobject)
    {

@@ -13,7 +13,7 @@ namespace gpu
    };
 
    class CLASS_DECL_AURA shader :
-      virtual public ::generic_object
+      virtual public ::generic
    {
    public:
       

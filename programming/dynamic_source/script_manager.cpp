@@ -103,7 +103,7 @@ namespace dynamic_source
    }
 
 
-   ::estatus script_manager::initialize(::object * pobjectContext)
+   ::estatus script_manager::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::user::message_queue_listener::initialize(pobjectContext);
@@ -931,7 +931,7 @@ pinstance->runall(CREATE_PROCEDURE);
    }
 
 
-   script_manager::clear_include_matches_file_watcher::clear_include_matches_file_watcher(::object * pobject) :
+   script_manager::clear_include_matches_file_watcher::clear_include_matches_file_watcher(::layered * pobjectContext) :
       ::object(pobject)
    {
 

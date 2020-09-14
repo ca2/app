@@ -150,7 +150,7 @@
     <Filter Include="Header Files\apex\message">
       <UniqueIdentifier>{6ea91d16-af59-4653-ad87-aaa3548a7437}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\apex\aura_policy">
+    <Filter Include="Header Files\apex\apex_policy">
       <UniqueIdentifier>{0c0346ef-bd1c-4a0a-85b1-cfd8ef8ec242}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\apex\process">
@@ -650,23 +650,23 @@
     <ClInclude Include="apex\exception\exception_verisimple.h">
       <Filter>Header Files\apex\exception</Filter>
     </ClInclude>
-    <ClInclude Include="apex\aura_policy\aura_c.h">
-      <Filter>Header Files\apex\aura_policy</Filter>
+    <ClInclude Include="apex\apex_policy\apex_c.h">
+      <Filter>Header Files\apex\apex_policy</Filter>
     </ClInclude>
-    <ClInclude Include="apex\aura_policy\aura_cpp.h">
-      <Filter>Header Files\apex\aura_policy</Filter>
+    <ClInclude Include="apex\apex_policy\apex_cpp.h">
+      <Filter>Header Files\apex\apex_policy</Filter>
     </ClInclude>
-    <ClInclude Include="apex\aura_policy\aura_policy.h">
-      <Filter>Header Files\apex\aura_policy</Filter>
+    <ClInclude Include="apex\apex_policy\apex_policy.h">
+      <Filter>Header Files\apex\apex_policy</Filter>
     </ClInclude>
-    <ClInclude Include="apex\aura_policy\aura_policy_objc.h">
-      <Filter>Header Files\apex\aura_policy</Filter>
+    <ClInclude Include="apex\apex_policy\apex_policy_objc.h">
+      <Filter>Header Files\apex\apex_policy</Filter>
     </ClInclude>
-    <ClInclude Include="apex\aura_policy\aura_policy_objcpp.h">
-      <Filter>Header Files\apex\aura_policy</Filter>
+    <ClInclude Include="apex\apex_policy\apex_policy_objcpp.h">
+      <Filter>Header Files\apex\apex_policy</Filter>
     </ClInclude>
-    <ClInclude Include="apex\aura_policy\aura_policy_winrt.h">
-      <Filter>Header Files\apex\aura_policy</Filter>
+    <ClInclude Include="apex\apex_policy\apex_policy_winrt.h">
+      <Filter>Header Files\apex\apex_policy</Filter>
     </ClInclude>
     <ClInclude Include="user\simple\message_box.h">
       <Filter>Header Files\user\simple</Filter>
@@ -1769,13 +1769,13 @@
     <ClInclude Include="apex\apex\atomic2.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_aura.h">
+    <ClInclude Include="apex\apex\apex_apex.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_regex.h">
+    <ClInclude Include="apex\apex\apex_regex.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\aura_status.h">
+    <ClInclude Include="apex\apex\apex_status.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
     <ClInclude Include="apex\apex\auto.h">
@@ -3689,10 +3689,10 @@
     <ClInclude Include="apex\os\_os.h">
       <Filter>Header Files\apex\os</Filter>
     </ClInclude>
-    <ClInclude Include="apex\os\aura_gdk.h">
+    <ClInclude Include="apex\os\apex_gdk.h">
       <Filter>Header Files\apex\os</Filter>
     </ClInclude>
-    <ClInclude Include="apex\os\os_aura.h">
+    <ClInclude Include="apex\os\os_apex.h">
       <Filter>Header Files\apex\os</Filter>
     </ClInclude>
     <ClInclude Include="apex\os\os_file.h">
@@ -5818,7 +5818,7 @@
     <ClCompile Include="primitive\primitive\context_object.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\generic_object.cpp">
+    <ClCompile Include="primitive\primitive\generic.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\printer.cpp">
@@ -5943,10 +5943,10 @@
     <None Include="primitive\string\_defer.inl">
       <Filter>Header Files\primitive\string</Filter>
     </None>
-    <None Include="apex\apex\aura1.inl">
+    <None Include="apex\apex\apex1.inl">
       <Filter>Header Files\apex\apex</Filter>
     </None>
-    <None Include="apex\apex\aura2.inl">
+    <None Include="apex\apex\apex2.inl">
       <Filter>Header Files\apex\apex</Filter>
     </None>
     <None Include="apex\apex\block.inl">

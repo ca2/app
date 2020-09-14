@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "core/net/ftp/_.h"
-#include "aura/filesystem/fs/_fs.h"
+#include "apex/filesystem/fs/_fs.h"
 #include "ftp_net.h"
 #include "ftp_file.h"
 
@@ -12,7 +12,7 @@ ftpfs::ftpfs()
 }
 
 
-::estatus ftpfs::initialize_ftpfs(::object * pobjectContext, const char * pszRoot)
+::estatus ftpfs::initialize_ftpfs(::layered * pobjectContext, const char * pszRoot)
 {
 
    auto estatus = ::fs::data::initialize(pobjectContext);
@@ -37,12 +37,12 @@ ftpfs::ftpfs()
 ftpfs::~ftpfs()
 {
 
-   //::aura::del(m_pftpnet);
+   //::acme::del(m_pftpnet);
 
 }
 
 //
-//::estatus ftpfs::initialize(::object * pobjectContext)
+//::estatus ftpfs::initialize(::layered * pobjectContext)
 //{
 //
 //   auto estatus = __compose_new(this, m_pftpnet);
@@ -90,7 +90,7 @@ bool ftpfs::has_subdir(const ::file::path & path)
 
    ::file::listing listing(this);
 
-   listing.ls(path);
+   Application.dir().ls(listing, path);
 
    if (::get_tick() < dir.m_uiLsTimeout)
    {
@@ -348,7 +348,9 @@ int ftpfs::is_dir(const ::file::path & path)
    {
 
       ::file::listing listing(this);
-      listing.ls(path.folder());
+      
+      Application.dir().ls(listing,path.folder());
+
    }
 
    auto iFind = dir.name_find_first_ci(path.name());

@@ -31,7 +31,7 @@ namespace axis
 
       void common_construct();
 
-      virtual ::estatus initialize(::object * pobjectContext) override;
+      virtual ::estatus initialize(::layered * pobjectContext) override;
 
       virtual ::estatus init() override;
       virtual ::estatus inline_init() override;

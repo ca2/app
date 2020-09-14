@@ -9,7 +9,7 @@
 //   {
 //
 //
-//      out::out(::object * pobject) :
+//      out::out(::layered * pobjectContext) :
 //         ::object(pobject)
 //      {
 //
@@ -89,7 +89,7 @@
 LPWAVEOUT waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback)
 {
 
-   return ::get_context_system()->waveout_open(iChannel, pformat, pcallback);
+   return Audio.waveout_open(iChannel, pformat, pcallback);
 
 }
 

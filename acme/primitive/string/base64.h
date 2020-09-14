@@ -36,7 +36,7 @@ namespace str
       virtual ~base64();
 
       
-      virtual ::estatus initialize(::generic * pobjectContext) override;
+      virtual ::estatus initialize(::layered * pobjectContext) override;
 
 
       // from arbitrary binary data to Base 64

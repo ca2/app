@@ -13,7 +13,7 @@ namespace console
 
       
 
-      prompt_document(::object * pobject);
+      prompt_document(::layered * pobjectContext);
       virtual ~prompt_document();
 
 

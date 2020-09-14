@@ -1,68 +1,68 @@
 #include "framework.h"
 
 
-HFONT wingdi_CreatePointFont(int nPointSize, const char * pszFaceName, HDC hdc, LOGFONTW *plf)
-{
-
-   LOGFONTW lF;
-
-   if (plf == nullptr)
-   {
-      plf = &lF;
-      xxf_zero(plf);
-      plf->lfCharSet = DEFAULT_CHARSET;
-
-   }
-
-
-
-   plf->lfHeight = nPointSize;
-
-   wstring wstr(pszFaceName);
-
-
-   wstr = wstr.substr(0, sizeof(plf->lfFaceName));
-
-   wcsncpy(plf->lfFaceName, wstr, sizeof(plf->lfFaceName) / sizeof(wchar_t));
-
-   return wingdi_CreatePointFontIndirect(plf, hdc);
-
-}
-
-
-// pLogFont->nHeight is interpreted as PointSize * 10
-HFONT wingdi_CreatePointFontIndirect(LOGFONTW* pLogFont, HDC hdc)
-
-{
-
-   LOGFONTW & logFont = *pLogFont;
-
-
-   POINT point;
-   // 72 points/inch, 10 decipoints/point
-   point.y = ::MulDiv(::GetDeviceCaps(hdc, LOGPIXELSY), logFont.lfHeight, 720);
-   point.x = 0;
-   ::DPtoLP(hdc, &point, 1);
-   POINT pointOrg = { 0, 0 };
-   ::DPtoLP(hdc, &pointOrg, 1);
-   logFont.lfHeight = -abs(point.y - pointOrg.y);
-
-   logFont.lfQuality = CLEARTYPE_NATURAL_QUALITY;
-
-   HFONT hfont = ::CreateFontIndirectW(&logFont);
-
-   if (::GetObjectW(hfont, sizeof(logFont), pLogFont))
-
-   {
-
-      output_debug_string("got log font");
-   }
-
-
-
-   return hfont;
-
-}
+//HFONT wingdi_CreatePointFont(int nPointSize, const char * pszFaceName, HDC hdc, LOGFONTW *plf)
+//{
+//
+//   LOGFONTW lF;
+//
+//   if (plf == nullptr)
+//   {
+//      plf = &lF;
+//      xxf_zero(plf);
+//      plf->lfCharSet = DEFAULT_CHARSET;
+//
+//   }
+//
+//
+//
+//   plf->lfHeight = nPointSize;
+//
+//   wstring wstr(pszFaceName);
+//
+//
+//   wstr = wstr.substr(0, sizeof(plf->lfFaceName));
+//
+//   wcsncpy(plf->lfFaceName, wstr, sizeof(plf->lfFaceName) / sizeof(wchar_t));
+//
+//   return wingdi_CreatePointFontIndirect(plf, hdc);
+//
+//}
+//
+//
+//// pLogFont->nHeight is interpreted as PointSize * 10
+//HFONT wingdi_CreatePointFontIndirect(LOGFONTW* pLogFont, HDC hdc)
+//
+//{
+//
+//   LOGFONTW & logFont = *pLogFont;
+//
+//
+//   POINT point;
+//   // 72 points/inch, 10 decipoints/point
+//   point.y = ::MulDiv(::GetDeviceCaps(hdc, LOGPIXELSY), logFont.lfHeight, 720);
+//   point.x = 0;
+//   ::DPtoLP(hdc, &point, 1);
+//   POINT pointOrg = { 0, 0 };
+//   ::DPtoLP(hdc, &pointOrg, 1);
+//   logFont.lfHeight = -abs(point.y - pointOrg.y);
+//
+//   logFont.lfQuality = CLEARTYPE_NATURAL_QUALITY;
+//
+//   HFONT hfont = ::CreateFontIndirectW(&logFont);
+//
+//   if (::GetObjectW(hfont, sizeof(logFont), pLogFont))
+//
+//   {
+//
+//      output_debug_string("got log font");
+//   }
+//
+//
+//
+//   return hfont;
+//
+//}
 
 
 namespace draw2d
@@ -324,7 +324,7 @@ namespace draw2d
    CLASS_DECL_AURA void wingdi_enum_fonts(::draw2d::font_enum_item_array & itema, bool bRaster, bool bTrueType, bool bOther)
    {
 
-      wingdi_font_enum fonts(itema, bRaster, bTrueType, bOther);
+     wingdi_font_enum fonts(itema, bRaster, bTrueType, bOther);
 
    }
 
@@ -332,128 +332,128 @@ namespace draw2d
    ::e_char_set wingdi_get_cs(int iCs)
    {
 
-      if (iCs == CHINESEBIG5_CHARSET)
-      {
+     if (iCs == CHINESEBIG5_CHARSET)
+     {
 
-         return ::char_set_chinesebig5;
+        return ::char_set_chinesebig5;
 
-      }
-      else if (iCs == GB2312_CHARSET)
-      {
+     }
+     else if (iCs == GB2312_CHARSET)
+     {
 
-         return ::char_set_gb2312;
+        return ::char_set_gb2312;
 
-      }
-      else if (iCs == SHIFTJIS_CHARSET)
-      {
+     }
+     else if (iCs == SHIFTJIS_CHARSET)
+     {
 
-         return ::char_set_shiftjis;
+        return ::char_set_shiftjis;
 
-      }
-      else if (iCs == ANSI_CHARSET)
-      {
+     }
+     else if (iCs == ANSI_CHARSET)
+     {
 
-         return ::char_set_ansi;
+        return ::char_set_ansi;
 
-      }
-      else if (iCs == SYMBOL_CHARSET)
-      {
+     }
+     else if (iCs == SYMBOL_CHARSET)
+     {
 
-         return ::char_set_symbol;
+        return ::char_set_symbol;
 
-      }
-      else if (iCs == OEM_CHARSET)
-      {
+     }
+     else if (iCs == OEM_CHARSET)
+     {
 
-         return ::char_set_default;
+        return ::char_set_default;
 
-      }
-      else if (iCs == DEFAULT_CHARSET)
-      {
+     }
+     else if (iCs == DEFAULT_CHARSET)
+     {
 
-         return ::char_set_default;
+        return ::char_set_default;
 
-      }
-      else if (iCs == HEBREW_CHARSET)
-      {
+     }
+     else if (iCs == HEBREW_CHARSET)
+     {
 
-         return ::char_set_hebrew;
+        return ::char_set_hebrew;
 
-      }
-      else if (iCs == ARABIC_CHARSET)
-      {
+     }
+     else if (iCs == ARABIC_CHARSET)
+     {
 
-         return ::char_set_arabic;
+        return ::char_set_arabic;
 
-      }
-      else if (iCs == GREEK_CHARSET)
-      {
+     }
+     else if (iCs == GREEK_CHARSET)
+     {
 
-         return ::char_set_greek;
+        return ::char_set_greek;
 
-      }
-      else if (iCs == TURKISH_CHARSET)
-      {
+     }
+     else if (iCs == TURKISH_CHARSET)
+     {
 
-         return ::char_set_turkish;
+        return ::char_set_turkish;
 
-      }
-      else if (iCs == VIETNAMESE_CHARSET)
-      {
+     }
+     else if (iCs == VIETNAMESE_CHARSET)
+     {
 
-         return ::char_set_vietnamese;
+        return ::char_set_vietnamese;
 
-      }
-      else if (iCs == THAI_CHARSET)
-      {
+     }
+     else if (iCs == THAI_CHARSET)
+     {
 
-         return ::char_set_thai;
+        return ::char_set_thai;
 
-      }
-      else if (iCs == EASTEUROPE_CHARSET)
-      {
+     }
+     else if (iCs == EASTEUROPE_CHARSET)
+     {
 
-         return ::char_set_easteurope;
+        return ::char_set_easteurope;
 
-      }
-      else if (iCs == RUSSIAN_CHARSET)
-      {
+     }
+     else if (iCs == RUSSIAN_CHARSET)
+     {
 
-         return ::char_set_russian;
+        return ::char_set_russian;
 
-      }
-      else if (iCs == JOHAB_CHARSET)
-      {
+     }
+     else if (iCs == JOHAB_CHARSET)
+     {
 
-         return ::char_set_johab;
+        return ::char_set_johab;
 
-      }
-      else if (iCs == HANGUL_CHARSET)
-      {
+     }
+     else if (iCs == HANGUL_CHARSET)
+     {
 
-         return ::char_set_hangul;
+        return ::char_set_hangul;
 
-      }
-      else if (iCs == BALTIC_CHARSET)
-      {
+     }
+     else if (iCs == BALTIC_CHARSET)
+     {
 
-         return ::char_set_baltic;
+        return ::char_set_baltic;
 
-      }
-      else if (iCs == MAC_CHARSET)
-      {
+     }
+     else if (iCs == MAC_CHARSET)
+     {
 
-         return ::char_set_mac;
+        return ::char_set_mac;
 
-      }
-      else
-      {
+     }
+     else
+     {
 
-         output_debug_string("OTHER CHAR SET");
+        output_debug_string("OTHER CHAR SET");
 
-      }
+     }
 
-      return ::char_set_default;
+     return ::char_set_default;
 
    }
 
@@ -464,66 +464,66 @@ namespace draw2d
 CLASS_DECL_AURA HBITMAP CreateAlphaBitmapV5(const ::image * pimage)
 {
 
-   if (!pimage->is_ok())
-   {
+  if (!pimage->is_ok())
+  {
 
-      return nullptr;
+     return nullptr;
 
-   }
+  }
 
-   //   HDC hMemDC;
-   DWORD dwWidth, dwHeight;
-   BITMAPV5HEADER bi;
-   // HBITMAP hOldBitmap;
-   HBITMAP hBitmap;
-   void *pBits;
+  //   HDC hMemDC;
+  DWORD dwWidth, dwHeight;
+  BITMAPV5HEADER bi;
+  // HBITMAP hOldBitmap;
+  HBITMAP hBitmap;
+  void *pBits;
 
-   HCURSOR hAlphaCursor = nullptr;
+  HCURSOR hAlphaCursor = nullptr;
 
-   dwWidth = pimage->width();  // width of the Bitmap V5 Dib bitmap
-   dwHeight = pimage->height();  // height of the Bitmap V5 Dib bitmap
+  dwWidth = pimage->width();  // width of the Bitmap V5 Dib bitmap
+  dwHeight = pimage->height();  // height of the Bitmap V5 Dib bitmap
 
-   ZeroMemory(&bi, sizeof(BITMAPV5HEADER));
-   bi.bV5Size = sizeof(BITMAPV5HEADER);
-   bi.bV5Width = dwWidth;
-   bi.bV5Height = -(LONG)dwHeight;
-   bi.bV5Planes = 1;
-   bi.bV5BitCount = 32;
-   bi.bV5Compression = BI_BITFIELDS;
-   // The following mask specification specifies a supported 32 BPP
-   // alpha format for Windows XP.
-   bi.bV5RedMask = 0x00FF0000;
-   bi.bV5GreenMask = 0x0000FF00;
-   bi.bV5BlueMask = 0x000000FF;
-   bi.bV5AlphaMask = 0xFF000000;
+  ZeroMemory(&bi, sizeof(BITMAPV5HEADER));
+  bi.bV5Size = sizeof(BITMAPV5HEADER);
+  bi.bV5Width = dwWidth;
+  bi.bV5Height = -(LONG)dwHeight;
+  bi.bV5Planes = 1;
+  bi.bV5BitCount = 32;
+  bi.bV5Compression = BI_BITFIELDS;
+  // The following mask specification specifies a supported 32 BPP
+  // alpha format for Windows XP.
+  bi.bV5RedMask = 0x00FF0000;
+  bi.bV5GreenMask = 0x0000FF00;
+  bi.bV5BlueMask = 0x000000FF;
+  bi.bV5AlphaMask = 0xFF000000;
 
-   HDC hdc;
-   hdc = GetDC(nullptr);
+  HDC hdc;
+  hdc = GetDC(nullptr);
 
-   // Create the DIB section with an alpha channel.
-   hBitmap = CreateDIBSection(hdc, (BITMAPINFO *)&bi, DIB_RGB_COLORS, (void **)&pBits, nullptr, (DWORD)0);
+  // Create the DIB section with an alpha channel.
+  hBitmap = CreateDIBSection(hdc, (BITMAPINFO *)&bi, DIB_RGB_COLORS, (void **)&pBits, nullptr, (DWORD)0);
 
 
-   //hMemDC = CreateCompatibleDC(hdc);
-   ReleaseDC(nullptr, hdc);
+  //hMemDC = CreateCompatibleDC(hdc);
+  ReleaseDC(nullptr, hdc);
 
-   // Draw something on the DIB section.
-   //hOldBitmap = (HBITMAP)set(hMemDC,hBitmap);
-   //PatBlt(hMemDC,0,0,dwWidth,dwHeight,WHITENESS);
-   //SetTextColor(hMemDC,RGB(0,0,0));
-   //SetBkMode(hMemDC,TRANSPARENT);
-   //text_out(hMemDC,0,9,"rgba",4);
-   //set(hMemDC,hOldBitmap);
-   //DeleteDC(hMemDC);
+  // Draw something on the DIB section.
+  //hOldBitmap = (HBITMAP)set(hMemDC,hBitmap);
+  //PatBlt(hMemDC,0,0,dwWidth,dwHeight,WHITENESS);
+  //SetTextColor(hMemDC,RGB(0,0,0));
+  //SetBkMode(hMemDC,TRANSPARENT);
+  //text_out(hMemDC,0,9,"rgba",4);
+  //set(hMemDC,hOldBitmap);
+  //DeleteDC(hMemDC);
 
-   // Set the alpha values for each pixel in the cursor so that
-   // the complete cursor is semi-transparent.
+  // Set the alpha values for each pixel in the cursor so that
+  // the complete cursor is semi-transparent.
 
-   int iStrideDst = dwWidth * sizeof(COLORREF);
+  int iStrideDst = dwWidth * sizeof(COLORREF);
 
-   ::copy_colorref((COLORREF *)pBits, pimage->width(), pimage->height(), iStrideDst, pimage->get_data(), pimage->scan_size());
+  ::copy_colorref((COLORREF *)pBits, pimage->width(), pimage->height(), iStrideDst, pimage->get_data(), pimage->scan_size());
 
-   return hBitmap;
+  return hBitmap;
 
 }
 
@@ -531,38 +531,38 @@ CLASS_DECL_AURA HBITMAP CreateAlphaBitmapV5(const ::image * pimage)
 HCURSOR CreateAlphaIcon(const ::image * pimage, bool bIcon, int xHotSpot, int yHotSpot)
 {
 
-   if (!pimage->is_ok())
-   {
+  if (!pimage->is_ok())
+  {
 
-      return nullptr;
+     return nullptr;
 
-   }
+  }
 
-   HBITMAP hBitmap = ::CreateAlphaBitmapV5(pimage);
+  HBITMAP hBitmap = ::CreateAlphaBitmapV5(pimage);
 
-   // Create an empty mask bitmap.
-   HBITMAP hMonoBitmap = CreateBitmap(pimage->width(), pimage->height(), 1, 1, nullptr);
+  // Create an empty mask bitmap.
+  HBITMAP hMonoBitmap = CreateBitmap(pimage->width(), pimage->height(), 1, 1, nullptr);
 
-   if (bIcon)
-   {
-      xHotSpot = 0;
-      yHotSpot = 0;
-   }
+  if (bIcon)
+  {
+     xHotSpot = 0;
+     yHotSpot = 0;
+  }
 
-   ICONINFO ii;
-   ii.fIcon = bIcon ? TRUE : FALSE;  // Change fIcon to TRUE to create an alpha icon
-   ii.xHotspot = xHotSpot;
-   ii.yHotspot = yHotSpot;
-   ii.hbmMask = hMonoBitmap;
-   ii.hbmColor = hBitmap;
+  ICONINFO ii;
+  ii.fIcon = bIcon ? TRUE : FALSE;  // Change fIcon to TRUE to create an alpha icon
+  ii.xHotspot = xHotSpot;
+  ii.yHotspot = yHotSpot;
+  ii.hbmMask = hMonoBitmap;
+  ii.hbmColor = hBitmap;
 
-   // Create the alpha cursor with the alpha DIB section.
-   HICON hicon = CreateIconIndirect(&ii);
+  // Create the alpha cursor with the alpha DIB section.
+  HICON hicon = CreateIconIndirect(&ii);
 
-   DeleteObject(hBitmap);
-   DeleteObject(hMonoBitmap);
+  DeleteObject(hBitmap);
+  DeleteObject(hMonoBitmap);
 
-   return hicon;
+  return hicon;
 }
 
 
@@ -632,20 +632,22 @@ HCURSOR imaging::load_default_cursor(e_cursor ecursor)
 }
 
 
-
-// CreateHITMAP (adapted)
-// Adapted from
-// Marius Bancila's Blog
-// C++,.NET,Windows programming & others
-// (CAmiloST's opinion [Sato's opinion] why 's and .NET?, isn't ++ enough or needed more .Net or exquisite type of coffe?!?!?! or snake or something else?!?!
-// Marius Bancila
-// Software Developer
-// Microsoft MVP VisualC++
-// Cofounder of Codexpert
-// www.mariusbancila.ro
-// http://mariusbancila.ro/blog/tag/wic/
-// Display images as you type in C++
-// Marius Bancila C++ 2011 - 08 - 04 1 comment
+//
+//// CreateHITMAP (adapted)
+//// Adapted from
+//// Marius Bancila's Blog
+//// C++,.NET,Windows programming & others
+//// (CAmiloST's opinion [Sato's opinion] why 's and .NET?, isn't ++ enough or needed more .Net or exquisite type of coffe?!?!?! or snake or something else?!?!
+//// Marius Bancila
+//// Software Developer
+//// Microsoft MVP VisualC++
+//// Cofounder of Codexpert
+//// www.mariusbancila.ro
+//// http://mariusbancila.ro/blog/tag/wic/
+//// Display images as you type in C++
+//// Marius Bancila C++ 2011 - 08 - 04 1 comment
+//
+//
 
 
 CLASS_DECL_AURA HBITMAP CreateHBITMAP(pixmap * ppixmap)
@@ -654,6 +656,7 @@ CLASS_DECL_AURA HBITMAP CreateHBITMAP(pixmap * ppixmap)
    pixmap pixmap;
 
    pixmap.m_iScan = ppixmap->width() * sizeof(COLORREF);
+
    pixmap.m_size = ppixmap->size();
 
    HBITMAP hbitmap = CreateHBITMAP2(&pixmap);
@@ -709,117 +712,120 @@ CLASS_DECL_AURA HBITMAP CreateHBITMAP2(pixmap * ppixmap)
 }
 
 
-//
-//Gdiplus::Status HBitmapToBitmap(HBITMAP source, Gdiplus::PixelFormat pixel_format, Gdiplus::Bitmap** result_out)
-//{
-//   BITMAP source_info = { 0 };
-//   if (!::GetObject(source, sizeof(source_info), &source_info))
-//      return Gdiplus::GenericError;
-//
-//   Gdiplus::Status s;
-//
-//   std::auto_ptr< Gdiplus::Bitmap > target(new Gdiplus::Bitmap(source_info.bmWidth, source_info.bmHeight, pixel_format));
-//   if (!target.get())
-//      return Gdiplus::OutOfMemory;
-//   if ((s = target->GetLastStatus()) != Gdiplus::Ok)
-//      return s;
-//
-//   Gdiplus::BitmapData target_info;
-//   Gdiplus::Rect rect(0, 0, source_info.bmWidth, source_info.bmHeight);
-//
-//   s = target->LockBits(&rect, Gdiplus::ImageLockModeWrite, pixel_format, &target_info);
-//   if (s != Gdiplus::Ok)
-//      return s;
-//
-//   if (target_info.Stride != source_info.bmWidthBytes)
-//      return Gdiplus::InvalidParameter; // pixel_format is wrong!
-//
-//   CopyMemory(target_info.Scan0, source_info.bmBits, source_info.bmWidthBytes * source_info.bmHeight);
-//
-//   s = target->UnlockBits(&target_info);
-//   if (s != Gdiplus::Ok)
-//      return s;
-//
-//   *result_out = target.release();
-//
-//   return Gdiplus::Ok;
-//}
-
-
-
-//HBITMAP image32_from_freeimage(FIBITMAP *pfibitmap)
-//{
-//
-//   if (pfibitmap == nullptr)
-//   {
-//
-//      return nullptr;
-//
-//   }
-//
-//   FIBITMAP * image32 = FreeImage_ConvertTo32Bits(pfibitmap);
-//
-//   if (image32 == nullptr)
-//   {
-//
-//      return nullptr;
-//
-//   }
-//
-//   BITMAPINFO * pbi = FreeImage_GetInfo(image32);
-//
-//   void * pdata = FreeImage_GetBits(image32);
-//
-//   COLORREF * pcolorref = nullptr;
-//
-//   BITMAPINFO info;
-//
-//   __memset(&info, 0, sizeof(info));
-//
-//   info.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
-//   info.bmiHeader.biWidth = pbi->bmiHeader.biWidth;
-//   info.bmiHeader.biHeight = pbi->bmiHeader.biHeight;
-//   info.bmiHeader.biPlanes = 1;
-//   info.bmiHeader.biBitCount = 32;
-//   info.bmiHeader.biCompression = BI_RGB;
-//   info.bmiHeader.biSizeImage = pbi->bmiHeader.biWidth * pbi->bmiHeader.biHeight * 4;
+////
+////Gdiplus::Status HBitmapToBitmap(HBITMAP source, Gdiplus::PixelFormat pixel_format, Gdiplus::Bitmap** result_out)
+////{
+////   BITMAP source_info = { 0 };
+////   if (!::GetObject(source, sizeof(source_info), &source_info))
+////      return Gdiplus::GenericError;
+////
+////   Gdiplus::Status s;
+////
+////   std::auto_ptr< Gdiplus::Bitmap > target(new Gdiplus::Bitmap(source_info.bmWidth, source_info.bmHeight, pixel_format));
+////   if (!target.get())
+////      return Gdiplus::OutOfMemory;
+////   if ((s = target->GetLastStatus()) != Gdiplus::Ok)
+////      return s;
+////
+////   Gdiplus::BitmapData target_info;
+////   Gdiplus::Rect rect(0, 0, source_info.bmWidth, source_info.bmHeight);
+////
+////   s = target->LockBits(&rect, Gdiplus::ImageLockModeWrite, pixel_format, &target_info);
+////   if (s != Gdiplus::Ok)
+////      return s;
+////
+////   if (target_info.Stride != source_info.bmWidthBytes)
+////      return Gdiplus::InvalidParameter; // pixel_format is wrong!
+////
+////   CopyMemory(target_info.Scan0, source_info.bmBits, source_info.bmWidthBytes * source_info.bmHeight);
+////
+////   s = target->UnlockBits(&target_info);
+////   if (s != Gdiplus::Ok)
+////      return s;
+////
+////   *result_out = target.release();
+////
+////   return Gdiplus::Ok;
+////}
 //
 //
-//   HBITMAP hDib = ::CreateDIBSection(nullptr, &info, DIB_RGB_COLORS, (void **)&pcolorref, nullptr, 0);
 //
-//   if (hDib != nullptr)
-//   {
-//      HDC hdc = ::GetDC(nullptr);
+////HBITMAP image32_from_freeimage(FIBITMAP *pfibitmap)
+////{
+////
+////   if (pfibitmap == nullptr)
+////   {
+////
+////      return nullptr;
+////
+////   }
+////
+////   FIBITMAP * image32 = FreeImage_ConvertTo32Bits(pfibitmap);
+////
+////   if (image32 == nullptr)
+////   {
+////
+////      return nullptr;
+////
+////   }
+////
+////   BITMAPINFO * pbi = FreeImage_GetInfo(image32);
+////
+////   void * pdata = FreeImage_GetBits(image32);
+////
+////   COLORREF * pcolorref = nullptr;
+////
+////   BITMAPINFO info;
+////
+////   __memset(&info, 0, sizeof(info));
+////
+////   info.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+////   info.bmiHeader.biWidth = pbi->bmiHeader.biWidth;
+////   info.bmiHeader.biHeight = pbi->bmiHeader.biHeight;
+////   info.bmiHeader.biPlanes = 1;
+////   info.bmiHeader.biBitCount = 32;
+////   info.bmiHeader.biCompression = BI_RGB;
+////   info.bmiHeader.biSizeImage = pbi->bmiHeader.biWidth * pbi->bmiHeader.biHeight * 4;
+////
+////
+////   HBITMAP hDib = ::CreateDIBSection(nullptr, &info, DIB_RGB_COLORS, (void **)&pcolorref, nullptr, 0);
+////
+////   if (hDib != nullptr)
+////   {
+////      HDC hdc = ::GetDC(nullptr);
+////
+////      if (pbi->bmiHeader.biHeight != SetDIBits(
+////         hdc,
+////         hDib,
+////         0,
+////         pbi->bmiHeader.biHeight,
+////         pdata,
+////         pbi,
+////         DIB_RGB_COLORS))
+////      {
+////
+////         ASSERT(FALSE);
+////      }
+////
+////      ::ReleaseDC(nullptr, hdc);
+////
+////   }
+////
+////   FreeImage_Unload(image32);
+////
+////   FreeImage_Unload(pimage);
+////
+////   return hDib;
+////
+////}
 //
-//      if (pbi->bmiHeader.biHeight != SetDIBits(
-//         hdc,
-//         hDib,
-//         0,
-//         pbi->bmiHeader.biHeight,
-//         pdata,
-//         pbi,
-//         DIB_RGB_COLORS))
-//      {
 //
-//         ASSERT(FALSE);
-//      }
-//
-//      ::ReleaseDC(nullptr, hdc);
-//
-//   }
-//
-//   FreeImage_Unload(image32);
-//
-//   FreeImage_Unload(pimage);
-//
-//   return hDib;
-//
-//}
-
-
 CLASS_DECL_AURA float os_get_dpi()
 {
 
    return 96.0f;
 
 }
+
+
+

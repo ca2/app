@@ -80,7 +80,7 @@ namespace filemanager
          for(i32 i = 1; i < stra.get_size(); i++)
          {
             strCompare = stra[i].folder();
-            for(i32 j = 0; j < MIN(strCompare.get_length(),strBase.get_length()); j++)
+            for(i32 j = 0; j < min(strCompare.get_length(),strBase.get_length()); j++)
             {
                if(strCompare[j] != strBase[j])
                {
@@ -726,7 +726,7 @@ namespace filemanager
          if(Context.dir().is(pathaExpand[i]) && !::str::ends_ci(pathaExpand[i],".zip"))
          {
 
-            listingExpanded.rls(pathaExpand[i]);
+            Application.dir().rls(listingExpanded, pathaExpand[i]);
 
          }
          else

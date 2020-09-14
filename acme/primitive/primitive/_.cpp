@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-::mutex * g_pmutexChildren = nullptr;
+extern ::mutex * g_pmutexChildren;
 
 void _debug_debug_string_string()
 {

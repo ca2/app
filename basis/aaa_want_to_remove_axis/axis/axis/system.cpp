@@ -21,7 +21,7 @@ namespace axis
    }
 
 
-   ::estatus     system::initialize_system(::object * pobjectContext, app_core * pappcore)
+   ::estatus     system::initialize_system(::layered * pobjectContext, app_core * pappcore)
    {
 
       auto estatus = ::aura::system::initialize_system(pobjectContext, pappcore);
@@ -301,7 +301,7 @@ namespace axis
 
       //axis::application::term_application();
 
-      //::aura::del(m_phtml);
+      //::acme::del(m_phtml);
 
       try
       {

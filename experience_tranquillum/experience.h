@@ -24,7 +24,7 @@ namespace experience
             virtual void update() override;
 
 
-            virtual ::estatus initialize(::object * pobjectContext) override;
+            virtual ::estatus initialize(::layered * pobjectContext) override;
 
             virtual void get_frame_list(string_array & stra) override;
 

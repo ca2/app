@@ -34,7 +34,7 @@ namespace windows
       virtual ~shell();
 
 
-      virtual ::estatus initialize(::object * pobjectContext) override;
+      virtual ::estatus initialize(::layered * pobjectContext) override;
 
 
       virtual i32 impl_get_file_image(const image_key & key) override;

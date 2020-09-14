@@ -49,7 +49,7 @@ namespace account
       virtual ~user();
       
 
-      virtual ::estatus initialize(::object * pobjectContext) override;
+      virtual ::estatus initialize(::layered * pobjectContext) override;
 
 
       virtual void logon_local(string strAccount);

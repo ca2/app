@@ -9,12 +9,12 @@
 //
 //
 //   class CLASS_DECL_SPHERE department :
-//      virtual public ::aura::department
+//      virtual public ::apex::department
 //   {
 //   public:
 //
 //
-//      department(::object * pobject);
+//      department(::layered * pobjectContext);
 //      virtual ~department();
 //
 //

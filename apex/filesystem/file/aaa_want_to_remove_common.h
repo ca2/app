@@ -1,7 +1,7 @@
 #pragma once
 
 
-//#include "aura/primitive/primitive/memory.h"
+//#include "apex/primitive/primitive/memory.h"
 
 
 //CLASS_DECL_APEX memory file_as_memory(const char * path);
@@ -41,4 +41,4 @@ bool write_memory_to_file(HANDLE hFile, const void * lpBuf, memsize nCount, mems
 #endif
 
 
-#include "aura/filesystem/file/dir.h"
+#include "apex/filesystem/file/dir.h"

@@ -1,12 +1,12 @@
 #pragma once
 
 
-namespace aura
+namespace apex
 {
 
 
    class CLASS_DECL_APEX library:
-      virtual public ::aura::single_application_library < application >,
+      virtual public ::apex::single_application_library < application >,
       virtual public ::filehandler::menu_library
    {
    public:
@@ -21,12 +21,12 @@ namespace aura
       virtual void get_extension_app(string_array & straApp,const char * pszExtension);
 
 
-      //virtual __pointer(::aura::application) get_new_application(const char * pszAppId);
+      //virtual __pointer(::apex::application) get_new_application(const char * pszAppId);
 
 
    };
 
 
-} // namespace aura
+} // namespace apex
 
 

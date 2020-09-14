@@ -42,7 +42,8 @@ namespace zip
 
       file_pointer spfile(e_create_new);
 
-      spfile->initialize(this);
+      __throw(todo("object"));
+      //spfile->initialize(this);
 
       try
       {

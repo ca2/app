@@ -28,7 +28,7 @@ UINT legacy_get_dpi_for_system()
 
    }
 
-   return MAX(dpiX, dpiY);
+   return max(dpiX, dpiY);
 
 }
 

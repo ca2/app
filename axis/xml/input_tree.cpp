@@ -5,7 +5,7 @@
 namespace xml
 {
 
-   input_tree::input_tree(::object * pobjectContext, const string & strXml) :
+   input_tree::input_tree(::layered * pobjectContext, const string & strXml) :
       ::object(pobjectContext),
       tree_base(pobjectContext)
    {
@@ -17,7 +17,7 @@ namespace xml
    }
 
 
-   input_tree::input_tree(::object * pobjectContext) :
+   input_tree::input_tree(::layered * pobjectContext) :
       ::object(pobjectContext),
       tree_base(pobjectContext)
    {
@@ -27,7 +27,7 @@ namespace xml
    }
 
 
-   input_tree::input_tree(::object * pobjectContext, tree_schema * pschema) :
+   input_tree::input_tree(::layered * pobjectContext, tree_schema * pschema) :
       ::object(pobjectContext),
       tree_base(pobjectContext, pschema)
    {

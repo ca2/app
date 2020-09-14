@@ -127,7 +127,7 @@ namespace base
       virtual ~session();
 //
 //
-      virtual ::estatus     initialize(::object * pobjectContext) override;
+      virtual ::estatus     initialize(::layered * pobjectContext) override;
 //
 //      inline ::userpresence::department & userpresence() { return *m_puserpresence; }
 //
@@ -202,7 +202,7 @@ namespace base
 //      virtual string get_locale_schema_dir() override;
 //
 //
-//      //virtual ::estatus     initialize(::object * pobjectContext) override;
+//      //virtual ::estatus     initialize(::layered * pobjectContext) override;
 //
 //
 //      virtual ::user::interaction * get_session_window();
@@ -241,7 +241,7 @@ namespace base
 //
 //      virtual bool open_by_file_extension(::create * pcc);
 //
-//      //__pointer(::aura::application) get_new_application(::object * pobjectContext, const char * pszAppId);
+//      //__pointer(::aura::application) get_new_application(::layered * pobjectContext, const char * pszAppId);
 //
 //      inline ::aura::savings &                  savings()      { return *m_psavings; }
 //
@@ -371,7 +371,7 @@ namespace base
 //
 //
 //
-//      //virtual ::estatus initialize(::object* pobjectContext) override;
+//      //virtual ::estatus initialize(::layered * pobjectContext) override;
 //
 //      virtual void install_message_routing(::channel* pchannel) override;
 //
@@ -426,7 +426,7 @@ namespace base
 //
 //      //virtual void will_use_view_hint(::id idView);
 //
-//      //virtual void on_app_request_bergedge_callback(::object * pobject);
+//      //virtual void on_app_request_bergedge_callback(::layered * pobjectContext);
 //
 //      virtual ::draw2d::font_list* get_single_column_font_list();
 //
@@ -524,7 +524,7 @@ namespace base
 //      //virtual __pointer(::user::impact)                      get_view();
 //
 //
-//      //virtual ::estatus     initialize(::object* pobjectContext) override;
+//      //virtual ::estatus     initialize(::layered * pobjectContext) override;
 //
 //
 //      //virtual void frame_pre_translate_message(::message::message* pmessage) override;

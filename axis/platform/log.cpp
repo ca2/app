@@ -219,7 +219,7 @@ namespace axis
    log::~log()
    {
 
-      //::aura::del(m_ptrace);
+      //::acme::del(m_ptrace);
 
    }
 
@@ -308,7 +308,7 @@ namespace axis
    //}
 
 
-   void log::__tracea(::generic_object * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
+   void log::__tracea(::generic * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
    {
 
       const char * pszTopicText = ::is_set(pobjectContext) ? pobjectContext->topic_text() : nullptr;

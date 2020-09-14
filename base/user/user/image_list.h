@@ -86,10 +86,9 @@ namespace user
 
 
    class CLASS_DECL_BASE image_list_view :
-      virtual public show < margin < image_list > >
+      virtual public show < margin < ::user::image_list > >
    {
    public:
-
 
 
       image_list_view();

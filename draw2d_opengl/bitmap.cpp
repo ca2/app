@@ -74,7 +74,7 @@ namespace draw2d_opengl
    bitmap::~bitmap()
    {
 
-      //::aura::del(m_pbitmap);
+      //::acme::del(m_pbitmap);
 
    }
 
@@ -83,7 +83,7 @@ namespace draw2d_opengl
 
       UNREFERENCED_PARAMETER(pgraphics);
 
-      //::aura::del(m_pbitmap);
+      //::acme::del(m_pbitmap);
 
       //m_pbitmap = new ::plusplus::Bitmap(nWidth, nHeight, plusplus::PixelOffsetModeHighQuality);
 
@@ -197,7 +197,7 @@ namespace draw2d_opengl
    bool bitmap::CreateCompatibleBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight)
    {
 
-//      ::aura::del(m_pbitmap);
+//      ::acme::del(m_pbitmap);
 
       //    m_pbitmap = new ::plusplus::Bitmap(nWidth, nHeight, plusplus::PixelOffsetModeHighQuality);
 
@@ -207,7 +207,7 @@ namespace draw2d_opengl
    bool bitmap::CreateDiscardableBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight)
    {
 
-//      ::aura::del(m_pbitmap);
+//      ::acme::del(m_pbitmap);
 
       //    m_pbitmap = new ::plusplus::Bitmap(nWidth, nHeight, plusplus::PixelOffsetModeHighQuality);
 
@@ -265,7 +265,7 @@ namespace draw2d_opengl
 
    bool bitmap::attach(void * posdata)
    {
-      //::aura::del(m_pbitmap);
+      //::acme::del(m_pbitmap);
       //
       //m_pbitmap = (plusplus::Bitmap *) posdata;
 

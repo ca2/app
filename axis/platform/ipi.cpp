@@ -225,7 +225,7 @@ namespace axis
 
       m_iTaskSeed = 0;
 
-      m_id = "::aura::ipi";
+      m_id = "::apex::ipi";
 
       defer_create_mutex();
 
@@ -249,7 +249,7 @@ namespace axis
    }
 
 
-   ::estatus ipi::initialize(::object * pobjectContext)
+   ::estatus ipi::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);
@@ -540,7 +540,7 @@ started:
 
       string str(pszMessage);
 
-      INFO("aura::ipi::on_receive %s", pszMessage);
+      INFO("apex::ipi::on_receive %s", pszMessage);
 
       if(!::str::begins_eat(str, "call "))
       {

@@ -35,7 +35,7 @@ namespace helloaxis
          bool                                   m_bLoadAiFont;
          void *                                 m_faceAi; // FT_Face m_faceAi;
 
-         application(::object * pobject);
+         application(::layered * pobjectContext);
          virtual ~application();
 
          virtual ::estatus init_instance() override;

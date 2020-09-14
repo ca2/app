@@ -1633,7 +1633,7 @@
     <ClCompile Include="primitive\primitive\interlocked_long.cpp" />
     <ClCompile Include="primitive\primitive\interlocked_long_pulse.cpp" />
     <ClCompile Include="primitive\primitive\job.cpp" />
-    <ClCompile Include="primitive\primitive\generic_object.cpp" />
+    <ClCompile Include="primitive\primitive\generic.cpp" />
     <ClCompile Include="primitive\primitive\memory.cpp" />
     <ClCompile Include="primitive\primitive\memory_base.cpp" />
     <ClCompile Include="primitive\primitive\memory_c.cpp" />
@@ -1775,9 +1775,9 @@
     <ClInclude Include="apex\apex\assert_running_task.h" />
     <ClInclude Include="apex\apex\async.h" />
     <ClInclude Include="apex\apex\atomic2.h" />
-    <ClInclude Include="apex\apex\aura_aura.h" />
-    <ClInclude Include="apex\apex\aura_regex.h" />
-    <ClInclude Include="apex\apex\aura_status.h" />
+    <ClInclude Include="apex\apex\apex_apex.h" />
+    <ClInclude Include="apex\apex\apex_regex.h" />
+    <ClInclude Include="apex\apex\apex_status.h" />
     <ClInclude Include="apex\apex\auto.h" />
     <ClInclude Include="apex\apex\auto_pointer.h" />
     <ClInclude Include="apex\apex\block.h" />
@@ -1880,12 +1880,12 @@
     <ClInclude Include="apex\apex\v8stdint.h" />
     <ClInclude Include="apex\apex\_.h" />
     <ClInclude Include="apex\apex\_impl.h" />
-    <ClInclude Include="apex\aura_policy\aura_c.h" />
-    <ClInclude Include="apex\aura_policy\aura_cpp.h" />
-    <ClInclude Include="apex\aura_policy\aura_policy.h" />
-    <ClInclude Include="apex\aura_policy\aura_policy_objc.h" />
-    <ClInclude Include="apex\aura_policy\aura_policy_objcpp.h" />
-    <ClInclude Include="apex\aura_policy\aura_policy_winrt.h" />
+    <ClInclude Include="apex\apex_policy\apex_c.h" />
+    <ClInclude Include="apex\apex_policy\apex_cpp.h" />
+    <ClInclude Include="apex\apex_policy\apex_policy.h" />
+    <ClInclude Include="apex\apex_policy\apex_policy_objc.h" />
+    <ClInclude Include="apex\apex_policy\apex_policy_objcpp.h" />
+    <ClInclude Include="apex\apex_policy\apex_policy_winrt.h" />
     <ClInclude Include="apex\compress\bsdiff\libbsdiff.h" />
     <ClInclude Include="apex\compress\compress.h" />
     <ClInclude Include="apex\compress\compress_bz.h" />
@@ -2054,7 +2054,7 @@
     </ClInclude>
     <ClInclude Include="apex\os\ansios\ansios_thread.h">
     </ClInclude>
-    <ClInclude Include="apex\os\aura_gdk.h" />
+    <ClInclude Include="apex\os\apex_gdk.h" />
     <ClInclude Include="apex\os\cross.h" />
     <ClInclude Include="apex\os\cross\ansios\ansios.h" />
     <ClInclude Include="apex\os\cross\ansios\ansios_datetime_c.h" />
@@ -2062,7 +2062,7 @@
     <ClInclude Include="apex\os\cross\ansios\ansios_file_raw.h" />
     <ClInclude Include="apex\os\cross\cross.h" />
     <ClInclude Include="apex\os\os2.h" />
-    <ClInclude Include="apex\os\os_aura.h" />
+    <ClInclude Include="apex\os\os_apex.h" />
     <ClInclude Include="apex\os\os_file.h" />
     <ClInclude Include="apex\os\os_graphics.h" />
     <ClInclude Include="apex\os\os_text.h" />
@@ -2883,8 +2883,8 @@
     <ClInclude Include="user\user\_user.h" />
     <ClInclude Include="version.h" />
     <ClInclude Include="_defer.h" />
-    <None Include="apex\apex\aura1.inl" />
-    <None Include="apex\apex\aura2.inl" />
+    <None Include="apex\apex\apex1.inl" />
+    <None Include="apex\apex\apex2.inl" />
     <None Include="apex\apex\block.inl" />
     <None Include="apex\apex\gudo_application2.inl" />
     <None Include="apex\apex\system_factory.inl" />

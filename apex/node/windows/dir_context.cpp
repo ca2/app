@@ -21,7 +21,7 @@ namespace windows
    }
 
 
-   ::estatus dir_context::initialize(::object * pobjectContext)
+   ::estatus dir_context::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);
@@ -329,7 +329,7 @@ namespace windows
    ::file::listing & dir_context::root_ones(::file::listing & listing)
    {
       DWORD dwSize = ::GetLogicalDriveStringsW(0, nullptr);
-      ::apex::malloc < LPWSTR > pszAlloc;
+      ::acme::malloc < LPWSTR > pszAlloc;
 
       pszAlloc.alloc((dwSize + 1) * sizeof(WCHAR));
 
@@ -374,7 +374,6 @@ namespace windows
    ::file::listing & dir_context::ls(::file::listing & listing)
    {
 
-
       if (listing.m_bRecursive)
       {
 
@@ -403,7 +402,7 @@ namespace windows
 
             ::file::listing dira(get_context());
 
-            dira.ls_dir(listing.m_pathUser);
+            Context.dir().ls_dir(dira, listing.m_pathUser);
 
             for (i32 i = 0; i < dira.get_count(); i++)
             {
@@ -422,7 +421,7 @@ namespace windows
 
                }
 
-               listing.ls();
+               Context.dir().ls(listing);
 
             }
 
@@ -490,6 +489,13 @@ namespace windows
          }
 
          listing.m_statusresult.clear();
+
+         if (listing.m_pathFinal.is_empty())
+         {
+
+            listing.m_pathFinal = Context.defer_process_path(listing.m_pathUser);
+
+         }
 
          ::file::path path = listing.m_pathFinal;
 
@@ -580,7 +586,7 @@ namespace windows
 
             ::file::listing dira(get_context());
 
-            dira.ls_dir(listing.m_pathUser);
+            Context.dir().ls_dir(dira, listing.m_pathUser);
 
             for (i32 i = 0; i < dira.get_count(); i++)
             {
@@ -603,7 +609,7 @@ namespace windows
 
                }
 
-               listing.ls();
+               Context.dir().ls(listing);
 
             }
 
@@ -1002,7 +1008,7 @@ namespace windows
       if (bRecursive)
       {
          ::file::listing patha(get_context());
-         patha.ls(psz);
+         Context.dir().ls(patha, psz);
          for (auto & path : patha)
          {
             if (is(path))
@@ -1366,20 +1372,6 @@ namespace windows
 } // namespace windows
 
 
-::file::path dir::bookmark()
-{
-
-   return ::dir::localconfig() / "bookmark";
-
-}
-
-
-::file::path dir::home()
-{
-
-   return ::get_known_folder(FOLDERID_Profile);
-
-}
 
 
 

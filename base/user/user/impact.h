@@ -228,7 +228,7 @@ namespace user
       }
 
 
-      virtual ::estatus initialize(::object* pobjectContext) override
+      virtual ::estatus initialize(::layered * pobjectContext) override
       {
 
          auto estatus = ::user::impact::initialize(pobjectContext);

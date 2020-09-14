@@ -14,7 +14,7 @@ namespace html
       pointer_array < style > m_stylea;
       
 
-      style_sheet(::object * pobject);
+      style_sheet(::layered * pobjectContext);
 
 
       void parse(html_data * pdocument, const char * psz);

@@ -148,9 +148,9 @@ namespace html
          for(index i = 0; i < m_cellholdera.get_size(); i++)
          {
 
-            cxMax += MAX(0, m_columna[i].m_cxMax);
+            cxMax += max(0, m_columna[i].m_cxMax);
 
-            cxMin += MAX(0, m_columna[i].m_cxMin);
+            cxMin += max(0, m_columna[i].m_cxMin);
 
          }
 
@@ -198,7 +198,7 @@ namespace html
                if (iCol >= m_columna.get_size())
                   continue;
 
-               m_columna[iCol].m_cx = MAX(pcell->m_box.width(), m_columna[iCol].m_cx);
+               m_columna[iCol].m_cx = max(pcell->m_box.width(), m_columna[iCol].m_cx);
 
             }
 
@@ -252,7 +252,7 @@ namespace html
 
          pdata->m_pcoredata->m_layoutstate1.m_cya.last() = m_box.height();
 
-         pdata->m_pcoredata->m_layoutstate1.m_cxMax.last() = MAX(m_box.width(), pdata->m_pcoredata->m_layoutstate1.m_cxMax.last());
+         pdata->m_pcoredata->m_layoutstate1.m_cxMax.last() = max(m_box.width(), pdata->m_pcoredata->m_layoutstate1.m_cxMax.last());
 
       }
 

@@ -28,7 +28,7 @@ namespace helloworld
       bool                    m_b001LayoutIgnoreEmpty;
 
 
-      view(::object * pobject);
+      view(::layered * pobjectContext);
       virtual ~view();
 
       virtual void assert_valid() const;

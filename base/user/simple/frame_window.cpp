@@ -92,7 +92,7 @@ simple_frame_window::~simple_frame_window()
 }
 
 
-::estatus simple_frame_window::initialize(::object * pobjectContext)
+::estatus simple_frame_window::initialize(::layered * pobjectContext)
 {
 
    auto estatus = ::experience::frame_window::initialize(pobjectContext);
@@ -621,9 +621,9 @@ void simple_frame_window::_001OnCreate(::message::message * pmessage)
       if (::is_set(pusercreate))
       {
 
-         m_bAutoWindowFrame = pusercreate->m_bAutoWindowFrame;
+         m_bAutoWindowFrame = __user_create(pusercreate)->m_bAutoWindowFrame;
 
-         m_bWindowFrame = pusercreate->m_bWindowFrame;
+         m_bWindowFrame = __user_create(pusercreate)->m_bWindowFrame;
 
       }
 
@@ -1011,7 +1011,7 @@ bool simple_frame_window::pre_create_window(::user::create_struct& cs)
    if(pcreateContext && would_display_notify_icon())
    {
 
-      __pointer(::user::document) pdocument = pcreateContext->m_pusercreate->m_pdocumentCurrent;
+      __pointer(::user::document) pdocument = __user_create(pcreateContext->m_pusercreate)->m_pdocumentCurrent;
 
       if (pdocument->get_document_template()->m_bHiddenOnNotifyIcon)
       {
@@ -1895,7 +1895,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, 
             else if (m_eupdown == updown_down)
             {
 
-               __pointer(::user::document) pdocument = pcreate->m_pusercreate->m_pdocumentCurrent;
+               __pointer(::user::document) pdocument = __user_create(pcreate->m_pusercreate)->m_pdocumentCurrent;
 
                //__pointer(::userex::impact_host) peximpacthost = puiParent;
 
@@ -2176,7 +2176,7 @@ void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::grap
 
    if(get_context_application() == nullptr
          || get_context_application()->get_context_session() == nullptr
-         || get_context_application()->get_context_session()->m_psavings == nullptr)
+         || Session.m_psavings == nullptr)
    {
 
       return;
@@ -2868,7 +2868,7 @@ void simple_frame_window::OnEndSession(bool bEnding)
    if(!bEnding)
       return;
 
-   Application.close(::aura::end_system);
+   Application.close(::apex::e_end_system);
 
 }
 
@@ -3799,7 +3799,7 @@ void simple_frame_window::OnInitialFrameUpdate(bool bMakeVisible)
    if(bMakeVisible)
    {
 
-      OnUpdateToolWindow(bMakeVisible);
+      //OnUpdateToolWindow(bMakeVisible);
 
       InitialFramePosition();
 

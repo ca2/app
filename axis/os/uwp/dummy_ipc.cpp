@@ -15,7 +15,7 @@
 //   {
 //
 //
-//      base::base(::object * pobject) :
+//      base::base(::layered * pobjectContext) :
 //         object(pobject)
 //      {
 //
@@ -39,7 +39,7 @@
 //      }
 //
 //
-//      tx::tx(::object * pobject):
+//      tx::tx(::layered * pobjectContext):
 //         object(pobject),
 //         base(pobject)
 //      {
@@ -145,7 +145,7 @@
 //
 //
 //
-//      rx::rx(::object * pobject) :
+//      rx::rx(::layered * pobjectContext) :
 //         object(pobject),
 //         base(pobject)
 //      {
@@ -276,7 +276,7 @@
 //      bool rx::destroy()
 //      {
 //
-//         ::aura::del(m_pp);
+//         ::acme::del(m_pp);
 //
 //         return true;
 //
@@ -459,7 +459,7 @@
 //
 //      }
 //
-//      ipc::ipc(::object * pobject):
+//      ipc::ipc(::layered * pobjectContext):
 //         object(pobject),
 //         base(pobject),
 //         tx(pobject),

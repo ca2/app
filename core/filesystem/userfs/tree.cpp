@@ -14,20 +14,74 @@ namespace userfs
 
       m_iAnimate = 0;
 
-      //m_iDefaultImage = -1;
-      //m_iDefaultImageSelected = -1;
-
    }
+
 
    tree::~tree()
    {
+
    }
 
+
+   i64 tree::add_ref(OBJ_REF_DBG_PARAMS_DEF)
+   {
+
+      auto c = atomic_increment(&m_countReference);
+
+#if OBJ_REF_DBG
+
+      add_ref_history(p, pszObjRefDbg);
+
+#endif
+
+      return c;
+
+   }
+
+
+   i64 tree::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
+   {
+
+      auto c = atomic_decrement(&m_countReference);
+
+#if OBJ_REF_DBG
+
+      if (c > 0)
+      {
+
+         dec_ref_history(p, pszObjRefDbg);
+
+      }
+
+#endif
+
+      return c;
+
+   }
+
+
+   i64 tree::release(OBJ_REF_DBG_PARAMS_DEF)
+   {
+
+      i64 i = dec_ref(OBJ_REF_DBG_ARGS);
+
+      if (i == 0)
+      {
+
+         delete_this();
+
+      }
+
+      return i;
+
+   }
 
 
    void tree::assert_valid() const
    {
+
    }
+
 
    void tree::dump(dump_context &) const
    {

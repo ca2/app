@@ -433,7 +433,7 @@ namespace user
 
                   double dH = (double)rect.height() / (double)pimageSrc->height();
 
-                  double dMin = MIN(dW, dH);
+                  double dMin = min(dW, dH);
 
                   ::size szNew = pimageSrc->get_size() * dMin;
 

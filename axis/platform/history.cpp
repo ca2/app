@@ -13,7 +13,7 @@ namespace axis
    }
 
 
-   //history::history(::object * pobject) :
+   //history::history(::layered * pobjectContext) :
    //   ::object(pobject)
    //{
 

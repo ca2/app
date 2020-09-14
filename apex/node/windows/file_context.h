@@ -28,7 +28,7 @@ namespace windows
       virtual ~file_context();
 
 
-      virtual ::estatus initialize(::object * pobjectContext) override;
+      virtual ::estatus initialize(::layered * pobjectContext) override;
 
 
       virtual ::estatus init_system() override;
@@ -57,8 +57,8 @@ namespace windows
 
       virtual ::file::path dropbox_info_json() override;
 
-      //virtual ::file::path onedrive_global_ini(::object * pobject) override;
-      //virtual ::file::path onedrive_cid_ini(::object * pobject) override;
+      //virtual ::file::path onedrive_global_ini(::layered * pobjectContext) override;
+      //virtual ::file::path onedrive_cid_ini(::layered * pobjectContext) override;
 
 
    };

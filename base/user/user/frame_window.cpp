@@ -3,6 +3,7 @@
 #include "base/user/user/_user.h"
 #endif
 #include "aura/message.h"
+#include "apex/message/simple_command.h"
 
 
 #ifdef MACOS
@@ -484,7 +485,7 @@ namespace user
 
                   Session.copydesk().image_to_desk(pimage1);
 
-                  Context.save_image(::dir::system() / "control_alt_p.png", pimage1);
+                  Application.image().save_image(::dir::system() / "control_alt_p.png", pimage1);
 
                   ::image_pointer pimage2;
 
@@ -510,7 +511,7 @@ namespace user
 
                   pimage2->get_graphics()->StretchBlt(0, 0, pimage2->width(), pimage2->height(), pimage1->get_graphics(), 0, 0, rect.size().cx, rect.size().cy, SRCCOPY);
 
-                  Context.save_image(::dir::system() / "control_alt_p_w300.png", pimage2);
+                  Application.image().save_image(::dir::system() / "control_alt_p_w300.png", pimage2);
 
                   pkey->m_bRet = true;
 
@@ -858,13 +859,25 @@ namespace user
    bool frame_window::on_create_client(::user::create_struct *, ::create * pcreate)
    {
 
-      if (pcreate != nullptr && (pcreate->m_pusercreate->m_typeNewView || pcreate->m_pusercreate->m_puiNew != nullptr))
+      if (pcreate != nullptr)
       {
-
-         if (::user::create_view(pcreate, this, "pane_first").is_null())
+         
+         auto pusercreate = __user_create(pcreate->m_pusercreate);
+         
+         if (pusercreate != nullptr)
          {
 
-            return false;
+            if (pusercreate->m_typeNewView || pusercreate->m_puiNew != nullptr)
+            {
+
+               if (::user::create_view(pcreate, this, "pane_first").is_null())
+               {
+
+                  return false;
+
+               }
+
+            }
 
          }
 
@@ -1388,7 +1401,7 @@ namespace user
       }
 
       // last but not least, pump through cast
-      ::aura::application* papp = get_context_application();
+      ::apex::application* papp = get_context_application();
 
       if (papp != nullptr)
       {

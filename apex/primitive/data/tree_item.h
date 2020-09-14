@@ -239,7 +239,7 @@ namespace data
 
 
    class CLASS_DECL_APEX tree_item :
-      virtual public generic_object
+      virtual public generic
    {
    public:
 
@@ -279,14 +279,14 @@ namespace data
       virtual i64 add_ref(OBJ_REF_DBG_PARAMS)
       {
 
-         return ::generic_object::add_ref(OBJ_REF_DBG_ARGS);
+         return ::generic::add_ref(OBJ_REF_DBG_ARGS);
 
       }
 
       virtual i64 dec_ref(OBJ_REF_DBG_PARAMS)
       {
 
-         return ::generic_object::dec_ref(OBJ_REF_DBG_ARGS);
+         return ::generic::dec_ref(OBJ_REF_DBG_ARGS);
 
       }
 
@@ -371,7 +371,7 @@ namespace data
 
       virtual string get_text() const;
       virtual index get_image() const;
-      virtual image_list * get_image_list() const;
+      virtual ::image_list * get_image_list() const;
 
 
       void SetParent(tree_item * pparent);
@@ -399,6 +399,6 @@ namespace data
    };
 
 
-} // namespace apex
+} // namespace acme
 
 

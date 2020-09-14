@@ -249,59 +249,6 @@ public:
 
 
 
-namespace multithreading
-{
-
-
-   template < typename THREAD >
-   void wait(__pointer(THREAD) & pthread, const duration & duration = ::duration::infinite())
-   {
-
-      tick tickStart = tick::now();
-
-      while(pthread.is_set() && pthread->thread_get_run() && ::thread_get_run())
-      {
-
-         if(!do_events())
-         {
-
-            Sleep(100);
-
-         }
-
-         if(pthread.is_null())
-         {
-
-            break;
-
-         }
-
-         if(!duration.is_infinite())
-         {
-
-            if((tick::now() - tickStart) > duration.get_total_milliseconds())
-            {
-
-               return;
-
-            }
-
-         }
-
-      }
-
-      if(duration.is_infinite())
-      {
-
-         pthread.release();
-
-      }
-
-   }
-
-
-} // namespace multithreading
-
 
 template < typename PRED >
 inline bool pred_Sleep(int iTime, PRED pred)

@@ -8,16 +8,16 @@ public:
 
    
    ::estatus m_estatus;
-   __pointer(::aura::system) m_psystem;
+   __pointer(::apex::system) m_psystem;
 
    void create_system()
    {
 
-      aura_ref();
+      apex_ref();
 
       m_psystem = ::move_transfer(platform_create_system(::GetModuleHandle(NULL)));
 
-//      m_psystem = __new(::aura::system());
+//      m_psystem = __new(::apex::system());
 
       m_psystem->console_initialize();
 

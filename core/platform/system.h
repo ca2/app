@@ -17,7 +17,7 @@ namespace core
       void common_construct();
 
 
-      virtual ::estatus initialize(::object* pobjectContext) override;
+      virtual ::estatus initialize(::layered * pobjectContext) override;
 
 
    };

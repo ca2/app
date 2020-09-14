@@ -18,7 +18,7 @@ public:
    public:
 
       ::index                 m_iStep;
-      generic_object *        m_p;
+      generic *        m_p;
       string                  m_strNote;
 
    };
@@ -58,7 +58,7 @@ void defer_delete(obj_ref_dbg* p)
 };
 
 
-string object_name(generic_object* p)
+string object_name(generic* p)
 {
 
    iptr i = (iptr)p;
@@ -76,7 +76,7 @@ string object_name(generic_object* p)
 
 #if OBJ_REF_DBG
 
-void generic_object::add_ref_history(generic_object* p, const char* pszObjRefDbg)
+void generic::add_ref_history(generic* p, const char* pszObjRefDbg)
 {
    
    if (!g_bAura)
@@ -127,7 +127,7 @@ void generic_object::add_ref_history(generic_object* p, const char* pszObjRefDbg
 }
 
 
-void generic_object::dec_ref_history(generic_object* p, const char* /*pszObjRefDbgNotUsedCurrently*/)
+void generic::dec_ref_history(generic* p, const char* /*pszObjRefDbgNotUsedCurrently*/)
 {
 
    cslock sl(&::aura::g_csRefDbg);
@@ -151,7 +151,7 @@ void generic_object::dec_ref_history(generic_object* p, const char* /*pszObjRefD
 }
 
 
-void generic_object::check_pending_releases()
+void generic::check_pending_releases()
 {
 
    cslock sl(&::aura::g_csRefDbg);
@@ -186,7 +186,7 @@ void generic_object::check_pending_releases()
 
          ::index iStep = item.m_iStep;
 
-         ::generic_object* pobj = item.m_p;
+         ::generic* pobj = item.m_p;
 
          string str = item.m_strNote;
 

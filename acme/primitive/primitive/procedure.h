@@ -7,13 +7,13 @@ class CLASS_DECL_ACME procedure :
 public:
 
 
-   procedure(const ::id& id = ::id(), ::generic* p = nullptr) : function_base(id, p) {}
+   procedure(const ::id& id = ::id()) : function_base(id) {}
    procedure(const ::procedure& procedure) : function_base((const ::function_base&) procedure) { }
    procedure(const ::function_base& function) : function_base(function) { }
    template < typename PRED >
-   procedure(const ::id& id, PRED pred, ::generic* pobjectHold = nullptr);
+   procedure(const ::id& id, PRED pred);
    template < typename PRED >
-   procedure(PRED pred, ::generic* pobjectHold = nullptr);
+   procedure(PRED pred);
 
 
    ::estatus call() { return ::is_set(m_pobjectTask) ? m_pobjectTask->call() : (::estatus) ::success_none; }

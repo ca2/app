@@ -20,7 +20,7 @@ namespace apex
       map < id, id, string, string >                  m_stringmap;
 
 
-      application_heap(::object * pobject)
+      application_heap(::layered * pobjectContext)
       {
 
       }

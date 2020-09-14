@@ -12,7 +12,7 @@ namespace prompt
 
 
       
-      document(::object * pobject);
+      document(::layered * pobjectContext);
       virtual ~document();
 
 

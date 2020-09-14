@@ -3501,13 +3501,13 @@ bool os_init_windowing()
 void os_term_windowing()
 {
 
-   ::aura::del(osdisplay_data::s_pmutex);
+   ::acme::del(osdisplay_data::s_pmutex);
 
-   ::aura::del(osdisplay_data::s_pdataptra);
+   ::acme::del(osdisplay_data::s_pdataptra);
 
-   ::aura::del(oswindow_data::s_pmutex);
+   ::acme::del(oswindow_data::s_pmutex);
 
-   ::aura::del(oswindow_data::s_pdataptra);
+   ::acme::del(oswindow_data::s_pdataptra);
 
 }
 

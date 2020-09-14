@@ -5,8 +5,8 @@ namespace console
 {
 
 
-   department::department(::object * pobject) :
-      ::aura::department(pobject)
+   department::department(::layered * pobjectContext) :
+      ::apex::department(pobject)
    {
 
    }
@@ -26,7 +26,7 @@ namespace console
       create_factory <console::prompt_frame >();
       create_factory <console::prompt_impact >();
 
-      if(!::aura::department::init_instance())
+      if(!::apex::department::init_instance())
          return false;
 
 

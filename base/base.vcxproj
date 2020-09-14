@@ -1075,6 +1075,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="const\idpool.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">Create</PrecompiledHeader>
@@ -1159,6 +1160,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="callback.h" />
     <ClInclude Include="console.h" />
     <ClInclude Include="const\GLOBAL_ID.h" />
+    <ClInclude Include="const\idpool.h" />
     <ClInclude Include="const\procedure.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="framework_c.h" />
@@ -1316,18 +1318,24 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="user\user\form.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="_defer.h" />
-    <None Include="aura.def" />
+    <None Include="base.def" />
     <None Include="user\user\_impl.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\platform-windows\version.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\acme\acme.vcxproj">
+      <Project>{638b242f-0f21-41c3-9f66-724660046133}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\apex\apex.vcxproj">
+      <Project>{e000ffaf-392f-4e32-bf51-777ca238991f}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\aura\aura.vcxproj">
       <Project>{e000ffaf-392f-4e32-bf51-fd7ed638991f}</Project>
     </ProjectReference>
     <ProjectReference Include="..\axis\axis.vcxproj">
-      <Project>{4c6f5f2b-56ee-485f-924a-f8f0a9c24eb6}</Project>
+      <Project>{a2cbd4ed-ed0f-482b-9b16-f48f21c32835}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

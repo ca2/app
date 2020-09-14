@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_CORE os_object :
-   virtual public ::generic_object
+   virtual public ::generic
 {
 public:
 

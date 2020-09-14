@@ -793,7 +793,7 @@ namespace user
    public:
 
 
-      status_command(::object * pobject);
+      status_command(::layered * pobjectContext);
 
       virtual void Enable(bool bOn);
       virtual void _001SetCheck(::enum_check echeck, const ::action_context & context) override;
@@ -805,8 +805,8 @@ namespace user
    };
 
 
-   status_command::status_command(::object * pobject) :
-      ::user::command(pobject)
+   status_command::status_command(::layered * pobjectContext) :
+      ::user::command(pobjectContext)
    {
 
    }

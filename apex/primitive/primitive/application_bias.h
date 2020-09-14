@@ -17,7 +17,7 @@
 //    public:
 
 
-//       void connect_to(::object * pobject);
+//       void connect_to(::layered * pobjectContext);
 
 //       void on_call_signal(::message::message * pmessage);
 
@@ -32,7 +32,7 @@
 
 
 //    application_bias();
-//    application_bias(::object * pobject);
+//    application_bias(::layered * pobjectContext);
 //    application_bias(const application_bias & bias);
 //    application_bias & operator = (const application_bias & bias);
 //    virtual ~application_bias();

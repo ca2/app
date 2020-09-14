@@ -164,7 +164,7 @@ public:
    map < HANDLE, HANDLE, CT *, CT *> m_permanentMap;
    map < HANDLE, HANDLE, CT *, CT *> m_temporaryMap;
 
-   handle_map(::object * pobject);
+   handle_map(::layered * pobjectContext);
    virtual ~handle_map()
    {
       delete_temp();
@@ -188,7 +188,7 @@ class CLASS_DECL_APEX oswindow_map :
    public handle_map < ::windows::oswindow_handle, ::windows::window >
 {
 public:
-   oswindow_map(::object * pobject) : handle_map < ::windows::oswindow_handle, ::windows::window >(pobject) {}
+   oswindow_map(::layered * pobjectContext) : handle_map < ::windows::oswindow_handle, ::windows::window >(pobject) {}
 };
 
 /*class CLASS_DECL_APEX hdc_map :
@@ -213,7 +213,7 @@ public:
 
 
 template < class HT, class CT >
-handle_map < HT, CT > ::handle_map(::object * pobject) :
+handle_map < HT, CT > ::handle_map(::layered * pobjectContext) :
    ::object(pobject),
    m_permanentMap(papp, 1024),
    m_temporaryMap(papp, 1024),

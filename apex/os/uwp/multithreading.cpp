@@ -82,7 +82,7 @@ void attach_thread_input_to_main_thread(int_bool bAttach)
 }
 
 
-void _on_aura_thread_detach()
+void _on_apex_thread_detach()
 {
 
 }

@@ -13,7 +13,7 @@ namespace filehandler
 
       
 
-      document(::object * pobject);
+      document(::layered * pobjectContext);
       virtual ~document();
 
 

@@ -25,7 +25,7 @@ file_size_table::get_fs_size & file_size_table::get_fs_size::operator = (const g
 }
 
 
-file_size_table::file_size_table(::object * pobject) :
+file_size_table::file_size_table(::layered * pobjectContext) :
    ::object(pobject)
 {
    m_hmap = nullptr;
@@ -230,7 +230,7 @@ void file_size_table::item::update_size_recursive(::object * pobject, index & iI
 
 
 
-DBFileSystemSizeSet::DBFileSystemSizeSet(::object * pobject) :
+DBFileSystemSizeSet::DBFileSystemSizeSet(::layered * pobjectContext) :
    ::object(pobject), m_table(pobject)
 {
    m_iMaxIteration = 230;
@@ -328,7 +328,7 @@ bool DBFileSystemSizeSet::get_fs_size(i64 & i64Size, const char * pszPath, bool 
    return true;
 }
 
-FileSystemSizeWnd::FileSystemSizeWnd(::object * pobject) :
+FileSystemSizeWnd::FileSystemSizeWnd(::layered * pobjectContext) :
    ::object(pobject),
    ::user::interaction_impl *(pobject)
 {
@@ -513,7 +513,7 @@ void FileSystemSizeWnd::_001OnTimer(::timer * ptimer)
 
 }
 
-FileSystemSizeServerThread::FileSystemSizeServerThread(::object * pobject) :
+FileSystemSizeServerThread::FileSystemSizeServerThread(::layered * pobjectContext) :
    ::object(pobject),
    thread(pobject)
 {

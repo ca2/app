@@ -33,7 +33,7 @@ namespace macos
 
 
 
-   ::estatus dir_system::initialize(::object * pobjectContext)
+   ::estatus dir_system::initialize(::layered * pobjectContext)
    {
       
       auto estatus = ::dir_system::initialize(pobjectContext);

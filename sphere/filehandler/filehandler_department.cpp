@@ -5,8 +5,8 @@ namespace filehandler
 {
 
 
-   department::department(::object * pobject) :
-      ::aura::department(pobject)
+   department::department(::layered * pobjectContext) :
+      ::apex::department(pobject)
    {
 
       m_ptemplateMenu   = nullptr;
@@ -39,7 +39,7 @@ namespace filehandler
       create_factory <frame >();
       create_factory <view >();
 
-      if(!::aura::department::init_instance())
+      if(!::apex::department::init_instance())
          return false;
 
 
@@ -64,7 +64,7 @@ namespace filehandler
       try
       {
 
-         ::aura::department::term_instance();
+         ::apex::department::term_instance();
 
       }
       catch(...)

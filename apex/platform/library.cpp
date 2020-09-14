@@ -17,7 +17,7 @@ namespace apex
    const char * psz_empty_app_id = "";
 
 
-   ::estatus     library::initialize(::object * pobjectContext)
+   ::estatus     library::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);
@@ -31,7 +31,7 @@ namespace apex
    }
 
 
-   ::estatus library::initialize_aura_library(::object * pobjectContext,int iDesambig,const char * pszRoot, const char * pszName, const char * pszFolder)
+   ::estatus library::initialize_apex_library(::layered * pobjectContext,int iDesambig,const char * pszRoot, const char * pszName, const char * pszFolder)
    {
 
       auto estatus = initialize(pobjectContext);
@@ -115,7 +115,7 @@ namespace apex
 
       m_strMessage.Empty();
 
-      auto pfnNewAuraLibrary = get_get_new_aura_library(pszPath);
+      auto pfnNewAuraLibrary = get_get_new_apex_library(pszPath);
 
       if (pfnNewAuraLibrary != nullptr)
       {
@@ -198,7 +198,7 @@ namespace apex
 
       ::exception_engine().reset();
 
-      PFN_NEW_AURA_LIBRARY pfnNewAuraLibrary = nullptr;
+      PFN_NEW_APEX_LIBRARY pfnNewAuraLibrary = nullptr;
 
       int iPhase = 0;
 
@@ -221,7 +221,7 @@ namespace apex
          try
          {
 
-            pfnNewAuraLibrary = get_get_new_aura_library(m_strPath);
+            pfnNewAuraLibrary = get_get_new_apex_library(m_strPath);
 
             if (pfnNewAuraLibrary == nullptr)
             {
@@ -314,7 +314,7 @@ namespace apex
 
       }
 
-      m_pca2library->initialize_aura_library(get_context_object(), 0, m_strRoot, m_strName, m_strFolder);
+      m_pca2library->initialize_apex_library(get_context_object(), 0, m_strRoot, m_strName, m_strFolder);
 
       m_pca2library->initialize_factory();
 
@@ -564,7 +564,7 @@ namespace apex
    }
 
 
-   __result(::apex::application) library::get_new_application(::object * pobject, const char * pszAppId)
+   __result(::apex::application) library::get_new_application(::layered * pobject, const char * pszAppId)
    {
 
       sync_lock sl(&::get_context_system()->m_mutexLibrary);
@@ -633,7 +633,7 @@ namespace apex
          else
          {
 
-            auto p = get<PFN_NEW_AURA_APPLICATION>("new_aura_application");
+            auto p = get<PFN_NEW_APEX_APPLICATION>("new_apex_application");
 
             if (p)
             {
@@ -728,7 +728,7 @@ namespace apex
    }
 
 
-   ::generic_object* library::new_object(::object* pobjectContext, const char* pszClassId)
+   ::generic* library::new_object(::layered * pobjectContext, const char* pszClassId)
    {
 
       return nullptr;
@@ -736,7 +736,7 @@ namespace apex
    }
 
 
-   __pointer(::generic_object) library::create_object(::object * pobjectContext, const char * pszClass)
+   __pointer(::generic) library::create_object(::layered * pobjectContext, const char * pszClass)
    {
 
       sync_lock sl(&::get_context_system()->m_mutexLibrary);
@@ -748,7 +748,7 @@ namespace apex
 
       }
       
-      ::generic_object * p = nullptr;
+      ::generic * p = nullptr;
 
       if(get_ca2_library() != nullptr)
       {
@@ -872,7 +872,7 @@ namespace apex
    }
 
    
-   ::generic_object* library::factory_new(::object* pobjectContext, const char* lpszClass)
+   ::generic* library::factory_new(::layered * pobjectContext, const char* lpszClass)
    {
 
       return nullptr;
@@ -880,7 +880,7 @@ namespace apex
    }
 
 
-   __pointer(::generic_object) library::factory_create(::object * pobjectContext, const char * lpszClass)
+   __pointer(::generic) library::factory_create(::layered * pobjectContext, const char * lpszClass)
    {
 
       library_object_allocator_base * pallocator = find_allocator(lpszClass);

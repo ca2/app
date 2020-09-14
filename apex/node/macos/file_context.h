@@ -26,7 +26,7 @@ namespace macos
       virtual ~file_context();
       
       
-      virtual ::estatus initialize(::object * pobjectContext) override;
+      virtual ::estatus initialize(::layered * pobjectContext) override;
 
       virtual var length(const ::file::path & path) override;
 

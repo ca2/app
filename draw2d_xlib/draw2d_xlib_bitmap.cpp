@@ -4,7 +4,7 @@
 namespace draw2d_xlib
 {
 
-   bitmap::bitmap(::object * pobject) :
+   bitmap::bitmap(::layered * pobjectContext) :
       ::object(pobject) // ,
 //      m_ui(pobject)
    {

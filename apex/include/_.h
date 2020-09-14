@@ -2,7 +2,7 @@
 //
 //  ca2
 //
-//  ca2 is an all-purpose multi-platform framework and set of libraries written in 
+//  ca2 is an all-purpose multi-platform framework and set of libraries written in
 //  C++ language with the aim to help developers create awesome apps for users.
 //
 //  ca2/C++/C/Assembly/Huffman Machine/Hardware/Universe/Multiverse stack
@@ -1203,17 +1203,17 @@ namespace draw2d
 
 
 
-template < typename T1, typename T2, typename ARG_T1 = const T1 &, typename ARG_T2 = const T2 & >
-class pair;
-
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE = const VALUE &, class PAIR = pair < KEY, VALUE, ARG_KEY, ARG_VALUE > >
-class map;
-
-template < class ENUM >
-class flags;
-
-template < class EENUM, EENUM edefault = (EENUM)0 >
-class base_enum;
+//template < typename T1, typename T2, typename ARG_T1 = const T1 &, typename ARG_T2 = const T2 & >
+//class pair;
+//
+//template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE = const VALUE &, class PAIR = pair < KEY, VALUE, ARG_KEY, ARG_VALUE > >
+//class map;
+//
+//template < class ENUM >
+//class flags;
+//
+//template < class EENUM, EENUM edefault = (EENUM)0 >
+//class base_enum;
 
 class form_property_set;
 
@@ -1890,7 +1890,7 @@ namespace data
 namespace xml
 {
 
-   
+
    class node;
    class document;
 
@@ -2570,7 +2570,7 @@ class callback;
 namespace core
 {
 
-   
+
    class user;
 
 
@@ -2994,7 +2994,7 @@ class mq;
 namespace user
 {
 
-   
+
    class style;
 
    using style_pointer = __pointer(style);
@@ -3267,7 +3267,7 @@ class node_data_exchange;
 namespace xml
 {
 
-   
+
    class department;
 
 

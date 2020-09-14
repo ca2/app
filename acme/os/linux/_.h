@@ -3,7 +3,7 @@
 
 #include "debug.h"
 
-#include "graphics.h"
+//#include "graphics.h"
 
 
 
@@ -28,10 +28,10 @@ off_t tell64(int fd);
 
 
 
-#include "windowing.h"
+//#include "windowing.h"
 
 
-#include "gnome.h"
+//#include "gnome.h"
 
 
 int_bool gdk_launch_uri(const char * pszUri, char * pszError = NULL, int iBufferSize = 0);

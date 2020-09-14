@@ -14,15 +14,9 @@ CLASS_DECL_ACME u32 call_sync(const char * pszPath, const char * pszParam, const
 #endif
 
 
-#if !defined(_UWP) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID)
-
 CLASS_DECL_ACME i32 get_current_processor_index();
-
 CLASS_DECL_ACME i32 get_current_process_maximum_affinity();
-
 CLASS_DECL_ACME i32 get_current_process_affinity_order();
-
-#endif
 
 
 CLASS_DECL_ACME string expand_env(string str);

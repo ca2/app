@@ -51,17 +51,17 @@ void unmapped_net_state_raw(Display * d, Window w, ...);
 #include "cross_win_gdi.h"
 
 
-#include "xdisplay.h"
+//#include "xdisplay.h"
 
-#include "osdisplay.h"
+//#include "osdisplay.h"
 
-#include "oswindow.h"
+//#include "oswindow.h"
 
-#include "window_cairo.h"
+//#include "window_cairo.h"
 
-#include "window_xlib.h"
+//#include "window_xlib.h"
 
-#include "windowing.h"
+//#include "windowing.h"
 
 #ifdef __cplusplus
 
@@ -72,15 +72,15 @@ void set_xcolor(XColor & color, COLORREF cr);
 
 
 
-CLASS_DECL_ACME i32 oswindow_find_message_only_window(::user::interaction_impl * puibaseMessageWindow);
-CLASS_DECL_ACME i32 oswindow_find(Display * pdisplay, Window window);
-CLASS_DECL_ACME i32 oswindow_find(Window window);
-CLASS_DECL_ACME oswindow_data * oswindow_get_message_only_window(::user::interaction_impl * puibaseMessageWindow);
-//CLASS_DECL_ACME oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual = nullptr);
-CLASS_DECL_ACME oswindow_data * oswindow_get(Window window);
-CLASS_DECL_ACME oswindow oswindow_defer_get(Window w);
-CLASS_DECL_ACME bool oswindow_remove(Display * pdisplay, Window window);
-CLASS_DECL_ACME bool oswindow_remove_message_only_window(::user::interaction_impl * puibaseMessageOnlyWindow);
+//CLASS_DECL_ACME i32 oswindow_find_message_only_window(::user::interaction_impl * puibaseMessageWindow);
+//CLASS_DECL_ACME i32 oswindow_find(Display * pdisplay, Window window);
+//CLASS_DECL_ACME i32 oswindow_find(Window window);
+//CLASS_DECL_ACME oswindow_data * oswindow_get_message_only_window(::user::interaction_impl * puibaseMessageWindow);
+////CLASS_DECL_ACME oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual = nullptr);
+//CLASS_DECL_ACME oswindow_data * oswindow_get(Window window);
+//CLASS_DECL_ACME oswindow oswindow_defer_get(Window w);
+//CLASS_DECL_ACME bool oswindow_remove(Display * pdisplay, Window window);
+//CLASS_DECL_ACME bool oswindow_remove_message_only_window(::user::interaction_impl * puibaseMessageOnlyWindow);
 
 
 

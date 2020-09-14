@@ -25,8 +25,8 @@ void get_os_priority(i32 * piPolicy, sched_param * pparam, ::e_priority epriorit
 
 #include "_user.h"
 
-#include "desktop_file.h"
-#include "x11.h"
+//#include "desktop_file.h"
+//#include "x11.h"
 
 
 #include "exception_engine.h"

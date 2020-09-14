@@ -2,7 +2,6 @@
 #include "_user.h"
 #include <gio/gio.h>
 #include "third/sn/sn.h"
-#include "acme/platform/app_core.h"
 #include "bloat_pad.h"
 
 extern ::app_core * g_pappcore;

@@ -1,13 +1,16 @@
 #include "framework.h"
 #include "acme/os/ansios/_ansios.h"
-#include "acme/platform/mq.h"
+#include "acme/multithreading/mq.h"
 #ifdef LINUX
 #include "acme/os/linux/_user.h"
 
 #endif
 
 
-__pointer(mq) get_mq(ITHREAD idthread, bool bCreate);
+
+
+
+mq * get_mq(ITHREAD idthread, bool bCreate);
 
 
 CLASS_DECL_ACME void thread_get_os_priority(i32 * piOsPolicy, sched_param * pparam, ::e_priority epriority);
@@ -63,7 +66,7 @@ DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, HSYNC * synca, DWORD tickTimeout
             if (pmq.is_set())
             {
 
-               sync_lock sl(pmq->mutex());
+               sync_lock sl(pmq->m_pmutex);
 
                if (pmq->m_messagea.get_count() > 0)
                {
@@ -288,13 +291,13 @@ void set_defer_process_x_message(bool (*pfn)(HTHREAD hthread, LPMESSAGE pMsg, os
 }
 
 
-#ifdef LINUX
-
-
-void x11_thread(osdisplay_data * pdisplaydata);
-
-
-#endif
+//#ifdef LINUX
+//
+//
+//void x11_thread(osdisplay_data * pdisplaydata);
+//
+//
+//#endif
 
 
 #endif
@@ -486,29 +489,29 @@ namespace multithreading
 } // namespace acme
 
 
-bool on_init_thread()
-{
-
-   if (!__os_init_thread())
-   {
-
-      return false;
-
-   }
-
-   return true;
-
-}
-
-
-bool on_term_thread()
-{
-
-   bool bOk1 = __os_term_thread();
-
-   return bOk1;
-
-}
+//bool on_init_thread()
+//{
+//
+//   if (!__os_init_thread())
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   return true;
+//
+//}
+//
+//
+//bool on_term_thread()
+//{
+//
+//   bool bOk1 = __os_term_thread();
+//
+//   return bOk1;
+//
+//}
 
 
 CLASS_DECL_ACME DWORD_PTR translate_processor_affinity(int iOrder)

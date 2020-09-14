@@ -47,7 +47,7 @@ CLASS_DECL_ACME int __cpp_assert_failed_line(const char * pszFileName, int iLine
 
 #else
 
-   message_box(nullptr, szMessage, szTitle, MB_CANCELTRYCONTINUE | MB_ICONERROR, callback());
+   message_box(szMessage, szTitle, MB_CANCELTRYCONTINUE | MB_ICONERROR, callback());
 
 #endif
 

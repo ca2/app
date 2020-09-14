@@ -81,7 +81,7 @@ semaphore::semaphore(LONG lInitialCount, LONG lMaxCount, const char * pstrName, 
 
       if(str::begins_ci(pstrName, "Local\\") || str::begins_ci(pstrName, "Local\\"))
       {
-         strPath = Context.dir().home() / ".ca2/ftok/semaphore/" + string(pstrName);
+         strPath = ::dir::home() / ".ca2/ftok/semaphore/" + string(pstrName);
       }
       else
       {

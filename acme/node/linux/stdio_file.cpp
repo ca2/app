@@ -29,13 +29,13 @@ namespace linux
 
       ASSERT(pszFileName.has_char());
 
-      if ((eopen & ::file::defer_create_directory) && (eopen & ::file::mode_write))
-      {
-
-         Context.dir().mk(pszFileName.folder());
-
-
-      }
+//      if ((eopen & ::file::defer_create_directory) && (eopen & ::file::mode_write))
+//      {
+//
+//         Context.dir().mk(pszFileName.folder());
+//
+//
+//      }
 
       m_pStream = nullptr;
       //if (!::linux::file::open(pszFileName, (nOpenFlags & ~::file::type_text)))

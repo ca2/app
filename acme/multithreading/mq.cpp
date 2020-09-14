@@ -1,10 +1,10 @@
 #include "framework.h"
-#include "apex/os/_c.h"
-#include "apex/os/_.h"
-#include "apex/os/_os.h"
+#include "acme/os/_c.h"
+#include "acme/os/_.h"
+#include "acme/os/_os.h"
 #include "mq.h"
 
-
+#define WM_KICKIDLE         0x036A  // (params unused) causes idles to kick in
 #if defined(LINUX) // || defined(ANDROID)
 
 
@@ -18,10 +18,10 @@ mq::mq()
 {
 
    m_bQuit = false;
-   
+
    m_bKickIdle = false;
 
-   defer_create_mutex();
+   m_pmutex = new mutex();
 
 }
 
@@ -34,12 +34,12 @@ mq::~mq()
 
 int_bool mq::post_message(oswindow oswindow, UINT uMessage, WPARAM wParam, LPARAM lParam)
 {
-   
+
    if(m_bQuit)
    {
-      
+
       return FALSE;
-      
+
    }
 
    MESSAGE message;
@@ -58,12 +58,12 @@ int_bool mq::post_message(oswindow oswindow, UINT uMessage, WPARAM wParam, LPARA
 
 int_bool mq::post_message(const MESSAGE & message)
 {
-   
+
    if(m_bQuit)
    {
-      
+
       return FALSE;
-      
+
    }
 
    sync_lock ml(mutex());
@@ -87,7 +87,7 @@ int_bool mq::get_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, 
 
    }
 
-   sync_lock sl(mutex());
+   sync_lock sl(m_pmutex);
 
    while (true)
    {
@@ -103,7 +103,7 @@ int_bool mq::get_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, 
             m_bQuit = true;
 
             m_messagea.remove_at(i);
-            
+
             continue;
 
          }
@@ -118,16 +118,16 @@ int_bool mq::get_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, 
             return TRUE;
 
          }
-         
+
          i++;
 
       }
-      
+
       if(m_bQuit)
       {
-         
+
          return FALSE;
-         
+
       }
 
       if (m_bKickIdle)
@@ -154,7 +154,7 @@ int_bool mq::get_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, 
          m_eventNewMessage.wait();
 
          sl.lock();
-         
+
          m_eventNewMessage.ResetEvent();
 
       }
@@ -174,7 +174,7 @@ int_bool mq::peek_message(LPMESSAGE pMsg,oswindow oswindow,UINT wMsgFilterMin,UI
 
    }
 
-   sync_lock sl(mutex());
+   sync_lock sl(m_pmutex);
 
    ::count count = m_messagea.get_count();
 
@@ -192,7 +192,7 @@ int_bool mq::peek_message(LPMESSAGE pMsg,oswindow oswindow,UINT wMsgFilterMin,UI
          {
 
             m_messagea.remove_at(i);
-            
+
          }
 
          return TRUE;
@@ -218,196 +218,123 @@ int_bool mq::peek_message(LPMESSAGE pMsg,oswindow oswindow,UINT wMsgFilterMin,UI
 
 }
 
+mutex * g_pmutexMq;
 
-__pointer(mq) get_mq(ITHREAD idthread, bool bCreate)
+map < ITHREAD, ITHREAD, __pointer(mq), __pointer(mq) > * g_pmapMq;
+
+
+mq * get_mq(ITHREAD idthread, bool bCreate)
 {
 
-   ::thread * pthread = ::get_context_system()->get_thread(idthread);
+   sync_lock sl(g_pmutexMq);
 
-   if (!pthread)
+   auto p = g_pmapMq->plookup(idthread);
+
+   if(!p)
    {
 
       return nullptr;
 
    }
 
-   if(pthread->m_bClosedMq)
-   {
-
-      string strType = pthread->type_name();
-
-      if(::str::begins(strType, "multimedia::"))
-      {
-
-         if(strType.contains("wave_player"))
-         {
-
-            output_debug_string("xxCLOSED_MQ xx__get_mq from xxwave_player");
-
-         }
-         else if(strType.ends_ci("out"))
-         {
-
-            output_debug_string("xxCLOSED_MQ xx__get_mq from xxout");
-
-         }
-         else if(strType.contains("output_thread"))
-         {
-
-            output_debug_string("xxCLOSED_MQ xx__get_mq from xxoutput_thread");
-
-         }
-         else
-         {
-
-            output_debug_string("xxCLOSED_MQ xx__get_mq from xxmultimedia::*");
-
-         }
-
-      }
-
-      return nullptr;
-
-   }
-
-   if(pthread->m_pmq)
-   {
-
-      return pthread->m_pmq;
-
-   }
-
-   if(!bCreate)
-   {
-
-      string strType = pthread->type_name();
-
-      if(::str::begins(strType, "multimedia::"))
-      {
-
-         if(strType.contains("wave_player"))
-         {
-
-            output_debug_string("notxxbCreate xx__get_mq from xxwave_player");
-
-         }
-         else if(strType.ends_ci("out"))
-         {
-
-            output_debug_string("notxxbCreate xx__get_mq from xxout");
-
-         }
-         else if(strType.contains("output_thread"))
-         {
-
-            output_debug_string("notxxbCreate xx__get_mq from xxoutput_thread");
-
-         }
-         else
-         {
-
-            output_debug_string("notxxbCreate xx__get_mq from xxmultimedia::*");
-
-         }
-
-      }
-
-      return nullptr;
-
-   }
-
-   pthread->__raw_compose_new(pthread->m_pmq);
-
-   pthread->m_pmq->m_ithread = idthread;
-
-   return pthread->m_pmq;
+   return p->m_element2;
 
 }
 
 
-CLASS_DECL_APEX int_bool post_ui_message(const MESSAGE & message)
+void set_mq(ITHREAD idthread, mq * pmq)
 {
 
-#ifdef WINDOWS_DESKTOP
+   sync_lock sl(g_pmutexMq);
 
-   return ::PostMessage(message.hwnd, message.message, message.wParam, message.lParam);
-
-#else
-
-   return message.hwnd->m_pmq->post_message(message);
-
-#endif
-
-//   ::user::interaction * pinteraction = oswindow_interaction(message.hwnd);
-//
-//   if(pinteraction == nullptr)
-//   {
-//
-//      return FALSE;
-//
-//   }
-//
-//   ITHREAD idthread = pinteraction->m_pthreadUserInteraction->get_os_int();
-//
-//   auto pmq = ::get_mq(idthread, message.message != WM_QUIT);
-//
-//   if(pmq == nullptr)
-//   {
-//
-//      return FALSE;
-//
-//   }
-//
-//   return pmq->post_message(message);
+   g_pmapMq->set_at(idthread, pmq);
 
 }
 
 
-CLASS_DECL_APEX int_bool mq_remove_window_from_all_queues(oswindow oswindow)
-{
-
-//   ::user::interaction * pinteraction = oswindow_interaction(oswindow);
+//CLASS_DECL_APEX int_bool post_ui_message(const MESSAGE & message)
+//{
 //
-//   if(pinteraction == nullptr)
-//   {
+//#ifdef WINDOWS_DESKTOP
 //
-//      return FALSE;
+//   return ::PostMessage(message.hwnd, message.message, message.wParam, message.lParam);
 //
-//   }
+//#else
 //
-//   if(pinteraction->get_context_application() == nullptr)
-//   {
+//   return message.hwnd->m_pmq->post_message(message);
 //
-//      return false;
+//#endif
 //
-//   }
+////   ::user::interaction * pinteraction = oswindow_interaction(message.hwnd);
+////
+////   if(pinteraction == nullptr)
+////   {
+////
+////      return FALSE;
+////
+////   }
+////
+////   ITHREAD idthread = pinteraction->m_pthreadUserInteraction->get_os_int();
+////
+////   auto pmq = ::get_mq(idthread, message.message != WM_QUIT);
+////
+////   if(pmq == nullptr)
+////   {
+////
+////      return FALSE;
+////
+////   }
+////
+////   return pmq->post_message(message);
 //
-//   ITHREAD idthread = pinteraction->get_context_application()->get_os_int();
-//
-//   mq * pmq = __get_mq(idthread, false);
-//
-//   if(pmq == nullptr)
-//   {
-//
-//      return FALSE;
-//
-//   }
-//
-//   sync_lock ml(&pmq->m_mutex);
-//
-//   pmq->m_messagea.pred_remove([=](MESSAGE & item)
-//   {
-//
-//      return item.hwnd == oswindow;
-//
-//   });
-
-   return TRUE;
-
-}
+//}
 
 
-CLASS_DECL_APEX void mq_clear(ITHREAD idthread)
+//CLASS_DECL_APEX int_bool mq_remove_window_from_all_queues(oswindow oswindow)
+//{
+//
+////   ::user::interaction * pinteraction = oswindow_interaction(oswindow);
+////
+////   if(pinteraction == nullptr)
+////   {
+////
+////      return FALSE;
+////
+////   }
+////
+////   if(pinteraction->get_context_application() == nullptr)
+////   {
+////
+////      return false;
+////
+////   }
+////
+////   ITHREAD idthread = pinteraction->get_context_application()->get_os_int();
+////
+////   mq * pmq = __get_mq(idthread, false);
+////
+////   if(pmq == nullptr)
+////   {
+////
+////      return FALSE;
+////
+////   }
+////
+////   sync_lock ml(&pmq->m_mutex);
+////
+////   pmq->m_messagea.pred_remove([=](MESSAGE & item)
+////   {
+////
+////      return item.hwnd == oswindow;
+////
+////   });
+//
+//   return TRUE;
+//
+//}
+//
+
+CLASS_DECL_ACME void mq_clear(ITHREAD idthread)
 {
 
    auto pmq = ::get_mq(idthread, false);
@@ -419,7 +346,7 @@ CLASS_DECL_APEX void mq_clear(ITHREAD idthread)
 
    }
 
-   sync_lock ml(pmq->mutex());
+   sync_lock ml(g_pmutexMq);
 
    pmq->m_messagea.remove_all();
 
@@ -445,7 +372,7 @@ int_bool mq_post_thread_message(ITHREAD idthread, UINT message, WPARAM wparam, L
 
 
 
-CLASS_DECL_APEX int_bool mq_peek_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg)
+CLASS_DECL_ACME int_bool mq_peek_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg)
 {
 
    auto pmq = ::get_mq(::get_current_ithread(), false);
@@ -469,7 +396,7 @@ CLASS_DECL_APEX int_bool mq_peek_message(LPMESSAGE pMsg, oswindow oswindow, UINT
 }
 
 
-CLASS_DECL_APEX int_bool mq_get_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax)
+CLASS_DECL_ACME int_bool mq_get_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax)
 {
 
    auto pmq = ::get_mq(::get_current_ithread(), true);
@@ -489,6 +416,29 @@ CLASS_DECL_APEX int_bool mq_get_message(LPMESSAGE pMsg, oswindow oswindow, UINT 
    }
 
    return TRUE;
+
+}
+
+
+
+
+
+void init_global_mq()
+{
+
+   g_pmutexMq = new mutex();
+
+   g_pmapMq = new map < ITHREAD, ITHREAD, __pointer(mq), __pointer(mq) >();
+
+}
+
+
+void term_global_mq()
+{
+
+   ::acme::del(g_pmutexMq);
+
+   ::acme::del(g_pmapMq);
 
 }
 

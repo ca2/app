@@ -5,11 +5,11 @@
 //  Created by Camilo Sasuke Tsumanuma on 05/01/18.
 //
 
-// 
+//
 
 // CLASS_DECL_APEX int_bool os_is_alias(const char * psz);
 
-// 
+//
 
 
 // C-includes
@@ -40,8 +40,8 @@
 #endif
 
 
-CLASS_DECL_APEX HMONITOR GetPrimaryMonitorHandle();
-CLASS_DECL_APEX HMONITOR GetUiMonitorHandle(HWND hwnd);
+
+
 
 
 

@@ -167,23 +167,23 @@ CLASS_DECL_ACME u32 g_tickStartTime = 0;
 
 
 
-
-
-
-void __post_quit_message(i32 nExitCode)
-{
-
-#ifdef WINDOWS_DESKTOP
-
-   ::PostQuitMessage(nExitCode);
-
-#else
-
-   ::multithreading::set_finish(::get_context_application());
-
-#endif
-
-}
+//
+//
+//
+//void __post_quit_message(i32 nExitCode)
+//{
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//   ::PostQuitMessage(nExitCode);
+//
+//#else
+//
+//   ::multithreading::set_finish(::get_context_application());
+//
+//#endif
+//
+//}
 
 
 //string_map < __pointer(::acme::library) >* g_pmapLibrary = nullptr;

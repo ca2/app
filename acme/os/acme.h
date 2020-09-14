@@ -113,7 +113,7 @@ CLASS_DECL_ACME void get_command_line_dup(char * psz, int iBuffer);
 #pragma once
 
 #ifdef LINUX
-#include "acme/os/binreloc.h"
+#include "acme/os/ansios/binreloc.h"
 #endif
 
 

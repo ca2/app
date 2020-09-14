@@ -16,10 +16,11 @@ namespace linux
    public:
 
 
-      string_array     m_straLine;
+      string_array      m_straLine;
+      string            m_strAppId;
 
 
-      desktop_file();
+      desktop_file(const string & strAppId);
       virtual ~desktop_file();
 
 

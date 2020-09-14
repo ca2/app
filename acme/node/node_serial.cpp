@@ -71,11 +71,11 @@ private:
    SerialImpl* pimpl_;
 };
 
-Serial::Serial(::generic* pobject, const string& port, u32 baudrate, serial::Timeout timeout,
+Serial::Serial(const string& port, u32 baudrate, serial::Timeout timeout,
    bytesize_t bytesize, parity_t parity, stopbits_t stopbits,
    flowcontrol_t flowcontrol)
-   : generic(pobject),
-   pimpl_(__new(SerialImpl(pobject, port, baudrate, bytesize, parity, stopbits, flowcontrol)))
+   :
+   pimpl_(__new(SerialImpl(port, baudrate, bytesize, parity, stopbits, flowcontrol)))
 {
    pimpl_->setTimeout(timeout);
 }

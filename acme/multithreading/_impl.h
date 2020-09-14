@@ -149,10 +149,11 @@ struct hold
 {
 public:
 
-   T                    m_t;
-   bool                 m_bInitialized = false;
-   manual_reset_event   m_evReady;
-   string               m_strErrorMessage;
+   __pointer(::layered)    m_pobject;
+   T                       m_t;
+   bool                    m_bInitialized = false;
+   manual_reset_event      m_evReady;
+   string                  m_strErrorMessage;
 
 
    void wait()
@@ -200,7 +201,8 @@ public:
    }
 
 
-   hold(::generic * pobject)
+   hold(::layered * pobjectContext) :
+   m_pobject(pobjectContext)
    {
 
    }
@@ -225,7 +227,7 @@ public:
 
       m_bInitialized = false;
 
-      ::fork(::get_context_application(), [&]()
+      fork(m_pobject, [&]()
       {
 
          try

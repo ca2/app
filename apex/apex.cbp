@@ -6,7 +6,7 @@
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
-			<Target title="basis">
+			<Target title="linux_basis">
 				<Option output="$(#time_dir)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="$(#time_dir)/x64/$(TARGET_NAME)/" />
 				<Option object_output="$(#time_dir)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
@@ -20,6 +20,8 @@
 					<Add option="-g" />
 					<Add option="-D_DEBUG" />
 					<Add directory="$(WORKSPACE_DIR)/../../platform-linux" />
+					<Add directory="$(WORKSPACE_DIR)/../../platform-linux/_include" />
+					<Add directory="$(#archive)/third-linux/third/include" />
 				</Compiler>
 				<Linker>
 					<Add option="-m64" />
@@ -44,8 +46,6 @@
 					<Add option="-lncurses" />
 					<Add option="-lssl" />
 					<Add option="-lcrypto" />
-					<Add option="-lpcre2-8" />
-					<Add option="-lsqlite3" />
 					<Add option="-lsn" />
 					<Add option="`pkg-config --libs glib-2.0 gtk+-3.0 gdk-3.0 appindicator3-0.1`" />
 					<Add option="-Wl,-z,defs" />
@@ -58,7 +58,7 @@
 					<Add before="cp -Rf $(#archive)/storage-linux/third/library/x64/* $(#time_dir)/x64/$(TARGET_NAME)/" />
 				</ExtraCommands>
 			</Target>
-			<Target title="stage">
+			<Target title="linux_stage">
 				<Option output="$(#time_dir)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="$(#time_dir)/x64/$(TARGET_NAME)/" />
 				<Option object_output="$(#time_dir)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
@@ -1368,7 +1368,6 @@
 		<Unit filename="node/_node.h" />
 		<Unit filename="node/linux/_.h" />
 		<Unit filename="node/linux/_linux.h" />
-		<Unit filename="node/linux/aaa_want_to_remove_application.h" />
 		<Unit filename="node/linux/application.cpp" />
 		<Unit filename="node/linux/application.h" />
 		<Unit filename="node/linux/console_window.cpp" />
@@ -1391,7 +1390,6 @@
 		<Unit filename="node/linux/file_system.cpp" />
 		<Unit filename="node/linux/file_system.h" />
 		<Unit filename="node/linux/interaction_impl.cpp" />
-		<Unit filename="node/linux/interaction_impl.h" />
 		<Unit filename="node/linux/internal.h" />
 		<Unit filename="node/linux/linux.cpp" />
 		<Unit filename="node/linux/os_context.cpp" />
@@ -1416,7 +1414,6 @@
 		<Unit filename="node/posix/aaa_want_to_remove_ansios_thread_impl.h" />
 		<Unit filename="node/posix/application.cpp" />
 		<Unit filename="node/posix/file_os_watcher.cpp" />
-		<Unit filename="node/posix/file_watcher.h" />
 		<Unit filename="node/posix/pipe.cpp" />
 		<Unit filename="node/posix/pipe.h" />
 		<Unit filename="node/posix/serial.cpp" />
@@ -1498,8 +1495,8 @@
 		<Unit filename="os/ansios/process.cpp" />
 		<Unit filename="os/ansios/user.cpp" />
 		<Unit filename="os/ansios/win.cpp" />
-		<Unit filename="os/argcargv.cpp" />
 		<Unit filename="os/apex.h" />
+		<Unit filename="os/argcargv.cpp" />
 		<Unit filename="os/binreloc.cpp" />
 		<Unit filename="os/binreloc.h" />
 		<Unit filename="os/cairo/_.h" />
@@ -1567,10 +1564,10 @@
 		<Unit filename="os/linux/_c.h" />
 		<Unit filename="os/linux/_linux.h" />
 		<Unit filename="os/linux/_user.h" />
+		<Unit filename="os/linux/apex.cpp" />
 		<Unit filename="os/linux/appindicator.cpp" />
 		<Unit filename="os/linux/appindicator.h" />
 		<Unit filename="os/linux/application_system_run.cpp" />
-		<Unit filename="os/linux/apex.cpp" />
 		<Unit filename="os/linux/bloat_pad.h" />
 		<Unit filename="os/linux/cross_win_file.cpp" />
 		<Unit filename="os/linux/cross_win_file.h" />
@@ -1606,9 +1603,7 @@
 		<Unit filename="os/linux/multithreading.cpp" />
 		<Unit filename="os/linux/os.cpp" />
 		<Unit filename="os/linux/osdisplay.cpp" />
-		<Unit filename="os/linux/osdisplay.h" />
 		<Unit filename="os/linux/oswindow.cpp" />
-		<Unit filename="os/linux/oswindow.h" />
 		<Unit filename="os/linux/process.cpp" />
 		<Unit filename="os/linux/process.h" />
 		<Unit filename="os/linux/process_pid.cpp" />
@@ -1679,6 +1674,15 @@
 		<Unit filename="platform/aaa_want_to_remove_system_common.h" />
 		<Unit filename="platform/aaa_want_to_remove_template.h" />
 		<Unit filename="platform/all.h" />
+		<Unit filename="platform/apex.h" />
+		<Unit filename="platform/apex_apex.h" />
+		<Unit filename="platform/apex_main_data.cpp" />
+		<Unit filename="platform/apex_main_data.h" />
+		<Unit filename="platform/apex_main_struct.cpp" />
+		<Unit filename="platform/apex_main_struct.h" />
+		<Unit filename="platform/apex_regex.h" />
+		<Unit filename="platform/apex_status.h" />
+		<Unit filename="platform/apex_str_pool.cpp" />
 		<Unit filename="platform/app.h" />
 		<Unit filename="platform/app_core.cpp" />
 		<Unit filename="platform/app_core.h" />
@@ -1702,15 +1706,6 @@
 		<Unit filename="platform/assert_running_task.h" />
 		<Unit filename="platform/async.h" />
 		<Unit filename="platform/atomic2.h" />
-		<Unit filename="platform/apex.h" />
-		<Unit filename="platform/apex_apex.h" />
-		<Unit filename="platform/apex_main_data.cpp" />
-		<Unit filename="platform/apex_main_data.h" />
-		<Unit filename="platform/apex_main_struct.cpp" />
-		<Unit filename="platform/apex_main_struct.h" />
-		<Unit filename="platform/apex_regex.h" />
-		<Unit filename="platform/apex_status.h" />
-		<Unit filename="platform/apex_str_pool.cpp" />
 		<Unit filename="platform/auto.h" />
 		<Unit filename="platform/auto_pointer.h" />
 		<Unit filename="platform/build_debug.cpp" />

@@ -3,6 +3,7 @@
 
 #define MAX_LAYERED_COUNT 8
 
+
 class CLASS_DECL_ACME layered :
    virtual public ::generic
 {
@@ -17,11 +18,12 @@ public:
    virtual ~layered();
 
    void set_layer(byte bLayeredIndex, void* p);
-      
+
    template < typename LAYER >
    inline LAYER* layer(byte bLayeredIndex) const { return ::is_null(this) ? nullptr : (LAYER *)m_pa[bLayeredIndex]; }
 
 };
+
 
 #define LAYERED_OBJECT 0
 #define LAYERED_DRAW2D_GRAPHICS 1
@@ -33,6 +35,7 @@ public:
 
 
 class object;
+
 
 class channel;
 
@@ -68,6 +71,7 @@ inline ::user::interaction* __user_interaction(::layered* playered)
 
 }
 
+
 inline ::user::primitive * __user_primitive(::layered* playered)
 {
 
@@ -76,7 +80,7 @@ inline ::user::primitive * __user_primitive(::layered* playered)
 }
 
 
-inline ::thread* __thread(::layered* playered)
+inline ::thread* ___thread(::layered* playered)
 {
 
    return playered->layer<::thread>(LAYERED_THREAD);

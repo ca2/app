@@ -7,7 +7,8 @@ namespace linux
 {
 
 
-   desktop_file::desktop_file()
+   desktop_file::desktop_file(const string & strAppId) :
+   m_strAppId(strAppId)
    {
 
    }
@@ -142,7 +143,7 @@ namespace linux
 
             strMessage.Format("Category \"%s\"has not been found", strCategoryParam.c_str());
 
-            TRACE(strMessage);
+            output_debug_string(strMessage);
 
          }
 
@@ -162,7 +163,7 @@ namespace linux
 
       path = ::dir::localconfig() / "monitor-0/desk/2desk";
 
-      string strPrgName = Application.m_strAppId;
+      string strPrgName = m_strAppId;
 
       strPrgName.replace("/", ".");
 
@@ -184,7 +185,7 @@ namespace linux
 
       path /= ".local/share/applications";
 
-      string strPrgName = Application.m_strAppId;
+      string strPrgName = m_strAppId;
 
       strPrgName.replace("/", ".");
 
@@ -202,7 +203,7 @@ namespace linux
 
       string_array & straLine = m_straLine;
 
-      string strPrgName = Application.m_strAppId;
+      string strPrgName = m_strAppId;
 
       strPrgName.replace("/", ".");
 
@@ -230,7 +231,9 @@ namespace linux
 
       ::file::path path = Context.dir().matter("app.desktop");
 
-      Context.file().lines(m_straLine, path);
+      string str = file_as_string(path);
+
+      m_straLine.add_lines(str);
 
       if(m_straLine.is_empty())
       {

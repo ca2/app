@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "_linux.h"
-#include "acme/platform/app_core.h"
+//#include "acme/platform/app_core.h"
 
 #include <signal.h>
 #undef USE_MISC

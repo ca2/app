@@ -204,58 +204,58 @@
 //}
 
 
-#ifndef WINDOWS
-
-
-bool context::_os_resolve_alias(::file::path & path, const char * psz, ::user::primitive * pprimitive, bool bNoUI, bool bNoMount)
-{
-
-   if (::is_null(psz))
-   {
-
-      return false;
-
-   }
-
-
-
-
-   char * pszRealPath = ::realpath(psz, NULL);
-
-   if (pszRealPath == NULL)
-   {
-
-      return false;
-
-   }
-
-   if (strcmp(psz, pszRealPath) == 0)
-   {
-
-      ::free(pszRealPath);
-
-      return false;
-
-   }
-
-   try
-   {
-
-      path = pszRealPath;
-
-   }
-   catch (...)
-   {
-
-   }
-
-   ::free(pszRealPath);
-
-   return true;
-
-}
-
-#endif
+//#ifndef WINDOWS
+//
+//
+//bool context::_os_resolve_alias(::file::path & path, const char * psz, bool bNoUI, bool bNoMount)
+//{
+//
+//   if (::is_null(psz))
+//   {
+//
+//      return false;
+//
+//   }
+//
+//
+//
+//
+//   char * pszRealPath = ::realpath(psz, NULL);
+//
+//   if (pszRealPath == NULL)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   if (strcmp(psz, pszRealPath) == 0)
+//   {
+//
+//      ::free(pszRealPath);
+//
+//      return false;
+//
+//   }
+//
+//   try
+//   {
+//
+//      path = pszRealPath;
+//
+//   }
+//   catch (...)
+//   {
+//
+//   }
+//
+//   ::free(pszRealPath);
+//
+//   return true;
+//
+//}
+//
+//#endif
 
 
 // CLASS_DECL_ACME bool context::os_resolve_alias(::file::path & path, const char * psz, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount)
@@ -275,41 +275,41 @@ bool context::_os_resolve_alias(::file::path & path, const char * psz, ::user::p
 // }
 
 
-#ifndef WINDOWS
-
-CLASS_DECL_ACME bool context::os_is_alias(const char * path)
-{
-
-   if (is_null(path))
-   {
-
-      return false;
-
-   }
-
-   struct stat st;
-
-   if (lstat(path, &st) == -1)
-   {
-
-      return false;
-
-   }
-
-   if (S_ISLNK(st.st_mode))
-   {
-
-      return true;
-
-   }
-
-   return false;
-
-}
-
-#endif
-
-
+//#ifndef WINDOWS
+//
+//CLASS_DECL_ACME bool context::os_is_alias(const char * path)
+//{
+//
+//   if (is_null(path))
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   struct stat st;
+//
+//   if (lstat(path, &st) == -1)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   if (S_ISLNK(st.st_mode))
+//   {
+//
+//      return true;
+//
+//   }
+//
+//   return false;
+//
+//}
+//
+//#endif
+//
+//
 
 
 

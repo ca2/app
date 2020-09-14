@@ -37,6 +37,9 @@
 #include <tuple>
 
 
+class thread;
+
+
 CLASS_DECL_ACME void acme_ref();
 
 
@@ -3057,7 +3060,7 @@ CLASS_DECL_ACME string get_system_error_message(u32 dwError);
 
 //#include "acme/multithreading/threading.h"
 
-class mq;
+class mq_base;
 
 //#include "acme/platform/live_signal.h"
 #include "acme/multithreading/pred_holder.h"

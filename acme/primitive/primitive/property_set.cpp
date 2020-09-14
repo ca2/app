@@ -2,11 +2,15 @@
 //#include "acme/platform/app_core.h"
 #include "acme/platform/static_start.h"
 
-//#ifdef WINDOWS
-//extern _locale_t g_localeC;
-//#else
-//extern locale_t g_localeC;
-//#endif
+#ifdef LINUX
+#include <locale.h>
+#endif
+
+#ifdef WINDOWS
+extern _locale_t g_localeC;
+#else
+extern locale_t g_localeC;
+#endif
 
 
 property_set::property_set(::std::initializer_list < var > list)

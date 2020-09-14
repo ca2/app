@@ -168,14 +168,14 @@ CLASS_DECL_ACME bool is_command_line_param_true(string& strValue, const char* ps
       return bDefault;
 
    }
-   
+
    if (strValue.is_empty())
    {
 
       return true;
 
    }
-   
+
    if (strValue.compare_ci("true") == 0)
    {
 
@@ -1111,5 +1111,33 @@ string merge_colon_args(const array < string_array >& str2a)
 
 }
 
+
+#if !defined(WINDOWS_DESKTOP)
+
+
+CLASS_DECL_ACME i32 get_current_processor_index()
+{
+
+   return 0;
+
+}
+
+
+CLASS_DECL_ACME i32 get_current_process_maximum_affinity()
+{
+
+   return 0;
+
+}
+
+
+CLASS_DECL_ACME i32 get_current_process_affinity_order()
+{
+
+   return 1;
+
+}
+
+#endif
 
 

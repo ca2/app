@@ -9,7 +9,16 @@
 #include "acme/os/_os.h"
 
 
+
 void __node_acme_factory_exchange();
+
+
+
+void init_global_mq();
+void term_global_mq();
+
+#undef new
+
 
 
 //#include <sqlite3.h>
@@ -37,24 +46,24 @@ CLASS_DECL_ACME void trace_category_static_term();
 
 extern thread_local __pointer(::thread) t_pthread;
 
-
-#undef new
-
-
-#ifdef LINUX
-static void
-log_handler (const gchar   *log_domain,
-             GLogLevelFlags log_level,
-             const gchar   *message,
-             gpointer       user_data)
-{
-   g_log_default_handler (log_domain, log_level, message, user_data);
-
-   g_on_error_query (nullptr);
-}
-
-
-#endif
+//
+//#undef new
+//
+//
+//#ifdef LINUX
+//static void
+//log_handler (const gchar   *log_domain,
+//             GLogLevelFlags log_level,
+//             const gchar   *message,
+//             gpointer       user_data)
+//{
+//   g_log_default_handler (log_domain, log_level, message, user_data);
+//
+//   g_on_error_query (nullptr);
+//}
+//
+//
+//#endif
 
 
 namespace acme
@@ -505,6 +514,9 @@ namespace acme
 
 //      ::acme::idpool::init();
 
+      init_global_mq();
+
+
 #ifdef ANDROID
 
       g_pmutexOutputDebugStringA = new ::mutex();
@@ -616,11 +628,11 @@ namespace acme
       //acme commented
       //__construct_new(::channel::s_pmutexChannel);
 
-#ifdef LINUX
-
-      ::user::initialize_edesktop();
-
-#endif
+//#ifdef LINUX
+//
+//      ::user::initialize_edesktop();
+//
+//#endif
 
       g_pacmestrpool = new acme_str_pool();
 
@@ -634,7 +646,7 @@ namespace acme
       //::thread::g_pmutex = new mutex();
 
       //::thread::g_pthreadmap = new ::thread_map();
-      
+
       // acme commented
       //create_factory < ::context >();
 
@@ -880,6 +892,8 @@ namespace acme
 #endif
 
       //term_id_pool();
+
+      term_global_mq();
 
       ::acme::del(::id_space::s_pidspace);
 

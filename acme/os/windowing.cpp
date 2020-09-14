@@ -1,7 +1,4 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "acme/user/_user.h"
-#endif
 #include "_os.h"
 #include <stdio.h>
 

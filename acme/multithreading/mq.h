@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_APEX message_array :
+class CLASS_DECL_ACME message_array :
    public raw_array < MESSAGE >
 {
 
@@ -9,8 +9,8 @@ class CLASS_DECL_APEX message_array :
 };
 
 
-class CLASS_DECL_APEX mq :
-   virtual public context_object
+class CLASS_DECL_ACME mq :
+   virtual public generic
 {
 public:
 
@@ -20,6 +20,7 @@ public:
    ITHREAD                 m_ithread;
    bool                    m_bKickIdle;
    bool                    m_bQuit;
+   __pointer(::mutex)      m_pmutex;
 
 
    mq();
@@ -34,7 +35,8 @@ public:
 };
 
 
-CLASS_DECL_APEX __pointer(mq) get_mq(ITHREAD id, bool bCreate);
+CLASS_DECL_ACME mq * get_mq(ITHREAD id, bool bCreate);
+CLASS_DECL_ACME void set_mq(ITHREAD idthread, mq * pmq);
 
 void _c_simple_message_loop();
 

@@ -955,7 +955,7 @@ CLASS_DECL_ACME ::layered * get_layered_thread()
 CLASS_DECL_ACME ::thread* get_thread()
 {
 
-   return __thread(get_layered_thread());
+   return ___thread(get_layered_thread());
 
 }
 

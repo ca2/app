@@ -1,7 +1,7 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "acme/user/_user.h"
-#endif
+//#if !BROAD_PRECOMPILED_HEADER
+//#include "acme/user/_user.h"
+//#endif
 
 
 #if OBJ_REF_DBG

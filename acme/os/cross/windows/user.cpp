@@ -1,7 +1,4 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "acme/user/_user.h"
-#endif
 #if defined(LINUX)
 #include "acme/os/linux/_user.h"
 #elif defined(ANDROID)
@@ -573,218 +570,218 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECT * prect)
 }
 
 
-WINBOOL IsChild(oswindow oswindowParent, ::oswindow oswindowcandidateChildOrDescendant)
-{
-
-   auto puiParent = ::oswindow_interaction(oswindowParent);
-
-   auto puiChild = ::oswindow_interaction(oswindowcandidateChildOrDescendant);
-
-   if(::is_null(puiParent))
-   {
-
-      return FALSE;
-
-   }
-
-   if(::is_null(puiChild))
-   {
-
-      return FALSE;
-
-   }
-
-   return puiParent->is_child(puiChild);
-
-}
-
-
-oswindow WINAPI GetParent(::oswindow oswindow)
-{
-
-   if(::is_null(oswindow))
-   {
-
-      return nullptr;
-
-   }
-
-   return oswindow->get_parent();
-
-}
-
-
-oswindow WINAPI SetParent(::oswindow oswindow, ::oswindow oswindowNewParent)
-{
-
-   if(::is_null(oswindow))
-   {
-
-      return nullptr;
-
-   }
-
-   return oswindow->set_parent(oswindowNewParent);
-
-}
-
-
-#ifndef _UWP
-
-
-WINBOOL show_window(::oswindow oswindow, ::edisplay edisplay)
-{
-
-   if(::is_null(oswindow))
-   {
-
-      return FALSE;
-
-   }
-
-   return oswindow->show_window(edisplay);
-
-}
-
-
-#endif
-
-
-LONG WINAPI GetWindowLongA(::oswindow oswindow, int nIndex)
-{
-
-   if(::is_null(oswindow))
-   {
-
-      return 0;
-
-   }
-
-   return (LONG) oswindow->get_window_long_ptr(nIndex);
-
-}
-
-
-LONG WINAPI SetWindowLongA(::oswindow oswindow, int nIndex, LONG l)
-{
-
-   if(::is_null(oswindow))
-   {
-
-      return 0;
-
-   }
-
-   return (LONG) oswindow->set_window_long_ptr(nIndex, (LONG) l);
-
-}
-
-
-LONG_PTR WINAPI GetWindowLongPtrA(::oswindow oswindow, int nIndex)
-{
-
-   if(::is_null(oswindow))
-   {
-
-      return 0;
-
-   }
-
-   return oswindow->get_window_long_ptr(nIndex);
-
-}
-
-
-LONG_PTR WINAPI SetWindowLongPtrA(::oswindow oswindow, int nIndex, LONG_PTR l)
-{
-
-   if(::is_null(oswindow))
-   {
-
-      return 0;
-
-   }
-
-   return oswindow->set_window_long_ptr(nIndex, (int)l);
-
-}
-
-
-WINBOOL WINAPI _001ClientToScreen(::oswindow oswindow, LPPOINT ppoint)
-{
-
-   if(::is_null(oswindow))
-   {
-
-      return FALSE;
-
-   }
-
-   return oswindow->_001ClientToScreen(ppoint);
-
-}
-
-
-WINBOOL WINAPI _001ScreenToClient(::oswindow oswindow, LPPOINT ppoint)
-{
-
-   if(::is_null(oswindow))
-   {
-
-      return FALSE;
-
-   }
-
-   return oswindow->_001ScreenToClient(ppoint);
-
-}
-
-
-WINBOOL WINAPI is_iconic(::oswindow oswindow)
-{
-
-   if(::is_null(oswindow))
-   {
-
-      return FALSE;
-
-   }
-
-   return oswindow->is_iconic();
-
-}
-
-
-WINBOOL WINAPI IsWindowVisible(::oswindow oswindow)
-{
-
-   if(::is_null(oswindow))
-   {
-
-      return FALSE;
-
-   }
-
-   return oswindow->is_window_visible();
-
-}
-
-
-#ifndef _UWP
-
-#define GetWindowLong GetWindowLongA
-#define SetWindowLong SetWindowLongA
-
-#endif
-
-CLASS_DECL_ACME WINBOOL is_window(oswindow oswindow);
-
-
-
-extern "C"
-CLASS_DECL_ACME i32 os_message_box_w(oswindow oswindow, const WCHAR * pszText, const WCHAR * pszCaption, u32 uiFlags)
-{
-
-   return ::os_message_box(oswindow, string(pszText), string(pszCaption), uiFlags);
-
-}
+//WINBOOL IsChild(oswindow oswindowParent, ::oswindow oswindowcandidateChildOrDescendant)
+//{
+//
+//   auto puiParent = ::oswindow_interaction(oswindowParent);
+//
+//   auto puiChild = ::oswindow_interaction(oswindowcandidateChildOrDescendant);
+//
+//   if(::is_null(puiParent))
+//   {
+//
+//      return FALSE;
+//
+//   }
+//
+//   if(::is_null(puiChild))
+//   {
+//
+//      return FALSE;
+//
+//   }
+//
+//   return puiParent->is_child(puiChild);
+//
+//}
+//
+//
+//oswindow WINAPI GetParent(::oswindow oswindow)
+//{
+//
+//   if(::is_null(oswindow))
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   return oswindow->get_parent();
+//
+//}
+
+
+//oswindow WINAPI SetParent(::oswindow oswindow, ::oswindow oswindowNewParent)
+//{
+//
+//   if(::is_null(oswindow))
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   return oswindow->set_parent(oswindowNewParent);
+//
+//}
+
+
+//#ifndef _UWP
+//
+//
+//WINBOOL show_window(::oswindow oswindow, ::edisplay edisplay)
+//{
+//
+//   if(::is_null(oswindow))
+//   {
+//
+//      return FALSE;
+//
+//   }
+//
+//   return oswindow->show_window(edisplay);
+//
+//}
+//
+//
+//#endif
+//
+
+//LONG WINAPI GetWindowLongA(::oswindow oswindow, int nIndex)
+//{
+//
+//   if(::is_null(oswindow))
+//   {
+//
+//      return 0;
+//
+//   }
+//
+//   return (LONG) oswindow->get_window_long_ptr(nIndex);
+//
+//}
+
+
+//LONG WINAPI SetWindowLongA(::oswindow oswindow, int nIndex, LONG l)
+//{
+//
+//   if(::is_null(oswindow))
+//   {
+//
+//      return 0;
+//
+//   }
+//
+//   return (LONG) oswindow->set_window_long_ptr(nIndex, (LONG) l);
+//
+//}
+
+
+//LONG_PTR WINAPI GetWindowLongPtrA(::oswindow oswindow, int nIndex)
+//{
+//
+//   if(::is_null(oswindow))
+//   {
+//
+//      return 0;
+//
+//   }
+//
+//   return oswindow->get_window_long_ptr(nIndex);
+//
+//}
+
+
+//LONG_PTR WINAPI SetWindowLongPtrA(::oswindow oswindow, int nIndex, LONG_PTR l)
+//{
+//
+//   if(::is_null(oswindow))
+//   {
+//
+//      return 0;
+//
+//   }
+//
+//   return oswindow->set_window_long_ptr(nIndex, (int)l);
+//
+//}
+
+//
+//WINBOOL WINAPI _001ClientToScreen(::oswindow oswindow, LPPOINT ppoint)
+//{
+//
+//   if(::is_null(oswindow))
+//   {
+//
+//      return FALSE;
+//
+//   }
+//
+//   return oswindow->_001ClientToScreen(ppoint);
+//
+//}
+
+
+//WINBOOL WINAPI _001ScreenToClient(::oswindow oswindow, LPPOINT ppoint)
+//{
+//
+//   if(::is_null(oswindow))
+//   {
+//
+//      return FALSE;
+//
+//   }
+//
+//   return oswindow->_001ScreenToClient(ppoint);
+//
+//}
+
+
+//WINBOOL WINAPI is_iconic(::oswindow oswindow)
+//{
+//
+//   if(::is_null(oswindow))
+//   {
+//
+//      return FALSE;
+//
+//   }
+//
+//   return oswindow->is_iconic();
+//
+//}
+
+//
+//WINBOOL WINAPI IsWindowVisible(::oswindow oswindow)
+//{
+//
+//   if(::is_null(oswindow))
+//   {
+//
+//      return FALSE;
+//
+//   }
+//
+//   return oswindow->is_window_visible();
+//
+//}
+
+//
+//#ifndef _UWP
+//
+//#define GetWindowLong GetWindowLongA
+//#define SetWindowLong SetWindowLongA
+//
+//#endif
+//
+//CLASS_DECL_ACME WINBOOL is_window(oswindow oswindow);
+//
+//
+//
+//extern "C"
+//CLASS_DECL_ACME i32 os_message_box_w(oswindow oswindow, const WCHAR * pszText, const WCHAR * pszCaption, u32 uiFlags)
+//{
+//
+//   return ::os_message_box(oswindow, string(pszText), string(pszCaption), uiFlags);
+//
+//}

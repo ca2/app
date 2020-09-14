@@ -1,6 +1,5 @@
 #include "framework.h"
 
-
 #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
 #include <sys/ipc.h>
@@ -9,23 +8,20 @@
 
 #endif
 
-
 condition::condition()
 {
-
-
 #ifdef WINDOWS
 
-//    ::InitializeCriticalSection(&m_sect);
+   //    ::InitializeCriticalSection(&m_sect);
 
    ::InitializeCriticalSectionEx(&m_sect, 4000, 0);
 
    ::InitializeConditionVariable(&m_var);
 #elif defined(ANDROID)
 
-   pthread_mutex_init(&m_mutex,nullptr);
+   pthread_mutex_init(&m_mutex, nullptr);
 
-   pthread_cond_init(&m_cond,nullptr);
+   pthread_cond_init(&m_cond, nullptr);
 
    m_iHold = 0;
 
@@ -36,18 +32,14 @@ condition::condition()
    /*
       if(pstrName != nullptr && *pstrName != '\0')
       {
-
          string strPath = "/acme/time/ftok/condition/" + string(pstrName);
 
          m_hsync = semget(ftok(strPath, 0), 1, 0666 | IPC_CREAT);
-
       }
       else
    */
    {
-
       m_hsync = semget(IPC_PRIVATE, 1, 0666 | IPC_CREAT);
-
    }
 
    /*
@@ -56,15 +48,11 @@ condition::condition()
 
       if(bSet)
       {
-
          semctl_arg.val = 1;
-
       }
       else
       {
-
          semctl_arg.val = 0;
-
       }
 
       semctl((i32) m_hsync, 0, SETVAL, semctl_arg);
@@ -72,27 +60,20 @@ condition::condition()
    */
 
 #endif
-
-
 }
 
 condition::~condition()
 {
-
 #ifdef WINDOWS
 
    ::DeleteCriticalSection(&m_sect);
 
 #endif
-
 }
-
 
 bool condition::SetEvent()
 {
-
 #ifdef WINDOWS
-
 
    WakeAllConditionVariable(&m_var);
 
@@ -102,23 +83,18 @@ bool condition::SetEvent()
 
    pthread_mutex_lock(&m_mutex);
 
-   if(!m_bSignaled)
+   if (!m_bSignaled)
    {
-
       m_bSignaled = true;
 
       pthread_mutex_unlock(&m_mutex);
 
       pthread_cond_signal(&m_cond);
-
    }
    else
    {
-
       pthread_mutex_unlock(&m_mutex);
-
    }
-
 
    return true;
 
@@ -126,22 +102,18 @@ bool condition::SetEvent()
 
    sembuf sb;
 
-   sb.sem_op   = 1;
-   sb.sem_num  = 0;
-   sb.sem_flg  = SEM_UNDO;
+   sb.sem_op = 1;
+   sb.sem_num = 0;
+   sb.sem_flg = SEM_UNDO;
 
-   return semop((i32)m_hsync,&sb,1) == 0;
+   return semop((i32)m_hsync, &sb, 1) == 0;
 
 #endif
-
 }
-
 
 bool condition::pulse()
 {
-
 #ifdef WINDOWS
-
 
    WakeAllConditionVariable(&m_var);
 
@@ -151,9 +123,8 @@ bool condition::pulse()
 
    pthread_mutex_lock(&m_mutex);
 
-   if(m_iHold > 0)
+   if (m_iHold > 0)
    {
-
       m_bSignaled = true;
 
       pthread_mutex_unlock(&m_mutex);
@@ -162,49 +133,37 @@ bool condition::pulse()
 
       pthread_mutex_lock(&m_mutex);
 
-      while(m_iHold > 0)
+      while (m_iHold > 0)
       {
-
          Sleep(1);
-
       }
 
       m_bSignaled = false;
 
       pthread_mutex_unlock(&m_mutex);
-
    }
    else
    {
-
       pthread_mutex_unlock(&m_mutex);
-
    }
 
-
    return true;
-
 
 #else
 
    sembuf sb;
 
-   sb.sem_op   = 1;
-   sb.sem_num  = 0;
-   sb.sem_flg  = SEM_UNDO;
+   sb.sem_op = 1;
+   sb.sem_num = 0;
+   sb.sem_flg = SEM_UNDO;
 
-   return semop((i32) m_hsync, &sb, 1) == 0;
+   return semop((i32)m_hsync, &sb, 1) == 0;
 
 #endif
-
 }
 
-
-
-
-sync_result condition::wait ()
+sync_result condition::wait()
 {
-
 #ifdef WINDOWS
 
    SleepConditionVariableCS(&m_var, &m_sect, INFINITE);
@@ -215,11 +174,9 @@ sync_result condition::wait ()
 
    m_iHold++;
 
-   while(!m_bSignaled)
+   while (!m_bSignaled)
    {
-
       pthread_cond_wait(&m_cond, &m_mutex);
-
    }
 
    pthread_mutex_unlock(&m_mutex);
@@ -230,29 +187,26 @@ sync_result condition::wait ()
 
    pthread_mutex_unlock(&m_mutex);
 
-
 #else
 
    sembuf sb;
 
-   sb.sem_op   = -1;
-   sb.sem_num  = 0;
-   sb.sem_flg  = 0;
+   sb.sem_op = -1;
+   sb.sem_num = 0;
+   sb.sem_flg = 0;
 
-   semop((i32) m_hsync, &sb, 1);
+   semop((i32)m_hsync, &sb, 1);
 
 #endif
 
    return sync_result(sync_result::result_event0);
-
 }
 
 ///  \brief		waits for an condition for a specified time
 ///  \lparam		duration time period to wait for an condition
 ///  \return	waiting action result as WaitResult
-sync_result condition::wait (const duration & duration)
+sync_result condition::wait(const duration& duration)
 {
-
    u32 timeout = duration.lock_duration();
 
 #ifdef WINDOWS
@@ -260,7 +214,6 @@ sync_result condition::wait (const duration & duration)
    return sync_result(SleepConditionVariableCS(&m_var, &m_sect, timeout));
 
 #elif defined(ANDROID)
-
 
    pthread_mutex_lock(&m_mutex);
 
@@ -270,21 +223,16 @@ sync_result condition::wait (const duration & duration)
 
    start.Now();
 
-   while(!m_bSignaled)
+   while (!m_bSignaled)
    {
-
       pthread_cond_wait(&m_cond, &m_mutex);
 
-      if(start.elapsed() > duration)
+      if (start.elapsed() > duration)
       {
-
          m_iHold--;
 
          return ::sync_result(::sync_result::result_timeout);
-
       }
-
-
    }
 
    m_iHold--;
@@ -302,20 +250,19 @@ sync_result condition::wait (const duration & duration)
    delay.tv_sec = 0;
    delay.tv_nsec = 1000000;
 
-   while(duration.is_pos_infinity() || start.elapsed() < timeout)
+   while (duration.is_pos_infinity() || start.elapsed() < timeout)
    {
-
       sembuf sb;
 
-      sb.sem_op   = -1;
-      sb.sem_num  = 0;
-      sb.sem_flg  = IPC_NOWAIT;
+      sb.sem_op = -1;
+      sb.sem_num = 0;
+      sb.sem_flg = IPC_NOWAIT;
 
-      i32 ret = semop((i32) m_hsync, &sb, 1);
+      i32 ret = semop((i32)m_hsync, &sb, 1);
 
-      if(ret < 0)
+      if (ret < 0)
       {
-         if(ret == EPERM)
+         if (ret == EPERM)
          {
             nanosleep(&delay, nullptr);
          }
@@ -328,14 +275,12 @@ sync_result condition::wait (const duration & duration)
       {
          return ::sync_result::result_event0;
       }
-
    }
 
    return sync_result(sync_result::result_timeout);
 
 #endif
 }
-
 
 //*****************************************************************************
 //
@@ -354,18 +299,14 @@ sync_result condition::wait (const duration & duration)
 //*****************************************************************************
 bool condition::is_signaled() const
 {
-
 #ifdef ANDROID
 
    return m_bSignaled;
 
 #endif
 
-
    __throw(not_supported_exception());
-
 }
-
 
 //end**************************************************************************
 //
@@ -377,11 +318,11 @@ bool condition::is_signaled() const
 //
 //end**************************************************************************
 
-bool condition::lock(const duration & durationTimeout)
+bool condition::lock(const duration& durationTimeout)
 {
 #ifdef WINDOWS
 
-   if(SleepConditionVariableCS(&m_var, &m_sect, durationTimeout.lock_duration()) != FALSE)
+   if (SleepConditionVariableCS(&m_var, &m_sect, durationTimeout.lock_duration()) != FALSE)
       return true;
    else
       return false;
@@ -401,20 +342,19 @@ bool condition::lock(const duration & durationTimeout)
    delay.tv_sec = 0;
    delay.tv_nsec = 1000000;
 
-   while(start.elapsed() < timeout)
+   while (start.elapsed() < timeout)
    {
-
       sembuf sb;
 
-      sb.sem_op   = -1;
-      sb.sem_num  = 0;
-      sb.sem_flg  = IPC_NOWAIT;
+      sb.sem_op = -1;
+      sb.sem_num = 0;
+      sb.sem_flg = IPC_NOWAIT;
 
-      i32 ret = semop((i32) m_hsync, &sb, 1);
+      i32 ret = semop((i32)m_hsync, &sb, 1);
 
-      if(ret < 0)
+      if (ret < 0)
       {
-         if(ret == EPERM)
+         if (ret == EPERM)
          {
             nanosleep(&delay, nullptr);
          }
@@ -427,13 +367,11 @@ bool condition::lock(const duration & durationTimeout)
       {
          return true;
       }
-
    }
 
    return false;
 
 #endif
-
 }
 
 bool condition::ResetEvent()
@@ -450,23 +388,17 @@ bool condition::ResetEvent()
 
    pthread_cond_signal(&m_cond);
 
-
 #endif
 
    return true;
-
 }
 
 bool condition::unlock()
 {
-
    return ResetEvent();
-
 }
 
-void * condition::get_os_data() const
+void* condition::get_os_data() const
 {
-
    __throw(not_supported_exception());
-
 }

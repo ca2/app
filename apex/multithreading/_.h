@@ -302,4 +302,9 @@ public:
 string get_thread_name(HTHREAD hthread);
 
 
+// Use instead of PostQuitMessage in OLE server applications
+CLASS_DECL_APEX void __post_quit_message(i32 nExitCode);
+
+
+
 

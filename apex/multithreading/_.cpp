@@ -1002,3 +1002,24 @@ CLASS_DECL_APEX ::estatus call(::layered * pobjectContext)
 //   return estatus;
 //
 //}
+
+
+
+
+
+
+
+void __post_quit_message(i32 nExitCode)
+{
+
+#ifdef WINDOWS_DESKTOP
+
+   ::PostQuitMessage(nExitCode);
+
+#else
+
+   ::multithreading::set_finish(::get_context_application());
+
+#endif
+
+}

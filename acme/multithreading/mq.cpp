@@ -66,7 +66,7 @@ int_bool mq::post_message(const MESSAGE & message)
 
    }
 
-   sync_lock ml(mutex());
+   sync_lock ml(m_pmutex);
 
    m_messagea.add(message);
 

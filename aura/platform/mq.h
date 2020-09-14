@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "apex/platform/mq.h"
+#include "amce/multithreading/mq.h"
 
 //class CLASS_DECL_AURA message_array :
 //   public raw_array < MESSAGE >

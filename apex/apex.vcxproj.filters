@@ -1097,9 +1097,6 @@
     <ClInclude Include="inline\console_common.h">
       <Filter>Header Files\inline</Filter>
     </ClInclude>
-    <ClInclude Include="platform\mq.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="const\thread.h">
       <Filter>Header Files\const</Filter>
     </ClInclude>
@@ -2007,9 +2004,6 @@
     </ClCompile>
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\mq.cpp">
-      <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\context_thread.cpp">
       <Filter>Source Files\platform</Filter>

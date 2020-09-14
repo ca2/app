@@ -1218,7 +1218,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="platform\machine_event.cpp" />
     <ClCompile Include="platform\machine_event_central.cpp" />
     <ClCompile Include="platform\machine_event_data.cpp" />
-    <ClCompile Include="platform\mq.cpp" />
     <ClCompile Include="platform\net.cpp" />
     <ClCompile Include="platform\obj_typ_ctr.cpp" />
     <ClCompile Include="platform\os_context.cpp" />
@@ -1447,7 +1446,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="platform\machine_event_central2.h" />
     <ClInclude Include="platform\machine_event_data2.h" />
     <ClInclude Include="platform\main.h" />
-    <ClInclude Include="platform\mq.h" />
     <ClInclude Include="platform\net.h" />
     <ClInclude Include="platform\number.h" />
     <ClInclude Include="platform\obj_ref_dbg.h" />

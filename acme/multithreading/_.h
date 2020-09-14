@@ -125,8 +125,6 @@ CLASS_DECL_ACME ::estatus __call(::generic * pobject);
 CLASS_DECL_ACME bool thread_set_name(const char * psz);
 CLASS_DECL_ACME bool set_thread_name(HTHREAD hthread, const char* pszName);
 
-// Use instead of PostQuitMessage in OLE server applications
-CLASS_DECL_ACME void __post_quit_message(i32 nExitCode);
 
 typedef ::estatus     (*__THREADPROC)(void *);
 

@@ -1300,6 +1300,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="multithreading\event.cpp" />
     <ClCompile Include="multithreading\file_change_event.cpp" />
     <ClCompile Include="multithreading\manual_reset_event.cpp" />
+    <ClCompile Include="multithreading\mq.cpp" />
     <ClCompile Include="multithreading\multi_lock.cpp" />
     <ClCompile Include="multithreading\mutex.cpp" />
     <ClCompile Include="multithreading\pred_holder.cpp" />
@@ -1533,6 +1534,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="multithreading\handler.h" />
     <ClInclude Include="multithreading\initial_single_lock.h" />
     <ClInclude Include="multithreading\manual_reset_event.h" />
+    <ClInclude Include="multithreading\mq.h" />
     <ClInclude Include="multithreading\multi_lock.h" />
     <ClInclude Include="multithreading\mutex.h" />
     <ClInclude Include="multithreading\pred_holder.h" />

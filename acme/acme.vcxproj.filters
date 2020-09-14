@@ -2153,6 +2153,9 @@
     <ClInclude Include="filesystem\file\aaa_edit_file.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
+    <ClInclude Include="multithreading\mq.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">
@@ -3192,6 +3195,9 @@
     </ClCompile>
     <ClCompile Include="os\windows\extract_icon.cpp">
       <Filter>Source Files\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\mq.cpp">
+      <Filter>Source Files\multithreading</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

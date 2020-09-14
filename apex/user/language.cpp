@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "apex/user/_user.h"
-#endif
+
 
 
 #define STR_BOM "\xEF\xBB\xBF"

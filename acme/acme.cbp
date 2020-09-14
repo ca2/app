@@ -667,8 +667,8 @@
 		<Unit filename="node/linux/_.h" />
 		<Unit filename="node/linux/_linux.h" />
 		<Unit filename="node/linux/application.h" />
-		<Unit filename="node/linux/console_window.cpp" />
-		<Unit filename="node/linux/console_window.h" />
+		<Unit filename="node/linux/console.cpp" />
+		<Unit filename="node/linux/console.h" />
 		<Unit filename="node/linux/dumpinit.cpp" />
 		<Unit filename="node/linux/error.cpp" />
 		<Unit filename="node/linux/exception.cpp" />
@@ -1300,10 +1300,8 @@
 		<Unit filename="primitive/primitive/collection_file.h" />
 		<Unit filename="primitive/primitive/command.cpp" />
 		<Unit filename="primitive/primitive/command.h" />
-		<Unit filename="primitive/primitive/command_line.h" />
 		<Unit filename="primitive/primitive/compare_pred.h" />
 		<Unit filename="primitive/primitive/context_object_traits.cpp" />
-		<Unit filename="primitive/primitive/create.h" />
 		<Unit filename="primitive/primitive/edit.cpp" />
 		<Unit filename="primitive/primitive/edit.h" />
 		<Unit filename="primitive/primitive/enum.h" />
@@ -1312,9 +1310,6 @@
 		<Unit filename="primitive/primitive/estatus.h" />
 		<Unit filename="primitive/primitive/factory.cpp" />
 		<Unit filename="primitive/primitive/factory.h" />
-		<Unit filename="primitive/primitive/form_property_set.h" />
-		<Unit filename="primitive/primitive/function.h" />
-		<Unit filename="primitive/primitive/function_arg.h" />
 		<Unit filename="primitive/primitive/function_base.h" />
 		<Unit filename="primitive/primitive/generic.cpp" />
 		<Unit filename="primitive/primitive/generic.h" />
@@ -1327,7 +1322,6 @@
 		<Unit filename="primitive/primitive/interlocked_long.h" />
 		<Unit filename="primitive/primitive/interlocked_long_pulse.cpp" />
 		<Unit filename="primitive/primitive/interlocked_long_pulse.h" />
-		<Unit filename="primitive/primitive/job.h" />
 		<Unit filename="primitive/primitive/logic.h" />
 		<Unit filename="primitive/primitive/malloc.h" />
 		<Unit filename="primitive/primitive/map.h" />

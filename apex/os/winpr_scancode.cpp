@@ -6,7 +6,7 @@
 //
 #include "framework.h"
 #include "winpr_input.h"
-#include "apex/os/cross/windows/windows_user.h"
+#include "acme/os/cross/windows/windows_user.h"
 
 /**
  * Virtual Scan Codes
@@ -552,15 +552,15 @@ extern "C"
 DWORD GetVirtualKeyCodeFromVirtualScanCode(DWORD scancode, DWORD dwKeyboardType)
 {
    DWORD codeIndex;
-   
+
    codeIndex = scancode & 0xFF;
-   
+
    if (codeIndex > 127)
       return VK_NONE;
-   
+
    if ((dwKeyboardType != 4) && (dwKeyboardType != 7))
       dwKeyboardType = 4;
-   
+
    if (dwKeyboardType == 4)
    {
       return (scancode & KBDEXT) ? KBD4X[codeIndex] : KBD4T[codeIndex];
@@ -569,7 +569,7 @@ DWORD GetVirtualKeyCodeFromVirtualScanCode(DWORD scancode, DWORD dwKeyboardType)
    {
       return (scancode & KBDEXT) ? KBD7X[codeIndex] : KBD7T[codeIndex];
    }
-   
+
    return VK_NONE;
 }
 
@@ -579,13 +579,13 @@ DWORD GetVirtualScanCodeFromVirtualKeyCode(DWORD vkcode, DWORD dwKeyboardType)
    int i;
    DWORD scancode;
    DWORD codeIndex;
-   
+
    scancode = 0;
    codeIndex = vkcode & 0xFF;
-   
+
    if ((dwKeyboardType != 4) && (dwKeyboardType != 7))
       dwKeyboardType = 4;
-   
+
    if (dwKeyboardType == 4)
    {
       if (vkcode & KBDEXT)
@@ -636,6 +636,6 @@ DWORD GetVirtualScanCodeFromVirtualKeyCode(DWORD vkcode, DWORD dwKeyboardType)
          }
       }
    }
-   
+
    return scancode;
 }

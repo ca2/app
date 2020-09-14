@@ -4,7 +4,7 @@
 #include "apex/os/_c.h"
 #include "apex/os/_.h"
 #include "apex/os/_os.h"
-#include "apex/platform/mq.h"
+#include "acme/multithreading/mq.h"
 
 
 ::mutex * g_pmutexThreadWaitClose = nullptr;
@@ -1264,7 +1264,7 @@ void thread::kick_idle()
          if (m_pmq && !m_bClosedMq)
          {
 
-            sync_lock sl(m_pmq->mutex());
+            sync_lock sl(m_pmq->m_pmutex);
 
             m_pmq->m_bKickIdle = true;
 
@@ -3225,7 +3225,7 @@ error:;
    catch (::exit_exception* pe)
    {
 
-      if (__thread(pe->m_pthreadExit) != this)
+      if (___thread(pe->m_pthreadExit) != this)
       {
 
          System.set_finish();
@@ -3321,6 +3321,8 @@ mq* thread::_get_mq()
       return nullptr;
 
    }
+
+   set_mq(m_ithread1, m_pmq);
 
    return m_pmq;
 

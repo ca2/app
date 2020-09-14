@@ -2,7 +2,7 @@
 #include "_linux.h"
 #include "_user.h"
 #include "third/sn/sn.h"
-#include "apex/platform/mq.h"
+#include "acme/multithreading/mq.h"
 
 
 extern SnLauncheeContext* g_psncontext;

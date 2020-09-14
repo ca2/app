@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "_user.h"
-#include "apex/platform/mq.h"
+#include "acme/multithreading/mq.h"
 
 
 /*
@@ -97,11 +97,11 @@ sys_thread * sys_thread_pool::get(pthread_t pthread)
 
 
 
-
-int_bool post_message(oswindow oswindow, UINT message, WPARAM wparam, LPARAM lparam)
-{
-
-   return mq_post_message(oswindow, message, wparam, lparam);
-
-}
-
+//
+//int_bool post_message(oswindow oswindow, UINT message, WPARAM wparam, LPARAM lparam)
+//{
+//
+//   return mq_post_message(oswindow, message, wparam, lparam);
+//
+//}
+//

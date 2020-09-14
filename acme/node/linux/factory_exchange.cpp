@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "acme/os/console.h"
 //#include "shell_linux.h"
-#include "console_window.h"
+#include "console.h"
 #include "acme/node/posix/pipe.h"
 //#include "acme/node/linux/process.h"
 #include "_linux.h"

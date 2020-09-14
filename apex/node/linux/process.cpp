@@ -42,7 +42,7 @@ chldstatus_map * g_ppid = nullptr;
 critical_section * get_pid_cs()
 {
 
-   cslock cs(::apex::g_pcsGlobal);
+   cslock cs(::acme::g_pcsGlobal);
 
    if(g_pcsPid2 == nullptr)
    {
@@ -381,7 +381,7 @@ namespace ansios
 
          m_exitstatus.m_iExitCode = -1;
 
-         ::message_box(nullptr,"gksu is not installed, please install gksu.","Please, install gksu.",MB_ICONINFORMATION);
+         ::message_box("gksu is not installed, please install gksu.","Please, install gksu.",MB_ICONINFORMATION);
 
          return false;
 

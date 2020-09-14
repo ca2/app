@@ -14,7 +14,7 @@ public:
    cairo_surface_t *             m_cairosurface;
    cairo_t *                     m_cairoSource;
    cairo_surface_t *             m_cairosurfaceSource;
-   memory                 m_mem;
+   memory                        m_mem;
 
 
    window_cairo();

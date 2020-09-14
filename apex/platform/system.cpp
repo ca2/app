@@ -1625,12 +1625,17 @@ namespace apex
 
       }
 
+
+#ifdef WINDOWS
+
       if (m_bGdiplus)
       {
 
          init_gdi_plus();
 
       }
+
+#endif
 
       //if(m_bDraw2d)
       //{
@@ -2143,7 +2148,7 @@ namespace apex
 //      {
 //
 //         estatus = do_factory_exchange("imaging", strLibrary);
-//         
+//
 //         if (estatus)
 //         {
 //
@@ -5643,7 +5648,7 @@ namespace apex
 //
 //      //System.get_library("gpu_opengl");
 //
-//      
+//
 //
 //      if (!estatus)
 //      {
@@ -8363,7 +8368,7 @@ string get_bundle_app_library_name();
       }
 
    }
-   
+
 #elif defined(__APPLE__)
 
    string strLibraryName = get_bundle_app_library_name();

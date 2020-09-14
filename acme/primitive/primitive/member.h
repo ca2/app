@@ -39,7 +39,7 @@ namespace primitive
 
    protected:
 
-      friend class object;
+      friend class ::object;
 
       TYPE* m_p;
 
@@ -73,7 +73,7 @@ namespace primitive
 
 
    protected:
-      friend class object;
+      friend class ::object;
       using member < TYPE > ::operator =;
 
 
@@ -91,7 +91,7 @@ namespace primitive
       reference() { }
 
    protected:
-      friend class object;
+      friend class ::object;
       using member < TYPE > ::operator =;
 
 

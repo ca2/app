@@ -28,7 +28,7 @@ off_t tell64(int fd);
 
 
 
-#include "windowing.h"
+//#include "windowing.h"
 
 
 #include "gnome.h"

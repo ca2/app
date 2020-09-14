@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "acme/os/console.h"
-#include "console_window.h"
+#include "console.h"
 #include <ncurses.h>
 
 

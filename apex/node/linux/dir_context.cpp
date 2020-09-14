@@ -178,7 +178,7 @@ namespace linux
 
          strsize iFind2 = pathInstall.reverse_find("/", iFind);
 
-         strsize iStart = MAX(iFind1 + 1, iFind2 + 1);
+         strsize iStart = max(iFind1 + 1, iFind2 + 1);
 
          pathInstall = pathInstall.Left(iFind - 1) + "_" + pathInstall.Mid(iStart, iFind - iStart) + pathInstall.Mid(iFind + 1);
 
@@ -243,7 +243,7 @@ namespace linux
 
             ::file::listing straDir(get_context());
 
-            straDir.ls_dir(listing.m_pathFinal);
+            Application.dir().ls_dir(straDir, listing.m_pathFinal);
 
             for(i32 i = 0; i < straDir.get_count(); i++)
             {
@@ -268,12 +268,7 @@ namespace linux
 
                }
 
-               listing.m_pathUser = strDir;
-
-               listing.m_pathFinal = strDir;
-
-               listing.ls();
-
+               Application.dir().ls(listing, strDir);
 
             }
 
@@ -286,7 +281,7 @@ namespace linux
 
             listing.m_bRecursive = false;
 
-            listing.ls_file(listing.m_pathFinal);
+            Application.dir().ls_file(listing, listing.m_pathFinal);
 
          }
 
@@ -607,7 +602,7 @@ namespace linux
 
          ::file::listing straPath(::get_context());
 
-         straPath.ls(psz);
+         Application.dir().ls(straPath, psz);
 
          for(i32 i = 0; i < straPath.get_count(); i++)
          {
@@ -746,7 +741,7 @@ namespace linux
 
       ::file::listing listing(get_context());
 
-      listing.ls_dir(pszDir);
+      Application.dir().ls_dir(listing, pszDir);
 
       return listing.get_size() > 0;
 

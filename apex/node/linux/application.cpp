@@ -496,26 +496,26 @@ namespace apex
    bool application::os_on_start_application()
    {
 
-   #ifndef RASPBIAN
-
-      try
-      {
-
-         auto pfile = __create_new < ::linux::desktop_file >();
-
-         pfile->create();
-
-         pfile->write();
-
-      }
-      catch(...)
-      {
-
-         TRACE("Could not create .desktop shortcut file for the Linux Application for the current user.");
-
-      }
-
-      #endif
+//   #ifndef RASPBIAN
+//
+//      try
+//      {
+//
+//         auto pfile = __create_new < ::linux::desktop_file >();
+//
+//         pfile->create();
+//
+//         pfile->write();
+//
+//      }
+//      catch(...)
+//      {
+//
+//         TRACE("Could not create .desktop shortcut file for the Linux Application for the current user.");
+//
+//      }
+//
+//      #endif
 
       return true;
 

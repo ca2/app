@@ -149,7 +149,7 @@ va_list *Arguments
 VOID WINAPI output_debug_string(LPCSTR pOutputString)
 {
 
-   if(::apex::g_bOutputDebugString)
+   if(::acme::g_bOutputDebugString)
    {
 
       if(strstr(pOutputString, "font_list"))
@@ -173,7 +173,7 @@ VOID WINAPI output_debug_string(LPCSTR pOutputString)
 VOID WINAPI output_debug_string(LPCWSTR pOutputString)
 {
 
-   if(::apex::g_bOutputDebugString)
+   if(::acme::g_bOutputDebugString)
    {
 
       output_debug_string(string(pOutputString));

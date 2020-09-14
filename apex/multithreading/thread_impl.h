@@ -70,22 +70,22 @@
 
 
 
-template <  >
-inline bool EqualElements<ITHREAD>(ITHREAD r1, ITHREAD r2)
-{
+//template <  >
+//inline bool EqualElements<ITHREAD>(ITHREAD r1, ITHREAD r2)
+//{
+//
+//   return ithread_equals(r1, r2) != 0;
+//
+//}
 
-   return ithread_equals(r1, r2) != 0;
 
-}
-
-
-template <  >
-inline uptr uptr_hash(ITHREAD key)
-{
-
-   return 0;
-
-}
+//template <  >
+//inline uptr uptr_hash(ITHREAD key)
+//{
+//
+//   return 0;
+//
+//}
 
 
 #endif

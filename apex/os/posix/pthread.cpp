@@ -1,13 +1,13 @@
 #include "framework.h"
 #include "apex/os/ansios/_ansios.h"
-#include "apex/platform/mq.h"
+#include "acme/multithreading/mq.h"
 #ifdef LINUX
 #include "apex/os/linux/_user.h"
 
 #endif
 
 
-__pointer(mq) get_mq(ITHREAD idthread, bool bCreate);
+mq * get_mq(ITHREAD idthread, bool bCreate);
 
 
 CLASS_DECL_APEX void thread_get_os_priority(i32 * piOsPolicy, sched_param * pparam, ::e_priority epriority);
@@ -63,7 +63,7 @@ DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, HSYNC * synca, DWORD tickTimeout
             if (pmq.is_set())
             {
 
-               sync_lock sl(pmq->mutex());
+               sync_lock sl(pmq->m_pmutex);
 
                if (pmq->m_messagea.get_count() > 0)
                {
@@ -287,14 +287,14 @@ void set_defer_process_x_message(bool (*pfn)(HTHREAD hthread, LPMESSAGE pMsg, os
 
 }
 
-
-#ifdef LINUX
-
-
-void x11_thread(osdisplay_data * pdisplaydata);
-
-
-#endif
+//
+//#ifdef LINUX
+//
+//
+//void x11_thread(osdisplay_data * pdisplaydata);
+//
+//
+//#endif
 
 
 #endif

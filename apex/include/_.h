@@ -2166,6 +2166,21 @@ namespace primitive
 
 } // namespace primitive
 
+//
+//class context_object;
+//
+//namespace papaya
+//{
+//
+//   namespace property_set
+//   {
+//
+//      inline bool get_string(string & strResult, const ::context_object& object, const string& strKey);
+//
+//   } // namespace property_set
+//
+//} // namespace papaya
+//
 
 //#define __member(TYPE) ::primitive::member < TYPE >
 //#define __composite(TYPE) ::primitive::composite < TYPE >

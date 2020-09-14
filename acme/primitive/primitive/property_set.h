@@ -33,7 +33,7 @@ public:
 
    inline var operator()(const id & id, const var & varDefault = ::error_not_found) const;
 
-   inline string _001Replace(const string & str) const;
+   string _001Replace(const string & str) const;
 
    inline string format(const string & str) const { return _001Replace(str); }
 
@@ -126,7 +126,7 @@ public:
       return property;
 
    }
-   
+
    inline bool get_string(string& strResult, const id & idKey) const;
 
    inline var get_value(id idName);
@@ -320,7 +320,7 @@ public:
 
 
    void parse_environment_variable(const string_array & straEnvironment);
-  
+
 
 };
 

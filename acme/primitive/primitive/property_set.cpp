@@ -994,6 +994,13 @@ void property_set::parse_http_headers(const char * pszHeaders)
 
 }
 
+string property_set::_001Replace(const string & str) const
+{
+
+   return ::papaya::property_set::evaluate(*this, str);
+
+}
+
 ::generic * property_set::source_channel()
 {
 

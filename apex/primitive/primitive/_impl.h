@@ -2210,7 +2210,7 @@ inline void context_object::add_pred(runnable_array & array, PRED pred)
 //void procedure::pred(PRED pred)
 //{
 //
-//  m_pobjectTask = __task_procedure(pred); 
+//  m_pobjectTask = __task_procedure(pred);
 //
 //}
 //
@@ -2430,3 +2430,8 @@ inline ::estatus context_object::__construct_new(__pointer(TYPE)& pbase)
 ////
 ////
 ////
+
+#include "property_set_papaya.h"
+
+
+

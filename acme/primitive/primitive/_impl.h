@@ -6,7 +6,7 @@
 
 inline bool __enum_is_failed(const ::estatus & e)
 {
-   
+
    return ::failed(e);
 
 }
@@ -908,12 +908,7 @@ inline bool succeeded(const ::property & property)
 }
 
 
-inline string property_set::_001Replace(const string & str) const
-{
 
-   return ::papaya::property_set::evaluate(*this, str);
-
-}
 
 //
 //template < typename BASE_TYPE >
@@ -2214,7 +2209,7 @@ template < typename PRED >
 void procedure::pred(PRED pred)
 {
 
-   m_pobjectTask = __task_procedure(pred); 
+   m_pobjectTask = __task_procedure(pred);
 
 }
 

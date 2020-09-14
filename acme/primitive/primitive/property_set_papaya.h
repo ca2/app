@@ -14,6 +14,7 @@ namespace papaya
 
       inline bool get_string(string & strResult, const ::context_object& object, const string& strKey);
       inline bool get_string(string & strResult, const ::context_object& object, string& strKey);
+      inline bool get_evaluation(string & strResult, const ::property_set & set, string & strExpression);
 
 
       inline string get_string(const ::property_set & set, const string & strKey)
@@ -55,6 +56,14 @@ namespace papaya
          strResult = pproperty->get_string();
 
          return true;
+
+      }
+
+
+      inline bool get_evaluation(string & strResult, const ::property_set & set, string & strExpression)
+      {
+
+         return get_evaluation(strResult, set, strExpression);
 
       }
 

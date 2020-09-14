@@ -5,7 +5,7 @@
 #include "aura/message.h"
 #include "interaction_prodevian.h"
 #include "interaction_thread.h"
-#include "apex/platform/mq.h"
+#include "acme/multithreading/mq.h"
 
 
 #ifdef LINUX

@@ -1,12 +1,19 @@
 #pragma once
 
 
+class context_object;
+
+
 namespace papaya
 {
 
 
    namespace property_set
    {
+
+
+      inline bool get_string(string & strResult, const ::context_object& object, const string& strKey);
+      inline bool get_string(string & strResult, const ::context_object& object, string& strKey);
 
 
       inline string get_string(const ::property_set & set, const string & strKey)

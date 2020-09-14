@@ -33,6 +33,16 @@ namespace papaya
       }
 
 
+      inline bool get_string(string & strResult, const ::context_object& object, string& strKey)
+      {
+
+         return object.property_set_get_string(strResult, strKey);
+
+      }
+
+
+
+
       //inline bool get_evaluation(string & strResult, const ::property_set & set, const string & strExpression)
       //{
 

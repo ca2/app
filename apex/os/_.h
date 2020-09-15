@@ -17,7 +17,7 @@
 
 #elif defined(LINUX)
 
-#include "apex/os/cairo/_.h"
+//#include "apex/os/cairo/_.h"
 #include "apex/os/ansios/_.h"
 #include "apex/os/linux/_.h"
 

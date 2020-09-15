@@ -774,8 +774,6 @@
 		<Unit filename="os/ansios/win.cpp" />
 		<Unit filename="os/argcargv.cpp" />
 		<Unit filename="os/binreloc.h" />
-		<Unit filename="os/cairo/_.h" />
-		<Unit filename="os/cairo/_impl.h" />
 		<Unit filename="os/chronometer.cpp" />
 		<Unit filename="os/chronometer.h" />
 		<Unit filename="os/console.cpp" />
@@ -894,11 +892,6 @@
 		<Unit filename="os/winpr_input.h" />
 		<Unit filename="os/winpr_keycode.cpp" />
 		<Unit filename="os/winpr_scancode.cpp" />
-		<Unit filename="os/x11/aaa_x11.h" />
-		<Unit filename="os/x11/aaa_x11_exception.h" />
-		<Unit filename="os/x11/aaa_x11_keyboard.h" />
-		<Unit filename="os/x11/aaa_x11_message_box.h" />
-		<Unit filename="os/x11/debug.cpp" />
 		<Unit filename="papaya/papaya_zoneing.h" />
 		<Unit filename="platform/_.cpp" />
 		<Unit filename="platform/_features.h" />
@@ -1518,9 +1511,6 @@
 		<Unit filename="user/user/notify_icon_mm_bridge.mm" />
 		<Unit filename="version/version.config.h" />
 		<Unit filename="version/version.h" />
-		<Extensions>
-			<code_completion />
-			<debugger />
-		</Extensions>
+		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

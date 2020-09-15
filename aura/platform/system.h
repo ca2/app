@@ -783,8 +783,8 @@ namespace aura
 
 
       virtual string get_user_language();
-      virtual bool set_user_language(::aura::application * papp, index iSel);
-      virtual bool set_user_language(::aura::application * papp, string strLang);
+      virtual bool set_user_language(::apex::application * papp, index iSel) override;
+      virtual bool set_user_language(::apex::application * papp, string strLang) override;
 
       void chromium(string strUrl, string strBrowser, string strId, ::file::path path, string strProfile, string strParam);
 

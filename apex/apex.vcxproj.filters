@@ -141,9 +141,6 @@
     <Filter Include="Header Files\const">
       <UniqueIdentifier>{d1dc7140-9c26-4249-9bf3-84fc6fbb92d7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\filesystem\filemanager">
-      <UniqueIdentifier>{8360180d-4810-4991-8eff-d53d2f2318c1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\include">
       <UniqueIdentifier>{0c0346ef-bd1c-4a0a-85b1-cfd8ef8ec242}</UniqueIdentifier>
     </Filter>
@@ -209,9 +206,6 @@
     </Filter>
     <Filter Include="Source Files\os\win32">
       <UniqueIdentifier>{d8dbbc50-3b90-4e0c-996b-250151eee886}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\filesystem\filemanager">
-      <UniqueIdentifier>{b48cbfcc-285e-4221-8ca8-5a810bb933a1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\compress">
       <UniqueIdentifier>{1851dfe9-1a38-4dbf-87df-d815c0ddf7ad}</UniqueIdentifier>
@@ -1154,12 +1148,6 @@
     <ClInclude Include="astr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\callback.h">
-      <Filter>Header Files\filesystem\filemanager</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filemanager\item_action.h">
-      <Filter>Header Files\filesystem\filemanager</Filter>
-    </ClInclude>
     <ClInclude Include="callback.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -2031,12 +2019,6 @@
     </ClCompile>
     <ClCompile Include="platform\progress.cpp">
       <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\callback.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\item_action.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="database\client.cpp">
       <Filter>Source Files\database</Filter>

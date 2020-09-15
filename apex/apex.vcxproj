@@ -43,7 +43,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{E000FFAF-392F-4E32-BF51-777CA238991F}</ProjectGuid>
+    <ProjectGuid>{E000FFAF-392F-4E32-BF51-777ED638991F}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>app</RootNamespace>
     <ProjectName>apex</ProjectName>
@@ -1103,8 +1103,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="database\selection_item.cpp" />
     <ClCompile Include="database\server.cpp" />
     <ClCompile Include="database\stringhelper.cpp" />
-    <ClCompile Include="filesystem\filemanager\callback.cpp" />
-    <ClCompile Include="filesystem\filemanager\item_action.cpp" />
     <ClCompile Include="filesystem\filesystem\dir_context.cpp" />
     <ClCompile Include="filesystem\filesystem\dir_system.cpp" />
     <ClCompile Include="filesystem\filesystem\file_context.cpp" />
@@ -1280,8 +1278,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="database\stringhelper.h" />
     <ClInclude Include="database\_.h" />
     <ClInclude Include="database\_impl.h" />
-    <ClInclude Include="filesystem\filemanager\callback.h" />
-    <ClInclude Include="filesystem\filemanager\item_action.h" />
     <ClInclude Include="filesystem\filesystem\path_object.h" />
     <ClInclude Include="filesystem\file\html_file.h" />
     <ClInclude Include="filesystem\file\_data.h" />

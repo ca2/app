@@ -1518,6 +1518,9 @@
 		<Unit filename="user/user/notify_icon_mm_bridge.mm" />
 		<Unit filename="version/version.config.h" />
 		<Unit filename="version/version.h" />
-		<Extensions />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

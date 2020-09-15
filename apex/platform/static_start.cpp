@@ -5,6 +5,10 @@
 #include "apex/astr.h"
 #include "apex/os/_os.h"
 
+
+CLASS_DECL_APEX string __apex_get_text(string str);
+
+
 //#include <sqlite3.h>
 
 
@@ -393,6 +397,8 @@ namespace apex
       m_bRef = false;
 
       construct();
+
+      __set_get_text(&__apex_get_text);
 
       //g_pcsRefDbg = nullptr;
 

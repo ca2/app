@@ -1228,7 +1228,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="platform\simple_trace.cpp" />
     <ClCompile Include="platform\static_setup.cpp" />
     <ClCompile Include="platform\static_start.cpp" />
-    <ClCompile Include="platform\static_start_aura.cpp" />
+    <ClCompile Include="platform\static_start_apex.cpp" />
     <ClCompile Include="platform\str_context.cpp" />
     <ClCompile Include="platform\system.cpp" />
     <ClCompile Include="platform\system_trace.cpp" />

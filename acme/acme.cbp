@@ -1009,6 +1009,7 @@
 		<Unit filename="platform/status.h" />
 		<Unit filename="platform/str_context.h" />
 		<Unit filename="platform/system.h" />
+		<Unit filename="platform/text.cpp" />
 		<Unit filename="platform/theme.h" />
 		<Unit filename="platform/tick.h" />
 		<Unit filename="platform/timer.h" />
@@ -1511,6 +1512,9 @@
 		<Unit filename="user/user/notify_icon_mm_bridge.mm" />
 		<Unit filename="version/version.config.h" />
 		<Unit filename="version/version.h" />
-		<Extensions />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

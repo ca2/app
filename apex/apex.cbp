@@ -170,9 +170,8 @@
 					<Add option="-lncurses" />
 					<Add option="-lssl" />
 					<Add option="-lcrypto" />
-					<Add option="-lpcre2-8" />
-					<Add option="-lsqlite3" />
 					<Add option="`pkg-config --libs gtk+-3.0 gdk-3.0 gthread-2.0`" />
+					<Add option="-lacme" />
 					<Add option="-Wl,-z,defs" />
 					<Add directory="$(#time_dir)/x64/$(TARGET_NAME)" />
 				</Linker>

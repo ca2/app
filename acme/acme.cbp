@@ -1322,6 +1322,8 @@
 		<Unit filename="primitive/primitive/interlocked_long.h" />
 		<Unit filename="primitive/primitive/interlocked_long_pulse.cpp" />
 		<Unit filename="primitive/primitive/interlocked_long_pulse.h" />
+		<Unit filename="primitive/primitive/layered.cpp" />
+		<Unit filename="primitive/primitive/layered.h" />
 		<Unit filename="primitive/primitive/logic.h" />
 		<Unit filename="primitive/primitive/malloc.h" />
 		<Unit filename="primitive/primitive/map.h" />

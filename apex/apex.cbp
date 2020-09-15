@@ -48,6 +48,7 @@
 					<Add option="-lcrypto" />
 					<Add option="-lsn" />
 					<Add option="`pkg-config --libs glib-2.0 gtk+-3.0 gdk-3.0 appindicator3-0.1`" />
+					<Add option="-lacme" />
 					<Add option="-Wl,-z,defs" />
 					<Add directory="$(#time_dir)/x64/$(TARGET_NAME)" />
 					<Add directory="$(#archive)/storage-linux/third/library/x64/" />
@@ -303,6 +304,8 @@
 		<Unit filename="compress/compress_context.h" />
 		<Unit filename="compress/compress_gz.h" />
 		<Unit filename="compress/compress_zip_is_dir.h" />
+		<Unit filename="compress/context.cpp" />
+		<Unit filename="compress/context.h" />
 		<Unit filename="compress/zip/_.h" />
 		<Unit filename="compress/zip/_internal.h" />
 		<Unit filename="compress/zip/api.h" />
@@ -316,6 +319,8 @@
 		<Unit filename="compress/zip/iowin32.h" />
 		<Unit filename="compress/zip/memory_buffer.h" />
 		<Unit filename="compress/zip/unzip.h" />
+		<Unit filename="compress/zip_is_dir.cpp" />
+		<Unit filename="compress/zip_is_dir.h" />
 		<Unit filename="console.h" />
 		<Unit filename="const/_const.h" />
 		<Unit filename="const/check.h" />
@@ -351,6 +356,24 @@
 		<Unit filename="crypto/crypto_crypto.h" />
 		<Unit filename="crypto/crypto_openssl.cpp" />
 		<Unit filename="crypto/crypto_openssl.h" />
+		<Unit filename="database/_.h" />
+		<Unit filename="database/_impl.h" />
+		<Unit filename="database/change_event.h" />
+		<Unit filename="database/client.cpp" />
+		<Unit filename="database/client.h" />
+		<Unit filename="database/const.h" />
+		<Unit filename="database/event_change.cpp" />
+		<Unit filename="database/id.cpp" />
+		<Unit filename="database/key.cpp" />
+		<Unit filename="database/key.h" />
+		<Unit filename="database/selection.cpp" />
+		<Unit filename="database/selection.h" />
+		<Unit filename="database/selection_item.cpp" />
+		<Unit filename="database/selection_item.h" />
+		<Unit filename="database/server.cpp" />
+		<Unit filename="database/server.h" />
+		<Unit filename="database/stringhelper.cpp" />
+		<Unit filename="database/stringhelper.h" />
 		<Unit filename="filesystem/_impl.h" />
 		<Unit filename="filesystem/file/_.h" />
 		<Unit filename="filesystem/file/___serialization_draft.h" />
@@ -619,6 +642,8 @@
 		<Unit filename="message/_.h" />
 		<Unit filename="message/_impl.h" />
 		<Unit filename="message/_message.h" />
+		<Unit filename="message/application.cpp" />
+		<Unit filename="message/application.h" />
 		<Unit filename="message/base.cpp" />
 		<Unit filename="message/base.h" />
 		<Unit filename="message/channel.cpp" />
@@ -993,7 +1018,6 @@
 		<Unit filename="os/cross/cross.h" />
 		<Unit filename="os/cross/uwp/cross_metrowin_user.cpp" />
 		<Unit filename="os/cross/uwp/metrowin_user.cpp" />
-		<Unit filename="os/cross/windows/windows_ole_automation.h.txt" />
 		<Unit filename="os/debug.cpp" />
 		<Unit filename="os/file.h" />
 		<Unit filename="os/graphics.h" />
@@ -1002,6 +1026,7 @@
 		<Unit filename="os/linux/_c.h" />
 		<Unit filename="os/linux/_linux.h" />
 		<Unit filename="os/linux/_user.h" />
+		<Unit filename="os/linux/apex.cpp" />
 		<Unit filename="os/linux/appindicator.h" />
 		<Unit filename="os/linux/application_system_run.cpp" />
 		<Unit filename="os/linux/bloat_pad.h" />
@@ -1112,6 +1137,8 @@
 		<Unit filename="platform/history.h" />
 		<Unit filename="platform/hyperlink.h" />
 		<Unit filename="platform/international.h" />
+		<Unit filename="platform/international_locale_schema.cpp" />
+		<Unit filename="platform/international_locale_schema.h" />
 		<Unit filename="platform/ipc.cpp" />
 		<Unit filename="platform/ipc.h" />
 		<Unit filename="platform/ipi.cpp" />
@@ -1158,12 +1185,14 @@
 		<Unit filename="platform/static_setup.h" />
 		<Unit filename="platform/static_start.cpp" />
 		<Unit filename="platform/static_start.h" />
+		<Unit filename="platform/static_start_apex.cpp" />
 		<Unit filename="platform/status.h" />
 		<Unit filename="platform/str_context.cpp" />
 		<Unit filename="platform/str_context.h" />
 		<Unit filename="platform/system.cpp" />
 		<Unit filename="platform/system.h" />
 		<Unit filename="platform/system_trace.cpp" />
+		<Unit filename="platform/text.cpp" />
 		<Unit filename="platform/timer.cpp" />
 		<Unit filename="platform/timer.h" />
 		<Unit filename="platform/timer_array.cpp" />
@@ -1254,8 +1283,6 @@
 		<Unit filename="user/language_map.h" />
 		<Unit filename="user/text.cpp" />
 		<Unit filename="user/text.h" />
-		<Unit filename="user/user/notify_icon.mm" />
-		<Unit filename="user/user/notify_icon_mm_bridge.mm" />
 		<Unit filename="version/version.config.h" />
 		<Unit filename="version/version.h" />
 		<Extensions />

@@ -114,7 +114,6 @@ namespace apex
 {
 
 
-
    application::application(const char * pszAppId) :
       m_strAppId(::is_set(pszAppId) ? pszAppId : "")
    {

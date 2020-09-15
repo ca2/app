@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-CLASS_DECL_APEX string __apex_get_text(string str)
+CLASS_DECL_APEX string __get_text(string str)
 {
 
    ::apex::application* papp = ::get_context_application();

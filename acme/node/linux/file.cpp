@@ -109,14 +109,13 @@ namespace linux
       // file objects are always binary and CreateFile does not need flag
       eopen -= ::file::type_binary;
 
-//
-//      if ((eopen & ::file::defer_create_directory) && (eopen & ::file::mode_write))
-//      {
-//
-//         Context.dir().mk(pszFileName.folder());
-//
-//
-//      }
+
+      if ((eopen & ::file::defer_create_directory) && (eopen & ::file::mode_write))
+      {
+
+         ::dir::mk(pszFileName.folder());
+
+      }
 
       m_iFile = INVALID_FILE;
       m_path.Empty();

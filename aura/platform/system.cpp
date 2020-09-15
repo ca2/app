@@ -7040,6 +7040,7 @@ namespace aura
    //}
 
 
+
    //bool system::sync_load_url(string& str, const char* pszUrl, ::account::user* puser, ::http::cookies* pcookies)
    bool system::sync_load_url(string& str, const char* pszUrl, ::http::cookies* pcookies)
 

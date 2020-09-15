@@ -4593,7 +4593,7 @@ retry_license:
 
 
 
-  
+
    void application::notify_term3()
    {
 
@@ -10809,21 +10809,21 @@ namespace apex
    void application::ensure_app_interest()
    {
 
-#ifndef _UWP
-
-      for (i32 i = 0; i < m_straAppInterest.get_count(); i++)
-      {
-         if (m_straAppInterest[i] != m_strAppName && !::is_window(m_mapAppInterest[m_straAppInterest[i]]))
-         {
-            System.assert_running_local(m_straAppInterest[i]);
-         }
-      }
-
-#else
-
-      //__throw(todo());
-
-#endif
+//#ifndef _UWP
+//
+//      for (i32 i = 0; i < m_straAppInterest.get_count(); i++)
+//      {
+//         if (m_straAppInterest[i] != m_strAppName && !::is_window(m_mapAppInterest[m_straAppInterest[i]]))
+//         {
+//            System.assert_running_local(m_straAppInterest[i]);
+//         }
+//      }
+//
+//#else
+//
+//      //__throw(todo());
+//
+//#endif
 
    }
 
@@ -11050,7 +11050,7 @@ namespace apex
    //   int iCount = 0;
 
 
-   //   
+   //
    //   return iCount;
 
    //}

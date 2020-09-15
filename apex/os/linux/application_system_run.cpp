@@ -43,36 +43,39 @@ string ca2_command_line()
 
 }
 
-
-
-
-#ifndef RASPBIAN
-
-SnLauncheeContext* g_psncontext = nullptr;
-
-void x_display_error_trap_push(SnDisplay * sndisplay, Display * display);
-
-void x_display_error_trap_pop(SnDisplay * sndisplay, Display * display);
-
-
-
+//
+//
+//
+//#ifndef RASPBIAN
+//
+//SnLauncheeContext* g_psncontext = nullptr;
+//
+//void x_display_error_trap_push(SnDisplay * sndisplay, Display * display);
+//
+//void x_display_error_trap_pop(SnDisplay * sndisplay, Display * display);
+//
+//
+//
 void sn_start_context()
 {
 
-
-   Display * dpy = x11_get_display();
-
-   SnDisplay * pd = sn_display_new(dpy, &x_display_error_trap_push, &x_display_error_trap_pop);
-
-   int iScreen = DefaultScreen(dpy);
-
-   g_psncontext = sn_launchee_context_new(pd, iScreen, ::g_pappcore->m_strProgName);
+   ::get_context_system()->sn_start_context();
 
 }
 
-
-#endif // !RASPBIAN
-
+//   Display * dpy = x11_get_display();
+//
+//   SnDisplay * pd = sn_display_new(dpy, &x_display_error_trap_push, &x_display_error_trap_pop);
+//
+//   int iScreen = DefaultScreen(dpy);
+//
+//   g_psncontext = sn_launchee_context_new(pd, iScreen, ::g_pappcore->m_strProgName);
+//
+//}
+//
+//
+//#endif // !RASPBIAN
+//
 
 
 
@@ -171,14 +174,7 @@ i32 _c_XErrorHandler(Display * display, XErrorEvent * perrorevent);
    if(psystem->m_bUser)
    {
 
-      if(!XInitThreads())
-      {
-
-         return false;
-
-      }
-
-      XSetErrorHandler(_c_XErrorHandler);
+      psystem->init_x11();
 
    }
 
@@ -222,21 +218,21 @@ i32 _c_XErrorHandler(Display * display, XErrorEvent * perrorevent);
 }
 
 
-// void sn_start_context();
+void sn_start_context();
 
 
-// bool os_init_application()
-// {
+ bool os_init_application()
+ {
 
-//    #ifndef RASPBIAN
+    #ifndef RASPBIAN
 
-//     sn_start_context();
+     sn_start_context();
 
-//    #endif
+    #endif
 
-//    return true;
+    return true;
 
-// }
+ }
 
 
 void os_term_application()

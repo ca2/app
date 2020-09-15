@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "gnome_gnome.h"
-#include "apex/os/linux/appindicator.h"
+//#include "apex/os/linux/appindicator.h"
 
 
 namespace user
@@ -48,19 +48,19 @@ namespace user
 
 }
 
-
-namespace linux
-{
-
-
-   void appindicator_destroy(appindicator * pindicator)
-   {
-
-      delete pindicator;
-
-   }
-
-} // namespace linux
+//
+//namespace linux
+//{
+//
+//
+//   void appindicator_destroy(appindicator * pindicator)
+//   {
+//
+//      delete pindicator;
+//
+//   }
+//
+//} // namespace linux
 
 namespace os
 {

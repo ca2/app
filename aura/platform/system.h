@@ -873,7 +873,13 @@ namespace aura
       //::filehandler::handler& filehandler();
 
 
+#ifdef LINUX
 
+      virtual bool init_x11() override;
+      virtual bool sn_start_context();
+
+
+#endif
 
 
 

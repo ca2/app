@@ -296,7 +296,7 @@ namespace net
 		   "New number of mappings = %d \n"
 		   "It is recommended to update your list of mappings", lNewNumberOfEntries );
 
-      message_box(tempStr,"Change Detected in Number of Port Mappings",MB_OK | MB_ICONEXCLAMATION);
+      os_message_box(tempStr,"Change Detected in Number of Port Mappings",MB_OK | MB_ICONEXCLAMATION);
 
 	   return S_OK;
    }
@@ -310,7 +310,7 @@ namespace net
 		   "New IP address = %s \n"
 		   "It is recommended to update your list of mappings", pszNewExternalIPAddress);
 
-      ::message_box(tempStr,"Change Detected in External IP Address",MB_OK | MB_ICONEXCLAMATION);
+      ::os_message_box(tempStr,"Change Detected in External IP Address",MB_OK | MB_ICONEXCLAMATION);
 
 	   return S_OK;
    }

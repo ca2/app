@@ -140,33 +140,33 @@ CLASS_DECL_APEX void debug_debug_reference()
 
    }
 
-   {
+//   {
+//
+//      string str;
+//
+//      str.Format("%s wparam=0x%" PRIxPTR " lparam=0x%" PRIxPTR, get_message_text(message, true).c_str(), wparam, lparam);
+//
+//      output_debug_string(str);
+//
+//      output_debug_string("-");
+//
+//   }
 
-      string str;
-
-      str.Format("%s wparam=0x%" PRIxPTR " lparam=0x%" PRIxPTR, get_message_text(message, true).c_str(), wparam, lparam);
-
-      output_debug_string(str);
-
-      output_debug_string("-");
-
-   }
-
-   {
-
-      string str;
-
-      string strMessageText = get_message_text(message, true);
-
-      const char * pszMessageText = strMessageText;
-
-      str.Format("%s %" PRIxPTR " %" PRIxPTR, strMessageText.c_str(), wparam, lparam);
-
-      output_debug_string(str);
-
-      output_debug_string("-");
-
-   }
+//   {
+//
+//      string str;
+//
+//      string strMessageText = get_message_text(message, true);
+//
+//      const char * pszMessageText = strMessageText;
+//
+//      str.Format("%s %" PRIxPTR " %" PRIxPTR, strMessageText.c_str(), wparam, lparam);
+//
+//      output_debug_string(str);
+//
+//      output_debug_string("-");
+//
+//   }
 
    debug_test_reference ref;
 
@@ -553,21 +553,21 @@ void context_object::property_set_replace(string & str) const
 
 property * context_object::fetch_property(const ::id & idParam, bool bCreate)
 {
-   
+
    auto id = translate_property_id(idParam);
-   
+
    if(!id.is_empty())
    {
 
       auto pproperty = on_fetch_property(id);
-      
+
       if(pproperty)
       {
-         
+
          return pproperty;
-         
+
       }
-      
+
    }
 
    if (bCreate)
@@ -650,9 +650,9 @@ string context_object::get_text(const var & var, const ::id & id)
 
 void context_object::to_string(string & str) const
 {
-   
+
    str = typeid(*this).name();
-   
+
 }
 
 
@@ -660,11 +660,11 @@ strsize context_object::sz_len() const
 {
 
    string str;
-   
+
    to_string(str);
-   
+
    return str.get_length();
-   
+
 }
 
 
@@ -672,9 +672,9 @@ void context_object::to_sz(char * sz, strsize len) const
 {
 
    string str;
-   
+
    to_string(str);
-   
+
    strncpy(sz, str, len);
 
 }

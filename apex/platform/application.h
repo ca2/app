@@ -13,10 +13,11 @@ namespace apex
       virtual public int_scalar_source,
       //virtual public ::account::interactive,
       virtual public ::application_container,
-      virtual public ::database::client,
+      virtual public ::database::client
+      //,
       //virtual public ::user::form_callback,
 //      virtual public ::user::impact_creator,
-      virtual public ::filemanager::callback
+//      virtual public ::filemanager::callback
       //, virtual public ::user::document_manager_container
    {
    public:
@@ -473,7 +474,7 @@ namespace apex
       //virtual ::estatus message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, ::emessagebox emessagebox = message_box_ok, ::callback callback = ::callback());
       //virtual ::estatus message_box_timeout(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), ::emessagebox emessagebox = message_box_ok, ::callback callback = ::callback());
 
-      
+
       virtual void on_file_new();
 
 
@@ -857,7 +858,7 @@ namespace apex
 
       virtual void get_time(struct timeval *point);
 
-      
+
       virtual void close(::apex::enum_end eend);
 
 
@@ -866,7 +867,7 @@ namespace apex
 
       virtual void HideApplication();
 
-      
+
       //virtual ::estatus initialize(::layered * pobjectContext) override;
 
       //virtual ::estatus process_init() override;

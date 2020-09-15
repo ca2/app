@@ -3358,6 +3358,7 @@ namespace draw2d
 
 #include "aura/user/callback.h"
 
+#include "aura/filesystem/filemanager/callback.h"
 
 #include "aura/platform/application.h"
 //
@@ -3367,9 +3368,7 @@ namespace draw2d
 //
 ////#include "aura/account/_account.h"
 //
-//#include "aura/filesystem/filemanager/item_action.h"
-//
-////#include "aura/filesystem/filemanager/component.h"
+#include "aura/filesystem/filemanager/item_action.h"
 //
 ////#include "core/user/userex/userex.h"
 //

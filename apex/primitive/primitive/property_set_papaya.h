@@ -42,6 +42,22 @@ namespace papaya
 
 
 
+      inline bool get_evaluation(string & strResult, const ::context_object& object, const string& strKey)
+      {
+
+         return object.property_set_get_evaluation(strResult, strKey);
+
+      }
+
+
+      inline bool get_evaluation(string & strResult, const ::context_object& object, string& strKey)
+      {
+
+         return get_evaluation(strResult, object, (const string &)strKey);
+
+      }
+
+
 
       //inline bool get_evaluation(string & strResult, const ::property_set & set, const string & strExpression)
       //{
@@ -69,12 +85,6 @@ namespace papaya
 
       }
 
-      inline bool get_evaluation(string & strResult, const ::context_object& object, const string& strExpression)
-      {
-
-         return object.property_set_get_evaluation(strResult, strExpression);
-
-      }
 
       //// ::property_set set;
       ////

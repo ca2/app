@@ -7,8 +7,9 @@ namespace apex
 
    class CLASS_DECL_APEX session:
       virtual public ::apex::context_thread,
-      virtual public ::application_container,
-      virtual public ::filemanager::item_action //,
+      virtual public ::application_container
+      //,
+      //virtual public ::filemanager::item_action //,
       //virtual public ::filemanager::component,
       //virtual public ::user::document_manager_container
    {
@@ -294,7 +295,7 @@ namespace apex
       // apex commented
       //virtual ::user::primitive * get_keyboard_focus();
       //virtual bool set_keyboard_focus(::user::primitive * pkeyboardfocus);
-      
+
       // apex commented
       //virtual ::user::primitive * clear_focus();
 
@@ -454,7 +455,7 @@ namespace apex
 
       //void load_string_table() override;
 
-      virtual bool open_file(::filemanager::data* pdata, ::file::item_array& itema) override;
+//      virtual bool open_file(::filemanager::data* pdata, ::file::item_array& itema) override;
 
       //void initialize_bergedge_application_interface();
 

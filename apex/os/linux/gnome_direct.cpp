@@ -9,7 +9,7 @@
 #include "apex/const/_const.h"
 #include "apex/const/id.h"
 #include "platform/_.h"
-#include "apex/os/linux/appindicator.h"
+//#include "apex/os/linux/appindicator.h"
 
 
 // apt-get install libgtk2.0-dev
@@ -102,150 +102,150 @@ public:
 
 
 void os_post_quit();
-
-#ifndef RASPBIAN
-
-GtkWidget * linux_g_direct_app_indicator_init(AppIndicator * pindicator, user_notify_icon_bridge * pbridge);
-
-
-static void ___extra_action(GtkAction * action, void * data)
-{
-
-   ::user_notify_icon_bridge * pi = (::user_notify_icon_bridge *) data;
-
-   pi->call_notification_area_action(gtk_action_get_stock_id(action));
-
-}
-
-extern "C"
-{
-
-
-   static void __extra_action(GtkAction * action, gpointer data)
-   {
-
-      ___extra_action(action, data);
-
-   }
-
-
-} // extern "C"
-
-
-
-
-
-#ifndef RASPBIAN
-
-
-class gnome_appindicator :
-   virtual public ::linux::appindicator
-{
-public:
-
-
-   AppIndicator * m_pindicator;
-
-
-   gnome_appindicator();
-   virtual ~gnome_appindicator();
-
-
-   virtual bool create(const char * pszId, const char * pszIcon, const char * pszFolder, user_notify_icon_bridge * pbridge) override;
-   virtual bool init(user_notify_icon_bridge * pbridge);
-   virtual void close();
-
-
-   //virtual bool step() override;
-
-
-};
-
-
-gnome_appindicator::gnome_appindicator()
-{
-
-}
-
-
-gnome_appindicator::~gnome_appindicator()
-{
-
-   close();
-
-}
-
-
-void gnome_appindicator::close()
-{
-
-
-   if(m_pindicator == NULL)
-   {
-
-      return;
-
-   }
-
-   auto pindicator = m_pindicator;
-
-   gdk_fork([pindicator]()
-   {
-
-      app_indicator_set_status(pindicator, APP_INDICATOR_STATUS_PASSIVE);
-
-   });
-
-   m_pindicator = NULL;
-
-}
-
-namespace linux
-{
-
-
-   appindicator * allocate_appindicator()
-   {
-
-      return new ::gnome_appindicator();
-
-   }
-
-
-} // namespace linux
-
-
-bool gnome_appindicator::create(const char * pszId, const char * pszIcon, const char * pszFolder, user_notify_icon_bridge * pbridge)
-{
-
-   m_pindicator = app_indicator_new_with_path(pszId, pszIcon, APP_INDICATOR_CATEGORY_APPLICATION_STATUS, pszFolder);
-
-   if(m_pindicator == nullptr)
-   {
-
-      return false;
-
-   }
-
-   if(!init(pbridge))
-   {
-
-      close();
-
-      return false;
-
-   }
-
-   return true;
-
-}
-
-
-
-
-#endif
-
-#endif
+//
+//#ifndef RASPBIAN
+//
+//GtkWidget * linux_g_direct_app_indicator_init(AppIndicator * pindicator, user_notify_icon_bridge * pbridge);
+//
+//
+//static void ___extra_action(GtkAction * action, void * data)
+//{
+//
+//   ::user_notify_icon_bridge * pi = (::user_notify_icon_bridge *) data;
+//
+//   pi->call_notification_area_action(gtk_action_get_stock_id(action));
+//
+//}
+//
+//extern "C"
+//{
+//
+//
+//   static void __extra_action(GtkAction * action, gpointer data)
+//   {
+//
+//      ___extra_action(action, data);
+//
+//   }
+//
+//
+//} // extern "C"
+//
+//
+
+
+//
+//#ifndef RASPBIAN
+//
+//
+//class gnome_appindicator :
+//   virtual public ::linux::appindicator
+//{
+//public:
+//
+//
+//   AppIndicator * m_pindicator;
+//
+//
+//   gnome_appindicator();
+//   virtual ~gnome_appindicator();
+//
+//
+//   virtual bool create(const char * pszId, const char * pszIcon, const char * pszFolder, user_notify_icon_bridge * pbridge) override;
+//   virtual bool init(user_notify_icon_bridge * pbridge);
+//   virtual void close();
+//
+//
+//   //virtual bool step() override;
+//
+//
+//};
+//
+//
+//gnome_appindicator::gnome_appindicator()
+//{
+//
+//}
+//
+//
+//gnome_appindicator::~gnome_appindicator()
+//{
+//
+//   close();
+//
+//}
+//
+//
+//void gnome_appindicator::close()
+//{
+//
+//
+//   if(m_pindicator == NULL)
+//   {
+//
+//      return;
+//
+//   }
+//
+//   auto pindicator = m_pindicator;
+//
+//   gdk_fork([pindicator]()
+//   {
+//
+//      app_indicator_set_status(pindicator, APP_INDICATOR_STATUS_PASSIVE);
+//
+//   });
+//
+//   m_pindicator = NULL;
+//
+//}
+//
+//namespace linux
+//{
+//
+//
+//   appindicator * allocate_appindicator()
+//   {
+//
+//      return new ::gnome_appindicator();
+//
+//   }
+//
+//
+//} // namespace linux
+//
+//
+//bool gnome_appindicator::create(const char * pszId, const char * pszIcon, const char * pszFolder, user_notify_icon_bridge * pbridge)
+//{
+//
+//   m_pindicator = app_indicator_new_with_path(pszId, pszIcon, APP_INDICATOR_CATEGORY_APPLICATION_STATUS, pszFolder);
+//
+//   if(m_pindicator == nullptr)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   if(!init(pbridge))
+//   {
+//
+//      close();
+//
+//      return false;
+//
+//   }
+//
+//   return true;
+//
+//}
+//
+//
+//
+//
+//#endif
+//
+//#endif
 
 
 void safe_free(void * pfree)
@@ -276,156 +276,156 @@ void g_safe_free(void * pfree)
 
 }
 
-#ifndef RASPBIAN
-
-
-bool gnome_appindicator::init(user_notify_icon_bridge * pbridge)
-{
-
-   int iCount = pbridge->_get_notification_area_action_count();
-
-   GtkWidget *  indicator_menu = nullptr;
-
-   if(iCount > 0)
-   {
-
-
-      GError * error = nullptr;
-
-      GtkActionGroup * action_group = gtk_action_group_new ("AppActions");
-
-      if(action_group != nullptr)
-      {
-
-         GtkActionEntry * entries = new GtkActionEntry[pbridge->_get_notification_area_action_count()];
-
-         gchar * ui_info = (gchar *) g_malloc(1024 * 1024);
-
-         strcpy(ui_info, "<ui>");
-
-         strcat(ui_info, "  <popup name='IndicatorPopup'>");
-
-         int iEntry = 0;
-
-         for(int i = 0; i < iCount; i++)
-         {
-
-            char * lpszName = nullptr;
-            char * pszId = nullptr;
-            char * pszLabel = nullptr;
-            char * pszAccelerator = nullptr;
-            char * pszDescription = nullptr;
-
-            int iIndex = i;
-
-            pbridge->_get_notification_area_action_info(&lpszName, &pszId, &pszLabel, &pszAccelerator, &pszDescription, iIndex);
-
-            if(strcasecmp(lpszName, "separator") == 0)
-            {
-
-               strcat(ui_info, "<separator/>\n");
-
-            }
-            else
-            {
-
-               entries[iEntry].name = g_strdup(pszLabel);
-
-               strcat(ui_info, "    <menuitem action='");
-               strcat(ui_info, pszLabel);
-               strcat(ui_info, "' />");
-
-               entries[iEntry].stock_id = g_strdup(pszId);
-
-               entries[iEntry].label = g_strdup(lpszName);
-
-               //entries[iEntry].accelerator = g_strdup(pszAccelerator);
-
-               entries[iEntry].accelerator = nullptr;
-
-               entries[iEntry].tooltip = g_strdup(pszDescription);
-
-               entries[iEntry].callback = G_CALLBACK (__extra_action);
-
-               iEntry++;
-
-            }
-
-
-            safe_free((void *) lpszName);
-            safe_free((void *) pszId);
-            safe_free((void *) pszLabel);
-            safe_free((void *) pszAccelerator);
-            safe_free((void *) pszDescription);
-
-
-         }
-
-         strcat(ui_info, "  </popup>");
-         strcat(ui_info, "</ui>");
-
-         gtk_action_group_add_actions (action_group, entries, iEntry, pbridge);
-
-         GtkUIManager * uim = gtk_ui_manager_new ();
-
-         bool bOk = false;
-
-         if(uim != nullptr)
-         {
-
-            gtk_ui_manager_insert_action_group (uim, action_group, 0);
-
-            bOk = gtk_ui_manager_add_ui_from_string (uim, ui_info, -1, &error) != FALSE;
-
-            if(!bOk)
-            {
-
-               g_message ("Failed to build menus: %s\n", error->message);
-
-               g_error_free (error);
-
-               error = nullptr;
-
-            }
-
-         }
-
-         for(int i = 0; i < iEntry; i++)
-         {
-
-            g_safe_free((void *) entries[i].name);
-            g_safe_free((void *) entries[i].stock_id);
-            g_safe_free((void *) entries[i].label);
-            g_safe_free((void *) entries[i].accelerator);
-            g_safe_free((void *) entries[i].tooltip);
-
-         }
-
-         delete [] entries;
-
-         g_safe_free(ui_info);
-
-         if(bOk)
-         {
-
-            indicator_menu = gtk_ui_manager_get_widget (uim, "/ui/IndicatorPopup");
-
-            app_indicator_set_menu(m_pindicator, GTK_MENU (indicator_menu));
-
-         }
-
-      }
-
-   }
-
-   app_indicator_set_status(m_pindicator, APP_INDICATOR_STATUS_ACTIVE);
-
-   return true;
-
-}
-
-
-#endif
+//#ifndef RASPBIAN
+//
+//
+//bool gnome_appindicator::init(user_notify_icon_bridge * pbridge)
+//{
+//
+//   int iCount = pbridge->_get_notification_area_action_count();
+//
+//   GtkWidget *  indicator_menu = nullptr;
+//
+//   if(iCount > 0)
+//   {
+//
+//
+//      GError * error = nullptr;
+//
+//      GtkActionGroup * action_group = gtk_action_group_new ("AppActions");
+//
+//      if(action_group != nullptr)
+//      {
+//
+//         GtkActionEntry * entries = new GtkActionEntry[pbridge->_get_notification_area_action_count()];
+//
+//         gchar * ui_info = (gchar *) g_malloc(1024 * 1024);
+//
+//         strcpy(ui_info, "<ui>");
+//
+//         strcat(ui_info, "  <popup name='IndicatorPopup'>");
+//
+//         int iEntry = 0;
+//
+//         for(int i = 0; i < iCount; i++)
+//         {
+//
+//            char * lpszName = nullptr;
+//            char * pszId = nullptr;
+//            char * pszLabel = nullptr;
+//            char * pszAccelerator = nullptr;
+//            char * pszDescription = nullptr;
+//
+//            int iIndex = i;
+//
+//            pbridge->_get_notification_area_action_info(&lpszName, &pszId, &pszLabel, &pszAccelerator, &pszDescription, iIndex);
+//
+//            if(strcasecmp(lpszName, "separator") == 0)
+//            {
+//
+//               strcat(ui_info, "<separator/>\n");
+//
+//            }
+//            else
+//            {
+//
+//               entries[iEntry].name = g_strdup(pszLabel);
+//
+//               strcat(ui_info, "    <menuitem action='");
+//               strcat(ui_info, pszLabel);
+//               strcat(ui_info, "' />");
+//
+//               entries[iEntry].stock_id = g_strdup(pszId);
+//
+//               entries[iEntry].label = g_strdup(lpszName);
+//
+//               //entries[iEntry].accelerator = g_strdup(pszAccelerator);
+//
+//               entries[iEntry].accelerator = nullptr;
+//
+//               entries[iEntry].tooltip = g_strdup(pszDescription);
+//
+//               entries[iEntry].callback = G_CALLBACK (__extra_action);
+//
+//               iEntry++;
+//
+//            }
+//
+//
+//            safe_free((void *) lpszName);
+//            safe_free((void *) pszId);
+//            safe_free((void *) pszLabel);
+//            safe_free((void *) pszAccelerator);
+//            safe_free((void *) pszDescription);
+//
+//
+//         }
+//
+//         strcat(ui_info, "  </popup>");
+//         strcat(ui_info, "</ui>");
+//
+//         gtk_action_group_add_actions (action_group, entries, iEntry, pbridge);
+//
+//         GtkUIManager * uim = gtk_ui_manager_new ();
+//
+//         bool bOk = false;
+//
+//         if(uim != nullptr)
+//         {
+//
+//            gtk_ui_manager_insert_action_group (uim, action_group, 0);
+//
+//            bOk = gtk_ui_manager_add_ui_from_string (uim, ui_info, -1, &error) != FALSE;
+//
+//            if(!bOk)
+//            {
+//
+//               g_message ("Failed to build menus: %s\n", error->message);
+//
+//               g_error_free (error);
+//
+//               error = nullptr;
+//
+//            }
+//
+//         }
+//
+//         for(int i = 0; i < iEntry; i++)
+//         {
+//
+//            g_safe_free((void *) entries[i].name);
+//            g_safe_free((void *) entries[i].stock_id);
+//            g_safe_free((void *) entries[i].label);
+//            g_safe_free((void *) entries[i].accelerator);
+//            g_safe_free((void *) entries[i].tooltip);
+//
+//         }
+//
+//         delete [] entries;
+//
+//         g_safe_free(ui_info);
+//
+//         if(bOk)
+//         {
+//
+//            indicator_menu = gtk_ui_manager_get_widget (uim, "/ui/IndicatorPopup");
+//
+//            app_indicator_set_menu(m_pindicator, GTK_MENU (indicator_menu));
+//
+//         }
+//
+//      }
+//
+//   }
+//
+//   app_indicator_set_status(m_pindicator, APP_INDICATOR_STATUS_ACTIVE);
+//
+//   return true;
+//
+//}
+//
+//
+//#endif
 
 
 namespace user

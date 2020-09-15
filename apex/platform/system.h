@@ -414,7 +414,7 @@ namespace apex
       // apex commented
       //class ::user::window_map                     &  window_map();
 
-      
+
       __pointer(::apex::library) open_component_library(const char* pszComponent, const char* pszImplementation);
 
       ::estatus do_factory_exchange(const char* pszComponent, const char* pszImplementation);
@@ -898,6 +898,12 @@ namespace apex
 
 
 
+#ifdef LINUX
+
+      virtual bool init_x11();
+      virtual bool sn_start_context();
+
+#endif
 
 
 

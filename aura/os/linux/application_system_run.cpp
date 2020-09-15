@@ -54,9 +54,9 @@ void x_display_error_trap_push(SnDisplay * sndisplay, Display * display);
 
 void x_display_error_trap_pop(SnDisplay * sndisplay, Display * display);
 
+namespace aura{
 
-
-void sn_start_context()
+bool system::sn_start_context()
 {
 
 
@@ -68,8 +68,12 @@ void sn_start_context()
 
    g_psncontext = sn_launchee_context_new(pd, iScreen, ::g_pappcore->m_strProgName);
 
+   return true;
+
 }
 
+
+} // namespace aura
 
 #endif // !RASPBIAN
 
@@ -310,3 +314,19 @@ CLASS_DECL_AURA void main_branch(::generic * prunnable, e_priority epriority)
    gdk_branch(prunnable, epriority);
 
 }
+
+
+bool system::init_x11()
+{
+        if(!XInitThreads())
+         {
+
+            return false;
+
+         }
+
+      XSetErrorHandler(_c_XErrorHandler);
+
+      return true;
+
+ }

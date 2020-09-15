@@ -4231,17 +4231,18 @@ namespace apex
    void system::enum_display_monitors()
    {
 
-#ifdef WINDOWS_DESKTOP
-
-      m_monitorinfoa.remove_all();
-
-      ::EnumDisplayMonitors(nullptr, nullptr, &system::monitor_enum_proc, (LPARAM)(dynamic_cast < ::apex::system * > (this)));
-
-#elif defined(LINUX)
-
-      ::enum_display_monitors(this);
-
-#endif
+   __throw(todo("aura"));
+//#ifdef WINDOWS_DESKTOP
+//
+//      m_monitorinfoa.remove_all();
+//
+//      ::EnumDisplayMonitors(nullptr, nullptr, &system::monitor_enum_proc, (LPARAM)(dynamic_cast < ::apex::system * > (this)));
+//
+//#elif defined(LINUX)
+//
+//      ::enum_display_monitors(this);
+//
+//#endif
 
    }
 
@@ -6889,7 +6890,24 @@ namespace apex
 
    //}
 
+#ifdef LINUX
 
+   bool system::init_x11()
+   {
+
+      return false;
+
+   }
+
+
+   bool system::sn_start_context()
+   {
+
+      return false;
+
+   }
+
+#endif
 
    ::apex::history& system::hist()
    {

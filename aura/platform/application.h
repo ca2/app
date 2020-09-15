@@ -7,7 +7,8 @@ namespace aura
 
    class CLASS_DECL_AURA application :
       virtual public ::apex::application,
-      virtual public ::user::callback
+      virtual public ::user::callback,
+      virtual public ::filemanager::callback
    {
    public:
 
@@ -458,7 +459,7 @@ namespace aura
       //virtual ::estatus message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, ::emessagebox emessagebox = message_box_ok, ::callback callback = ::callback());
       //virtual ::estatus message_box_timeout(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), ::emessagebox emessagebox = message_box_ok, ::callback callback = ::callback());
 
-      
+
       virtual void on_file_new();
 
 
@@ -846,7 +847,7 @@ namespace aura
 
       virtual void HideApplication();
 
-      
+
       //virtual ::estatus initialize(::layered * pobjectContext) override;
 
       //virtual ::estatus process_init() override;
@@ -1409,7 +1410,7 @@ namespace aura
       virtual string sound_path(const char* psz);
       virtual string get_default_playlist_path();
 
-      
+
    };
 
 

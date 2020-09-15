@@ -94,7 +94,6 @@ namespace str
 
          return false;
 
-
       }
 
       compress_context compress(this);
@@ -386,13 +385,13 @@ namespace str
             string strTitle(szTitle);
             if(::str::ends(szTitle, "/") || ::str::ends(szTitle, "\\"))
             {
-               
+
             }
             else if(pinfile->locate(strTitle) && (pstraFilter == nullptr || ::str::begins_eat_ci(strTitle, *pstraFilter) >= 0))
             {
-               
+
                string strRelative(strTitle);
-               
+
                ::file::path path = ::file::path(pszDir) / strRelative;
 
                file_pointer spfile = Context.file().get_file(

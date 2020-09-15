@@ -1420,16 +1420,18 @@ namespace apex
   void session::get_cursor_pos(LPPOINT ppoint)
   {
 
-     if (m_bSystemSynchronizedCursor)
-     {
 
-        POINT point;
-
-        ::GetCursorPos(&point);
-
-        m_pointCursor = point;
-
-     }
+   __throw(todo("aura"));
+//     if (m_bSystemSynchronizedCursor)
+//     {
+//
+//        POINT point;
+//
+//        ::GetCursorPos(&point);
+//
+//        m_pointCursor = point;
+//
+//     }
 
      if (ppoint != nullptr)
      {
@@ -3849,7 +3851,7 @@ ret:
 
 //      __release(m_pkeyboard);
 
-      defer_term_ui();
+      //defer_term_ui();
 
    }
 
@@ -4374,22 +4376,22 @@ namespace apex
 
 
 
-
-   bool session::open_file(::filemanager::data* pdata, ::file::item_array& itema)
-   {
-
-      UNREFERENCED_PARAMETER(pdata);
-
-      if (itema.get_size() > 0)
-      {
-
-         return true;
-
-      }
-
-      return false;
-
-   }
+//
+//   bool session::open_file(::filemanager::data* pdata, ::file::item_array& itema)
+//   {
+//
+//      UNREFERENCED_PARAMETER(pdata);
+//
+//      if (itema.get_size() > 0)
+//      {
+//
+//         return true;
+//
+//      }
+//
+//      return false;
+//
+//   }
 
 
 

@@ -1,7 +1,9 @@
 ﻿#pragma once
 
 
+#if !BROAD_PRECOMPILED_HEADER
 #include "_.h"
+#endif
 #include "aura/platform/_platform.h"
 
 

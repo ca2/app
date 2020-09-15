@@ -5,11 +5,14 @@ namespace filemanager
 {
 
 
+   class data;
+
+
    class CLASS_DECL_AURA item_action
    {
    public:
-   
-      
+
+
       item_action();
       virtual ~item_action();
 

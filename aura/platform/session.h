@@ -6,10 +6,10 @@ namespace aura
 
 
    class CLASS_DECL_AURA session :
-      virtual public ::apex::session
+      virtual public ::apex::session,
       //,
       //virtual public ::application_container,
-      //virtual public ::filemanager::item_action //,
+      virtual public ::filemanager::item_action //,
       ////virtual public ::filemanager::component,
       ////virtual public ::user::document_manager_container
    {
@@ -37,7 +37,7 @@ namespace aura
 
 #endif
 
-    
+
       // For Mobile systems it is particularly meaningful...
       // ... is is the "Main Window" (sometimes just a concept) holding the App.
       // For Desktop Applications a meaning should be given or this member could be ignored?
@@ -285,7 +285,7 @@ namespace aura
 
       virtual ::user::primitive * get_keyboard_focus();
       virtual bool set_keyboard_focus(::user::primitive * pkeyboardfocus);
-      
+
       virtual ::user::primitive * clear_focus();
 
 
@@ -561,10 +561,10 @@ namespace aura
 
       //virtual bool prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::user::menu_item* pitem);
 
-      
+
       virtual ::color get_color(::user::e_element eelement, ::user::estate estate);
 
-      
+
 
 
    };

@@ -233,7 +233,9 @@ bool app_core::on_result(const ::estatus & estatus)
 
    //os_init_imaging();
 
-   os_init_windowing();
+//#ifdef
+
+  // os_init_windowing();
 
    return true;
 
@@ -359,12 +361,12 @@ CLASS_DECL_APEX void set_debug_pointer(void * p);
 
       uid_t uid = atoi(strUid);
 
-      os_message_box(nullptr, "going to seteuid to: " + __str(uid), "going to seteuid", MB_OK);
+      os_message_box("going to seteuid to: " + __str(uid), "going to seteuid", MB_OK);
 
       if (seteuid(uid) == 0)
       {
 
-         os_message_box(nullptr, "uid=" + __str(uid), "seteuid success", MB_OK);
+         os_message_box("uid=" + __str(uid), "seteuid success", MB_OK);
 
       }
       else
@@ -376,7 +378,7 @@ CLASS_DECL_APEX void set_debug_pointer(void * p);
 
          strError.Format("errno=%d uid=%d", iErr);
 
-         os_message_box(nullptr, strError, "seteuid failed", MB_ICONEXCLAMATION);
+         os_message_box(strError, "seteuid failed", MB_ICONEXCLAMATION);
 
       }
 
@@ -734,7 +736,7 @@ void app_core::system_end()
 
    os_term_application();
 
-   os_term_windowing();
+   //os_term_windowing();
 
    //os_term_imaging();
 

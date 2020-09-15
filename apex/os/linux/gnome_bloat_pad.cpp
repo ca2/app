@@ -58,11 +58,11 @@ void bloat_pad_activate(GApplication * application)
    //g_application_register(application, pc, &perror);
    //new_window(application, nullptr);
 
-   #ifndef RASPBIAN
+#ifndef RASPBIAN
 
    sn_start_context();
 
-   #endif
+#endif
 
 }
 

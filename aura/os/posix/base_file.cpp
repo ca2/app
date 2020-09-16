@@ -258,7 +258,7 @@ bool file_as_memory(memory_base & memory, const char * path, strsize iReadAtMost
       if (iReadAtMostByteCount >= 0)
       {
 
-         while ((iRead = (int)fread(mem.get_data(), 1, MIN(iReadAtMostByteCount - memory.get_size(), mem.get_size()), f)) > 0)
+         while ((iRead = (int)fread(mem.get_data(), 1, min(iReadAtMostByteCount - memory.get_size(), mem.get_size()), f)) > 0)
          {
 
             memory.append(mem.get_data(), iRead);

@@ -43,13 +43,13 @@ namespace graphics
       virtual ::draw2d::pen_pointer & get_pen1(int iColor);
 
 
-      virtual void SetWindowSize(int iHeight, int iWidth);
-      virtual void SetCursorVisibility(bool show);
-      virtual void SetCursorPosition(int y, int x);
-      virtual void SetTextColor(int color);
-      virtual void SetScreenColor(int color, int iLineStart = 0, int iLineCount = -1);
-      virtual void write(const char * psz);
-      virtual void write(const void * pdata, memsize nCount);
+      virtual void SetWindowSize(int iHeight, int iWidth) override;
+      virtual void SetCursorVisibility(bool show) override;
+      virtual void SetCursorPosition(int y, int x) override;
+      virtual void SetTextColor(int color) override;
+      virtual void SetScreenColor(int color, int iLineStart = 0, int iLineCount = -1) override;
+      virtual void write(const char * psz) override;
+      virtual void write(const void * pdata, memsize nCount) override;
 
 
       virtual bool defer_write(char ch, int x, int y, int cx, int cy, int iColor);
@@ -61,7 +61,7 @@ namespace graphics
       virtual void update_image();
       virtual void draw_write(char ch, int x, int y, int iColor);
 
-      virtual void to_string(string& str) const;
+      virtual void to_string(string& str) const override;
 
    };
 

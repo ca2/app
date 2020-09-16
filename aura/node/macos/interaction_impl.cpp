@@ -2630,7 +2630,7 @@ namespace macos
    LONG interaction_impl::GetWindowLong(i32 nIndex)
    {
 
-      return ::GetWindowLong(get_handle(), nIndex);
+      return get_window_long(nIndex);
 
    }
 
@@ -2638,7 +2638,7 @@ namespace macos
    LONG interaction_impl::SetWindowLong(i32 nIndex, LONG lValue)
    {
 
-      return ::SetWindowLong(get_handle(), nIndex, lValue);
+      return set_window_long(nIndex, lValue);
 
    }
 
@@ -2648,7 +2648,7 @@ namespace macos
 
       ASSERT(::is_window(get_handle()));
 
-      return (DWORD)::GetWindowLong(get_handle(), GWL_STYLE);
+      return get_window_long(GWL_STYLE);
 
    }
 
@@ -2658,7 +2658,7 @@ namespace macos
 
       ASSERT(::is_window(get_handle()));
 
-      return (DWORD)::GetWindowLong(get_handle(), GWL_EXSTYLE);
+      return get_window_long(GWL_EXSTYLE);
 
    }
 
@@ -3515,16 +3515,18 @@ namespace macos
    ::user::interaction * interaction_impl::SetParent(::user::interaction * pWndNewParent)
    {
 
-      ::user::interaction_impl * pimpl = ::macos::interaction_impl::from_handle(::SetParent(get_handle(), (oswindow)pWndNewParent->get_handle()));
-
-      if(pimpl == nullptr)
-      {
-
-         return nullptr;
-
-      }
-
-      return pimpl->m_puserinteraction;
+//      ::user::interaction_impl * pimpl = ::macos::interaction_impl::from_handle(::SetParent(get_handle(), (oswindow)pWndNewParent->get_handle()));
+//
+//      if(pimpl == nullptr)
+//      {
+//
+//         return nullptr;
+//
+//      }
+//
+//      return pimpl->m_puserinteraction;
+      
+      return ::user::interaction_impl::SetParent(pWndNewParent);
 
    }
 
@@ -5602,7 +5604,7 @@ namespace macos
          round_window_miniaturize();
 
       }
-      else if(m_puserinteraction->layout().design() & activation_no_activate)
+      else if(m_puserinteraction->layout().design().activation() & activation_no_activate)
       {
 
          round_window_order_front();

@@ -37,7 +37,7 @@ void os_trace(e_trace_level elevel, const char * pszTag, const char * psz)
 
    strTag = strTag.Left(23);
 
-   strTag = string(' ', MAX(0, 23 - strTag.get_length()));
+   strTag = string(' ', max(0, 23 - strTag.get_length()));
 
    strMessage.Format("-%c- %s %s\n", trace_level_char(elevel), strTag.c_str(), psz);
 

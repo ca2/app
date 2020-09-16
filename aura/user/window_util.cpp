@@ -756,9 +756,13 @@ namespace user
 
       if (!::is_window(oswindow))
          return 0x7fffffff;
+      
+#ifdef WINDOWS_DESKTOP
 
       if (::GetParent(oswindow) == MESSAGE_WINDOW_PARENT)
          return 0x7fffffff;
+      
+#endif
 
       try
       {
@@ -820,11 +824,17 @@ namespace user
          if (iOrder == 0x7fffffff)
             break;
          ia.insert_at(0, iOrder);
+         
+#ifdef WINDOWS_DESKTOP
          oswindow = ::GetParent(oswindow);
+#else
+         break;
+#endif
+         
       }
 
-
    }
+
 
    /*void window_util::EnumChildren(oswindow oswindow, oswindow_array & oswindowa)
    {
@@ -916,7 +926,7 @@ namespace user
 
    bool window_util::IsAscendant(oswindow oswindowAscendant, oswindow oswindowDescendant)
    {
-#ifndef _UWP
+#ifdef WINDOWS_DESKTOP
       while (true)
       {
          oswindowDescendant = ::GetParent(oswindowDescendant);

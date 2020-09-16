@@ -1530,6 +1530,8 @@ namespace aura
             return pimpl->m_puserinteraction;
 
          }
+         
+#ifdef WINDOWS_DESKTOP
 
          oswindow = ::GetParent(oswindow);
 
@@ -1539,6 +1541,12 @@ namespace aura
             oswindow = ::get_window(oswindow, GW_OWNER);
 
          }
+         
+#else
+      
+         break;
+         
+#endif
 
       }
 

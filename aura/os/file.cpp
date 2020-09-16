@@ -16,7 +16,7 @@ CLASS_DECL_AURA bool _os_may_have_alias(const char * psz);
 bool context::os_resolve_alias(::file::path & path, const char * psz, bool bNoUI, bool bNoMount)
 {
 
-   if (_os_resolve_alias(path, psz, pinteraction, bNoUI, bNoMount))
+   if (_os_resolve_alias(path, psz, bNoUI, bNoMount))
    {
 
       return true;
@@ -44,7 +44,7 @@ bool context::os_resolve_alias(::file::path & path, const char * psz, bool bNoUI
 
             ::file::path pathTargetFolder;
 
-            if (_os_resolve_alias(pathTargetFolder, pathAlias, pinteraction, bNoUI, bNoMount))
+            if (_os_resolve_alias(pathTargetFolder, pathAlias, bNoUI, bNoMount))
             {
 
                path = pathTargetFolder / pathaRelative[i];

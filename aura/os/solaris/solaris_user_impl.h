@@ -196,15 +196,15 @@ inline bool IsChild(oswindow oswindowParent, ::oswindow oswindowcandidateChildOr
    return oswindowParent->is_child(oswindowcandidateChildOrDescendant);
 }
 
-inline oswindow GetParent(::oswindow oswindow)
-{
-   return oswindow->get_parent();
-}
+// inline oswindow GetParent(::oswindow oswindow)
+// {
+//    return oswindow->get_parent();
+// }
 
-inline oswindow SetParent(::oswindow oswindow, ::oswindow oswindowNewParent)
-{
-   return oswindow->set_parent(oswindowNewParent);
-}
+// inline oswindow SetParent(::oswindow oswindow, ::oswindow oswindowNewParent)
+// {
+//    return oswindow->set_parent(oswindowNewParent);
+// }
 
 inline bool ShowWindow(::oswindow oswindow, i32 nCmdShow)
 {

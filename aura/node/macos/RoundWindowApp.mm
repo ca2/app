@@ -21,7 +21,7 @@ i32 defer_run_system(char * * psza, int c);
 void system_call_update_app_activated();
 void macos_on_app_changed_occlusion_state();
 
-void set_aura_system_as_thread();
+void set_apex_system_as_thread();
 
 @implementation RoundWindowApp
 
@@ -188,7 +188,7 @@ NSAppleEventManager *appleEventManager = [NSAppleEventManager sharedAppleEventMa
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
    
-   set_aura_system_as_thread();
+   set_apex_system_as_thread();
    //MessageBox(NULL, "applicationDidFinishLaunching", "applicationDidFinishLaunching", MB_OK);
    
    defer_run_system();

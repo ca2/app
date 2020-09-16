@@ -32,17 +32,17 @@ CLASS_DECL_ACME WINBOOL GetCursorPos(LPPOINT lppointCursor);
 
 WINBOOL is_window(oswindow oswindow);
 WINBOOL IsChild(oswindow oswindowParent, oswindow oswindowcandidateChildOrDescendant);
-oswindow GetParent(oswindow oswindow);
-oswindow SetParent(oswindow oswindowChild, oswindow oswindowNewParent);
+// oswindow GetParent(oswindow oswindow);
+// oswindow SetParent(oswindow oswindowChild, oswindow oswindowNewParent);
 WINBOOL show_window(oswindow oswindow, i32 iShow);
-LONG GetWindowLongA(oswindow oswindow, int nIndex);
-LONG SetWindowLongA(oswindow oswindow, int nIndex, LONG l);
+//LONG GetWindowLongA(oswindow oswindow, int nIndex);
+//LONG SetWindowLongA(oswindow oswindow, int nIndex, LONG l);
 WINBOOL _001ClientToScreen(oswindow oswindow, LPPOINT lppoint);
 WINBOOL _001ScreenToClient(oswindow oswindow, LPPOINT lppoint);
 WINBOOL IsIconic(oswindow oswindow);
 WINBOOL IsWindowVisible(oswindow oswindow);
-#define GetWindowLong GetWindowLongA
-#define SetWindowLong SetWindowLongA
+//#define GetWindowLong GetWindowLongA
+//#define SetWindowLong SetWindowLongA
 
 
 
@@ -1137,82 +1137,82 @@ WINBOOL WINAPI IsIconic(oswindow hWnd);
 #endif /* _WIN32_WINNT >= 0x0501 */
 
 
-LONG
-WINAPI
-GetWindowLongA(
-oswindow hWnd,
-i32 nIndex);
+//LONG
+//WINAPI
+//GetWindowLongA(
+//oswindow hWnd,
+//i32 nIndex);
 
 
-LONG
-WINAPI
-GetWindowLongW(
-oswindow hWnd,
-i32 nIndex);
-#ifdef UNICODE
-#define GetWindowLong  GetWindowLongW
-#else
-#define GetWindowLong  GetWindowLongA
-#endif // !UNICODE
-
-LONG_PTR
-WINAPI
-GetWindowLongPtrA(
-oswindow hWnd,
-i32 nIndex);
-
-
-LONG_PTR
-WINAPI
-GetWindowLongPtrW(
-oswindow hWnd,
-i32 nIndex);
-#ifdef UNICODE
-#define GetWindowLongPtr  GetWindowLongPtrW
-#else
-#define GetWindowLongPtr  GetWindowLongPtrA
-#endif // !UNICODE
-
-
-LONG
-WINAPI
-SetWindowLongA(
-oswindow hWnd,
-i32 nIndex,
-LONG l);
-
-
-LONG
-WINAPI
-SetWindowLongW(
-oswindow hWnd,
-i32 nIndex,
-LONG l);
-#ifdef UNICODE
-#define SetWindowLong  SetWindowLongW
-#else
-#define SetWindowLong  SetWindowLongA
-#endif // !UNICODE
-
-LONG_PTR
-WINAPI
-SetWindowLongPtrA(
-oswindow hWnd,
-i32 nIndex,
-LONG_PTR l);
-
-
-LONG_PTR
-WINAPI
-SetWindowLongPtrW(
-oswindow hWnd,
-i32 nIndex,
-LONG_PTR l);
-#ifdef UNICODE
-#define SetWindowLongPtr  SetWindowLongPtrW
-#else
-#define SetWindowLongPtr  SetWindowLongPtrA
-#endif // !UNICODE
+//LONG
+//WINAPI
+//GetWindowLongW(
+//oswindow hWnd,
+//i32 nIndex);
+//#ifdef UNICODE
+//#define GetWindowLong  GetWindowLongW
+//#else
+//#define GetWindowLong  GetWindowLongA
+//#endif // !UNICODE
+//
+//LONG_PTR
+//WINAPI
+//GetWindowLongPtrA(
+//oswindow hWnd,
+//i32 nIndex);
+//
+//
+//LONG_PTR
+//WINAPI
+//GetWindowLongPtrW(
+//oswindow hWnd,
+//i32 nIndex);
+//#ifdef UNICODE
+//#define GetWindowLongPtr  GetWindowLongPtrW
+//#else
+//#define GetWindowLongPtr  GetWindowLongPtrA
+//#endif // !UNICODE
+//
+//
+//LONG
+//WINAPI
+//SetWindowLongA(
+//oswindow hWnd,
+//i32 nIndex,
+//LONG l);
+//
+//
+//LONG
+//WINAPI
+//SetWindowLongW(
+//oswindow hWnd,
+//i32 nIndex,
+//LONG l);
+//#ifdef UNICODE
+//#define SetWindowLong  SetWindowLongW
+//#else
+//#define SetWindowLong  SetWindowLongA
+//#endif // !UNICODE
+//
+//LONG_PTR
+//WINAPI
+//SetWindowLongPtrA(
+//oswindow hWnd,
+//i32 nIndex,
+//LONG_PTR l);
+//
+//
+//LONG_PTR
+//WINAPI
+//SetWindowLongPtrW(
+//oswindow hWnd,
+//i32 nIndex,
+//LONG_PTR l);
+//#ifdef UNICODE
+//#define SetWindowLongPtr  SetWindowLongPtrW
+//#else
+//#define SetWindowLongPtr  SetWindowLongPtrA
+//#endif // !UNICODE
 
 
 #ifndef _UWP

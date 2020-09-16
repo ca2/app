@@ -14,6 +14,6 @@
 
 
 
-#define GetWindowLong GetWindowLongA
-#define SetWindowLong SetWindowLongA
+//#define GetWindowLong GetWindowLongA
+//#define SetWindowLong SetWindowLongA
 

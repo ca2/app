@@ -338,6 +338,7 @@ public:
    void free_work_image(::image * pimage);
    
    
+   
    virtual HCURSOR CreateAlphaCursor(oswindow oswindow, const image * pimage, int xHotSpot, int yHotSpot);
    virtual HCURSOR load_default_cursor(e_cursor ecursor);
    virtual void set_cursor_image(const image * pimage, int xHotSpot, int yHotSpot);

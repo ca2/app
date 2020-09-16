@@ -1333,3 +1333,30 @@ void * cg_image_get_image_data(int & width, int & height, int & iScan, CGImageRe
    return pixels;
 
 }
+
+
+//HCURSOR imaging::CreateAlphaCursor(oswindow window, const ::image * pimage, int xHotSpot, int yHotSpot)
+//{
+//
+//   return (HCURSOR) nullptr;
+//
+//}
+//
+//
+
+
+namespace draw2d
+{
+
+
+   void draw2d::enum_draw2d_fonts(::draw2d::font_enum_item_array& itema)
+   {
+
+
+   }
+
+
+} // namespace draw2d
+
+
+

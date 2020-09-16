@@ -18,8 +18,8 @@
 
 int is_window(oswindow oswindow);
 int IsChild(oswindow oswindowParent, ::oswindow oswindowCandidateChildOrDescendant);
-oswindow GetParent(::oswindow oswindow);
-oswindow SetParent(::oswindow oswindow, ::oswindow oswindowNewParent);
+// oswindow GetParent(::oswindow oswindow);
+// oswindow SetParent(::oswindow oswindow, ::oswindow oswindowNewParent);
 int ShowWindow(::oswindow oswindow, i32 nCmdShow);
 i32 GetWindowLongA(::oswindow oswindow, i32 nIndex);
 i32 SetWindowLongA(::oswindow oswindow, i32 nIndex, i32 l);

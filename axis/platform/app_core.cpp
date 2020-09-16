@@ -2291,7 +2291,7 @@ bool aura_level::defer_init(PFN_DEFER_INIT pfnDeferInit)
 
 
 
-void set_aura_system_as_thread()
+void set_apex_system_as_thread()
 {
 
    ::set_thread(::get_context_system());

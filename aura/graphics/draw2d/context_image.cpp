@@ -563,6 +563,8 @@ context_image::~context_image()
 
 icon_result context_image::load_icon(const ::var & varFile)
 {
+   
+#ifdef WINDOWS_DESKTOP
 
    string_array straMatter;
 
@@ -596,6 +598,12 @@ icon_result context_image::load_icon(const ::var & varFile)
    picon->attach_os_data(hicon);
 
    return picon;
+   
+#else
+   
+   return ::success;
+   
+#endif
 
 }
 

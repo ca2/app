@@ -32,8 +32,8 @@ CLASS_DECL_APEX WINBOOL GetCursorPos(LPPOINT lppointCursor);
 
 WINBOOL is_window(oswindow oswindow);
 WINBOOL IsChild(oswindow oswindowParent, oswindow oswindowcandidateChildOrDescendant);
-oswindow GetParent(oswindow oswindow);
-oswindow SetParent(oswindow oswindowChild, oswindow oswindowNewParent);
+// oswindow GetParent(oswindow oswindow);
+// oswindow SetParent(oswindow oswindowChild, oswindow oswindowNewParent);
 WINBOOL show_window(oswindow oswindow, i32 iShow);
 LONG GetWindowLongA(oswindow oswindow, int nIndex);
 LONG SetWindowLongA(oswindow oswindow, int nIndex, LONG l);

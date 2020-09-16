@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 //#include "freeimage/Source/FreeImage.h"
 //#include "visual_FreeImageFileProc.h"
 #ifdef WINDOWS_DESKTOP
@@ -6843,34 +6843,34 @@ void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,i32 left,i32 top,const 
 //
 //#endif
 
-//#if !defined(WINDOWS_DESKTOP) && !defined(LINUX)
-//
-//
-//HCURSOR imaging::CreateAlphaCursor(oswindow oswindow, const image * pimage, int xHotSpot, int yHotSpot)
-//{
-//
-//   return 0;
-//
-//}
-//
-//
-//HCURSOR imaging::load_default_cursor(e_cursor ecursor)
-//{
-//
-//   return NULL;
-//
-//}
-//
-//
-//WINBOOL imaging::window_set_mouse_cursor(oswindow window, HCURSOR hcursor)
-//{
-//
-//
-//   return false;
-//
-//}
-//
-//#endif
+#if !defined(WINDOWS_DESKTOP) && !defined(LINUX)
+
+
+HCURSOR imaging::CreateAlphaCursor(oswindow oswindow, const image * pimage, int xHotSpot, int yHotSpot)
+{
+
+   return 0;
+
+}
+
+
+HCURSOR imaging::load_default_cursor(e_cursor ecursor)
+{
+
+   return NULL;
+
+}
+
+
+WINBOOL imaging::window_set_mouse_cursor(oswindow window, HCURSOR hcursor)
+{
+
+
+   return false;
+
+}
+
+#endif
 
 void imaging::set_cursor_image(const image * pimage, int xHotSpot, int yHotSpot)
 {

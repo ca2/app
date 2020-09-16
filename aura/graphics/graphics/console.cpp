@@ -242,7 +242,7 @@ namespace graphics
       string str((const char *)pdata, __min(strnlen_s((const char *)pdata, (size_t)nCount), nCount));
 
 #else
-      string str((const char *)pdata, MIN(strnlen((const char *)pdata, (size_t)nCount), nCount));
+      string str((const char *)pdata, min(strnlen((const char *)pdata, (size_t)nCount), nCount));
 
 #endif
       write(str);

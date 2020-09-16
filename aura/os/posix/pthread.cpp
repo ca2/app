@@ -7,7 +7,7 @@
 #endif
 
 
-__pointer(mq) get_mq(ITHREAD idthread, bool bCreate);
+mq * get_mq(ITHREAD idthread, bool bCreate);
 
 
 CLASS_DECL_AURA void thread_get_os_priority(i32 * piOsPolicy, sched_param * pparam, ::e_priority epriority);
@@ -63,7 +63,7 @@ DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, HSYNC * synca, DWORD tickTimeout
             if (pmq.is_set())
             {
 
-               sync_lock sl(pmq->mutex());
+               sync_lock sl(pmq->get_mutex());
 
                if (pmq->m_messagea.get_count() > 0)
                {
@@ -579,7 +579,7 @@ void get_os_priority(i32 * piPolicy, sched_param * pparam, ::e_priority epriorit
       iOsPriority = (((epriority - iCa2Min) * (iOsMax - iOsMin)) / (iCa2Max - iCa2Min)) + iOsMin;
    }
 
-   iOsPriority = MAX(iOsMin, MIN(iOsMax, iOsPriority));
+   iOsPriority = max(iOsMin, min(iOsMax, iOsPriority));
 
    *piPolicy = iOsPolicy;
 

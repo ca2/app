@@ -4,9 +4,12 @@
 //
 //  Created by Camilo Sasuke Tsumanuma on 16/09/20.
 //
-
-#ifndef windowing_h
-#define windowing_h
+#pragma once
 
 
-#endif /* windowing_h */
+WINBOOL get_client_rect(oswindow hwnd,LPRECT lprect);
+
+WINBOOL get_window_rect(oswindow hwnd,LPRECT lprect);
+
+void defer_dock_application(int_bool bDock);
+

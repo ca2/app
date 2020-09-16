@@ -71,7 +71,7 @@ namespace macos
 
 
    interaction_impl::interaction_impl(::layered * pobjectContext) :
-      ::object(pobject)
+      ::object(pobjectContext)
    {
 
       m_bEnabled = true;
@@ -390,9 +390,9 @@ namespace macos
 
          m_oswindow = oswindow_get(new_round_window(this, rect, uStyle));
 
-         m_puserinteraction->m_stateWindow3.m_point = ::top_left(rectParam);
+         m_puserinteraction->layout().window() = ::top_left(rectParam);
 
-         m_puserinteraction->m_stateWindow3.m_size = ::size(rectParam);
+         m_puserinteraction->layout().window() = ::size(rectParam);
 
          __refer(m_puserinteraction->m_pthreadUserInteraction, ::get_thread());
 
@@ -1988,6 +1988,8 @@ namespace macos
          g_pappPreTranslateMouseMessage = System.value("pre_translate_mouse_message").cast < ::aura::application >();
 
       }
+      
+      m_puserbox = m_puserinteraction;
 
    }
 
@@ -5193,10 +5195,15 @@ namespace macos
          return;
 
       }
+      
+      if(m_puserbox != nullptr)
+      {
 
-      m_puserinteraction->m_windowrect.m_edisplayPrevious = m_puserinteraction->m_windowrect.m_edisplay;
+         m_puserbox->m_windowrect.m_edisplayPrevious = m_puserbox->m_windowrect.m_edisplay;
+         
+      }
 
-      m_puserinteraction->window_state3().m_edisplay3 = ::display_iconic;
+      m_puserinteraction->layout().window() = ::display_iconic;
 
    }
 
@@ -5217,15 +5224,22 @@ namespace macos
          return;
 
       }
-
-      if(m_puserinteraction->m_windowrect.m_edisplayPrevious == ::display_iconic)
+      
+      if(m_puserbox)
       {
 
-         m_puserinteraction->m_windowrect.m_edisplayPrevious = ::display_normal;
+         if(m_puserbox->m_windowrect.m_edisplayPrevious == ::display_iconic)
+         {
 
+            m_puserbox->m_windowrect.m_edisplayPrevious = ::display_normal;
+
+         }
+         
+         m_puserinteraction->_001OnDeiconify(m_puserbox->m_windowrect.m_edisplayPrevious);
+
+         
       }
 
-      m_puserinteraction->_001OnDeiconify(m_puserinteraction->m_windowrect.m_edisplayPrevious);
 
    }
 
@@ -5294,14 +5308,14 @@ namespace macos
          return;
 
       }
-
-      if(::is_screen_visible(m_puserinteraction->m_stateWindow3.m_edisplay3))
+      
+      if(m_puserinteraction->layout().window().is_screen_visible())
       {
 
-         m_puserinteraction->m_stateWindow3.m_edisplay3 = display_none;
+         m_puserinteraction->hide();
 
       }
-
+      
       m_puserinteraction->message_call(WM_SHOWWINDOW, 0);
 
    }
@@ -5574,7 +5588,7 @@ namespace macos
    void interaction_impl::window_show_change_visibility()
    {
 
-      auto edisplay = m_puserinteraction->process_display();
+      auto edisplay = m_puserinteraction->layout().design().display();
 
       if(!::is_visible(edisplay))
       {
@@ -5588,7 +5602,7 @@ namespace macos
          round_window_miniaturize();
 
       }
-      else if(m_puserinteraction->process_state().m_eactivation & activation_no_activate)
+      else if(m_puserinteraction->layout().design() & activation_no_activate)
       {
 
          round_window_order_front();

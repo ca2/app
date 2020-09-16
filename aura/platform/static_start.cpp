@@ -443,7 +443,7 @@ namespace aura
 
       //g_pcsTrace = new critical_section;
 
-#ifdef WINDOWS
+//#ifdef WINDOWS
 
 //#ifdef WINDOWS_DESKTOP
 //
@@ -455,19 +455,19 @@ namespace aura
 
       //::QueryPerformanceFrequency(&g_largeintegerFrequency);
 
-#elif defined(__APPLE__)
-
-      {
-
-         mach_timebase_info_data_t timebase;
-
-         mach_timebase_info(&timebase);
-
-         g_machtime_conversion_factor = (double)timebase.numer / (double)timebase.denom;
-
-      }
-
-#endif
+//#elif defined(__APPLE__)
+//
+//      {
+//
+//         mach_timebase_info_data_t timebase;
+//
+//         mach_timebase_info(&timebase);
+//
+//         g_machtime_conversion_factor = (double)timebase.numer / (double)timebase.denom;
+//
+//      }
+//
+//#endif
 
       //g_iFirstNano = get_nanos();
 
@@ -741,7 +741,7 @@ namespace aura
 
 #if defined(LINUX) || defined(__APPLE__)
 
-      del(g_pmutexTz);
+      ::acme::del(g_pmutexTz);
 
 #endif // defined(LINUX) || defined(__APPLE__)
 
@@ -810,7 +810,7 @@ namespace aura
 
 #ifdef __APPLE__
 
-      del(g_pmutexCvt);
+      ::acme::del(g_pmutexCvt);
 
 #endif
 

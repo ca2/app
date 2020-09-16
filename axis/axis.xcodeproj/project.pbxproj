@@ -240,6 +240,28 @@
 		9AD12C4824F52DAD00177261 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD12C4724F52DAD00177261 /* libsqlite3.tbd */; };
 		9AD12C4A24F52DBC00177261 /* libpcre.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD12C4924F52DBC00177261 /* libpcre.tbd */; };
 		9AD12C5024F52E7F00177261 /* geo_department.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD12C4F24F52E7F00177261 /* geo_department.cpp */; };
+		9AD199E92512988200B4C44A /* button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD199CE2512988200B4C44A /* button.cpp */; };
+		9AD199EA2512988200B4C44A /* style.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD199CF2512988200B4C44A /* style.h */; };
+		9AD199EB2512988200B4C44A /* style.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD199D02512988200B4C44A /* style.cpp */; };
+		9AD199EC2512988200B4C44A /* combo_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD199D12512988200B4C44A /* combo_box.cpp */; };
+		9AD199ED2512988200B4C44A /* still.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD199D22512988200B4C44A /* still.h */; };
+		9AD199EE2512988200B4C44A /* simple_ui_draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD199D32512988200B4C44A /* simple_ui_draw.cpp */; };
+		9AD199EF2512988200B4C44A /* validate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD199D42512988200B4C44A /* validate.cpp */; };
+		9AD199F02512988200B4C44A /* combo_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD199D52512988200B4C44A /* combo_box.h */; };
+		9AD199F12512988200B4C44A /* _user.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD199D62512988200B4C44A /* _user.h */; };
+		9AD199F22512988200B4C44A /* still.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD199D72512988200B4C44A /* still.cpp */; };
+		9AD199F32512988200B4C44A /* check_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD199D82512988200B4C44A /* check_box.cpp */; };
+		9AD199F42512988200B4C44A /* check_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD199D92512988200B4C44A /* check_box.h */; };
+		9AD199F52512988200B4C44A /* validate.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD199DA2512988200B4C44A /* validate.h */; };
+		9AD199F62512988200B4C44A /* slider.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD199DB2512988200B4C44A /* slider.h */; };
+		9AD199F72512988200B4C44A /* user.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD199DC2512988200B4C44A /* user.h */; };
+		9AD199F82512988200B4C44A /* button.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD199DD2512988200B4C44A /* button.h */; };
+		9AD199F92512988200B4C44A /* user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD199DE2512988200B4C44A /* user.cpp */; };
+		9AD199FA2512988200B4C44A /* combo_list.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD199DF2512988200B4C44A /* combo_list.cpp */; };
+		9AD199FB2512988200B4C44A /* slider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD199E02512988200B4C44A /* slider.cpp */; };
+		9AD199FC2512988200B4C44A /* simple_ui_draw.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD199E12512988200B4C44A /* simple_ui_draw.h */; };
+		9AD199FD2512988200B4C44A /* combo_list.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD199E22512988200B4C44A /* combo_list.h */; };
+		9AD199FE2512988200B4C44A /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD199E32512988200B4C44A /* _.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -538,6 +560,28 @@
 		9AD12C4724F52DAD00177261 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		9AD12C4924F52DBC00177261 /* libpcre.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libpcre.tbd; path = usr/lib/libpcre.tbd; sourceTree = SDKROOT; };
 		9AD12C4F24F52E7F00177261 /* geo_department.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = geo_department.cpp; sourceTree = "<group>"; };
+		9AD199CE2512988200B4C44A /* button.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = button.cpp; sourceTree = "<group>"; };
+		9AD199CF2512988200B4C44A /* style.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = style.h; sourceTree = "<group>"; };
+		9AD199D02512988200B4C44A /* style.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = style.cpp; sourceTree = "<group>"; };
+		9AD199D12512988200B4C44A /* combo_box.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = combo_box.cpp; sourceTree = "<group>"; };
+		9AD199D22512988200B4C44A /* still.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = still.h; sourceTree = "<group>"; };
+		9AD199D32512988200B4C44A /* simple_ui_draw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = simple_ui_draw.cpp; sourceTree = "<group>"; };
+		9AD199D42512988200B4C44A /* validate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = validate.cpp; sourceTree = "<group>"; };
+		9AD199D52512988200B4C44A /* combo_box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = combo_box.h; sourceTree = "<group>"; };
+		9AD199D62512988200B4C44A /* _user.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _user.h; sourceTree = "<group>"; };
+		9AD199D72512988200B4C44A /* still.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = still.cpp; sourceTree = "<group>"; };
+		9AD199D82512988200B4C44A /* check_box.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = check_box.cpp; sourceTree = "<group>"; };
+		9AD199D92512988200B4C44A /* check_box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = check_box.h; sourceTree = "<group>"; };
+		9AD199DA2512988200B4C44A /* validate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = validate.h; sourceTree = "<group>"; };
+		9AD199DB2512988200B4C44A /* slider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = slider.h; sourceTree = "<group>"; };
+		9AD199DC2512988200B4C44A /* user.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user.h; sourceTree = "<group>"; };
+		9AD199DD2512988200B4C44A /* button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = button.h; sourceTree = "<group>"; };
+		9AD199DE2512988200B4C44A /* user.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user.cpp; sourceTree = "<group>"; };
+		9AD199DF2512988200B4C44A /* combo_list.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = combo_list.cpp; sourceTree = "<group>"; };
+		9AD199E02512988200B4C44A /* slider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = slider.cpp; sourceTree = "<group>"; };
+		9AD199E12512988200B4C44A /* simple_ui_draw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simple_ui_draw.h; sourceTree = "<group>"; };
+		9AD199E22512988200B4C44A /* combo_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = combo_list.h; sourceTree = "<group>"; };
+		9AD199E32512988200B4C44A /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -607,6 +651,7 @@
 				9AD1211C24F5230300177261 /* net */,
 				9AD1252824F5230700177261 /* pcre */,
 				9AD1222B24F5230400177261 /* platform */,
+				9AD199CD2512988200B4C44A /* user */,
 				9AD122A424F5230500177261 /* xml */,
 				9AD122D324F5230500177261 /* __matter_ca2.cpp */,
 				9AD1230124F5230500177261 /* _.cpp */,
@@ -1008,6 +1053,35 @@
 			path = account;
 			sourceTree = "<group>";
 		};
+		9AD199CD2512988200B4C44A /* user */ = {
+			isa = PBXGroup;
+			children = (
+				9AD199E32512988200B4C44A /* _.h */,
+				9AD199D62512988200B4C44A /* _user.h */,
+				9AD199CE2512988200B4C44A /* button.cpp */,
+				9AD199DD2512988200B4C44A /* button.h */,
+				9AD199D82512988200B4C44A /* check_box.cpp */,
+				9AD199D92512988200B4C44A /* check_box.h */,
+				9AD199D12512988200B4C44A /* combo_box.cpp */,
+				9AD199D52512988200B4C44A /* combo_box.h */,
+				9AD199DF2512988200B4C44A /* combo_list.cpp */,
+				9AD199E22512988200B4C44A /* combo_list.h */,
+				9AD199D32512988200B4C44A /* simple_ui_draw.cpp */,
+				9AD199E12512988200B4C44A /* simple_ui_draw.h */,
+				9AD199E02512988200B4C44A /* slider.cpp */,
+				9AD199DB2512988200B4C44A /* slider.h */,
+				9AD199D72512988200B4C44A /* still.cpp */,
+				9AD199D22512988200B4C44A /* still.h */,
+				9AD199D02512988200B4C44A /* style.cpp */,
+				9AD199CF2512988200B4C44A /* style.h */,
+				9AD199DE2512988200B4C44A /* user.cpp */,
+				9AD199DC2512988200B4C44A /* user.h */,
+				9AD199D42512988200B4C44A /* validate.cpp */,
+				9AD199DA2512988200B4C44A /* validate.h */,
+			);
+			path = user;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -1026,6 +1100,7 @@
 				9AD126F524F5230A00177261 /* _.h in Headers */,
 				9AD128C924F5230B00177261 /* GLOBAL_ID.h in Headers */,
 				9AD1289824F5230B00177261 /* input_tree.h in Headers */,
+				9AD199F72512988200B4C44A /* user.h in Headers */,
 				9AD1287B24F5230B00177261 /* _generic_object_constructor_impl.h in Headers */,
 				9AD128CD24F5230B00177261 /* context.h in Headers */,
 				9AD12C3924F5230F00177261 /* aaa_want_to_move_xml.h in Headers */,
@@ -1071,6 +1146,7 @@
 				9AD128BB24F5230B00177261 /* macos.h in Headers */,
 				9AD128CF24F5230B00177261 /* message.h in Headers */,
 				9AD126EA24F5230A00177261 /* _impl.h in Headers */,
+				9AD199F62512988200B4C44A /* slider.h in Headers */,
 				9AD128A824F5230B00177261 /* base_array.h in Headers */,
 				9AD1284B24F5230B00177261 /* _system_xml_impl.h in Headers */,
 				9AD128BA24F5230B00177261 /* linux.h in Headers */,
@@ -1078,6 +1154,7 @@
 				9AD128DD24F5230B00177261 /* user.h in Headers */,
 				9AD126E924F5230A00177261 /* console.h in Headers */,
 				9AD1272E24F5230A00177261 /* compress_bzip.h in Headers */,
+				9AD199EA2512988200B4C44A /* style.h in Headers */,
 				9AD128A524F5230B00177261 /* parse_info.h in Headers */,
 				9AD1274524F5230A00177261 /* config.h in Headers */,
 				9AD12C3024F5230E00177261 /* _account.h in Headers */,
@@ -1088,6 +1165,7 @@
 				9AD1275D24F5230A00177261 /* httpd_socket.h in Headers */,
 				9AD12C3C24F5230F00177261 /* callback.h in Headers */,
 				9AD128CA24F5230B00177261 /* idpool.h in Headers */,
+				9AD199F52512988200B4C44A /* validate.h in Headers */,
 				9AD128D424F5230B00177261 /* check.h in Headers */,
 				9AD1289424F5230B00177261 /* glue.h in Headers */,
 				9AD128BE24F5230B00177261 /* android.h in Headers */,
@@ -1097,6 +1175,7 @@
 				9AD128CE24F5230B00177261 /* id.h in Headers */,
 				9AD12AD024F5230D00177261 /* framework.h in Headers */,
 				9AD1272C24F5230A00177261 /* compress_bz.h in Headers */,
+				9AD199ED2512988200B4C44A /* still.h in Headers */,
 				9AD1272624F5230A00177261 /* thread_localdatabase.h in Headers */,
 				9AD12C3724F5230E00177261 /* const.h in Headers */,
 				9AD126FB24F5230A00177261 /* veiev_post.h in Headers */,
@@ -1109,6 +1188,8 @@
 				9AD1288724F5230B00177261 /* edit.h in Headers */,
 				9AD1281024F5230B00177261 /* _include.h in Headers */,
 				9AD128C824F5230B00177261 /* status.h in Headers */,
+				9AD199F82512988200B4C44A /* button.h in Headers */,
+				9AD199F02512988200B4C44A /* combo_box.h in Headers */,
 				9AD12ACF24F5230D00177261 /* console_slim.h in Headers */,
 				9AD1272D24F5230A00177261 /* compress.h in Headers */,
 				9AD1289224F5230B00177261 /* tree_schema.h in Headers */,
@@ -1144,6 +1225,7 @@
 				9AD128B324F5230B00177261 /* library.h in Headers */,
 				9AD127E724F5230B00177261 /* email_department.h in Headers */,
 				9AD1274724F5230A00177261 /* aaa_want_to_remove_sockets_sockets.h in Headers */,
+				9AD199FE2512988200B4C44A /* _.h in Headers */,
 				9AD1280724F5230B00177261 /* astr.h in Headers */,
 				9AD12C2F24F5230E00177261 /* interactive.h in Headers */,
 				9AD127E824F5230B00177261 /* _.h in Headers */,
@@ -1159,12 +1241,14 @@
 				9AD12C2424F5230E00177261 /* usera.h in Headers */,
 				9AD128D124F5230B00177261 /* impact.h in Headers */,
 				9AD1288024F5230B00177261 /* xmlite.h in Headers */,
+				9AD199F12512988200B4C44A /* _user.h in Headers */,
 				9AD128C724F5230B00177261 /* status_range_authentication.h in Headers */,
 				9AD1274624F5230A00177261 /* _strconv.h in Headers */,
 				9AD128B424F5230B00177261 /* application.h in Headers */,
 				9AD1272724F5230A00177261 /* server.h in Headers */,
 				9AD12C3424F5230E00177261 /* aaa_want_to_remove_account_authentication_map.h in Headers */,
 				9AD128B924F5230B00177261 /* ios.h in Headers */,
+				9AD199FC2512988200B4C44A /* simple_ui_draw.h in Headers */,
 				9AD1282224F5230B00177261 /* _features.h in Headers */,
 				9AD127CA24F5230A00177261 /* _.h in Headers */,
 				9AD126F024F5230A00177261 /* database.h in Headers */,
@@ -1172,12 +1256,14 @@
 				9AD1280D24F5230B00177261 /* _c_bridge.h in Headers */,
 				9AD128AF24F5230B00177261 /* _draw2d_impl.h in Headers */,
 				9AD1289924F5230B00177261 /* tree_base.h in Headers */,
+				9AD199FD2512988200B4C44A /* combo_list.h in Headers */,
 				9AD1280B24F5230B00177261 /* winrt.h in Headers */,
 				9AD1272024F5230A00177261 /* queue_item.h in Headers */,
 				9AD1280924F5230B00177261 /* application.h in Headers */,
 				9AD1288324F5230B00177261 /* attr.h in Headers */,
 				9AD1276724F5230A00177261 /* smtpd_socket.h in Headers */,
 				9AD1272324F5230A00177261 /* _simpledb.h in Headers */,
+				9AD199F42512988200B4C44A /* check_box.h in Headers */,
 				9AD12C1C24F5230E00177261 /* system_storage.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1301,6 +1387,7 @@
 				9AD126F624F5230A00177261 /* aaa_want_to_remove_sqlitedb_dataset.cpp in Sources */,
 				9AD1289A24F5230B00177261 /* base_array.cpp in Sources */,
 				9AD126EF24F5230A00177261 /* database.cpp in Sources */,
+				9AD199F92512988200B4C44A /* user.cpp in Sources */,
 				9AD1288824F5230B00177261 /* xmlite.cpp in Sources */,
 				9AD126F824F5230A00177261 /* database.cpp in Sources */,
 				9AD12C2724F5230E00177261 /* credentials.cpp in Sources */,
@@ -1311,6 +1398,7 @@
 				9AD128A224F5230B00177261 /* output_tree.cpp in Sources */,
 				9AD1272424F5230A00177261 /* simpledb.cpp in Sources */,
 				9AD12C1524F5230E00177261 /* network_authenticator.cpp in Sources */,
+				9AD199FA2512988200B4C44A /* combo_list.cpp in Sources */,
 				9AD1288F24F5230B00177261 /* input_tree.cpp in Sources */,
 				9AD1284F24F5230B00177261 /* session.cpp in Sources */,
 				9AD128A624F5230B00177261 /* document.cpp in Sources */,
@@ -1321,17 +1409,22 @@
 				9AD128A924F5230B00177261 /* importable.cpp in Sources */,
 				9AD1289C24F5230B00177261 /* var_exchange.cpp in Sources */,
 				9AD12C3A24F5230F00177261 /* _to.cpp in Sources */,
+				9AD199E92512988200B4C44A /* button.cpp in Sources */,
 				9AD126F224F5230A00177261 /* dataset.cpp in Sources */,
+				9AD199EF2512988200B4C44A /* validate.cpp in Sources */,
 				9AD12C2D24F5230E00177261 /* account.cpp in Sources */,
 				9AD128A324F5230B00177261 /* xml.cpp in Sources */,
 				9AD1271F24F5230A00177261 /* file_set.cpp in Sources */,
+				9AD199EC2512988200B4C44A /* combo_box.cpp in Sources */,
 				9AD1271E24F5230A00177261 /* storage.cpp in Sources */,
 				9AD1289124F5230B00177261 /* attr.cpp in Sources */,
 				9AD12C2124F5230E00177261 /* storage.cpp in Sources */,
 				9AD1285024F5230B00177261 /* _.cpp in Sources */,
 				9AD1289024F5230B00177261 /* tree_base.cpp in Sources */,
 				9AD12C2624F5230E00177261 /* authenticator.cpp in Sources */,
+				9AD199FB2512988200B4C44A /* slider.cpp in Sources */,
 				9AD12C3624F5230E00177261 /* product.cpp in Sources */,
+				9AD199F22512988200B4C44A /* still.cpp in Sources */,
 				9AD12C1F24F5230E00177261 /* usera.cpp in Sources */,
 				9AD12C1824F5230E00177261 /* contact_list.cpp in Sources */,
 				9AD1273E24F5230A00177261 /* email_department.cpp in Sources */,
@@ -1344,6 +1437,7 @@
 				9AD128AD24F5230B00177261 /* __matter_ca2.cpp in Sources */,
 				9AD12C1A24F5230E00177261 /* user_set.cpp in Sources */,
 				9AD1289724F5230B00177261 /* data.cpp in Sources */,
+				9AD199EE2512988200B4C44A /* simple_ui_draw.cpp in Sources */,
 				9AD1272A24F5230A00177261 /* server.cpp in Sources */,
 				9AD126FC24F5230A00177261 /* thread.cpp in Sources */,
 				9AD1286B24F5230B00177261 /* application.cpp in Sources */,
@@ -1351,9 +1445,11 @@
 				9AD128A024F5230B00177261 /* property_exchange.cpp in Sources */,
 				9AD1280F24F5230B00177261 /* _.cpp in Sources */,
 				9AD128A724F5230B00177261 /* exportable.cpp in Sources */,
+				9AD199F32512988200B4C44A /* check_box.cpp in Sources */,
 				9AD12ACB24F5230D00177261 /* pcre.cpp in Sources */,
 				9AD12C1724F5230E00177261 /* product_array.cpp in Sources */,
 				9AD12C5024F52E7F00177261 /* geo_department.cpp in Sources */,
+				9AD199EB2512988200B4C44A /* style.cpp in Sources */,
 				9AD12C1224F5230E00177261 /* system_storage.cpp in Sources */,
 				9AD1287E24F5230B00177261 /* context_glx.cpp in Sources */,
 				9AD12C2324F5230E00177261 /* department.cpp in Sources */,

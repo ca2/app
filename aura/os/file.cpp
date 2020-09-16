@@ -13,7 +13,7 @@ CLASS_DECL_AURA bool _os_resolve_alias(::object * pobject, ::file::path & path, 
 
 CLASS_DECL_AURA bool _os_may_have_alias(const char * psz);
 
-bool context::os_resolve_alias(::file::path & path, const char * psz, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount)
+bool context::os_resolve_alias(::file::path & path, const char * psz, bool bNoUI, bool bNoMount)
 {
 
    if (_os_resolve_alias(path, psz, pinteraction, bNoUI, bNoMount))

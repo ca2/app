@@ -1,8 +1,8 @@
 #include "framework.h"
 #include "aura/node/posix/pipe.h"
 #include "aura/node/apple/process.h"
-#include "aura/platform/app_core.h"
-#include "aura/platform/static_start.h"
+#include "apex/platform/app_core.h"
+#include "apex/platform/static_start.h"
 
 //#include <sys/wait.h>
 //
@@ -34,7 +34,7 @@ chldstatus_map * g_ppid = nullptr;
 critical_section * get_pid_cs()
 {
 
-   cslock cs(::aura::g_pcsGlobal);
+   cslock cs(::acme::g_pcsGlobal);
 
    if(g_pcsPid2 == nullptr)
    {

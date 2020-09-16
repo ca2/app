@@ -20,6 +20,7 @@ namespace user
       bool                                m_bDestroying;
       int                                 m_iPendingRectMatch;
       __pointer(::user::interaction)      m_puserinteraction;
+      __pointer(::user::box)              m_puserbox;
       bool                                m_bIgnoreSizeEvent;
       bool                                m_bIgnoreMoveEvent;
       ap(critical_section)                m_pcsDisplay;

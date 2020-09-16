@@ -6,7 +6,7 @@
 //
 //
 #import "_mm.h"
-
+#include "aura/os/cross/windows/windowing.h"
 
 WINBOOL get_nswindow_rect(oswindow oswindow, LPRECT lprect);
 void copy(LPRECT lprectDst, const CGRect & rectSrc);
@@ -395,34 +395,34 @@ bool macos_set_user_wallpaper(int iScreen, const char * psz)
 long long mm_get_user_wallpaper(long long llScreen, char ** ppsz);
 
 
-long long mm_get_user_wallpaper(long long llScreen, char ** ppsz)
-{
-   
-   mmos * p = [mmos get];
-   
-   [p->theLock lock];
-   
-   long long llCount = p->m_llWallpaper;
-
-   if(llScreen < 0 || llScreen >= llCount || p->m_ppszWallpaper == NULL)
-   {
-
-      (*ppsz) = NULL;
-
-   }
-   else
-   {
-   
-      (*ppsz) = strdup(p->m_ppszWallpaper[llScreen]);
-
-   }
-   
-   [p->theLock unlock];
-   
-   return llCount;
-                         
-   
-}
+//long long mm_get_user_wallpaper(long long llScreen, char ** ppsz)
+//{
+//   
+//   mmos * p = [mmos get];
+//   
+//   [p->theLock lock];
+//   
+//   long long llCount = p->m_llWallpaper;
+//
+//   if(llScreen < 0 || llScreen >= llCount || p->m_ppszWallpaper == NULL)
+//   {
+//
+//      (*ppsz) = NULL;
+//
+//   }
+//   else
+//   {
+//   
+//      (*ppsz) = strdup(p->m_ppszWallpaper[llScreen]);
+//
+//   }
+//   
+//   [p->theLock unlock];
+//   
+//   return llCount;
+//                         
+//   
+//}
 
 
 

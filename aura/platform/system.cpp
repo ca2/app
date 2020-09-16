@@ -4909,7 +4909,7 @@ namespace aura
    }
 
 
-   bool system::set_user_language(::aura::application * papp, index iSel)
+   bool system::set_user_language(::apex::application * papp, index iSel)
    {
 
       if (iSel < 0 || iSel >= get_context_system()->get_context_session()->get_current_application()->m_puserlanguagemap->m_straLang.get_count())
@@ -4940,7 +4940,7 @@ namespace aura
    }
 
 
-   bool system::set_user_language(::aura::application * papp, string strLang)
+   bool system::set_user_language(::apex::application * papp, string strLang)
    {
 
       get_context_system()->get_context_session()->get_current_application()->m_puserlanguagemap->set_language(papp, strLang);

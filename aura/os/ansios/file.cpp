@@ -207,7 +207,7 @@
 #ifndef WINDOWS
 
 
-bool context::_os_resolve_alias(::file::path & path, const char * psz, ::user::primitive * pprimitive, bool bNoUI, bool bNoMount)
+bool context::_os_resolve_alias(::file::path & path, const char * psz, bool bNoUI, bool bNoMount)
 {
 
    if (::is_null(psz))

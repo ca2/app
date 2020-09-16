@@ -7,6 +7,7 @@
 #include "apex/platform/app_core.h"
 #include "acme/platform/profiler.h"
 #include "apex/platform/str_context.h"
+#include "apex/compress/zip/context.h"
 
 
 int windows_desktop1_main(HINSTANCE hInstance, int nCmdShow);

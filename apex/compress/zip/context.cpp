@@ -1,6 +1,6 @@
 #include "framework.h"
-//#include"in_file.h"
-#include "unzip.h"
+#include "_.h"
+#include "acme/compress/zip/unzip.h"
 
 
 namespace str
@@ -39,7 +39,8 @@ namespace str
 
 
 
-}
+} // namespace str
+
 
 //namespace zip
 //{
@@ -426,19 +427,36 @@ namespace str
 
 
    bool zip_context::is_unzippable(const char * pszFileName)
-
    {
 
       string str(pszFileName);
 
       if(str.get_length() < 4)
+      {
+         
          return false;
+         
+      }
+      
       if(str.Right(4) != ".zip")
+      {
+         
          return false;
+         
+      }
+      
+      auto pfile = Context.file().get_reader(pszFileName);
+      
+      if(!pfile)
+      {
+         
+         return false;
+         
+      }
 
       ::zip::file file;
 
-      return file.unzip_open(pszFileName);
+      return file.unzip_open(pfile);
 
    }
 //

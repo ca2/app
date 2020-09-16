@@ -6,6 +6,8 @@ class action_context;
 class var;
 class layered;
 class object;
+class dump_context;
+class sync;
 
 
 inline ::object* __object(::layered* playered);
@@ -120,7 +122,7 @@ public:
 
 #endif
 
-   virtual sync* get_mutex() const { return nullptr; }
+   virtual class ::sync* get_mutex() const { return nullptr; }
 
 
    virtual ::estatus __thread_proc();
@@ -135,9 +137,8 @@ public:
 
    ::estatus os_fork(
       ::e_priority epriority = priority_normal,
-      UINT nStackSize = 0,
+      u32 nStackSize = 0,
       u32 dwCreateFlags = 0,
-      LPSECURITY_ATTRIBUTES pSecurityAttrs = nullptr,
       ITHREAD * pithread = nullptr,
       HTHREAD * phthread = nullptr);
 

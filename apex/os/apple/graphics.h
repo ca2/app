@@ -6,11 +6,11 @@
 //
 //
 #pragma once
-
-
-CGColorRef cg_create_color(COLORREF crText);
-WINBOOL cg_release_color(CGColorRef colorref);
-
+//
+//
+//CGColorRef cg_create_color(COLORREF crText);
+//WINBOOL cg_release_color(CGColorRef colorref);
+//
 
 
 //

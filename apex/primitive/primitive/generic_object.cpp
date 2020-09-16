@@ -233,7 +233,7 @@ void * generic::s_os_thread_proc(void* p)
 }
 
 
-::estatus generic::os_fork(::e_priority epriority, UINT nStackSize, u32 uiCreateFlags, LPSECURITY_ATTRIBUTES psa, ITHREAD * pithread, HTHREAD * phthread)
+::estatus generic::os_fork(::e_priority epriority, UINT nStackSize, u32 uiCreateFlags, ITHREAD * pithread, HTHREAD * phthread)
 {
 
    add_ref(OBJ_REF_DBG_P_NOTE(this, "os_fork"));

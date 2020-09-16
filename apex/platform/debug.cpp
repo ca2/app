@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/id.h"
 
 
 CLASS_DECL_APEX void __simple_tracev(e_trace_category ecategory, e_trace_level elevel, const char* pszFunction, const char* pszFile, i32 iLine, const char* pszFormat, va_list args);
@@ -51,16 +52,16 @@ CLASS_DECL_APEX void __simple_tracea(generic* pobject, e_trace_level elevel, con
 //   ::get_context_system()->call_update(id_wallpaper_changed);
 //
 //}
-//
-//
-//void system_call_update_app_activated()
-//{
-//
-//   ::get_context_system()->call_update(id_app_activated);
-//
-//}
-//
-//
+
+
+void system_call_update_app_activated()
+{
+
+   ::get_context_system()->call_update(id_app_activated);
+
+}
+
+
 //void system_call_update_app_changed_occlusion_state()
 //{
 //

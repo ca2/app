@@ -1421,7 +1421,7 @@ namespace apex
   {
 
 
-   __throw(todo("aura"));
+//   __throw(todo("aura"));
 //     if (m_bSystemSynchronizedCursor)
 //     {
 //

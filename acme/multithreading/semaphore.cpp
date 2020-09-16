@@ -278,7 +278,9 @@ sync_result semaphore::wait(const duration & durationTimeout)
       if(errno == EAGAIN)
       {
 
-         thread_sleep(100);
+         //thread_sleep(100);
+
+         Sleep(100);
 
          tick tRemaining = durationTimeout - tStart.elapsed();
 

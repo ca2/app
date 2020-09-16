@@ -103,21 +103,21 @@ i32 defer_run_system()
 }
 
 
-i32 defer_run_system(const char * pszFileName)
-{
-
-   return __start_system_with_file(pszFileName);
-
-}
-
-
-i32 defer_run_system(char ** pszaFileName, int iFileCount)
-{
-
-   return __start_system_with_file((const char **) pszaFileName, iFileCount);
-
-}
-
+//i32 defer_run_system(const char * pszFileName)
+//{
+//
+//   return __start_system_with_file(pszFileName);
+//
+//}
+//
+//
+//i32 defer_run_system(char ** pszaFileName, int iFileCount)
+//{
+//
+//   return __start_system_with_file((const char **) pszaFileName, iFileCount);
+//
+//}
+//
 
 
 
@@ -130,77 +130,77 @@ i32 defer_run_system(char ** pszaFileName, int iFileCount)
 //}
 
 
-void apple_on_new_file()
-{
+//void apple_on_new_file()
+//{
+//
+//   ::get_context_system()->on_open_file(::type_empty, "");
+//
+//}
 
-   ::get_context_system()->on_open_file(::type_empty, "");
-
-}
-
-// iMillisDelay default 500ms good
-void apple_accumulate_on_open_file(const char ** psza, int iCount, const char * pszExtra)
-{
-
-   string_array stra;
-
-   stra.c_add((char **) psza, iCount, false);
-
-   for(index i = 0; i < stra.get_count(); i++)
-   {
-
-      if(::str::begins_eat_ci(stra[i], "file://"))
-      {
-
-         if(!::str::begins(stra[i], "/"))
-         {
-
-            stra[i] = "/" + stra[i];
-
-         }
-
-         stra[i] = ::get_context_system()->url().url_decode(stra[i]);
-
-      }
-
-   }
-
-   ::get_context_system()->defer_accumulate_on_open_file(stra, pszExtra);
-
-}
+//// iMillisDelay default 500ms good
+//void apple_accumulate_on_open_file(const char ** psza, int iCount, const char * pszExtra)
+//{
+//
+//   string_array stra;
+//
+//   stra.c_add((char **) psza, iCount, false);
+//
+//   for(index i = 0; i < stra.get_count(); i++)
+//   {
+//
+//      if(::str::begins_eat_ci(stra[i], "file://"))
+//      {
+//
+//         if(!::str::begins(stra[i], "/"))
+//         {
+//
+//            stra[i] = "/" + stra[i];
+//
+//         }
+//
+//         stra[i] = ::get_context_system()->url().url_decode(stra[i]);
+//
+//      }
+//
+//   }
+//
+//   ::get_context_system()->defer_accumulate_on_open_file(stra, pszExtra);
+//
+//}
 
 
 
-void apple_on_open_file(const char ** psza, int iCount, const char * pszExtra)
-{
-
-   if(iCount <= 0)
-   {
-
-      apple_on_new_file();
-
-   }
-   else if(iCount == 1)
-   {
-
-      ::get_context_system()->on_open_file(psza[0], pszExtra);
-
-      ::free((void *) psza[0]);
-
-      ::free(psza);
-
-   }
-   else
-   {
-
-      string_array stra;
-
-      stra.c_add((char **) psza, iCount, false);
-
-      ::get_context_system()->on_open_file(stra, pszExtra);
-
-   }
-
-}
+//void apple_on_open_file(const char ** psza, int iCount, const char * pszExtra)
+//{
+//
+//   if(iCount <= 0)
+//   {
+//
+//      apple_on_new_file();
+//
+//   }
+//   else if(iCount == 1)
+//   {
+//
+//      ::get_context_system()->on_open_file(psza[0], pszExtra);
+//
+//      ::free((void *) psza[0]);
+//
+//      ::free(psza);
+//
+//   }
+//   else
+//   {
+//
+//      string_array stra;
+//
+//      stra.c_add((char **) psza, iCount, false);
+//
+//      ::get_context_system()->on_open_file(stra, pszExtra);
+//
+//   }
+//
+//}
 
 
 
@@ -355,31 +355,31 @@ i64 oswindow_id(oswindow w)
 }
 
 
-int is_window(oswindow window)
-{
-   return (window == nullptr) ? FALSE : (window->get_user_interaction() != nullptr);
-}
+//int is_window(oswindow window)
+//{
+//   return (window == nullptr) ? FALSE : (window->get_user_interaction() != nullptr);
+//}
 
-
-
-
-int show_window(oswindow oswindow, int iShow)
-{
-   
-   if(::is_null(oswindow))
-   {
-    
-      return false;
-      
-   }
- 
-   if(::is_null(oswindow->m_pimpl))
-   {
-      
-      return false;
-      
-   }
-   
-   return oswindow->m_pimpl->ShowWindow(iShow);
-   
-}
+//
+//
+//
+//int show_window(oswindow oswindow, int iShow)
+//{
+//   
+//   if(::is_null(oswindow))
+//   {
+//    
+//      return false;
+//      
+//   }
+// 
+//   if(::is_null(oswindow->m_pimpl))
+//   {
+//      
+//      return false;
+//      
+//   }
+//   
+//   return oswindow->m_pimpl->ShowWindow(iShow);
+//   
+//}

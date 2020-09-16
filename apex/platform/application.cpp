@@ -7,14 +7,10 @@
 #include "apex/platform/machine_event_central2.h"
 #include "apex/platform/app_core.h"
 #include "acme/platform/profiler.h"
-
-
+#include "apex/compress/zip/_.h"
 
 
 int windows_desktop1_main(HINSTANCE hInstance, int nCmdShow);
-
-
-
 
 
 #include "apex/node/_node.h"
@@ -691,7 +687,7 @@ namespace apex
          string str = pcreate->m_varFile;
 
             // apex commented
-            __throw(todo("interaction"));
+            //__throw(todo("interaction"));
 
          /*if (!m_pipi)
          {

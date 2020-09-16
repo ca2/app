@@ -176,76 +176,76 @@ string module_path_from_pid(unsigned int uiPid)
 }
 
 
-id_array app_get_pid(const char * psz)
-{
-
-   id_array ia;
-
-   id_array pids = get_pids();
-
-   ::file::path path1;
-
-   path1 = get_last_run_application_path_file(psz);
-
-   if(file_exists(path1))
-   {
-
-      path1 = file_as_string(path1);
-
-   }
-
-   string str(psz);
-
-   str = "app=" + str;
-   
-   string strApp(psz);
-
-   strApp.replace("-", "_");
-
-   strApp.replace("/", "_");
-   
-   for(auto & pid : pids)
-   {
-
-      if(pid <= 0)
-      {
-
-         continue;
-
-      }
-
-      ::file::path path = module_path_from_pid(pid.i32());
-
-      if(path.title() == strApp || path == path1)
-      {
-
-         ia.add(pid);
-
-      }
-      else
-      {
-
-         string_array straCmdLine = cmdline_from_pid(pid.i32());
-
-         string strCmdLine;
-
-         strCmdLine = straCmdLine.implode(" ");
-
-         if(straCmdLine.find_first(str) > 0)
-         {
-
-            ia.add(pid);
-
-         }
-
-      }
-
-   }
-
-   return ia;
-
-}
-
+//id_array app_get_pid(const char * psz)
+//{
+//
+//   id_array ia;
+//
+//   id_array pids = get_pids();
+//
+//   ::file::path path1;
+//
+//   path1 = get_last_run_application_path_file(psz);
+//
+//   if(file_exists(path1))
+//   {
+//
+//      path1 = file_as_string(path1);
+//
+//   }
+//
+//   string str(psz);
+//
+//   str = "app=" + str;
+//   
+//   string strApp(psz);
+//
+//   strApp.replace("-", "_");
+//
+//   strApp.replace("/", "_");
+//   
+//   for(auto & pid : pids)
+//   {
+//
+//      if(pid <= 0)
+//      {
+//
+//         continue;
+//
+//      }
+//
+//      ::file::path path = module_path_from_pid(pid.i32());
+//
+//      if(path.title() == strApp || path == path1)
+//      {
+//
+//         ia.add(pid);
+//
+//      }
+//      else
+//      {
+//
+//         string_array straCmdLine = cmdline_from_pid(pid.i32());
+//
+//         string strCmdLine;
+//
+//         strCmdLine = straCmdLine.implode(" ");
+//
+//         if(straCmdLine.find_first(str) > 0)
+//         {
+//
+//            ia.add(pid);
+//
+//         }
+//
+//      }
+//
+//   }
+//
+//   return ia;
+//
+//}
+//
 
 
 // http://stackoverflow.com/questions/31500821/get-process-cmdline-in-mac-os-from-another-c-based-executable

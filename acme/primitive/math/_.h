@@ -1,4 +1,13 @@
-﻿#pragma once
+#pragma once
+
+typedef void GENERATE_RANDOM_BYTES(void * p, memsize s);
+using PFN_GENERATE_RANDOM_BYTES = GENERATE_RANDOM_BYTES *;
+
+
+CLASS_DECL_ACME void set_generate_random_bytes(PFN_GENERATE_RANDOM_BYTES pfngeneraterandombytes);
+CLASS_DECL_ACME void generate_random_bytes(void * p, memsize s);
+
+
 
 // SIGNED SIGNED
 inline constexpr bool __lt(const i64 & a, const i64 & b) { return a < b; }

@@ -79,41 +79,41 @@ char * ns_user_local_video_folder()
 }
 
 
-char * ns_resolve_alias(const char * psz, bool bNoUI = false, bool bNoMount = false)
-{
-   
-   NSString * str = [[NSString alloc] initWithUTF8String: psz];
-   
-   NSURL * url = [NSURL fileURLWithPath: str];
-   
-   NSNumber * aliasFlag = nil;
-   
-   [url getResourceValue:&aliasFlag forKey: NSURLIsAliasFileKey error: nil];
-   
-   if(!aliasFlag.boolValue)
-   {
-   
-      return NULL;
-   
-   }
-   
-   NSURLBookmarkResolutionOptions options = 0;
-   
-   options |= bNoUI ? NSURLBookmarkResolutionWithoutUI : 0;
-   
-   options |= bNoMount ? NSURLBookmarkResolutionWithoutMounting : 0;
-   
-   //NSError * perror = NULL;
-   
-   //NSURL * urlTarget = [NSURL URLByResolvingAliasFileAtURL: url options: options error: &perror];
-   
-   NSURL * urlTarget = [NSURL URLByResolvingAliasFileAtURL: url options: options error: nil];
-   
-   NSString * strTarget = [urlTarget absoluteString];
-   
-   return ns_string(strTarget);
-
-}
+//char * ns_resolve_alias(const char * psz, bool bNoUI = false, bool bNoMount = false)
+//{
+//   
+//   NSString * str = [[NSString alloc] initWithUTF8String: psz];
+//   
+//   NSURL * url = [NSURL fileURLWithPath: str];
+//   
+//   NSNumber * aliasFlag = nil;
+//   
+//   [url getResourceValue:&aliasFlag forKey: NSURLIsAliasFileKey error: nil];
+//   
+//   if(!aliasFlag.boolValue)
+//   {
+//   
+//      return NULL;
+//   
+//   }
+//   
+//   NSURLBookmarkResolutionOptions options = 0;
+//   
+//   options |= bNoUI ? NSURLBookmarkResolutionWithoutUI : 0;
+//   
+//   options |= bNoMount ? NSURLBookmarkResolutionWithoutMounting : 0;
+//   
+//   //NSError * perror = NULL;
+//   
+//   //NSURL * urlTarget = [NSURL URLByResolvingAliasFileAtURL: url options: options error: &perror];
+//   
+//   NSURL * urlTarget = [NSURL URLByResolvingAliasFileAtURL: url options: options error: nil];
+//   
+//   NSString * strTarget = [urlTarget absoluteString];
+//   
+//   return ns_string(strTarget);
+//
+//}
 
 
 bool os_is_alias(const char * psz)

@@ -20,21 +20,21 @@ char * ns_string(NSString * str);
 CGRect mm_get_workspace_rect();
 
 
-void copy(CGRect * prectTarget, const RECT * prectSource);
-void copy(RECT * prectTarget, const CGRect * prectSource);
-void copy(CGRect * prectTarget, const RECTD * prectSource);
-void copy(RECTD * prectTarget, const CGRect * prectSource);
-void window_copy(CGRect * prectTarget, const RECT * prectSource);
-void window_copy(RECT * prectTarget, const CGRect * prectSource);
-
-#ifdef MM
-
-void copy(NSRect & rect, LPCRECT lpcrect);
-void copy(LPRECT lprect, const NSRect & rectSrc);
-void window_copy(NSRect & rect, LPCRECT lpcrect);
-void window_copy(LPRECT lprect, const NSRect & rectSrc);
-
-#endif
+//void copy(CGRect * prectTarget, const RECT * prectSource);
+//void copy(RECT * prectTarget, const CGRect * prectSource);
+//void copy(CGRect * prectTarget, const RECTD * prectSource);
+//void copy(RECTD * prectTarget, const CGRect * prectSource);
+//void window_copy(CGRect * prectTarget, const RECT * prectSource);
+//void window_copy(RECT * prectTarget, const CGRect * prectSource);
+//
+//#ifdef MM
+//
+//void copy(NSRect & rect, LPCRECT lpcrect);
+//void copy(LPRECT lprect, const NSRect & rectSrc);
+//void window_copy(NSRect & rect, LPCRECT lpcrect);
+//void window_copy(LPRECT lprect, const NSRect & rectSrc);
+//
+//#endif
 
 
 #include "graphics.h"
@@ -56,6 +56,6 @@ void ns_application_main(int argc, char *argv[], const char * pszCommandLine);
 
 int is_window(oswindow window);
 
-void ns_main_sync(dispatch_block_t block, unsigned int uiMillis = -1);
-void ns_main_async(dispatch_block_t block);
+//void ns_main_sync(dispatch_block_t block, unsigned int uiMillis = -1);
+//void ns_main_async(dispatch_block_t block);
 

@@ -106,10 +106,15 @@ char * ns_resolve_alias(const char * psz, bool bNoUI = false, bool bNoMount = fa
    //NSError * perror = NULL;
    
    //NSURL * urlTarget = [NSURL URLByResolvingAliasFileAtURL: url options: options error: &perror];
-   
-   NSURL * urlTarget = [NSURL URLByResolvingAliasFileAtURL: url options: options error: nil];
-   
-   NSString * strTarget = [urlTarget absoluteString];
+   NSString * strTarget = nullptr;
+   if (@available(macOS 10.10, *)) {
+      NSURL * urlTarget = [NSURL URLByResolvingAliasFileAtURL: url options: options error: nil];
+      
+       strTarget = [urlTarget absoluteString];
+   } else {
+      // Fallback on earlier versions
+      strTarget = str;
+   }
    
    return ns_string(strTarget);
 

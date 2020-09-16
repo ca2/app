@@ -4,11 +4,11 @@
 string get_error_message(DWORD dwError);
 
 
-::acme::application *     macos_instantiate_application(::acme::application * pappSystem, const char * pszId);
+//::acme::application *     macos_instantiate_application(::acme::application * pappSystem, const char * pszId);
 
-CLASS_DECL_ACME void vfxThrowFileException(__pointer(::acme::application) papp, i32 cause, LONG lOsError, const char * lpszFileName = nullptr);
+CLASS_DECL_ACME void vfxThrowFileException(::layered * pobjectContext, i32 cause, LONG lOsError, const char * lpszFileName = nullptr);
 
-CLASS_DECL_ACME ::file::exception * get_FileException(::generic * pobject, const ::estatus & estatus, LONG lOsError, const char * lpszFileName = nullptr);
+CLASS_DECL_ACME ::file::exception * get_FileException(::layered * pobjectContext, const ::estatus & estatus, LONG lOsError, const char * lpszFileName = nullptr);
 
 #define NULL_REF(class) (*((class *) nullptr))
 
@@ -26,7 +26,7 @@ CLASS_DECL_ACME void vfxThrowFileException(::generic * pobject, const ::estatus 
 
 #include "factory_exchange.h"
 #include "thread.h"
-#include "os_context.h"
+//#include "os_context.h"
 
 
 //#include "shell.h"
@@ -42,11 +42,11 @@ CLASS_DECL_ACME void vfxThrowFileException(::generic * pobject, const ::estatus 
 //#include "shell_macos.h"
 #include "stdio_file.h"
 
-#include "dir_system.h"
-#include "file_system.h"
-
-#include "dir_context.h"
-#include "file_context.h"
+//#include "dir_system.h"
+//#include "file_system.h"
+//
+//#include "dir_context.h"
+//#include "file_context.h"
 
 
 

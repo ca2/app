@@ -523,3 +523,10 @@ extern "C"
 //   return ::success;
 //
 //}
+
+
+void system_call_update(int iUpdate)
+{
+   
+   
+}

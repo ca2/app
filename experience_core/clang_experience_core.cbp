@@ -7,13 +7,13 @@
 		<Option compiler="clang" />
 		<Build>
 			<Target title="basis">
-				<Option output="$(#time_dir)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="$(#time_dir)/x64/$(TARGET_NAME)/" />
+				<Option output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
 				<Option object_output="$(#time_dir)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
 				<Option type="3" />
 				<Option compiler="clang" />
 				<Option parameters=": app=app-core/uinteraction type=uinteraction locale=_std schema=_std install build_number=basis" />
-				<Option host_application="$(#time_dir)/x64/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option host_application="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/$(PROJECT_NAME)" />
 				<Option run_host_application_in_terminal="0" />
 				<Option createDefFile="1" />
 				<Option createStaticLib="1" />
@@ -29,13 +29,13 @@
 				</Linker>
 			</Target>
 			<Target title="stage">
-				<Option output="$(#time_dir)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="$(#time_dir)/x64/$(TARGET_NAME)/" />
+				<Option output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
 				<Option object_output="$(#time_dir)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
 				<Option type="3" />
 				<Option compiler="clang" />
 				<Option parameters=": app=app-core/uinteraction type=uinteraction locale=_std schema=_std install build_number=basis" />
-				<Option host_application="$(#time_dir)/x64/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option host_application="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/$(PROJECT_NAME)" />
 				<Option run_host_application_in_terminal="0" />
 				<Option createDefFile="1" />
 				<Option createStaticLib="1" />
@@ -53,8 +53,8 @@
 				</Linker>
 			</Target>
 			<Target title="memdleak">
-				<Option output="$(#time_dir)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="$(#time_dir)/x64/$(TARGET_NAME)/" />
+				<Option output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
 				<Option object_output="$(#time_dir)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
 				<Option type="3" />
 				<Option compiler="clang" />
@@ -100,7 +100,7 @@
 			<Add option="-Wl,-rpath=\\$$$ORIGIN" />
 			<Add option="-laura" />
 			<Add option="-Wl,-z,defs" />
-			<Add directory="$(#time_dir)/x64/$(TARGET_NAME)" />
+			<Add directory="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 		</Linker>
 		<Unit filename="_.cpp" />
 		<Unit filename="_.h" />

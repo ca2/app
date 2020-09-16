@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "internal.h"
-#include "oswindow_data.h"
+//#include "oswindow_data.h"
 
 
 #include <Carbon/Carbon.h>
@@ -429,7 +429,7 @@ HFONT CreatePointBoldFont_dup(int nPointSize, const char * pszFaceName, int BOLD
 
 
 
-bool macos_get_file_image(::image * pimage, const char * psz);
+//bool macos_get_file_image(::image * pimage, const char * psz);
 
 CGContextRef CreateARGBBitmapContext (CGImageRef inImage, int cx, int cy);
 bool GetImagePixelData(unsigned int * pcr, int cx, int cy, int iScan, CGImageRef inImage);
@@ -559,7 +559,7 @@ bool mm_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char
 
 
 
-bool macos_get_file_image(::image * pimage, const char * psz);
+//bool macos_get_file_image(::image * pimage, const char * psz);
 
 CGContextRef CreateARGBBitmapContext (CGImageRef inImage, int cx, int cy);
 bool GetImagePixelData(unsigned int * pcr, int cx, int cy, int iScan, CGImageRef inImage);
@@ -695,40 +695,40 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 // }
 
 
-WINBOOL get_client_rect(oswindow hwnd, RECT * prect)
-
-{
-   /*   XWindowAttributes attrs;
-     Fill attribute structure with information about root window */
-   /* if(XGetWindowAttributes(XOpenDisplay(nullptr), hwnd, &attrs) == 0)
-    {
-    return false;
-    }
-    prect->left      = 0;
-
-    prect->top       = 0;
-
-    prect->right     = prect->left    + attrs.width;
-
-    prect->bottom    = prect->top     + attrs.height;*/
-
-
-   if(!get_window_rect(hwnd, prect))
-
-      return FALSE;
-
-   prect->right   -=  prect->left;
-
-   prect->bottom  -=  prect->top;
-
-   prect->left    =   0;
-
-   prect->top     =   0;
-
-
-   return TRUE;
-
-}
+//WINBOOL get_client_rect(oswindow hwnd, RECT * prect)
+//
+//{
+//   /*   XWindowAttributes attrs;
+//     Fill attribute structure with information about root window */
+//   /* if(XGetWindowAttributes(XOpenDisplay(nullptr), hwnd, &attrs) == 0)
+//    {
+//    return false;
+//    }
+//    prect->left      = 0;
+//
+//    prect->top       = 0;
+//
+//    prect->right     = prect->left    + attrs.width;
+//
+//    prect->bottom    = prect->top     + attrs.height;*/
+//
+//
+//   if(!get_window_rect(hwnd, prect))
+//
+//      return FALSE;
+//
+//   prect->right   -=  prect->left;
+//
+//   prect->bottom  -=  prect->top;
+//
+//   prect->left    =   0;
+//
+//   prect->top     =   0;
+//
+//
+//   return TRUE;
+//
+//}
 
 //
 //WINBOOL get_window_rect(oswindow hwnd, RECT * prect)
@@ -1162,21 +1162,21 @@ bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const 
 
 
 
-bool macos_get_file_image(::image * pimage, const char * psz)
-{
-
-   pimage->map();
-
-   if(!macos1_get_file_image(pimage->get_data(), pimage->width(), pimage->height(), pimage->scan_size(), psz))
-   {
-
-      return false;
-
-   }
-
-   return true;
-
-}
+//bool macos_get_file_image(::image * pimage, const char * psz)
+//{
+//
+//   pimage->map();
+//
+//   if(!macos1_get_file_image(pimage->get_data(), pimage->width(), pimage->height(), pimage->scan_size(), psz))
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   return true;
+//
+//}
 
 
 
@@ -1201,48 +1201,48 @@ void os_term_imaging()
 
 
 
-WINBOOL get_window_rect(oswindow hwnd, RECT * prect)
-
-{
-   /* XWindowAttributes attrs;
-    Fill attribute structure with information about root window */
-   /*   if(XGetWindowAttributes(XOpenDisplay(nullptr), hwnd, &attrs) == 0)
-    {
-    return false;
-    }
-    prect->left      = attrs.x;
-    
-    prect->top       = attrs.y;
-    
-    prect->right     = prect->left    + attrs.width;
-    
-    prect->bottom    = prect->top     + attrs.height;*/
-   
-   
-   //if(!hwnd->m_bNsWindowRect)
-   {
-      
-      get_nswindow_rect(hwnd, &hwnd->m_rectNsWindow);
-      
-      // hwnd->m_bNsWindowRect = true;
-      
-   }
-   
-   *prect = hwnd->m_rectNsWindow;
-   
-   
-   
-   //::copy(prect, hwnd->m_pimpl->m_rectParentClient);
-   
-   
-   return true;
-   
-   
-   
-}
-
-
-
+//WINBOOL get_window_rect(oswindow hwnd, RECT * prect)
+//
+//{
+//   /* XWindowAttributes attrs;
+//    Fill attribute structure with information about root window */
+//   /*   if(XGetWindowAttributes(XOpenDisplay(nullptr), hwnd, &attrs) == 0)
+//    {
+//    return false;
+//    }
+//    prect->left      = attrs.x;
+//    
+//    prect->top       = attrs.y;
+//    
+//    prect->right     = prect->left    + attrs.width;
+//    
+//    prect->bottom    = prect->top     + attrs.height;*/
+//   
+//   
+//   //if(!hwnd->m_bNsWindowRect)
+//   {
+//      
+//      get_nswindow_rect(hwnd, &hwnd->m_rectNsWindow);
+//      
+//      // hwnd->m_bNsWindowRect = true;
+//      
+//   }
+//   
+//   *prect = hwnd->m_rectNsWindow;
+//   
+//   
+//   
+//   //::copy(prect, hwnd->m_pimpl->m_rectParentClient);
+//   
+//   
+//   return true;
+//   
+//   
+//   
+//}
+//
+//
+//
 
 
 int_bool delete_hcursor(HCURSOR h)

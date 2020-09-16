@@ -218,7 +218,7 @@ namespace macos
 
             ::file::listing dira(get_context_application());
 
-            dira.ls_dir(listing.m_pathFinal);
+            Application.dir().ls_dir(dira, listing.m_pathFinal);
 
             for(i32 i = 0; i < dira.get_count(); i++)
             {
@@ -238,7 +238,7 @@ namespace macos
 
                }
 
-               listing.ls();
+               Application.dir().ls(listing);
 
             }
 
@@ -814,7 +814,7 @@ try1:
 
       ::file::listing stra(::get_context_application());
 
-      stra.ls_dir(pszDir);
+      Application.dir().ls_dir(stra, pszDir);
 
       return stra.has_elements();
 
@@ -1080,7 +1080,7 @@ try1:
 
          ::file::listing patha(get_context());
 
-         patha.ls(psz);
+         Application.dir().ls(patha, psz);
 
          for(auto & path : patha)
          {

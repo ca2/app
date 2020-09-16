@@ -13,13 +13,13 @@
 mq * get_mq(ITHREAD idthread, bool bCreate);
 
 
-CLASS_DECL_ACME void thread_get_os_priority(i32 * piOsPolicy, sched_param * pparam, ::e_priority epriority);
-
-CLASS_DECL_ACME void process_get_os_priority(i32 * piOsPolicy, sched_param * pparam, ::e_priority epriority);
-
-CLASS_DECL_ACME::e_priority thread_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
-
-CLASS_DECL_ACME::e_priority process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
+//CLASS_DECL_ACME void thread_get_os_priority(i32 * piOsPolicy, sched_param * pparam, ::e_priority epriority);
+//
+//CLASS_DECL_ACME void process_get_os_priority(i32 * piOsPolicy, sched_param * pparam, ::e_priority epriority);
+//
+//CLASS_DECL_ACME::e_priority thread_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
+//
+//CLASS_DECL_ACME::e_priority process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
 
 
 DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, HSYNC * synca, DWORD tickTimeout, DWORD dwWakeMask, DWORD dwFlags)
@@ -308,20 +308,20 @@ void * os_thread_thread_proc(LPVOID pparameter);
 
 
 
-int_bool WINAPI SetThreadPriority(HTHREAD hThread, i32 nCa2Priority)
-{
-
-   i32 iPolicy;
-
-   sched_param schedparam;
-
-   thread_get_os_priority(&iPolicy, &schedparam, (::e_priority)nCa2Priority);
-
-   pthread_setschedparam((pthread_t)hThread, iPolicy, &schedparam);
-
-   return TRUE;
-
-}
+//int_bool WINAPI SetThreadPriority(HTHREAD hThread, i32 nCa2Priority)
+//{
+//
+//   i32 iPolicy;
+//
+//   sched_param schedparam;
+//
+//   thread_get_os_priority(&iPolicy, &schedparam, (::e_priority)nCa2Priority);
+//
+//   pthread_setschedparam((pthread_t)hThread, iPolicy, &schedparam);
+//
+//   return TRUE;
+//
+//}
 
 
 i32 get_os_thread_priority(::e_priority epriority)
@@ -335,20 +335,20 @@ i32 get_os_thread_priority(::e_priority epriority)
 
 
 
-i32 WINAPI GetThreadPriority(HTHREAD  hthread)
-{
-
-   int iOsPolicy = SCHED_OTHER;
-
-   sched_param schedparam;
-
-   schedparam.sched_priority = 0;
-
-   pthread_getschedparam((ITHREAD)hthread, &iOsPolicy, &schedparam);
-
-   return thread_get_scheduling_priority(iOsPolicy, &schedparam);
-
-}
+//i32 WINAPI GetThreadPriority(HTHREAD  hthread)
+//{
+//
+//   int iOsPolicy = SCHED_OTHER;
+//
+//   sched_param schedparam;
+//
+//   schedparam.sched_priority = 0;
+//
+//   pthread_getschedparam((ITHREAD)hthread, &iOsPolicy, &schedparam);
+//
+//   return thread_get_scheduling_priority(iOsPolicy, &schedparam);
+//
+//}
 
 
 
@@ -467,26 +467,26 @@ int g_iDebug_post_thread_msg_time;
 
 // }
 
-
-namespace multithreading
-{
-
-   CLASS_DECL_ACME bool set_priority(::e_priority epriority)
-   {
-
-      return (::SetThreadPriority(::get_current_hthread(), epriority) != 0);
-   }
-
-
-   CLASS_DECL_ACME i32 priority()
-   {
-
-      return ::GetThreadPriority(::get_current_hthread());
-
-   }
-
-
-} // namespace acme
+//
+//namespace multithreading
+//{
+//
+//   CLASS_DECL_ACME bool set_priority(::e_priority epriority)
+//   {
+//
+//      return (::SetThreadPriority(::get_current_hthread(), epriority) != 0);
+//   }
+//
+//
+//   CLASS_DECL_ACME i32 priority()
+//   {
+//
+//      return ::GetThreadPriority(::get_current_hthread());
+//
+//   }
+//
+//
+//} // namespace acme
 
 
 //bool on_init_thread()

@@ -10,6 +10,7 @@
 //#include "apex/net/ftp/_.h"
 #include "acme/platform/profiler.h"
 #include "apex/platform/static_setup.h"
+#include "acme/os/_os.h"
 
 ////#ifdef _OPENGL
 //#include "apex/gpu/gpu/_.h"
@@ -8401,7 +8402,7 @@ string get_bundle_app_library_name();
       if (!plibrary)
       {
 
-         os_message_box(NULL, strMessage, "Could not open required library.", MB_ICONEXCLAMATION);
+         os_message_box(strMessage, "Could not open required library.", MB_ICONEXCLAMATION);
 
          return nullptr;
 

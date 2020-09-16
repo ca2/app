@@ -941,6 +941,9 @@ typedef FN_GET_STRING* PFN_GET_STRING;
 #ifdef __APPLE__
 
 
+char * ns_get_bundle_identifier();
+
+
 string apple_get_bundle_identifier()
 {
 
@@ -1130,13 +1133,14 @@ CLASS_DECL_ACME i32 get_current_process_maximum_affinity()
 
 }
 
-
+#ifndef __APPLE__
 CLASS_DECL_ACME i32 get_current_process_affinity_order()
 {
 
    return 1;
 
 }
+#endif
 
 #endif
 

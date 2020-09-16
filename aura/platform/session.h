@@ -138,19 +138,19 @@ namespace aura
 
       //void construct(::object * pobject, int iPhase) override;
 
-      virtual ::estatus process_init();
+      virtual ::estatus process_init() override;
 
-      virtual ::estatus init1();
+      virtual ::estatus init1() override;
 
-      virtual ::estatus init2();
+      virtual ::estatus init2() override;
 
-      virtual ::estatus init_session();
+      virtual ::estatus init_session() override;
 
-      virtual ::estatus init();
+      virtual ::estatus init() override;
 
-      virtual void term();
+      virtual void term() override;
 
-      virtual void term_session();
+      virtual void term_session() override;
 
 
       inline class ::fs::data * fs() { return m_pfsdata; }
@@ -159,7 +159,7 @@ namespace aura
       //inline ::sockets::sockets & sockets() { return *m_psockets; }
 
 
-      virtual size get_window_minimum_size();
+      virtual size get_window_minimum_size() override;
 
 
       //virtual void  get_cursor_pos(LPPOINT ppoint);
@@ -178,13 +178,13 @@ namespace aura
 
       // Long PhRESSing time
       // time in milliseconds that a pressing is considered a double click
-      virtual DWORD get_Long_PhRESSing_time();
+      virtual DWORD get_Long_PhRESSing_time() override;
 
       //virtual void defer_initialize_user_presence();
 
       //virtual ::estatus     interactive_credentials(::account::credentials * pcredentials) override;
 
-      virtual bool on_create_frame_window();
+      virtual bool on_create_frame_window() override;
 
       //virtual string account_get_user_sessid(const string & str) override;
 
@@ -213,7 +213,7 @@ namespace aura
       //virtual ::estatus     initialize(::layered * pobjectContext) override;
 
 
-      virtual ::user::interaction * get_session_window();
+      virtual ::user::interaction * get_session_window() override;
 
 
       ::apex::str_context * str_context() { return m_puserstrcontext; }
@@ -233,21 +233,21 @@ namespace aura
       //virtual ::estatus init();
 
       //virtual void term();
-      virtual void term2();
+      virtual void term2() override;
 
-      virtual void term1();
+      virtual void term1() override;
 
       virtual void term_thread() override;
 
       //virtual void term_session();
 
-      virtual void process_term();
+      virtual void process_term() override;
 
       ::user::keyboard& keyboard();
 
-      virtual bool open_by_file_extension(const char * pszPathName, ::create * pcreate = nullptr);
+      virtual bool open_by_file_extension(const char * pszPathName, ::create * pcreate = nullptr) override;
 
-      virtual bool open_by_file_extension(::create * pcc);
+      virtual bool open_by_file_extension(::create * pcc) override;
 
       //__pointer(::aura::application) get_new_application(::layered * pobjectContext, const char * pszAppId);
 
@@ -255,11 +255,11 @@ namespace aura
 
       //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style_pointer & pstyle, ::user::menu_item * pitem);
 
-      virtual COLORREF get_default_color(u64 ui);
+      virtual COLORREF get_default_color(u64 ui) override;
 
       //virtual ::size get_window_minimum_size();
 
-      virtual void frame_pre_translate_message(::message::message * pmessage);
+      virtual void frame_pre_translate_message(::message::message * pmessage) override;
 
       virtual bool defer_create_session_frame_window();
 
@@ -271,17 +271,17 @@ namespace aura
 
       //virtual void on_remove_user(::account::user * puser);
 
-      virtual bool is_licensed(const char * pszId, bool bInteractive = true);
+      virtual bool is_licensed(const char * pszId, bool bInteractive = true) override;
 
-      virtual bool get_auth(const string & pszForm, string & strUsername, string & strPassword);
+      virtual bool get_auth(const string & pszForm, string & strUsername, string & strPassword) override;
 
       //virtual void interactive_credentials(::account::credentials * pcredentials);
 
       //::aura::application * application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate) override;
 
-      virtual bool is_key_pressed(::user::e_key ekey);
+      virtual bool is_key_pressed(::user::e_key ekey) override;
 
-      virtual void set_key_pressed(::user::e_key ekey, bool bPressed);
+      virtual void set_key_pressed(::user::e_key ekey, bool bPressed) override;
 
       virtual ::user::primitive * get_keyboard_focus();
       virtual bool set_keyboard_focus(::user::primitive * pkeyboardfocus);
@@ -313,45 +313,45 @@ namespace aura
       //virtual void translate_os_key_message(::user::key * pkey);
       //virtual bool on_create_frame_window();
 
-      virtual void get_cursor_pos(LPPOINT ppoint);
+      virtual void get_cursor_pos(LPPOINT ppoint) override;
       inline ::point get_cursor_pos() {::point point; get_cursor_pos(&point); return point;}
 
-      virtual void set_cursor_pos(const ::point & point);
+      virtual void set_cursor_pos(const ::point & point) override;
 
-      virtual index get_main_monitor(RECT * prect = nullptr);
+      virtual index get_main_monitor(RECT * prect = nullptr) override;
 
-      virtual bool set_main_monitor(index iMonitor);
-      virtual ::count get_monitor_count();
-      virtual bool  get_monitor_rect(index iMonitor, RECT * prect);
+      virtual bool set_main_monitor(index iMonitor) override;
+      virtual ::count get_monitor_count() override;
+      virtual bool  get_monitor_rect(index iMonitor, RECT * prect) override;
 
-      virtual index get_main_wkspace(RECT * prect = nullptr);
+      virtual index get_main_wkspace(RECT * prect = nullptr) override;
 
-      virtual bool set_main_wkspace(index iWkspace);
-      virtual ::count get_wkspace_count();
-      virtual bool  get_wkspace_rect(index iWkspace, RECT * prect);
+      virtual bool set_main_wkspace(index iWkspace) override;
+      virtual ::count get_wkspace_count() override;
+      virtual bool  get_wkspace_rect(index iWkspace, RECT * prect) override;
 
-      virtual bool wkspace_to_monitor(RECT * prect, index iMonitor, index iWkspace);
+      virtual bool wkspace_to_monitor(RECT * prect, index iMonitor, index iWkspace) override;
 
-      virtual bool monitor_to_wkspace(RECT * prect, index iWkspace, index iMonitor);
+      virtual bool monitor_to_wkspace(RECT * prect, index iWkspace, index iMonitor) override;
 
-      virtual bool wkspace_to_monitor(RECT * prect);
+      virtual bool wkspace_to_monitor(RECT * prect) override;
 
-      virtual bool monitor_to_wkspace(RECT * prect);
+      virtual bool monitor_to_wkspace(RECT * prect) override;
 
-      virtual ::count get_desk_monitor_count();
-      virtual bool  get_desk_monitor_rect(index iMonitor, RECT * prect);
+      virtual ::count get_desk_monitor_count() override;
+      virtual bool  get_desk_monitor_rect(index iMonitor, RECT * prect) override;
 
-      virtual void  get_monitor(rect_array & rectaMonitor, rect_array & rectaIntersect, const ::rect & rect);
+      virtual void  get_monitor(rect_array & rectaMonitor, rect_array & rectaIntersect, const ::rect & rect) override;
 
       virtual index initial_frame_position(RECT * prect, const ::rect & rect, bool bMove, ::user::interaction * pinteraction);
 
-      virtual index _get_best_zoneing(edisplay * pedisplay, ::rect * prect, const ::rect & rect, bool bPreserveSize = false);
+      virtual index _get_best_zoneing(edisplay * pedisplay, ::rect * prect, const ::rect & rect, bool bPreserveSize = false) override;
 
-      virtual index get_best_monitor(RECT * prect, const ::rect & rect, ::eactivation eactivation = activation_none);
+      virtual index get_best_monitor(RECT * prect, const ::rect & rect, ::eactivation eactivation = activation_none) override;
 
-      virtual index get_best_wkspace(::rect * prect, const ::rect& rect, ::eactivation eactivation = activation_none);
+      virtual index get_best_wkspace(::rect * prect, const ::rect& rect, ::eactivation eactivation = activation_none) override;
 
-      virtual index get_good_iconify(RECT * prect, const ::rect & rect);
+      virtual index get_good_iconify(RECT * prect, const ::rect & rect) override;
 
       virtual index get_window_restore_1(RECT * prect, const ::rect & rect, ::user::interaction * pinteraction, edisplay edisplayRestore);
 
@@ -449,11 +449,11 @@ namespace aura
 
       virtual bool place(::user::main_frame* pmainframe, ::create* pcreate);
 
-      virtual void request_topic_file(var& varQuery);
+      virtual void request_topic_file(var& varQuery) override;
 
-      virtual void request_topic_file();
+      virtual void request_topic_file() override;
 
-      virtual void check_topic_file_change();
+      virtual void check_topic_file_change() override;
 
 
       void launch_app(const char* psz);
@@ -480,7 +480,7 @@ namespace aura
 
       virtual ::estatus     main() override;
 
-      virtual ::estatus defer_initialize_host_window(LPCRECT lprect = nullptr);
+      virtual ::estatus defer_initialize_host_window(LPCRECT lprect = nullptr) override;
 
       //virtual service_base * allocate_new_service() override;
 
@@ -490,9 +490,9 @@ namespace aura
 
 
 
-      virtual void set_app_title(const char* pszAppId, const char* pszTitle);
+      virtual void set_app_title(const char* pszAppId, const char* pszTitle) override;
 
-      virtual __pointer(::apex::session) get_context_session();
+      virtual __pointer(::apex::session) get_context_session() override;
 
       //virtual void term() override;
 
@@ -503,7 +503,7 @@ namespace aura
 
       virtual bool is_mouse_button_pressed(::user::e_mouse emouse);
 
-      virtual bool is_remote_session();
+      virtual bool is_remote_session() override;
 
       //virtual ::draw2d::cursor * get_cursor() override;
       //virtual ::draw2d::cursor* get_default_cursor() override;
@@ -518,7 +518,7 @@ namespace aura
       //virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer & pgraphics, const ::rect& rect, ::draw2d::brush_pointer& brushText) override;
 
 
-      virtual string_array get_user_wallpaper();
+      virtual string_array get_user_wallpaper() override;
 
 
 

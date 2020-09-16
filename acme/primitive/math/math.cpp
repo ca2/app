@@ -34,3 +34,44 @@ CLASS_DECL_ACME extern const char log2_LogTable256[256] =
    LT(4), LT(5), LT(5), LT(6), LT(6), LT(6), LT(6),
    LT(7), LT(7), LT(7), LT(7), LT(7), LT(7), LT(7), LT(7)
 };
+
+
+CLASS_DECL_ACME void simple_generate_random_bytes(void * p, memsize s)
+{
+
+   byte * puch = (byte *) p;
+   
+   while(s > 0)
+   {
+      
+      *puch = random() % 255;
+      
+      puch++;
+      
+      s--;
+      
+   }
+   
+}
+
+
+PFN_GENERATE_RANDOM_BYTES g_pfngeneraterandombytes = &simple_generate_random_bytes;
+
+
+CLASS_DECL_ACME void set_generate_random_bytes(PFN_GENERATE_RANDOM_BYTES pfngeneraterandombytes)
+{
+   
+   g_pfngeneraterandombytes = pfngeneraterandombytes;
+   
+}
+
+
+CLASS_DECL_ACME void generate_random_bytes(void * p, memsize s)
+{
+   
+   return g_pfngeneraterandombytes(p, s);
+   
+}
+
+
+

@@ -355,31 +355,31 @@ i64 oswindow_id(oswindow w)
 }
 
 
-int is_window(oswindow window)
-{
-   return (window == nullptr) ? FALSE : (window->get_user_interaction() != nullptr);
-}
+//int is_window(oswindow window)
+//{
+//   return (window == nullptr) ? FALSE : (window->get_user_interaction() != nullptr);
+//}
+//
 
 
-
-
-int show_window(oswindow oswindow, int iShow)
-{
-   
-   if(::is_null(oswindow))
-   {
-    
-      return false;
-      
-   }
- 
-   if(::is_null(oswindow->m_pimpl))
-   {
-      
-      return false;
-      
-   }
-   
-   return oswindow->m_pimpl->ShowWindow(iShow);
-   
-}
+//
+//int show_window(oswindow oswindow, int iShow)
+//{
+//   
+//   if(::is_null(oswindow))
+//   {
+//    
+//      return false;
+//      
+//   }
+// 
+//   if(::is_null(oswindow->m_pimpl))
+//   {
+//      
+//      return false;
+//      
+//   }
+//   
+//   return oswindow->m_pimpl->ShowWindow(iShow);
+//   
+//}

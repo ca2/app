@@ -924,21 +924,21 @@ CLASS_DECL_ACME string url_decode(const char* psz)
 
 #if defined(MACOS)
 
-void openURL(const string& url_str);
-
-
-void openURL(const string& url_str)
-{
-   CFURLRef url = CFURLCreateWithBytes(
-      nullptr,                        // allocator
-      (UInt8*)url_str.c_str(),     // URLBytes
-      url_str.length(),            // length
-      kCFStringEncodingASCII,      // encoding
-      nullptr                         // baseURL
-   );
-   LSOpenCFURLRef(url, 0);
-   CFRelease(url);
-}
+//void openURL(const string& url_str);
+//
+//
+//void openURL(const string& url_str)
+//{
+//   CFURLRef url = CFURLCreateWithBytes(
+//      nullptr,                        // allocator
+//      (UInt8*)url_str.c_str(),     // URLBytes
+//      url_str.length(),            // length
+//      kCFStringEncodingASCII,      // encoding
+//      nullptr                         // baseURL
+//   );
+//   LSOpenCFURLRef(url, 0);
+//   CFRelease(url);
+//}
 
 #elif defined(APPLE_IOS)
 

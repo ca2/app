@@ -11,59 +11,59 @@
 #include "_.h"
 
 
-u32 __start_system_with_file(const char ** pszaFile, int iCount);
+//u32 __start_system_with_file(const char ** pszaFile, int iCount);
+//
+//
+//u32 __start_system_with_file(const char * pszFileName)
+//{
+//
+//   if(pszFileName == nullptr)
+//   {
+//
+//      return __start_system_with_file(nullptr, 0);
+//
+//   }
+//
+//   const char ** psza = (const char **) malloc(sizeof(const char *) * 1);
+//
+//   psza[0] = strdup(pszFileName);
+//
+//   return __start_system_with_file(psza, 1);
+//
+//}
 
-
-u32 __start_system_with_file(const char * pszFileName)
-{
-
-   if(pszFileName == nullptr)
-   {
-
-      return __start_system_with_file(nullptr, 0);
-
-   }
-
-   const char ** psza = (const char **) malloc(sizeof(const char *) * 1);
-
-   psza[0] = strdup(pszFileName);
-
-   return __start_system_with_file(psza, 1);
-
-}
-
-u32 __start_system_with_file(const char ** pszaFile, int iCount)
-{
-
-   string strExtra;
-
-   //if(::get_context_system() != nullptr)
-   {
-
-      if(pszaFile != nullptr)
-      {
-
-         apple_accumulate_on_open_file(pszaFile, iCount, strExtra);
-
-      }
-      else
-      {
-
-         ::create * pcreate = new ::create(::get_context_system());
-
-         pcreate->m_pcommandline = new command_line(::get_context_system(), get_command_line_dup());
-
-         ::get_context_system()->request({ pcreate });
-
-      }
-
-      return 0;
-
-   }
-
-
-
-}
+//u32 __start_system_with_file(const char ** pszaFile, int iCount)
+//{
+//
+//   string strExtra;
+//
+//   //if(::get_context_system() != nullptr)
+//   {
+//
+//      if(pszaFile != nullptr)
+//      {
+//
+//         apple_accumulate_on_open_file(pszaFile, iCount, strExtra);
+//
+//      }
+//      else
+//      {
+//
+//         ::create * pcreate = new ::create(::get_context_system());
+//
+//         pcreate->m_pcommandline = new command_line(::get_context_system(), get_command_line_dup());
+//
+//         ::get_context_system()->request({ pcreate });
+//
+//      }
+//
+//      return 0;
+//
+//   }
+//
+//
+//
+//}
 
 
 

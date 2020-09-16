@@ -778,14 +778,14 @@ namespace macos
    }
 
 
-   bool os_context::resolve_link(::file::path & pathTarget, const string & strSource, string * pstrFolder, string * pstrParams, ::user::primitive * puiMessageParentOptional)
+   bool os_context::resolve_link(::file::path & pathTarget, const string & strSource, string * pstrFolder, string * pstrParams)
    {
 
       pathTarget = Context.defer_process_path(strSource);
 
       pathTarget = node_full_file_path(pathTarget);
 
-      while(Context.os_resolve_alias(pathTarget, pathTarget, puiMessageParentOptional))
+      while(Context.os_resolve_alias(pathTarget, pathTarget))
       {
 
          pathTarget = node_full_file_path(pathTarget);
@@ -1157,11 +1157,9 @@ namespace macos
    }
 
 
-   bool os_context::browse_folder(::user::interaction * puiOwner, property_set &set)
+   bool os_context::browse_folder(property_set &set)
    {
       
-      auto pinteraction = puiOwner->get_wnd();
-
       const char *pszStartDir = nullptr;
 
       string strStartDir;
@@ -1191,11 +1189,9 @@ namespace macos
    }
 
 
-   bool os_context::browse_file_open(::user::interaction * puiOwner, property_set &set)
+   bool os_context::browse_file_open(property_set &set)
    {
 
-      auto pinteraction = puiOwner->get_wnd();
-      
       const char *pszStartDir = nullptr;
 
       string strStartDir;

@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "apex/node/posix/pipe.h"
+#include "acme/node/posix/pipe.h"
 #include "apex/node/apple/process.h"
 #include "apex/platform/app_core.h"
 #include "apex/platform/static_start.h"
@@ -34,7 +34,7 @@ chldstatus_map * g_ppid = nullptr;
 critical_section * get_pid_cs()
 {
 
-   cslock cs(::apex::g_pcsGlobal);
+   cslock cs(::acme::g_pcsGlobal);
 
    if(g_pcsPid2 == nullptr)
    {

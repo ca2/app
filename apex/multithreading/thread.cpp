@@ -1895,7 +1895,7 @@ sync_result thread::wait(const duration & duration)
 
          tick tickDelay = (DWORD) duration.total_milliseconds();
 
-         auto dwStep = MIN(MAX(tickDelay / 10, 1), 100);
+         auto dwStep = min(max(tickDelay / 10, 1), 100);
 
          while(is_thread_on(ithread))
          {
@@ -2224,7 +2224,7 @@ bool thread::begin_thread(bool bSynchInitialization, ::e_priority epriority, UIN
 
    }
 
-   auto estatus = os_fork(epriority, nStackSize, uiCreateFlags, psa, &m_ithread1, &m_hthread1);
+   auto estatus = os_fork(epriority, nStackSize, uiCreateFlags, &m_ithread1, &m_hthread1);
 
    if(m_hthread1 == 0)
    {
@@ -3826,79 +3826,79 @@ bool thread::process_message()
       if(pbase.is_set())
       {
 
-         if(::is_set(pbase->m_puserinteraction))
-         {
-
-            auto iMessage = pbase->m_id;
-            __throw(todo("interaction"));
-            __throw(todo("thread"));
-
-            // short circuit for frequent messages
-            if (iMessage == message_apply_visual)
-            {
-
-               __throw(todo("interaction"));
-               __throw(todo("thread"));
-
-
-               //__pointer(::user::interaction) pinteraction = pbase->m_puserinteraction;
-
-               //if(pinteraction)
-               //{
-
-               //   pinteraction->m_pimpl2->_001OnApplyVisual(pbase);
-
-               //   return true;
-
-               //}
-
-            }
-            //else if (iMessage == message_update_notify_icon)
-            //{
-
-            //   pbase->m_puserinteraction->route_message(pbase);
-
-            //   pinteraction->m_pimpl2->_001OnApplyVisual(pbase);
-
-            //   return true;
-
-            //}
-            //else if (iMessage == message_simple_command)
-            //{
-
-            //   __pointer(::user::interaction) pinteraction = pbase->m_puserinteraction;
-
-            //   pinteraction->m_pimpl2->_001OnApplyVisual(pbase);
-
-            //   return true;
-
-            //}
-
-
-            //if (iMessage > message_midi_sequence_event)
-            //{
-
-            //   return true;
-
-            //   int iApp = iMessage - WM_APP;
-
-            //   pbase->m_puserinteraction->message_handler(pbase);
-
-            //}
-            //else
-            //{
-
-//               return true;
-            __throw(todo("interaction"));
-            __throw(todo("thread"));
-
-               //pbase->m_puserinteraction->message_handler(pbase);
-
-  //          }
-
-
-         }
-         else
+//         if(::is_set(pbase->m_puserinteraction))
+//         {
+//
+//            auto iMessage = pbase->m_id;
+//            __throw(todo("interaction"));
+//            __throw(todo("thread"));
+//
+//            // short circuit for frequent messages
+//            if (iMessage == message_apply_visual)
+//            {
+//
+//               __throw(todo("interaction"));
+//               __throw(todo("thread"));
+//
+//
+//               //__pointer(::user::interaction) pinteraction = pbase->m_puserinteraction;
+//
+//               //if(pinteraction)
+//               //{
+//
+//               //   pinteraction->m_pimpl2->_001OnApplyVisual(pbase);
+//
+//               //   return true;
+//
+//               //}
+//
+//            }
+//            //else if (iMessage == message_update_notify_icon)
+//            //{
+//
+//            //   pbase->m_puserinteraction->route_message(pbase);
+//
+//            //   pinteraction->m_pimpl2->_001OnApplyVisual(pbase);
+//
+//            //   return true;
+//
+//            //}
+//            //else if (iMessage == message_simple_command)
+//            //{
+//
+//            //   __pointer(::user::interaction) pinteraction = pbase->m_puserinteraction;
+//
+//            //   pinteraction->m_pimpl2->_001OnApplyVisual(pbase);
+//
+//            //   return true;
+//
+//            //}
+//
+//
+//            //if (iMessage > message_midi_sequence_event)
+//            //{
+//
+//            //   return true;
+//
+//            //   int iApp = iMessage - WM_APP;
+//
+//            //   pbase->m_puserinteraction->message_handler(pbase);
+//
+//            //}
+//            //else
+//            //{
+//
+////               return true;
+//            __throw(todo("interaction"));
+//            __throw(todo("thread"));
+//
+//               //pbase->m_puserinteraction->message_handler(pbase);
+//
+//  //          }
+//
+//
+//         }
+//         else
          {
 
             message_handler(pbase);

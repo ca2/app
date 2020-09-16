@@ -27,7 +27,7 @@ namespace zip
       void write_to_file(file_pointer  pfile, const widechar * pcsz);
 
 
-      bool unzip_open(const char * pcwsz);
+      //bool unzip_open(const char * pcwsz);
 
       bool unzip_open(file_pointer pfile, int iBufferLevel = 2);
 

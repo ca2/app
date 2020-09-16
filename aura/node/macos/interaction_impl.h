@@ -692,7 +692,7 @@ namespace macos
 
       //virtual void _001ApplyVisual() override;
       
-      virtual void window_show_change_visibility() override;
+      virtual void window_show_change_visibility();
       
       
    };

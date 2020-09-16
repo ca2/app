@@ -1,7 +1,11 @@
 #include "_mm.h"
+#include "acme/id.h"
 
 
-void system_call_update_wallpaper_changed();
+void system_call_update(int iUpdate);
+
+
+//void system_call_update_wallpaper_changed();
 
 bool mm2_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char * psz);
 
@@ -191,7 +195,7 @@ bool mm2_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 - (void)desktopImageChanged:(NSNotification *)notification
 {
    
-   system_call_update_wallpaper_changed();
+   system_call_update(id_wallpaper_changed);
    
 }
 
@@ -204,7 +208,7 @@ bool mm2_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
    if([app.localizedName isEqualToString:@"ScreenSaverEngine"])
    {
       
-      system_call_update_wallpaper_changed();
+      system_call_update(id_wallpaper_changed);
       
    }
    

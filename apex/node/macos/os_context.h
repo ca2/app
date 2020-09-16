@@ -62,7 +62,7 @@ namespace macos
 
       virtual ::estatus stop_service() override;
 
-      virtual bool resolve_link(::file::path & pathTarget, const string & strSource, string * pstrFolder = nullptr, string * pstrParams = nullptr, ::user::primitive * puiMessageParentOptional = nullptr) override;
+      virtual bool resolve_link(::file::path & pathTarget, const string & strSource, string * pstrFolder = nullptr, string * pstrParams = nullptr) override;
 
       void raise_exception( DWORD dwExceptionCode, DWORD dwExceptionFlags);
 
@@ -88,8 +88,8 @@ namespace macos
 
       virtual void set_file_status(const char * lpszFileName, const ::file::file_status& status) override;
 
-      virtual bool browse_folder(::user::interaction * puiOwner, property_set &set) override;
-      virtual bool browse_file_open(::user::interaction * puiOwner, property_set &set) override;
+      virtual bool browse_folder(property_set &set) override;
+      virtual bool browse_file_open(property_set &set) override;
 
    };
 

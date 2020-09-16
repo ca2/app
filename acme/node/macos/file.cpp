@@ -110,7 +110,7 @@ namespace macos
       if ((efileopen & ::file::defer_create_directory) && (efileopen & ::file::mode_write))
       {
          
-         Context.dir().mk(::file::path(lpszFileName).folder());
+         ::dir::mk(::file::path(lpszFileName).folder());
          
       }
 

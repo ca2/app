@@ -714,9 +714,9 @@ WINBOOL BitBlt(HDC hdcDest,i32 nXDest,i32 nYDest,i32 nWidth,i32 nHeight,HDC hdcS
 
 
 
-WINBOOL get_client_rect(oswindow hwnd,LPRECT lprect);
+//WINBOOL get_client_rect(oswindow hwnd,LPRECT lprect);
 
-WINBOOL get_window_rect(oswindow hwnd,LPRECT lprect);
+//WINBOOL get_window_rect(oswindow hwnd,LPRECT lprect);
 
 i32 FillRect(HDC hDC,const RECT *lprc,HBRUSH hbr);
 

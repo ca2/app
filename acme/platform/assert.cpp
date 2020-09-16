@@ -29,7 +29,7 @@ CLASS_DECL_ACME int __assert_failed_line(const char * pszFileName, int iLineNumb
 CLASS_DECL_ACME int __cpp_assert_failed_line(const char * pszFileName, int iLineNumber)
 {
 
-   __throw(todo("thread"));
+   //__throw(todo("thread"));
    //thread * pthread = get_thread();
 
    //if(pthread != nullptr)

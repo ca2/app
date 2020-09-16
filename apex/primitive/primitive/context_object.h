@@ -34,11 +34,11 @@ public:
    virtual ~context_object();
 
 
-   virtual void assert_valid() const;
-   virtual void dump(dump_context & action_context) const;
+   virtual void assert_valid() const override;
+   virtual void dump(dump_context & action_context) const override;
 
 
-   virtual ::estatus    initialize(::layered * pobjectContext);
+   virtual ::estatus    initialize(::layered * pobjectContext) override;
    virtual void         finalize() override;
 
 

@@ -6,19 +6,18 @@
 //
 
 
-#include "platform/config.h"
+#include "acme/include/_no_templates.h"
 
 
 #include "__/__bit.h"
 #include "__/__stdint.h"
 #include "__/__inttypes.h"
-#include "_apex_type.h"
+#include "_aura_type.h"
 
 #include "platform/system.h"
 #include "platform/types.h"
-#include "apex/primitive/geometry2d/_struct.h"
-#include "_apex_type.h"
-#include "_apex_memory.h"
+#include "acme/primitive/geometry2d/_struct.h"
+#include "_aura_memory.h"
 
 
 class trait;
@@ -31,10 +30,10 @@ typedef iptr strsize;
 #define CLASS_DECL_APEX
 
 
-#include "apex/os/threading.h"
+#include "acme/os/thread.h"
 //#include "apex/platform/struct.h"
 #include "apex/os/cross/cross.h"
-#include "apex/os/apex.h"
+#include "acme/os/acme.h"
 
 
 #include "apex/include/_c.h"
@@ -43,12 +42,12 @@ typedef iptr strsize;
 
 #include "apex/platform/obj_ref_dbg.h"
 #include "apex/platform/obj_typ_ctr.h"
-#include "apex/const/_const.h"
+#include "acme/const/_const.h"
 #include "apex/platform/obj_ref_dbg.h"
-#include "apex/primitive/primitive/uid.h"
-#include "apex/primitive/primitive/estatus.h"
-#include "apex/primitive/primitive/eobject.h"
-#include "apex/primitive/primitive/generic.h"
+#include "acme/primitive/primitive/uid.h"
+#include "acme/primitive/primitive/estatus.h"
+#include "acme/primitive/primitive/eobject.h"
+#include "acme/primitive/primitive/generic.h"
 
 
 

@@ -36,7 +36,7 @@ namespace macos
       if ((nOpenFlags & ::file::defer_create_directory) && (nOpenFlags & ::file::mode_write))
       {
          
-         Context.dir().mk(::file::path(lpszFileName).folder());
+         ::dir::mk(::file::path(lpszFileName).folder());
          
       }
 

@@ -393,7 +393,7 @@ namespace user
       virtual bool is_layout_ready() const;
 
 
-      virtual bool display(::edisplay edisplay = display_default, ::eactivation eactivation = ::activation_none);
+      virtual bool display(::edisplay edisplay = display_default, ::eactivation eactivation = ::activation_none) override;
 
       virtual ::zorder zorder(e_layout elayout = layout_design) const;
       virtual void order(::zorder zorder);

@@ -1982,11 +1982,11 @@ namespace html
 #define SCAST_PTR(TYPE, ptarget, psource) TYPE * ptarget = dynamic_cast < TYPE * > (psource);
 #define SCAST_REF(TYPE, rtarget, psource) TYPE & rtarget = *(dynamic_cast < TYPE * > (psource))
 
-#define Au(pobject) (*(::get_context_audio(pobject)))
-#define Audio (Au(get_context()))
-
-#define Mm(pobject) (*(::get_context_multimedia(pobject)))
-#define Multimedia (Mm(get_context()))
+//#define Au(pobject) (*(::get_context_audio(pobject)))
+//#define Audio (Au(get_context()))
+//
+//#define Mm(pobject) (*(::get_context_multimedia(pobject)))
+//#define Multimedia (Mm(get_context()))
 
 #define System (Sys(get_context()))
 

@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "zip/_.h"
-#include "zip/_internal.h"
+#include "acme/compress/zip/_internal.h"
 #include "acme/compress/gz.h"
 //#include "compress_bz.h"
 

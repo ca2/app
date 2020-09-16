@@ -6,12 +6,14 @@
 
 #define DEBUG_LEVEL 0
 
+#ifdef WINDOWS_DESKTOP
 
 CLASS_DECL_ACME void os_set_window_procedure(WNDPROC pwndproc);
 
 
 CLASS_DECL_AURA WNDPROC windows_user_interaction_impl_get_window_procedure();
 
+#endif
 
 namespace user
 {
@@ -30,8 +32,13 @@ namespace user
       g_pmapImpl = new map < oswindow,oswindow,::user::interaction_impl *,::user::interaction_impl * >;
 
       g_pmapHandle = new  map < ::user::interaction_impl *,::user::interaction_impl *,oswindow,oswindow >;
+      
+      
+#ifdef WINDOWS_DESKTOP
 
       os_set_window_procedure(windows_user_interaction_impl_get_window_procedure());
+      
+#endif
 
    }
 

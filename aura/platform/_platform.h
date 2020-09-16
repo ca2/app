@@ -213,7 +213,7 @@ struct memory_state;
 //#include "smart_pointer_query.h"
 
 
-#define ASSERT_KINDOF(class_name, object) ASSERT(base_class < class_name > ::bases(object))
+//#define ASSERT_KINDOF(class_name, object) ASSERT(base_class < class_name > ::bases(object))
 #define DYNAMIC_CAST(class_name, object) (dynamic_cast < class_name * > (object))
 #define ZERO_INIT_JUST_THIS(base_class) __memset(((base_class*)this)+1, 0, sizeof(*this) - sizeof(class base_class));
 

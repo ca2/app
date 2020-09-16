@@ -14,13 +14,12 @@ private:
 
 public:
 
-   layered() { xxf_zero(m_pa); }
+   layered() : m_pa{} { }
    virtual ~layered();
 
    void set_layer(byte bLayeredIndex, void* p);
 
-   template < typename LAYER >
-   inline LAYER* layer(byte bLayeredIndex) const { return ::is_null(this) ? nullptr : (LAYER *)m_pa[bLayeredIndex]; }
+   inline void * layer(byte bLayeredIndex) const { return ::c_is_null(this) ? nullptr : m_pa[bLayeredIndex]; }
 
 };
 
@@ -40,10 +39,13 @@ class object;
 class channel;
 
 
+class thread;
+
+
 inline ::object* __object(::layered* playered)
 {
 
-   return playered->layer<::object>(LAYERED_OBJECT);
+   return (::object *) playered->layer(LAYERED_OBJECT);
 
 }
 
@@ -51,31 +53,7 @@ inline ::object* __object(::layered* playered)
 inline ::channel* __channel(::layered* playered)
 {
 
-   return playered->layer<::channel>(LAYERED_OBJECT);
-
-}
-
-
-inline ::user::create* __user_create(::layered* playered)
-{
-
-   return playered->layer<::user::create>(LAYERED_USER_CREATE);
-
-}
-
-
-inline ::user::interaction* __user_interaction(::layered* playered)
-{
-
-   return playered->layer<::user::interaction>(LAYERED_USER_INTERACTION);
-
-}
-
-
-inline ::user::primitive * __user_primitive(::layered* playered)
-{
-
-   return playered->layer<::user::primitive>(LAYERED_USER_PRIMITIVE);
+   return (::channel *) playered->layer(LAYERED_OBJECT);
 
 }
 
@@ -83,9 +61,41 @@ inline ::user::primitive * __user_primitive(::layered* playered)
 inline ::thread* ___thread(::layered* playered)
 {
 
-   return playered->layer<::thread>(LAYERED_THREAD);
+   return (::thread *) playered->layer(LAYERED_THREAD);
 
 }
 
 
 
+namespace user
+{
+
+   class create;
+   class interaction;
+   class primitive;
+
+} // namespace user
+
+
+inline ::user::create* __user_create(::layered* playered)
+{
+
+   return (::user::create *) playered->layer(LAYERED_USER_CREATE);
+
+}
+
+
+inline ::user::interaction* __user_interaction(::layered* playered)
+{
+
+   return (::user::interaction *) playered->layer(LAYERED_USER_INTERACTION);
+
+}
+
+
+inline ::user::primitive * __user_primitive(::layered* playered)
+{
+
+   return (::user::primitive *) playered->layer(LAYERED_USER_PRIMITIVE);
+
+}

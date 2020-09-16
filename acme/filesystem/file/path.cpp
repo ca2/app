@@ -1,5 +1,13 @@
 #include "framework.h"
 
+#ifdef __APPLE__
+
+
+char * ns_get_executable_path();
+
+
+#endif
+
 
 namespace path
 {
@@ -80,19 +88,29 @@ namespace path
       return "m_app.exe";
 
 #else
+      
+      char * pszModuleFilePath = nullptr;
+      
+#if defined(__APPLE__)
+      
+      pszModuleFilePath = ns_get_executable_path();
 
-      char * pszModuleFilePath = br_find_exe_dir("app");
+#else
 
+      pszModuleFilePath = br_find_exe_dir("app");
+      
+#endif
 
       if(pszModuleFilePath == nullptr)
+      {
 
          return "";
+         
+      }
 
       string strModuleFileName(pszModuleFilePath);
 
-
       free(pszModuleFilePath);
-
 
       return strModuleFileName;
 

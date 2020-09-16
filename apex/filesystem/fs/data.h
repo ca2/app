@@ -22,8 +22,8 @@ namespace fs
       data();
 
 
-      virtual void assert_valid() const;
-      virtual void dump(dump_context& dumpcontext) const;
+      virtual void assert_valid() const override;
+      virtual void dump(dump_context& dumpcontext) const override;
 
 
       // optional if ls_dir is implemented

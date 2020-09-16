@@ -272,11 +272,7 @@ inline int trailingBytesForUTF8(char ch)
 CLASS_DECL_ACME int is_ptr_null(const void * p, size_t s);
 
 
-inline CLASS_DECL_ACME int c_is_null(const void * p)
-{
-   return ((uptr)p) < 65536;
 
-}
 
 
 
@@ -2532,6 +2528,10 @@ namespace user
 
 #include "acme/primitive/primitive/generic.h"
 #include "acme/primitive/primitive/layered.h"
+
+
+
+
 #include "acme/primitive/primitive/task.h"
 #include "acme/primitive/primitive/compare_pred.h"
 
@@ -2928,9 +2928,9 @@ namespace acme
 
       };
 
-   CLASS_DECL_ACME bool get_window_rect(system_window ^ pwindow, RECTD * prect);
+   //CLASS_DECL_ACME bool get_window_rect(system_window ^ pwindow, RECTD * prect);
 
-   CLASS_DECL_ACME bool get_window_rect(system_window ^ pwindow, RECT * prect);
+   //CLASS_DECL_ACME bool get_window_rect(system_window ^ pwindow, RECT * prect);
 
 
 #endif

@@ -6,7 +6,7 @@
 //
 #include "_mm.h"
 #import "NSString+SymlinksAndAliases.h"
-#import "apex/primitive/primitive/runnable.h"
+#import "acme/primitive/primitive/runnable.h"
 
 char * ns_string(NSString * str)
 {
@@ -42,12 +42,7 @@ char * mm_ca2_command_line()
 }
 
 
-char * ns_get_bundle_identifier()
-{
-   
-   return ns_string([[NSBundle mainBundle] bundleIdentifier]);
-   
-}
+
 
 
 char * mm_error_string(OSStatus status)

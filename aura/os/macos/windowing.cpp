@@ -419,7 +419,7 @@ oswindow get_active_window()
 int_bool session_accepts_first_responder()
 {
    
-   return ::get_context_system()->get_context_session()->m_bAcceptsFirstResponder ? 1 : 0;
+   return Session.m_bAcceptsFirstResponder ? 1 : 0;
    
 }
 

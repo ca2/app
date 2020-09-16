@@ -1226,7 +1226,7 @@ void cg_get_window_rect_list(rect_array & recta, array < CGWindowID > & windowid
          ::rect rectCopy;
          
          //rectCopy.left = rect.origin.x;
-         //rectCopy.top = rMainScreen.height() - (rect.origin.y + rect.size.height);
+         //rectCopy.top = rMainScreen.height() - (rect.origrin.y + rect.size.height);
          //rectCopy.bottom = rectCopy.top + rect.size.height;
          //rectCopy.right = rect.origin.x + rect.size.width;
 

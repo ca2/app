@@ -425,31 +425,31 @@ namespace apex
 
       g_pcsTrace = new critical_section;
 
-#ifdef WINDOWS
-
-#ifdef WINDOWS_DESKTOP
-
-      SetThreadLocale(65001);
-
-      ::SetConsoleOutputCP(65001);
-
-#endif
-
-      ::QueryPerformanceFrequency(&g_largeintegerFrequency);
-
-#elif defined(__APPLE__)
-
-      {
-
-         mach_timebase_info_data_t timebase;
-
-         mach_timebase_info(&timebase);
-
-         g_machtime_conversion_factor = (double)timebase.numer / (double)timebase.denom;
-
-      }
-
-#endif
+//#ifdef WINDOWS
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//      SetThreadLocale(65001);
+//
+//      ::SetConsoleOutputCP(65001);
+//
+//#endif
+//
+//      //::QueryPerformanceFrequency(&g_largeintegerFrequency);
+//
+//#elif defined(__APPLE__)
+//
+//      {
+//
+//         mach_timebase_info_data_t timebase;
+//
+//         mach_timebase_info(&timebase);
+//
+//         g_machtime_conversion_factor = (double)timebase.numer / (double)timebase.denom;
+//
+//      }
+//
+//#endif
 
       //g_iFirstNano = get_nanos();
 
@@ -782,7 +782,7 @@ namespace apex
 
 #ifdef __APPLE__
 
-      del(g_pmutexCvt);
+      ::acme::del(g_pmutexCvt);
 
 #endif
 

@@ -213,12 +213,12 @@ namespace apex
 
 
 
-   // void application::get_time(struct timeval *p)
-   // {
+    void application::get_time(struct timeval *p)
+    {
 
-   //    gettimeofday(p, nullptr);
+       gettimeofday(p, nullptr);
 
-   // }
+    }
 
 //   void application::set_env_var(const string & var,const string & value)
 //   {

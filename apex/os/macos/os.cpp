@@ -22,27 +22,27 @@ CLASS_DECL_APEX bool _istlead(i32 ch)
 
 
 
-
-WINBOOL GetCursorPos(LPPOINT ppointCursor)
-
-{
-
-   HIPoint point;
-
-   HICoordinateSpace space = kHICoordSpaceScreenPixel;
-
-   HIGetMousePosition(space, nullptr, &point);
-
-
-   ppointCursor->x = point.x;
-
-   ppointCursor->y = point.y;
-
-
-
-   return TRUE;
-
-}
+//
+//WINBOOL GetCursorPos(LPPOINT ppointCursor)
+//
+//{
+//
+//   HIPoint point;
+//
+//   HICoordinateSpace space = kHICoordSpaceScreenPixel;
+//
+//   HIGetMousePosition(space, nullptr, &point);
+//
+//
+//   ppointCursor->x = point.x;
+//
+//   ppointCursor->y = point.y;
+//
+//
+//
+//   return TRUE;
+//
+//}
 
 
 

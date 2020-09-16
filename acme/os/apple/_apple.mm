@@ -8,6 +8,7 @@
 #import "NSString+SymlinksAndAliases.h"
 #import "acme/primitive/primitive/runnable.h"
 
+
 char * ns_string(NSString * str)
 {
    
@@ -46,6 +47,14 @@ char * ns_get_bundle_identifier()
 {
    
    return ns_string([[NSBundle mainBundle] bundleIdentifier]);
+   
+}
+
+
+char * ns_get_executable_path()
+{
+   
+   return ns_string([[NSBundle mainBundle] executablePath]);
    
 }
 

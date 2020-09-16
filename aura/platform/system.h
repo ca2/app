@@ -260,16 +260,16 @@ namespace aura
 
       virtual ::estatus  initialize(::layered * pobjectContext) override;
 
-      virtual ::estatus init();
+      virtual ::estatus init() override;
       //virtual ::estatus init_instance() override;
       //virtual void term_instance() override;
       virtual ::estatus inline_init() override;
       virtual ::estatus inline_term() override;
 
-      virtual ::estatus init_system();
-      virtual void term_system();
+      virtual ::estatus init_system() override;
+      virtual void term_system() override;
 
-      virtual void term();
+      virtual void term() override;
 
       //::url::department                           & url()     { return m_urldepartment; }
 
@@ -307,15 +307,15 @@ namespace aura
       //virtual i32 install_start(const char * pszCommandLine,const char * pszBuild) override;
       //virtual i32 install_progress_app_add_up(int iAddUp = 1) override;
 
-      virtual ::estatus process_init();
+      virtual ::estatus process_init() override;
 
-      virtual ::estatus init1();
+      virtual ::estatus init1() override;
 
-      virtual ::estatus init2();
+      virtual ::estatus init2() override;
 
       //virtual ::estatus defer_xml();
 
-      virtual __pointer(::data::node) load_xml(const char * pszXml);
+      virtual __pointer(::data::node) load_xml(const char * pszXml) override;
 
       virtual ::estatus verb() override; // ambigous inheritance from ::aura::system/::axis::application
 
@@ -323,7 +323,7 @@ namespace aura
       virtual bool is_system() const override;
 
 
-      virtual string crypto_md5_text(const string & str);
+      virtual string crypto_md5_text(const string & str) override;
 
 
       //virtual ::estatus create_html();
@@ -382,7 +382,7 @@ namespace aura
       //virtual u32 crc32(u32 dwPrevious, const char * psz);
 
 
-      virtual string url_encode(const string & str);
+      virtual string url_encode(const string & str) override;
 
 
       virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema) override;
@@ -479,12 +479,12 @@ namespace aura
 
       //virtual string url_encode(const string & str);
 
-      virtual void on_allocation_error(const ::string & strName, ::object * pobjectSometimes);
+      virtual void on_allocation_error(const ::string & strName, ::object * pobjectSometimes) override;
 
       //::mutex * get_openweather_city_mutex();
 
 
-      virtual os_local & oslocal();
+      virtual os_local & oslocal() override;
 
 
       template < typename T >
@@ -496,16 +496,16 @@ namespace aura
       }
 
 
-      virtual void browser(string strUrl, string strBrowser, string strProfile, string strTarget);
-      virtual void open_profile_link(string strUrl, string strProfile, string strTarget);
+      virtual void browser(string strUrl, string strBrowser, string strProfile, string strTarget) override;
+      virtual void open_profile_link(string strUrl, string strProfile, string strTarget) override;
 
 
       virtual void __set_thread_on() override;
 
-      virtual string get_local_mutex_name(const char * pszAppName);
-      virtual string get_local_id_mutex_name(const char * pszAppName, const char * pszId);
-      virtual string get_global_mutex_name(const char * pszAppName);
-      virtual string get_global_id_mutex_name(const char * pszAppName, const char * pszId);
+      virtual string get_local_mutex_name(const char * pszAppName) override;
+      virtual string get_local_id_mutex_name(const char * pszAppName, const char * pszId) override;
+      virtual string get_global_mutex_name(const char * pszAppName) override;
+      virtual string get_global_id_mutex_name(const char * pszAppName, const char * pszId) override;
 
 
       //template < class T >
@@ -547,12 +547,12 @@ namespace aura
 
       virtual bool on_get_thread_name(string& strThreadName) override;
 
-      virtual ::apex::library * on_get_library(const char * pszLibrary);
+      virtual ::apex::library * on_get_library(const char * pszLibrary) override;
 
-      virtual ::apex::library * get_library(const char * pszLibrary, bool bOpenCa2 = false);
+      virtual ::apex::library * get_library(const char * pszLibrary, bool bOpenCa2 = false) override;
 
 
-      virtual UINT os_post_to_all_threads(UINT uiMessage,WPARAM wparam = 0,lparam lparam = 0);
+      virtual UINT os_post_to_all_threads(UINT uiMessage,WPARAM wparam = 0,lparam lparam = 0) override;
 
 
       //virtual void session_add(index iEdge, ::apex::session * psession) overr;
@@ -584,20 +584,20 @@ namespace aura
 
       //virtual ::estatus init2();
 
-      virtual ::estatus initial_check_directrix();
+      virtual ::estatus initial_check_directrix() override;
 
       //virtual void term_system();
 
-      virtual void term2();
+      virtual void term2() override;
 
-      virtual void term1();
+      virtual void term1() override;
 
       //virtual void term();
 
-      virtual void TermApplication();
+      virtual void TermApplication() override;
 
 
-      virtual void process_term();
+      virtual void process_term() override;
 
 
       //virtual bool is_system() const override;
@@ -614,30 +614,30 @@ namespace aura
       inline ::id id(const property & prop);
 
 
-      virtual i32 _001OnDebugReport(i32 i1,const char * psz1,i32 i2,const char * psz2,const char * psz3,va_list args);
-      virtual i32 _debug_logging_report(i32 iReportType, const char * pszFilename, i32 iLinenumber, const char * iModuleName, const char * pszFormat, va_list list);
-      virtual bool assert_failed_line(const char * pszFileName,i32 iLine);
+      virtual i32 _001OnDebugReport(i32 i1,const char * psz1,i32 i2,const char * psz2,const char * psz3,va_list args) override;
+      virtual i32 _debug_logging_report(i32 iReportType, const char * pszFilename, i32 iLinenumber, const char * iModuleName, const char * pszFormat, va_list list) override;
+      virtual bool assert_failed_line(const char * pszFileName,i32 iLine) override;
 
-      virtual bool on_assert_failed_line(const char * pszFileName,i32 iLine);
-
-
+      virtual bool on_assert_failed_line(const char * pszFileName,i32 iLine) override;
 
 
 
 
-      virtual ::estatus initialize_log(const char * pszId);
 
 
-      virtual void appa_load_string_table();
-      virtual void appa_set_locale(const char * pszLocale, const ::action_context & action_context);
-      virtual void appa_set_schema(const char * pszStyle, const ::action_context & action_context);
+      virtual ::estatus initialize_log(const char * pszId) override;
 
-      virtual bool assert_running_global(const char * pszAppName,const char * pszId = nullptr);
-      virtual bool assert_running_local(const char * pszAppName,const char * pszId = nullptr);
+
+      virtual void appa_load_string_table() override;
+      virtual void appa_set_locale(const char * pszLocale, const ::action_context & action_context) override;
+      virtual void appa_set_schema(const char * pszStyle, const ::action_context & action_context) override;
+
+      virtual bool assert_running_global(const char * pszAppName,const char * pszId = nullptr) override;
+      virtual bool assert_running_local(const char * pszAppName,const char * pszId = nullptr) override;
 
       //__pointer(application) assert_running(const char * pszAppId);
 
-      virtual ::count get_application_count();
+      virtual ::count get_application_count() override;
 
 
       //virtual string crypto_md5_text(const string & str);
@@ -650,23 +650,23 @@ namespace aura
       class ::crypto::crypto                       & crypto();
 
 
-      virtual ::file::path local_get_matter_cache_path();
-      virtual ::file::path local_get_matter_cache_path(string strMatter);
-      virtual ::file::path local_get_matter_path();
-      virtual ::file::path local_get_matter_path(string strMatter);
+      virtual ::file::path local_get_matter_cache_path() override;
+      virtual ::file::path local_get_matter_cache_path(string strMatter) override;
+      virtual ::file::path local_get_matter_path() override;
+      virtual ::file::path local_get_matter_path(string strMatter) override;
 
-      virtual bool find_applications_from_cache();
-      virtual bool find_applications_to_cache(bool bSave = true);
-      virtual bool map_application_library(const char * pszLibrary);
+      virtual bool find_applications_from_cache() override;
+      virtual bool find_applications_to_cache(bool bSave = true) override;
+      virtual bool map_application_library(const char * pszLibrary) override;
 
 
-      virtual void install_progress_add_up(int iAddUp = 1);
+      virtual void install_progress_add_up(int iAddUp = 1) override;
 
-      virtual ::estatus create_session(index iEdge = 0);
+      virtual ::estatus create_session(index iEdge = 0) override;
 
-      virtual __result(::apex::session) on_create_session(index iEdge);
+      virtual __result(::apex::session) on_create_session(index iEdge) override;
 
-      virtual ::apex::session * session(index iEdge = 0);
+      virtual ::apex::session * session(index iEdge = 0) override;
 
       //virtual void on_request(::create * pcreate) override;
 
@@ -675,8 +675,8 @@ namespace aura
       //virtual int pcre_add_tokens(string_array& stra, const string& strTopic, const string& strRegexp, int nCount);
 
 
-      virtual string get_system_platform();
-      virtual string get_system_configuration();
+      virtual string get_system_platform() override;
+      virtual string get_system_configuration() override;
       //virtual string get_latest_build_number(const char * pszConfiguration, const char * pszAppId);
 
 
@@ -684,17 +684,17 @@ namespace aura
 
       //#ifndef _UWP
 
-      virtual void get_time(timeval * point);
+      virtual void get_time(timeval * point) override;
 
       //#endif
 
 
-      virtual void on_start_find_applications_from_cache();
-      virtual void on_end_find_applications_from_cache(stream & is);
+      virtual void on_start_find_applications_from_cache() override;
+      virtual void on_end_find_applications_from_cache(stream & is) override;
 
-      virtual void on_end_find_applications_to_cache(stream & os);
+      virtual void on_end_find_applications_to_cache(stream & os) override;
 
-      virtual void on_map_application_library(::apex::library & library);
+      virtual void on_map_application_library(::apex::library & library) override;
 
       //virtual void defer_check_exit();
 
@@ -715,11 +715,11 @@ namespace aura
 
 #endif
 
-      virtual bool defer_accumulate_on_open_file(string_array stra, string strExtra);
+      virtual bool defer_accumulate_on_open_file(string_array stra, string strExtra) override;
 
-      virtual bool merge_accumulated_on_open_file(::create * pcreate);
+      virtual bool merge_accumulated_on_open_file(::create * pcreate) override;
 
-      virtual bool on_open_file(var varFile, string strExtra);
+      virtual bool on_open_file(var varFile, string strExtra) override;
 
       virtual LPWAVEOUT waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);
 
@@ -728,7 +728,7 @@ namespace aura
       //virtual void * initialize_native_window2(const ::rect & rect);
 
 
-      virtual void on_os_text(e_os_text etext, string strText);
+      virtual void on_os_text(e_os_text etext, string strText) override;
 
       virtual ::user::interaction_impl * impl_from_handle(void * posdata);
       virtual ::user::interaction * ui_from_handle(void * posdata);
@@ -743,46 +743,46 @@ namespace aura
 
 #endif
 
-      virtual index get_main_monitor(RECT * prect = nullptr);
+      virtual index get_main_monitor(RECT * prect = nullptr) override;
 
-      virtual ::count get_monitor_count();
-      virtual bool  get_monitor_rect(index iMonitor, RECT * prect);
+      virtual ::count get_monitor_count() override;
+      virtual bool  get_monitor_rect(index iMonitor, RECT * prect) override;
 
-      virtual ::count get_desk_monitor_count();
-      virtual bool  get_desk_monitor_rect(index iMonitor, RECT * prect);
+      virtual ::count get_desk_monitor_count() override;
+      virtual bool  get_desk_monitor_rect(index iMonitor, RECT * prect) override;
 
 
-      virtual index get_main_wkspace(RECT * prect = nullptr);
+      virtual index get_main_wkspace(RECT * prect = nullptr) override;
 
-      virtual ::count get_wkspace_count();
-      virtual bool  get_wkspace_rect(index iWkspace, RECT * prect);
+      virtual ::count get_wkspace_count() override;
+      virtual bool  get_wkspace_rect(index iWkspace, RECT * prect) override;
 
-      virtual ::count get_desk_wkspace_count();
-      virtual bool  get_desk_wkspace_rect(index iWkspace, RECT * prect);
+      virtual ::count get_desk_wkspace_count() override;
+      virtual bool  get_desk_wkspace_rect(index iWkspace, RECT * prect) override;
 
       virtual index get_ui_wkspace(::user::interaction * pinteraction);
 
-      virtual void on_extra(string str);
+      virtual void on_extra(string str) override;
 
-      virtual string standalone_setting(string str);
-      virtual bool set_standalone_setting(string str, string strSetting);
+      virtual string standalone_setting(string str) override;
+      virtual bool set_standalone_setting(string str, string strSetting) override;
 
 
       //virtual void on_event(::u64 u, ::object * pobject) override;
 
 
-      virtual void on_initial_frame_position(::user::frame * pframe);
+      virtual void on_initial_frame_position(::user::frame * pframe) override;
 
-      virtual void on_graphics_ready();
+      virtual void on_graphics_ready() override;
 
-      virtual void process_machine_event_data(machine_event_data * pdata);
+      virtual void process_machine_event_data(machine_event_data * pdata) override;
 
 
 
       virtual void __tracea(::generic * pcontextobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz) override;
 
 
-      virtual string get_user_language();
+      virtual string get_user_language() override;
       virtual bool set_user_language(::apex::application * papp, index iSel) override;
       virtual bool set_user_language(::apex::application * papp, string strLang) override;
 
@@ -799,7 +799,7 @@ namespace aura
 
       //virtual ::estatus  initialize_system(::object* pobjectContext, app_core* pappcore) override;
 
-      virtual void discard_to_factory(__pointer(object) pca);
+      virtual void discard_to_factory(__pointer(object) pca) override;
 
       //virtual bool is_system() const override;
 
@@ -914,7 +914,7 @@ namespace aura
 
 
 
-      virtual string get_host_location_url();
+      virtual string get_host_location_url() override;
 
       virtual ::estatus add_view_library(::apex::library* plibrary);
 

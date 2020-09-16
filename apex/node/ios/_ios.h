@@ -45,9 +45,9 @@ CLASS_DECL_APEX void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
 #include "thread.h"
 #include "os_context.h"
 #include "ip_enum.h"
-#include "shell.h"
+//#include "shell.h"
 #include "file_os_watcher.h"
-#include "host_interaction.h"
+//#include "host_interaction.h"
 
 
 #include "application.h"
@@ -80,9 +80,9 @@ CLASS_DECL_APEX void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
 i32 CLASS_DECL_APEX __ios_main(i32 argc, char * argv[]);
 
 
-CLASS_DECL_APEX void vfxThrowFileException(::object * pobject, const ::estatus & estatus, LONG lOsError, const char * lpszFileName = nullptr);
-
-CLASS_DECL_APEX ::file::exception * get_FileException(::object * pobject, const ::estatus & estatus, LONG lOsError, const char * lpszFileName = nullptr);
+//CLASS_DECL_APEX void vfxThrowFileException(::object * pobject, const ::estatus & estatus, LONG lOsError, const char * lpszFileName = nullptr);
+//
+//CLASS_DECL_APEX ::file::exception * get_FileException(::object * pobject, const ::estatus & estatus, LONG lOsError, const char * lpszFileName = nullptr);
 
 
 
@@ -105,7 +105,7 @@ namespace ios
 ///#include "ios_plane_system.h"
 
 
-#include "interaction_impl.h"
+//#include "interaction_impl.h"
 
 
 

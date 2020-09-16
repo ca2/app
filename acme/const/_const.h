@@ -178,7 +178,7 @@ enum e_type
    type_i64a,
    type_memory,
    type_path,
-   type_image,
+   //type_image,
    __type_last_element,
 
    // enum

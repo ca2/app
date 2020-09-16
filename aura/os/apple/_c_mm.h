@@ -10,8 +10,8 @@
 // C and Objective-C include
 
 #ifdef __OBJC__
-#include "NSObject+DDExtensions.h"
-#include "DDInvocationGrabber.h"
+//#include "acme/os/apple/NSObject+DDExtensions.h"
+//#include "acme/os/apple/DDInvocationGrabber.h"
 
 char * ns_string(NSString * str);
 
@@ -56,6 +56,6 @@ void ns_application_main(int argc, char *argv[], const char * pszCommandLine);
 
 int is_window(oswindow window);
 
-void ns_main_sync(dispatch_block_t block, unsigned int uiMillis = -1);
-void ns_main_async(dispatch_block_t block);
+//void ns_main_sync(dispatch_block_t block, unsigned int uiMillis = -1);
+//void ns_main_async(dispatch_block_t block);
 

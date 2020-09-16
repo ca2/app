@@ -34,45 +34,45 @@ namespace zip
 
    }
 
-   bool file::unzip_open(const char * pcwsz)
-
-   {
-
-      m_bOwnFile = true;
-
-      file_pointer spfile(e_create_new);
-
-      __throw(todo("object"));
-      //spfile->initialize(this);
-
-      try
-      {
-
-         if(!spfile->open(pcwsz, ::file::mode_read | ::file::type_binary))
-
-         {
-
-            return false;
-
-         }
-
-      }
-      catch(::exception_pointer e)
-      {
-
-         return false;
-
-      }
-      catch(...)
-      {
-
-         return false;
-
-      }
-
-      return unzip_open(spfile);
-
-   }
+//   bool file::unzip_open(const char * pcwsz)
+//
+//   {
+//
+//      m_bOwnFile = true;
+//
+//      file_pointer spfile(e_create_new);
+//
+//      __throw(todo("object"));
+//      //spfile->initialize(this);
+//
+//      try
+//      {
+//
+//         if(!spfile->open(pcwsz, ::file::mode_read | ::file::type_binary))
+//
+//         {
+//
+//            return false;
+//
+//         }
+//
+//      }
+//      catch(::exception_pointer e)
+//      {
+//
+//         return false;
+//
+//      }
+//      catch(...)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      return unzip_open(spfile);
+//
+//   }
 
 
    bool file::unzip_open(file_pointer pfile, int iBufferLevel)

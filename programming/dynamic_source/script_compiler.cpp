@@ -972,6 +972,9 @@ namespace dynamic_source
 
          string strLinker(str);
 
+         strLinker.replace("\\", "/");
+         strLinker.trim();
+
          Context.file().put_contents_utf8(pathLinker, strLinker);
 
          process->create_child_process(strLinker,true,nullptr,::priority_highest);
@@ -1216,7 +1219,7 @@ namespace dynamic_source
       strDest += "\r\n";
       strDest += "\r\n";
       strDest += "\r\n";
-      strDest += "class " + m_pmanager->m_strNamespace + "_dynamic_source_script : virtual public ::" + m_pmanager->m_strNamespace + "::script_instance\r\n";
+      strDest += "class " + m_pmanager->m_strNamespace + "_dynamic_source_script : virtual public ::" + m_pmanager->m_strNamespace + "::script_instance, virtual public ::application_consumer < ::netnode::application >\r\n";
       strDest += "{\r\n";
       strDest += "public:\r\n";
       //strDest += "   " + m_pmanager->m_strNamespace + "_dynamic_source_script(dynamic_source::script * pscript) : ::object(pscript->get_context_application()), dynamic_source::script_instance(pscript), ::" + m_pmanager->m_strNamespace + "::script_instance(pscript), ::" + m_pmanager->m_strNamespace + "::script_impl(pscript) {};  \r\n";

@@ -827,6 +827,7 @@
 		9AD199C725127A4A00B4C44A /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD199C625127A4900B4C44A /* IOKit.framework */; };
 		9AD199C925127AB500B4C44A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD199C825127AB500B4C44A /* Security.framework */; };
 		9AD199CB25127C8300B4C44A /* app.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9AD199CA25127C8300B4C44A /* app.mm */; };
+		9AD19ADC2512D76200B4C44A /* macos.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD19ADB2512D76200B4C44A /* macos.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1847,6 +1848,7 @@
 		9AD199C625127A4900B4C44A /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		9AD199C825127AB500B4C44A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		9AD199CA25127C8300B4C44A /* app.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = app.mm; sourceTree = "<group>"; };
+		9AD19ADB2512D76200B4C44A /* macos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2796,6 +2798,7 @@
 		9A68B74A2511444B008DABD2 /* console */ = {
 			isa = PBXGroup;
 			children = (
+				9AD19ADB2512D76200B4C44A /* macos.h */,
 				9A68B74B2511444B008DABD2 /* linux.h */,
 				9A68B74C2511444B008DABD2 /* windows.h */,
 			);
@@ -3759,6 +3762,7 @@
 				9A68BE682511444F008DABD2 /* os.h in Headers */,
 				9A68BC332511444E008DABD2 /* form.h in Headers */,
 				9A68BE7A2511444F008DABD2 /* user.h in Headers */,
+				9AD19ADC2512D76200B4C44A /* macos.h in Headers */,
 				9A68BC1C2511444E008DABD2 /* base_socket_handler.h in Headers */,
 				9A68BDEE2511444F008DABD2 /* item_array.h in Headers */,
 				9A68C04F25114450008DABD2 /* _macos.h in Headers */,
@@ -3851,6 +3855,7 @@
 				9A68A442251143F8008DABD2 /* Headers */,
 				9A68A443251143F8008DABD2 /* Sources */,
 				9A68A444251143F8008DABD2 /* Frameworks */,
+				9AD19B0C2512D9D300B4C44A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -3928,6 +3933,26 @@
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9AD19B0C2512D9D300B4C44A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$HOME/__archive/archive/tool-macos/bin/fix_rpath\" \"$TARGET_BUILD_DIR\" \"$EXECUTABLE_PREFIX$TARGET_NAME.$EXECUTABLE_EXTENSION\"\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9A68A443251143F8008DABD2 /* Sources */ = {

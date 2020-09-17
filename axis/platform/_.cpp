@@ -58,7 +58,7 @@ namespace axis
 
       ASSERT(nLen >= 0);
 
-      ::aura::memcpy_s(rString.get_string_buffer(nLen), nLen * sizeof(char), pszFullString, nLen * sizeof(char));
+      ::acme::memcpy_s(rString.get_string_buffer(nLen), nLen * sizeof(char), pszFullString, nLen * sizeof(char));
 
       rString.release_string_buffer();   // Need to call ReleaseBuffer after calling get_string_buffer
 
@@ -218,333 +218,333 @@ void __post_quit_message(i32 nExitCode)
 //::mutex* &::get_context_system()->m_mutexLibrary = nullptr;
 
 
-CLASS_DECL_AXIS string_map < PFN_NEW_AURA_LIBRARY >& __get_new_aura_library()
-{
-
-   return ::get_context_system()->m_mapNewAuraLibrary;
-
-}
-
-
-CLASS_DECL_AXIS string_map < __pointer(::apex::library) >& __library()
-{
-
-   return ::get_context_system()->m_mapLibrary;
-
-}
-
-
-
-CLASS_DECL_AXIS PFN_NEW_AURA_LIBRARY get_get_new_aura_library(const char* psz)
-{
-
-   sync_lock sl(&::get_context_system()->m_mutexLibrary);
-
-   auto ppair = ::get_context_system()->m_mapNewAuraLibrary.plookup(psz);
-
-   if (::is_null(ppair))
-   {
-
-      return nullptr;
-
-   }
-
-   return ppair->element2();
-
-}
-
-
-CLASS_DECL_AXIS::apex::library& get_library(const char* psz)
-{
-
-   sync_lock sl(&::get_context_system()->m_mutexLibrary);
-
-   return *::get_context_system()->m_mapLibrary[psz];
-
-}
-
-
-CLASS_DECL_AXIS void register_get_new_aura_library(const char* psz, PFN_NEW_AURA_LIBRARY pfnNewAuraLibrary)
-{
-
-   sync_lock sl(&::get_context_system()->m_mutexLibrary);
-
-   __get_new_aura_library()[psz] = pfnNewAuraLibrary;
-
-}
-
-
-CLASS_DECL_AXIS void register_library(const char* psz, ::apex::library* plibrary)
-{
-
-   sync_lock sl(&::get_context_system()->m_mutexLibrary);
-
-   __library()[psz] = plibrary;
-
-}
-
-
-CLASS_DECL_AXIS int get_aura_init()
-{
-
-   return g_iAuraRefCount;
-
-}
-
-
-extern "C"
-CLASS_DECL_AXIS::aura::system * aura_create_aura_system()
-{
-
-   return new ::aura::system();
-
-}
-
-
-////extern "C"
-//CLASS_DECL_AXIS int_bool defer_aura_init()
+//CLASS_DECL_AXIS string_map < PFN_NEW_AURA_LIBRARY >& __get_new_aura_library()
 //{
 //
-//   g_iAuraRefCount++;
+//   return ::get_context_system()->m_mapNewAuraLibrary;
 //
-//   if (g_iAuraRefCount > 1)
-//   {
+//}
 //
-//      return true;
 //
-//   }
+//CLASS_DECL_AXIS string_map < __pointer(::apex::library) >& __library()
+//{
 //
-//   if (!aura_init())
-//   {
-//
-//      return false;
-//
-//   }
-//
-//   s_paurastrpool = new aura_str_pool();
-//
-//   ::user::init_windowing();
-//
-//   g_bAura = 1;
-//
-//   return true;
+//   return ::get_context_system()->m_mapLibrary;
 //
 //}
 
 
+
+//CLASS_DECL_AXIS PFN_NEW_AURA_LIBRARY get_get_new_aura_library(const char* psz)
+//{
+//
+//   sync_lock sl(&::get_context_system()->m_mutexLibrary);
+//
+//   auto ppair = ::get_context_system()->m_mapNewAuraLibrary.plookup(psz);
+//
+//   if (::is_null(ppair))
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   return ppair->element2();
+//
+//}
+//
+//
+//CLASS_DECL_AXIS::apex::library& get_library(const char* psz)
+//{
+//
+//   sync_lock sl(&::get_context_system()->m_mutexLibrary);
+//
+//   return *::get_context_system()->m_mapLibrary[psz];
+//
+//}
+//
+//
+//CLASS_DECL_AXIS void register_get_new_aura_library(const char* psz, PFN_NEW_AURA_LIBRARY pfnNewAuraLibrary)
+//{
+//
+//   sync_lock sl(&::get_context_system()->m_mutexLibrary);
+//
+//   __get_new_aura_library()[psz] = pfnNewAuraLibrary;
+//
+//}
+//
+//
+//CLASS_DECL_AXIS void register_library(const char* psz, ::apex::library* plibrary)
+//{
+//
+//   sync_lock sl(&::get_context_system()->m_mutexLibrary);
+//
+//   __library()[psz] = plibrary;
+//
+//}
+//
+
+//CLASS_DECL_AXIS int get_axiura_init()
+//{
+//
+//   return g_iAuraRefCount;
+//
+//}
+//
+//
 //extern "C"
-//CLASS_DECL_AXIS int_bool defer_aura_term()
+//CLASS_DECL_AXIS::aura::system * aura_create_aura_system()
 //{
 //
-//   g_iAuraRefCount--;
+//   return new ::aura::system();
 //
-//   if (g_iAuraRefCount >= 1)
+//}
+//
+//
+//////extern "C"
+////CLASS_DECL_AXIS int_bool defer_aura_init()
+////{
+////
+////   g_iAuraRefCount++;
+////
+////   if (g_iAuraRefCount > 1)
+////   {
+////
+////      return true;
+////
+////   }
+////
+////   if (!aura_init())
+////   {
+////
+////      return false;
+////
+////   }
+////
+////   s_paurastrpool = new aura_str_pool();
+////
+////   ::user::init_windowing();
+////
+////   g_bAura = 1;
+////
+////   return true;
+////
+////}
+//
+//
+////extern "C"
+////CLASS_DECL_AXIS int_bool defer_aura_term()
+////{
+////
+////   g_iAuraRefCount--;
+////
+////   if (g_iAuraRefCount >= 1)
+////   {
+////
+////      return TRUE;
+////
+////   }
+////
+////   ::user::term_windowing();
+////
+////   g_bAura = 0;
+////
+////   ::acme::del(s_paurastrpool);
+////
+////   aura_term();
+////
+////   return TRUE;
+////
+////}
+//
+//
+//
+//
+//
+//
+//
+//// ::map < void*, void*, ::aura::application*, ::aura::application* >* g_pmapAura = nullptr;
+//
+//
+//// void set_aura(void* p, ::aura::application* papp)
+//// {
+//
+////    g_pmapAura->set_at(p, papp);
+//
+//// }
+//
+//
+//// ::aura::application* get_aura(void* p)
+//// {
+//
+////    return g_pmapAura->operator [](p);
+//
+//// }
+//
+//
+////CLASS_DECL_AXIS LPFN_CREATE_SYSTEM g_pfn_create_system;
+//
+////CLASS_DECL_AXIS const char* g_pszCooperativeLevel;
+//
+////CLASS_DECL_AXIS int g_iDerivedApplication = 0;
+//
+//
+//string get_debug_report_type_text(int iType)
+//{
+//
+//   string strType;
+//
+//   if (iType == _CRT_ASSERT)
 //   {
 //
-//      return TRUE;
+//      strType = "ASSERT";
+//
+//   }
+//   else
+//   {
+//
+//      __throw(invalid_argument_exception());
 //
 //   }
 //
-//   ::user::term_windowing();
-//
-//   g_bAura = 0;
-//
-//   ::acme::del(s_paurastrpool);
-//
-//   aura_term();
-//
-//   return TRUE;
+//   return strType;
 //
 //}
-
-
-
-
-
-
-
-// ::map < void*, void*, ::aura::application*, ::aura::application* >* g_pmapAura = nullptr;
-
-
-// void set_aura(void* p, ::aura::application* papp)
-// {
-
-//    g_pmapAura->set_at(p, papp);
-
-// }
-
-
-// ::aura::application* get_aura(void* p)
-// {
-
-//    return g_pmapAura->operator [](p);
-
-// }
-
-
-//CLASS_DECL_AXIS LPFN_CREATE_SYSTEM g_pfn_create_system;
-
-//CLASS_DECL_AXIS const char* g_pszCooperativeLevel;
-
-//CLASS_DECL_AXIS int g_iDerivedApplication = 0;
-
-
-string get_debug_report_type_text(int iType)
-{
-
-   string strType;
-
-   if (iType == _CRT_ASSERT)
-   {
-
-      strType = "ASSERT";
-
-   }
-   else
-   {
-
-      __throw(invalid_argument_exception());
-
-   }
-
-   return strType;
-
-}
-
-
-int __cdecl debug_report(int iType, char const* psz, int iLine, char const* pszModuleName, char const* pszFormat, ...)
-{
-
-   string strExtra;
-   va_list argList;
-   va_start(argList, pszFormat);
-   strExtra.Format(pszFormat, argList);
-   va_end(argList);
-
-   string strModule;
-
-   if (pszModuleName != nullptr && *pszModuleName != '\0')
-   {
-
-      strModule.Format("%s: ", pszModuleName);
-
-   }
-
-   string strType = get_debug_report_type_text(iType);
-
-   output_debug_string(strType + ": file: " + string(psz) + " line:" + __str(iLine) + strModule + strExtra);
-
-   return 1;
-
-}
-
-
-int __cdecl debug_report(int iType, wchar_t const* pszFile, int iLine, wchar_t const* pszModuleName, wchar_t const* pszFormat, ...)
-{
-
-
-   string strExtra;
-   va_list argList;
-   va_start(argList, pszFormat);
-   string strFormat;
-   strFormat = pszFormat;
-   strFormat.replace("%s", "%S");
-   strExtra.Format(strFormat, argList);
-   va_end(argList);
-
-   string strModule;
-
-   string strType = get_debug_report_type_text(iType);
-
-   if (pszModuleName != nullptr && *pszModuleName != '\0')
-   {
-
-      strModule.Format("%S: ", pszModuleName);
-
-   }
-
-
-   output_debug_string(strType + ": file: " + string(pszFile) + " line:" + __str(iLine) + strModule + strExtra);
-
-   return 1;
-
-
-}
-
-
-CLASS_DECL_AXIS void writeln(const char* psz)
-{
-
-   output_debug_string(string(psz) + "\n");
-
-}
-
-
-CLASS_DECL_AXIS int is_ptr_null(const void* p, size_t s)
-{
-
-   return (((size_t)p) < s);
-
-}
-
-
-void c_post_system_event(::u64 u, void* pparam)
-{
-
-   LPARAM lparam = (LPARAM)pparam;
-
-
-   ::get_context_system()->post_message(message_event2, (WPARAM)u, lparam);
-
-
-}
-
-
-extern "C"
-{
-
-   typedef void FN_VOID();
-
-   typedef FN_VOID* PFN_VOID;
-
-} // extern "C"
-
-
-
-
-CLASS_DECL_AXIS ::estatus load_factory_library(string strLibrary)
-{
-
-
-   sync_lock sl(&::get_context_system()->m_mutexLibrary);
-
-   __pointer(::apex::library)& plibrary = ::get_context_system()->m_mapLibrary[strLibrary];
-
-   if (!plibrary)
-   {
-
-      plibrary = new ::apex::library();
-
-   }
-
-   if (!plibrary->is_opened())
-   {
-
-      plibrary->open(strLibrary);
-
-   }
-
-   auto pcreatefactory = plibrary->get < PFN_VOID >(strLibrary + "_create_factory");
-
-   if (!pcreatefactory)
-   {
-
-      return ::error_failed;
-
-   }
-
-   (*pcreatefactory)();
-
-   return ::success;
-
-}
+//
+//
+//int __cdecl debug_report(int iType, char const* psz, int iLine, char const* pszModuleName, char const* pszFormat, ...)
+//{
+//
+//   string strExtra;
+//   va_list argList;
+//   va_start(argList, pszFormat);
+//   strExtra.Format(pszFormat, argList);
+//   va_end(argList);
+//
+//   string strModule;
+//
+//   if (pszModuleName != nullptr && *pszModuleName != '\0')
+//   {
+//
+//      strModule.Format("%s: ", pszModuleName);
+//
+//   }
+//
+//   string strType = get_debug_report_type_text(iType);
+//
+//   output_debug_string(strType + ": file: " + string(psz) + " line:" + __str(iLine) + strModule + strExtra);
+//
+//   return 1;
+//
+//}
+//
+//
+//int __cdecl debug_report(int iType, wchar_t const* pszFile, int iLine, wchar_t const* pszModuleName, wchar_t const* pszFormat, ...)
+//{
+//
+//
+//   string strExtra;
+//   va_list argList;
+//   va_start(argList, pszFormat);
+//   string strFormat;
+//   strFormat = pszFormat;
+//   strFormat.replace("%s", "%S");
+//   strExtra.Format(strFormat, argList);
+//   va_end(argList);
+//
+//   string strModule;
+//
+//   string strType = get_debug_report_type_text(iType);
+//
+//   if (pszModuleName != nullptr && *pszModuleName != '\0')
+//   {
+//
+//      strModule.Format("%S: ", pszModuleName);
+//
+//   }
+//
+//
+//   output_debug_string(strType + ": file: " + string(pszFile) + " line:" + __str(iLine) + strModule + strExtra);
+//
+//   return 1;
+//
+//
+//}
+//
+//
+//CLASS_DECL_AXIS void writeln(const char* psz)
+//{
+//
+//   output_debug_string(string(psz) + "\n");
+//
+//}
+//
+//
+//CLASS_DECL_AXIS int is_ptr_null(const void* p, size_t s)
+//{
+//
+//   return (((size_t)p) < s);
+//
+//}
+//
+//
+//void c_post_system_event(::u64 u, void* pparam)
+//{
+//
+//   LPARAM lparam = (LPARAM)pparam;
+//
+//
+//   ::get_context_system()->post_message(message_event2, (WPARAM)u, lparam);
+//
+//
+//}
+//
+//
+//extern "C"
+//{
+//
+//   typedef void FN_VOID();
+//
+//   typedef FN_VOID* PFN_VOID;
+//
+//} // extern "C"
+//
+//
+//
+//
+//CLASS_DECL_AXIS ::estatus load_factory_library(string strLibrary)
+//{
+//
+//
+//   sync_lock sl(&::get_context_system()->m_mutexLibrary);
+//
+//   __pointer(::apex::library)& plibrary = ::get_context_system()->m_mapLibrary[strLibrary];
+//
+//   if (!plibrary)
+//   {
+//
+//      plibrary = new ::apex::library();
+//
+//   }
+//
+//   if (!plibrary->is_opened())
+//   {
+//
+//      plibrary->open(strLibrary);
+//
+//   }
+//
+//   auto pcreatefactory = plibrary->get < PFN_VOID >(strLibrary + "_create_factory");
+//
+//   if (!pcreatefactory)
+//   {
+//
+//      return ::error_failed;
+//
+//   }
+//
+//   (*pcreatefactory)();
+//
+//   return ::success;
+//
+//}

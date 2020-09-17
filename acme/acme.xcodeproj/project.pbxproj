@@ -1131,6 +1131,7 @@
 		9AD199812511BE7A00B4C44A /* mm_user.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9AD199802511BE7900B4C44A /* mm_user.mm */; };
 		9AD199832511C52A00B4C44A /* pthread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A85725114430008DABD2 /* pthread.cpp */; };
 		9AD199842511C6BA00B4C44A /* mmos.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A87825114430008DABD2 /* mmos.mm */; };
+		9AD19AD12512D57A00B4C44A /* macos.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD19AD02512D57A00B4C44A /* macos.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -2426,6 +2427,7 @@
 		9AD1997C2511BAA000B4C44A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		9AD199802511BE7900B4C44A /* mm_user.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mm_user.mm; sourceTree = "<group>"; };
 		9AD199862511CFB000B4C44A /* _start.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _start.h; sourceTree = "<group>"; };
+		9AD19AD02512D57A00B4C44A /* macos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3510,6 +3512,7 @@
 		9A68A7FC25114430008DABD2 /* console */ = {
 			isa = PBXGroup;
 			children = (
+				9AD19AD02512D57A00B4C44A /* macos.h */,
 				9A68A7FD25114430008DABD2 /* linux.h */,
 				9A68A7FE25114430008DABD2 /* windows.h */,
 			);
@@ -4762,6 +4765,7 @@
 				9A68AEAB25114435008DABD2 /* uid.h in Headers */,
 				9A68AE4825114435008DABD2 /* edit.h in Headers */,
 				9A68B04025114436008DABD2 /* cross_win_gdi.h in Headers */,
+				9AD19AD12512D57A00B4C44A /* macos.h in Headers */,
 				9A68B0DB25114436008DABD2 /* _ansios.h in Headers */,
 				9A68AE5525114435008DABD2 /* application_bias.h in Headers */,
 				9A68B08725114436008DABD2 /* windows_wincon.h in Headers */,

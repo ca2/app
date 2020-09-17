@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 namespace axis
@@ -61,7 +61,7 @@ namespace axis
       //virtual bool prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem) override;
 
 
-      virtual ::estatus initialize_style();
+      virtual ::estatus initialize_style() override;
 
 
       virtual bool _001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics,::user::frame * pframe) override;
@@ -138,11 +138,11 @@ namespace axis
       //virtual bool get_double(double & d, e_double edouble, style_context * pcontext) override;
 
 
-      virtual void select(::draw2d::graphics_pointer & pgraphics);
+      virtual void select(::draw2d::graphics_pointer & pgraphics) override;
 
       virtual ::user::e_control_type get_control_type() const override;
 
-      virtual ::draw2d::graphics * style_get_graphics();
+      virtual ::draw2d::graphics * style_get_graphics() override;
 
       //virtual style * userstyle();
 

@@ -5,12 +5,66 @@
 CLASS_DECL_ACME int __cpp_assert_failed_line(const char * pszFileName, int iLineNumber);
 
 
+CLASS_DECL_ACME string message_box_result_to_string(int iResult);
+
+
+namespace acme
+{
+ 
+   class os_message_box :
+      virtual public ::generic
+   {
+   public:
+
+      string            m_strText;
+      string            m_strTitle;
+      ::emessagebox     m_emessagebox;
+      ::callback        m_callback;
+
+      os_message_box(const string & strText, const string & strTitle, ::emessagebox emessagebox, ::callback callback) :
+         m_strText(strText), m_strTitle(strTitle), m_emessagebox(emessagebox), m_callback(callback)
+      {
+
+
+      }
+       
+     virtual ~os_message_box()
+      {
+
+      }
+
+      virtual ::estatus run() override
+      {
+
+         int iMessageBox = m_emessagebox.m_eenum & 0x7f;
+
+         wstring wstrText(m_strText);
+
+         wstring wstrTitle(m_strTitle);
+
+         int iResult = ::MessageBox(nullptr, wstrText, wstrTitle, iMessageBox);
+
+         string strResult = message_box_result_to_string(iResult);
+
+         m_callback.receive_response(strResult);
+
+         return ::success;
+
+      }
+
+
+   };
+
+}
+
 ::estatus os_message_box(const char* pszText, const char* pszTitle, ::emessagebox emessagebox, ::callback callback)
 {
 
-   __throw(todo("message_box"));
+   auto posmessagebox = __new(::acme::os_message_box(pszText, pszTitle, emessagebox, callback));
 
-   return ::error_failed;
+   posmessagebox->os_fork();
+
+   return ::success;
 
 }
 

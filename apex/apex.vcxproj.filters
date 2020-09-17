@@ -1478,6 +1478,9 @@
     <ClInclude Include="primitive\data\tree_item.h">
       <Filter>Header Files\primitive\data</Filter>
     </ClInclude>
+    <ClInclude Include="const\charset.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">

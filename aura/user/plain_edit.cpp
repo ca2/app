@@ -13,7 +13,7 @@
 #include "aura/user/windows_tsf/edit_window.h"
 #endif
 #endif
-#include "aura/const/timer.h"
+#include "acme/const/timer.h"
 //#include "_tree.h"
 
 //extern CLASS_DECL_AURA thread_int_ptr < DWORD_PTR > t_time1;

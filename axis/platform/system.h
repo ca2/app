@@ -50,7 +50,7 @@ namespace axis
 
       virtual ::estatus init2() override;
 
-      virtual ::estatus defer_xml();
+      // virtual ::estatus defer_xml();
 
 
       virtual ::estatus verb() override; // ambigous inheritance from ::aura::system/::axis::application

@@ -2,7 +2,7 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "axis/user/_user.h"
 #endif
-#include "aura/const/timer.h"
+#include "acme/const/timer.h"
 
 
 void scroll_x(RECT * prect, double dRateX, const ::rect & rect)

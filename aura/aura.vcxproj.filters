@@ -1493,37 +1493,7 @@
     <ClInclude Include="const\_const.h">
       <Filter>Header Files\const</Filter>
     </ClInclude>
-    <ClInclude Include="const\check.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\context.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\id.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
     <ClInclude Include="const\idpool.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\impact.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\message.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\simple_command.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\source.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\status.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\status_range_authentication.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\timer.h">
       <Filter>Header Files\const</Filter>
     </ClInclude>
     <ClInclude Include="include\_.h">
@@ -1970,9 +1940,6 @@
     <ClInclude Include="platform\mq.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="const\thread.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
     <ClInclude Include="platform\context_thread.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -1999,12 +1966,6 @@
     </ClInclude>
     <ClInclude Include="primitive\primitive\object.h">
       <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="const\GLOBAL_ID.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="const\procedure.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="net\_net_impl.h">
       <Filter>Header Files</Filter>
@@ -2053,9 +2014,6 @@
     </ClInclude>
     <ClInclude Include="callback.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="const\callback.h">
-      <Filter>Header Files\const</Filter>
     </ClInclude>
     <ClInclude Include="multimedia\_.h">
       <Filter>Header Files\multimedia</Filter>
@@ -2599,6 +2557,51 @@
     </ClInclude>
     <ClInclude Include="xml\xmlite.h">
       <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="const\aaa_id.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\aaa_check.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\aaa_callback.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\aaa_context.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\aaa_message.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\aaa_simple_command.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\aaa_source.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\aaa_status.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\aaa_status_range_authentication.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\aaa_thread.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\aaa_timer.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\charset.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\aaa_impact.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\aaa_GLOBAL_ID.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\aaa_procedure.h">
+      <Filter>Header Files\const</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

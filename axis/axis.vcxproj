@@ -654,31 +654,6 @@
     <ClInclude Include="user\validate.h" />
     <ClInclude Include="user\_.h" />
     <ClInclude Include="user\_user.h" />
-    <ClInclude Include="xml\attr.h" />
-    <ClInclude Include="xml\base_array.h" />
-    <ClInclude Include="xml\data.h" />
-    <ClInclude Include="xml\department.h" />
-    <ClInclude Include="xml\disp_option.h" />
-    <ClInclude Include="xml\document.h" />
-    <ClInclude Include="xml\edit.h" />
-    <ClInclude Include="xml\entity.h" />
-    <ClInclude Include="xml\enum.h" />
-    <ClInclude Include="xml\exportable.h" />
-    <ClInclude Include="xml\glue.h" />
-    <ClInclude Include="xml\importable.h" />
-    <ClInclude Include="xml\input_tree.h" />
-    <ClInclude Include="xml\node.h" />
-    <ClInclude Include="xml\output_tree.h" />
-    <ClInclude Include="xml\parse_info.h" />
-    <ClInclude Include="xml\property_exchange.h" />
-    <ClInclude Include="xml\smart_pointer_array.h" />
-    <ClInclude Include="xml\stream.h" />
-    <ClInclude Include="xml\tree_base.h" />
-    <ClInclude Include="xml\tree_schema.h" />
-    <ClInclude Include="xml\var_exchange.h" />
-    <ClInclude Include="xml\xmlite.h" />
-    <ClInclude Include="xml\_.h" />
-    <ClInclude Include="xml\_impl.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="account\account.cpp" />
@@ -770,26 +745,6 @@
     <ClCompile Include="user\style.cpp" />
     <ClCompile Include="user\user.cpp" />
     <ClCompile Include="user\validate.cpp" />
-    <ClCompile Include="xml\attr.cpp" />
-    <ClCompile Include="xml\base_array.cpp" />
-    <ClCompile Include="xml\data.cpp" />
-    <ClCompile Include="xml\disp_option.cpp" />
-    <ClCompile Include="xml\document.cpp" />
-    <ClCompile Include="xml\edit.cpp" />
-    <ClCompile Include="xml\entity.cpp" />
-    <ClCompile Include="xml\exportable.cpp" />
-    <ClCompile Include="xml\importable.cpp" />
-    <ClCompile Include="xml\input_tree.cpp" />
-    <ClCompile Include="xml\node.cpp" />
-    <ClCompile Include="xml\output_tree.cpp" />
-    <ClCompile Include="xml\parse_info.cpp" />
-    <ClCompile Include="xml\property_exchange.cpp" />
-    <ClCompile Include="xml\tree_base.cpp" />
-    <ClCompile Include="xml\tree_schema.cpp" />
-    <ClCompile Include="xml\var_exchange.cpp" />
-    <ClCompile Include="xml\xml.cpp" />
-    <ClCompile Include="xml\xmlite.cpp" />
-    <ClCompile Include="xml\_from.cpp" />
     <ClCompile Include="_.cpp" />
   </ItemGroup>
   <ItemGroup>

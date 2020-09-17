@@ -198,6 +198,9 @@
     <Filter Include="Header Files\inline\NewFilter1">
       <UniqueIdentifier>{1f1a5d9c-187c-42b3-a17a-dd8e896a1c10}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\const">
+      <UniqueIdentifier>{fc9f6629-f612-4e8d-bcc6-e33f1b8c4292}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -1133,42 +1136,6 @@
     <ClInclude Include="primitive\collection\string_array_base.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
-    <ClInclude Include="const\_const.h">
-      <Filter>Header Files\filesystem\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\check.h">
-      <Filter>Header Files\filesystem\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\context.h">
-      <Filter>Header Files\filesystem\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\id.h">
-      <Filter>Header Files\filesystem\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\idpool.h">
-      <Filter>Header Files\filesystem\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\impact.h">
-      <Filter>Header Files\filesystem\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\message.h">
-      <Filter>Header Files\filesystem\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\simple_command.h">
-      <Filter>Header Files\filesystem\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\source.h">
-      <Filter>Header Files\filesystem\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\status.h">
-      <Filter>Header Files\filesystem\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\status_range_authentication.h">
-      <Filter>Header Files\filesystem\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\timer.h">
-      <Filter>Header Files\filesystem\const</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\file\_const.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
@@ -1661,9 +1628,6 @@
     <ClInclude Include="inline\console_common.h">
       <Filter>Header Files\inline</Filter>
     </ClInclude>
-    <ClInclude Include="const\thread.h">
-      <Filter>Header Files\filesystem\const</Filter>
-    </ClInclude>
     <ClInclude Include="platform\_generic_object_constructor_impl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1688,12 +1652,6 @@
     <ClInclude Include="primitive\primitive\generic.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="const\GLOBAL_ID.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="const\procedure.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="net\_net_impl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1711,9 +1669,6 @@
     </ClInclude>
     <ClInclude Include="callback.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="const\callback.h">
-      <Filter>Header Files\filesystem\const</Filter>
     </ClInclude>
     <ClInclude Include="node\windows\_node_windows_private.h">
       <Filter>Header Files\node\windows</Filter>
@@ -2156,6 +2111,57 @@
     <ClInclude Include="multithreading\mq.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
+    <ClInclude Include="const\_const.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\callback.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\charset.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\check.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\context.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\GLOBAL_ID.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\id.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\idpool.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\impact.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\message.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\procedure.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\simple_command.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\source.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\status.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\status_range_authentication.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\thread.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\timer.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">
@@ -2550,9 +2556,6 @@
     </ClCompile>
     <ClCompile Include="filesystem\file\text_stream.cpp">
       <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="const\idpool.cpp">
-      <Filter>Source Files\const</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\binary_stream.cpp">
       <Filter>Source Files\filesystem\file</Filter>
@@ -3195,6 +3198,9 @@
     </ClCompile>
     <ClCompile Include="multithreading\mq.cpp">
       <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="const\idpool.cpp">
+      <Filter>Source Files\const</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

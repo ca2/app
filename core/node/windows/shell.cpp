@@ -4,6 +4,7 @@
 #undef User
 #undef Usr
 #include "shell.h"
+#include "apex/compress/zip/context.h"
 
 
 
@@ -803,13 +804,11 @@ namespace windows
 
 
    shell::e_folder shell::get_folder_type(::object * pobject, const unichar * pcszPath)
-
    {
 
       string strPath;
 
       ::str::international::unicode_to_utf8(strPath, pcszPath);
-
 
       if (dir::is(strPath))
       {
@@ -817,16 +816,23 @@ namespace windows
          return folder_file_system;
 
       }
-      else if (zip_context(this).is_unzippable(strPath))
-      {
-
-         return folder_zip;
-
-      }
       else
       {
 
-         return folder_none;
+         zip_context zipcontext(this);
+
+         if (zipcontext.is_unzippable(strPath))
+         {
+
+            return folder_zip;
+
+         }
+         else
+         {
+
+            return folder_none;
+
+         }
 
       }
 

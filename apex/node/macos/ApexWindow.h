@@ -13,25 +13,25 @@
 //
 
 
-#include "RoundWindowController.h"
+#include "ApexWindowController.h"
 
 unsigned int event_key_code(NSEvent * event);
 
 
-class round_window;
+class apex_window;
 
 
-@interface RoundWindow : NSWindow
+@interface ApexWindow : NSWindow
 {
 @public
    
    
-   bool                    m_bNoActivate;
-   round_window            * m_pwindow;
+   bool                       m_bNoActivate;
+   apex_window *              m_papexwindow;
    
    
-	NSView                  * childContentView;
-   NSWindowController      * m_controller;
+	NSView *                   m_pviewChildContent;
+   NSWindowController *       m_pwindowcontroller;
    
    
 }

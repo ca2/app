@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "axis/xml/_.h"
+#include "aura/xml/_.h"
 #include "apex/platform/app_core.h"
 #include "aura/const/id.h"
 //#include "axis/node/_node.h"
@@ -492,47 +492,6 @@ namespace axis
 
 
    
-
-   ::estatus system::defer_xml()
-   {
-
-      if (m_pxml)
-      {
-
-         return ::success;
-
-      }
-
-      auto estatus = __compose_new(m_pxml);
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      estatus = m_pxml->init1();
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      estatus = m_pxml->init();
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      return estatus;
-
-   }
 
 
 

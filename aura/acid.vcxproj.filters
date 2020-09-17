@@ -1112,7 +1112,7 @@
     <ClInclude Include="aura\node\windows\registry.h">
       <Filter>Header Files\aura\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\windows\RoundWindowApp.h">
+    <ClInclude Include="aura\node\windows\AuraWindowApp.h">
       <Filter>Header Files\aura\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="aura\node\windows\shell.h">

@@ -1,15 +1,15 @@
 //
-//  round_window.cpp
+//  apex_window.cpp
 //  os
 //
 //  Created by Camilo Sasuke Tsumanuma on 6/8/13.
 //  Copyright (c) 2013 ca2 Desenvolvimento de Sofware Ltda. All rights reserved.
 //
 #import "_mm.h"
-#import "RoundWindow.h"
+#import "ApexWindow.h"
 
 
-NSWindow * new_round_window(round_window * pwindow, CGRect rect, unsigned int uStyle)
+NSWindow * new_aoex_window(apex_window * papexwindow, CGRect rect, unsigned int uStyle)
 {
    
    // rect.origin.x        = 0;
@@ -28,25 +28,25 @@ NSWindow * new_round_window(round_window * pwindow, CGRect rect, unsigned int uS
  
 */
    
-   pwindow->m_proundwindow = [RoundWindow alloc];
+   papexwindow->m_papexwindow = [ApexWindow alloc];
    
-   pwindow->m_proundwindow->m_pwindow = pwindow;
+   papexwindow->m_papexwindow->m_papexwindow = papexwindow;
    
    //__block RoundWindow * proundwindow;
    
    ns_main_sync(^()
    {
                    
-      pwindow->m_proundwindow = [pwindow->m_proundwindow initWithContentRect : rect styleMask : uStyle backing : NSBackingStoreBuffered defer : YES];
+      papexwindow->m_papexwindow = [papexwindow->m_papexwindow initWithContentRect : rect styleMask : uStyle backing : NSBackingStoreBuffered defer : YES];
                    
    });
    
-   return  pwindow->m_proundwindow;
+   return  papexwindow->m_papexwindow;
    
 }
 
 
-round_window::round_window()
+apex_window::apex_window()
 {
    
    m_bDirty = false;
@@ -56,15 +56,15 @@ round_window::round_window()
 }
 
 
-round_window::~round_window()
+apex_window::~apex_window()
 {
    
-   m_proundwindow = nullptr;
+   m_papexwindow = nullptr;
    
 }
 
 
-void round_window::round_window_set_title(const char * pszTitle)
+void apex_window::round_window_set_title(const char * pszTitle)
 {
    
    if(m_bDestroying)
@@ -81,7 +81,7 @@ void round_window::round_window_set_title(const char * pszTitle)
    
    NSString * str = [NSString stringWithUTF8String:pszText];
    
-   [m_proundwindow setTitle:str];
+   [m_papexwindow setTitle:str];
                     ::free((void *)pszText);
                     
                  });
@@ -89,7 +89,7 @@ void round_window::round_window_set_title(const char * pszTitle)
 }
 
 
-void round_window::round_window_get_title(char * pszTitle, int iSize)
+void apex_window::round_window_get_title(char * pszTitle, int iSize)
 {
    
    if(m_bDestroying)
@@ -102,7 +102,7 @@ void round_window::round_window_get_title(char * pszTitle, int iSize)
    ns_main_sync(^
                 {
                    
-                  NSString * str = [m_proundwindow title];
+                  NSString * str = [m_papexwindow title];
                   
                   strncpy(pszTitle, [str UTF8String], iSize);
                    
@@ -112,28 +112,28 @@ void round_window::round_window_get_title(char * pszTitle, int iSize)
 }
 
 
-void round_window::round_window_destroy()
+void apex_window::round_window_destroy()
 {
    
-   if(m_proundwindow == NULL)
+   if(m_papexwindow == NULL)
    {
       
       return;
       
    }
    
-   [[NSNotificationCenter defaultCenter] removeObserver: m_proundwindow];
+   [[NSNotificationCenter defaultCenter] removeObserver: m_papexwindow];
 
-   [m_proundwindow setReleasedWhenClosed: YES];
+   [m_papexwindow setReleasedWhenClosed: YES];
    
-   m_proundwindow->m_pwindow = NULL;
+   m_papexwindow->m_papexwindow = NULL;
    
-   [m_proundwindow close];
+   [m_papexwindow close];
 
 }
 
 
-void round_window::round_window_show()
+void apex_window::round_window_show()
 {
    
    if(m_bDestroying)
@@ -146,16 +146,16 @@ void round_window::round_window_show()
    ns_main_async(^
    {
       
-      [m_proundwindow->m_controller showWindow : m_proundwindow];
+      [m_papexwindow->m_pwindowcontroller showWindow : m_papexwindow];
       
-      [m_proundwindow windowDidExpose];
+      [m_papexwindow windowDidExpose];
 
    });
    
 }
 
 
-void round_window::round_window_hide()
+void apex_window::round_window_hide()
 {
    
 //   if(m_bDestroying)
@@ -168,14 +168,14 @@ void round_window::round_window_hide()
    ns_main_async(^
               {
                  
-                 if(m_proundwindow)
+                 if(m_papexwindow)
                  {
                  
-                    [m_proundwindow orderOut : nil];
+                    [m_papexwindow orderOut : nil];
                     
                  }
                  
-                 if(m_proundwindow)
+                 if(m_papexwindow)
                  {
                     
                     round_window_on_hide();
@@ -187,7 +187,7 @@ void round_window::round_window_hide()
 }
 
 
-void round_window::round_window_miniaturize()
+void apex_window::round_window_miniaturize()
 {
  
    if(m_bDestroying)
@@ -200,22 +200,22 @@ void round_window::round_window_miniaturize()
    ns_main_async(^
                  {
                     
-                    if([m_proundwindow styleMask] & NSWindowStyleMaskMiniaturizable)
+                    if([m_papexwindow styleMask] & NSWindowStyleMaskMiniaturizable)
                     {
                     
-                       [m_proundwindow performMiniaturize: nil];
+                       [m_papexwindow performMiniaturize: nil];
                        
                     }
                     else
                     {
                      
-                       [m_proundwindow orderOut : nil];
+                       [m_papexwindow orderOut : nil];
                        
                        round_window_iconified();
                        
                     }
                     
-                    if(m_proundwindow->m_pwindow == NULL)
+                    if(m_papexwindow->m_papexwindow == NULL)
                     {
                        
                        return;
@@ -230,7 +230,7 @@ void round_window::round_window_miniaturize()
 
 
 
-void round_window::round_window_order_front()
+void apex_window::round_window_order_front()
 {
    
    if(m_bDestroying)
@@ -243,14 +243,14 @@ void round_window::round_window_order_front()
    ns_main_async(^
               {
                  
-                 [m_proundwindow orderFront : m_proundwindow];
+                 [m_papexwindow orderFront : m_papexwindow];
                  
               });
    
 }
 
 
-void round_window::round_window_make_key_window()
+void apex_window::round_window_make_key_window()
 {
 
    if(m_bDestroying)
@@ -263,14 +263,14 @@ void round_window::round_window_make_key_window()
    ns_main_async(^
               {
                  
-                 [m_proundwindow makeKeyWindow];
+                 [m_papexwindow makeKeyWindow];
                  
               });
    
 }
 
 
-void round_window::round_window_make_key_window_and_order_front()
+void apex_window::round_window_make_key_window_and_order_front()
 {
    
    if(m_bDestroying)
@@ -283,14 +283,14 @@ void round_window::round_window_make_key_window_and_order_front()
    ns_main_async(^
               {
                  
-                 [m_proundwindow makeKeyAndOrderFront: m_proundwindow];
+                 [m_papexwindow makeKeyAndOrderFront: m_papexwindow];
                  
               });
    
 }
 
 
-void round_window::round_window_make_main_window()
+void apex_window::round_window_make_main_window()
 {
    
    if(m_bDestroying)
@@ -303,14 +303,14 @@ void round_window::round_window_make_main_window()
    ns_main_async(^
               {
                  
-                 [m_proundwindow makeMainWindow];
+                 [m_papexwindow makeMainWindow];
                  
               });
    
 }
 
 
-void round_window::round_window_redraw()
+void apex_window::round_window_redraw()
 {
    
    if(m_bDestroying)
@@ -320,7 +320,7 @@ void round_window::round_window_redraw()
       
    }
    
-   auto proundwindow = m_proundwindow;
+   auto proundwindow = m_papexwindow;
    
    if(proundwindow)
    {
@@ -333,7 +333,7 @@ void round_window::round_window_redraw()
                     if(proundwindow)
                     {
                     
-                       [proundwindow->childContentView setNeedsDisplay:TRUE];
+                       [proundwindow->m_pviewChildContent setNeedsDisplay:TRUE];
                        
                     }
    
@@ -344,7 +344,7 @@ void round_window::round_window_redraw()
 }
 
 
-void round_window::round_window_redraw_sync()
+void apex_window::round_window_redraw_sync()
 {
    
    if(m_bDestroying)
@@ -357,7 +357,7 @@ void round_window::round_window_redraw_sync()
    ns_main_sync(^
                  {
                     
-                    [m_proundwindow display];
+                    [m_papexwindow display];
                     
                  });
    
@@ -365,7 +365,7 @@ void round_window::round_window_redraw_sync()
 
 
 
-void round_window::round_window_set_frame(CGRect r)
+void apex_window::round_window_set_frame(CGRect r)
 {
    
    if(m_bDestroying)
@@ -386,14 +386,14 @@ void round_window::round_window_set_frame(CGRect r)
       rect.origin.y     = rectScreen.size.height    -     r.origin.y - r.size.height;
       rect.size   = r.size;
       
-      [m_proundwindow setFrame : rect display: TRUE];
+      [m_papexwindow setFrame : rect display: TRUE];
 
    });
    
 }
 
 
-void round_window::round_window_invalidate()
+void apex_window::round_window_invalidate()
 {
   
    if(m_bDestroying)
@@ -406,19 +406,19 @@ void round_window::round_window_invalidate()
    ns_main_async(^
    {
       
-      [m_proundwindow setViewsNeedDisplay : TRUE];
+      [m_papexwindow setViewsNeedDisplay : TRUE];
       
    });
    
 }
 
 
-NSWindow * get_os_window_ns_window(oswindow hwnd)
-{
-   
-   return __nswindow(hwnd);
-   
-}
+//NSWindow * get_os_window_ns_window(oswindow hwnd)
+//{
+//   
+//   return __nswindow(hwnd);
+//   
+//}
 
 
 

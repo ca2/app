@@ -52,14 +52,14 @@
 //#import <UIKit/UIKit.h>
 //#import <CoreText/CoreText.h>
 
-@class RoundWindow;
+@class AuraWindow;
 
 @interface RoundTextView : UIView
 {
 @public
    
    
-    RoundWindow           * m_pwindow;
+    AuraWindow           * m_pwindow;
    
 }
 @property (nonatomic, copy) NSString *contentText; // The text content (without attributes).

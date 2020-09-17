@@ -54,7 +54,7 @@
 //
 //   ::ios::interaction_impl * pimpl = m_psystem->m_possystemwindow->m_puserinteraction->m_pimpl.cast < ::ios::interaction_impl > ();
 //
-//   UIWindow * window = new_round_window(pimpl, rect);
+//   UIWindow * window = new_aura_window(pimpl, rect);
 //
 //   pimpl->m_oswindow = oswindow_get(window);
 //

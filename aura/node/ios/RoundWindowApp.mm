@@ -7,7 +7,7 @@
 //
 
 #include "_mm.h"
-#import "RoundWindowApp.h"
+#import "AuraWindowApp.h"
 
 void os_on_finish_launching();
 
@@ -21,7 +21,7 @@ void system_call_update_app_activated();
 
 plane_system * create_plane_system();
 
-@implementation RoundWindowApp
+@implementation AuraWindowApp
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -91,7 +91,7 @@ plane_system * create_plane_system();
 void ns_application_main(int argc, char * argv[], const char * pszCommandLine)
 {
    
-   UIApplicationMain(argc, argv, nil, NSStringFromClass([RoundWindowApp class]));
+   UIApplicationMain(argc, argv, nil, NSStringFromClass([AuraWindowApp class]));
    
 }
 

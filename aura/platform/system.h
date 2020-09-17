@@ -559,7 +559,7 @@ namespace aura
       //virtual void session_remove(index iEdge);
 
 
-
+      virtual ::estatus defer_xml();
 
       //virtual ::estatus init_system();
 

@@ -1,6 +1,6 @@
 //
-//  RoundWindowFrameView.h
-//  RoundWindow
+//  AuraWindowFrameView.h
+//  AuraWindow
 //
 //  Created by Matt Gallagher on 12/12/08.
 //  Copyright 2008 Matt Gallagher. All rights reserved.
@@ -15,13 +15,13 @@
 
 #define NS_ROUND_WINDOW_FRAME_PADDING 0
 
-@class RoundWindow;
+@class AuraWindow;
 
-@interface RoundWindowFrameView : UIView
+@interface AuraWindowFrameView : UIView
 {
 @public
    
-   RoundWindow *     m_roundwindow;
+   AuraWindow *     m_roundwindow;
    bool              m_bShift;
    bool              m_bControl;
    bool              m_bAlt;

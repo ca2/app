@@ -2032,7 +2032,7 @@
     <ClInclude Include="aura\node\windows\printer.h" />
     <ClInclude Include="aura\node\windows\process.h" />
     <ClInclude Include="aura\node\windows\registry.h" />
-    <ClInclude Include="aura\node\windows\RoundWindowApp.h" />
+    <ClInclude Include="aura\node\windows\AuraWindowApp.h" />
     <ClInclude Include="aura\node\windows\shell.h" />
     <ClInclude Include="aura\node\windows\simple_hold_handle.h" />
     <ClInclude Include="aura\node\windows\stdio_file.h" />

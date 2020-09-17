@@ -1,6 +1,6 @@
 //
-//  RoundWindow.h
-//  RoundWindow
+//  AuraWindow.h
+//  AuraWindow
 //
 //  Created by Matt Gallagher on 12/12/08.
 //  Copyright 2008 Matt Gallagher. All rights reserved.
@@ -17,17 +17,17 @@
 ::user::e_key event_key(UIEvent * event);
 
 
-class round_window;
+class aura_window;
 
 @class RoundViewController;
 
 
-@interface RoundWindow : UIWindow
+@interface AuraWindow : UIWindow
 {
 @public
    
    
-    round_window           * m_pwindow;
+    aura_window           * m_pwindow;
     RoundViewController    * m_controller;
    
 }

@@ -3,7 +3,7 @@
 #include "aura/platform/machine_event_data2.h"
 #include "aura/platform/machine_event2.h"
 #include "aura/platform/machine_event_central2.h"
-//#include "aura/xml/_.h"
+#include "aura/xml/_.h"
 #include "apex/platform/app_core.h"
 #include "aura/const/id.h"
 #include "aura/node/_node.h"
@@ -8346,6 +8346,47 @@ void system::defer_calc_os_dark_mode()
 
    }
 
+
+   ::estatus system::defer_xml()
+   {
+
+      if (m_pxml)
+      {
+
+         return ::success;
+
+      }
+
+      auto estatus = __compose_new(m_pxml);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = m_pxml->init1();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = m_pxml->init();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
 
 
 

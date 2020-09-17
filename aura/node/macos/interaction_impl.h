@@ -3,7 +3,7 @@
 
 #include "aura/user/interaction.h"
 #include "aura/user/interaction_impl.h"
-#include "round_window.h"
+#include "aura_window.h"
 
 
 namespace macos
@@ -17,7 +17,7 @@ namespace macos
 
    class CLASS_DECL_AURA interaction_impl :
       virtual public ::user::interaction_impl,
-      virtual public ::round_window
+      virtual public ::aura_window
    {
    public:
 
@@ -27,7 +27,7 @@ namespace macos
       bool                             m_bNeedsUpdate;
       rect64                           m_rectLastOsPlacement;
       bool                             m_bEnabled;
-      tick                             m_tickLastRoundWindowDraw;
+      tick                             m_tickLastAuraWindowDraw;
 
 
       interaction_impl();
@@ -43,7 +43,7 @@ namespace macos
       
       virtual void set_destroying() override;
 
-      inline bool is_destroying() const { return ::round_window::m_bDestroying || ::user::interaction_impl::m_bDestroying; }
+      inline bool is_destroying() const { return ::aura_window::m_bDestroying || ::user::interaction_impl::m_bDestroying; }
 
       virtual void release_graphics_resources();
       

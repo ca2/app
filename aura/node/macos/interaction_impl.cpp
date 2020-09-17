@@ -388,7 +388,7 @@ namespace macos
 
          }
 
-         m_oswindow = oswindow_get(new_round_window(this, rect, uStyle));
+         m_oswindow = oswindow_get(new_aura_window(this, rect, uStyle));
 
          m_puserinteraction->layout().window() = ::top_left(rectParam);
 
@@ -4296,7 +4296,7 @@ namespace macos
 
       tick tickNow = tick::now();
 
-      tick tickEllapsed = tickNow - m_tickLastRoundWindowDraw;
+      tick tickEllapsed = tickNow - m_tickLastAuraWindowDraw;
 
       if(tickEllapsed < 12)
       {
@@ -4306,7 +4306,7 @@ namespace macos
 
       }
 
-      m_tickLastRoundWindowDraw = tickNow;
+      m_tickLastAuraWindowDraw = tickNow;
 
       round_window_draw_life_time roundwindowdrawlifetime(this);
 
@@ -5631,7 +5631,7 @@ namespace macos
       
       ::user::interaction_impl::set_destroying();
 
-      ::round_window::m_bDestroying = true;
+      ::aura_window::m_bDestroying = true;
 
    }
 

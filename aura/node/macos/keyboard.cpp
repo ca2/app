@@ -240,58 +240,58 @@ extern "C" {
 }
 #endif
 
-DWORD fixKeyCode(DWORD keyCode, unichar keyChar, enum APPLE_KEYBOARD_TYPE type)
-{
-   /**
-    * In 99% of cases, the given key code is truly keyboard independent.
-    * This function handles the remaining 1% of edge cases.
-    *
-    * Hungarian Keyboard: This is 'QWERTZ' and not 'QWERTY'.
-    * The '0' key is on the left of the '1' key, where '~' is on a US keyboard.
-    * A special 'i' letter key with acute is found on the right of the left shift key.
-    * On the hungarian keyboard, the 'i' key is at the left of the 'Y' key
-    * Some international keyboards have a corresponding key which would be at
-    * the left of the 'Z' key when using a QWERTY layout.
-    *
-    * The Apple Hungarian keyboard sends inverted key codes for the '0' and 'i' keys.
-    * When using the US keyboard layout, key codes are left as-is (inverted).
-    * When using the Hungarian keyboard layout, key codes are swapped (non-inverted).
-    * This means that when using the Hungarian keyboard layout with a US keyboard,
-    * the keys corresponding to '0' and 'i' will effectively be inverted.
-    *
-    * To fix the '0' and 'i' key inversion, we use the corresponding output character
-    * provided by OS X and check for a character to key code mismatch: for instance,
-    * when the output character is '0' for the key code corresponding to the 'i' key.
-    */
-   
-#if 0
-   switch (keyChar)
-   {
-      case '0':
-      case 0x00A7: /* section sign */
-         if (keyCode == APPLE_VK_ISO_Section)
-            keyCode = APPLE_VK_ANSI_Grave;
-         break;
-         
-      case 0x00ED: /* latin small letter i with acute */
-      case 0x00CD: /* latin capital letter i with acute */
-         if (keyCode == APPLE_VK_ANSI_Grave)
-            keyCode = APPLE_VK_ISO_Section;
-         break;
-   }
-   
-#endif
-   
-   /* Perform keycode correction for all ISO keyboards */
-   
-   if (type == APPLE_KEYBOARD_TYPE_ISO)
-   {
-      if (keyCode == APPLE_VK_ANSI_Grave)
-         keyCode = APPLE_VK_ISO_Section;
-      else if (keyCode == APPLE_VK_ISO_Section)
-         keyCode = APPLE_VK_ANSI_Grave;
-   }
-   
-   return keyCode;
-   
-}
+//DWORD fixKeyCode(DWORD keyCode, unichar keyChar, enum APPLE_KEYBOARD_TYPE type)
+//{
+//   /**
+//    * In 99% of cases, the given key code is truly keyboard independent.
+//    * This function handles the remaining 1% of edge cases.
+//    *
+//    * Hungarian Keyboard: This is 'QWERTZ' and not 'QWERTY'.
+//    * The '0' key is on the left of the '1' key, where '~' is on a US keyboard.
+//    * A special 'i' letter key with acute is found on the right of the left shift key.
+//    * On the hungarian keyboard, the 'i' key is at the left of the 'Y' key
+//    * Some international keyboards have a corresponding key which would be at
+//    * the left of the 'Z' key when using a QWERTY layout.
+//    *
+//    * The Apple Hungarian keyboard sends inverted key codes for the '0' and 'i' keys.
+//    * When using the US keyboard layout, key codes are left as-is (inverted).
+//    * When using the Hungarian keyboard layout, key codes are swapped (non-inverted).
+//    * This means that when using the Hungarian keyboard layout with a US keyboard,
+//    * the keys corresponding to '0' and 'i' will effectively be inverted.
+//    *
+//    * To fix the '0' and 'i' key inversion, we use the corresponding output character
+//    * provided by OS X and check for a character to key code mismatch: for instance,
+//    * when the output character is '0' for the key code corresponding to the 'i' key.
+//    */
+//   
+//#if 0
+//   switch (keyChar)
+//   {
+//      case '0':
+//      case 0x00A7: /* section sign */
+//         if (keyCode == APPLE_VK_ISO_Section)
+//            keyCode = APPLE_VK_ANSI_Grave;
+//         break;
+//         
+//      case 0x00ED: /* latin small letter i with acute */
+//      case 0x00CD: /* latin capital letter i with acute */
+//         if (keyCode == APPLE_VK_ANSI_Grave)
+//            keyCode = APPLE_VK_ISO_Section;
+//         break;
+//   }
+//   
+//#endif
+//   
+//   /* Perform keycode correction for all ISO keyboards */
+//   
+//   if (type == APPLE_KEYBOARD_TYPE_ISO)
+//   {
+//      if (keyCode == APPLE_VK_ANSI_Grave)
+//         keyCode = APPLE_VK_ISO_Section;
+//      else if (keyCode == APPLE_VK_ISO_Section)
+//         keyCode = APPLE_VK_ANSI_Grave;
+//   }
+//   
+//   return keyCode;
+//   
+//}

@@ -16,10 +16,10 @@
 
 NSCursor * g_pcurrentNscursor = nullptr;
 
-@implementation RoundWindowFrameView
+@implementation ApexWindowFrameView
 
 
-- (id) initWithFrame: (NSRect) frame andRoundWindow: (RoundWindow *) roundwindow
+- (id) initWithFrame: (NSRect) frame andApexWindow: (ApexWindow *) papexwindow
 {
 
    self                 = [super initWithFrame:frame];
@@ -29,7 +29,7 @@ NSCursor * g_pcurrentNscursor = nullptr;
    
 //   appleKeyboardType    = mac_detect_keyboard_type();
    
-   m_roundwindow        =  roundwindow;
+   m_papexwindow        =  papexwindow;
    
    m_bLShift            = false;
    m_bRShift            = false;
@@ -98,7 +98,7 @@ NSCursor * g_pcurrentNscursor = nullptr;
 - (void) mouseUp: (NSEvent *) event
 {
 
-   round_window * p = m_roundwindow->m_pwindow;
+   apex_window * p = m_papexwindow->m_papexwindow;
    
    if(p == NULL)
       return;
@@ -130,7 +130,7 @@ NSCursor * g_pcurrentNscursor = nullptr;
 - (void) mouseMoved: (NSEvent *) event
 {
 
-   round_window * p = m_roundwindow->m_pwindow;
+   apex_window * p = m_papexwindow->m_papexwindow;
    
    if(p == NULL)
       return;
@@ -151,7 +151,7 @@ NSCursor * g_pcurrentNscursor = nullptr;
 - (void) mouseDragged: (NSEvent *) event
 {
 
-   round_window * p = m_roundwindow->m_pwindow;
+   apex_window * p = m_papexwindow->m_papexwindow;
    
    if(p == NULL)
       return;
@@ -182,7 +182,7 @@ NSCursor * g_pcurrentNscursor = nullptr;
 - (void) mouseDown: (NSEvent *) event
 {
    
-   round_window * p = m_roundwindow->m_pwindow;
+   apex_window * p = m_papexwindow->m_papexwindow;
    
    if(p == NULL)
       return;
@@ -205,7 +205,7 @@ NSCursor * g_pcurrentNscursor = nullptr;
 - (void)rightMouseUp:(NSEvent *)event
 {
    
-   round_window * p = m_roundwindow->m_pwindow;
+   apex_window * p = m_papexwindow->m_papexwindow;
    
    if(p == NULL)
       return;
@@ -228,7 +228,7 @@ NSCursor * g_pcurrentNscursor = nullptr;
 - (void)rightMouseDown:(NSEvent *)event
 {
    
-   round_window * p = m_roundwindow->m_pwindow;
+   apex_window * p = m_papexwindow->m_papexwindow;
    
    if(p == NULL)
       return;
@@ -251,7 +251,7 @@ NSCursor * g_pcurrentNscursor = nullptr;
 - (void)scrollWheel:(NSEvent *)event
 {
    
-   round_window * p = m_roundwindow->m_pwindow;
+   apex_window * p = m_papexwindow->m_papexwindow;
    
    if(p == NULL)
       return;
@@ -306,15 +306,15 @@ NSCursor * g_pcurrentNscursor = nullptr;
     
     // return;
     
-    BOOL bWindowVisible = [m_roundwindow isVisible];
+    BOOL bWindowVisible = [m_papexwindow isVisible];
     
     BOOL bViewHidden = [self isHidden];
     
-    NSRect e = [m_roundwindow frame];
+    NSRect e = [m_papexwindow frame];
     
     NSRect e2 = [[NSScreen mainScreen] frame];
     
-    double a = [m_roundwindow alphaValue];
+    double a = [m_papexwindow alphaValue];
     
     CGContextRef cgc1 = (CGContextRef) [[NSGraphicsContext currentContext] graphicsPort];
     
@@ -400,7 +400,7 @@ NSCursor * g_pcurrentNscursor = nullptr;
 - (void) drawRect: (NSRect) rect
 {
 
-   round_window * p = m_roundwindow->m_pwindow;
+   apex_window * p = m_papexwindow->m_papexwindow;
    
    if(p == NULL)
    {
@@ -482,24 +482,24 @@ NSCursor * g_pcurrentNscursor = nullptr;
       
    }
    
-   if(![m_roundwindow isKeyWindow])
+   if(![m_papexwindow isKeyWindow])
    {
       
-      [m_roundwindow makeKeyWindow];
+      [m_papexwindow makeKeyWindow];
       
    }
    
-//   if(![m_roundwindow isMainWindow])
+//   if(![m_papexwindow isMainWindow])
 //   {
 //
-//      [m_roundwindow makeMainWindow];
+//      [m_papexwindow makeMainWindow];
 //
 //   }
 //   
-//   if([[NSApp orderedWindows] firstObject] != m_roundwindow)
+//   if([[NSApp orderedWindows] firstObject] != m_papexwindow)
 //   {
 //   
-//      [m_roundwindow orderFront:self];
+//      [m_papexwindow orderFront:self];
 //      
 //   }
 
@@ -535,7 +535,7 @@ NSCursor * g_pcurrentNscursor = nullptr;
 //  // else
 //  // {
 //      
-//      //      m_pwindow->round_window_on_become_first_responder();
+//      //      m_papexwindow->round_window_on_become_first_responder();
 //      
 //    //  return YES;
 //      
@@ -575,7 +575,7 @@ m_f = true; \
 - (void)keyDown:(NSEvent *)event
 {
 
-   round_window * p = m_roundwindow->m_pwindow;
+   apex_window * p = m_papexwindow->m_papexwindow;
      
    if(p == NULL)
    {
@@ -685,7 +685,7 @@ m_f = true; \
    
    NSString * characters;
    
-   round_window * p = m_roundwindow->m_pwindow;
+   apex_window * p = m_papexwindow->m_papexwindow;
    
    if(p == NULL)
    {
@@ -738,7 +738,7 @@ m_f = true; \
 - (void)flagsChanged:(NSEvent *)event
 {
 
-   round_window * p = m_roundwindow->m_pwindow;
+   apex_window * p = m_papexwindow->m_papexwindow;
    
    if(p == NULL)
    {

@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AXIS combo_list :
+   class CLASS_DECL_AURA combo_list :
       virtual public ::user::scroll_base
    {
    public:

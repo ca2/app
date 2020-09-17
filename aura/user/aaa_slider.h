@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AXIS slider:
+   class CLASS_DECL_AURA slider:
       virtual public ::user::interaction
    {
    public:

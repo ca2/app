@@ -10,8 +10,8 @@
 // C and Objective-C include
 
 #ifdef __OBJC__
-#include "NSObject+DDExtensions.h"
-#include "DDInvocationGrabber.h"
+//#include "NSObject+DDExtensions.h"
+//#include "DDInvocationGrabber.h"
 
 char * ns_string(NSString * str);
 
@@ -50,7 +50,7 @@ void apple_accumulate_on_open_file(const char ** psza, int iCount, const char * 
 void apple_on_new_file();
 
 
-void ns_application_main(int argc, char *argv[], const char * pszCommandLine);
+void apex_application_main(int argc, char *argv[], const char * pszCommandLine);
 
 
 

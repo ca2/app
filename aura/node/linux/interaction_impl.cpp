@@ -4232,7 +4232,7 @@ namespace linux
    bool interaction_impl::SetForegroundWindow()
    {
 
-      return ::set_foreground_window(get_handle()) != FALSE;
+      return ::set_foregaura_window(get_handle()) != FALSE;
 
    }
 

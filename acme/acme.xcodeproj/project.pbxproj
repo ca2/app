@@ -1132,6 +1132,7 @@
 		9AD199832511C52A00B4C44A /* pthread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A85725114430008DABD2 /* pthread.cpp */; };
 		9AD199842511C6BA00B4C44A /* mmos.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A87825114430008DABD2 /* mmos.mm */; };
 		9AD19AD12512D57A00B4C44A /* macos.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD19AD02512D57A00B4C44A /* macos.h */; };
+		9AEF22482512F30C0000D8E1 /* windowing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A89325114430008DABD2 /* windowing.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -2058,7 +2059,7 @@
 		9A68A89025114430008DABD2 /* clipboard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = clipboard.cpp; sourceTree = "<group>"; };
 		9A68A89125114430008DABD2 /* mm_oswindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mm_oswindow.h; sourceTree = "<group>"; };
 		9A68A89225114430008DABD2 /* aaa_mm_base_user.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = aaa_mm_base_user.mm; sourceTree = "<group>"; };
-		9A68A89325114430008DABD2 /* aaa_windowing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_windowing.cpp; sourceTree = "<group>"; };
+		9A68A89325114430008DABD2 /* windowing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = windowing.cpp; sourceTree = "<group>"; };
 		9A68A89425114430008DABD2 /* time.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = time.cpp; sourceTree = "<group>"; };
 		9A68A89525114430008DABD2 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A68A89625114430008DABD2 /* process_c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = process_c.h; sourceTree = "<group>"; };
@@ -3660,7 +3661,7 @@
 				9A68A89725114430008DABD2 /* aaa_launcher.cpp */,
 				9A68A87F25114430008DABD2 /* aaa_library.cpp */,
 				9A68A89225114430008DABD2 /* aaa_mm_base_user.mm */,
-				9A68A89325114430008DABD2 /* aaa_windowing.cpp */,
+				9A68A89325114430008DABD2 /* windowing.cpp */,
 				9A68A86F25114430008DABD2 /* application_system_run.cpp */,
 				9A68A87B25114430008DABD2 /* aura.cpp */,
 				9A68A89025114430008DABD2 /* clipboard.cpp */,
@@ -5264,6 +5265,7 @@
 				9A68B04125114436008DABD2 /* cross_win_file.cpp in Sources */,
 				9A68AD8F25114434008DABD2 /* factory.cpp in Sources */,
 				9A68AE3F25114435008DABD2 /* runnable.cpp in Sources */,
+				9AEF22482512F30C0000D8E1 /* windowing.cpp in Sources */,
 				9A68AFCD25114436008DABD2 /* listing.cpp in Sources */,
 				9A68B0E525114436008DABD2 /* exception_engine.cpp in Sources */,
 				9A68B03E25114436008DABD2 /* file.mm in Sources */,

@@ -24,14 +24,6 @@
  * limitations under the License.
  */
 
-enum APPLE_KEYBOARD_TYPE
-{
-   APPLE_KEYBOARD_TYPE_ANSI,
-   APPLE_KEYBOARD_TYPE_ISO,
-   APPLE_KEYBOARD_TYPE_JIS
-};
-
-enum APPLE_KEYBOARD_TYPE mac_detect_keyboard_type();
 
 extern "C"
 {

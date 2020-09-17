@@ -6,7 +6,7 @@
 //
 //
 
-@class RoundWindowFrameView;
+@class AuraWindowFrameView;
 @class RoundEditView;
 
 @interface RoundViewController : UIViewController < UITextViewDelegate >
@@ -14,8 +14,8 @@
 @public
    
    
-   RoundWindowFrameView   *   childContentView;
-   RoundWindow *              m_pwindow;
+   AuraWindowFrameView   *   childContentView;
+   AuraWindow *              m_pwindow;
    RoundEditView *            m_pedit;
 
 }

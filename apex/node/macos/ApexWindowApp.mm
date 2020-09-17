@@ -20,7 +20,7 @@ void macos_on_app_changed_occlusion_state();
 
 void set_apex_system_as_thread();
 
-@implementation RoundWindowApp
+@implementation ApexWindowApp
 
 
 @synthesize windowcontroller;
@@ -438,12 +438,12 @@ void ns_create_main_menu()
 }
 
 
-void ns_application_main(int argc, char *argv[], const char * pszCommandLine)
+void apex_application_main(int argc, char *argv[], const char * pszCommandLine)
 {
    
    NSApplication * application = [NSApplication sharedApplication];
    
-   RoundWindowApp * appDelegate = [[RoundWindowApp alloc] init];
+   ApexWindowApp * appDelegate = [[ApexWindowApp alloc] init];
    
    [application setDelegate:appDelegate];
    

@@ -26,12 +26,12 @@ struct mf_context
 
 
 
-@interface RoundWindowFrameView : NSView
+@interface ApexWindowFrameView : NSView
 {
    @public
 //   mf_context* mfc;
    //APPLE_KEYBOARD_TYPE appleKeyboardType;
-   RoundWindow * m_roundwindow;
+   ApexWindow * m_papexwindow;
    NSTrackingArea * trackingArea;
    bool m_bLShift;
    bool m_bRShift;
@@ -45,6 +45,6 @@ struct mf_context
    
 }
 
-- (id)initWithFrame:(NSRect)frame andRoundWindow:(RoundWindow*)roundwindow;
+- (id)initWithFrame:(NSRect)frame andApexWindow:(ApexWindow*)apexwindow;
 
 @end

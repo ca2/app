@@ -1,5 +1,5 @@
 //
-//  round_window.h
+//  aura_window.h
 //  os
 //
 //  Created by Camilo Sasuke Tsumanuma on 6/8/13.
@@ -13,13 +13,13 @@
 
 
 #ifdef __OBJC__
-@class RoundWindow;
+@class AuraWindow;
 typedef UIWindow * ui_window_ptr;
 #else
 typedef void * ui_window_ptr;
 #endif
 
-class round_window
+class aura_window
 {
 public:
 
@@ -27,7 +27,7 @@ public:
 bool m_bDirty;
    
 #ifdef __OBJC__
-   RoundWindow * m_proundwindow;
+   AuraWindow * m_proundwindow;
 #else
    void * m_proundwindow;
 #endif
@@ -92,4 +92,4 @@ bool m_bDirty;
 };
 
 
-UIWindow * new_round_window(round_window * pwindow, CGRect rect);
+UIWindow * new_aura_window(aura_window * pwindow, CGRect rect);

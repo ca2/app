@@ -26,7 +26,7 @@ CLASS_DECL_AURA::file::path get_known_folder(REFKNOWNFOLDERID kfid);
 //#include "printer.h"
 #include "process.h"
 //#include "registry.h"
-//#include "RoundWindowApp.h"
+//#include "AuraWindowApp.h"
 //#include "shell.h"
 //#include "simple_hold_handle.h"
 //#include "stdio_file.h"

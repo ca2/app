@@ -88,7 +88,7 @@ plane_system * create_plane_system();
 @end
 
 
-void ns_application_main(int argc, char * argv[], const char * pszCommandLine)
+void apex_application_main(int argc, char * argv[], const char * pszCommandLine)
 {
    
    UIApplicationMain(argc, argv, nil, NSStringFromClass([RoundWindowApp class]));

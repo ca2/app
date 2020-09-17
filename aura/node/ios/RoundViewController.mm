@@ -156,7 +156,7 @@
 - (BOOL)canBecomeFirstResponder
 {
    
-//   round_window * p = m_pwindow->m_pwindow;
+//   aura_window * p = m_pwindow->m_pwindow;
 //   
 //   return p->m_bCanBecomeFirstResponder;
    
@@ -167,7 +167,7 @@
 - (BOOL)becomeFirstResponder
 {
    
-   //round_window * p = m_pwindow->m_pwindow;
+   //aura_window * p = m_pwindow->m_pwindow;
    
    //if(p->m_bCanBecomeFirstResponder)
    {
@@ -184,7 +184,7 @@
 - (BOOL)textViewShouldBeginEditing:(UITextView * ) pview
 {
    
-   round_window * p = m_pwindow->m_pwindow;
+   aura_window * p = m_pwindow->m_pwindow;
    
    if(p->m_bCanBecomeFirstResponder)
    {

@@ -104,7 +104,7 @@
 ////
 ////   set_main_ithread(psystem->m_uThread);
 ////
-//   ns_application_main(psystem->m_argc, psystem->m_argv, psystem->m_strCommandLine);
+//   acme_application_main(psystem->m_argc, psystem->m_argv, psystem->m_strCommandLine);
 //
 //   return ::success;
 //

@@ -1,12 +1,12 @@
 //
-//  round_window.cpp
+//  aura_window.cpp
 //  os
 //
 //  Created by Camilo Sasuke Tsumanuma on 6/8/13.
 //  Copyright (c) 2013 ca2 Desenvolvimento de Sofware Ltda. All rights reserved.
 //
 #import "_mm.h"
-#import "aura/node/ios/RoundWindowApp.h"
+#import "aura/node/ios/AuraWindowApp.h"
 
 
 #import "aura/os/apple/DDInvocationGrabber.h"
@@ -26,7 +26,7 @@
 
 #endif
 
-UIWindow * new_round_window(round_window * pwindow, CGRect rect)
+UIWindow * new_aura_window(aura_window * pwindow, CGRect rect)
 {
    
    __block UIWindow * puiwindow = nullptr;
@@ -34,7 +34,7 @@ UIWindow * new_round_window(round_window * pwindow, CGRect rect)
    ns_main_sync(^()
    {
       
-      RoundWindow * proundwindow = [RoundWindow alloc];
+      AuraWindow * proundwindow = [AuraWindow alloc];
        
       pwindow->m_proundwindow = proundwindow;
        
@@ -54,7 +54,7 @@ UIWindow * new_round_window(round_window * pwindow, CGRect rect)
 }
 
 
-void round_window::round_window_show()
+void aura_window::round_window_show()
 {
    
 //   [[m_proun dd_invokeOnMainThread] showWindow : m_proundwindow];
@@ -62,7 +62,7 @@ void round_window::round_window_show()
 }
 
 
-void round_window::round_window_redraw()
+void aura_window::round_window_redraw()
 {
    
    ns_main_async(^{
@@ -76,7 +76,7 @@ void round_window::round_window_redraw()
 }
 
 
-void round_window::round_window_redraw_sync()
+void aura_window::round_window_redraw_sync()
 {
    
    ns_main_async(^{
@@ -90,7 +90,7 @@ void round_window::round_window_redraw_sync()
 }
 
 
-void round_window::round_window_invalidate()
+void aura_window::round_window_invalidate()
 {
    
    ns_main_async(^{
@@ -104,7 +104,7 @@ void round_window::round_window_invalidate()
 }
 
 
-void round_window::round_window_show_keyboard(bool bShow)
+void aura_window::round_window_show_keyboard(bool bShow)
 {
    
    ns_main_async(^
@@ -139,7 +139,7 @@ void round_window::round_window_show_keyboard(bool bShow)
 
 
 //
-//  round_window.cpp
+//  aura_window.cpp
 //  os
 //
 //  Created by Camilo Sasuke Tsumanuma on 6/8/13.
@@ -151,7 +151,7 @@ void round_window::round_window_show_keyboard(bool bShow)
 
 
 
-void round_window::round_window_set_title(const char * pszTitle)
+void aura_window::round_window_set_title(const char * pszTitle)
 {
    
    NSString * str = [NSString stringWithUTF8String:pszTitle];
@@ -162,7 +162,7 @@ void round_window::round_window_set_title(const char * pszTitle)
 }
 
 
-void round_window::round_window_get_title(char * pszTitle, long iSize)
+void aura_window::round_window_get_title(char * pszTitle, long iSize)
 {
    
    NSString * str = [[m_proundwindow dd_invokeOnMainThreadAndWaitUntilDone:FALSE] title];
@@ -172,7 +172,7 @@ void round_window::round_window_get_title(char * pszTitle, long iSize)
 }
 
 
-void round_window::round_window_set_sel(long iBeg, long iEnd)
+void aura_window::round_window_set_sel(long iBeg, long iEnd)
 {
    
    // UITextView --> UIView
@@ -207,7 +207,7 @@ void round_window::round_window_set_sel(long iBeg, long iEnd)
 }
 
 
-void round_window::round_window_get_sel(long & iBeg, long & iEnd)
+void aura_window::round_window_get_sel(long & iBeg, long & iEnd)
 {
    
    // UITextView --> UIView
@@ -226,7 +226,7 @@ void round_window::round_window_get_sel(long & iBeg, long & iEnd)
 }
 
 
-void round_window::round_window_set_text(const char * pszText)
+void aura_window::round_window_set_text(const char * pszText)
 {
    
    NSString * text = [[NSString alloc] initWithUTF8String:pszText];
@@ -236,7 +236,7 @@ void round_window::round_window_set_text(const char * pszText)
    
 }
 
-void round_window::round_window_get_text(char * pszText, long iSize)
+void aura_window::round_window_get_text(char * pszText, long iSize)
 {
    
    // UITextView --> UIView
@@ -245,7 +245,7 @@ void round_window::round_window_get_text(char * pszText, long iSize)
 }
 
 
-long round_window::round_window_get_text_length()
+long aura_window::round_window_get_text_length()
 {
    
 //   return strlen([[m_proundwindow->m_controller->childContentView text] UTF8String]);
@@ -255,7 +255,7 @@ long round_window::round_window_get_text_length()
 }
 
 
-void round_window::round_window_edit_on_set_focus(int l, int t, int r, int b, const char * pszText, long iSelBeg, long iSelEnd)
+void aura_window::round_window_edit_on_set_focus(int l, int t, int r, int b, const char * pszText, long iSelBeg, long iSelEnd)
 {
    
    CGRect rect;
@@ -273,7 +273,7 @@ void round_window::round_window_edit_on_set_focus(int l, int t, int r, int b, co
 }
 
 
-void round_window::round_window_edit_on_kill_focus()
+void aura_window::round_window_edit_on_kill_focus()
 {
    
    [ m_proundwindow->m_controller onEditKillFocus ];
@@ -285,7 +285,7 @@ void round_window::round_window_edit_on_kill_focus()
 
 
 
-void round_window::round_window_destroy()
+void aura_window::round_window_destroy()
 {
    
    [[m_proundwindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE] close];
@@ -293,7 +293,7 @@ void round_window::round_window_destroy()
 }
 
 
-//void round_window::round_window_show()
+//void aura_window::round_window_show()
 //{
 //   
 ////   [[m_proundwindow->m_controller dd_invokeOnMainThreadAndWaitUntilDone:TRUE] showWindow : m_proundwindow];
@@ -301,14 +301,14 @@ void round_window::round_window_destroy()
 //}
 
 
-void round_window::round_window_hide()
+void aura_window::round_window_hide()
 {
    
 //   [[m_proundwindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE] orderOut : m_proundwindow];
    
 }
 
-//void round_window::round_window_order_front()
+//void aura_window::round_window_order_front()
 //{
 //   
 //   [[m_proundwindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE] orderFront : m_proundwindow];
@@ -316,7 +316,7 @@ void round_window::round_window_hide()
 //}
 //
 //
-//void round_window::round_window_make_key_window()
+//void aura_window::round_window_make_key_window()
 //{
 //   
 //   [[m_proundwindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE] makeKeyWindow];
@@ -324,7 +324,7 @@ void round_window::round_window_hide()
 //}
 
 
-//void round_window::round_window_make_key_window_and_order_front()
+//void aura_window::round_window_make_key_window_and_order_front()
 //{
 //   
 //   [[m_proundwindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE] makeKeyAndOrderFront: m_proundwindow];
@@ -332,7 +332,7 @@ void round_window::round_window_hide()
 //}
 //
 //
-//void round_window::round_window_make_main_window()
+//void aura_window::round_window_make_main_window()
 //{
 //   
 //   [[m_proundwindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE] makeMainWindow];
@@ -340,7 +340,7 @@ void round_window::round_window_hide()
 //}
 //
 //
-//void round_window::round_window_redraw()
+//void aura_window::round_window_redraw()
 //{
 //   
 //   [[m_proundwindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE] display ];
@@ -348,7 +348,7 @@ void round_window::round_window_hide()
 //}
 //
 //
-//void round_window::round_window_invalidate()
+//void aura_window::round_window_invalidate()
 //{
 //   
 //   //   [[m_proundwindow->m_controller dd_invokeOnMainThread] setViewsNeedDisplay : TRUE];

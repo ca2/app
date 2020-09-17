@@ -21,7 +21,7 @@
 //
 
 
-@interface RoundWindowApp : NSObject<NSApplicationDelegate, NSMenuDelegate>
+@interface ApexWindowApp : NSObject<NSApplicationDelegate, NSMenuDelegate>
 {
 @public
 

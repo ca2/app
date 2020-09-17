@@ -5014,7 +5014,7 @@ void x11_async_runnable(::generic * prunnable)
 }
 
 
-WINBOOL set_foreground_window(oswindow oswindow)
+WINBOOL set_foregaura_window(oswindow oswindow)
 {
 
    if(!::is_window(oswindow))

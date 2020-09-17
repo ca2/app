@@ -9,9 +9,9 @@
 //#import <UIKit/UIKit.h>
 
 
-@class RoundWindowFrameView;
+@class AuraWindowFrameView;
 
-@interface RoundWindowApp : UIResponder <UIApplicationDelegate, UIDocumentInteractionControllerDelegate>
+@interface AuraWindowApp : UIResponder <UIApplicationDelegate, UIDocumentInteractionControllerDelegate>
 {
    
 @public
@@ -21,6 +21,6 @@
 }
 
 @property (strong, nonatomic) UIWindow * window;
-@property (strong, nonatomic) RoundWindowFrameView * view;
+@property (strong, nonatomic) AuraWindowFrameView * view;
 
 @end

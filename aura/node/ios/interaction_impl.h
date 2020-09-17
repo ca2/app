@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "round_window.h"
+#include "aura_window.h"
 #include "aura/user/interaction_impl.h"
 
 
@@ -16,7 +16,7 @@ namespace ios
 
    class CLASS_DECL_AURA interaction_impl :
       virtual public ::user::interaction_impl,
-      virtual public ::round_window
+      virtual public ::aura_window
    {
    public:
 

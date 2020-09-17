@@ -574,20 +574,14 @@
 		9A68BE292511444F008DABD2 /* user.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B7752511444B008DABD2 /* user.h */; };
 		9A68BE2A2511444F008DABD2 /* time.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B77D2511444B008DABD2 /* time.h */; };
 		9A68BE2B2511444F008DABD2 /* main.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B77E2511444B008DABD2 /* main.h */; };
-		9A68BE2C2511444F008DABD2 /* NSObject+DDExtensions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B77F2511444B008DABD2 /* NSObject+DDExtensions.mm */; };
-		9A68BE2D2511444F008DABD2 /* NSString+SymlinksAndAliases.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B7802511444B008DABD2 /* NSString+SymlinksAndAliases.h */; };
-		9A68BE2E2511444F008DABD2 /* NSString+SymlinksAndAliases.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B7812511444B008DABD2 /* NSString+SymlinksAndAliases.mm */; };
 		9A68BE2F2511444F008DABD2 /* _apple.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B7822511444B008DABD2 /* _apple.h */; };
 		9A68BE302511444F008DABD2 /* debug.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B7832511444B008DABD2 /* debug.h */; };
 		9A68BE312511444F008DABD2 /* image_gif.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B7842511444B008DABD2 /* image_gif.cpp */; };
 		9A68BE322511444F008DABD2 /* process.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B7852511444B008DABD2 /* process.cpp */; };
 		9A68BE342511444F008DABD2 /* _mm.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B7872511444B008DABD2 /* _mm.h */; };
 		9A68BE352511444F008DABD2 /* _apple.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B7882511444B008DABD2 /* _apple.mm */; };
-		9A68BE362511444F008DABD2 /* DDInvocationGrabber.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B7892511444B008DABD2 /* DDInvocationGrabber.h */; };
-		9A68BE372511444F008DABD2 /* UncaughtExceptionHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B78A2511444B008DABD2 /* UncaughtExceptionHandler.h */; };
 		9A68BE382511444F008DABD2 /* ns_exception.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B78B2511444B008DABD2 /* ns_exception.h */; };
 		9A68BE392511444F008DABD2 /* ns_exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B78C2511444B008DABD2 /* ns_exception.cpp */; };
-		9A68BE3A2511444F008DABD2 /* NSObject+DDExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B78D2511444B008DABD2 /* NSObject+DDExtensions.h */; };
 		9A68BE3B2511444F008DABD2 /* graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B78E2511444B008DABD2 /* graphics.cpp */; };
 		9A68BE3C2511444F008DABD2 /* multihreading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B78F2511444B008DABD2 /* multihreading.cpp */; };
 		9A68BE3D2511444F008DABD2 /* _mm_common.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B7902511444B008DABD2 /* _mm_common.h */; };
@@ -596,9 +590,7 @@
 		9A68BE402511444F008DABD2 /* graphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B7932511444B008DABD2 /* graphics.h */; };
 		9A68BE412511444F008DABD2 /* _c_mm.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B7942511444B008DABD2 /* _c_mm.h */; };
 		9A68BE422511444F008DABD2 /* exe_path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B7952511444B008DABD2 /* exe_path.cpp */; };
-		9A68BE432511444F008DABD2 /* DDInvocationGrabber.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B7962511444B008DABD2 /* DDInvocationGrabber.mm */; };
 		9A68BE442511444F008DABD2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B7972511444B008DABD2 /* main.cpp */; };
-		9A68BE452511444F008DABD2 /* UncaughtExceptionHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B7982511444B008DABD2 /* UncaughtExceptionHandler.mm */; };
 		9A68BE462511444F008DABD2 /* time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B7992511444B008DABD2 /* time.cpp */; };
 		9A68BE472511444F008DABD2 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B79A2511444B008DABD2 /* _.h */; };
 		9A68BE482511444F008DABD2 /* binreloc.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B79B2511444B008DABD2 /* binreloc.h */; };
@@ -635,7 +627,6 @@
 		9A68BE692511444F008DABD2 /* file.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B7BE2511444B008DABD2 /* file.h */; };
 		9A68BE6A2511444F008DABD2 /* mm_graphics.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B7BF2511444B008DABD2 /* mm_graphics.mm */; };
 		9A68BE6B2511444F008DABD2 /* _c.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B7C02511444B008DABD2 /* _c.h */; };
-		9A68BE6C2511444F008DABD2 /* mmos.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B7C12511444B008DABD2 /* mmos.mm */; };
 		9A68BE6D2511444F008DABD2 /* language.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B7C22511444B008DABD2 /* language.cpp */; };
 		9A68BE6E2511444F008DABD2 /* process_pid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B7C32511444B008DABD2 /* process_pid.cpp */; };
 		9A68BE6F2511444F008DABD2 /* aura.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B7C42511444B008DABD2 /* aura.cpp */; };
@@ -735,9 +726,9 @@
 		9A68C02825114450008DABD2 /* process.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B9B72511444C008DABD2 /* process.h */; };
 		9A68C03425114450008DABD2 /* thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B9C62511444C008DABD2 /* thread.cpp */; };
 		9A68C03625114450008DABD2 /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B9C82511444C008DABD2 /* util.cpp */; };
-		9A68C03725114450008DABD2 /* round_window.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B9C92511444C008DABD2 /* round_window.h */; };
+		9A68C03725114450008DABD2 /* apex_window.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B9C92511444C008DABD2 /* apex_window.h */; };
 		9A68C03825114450008DABD2 /* _mm.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B9CA2511444C008DABD2 /* _mm.h */; };
-		9A68C03925114450008DABD2 /* RoundWindowApp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B9CB2511444C008DABD2 /* RoundWindowApp.h */; };
+		9A68C03925114450008DABD2 /* ApexWindowApp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B9CB2511444C008DABD2 /* ApexWindowApp.h */; };
 		9A68C03B25114450008DABD2 /* dir_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B9CD2511444C008DABD2 /* dir_system.cpp */; };
 		9A68C03C25114450008DABD2 /* dir_system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B9CE2511444C008DABD2 /* dir_system.h */; };
 		9A68C03E25114450008DABD2 /* application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B9D02511444C008DABD2 /* application.h */; };
@@ -748,10 +739,10 @@
 		9A68C04425114450008DABD2 /* trace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B9D62511444C008DABD2 /* trace.cpp */; };
 		9A68C04525114450008DABD2 /* shell_macos_mm.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B9D72511444C008DABD2 /* shell_macos_mm.mm */; };
 		9A68C04625114450008DABD2 /* file_os_watcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B9D82511444C008DABD2 /* file_os_watcher.h */; };
-		9A68C04725114450008DABD2 /* RoundWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B9D92511444C008DABD2 /* RoundWindowController.h */; };
-		9A68C04825114450008DABD2 /* RoundWindowApp.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B9DA2511444C008DABD2 /* RoundWindowApp.mm */; };
-		9A68C04925114450008DABD2 /* RoundWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B9DB2511444C008DABD2 /* RoundWindow.h */; };
-		9A68C04A25114450008DABD2 /* RoundWindowFrameView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B9DC2511444C008DABD2 /* RoundWindowFrameView.h */; };
+		9A68C04725114450008DABD2 /* ApexWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B9D92511444C008DABD2 /* ApexWindowController.h */; };
+		9A68C04825114450008DABD2 /* ApexWindowApp.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B9DA2511444C008DABD2 /* ApexWindowApp.mm */; };
+		9A68C04925114450008DABD2 /* ApexWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B9DB2511444C008DABD2 /* ApexWindow.h */; };
+		9A68C04A25114450008DABD2 /* ApexWindowFrameView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B9DC2511444C008DABD2 /* ApexWindowFrameView.h */; };
 		9A68C04B25114450008DABD2 /* file_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B9DD2511444C008DABD2 /* file_context.cpp */; };
 		9A68C04C25114450008DABD2 /* file_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B9DE2511444C008DABD2 /* file_context.h */; };
 		9A68C04D25114450008DABD2 /* thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B9DF2511444C008DABD2 /* thread.h */; };
@@ -828,6 +819,10 @@
 		9AD199C925127AB500B4C44A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD199C825127AB500B4C44A /* Security.framework */; };
 		9AD199CB25127C8300B4C44A /* app.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9AD199CA25127C8300B4C44A /* app.mm */; };
 		9AD19ADC2512D76200B4C44A /* macos.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD19ADB2512D76200B4C44A /* macos.h */; };
+		9AEF22442512F1470000D8E1 /* ApexWindowFrameView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B9CC2511444C008DABD2 /* ApexWindowFrameView.mm */; };
+		9AEF22452512F14B0000D8E1 /* ApexWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B9EA2511444C008DABD2 /* ApexWindowController.mm */; };
+		9AEF22462512F14F0000D8E1 /* ApexWindow.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B9E62511444C008DABD2 /* ApexWindow.mm */; };
+		9AEF22472512F2630000D8E1 /* apex_window.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B9CF2511444C008DABD2 /* apex_window.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1499,9 +1494,6 @@
 		9A68B7752511444B008DABD2 /* user.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user.h; sourceTree = "<group>"; };
 		9A68B77D2511444B008DABD2 /* time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = time.h; sourceTree = "<group>"; };
 		9A68B77E2511444B008DABD2 /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
-		9A68B77F2511444B008DABD2 /* NSObject+DDExtensions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "NSObject+DDExtensions.mm"; sourceTree = "<group>"; };
-		9A68B7802511444B008DABD2 /* NSString+SymlinksAndAliases.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SymlinksAndAliases.h"; sourceTree = "<group>"; };
-		9A68B7812511444B008DABD2 /* NSString+SymlinksAndAliases.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "NSString+SymlinksAndAliases.mm"; sourceTree = "<group>"; };
 		9A68B7822511444B008DABD2 /* _apple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _apple.h; sourceTree = "<group>"; };
 		9A68B7832511444B008DABD2 /* debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = debug.h; sourceTree = "<group>"; };
 		9A68B7842511444B008DABD2 /* image_gif.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = image_gif.cpp; sourceTree = "<group>"; };
@@ -1509,11 +1501,8 @@
 		9A68B7862511444B008DABD2 /* aaa_want_to_remove_exception_engine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_want_to_remove_exception_engine.cpp; sourceTree = "<group>"; };
 		9A68B7872511444B008DABD2 /* _mm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _mm.h; sourceTree = "<group>"; };
 		9A68B7882511444B008DABD2 /* _apple.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = _apple.mm; sourceTree = "<group>"; };
-		9A68B7892511444B008DABD2 /* DDInvocationGrabber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDInvocationGrabber.h; sourceTree = "<group>"; };
-		9A68B78A2511444B008DABD2 /* UncaughtExceptionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UncaughtExceptionHandler.h; sourceTree = "<group>"; };
 		9A68B78B2511444B008DABD2 /* ns_exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ns_exception.h; sourceTree = "<group>"; };
 		9A68B78C2511444B008DABD2 /* ns_exception.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ns_exception.cpp; sourceTree = "<group>"; };
-		9A68B78D2511444B008DABD2 /* NSObject+DDExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DDExtensions.h"; sourceTree = "<group>"; };
 		9A68B78E2511444B008DABD2 /* graphics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = graphics.cpp; sourceTree = "<group>"; };
 		9A68B78F2511444B008DABD2 /* multihreading.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = multihreading.cpp; sourceTree = "<group>"; };
 		9A68B7902511444B008DABD2 /* _mm_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _mm_common.h; sourceTree = "<group>"; };
@@ -1522,9 +1511,7 @@
 		9A68B7932511444B008DABD2 /* graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = graphics.h; sourceTree = "<group>"; };
 		9A68B7942511444B008DABD2 /* _c_mm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _c_mm.h; sourceTree = "<group>"; };
 		9A68B7952511444B008DABD2 /* exe_path.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exe_path.cpp; sourceTree = "<group>"; };
-		9A68B7962511444B008DABD2 /* DDInvocationGrabber.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DDInvocationGrabber.mm; sourceTree = "<group>"; };
 		9A68B7972511444B008DABD2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		9A68B7982511444B008DABD2 /* UncaughtExceptionHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UncaughtExceptionHandler.mm; sourceTree = "<group>"; };
 		9A68B7992511444B008DABD2 /* time.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = time.cpp; sourceTree = "<group>"; };
 		9A68B79A2511444B008DABD2 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A68B79B2511444B008DABD2 /* binreloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = binreloc.h; sourceTree = "<group>"; };
@@ -1561,7 +1548,7 @@
 		9A68B7BE2511444B008DABD2 /* file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file.h; sourceTree = "<group>"; };
 		9A68B7BF2511444B008DABD2 /* mm_graphics.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mm_graphics.mm; sourceTree = "<group>"; };
 		9A68B7C02511444B008DABD2 /* _c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _c.h; sourceTree = "<group>"; };
-		9A68B7C12511444B008DABD2 /* mmos.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mmos.mm; sourceTree = "<group>"; };
+		9A68B7C12511444B008DABD2 /* aaa_mmos.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = aaa_mmos.mm; sourceTree = "<group>"; };
 		9A68B7C22511444B008DABD2 /* language.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = language.cpp; sourceTree = "<group>"; };
 		9A68B7C32511444B008DABD2 /* process_pid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = process_pid.cpp; sourceTree = "<group>"; };
 		9A68B7C42511444B008DABD2 /* aura.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aura.cpp; sourceTree = "<group>"; };
@@ -1709,13 +1696,13 @@
 		9A68B9C62511444C008DABD2 /* thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = thread.cpp; sourceTree = "<group>"; };
 		9A68B9C72511444C008DABD2 /* aaa_copydesk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aaa_copydesk.h; sourceTree = "<group>"; };
 		9A68B9C82511444C008DABD2 /* util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = util.cpp; sourceTree = "<group>"; };
-		9A68B9C92511444C008DABD2 /* round_window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = round_window.h; sourceTree = "<group>"; };
+		9A68B9C92511444C008DABD2 /* apex_window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = apex_window.h; sourceTree = "<group>"; };
 		9A68B9CA2511444C008DABD2 /* _mm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _mm.h; sourceTree = "<group>"; };
-		9A68B9CB2511444C008DABD2 /* RoundWindowApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundWindowApp.h; sourceTree = "<group>"; };
-		9A68B9CC2511444C008DABD2 /* RoundWindowFrameView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundWindowFrameView.mm; sourceTree = "<group>"; };
+		9A68B9CB2511444C008DABD2 /* ApexWindowApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApexWindowApp.h; sourceTree = "<group>"; };
+		9A68B9CC2511444C008DABD2 /* ApexWindowFrameView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ApexWindowFrameView.mm; sourceTree = "<group>"; };
 		9A68B9CD2511444C008DABD2 /* dir_system.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dir_system.cpp; sourceTree = "<group>"; };
 		9A68B9CE2511444C008DABD2 /* dir_system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dir_system.h; sourceTree = "<group>"; };
-		9A68B9CF2511444C008DABD2 /* round_window.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = round_window.mm; sourceTree = "<group>"; };
+		9A68B9CF2511444C008DABD2 /* apex_window.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = apex_window.mm; sourceTree = "<group>"; };
 		9A68B9D02511444C008DABD2 /* application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = application.h; sourceTree = "<group>"; };
 		9A68B9D12511444C008DABD2 /* dir_context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dir_context.h; sourceTree = "<group>"; };
 		9A68B9D22511444C008DABD2 /* factory_exchange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = factory_exchange.h; sourceTree = "<group>"; };
@@ -1725,10 +1712,10 @@
 		9A68B9D62511444C008DABD2 /* trace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = trace.cpp; sourceTree = "<group>"; };
 		9A68B9D72511444C008DABD2 /* shell_macos_mm.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = shell_macos_mm.mm; sourceTree = "<group>"; };
 		9A68B9D82511444C008DABD2 /* file_os_watcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file_os_watcher.h; sourceTree = "<group>"; };
-		9A68B9D92511444C008DABD2 /* RoundWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundWindowController.h; sourceTree = "<group>"; };
-		9A68B9DA2511444C008DABD2 /* RoundWindowApp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundWindowApp.mm; sourceTree = "<group>"; };
-		9A68B9DB2511444C008DABD2 /* RoundWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundWindow.h; sourceTree = "<group>"; };
-		9A68B9DC2511444C008DABD2 /* RoundWindowFrameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundWindowFrameView.h; sourceTree = "<group>"; };
+		9A68B9D92511444C008DABD2 /* ApexWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApexWindowController.h; sourceTree = "<group>"; };
+		9A68B9DA2511444C008DABD2 /* ApexWindowApp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ApexWindowApp.mm; sourceTree = "<group>"; };
+		9A68B9DB2511444C008DABD2 /* ApexWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApexWindow.h; sourceTree = "<group>"; };
+		9A68B9DC2511444C008DABD2 /* ApexWindowFrameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApexWindowFrameView.h; sourceTree = "<group>"; };
 		9A68B9DD2511444C008DABD2 /* file_context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file_context.cpp; sourceTree = "<group>"; };
 		9A68B9DE2511444C008DABD2 /* file_context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file_context.h; sourceTree = "<group>"; };
 		9A68B9DF2511444C008DABD2 /* thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thread.h; sourceTree = "<group>"; };
@@ -1738,11 +1725,11 @@
 		9A68B9E32511444C008DABD2 /* user.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user.h; sourceTree = "<group>"; };
 		9A68B9E42511444C008DABD2 /* file_system.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file_system.cpp; sourceTree = "<group>"; };
 		9A68B9E52511444C008DABD2 /* os_context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = os_context.h; sourceTree = "<group>"; };
-		9A68B9E62511444C008DABD2 /* RoundWindow.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundWindow.mm; sourceTree = "<group>"; };
+		9A68B9E62511444C008DABD2 /* ApexWindow.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ApexWindow.mm; sourceTree = "<group>"; };
 		9A68B9E72511444C008DABD2 /* factory_exchange.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = factory_exchange.cpp; sourceTree = "<group>"; };
 		9A68B9E82511444C008DABD2 /* aaa_copydesk.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_copydesk.cpp; sourceTree = "<group>"; };
 		9A68B9E92511444C008DABD2 /* keyboard_mm.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = keyboard_mm.mm; sourceTree = "<group>"; };
-		9A68B9EA2511444C008DABD2 /* RoundWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundWindowController.mm; sourceTree = "<group>"; };
+		9A68B9EA2511444C008DABD2 /* ApexWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ApexWindowController.mm; sourceTree = "<group>"; };
 		9A68B9EB2511444C008DABD2 /* application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application.cpp; sourceTree = "<group>"; };
 		9A68B9EC2511444C008DABD2 /* stdio_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stdio_file.h; sourceTree = "<group>"; };
 		9A68B9ED2511444C008DABD2 /* keyboard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = keyboard.cpp; sourceTree = "<group>"; };
@@ -2881,9 +2868,6 @@
 			children = (
 				9A68B77D2511444B008DABD2 /* time.h */,
 				9A68B77E2511444B008DABD2 /* main.h */,
-				9A68B77F2511444B008DABD2 /* NSObject+DDExtensions.mm */,
-				9A68B7802511444B008DABD2 /* NSString+SymlinksAndAliases.h */,
-				9A68B7812511444B008DABD2 /* NSString+SymlinksAndAliases.mm */,
 				9A68B7822511444B008DABD2 /* _apple.h */,
 				9A68B7832511444B008DABD2 /* debug.h */,
 				9A68B7842511444B008DABD2 /* image_gif.cpp */,
@@ -2891,11 +2875,8 @@
 				9A68B7862511444B008DABD2 /* aaa_want_to_remove_exception_engine.cpp */,
 				9A68B7872511444B008DABD2 /* _mm.h */,
 				9A68B7882511444B008DABD2 /* _apple.mm */,
-				9A68B7892511444B008DABD2 /* DDInvocationGrabber.h */,
-				9A68B78A2511444B008DABD2 /* UncaughtExceptionHandler.h */,
 				9A68B78B2511444B008DABD2 /* ns_exception.h */,
 				9A68B78C2511444B008DABD2 /* ns_exception.cpp */,
-				9A68B78D2511444B008DABD2 /* NSObject+DDExtensions.h */,
 				9A68B78E2511444B008DABD2 /* graphics.cpp */,
 				9A68B78F2511444B008DABD2 /* multihreading.cpp */,
 				9A68B7902511444B008DABD2 /* _mm_common.h */,
@@ -2904,9 +2885,7 @@
 				9A68B7932511444B008DABD2 /* graphics.h */,
 				9A68B7942511444B008DABD2 /* _c_mm.h */,
 				9A68B7952511444B008DABD2 /* exe_path.cpp */,
-				9A68B7962511444B008DABD2 /* DDInvocationGrabber.mm */,
 				9A68B7972511444B008DABD2 /* main.cpp */,
-				9A68B7982511444B008DABD2 /* UncaughtExceptionHandler.mm */,
 				9A68B7992511444B008DABD2 /* time.cpp */,
 				9A68B79A2511444B008DABD2 /* _.h */,
 			);
@@ -2928,64 +2907,64 @@
 		9A68B7A82511444B008DABD2 /* macos */ = {
 			isa = PBXGroup;
 			children = (
-				9A68B7A92511444B008DABD2 /* multithreading.h */,
-				9A68B7AA2511444B008DABD2 /* cross_win.cpp */,
-				9A68B7AB2511444B008DABD2 /* main.h */,
-				9A68B7AC2511444B008DABD2 /* simple_shell_launcher.cpp */,
-				9A68B7AD2511444B008DABD2 /* MessageBoxA.cpp */,
-				9A68B7AE2511444B008DABD2 /* winpr_keycode.cpp */,
-				9A68B7AF2511444B008DABD2 /* win_base.cpp */,
-				9A68B7B02511444B008DABD2 /* internal.h */,
-				9A68B7B12511444B008DABD2 /* mm.mm */,
-				9A68B7B22511444B008DABD2 /* os.cpp */,
-				9A68B7B32511444B008DABD2 /* list_serial_ports.cpp */,
-				9A68B7B42511444B008DABD2 /* windowing_c.h */,
-				9A68B7B52511444B008DABD2 /* process.cpp */,
-				9A68B7B62511444B008DABD2 /* NSPasteboard++.mm */,
-				9A68B7B72511444B008DABD2 /* _mm.h */,
-				9A68B7B82511444B008DABD2 /* application_system_run.cpp */,
-				9A68B7B92511444B008DABD2 /* file.mm */,
-				9A68B7BA2511444B008DABD2 /* simple_app.cpp */,
-				9A68B7BB2511444B008DABD2 /* cross_win_gdi.h */,
-				9A68B7BC2511444B008DABD2 /* cross_win_file.cpp */,
-				9A68B7BD2511444B008DABD2 /* os.h */,
-				9A68B7BE2511444B008DABD2 /* file.h */,
-				9A68B7BF2511444B008DABD2 /* mm_graphics.mm */,
+				9A68B7DF2511444B008DABD2 /* _.h */,
 				9A68B7C02511444B008DABD2 /* _c.h */,
-				9A68B7C12511444B008DABD2 /* mmos.mm */,
-				9A68B7C22511444B008DABD2 /* language.cpp */,
-				9A68B7C32511444B008DABD2 /* process_pid.cpp */,
+				9A68B7CD2511444B008DABD2 /* _macos.h */,
+				9A68B7B72511444B008DABD2 /* _mm.h */,
+				9A68B7C92511444B008DABD2 /* aaa_graphics.cpp */,
+				9A68B7CB2511444B008DABD2 /* aaa_message_loop.cpp */,
+				9A68B7DC2511444B008DABD2 /* aaa_mm_base_user.mm */,
+				9A68B7D02511444B008DABD2 /* aaa_mm_user.mm */,
+				9A68B7D72511444B008DABD2 /* aaa_mmos.h */,
+				9A68B7CA2511444B008DABD2 /* aaa_oswindow_data.cpp */,
+				9A68B7D42511444B008DABD2 /* aaa_oswindow_data.h */,
+				9A68B7DD2511444B008DABD2 /* aaa_windowing.cpp */,
+				9A68B7B82511444B008DABD2 /* application_system_run.cpp */,
 				9A68B7C42511444B008DABD2 /* aura.cpp */,
-				9A68B7C52511444B008DABD2 /* macos.h */,
+				9A68B7DA2511444B008DABD2 /* clipboard.cpp */,
+				9A68B7BC2511444B008DABD2 /* cross_win_file.cpp */,
+				9A68B7BB2511444B008DABD2 /* cross_win_gdi.h */,
+				9A68B7AA2511444B008DABD2 /* cross_win.cpp */,
+				9A68B7D12511444B008DABD2 /* debug.cpp */,
 				9A68B7C62511444B008DABD2 /* exception_engine.cpp */,
 				9A68B7C72511444B008DABD2 /* exception_engine.h */,
-				9A68B7C82511444B008DABD2 /* library.cpp */,
-				9A68B7C92511444B008DABD2 /* aaa_graphics.cpp */,
-				9A68B7CA2511444B008DABD2 /* aaa_oswindow_data.cpp */,
-				9A68B7CB2511444B008DABD2 /* aaa_message_loop.cpp */,
 				9A68B7CC2511444B008DABD2 /* file.cpp */,
-				9A68B7CD2511444B008DABD2 /* _macos.h */,
-				9A68B7CE2511444B008DABD2 /* window_impl.h */,
-				9A68B7CF2511444B008DABD2 /* user.h */,
-				9A68B7D02511444B008DABD2 /* aaa_mm_user.mm */,
-				9A68B7D12511444B008DABD2 /* debug.cpp */,
+				9A68B7BE2511444B008DABD2 /* file.h */,
+				9A68B7B92511444B008DABD2 /* file.mm */,
 				9A68B7D22511444B008DABD2 /* graphics_mm.h */,
-				9A68B7D32511444B008DABD2 /* windowing.h */,
-				9A68B7D42511444B008DABD2 /* aaa_oswindow_data.h */,
-				9A68B7D52511444B008DABD2 /* user.cpp */,
-				9A68B7D62511444B008DABD2 /* small_ipca_channel.cpp */,
-				9A68B7D72511444B008DABD2 /* aaa_mmos.h */,
-				9A68B7D82511444B008DABD2 /* lock.cpp */,
+				9A68B7B02511444B008DABD2 /* internal.h */,
 				9A68B7D92511444B008DABD2 /* keyboard.cpp */,
-				9A68B7DA2511444B008DABD2 /* clipboard.cpp */,
-				9A68B7DB2511444B008DABD2 /* mm_oswindow.h */,
-				9A68B7DC2511444B008DABD2 /* aaa_mm_base_user.mm */,
-				9A68B7DD2511444B008DABD2 /* aaa_windowing.cpp */,
-				9A68B7DE2511444B008DABD2 /* time.cpp */,
-				9A68B7DF2511444B008DABD2 /* _.h */,
-				9A68B7E02511444B008DABD2 /* multithreading.cpp */,
-				9A68B7E12511444B008DABD2 /* process_c.h */,
+				9A68B7C22511444B008DABD2 /* language.cpp */,
 				9A68B7E22511444B008DABD2 /* launcher.cpp */,
+				9A68B7C82511444B008DABD2 /* library.cpp */,
+				9A68B7B32511444B008DABD2 /* list_serial_ports.cpp */,
+				9A68B7D82511444B008DABD2 /* lock.cpp */,
+				9A68B7C52511444B008DABD2 /* macos.h */,
+				9A68B7AB2511444B008DABD2 /* main.h */,
+				9A68B7AD2511444B008DABD2 /* MessageBoxA.cpp */,
+				9A68B7BF2511444B008DABD2 /* mm_graphics.mm */,
+				9A68B7DB2511444B008DABD2 /* mm_oswindow.h */,
+				9A68B7B12511444B008DABD2 /* mm.mm */,
+				9A68B7C12511444B008DABD2 /* aaa_mmos.mm */,
+				9A68B7E02511444B008DABD2 /* multithreading.cpp */,
+				9A68B7A92511444B008DABD2 /* multithreading.h */,
+				9A68B7B62511444B008DABD2 /* NSPasteboard++.mm */,
+				9A68B7B22511444B008DABD2 /* os.cpp */,
+				9A68B7BD2511444B008DABD2 /* os.h */,
+				9A68B7E12511444B008DABD2 /* process_c.h */,
+				9A68B7C32511444B008DABD2 /* process_pid.cpp */,
+				9A68B7B52511444B008DABD2 /* process.cpp */,
+				9A68B7BA2511444B008DABD2 /* simple_app.cpp */,
+				9A68B7AC2511444B008DABD2 /* simple_shell_launcher.cpp */,
+				9A68B7D62511444B008DABD2 /* small_ipca_channel.cpp */,
+				9A68B7DE2511444B008DABD2 /* time.cpp */,
+				9A68B7D52511444B008DABD2 /* user.cpp */,
+				9A68B7CF2511444B008DABD2 /* user.h */,
+				9A68B7AF2511444B008DABD2 /* win_base.cpp */,
+				9A68B7CE2511444B008DABD2 /* window_impl.h */,
+				9A68B7B42511444B008DABD2 /* windowing_c.h */,
+				9A68B7D32511444B008DABD2 /* windowing.h */,
+				9A68B7AE2511444B008DABD2 /* winpr_keycode.cpp */,
 			);
 			path = macos;
 			sourceTree = "<group>";
@@ -3167,20 +3146,20 @@
 				9A68B9F02511444C008DABD2 /* file_system.h */,
 				9A68B9E22511444C008DABD2 /* keyboard.h */,
 				9A68B9E52511444C008DABD2 /* os_context.h */,
-				9A68B9C92511444C008DABD2 /* round_window.h */,
-				9A68B9DB2511444C008DABD2 /* RoundWindow.h */,
-				9A68B9CB2511444C008DABD2 /* RoundWindowApp.h */,
-				9A68B9D92511444C008DABD2 /* RoundWindowController.h */,
-				9A68B9DC2511444C008DABD2 /* RoundWindowFrameView.h */,
+				9A68B9C92511444C008DABD2 /* apex_window.h */,
+				9A68B9DB2511444C008DABD2 /* ApexWindow.h */,
+				9A68B9CB2511444C008DABD2 /* ApexWindowApp.h */,
+				9A68B9D92511444C008DABD2 /* ApexWindowController.h */,
+				9A68B9DC2511444C008DABD2 /* ApexWindowFrameView.h */,
 				9A68B9EC2511444C008DABD2 /* stdio_file.h */,
 				9A68B9DF2511444C008DABD2 /* thread.h */,
 				9A68B9E32511444C008DABD2 /* user.h */,
 				9A68B9E92511444C008DABD2 /* keyboard_mm.mm */,
-				9A68B9CF2511444C008DABD2 /* round_window.mm */,
-				9A68B9E62511444C008DABD2 /* RoundWindow.mm */,
-				9A68B9DA2511444C008DABD2 /* RoundWindowApp.mm */,
-				9A68B9EA2511444C008DABD2 /* RoundWindowController.mm */,
-				9A68B9CC2511444C008DABD2 /* RoundWindowFrameView.mm */,
+				9A68B9CF2511444C008DABD2 /* apex_window.mm */,
+				9A68B9E62511444C008DABD2 /* ApexWindow.mm */,
+				9A68B9DA2511444C008DABD2 /* ApexWindowApp.mm */,
+				9A68B9EA2511444C008DABD2 /* ApexWindowController.mm */,
+				9A68B9CC2511444C008DABD2 /* ApexWindowFrameView.mm */,
 				9A68B9D72511444C008DABD2 /* shell_macos_mm.mm */,
 				9AD199CA25127C8300B4C44A /* app.mm */,
 			);
@@ -3389,7 +3368,6 @@
 				9A68BD9F2511444F008DABD2 /* _papaya.h in Headers */,
 				9A68BDA72511444F008DABD2 /* ___serialization_draft.h in Headers */,
 				9A68BE7E2511444F008DABD2 /* windowing.h in Headers */,
-				9A68BE362511444F008DABD2 /* DDInvocationGrabber.h in Headers */,
 				9A68BC472511444E008DABD2 /* transaction.h in Headers */,
 				9A68BD082511444E008DABD2 /* application_array.h in Headers */,
 				9A68C08725114450008DABD2 /* aaa_RoundWindowFrameView.h in Headers */,
@@ -3484,7 +3462,7 @@
 				9A68BD232511444E008DABD2 /* _platform.h in Headers */,
 				9A68BC982511444E008DABD2 /* _c.h in Headers */,
 				9A68C03825114450008DABD2 /* _mm.h in Headers */,
-				9A68C04A25114450008DABD2 /* RoundWindowFrameView.h in Headers */,
+				9A68C04A25114450008DABD2 /* ApexWindowFrameView.h in Headers */,
 				9A68BF9D25114450008DABD2 /* winpr_input.h in Headers */,
 				9A68C08B25114450008DABD2 /* file_context.h in Headers */,
 				9A68BC272511444E008DABD2 /* email_address.h in Headers */,
@@ -3524,7 +3502,7 @@
 				9A68BDC52511444F008DABD2 /* file_stream1.h in Headers */,
 				9A68BE562511444F008DABD2 /* main.h in Headers */,
 				9A68BD3F2511444E008DABD2 /* _factory_impl.h in Headers */,
-				9A68C04725114450008DABD2 /* RoundWindowController.h in Headers */,
+				9A68C04725114450008DABD2 /* ApexWindowController.h in Headers */,
 				9A68BC7B2511444E008DABD2 /* thread_impl.h in Headers */,
 				9A68BEEF2511444F008DABD2 /* oswindow_data.h in Headers */,
 				9A68BF1525114450008DABD2 /* thread.h in Headers */,
@@ -3685,7 +3663,6 @@
 				9A68BCF02511444E008DABD2 /* trace.h in Headers */,
 				9A68BE082511444F008DABD2 /* linux.h in Headers */,
 				9A68BB7E2511444E008DABD2 /* net.h in Headers */,
-				9A68BE3A2511444F008DABD2 /* NSObject+DDExtensions.h in Headers */,
 				9A68BE192511444F008DABD2 /* id.h in Headers */,
 				9A68C04025114450008DABD2 /* factory_exchange.h in Headers */,
 				9A68BDFE2511444F008DABD2 /* _application.h in Headers */,
@@ -3735,7 +3712,7 @@
 				9A68BE932511444F008DABD2 /* _os.h in Headers */,
 				9A68BDCF2511444F008DABD2 /* dir_system.h in Headers */,
 				9A68BD952511444F008DABD2 /* _impl.h in Headers */,
-				9A68C04925114450008DABD2 /* RoundWindow.h in Headers */,
+				9A68C04925114450008DABD2 /* ApexWindow.h in Headers */,
 				9A68BC942511444E008DABD2 /* socket_event.h in Headers */,
 				9A68C18425114451008DABD2 /* policy_objcpp.h in Headers */,
 				9A68BE2F2511444F008DABD2 /* _apple.h in Headers */,
@@ -3757,7 +3734,6 @@
 				9A68BEF92511444F008DABD2 /* _.h in Headers */,
 				9A68BD9E2511444F008DABD2 /* _const.h in Headers */,
 				9A68BC842511444E008DABD2 /* tools.h in Headers */,
-				9A68BE372511444F008DABD2 /* UncaughtExceptionHandler.h in Headers */,
 				9A68BB3B2511444D008DABD2 /* console.h in Headers */,
 				9A68BE682511444F008DABD2 /* os.h in Headers */,
 				9A68BC332511444E008DABD2 /* form.h in Headers */,
@@ -3768,7 +3744,6 @@
 				9A68C04F25114450008DABD2 /* _macos.h in Headers */,
 				9A68BE722511444F008DABD2 /* exception_engine.h in Headers */,
 				9A68BE022511444F008DABD2 /* application.h in Headers */,
-				9A68BE2D2511444F008DABD2 /* NSString+SymlinksAndAliases.h in Headers */,
 				9A68BF022511444F008DABD2 /* callstack.h in Headers */,
 				9A68BF032511444F008DABD2 /* file_c.h in Headers */,
 				9A68BBB02511444E008DABD2 /* _.h in Headers */,
@@ -3811,7 +3786,7 @@
 				9A68BBC22511444E008DABD2 /* tunnel.h in Headers */,
 				9A68BC8A2511444E008DABD2 /* plain_service.h in Headers */,
 				9A68BCA42511444E008DABD2 /* progress.h in Headers */,
-				9A68C03725114450008DABD2 /* round_window.h in Headers */,
+				9A68C03725114450008DABD2 /* apex_window.h in Headers */,
 				9A68BED82511444F008DABD2 /* _c.h in Headers */,
 				9A68BF9F25114450008DABD2 /* graphics.h in Headers */,
 				9A68C08625114450008DABD2 /* implementation.h in Headers */,
@@ -3824,7 +3799,7 @@
 				9A68BDFC2511444F008DABD2 /* console.h in Headers */,
 				9A68BDDF2511444F008DABD2 /* _.h in Headers */,
 				9A68BE1B2511444F008DABD2 /* simple_command.h in Headers */,
-				9A68C03925114450008DABD2 /* RoundWindowApp.h in Headers */,
+				9A68C03925114450008DABD2 /* ApexWindowApp.h in Headers */,
 				9A68BCFF2511444E008DABD2 /* hyperlink.h in Headers */,
 				9A68BDA62511444F008DABD2 /* ostream_flush.h in Headers */,
 				9A68BDDD2511444F008DABD2 /* file_system.h in Headers */,
@@ -3975,6 +3950,7 @@
 				9A68BF0925114450008DABD2 /* base.cpp in Sources */,
 				9A68BCC12511444E008DABD2 /* timer_item.cpp in Sources */,
 				9A68BE6D2511444F008DABD2 /* language.cpp in Sources */,
+				9AEF22472512F2630000D8E1 /* apex_window.mm in Sources */,
 				9A68BE632511444F008DABD2 /* application_system_run.cpp in Sources */,
 				9A68BB9E2511444E008DABD2 /* tls_socket.cpp in Sources */,
 				9A68BD052511444E008DABD2 /* system_trace.cpp in Sources */,
@@ -3986,7 +3962,6 @@
 				9A68BD3A2511444E008DABD2 /* application_bias.cpp in Sources */,
 				9A68BD922511444F008DABD2 /* check.cpp in Sources */,
 				9A68C03425114450008DABD2 /* thread.cpp in Sources */,
-				9A68BE6C2511444F008DABD2 /* mmos.mm in Sources */,
 				9A68BDDE2511444F008DABD2 /* dir_context.cpp in Sources */,
 				9A68C05225114450008DABD2 /* file_system.cpp in Sources */,
 				9A68BD5D2511444F008DABD2 /* tree.cpp in Sources */,
@@ -3999,7 +3974,7 @@
 				9A68BE4F2511444F008DABD2 /* time.cpp in Sources */,
 				9A68BCD52511444E008DABD2 /* assert_running_task.cpp in Sources */,
 				9A68BC4A2511444E008DABD2 /* email.cpp in Sources */,
-				9A68C04825114450008DABD2 /* RoundWindowApp.mm in Sources */,
+				9A68C04825114450008DABD2 /* ApexWindowApp.mm in Sources */,
 				9A68C04B25114450008DABD2 /* file_context.cpp in Sources */,
 				9A68BC712511444E008DABD2 /* thread.cpp in Sources */,
 				9A68BBCC2511444E008DABD2 /* client_socket.cpp in Sources */,
@@ -4010,10 +3985,10 @@
 				9A68C06025114450008DABD2 /* dir_context.cpp in Sources */,
 				9A68BEFF2511444F008DABD2 /* process.cpp in Sources */,
 				9A68BE3F2511444F008DABD2 /* debug.cpp in Sources */,
-				9A68BE432511444F008DABD2 /* DDInvocationGrabber.mm in Sources */,
 				9A68BC3E2511444E008DABD2 /* cookie.cpp in Sources */,
 				9A68BE802511444F008DABD2 /* user.cpp in Sources */,
 				9A68BB7F2511444E008DABD2 /* transfer_socket.cpp in Sources */,
+				9AEF22452512F14B0000D8E1 /* ApexWindowController.mm in Sources */,
 				9A68BCAF2511444E008DABD2 /* app_core.cpp in Sources */,
 				9A68BC362511444E008DABD2 /* request.cpp in Sources */,
 				9A68BC862511444E008DABD2 /* tools.cpp in Sources */,
@@ -4034,7 +4009,6 @@
 				9A68BD1E2511444E008DABD2 /* apex_main_data.cpp in Sources */,
 				9A68BD772511444F008DABD2 /* simple_command.cpp in Sources */,
 				9A68BD782511444F008DABD2 /* base.cpp in Sources */,
-				9A68BE2C2511444F008DABD2 /* NSObject+DDExtensions.mm in Sources */,
 				9A68BB5E2511444D008DABD2 /* context.cpp in Sources */,
 				9A68BC1E2511444E008DABD2 /* base_socket_handler.cpp in Sources */,
 				9A68BE672511444F008DABD2 /* cross_win_file.cpp in Sources */,
@@ -4123,6 +4097,7 @@
 				9A68BEC22511444F008DABD2 /* cross_metrowin_user.cpp in Sources */,
 				9A68BDD62511444F008DABD2 /* file_context.cpp in Sources */,
 				9A68BE812511444F008DABD2 /* small_ipca_channel.cpp in Sources */,
+				9AEF22442512F1470000D8E1 /* ApexWindowFrameView.mm in Sources */,
 				9A68C17B25114451008DABD2 /* timer.mm in Sources */,
 				9A68BBC82511444E008DABD2 /* session.cpp in Sources */,
 				9A68BD492511444F008DABD2 /* command_line.cpp in Sources */,
@@ -4138,7 +4113,6 @@
 				9A68BE732511444F008DABD2 /* library.cpp in Sources */,
 				9A68BD182511444E008DABD2 /* app_launcher.cpp in Sources */,
 				9A68BE352511444F008DABD2 /* _apple.mm in Sources */,
-				9A68BE2E2511444F008DABD2 /* NSString+SymlinksAndAliases.mm in Sources */,
 				9A68BD8D2511444F008DABD2 /* language.cpp in Sources */,
 				9A68BC9B2511444E008DABD2 /* _.cpp in Sources */,
 				9A68BE832511444F008DABD2 /* lock.cpp in Sources */,
@@ -4176,7 +4150,6 @@
 				9A68BE572511444F008DABD2 /* simple_shell_launcher.cpp in Sources */,
 				9A68BD7B2511444F008DABD2 /* _.cpp in Sources */,
 				9A68BC242511444E008DABD2 /* url_domain.cpp in Sources */,
-				9A68BE452511444F008DABD2 /* UncaughtExceptionHandler.mm in Sources */,
 				9A68BD592511444F008DABD2 /* tree_item.cpp in Sources */,
 				9A68BBC62511444E008DABD2 /* tunnel.cpp in Sources */,
 				9A68BF1225114450008DABD2 /* datetime.cpp in Sources */,
@@ -4186,6 +4159,7 @@
 				9A68BD802511444F008DABD2 /* application.cpp in Sources */,
 				9A68BB582511444D008DABD2 /* crypto_crypto.cpp in Sources */,
 				9A68BCCE2511444E008DABD2 /* history.cpp in Sources */,
+				9AEF22462512F14F0000D8E1 /* ApexWindow.mm in Sources */,
 				9A68BD1F2511444E008DABD2 /* os_history.cpp in Sources */,
 				9A68BC4B2511444E008DABD2 /* email_address.cpp in Sources */,
 				9A68BD132511444E008DABD2 /* sprintf.cpp in Sources */,

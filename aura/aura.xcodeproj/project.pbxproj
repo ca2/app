@@ -16,6 +16,51 @@
 		9A16E07B24BBFEEF00C3DD5B /* __matter_ca2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16E07A24BBFEEE00C3DD5B /* __matter_ca2.cpp */; };
 		9A16E0D324BC11E100C3DD5B /* __matter_ca2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16E07A24BBFEEE00C3DD5B /* __matter_ca2.cpp */; };
 		9A16E0D724BC792E00C3DD5B /* static_start_aura.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16E06C24BBFEB000C3DD5B /* static_start_aura.cpp */; };
+		9A1DAB612512E10D00670772 /* xmlite.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1DAB342512E10D00670772 /* xmlite.h */; };
+		9A1DAB622512E10D00670772 /* output_tree.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1DAB352512E10D00670772 /* output_tree.h */; };
+		9A1DAB632512E10D00670772 /* _impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1DAB362512E10D00670772 /* _impl.h */; };
+		9A1DAB642512E10D00670772 /* attr.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1DAB372512E10D00670772 /* attr.h */; };
+		9A1DAB652512E10D00670772 /* edit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1DAB382512E10D00670772 /* edit.cpp */; };
+		9A1DAB662512E10D00670772 /* parse_info.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1DAB392512E10D00670772 /* parse_info.cpp */; };
+		9A1DAB672512E10D00670772 /* property_exchange.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1DAB3A2512E10D00670772 /* property_exchange.h */; };
+		9A1DAB682512E10D00670772 /* edit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1DAB3B2512E10D00670772 /* edit.h */; };
+		9A1DAB692512E10D00670772 /* xmlite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1DAB3C2512E10D00670772 /* xmlite.cpp */; };
+		9A1DAB6A2512E10D00670772 /* disp_option.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1DAB3D2512E10D00670772 /* disp_option.h */; };
+		9A1DAB6B2512E10D00670772 /* smart_pointer_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1DAB3E2512E10D00670772 /* smart_pointer_array.h */; };
+		9A1DAB6C2512E10D00670772 /* enum.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1DAB3F2512E10D00670772 /* enum.h */; };
+		9A1DAB6D2512E10D00670772 /* entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1DAB402512E10D00670772 /* entity.cpp */; };
+		9A1DAB6E2512E10D00670772 /* importable.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1DAB412512E10D00670772 /* importable.h */; };
+		9A1DAB6F2512E10D00670772 /* data.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1DAB422512E10D00670772 /* data.h */; };
+		9A1DAB702512E10D00670772 /* input_tree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1DAB432512E10D00670772 /* input_tree.cpp */; };
+		9A1DAB712512E10D00670772 /* tree_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1DAB442512E10D00670772 /* tree_base.cpp */; };
+		9A1DAB722512E10D00670772 /* attr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1DAB452512E10D00670772 /* attr.cpp */; };
+		9A1DAB732512E10D00670772 /* tree_schema.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1DAB462512E10D00670772 /* tree_schema.h */; };
+		9A1DAB742512E10D00670772 /* node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1DAB472512E10D00670772 /* node.cpp */; };
+		9A1DAB752512E10D00670772 /* glue.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1DAB482512E10D00670772 /* glue.h */; };
+		9A1DAB762512E10D00670772 /* node.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1DAB492512E10D00670772 /* node.h */; };
+		9A1DAB772512E10D00670772 /* stream.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1DAB4A2512E10D00670772 /* stream.h */; };
+		9A1DAB782512E10D00670772 /* data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1DAB4B2512E10D00670772 /* data.cpp */; };
+		9A1DAB792512E10D00670772 /* input_tree.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1DAB4C2512E10D00670772 /* input_tree.h */; };
+		9A1DAB7A2512E10D00670772 /* tree_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1DAB4D2512E10D00670772 /* tree_base.h */; };
+		9A1DAB7B2512E10D00670772 /* base_array.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1DAB4E2512E10D00670772 /* base_array.cpp */; };
+		9A1DAB7C2512E10D00670772 /* disp_option.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1DAB4F2512E10D00670772 /* disp_option.cpp */; };
+		9A1DAB7D2512E10D00670772 /* var_exchange.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1DAB502512E10D00670772 /* var_exchange.cpp */; };
+		9A1DAB7E2512E10D00670772 /* department.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1DAB512512E10D00670772 /* department.h */; };
+		9A1DAB7F2512E10D00670772 /* entity.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1DAB522512E10D00670772 /* entity.h */; };
+		9A1DAB802512E10D00670772 /* document.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1DAB532512E10D00670772 /* document.h */; };
+		9A1DAB812512E10D00670772 /* property_exchange.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1DAB542512E10D00670772 /* property_exchange.cpp */; };
+		9A1DAB822512E10D00670772 /* var_exchange.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1DAB552512E10D00670772 /* var_exchange.h */; };
+		9A1DAB832512E10D00670772 /* output_tree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1DAB562512E10D00670772 /* output_tree.cpp */; };
+		9A1DAB842512E10D00670772 /* xml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1DAB572512E10D00670772 /* xml.cpp */; };
+		9A1DAB852512E10D00670772 /* _from.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1DAB582512E10D00670772 /* _from.cpp */; };
+		9A1DAB862512E10D00670772 /* parse_info.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1DAB592512E10D00670772 /* parse_info.h */; };
+		9A1DAB872512E10D00670772 /* document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1DAB5A2512E10D00670772 /* document.cpp */; };
+		9A1DAB882512E10D00670772 /* exportable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1DAB5B2512E10D00670772 /* exportable.cpp */; };
+		9A1DAB892512E10D00670772 /* base_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1DAB5C2512E10D00670772 /* base_array.h */; };
+		9A1DAB8A2512E10D00670772 /* importable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1DAB5D2512E10D00670772 /* importable.cpp */; };
+		9A1DAB8B2512E10D00670772 /* exportable.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1DAB5E2512E10D00670772 /* exportable.h */; };
+		9A1DAB8C2512E10D00670772 /* tree_schema.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1DAB5F2512E10D00670772 /* tree_schema.cpp */; };
+		9A1DAB8D2512E10D00670772 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1DAB602512E10D00670772 /* _.h */; };
 		9A1E1D6F22F0AF69004243B8 /* multiple_buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1E1D5922F0AF69004243B8 /* multiple_buffer.cpp */; };
 		9A1E1D7122F0AF69004243B8 /* console.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1E1D5A22F0AF69004243B8 /* console.h */; };
 		9A1E1D7522F0AF69004243B8 /* multiple_buffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1E1D5C22F0AF69004243B8 /* multiple_buffer.h */; };
@@ -173,7 +218,6 @@
 		9A201C3D247733DC00A31CBF /* debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A247E5F2452C47F00F23D28 /* debug.cpp */; };
 		9A201C3E247733DC00A31CBF /* file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A247DE52452C47F00F23D28 /* file.cpp */; };
 		9A201C3F247733DC00A31CBF /* http.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A247E6A2452C47F00F23D28 /* http.cpp */; };
-		9A201C40247733DC00A31CBF /* openssl_crypt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A247DE62452C47F00F23D28 /* openssl_crypt.cpp */; };
 		9A201C41247733DC00A31CBF /* os_os.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A247D1C2452C47E00F23D28 /* os_os.cpp */; };
 		9A201C42247733DC00A31CBF /* process.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A247D512452C47E00F23D28 /* process.cpp */; };
 		9A201C43247733DC00A31CBF /* thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A247D1B2452C47E00F23D28 /* thread.cpp */; };
@@ -203,18 +247,13 @@
 		9A2293252472DB8F00B1A4EC /* keyboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2293242472DB8F00B1A4EC /* keyboard.cpp */; };
 		9A2483052452C48700F23D28 /* time.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A247CF62452C47E00F23D28 /* time.h */; };
 		9A2483062452C48700F23D28 /* main.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A247CF72452C47E00F23D28 /* main.h */; };
-		9A2483072452C48700F23D28 /* NSObject+DDExtensions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A247CF82452C47E00F23D28 /* NSObject+DDExtensions.mm */; };
-		9A2483082452C48700F23D28 /* NSString+SymlinksAndAliases.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A247CF92452C47E00F23D28 /* NSString+SymlinksAndAliases.h */; };
-		9A2483092452C48700F23D28 /* NSString+SymlinksAndAliases.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A247CFA2452C47E00F23D28 /* NSString+SymlinksAndAliases.mm */; };
 		9A24830A2452C48700F23D28 /* _apple.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A247CFB2452C47E00F23D28 /* _apple.h */; };
 		9A24830B2452C48700F23D28 /* debug.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A247CFC2452C47E00F23D28 /* debug.h */; };
 		9A24830C2452C48700F23D28 /* image_gif.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A247CFD2452C47E00F23D28 /* image_gif.cpp */; };
 		9A24830E2452C48700F23D28 /* _mm.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A247CFF2452C47E00F23D28 /* _mm.h */; };
 		9A24830F2452C48700F23D28 /* _apple.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A247D002452C47E00F23D28 /* _apple.mm */; };
-		9A2483112452C48700F23D28 /* UncaughtExceptionHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A247D022452C47E00F23D28 /* UncaughtExceptionHandler.h */; };
 		9A2483122452C48700F23D28 /* ns_exception.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A247D032452C47E00F23D28 /* ns_exception.h */; };
 		9A2483142452C48700F23D28 /* ns_exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A247D052452C47E00F23D28 /* ns_exception.cpp */; };
-		9A2483152452C48700F23D28 /* NSObject+DDExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A247D062452C47E00F23D28 /* NSObject+DDExtensions.h */; };
 		9A2483172452C48700F23D28 /* graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A247D082452C47E00F23D28 /* graphics.cpp */; };
 		9A2483182452C48700F23D28 /* multihreading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A247D092452C47E00F23D28 /* multihreading.cpp */; };
 		9A2483192452C48700F23D28 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A247D0A2452C47E00F23D28 /* _.cpp */; };
@@ -222,9 +261,7 @@
 		9A24831B2452C48700F23D28 /* graphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A247D0C2452C47E00F23D28 /* graphics.h */; };
 		9A24831C2452C48700F23D28 /* _c_mm.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A247D0D2452C47E00F23D28 /* _c_mm.h */; };
 		9A24831D2452C48700F23D28 /* exe_path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A247D0E2452C47E00F23D28 /* exe_path.cpp */; };
-		9A24831E2452C48700F23D28 /* DDInvocationGrabber.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A247D0F2452C47E00F23D28 /* DDInvocationGrabber.mm */; };
 		9A24831F2452C48700F23D28 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A247D102452C47E00F23D28 /* main.cpp */; };
-		9A2483202452C48700F23D28 /* UncaughtExceptionHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A247D112452C47E00F23D28 /* UncaughtExceptionHandler.mm */; };
 		9A2483222452C48700F23D28 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A247D132452C47E00F23D28 /* _.h */; };
 		9A2483232452C48700F23D28 /* time.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A247D142452C47E00F23D28 /* time.h */; };
 		9A2483252452C48700F23D28 /* binreloc.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A247D162452C47E00F23D28 /* binreloc.h */; };
@@ -327,7 +364,6 @@
 		9A2483E12452C48900F23D28 /* file_std.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A247DDA2452C47F00F23D28 /* file_std.cpp */; };
 		9A2483E22452C48900F23D28 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A247DDB2452C47F00F23D28 /* _.h */; };
 		9A2483EB2452C48900F23D28 /* file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A247DE52452C47F00F23D28 /* file.cpp */; };
-		9A2483EC2452C48900F23D28 /* openssl_crypt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A247DE62452C47F00F23D28 /* openssl_crypt.cpp */; };
 		9A2484312452C48A00F23D28 /* os_windowing2.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A247E2D2452C47F00F23D28 /* os_windowing2.h */; };
 		9A2484622452C48A00F23D28 /* debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A247E5F2452C47F00F23D28 /* debug.cpp */; };
 		9A2484632452C48A00F23D28 /* windowing.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A247E602452C47F00F23D28 /* windowing.h */; };
@@ -447,42 +483,42 @@
 		9A2486CD2452C49100F23D28 /* process.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2480E92452C48300F23D28 /* process.h */; };
 		9A2486CF2452C49100F23D28 /* thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2480EC2452C48300F23D28 /* thread.cpp */; };
 		9A2486D02452C49100F23D28 /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2480ED2452C48300F23D28 /* util.cpp */; };
-		9A2486D22452C49100F23D28 /* round_window.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2480EF2452C48300F23D28 /* round_window.h */; };
+		9A2486D22452C49100F23D28 /* aura_window.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2480EF2452C48300F23D28 /* aura_window.h */; };
 		9A2486D32452C49100F23D28 /* _mm.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2480F02452C48300F23D28 /* _mm.h */; };
-		9A2486D42452C49100F23D28 /* RoundWindowApp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2480F12452C48300F23D28 /* RoundWindowApp.h */; };
-		9A2486D52452C49100F23D28 /* RoundWindowFrameView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A2480F22452C48300F23D28 /* RoundWindowFrameView.mm */; };
-		9A2486D82452C49100F23D28 /* round_window.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A2480F52452C48300F23D28 /* round_window.mm */; };
+		9A2486D42452C49100F23D28 /* AuraWindowApp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2480F12452C48300F23D28 /* AuraWindowApp.h */; };
+		9A2486D52452C49100F23D28 /* AuraWindowFrameView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A2480F22452C48300F23D28 /* AuraWindowFrameView.mm */; };
+		9A2486D82452C49100F23D28 /* aura_window.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A2480F52452C48300F23D28 /* aura_window.mm */; };
 		9A2486DB2452C49100F23D28 /* application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2480F82452C48300F23D28 /* application.h */; };
 		9A2486DD2452C49100F23D28 /* factory_exchange.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2480FA2452C48300F23D28 /* factory_exchange.h */; };
 		9A2486E02452C49100F23D28 /* keyboard_mm.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A2480FD2452C48300F23D28 /* keyboard_mm.mm */; };
 		9A2486E12452C49100F23D28 /* trace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2480FE2452C48300F23D28 /* trace.cpp */; };
-		9A2486E32452C49100F23D28 /* RoundWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2481002452C48300F23D28 /* RoundWindowController.h */; };
-		9A2486E42452C49100F23D28 /* RoundWindowApp.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A2481012452C48300F23D28 /* RoundWindowApp.mm */; };
-		9A2486E52452C49100F23D28 /* RoundWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2481022452C48300F23D28 /* RoundWindow.h */; };
-		9A2486E62452C49100F23D28 /* RoundWindowFrameView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2481032452C48300F23D28 /* RoundWindowFrameView.h */; };
+		9A2486E32452C49100F23D28 /* AuraWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2481002452C48300F23D28 /* AuraWindowController.h */; };
+		9A2486E42452C49100F23D28 /* AuraWindowApp.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A2481012452C48300F23D28 /* AuraWindowApp.mm */; };
+		9A2486E52452C49100F23D28 /* AuraWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2481022452C48300F23D28 /* AuraWindow.h */; };
+		9A2486E62452C49100F23D28 /* AuraWindowFrameView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2481032452C48300F23D28 /* AuraWindowFrameView.h */; };
 		9A2486E92452C49100F23D28 /* thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2481062452C48300F23D28 /* thread.h */; };
 		9A2486EB2452C49100F23D28 /* _macos.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2481082452C48300F23D28 /* _macos.h */; };
 		9A2486EC2452C49100F23D28 /* keyboard.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2481092452C48300F23D28 /* keyboard.h */; };
 		9A2486ED2452C49200F23D28 /* user.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A24810A2452C48300F23D28 /* user.h */; };
 		9A2486EE2452C49200F23D28 /* interaction_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A24810B2452C48300F23D28 /* interaction_impl.h */; };
-		9A2486F12452C49200F23D28 /* RoundWindow.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A24810E2452C48300F23D28 /* RoundWindow.mm */; };
+		9A2486F12452C49200F23D28 /* AuraWindow.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A24810E2452C48300F23D28 /* AuraWindow.mm */; };
 		9A2486F22452C49200F23D28 /* factory_exchange.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A24810F2452C48300F23D28 /* factory_exchange.cpp */; };
-		9A2486F32452C49200F23D28 /* RoundWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A2481102452C48300F23D28 /* RoundWindowController.mm */; };
+		9A2486F32452C49200F23D28 /* AuraWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A2481102452C48300F23D28 /* AuraWindowController.mm */; };
 		9A2486F52452C49200F23D28 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2481122452C48300F23D28 /* application.cpp */; };
 		9A2486F72452C49200F23D28 /* interaction_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2481142452C48300F23D28 /* interaction_impl.cpp */; };
 		9A2486F92452C49200F23D28 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2481162452C48300F23D28 /* main.cpp */; };
 		9A2486FE2452C49200F23D28 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A24811B2452C48300F23D28 /* _.h */; };
 		9A2487042452C49200F23D28 /* internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2481222452C48300F23D28 /* internal.h */; };
-		9A2487092452C49200F23D28 /* round_window.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2481272452C48300F23D28 /* round_window.h */; };
-		9A24870A2452C49200F23D28 /* RoundWindowApp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2481282452C48300F23D28 /* RoundWindowApp.h */; };
+		9A2487092452C49200F23D28 /* aura_window.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2481272452C48300F23D28 /* aura_window.h */; };
+		9A24870A2452C49200F23D28 /* AuraWindowApp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2481282452C48300F23D28 /* AuraWindowApp.h */; };
 		9A24870E2452C49200F23D28 /* _mm.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A24812C2452C48300F23D28 /* _mm.h */; };
 		9A2487112452C49200F23D28 /* application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A24812F2452C48300F23D28 /* application.h */; };
 		9A2487122452C49200F23D28 /* RoundViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2481302452C48300F23D28 /* RoundViewController.h */; };
 		9A2487132452C49200F23D28 /* factory_exchange.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2481312452C48300F23D28 /* factory_exchange.h */; };
 		9A2487192452C49200F23D28 /* plane_system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2481372452C48300F23D28 /* plane_system.h */; };
-		9A24871B2452C49200F23D28 /* RoundWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2481392452C48300F23D28 /* RoundWindow.h */; };
+		9A24871B2452C49200F23D28 /* AuraWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2481392452C48300F23D28 /* AuraWindow.h */; };
 		9A24871D2452C49200F23D28 /* implementation.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A24813B2452C48300F23D28 /* implementation.h */; };
-		9A24871E2452C49200F23D28 /* RoundWindowFrameView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A24813C2452C48300F23D28 /* RoundWindowFrameView.h */; };
+		9A24871E2452C49200F23D28 /* AuraWindowFrameView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A24813C2452C48300F23D28 /* AuraWindowFrameView.h */; };
 		9A2487212452C49200F23D28 /* thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A24813F2452C48300F23D28 /* thread.h */; };
 		9A2487232452C49200F23D28 /* _m.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2481412452C48300F23D28 /* _m.h */; };
 		9A2487242452C49200F23D28 /* interaction_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2481422452C48300F23D28 /* interaction_impl.h */; };
@@ -512,8 +548,6 @@
 		9A2562A124BFE1F900BBC928 /* RoundEditView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A2562A024BFE1F900BBC928 /* RoundEditView.mm */; };
 		9A268CC224CDD8A000C94D85 /* user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A268CC124CDD8A000C94D85 /* user.cpp */; };
 		9A268CE824CE118800C94D85 /* _defer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A268CE724CE118800C94D85 /* _defer.h */; };
-		9A27D9BB24DCD1A40002AAE3 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A27D9B924DCD1A30002AAE3 /* libcrypto.dylib */; };
-		9A27D9BC24DCD1A40002AAE3 /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A27D9BA24DCD1A30002AAE3 /* libssl.dylib */; };
 		9A292E5424743F64007D51C9 /* oswindow_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A292E5324743F63007D51C9 /* oswindow_data.h */; };
 		9A2A532B1F1FEDFD001AB0F8 /* draw2d.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2A52FC1F1FEDFD001AB0F8 /* draw2d.h */; };
 		9A2C2A812324652400313725 /* timer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2C2A7B2324652300313725 /* timer.h */; };
@@ -663,6 +697,9 @@
 		9A376ACF2409C2DD002D15D3 /* _impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A376ACE2409C2DD002D15D3 /* _impl.h */; };
 		9A3BA9A624F624BD00150704 /* menu_shared.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3BA9A224F624BB00150704 /* menu_shared.cpp */; };
 		9A3BA9A724F624BD00150704 /* menu_shared.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3BA9A524F624BC00150704 /* menu_shared.h */; };
+		9A3CD7F42512E5D600E811FA /* console.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3CD7F32512E5D600E811FA /* console.h */; };
+		9A3CD7F62512E5E500E811FA /* console_common.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3CD7F52512E5E500E811FA /* console_common.h */; };
+		9A3CD7F82512E5F000E811FA /* application_common.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3CD7F72512E5EF00E811FA /* application_common.h */; };
 		9A41730820004E7A0056265A /* aes.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4172B820004E790056265A /* aes.h */; };
 		9A41730920004E7A0056265A /* asn1.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4172B920004E790056265A /* asn1.h */; };
 		9A41730A20004E7A0056265A /* asn1_mac.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4172BA20004E790056265A /* asn1_mac.h */; };
@@ -742,16 +779,12 @@
 		9A449B0F247739410002A827 /* mm_thread.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A247DC12452C47F00F23D28 /* mm_thread.mm */; };
 		9A449B10247739410002A827 /* mm_user.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A247DB02452C47F00F23D28 /* mm_user.mm */; };
 		9A449B11247739410002A827 /* mm.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A247DB32452C47F00F23D28 /* mm.mm */; };
-		9A449B192477397E0002A827 /* round_window.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A24812A2452C48300F23D28 /* round_window.mm */; };
+		9A449B192477397E0002A827 /* aura_window.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A24812A2452C48300F23D28 /* aura_window.mm */; };
 		9A449B1A2477397E0002A827 /* RoundViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A2481482452C48300F23D28 /* RoundViewController.mm */; };
-		9A449B1B2477397E0002A827 /* RoundWindow.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A2481452452C48300F23D28 /* RoundWindow.mm */; };
-		9A449B1C2477397E0002A827 /* RoundWindowApp.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A2481382452C48300F23D28 /* RoundWindowApp.mm */; };
-		9A449B1D2477397E0002A827 /* RoundWindowFrameView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A2481292452C48300F23D28 /* RoundWindowFrameView.mm */; };
+		9A449B1B2477397E0002A827 /* AuraWindow.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A2481452452C48300F23D28 /* AuraWindow.mm */; };
+		9A449B1C2477397E0002A827 /* AuraWindowApp.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A2481382452C48300F23D28 /* AuraWindowApp.mm */; };
+		9A449B1D2477397E0002A827 /* AuraWindowFrameView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A2481292452C48300F23D28 /* AuraWindowFrameView.mm */; };
 		9A449B3B247745FA0002A827 /* _apple.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A247D002452C47E00F23D28 /* _apple.mm */; };
-		9A449B3C247745FA0002A827 /* DDInvocationGrabber.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A247D0F2452C47E00F23D28 /* DDInvocationGrabber.mm */; };
-		9A449B3D247745FB0002A827 /* NSObject+DDExtensions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A247CF82452C47E00F23D28 /* NSObject+DDExtensions.mm */; };
-		9A449B3E247745FB0002A827 /* NSString+SymlinksAndAliases.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A247CFA2452C47E00F23D28 /* NSString+SymlinksAndAliases.mm */; };
-		9A449B3F247745FB0002A827 /* UncaughtExceptionHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A247D112452C47E00F23D28 /* UncaughtExceptionHandler.mm */; };
 		9A52538924A8017E0088E35A /* obj_typ_ctr.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A52538724A8017E0088E35A /* obj_typ_ctr.h */; };
 		9A5253D624A820EE0088E35A /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A52538A24A801D80088E35A /* _.cpp */; };
 		9A5C952824725D1A00107FDE /* context_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5C952624725D1900107FDE /* context_thread.h */; };
@@ -989,6 +1022,51 @@
 		9A16E06C24BBFEB000C3DD5B /* static_start_aura.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = static_start_aura.cpp; sourceTree = "<group>"; };
 		9A16E06D24BBFEB100C3DD5B /* pred_callback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pred_callback.h; sourceTree = "<group>"; };
 		9A16E07A24BBFEEE00C3DD5B /* __matter_ca2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = __matter_ca2.cpp; sourceTree = "<group>"; };
+		9A1DAB342512E10D00670772 /* xmlite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xmlite.h; sourceTree = "<group>"; };
+		9A1DAB352512E10D00670772 /* output_tree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = output_tree.h; sourceTree = "<group>"; };
+		9A1DAB362512E10D00670772 /* _impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _impl.h; sourceTree = "<group>"; };
+		9A1DAB372512E10D00670772 /* attr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = attr.h; sourceTree = "<group>"; };
+		9A1DAB382512E10D00670772 /* edit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = edit.cpp; sourceTree = "<group>"; };
+		9A1DAB392512E10D00670772 /* parse_info.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = parse_info.cpp; sourceTree = "<group>"; };
+		9A1DAB3A2512E10D00670772 /* property_exchange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = property_exchange.h; sourceTree = "<group>"; };
+		9A1DAB3B2512E10D00670772 /* edit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = edit.h; sourceTree = "<group>"; };
+		9A1DAB3C2512E10D00670772 /* xmlite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = xmlite.cpp; sourceTree = "<group>"; };
+		9A1DAB3D2512E10D00670772 /* disp_option.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = disp_option.h; sourceTree = "<group>"; };
+		9A1DAB3E2512E10D00670772 /* smart_pointer_array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = smart_pointer_array.h; sourceTree = "<group>"; };
+		9A1DAB3F2512E10D00670772 /* enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = enum.h; sourceTree = "<group>"; };
+		9A1DAB402512E10D00670772 /* entity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = entity.cpp; sourceTree = "<group>"; };
+		9A1DAB412512E10D00670772 /* importable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = importable.h; sourceTree = "<group>"; };
+		9A1DAB422512E10D00670772 /* data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = data.h; sourceTree = "<group>"; };
+		9A1DAB432512E10D00670772 /* input_tree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = input_tree.cpp; sourceTree = "<group>"; };
+		9A1DAB442512E10D00670772 /* tree_base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tree_base.cpp; sourceTree = "<group>"; };
+		9A1DAB452512E10D00670772 /* attr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = attr.cpp; sourceTree = "<group>"; };
+		9A1DAB462512E10D00670772 /* tree_schema.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tree_schema.h; sourceTree = "<group>"; };
+		9A1DAB472512E10D00670772 /* node.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = node.cpp; sourceTree = "<group>"; };
+		9A1DAB482512E10D00670772 /* glue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glue.h; sourceTree = "<group>"; };
+		9A1DAB492512E10D00670772 /* node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = node.h; sourceTree = "<group>"; };
+		9A1DAB4A2512E10D00670772 /* stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stream.h; sourceTree = "<group>"; };
+		9A1DAB4B2512E10D00670772 /* data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = data.cpp; sourceTree = "<group>"; };
+		9A1DAB4C2512E10D00670772 /* input_tree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = input_tree.h; sourceTree = "<group>"; };
+		9A1DAB4D2512E10D00670772 /* tree_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tree_base.h; sourceTree = "<group>"; };
+		9A1DAB4E2512E10D00670772 /* base_array.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = base_array.cpp; sourceTree = "<group>"; };
+		9A1DAB4F2512E10D00670772 /* disp_option.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = disp_option.cpp; sourceTree = "<group>"; };
+		9A1DAB502512E10D00670772 /* var_exchange.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = var_exchange.cpp; sourceTree = "<group>"; };
+		9A1DAB512512E10D00670772 /* department.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = department.h; sourceTree = "<group>"; };
+		9A1DAB522512E10D00670772 /* entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = entity.h; sourceTree = "<group>"; };
+		9A1DAB532512E10D00670772 /* document.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = document.h; sourceTree = "<group>"; };
+		9A1DAB542512E10D00670772 /* property_exchange.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = property_exchange.cpp; sourceTree = "<group>"; };
+		9A1DAB552512E10D00670772 /* var_exchange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = var_exchange.h; sourceTree = "<group>"; };
+		9A1DAB562512E10D00670772 /* output_tree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = output_tree.cpp; sourceTree = "<group>"; };
+		9A1DAB572512E10D00670772 /* xml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = xml.cpp; sourceTree = "<group>"; };
+		9A1DAB582512E10D00670772 /* _from.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _from.cpp; sourceTree = "<group>"; };
+		9A1DAB592512E10D00670772 /* parse_info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = parse_info.h; sourceTree = "<group>"; };
+		9A1DAB5A2512E10D00670772 /* document.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = document.cpp; sourceTree = "<group>"; };
+		9A1DAB5B2512E10D00670772 /* exportable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exportable.cpp; sourceTree = "<group>"; };
+		9A1DAB5C2512E10D00670772 /* base_array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_array.h; sourceTree = "<group>"; };
+		9A1DAB5D2512E10D00670772 /* importable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = importable.cpp; sourceTree = "<group>"; };
+		9A1DAB5E2512E10D00670772 /* exportable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exportable.h; sourceTree = "<group>"; };
+		9A1DAB5F2512E10D00670772 /* tree_schema.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tree_schema.cpp; sourceTree = "<group>"; };
+		9A1DAB602512E10D00670772 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A1E1D5922F0AF69004243B8 /* multiple_buffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = multiple_buffer.cpp; sourceTree = "<group>"; };
 		9A1E1D5A22F0AF69004243B8 /* console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = console.h; sourceTree = "<group>"; };
 		9A1E1D5C22F0AF69004243B8 /* multiple_buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = multiple_buffer.h; sourceTree = "<group>"; };
@@ -1021,19 +1099,13 @@
 		9A2293242472DB8F00B1A4EC /* keyboard.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = keyboard.cpp; sourceTree = "<group>"; };
 		9A247CF62452C47E00F23D28 /* time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = time.h; sourceTree = "<group>"; };
 		9A247CF72452C47E00F23D28 /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
-		9A247CF82452C47E00F23D28 /* NSObject+DDExtensions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "NSObject+DDExtensions.mm"; sourceTree = "<group>"; };
-		9A247CF92452C47E00F23D28 /* NSString+SymlinksAndAliases.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SymlinksAndAliases.h"; sourceTree = "<group>"; };
-		9A247CFA2452C47E00F23D28 /* NSString+SymlinksAndAliases.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "NSString+SymlinksAndAliases.mm"; sourceTree = "<group>"; };
 		9A247CFB2452C47E00F23D28 /* _apple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _apple.h; sourceTree = "<group>"; };
 		9A247CFC2452C47E00F23D28 /* debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = debug.h; sourceTree = "<group>"; };
 		9A247CFD2452C47E00F23D28 /* image_gif.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = image_gif.cpp; sourceTree = "<group>"; };
 		9A247CFF2452C47E00F23D28 /* _mm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _mm.h; sourceTree = "<group>"; };
 		9A247D002452C47E00F23D28 /* _apple.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = _apple.mm; sourceTree = "<group>"; };
-		9A247D012452C47E00F23D28 /* aaa_DDInvocationGrabber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aaa_DDInvocationGrabber.h; sourceTree = "<group>"; };
-		9A247D022452C47E00F23D28 /* UncaughtExceptionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UncaughtExceptionHandler.h; sourceTree = "<group>"; };
 		9A247D032452C47E00F23D28 /* ns_exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ns_exception.h; sourceTree = "<group>"; };
 		9A247D052452C47E00F23D28 /* ns_exception.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ns_exception.cpp; sourceTree = "<group>"; };
-		9A247D062452C47E00F23D28 /* NSObject+DDExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DDExtensions.h"; sourceTree = "<group>"; };
 		9A247D082452C47E00F23D28 /* graphics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = graphics.cpp; sourceTree = "<group>"; };
 		9A247D092452C47E00F23D28 /* multihreading.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = multihreading.cpp; sourceTree = "<group>"; };
 		9A247D0A2452C47E00F23D28 /* _.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
@@ -1041,9 +1113,7 @@
 		9A247D0C2452C47E00F23D28 /* graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = graphics.h; sourceTree = "<group>"; };
 		9A247D0D2452C47E00F23D28 /* _c_mm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _c_mm.h; sourceTree = "<group>"; };
 		9A247D0E2452C47E00F23D28 /* exe_path.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exe_path.cpp; sourceTree = "<group>"; };
-		9A247D0F2452C47E00F23D28 /* DDInvocationGrabber.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DDInvocationGrabber.mm; sourceTree = "<group>"; };
 		9A247D102452C47E00F23D28 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		9A247D112452C47E00F23D28 /* UncaughtExceptionHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UncaughtExceptionHandler.mm; sourceTree = "<group>"; };
 		9A247D122452C47E00F23D28 /* aaa_time.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_time.cpp; sourceTree = "<group>"; };
 		9A247D132452C47E00F23D28 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A247D142452C47E00F23D28 /* time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = time.h; sourceTree = "<group>"; };
@@ -1178,7 +1248,6 @@
 		9A247DDA2452C47F00F23D28 /* file_std.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file_std.cpp; sourceTree = "<group>"; };
 		9A247DDB2452C47F00F23D28 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A247DE52452C47F00F23D28 /* file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file.cpp; sourceTree = "<group>"; };
-		9A247DE62452C47F00F23D28 /* openssl_crypt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = openssl_crypt.cpp; sourceTree = "<group>"; };
 		9A247E2D2452C47F00F23D28 /* os_windowing2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = os_windowing2.h; sourceTree = "<group>"; };
 		9A247E5F2452C47F00F23D28 /* debug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = debug.cpp; sourceTree = "<group>"; };
 		9A247E602452C47F00F23D28 /* windowing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windowing.h; sourceTree = "<group>"; };
@@ -1298,27 +1367,27 @@
 		9A2480E92452C48300F23D28 /* process.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = process.h; sourceTree = "<group>"; };
 		9A2480EC2452C48300F23D28 /* thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = thread.cpp; sourceTree = "<group>"; };
 		9A2480ED2452C48300F23D28 /* util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = util.cpp; sourceTree = "<group>"; };
-		9A2480EF2452C48300F23D28 /* round_window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = round_window.h; sourceTree = "<group>"; };
+		9A2480EF2452C48300F23D28 /* aura_window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_window.h; sourceTree = "<group>"; };
 		9A2480F02452C48300F23D28 /* _mm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _mm.h; sourceTree = "<group>"; };
-		9A2480F12452C48300F23D28 /* RoundWindowApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundWindowApp.h; sourceTree = "<group>"; };
-		9A2480F22452C48300F23D28 /* RoundWindowFrameView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundWindowFrameView.mm; sourceTree = "<group>"; };
-		9A2480F52452C48300F23D28 /* round_window.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = round_window.mm; sourceTree = "<group>"; };
+		9A2480F12452C48300F23D28 /* AuraWindowApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuraWindowApp.h; sourceTree = "<group>"; };
+		9A2480F22452C48300F23D28 /* AuraWindowFrameView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AuraWindowFrameView.mm; sourceTree = "<group>"; };
+		9A2480F52452C48300F23D28 /* aura_window.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = aura_window.mm; sourceTree = "<group>"; };
 		9A2480F82452C48300F23D28 /* application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = application.h; sourceTree = "<group>"; };
 		9A2480FA2452C48300F23D28 /* factory_exchange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = factory_exchange.h; sourceTree = "<group>"; };
 		9A2480FD2452C48300F23D28 /* keyboard_mm.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = keyboard_mm.mm; sourceTree = "<group>"; };
 		9A2480FE2452C48300F23D28 /* trace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = trace.cpp; sourceTree = "<group>"; };
-		9A2481002452C48300F23D28 /* RoundWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundWindowController.h; sourceTree = "<group>"; };
-		9A2481012452C48300F23D28 /* RoundWindowApp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundWindowApp.mm; sourceTree = "<group>"; };
-		9A2481022452C48300F23D28 /* RoundWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundWindow.h; sourceTree = "<group>"; };
-		9A2481032452C48300F23D28 /* RoundWindowFrameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundWindowFrameView.h; sourceTree = "<group>"; };
+		9A2481002452C48300F23D28 /* AuraWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuraWindowController.h; sourceTree = "<group>"; };
+		9A2481012452C48300F23D28 /* AuraWindowApp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AuraWindowApp.mm; sourceTree = "<group>"; };
+		9A2481022452C48300F23D28 /* AuraWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuraWindow.h; sourceTree = "<group>"; };
+		9A2481032452C48300F23D28 /* AuraWindowFrameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuraWindowFrameView.h; sourceTree = "<group>"; };
 		9A2481062452C48300F23D28 /* thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thread.h; sourceTree = "<group>"; };
 		9A2481082452C48300F23D28 /* _macos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _macos.h; sourceTree = "<group>"; };
 		9A2481092452C48300F23D28 /* keyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keyboard.h; sourceTree = "<group>"; };
 		9A24810A2452C48300F23D28 /* user.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user.h; sourceTree = "<group>"; };
 		9A24810B2452C48300F23D28 /* interaction_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = interaction_impl.h; sourceTree = "<group>"; };
-		9A24810E2452C48300F23D28 /* RoundWindow.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundWindow.mm; sourceTree = "<group>"; };
+		9A24810E2452C48300F23D28 /* AuraWindow.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AuraWindow.mm; sourceTree = "<group>"; };
 		9A24810F2452C48300F23D28 /* factory_exchange.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = factory_exchange.cpp; sourceTree = "<group>"; };
-		9A2481102452C48300F23D28 /* RoundWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundWindowController.mm; sourceTree = "<group>"; };
+		9A2481102452C48300F23D28 /* AuraWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AuraWindowController.mm; sourceTree = "<group>"; };
 		9A2481122452C48300F23D28 /* application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application.cpp; sourceTree = "<group>"; };
 		9A2481142452C48300F23D28 /* interaction_impl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = interaction_impl.cpp; sourceTree = "<group>"; };
 		9A2481162452C48300F23D28 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -1327,10 +1396,10 @@
 		9A2481212452C48300F23D28 /* util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = util.cpp; sourceTree = "<group>"; };
 		9A2481222452C48300F23D28 /* internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = internal.h; sourceTree = "<group>"; };
 		9A2481262452C48300F23D28 /* shell.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = shell.cpp; sourceTree = "<group>"; };
-		9A2481272452C48300F23D28 /* round_window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = round_window.h; sourceTree = "<group>"; };
-		9A2481282452C48300F23D28 /* RoundWindowApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundWindowApp.h; sourceTree = "<group>"; };
-		9A2481292452C48300F23D28 /* RoundWindowFrameView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundWindowFrameView.mm; sourceTree = "<group>"; };
-		9A24812A2452C48300F23D28 /* round_window.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = round_window.mm; sourceTree = "<group>"; };
+		9A2481272452C48300F23D28 /* aura_window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_window.h; sourceTree = "<group>"; };
+		9A2481282452C48300F23D28 /* AuraWindowApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuraWindowApp.h; sourceTree = "<group>"; };
+		9A2481292452C48300F23D28 /* AuraWindowFrameView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AuraWindowFrameView.mm; sourceTree = "<group>"; };
+		9A24812A2452C48300F23D28 /* aura_window.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = aura_window.mm; sourceTree = "<group>"; };
 		9A24812B2452C48300F23D28 /* exception.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exception.cpp; sourceTree = "<group>"; };
 		9A24812C2452C48300F23D28 /* _mm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _mm.h; sourceTree = "<group>"; };
 		9A24812F2452C48300F23D28 /* application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = application.h; sourceTree = "<group>"; };
@@ -1339,16 +1408,16 @@
 		9A2481352452C48300F23D28 /* trace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = trace.cpp; sourceTree = "<group>"; };
 		9A2481362452C48300F23D28 /* ios.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ios.cpp; sourceTree = "<group>"; };
 		9A2481372452C48300F23D28 /* plane_system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plane_system.h; sourceTree = "<group>"; };
-		9A2481382452C48300F23D28 /* RoundWindowApp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundWindowApp.mm; sourceTree = "<group>"; };
-		9A2481392452C48300F23D28 /* RoundWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundWindow.h; sourceTree = "<group>"; };
+		9A2481382452C48300F23D28 /* AuraWindowApp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AuraWindowApp.mm; sourceTree = "<group>"; };
+		9A2481392452C48300F23D28 /* AuraWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuraWindow.h; sourceTree = "<group>"; };
 		9A24813A2452C48300F23D28 /* plane_system.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = plane_system.cpp; sourceTree = "<group>"; };
 		9A24813B2452C48300F23D28 /* implementation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = implementation.h; sourceTree = "<group>"; };
-		9A24813C2452C48300F23D28 /* RoundWindowFrameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundWindowFrameView.h; sourceTree = "<group>"; };
+		9A24813C2452C48300F23D28 /* AuraWindowFrameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuraWindowFrameView.h; sourceTree = "<group>"; };
 		9A24813F2452C48300F23D28 /* thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thread.h; sourceTree = "<group>"; };
 		9A2481412452C48300F23D28 /* _m.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _m.h; sourceTree = "<group>"; };
 		9A2481422452C48300F23D28 /* interaction_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = interaction_impl.h; sourceTree = "<group>"; };
 		9A2481432452C48300F23D28 /* shell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shell.h; sourceTree = "<group>"; };
-		9A2481452452C48300F23D28 /* RoundWindow.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundWindow.mm; sourceTree = "<group>"; };
+		9A2481452452C48300F23D28 /* AuraWindow.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AuraWindow.mm; sourceTree = "<group>"; };
 		9A2481462452C48300F23D28 /* factory_exchange.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = factory_exchange.cpp; sourceTree = "<group>"; };
 		9A2481472452C48300F23D28 /* application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application.cpp; sourceTree = "<group>"; };
 		9A2481482452C48300F23D28 /* RoundViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundViewController.mm; sourceTree = "<group>"; };
@@ -1539,6 +1608,9 @@
 		9A376ACE2409C2DD002D15D3 /* _impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _impl.h; sourceTree = "<group>"; };
 		9A3BA9A224F624BB00150704 /* menu_shared.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = menu_shared.cpp; sourceTree = "<group>"; };
 		9A3BA9A524F624BC00150704 /* menu_shared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = menu_shared.h; sourceTree = "<group>"; };
+		9A3CD7F32512E5D600E811FA /* console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = console.h; sourceTree = "<group>"; };
+		9A3CD7F52512E5E500E811FA /* console_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = console_common.h; sourceTree = "<group>"; };
+		9A3CD7F72512E5EF00E811FA /* application_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = application_common.h; sourceTree = "<group>"; };
 		9A4172B420004E790056265A /* build-openssl-1.1.0f.log */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "build-openssl-1.1.0f.log"; sourceTree = "<group>"; };
 		9A4172B520004E790056265A /* build-openssl-1.1.0g.log */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "build-openssl-1.1.0g.log"; sourceTree = "<group>"; };
 		9A4172B820004E790056265A /* aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aes.h; sourceTree = "<group>"; };
@@ -1843,14 +1915,12 @@
 				9A92358623286D8D00804A1C /* libbz2.tbd in Frameworks */,
 				9A92358423286D8500804A1C /* libz.tbd in Frameworks */,
 				9A92358223286D7100804A1C /* libiconv.tbd in Frameworks */,
-				9A27D9BC24DCD1A40002AAE3 /* libssl.dylib in Frameworks */,
 				9AD185BE1F9C1FC6001CEA8E /* IOKit.framework in Frameworks */,
 				9A33A7551EA902C3000EC109 /* CoreServices.framework in Frameworks */,
 				9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */,
 				9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */,
 				9A98A60A1771D67E000AE16E /* Carbon.framework in Frameworks */,
 				9A98A60B1771D67E000AE16E /* Security.framework in Frameworks */,
-				9A27D9BB24DCD1A40002AAE3 /* libcrypto.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1882,6 +1952,58 @@
 				9A16414B19C4A4CE00966C5E /* base_iosTests.m */,
 			);
 			path = aura_iosTests;
+			sourceTree = "<group>";
+		};
+		9A1DAB332512E10D00670772 /* xml */ = {
+			isa = PBXGroup;
+			children = (
+				9A1DAB342512E10D00670772 /* xmlite.h */,
+				9A1DAB352512E10D00670772 /* output_tree.h */,
+				9A1DAB362512E10D00670772 /* _impl.h */,
+				9A1DAB372512E10D00670772 /* attr.h */,
+				9A1DAB382512E10D00670772 /* edit.cpp */,
+				9A1DAB392512E10D00670772 /* parse_info.cpp */,
+				9A1DAB3A2512E10D00670772 /* property_exchange.h */,
+				9A1DAB3B2512E10D00670772 /* edit.h */,
+				9A1DAB3C2512E10D00670772 /* xmlite.cpp */,
+				9A1DAB3D2512E10D00670772 /* disp_option.h */,
+				9A1DAB3E2512E10D00670772 /* smart_pointer_array.h */,
+				9A1DAB3F2512E10D00670772 /* enum.h */,
+				9A1DAB402512E10D00670772 /* entity.cpp */,
+				9A1DAB412512E10D00670772 /* importable.h */,
+				9A1DAB422512E10D00670772 /* data.h */,
+				9A1DAB432512E10D00670772 /* input_tree.cpp */,
+				9A1DAB442512E10D00670772 /* tree_base.cpp */,
+				9A1DAB452512E10D00670772 /* attr.cpp */,
+				9A1DAB462512E10D00670772 /* tree_schema.h */,
+				9A1DAB472512E10D00670772 /* node.cpp */,
+				9A1DAB482512E10D00670772 /* glue.h */,
+				9A1DAB492512E10D00670772 /* node.h */,
+				9A1DAB4A2512E10D00670772 /* stream.h */,
+				9A1DAB4B2512E10D00670772 /* data.cpp */,
+				9A1DAB4C2512E10D00670772 /* input_tree.h */,
+				9A1DAB4D2512E10D00670772 /* tree_base.h */,
+				9A1DAB4E2512E10D00670772 /* base_array.cpp */,
+				9A1DAB4F2512E10D00670772 /* disp_option.cpp */,
+				9A1DAB502512E10D00670772 /* var_exchange.cpp */,
+				9A1DAB512512E10D00670772 /* department.h */,
+				9A1DAB522512E10D00670772 /* entity.h */,
+				9A1DAB532512E10D00670772 /* document.h */,
+				9A1DAB542512E10D00670772 /* property_exchange.cpp */,
+				9A1DAB552512E10D00670772 /* var_exchange.h */,
+				9A1DAB562512E10D00670772 /* output_tree.cpp */,
+				9A1DAB572512E10D00670772 /* xml.cpp */,
+				9A1DAB582512E10D00670772 /* _from.cpp */,
+				9A1DAB592512E10D00670772 /* parse_info.h */,
+				9A1DAB5A2512E10D00670772 /* document.cpp */,
+				9A1DAB5B2512E10D00670772 /* exportable.cpp */,
+				9A1DAB5C2512E10D00670772 /* base_array.h */,
+				9A1DAB5D2512E10D00670772 /* importable.cpp */,
+				9A1DAB5E2512E10D00670772 /* exportable.h */,
+				9A1DAB5F2512E10D00670772 /* tree_schema.cpp */,
+				9A1DAB602512E10D00670772 /* _.h */,
+			);
+			path = xml;
 			sourceTree = "<group>";
 		};
 		9A1E1D5822F0AF69004243B8 /* graphics */ = {
@@ -1951,7 +2073,6 @@
 				9A247D5C2452C47E00F23D28 /* file.h */,
 				9A247E8E2452C47F00F23D28 /* graphics.h */,
 				9A247E6A2452C47F00F23D28 /* http.cpp */,
-				9A247DE62452C47F00F23D28 /* openssl_crypt.cpp */,
 				9A247D1C2452C47E00F23D28 /* os_os.cpp */,
 				9A247E2D2452C47F00F23D28 /* os_windowing2.h */,
 				9A247D512452C47E00F23D28 /* process.cpp */,
@@ -1980,8 +2101,6 @@
 				9A247D0D2452C47E00F23D28 /* _c_mm.h */,
 				9A2489AE245335C100F23D28 /* _mm_common.h */,
 				9A247CFF2452C47E00F23D28 /* _mm.h */,
-				9A247D012452C47E00F23D28 /* aaa_DDInvocationGrabber.h */,
-				9A247D0F2452C47E00F23D28 /* DDInvocationGrabber.mm */,
 				9A247D0B2452C47E00F23D28 /* debug.cpp */,
 				9A247CFC2452C47E00F23D28 /* debug.h */,
 				9A247D0E2452C47E00F23D28 /* exe_path.cpp */,
@@ -1993,15 +2112,9 @@
 				9A247D092452C47E00F23D28 /* multihreading.cpp */,
 				9A247D052452C47E00F23D28 /* ns_exception.cpp */,
 				9A247D032452C47E00F23D28 /* ns_exception.h */,
-				9A247D062452C47E00F23D28 /* NSObject+DDExtensions.h */,
-				9A247CF82452C47E00F23D28 /* NSObject+DDExtensions.mm */,
-				9A247CF92452C47E00F23D28 /* NSString+SymlinksAndAliases.h */,
-				9A247CFA2452C47E00F23D28 /* NSString+SymlinksAndAliases.mm */,
 				9AAC2142247570800013AB72 /* process.cpp */,
 				9A247D122452C47E00F23D28 /* aaa_time.cpp */,
 				9A247CF62452C47E00F23D28 /* time.h */,
-				9A247D022452C47E00F23D28 /* UncaughtExceptionHandler.h */,
-				9A247D112452C47E00F23D28 /* UncaughtExceptionHandler.mm */,
 			);
 			path = apple;
 			sourceTree = "<group>";
@@ -2339,16 +2452,16 @@
 				9A2293242472DB8F00B1A4EC /* keyboard.cpp */,
 				9A2481092452C48300F23D28 /* keyboard.h */,
 				9A2481162452C48300F23D28 /* main.cpp */,
-				9A2480EF2452C48300F23D28 /* round_window.h */,
-				9A2480F52452C48300F23D28 /* round_window.mm */,
-				9A2481022452C48300F23D28 /* RoundWindow.h */,
-				9A24810E2452C48300F23D28 /* RoundWindow.mm */,
-				9A2480F12452C48300F23D28 /* RoundWindowApp.h */,
-				9A2481012452C48300F23D28 /* RoundWindowApp.mm */,
-				9A2481002452C48300F23D28 /* RoundWindowController.h */,
-				9A2481102452C48300F23D28 /* RoundWindowController.mm */,
-				9A2481032452C48300F23D28 /* RoundWindowFrameView.h */,
-				9A2480F22452C48300F23D28 /* RoundWindowFrameView.mm */,
+				9A2480EF2452C48300F23D28 /* aura_window.h */,
+				9A2480F52452C48300F23D28 /* aura_window.mm */,
+				9A2481022452C48300F23D28 /* AuraWindow.h */,
+				9A24810E2452C48300F23D28 /* AuraWindow.mm */,
+				9A2480F12452C48300F23D28 /* AuraWindowApp.h */,
+				9A2481012452C48300F23D28 /* AuraWindowApp.mm */,
+				9A2481002452C48300F23D28 /* AuraWindowController.h */,
+				9A2481102452C48300F23D28 /* AuraWindowController.mm */,
+				9A2481032452C48300F23D28 /* AuraWindowFrameView.h */,
+				9A2480F22452C48300F23D28 /* AuraWindowFrameView.mm */,
 				9A2480EC2452C48300F23D28 /* thread.cpp */,
 				9A2481062452C48300F23D28 /* thread.h */,
 				9A2480FE2452C48300F23D28 /* trace.cpp */,
@@ -2380,8 +2493,8 @@
 				9A24814D2452C48300F23D28 /* main.cpp */,
 				9A24813A2452C48300F23D28 /* plane_system.cpp */,
 				9A2481372452C48300F23D28 /* plane_system.h */,
-				9A2481272452C48300F23D28 /* round_window.h */,
-				9A24812A2452C48300F23D28 /* round_window.mm */,
+				9A2481272452C48300F23D28 /* aura_window.h */,
+				9A24812A2452C48300F23D28 /* aura_window.mm */,
 				9A214B2324BEC751002C1331 /* RoundCaretView.h */,
 				9A214B2424BEC793002C1331 /* RoundCaretView.mm */,
 				9A25629F24BFE1B600BBC928 /* RoundEditView.h */,
@@ -2394,12 +2507,12 @@
 				9A214B1C24BEB0E9002C1331 /* RoundTextRange.mm */,
 				9A2481302452C48300F23D28 /* RoundViewController.h */,
 				9A2481482452C48300F23D28 /* RoundViewController.mm */,
-				9A2481392452C48300F23D28 /* RoundWindow.h */,
-				9A2481452452C48300F23D28 /* RoundWindow.mm */,
-				9A2481282452C48300F23D28 /* RoundWindowApp.h */,
-				9A2481382452C48300F23D28 /* RoundWindowApp.mm */,
-				9A24813C2452C48300F23D28 /* RoundWindowFrameView.h */,
-				9A2481292452C48300F23D28 /* RoundWindowFrameView.mm */,
+				9A2481392452C48300F23D28 /* AuraWindow.h */,
+				9A2481452452C48300F23D28 /* AuraWindow.mm */,
+				9A2481282452C48300F23D28 /* AuraWindowApp.h */,
+				9A2481382452C48300F23D28 /* AuraWindowApp.mm */,
+				9A24813C2452C48300F23D28 /* AuraWindowFrameView.h */,
+				9A2481292452C48300F23D28 /* AuraWindowFrameView.mm */,
 				9A2481262452C48300F23D28 /* shell.cpp */,
 				9A2481432452C48300F23D28 /* shell.h */,
 				9A24814B2452C48300F23D28 /* state.h */,
@@ -2616,6 +2729,9 @@
 		9A37650C2409C094002D15D3 /* inline */ = {
 			isa = PBXGroup;
 			children = (
+				9A3CD7F72512E5EF00E811FA /* application_common.h */,
+				9A3CD7F52512E5E500E811FA /* console_common.h */,
+				9A3CD7F32512E5D600E811FA /* console.h */,
 				9AAD4728249EC81D00B23B86 /* library.h */,
 				9AAD4726249EC7F600B23B86 /* application.h */,
 				9AF13616249DE735009410E0 /* _new_impl.h */,
@@ -3057,6 +3173,7 @@
 				9A247CF42452C47E00F23D28 /* os */,
 				9A247FE92452C48100F23D28 /* platform */,
 				9AE7233517E83B69003E47F9 /* user */,
+				9A1DAB332512E10D00670772 /* xml */,
 				9A2489742452D59400F23D28 /* _.h */,
 				9A268CE724CE118800C94D85 /* _defer.h */,
 				9A16E07A24BBFEEE00C3DD5B /* __matter_ca2.cpp */,
@@ -3084,7 +3201,6 @@
 				9A24861C2452C48F00F23D28 /* library_object_allocator.h in Headers */,
 				9A41731720004E7A0056265A /* conf_api.h in Headers */,
 				9A41730920004E7A0056265A /* asn1.h in Headers */,
-				9A2483112452C48700F23D28 /* UncaughtExceptionHandler.h in Headers */,
 				9AD1171824F5147800177261 /* interaction_impl.h in Headers */,
 				9AD116F924F5147800177261 /* windowing.h in Headers */,
 				9AD116FC24F5147800177261 /* _.h in Headers */,
@@ -3142,7 +3258,7 @@
 				9A2483D12452C48900F23D28 /* mm_graphics.h in Headers */,
 				9A2483062452C48700F23D28 /* main.h in Headers */,
 				9A3769C82409C2C5002D15D3 /* _c.h in Headers */,
-				9A2486D22452C49100F23D28 /* round_window.h in Headers */,
+				9A2486D22452C49100F23D28 /* aura_window.h in Headers */,
 				9A3764822409BF0C002D15D3 /* _visual_impl.h in Headers */,
 				9AD1173624F5147900177261 /* copydesk.h in Headers */,
 				9A24834E2452C48800F23D28 /* window_impl.h in Headers */,
@@ -3157,7 +3273,7 @@
 				9AF5F6B72298C60B0052BC48 /* impact.h in Headers */,
 				9A37649E2409BF0C002D15D3 /* image_frame.h in Headers */,
 				9A5C952824725D1A00107FDE /* context_thread.h in Headers */,
-				9A2486D42452C49100F23D28 /* RoundWindowApp.h in Headers */,
+				9A2486D42452C49100F23D28 /* AuraWindowApp.h in Headers */,
 				9AD116EE24F5147800177261 /* imm_client.h in Headers */,
 				9A8B636024CBCD3C00A93185 /* shader.h in Headers */,
 				9A41732220004E7A0056265A /* ecdsa.h in Headers */,
@@ -3214,21 +3330,25 @@
 				9AD19A072512A7A200B4C44A /* context_image.h in Headers */,
 				9AD116D724F5147800177261 /* _experience_const.h in Headers */,
 				9AD19A0D2512B8B200B4C44A /* interaction_layout.h in Headers */,
-				9A24871E2452C49200F23D28 /* RoundWindowFrameView.h in Headers */,
+				9A24871E2452C49200F23D28 /* AuraWindowFrameView.h in Headers */,
 				9A2486AF2452C49100F23D28 /* assert_running_task.h in Headers */,
 				9AD116EC24F5147800177261 /* message_queue_listener.h in Headers */,
 				9A24860C2452C48F00F23D28 /* drawable.h in Headers */,
 				9A2486052452C48F00F23D28 /* definition.h in Headers */,
 				9A3764832409BF0C002D15D3 /* path.h in Headers */,
+				9A1DAB622512E10D00670772 /* output_tree.h in Headers */,
 				9A3764942409BF0C002D15D3 /* igui.h in Headers */,
 				9A24835C2452C48800F23D28 /* process_c.h in Headers */,
+				9A1DAB862512E10D00670772 /* parse_info.h in Headers */,
 				9A41734720004E7A0056265A /* stack.h in Headers */,
 				9A37648D2409BF0C002D15D3 /* _impl.h in Headers */,
 				9AD116EA24F5147800177261 /* composition_imm_client.h in Headers */,
 				9A2486ED2452C49200F23D28 /* user.h in Headers */,
 				9A24832C2452C48700F23D28 /* multithreading.h in Headers */,
 				9A2483262452C48700F23D28 /* console.h in Headers */,
+				9A1DAB732512E10D00670772 /* tree_schema.h in Headers */,
 				9A24869E2452C49100F23D28 /* application_array.h in Headers */,
+				9A3CD7F62512E5E500E811FA /* console_common.h in Headers */,
 				9A41732C20004E7A0056265A /* md5.h in Headers */,
 				9A24835A2452C48800F23D28 /* _.h in Headers */,
 				9A8EB3942449821C0056E362 /* callback.h in Headers */,
@@ -3260,15 +3380,18 @@
 				9A24861F2452C48F00F23D28 /* library.h in Headers */,
 				9A2486822452C49000F23D28 /* logic.h in Headers */,
 				9A2487242452C49200F23D28 /* interaction_impl.h in Headers */,
+				9A1DAB672512E10D00670772 /* property_exchange.h in Headers */,
 				9AD116F424F5147800177261 /* window_map.h in Headers */,
+				9A1DAB8D2512E10D00670772 /* _.h in Headers */,
 				9A5C953524725D9B00107FDE /* mq.h in Headers */,
 				9A2486CD2452C49100F23D28 /* process.h in Headers */,
 				9A41732A20004E7A0056265A /* md2.h in Headers */,
 				9A2483C02452C48900F23D28 /* _m.h in Headers */,
+				9A1DAB822512E10D00670772 /* var_exchange.h in Headers */,
 				9A3764AF2409BF0C002D15D3 /* icon.h in Headers */,
 				9A3769CC2409C2C5002D15D3 /* _.h in Headers */,
 				9A41730B20004E7A0056265A /* asn1t.h in Headers */,
-				9A24871B2452C49200F23D28 /* RoundWindow.h in Headers */,
+				9A24871B2452C49200F23D28 /* AuraWindow.h in Headers */,
 				9A37647F2409BF0C002D15D3 /* bitmap.h in Headers */,
 				9A2483372452C48700F23D28 /* windowing_c.h in Headers */,
 				9A2485FC2452C48F00F23D28 /* static_start.h in Headers */,
@@ -3280,6 +3403,7 @@
 				9A2485FA2452C48F00F23D28 /* debug.h in Headers */,
 				9A24832E2452C48700F23D28 /* main.h in Headers */,
 				9A2486BF2452C49100F23D28 /* _platform.h in Headers */,
+				9A1DAB6A2512E10D00670772 /* disp_option.h in Headers */,
 				9A2483BC2452C48900F23D28 /* gen_1.h in Headers */,
 				9A8B636524CBCD3C00A93185 /* buffer.h in Headers */,
 				9A24876B2452C49300F23D28 /* _node.h in Headers */,
@@ -3325,7 +3449,7 @@
 				9AAD4727249EC7F600B23B86 /* application.h in Headers */,
 				9A2486772452C49000F23D28 /* constraint.h in Headers */,
 				9AD116D524F5147800177261 /* primitive.h in Headers */,
-				9A24870A2452C49200F23D28 /* RoundWindowApp.h in Headers */,
+				9A24870A2452C49200F23D28 /* AuraWindowApp.h in Headers */,
 				9A2485DC2452C48F00F23D28 /* main.h in Headers */,
 				9A41733820004E7A0056265A /* pkcs7.h in Headers */,
 				9A2486562452C49000F23D28 /* serial_impl.h in Headers */,
@@ -3339,6 +3463,7 @@
 				9A3764862409BF0C002D15D3 /* image.h in Headers */,
 				9A41734520004E7A0056265A /* ssl2.h in Headers */,
 				9A3764B92409BF0C002D15D3 /* aaa_want_to_remove_font_effects.h in Headers */,
+				9A1DAB6C2512E10D00670772 /* enum.h in Headers */,
 				9A253073248827E8000C4CDA /* sound_track_player.h in Headers */,
 				9A3764C22409BF0C002D15D3 /* graphics_extension.h in Headers */,
 				9A3769C52409C2C5002D15D3 /* decoder.h in Headers */,
@@ -3353,12 +3478,15 @@
 				9A2485EF2452C48F00F23D28 /* _impl.h in Headers */,
 				9A3764C02409BF0C002D15D3 /* colorref_array.h in Headers */,
 				9A2483052452C48700F23D28 /* time.h in Headers */,
+				9A3CD7F42512E5D600E811FA /* console.h in Headers */,
 				9A24871D2452C49200F23D28 /* implementation.h in Headers */,
 				9AD116F824F5147800177261 /* keyboard.h in Headers */,
+				9A1DAB642512E10D00670772 /* attr.h in Headers */,
 				9AE9FBB31F7F4D4800367001 /* audio.h in Headers */,
 				9A3764952409BF0C002D15D3 /* pen.h in Headers */,
 				9A268CE824CE118800C94D85 /* _defer.h in Headers */,
 				9AD116DF24F5147800177261 /* callback.h in Headers */,
+				9A3CD7F82512E5F000E811FA /* application_common.h in Headers */,
 				9A2489AF245335C100F23D28 /* _mm_common.h in Headers */,
 				9AD1172624F5147900177261 /* create_struct.h in Headers */,
 				9A2483B62452C48900F23D28 /* window_boot.h in Headers */,
@@ -3392,6 +3520,7 @@
 				9A3764C82409BF0C002D15D3 /* water_routine.h in Headers */,
 				9AF5F6B42298C60B0052BC48 /* check.h in Headers */,
 				9AD1171F24F5147900177261 /* _const.h in Headers */,
+				9A1DAB792512E10D00670772 /* input_tree.h in Headers */,
 				9A3764912409BF0C002D15D3 /* font_list.h in Headers */,
 				9AD1172324F5147900177261 /* message_queue.h in Headers */,
 				9A24831B2452C48700F23D28 /* graphics.h in Headers */,
@@ -3401,8 +3530,11 @@
 				9AD1174624F5147900177261 /* scroll_bar.h in Headers */,
 				9A292E5424743F64007D51C9 /* oswindow_data.h in Headers */,
 				9A41734020004E7A0056265A /* seed.h in Headers */,
+				9A1DAB7F2512E10D00670772 /* entity.h in Headers */,
+				9A1DAB772512E10D00670772 /* stream.h in Headers */,
 				9AD116F624F5147800177261 /* window_util.h in Headers */,
 				9AF5F6B92298C60B0052BC48 /* simple_command.h in Headers */,
+				9A1DAB802512E10D00670772 /* document.h in Headers */,
 				9A41732720004E7A0056265A /* idea.h in Headers */,
 				9A41731120004E7A0056265A /* camellia.h in Headers */,
 				9A1E1D7F22F0AF69004243B8 /* window.h in Headers */,
@@ -3432,12 +3564,14 @@
 				9AD1170024F5147800177261 /* _user.h in Headers */,
 				9A41733120004E7A0056265A /* ocsp.h in Headers */,
 				9AD116DB24F5147800177261 /* control_event.h in Headers */,
-				9A2486E52452C49100F23D28 /* RoundWindow.h in Headers */,
+				9A2486E52452C49100F23D28 /* AuraWindow.h in Headers */,
 				9A2485F32452C48F00F23D28 /* fixed_alloc.h in Headers */,
 				9A3769D12409C2C5002D15D3 /* multimedia.h in Headers */,
 				9A2F60D02474F6D300D392E8 /* application.h in Headers */,
+				9A1DAB6F2512E10D00670772 /* data.h in Headers */,
 				9A1E1D8322F0AF69004243B8 /* double_buffer.h in Headers */,
 				9A24867E2452C49000F23D28 /* draw_context2.h in Headers */,
+				9A1DAB612512E10D00670772 /* xmlite.h in Headers */,
 				9A2483A52452C48800F23D28 /* _.h in Headers */,
 				9A41730E20004E7A0056265A /* blowfish.h in Headers */,
 				9A2483D82452C48900F23D28 /* file.h in Headers */,
@@ -3453,6 +3587,7 @@
 				9A41734620004E7A0056265A /* ssl3.h in Headers */,
 				9AF5F6BA2298C60B0052BC48 /* source.h in Headers */,
 				9A2486EE2452C49200F23D28 /* interaction_impl.h in Headers */,
+				9A1DAB632512E10D00670772 /* _impl.h in Headers */,
 				9A2486C02452C49100F23D28 /* factory.h in Headers */,
 				9A2483BD2452C48900F23D28 /* process.h in Headers */,
 				9A2483BF2452C48900F23D28 /* window.h in Headers */,
@@ -3461,10 +3596,12 @@
 				9A41730C20004E7A0056265A /* async.h in Headers */,
 				9A41732120004E7A0056265A /* ecdh.h in Headers */,
 				9A3764BD2409BF0C002D15D3 /* fastblur.h in Headers */,
+				9A1DAB7E2512E10D00670772 /* department.h in Headers */,
 				9A41734A20004E7A0056265A /* ts.h in Headers */,
 				9AD1174124F5147900177261 /* _data.h in Headers */,
 				9A24882F2452C49500F23D28 /* _.h in Headers */,
 				9A41731020004E7A0056265A /* buffer.h in Headers */,
+				9A1DAB7A2512E10D00670772 /* tree_base.h in Headers */,
 				9A877B6922A2CD82000014DE /* _const.h in Headers */,
 				9A8B636724CBCD3C00A93185 /* program.h in Headers */,
 				9A41734220004E7A0056265A /* srp.h in Headers */,
@@ -3475,38 +3612,42 @@
 				9A2483512452C48800F23D28 /* graphics_mm.h in Headers */,
 				9A24863D2452C49000F23D28 /* keep.h in Headers */,
 				9A2483D52452C48900F23D28 /* _ansios.h in Headers */,
+				9A1DAB682512E10D00670772 /* edit.h in Headers */,
+				9A1DAB762512E10D00670772 /* node.h in Headers */,
+				9A1DAB8B2512E10D00670772 /* exportable.h in Headers */,
 				9AD1172724F5147900177261 /* user.h in Headers */,
 				9A24836A2452C48800F23D28 /* file.h in Headers */,
 				9A3764752409BF0C002D15D3 /* graphics.h in Headers */,
 				9A41732920004E7A0056265A /* lhash.h in Headers */,
-				9A2487092452C49200F23D28 /* round_window.h in Headers */,
+				9A2487092452C49200F23D28 /* aura_window.h in Headers */,
 				9AD1172024F5147900177261 /* _interaction_impl.h in Headers */,
+				9A1DAB6B2512E10D00670772 /* smart_pointer_array.h in Headers */,
 				9A41733B20004E7A0056265A /* rc4.h in Headers */,
 				9A3764E32409BF10002D15D3 /* _.h in Headers */,
 				9AD1174524F5147900177261 /* prodevian.h in Headers */,
 				9A3764E72409BF28002D15D3 /* _.h in Headers */,
-				9A2486E32452C49100F23D28 /* RoundWindowController.h in Headers */,
+				9A2486E32452C49100F23D28 /* AuraWindowController.h in Headers */,
 				9A24860B2452C48F00F23D28 /* _features.h in Headers */,
 				9A41733920004E7A0056265A /* rand.h in Headers */,
 				9A41731820004E7A0056265A /* crypto.h in Headers */,
 				9AD1170324F5147800177261 /* control_descriptor.h in Headers */,
 				9A41734C20004E7A0056265A /* ui.h in Headers */,
+				9A1DAB6E2512E10D00670772 /* importable.h in Headers */,
 				9A2486082452C48F00F23D28 /* application_signal_details.h in Headers */,
 				9AD1171124F5147800177261 /* interaction_thread.h in Headers */,
-				9A2483082452C48700F23D28 /* NSString+SymlinksAndAliases.h in Headers */,
 				9AD116D824F5147800177261 /* _impl.h in Headers */,
 				9A2F60CE2474F6D300D392E8 /* _draw2d_impl.h in Headers */,
 				9A2483A72452C48800F23D28 /* internal.h in Headers */,
-				9A2483152452C48700F23D28 /* NSObject+DDExtensions.h in Headers */,
 				9A52538924A8017E0088E35A /* obj_typ_ctr.h in Headers */,
 				9AD1170F24F5147800177261 /* mouse.h in Headers */,
 				9A41731A20004E7A0056265A /* des.h in Headers */,
-				9A2486E62452C49100F23D28 /* RoundWindowFrameView.h in Headers */,
+				9A2486E62452C49100F23D28 /* AuraWindowFrameView.h in Headers */,
 				9AD1171224F5147800177261 /* _const_key.h in Headers */,
 				9A2487252452C49200F23D28 /* shell.h in Headers */,
 				9A2486BD2452C49100F23D28 /* _system_var_impl.h in Headers */,
 				9A2488CC2452C4F100F23D28 /* winrt.h in Headers */,
 				9A2486382452C49000F23D28 /* ipc.h in Headers */,
+				9A1DAB892512E10D00670772 /* base_array.h in Headers */,
 				9A2488CE2452C4F200F23D28 /* objc.h in Headers */,
 				9A2486B02452C49100F23D28 /* console_application.h in Headers */,
 				9A41730D20004E7A0056265A /* bio.h in Headers */,
@@ -3522,6 +3663,7 @@
 				9A2486882452C49000F23D28 /* hyperlink.h in Headers */,
 				9AD116EB24F5147800177261 /* style_base.h in Headers */,
 				9A24867F2452C49000F23D28 /* department.h in Headers */,
+				9A1DAB752512E10D00670772 /* glue.h in Headers */,
 				9A92E3AB240B067300660EFD /* status_range_authentication.h in Headers */,
 				9A41732420004E7A0056265A /* err.h in Headers */,
 				9A41732020004E7A0056265A /* ec.h in Headers */,
@@ -3708,14 +3850,12 @@
 			files = (
 				9A8B636E24CBCD5700A93185 /* approach.cpp in Sources */,
 				9A201A03247733D800A31CBF /* idpool.cpp in Sources */,
-				9A449B3E247745FB0002A827 /* NSString+SymlinksAndAliases.mm in Sources */,
 				9A201A56247733D800A31CBF /* callback.cpp in Sources */,
 				9A201A6A247733D800A31CBF /* item_action.cpp in Sources */,
 				9A449B0C247739410002A827 /* MessageBoxA_W.mm in Sources */,
-				9A449B1B2477397E0002A827 /* RoundWindow.mm in Sources */,
+				9A449B1B2477397E0002A827 /* AuraWindow.mm in Sources */,
 				9A5253D624A820EE0088E35A /* _.cpp in Sources */,
 				9A201AB0247733D900A31CBF /* nanosvg.cpp in Sources */,
-				9A449B3F247745FB0002A827 /* UncaughtExceptionHandler.mm in Sources */,
 				9A201AB1247733D900A31CBF /* _.cpp in Sources */,
 				9A201AB2247733D900A31CBF /* alpha.cpp in Sources */,
 				9A201AB3247733D900A31CBF /* api.cpp in Sources */,
@@ -3777,7 +3917,7 @@
 				9A449B0D247739410002A827 /* mm_cross_gdi.mm in Sources */,
 				9A201B11247733DA00A31CBF /* _.cpp in Sources */,
 				9A201B2F247733DA00A31CBF /* _.cpp in Sources */,
-				9A449B192477397E0002A827 /* round_window.mm in Sources */,
+				9A449B192477397E0002A827 /* aura_window.mm in Sources */,
 				9A201B39247733DA00A31CBF /* user.cpp in Sources */,
 				9A201B3A247733DA00A31CBF /* speaker.cpp in Sources */,
 				9A201B3B247733DA00A31CBF /* audio_wave_out.cpp in Sources */,
@@ -3860,7 +4000,6 @@
 				9A201C3D247733DC00A31CBF /* debug.cpp in Sources */,
 				9A201C3E247733DC00A31CBF /* file.cpp in Sources */,
 				9A201C3F247733DC00A31CBF /* http.cpp in Sources */,
-				9A201C40247733DC00A31CBF /* openssl_crypt.cpp in Sources */,
 				9A201C41247733DC00A31CBF /* os_os.cpp in Sources */,
 				9A201C42247733DC00A31CBF /* process.cpp in Sources */,
 				9A201C43247733DC00A31CBF /* thread.cpp in Sources */,
@@ -3887,20 +4026,18 @@
 				9A201C94247733DD00A31CBF /* theme.cpp in Sources */,
 				9A201C9A247733DD00A31CBF /* trace_category.cpp in Sources */,
 				9A201C9C247733DD00A31CBF /* version.cpp in Sources */,
-				9A449B3C247745FA0002A827 /* DDInvocationGrabber.mm in Sources */,
-				9A449B1C2477397E0002A827 /* RoundWindowApp.mm in Sources */,
+				9A449B1C2477397E0002A827 /* AuraWindowApp.mm in Sources */,
 				9AAD46D3249EA4A000B23B86 /* pthread.cpp in Sources */,
 				9A449B1A2477397E0002A827 /* RoundViewController.mm in Sources */,
 				9AAD46D5249EA4AC00B23B86 /* time.cpp in Sources */,
 				9A214B1D24BEB0E9002C1331 /* RoundTextRange.mm in Sources */,
 				9A8B636B24CBCD5000A93185 /* context.cpp in Sources */,
 				9A214B2224BEC6C9002C1331 /* RoundTextView.mm in Sources */,
-				9A449B3D247745FB0002A827 /* NSObject+DDExtensions.mm in Sources */,
 				9A16E0D324BC11E100C3DD5B /* __matter_ca2.cpp in Sources */,
 				9AAD46D1249EA49700B23B86 /* thread.cpp in Sources */,
 				9AAD46D9249EA67500B23B86 /* frame_window.cpp in Sources */,
 				9A8B636D24CBCD5700A93185 /* buffer.cpp in Sources */,
-				9A449B1D2477397E0002A827 /* RoundWindowFrameView.mm in Sources */,
+				9A449B1D2477397E0002A827 /* AuraWindowFrameView.mm in Sources */,
 				9A8B636C24CBCD5700A93185 /* shader.cpp in Sources */,
 				9AAD472A249EC84500B23B86 /* new.cpp in Sources */,
 				9A449B10247739410002A827 /* mm_user.mm in Sources */,
@@ -3923,6 +4060,8 @@
 				9A24831F2452C48700F23D28 /* main.cpp in Sources */,
 				9A2486CB2452C49100F23D28 /* apple_timer.cpp in Sources */,
 				9AD19A102512B8CB00B4C44A /* timer.cpp in Sources */,
+				9A1DAB6D2512E10D00670772 /* entity.cpp in Sources */,
+				9A1DAB722512E10D00670772 /* attr.cpp in Sources */,
 				9A1E1D8722F0AF69004243B8 /* graphics.cpp in Sources */,
 				9A2486462452C49000F23D28 /* lparam.cpp in Sources */,
 				9A3764DB2409BF0C002D15D3 /* printer.cpp in Sources */,
@@ -3950,6 +4089,7 @@
 				9AC31C9524853D7400F18145 /* keyboard.cpp in Sources */,
 				9A24832A2452C48700F23D28 /* thread.cpp in Sources */,
 				9A24848D2452C48B00F23D28 /* argcargv.cpp in Sources */,
+				9A1DAB662512E10D00670772 /* parse_info.cpp in Sources */,
 				9A2486812452C49000F23D28 /* system.cpp in Sources */,
 				9AD1173E24F5147900177261 /* box.cpp in Sources */,
 				9A3764B62409BF0C002D15D3 /* font_department.cpp in Sources */,
@@ -3964,18 +4104,22 @@
 				9A3764962409BF0C002D15D3 /* load_gif_frame.cpp in Sources */,
 				9AC31C8F248537F100F18145 /* NSPasteboard++.mm in Sources */,
 				9A37649A2409BF0C002D15D3 /* icon.cpp in Sources */,
+				9A1DAB7D2512E10D00670772 /* var_exchange.cpp in Sources */,
 				9A3764D92409BF0C002D15D3 /* graphics.cpp in Sources */,
 				9ACDE5DE22CD295B002DB5A7 /* audio_wave_out.cpp in Sources */,
 				9A253074248827E8000C4CDA /* sound_track_player.cpp in Sources */,
 				9A2483272452C48700F23D28 /* binreloc.cpp in Sources */,
 				9A3764C92409BF0C002D15D3 /* color.cpp in Sources */,
 				9A24869B2452C49100F23D28 /* str_context.cpp in Sources */,
+				9A1DAB882512E10D00670772 /* exportable.cpp in Sources */,
 				9A8B635F24CBCD3C00A93185 /* program.cpp in Sources */,
+				9A1DAB8A2512E10D00670772 /* importable.cpp in Sources */,
 				9A24854E2452C48D00F23D28 /* time.cpp in Sources */,
 				9A3764B02409BF0C002D15D3 /* bitmap.cpp in Sources */,
 				9AD1173124F5147900177261 /* scroll.cpp in Sources */,
 				9AF13600249DDCB8009410E0 /* pipe.cpp in Sources */,
 				9A2483182452C48700F23D28 /* multihreading.cpp in Sources */,
+				9A1DAB842512E10D00670772 /* xml.cpp in Sources */,
 				9A2483442452C48800F23D28 /* process_pid.cpp in Sources */,
 				9AD19A0A2512AC8B00B4C44A /* drawable.cpp in Sources */,
 				9A3764D32409BF0C002D15D3 /* path.cpp in Sources */,
@@ -3996,6 +4140,7 @@
 				9AD1170624F5147800177261 /* copydesk.cpp in Sources */,
 				9A8B636324CBCD3C00A93185 /* shader.cpp in Sources */,
 				9AC31C93248538F000F18145 /* clipboard.cpp in Sources */,
+				9A1DAB812512E10D00670772 /* property_exchange.cpp in Sources */,
 				9AD1173C24F5147900177261 /* progress.cpp in Sources */,
 				9A2483172452C48700F23D28 /* graphics.cpp in Sources */,
 				9A2483142452C48700F23D28 /* ns_exception.cpp in Sources */,
@@ -4023,30 +4168,32 @@
 				9A3764DE2409BF0C002D15D3 /* debug.cpp in Sources */,
 				9A24834C2452C48800F23D28 /* file.cpp in Sources */,
 				9A2486CF2452C49100F23D28 /* thread.cpp in Sources */,
+				9A1DAB8C2512E10D00670772 /* tree_schema.cpp in Sources */,
+				9A1DAB7C2512E10D00670772 /* disp_option.cpp in Sources */,
 				9A24866D2452C49000F23D28 /* session.cpp in Sources */,
 				9A1E1D7B22F0AF69004243B8 /* console.cpp in Sources */,
 				9A1E1D9922F0AF69004243B8 /* device_context.cpp in Sources */,
 				9A1E1D8122F0AF69004243B8 /* buffer.cpp in Sources */,
 				9A2483DF2452C48900F23D28 /* file.cpp in Sources */,
 				9AD1173A24F5147900177261 /* window_map.cpp in Sources */,
+				9A1DAB832512E10D00670772 /* output_tree.cpp in Sources */,
 				9AD1170724F5147800177261 /* plain_edit.cpp in Sources */,
 				9A3769C72409C2C5002D15D3 /* decoder.cpp in Sources */,
 				9A5C953D247265A200107FDE /* file_raw.cpp in Sources */,
-				9A2483092452C48700F23D28 /* NSString+SymlinksAndAliases.mm in Sources */,
 				9A24831A2452C48700F23D28 /* debug.cpp in Sources */,
 				9A3764BC2409BF0C002D15D3 /* imaging.cpp in Sources */,
 				9A3764C62409BF0C002D15D3 /* image_dynamic.cpp in Sources */,
 				9A16E07324BBFEB500C3DD5B /* static_start_aura.cpp in Sources */,
-				9A2486D52452C49100F23D28 /* RoundWindowFrameView.mm in Sources */,
+				9A2486D52452C49100F23D28 /* AuraWindowFrameView.mm in Sources */,
 				9A2483322452C48700F23D28 /* win_base.cpp in Sources */,
 				9A2483292452C48700F23D28 /* winpr_keycode.cpp in Sources */,
 				9AC31C8C248536B500F18145 /* copydesk.cpp in Sources */,
 				9A3764C52409BF0C002D15D3 /* brush.cpp in Sources */,
 				9A3764D02409BF0C002D15D3 /* font_list.cpp in Sources */,
 				9A2488CF2452C4F200F23D28 /* _.cpp in Sources */,
+				9A1DAB852512E10D00670772 /* _from.cpp in Sources */,
 				9AF135F4249DDC45009410E0 /* time.cpp in Sources */,
 				9AD116E624F5147800177261 /* mouse.cpp in Sources */,
-				9A24831E2452C48700F23D28 /* DDInvocationGrabber.mm in Sources */,
 				9A24830F2452C48700F23D28 /* _apple.mm in Sources */,
 				9AD1173B24F5147900177261 /* primitive.cpp in Sources */,
 				9A2483582452C48800F23D28 /* windowing.cpp in Sources */,
@@ -4061,7 +4208,6 @@
 				9A37647D2409BF0C002D15D3 /* image_gif_antialias_8bit.cpp in Sources */,
 				9A2483DA2452C48900F23D28 /* language.cpp in Sources */,
 				9A3764CF2409BF0C002D15D3 /* text_box.cpp in Sources */,
-				9A2483EC2452C48900F23D28 /* openssl_crypt.cpp in Sources */,
 				9AF1361A249DE790009410E0 /* new.cpp in Sources */,
 				9AD1172E24F5147900177261 /* interaction_prodevian.cpp in Sources */,
 				9A3764B42409BF0C002D15D3 /* graphics_extension.cpp in Sources */,
@@ -4070,18 +4216,20 @@
 				9A24833A2452C48700F23D28 /* file.mm in Sources */,
 				9A1E1D7D22F0AF69004243B8 /* double_buffer.cpp in Sources */,
 				9A2483A02452C48800F23D28 /* metrowin_user.cpp in Sources */,
-				9A2486F32452C49200F23D28 /* RoundWindowController.mm in Sources */,
+				9A2486F32452C49200F23D28 /* AuraWindowController.mm in Sources */,
 				9AD19A0E2512B8B200B4C44A /* interaction_layout.cpp in Sources */,
 				9AD1171724F5147800177261 /* range.cpp in Sources */,
 				9A2483DD2452C48900F23D28 /* win.cpp in Sources */,
 				9A5C95382472606A00107FDE /* oswindow_data.cpp in Sources */,
+				9A1DAB782512E10D00670772 /* data.cpp in Sources */,
 				9A2486CC2452C49100F23D28 /* process.cpp in Sources */,
-				9A2486D82452C49100F23D28 /* round_window.mm in Sources */,
+				9A2486D82452C49100F23D28 /* aura_window.mm in Sources */,
 				9A2483362452C48700F23D28 /* list_serial_ports.cpp in Sources */,
 				9A2486282452C48F00F23D28 /* version.cpp in Sources */,
+				9A1DAB7B2512E10D00670772 /* base_array.cpp in Sources */,
 				9A3769C92409C2C5002D15D3 /* exception.cpp in Sources */,
 				9AD116DA24F5147800177261 /* composition_imm_client.cpp in Sources */,
-				9A2486E42452C49100F23D28 /* RoundWindowApp.mm in Sources */,
+				9A2486E42452C49100F23D28 /* AuraWindowApp.mm in Sources */,
 				9A2489E62453417F00F23D28 /* user.cpp in Sources */,
 				9A2486632452C49000F23D28 /* theme.cpp in Sources */,
 				9A2486432452C49000F23D28 /* assert.cpp in Sources */,
@@ -4092,14 +4240,13 @@
 				9A2483552452C48800F23D28 /* lock.cpp in Sources */,
 				9AD1172A24F5147900177261 /* key.cpp in Sources */,
 				9A2483592452C48800F23D28 /* time.cpp in Sources */,
-				9A2483072452C48700F23D28 /* NSObject+DDExtensions.mm in Sources */,
 				9A3764AD2409BF0C002D15D3 /* font.cpp in Sources */,
 				9A3764A32409BF0C002D15D3 /* matrix.cpp in Sources */,
 				9AD1171924F5147800177261 /* window_util.cpp in Sources */,
 				9AAC21902475BDFC0013AB72 /* process.cpp in Sources */,
 				9A2483A12452C48800F23D28 /* cross_metrowin_user.cpp in Sources */,
 				9A2486BC2452C49100F23D28 /* static_start.cpp in Sources */,
-				9A2486F12452C49200F23D28 /* RoundWindow.mm in Sources */,
+				9A2486F12452C49200F23D28 /* AuraWindow.mm in Sources */,
 				9AD1171C24F5147900177261 /* scroll_bar.cpp in Sources */,
 				9A2483462452C48800F23D28 /* mm_user.mm in Sources */,
 				9A3764D22409BF0C002D15D3 /* image_pointer_array.cpp in Sources */,
@@ -4107,6 +4254,7 @@
 				9AD1173724F5147900177261 /* _.cpp in Sources */,
 				9A3764E42409BF10002D15D3 /* ortho.cpp in Sources */,
 				9A268CC224CDD8A000C94D85 /* user.cpp in Sources */,
+				9A1DAB742512E10D00670772 /* node.cpp in Sources */,
 				9A2483312452C48700F23D28 /* winpr_keycode.cpp in Sources */,
 				9A24830C2452C48700F23D28 /* image_gif.cpp in Sources */,
 				9AF13609249DDCB8009410E0 /* application.cpp in Sources */,
@@ -4123,6 +4271,8 @@
 				9AD1170E24F5147800177261 /* interaction_child.cpp in Sources */,
 				9A3764762409BF0C002D15D3 /* image_extension.cpp in Sources */,
 				9AD1172F24F5147900177261 /* window_state.cpp in Sources */,
+				9A1DAB872512E10D00670772 /* document.cpp in Sources */,
+				9A1DAB652512E10D00670772 /* edit.cpp in Sources */,
 				9A8749442476FB4B000353C2 /* mm_graphics.mm in Sources */,
 				9AD1173024F5147900177261 /* interaction_impl.cpp in Sources */,
 				9A2483502452C48800F23D28 /* debug.cpp in Sources */,
@@ -4132,8 +4282,8 @@
 				9A92E3A9240B067300660EFD /* idpool.cpp in Sources */,
 				9AD116E924F5147800177261 /* style.cpp in Sources */,
 				9A2486BE2452C49100F23D28 /* regex.cpp in Sources */,
+				9A1DAB712512E10D00670772 /* tree_base.cpp in Sources */,
 				9A37647A2409BF0C002D15D3 /* image_map.cpp in Sources */,
-				9A2483202452C48700F23D28 /* UncaughtExceptionHandler.mm in Sources */,
 				9A3764C32409BF0C002D15D3 /* glyph.cpp in Sources */,
 				9A2486E12452C49100F23D28 /* trace.cpp in Sources */,
 				9A2483342452C48700F23D28 /* mm.mm in Sources */,
@@ -4147,10 +4297,12 @@
 				9AD1172824F5147900177261 /* wait_cursor.cpp in Sources */,
 				9A8B636124CBCD3C00A93185 /* context.cpp in Sources */,
 				9A5C9540247265B300107FDE /* datetime.cpp in Sources */,
+				9A1DAB692512E10D00670772 /* xmlite.cpp in Sources */,
 				9A2486F92452C49200F23D28 /* main.cpp in Sources */,
 				9A1E1D6F22F0AF69004243B8 /* multiple_buffer.cpp in Sources */,
 				9A2483672452C48800F23D28 /* winpr_scancode.cpp in Sources */,
 				9AD116D424F5147800177261 /* user.cpp in Sources */,
+				9A1DAB702512E10D00670772 /* input_tree.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

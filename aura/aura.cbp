@@ -1287,7 +1287,7 @@
 		<Unit filename="node/windows/_node_windows.h" />
 		<Unit filename="node/windows/_windows.h" />
 		<Unit filename="node/windows/a.h" />
-		<Unit filename="node/windows/aaa_want_to_remove_RoundWindowApp.h" />
+		<Unit filename="node/windows/aaa_want_to_remove_AuraWindowApp.h" />
 		<Unit filename="node/windows/aaa_want_to_remove_handle.h" />
 		<Unit filename="node/windows/aaa_want_to_remove_printer.h" />
 		<Unit filename="node/windows/aaa_want_to_remove_simple_hold_handle.h" />

@@ -11,13 +11,13 @@
 #include "aura/os/apple/_mm_common.h"
 
 
-#import "RoundWindow.h"
+#import "AuraWindow.h"
 
 
-#import "RoundWindowFrameView.h"
+#import "AuraWindowFrameView.h"
 
 
-#import "round_window.h"
+#import "aura_window.h"
 
 
-#import "RoundWindowApp.h"
+#import "AuraWindowApp.h"

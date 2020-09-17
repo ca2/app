@@ -481,7 +481,7 @@ namespace ios
       if(cs.hwndParent != HWND_MESSAGE)
       {
 
-         m_oswindow = oswindow_get(new_round_window(this, rect));
+         m_oswindow = oswindow_get(new_aura_window(this, rect));
          
          __copy(rectCreate, rect);
 
@@ -557,7 +557,7 @@ namespace ios
 //
 //      m_rectParentClientRequest = pinitialize.m_rect;
 //
-//      m_oswindow = oswindow_get(new_round_window(this, rect));
+//      m_oswindow = oswindow_get(new_aura_window(this, rect));
 //
 //      install_message_routing(this);
 //

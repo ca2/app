@@ -26,7 +26,7 @@ CLASS_DECL_AURA WINBOOL destroy_window(oswindow oswindow);
 CLASS_DECL_AURA oswindow get_window(oswindow oswindow, int iWindow);
 CLASS_DECL_AURA oswindow get_desktop_window();
 CLASS_DECL_AURA WINBOOL show_window(oswindow oswindow, int iShow);
-CLASS_DECL_AURA WINBOOL set_foreground_window(oswindow oswindow);
+CLASS_DECL_AURA WINBOOL set_foregaura_window(oswindow oswindow);
 
 
 #ifdef WINDOWS_DESKTOP

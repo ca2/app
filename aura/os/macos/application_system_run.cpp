@@ -104,7 +104,7 @@ bool os_init_application()
 //
 //   set_main_ithread(psystem->m_uThread);
 //
-   ns_application_main(psystem->m_argc, psystem->m_argv, psystem->m_strCommandLine);
+   aura_application_main(psystem->m_argc, psystem->m_argv, psystem->m_strCommandLine);
 
    return ::success;
 

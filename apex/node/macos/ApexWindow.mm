@@ -13,34 +13,34 @@
 //
 #import "_mm.h"
 
-NSWindow * get_os_window_ns_window(oswindow hwnd);
+//NSWindow * get_os_window_ns_window(oswindow hwnd);
 
-CGWindowID get_os_window_window_number(oswindow oswindow)
-{
+//CGWindowID get_os_window_window_number(oswindow oswindow)
+//{
+//
+//      if(oswindow == NULL)
+//      {
+//
+//return 0;
+//
+//      }
+//
+//
+//      NSWindow * window = get_os_window_ns_window(oswindow);
+//
+//      if(window == NULL)
+//      {
+//
+//return 0;
+//
+//      }
+//
+//      return (CGWindowID)[window windowNumber];
+//}
 
-      if(oswindow == NULL)
-      {
-
-return 0;
-
-      }
 
 
-      NSWindow * window = get_os_window_ns_window(oswindow);
-
-      if(window == NULL)
-      {
-
-return 0;
-
-      }
-
-      return (CGWindowID)[window windowNumber];
-}
-
-
-
-@implementation RoundWindow
+@implementation ApexWindow
 
 
 //
@@ -92,7 +92,7 @@ return 0;
 
    [self setIgnoresMouseEvents : NO];
    
-   m_controller = [[NSWindowController alloc] initWithWindow: self];
+   m_pwindowcontroller = [[NSWindowController alloc] initWithWindow: self];
 
    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(windowDidBecomeKey:) name: NSWindowDidBecomeKeyNotification object: self];
 
@@ -116,7 +116,7 @@ return 0;
    
    [self create_view];
    
-   m_pwindow->round_window_add_ref();
+   m_papexwindow->round_window_add_ref();
    
    return self;
    
@@ -126,9 +126,9 @@ return 0;
 - (void)dealloc
 {
    
-   auto pwindow = m_pwindow;
+   auto pwindow = m_papexwindow;
    
-   m_pwindow = NULL;
+   m_papexwindow = NULL;
 
    pwindow->round_window_dec_ref();
    
@@ -167,7 +167,7 @@ return 0;
 
    printf("windowDidBecomeKey\n");
 
-   m_pwindow->round_window_did_become_key();
+   m_papexwindow->round_window_did_become_key();
    
 }
 
@@ -176,7 +176,7 @@ return 0;
    
    printf("windowDidResignKey\n");
    
-   //m_pwindow->round_window_deactivate();
+   //m_papexwindow->round_window_deactivate();
    
 }
 
@@ -186,7 +186,7 @@ return 0;
    
    printf("windowDidBecomeMain\n");
    
-   m_pwindow->round_window_activate();
+   m_papexwindow->round_window_activate();
    
 }
 
@@ -195,7 +195,7 @@ return 0;
    
    printf("windowDidResignMain\n");
    
-   m_pwindow->round_window_deactivate();
+   m_papexwindow->round_window_deactivate();
    
 }
 
@@ -212,15 +212,15 @@ return 0;
 	
    bounds.origin = NSZeroPoint;
 
-	RoundWindowFrameView * frameView = [[RoundWindowFrameView alloc] initWithFrame: bounds andRoundWindow: self];
+	ApexWindowFrameView * pframeview = [[ApexWindowFrameView alloc] initWithFrame: bounds andApexWindow: self];
    
-   childContentView = frameView;
+   m_pviewChildContent = pframeview;
    
-	[super setContentView: frameView];
+	[super setContentView: pframeview];
    
-	[frameView setFrame: bounds];
+	[pframeview setFrame: bounds];
    
-	[frameView setAutoresizingMask: 0];
+	[pframeview setAutoresizingMask: 0];
    
 }
 
@@ -316,7 +316,7 @@ return 0;
       
       point.y = [[NSScreen mainScreen] frame].size.height - (rect.origin.y + rect.size.height);
       
-      m_pwindow->round_window_moved(point);
+      m_papexwindow->round_window_moved(point);
       
    }
    catch (...)
@@ -344,7 +344,7 @@ return 0;
       
       rect.origin.y = [[NSScreen mainScreen] frame].size.height - (rect.origin.y + rect.size.height);
       
-      m_pwindow->round_window_resized(rect);
+      m_papexwindow->round_window_resized(rect);
       
    }
    catch (...)
@@ -361,7 +361,7 @@ return 0;
    try
    {
       
-      m_pwindow->round_window_iconified();
+      m_papexwindow->round_window_iconified();
       
    }
    catch (...)
@@ -378,7 +378,7 @@ return 0;
    try
    {
       
-      m_pwindow->round_window_deiconified();
+      m_papexwindow->round_window_deiconified();
       
    }
    catch (...)
@@ -395,14 +395,14 @@ return 0;
    try
    {
       
-      if(m_pwindow == NULL)
+      if(m_papexwindow == NULL)
       {
          
          return;
          
       }
       
-      m_pwindow->round_window_on_show();
+      m_papexwindow->round_window_on_show();
 
    }
    catch (...)
@@ -419,7 +419,7 @@ return 0;
    try
    {
       
-      m_pwindow->round_window_on_hide();
+      m_papexwindow->round_window_on_hide();
 
    }
    catch (...)

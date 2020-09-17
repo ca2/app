@@ -1,6 +1,6 @@
 //
-//  RoundWindow.m
-//  RoundWindow
+//  AuraWindow.m
+//  AuraWindow
 //
 //  Created by Matt Gallagher on 12/12/08.
 //  Copyright 2008 Matt Gallagher. All rights reserved.
@@ -12,10 +12,10 @@
 //  appreciated but not required.
 //
 #import "_mm.h"
-#import "RoundWindowApp.h"
+#import "AuraWindowApp.h"
 
 
-@implementation RoundWindow
+@implementation AuraWindow
 
 
 //
@@ -167,7 +167,7 @@
     bounds.origin.x = 0;
     bounds.origin.y = 0;
 
-	RoundWindowFrameView * frameView = [[RoundWindowFrameView alloc] initWithFrame : bounds] ;
+	AuraWindowFrameView * frameView = [[AuraWindowFrameView alloc] initWithFrame : bounds] ;
    
   	m_controller->childContentView = frameView;
    
@@ -188,7 +188,7 @@
    
    [m_controller.view addSubview: frameView];
    
-   RoundWindowApp * papp = (RoundWindowApp *) [[UIApplication sharedApplication] delegate];
+   AuraWindowApp * papp = (AuraWindowApp *) [[UIApplication sharedApplication] delegate];
    
    [papp setView: frameView];
    
@@ -208,7 +208,7 @@
       //   bounds.origin = CGZeroPoint;
       
       
-     // RoundWindowFrameView * frameView = [[RoundWindowFrameView alloc] initWithFrame : bounds] ;
+     // AuraWindowFrameView * frameView = [[AuraWindowFrameView alloc] initWithFrame : bounds] ;
       
      // frameView->m_roundwindow =  self;
       

@@ -2045,7 +2045,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="node\windows\a.h" />
     <ClInclude Include="node\windows\aaa_want_to_remove_handle.h" />
     <ClInclude Include="node\windows\aaa_want_to_remove_printer.h" />
-    <ClInclude Include="node\windows\aaa_want_to_remove_RoundWindowApp.h" />
+    <ClInclude Include="node\windows\aaa_want_to_remove_AuraWindowApp.h" />
     <ClInclude Include="node\windows\aaa_want_to_remove_simple_hold_handle.h" />
     <ClInclude Include="node\windows\buffer.h" />
     <ClInclude Include="node\windows\command.h" />

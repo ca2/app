@@ -1,6 +1,6 @@
 //
-//  RoundWindowFrameView.m
-//  RoundWindow
+//  AuraWindowFrameView.m
+//  AuraWindow
 //
 //  Created by Matt Gallagher on 12/12/08.
 //  Copyright 2008 Matt Gallagher. All rights reserved.
@@ -12,13 +12,13 @@
 //  appreciated but not required.
 //
 #import "_mm.h"
-#import "RoundWindowFrameView.h"
-#import "RoundWindowApp.h"
+#import "AuraWindowFrameView.h"
+#import "AuraWindowApp.h"
 #import "RoundTextPosition.h"
 #import "RoundTextRange.h"
 
 
-@implementation RoundWindowFrameView
+@implementation AuraWindowFrameView
 
 
 
@@ -79,7 +79,7 @@
 - (void)mouseUp:(UIEvent *)event
 {
    
-   round_window * p = m_roundwindow->m_pwindow;
+   aura_window * p = m_roundwindow->m_pwindow;
    
 //   CGPoint point = [[self window] convertBaseToScreen:[event locationInWindow]];
    CGPoint point;
@@ -106,7 +106,7 @@
 - (void)mouseMoved:(UIEvent *)event
 {
    
-   round_window * p = m_roundwindow->m_pwindow;
+   aura_window * p = m_roundwindow->m_pwindow;
    
 //   CGPoint point = [[self window] convertBaseToScreen:[event locationInWindow]];
     
@@ -134,7 +134,7 @@
 - (void)mouseDragged:(UIEvent *)event
 {
    
-   round_window * p = m_roundwindow->m_pwindow;
+   aura_window * p = m_roundwindow->m_pwindow;
    
 //   CGPoint point = [[self window] convertBaseToScreen:[event locationInWindow]];
     
@@ -169,7 +169,7 @@
 - (void)mouseDown:(UIEvent *)event
 {
    
-   round_window * p = m_roundwindow->m_pwindow;
+   aura_window * p = m_roundwindow->m_pwindow;
    
 //   CGPoint point = [[self window] convertBaseToScreen:[event locationInWindow]];
    CGPoint point;
@@ -317,7 +317,7 @@
 -(void)on_text : (NSString *) text
 {
 
-   round_window * p = m_roundwindow->m_pwindow;
+   aura_window * p = m_roundwindow->m_pwindow;
    
    const char * pszText = [text UTF8String];
    
@@ -330,7 +330,7 @@
 -(void)on_sel : (UITextRange *) sel
 {
 
-   round_window * p = m_roundwindow->m_pwindow;
+   aura_window * p = m_roundwindow->m_pwindow;
    
    if(sel == NULL)
    {
@@ -372,14 +372,14 @@
 
 //   ::user::e_key ekey = ::user::key_back;
 //
-//   round_window * p = m_roundwindow->m_pwindow;
+//   aura_window * p = m_roundwindow->m_pwindow;
 //
 //   if(p->round_window_key_down(ekey))
 //      return;
    // UITextView --> UIView
 //   [super deleteBackward];
 //
-//   round_window * p = m_roundwindow->m_pwindow;
+//   aura_window * p = m_roundwindow->m_pwindow;
 //
 //   const char * pszText = [[self text] UTF8String];
 //
@@ -399,7 +399,7 @@
    
    ::user::e_key ekey = event_key(event);
    
-   round_window * p = m_roundwindow->m_pwindow;
+   aura_window * p = m_roundwindow->m_pwindow;
    
    if(p->round_window_key_down(ekey))
       return;
@@ -414,7 +414,7 @@
    
    ::user::e_key ekey = event_key(event);
    
-   round_window * p = m_roundwindow->m_pwindow;
+   aura_window * p = m_roundwindow->m_pwindow;
    
    if(p->round_window_key_up(ekey))
       return;
@@ -435,7 +435,7 @@
 - (void)flagsChanged:(UIEvent *)event
 {
    
-   round_window * p = m_roundwindow->m_pwindow;
+   aura_window * p = m_roundwindow->m_pwindow;
    
    //   if([event modifierFlags] & NSShiftKeyMask)
    {
@@ -576,7 +576,7 @@
    
    [super touchesBegan:touches withEvent:event];
    
-   round_window * p = m_roundwindow->m_pwindow;
+   aura_window * p = m_roundwindow->m_pwindow;
    
    BOOL allTouchesEnded = ([touches count] == [[event touchesForView:self] count]);
    
@@ -617,7 +617,7 @@
 //
 //   CGPoint translation = [uiPanGestureRecognizer translationInView:self.superview];
 //
-//   round_window * p = m_roundwindow->m_pwindow;
+//   aura_window * p = m_roundwindow->m_pwindow;
 //
 //   int x = m_pointLastTouchBegan.x + translation.x;
 //
@@ -633,7 +633,7 @@
    
    [super touchesMoved:touches withEvent:event];
    
-   round_window * p = m_roundwindow->m_pwindow;
+   aura_window * p = m_roundwindow->m_pwindow;
    
    if ([touches count] == 1)
    {
@@ -679,7 +679,7 @@
    
    BOOL allTouchesEnded = ([touches count] == [[event touchesForView:self] count]);
    
-   round_window * p = m_roundwindow->m_pwindow;
+   aura_window * p = m_roundwindow->m_pwindow;
    
    if ([touches count] == 1 && allTouchesEnded)
    {
@@ -746,7 +746,7 @@
    
    BOOL allTouchesEnded = ([touches count] == [[event touchesForView:self] count]);
    
-   round_window * p = m_roundwindow->m_pwindow;
+   aura_window * p = m_roundwindow->m_pwindow;
    
    if ([touches count] == 1 && allTouchesEnded)
    {
@@ -793,7 +793,7 @@
 //   if(m_roundwindow == nil)
 //      return;
 //
-//   round_window * p = m_roundwindow->m_pwindow;
+//   aura_window * p = m_roundwindow->m_pwindow;
 //
 //   CGContextRef context = ctx;
 //
@@ -843,7 +843,7 @@
    if(m_roundwindow != nil)
    {
       
-      round_window * p = m_roundwindow->m_pwindow;
+      aura_window * p = m_roundwindow->m_pwindow;
       
       if(orientation == UIInterfaceOrientationPortrait)
       {

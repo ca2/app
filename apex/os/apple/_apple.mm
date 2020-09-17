@@ -5,7 +5,7 @@
 //  Created by Camilo Sasuke Tsumanuma on 04/01/18. with tbs in <3
 //
 #include "_mm.h"
-#import "NSString+SymlinksAndAliases.h"
+//#import "NSString+SymlinksAndAliases.h"
 #import "acme/primitive/primitive/runnable.h"
 
 char * ns_string(NSString * str)

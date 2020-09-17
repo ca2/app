@@ -24,7 +24,7 @@ struct NSWindow;
 
 #endif
 
-NSWindow * __nswindow(oswindow oswindow);
+//NSWindow * __nswindow(oswindow oswindow);
 
 
 //#include "oswindow_data.h"

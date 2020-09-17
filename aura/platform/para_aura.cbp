@@ -813,9 +813,9 @@
 		<Unit filename="aura/node/android/thread.h" />
 		<Unit filename="aura/node/apple/process.h" />
 		<Unit filename="aura/node/ios/RoundViewController.h" />
-		<Unit filename="aura/node/ios/RoundWindow.h" />
-		<Unit filename="aura/node/ios/RoundWindowApp.h" />
-		<Unit filename="aura/node/ios/RoundWindowFrameView.h" />
+		<Unit filename="aura/node/ios/AuraWindow.h" />
+		<Unit filename="aura/node/ios/AuraWindowApp.h" />
+		<Unit filename="aura/node/ios/AuraWindowFrameView.h" />
 		<Unit filename="aura/node/ios/application.h" />
 		<Unit filename="aura/node/ios/dir.h" />
 		<Unit filename="aura/node/ios/factory_exchange.h" />
@@ -849,7 +849,7 @@
 		<Unit filename="aura/node/ios/mm.h" />
 		<Unit filename="aura/node/ios/os.h" />
 		<Unit filename="aura/node/ios/plane_system.h" />
-		<Unit filename="aura/node/ios/round_window.h" />
+		<Unit filename="aura/node/ios/aura_window.h" />
 		<Unit filename="aura/node/ios/shell.h" />
 		<Unit filename="aura/node/ios/shell_ios.h" />
 		<Unit filename="aura/node/ios/state.h" />
@@ -899,10 +899,10 @@
 		<Unit filename="aura/node/linux/trace.cpp" />
 		<Unit filename="aura/node/linux/util.cpp" />
 		<Unit filename="aura/node/macos/Keyboard.h" />
-		<Unit filename="aura/node/macos/RoundWindow.h" />
-		<Unit filename="aura/node/macos/RoundWindowApp.h" />
-		<Unit filename="aura/node/macos/RoundWindowController.h" />
-		<Unit filename="aura/node/macos/RoundWindowFrameView.h" />
+		<Unit filename="aura/node/macos/AuraWindow.h" />
+		<Unit filename="aura/node/macos/AuraWindowApp.h" />
+		<Unit filename="aura/node/macos/AuraWindowController.h" />
+		<Unit filename="aura/node/macos/AuraWindowFrameView.h" />
 		<Unit filename="aura/node/macos/_.h" />
 		<Unit filename="aura/node/macos/_macos.h" />
 		<Unit filename="aura/node/macos/_mm.h" />
@@ -916,7 +916,7 @@
 		<Unit filename="aura/node/macos/file_watcher.h" />
 		<Unit filename="aura/node/macos/interaction_impl.h" />
 		<Unit filename="aura/node/macos/os_context.h" />
-		<Unit filename="aura/node/macos/round_window.h" />
+		<Unit filename="aura/node/macos/aura_window.h" />
 		<Unit filename="aura/node/macos/shell.h" />
 		<Unit filename="aura/node/macos/shell_macos.h" />
 		<Unit filename="aura/node/macos/stdio_file.h" />
@@ -1002,7 +1002,7 @@
 		<Unit filename="aura/node/windows/_node_windows.h" />
 		<Unit filename="aura/node/windows/_windows.h" />
 		<Unit filename="aura/node/windows/a.h" />
-		<Unit filename="aura/node/windows/aaa_want_to_remove_RoundWindowApp.h" />
+		<Unit filename="aura/node/windows/aaa_want_to_remove_AuraWindowApp.h" />
 		<Unit filename="aura/node/windows/aaa_want_to_remove_handle.h" />
 		<Unit filename="aura/node/windows/aaa_want_to_remove_printer.h" />
 		<Unit filename="aura/node/windows/aaa_want_to_remove_simple_hold_handle.h" />

@@ -50,7 +50,7 @@ void apple_accumulate_on_open_file(const char ** psza, int iCount, const char * 
 void apple_on_new_file();
 
 
-void ns_application_main(int argc, char *argv[], const char * pszCommandLine);
+void aura_application_main(int argc, char *argv[], const char * pszCommandLine);
 
 
 

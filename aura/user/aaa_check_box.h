@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AXIS check_box :
+   class CLASS_DECL_AURA check_box :
       virtual public ::user::interaction
    {
    public:

@@ -7,7 +7,7 @@
 //
 
 #include "_mm.h"
-#include "aura/node/macos/RoundWindowApp.h"
+#include "aura/node/macos/AuraWindowApp.h"
 #include "aura/os/cross/windows/windowing.h"
 
 

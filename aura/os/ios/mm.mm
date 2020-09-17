@@ -5,8 +5,8 @@
 //  Created by Camilo Sasuke Tsumanuma on 8/3/15.
 //
 //
-#import "aura/node/ios/RoundWindowApp.h"
-#import "aura/node/ios/RoundWindowFrameView.h"
+#import "aura/node/ios/AuraWindowApp.h"
+#import "aura/node/ios/AuraWindowFrameView.h"
 
 bool GetImagePixelData(unsigned int * pcr, int cx, int cy, int iScan, CGImageRef inImage);;
 
@@ -175,7 +175,7 @@ bool ns_open_file(const char * psz)
    }
    
    
-   RoundWindowApp * papp = (RoundWindowApp *)[ [UIApplication sharedApplication] delegate];
+   AuraWindowApp * papp = (AuraWindowApp *)[ [UIApplication sharedApplication] delegate];
    
    UIDocumentInteractionController *documentController = [UIDocumentInteractionController interactionControllerWithURL: url];
    documentController.delegate = papp;

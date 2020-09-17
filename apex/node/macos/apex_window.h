@@ -12,18 +12,18 @@
 //#include "app/axis/user/user/user_key_enum.h"
 
 
-class round_window
+class apex_window
 {
 public:
    
    
 #ifdef __OBJC__
    
-   RoundWindow * m_proundwindow;
+   ApexWindow * m_papexwindow;
    
 #else
    
-   void * m_proundwindow; // cast to RoundWindow * to use it
+   void * m_papexwindow; // cast to RoundWindow * to use it
    
 #endif
 
@@ -34,8 +34,8 @@ public:
    unsigned long long      m_uiLastUpdateEnd;
 
    
-   round_window();
-   virtual ~round_window();
+   apex_window();
+   virtual ~apex_window();
    
    virtual void round_window_add_ref() = 0;
    virtual void round_window_dec_ref() = 0;
@@ -90,11 +90,11 @@ public:
 };
 
 
-NSWindow * new_round_window(round_window * pwindow, CGRect rect, unsigned int uStyel);
+NSWindow * new_apex_window(apex_window * papexwindow, CGRect rect, unsigned int uStyel);
 void ns_app_close();
 
 
-NSWindow * get_os_window_ns_window(oswindow hwnd);
+//NSWindow * get_os_window_ns_window(oswindow hwnd);
 
 
 

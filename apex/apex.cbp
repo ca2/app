@@ -919,15 +919,8 @@
 		<Unit filename="node/linux/thread.h" />
 		<Unit filename="node/linux/trace.cpp" />
 		<Unit filename="node/linux/util.cpp" />
-		<Unit filename="node/posix/_posix.h" />
-		<Unit filename="node/posix/aaa_want_to_remove_ansios.h" />
-		<Unit filename="node/posix/aaa_want_to_remove_ansios_thread_impl.h" />
-		<Unit filename="node/posix/application.cpp" />
 		<Unit filename="node/posix/file_os_watcher.cpp" />
-		<Unit filename="node/posix/pipe.cpp" />
-		<Unit filename="node/posix/pipe.h" />
-		<Unit filename="node/posix/serial.cpp" />
-		<Unit filename="node/posix/serial.h" />
+		<Unit filename="node/posix/file_os_watcher.h" />
 		<Unit filename="node/serial.h" />
 		<Unit filename="node/unix/_unix.h" />
 		<Unit filename="node/unix/aaa_want_to_remove_ansios.h" />

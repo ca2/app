@@ -44,7 +44,7 @@ CLASS_DECL_ACME void simple_generate_random_bytes(void * p, memsize s)
    while(s > 0)
    {
       
-      *puch = random() % 255;
+      *puch = rand() % 255;
       
       puch++;
       

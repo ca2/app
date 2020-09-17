@@ -48,7 +48,7 @@
 //#include <tuple>
 //
 //
-//CLASS_DECL_AURA void aura_ref();
+CLASS_DECL_AURA void aura_ref();
 //
 //
 //#ifdef WINDOWS_DESKTOP

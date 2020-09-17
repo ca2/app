@@ -1090,6 +1090,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="const\idpool.cpp" />
+    <ClCompile Include="filesystem\filemanager\callback.cpp" />
+    <ClCompile Include="filesystem\filemanager\item_action.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">Create</PrecompiledHeader>
@@ -1306,6 +1308,26 @@
     <ClCompile Include="user\window_state.cpp" />
     <ClCompile Include="user\window_util.cpp" />
     <ClCompile Include="user\_.cpp" />
+    <ClCompile Include="xml\attr.cpp" />
+    <ClCompile Include="xml\base_array.cpp" />
+    <ClCompile Include="xml\data.cpp" />
+    <ClCompile Include="xml\disp_option.cpp" />
+    <ClCompile Include="xml\document.cpp" />
+    <ClCompile Include="xml\edit.cpp" />
+    <ClCompile Include="xml\entity.cpp" />
+    <ClCompile Include="xml\exportable.cpp" />
+    <ClCompile Include="xml\importable.cpp" />
+    <ClCompile Include="xml\input_tree.cpp" />
+    <ClCompile Include="xml\node.cpp" />
+    <ClCompile Include="xml\output_tree.cpp" />
+    <ClCompile Include="xml\parse_info.cpp" />
+    <ClCompile Include="xml\property_exchange.cpp" />
+    <ClCompile Include="xml\tree_base.cpp" />
+    <ClCompile Include="xml\tree_schema.cpp" />
+    <ClCompile Include="xml\var_exchange.cpp" />
+    <ClCompile Include="xml\xml.cpp" />
+    <ClCompile Include="xml\xmlite.cpp" />
+    <ClCompile Include="xml\_from.cpp" />
     <ClCompile Include="_.cpp" />
     <ClCompile Include="__matter_ca2.cpp" />
     <ClInclude Include="astr.h" />
@@ -1315,6 +1337,8 @@
     <ClInclude Include="const\callback.h" />
     <ClInclude Include="const\GLOBAL_ID.h" />
     <ClInclude Include="const\procedure.h" />
+    <ClInclude Include="filesystem\filemanager\callback.h" />
+    <ClInclude Include="filesystem\filemanager\item_action.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="framework_c.h" />
     <ClInclude Include="game\estamira.h" />
@@ -2166,6 +2190,31 @@
     <ClInclude Include="primitive\string\__c_wide_impl.h" />
     <ClInclude Include="primitive\string\___ch_impl.h" />
     <ClInclude Include="user\user\impact_data.h" />
+    <ClInclude Include="xml\attr.h" />
+    <ClInclude Include="xml\base_array.h" />
+    <ClInclude Include="xml\data.h" />
+    <ClInclude Include="xml\department.h" />
+    <ClInclude Include="xml\disp_option.h" />
+    <ClInclude Include="xml\document.h" />
+    <ClInclude Include="xml\edit.h" />
+    <ClInclude Include="xml\entity.h" />
+    <ClInclude Include="xml\enum.h" />
+    <ClInclude Include="xml\exportable.h" />
+    <ClInclude Include="xml\glue.h" />
+    <ClInclude Include="xml\importable.h" />
+    <ClInclude Include="xml\input_tree.h" />
+    <ClInclude Include="xml\node.h" />
+    <ClInclude Include="xml\output_tree.h" />
+    <ClInclude Include="xml\parse_info.h" />
+    <ClInclude Include="xml\property_exchange.h" />
+    <ClInclude Include="xml\smart_pointer_array.h" />
+    <ClInclude Include="xml\stream.h" />
+    <ClInclude Include="xml\tree_base.h" />
+    <ClInclude Include="xml\tree_schema.h" />
+    <ClInclude Include="xml\var_exchange.h" />
+    <ClInclude Include="xml\xmlite.h" />
+    <ClInclude Include="xml\_.h" />
+    <ClInclude Include="xml\_impl.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="_defer.h" />
     <None Include="aura.def" />

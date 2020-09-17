@@ -12,7 +12,7 @@
 
 void __node_acme_factory_exchange();
 
-
+CLASS_DECL_ACME void __seed_srand();
 
 void init_global_mq();
 void term_global_mq();
@@ -259,6 +259,8 @@ namespace acme
 
    void acme::construct()
    {
+
+      __seed_srand();
 
       g_bAcme = 0;
 

@@ -227,7 +227,7 @@ namespace aura
    }
 
 
-   ::estatus     application::initialize(::layered * pobjectContext)
+   ::estatus application::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::thread::initialize(pobjectContext);
@@ -6139,6 +6139,76 @@ retry_license:
    }
 
 
+   __pointer(::message::base) application::get_message_base(LPMESSAGE pmsg)
+   {
+
+      ::user::primitive * pinteraction = nullptr;
+
+      if (pinteraction == nullptr && pmsg->hwnd != nullptr)
+      {
+
+        if (pmsg->message == 126)
+        {
+
+           TRACE("WM_DISPLAYCHANGE");
+
+        }
+
+        ::user::interaction_impl * pimpl = System.impl_from_handle(pmsg->hwnd);
+
+        if (pimpl != nullptr)
+        {
+
+           try
+           {
+
+              pinteraction = pimpl->m_puserinteraction;
+
+           }
+           catch (...)
+           {
+
+              pinteraction = nullptr;
+
+           }
+
+        }
+
+        if (pinteraction == nullptr)
+        {
+
+           pinteraction = pimpl;
+
+        }
+
+      }
+
+      if (pinteraction != nullptr)
+      {
+
+         return pinteraction->get_message_base(pmsg->message, pmsg->wParam, pmsg->lParam);
+
+      }
+
+      auto pbase = __new(::message::base);
+
+      if (!pbase)
+      {
+
+         return nullptr;
+
+      }
+
+      pbase->set(pinteraction, pmsg->message, pmsg->wParam, pmsg->lParam);
+
+
+      return pbase;
+
+
+
+   }
+
+
    string application::preferred_experience()
    {
 
@@ -8307,14 +8377,14 @@ namespace aura
 
       if (m_puiMain1 != nullptr)
       {
-         
+
          ::id idCommand(pszCommand);
 
          __pointer(::user::interaction) pinteraction = m_puiMain1;
-         
+
          if(pinteraction)
          {
-         
+
             pinteraction->post_pred([pinteraction, idCommand]()
             {
 
@@ -8325,28 +8395,28 @@ namespace aura
                pinteraction->route_command_message(&command);
 
             });
-                               
+
             return true;
-            
+
          }
          else
          {
-            
+
             ::user::command command;
 
             command.m_id = idCommand;
 
             auto puiMain1 = __user_interaction(m_puiMain1);
-            
+
             puiMain1->route_command_message(&command);
-            
+
             if(command.m_bRet)
             {
-             
+
                return true;
-               
+
             }
-            
+
          }
 
       }
@@ -11058,7 +11128,7 @@ namespace aura
       int iCount = 0;
 
 
-      
+
       return iCount;
 
    }

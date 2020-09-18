@@ -855,7 +855,6 @@
 		<Unit filename="platform/_system_smart_pointer_impl.h" />
 		<Unit filename="platform/_system_var_impl.h" />
 		<Unit filename="platform/all.h" />
-		<Unit filename="platform/app_core.h" />
 		<Unit filename="platform/app_launcher.h" />
 		<Unit filename="platform/application.cpp" />
 		<Unit filename="platform/application.h" />
@@ -864,7 +863,6 @@
 		<Unit filename="platform/application_container.h" />
 		<Unit filename="platform/application_heap.h" />
 		<Unit filename="platform/application_impl.h" />
-		<Unit filename="platform/application_menu.h" />
 		<Unit filename="platform/application_message.h" />
 		<Unit filename="platform/application_signal_details.h" />
 		<Unit filename="platform/assert.cpp" />
@@ -902,7 +900,6 @@
 		<Unit filename="platform/fixed_alloc.h" />
 		<Unit filename="platform/fixed_alloc_impl.h" />
 		<Unit filename="platform/flags.h" />
-		<Unit filename="platform/history.h" />
 		<Unit filename="platform/hyperlink.h" />
 		<Unit filename="platform/international.h" />
 		<Unit filename="platform/ipc.h" />
@@ -929,9 +926,7 @@
 		<Unit filename="platform/obj_ref_dbg.h" />
 		<Unit filename="platform/obj_typ_ctr.h" />
 		<Unit filename="platform/os_context.h" />
-		<Unit filename="platform/os_history.h" />
 		<Unit filename="platform/process_data.h" />
-		<Unit filename="platform/profiler2.h" />
 		<Unit filename="platform/progress.h" />
 		<Unit filename="platform/progress_interface.h" />
 		<Unit filename="platform/regex.cpp" />
@@ -946,7 +941,6 @@
 		<Unit filename="platform/shell_launcher.h" />
 		<Unit filename="platform/simple_app.h" />
 		<Unit filename="platform/simple_log.h" />
-		<Unit filename="platform/static_setup.h" />
 		<Unit filename="platform/static_start.cpp" />
 		<Unit filename="platform/static_start.h" />
 		<Unit filename="platform/static_start_aura.cpp" />
@@ -958,11 +952,6 @@
 		<Unit filename="platform/theme.cpp" />
 		<Unit filename="platform/theme.h" />
 		<Unit filename="platform/tick.h" />
-		<Unit filename="platform/timer.h" />
-		<Unit filename="platform/timer_array.h" />
-		<Unit filename="platform/timer_callback.h" />
-		<Unit filename="platform/timer_event.h" />
-		<Unit filename="platform/timer_item.h" />
 		<Unit filename="platform/trace.h" />
 		<Unit filename="platform/trace_category.cpp" />
 		<Unit filename="platform/trace_category.h" />

@@ -35,7 +35,7 @@ public:
 
 
 CLASS_DECL_ACME mq * get_mq(ITHREAD id, bool bCreate);
-CLASS_DECL_ACME void set_mq(ITHREAD idthread, mq * pmq);
+CLASS_DECL_ACME void clear_mq(ITHREAD idthread);
 
 void _c_simple_message_loop();
 

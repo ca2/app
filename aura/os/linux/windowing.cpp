@@ -5443,9 +5443,14 @@ bool post_ui_message(const MESSAGE & message)
    if(pmq == nullptr)
    {
 
-      pthread->__compose(pthread->m_pmq, get_mq(pthread->get_ithread(), message.message != WM_QUIT));
+      if(message.message == WM_QUIT)
+      {
 
-      pmq = pthread->m_pmq;
+         return false;
+
+      }
+
+      pmq = pthread->get_mq();
 
    }
 

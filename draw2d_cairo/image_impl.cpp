@@ -597,7 +597,7 @@ namespace draw2d_cairo
       }
 
       // White blend image_impl
-      auto pimage1 = __create_image({cx, cy});
+      auto pimage1 = create_image({cx, cy});
 
       if (!pimage1)
       {
@@ -611,7 +611,7 @@ namespace draw2d_cairo
       pimage1->g()->DrawIcon(0, 0, picon, cx, cy, 0, nullptr, DI_IMAGE | DI_MASK);
 
       // Black blend image_impl
-      auto pimage2 = __create_image({cx, cy});
+      auto pimage2 = create_image({cx, cy});
 
       if (!pimage2)
       {
@@ -625,7 +625,7 @@ namespace draw2d_cairo
       pimage2->g()->DrawIcon(0, 0, picon, cx, cy, 0, nullptr, DI_IMAGE | DI_MASK);
 
       // Mask image_impl
-      auto pimageM = __create_image({cx, cy});
+      auto pimageM = create_image({cx, cy});
 
       if (!pimageM)
       {
@@ -1181,13 +1181,13 @@ namespace draw2d_cairo
                   //pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
                   //pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
                   //pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
+
                   byte acomplement = (~psrc2[3] * bA) >> 8;
-                  pdst2[0] = clip_byte(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
-                  pdst2[1] = clip_byte(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);
-                  pdst2[2] = clip_byte(((psrc2[2] * bA) + (pdst2[2] * acomplement)) >> 8);
-                  pdst2[3] = clip_byte(((psrc2[3] * bA) + (pdst2[3] * acomplement)) >> 8);
 
-
+                  pdst2[0] = byte_clip(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
+                  pdst2[1] = byte_clip(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);
+                  pdst2[2] = byte_clip(((psrc2[2] * bA) + (pdst2[2] * acomplement)) >> 8);
+                  pdst2[3] = byte_clip(((psrc2[3] * bA) + (pdst2[3] * acomplement)) >> 8);
 
                   pdst2 += 4;
 

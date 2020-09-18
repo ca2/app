@@ -271,6 +271,8 @@ namespace aura
 
       virtual void term() override;
 
+      virtual ::estatus system_prep() override;
+
       //::url::department                           & url()     { return m_urldepartment; }
 
       ::thread * get_thread(ITHREAD ithread);

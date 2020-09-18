@@ -286,6 +286,7 @@ public:
    virtual bool raw_pump_message();     // low level message pump
    virtual bool defer_pump_message();     // deferred message pump
    virtual void process_message(::message::base * pbase);
+   virtual bool process_base_message(::message::base * pbase);
    virtual void process_thread_message(::message::base * pbase);
    // apex commented
    //virtual void process_window_message(::message::base * pbase);

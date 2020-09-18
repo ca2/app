@@ -71,9 +71,6 @@ inline byte byte_clip(int i)
 */
 
 
-#define byte_clip(i)  ((byte) (((i) < 0) ? 0 : (((i)> 255) ? 255 : i)))
-
-
 image::image()
 {
 

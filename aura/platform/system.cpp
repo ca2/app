@@ -1652,8 +1652,6 @@ namespace aura
 
       }
 
-      enum_display_monitors();
-
       on_update_matter_locator();
 
 //
@@ -2408,6 +2406,8 @@ namespace aura
 
 #endif
 
+      enum_display_monitors();
+
       return true;
 
    }
@@ -2546,6 +2546,24 @@ namespace aura
 
    }
 
+
+   ::estatus system::system_prep()
+   {
+
+      auto estatus = ::apex::system::system_prep();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      os_init_windowing();
+
+      return ::success;
+
+   }
 
    void system::term1()
    {

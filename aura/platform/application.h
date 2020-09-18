@@ -787,8 +787,7 @@ namespace aura
 
       virtual ::user::interaction * main_window();
 
-//         virtual __pointer(::message::base) get_message_base(LPMESSAGE pmsg) override;
-
+      virtual __pointer(::message::base) get_message_base(LPMESSAGE pmsg) override;
 
       virtual bool get_frame(__pointer(::user::interaction) & pinteraction);
       virtual void add_frame(::user::interaction * pwnd);

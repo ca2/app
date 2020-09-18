@@ -7,6 +7,9 @@
 #include "acme/multithreading/mq.h"
 
 
+mq * get_mq(ITHREAD idthread, bool bCreate);
+
+
 ::mutex * g_pmutexThreadWaitClose = nullptr;
 
 
@@ -3313,7 +3316,9 @@ mq* thread::_get_mq()
 
    }
 
-   auto estatus = __compose_new(m_pmq);
+   auto pmq = ::get_mq(m_ithread1, true);
+
+   auto estatus = __compose(m_pmq, pmq);
 
    if (!estatus)
    {
@@ -3321,8 +3326,6 @@ mq* thread::_get_mq()
       return nullptr;
 
    }
-
-   set_mq(m_ithread1, m_pmq);
 
    return m_pmq;
 
@@ -3446,7 +3449,9 @@ int_bool thread::get_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterM
 
 #else
 
-   if (get_mq()->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax))
+   auto pmq = get_mq();
+
+   if (pmq->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax))
    {
 
       return TRUE;
@@ -3774,40 +3779,6 @@ bool thread::process_message()
 
       }
 
-      if (msg.message == ::message_redraw)
-      {
-
-
-         __throw(todo("interaction"));
-         __throw(todo("thread"));
-         //auto pinteraction = System.ui_from_handle(msg.hwnd);
-
-         //if(::is_set(pinteraction))
-         //{
-
-         //   string strType = ::str::demangle(pinteraction->type_name());
-
-         //   if(strType.contains_ci("filemanager"))
-         //   {
-
-         //      //INFO("filemanager");
-
-         //   }
-
-         //   pinteraction->prodevian_redraw(msg.wParam & 1);
-
-         //}
-         //else
-         //{
-
-         //   INFO("message_redraw pinteraction == nullptr");
-
-         //}
-
-         return true;
-
-      }
-
       __pointer(::message::base) pbase;
 
       if (get_context_application())
@@ -3826,84 +3797,7 @@ bool thread::process_message()
       if(pbase.is_set())
       {
 
-//         if(::is_set(pbase->m_puserinteraction))
-//         {
-//
-//            auto iMessage = pbase->m_id;
-//            __throw(todo("interaction"));
-//            __throw(todo("thread"));
-//
-//            // short circuit for frequent messages
-//            if (iMessage == message_apply_visual)
-//            {
-//
-//               __throw(todo("interaction"));
-//               __throw(todo("thread"));
-//
-//
-//               //__pointer(::user::interaction) pinteraction = pbase->m_puserinteraction;
-//
-//               //if(pinteraction)
-//               //{
-//
-//               //   pinteraction->m_pimpl2->_001OnApplyVisual(pbase);
-//
-//               //   return true;
-//
-//               //}
-//
-//            }
-//            //else if (iMessage == message_update_notify_icon)
-//            //{
-//
-//            //   pbase->m_puserinteraction->route_message(pbase);
-//
-//            //   pinteraction->m_pimpl2->_001OnApplyVisual(pbase);
-//
-//            //   return true;
-//
-//            //}
-//            //else if (iMessage == message_simple_command)
-//            //{
-//
-//            //   __pointer(::user::interaction) pinteraction = pbase->m_puserinteraction;
-//
-//            //   pinteraction->m_pimpl2->_001OnApplyVisual(pbase);
-//
-//            //   return true;
-//
-//            //}
-//
-//
-//            //if (iMessage > message_midi_sequence_event)
-//            //{
-//
-//            //   return true;
-//
-//            //   int iApp = iMessage - WM_APP;
-//
-//            //   pbase->m_puserinteraction->message_handler(pbase);
-//
-//            //}
-//            //else
-//            //{
-//
-////               return true;
-//            __throw(todo("interaction"));
-//            __throw(todo("thread"));
-//
-//               //pbase->m_puserinteraction->message_handler(pbase);
-//
-//  //          }
-//
-//
-//         }
-//         else
-         {
-
-            message_handler(pbase);
-
-         }
+         process_base_message(pbase);
 
       }
 
@@ -3927,6 +3821,16 @@ bool thread::process_message()
    }
 
    return false;
+
+}
+
+
+bool thread::process_base_message(::message::base * pbase)
+{
+
+   message_handler(pbase);
+
+   return true;
 
 }
 

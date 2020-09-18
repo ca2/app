@@ -76,6 +76,8 @@ namespace user
 
       virtual bool process_message() override;
 
+      virtual bool process_base_message(::message::base * pbase) override;
+
       virtual ::estatus     run() override;
 
       virtual void finalize() override;

@@ -2099,7 +2099,7 @@ namespace user
    LONG interaction_impl::get_window_long(i32 nIndex) const
    {
 
-      return (LONG)get_window_long_ptr(nIndex);
+      return (LONG)::user::interaction_impl::get_window_long_ptr(nIndex);
 
    }
 
@@ -2107,7 +2107,7 @@ namespace user
    LONG interaction_impl::set_window_long(i32 nIndex,LONG lValue)
    {
 
-      return (LONG)set_window_long_ptr(nIndex, lValue);
+      return (LONG)::user::interaction_impl::set_window_long_ptr(nIndex, lValue);
 
    }
 

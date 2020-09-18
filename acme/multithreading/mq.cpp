@@ -223,31 +223,44 @@ mutex * g_pmutexMq;
 map < ITHREAD, ITHREAD, __pointer(mq), __pointer(mq) > * g_pmapMq;
 
 
-mq * get_mq(ITHREAD idthread, bool bCreate)
+mq * get_mq(ITHREAD ithread, bool bCreate)
 {
 
    sync_lock sl(g_pmutexMq);
 
-   auto p = g_pmapMq->plookup(idthread);
+   auto p = g_pmapMq->plookup(ithread);
 
-   if(!p)
+   if(p)
+   {
+
+      return p->m_element2;
+
+   }
+
+   if(!bCreate)
    {
 
       return nullptr;
 
    }
 
-   return p->m_element2;
+   auto pmq = __new(mq);
+
+   pmq->m_ithread = ithread;
+
+   g_pmapMq->set_at(ithread, pmq);
+
+   return pmq;
 
 }
 
 
-void set_mq(ITHREAD idthread, mq * pmq)
+void clear_mq(ITHREAD idthread)
 {
 
    sync_lock sl(g_pmutexMq);
 
-   g_pmapMq->set_at(idthread, pmq);
+   g_pmapMq->remove_key(idthread);
 
 }
 

@@ -355,6 +355,47 @@ namespace user
    bool thread::process_message()
    {
 
+   try
+   {
+
+      MESSAGE & msg = m_message;
+
+      if (msg.message == ::message_redraw)
+      {
+
+         auto pinteraction = System.ui_from_handle(msg.hwnd);
+
+         if(::is_set(pinteraction))
+         {
+
+            string strType = ::str::demangle(pinteraction->type_name());
+
+            if(strType.contains_ci("filemanager"))
+            {
+
+               //INFO("filemanager");
+
+            }
+
+            pinteraction->prodevian_redraw(msg.wParam & 1);
+
+         }
+         else
+         {
+
+         //   INFO("message_redraw pinteraction == nullptr");
+
+         }
+
+         return true;
+
+      }
+
+}
+catch(...)
+{
+}
+
       return ::thread::process_message();
 
 //      MESSAGE & msg = m_message;
@@ -385,6 +426,84 @@ namespace user
 //#endif
 //
 //      return true;
+
+   }
+
+
+   bool thread::process_base_message(::message::base * pbase)
+   {
+
+      if(::is_set(pbase->m_puserinteraction))
+      {
+
+         auto iMessage = pbase->m_id;
+            //__throw(todo("interaction"));
+            //__throw(todo("thread"));
+
+             //short circuit for frequent messages
+         if (iMessage == message_apply_visual)
+         {
+
+               //__throw(todo("interaction"));
+               //__throw(todo("thread"));
+
+            __pointer(::user::interaction) pinteraction = pbase->m_puserinteraction;
+
+            if(pinteraction)
+            {
+
+               pinteraction->m_pimpl2->_001OnApplyVisual(pbase);
+
+               return true;
+
+            }
+
+         }
+         else if (iMessage == message_update_notify_icon)
+         {
+
+            pbase->m_puserinteraction->route_message(pbase);
+
+            return true;
+
+         }
+         else if (iMessage == message_simple_command)
+         {
+
+            __pointer(::user::interaction) pinteraction = pbase->m_puserinteraction;
+
+            pinteraction->m_pimpl2->_001OnApplyVisual(pbase);
+
+            return true;
+
+         }
+
+         if (iMessage > message_midi_sequence_event)
+         {
+
+            return true;
+
+            int iApp = iMessage - WM_APP;
+
+            pbase->m_puserinteraction->message_handler(pbase);
+
+         }
+         else
+         {
+
+               //return true;
+            //__throw(todo("interaction"));
+            //__throw(todo("thread"));
+
+            pbase->m_puserinteraction->message_handler(pbase);
+
+         }
+
+         return true;
+
+      }
+
+      return ::thread::process_base_message(pbase);
 
    }
 

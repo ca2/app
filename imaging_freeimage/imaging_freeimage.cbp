@@ -98,6 +98,8 @@
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-rpath=\\$$$ORIGIN" />
+			<Add option="-lacme" />
+			<Add option="-lapex" />
 			<Add option="-laura" />
 			<Add option="-lfreeimage" />
 			<Add option="-Wl,-z,defs" />

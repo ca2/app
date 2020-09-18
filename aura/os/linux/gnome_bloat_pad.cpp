@@ -98,7 +98,7 @@ void bloat_pad_startup (GApplication *application)
 
    gtk_application_add_window(app, g_pmainwindow);
 
-   ::aura::system * psystem = (::aura::system *) ::get_context_system();
+   ::apex::system * psystem = (::apex::system *) ::get_context_system();
 
    //psystem->m_strAppId = psystem->m_pmaindata->m_strAppId;
 

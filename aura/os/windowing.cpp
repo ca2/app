@@ -4,10 +4,14 @@
 #endif
 #include "_os.h"
 #include <stdio.h>
+#include "acme/multithreading/mq.h"
+
 
 #undef ALOG_CONTEXT
 #define ALOG_CONTEXT ::trace_object(::trace_category_windowing)
 
+
+mq * get_mq(ITHREAD idthread, bool bCreate);
 
 
 //static oswindow g_oswindowSplash = nullptr;
@@ -260,3 +264,46 @@ CLASS_DECL_AURA color get_simple_ui_color(::user::e_element eelement, ::user::es
 
 
 
+
+CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(oswindow oswindow)
+{
+
+   ::user::interaction * pinteraction = oswindow_interaction(oswindow);
+
+   if(pinteraction == nullptr)
+   {
+
+      return FALSE;
+
+   }
+
+   if(pinteraction->get_context_application() == nullptr)
+   {
+
+      return false;
+
+   }
+
+   ITHREAD idthread = pinteraction->get_context_application()->get_ithread();
+
+   mq * pmq = get_mq(idthread, false);
+
+   if(pmq == nullptr)
+   {
+
+      return FALSE;
+
+   }
+
+   sync_lock ml(pmq->mutex());
+
+   pmq->m_messagea.pred_remove([=](MESSAGE & item)
+   {
+
+      return item.hwnd == oswindow;
+
+   });
+
+   return TRUE;
+
+}

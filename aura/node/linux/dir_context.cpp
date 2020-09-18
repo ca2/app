@@ -243,7 +243,7 @@ namespace linux
 
             ::file::listing straDir(get_context());
 
-            straDir.ls_dir(listing.m_pathFinal);
+            Application.dir().ls_dir(straDir, listing.m_pathFinal);
 
             for(i32 i = 0; i < straDir.get_count(); i++)
             {
@@ -272,7 +272,7 @@ namespace linux
 
                listing.m_pathFinal = strDir;
 
-               listing.ls();
+               Application.dir().ls(listing);
 
 
             }
@@ -286,7 +286,7 @@ namespace linux
 
             listing.m_bRecursive = false;
 
-            listing.ls_file(listing.m_pathFinal);
+            Application.dir().ls_file(listing, listing.m_pathFinal);
 
          }
 
@@ -607,7 +607,7 @@ namespace linux
 
          ::file::listing straPath(::get_context());
 
-         straPath.ls(psz);
+         Application.dir().ls(straPath, psz);
 
          for(i32 i = 0; i < straPath.get_count(); i++)
          {
@@ -746,7 +746,7 @@ namespace linux
 
       ::file::listing listing(get_context());
 
-      listing.ls_dir(pszDir);
+      Application.dir().ls_dir(listing, pszDir);
 
       return listing.get_size() > 0;
 

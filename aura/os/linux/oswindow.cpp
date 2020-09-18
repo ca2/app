@@ -523,7 +523,7 @@ bool oswindow_data::set_icon(::image * pimage)
 
 #elif 1
 
-   auto d1 = __create_image({32, 32});
+   auto d1 = create_image({32, 32});
 
    if(!::is_ok(d1))
    {

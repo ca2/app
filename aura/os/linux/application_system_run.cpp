@@ -2,7 +2,7 @@
 #include "_user.h"
 #include <gio/gio.h>
 #include "third/sn/sn.h"
-#include "aura/platform/app_core.h"
+#include "apex/platform/app_core.h"
 #include "bloat_pad.h"
 
 extern ::app_core * g_pappcore;
@@ -315,18 +315,24 @@ CLASS_DECL_AURA void main_branch(::generic * prunnable, e_priority epriority)
 
 }
 
-
-bool system::init_x11()
+namespace aura
 {
-        if(!XInitThreads())
-         {
 
-            return false;
+   bool system::init_x11()
+   {
 
-         }
+      if(!XInitThreads())
+      {
+
+         return false;
+
+      }
 
       XSetErrorHandler(_c_XErrorHandler);
 
       return true;
 
- }
+   }
+
+
+ } // namespace aura

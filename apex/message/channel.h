@@ -75,12 +75,12 @@ public:
 
    virtual __pointer(::message::base) get_message_base(UINT message, WPARAM wparam, lparam lparam);
 
-//
-//#ifdef LINUX
-//
-//   virtual __pointer(::message::base) get_message_base(void * pevent, ::user::interaction * pwnd = nullptr);
-//
-//#endif
+
+#ifdef LINUX
+
+   virtual __pointer(::message::base) get_message_base(void * pevent, ::user::interaction * pwnd = nullptr);
+
+#endif
 
 
 

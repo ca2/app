@@ -18,7 +18,7 @@ namespace user
    void defer_calc_os_dark_mode()
    {
 
-      ::get_context_system()->defer_calc_os_dark_mode();
+      System.defer_calc_os_dark_mode();
 
    }
 

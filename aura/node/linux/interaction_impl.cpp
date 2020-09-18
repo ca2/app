@@ -1,12 +1,24 @@
 #include "framework.h"
 #include "_linux.h"
-#include "aura/platform/app_core.h"
+#include "apex/platform/app_core.h"
 #include "aura/os/linux/_linux.h"
 #include <X11/Xatom.h>
 #include "third/sn/sn.h"
 #include <gdk/gdkx.h>
 
 #define TEST 0
+
+
+string FormatMessageFromSystem(::u32 dwLastError)
+{
+
+   string str;
+
+   str.Format("system error message %d", dwLastError);
+
+   return str;
+
+}
 
 
 void x11_store_name(oswindow oswindow, const char * pszName);
@@ -115,7 +127,7 @@ namespace linux
 
 
    interaction_impl::interaction_impl(::layered * pobjectContext) :
-      ::object(pobject)
+      ::object(pobjectContext)
    {
 
       linux_interaction_impl_common_construct();
@@ -3093,7 +3105,7 @@ namespace linux
    LONG_PTR interaction_impl::get_window_long_ptr(i32 nIndex) const
    {
 
-      return ::GetWindowLongPtr((oswindow) get_handle(), nIndex);
+      return get_window_long(nIndex);
 
    }
 
@@ -3101,7 +3113,7 @@ namespace linux
    LONG_PTR interaction_impl::set_window_long_ptr(i32 nIndex, LONG_PTR lValue)
    {
 
-      return ::SetWindowLongPtr((oswindow) get_handle(), nIndex, lValue);
+      return set_window_long(nIndex, lValue);
 
    }
 
@@ -3126,7 +3138,7 @@ namespace linux
    DWORD interaction_impl::GetStyle() const
    {
 
-      return (DWORD)::GetWindowLong((oswindow) get_handle(), GWL_STYLE);
+      return (DWORD)get_window_long(GWL_STYLE);
 
    }
 
@@ -3134,7 +3146,7 @@ namespace linux
    DWORD interaction_impl::GetExStyle() const
    {
 
-      return (DWORD)::GetWindowLong((oswindow) get_handle(), GWL_EXSTYLE);
+      return (DWORD)get_window_long(GWL_EXSTYLE);
 
    }
 

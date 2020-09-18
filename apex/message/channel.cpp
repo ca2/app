@@ -318,7 +318,14 @@ __pointer(::mutex) channel::s_pmutexChannel;
    }
 
 
+   __pointer(::message::base) channel::get_message_base(void * pevent,::user::interaction * pwnd)
+   {
 
+      __throw(todo());
+
+      return nullptr;
+
+   }
 
 
    __pointer(::message::base) channel::get_message_base(LPMESSAGE pmsg)
@@ -480,19 +487,19 @@ __pointer(::mutex) channel::s_pmutexChannel;
 
    void channel::BeginWaitCursor()
    {
-      
+
    }
 
 
    void channel::EndWaitCursor()
    {
-      
+
    }
 
 
    void channel::RestoreWaitCursor()
    {
-      
+
    }
 
 
@@ -570,14 +577,14 @@ __pointer(::mutex) channel::s_pmutexChannel;
          pnotify->call_update(id, context);
 
       }
-      
+
       if(context.is_user_source())
       {
 
          auto& runnablea = m_mapRunnable[id];
 
          ::call_sync(runnablea);
-         
+
       }
 
    }

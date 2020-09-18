@@ -20,3 +20,20 @@ namespace draw2d
    }
 
 } // namespace draw2d
+
+
+namespace draw2d
+{
+
+
+   void draw2d::enum_draw2d_fonts(::draw2d::font_enum_item_array& itema)
+   {
+
+
+   }
+
+
+} // namespace draw2d
+
+
+

@@ -1,6 +1,8 @@
 #include "framework.h"
 #include "acme/multithreading/mq.h"
-
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 
 // apex commented
 CLASS_DECL_AURA int_bool mq_post_message(oswindow oswindow, UINT message, WPARAM wparam, LPARAM lparam)

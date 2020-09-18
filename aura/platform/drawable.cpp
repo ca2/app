@@ -1,5 +1,5 @@
 #include "framework.h" // previously aqua/user/user.h
-
+#include "aura/message/user.h"
 
 namespace aura
 {

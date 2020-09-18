@@ -1212,6 +1212,8 @@
 		<Unit filename="primitive/data/item.h" />
 		<Unit filename="primitive/data/listener.cpp" />
 		<Unit filename="primitive/data/listener.h" />
+		<Unit filename="primitive/data/node.cpp" />
+		<Unit filename="primitive/data/node.h" />
 		<Unit filename="primitive/data/simple_item.cpp" />
 		<Unit filename="primitive/data/simple_item.h" />
 		<Unit filename="primitive/data/tree.cpp" />
@@ -1279,9 +1281,6 @@
 		<Unit filename="user/text.h" />
 		<Unit filename="version/version.config.h" />
 		<Unit filename="version/version.h" />
-		<Extensions>
-			<code_completion />
-			<debugger />
-		</Extensions>
+		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

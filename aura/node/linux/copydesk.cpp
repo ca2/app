@@ -670,7 +670,7 @@ namespace linux
 
       pdata->add_ref(OBJ_REF_DBG_P_NOTE(this, "copydesk::_desk_to_image"));
 
-      pdata->m_pimage = __create_image();
+      pdata->m_pimage = create_image();
 
       auto idle_source = g_idle_source_new();
 

@@ -4,7 +4,7 @@
 #endif
 #include "_linux.h"
 #include "acme/const/id.h"
-#include "aura/const/message.h"
+#include "acme/const/message.h"
 #include "third/sn/sn.h"
 #include <fcntl.h> // library for fcntl function
 #include <sys/stat.h>
@@ -18,13 +18,10 @@
 #include <X11/extensions/XInput.h>
 #include <X11/extensions/XInput2.h>
 #include <X11/XKBlib.h>
-<<<<<<< HEAD
-
 #define new ACME_NEW
-=======
 #include "aura/os/x11/_x11.h"
-#define new AURA_NEW
->>>>>>> origin/basis
+#include "acme/multithreading/mq.h"
+
 
 ::point g_pointX11Cursor;
 //::tick g_tickLastMouseMove;
@@ -33,6 +30,9 @@
 
 //void _x11_defer_check_configuration(oswindow oswindow);
 //void x11_defer_check_configuration(oswindow oswindow);
+
+
+mq * get_mq(ITHREAD idthread, bool bCreate);
 
 
 void oswindow_set_active_window(oswindow oswindow);
@@ -1347,6 +1347,9 @@ oswindow oswindow_get_previous_found(Window *array, int iStart)
    return nullptr;
 
 }
+
+
+oswindow GetParent(oswindow oswindow);
 
 
 oswindow get_window(oswindow windowParam, int iParentHood)
@@ -3662,7 +3665,9 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                try
                {
 
-                  auto uiptraFrame = *papplication->m_puiptraFrame;
+                  auto & app = App(papplication);
+
+                  auto uiptraFrame = *app.m_puiptraFrame;
 
                   for(auto & pframe : uiptraFrame)
                   {
@@ -5392,3 +5397,81 @@ bool x11_hook::process_event(osdisplay_data * pdisplaydata, XEvent & e, XGeneric
 {
 return false;
 }
+
+
+oswindow GetParent(oswindow oswindow)
+{
+
+   return nullptr;
+
+}
+
+
+bool post_ui_message(const MESSAGE & message)
+{
+
+   oswindow oswindow = message.hwnd;
+
+   ASSERT(oswindow != nullptr);
+
+   ::user::interaction * pinteraction = oswindow_interaction(oswindow);
+
+   ::thread * pthread = nullptr;
+
+   if(::is_set(pinteraction))
+   {
+
+      pthread = pinteraction->m_pthreadUserInteraction;
+
+   }
+   else
+   {
+
+      pthread = oswindow->m_pimpl->m_pthreadUserImpl;
+
+   }
+
+   if(::is_null(pthread))
+   {
+
+      return false;
+
+   }
+
+   class ::mq * pmq = pthread->m_pmq;
+
+   if(pmq == nullptr)
+   {
+
+      pthread->__compose(pthread->m_pmq, get_mq(pthread->get_ithread(), message.message != WM_QUIT));
+
+      pmq = pthread->m_pmq;
+
+   }
+
+   if(pmq == nullptr)
+   {
+
+      return false;
+
+   }
+
+   sync_lock ml(pmq->mutex());
+
+   if(message.message == WM_QUIT)
+   {
+
+      output_debug_string("WM_QUIT thread");
+
+   }
+
+   pmq->m_messagea.add(message);
+
+   pmq->m_eventNewMessage.set_event();
+
+   return true;
+
+}
+
+
+

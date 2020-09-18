@@ -144,6 +144,8 @@ namespace user
 
       bool is_set() const { return m_eelement != ::user::element_none; }
 
+      operator bool() const { return is_set(); }
+
       operator e_element() const { return m_eelement; }
 
       operator i32() const { return (::i32) m_iItem; }

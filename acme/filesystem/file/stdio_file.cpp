@@ -30,18 +30,46 @@ stdio_file::~stdio_file()
 
    string str;
 
-   if (eopen & ::file::mode_write)
+   if ((eopen & ::file::defer_create_directory) && (eopen & ::file::mode_write))
    {
 
-      str += "w";
+      ::dir::mk(::file::path(pszFileName).folder());
 
    }
-   else if(eopen & ::file::mode_read)
+
+   if (eopen & ::file::mode_no_truncate && file_exists(pszFileName))
    {
 
       str += "r";
 
    }
+   else if (eopen & ::file::mode_create)
+   {
+
+      str += "w";
+
+   }
+   else
+   {
+
+      str += "r";
+
+   }
+
+
+
+   //if (eopen & ::file::mode_write)
+   //{
+
+   //   str += "w";
+
+   //}
+   //else if(eopen & ::file::mode_read)
+   //{
+
+   //   
+
+   //}
 
    if(eopen & ::file::type_binary)
    {
@@ -54,12 +82,12 @@ stdio_file::~stdio_file()
 
    }
 
-   //if ((eopen & ::file::defer_create_directory) && (eopen & ::file::mode_write))
-   //{
+   if (eopen & ::file::mode_write && eopen & ::file::mode_read)
+   {
 
-   //   Context.dir().mk(::file::path(pszFileName).folder());
+      str += "+";
 
-   //}
+   }
 
    m_pfile = fopen_dup(pszFileName, str, _SH_DENYNO);
 
@@ -129,14 +157,21 @@ memsize stdio_file::read(void * pdata, memsize nCount)
 
    auto size = fread_dup(pdata, 1, nCount, m_pfile);
 
-   int iError = ferror(m_pfile);
+   int iEof = feof(m_pfile);
 
-   if(iError > 0)
+   if (!iEof)
    {
 
-      ::file::throw_status(error_file, iError, m_strFileName);
+      int iError = ferror(m_pfile);
 
-      return 0;
+      if (iError > 0)
+      {
+
+         ::file::throw_status(error_file, iError, m_strFileName);
+
+         return 0;
+
+      }
 
    }
 

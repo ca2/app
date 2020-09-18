@@ -1995,9 +1995,11 @@ namespace user
 
       m_iLineOffset = min(max(0, pointOffset.y / m_iLineHeight), m_iaLineBeg.get_upper_bound());
 
-      m_iLineStart = should_load_full_file() ? 0 : max(0, m_iLineOffset);
+      bool bLoadFullFile = should_load_full_file();
 
-      m_iLineEnd = should_load_full_file() ? m_iaLineLen.get_size() : min(m_iaLineLen.get_size(), m_iLineCount + m_iLineStart);
+      m_iLineStart = bLoadFullFile ? 0 : max(0, m_iLineOffset);
+
+      m_iLineEnd = bLoadFullFile ? m_iaLineLen.get_size() : min(m_iaLineLen.get_size(), m_iLineCount + m_iLineStart);
 
       if (m_iLineOffset < 0)
       {
@@ -2438,9 +2440,11 @@ namespace user
 
       m_iLineOffset = min(max(0, pointOffset.y / m_iLineHeight), m_iaLineBeg.get_upper_bound());
 
-      m_iLineStart = should_load_full_file() ? 0 : max(0, m_iLineOffset);
+      bool bLoadFullFile = should_load_full_file();
 
-      m_iLineEnd = should_load_full_file() ? m_iaLineLen.get_size() : min(m_iaLineLen.get_size(), m_iLineCount + m_iLineStart);
+      m_iLineStart = bLoadFullFile ? 0 : max(0, m_iLineOffset);
+
+      m_iLineEnd = bLoadFullFile ? m_iaLineLen.get_size() : min(m_iaLineLen.get_size(), m_iLineCount + m_iLineStart);
 
       if (m_iLineOffset < 0)
       {

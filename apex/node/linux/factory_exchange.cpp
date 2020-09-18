@@ -3,7 +3,7 @@
 //#include "shell.h"
 //#include "console.h"
 //#include "apex/node/posix/pipe.h"
-#include "apex/node/posix/os_watcher.h"
+#include "apex/node/posix/file_os_watcher.h"
 #include "apex/node/linux/process.h"
 #include "_linux.h"
 #include "apex/node/_node.h"

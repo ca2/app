@@ -10,7 +10,7 @@ CLASS_DECL_ACME string message_box_result_to_string(int iResult);
 
 namespace acme
 {
- 
+
    class os_message_box :
       virtual public ::generic
    {
@@ -27,7 +27,7 @@ namespace acme
 
 
       }
-       
+
      virtual ~os_message_box()
       {
 
@@ -42,7 +42,17 @@ namespace acme
 
          wstring wstrTitle(m_strTitle);
 
-         int iResult = ::MessageBox(nullptr, wstrText, wstrTitle, iMessageBox);
+         int iResult = 0;
+
+#ifdef WINDOWS_DESKTOP
+
+         iResult = ::MessageBox(nullptr, wstrText, wstrTitle, iMessageBox);
+
+#else
+
+         __throw(todo("message_box"));
+
+#endif
 
          string strResult = message_box_result_to_string(iResult);
 

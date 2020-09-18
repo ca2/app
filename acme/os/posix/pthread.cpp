@@ -66,7 +66,7 @@ DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, HSYNC * synca, DWORD tickTimeout
             if (pmq.is_set())
             {
 
-               sync_lock sl(pmq->m_pmutex);
+               sync_lock sl(pmq->mutex());
 
                if (pmq->m_messagea.get_count() > 0)
                {

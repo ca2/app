@@ -1264,7 +1264,7 @@ void thread::kick_idle()
          if (m_pmq && !m_bClosedMq)
          {
 
-            sync_lock sl(m_pmq->m_pmutex);
+            sync_lock sl(m_pmq->mutex());
 
             m_pmq->m_bKickIdle = true;
 

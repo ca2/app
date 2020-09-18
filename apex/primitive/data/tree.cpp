@@ -308,7 +308,7 @@ namespace data
    ::count tree::get_proper_item_count()
    {
 
-      sync_lock sl(get_mutex());
+      sync_lock sl(mutex());
 
       return get_base_item()->get_proper_item_count();
 
@@ -400,7 +400,7 @@ namespace data
       }
 
 
-      sync_lock sl(get_mutex());
+      sync_lock sl(mutex());
 
       if(pitemNew == nullptr)
          return false;

@@ -146,8 +146,8 @@ static int dopr_outch (char *buffer, size_t *currlen, size_t maxlen, char c );
 #define DP_C_LDOUBLE 3
 
 #define char_to_int(p) (p - '0')
-#define MAX(p,q) ((p >= q) ? p : q)
-#define MIN(p,q) ((p <= q) ? p : q)
+#define max(p,q) ((p >= q) ? p : q)
+#define min(p,q) ((p <= q) ? p : q)
 
 static int dopr (char *buffer, size_t maxlen, const char *format, va_list args)
 {
@@ -491,12 +491,12 @@ static int fmtint (char *buffer, size_t *currlen, size_t maxlen,
   convert[place] = 0;
 
   zpadlen = max - place;
-  spadlen = min - MAX (max, place) - (signvalue ? 1 : 0);
+  spadlen = min - max (max, place) - (signvalue ? 1 : 0);
   if (zpadlen < 0) zpadlen = 0;
   if (spadlen < 0) spadlen = 0;
   if (flags & DP_F_ZERO)
   {
-    zpadlen = MAX(zpadlen, spadlen);
+    zpadlen = max(zpadlen, spadlen);
     spadlen = 0;
   }
   if (flags & DP_F_MINUS) 

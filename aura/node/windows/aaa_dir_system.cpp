@@ -93,7 +93,7 @@ namespace windows
          //{
          //   strsize iFind1 = strRelative.reverse_find("\\", iFind);
          //   strsize iFind2 = strRelative.reverse_find("/", iFind);
-         //   strsize iStart = MAX(iFind1 + 1, iFind2 + 1);
+         //   strsize iStart = max(iFind1 + 1, iFind2 + 1);
          //   strRelative = strRelative.Left(iFind - 1) + "_" + strRelative.Mid(iStart, iFind - iStart) + strRelative.Mid(iFind + 1);
          //}
 

@@ -3394,8 +3394,6 @@ namespace user
 
       runall(CREATE_PROCEDURE);
 
-      runall(CREATE_PROCEDURE);
-
       sync_style();
 
       m_bUserPrimitiveOk = true;

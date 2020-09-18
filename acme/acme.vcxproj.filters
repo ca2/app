@@ -2890,9 +2890,6 @@
     <ClCompile Include="node\windows\serial.cpp">
       <Filter>Source Files\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="node\windows\timer.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
     <ClCompile Include="node\windows\trace.cpp">
       <Filter>Source Files\node\windows</Filter>
     </ClCompile>
@@ -3201,6 +3198,9 @@
     </ClCompile>
     <ClCompile Include="const\idpool.cpp">
       <Filter>Source Files\const</Filter>
+    </ClCompile>
+    <ClCompile Include="node\windows\timer.cpp">
+      <Filter>Source Files\node\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

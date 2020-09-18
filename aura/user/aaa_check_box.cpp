@@ -150,7 +150,7 @@ namespace user
 
       {
 
-         int iSize = MIN(15 * w / 15, 15 * h / 15);
+         int iSize = min(15 * w / 15, 15 * h / 15);
 
          rectCheckBox.left = 0;
          rectCheckBox.top = 0;
@@ -484,7 +484,7 @@ namespace user
 
       get_client_rect(rectClient);
 
-      int iMin = MAX(rectClient.min_dim() -1, 1);
+      int iMin = max(rectClient.min_dim() -1, 1);
 
       ::rect rectCheckBox;
       rectCheckBox.left = 1;

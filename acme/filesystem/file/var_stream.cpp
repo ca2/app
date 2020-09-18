@@ -34,7 +34,7 @@ var_stream::~var_stream()
 //      {
 //         return 0;
 //      }
-//      memsize uRead = MIN(pm->get_length(), nCount);
+//      memsize uRead = min(pm->get_length(), nCount);
 //      ::memcpy_dup(pdata, pm->get_data(), uRead);
 
 //      return uRead;

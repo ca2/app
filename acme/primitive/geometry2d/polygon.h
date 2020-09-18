@@ -377,10 +377,10 @@ const typename polygon_base < POINT_TYPE >::RECT_TYPE & polygon_base < POINT_TYP
       for (index i = 1; i < this->get_count(); i++)
       {
 
-         ((polygon_base *)this)->m_rectBounding.left = MIN(m_rectBounding.left, this->element_at(i).x);
-         ((polygon_base *)this)->m_rectBounding.right = MAX(m_rectBounding.right, this->element_at(i).x);
-         ((polygon_base *)this)->m_rectBounding.top = MIN(m_rectBounding.top, this->element_at(i).y);
-         ((polygon_base *)this)->m_rectBounding.bottom = MAX(m_rectBounding.bottom, this->element_at(i).y);
+         ((polygon_base *)this)->m_rectBounding.left = min(m_rectBounding.left, this->element_at(i).x);
+         ((polygon_base *)this)->m_rectBounding.right = max(m_rectBounding.right, this->element_at(i).x);
+         ((polygon_base *)this)->m_rectBounding.top = min(m_rectBounding.top, this->element_at(i).y);
+         ((polygon_base *)this)->m_rectBounding.bottom = max(m_rectBounding.bottom, this->element_at(i).y);
 
       }
 

@@ -201,7 +201,7 @@ namespace hellobase
 
       //double dPeriod = 1000.0 / dFps;
 
-      //dPeriod = MIN(MAX(1.0, dPeriod), 1000.0);
+      //dPeriod = min(max(1.0, dPeriod), 1000.0);
 
       ////#ifdef WINDOWS_DESKTOP
       ////
@@ -1138,7 +1138,7 @@ namespace hellobase
 
       //         double ratey = fHeight * 0.84 / size.cy;
 
-      //         font->create_pixel_font(FONT_SANS, MIN(m_cy * ratey, m_cx * size.cy * ratey / size.cx), FW_BOLD);
+      //         font->create_pixel_font(FONT_SANS, min(m_cy * ratey, m_cx * size.cy * ratey / size.cx), FW_BOLD);
 
       //         m_font = font;
 
@@ -1248,7 +1248,7 @@ namespace hellobase
 
       //   byte uchAlpha;
 
-      //   uchAlpha = byte(MAX(0, MIN(255, (m_tickLastOk.elapsed()) * 255 / m_tickAnime)));
+      //   uchAlpha = byte(max(0, min(255, (m_tickLastOk.elapsed()) * 255 / m_tickAnime)));
 
 /*      //   System.imaging().bitmap_blend(pgraphics, ::point(), pimage->get_size(), pimage->g(), ::point(), uchAlpha);
 
@@ -1389,9 +1389,9 @@ namespace hellobase
 
    //   double ratey = fHeight * 0.84 / size.cy;
 
-   //   font->create_pixel_font(m_pview->m_strFont, MIN(m_cy * ratey, m_cx * size.cy * ratey / size.cx), FW_BOLD);
+   //   font->create_pixel_font(m_pview->m_strFont, min(m_cy * ratey, m_cx * size.cy * ratey / size.cx), FW_BOLD);
 
-   //   m_dMinRadius = MAX(1.0, MIN(m_cy * ratey, m_cx * size.cy * ratey / size.cx) / 46.0);
+   //   m_dMinRadius = max(1.0, min(m_cy * ratey, m_cx * size.cy * ratey / size.cx) / 46.0);
 
    //   m_dMaxRadius = m_dMinRadius * 2.3;
 

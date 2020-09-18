@@ -124,7 +124,7 @@ namespace filemanager
    void file_list::RenameFile(i32 iLine, string &wstrNameNew, const ::action_context & context)
    {
 
-      sync_lock sl(fs_list()->get_mutex());
+      sync_lock sl(fs_list()->mutex());
 
       ::file::path filepath = fs_list_item(iLine)->m_filepathFinal;
 
@@ -142,7 +142,7 @@ namespace filemanager
 
       SCAST_PTR(::message::mouse, pcontextmenu, pmessage);
 
-      sync_lock sl(fs_list()->get_mutex());
+      sync_lock sl(fs_list()->mutex());
 
       index iItem;
 
@@ -376,7 +376,7 @@ namespace filemanager
 
       SCAST_PTR(::user::command, pcommand, pmessage);
 
-      sync_lock sl(fs_list()->get_mutex());
+      sync_lock sl(fs_list()->mutex());
 
       ::file::item_array itema;
 
@@ -957,7 +957,7 @@ namespace filemanager
 
          Application.data_get(filemanager_data()->m_dataidStatic, stra);
 
-         sync_lock lock(fs_list()->get_mutex());
+         sync_lock lock(fs_list()->mutex());
 
          fs_list()->m_itema.m_parray->remove_all();
 
@@ -1040,7 +1040,7 @@ namespace filemanager
 
       {
 
-         sync * pm = fs_list()->get_mutex();
+         sync * pm = fs_list()->mutex();
 
          sync_lock lock(pm);
 
@@ -1102,7 +1102,7 @@ namespace filemanager
 
       {
 
-         sync_lock lock(fs_list()->get_mutex());
+         sync_lock lock(fs_list()->mutex());
 
          if (m_eview == impact_icon)
          {
@@ -1501,7 +1501,7 @@ namespace filemanager
    void file_list::_017OpenContextMenuSelected(const ::action_context & context)
    {
 
-      sync_lock sl(fs_list()->get_mutex());
+      sync_lock sl(fs_list()->mutex());
 
       ::file::item_array itema;
 
@@ -1629,7 +1629,7 @@ namespace filemanager
    //         iItemRange++)
    //   {
    //      auto & itemrange = range.ItemAt(iItemRange);
-   //      for (iItem = MAX(0, itemrange.get_lower_bound());
+   //      for (iItem = max(0, itemrange.get_lower_bound());
    //            iItem <= itemrange.get_upper_bound();
    //            iItem++)
    //      {
@@ -1685,7 +1685,7 @@ namespace filemanager
    bool file_list::add_fs_item(::file::path pathUser, ::file::path pathFinal, string strName)
    {
 
-      sync_lock sl(fs_list()->get_mutex());
+      sync_lock sl(fs_list()->mutex());
 
       ::userfs::list_item item;
 
@@ -1767,7 +1767,7 @@ namespace filemanager
    bool file_list::query_drop(index iDisplayDrop, index iDisplayDrag)
    {
 
-      sync_lock sl(fs_list()->get_mutex());
+      sync_lock sl(fs_list()->mutex());
 
       if (iDisplayDrag < 0)
          return false;
@@ -1808,7 +1808,7 @@ namespace filemanager
    bool file_list::do_drop(index iDisplayDrop, index iDisplayDrag)
    {
 
-      sync_lock sl(fs_list()->get_mutex());
+      sync_lock sl(fs_list()->mutex());
 
       index strict = _001DisplayToStrict(iDisplayDrop);
 

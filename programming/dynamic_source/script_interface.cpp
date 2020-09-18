@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "_.h"
+#include "aura/id.h"
 
 
 namespace dynamic_source

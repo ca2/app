@@ -41,32 +41,6 @@ void context_object::finalize()
 }
 
 
-void context_object::set_mutex(sync* psync)
-{
-
-   if (m_pmutex)
-   {
-
-      m_pmutex.release();
-
-   }
-
-   m_pmutex = psync;
-
-}
-
-
-void context_object::defer_create_mutex()
-{
-
-   if (!m_pmutex)
-   {
-
-      m_pmutex = __new(::mutex);
-
-   }
-
-}
 
 
 ::estatus context_object::run()

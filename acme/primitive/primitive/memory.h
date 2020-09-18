@@ -211,7 +211,7 @@ public:
 
       }
 
-      ::memcpy_dup(m_block.get_data(), pdata, MIN(s, m_block.get_size()));
+      ::memcpy_dup(m_block.get_data(), pdata, min(s, m_block.get_size()));
 
       return true;
 

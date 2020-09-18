@@ -5534,7 +5534,7 @@
     <frame>
       <ip>0xD47FC0E</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_shader.so</obj>
-      <fn>aura::single_application_library&lt;simple_shader::application&gt;::get_new_application(object*, char const*)</fn>
+      <fn>apex::single_application_library&lt;simple_shader::application&gt;::get_new_application(object*, char const*)</fn>
       <dir>/xcore/app-simple/simple_shader/../../app/aura/</dir>
       <file>aura.inl</file>
       <line>293</line>
@@ -17002,7 +17002,7 @@
     <frame>
       <ip>0xD47FC0E</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_shader.so</obj>
-      <fn>aura::single_application_library&lt;simple_shader::application&gt;::get_new_application(object*, char const*)</fn>
+      <fn>apex::single_application_library&lt;simple_shader::application&gt;::get_new_application(object*, char const*)</fn>
       <dir>/xcore/app-simple/simple_shader/../../app/aura/</dir>
       <file>aura.inl</file>
       <line>293</line>
@@ -62132,7 +62132,7 @@
     <frame>
       <ip>0xD47F022</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_shader.so</obj>
-      <fn>aura::single_application_library&lt;simple_shader::application&gt;::~single_application_library()</fn>
+      <fn>apex::single_application_library&lt;simple_shader::application&gt;::~single_application_library()</fn>
       <dir>/xcore/app-simple/simple_shader/../../app/aura/</dir>
       <file>aura_library.h</file>
       <line>108</line>

@@ -432,7 +432,7 @@ namespace experience_core
 /*            if(tab_pane.m_pimage->is_set())
             {
 /*               size.cx += tab_pane.m_pimage->width() + 2;
-/*               size.cy = MAX(size.cy,tab_pane.m_pimage->height());
+/*               size.cy = max(size.cy,tab_pane.m_pimage->height());
             }
             cx = size.cx + 2;
 
@@ -525,7 +525,7 @@ namespace experience_core
 
 /*            if(tab_pane.m_pimage->m_p != NULL)
             {
-/*               size.cy = MAX(size.cy,tab_pane.m_pimage->size()->cy);
+/*               size.cy = max(size.cy,tab_pane.m_pimage->size()->cy);
             }
             cy = size.cy + 2;
 
@@ -688,7 +688,7 @@ namespace experience_core
 
          DWORD tickFadeOut = 490;
 
-         byte uchAlpha = MAX(0, MIN(255, pbar->prop("tracking_alpha").uint32()));
+         byte uchAlpha = max(0, min(255, pbar->prop("tracking_alpha").uint32()));
 
          if (pbar->m_bTracking)
          {
@@ -734,7 +734,7 @@ namespace experience_core
             DWORD dwFade = pbar->prop("tracking_start").tick().elapsed();
             if (dwFade < tickFadeIn)
             {
-               uchAlpha = (byte)MIN(255, MAX(0, (dwFade * 255 / tickFadeIn)));
+               uchAlpha = (byte)min(255, max(0, (dwFade * 255 / tickFadeIn)));
             }
             else
             {
@@ -748,7 +748,7 @@ namespace experience_core
             DWORD dwFade = pbar->prop("tracking_start").tick().elapsed();
             if (dwFade < tickFadeOut)
             {
-               uchAlpha = (byte)(255 - MIN(255, MAX(0, (dwFade * 255 / tickFadeOut))));
+               uchAlpha = (byte)(255 - min(255, max(0, (dwFade * 255 / tickFadeOut))));
             }
             else
             {
@@ -780,7 +780,7 @@ namespace experience_core
 
             rectIntersect.intersect(rectMachineThumb, rectTrack);
 
-            i32 iArea = (i32)(MAX(1, rectIntersect.area()));
+            i32 iArea = (i32)(max(1, rectIntersect.area()));
 
             rectMachineThumb.inflate(1 + iSize * (iSize * iSize) * 4 / (iArea * 5), 1 + iSize * (iSize * iSize) * 2 / (iArea * 3));
 

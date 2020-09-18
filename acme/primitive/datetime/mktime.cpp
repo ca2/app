@@ -124,7 +124,7 @@ extern "C"
    }
 
 
-   /* Yield the difference between (YEAR-YDAY HOUR:MIN:SEC) and (*TP),
+   /* Yield the difference between (YEAR-YDAY HOUR:min:SEC) and (*TP),
    measured in seconds, ignoring leap seconds.
    YEAR uses the same numbering as TM->tm_year.
    All values are in range, except possibly YEAR.

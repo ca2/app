@@ -448,8 +448,8 @@ namespace math
    // dRandRange == 0.0 is impossible event due this next statement;
    if(i1 == i2)
    return i1;
-   i32 iMin = MIN(i1, i2);
-   i32 iMax = MAX(i1, i2);
+   i32 iMin = min(i1, i2);
+   i32 iMax = max(i1, i2);
    double dRand = 0.0;
    double dRange = (double) (iMax - iMin);
    double dRandRange = 1.0;
@@ -472,8 +472,8 @@ namespace math
    // dRandRange == 0.0 is impossible event due this next statement;
    if(ui1 == ui2)
    return ui1;
-   i32 iMin = MIN(ui1, ui2);
-   i32 iMax = MAX(ui1, ui2);
+   i32 iMin = min(ui1, ui2);
+   i32 iMax = max(ui1, ui2);
    double dRand = 0.0;
    double dRange = (double) (iMax - iMin);
    double dRandRange = 1.0;
@@ -497,8 +497,8 @@ namespace math
    //   // dRandRange == 0.0 is impossible event due this next statement;
    //   if (d1 == d2)
    //      return d1;
-   //   double dMin = MIN(d1, d2);
-   //   double dMax = MAX(d1, d2);
+   //   double dMin = min(d1, d2);
+   //   double dMax = max(d1, d2);
    //   double dRange = dMax - dMin;
    //   return (((double)(gen_rand() % (1000000000 + 1)) / 1000000000.0) * dRange) + dMin;
    //}
@@ -510,8 +510,8 @@ namespace math
    // dRandRange == 0.0 is impossible event due this next statement;
    if(ui1 == ui2)
    return ui1;
-   u64 uiMin = MIN(ui1, ui2);
-   u64 uiMax = MAX(ui1, ui2);
+   u64 uiMin = min(ui1, ui2);
+   u64 uiMax = max(ui1, ui2);
    double dRand = 0.0;
    double dRange = (double) (uiMax - uiMin);
    double dRandRange = 1.0;
@@ -607,7 +607,7 @@ namespace apex
 
 
 
-CLASS_DECL_APEX void generate_random_bytes(void * p, memsize s)
+CLASS_DECL_APEX void apex_generate_random_bytes(void * p, memsize s)
 {
 
    ::get_context_system()->m_pmath->m_posdata->generate_random_bytes(p, s);

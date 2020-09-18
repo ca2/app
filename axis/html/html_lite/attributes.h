@@ -118,12 +118,12 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   u16 getPercentValue(u16 MAX = USHRT_MAX) const
+   u16 getPercentValue(u16 max = USHRT_MAX) const
    {
-      ASSERT(MAX > 0);
+      ASSERT(max > 0);
       if (!isPercentValue())   return (0);
       u16   percentVal = (u16)((i16)*this);
-      return ((percentVal > MAX ? MAX : percentVal));
+      return ((percentVal > max ? max : percentVal));
    }
 
    /**

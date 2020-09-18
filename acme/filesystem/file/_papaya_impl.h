@@ -58,7 +58,7 @@ inline stream & operator >>(stream & stream, ::array_base < TYPE, ARG_TYPE, ALLO
          for (::index i = 0; i < c; i++)
          {
 
-            array.set_size(i + 1, MIN((size_t)(c - i), 96_mb / sizeof(array[0])));
+            array.set_size(i + 1, min((size_t)(c - i), 96_mb / sizeof(array[0])));
 
             auto & item = __typed(array[i]);
 
@@ -159,7 +159,7 @@ void __transfer_to_writer(WRITER & writer, ::file::file * pfileIn, memsize uiBuf
 
    memsize uiRead;
    memsize uiSize = 0;
-   uiBufSize = MAX(32 * 1024, uiBufSize);
+   uiBufSize = max(32 * 1024, uiBufSize);
 
    memory buf;
 

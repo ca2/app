@@ -20,7 +20,7 @@ namespace windows
    shell::shell()
    {
 
-      //m_iMaxThreadCount = MAX(4, ::get_processor_count());
+      //m_iMaxThreadCount = max(4, ::get_processor_count());
 
       m_iMaxThreadCount = 1;
 

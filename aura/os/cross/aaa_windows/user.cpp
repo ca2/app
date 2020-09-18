@@ -129,15 +129,15 @@ CLASS_DECL_AURA int_bool OffsetRect(RECT * prect, i32 x, i32 y)
 /*
 CLASS_DECL_AURA bool x_intersect_rect(RECT * prect, const RECT * prect1, const RECT * prect2)
 {
-   prect->left = MAX(prect1->left, prect2->left);
-   prect->right = MIN(prect1->right, prect2->right);
+   prect->left = max(prect1->left, prect2->left);
+   prect->right = min(prect1->right, prect2->right);
    return prect->right >= prect->left;
 }
 
 CLASS_DECL_AURA bool y_intersect_rect(RECT * prect, const RECT * prect1, const RECT * prect2)
 {
-   prect->top = MAX(prect1->top, prect2->top);
-   prect->bottom = MIN(prect1->bottom, prect2->bottom);
+   prect->top = max(prect1->top, prect2->top);
+   prect->bottom = min(prect1->bottom, prect2->bottom);
    return prect->bottom >= prect->top;
 }
 */
@@ -152,10 +152,10 @@ CLASS_DECL_AURA int_bool IntersectRect(RECT * prect, const RECT * prect1, const 
 
 CLASS_DECL_AURA int_bool UnionRect(RECT * prect, const RECT * prect1, const RECT * prect2)
 {
-   prect->left = MIN(prect1->left, prect2->left);
-   prect->top = MIN(prect1->top, prect2->top);
-   prect->right = MAX(prect1->right, prect2->right);
-   prect->bottom = MAX(prect1->bottom, prect2->bottom);
+   prect->left = min(prect1->left, prect2->left);
+   prect->top = min(prect1->top, prect2->top);
+   prect->right = max(prect1->right, prect2->right);
+   prect->bottom = max(prect1->bottom, prect2->bottom);
    return ((prect->right - prect->left) > 0) && ((prect->bottom - prect->top) > 0);
 }
 
@@ -231,7 +231,7 @@ i32      cchWideChar)
         }
      }
 
-     i32 iLen = (i32) MIN(cchWideChar, wstr.get_length());
+     i32 iLen = (i32) min(cchWideChar, wstr.get_length());
 
      if(pWideCharStr != nullptr)
      {
@@ -362,7 +362,7 @@ i32      cchWideChar)
         }
      }
 
-     i32 iLen = (i32) MIN(cchWideChar, wstr.get_length());
+     i32 iLen = (i32) min(cchWideChar, wstr.get_length());
 
      if(pWideCharStr != nullptr)
      {
@@ -521,7 +521,7 @@ LPBOOL  pUsedDefaultChar)
      }
   }
 
-  i32 iLen = (i32) MIN(cbMultiByte, str.get_length());
+  i32 iLen = (i32) min(cbMultiByte, str.get_length());
 
   if(pMultiByteStr != nullptr)
 

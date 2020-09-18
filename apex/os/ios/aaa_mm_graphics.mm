@@ -30,5 +30,5 @@ double points_to_pixels(double d)
 double status_bar_height()
 {
     CGSize statusBarSize = [[UIApplication sharedApplication] statusBarFrame].size;
-    return MIN(statusBarSize.width, statusBarSize.height);
+    return min(statusBarSize.width, statusBarSize.height);
 }

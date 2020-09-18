@@ -2539,7 +2539,7 @@ namespace user
 
       {
 
-         sync_lock lock(get_data()->get_mutex());
+         sync_lock lock(get_data()->mutex());
 
          get_data()->m_idaSel.remove_all();
 

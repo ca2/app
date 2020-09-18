@@ -118,7 +118,7 @@ static i32 init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi);
 /* 1601 to 1980 is 379 years plus 91 leap days */
 #define SECS_1601_TO_1980  ((379 * 365 + 91) * (ULONGLONG)SECSPERDAY)
 #define TICKS_1601_TO_1980 (SECS_1601_TO_1980 * TICKSPERSEC)
-/* MAX ticks that can be represented as Unix time */
+/* max ticks that can be represented as Unix time */
 #define TICKS_1601_TO_UNIX_MAX ((SECS_1601_TO_1970 + INT_MAX) * TICKSPERSEC)
 
 
@@ -685,27 +685,27 @@ static WINBOOL reg_query_value(HKEY hkey, LPCWSTR name, DWORD type, void *data, 
 */
 
 
-static time_t find_dst_change(time_t MIN, time_t MAX, i32 *is_dst)
+static time_t find_dst_change(time_t min, time_t max, i32 *is_dst)
 {
    time_t start;
    struct tm *tm;
 
-   start = MIN;
+   start = min;
    tm = localtime(&start);
    *is_dst = !tm->tm_isdst;
 // xxx    TRACE("starting date isdst %d, %s", !*is_dst, ctime(&start));
 
-   while (MIN <= MAX)
+   while (min <= max)
    {
-      time_t pos = (MIN + MAX) / 2;
+      time_t pos = (min + max) / 2;
       tm = localtime(&pos);
 
       if (tm->tm_isdst != *is_dst)
-         MIN = pos + 1;
+         min = pos + 1;
       else
-         MAX = pos - 1;
+         max = pos - 1;
    }
-   return MIN;
+   return min;
 }
 
 static i32 init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)

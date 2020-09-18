@@ -236,7 +236,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //      iStart = iLen + iStart;
 //   if(iLenFind > iLen)
 //      return nullptr;
-//   iStart = MIN(iStart,iLen - iLenFind);
+//   iStart = min(iStart,iLen - iLenFind);
 //   while(iStart >= 0)
 //   {
 //      if(ansi_count_compare(&psz[iStart],pszFind,iLenFind) == 0)
@@ -1674,7 +1674,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //      strsize nOldLength = get_length();
 //      strsize nNewLength = nOldLength + (nReplacementLen - nSourceLen)*nCount;
 //
-//      char * pszBuffer = GetBuffer(MAX(nNewLength,nOldLength));
+//      char * pszBuffer = GetBuffer(max(nNewLength,nOldLength));
 //
 //      char * pszStart = pszBuffer + iStart;
 //      char * pszEnd = pszBuffer + nOldLength;
@@ -1740,7 +1740,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //      strsize nOldLength = get_length();
 //      strsize nNewLength = nOldLength + (nReplacementLen - nSourceLen)*nCount;
 //
-//      char * pszBuffer = GetBuffer(MAX(nNewLength, nOldLength));
+//      char * pszBuffer = GetBuffer(max(nNewLength, nOldLength));
 //
 //      char * pszStart = pszBuffer + iStart;
 //      char * pszEnd = pszBuffer + nOldLength;

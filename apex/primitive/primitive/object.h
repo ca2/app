@@ -188,8 +188,6 @@ public:
    virtual ::estatus call() override;
 
 
-   virtual sync * get_mutex() const override;
-
    inline i64 get_ref_count()
    {
 

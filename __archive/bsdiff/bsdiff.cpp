@@ -40,7 +40,7 @@ __FBSDID("$FreeBSD: src/usr.bin/bsdiff/bsdiff/bsdiff.c,v 1.1 2005/08/06 01:59:05
 #include <string.h>
 
 
-#define MIN(x,y) (((x)<(y)) ? (x) : (y))
+#define min(x,y) (((x)<(y)) ? (x) : (y))
 
 static void split(off_t *I,off_t *V,off_t start,off_t len,off_t h)
 {
@@ -195,7 +195,7 @@ static off_t search(off_t *I,u_char *old,off_t oldsize,
    };
 
    x=st+(en-st)/2;
-   if(__memcmp(old+I[x],new,MIN(oldsize-I[x],newsize))<0)
+   if(__memcmp(old+I[x],new,min(oldsize-I[x],newsize))<0)
    {
       return search(I,old,oldsize,new,newsize,x,en,pos);
    }

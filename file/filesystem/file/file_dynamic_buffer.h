@@ -17,7 +17,7 @@ namespace file
          delta = 16;
        else
          delta = 4;
-       delta = MAX(delta, size);
+       delta = max(delta, size);
        size_t newCap = this->GetCapacity() + delta;
        if (newCap < delta)
          newCap = this->GetCapacity() + size;

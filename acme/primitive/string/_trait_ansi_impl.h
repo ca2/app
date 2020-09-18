@@ -122,7 +122,7 @@ namespace str
 
       }
 
-      iStart = MIN(iStart, iLen - iLenFind);
+      iStart = min(iStart, iLen - iLenFind);
 
       while (iStart >= 0)
       {

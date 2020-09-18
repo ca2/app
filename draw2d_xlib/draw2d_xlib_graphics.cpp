@@ -1747,8 +1747,8 @@ namespace draw2d_xlib
                ::image_pointer pimage2;
                pimage2 = create_image(rectText.size());
                pimage2->Fill(255, 0, 0, 0);
-               pimage2->from(point((i64) MAX(0, m_pointAlphaBlend.x - x), (i64) MAX(0, m_pointAlphaBlend.y - y)),
-                           m_pimageAlphaBlend->get_graphics(), point((i64) MAX(0, x - m_pointAlphaBlend.x), (i64) MAX(0, y - m_pointAlphaBlend.y)), rectText.size());
+               pimage2->from(point((i64) max(0, m_pointAlphaBlend.x - x), (i64) max(0, m_pointAlphaBlend.y - y)),
+                           m_pimageAlphaBlend->get_graphics(), point((i64) max(0, x - m_pointAlphaBlend.x), (i64) max(0, y - m_pointAlphaBlend.y)), rectText.size());
                pimage1->channel_multiply(::color::channel_alpha, pimage2->m_p);
                /* p::image_pointer pimage3(get_object());
                pimage1->mult_alpha(image3);*/

@@ -404,3 +404,114 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 //
 //
 //
+
+
+
+
+template <typename T>
+struct hold
+{
+public:
+
+   __pointer(::layered)    m_pobject;
+   T                       m_t;
+   bool                    m_bInitialized = false;
+   manual_reset_event      m_evReady;
+   string                  m_strErrorMessage;
+
+
+   void wait()
+   {
+
+      m_evReady.wait();
+
+   }
+
+   T& get()
+   {
+
+      wait();
+
+      if (m_bInitialized)
+      {
+
+         return m_t;
+
+      }
+
+      __throw(::exception::exception(m_strErrorMessage));
+
+   }
+
+   template <typename U>
+   void set_value(const U& value)
+   {
+
+      m_t = value;
+
+      m_bInitialized = true;
+
+      m_evReady.set_event();
+
+   }
+
+   void set_error_message(const string& strErrorMessage)
+   {
+
+      m_strErrorMessage = strErrorMessage;
+
+      m_evReady.set_event();
+
+   }
+
+
+   hold(::layered* pobjectContext) :
+      m_pobject(pobjectContext)
+   {
+
+   }
+
+
+   ~hold()
+   {
+
+   }
+
+
+   bool valid() const noexcept
+   {
+
+      return m_bInitialized;
+
+   }
+
+   template < typename PRED >
+   void work(PRED pred)
+   {
+
+      m_bInitialized = false;
+
+      __object(m_pobject)->fork([&]()
+         {
+
+            try
+            {
+
+               set_value(pred());
+
+            }
+            catch (::exception_pointer e)
+            {
+
+               set_error_message(e->get_message());
+
+            }
+
+         });
+
+   }
+
+};
+
+
+

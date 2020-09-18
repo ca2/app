@@ -91,10 +91,10 @@ public:
    rect_type & max(const RECT_TYPE & rect)
    {
 
-      this->left = (decltype(RECT_TYPE::left))MIN(this->left, rect.left);
-      this->top = (decltype(RECT_TYPE::top))MIN(this->top, rect.top);
-      this->right = (decltype(RECT_TYPE::right))MAX(this->right, rect.right);
-      this->bottom = (decltype(RECT_TYPE::bottom))MAX(this->bottom, rect.bottom);
+      this->left = (decltype(RECT_TYPE::left))::min(this->left, rect.left);
+      this->top = (decltype(RECT_TYPE::top))::min(this->top, rect.top);
+      this->right = (decltype(RECT_TYPE::right))::max(this->right, rect.right);
+      this->bottom = (decltype(RECT_TYPE::bottom))::max(this->bottom, rect.bottom);
 
       return *this;
 
@@ -124,20 +124,20 @@ public:
 // void assign(const rect_type& rect_type, e_orientation eorientation) noexcept;
  //void assign_normal(const rect_type& rect_type, e_orientation eorientation) noexcept;
 
- UNIT_TYPE minimum_dimension() const noexcept { return MIN(width(), height()); }
- UNIT_TYPE maximum_dimension() const noexcept { return MAX(width(), height()); }
+ UNIT_TYPE minimum_dimension() const noexcept { return ::min(width(), height()); }
+ UNIT_TYPE maximum_dimension() const noexcept { return ::max(width(), height()); }
  UNIT_TYPE min_dimension() const noexcept { return minimum_dimension(); }
  UNIT_TYPE max_dimension() const noexcept { return maximum_dimension(); }
  UNIT_TYPE min_dim() const noexcept { return min_dimension(); }
  UNIT_TYPE max_dim() const noexcept { return max_dimension(); }
 
- UNIT_TYPE max_border() const noexcept { return MAX(MAX(this->top, this->left), MAX(this->bottom, this->right)); }
+ UNIT_TYPE max_border() const noexcept { return ::max(::max(this->top, this->left), ::max(this->bottom, this->right)); }
 
- UNIT_TYPE minimum_natural_dimension() const noexcept { return MIN(MAX(0, width()), MAX(0, height())); }
- UNIT_TYPE maximum_natural_dimension() const noexcept { return MAX(MAX(0, width()), MAX(0, height())); }
+ UNIT_TYPE minimum_natural_dimension() const noexcept { return ::min(::max(0, width()), ::max(0, height())); }
+ UNIT_TYPE maximum_natural_dimension() const noexcept { return ::max(::max(0, width()), ::max(0, height())); }
 
- UNIT_TYPE minimum_absolute_dimension() const noexcept { return MIN(abs(width()), abs(height())); }
- UNIT_TYPE maximum_absolute_dimension() const noexcept { return MIN(abs(width()), abs(height())); }
+ UNIT_TYPE minimum_absolute_dimension() const noexcept { return ::min(abs(width()), abs(height())); }
+ UNIT_TYPE maximum_absolute_dimension() const noexcept { return ::min(abs(width()), abs(height())); }
 
  //UNIT_TYPE minimum_signed_absolute_dimension(bool bNegativePreference = true) const noexcept;
  //UNIT_TYPE maximum_signed_absolute_dimension(bool bPositivePreference = true) const noexcept;
@@ -416,7 +416,7 @@ public:
 
       double dx = ::width(rect);
       double dy = ::height(rect);
-      double dr = MAX(dx / cx, dy / cy);
+      double dr = ::max(dx / cx, dy / cy);
 
       UNIT_TYPE cw = (UNIT_TYPE)(cx * dr);
       UNIT_TYPE ch = (UNIT_TYPE)(cy * dr);
@@ -436,7 +436,7 @@ public:
 
       double dx = ::width(rect);
       double dy = ::height(rect);
-      double dr = MIN(cx == 0 ? 1 : dx / cx, cy == 0 ? 1 : dy / cy);
+      double dr = ::min(cx == 0 ? 1 : dx / cx, cy == 0 ? 1 : dy / cy);
 
       UNIT_TYPE cw = cx == 0 ? (UNIT_TYPE)dx : ((UNIT_TYPE)(cx * dr));
       UNIT_TYPE ch = cy == 0 ? (UNIT_TYPE)dy : ((UNIT_TYPE)(cy * dr));
@@ -983,13 +983,13 @@ public:
     else if (bNegativePreference) // absolutely equal, prefer negative ...
     {
 
-       return MIN(w, h);
+       return ::min(w, h);
 
     }
     else // ... otherwise prefer positive
     {
 
-       return MAX(w, h);
+       return ::max(w, h);
 
     }
 
@@ -1019,13 +1019,13 @@ public:
     else if (bPositivePreference) // absolutely equal, prefer positive ...
     {
 
-       return MAX(w, h);
+       return ::max(w, h);
 
     }
     else // ... otherwise prefer negative
     {
 
-       return MIN(w, h);
+       return ::min(w, h);
 
     }
 

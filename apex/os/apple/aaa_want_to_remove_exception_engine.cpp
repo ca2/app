@@ -1372,7 +1372,7 @@ namespace exception
 
       void* buffer[max];
 
-      int iSkip = MIN(uiSkip, max - 1);
+      int iSkip = min(uiSkip, max - 1);
 
       if (iSkip == max - 1)
       {
@@ -1497,7 +1497,7 @@ namespace exception
 
       *_strS = '\0';
 
-      ::memcpy_dup(m_uia, pinteraction, MIN(c*sizeof(*pinteraction), sizeof(m_uia)));
+      ::memcpy_dup(m_uia, pinteraction, min(c*sizeof(*pinteraction), sizeof(m_uia)));
 
       m_iAddressWrite = c;
       m_iAddressRead = 0;

@@ -37,7 +37,7 @@ namespace fs
    ::file::listing & set::root_ones(::file::listing & listing)
    {
 
-      single_lock sl(get_mutex(), true);
+      single_lock sl(mutex(), true);
 
       m_fsdatamap.remove_all();
 
@@ -77,7 +77,7 @@ namespace fs
    __pointer(data) set::path_data(const ::file::path & psz)
    {
 
-      single_lock sl(get_mutex(), true);
+      single_lock sl(mutex(), true);
 
       auto p = m_fsdatamap.begin();
 

@@ -14,12 +14,6 @@ class runnable_array;
 class CLASS_DECL_APEX context_object :
    virtual public layered
 {
-private:
-
-
-   mutable __pointer(sync)          m_pmutex;
-
-
 public:
 
 
@@ -42,13 +36,9 @@ public:
    virtual void         finalize() override;
 
 
-   inline bool is_set() const { return ::is_set(this); }
+   
 
 
-   // sync/mutex
-   inline sync* mutex() const { return is_set() ? ((::context_object*)this)->m_pmutex : nullptr; }
-   void set_mutex(sync* psync);
-   void defer_create_mutex();
 
    
    template < typename TYPE >

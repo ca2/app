@@ -7,7 +7,7 @@
 #include "apex/platform/app_core.h"
 #include "acme/const/id.h"
 #include "aura/node/_node.h"
-//#include "aura/net/ftp/_.h"
+//#include "core/net/ftp/_.h"
 #include "acme/platform/profiler.h"
 #include "apex/platform/static_setup.h"
 #include "apex/platform/str_context.h"
@@ -23,18 +23,12 @@
 int GetMainScreenRect(LPRECT lprect);
 
 
-const char* g_pszMultimediaLibraryName = nullptr;
+CLASS_DECL_APEX const char* multimedia_get_library_name();
 
 #ifdef LINUX
 const char * get_main_app_id();
 #endif
 
-CLASS_DECL_AURA void multimedia_set_library_name(const char* psz)
-{
-
-   g_pszMultimediaLibraryName = psz;
-
-}
 
 
 #ifdef CUBE
@@ -816,7 +810,9 @@ namespace aura
 
       string strName;
 
-      if (::is_set(g_pszMultimediaLibraryName) && !strcmp(g_pszMultimediaLibraryName, "veriwell_multimedia"))
+      auto pszName = ::multimedia_get_library_name();
+
+      if (::is_set(pszName) && !strcmp(pszName, "veriwell_multimedia"))
       {
 
          strName = "veriwell_multimedia";
@@ -1384,7 +1380,7 @@ namespace aura
 //
 //               iSize *= 2;
 //
-//               iSize = MAX(iSize, 4096);
+//               iSize = max(iSize, 4096);
 //
 //               char * pszEnvLine = (char *) ::malloc(iSize);
 //

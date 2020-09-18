@@ -625,7 +625,7 @@ namespace multithreading
 //void thread_ptra::wait(const duration & duration, sync_lock & sl)
 //{
 //
-//   ::datetime::time timeEnd = ::datetime::time::get_current_time() + MAX(seconds(2), duration);
+//   ::datetime::time timeEnd = ::datetime::time::get_current_time() + max(seconds(2), duration);
 //
 //   try
 //   {

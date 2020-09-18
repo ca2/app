@@ -337,7 +337,7 @@ strid_array::~strid_array()
 void strid_array::sort()
 {
    
-   single_lock sl(get_mutex(),TRUE);
+   single_lock sl(mutex(),TRUE);
 
    if (m_idptra.m_nSize <= 1)
    {
@@ -420,7 +420,7 @@ void strid_array::sort()
 bool strid_array::find(const char * psz,index & iIndex) const
 {
  
-   single_lock sl(get_mutex(),TRUE);
+   single_lock sl(mutex(),TRUE);
 
    if(m_idptra.m_nSize == 0)
    {

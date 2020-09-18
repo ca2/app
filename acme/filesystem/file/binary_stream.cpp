@@ -1224,7 +1224,7 @@ void binary_stream::read_to_hex(string & str, filesize tickStart, filesize tickE
 
    }
 
-   while ((uiRead = read(&memory.get_data()[uiPos], MIN(memory.get_size() - uiPos, (memsize)nCount))) > 0)
+   while ((uiRead = read(&memory.get_data()[uiPos], min(memory.get_size() - uiPos, (memsize)nCount))) > 0)
    {
       uiPos += uiRead;
       nCount -= uiRead;

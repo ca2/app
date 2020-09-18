@@ -2512,7 +2512,7 @@ file_result file_context::http_get_file(const var & varFile, const efileopen & e
    if (!preader)
    {
 
-      preader = get_file(varFile, eopenFlags);
+      preader = get_file(varFile, eopenFlags | ::file::mode_read);
 
    }
 

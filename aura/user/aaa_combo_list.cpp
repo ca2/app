@@ -372,7 +372,7 @@ namespace user
 
       auto rectComboClient = m_pcombo->get_client_rect();
 
-      psize->cx = MAX(psize->cx, rectComboClient.width());
+      psize->cx = max(psize->cx, rectComboClient.width());
 
    }
 
@@ -685,13 +685,13 @@ namespace user
       else if (pkey->m_ekey == ::user::key_down)
       {
 
-         m_pcombo->m_itemHover = MIN(m_pcombo->m_itemHover + 1, m_pcombo->_001GetListCount() - 1);
+         m_pcombo->m_itemHover = min(m_pcombo->m_itemHover + 1, m_pcombo->_001GetListCount() - 1);
 
       }
       else if (pkey->m_ekey == ::user::key_up)
       {
 
-         m_pcombo->m_itemHover = MAX(m_pcombo->m_itemHover - 1, 0);
+         m_pcombo->m_itemHover = max(m_pcombo->m_itemHover - 1, 0);
 
       }
       else if (pkey->m_ekey == ::user::key_return)
@@ -991,7 +991,7 @@ namespace user
       ::rect rectList;
 
       rectList.left = rectWindow.left;
-      rectList.right = rectWindow.left + MAX(rectWindow.width(), sizeFull.cx);
+      rectList.right = rectWindow.left + max(rectWindow.width(), sizeFull.cx);
       rectList.top = rectWindow.bottom;
       rectList.bottom = rectWindow.bottom + sizeFull.cy;
 

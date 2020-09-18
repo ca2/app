@@ -110,7 +110,7 @@ namespace html
          virtual void container_raw_max_width(html_data * pdata);
 
 
-         virtual void layout_phase0(html_data * pdata); // cx MIN/MAX calculation
+         virtual void layout_phase0(html_data * pdata); // cx min/max calculation
          // return true if function performed layout
          // if it returns false, layout must be ignored
          virtual bool layout_phase1(html_data * pdata); // cx calculation or cxy calculation at final nodes

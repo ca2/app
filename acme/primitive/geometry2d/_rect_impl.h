@@ -786,13 +786,13 @@
 //      else if (bNegativePreference) // absolutely equal, prefer negative ...
 //      {
 //
-//         return MIN(w, h);
+//         return min(w, h);
 //
 //      }
 //      else // ... otherwise prefer positive
 //      {
 //
-//         return MAX(w, h);
+//         return max(w, h);
 //
 //      }
 //
@@ -822,13 +822,13 @@
 //      else if (bPositivePreference) // absolutely equal, prefer positive ...
 //      {
 //
-//         return MAX(w, h);
+//         return max(w, h);
 //
 //      }
 //      else // ... otherwise prefer negative
 //      {
 //
-//         return MIN(w, h);
+//         return min(w, h);
 //
 //      }
 //
@@ -837,8 +837,8 @@
 //
 //
 //
-//   double rectd::minimum_absolute_dimension() const noexcept { return MIN(fabs(width()), fabs(height())); }
-//   double rectd::maximum_absolute_dimension() const noexcept { return MIN(fabs(width()), fabs(height())); }
+//   double rectd::minimum_absolute_dimension() const noexcept { return min(fabs(width()), fabs(height())); }
+//   double rectd::maximum_absolute_dimension() const noexcept { return min(fabs(width()), fabs(height())); }
 //
 //
 //

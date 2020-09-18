@@ -1404,7 +1404,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //            size_t dwWritten = 0;
 //            while(i - startpos - dwWritten > 0)
 //            {
-//               if(!WriteFile(hFile,&src[startpos + dwWritten],(u32)MIN(1024,i - startpos - dwWritten),&bw2,0))
+//               if(!WriteFile(hFile,&src[startpos + dwWritten],(u32)min(1024,i - startpos - dwWritten),&bw2,0))
 //                  return 0;
 //               bw += bw2;
 //               dwWritten += bw2;
@@ -1421,7 +1421,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //      size_t dwWritten = 0;
 //      while(i - startpos - dwWritten > 0)
 //      {
-//         WriteFile(hFile,&src[startpos + dwWritten],(u32)MIN(1024,i - startpos - dwWritten),&bw2,0);
+//         WriteFile(hFile,&src[startpos + dwWritten],(u32)min(1024,i - startpos - dwWritten),&bw2,0);
 //         bw += bw2;
 //         dwWritten += bw2;
 //      }
@@ -1433,7 +1433,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //      size_t dwWritten = 0;
 //      while(s - dwWritten > 0)
 //      {
-//         WriteFile(hFile,&src[dwWritten],(u32)MIN(1024,s - dwWritten),&bw2,0);
+//         WriteFile(hFile,&src[dwWritten],(u32)min(1024,s - dwWritten),&bw2,0);
 //         bw += bw2;
 //         dwWritten += bw2;
 //      }

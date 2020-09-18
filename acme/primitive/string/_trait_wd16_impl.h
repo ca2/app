@@ -133,7 +133,7 @@ namespace str
          iStart = iLen + iStart;
       if (iLenFind > iLen)
          return nullptr;
-      iStart = MIN(iStart, iLen - iLenFind);
+      iStart = min(iStart, iLen - iLenFind);
       while (iStart >= 0)
       {
          if (wd16_ncmp(&psz[iStart], pszFind, iLenFind) == 0)

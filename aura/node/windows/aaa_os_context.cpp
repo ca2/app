@@ -2998,7 +2998,7 @@ repeat:
 
             ::papaya::array::copy(wstraNames, set["file_filter_names"].stra());
 
-            rgSpec.set_size(MIN(wstraSpecs.get_size(), wstraNames.get_size()));
+            rgSpec.set_size(min(wstraSpecs.get_size(), wstraNames.get_size()));
 
             for (index i = 0; i < rgSpec.get_size(); i++)
             {
@@ -3244,7 +3244,7 @@ repeat:
 
             ::papaya::array::copy(wstraNames, set["file_filter_names"].stra());
 
-            rgSpec.set_size(MIN(wstraSpecs.get_size(), wstraNames.get_size()));
+            rgSpec.set_size(min(wstraSpecs.get_size(), wstraNames.get_size()));
 
             for (index i = 0; i < rgSpec.get_size(); i++)
             {

@@ -155,7 +155,7 @@ extern "C"
 ::apex::library * app_hellobase_get_new_library(::layered * pobjectContext)
 {
 
-   return new ::aura::single_application_library < ::hellobase::application > (pobject, "app/hellobase");
+   return new ::apex::single_application_library < ::hellobase::application > (pobject, "app/hellobase");
 
 }
 

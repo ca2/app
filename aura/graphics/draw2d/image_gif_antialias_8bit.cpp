@@ -93,13 +93,13 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //                  if (dR1 < 127)
 //                  {
 //
-//                     dA2 = MAX(dR, MAX(dG, dB)) * dUnequalRate + dUnequalAddUp;
+//                     dA2 = max(dR, max(dG, dB)) * dUnequalRate + dUnequalAddUp;
 //
 //                  }
 //                  else
 //                  {
 //
-//                     dA2 = (255.0 - MIN(dR, MIN(dG, dB))) * dUnequalRate + dUnequalAddUp;
+//                     dA2 = (255.0 - min(dR, min(dG, dB))) * dUnequalRate + dUnequalAddUp;
 //
 //                  }
 //
@@ -173,13 +173,13 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //                  if (dR1 < 127)
 //                  {
 //
-//                     dA2 = MAX(dR, MAX(dG, dB)) * dUnequalRate + dUnequalAddUp;
+//                     dA2 = max(dR, max(dG, dB)) * dUnequalRate + dUnequalAddUp;
 //
 //                  }
 //                  else
 //                  {
 //
-//                     dA2 = (255.0 - MIN(dR, MIN(dG, dB))) * dUnequalRate + dUnequalAddUp;
+//                     dA2 = (255.0 - min(dR, min(dG, dB))) * dUnequalRate + dUnequalAddUp;
 //
 //                  }
 //
@@ -257,13 +257,13 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //                  if (dR1 < 127)
 //                  {
 //
-//                     dA2 = MAX(dR, MAX(dG, dB)) * dUnequalRate + dUnequalAddUp;
+//                     dA2 = max(dR, max(dG, dB)) * dUnequalRate + dUnequalAddUp;
 //
 //                  }
 //                  else
 //                  {
 //
-//                     dA2 = (255.0 - MIN(dR, MIN(dG, dB))) * dUnequalRate + dUnequalAddUp;
+//                     dA2 = (255.0 - min(dR, min(dG, dB))) * dUnequalRate + dUnequalAddUp;
 //
 //                  }
 //
@@ -336,13 +336,13 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //                  if (dR1 < 127)
 //                  {
 //
-//                     dA2 = MAX(dR, MAX(dG, dB)) * dUnequalRate + dUnequalAddUp;
+//                     dA2 = max(dR, max(dG, dB)) * dUnequalRate + dUnequalAddUp;
 //
 //                  }
 //                  else
 //                  {
 //
-//                     dA2 = (255.0 - MIN(dR, MIN(dG, dB))) * dUnequalRate + dUnequalAddUp;
+//                     dA2 = (255.0 - min(dR, min(dG, dB))) * dUnequalRate + dUnequalAddUp;
 //
 //                  }
 //
@@ -424,13 +424,13 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //                  if (dR1 < 127)
 //                  {
 //
-//                     dA2 = MAX(dR, MAX(dG, dB)) * dUnequalRate + dUnequalAddUp;
+//                     dA2 = max(dR, max(dG, dB)) * dUnequalRate + dUnequalAddUp;
 //
 //                  }
 //                  else
 //                  {
 //
-//                     dA2 = (255.0 - MIN(dR, MIN(dG, dB))) * dUnequalRate + dUnequalAddUp;
+//                     dA2 = (255.0 - min(dR, min(dG, dB))) * dUnequalRate + dUnequalAddUp;
 //
 //                  }
 //
@@ -503,13 +503,13 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //                  if (dR1 < 127)
 //                  {
 //
-//                     dA2 = MAX(dR, MAX(dG, dB)) * dUnequalRate + dUnequalAddUp;
+//                     dA2 = max(dR, max(dG, dB)) * dUnequalRate + dUnequalAddUp;
 //
 //                  }
 //                  else
 //                  {
 //
-//                     dA2 = (255.0 - MIN(dR, MIN(dG, dB))) * dUnequalRate + dUnequalAddUp;
+//                     dA2 = (255.0 - min(dR, min(dG, dB))) * dUnequalRate + dUnequalAddUp;
 //
 //                  }
 //
@@ -590,13 +590,13 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //                  if (dR1 < 127)
 //                  {
 //
-//                     dA2 = MAX(dR, MAX(dG, dB)) * dUnequalRate + dUnequalAddUp;
+//                     dA2 = max(dR, max(dG, dB)) * dUnequalRate + dUnequalAddUp;
 //
 //                  }
 //                  else
 //                  {
 //
-//                     dA2 = (255.0 - MIN(dR, MIN(dG, dB))) * dUnequalRate + dUnequalAddUp;
+//                     dA2 = (255.0 - min(dR, min(dG, dB))) * dUnequalRate + dUnequalAddUp;
 //
 //                  }
 //
@@ -669,13 +669,13 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //                  if (dR1 < 127)
 //                  {
 //
-//                     dA2 = MAX(dR, MAX(dG, dB)) * dUnequalRate + dUnequalAddUp;
+//                     dA2 = max(dR, max(dG, dB)) * dUnequalRate + dUnequalAddUp;
 //
 //                  }
 //                  else
 //                  {
 //
-//                     dA2 = (255.0 - MIN(dR, MIN(dG, dB))) * dUnequalRate + dUnequalAddUp;
+//                     dA2 = (255.0 - min(dR, min(dG, dB))) * dUnequalRate + dUnequalAddUp;
 //
 //                  }
 //
@@ -757,13 +757,13 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //                  if (dR1 < 127)
 //                  {
 //
-//                     dA2 = MAX(dR, MAX(dG, dB)) * dUnequalRate + dUnequalAddUp;
+//                     dA2 = max(dR, max(dG, dB)) * dUnequalRate + dUnequalAddUp;
 //
 //                  }
 //                  else
 //                  {
 //
-//                     dA2 = (255.0 - MIN(dR, MIN(dG, dB))) * dUnequalRate + dUnequalAddUp;
+//                     dA2 = (255.0 - min(dR, min(dG, dB))) * dUnequalRate + dUnequalAddUp;
 //
 //                  }
 //
@@ -836,13 +836,13 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //                  if (dR1 < 127)
 //                  {
 //
-//                     dA2 = MAX(dR, MAX(dG, dB)) * dUnequalRate + dUnequalAddUp;
+//                     dA2 = max(dR, max(dG, dB)) * dUnequalRate + dUnequalAddUp;
 //
 //                  }
 //                  else
 //                  {
 //
-//                     dA2 = (255.0 - MIN(dR, MIN(dG, dB))) * dUnequalRate + dUnequalAddUp;
+//                     dA2 = (255.0 - min(dR, min(dG, dB))) * dUnequalRate + dUnequalAddUp;
 //
 //                  }
 //
@@ -922,13 +922,13 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //                  if (dR1 < 127)
 //                  {
 //
-//                     dA2 = MAX(dR, MAX(dG, dB)) * dUnequalRate + dUnequalAddUp;
+//                     dA2 = max(dR, max(dG, dB)) * dUnequalRate + dUnequalAddUp;
 //
 //                  }
 //                  else
 //                  {
 //
-//                     dA2 = (255.0 - MIN(dR, MIN(dG, dB))) * dUnequalRate + dUnequalAddUp;
+//                     dA2 = (255.0 - min(dR, min(dG, dB))) * dUnequalRate + dUnequalAddUp;
 //
 //                  }
 //
@@ -1001,13 +1001,13 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //                  if (dR1 < 127)
 //                  {
 //
-//                     dA2 = MAX(dR, MAX(dG, dB)) * dUnequalRate + dUnequalAddUp;
+//                     dA2 = max(dR, max(dG, dB)) * dUnequalRate + dUnequalAddUp;
 //
 //                  }
 //                  else
 //                  {
 //
-//                     dA2 = (255.0 - MIN(dR, MIN(dG, dB))) * dUnequalRate + dUnequalAddUp;
+//                     dA2 = (255.0 - min(dR, min(dG, dB))) * dUnequalRate + dUnequalAddUp;
 //
 //                  }
 //

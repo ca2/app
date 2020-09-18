@@ -244,7 +244,7 @@ CLASS_DECL_ACME bool solve_relative_inline(string & str, bool & bUrl, bool & bOn
 
                   // the end of string has been reached
 
-                  iPos = iaSlash[MAX(0, iSlashCount - 2)]; // go back to position of previous slash
+                  iPos = iaSlash[max(0, iSlashCount - 2)]; // go back to position of previous slash
 
                   iSlashCount -= 2;
 
@@ -598,7 +598,7 @@ bool write_memory_to_file(FILE * file,const void * pdata,memsize nCount,memsize 
    while(pos < nCount)
    {
 
-      dwWrite = (DWORD)MIN(nCount - uiWrittenTotal,0xffffffffu);
+      dwWrite = (DWORD)min(nCount - uiWrittenTotal,0xffffffffu);
 
       dw = (DWORD) (fwrite(&((u8 *)pdata)[pos],1, dwWrite, file));
 

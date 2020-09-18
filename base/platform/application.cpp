@@ -29,6 +29,15 @@ namespace base
 
       }
 
+      estatus = ::user::document_manager_container::initialize(pobjectContext);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
       set_context_app(this);
 
       set_context(this);

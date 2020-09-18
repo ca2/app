@@ -266,8 +266,8 @@ extern CLASS_DECL_APEX int g_bApex;
 #include "apex/os/_c.h"
 
 
-#undef MIN
-#undef MAX
+#undef min
+#undef max
 
 
 #define INTABS(i) (((i) >= 0) ? (i) : (-i))
@@ -1570,7 +1570,7 @@ namespace datetime
 //template < typename T >
 //inline int type_is_null(const T * p)
 //{
-//   return (((UINT_PTR)(void *)p) < MAX(4096, sizeof(T)));
+//   return (((UINT_PTR)(void *)p) < max(4096, sizeof(T)));
 //}
 
 
@@ -1994,6 +1994,8 @@ namespace html
 
 #define Application (App(get_context()))
 #define ThisApp (*::application_consumer < application >::get_app())
+#define NamespaceApp(namespace) (*::application_consumer < ::namespace::application >::get_app())
+
 
 #undef Ctx
 #define Ctx(pobject) (*(::get_context(pobject)))

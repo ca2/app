@@ -1820,11 +1820,11 @@ namespace draw2d_xlib
          {
             bMax = 0;
             b =(BYTE)(r1[0]  - r2[0]);
-            bMax = MAX(b, bMax);
+            bMax = max(b, bMax);
             b =(BYTE)(r1[1]  - r2[1]);
-            bMax = MAX(b, bMax);
+            bMax = max(b, bMax);
             b =(BYTE)(r1[2]  - r2[2]);
-            bMax = MAX(b, bMax);
+            bMax = max(b, bMax);
             bMax = 255 - bMax;
          }
          dest[0]  =  bMax;

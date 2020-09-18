@@ -781,7 +781,7 @@ namespace file
 
    index path::find_file_name() const
    {
-      return MAX(0, reverse_find(sep()) + 1);
+      return max(0, reverse_find(sep()) + 1);
    }
 
    string path::ext() const
@@ -797,7 +797,7 @@ namespace file
    path path::relative() const
    {
 
-      return Mid(MAX(0,m_iRelative));
+      return Mid(max(0,m_iRelative));
 
    }
 

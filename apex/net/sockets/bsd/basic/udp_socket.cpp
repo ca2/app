@@ -409,7 +409,7 @@ namespace sockets
          }
 
          memsize n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
-         i32 q = m_retries; // receive MAX 10 at one cycle
+         i32 q = m_retries; // receive max 10 at one cycle
          while (n > 0)
          {
             if (sa_len != sizeof(sa))

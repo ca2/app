@@ -1,6 +1,6 @@
 #include "framework.h"
 #ifdef WINDOWS_DESKTOP
-#include "aura/node/windows/registry.h"
+#include "acme/node/windows/registry.h"
 #endif
 
 #include <sys/stat.h>
@@ -37,7 +37,7 @@ namespace introjection
 
 
    library::library(::layered * pobjectContext):
-      object(pobject),
+      object(pobjectContext),
       m_plibrary(__new(::apex::library()))
    {
 
@@ -118,7 +118,7 @@ namespace introjection
 
             strMessage = "There is a hole here. You should fill it with fullfillment. Missing f**k " + path;
 
-            os_message_box(nullptr, strMessage, strMessage, MB_OK);
+            os_message_box(strMessage, strMessage, MB_OK);
 
          }
 

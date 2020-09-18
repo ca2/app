@@ -545,7 +545,7 @@ namespace userex
    void font_format_tool::set_font_size(double dFontSize)
    {
 
-      dFontSize = MAX(6.0, MIN(1440.0, dFontSize));
+      dFontSize = max(6.0, min(1440.0, dFontSize));
 
       double dRound = dFontSize - (double)(int)dFontSize;
 

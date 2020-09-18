@@ -82,9 +82,9 @@ typedef UINT        MMVERSION;  /* major (high byte), minor (low byte) */
 
 
 /* general constants */
-#define MAXPNAMELEN      32     /* MAX product name length (including nullptr) */
-#define MAXERRORLENGTH   256    /* MAX error text length (including nullptr) */
-#define MAX_JOYSTICKOEMVXDNAME 260 /* MAX oem vxd name length (including nullptr) */
+#define MAXPNAMELEN      32     /* max product name length (including nullptr) */
+#define MAXERRORLENGTH   256    /* max error text length (including nullptr) */
+#define MAX_JOYSTICKOEMVXDNAME 260 /* max oem vxd name length (including nullptr) */
 
 /*
  *  Microsoft Manufacturer and Product ID's (these have been moved to
@@ -298,7 +298,7 @@ typedef struct tagMIXERCONTROLA
    } Bounds;
    union
    {
-      DWORD       cSteps;             /* # of steps between MIN & MAX */
+      DWORD       cSteps;             /* # of steps between min & max */
       DWORD       cbCustomData;       /* size in bytes of custom data */
       DWORD       dwReserved[6];      /* !!! needed? we have cbStruct.... */
    } Metrics;
@@ -328,7 +328,7 @@ typedef struct tagMIXERCONTROLW
    } Bounds;
    union
    {
-      DWORD       cSteps;             /* # of steps between MIN & MAX */
+      DWORD       cSteps;             /* # of steps between min & max */
       DWORD       cbCustomData;       /* size in bytes of custom data */
       DWORD       dwReserved[6];      /* !!! needed? we have cbStruct.... */
    } Metrics;

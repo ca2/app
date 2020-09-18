@@ -245,8 +245,8 @@ BOOL xf_detect_monitors(xfContext* xfc, UINT32* pMaxWidth, UINT32* pMaxHeight)
 
 		settings->MonitorDefArray[nmonitors].x = vscreen->monitors[i].area.left;
 		settings->MonitorDefArray[nmonitors].y = vscreen->monitors[i].area.top;
-		settings->MonitorDefArray[nmonitors].width = MIN(vscreen->monitors[i].area.right - vscreen->monitors[i].area.left + 1, *pMaxWidth);
-		settings->MonitorDefArray[nmonitors].height = MIN(vscreen->monitors[i].area.bottom - vscreen->monitors[i].area.top + 1, *pMaxHeight);
+		settings->MonitorDefArray[nmonitors].width = min(vscreen->monitors[i].area.right - vscreen->monitors[i].area.left + 1, *pMaxWidth);
+		settings->MonitorDefArray[nmonitors].height = min(vscreen->monitors[i].area.bottom - vscreen->monitors[i].area.top + 1, *pMaxHeight);
 		settings->MonitorDefArray[nmonitors].orig_screen = i;
 
 		nmonitors++;
@@ -257,8 +257,8 @@ BOOL xf_detect_monitors(xfContext* xfc, UINT32* pMaxWidth, UINT32* pMaxHeight)
 	{
 		settings->MonitorDefArray[0].x = vscreen->monitors[current_monitor].area.left;
 		settings->MonitorDefArray[0].y = vscreen->monitors[current_monitor].area.top;
-		settings->MonitorDefArray[0].width = MIN(vscreen->monitors[current_monitor].area.right - vscreen->monitors[current_monitor].area.left + 1, *pMaxWidth);
-		settings->MonitorDefArray[0].height = MIN(vscreen->monitors[current_monitor].area.bottom - vscreen->monitors[current_monitor].area.top + 1, *pMaxHeight);
+		settings->MonitorDefArray[0].width = min(vscreen->monitors[current_monitor].area.right - vscreen->monitors[current_monitor].area.left + 1, *pMaxWidth);
+		settings->MonitorDefArray[0].height = min(vscreen->monitors[current_monitor].area.bottom - vscreen->monitors[current_monitor].area.top + 1, *pMaxHeight);
 		settings->MonitorDefArray[0].orig_screen = current_monitor;
 
 		nmonitors = 1;
@@ -283,10 +283,10 @@ BOOL xf_detect_monitors(xfContext* xfc, UINT32* pMaxWidth, UINT32* pMaxHeight)
 		for (i = 1; i < settings->MonitorCount; i++)
 		{
 			/* does the same as gdk_rectangle_union */
-			int destX = MIN(vX, settings->MonitorDefArray[i].x);
-			int destY = MIN(vY, settings->MonitorDefArray[i].y);
-			int destWidth = MAX(vX + vWidth, settings->MonitorDefArray[i].x + settings->MonitorDefArray[i].width) - destX;
-			int destHeight = MAX(vY + vHeight, settings->MonitorDefArray[i].y + settings->MonitorDefArray[i].height) - destY;
+			int destX = min(vX, settings->MonitorDefArray[i].x);
+			int destY = min(vY, settings->MonitorDefArray[i].y);
+			int destWidth = max(vX + vWidth, settings->MonitorDefArray[i].x + settings->MonitorDefArray[i].width) - destX;
+			int destHeight = max(vY + vHeight, settings->MonitorDefArray[i].y + settings->MonitorDefArray[i].height) - destY;
 
 			if (vX != destX)
 				xfc->fullscreenMonitors.left = settings->MonitorDefArray[i].orig_screen;

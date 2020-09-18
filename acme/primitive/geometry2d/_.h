@@ -299,9 +299,9 @@ template < typename RECT_TYPE, typename RECT_TYPE1, typename RECT_TYPE2 >
 bool x_intersect_rect(RECT_TYPE* prect, const RECT_TYPE1 * prect1, const RECT_TYPE2 * prect2)
 {
 
-   auto left   = MAX(prect1->left, prect2->left);
+   auto left   = max(prect1->left, prect2->left);
 
-   auto right  = MIN(prect1->right, prect2->right);
+   auto right  = min(prect1->right, prect2->right);
 
    bool bIntersect = right > left;
 
@@ -330,9 +330,9 @@ template < typename RECT_TYPE, typename RECT_TYPE1, typename RECT_TYPE2 >
 bool y_intersect_rect(RECT_TYPE* prect, const RECT_TYPE1* prect1, const RECT_TYPE2* prect2)
 {
 
-   auto top     = MAX(prect1->top,prect2->top);
+   auto top     = max(prect1->top,prect2->top);
 
-   auto bottom  = MIN(prect1->bottom,prect2->bottom);
+   auto bottom  = min(prect1->bottom,prect2->bottom);
 
    bool bIntersect = bottom > top;
 
@@ -383,9 +383,9 @@ template < typename RECT_TYPE, typename RECT_TYPE1, typename RECT_TYPE2 >
 bool x_null_intersect_rect(RECT_TYPE* prect, const RECT_TYPE1* prect1, const RECT_TYPE2* prect2)
 {
 
-   auto left = MAX(prect1->left, prect2->left);
+   auto left = max(prect1->left, prect2->left);
 
-   auto right = MIN(prect1->right, prect2->right);
+   auto right = min(prect1->right, prect2->right);
 
    bool bIntersect = right >= left;
 
@@ -414,9 +414,9 @@ template < typename RECT_TYPE, typename RECT_TYPE1, typename RECT_TYPE2 >
 bool y_null_intersect_rect(RECT_TYPE* prect, const RECT_TYPE1* prect1, const RECT_TYPE2* prect2)
 {
 
-   auto top = MAX(prect1->top, prect2->top);
+   auto top = max(prect1->top, prect2->top);
 
-   auto bottom = MIN(prect1->bottom, prect2->bottom);
+   auto bottom = min(prect1->bottom, prect2->bottom);
 
    bool bIntersect = bottom >= top;
 
@@ -468,9 +468,9 @@ template < typename RECT_TYPE, typename RECT_TYPE1, typename RECT_TYPE2 >
 bool x_left_null_intersect_rect(RECT_TYPE* prect, const RECT_TYPE1* prect1, const RECT_TYPE2* prect2)
 {
 
-   prect->left    = MAX(prect1->left,prect2->left);
+   prect->left    = max(prect1->left,prect2->left);
 
-   prect->right   = MIN(prect1->right,prect2->right);
+   prect->right   = min(prect1->right,prect2->right);
 
    return prect->right > prect->left || (prect->right == prect->left && prect1->left == prect2->left);
 
@@ -481,9 +481,9 @@ template < typename RECT_TYPE, typename RECT_TYPE1, typename RECT_TYPE2 >
 bool y_top_null_intersect_rect(RECT_TYPE* prect, const RECT_TYPE1* prect1, const RECT_TYPE2* prect2)
 {
 
-   prect->top     = MAX(prect1->top, prect2->top);
+   prect->top     = max(prect1->top, prect2->top);
 
-   prect->bottom  = MIN(prect1->bottom, prect2->bottom);
+   prect->bottom  = min(prect1->bottom, prect2->bottom);
 
    return prect->top < prect->bottom || (prect->top == prect->bottom && prect1->top == prect2->top);
 
@@ -542,10 +542,10 @@ RECT_TYPE * union_rect(RECT_TYPE * prect, const RECT_TYPE1* prect1, const RECT_T
    else
    {
 
-      prect->left = (decltype(RECT_TYPE::left))MIN(prect1->left, prect2->left);
-      prect->top = (decltype(RECT_TYPE::top))MIN(prect1->top, prect2->top);
-      prect->right = (decltype(RECT_TYPE::right))MAX(prect1->right, prect2->right);
-      prect->bottom = (decltype(RECT_TYPE::bottom))MAX(prect1->bottom, prect2->bottom);
+      prect->left = (decltype(RECT_TYPE::left))min(prect1->left, prect2->left);
+      prect->top = (decltype(RECT_TYPE::top))min(prect1->top, prect2->top);
+      prect->right = (decltype(RECT_TYPE::right))max(prect1->right, prect2->right);
+      prect->bottom = (decltype(RECT_TYPE::bottom))max(prect1->bottom, prect2->bottom);
 
    }
 
@@ -558,10 +558,10 @@ RECT_TYPE* subtract_rect(RECT_TYPE* prect, const RECT_TYPE1* prect1, const RECT_
 {
 
 
-   prect->left = (decltype(RECT_TYPE1::left))MIN(prect1->left, prect2->left);
-   prect->top = (decltype(RECT_TYPE1::top))MIN(prect1->top, prect2->top);
-   prect->right = (decltype(RECT_TYPE1::right))MAX(prect1->right, prect2->right);
-   prect->bottom = (decltype(RECT_TYPE1::bottom))MAX(prect1->bottom, prect2->bottom);
+   prect->left = (decltype(RECT_TYPE1::left))min(prect1->left, prect2->left);
+   prect->top = (decltype(RECT_TYPE1::top))min(prect1->top, prect2->top);
+   prect->right = (decltype(RECT_TYPE1::right))max(prect1->right, prect2->right);
+   prect->bottom = (decltype(RECT_TYPE1::bottom))max(prect1->bottom, prect2->bottom);
 
    return prect;
 
@@ -1339,10 +1339,10 @@ inline void expand_rect(RECT1* prect, const RECT2& r)
    else
    {
 
-      prect->left = MIN((decltype(prect->left))prect->left, (decltype(prect->left))r.left);
-      prect->right = MAX((decltype(prect->right))prect->right, (decltype(prect->right))r.right);
-      prect->top = MIN((decltype(prect->top))prect->top, (decltype(prect->top))r.top);
-      prect->bottom = MAX((decltype(prect->bottom))prect->bottom, (decltype(prect->bottom))r.bottom);
+      prect->left = min((decltype(prect->left))prect->left, (decltype(prect->left))r.left);
+      prect->right = max((decltype(prect->right))prect->right, (decltype(prect->right))r.right);
+      prect->top = min((decltype(prect->top))prect->top, (decltype(prect->top))r.top);
+      prect->bottom = max((decltype(prect->bottom))prect->bottom, (decltype(prect->bottom))r.bottom);
 
    }
 
@@ -1362,10 +1362,10 @@ inline void collapse_rect(RECT1 * prect, const RECT2 & r)
    else
    {
 
-      prect->left = MAX((decltype(prect->left))prect->left, (decltype(prect->left))r.left);
-      prect->right = MIN((decltype(prect->right))prect->right, (decltype(prect->right))r.right);
-      prect->top = MAX((decltype(prect->top))prect->top, (decltype(prect->top))r.top);
-      prect->bottom = MIN((decltype(prect->bottom))prect->bottom, (decltype(prect->bottom))r.bottom);
+      prect->left = max((decltype(prect->left))prect->left, (decltype(prect->left))r.left);
+      prect->right = min((decltype(prect->right))prect->right, (decltype(prect->right))r.right);
+      prect->top = max((decltype(prect->top))prect->top, (decltype(prect->top))r.top);
+      prect->bottom = min((decltype(prect->bottom))prect->bottom, (decltype(prect->bottom))r.bottom);
 
       if (::width(prect) == 0 || height(prect) == 0)
       {

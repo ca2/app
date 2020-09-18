@@ -211,9 +211,9 @@ namespace turboc
 
             double ratey = fHeight * 0.84 / size.cy;
 
-            m_font->create_pixel_font(FONT_SANS,MIN(m_cy * ratey,m_cx * size.cy * ratey / size.cx),FW_BOLD);
+            m_font->create_pixel_font(FONT_SANS,min(m_cy * ratey,m_cx * size.cy * ratey / size.cx),FW_BOLD);
 
-            //m_dMinRadius = MAX(1.0,m_font->m_dFontSize / 23.0);
+            //m_dMinRadius = max(1.0,m_font->m_dFontSize / 23.0);
 
             //m_dMaxRadius = m_dMinRadius * 2.3;
 
@@ -343,7 +343,7 @@ namespace turboc
       if(m_tickLastOk.elapsed() < m_tickAnime)
       {
 
-         byte uchAlpha = MAX(0,MIN(255,(m_tickLastOk.elapsed()) * 255 / m_tickAnime));
+         byte uchAlpha = max(0,min(255,(m_tickLastOk.elapsed()) * 255 / m_tickAnime));
 
          ::rect rectClient;
 
@@ -435,9 +435,9 @@ namespace turboc
 
       double ratey = fHeight * 0.84 / size.cy;
 
-      m_font->create_pixel_font(FONT_SANS,MIN(m_cy * ratey,m_cx * size.cy * ratey / size.cx),FW_BOLD);
+      m_font->create_pixel_font(FONT_SANS,min(m_cy * ratey,m_cx * size.cy * ratey / size.cx),FW_BOLD);
 
-      m_dMinRadius = MAX(1.0,m_font->m_dFontSize / 23.0);
+      m_dMinRadius = max(1.0,m_font->m_dFontSize / 23.0);
 
       m_dMaxRadius = m_dMinRadius * 2.3;
 

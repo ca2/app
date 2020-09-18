@@ -108,7 +108,7 @@
 //
 //      }
 //
-//      uiBufMax = MAX(8 * 1024, uiBufMax);
+//      uiBufMax = max(8 * 1024, uiBufMax);
 //      memsize uiBufMin = uiBufMax / 8;
 //      memsize uiBufSize = uiBufMax;
 //      memsize uiBufInc = uiBufSize;
@@ -191,7 +191,7 @@
 //      *processedSize = 0;
 //      while (size != 0)
 //      {
-//         memsize curSize = MIN(size, kBlockSize);
+//         memsize curSize = min(size, kBlockSize);
 //         memsize processedSizeLoc;
 //         HRESULT res = S_OK;
 //         try

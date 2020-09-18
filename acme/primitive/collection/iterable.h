@@ -1433,9 +1433,9 @@ namespace iter
          if (iFindB < 0)
             goto n_only;
 
-         iFind1 = MIN(iFindA, iFindB);
+         iFind1 = min(iFindA, iFindB);
 
-         iFind2 = MAX(iFindA, iFindB);
+         iFind2 = max(iFindA, iFindB);
 
          if (iFind1 > iPos)
          {

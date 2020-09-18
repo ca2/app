@@ -69,7 +69,7 @@
 //         file_read_n_number_dup(hfile1,&ctx,iLen);
 //         while(iLen > 0)
 //         {
-//            if(!ReadFile(hfile1,buf,MIN(iBufSize,iLen),&dwRead,NULL))
+//            if(!ReadFile(hfile1,buf,min(iBufSize,iLen),&dwRead,NULL))
 //               break;
 //            if(dwRead == 0)
 //               break;

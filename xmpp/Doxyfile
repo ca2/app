@@ -1517,8 +1517,8 @@ INCLUDE_FILE_PATTERNS  =
 
 PREDEFINED             = "VA_START(f)=" \
                          "VA_SHIFT(v,t)=" \
-                         "MIN(p,q)=" \
-                         "MAX(p,q)=" \
+                         "min(p,q)=" \
+                         "max(p,q)=" \
                          "char_to_int(p)=" \
                          "GET_32BIT_LSB_FIRST(cp)=" \
                          "PUT_32BIT_LSB_FIRST(cp, value)=" \

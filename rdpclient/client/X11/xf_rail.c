@@ -202,10 +202,10 @@ void xf_rail_invalidate_region(xfContext* xfc, REGION16* invalidRegion)
 
 		if (appWindow)
 		{
-			windowRect.left = MAX(appWindow->x, 0);
-			windowRect.top = MAX(appWindow->y, 0);
-			windowRect.right = MAX(appWindow->x + appWindow->width, 0);
-			windowRect.bottom = MAX(appWindow->y + appWindow->height, 0);
+			windowRect.left = max(appWindow->x, 0);
+			windowRect.top = max(appWindow->y, 0);
+			windowRect.right = max(appWindow->x + appWindow->width, 0);
+			windowRect.bottom = max(appWindow->y + appWindow->height, 0);
 			region16_clear(&windowInvalidRegion);
 			region16_intersect_rect(&windowInvalidRegion, invalidRegion, &windowRect);
 

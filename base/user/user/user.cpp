@@ -1430,7 +1430,7 @@ namespace base
 //
 //   string str = __get_text(psz);
 //
-//   iLen = MIN(iLen, (int)str.get_length());
+//   iLen = min(iLen, (int)str.get_length());
 //
 //   strncpy(pszText, str, iLen);
 //

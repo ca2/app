@@ -184,7 +184,7 @@ class static_application_factory :
 public:
 
 
-   virtual ::aura::application* new_application() override { return new APPLICATION; }
+   virtual ::apex::application* new_application() override { return new APPLICATION; }
 
 
    static_application_factory(const char * pszName = "") :

@@ -17,13 +17,9 @@ generic::~generic()
 
 #endif
 
-   if(::is_set(m_pobjectContext))
-   {
+   ::release(m_pobjectContext);
 
-      ::release(m_pobjectContext);
-
-   }
-
+   ::release(m_pmutex);
 
 }
 
@@ -139,6 +135,29 @@ i64 generic::release(OBJ_REF_DBG_PARAMS_DEF)
    __throw(interface_only_exception());
 
    return nullptr;
+
+}
+
+
+void generic::set_mutex(sync* psync)
+{
+
+   ::release(m_pmutex);
+
+   m_pmutex = psync;
+
+}
+
+
+void generic::defer_create_mutex()
+{
+
+   if (!m_pmutex)
+   {
+
+      m_pmutex = new ::mutex;
+
+   }
 
 }
 

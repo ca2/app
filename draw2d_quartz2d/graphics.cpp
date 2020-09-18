@@ -1642,7 +1642,7 @@ namespace draw2d_quartz2d
 
             }
 
-            pimage1->blend(::point(), m_pimageAlphaBlend, point((int)MAX(0, x - m_pointAlphaBlend.x), (int)MAX(0, y - m_pointAlphaBlend.y)), rectBlt.size());
+            pimage1->blend(::point(), m_pimageAlphaBlend, point((int)max(0, x - m_pointAlphaBlend.x), (int)max(0, y - m_pointAlphaBlend.y)), rectBlt.size());
 
             set_alpha_mode(::draw2d::alpha_mode_blend);
 
@@ -1687,7 +1687,7 @@ namespace draw2d_quartz2d
             pimage1->get_graphics()->set(get_current_brush());
             pimage1->get_graphics()->text_out(0, 0, str);
 
-            pimage1->blend(::point(), m_pimageAlphaBlend, point((int)MAX(0, x - m_pointAlphaBlend.x), (int)MAX(0, y - m_pointAlphaBlend.y)), rectText.size());
+            pimage1->blend(::point(), m_pimageAlphaBlend, point((int)max(0, x - m_pointAlphaBlend.x), (int)max(0, y - m_pointAlphaBlend.y)), rectText.size());
 
             set_alpha_mode(::draw2d::alpha_mode_blend);
 
@@ -1745,8 +1745,8 @@ namespace draw2d_quartz2d
 //               ::image_pointer pimage2;
 //               pimage2 = create_image(rectText.size());
 //               pimage2->Fill(255, 0, 0, 0);
-//               pimage2->from(point((i64) MAX(0, m_pointAlphaBlend.x - x), (i64) MAX(0, m_pointAlphaBlend.y - y)),
-//                          m_pimageAlphaBlend->get_graphics(), point((i64) MAX(0, x - m_pointAlphaBlend.x), (i64) MAX(0, y - m_pointAlphaBlend.y)), rectText.size());
+//               pimage2->from(point((i64) max(0, m_pointAlphaBlend.x - x), (i64) max(0, m_pointAlphaBlend.y - y)),
+//                          m_pimageAlphaBlend->get_graphics(), point((i64) max(0, x - m_pointAlphaBlend.x), (i64) max(0, y - m_pointAlphaBlend.y)), rectText.size());
 //               pimage1->channel_multiply(::color::channel_alpha, pimage2);
 //               /* p::image_pointer pimage3(get_object());
 //                pimage1->mult_alpha(image3);*/
@@ -2791,8 +2791,8 @@ namespace draw2d_quartz2d
 //
 //         imageWork4.Fill(255, 0, 0, 0);
 //
-//         imageWork4.from(point(MAX(0, m_pointAlphaBlend.x - xDst), MAX(0, m_pointAlphaBlend.y - yDst)),
-//                         m_pimageAlphaBlend->get_graphics(), point(MAX(0, xDst - m_pointAlphaBlend.x), MAX(0, yDst - m_pointAlphaBlend.y)), size);
+//         imageWork4.from(point(max(0, m_pointAlphaBlend.x - xDst), max(0, m_pointAlphaBlend.y - yDst)),
+//                         m_pimageAlphaBlend->get_graphics(), point(max(0, xDst - m_pointAlphaBlend.x), max(0, yDst - m_pointAlphaBlend.y)), size);
 //
 //         imageWork.channel_multiply(::color::channel_alpha, imageWork4);
 //
@@ -3355,7 +3355,7 @@ namespace draw2d_quartz2d
 
       bool bRestored = false;
 
-      while(m_iSaveDC >= MAX(1, nSavedDC))
+      while(m_iSaveDC >= max(1, nSavedDC))
       {
 
          CGContextRestoreGState(m_pdc);
@@ -4395,7 +4395,7 @@ namespace draw2d_quartz2d
 
       string_array stra;
 
-      stra.add_lines(string(lpszString, MIN(iIndex, nCount), 0));
+      stra.add_lines(string(lpszString, min(iIndex, nCount), 0));
 
       size.cy = 0;
 
@@ -4415,7 +4415,7 @@ namespace draw2d_quartz2d
 //
 //         }
 
-         size.cx = MAX(size.cx, width);
+         size.cx = max(size.cx, width);
 
       }
 

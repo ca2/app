@@ -1343,9 +1343,9 @@ namespace user
 
       //   prect->top = m_pointTrack.y;
 
-      //   prect->right = prect->left + MAX(::user::interaction::get_window_minimum_size().cx, m_size.cx);
+      //   prect->right = prect->left + max(::user::interaction::get_window_minimum_size().cx, m_size.cx);
 
-      //   prect->bottom = prect->left + MAX(::user::interaction::get_window_minimum_size().cy, m_size.cy);
+      //   prect->bottom = prect->left + max(::user::interaction::get_window_minimum_size().cy, m_size.cy);
 
       //   pbase->m_bRet = true;
       //   pbase->set_lresult(0);

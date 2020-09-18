@@ -37,8 +37,8 @@ namespace hi5
    {
 
       string escaped;
-      ::count MAX = ca.get_length();
-      for(i32 i=0; i<MAX; i++)
+      ::count max = ca.get_length();
+      for(i32 i=0; i<max; i++)
       {
          if ( (48 <= ca[i] && ca[i] <= 57) ||//0-9
                (65 <= ca[i] && ca[i] <= 90) ||//ABC...XYZ

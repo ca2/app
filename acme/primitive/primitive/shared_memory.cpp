@@ -252,7 +252,7 @@
 
    /*void shared_memory::To(string & str, memsize iStart, memsize iEnd)
    {
-      iStart = MAX(iStart, 0);
+      iStart = max(iStart, 0);
       if(iEnd == -1)
          iEnd = this->get_size() - 1;
       char * pch = (char *) get_data();

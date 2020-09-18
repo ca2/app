@@ -308,8 +308,8 @@ CLASS_DECL_AURA void aura_ref();
 //
 //
 //
-//#undef MIN
-//#undef MAX
+//#undef min
+//#undef max
 //
 //
 //#define INTABS(i) (((i) >= 0) ? (i) : (-i))
@@ -318,16 +318,16 @@ CLASS_DECL_AURA void aura_ref();
 //
 //
 ////#ifdef __cplusplus
-////#define MAX(a, b) (((b) < (a)) ? (a) : (b))
-////#define MIN(a, b) (((a) < (b)) ? (a) : (b))
+////#define max(a, b) (((b) < (a)) ? (a) : (b))
+////#define min(a, b) (((a) < (b)) ? (a) : (b))
 ////#include "aura/primitive/comparison/_c.h"
 ////#else
-////#define MAX(a, b) (((a) > (b)) ? (a) : (b))
-////#define MIN(a, b) (((a) < (b)) ? (a) : (b))
+////#define max(a, b) (((a) > (b)) ? (a) : (b))
+////#define min(a, b) (((a) < (b)) ? (a) : (b))
 ////#endif
 //
 //
-//#define LIM(a, min, max) MIN(max, MAX(min, a))
+//#define LIM(a, min, max) min(max, max(min, a))
 //#define SORT_LIM(x,minmax,maxmin) ((minmax) < (maxmin) ? LIM(x,minmax,maxmin) : LIM(x,maxmin,minmax))
 //#define CLIP_USHRT(x) LIM(x,0,USHRT_MAX)
 //
@@ -1708,7 +1708,7 @@ namespace audio
 //template < typename T >
 //inline int type_is_null(const T * p)
 //{
-//   return (((UINT_PTR)(void *)p) < MAX(4096, sizeof(T)));
+//   return (((UINT_PTR)(void *)p) < max(4096, sizeof(T)));
 //}
 //
 //

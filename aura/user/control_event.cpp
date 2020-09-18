@@ -11,6 +11,8 @@ namespace user
    control_event::control_event()
    {
 
+      set_layer(LAYERED_USER_CONTROL_EVENT, this);
+
       m_bOk          = true;
 
       m_bRet         = false;

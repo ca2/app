@@ -396,9 +396,9 @@ namespace draw2d_direct2d
    //   int l = max(cx, cy);
 
 
-   //   int jmax = MIN(l, cy / 2);
+   //   int jmax = min(l, cy / 2);
    //   int jmin = - jmax;
-   //   int imax = MIN(l, cx / 2);
+   //   int imax = min(l, cx / 2);
    //   int imin = - imax;
 
 
@@ -481,9 +481,9 @@ namespace draw2d_direct2d
    //   int l = max(cx, cy);
 
 
-   //   int jmax = MIN(l, cy / 2);
+   //   int jmax = min(l, cy / 2);
    //   int jmin = - jmax;
-   //   int imax = MIN(l, cx / 2);
+   //   int imax = min(l, cx / 2);
    //   int imin = - imax;
 
 
@@ -556,9 +556,9 @@ namespace draw2d_direct2d
 
    //   int l = max(cx, cy);
 
-   //   int jmax = MIN(l, cy / 2);
+   //   int jmax = min(l, cy / 2);
    //   int jmin = - jmax;
-   //   int imax = MIN(l, cx / 2);
+   //   int imax = min(l, cx / 2);
    //   int imin = - imax;
 
 

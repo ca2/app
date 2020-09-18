@@ -130,14 +130,14 @@ extern "C" long ZCALLBACK fseek_file_func (voidpf opaque, voidpf stream, uptr of
    default: return -1;
    }
    ret = 0;
-   i32 iSeek = (i32) MIN(INT_MAX, offset);
+   i32 iSeek = (i32) min(INT_MAX, offset);
    fseek((FILE *)stream, iSeek, fseek_origin);
    while(true)
    {
       offset -= iSeek;
       if(offset <= 0)
          break;
-      iSeek = (i32) MIN(INT_MAX, offset);
+      iSeek = (i32) min(INT_MAX, offset);
       fseek((FILE *)stream, fseek_origin == ZLIB_FILEFUNC_SEEK_END ? -iSeek : iSeek, SEEK_CUR);
    }
    return ret;

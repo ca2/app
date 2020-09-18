@@ -3175,6 +3175,9 @@
     <ClCompile Include="xml\xmlite.cpp">
       <Filter>Source Files\xml</Filter>
     </ClCompile>
+    <ClCompile Include="os\windows\multimedia.cpp">
+      <Filter>Source Files\os\windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\primitive\papaya.inl">

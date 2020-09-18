@@ -132,7 +132,7 @@ extern "C"
 ::apex::library * app_helloaxis_get_new_library(::layered * pobjectContext)
 {
 
-   return new ::aura::single_application_library < ::helloaxis::application > (pobject, "app/helloaxis");
+   return new ::apex::single_application_library < ::helloaxis::application > (pobject, "app/helloaxis");
 
 }
 

@@ -281,8 +281,8 @@ namespace plugin
          //   sync_lock sl(m_pmutexBitmap);
 
          //   copy_colorref(
-         //      MIN(pimage->width(),m_sizeBitmap.cx),
-         //      MIN(pimage->height(),m_sizeBitmap.cy),
+         //      min(pimage->width(),m_sizeBitmap.cx),
+         //      min(pimage->height(),m_sizeBitmap.cy),
          //      (COLORREF *) m_memBitmap.get_data(),
          //      pimage->m_pcolorref,
          //      abs_dup(m_sizeBitmap.cx) * sizeof(COLORREF),

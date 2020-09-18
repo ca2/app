@@ -465,13 +465,13 @@ namespace user
 
                }
 
-               m_splitbara[i]->m_dwPosition = MIN(m_splitbara[i]->m_dwMaxPosition, (u32)(m_splitbara[i]->m_dRate * iDimension));
+               m_splitbara[i]->m_dwPosition = min(m_splitbara[i]->m_dwMaxPosition, (u32)(m_splitbara[i]->m_dRate * iDimension));
 
             }
             else
             {
 
-               m_splitbara[i]->m_dwPosition = MIN(m_splitbara[i]->m_dwMaxPosition, (u32)(m_splitbara[i]->m_dwPosition));
+               m_splitbara[i]->m_dwPosition = min(m_splitbara[i]->m_dwMaxPosition, (u32)(m_splitbara[i]->m_dwPosition));
 
             }
 
@@ -854,10 +854,10 @@ namespace user
       if(m_eorientationSplit == orientation_horizontal)
       {
 
-         nPos = MAX(nPos, prect->top + m_iMarging / 2);
+         nPos = max(nPos, prect->top + m_iMarging / 2);
 
 
-         nPos = MIN(nPos, prect->bottom - m_iMarging / 2);
+         nPos = min(nPos, prect->bottom - m_iMarging / 2);
 
 
          prect->top      = nPos - m_iMarging / 2;
@@ -870,10 +870,10 @@ namespace user
       else
       {
 
-         nPos = MAX(nPos, prect->left + m_iMarging / 2);
+         nPos = max(nPos, prect->left + m_iMarging / 2);
 
 
-         nPos = MIN(nPos, prect->right - m_iMarging / 2);
+         nPos = min(nPos, prect->right - m_iMarging / 2);
 
 
          prect->left   = nPos - m_iMarging / 2;

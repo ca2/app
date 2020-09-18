@@ -177,7 +177,7 @@ namespace aura
          COPYDATASTRUCT cds;
 
          cds.dwData = (unsigned int)message;
-         cds.cbData = (unsigned int)MAX(0,len);
+         cds.cbData = (unsigned int)max(0,len);
          cds.lpData = (void *)pdata;
 
 

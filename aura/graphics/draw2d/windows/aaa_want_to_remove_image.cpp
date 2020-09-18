@@ -219,7 +219,7 @@ bool node_save_image(comptr < IStream > pstream, const ::image * pimage, ::save_
          VARIANT varValue;
          VariantInit(&varValue);
          varValue.vt = VT_R4;
-         varValue.fltVal = MAX(0.f, MIN(1.f, psaveimage->m_iQuality / 100.0f));
+         varValue.fltVal = max(0.f, min(1.f, psaveimage->m_iQuality / 100.0f));
          if (SUCCEEDED(hr))
          {
             hr = ppropertybag->Write(1, &option, &varValue);

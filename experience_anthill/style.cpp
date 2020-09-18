@@ -607,6 +607,8 @@ namespace experience
    void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics, const ::rect & rect, ::draw2d::brush_pointer & brushText)
    {
 
+      auto pstyle = ptab->get_style(pgraphics);
+
       string_array & straTitle = pane.m_straTitle;
 
       pgraphics->set(brushText);
@@ -666,6 +668,8 @@ namespace experience
    bool style::_001OnTabLayout(::draw2d::graphics_pointer & pgraphics, ::user::tab * ptab)
    {
 
+
+      auto pstyle = ptab->get_style(pgraphics);
 
       {
 
@@ -744,7 +748,7 @@ namespace experience
             if(tab_pane.m_pimage->is_set())
             {
                size.cx += tab_pane.m_pimage->width() + 2;
-               size.cy = MAX(size.cy,tab_pane.m_pimage->height());
+               size.cy = max(size.cy,tab_pane.m_pimage->height());
             }
             cx = size.cx + 2;
 
@@ -839,7 +843,7 @@ namespace experience
             if(tab_pane.m_pimage)
             {
 
-               size.cy = MAX(size.cy,tab_pane.m_pimage->height());
+               size.cy = max(size.cy,tab_pane.m_pimage->height());
 
             }
 
@@ -1283,6 +1287,8 @@ namespace experience
 
    void style::_001DrawAnthillToolbarItem(::draw2d::graphics_pointer & pgraphics, ::index iItem, ::user::toolbar * ptoolbar)
    {
+
+      auto pstyle = ptoolbar->get_style(pgraphics);
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 

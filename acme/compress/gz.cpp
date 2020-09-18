@@ -52,7 +52,7 @@ bool compress_gz::transfer(::file::file* pfileOut, ::file::file* pfileIn)
    i32 status;
 
    class memory memIn;
-   memIn.set_size((memsize)MAX(1024, MIN(pfileIn->get_left(), 1024 * 64)));
+   memIn.set_size((memsize)max(1024, min(pfileIn->get_left(), 1024 * 64)));
 
    i64 uiRead = pfileIn->read(memIn.get_data(), memIn.get_size());
 
@@ -164,7 +164,7 @@ bool uncompress_gz::transfer(::file::file * pfileUncompressed, ::file::file * pf
 
    class memory memIn;
 
-   memIn.set_size((memsize) MIN(1024 * 4, pfileGzFileCompressed->get_left()));
+   memIn.set_size((memsize) min(1024 * 4, pfileGzFileCompressed->get_left()));
 
    u32 uiRead;
 

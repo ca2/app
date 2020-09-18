@@ -5711,6 +5711,8 @@ namespace user
       if (item.m_bOk)
       {
 
+         pgraphics->set_font(this);
+
          m_dcextension.GetTextExtent(pgraphics, item.m_strText, size);
 
          cx += size.cx;

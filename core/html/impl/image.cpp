@@ -77,7 +77,7 @@ namespace html
          if (m_pelemental->m_pbase->get_type() == ::html::base::type_tag)
          {
 
-            single_lock lockImage(get_mutex());
+            single_lock lockImage(mutex());
 
             if (lockImage.lock(0))
             {
@@ -125,7 +125,7 @@ namespace html
          if (m_pelemental->m_pbase->get_type() == ::html::base::type_tag)
          {
             
-            single_lock lockImage(get_mutex());
+            single_lock lockImage(mutex());
 
             if (lockImage.lock(duration::zero()))
             {

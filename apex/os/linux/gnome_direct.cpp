@@ -585,7 +585,13 @@ namespace user
 
       }
 
-      if(is_dir("/etc/xdg/lubuntu"))
+      if(strcasecmp(pszDesktop, "ubuntu:gnome") == 0)
+      {
+
+         return desktop_ubuntu_gnome;
+
+      }
+      else if(is_dir("/etc/xdg/lubuntu"))
       {
 
          return desktop_lxde;
@@ -607,12 +613,6 @@ namespace user
       {
 
          return desktop_unity_gnome;
-
-      }
-      else if(strcasecmp(pszDesktop, "ubuntu:gnome") == 0)
-      {
-
-         return desktop_ubuntu_gnome;
 
       }
 

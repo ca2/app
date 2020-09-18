@@ -387,14 +387,14 @@ inline bool myspace(char ch)
 ::file::listing & dir_context::ls(::file::listing & l)
 {
 
-   ::file::path path = Context.defer_process_path(l.m_pathUser);
+   l.m_pathFinal = Context.defer_process_path(l.m_pathUser);
 
-   if (path.begins_ci("matter://"))
+   if (l.m_pathFinal.begins_ci("matter://"))
    {
 
-      ::str::begins_eat_ci(path, "matter://");
+      ::str::begins_eat_ci(l.m_pathFinal, "matter://");
 
-      matter_ls(path, l);
+      matter_ls(l.m_pathFinal, l);
 
       return l;
 
@@ -403,7 +403,7 @@ inline bool myspace(char ch)
    if (l.m_bRecursive)
    {
 
-      if (l.m_eextract != extract_none && thread_is_set(id_thread_zip_is_dir) && (icmp(path.ext(), ".zip") == 0 || path.find_ci("zip:") >= 0))
+      if (l.m_eextract != extract_none && thread_is_set(id_thread_zip_is_dir) && (icmp(l.m_pathFinal.ext(), ".zip") == 0 || l.m_pathFinal.find_ci("zip:") >= 0))
       {
 
          //__throw(::exception::exception("should implement recursive zip"));
@@ -426,17 +426,17 @@ inline bool myspace(char ch)
    else
    {
 
-      if (::str::begins_ci(path, "http://") || ::str::begins_ci(path, "https://"))
+      if (::str::begins_ci(l.m_pathFinal, "http://") || ::str::begins_ci(l.m_pathFinal, "https://"))
       {
 
          property_set set;
 
-         string str =Context.http().get(path, set);
+         string str =Context.http().get(l.m_pathFinal, set);
 
          l.add_tokens(str, "\n", false);
 
       }
-      else if (thread_is_set(id_thread_zip_is_dir) && (::str::ends_ci(path, ".zip") || ::str::find_file_extension("zip:", path) >= 0))
+      else if (thread_is_set(id_thread_zip_is_dir) && (::str::ends_ci(l.m_pathFinal, ".zip") || ::str::find_file_extension("zip:", l.m_pathFinal) >= 0))
       {
 
          zip_context zip(get_context_object());
@@ -1881,7 +1881,7 @@ ret:
       ::str::begins_eat_ci(strMatter, "appmatter://");
 
       ::file::path pathCache = System.m_pdirsystem->m_pathLocalAppMatterFolder / strMatter;
-      
+
       ::file::path pathMeta = pathCache + ".meta_information";
 
       System.file().del(pathMeta);

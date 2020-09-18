@@ -102,6 +102,8 @@
 			<Add option="-lGLEW" />
 			<Add option="-lEGL" />
 			<Add option="-lGLU" />
+			<Add option="-lacme" />
+			<Add option="-lapex" />
 			<Add option="-laura" />
 			<Add option="-lfreeimage" />
 			<Add option="-Wl,-z,defs" />

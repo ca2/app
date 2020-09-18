@@ -1359,6 +1359,12 @@ namespace linux
          TRACE("WM_LBUTTONDOWN (0)");
 
       }
+      else if(pbase->m_id == WM_LBUTTONUP)
+      {
+
+         TRACE("WM_LBUTTONUP (0)");
+
+      }
       else if(pbase->m_id == WM_MOUSEMOVE)
       {
 
@@ -1370,12 +1376,6 @@ namespace linux
       }
       else if(pbase->m_id == WM_PAINT)
       {
-
-      }
-      else if(pbase->m_id == WM_LBUTTONUP)
-      {
-
-         TRACE("WM_LBUTTONUP (0)");
 
       }
 
@@ -1508,13 +1508,6 @@ namespace linux
 
          }
 
-         if(pbase->m_id == WM_LBUTTONDOWN)
-         {
-
-            TRACE("WM_LBUTTONDOWN");
-
-         }
-
          ::message::mouse * pmouse = (::message::mouse *) pbase;
 
          if(get_context_session() != nullptr)
@@ -1575,17 +1568,6 @@ namespace linux
             // what forces, at the end of message processing, setting the bergedge cursor to the default cursor, if no other
             // handler has set it to another one.
             pmouse->m_ecursor = cursor_default;
-         }
-
-         if(pbase->m_id == WM_LBUTTONDOWN)
-         {
-
-
-            //message_box(NULL, "WM_LBUTTONDOWN", MB_OK);
-
-
-            TRACE("WM_LBUTTONDOWN");
-
          }
 
          _008OnMouse(pmouse);

@@ -1191,12 +1191,6 @@ namespace ios
             pbase->m_id == WM_MOUSEMOVE)
          //         pbase->m_id == WM_MOUSEWHEEL)
       {
-         if(pbase->m_id == WM_LBUTTONDOWN)
-         {
-
-            //            TRACE("WM_LBUTTONDOWN");
-
-         }
 
          ::message::mouse * pmouse = (::message::mouse *) pbase;
 

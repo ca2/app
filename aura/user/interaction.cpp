@@ -2176,7 +2176,7 @@ namespace user
 
          pgraphics->GetClipBox(rectClipbox3);
 
-         output_debug_string("trace");
+         //output_debug_string("trace");
 
       }
       catch (...)

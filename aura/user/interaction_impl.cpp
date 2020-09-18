@@ -3456,7 +3456,7 @@ namespace user
 
             m_rectUpdateBuffer = r;
 
-            TRACE("PrintBuffer (%d, %d)",  r.right, r.bottom);
+            //TRACE("PrintBuffer (%d, %d)",  r.right, r.bottom);
 
             m_pgraphics->m_bNewBuffer = true;
 

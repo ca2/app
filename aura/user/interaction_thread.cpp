@@ -296,6 +296,19 @@ namespace user
 
          }
 
+         if(m_message.message == WM_LBUTTONDOWN)
+         {
+
+            ::output_debug_string("::user::thread::LBUTTONDOWN\n");
+
+         }
+         else if(m_message.message == WM_LBUTTONUP)
+         {
+
+            ::output_debug_string("::user::thread::LBUTTONUP\n");
+
+         }
+
          if (m_message.message != WM_KICKIDLE
             && m_message.message != WM_QUIT)
          {

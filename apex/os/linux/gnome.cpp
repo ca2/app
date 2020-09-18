@@ -86,6 +86,8 @@ namespace os
 
          bOk = ::user::gsettings_get(strTheme, "org.gnome.desktop.interface", "gtk-theme");
 
+         break;
+
       case ::user::desktop_mate:
 
          bOk = ::user::gsettings_get(strTheme, "org.mate.background", "picture-filename");

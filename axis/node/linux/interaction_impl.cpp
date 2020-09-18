@@ -1581,17 +1581,6 @@ namespace linux
             pmouse->m_ecursor = cursor_default;
          }
 
-         if(pbase->m_id == WM_LBUTTONDOWN)
-         {
-
-
-            //message_box(NULL, "WM_LBUTTONDOWN", MB_OK);
-
-
-            TRACE("WM_LBUTTONDOWN");
-
-         }
-
          _008OnMouse(pmouse);
 
          return;

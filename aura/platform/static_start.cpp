@@ -599,11 +599,11 @@ namespace aura
 
       __construct_new(::channel::s_pmutexChannel);
 
-#ifdef LINUX
-
-      ::user::initialize_edesktop();
-
-#endif
+//#ifdef LINUX
+//
+//      ::user::initialize_edesktop();
+//
+//#endif
 
       g_paurastrpool = new aura_str_pool();
 

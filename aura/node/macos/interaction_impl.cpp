@@ -1206,7 +1206,7 @@ namespace macos
          if (pbase->m_id == WM_LBUTTONDOWN)
          {
 
-            output_debug_string("\nWM_LBUTTONDOWN");
+            //output_debug_string("\nWM_LBUTTONDOWN");
 
          }
          else if(pbase->m_id == WM_MOUSEMOVE)

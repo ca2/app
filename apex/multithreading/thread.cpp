@@ -2227,9 +2227,13 @@ bool thread::begin_thread(bool bSynchInitialization, ::e_priority epriority, UIN
 
    }
 
-   auto estatus = os_fork(epriority, nStackSize, uiCreateFlags, &m_ithread1, &m_hthread1);
+   ITHREAD ithread = 0;
 
-   if(m_hthread1 == 0)
+   HTHREAD hthread = 0;
+
+   auto estatus = os_fork(epriority, nStackSize, uiCreateFlags, &ithread, &hthread);
+
+   if(hthread == 0)
    {
 
       if (::is_set(get_context_object()))
@@ -2247,7 +2251,7 @@ bool thread::begin_thread(bool bSynchInitialization, ::e_priority epriority, UIN
 
 #ifndef WINDOWS
 
-   if(m_hthread1 == m_ithread1)
+   if(hthread == ithread)
    {
 
       INFO("create_thread success");
@@ -2524,6 +2528,8 @@ void thread::__os_finalize()
 
 ::estatus thread::osthread_init()
 {
+
+   set_current_handles();
 
    m_bDedicated = true;
 

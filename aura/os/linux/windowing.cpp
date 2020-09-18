@@ -3717,6 +3717,8 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
          if(e.xbutton.button == Button1)
          {
 
+            ::output_debug_string("ButtonPress::Button1\n");
+
             msg.message = WM_LBUTTONDOWN;
 
          }
@@ -3745,6 +3747,8 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
          if(e.xbutton.button == Button1)
          {
+
+            ::output_debug_string("ButtonRelease::Button1\n");
 
             msg.message = WM_LBUTTONUP;
 
@@ -4075,6 +4079,8 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
    case FocusIn:
    {
 
+      ::output_debug_string("FocusIn\n");
+
       msg.message       = WM_SETFOCUS;
 
       if(msg.hwnd->m_pimpl != nullptr && msg.hwnd->m_pimpl->m_puserinteraction != nullptr)
@@ -4149,6 +4155,8 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
    break;
    case FocusOut:
    {
+
+      ::output_debug_string("FocusOut\n");
 
       auto oswindow = msg.hwnd;
 
@@ -5467,6 +5475,19 @@ bool post_ui_message(const MESSAGE & message)
    {
 
       output_debug_string("WM_QUIT thread");
+
+   }
+
+   if(message.message == WM_LBUTTONDOWN)
+   {
+
+      output_debug_string("post_ui_message::WM_LBUTTONDOWN\n");
+
+   }
+   else if(message.message == WM_LBUTTONUP)
+   {
+
+      output_debug_string("post_ui_message::WM_LBUTTONUP\n");
 
    }
 

@@ -511,12 +511,6 @@ template < typename RECEIVER, typename MESSAGE >
 //}
 //
 //
-inline class ::sync * object::get_mutex() const
-{
-
-   return ::is_null(this) ? nullptr : mutex();
-
-}
 //
 //
 //template < typename TDST, typename TSRC >

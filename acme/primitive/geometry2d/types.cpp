@@ -25,9 +25,9 @@
 //bool x_intersect_rect(RECT * prect, const rect & prect1, const rect & prect2)
 //{
 //
-//   prect->left   = MAX(prect1->left, prect2->left);
+//   prect->left   = max(prect1->left, prect2->left);
 //
-//   prect->right  = MIN(prect1->right, prect2->right);
+//   prect->right  = min(prect1->right, prect2->right);
 //
 //   if(prect->right > prect->left)
 //   {
@@ -48,9 +48,9 @@
 //bool y_intersect_rect(RECT * prect,const rect & prect1,const rect & prect2)
 //{
 //
-//   prect->top     = MAX(prect1->top,prect2->top);
+//   prect->top     = max(prect1->top,prect2->top);
 //
-//   prect->bottom  = MIN(prect1->bottom,prect2->bottom);
+//   prect->bottom  = min(prect1->bottom,prect2->bottom);
 //
 //   if(prect->top < prect->bottom)
 //   {
@@ -73,9 +73,9 @@
 //bool x_null_intersect_rect(RECT * prect,const rect & rect1,const rect & rect2)
 //{
 //
-//   prect->left    = MAX(rect1.left,rect2.left);
+//   prect->left    = max(rect1.left,rect2.left);
 //
-//   prect->right   = MIN(rect1.right,rect2.right);
+//   prect->right   = min(rect1.right,rect2.right);
 //
 //   if(prect->right >= prect->left)
 //   {
@@ -100,9 +100,9 @@
 //bool y_null_intersect_rect(RECT * prect,const rect & rect1,const rect & rect2)
 //{
 //
-//   prect->top     = MAX(rect1.top,rect2.top);
+//   prect->top     = max(rect1.top,rect2.top);
 //
-//   prect->bottom  = MIN(rect1.bottom,rect2.bottom);
+//   prect->bottom  = min(rect1.bottom,rect2.bottom);
 //
 //   if(prect->top <= prect->bottom)
 //   {
@@ -148,9 +148,9 @@
 //bool x_left_null_intersect_rect(RECT * prect,const rect & rect1,const rect & rect2)
 //{
 //
-//   prect->left    = MAX(rect1.left,rect2.left);
+//   prect->left    = max(rect1.left,rect2.left);
 //
-//   prect->right   = MIN(rect1.right,rect2.right);
+//   prect->right   = min(rect1.right,rect2.right);
 //
 //   if(prect->right > prect->left || (prect->right == prect->left && rect1.left == rect2.left))
 //   {
@@ -175,9 +175,9 @@
 //bool y_top_null_intersect_rect(RECT * prect,const rect & rect1, const rect & rect2)
 //{
 //
-//   prect->top     = MAX(rect1.top, rect2.top);
+//   prect->top     = max(rect1.top, rect2.top);
 //
-//   prect->bottom  = MIN(rect1.bottom, rect2.bottom);
+//   prect->bottom  = min(rect1.bottom, rect2.bottom);
 //
 //   if(prect->top < prect->bottom || (prect->top == prect->bottom && rect1.top == rect2.top))
 //   {
@@ -339,8 +339,8 @@
 //
 //bool x_intersect_rect(RECTD * prect, const RECTD * prect1, const RECTD * prect2)
 //{
-//   prect->left    = MAX(prect1->left, prect2->left);
-//   prect->right   = MIN(prect1->right, prect2->right);
+//   prect->left    = max(prect1->left, prect2->left);
+//   prect->right   = min(prect1->right, prect2->right);
 //   if(prect->right > prect->left)
 //   {
 //      return true;
@@ -354,8 +354,8 @@
 //
 //bool y_intersect_rect(RECTD * prect, const RECTD * prect1, const RECTD * prect2)
 //{
-//   prect->top     = MAX(prect1->top, prect2->top);
-//   prect->bottom  = MIN(prect1->bottom, prect2->bottom);
+//   prect->top     = max(prect1->top, prect2->top);
+//   prect->bottom  = min(prect1->bottom, prect2->bottom);
 //   if(prect->top < prect->bottom)
 //   {
 //      return true;
@@ -372,8 +372,8 @@
 //
 //bool x_null_intersect_rect(RECTD * prect,const RECTD * prect1,const RECTD * prect2)
 //{
-//   prect->left    = MAX(prect1->left,prect2->left);
-//   prect->right   = MIN(prect1->right,prect2->right);
+//   prect->left    = max(prect1->left,prect2->left);
+//   prect->right   = min(prect1->right,prect2->right);
 //   if(prect->right >= prect->left)
 //   {
 //      return true;
@@ -387,8 +387,8 @@
 //
 //bool y_null_intersect_rect(RECTD * prect,const RECTD * prect1,const RECTD * prect2)
 //{
-//   prect->top     = MAX(prect1->top,prect2->top);
-//   prect->bottom  = MIN(prect1->bottom,prect2->bottom);
+//   prect->top     = max(prect1->top,prect2->top);
+//   prect->bottom  = min(prect1->bottom,prect2->bottom);
 //   if(prect->top <= prect->bottom)
 //   {
 //      return true;
@@ -436,10 +436,10 @@
 //      *prect = *prect1;
 //      return true;
 //   }
-//   prect->left    = MIN(prect1->left, prect2->left);
-//   prect->right   = MAX(prect1->right, prect2->right);
-//   prect->top     = MIN(prect1->top, prect2->top);
-//   prect->bottom  = MAX(prect1->bottom, prect2->bottom);
+//   prect->left    = min(prect1->left, prect2->left);
+//   prect->right   = max(prect1->right, prect2->right);
+//   prect->top     = min(prect1->top, prect2->top);
+//   prect->bottom  = max(prect1->bottom, prect2->bottom);
 //   if(prect->right > prect->left &&
 //         prect->bottom > prect->top)
 //   {
@@ -621,8 +621,8 @@
 //bool x_intersect_rect(RECT64 * prect, const RECT64 * prect1, const RECT64 * prect2)
 //{
 //
-//   prect->left    = MAX(prect1->left, prect2->left);
-//   prect->right   = MIN(prect1->right, prect2->right);
+//   prect->left    = max(prect1->left, prect2->left);
+//   prect->right   = min(prect1->right, prect2->right);
 //
 //   if(prect->right > prect->left)
 //   {
@@ -638,8 +638,8 @@
 //
 //bool y_intersect_rect(RECT64 * prect, const RECT64 * prect1, const RECT64 * prect2)
 //{
-//   prect->top     = MAX(prect1->top, prect2->top);
-//   prect->bottom  = MIN(prect1->bottom, prect2->bottom);
+//   prect->top     = max(prect1->top, prect2->top);
+//   prect->bottom  = min(prect1->bottom, prect2->bottom);
 //   if(prect->top < prect->bottom)
 //   {
 //      return true;
@@ -689,10 +689,10 @@
 //      *prect = *prect1;
 //      return true;
 //   }
-//   prect->left    = MIN(prect1->left, prect2->left);
-//   prect->right   = MAX(prect1->right, prect2->right);
-//   prect->top     = MIN(prect1->top, prect2->top);
-//   prect->bottom  = MAX(prect1->bottom, prect2->bottom);
+//   prect->left    = min(prect1->left, prect2->left);
+//   prect->right   = max(prect1->right, prect2->right);
+//   prect->top     = min(prect1->top, prect2->top);
+//   prect->bottom  = max(prect1->bottom, prect2->bottom);
 //   if(prect->right > prect->left &&
 //         prect->bottom > prect->top)
 //   {

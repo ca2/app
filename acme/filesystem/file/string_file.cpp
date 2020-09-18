@@ -48,7 +48,7 @@ memsize string_file::read(void *pdata, memsize nCount)
    if (m_iPos >= m_str.get_length())
             
       return 0;
-   memsize uiRead = MIN(nCount, (memsize) (m_str.get_length() - m_iPos));
+   memsize uiRead = min(nCount, (memsize) (m_str.get_length() - m_iPos));
    ::memcpy_dup(pdata, &(m_str)[m_iPos], uiRead);
 
    m_iPos += uiRead;

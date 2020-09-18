@@ -215,7 +215,7 @@ namespace netserver
    //         }
    //      }
 
-   //      double dRate = MIN(dRateW, dRateH);
+   //      double dRate = min(dRateW, dRateH);
 
    //      ::image_pointer pimage;
 

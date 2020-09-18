@@ -19,6 +19,12 @@ inline ::object* __object(::layered* playered);
 
 class CLASS_DECL_ACME generic
 {
+private:
+
+
+   mutable sync * m_pmutex;
+
+
 public:
 
 
@@ -28,11 +34,11 @@ public:
 
 
 #if OBJ_REF_DBG
-   inline generic() : m_pobjectContext(nullptr), m_pobjrefdbg(nullptr), m_countReference(0) { add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_ADD_NOTE("Initial Reference")); }
-   inline generic(const eobject& eobject) : m_pobjectContext(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(eobject) { add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_ADD_NOTE("Initial Reference (2)")); }
+   inline generic() : m_pmutex(nullptr), m_pobjectContext(nullptr), m_pobjrefdbg(nullptr), m_countReference(0) { add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_ADD_NOTE("Initial Reference")); }
+   inline generic(const eobject& eobject) : m_pmutex(nullptr), m_pobjectContext(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(eobject) { add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_ADD_NOTE("Initial Reference (2)")); }
 #else
-   inline generic() : m_pobjectContext(nullptr), m_countReference(1) { }
-   inline generic(const eobject & eobject) : m_pobjectContext(nullptr),m_countReference(1), m_eobject(eobject) { }
+   inline generic() : m_pmutex(nullptr), m_pobjectContext(nullptr), m_countReference(1) { }
+   inline generic(const eobject & eobject) : m_pmutex(nullptr), m_pobjectContext(nullptr),m_countReference(1), m_eobject(eobject) { }
 #endif
 
    virtual ~generic();
@@ -51,6 +57,14 @@ public:
    void check_pending_releases();
 
 #endif
+
+   inline bool is_set() const { return ::is_set(this); }
+
+   // sync/mutex
+   inline sync* mutex() const { return is_set() ? ((::generic*)this)->m_pmutex : nullptr; }
+   void set_mutex(sync* psync);
+   void defer_create_mutex();
+
 
 
    inline ::object * get_context_object() const { return __object(m_pobjectContext); }
@@ -121,9 +135,6 @@ public:
    static void* s_os_thread_proc(void* p);
 
 #endif
-
-   virtual class ::sync* get_mutex() const { return nullptr; }
-
 
    virtual ::estatus __thread_proc();
 

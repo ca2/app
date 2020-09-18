@@ -602,7 +602,7 @@ Serial::SerialImpl::read(u8 * buf, size_t size)
       }
       // Timeout for the next select is whichever is less of the remaining
       // total read timeout and the inter-byte timeout.
-      u32 timeout = MIN(static_cast<u32> (timeout_remaining_ms),
+      u32 timeout = min(static_cast<u32> (timeout_remaining_ms),
          m_timeout.inter_byte_timeout);
       // Wait for the device to be readable, and then attempt to read.
       if (waitReadable(timeout))

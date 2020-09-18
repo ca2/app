@@ -2122,7 +2122,7 @@ namespace user
 
          sync_lock sl(pgraphics->mutex());
 
-         sync_lock sl1(get_mutex());
+         sync_lock sl1(mutex());
 
          //sync_lock sl2(m_plinea->mutex());
 

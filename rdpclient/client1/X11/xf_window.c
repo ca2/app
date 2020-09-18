@@ -176,8 +176,8 @@ void xf_SetWindowFullscreen(xfContext* xfc, xfWindow* window, BOOL fullscreen)
       /* Search all monitors to find the lowest startX and startY values */
       for (i=0; i < xfc->instance->settings->MonitorCount; i++)
       {
-         startX = MIN(startX, xfc->instance->settings->MonitorDefArray[i].x);
-         startY = MIN(startY, xfc->instance->settings->MonitorDefArray[i].y);
+         startX = min(startX, xfc->instance->settings->MonitorDefArray[i].x);
+         startY = min(startY, xfc->instance->settings->MonitorDefArray[i].y);
       }
 
       /* Lastly apply any monitor shift(translation from remote to local coordinate system)

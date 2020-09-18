@@ -166,9 +166,9 @@
 //
 //            p->m_bLocalPalette = false;
 //
-//            pframea->m_size.cx = MAX(w, pframea->m_size.cx);
+//            pframea->m_size.cx = max(w, pframea->m_size.cx);
 //
-//            pframea->m_size.cy = MAX(h, pframea->m_size.cy);
+//            pframea->m_size.cy = max(h, pframea->m_size.cy);
 //
 //            pframea->add(p);
 //

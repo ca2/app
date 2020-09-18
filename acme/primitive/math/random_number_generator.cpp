@@ -21,7 +21,7 @@ namespace math
 
    void rng::seed(i32 iTwistLen, u32 seed)
    {
-      iTwistLen = MAX(TWIST_IA + 10, iTwistLen);
+      iTwistLen = max(TWIST_IA + 10, iTwistLen);
       m_uinta.allocate(iTwistLen);
       m_uinta[0]= seed & 0xffffffffUL;
       for (i32 i = 1; i < m_uinta.get_count(); i++)
@@ -64,7 +64,7 @@ namespace math
    i64 random_context_entropy64(byte bLevel)
    {
 
-      bLevel = MIN(bLevel, 3);
+      bLevel = min(bLevel, 3);
 
       if (bLevel <= 0)
       {

@@ -1,7 +1,7 @@
 #pragma once
 
 
-CLASS_DECL_APEX void generate_random_bytes(void* p, memsize s);
+//CLASS_DECL_APEX void generate_random_bytes(void* p, memsize s);
 CLASS_DECL_APEX void transform_alphanumeric(void* p, memsize s);
 CLASS_DECL_APEX void generate_random_alphanumeric(void * p, memsize s);
 

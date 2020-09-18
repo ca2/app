@@ -18,7 +18,7 @@ namespace core
 
 
       virtual ::estatus initialize(::layered * pobjectContext) override;
-
+      virtual __pointer(progress_control) show_progress(::user::interaction* puiParent, const char* pszTitle, ::count iProgressCount);
 
    };
 

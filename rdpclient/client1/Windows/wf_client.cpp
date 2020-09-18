@@ -1012,8 +1012,8 @@ void wf_size_scrollbars(wfContext* wfc, UINT32 client_width, UINT32 client_heigh
 			// The horizontal scrolling range is defined by
 			// (bitmap_width) - (client_width). The current horizontal
 			// scroll value remains within the horizontal scrolling range.
-			wfc->xMaxScroll = MAX(wfc->instance->settings->DesktopWidth - client_width, 0);
-			wfc->xCurrentScroll = MIN(wfc->xCurrentScroll, wfc->xMaxScroll);
+			wfc->xMaxScroll = max(wfc->instance->settings->DesktopWidth - client_width, 0);
+			wfc->xCurrentScroll = min(wfc->xCurrentScroll, wfc->xMaxScroll);
 			si.cbSize = sizeof(si);
 			si.fMask  = SIF_RANGE | SIF_PAGE | SIF_POS;
 			si.nMin   = wfc->xMinScroll;
@@ -1028,8 +1028,8 @@ void wf_size_scrollbars(wfContext* wfc, UINT32 client_width, UINT32 client_heigh
 			// The vertical scrolling range is defined by
 			// (bitmap_height) - (client_height). The current vertical
 			// scroll value remains within the vertical scrolling range.
-			wfc->yMaxScroll = MAX(wfc->instance->settings->DesktopHeight - client_height, 0);
-			wfc->yCurrentScroll = MIN(wfc->yCurrentScroll, wfc->yMaxScroll);
+			wfc->yMaxScroll = max(wfc->instance->settings->DesktopHeight - client_height, 0);
+			wfc->yCurrentScroll = min(wfc->yCurrentScroll, wfc->yMaxScroll);
 			si.cbSize = sizeof(si);
 			si.fMask  = SIF_RANGE | SIF_PAGE | SIF_POS;
 			si.nMin   = wfc->yMinScroll;

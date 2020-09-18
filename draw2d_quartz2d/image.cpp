@@ -281,11 +281,11 @@ namespace draw2d_quartz2d
          {
             bMax = 0;
             b =(BYTE)(r1[0]  - r2[0]);
-            bMax = MAX(b, bMax);
+            bMax = max(b, bMax);
             b =(BYTE)(r1[1]  - r2[1]);
-            bMax = MAX(b, bMax);
+            bMax = max(b, bMax);
             b =(BYTE)(r1[2]  - r2[2]);
-            bMax = MAX(b, bMax);
+            bMax = max(b, bMax);
             bMax = 255 - bMax;
          }
          dest[0]  =  bMax;
@@ -416,9 +416,9 @@ namespace draw2d_quartz2d
       if (size.cy < 0)
          return true;
 
-      int xEnd = MIN(size.cx, MIN(pimplSrc->width() - pointSrc.x, pimplDst->width() - pointDst.x));
+      int xEnd = min(size.cx, min(pimplSrc->width() - pointSrc.x, pimplDst->width() - pointDst.x));
 
-      int yEnd = MIN(size.cy, MIN(pimplSrc->height() - pointSrc.y, pimplDst->height() - pointDst.y));
+      int yEnd = min(size.cy, min(pimplSrc->height() - pointSrc.y, pimplDst->height() - pointDst.y));
 
       if (xEnd < 0)
          return false;

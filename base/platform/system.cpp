@@ -763,7 +763,7 @@ namespace base
 ////
 ////               iSize *= 2;
 ////
-////               iSize = MAX(iSize, 4096);
+////               iSize = max(iSize, 4096);
 ////
 ////               char * pszEnvLine = (char *) ::malloc(iSize);
 ////

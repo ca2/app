@@ -1,8 +1,8 @@
 #include "framework.h"
 #include "_.h"
 #ifdef WINDOWS_DESKTOP
-#include "aura/node/windows/registry.h"
-#include "aura/os/windows/environment_variable.h"
+#include "acme/node/windows/registry.h"
+#include "acme/os/windows/environment_variable.h"
 #endif
 
 
@@ -52,7 +52,7 @@ namespace dynamic_source
 
       }
 
-      m_pmanager = pobjectContext->cast < script_manager >();
+      m_pmanager = __object(pobjectContext)->cast < script_manager >();
 
 #ifdef WINDOWS_DESKTOP
 
@@ -1708,7 +1708,7 @@ namespace dynamic_source
 
       l.m_straLibSourcePath.m_pprovider = get_context();
       l.m_straLibSourcePath.clear_results();
-      l.m_straLibSourcePath.rls(m_pmanager->m_strNetseedDsCa2Path / "library" / strName);
+      Application.dir().rls(l.m_straLibSourcePath, m_pmanager->m_strNetseedDsCa2Path / "library" / strName);
       for(i32 i = 0; i < l.m_straLibSourcePath.get_size();)
       {
          if(l.m_straLibSourcePath[i].ext() != "ds" && l.m_straLibSourcePath[i].ext() != "cpp")
@@ -1731,7 +1731,7 @@ namespace dynamic_source
       }
       l.m_straLibIncludePath.m_pprovider = get_context();
       l.m_straLibIncludePath.clear_results();
-      l.m_straLibIncludePath.rls(m_pmanager->m_strNetseedDsCa2Path / "library" / strName);
+      Application.dir().rls(l.m_straLibIncludePath, m_pmanager->m_strNetseedDsCa2Path / "library" / strName);
       for(i32 i = 0; i < l.m_straLibIncludePath.get_size();)
       {
          if(l.m_straLibIncludePath[i].ext() != "h"
@@ -2882,7 +2882,7 @@ ch_else:
 
       ::file::listing stra(get_context());
 
-      stra.rls(strPath);
+      Application.dir().rls(stra, strPath);
 
       string strCat;
       strCat = m_pmanager->m_strNetseedDsCa2Path/ "core/netnode_persistent_ui_str.ds";
@@ -3110,7 +3110,7 @@ ch_else:
 
 
    library::library(::layered * pobjectContext):
-      object(pobject)
+      object(pobjectContext)
    {
 
    }
@@ -3134,7 +3134,7 @@ ch_else:
       string strDest;
       while(strSource.get_length() > 0)
       {
-         strsize iLen = MIN(4 * 1024, strSource.get_length());
+         strsize iLen = min(4 * 1024, strSource.get_length());
          if(strSource.get_length() > iLen)
          {
             if(strSource[iLen] == '\n')
@@ -3157,7 +3157,7 @@ ch_else:
 
       ::file::listing straFile(get_context());
 
-      straFile.rls(m_pmanager->m_strNetnodePath / "net/aura/pstr_set");
+      Application.dir().rls(straFile, m_pmanager->m_strNetnodePath / "net/aura/pstr_set");
 
       for(int i = 0; i < straFile.get_count(); i++)
       {

@@ -86,7 +86,7 @@
 //
 //   }
 //   set_bstring_data(&bstring_empty);
-//   allocate(MIN(len+1, (str.get_allocation_size() - pos)));
+//   allocate(min(len+1, (str.get_allocation_size() - pos)));
 //
 //   ::memcpy_dup(m_puchData, &str.m_puchData[pos], get_allocation_size());
 //
@@ -139,7 +139,7 @@
 //      if (s > 1)
 //      {
 //
-//         strsize sAlloc = s + MIN(MAX(s, 16), 1024);
+//         strsize sAlloc = s + min(max(s, 16), 1024);
 //
 //         bstring_data * pdata = (bstring_data *)memory_alloc(sizeof(bstring_data) + sAlloc);
 //
@@ -174,7 +174,7 @@
 //         if (s > get_bstring_data()->m_alloc)
 //         {
 //
-//            strsize sAlloc = s + MIN(MAX(s, 16), 1024);
+//            strsize sAlloc = s + min(max(s, 16), 1024);
 //
 //            bstring_data * pdata = (bstring_data *)memory_realloc(get_bstring_data(), sizeof(bstring_data) + sAlloc);
 //
@@ -680,7 +680,7 @@
 //
 //   }
 //
-//   int iCmp = __memcmp(get_data(), bstr.get_data(), MIN(get_size(), bstr.get_size()));
+//   int iCmp = __memcmp(get_data(), bstr.get_data(), min(get_size(), bstr.get_size()));
 //
 //   if (iCmp == 0)
 //   {

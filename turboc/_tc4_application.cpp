@@ -178,7 +178,7 @@ extern "C"
 ::apex::library * get_new_library(::layered * pobjectContext)
 {
 
-   return new ::aura::single_application_library < ::tc4::application > (pobject, "app-core");
+   return new ::apex::single_application_library < ::tc4::application > (pobject, "app-core");
 
 }
 

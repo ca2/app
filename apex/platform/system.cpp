@@ -18,6 +18,8 @@
 
 extern ::apex::system* g_papexsystem;
 
+CLASS_DECL_APEX void apex_generate_random_bytes(void* p, memsize s);
+
 int GetMainScreenRect(LPRECT lprect);
 
 
@@ -28,6 +30,14 @@ CLASS_DECL_APEX void multimedia_set_library_name(const char* psz)
 {
 
    g_pszMultimediaLibraryName = psz;
+
+}
+
+
+CLASS_DECL_APEX const char * multimedia_get_library_name()
+{
+
+   return g_pszMultimediaLibraryName;
 
 }
 
@@ -316,6 +326,8 @@ namespace apex
          return estatus;
 
       }
+
+      set_generate_random_bytes(&::apex_generate_random_bytes);
 
       estatus = __compose_new(m_pgeometry);
 
@@ -1366,7 +1378,7 @@ namespace apex
 //
 //               iSize *= 2;
 //
-//               iSize = MAX(iSize, 4096);
+//               iSize = max(iSize, 4096);
 //
 //               char * pszEnvLine = (char *) ::malloc(iSize);
 //

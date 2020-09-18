@@ -11,6 +11,8 @@
 #endif
 
 
+#include "apex/platform/str_context.h"
+
 #include "dynamic_source/_.h"
 
 #include "introjection/_.h"

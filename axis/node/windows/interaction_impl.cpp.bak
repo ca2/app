@@ -3650,7 +3650,7 @@ namespace windows
 
       get_window_text(str);
 
-      strncpy_dup(pszString, str, (size_t) MIN(nMaxCount, str.get_length()));
+      strncpy_dup(pszString, str, (size_t) min(nMaxCount, str.get_length()));
 
 
       return str.get_length();

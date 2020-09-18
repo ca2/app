@@ -589,7 +589,7 @@ namespace userfs
    //         iItemRange++)
    //   {
    //      auto & itemrange = range.ItemAt(iItemRange);
-   //      for (iItem = MAX(0, itemrange.get_lower_bound());
+   //      for (iItem = max(0, itemrange.get_lower_bound());
    //            iItem <= itemrange.get_upper_bound();
    //            iItem++)
    //      {

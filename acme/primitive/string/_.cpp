@@ -27,7 +27,7 @@ string read_resource_as_string(HINSTANCE hinst, UINT nID, const char * pcszType,
 
       UINT FAR * pnRes = (UINT FAR *)::LockResource(hres);
 
-      iReadAtMostByteCount = iReadAtMostByteCount < 0 ? dwResSize : MIN(iReadAtMostByteCount, (strsize) dwResSize);
+      iReadAtMostByteCount = iReadAtMostByteCount < 0 ? dwResSize : min(iReadAtMostByteCount, (strsize) dwResSize);
 
       psz = str.get_string_buffer(iReadAtMostByteCount);
 

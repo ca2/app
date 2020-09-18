@@ -13,12 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\xml">
-      <UniqueIdentifier>{4dab2b19-fab1-4c82-86d1-44ea7e8387c2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\xml">
-      <UniqueIdentifier>{d2165fd0-68b4-46fb-966c-62c1e368dfbb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\platform">
       <UniqueIdentifier>{8b516fa3-e998-4d2b-bfe8-a2baafe48311}</UniqueIdentifier>
     </Filter>
@@ -173,81 +167,6 @@
   <ItemGroup>
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\_.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\_impl.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\attr.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\base_array.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\data.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\department.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\disp_option.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\document.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\edit.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\entity.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\enum.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\exportable.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\glue.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\importable.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\input_tree.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\node.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\output_tree.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\parse_info.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\property_exchange.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\smart_pointer_array.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\stream.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\tree_base.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\tree_schema.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\var_exchange.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\xmlite.h">
-      <Filter>Header Files\xml</Filter>
     </ClInclude>
     <ClInclude Include="account\usera.h">
       <Filter>Header Files\account</Filter>
@@ -671,66 +590,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="xml\_from.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\attr.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\base_array.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\data.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\disp_option.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\document.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\edit.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\entity.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\exportable.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\importable.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\input_tree.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\node.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\output_tree.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\parse_info.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\property_exchange.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\tree_base.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\tree_schema.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\var_exchange.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xml.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xmlite.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
     <ClCompile Include="platform\application.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>

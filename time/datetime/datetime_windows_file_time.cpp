@@ -55,7 +55,7 @@ namespace windows
 
 #else
 
-         uint32_t year, mon, day, hour, MIN, sec;
+         uint32_t year, mon, day, hour, min, sec;
          uint64_t v64 = ft.dwLowDateTime | ((uint64_t)ft.dwHighDateTime << 32);
          byte ms[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
          uint32_t temp;
@@ -64,7 +64,7 @@ namespace windows
          v64 /= kNumTimeQuantumsInSecond;
          sec = (uint32_t)(v64 % 60);
          v64 /= 60;
-         MIN = (uint32_t)(v64 % 60);
+         min = (uint32_t)(v64 % 60);
          v64 /= 60;
          hour = (uint32_t)(v64 % 24);
          v64 /= 24;
@@ -110,7 +110,7 @@ namespace windows
          dosTime = kHighDosTime;
          if (year >= 128)
             return false;
-         dosTime = (year << 25) | (mon << 21) | (day << 16) | (hour << 11) | (MIN << 5) | (sec >> 1);
+         dosTime = (year << 25) | (mon << 21) | (day << 16) | (hour << 11) | (min << 5) | (sec >> 1);
 #endif
          return true;
       }
@@ -141,11 +141,11 @@ namespace windows
       }
 
       bool GetSecondsSince1601(uint32_t year, uint32_t month, uint32_t day,
-         uint32_t hour, uint32_t MIN, uint32_t sec, uint64_t &resSeconds)
+         uint32_t hour, uint32_t min, uint32_t sec, uint64_t &resSeconds)
       {
          resSeconds = 0;
          if (year < kFileTimeStartYear || year >= 10000 || month < 1 || month > 12 ||
-            day < 1 || day > 31 || hour > 23 || MIN > 59 || sec > 59)
+            day < 1 || day > 31 || hour > 23 || min > 59 || sec > 59)
             return false;
          uint32_t numYears = year - kFileTimeStartYear;
          uint32_t numDays = numYears * 365 + numYears / 4 - numYears / 100 + numYears / 400;
@@ -156,7 +156,7 @@ namespace windows
          for (uint32_t i = 0; i < month; i++)
             numDays += ms[i];
          numDays += day - 1;
-         resSeconds = ((uint64_t)(numDays * 24 + hour) * 60 + MIN) * 60 + sec;
+         resSeconds = ((uint64_t)(numDays * 24 + hour) * 60 + min) * 60 + sec;
          return true;
       }
 

@@ -429,7 +429,7 @@ namespace zip
 
          while(iRemain > 0)
          {
-            iGet = MIN(iRemain,1024);
+            iGet = min(iRemain,1024);
             iRead = unzReadCurrentFile(get_zip_file()->m_pfUnzip,pbBuf,(u32)iGet);
 
             iRemain -= iRead;

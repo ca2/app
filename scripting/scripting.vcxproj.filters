@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\javascript">
+      <UniqueIdentifier>{e88a66d0-00dc-4d0b-9194-344f68f8cb07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\javascript">
+      <UniqueIdentifier>{da3b050d-c65b-4c2f-ae31-492d8eb61c37}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="javascript\_.h">
+      <Filter>Header Files\javascript</Filter>
+    </ClInclude>
+    <ClInclude Include="javascript\functions.h">
+      <Filter>Header Files\javascript</Filter>
+    </ClInclude>
+    <ClInclude Include="javascript\tinyjs.h">
+      <Filter>Header Files\javascript</Filter>
+    </ClInclude>
+    <ClInclude Include="javascript\tinyjs_functions.h">
+      <Filter>Header Files\javascript</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="javascript\_.cpp">
+      <Filter>Source Files\javascript</Filter>
+    </ClCompile>
+    <ClCompile Include="javascript\functions.cpp">
+      <Filter>Source Files\javascript</Filter>
+    </ClCompile>
+    <ClCompile Include="javascript\tinyjs_functions.cpp">
+      <Filter>Source Files\javascript</Filter>
+    </ClCompile>
+    <ClCompile Include="_.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

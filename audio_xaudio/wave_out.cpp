@@ -151,7 +151,7 @@ namespace multimedia
 
          auto uiBufferSize = iBufferSampleCount * m_pwaveformat->nChannels * 2;
 
-         uiBufferSize = MAX(uiBufferSize,2048);
+         uiBufferSize = max(uiBufferSize,2048);
 
          ASSERT((uiBufferSize % 2048) == 0);// Streaming size must be 2K aligned to use for async I/O
 

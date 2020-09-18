@@ -711,8 +711,8 @@ BOOL xf_gdi_line_to(rdpContext* context, LINE_TO_ORDER* line_to)
    {
       int x, y, w, h;
 
-      x = MIN(line_to->nXStart, line_to->nXEnd);
-      y = MIN(line_to->nYStart, line_to->nYEnd);
+      x = min(line_to->nXStart, line_to->nXEnd);
+      y = min(line_to->nYStart, line_to->nYEnd);
 
       w = abs(line_to->nXEnd - line_to->nXStart) + 1;
       h = abs(line_to->nYEnd - line_to->nYStart) + 1;
@@ -1131,10 +1131,10 @@ static BOOL xf_gdi_surface_update_frame(xfContext* xfc, UINT16 tx, UINT16 ty, UI
       {
          if (xfc->frame_x2 > xfc->frame_x1 && xfc->frame_y2 > xfc->frame_y1)
          {
-            xfc->frame_x1 = MIN(xfc->frame_x1, tx);
-            xfc->frame_y1 = MIN(xfc->frame_y1, ty);
-            xfc->frame_x2 = MAX(xfc->frame_x2, tx + width);
-            xfc->frame_y2 = MAX(xfc->frame_y2, ty + height);
+            xfc->frame_x1 = min(xfc->frame_x1, tx);
+            xfc->frame_y1 = min(xfc->frame_y1, ty);
+            xfc->frame_x2 = max(xfc->frame_x2, tx + width);
+            xfc->frame_y2 = max(xfc->frame_y2, ty + height);
          }
          else
          {

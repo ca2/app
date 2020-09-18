@@ -1,0 +1,20 @@
+﻿Build started 2020-09-17 11:07:30.
+Logging verbosity is set to: Normal.     1>Project "C:\basis\app\acme\and_aura.vcxproj" on node 3 (Rebuild target(s)).
+     1>SetBuildDefaultEnvironmentVariables:
+         ANDROID_HOME=
+         ANT_HOME=
+         JAVA_HOME=
+         NDK_ROOT=
+     1>C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(411,5): error MSB8020: The build tools for Clang_3_4 (Platform Toolset = 'Clang_3_4') cannot be found. To build using the Clang_3_4 build tools, please install Clang_3_4 build tools.  Alternatively, you may upgrade to the current Visual Studio tools by selecting the Project menu or right-click the solution, and then selecting "Retarget solution".
+     1>Done Building Project "C:\basis\app\acme\and_aura.vcxproj" (Rebuild target(s)) -- FAILED.
+
+Build FAILED.
+
+       "C:\basis\app\acme\and_aura.vcxproj" (Rebuild target) (1) ->
+       (PrepareForBuild target) -> 
+         C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(411,5): error MSB8020: The build tools for Clang_3_4 (Platform Toolset = 'Clang_3_4') cannot be found. To build using the Clang_3_4 build tools, please install Clang_3_4 build tools.  Alternatively, you may upgrade to the current Visual Studio tools by selecting the Project menu or right-click the solution, and then selecting "Retarget solution".
+
+    0 Warning(s)
+    1 Error(s)
+
+Time Elapsed 00:00:00.10

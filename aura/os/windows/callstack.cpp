@@ -1241,7 +1241,7 @@ namespace windows
 
    //   *_strS = '\0';
 
-   //   ::memcpy_dup(m_uia, pinteraction, MIN(c * sizeof(*pinteraction), sizeof(m_uia)));
+   //   ::memcpy_dup(m_uia, pinteraction, min(c * sizeof(*pinteraction), sizeof(m_uia)));
 
    //   m_iAddressWrite = c;
    //   m_iAddressRead = 0;
@@ -1430,7 +1430,7 @@ namespace  windows
 
       *_strS = '\0';
 
-      ::memcpy_dup(m_uia, pinteraction, MIN(c * sizeof(*pinteraction), sizeof(m_uia)));
+      ::memcpy_dup(m_uia, pinteraction, min(c * sizeof(*pinteraction), sizeof(m_uia)));
 
       m_iAddressWrite = c;
       m_iAddressRead = 0;

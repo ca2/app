@@ -3,6 +3,9 @@
 #endif
 
 
+#include "acme/_start.h"
+
+
 #ifdef __cplusplus
 
 #ifdef __OBJC__

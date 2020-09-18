@@ -579,7 +579,7 @@ void get_os_priority(i32 * piPolicy, sched_param * pparam, ::e_priority epriorit
       iOsPriority = (((epriority - iCa2Min) * (iOsMax - iOsMin)) / (iCa2Max - iCa2Min)) + iOsMin;
    }
 
-   iOsPriority = MAX(iOsMin, MIN(iOsMax, iOsPriority));
+   iOsPriority = max(iOsMin, min(iOsMax, iOsPriority));
 
    *piPolicy = iOsPolicy;
 

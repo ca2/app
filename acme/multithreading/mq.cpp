@@ -21,7 +21,7 @@ mq::mq()
 
    m_bKickIdle = false;
 
-   m_pmutex = new mutex();
+   defer_create_mutex();
 
 }
 
@@ -66,7 +66,7 @@ int_bool mq::post_message(const MESSAGE & message)
 
    }
 
-   sync_lock ml(m_pmutex);
+   sync_lock ml(mutex());
 
    m_messagea.add(message);
 
@@ -87,7 +87,7 @@ int_bool mq::get_message(LPMESSAGE pMsg, oswindow oswindow, UINT wMsgFilterMin, 
 
    }
 
-   sync_lock sl(m_pmutex);
+   sync_lock sl(mutex());
 
    while (true)
    {
@@ -174,7 +174,7 @@ int_bool mq::peek_message(LPMESSAGE pMsg,oswindow oswindow,UINT wMsgFilterMin,UI
 
    }
 
-   sync_lock sl(m_pmutex);
+   sync_lock sl(mutex());
 
    ::count count = m_messagea.get_count();
 

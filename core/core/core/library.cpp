@@ -31,7 +31,7 @@ namespace aura
 
 
    library::library() :
-      ::aura::single_application_library < application >("app")
+      ::apex::single_application_library < application >("app")
    {
 
    }

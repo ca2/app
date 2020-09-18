@@ -230,7 +230,7 @@ extern "C"
 ::apex::library * app_browser_get_new_library(::layered * pobjectContext)
 {
 
-   return new ::aura::single_application_library < ::browser::application > (pobject, "app/browser");
+   return new ::apex::single_application_library < ::browser::application > (pobject, "app/browser");
 
 }
 

@@ -47,7 +47,7 @@ int xinerama_get_monitor_count()
 
    }
 
-   return MAX(1, heads);
+   return max(1, heads);
 
 }
 

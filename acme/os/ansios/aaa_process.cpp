@@ -77,7 +77,7 @@
       iCa2Priority = (((pparam->sched_priority - iOsMin)  * (iCa2Max - iCa2Min)) / (iOsMax - iOsMin)) + iCa2Min;
    }
 
-   iCa2Priority = MAX(iCa2Min, MIN(iCa2Max, iCa2Priority));
+   iCa2Priority = max(iCa2Min, min(iCa2Max, iCa2Priority));
 
    return (e_priority) iCa2Priority;
 

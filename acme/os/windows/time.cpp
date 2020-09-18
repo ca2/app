@@ -136,3 +136,35 @@ void sleep(const ::duration & dur)
 
 }
 
+
+namespace windows
+{
+
+
+   CLASS_DECL_ACME void time_to_filetime(::object* pobject, const ::datetime::time& time, LPFILETIME pFileTime)
+   {
+
+      SYSTEMTIME sysTime;
+
+      sysTime.wYear = (WORD)time.GetYear();
+      sysTime.wMonth = (WORD)time.GetMonth();
+      sysTime.wDay = (WORD)time.GetDay();
+      sysTime.wHour = (WORD)time.GetHour();
+      sysTime.wMinute = (WORD)time.GetMinute();
+      sysTime.wSecond = (WORD)time.GetSecond();
+      sysTime.wMilliseconds = 0;
+
+      // convert system time to local file time
+      FILETIME localTime;
+      if (!SystemTimeToFileTime((LPSYSTEMTIME)&sysTime, &localTime))
+         ::file::throw_os_error((LONG)::get_last_error());
+
+      // convert local file time to UTC file time
+      if (!LocalFileTimeToFileTime(&localTime, pFileTime))
+         ::file::throw_os_error((LONG)::get_last_error());
+
+   }
+
+
+} // namespace windows
+

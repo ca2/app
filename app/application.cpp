@@ -121,7 +121,7 @@ namespace app_app
 //::apex::library * app_simple_drawing_get_new_library()
 //{
 //
-//   return new ::aura::single_application_library < ::app_app::application >("app-simple/drawing");
+//   return new ::apex::single_application_library < ::app_app::application >("app-simple/drawing");
 //
 //}
 //

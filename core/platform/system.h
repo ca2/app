@@ -20,6 +20,9 @@ namespace core
       virtual ::estatus initialize(::layered * pobjectContext) override;
 
 
+      virtual ::estatus initialize_rich_text();
+
+
    };
 
 

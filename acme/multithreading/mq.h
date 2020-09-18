@@ -20,7 +20,6 @@ public:
    ITHREAD                 m_ithread;
    bool                    m_bKickIdle;
    bool                    m_bQuit;
-   __pointer(::mutex)      m_pmutex;
 
 
    mq();

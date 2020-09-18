@@ -1,6 +1,6 @@
 ﻿#include "framework.h"
 #include "aura/node/windows/_windows.h"
-#include "aura/const/id.h"
+#include "acme/const/id.h"
 
 
 namespace windows
@@ -563,7 +563,7 @@ namespace windows
       nullptr,
       nullptr,
       nullptr);
-      i32 iSize = MAX(dwMaxSubKeyLen, 1024);
+      i32 iSize = max(dwMaxSubKeyLen, 1024);
       wchar_t *buf = (wchar_t *) malloc(iSize * 2);
       i32 iKey = 0;
       while(::RegEnumKeyW(m_hkey, iKey, buf, iSize) == ERROR_SUCCESS)

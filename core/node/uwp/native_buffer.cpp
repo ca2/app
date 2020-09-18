@@ -490,7 +490,7 @@ namespace uwp
 
       ::Windows::Storage::Streams::IBuffer ^ buffer2 = ::wait(m_stream->ReadAsync(buffer,nCount,::Windows::Storage::Streams::InputStreamOptions::None));
 
-      auto read = MIN(nCount, (memsize) buffer->Length);
+      auto read = min(nCount, (memsize) buffer->Length);
 
       read_buffer(pdata, buffer, read);
 

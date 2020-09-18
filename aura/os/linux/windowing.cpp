@@ -3,7 +3,7 @@
 #include "aura/user/_user.h"
 #endif
 #include "_linux.h"
-#include "aura/const/id.h"
+#include "acme/const/id.h"
 #include "aura/const/message.h"
 #include "third/sn/sn.h"
 #include <fcntl.h> // library for fcntl function
@@ -2983,7 +2983,7 @@ void x11_thread(osdisplay_data * pdisplaydata)
          tv.tv_sec = 1;
 
          // Wait for X Event or a Timer
-         int num_ready_fds = select(MAX(x11_fd, g_fdX11[0]) + 1, &in_fds, NULL, NULL, &tv);
+         int num_ready_fds = select(max(x11_fd, g_fdX11[0]) + 1, &in_fds, NULL, NULL, &tv);
 
          if (num_ready_fds > 0)
          {

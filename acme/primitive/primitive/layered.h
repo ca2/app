@@ -31,6 +31,7 @@ public:
 #define LAYERED_USER_PRIMITIVE 2
 #define LAYERED_THREAD 2
 #define LAYERED_USER_INTERACTION 3
+#define LAYERED_USER_CONTROL_EVENT 7
 
 
 class object;
@@ -73,6 +74,7 @@ namespace user
    class create;
    class interaction;
    class primitive;
+   class control_event;
 
 } // namespace user
 
@@ -97,5 +99,14 @@ inline ::user::primitive * __user_primitive(::layered* playered)
 {
 
    return (::user::primitive *) playered->layer(LAYERED_USER_PRIMITIVE);
+
+}
+
+
+
+inline ::user::control_event * __user_control_event(::layered* playered)
+{
+
+   return (::user::control_event*) playered->layer(LAYERED_USER_CONTROL_EVENT);
 
 }

@@ -780,7 +780,7 @@ sync_result mutex::wait(const duration & duration)
 
             }
 
-            Sleep(MAX(1, MIN(1000, (tickTimeout - tickElapsed) / 50)));
+            Sleep(max(1, min(1000, (tickTimeout - tickElapsed) / 50)));
 
             rc = pthread_mutex_lock(&m_mutex);
 

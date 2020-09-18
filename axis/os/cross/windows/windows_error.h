@@ -21387,7 +21387,7 @@
 //
 // MessageText:
 //
-// Failed to query Kerberos package to obtain MAX token size.
+// Failed to query Kerberos package to obtain max token size.
 //
 #define ERROR_IPSEC_IKE_FAILQUERYSSP     13854L
 

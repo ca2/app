@@ -23,7 +23,7 @@ CLASS_DECL_APEX errno_t _ctime64_s(char * buf, i32 iSize, const time_t * timer )
    if(((iLen = (i32) strlen(ret)) + 1) > iSize)
       return ERANGE;
 
-   ansi_count_copy(buf, ret, MIN(iSize, iLen));
+   ansi_count_copy(buf, ret, min(iSize, iLen));
 
    return 0;
 

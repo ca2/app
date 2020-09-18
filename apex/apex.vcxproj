@@ -1267,6 +1267,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="console.h" />
     <ClInclude Include="console_slim.h" />
     <ClInclude Include="const\callback.h" />
+    <ClInclude Include="const\charset.h" />
     <ClInclude Include="const\procedure.h" />
     <ClInclude Include="database\change_event.h" />
     <ClInclude Include="database\client.h" />

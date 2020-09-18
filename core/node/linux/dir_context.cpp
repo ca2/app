@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "aura/xml/_.h"
-#include "aura/const/id.h"
+#include "acme/const/id.h"
 #include "_linux.h"
 #undef USE_MISC
 
@@ -178,7 +178,7 @@ namespace linux
 
          strsize iFind2 = pathInstall.reverse_find("/", iFind);
 
-         strsize iStart = MAX(iFind1 + 1, iFind2 + 1);
+         strsize iStart = max(iFind1 + 1, iFind2 + 1);
 
          pathInstall = pathInstall.Left(iFind - 1) + "_" + pathInstall.Mid(iStart, iFind - iStart) + pathInstall.Mid(iFind + 1);
 

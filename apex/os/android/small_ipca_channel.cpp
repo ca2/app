@@ -117,9 +117,9 @@ namespace apex
          while(c > 0)
          {
 
-            cSend = MIN(c,511);
+            cSend = min(c,511);
 
-            ::memcpy_dup(data.data,&pszMessage[cPos],MIN(c,511));
+            ::memcpy_dup(data.data,&pszMessage[cPos],min(c,511));
 
             c -= cSend;
 

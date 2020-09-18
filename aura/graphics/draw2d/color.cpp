@@ -200,8 +200,8 @@ void color::get_hls(double & h, double & l, double & s) const
 
    h /= 6.0;
 
-   /*double dCMin = MIN(dR, MIN(dG, dB));;
-   double dCMax = MAX(dR, MAX(dG, dB));
+   /*double dCMin = min(dR, min(dG, dB));;
+   double dCMax = max(dR, max(dG, dB));
    double dA;
 
    if(dR > dB)
@@ -733,13 +733,13 @@ void CColor::get_hls(byte * H, byte * L, byte * S)
    double dRed = m_bRed;
    double dGreen = m_bGreen;
    double dBlue = m_bBlue;
-   // MAX and MIN RGB values
+   // max and min RGB values
    double dMax, dMin;
-   // intermediate value: % of spread from MAX
+   // intermediate value: % of spread from max
    double dRedDelta, dGreenDelta, dBlueDelta;
    // calculate lightness
-   dMax = MAX(MAX(dRed, dGreen), dBlue);
-   dMin = MIN(MIN(dRed, dGreen), dBlue);
+   dMax = max(max(dRed, dGreen), dBlue);
+   dMin = min(min(dRed, dGreen), dBlue);
    dLightness = (BYTE) (((dMax + dMin) * HLSMAX) + RGBMAX) / (2 * RGBMAX);
    if(dMax == dMin)
    {

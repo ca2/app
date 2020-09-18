@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aura/platform/static_setup.h"
+#include "apex/platform/static_setup.h"
 
 
 namespace experience

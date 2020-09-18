@@ -2308,7 +2308,7 @@ inline var __visible(var varOptions, bool bVisible)
 //
 //   sync_array ptra;
 //
-//   ::count iScan = MAX(1, MIN(iCount - iStart, pgroup->thread_count()));
+//   ::count iScan = max(1, min(iCount - iStart, pgroup->thread_count()));
 //
 //   for (index iOrder = 0; iOrder < iScan; iOrder++)
 //   {

@@ -78,7 +78,7 @@ namespace html
       if(stra.get_count() > 0)
       {
          strName = stra[0];
-//         iLen = MIN(sizeof(lf.lfFaceName) - 1, stra[0].get_length());
+//         iLen = min(sizeof(lf.lfFaceName) - 1, stra[0].get_length());
          //       ansi_count_copy(lf.lfFaceName, stra[0], iLen);
          //     lf.lfFaceName[iLen] = '\0';
          strName.trim();

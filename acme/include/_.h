@@ -296,8 +296,8 @@ namespace dynamic_source
 
 
 
-#undef MIN
-#undef MAX
+#undef min
+#undef max
 
 
 
@@ -317,7 +317,7 @@ namespace dynamic_source
 #endif
 
 
-#define LIM(a, min, max) MIN(max, MAX(min, a))
+#define LIM(a, min, max) min(max, max(min, a))
 #define SORT_LIM(x,minmax,maxmin) ((minmax) < (maxmin) ? LIM(x,minmax,maxmin) : LIM(x,maxmin,minmax))
 #define CLIP_USHRT(x) LIM(x,0,USHRT_MAX)
 
@@ -1655,7 +1655,7 @@ inline void delptr(t *& p)
 template < typename T >
 inline int type_is_null(const T * p)
 {
-   return (((UINT_PTR)(void *)p) < MAX(4096, sizeof(T)));
+   return (((UINT_PTR)(void *)p) < max(4096, sizeof(T)));
 }
 
 

@@ -798,7 +798,7 @@ namespace user
 
       get_client_rect(rectClient);
 
-      m_plist->m_iItemHeight = MIN(24, rectClient.height());
+      m_plist->m_iItemHeight = min(24, rectClient.height());
 
    }
 

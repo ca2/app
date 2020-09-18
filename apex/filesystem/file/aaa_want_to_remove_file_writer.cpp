@@ -59,7 +59,7 @@
 //
 //      memsize uiRead;
 //      memsize uiSize = 0;
-//      uiBufSize = MAX(32 * 1024, uiBufSize);
+//      uiBufSize = max(32 * 1024, uiBufSize);
 //
 //      memory buf;
 //

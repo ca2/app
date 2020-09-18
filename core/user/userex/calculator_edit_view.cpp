@@ -5,7 +5,7 @@
 #include "axis/math/calculator/_.h"
 #include "calculator_edit_view.h"
 #include "aura/update.h"
-#include "aura/const/id.h"
+#include "acme/const/id.h"
 
 
 namespace calculator
@@ -77,7 +77,7 @@ namespace calculator
 
          {
 
-            sync_lock sl(m_pcallback == nullptr ? nullptr : m_pcallback->get_mutex());
+            sync_lock sl(m_pcallback == nullptr ? nullptr : m_pcallback->mutex());
 
             string strExp;
 

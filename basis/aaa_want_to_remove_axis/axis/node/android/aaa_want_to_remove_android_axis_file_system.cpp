@@ -64,7 +64,7 @@ namespace android
       //
       //         strsize iFind2 = str.reverse_find('\\', iLast);
       //
-      //         strsize iFind = MAX(iFind1, iFind2);
+      //         strsize iFind = max(iFind1, iFind2);
       //
       //         if(iFind >= iLast)
       //            return false;

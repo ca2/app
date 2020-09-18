@@ -212,7 +212,7 @@ extern "C"
 ::apex::library * app_helloworld_get_new_library(::layered * pobjectContext)
 {
 
-   return new ::aura::single_application_library < ::helloworld::application > (pobject, "app/helloworld");
+   return new ::apex::single_application_library < ::helloworld::application > (pobject, "app/helloworld");
 
 }
 

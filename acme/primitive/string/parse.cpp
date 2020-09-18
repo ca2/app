@@ -417,7 +417,7 @@ namespace str {
          m_iPos++;
       len = m_iPos - x;
       m_iPos = y;
-      return (i32)MAX(0,len);
+      return (i32)max(0,len);
    }
 
    i32 parse::getrestlen()
@@ -429,7 +429,7 @@ namespace str {
          m_iPos++;
       len = m_iLen - m_iPos;
       m_iPos = y;
-      return (i32)MAX(0, len);
+      return (i32)max(0, len);
    }
 
 

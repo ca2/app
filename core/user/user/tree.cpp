@@ -4,7 +4,7 @@
 #endif
 #include "_data.h"
 #include "_tree.h"
-#include "aura/const/timer.h"
+#include "acme/const/timer.h"
 #include "aura/message.h"
 
 
@@ -1000,7 +1000,7 @@ namespace user
                   iNewScroll = (iParentIndex * _001GetItemHeight());
 
                set_viewport_offset_y((int) max(iNewScroll, 0));
-               //            _001SetYScroll(MAX(iNewScroll, 0), false);
+               //            _001SetYScroll(max(iNewScroll, 0), false);
                //m_pscrollbarVert->_001SetScrollPos(pointOffset.y);
             }
          }

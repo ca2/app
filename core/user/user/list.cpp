@@ -2,7 +2,7 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/user/user/_user.h"
 #endif
-#include "aura/const/timer.h"
+#include "acme/const/timer.h"
 
 
 #define DBLCLKMS 500
@@ -5710,6 +5710,8 @@ namespace user
 
       if (item.m_bOk)
       {
+
+         pgraphics->set_font(this);
 
          m_dcextension.GetTextExtent(pgraphics, item.m_strText, size);
 

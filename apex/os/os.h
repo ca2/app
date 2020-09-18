@@ -4,7 +4,7 @@
 CLASS_DECL_APEX void defer_dock_application(int_bool bDock);
 
 
-CLASS_DECL_APEX WINBOOL IsProcessRunning(DWORD pid);
+//CLASS_DECL_APEX WINBOOL IsProcessRunning(DWORD pid);
 
 
 
@@ -15,8 +15,8 @@ CLASS_DECL_APEX WINBOOL IsProcessRunning(DWORD pid);
 
 #include "cross.h"
 
-CLASS_DECL_APEX int __c_get_text_length(const char * psz);
-CLASS_DECL_APEX void __c_get_text(char * pszText, int iLen, const char * psz);
+//CLASS_DECL_APEX int __c_get_text_length(const char * psz);
+//CLASS_DECL_APEX void __c_get_text(char * pszText, int iLen, const char * psz);
 
 
 /*
@@ -34,17 +34,17 @@ inline bool IsDirSep(WCHAR ch);
 
 #endif
 
-CLASS_DECL_APEX void set_splash(oswindow oswindow);
-CLASS_DECL_APEX oswindow get_splash(void);
+//CLASS_DECL_APEX void set_splash(oswindow oswindow);
+//CLASS_DECL_APEX oswindow get_splash(void);
 
-CLASS_DECL_APEX int get_processor_count(void);
+//CLASS_DECL_APEX int get_processor_count(void);
 
-CLASS_DECL_APEX void output_debug_string(const char * psz);
-CLASS_DECL_APEX void w_output_debug_string(const widechar * psz);
-#ifdef __cplusplus
-CLASS_DECL_APEX void output_debug_string(const widechar * pwsz);
-#endif
-CLASS_DECL_APEX void writeln(const char * psz);
+//CLASS_DECL_APEX void output_debug_string(const char * psz);
+//CLASS_DECL_APEX void w_output_debug_string(const widechar * psz);
+//#ifdef __cplusplus
+//CLASS_DECL_APEX void output_debug_string(const widechar * pwsz);
+//#endif
+//CLASS_DECL_APEX void writeln(const char * psz);
 
 
 #include "time.h"
@@ -90,9 +90,9 @@ CLASS_DECL_APEX void writeln(const char * psz);
 
 
 
-CLASS_DECL_APEX void set_command_line_dup(const char * psz);
+//CLASS_DECL_APEX void set_command_line_dup(const char * psz);
 
-CLASS_DECL_APEX void get_command_line_dup(char * psz, int iBuffer);
+//CLASS_DECL_APEX void get_command_line_dup(char * psz, int iBuffer);
 
 
 

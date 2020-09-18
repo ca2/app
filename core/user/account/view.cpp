@@ -153,15 +153,15 @@ namespace account
       if (davailwh > dwh) // remaining width
       {
 
-      h = (int) MIN(stdh, availh);
-      w = (int) MIN(stdw, h  * dwh);
+      h = (int) min(stdh, availh);
+      w = (int) min(stdw, h  * dwh);
 
       }
       else // remaining height
       {
 
-      w = (int) MIN(stdw, availw);
-      h = (int) MIN(stdh, w / dwh);
+      w = (int) min(stdw, availw);
+      h = (int) min(stdh, w / dwh);
 
       }
 

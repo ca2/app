@@ -301,7 +301,7 @@ string file_as_string(const char * path, strsize iReadAtMostByteCount)
 
    dwSize = (DWORD) fsize_dup(file);
 
-   iReadAtMostByteCount = iReadAtMostByteCount < 0 ? dwSize :  MIN(iReadAtMostByteCount, (::strsize)dwSize);
+   iReadAtMostByteCount = iReadAtMostByteCount < 0 ? dwSize :  min(iReadAtMostByteCount, (::strsize)dwSize);
 
    LPSTR psz = str.get_string_buffer(iReadAtMostByteCount);
 

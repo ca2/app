@@ -30,9 +30,9 @@ enum e_message : ::i64
    message_run,
    message_done,
    message_do_show_window,
-   message_acmetype_key_down,
-   message_acmetype_key_up,
-   message_acmeclick_mouse,
+   message_auratype_key_down,
+   message_auratype_key_up,
+   message_auraclick_mouse,
 
 
 

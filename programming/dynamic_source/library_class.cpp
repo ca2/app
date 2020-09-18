@@ -17,7 +17,7 @@ namespace dynamic_source
 
 
    library_class::library_class(::layered * pobjectContext) :
-      ::object(pobject)
+      ::object(pobjectContext)
    {
 
    }

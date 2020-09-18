@@ -6,6 +6,9 @@
 #include "core/const/idpool.h"
 
 
+bool __rich_text_initialize();
+
+
 namespace core
 {
 
@@ -54,6 +57,21 @@ namespace core
       }
 
       return estatus;
+
+   }
+
+
+   ::estatus system::initialize_rich_text()
+   {
+
+      if (!__rich_text_initialize())
+      {
+
+         return false;
+
+      }
+
+      return ::success;
 
    }
 

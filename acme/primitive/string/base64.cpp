@@ -537,7 +537,7 @@ namespace str
          o[1]= (b[1]<<4)|(b[2]>>2);
          o[2]= (b[2]<<6)|b[3];
          i= a[2]=='='?1:(a[3]=='='?2:3);
-         i = MIN(i, (i32) rem);
+         i = min(i, (i32) rem);
          for (index idx = 0; idx < i; idx++)
          {
             *pdata = o[idx];

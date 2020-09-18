@@ -7,7 +7,7 @@
 #include "gnome_internal_glue.h"
 #include "aura/message/global.h"
 #include "aura/const/_const.h"
-#include "aura/const/id.h"
+#include "acme/const/id.h"
 #include "platform/_.h"
 #include "aura/os/linux/appindicator.h"
 

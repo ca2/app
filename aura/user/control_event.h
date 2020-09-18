@@ -8,7 +8,8 @@ namespace user
    //class tab;
 
 
-   class CLASS_DECL_AURA control_event
+   class CLASS_DECL_AURA control_event :
+      virtual public ::layered
    {
    public:
 

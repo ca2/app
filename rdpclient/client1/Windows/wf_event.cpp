@@ -425,8 +425,8 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //					} 
 // 
 //					// New position must be between 0 and the screen width. 
-//					xNewPos = MAX(0, xNewPos); 
-//					xNewPos = MIN(wfc->xMaxScroll, xNewPos);
+//					xNewPos = max(0, xNewPos); 
+//					xNewPos = min(wfc->xMaxScroll, xNewPos);
 // 
 //					// If the current position does not change, do not scroll.
 //					if (xNewPos == wfc->xCurrentScroll)
@@ -498,8 +498,8 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //					} 
 // 
 //					// New position must be between 0 and the screen height. 
-//					yNewPos = MAX(0, yNewPos); 
-//					yNewPos = MIN(wfc->yMaxScroll, yNewPos);
+//					yNewPos = max(0, yNewPos); 
+//					yNewPos = min(wfc->yMaxScroll, yNewPos);
 // 
 //					// If the current position does not change, do not scroll.
 //					if (yNewPos == wfc->yCurrentScroll)

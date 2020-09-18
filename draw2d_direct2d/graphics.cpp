@@ -2862,8 +2862,8 @@ namespace draw2d_direct2d
 
    imageWork4.Fill(255, 0, 0, 0);
 
-   imageWork4.from(point(MAX(0, m_pointAlphaBlend.x - xDest), MAX(0, m_pointAlphaBlend.y - yDest)),
-   m_pimageAlphaBlend->get_graphics(), point(MAX(0, xDest - m_pointAlphaBlend.x), MAX(0, yDest - m_pointAlphaBlend.y)), size);
+   imageWork4.from(point(max(0, m_pointAlphaBlend.x - xDest), max(0, m_pointAlphaBlend.y - yDest)),
+   m_pimageAlphaBlend->get_graphics(), point(max(0, xDest - m_pointAlphaBlend.x), max(0, yDest - m_pointAlphaBlend.y)), size);
 
    imageWork.channel_multiply(::color::channel_alpha, imageWork4);
 

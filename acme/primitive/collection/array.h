@@ -164,7 +164,7 @@ public:
    array_base< TYPE, ARG_TYPE,  ALLOCATOR > & copy_iter(const ITERABLE & iterable)
    {
 
-      this->set_size(0, MAX(iterable.get_count(), 17));
+      this->set_size(0, max(iterable.get_count(), 17));
 
       for (auto & item : iterable)
       {

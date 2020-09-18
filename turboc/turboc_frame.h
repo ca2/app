@@ -19,7 +19,7 @@ namespace turboc
 	   virtual void dump(dump_context & dumpcontext) const;
 
 
-      virtual bool get_translucency(::user::e_translucency & etranslucency, ::user::e_element eelement, ::user::style_context * pinteraction) override;
+      virtual ::user::e_translucency get_translucency(::user::style * pstyle) const override;
       virtual ::experience::frame * experience_get_frame();
 
 

@@ -1088,7 +1088,7 @@ void thread::Delete()
 //
 //   i64 dwSpan = duration.get_total_milliseconds();
 //
-//   DWORD dwSleep = (DWORD) MIN(884, dwSpan / 20);
+//   DWORD dwSleep = (DWORD) min(884, dwSpan / 20);
 //
 //   do
 //   {

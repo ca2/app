@@ -47,8 +47,8 @@
 
 
 
-#ifndef MIN
-#define MIN(x,y) (((x)<(y)) ? (x) : (y))
+#ifndef min
+#define min(x,y) (((x)<(y)) ? (x) : (y))
 #endif
 
 void libbsdiff_split(bs_offset *I,bs_offset *V,bs_offset start,bs_offset len,bs_offset h)
@@ -178,7 +178,7 @@ bs_offset libbsdiff_search(bs_offset *I,unsigned char *old,bs_offset oldsize, un
 	};
 
 	x=st+(en-st)/2;
-	if(memcmp(old+I[x],new,MIN(oldsize-I[x],newsize))<0) {
+	if(memcmp(old+I[x],new,min(oldsize-I[x],newsize))<0) {
       return libbsdiff_search(I,old,oldsize,new,newsize,x,en,pos);
 	} else {
       return libbsdiff_search(I,old,oldsize,new,newsize,st,x,pos);

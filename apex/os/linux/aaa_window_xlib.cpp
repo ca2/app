@@ -375,7 +375,7 @@ namespace xlib
    ::draw2d::graphics * buffer::on_begin_draw()
    {
 
-      m_iGoodStride = MAX(m_iGoodStride, window_size().cx);
+      m_iGoodStride = max(m_iGoodStride, window_size().cx);
 
       bitmap_source_buffer::on_begin_draw();
 

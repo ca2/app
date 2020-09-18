@@ -30,7 +30,7 @@ namespace data
 
    bool data_container::is_data_locked() const
    {
-      return m_spdata->get_mutex()->is_locked();
+      return m_spdata->mutex()->is_locked();
    }
 
    void data_container::on_update_data(i32 iHint)
@@ -135,7 +135,7 @@ namespace data
       for(auto & pdata : m_datamap.values())
       {
 
-         synca.add_item(pdata->get_mutex());
+         synca.add_item(pdata->mutex());
 
       }
 

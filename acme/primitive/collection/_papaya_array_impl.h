@@ -28,7 +28,7 @@ namespace papaya
                for (::index i = 0; i < c; i++)
                {
 
-                  a.set_size(i + 1, MIN((size_t)(c - i), 96_mb / sizeof(a[0])));
+                  a.set_size(i + 1, min((size_t)(c - i), 96_mb / sizeof(a[0])));
 
                   auto & item = __typed(a[i]);
 

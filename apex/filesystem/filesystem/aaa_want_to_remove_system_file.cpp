@@ -169,7 +169,7 @@ namespace file
       if (path.m_iSize != -1)
       {
 
-         return MAX(0, path.m_iSize);
+         return max(0, path.m_iSize);
 
       }
 
@@ -1859,7 +1859,7 @@ retry_get_file:
             read_n_number(spfile, &ctx, iLen);
             while (iLen > 0)
             {
-               uiRead = spfile->read(buf, (UINT)(MIN(iBufSize, iLen)));
+               uiRead = spfile->read(buf, (UINT)(min(iBufSize, iLen)));
                if (uiRead == 0)
                   break;
                pfile2->write(buf, uiRead);
@@ -1956,7 +1956,7 @@ retry_get_file:
          i64 iProcessed = 0;
          while (iLen - iProcessed > 0)
          {
-            i32 iProcess = (i32)MIN(1024 * 1024, iLen - iProcessed);
+            i32 iProcess = (i32)min(1024 * 1024, iLen - iProcessed);
             MD5_Update((MD5_CTX *)pctx, &psz[iProcessed], iProcess);
 
             iProcessed += iProcess;

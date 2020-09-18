@@ -859,7 +859,7 @@ namespace file
 
       }
 
-      uiBufMax = MAX(8 * 1024, uiBufMax);
+      uiBufMax = max(8 * 1024, uiBufMax);
       memsize uiBufMin = uiBufMax / 8;
       memsize uiBufSize = uiBufMax;
       memsize uiBufInc = uiBufSize;
@@ -946,7 +946,7 @@ namespace file
       while (size != 0)
       {
 
-         memsize curSize = MIN(size, kBlockSize);
+         memsize curSize = min(size, kBlockSize);
 
          memsize processedSizeLoc;
 
@@ -1038,7 +1038,7 @@ namespace file
 
       memsize uiRead;
       memsize uiSize = 0;
-      uiBufSize = MAX(32 * 1024, uiBufSize);
+      uiBufSize = max(32 * 1024, uiBufSize);
 
       memory buf;
 

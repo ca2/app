@@ -57,7 +57,7 @@ namespace windows
          m_iPageStart = 0;
       if (m_iPageCount >= 0)
       {
-         iPageEnd = MIN(m_iPageStart + m_iPageCount - 1, iPageCount - 1);
+         iPageEnd = min(m_iPageStart + m_iPageCount - 1, iPageCount - 1);
       }
       else
       {

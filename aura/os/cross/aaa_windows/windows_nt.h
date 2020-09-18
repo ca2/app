@@ -3950,7 +3950,7 @@ typedef struct _SID {
 #endif /* !defined(SID_DEFINED) */
 
 #define	SID_REVISION			(1)	/* Current revision */
-#define	SID_MAX_SUB_AUTHORITIES		(15)	/* current MAX subauths */
+#define	SID_MAX_SUB_AUTHORITIES		(15)	/* current max subauths */
 #define	SID_RECOMMENDED_SUB_AUTHORITIES	(1)	/* recommended subauths */
 
 #define SECURITY_MAX_SID_SIZE (sizeof(SID) - sizeof(DWORD) + (SID_MAX_SUB_AUTHORITIES * sizeof(DWORD)))

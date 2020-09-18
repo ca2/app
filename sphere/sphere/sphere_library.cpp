@@ -8,7 +8,7 @@ namespace sphere
    library::library(::layered * pobjectContext) :
       ::object(pobject),
       ::apex::library(pobject, 0, "app"),
-      ::aura::single_application_library < application > (pobject, "app"),
+      ::apex::single_application_library < application > (pobject, "app"),
       ::filehandler::library(pobject),
       ::filehandler::menu_library(pobject)
    {
@@ -74,7 +74,7 @@ namespace sphere
             return new ::filehandler::application();
          }
 
-         return ::aura::single_application_library < application >::get_new_app(pszAppId);
+         return ::apex::single_application_library < application >::get_new_app(pszAppId);
 
       }*/
 

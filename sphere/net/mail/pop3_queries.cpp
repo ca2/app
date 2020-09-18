@@ -25,12 +25,12 @@ int pop3_send (pop3sock_t sock, char* buf, int len){
 #endif
 
 /* enable timeout sockets with 'select' */
-int timedrselect(fd_set *rfds, int MAX, int time){
+int timedrselect(fd_set *rfds, int max, int time){
 struct timeval timeout;
 timeout.tv_sec = time;
 timeout.tv_usec = 0;
 
-   if(select(MAX, rfds, nullptr, nullptr, &timeout) <= 0){
+   if(select(max, rfds, nullptr, nullptr, &timeout) <= 0){
       perror("timeout reached\n");
       return(1);
    }

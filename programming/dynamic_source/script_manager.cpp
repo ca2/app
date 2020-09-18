@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "_.h"
-#include "aura/const/id.h"
+#include "acme/const/id.h"
 #include "aura/user/_user.h"
 
 
@@ -191,7 +191,7 @@ namespace dynamic_source
 
       ::file::listing listing(get_context());
 
-      listing.ls_dir(m_strNetnodePath);
+      Application.dir().ls_dir(listing, m_strNetnodePath);
 
       forallref(listing)
       {
@@ -932,7 +932,7 @@ pinstance->runall(CREATE_PROCEDURE);
 
 
    script_manager::clear_include_matches_file_watcher::clear_include_matches_file_watcher(::layered * pobjectContext) :
-      ::object(pobject)
+      ::object(pobjectContext)
    {
 
    }

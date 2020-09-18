@@ -497,14 +497,14 @@ namespace mysql
       if (iColumnCount > 0)
       {
 
-         iNumFields = MIN(iColumnCount, iNumFields);
+         iNumFields = min(iColumnCount, iNumFields);
 
       }
 
       if (iRowCount > 0)
       {
 
-         iNumRows = MIN(iRowCount, iNumRows);
+         iNumRows = min(iRowCount, iNumRows);
 
       }
 
@@ -797,7 +797,7 @@ namespace mysql
 
       if(strId.is_empty())
       {
-         strId = query_item("SELECT MAX(id) FROM " + strTable + " ORDER BY id");
+         strId = query_item("SELECT max(id) FROM " + strTable + " ORDER BY id");
          if(strId.is_empty())
          {
             strId = string("0000000000000000") + string("0000000000000000") + string("0000000000000000") + string("0000000000000000")

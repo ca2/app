@@ -1802,14 +1802,14 @@ namespace str
          DWORD_PTR lresult = 0;
 auto tickStart = ::tick::now();
 
-         tickTimeout = MAX(10, tickTimeout);
+         tickTimeout = max(10, tickTimeout);
 
          if(!::SendMessageTimeoutW(oswindow,WM_GETTEXTLENGTH,0,0,SMTO_ABORTIFHUNG,__os(tickTimeout),&lresult))
             return "";
 
          wstring wstr;
 
-         tickTimeout = MIN(tickTimeout, MAX(10, (tickStart.elapsed()) - tickTimeout));
+         tickTimeout = min(tickTimeout, max(10, (tickStart.elapsed()) - tickTimeout));
 
          if(!::SendMessageTimeoutW(oswindow,WM_GETTEXT,(LPARAM)wstr.get_string_buffer(lresult + 1),lresult + 1,SMTO_ABORTIFHUNG,__os(tickTimeout),&lresult))
             return "";
@@ -2834,7 +2834,7 @@ auto tickStart = ::tick::now();
       if(uMax < uMin)
       {
 
-         __throw(invalid_argument_exception("MAX should be greater than MIN"));
+         __throw(invalid_argument_exception("max should be greater than min"));
 
       }
 
@@ -2865,13 +2865,13 @@ auto tickStart = ::tick::now();
       if(u < uMin)
       {
 
-         throw_parsing_exception("natural less than MIN");
+         throw_parsing_exception("natural less than min");
 
       }
       else if(u > uMax)
       {
 
-         throw_parsing_exception("natural greater than MAX");
+         throw_parsing_exception("natural greater than max");
 
       }
 

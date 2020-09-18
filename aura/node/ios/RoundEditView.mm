@@ -355,7 +355,7 @@ Heavily leverages an existing CoreText-based editor and merely serves as the "gl
    // Generate IndexedPosition instances that wrap the to and from ranges.
     RoundTextPosition *fromIndexedPosition = (RoundTextPosition *)fromPosition;
     RoundTextPosition *toIndexedPosition = (RoundTextPosition *)toPosition;
-    NSRange range = NSMakeRange(MIN(fromIndexedPosition.index, toIndexedPosition.index), ABS(toIndexedPosition.index - fromIndexedPosition.index));
+    NSRange range = NSMakeRange(min(fromIndexedPosition.index, toIndexedPosition.index), ABS(toIndexedPosition.index - fromIndexedPosition.index));
 
     return [RoundTextRange indexedRangeWithRange:range];
 }

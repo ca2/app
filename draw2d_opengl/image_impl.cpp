@@ -1720,11 +1720,11 @@ namespace draw2d_opengl
    //      {
    //         bMax = 0;
    //         b =(BYTE)(r1[0]  - r2[0]);
-   //         bMax = MAX(b, bMax);
+   //         bMax = max(b, bMax);
    //         b =(BYTE)(r1[1]  - r2[1]);
-   //         bMax = MAX(b, bMax);
+   //         bMax = max(b, bMax);
    //         b =(BYTE)(r1[2]  - r2[2]);
-   //         bMax = MAX(b, bMax);
+   //         bMax = max(b, bMax);
    //         bMax = 255 - bMax;
    //      }
    //      dest[0]  =  bMax;
@@ -1748,12 +1748,12 @@ namespace draw2d_opengl
    //   i32 cx = this->cx;
    //   i32 cy = this->cy;
 
-   //   i32 l = MAX(cx, cy);
+   //   i32 l = max(cx, cy);
 
    //
-   //   i32 jmax = MIN(l, cy / 2);
+   //   i32 jmax = min(l, cy / 2);
    //   i32 jmin = - jmax;
-   //   i32 imax = MIN(l, cx / 2);
+   //   i32 imax = min(l, cx / 2);
    //   i32 imin = - imax;
 
 
@@ -1833,12 +1833,12 @@ namespace draw2d_opengl
    //   i32 cx = this->cx;
    //   i32 cy = this->cy;
 
-   //   i32 l = MAX(cx, cy);
+   //   i32 l = max(cx, cy);
 
    //
-   //   i32 jmax = MIN(l, cy / 2);
+   //   i32 jmax = min(l, cy / 2);
    //   i32 jmin = - jmax;
-   //   i32 imax = MIN(l, cx / 2);
+   //   i32 imax = min(l, cx / 2);
    //   i32 imin = - imax;
 
 
@@ -1913,11 +1913,11 @@ namespace draw2d_opengl
    //   i32 cx = rect.width();
    //   i32 cy = rect.height();
 
-   //   i32 l = MAX(cx, cy);
+   //   i32 l = max(cx, cy);
    //
-   //   i32 jmax = MIN(l, cy / 2);
+   //   i32 jmax = min(l, cy / 2);
    //   i32 jmin = - jmax;
-   //   i32 imax = MIN(l, cx / 2);
+   //   i32 imax = min(l, cx / 2);
    //   i32 imin = - imax;
 
 

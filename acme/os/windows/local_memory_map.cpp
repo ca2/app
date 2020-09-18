@@ -155,7 +155,7 @@ namespace file
    bool memory_map::close()
    {
 
-      sync_lock sl(get_mutex());
+      sync_lock sl(mutex());
 
       if (m_pdata != nullptr)
       {

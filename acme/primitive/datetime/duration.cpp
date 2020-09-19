@@ -48,7 +48,7 @@ duration duration::operator + (const duration & duration) const
 }
 
 
-nanos::nanos(double d)
+nanos::nanos(long double d)
 {
 
    raw_set((i64)(d / (1000.0 * 1000.0 * 1000.0)), (i64)fmod(d, 1000.0 * 1000.0 * 1000.0));
@@ -56,7 +56,7 @@ nanos::nanos(double d)
 }
 
 
-micros::micros(double d)
+micros::micros(long double d)
 {
 
    raw_set((i64)(d / (1000.0 * 1000.0)), (i64)fmod(d * 1000.0, 1000.0 * 1000.0 * 1000.0));
@@ -64,7 +64,7 @@ micros::micros(double d)
 }
 
 
-millis::millis(double d)
+millis::millis(long double d)
 {
 
    raw_set((i64)(d / 1000.0), (i64)fmod(d * 1000 * 1000.0, 1000.0 * 1000.0 * 1000.0));
@@ -113,7 +113,7 @@ void duration::set(i64 i, e_unit eunit)
 
 }
 
-void duration::set(double d, e_unit eunit)
+void duration::set(long double d, e_unit eunit)
 {
 
    switch (eunit)
@@ -145,7 +145,7 @@ void duration::set(double d, e_unit eunit)
 
 
 
-void duration::fset(double d, double dNano)
+void duration::fset(long double d, double dNano)
 {
 
    dNano += fmod(d, 1.0) * 1000.0 * 1000.0 * 1000.0;
@@ -155,7 +155,7 @@ void duration::fset(double d, double dNano)
 }
 
 
-void duration::fset(double d)
+void duration::fset(long double d)
 {
 
    raw_set((i64)floor(d), (i64)(fmod(d, 1.0) * 1'000'000'000.0));

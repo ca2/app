@@ -33,7 +33,7 @@ public:
    ::i64          m_iSeconds;
 
 
-   explicit duration(double dSeconds);
+   explicit duration(long double dSeconds);
    duration(i64 iSeconds = 0, i64 iNanoseconds = 0);
    duration(u64 uSeconds, i64 iNanoseconds = 0) : duration((::i64) uSeconds, iNanoseconds) {}
    duration(i32 iSeconds, i64 iNanoseconds = 0) : duration((::i64) iSeconds, iNanoseconds) {}
@@ -50,12 +50,12 @@ public:
    static inline duration create(i64 iSeconds, i64 iNanoseconds);
    static inline duration create_null();
 
-   void fset(double dSeconds);
-   void fset(double dSeconds, double dNanoseconds);
-   static inline duration fcreate(double dSeconds, double dNanoseconds);
+   void fset(long double dSeconds);
+   void fset(long double dSeconds, double dNanoseconds);
+   static inline duration fcreate(long double dSeconds, double dNanoseconds);
 
    void set(i64 i, e_unit eunit);
-   void set(double d, e_unit eunit);
+   void set(long double d, e_unit eunit);
 
 
    inline i64 get_total_nanoseconds() const;
@@ -99,7 +99,7 @@ public:
    duration operator - (const duration & duration) const;
    duration operator + (const duration & duration) const;
 
-   void sleep();
+   void sleep() const;
 
 };
 
@@ -118,7 +118,7 @@ inline duration::duration(::i64 iSeconds, ::i64 iNanoseconds)
 }
 
 
-inline duration::duration(double dSeconds)
+inline duration::duration(long double dSeconds)
 {
 
    fset(dSeconds);
@@ -175,7 +175,7 @@ inline duration duration::raw_create(i64 iSeconds, i64 iNanoseconds)
 
 
 
-inline duration duration::fcreate(double d, double dNano)
+inline duration duration::fcreate(long double d, double dNano)
 {
 
    duration duration;
@@ -356,7 +356,7 @@ public:
    inline nanos(u64 uNanos) : nanos((::i64)uNanos){}
    inline nanos(i32 iNanos);
    inline nanos(u32 dwNanos);
-   nanos(double dNanos);
+   nanos(long double dNanos);
 
 };
 
@@ -374,7 +374,7 @@ public:
    inline micros(u64 u) :micros((::i64)u) {}
    inline micros(i32 iMicros);
    inline micros(u32 dwMicros);
-   micros(double dMicros);
+   micros(long double dMicros);
 
 };
 
@@ -391,7 +391,7 @@ public:
    inline millis(u64 uiMillis);
    inline millis(i32 iMillis);
    inline millis(u32 dwMillis);
-   millis(double dMillis);
+   millis(long double dMillis);
 
 };
 //
@@ -424,12 +424,13 @@ public:
    inline seconds(u64 u) :seconds((::i64)u) {}
    inline seconds(i32 iSeconds);
    inline seconds(u32 dwSeconds);
-   seconds(double dSeconds);
+   seconds(long double dSeconds);
 
 
 };
 
 inline seconds operator "" _s(unsigned long long int u) { return (::u64) u; }
+inline seconds operator "" _s(long double d) { return d; }
 
 class CLASS_DECL_ACME one_second :
    public duration
@@ -454,7 +455,7 @@ public:
    inline minutes(u64 u) :minutes((::i64)u) {}
    inline minutes(i32 iMinutes);
    inline minutes(u32 dwMinutes);
-   inline minutes(double dMinutes);
+   inline minutes(long double dMinutes);
 
 
 };
@@ -486,7 +487,7 @@ public:
    inline hours(u64 u, int iMinutes = 0, int iSeconds = 0) :hours((::i64)u, iMinutes, iSeconds) {}
    inline hours(i32 iHours, int iMinutes = 0, int iSeconds = 0);
    inline hours(u32 dwHours, int iMinutes = 0, int iSeconds = 0);
-   inline hours(double dHours);
+   inline hours(long double dHours);
 
 
 };
@@ -516,7 +517,7 @@ public:
    inline days(u64 u) :days((::i64)u) {}
    inline days(i32 iDays);
    inline days(u32 dwDays);
-   inline days(double dDays);
+   inline days(long double dDays);
 
 
 };
@@ -613,7 +614,7 @@ inline seconds::seconds(u32 dw) :
 }
 
 
-inline seconds::seconds(double d) :
+inline seconds::seconds(long double d) :
    duration(d)
 {
 
@@ -639,7 +640,7 @@ inline minutes::minutes(u32 dw) :
 
 }
 
-inline minutes::minutes(double d) :
+inline minutes::minutes(long double d) :
    duration(d * 60.0)
 {
 
@@ -663,7 +664,7 @@ inline hours::hours(u32 dwHours, i32 iMinutes, i32 iSeconds) :
 
 }
 
-inline hours::hours(double d) :
+inline hours::hours(long double d) :
    duration(d * 3600.0)
 {
 
@@ -687,7 +688,7 @@ inline days::days(u32 dw) :
 
 }
 
-inline days::days(double d) :
+inline days::days(long double d) :
    duration(d * 86400.0)
 {
 
@@ -699,10 +700,10 @@ inline __time64_t duration::GetTimeSpan() const
 }
 
 
-inline void duration::sleep()
+inline void duration::sleep() const
 {
 
-   ::Sleep(*this);
+   ::sleep(*this);
 
 }
 

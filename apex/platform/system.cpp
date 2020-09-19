@@ -8401,39 +8401,31 @@ string executable_get_app_id(HINSTANCE hinstance)
 
    string strAppId = executable_get_app_id(hinstance);
 
-   if (strAppId.is_empty())
+   if (strAppId.has_char())
    {
 
-      wait_result_callback callback;
+      string strMessage;
 
-      os_message_box("No app id specified.", "Could not open required library.", MB_ICONEXCLAMATION, callback);
+      string strLibrary = strAppId;
 
-      __throw(::exception::exception("No app id specified.\n\nCould not open required library."));
+      strLibrary.replace("/", "_");
 
-      return nullptr;
+      strLibrary.replace("-", "_");
 
-   }
+      auto plibrary = __node_library_open(strLibrary, strMessage);
 
-   string strMessage;
+      if (!plibrary)
+      {
 
-   string strLibrary = strAppId;
+         wait_result_callback callback;
 
-   strLibrary.replace("/", "_");
+         os_message_box(strMessage, "Could not open required library.", MB_ICONEXCLAMATION, callback);
 
-   strLibrary.replace("-", "_");
+         __throw(::exception::exception(strMessage + "\n\nCould not open required library."));
 
-   auto plibrary = __node_library_open(strLibrary, strMessage);
+         return nullptr;
 
-   if (!plibrary)
-   {
-
-      wait_result_callback callback;
-
-      os_message_box(strMessage, "Could not open required library.", MB_ICONEXCLAMATION, callback);
-
-      __throw(::exception::exception(strMessage + "\n\nCould not open required library."));
-
-      return nullptr;
+      }
 
    }
 

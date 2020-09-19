@@ -1453,7 +1453,7 @@ namespace user
       void post_pred(PRED pred)
       {
 
-         post_task(__task_procedure(pred));
+         post_task(__pred_procedure(pred));
 
       }
 

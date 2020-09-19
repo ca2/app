@@ -449,7 +449,7 @@ catch(...)
       if(::is_set(pbase->m_puserinteraction))
       {
 
-         auto iMessage = pbase->m_id;
+         ::i64 iMessage = pbase->m_id;
             //__throw(todo("interaction"));
             //__throw(todo("thread"));
 
@@ -491,26 +491,26 @@ catch(...)
 
          }
 
-         if (iMessage > message_midi_sequence_event)
-         {
+         //if (iMessage > message_midi_sequence_event)
+         //{
 
-            return true;
+         //   return true;
 
-            int iApp = iMessage - WM_APP;
+         //   ::i64 iApp = iMessage - WM_APP;
+
+         //   pbase->m_puserinteraction->message_handler(pbase);
+
+         //}
+         //else
+         //{
+
+         //      //return true;
+         //   //__throw(todo("interaction"));
+         //   //__throw(todo("thread"));
 
             pbase->m_puserinteraction->message_handler(pbase);
 
-         }
-         else
-         {
-
-               //return true;
-            //__throw(todo("interaction"));
-            //__throw(todo("thread"));
-
-            pbase->m_puserinteraction->message_handler(pbase);
-
-         }
+         //}
 
          return true;
 

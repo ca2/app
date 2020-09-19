@@ -307,15 +307,14 @@
       </Command>
     </PostBuildEvent>
     <CustomBuildStep>
-      <Command>$(__archive)\tool-windows\program\app._.exe "aura" "$(OutDir)app.exe" "app_shader" "$(OutDir)$(TargetName).exe"</Command>
+      <Command>
+      </Command>
     </CustomBuildStep>
     <CustomBuildStep>
-      <Outputs>$(OutDir)$(TargetName).exe</Outputs>
+      <Outputs>
+      </Outputs>
     </CustomBuildStep>
-    <CustomBuildStep>
-      <Inputs>$(OutDir)app.exe;$(OutDir)$(TargetName)$(TargetExt)</Inputs>
-      <TreatOutputAsContent>true</TreatOutputAsContent>
-    </CustomBuildStep>
+    <CustomBuildStep />
     <CustomBuildStep />
     <Xdcmake>
       <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
@@ -497,15 +496,14 @@
       </Command>
     </PostBuildEvent>
     <CustomBuildStep>
-      <Command>$(__archive)\tool-windows\program\app._.exe "aura" "$(OutDir)app.exe" "app_shader" "$(OutDir)$(TargetName).exe"</Command>
+      <Command>
+      </Command>
     </CustomBuildStep>
     <CustomBuildStep>
-      <Outputs>$(OutDir)$(TargetName).exe</Outputs>
+      <Outputs>
+      </Outputs>
     </CustomBuildStep>
-    <CustomBuildStep>
-      <Inputs>$(OutDir)app.exe;$(OutDir)$(TargetName)$(TargetExt)</Inputs>
-      <TreatOutputAsContent>true</TreatOutputAsContent>
-    </CustomBuildStep>
+    <CustomBuildStep />
     <CustomBuildStep />
     <Xdcmake>
       <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
@@ -601,17 +599,15 @@
       </Command>
     </PostBuildEvent>
     <CustomBuildStep>
-      <Command>$(__archive)\tool-windows\program\app._.exe "aura" "$(OutDir)app.exe" "app_shader" "$(OutDir)$(TargetName).exe"</Command>
+      <Command>
+      </Command>
     </CustomBuildStep>
     <CustomBuildStep>
-      <Outputs>$(OutDir)$(TargetName).exe</Outputs>
+      <Outputs>
+      </Outputs>
     </CustomBuildStep>
-    <CustomBuildStep>
-      <Inputs>$(OutDir)app.exe;$(OutDir)$(TargetName)$(TargetExt)</Inputs>
-    </CustomBuildStep>
-    <CustomBuildStep>
-      <TreatOutputAsContent>true</TreatOutputAsContent>
-    </CustomBuildStep>
+    <CustomBuildStep />
+    <CustomBuildStep />
     <Xdcmake>
       <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
     </Xdcmake>
@@ -799,14 +795,14 @@
       <PreserveSBR>false</PreserveSBR>
     </Bscmake>
     <CustomBuildStep>
-      <Command>$(__archive)\tool-windows\program\app._.exe "aura" "$(OutDir)app.exe" "app_shader" "$(OutDir)$(TargetName).exe"</Command>
+      <Command>
+      </Command>
     </CustomBuildStep>
     <CustomBuildStep>
-      <Outputs>$(OutDir)$(TargetName).exe</Outputs>
+      <Outputs>
+      </Outputs>
     </CustomBuildStep>
-    <CustomBuildStep>
-      <Inputs>$(OutDir)app.exe;$(OutDir)$(TargetName)$(TargetExt)</Inputs>
-    </CustomBuildStep>
+    <CustomBuildStep />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">
     <PreBuildEvent>
@@ -970,14 +966,14 @@
       <PreserveSBR>false</PreserveSBR>
     </Bscmake>
     <CustomBuildStep>
-      <Command>$(__archive)\tool-windows\program\app._.exe "aura" "$(OutDir)app.exe" "app_shader" "$(OutDir)$(TargetName).exe"</Command>
+      <Command>
+      </Command>
     </CustomBuildStep>
     <CustomBuildStep>
-      <Outputs>$(OutDir)$(TargetName).exe</Outputs>
+      <Outputs>
+      </Outputs>
     </CustomBuildStep>
-    <CustomBuildStep>
-      <Inputs>$(OutDir)app.exe;$(OutDir)$(TargetName)$(TargetExt)</Inputs>
-    </CustomBuildStep>
+    <CustomBuildStep />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
     <PreBuildEvent>
@@ -1063,14 +1059,14 @@
       <PreserveSBR>false</PreserveSBR>
     </Bscmake>
     <CustomBuildStep>
-      <Command>$(__archive)\tool-windows\program\app._.exe "aura" "$(OutDir)app.exe" "app_shader" "$(OutDir)$(TargetName).exe"</Command>
+      <Command>
+      </Command>
     </CustomBuildStep>
     <CustomBuildStep>
-      <Outputs>$(OutDir)$(TargetName).exe</Outputs>
+      <Outputs>
+      </Outputs>
     </CustomBuildStep>
-    <CustomBuildStep>
-      <Inputs>$(OutDir)app.exe;$(OutDir)$(TargetName)$(TargetExt)</Inputs>
-    </CustomBuildStep>
+    <CustomBuildStep />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">
     <PreBuildEvent>

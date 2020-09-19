@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "acme/os/console.h"
 #include <stdio.h>
+#include <conio.h>
 
 
 void std_out_buffer::write(const void * pdata,memsize nCount)
@@ -110,13 +111,8 @@ namespace console
 } // namespace console
 
 
-
-
-
-
 void press_any_key_to_exit(const char * pszPrompt)
 {
-
 
    string strPrompt;
 

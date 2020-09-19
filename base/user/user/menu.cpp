@@ -229,24 +229,7 @@ namespace user
    bool menu::load_xml_menu(const var & varXml)
    {
 
-      destroy_menu();
-
-      if (!add_xml_menu(varXml))
-      {
-
-         return false;
-
-      }
-
-      return true;
-
-   }
-
-
-   bool menu::add_xml_menu(const var & varXml)
-   {
-
-      auto strXml = get_text(varXml, __id(xml));
+      auto strXml = Application.as_string(varXml.get_string());
 
       if (strXml.is_empty())
       {

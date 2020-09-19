@@ -7,7 +7,7 @@
 #include "acme/multithreading/mq.h"
 
 
-mq * get_mq(ITHREAD idthread, bool bCreate);
+CLASS_DECL_ACME mq * get_mq(ITHREAD idthread, bool bCreate);
 
 
 ::mutex * g_pmutexThreadWaitClose = nullptr;

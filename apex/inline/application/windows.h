@@ -5,6 +5,13 @@ i32 WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPTSTR pCmdLi
 
    auto psystem = platform_create_system(hinstance);
 
+   if (!psystem)
+   {
+
+      return -1;
+
+   }
+
    psystem->application_initialize();
 
    application_common(psystem);

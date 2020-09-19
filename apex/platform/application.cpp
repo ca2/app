@@ -11873,6 +11873,26 @@ namespace apex
    }
 
 
+   string application::as_string(const var& var)
+   {
+
+      if (var.get_type() == ::type_string)
+      {
+
+         if (is_url(var))
+         {
+
+            return file().as_string(var.get_file_path());
+
+         }
+
+      }
+
+      return var;
+
+   }
+
+
    string application::sound_path(const char* psz)
    {
 

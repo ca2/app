@@ -6,8 +6,8 @@ class CLASS_DECL_ACME function_base
 public:
 
 
-   ::id                             m_id;
-   __pointer(generic)        m_pobjectTask;
+   ::id                       m_id;
+   __pointer(generic)         m_pobjectTask;
 
 
    function_base(const ::id & id = ::id(), ::generic * p = nullptr) : m_id(id), m_pobjectTask(p) {}

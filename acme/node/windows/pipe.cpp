@@ -223,8 +223,7 @@ namespace windows
 
       plap = plap->from(pOverlapped);
 
-
-      i32 iLimit = min(dwNumberOfBytesTransfered,1024);
+      i32 iLimit = min(dwNumberOfBytesTransfered,1024u);
 
       plap->m_ppipe->m_pchBuf[iLimit] = '\0';
 

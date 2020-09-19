@@ -11,7 +11,7 @@
 #define ALOG_CONTEXT ::trace_object(::trace_category_windowing)
 
 
-mq * get_mq(ITHREAD idthread, bool bCreate);
+CLASS_DECL_ACME mq * get_mq(ITHREAD idthread, bool bCreate);
 
 
 //static oswindow g_oswindowSplash = nullptr;

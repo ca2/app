@@ -152,6 +152,7 @@ enum e_id : u64
    id_hover_font_family_name,
    id_main_title,
    id_calc_os_dark_mode,
+   id_result,
 
 
    //id_title,

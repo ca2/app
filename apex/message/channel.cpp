@@ -318,6 +318,9 @@ __pointer(::mutex) channel::s_pmutexChannel;
    }
 
 
+#ifdef LINUX
+
+
    __pointer(::message::base) channel::get_message_base(void * pevent,::user::interaction * pwnd)
    {
 
@@ -326,6 +329,9 @@ __pointer(::mutex) channel::s_pmutexChannel;
       return nullptr;
 
    }
+
+
+#endif
 
 
    __pointer(::message::base) channel::get_message_base(LPMESSAGE pmsg)

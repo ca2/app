@@ -14,27 +14,31 @@ CLASS_DECL_ACME string message_box_result_to_string(int iResult);
 namespace acme
 {
 
+
    class os_message_box :
       virtual public ::generic
    {
    public:
+
 
       string            m_strText;
       string            m_strTitle;
       ::emessagebox     m_emessagebox;
       ::callback        m_callback;
 
+
       os_message_box(const string & strText, const string & strTitle, ::emessagebox emessagebox, ::callback callback) :
          m_strText(strText), m_strTitle(strTitle), m_emessagebox(emessagebox), m_callback(callback)
       {
 
-
       }
 
-     virtual ~os_message_box()
+
+      virtual ~os_message_box()
       {
 
       }
+
 
       virtual ::estatus run() override
       {
@@ -70,7 +74,9 @@ namespace acme
 
    };
 
-}
+
+} // namespace acme
+
 
 ::estatus os_message_box(const char* pszText, const char* pszTitle, ::emessagebox emessagebox, ::callback callback)
 {
@@ -83,22 +89,20 @@ namespace acme
 
 }
 
-CLASS_DECL_ACME int __assert_failed_line(const char * pszFileName, int iLineNumber)
 
+CLASS_DECL_ACME int __assert_failed_line(const char * pszFileName, int iLineNumber)
 {
 
    return __cpp_assert_failed_line(pszFileName, iLineNumber);
 
-
 }
-
-
 
 
 CLASS_DECL_ACME int __cpp_assert_failed_line(const char * pszFileName, int iLineNumber)
 {
 
    //__throw(todo("thread"));
+
    //thread * pthread = get_thread();
 
    //if(pthread != nullptr)
@@ -111,14 +115,14 @@ CLASS_DECL_ACME int __cpp_assert_failed_line(const char * pszFileName, int iLine
 #ifdef __DEBUG
 
    char szTitle[1024];
+
    char szMessage[1024*4];
 
    strcpy(szTitle, "Assert failed");
 
    sprintf(szMessage,"Assert failed!\n\nFile: %s\nLine: %d\n\nYou can choose to:\n\n\t - \"Cancel\": cancel debugging.\n\t - \"Try\": try debug break where assertion occurred.\n\t - \"Continue\": continue running",pszFileName,iLineNumber);
 
-   os_message_box(szMessage,szTitle,MB_CANCELTRYCONTINUE | MB_ICONERROR, callback());
-
+   os_message_box(szMessage, szTitle, MB_CANCELTRYCONTINUE | MB_ICONERROR);
 
    //if(iResult == IDCANCEL)
    //{
@@ -146,5 +150,6 @@ CLASS_DECL_ACME int __cpp_assert_failed_line(const char * pszFileName, int iLine
    return false;
 
 }
+
 
 

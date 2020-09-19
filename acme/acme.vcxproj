@@ -1165,6 +1165,9 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="graphics\draw2d\color.cpp" />
+    <ClCompile Include="graphics\draw2d\colorref_array.cpp" />
+    <ClCompile Include="graphics\draw2d\_.cpp" />
     <ClCompile Include="include\_.cpp" />
     <ClCompile Include="memory\alloc.cpp" />
     <ClCompile Include="memory\allocate_mid_big.cpp" />
@@ -1316,6 +1319,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="multithreading\thread_impl.cpp" />
     <ClCompile Include="multithreading\thread_os.cpp" />
     <ClCompile Include="multithreading\waitable.cpp" />
+    <ClCompile Include="multithreading\wait_result_callback.cpp" />
     <ClCompile Include="multithreading\_.cpp" />
     <ClCompile Include="node\windows\console.cpp" />
     <ClCompile Include="node\windows\windows_desktop.cpp" />
@@ -1421,6 +1425,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="process\exit_status.cpp" />
     <ClCompile Include="process\bidi_pipe.cpp" />
     <ClCompile Include="process\pipe.cpp" />
+    <ClCompile Include="user\os_colors.cpp" />
     <ClCompile Include="_.cpp" />
     <ClCompile Include="__matter_ca2.cpp" />
     <ClInclude Include="astr.h" />
@@ -1550,6 +1555,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="multithreading\mq.h" />
     <ClInclude Include="multithreading\multi_lock.h" />
     <ClInclude Include="multithreading\mutex.h" />
+    <ClInclude Include="multithreading\pred_callback.h" />
     <ClInclude Include="multithreading\pred_holder.h" />
     <ClInclude Include="multithreading\pred_procedure.h" />
     <ClInclude Include="multithreading\procedure_array.h" />
@@ -1573,6 +1579,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="multithreading\thread_os.h" />
     <ClInclude Include="multithreading\thread_parameter.h" />
     <ClInclude Include="multithreading\tools.h" />
+    <ClInclude Include="multithreading\wait_result_callback.h" />
     <ClInclude Include="multithreading\_.h" />
     <ClInclude Include="multithreading\_impl.h" />
     <ClInclude Include="multithreading\_thread_os_create_impl.h" />

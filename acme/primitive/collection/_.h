@@ -270,9 +270,6 @@ inline string ___type_str()
 #include "acme/primitive/primitive/var.h"
 
 
-#include "acme/platform/pred_callback.h"
-
-
 #include "var_array.h"
 #include "acme/primitive/primitive/property.h"
 

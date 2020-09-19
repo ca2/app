@@ -1442,9 +1442,6 @@
     <ClInclude Include="message\application.h">
       <Filter>Header Files\message</Filter>
     </ClInclude>
-    <ClInclude Include="multithreading\pred_procedure.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\data\_data.h">
       <Filter>Header Files\primitive\data</Filter>
     </ClInclude>
@@ -1480,6 +1477,9 @@
     </ClInclude>
     <ClInclude Include="const\charset.h">
       <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\aaa_pred_procedure.h">
+      <Filter>Header Files\multithreading</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

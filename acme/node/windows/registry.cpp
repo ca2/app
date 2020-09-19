@@ -563,7 +563,7 @@ namespace windows
       nullptr,
       nullptr,
       nullptr);
-      i32 iSize = max(dwMaxSubKeyLen, 1024);
+      i32 iSize = max(dwMaxSubKeyLen, 1024u);
       wchar_t *buf = (wchar_t *) malloc(iSize * 2);
       i32 iKey = 0;
       while(::RegEnumKeyW(m_hkey, iKey, buf, iSize) == ERROR_SUCCESS)

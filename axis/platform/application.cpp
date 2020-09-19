@@ -1456,18 +1456,6 @@ namespace axis
 
       ::aura::application::term_application();
 
-      try
-      {
-
-         close(::apex::e_end_app);
-
-      }
-      catch (...)
-      {
-
-      }
-
-
       //try
       //{
 

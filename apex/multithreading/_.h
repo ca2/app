@@ -23,6 +23,9 @@
 //extern thread_local __pointer(property_set) t_ppropertyset;
 
 
+CLASS_DECL_APEX void main_branch(::generic* pobjectTask, e_priority epriority);
+
+
 property_set& _thread_property_set();
 
 

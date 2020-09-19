@@ -201,6 +201,15 @@
     <Filter Include="Header Files\const">
       <UniqueIdentifier>{fc9f6629-f612-4e8d-bcc6-e33f1b8c4292}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\graphics">
+      <UniqueIdentifier>{7ab1ad1c-4556-49dc-9f10-9f160a23fd40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\draw2d">
+      <UniqueIdentifier>{2f517b06-3fa7-4214-aedc-fe8d6f0fc361}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user">
+      <UniqueIdentifier>{45f9c4ca-9488-48df-a694-8d9bc73dd9c5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -2162,6 +2171,12 @@
     <ClInclude Include="const\timer.h">
       <Filter>Header Files\const</Filter>
     </ClInclude>
+    <ClInclude Include="multithreading\wait_result_callback.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\pred_callback.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">
@@ -3201,6 +3216,21 @@
     </ClCompile>
     <ClCompile Include="node\windows\timer.cpp">
       <Filter>Source Files\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\colorref_array.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\color.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\_.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="user\os_colors.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\wait_result_callback.cpp">
+      <Filter>Source Files\multithreading</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

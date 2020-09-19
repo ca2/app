@@ -500,7 +500,7 @@ auto tickStart = ::tick::now();
             break;
          }
          // Timeout occured on reading 1 byte
-         Sleep(max(100, m_timeout.read_timeout_constant / 10));
+         Sleep(max(100u, m_timeout.read_timeout_constant / 10u));
          if (!::thread_get_run())
          {
             break;

@@ -7,6 +7,7 @@ CLASS_DECL_AURA void aura_ref();
 namespace aura
 {
 
+
    class console
    {
    public:
@@ -15,6 +16,7 @@ namespace aura
       ::estatus m_estatus;
       __pointer(::aura::system) m_psystem;
 
+
       void create_system()
       {
 
@@ -22,13 +24,10 @@ namespace aura
 
          m_psystem = ::move_transfer(platform_create_system(::GetModuleHandle(NULL)));
 
-         //      m_psystem = __new(::aura::system());
-
          m_psystem->console_initialize();
 
-
-
       }
+
 
       void common_construct()
       {

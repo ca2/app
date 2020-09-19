@@ -82,12 +82,12 @@ namespace windows
 
       eopen -= ::file::type_binary;
 
-      //if ((eopen & ::file::defer_create_directory) && (eopen & ::file::mode_write))
-      //{
+      if ((eopen & ::file::defer_create_directory) && (eopen & ::file::mode_write))
+      {
 
-      //   Context.dir().mk(pszFileName.folder());
+         ::dir::mk(pszFileName.folder());
 
-      //}
+      }
 
       m_handleFile = INVALID_HANDLE_VALUE;
       m_path.Empty();
@@ -192,7 +192,7 @@ namespace windows
             if (dwLastError == ERROR_SHARING_VIOLATION && ::thread_get_run() && (tickStart.elapsed()) < m_dwErrorBlockTimeout)
             {
 
-               Sleep(max(m_dwErrorBlockTimeout / 10, 50));
+               Sleep(max(m_dwErrorBlockTimeout / 10u, 50u));
 
                goto retry;
 

@@ -2379,7 +2379,7 @@ inline void callback::receive_response(const var & var) const
 
 
 template < typename PRED >
-procedure::procedure(const ::id& id, PRED pred) : function_base(id, __new(__pred_procedure < PRED >(pred))) { }
+procedure::procedure(const ::id& id, PRED pred) : function_base(id, __pred_procedure(pred)) { }
 template < typename PRED >
 procedure::procedure(PRED pred) : procedure(::id(), pred) { }
 

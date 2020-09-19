@@ -11452,10 +11452,17 @@ namespace base
    void application::close(::apex::enum_end eend)
    {
 
-      if (Session.m_puser && User.document_manager())
+      if (Session.m_puser)
       {
 
-         User.document_manager()->close_all_documents(eend != ::apex::e_end_close);
+         auto pdocumentmanager = User.document_manager();
+
+         if (pdocumentmanager)
+         {
+
+            pdocumentmanager->close_all_documents(eend != ::apex::e_end_close);
+
+         }
 
       }
 

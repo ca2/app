@@ -4127,16 +4127,16 @@ retry_license:
    {
 
 
-      try
-      {
+      //try
+      //{
 
-         close(::apex::e_end_app);
+      //   close(::apex::e_end_app);
 
-      }
-      catch (...)
-      {
+      //}
+      //catch (...)
+      //{
 
-      }
+      //}
 
 
       //try

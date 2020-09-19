@@ -151,9 +151,9 @@ namespace user
    CLASS_DECL_AURA void set_system_dark_mode(bool bDark);
    CLASS_DECL_AURA void set_app_dark_mode(bool bDark);
 #endif
-   CLASS_DECL_AURA bool is_system_dark_mode();
-   CLASS_DECL_AURA bool is_app_dark_mode();
-   CLASS_DECL_AURA void os_update_dark_mode();
+   //CLASS_DECL_AURA bool is_system_dark_mode();
+   //CLASS_DECL_AURA bool is_app_dark_mode();
+   //CLASS_DECL_AURA void os_update_dark_mode();
 
 
 } // namespace user

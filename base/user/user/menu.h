@@ -121,7 +121,7 @@ namespace user
 
       virtual bool load_xml_menu(const var & varXml);
 
-      virtual bool add_xml_menu(const var & varXml);
+      //virtual bool add_xml_menu(const var & varXml);
 
       virtual void update_command(menu_item * pitemParent);
 

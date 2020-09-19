@@ -1432,6 +1432,9 @@ namespace apex
       virtual string get_default_playlist_path();
 
 
+      virtual string as_string(const var& var);
+
+
    };
 
 

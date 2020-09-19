@@ -2660,9 +2660,9 @@ namespace http
 
 } // namespace http
 
-template < typename PRED >  __pointer(::generic) __task_procedure(PRED pred);
+template < typename PRED > inline __pointer(::generic) __pred_procedure(PRED pred);
 
-template < typename PRED > inline __pointer(::generic) __task_callback(PRED pred);
+template < typename PRED > inline __pointer(::generic) __pred_callback(PRED pred);
 
 //class context;
 
@@ -2726,6 +2726,8 @@ namespace core
 #include "acme/primitive/primitive/procedure.h"
 
 #include "acme/primitive/primitive/callback.h"
+
+#include "acme/multithreading/pred_callback.h"
 
 #include "acme/primitive/geometry2d/collection.h"
 

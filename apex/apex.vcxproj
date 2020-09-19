@@ -1324,7 +1324,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="multithreading\delay_thread.h" />
     <ClInclude Include="multithreading\fork.h" />
     <ClInclude Include="multithreading\handler.h" />
-    <ClInclude Include="multithreading\pred_procedure.h" />
+    <ClInclude Include="multithreading\aaa_pred_procedure.h" />
     <ClInclude Include="multithreading\procedure_array.h" />
     <ClInclude Include="multithreading\retry.h" />
     <ClInclude Include="multithreading\retry_multi_lock.h" />

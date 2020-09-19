@@ -11,9 +11,7 @@ public:
    callback(const ::callback& callback) : function_base((const ::function_base &) callback) { }
    callback(const ::function_base& function) : function_base(function) { }
    template < typename PRED >
-   callback(const ::id & id, PRED pred, ::generic * pobjectHold = nullptr) : function_base(id, __new(__pred_callback < PRED >(pred, pobjectHold))) { }
-   template < typename PRED >
-   callback(PRED pred, ::generic* pobjectHold = nullptr) : callback(::id(), pred, pobjectHold) { }
+   callback(const ::id & id, PRED pred, ::generic * pobjectHold = nullptr) : function_base(id, __new(___pred_callback < PRED >(pred, pobjectHold))) { }
 
 
    void receive_response(const var& var) const;

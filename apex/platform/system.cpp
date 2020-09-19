@@ -16,6 +16,7 @@
 //#include "apex/gpu/gpu/_.h"
 ////#endif
 
+
 extern ::apex::system* g_papexsystem;
 
 CLASS_DECL_APEX void apex_generate_random_bytes(void* p, memsize s);
@@ -8374,56 +8375,67 @@ string get_bundle_app_library_name();
 
 #endif
 
+#ifdef WINDOWS_DESKTOP
+string executable_get_app_id(HINSTANCE hinstance)
+{
+
+   return read_resource_as_string(hinstance, 1, "APPID");
+
 }
+#elif defined(__APPLE__)
+
+string executable_get_app_id(HINSTANCE hinstance)
+{
+
+   return get_bundle_app_library_name();
+
+}
+
+#endif
 
 
 ::apex::system* platform_create_system(HINSTANCE hinstance)
 {
 
-#if defined(WINDOWS) && !defined(CUBE)
+#if !defined(CUBE)
 
-   string strLevel = read_resource_as_string(hinstance, 108, "LEVEL");
+   string strAppId = executable_get_app_id(hinstance);
 
-   if (strLevel.has_char())
+   if (strAppId.is_empty())
    {
 
-      string strMessage;
+      wait_result_callback callback;
 
-      auto plibrary = __node_library_open(strLevel, strMessage);
+      os_message_box("No app id specified.", "Could not open required library.", MB_ICONEXCLAMATION, callback);
 
-      if (!plibrary)
-      {
+      __throw(::exception::exception("No app id specified.\n\nCould not open required library."));
 
-         MessageBoxA(NULL, strMessage, "Could not open required library.", MB_ICONEXCLAMATION);
-
-         return nullptr;
-
-      }
+      return nullptr;
 
    }
 
-#elif defined(__APPLE__)
+   string strMessage;
 
-   string strLibraryName = get_bundle_app_library_name();
+   string strLibrary = strAppId;
 
-   if (strLibraryName.has_char())
+   strLibrary.replace("/", "_");
+
+   strLibrary.replace("-", "_");
+
+   auto plibrary = __node_library_open(strLibrary, strMessage);
+
+   if (!plibrary)
    {
 
-      string strMessage;
+      wait_result_callback callback;
 
-      auto plibrary = __node_library_open(strLibraryName, strMessage);
+      os_message_box(strMessage, "Could not open required library.", MB_ICONEXCLAMATION, callback);
 
-      if (!plibrary)
-      {
+      __throw(::exception::exception(strMessage + "\n\nCould not open required library."));
 
-         os_message_box(strMessage, "Could not open required library.", MB_ICONEXCLAMATION);
-
-         return nullptr;
-
-      }
+      return nullptr;
 
    }
-
 
 #endif
 

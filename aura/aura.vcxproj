@@ -1182,7 +1182,6 @@
     <ClCompile Include="user\main_window.cpp" />
     <ClCompile Include="user\message_queue.cpp" />
     <ClCompile Include="user\mouse.cpp" />
-    <ClCompile Include="user\os_colors.cpp" />
     <ClCompile Include="user\plain_edit.cpp" />
     <ClCompile Include="user\plain_text_data.cpp" />
     <ClCompile Include="user\primitive.cpp" />
@@ -1689,7 +1688,6 @@
     <ClCompile Include="graphics\draw2d\bitmap.cpp" />
     <ClCompile Include="graphics\draw2d\brush.cpp" />
     <ClCompile Include="graphics\draw2d\buffered_graphics.cpp" />
-    <ClCompile Include="graphics\draw2d\color.cpp" />
     <ClCompile Include="graphics\draw2d\color_matrix.cpp" />
     <ClCompile Include="graphics\draw2d\cursor.cpp" />
     <ClCompile Include="graphics\draw2d\cursor_set.cpp" />
@@ -1739,7 +1737,6 @@
     <ClCompile Include="graphics\draw2d\pen.cpp" />
     <ClCompile Include="graphics\draw2d\printer.cpp" />
     <ClCompile Include="graphics\draw2d\region.cpp" />
-    <ClCompile Include="graphics\draw2d\rgb_quad_array.cpp" />
     <ClCompile Include="graphics\draw2d\text_box.cpp" />
     <ClCompile Include="graphics\draw2d\thread_tool.cpp" />
     <ClCompile Include="graphics\draw2d\winrt\image_gif.cpp">

@@ -1,9 +1,9 @@
 #pragma once
 
 
-CLASS_DECL_APEX void main_async_runnable(::generic * pobjectTask);
-CLASS_DECL_APEX void main_sync_runnable(::generic * pobjectTask, ::duration durationTimeout = one_minute());
-CLASS_DECL_APEX void main_branch(::generic* pobjectTask, e_priority epriority);
+CLASS_DECL_ACME void main_async_runnable(::generic * pobjectTask);
+CLASS_DECL_ACME void main_sync_runnable(::generic * pobjectTask, ::duration durationTimeout = one_minute());
+CLASS_DECL_ACME void main_branch(::generic* pobjectTask, e_priority epriority);
 
 
 ::estatus run_task(::generic * pobjectTask);

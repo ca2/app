@@ -1,9 +1,8 @@
 #pragma once
 
 
-
 template < typename PRED >
-class __pred_callback :
+class ___pred_callback :
    virtual public ::generic
 {
 public:
@@ -13,14 +12,15 @@ public:
    __pointer(::generic)      m_pobjectHold;
 
 
-   __pred_callback(PRED pred, ::generic* pobjectHold = nullptr) :
+   ___pred_callback(PRED pred, ::generic* pobjectHold = nullptr) :
       m_pred(pred),
       m_pobjectHold(pobjectHold)
    {
 
    }
 
-   virtual ~__pred_callback()
+
+   virtual ~___pred_callback()
    {
 
 
@@ -51,9 +51,9 @@ public:
 
 
 template < typename PRED >
-inline auto __task_callback(PRED pred, ::generic* pobjectHold)
+inline auto __pred_callback(PRED pred, ::generic* pobjectHold = nullptr)
 {
 
-   return __new(__pred_callback < PRED >(pred, pobjectHold));
+   return __new(___pred_callback < PRED >(pred, pobjectHold));
 
 }

@@ -294,7 +294,22 @@ namespace dynamic_source
 #include "acme/os/_c.h"
 #include "acme/memory/heap_c.h"
 
+enum enum_platform_level
+{
 
+   e_platform_level_acme,
+   e_platform_level_apex,
+
+   e_platform_level_aura,
+   e_platform_level_axis,
+   e_platform_level_base,
+   e_platform_level_core,
+
+};
+
+
+CLASS_DECL_ACME void set_platform_level(enum_platform_level eplatformlevel);
+CLASS_DECL_ACME enum_platform_level get_platform_level();
 
 #undef min
 #undef max
@@ -2015,16 +2030,6 @@ namespace str
 
 
 
-namespace draw2d
-{
-
-
-   class graphics;
-
-
-} // namespace draw2d
-
-
 //class random_access_iterator
 //{
 //public:
@@ -2674,6 +2679,11 @@ template < typename PRED > inline __pointer(::generic) __task_callback(PRED pred
 //
 //
 //} // namespace draw2d
+
+
+
+
+
 
 
 //class create_thread;
@@ -3560,6 +3570,13 @@ CLASS_DECL_ACME string get_system_error_message(u32 dwError);
 #include "acme/platform/simple_app.h"
 
 
+typedef void CALL_UPDATE(int iUpdate);
+using PFN_CALL_UPDATE = CALL_UPDATE *;
+
+
+CLASS_DECL_ACME void set_system_call_update(PFN_CALL_UPDATE pfnCallUpdate);
+CLASS_DECL_ACME void system_call_update(int iUpdate);
+
 
 
 
@@ -3829,6 +3846,25 @@ CLASS_DECL_ACME string get_error_string(u64 uiError);
 
 
 #include "acme/multithreading/pred_procedure.h"
+
+
+
+namespace draw2d
+{
+
+
+   class graphics;
+
+
+} // namespace draw2d
+
+
+
+#include "acme/graphics/draw2d/_.h"
+
+
+#include "acme/user/_.h"
+
 
 
 //#include "acme/platform/console_application.h"

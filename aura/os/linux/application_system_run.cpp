@@ -315,20 +315,15 @@ CLASS_DECL_AURA void main_branch(::generic * prunnable, e_priority epriority)
 
 }
 
+void init_x11();
 namespace aura
 {
 
    bool system::init_x11()
    {
 
-      if(!XInitThreads())
-      {
+      ::init_x11();
 
-         return false;
-
-      }
-
-      XSetErrorHandler(_c_XErrorHandler);
 
       return true;
 

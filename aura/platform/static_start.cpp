@@ -1370,7 +1370,10 @@ CLASS_DECL_AURA COLORREF dk_red() // <3 tbs
 void aura_ref()
 {
 
+
    ::aura::aura::g_aura.this_ref();
+   set_platform_level(e_platform_level_aura);
+
 
 }
 

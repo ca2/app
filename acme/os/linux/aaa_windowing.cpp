@@ -2761,78 +2761,7 @@ bool wm_add_remove_list_raw(oswindow w, Atom atomList, Atom atomFlag, bool bSet)
 
 }
 
-__pointer_array(x11_hook) g_x11hooka;
 
-//LPFN_X11_PROCESS_EVENT g_x11processeventa[8];
-
-::estatus x11_hook::hook()
-{
-
-   sync_lock sl(x11_mutex());
-
-   g_x11hooka.add(this);
-
-   return ::success;
-
-}
-
-::estatus x11_hook::unhook()
-{
-
-   sync_lock sl(x11_mutex());
-
-   g_x11hooka.remove(this);
-
-   return ::success;
-
-}
-
-bool __x11_hook_process_event(osdisplay_data * pdisplaydata, XEvent & e, XGenericEventCookie * cookie)
-{
-
-   for(auto & phook : g_x11hooka)
-   {
-
-      if(phook->process_event(pdisplaydata, e, cookie))
-      {
-
-         return true;
-
-      }
-
-   }
-
-   return false;
-
-}
-
-//   for(int i = 0; i < g_cX11; i++)
-//   {
-//
-//      if(g_x11processeventa[i] == pfn)
-//      {
-//
-//         memmove(g_x11processeventa + i, g_x11processeventa + i + 1, g_cX11 - i - 1);
-//
-//         g_cX11--;
-//
-//         return ::success;
-//
-//      }
-//
-//   }
-//
-//   return ::error_failed;
-//
-//}
-
-#if !defined(RASPBIAN)
-bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e, XGenericEventCookie * cookie);
-#else
-bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e);
-#endif
-
-bool __x11_hook_process_event(osdisplay_data * pdisplaydata, XEvent & e);
 
 void x11_post_message(MESSAGE & msg);
 

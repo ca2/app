@@ -1327,7 +1327,10 @@ namespace apex
 void apex_ref()
 {
 
+
    ::apex::apex::g_apex.this_ref();
+   set_platform_level(e_platform_level_apex);
+
 
 }
 

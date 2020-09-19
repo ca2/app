@@ -187,13 +187,13 @@ namespace aura
       if (timeNow.GetHour() >= 6 && timeNow.GetHour() <= 17)
       {
 
-         set_simple_ui_darkness(0);
+         ::set_simple_ui_darkness(0);
 
       }
       else
       {
 
-         set_simple_ui_darkness(255);
+         ::set_simple_ui_darkness(255);
 
       }
 

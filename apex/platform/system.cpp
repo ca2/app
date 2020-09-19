@@ -8374,6 +8374,8 @@ string get_bundle_app_library_name();
 
 #endif
 
+}
+
 
 ::apex::system* platform_create_system(HINSTANCE hinstance)
 {

@@ -7,7 +7,7 @@ namespace userpresence
 
 
    presence::presence(::layered * pobjectContext) :
-      ::object(pobject)
+      ::object(pobjectContext)
    {
 
       m_iShortStatusWayTag = status_online;

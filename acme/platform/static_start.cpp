@@ -9,6 +9,24 @@
 #include "acme/os/_os.h"
 
 
+enum_platform_level g_eplatformlevel = ::e_platform_level_acme;
+
+
+CLASS_DECL_ACME void set_platform_level(enum_platform_level eplatformlevel)
+{
+
+   g_eplatformlevel = eplatformlevel;
+
+}
+
+
+CLASS_DECL_ACME enum_platform_level get_platform_level()
+{
+
+   return g_eplatformlevel;
+
+}
+
 
 void __node_acme_factory_exchange();
 

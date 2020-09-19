@@ -11,24 +11,24 @@
 
 #include "x11_exception.h"
 #include "x11_keyboard.h"
-#include "x11_message_box.h"
-
-class x11_hook :
-virtual public ::generic
-{
-public:
-
-
-
-   virtual bool process_event(osdisplay_data * pdisplaydata, XEvent & e, XGenericEventCookie * cookie);
-
-   ::estatus hook();
-   ::estatus unhook();
-
-
-};
-
-
-
-//::estatus __x11_hook(x11_hook * phook);
-//::estatus __x11_unhook(x11_hook * phook);
+//#include "x11_message_box.h"
+//
+//class x11_hook :
+//virtual public ::generic
+//{
+//public:
+//
+//
+//
+//   virtual bool process_event(osdisplay_data * pdisplaydata, XEvent & e, XGenericEventCookie * cookie);
+//
+//   ::estatus hook();
+//   ::estatus unhook();
+//
+//
+//};
+//
+//
+//
+////::estatus __x11_hook(x11_hook * phook);
+////::estatus __x11_unhook(x11_hook * phook);

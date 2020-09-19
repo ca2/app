@@ -9,7 +9,7 @@
 			<Target title="linux_basis">
 				<Option output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -29,6 +29,9 @@
 					<Add option="-lz" />
 					<Add option="-ldl" />
 					<Add option="-lrt" />
+					<Add option="-lX11" />
+					<Add option="-lXinerama" />
+					<Add option="-lXrender" />
 					<Add option="-lbfd" />
 					<Add option="-lidn" />
 					<Add option="-lpthread" />
@@ -41,7 +44,7 @@
 			<Target title="linux_stage">
 				<Option output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -95,7 +98,7 @@
 			<Target title="memdleak">
 				<Option output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -117,7 +120,7 @@
 			<Target title="arm64_basis">
 				<Option output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -164,7 +167,7 @@
 			<Target title="sanitizers">
 				<Option output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/basis/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/basis/" />
-				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/basis/$(PROJECT_NAME)" />
+				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/intermediate/basis/$(PROJECT_NAME)" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -218,7 +221,7 @@
 			<Target title="freebsd_basis">
 				<Option output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -551,6 +554,10 @@
 			<Option weight="0" />
 		</Unit>
 		<Unit filename="framework_c.h" />
+		<Unit filename="graphics/draw2d/_.h" />
+		<Unit filename="graphics/draw2d/color.cpp" />
+		<Unit filename="graphics/draw2d/color.h" />
+		<Unit filename="graphics/draw2d/colorref_array.h" />
 		<Unit filename="id.h" />
 		<Unit filename="include/_.cpp" />
 		<Unit filename="include/_.h" />
@@ -891,6 +898,16 @@
 		<Unit filename="os/winpr_input.h" />
 		<Unit filename="os/winpr_keycode.cpp" />
 		<Unit filename="os/winpr_scancode.cpp" />
+		<Unit filename="os/x11/_x11.h" />
+		<Unit filename="os/x11/debug.cpp" />
+		<Unit filename="os/x11/x11_exception.h" />
+		<Unit filename="os/x11/x11_hook.cpp" />
+		<Unit filename="os/x11/x11_keyboard.cpp" />
+		<Unit filename="os/x11/x11_keyboard.h" />
+		<Unit filename="os/x11/x11_message_box.cpp" />
+		<Unit filename="os/x11/x11_message_box.h" />
+		<Unit filename="os/x11/x11_windowing.cpp" />
+		<Unit filename="os/x11/x11_xrender.cpp" />
 		<Unit filename="papaya/papaya_zoneing.h" />
 		<Unit filename="platform/_.cpp" />
 		<Unit filename="platform/_features.h" />
@@ -1507,13 +1524,14 @@
 		<Unit filename="process/process_pipe.h" />
 		<Unit filename="process/process_process.h" />
 		<Unit filename="update.h" />
+		<Unit filename="user/_.h" />
+		<Unit filename="user/_const.h" />
+		<Unit filename="user/_const_key.h" />
+		<Unit filename="user/os_colors.cpp" />
 		<Unit filename="user/user/notify_icon.mm" />
 		<Unit filename="user/user/notify_icon_mm_bridge.mm" />
 		<Unit filename="version/version.config.h" />
 		<Unit filename="version/version.h" />
-		<Extensions>
-			<code_completion />
-			<debugger />
-		</Extensions>
+		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

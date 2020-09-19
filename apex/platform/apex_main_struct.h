@@ -12,20 +12,14 @@ namespace apex
 } // namespace apex
 
 
-extern "C" 
+extern "C"
 typedef ::apex::library * NEW_APEX_LIBRARY();
 
 typedef NEW_APEX_LIBRARY * PFN_NEW_APEX_LIBRARY;
 
-extern "C" 
-typedef ::apex::application * NEW_APEX_APPLICATION();
+typedef ::apex::application* NEW_APEX_APPLICATION();
 
-typedef NEW_APEX_APPLICATION * PFN_NEW_APEX_APPLICATION;
-
-
-typedef ::apex::application* __NEW_APEX_APPLICATION();
-
-typedef __NEW_APEX_APPLICATION* __PFN_NEW_APEX_APPLICATION;
+typedef NEW_APEX_APPLICATION* PFN_NEW_APEX_APPLICATION;
 
 
 struct CLASS_DECL_APEX apex_main_struct
@@ -51,8 +45,8 @@ struct CLASS_DECL_APEX apex_main_struct
 
 
    apex_main_struct() { memset(this, 0, sizeof(*this));
-      
-      
+
+
       #if defined(ANDROID) || defined(_UWP) || defined(APPLE_IOS)
 
          m_iMatterFromHttpCache = 1;
@@ -66,10 +60,10 @@ struct CLASS_DECL_APEX apex_main_struct
          m_iMatterFromHttpCache = 0; // 0 = Roaming
 
       #endif
-      
+
    }
 
-   
+
    void application_initialize();
    void console_initialize();
 

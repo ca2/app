@@ -751,7 +751,7 @@ namespace linux
          if (strIcon48.has_char())
          {
 
-            ::image_pointer pimage1 = load_image(strIcon16);
+            ::image_pointer pimage1 = Application.image().load_image(strIcon16);
 
             if (!::is_ok(pimage1))
             {
@@ -760,7 +760,7 @@ namespace linux
 
             }
 
-            ::image_pointer pimage =  load_image(strIcon48);
+            ::image_pointer pimage = Application.image().load_image(strIcon48);
 
             if (!::is_ok(pimage))
             {
@@ -769,7 +769,7 @@ namespace linux
 
             }
 
-            ::image_pointer image16 = __create_image({16, 16});
+            ::image_pointer image16 = create_image({16, 16});
 
             if (!::is_ok(image16))
             {
@@ -778,7 +778,7 @@ namespace linux
 
             }
 
-            ::image_pointer image48 = __create_image({48, 48});
+            ::image_pointer image48 = create_image({48, 48});
 
             if (!::is_ok(image48))
             {

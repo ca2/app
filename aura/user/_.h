@@ -129,11 +129,7 @@ namespace user
    class plain_edit;
    class message_queue;
 
-   CLASS_DECL_AURA COLORREF get_system_app_background_color();
 
-   CLASS_DECL_AURA bool is_system_dark_mode();
-
-   CLASS_DECL_AURA bool is_app_dark_mode();
 
    class plain_text_set_sel_command;
    class plain_text_tree;

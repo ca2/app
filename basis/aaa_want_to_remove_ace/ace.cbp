@@ -9,7 +9,7 @@
 			<Target title="basis">
 				<Option output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).a" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="" />
-				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
 				<Option type="2" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -28,7 +28,7 @@
 			<Target title="stage">
 				<Option output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).a" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="" />
-				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
 				<Option type="2" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -49,7 +49,7 @@
 			<Target title="arm64_basis">
 				<Option output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/libace.a" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="" />
-				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
 				<Option type="2" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />

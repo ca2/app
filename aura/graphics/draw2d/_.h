@@ -60,21 +60,6 @@ class image_map;
 class image_array;
 
 
-CLASS_DECL_AURA COLORREF make_colorref(i32 a, i32 rect, i32 g, i32 b);
-
-
-inline byte clampAndConvert(double v)
-{
-
-
-   if (v < 0)
-      return 0;
-   if (v > 255)
-      return 255;
-   return (byte)(v);
-
-
-}
 
 
 #include "fwd.h"
@@ -82,9 +67,9 @@ inline byte clampAndConvert(double v)
 
 #include "common.h"
 #include "matrix.h"
-#include "color.h"
+//#include "color.h"
 #include "color_matrix.h"
-#include "colorref_array.h"
+//#include "colorref_array.h"
 
 
 #include "_image.h"

@@ -1,7 +1,6 @@
 #undef new
 
 
-
 void* MEMORY_DECL operator new(size_t nSize)
 {
 

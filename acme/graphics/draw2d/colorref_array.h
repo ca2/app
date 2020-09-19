@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA colorref_array :
+class CLASS_DECL_ACME colorref_array :
    virtual public numeric_array < COLORREF >
 {
 public:

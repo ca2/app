@@ -7,7 +7,7 @@ namespace userpresence
 
    class CLASS_DECL_CORE department :
       virtual public ::apex::department,
-      virtual public ::aura::timer_array
+      virtual public ::apex::timer_array
    {
    public:
 
@@ -35,7 +35,7 @@ namespace userpresence
 
       virtual void _001OnTimer(::timer * ptimer) override;
 
-      
+
       bool on_ui_mouse_message(::user::mouse * pmouse);
 
 

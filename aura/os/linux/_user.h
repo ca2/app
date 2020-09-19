@@ -33,10 +33,10 @@ e_net_wm_state net_wm_state(const char * pszText);
 const char * net_wm_state_text(e_net_wm_state estate);
 
 
-CLASS_DECL_AURA int xinerama_get_monitor_count();
-CLASS_DECL_AURA int xinerama_get_monitor_rect(index i, RECT * prect);
+CLASS_DECL_ACME int xinerama_get_monitor_count();
+CLASS_DECL_ACME int xinerama_get_monitor_rect(index i, RECT * prect);
 
-CLASS_DECL_AURA int xinerama_get_screen_size(int& width, int& height);
+CLASS_DECL_ACME int xinerama_get_screen_size(int& width, int& height);
 
 
 int best_xinerama_monitor(::user::interaction * pinteraction, RECT * prectRet);

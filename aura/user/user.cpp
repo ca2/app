@@ -835,36 +835,3 @@ namespace user
 } // namespace user
 
 
-
-
-static int g_iWeatherDarkness = 0;
-
-
-CLASS_DECL_AURA int get_simple_ui_darkness()
-{
-
-   return g_iWeatherDarkness;
-
-}
-
-
-CLASS_DECL_AURA void set_simple_ui_darkness(int iWeatherDarkness)
-{
-
-   g_iWeatherDarkness = iWeatherDarkness;
-
-}
-
-
-
-COLORREF argb_swap_rb(COLORREF cr)
-{
-   return ARGB(
-      colorref_get_a_value(cr),
-      colorref_get_b_value(cr),
-      colorref_get_g_value(cr),
-      colorref_get_r_value(cr));
-}
-
-
-

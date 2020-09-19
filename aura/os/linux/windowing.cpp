@@ -2,6 +2,7 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
 #endif
+#include "acme/os/x11/_x11.h"
 #include "_linux.h"
 #include "acme/const/id.h"
 #include "acme/const/message.h"
@@ -153,10 +154,7 @@ int g_fdX11[2] = {};
 WINBOOL _x11_get_cursor_pos(Display * d, LPPOINT ppointCursor);
 
 
-::mutex * g_pmutexX11 = nullptr;
 
-
-mutex * x11_mutex() {return g_pmutexX11;}
 
 //int get_best_ordered_monitor(::user::interaction * pinteraction, int & l, int & t, int & cx, int & cy);
 //int get_best_monitor(::user::interaction * pinteraction, int & l, int & t, int & cx, int & cy);
@@ -2795,25 +2793,26 @@ __pointer_array(x11_hook) g_x11hooka;
 
 }
 
-bool __x11_hook_process_event(osdisplay_data * pdisplaydata, XEvent & e, XGenericEventCookie * cookie)
-{
-
-   for(auto & phook : g_x11hooka)
-   {
-
-      if(phook->process_event(pdisplaydata, e, cookie))
-      {
-
-         return true;
-
-      }
-
-   }
-
-   return false;
-
-}
-
+//
+//bool __x11_hook_process_event(osdisplay_data * pdisplaydata, XEvent & e, XGenericEventCookie * cookie)
+//{
+//
+//   for(auto & phook : g_x11hooka)
+//   {
+//
+//      if(phook->process_event(pdisplaydata, e, cookie))
+//      {
+//
+//         return true;
+//
+//      }
+//
+//   }
+//
+//   return false;
+//
+//}
+//
 //   for(int i = 0; i < g_cX11; i++)
 //   {
 //
@@ -2840,7 +2839,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e, XGenericEventC
 bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e);
 #endif
 
-bool __x11_hook_process_event(osdisplay_data * pdisplaydata, XEvent & e);
+//bool __x11_hook_process_event(osdisplay_data * pdisplaydata, XEvent & e);
 
 void x11_post_message(MESSAGE & msg);
 
@@ -3046,7 +3045,7 @@ void x11_thread(osdisplay_data * pdisplaydata)
 
                XNextEvent(pdisplay, &e);
 
-               if(!__x11_hook_process_event(pdisplaydata, e, cookie))
+               if(!__x11_hook_process_event(pdisplaydata->display(), e, cookie))
                {
 
 #if !defined(RASPBIAN)
@@ -4574,8 +4573,6 @@ int_bool os_init_windowing()
 
    pipe(g_fdX11);
 
-   g_pmutexX11 = new ::mutex();
-
    g_pmutexX11Runnable = new ::mutex();
 
    g_prunnableptrlX11 = new list < __pointer(::generic) >();
@@ -5401,10 +5398,6 @@ void os_menu_item_check(void * pitem, bool bCheck)
 
 
 
-bool x11_hook::process_event(osdisplay_data * pdisplaydata, XEvent & e, XGenericEventCookie * cookie)
-{
-return false;
-}
 
 
 oswindow GetParent(oswindow oswindow)

@@ -52,25 +52,3 @@
 //
 //
 //
-
-const char * g_pszMainAppId = nullptr;
-
-
-
-CLASS_DECL_AURA ::estatus set_main_app_id(const char * pszAppId)
-{
-
-   g_pszMainAppId = pszAppId;
-
-   return ::success;
-
-}
-
-
-
-CLASS_DECL_AURA const char * get_main_app_id()
-{
-
-   return g_pszMainAppId;
-
-}

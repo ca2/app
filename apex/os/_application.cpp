@@ -1,28 +1,13 @@
 #include "framework.h"
 
 
-
-__PFN_NEW_APEX_APPLICATION __g_pfnNewAuraApplication = nullptr;
-
-
 PFN_NEW_APEX_APPLICATION g_pfnNewAuraApplication = nullptr;
 
 
-extern "C"
-::apex::application * __apex_application_factory()
+::apex::application * new_apex_application()
 {
 
-   return __g_pfnNewAuraApplication();
-
-}
-
-
-void __set_apex_application_factory(__PFN_NEW_APEX_APPLICATION pfnNewAuraApplication)
-{
-
-   __g_pfnNewAuraApplication = pfnNewAuraApplication;
-
-   g_pfnNewAuraApplication = &__apex_application_factory;
+   return g_pfnNewAuraApplication();
 
 }
 
@@ -35,14 +20,6 @@ void set_apex_application_factory(PFN_NEW_APEX_APPLICATION pfnNewAuraApplication
 }
 
 
-__PFN_NEW_APEX_APPLICATION __get_apex_application_factory()
-{
-
-   return __g_pfnNewAuraApplication;
-
-}
-
-
 PFN_NEW_APEX_APPLICATION get_apex_application_factory()
 {
 
@@ -51,6 +28,25 @@ PFN_NEW_APEX_APPLICATION get_apex_application_factory()
 }
 
 
+const char * g_pszMainAppId = nullptr;
+
+
+CLASS_DECL_APEX ::estatus set_main_app_id(const char * pszAppId)
+{
+
+   g_pszMainAppId = pszAppId;
+
+   return ::success;
+
+}
+
+
+CLASS_DECL_APEX const char * get_main_app_id()
+{
+
+   return g_pszMainAppId;
+
+}
 
 
 

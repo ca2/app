@@ -1,5 +1,8 @@
 #include "framework.h"
 #include <stdio.h>
+#ifdef LINUX
+#include "acme/os/x11/_x11.h"
+#endif
 
 
 CLASS_DECL_ACME int __cpp_assert_failed_line(const char * pszFileName, int iLineNumber);
@@ -38,19 +41,21 @@ namespace acme
 
          int iMessageBox = m_emessagebox.m_eenum & 0x7f;
 
-         wstring wstrText(m_strText);
-
-         wstring wstrTitle(m_strTitle);
-
          int iResult = 0;
 
 #ifdef WINDOWS_DESKTOP
 
+         wstring wstrText(m_strText);
+
+         wstring wstrTitle(m_strTitle);
+
          iResult = ::MessageBox(nullptr, wstrText, wstrTitle, iMessageBox);
 
-#else
+#elif defined(LINUX)
 
-         __throw(todo("message_box"));
+         x11_message_box(m_strText, m_strTitle, m_emessagebox, m_callback);
+
+         return ::success;
 
 #endif
 

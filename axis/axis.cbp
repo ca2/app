@@ -9,7 +9,7 @@
 			<Target title="linux_basis">
 				<Option output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -32,11 +32,11 @@
 					<Add option="-lidn" />
 					<Add option="-lpthread" />
 					<Add option="-lncurses" />
-					<Add option="-lssl" />
-					<Add option="-lcrypto" />
 					<Add option="-lpcre2-8" />
 					<Add option="-lsqlite3" />
 					<Add option="-lsn" />
+					<Add option="-lacme" />
+					<Add option="-lapex" />
 					<Add option="-laura" />
 					<Add option="`pkg-config --libs glib-2.0 gtk+-3.0 gdk-3.0 appindicator3-0.1`" />
 					<Add option="-Wl,-z,defs" />
@@ -52,7 +52,7 @@
 			<Target title="linux_stage">
 				<Option output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -106,7 +106,7 @@
 			<Target title="memdleak">
 				<Option output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -128,7 +128,7 @@
 			<Target title="arm64_basis">
 				<Option output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -174,7 +174,7 @@
 			<Target title="sanitizers">
 				<Option output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/basis/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/basis/" />
-				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/basis/$(PROJECT_NAME)" />
+				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/intermediate/basis/$(PROJECT_NAME)" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -314,6 +314,7 @@
 		<Unit filename="const/check.h" />
 		<Unit filename="const/context.h" />
 		<Unit filename="const/id.h" />
+		<Unit filename="const/idpool.cpp" />
 		<Unit filename="const/idpool.h" />
 		<Unit filename="const/impact.h" />
 		<Unit filename="const/message.h" />
@@ -640,9 +641,21 @@
 		<Unit filename="os/x11/x11.h" />
 		<Unit filename="os/x11/x11_exception.h" />
 		<Unit filename="os/x11/x11_keyboard.h" />
-		<Unit filename="pcre/pcre.cpp" />
-		<Unit filename="pcre/pcre.h" />
-		<Unit filename="pcre/pcre_util.h" />
+		<Unit filename="pcre/_.h" />
+		<Unit filename="pcre/_pcre.h" />
+		<Unit filename="pcre/code.cpp" />
+		<Unit filename="pcre/code.h" />
+		<Unit filename="pcre/code_impl.cpp" />
+		<Unit filename="pcre/code_impl.h" />
+		<Unit filename="pcre/context.cpp" />
+		<Unit filename="pcre/context.h" />
+		<Unit filename="pcre/context_impl.cpp" />
+		<Unit filename="pcre/context_impl.h" />
+		<Unit filename="pcre/regex.cpp" />
+		<Unit filename="pcre/regex.h" />
+		<Unit filename="pcre/system.cpp" />
+		<Unit filename="pcre/util_impl.cpp" />
+		<Unit filename="pcre/util_impl.h" />
 		<Unit filename="platform/_features.h" />
 		<Unit filename="platform/_impl.h" />
 		<Unit filename="platform/_platform.h" />
@@ -681,51 +694,6 @@
 		<Unit filename="user/validate.h" />
 		<Unit filename="version/version.config.h" />
 		<Unit filename="version/version.h" />
-		<Unit filename="xml/_.h" />
-		<Unit filename="xml/_from.cpp" />
-		<Unit filename="xml/_impl.h" />
-		<Unit filename="xml/attr.cpp" />
-		<Unit filename="xml/attr.h" />
-		<Unit filename="xml/base_array.cpp" />
-		<Unit filename="xml/base_array.h" />
-		<Unit filename="xml/data.cpp" />
-		<Unit filename="xml/data.h" />
-		<Unit filename="xml/department.h" />
-		<Unit filename="xml/disp_option.cpp" />
-		<Unit filename="xml/disp_option.h" />
-		<Unit filename="xml/document.cpp" />
-		<Unit filename="xml/document.h" />
-		<Unit filename="xml/edit.cpp" />
-		<Unit filename="xml/edit.h" />
-		<Unit filename="xml/entity.cpp" />
-		<Unit filename="xml/entity.h" />
-		<Unit filename="xml/enum.h" />
-		<Unit filename="xml/exportable.cpp" />
-		<Unit filename="xml/exportable.h" />
-		<Unit filename="xml/glue.h" />
-		<Unit filename="xml/importable.cpp" />
-		<Unit filename="xml/importable.h" />
-		<Unit filename="xml/input_tree.cpp" />
-		<Unit filename="xml/input_tree.h" />
-		<Unit filename="xml/node.cpp" />
-		<Unit filename="xml/node.h" />
-		<Unit filename="xml/output_tree.cpp" />
-		<Unit filename="xml/output_tree.h" />
-		<Unit filename="xml/parse_info.cpp" />
-		<Unit filename="xml/parse_info.h" />
-		<Unit filename="xml/property_exchange.cpp" />
-		<Unit filename="xml/property_exchange.h" />
-		<Unit filename="xml/smart_pointer_array.h" />
-		<Unit filename="xml/stream.h" />
-		<Unit filename="xml/tree_base.cpp" />
-		<Unit filename="xml/tree_base.h" />
-		<Unit filename="xml/tree_schema.cpp" />
-		<Unit filename="xml/tree_schema.h" />
-		<Unit filename="xml/var_exchange.cpp" />
-		<Unit filename="xml/var_exchange.h" />
-		<Unit filename="xml/xml.cpp" />
-		<Unit filename="xml/xmlite.cpp" />
-		<Unit filename="xml/xmlite.h" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

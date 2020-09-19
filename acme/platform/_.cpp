@@ -524,9 +524,23 @@ extern "C"
 //
 //}
 
+PFN_CALL_UPDATE g_pfnCallUpdateSystem = nullptr;
+
+void set_system_call_update(PFN_CALL_UPDATE pfnCallUpdate)
+{
+
+   g_pfnCallUpdateSystem = pfnCallUpdate;
+
+}
 
 void system_call_update(int iUpdate)
 {
    
+   if(g_pfnCallUpdateSystem)
+   {
+
+      g_pfnCallUpdateSystem(iUpdate);
+
+   }
    
 }

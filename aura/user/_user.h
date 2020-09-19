@@ -7,10 +7,6 @@
 #include "aura/platform/_platform.h"
 
 
-CLASS_DECL_AURA int get_simple_ui_darkness();
-CLASS_DECL_AURA void set_simple_ui_darkness(int iDarkness);
-CLASS_DECL_AURA color get_simple_ui_color(::user::e_element eelement, ::user::estate estate = ::user::e_state_none);
-CLASS_DECL_AURA COLORREF argb_swap_rb(COLORREF cr);
 
 
 #define SWP_CHANGEVIEWPORTOFFSET  0x100000

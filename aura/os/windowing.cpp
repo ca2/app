@@ -218,49 +218,7 @@ CLASS_DECL_AURA string message_box_result_to_string(int iResult)
 }
 
 
-CLASS_DECL_AURA color get_simple_ui_color(::user::e_element eelement, ::user::estate estate)
-{
 
-   ::color color;
-
-   if(eelement == ::user::element_background)
-   {
-
-      if (::user::is_app_dark_mode())
-      {
-
-         color = ARGB(255, 0x50, 0x50, 0x58);
-
-      }
-      else
-      {
-
-         color = ARGB(255, 0xcd, 0xcd, 0xc8);
-
-      }
-
-   }
-   else
-   {
-
-      if (::user::is_app_dark_mode())
-      {
-
-         color = ARGB(255, 255, 255, 255);
-
-      }
-      else
-      {
-
-         color = ARGB(255, 49, 50, 42);
-
-      }
-
-   }
-
-   return color;
-
-}
 
 
 

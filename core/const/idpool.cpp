@@ -2,8 +2,6 @@
 #include "idpool.h"
 #include "aura/platform/static_start.h"
 
-//
-//idpool * idpool::g_p = nullptr;
 
 namespace core
 {

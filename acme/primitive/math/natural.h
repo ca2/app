@@ -183,3 +183,30 @@ t min_non_null(const t & t1, const t & t2)
       return t2;
    }
 }
+
+
+
+template < typename T, typename L, typename H >
+constexpr auto min_max(T t, L l, H h)
+{
+
+   if (t < (T)l)
+   {
+
+      return (T) l;
+
+   }
+   else if (t < (T)h)
+   {
+
+      return h;
+
+   }
+   else
+   {
+
+      return t;
+
+   }
+
+}

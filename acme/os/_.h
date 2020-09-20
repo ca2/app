@@ -69,6 +69,9 @@ namespace str
 //CLASS_DECL_ACME void defer_dock_application(int_bool bDock);
 
 
+CLASS_DECL_ACME string executable_get_app_id(HINSTANCE hinstance);
+
+
 CLASS_DECL_ACME string get_current_login_name();
 
 

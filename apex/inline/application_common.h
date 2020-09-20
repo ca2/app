@@ -185,7 +185,7 @@ public:
 #endif
 
 
-#ifdef MAINAPPID
+#ifdef MAIN_APP_ID
 
 
 inline string executable_get_app_id()

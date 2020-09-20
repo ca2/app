@@ -8394,12 +8394,12 @@ string executable_get_app_id(HINSTANCE hinstance)
 #endif
 
 
-::apex::system* platform_create_system(HINSTANCE hinstance)
+::apex::system* platform_create_system(const char * pszAppId)
 {
 
 #if !defined(CUBE)
 
-   string strAppId = executable_get_app_id(hinstance);
+   string strAppId(pszAppId);
 
    if (strAppId.has_char())
    {

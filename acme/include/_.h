@@ -1467,23 +1467,6 @@ namespace colorertake5
 class memory;
 
 
-//CLASS_DECL_ACME ::acme::system* platform_create_system(HINSTANCE hinstance);
-//CLASS_DECL_ACME ::acme::session* platform_create_session();
-
-
-//namespace plane
-//{
-//
-//   class session;
-//   class system;
-//   //class cube;
-//
-//
-//} // namespace plane
-
-
-
-
 #define SECOND_NANOS 1000000000
 
 

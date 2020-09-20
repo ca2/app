@@ -18,7 +18,11 @@ namespace apex
 
          apex_ref();
 
-         m_psystem = ::move_transfer(platform_create_system(::GetModuleHandle(NULL)));
+         HINSTANCE hinstance = ::GetModuleHandle(NULL);
+
+         string strAppId = executable_get_app_id(hinstance);
+
+         m_psystem = ::move_transfer(platform_create_system(strAppId));
 
          m_psystem->console_initialize();
 

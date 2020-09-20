@@ -3,27 +3,27 @@
 
 #ifdef LINUX
 
-#include "console/linux.h"
+#include "apex/inline/console/linux.h"
 
 #elif defined(_UWP)
 
-#include "console/uwp.h"
+#include "apex/inline/console/uwp.h"
 
 #elif defined(WINDOWS)
 
-#include "console/windows.h"
+#include "apex/inline/console/windows.h"
 
 #elif defined(MACOS)
 
-#include "console/macos.h"
+#include "apex/inline/console/macos.h"
 
 #elif defined(ANDROID)
 
-#include "console/android.h"
+#include "apex/inline/console/android.h"
 
 #else
 
-#error "console/---->platform_name<---- not implemented" 
+#include "apex/inline/console/---->platform_name<---- not implemented"
 
 #endif
 

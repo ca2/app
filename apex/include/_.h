@@ -1367,7 +1367,7 @@ namespace colorertake5
 class memory;
 
 
-CLASS_DECL_APEX ::apex::system* platform_create_system(HINSTANCE hinstance);
+CLASS_DECL_APEX ::apex::system* platform_create_system(const char * pszAppId);
 CLASS_DECL_APEX ::apex::session* platform_create_session();
 
 

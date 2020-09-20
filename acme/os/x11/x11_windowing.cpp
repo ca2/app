@@ -649,6 +649,8 @@ void simple_ui_display::on_expose()
 
    x11_defer_handle_just_hooks();
 
+   return ::success;
+
 }
 
 

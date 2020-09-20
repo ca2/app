@@ -309,5 +309,23 @@ string get_thread_name(HTHREAD hthread);
 CLASS_DECL_APEX void __post_quit_message(i32 nExitCode);
 
 
+template < typename PRED >
+inline void main_async(PRED pred, e_priority epriority = priority_normal)
+{
+
+   async_pred(&main_branch, pred, epriority);
+
+}
+
+
+template < typename PRED >
+inline void main_sync(PRED pred, ::duration durationTimeout = one_minute(), e_priority epriority = priority_normal)
+{
+
+   sync_pred(&main_branch, pred, durationTimeout, epriority);
+
+}
+
+
 
 

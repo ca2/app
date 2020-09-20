@@ -23,7 +23,7 @@
 
 #else
 
-#error "console/---->platform_name<---- not implemented" 
+#error "console/---->platform_name<---- not implemented"
 
 #endif
 
@@ -44,8 +44,6 @@
 
 
 #endif
-
-
 
 
 #include "apex/_defer.h"

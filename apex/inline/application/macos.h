@@ -25,7 +25,7 @@ int main(int argc, char * argv[])
 
    //}
 
-   auto psystem = platform_create_system(nullptr);
+   auto psystem = platform_create_system(apple_get_bundle_id());
 
    psystem->application_initialize();
 

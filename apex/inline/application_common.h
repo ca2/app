@@ -121,7 +121,7 @@ void application_common(::apex::system * psystem)
 //  psystem->set_factory_exchange("draw2d", &draw2d_factory_exchange);
 //
 //#endif
-//  
+//
 //#endif
 //
 //#ifndef NO_IMAGING
@@ -181,6 +181,33 @@ public:
 #ifdef WINDOWS_DESKTOP
 
 #pragma comment(lib, "Dxva2.lib")
+
+#endif
+
+
+
+
+#ifdef MAINAPPID
+
+
+inline string executable_get_app_id()
+{
+
+   return MAIN_APP_ID;
+
+}
+
+
+#else
+
+
+inline string executable_get_app_id()
+{
+
+   return "";
+
+}
+
 
 #endif
 

@@ -210,3 +210,30 @@ public:
 
 
 
+
+#ifdef MAINAPPID
+
+
+inline string executable_get_app_id()
+{
+
+   return MAIN_APP_ID;
+
+}
+
+
+#else
+
+
+inline string executable_get_app_id()
+{
+
+   return "";
+
+}
+
+
+#endif
+
+
+

@@ -100,9 +100,7 @@
 			<Add option="-Wl,-z,defs" />
 			<Add directory="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 		</Linker>
-		<ExtraCommands>
-			<Add before="../../platform-linux/stage/prepare_framework_h.sh $(PROJECT_DIR) $(TARGET_OBJECT_DIR)" />
-		</ExtraCommands>
+
 		<Unit filename="asphere/asphere.h" />
 		<Unit filename="asphere/asphere_application.h" />
 		<Unit filename="calculator/calculator.h" />

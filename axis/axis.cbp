@@ -43,11 +43,7 @@
 					<Add directory="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 					<Add directory="$(#archive)/storage-linux/third/library/x64/" />
 				</Linker>
-				<ExtraCommands>
-					<Add before="../../platform-linux/stage/prepare_framework_h.sh $(PROJECT_DIR) $(TARGET_OBJECT_DIR)" />
-					<Add before="mkdir -p $(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-					<Add before="cp -Rf $(#archive)/storage-linux/third/library/x64/* $(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				</ExtraCommands>
+
 			</Target>
 			<Target title="linux_stage">
 				<Option output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />

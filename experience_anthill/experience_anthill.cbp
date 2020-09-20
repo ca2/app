@@ -101,9 +101,7 @@
 			<Add option="-Wl,-z,defs" />
 			<Add directory="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 		</Linker>
-		<ExtraCommands>
-			<Add before="../../platform-linux/stage/prepare_framework_h.sh $(PROJECT_DIR) $(TARGET_OBJECT_DIR)" />
-		</ExtraCommands>
+
 		<Unit filename="and_experience_anthill.vcxproj" />
 		<Unit filename="button.cpp" />
 		<Unit filename="button.h" />

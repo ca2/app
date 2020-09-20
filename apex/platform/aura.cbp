@@ -258,9 +258,7 @@
 		<Linker>
 			<Add directory="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 		</Linker>
-		<ExtraCommands>
-			<Add before="../../platform-linux/stage/prepare_framework_h.sh $(PROJECT_DIR) $(TARGET_OBJECT_DIR)" />
-		</ExtraCommands>
+
 		<Unit filename="Header.h" />
 		<Unit filename="_.h" />
 		<Unit filename="_app_common_impl.h" />

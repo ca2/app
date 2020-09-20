@@ -3,31 +3,31 @@
 
 #ifdef LINUX
 
-#include "application/linux.h"
+#include "apex/inline/application/linux.h"
 
 #elif defined(_UWP)
 
-#include "application/uwp.h"
+#include "apex/inline/application/uwp.h"
 
 #elif defined(WINDOWS)
 
-#include "application/windows.h"
+#include "apex/inline/application/windows.h"
 
 #elif defined(MACOS)
 
-#include "application/macos.h"
+#include "apex/inline/application/macos.h"
 
 #elif defined(ANDROID)
 
-#include "application/android.h"
+#include "apex/inline/application/android.h"
 
 #elif defined(APPLE_IOS)
 
-#include "application/ios.h"
+#include "apex/inline/application/ios.h"
 
 #else
 
-#error "application/---->platform_name<---- not implemented"
+#error "apex/inline/application/---->platform_name<---- not implemented"
 
 #endif
 

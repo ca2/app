@@ -379,54 +379,57 @@ namespace sockets
 
       }
 
-      //string strOrigin = inheader("origin");
+      string strOrigin = inheader("origin");
 
-      //if (!strOrigin.ends_ci("/ca2.cc") && !strOrigin.ends_ci(".ca2.cc"))
-      //{
-
-      //   strOrigin = "https://server.ca2.cc";
-      //   //strOrigin = "*";
-
-      //}
-
-      //if(strExtension == "ttf")
-      //{
-      //   outheader("access-control-allow-origin") = strOrigin;
-      //   //outheader("vary") = "origin";
-      //}
-      //else if(strExtension == "otf")
-      //{
-      //   outheader("access-control-allow-origin") = strOrigin;
-      //   //outheader("vary") = "origin";
-      //}
-      //else if(strExtension == "woff")
-      //{
-      //   outheader("access-control-allow-origin") = strOrigin;
-      //   //outheader("vary") = "origin";
-      //}
-      //else if (strExtension == "woff2")
-      //{
-      //   outheader("access-control-allow-origin") = strOrigin;
-      //   //outheader("vary") = "origin";
-      //}
-
-      if(!file_exists(pcsz))
-
+      if (strOrigin.ends_ci("/ca2.cc") && strOrigin.ends_ci(".ca2.cc"))
       {
-         if (::dir::is(pcsz))
+
+         //string strOrigin = "*.ca2.cc";
+
+         if (strExtension == "ttf")
+         {
+            outheader("access-control-allow-origin") = strOrigin;
+            outheader("vary") = "origin";
+         }
+         else if (strExtension == "otf")
+         {
+            outheader("access-control-allow-origin") = strOrigin;
+            outheader("vary") = "origin";
+         }
+         else if (strExtension == "woff")
+         {
+            outheader("access-control-allow-origin") = strOrigin;
+            outheader("vary") = "origin";
+         }
+         else if (strExtension == "woff2")
+         {
+            outheader("access-control-allow-origin") = strOrigin;
+            outheader("vary") = "origin";
+         }
+
+      }
+
+
+         if (!file_exists(pcsz))
 
          {
-            outattr(__id(http_status_code)) = 200;
-            outattr(__id(http_status)) = "OK";
-            outheader("x-fstype") = "directory";
+            if (::dir::is(pcsz))
+
+            {
+               outattr(__id(http_status_code)) = 200;
+               outattr(__id(http_status)) = "OK";
+               outheader("x-fstype") = "directory";
+            }
+            else
+            {
+               outattr(__id(http_status_code)) = 404;
+               outattr(__id(http_status)) = "Not Found";
+            }
+
+
+            return false;
          }
-         else
-         {
-            outattr(__id(http_status_code)) = 404;
-            outattr(__id(http_status)) = "Not Found";
-         }
-         return false;
-      }
+
 
       outheader("x-fstype") = "file";
 

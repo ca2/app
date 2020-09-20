@@ -690,8 +690,8 @@ namespace apex
 
       //virtual void on_request(::create * pcreate) override;
 
-      __pointer(regex) create_regular_expression(const char * pszStyle, const string& str);
-      __pointer(regex_context) create_regular_expression_context(const char* pszStyle, int iCount);
+      virtual __pointer(regex) create_regular_expression(const char * pszStyle, const string& str);
+      virtual __pointer(regex_context) create_regular_expression_context(const char* pszStyle, int iCount);
       //virtual int pcre_add_tokens(string_array& stra, const string& strTopic, const string& strRegexp, int nCount);
 
 

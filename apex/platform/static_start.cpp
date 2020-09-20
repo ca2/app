@@ -471,7 +471,7 @@ namespace apex
       // at acme
       //::id_space::s_pidspace = new id_space();
 
-      ::apex::idpool::init();
+      //::apex::idpool::init();
 //
 //#ifdef ANDROID
 //

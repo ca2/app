@@ -1297,6 +1297,8 @@ namespace apex
 
       string strAppId = m_papplicationStartup->m_strAppId;
 
+      ::apex::idpool::init();
+
       //auto pcommand = get_command();
 
       //auto pcreate = pcommand->m_pcreate;
@@ -8431,8 +8433,6 @@ string get_bundle_app_library_name();
       return nullptr;
 
    }
-
-   ::apex::idpool::init();
 
    return pobject.cast < ::apex::system >();
 

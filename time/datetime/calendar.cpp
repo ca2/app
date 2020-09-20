@@ -117,7 +117,7 @@ namespace datetime
       }
 
 
-      void calendar::GetDateTime(const ::aura::str_context* pcontext, string& strDateTime)
+      void calendar::GetDateTime(const ::apex::str_context* pcontext, string& strDateTime)
       {
 
          ::datetime::time time = ::datetime::time::get_current_time();
@@ -138,7 +138,7 @@ namespace datetime
       }
 
 
-      string calendar::GetWeekDay(const ::aura::str_context* pcontext, int32_t iWeekDay) // 1 - domingo
+      string calendar::GetWeekDay(const ::apex::str_context* pcontext, int32_t iWeekDay) // 1 - domingo
       {
 
          return System.datetime().get_week_day_str(pcontext, iWeekDay);
@@ -146,7 +146,7 @@ namespace datetime
       }
 
 
-      string calendar::GetTinyWeekDay(const ::aura::str_context* pcontext, int32_t iWeekDay) // 1 - domingo
+      string calendar::GetTinyWeekDay(const ::apex::str_context* pcontext, int32_t iWeekDay) // 1 - domingo
       {
 
          return System.datetime().get_tiny_week_day_str(pcontext, iWeekDay);
@@ -154,7 +154,7 @@ namespace datetime
       }
 
 
-      string calendar::GetMonth(const ::aura::str_context* pcontext, int32_t iMonth)
+      string calendar::GetMonth(const ::apex::str_context* pcontext, int32_t iMonth)
       {
 
          return System.datetime().get_month_str(pcontext, iMonth);

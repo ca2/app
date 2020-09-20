@@ -47,11 +47,11 @@ namespace datetime
 
          void set_pos(point pt, size sz);
 
-         virtual void GetDateTime(const ::aura::str_context* pcontext, string& strDateTime);
+         virtual void GetDateTime(const ::apex::str_context* pcontext, string& strDateTime);
 
-         virtual string GetTinyWeekDay(const ::aura::str_context* pcontext, int32_t iWeekDay); // 1 - domingo
-         virtual string GetWeekDay(const ::aura::str_context* pcontext, int32_t iWeekDay); // 1 - domingo
-         virtual string GetMonth(const ::aura::str_context* pcontext, int32_t iMonth); // 1 - janeiro
+         virtual string GetTinyWeekDay(const ::apex::str_context* pcontext, int32_t iWeekDay); // 1 - domingo
+         virtual string GetWeekDay(const ::apex::str_context* pcontext, int32_t iWeekDay); // 1 - domingo
+         virtual string GetMonth(const ::apex::str_context* pcontext, int32_t iMonth); // 1 - janeiro
 
          virtual void previous_month();
          virtual void next_month();

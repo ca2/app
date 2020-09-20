@@ -12,6 +12,9 @@
 #endif
 
 
+#include "apex/platform/str_context.h"
+
+
 #include "time/calculator/_.h"
 
 #include "time/datetime/_.h"

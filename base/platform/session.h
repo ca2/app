@@ -86,7 +86,7 @@ namespace base
 //      var                                                   m_varCurrentViewFile;
 //      bool                                                  m_bShowPlatform;
 //
-//      __composite(::aura::str_context)                      m_puserstrcontext;
+//      __composite(::apex::str_context)                      m_puserstrcontext;
 //
 //
 //      bool                                                  m_bSystemSynchronizedScreen;
@@ -208,7 +208,7 @@ namespace base
 //      virtual ::user::interaction * get_session_window();
 //
 //
-//      ::aura::str_context *                        str_context() { return m_puserstrcontext; }
+//      ::apex::str_context *                        str_context() { return m_puserstrcontext; }
 //
 //      //virtual bool is_session() const override;
 //

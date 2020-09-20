@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aura/platform/profiler2.h"
+#include "acme/platform/profiler.h"
 #ifndef _UWP
 #include <mysql/mysql.h>
 
@@ -50,7 +50,7 @@ namespace mysql
    ::estatus database::initialize(::layered * pobjectContext)
    {
 
-      auto estatus = ::database::database::initialize(pobject);
+      auto estatus = ::database::database::initialize(pobjectContext);
 
       if (!estatus)
       {
@@ -310,7 +310,7 @@ namespace mysql
       if(pres) /* a result dataset was returned */
       {
 
-         m_iLastUsedTime = ::aura::profiler::micros();
+         m_iLastUsedTime = ::acme::profiler::micros();
 
          return pres;
 
@@ -321,7 +321,7 @@ namespace mysql
       if (m_iLastError == 0)
       {
 
-         m_iLastUsedTime = ::aura::profiler::micros();
+         m_iLastUsedTime = ::acme::profiler::micros();
 
          m_cAffectedRows  = mysql_affected_rows((MYSQL *)m_pmysql);
 

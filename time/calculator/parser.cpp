@@ -7,7 +7,7 @@
 namespace datetime
 {
 
-   parser::parser(const ::aura::str_context * pcontext) :
+   parser::parser(const ::apex::str_context * pcontext) :
       ::object(pcontext->get_context_object()),
       m_scanner(pcontext)
    {

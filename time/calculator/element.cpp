@@ -20,7 +20,7 @@ namespace datetime
    }
 
 
-   value element::get_value(const ::aura::str_context * pcontext, int32_t & iPath, int32_t & iPathCount) const
+   value element::get_value(const ::apex::str_context * pcontext, int32_t & iPath, int32_t & iPathCount) const
    {
 
       if(m_ptoken->m_etoken == e_token_number || m_ptoken->m_etoken == e_token_identifier)
@@ -115,7 +115,7 @@ namespace datetime
    }
    
 
-   string element::get_expression(const ::aura::str_context * pcontext, int32_t & iPath, int32_t & iPathCount) const
+   string element::get_expression(const ::apex::str_context * pcontext, int32_t & iPath, int32_t & iPathCount) const
    {
 
       if(m_ptoken->m_etoken == e_token_number)

@@ -273,13 +273,13 @@ namespace base
    //   if (!estatus)
    //   {
 
-   //      INFO("aura::str_context Failed to Allocate!!");
+   //      INFO("apex::str_context Failed to Allocate!!");
 
    //      return estatus;
 
    //   }
 
-   //   INFO("aura::str_context Succeeded to Allocate!!");
+   //   INFO("apex::str_context Succeeded to Allocate!!");
 
    //   INFO("aura::session::process_init success");
 

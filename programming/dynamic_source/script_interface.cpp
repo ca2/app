@@ -197,6 +197,8 @@ namespace dynamic_source
       return "";
 
    }
+
+
    void script_interface::current_url(string& strUrl)
    {
 

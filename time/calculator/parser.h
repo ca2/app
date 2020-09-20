@@ -16,7 +16,7 @@ namespace datetime
       __pointer_array(::datetime::element)      m_elementa;
 
 
-      parser(const ::aura::str_context * pcontext);
+      parser(const ::apex::str_context * pcontext);
       virtual ~parser();
 
 

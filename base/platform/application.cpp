@@ -4919,7 +4919,7 @@ namespace base
 //
 //      matter_locator_locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
 //
-//      ::aura::str_context * pcontext = Session.str_context();
+//      ::apex::str_context * pcontext = Session.str_context();
 //
 //      for (i32 i = 0; i < pcontext->localeschema().m_idaLocale.get_count(); i++)
 //      {

@@ -43,7 +43,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{E000FFAF-392F-4E32-BF51-777ED638991F}</ProjectGuid>
+    <ProjectGuid>{E000FFAF-392F-4E32-BF51-777CA238991F}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>app</RootNamespace>
     <ProjectName>apex</ProjectName>

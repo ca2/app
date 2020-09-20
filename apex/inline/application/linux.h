@@ -3,7 +3,9 @@
 int main(int argc, char * argv[])
 {
 
-   auto psystem = __new(::apex::system());
+   string strAppId = executable_get_app_id();
+
+   auto psystem = platform_create_system(strAppId);
 
    psystem->application_initialize();
 

@@ -605,6 +605,7 @@
 		<Unit filename="inline/_lib_impl.h" />
 		<Unit filename="inline/_new_impl.h" />
 		<Unit filename="inline/application/linux.h" />
+		<Unit filename="inline/application/windows.h" />
 		<Unit filename="library.h" />
 		<Unit filename="message.h" />
 		<Unit filename="message/_.cpp" />

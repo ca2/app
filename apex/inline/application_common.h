@@ -151,8 +151,6 @@ void application_common(::apex::system * psystem)
 }
 
 
-
-
 template < typename APPLICATION >
 class static_application_factory :
    public static_setup
@@ -180,11 +178,11 @@ public:
 
 #ifdef WINDOWS_DESKTOP
 
+
 #pragma comment(lib, "Dxva2.lib")
 
+
 #endif
-
-
 
 
 #ifdef MAINAPPID
@@ -198,7 +196,7 @@ inline string executable_get_app_id()
 }
 
 
-#else
+#elif defined(LINUX)
 
 
 inline string executable_get_app_id()

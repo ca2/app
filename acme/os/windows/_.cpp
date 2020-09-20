@@ -790,6 +790,12 @@ bool __node_pos_term()
 }
 
 
+CLASS_DECL_ACME string executable_get_app_id(HINSTANCE hinstance)
+{
+
+   return read_resource_as_string(hinstance, 1, "APPID");
+
+}
 
 
 

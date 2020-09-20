@@ -383,3 +383,14 @@ i64 oswindow_id(oswindow w)
 //   return oswindow->m_pimpl->ShowWindow(iShow);
 //   
 //}
+
+
+string executable_get_app_id()
+{
+
+   return apple_get_bundle_identifier();
+
+}
+
+
+

@@ -8375,23 +8375,6 @@ string get_bundle_app_library_name();
 
 #endif
 
-#ifdef WINDOWS_DESKTOP
-string executable_get_app_id(HINSTANCE hinstance)
-{
-
-   return read_resource_as_string(hinstance, 1, "APPID");
-
-}
-#elif defined(__APPLE__)
-
-string executable_get_app_id(HINSTANCE hinstance)
-{
-
-   return get_bundle_app_library_name();
-
-}
-
-#endif
 
 
 ::apex::system* platform_create_system(const char * pszAppId)

@@ -124,7 +124,7 @@ namespace aura
 
       virtual string str_from_va(const var_array & va);
 
-      virtual void on_ipi_call(var & var, const string & strObject, const string & strMember, var_array & vara);
+      virtual void on_interprocess_call(var & var, const string & strObject, const string & strMember, var_array & vara);
 
       using ::aura::interprocess_communication::rx::receiver::on_ipc_receive;
 

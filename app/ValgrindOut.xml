@@ -16712,7 +16712,7 @@
     <frame>
       <ip>0x57C96BA</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>apex::ipi::~ipi()</fn>
+      <fn>interprocess_intercommunication::~ipi()</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_ipi.cpp</file>
       <line>54</line>
@@ -16744,7 +16744,7 @@
     <frame>
       <ip>0x5832160</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>long release&lt;apex::ipi&gt;(apex::ipi*&amp;)</fn>
+      <fn>long release&lt;interprocess_intercommunication&gt;(interprocess_intercommunication*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/primitive</dir>
       <file>object.h</file>
       <line>572</line>
@@ -16752,7 +16752,7 @@
     <frame>
       <ip>0x58178BD</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>pointer&lt;apex::ipi&gt;::release()</fn>
+      <fn>pointer&lt;interprocess_intercommunication&gt;::release()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_smart_pointer2.h</file>
       <line>317</line>
@@ -74289,7 +74289,7 @@
     <frame>
       <ip>0x57C9022</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>apex::ipi::ipi(object*, string const&amp;)</fn>
+      <fn>interprocess_intercommunication::ipi(object*, string const&amp;)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_ipi.cpp</file>
       <line>40</line>

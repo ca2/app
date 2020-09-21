@@ -96,7 +96,7 @@ namespace user
 
 
 
-
+      bool                                         m_bDerivedHeight;
       bool                                         m_bDefaultNotifyIcon;
       string                                       m_strFrameTitle;
       ::size                                       m_sizeMinimum;
@@ -120,7 +120,7 @@ namespace user
 
       
       virtual style * _get_style() const override;
-
+      virtual int get_derived_height(int iWidth);
 
       virtual void set_frame_title(const string& strFrameTitle);
       virtual string get_frame_title() const;

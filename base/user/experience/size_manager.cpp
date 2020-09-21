@@ -393,12 +393,17 @@ namespace experience
          rectWindow.left = m_rectWindowOrigin.left;
          rectWindow.bottom = point.y;
          rectWindow.right = point.x;
-         if(rectWindow.width() < sizeMin.cx)
+         if (rectWindow.width() < sizeMin.cx)
          {
             rectWindow.right = m_rectWindowOrigin.left + sizeMin.cx;
 
          }
-         if(rectWindow.height() < sizeMin.cy)
+         if (m_pframewindow->m_bDerivedHeight)
+         {
+
+            rectWindow.bottom = m_rectWindowOrigin.top + m_pframewindow->m_pframe->adjust_client_height(m_pframewindow->get_derived_height(rectWindow.width()));
+         }
+         else if (rectWindow.height() < sizeMin.cy)
          {
             rectWindow.bottom = m_rectWindowOrigin.top + sizeMin.cy;
          }

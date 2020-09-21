@@ -71,6 +71,8 @@ namespace experience
       virtual ~frame();
 
 
+      int adjust_client_height(int iHeight);
+
       virtual void set_style(const char * pszStyle);
       virtual void on_initialize_experience_frame();
       virtual void on_initialize_appearance();

@@ -42,6 +42,13 @@ namespace experience
 
    }
 
+   int frame::adjust_client_height(int iHeight)
+   {
+
+      return iHeight + get_caption_height();
+
+   }
+
 
    void frame::OnMove(__pointer(::user::interaction) pframewindow)
    {

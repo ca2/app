@@ -225,7 +225,7 @@ namespace aura
 
       m_iTaskSeed = 0;
 
-      m_id = "::apex::ipi";
+      m_id = "::interprocess_intercommunication";
 
       defer_create_mutex();
 
@@ -540,7 +540,7 @@ started:
 
       string str(pszMessage);
 
-      INFO("apex::ipi::on_receive %s", pszMessage);
+      INFO("interprocess_intercommunication::on_receive %s", pszMessage);
 
       if(!::str::begins_eat(str, "call "))
       {
@@ -646,7 +646,7 @@ started:
 
       var varRet;
 
-      on_ipi_call(varRet, strObject, strMember, vara);
+      on_interprocess_call(varRet, strObject, strMember, vara);
 
       if(!strMember.begins_ci("reply."))
       {
@@ -708,7 +708,7 @@ started:
    }
 
 
-   void ipi::on_ipi_call(var & var, const string & strObject, const string & strMember, var_array & vara)
+   void ipi::on_interprocess_call(var & var, const string & strObject, const string & strMember, var_array & vara)
    {
 
       if(strObject == "application")

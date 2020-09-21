@@ -11,6 +11,7 @@ namespace user
    frame::frame()
    {
 
+      m_bDerivedHeight = false;
       m_bShowControlBox = true;
       m_bDefaultNotifyIcon = false;
       m_bCloseApplicationIfLastVisibleFrame = true;
@@ -71,6 +72,16 @@ namespace user
    {
 
       return m_puserstyle;
+
+   }
+
+
+
+   int frame::get_derived_height(int iWidth)
+   {
+
+      return -1;
+
 
    }
 

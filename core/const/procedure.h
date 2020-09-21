@@ -5,7 +5,7 @@ enum enum_procedure : ::i32
 {
 
 
-   e_procedure_create = CREATE_PROCEDURE,
+   e_procedure_create = CREATE_METHOD,
    e_procedure_destroy = DESTROY_PROCEDURE,
 
 

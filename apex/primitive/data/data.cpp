@@ -73,7 +73,7 @@ namespace data
 
       //run_property("on_create");
 
-      runall(CREATE_PROCEDURE);
+      call(CREATE_METHOD);
 
       return ::success;
 

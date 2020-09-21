@@ -229,7 +229,7 @@ class sync_lock;
 #include "manual_reset_event.h"
 
 
-#include "acme/multithreading/wait_result_callback.h"
+#include "acme/multithreading/wait_future.h"
 
 
 #include "sync_task.h"

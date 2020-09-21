@@ -279,7 +279,7 @@ namespace sockets
 
       }
 
-      if ((m_last_size_written = send(GetSocket(), (const char *) data, (i32)len, m_iWriteFlags)) == -1)
+      if ((m_last_size_written = ::send(GetSocket(), (const char *) data, (i32)len, m_iWriteFlags)) == -1)
       {
 
 

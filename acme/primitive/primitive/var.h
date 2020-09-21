@@ -8,7 +8,7 @@ enum para_return
    s_success = 0
 };
 
-class callback;
+class future;
 //class function_arg;
 
 bool is_return_ok(para_return eret);
@@ -132,8 +132,8 @@ public:
    var(const property_set & set);
    var(const var & var);
    var(const property & prop);
-   var(const procedure& function);
-   var(const callback& callback);
+   var(const method& method);
+   var(const future& future);
    var(const property * pproperty);
    var(const class duration & duration);
    var(class duration * pduration);
@@ -277,8 +277,8 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    inline ::uptr                    uptr(uptr uiDefault = 0)  const;
    float                            get_float(float fDefault = 0.f)   const;
    double                           get_double(double dDefault = 0.0)   const;
-   procedure                        get_procedure() const;
-   callback                         get_callback() const;
+   method                        get_method() const;
+   future                         get_future() const;
    //::image *                        image() const;
    //::image * &                      image();
    string                           to_r_string() const;
@@ -434,8 +434,8 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
 
    }
 
-   var& operator = (const ::procedure& procedure);
-   var& operator = (const ::callback& callback);
+   var& operator = (const ::method& method);
+   var& operator = (const ::future& future);
 
    inline var & operator = (nullptr_t) { set_type(type_null, false); return *this; }
 

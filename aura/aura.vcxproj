@@ -1331,7 +1331,7 @@
     <ClCompile Include="_.cpp" />
     <ClCompile Include="__matter_ca2.cpp" />
     <ClInclude Include="astr.h" />
-    <ClInclude Include="callback.h" />
+    <ClInclude Include="aaa_callback.h" />
     <ClInclude Include="console.h" />
     <ClInclude Include="console_slim.h" />
     <ClInclude Include="const\aaa_callback.h" />

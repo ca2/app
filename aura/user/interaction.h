@@ -758,7 +758,7 @@ namespace user
       virtual bool ModifyStyle(u32 dwRemove, u32 dwAdd, UINT nFlags = 0) override;
       virtual bool ModifyStyleEx(u32 dwRemove, u32 dwAdd, UINT nFlags = 0) override;
 
-
+      using ::user::primitive::send;
       virtual LRESULT send(::message::base* pbase) override;
       virtual bool post(::message::base* pbase) override;
       virtual LRESULT send_message(UINT uiMessage, WPARAM wparam = 0, lparam lparam = 0) override;
@@ -1453,7 +1453,7 @@ namespace user
       void post_pred(PRED pred)
       {
 
-         post_task(__pred_procedure(pred));
+         post_task(__pred_method(pred));
 
       }
 

@@ -576,7 +576,7 @@ namespace core
    }
 
 
-   ::estatus user::dialog_box(::layered * pobjectContext, const char * pszMatter, property_set & propertyset, ::callback callback)
+   ::estatus user::dialog_box(::layered * pobjectContext, const char * pszMatter, property_set & propertyset, ::future future)
    {
 
       auto pbox = __object(pobjectContext)->__create_new < class ::userex::message_box >();
@@ -590,14 +590,14 @@ namespace core
 
       }
 
-      callback.receive_response(pbox->m_idResponse);
+      future.receive_response(pbox->m_idResponse);
 
       return ::success;
 
    }
 
 
-   ::estatus user::ui_message_box(::layered* pobjectContext, ::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, ::callback callback)
+   ::estatus user::ui_message_box(::layered* pobjectContext, ::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, ::future future)
    {
 
       auto pbox = __object(pobjectContext)->__create_new < ::userex::message_box >();
@@ -606,7 +606,7 @@ namespace core
 
       propertyset["message"] = pszMessage;
 
-      pbox->add(callback);
+      pbox->add(future);
 
       if (::is_set(puiOwner))
       {
@@ -718,7 +718,7 @@ namespace core
    }
 
 
-   ::estatus user::ui_message_box_timeout(::layered * pobjectContext, ::user::primitive * puiOwner, const char* pszMessage, const char* pszTitle, const ::duration & durationTimeout, ::emessagebox emessagebox, ::callback callback)
+   ::estatus user::ui_message_box_timeout(::layered * pobjectContext, ::user::primitive * puiOwner, const char* pszMessage, const char* pszTitle, const ::duration & durationTimeout, ::emessagebox emessagebox, ::future future)
    {
 
       UNREFERENCED_PARAMETER(puiOwner);
@@ -727,7 +727,7 @@ namespace core
 
       pbox->value("message") = pszMessage;
 
-      pbox->add(callback);
+      pbox->add(future);
 
       string strTitle = App(__object(pobjectContext)).get_title();
 

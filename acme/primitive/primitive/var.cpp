@@ -302,24 +302,24 @@ var::var(const property & prop)
 }
 
 
-var::var(const procedure & procedure)
+var::var(const method & method)
 {
 
     m_etype = type_new;
     xxf_zero(m_all);
-    set_type(type_procedure);
-    m_functionbase = procedure;
+    set_type(type_method);
+    m_functionbase = method;
 
 }
 
 
-var::var(const ::callback & callback)
+var::var(const ::future & future)
 {
 
    m_etype = type_new;
    xxf_zero(m_all);
-   set_type(type_callback);
-   m_functionbase = callback;
+   set_type(type_future);
+   m_functionbase = future;
 
 }
 
@@ -2360,13 +2360,13 @@ id & var::get_ref_id(const char * pszOnNull)
 }
 
 
-procedure var::get_procedure() const
+method var::get_method() const
 {
 
-   if (get_type() != ::type_procedure)
+   if (get_type() != ::type_method)
    {
 
-      return procedure();
+      return method();
 
    }
 
@@ -2376,13 +2376,13 @@ procedure var::get_procedure() const
 }
 
 
-callback var::get_callback() const
+future var::get_future() const
 {
 
-   if (get_type() != ::type_callback)
+   if (get_type() != ::type_future)
    {
 
-      return callback();
+      return future();
 
    }
 
@@ -5429,9 +5429,9 @@ bool var::is_numeric() const
 
    case type_i64a:
       return false;
-   case type_procedure:
+   case type_method:
       return false;
-   case type_callback:
+   case type_future:
       return false;
    default:
       __throw(not_implemented());
@@ -5779,9 +5779,9 @@ bool var::is_false() const
       return m_pvar || !*m_pvar;
    case type_prop:
       return m_pprop || !*m_pprop;
-   case type_procedure:
+   case type_method:
          return ::is_null(m_functionbase.m_pobjectTask);
-   case type_callback:
+   case type_future:
          return ::is_null(m_functionbase.m_pobjectTask);
 
    // generic classes
@@ -5904,9 +5904,9 @@ bool var::is_set_false() const
       return m_pvar || !*m_pvar;
    case type_prop:
       return m_pprop || !*m_pprop;
-   case type_procedure:
+   case type_method:
       return ::is_null(m_functionbase.m_pobjectTask);
-   case type_callback:
+   case type_future:
       return ::is_null(m_functionbase.m_pobjectTask);
 
       // generic classes
@@ -6167,10 +6167,10 @@ IMPL_VAR_ENUM(check);
       return m_pprop->run();
 
    }
-   else if (get_type() == type_procedure)
+   else if (get_type() == type_method)
    {
 
-      return get_procedure().call();
+      return get_method().call();
 
    }
    else if (get_type() == type_vara)
@@ -6181,10 +6181,10 @@ IMPL_VAR_ENUM(check);
       for (auto & varFunction : vara())
       {
 
-         if (varFunction.get_type() == type_procedure)
+         if (varFunction.get_type() == type_method)
          {
 
-            result.add(varFunction.get_procedure().call());
+            result.add(varFunction.get_method().call());
 
          }
 
@@ -6218,10 +6218,10 @@ void var::receive_response(const ::var & var)
       m_pprop->receive_response(var);
 
    }
-   else if (get_type() == type_callback)
+   else if (get_type() == type_future)
    {
 
-      get_callback().receive_response(var);
+      get_future().receive_response(var);
 
    }
    else if (get_type() == type_vara)
@@ -6230,10 +6230,10 @@ void var::receive_response(const ::var & var)
       for (auto& varFunction : this->vara())
       {
 
-         if (varFunction.get_type() == type_callback)
+         if (varFunction.get_type() == type_future)
          {
             
-            varFunction.get_callback().receive_response(var);
+            varFunction.get_future().receive_response(var);
 
          }
 
@@ -6246,23 +6246,23 @@ void var::receive_response(const ::var & var)
 
 
 
-var& var::operator = (const ::procedure & procedure)
+var& var::operator = (const ::method & method)
 {
 
-   set_type(type_procedure);
+   set_type(type_method);
 
-   m_functionbase = procedure;
+   m_functionbase = method;
 
    return *this;
 
 }
 
- var& var::operator = (const ::callback & callback)
+ var& var::operator = (const ::future & future)
 {
 
-   set_type(type_callback);
+   set_type(type_future);
 
-   m_functionbase = callback;
+   m_functionbase = future;
 
    return *this;
 

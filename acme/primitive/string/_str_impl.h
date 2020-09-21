@@ -617,7 +617,6 @@ inline void to(long  & l, i32 iBase, const ansichar * psz)
    }
 
 
-
    inline void from(string & str, const generic & o)
    {
 

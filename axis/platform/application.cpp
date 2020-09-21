@@ -1525,7 +1525,7 @@ namespace axis
          try
          {
 
-            m_pipi.release();
+            m_pinterprocessintercommunication.release();
 
          }
          catch (...)

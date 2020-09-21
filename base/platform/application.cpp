@@ -474,7 +474,7 @@ namespace base
 //
 //         string str = pcreate->m_varFile;
 //
-//         if (!m_pipi)
+//         if (!m_pinterprocessintercommunication)
 //         {
 //
 //            __pointer(::user::interaction) pinteraction;
@@ -497,7 +497,7 @@ namespace base
 //
 //            }
 //
-//            if (papp->m_pipi == nullptr)
+//            if (papp->m_pinterprocessintercommunication == nullptr)
 //            {
 //
 //               return error_failed;
@@ -506,7 +506,7 @@ namespace base
 //
 //         }
 //
-//         if (::str::begins_eat_ci(str, m_pipi->m_prx->m_strBaseChannel))
+//         if (::str::begins_eat_ci(str, m_pinterprocessintercommunication->m_prx->m_strBaseChannel))
 //         {
 //
 //            if (::str::begins_eat_ci(str, ":///"))
@@ -515,7 +515,7 @@ namespace base
 //               if (::str::begins_eat_ci(str, "send?message="))
 //               {
 //
-//                  m_pipi->on_ipc_receive(m_pipi->m_prx, System.url().url_decode(str));
+//                  m_pinterprocessintercommunication->on_ipc_receive(m_pinterprocessintercommunication->m_prx, System.url().url_decode(str));
 //
 //               }
 //               else if (::str::begins_eat_ci(str, "send?messagebin="))
@@ -532,7 +532,7 @@ namespace base
 //
 //                     System.base64().decode(m, System.url().url_decode(str.Mid(iFind + 1)));
 //
-//                     m_pipi->on_ipc_receive(m_pipi->m_prx, message, m.get_data(), m.get_size());
+//                     m_pinterprocessintercommunication->on_ipc_receive(m_pinterprocessintercommunication->m_prx, message, m.get_data(), m.get_size());
 //
 //                  }
 //
@@ -1655,7 +1655,7 @@ namespace base
 //      try
 //      {
 //
-//         m_pipi.release();
+//         m_pinterprocessintercommunication.release();
 //
 //      }
 //      catch (...)
@@ -1805,7 +1805,7 @@ namespace base
 //         try
 //         {
 //
-//            m_pipi = create_ipi();
+//            m_pinterprocessintercommunication = create_ipi();
 //
 //         }
 //         catch (...)
@@ -1813,14 +1813,14 @@ namespace base
 //
 //         }
 //
-//         if (!m_pipi)
+//         if (!m_pinterprocessintercommunication)
 //         {
 //
 //            return ::error_failed;
 //
 //         }
 //
-//         auto estatus = m_pipi->initialize(this);
+//         auto estatus = m_pinterprocessintercommunication->initialize(this);
 //
 //         if (!estatus)
 //         {
@@ -1873,10 +1873,10 @@ namespace base
 //
 //      INFO("aura::application::init_application .2");
 //
-//      if (m_pipi)
+//      if (m_pinterprocessintercommunication)
 //      {
 //
-//         m_pipi->on_new_instance(Context.file().module(), Context.os().get_pid());
+//         m_pinterprocessintercommunication->on_new_instance(Context.file().module(), Context.os().get_pid());
 //
 //      }
 //
@@ -3421,13 +3421,13 @@ namespace base
 //   }
 //
 //
-//   __pointer(::apex::ipi) application::create_ipi()
+//   __pointer(::interprocess_intercommunication) application::create_ipi()
 //   {
 //
 //      try
 //      {
 //
-//         return __new(::apex::ipi(m_strAppName));
+//         return __new(::interprocess_intercommunication(m_strAppName));
 //
 //      }
 //      catch (...)
@@ -3942,7 +3942,7 @@ namespace base
 //         try
 //         {
 //
-//            m_pipi.release();
+//            m_pinterprocessintercommunication.release();
 //
 //         }
 //         catch (...)
@@ -4485,10 +4485,10 @@ namespace base
 //      try
 //      {
 //
-//         if (m_pipi)
+//         if (m_pinterprocessintercommunication)
 //         {
 //
-//            auto pcall = m_pipi->create_call("application", "on_additional_local_instance");
+//            auto pcall = m_pinterprocessintercommunication->create_call("application", "on_additional_local_instance");
 //
 //            pcall->add_arg(Context.file().module());
 //
@@ -4546,10 +4546,10 @@ namespace base
 //      try
 //      {
 //
-//         if (m_pipi)
+//         if (m_pinterprocessintercommunication)
 //         {
 //
-//            auto pcall = m_pipi->create_call("application", "on_additional_local_instance");
+//            auto pcall = m_pinterprocessintercommunication->create_call("application", "on_additional_local_instance");
 //
 //            pcall->add_arg(Context.file().module());
 //

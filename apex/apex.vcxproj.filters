@@ -929,12 +929,6 @@
     <ClInclude Include="platform\international.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\ipc.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\ipi.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\keep_true.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -1118,9 +1112,6 @@
     <ClInclude Include="filesystem\filesystem\file_watcher.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
-    <ClInclude Include="const\procedure.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="net\_net_impl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1147,12 +1138,6 @@
     </ClInclude>
     <ClInclude Include="astr.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="callback.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="const\callback.h">
-      <Filter>Header Files\const</Filter>
     </ClInclude>
     <ClInclude Include="node\windows\_node_windows_private.h">
       <Filter>Header Files\node\windows</Filter>
@@ -1481,6 +1466,24 @@
     <ClInclude Include="multithreading\aaa_pred_procedure.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
+    <ClInclude Include="platform\interprocess_communication.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\interprocess_intercommunication.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\interprocess_task.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\interprocess_call.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="future.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="const\method.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">
@@ -1744,9 +1747,6 @@
     <ClCompile Include="os\windows\dpi.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="os\windows\ipc.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="os\windows\launcher.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
@@ -1922,12 +1922,6 @@
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\department.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\ipc.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\ipi.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\library.cpp">
@@ -2199,6 +2193,21 @@
     </ClCompile>
     <ClCompile Include="platform\static_start_apex.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="os\windows\interprocess_communication.cpp">
+      <Filter>Source Files\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\interprocess_task.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\interprocess_call.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\interprocess_communication.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\interprocess_intercommunication.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -46,7 +46,7 @@ namespace user
 
    auto pholdThis = ::move_transfer(this);
 
-   m_ptaskUpdateScreen = __pred_procedure([pholdThis]()
+   m_ptaskUpdateScreen = __pred_method([pholdThis]()
       {
 
          auto phold = pholdThis;
@@ -62,7 +62,7 @@ namespace user
 
       });
 
-   m_ptaskWindowShow = __pred_procedure([pholdThis]()
+   m_ptaskWindowShow = __pred_method([pholdThis]()
       {
 
          auto phold = pholdThis;

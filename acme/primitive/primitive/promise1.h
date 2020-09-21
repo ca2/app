@@ -3,7 +3,7 @@
 
 
 //template < typename TYPE, typename PRED >
-//class promise_pred :
+//class future_pred :
 //   virtual public ::t_runnable
 //{
 //public:
@@ -16,7 +16,7 @@
 //   TYPE        m_result;
 //   PRED        m_pred;
 //
-//   promise_pred(const TYPE & t, PRED pred) : m_result(t), m_pred(pred) { }
+//   future_pred(const TYPE & t, PRED pred) : m_result(t), m_pred(pred) { }
 //
 //   virtual ::estatus     run() override
 //   {
@@ -28,9 +28,9 @@
 //};
 
 //template < typename TYPE, typename PRED >
-//inline __pointer(::count_runnable) __promise(const TYPE & t, PRED pred)
+//inline __pointer(::count_runnable) __future(const TYPE & t, PRED pred)
 //{
 //
-//   return __new(promise_pred < TYPE, PRED >(t, pred));
+//   return __new(future_pred < TYPE, PRED >(t, pred));
 //
 //}

@@ -1,10 +1,10 @@
 #include "framework.h"
 
 
-callback & callback::operator = (const ::var& var)
+future & future::operator = (const ::var& var)
 {
 
-   if (var.get_type() == ::type_callback)
+   if (var.get_type() == ::type_future)
    {
 
       m_pobjectTask = var.m_functionbase.m_pobjectTask;
@@ -34,7 +34,7 @@ callback & callback::operator = (const ::var& var)
 }
 
 
-//void callback::receive_response(const var& var)
+//void future::receive_response(const var& var)
 //{
 //
 //   if (::is_null(m_pobjectTask))

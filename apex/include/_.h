@@ -3041,7 +3041,7 @@ namespace user
 
 #include "apex/platform/launcher.h"
 
-#include "apex/platform/ipc.h"
+#include "apex/platform/interprocess_communication.h"
 
 #include "apex/platform/app_launcher.h"
 
@@ -3175,7 +3175,19 @@ namespace zip
 
 #include "apex/os/process.h"
 
-#include "apex/platform/ipi.h"
+class interprocess_task;
+
+class interprocess_intercommunication;
+
+using interprocess_task_map = id_map < __pointer(interprocess_task) >;
+
+#include "apex/platform/interprocess_call.h"
+
+#include "apex/platform/interprocess_task.h"
+
+#include "apex/platform/interprocess_communication.h"
+
+#include "apex/platform/interprocess_intercommunication.h"
 
 #include "apex/platform/hyperlink.h"
 

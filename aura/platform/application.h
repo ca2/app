@@ -68,7 +68,7 @@ namespace aura
       //bool                                            m_bFranceExit;
 
       bool                                            m_bIpi;
-      __pointer(::apex::ipi)                          m_pipi;
+      __pointer(::interprocess_intercommunication)                          m_pinterprocessintercommunication;
       __pointer(service_base)                         m_pservice;
 
       ::mutex                                         m_mutexFrame;
@@ -514,7 +514,7 @@ namespace aura
 
       virtual string get_version() override;
 
-      virtual __pointer(::apex::ipi) create_ipi() override;
+      virtual __pointer(::interprocess_intercommunication) create_interprocess_intercommunication() override;
 
       //virtual ::estatus process_init();
       virtual void process_term() override;

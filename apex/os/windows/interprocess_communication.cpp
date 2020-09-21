@@ -5,14 +5,14 @@
 // typedef int (WINAPI * LPFN_ChangeWindowMessageFilter)(UINT message, DWORD dwFlag);
 
 
-
 //extern LPFN_ChangeWindowMessageFilter g_pfnChangeWindowMessageFilter;
 
-namespace apex
-{
+
+//namespace apex
+//{
 
 
-   namespace ipc
+   namespace interprocess_communication
    {
 
 
@@ -323,7 +323,7 @@ namespace apex
             if (m_preceiver != nullptr)
             {
 
-               m_preceiver->on_ipc_receive(prx, strMessage);
+               m_preceiver->on_interprocess_receive(prx, strMessage);
 
             }
 
@@ -337,7 +337,7 @@ namespace apex
                if (m_preceiver != nullptr)
                {
 
-                  m_preceiver->on_ipc_receive(prx, strMessage);
+                  m_preceiver->on_interprocess_receive(prx, strMessage);
 
                }
 
@@ -358,7 +358,7 @@ namespace apex
          if(m_preceiver != nullptr)
          {
 
-            m_preceiver->on_ipc_receive(prx,message,pdata,len);
+            m_preceiver->on_interprocess_receive(prx,message,pdata,len);
 
          }
 
@@ -375,7 +375,7 @@ namespace apex
          if(m_preceiver != nullptr)
          {
             
-            m_preceiver->on_ipc_post(prx,a,b);
+            m_preceiver->on_interprocess_post(prx,a,b);
 
          }
 
@@ -509,7 +509,7 @@ namespace apex
       }
 
 
-      ipc::ipc()
+      interprocess_communication::interprocess_communication()
       {
 
          m_tickTimeout = (5000) * 11;
@@ -517,14 +517,14 @@ namespace apex
       }
 
 
-      ipc::~ipc()
+      interprocess_communication::~interprocess_communication()
       {
 
 
       }
 
 
-      bool ipc::open_ab(const char * pszKey,const char * pszModule,launcher * plauncher)
+      bool interprocess_communication::open_ab(const char * pszKey,const char * pszModule,launcher * plauncher)
       {
 
          m_strChannel = pszKey;
@@ -557,7 +557,7 @@ namespace apex
 
       }
 
-      bool ipc::open_ba(const char * pszKey,const char * pszModule,launcher * plauncher)
+      bool interprocess_communication::open_ba(const char * pszKey,const char * pszModule,launcher * plauncher)
       {
 
          m_strChannel = pszKey;
@@ -590,7 +590,7 @@ namespace apex
       }
 
 
-      bool ipc::is_rx_tx_ok()
+      bool interprocess_communication::is_rx_tx_ok()
       {
 
          return m_rx.is_rx_ok() && is_tx_ok();
@@ -598,10 +598,10 @@ namespace apex
       }
 
 
-   } // namespace ipc
+   } // namespace interprocess_communication
 
 
-} // namespace apex
+//} // namespace apex
 
 
 

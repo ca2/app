@@ -121,16 +121,16 @@ namespace serial
 
       /*! Number of milliseconds between bytes received to timeout on. */
       u32 inter_byte_timeout;
-      /*! A constant number of milliseconds to wait after calling read. */
+      /*! A constant number of milliseconds to wait after method read. */
       u32 read_timeout_constant;
       /*! A multiplier against the number of requested bytes to wait after
-       *  calling read.
+       *  method read.
        */
       u32 read_timeout_multiplier;
-      /*! A constant number of milliseconds to wait after calling write. */
+      /*! A constant number of milliseconds to wait after method write. */
       u32 write_timeout_constant;
       /*! A multiplier against the number of requested bytes to wait after
-       *  calling write.
+       *  method write.
        */
       u32 write_timeout_multiplier;
 

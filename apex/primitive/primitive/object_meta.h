@@ -7,8 +7,8 @@ public:
 
 
    string                           m_strTopicText;
-   id_map < array < procedure > >   m_proceduremap;
-   id_map < array < callback > >    m_callbackmap;
+   id_map < array < method > >      m_methodmap;
+   id_map < array < future > >      m_futuremap;
 
 
    object_meta() { }

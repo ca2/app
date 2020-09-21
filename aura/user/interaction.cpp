@@ -1298,7 +1298,7 @@ namespace user
 
             strWaiting += "\r\n";
 
-            pthread->add(procedure(DESTROY_PROCEDURE, [this, pthread]()
+            pthread->add(method(DESTROY_METHOD, [this, pthread]()
             {
 
                m_threada.remove(pthread);
@@ -3392,7 +3392,7 @@ namespace user
 
       run_property("on_create");
 
-      runall(CREATE_PROCEDURE);
+      call(CREATE_METHOD);
 
       sync_style();
 
@@ -7478,7 +7478,7 @@ namespace user
       // make sure a message goes through to exit the modal loop
       m_bModal = false;
 
-      receive(DIALOG_RESULT_CALLBACK, idResult);
+      send(DIALOG_RESULT_FUTURE, idResult);
 
       post_message(WM_CLOSE);
 

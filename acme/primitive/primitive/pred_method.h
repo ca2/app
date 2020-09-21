@@ -9,7 +9,7 @@
 
 
 template < typename PRED >
-class ___pred_procedure :
+class ___pred_method :
    virtual public ::generic
 {
 public:
@@ -19,7 +19,7 @@ public:
    __pointer(::generic)         m_pobjectHold;
 
 
-   ___pred_procedure(PRED pred, ::generic * pobjectHold = nullptr) :
+   ___pred_method(PRED pred, ::generic * pobjectHold = nullptr) :
       m_pred(pred),
       m_pobjectHold(pobjectHold)
    {
@@ -27,7 +27,7 @@ public:
    }
 
 
-   virtual ~___pred_procedure()
+   virtual ~___pred_method()
    {
 
 
@@ -64,26 +64,26 @@ public:
 
 
 template < typename PRED >
-inline __pointer(generic) __pred_procedure(PRED pred)
+inline __pointer(generic) __pred_method(PRED pred)
 {
 
-   return __new(___pred_procedure < PRED >(pred));
+   return __new(___pred_method < PRED >(pred));
 
 }
 
 
 template < typename PRED >
-inline __pointer(generic) __pred_procedure(PRED pred, ::generic * pobjectHold)
+inline __pointer(generic) __pred_method(PRED pred, ::generic * pobjectHold)
 {
 
-   return __new(___pred_procedure < PRED >(pred, pobjectHold));
+   return __new(___pred_method < PRED >(pred, pobjectHold));
 
 }
 
 
 
 template < >
-inline __pointer(generic) __pred_procedure(nullptr_t, ::generic * pobjectHold)
+inline __pointer(generic) __pred_method(nullptr_t, ::generic * pobjectHold)
 {
 
    return nullptr;
@@ -134,13 +134,13 @@ inline auto schedule(processor * pprocessor, PRED pred, e_priority epriority = p
 
 
 template < typename TYPE >
-inline auto __runnable_procedure(TYPE * p, void (TYPE:: * pprocedure)())
+inline auto __runnable_method(TYPE * p, void (TYPE:: * pmethod)())
 {
 
-   return __runnable([p, pprocedure]
+   return __runnable([p, pmethod]
    {
 
-      (p->*pprocedure)();
+      (p->*pmethod)();
 
    });
 

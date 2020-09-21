@@ -1,10 +1,10 @@
 #include "framework.h"
 
 
-procedure & procedure::operator = (const ::var& var)
+method & method::operator = (const ::var& var)
 {
    
-   if (var.get_type() == ::type_procedure)
+   if (var.get_type() == ::type_method)
    {
 
       m_pobjectTask = var.m_functionbase.m_pobjectTask;

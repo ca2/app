@@ -8402,9 +8402,9 @@ string get_bundle_app_library_name();
       if (!plibrary)
       {
 
-         wait_result_callback callback;
+         wait_future future;
 
-         os_message_box(strMessage, "Could not open required library.", MB_ICONEXCLAMATION, callback);
+         os_message_box(strMessage, "Could not open required library.", MB_ICONEXCLAMATION, future);
 
          __throw(::exception::exception(strMessage + "\n\nCould not open required library."));
 

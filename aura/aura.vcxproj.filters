@@ -2012,9 +2012,6 @@
     <ClInclude Include="primitive\primitive\task.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="callback.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="multimedia\_.h">
       <Filter>Header Files\multimedia</Filter>
     </ClInclude>
@@ -2602,6 +2599,9 @@
     </ClInclude>
     <ClInclude Include="const\aaa_procedure.h">
       <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="aaa_callback.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

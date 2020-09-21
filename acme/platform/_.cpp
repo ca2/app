@@ -60,7 +60,7 @@ namespace acme
 
       ::acme::memcpy_s(rString.get_string_buffer(nLen), nLen * sizeof(char), pszFullString, nLen * sizeof(char));
 
-      rString.release_string_buffer();   // Need to call ReleaseBuffer after calling get_string_buffer
+      rString.release_string_buffer();   // Need to call ReleaseBuffer after method get_string_buffer
 
       return TRUE;
 

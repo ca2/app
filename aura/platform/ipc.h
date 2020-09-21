@@ -14,7 +14,7 @@ namespace aura
 {
 
 
-   namespace ipc
+   namespace interprocess_communication
    {
 
 
@@ -168,7 +168,7 @@ namespace aura
 
 
 
-      class CLASS_DECL_AURA ipc:
+      class CLASS_DECL_AURA interprocess_communication:
          virtual public tx,
          virtual public rx::receiver
       {
@@ -180,8 +180,8 @@ namespace aura
          unsigned int            m_tickTimeout;
 
 
-         ipc();
-         virtual ~ipc();
+         interprocess_communication();
+         virtual ~interprocess_communication();
 
 #if defined(_UWP)
          bool open_ab(const char * pszChannel, const char * pszModule);
@@ -214,7 +214,7 @@ namespace aura
       CLASS_DECL_AURA string app_install(string strPlatform = "");
 
 
-   } // namespace ipc
+   } // namespace interprocess_communication
 
 
 } // namespace aura

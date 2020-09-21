@@ -1,34 +1,34 @@
 #include "framework.h"
 
 
-namespace apex
-{
+//namespace apex
+//{
 
 
-   namespace ipc
+   namespace interprocess_communication
    {
 
 
 
-      void rx::receiver::on_ipc_receive(rx * prx, const char * pszMessage)
+      void rx::receiver::on_interprocess_receive(rx * prx, const char * pszMessage)
       {
 
       }
 
 
-      void rx::receiver::on_ipc_receive(rx * prx, int message, void * pdata, memsize len)
+      void rx::receiver::on_interprocess_receive(rx * prx, int message, void * pdata, memsize len)
       {
 
       }
 
 
-      void rx::receiver::on_ipc_post(rx * prx, ::i64 a, ::i64 b)
+      void rx::receiver::on_interprocess_post(rx * prx, ::i64 a, ::i64 b)
       {
 
       }
 
 
-      //ipc::ipc(::layered * pobjectContext) :
+      //interprocess_communication::interprocess_communication(::layered * pobjectContext) :
       //   ::object(pobject),
       //   base(pobject),
       //   tx(pobject),
@@ -40,14 +40,14 @@ namespace apex
       //}
 
 
-      //ipc::~ipc()
+      //interprocess_communication::~interprocess_communication()
       //{
 
 
       //}
 
 
-      bool ipc::close()
+      bool interprocess_communication::close()
       {
 
          tx::close();
@@ -58,14 +58,14 @@ namespace apex
 
       }
 
-      void ipc::restart_apex_ipc()
+      void interprocess_communication::restart_apex_ipc()
       {
       }
 
 
 
       // calls restart if confirm_tx failed
-      bool ipc::ensure_tx(const char * pszMessage, duration durationTimeout)
+      bool interprocess_communication::ensure_tx(const char * pszMessage, duration durationTimeout)
       {
 
          if(!send(pszMessage, durationTimeout))
@@ -82,7 +82,7 @@ namespace apex
       }
 
 
-      bool ipc::ensure_tx(int message, void * pdata, int len, duration durationTimeout)
+      bool interprocess_communication::ensure_tx(int message, void * pdata, int len, duration durationTimeout)
       {
 
          if(message == WM_APP + WM_USER)
@@ -120,10 +120,10 @@ namespace apex
       }
 
 
-   } // namespace ipc
+   } // namespace interprocess_communication
 
 
-} // namespace apex
+//} // namespace apex
 
 
 

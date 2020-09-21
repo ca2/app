@@ -1472,7 +1472,7 @@ namespace user
       }
 
       m_puserinteraction->run_property("on_create");
-      m_puserinteraction->runall(CREATE_PROCEDURE);
+      m_puserinteraction->call(CREATE_METHOD);
 
    }
 

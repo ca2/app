@@ -689,7 +689,7 @@ namespace apex
             // apex commented
             //__throw(todo("interaction"));
 
-         /*if (!m_pipi)
+         /*if (!m_pinterprocessintercommunication)
          {
 
             __pointer(::user::interaction) pinteraction;
@@ -712,7 +712,7 @@ namespace apex
 
             }
 
-            if (papp->m_pipi == nullptr)
+            if (papp->m_pinterprocessintercommunication == nullptr)
             {
 
                return error_failed;
@@ -721,7 +721,7 @@ namespace apex
 
          }*/
 
-         if (::str::begins_eat_ci(str, m_pipi->m_prx->m_strBaseChannel))
+         if (::str::begins_eat_ci(str, m_pinterprocessintercommunication->m_prx->m_strBaseChannel))
          {
 
             if (::str::begins_eat_ci(str, ":///"))
@@ -730,7 +730,7 @@ namespace apex
                if (::str::begins_eat_ci(str, "send?message="))
                {
 
-                  m_pipi->on_ipc_receive(m_pipi->m_prx, System.url().url_decode(str));
+                  m_pinterprocessintercommunication->on_interprocess_receive(m_pinterprocessintercommunication->m_prx, System.url().url_decode(str));
 
                }
                else if (::str::begins_eat_ci(str, "send?messagebin="))
@@ -747,7 +747,7 @@ namespace apex
 
                      System.base64().decode(m, System.url().url_decode(str.Mid(iFind + 1)));
 
-                     m_pipi->on_ipc_receive(m_pipi->m_prx, message, m.get_data(), m.get_size());
+                     m_pinterprocessintercommunication->on_interprocess_receive(m_pinterprocessintercommunication->m_prx, message, m.get_data(), m.get_size());
 
                   }
 
@@ -1870,7 +1870,7 @@ namespace apex
       try
       {
 
-         m_pipi.release();
+         m_pinterprocessintercommunication.release();
 
       }
       catch (...)
@@ -2020,7 +2020,7 @@ namespace apex
          try
          {
 
-            m_pipi = create_ipi();
+            m_pinterprocessintercommunication = create_interprocess_intercommunication();
 
          }
          catch (...)
@@ -2028,14 +2028,14 @@ namespace apex
 
          }
 
-         if (!m_pipi)
+         if (!m_pinterprocessintercommunication)
          {
 
             return ::error_failed;
 
          }
 
-         auto estatus = m_pipi->initialize(this);
+         auto estatus = m_pinterprocessintercommunication->initialize(this);
 
          if (!estatus)
          {
@@ -2088,10 +2088,10 @@ namespace apex
 
       INFO("apex::application::init_application .2");
 
-      if (m_pipi)
+      if (m_pinterprocessintercommunication)
       {
 
-         m_pipi->on_new_instance(Context.file().module(), Context.os().get_pid());
+         m_pinterprocessintercommunication->on_new_instance(Context.file().module(), Context.os().get_pid());
 
       }
 
@@ -3614,13 +3614,13 @@ retry_license:
    }
 
 
-   __pointer(::apex::ipi) application::create_ipi()
+   __pointer(::interprocess_intercommunication) application::create_interprocess_intercommunication()
    {
 
       try
       {
 
-         return __new(::apex::ipi(m_strAppName));
+         return __new(::interprocess_intercommunication(m_strAppName));
 
       }
       catch (...)
@@ -4135,7 +4135,7 @@ retry_license:
          try
          {
 
-            m_pipi.release();
+            m_pinterprocessintercommunication.release();
 
          }
          catch (...)
@@ -4708,10 +4708,10 @@ retry_license:
       try
       {
 
-         if (m_pipi)
+         if (m_pinterprocessintercommunication)
          {
 
-            auto pcall = m_pipi->create_call("application", "on_additional_local_instance");
+            auto pcall = m_pinterprocessintercommunication->create_call("application", "on_additional_local_instance");
 
             pcall->add_arg(Context.file().module());
 
@@ -4769,10 +4769,10 @@ retry_license:
       try
       {
 
-         if (m_pipi)
+         if (m_pinterprocessintercommunication)
          {
 
-            auto pcall = m_pipi->create_call("application", "on_additional_local_instance");
+            auto pcall = m_pinterprocessintercommunication->create_call("application", "on_additional_local_instance");
 
             pcall->add_arg(Context.file().module());
 

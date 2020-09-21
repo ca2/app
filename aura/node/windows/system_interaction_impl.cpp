@@ -61,7 +61,7 @@ namespace user
             fork([this]()
                {
 
-                  Session.runall(e_procedure_font_change);
+                  Session.call(e_method_font_change);
 
                });
 

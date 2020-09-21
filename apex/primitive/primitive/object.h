@@ -2,7 +2,7 @@
 
 
 enum enum_procedure : ::i32;
-enum enum_callback : ::i32;
+enum enum_future : ::i32;
 
 namespace user
 {
@@ -58,35 +58,34 @@ public:
    __pointer(BASE_TYPE) file_as(const var & varFile);
 
 
+   virtual void add(const ::method & method);
+   virtual void add(const ::future & future);
 
-   virtual void add(const ::procedure & procedure);
-   virtual void add(const ::callback & callback);
+   virtual void add_methods_from(const ::id & id, ::object * pobjectSource);
+   virtual void add_futures_from(const ::id & id, ::object* pobjectSource);
 
-   virtual void add_procedures_from(const ::id & id, ::object * pobjectSource);
-   virtual void add_callbacks_from(const ::id & id, ::object* pobjectSource);
+   virtual array < ::method > * methods(const ::id & idProcedure);
+   virtual array < ::future > * futures(const ::id & idCallback);
 
-   virtual array < ::procedure > * procedures(const ::id & idProcedure);
-   virtual array < ::callback > * callbacks(const ::id & idCallback);
-
-   virtual void runall(const ::id & idProcedure);
-   virtual void receive(const ::id & idCallback, const ::var & var);
+   virtual void call(const ::id & idMethod);
+   virtual void send(const ::id & idFuture, const ::var & var);
 
 
    template < typename PRED >
-   inline object & operator +=(const ::procedure & procedure)
+   inline object & operator +=(const ::method & method)
    {
 
-      add(procedure);
+      add(method);
 
       return *this;
 
    }
 
    template < typename PRED >
-   inline object& operator +=(const ::callback & callback)
+   inline object& operator +=(const ::future & future)
    {
 
-      add(callback);
+      add(future);
 
       return *this;
 
@@ -97,15 +96,15 @@ public:
    inline void add_procedure(const ::id & id, PRED pred, ::generic* pobjectHold = nullptr)
    {
 
-      add(::procedure(id, pred, pobjectHold));
+      add(::method(id, pred, pobjectHold));
 
    }
 
    template < typename PRED >
-   inline void add_callback(const ::id & id, PRED pred, ::generic * pobjectHold = nullptr)
+   inline void add_future(const ::id & id, PRED pred, ::generic * pobjectHold = nullptr)
    {
 
-      add(::callback(id, pred, pobjectHold));
+      add(::future(id, pred, pobjectHold));
 
    }
 
@@ -113,15 +112,15 @@ public:
    inline void add(enum_procedure eprocedure, PRED pred)
    {
 
-      add(::procedure((::i64) eprocedure, pred));
+      add(::method((::i64) eprocedure, pred));
 
    }
 
    template < typename PRED >
-   inline void add(enum_callback ecallback, PRED pred)
+   inline void add(enum_future efuture, PRED pred)
    {
 
-      add(::callback((::i64) ecallback, pred));
+      add(::future((::i64) efuture, pred));
 
    }
 
@@ -376,23 +375,23 @@ public:
 
    virtual ::estatus do_request(::create * pcreate);
 
-   inline ::estatus message_box(const char* pszMessage, const char* pszTitle = nullptr, ::emessagebox emessagebox = message_box_ok, ::callback callback = ::callback())
+   inline ::estatus message_box(const char* pszMessage, const char* pszTitle = nullptr, ::emessagebox emessagebox = message_box_ok, ::future future = ::future())
    {
    
-      return message_box(nullptr, pszMessage, pszTitle, emessagebox, callback);
+      return message_box(nullptr, pszMessage, pszTitle, emessagebox, future);
 
    }
 
 
-   inline ::estatus message_box_timeout(const char* pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeout = ::duration::infinite(), ::emessagebox emessagebox = message_box_ok, ::callback callback = ::callback())
+   inline ::estatus message_box_timeout(const char* pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeout = ::duration::infinite(), ::emessagebox emessagebox = message_box_ok, ::future future = ::future())
    {
 
-      return message_box_timeout(nullptr, pszMessage, pszTitle, durationTimeout, emessagebox, callback);
+      return message_box_timeout(nullptr, pszMessage, pszTitle, durationTimeout, emessagebox, future);
 
    }
 
-   virtual ::estatus message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle = nullptr, ::emessagebox emessagebox = message_box_ok, ::callback callback = ::callback());
-   virtual ::estatus message_box_timeout(::user::primitive* pwndOwner, const char* pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeout = ::duration::infinite(), ::emessagebox emessagebox = message_box_ok, ::callback callback = ::callback());
+   virtual ::estatus message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle = nullptr, ::emessagebox emessagebox = message_box_ok, ::future future = ::future());
+   virtual ::estatus message_box_timeout(::user::primitive* pwndOwner, const char* pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeout = ::duration::infinite(), ::emessagebox emessagebox = message_box_ok, ::future future = ::future());
 
    virtual void release_references();
 

@@ -27,17 +27,17 @@ namespace axis
    void ipi::task::do_task(const string & strObject, const string & strMember, const var_array & vara)
    {
 
-      ::aura::ipc::tx & txc = m_pcall->m_pipi->tx(m_pcall->m_strApp, m_idPid);
+      ::aura::ipc::tx & txc = m_pcall->m_pinterprocessintercommunication->tx(m_pcall->m_strApp, m_idPid);
 
-      string strVara = m_pcall->m_pipi->str_from_va(vara);
+      string strVara = m_pcall->m_pinterprocessintercommunication->str_from_va(vara);
 
-      m_iTask = atomic_increment(&m_pcall->m_pipi->m_iTaskSeed);
+      m_iTask = atomic_increment(&m_pcall->m_pinterprocessintercommunication->m_iTaskSeed);
 
       string strSource;
 
-      string strPid = __str(m_pcall->m_pipi->m_idApp);
+      string strPid = __str(m_pcall->m_pinterprocessintercommunication->m_idApp);
 
-      strSource.Format(" from %s:%s ", m_pcall->m_pipi->m_strApp.c_str(), strPid.c_str());
+      strSource.Format(" from %s:%s ", m_pcall->m_pinterprocessintercommunication->m_strApp.c_str(), strPid.c_str());
 
       string str = "call " + __str(m_iTask) + strSource + strObject + "." + strMember + ": " + strVara;
 
@@ -65,7 +65,7 @@ namespace axis
 
    ipi::call::call(ipi * pipi, const string & strApp, const string & strObject, const string & strMember) :
       ::object(pipi),
-      m_pipi(pipi),
+      m_pinterprocessintercommunication(pipi),
       m_strApp(strApp),
       m_strObject(strObject),
       m_strMember(strMember),
@@ -146,7 +146,7 @@ namespace axis
 
          }
 
-         pobjectTask = m_pipi->create_task(this, idPid);
+         pobjectTask = m_pinterprocessintercommunication->create_task(this, idPid);
 
          pobjectTask->do_task(m_strObject, m_strMember, m_varaArgs);
 
@@ -189,7 +189,7 @@ namespace axis
 
       exclude_this_app();
 
-      auto iaPid = m_pipi->get_pid(m_strApp);
+      auto iaPid = m_pinterprocessintercommunication->get_pid(m_strApp);
 
       if (iaPid.is_empty())
       {
@@ -201,9 +201,9 @@ namespace axis
 
          }
 
-         m_pipi->start(m_strApp);
+         m_pinterprocessintercommunication->start(m_strApp);
 
-         iaPid = m_pipi->get_pid(m_strApp);
+         iaPid = m_pinterprocessintercommunication->get_pid(m_strApp);
 
       }
 

@@ -166,8 +166,8 @@ enum e_type
    type_filetime,
    type_prop,
    type_pvar,
-   type_procedure,
-   type_callback,
+   type_method,
+   type_future,
 
    // generic classes
    type_element = 8000,
@@ -221,7 +221,7 @@ enum e_trace_category
    trace_category_appmsg,        // main message pump trace (includes dde)
    trace_category_winmsg,        // windows message tracing
    trace_category_cmdrouting,    // windows command routing trace
-   trace_category_ole,          // special ole callback trace
+   trace_category_ole,          // special ole future trace
    trace_category_database,     // special database trace
    trace_category_internet,     // special internet client trace
    trace_category_dumpcontext,   // traces from dump_context
@@ -618,21 +618,21 @@ enum e_system_message
 /*
 
 
-enum enum_procedure
+enum enum_method
 {
 
-   e_procedure_create,
-   e_procedure_destroy,
+   e_method_create,
+   e_method_destroy,
 
 };
 
 
-enum enum_callback
+enum enum_future
 {
 
-   e_callback_finish,
-   e_callback_dialog_result,
-   e_callback_complete,
+   e_future_finish,
+   e_future_dialog_result,
+   e_future_complete,
 
 };
 

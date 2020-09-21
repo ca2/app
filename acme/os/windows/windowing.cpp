@@ -358,7 +358,7 @@ CLASS_DECL_ACME WINBOOL is_window(oswindow oswindow)
 CLASS_DECL_ACME string message_box_result_to_string(int iResult);
 //
 //
-CLASS_DECL_ACME ::estatus _os_message_box(oswindow oswindow, const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, ::callback callback)
+CLASS_DECL_ACME ::estatus _os_message_box(oswindow oswindow, const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, ::future future)
 {
 
    string strMessage(pszMessage);
@@ -373,14 +373,14 @@ CLASS_DECL_ACME ::estatus _os_message_box(oswindow oswindow, const char* pszMess
 
    string strResult = message_box_result_to_string(iResult);
 
-   callback.receive_response(strResult);
+   future.receive_response(strResult);
 
    return ::success;
 
 }
 //
 //
-CLASS_DECL_ACME ::estatus os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, ::callback callback)
+CLASS_DECL_ACME ::estatus os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, ::future future)
 {
 
    //if (::get_context_system()->is_dedicated_thread())
@@ -397,7 +397,7 @@ CLASS_DECL_ACME ::estatus os_message_box(oswindow oswindow, const char * pszMess
 
    //}
 
-   return _os_message_box(oswindow, pszMessage, pszTitle, emessagebox, callback);
+   return _os_message_box(oswindow, pszMessage, pszTitle, emessagebox, future);
 
 }
 //

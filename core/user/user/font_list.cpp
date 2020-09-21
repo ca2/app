@@ -69,12 +69,12 @@ namespace user
 
       User.will_use_view_hint(FONTSEL_IMPACT);
 
-      Session.add(e_procedure_font_change, [this]()
+      Session.add(method(e_method_font_change, [this]()
       {
 
          on_font_change();
 
-      });
+      }));
 
    }
 
@@ -595,7 +595,7 @@ namespace user
             fork([this]()
                {
 
-                  Session.runall(e_procedure_font_change);
+                  Session.call(e_method_font_change);
 
                });
 

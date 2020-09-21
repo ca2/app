@@ -355,7 +355,7 @@ void window_create_gray_caret(oswindow oswindow, i32 nWidth, i32 nHeight)
 //CLASS_DECL_APEX string message_box_result_to_string(int iResult);
 //
 //
-//CLASS_DECL_APEX ::estatus _os_message_box(oswindow oswindow, const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, ::callback callback)
+//CLASS_DECL_APEX ::estatus _os_message_box(oswindow oswindow, const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, ::future future)
 //{
 //
 //   string strMessage(pszMessage);
@@ -370,17 +370,17 @@ void window_create_gray_caret(oswindow oswindow, i32 nWidth, i32 nHeight)
 //
 //   string strResult = message_box_result_to_string(iResult);
 //
-//   callback.receive_response(strResult);
+//   future.receive_response(strResult);
 //
 //   return ::success;
 //
 //}
 //
 
-CLASS_DECL_ACME::estatus _os_message_box(oswindow oswindow, const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, ::callback callback);
+CLASS_DECL_ACME::estatus _os_message_box(oswindow oswindow, const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, ::future future);
 
 
-CLASS_DECL_APEX ::estatus apex_os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, ::callback callback)
+CLASS_DECL_APEX ::estatus apex_os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, ::future future)
 {
 
    if (::get_context_system()->is_dedicated_thread())
@@ -389,7 +389,7 @@ CLASS_DECL_APEX ::estatus apex_os_message_box(oswindow oswindow, const char * ps
       ::get_context_system()->fork([=]()
          {
 
-            _os_message_box(oswindow, pszMessage, pszTitle, emessagebox, callback);
+            _os_message_box(oswindow, pszMessage, pszTitle, emessagebox, future);
 
          });
 
@@ -397,7 +397,7 @@ CLASS_DECL_APEX ::estatus apex_os_message_box(oswindow oswindow, const char * ps
 
    }
 
-   return _os_message_box(oswindow, pszMessage, pszTitle, emessagebox, callback);
+   return _os_message_box(oswindow, pszMessage, pszTitle, emessagebox, future);
 
 }
 

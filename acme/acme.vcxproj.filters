@@ -329,9 +329,6 @@
     <ClInclude Include="primitive\primitive\property.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\promise.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive\primitive_update.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
@@ -1649,12 +1646,6 @@
     <ClInclude Include="primitive\primitive\function_base.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\callback.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\procedure.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive\var.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
@@ -1764,9 +1755,6 @@
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\pred_holder.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\procedure_array.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\retry.h">
@@ -2108,9 +2096,6 @@
     <ClInclude Include="platform\profiler.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="multithreading\pred_procedure.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\file\aaa_data.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
@@ -2121,9 +2106,6 @@
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="const\_const.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\callback.h">
       <Filter>Header Files\const</Filter>
     </ClInclude>
     <ClInclude Include="const\charset.h">
@@ -2150,9 +2132,6 @@
     <ClInclude Include="const\message.h">
       <Filter>Header Files\const</Filter>
     </ClInclude>
-    <ClInclude Include="const\procedure.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
     <ClInclude Include="const\simple_command.h">
       <Filter>Header Files\const</Filter>
     </ClInclude>
@@ -2171,10 +2150,34 @@
     <ClInclude Include="const\timer.h">
       <Filter>Header Files\const</Filter>
     </ClInclude>
-    <ClInclude Include="multithreading\wait_result_callback.h">
+    <ClInclude Include="primitive\primitive\aaa_want_to_remove_pointer1.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\promise1.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="const\future.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\method.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\future.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\method.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\pred_method.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\pred_future.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\method_array.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
-    <ClInclude Include="multithreading\pred_callback.h">
+    <ClInclude Include="multithreading\wait_future.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
   </ItemGroup>
@@ -3073,12 +3076,6 @@
     <ClCompile Include="platform\obj_typ_ctr.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\procedure.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive\callback.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
-    </ClCompile>
     <ClCompile Include="platform\factory.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -3231,6 +3228,12 @@
     </ClCompile>
     <ClCompile Include="multithreading\wait_result_callback.cpp">
       <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive\future.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive\method.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -78,7 +78,7 @@
 //      bool                                            m_bFranceExit;
 //
 //      bool                                            m_bIpi;
-//      __pointer(ipi)                                  m_pipi;
+//      __pointer(ipi)                                  m_pinterprocessintercommunication;
 //      __pointer(service_base)                         m_pservice;
 //
 //      ::mutex                                         m_mutexFrame;

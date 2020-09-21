@@ -278,13 +278,13 @@ void object::dev_log(string strMessage) const
 
 
 
-array < ::procedure >* object::procedures(const ::id & idProcedure)
+array < ::method >* object::methods(const ::id & idMethod)
 {
 
    if (m_pmeta)
    {
 
-      auto p = m_pmeta->m_proceduremap.plookup(idProcedure);
+      auto p = m_pmeta->m_methodmap.plookup(idMethod);
 
       if (p)
       {
@@ -300,13 +300,13 @@ array < ::procedure >* object::procedures(const ::id & idProcedure)
 }
 
 
-array < ::callback >* object::callbacks(const ::id & idCallback)
+array < ::future >* object::futures(const ::id & idFuture)
 {
 
    if (m_pmeta)
    {
 
-      auto p = m_pmeta->m_callbackmap.plookup(idCallback);
+      auto p = m_pmeta->m_futuremap.plookup(idFuture);
 
       if (p)
       {
@@ -322,10 +322,10 @@ array < ::callback >* object::callbacks(const ::id & idCallback)
 }
 
 
-void object::runall(const ::id & idProcedure)
+void object::call(const ::id & idMethod)
 {
 
-   auto pprocedures = procedures(idProcedure);
+   auto pprocedures = methods(idMethod);
 
    if(pprocedures)
    {
@@ -336,10 +336,10 @@ void object::runall(const ::id & idProcedure)
 
 }
 
-void object::receive(const ::id & idCallback, const ::var& var)
+void object::send(const ::id & idFuture, const ::var& var)
 {
 
-   auto pcallbacks = callbacks(idCallback);
+   auto pcallbacks = futures(idFuture);
 
    if(pcallbacks)
    {
@@ -351,34 +351,34 @@ void object::receive(const ::id & idCallback, const ::var& var)
 }
 
 
-void object::add(const ::procedure & procedure)
+void object::add(const ::method & method)
 {
 
-   meta()->m_proceduremap[procedure.m_id].add(procedure);
+   meta()->m_methodmap[method.m_id].add(method);
 
 }
 
 
-void object::add(const ::callback & callback)
+void object::add(const ::future & future)
 {
 
-   meta()->m_callbackmap[callback.m_id].add(callback);
+   meta()->m_futuremap[future.m_id].add(future);
 
 }
 
 
-void object::add_procedures_from(const ::id &idProcedure, ::object* pobjectSource)
+void object::add_methods_from(const ::id &idMethod, ::object* pobjectSource)
 {
 
    if (pobjectSource)
    {
 
-      auto pprocedures = pobjectSource->procedures(idProcedure);
+      auto pprocedures = pobjectSource->methods(idMethod);
 
       if (pprocedures)
       {
 
-         meta()->m_proceduremap[idProcedure].add(*pprocedures);
+         meta()->m_methodmap[idMethod].add(*pprocedures);
 
       }
 
@@ -387,18 +387,18 @@ void object::add_procedures_from(const ::id &idProcedure, ::object* pobjectSourc
 }
 
 
-void object::add_callbacks_from(const ::id & idCallback, ::object * pobjectSource)
+void object::add_futures_from(const ::id & idFuture, ::object * pobjectSource)
 {
 
    if (pobjectSource)
    {
 
-      auto pcallbacks = pobjectSource->callbacks(idCallback);
+      auto pcallbacks = pobjectSource->futures(idFuture);
 
       if (pcallbacks)
       {
 
-         meta()->m_callbackmap[idCallback].add(*pcallbacks);
+         meta()->m_futuremap[idFuture].add(*pcallbacks);
 
       }
 
@@ -883,10 +883,10 @@ void object::finalize()
 
    }
 
-   if(string(m_id).contains("::ipi"))
+   if(string(m_id).contains("::interprocess_intercommunication"))
    {
 
-      output_debug_string("::ipi finalize");
+      output_debug_string("::interprocess_intercommunication finalize");
 
    }
 
@@ -1735,14 +1735,14 @@ string object::get_text(const var& var, const ::id& id)
 }
 
 
-::estatus object::message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, ::callback callback)
+::estatus object::message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, ::future future)
 {
 
    ::estatus estatus = error_failed;
 
    auto psession = get_context_session();
 
-   callback.m_id = DIALOG_RESULT_CALLBACK;
+   future.m_id = DIALOG_RESULT_FUTURE;
 
    if (::is_set(psession))
    {
@@ -1772,7 +1772,7 @@ string object::get_text(const var& var, const ::id& id)
          
       }
 
-      estatus = ::os_message_box(strMessage, strTitle, emessagebox, callback);
+      estatus = ::os_message_box(strMessage, strTitle, emessagebox, future);
 
    }
 
@@ -1781,7 +1781,7 @@ string object::get_text(const var& var, const ::id& id)
 }
 
 
-::estatus object::message_box_timeout(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::duration& durationTimeout, ::emessagebox emessagebox, ::callback callback)
+::estatus object::message_box_timeout(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::duration& durationTimeout, ::emessagebox emessagebox, ::future future)
 {
 
    ::estatus estatus = error_failed;
@@ -1796,7 +1796,7 @@ string object::get_text(const var& var, const ::id& id)
    if (!estatus)
    {
 
-      estatus = ::os_message_box(pszMessage, pszTitle, emessagebox, callback);
+      estatus = ::os_message_box(pszMessage, pszTitle, emessagebox, future);
 
    }
 

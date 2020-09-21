@@ -14,7 +14,7 @@ public:
    application_consumer()
    {
 
-      add(procedure(CREATE_PROCEDURE, [this]()
+      add(method(CREATE_METHOD, [this]()
          {
 
             initialize_application_consumer();

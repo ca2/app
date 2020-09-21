@@ -997,11 +997,11 @@ namespace sockets
 //         retry:
 #if defined(__APPLE__)
          int iSocket = GetSocket();
-         n = (int) (send(iSocket,buf,len,SO_NOSIGPIPE));
+         n = (int) (::send(iSocket,buf,len,SO_NOSIGPIPE));
 #elif defined(SOLARIS)
-         n = send(GetSocket(),(const char *)buf,(int)len,0);
+         n = ::send(GetSocket(),(const char *)buf,(int)len,0);
 #else
-         n = send(GetSocket(),(const char *)buf,(int)len,MSG_NOSIGNAL);
+         n = ::send(GetSocket(),(const char *)buf,(int)len,MSG_NOSIGNAL);
 #endif
          if(n == -1)
          {

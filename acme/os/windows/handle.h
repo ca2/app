@@ -19,7 +19,7 @@
 //  Most Windows objects are represented with a HANDLE, including
 //      the most important ones, oswindow, HDC, HPEN, HFONT etc.
 //  We want C++ objects to wrap these handle based objects whenever we can.
-//  Since Windows objects can be created outside of C++ (eg: calling
+//  Since Windows objects can be created outside of C++ (eg: method
 //      ::CreateWindow will return an oswindow with no C++ wrapper) we must
 //      support a reasonably uniform mapping from permanent handles
 //      (i.e. the ones allocated in C++) and temporary handles (i.e.

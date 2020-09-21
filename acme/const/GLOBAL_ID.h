@@ -24,14 +24,14 @@ enum
    REDRAW_ID,
    COUNT_ID,
 
-   // procedure
-   CREATE_PROCEDURE,
-   DESTROY_PROCEDURE,
+   // method
+   CREATE_METHOD,
+   DESTROY_METHOD,
 
-   // callback
-   FINISH_CALLBACK,
-   DIALOG_RESULT_CALLBACK,
-   COMPLETE_CALLBACK,
+   // future
+   FINISH_FUTURE,
+   DIALOG_RESULT_FUTURE,
+   COMPLETE_FUTURE,
 
 
 };

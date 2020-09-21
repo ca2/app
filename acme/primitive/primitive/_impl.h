@@ -2206,18 +2206,19 @@ if(m_etype == ENUM_TYPE) { return dynamic_cast < T * >(P); }
 
 
 template < typename PRED >
-void procedure::pred(PRED pred)
+void method::pred(PRED pred)
 {
 
-   m_pobjectTask = __task_procedure(pred);
+   m_pobjectTask = __pred_method(pred);
 
 }
 
+
 template < typename PRED >
-inline void callback::pred(PRED pred)
+inline void future::pred(PRED pred)
 {
 
-   m_pobjectTask = __task_callback(pred);
+   m_pobjectTask = __pred_future(pred);
 
 }
 
@@ -2336,7 +2337,7 @@ inline var __visible(var varOptions, bool bVisible)
 //}
 //
 
-inline void callback::receive_response(const var & var) const
+inline void future::receive_response(const var & var) const
 {
 
    if (!m_pobjectTask)
@@ -2379,9 +2380,9 @@ inline void callback::receive_response(const var & var) const
 
 
 template < typename PRED >
-procedure::procedure(const ::id& id, PRED pred) : function_base(id, __pred_procedure(pred)) { }
+method::method(const ::id& id, PRED pred) : function_base(id, __pred_method(pred)) { }
 template < typename PRED >
-procedure::procedure(PRED pred) : procedure(::id(), pred) { }
+method::method(PRED pred) : method(::id(), pred) { }
 
 
 

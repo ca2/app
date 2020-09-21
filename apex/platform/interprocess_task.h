@@ -1,0 +1,30 @@
+#pragma once
+
+
+class CLASS_DECL_APEX interprocess_task :
+   virtual public ::object
+{
+public:
+
+
+   ::id                                m_idPid;
+   ::i64                               m_iTask;
+   __pointer(interprocess_call)               m_pcall;
+   var                                 m_var;
+   __pointer(manual_reset_event)       m_pevReady;
+
+
+   interprocess_task(interprocess_call* pcall, const ::id& idPid, i64 iTask);
+   virtual ~interprocess_task();
+
+
+   virtual void do_task(const string& strObject, const string& strMember, const var_array& vara);
+
+
+};
+
+
+
+
+
+

@@ -3169,7 +3169,7 @@ namespace draw2d
 //
 //#include "aura/platform/launcher.h"
 //
-//#include "aura/platform/ipc.h"
+//#include "aura/platform/interprocess_communication.h"
 //
 //#include "aura/platform/app_launcher.h"
 //
@@ -3303,7 +3303,7 @@ namespace draw2d
 //
 //#include "aura/os/process.h"
 //
-//#include "aura/platform/ipi.h"
+//#include "aura/platform/interprocess_intercommunication.h"
 //
 //#include "aura/platform/hyperlink.h"
 //

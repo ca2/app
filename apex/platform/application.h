@@ -83,7 +83,7 @@ namespace apex
       bool                                            m_bFranceExit;
 
       bool                                            m_bIpi;
-      __pointer(ipi)                                  m_pipi;
+      __pointer(interprocess_intercommunication)                                  m_pinterprocessintercommunication;
       __pointer(service_base)                         m_pservice;
 
       // apex commented
@@ -529,7 +529,7 @@ namespace apex
 
       virtual string get_version();
 
-      virtual __pointer(::apex::ipi) create_ipi();
+      virtual __pointer(::interprocess_intercommunication) create_interprocess_intercommunication();
 
       //virtual ::estatus process_init();
       virtual void process_term();

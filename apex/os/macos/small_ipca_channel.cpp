@@ -170,7 +170,7 @@ namespace apex
       rx::rx()
       {
 
-         m_id = "::apex::ipc::rx";
+         m_id = "::interprocess_communication::rx";
 
          m_preceiver    = nullptr;
 

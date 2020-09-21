@@ -5,9 +5,9 @@ namespace aura
 {
 
 
-   class CLASS_DECL_AURA ipi :
+   class CLASS_DECL_AURA interprocess_intercommunication :
       virtual public object,
-      virtual public ::aura::ipc::rx::receiver
+      virtual public ::aura::interprocess_communication::rx::receiver
    {
    public:
 
@@ -38,8 +38,6 @@ namespace aura
       };
 
 
-      using pid_task = id_map < __pointer(task) >;
-
 
       class CLASS_DECL_AURA call :
          virtual public ::object
@@ -47,7 +45,7 @@ namespace aura
       public:
 
 
-         __pointer(ipi)                m_pipi;
+         __pointer(interprocess_intercommunication)                m_pinterprocessintercommunication;
          string                        m_strApp;
          ::duration                    m_duration;
          id_array                      m_iaExclude;
@@ -62,7 +60,7 @@ namespace aura
          var_array                     m_varaArgs;
 
 
-         call(ipi * pipi, const string & strApp, const string & strObject, const string & strMember);
+         call(interprocess_intercommunication * pipi, const string & strApp, const string & strObject, const string & strMember);
          virtual ~call();
 
          auto tasks() { return typename pid_task::dereferenced_value_iterator(nullptr, &m_mapTask); }
@@ -91,17 +89,17 @@ namespace aura
       ::i64                                        m_iTaskSeed;
       string                                       m_strApp;
       ::id                                         m_idApp;
-      string_map < __pointer(::aura::ipc::tx) >    m_txmap;
+      string_map < __pointer(::aura::interprocess_communication::tx) >    m_txmap;
       string_map < __pointer(::mutex) >            m_mapAppMutex;
-      __pointer(::aura::ipc::rx)                   m_prx;
+      __pointer(::aura::interprocess_communication::rx)                   m_prx;
       string_array                                 m_straModule;
 
       // strTask - Task
       pid_task                                     m_mapTask;
 
 
-      ipi(const string & strApp);
-      virtual ~ipi();
+      interprocess_intercommunication(const string & strApp);
+      virtual ~interprocess_intercommunication();
 
 
       virtual ::estatus initialize(::layered * pobjectContext) override;
@@ -118,7 +116,7 @@ namespace aura
 
       virtual __pointer(class call) create_call(const string & strObject, const string & strMember);
 
-      virtual ::aura::ipc::tx & tx(const string & strApp, const ::id & idPid);
+      virtual ::aura::interprocess_communication::tx & tx(const string & strApp, const ::id & idPid);
 
       virtual id_array get_pid(const string & strApp);
 
@@ -128,9 +126,9 @@ namespace aura
 
       virtual void on_ipi_call(var & var, const string & strObject, const string & strMember, var_array & vara);
 
-      using ::aura::ipc::rx::receiver::on_ipc_receive;
+      using ::aura::interprocess_communication::rx::receiver::on_ipc_receive;
 
-      virtual void on_ipc_receive(::aura::ipc::rx * prx, const char * pszMessage) override;
+      virtual void on_ipc_receive(::aura::interprocess_communication::rx * prx, const char * pszMessage) override;
 
       virtual bool start(const string & strApp);
 

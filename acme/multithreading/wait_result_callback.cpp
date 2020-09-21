@@ -2,8 +2,8 @@
 #include "acme/id.h"
 
 
-wait_result_callback::wait_result_callback() :
-   callback(id_result, [this](const var& varResult)
+wait_future::wait_future() :
+   future(id_result, [this](const var& varResult)
       {
 
          m_varResult = varResult;
@@ -16,7 +16,7 @@ wait_result_callback::wait_result_callback() :
 }
 
 
-wait_result_callback::~wait_result_callback()
+wait_future::~wait_future()
 {
 
    m_event.wait();

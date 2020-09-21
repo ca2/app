@@ -298,13 +298,13 @@ namespace user
    }
 
 
-
-
    void document::on_create(::create * pcreate)
    {
 
       run_property("on_create");
-runall(CREATE_PROCEDURE);
+
+      call(CREATE_METHOD);
+
       //::database::client::initialize_data_client(Application.dataserver());
 
    }

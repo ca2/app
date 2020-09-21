@@ -24,11 +24,11 @@ namespace acme
       string            m_strText;
       string            m_strTitle;
       ::emessagebox     m_emessagebox;
-      ::callback        m_callback;
+      ::future          m_future;
 
 
-      os_message_box(const string & strText, const string & strTitle, ::emessagebox emessagebox, ::callback callback) :
-         m_strText(strText), m_strTitle(strTitle), m_emessagebox(emessagebox), m_callback(callback)
+      os_message_box(const string & strText, const string & strTitle, ::emessagebox emessagebox, ::future future) :
+         m_strText(strText), m_strTitle(strTitle), m_emessagebox(emessagebox), m_future(future)
       {
 
       }
@@ -65,7 +65,7 @@ namespace acme
 
          string strResult = message_box_result_to_string(iResult);
 
-         m_callback.receive_response(strResult);
+         m_future.receive_response(strResult);
 
          return ::success;
 
@@ -78,10 +78,10 @@ namespace acme
 } // namespace acme
 
 
-::estatus os_message_box(const char* pszText, const char* pszTitle, ::emessagebox emessagebox, ::callback callback)
+::estatus os_message_box(const char* pszText, const char* pszTitle, ::emessagebox emessagebox, ::future future)
 {
 
-   auto posmessagebox = __new(::acme::os_message_box(pszText, pszTitle, emessagebox, callback));
+   auto posmessagebox = __new(::acme::os_message_box(pszText, pszTitle, emessagebox, future));
 
    posmessagebox->os_fork();
 

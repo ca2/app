@@ -341,7 +341,7 @@ namespace user
       virtual u32 GetStyle() const;
       virtual u32 GetExStyle() const;
 
-
+      using ::channel::send;
       virtual LRESULT send(::message::base * pbase);
       virtual bool post(::message::base * pbase);
 

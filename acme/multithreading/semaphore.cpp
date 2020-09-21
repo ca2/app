@@ -2,7 +2,7 @@
 
 
 #if defined(LINUX) || defined(__APPLE__)
-#include <sys/ipc.h>
+#include <sys/interprocess_communication.h>
 #include <sys/sem.h>
 #include "acme/os/ansios/_ansios.h"
 #elif defined(ANDROID)

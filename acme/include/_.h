@@ -1237,7 +1237,7 @@ class var_array;
 class property;
 
 
-class timer_callback;
+class timer_future;
 
 
 //namespace handle
@@ -1357,7 +1357,7 @@ class form_property_set;
 //   class interaction;
 //   class interaction_layout;
 //   class form;
-//   class form_callback;
+//   class form_future;
 //   class menu_interaction;
 //   class toolbar;
 //   class split_layout;
@@ -2643,9 +2643,9 @@ namespace http
 
 } // namespace http
 
-template < typename PRED > inline __pointer(::generic) __pred_procedure(PRED pred);
+template < typename PRED > inline __pointer(::generic) __pred_method(PRED pred);
 
-template < typename PRED > inline __pointer(::generic) __pred_callback(PRED pred);
+template < typename PRED > inline __pointer(::generic) __pred_future(PRED pred);
 
 //class context;
 
@@ -2682,8 +2682,8 @@ using generic_pointer = __pointer(::generic);
 
 #endif
 
-class procedure;
-class callback;
+class method;
+class future;
 
 
 namespace core
@@ -2706,11 +2706,13 @@ namespace core
 
 #include "acme/primitive/collection/_.h"
 
-#include "acme/primitive/primitive/procedure.h"
+#include "acme/primitive/primitive/method.h"
 
-#include "acme/primitive/primitive/callback.h"
+#include "acme/primitive/primitive/future.h"
 
-#include "acme/multithreading/pred_callback.h"
+#include "acme/primitive/primitive/pred_method.h"
+
+#include "acme/primitive/primitive/pred_future.h"
 
 #include "acme/primitive/geometry2d/collection.h"
 
@@ -2724,7 +2726,7 @@ class message_box;
 
 //#include "acme/platform/trace.h"
 
-//#include "acme/platform/pred_procedure.h"
+//#include "acme/platform/pred_method.h"
 
 #include "acme/platform/debug.h"
 
@@ -3068,7 +3070,7 @@ class mq_base;
 //#include "acme/multithreading/fork.h"
 //#include "acme/multithreading/delay_thread.h"
 //#include "acme/multithreading/tools.h"
-//#include "acme/platform/timer_callback.h"
+//#include "acme/platform/timer_future.h"
 //#include "acme/platform/timer_item.h"
 //#include "acme/platform/timer_array.h"
 //#include "acme/platform/timer.h"
@@ -3078,7 +3080,7 @@ class mq_base;
 //#include "acme/multithreading/simple_thread.h"
 //#include "acme/multithreading/go_thread.h"
 //#include "acme/multithreading/signal_thread.h"
-#include "acme/multithreading/procedure_array.h"
+#include "acme/multithreading/method_array.h"
 
 
 ///#include "acme/primitive/primitive/job.h"
@@ -3147,7 +3149,7 @@ CLASS_DECL_ACME string get_exe_path();
 
 //#include "acme/platform/launcher.h"
 
-//#include "acme/platform/ipc.h"
+//#include "acme/platform/interprocess_communication.h"
 
 //#include "acme/platform/app_launcher.h"
 
@@ -3281,7 +3283,7 @@ namespace zip
 
 #include "acme/os/process.h"
 
-//#include "acme/platform/ipi.h"
+//#include "acme/platform/interprocess_intercommunication.h"
 
 #include "acme/platform/hyperlink.h"
 
@@ -3324,7 +3326,7 @@ class ifs;
 
 //#include "acme/platform/context_thread.h"
 
-//#include "acme/filesystem/filemanager/callback.h"
+//#include "acme/filesystem/filemanager/future.h"
 
 //#include "acme/platform/application.h"
 
@@ -3832,7 +3834,7 @@ CLASS_DECL_ACME string get_error_string(u64 uiError);
 #include "acme/platform/message_box.h"
 
 
-#include "acme/multithreading/pred_procedure.h"
+//#include "acme/multithreading/pred_method.h"
 
 
 

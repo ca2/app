@@ -8,39 +8,53 @@
 #include "framework.h"
 
 
-bool os_init_application()
+//bool os_init_application()
+//{
+//   
+//   return true;
+//   
+//}
+//
+//
+
+
+//::estatus os_application_system_run(::aura::system * psystem)
+//{
+//
+//   ::estatus estatus = psystem->begin_synch();
+//
+//   if(!estatus)
+//   {
+//
+//      return estatus;
+//
+//   }
+//
+//   set_main_hthread(psystem->m_hthread);
+//
+//   set_main_ithread(psystem->m_uThread);
+//
+//   aura_application_main(psystem->m_argc, psystem->m_argv, psystem->m_strCommandLine);
+//
+//   return ::success;
+//
+//}
+
+
+
+
+
+
+
+namespace aura
 {
-   
-   return true;
-   
-}
 
-
-
-
-::estatus os_application_system_run(::aura::system * psystem)
-{
-
-   ::estatus estatus = psystem->begin_synch();
-   
-   if(!estatus)
+   void system::application_main(int argc, char *argv[], const char * pszCommandLine)
    {
-      
-      return estatus;
-      
-   }
    
-   set_main_hthread(psystem->m_hthread);
+      aura_application_main(argc, argv, pszCommandLine);
+   
+   }
 
-   set_main_ithread(psystem->m_uThread);
-
-   aura_application_main(psystem->m_argc, psystem->m_argv, psystem->m_strCommandLine);
-
-   return ::success;
-
-}
-
-
-
-
+} // namespace apex
 

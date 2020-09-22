@@ -222,110 +222,110 @@ int_bool mq::peek_message(LPMESSAGE pMsg,oswindow oswindow,UINT wMsgFilterMin,UI
 }
 
 
-__pointer(mq) get_mq(ITHREAD idthread, bool bCreate)
-{
-
-   ::thread * pthread = ::get_context_system()->get_thread(idthread);
-
-   if (!pthread)
-   {
-
-      return nullptr;
-
-   }
-
-   if(pthread->m_bClosedMq)
-   {
-
-      string strType = pthread->type_name();
-
-      if(::str::begins(strType, "multimedia::"))
-      {
-
-         if(strType.contains("wave_player"))
-         {
-
-            output_debug_string("xxCLOSED_MQ xx__get_mq from xxwave_player");
-
-         }
-         else if(strType.ends_ci("out"))
-         {
-
-            output_debug_string("xxCLOSED_MQ xx__get_mq from xxout");
-
-         }
-         else if(strType.contains("output_thread"))
-         {
-
-            output_debug_string("xxCLOSED_MQ xx__get_mq from xxoutput_thread");
-
-         }
-         else
-         {
-
-            output_debug_string("xxCLOSED_MQ xx__get_mq from xxmultimedia::*");
-
-         }
-
-      }
-
-      return nullptr;
-
-   }
-
-   if(pthread->m_pmq)
-   {
-
-      return pthread->m_pmq;
-
-   }
-
-   if(!bCreate)
-   {
-
-      string strType = pthread->type_name();
-
-      if(::str::begins(strType, "multimedia::"))
-      {
-
-         if(strType.contains("wave_player"))
-         {
-
-            output_debug_string("notxxbCreate xx__get_mq from xxwave_player");
-
-         }
-         else if(strType.ends_ci("out"))
-         {
-
-            output_debug_string("notxxbCreate xx__get_mq from xxout");
-
-         }
-         else if(strType.contains("output_thread"))
-         {
-
-            output_debug_string("notxxbCreate xx__get_mq from xxoutput_thread");
-
-         }
-         else
-         {
-
-            output_debug_string("notxxbCreate xx__get_mq from xxmultimedia::*");
-
-         }
-
-      }
-
-      return nullptr;
-
-   }
-
-   pthread->__raw_compose_new(pthread->m_pmq);
-
-   pthread->m_pmq->m_ithread = idthread;
-
-   return pthread->m_pmq;
-
-}
+//__pointer(mq) get_mq(ITHREAD idthread, bool bCreate)
+//{
+//
+//   ::thread * pthread = ::get_context_system()->get_thread(idthread);
+//
+//   if (!pthread)
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   if(pthread->m_bClosedMq)
+//   {
+//
+//      string strType = pthread->type_name();
+//
+//      if(::str::begins(strType, "multimedia::"))
+//      {
+//
+//         if(strType.contains("wave_player"))
+//         {
+//
+//            output_debug_string("xxCLOSED_MQ xx__get_mq from xxwave_player");
+//
+//         }
+//         else if(strType.ends_ci("out"))
+//         {
+//
+//            output_debug_string("xxCLOSED_MQ xx__get_mq from xxout");
+//
+//         }
+//         else if(strType.contains("output_thread"))
+//         {
+//
+//            output_debug_string("xxCLOSED_MQ xx__get_mq from xxoutput_thread");
+//
+//         }
+//         else
+//         {
+//
+//            output_debug_string("xxCLOSED_MQ xx__get_mq from xxmultimedia::*");
+//
+//         }
+//
+//      }
+//
+//      return nullptr;
+//
+//   }
+//
+//   if(pthread->m_pmq)
+//   {
+//
+//      return pthread->m_pmq;
+//
+//   }
+//
+//   if(!bCreate)
+//   {
+//
+//      string strType = pthread->type_name();
+//
+//      if(::str::begins(strType, "multimedia::"))
+//      {
+//
+//         if(strType.contains("wave_player"))
+//         {
+//
+//            output_debug_string("notxxbCreate xx__get_mq from xxwave_player");
+//
+//         }
+//         else if(strType.ends_ci("out"))
+//         {
+//
+//            output_debug_string("notxxbCreate xx__get_mq from xxout");
+//
+//         }
+//         else if(strType.contains("output_thread"))
+//         {
+//
+//            output_debug_string("notxxbCreate xx__get_mq from xxoutput_thread");
+//
+//         }
+//         else
+//         {
+//
+//            output_debug_string("notxxbCreate xx__get_mq from xxmultimedia::*");
+//
+//         }
+//
+//      }
+//
+//      return nullptr;
+//
+//   }
+//
+//   pthread->__raw_compose_new(pthread->m_pmq);
+//
+//   pthread->m_pmq->m_ithread = idthread;
+//
+//   return pthread->m_pmq;
+//
+//}
 
 
 CLASS_DECL_AURA int_bool post_ui_message(const MESSAGE & message)

@@ -11888,7 +11888,7 @@ namespace apex
 
       }
 
-      return var;
+      return var.get_string();
 
    }
 

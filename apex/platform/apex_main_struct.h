@@ -33,7 +33,7 @@ struct CLASS_DECL_APEX apex_main_struct
 #ifdef WINDOWS_DESKTOP
    bool                          m_bGdiplus;
 #elif defined(LINUX)
-   bool                             m_bGtkApp;
+   bool                          m_bGtkApp;
 #endif
    bool                          m_bShowApplicationInformation;
    INT_STRING *                  m_pintstringLanguageResourceMap;
@@ -44,8 +44,21 @@ struct CLASS_DECL_APEX apex_main_struct
    PFN_NEW_APEX_LIBRARY          m_pfnNewAuraLibrary;
 
 
-   apex_main_struct() { memset(this, 0, sizeof(*this));
-
+   apex_main_struct()
+   {
+      
+      m_bConsole = false;
+      m_bDraw2d = false;
+      m_bUser = false;
+      m_bUserEx = false;
+      m_bImaging = false;
+      #ifdef WINDOWS_DESKTOP
+      m_bGdiplus = false;
+      #elif defined(LINUX)
+      m_bGtkApp = false;
+      #endif
+      m_bShowApplicationInformation = false;
+      m_pintstringLanguageResourceMap = nullptr;
 
       #if defined(ANDROID) || defined(_UWP) || defined(APPLE_IOS)
 
@@ -60,7 +73,12 @@ struct CLASS_DECL_APEX apex_main_struct
          m_iMatterFromHttpCache = 0; // 0 = Roaming
 
       #endif
-
+      
+      m_pszMain = nullptr;
+      m_pfnNewAuraApplication = nullptr;
+      m_pfnNewAuraLibrary = nullptr;
+      
+      
    }
 
 

@@ -8,7 +8,7 @@
 
 #include "framework.h"
 
-#include "aura/compress/zip/context.h"
+#include "apex/compress/zip/context.h"
 
 #include "shell_macos.h"
 
@@ -229,7 +229,7 @@ namespace macos
          output_debug_string("test");
       }
 
-      auto pimage48 = __create_image({48,  48});
+      auto pimage48 = create_image({48,  48});
 
       pimage48->fill(0);
 
@@ -238,7 +238,7 @@ namespace macos
       if (macos_get_file_image(pimage48, strPath))
       {
          
-         auto pimage16 = __create_image({16,  16});
+         auto pimage16 = create_image({16,  16});
 
          pimage16->fill(0);
 

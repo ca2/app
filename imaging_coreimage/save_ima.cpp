@@ -8,18 +8,18 @@ namespace coreimage_imaging
 {
 
 
-   imaging::imaging()
+   context_image::context_image()
    {
 
    }
 
 
-   imaging::~imaging()
+   context_image::~context_image()
    {
 
    }
 
-   WINBOOL imaging::window_set_mouse_cursor(oswindow window, HCURSOR hcursor)
+   WINBOOL context_image::window_set_mouse_cursor(oswindow window, HCURSOR hcursor)
    {
 
       return os_window_set_mouse_cursor(window, hcursor);

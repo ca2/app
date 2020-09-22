@@ -484,40 +484,40 @@ namespace draw2d_quartz2d
 
    }
 
-   bool graphics::PtVisible(i32 x, i32 y)
-   {
+//   bool graphics::PtVisible(i32 x, i32 y)
+//   {
+//
+//      //    ASSERT(get_handle1() != nullptr);
+//
+//      //      return ::PtVisible(get_handle1(), x, y) != FALSE;
+//      __throw(not_implemented());
+//      return false;
+//
+//   }
 
-      //    ASSERT(get_handle1() != nullptr);
+//   bool graphics::PtVisible(const ::point & point)
+//   {
+//
+//      //      ASSERT(get_handle1() != nullptr);
+//
+//      //      return PtVisible(point.x, point.y);
+//
+//      __throw(not_implemented());
+//      return false;
+//
+//   }
 
-      //      return ::PtVisible(get_handle1(), x, y) != FALSE;
-      __throw(not_implemented());
-      return false;
-
-   }
-
-   bool graphics::PtVisible(const ::point & point)
-   {
-
-      //      ASSERT(get_handle1() != nullptr);
-
-      //      return PtVisible(point.x, point.y);
-
-      __throw(not_implemented());
-      return false;
-
-   }
-
-   bool graphics::RectVisible(const ::rect & rect)
-   {
-
-      //      ASSERT(get_handle1() != nullptr);
-
-      //      return ::RectVisible(get_handle1(), rect) != FALSE;
-
-      __throw(not_implemented());
-      return false;
-
-   }
+//   bool graphics::RectVisible(const ::rect & rect)
+//   {
+//
+//      //      ASSERT(get_handle1() != nullptr);
+//
+//      //      return ::RectVisible(get_handle1(), rect) != FALSE;
+//
+//      __throw(not_implemented());
+//      return false;
+//
+//   }
 
 
    pointd graphics::current_position()
@@ -1631,7 +1631,7 @@ namespace draw2d_quartz2d
          if (rectIntersect.intersect(rectIntersect, rectBlt))
          {
 
-            auto pimage1 = __create_image(rectBlt.size());
+            auto pimage1 = create_image(rectBlt.size());
 
             pimage1->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
@@ -1680,7 +1680,7 @@ namespace draw2d_quartz2d
 
             rectText.bottom = rectText.top + rectText.height() * 2;
 
-            auto pimage1 = __create_image(rectText.size());
+            auto pimage1 = create_image(rectText.size());
             
             pimage1->fill(0, 0, 0, 0);
             pimage1->get_graphics()->set(get_current_font());
@@ -3776,151 +3776,176 @@ namespace draw2d_quartz2d
       /*      return ::GetClipBox(get_handle1(), rect);*/
    }
 
-   i32 graphics::SelectClipRgn(::draw2d::region * pregion)
-   {
+//   i32 graphics::SelectClipRgn(::draw2d::region * pregion)
+//   {
+//
+//      if(pregion == nullptr)
+//      {
+//
+//         m_pregion.release();
+//
+//      }
+//      else
+//      {
+//
+//         m_pregion = pregion;
+//
+//         //cairo_clip(m_pdc);
+//
+//      }
+//
+//      return 0;
+//
+//      /*
+//       i32 nRetVal = ERROR;
+//       if(get_handle1() != nullptr && get_handle1() != get_handle2())
+//       nRetVal = ::SelectClipRgn(get_handle1(), pRgn == nullptr ? nullptr : (HRGN) pRgn->get_os_data());
+//       if(get_handle2() != nullptr)
+//       nRetVal = ::SelectClipRgn(get_handle2(), pRgn == nullptr ? nullptr : (HRGN) pRgn->get_os_data());
+//       return nRetVal;
+//       */
+//
+//   }
 
-      if(pregion == nullptr)
-      {
 
-//         cairo_reset_clip(m_pdc);
+//   i32 graphics::ExcludeClipRect(i32 x1, i32 y1, i32 x2, i32 y2)
+//   {
+//
+//      __throw(not_implemented);
+//
+//      return 0;
+//
+//   }
 
-         m_pregion.release();
 
-      }
-      else
-      {
+//   i32 graphics::ExcludeClipRect(const ::rect & rect)
+//   {
+//
+//      __throw(not_implemented());
+//      
+//      return 0;
+//
+//   }
 
-         m_pregion = pregion;
 
-         //cairo_clip(m_pdc);
+//   i32 graphics::IntersectClipRect(i32 x1, i32 y1, i32 x2, i32 y2)
+//   {
+//
+//      __throw(not_implemented());
+//      return 0;
+//
+//      /*
+//       i32 nRetVal = ERROR;
+//       if(get_handle1() != nullptr && get_handle1() != get_handle2())
+//       nRetVal = ::IntersectClipRect(get_handle1(), x1, y1, x2, y2);
+//       if(get_handle2() != nullptr)
+//       nRetVal = ::IntersectClipRect(get_handle2(), x1, y1, x2, y2);
+//       return nRetVal;
+//       */
+//
+//   }
 
-      }
-
-      return 0;
-
-      /*
-       i32 nRetVal = ERROR;
-       if(get_handle1() != nullptr && get_handle1() != get_handle2())
-       nRetVal = ::SelectClipRgn(get_handle1(), pRgn == nullptr ? nullptr : (HRGN) pRgn->get_os_data());
-       if(get_handle2() != nullptr)
-       nRetVal = ::SelectClipRgn(get_handle2(), pRgn == nullptr ? nullptr : (HRGN) pRgn->get_os_data());
-       return nRetVal;
-       */
-
-   }
-
-   i32 graphics::ExcludeClipRect(i32 x1, i32 y1, i32 x2, i32 y2)
-   {
-
-      __throw(not_implemented());
-      return 0;
-
-      /*
-       i32 nRetVal = ERROR;
-       if(get_handle1() != nullptr && get_handle1() != get_handle2())
-       nRetVal = ::ExcludeClipRect(get_handle1(), x1, y1, x2, y2);
-       if(get_handle2() != nullptr)
-       nRetVal = ::ExcludeClipRect(get_handle2(), x1, y1, x2, y2);
-       return nRetVal;
-       */
-
-   }
-
-   i32 graphics::ExcludeClipRect(const ::rect & rect)
-   {
-
-      __throw(not_implemented());
-      return 0;
-
-      /*
-       i32 nRetVal = ERROR;
-       if(get_handle1() != nullptr && get_handle1() != get_handle2())
-       nRetVal = ::ExcludeClipRect(get_handle1(), rect.left, rect.top,
-       rect.right, rect.bottom);
-       if(get_handle2() != nullptr)
-       nRetVal = ::ExcludeClipRect(get_handle2(), rect.left, rect.top,
-       rect.right, rect.bottom);
-       return nRetVal;
-       */
-
-   }
-
-   i32 graphics::IntersectClipRect(i32 x1, i32 y1, i32 x2, i32 y2)
-   {
-
-      __throw(not_implemented());
-      return 0;
-
-      /*
-       i32 nRetVal = ERROR;
-       if(get_handle1() != nullptr && get_handle1() != get_handle2())
-       nRetVal = ::IntersectClipRect(get_handle1(), x1, y1, x2, y2);
-       if(get_handle2() != nullptr)
-       nRetVal = ::IntersectClipRect(get_handle2(), x1, y1, x2, y2);
-       return nRetVal;
-       */
-
-   }
-
-   i32 graphics::IntersectClipRect(const ::rect & rectParam)
-   {
-
-      //__throw(not_implemented());
-      CGRect rect;
-      
-      __copy(rect, rectParam);
-
-//      rect.origin.x     = rect.left;
-//      rect.origin.y     = rect.top;
-//      rect.size.width   = rect.right - rect.left;
-//      rect.size.height  = rect.bottom - rect.top;
-      CGContextAddRect(m_pdc, rect);
-      CGContextClip(m_pdc);
-
-      return 0;
-
-      /*      i32 nRetVal = ERROR;
-       if(get_handle1() != nullptr && get_handle1() != get_handle2())
-       nRetVal = ::IntersectClipRect(get_handle1(), rect.left, rect.top, rect.right, rect.bottom);
-       if(get_handle2() != nullptr)
-       nRetVal = ::IntersectClipRect(get_handle2(), rect.left, rect.top, rect.right, rect.bottom);
-       return nRetVal;
-       */
-
-   }
-
-   i32 graphics::OffsetClipRgn(i32 x, i32 y)
-   {
-
-      __throw(not_implemented());
-      return 0;
-
-      /*
-       i32 nRetVal = ERROR;
-       if(get_handle1() != nullptr && get_handle1() != get_handle2())
-       nRetVal = ::OffsetClipRgn(get_handle1(), x, y);
-       if(get_handle2() != nullptr)
-       nRetVal = ::OffsetClipRgn(get_handle2(), x, y);
-       return nRetVal;
-       */
-
-   }
-
-   i32 graphics::OffsetClipRgn(const ::size & size)
-   {
-
-      __throw(not_implemented());
-      return 0;
-
-      /*
-       i32 nRetVal = ERROR;
-       if(get_handle1() != nullptr && get_handle1() != get_handle2())
-       nRetVal = ::OffsetClipRgn(get_handle1(), size.cx, size.cy);
-       if(get_handle2() != nullptr)
-       nRetVal = ::OffsetClipRgn(get_handle2(), size.cx, size.cy);
-       return nRetVal;
-       */
-   }
+//   i32 graphics::IntersectClipRect(const ::rect & rectParam)
+//   {
+//
+//      //__throw(not_implemented());
+//      CGRect rect;
+//
+//      __copy(rect, rectParam);
+//
+////      rect.origin.x     = rect.left;
+////      rect.origin.y     = rect.top;
+////      rect.size.width   = rect.right - rect.left;
+////      rect.size.height  = rect.bottom - rect.top;
+//      CGContextAddRect(m_pdc, rect);
+//
+//      ::draw2d::region_pointer pregion;
+//
+//      pregion->create_rect(rectParam);
+//
+//
+//      if(m_pregion)
+//      {
+//
+//         auto pregionOld = m_pregion;
+//
+//         __construct(m_pregion);
+//
+//         m_pregion->combine(pregionOld, pregion, ::draw2d::region::combine_intersect, this);
+//
+//         CGContextClip(m_pdc);
+//
+//      }
+//      else
+//      {
+//
+//         m_pregion = pregion;
+//
+//      }
+//
+//      m_pregionClip->defer_update(this, 0);
+//
+//      __add_path(m_pregionClip);
+//
+//      CGContextClip(m_pdc);
+//
+//      return 0;
+//
+//      /*      i32 nRetVal = ERROR;
+//       if(get_handle1() != nullptr && get_handle1() != get_handle2())
+//       nRetVal = ::IntersectClipRect(get_handle1(), rect.left, rect.top, rect.right, rect.bottom);
+//       if(get_handle2() != nullptr)
+//       nRetVal = ::IntersectClipRect(get_handle2(), rect.left, rect.top, rect.right, rect.bottom);
+//       return nRetVal;
+//       */
+//
+//   }
+//
+//   i32 graphics::OffsetClipRgn(i32 x, i32 y)
+//   {
+//
+//      if(m_pregionClip)
+//      {
+//
+//         m_pregionClip->m_pointOffset += ::size(x, y);
+//
+//         m_pregionClip->set_modified();
+//
+//         _add_path(m_pregionClip);
+//
+//         CGContextClip(m_pdc);
+//
+//      }
+//
+//      //__throw(not_implemented());
+//      return 0;
+//
+//      /*
+//       i32 nRetVal = ERROR;
+//       if(get_handle1() != nullptr && get_handle1() != get_handle2())
+//       nRetVal = ::OffsetClipRgn(get_handle1(), x, y);
+//       if(get_handle2() != nullptr)
+//       nRetVal = ::OffsetClipRgn(get_handle2(), x, y);
+//       return nRetVal;
+//       */
+//
+//   }
+//
+//   i32 graphics::OffsetClipRgn(const ::size & size)
+//   {
+//
+//      __throw(not_implemented());
+//      return 0;
+//
+//      /*
+//       i32 nRetVal = ERROR;
+//       if(get_handle1() != nullptr && get_handle1() != get_handle2())
+//       nRetVal = ::OffsetClipRgn(get_handle1(), size.cx, size.cy);
+//       if(get_handle2() != nullptr)
+//       nRetVal = ::OffsetClipRgn(get_handle2(), size.cx, size.cy);
+//       return nRetVal;
+//       */
+//   }
 
    /*point graphics::MoveTo(i32 x, i32 y)
     {
@@ -4198,64 +4223,21 @@ namespace draw2d_quartz2d
 
    }
 
-   bool graphics::SelectClipPath(i32 nMode)
+
+   void graphics::on_apply_clip_region()
    {
-
-      __throw(not_implemented());
-      return 0;
-
-      /*
-       ASSERT(get_handle1() != nullptr);
-
-       // output DC always holds the current path
-       if (!::SelectClipPath(get_handle1(), nMode))
-       return FALSE;
-
-       // transfer clipping region into the attribute DC
-       bool bResult = TRUE;
-       if (get_handle1() != get_handle2())
-       {
-       HRGN hRgn = ::CreateRectRgn(0, 0, 0, 0);
-       if (::GetClipRgn(get_handle1(), hRgn) < 0 || !::SelectClipRgn(get_handle2(), hRgn))
-       {
-       TRACE(::ca2::trace::category_AppMsg, 0, "Error: unable to transfer clip region in graphics::SelectClipPath!\n");
-       bResult = FALSE;
-       }
-       ::DeleteObject(hRgn);
-       }
-       return bResult;
-       */
-
-   }
-
-   i32 graphics::SelectClipRgn(::draw2d::region* pRgn, i32 nMode)
-   {
-
-      if(nMode == RGN_AND)
+      
+      CGContextResetClip(m_pdc);
+      
+      if(m_pregion)
       {
 
-         _add_path(pRgn);
-         CGContextClip(m_pdc);
-
+         _clip(m_pregion);
+         
       }
-
-//      __throw(not_implemented());
-      return 0;
-
-      /*      ASSERT(get_handle1() != nullptr);
-       i32 nRetVal = ERROR;
-       if (get_handle1() != get_handle2())
-       nRetVal = ::ExtSelectClipRgn(get_handle1(), (HRGN)pRgn->get_os_data(), nMode);
-       if (get_handle2() != nullptr)
-       nRetVal = ::ExtSelectClipRgn(get_handle2(), (HRGN)pRgn->get_os_data(), nMode);
-       return nRetVal;
-       */
-
+ 
    }
 
-
-   /////////////////////////////////////////////////////////////////////////////
-   // Coordinate transforms
 
    void graphics::LPtoDP(LPSIZE lpSize)
    {
@@ -4657,7 +4639,7 @@ namespace draw2d_quartz2d
    }
 
 
-   bool graphics::_clip(::draw2d::region * pregion)
+   bool graphics::_clip(::draw2d::region * pregion, bool bEO)
    {
 
       if(pregion == nullptr)
@@ -4667,13 +4649,13 @@ namespace draw2d_quartz2d
 
       }
 
-      if(pregion->m_etype == ::draw2d::region::type_combine)
+      if(pregion->m_eregion == ::draw2d::e_region_combine)
       {
 
-         if(pregion->m_ecombine == ::draw2d::region::combine_intersect)
+         if(pregion->m_ecombine == ::draw2d::e_combine_intersect)
          {
 
-            _add_path(pregion->m_pregion1);
+            _clip(pregion->m_pregion1);
 
             CGContextEOClip(m_pdc);
 
@@ -4682,15 +4664,68 @@ namespace draw2d_quartz2d
             CGContextEOClip(m_pdc);
 
          }
+         else if(pregion->m_ecombine == ::draw2d::e_combine_add)
+         {
 
+            _clip(pregion->m_pregion1);
+
+            CGContextClip(m_pdc);
+
+            _add_path(pregion->m_pregion2);
+
+            CGContextClip(m_pdc);
+
+         }
+         
+      }
+      else if(pregion->m_eregion == ::draw2d::e_region_rect)
+      {
+
+         CGRect rect;
+
+         rect.origin.x = pregion->m_x1;
+         rect.origin.y = pregion->m_y1;
+         rect.size.width = pregion->m_x2 - pregion->m_x1;
+         rect.size.height = pregion->m_y2 - pregion->m_y1;
+         
+         CGContextAddRect (m_pdc, rect);
+
+      }
+      else if(pregion->m_eregion == ::draw2d::e_region_polygon)
+      {
+
+         CGContextBeginPath (m_pdc);
+
+         set_polygon(pregion->m_lppoints, pregion->m_nCount);
+
+         CGContextClosePath (m_pdc);
+
+      }
+      else if(pregion->m_eregion == ::draw2d::e_region_oval)
+      {
+
+         CGRect rect;
+
+         rect.origin.x = pregion->m_x1;
+         rect.origin.y = pregion->m_y1;
+         rect.size.width = pregion->m_x2 - pregion->m_x1;
+         rect.size.height = pregion->m_y2 - pregion->m_y1;
+
+         CGContextAddEllipseInRect(m_pdc, rect);
+
+      }
+
+      if(bEO)
+      {
+         
+         CGContextEOClip(m_pdc);
+         
       }
       else
       {
-
-         _add_path(pregion);
-
-         CGContextEOClip(m_pdc);
-
+         
+         CGContextClip(m_pdc);
+         
       }
 
       return true;
@@ -4704,7 +4739,7 @@ namespace draw2d_quartz2d
       if(pregion == nullptr)
          return true;
 
-      if(pregion->m_etype == ::draw2d::region::type_rect)
+      if(pregion->m_eregion == ::draw2d::e_region_rect)
       {
 
          CGRect rect;
@@ -4717,7 +4752,7 @@ namespace draw2d_quartz2d
          CGContextAddRect (m_pdc, rect);
 
       }
-      else if(pregion->m_etype == ::draw2d::region::type_polygon)
+      else if(pregion->m_eregion == ::draw2d::e_region_polygon)
       {
 
          CGContextBeginPath (m_pdc);
@@ -4727,7 +4762,7 @@ namespace draw2d_quartz2d
          CGContextClosePath (m_pdc);
 
       }
-      else if(pregion->m_etype == ::draw2d::region::type_oval)
+      else if(pregion->m_eregion == ::draw2d::e_region_oval)
       {
 
          CGRect rect;
@@ -4741,10 +4776,33 @@ namespace draw2d_quartz2d
          CGContextAddEllipseInRect(m_pdc, rect);
 
       }
-      else if(pregion->m_etype == ::draw2d::region::type_combine)
+      else if(pregion->m_eregion == ::draw2d::e_region_combine)
       {
+         
+         if(pregion->m_ecombine == ::draw2d::e_combine_intersect)
+         {
 
-         __throw(::exception::exception("not supported"));
+            _add_path(pregion->m_pregion1);
+            
+            CGContextEOClip(m_pdc);
+         
+            _add_path(pregion->m_pregion2);
+            
+            CGContextEOClip(m_pdc);
+
+         }
+         else if(pregion->m_ecombine == ::draw2d::e_combine_add)
+         {
+
+            _add_path(pregion->m_pregion1);
+            
+            CGContextClip(m_pdc);
+         
+            _add_path(pregion->m_pregion2);
+            
+            CGContextClip(m_pdc);
+
+         }
 
       }
 

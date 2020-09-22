@@ -93,7 +93,7 @@ namespace draw2d
       if (System.m_bImaging)
       {
 
-         if (!System.imaging().window_set_mouse_cursor(pinteraction->get_handle(), hcursor))
+         if (!Application.image().window_set_mouse_cursor(pinteraction->get_handle(), hcursor))
          {
 
             return false;
@@ -119,7 +119,7 @@ namespace draw2d
 
       }
 
-      System.imaging().window_set_mouse_cursor(pinteraction->get_handle(), 0);
+      Application.image().window_set_mouse_cursor(pinteraction->get_handle(), 0);
 
       return true;
 
@@ -252,12 +252,12 @@ namespace draw2d
             auto& imaging = System.imaging();
 
             // SCAFFOLD comment?!.... first parameter (oswindow) is not used in windows (but at other OS(es))...
-            HCURSOR hcursor = imaging.CreateAlphaCursor(pinteraction->get_handle(), m_pimage,m_szHotspotOffset.cx,m_szHotspotOffset.cy);
+            HCURSOR hcursor = App(pinteraction).image().CreateAlphaCursor(pinteraction->get_handle(), m_pimage,m_szHotspotOffset.cx,m_szHotspotOffset.cy);
 
             if (!hcursor)
             {
 
-               hcursor = imaging.load_default_cursor(m_ecursor);
+               hcursor = App(pinteraction).image().load_default_cursor(m_ecursor);
 
             }
 
@@ -282,11 +282,11 @@ namespace draw2d
          else if(!m_bDefaultCursor)
          {
 
-            m_hcursor = System.imaging().load_default_cursor(m_ecursor);
+            m_hcursor = App(pinteraction).image().load_default_cursor(m_ecursor);
 
          }
 
-//#endif
+//#endif≥
 
       }
 

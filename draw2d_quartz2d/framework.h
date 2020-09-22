@@ -2,6 +2,8 @@
 #pragma once
 #endif
 
+#include "acme/_start.h"
+
 #ifdef __OBJC__
 
 #ifdef MACOS

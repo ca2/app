@@ -1610,7 +1610,7 @@ namespace experience
 
          auto edisplay = layout().sketch().display();
 
-         auto eactivation = layout().sketch().activation();
+         //auto eactivation = layout().sketch().activation();
 
          if (edisplay == display_iconic)
          {

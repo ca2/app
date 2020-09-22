@@ -106,7 +106,7 @@ namespace draw2d_quartz2d
    }
    
    
-   bool bitmap::CreateDIBSection(::draw2d::graphics * pgraphics, const ::size & size, UINT usage, void ** ppdata, int * piStride, HANDLE hSection, u32 offset)
+   bool bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::size & size, void ** ppdata, int * piStride)
    {
       
       if(!CreateBitmap(pgraphics, size, 1, 32, nullptr, size.cx * sizeof(COLORREF)))

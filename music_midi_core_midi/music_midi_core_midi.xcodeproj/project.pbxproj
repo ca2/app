@@ -20,6 +20,8 @@
 		9A27DA8924DCF86E0002AAE3 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A27DA8724DCF8340002AAE3 /* AudioUnit.framework */; };
 		9A27DA8B24DCF86E0002AAE3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A27DA8A24DCF86E0002AAE3 /* AudioToolbox.framework */; };
 		9A44075624DDD01600175A63 /* libveriwell_multimedia.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5209A922F144E5007056D2 /* libveriwell_multimedia.dylib */; };
+		9A4E5D60251937CD00CC6817 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4E5D5F251937CD00CC6817 /* libacme.dylib */; };
+		9A4E5D62251937CD00CC6817 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4E5D61251937CD00CC6817 /* libapex.dylib */; };
 		9ABD6B6C2454F63E00380EB2 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A52096122F1440C007056D2 /* framework.cpp */; };
 		9ABD6B6D2454F63E00380EB2 /* output_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A52097022F1440C007056D2 /* output_base.cpp */; };
 		9ABD6B6E2454F63E00380EB2 /* factory_exchange.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A52096C22F1440C007056D2 /* factory_exchange.cpp */; };
@@ -75,6 +77,8 @@
 		9A1B921A24F8EFC80032BAEA /* input_base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = input_base.cpp; sourceTree = "<group>"; };
 		9A27DA8724DCF8340002AAE3 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		9A27DA8A24DCF86E0002AAE3 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		9A4E5D5F251937CD00CC6817 /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A4E5D61251937CD00CC6817 /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A52095722F1440C007056D2 /* midi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = midi.cpp; sourceTree = "<group>"; };
 		9A52096122F1440C007056D2 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
 		9A52096C22F1440C007056D2 /* factory_exchange.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = factory_exchange.cpp; sourceTree = "<group>"; };
@@ -113,6 +117,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A4E5D60251937CD00CC6817 /* libacme.dylib in Frameworks */,
+				9A4E5D62251937CD00CC6817 /* libapex.dylib in Frameworks */,
 				9A44075624DDD01600175A63 /* libveriwell_multimedia.dylib in Frameworks */,
 				9A27DA8B24DCF86E0002AAE3 /* AudioToolbox.framework in Frameworks */,
 				9A27DA8924DCF86E0002AAE3 /* AudioUnit.framework in Frameworks */,
@@ -165,6 +171,8 @@
 		9AA2192C1DC6B1A300C06987 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A4E5D5F251937CD00CC6817 /* libacme.dylib */,
+				9A4E5D61251937CD00CC6817 /* libapex.dylib */,
 				9A27DA8A24DCF86E0002AAE3 /* AudioToolbox.framework */,
 				9A27DA8724DCF8340002AAE3 /* AudioUnit.framework */,
 				9ABD6B882455089C00380EB2 /* libaura.dylib */,

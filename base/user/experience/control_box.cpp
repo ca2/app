@@ -552,7 +552,7 @@ namespace experience
    void control_box::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto edisplay = m_pframewindow->layout().sketch().display();
+      //auto edisplay = m_pframewindow->layout().sketch().display();
 
       ::rect rectWindow;
 

@@ -16,165 +16,165 @@ void copy(LPRECT lprectDst, const CGRect & rectSrc);
 
 WINBOOL move_nswindow(oswindow hwnd, int x, int y);
 
-
-WINBOOL set_nswindow_frame(oswindow hwnd, LPCRECT lpcrect, int iDisplay)
-{
-   
-   RECT r(*lpcrect);
-   
-   ns_main_async(^
-              {
-      
-                 NSRect rect;
-                 
-                 NSRect rectScreen = [[[NSScreen screens] objectAtIndex:0] frame];
-                 
-                 rect.origin.x     = r.left;
-                 rect.origin.y     = rectScreen.size.height    -     r.bottom;
-                 rect.size.width   = r.right                   -     r.left;
-                 rect.size.height  = r.bottom                  -     r.top;
-                 
-                 [__nswindow(hwnd)  setFrame : rect display : iDisplay];
-                 
-                 
-      
-              });
-   
-   return 1;
-   
-}
-
-
-WINBOOL move_nswindow(oswindow hwnd, int x, int y)
-{
-   
-   ns_main_async(^
-              {
-                        
-                 NSPoint point;
-                 
-                 NSRect rectScreen = [[[NSScreen screens] objectAtIndex:0] frame];
-                 
-                 point.x = x;
-                 
-                 point.y = rectScreen.size.height - y;
-                 
-                 [__nswindow(hwnd)  setFrameTopLeftPoint : point];
-      
-              });
-   
-   return 1;
-   
-}
+//
+//WINBOOL set_nswindow_frame(oswindow hwnd, LPCRECT lpcrect, int iDisplay)
+//{
+//
+//   RECT r(*lpcrect);
+//
+//   ns_main_async(^
+//              {
+//
+//                 NSRect rect;
+//
+//                 NSRect rectScreen = [[[NSScreen screens] objectAtIndex:0] frame];
+//
+//                 rect.origin.x     = r.left;
+//                 rect.origin.y     = rectScreen.size.height    -     r.bottom;
+//                 rect.size.width   = r.right                   -     r.left;
+//                 rect.size.height  = r.bottom                  -     r.top;
+//
+//                 [__nswindow(hwnd)  setFrame : rect display : iDisplay];
+//
+//
+//
+//              });
+//
+//   return 1;
+//
+//}
 
 
-WINBOOL make_key_and_order_front_nswindow(oswindow hwnd)
-{
+//WINBOOL move_nswindow(oswindow hwnd, int x, int y)
+//{
+//
+//   ns_main_async(^
+//              {
+//
+//                 NSPoint point;
+//
+//                 NSRect rectScreen = [[[NSScreen screens] objectAtIndex:0] frame];
+//
+//                 point.x = x;
+//
+//                 point.y = rectScreen.size.height - y;
+//
+//                 [__nswindow(hwnd)  setFrameTopLeftPoint : point];
+//
+//              });
+//
+//   return 1;
+//
+//}
 
-//   printf("\nmake_key_and_order_front_nswindow");
-
-   ns_main_async(^
-   {
-                        
-      [__nswindow(hwnd)  makeKeyAndOrderFront: nil];
-      
-   });
-   
-   return 1;
-   
-}
-
-
-WINBOOL order_front_nswindow(oswindow hwnd)
-{
-
-   //   printf("\norder_front_nswindow");
-   
-   ns_main_async(^
-              {
-                        
-                 [__nswindow(hwnd)  orderFrontRegardless];
-                 
-              });
-   
-   return 1;
-   
-}
-
-
-WINBOOL nswindow_set_level_main_menu(oswindow hwnd)
-{
-   
-   ns_main_async(^
-                 {
-                    
-                    [__nswindow(hwnd)  setLevel: NSMainMenuWindowLevel];
-                    
-                 });
-   
-   return 1;
-   
-}
-
-
-WINBOOL nswindow_set_level_floating(oswindow hwnd)
-{
-   
-   ns_main_async(^
-                 {
-                    
-                    [__nswindow(hwnd)  setLevel: NSFloatingWindowLevel];
-                    
-                 });
-   
-   return 1;
-   
-}
-
-
-WINBOOL nswindow_set_level_normal(oswindow hwnd)
-{
-   
-   ns_main_async(^
-                 {
-                    
-                    if([__nswindow(hwnd)  level] !=NSNormalWindowLevel)
-                    {
-                    
-                    [__nswindow(hwnd)  setLevel: NSNormalWindowLevel];
-                       
-                    }
-                    
-                 });
-   
-   return 1;
-   
-}
-
-
-WINBOOL nswindow_is_level_main_menu(oswindow hwnd)
-{
-   
-   return __nswindow(hwnd) .level == NSMainMenuWindowLevel;
-   
-}
-
-
-WINBOOL nswindow_is_level_floating(oswindow hwnd)
-{
-   
-   return __nswindow(hwnd) .level == NSFloatingWindowLevel;
-   
-}
-
-
-WINBOOL nswindow_is_level_normal(oswindow hwnd)
-{
-   
-   return __nswindow(hwnd) .level == NSNormalWindowLevel;
-   
-}
-
+//
+//WINBOOL make_key_and_order_front_nswindow(oswindow hwnd)
+//{
+//
+////   printf("\nmake_key_and_order_front_nswindow");
+//
+//   ns_main_async(^
+//   {
+//
+//      [__nswindow(hwnd)  makeKeyAndOrderFront: nil];
+//
+//   });
+//
+//   return 1;
+//
+//}
+//
+//
+//WINBOOL order_front_nswindow(oswindow hwnd)
+//{
+//
+//   //   printf("\norder_front_nswindow");
+//
+//   ns_main_async(^
+//              {
+//
+//                 [__nswindow(hwnd)  orderFrontRegardless];
+//
+//              });
+//
+//   return 1;
+//
+//}
+//
+//
+//WINBOOL nswindow_set_level_main_menu(oswindow hwnd)
+//{
+//
+//   ns_main_async(^
+//                 {
+//
+//                    [__nswindow(hwnd)  setLevel: NSMainMenuWindowLevel];
+//
+//                 });
+//
+//   return 1;
+//
+//}
+//
+//
+//WINBOOL nswindow_set_level_floating(oswindow hwnd)
+//{
+//
+//   ns_main_async(^
+//                 {
+//
+//                    [__nswindow(hwnd)  setLevel: NSFloatingWindowLevel];
+//
+//                 });
+//
+//   return 1;
+//
+//}
+//
+//
+//WINBOOL nswindow_set_level_normal(oswindow hwnd)
+//{
+//
+//   ns_main_async(^
+//                 {
+//
+//                    if([__nswindow(hwnd)  level] !=NSNormalWindowLevel)
+//                    {
+//
+//                    [__nswindow(hwnd)  setLevel: NSNormalWindowLevel];
+//
+//                    }
+//
+//                 });
+//
+//   return 1;
+//
+//}
+//
+//
+//WINBOOL nswindow_is_level_main_menu(oswindow hwnd)
+//{
+//
+//   return __nswindow(hwnd) .level == NSMainMenuWindowLevel;
+//
+//}
+//
+//
+//WINBOOL nswindow_is_level_floating(oswindow hwnd)
+//{
+//
+//   return __nswindow(hwnd) .level == NSFloatingWindowLevel;
+//
+//}
+//
+//
+//WINBOOL nswindow_is_level_normal(oswindow hwnd)
+//{
+//
+//   return __nswindow(hwnd) .level == NSNormalWindowLevel;
+//   
+//}
+//
 
 
 //CLASS_DECL_THREAD NSAutoreleasePool * g_ns_pool = NULL;
@@ -225,115 +225,115 @@ void on_end_thread()
 //}
 
 
-WINBOOL get_nswindow_rect(oswindow oswindow, LPRECT lprect)
-{
-   
-   NSRect rect = [__nswindow(oswindow) frame];
-   
-   lprect->left        = rect.origin.x;
-   lprect->bottom      = [[NSScreen mainScreen] frame ].size.height - rect.origin.y;
-   lprect->right       = rect.origin.x  + rect.size.width;
-   lprect->top         = lprect->bottom - rect.size.height;
-   
-   return 1;
-   
-}
+//WINBOOL get_nswindow_rect(oswindow oswindow, LPRECT lprect)
+//{
+//
+//   NSRect rect = [__nswindow(oswindow) frame];
+//
+//   lprect->left        = rect.origin.x;
+//   lprect->bottom      = [[NSScreen mainScreen] frame ].size.height - rect.origin.y;
+//   lprect->right       = rect.origin.x  + rect.size.width;
+//   lprect->top         = lprect->bottom - rect.size.height;
+//
+//   return 1;
+//
+//}
 
 
-int cx100;
-int cy100;
-
-WINBOOL SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int cx, int cy, UINT uFlags)
-{
-   
-   ns_main_async([=]()
-              {
-   
-   if(cx100 != cx || cy100 != cy)
-   {
-      
-      cx100 = cx;
-      
-      cy100 = cy;
-      
-      // xxxlog NSLog(@"different window rect size (2)");
-      
-   }
-   
-   bool  bMove = !(uFlags & SWP_NOMOVE);
-
-   bool  bSize = !(uFlags & SWP_NOSIZE);
-   
-   if(bMove && bSize)
-   {
-      
-      RECT rect;
-      
-      rect.left      = x;
-      rect.top       = y;
-      rect.right     = rect.left + cx;
-      rect.bottom    = rect.top + cy;
-      
-      set_nswindow_frame(hwnd, &rect, (uFlags & SWP_SHOWWINDOW) != 0);
-      
-   }
-   else if(bSize)
-   {
-      
-      RECT rect;
-      
-      get_window_rect(hwnd, &rect);
-      
-      rect.right     = rect.left + cx;
-      rect.bottom    = rect.top + cy;
-      
-      set_nswindow_frame(hwnd, &rect, (uFlags & SWP_SHOWWINDOW) != 0);
-      
-   }
-   else if(bMove)
-   {
-      
-      move_nswindow(hwnd, x, y);
-      
-   }
-   
-   if(!(uFlags & SWP_NOZORDER))
-   {
-      
-      if(hwndInsertAfter == HWND_TOPMOST)
-      {
-         
-         if(nswindow_is_level_floating(hwnd))
-         {
-            
-            order_front_nswindow(hwnd);
-            
-         }
-         else
-         {
-         
-            nswindow_set_level_floating(hwnd);
-            
-         }
-         
-      }
-      else if(hwndInsertAfter == HWND_TOP)
-      {
-         
-         nswindow_set_level_normal(hwnd);
-         
-         order_front_nswindow(hwnd);
-         
-      }
-      
-   }
-      
-   });
-   
-   return 1;
-   
-}
-
+//int cx100;
+//int cy100;
+//
+//WINBOOL SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int cx, int cy, UINT uFlags)
+//{
+//   
+//   ns_main_async([=]()
+//              {
+//   
+//   if(cx100 != cx || cy100 != cy)
+//   {
+//      
+//      cx100 = cx;
+//      
+//      cy100 = cy;
+//      
+//      // xxxlog NSLog(@"different window rect size (2)");
+//      
+//   }
+//   
+//   bool  bMove = !(uFlags & SWP_NOMOVE);
+//
+//   bool  bSize = !(uFlags & SWP_NOSIZE);
+//   
+//   if(bMove && bSize)
+//   {
+//      
+//      RECT rect;
+//      
+//      rect.left      = x;
+//      rect.top       = y;
+//      rect.right     = rect.left + cx;
+//      rect.bottom    = rect.top + cy;
+//      
+//      set_nswindow_frame(hwnd, &rect, (uFlags & SWP_SHOWWINDOW) != 0);
+//      
+//   }
+//   else if(bSize)
+//   {
+//      
+//      RECT rect;
+//      
+//      get_window_rect(hwnd, &rect);
+//      
+//      rect.right     = rect.left + cx;
+//      rect.bottom    = rect.top + cy;
+//      
+//      set_nswindow_frame(hwnd, &rect, (uFlags & SWP_SHOWWINDOW) != 0);
+//      
+//   }
+//   else if(bMove)
+//   {
+//      
+//      move_nswindow(hwnd, x, y);
+//      
+//   }
+//   
+//   if(!(uFlags & SWP_NOZORDER))
+//   {
+//      
+//      if(hwndInsertAfter == HWND_TOPMOST)
+//      {
+//         
+//         if(nswindow_is_level_floating(hwnd))
+//         {
+//            
+//            order_front_nswindow(hwnd);
+//            
+//         }
+//         else
+//         {
+//         
+//            nswindow_set_level_floating(hwnd);
+//            
+//         }
+//         
+//      }
+//      else if(hwndInsertAfter == HWND_TOP)
+//      {
+//         
+//         nswindow_set_level_normal(hwnd);
+//         
+//         order_front_nswindow(hwnd);
+//         
+//      }
+//      
+//   }
+//      
+//   });
+//   
+//   return 1;
+//   
+//}
+//
 void ns_main_async(dispatch_block_t block);
 
 bool macos_set_user_wallpaper(int iScreen, const char * psz)

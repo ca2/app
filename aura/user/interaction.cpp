@@ -2087,7 +2087,7 @@ namespace user
 
    void interaction::_001OnClip(::draw2d::graphics_pointer & pgraphics)
    {
-
+      
       try
       {
 

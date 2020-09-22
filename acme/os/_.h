@@ -72,6 +72,9 @@ namespace str
 CLASS_DECL_ACME string executable_get_app_id(HINSTANCE hinstance);
 
 
+CLASS_DECL_ACME string executable_get_app_id();
+
+
 CLASS_DECL_ACME string get_current_login_name();
 
 

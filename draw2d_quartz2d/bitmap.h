@@ -36,7 +36,7 @@ namespace draw2d_quartz2d
       bool CreateBitmapIndirect(::draw2d::graphics * pgraphics, LPBITMAP lpBitmap) override;
       bool CreateCompatibleBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight) override;
       bool CreateDiscardableBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight) override;
-      bool CreateDIBSection(::draw2d::graphics * pgraphics, const ::size & size, UINT usage, void **ppvBits, int * piStride, HANDLE hSection, u32 offset) override;
+      bool create_bitmap(::draw2d::graphics * pgraphics, const ::size & size, void **ppvBits, int * piStride) override;
       bool CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, DWORD flInit, const void *pjBits, UINT iUsage) override;
       
       i32 GetBitmap(BITMAP* pBitMap);

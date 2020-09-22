@@ -13,8 +13,11 @@
 		9A39BAEA24EB25CA003C070E /* libssl.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A39BAE424EB25CA003C070E /* libssl.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A39BAEB24EB25CA003C070E /* libcrypto.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A39BAE524EB25CA003C070E /* libcrypto.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A39BAEF24EB25CB003C070E /* libaura.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A39BAE924EB25CA003C070E /* libaura.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		9A39BAF024EB25EA003C070E /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A39BAE924EB25CA003C070E /* libaura.dylib */; };
 		9A39BB1824EB2D04003C070E /* libapp_app.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A39BB1724EB2D04003C070E /* libapp_app.dylib */; };
+		9AC396FB25195DAB0036B92A /* libapex.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AC396F925195DAB0036B92A /* libapex.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AC396FC25195DAB0036B92A /* libacme.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AC396FA25195DAB0036B92A /* libacme.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AC3970025195DEB0036B92A /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC396FF25195DEB0036B92A /* libacme.dylib */; };
+		9AC3970225195DEB0036B92A /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3970125195DEB0036B92A /* libapex.dylib */; };
 		9AE5CC8F22CBECAE00EDEAD1 /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 9AE5CC8E22CBECAE00EDEAD1 /* en.lproj */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +40,8 @@
 			files = (
 				9A39BAEA24EB25CA003C070E /* libssl.dylib in CopyFiles */,
 				9A39BAEB24EB25CA003C070E /* libcrypto.dylib in CopyFiles */,
+				9AC396FB25195DAB0036B92A /* libapex.dylib in CopyFiles */,
+				9AC396FC25195DAB0036B92A /* libacme.dylib in CopyFiles */,
 				9A39BAEF24EB25CB003C070E /* libaura.dylib in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -57,6 +62,12 @@
 		9A39BAE524EB25CA003C070E /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = ../../time/macos/libcrypto.dylib; sourceTree = "<group>"; };
 		9A39BAE924EB25CA003C070E /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = ../../time/macos/libaura.dylib; sourceTree = "<group>"; };
 		9A39BB1724EB2D04003C070E /* libapp_app.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libapp_app.dylib; path = ../../time/macos/libapp_app.dylib; sourceTree = "<group>"; };
+		9AC396F925195DAB0036B92A /* libapex.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libapex.dylib; path = ../../time/macos/libapex.dylib; sourceTree = "<group>"; };
+		9AC396FA25195DAB0036B92A /* libacme.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libacme.dylib; path = ../../time/macos/libacme.dylib; sourceTree = "<group>"; };
+		9AC396FF25195DEB0036B92A /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AC3970125195DEB0036B92A /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AC3971125195E580036B92A /* libacme.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libacme.dylib; path = ../../time/build/product/Debug/libacme.dylib; sourceTree = "<group>"; };
+		9AC3971225195E580036B92A /* libapex.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libapex.dylib; path = ../../time/build/product/Debug/libapex.dylib; sourceTree = "<group>"; };
 		9AE5CC8E22CBECAE00EDEAD1 /* en.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = en.lproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -65,8 +76,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AC3970025195DEB0036B92A /* libacme.dylib in Frameworks */,
+				9AC3970225195DEB0036B92A /* libapex.dylib in Frameworks */,
 				9A39BB1824EB2D04003C070E /* libapp_app.dylib in Frameworks */,
-				9A39BAF024EB25EA003C070E /* libaura.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +144,10 @@
 		9A3E0BA12309FBD400B5459B /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				9AC396FA25195DAB0036B92A /* libacme.dylib */,
+				9AC396F925195DAB0036B92A /* libapex.dylib */,
+				9AC3971125195E580036B92A /* libacme.dylib */,
+				9AC3971225195E580036B92A /* libapex.dylib */,
 				9A39BB1724EB2D04003C070E /* libapp_app.dylib */,
 				9A39BAE924EB25CA003C070E /* libaura.dylib */,
 				9A39BAE524EB25CA003C070E /* libcrypto.dylib */,
@@ -143,6 +159,8 @@
 		9ADF1D2922C16DBB00456537 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9AC396FF25195DEB0036B92A /* libacme.dylib */,
+				9AC3970125195DEB0036B92A /* libapex.dylib */,
 				9A204AF92433E12100D45614 /* libcrypto.dylib */,
 				9A204AFA2433E12100D45614 /* libssl.dylib */,
 			);
@@ -437,7 +455,7 @@
 					"$(PROJECT_DIR)/nsisExamples/Plugin/nsis",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				PRODUCT_BUNDLE_IDENTIFIER = cc.ca2.app.app;
+				PRODUCT_BUNDLE_IDENTIFIER = app.app;
 				PRODUCT_NAME = app_app;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
@@ -459,7 +477,7 @@
 					"$(PROJECT_DIR)/nsisExamples/Plugin/nsis",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				PRODUCT_BUNDLE_IDENTIFIER = cc.ca2.app.app;
+				PRODUCT_BUNDLE_IDENTIFIER = app.app;
 				PRODUCT_NAME = app_app;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};

@@ -19,7 +19,7 @@ void * nscursor_system(e_cursor ecursor);
 CGImageRef cgimageref_from_image(const ::image * pimage)
 {
 
-   ::aura::malloc < COLORREF * > pdst;
+   ::acme::malloc < COLORREF * > pdst;
 
    pdst.alloc(pimage->scan_size() * pimage->height());
 
@@ -72,7 +72,7 @@ namespace coreimage_imaging
 {
 
 
-   HCURSOR imaging::CreateAlphaCursor(oswindow oswindow, const ::image * pimage, int xHotSpot, int yHotSpot)
+   HCURSOR context_image::CreateAlphaCursor(oswindow oswindow, const ::image * pimage, int xHotSpot, int yHotSpot)
    {
 
       if(!pimage)
@@ -99,7 +99,7 @@ namespace coreimage_imaging
    }
 
 
-   HCURSOR imaging::load_default_cursor(e_cursor ecursor)
+   HCURSOR context_image::load_default_cursor(e_cursor ecursor)
    {
       
    #ifdef MACOS
@@ -114,7 +114,8 @@ namespace coreimage_imaging
       
    }
 
-   void imaging::set_cursor_image(const ::image * pimage, int xHotSpot, int yHotSpot)
+
+   void context_image::set_cursor_image(const ::image * pimage, int xHotSpot, int yHotSpot)
    {
 
       if(pimage)
@@ -141,9 +142,7 @@ namespace coreimage_imaging
    }
 
 
-
-
-   ::estatus imaging::save_image(memory & memory, const ::image * pimage, ::save_image * psaveimage)
+   ::estatus context_image::save_image(memory & memory, const ::image * pimage, const ::save_image * psaveimage)
    {
 
       if(pimage->is_empty())
@@ -157,7 +156,7 @@ namespace coreimage_imaging
 
       CGImageRef cgimage = cgimageref_from_image(pimage);
 
-      ::aura::malloc < COLORREF * > p;
+      ::acme::malloc < COLORREF * > p;
 
       switch (psaveimage == nullptr ? ::draw2d::format_png : psaveimage->m_eformat)
       {
@@ -187,7 +186,7 @@ namespace coreimage_imaging
 
 
 
-   ::estatus imaging::_load_image(::context * pcontext, ::image * pimage, const var & varFile, bool bSync, bool bCreateHelperMaps)
+   ::estatus context_image::_load_image( ::image * pimage, const var & varFile, bool bSync, bool bCreateHelperMaps)
    {
       
       if(::is_null(pimage))
@@ -199,7 +198,7 @@ namespace coreimage_imaging
       
       memory memory;
       
-      bool bOk = pcontext->file().as_memory(varFile, memory);
+      bool bOk = Context.file().as_memory(varFile, memory);
       
       if(!bOk)
       {
@@ -208,7 +207,7 @@ namespace coreimage_imaging
          
       }
       
-      auto estatus = System.imaging().load_svg(pimage, &memory);
+      auto estatus = Application.image().load_svg(pimage, &memory);
       
       if(::succeeded(estatus))
       {
@@ -222,7 +221,7 @@ namespace coreimage_imaging
       if (memory.get_size() > 3 && strnicmp(psz, "gif", 3) == 0)
       {
 
-         if (!pimage->_defer_load_multi_frame_image_(&memory))
+         if (!_load_multi_frame_image(pimage, &memory))
          {
 
             pimage->set_nok();
@@ -249,7 +248,7 @@ namespace coreimage_imaging
 
       int iScan = 0;
 
-      ::aura::malloc < COLORREF * > pcolorref;
+      ::acme::malloc < COLORREF * > pcolorref;
 
       pcolorref = file_memory_to_image_data(w, h, iScan, memory.get_data(), memory.get_size());
       

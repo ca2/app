@@ -1,8 +1,8 @@
 #include "framework.h"
 //#include "aura/filesystem/filehandler/_data.h"
-#include "aura/platform/machine_event_data2.h"
-#include "aura/platform/machine_event2.h"
-#include "aura/platform/machine_event_central2.h"
+//#include "apex/platform/machine_event_data.h"
+//#include "aura/platform/machine_event.h"
+//#include "aura/platform/machine_event_central.h"
 #include "aura/xml/_.h"
 #include "apex/platform/app_core.h"
 #include "acme/const/id.h"
@@ -2698,21 +2698,21 @@ namespace aura
 
       }*/
 
-      try
-      {
-
-         if (m_pmachineeventcentral)
-         {
-
-            m_pmachineeventcentral->finalize();
-
-         }
-
-      }
-      catch (...)
-      {
-
-      }
+//      try
+//      {
+//
+//         if (m_pmachineeventcentral)
+//         {
+//
+//            m_pmachineeventcentral->finalize();
+//
+//         }
+//
+//      }
+//      catch (...)
+//      {
+//
+//      }
 
       //m_ptrace.release();
 
@@ -2724,7 +2724,7 @@ namespace aura
 
       //}
 
-
+      apex::system::term2();
 
    }
 
@@ -4964,17 +4964,17 @@ namespace aura
    }
 
 
-   void system::process_machine_event_data(machine_event_data * pdata)
-   {
-
-      if (pdata->m_fixed.m_bRequestCloseApplication)
-      {
-
-         finalize();
-
-      }
-
-   }
+//   void system::process_machine_event_data(machine_event_data * pdata)
+//   {
+//
+//      if (pdata->m_fixed.m_bRequestCloseApplication)
+//      {
+//
+//         finalize();
+//
+//      }
+//
+//   }
 
 
    void system::browser(string strUrl, string strBrowser, string strProfile, string strTarget)

@@ -19,13 +19,13 @@ namespace draw2d_quartz2d
    {
    public:
 
+      
       int                           m_iSaveDC;
       bool                          m_bOwnDC;
       CGContextRef                  m_pdc;
       CGLayerRef                    m_layer;
-//      CGAffineTransform             m_affine;
 
-      i32                       m_iType;
+      i32                           m_iType;
 #ifdef __MM
       NSColor *                     m_nscolorFore;
       NSColor *                     m_nscolorBack;
@@ -36,9 +36,10 @@ namespace draw2d_quartz2d
 
       bool                          m_bForeColor;
       bool                          m_bBackColor;
-      u64                      m_uiForeColor;
-      u64                      m_uiBackColor;
+      u64                           m_uiForeColor;
+      u64                           m_uiBackColor;
       bool                          m_bPrinting;
+      
 
 
       graphics();
@@ -189,18 +190,20 @@ namespace draw2d_quartz2d
 
       // Clipping Functions
       virtual i32 GetClipBox(RECT * prect) override;
-      virtual bool PtVisible(i32 x, i32 y) override;
-      virtual bool PtVisible(const ::point & point) override;
-      virtual bool RectVisible(const ::rect & rect) override;
-      virtual i32 SelectClipRgn(::draw2d::region* pRgn) override;
-      virtual i32 ExcludeClipRect(i32 x1, i32 y1, i32 x2, i32 y2) override;
-      virtual i32 ExcludeClipRect(const ::rect & rect) override;
+      //virtual bool PtVisible(i32 x, i32 y) override;
+      //virtual bool PtVisible(const ::point & point) override;
+      //virtual bool RectVisible(const ::rect & rect) override;
+//      virtual i32 SelectClipRgn(::draw2d::region* pRgn) override;
+//      virtual i32 ExcludeClipRect(i32 x1, i32 y1, i32 x2, i32 y2) override;
+//      virtual i32 ExcludeClipRect(const ::rect & rect) override;
       //i32 ExcludeUpdateRgn(::user::interaction * pWnd);
-      virtual i32 IntersectClipRect(i32 x1, i32 y1, i32 x2, i32 y2) override;
-      virtual i32 IntersectClipRect(const ::rect & rect) override;
-      virtual i32 OffsetClipRgn(i32 x, i32 y) override;
-      virtual i32 OffsetClipRgn(const ::size & size) override;
-      virtual i32 SelectClipRgn(::draw2d::region* pRgn, i32 nMode) override;
+      //virtual i32 IntersectClipRect(i32 x1, i32 y1, i32 x2, i32 y2) override;
+      //virtual i32 IntersectClipRect(const ::rect & rect) override;
+      //virtual i32 OffsetClipRgn(i32 x, i32 y) override;
+      //virtual i32 OffsetClipRgn(const ::size & size) override;
+      //virtual i32 SelectClipRgn(::draw2d::region* pRgn, i32 nMode) override;
+      
+      virtual void on_apply_clip_region() override;
 
       // Line-Output Functions
       virtual pointd current_position() override;
@@ -473,7 +476,7 @@ namespace draw2d_quartz2d
       float GetMiterLimit() override;
       bool SetMiterLimit(float fMiterLimit) override;
       i32 GetPath(LPPOINT lpPoints, LPBYTE lpTypes, i32 nCount) ;
-      bool SelectClipPath(i32 nMode) override;
+      //bool SelectClipPath(i32 nMode) override;
 
       // Misc Helper Functions
       static ::draw2d::brush* PASCAL GetHalftoneBrush(::base::application * papp);
@@ -504,9 +507,8 @@ namespace draw2d_quartz2d
       bool blur(bool bExpand, double dRadius, const ::rect & rect) override;
 
 
-
       // platform-specific or platform-internals
-      bool _clip(::draw2d::region * pregion);
+      bool _clip(::draw2d::region * pregion, bool bEO = false);
       bool _add_path(::draw2d::region * pregion);
       bool _set(::draw2d::brush * pbrush);
       bool _set_pen(::draw2d::brush * pbrush, double dWidth);

@@ -10,7 +10,7 @@
 #include "aura/node/macos/AuraWindowApp.h"
 #include "aura/os/cross/windows/windowing.h"
 
-
+void defer_dock_application(int_bool bDock);
 
 void copy(LPRECT lprectDst, const CGRect & rectSrc);
 

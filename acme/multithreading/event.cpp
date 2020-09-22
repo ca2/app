@@ -2,7 +2,7 @@
 
 
 #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
-#include <sys/interprocess_communication.h>
+#include <sys/ipc.h>
 #include <pthread.h>
 #include <sys/time.h>
 #include <time.h>

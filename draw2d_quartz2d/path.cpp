@@ -99,6 +99,12 @@ namespace draw2d_quartz2d
    
    bool path::internal_add_line(int x1, int y1, int x2, int y2)
    {
+      
+      x1+= m_pointOffset.x;
+      y1+= m_pointOffset.y;
+      x2+= m_pointOffset.x;
+      y2+= m_pointOffset.y;
+
 
       if(CGPathIsEmpty(m_path))
       {
@@ -123,6 +129,10 @@ namespace draw2d_quartz2d
    bool path::internal_add_line(int x, int y)
    {
       
+      x+= m_pointOffset.x;
+      y+= m_pointOffset.y;
+
+      
       if(CGPathIsEmpty(m_path))
       {
          
@@ -143,6 +153,10 @@ namespace draw2d_quartz2d
    bool path::internal_add_text_out(int x, int y, const string & strText, ::draw2d::font_pointer spfont, ::draw2d_quartz2d::graphics * p)
    {
       
+      x+= m_pointOffset.x;
+      y+= m_pointOffset.y;
+
+      
       CGContextSaveGState(p->m_pdc);
       
       p->internal_show_text(spfont,nullptr,nullptr, x, y, 0, DT_TOPLEFT, strText, kCGTextInvisible);
@@ -157,7 +171,10 @@ namespace draw2d_quartz2d
    
    bool path::internal_add_move(int x, int y)
    {
-
+      
+      x+= m_pointOffset.x;
+      y+= m_pointOffset.y;
+      
       CGPathMoveToPoint(m_path, nullptr, x, y);
       
       m_bBegin = false;
@@ -274,6 +291,9 @@ namespace draw2d_quartz2d
       rect.top = parc->m_pointCenter.y - parc->m_sizeRadius.cy;
       rect.bottom = parc->m_pointCenter.y + parc->m_sizeRadius.cy;
       
+      
+      rect.offset(m_pointOffset);
+      
       return internal_add_arc(rect, parc->m_angleBeg.radian(), parc->m_angleEnd.radian(), parc->m_angleEnd < parc->m_angleBeg);
       
    }
@@ -297,6 +317,9 @@ namespace draw2d_quartz2d
       r.size.width = prect->m_rect.width();
       r.size.height = prect->m_rect.height();
       
+      r.origin.x += m_pointOffset.x;
+      r.origin.y += m_pointOffset.y;
+      
       CGPathAddRect(m_path, nullptr, r);
                     
       return true;
@@ -311,6 +334,14 @@ namespace draw2d_quartz2d
       
       ::papaya::array::__copy(points, plines->m_pointa);
       
+      for(auto & point : points)
+      {
+         
+         point.x += m_pointOffset.x;
+         point.y += m_pointOffset.y;
+         
+      }
+      
       CGPathAddLines(m_path, nullptr, points.get_data(), points.get_count());
                     
       return true;
@@ -324,6 +355,14 @@ namespace draw2d_quartz2d
       ::array < CGPoint > points;
       
       ::papaya::array::__copy(points, ppolygon->m_pointa);
+      
+      for(auto & point : points)
+      {
+         
+         point.x += m_pointOffset.x;
+         point.y += m_pointOffset.y;
+         
+      }
       
       CGPathAddLines(m_path, nullptr, points.get_data(), points.get_count());
 

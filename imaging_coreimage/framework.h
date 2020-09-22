@@ -1,5 +1,7 @@
 #pragma once
 
+#include "acme/_start.h"
+
 #ifdef __OBJC__
 
 #if defined(MACOS)

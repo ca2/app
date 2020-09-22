@@ -16,9 +16,9 @@
 		07B65783190F3CA2002DAADE /* math_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B65782190F3CA2002DAADE /* math_iosTests.m */; };
 		9A204ACB2433CA8900D45614 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A204AA32433CA8800D45614 /* framework.cpp */; };
 		9A204ACC2433CA8900D45614 /* factory_exchange.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A204AA42433CA8800D45614 /* factory_exchange.h */; };
-		9A204ACE2433CA8900D45614 /* imaging.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A204AAF2433CA8800D45614 /* imaging.h */; };
+		9A204ACE2433CA8900D45614 /* context_image.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A204AAF2433CA8800D45614 /* context_image.h */; };
 		9A204AD12433CA8900D45614 /* factory_exchange.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A204AB42433CA8800D45614 /* factory_exchange.cpp */; };
-		9A204AD22433CA8900D45614 /* imaging.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A204AB82433CA8800D45614 /* imaging.cpp */; };
+		9A204AD22433CA8900D45614 /* save_ima.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A204AB82433CA8800D45614 /* save_ima.cpp */; };
 		9A204AD32433CA8900D45614 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A204AB92433CA8800D45614 /* framework.h */; };
 		9A204AD72433CA8900D45614 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A204AC42433CA8800D45614 /* _.h */; };
 		9A204ADB2433CB0300D45614 /* image_gif.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A204AD82433CB0300D45614 /* image_gif.cpp */; };
@@ -31,7 +31,9 @@
 		9A415C612473940200EF2BCD /* image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A204AD92433CB0300D45614 /* image.cpp */; };
 		9A415C622473940200EF2BCD /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A204AA32433CA8800D45614 /* framework.cpp */; };
 		9A415C632473940200EF2BCD /* factory_exchange.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A204AB42433CA8800D45614 /* factory_exchange.cpp */; };
-		9A415C642473940200EF2BCD /* imaging.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A204AB82433CA8800D45614 /* imaging.cpp */; };
+		9A415C642473940200EF2BCD /* save_ima.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A204AB82433CA8800D45614 /* save_ima.cpp */; };
+		9A4E5C9A2519301700CC6817 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4E5C992519301700CC6817 /* libacme.dylib */; };
+		9A4E5C9C2519301700CC6817 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4E5C9B2519301700CC6817 /* libapex.dylib */; };
 		9AAC21662475B3BE0013AB72 /* mm_ios_image.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9AAC21642475B3BC0013AB72 /* mm_ios_image.mm */; };
 /* End PBXBuildFile section */
 
@@ -104,9 +106,9 @@
 		07B65782190F3CA2002DAADE /* math_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = math_iosTests.m; sourceTree = "<group>"; };
 		9A204AA32433CA8800D45614 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
 		9A204AA42433CA8800D45614 /* factory_exchange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = factory_exchange.h; sourceTree = "<group>"; };
-		9A204AAF2433CA8800D45614 /* imaging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imaging.h; sourceTree = "<group>"; };
+		9A204AAF2433CA8800D45614 /* context_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = context_image.h; sourceTree = "<group>"; };
 		9A204AB42433CA8800D45614 /* factory_exchange.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = factory_exchange.cpp; sourceTree = "<group>"; };
-		9A204AB82433CA8800D45614 /* imaging.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = imaging.cpp; sourceTree = "<group>"; };
+		9A204AB82433CA8800D45614 /* save_ima.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = save_ima.cpp; sourceTree = "<group>"; };
 		9A204AB92433CA8800D45614 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
 		9A204AC42433CA8800D45614 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A204AD82433CB0300D45614 /* image_gif.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = image_gif.cpp; sourceTree = "<group>"; };
@@ -119,6 +121,8 @@
 		9A204AF32433DE4D00D45614 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		9A204AF72433DEB400D45614 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		9A2489662452D46900F23D28 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../aura/aura.xcodeproj; sourceTree = "<group>"; };
+		9A4E5C992519301700CC6817 /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A4E5C9B2519301700CC6817 /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A574B9816AAB906000CC4EF /* libimaging_coreimage.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libimaging_coreimage.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AAC21642475B3BC0013AB72 /* mm_ios_image.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = mm_ios_image.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -146,6 +150,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A4E5C9A2519301700CC6817 /* libacme.dylib in Frameworks */,
+				9A4E5C9C2519301700CC6817 /* libapex.dylib in Frameworks */,
 				9A204AF82433DEB400D45614 /* AppKit.framework in Frameworks */,
 				9A204AEF2433DDDF00D45614 /* ImageIO.framework in Frameworks */,
 				9A204AEB2433DDB300D45614 /* CoreGraphics.framework in Frameworks */,
@@ -159,6 +165,8 @@
 		07B65765190F3CA2002DAADE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A4E5C992519301700CC6817 /* libacme.dylib */,
+				9A4E5C9B2519301700CC6817 /* libapex.dylib */,
 				9A204AF72433DEB400D45614 /* AppKit.framework */,
 				9A204AF32433DE4D00D45614 /* IOKit.framework */,
 				9A204AF02433DDF800D45614 /* CoreFoundation.framework */,
@@ -200,9 +208,9 @@
 				9A204AD92433CB0300D45614 /* image.cpp */,
 				9A204AA32433CA8800D45614 /* framework.cpp */,
 				9A204AA42433CA8800D45614 /* factory_exchange.h */,
-				9A204AAF2433CA8800D45614 /* imaging.h */,
+				9A204AAF2433CA8800D45614 /* context_image.h */,
 				9A204AB42433CA8800D45614 /* factory_exchange.cpp */,
-				9A204AB82433CA8800D45614 /* imaging.cpp */,
+				9A204AB82433CA8800D45614 /* save_ima.cpp */,
 				9A204AB92433CA8800D45614 /* framework.h */,
 				9A204AC42433CA8800D45614 /* _.h */,
 			);
@@ -250,7 +258,7 @@
 				9A204ACC2433CA8900D45614 /* factory_exchange.h in Headers */,
 				9A204AD72433CA8900D45614 /* _.h in Headers */,
 				9A204AD32433CA8900D45614 /* framework.h in Headers */,
-				9A204ACE2433CA8900D45614 /* imaging.h in Headers */,
+				9A204ACE2433CA8900D45614 /* context_image.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,7 +403,7 @@
 				9A415C612473940200EF2BCD /* image.cpp in Sources */,
 				9A415C622473940200EF2BCD /* framework.cpp in Sources */,
 				9A415C632473940200EF2BCD /* factory_exchange.cpp in Sources */,
-				9A415C642473940200EF2BCD /* imaging.cpp in Sources */,
+				9A415C642473940200EF2BCD /* save_ima.cpp in Sources */,
 				9AAC21662475B3BE0013AB72 /* mm_ios_image.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -412,7 +420,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A204AD22433CA8900D45614 /* imaging.cpp in Sources */,
+				9A204AD22433CA8900D45614 /* save_ima.cpp in Sources */,
 				9A204ADB2433CB0300D45614 /* image_gif.cpp in Sources */,
 				9A204ADC2433CB0300D45614 /* image.cpp in Sources */,
 				9A204AD12433CA8900D45614 /* factory_exchange.cpp in Sources */,

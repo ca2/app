@@ -40,8 +40,15 @@ public:
    virtual ::estatus _load_dib(image * pimage, const ::file::path & pathDib);
 
 
-   virtual ::estatus save_image(const ::var & varFile, const image * pimage, ::save_image * psaveimage = nullptr);
+   virtual ::estatus save_image(const ::var & varFile, const image * pimage, const ::save_image * psaveimage = nullptr);
+   virtual ::estatus save_image(memory & memory, const image * pimage, const ::save_image * psaveimage = nullptr);
    virtual ::estatus save_dib(const ::file::path & path, const image * pimage);
+
+   
+   virtual HCURSOR CreateAlphaCursor(oswindow oswindow, const image * pimage, int xHotSpot, int yHotSpot);
+   virtual HCURSOR load_default_cursor(e_cursor ecursor);
+   virtual void set_cursor_image(const image * pimage, int xHotSpot, int yHotSpot);
+   virtual WINBOOL window_set_mouse_cursor(oswindow window, HCURSOR hcursor);
 
 
    virtual ::image_result _load_image_from_file(const ::var & varFile, const var & varOptions);

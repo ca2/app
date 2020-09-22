@@ -338,8 +338,9 @@ namespace draw2d
       virtual i32 IntersectClipRect(const ::rect & rect);
       virtual i32 OffsetClipRgn(i32 x, i32 y);
       virtual i32 OffsetClipRgn(const ::size & size);
-      virtual i32 SelectClipRgn(::draw2d::region* pRgn, i32 nMode);
+      virtual i32 SelectClipRgn(::draw2d::region* pregion, ::draw2d::enum_combine ecombine);
 
+      virtual void on_apply_clip_region();
 
       virtual pointd current_position();
 

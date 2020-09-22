@@ -30,6 +30,12 @@ namespace app_app
 #endif
 
       ModifyStyleEx(0, WS_EX_LAYERED);
+      
+      auto & app = App(this);
+      
+      app.m_bIpi = false;
+      
+      ::user::interaction * p = this;
 
    }
 

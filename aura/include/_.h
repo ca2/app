@@ -897,7 +897,11 @@ CLASS_DECL_AURA void aura_ref();
 //
 ////#include "aura/filesystem/file/_const.h"
 //
-#include "aura/graphics/draw2d/_const.h"
+
+
+//#include "aura/graphics/draw2d/_const.h"
+
+
 //
 //
 //
@@ -3163,7 +3167,7 @@ namespace draw2d
 //CLASS_DECL_AURA string get_exe_path();
 //
 //
-#include "aura/platform/savings.h"
+//#include "aura/platform/savings.h"
 //
 //#include "aura/net/_.h"
 //
@@ -3555,7 +3559,7 @@ namespace draw2d
 //#include "aura/platform/async.h"
 //
 //
-////#include "aura/platform/mq.h"
+#include "aura/platform/mq.h"
 //
 //
 //#include "aura/platform/international.h"

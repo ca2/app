@@ -186,9 +186,9 @@ namespace aura
 
 #endif
 
-#include "aura/platform/obj_ref_dbg.h"
+//#include "aura/platform/obj_ref_dbg.h"
 
-#include "aura/platform/obj_typ_ctr.h"
+//#include "aura/platform/obj_typ_ctr.h"
 
 #include "aura/const/_const.h"
 
@@ -200,7 +200,7 @@ namespace aura
 //
 //#include "aura/memory/allocate_processor_cache_oriented.h"
 
-#include "aura/platform/number.h"
+//#include "aura/platform/number.h"
 
 #include "aura/include/_include.h"
 

@@ -11,7 +11,7 @@
 
 //#include "strn.h"
 
-#include "process_data.h"
+//#include "process_data.h"
 
 #include "acme/platform/profiler.h"
 
@@ -198,7 +198,7 @@ class stdio_file;
 struct memory_state;
 
 
-#include "const.h"
+//#include "const.h"
 
 
 //#include "core/user/userex/const.h"
@@ -207,18 +207,18 @@ struct memory_state;
 //#include "strn.h"
 
 
-#include "less.h"
+//#include "less.h"
 
 
 //#include "smart_pointer_query.h"
 
 
 //#define ASSERT_KINDOF(class_name, object) ASSERT(base_class < class_name > ::bases(object))
-#define DYNAMIC_CAST(class_name, object) (dynamic_cast < class_name * > (object))
-#define ZERO_INIT_JUST_THIS(base_class) __memset(((base_class*)this)+1, 0, sizeof(*this) - sizeof(class base_class));
+//#define DYNAMIC_CAST(class_name, object) (dynamic_cast < class_name * > (object))
+///#define ZERO_INIT_JUST_THIS(base_class) __memset(((base_class*)this)+1, 0, sizeof(*this) - sizeof(class base_class));
 
 
-#include "constraint.h"
+//#include "constraint.h"
 
 //
 //class resource_exception;
@@ -310,26 +310,26 @@ struct memory_state;
 
 //#include "os_history.h"
 
+//
+//namespace aura
+//{
+//
+//
+//   CLASS_DECL_AURA void format_strings(string& rString, const char* pszFormat, const char* const* rgpsz, i32 nString);
+//
+//   CLASS_DECL_AURA bool extract_sub_string(string& rString, const char* pszFullString, i32 iSubString, char chSep = '\n');
+//
+//
+//}
 
-namespace aura
-{
 
-
-   CLASS_DECL_AURA void format_strings(string& rString, const char* pszFormat, const char* const* rgpsz, i32 nString);
-
-   CLASS_DECL_AURA bool extract_sub_string(string& rString, const char* pszFullString, i32 iSubString, char chSep = '\n');
-
-
-}
-
-
-#include "process_data.h"
+//#include "process_data.h"
 
 //#include "types.h"
 
-#include "progress_interface.h"
+//#include "progress_interface.h"
 
-#include "debug.h"
+//#include "debug.h"
 
 //#include "aura/primitive/collection/std_iterator.h"
 //#include "aura/primitive/collection/insert_iterator.h"
@@ -337,10 +337,10 @@ namespace aura
 //#include "aura/primitive/collection/std_pair.h"
 
 
-#include "muldiv32.h"
+//#include "muldiv32.h"
 
 
-#include "logic.h"
+//#include "logic.h"
 
 //#include "util1.h"
 
@@ -350,7 +350,7 @@ namespace aura
 
 //#include "app/aura/user/_.h"
 
-#include "debug.h"
+//#include "debug.h"
 
 //#include "aura/filesystem/filehandler/filehandler.h"
 
@@ -368,7 +368,7 @@ namespace aura
 #endif
 
 
-#include "str_context.h"
+//#include "str_context.h"
 
 
 

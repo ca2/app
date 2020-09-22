@@ -1,9 +1,9 @@
 #include "framework.h"
 #include "aura/id.h"
-#include "aura/platform/version.h"
-#include "aura/platform/machine_event_data2.h"
-#include "aura/platform/machine_event2.h"
-#include "aura/platform/machine_event_central2.h"
+#include "acme/platform/version.h"
+//#include "aura/platform/machine_event_data2.h"
+//#include "aura/platform/machine_event2.h"
+//#include "aura/platform/machine_event_central2.h"
 #include "apex/platform/app_core.h"
 #include "acme/platform/profiler.h"
 #include "apex/platform/str_context.h"
@@ -230,7 +230,7 @@ namespace aura
    ::estatus application::initialize(::layered * pobjectContext)
    {
 
-      auto estatus = ::thread::initialize(pobjectContext);
+      auto estatus = ::apex::application::initialize(pobjectContext);
 
       if (!estatus)
       {
@@ -243,18 +243,18 @@ namespace aura
 
 
       //set_context_object(this);
-      set_context_app(this);
+      //set_context_app(this);
 
-      set_context(this);
+      //set_context(this);
 
-      if (::is_set(m_pappParent))
-      {
-
-         set_context_session(m_pappParent->get_context_session());
-
-         set_context_system(m_pappParent->get_context_system());
-
-      }
+//      if (::is_set(m_pappParent))
+//      {
+//
+//         set_context_session(m_pappParent->get_context_session());
+//
+//         set_context_system(m_pappParent->get_context_system());
+//
+//      }
 
       {
 
@@ -7331,21 +7331,21 @@ retry_license:
          if (has_property("save_processing"))
          {
 
-            Session.savings().save(::aura::resource_processing);
+            Session.savings().save(::apex::resource_processing);
 
          }
 
          if (has_property("save_blur_back"))
          {
 
-            Session.savings().save(::aura::resource_blur_background);
+            Session.savings().save(::apex::resource_blur_background);
 
          }
 
          if (has_property("save_transparent_back"))
          {
 
-            Session.savings().save(::aura::resource_translucent_background);
+            Session.savings().save(::apex::resource_translucent_background);
 
          }
 
@@ -11096,7 +11096,7 @@ namespace aura
       if (key.m_strDataKey == "ca2.savings")
       {
 
-         Session.savings().m_eresourceflagsShouldSave = (::aura::e_resource) var.i32();
+         Session.savings().m_eresourceflagsShouldSave = (::apex::e_resource) var.i32();
 
       }
 

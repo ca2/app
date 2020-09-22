@@ -233,7 +233,8 @@ namespace draw2d
       pointd                           m_pointBeg;
       pointd                           m_pointEnd;
       ::draw2d::e_fill_mode            m_efillmode;
-
+      pointd                           m_pointOffset;
+      
 
       path();
       virtual ~path();

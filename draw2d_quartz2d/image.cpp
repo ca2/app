@@ -86,7 +86,7 @@ namespace draw2d_quartz2d
       
       i32 iScan = iGoodStride;
 
-      if(!m_pbitmap->CreateDIBSection(nullptr, size, DIB_RGB_COLORS, (void **) &pcolorref, &iScan, nullptr,  0) || m_pbitmap->get_os_data() == nullptr)
+      if(!m_pbitmap->create_bitmap(nullptr, size, (void **) &pcolorref, &iScan) || m_pbitmap->get_os_data() == nullptr)
       {
 
          destroy();
@@ -228,7 +228,7 @@ namespace draw2d_quartz2d
 
 
       // White blend image
-      auto pimage1 = __create_image({cx,  cy});
+      auto pimage1 = create_image({cx,  cy});
       
       pimage1->set_rgb(255, 255, 255);
 
@@ -241,7 +241,7 @@ namespace draw2d_quartz2d
       DI_IMAGE | DI_MASK);
 
       // Black blend image
-      auto pimage2 = __create_image({cx,  cy});
+      auto pimage2 = create_image({cx,  cy});
       pimage2->fill(0, 0, 0, 0);
 
       pimage2->get_graphics()->DrawIcon(
@@ -253,7 +253,7 @@ namespace draw2d_quartz2d
       DI_IMAGE | DI_MASK);
 
       // Mask image
-      auto pimageM= __create_image({cx,  cy});
+      auto pimageM= create_image({cx,  cy});
 
       pimageM->g()->DrawIcon(
       0, 0,
@@ -651,10 +651,10 @@ namespace draw2d_quartz2d
                   //pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
                   //pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
                   byte acomplement = (~psrc2[3] * bA) >> 8;
-                  pdst2[0] = clip_byte(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
-                  pdst2[1] = clip_byte(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);
-                  pdst2[2] = clip_byte(((psrc2[2] * bA) + (pdst2[2] * acomplement)) >> 8);
-                  pdst2[3] = clip_byte(((psrc2[3] * bA) + (pdst2[3] * acomplement)) >> 8);
+                  pdst2[0] = byte_clip(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
+                  pdst2[1] = byte_clip(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);
+                  pdst2[2] = byte_clip(((psrc2[2] * bA) + (pdst2[2] * acomplement)) >> 8);
+                  pdst2[3] = byte_clip(((psrc2[3] * bA) + (pdst2[3] * acomplement)) >> 8);
 
 
 

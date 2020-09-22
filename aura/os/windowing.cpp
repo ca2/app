@@ -153,115 +153,115 @@ CLASS_DECL_ACME mq * get_mq(ITHREAD idthread, bool bCreate);
 
 
 
-CLASS_DECL_AURA string message_box_result_to_string(int iResult)
-{
+//CLASS_DECL_AURA string message_box_result_to_string(int iResult)
+//{
+//
+//   string strResult;
+//
+//   if (iResult == IDNO)
+//   {
+//
+//      strResult = "no";
+//
+//   }
+//   else if (iResult == IDYES)
+//   {
+//
+//      strResult = "yes";
+//
+//   }
+//   else if (iResult == IDCANCEL)
+//   {
+//
+//      strResult = "cancel";
+//
+//   }
+//   else if (iResult == IDOK)
+//   {
+//
+//      strResult = "ok";
+//
+//   }
+//   else if (iResult == IDTRYAGAIN)
+//   {
+//
+//      strResult = "tryagain";
+//
+//   }
+//   else if (iResult == IDABORT)
+//   {
+//
+//      strResult = "abort";
+//
+//   }
+//   else if (iResult == IDRETRY)
+//   {
+//
+//      strResult = "retry";
+//
+//   }
+//   else if (iResult == IDCONTINUE)
+//   {
+//
+//      strResult = "continue";
+//
+//   }
+//
+//   else if (iResult == IDIGNORE)
+//   {
+//
+//      strResult = "retry";
+//
+//   }
+//
+//   return strResult;
+//}
+//
+//
+//
+//
+//
+//
 
-   string strResult;
-
-   if (iResult == IDNO)
-   {
-
-      strResult = "no";
-
-   }
-   else if (iResult == IDYES)
-   {
-
-      strResult = "yes";
-
-   }
-   else if (iResult == IDCANCEL)
-   {
-
-      strResult = "cancel";
-
-   }
-   else if (iResult == IDOK)
-   {
-
-      strResult = "ok";
-
-   }
-   else if (iResult == IDTRYAGAIN)
-   {
-
-      strResult = "tryagain";
-
-   }
-   else if (iResult == IDABORT)
-   {
-
-      strResult = "abort";
-
-   }
-   else if (iResult == IDRETRY)
-   {
-
-      strResult = "retry";
-
-   }
-   else if (iResult == IDCONTINUE)
-   {
-
-      strResult = "continue";
-
-   }
-
-   else if (iResult == IDIGNORE)
-   {
-
-      strResult = "retry";
-
-   }
-
-   return strResult;
-}
-
-
-
-
-
-
-
-CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(oswindow oswindow)
-{
-
-   ::user::interaction * pinteraction = oswindow_interaction(oswindow);
-
-   if(pinteraction == nullptr)
-   {
-
-      return FALSE;
-
-   }
-
-   if(pinteraction->get_context_application() == nullptr)
-   {
-
-      return false;
-
-   }
-
-   ITHREAD idthread = pinteraction->get_context_application()->get_ithread();
-
-   mq * pmq = get_mq(idthread, false);
-
-   if(pmq == nullptr)
-   {
-
-      return FALSE;
-
-   }
-
-   sync_lock ml(pmq->mutex());
-
-   pmq->m_messagea.pred_remove([=](MESSAGE & item)
-   {
-
-      return item.hwnd == oswindow;
-
-   });
-
-   return TRUE;
-
-}
+//CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(oswindow oswindow)
+//{
+//
+//   ::user::interaction * pinteraction = oswindow_interaction(oswindow);
+//
+//   if(pinteraction == nullptr)
+//   {
+//
+//      return FALSE;
+//
+//   }
+//
+//   if(pinteraction->get_context_application() == nullptr)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   ITHREAD idthread = pinteraction->get_context_application()->get_ithread();
+//
+//   mq * pmq = get_mq(idthread, false);
+//
+//   if(pmq == nullptr)
+//   {
+//
+//      return FALSE;
+//
+//   }
+//
+//   sync_lock ml(pmq->mutex());
+//
+//   pmq->m_messagea.pred_remove([=](MESSAGE & item)
+//   {
+//
+//      return item.hwnd == oswindow;
+//
+//   });
+//
+//   return TRUE;
+//
+//}

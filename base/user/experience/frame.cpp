@@ -696,7 +696,7 @@ namespace experience
 
          bool bInitialControlBoxPosition = true;
 
-         auto edisplayState = pframewindow->layout().design().display();
+         //auto edisplayState = pframewindow->layout().design().display();
 
          rect * prectControlBoxMargin = get_control_box_margin_rect();
 

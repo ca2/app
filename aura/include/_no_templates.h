@@ -33,7 +33,7 @@ typedef iptr strsize;
 #include "apex/include/_no_templates.h"
 
 
-#include "acme/os/thread.h"
+//#include "acme/os/thread.h"
 //#include "aura/platform/struct.h"
 #include "aura/os/cross/cross.h"
 #include "aura/os/os.h"
@@ -43,14 +43,14 @@ typedef iptr strsize;
 #include "aura/os/apple/_c_mm.h"
 
 
-#include "aura/platform/obj_ref_dbg.h"
-#include "aura/platform/obj_typ_ctr.h"
+//#include "aura/platform/obj_ref_dbg.h"
+//#include "aura/platform/obj_typ_ctr.h"
 #include "aura/const/_const.h"
-#include "aura/platform/obj_ref_dbg.h"
-#include "acme/primitive/primitive/uid.h"
-#include "acme/primitive/primitive/estatus.h"
-#include "acme/primitive/primitive/eobject.h"
-#include "acme/primitive/primitive/generic.h"
+//#include "aura/platform/obj_ref_dbg.h"
+//#include "acme/primitive/primitive/uid.h"
+//#include "acme/primitive/primitive/estatus.h"
+//#include "acme/primitive/primitive/eobject.h"
+//#include "acme/primitive/primitive/generic.h"
 
 
 

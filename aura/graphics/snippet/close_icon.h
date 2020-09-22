@@ -22,15 +22,15 @@ namespace user
 
          double dDeflate = dMinimumDimension / 3.0;
 
-         double w = rect.width();
+         //double w = rect.width();
 
-         double h = rect.height();
+         //double h = rect.height();
 
          rect.deflate(0, dDeflate);
 
-         double w2 = rect.width();
+         //double w2 = rect.width();
 
-         double h2 = rect.height();
+         //double h2 = rect.height();
 
          pitem->m_ppath.create();
 

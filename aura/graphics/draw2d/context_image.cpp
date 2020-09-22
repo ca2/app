@@ -514,21 +514,27 @@ context_image::~context_image()
 }
 
 
-::estatus context_image::save_image(const ::var & varFile, const image * pimage, ::save_image * psaveimage)
+::estatus context_image::save_image(const ::var & varFile, const image * pimage, const ::save_image * psaveimage)
+{
+   
+   memory mem;
+
+   if (!save_image(mem, pimage, psaveimage))
+   {
+
+      return false;
+
+   }
+
+   return Context.file().put_contents(varFile, mem);
+
+}
+
+
+::estatus context_image::save_image(::memory & memory, const image * pimage, const ::save_image * psaveimage)
 {
    
    return ::error_interface_only;
-
-//   memory mem;
-//
-//   if (!save_image(mem, pimage, psaveimage))
-//   {
-//
-//      return false;
-//
-//   }
-//
-//   return Context.file().put_contents(varFile, mem);
 
 }
 

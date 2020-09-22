@@ -6,7 +6,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 #endif
-#include "trace_category.h"
+//#include "trace_category.h"
 
 
 CLASS_DECL_APEX void __simple_tracea(::generic * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);

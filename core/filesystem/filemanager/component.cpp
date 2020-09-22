@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
@@ -206,9 +206,9 @@ namespace filemanager
 
       //__compose_new(this, m_pmap);
 
-      auto& user = User;
+      //auto& user = User;
 
-      auto pshell = user.shell();
+      //auto pshell = user.shell();
 
       //estatus = pshell->initialize(pobjectContext);
 

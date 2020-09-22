@@ -777,7 +777,7 @@ namespace aura
 
       virtual void on_graphics_ready() override;
 
-      virtual void process_machine_event_data(machine_event_data * pdata) override;
+      //virtual void process_machine_event_data(machine_event_data * pdata) override;
 
 
 
@@ -1005,6 +1005,9 @@ namespace aura
       //virtual bool initialize_native_window1() override;
 
       //virtual ::apex::library* load_library(const char* pszLibrary);
+      
+      virtual void application_main(int argc, char *argv[], const char * pszCommandLine) override;
+      
 
    };
 

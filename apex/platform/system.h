@@ -1024,6 +1024,8 @@ namespace apex
       //virtual bool initialize_native_window1() override;
 
       //virtual ::apex::library* load_library(const char* pszLibrary);
+      
+      virtual void application_main(int argc, char *argv[], const char * pszCommandLine);
 
    };
 

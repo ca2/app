@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 
@@ -12,7 +12,7 @@ namespace app_app
    public:
 
 
-      __reference(window)                             m_pwindow;
+      __composite(window)                             m_pwindow;
 
 
       application();

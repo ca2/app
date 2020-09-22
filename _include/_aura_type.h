@@ -85,3 +85,16 @@ inline byte __byte(double d) { return (byte) __minmax(d, 0, 255); }
 inline byte __byte(::i64 i) { return (byte)__minmax(i, 0, 255); }
 
 #endif
+
+inline bool is_null(const void * p)
+{
+
+   return (iptr) p < 65536;
+
+}
+inline bool is_set(const void * p)
+{
+
+   return !is_null(p);
+
+}

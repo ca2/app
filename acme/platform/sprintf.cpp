@@ -18,7 +18,7 @@ i32 sprintf_dup(char *buffer, const char *format, ...)
     va_list argptr;
 
     va_start(argptr, format);
-    retValue = vsprintf_dup(buffer, format, argptr);
+    retValue = vsprintf(buffer, format, argptr);
     va_end(argptr);
 
     return retValue;
@@ -30,7 +30,7 @@ i32 snprintf_dup(char *dest, size_t n, const char *fmt, ...)
 
 	va_list args;
 	va_start(args, fmt);
-	i32 retValue = vsprintf_dup(dest, fmt, args);
+	i32 retValue = vsprintf(dest, fmt, args);
 	va_end(args);
 	return retValue;
 }
@@ -38,7 +38,7 @@ i32 snprintf_dup(char *dest, size_t n, const char *fmt, ...)
 i32 vsnprintf_dup(char *dest, size_t n, const char *fmt, va_list args)
 {
 	UNREFERENCED_PARAMETER(n);
-	return vsprintf_dup(dest, fmt, args);
+	return vsprintf(dest, fmt, args);
 }
 
 i32 vsprintf_dup(char *dest, const char *fmt, va_list args)
@@ -70,7 +70,7 @@ i32 swnprintf_dup(widechar *dest, size_t n, const widechar *fmt, ...)
 
 	va_list args;
 	va_start(args, fmt);
-	i32 retValue = vswprintf_dup(dest, n, fmt, args);
+	i32 retValue = vswprintf(dest, n, fmt, args);
 	va_end(args);
 	return retValue;
 

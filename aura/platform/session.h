@@ -84,7 +84,7 @@ namespace aura
       //__composite(::account::department)                    m_paccount;
       //__pointer(::account::licensing)                     m_plicensing;
       //__composite(::user::interaction)                      m_puserinteractionSystem;
-      __composite(::aura::savings)                          m_psavings;
+      __composite(::apex::savings)                          m_psavings;
 
       var                                                   m_varTopicFile;
       var                                                   m_varCurrentViewFile;
@@ -251,7 +251,7 @@ namespace aura
 
       //__pointer(::aura::application) get_new_application(::layered * pobjectContext, const char * pszAppId);
 
-      inline ::aura::savings &                  savings()      { return *m_psavings; }
+      inline ::apex::savings &                  savings()      { return *m_psavings; }
 
       //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style_pointer & pstyle, ::user::menu_item * pitem);
 

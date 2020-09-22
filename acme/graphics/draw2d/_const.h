@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 enum e_image
@@ -70,6 +70,31 @@ enum enum_color
 
 namespace draw2d
 {
+
+
+   enum enum_region
+   {
+
+      e_region_none,
+      e_region_rect,
+      e_region_oval,
+      e_region_polygon,
+      e_region_poly_polygon,
+      e_region_round_rect,
+      e_region_combine
+
+   };
+
+
+   enum enum_combine
+   {
+
+      e_combine_add,
+      e_combine_exclude,
+      e_combine_intersect,
+      e_combine_xor
+
+   };
 
 
    enum e_interpolation

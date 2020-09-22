@@ -97,7 +97,7 @@ namespace filemanager
       virtual bool do_prompt_file_name(var & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
 
 
-      virtual void defer_update_data_key();
+      virtual void defer_update_data_key() override;
 
 
       virtual ::id get_local_machine_id();

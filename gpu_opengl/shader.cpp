@@ -51,8 +51,15 @@ namespace opengl
       {
 
          GLenum eerror = glGetError();
+         
+#ifdef __APPLE__
+         auto errString = gluErrorString(eerror);
+         
+#else
 
          auto errString = gluErrorString(eerror);
+         
+#endif
          
          TRACE("error %d \"%s\"", eerror, errString);
 

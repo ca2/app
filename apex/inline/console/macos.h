@@ -63,22 +63,20 @@ public:
    ::estatus m_estatus;
    __pointer(::apex::system) m_psystem;
 
+   
    void create_system()
    {
 
       apex_ref();
 
-      string strAppId = apple_get_bundle_id();
+      string strAppId = executable_get_app_id();
 
       m_psystem = ::move_transfer(platform_create_system(strAppId));
 
-//      m_psystem = __new(::apex::system());
-
       m_psystem->console_initialize();
 
-
-
    }
+   
 
    void common_construct()
    {

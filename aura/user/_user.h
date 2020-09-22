@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //#if !BROAD_PRECOMPILED_HEADER
@@ -202,7 +202,7 @@ namespace user
 
 #include "prodevian.h"
 
-#include "aura/platform/str_context.h"
+//#include "aura/platform/str_context.h"
 
 
 //#include "aura/primitive/primitive/form_property_set.h"

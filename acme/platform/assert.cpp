@@ -5,6 +5,13 @@
 #endif
 
 
+#ifdef __APPLE__
+
+
+int _os_message_box(const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox);
+
+#endif
+
 CLASS_DECL_ACME int __cpp_assert_failed_line(const char * pszFileName, int iLineNumber);
 
 
@@ -60,6 +67,10 @@ namespace acme
          x11_message_box(m_strText, m_strTitle, m_emessagebox, m_callback);
 
          return ::success;
+
+#else
+
+         iResult = _os_message_box(m_strText, m_strTitle, m_emessagebox);
 
 #endif
 

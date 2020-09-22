@@ -191,13 +191,13 @@ namespace aura
    // aura commented
    ::mutex* g_pmutexUiDestroyed;
 
-#ifdef ANDROID
+//#ifdef ANDROID
+//
+//   ::mutex* g_pmutexOutputDebugStringA;
+//
+//#endif
 
-   ::mutex* g_pmutexOutputDebugStringA;
-
-#endif
-
-   CLASS_DECL_AURA aura_str_pool* g_paurastrpool;
+   //CLASS_DECL_AURA aura_str_pool* g_paurastrpool;
 
    // #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
@@ -205,45 +205,45 @@ namespace aura
 
    // #endif
 
-#if defined(LINUX) || defined(__APPLE__) || defined(_UWP) || defined(ANDROID)
+//#if defined(LINUX) || defined(__APPLE__) || defined(_UWP) || defined(ANDROID)
+//
+////::mutex * g_pmutexThreadIdHandleLock;
+//
+////::mutex * g_pmutexThreadIdLock;
+//
+////#if !defined(_UWP)
+//
+////::mutex * g_pmutexPendingThreadsLock;
+//
+////#endif
+//
+////::mutex * g_pmutexTlsData;
+//
+//#endif // defined(LINUX) || defined(__APPLE__) || defined(_UWP)
 
-//::mutex * g_pmutexThreadIdHandleLock;
 
-//::mutex * g_pmutexThreadIdLock;
-
-//#if !defined(_UWP)
-
-//::mutex * g_pmutexPendingThreadsLock;
-
+//#if defined(LINUX) || defined(__APPLE__)
+//
+//
+//   ::mutex* g_pmutexTz;
+//
+//   ::mutex* g_pmutexThreadHandleLock;
+//
+//
+//#endif // defined(LINUX) || defined(__APPLE__)
+//
+//
+//#ifdef __APPLE__
+//
+//
+//   ::mutex* g_pmutexCvt;
+//
+//
 //#endif
 
-//::mutex * g_pmutexTlsData;
-
-#endif // defined(LINUX) || defined(__APPLE__) || defined(_UWP)
-
-
-#if defined(LINUX) || defined(__APPLE__)
-
-
-   ::mutex* g_pmutexTz;
-
-   ::mutex* g_pmutexThreadHandleLock;
-
-
-#endif // defined(LINUX) || defined(__APPLE__)
-
-
-#ifdef __APPLE__
-
-
-   ::mutex* g_pmutexCvt;
-
-
-#endif
-
-
-   critical_section g_csRefDbg;
-
+//
+//   critical_section g_csRefDbg;
+//
 
 
    void aura::construct()
@@ -355,13 +355,13 @@ namespace aura
 
       g_pmutexUiDestroyed = 0;
 
-#ifdef ANDROID
+//#ifdef ANDROID
+//
+//      g_pmutexOutputDebugStringA = 0;
+//
+//#endif
 
-      g_pmutexOutputDebugStringA = 0;
-
-#endif
-
-      g_paurastrpool = nullptr;
+      //g_paurastrpool = nullptr;
 
       // #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
@@ -385,22 +385,22 @@ namespace aura
 
 #endif // defined(LINUX) || defined(__APPLE__) || defined(_UWP)
 
-#if defined(LINUX) || defined(__APPLE__)
-
-      g_pmutexTz = nullptr;
-
-      g_pmutexThreadHandleLock = nullptr;
-
-#endif // defined(LINUX) || defined(__APPLE__)
-
-
-#ifdef __APPLE__
+//#if defined(LINUX) || defined(__APPLE__)
+//
+//      g_pmutexTz = nullptr;
+//
+//      g_pmutexThreadHandleLock = nullptr;
+//
+//#endif // defined(LINUX) || defined(__APPLE__)
 
 
-      g_pmutexCvt = nullptr;
-
-
-#endif
+//#ifdef __APPLE__
+//
+//
+//      g_pmutexCvt = nullptr;
+//
+//
+//#endif
 
       g_pcsFont = nullptr;
 
@@ -515,12 +515,12 @@ namespace aura
 //
 //#endif
 
-
-#ifdef __APPLE__
-
-      g_pmutexCvt = new ::mutex();
-
-#endif
+//
+//#ifdef __APPLE__
+//
+//      g_pmutexCvt = new ::mutex();
+//
+//#endif
 
       g_pmutexThreadWaitClose = new ::mutex();
 
@@ -548,11 +548,11 @@ namespace aura
 
       //g_pmutexCred = new ::mutex();
 
-#if defined(LINUX) || defined(__APPLE__)
-
-      g_pmutexTz = new ::mutex();
-
-#endif // defined(LINUX) || defined(__APPLE__)
+//#if defined(LINUX) || defined(__APPLE__)
+//
+//      g_pmutexTz = new ::mutex();
+//
+//#endif // defined(LINUX) || defined(__APPLE__)
 
       //g_pmapRTL = nullptr;
 
@@ -605,7 +605,7 @@ namespace aura
 //
 //#endif
 
-      g_paurastrpool = new aura_str_pool();
+      //g_paurastrpool = new aura_str_pool();
 
       ::user::init_windowing();
 
@@ -731,7 +731,7 @@ namespace aura
 
       g_bAura = 0;
 
-      ::acme::del(g_paurastrpool);
+      //::acme::del(g_paurastrpool);
 
       //::channel::s_pmutexChannel.release();
 
@@ -739,11 +739,11 @@ namespace aura
 
       //del(g_pmapRTL);
 
-#if defined(LINUX) || defined(__APPLE__)
-
-      ::acme::del(g_pmutexTz);
-
-#endif // defined(LINUX) || defined(__APPLE__)
+//#if defined(LINUX) || defined(__APPLE__)
+//
+//      ::acme::del(g_pmutexTz);
+//
+//#endif // defined(LINUX) || defined(__APPLE__)
 
 //      ::acme::del(g_pmutexCred);
 
@@ -808,11 +808,11 @@ namespace aura
 
       ::acme::del(g_pmutexThreadWaitClose);
 
-#ifdef __APPLE__
-
-      ::acme::del(g_pmutexCvt);
-
-#endif
+//#ifdef __APPLE__
+//
+//      ::acme::del(g_pmutexCvt);
+//
+//#endif
 
 //#ifdef BSD_STYLE_SOCKETS
 //

@@ -3745,16 +3745,6 @@ namespace draw2d
    }
 
 
-   i32 graphics::SelectClipRgn(::draw2d::region* pRgn)
-   {
-
-      UNREFERENCED_PARAMETER(pRgn);
-
-      return -1;
-
-   }
-
-
    i32 graphics::ExcludeClipRect(i32 x1, i32 y1, i32 x2, i32 y2)
    {
 
@@ -3762,8 +3752,6 @@ namespace draw2d
       UNREFERENCED_PARAMETER(y1);
       UNREFERENCED_PARAMETER(x2);
       UNREFERENCED_PARAMETER(y2);
-
-
 
       return -1;
 
@@ -3797,37 +3785,110 @@ namespace draw2d
    }
 
 
-   i32 graphics::IntersectClipRect(const rect &  rect)
+   i32 graphics::IntersectClipRect(const ::rect & rectParam)
    {
 
-      return IntersectClipRect(rect.left, rect.top, rect.right, rect.bottom);
+      ::draw2d::region_pointer pregion(e_create);
+      
+      pregion->create_rect(rectParam);
+      
+      if(m_pregion)
+      {
+         
+         auto pregionOld = m_pregion;
+         
+         __construct(m_pregion);
+         
+         m_pregion->combine(pregionOld, pregion, ::draw2d::e_combine_intersect, this);
+         
+      }
+      else
+      {
+         
+         m_pregion = pregion;
+         
+      }
+      
+      //m_pregion->defer_update(this, 0);
+    
+      on_apply_clip_region();
+
+      return 0;
 
    }
 
 
    i32 graphics::OffsetClipRgn(i32 x, i32 y)
    {
+      
+      if(m_pregion)
+      {
+         
+         m_pregion->m_pointOffset += ::size(x, y);
+         
+         m_pregion->set_modified();
 
-      UNREFERENCED_PARAMETER(x);
-      UNREFERENCED_PARAMETER(y);
+         on_apply_clip_region();
+         
+      }
 
-
-
-      return -1;
+      return 0;
 
    }
 
 
    i32 graphics::OffsetClipRgn(const ::size & size)
    {
+   
+      return OffsetClipRgn(size.cx, size.cy);
+   
+   }
 
-      UNREFERENCED_PARAMETER(size);
 
-
-
-      return -1;
+   void graphics::on_apply_clip_region()
+   {
 
    }
+
+
+//   i32 graphics::OffsetClipRgn(const ::size & size)
+//   {
+//
+//      __throw(not_implemented());
+//      return 0;
+//
+//      /*
+//       i32 nRetVal = ERROR;
+//       if(get_handle1() != nullptr && get_handle1() != get_handle2())
+//       nRetVal = ::OffsetClipRgn(get_handle1(), size.cx, size.cy);
+//       if(get_handle2() != nullptr)
+//       nRetVal = ::OffsetClipRgn(get_handle2(), size.cx, size.cy);
+//       return nRetVal;
+//       */
+//   }
+//   i32 graphics::OffsetClipRgn(i32 x, i32 y)
+//   {
+//
+//      UNREFERENCED_PARAMETER(x);
+//      UNREFERENCED_PARAMETER(y);
+//
+//
+//
+//      return -1;
+//
+//   }
+
+
+//   i32 graphics::OffsetClipRgn(const ::size & size)
+//   {
+//
+//      UNREFERENCED_PARAMETER(size);
+//
+//
+//
+//      return -1;
+//
+//   }
 
 
    UINT graphics::SetTextAlign(UINT nFlags)
@@ -3948,20 +4009,62 @@ namespace draw2d
       return false;
    }
 
+   
    bool graphics::SelectClipPath(i32 nMode)
    {
+      
       UNREFERENCED_PARAMETER(nMode);
 
       return false;
+      
    }
 
-   i32 graphics::SelectClipRgn(::draw2d::region* pRgn, i32 nMode)
+
+   i32 graphics::SelectClipRgn(::draw2d::region * pregion)
    {
-      UNREFERENCED_PARAMETER(pRgn);
-      UNREFERENCED_PARAMETER(nMode);
 
-      return -1;
+      if(pregion == nullptr)
+      {
+
+         m_pregion.release();
+
+      }
+      else
+      {
+
+         m_pregion = pregion;
+
+      }
+      
+      on_apply_clip_region();
+
+      return 0;
+
    }
+
+
+   i32 graphics::SelectClipRgn(::draw2d::region * pregion, enum_combine ecombine)
+   {
+      
+      if(pregion != nullptr)
+      {
+         
+         auto pregionOld = m_pregion;
+         
+         __construct(m_pregion);
+
+         m_pregion->combine(pregionOld, pregion, ecombine);
+
+         m_pregion = pregion;
+
+      }
+      
+      on_apply_clip_region();
+      
+      return 0;
+      
+   }
+
 
 #ifdef WINDOWS
 

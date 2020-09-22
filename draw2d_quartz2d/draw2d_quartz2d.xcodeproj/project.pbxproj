@@ -36,6 +36,8 @@
 		07E25F4C1B4FFC2100752DE1 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6B40E317BBE291008391AD /* _.h */; };
 		9A1B496416A494A600875A94 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B496316A494A600875A94 /* framework.h */; };
 		9A1B496716A4A10100875A94 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B496616A4A10100875A94 /* framework.cpp */; };
+		9A4E5C9525192FFE00CC6817 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4E5C9425192FFE00CC6817 /* libacme.dylib */; };
+		9A4E5C9725192FFE00CC6817 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4E5C9625192FFE00CC6817 /* libapex.dylib */; };
 		9A6B40E417BBE291008391AD /* bitmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B40CC17BBE291008391AD /* bitmap.cpp */; };
 		9A6B40E517BBE291008391AD /* bitmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6B40CD17BBE291008391AD /* bitmap.h */; };
 		9A6B40E617BBE291008391AD /* brush.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B40CE17BBE291008391AD /* brush.cpp */; };
@@ -114,6 +116,8 @@
 		9A1B496316A494A600875A94 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
 		9A1B496616A4A10100875A94 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
 		9A24899A2452D74C00F23D28 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../aura/aura.xcodeproj; sourceTree = "<group>"; };
+		9A4E5C9425192FFE00CC6817 /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A4E5C9625192FFE00CC6817 /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A6B40CC17BBE291008391AD /* bitmap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bitmap.cpp; sourceTree = "<group>"; };
 		9A6B40CD17BBE291008391AD /* bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bitmap.h; sourceTree = "<group>"; };
 		9A6B40CE17BBE291008391AD /* brush.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = brush.cpp; sourceTree = "<group>"; };
@@ -175,6 +179,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A4E5C9525192FFE00CC6817 /* libacme.dylib in Frameworks */,
+				9A4E5C9725192FFE00CC6817 /* libapex.dylib in Frameworks */,
 				9AA1B44A176361950019E812 /* Cocoa.framework in Frameworks */,
 				9A8997BD177D0E7F00C7761E /* Carbon.framework in Frameworks */,
 				9AF8E79B1F9FE721003CBDB4 /* libaura.dylib in Frameworks */,
@@ -197,6 +203,8 @@
 		9AA2192C1DC6B1A300C06987 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A4E5C9425192FFE00CC6817 /* libacme.dylib */,
+				9A4E5C9625192FFE00CC6817 /* libapex.dylib */,
 				9AF8E7991F9FE721003CBDB4 /* libaura.dylib */,
 				9AF4C4351F83D7B400197385 /* UIKit.framework */,
 				9AF4C4331F83D79200197385 /* CoreFoundation.framework */,

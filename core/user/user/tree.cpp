@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/user/user/_user.h"
 #endif
@@ -263,7 +263,7 @@ namespace user
             }
          }
 
-         auto pointOffset = get_viewport_offset();
+         //auto pointOffset = get_viewport_offset();
 
          //pgraphics->OffsetViewportOrg((i32)-pointOffset.x,(i32)-(pointOffset.y % _001GetItemHeight()));
          //pgraphics->OffsetViewportOrg(-pointOffset.x, -pointOffset.y);
@@ -1528,7 +1528,7 @@ namespace user
    int tree::_001CalcTotalViewHeight()
    {
 
-      return _001GetProperItemCount() * _001GetItemHeight();
+      return (int) (_001GetProperItemCount() * _001GetItemHeight());
 
    }
 

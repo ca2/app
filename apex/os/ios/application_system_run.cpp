@@ -18,27 +18,42 @@
 
 
 
-::estatus os_application_system_run(::apex::system * psystem)
+//::estatus os_application_system_run(::apex::system * psystem)
+//{
+//
+//   ::estatus estatus = psystem->begin_synch();
+//
+//   if(!estatus)
+//   {
+//
+//      return estatus;
+//
+//   }
+//
+//   set_main_hthread(psystem->m_hthread);
+//
+//   set_main_ithread(psystem->m_uThread);
+//
+//   apex_application_main(psystem->m_argc, psystem->m_argv, psystem->m_strCommandLine);
+//
+//   return ::success;
+//
+//}
+
+
+void apex_application_main(int argc, char *argv[], const char * pszCommandLine);
+
+namespace apex
 {
 
-   ::estatus estatus = psystem->begin_synch();
-   
-   if(!estatus)
+   void system::application_main(int argc, char *argv[], const char * pszCommandLine)
    {
-      
-      return estatus;
-      
-   }
    
-   set_main_hthread(psystem->m_hthread);
+      apex_application_main(argc, argv, pszCommandLine);
+   
+   }
 
-   set_main_ithread(psystem->m_uThread);
-
-   apex_application_main(psystem->m_argc, psystem->m_argv, psystem->m_strCommandLine);
-
-   return ::success;
-
-}
+} // namespace apex
 
 
 

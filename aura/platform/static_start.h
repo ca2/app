@@ -135,11 +135,11 @@ namespace aura
 
    extern ::mutex* g_pmutexUiDestroyed;
 
-#ifdef ANDROID
-
-   extern ::mutex* g_pmutexOutputDebugStringA;
-
-#endif
+//#ifdef ANDROID
+//
+//   extern ::mutex* g_pmutexOutputDebugStringA;
+//
+//#endif
 
 
    // #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
@@ -147,45 +147,45 @@ namespace aura
    // extern ::mutex * g_pmutexMq;
 
    // #endif
+//
+//#if defined(LINUX) || defined(__APPLE__) || defined(_UWP) || defined(ANDROID)
+//
+////extern ::mutex * g_pmutexThreadIdHandleLock;
+//
+////extern ::mutex * g_pmutexThreadIdLock;
+//
+////#if !defined(_UWP)
+//
+////extern ::mutex * g_pmutexPendingThreadsLock;
+//
+////#endif
+//
+////extern ::mutex * g_pmutexTlsData;
+//
+//#endif // defined(LINUX) || defined(__APPLE__) || defined(_UWP)
 
-#if defined(LINUX) || defined(__APPLE__) || defined(_UWP) || defined(ANDROID)
+//
+//#if defined(LINUX) || defined(__APPLE__)
+//
+//
+//   extern ::mutex* g_pmutexTz;
+//
+//   extern ::mutex* g_pmutexThreadHandleLock;
+//
+//
+//#endif // defined(LINUX) || defined(__APPLE__)
 
-//extern ::mutex * g_pmutexThreadIdHandleLock;
 
-//extern ::mutex * g_pmutexThreadIdLock;
-
-//#if !defined(_UWP)
-
-//extern ::mutex * g_pmutexPendingThreadsLock;
-
+//#ifdef __APPLE__
+//
+//
+//   extern ::mutex* g_pmutexCvt;
+//
+//
 //#endif
 
-//extern ::mutex * g_pmutexTlsData;
 
-#endif // defined(LINUX) || defined(__APPLE__) || defined(_UWP)
-
-
-#if defined(LINUX) || defined(__APPLE__)
-
-   
-   extern ::mutex* g_pmutexTz;
-
-   extern ::mutex* g_pmutexThreadHandleLock;
-
-
-#endif // defined(LINUX) || defined(__APPLE__)
-
-
-#ifdef __APPLE__
-
-
-   extern ::mutex* g_pmutexCvt;
-
-
-#endif
-
-
-   extern critical_section g_csRefDbg;
+   //extern critical_section g_csRefDbg;
    
    CLASS_DECL_AURA void ref();
 

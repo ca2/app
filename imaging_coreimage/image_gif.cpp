@@ -22,7 +22,7 @@ namespace coreimage_imaging
 {
 
 
-   ::estatus imaging::_load_image(::image * pimage, __pointer(image_frame_array) & pframea, ::memory_pointer pmemory)
+   ::estatus context_image::_load_image(::image * pimage, __pointer(image_frame_array) & pframea, ::memory_pointer pmemory)
    {
 
       if(!pmemory || pmemory->is_empty())
@@ -38,7 +38,7 @@ namespace coreimage_imaging
 
       //int iScan = 0;
 
-      ::aura::malloc < COLORREF * > pcolorref;
+      ::acme::malloc < COLORREF * > pcolorref;
 
       CFDataRef data = CFDataCreateWithBytesNoCopy(nullptr, pmemory->data(), pmemory->size(), kCFAllocatorNull);
 
@@ -142,7 +142,7 @@ namespace coreimage_imaging
 
             int iScan = 0;
 
-            ::aura::malloc < COLORREF * > pdata((COLORREF *) cg_image_get_image_data(w, h, iScan, pimage));
+            ::acme::malloc < COLORREF * > pdata((COLORREF *) cg_image_get_image_data(w, h, iScan, pimage));
             // Check for valid `frameImage` before parsing its properties as frames can be corrupted (and `frameImage` even `nil` when `frameImageRef` was valid).
 
             auto p = __new(image_frame);

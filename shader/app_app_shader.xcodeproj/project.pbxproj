@@ -14,6 +14,8 @@
 		9A488A2D24EB4AF400119EC4 /* window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A488A2724EB4AF400119EC4 /* window.cpp */; };
 		9A488A2E24EB4AF400119EC4 /* window.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A488A2824EB4AF400119EC4 /* window.h */; };
 		9A488A5424EB4BB700119EC4 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A488A3624EB4B0200119EC4 /* libaura.dylib */; };
+		9AC3971425195E790036B92A /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3971325195E790036B92A /* libacme.dylib */; };
+		9AC3971625195E790036B92A /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3971525195E790036B92A /* libapex.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +58,8 @@
 		9A488A2724EB4AF400119EC4 /* window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = window.cpp; sourceTree = SOURCE_ROOT; };
 		9A488A2824EB4AF400119EC4 /* window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = window.h; sourceTree = SOURCE_ROOT; };
 		9A488A2F24EB4B0200119EC4 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../aura/aura.xcodeproj; sourceTree = "<group>"; };
+		9AC3971325195E790036B92A /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AC3971525195E790036B92A /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AC3971425195E790036B92A /* libacme.dylib in Frameworks */,
+				9AC3971625195E790036B92A /* libapex.dylib in Frameworks */,
 				9A488A5424EB4BB700119EC4 /* libaura.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -114,6 +120,8 @@
 		9A488A5324EB4BB700119EC4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9AC3971325195E790036B92A /* libacme.dylib */,
+				9AC3971525195E790036B92A /* libapex.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

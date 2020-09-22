@@ -20,9 +20,9 @@ namespace filemanager
       virtual void dump(dump_context & dumpcontext) const override;
 
 
-      virtual void _001GetItemText(::user::mesh_item * pitem);
+      virtual void _001GetItemText(::user::mesh_item * pitem) override;
 
-      virtual count _001GetItemCount();
+      virtual count _001GetItemCount() override;
 
       bool add_unique(const string_array & stra, int_array & iaRecursive);
       bool remove(const string_array & stra);

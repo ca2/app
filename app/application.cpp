@@ -56,7 +56,7 @@ namespace app_app
    void application::on_request(::create * pcreate)
    {
 
-      __refer(m_pwindow, __create_new < window >());
+      __compose_new(m_pwindow);
 
       ::rect rectWindow;
 

@@ -222,8 +222,12 @@ inline string executable_get_app_id()
 }
 
 
-#else
+#elif defined(__APPLE__)
 
+
+string executable_get_app_id();
+
+#else
 
 inline string executable_get_app_id()
 {

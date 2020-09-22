@@ -6846,7 +6846,7 @@ void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,i32 left,i32 top,const 
 #if !defined(WINDOWS_DESKTOP) && !defined(LINUX)
 
 
-HCURSOR imaging::CreateAlphaCursor(oswindow oswindow, const image * pimage, int xHotSpot, int yHotSpot)
+HCURSOR context_image::CreateAlphaCursor(oswindow oswindow, const image * pimage, int xHotSpot, int yHotSpot)
 {
 
    return 0;
@@ -6854,7 +6854,7 @@ HCURSOR imaging::CreateAlphaCursor(oswindow oswindow, const image * pimage, int 
 }
 
 
-HCURSOR imaging::load_default_cursor(e_cursor ecursor)
+HCURSOR context_image::load_default_cursor(e_cursor ecursor)
 {
 
    return NULL;
@@ -6862,7 +6862,7 @@ HCURSOR imaging::load_default_cursor(e_cursor ecursor)
 }
 
 
-WINBOOL imaging::window_set_mouse_cursor(oswindow window, HCURSOR hcursor)
+WINBOOL context_image::window_set_mouse_cursor(oswindow window, HCURSOR hcursor)
 {
 
 
@@ -6872,7 +6872,7 @@ WINBOOL imaging::window_set_mouse_cursor(oswindow window, HCURSOR hcursor)
 
 #endif
 
-void imaging::set_cursor_image(const image * pimage, int xHotSpot, int yHotSpot)
+void context_image::set_cursor_image(const image * pimage, int xHotSpot, int yHotSpot)
 {
 
 }

@@ -8396,15 +8396,21 @@ string get_bundle_app_library_name();
       strLibrary.replace("/", "_");
 
       strLibrary.replace("-", "_");
+      
+      strLibrary.replace(".", "_");
 
       auto plibrary = __node_library_open(strLibrary, strMessage);
 
       if (!plibrary)
       {
+         
+         {
 
-         wait_future future;
+            wait_future future;
 
-         os_message_box(strMessage, "Could not open required library.", MB_ICONEXCLAMATION, future);
+            os_message_box(strMessage, "Could not open required library.", MB_ICONEXCLAMATION, future);
+         
+         }
 
          __throw(::exception::exception(strMessage + "\n\nCould not open required library."));
 

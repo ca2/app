@@ -168,7 +168,7 @@ int _os_message_box(oswindow window, const char * pszMessage, const char * pszTi
 CLASS_DECL_AURA string message_box_result_to_string(int iResult);
 
 
-::estatus os_message_box(oswindow window, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, ::callback callback)
+::estatus os_message_box(oswindow window, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, ::future future)
 {
    
    
@@ -176,7 +176,7 @@ CLASS_DECL_AURA string message_box_result_to_string(int iResult);
    
    string strResult = message_box_result_to_string(iResult);
 
-   callback.receive_response(strResult);
+   future.receive_response(strResult);
    
    return ::success;
    

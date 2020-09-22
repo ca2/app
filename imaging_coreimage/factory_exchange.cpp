@@ -29,7 +29,7 @@ extern "C"
 void imaging_factory_exchange()
 {
 
-   create_factory < ::coreimage_imaging::imaging, ::imaging >();
+   create_factory < ::coreimage_imaging::context_image, ::context_image >();
    //coreimage_imaging::factory_exchange factoryexchange;
 
 }

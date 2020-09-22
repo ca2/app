@@ -5,16 +5,16 @@ namespace coreimage_imaging
 {
 
 
-   class CLASS_DECL_COREIMAGE_IMAGING imaging :
-      virtual public ::imaging
+   class CLASS_DECL_COREIMAGE_IMAGING context_image :
+      virtual public ::context_image
    {
    public:
 
 
-      imaging();
-      virtual ~imaging();
+      context_image();
+      virtual ~context_image();
 
-      virtual ::estatus _load_image(::context * pcontext, ::image * pimageParam, const var & varFile, bool bSync, bool bCreateHelperMaps) override;
+      virtual ::estatus _load_image(::image * pimageParam, const var & varFile, bool bSync, bool bCreateHelperMaps) override;
 
       virtual ::estatus _load_image(::image * pimage, __pointer(image_frame_array) & pframea, ::memory_pointer pmemory) override;
       virtual ::estatus save_image(memory & memory, const ::image * pimage, ::save_image * psaveimage) override;

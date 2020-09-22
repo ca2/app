@@ -22,7 +22,7 @@ namespace aura
 
       __composite(::aura::multimedia)                    m_pmultimedia;
 
-      string_map < string_map < PFN_factory_exchange > > m_mapFactoryExchange;
+      // string_map < string_map < PFN_factory_exchange > > m_mapFactoryExchange;
 
       // __composite(::aura::estamira)                      m_pestamira;
 
@@ -401,11 +401,11 @@ namespace aura
       class ::user::window_map                     &  window_map();
 
 
-      __pointer(::apex::library) open_component_library(const char* pszComponent, const char* pszImplementation);
+      //__pointer(::apex::library) open_component_library(const char* pszComponent, const char* pszImplementation);
 
-      ::estatus do_factory_exchange(const char* pszComponent, const char* pszImplementation);
+      //::estatus do_factory_exchange(const char* pszComponent, const char* pszImplementation);
 
-      ::estatus set_factory_exchange(const char* pszComponent, const char * pszImplementation, PFN_factory_exchange pfnFactoryExchange);
+      //::estatus set_factory_exchange(const char* pszComponent, const char * pszImplementation, PFN_factory_exchange pfnFactoryExchange);
 
       virtual void defer_audio();
 

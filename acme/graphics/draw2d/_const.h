@@ -92,7 +92,8 @@ namespace draw2d
       e_combine_add,
       e_combine_exclude,
       e_combine_intersect,
-      e_combine_xor
+      e_combine_xor,
+      e_combine_copy,
 
    };
 

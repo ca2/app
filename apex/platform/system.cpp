@@ -1295,6 +1295,70 @@ namespace apex
 
       set_main_struct(*m_papplicationStartup);
 
+      if (m_bConsole.undefined())
+      {
+
+         m_bConsole = false;
+
+      }
+
+      if (m_bDraw2d.undefined())
+      {
+
+         m_bDraw2d = !m_bConsole;
+
+      }
+
+      if (m_bUser.undefined())
+      {
+
+         m_bUser = !m_bConsole;
+
+      }
+
+      if (m_bUserEx.undefined())
+      {
+
+         m_bUserEx = !m_bConsole;
+
+      }
+
+      if (m_bImaging.undefined())
+      {
+
+         m_bImaging = !m_bConsole;
+
+      }
+
+      #ifdef WINDOWS_DESKTOP
+
+      if (m_bGdiplus.undefined())
+      {
+
+         m_bGdiplus = !m_bConsole;
+
+      }
+
+      #endif
+      
+      #if defined(LINUX)
+
+         if (m_bGtkApp.undefined())
+         {
+
+            m_bGtkApp = !m_bConsole;
+
+         }
+
+      #endif
+
+      if (m_bShowApplicationInformation.undefined())
+      {
+
+         m_bShowApplicationInformation = false;
+
+      }
+
       string strAppId = m_papplicationStartup->m_strAppId;
 
       ::apex::idpool::init();
@@ -8471,6 +8535,24 @@ string get_bundle_app_library_name();
    return pobject.cast < ::apex::session >();
 
 }
+
+
+
+void apex_application_main(int argc, char* argv[], const char* pszCommandLine);
+
+namespace apex
+{
+
+   void system::application_main(int argc, char* argv[], const char* pszCommandLine)
+   {
+
+      apex_application_main(argc, argv, pszCommandLine);
+
+   }
+
+} // namespace apex
+
+
 
 
 

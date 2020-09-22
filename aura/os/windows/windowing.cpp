@@ -40,12 +40,12 @@ CLASS_DECL_AURA void os_term_windowing()
 //}
 
 
-CLASS_DECL_AURA i64 oswindow_id(HWND hwnd)
-{
-
-   return (i64)hwnd;
-
-}
+//CLASS_DECL_AURA i64 oswindow_id(HWND hwnd)
+//{
+//
+//   return (i64)hwnd;
+//
+//}
 
 //
 //CLASS_DECL_AURA WINBOOL is_window(oswindow oswindow)
@@ -56,131 +56,131 @@ CLASS_DECL_AURA i64 oswindow_id(HWND hwnd)
 //}
 
 
-CLASS_DECL_AURA bool get_gui_thread_info(PGUITHREADINFO pinfo)
-{
-
-   HWND hwndForeground = ::GetForegroundWindow();
-
-   if (hwndForeground == nullptr)
-   {
-
-      return false;
-
-   }
-
-   DWORD dwThread = GetWindowThreadProcessId(hwndForeground, nullptr);
-
-   xxf_zerop(pinfo);
-
-   pinfo->cbSize = sizeof(GUITHREADINFO);
-
-   if (!::GetGUIThreadInfo(dwThread, pinfo))
-   {
-
-      DWORD dwLastError = ::GetLastError();
-
-      return false;
-
-   }
-
-   return true;
-
-}
-
-
-CLASS_DECL_AURA oswindow get_focus()
-{
-
-   GUITHREADINFO info;
-
-   if (!get_gui_thread_info(&info))
-   {
-
-      return nullptr;
-
-   }
-
-   return info.hwndFocus;
-
-}
+//CLASS_DECL_AURA bool get_gui_thread_info(PGUITHREADINFO pinfo)
+//{
+//
+//   HWND hwndForeground = ::GetForegroundWindow();
+//
+//   if (hwndForeground == nullptr)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   DWORD dwThread = GetWindowThreadProcessId(hwndForeground, nullptr);
+//
+//   xxf_zerop(pinfo);
+//
+//   pinfo->cbSize = sizeof(GUITHREADINFO);
+//
+//   if (!::GetGUIThreadInfo(dwThread, pinfo))
+//   {
+//
+//      DWORD dwLastError = ::GetLastError();
+//
+//      return false;
+//
+//   }
+//
+//   return true;
+//
+//}
 
 
-CLASS_DECL_AURA oswindow set_focus(oswindow oswindow)
-{
+//CLASS_DECL_AURA oswindow get_focus()
+//{
+//
+//   GUITHREADINFO info;
+//
+//   if (!get_gui_thread_info(&info))
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   return info.hwndFocus;
+//
+//}
 
-   return ::SetFocus(oswindow);
+//
+//CLASS_DECL_AURA oswindow set_focus(oswindow oswindow)
+//{
+//
+//   return ::SetFocus(oswindow);
+//
+//}
 
-}
+//
+//CLASS_DECL_AURA oswindow get_active_window()
+//{
+//
+//   //attach_thread_input_to_main_thread(true);
+//
+//   auto oswindow = ::GetActiveWindow();
+//
+//   //attach_thread_input_to_main_thread(false);
+//
+//   return oswindow;
+//
+//}
+//
+//
+//CLASS_DECL_AURA oswindow set_active_window(oswindow oswindow)
+//{
+//
+//   return ::SetActiveWindow(oswindow);
+//
+//}
+//
+//
+//CLASS_DECL_AURA oswindow get_capture()
+//{
+//
+//   return ::GetCapture();
+//
+//}
 
-
-CLASS_DECL_AURA oswindow get_active_window()
-{
-
-   //attach_thread_input_to_main_thread(true);
-
-   auto oswindow = ::GetActiveWindow();
-
-   //attach_thread_input_to_main_thread(false);
-
-   return oswindow;
-
-}
-
-
-CLASS_DECL_AURA oswindow set_active_window(oswindow oswindow)
-{
-
-   return ::SetActiveWindow(oswindow);
-
-}
-
-
-CLASS_DECL_AURA oswindow get_capture()
-{
-
-   return ::GetCapture();
-
-}
-
-
-CLASS_DECL_AURA oswindow set_capture(oswindow oswindow)
-{
-
-   return ::SetCapture(oswindow);
-
-}
-
-
-CLASS_DECL_AURA WINBOOL release_capture()
-{
-
-   return ::ReleaseCapture();
-
-}
-
-
-CLASS_DECL_AURA WINBOOL destroy_window(oswindow oswindow)
-{
-
-   return ::DestroyWindow(oswindow);
-
-}
-
-
-CLASS_DECL_AURA oswindow get_desktop_window()
-{
-
-   return ::GetDesktopWindow();
-
-}
-
-
-CLASS_DECL_AURA oswindow get_window(oswindow oswindow, int iWindow)
-{
-
-   return ::GetWindow(oswindow, iWindow);
-
-}
+//
+//CLASS_DECL_AURA oswindow set_capture(oswindow oswindow)
+//{
+//
+//   return ::SetCapture(oswindow);
+//
+//}
+//
+//
+//CLASS_DECL_AURA WINBOOL release_capture()
+//{
+//
+//   return ::ReleaseCapture();
+//
+//}
+//
+//
+//CLASS_DECL_AURA WINBOOL destroy_window(oswindow oswindow)
+//{
+//
+//   return ::DestroyWindow(oswindow);
+//
+//}
+//
+//
+//CLASS_DECL_AURA oswindow get_desktop_window()
+//{
+//
+//   return ::GetDesktopWindow();
+//
+//}
+//
+//
+//CLASS_DECL_AURA oswindow get_window(oswindow oswindow, int iWindow)
+//{
+//
+//   return ::GetWindow(oswindow, iWindow);
+//
+//}
 
 
 
@@ -200,12 +200,12 @@ CLASS_DECL_AURA oswindow get_window(oswindow oswindow, int iWindow)
 
 // }
 
-CLASS_DECL_AURA WINBOOL show_window(oswindow oswindow, int iShowCmd)
-{
-
-   return ::ShowWindow(oswindow, iShowCmd);
-
-}
+//CLASS_DECL_AURA WINBOOL show_window(oswindow oswindow, int iShowCmd)
+//{
+//
+//   return ::ShowWindow(oswindow, iShowCmd);
+//
+//}
 
 
 /// from top to bottom

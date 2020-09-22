@@ -1,5 +1,6 @@
 #include "framework.h"
 #define WITH_GPU
+#define NO_IMAGING
 #include "aura/application.h"
 #include "aura/update.h"
 
@@ -11,8 +12,6 @@ namespace app_shader
    application::application() 
    {
 
-      m_bImaging = false;
-            
       m_strAppId = "app/shader";
 
       m_strAppName = "app/shader";

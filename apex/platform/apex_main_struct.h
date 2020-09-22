@@ -25,19 +25,19 @@ typedef NEW_APEX_APPLICATION* PFN_NEW_APEX_APPLICATION;
 struct CLASS_DECL_APEX apex_main_struct
 {
 
-   bool                          m_bConsole;
-   bool                          m_bDraw2d;
-   bool                          m_bUser;
-   bool                          m_bUserEx;
-   bool                          m_bImaging;
+   ::set                         m_bConsole;
+   ::set                         m_bDraw2d;
+   ::set                         m_bUser;
+   ::set                         m_bUserEx;
+   ::set                         m_bImaging;
 #ifdef WINDOWS_DESKTOP
-   bool                          m_bGdiplus;
+   ::set                         m_bGdiplus;
 #elif defined(LINUX)
-   bool                          m_bGtkApp;
+   ::set                         m_bGtkApp;
 #endif
-   bool                          m_bShowApplicationInformation;
+   ::set                         m_bShowApplicationInformation;
    INT_STRING *                  m_pintstringLanguageResourceMap;
-   int                              m_iMatterFromHttpCache;
+   int                           m_iMatterFromHttpCache;
 
    const char *                  m_pszMain;
    PFN_NEW_APEX_APPLICATION      m_pfnNewAuraApplication;
@@ -47,17 +47,17 @@ struct CLASS_DECL_APEX apex_main_struct
    apex_main_struct()
    {
       
-      m_bConsole = false;
-      m_bDraw2d = false;
-      m_bUser = false;
-      m_bUserEx = false;
-      m_bImaging = false;
-      #ifdef WINDOWS_DESKTOP
-      m_bGdiplus = false;
-      #elif defined(LINUX)
-      m_bGtkApp = false;
-      #endif
-      m_bShowApplicationInformation = false;
+      //m_bConsole = false;
+      //m_bDraw2d = true;
+      //m_bUser = true;
+      //m_bUserEx = true;
+      //m_bImaging = true;
+      //#ifdef WINDOWS_DESKTOP
+      //m_bGdiplus = true;
+      //#elif defined(LINUX)
+      //m_bGtkApp = true;
+      //#endif
+      //m_bShowApplicationInformation = true;
       m_pintstringLanguageResourceMap = nullptr;
 
       #if defined(ANDROID) || defined(_UWP) || defined(APPLE_IOS)
@@ -82,8 +82,8 @@ struct CLASS_DECL_APEX apex_main_struct
    }
 
 
-   void application_initialize();
-   void console_initialize();
+   //void application_initialize();
+   //void console_initialize();
 
 
 };

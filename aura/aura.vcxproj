@@ -393,9 +393,7 @@
       </ForceSymbolReferences>
       <LinkTimeCodeGeneration>false</LinkTimeCodeGeneration>
     </Lib>
-    <ProjectReference>
-      <LinkLibraryDependencies>true</LinkLibraryDependencies>
-    </ProjectReference>
+    <ProjectReference />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">
     <ClCompile>
@@ -660,9 +658,7 @@
       <ForceSymbolReferences>
       </ForceSymbolReferences>
     </Lib>
-    <ProjectReference>
-      <LinkLibraryDependencies>true</LinkLibraryDependencies>
-    </ProjectReference>
+    <ProjectReference />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
     <ClCompile>
@@ -823,9 +819,7 @@
     </ResourceCompile>
     <Lib />
     <Lib />
-    <ProjectReference>
-      <LinkLibraryDependencies>true</LinkLibraryDependencies>
-    </ProjectReference>
+    <ProjectReference />
     <Lib>
       <LinkTimeCodeGeneration>false</LinkTimeCodeGeneration>
     </Lib>
@@ -1083,9 +1077,7 @@
     <Lib />
     <Lib />
     <Lib />
-    <ProjectReference>
-      <LinkLibraryDependencies>true</LinkLibraryDependencies>
-    </ProjectReference>
+    <ProjectReference />
     <Lib />
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -1147,13 +1139,11 @@
     <ClCompile Include="os\windows_common\draw2d_direct2d_global.cpp" />
     <ClCompile Include="os\windows_common\graphics.cpp" />
     <ClCompile Include="platform\application.cpp" />
+    <ClCompile Include="platform\aura_mq.cpp" />
     <ClCompile Include="platform\drawable.cpp" />
     <ClCompile Include="platform\draw_context.cpp" />
-    <ClCompile Include="platform\mq.cpp" />
-    <ClCompile Include="platform\savings.cpp" />
     <ClCompile Include="platform\session.cpp" />
     <ClCompile Include="platform\static_start.cpp" />
-    <ClCompile Include="platform\str_context.cpp" />
     <ClCompile Include="platform\system.cpp" />
     <ClCompile Include="platform\static_start_aura.cpp" />
     <ClCompile Include="platform\theme.cpp" />

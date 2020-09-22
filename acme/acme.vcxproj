@@ -1319,7 +1319,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="multithreading\thread_impl.cpp" />
     <ClCompile Include="multithreading\thread_os.cpp" />
     <ClCompile Include="multithreading\waitable.cpp" />
-    <ClCompile Include="multithreading\wait_result_callback.cpp" />
+    <ClCompile Include="multithreading\wait_future.cpp" />
     <ClCompile Include="multithreading\_.cpp" />
     <ClCompile Include="node\windows\console.cpp" />
     <ClCompile Include="node\windows\windows_desktop.cpp" />

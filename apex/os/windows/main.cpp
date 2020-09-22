@@ -172,5 +172,11 @@ CLASS_DECL_APEX void main_sync_runnable(::context_object * pobjectTaskParam, ::d
 }
 
 
+void apex_application_main(int argc, char* argv[], const char* pszCommandLine)
+{
+
+
+}
+
 
 

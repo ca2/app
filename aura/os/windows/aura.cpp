@@ -27,10 +27,10 @@ int app_common_term(int iError, ::aura::system * psystem, app_core & appcore);
 
 CLASS_DECL_AURA i32 __cdecl _memory_type(const void * p);
 
-Gdiplus::GdiplusStartupInput *   g_pgdiplusStartupInput     = nullptr;
-Gdiplus::GdiplusStartupOutput *  g_pgdiplusStartupOutput    = nullptr;
-DWORD_PTR                        g_gdiplusToken             = NULL;
-DWORD_PTR                        g_gdiplusHookToken         = NULL;
+//Gdiplus::GdiplusStartupInput *   g_pgdiplusStartupInput     = nullptr;
+//Gdiplus::GdiplusStartupOutput *  g_pgdiplusStartupOutput    = nullptr;
+//DWORD_PTR                        g_gdiplusToken             = NULL;
+//DWORD_PTR                        g_gdiplusHookToken         = NULL;
 
 
 // typedef int
@@ -55,7 +55,7 @@ PVOID pvData,
 LPDWORD pcbData
 );
 
-LPFN_RegGetValueW g_pfnRegGetValueW = nullptr;
+//LPFN_RegGetValueW g_pfnRegGetValueW = nullptr;
 
 
 // bool defer_co_initialize_ex(bool bMultiThread, bool bDisableOleDDE)
@@ -115,37 +115,37 @@ bool __node_aura_pre_init()
 
    //xxdebug_box("__node_aura_pre_init","box",MB_OK);
 
-   g_pgdiplusStartupInput     = new Gdiplus::GdiplusStartupInput();
+   //g_pgdiplusStartupInput     = new Gdiplus::GdiplusStartupInput();
 
-   g_pgdiplusStartupOutput    = new Gdiplus::GdiplusStartupOutput();
+   //g_pgdiplusStartupOutput    = new Gdiplus::GdiplusStartupOutput();
 
-   g_gdiplusToken             = NULL;
+   //g_gdiplusToken             = NULL;
 
-   g_gdiplusHookToken         = NULL;
+   //g_gdiplusHookToken         = NULL;
 
-   g_pgdiplusStartupInput->SuppressBackgroundThread = TRUE;
+   //g_pgdiplusStartupInput->SuppressBackgroundThread = TRUE;
 
-   Gdiplus::Status statusStartup = GdiplusStartup(&g_gdiplusToken,g_pgdiplusStartupInput,g_pgdiplusStartupOutput);
+   //Gdiplus::Status statusStartup = GdiplusStartup(&g_gdiplusToken,g_pgdiplusStartupInput,g_pgdiplusStartupOutput);
 
-   if(statusStartup != Gdiplus::Ok)
-   {
+   //if(statusStartup != Gdiplus::Ok)
+   //{
 
-      os_message_box("Gdiplus Failed to Startup. ca cannot continue.","Gdiplus Failure",MB_ICONERROR);
+   //   os_message_box("Gdiplus Failed to Startup. ca cannot continue.","Gdiplus Failure",MB_ICONERROR);
 
-      return 0;
+   //   return 0;
 
-   }
+   //}
 
-   statusStartup = g_pgdiplusStartupOutput->NotificationHook(&g_gdiplusHookToken);
+   //statusStartup = g_pgdiplusStartupOutput->NotificationHook(&g_gdiplusHookToken);
 
-   if(statusStartup != Gdiplus::Ok)
-   {
+   //if(statusStartup != Gdiplus::Ok)
+   //{
 
-      os_message_box("Gdiplus Failed to Hook. ca cannot continue.","Gdiplus Failure",MB_ICONERROR);
+   //   os_message_box("Gdiplus Failed to Hook. ca cannot continue.","Gdiplus Failure",MB_ICONERROR);
 
-      return 0;
+   //   return 0;
 
-   }
+   //}
 
 // #ifndef USE_OS_IMAGE_LOADER
 
@@ -181,8 +181,8 @@ bool __node_aura_pos_init()
    // g_pfnChangeWindowMessageFilter = (LPFN_ChangeWindowMessageFilter) ::GetProcAddress(hmoduleUser32, "ChangeWindowMessageFilter");
 
 
-   HMODULE hmoduleAdvApi32 = ::LoadLibraryW(L"AdvApi32");
-   g_pfnRegGetValueW = (LPFN_RegGetValueW) ::GetProcAddress(hmoduleAdvApi32, "RegGetValueW");
+   //HMODULE hmoduleAdvApi32 = ::LoadLibraryW(L"AdvApi32");
+   //g_pfnRegGetValueW = (LPFN_RegGetValueW) ::GetProcAddress(hmoduleAdvApi32, "RegGetValueW");
 
 
 
@@ -220,18 +220,18 @@ bool __node_aura_pos_term()
 // #endif // USE_OS_IMAGE_LOADER
 
 
-   if (g_pgdiplusStartupOutput != nullptr)
-   {
+   //if (g_pgdiplusStartupOutput != nullptr)
+   //{
 
-      g_pgdiplusStartupOutput->NotificationUnhook(g_gdiplusHookToken);
-
-
-      ::Gdiplus::GdiplusShutdown(g_gdiplusToken);
+   //   g_pgdiplusStartupOutput->NotificationUnhook(g_gdiplusHookToken);
 
 
-      ::acme::del(g_pgdiplusStartupInput);
-      ::acme::del(g_pgdiplusStartupOutput);
-   }
+   //   ::Gdiplus::GdiplusShutdown(g_gdiplusToken);
+
+
+   //   ::acme::del(g_pgdiplusStartupInput);
+   //   ::acme::del(g_pgdiplusStartupOutput);
+   //}
 
    if (is_verbose())
    {
@@ -430,45 +430,45 @@ int GetVersion_ex1()
 
 
 
-int_bool is_windows_98_or_lesser()
-{
-
-//#if defined(_WIN32_WINNT) && (_WIN32_WINNT >= _WIN32_WINNT_WIN7) // Windows 7 or greater
-#if defined(_WIN32_WINNT) && (_WIN32_WINNT >= _WIN32_WINNT_LONGHORN) // Windows 7 or greater
-
-   return FALSE;
-
-#else
-
-   OSVERSIONINFO osversioninfo;
-
-   osversioninfo.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
-
-   if (!GetVersionEx(&osversioninfo))
-      return 0;
-
-   return
-   osversioninfo.dwPlatformId == VER_PLATFORM_WIN32s
-   || (osversioninfo.dwPlatformId == VER_PLATFORM_WIN32_WINDOWS && ((osversioninfo.dwMajorVersion == 4 && osversioninfo.dwMinorVersion <= 10) || osversioninfo.dwMajorVersion < 4));
-
-#endif
-
-}
-
-int_bool is_windows_nt()
-{
-
-#if defined(_WIN32_WINNT) && (_WIN32_WINNT >= _WIN32_WINNT_WINXP) // winxp or greater
-
-   return IsWindowsXPOrGreater();
-
-#else
-
-   return !(GetVersion() & 0x80000000);
-
-#endif
-
-}
+//int_bool is_windows_98_or_lesser()
+//{
+//
+////#if defined(_WIN32_WINNT) && (_WIN32_WINNT >= _WIN32_WINNT_WIN7) // Windows 7 or greater
+//#if defined(_WIN32_WINNT) && (_WIN32_WINNT >= _WIN32_WINNT_LONGHORN) // Windows 7 or greater
+//
+//   return FALSE;
+//
+//#else
+//
+//   OSVERSIONINFO osversioninfo;
+//
+//   osversioninfo.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
+//
+//   if (!GetVersionEx(&osversioninfo))
+//      return 0;
+//
+//   return
+//   osversioninfo.dwPlatformId == VER_PLATFORM_WIN32s
+//   || (osversioninfo.dwPlatformId == VER_PLATFORM_WIN32_WINDOWS && ((osversioninfo.dwMajorVersion == 4 && osversioninfo.dwMinorVersion <= 10) || osversioninfo.dwMajorVersion < 4));
+//
+//#endif
+//
+//}
+//
+//int_bool is_windows_nt()
+//{
+//
+//#if defined(_WIN32_WINNT) && (_WIN32_WINNT >= _WIN32_WINNT_WINXP) // winxp or greater
+//
+//   return IsWindowsXPOrGreater();
+//
+//#else
+//
+//   return !(GetVersion() & 0x80000000);
+//
+//#endif
+//
+//}
 
 
 //int_bool is_windows_7_or_lower()

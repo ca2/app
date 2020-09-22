@@ -566,7 +566,7 @@ HCURSOR CreateAlphaIcon(const ::image * pimage, bool bIcon, int xHotSpot, int yH
 }
 
 
-HCURSOR imaging::CreateAlphaCursor(oswindow window, const ::image * pimage, int xHotSpot, int yHotSpot)
+HCURSOR context_image::CreateAlphaCursor(oswindow window, const ::image * pimage, int xHotSpot, int yHotSpot)
 {
 
    if (::not_ok(pimage))
@@ -615,7 +615,7 @@ LPTSTR windows_get_system_cursor(e_cursor ecursor)
 }
 
 
-HCURSOR imaging::load_default_cursor(e_cursor ecursor)
+HCURSOR context_image::load_default_cursor(e_cursor ecursor)
 {
 
    auto pcursor = windows_get_system_cursor(ecursor);

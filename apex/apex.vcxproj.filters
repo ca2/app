@@ -1484,18 +1484,15 @@
     <ClInclude Include="const\method.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="platform\apex_main_struct.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="primitive\primitive\application_bias.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\primitive\command_line.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive\create.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive\id.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\math\department.cpp">
@@ -1801,12 +1798,6 @@
     <ClCompile Include="include\_.cpp">
       <Filter>Source Files\include</Filter>
     </ClCompile>
-    <ClCompile Include="process\process_department.cpp">
-      <Filter>Source Files\process</Filter>
-    </ClCompile>
-    <ClCompile Include="process\process_process.cpp">
-      <Filter>Source Files\process</Filter>
-    </ClCompile>
     <ClCompile Include="node\windows\application.cpp">
       <Filter>Source Files\node\windows</Filter>
     </ClCompile>
@@ -2050,9 +2041,6 @@
     <ClCompile Include="multithreading\handler.cpp">
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
-    <ClCompile Include="multithreading\procedure_array.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
     <ClCompile Include="multithreading\retry_multi_lock.cpp">
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
@@ -2062,13 +2050,7 @@
     <ClCompile Include="multithreading\service_base.cpp">
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
-    <ClCompile Include="multithreading\socket_event.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
     <ClCompile Include="multithreading\thread.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\thread_impl.cpp">
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
     <ClCompile Include="multithreading\thread_os.cpp">
@@ -2078,9 +2060,6 @@
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
     <ClCompile Include="multithreading\tools.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\waitable.cpp">
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
     <ClCompile Include="os\windows\_.cpp">
@@ -2208,6 +2187,12 @@
     </ClCompile>
     <ClCompile Include="platform\interprocess_intercommunication.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="process\process.cpp">
+      <Filter>Source Files\process</Filter>
+    </ClCompile>
+    <ClCompile Include="process\department.cpp">
+      <Filter>Source Files\process</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

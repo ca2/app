@@ -25,32 +25,32 @@ int windows_desktop1_main(HINSTANCE hInstance, int nCmdShow);
 extern ::app_core * g_pappcore;
 
 
-extern "C"
-{
+//extern "C"
+//{
+//
+//   typedef void FN_factory_exchange();
+//
+//   typedef FN_factory_exchange * PFN_factory_exchange;
+//
+//}
 
-   typedef void FN_factory_exchange();
+//PFN_factory_exchange g_pfnfactoryDraw2d = nullptr;
+//
+//
+//PFN_factory_exchange get_draw2d_factory_exchange()
+//{
+//
+//   return g_pfnfactoryDraw2d;
+//
+//}
 
-   typedef FN_factory_exchange * PFN_factory_exchange;
-
-}
-
-PFN_factory_exchange g_pfnfactoryDraw2d = nullptr;
-
-
-PFN_factory_exchange get_draw2d_factory_exchange()
-{
-
-   return g_pfnfactoryDraw2d;
-
-}
-
-
-void set_draw2d_factory_exchange(PFN_factory_exchange pfnfactoryDraw2d)
-{
-
-   g_pfnfactoryDraw2d = pfnfactoryDraw2d;
-
-}
+//
+//void set_draw2d_factory_exchange(PFN_factory_exchange pfnfactoryDraw2d)
+//{
+//
+//   g_pfnfactoryDraw2d = pfnfactoryDraw2d;
+//
+//}
 
 
 

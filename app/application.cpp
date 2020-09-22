@@ -1,4 +1,5 @@
 #include "framework.h"
+#define NO_IMAGING
 #include "aura/application.h"
 #include "aura/update.h"
 
@@ -10,8 +11,6 @@ namespace app_app
 
    application::application()
    {
-
-      m_bImaging = false;
 
       m_strAppId = "app/app";
 

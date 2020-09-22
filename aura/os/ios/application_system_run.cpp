@@ -42,19 +42,3 @@
 
 
 
-
-
-
-
-namespace aura
-{
-
-   void system::application_main(int argc, char *argv[], const char * pszCommandLine)
-   {
-   
-      aura_application_main(argc, argv, pszCommandLine);
-   
-   }
-
-} // namespace apex
-

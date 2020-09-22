@@ -2833,12 +2833,6 @@
     <ClCompile Include="platform\draw_context.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\savings.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\str_context.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -3085,9 +3079,6 @@
     <ClCompile Include="os\windowing.cpp">
       <Filter>Source Files\os</Filter>
     </ClCompile>
-    <ClCompile Include="platform\mq.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="message\timer.cpp">
       <Filter>Source Files\message</Filter>
     </ClCompile>
@@ -3168,6 +3159,9 @@
     </ClCompile>
     <ClCompile Include="os\windows\multimedia.cpp">
       <Filter>Source Files\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\aura_mq.cpp">
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

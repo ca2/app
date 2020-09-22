@@ -1038,10 +1038,10 @@ namespace aura
 
 
 
-CLASS_DECL_AURA COLORREF dk_red() // <3 tbs
-{
-   return ARGB(255, 200, 16, 46);
-}
+//CLASS_DECL_AURA COLORREF dk_red() // <3 tbs
+//{
+//   return ARGB(255, 200, 16, 46);
+//}
 
 
 //thread_int_ptr < ::estatus    > t_estatus;

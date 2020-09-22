@@ -14,7 +14,7 @@ i32 WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPTSTR pCmdLi
 
    }
 
-   psystem->application_initialize();
+   //psystem->application_initialize();
 
    application_common(psystem);
 

@@ -19,12 +19,12 @@
 CLASS_DECL_AURA i32 ca2_main();
 
 
-void CLASS_DECL_AURA __cdecl _ca2_purecall()
-{
-
-   __throw(::exception::exception());
-
-}
+//void CLASS_DECL_AURA __cdecl _ca2_purecall()
+//{
+//
+//   __throw(::exception::exception());
+//
+//}
 
 
 void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers);
@@ -33,11 +33,11 @@ void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers);
 
 
 
-void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers)
-{
-   UNREFERENCED_PARAMETER(uiCode);
-   UNREFERENCED_PARAMETER(ppointers);
-}
+//void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers)
+//{
+//   UNREFERENCED_PARAMETER(uiCode);
+//   UNREFERENCED_PARAMETER(ppointers);
+//}
 
 
 
@@ -134,43 +134,49 @@ namespace aura
 
 
 
-void os_post_quit()
+//void os_post_quit()
+//{
+//
+//
+//
+//}
+
+
+//CLASS_DECL_AURA void main_async_runnable(::context_object * pobjectTaskParam)
+//{
+//
+//   __pointer(::object) pobjectTask = pobjectTaskParam;
+//   
+//   ::get_context_system()->post_pred([pobjectTask]()
+//   {
+//
+//      pobjectTask->call();
+//
+//   });
+//
+//}
+
+
+//CLASS_DECL_AURA void main_sync_runnable(::context_object * pobjectTaskParam, ::duration durationTimeout)
+//{
+//   
+//   __pointer(::object) pobjectTask = pobjectTaskParam;
+//   
+//   ::get_context_system()->send_pred([pobjectTask]()
+//   {
+//
+//      pobjectTask->call();
+//
+//   });
+//
+//}
+
+
+void aura_application_main(int argc, char* argv[], const char* pszCommandLine)
 {
 
 
-
 }
-
-
-CLASS_DECL_AURA void main_async_runnable(::context_object * pobjectTaskParam)
-{
-
-   __pointer(::object) pobjectTask = pobjectTaskParam;
-   
-   ::get_context_system()->post_pred([pobjectTask]()
-   {
-
-      pobjectTask->call();
-
-   });
-
-}
-
-
-CLASS_DECL_AURA void main_sync_runnable(::context_object * pobjectTaskParam, ::duration durationTimeout)
-{
-   
-   __pointer(::object) pobjectTask = pobjectTaskParam;
-   
-   ::get_context_system()->send_pred([pobjectTask]()
-   {
-
-      pobjectTask->call();
-
-   });
-
-}
-
 
 
 

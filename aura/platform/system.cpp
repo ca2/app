@@ -77,18 +77,18 @@ void unit_test_primitive_var_aura_block();
 void dappy(const char * psz);
 
 
-#ifdef WINDOWS_DESKTOP
-string get_user_name()
-{
-   WCHAR wsz[1024];
-   DWORD dwSize = sizeof(wsz) / sizeof(WCHAR);
-   ::GetUserNameW(wsz,&dwSize);
-   return string(wsz);
-}
-#include "aura/os/windows/_c.h"
-#endif
-
-
+//#ifdef WINDOWS_DESKTOP
+//string get_user_name()
+//{
+//   WCHAR wsz[1024];
+//   DWORD dwSize = sizeof(wsz) / sizeof(WCHAR);
+//   ::GetUserNameW(wsz,&dwSize);
+//   return string(wsz);
+//}
+//#include "aura/os/windows/_c.h"
+//#endif
+//
+//
 namespace aura
 {
 
@@ -582,168 +582,168 @@ namespace aura
    }
 
 
-   ::estatus system::do_factory_exchange(const char* pszComponent, const char* pszImplementation)
-   {
-
-      string strComponent(pszComponent);
-
-      string strImplementation(pszImplementation);
-
-      ::str::begins_eat_ci(strImplementation, strComponent + "_");
-
-      ::str::begins_eat_ci(strImplementation, strComponent);
-
-#ifdef CUBE
-
-      auto pfnFactoryExchange = m_mapFactoryExchange[strComponent][strImplementation];
-
-      if (::is_null(pfnFactoryExchange))
-      {
-
-         return ::error_failed;
-
-      }
-
-      pfnFactoryExchange();
-
-      return ::success;
-
-#else
-
-      auto plibrary = open_component_library(pszComponent, pszImplementation);
-
-      if (!plibrary)
-      {
-
-         return ::error_failed;
-
-      }
-
-
-      PFN_factory_exchange pfn_factory_exchange = plibrary->get < PFN_factory_exchange >(strComponent + "_" + strImplementation + "_factory_exchange");
-
-      if (pfn_factory_exchange == nullptr)
-      {
-
-         pfn_factory_exchange = plibrary->get < PFN_factory_exchange >(strComponent + "_factory_exchange");
-
-         if (pfn_factory_exchange == nullptr)
-         {
-
-            pfn_factory_exchange = plibrary->get < PFN_factory_exchange >("factory_exchange");
-
-            if (pfn_factory_exchange == nullptr)
-            {
-
-               return ::error_failed;
-
-            }
-
-         }
-
-      }
-
-      pfn_factory_exchange();
-
-      return ::success;
-
-#endif
-
-   }
-
-
-   __pointer(::apex::library) system::open_component_library(const char* pszComponent, const char* pszImplementation)
-   {
-
-      // Ex. "draw2d" (Component) and implementation: either "draw2dcairo", "cairo", "draw2d_cairo"
-
-      sync_lock sl(&::get_context_system()->m_mutexLibrary);
-
-      __pointer(::apex::library)& plibrary = ::get_context_system()->m_mapLibrary[pszComponent];
-
-      if (plibrary && plibrary->is_opened())
-      {
-
-         return plibrary;
-
-      }
-
-      string strComponent(pszComponent);
-
-      string strImplementation(pszImplementation);
-
-      strComponent.trim();
-
-      strImplementation.trim();
-
-      string strLibrary;
-
-      if (strImplementation.is_empty())
-      {
-
-         return nullptr;
-
-      }
-
-      ::str::begins_eat_ci(strImplementation, strComponent + "_");
-
-      ::str::begins_eat_ci(strImplementation, strComponent);
-
-      strLibrary = strComponent + "_" + strImplementation;
-
-#ifdef CUBE
-
-      auto plibraryfactory = ::static_setup::get_first(::static_setup::flag_library, strLibrary);
-
-      if (!plibraryfactory)
-      {
-
-         return nullptr;
-
-      }
-
-      plibrary = plibraryfactory->new_library();
-
-#else
-
-      if (!plibrary)
-      {
-
-         plibrary = __new(::apex::library);
-
-         plibrary->initialize(this);
-
-      }
-
-      if (!plibrary->open(strLibrary))
-      {
-
-         return nullptr;
-
-      }
-
-
-      if (!plibrary->is_opened())
-      {
-
-         return nullptr;
-
-      }
-
-#endif
-
-      return plibrary;
-
-   }
-
-   ::estatus system::set_factory_exchange(const char* pszComponent, const char * pszImplementation, PFN_factory_exchange pfnFactoryExchange)
-   {
-
-      m_mapFactoryExchange[pszComponent][pszImplementation] = pfnFactoryExchange;
-
-      return ::success;
-
-   }
+//   ::estatus system::do_factory_exchange(const char* pszComponent, const char* pszImplementation)
+//   {
+//
+//      string strComponent(pszComponent);
+//
+//      string strImplementation(pszImplementation);
+//
+//      ::str::begins_eat_ci(strImplementation, strComponent + "_");
+//
+//      ::str::begins_eat_ci(strImplementation, strComponent);
+//
+//#ifdef CUBE
+//
+//      auto pfnFactoryExchange = m_mapFactoryExchange[strComponent][strImplementation];
+//
+//      if (::is_null(pfnFactoryExchange))
+//      {
+//
+//         return ::error_failed;
+//
+//      }
+//
+//      pfnFactoryExchange();
+//
+//      return ::success;
+//
+//#else
+//
+//      auto plibrary = open_component_library(pszComponent, pszImplementation);
+//
+//      if (!plibrary)
+//      {
+//
+//         return ::error_failed;
+//
+//      }
+//
+//
+//      PFN_factory_exchange pfn_factory_exchange = plibrary->get < PFN_factory_exchange >(strComponent + "_" + strImplementation + "_factory_exchange");
+//
+//      if (pfn_factory_exchange == nullptr)
+//      {
+//
+//         pfn_factory_exchange = plibrary->get < PFN_factory_exchange >(strComponent + "_factory_exchange");
+//
+//         if (pfn_factory_exchange == nullptr)
+//         {
+//
+//            pfn_factory_exchange = plibrary->get < PFN_factory_exchange >("factory_exchange");
+//
+//            if (pfn_factory_exchange == nullptr)
+//            {
+//
+//               return ::error_failed;
+//
+//            }
+//
+//         }
+//
+//      }
+//
+//      pfn_factory_exchange();
+//
+//      return ::success;
+//
+//#endif
+//
+//   }
+//
+//
+//   __pointer(::apex::library) system::open_component_library(const char* pszComponent, const char* pszImplementation)
+//   {
+//
+//      // Ex. "draw2d" (Component) and implementation: either "draw2dcairo", "cairo", "draw2d_cairo"
+//
+//      sync_lock sl(&::get_context_system()->m_mutexLibrary);
+//
+//      __pointer(::apex::library)& plibrary = ::get_context_system()->m_mapLibrary[pszComponent];
+//
+//      if (plibrary && plibrary->is_opened())
+//      {
+//
+//         return plibrary;
+//
+//      }
+//
+//      string strComponent(pszComponent);
+//
+//      string strImplementation(pszImplementation);
+//
+//      strComponent.trim();
+//
+//      strImplementation.trim();
+//
+//      string strLibrary;
+//
+//      if (strImplementation.is_empty())
+//      {
+//
+//         return nullptr;
+//
+//      }
+//
+//      ::str::begins_eat_ci(strImplementation, strComponent + "_");
+//
+//      ::str::begins_eat_ci(strImplementation, strComponent);
+//
+//      strLibrary = strComponent + "_" + strImplementation;
+//
+//#ifdef CUBE
+//
+//      auto plibraryfactory = ::static_setup::get_first(::static_setup::flag_library, strLibrary);
+//
+//      if (!plibraryfactory)
+//      {
+//
+//         return nullptr;
+//
+//      }
+//
+//      plibrary = plibraryfactory->new_library();
+//
+//#else
+//
+//      if (!plibrary)
+//      {
+//
+//         plibrary = __new(::apex::library);
+//
+//         plibrary->initialize(this);
+//
+//      }
+//
+//      if (!plibrary->open(strLibrary))
+//      {
+//
+//         return nullptr;
+//
+//      }
+//
+//
+//      if (!plibrary->is_opened())
+//      {
+//
+//         return nullptr;
+//
+//      }
+//
+//#endif
+//
+//      return plibrary;
+//
+//   }
+//
+//   ::estatus system::set_factory_exchange(const char* pszComponent, const char * pszImplementation, PFN_factory_exchange pfnFactoryExchange)
+//   {
+//
+//      m_mapFactoryExchange[pszComponent][pszImplementation] = pfnFactoryExchange;
+//
+//      return ::success;
+//
+//   }
 
 
    void system::defer_audio()
@@ -6215,68 +6215,68 @@ namespace aura
 //#include "base/os/windows/windows_system_interaction_impl.h"
 
 
-#include <HighLevelMonitorConfigurationAPI.h>
+//#include <HighLevelMonitorConfigurationAPI.h>
+//
+//DWORD mc_color_kelvin(MC_COLOR_TEMPERATURE e)
+//{
+//   switch (e)
+//   {
+//   case MC_COLOR_TEMPERATURE_4000K:
+//      return 4000;
+//   case MC_COLOR_TEMPERATURE_5000K:
+//      return 5000;
+//   case MC_COLOR_TEMPERATURE_6500K:
+//      return 6500;
+//   case MC_COLOR_TEMPERATURE_7500K:
+//      return 7500;
+//   case MC_COLOR_TEMPERATURE_8200K:
+//      return 8200;
+//   case MC_COLOR_TEMPERATURE_9300K:
+//      return 9300;
+//   case MC_COLOR_TEMPERATURE_10000K:
+//      return 10000;
+//   case MC_COLOR_TEMPERATURE_11500K:
+//      return 11500;
+//   default:
+//      return 0;
+//   }
+//}
 
-DWORD mc_color_kelvin(MC_COLOR_TEMPERATURE e)
-{
-   switch (e)
-   {
-   case MC_COLOR_TEMPERATURE_4000K:
-      return 4000;
-   case MC_COLOR_TEMPERATURE_5000K:
-      return 5000;
-   case MC_COLOR_TEMPERATURE_6500K:
-      return 6500;
-   case MC_COLOR_TEMPERATURE_7500K:
-      return 7500;
-   case MC_COLOR_TEMPERATURE_8200K:
-      return 8200;
-   case MC_COLOR_TEMPERATURE_9300K:
-      return 9300;
-   case MC_COLOR_TEMPERATURE_10000K:
-      return 10000;
-   case MC_COLOR_TEMPERATURE_11500K:
-      return 11500;
-   default:
-      return 0;
-   }
-}
-
-MC_COLOR_TEMPERATURE kelvin_mc_color(DWORD kelvin)
-{
-   if (kelvin < 4500)
-   {
-      return MC_COLOR_TEMPERATURE_4000K;
-   }
-   else if (kelvin < 5750)
-   {
-      return MC_COLOR_TEMPERATURE_5000K;
-   }
-   else if (kelvin < 7000)
-   {
-      return MC_COLOR_TEMPERATURE_6500K;
-   }
-   else if (kelvin < 7850)
-   {
-      return MC_COLOR_TEMPERATURE_7500K;
-   }
-   else if (kelvin < 8750)
-   {
-      return MC_COLOR_TEMPERATURE_8200K;
-   }
-   else if (kelvin < 9650)
-   {
-      return MC_COLOR_TEMPERATURE_9300K;
-   }
-   else if (kelvin < 10750)
-   {
-      return MC_COLOR_TEMPERATURE_10000K;
-   }
-   else
-   {
-      return MC_COLOR_TEMPERATURE_11500K;
-   }
-}
+//MC_COLOR_TEMPERATURE kelvin_mc_color(DWORD kelvin)
+//{
+//   if (kelvin < 4500)
+//   {
+//      return MC_COLOR_TEMPERATURE_4000K;
+//   }
+//   else if (kelvin < 5750)
+//   {
+//      return MC_COLOR_TEMPERATURE_5000K;
+//   }
+//   else if (kelvin < 7000)
+//   {
+//      return MC_COLOR_TEMPERATURE_6500K;
+//   }
+//   else if (kelvin < 7850)
+//   {
+//      return MC_COLOR_TEMPERATURE_7500K;
+//   }
+//   else if (kelvin < 8750)
+//   {
+//      return MC_COLOR_TEMPERATURE_8200K;
+//   }
+//   else if (kelvin < 9650)
+//   {
+//      return MC_COLOR_TEMPERATURE_9300K;
+//   }
+//   else if (kelvin < 10750)
+//   {
+//      return MC_COLOR_TEMPERATURE_10000K;
+//   }
+//   else
+//   {
+//      return MC_COLOR_TEMPERATURE_11500K;
+//   }
+//}
 
 #elif defined(LINUX)
 
@@ -8573,6 +8573,22 @@ string get_bundle_app_library_name();
 //
 //}
 
+
+
+
+void aura_application_main(int argc, char* argv[], const char* pszCommandLine);
+
+namespace aura
+{
+
+   void system::application_main(int argc, char* argv[], const char* pszCommandLine)
+   {
+
+      aura_application_main(argc, argv, pszCommandLine);
+
+   }
+
+} // namespace apex
 
 
 

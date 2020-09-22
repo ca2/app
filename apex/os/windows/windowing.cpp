@@ -15,18 +15,18 @@ CLASS_DECL_APEX void defer_dock_application(int_bool bDock)
 
 
 
-CLASS_DECL_APEX int_bool os_init_windowing()
-{
+//CLASS_DECL_APEX int_bool os_init_windowing()
+//{
+//
+//   return TRUE;
+//
+//}
 
-   return TRUE;
 
-}
-
-
-CLASS_DECL_APEX void os_term_windowing()
-{
-
-}
+//CLASS_DECL_APEX void os_term_windowing()
+//{
+//
+//}
 
 
 //::user::interaction * get_system_window_interaction(::os_system_window * psystemwindow)
@@ -323,34 +323,34 @@ CLASS_DECL_APEX WINBOOL show_window(oswindow oswindow, int iShowCmd)
 
 
 
-
-void window_create_caret(oswindow oswindow, HBITMAP hbitmap)
-{
-
-   ASSERT(::IsWindow(oswindow));
-
-   ::CreateCaret(oswindow, hbitmap, 0, 0);
-
-}
-
-void window_create_solid_caret(oswindow oswindow, i32 nWidth, i32 nHeight)
-{
-
-   ASSERT(::IsWindow(oswindow));
-
-   ::CreateCaret(oswindow, (HBITMAP)nullptr, nWidth, nHeight);
-
-}
-
-void window_create_gray_caret(oswindow oswindow, i32 nWidth, i32 nHeight)
-{
-
-   ASSERT(::IsWindow(oswindow));
-
-   ::CreateCaret(oswindow, (HBITMAP)1, nWidth, nHeight);
-
-}
-
+//
+//void window_create_caret(oswindow oswindow, HBITMAP hbitmap)
+//{
+//
+//   ASSERT(::IsWindow(oswindow));
+//
+//   ::CreateCaret(oswindow, hbitmap, 0, 0);
+//
+//}
+//
+//void window_create_solid_caret(oswindow oswindow, i32 nWidth, i32 nHeight)
+//{
+//
+//   ASSERT(::IsWindow(oswindow));
+//
+//   ::CreateCaret(oswindow, (HBITMAP)nullptr, nWidth, nHeight);
+//
+//}
+//
+//void window_create_gray_caret(oswindow oswindow, i32 nWidth, i32 nHeight)
+//{
+//
+//   ASSERT(::IsWindow(oswindow));
+//
+//   ::CreateCaret(oswindow, (HBITMAP)1, nWidth, nHeight);
+//
+//}
+//
 
 //CLASS_DECL_APEX string message_box_result_to_string(int iResult);
 //
@@ -402,13 +402,13 @@ CLASS_DECL_APEX ::estatus apex_os_message_box(oswindow oswindow, const char * ps
 }
 
 
-
-
-void defer_term_ui()
-{
-
-
-}
+//
+//
+//void defer_term_ui()
+//{
+//
+//
+//}
 
 
 

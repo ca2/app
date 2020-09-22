@@ -1569,6 +1569,7 @@ public:
    inline set() { m_eset = set_none; }
    inline set(int i) { operator = (i); }
    inline set(bool b) { operator = (b); }
+   inline set(const ::set & set) :m_eset(set_none){ if(!set.undefined()) m_eset = set.m_eset; }
 
    inline bool isFalse() const { return is_false(); }
 
@@ -1609,6 +1610,8 @@ public:
    inline set & operator = (int i) { m_eset = (e_set)i; return *this; }
 
    inline set & operator = (bool b) { m_eset = (b ? set_true : set_false); return *this; }
+
+   inline set& operator = (const ::set& set) { if (this != &set && !set.undefined()) { m_eset = m_eset; }; return *this; }
 
    inline void defer(int i) { if(is_empty()) operator =(i); }
 

@@ -158,13 +158,6 @@ void application_common(::apex::system * psystem)
 #endif
 
 
-#ifdef NO_IMAGING
-
-  psystem->m_bDraw2d = false;
-
-#endif
-
-
 #ifdef NO_DRAW2D
 
   psystem->m_bDraw2d = false;

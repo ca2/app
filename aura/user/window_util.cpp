@@ -879,7 +879,7 @@ namespace user
 
          HRGN hrgnChild = ::CreateRectRgnIndirect(rectChild);
 
-         ::CombineRgn(hrgn, hrgn, hrgnChild, ::draw2d::region::combine_exclude);
+         ::CombineRgn(hrgn, hrgn, hrgnChild, ::draw2d::e_combine_exclude);
 
          ::DeleteObject(hrgnChild);
 

@@ -3226,14 +3226,14 @@
     <ClCompile Include="user\os_colors.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="multithreading\wait_result_callback.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\primitive\future.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive\method.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\wait_future.cpp">
+      <Filter>Source Files\multithreading</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -393,9 +393,7 @@
       </ForceSymbolReferences>
       <LinkTimeCodeGeneration>false</LinkTimeCodeGeneration>
     </Lib>
-    <ProjectReference>
-      <LinkLibraryDependencies>true</LinkLibraryDependencies>
-    </ProjectReference>
+    <ProjectReference />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">
     <ClCompile>
@@ -660,9 +658,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
       <ForceSymbolReferences>
       </ForceSymbolReferences>
     </Lib>
-    <ProjectReference>
-      <LinkLibraryDependencies>true</LinkLibraryDependencies>
-    </ProjectReference>
+    <ProjectReference />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
     <ClCompile>
@@ -823,9 +819,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     </ResourceCompile>
     <Lib />
     <Lib />
-    <ProjectReference>
-      <LinkLibraryDependencies>true</LinkLibraryDependencies>
-    </ProjectReference>
+    <ProjectReference />
     <Lib>
       <LinkTimeCodeGeneration>false</LinkTimeCodeGeneration>
     </Lib>
@@ -1083,9 +1077,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <Lib />
     <Lib />
     <Lib />
-    <ProjectReference>
-      <LinkLibraryDependencies>true</LinkLibraryDependencies>
-    </ProjectReference>
+    <ProjectReference />
     <Lib />
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -1134,18 +1126,14 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="message\simple_command.cpp" />
     <ClCompile Include="message\_.cpp" />
     <ClCompile Include="multithreading\handler.cpp" />
-    <ClCompile Include="multithreading\procedure_array.cpp" />
     <ClCompile Include="multithreading\retry_multi_lock.cpp" />
     <ClCompile Include="multithreading\retry_single_lock.cpp" />
     <ClCompile Include="multithreading\service\plain_service.cpp" />
     <ClCompile Include="multithreading\service_base.cpp" />
-    <ClCompile Include="multithreading\socket_event.cpp" />
     <ClCompile Include="multithreading\thread.cpp" />
     <ClCompile Include="multithreading\threading.cpp" />
-    <ClCompile Include="multithreading\thread_impl.cpp" />
     <ClCompile Include="multithreading\thread_os.cpp" />
     <ClCompile Include="multithreading\tools.cpp" />
-    <ClCompile Include="multithreading\waitable.cpp" />
     <ClCompile Include="multithreading\_.cpp" />
     <ClCompile Include="node\windows\dir_system.cpp" />
     <ClCompile Include="node\windows\file_os_watcher.cpp" />
@@ -1253,8 +1241,8 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="primitive\datetime\datetime.cpp" />
     <ClCompile Include="primitive\datetime\department.cpp" />
     <ClCompile Include="primitive\primitive\object.cpp" />
-    <ClCompile Include="process\process_department.cpp" />
-    <ClCompile Include="process\process_process.cpp" />
+    <ClCompile Include="process\department.cpp" />
+    <ClCompile Include="process\process.cpp" />
     <ClCompile Include="user\check.cpp" />
     <ClCompile Include="user\command.cpp" />
     <ClCompile Include="user\language.cpp" />
@@ -1396,6 +1384,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="os\_impl.h" />
     <ClInclude Include="os\_os.h" />
     <ClInclude Include="platform\all.h" />
+    <ClInclude Include="platform\apex_main_struct.h" />
     <ClInclude Include="platform\application.h" />
     <ClInclude Include="platform\application_array.h" />
     <ClInclude Include="platform\application_consumer.h" />
@@ -1601,10 +1590,8 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="net\url_domain.cpp" />
     <ClCompile Include="net\_.cpp" />
     <ClCompile Include="primitive\math\department.cpp" />
-    <ClCompile Include="primitive\primitive\application_bias.cpp" />
     <ClCompile Include="primitive\primitive\command_line.cpp" />
     <ClCompile Include="primitive\primitive\create.cpp" />
-    <ClCompile Include="primitive\primitive\id.cpp" />
     <ClCompile Include="primitive\primitive\object_meta.cpp" />
     <ClCompile Include="primitive\primitive\context_object.cpp" />
     <ClCompile Include="primitive\primitive\update.cpp" />

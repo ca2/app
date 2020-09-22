@@ -2446,6 +2446,8 @@ namespace apex
 
       set_context_app(m_papplicationStartup);
 
+      m_papplicationStartup->inline_init();
+
       get_context_application()->get_property_set().merge(get_property_set());
 
       m_papplicationStartup.release();

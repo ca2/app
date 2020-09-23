@@ -204,6 +204,54 @@ void * nscursor_system(e_cursor ecursor)
       pcursor = [NSCursor IBeamCursor];
       
    }
+   else if(ecursor == cursor_size_bottom)
+   {
+      
+      pcursor = [NSCursor resizeUpDownCursor];
+      
+   }
+   else if(ecursor == cursor_size_top)
+   {
+      
+      pcursor = [NSCursor resizeUpDownCursor];
+      
+   }
+   else if(ecursor == cursor_size_left)
+   {
+      
+      pcursor = [NSCursor resizeLeftRightCursor];
+      
+   }
+   else if(ecursor == cursor_size_right)
+   {
+      
+      pcursor = [NSCursor resizeLeftRightCursor];
+      
+   }
+   else if(ecursor == cursor_size_bottom_left)
+   {
+      
+      pcursor = [NSCursor openHandCursor];
+      
+   }
+   else if(ecursor == cursor_size_bottom_right)
+   {
+      
+      pcursor = [NSCursor openHandCursor];
+      
+   }
+   else if(ecursor == cursor_size_top_left)
+   {
+      
+      pcursor = [NSCursor openHandCursor];
+      
+   }
+   else if(ecursor == cursor_size_top_right)
+   {
+      
+      pcursor = [NSCursor openHandCursor];
+      
+   }
    else
    {
 

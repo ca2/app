@@ -3,44 +3,21 @@
 int main(int argc, char * argv[])
 {
 
-   //class apex_apex apex_apex;
-
-   //{
-
-   //   ::apex_main_struct mainstruct;
-
-   //   application_initialize(mainstruct);
-
-   //   {
-
-   //      auto psystem = __new(::apex::system());
-
-   //      psystem->set_main_struct(&mainstruct);
-
-   //      psystem->system_construct(argc, argv);
-
-   //      return apex_run_system(psystem);
-
-   //   }
-
-   //}
-   
    string strAppId = executable_get_app_id();
 
    auto psystem = platform_create_system(strAppId);
 
-   psystem->application_initialize();
+   psystem->m_bConsole = false;
 
    application_common(psystem);
 
    psystem->system_construct(argc, argv);
-
-   ::estatus estatus = os_application_system_run(psystem);
+   
+   auto estatus = os_application_system_run(psystem);
 
    ::i32 iErrorStatus = estatus.error_status();
 
    return iErrorStatus;
-
 
 }
 

@@ -61,10 +61,13 @@ namespace experience
 
    void button::_001OnClip(::draw2d::graphics_pointer & pgraphics)
    {
+      
+#ifdef MACOS
 
-      //return;
+      // clip
+      return;
 
-
+#endif
 
       try
       {

@@ -42,11 +42,20 @@ namespace experience
 
    }
 
+   
    int frame::adjust_client_height(int iHeight)
    {
 
       return iHeight + get_caption_height();
 
+   }
+
+
+   int frame::adjust_client_width(int iWidth)
+   {
+
+      return iWidth + 20;
+      
    }
 
 

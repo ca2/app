@@ -98,11 +98,11 @@ namespace user
       bool is_screen_visible() const { return ::is_screen_visible(display()); }
 
 
-      ::eappearance appearance() const { return m_eappearance; }
-      visual_state& operator = (const e_appearance& eappearance) { m_eappearance = eappearance; if(m_eappearance) set_modified(); return *this; }
-      visual_state& operator |= (const e_appearance& eappearance) { m_eappearance |= eappearance; if (m_eappearance) set_modified(); return *this; }
-      visual_state& operator -= (const e_appearance& eappearance) { m_eappearance -= eappearance; if (m_eappearance) set_modified(); return *this; }
-      visual_state& operator ^= (const e_appearance& eappearance) { m_eappearance ^= eappearance; if (m_eappearance) set_modified(); return *this; }
+      ::eappearance appearance() const;
+      visual_state& operator = (const e_appearance& eappearance);
+      visual_state& operator |= (const e_appearance& eappearance);
+      visual_state& operator -= (const e_appearance& eappearance);
+      visual_state& operator ^= (const e_appearance& eappearance);
 
 
       ::point origin() const { return m_point; }

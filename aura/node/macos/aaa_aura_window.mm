@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 ca2 Desenvolvimento de Sofware Ltda. All rights reserved.
 //
 #import "_mm.h"
-#import "AuraWindow.h"
+//#import "AuraWindow.h"
 
 
 NSWindow * new_aura_window(aura_window * paurawindow, CGRect rect, unsigned int uStyle)

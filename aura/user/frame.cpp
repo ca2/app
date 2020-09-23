@@ -2,6 +2,7 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
 #endif
+#include "apex/user/menu_shared_command.h"
 
 
 namespace user
@@ -76,8 +77,16 @@ namespace user
    }
 
 
-
    int frame::get_derived_height(int iWidth)
+   {
+
+      return -1;
+
+
+   }
+
+
+   int frame::get_derived_width(int iHeight)
    {
 
       return -1;
@@ -213,3 +222,40 @@ namespace user
 
 
 
+
+
+void menu_shared_idle(::user::frame * pframe)
+{
+
+   menu_shared * pmenushared = pframe->m_pmenushared;
+
+   if(::is_null(pmenushared))
+   {
+
+      return;
+
+   }
+
+   for(int i = 0; i < pmenushared->m_iCount; i++)
+   {
+
+      void * pitem = pmenushared->m_ositema[i];
+
+      if(pitem)
+      {
+
+         ::message::id id(pmenushared->m_ppszId[i],::message::type_command_probe);
+
+         menu_shared_command command(&pmenushared->m_statusa[i]);
+
+         command.m_id = id;
+
+         pframe->on_command_probe(&command);
+
+      }
+
+   }
+
+   pmenushared->on_idle_update();
+
+}

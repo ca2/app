@@ -1395,6 +1395,13 @@ namespace experience
 
    void control_box::_001OnClip(::draw2d::graphics_pointer & pgraphics)
    {
+      
+#ifdef MACOS
+      
+      // clip
+      return;
+      
+#endif
 
       try
       {

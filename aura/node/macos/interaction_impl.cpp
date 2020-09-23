@@ -388,7 +388,7 @@ namespace macos
 
          }
 
-         m_oswindow = oswindow_get(new_aura_window(this, rect, uStyle));
+         m_oswindow = oswindow_get(new_apex_window(this, rect, uStyle));
 
          m_puserinteraction->layout().window() = ::top_left(rectParam);
 
@@ -5587,6 +5587,39 @@ namespace macos
 //   }
 
 
+   bool interaction_impl::ShowWindow(int iShow)
+   {
+   
+      if(iShow == SW_HIDE)
+      {
+         
+         round_window_hide();
+         
+      }
+      else if(iShow == SW_MINIMIZE)
+      {
+         
+         round_window_miniaturize();
+
+      }
+      else if(iShow == SW_SHOWNOACTIVATE)
+      {
+         
+         round_window_order_front();
+         
+      }
+   else
+   {
+      
+      defer_dock_application(true);
+
+           nsapp_activate_ignoring_other_apps(1);
+
+           round_window_show();
+   }
+   
+   }
+
    void interaction_impl::window_show_change_visibility()
    {
 
@@ -5631,7 +5664,7 @@ namespace macos
       
       ::user::interaction_impl::set_destroying();
 
-      ::aura_window::m_bDestroying = true;
+      ::apex_window::m_bDestroying = true;
 
    }
 

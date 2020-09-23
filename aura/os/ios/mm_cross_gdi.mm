@@ -48,7 +48,7 @@ int GetMainWkspaceRect(LPRECT lprect)
    
    CGSize statusBarSize = [[UIApplication sharedApplication] statusBarFrame].size;
    
-   int iHeight = min(statusBarSize.width, statusBarSize.height);
+   int iHeight = MIN(statusBarSize.width, statusBarSize.height);
    
    lprect->top = iHeight;
    

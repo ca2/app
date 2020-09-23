@@ -27,6 +27,14 @@ namespace experience
    }
 
 
+   void button::_001OnClip(::draw2d::graphics_pointer & pgraphics)
+   {
+      
+      ::user::interaction::_001OnClip(pgraphics);
+
+   }
+
+
    void button::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 

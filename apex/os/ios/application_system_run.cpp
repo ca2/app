@@ -41,20 +41,20 @@
 //}
 
 
-void apex_application_main(int argc, char *argv[], const char * pszCommandLine);
-
-namespace apex
-{
-
-   void system::application_main(int argc, char *argv[], const char * pszCommandLine)
-   {
-   
-      apex_application_main(argc, argv, pszCommandLine);
-   
-   }
-
-} // namespace apex
-
+//void apex_application_main(int argc, char *argv[], const char * pszCommandLine);
+//
+//namespace apex
+//{
+//
+//   void system::application_main(int argc, char *argv[], const char * pszCommandLine)
+//   {
+//   
+//      apex_application_main(argc, argv, pszCommandLine);
+//   
+//   }
+//
+//} // namespace apex
+//
 
 
 

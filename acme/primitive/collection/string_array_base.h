@@ -2598,7 +2598,7 @@ template < class Type, class RawType >
 ::index string_array_base < Type, RawType > ::_find_first_prefixed(const Type & strPrefix, ::index iFind, ::index iLast) const
 {
 
-   for (; iFind < iLast; iFind++)
+   for (; iFind <= iLast; iFind++)
    {
 
       if (::str::begins(this->element_at(iFind), strPrefix))
@@ -2619,7 +2619,7 @@ template < class Type, class RawType >
 ::index string_array_base < Type, RawType > ::_find_first_prefixed_ci(const Type & strPrefix, ::index iFind, ::index iLast) const
 {
 
-   for (; iFind < iLast; iFind++)
+   for (; iFind <= iLast; iFind++)
    {
 
       if (::str::begins_ci(this->element_at(iFind), strPrefix))

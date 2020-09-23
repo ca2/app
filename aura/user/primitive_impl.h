@@ -27,10 +27,6 @@ namespace user
 
       __pointer(::apex::timer_array)      m_ptimerarray;
 
-      ::mutex                             m_mutexLongPtr;
-      int_ptr_to_int_ptr                  m_longptr;
-      uptr                                m_uStyle;
-      uptr                                m_uExStyle;
       const char *                        m_pszInteractionImplBaseDebug;
 
       bool                                m_bPendingRedraw;

@@ -106,6 +106,20 @@
 			remoteGlobalIDString = A1CFD777154F5EAA007447E2;
 			remoteInfo = draw2d_quartz2d;
 		};
+		9A8A3374251AC58400CF32F4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AC3971925197AE20036B92A /* acme.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AD692B6251A753A00C0EBD7;
+			remoteInfo = ios_acme;
+		};
+		9A8A3377251AC58400CF32F4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AC3972725197AEB0036B92A /* apex.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AD695C2251A754800C0EBD7;
+			remoteInfo = ios_apex;
+		};
 		9A8B638224CBD68100A93185 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A8B637224CBD68100A93185 /* imaging_coreimage.xcodeproj */;
@@ -235,8 +249,6 @@
 		070B8EE11B6E53F900D26137 = {
 			isa = PBXGroup;
 			children = (
-				9A86CF7D24F8A30B009272A0 /* libcrypto.dylib */,
-				9A86CF8624F8A30B009272A0 /* libssl.dylib */,
 				9AC3971925197AE20036B92A /* acme.xcodeproj */,
 				9AC3972725197AEB0036B92A /* apex.xcodeproj */,
 				9A4889E724EB4A2200119EC4 /* app_app_app.xcodeproj */,
@@ -247,6 +259,8 @@
 				9A8B637224CBD68100A93185 /* imaging_coreimage.xcodeproj */,
 				9A06D7091FA2A7A5007FEB1B /* macos */,
 				070B8EEB1B6E53F900D26137 /* Products */,
+				9A86CF7D24F8A30B009272A0 /* libcrypto.dylib */,
+				9A86CF8624F8A30B009272A0 /* libssl.dylib */,
 			);
 			sourceTree = "<group>";
 		};
@@ -328,6 +342,7 @@
 			isa = PBXGroup;
 			children = (
 				9AC3971E25197AE20036B92A /* libacme.dylib */,
+				9A8A3375251AC58400CF32F4 /* libios_acme.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -336,6 +351,7 @@
 			isa = PBXGroup;
 			children = (
 				9AC3972C25197AEC0036B92A /* libapex.dylib */,
+				9A8A3378251AC58400CF32F4 /* libios_apex.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -491,6 +507,20 @@
 			fileType = wrapper.cfbundle;
 			path = draw2d_quartz2d_iosTests.xctest;
 			remoteRef = 9A6FABD62304797E00340A3D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A8A3375251AC58400CF32F4 /* libios_acme.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libios_acme.a;
+			remoteRef = 9A8A3374251AC58400CF32F4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A8A3378251AC58400CF32F4 /* libios_apex.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libios_apex.a;
+			remoteRef = 9A8A3377251AC58400CF32F4 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		9A8B638324CBD68100A93185 /* libimaging_coreimage.dylib */ = {

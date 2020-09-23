@@ -931,7 +931,7 @@ namespace experience
 
          pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         if (Session.savings().is_trying_to_save(::aura::resource_processing))
+         if (Session.savings().is_trying_to_save(::e_resource_processing))
          {
 
             colorBackground.m_iA = 255;

@@ -6,7 +6,7 @@ int main(Array < String ^ > ^ stra)
 
    auto psystem = __new(::apex::system());
 
-   psystem->application_initialize();
+   psystem->m_bConsole = false;
 
    application_common(psystem);
 

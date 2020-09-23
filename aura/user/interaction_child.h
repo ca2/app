@@ -19,6 +19,10 @@ namespace user
       bool                                m_bCreate;
       __pointer(::user::interaction)             m_puiMessage;
       interaction *                       m_puiOwner;
+      ::mutex                             m_mutexLongPtr;
+      int_ptr_to_int_ptr                  m_longptr;
+      uptr                                m_uStyle;
+      uptr                                m_uExStyle;
 
 
       interaction_child();

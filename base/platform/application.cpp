@@ -7055,21 +7055,21 @@ namespace base
 //         if (has_property("save_processing"))
 //         {
 //
-//            Session.savings().save(::aura::resource_processing);
+//            Session.savings().save(::e_resource_processing);
 //
 //         }
 //
 //         if (has_property("save_blur_back"))
 //         {
 //
-//            Session.savings().save(::aura::resource_blur_background);
+//            Session.savings().save(::e_resource_blur_background);
 //
 //         }
 //
 //         if (has_property("save_transparent_back"))
 //         {
 //
-//            Session.savings().save(::aura::resource_translucent_background);
+//            Session.savings().save(::e_resource_translucent_background);
 //
 //         }
 //

@@ -281,8 +281,13 @@ namespace draw2d
          }
          else if(!m_bDefaultCursor)
          {
+            
+            if(System.m_bImaging)
+            {
 
-            m_hcursor = App(pinteraction).image().load_default_cursor(m_ecursor);
+               m_hcursor = App(pinteraction).image().load_default_cursor(m_ecursor);
+               
+            }
 
          }
 

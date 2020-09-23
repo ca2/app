@@ -27,7 +27,7 @@ int main(int argc, char * argv[])
 
          auto psystem = __new(::apex::system());
          
-         psystem->application_initialize();
+         //psystem->application_initialize();
 
          application_common(psystem);
    

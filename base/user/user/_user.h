@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //#if !BROAD_PRECOMPILED_HEADER
@@ -43,26 +43,26 @@ namespace user
    class menu;
    class place_holder;
 
-
-#if defined(APPLE_IOS) || defined(ANDROID)
-
-
-   class CLASS_DECL_BASE native_window_initialize
-   {
-   public:
-
-      RECT   m_rect;
-
-   };
-
-
-#else
-
-
-   class native_window_initialize;
-
-
-#endif
+//
+//#if defined(APPLE_IOS) || defined(ANDROID)
+//
+//
+//   class CLASS_DECL_BASE native_window_initialize
+//   {
+//   public:
+//
+//      RECT   m_rect;
+//
+//   };
+//
+//
+//#else
+//
+//
+//   class native_window_initialize;
+//
+//
+//#endif
 
 
    class control_event;

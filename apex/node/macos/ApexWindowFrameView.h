@@ -25,6 +25,8 @@ struct mf_context
 };
 
 
+@class ApexWindow;
+
 
 @interface ApexWindowFrameView : NSView
 {

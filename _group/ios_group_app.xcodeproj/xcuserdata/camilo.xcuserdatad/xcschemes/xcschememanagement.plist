@@ -4,12 +4,12 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>ios_group_app.xcscheme_^#shared#^_</key>
+		<key>ios_basis_group_app.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
-		<key>release_ios_group_app.xcscheme_^#shared#^_</key>
+		<key>ios_stage_group_app.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>4</integer>

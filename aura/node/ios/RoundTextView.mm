@@ -434,7 +434,7 @@ NSRange RangeIntersection(NSRange first, NSRange second)
    // Find the overlap intersection range between first and second.
     if (second.location < first.location + first.length) {
         result.location = second.location;
-        NSUInteger end = min(first.location + first.length, second.location + second.length);
+        NSUInteger end = MIN(first.location + first.length, second.location + second.length);
         result.length = end - result.location;
     }
 

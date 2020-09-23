@@ -3,7 +3,7 @@
 
 #include "aura/user/interaction.h"
 #include "aura/user/interaction_impl.h"
-#include "aura_window.h"
+#include "apex/node/macos/apex_window.h"
 
 
 namespace macos
@@ -17,7 +17,7 @@ namespace macos
 
    class CLASS_DECL_AURA interaction_impl :
       virtual public ::user::interaction_impl,
-      virtual public ::aura_window
+      virtual public ::apex_window
    {
    public:
 
@@ -43,7 +43,7 @@ namespace macos
       
       virtual void set_destroying() override;
 
-      inline bool is_destroying() const { return ::aura_window::m_bDestroying || ::user::interaction_impl::m_bDestroying; }
+      inline bool is_destroying() const { return ::apex_window::m_bDestroying || ::user::interaction_impl::m_bDestroying; }
 
       virtual void release_graphics_resources();
       
@@ -116,6 +116,7 @@ namespace macos
 
       using ::user::interaction_impl::create_window;
       
+      virtual bool ShowWindow(int iShow) override;
       //// for child windows, views, panes etc
       
       virtual bool create_window(::user::interaction * pinteraction, const char * lpszClassName, const char * lpszWindowName, u32 uStyle, const ::rect & prect, ::user::interaction * puiParent, id id, ::create * pcreate = nullptr) override;

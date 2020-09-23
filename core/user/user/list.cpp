@@ -672,7 +672,7 @@ namespace user
          {
 
          }
-         else if (Session.savings().is_trying_to_save(::aura::resource_processing))
+         else if (Session.savings().is_trying_to_save(::e_resource_processing))
          {
 
             pdrawitem->m_pgraphics->fill_rect(pdrawitem->m_rectItem, ARGB(255, 96, 96, 96));

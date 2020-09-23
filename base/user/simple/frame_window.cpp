@@ -1195,8 +1195,24 @@ void simple_frame_window::WfiOnFullScreen()
 
 bool simple_frame_window::frame_is_transparent()
 {
+   
+   if(!m_bTransparentFrameEnable)
+   {
+      
+      return false;
+      
+   }
+   
+   auto eappearance = layout().design().appearance();
 
-   return layout().has_appearance(::appearance_transparent_frame) && m_bTransparentFrameEnable;
+   if(eappearance & ::appearance_transparent_frame)
+   {
+      
+      return true;
+      
+   }
+   
+   return false;
 
 }
 
@@ -2184,8 +2200,8 @@ void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::grap
    }
 
 
-   if (Session.savings().is_trying_to_save(::aura::resource_processing)
-         || Session.savings().is_trying_to_save(::aura::resource_translucent_background))
+   if (Session.savings().is_trying_to_save(::e_resource_processing)
+         || Session.savings().is_trying_to_save(::e_resource_translucent_background))
    {
 
       ::rect rectClient;
@@ -2415,14 +2431,14 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
       //rectClient.offset(rectClient.top_left());
 
-      if(Session.savings().is_trying_to_save(::aura::resource_translucent_background))
+      if(Session.savings().is_trying_to_save(::e_resource_translucent_background))
       {
 
          //pgraphics->fill_rect(rectClient, RGB(150, 220, 140));
 
       }
-      else if(Session.savings().is_trying_to_save(::aura::resource_processing)
-              || Session.savings().is_trying_to_save(::aura::resource_blur_background))
+      else if(Session.savings().is_trying_to_save(::e_resource_processing)
+              || Session.savings().is_trying_to_save(::e_resource_blur_background))
       {
 
          imaging.color_blend(pgraphics,rectClient,RGB(150,180,140),150);
@@ -3412,7 +3428,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 void simple_frame_window::draw_frame(::draw2d::graphics_pointer & pgraphics)
 {
 
-   if (m_bWindowFrame && !Session.savings().is_trying_to_save(::aura::resource_display_bandwidth))
+   if (m_bWindowFrame && !Session.savings().is_trying_to_save(::e_resource_display_bandwidth))
    {
 
       ::experience::frame_window::_001OnDraw(pgraphics);
@@ -3551,8 +3567,8 @@ bool simple_frame_window::calc_layered()
 
    if (m_bLayered && get_translucency(pstyle) != ::user::translucency_none)
    {
-      return !Session.savings().is_trying_to_save(::aura::resource_processing)
-             && !Session.savings().is_trying_to_save(::aura::resource_display_bandwidth);
+      return !Session.savings().is_trying_to_save(::e_resource_processing)
+             && !Session.savings().is_trying_to_save(::e_resource_display_bandwidth);
    }
    else
    {

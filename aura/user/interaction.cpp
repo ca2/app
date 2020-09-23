@@ -2088,6 +2088,12 @@ namespace user
    void interaction::_001OnClip(::draw2d::graphics_pointer & pgraphics)
    {
       
+#ifdef MACOS
+      
+      return;
+      
+#endif
+      
       try
       {
 
@@ -2126,33 +2132,24 @@ namespace user
 
          ::user::interaction * pinteraction = this;
 
-         ::rect rectFocus;
-
          ::rect rectIntersect;
 
          index i = 0;
+         
+         pgraphics->SelectClipRgn(nullptr);
 
          while (pinteraction != nullptr)
          {
 
-            pinteraction->get_client_rect(rectFocus);
+            pinteraction->get_client_rect(rectClient);
 
-            pinteraction->_001ClientToScreen(rectFocus);
+            pinteraction->_001ClientToScreen(rectClient);
 
-            _001ScreenToClient(rectFocus);
+            _001ScreenToClient(rectClient);
+            
+            rectClient += m_pointScroll;
 
-            if (i == 0)
-            {
-
-               rectIntersect = rectFocus;
-
-            }
-            else
-            {
-
-               rectIntersect.intersect(rectFocus);
-
-            }
+            pgraphics->IntersectClipRect(rectClient);
 
             i++;
 
@@ -2160,23 +2157,11 @@ namespace user
 
          }
 
-         ::rect rectClipbox;
-
-         pgraphics->GetClipBox(rectClipbox);
-
-         pgraphics->IntersectClipRect(rectIntersect);
-
-         ::rect rectClipbox2;
-
-         pgraphics->GetClipBox(rectClipbox2);
-
-         pgraphics->OffsetClipRgn(m_pointScroll.x, m_pointScroll.y);
+         //pgraphics->OffsetClipRgn(m_pointScroll.x, m_pointScroll.y);
 
          ::rect rectClipbox3;
 
          pgraphics->GetClipBox(rectClipbox3);
-
-         //output_debug_string("trace");
 
       }
       catch (...)
@@ -2924,7 +2909,7 @@ namespace user
       if (strType.contains_ci("albertopibiri_keyboard") && strType.contains_ci("main_frame"))
       {
 
-         output_debug_string("albertopibiri_keyboard::main_frame");
+        // output_debug_string("albertopibiri_keyboard::main_frame");
 
       }
       else if (strType.contains_ci("plain_edit"))
@@ -7215,7 +7200,7 @@ namespace user
 
       }
 
-      if (GetParent() != nullptr || is_host_top_level())
+      if (GetParent() == nullptr || is_host_top_level())
       {
 
          window_show_change_visibility();
@@ -7920,7 +7905,7 @@ namespace user
       if (strType.contains("albertopibiri_keyboard") && strType.contains("main_frame"))
       {
 
-         output_debug_string("albertopibiri_keyboard::main_frame");
+         //output_debug_string("albertopibiri_keyboard::main_frame");
 
       }
       else if (strType.contains("combo_box"))

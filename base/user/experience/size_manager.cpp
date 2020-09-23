@@ -177,8 +177,10 @@ namespace experience
 
       if(m_ehittestCursor != hittest_none)
       {
+         
+         auto ecursor = translate(m_ehittestCursor);
 
-         pmouse->m_ecursor = translate(m_ehittestCursor);
+         pmouse->m_ecursor = ecursor;
 
          pmouse->m_lresult = 1;
 
@@ -400,15 +402,38 @@ namespace experience
          }
          if (m_pframewindow->m_bDerivedHeight)
          {
+            
+            int iWidth = rectWindow.width();
+            
+            int iDerivedHeight = m_pframewindow->get_derived_height(iWidth);
+            
+            int iHeight = m_pframewindow->m_pframe->adjust_client_height(iDerivedHeight);
 
-            rectWindow.bottom = m_rectWindowOrigin.top + m_pframewindow->m_pframe->adjust_client_height(m_pframewindow->get_derived_height(rectWindow.width()));
+            if (iHeight < sizeMin.cy)
+            {
+               
+               rectWindow.bottom = m_rectWindowOrigin.top + sizeMin.cy;
+
+               rectWindow.right = m_rectWindowOrigin.left + m_pframewindow->m_pframe->adjust_client_width(m_pframewindow->get_derived_width(sizeMin.cy));
+               
+            }
+            else
+            {
+               
+               rectWindow.bottom = m_rectWindowOrigin.top + iHeight;
+
+            }
+            
          }
-         else if (rectWindow.height() < sizeMin.cy)
+         else
          {
-            rectWindow.bottom = m_rectWindowOrigin.top + sizeMin.cy;
+            if (rectWindow.height() < sizeMin.cy)
+            {
+               rectWindow.bottom = m_rectWindowOrigin.top + sizeMin.cy;
+            }
+            rectWindow.right = max(rectWindow.right, rectMonitor.left + m_sizeMinimumBorder.cx);
+            rectWindow.bottom = max(rectWindow.bottom, rectMonitor.top + m_sizeMinimumBorder.cy);
          }
-         rectWindow.right = max(rectWindow.right, rectMonitor.left + m_sizeMinimumBorder.cx);
-         rectWindow.bottom = max(rectWindow.bottom, rectMonitor.top + m_sizeMinimumBorder.cy);
       }
       else if(ehittest == hittest_sizing_bottom)
       {

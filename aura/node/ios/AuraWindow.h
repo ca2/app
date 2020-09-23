@@ -11,7 +11,7 @@
 //  this copyright and permission notice. Attribution in compiled projects is
 //  appreciated but not required.
 //
-#include "aura/user/_const_key.h"
+#include "acme/user/_const_key.h"
 
 
 ::user::e_key event_key(UIEvent * event);
@@ -27,16 +27,10 @@ class aura_window;
 @public
    
    
-    aura_window           * m_pwindow;
+    aura_window            * m_pwindow;
     RoundViewController    * m_controller;
    
 }
-
-
--(void)unsafe_boot_window_has_focus : (bool *)pbool;
--(void)on_destroy;
--(void)windowDidExpose;
--(void)windowWillClose;
 
 
 @end

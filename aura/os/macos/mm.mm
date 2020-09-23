@@ -219,7 +219,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 void os_post_quit()
 {
    
-   ns_main_sync(^()
+   ns_main_async(^()
    {
    
       [NSApp terminate:nil];

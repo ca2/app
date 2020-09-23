@@ -8576,19 +8576,19 @@ string get_bundle_app_library_name();
 
 
 
-void aura_application_main(int argc, char* argv[], const char* pszCommandLine);
-
-namespace aura
-{
-
-   void system::application_main(int argc, char* argv[], const char* pszCommandLine)
-   {
-
-      aura_application_main(argc, argv, pszCommandLine);
-
-   }
-
-} // namespace apex
+//void aura_application_main(int argc, char* argv[], const char* pszCommandLine);
+//
+//namespace aura
+//{
+//
+//   void system::application_main(int argc, char* argv[], const char* pszCommandLine)
+//   {
+//
+//      aura_application_main(argc, argv, pszCommandLine);
+//
+//   }
+//
+//} // namespace apex
 
 
 

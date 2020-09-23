@@ -428,7 +428,7 @@ namespace user
       if(bSelected) // selected
       {
 
-         //if(Session.savings().is_trying_to_save(::aura::resource_processing))
+         //if(Session.savings().is_trying_to_save(::e_resource_processing))
          //{
 
             data.m_pdc->fill_rect(data.m_rect, ARGB(127, 96,96,96));

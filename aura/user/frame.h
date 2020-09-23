@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "menu_shared.h"
+#include "apex/user/menu_shared.h"
 
 
 //
@@ -121,6 +121,7 @@ namespace user
       
       virtual style * _get_style() const override;
       virtual int get_derived_height(int iWidth);
+      virtual int get_derived_width(int iHeight);
 
       virtual void set_frame_title(const string& strFrameTitle);
       virtual string get_frame_title() const;

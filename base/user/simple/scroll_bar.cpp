@@ -1306,7 +1306,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      if (Session.savings().is_trying_to_save(::aura::resource_processing))
+      if (Session.savings().is_trying_to_save(::e_resource_processing))
       {
 
          pgraphics->fill_rect(rectClient, RGB(255, 255, 255));

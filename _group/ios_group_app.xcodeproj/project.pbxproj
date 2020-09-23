@@ -12,6 +12,8 @@
 		9A415BFE2473931600EF2BCD /* libios_draw2d_quartz2d.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A6FABD52304797E00340A3D /* libios_draw2d_quartz2d.a */; };
 		9A415CA12473953200EF2BCD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A415C9C2473953100EF2BCD /* Images.xcassets */; };
 		9A449B022477382A0002A827 /* libios_aura.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A247CE92452C41700F23D28 /* libios_aura.a */; };
+		9AD695EF251A75AE00C0EBD7 /* libios_acme.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AD695CC251A757500C0EBD7 /* libios_acme.dylib */; };
+		9AD695F0251A75AE00C0EBD7 /* libios_apex.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AD695D0251A757500C0EBD7 /* libios_apex.dylib */; };
 		9AFC0E732473859C00AF47B7 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AFC0E722473859C00AF47B7 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
@@ -191,15 +193,45 @@
 			remoteGlobalIDString = 9AE24E151904CF99001AEFFB;
 			remoteInfo = draw2d_quartz2d_iosTests;
 		};
+		9AD695C7251A757400C0EBD7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A079225251A32580043C7B2 /* acme.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AD68E39251A753A00C0EBD7;
+			remoteInfo = ios_acme;
+		};
+		9AD695CB251A757500C0EBD7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A079225251A32580043C7B2 /* acme.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AD692B6251A753A00C0EBD7;
+			remoteInfo = ios_acme;
+		};
+		9AD695CF251A757500C0EBD7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A07922B251A32680043C7B2 /* apex.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AD695C2251A754800C0EBD7;
+			remoteInfo = ios_apex;
+		};
+		9AD695DE251A757900C0EBD7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A07922B251A32680043C7B2 /* apex.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AD692B7251A754800C0EBD7;
+			remoteInfo = ios_apex;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		9AFC0D9A24737B6C00AF47B7 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = "$(WorkspaceDir)/time-ios/library/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+			dstPath = "$(WorkspaceDir)/time/$(PLATFORM_MODIFIER)";
 			dstSubfolderSpec = 0;
 			files = (
+				9AD695EF251A75AE00C0EBD7 /* libios_acme.dylib in CopyFiles */,
+				9AD695F0251A75AE00C0EBD7 /* libios_apex.dylib in CopyFiles */,
 				9A449B022477382A0002A827 /* libios_aura.a in CopyFiles */,
 				9A415BFE2473931600EF2BCD /* libios_draw2d_quartz2d.a in CopyFiles */,
 				9A415BB924738E8800EF2BCD /* libexperience_anthill.a in CopyFiles */,
@@ -269,6 +301,7 @@
 			isa = PBXGroup;
 			children = (
 				9A07922A251A32590043C7B2 /* libacme.dylib */,
+				9AD695CC251A757500C0EBD7 /* libios_acme.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -277,6 +310,7 @@
 			isa = PBXGroup;
 			children = (
 				9A079230251A32680043C7B2 /* libapex.dylib */,
+				9AD695D0251A757500C0EBD7 /* libios_apex.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -357,6 +391,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				9AD695DF251A757900C0EBD7 /* PBXTargetDependency */,
+				9AD695C8251A757400C0EBD7 /* PBXTargetDependency */,
 				9A449AFF247738100002A827 /* PBXTargetDependency */,
 				9A415BAF24738E6300EF2BCD /* PBXTargetDependency */,
 				9A415BB124738E6300EF2BCD /* PBXTargetDependency */,
@@ -576,6 +612,20 @@
 			remoteRef = 9A6FABD62304797E00340A3D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		9AD695CC251A757500C0EBD7 /* libios_acme.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libios_acme.dylib;
+			remoteRef = 9AD695CB251A757500C0EBD7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9AD695D0251A757500C0EBD7 /* libios_apex.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libios_apex.dylib;
+			remoteRef = 9AD695CF251A757500C0EBD7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -625,6 +675,16 @@
 			isa = PBXTargetDependency;
 			name = ios_aura;
 			targetProxy = 9A449AFE247738100002A827 /* PBXContainerItemProxy */;
+		};
+		9AD695C8251A757400C0EBD7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_acme;
+			targetProxy = 9AD695C7251A757400C0EBD7 /* PBXContainerItemProxy */;
+		};
+		9AD695DF251A757900C0EBD7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_apex;
+			targetProxy = 9AD695DE251A757900C0EBD7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

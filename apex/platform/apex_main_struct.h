@@ -81,6 +81,36 @@ struct CLASS_DECL_APEX apex_main_struct
       
    }
 
+   apex_main_struct & operator = (const apex_main_struct & mainstruct)
+   {
+      
+      if(this != &mainstruct)
+      {
+         
+         m_bConsole = mainstruct.m_bConsole;
+         m_bDraw2d= mainstruct.m_bDraw2d;
+         m_bUser= mainstruct.m_bUser;
+         m_bUserEx= mainstruct.m_bUserEx;
+         m_bImaging= mainstruct.m_bImaging;
+         
+         #ifdef WINDOWS_DESKTOP
+         m_bGdiplus = mainstruct.m_bGdiplus;
+         #elif defined(LINUX)
+         m_bGtkApp = mainstruct.m_bGtkApp;
+         #endif
+         m_bShowApplicationInformation= mainstruct.m_bShowApplicationInformation;
+         m_pintstringLanguageResourceMap= mainstruct.m_pintstringLanguageResourceMap;
+         m_iMatterFromHttpCache= mainstruct.m_iMatterFromHttpCache;
+
+         m_pszMain = mainstruct.m_pszMain;
+         m_pfnNewAuraApplication = mainstruct.m_pfnNewAuraApplication;
+         m_pfnNewAuraLibrary = mainstruct.m_pfnNewAuraLibrary;
+
+      }
+      
+      return *this;
+   }
+   
 
    //void application_initialize();
    //void console_initialize();

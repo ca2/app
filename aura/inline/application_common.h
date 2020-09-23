@@ -18,7 +18,7 @@ extern "C" void draw2d_direct2d_factory_exchange();
 
 #elif defined(__APPLE__)
 
-extern "C" void draw2d_quartz_exchange();
+extern "C" void draw2d_quartz_factory_exchange();
 
 #else
 
@@ -177,7 +177,16 @@ class static_application_factory :
 public:
 
 
-   virtual ::apex::application* new_application() override { return new APPLICATION; }
+   virtual ::apex::application* new_application() override
+   {
+      auto papplication = new APPLICATION;
+#ifdef NO_IMAGING
+      papplication->m_bImaging = false;
+#endif
+      
+      return papplication;
+      
+   }
 
 
    static_application_factory(const char * pszName = "") :

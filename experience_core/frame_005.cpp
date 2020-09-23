@@ -465,7 +465,7 @@ SizingNone:;
 
                   rectDraw = ::rect_dim(x, y, cx, 1);
 
-                  if(Session.savings().is_trying_to_save(::aura::resource_processing))
+                  if(Session.savings().is_trying_to_save(::e_resource_processing))
                   {
 
                      pgraphics->fill_rect(rectDraw, crTopLeft);
@@ -484,7 +484,7 @@ SizingNone:;
 
                   rectDraw = ::rect_dim(x, y + 1, 1, cy - 2);
 
-                  if(Session.savings().is_trying_to_save(::aura::resource_processing))
+                  if(Session.savings().is_trying_to_save(::e_resource_processing))
                   {
 
                      pgraphics->fill_rect(rectDraw, crTopLeft);
@@ -504,7 +504,7 @@ SizingNone:;
 
                   rectDraw = ::rect_dim(x + cx - 1, y + 1, 1, cy - 2);
 
-                  if(Session.savings().is_trying_to_save(::aura::resource_processing))
+                  if(Session.savings().is_trying_to_save(::e_resource_processing))
                   {
 
                      pgraphics->fill_rect(rectDraw, crBottomRight);
@@ -524,7 +524,7 @@ SizingNone:;
 
                   rectDraw = ::rect_dim(x, y + cy - 1, cx, 1);
 
-                  if(Session.savings().is_trying_to_save(::aura::resource_processing))
+                  if(Session.savings().is_trying_to_save(::e_resource_processing))
                   {
 
                      pgraphics->fill_rect(rectDraw, crBottomRight);

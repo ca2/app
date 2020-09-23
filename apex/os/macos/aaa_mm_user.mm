@@ -32,28 +32,28 @@ namespace macos
 } // namespace macos
 
 
-namespace user
-{
-
-
-   bool is_dark_mode()
-   {
-      
-      NSAppearance *appearance = NSAppearance.currentAppearance;
-      
-      if (@available(*, macOS 10.14))
-      {
-      
-         return appearance.name == NSAppearanceNameDarkapex;
-    
-      }
-
-      return false;
-      
-   }
-
-
-} // namespace user
+//namespace user
+//{
+//
+//
+//   bool is_dark_mode()
+//   {
+//
+//      NSAppearance *appearance = NSAppearance.currentAppearance;
+//
+//      if (@available(*, macOS 10.14))
+//      {
+//
+//         return appearance.name == NSAppearanceNameDarkapex;
+//
+//      }
+//
+//      return false;
+//
+//   }
+//
+//
+//} // namespace user
 
 CGRect g_rectWorkspace;
 

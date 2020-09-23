@@ -7,7 +7,7 @@
 //
 
 #include "_mm.h"
-#include "aura/node/macos/AuraWindowApp.h"
+#include "apex/node/macos/ApexWindowApp.h"
 #include "aura/os/cross/windows/windowing.h"
 
 void defer_dock_application(int_bool bDock);
@@ -31,30 +31,6 @@ namespace macos
 
 
 } // namespace macos
-
-
-namespace user
-{
-
-
-   bool is_dark_mode()
-   {
-      
-      NSAppearance *appearance = NSAppearance.currentAppearance;
-      
-      if (@available(*, macOS 10.14))
-      {
-      
-         return appearance.name == NSAppearanceNameDarkAqua;
-    
-      }
-
-      return false;
-      
-   }
-
-
-} // namespace user
 
 CGRect g_rectWorkspace;
 

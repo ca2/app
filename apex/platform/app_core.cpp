@@ -2297,12 +2297,12 @@ bool apex_level::defer_init(PFN_DEFER_INIT pfnDeferInit)
 
 
 
-void set_apex_system_as_thread()
-{
-
-   ::set_thread(::get_context_system());
-
-}
+//void set_apex_system_as_thread()
+//{
+//
+//   ::set_thread(::get_context_system());
+//
+//}
 
 
 ::app_core * g_pappcore = nullptr;

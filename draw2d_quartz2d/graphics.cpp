@@ -4,19 +4,8 @@
 #include <CoreFoundation/CFDictionary.h>
 
 
-//extern "C"
 unsigned long apple_get_fonts(char *** p);
 double nsfont_get_ctweight(int iWeight);
-
-//void __copy(CGRect  * pr, const RECT * prect)
-//{
-//
-//   rect.origin.x = pr->left;
-//   rect.origin.y = pr->top;
-//   rect.size.width = width(pr);
-//   rect.size.height = height(pr);
-//
-//}
 
 
 namespace draw2d_quartz2d
@@ -572,32 +561,15 @@ namespace draw2d_quartz2d
    }
 
 
-//   bool graphics::Arc(const ::rectd & rect, const ::pointd & pointStart, const ::pointd & pointEnd)
-//   {
-//
-//      return Arc(
-//             rect.left,
-//             rect.top,
-//             rect.right,
-//             rect.bottom,
-//             pointStart.x,
-//             pointStart.y,
-//             pointEnd.x,
-//             pointEnd.y);
-//
-//   }
-
    bool graphics::Polyline(const POINT* lpPoints, count nCount)
    {
 
-      /*ASSERT(get_handle1() != nullptr);
-
-       return ::Polyline(get_handle1(), lpPoints, nCount) != FALSE;*/
-
-//      __throw(not_implemented());
-
       if(nCount < 2)
+      {
+         
          return false;
+         
+      }
 
       CGContextBeginPath(m_pdc);
 
@@ -911,12 +883,11 @@ namespace draw2d_quartz2d
    {
 
       __throw(not_implemented());
+
       return false;
 
-      //ASSERT(get_handle1() != nullptr);
-      //return ::Chord(get_handle1(), rect.left, rect.top, rect.right, rect.bottom, pointStart.x, pointStart.y, pointEnd.x, pointEnd.y) != FALSE;
-
    }
+
 
    void graphics::DrawFocusRect(const ::rect & rect)
    {
@@ -3769,7 +3740,7 @@ namespace draw2d_quartz2d
       prect->left = rect.origin.x;
       prect->top = rect.origin.y;
       prect->right = prect->left + rect.size.width;
-      prect->bottom = prect->right + rect.size.height;
+      prect->bottom = prect->top + rect.size.height;
 
       return 0;
 

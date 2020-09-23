@@ -62,7 +62,7 @@
 	if(self == NULL)
       return NULL;
    
-
+   ApexWindow * papexwindow = self;
    
 	[self setOpaque:NO];
    
@@ -92,27 +92,27 @@
 
    [self setIgnoresMouseEvents : NO];
    
-   m_pwindowcontroller = [[NSWindowController alloc] initWithWindow: self];
+   m_pwindowcontroller = [[NSWindowController alloc] initWithWindow: papexwindow];
 
-   [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(windowDidBecomeKey:) name: NSWindowDidBecomeKeyNotification object: self];
+   [[NSNotificationCenter defaultCenter] addObserver: papexwindow selector: @selector(windowDidBecomeKey:) name: NSWindowDidBecomeKeyNotification object: papexwindow];
 
-   [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(windowDidResignKey:) name: NSWindowDidResignKeyNotification object: self];
+   [[NSNotificationCenter defaultCenter] addObserver: papexwindow selector: @selector(windowDidResignKey:) name: NSWindowDidResignKeyNotification object: papexwindow];
 
-   [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(windowDidBecomeMain:) name: NSWindowDidBecomeMainNotification object: self];
+   [[NSNotificationCenter defaultCenter] addObserver: papexwindow selector: @selector(windowDidBecomeMain:) name: NSWindowDidBecomeMainNotification object: papexwindow];
    
-   [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(windowDidResignMain:) name: NSWindowDidResignMainNotification object: self];
+   [[NSNotificationCenter defaultCenter] addObserver: papexwindow selector: @selector(windowDidResignMain:) name: NSWindowDidResignMainNotification object: papexwindow];
 
-   [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(windowDidResize:) name: NSWindowDidResizeNotification object: self];
+   [[NSNotificationCenter defaultCenter] addObserver: papexwindow selector: @selector(windowDidResize:) name: NSWindowDidResizeNotification object: papexwindow];
    
-   [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector (windowDidMove:) name: NSWindowDidMoveNotification object: self];
+   [[NSNotificationCenter defaultCenter] addObserver: papexwindow selector: @selector (windowDidMove:) name: NSWindowDidMoveNotification object: papexwindow];
 
-   [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(windowWillClose:) name: NSWindowWillCloseNotification object: self];
+   [[NSNotificationCenter defaultCenter] addObserver: papexwindow selector: @selector(windowWillClose:) name: NSWindowWillCloseNotification object: papexwindow];
 
-   [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(windowDidExpose:) name: NSWindowDidExposeNotification object: self];
+   [[NSNotificationCenter defaultCenter] addObserver: papexwindow selector: @selector(windowDidExpose:) name: NSWindowDidExposeNotification object: papexwindow];
 
-   [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(windowDidMiniaturize:) name: NSWindowDidMiniaturizeNotification object: self];
+   [[NSNotificationCenter defaultCenter] addObserver: papexwindow selector: @selector(windowDidMiniaturize:) name: NSWindowDidMiniaturizeNotification object: papexwindow];
 
-   [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(windowDidDeminiaturize:) name: NSWindowDidDeminiaturizeNotification object: self];
+   [[NSNotificationCenter defaultCenter] addObserver: papexwindow selector: @selector(windowDidDeminiaturize:) name: NSWindowDidDeminiaturizeNotification object: papexwindow];
    
    [self create_view];
    
@@ -137,11 +137,9 @@
 - (void)performMiniaturize:(id)sender
 {
    
-   //[self miniaturize: self];
    [self miniaturize:self];
    
 }
-
 
 
 //

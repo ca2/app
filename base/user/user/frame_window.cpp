@@ -2769,7 +2769,7 @@ namespace user
    void frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      if (m_bWindowFrame && !Session.savings().is_trying_to_save(::aura::resource_display_bandwidth))
+      if (m_bWindowFrame && !Session.savings().is_trying_to_save(::e_resource_display_bandwidth))
       {
 
       }
@@ -2843,7 +2843,7 @@ namespace user
       if(strType.contains_ci("albertopibiri_keyboard") && strType.contains_ci("main_frame"))
       {
 
-         ::output_debug_string("albertopibiri_keyboard::main_frame");
+         //::output_debug_string("albertopibiri_keyboard::main_frame");
 
       }
       else if(strType.contains_ci("simple_child_frame"))
@@ -2900,9 +2900,9 @@ namespace user
          _008CallOnDraw(pgraphics);
 
       }
-      else if (!Session.savings().is_trying_to_save(::aura::resource_processing)
-               && !Session.savings().is_trying_to_save(::aura::resource_display_bandwidth)
-               && !Session.savings().is_trying_to_save(::aura::resource_memory))
+      else if (!Session.savings().is_trying_to_save(::e_resource_processing)
+               && !Session.savings().is_trying_to_save(::e_resource_display_bandwidth)
+               && !Session.savings().is_trying_to_save(::e_resource_memory))
       {
 
 #if TEST

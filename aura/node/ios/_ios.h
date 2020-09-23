@@ -36,21 +36,21 @@ CLASS_DECL_AURA void __trace_message(const char * lpszPrefix, ::message::message
 CLASS_DECL_AURA void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
 
 #include "implementation.h"
-#include "dir_system.h"
-#include "file_system.h"
-#include "dir_context.h"
-#include "file_context.h"
-#include "file.h"
+//#include "dir_system.h"
+//#include "file_system.h"
+//#include "dir_context.h"
+//#include "file_context.h"
+//#include "file.h"
 #include "factory_exchange.h"
 #include "thread.h"
-#include "os_context.h"
-#include "ip_enum.h"
-#include "shell.h"
-#include "file_os_watcher.h"
+//#include "os_context.h"
+//#include "ip_enum.h"
+//#include "shell.h"
+//#include "file_os_watcher.h"
 #include "host_interaction.h"
 
 
-#include "application.h"
+//#include "application.h"
 
 
 //#include "printer.h"

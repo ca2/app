@@ -23,7 +23,7 @@ void macos_on_app_changed_occlusion_state();
 
 void set_apex_system_as_thread();
 
-@implementation AuraWindowApp
+//@implementation AuraWindowApp
 
 
 @synthesize windowcontroller;

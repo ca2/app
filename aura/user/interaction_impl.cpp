@@ -2115,7 +2115,7 @@ namespace user
    LONG_PTR interaction_impl::get_window_long_ptr(i32 nIndex) const
    {
 
-      return ::user::primitive_impl::get_window_long_ptr(nIndex);
+      return m_oswindow->get_window_long_ptr(nIndex);
 
    }
 
@@ -2123,7 +2123,7 @@ namespace user
    LONG_PTR interaction_impl::set_window_long_ptr(i32 nIndex,LONG_PTR lValue)
    {
 
-      return ::user::primitive_impl::set_window_long_ptr(nIndex, lValue);
+      return m_oswindow->set_window_long_ptr(nIndex, lValue);
 
    }
 
@@ -4196,7 +4196,7 @@ namespace user
    void interaction_impl::on_after_graphical_update()
    {
 
-      windowing_output_debug_string("\non_after_graphical_update before Session.get_cursor_pos");
+//      windowing_output_debug_string("\non_after_graphical_update before Session.get_cursor_pos");
 
       // if(is_set(m_puserinteraction))
       // {
@@ -4205,7 +4205,7 @@ namespace user
 
       // }
 
-      windowing_output_debug_string("\non_after_graphical_update after Session.get_cursor_pos");
+//      windowing_output_debug_string("\non_after_graphical_update after Session.get_cursor_pos");
 
    }
 

@@ -9,7 +9,7 @@
 #import "ApexWindow.h"
 
 
-NSWindow * new_aoex_window(apex_window * papexwindow, CGRect rect, unsigned int uStyle)
+NSWindow * new_apex_window(apex_window * papexwindow, CGRect rect, unsigned int uStyle)
 {
    
    // rect.origin.x        = 0;
@@ -37,7 +37,7 @@ NSWindow * new_aoex_window(apex_window * papexwindow, CGRect rect, unsigned int 
    ns_main_sync(^()
    {
                    
-      papexwindow->m_papexwindow = [papexwindow->m_papexwindow initWithContentRect : rect styleMask : uStyle backing : NSBackingStoreBuffered defer : YES];
+      [papexwindow->m_papexwindow initWithContentRect : rect styleMask : uStyle backing : NSBackingStoreBuffered defer : YES];
                    
    });
    

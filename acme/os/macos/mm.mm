@@ -214,8 +214,6 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 }
 
 
-
-
 void os_post_quit()
 {
    
@@ -229,20 +227,12 @@ void os_post_quit()
 }
 
 
-
-
-
-
 void ns_Sleep(unsigned int uiMillis)
 {
 
    [NSThread sleepForTimeInterval: ((double) uiMillis / 1000.0) ];
 
 }
-
-
-
-
 
 
 

@@ -3,6 +3,88 @@
 #include "aura/user/_user.h"
 #endif
 
+namespace user
+{
+
+
+   ::eappearance visual_state::appearance() const
+   {
+   
+      return m_eappearance;
+   
+   }
+
+   
+   visual_state& visual_state::operator = (const e_appearance& eappearance)
+   {
+      
+      m_eappearance = eappearance;
+      
+      if(m_eappearance)
+      {
+         
+         set_modified();
+         
+      }
+      
+      return *this;
+   
+   }
+
+
+   visual_state& visual_state::operator |= (const e_appearance& eappearance)
+   {
+      
+      m_eappearance |= eappearance;
+      
+      if (m_eappearance)
+      {
+         
+         set_modified();
+         
+      }
+      
+      return *this;
+      
+   }
+
+
+   visual_state& visual_state::operator -= (const e_appearance& eappearance)
+   {
+      
+      m_eappearance -= eappearance;
+      
+      if (m_eappearance)
+      {
+         
+         set_modified();
+         
+      }
+      
+      return *this;
+      
+   }
+
+
+   visual_state& visual_state::operator ^= (const e_appearance& eappearance)
+   {
+      
+      m_eappearance ^= eappearance;
+      
+      if (m_eappearance)
+      {
+         
+         set_modified();
+         
+      }
+      
+      return *this;
+      
+   }
+
+
+} // namespace user
+
 
 zorder::zorder()
 {
@@ -400,3 +482,6 @@ zorder & zorder::operator = (const zorder & zorder)
    return *this;
 
 }
+
+
+

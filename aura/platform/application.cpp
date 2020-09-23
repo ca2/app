@@ -7331,21 +7331,21 @@ retry_license:
          if (has_property("save_processing"))
          {
 
-            Session.savings().save(::apex::resource_processing);
+            Session.savings().save(::e_resource_processing);
 
          }
 
          if (has_property("save_blur_back"))
          {
 
-            Session.savings().save(::apex::resource_blur_background);
+            Session.savings().save(::e_resource_blur_background);
 
          }
 
          if (has_property("save_transparent_back"))
          {
 
-            Session.savings().save(::apex::resource_translucent_background);
+            Session.savings().save(::e_resource_translucent_background);
 
          }
 
@@ -11096,7 +11096,7 @@ namespace aura
       if (key.m_strDataKey == "ca2.savings")
       {
 
-         Session.savings().m_eresourceflagsShouldSave = (::apex::e_resource) var.i32();
+         Session.savings().m_eresourceflagsShouldSave = (::enum_resource) var.i32();
 
       }
 

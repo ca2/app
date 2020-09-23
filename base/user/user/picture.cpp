@@ -942,7 +942,7 @@ namespace user
 
       rgn->create_polygon(pta.get_data(), (int)pta.get_count(), ::draw2d::fill_mode_winding);
 
-      pgraphics->SelectClipRgn(rgn, RGN_AND);
+      pgraphics->SelectClipRgn(rgn, ::draw2d::e_combine_intersect);
 
       mRot.append(::draw2d::matrix::rotation(m_ppictureimpl->m_dRotate));
 

@@ -32,33 +32,50 @@ namespace macos
 } // namespace macos
 
 
+
+bool g_bMacosDarkMode = false;
+void macos_calc_dark_mode()
+{
+
+   ns_main_async(^()
+   {
+
+   NSString *interfaceStyle = [NSUserDefaults.standardUserDefaults valueForKey:@"AppleInterfaceStyle"];
+   g_bMacosDarkMode =[interfaceStyle isEqualToString:@"Dark"];
+      
+   });
+
+   
+}
 namespace user
 {
 
 
    bool is_dark_mode()
    {
-      
-      if (@available(macOS 10.9, *)) {
-         NSAppearance *appearance = NSAppearance.currentAppearance;
-         
-         if (@available(*, macOS 10.14))
-         {
-            
-            return appearance.name == NSAppearanceNameDarkAqua;
-            
-         }
-         else
-         {
-            
-            return false;
-            
-         }
-      } else {
-         return false;
-      }
-      return false;
-      
+
+//      if (@available(macOS 10.9, *)) {
+//         NSAppearance *appearance = NSAppearance.currentAppearance;
+//
+//         if (@available(*, macOS 10.14))
+//         {
+//
+//            return appearance.name == NSAppearanceNameDarkAqua;
+//
+//         }
+//         else
+//         {
+//
+//            return false;
+//
+//         }
+//      } else {
+//         return false;
+//      }
+//      return false;
+//
+
+      return g_bMacosDarkMode;
    }
 
 

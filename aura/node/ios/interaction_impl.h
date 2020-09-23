@@ -411,7 +411,7 @@ namespace ios
       void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
       //xxx bool OnHelpInfo(HELPINFO* lpHelpInfo);
       void OnIconEraseBkgnd(::draw2d::graphics_pointer & pgraphics);
-      LRESULT OnMenuChar(UINT nChar, UINT nFlags, ::user::menu* pMenu);
+      //LRESULT OnMenuChar(UINT nChar, UINT nFlags, ::user::menu* pMenu);
       void OnMenuSelect(UINT nItemID, UINT nFlags, HMENU hSysMenu);
       void OnMove(i32 x, i32 y);
 
@@ -491,8 +491,8 @@ namespace ios
       void OnTimer(uptr nIDEvent);
 
       // Initialization message handler member functions
-      void OnInitMenu(::user::menu* pMenu);
-      void OnInitMenuPopup(::user::menu* pPopupMenu, UINT nIndex, bool bSysMenu);
+      //void OnInitMenu(::user::menu* pMenu);
+      //void OnInitMenuPopup(::user::menu* pPopupMenu, UINT nIndex, bool bSysMenu);
 
       // Clipboard message handler member functions
       void OnAskCbFormatName(UINT nMaxCount, LPTSTR lpszString);

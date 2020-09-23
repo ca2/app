@@ -509,23 +509,25 @@ namespace user
 
    LONG_PTR primitive_impl::get_window_long_ptr(i32 nIndex) const
    {
-
-      if (nIndex == GWL_STYLE)
-      {
-
-         return  m_uStyle;
-
-      }
-      else if (nIndex == GWL_EXSTYLE)
-      {
-
-         return  m_uExStyle;
-
-      }
-
-      sync_lock sl(&((primitive_impl *)this)->m_mutexLongPtr);
-
-      return (LONG_PTR)m_longptr[nIndex];
+      
+      return 0;
+//
+//      if (nIndex == GWL_STYLE)
+//      {
+//
+//         return  m_uStyle;
+//
+//      }
+//      else if (nIndex == GWL_EXSTYLE)
+//      {
+//
+//         return  m_uExStyle;
+//
+//      }
+//
+//      sync_lock sl(&((primitive_impl *)this)->m_mutexLongPtr);
+//
+//      return (LONG_PTR)m_longptr[nIndex];
 
    }
 
@@ -533,24 +535,28 @@ namespace user
    LONG_PTR primitive_impl::set_window_long_ptr(i32 nIndex, LONG_PTR lValue)
    {
 
-      if (nIndex == GWL_STYLE)
-      {
-
-         return m_uStyle = lValue;
-
-      }
-      else if (nIndex == GWL_EXSTYLE)
-      {
-
-         return m_uExStyle = lValue;
-
-      }
-
-      sync_lock sl(&m_mutexLongPtr);
-
-      m_longptr[nIndex] = lValue;
-
-      return lValue;
+//      if (nIndex == GWL_STYLE)
+//      {
+//
+//         return m_uStyle = lValue;
+//
+//      }
+//      else if (nIndex == GWL_EXSTYLE)
+//      {
+//
+//         return m_uExStyle = lValue;
+//
+//      }
+//
+//      sync_lock sl(&m_mutexLongPtr);
+//
+//      m_longptr[nIndex] = lValue;
+//
+//      return lValue;
+      
+      //return lValue;
+      
+      return 0;
 
    }
 

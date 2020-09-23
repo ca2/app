@@ -442,25 +442,25 @@ oswindow set_active_window(oswindow window)
 
 
 
-
-WINBOOL ui_SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int cx, int cy, UINT uFlags)
-{
-   
-   main_async([=]()
-              {
-   
-   if(hwnd == nullptr)
-      return FALSE;
-   if(hwnd->m_pimpl == nullptr)
-      return FALSE;
-      return  hwnd->m_pimpl->m_puserinteraction->set_window_pos((iptr)hwndInsertAfter, x, y, cx, cy, uFlags) ? TRUE : FALSE;
-      
-   });
-   
-   return TRUE;
-
-}
-
+//
+//WINBOOL ui_SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int cx, int cy, UINT uFlags)
+//{
+//   
+//   main_async([=]()
+//              {
+//   
+//   if(hwnd == nullptr)
+//      return FALSE;
+//   if(hwnd->m_pimpl == nullptr)
+//      return FALSE;
+//      return  hwnd->m_pimpl->m_puserinteraction->set_window_pos((iptr)hwndInsertAfter, x, y, cx, cy, uFlags) ? TRUE : FALSE;
+//      
+//   });
+//   
+//   return TRUE;
+//
+//}
+//
 
 
 WINBOOL get_window_rect(oswindow hwnd, LPRECT lprect)

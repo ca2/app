@@ -40,23 +40,7 @@
 	[self setOpaque:YES];
 
    [self setBackgroundColor: [ UIColor whiteColor ] ];
-		
-//	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mainWindowChanged:) name:NSWindowDidBecomeMainNotification object:self];
-		
-//	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mainWindowChanged:) name:NSWindowDidResignMainNotification object:self];
-   
-//   [[UINotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidResize:) name:NSWindowDidResizeNotification object:self];
-//   
-//   [[UINotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidMove:) name:NSWindowDidMoveNotification object:self];
-//   
-//   [[UINotificationCenter defaultCenter] addObserver:self selector:@selector(windowWillClose:) name:NSWindowWillCloseNotification object:self];
-//   
-//   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidExpose:) name:NSWindowDidExposeNotification object:self];
-   
 
-   
-// [self setAcceptsMouseMovedEvents : YES];
-      
    m_controller = [[RoundViewController alloc] init];
    
    m_controller->m_pwindow = self;
@@ -346,107 +330,6 @@
    
    
 }
-
-
-
-- (void)windowDidMove:(NSNotification *)notification
-{
-   
-   try
-   {
-      
-//      NSRect rect = [self frame];
-//      
-//      CGPoint point;
-//      
-//      point.x        = rect.origin.x;
-//      
-//      point.y        = [[NSScreen mainScreen] frame ].size.height - (rect.origin.y + rect.size.height);
-//      
-//      m_pwindow->round_window_moved(point);
-      
-   }
-   catch (...)
-   {
-      
-   }
-   
-}
-
--(void)windowDidExpose
-{
-   
-   try
-   {
-      
-      m_pwindow->round_window_on_show();
-      
-   }
-   catch (...)
-   {
-      
-   }
-   
-}
-
-
-
--(void)windowWillClose
-{
-   
-   try
-   {
-      
-      m_pwindow->round_window_on_hide();
-      
-   }
-   catch (...)
-   {
-      
-   }
-   
-}
-
-
-
-//
-// contentRectForFrameRect:
-//
-// Returns the rect for the content rect, taking the frame.
-//
-/*- (CGRect)contentRectForFrameRect:(CGRect)windowFrame
-{
-  // bounds = windowFrame;
-//	windowFrame.origin = NSZeroPoint;
-//	return NSInsetRect(windowFrame, NS_ROUND_WINDOW_FRAME_PADDING, NS_ROUND_WINDOW_FRAME_PADDING);
-}
-
-//
-// frameRectForContentRect:styleMask:
-//
-// Ensure that the window is make the appropriate amount bigger than the content.
-//
-+ (NSRect)frameRectForContentRect:(NSRect)windowContentRect styleMask:(NSUInteger)windowStyle
-{
-	return NSInsetRect(windowContentRect, -NS_ROUND_WINDOW_FRAME_PADDING, -NS_ROUND_WINDOW_FRAME_PADDING);
-}
-*/
-
-- (void) on_destroy;
-{
-   
-   m_pwindow = NULL;
-   
-   m_controller->childContentView->m_roundwindow = nil;
-   
-   m_controller->childContentView = nil;
-   
-//   [m_controller release];
-   
-}
-
-
-
 
 
 @end

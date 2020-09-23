@@ -20,7 +20,7 @@
 #import "AuraWindowFrameView.h"
 
 
-#import "RoundViewController.h"
+#import "AuraViewController.h"
 
 
 #import "aura_window.h"

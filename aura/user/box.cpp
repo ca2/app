@@ -384,8 +384,13 @@ namespace user
          }
          else
          {
+            
+            main_sync([this, windowrect]()
+                      {
 
             good_restore(nullptr, windowrect.m_rectRestored, true, activation_none, zorder_top, windowrect.m_edisplay);
+               
+            });
 
          }
 

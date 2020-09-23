@@ -1006,7 +1006,7 @@ namespace aura
 
       //virtual ::apex::library* load_library(const char* pszLibrary);
       
-      virtual void application_main(int argc, char *argv[], const char * pszCommandLine) override;
+//      virtual void application_main(int argc, char *argv[], const char * pszCommandLine) override;
       
 
    };

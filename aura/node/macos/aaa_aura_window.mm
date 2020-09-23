@@ -41,7 +41,7 @@ NSWindow * new_aura_window(aura_window * paurawindow, CGRect rect, unsigned int 
    ns_main_sync(^()
    {
                    
-      paurawindow->m_paurawindow = [paurawindow->m_paurawindow initWithContentRect : rect styleMask : uStyle backing : NSBackingStoreBuffered defer : YES];
+      [paurawindow->m_paurawindow initWithContentRect : rect styleMask : uStyle backing : NSBackingStoreBuffered defer : YES];
                    
    });
    

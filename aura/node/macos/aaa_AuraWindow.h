@@ -29,15 +29,6 @@ class aura_window;
    
    aura_window *        m_paurawindow;
    
-   
-   
-   
 }
-
--(void)dealloc;
-
--(void)windowDidExpose;
-
--(void)windowWillClose;
 
 @end

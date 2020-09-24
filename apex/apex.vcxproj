@@ -1434,9 +1434,9 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="platform\library.h" />
     <ClInclude Include="platform\library_object_allocator.h" />
     <ClInclude Include="platform\log.h" />
-    <ClInclude Include="platform\machine_event2.h" />
-    <ClInclude Include="platform\machine_event_central2.h" />
-    <ClInclude Include="platform\machine_event_data2.h" />
+    <ClInclude Include="platform\machine_event.h" />
+    <ClInclude Include="platform\machine_event_central.h" />
+    <ClInclude Include="platform\machine_event_data.h" />
     <ClInclude Include="platform\main.h" />
     <ClInclude Include="platform\net.h" />
     <ClInclude Include="platform\number.h" />

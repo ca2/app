@@ -275,7 +275,8 @@ namespace dynamic_source
       pmain->m_pscript2 = pinstance->m_pscript2;
 
       pmain->run_property("on_create");
-      pmain->runall(CREATE_PROCEDURE);
+
+      pmain->call(CREATE_METHOD);
 
       pmain->m_pmain = pmain;
       
@@ -290,7 +291,8 @@ namespace dynamic_source
       pinstance->initialize(pmain);
 
       pinstance->run_property("on_create");
-      pinstance->runall(CREATE_PROCEDURE);
+
+      pinstance->call(CREATE_METHOD);
 
       auto pthread = pdssocket->get_context_thread();
 
@@ -524,7 +526,8 @@ namespace dynamic_source
             pimpl->m_pscript2 = pinstance->m_pscript2;
 
             pimpl->run_property("on_create");
-pimpl->runall(CREATE_PROCEDURE);
+            
+            pimpl->call(CREATE_METHOD);
 
             pimpl->init1();
 
@@ -533,7 +536,8 @@ pimpl->runall(CREATE_PROCEDURE);
             pinstance->m_pinstanceParent2 = pinstanceParent;
 
             pinstance->run_property("on_create");
-pinstance->runall(CREATE_PROCEDURE);
+            
+            pinstance->call(CREATE_METHOD);
 
             if (pinstanceParent->m_pmain->m_iDebug > 0)
             {

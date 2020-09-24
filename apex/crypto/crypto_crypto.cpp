@@ -20,6 +20,8 @@
 
 #endif
 
+#include <zlib.h>
+
 #define CA4_CRYPT_V5_FINAL_HASH_BYTES (WHIRLPOOL_DIGEST_LENGTH * 16)
 #define CA4_CRYPT_V5_SALT_BYTES (CA4_CRYPT_V5_FINAL_HASH_BYTES - WHIRLPOOL_DIGEST_LENGTH)
 
@@ -636,6 +638,14 @@ namespace crypto
       storageDecrypt.to_string(strDecrypt);
       
       return plainlen;
+
+   }
+   
+   
+   u32 crypto::crc32(u32 dwPrevious, const char* psz)
+   {
+
+      return ::crc32(dwPrevious, (const Bytef*)psz, (uInt)strlen(psz));
 
    }
 

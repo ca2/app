@@ -1796,15 +1796,6 @@
     <ClInclude Include="platform\lparam.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\machine_event_central2.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\machine_event_data2.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\machine_event2.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\main.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>

@@ -1485,9 +1485,6 @@
     <ClInclude Include="platform\log.h" />
     <ClInclude Include="platform\logic.h" />
     <ClInclude Include="platform\lparam.h" />
-    <ClInclude Include="platform\machine_event2.h" />
-    <ClInclude Include="platform\machine_event_central2.h" />
-    <ClInclude Include="platform\machine_event_data2.h" />
     <ClInclude Include="platform\main.h" />
     <ClInclude Include="platform\mq.h" />
     <ClInclude Include="platform\muldiv32.h" />

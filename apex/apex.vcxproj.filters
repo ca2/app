@@ -947,15 +947,6 @@
     <ClInclude Include="platform\log.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\machine_event_central2.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\machine_event_data2.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\machine_event2.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\main.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -1492,6 +1483,15 @@
     </ClInclude>
     <ClInclude Include="user\menu_shared.h">
       <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\machine_event_central.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\machine_event_data.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\machine_event.h">
+      <Filter>Header Files\platform</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

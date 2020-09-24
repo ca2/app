@@ -67,8 +67,6 @@ namespace user
 
       }
 
-      User.will_use_view_hint(FONTSEL_IMPACT);
-
       Session.add(method(e_method_font_change, [this]()
       {
 
@@ -425,9 +423,12 @@ namespace user
 
       }
 
+
       rectFontList.bottom -= GetSystemMetrics(SM_CYHSCROLL);
 
       m_pfontlist->m_rectClient = rectFontList;
+
+      m_pfontlist->defer_update();
 
       m_pfontlist->layout();
 

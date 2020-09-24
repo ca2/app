@@ -170,9 +170,9 @@ namespace draw2d_direct2d
    ID2D1Geometry * region::get(::draw2d::graphics* pgraphics)
    {
 
-      switch(m_etype)
+      switch(m_eregion)
       {
-      case type_none:
+      case ::draw2d::e_region_none:
       {
 
          ID2D1PathGeometry * ppathgeometry = nullptr;
@@ -185,15 +185,15 @@ namespace draw2d_direct2d
          return ppathgeometry;
 
       }
-      case type_rect:
+      case ::draw2d::e_region_rect:
          return get_rect(pgraphics);
-      case type_oval:
+      case ::draw2d::e_region_oval:
          return get_oval(pgraphics);
-      case type_polygon:
+      case ::draw2d::e_region_polygon:
          return get_polygon(pgraphics);
-      case type_poly_polygon:
+      case ::draw2d::e_region_poly_polygon:
          return get_polygon(pgraphics);
-      case type_combine:
+      case ::draw2d::e_region_combine:
          return get_combine(pgraphics);
       default:
          ::exception::throw_not_implemented();
@@ -335,19 +335,19 @@ namespace draw2d_direct2d
 
       auto pgeometry2 = m_pregion2->get_os_data < ID2D1Geometry * >(pgraphics);
 
-      if(m_ecombine == combine_add)
+      if(m_ecombine == ::draw2d::e_combine_add)
       {
 
          hr = pgeometry1->CombineWithGeometry(pgeometry2, D2D1_COMBINE_MODE_UNION, nullptr, 0.f, psink.Get());
 
       }
-      else if(m_ecombine == combine_exclude)
+      else if(m_ecombine == ::draw2d::e_combine_exclude)
       {
 
          hr = pgeometry1->CombineWithGeometry(pgeometry2, D2D1_COMBINE_MODE_EXCLUDE, nullptr, 0.f, psink.Get());
 
       }
-      else if(m_ecombine == combine_intersect)
+      else if(m_ecombine == ::draw2d::e_combine_intersect)
       {
 
          hr = pgeometry1->CombineWithGeometry(pgeometry2, D2D1_COMBINE_MODE_INTERSECT, nullptr, 0.f, psink.Get());

@@ -64,7 +64,6 @@ namespace draw2d
       __pointer(::draw2d::font_enumeration)           m_pfontenumeration;
       __pointer(::draw2d::font_enum_item_array)       m_pitema;
 
-
       __pointer(font_list_data)                       m_plistdata;
 
 
@@ -96,6 +95,7 @@ namespace draw2d
       virtual ~font_list();
 
 
+      virtual void defer_update();
       virtual void update();
 
       virtual void defer_font_enumeration();

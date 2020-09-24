@@ -6,10 +6,12 @@
 //
 #pragma once
 
-class menu_shared :
+
+class CLASS_DECL_APEX menu_shared :
    virtual public generic
 {
 public:
+
    
    enum enum_status
    {
@@ -20,13 +22,15 @@ public:
       status_set_disabled = 1<<9,
    };
    
-   char * const * m_ppszParent;
-   char * const * m_ppszMenu;
-   char * const * m_ppszId;
-   void ** m_ositema;
-   int * m_statusa;
-   int m_iCount;
+
+   char * const *       m_ppszParent;
+   char * const *       m_ppszMenu;
+   char * const *       m_ppszId;
+   void **              m_ositema;
+   int  *               m_statusa;
+   int                  m_iCount;
   
+
    menu_shared();
    virtual ~menu_shared();
    
@@ -35,6 +39,7 @@ public:
    
    void on_idle_update();
    
+
 };
 
 

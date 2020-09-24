@@ -648,7 +648,7 @@ namespace experience_core
 
          pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         if (Session.savings().is_trying_to_save(::aura::resource_processing))
+         if (Session.savings().is_trying_to_save(::e_resource_processing))
          {
 
             pgraphics->FillSolidRect(rectClient, RGB(255, 255, 255));

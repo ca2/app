@@ -124,9 +124,9 @@ namespace filehandler
       bool bHover = pview->m_itemHover == m_iIndex;
 
       cr = bHover ? ARGB(255, 230, 255, 230) : ARGB(255, 200, 255, 200);
-      if(!Sess(papp).savings().is_trying_to_save(::aura::resource_processing)
-            && !Sess(papp).savings().is_trying_to_save(::aura::resource_display_bandwidth)
-            && !Sess(papp).savings().is_trying_to_save(::aura::resource_memory))
+      if(!Sess(papp).savings().is_trying_to_save(::e_resource_processing)
+            && !Sess(papp).savings().is_trying_to_save(::e_resource_display_bandwidth)
+            && !Sess(papp).savings().is_trying_to_save(::e_resource_memory))
       {
          class imaging & imaging = App(papp).imaging();
          imaging.color_blend(pgraphics, m_rectItem, cr, 127);

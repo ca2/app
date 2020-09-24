@@ -2253,16 +2253,16 @@ namespace core
 
          m_mapimpactsystem[FONTSEL_IMPACT] = ptemplate;
 
-         System.draw2d().fonts().defer_create_font_enumeration();
+         System.draw2d().fonts();
 
          
 
-         fork([&]()
-         {
-                  System.draw2d().fonts().m_pfontenumeration->check_need_update();
+         //fork([&]()
+         //{
+         //         System.draw2d().fonts().m_pfontenumeration->check_need_update();
 
 
-         });
+         //});
 
       }
 

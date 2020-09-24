@@ -3656,7 +3656,7 @@ namespace draw2d_direct2d
 
          ::draw2d::region_pointer regionExclude(e_create);
 
-         regionExclude->combine(regionBig, regionSmall, ::draw2d::region::combine_exclude);
+         regionExclude->combine(regionBig, regionSmall, ::draw2d::e_combine_exclude);
 
          D2D1::Matrix3x2F m;
 
@@ -3946,7 +3946,7 @@ namespace draw2d_direct2d
    }
 
 
-   int graphics::SelectClipRgn(::draw2d::region* pRgn, int nMode)
+   int graphics::SelectClipRgn(::draw2d::region* pRgn, ::draw2d::enum_combine ecombine)
    {
 
       return 0;

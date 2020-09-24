@@ -207,13 +207,13 @@ namespace user
                if (si.m_eformat == ::draw2d::format_png)
                {
 
-                  str = "data:image/png;base64," + str;
+                  str = "data:image/png;base64;" + str;
 
                }
                else if (si.m_eformat == ::draw2d::format_gif)
                {
 
-                  str = "data:image/gif;base64," + str;
+                  str = "data:image/gif;base64;" + str;
 
                }
 

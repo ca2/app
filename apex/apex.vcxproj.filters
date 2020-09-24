@@ -1487,6 +1487,12 @@
     <ClInclude Include="platform\apex_main_struct.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
+    <ClInclude Include="user\menu_shared_command.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\menu_shared.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\command_line.cpp">
@@ -2193,6 +2199,15 @@
     </ClCompile>
     <ClCompile Include="process\department.cpp">
       <Filter>Source Files\process</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu_shared.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu_shared_commnand.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="os\windows\menu.cpp">
+      <Filter>Source Files\os\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

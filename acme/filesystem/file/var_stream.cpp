@@ -309,5 +309,11 @@ void var_stream::exchange(const ::id & id, double & d)
 
 }
 
+void var_stream::exchange(const ::id& id, i64& i)
+{
+
+   var_exchange(id, i);
+
+}
 
 

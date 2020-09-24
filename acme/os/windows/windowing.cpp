@@ -494,4 +494,20 @@ CLASS_DECL_ACME bool windows_register_class(HINSTANCE hinstance)
 }
 
 
+CLASS_DECL_ACME iptr get_window_long_ptr(oswindow oswindow, int iIndex)
+{
+
+   return ::GetWindowLongPtrW(oswindow, iIndex);
+
+}
+
+
+CLASS_DECL_ACME iptr set_window_long_ptr(oswindow oswindow, int iIndex, iptr i)
+{
+
+   return ::SetWindowLongPtrW(oswindow, iIndex, i);
+
+}
+
+
 

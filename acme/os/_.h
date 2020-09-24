@@ -97,3 +97,6 @@ CLASS_DECL_ACME locale_t get_c_locale();
 
 #include "thread.h"
 
+
+CLASS_DECL_ACME iptr get_window_long_ptr(oswindow oswindow, int iIndex);
+CLASS_DECL_ACME iptr set_window_long_ptr(oswindow oswindow, int iIndex, iptr i);

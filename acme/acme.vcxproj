@@ -1522,6 +1522,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="filesystem\filesystem\_.h" />
     <ClInclude Include="filesystem\filesystem\_impl.h" />
     <ClInclude Include="filesystem\file\aaa_data.h" />
+    <ClInclude Include="filesystem\file\_defer.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="framework_c.h" />
     <ClInclude Include="id.h" />
@@ -1627,6 +1628,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="os\windows\implementation.h" />
     <ClInclude Include="os\windows\internal.h" />
     <ClInclude Include="os\windows\itemidlist.h" />
+    <ClInclude Include="os\windows\process_data.h" />
     <ClInclude Include="os\windows\thread.h" />
     <ClInclude Include="os\windows\port_forward.h" />
     <ClInclude Include="os\windows\printer.h" />

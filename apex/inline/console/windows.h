@@ -23,9 +23,10 @@ public:
 
       m_psystem = ::move_transfer(platform_create_system(strAppId));
 
-      m_psystem->console_initialize();
+      m_psystem->m_bConsole = true;
 
    }
+
 
    void common_construct()
    {

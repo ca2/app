@@ -31,12 +31,23 @@ inline void __exchange(::var_stream & s, ::int_array & ia);
 inline void __exchange(::var_stream & s, ::string_array & stra);
 inline void __exchange(::var_stream & s, ::memory & memory);
 
+inline void __exchange(::var_stream & s, ::file::patha& patha);
+
 
 
 
 
 inline void __exchange(::var_stream & s, ::generic & generic);
 
+
+template < typename OBJECT >
+inline void __exchange(::var_stream& s, __pointer(OBJECT)& pobject);
+
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline void __exchange(::stream& stream, ::array_base < TYPE, ARG_TYPE, ALLOCATOR >& array);
+{
+zzzz   __exchange_array(stream, array);
+}
 
 
 
@@ -76,9 +87,12 @@ public:
 
 
    virtual void exchange(const ::id & id, double & d) override;
+   virtual void exchange(const ::id& id, i64& i) override;
 
 
 };
+
+
 
 
 

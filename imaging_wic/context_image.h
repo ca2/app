@@ -48,7 +48,7 @@ namespace imaging_wic
       virtual ::estatus _load_image(image* pimage, const ::var& varFile, bool bSync = true, bool bCreateHelperMaps = false);
 
       virtual ::estatus _load_image(::image * pimage, __pointer(image_frame_array) & pframea, ::memory_pointer pmemory);
-      virtual ::estatus save_image(memory & memory, const ::image * pimage, ::save_image * psaveimage);
+      virtual ::estatus save_image(memory & memory, const ::image * pimage, const ::save_image * psaveimage) override;
 
       //virtual ::estatus _load_image(::image* pimage, const var& varFile, bool bSync, bool bCreateHelperMaps);
 

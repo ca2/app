@@ -391,6 +391,7 @@ public:
    inline millis(u64 uiMillis);
    inline millis(i32 iMillis);
    inline millis(u32 dwMillis);
+   inline millis(double dMillis);
    millis(long double dMillis);
 
 };
@@ -594,6 +595,11 @@ inline millis::millis(u32 dw) :
 
 }
 
+inline millis::millis(double d) :
+   duration((long double) d)
+{
+
+}
 
 inline seconds::seconds(i64 i) :
    duration(i)

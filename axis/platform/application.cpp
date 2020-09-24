@@ -364,46 +364,6 @@ namespace axis
 
       }
 
-      if (m_bInitializeDataCentral)
-      {
-
-         ::file::path pathDatabase;
-
-         if (is_system())
-         {
-
-            pathDatabase = Context.dir().appdata() / "system.sqlite";
-
-         }
-         else if (is_session())
-         {
-
-            pathDatabase = Context.dir().appdata() / "session.sqlite";
-
-         }
-         else
-         {
-
-            pathDatabase = Context.dir().appdata() / "app.sqlite";
-
-         }
-
-         //__throw(todo("database"));
-
-         auto estatus = m_psimpledb->initialize_simpledb_server(this, pathDatabase);
-
-         if (!estatus)
-         {
-
-            m_result.add(estatus);
-
-            return false;
-
-         }
-
-         set_data_server(m_psimpledb);
-
-      }
 
 
          string str;
@@ -1273,6 +1233,48 @@ namespace axis
       //if(!m_spuser->init2())
       //return false;*/
 
+      if (m_bInitializeDataCentral)
+      {
+
+         ::file::path pathDatabase;
+
+         ::file::path pathFolder = Context.dir().appdata();
+
+         if (is_system())
+         {
+
+            pathDatabase = pathFolder / "system.sqlite";
+
+         }
+         else if (is_session())
+         {
+
+            pathDatabase = pathFolder / "session.sqlite";
+
+         }
+         else
+         {
+
+            pathDatabase = pathFolder / "app.sqlite";
+
+         }
+
+         //__throw(todo("database"));
+
+         auto estatus = m_psimpledb->initialize_simpledb_server(this, pathDatabase);
+
+         if (!estatus)
+         {
+
+            m_result.add(estatus);
+
+            return false;
+
+         }
+
+         set_data_server(m_psimpledb);
+
+      }
 
 
       return ::success;

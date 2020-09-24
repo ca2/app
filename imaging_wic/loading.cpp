@@ -519,7 +519,7 @@ namespace imaging_wic
 
 
 
-   bool node_save_image(::file::file * pfile, const ::image * pimage, ::save_image * psaveimage)
+   bool node_save_image(::file::file * pfile, const ::image * pimage, const ::save_image * psaveimage)
    {
 
 #ifdef _UWP

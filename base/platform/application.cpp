@@ -1805,7 +1805,7 @@ namespace base
 //         try
 //         {
 //
-//            m_pinterprocessintercommunication = create_ipi();
+//            m_pinterprocessintercommunication = create_interprocess_intercommunication();
 //
 //         }
 //         catch (...)
@@ -3421,7 +3421,7 @@ namespace base
 //   }
 //
 //
-//   __pointer(::interprocess_intercommunication) application::create_ipi()
+//   __pointer(::interprocess_intercommunication) application::create_interprocess_intercommunication()
 //   {
 //
 //      try

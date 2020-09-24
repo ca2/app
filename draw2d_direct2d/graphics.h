@@ -257,7 +257,7 @@ namespace draw2d_direct2d
       int IntersectClipRect(const ::rect & rect) override;
       int OffsetClipRgn(int x, int y) override;
       int OffsetClipRgn(const ::size & size) override;
-      int SelectClipRgn(::draw2d::region* pRgn, int nMode) override;
+      int SelectClipRgn(::draw2d::region* pRgn, ::draw2d::enum_combine ecombine) override;
 
       // Line-Output Functions
       pointd current_position() override;

@@ -111,17 +111,11 @@ namespace aura
 
 
 
-   application::application(const char * pszAppId) /*:
-      m_strAppId(::is_set(pszAppId) ? pszAppId : "")*/
+   application::application(const char * pszAppId) :
+      ::apex::application(pszAppId)
    {
 
       m_pauraapplication = this;
-
-      //m_bUser = true;
-      //m_bUserEx = true;
-      //m_bDraw2d = true;
-      //m_bImaging = true;
-      //m_bConsole = false;
 
 #ifdef LINUX
       m_bSnLauncheeSetup = false;
@@ -1993,425 +1987,434 @@ namespace aura
 
       //xxdebug_box("check_exclusive", "check_exclusive", MB_ICONINFORMATION);
 
-      if (m_bIpi)
+      auto estatus = ::apex::application::init_instance();
+
+      if (!estatus)
       {
 
-         try
-         {
-
-            m_pinterprocessintercommunication = create_interprocess_intercommunication();
-
-         }
-         catch (...)
-         {
-
-         }
-
-         if (!m_pinterprocessintercommunication)
-         {
-
-            return ::error_failed;
-
-         }
-
-         auto estatus = m_pinterprocessintercommunication->initialize(this);
-
-         if (!estatus)
-         {
-
-            return estatus;
-
-         }
+         return estatus;
 
       }
 
-      INFO("aura::application::init_application .1");
-
-      bool bHandled = false;
-
-      if (!check_exclusive(bHandled))
-      {
-
-         if (!bHandled &&
-            (!has_property("install")
-            && !has_property("uninstall")))
-         {
-
-            duration durationTimeout;
-
-//#ifdef __DEBUG
+//      if (m_bIpi)
+//      {
 //
-//          durationTimeout = minutes(5);
+//         try
+//         {
 //
-//#else //__DEBUG
+//            m_pinterprocessintercommunication = create_interprocess_intercommunication();
+//
+//         }
+//         catch (...)
+//         {
+//
+//         }
+//
+//         if (!m_pinterprocessintercommunication)
+//         {
+//
+//            return ::error_failed;
+//
+//         }
+//
+//         auto estatus = m_pinterprocessintercommunication->initialize(this);
+//
+//         if (!estatus)
+//         {
+//
+//            return estatus;
+//
+//         }
+//
+//      }
+//
+//      INFO("aura::application::init_application .1");
+//
+//      bool bHandled = false;
+//
+//      if (!check_exclusive(bHandled))
+//      {
+//
+//         if (!bHandled &&
+//            (!has_property("install")
+//            && !has_property("uninstall")))
+//         {
+//
+//            duration durationTimeout;
+//
+////#ifdef __DEBUG
+////
+////          durationTimeout = minutes(5);
+////
+////#else //__DEBUG
+//
+//            durationTimeout = 5_s;
+//
+////#endif //!__DEBUG
+//
+//            var var;
+//
+//            var["message"] = "Another instance of \"" + m_strAppName + "\" is already running (and some exclusivity policy is active).";
+//
+////          var["prefix_html"] = "<img src=\"matter://system/exclusive.png\" width=80 height=80 style=\"display:block;\"><br/><br/>";
+//
+//            message_box_timeout(var, m_strAppName, durationTimeout, message_box_icon_asterisk);
+//
+//            INFO("aura::application::init_application exit");
+//
+//            __throw(exit_exception(this));
+//
+//         }
+//
+//      }
+//
+//      INFO("aura::application::init_application .2");
+
+      //if (m_pinterprocessintercommunication)
+      //{
+
+      //   m_pinterprocessintercommunication->on_new_instance(Context.file().module(), Context.os().get_pid());
 
-            durationTimeout = 5_s;
+      //}
 
-//#endif //!__DEBUG
+      ////xxdebug_box("check_exclusive ok", "check_exclusive ok", MB_ICONINFORMATION);
 
-            var var;
+      ////if (m_bInitializeDataCentral)
+      ////{
 
-            var["message"] = "Another instance of \"" + m_strAppName + "\" is already running (and some exclusivity policy is active).";
 
-//          var["prefix_html"] = "<img src=\"matter://system/exclusive.png\" width=80 height=80 style=\"display:block;\"><br/><br/>";
+      ////   ::file::path pathDatabase;
 
-            message_box_timeout(var, m_strAppName, durationTimeout, message_box_icon_asterisk);
+      ////   if (is_system())
+      ////   {
 
-            INFO("aura::application::init_application exit");
+      ////      pathDatabase = Context.dir().appdata() / "system.sqlite";
 
-            __throw(exit_exception(this));
+      ////   }
+      ////   else if (is_session())
+      ////   {
 
-         }
+      ////      pathDatabase = Context.dir().appdata() / "session.sqlite";
 
-      }
+      ////   }
+      ////   else
+      ////   {
 
-      INFO("aura::application::init_application .2");
+      ////      pathDatabase = Context.dir().appdata() / "app.sqlite";
 
-      if (m_pinterprocessintercommunication)
-      {
+      ////   }
 
-         m_pinterprocessintercommunication->on_new_instance(Context.file().module(), Context.os().get_pid());
+      ////   //__throw(todo("database"));
 
-      }
+      ////   //auto estatus = m_psimpledb->initialize_simpledb_server(this, pathDatabase);
 
-      //xxdebug_box("check_exclusive ok", "check_exclusive ok", MB_ICONINFORMATION);
+      ////   //if (!estatus)
+      ////   //{
 
-      if (m_bInitializeDataCentral)
-      {
+      ////   //   m_result.add(estatus);
 
+      ////   //   return false;
 
-         ::file::path pathDatabase;
+      ////   //}
 
-         if (is_system())
-         {
+      ////   //set_data_server(m_psimpledb);
 
-            pathDatabase = Context.dir().appdata() / "system.sqlite";
+      ////}
 
-         }
-         else if (is_session())
-         {
+      ////m_bAxisInitializeInstanceResult = true;
 
-            pathDatabase = Context.dir().appdata() / "session.sqlite";
+      //INFO("axis::application::init_instance success");
 
-         }
-         else
-         {
+      //auto estatus = create_impact_system();
 
-            pathDatabase = Context.dir().appdata() / "app.sqlite";
+      //if (failed(estatus))
+      //{
 
-         }
+      //   return false;
 
-         //__throw(todo("database"));
+      //}
 
-         //auto estatus = m_psimpledb->initialize_simpledb_server(this, pathDatabase);
 
-         //if (!estatus)
-         //{
+      //if (!is_system() && !is_session())
+      //{
 
-         //   m_result.add(estatus);
+      //   string str;
+      //   // if system locale has changed (compared to last recorded one by aura)
+      //   // use the system locale
+      //   if (data_get({ "system_locale", true }, str))
+      //   {
 
-         //   return false;
+      //      if (str.has_char())
+      //      {
 
-         //}
+      //         if (str != get_locale())
+      //         {
 
-         //set_data_server(m_psimpledb);
+      //            try
+      //            {
 
-      }
+      //               data_set({ "system_locale", true }, get_locale());
 
-      //m_bAxisInitializeInstanceResult = true;
+      //               data_set({ "locale", true }, get_locale());
 
-      INFO("axis::application::init_instance success");
+      //            }
+      //            catch (...)
+      //            {
 
-      auto estatus = create_impact_system();
+      //            }
 
-      if (failed(estatus))
-      {
+      //         }
 
-         return false;
+      //      }
 
-      }
+      //   }
+      //   else
+      //   {
 
+      //      data_set({ "system_locale", true }, get_locale());
 
-      if (!is_system() && !is_session())
-      {
+      //   }
 
-         string str;
-         // if system locale has changed (compared to last recorded one by aura)
-         // use the system locale
-         if (data_get({ "system_locale", true }, str))
-         {
+      //   if (value("locale").get_count() > 0)
+      //   {
 
-            if (str.has_char())
-            {
+      //      str = value("locale").stra()[0];
 
-               if (str != get_locale())
-               {
+      //      data_set({ "system_locale", true }, str);
 
-                  try
-                  {
+      //      data_set({ "locale", true }, str);
 
-                     data_set({ "system_locale", true }, get_locale());
+      //      set_locale(str, ::source_database);
 
-                     data_set({ "locale", true }, get_locale());
+      //   }
+      //   else if (value("lang").get_count() > 0)
+      //   {
 
-                  }
-                  catch (...)
-                  {
+      //      str = value("lang").stra()[0];
 
-                  }
+      //      data_set({ "system_locale", true }, str);
 
-               }
+      //      data_set({ "locale", true }, str);
 
-            }
+      //      set_locale(str, ::source_database);
 
-         }
-         else
-         {
+      //   }
+      //   else if (data_get({ "locale", true }, str))
+      //   {
 
-            data_set({ "system_locale", true }, get_locale());
+      //      if (str.has_char())
+      //      {
 
-         }
+      //         set_locale(str, ::source_database);
 
-         if (value("locale").get_count() > 0)
-         {
+      //      }
 
-            str = value("locale").stra()[0];
+      //   }
+      //   // if system schema has changed (compared to last recorded one by aura)
+      //   // use the system schema
+      //   if (data_get({ "system_schema", true }, str))
+      //   {
 
-            data_set({ "system_locale", true }, str);
+      //      if (str.has_char())
+      //      {
 
-            data_set({ "locale", true }, str);
+      //         if (str != get_schema())
+      //         {
 
-            set_locale(str, ::source_database);
+      //            try
+      //            {
 
-         }
-         else if (value("lang").get_count() > 0)
-         {
+      //               data_set({ "system_schema", true }, get_schema());
 
-            str = value("lang").stra()[0];
+      //               data_set({ "schema", true }, get_schema());
 
-            data_set({ "system_locale", true }, str);
+      //            }
+      //            catch (...)
+      //            {
 
-            data_set({ "locale", true }, str);
+      //            }
 
-            set_locale(str, ::source_database);
+      //         }
 
-         }
-         else if (data_get({ "locale", true }, str))
-         {
+      //      }
 
-            if (str.has_char())
-            {
+      //   }
+      //   else
+      //   {
 
-               set_locale(str, ::source_database);
+      //      data_set({ "system_schema", true }, get_schema());
 
-            }
+      //   }
 
-         }
-         // if system schema has changed (compared to last recorded one by aura)
-         // use the system schema
-         if (data_get({ "system_schema", true }, str))
-         {
+      //   if (value("schema").get_count() > 0)
+      //   {
 
-            if (str.has_char())
-            {
+      //      str = value("schema").stra()[0];
 
-               if (str != get_schema())
-               {
+      //      data_set({ "system_schema", true }, str);
 
-                  try
-                  {
+      //      data_set({ "schema", true }, str);
 
-                     data_set({ "system_schema", true }, get_schema());
+      //      set_schema(str, ::source_database);
 
-                     data_set({ "schema", true }, get_schema());
+      //   }
+      //   else if (data_get({ "schema", true }, str))
+      //   {
 
-                  }
-                  catch (...)
-                  {
+      //      if (str.has_char())
+      //      {
 
-                  }
+      //         set_schema(str, ::source_database);
 
-               }
+      //      }
 
-            }
+      //   }
 
-         }
-         else
-         {
+      //   data_pulse_change({ "ca2.savings", true }, nullptr);
 
-            data_set({ "system_schema", true }, get_schema());
+      //   Sys(this).appa_load_string_table();
 
-         }
+      //}
+      //if (!is_system() && !is_session())
+      //{
 
-         if (value("schema").get_count() > 0)
-         {
+      //   string str;
+      //   // if system locale has changed (compared to last recorded one by aura)
+      //   // use the system locale
+      //   if (data_get({ "system_locale", true }, str))
+      //   {
 
-            str = value("schema").stra()[0];
+      //      if (str.has_char())
+      //      {
 
-            data_set({ "system_schema", true }, str);
+      //         if (str != get_locale())
+      //         {
 
-            data_set({ "schema", true }, str);
+      //            try
+      //            {
 
-            set_schema(str, ::source_database);
+      //               data_set({ "system_locale", true }, get_locale());
 
-         }
-         else if (data_get({ "schema", true }, str))
-         {
+      //               data_set({ "locale", true }, get_locale());
 
-            if (str.has_char())
-            {
+      //            }
+      //            catch (...)
+      //            {
 
-               set_schema(str, ::source_database);
+      //            }
 
-            }
+      //         }
 
-         }
+      //      }
 
-         data_pulse_change({ "ca2.savings", true }, nullptr);
+      //   }
+      //   else
+      //   {
 
-         Sys(this).appa_load_string_table();
+      //      data_set({ "system_locale", true }, get_locale());
 
-      }
-      if (!is_system() && !is_session())
-      {
+      //   }
 
-         string str;
-         // if system locale has changed (compared to last recorded one by aura)
-         // use the system locale
-         if (data_get({ "system_locale", true }, str))
-         {
+      //   if (value("locale").get_count() > 0)
+      //   {
 
-            if (str.has_char())
-            {
+      //      str = value("locale").stra()[0];
 
-               if (str != get_locale())
-               {
+      //      data_set({ "system_locale", true }, str);
 
-                  try
-                  {
+      //      data_set({ "locale", true }, str);
 
-                     data_set({ "system_locale", true }, get_locale());
+      //      set_locale(str, ::source_database);
 
-                     data_set({ "locale", true }, get_locale());
+      //   }
+      //   else if (value("lang").get_count() > 0)
+      //   {
 
-                  }
-                  catch (...)
-                  {
+      //      str = value("lang").stra()[0];
 
-                  }
+      //      data_set({ "system_locale", true }, str);
 
-               }
+      //      data_set({ "locale", true }, str);
 
-            }
+      //      set_locale(str, ::source_database);
 
-         }
-         else
-         {
+      //   }
+      //   else if (data_get({ "locale", true }, str))
+      //   {
 
-            data_set({ "system_locale", true }, get_locale());
+      //      if (str.has_char())
+      //      {
 
-         }
+      //         set_locale(str, ::source_database);
 
-         if (value("locale").get_count() > 0)
-         {
+      //      }
 
-            str = value("locale").stra()[0];
+      //   }
+      //   // if system schema has changed (compared to last recorded one by aura)
+      //   // use the system schema
+      //   if (data_get({ "system_schema", true }, str))
+      //   {
 
-            data_set({ "system_locale", true }, str);
+      //      if (str.has_char())
+      //      {
 
-            data_set({ "locale", true }, str);
+      //         if (str != get_schema())
+      //         {
 
-            set_locale(str, ::source_database);
+      //            try
+      //            {
 
-         }
-         else if (value("lang").get_count() > 0)
-         {
+      //               data_set({ "system_schema", true }, get_schema());
 
-            str = value("lang").stra()[0];
+      //               data_set({ "schema", true }, get_schema());
 
-            data_set({ "system_locale", true }, str);
+      //            }
+      //            catch (...)
+      //            {
 
-            data_set({ "locale", true }, str);
+      //            }
 
-            set_locale(str, ::source_database);
+      //         }
 
-         }
-         else if (data_get({ "locale", true }, str))
-         {
+      //      }
 
-            if (str.has_char())
-            {
+      //   }
+      //   else
+      //   {
 
-               set_locale(str, ::source_database);
+      //      data_set({ "system_schema", true }, get_schema());
 
-            }
+      //   }
 
-         }
-         // if system schema has changed (compared to last recorded one by aura)
-         // use the system schema
-         if (data_get({ "system_schema", true }, str))
-         {
+      //   if (value("schema").get_count() > 0)
+      //   {
 
-            if (str.has_char())
-            {
+      //      str = value("schema").stra()[0];
 
-               if (str != get_schema())
-               {
+      //      data_set({ "system_schema", true }, str);
 
-                  try
-                  {
+      //      data_set({ "schema", true }, str);
 
-                     data_set({ "system_schema", true }, get_schema());
+      //      set_schema(str, ::source_database);
 
-                     data_set({ "schema", true }, get_schema());
+      //   }
+      //   else if (data_get({ "schema", true }, str))
+      //   {
 
-                  }
-                  catch (...)
-                  {
+      //      if (str.has_char())
+      //      {
 
-                  }
+      //         set_schema(str, ::source_database);
 
-               }
+      //      }
 
-            }
+      //   }
 
-         }
-         else
-         {
+      //   data_pulse_change({ "ca2.savings", true }, nullptr);
 
-            data_set({ "system_schema", true }, get_schema());
+      //   Sys(this).appa_load_string_table();
 
-         }
-
-         if (value("schema").get_count() > 0)
-         {
-
-            str = value("schema").stra()[0];
-
-            data_set({ "system_schema", true }, str);
-
-            data_set({ "schema", true }, str);
-
-            set_schema(str, ::source_database);
-
-         }
-         else if (data_get({ "schema", true }, str))
-         {
-
-            if (str.has_char())
-            {
-
-               set_schema(str, ::source_database);
-
-            }
-
-         }
-
-         data_pulse_change({ "ca2.savings", true }, nullptr);
-
-         Sys(this).appa_load_string_table();
-
-      }
+      //}
       return true;
 
    }

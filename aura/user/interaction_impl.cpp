@@ -2099,7 +2099,7 @@ namespace user
    LONG interaction_impl::get_window_long(i32 nIndex) const
    {
 
-      return (LONG)::user::interaction_impl::get_window_long_ptr(nIndex);
+      return ::get_window_long_ptr(m_oswindow, nIndex);
 
    }
 
@@ -2107,7 +2107,7 @@ namespace user
    LONG interaction_impl::set_window_long(i32 nIndex,LONG lValue)
    {
 
-      return (LONG)::user::interaction_impl::set_window_long_ptr(nIndex, lValue);
+      return ::set_window_long_ptr(m_oswindow, nIndex, lValue);
 
    }
 
@@ -2115,7 +2115,7 @@ namespace user
    LONG_PTR interaction_impl::get_window_long_ptr(i32 nIndex) const
    {
 
-      return m_oswindow->get_window_long_ptr(nIndex);
+      return ::get_window_long_ptr(m_oswindow, nIndex);
 
    }
 
@@ -2123,7 +2123,7 @@ namespace user
    LONG_PTR interaction_impl::set_window_long_ptr(i32 nIndex,LONG_PTR lValue)
    {
 
-      return m_oswindow->set_window_long_ptr(nIndex, lValue);
+      return ::set_window_long_ptr(m_oswindow, nIndex, lValue);
 
    }
 
@@ -4578,58 +4578,70 @@ namespace user
    void interaction_impl::window_show_change_visibility(::edisplay edisplay, ::eactivation eactivation)
    {
 
-      __keep_flag_on(m_puserinteraction->layout().m_eflag, ::user::interaction_layout::flag_show_window);
-
-      if (edisplay == display_iconic)
-      {
-
-         if (eactivation == activation_no_activate)
+      m_puserinteraction->m_pthreadUserInteraction->post_pred([this, edisplay, eactivation]()
          {
 
-            ::show_window(m_oswindow, SW_SHOWMINNOACTIVE);
-
-         }
-         else
-         {
-
-            ::show_window(m_oswindow, SW_MINIMIZE);
-
-         }
-
-      }
-      else if (is_visible(edisplay))
-      {
-
-         auto iShow = windows_show_window(edisplay, eactivation);
-
-         if (iShow == SW_MAXIMIZE)
-         {
-
-            if (GetExStyle() & WS_EX_LAYERED)
+            if (!m_puserinteraction)
             {
 
-               iShow = SW_NORMAL;
+               return;
 
             }
 
-         }
+            __keep_flag_on(m_puserinteraction->layout().m_eflag, ::user::interaction_layout::flag_show_window);
 
-         ::show_window(m_oswindow, iShow);
+            if (edisplay == display_iconic)
+            {
 
-      }
-      else
-      {
+               if (eactivation == activation_no_activate)
+               {
 
-         ::show_window(m_oswindow, SW_HIDE);
+                  ::show_window(m_oswindow, SW_SHOWMINNOACTIVE);
 
-      }
+               }
+               else
+               {
 
-      if(m_puserinteraction)
-      {
+                  ::show_window(m_oswindow, SW_MINIMIZE);
 
-         m_puserinteraction->layout().design() = activation_none;
+               }
 
-      }
+            }
+            else if (is_visible(edisplay))
+            {
+
+               auto iShow = windows_show_window(edisplay, eactivation);
+
+               if (iShow == SW_MAXIMIZE)
+               {
+
+                  if (GetExStyle() & WS_EX_LAYERED)
+                  {
+
+                     iShow = SW_NORMAL;
+
+                  }
+
+               }
+
+               ::show_window(m_oswindow, iShow);
+
+            }
+            else
+            {
+
+               ::show_window(m_oswindow, SW_HIDE);
+
+            }
+
+            if (m_puserinteraction)
+            {
+
+               m_puserinteraction->layout().design() = activation_none;
+
+            }
+
+         });
 
    }
 

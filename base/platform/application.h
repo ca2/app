@@ -398,7 +398,7 @@ namespace base
 //
 //      virtual string get_version();
 //
-//      virtual __pointer(::interprocess_intercommunication) create_ipi();
+//      virtual __pointer(::interprocess_intercommunication) create_interprocess_intercommunication();
 //
 //      //virtual ::estatus process_init();
 //      virtual void process_term();

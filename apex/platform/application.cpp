@@ -118,10 +118,6 @@ namespace apex
       m_paxisapplication = nullptr;
       m_pbaseapplication = nullptr;
       m_pcoreapplication = nullptr;
-      m_bUser = true;
-      m_bUserEx = true;
-      m_bDraw2d = true;
-      m_bConsole = false;
 
 #ifdef LINUX
       m_bSnLauncheeSetup = false;
@@ -2097,47 +2093,49 @@ namespace apex
 
       //xxdebug_box("check_exclusive ok", "check_exclusive ok", MB_ICONINFORMATION);
 
-      if (m_bInitializeDataCentral)
-      {
+      //if (m_bInitializeDataCentral)
+      //{
 
 
-         ::file::path pathDatabase;
+      //   ::file::path pathDatabase;
 
-         if (is_system())
-         {
+      //   ::file::path pathFolder = Context.dir().appdata();
 
-            pathDatabase = Context.dir().appdata() / "system.sqlite";
+      //   if (is_system())
+      //   {
 
-         }
-         else if (is_session())
-         {
+      //      pathDatabase = pathFolder / "system.sqlite";
 
-            pathDatabase = Context.dir().appdata() / "session.sqlite";
+      //   }
+      //   else if (is_session())
+      //   {
 
-         }
-         else
-         {
+      //      pathDatabase = pathFolder / "session.sqlite";
 
-            pathDatabase = Context.dir().appdata() / "app.sqlite";
+      //   }
+      //   else
+      //   {
 
-         }
+      //      pathDatabase = pathFolder / "app.sqlite";
 
-         //__throw(todo("database"));
+      //   }
 
-         //auto estatus = m_psimpledb->initialize_simpledb_server(this, pathDatabase);
+      //   //__throw(todo("database"));
 
-         //if (!estatus)
-         //{
+      //   //auto estatus = m_psimpledb->initialize_simpledb_server(this, pathDatabase);
 
-         //   m_result.add(estatus);
+      //   //if (!estatus)
+      //   //{
 
-         //   return false;
+      //   //   m_result.add(estatus);
 
-         //}
+      //   //   return false;
 
-         //set_data_server(m_psimpledb);
+      //   //}
 
-      }
+      //   //set_data_server(m_psimpledb);
+
+      //}
 
       //m_bAxisInitializeInstanceResult = true;
 

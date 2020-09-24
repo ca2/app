@@ -533,8 +533,19 @@ context_image::~context_image()
 
 ::estatus context_image::save_image(::memory & memory, const image * pimage, const ::save_image * psaveimage)
 {
+
+   auto pfile = create_memory_file(memory);
+
+   auto estatus = save_image(pfile, pimage, psaveimage);
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
    
-   return ::error_interface_only;
+   return estatus;
 
 }
 

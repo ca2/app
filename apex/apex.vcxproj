@@ -1172,6 +1172,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="os\windows\launcher.cpp" />
     <ClCompile Include="os\windows\library.cpp" />
     <ClCompile Include="os\windows\main.cpp" />
+    <ClCompile Include="os\windows\menu.cpp" />
     <ClCompile Include="os\windows\simple_shell_launcher.cpp" />
     <ClCompile Include="os\windows\thread.cpp" />
     <ClCompile Include="os\windows\user.cpp" />
@@ -1247,6 +1248,8 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="user\command.cpp" />
     <ClCompile Include="user\language.cpp" />
     <ClCompile Include="user\language_map.cpp" />
+    <ClCompile Include="user\menu_shared.cpp" />
+    <ClCompile Include="user\menu_shared_commnand.cpp" />
     <ClCompile Include="user\text.cpp" />
     <ClCompile Include="_.cpp" />
     <ClInclude Include="astr.h" />
@@ -1506,6 +1509,8 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="user\language.h" />
     <ClInclude Include="user\language_map.h" />
     <ClInclude Include="user\aaa_range.h" />
+    <ClInclude Include="user\menu_shared.h" />
+    <ClInclude Include="user\menu_shared_command.h" />
     <ClInclude Include="user\text.h" />
     <ClInclude Include="user\_.h" />
     <ClInclude Include="user\ewindowflag.h" />

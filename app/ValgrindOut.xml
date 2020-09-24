@@ -74297,7 +74297,7 @@
     <frame>
       <ip>0x57A604E</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::application::create_ipi()</fn>
+      <fn>aura::application::create_interprocess_intercommunication()</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_application.cpp</file>
       <line>4242</line>

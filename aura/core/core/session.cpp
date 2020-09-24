@@ -286,10 +286,10 @@ namespace aura
       if(is_remote_session())
       {
 
-         //Session.savings().save(::aura::resource_display_bandwidth);
-         //Session.savings().save(::aura::resource_blur_background);
-         //Session.savings().save(::aura::resource_blurred_text_embossing);
-         //Session.savings().save(::aura::resource_translucent_background);
+         //Session.savings().save(::e_resource_display_bandwidth);
+         //Session.savings().save(::e_resource_blur_background);
+         //Session.savings().save(::e_resource_blurred_text_embossing);
+         //Session.savings().save(::e_resource_translucent_background);
 
       }
 

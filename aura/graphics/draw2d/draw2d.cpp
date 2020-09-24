@@ -84,33 +84,6 @@ namespace draw2d
 
       }
 
-      sync_lock sl(mutex());
-
-      if (m_pfontdepartment == nullptr)
-      {
-
-         m_pfontdepartment = __new(class font_department);
-
-         if (m_pfontdepartment.is_null())
-         {
-
-            return false;
-
-         }
-
-         auto estatus = m_pfontdepartment->initialize(this);
-
-         if(!estatus)
-         {
-
-            return false;
-
-         }
-         
-         m_pfontdepartment->defer_create_font_enumeration();
-
-      }
-
       return true;
 
    }
@@ -288,7 +261,32 @@ namespace draw2d
 
    class font_department & draw2d::fonts()
    {
+      
+      sync_lock sl(mutex());
+
+      if (m_pfontdepartment == nullptr)
+      {
+
+         m_pfontdepartment = __new(class font_department);
+
+         if (m_pfontdepartment)
+         {
+
+            auto estatus = m_pfontdepartment->initialize(this);
+
+            if (estatus)
+            {
+
+               m_pfontdepartment->defer_create_font_enumeration();
+
+            }
+
+         }
+
+      }
+
       return *m_pfontdepartment;
+
    }
 
 

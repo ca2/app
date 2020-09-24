@@ -29,7 +29,7 @@ namespace draw2d
    font_list::font_list()
    {
 
-      m_bUpdating = true;
+      m_bUpdating = false;
 
       m_iSelUpdateId = -1;
 
@@ -584,6 +584,41 @@ namespace draw2d
       m_puserinteraction->set_need_redraw();
 
       m_puserinteraction->post_redraw();
+
+   }
+
+
+   void font_list::defer_update()
+   {
+
+      if (m_bUpdating)
+      {
+
+         return;
+
+      }
+
+      m_bUpdating = true;
+
+      fork([this]()
+         {
+
+            try
+            {
+
+               update();
+
+            }
+            catch (...)
+            {
+
+            }
+
+            sleep(3_s);
+
+            m_bUpdating = false;
+
+         });
 
    }
 

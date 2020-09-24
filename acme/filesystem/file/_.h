@@ -194,7 +194,9 @@ inline bool file_as_pod(POD & pod, const char * path)
 
 #include "string_file.h"
 
-//#include "text_stream.h"
+#include "text_stream.h"
+
+#include "var_stream.h"
 
 
 

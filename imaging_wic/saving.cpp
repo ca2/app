@@ -10,7 +10,7 @@ namespace imaging_wic
 {
 
 
-   ::estatus context_image::save_image(memory & mem, const ::image * pimage, ::save_image * psaveimage)
+   ::estatus context_image::save_image(memory & mem, const ::image * pimage, const ::save_image * psaveimage)
    {
 
       if (::is_null(pimage))
@@ -82,7 +82,7 @@ namespace imaging_wic
 
 
 
-   bool node_save_image(comptr < IStream > pstream, const ::image * pimage, ::save_image * psaveimage)
+   bool node_save_image(comptr < IStream > pstream, const ::image * pimage, const ::save_image * psaveimage)
    {
 
       comptr < IWICImagingFactory > pimagingfactory;

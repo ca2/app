@@ -175,7 +175,7 @@ namespace apex
 
       m_bLicense = false;
 
-      m_bIpi = false;
+      m_bInterprocessIntercommunication = false;
 
       //m_pimaging = nullptr;
 
@@ -2010,7 +2010,7 @@ namespace apex
 
       //xxdebug_box("check_exclusive", "check_exclusive", MB_ICONINFORMATION);
 
-      if (m_bIpi)
+      if (m_bInterprocessIntercommunication)
       {
 
          try

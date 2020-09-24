@@ -8008,6 +8008,8 @@ namespace aura
    void system::update(::update* pupdate)
    {
 
+      ::apex::system::update(pupdate);
+
       //::update updateSetting(pupdate);
 
       //fork([this, updateSetting]

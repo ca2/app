@@ -82,8 +82,8 @@ namespace apex
       bool                                            m_bAgreeExitOk;
       bool                                            m_bFranceExit;
 
-      bool                                            m_bIpi;
-      __pointer(interprocess_intercommunication)                                  m_pinterprocessintercommunication;
+      bool                                            m_bInterprocessIntercommunication;
+      __pointer(interprocess_intercommunication)      m_pinterprocessintercommunication;
       __pointer(service_base)                         m_pservice;
 
       // apex commented

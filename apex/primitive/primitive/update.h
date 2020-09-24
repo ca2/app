@@ -17,6 +17,7 @@ public:
    __pointer(::layered)                   m_pcontrolevent; // user::control_event
    __pointer(::file::item)                m_pfileitem;
    ::user::e_key                          m_ekey;
+   ::var                                  m_var;
 
 
    update();

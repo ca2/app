@@ -533,13 +533,13 @@ void set_system_call_update(PFN_CALL_UPDATE pfnCallUpdate)
 
 }
 
-void system_call_update(int iUpdate)
+void system_call_update(int iUpdate, const var & var)
 {
    
    if(g_pfnCallUpdateSystem)
    {
 
-      g_pfnCallUpdateSystem(iUpdate);
+      g_pfnCallUpdateSystem(iUpdate, var);
 
    }
    

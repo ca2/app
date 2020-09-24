@@ -153,6 +153,7 @@ enum e_id : u64
    id_main_title,
    id_calc_os_dark_mode,
    id_result,
+   id_open_hyperlink,
 
 
    //id_title,

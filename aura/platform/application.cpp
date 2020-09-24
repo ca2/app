@@ -173,7 +173,7 @@ namespace aura
 
       m_bLicense = false;
 
-      m_bIpi = false;
+      m_bInterprocessIntercommunication = false;
 
       //m_pimaging = nullptr;
 

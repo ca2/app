@@ -6,14 +6,17 @@ class CLASS_DECL_ACME hyperlink :
 {
 public:
 
-
+   string      m_strLink;
+   string      m_strProfile;
+   string      m_strTarget;
+   bool        m_bProfile;
    
    hyperlink();
    virtual ~hyperlink();
 
 
-   virtual bool open_link(string strLink, string strProfile = "", string strTarget = "");
-   virtual void open_profile_link(string strUrl, string strProfile, string strTarget);
+   static bool open_link(string strLink, string strProfile = "", string strTarget = "");
+   static void open_profile_link(string strUrl, string strProfile, string strTarget);
    //virtual void sync_open_profile_link(string strUrl, string strProfile, string strTarget);
 
 

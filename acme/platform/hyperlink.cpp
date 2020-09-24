@@ -1,9 +1,10 @@
 #include "framework.h"
+#include "acme/id.h"
 
 
 hyperlink::hyperlink()
 {
-
+   m_bProfile = false;
 }
 
 
@@ -16,6 +17,12 @@ hyperlink::~hyperlink()
 bool hyperlink::open_link(string strLink, string strProfile, string strTarget)
 {
 
+   auto plink = __new(hyperlink);
+   plink->m_strLink = strLink;
+   plink->m_strProfile = strProfile;
+   plink->m_strTarget = strTarget;
+
+   system_call_update(id_open_hyperlink, plink);
    //if (is_system())
    {
 
@@ -26,7 +33,7 @@ bool hyperlink::open_link(string strLink, string strProfile, string strTarget)
 
       //}
 
-      open_profile_link(strLink, strProfile, strTarget);
+      //open_profile_link(strLink, strProfile, strTarget);
 
       return true;
 
@@ -46,8 +53,19 @@ bool hyperlink::open_link(string strLink, string strProfile, string strTarget)
 void hyperlink::open_profile_link(string strUrl, string strProfile, string strTarget)
 {
 
-   __throw(todo("hyperlink"));
+   auto plink = __new(hyperlink);
+   plink->m_strLink = strUrl;
+   plink->m_strProfile = strProfile;
+   plink->m_strTarget = strTarget;
+   plink->m_bProfile = true;
+
+   system_call_update(id_open_hyperlink, plink);
+
+
+   //__throw(todo("hyperlink"));
    //System.open_profile_link(strUrl, strProfile, strTarget);
+
+   //system
 
 }
 

@@ -525,49 +525,56 @@ namespace user
       if (m_pcombo)
       {
 
-         m_tickKillFocus.Now();
+         bool bGoingToShow = m_pcombo->m_tickShowComboList.elapsed() < 300_ms;
 
-         m_bPendingKillFocusHiding = true;
+         if (!bGoingToShow)
+         {
 
-         set_timer(timer_kill_focus, 300_ms);
+            m_tickKillFocus.Now();
 
-         //SCAST_PTR(::message::kill_focus, pkillfocus, pmessage);
+            m_bPendingKillFocusHiding = true;
 
-         //oswindow oswindowThis = get_safe_handle();
+            set_timer(timer_kill_focus, 300_ms);
 
-         //oswindow oswindowNew = pkillfocus->m_oswindowNew;
+            //SCAST_PTR(::message::kill_focus, pkillfocus, pmessage);
 
-         //if (oswindowThis != oswindowNew && !m_bMovingComboBox)
-         //{
+            //oswindow oswindowThis = get_safe_handle();
 
-         //   if (layout().sketch().is_screen_visible())
-         //   {
+            //oswindow oswindowNew = pkillfocus->m_oswindowNew;
 
-         //      m_tickLastVisibilityChange.Now();
+            //if (oswindowThis != oswindowNew && !m_bMovingComboBox)
+            //{
 
-         //      hide();
+            //   if (layout().sketch().is_screen_visible())
+            //   {
 
-         //      set_need_redraw();
+            //      m_tickLastVisibilityChange.Now();
 
-         //      post_redraw();
+            //      hide();
 
-         //      m_pcombo->keyboard_set_focus();
+            //      set_need_redraw();
 
-         //      m_pcombo->get_wnd()->SetActiveWindow();
+            //      post_redraw();
 
-         //   }
-         //   else
-         //   {
+            //      m_pcombo->keyboard_set_focus();
 
-         //      //output_debug_string("A phantom is loosing focus. What a pitty!!");
+            //      m_pcombo->get_wnd()->SetActiveWindow();
 
-         //   }
+            //   }
+            //   else
+            //   {
 
-         //}
+            //      //output_debug_string("A phantom is loosing focus. What a pitty!!");
 
-         //pkillfocus->m_bRet = true;
+            //   }
 
-         //pkillfocus->m_lresult = 0;
+            //}
+
+            //pkillfocus->m_bRet = true;
+
+            //pkillfocus->m_lresult = 0;
+
+         }
 
       }
 

@@ -745,6 +745,8 @@ namespace user
 
          //}
 
+         m_tickShowComboList.Now();
+
          defer_create_combo_list();
 
          Session.on_show_user_input_popup(m_plist);

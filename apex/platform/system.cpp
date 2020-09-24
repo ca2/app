@@ -11,6 +11,7 @@
 #include "acme/platform/profiler.h"
 #include "apex/platform/static_setup.h"
 #include "acme/os/_os.h"
+#include "apex/id.h"
 
 ////#ifdef _OPENGL
 //#include "apex/gpu/gpu/_.h"
@@ -25,6 +26,8 @@ int GetMainScreenRect(LPRECT lprect);
 
 
 const char* g_pszMultimediaLibraryName = nullptr;
+
+void apex_system_call_update(int iUpdate, const ::var& var);
 
 
 CLASS_DECL_APEX void multimedia_set_library_name(const char* psz)
@@ -1252,6 +1255,8 @@ namespace apex
 
    ::estatus system::process_init()
    {
+
+      set_system_call_update(&apex_system_call_update);
 
       auto estatus = system_prep();
 
@@ -8061,6 +8066,32 @@ namespace apex
    void system::update(::update* pupdate)
    {
 
+      if (pupdate->m_id == id_open_hyperlink)
+      {
+
+         auto plink = pupdate->m_var.cast < ::hyperlink >();
+
+         if (plink)
+         {
+
+            //if (plink->m_bProfile)
+            {
+
+               open_profile_link(plink->m_strLink, plink->m_strProfile, plink->m_strTarget);
+
+            }
+            //else
+            {
+
+              // open_link(plink->m_strLink, plink->m_strProfile, plink->m_strTarget);
+
+            }
+
+         }
+
+      }
+
+
       //::update updateSetting(pupdate);
 
       //fork([this, updateSetting]
@@ -8554,6 +8585,15 @@ namespace apex
 
 
 
+void apex_system_call_update(int iUpdate, const ::var& var)
+{
 
+   auto pupdate = new_update();
 
+   pupdate->m_id = iUpdate;
 
+   pupdate->m_var = var;
+
+   ::get_context_system()->call_update(pupdate);
+
+}

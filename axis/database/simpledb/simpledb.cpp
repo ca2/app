@@ -12,6 +12,8 @@ namespace simpledb
    simpledb::simpledb()
    {
 
+      m_durationRemoteTimeout = 10_s;
+
       defer_create_mutex();
 
    }
@@ -135,7 +137,7 @@ namespace simpledb
 
          auto ppair = pstorage->m_map.plookup(strKey);
 
-         if (ppair != nullptr && ppair->element2().m_tick.elapsed() < m_durationRemoteTimeout)
+         if (ppair != nullptr)
          {
 
             return getmemory.get(ppair->element2().m_block);

@@ -124,24 +124,38 @@ void binary_stream::write(const void * pdata, memsize nCount, memsize * dwWritte
 void binary_stream::write(const id & id)
 {
 
-   ::id::e_type etype = id.m_etype;
+   raw_write(id.m_etype);
 
-   write(i8(etype));
-
-   if(etype == ::id::type_text)
+   if(id.m_etype == ::id::type_text)
    {
 
       write(id.m_psz);
 
    }
-   else if(etype == ::id::type_integer)
+   else if(id.m_etype == ::id::type_integer)
    {
 
       write(id.m_i);
 
    }
+   else if (id.m_etype >= ::id::type_property)
+   {
 
-   return;
+      raw_write(id.m_eproperty);
+
+   }
+   else if (id.m_etype >= ::id::type_factory)
+   {
+
+      raw_write(id.m_efactory);
+
+   }
+   else if (id.m_etype >= ::id::type_thread_tool)
+   {
+
+      raw_write(id.m_ethreadtool);
+
+   }
 
 }
 
@@ -303,8 +317,6 @@ void binary_stream::flush()
 }
 
 
-
-
 bool binary_stream::is_writer_null()
 {
 
@@ -313,14 +325,13 @@ bool binary_stream::is_writer_null()
 }
 
 
-
-
 bool binary_stream::is_writer_set()
 {
 
    return m_p.is_set();
 
 }
+
 
 void binary_stream::write(const ansichar * psz)
 {
@@ -334,6 +345,7 @@ void binary_stream::write(const ansichar * psz)
    return;
 
 }
+
 
 void binary_stream::write(const string & str)
 {
@@ -374,8 +386,6 @@ void binary_stream::write(const block & block)
 
    write(block.get_data(), block.get_size());
 
-   return;
-
 }
 
 
@@ -387,7 +397,6 @@ void binary_stream::set_size(filesize len)
 }
 
 
-
 void binary_stream::put(char ch)
 {
 
@@ -396,8 +405,6 @@ void binary_stream::put(char ch)
    return;
 
 }
-
-
 
 
 void binary_stream::read(memory_base & m)
@@ -427,11 +434,9 @@ void binary_stream::write(const memory_base & m)
 void binary_stream::read(id & id)
 {
 
-   ::id::e_type etype = (::id::e_type) 0;
+   raw_read(id.m_etype);
 
-   read((i8 &)etype);
-
-   if (etype == ::id::type_text)
+   if (id.m_etype == ::id::type_text)
    {
 
       string str;
@@ -441,7 +446,7 @@ void binary_stream::read(id & id)
       id = str;
 
    }
-   else if (etype == ::id::type_integer)
+   else if (id.m_etype == ::id::type_integer)
    {
 
       i64 i;
@@ -451,16 +456,22 @@ void binary_stream::read(id & id)
       id = i;
 
    }
-   else if (etype == ::id::type_empty)
+   else if (id.m_etype == ::id::type_property)
    {
 
-      id = ::id::type_empty;
+      raw_read(id.m_eproperty);
 
    }
-   else
+   else if (id.m_etype == ::id::type_factory)
    {
 
-      id = ::id::type_null;
+      raw_read(id.m_efactory);
+
+   }
+   else if (id.m_etype == ::id::type_thread_tool)
+   {
+
+      raw_read(id.m_ethreadtool);
 
    }
 

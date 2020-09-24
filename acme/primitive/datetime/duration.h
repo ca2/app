@@ -596,7 +596,7 @@ inline millis::millis(u32 dw) :
 }
 
 inline millis::millis(double d) :
-   duration((long double) d)
+   duration((::i64) 0, (::i64) (d * 1'000'000.0))
 {
 
 }

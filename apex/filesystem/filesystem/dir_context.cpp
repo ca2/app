@@ -582,6 +582,8 @@ inline bool myspace(char ch)
 ::file::listing& dir_context::rls_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern)
 {
 
+   listing.m_pathUser = path;
+
    listing.m_bRecursive = true;
 
    listing.m_bDir = true;

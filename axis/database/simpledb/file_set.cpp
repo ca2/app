@@ -3,6 +3,7 @@
 
 
 
+
 namespace simpledb
 {
 
@@ -86,9 +87,9 @@ namespace simpledb
       if(!m_ppathaSearch || (i = m_ppathaSearch->find_first_ci(pathSearchFolder)) < 0)
       {
 
-         __construct_new(m_ppathaSearch);
+         __defer_construct_new(m_ppathaSearch);
 
-         __construct_new(m_pbaRecursive);
+         __defer_construct_new(m_pbaRecursive);
 
          m_ppathaSearch->add(pathSearchFolder);
 

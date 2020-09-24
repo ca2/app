@@ -17,11 +17,7 @@ inline void stream::write_only(TYPE & t) { is_loading() ? set_fail_bit() : write
 template < typename TYPE >
 inline void stream::stream_exchange(const ::id & id, TYPE & t) { ::__exchange(*this, t); }
 
+#include "_defer_var_stream.h"
 
-template < typename OBJECT >
-inline void __exchange(::var_stream& s, __pointer(OBJECT)& pobject)
-{
 
-   __exchange(s, __typed_defer_create(pobject));
 
-}

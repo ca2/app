@@ -27,7 +27,7 @@ enum enum_thread_op :i64
 };
 
 
-enum enum_thread_tool : i64
+enum enum_thread_tool : ::i64
 {
 
    e_thread_tool_draw2d,

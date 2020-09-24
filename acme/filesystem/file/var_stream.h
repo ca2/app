@@ -31,7 +31,6 @@ inline void __exchange(::var_stream & s, ::int_array & ia);
 inline void __exchange(::var_stream & s, ::string_array & stra);
 inline void __exchange(::var_stream & s, ::memory & memory);
 
-inline void __exchange(::var_stream & s, ::file::patha& patha);
 
 
 
@@ -44,11 +43,26 @@ template < typename OBJECT >
 inline void __exchange(::var_stream& s, __pointer(OBJECT)& pobject);
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline void __exchange(::stream& stream, ::array_base < TYPE, ARG_TYPE, ALLOCATOR >& array);
-{
-zzzz   __exchange_array(stream, array);
-}
+inline void __exchange(::var_stream& stream, ::array_base < TYPE, ARG_TYPE, ALLOCATOR >& array);
 
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline void __exchange(::var_stream& s, const ::raw_array < TYPE, ARG_TYPE, ALLOCATOR >& array);
+
+template < class TYPE >
+inline void __exchange(::var_stream& s, const ::numeric_array < TYPE >& array);
+
+template < typename Type, typename RawType >
+inline void __exchange(::var_stream& s, const ::string_array_base < Type, RawType >& array);
+
+
+template < class ARRAY >
+inline void __exchange_array(::var_stream& stream, ARRAY& array);
+
+template < typename ARRAY >
+inline void __exchange_save_array(::var_stream& s, ARRAY& array);
+
+template < typename ARRAY >
+inline void __exchange_load_array(::var_stream& s, ARRAY& array);
 
 
 class CLASS_DECL_ACME var_stream :
@@ -88,6 +102,10 @@ public:
 
    virtual void exchange(const ::id & id, double & d) override;
    virtual void exchange(const ::id& id, i64& i) override;
+
+
+   template < typename TYPE >
+   inline void stream_exchange(const ::id& id, TYPE& t);
 
 
 };

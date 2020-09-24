@@ -4,7 +4,7 @@
 #include "GLOBAL_ID.h"
 
 
-enum enum_property
+enum enum_property : ::i64
 {
 
    property_default = 0,
@@ -14,7 +14,7 @@ enum enum_property
 };
 
 
-enum enum_factory
+enum enum_factory : ::i64
 {
 
    factory_draw2d_bitmap,

@@ -1523,6 +1523,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="filesystem\filesystem\_impl.h" />
     <ClInclude Include="filesystem\file\aaa_data.h" />
     <ClInclude Include="filesystem\file\_defer.h" />
+    <ClInclude Include="filesystem\file\_defer_var_stream.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="framework_c.h" />
     <ClInclude Include="id.h" />

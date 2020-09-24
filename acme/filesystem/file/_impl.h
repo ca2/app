@@ -536,6 +536,13 @@ __pointer(BASE_TYPE) __load_object(stream & stream)
 
    //auto id = stream.text_to_factory_id(strText);
 
+   if (!strText.begins_eat_ci("factoryless://"))
+   {
+
+      strText = stream.text_to_factory_id(strText);
+
+   }
+
    __pointer(generic) p = stream.create_object_from_text(strText);
 
    if (!p)
@@ -547,7 +554,7 @@ __pointer(BASE_TYPE) __load_object(stream & stream)
 
    }
 
-   p->read(stream);
+   p->exchange(stream);
 
    return p;
 
@@ -578,7 +585,7 @@ inline stream & __save_object(stream & stream, BASE_TYPE * p)
 
    stream << strText;
 
-   p->write(stream);
+   p->exchange(stream);
 
    return stream;
 

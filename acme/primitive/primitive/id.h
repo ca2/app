@@ -11,8 +11,8 @@ enum e_id : ::u64;
 struct id_all
 {
 
-   ::i64            m_iBody;
-   ::i64            m_iType;
+   ::i64             m_iBody;
+   ::i64             m_iType;
 
 };
 
@@ -64,8 +64,8 @@ public:
       struct
       {
 
-         ::i64            m_iBody;
-         ::i64            m_iType;
+         ::i64             m_iBody;
+         ::i64             m_iType;
 
       };
 
@@ -248,30 +248,30 @@ inline id::id(e_type etype) :
 }
 
 
-
 inline id::id(enum_property eproperty) :
    m_etype(type_property),
-   m_eproperty(eproperty)
+   m_i(eproperty) // used m_i to reset 64-bit field
 {
 
-
 }
+
 
 inline id::id(enum_factory efactory) :
    m_etype(type_factory),
-   m_efactory(efactory)
+   m_i(efactory) // used m_i to reset 64-bit field
 {
 
-
 }
+
 
 inline id::id(enum_thread_tool ethreadtool) :
    m_etype(type_thread_tool),
-   m_ethreadtool(ethreadtool)
+   m_i(ethreadtool) // used m_i to reset 64-bit field
 {
 
-
 }
+
+
 inline id::id(const id & id)
 {
 

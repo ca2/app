@@ -4814,7 +4814,7 @@ namespace user
             if((sizeTotal.cy - pointScroll.y - sizePage.cy) <= 1)
             {
 
-               m_nItemCount = min(m_nGridItemCount,m_nItemCount + sizePage.cy);
+               m_nItemCount = min(m_nGridItemCount,m_nItemCount + (::count)(sizePage.cy / m_iItemHeight));
 
                on_change_view_size();
 
@@ -4848,7 +4848,9 @@ namespace user
             if((sizeTotal.cx - pointScroll.x - sizePage.cx) <= 1)
             {
 
-               m_nColumnCount = min(m_nGridColumnCount,m_nColumnCount + sizePage.cx);
+///               m_nColumnCount = min(m_nGridColumnCount,m_nColumnCount + sizePage.cx);
+/// 
+               m_nColumnCount = m_nGridColumnCount;
 
                on_change_view_size();
 

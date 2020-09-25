@@ -1,7 +1,7 @@
 #pragma once
 
 
-enum enum_procedure : ::i32;
+enum enum_method : ::i32;
 enum enum_future : ::i32;
 
 namespace user
@@ -62,10 +62,10 @@ public:
    virtual void add(const ::future & future);
 
    virtual void add_methods_from(const ::id & id, ::object * pobjectSource);
-   virtual void add_futures_from(const ::id & id, ::object* pobjectSource);
+   virtual void add_futures_from(const ::id & id, ::object * pobjectSource);
 
-   virtual array < ::method > * methods(const ::id & idProcedure);
-   virtual array < ::future > * futures(const ::id & idCallback);
+   virtual array < ::method > * methods(const ::id & idMethod);
+   virtual array < ::future > * futures(const ::id & idFuture);
 
    virtual void call(const ::id & idMethod);
    virtual void send(const ::id & idFuture, const ::var & var);
@@ -93,7 +93,7 @@ public:
 
 
    template < typename PRED >
-   inline void add_procedure(const ::id & id, PRED pred, ::generic* pobjectHold = nullptr)
+   inline void add_method(const ::id & id, PRED pred, ::generic* pobjectHold = nullptr)
    {
 
       add(::method(id, pred, pobjectHold));
@@ -109,10 +109,10 @@ public:
    }
 
    template < typename PRED >
-   inline void add(enum_procedure eprocedure, PRED pred)
+   inline void add(enum_method emethod, PRED pred)
    {
 
-      add(::method((::i64) eprocedure, pred));
+      add(::method((::i64) emethod, pred));
 
    }
 

@@ -1389,6 +1389,7 @@ namespace user
    class primitive;
    class interaction;
    class interaction_layout;
+   class scroll_base;
    class form;
    class form_callback;
    class menu_interaction;

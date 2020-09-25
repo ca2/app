@@ -4,6 +4,7 @@
 namespace user
 {
 
+
    class tab_pane;
    class tab_drop_target_window;
    class single_document_template;
@@ -17,12 +18,11 @@ namespace user
    public:
 
 
-      __pointer(tab_drop_target_window)             m_pdroptargetwindow;
-      ::user::impact_data *                  m_pimpactdata;
-      ::user::impact_data *                  m_pimpactdataOld;
-      ::user::impact_creator *               m_pviewcreator;
-      bool                                   m_bCloseDocumentIfNoTabs;
-
+      __pointer(tab_drop_target_window)         m_pdroptargetwindow;
+      ::user::impact_data *                     m_pimpactdata;
+      ::user::impact_data *                     m_pimpactdataOld;
+      ::user::impact_creator *                  m_pviewcreator;
+      bool                                      m_bCloseDocumentIfNoTabs;
 
 
       tab_view();
@@ -99,5 +99,7 @@ namespace user
    };
 
 
-
 } // namespace user
+
+
+

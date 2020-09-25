@@ -173,7 +173,7 @@
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <ObjectFileName>$(IntDir)%(Directory)</ObjectFileName>
       <UseFullPaths>true</UseFullPaths>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp14</LanguageStandard>
       <Optimization>Disabled</Optimization>
       <OpenMPSupport>false</OpenMPSupport>
     </ClCompile>
@@ -237,7 +237,7 @@
       <ObjectFileName>$(IntDir)%(Directory)</ObjectFileName>
       <UseFullPaths>true</UseFullPaths>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp14</LanguageStandard>
       <OpenMPSupport>false</OpenMPSupport>
     </ClCompile>
     <Link>
@@ -302,7 +302,7 @@
       <BufferSecurityCheck />
       <ObjectFileName>$(IntDir)%(Directory)</ObjectFileName>
       <UseFullPaths>true</UseFullPaths>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp14</LanguageStandard>
       <OpenMPSupport>false</OpenMPSupport>
     </ClCompile>
     <Link>
@@ -428,7 +428,7 @@
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <ObjectFileName>$(IntDir)%(Directory)</ObjectFileName>
       <UseFullPaths>true</UseFullPaths>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp14</LanguageStandard>
       <OpenMPSupport>false</OpenMPSupport>
     </ClCompile>
     <Link>
@@ -504,7 +504,7 @@
       <ObjectFileName>$(IntDir)%(Directory)</ObjectFileName>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <UseFullPaths>true</UseFullPaths>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp14</LanguageStandard>
       <OpenMPSupport>false</OpenMPSupport>
     </ClCompile>
     <Link>

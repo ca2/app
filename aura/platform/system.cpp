@@ -5678,6 +5678,22 @@ namespace aura
    }
 
 
+   ::aura::estamira& system::estamira()
+   {
+
+      if (!m_pestamira)
+      {
+
+         __compose_new(m_pestamira);
+
+         m_pestamira->init_instance();
+
+      }
+
+      return *m_pestamira.get();
+
+   }
+
    void system::unset_thread(ITHREAD ithread, ::thread * pthread)
    {
 

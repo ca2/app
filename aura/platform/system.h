@@ -24,7 +24,7 @@ namespace aura
 
       // string_map < string_map < PFN_factory_exchange > > m_mapFactoryExchange;
 
-      // __composite(::aura::estamira)                      m_pestamira;
+      __composite(::aura::estamira)                      m_pestamira;
 
       ::type                                             m_typePaneTabView;
 #ifdef APPLE_IOS
@@ -279,6 +279,9 @@ namespace aura
       ITHREAD get_thread_id(::thread * pthread);
       void set_thread(ITHREAD ithread, ::thread * pthread);
       void unset_thread(ITHREAD ithread, ::thread * pthread);
+
+
+      ::aura::estamira& estamira();
 
       inline ::gpu::approach* get_gpu() { if (!m_pgpu) create_gpu(); return m_pgpu.get(); };
       inline ::gpu::approach* gpu() { return m_pgpu.get(); };

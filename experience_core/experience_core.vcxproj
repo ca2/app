@@ -467,7 +467,7 @@
       <UseFullPaths>true</UseFullPaths>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp14</LanguageStandard>
       <OpenMPSupport>false</OpenMPSupport>
       <EnableModules>false</EnableModules>
     </ClCompile>
@@ -855,7 +855,7 @@
       <UseFullPaths>true</UseFullPaths>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp14</LanguageStandard>
       <OpenMPSupport>false</OpenMPSupport>
       <EnableModules>false</EnableModules>
     </ClCompile>

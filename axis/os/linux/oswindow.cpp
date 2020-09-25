@@ -1578,3 +1578,27 @@ int_bool show_window(oswindow oswindow, int iShow)
    return true;
 
 }
+
+
+
+
+
+
+iptr get_window_long_ptr(oswindow_data * pdata, int nIndex)
+{
+
+   return pdata->get_window_long_ptr(nIndex);
+
+}
+
+
+iptr set_window_long_ptr(oswindow_data * pdata, int nIndex, iptr i)
+{
+
+   return pdata->set_window_long_ptr(nIndex, i);
+
+}
+
+
+
+

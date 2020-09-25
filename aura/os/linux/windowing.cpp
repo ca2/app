@@ -4386,7 +4386,7 @@ WINBOOL ca2_GetClientRect(oswindow window, RECT * prect)
 }
 
 
-HCURSOR imaging::load_default_cursor(e_cursor ecursor)
+HCURSOR context_image::load_default_cursor(e_cursor ecursor)
 {
 
    int iCursor = 0;
@@ -4655,7 +4655,7 @@ i64 oswindow_id(oswindow w)
 }
 
 
-WINBOOL imaging::window_set_mouse_cursor(oswindow window, HCURSOR hcursor)
+WINBOOL context_image::window_set_mouse_cursor(oswindow window, HCURSOR hcursor)
 {
 
    if(::is_null(window))
@@ -4904,7 +4904,7 @@ Picture xrender_create_picture(oswindow window, ::image_pointer pimage)
 }
 
 
-HCURSOR imaging::CreateAlphaCursor(oswindow window, const ::image * pimage, int xHotSpot, int yHotSpot)
+HCURSOR context_image::CreateAlphaCursor(oswindow window, const ::image * pimage, int xHotSpot, int yHotSpot)
 {
 
    HCURSOR hcursor = HNULL;
@@ -5491,6 +5491,8 @@ bool post_ui_message(const MESSAGE & message)
    return true;
 
 }
+
+
 
 
 

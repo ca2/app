@@ -5,13 +5,8 @@
 #include <sys/ipc.h>
 #include <sys/msg.h>
 
-
-namespace apex
+namespace interprocess_communication
 {
-
-
-   namespace ipc
-   {
 
 
       base::base()
@@ -308,7 +303,7 @@ namespace apex
          if(m_preceiver != nullptr)
          {
 
-            m_preceiver->on_ipc_receive(prx,pszMessage);
+            m_preceiver->on_interprocess_receive(prx,pszMessage);
 
          }
 
@@ -325,7 +320,7 @@ namespace apex
          if(m_preceiver != nullptr)
          {
 
-            m_preceiver->on_ipc_receive(prx,message,pdata,len);
+            m_preceiver->on_interprocess_receive(prx,message,pdata,len);
 
          }
 
@@ -344,7 +339,7 @@ namespace apex
          if(m_preceiver != nullptr)
          {
 
-            m_preceiver->on_ipc_post(prx,a,b);
+            m_preceiver->on_interprocess_post(prx,a,b);
 
          }
 
@@ -447,7 +442,7 @@ namespace apex
       }
 
 
-      ipc::ipc()
+      interprocess_communication::interprocess_communication()
       {
 
          m_tickTimeout = (5000) * 11;
@@ -455,13 +450,13 @@ namespace apex
       }
 
 
-      ipc::~ipc()
+      interprocess_communication::~interprocess_communication()
       {
 
 
       }
 
-      bool ipc::open_ab(const char * pszChannel,launcher * plauncher)
+      bool interprocess_communication::open_ab(const char * pszChannel,launcher * plauncher)
       {
 
          m_strChannel = pszChannel;
@@ -486,7 +481,8 @@ namespace apex
 
       }
 
-      bool ipc::open_ba(const char * pszChannel,launcher * plauncher)
+
+      bool interprocess_communication::open_ba(const char * pszChannel,launcher * plauncher)
       {
 
          m_strChannel = pszChannel;
@@ -513,7 +509,7 @@ namespace apex
 
 
 
-      bool ipc::is_rx_tx_ok()
+      bool interprocess_communication::is_rx_tx_ok()
       {
 
          return m_rx.is_rx_ok() && is_tx_ok();
@@ -521,11 +517,7 @@ namespace apex
       }
 
 
-   } // namespace ipc
-
-
-} // namespace apex
-
+   } // namespace interprocess_intercommunication
 
 
 

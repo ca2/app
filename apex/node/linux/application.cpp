@@ -391,7 +391,7 @@ namespace apex
 
       gettimeofday(ptimeval, nullptr);
 
-   }   
+   }
 
 
 //   void application::set_env_var(const string & var,const string & value)
@@ -509,4 +509,6 @@ namespace apex
 
 
 } // namespace linux
+
+
 

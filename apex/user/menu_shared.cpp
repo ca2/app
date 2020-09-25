@@ -5,9 +5,6 @@
 //  Created by Camilo Sasuke Tsumanuma on 10/08/20.
 //
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/_user.h"
-#endif
 #include "menu_shared.h"
 
 

@@ -662,7 +662,7 @@
 		<Unit filename="multithreading/thread_parameter.h" />
 		<Unit filename="multithreading/threading.h" />
 		<Unit filename="multithreading/tools.h" />
-		<Unit filename="multithreading/wait_result_callback.cpp" />
+		<Unit filename="multithreading/wait_future.cpp" />
 		<Unit filename="multithreading/wait_result_callback.h" />
 		<Unit filename="node/_.h" />
 		<Unit filename="node/_node.h" />
@@ -1298,7 +1298,6 @@
 		<Unit filename="primitive/primitive/bit.h" />
 		<Unit filename="primitive/primitive/block.cpp" />
 		<Unit filename="primitive/primitive/block.h" />
-		<Unit filename="primitive/primitive/callback.cpp" />
 		<Unit filename="primitive/primitive/callback.h" />
 		<Unit filename="primitive/primitive/cflag.h" />
 		<Unit filename="primitive/primitive/collection.h" />
@@ -1316,6 +1315,8 @@
 		<Unit filename="primitive/primitive/factory.cpp" />
 		<Unit filename="primitive/primitive/factory.h" />
 		<Unit filename="primitive/primitive/function_base.h" />
+		<Unit filename="primitive/primitive/future.cpp" />
+		<Unit filename="primitive/primitive/future.h" />
 		<Unit filename="primitive/primitive/generic.cpp" />
 		<Unit filename="primitive/primitive/generic.h" />
 		<Unit filename="primitive/primitive/handler.cpp" />
@@ -1343,6 +1344,8 @@
 		<Unit filename="primitive/primitive/memory_c.cpp" />
 		<Unit filename="primitive/primitive/memory_container.cpp" />
 		<Unit filename="primitive/primitive/memory_container.h" />
+		<Unit filename="primitive/primitive/method.cpp" />
+		<Unit filename="primitive/primitive/method.h" />
 		<Unit filename="primitive/primitive/natural.h" />
 		<Unit filename="primitive/primitive/number.h" />
 		<Unit filename="primitive/primitive/object_meta.h" />
@@ -1350,7 +1353,6 @@
 		<Unit filename="primitive/primitive/pointer.h" />
 		<Unit filename="primitive/primitive/pointer2.h" />
 		<Unit filename="primitive/primitive/primitive_update.h" />
-		<Unit filename="primitive/primitive/procedure.cpp" />
 		<Unit filename="primitive/primitive/procedure.h" />
 		<Unit filename="primitive/primitive/promise.h" />
 		<Unit filename="primitive/primitive/property.cpp" />

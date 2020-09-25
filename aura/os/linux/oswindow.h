@@ -118,6 +118,7 @@ public:
 
    HCURSOR                                m_hcursorLast;
 
+   int_ptr_to_int_ptr *                   m_plongmap;
    int                                    m_iXic;
    XIC                                    m_xic;
    osdisplay                              m_osdisplay;

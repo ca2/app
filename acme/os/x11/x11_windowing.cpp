@@ -101,10 +101,10 @@ public:
    int                              m_iMarginTop;
    int                              m_iMarginLine;
 
-   ::callback                       m_callback;
+   ::future                         m_future;
 
 
-   simple_ui_display(const string & strMessage, const string & strTitle, ::emessagebox emessagebox, ::callback callback);
+   simple_ui_display(const string & strMessage, const string & strTitle, ::emessagebox emessagebox, ::future future);
 
    ~simple_ui_display();
 
@@ -125,11 +125,11 @@ public:
 };
 
 
-simple_ui_display::simple_ui_display(const string & strMessageParam, const string & strTitle, ::emessagebox emessagebox, ::callback callback):
+simple_ui_display::simple_ui_display(const string & strMessageParam, const string & strTitle, ::emessagebox emessagebox, ::future future):
    m_strTitle(strTitle),
    m_strFontName("serif"),
    m_size(300, 200),
-   m_callback(callback)
+   m_future(future)
 {
 
    //::user::initialize_edesktop();
@@ -224,12 +224,12 @@ GC x11_create_gc(Colormap colormap, Display* pdisplay, Window window, byte a, by
 }
 
 
-void x11_message_box(const string & str, const string & strTitle, ::emessagebox emessagebox, ::callback callback)
+void x11_message_box(const string & str, const string & strTitle, ::emessagebox emessagebox, ::future future)
 {
 
    defer_init_x11();
 
-   auto pdisplay = __new(simple_ui_display(str, strTitle, emessagebox, callback));
+   auto pdisplay = __new(simple_ui_display(str, strTitle, emessagebox, future));
 
    pdisplay->show();
 
@@ -308,7 +308,7 @@ GC simple_ui_display::create_gc()
 
    }
 
-   size.cy *= stra.get_count() * 2;
+   size.cy *= (stra.get_count() + 2);
 
    return size;
 
@@ -609,7 +609,7 @@ void simple_ui_display::on_expose()
 
       ::size size = x11_text_extents(m_fs, m_stra, iMargin);
 
-      m_iButtonHeight = size.cy / (m_stra.get_count() + 2);
+      m_iButtonHeight = size.cy / (m_stra.get_count() + 2)  + m_iMarginLine;
 
       size.cy += m_iMarginTop + m_iMarginLine;
 
@@ -780,12 +780,12 @@ bool simple_ui_display::process_event(Display * pdisplay, XEvent & e, XGenericEv
 
 CLASS_DECL_ACME string message_box_result_to_string(int iResult);
 
-CLASS_DECL_ACME void x11_message_box(const string & strMessage, const string & strTitle, ::emessagebox emessagebox, ::callback callback);
+CLASS_DECL_ACME void x11_message_box(const string & strMessage, const string & strTitle, ::emessagebox emessagebox, ::future future);
 
-::estatus os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, ::callback callback)
+::estatus os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, ::future future)
 {
 
-   x11_message_box(pszMessage, pszTitle, emessagebox, callback);
+   x11_message_box(pszMessage, pszTitle, emessagebox, future);
 
    return ::success;
 
@@ -797,7 +797,7 @@ bool simple_ui_display::on_click(const char * pszResult)
 
    string strResult(pszResult);
 
-   m_callback.receive_response(strResult);
+   m_future.receive_response(strResult);
 
    XUnmapWindow(x11_get_display(), m_window);
 

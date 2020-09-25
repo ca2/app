@@ -370,10 +370,8 @@
 		<Unit filename="filesystem/file/buffered_file.h" />
 		<Unit filename="filesystem/file/byte_stream.h" />
 		<Unit filename="filesystem/file/byte_stream_memory_file.h" />
-		<Unit filename="filesystem/file/c.cpp" />
 		<Unit filename="filesystem/file/circular_file.h" />
 		<Unit filename="filesystem/file/composite.h" />
-		<Unit filename="filesystem/file/cpp.cpp" />
 		<Unit filename="filesystem/file/cpp.h" />
 		<Unit filename="filesystem/file/dir.h" />
 		<Unit filename="filesystem/file/edit_file.cpp" />
@@ -387,7 +385,6 @@
 		<Unit filename="filesystem/file/item.h" />
 		<Unit filename="filesystem/file/item_array.h" />
 		<Unit filename="filesystem/file/listing_provider.h" />
-		<Unit filename="filesystem/file/md5.cpp" />
 		<Unit filename="filesystem/file/md5.h" />
 		<Unit filename="filesystem/file/memory_file.h" />
 		<Unit filename="filesystem/file/memory_map.h" />
@@ -647,7 +644,6 @@
 		<Unit filename="multithreading/fork.h" />
 		<Unit filename="multithreading/handler.cpp" />
 		<Unit filename="multithreading/handler.h" />
-		<Unit filename="multithreading/procedure_array.cpp" />
 		<Unit filename="multithreading/procedure_array.h" />
 		<Unit filename="multithreading/retry.h" />
 		<Unit filename="multithreading/retry_multi_lock.cpp" />
@@ -660,11 +656,9 @@
 		<Unit filename="multithreading/service_base.cpp" />
 		<Unit filename="multithreading/service_base.h" />
 		<Unit filename="multithreading/service_status.h" />
-		<Unit filename="multithreading/socket_event.cpp" />
 		<Unit filename="multithreading/socket_event.h" />
 		<Unit filename="multithreading/thread.cpp" />
 		<Unit filename="multithreading/thread.h" />
-		<Unit filename="multithreading/thread_impl.cpp" />
 		<Unit filename="multithreading/thread_impl.h" />
 		<Unit filename="multithreading/thread_os.cpp" />
 		<Unit filename="multithreading/thread_os.h" />
@@ -1020,6 +1014,7 @@
 		<Unit filename="os/linux/library.cpp" />
 		<Unit filename="os/linux/linux_linux.h" />
 		<Unit filename="os/linux/lock.cpp" />
+		<Unit filename="os/linux/menu.cpp" />
 		<Unit filename="os/linux/message_loop.cpp" />
 		<Unit filename="os/linux/multithreading.cpp" />
 		<Unit filename="os/linux/os.cpp" />
@@ -1103,9 +1098,15 @@
 		<Unit filename="platform/international.h" />
 		<Unit filename="platform/international_locale_schema.cpp" />
 		<Unit filename="platform/international_locale_schema.h" />
-		<Unit filename="platform/ipc.cpp" />
+		<Unit filename="platform/interprocess_call.cpp" />
+		<Unit filename="platform/interprocess_call.h" />
+		<Unit filename="platform/interprocess_communication.cpp" />
+		<Unit filename="platform/interprocess_communication.h" />
+		<Unit filename="platform/interprocess_intercommunication.cpp" />
+		<Unit filename="platform/interprocess_intercommunication.h" />
+		<Unit filename="platform/interprocess_task.cpp" />
+		<Unit filename="platform/interprocess_task.h" />
 		<Unit filename="platform/ipc.h" />
-		<Unit filename="platform/ipi.cpp" />
 		<Unit filename="platform/ipi.h" />
 		<Unit filename="platform/keep.h" />
 		<Unit filename="platform/launcher.h" />
@@ -1129,7 +1130,6 @@
 		<Unit filename="platform/os_context.h" />
 		<Unit filename="platform/os_history.cpp" />
 		<Unit filename="platform/os_history.h" />
-		<Unit filename="platform/printf.cpp" />
 		<Unit filename="platform/printf.h" />
 		<Unit filename="platform/progress.cpp" />
 		<Unit filename="platform/progress.h" />
@@ -1144,7 +1144,6 @@
 		<Unit filename="platform/simple_log.cpp" />
 		<Unit filename="platform/simple_log.h" />
 		<Unit filename="platform/simple_trace.cpp" />
-		<Unit filename="platform/sprintf.cpp" />
 		<Unit filename="platform/static_setup.cpp" />
 		<Unit filename="platform/static_setup.h" />
 		<Unit filename="platform/static_start.cpp" />
@@ -1190,9 +1189,7 @@
 		<Unit filename="primitive/data/tree.h" />
 		<Unit filename="primitive/data/tree_item.cpp" />
 		<Unit filename="primitive/data/tree_item.h" />
-		<Unit filename="primitive/datetime/_.cpp" />
 		<Unit filename="primitive/datetime/_.h" />
-		<Unit filename="primitive/datetime/_c.cpp" />
 		<Unit filename="primitive/datetime/_c.h" />
 		<Unit filename="primitive/datetime/_impl.h" />
 		<Unit filename="primitive/datetime/datetime.cpp" />
@@ -1211,7 +1208,6 @@
 		<Unit filename="primitive/primitive/_memory.h" />
 		<Unit filename="primitive/primitive/_property_set_composite_impl.h" />
 		<Unit filename="primitive/primitive/action_context.h" />
-		<Unit filename="primitive/primitive/application_bias.cpp" />
 		<Unit filename="primitive/primitive/application_bias.h" />
 		<Unit filename="primitive/primitive/command.h" />
 		<Unit filename="primitive/primitive/command_line.cpp" />
@@ -1221,7 +1217,6 @@
 		<Unit filename="primitive/primitive/context_object.h" />
 		<Unit filename="primitive/primitive/create.cpp" />
 		<Unit filename="primitive/primitive/create.h" />
-		<Unit filename="primitive/primitive/id.cpp" />
 		<Unit filename="primitive/primitive/object.cpp" />
 		<Unit filename="primitive/primitive/object.h" />
 		<Unit filename="primitive/primitive/object_meta.cpp" />
@@ -1230,10 +1225,10 @@
 		<Unit filename="primitive/primitive/update.cpp" />
 		<Unit filename="primitive/primitive/update.h" />
 		<Unit filename="process/_.h" />
+		<Unit filename="process/department.cpp" />
 		<Unit filename="process/department.h" />
+		<Unit filename="process/process.cpp" />
 		<Unit filename="process/process.h" />
-		<Unit filename="process/process_department.cpp" />
-		<Unit filename="process/process_process.cpp" />
 		<Unit filename="update.h" />
 		<Unit filename="user.h" />
 		<Unit filename="user/_.h" />
@@ -1247,6 +1242,10 @@
 		<Unit filename="user/language.h" />
 		<Unit filename="user/language_map.cpp" />
 		<Unit filename="user/language_map.h" />
+		<Unit filename="user/menu_shared.cpp" />
+		<Unit filename="user/menu_shared.h" />
+		<Unit filename="user/menu_shared_command.h" />
+		<Unit filename="user/menu_shared_commnand.cpp" />
 		<Unit filename="user/text.cpp" />
 		<Unit filename="user/text.h" />
 		<Unit filename="version/version.config.h" />

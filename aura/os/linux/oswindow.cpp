@@ -97,6 +97,8 @@ Display * x11_get_display();
 oswindow_data::oswindow_data()
 {
 
+   m_plongmap  = new int_ptr_to_int_ptr;
+
    m_iXic = 0;
 
    m_xic = nullptr;
@@ -135,6 +137,8 @@ oswindow_data::oswindow_data()
 
 oswindow_data::~oswindow_data()
 {
+
+   ::acme::del(m_plongmap);
 
 }
 
@@ -1131,7 +1135,7 @@ void oswindow_data::exit_zoomed()
 LONG_PTR oswindow_data::get_window_long_ptr(i32 nIndex)
 {
 
-   return m_pimpl->m_longptr.operator[](nIndex);
+   return m_plongmap->operator[](nIndex);
 
 }
 
@@ -1139,12 +1143,12 @@ LONG_PTR oswindow_data::get_window_long_ptr(i32 nIndex)
 LONG_PTR oswindow_data::set_window_long_ptr(i32 nIndex, LONG_PTR l)
 {
 
-   LONG_PTR lOld = m_pimpl->m_longptr[nIndex];
+   LONG_PTR lOld = m_plongmap->operator[](nIndex);
 
    if(nIndex == GWL_EXSTYLE)
    {
 
-      if(is_different((l & WS_EX_TOOLWINDOW), (m_pimpl->m_longptr[nIndex] & WS_EX_TOOLWINDOW)))
+      if(is_different((l & WS_EX_TOOLWINDOW), (m_plongmap->operator[](nIndex) & WS_EX_TOOLWINDOW)))
       {
 
          wm_toolwindow(this, (l & WS_EX_TOOLWINDOW) != 0);
@@ -1153,7 +1157,7 @@ LONG_PTR oswindow_data::set_window_long_ptr(i32 nIndex, LONG_PTR l)
 
    }
 
-   m_pimpl->m_longptr[nIndex] = l;
+   m_plongmap->operator[](nIndex)= l;
 
    return lOld;
 
@@ -1581,3 +1585,22 @@ int_bool show_window(oswindow oswindow, int iShow)
    return true;
 
 }
+
+
+
+
+iptr get_window_long_ptr(oswindow_data * pdata, int nIndex)
+{
+
+   return pdata->get_window_long_ptr(nIndex);
+
+}
+
+
+iptr set_window_long_ptr(oswindow_data * pdata, int nIndex, iptr i)
+{
+
+   return pdata->set_window_long_ptr(nIndex, i);
+
+}
+

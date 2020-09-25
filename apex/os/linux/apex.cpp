@@ -141,3 +141,10 @@ int get_processor_count()
 
 
 
+
+
+void apex_application_main(int argc, char* argv[], const char* pszCommandLine)
+{
+
+
+}

@@ -64,7 +64,7 @@ namespace acme
 
 #elif defined(LINUX)
 
-         x11_message_box(m_strText, m_strTitle, m_emessagebox, m_callback);
+         x11_message_box(m_strText, m_strTitle, m_emessagebox, m_future);
 
          return ::success;
 

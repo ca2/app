@@ -329,6 +329,7 @@ iptr oswindow_data::set_window_long_ptr(iptr iIndex, iptr iNewLong)
 }
 
 
+
 static oswindow g_oswindowCapture;
 
 

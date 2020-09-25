@@ -245,7 +245,6 @@ iptr oswindow_data::get_window_long_ptr(iptr iIndex)
 
 }
 
-
 iptr oswindow_data::set_window_long_ptr(iptr iIndex, iptr iNewLong)
 {
 

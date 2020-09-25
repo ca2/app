@@ -544,3 +544,10 @@ void system_call_update(int iUpdate, const var & var)
    }
    
 }
+
+void int_system_call_update(int iUpdate, int iArg)
+{
+   
+   system_call_update(iUpdate, iArg);
+   
+}

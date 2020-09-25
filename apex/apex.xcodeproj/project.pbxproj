@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9A220F68251A1C64002B42B7 /* thread_set.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A220F67251A1C63002B42B7 /* thread_set.h */; };
+		9A28C568251D56BF006E7693 /* menu_shared_commnand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28C565251D56BF006E7693 /* menu_shared_commnand.cpp */; };
 		9A4E5D742519423600CC6817 /* application_system_run.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B8292511444C008DABD2 /* application_system_run.cpp */; };
 		9A68BB3A2511444D008DABD2 /* procedure.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B4092511444A008DABD2 /* procedure.h */; };
 		9A68BB3B2511444D008DABD2 /* console.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B40A2511444A008DABD2 /* console.h */; };
@@ -1615,6 +1616,7 @@
 
 /* Begin PBXFileReference section */
 		9A220F67251A1C63002B42B7 /* thread_set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thread_set.h; sourceTree = "<group>"; };
+		9A28C565251D56BF006E7693 /* menu_shared_commnand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = menu_shared_commnand.cpp; sourceTree = "<group>"; };
 		9A68A446251143F8008DABD2 /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A68B4092511444A008DABD2 /* procedure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = procedure.h; sourceTree = "<group>"; };
 		9A68B40A2511444A008DABD2 /* console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = console.h; sourceTree = "<group>"; };
@@ -3239,6 +3241,7 @@
 		9A68B6B32511444B008DABD2 /* user */ = {
 			isa = PBXGroup;
 			children = (
+				9A28C565251D56BF006E7693 /* menu_shared_commnand.cpp */,
 				9A68B6C02511444B008DABD2 /* _.h */,
 				9A68B6BD2511444B008DABD2 /* _const_key.h */,
 				9A68B6BF2511444B008DABD2 /* check.cpp */,
@@ -5031,6 +5034,7 @@
 				9A68BCC12511444E008DABD2 /* timer_item.cpp in Sources */,
 				9A68BE6D2511444F008DABD2 /* language.cpp in Sources */,
 				9AEF22472512F2630000D8E1 /* apex_window.mm in Sources */,
+				9A28C568251D56BF006E7693 /* menu_shared_commnand.cpp in Sources */,
 				9A68BE632511444F008DABD2 /* application_system_run.cpp in Sources */,
 				9AAE6EAD251921CF00F10692 /* interprocess_intercommunication.cpp in Sources */,
 				9A68BB9E2511444E008DABD2 /* tls_socket.cpp in Sources */,

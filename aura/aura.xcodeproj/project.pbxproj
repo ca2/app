@@ -439,6 +439,8 @@
 		9A2562A124BFE1F900BBC928 /* RoundEditView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A2562A024BFE1F900BBC928 /* RoundEditView.mm */; };
 		9A268CC224CDD8A000C94D85 /* user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A268CC124CDD8A000C94D85 /* user.cpp */; };
 		9A268CE824CE118800C94D85 /* _defer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A268CE724CE118800C94D85 /* _defer.h */; };
+		9A28C562251D5688006E7693 /* windowing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28C560251D5688006E7693 /* windowing.cpp */; };
+		9A28C563251D5688006E7693 /* windowing.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28C561251D5688006E7693 /* windowing.h */; };
 		9A292E5424743F64007D51C9 /* oswindow_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A292E5324743F63007D51C9 /* oswindow_data.h */; };
 		9A2A532B1F1FEDFD001AB0F8 /* draw2d.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2A52FC1F1FEDFD001AB0F8 /* draw2d.h */; };
 		9A2C2A812324652400313725 /* timer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2C2A7B2324652300313725 /* timer.h */; };
@@ -1345,6 +1347,8 @@
 		9A268CE724CE118800C94D85 /* _defer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _defer.h; sourceTree = "<group>"; };
 		9A27D9B924DCD1A30002AAE3 /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = ../../time/macos/libcrypto.dylib; sourceTree = "<group>"; };
 		9A27D9BA24DCD1A30002AAE3 /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = ../../time/macos/libssl.dylib; sourceTree = "<group>"; };
+		9A28C560251D5688006E7693 /* windowing.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = windowing.cpp; sourceTree = "<group>"; };
+		9A28C561251D5688006E7693 /* windowing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = windowing.h; sourceTree = "<group>"; };
 		9A292DFE24743255007D51C9 /* _c.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _c.h; sourceTree = "<group>"; };
 		9A292E5224743C87007D51C9 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A292E5324743F63007D51C9 /* oswindow_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = oswindow_data.h; sourceTree = "<group>"; };
@@ -2003,6 +2007,8 @@
 				9AAC2142247570800013AB72 /* process.cpp */,
 				9A247D122452C47E00F23D28 /* aaa_time.cpp */,
 				9A247CF62452C47E00F23D28 /* time.h */,
+				9A28C560251D5688006E7693 /* windowing.cpp */,
+				9A28C561251D5688006E7693 /* windowing.h */,
 			);
 			path = apple;
 			sourceTree = "<group>";
@@ -3219,6 +3225,7 @@
 				9A2483252452C48700F23D28 /* binreloc.h in Headers */,
 				9A2486EB2452C49100F23D28 /* _macos.h in Headers */,
 				9A41733420004E7A0056265A /* ossl_typ.h in Headers */,
+				9A28C563251D5688006E7693 /* windowing.h in Headers */,
 				9A2F60CF2474F6D300D392E8 /* application_common.h in Headers */,
 				9A24830A2452C48700F23D28 /* _apple.h in Headers */,
 				9A24830B2452C48700F23D28 /* debug.h in Headers */,
@@ -3922,6 +3929,7 @@
 				9A2483EB2452C48900F23D28 /* file.cpp in Sources */,
 				9A3769CA2409C2C5002D15D3 /* decoder_plugin.cpp in Sources */,
 				9A5C95442472680000107FDE /* message_loop.cpp in Sources */,
+				9A28C562251D5688006E7693 /* windowing.cpp in Sources */,
 				9A8B636424CBCD3C00A93185 /* buffer.cpp in Sources */,
 				9AD116F124F5147800177261 /* controller.cpp in Sources */,
 				9A3764CB2409BF0C002D15D3 /* palette.cpp in Sources */,

@@ -15,3 +15,6 @@ iptr set_window_long_ptr(oswindow_data * oswindow, int iIndex, iptr i)
 {
    return oswindow->set_window_long_ptr(iIndex, i);
 }
+
+
+

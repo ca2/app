@@ -443,6 +443,12 @@
 		9A28C563251D5688006E7693 /* windowing.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28C561251D5688006E7693 /* windowing.h */; };
 		9A292E5424743F64007D51C9 /* oswindow_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A292E5324743F63007D51C9 /* oswindow_data.h */; };
 		9A2A532B1F1FEDFD001AB0F8 /* draw2d.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2A52FC1F1FEDFD001AB0F8 /* draw2d.h */; };
+		9A2BE84E251EC3BC0075218C /* estamira.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2BE847251EC3BC0075218C /* estamira.h */; };
+		9A2BE84F251EC3BC0075218C /* estamira.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2BE848251EC3BC0075218C /* estamira.cpp */; };
+		9A2BE850251EC3BC0075218C /* _game.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2BE849251EC3BC0075218C /* _game.h */; };
+		9A2BE851251EC3BC0075218C /* game.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2BE84A251EC3BC0075218C /* game.h */; };
+		9A2BE852251EC3BC0075218C /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2BE84B251EC3BC0075218C /* game.cpp */; };
+		9A2BE853251EC3BC0075218C /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2BE84C251EC3BC0075218C /* _.h */; };
 		9A2C2A812324652400313725 /* timer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2C2A7B2324652300313725 /* timer.h */; };
 		9A2F60AA2474F65F00D392E8 /* linux.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2F60A02474F65E00D392E8 /* linux.h */; };
 		9A2F60AB2474F65F00D392E8 /* windows.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2F60A12474F65E00D392E8 /* windows.h */; };
@@ -1353,6 +1359,12 @@
 		9A292E5224743C87007D51C9 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A292E5324743F63007D51C9 /* oswindow_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = oswindow_data.h; sourceTree = "<group>"; };
 		9A2A52FC1F1FEDFD001AB0F8 /* draw2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = draw2d.h; sourceTree = "<group>"; };
+		9A2BE847251EC3BC0075218C /* estamira.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = estamira.h; sourceTree = "<group>"; };
+		9A2BE848251EC3BC0075218C /* estamira.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = estamira.cpp; sourceTree = "<group>"; };
+		9A2BE849251EC3BC0075218C /* _game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _game.h; sourceTree = "<group>"; };
+		9A2BE84A251EC3BC0075218C /* game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = game.h; sourceTree = "<group>"; };
+		9A2BE84B251EC3BC0075218C /* game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = game.cpp; sourceTree = "<group>"; };
+		9A2BE84C251EC3BC0075218C /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A2C2A7B2324652300313725 /* timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = timer.h; sourceTree = "<group>"; };
 		9A2F60A02474F65E00D392E8 /* linux.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = linux.h; sourceTree = "<group>"; };
 		9A2F60A12474F65E00D392E8 /* windows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows.h; sourceTree = "<group>"; };
@@ -2575,6 +2587,19 @@
 			path = draw3d;
 			sourceTree = "<group>";
 		};
+		9A2BE846251EC3BC0075218C /* game */ = {
+			isa = PBXGroup;
+			children = (
+				9A2BE847251EC3BC0075218C /* estamira.h */,
+				9A2BE848251EC3BC0075218C /* estamira.cpp */,
+				9A2BE849251EC3BC0075218C /* _game.h */,
+				9A2BE84A251EC3BC0075218C /* game.h */,
+				9A2BE84B251EC3BC0075218C /* game.cpp */,
+				9A2BE84C251EC3BC0075218C /* _.h */,
+			);
+			path = game;
+			sourceTree = "<group>";
+		};
 		9A2F609F2474F65E00D392E8 /* console */ = {
 			isa = PBXGroup;
 			children = (
@@ -3041,6 +3066,7 @@
 				9AF13618249DE790009410E0 /* asset */,
 				9AF5F6A12298C60A0052BC48 /* const */,
 				07F5B12D184A3B420092C3E1 /* filesystem */,
+				9A2BE846251EC3BC0075218C /* game */,
 				9A8B635224CBCD3C00A93185 /* gpu */,
 				9A2A52F81F1FEDFD001AB0F8 /* graphics */,
 				9A2488C02452C4F100F23D28 /* include */,
@@ -3190,6 +3216,7 @@
 				9AD116EC24F5147800177261 /* message_queue_listener.h in Headers */,
 				9A24860C2452C48F00F23D28 /* drawable.h in Headers */,
 				9A3764832409BF0C002D15D3 /* path.h in Headers */,
+				9A2BE84E251EC3BC0075218C /* estamira.h in Headers */,
 				9A1DAB622512E10D00670772 /* output_tree.h in Headers */,
 				9A3764942409BF0C002D15D3 /* igui.h in Headers */,
 				9A24835C2452C48800F23D28 /* process_c.h in Headers */,
@@ -3251,6 +3278,7 @@
 				9A2483BC2452C48900F23D28 /* gen_1.h in Headers */,
 				9A8B636524CBCD3C00A93185 /* buffer.h in Headers */,
 				9A24876B2452C49300F23D28 /* _node.h in Headers */,
+				9A2BE851251EC3BC0075218C /* game.h in Headers */,
 				9A41733A20004E7A0056265A /* rc2.h in Headers */,
 				9A2483C72452C48900F23D28 /* window_boot 2.h in Headers */,
 				9A2F60C72474F6D300D392E8 /* __debug_box_clear_impl.h in Headers */,
@@ -3317,10 +3345,12 @@
 				9A3764952409BF0C002D15D3 /* pen.h in Headers */,
 				9A268CE824CE118800C94D85 /* _defer.h in Headers */,
 				9AD116DF24F5147800177261 /* callback.h in Headers */,
+				9A2BE850251EC3BC0075218C /* _game.h in Headers */,
 				9A3CD7F82512E5F000E811FA /* application_common.h in Headers */,
 				9A2489AF245335C100F23D28 /* _mm_common.h in Headers */,
 				9AD1172624F5147900177261 /* create_struct.h in Headers */,
 				9A2483B62452C48900F23D28 /* window_boot.h in Headers */,
+				9A2BE853251EC3BC0075218C /* _.h in Headers */,
 				9A24833F2452C48700F23D28 /* file.h in Headers */,
 				9A2483CE2452C48900F23D28 /* window_impl.h in Headers */,
 				9A41732520004E7A0056265A /* evp.h in Headers */,
@@ -4035,6 +4065,7 @@
 				9AF13609249DDCB8009410E0 /* application.cpp in Sources */,
 				9A3764932409BF0C002D15D3 /* fastblur.cpp in Sources */,
 				9A2483192452C48700F23D28 /* _.cpp in Sources */,
+				9A2BE852251EC3BC0075218C /* game.cpp in Sources */,
 				9AD1172924F5147900177261 /* main_window.cpp in Sources */,
 				9A4E5CA62519319500CC6817 /* form.cpp in Sources */,
 				9A2489E32453417F00F23D28 /* _.cpp in Sources */,
@@ -4052,6 +4083,7 @@
 				9A1DAB652512E10D00670772 /* edit.cpp in Sources */,
 				9A8749442476FB4B000353C2 /* mm_graphics.mm in Sources */,
 				9AD1173024F5147900177261 /* interaction_impl.cpp in Sources */,
+				9A2BE84F251EC3BC0075218C /* estamira.cpp in Sources */,
 				9A2483502452C48800F23D28 /* debug.cpp in Sources */,
 				9A3764852409BF0C002D15D3 /* thread_tool.cpp in Sources */,
 				9AF135F2249DDC45009410E0 /* timer.cpp in Sources */,

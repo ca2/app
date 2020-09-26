@@ -2,7 +2,7 @@
 #include "acme/id.h"
 
 
-#if !defined(WINDOWS_DESKTOP) && !defined(MACOS)
+#if !defined(WINDOWS_DESKTOP) 
 
 namespace user
 {

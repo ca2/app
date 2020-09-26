@@ -28,6 +28,7 @@
 namespace user
 {
 
+   void defer_calc_os_dark_mode();
 
 #ifdef _UWP
 
@@ -2087,13 +2088,13 @@ namespace user
 
    void interaction::_001OnClip(::draw2d::graphics_pointer & pgraphics)
    {
-      
-#ifdef MACOS
-      
+
+#if defined(MACOS) || defined(LINUX)
+
       return;
-      
+
 #endif
-      
+
       try
       {
 
@@ -2135,7 +2136,7 @@ namespace user
          ::rect rectIntersect;
 
          index i = 0;
-         
+
          pgraphics->SelectClipRgn(nullptr);
 
          while (pinteraction != nullptr)
@@ -2146,7 +2147,7 @@ namespace user
             pinteraction->_001ClientToScreen(rectClient);
 
             _001ScreenToClient(rectClient);
-            
+
             rectClient += m_pointScroll;
 
             pgraphics->IntersectClipRect(rectClient);
@@ -2659,6 +2660,8 @@ namespace user
 
    void interaction::_001PrintBuffer(::draw2d::graphics_pointer & pgraphics)
    {
+
+      ::user::defer_calc_os_dark_mode();
 
       windowing_output_debug_string("\n_001UpdateBuffer : before graphics lock");
 

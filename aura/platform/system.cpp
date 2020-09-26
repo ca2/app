@@ -8026,6 +8026,8 @@ namespace aura
 
       ::apex::system::update(pupdate);
 
+
+
       //::update updateSetting(pupdate);
 
       //fork([this, updateSetting]
@@ -8060,24 +8062,6 @@ namespace aura
 
    }
 
-
-void system::defer_calc_os_dark_mode()
-{
-
-#ifdef LINUX
-   string strTheme = ::os::get_os_desktop_theme();
-
-   if(strTheme.contains_ci("dark"))
-   {
-      ::user::set_app_dark_mode(true);
-   }
-   else
-   {
-   ::user::set_app_dark_mode(false);
-   }
-   #endif
-
-}
 
    /* colorramp.c -- color temperature calculation source
    This file is part of Redshift.

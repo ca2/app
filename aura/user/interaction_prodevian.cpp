@@ -599,12 +599,12 @@ bool prodevian::prodevian_iteration()
       return false;
 
    }
-   
+
    if(!m_puserinteraction)
    {
-      
+
       return false;
-      
+
    }
 
    if (!(m_puserinteraction->m_ewindowflag & window_flag_postpone_visual_update))
@@ -619,7 +619,7 @@ bool prodevian::prodevian_iteration()
       //#endif
       ////END IFDEF LINUX
    }
-   
+
    if (m_bVisualUpdated)
    {
 
@@ -869,6 +869,13 @@ bool prodevian::prodevian_iteration()
             {
 
                bDraw = true;
+
+            }
+
+            if(!m_puserinteraction)
+            {
+
+               return;
 
             }
 

@@ -1001,16 +1001,14 @@ namespace aura
 
       virtual void update(::update* pupdate) override;
 
-      virtual void defer_calc_os_dark_mode();
-
       // virtual void on_command_create(::create* pcreate);
 
       //virtual bool initialize_native_window1() override;
 
       //virtual ::apex::library* load_library(const char* pszLibrary);
-      
+
 //      virtual void application_main(int argc, char *argv[], const char * pszCommandLine) override;
-      
+
 
    };
 

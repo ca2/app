@@ -1381,6 +1381,29 @@ bool graphics::PatBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, u32 dwRop)
 }
 
 
+void graphics::on_apply_clip_region()
+{
+
+   cairo_reset_clip(m_pdc);
+
+   if(m_pregion)
+   {
+
+      m_pregion.cast < region >()->clip(m_pdc);
+
+   }
+
+//         if(m_pregion)
+//         {
+//
+//            _mask(m_pregion);
+//
+//         }
+//
+
+}
+
+
 bool graphics::BitBltRaw(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, u32 dwRop)
 {
 
@@ -3331,57 +3354,22 @@ i32 graphics::GetClipBox(RECT * prect)
 i32 graphics::SelectClipRgn(::draw2d::region * pregion)
 {
 
-    sync_lock ml(cairo_mutex());
+   sync_lock ml(cairo_mutex());
 
-    if (pregion == nullptr)
-    {
+   if (pregion == nullptr)
+   {
 
-        if (m_iSaveDCPositiveClip >= 0)
-        {
+      cairo_reset_clip(m_pdc);
 
-            // is better in  cairo to restore the DC instead of resetting clipping
+   }
+   else
+   {
 
-            //RestoreDC(m_iSaveDCPositiveClip);
-            // cairo_reset_clip(m_pdc);
+      pregion->cast < region >()->clip(m_pdc);
 
-            m_iSaveDCPositiveClip = -1;
+   }
 
-        }
-
-        m_pregion.release();
-
-    }
-    else
-    {
-
-        if (m_pregion.is_null())
-        {
-
-            m_pregion.create();
-
-        }
-
-        m_pregion = pregion;
-
-        if (m_pregion.cast < region >()->is_simple_positive_region())
-        {
-
-            //if (m_iSaveDCPositiveClip > 0)
-            //{
-
-            //   RestoreDC(m_iSaveDCPositiveClip);
-
-            //}
-
-            //m_iSaveDCPositiveClip = SaveDC();
-
-            m_pregion.cast < region >()->clip(m_pdc);
-
-        }
-
-    }
-
-    return 0;
+   return 0;
 
 }
 
@@ -3389,9 +3377,9 @@ i32 graphics::SelectClipRgn(::draw2d::region * pregion)
 i32 graphics::ExcludeClipRect(i32 x1, i32 y1, i32 x2, i32 y2)
 {
 
-    ::exception::throw_not_implemented();
+    //::exception::throw_not_implemented();
 
-    return 0;
+    return ::draw2d::graphics::ExcludeClipRect(x1, y1, x2, y2);
 
 }
 
@@ -3409,13 +3397,21 @@ i32 graphics::ExcludeClipRect(const ::rect & rect)
 i32 graphics::IntersectClipRect(i32 x1, i32 y1, i32 x2, i32 y2)
 {
 
-    sync_lock ml(cairo_mutex());
+   sync_lock ml(cairo_mutex());
 
-    cairo_rectangle(m_pdc, x1, y1, x2 - x1, y2 - y1);
+   cairo_rectangle(m_pdc, x1, y1, x2 - x1, y2 - y1);
 
-    cairo_clip(m_pdc);
+   cairo_clip(m_pdc);
 
-    return 0;
+   return 0;
+
+}
+
+
+i32 graphics::IntersectClipRect(const ::rect & rect)
+{
+
+   return IntersectClipRect(rect.left, rect.top, rect.right, rect.bottom);
 
 }
 
@@ -3423,21 +3419,25 @@ i32 graphics::IntersectClipRect(i32 x1, i32 y1, i32 x2, i32 y2)
 i32 graphics::OffsetClipRgn(i32 x, i32 y)
 {
 
+   return ::draw2d::graphics::OffsetClipRgn(x, y);
+
     //::exception::throw_not_implemented();
 
     // does cairo automatically offset clip region
     // according to current transformation?
 
-    return 0;
+    //return 0;
 
 }
 
 i32 graphics::OffsetClipRgn(const ::size & size)
 {
 
-    ::exception::throw_not_implemented();
+    //::exception::throw_not_implemented();
 
-    return 0;
+    //return 0;
+
+    return ::draw2d::graphics::OffsetClipRgn(size);
 
 }
 
@@ -3588,7 +3588,7 @@ bool graphics::SelectClipPath(i32 nMode)
 }
 
 
-i32 graphics::SelectClipRgn(::draw2d::region* pRgn, i32 nMode)
+i32 graphics::SelectClipRgn(::draw2d::region* pRgn, ::draw2d::enum_combine ecombine)
 {
 
     return SelectClipRgn(pRgn);
@@ -5127,6 +5127,7 @@ bool graphics::_fill2(::draw2d::brush* pbrush, double xOrg, double yOrg)
    return true;
 
 }
+
 
 bool graphics::fill(double xOrg, double yOrg)
 {

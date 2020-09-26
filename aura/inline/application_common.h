@@ -183,9 +183,9 @@ public:
 #ifdef NO_IMAGING
       papplication->m_bImaging = false;
 #endif
-      
+
       return papplication;
-      
+
    }
 
 
@@ -219,7 +219,7 @@ public:
 inline string executable_get_app_id()
 {
 
-   return MAIN_APP_ID;
+   return MAINAPPID;
 
 }
 

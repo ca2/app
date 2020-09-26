@@ -24,17 +24,17 @@ namespace app_app
       main_window::on_create_user_interaction();
 
 #ifdef WINDOWS_DESKTOP
-      
+
       ModifyStyle(WS_CAPTION, 0);
-      
+
 #endif
 
       ModifyStyleEx(0, WS_EX_LAYERED);
-      
+
       auto & app = App(this);
-      
-      app.m_bIpi = false;
-      
+
+      app.m_bInterprocessIntercommunication = false;
+
       ::user::interaction * p = this;
 
    }
@@ -52,7 +52,7 @@ namespace app_app
       get_client_rect(rectClient);
 
       pgraphics->fill_rect(rectClient, ARGB(127, 255, 255, 255));
-      
+
       double dBase = (double) rectClient.minimum_signed_absolute_dimension() / 17.0;
 
       double x = dBase * 3;

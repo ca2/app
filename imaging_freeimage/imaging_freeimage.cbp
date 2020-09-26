@@ -105,8 +105,9 @@
 			<Add option="-Wl,-z,defs" />
 			<Add directory="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 		</Linker>
-
 		<Unit filename="_.h" />
+		<Unit filename="context_image.cpp" />
+		<Unit filename="context_image.h" />
 		<Unit filename="factory_exchange.cpp" />
 		<Unit filename="factory_exchange.h" />
 		<Unit filename="file_procedure.cpp" />
@@ -114,8 +115,6 @@
 		<Unit filename="fimemory.h" />
 		<Unit filename="framework.cpp" />
 		<Unit filename="framework.h" />
-		<Unit filename="imaging.cpp" />
-		<Unit filename="imaging.h" />
 		<Unit filename="imaging_freeimage.cpp" />
 		<Unit filename="loading.cpp" />
 		<Unit filename="loading_gif.cpp" />

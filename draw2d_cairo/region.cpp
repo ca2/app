@@ -27,29 +27,29 @@ namespace draw2d_cairo
    bool region::is_simple_positive_region()
    {
 
-      switch(m_etype)
+      switch(m_eregion)
       {
-      case type_none:
+      case ::draw2d::e_region_none:
 
          return true;
 
-      case type_rect:
+      case ::draw2d::e_region_rect:
 
          return true;
 
-      case type_oval:
+      case ::draw2d::e_region_oval:
 
          return true;
 
-      case type_polygon:
+      case ::draw2d::e_region_polygon:
 
          return true;
 
-      case type_poly_polygon:
+      case ::draw2d::e_region_poly_polygon:
 
          return false;
 
-      case type_combine:
+      case ::draw2d::e_region_combine:
 
          return false;
 
@@ -138,13 +138,13 @@ namespace draw2d_cairo
    bool region::_mask(cairo_t * pgraphics)
    {
 
-      switch(m_etype)
+      switch(m_eregion)
       {
-      case type_none:
+      case ::draw2d::e_region_none:
 
          break;
 
-      case type_rect:
+      case ::draw2d::e_region_rect:
 
          mask_rect(pgraphics);
 
@@ -154,7 +154,7 @@ namespace draw2d_cairo
 
          break;
 
-      case type_oval:
+      case ::draw2d::e_region_oval:
 
          mask_oval(pgraphics);
 
@@ -164,7 +164,7 @@ namespace draw2d_cairo
 
          break;
 
-      case type_polygon:
+      case ::draw2d::e_region_polygon:
 
          mask_polygon(pgraphics);
 
@@ -174,7 +174,7 @@ namespace draw2d_cairo
 
          break;
 
-      case type_poly_polygon:
+      case ::draw2d::e_region_poly_polygon:
 
          mask_polygon(pgraphics);
 
@@ -184,7 +184,7 @@ namespace draw2d_cairo
 
          break;
 
-      case type_combine:
+      case ::draw2d::e_region_combine:
 
          mask_combine(pgraphics);
 
@@ -322,19 +322,19 @@ namespace draw2d_cairo
 
       m_pregion1.cast < ::draw2d_cairo::region >()->_mask(pgraphics);
 
-      if(m_ecombine == ::draw2d::region::combine_add)
+      if(m_ecombine == ::draw2d::e_combine_add)
       {
 
          cairo_set_operator(pgraphics, CAIRO_OPERATOR_SOURCE);
 
       }
-      else if(m_ecombine == ::draw2d::region::combine_exclude)
+      else if(m_ecombine == ::draw2d::e_combine_exclude)
       {
 
          cairo_set_operator(pgraphics, CAIRO_OPERATOR_CLEAR);
 
       }
-      else if(m_ecombine == ::draw2d::region::combine_intersect)
+      else if(m_ecombine == ::draw2d::e_combine_intersect)
       {
 
          cairo_set_operator(pgraphics, CAIRO_OPERATOR_IN);
@@ -379,27 +379,35 @@ namespace draw2d_cairo
 
       }
 
-      switch(m_etype)
+      switch(m_eregion)
       {
-      case type_none:
+      case ::draw2d::e_region_none:
 
          break;
 
-      case type_rect:
+      case ::draw2d::e_region_rect:
 
          clip_rect(pgraphics);
 
          break;
 
-      case type_oval:
+      case ::draw2d::e_region_oval:
 
          clip_oval(pgraphics);
 
          break;
 
-      case type_polygon:
+      case ::draw2d::e_region_polygon:
 
          clip_polygon(pgraphics);
+
+         break;
+
+      case ::draw2d::e_region_combine:
+
+         m_pregion1->cast < region >()->clip(pgraphics);
+
+         m_pregion2->cast < region >()->clip(pgraphics);
 
          break;
 

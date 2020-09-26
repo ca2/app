@@ -47,6 +47,7 @@ namespace graphics
       virtual sync * get_screen_sync();
 
 
+
    };
 
 

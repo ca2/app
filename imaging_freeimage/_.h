@@ -49,7 +49,7 @@ namespace imaging_freeimage
 #include "factory_exchange.h"
 
 
-#include "imaging.h"
+#include "context_image.h"
 
 
 

@@ -10,11 +10,10 @@ namespace draw2d_cairo
    {
    public:
 
+
       cairo_t *               m_pdc;
       cairo_surface_t *       m_psurface;
       ::rect                  m_rectBoundingBoxInternal;
-
-
 
 
       region();

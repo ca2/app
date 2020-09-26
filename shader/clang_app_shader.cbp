@@ -110,7 +110,7 @@
 			<Add directory="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 		</Linker>
 		<ExtraCommands>
-			<Add after="$(#archive)/tool-linux/bin/app._.sh $(WORKSPACE_DIR) $(PROJECT_DIR) $(TARGET_NAME) $(PROJECT_NAME) $(#platform_modifier) $(#archive) $(#config) app-simple/shader" />
+			<Add after="$(#archive)/tool-linux/bin/app._.sh $(WORKSPACE_DIR) $(PROJECT_DIR) $(TARGET_NAME) $(PROJECT_NAME) $(#platform_modifier) $(#archive) $(#config)  app-simple/shader" />
 			<Mode after="always" />
 		</ExtraCommands>
 		<Unit filename="_.h" />

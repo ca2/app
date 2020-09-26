@@ -1090,7 +1090,6 @@
 		<Unit filename="platform/department.cpp" />
 		<Unit filename="platform/department.h" />
 		<Unit filename="platform/display.h" />
-		<Unit filename="platform/draw_context2.h" />
 		<Unit filename="platform/error.h" />
 		<Unit filename="platform/history.cpp" />
 		<Unit filename="platform/history.h" />
@@ -1106,8 +1105,6 @@
 		<Unit filename="platform/interprocess_intercommunication.h" />
 		<Unit filename="platform/interprocess_task.cpp" />
 		<Unit filename="platform/interprocess_task.h" />
-		<Unit filename="platform/ipc.h" />
-		<Unit filename="platform/ipi.h" />
 		<Unit filename="platform/keep.h" />
 		<Unit filename="platform/launcher.h" />
 		<Unit filename="platform/library.cpp" />
@@ -1116,11 +1113,8 @@
 		<Unit filename="platform/log.cpp" />
 		<Unit filename="platform/log.h" />
 		<Unit filename="platform/machine_event.cpp" />
-		<Unit filename="platform/machine_event2.h" />
 		<Unit filename="platform/machine_event_central.cpp" />
-		<Unit filename="platform/machine_event_central2.h" />
 		<Unit filename="platform/machine_event_data.cpp" />
-		<Unit filename="platform/machine_event_data2.h" />
 		<Unit filename="platform/net.cpp" />
 		<Unit filename="platform/net.h" />
 		<Unit filename="platform/obj_ref_dbg.h" />
@@ -1130,7 +1124,6 @@
 		<Unit filename="platform/os_context.h" />
 		<Unit filename="platform/os_history.cpp" />
 		<Unit filename="platform/os_history.h" />
-		<Unit filename="platform/printf.h" />
 		<Unit filename="platform/progress.cpp" />
 		<Unit filename="platform/progress.h" />
 		<Unit filename="platform/progress_interface.h" />
@@ -1149,7 +1142,6 @@
 		<Unit filename="platform/static_start.cpp" />
 		<Unit filename="platform/static_start.h" />
 		<Unit filename="platform/static_start_apex.cpp" />
-		<Unit filename="platform/status.h" />
 		<Unit filename="platform/str_context.cpp" />
 		<Unit filename="platform/str_context.h" />
 		<Unit filename="platform/system.cpp" />

@@ -437,7 +437,6 @@ namespace draw2d
    ::estatus graphics::set(::draw2d::region* pregion)
    {
 
-
       if (::is_null(pregion))
       {
 
@@ -3789,28 +3788,28 @@ namespace draw2d
    {
 
       ::draw2d::region_pointer pregion(e_create);
-      
+
       pregion->create_rect(rectParam);
-      
+
       if(m_pregion)
       {
-         
+
          auto pregionOld = m_pregion;
-         
+
          __construct(m_pregion);
-         
+
          m_pregion->combine(pregionOld, pregion, ::draw2d::e_combine_intersect, this);
-         
+
       }
       else
       {
-         
+
          m_pregion = pregion;
-         
+
       }
-      
+
       //m_pregion->defer_update(this, 0);
-    
+
       on_apply_clip_region();
 
       return 0;
@@ -3820,16 +3819,16 @@ namespace draw2d
 
    i32 graphics::OffsetClipRgn(i32 x, i32 y)
    {
-      
+
       if(m_pregion)
       {
-         
+
          m_pregion->m_pointOffset += ::size(x, y);
-         
+
          m_pregion->set_modified();
 
          on_apply_clip_region();
-         
+
       }
 
       return 0;
@@ -3839,9 +3838,9 @@ namespace draw2d
 
    i32 graphics::OffsetClipRgn(const ::size & size)
    {
-   
+
       return OffsetClipRgn(size.cx, size.cy);
-   
+
    }
 
 
@@ -4009,14 +4008,14 @@ namespace draw2d
       return false;
    }
 
-   
+
    bool graphics::SelectClipPath(i32 nMode)
    {
-      
+
       UNREFERENCED_PARAMETER(nMode);
 
       return false;
-      
+
    }
 
 
@@ -4035,7 +4034,7 @@ namespace draw2d
          m_pregion = pregion;
 
       }
-      
+
       on_apply_clip_region();
 
       return 0;
@@ -4045,12 +4044,12 @@ namespace draw2d
 
    i32 graphics::SelectClipRgn(::draw2d::region * pregion, enum_combine ecombine)
    {
-      
+
       if(pregion != nullptr)
       {
-         
+
          auto pregionOld = m_pregion;
-         
+
          __construct(m_pregion);
 
          m_pregion->combine(pregionOld, pregion, ecombine);
@@ -4058,11 +4057,11 @@ namespace draw2d
          m_pregion = pregion;
 
       }
-      
+
       on_apply_clip_region();
-      
+
       return 0;
-      
+
    }
 
 

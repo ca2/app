@@ -193,9 +193,10 @@ namespace draw2d_cairo
       i32 ExcludeClipRect(const ::rect & rect) override;
       i32 ExcludeUpdateRgn(::user::primitive * pwindow);
       virtual i32 IntersectClipRect(i32 x1, i32 y1, i32 x2, i32 y2) override;
+      virtual i32 IntersectClipRect(const ::rect & rect) override;
       i32 OffsetClipRgn(i32 x, i32 y) override;
       i32 OffsetClipRgn(const ::size & size) override;
-      i32 SelectClipRgn(::draw2d::region* pRgn, i32 nMode) override;
+      i32 SelectClipRgn(::draw2d::region* pRgn, ::draw2d::enum_combine ecombine) override;
 
       // Line-Output Functions
       pointd current_position() override;
@@ -543,6 +544,9 @@ namespace draw2d_cairo
 
 
       FT_Face ftface(const char* pszFontName);
+
+      virtual void on_apply_clip_region() override;
+
 
    };
 

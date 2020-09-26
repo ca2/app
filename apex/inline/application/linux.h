@@ -7,7 +7,7 @@ int main(int argc, char * argv[])
 
    auto psystem = platform_create_system(strAppId);
 
-   psystem->application_initialize();
+   psystem->m_bConsole = false;
 
    application_common(psystem);
 

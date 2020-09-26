@@ -1345,7 +1345,7 @@ namespace apex
       }
 
       #endif
-      
+
       #if defined(LINUX)
 
          if (m_bGtkApp.undefined())
@@ -8090,6 +8090,12 @@ namespace apex
          }
 
       }
+      else if(pupdate->m_id == id_calc_os_dark_mode)
+      {
+
+         defer_calc_os_dark_mode();
+
+      }
 
 
       //::update updateSetting(pupdate);
@@ -8127,7 +8133,23 @@ namespace apex
    }
 
 
+   void system::defer_calc_os_dark_mode()
+   {
 
+   #ifdef LINUX
+      string strTheme = ::os::get_os_desktop_theme();
+
+      if(strTheme.contains_ci("dark"))
+      {
+         ::user::set_app_dark_mode(true);
+      }
+      else
+      {
+      ::user::set_app_dark_mode(false);
+      }
+      #endif
+
+   }
 
    /* colorramp.c -- color temperature calculation source
    This file is part of Redshift.
@@ -8493,20 +8515,20 @@ string get_bundle_app_library_name();
       strLibrary.replace("/", "_");
 
       strLibrary.replace("-", "_");
-      
+
       strLibrary.replace(".", "_");
 
       auto plibrary = __node_library_open(strLibrary, strMessage);
 
       if (!plibrary)
       {
-         
+
          {
 
             wait_future future;
 
             os_message_box(strMessage, "Could not open required library.", MB_ICONEXCLAMATION, future);
-         
+
          }
 
          __throw(::exception::exception(strMessage + "\n\nCould not open required library."));

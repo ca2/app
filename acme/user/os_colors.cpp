@@ -50,7 +50,7 @@ namespace user
    CLASS_DECL_ACME bool is_app_dark_mode()
    {
 
-      defer_calc_os_dark_mode();
+      //defer_calc_os_dark_mode();
 
       return g_bAppDarkMode;
 

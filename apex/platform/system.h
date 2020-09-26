@@ -967,6 +967,8 @@ namespace apex
       //virtual void hist_hist(const char* psz) override;
 
 
+      virtual void defer_calc_os_dark_mode();
+
       //virtual ::type get_pane_tab_view_type_info();
       //virtual ::type get_simple_frame_window_type_info();
       //virtual ::type get_simple_child_frame_type_info();
@@ -1024,7 +1026,7 @@ namespace apex
       //virtual bool initialize_native_window1() override;
 
       //virtual ::apex::library* load_library(const char* pszLibrary);
-      
+
       virtual void application_main(int argc, char *argv[], const char * pszCommandLine);
 
    };

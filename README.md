@@ -1,6 +1,6 @@
 # app
 
-Windows
+## Windows
 Install Git Client
 
 Suggestions:

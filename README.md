@@ -12,17 +12,17 @@ GitSCM (for command line)
 
 ### Set Environment Variable
 
-__archive C:\__archive
+__archive C:\\__archive
 
  
 ### Setup Folders and Clone Source Code
 Create folder at C named __archive and set it current:
 
-mkdir C:\__archive
+mkdir C:\\__archive
 
 C:
 
-cd \__archive
+cd \\__archive
 
 git clone https://github.com/ca2/storage-windows
 https://github.com/ca2/storage-windows
@@ -43,7 +43,7 @@ Create folder (prefer no spaces in entire path) and set it current directory:
 
  
 
-mkdir C:\myca2-test
+mkdir C:\\myca2-test
 
 C:
 
@@ -66,7 +66,7 @@ https://github.com/ca2/third
 
  
 
-Open C:\myca2-test\platform-windows\_seed\simple.sln at Visual Studio
+Open C:\\myca2-test\\platform-windows\\_seed\\simple.sln at Visual Studio
 
  
 

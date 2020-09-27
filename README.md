@@ -1,20 +1,21 @@
 # app
 
 ## Windows
-Install Git Client
+### Install Git Client
 
 Suggestions:
 
 SmartGit (for GUI)
 GitSCM (for command line)
-Install Visual Studio 2019 with C++ Desktop Option
 
-Set Environment Variable
+### Install Visual Studio 2019 with C++ Desktop Option
+
+### Set Environment Variable
 
 __archive C:\__archive
 
  
-
+### Setup Folders and Clone Source Code
 Create folder at C named __archive and set it current:
 
 mkdir C:\__archive

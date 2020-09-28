@@ -93,7 +93,7 @@ namespace user
          if (pinteraction->is_place_holder())
          {
 
-            pview = pinteraction->m_uiptraChild[0];
+            pview = pinteraction->m_uiptraChild.first_interaction();
 
          }
          else
@@ -463,7 +463,7 @@ namespace user
             else
             {
 
-               get_data()->m_panea[iPane]->m_pplaceholder->m_uiptraChild.remove_all();
+               get_data()->m_panea[iPane]->m_pplaceholder->m_uiptraChild.interactiona().remove_all();
 
                get_data()->m_panea[iPane]->m_pplaceholder->place_hold(pimpactdata->m_puserinteraction);
 
@@ -520,10 +520,10 @@ namespace user
       if (m_pimpactdata->m_puserinteraction == nullptr)
       {
 
-         if (m_pimpactdata->m_pplaceholder->m_uiptraChild.get_count() > 0)
+         if (m_pimpactdata->m_pplaceholder->m_uiptraChild.has_interaction())
          {
 
-            m_pimpactdata->m_puserinteraction = m_pimpactdata->m_pplaceholder->m_uiptraChild[0];
+            m_pimpactdata->m_puserinteraction = m_pimpactdata->m_pplaceholder->m_uiptraChild.first_interaction();
 
          }
 
@@ -820,10 +820,10 @@ namespace user
 
       }
 
-      if (pimpactdata->m_pplaceholder != nullptr && pimpactdata->m_pplaceholder->m_uiptraChild.get_count() == 1)
+      if (pimpactdata->m_pplaceholder != nullptr && pimpactdata->m_pplaceholder->m_uiptraChild.interaction_count() == 1)
       {
 
-         return pimpactdata->m_pplaceholder->m_uiptraChild[0];
+         return pimpactdata->m_pplaceholder->m_uiptraChild.first_interaction();
 
       }
 

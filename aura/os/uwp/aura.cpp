@@ -4,17 +4,6 @@
 //#include <VersionHelpers.h>
 
 
-namespace audio
-{
-
-   CLASS_DECL_AURA string get_default_library_name()
-   {
-
-      return "audio_xaudio";
-
-   }
-
-} // namespace audio
 
 
 // int message_box_w(oswindow window,const unichar * pszMessage,const unichar * pszTitle,int iFlags)

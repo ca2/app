@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class interaction_pointer_array;
+   class interaction_array;
 
 
    class CLASS_DECL_AURA oswindow_array :
@@ -31,10 +31,10 @@ namespace user
       //DECLARE_AND_IMPLEMENT_DEFAULT_CONSTRUCTION_AND_ASSIGNMENT(interaction_ptra, ref_array < ::user::interaction >)
 
       
-      //interaction_ptra(const interaction_pointer_array & a);
+      //interaction_ptra(const interaction_array & a);
 
 
-      interaction_ptra & operator = (const interaction_pointer_array & a);
+      interaction_ptra & operator = (const interaction_array & a);
 
       
       ::user::oswindow_array get_hwnda();
@@ -52,42 +52,43 @@ namespace user
    };
 
 
-   class CLASS_DECL_AURA interaction_pointer_array :
-      virtual public __pointer_array(::user::interaction)
+   class CLASS_DECL_AURA interaction_array :
+      virtual public elemental
    {
    public:
 
 
-      interaction_pointer_array();
-      //interaction_pointer_array(::layered * pobjectContext);
-      interaction_pointer_array(const address_array < ::user::interaction * > & a);
-      interaction_pointer_array(const __pointer_array(::user::interaction) & a)
+      DEFAULT_ARRAY_OF(interaction_array, interaction, ::user::interaction);
+
+
+      interaction_array();
+      interaction_array(const address_array < ::user::interaction * > & a);
+      interaction_array(const __pointer_array(::user::interaction) & a)
       {
 
-         copy(a);
+         m_interactiona.copy(a);
 
       }
-
-      interaction_pointer_array(const ::user::interaction_pointer_array & a)
+      interaction_array(const ::user::interaction_array & a)
       {
 
-         copy(a);
+         m_interactiona.copy(a.m_interactiona);
 
       }
 
 #ifdef MOVE_SEMANTICS
 
-      interaction_pointer_array(const ::user::interaction_pointer_array && a)
+      interaction_array(const ::user::interaction_array&& a)
       {
 
-         copy(a);
+         m_interactiona.copy(a.m_interactiona);
 
       }
 
 #endif
 
 
-      using __pointer_array(::user::interaction)::find_first;
+      //using __pointer_array(::user::interaction)::find_first;
       __pointer(::user::interaction) find_first_typed(const ::std::type_info & info);
       __pointer(::user::interaction) find_first(oswindow oswindow);
 
@@ -97,8 +98,8 @@ namespace user
       void send_message_to_descendants(UINT uiMessage, WPARAM wparam = 0, LPARAM lparam = 0, bool bRecursive = true);
 
 
-      interaction_pointer_array & operator = (const __pointer_array(::user::interaction) & a);
-      interaction_pointer_array & operator = (const interaction_pointer_array & a);
+      interaction_array & operator = (const __pointer_array(::user::interaction) & a);
+      interaction_array & operator = (const interaction_array & a);
 
       virtual bool get_child(__pointer(::user::interaction) & pinteraction);
       virtual bool rget_child(__pointer(::user::interaction) & pinteraction);
@@ -177,10 +178,10 @@ namespace user
 
 
       static void ContraintPosToParent(oswindow oswindow);
-      //static void EnumChildren(::user::interaction_impl * pwnd, interaction_pointer_array & wndpa);
+      //static void EnumChildren(::user::interaction_impl * pwnd, interaction_array & wndpa);
       static void EnumChildren(oswindow oswindow, oswindow_array & oswindowa);
-      /*static void ExcludeChild(interaction_pointer_array & wndpa);*/
-      /*static void SortByZOrder(interaction_pointer_array & wndpa);*/
+      /*static void ExcludeChild(interaction_array & wndpa);*/
+      /*static void SortByZOrder(interaction_array & wndpa);*/
       static void SortByZOrder(oswindow_array & oswindowa);
       static HRGN GetAClipRgn(oswindow oswindow, const point & pointOffset, bool bExludeChilren);
       static void ExcludeChildren(oswindow oswindow, HRGN hrgn, const point & pointOffset);

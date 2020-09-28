@@ -445,23 +445,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ProjectReference Include="..\acme\w_acme.vcxproj">
-      <Project>{3cb6829d-4866-4683-8b74-483b80bd5443}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\apex\w_apex.vcxproj">
-      <Project>{612940fe-3d31-4ed0-8355-65896c1d102f}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\aqua\aqua.vcxproj">
-      <Project>{d6fc3dc0-a19a-4f63-a3f1-3426fe53920b}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\draw2d_direct2d\w_draw2d_direct2d.vcxproj">
-      <Project>{ba9bff50-1888-4722-8dee-73a3b5b32bcb}</Project>
-    </ProjectReference>
-    <ProjectReference Include="u_app_app.vcxproj">
-      <Project>{365c15bf-3b96-4615-aa45-e6ea7e82405d}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="uwp\_.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -532,6 +515,26 @@
     <None Include="..\..\..\__archive\storage-uwp\third\binary\Win32\basis\zlib.dll">
       <DeploymentContent>true</DeploymentContent>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\acme\u_acme.vcxproj">
+      <Project>{74a3ea71-9358-4441-a0cc-d5771df8dfbd}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\apex\u_apex.vcxproj">
+      <Project>{b86508de-6e32-42ac-b45c-08bf0932dcf8}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\aqua\u_aqua.vcxproj">
+      <Project>{d6fc3dc0-a19a-4f63-a3f1-3426fe53920b}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\aura\u_aura.vcxproj">
+      <Project>{b3e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\draw2d_direct2d\u_draw2d_direct2d.vcxproj">
+      <Project>{ba9bff50-1888-4722-8dee-73a3b5b32bcb}</Project>
+    </ProjectReference>
+    <ProjectReference Include="u_app_app.vcxproj">
+      <Project>{365c15bf-3b96-4615-aa45-e6ea7e82405d}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

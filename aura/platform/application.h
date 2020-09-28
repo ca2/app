@@ -72,7 +72,7 @@ namespace aura
       __pointer(service_base)                         m_pservice;
 
       ::mutex                                         m_mutexFrame;
-      __composite(::user::interaction_pointer_array)  m_puiptraFrame;
+      __composite(::user::interaction_array)          m_puiptraFrame;
 
       //e_thread                                        m_ethreadClose;
 

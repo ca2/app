@@ -128,6 +128,18 @@ public:
 
    }
 
+   template < typename ARRAY >
+   inline ARRAY slice(::index iStart = 0, ::count nCount = -1)
+   {
+
+      ARRAY a;
+
+      slice(a, iStart, nCount);
+
+      return a;
+
+   }
+
    operator TYPE *() {return this->m_pData;}
    operator const TYPE *() const {return this->m_pData;}
 

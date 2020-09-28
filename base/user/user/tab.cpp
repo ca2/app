@@ -3457,7 +3457,7 @@ namespace user
             if (ppane->m_pplaceholder == pupdate->m_puserinteraction)
             {
 
-               auto pchild = ppane->m_pplaceholder->m_uiptraChild.first();
+               auto pchild = ppane->m_pplaceholder->m_uiptraChild.first_interaction();
 
                if (pchild)
                {

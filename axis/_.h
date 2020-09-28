@@ -94,6 +94,10 @@ typedef i64 filesize;
 #endif
 
 
+#undef __spin_namespace
+
 
 #include "axis/include/_.h"
+
+
 

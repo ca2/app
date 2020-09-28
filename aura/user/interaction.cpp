@@ -385,7 +385,7 @@ namespace user
 
          bDuplicate = false;
 
-         for (auto & pinteraction : m_uiptraChild.ptra())
+         for (auto & pinteraction : m_uiptraChild.interactiona())
          {
 
             if (pinteraction->m_id == strCandidateId)
@@ -507,7 +507,7 @@ namespace user
 
       }
 
-      for (auto & pinteraction : m_uiptraChild.ptra())
+      for (auto & pinteraction : m_uiptraChild.interactiona())
       {
 
          pinteraction->set_reposition();
@@ -1414,16 +1414,16 @@ namespace user
          if (!m_pimpl->m_bDestroying)
          {
 
-            for (index i = 0; i < m_uiptraChild.get_size(); i++)
+            for (index i = 0; i < m_uiptraChild.interaction_count(); i++)
             {
 
                try
                {
 
-                  if (m_uiptraChild[i].is_set())
+                  if (m_uiptraChild.interaction_at(i).is_set())
                   {
 
-                     m_uiptraChild[i]->send_message(WM_SHOWWINDOW, 0, 1);
+                     m_uiptraChild.interaction_at(i)->send_message(WM_SHOWWINDOW, 0, 1);
 
                   }
 
@@ -1809,7 +1809,7 @@ namespace user
 
                puiParent->on_remove_child(this);
 
-               puiParent->m_uiptraChild.remove(this);
+               puiParent->m_uiptraChild.remove_interaction(this);
 
             }
             else
@@ -1929,20 +1929,20 @@ namespace user
 
       }
 
-      interaction_pointer_array uiptra;
+      interaction_array uia;
 
       {
 
          sync_lock sl(mutex_children());
 
-         m_uiptraChild.slice(uiptra);
+         m_uiptraChild.interactiona_slice(uia.interactiona());
 
       }
 
-      for (i32 i = 0; i < uiptra.get_count(); i++)
+      for (i32 i = 0; i < uia.interaction_count(); i++)
       {
 
-         auto pinteraction = uiptra[i];
+         auto pinteraction = uia.interaction_at(i);
 
          try
          {
@@ -1987,7 +1987,7 @@ namespace user
       if(this == Session.m_puiHost)
       {
 
-         for (auto& puserinteraction : m_uiptraChild)
+         for (auto& puserinteraction : m_uiptraChild.interactiona())
          {
 
             puserinteraction->post_message(WM_DISPLAYCHANGE);
@@ -2556,7 +2556,7 @@ namespace user
 
       //}
 
-      for (auto & pinteraction : m_uiptraChild)
+      for (auto & pinteraction : m_uiptraChild.interactiona())
       {
 
          try
@@ -3090,7 +3090,7 @@ namespace user
       try
       {
 
-         if (m_uiptraChild.has_elements())
+         if (m_uiptraChild.has_interaction())
          {
 
             try
@@ -4021,10 +4021,10 @@ namespace user
 
       sync_lock sl(::user::mutex_children());
 
-      for (index i = m_uiptraChild.get_upper_bound(); i >= 0; i--)
+      for (index i = m_uiptraChild.interaction_last_index(); i >= 0; i--)
       {
 
-         ::user::interaction * pinteraction = m_uiptraChild[i];
+         auto pinteraction = m_uiptraChild.get_interaction(i);
 
          if (pinteraction->GetDlgCtrlId() == id)
          {
@@ -4048,10 +4048,10 @@ namespace user
 
       }
 
-      for (index i = m_uiptraChild.get_upper_bound(); i >= 0; i--)
+      for (index i = m_uiptraChild.interaction_last_index(); i >= 0; i--)
       {
 
-         ::user::interaction * pinteraction = m_uiptraChild[i];
+         auto pinteraction = m_uiptraChild.get_interaction(i);
 
          ::user::interaction * puiChild = pinteraction->get_child_by_id(id, iLevel);
 
@@ -4279,7 +4279,7 @@ namespace user
 
       sl.unlock();
 
-      for (auto & pinteraction : uiptraChild.ptra())
+      for (auto & pinteraction : uiptraChild.interactiona())
       {
 
          try
@@ -4303,7 +4303,7 @@ namespace user
 
       }
 
-      for (auto & pinteraction : uiptraChild.ptra())
+      for (auto & pinteraction : uiptraChild.interactiona())
       {
 
          try
@@ -4333,17 +4333,17 @@ namespace user
 
       }
 
-      interaction_pointer_array uiptraChild;
+      interaction_array uia;
 
       {
 
          sync_lock sl(mutex());
 
-         uiptraChild = m_uiptraChild;
+         uia = m_uiptraChild;
 
       }
 
-      for (auto & puiChild : uiptraChild.ptra())
+      for (auto & puiChild : uia.interactiona())
       {
 
          try
@@ -5145,7 +5145,7 @@ namespace user
       if (!bIgnoreChildren)
       {
 
-         if (m_uiptraChild.has_elements())
+         if (m_uiptraChild.has_interaction())
          {
 
             if (piLevel != nullptr)
@@ -5155,7 +5155,7 @@ namespace user
 
             }
 
-            return m_uiptraChild[0];
+            return m_uiptraChild.first_interaction();
 
          }
 
@@ -5173,7 +5173,7 @@ namespace user
 
       sync_lock sl(mutex());
 
-      index iFind = GetParent()->m_uiptraChild.find_first(this);
+      index iFind = GetParent()->m_uiptraChild.interactiona().find_first(this);
 
       if (iFind < 0)
       {
@@ -5182,10 +5182,10 @@ namespace user
 
       }
 
-      if (iFind < GetParent()->m_uiptraChild.get_upper_bound())
+      if (iFind < GetParent()->m_uiptraChild.interaction_last_index())
       {
 
-         return GetParent()->m_uiptraChild[iFind + 1];
+         return GetParent()->m_uiptraChild.get_interaction(iFind + 1);
 
       }
 
@@ -6451,7 +6451,7 @@ namespace user
 
 
 
-   CLASS_DECL_AURA void zorder_sort(::user::interaction_pointer_array & uiptra)
+   CLASS_DECL_AURA void zorder_sort(::user::interaction_array & uia)
    {
 
       auto predZ = [](auto & pui1, auto & pui2)
@@ -6461,7 +6461,7 @@ namespace user
 
       };
 
-      uiptra.pred_sort(predZ);
+      uia.interactiona().pred_sort(predZ);
 
    }
 
@@ -6486,7 +6486,7 @@ namespace user
 
          bool bSetRequest = false;
 
-         for (auto& pinteraction : uiptra.ptra())
+         for (auto& pinteraction : uiptra.interactiona())
          {
 
             pinteraction->layout().sketch()._patch_order(iZOrder);
@@ -7933,7 +7933,7 @@ namespace user
 
       bool bZorder = false;
 
-      for(auto pchild : m_uiptraChild)
+      for(auto pchild : m_uiptraChild.interactiona())
       {
 
          if(pchild->layout().sketch().zorder().is_change_request())
@@ -8297,7 +8297,7 @@ namespace user
 
             single_lock sl2(mutex(), TRUE);
 
-            m_pdescriptor->m_puserinteractionParent->m_uiptraChild.remove(this);
+            m_pdescriptor->m_puserinteractionParent->m_uiptraChild.remove_interaction(this);
 
          }
 
@@ -8340,7 +8340,7 @@ namespace user
 
 //#endif
 
-            puiParent->m_uiptraChild.add_unique(this);
+            puiParent->m_uiptraChild.add_unique_interaction(this);
 
          }
 
@@ -8506,7 +8506,7 @@ namespace user
 
       }
 
-      if (m_uiptraChild.contains(pinteraction))
+      if (m_uiptraChild.contains_interaction(pinteraction))
       {
 
          return true;
@@ -8520,7 +8520,7 @@ namespace user
 
       }
 
-      for (auto & puiChild : m_uiptraChild.ptra())
+      for (auto & puiChild : m_uiptraChild.interactiona())
       {
 
          if (puiChild->contains_user_interaction(pinteraction))
@@ -8658,10 +8658,18 @@ namespace user
 
       try
       {
-         if (m_uiptraChild.get_count() <= 0)
+         if (m_uiptraChild.has_no_interaction())
+         {
+
             return nullptr;
+
+         }
          else
-            return m_uiptraChild.first_pointer();
+         {
+
+            return m_uiptraChild.first_interaction();
+
+         }
 
       }
       catch (...)
@@ -8674,10 +8682,10 @@ namespace user
    {
       try
       {
-         if (m_uiptraChild.get_count() <= 0)
+         if (m_uiptraChild.has_no_interaction())
             return nullptr;
          else
-            return m_uiptraChild.last_pointer();
+            return m_uiptraChild.last_interaction();
       }
       catch (...)
       {
@@ -8722,14 +8730,14 @@ namespace user
          }
          if (pinteraction == nullptr)
             return nullptr;
-         index i = pinteraction->m_uiptraChild.find_first(this);
+         index i = pinteraction->m_uiptraChild.interactiona().find_first(this);
          if (i < 0)
             return nullptr;
          i++;
-         if (i >= pinteraction->m_uiptraChild.get_count())
+         if (i >= pinteraction->m_uiptraChild.interaction_count())
             return nullptr;
          else
-            return pinteraction->m_uiptraChild[i];
+            return pinteraction->m_uiptraChild.interaction_at(i);
 
       }
       catch (...)
@@ -8746,18 +8754,18 @@ namespace user
       try
       {
 
-         index i = m_uiptraChild.find_first(pinteraction);
+         index i = m_uiptraChild.find_first_interaction(pinteraction);
          if (i < 0)
             return nullptr;
          i++;
 restart:
-         if (i >= m_uiptraChild.get_count())
+         if (i >= m_uiptraChild.interaction_count())
             return nullptr;
          else
          {
             try
             {
-               return m_uiptraChild[i];
+               return m_uiptraChild.interaction_at(i);
             }
             catch (...)
             {
@@ -8791,14 +8799,14 @@ restart:
          }
          if (pinteraction == nullptr)
             return nullptr;
-         index i = pinteraction->m_uiptraChild.find_first(this);
+         index i = pinteraction->m_uiptraChild.find_first_interaction(this);
          if (i < 0)
             return nullptr;
          i--;
          if (i < 0)
             return nullptr;
          else
-            return pinteraction->m_uiptraChild[i];
+            return pinteraction->m_uiptraChild.interaction_at(i);
 
       }
       catch (...)
@@ -8870,7 +8878,7 @@ restart:
    ::user::interaction * interaction::previous_sibling(::user::interaction * pinteraction)
    {
       single_lock sl(mutex(), TRUE);
-      index i = m_uiptraChild.find_first(pinteraction);
+      index i = m_uiptraChild.find_first_interaction(pinteraction);
       if (i < 0)
          return nullptr;
 restart:
@@ -8881,7 +8889,7 @@ restart:
       {
          try
          {
-            return m_uiptraChild[i];
+            return m_uiptraChild.interaction_at(i);
          }
          catch (...)
          {

@@ -913,7 +913,7 @@ namespace user
 
          Session.get_cursor_pos(pointCursor);
 
-         ::user::interaction_pointer_array uia;
+         ::user::interaction_array uia;
 
          {
 
@@ -925,7 +925,7 @@ namespace user
 
          }
 
-         for(auto & pinteraction : uia.ptra())
+         for(auto & pinteraction : uia.interactiona())
          {
 
             try
@@ -989,7 +989,7 @@ namespace user
 
       {
 
-         ::user::interaction_pointer_array uia;
+         ::user::interaction_array uia;
 
          {
 
@@ -1004,7 +1004,7 @@ namespace user
                   if (!pinteraction->_001IsPointInside(pmouse->m_point))
                   {
 
-                     uia.add(pinteraction);
+                     uia.add_interaction(pinteraction);
 
                   }
 
@@ -1016,11 +1016,11 @@ namespace user
 
             }
 
-            ::papaya::array::remove_array(m_guieptraMouseHover, uia.ptra());
+            ::papaya::array::remove_array(m_guieptraMouseHover, uia.interactiona());
 
          }
 
-         for(auto & pinteraction : uia.ptra())
+         for(auto & pinteraction : uia.interactiona())
          {
 
             pinteraction->send_message(WM_MOUSELEAVE);
@@ -3228,7 +3228,7 @@ namespace user
 
          {
 
-            ::user::interaction_pointer_array uia;
+            ::user::interaction_array uia;
 
             {
 
@@ -3245,7 +3245,7 @@ namespace user
 
             }
 
-            for (auto & pinteraction : uia.ptra())
+            for (auto & pinteraction : uia.interactiona())
             {
 
                try

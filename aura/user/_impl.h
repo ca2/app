@@ -56,7 +56,7 @@ namespace user
 
 
    template < typename CHILD >
-   inline bool interaction_pointer_array::get_typed_child(CHILD*& pchild)
+   inline bool interaction_array::get_typed_child(CHILD*& pchild)
    {
 
       for (i32 i = 0; i < this->get_size(); i++)

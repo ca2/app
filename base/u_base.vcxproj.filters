@@ -1,0 +1,782 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{3a46992f-d52e-4d0a-92f2-69cf1e98abb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user">
+      <UniqueIdentifier>{fbc66f2c-dc61-41bb-b4d2-a089c34608f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\user">
+      <UniqueIdentifier>{2e12c216-1f93-4b75-b9e2-25556c40cb7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\experience">
+      <UniqueIdentifier>{fbe354d1-4d99-4120-a3d1-7bd133622a56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\simple">
+      <UniqueIdentifier>{7d24f6ae-bc51-4885-b45b-7da12c2d4b7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\menu">
+      <UniqueIdentifier>{d7d90d95-2b8d-4de5-a904-863345d60210}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\inline">
+      <UniqueIdentifier>{722cf676-1ad2-40e4-b672-d7fbefcc9e89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\inline\application">
+      <UniqueIdentifier>{79148065-bae4-422a-bb5d-a8f3ebf75d49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\inline\console">
+      <UniqueIdentifier>{e9892409-f89d-4131-a2e3-39de3cb3de7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\include">
+      <UniqueIdentifier>{3b7000ae-931e-4913-a1c5-e10e7f2d3aa9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\platform">
+      <UniqueIdentifier>{f4f7f813-11cb-4f98-b74b-45d91cdb08c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\const">
+      <UniqueIdentifier>{232a6874-aaa3-4df0-affa-e19b9f131313}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{d614105b-eb5f-4738-b5cb-6759e4f92ed0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user">
+      <UniqueIdentifier>{42146254-6dcf-49fe-a739-bc1eb6ad3c94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\user">
+      <UniqueIdentifier>{8d0d462c-1152-4d97-a516-b72c8b01d394}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\experience">
+      <UniqueIdentifier>{27d4843e-21e2-4003-a674-1ea870db19cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\simple">
+      <UniqueIdentifier>{ba531f3a-348e-48cd-abe0-ed61787034b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\menu">
+      <UniqueIdentifier>{49da306f-8b20-43fd-97bf-70de452e1fba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\include">
+      <UniqueIdentifier>{d009f767-8ed5-452c-87c3-f9cfc2f1afeb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\platform">
+      <UniqueIdentifier>{0b3f946e-721f-4f91-8603-c298751c5449}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\node">
+      <UniqueIdentifier>{2839d0aa-9a07-4149-b98f-9c472946dd51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\node\windows">
+      <UniqueIdentifier>{ad55d56f-01be-40f7-b420-9acadea1aad5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\const">
+      <UniqueIdentifier>{70ad3e80-24b3-41e4-a0ee-dffee8ed5f8f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="astr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="callback.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="console.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="const\GLOBAL_ID.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="const\procedure.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework_c.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="id.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="message.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="net\_net_impl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="node\opengl\buffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="node\opengl\context.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="node\opengl\opengl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="node\opengl\program.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="node\opengl\shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\_generic_object_constructor_impl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="update.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="user.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_defer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="user\_.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\data_exchange.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\image_list.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\impact_data.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\server.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\tab_drop_target_window.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\toolbar.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\tool_window.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\button.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\combo_box.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\combo_list.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\composition_imm_client.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\control.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\control_ddx_dbflags.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\control_property.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\document.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\document_data_map.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\document_manager.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\document_manager_container.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\edit_plain_text_view.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\edit_text.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\edit_window.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\form_callback.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\form_control.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\form_document.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\form_update_hint.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\form_view.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\form_window.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\frame_window.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\image_manager.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\impact.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\impact_creator.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\impact_host.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\impact_system.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\impact_update_hint.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\main_frame.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\margin.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\multiple_document_template.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\network_configuration.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\notification_area.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\notify_icon.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\notify_icon_listener.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\notify_icon_mm.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\notify_icon_mm_bridge.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\picture.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\picture_interaction.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\form_data.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\menu.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\menu_command.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\menu_interaction.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\menu_item.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\place_holder.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\place_holder_container.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\simple_view.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\single_document_template.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\split_bar.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\split_layout.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\split_view.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\static_control.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\tab.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\tab_callback.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\tab_view.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\_.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\print_task.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\style.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\_const.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\_user.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\control_descriptor_set.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\form.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\experience\button.h">
+      <Filter>Header Files\user\experience</Filter>
+    </ClInclude>
+    <ClInclude Include="user\experience\control_box.h">
+      <Filter>Header Files\user\experience</Filter>
+    </ClInclude>
+    <ClInclude Include="user\experience\department.h">
+      <Filter>Header Files\user\experience</Filter>
+    </ClInclude>
+    <ClInclude Include="user\experience\dock_manager.h">
+      <Filter>Header Files\user\experience</Filter>
+    </ClInclude>
+    <ClInclude Include="user\experience\experience.h">
+      <Filter>Header Files\user\experience</Filter>
+    </ClInclude>
+    <ClInclude Include="user\experience\experience_updown.h">
+      <Filter>Header Files\user\experience</Filter>
+    </ClInclude>
+    <ClInclude Include="user\experience\frame.h">
+      <Filter>Header Files\user\experience</Filter>
+    </ClInclude>
+    <ClInclude Include="user\experience\frame_window.h">
+      <Filter>Header Files\user\experience</Filter>
+    </ClInclude>
+    <ClInclude Include="user\experience\menu_manager.h">
+      <Filter>Header Files\user\experience</Filter>
+    </ClInclude>
+    <ClInclude Include="user\experience\move_manager.h">
+      <Filter>Header Files\user\experience</Filter>
+    </ClInclude>
+    <ClInclude Include="user\experience\orto_button.h">
+      <Filter>Header Files\user\experience</Filter>
+    </ClInclude>
+    <ClInclude Include="user\experience\size_manager.h">
+      <Filter>Header Files\user\experience</Filter>
+    </ClInclude>
+    <ClInclude Include="user\experience\_.h">
+      <Filter>Header Files\user\experience</Filter>
+    </ClInclude>
+    <ClInclude Include="user\experience\_const.h">
+      <Filter>Header Files\user\experience</Filter>
+    </ClInclude>
+    <ClInclude Include="user\experience\_experience.h">
+      <Filter>Header Files\user\experience</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple\frame_window.h">
+      <Filter>Header Files\user\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple\main_frame.h">
+      <Filter>Header Files\user\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple\scroll_bar.h">
+      <Filter>Header Files\user\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple\_.h">
+      <Filter>Header Files\user\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple\_impl.h">
+      <Filter>Header Files\user\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple\_simple.h">
+      <Filter>Header Files\user\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="user\menu\button.h">
+      <Filter>Header Files\user\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="user\menu\central.h">
+      <Filter>Header Files\user\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="user\menu\list_view.h">
+      <Filter>Header Files\user\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="user\menu\list_window.h">
+      <Filter>Header Files\user\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="user\menu\menu_view.h">
+      <Filter>Header Files\user\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="user\menu\_.h">
+      <Filter>Header Files\user\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="user\menu\_menu.h">
+      <Filter>Header Files\user\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\application_common.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\console.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\console_common.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\_application.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\_app_impl1.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\_console_old.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\_new_impl.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\_acid_app_impl.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\application.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\_draw2d_impl.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\library.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\__debug_box_clear_impl.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\__debug_box_set_impl.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\application\linux.h">
+      <Filter>Header Files\inline\application</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\application\macos.h">
+      <Filter>Header Files\inline\application</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\application\uwp.h">
+      <Filter>Header Files\inline\application</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\application\windows.h">
+      <Filter>Header Files\inline\application</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\console\linux.h">
+      <Filter>Header Files\inline\console</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\console\windows.h">
+      <Filter>Header Files\inline\console</Filter>
+    </ClInclude>
+    <ClInclude Include="include\objc.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\objcpp.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\winrt.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\_.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\_c_bridge.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\_include.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\application.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\session.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\system.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\_platform.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\_defer.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\_features.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\_impl.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="const\idpool.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="user\user\_impl.h">
+      <Filter>Header Files\user\user</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="_.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="__matter_ca2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\control.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\control_bar.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\control_property.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\data_exchange.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\document.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\document_manager.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\document_manager_container.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\edit_plain_text_view.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\form_control.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\form_document.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\form_view.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\form_window.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\frame_window.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\hotplugin.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\impact.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\impact_creator.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\impact_data.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\impact_host.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\impact_system.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\margin.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\multiple_document_template.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\network_configuration.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\notification_area.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\notify_icon.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\notify_icon_listener.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\picture.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\picture_interaction.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\server.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\simple_view.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\single_document_template.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\split_bar.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\split_layout.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\split_view.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\static_control.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\tab.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\tab_callback.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\tab_view.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\image_list.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\toolbar.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\_.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\form_data.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\menu_interaction.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\menu_item.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\place_holder.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\place_holder_container.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\print_task.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\style.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\control_descriptor_set.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\menu.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\menu_command.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\validate.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\experience\button.cpp">
+      <Filter>Source Files\user\experience</Filter>
+    </ClCompile>
+    <ClCompile Include="user\experience\control_box.cpp">
+      <Filter>Source Files\user\experience</Filter>
+    </ClCompile>
+    <ClCompile Include="user\experience\department.cpp">
+      <Filter>Source Files\user\experience</Filter>
+    </ClCompile>
+    <ClCompile Include="user\experience\dock_manager.cpp">
+      <Filter>Source Files\user\experience</Filter>
+    </ClCompile>
+    <ClCompile Include="user\experience\experience.cpp">
+      <Filter>Source Files\user\experience</Filter>
+    </ClCompile>
+    <ClCompile Include="user\experience\experience_updown.cpp">
+      <Filter>Source Files\user\experience</Filter>
+    </ClCompile>
+    <ClCompile Include="user\experience\frame.cpp">
+      <Filter>Source Files\user\experience</Filter>
+    </ClCompile>
+    <ClCompile Include="user\experience\frame_window.cpp">
+      <Filter>Source Files\user\experience</Filter>
+    </ClCompile>
+    <ClCompile Include="user\experience\menu_manager.cpp">
+      <Filter>Source Files\user\experience</Filter>
+    </ClCompile>
+    <ClCompile Include="user\experience\move_manager.cpp">
+      <Filter>Source Files\user\experience</Filter>
+    </ClCompile>
+    <ClCompile Include="user\experience\orto_button.cpp">
+      <Filter>Source Files\user\experience</Filter>
+    </ClCompile>
+    <ClCompile Include="user\experience\size_manager.cpp">
+      <Filter>Source Files\user\experience</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\frame_window.cpp">
+      <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\main_frame.cpp">
+      <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\scroll_bar.cpp">
+      <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu\button.cpp">
+      <Filter>Source Files\user\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu\central.cpp">
+      <Filter>Source Files\user\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu\list_view.cpp">
+      <Filter>Source Files\user\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu\list_window.cpp">
+      <Filter>Source Files\user\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu\menu_view.cpp">
+      <Filter>Source Files\user\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="include\_.cpp">
+      <Filter>Source Files\include</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\application.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\session.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\system.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="node\windows\frame_window.cpp">
+      <Filter>Source Files\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="const\idpool.cpp">
+      <Filter>Source Files\const</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

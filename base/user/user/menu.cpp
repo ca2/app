@@ -180,7 +180,7 @@ namespace user
 
          sync_lock sl(mutex_children());
 
-         m_uiptraChild.remove_all();
+         m_uiptraChild.interactiona().remove_all();
 
       }
 

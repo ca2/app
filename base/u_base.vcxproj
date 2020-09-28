@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="basis|ARM">
       <Configuration>basis</Configuration>
@@ -51,114 +51,293 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="bitmap.h" />
-    <ClInclude Include="brush.h" />
-    <ClInclude Include="CustomRenderer.h" />
-    <ClInclude Include="_.h" />
-    <ClInclude Include="factory_exchange.h" />
-    <ClInclude Include="font.h" />
+    <ClInclude Include="astr.h" />
+    <ClInclude Include="callback.h" />
+    <ClInclude Include="console.h" />
+    <ClInclude Include="const\GLOBAL_ID.h" />
+    <ClInclude Include="const\idpool.h" />
+    <ClInclude Include="const\procedure.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="graphics.h" />
-    <ClInclude Include="image.h" />
-    <ClInclude Include="object.h" />
-    <ClInclude Include="palette.h" />
-    <ClInclude Include="path.h" />
-    <ClInclude Include="pen.h" />
-    <ClInclude Include="printer.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|ARM64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="region.h" />
+    <ClInclude Include="framework_c.h" />
+    <ClInclude Include="id.h" />
+    <ClInclude Include="include\objc.h" />
+    <ClInclude Include="include\objcpp.h" />
+    <ClInclude Include="include\winrt.h" />
+    <ClInclude Include="include\_.h" />
+    <ClInclude Include="include\_c_bridge.h" />
+    <ClInclude Include="include\_include.h" />
+    <ClInclude Include="inline\application.h" />
+    <ClInclude Include="inline\application\linux.h" />
+    <ClInclude Include="inline\application\macos.h" />
+    <ClInclude Include="inline\application\uwp.h" />
+    <ClInclude Include="inline\application\windows.h" />
+    <ClInclude Include="inline\application_common.h" />
+    <ClInclude Include="inline\console.h" />
+    <ClInclude Include="inline\console\linux.h" />
+    <ClInclude Include="inline\console\windows.h" />
+    <ClInclude Include="inline\console_common.h" />
+    <ClInclude Include="inline\library.h" />
+    <ClInclude Include="inline\_acid_app_impl.h" />
+    <ClInclude Include="inline\_application.h" />
+    <ClInclude Include="inline\_app_impl1.h" />
+    <ClInclude Include="inline\_console_old.h" />
+    <ClInclude Include="inline\_draw2d_impl.h" />
+    <ClInclude Include="inline\_new_impl.h" />
+    <ClInclude Include="inline\__debug_box_clear_impl.h" />
+    <ClInclude Include="inline\__debug_box_set_impl.h" />
+    <ClInclude Include="message.h" />
+    <ClInclude Include="net\_net_impl.h" />
+    <ClInclude Include="node\opengl\buffer.h" />
+    <ClInclude Include="node\opengl\context.h" />
+    <ClInclude Include="node\opengl\opengl.h" />
+    <ClInclude Include="node\opengl\program.h" />
+    <ClInclude Include="node\opengl\shader.h" />
+    <ClInclude Include="platform\application.h" />
+    <ClInclude Include="platform\session.h" />
+    <ClInclude Include="platform\system.h" />
+    <ClInclude Include="platform\_defer.h" />
+    <ClInclude Include="platform\_features.h" />
+    <ClInclude Include="platform\_generic_object_constructor_impl.h" />
+    <ClInclude Include="platform\_impl.h" />
+    <ClInclude Include="platform\_platform.h" />
+    <ClInclude Include="update.h" />
+    <ClInclude Include="user.h" />
+    <ClInclude Include="user\experience\button.h" />
+    <ClInclude Include="user\experience\control_box.h" />
+    <ClInclude Include="user\experience\department.h" />
+    <ClInclude Include="user\experience\dock_manager.h" />
+    <ClInclude Include="user\experience\experience.h" />
+    <ClInclude Include="user\experience\experience_updown.h" />
+    <ClInclude Include="user\experience\frame.h" />
+    <ClInclude Include="user\experience\frame_window.h" />
+    <ClInclude Include="user\experience\menu_manager.h" />
+    <ClInclude Include="user\experience\move_manager.h" />
+    <ClInclude Include="user\experience\orto_button.h" />
+    <ClInclude Include="user\experience\size_manager.h" />
+    <ClInclude Include="user\experience\_.h" />
+    <ClInclude Include="user\experience\_const.h" />
+    <ClInclude Include="user\experience\_experience.h" />
+    <ClInclude Include="user\menu\button.h" />
+    <ClInclude Include="user\menu\central.h" />
+    <ClInclude Include="user\menu\list_view.h" />
+    <ClInclude Include="user\menu\list_window.h" />
+    <ClInclude Include="user\menu\menu_view.h" />
+    <ClInclude Include="user\menu\_.h" />
+    <ClInclude Include="user\menu\_menu.h" />
+    <ClInclude Include="user\simple\frame_window.h" />
+    <ClInclude Include="user\simple\main_frame.h" />
+    <ClInclude Include="user\simple\scroll_bar.h" />
+    <ClInclude Include="user\simple\_.h" />
+    <ClInclude Include="user\simple\_impl.h" />
+    <ClInclude Include="user\simple\_simple.h" />
+    <ClInclude Include="user\user\button.h" />
+    <ClInclude Include="user\user\combo_box.h" />
+    <ClInclude Include="user\user\combo_list.h" />
+    <ClInclude Include="user\user\composition_imm_client.h" />
+    <ClInclude Include="user\user\control.h" />
+    <ClInclude Include="user\user\control_ddx_dbflags.h" />
+    <ClInclude Include="user\user\control_descriptor_set.h" />
+    <ClInclude Include="user\user\control_property.h" />
+    <ClInclude Include="user\user\data_exchange.h" />
+    <ClInclude Include="user\user\document.h" />
+    <ClInclude Include="user\user\document_data_map.h" />
+    <ClInclude Include="user\user\document_manager.h" />
+    <ClInclude Include="user\user\document_manager_container.h" />
+    <ClInclude Include="user\user\edit_plain_text_view.h" />
+    <ClInclude Include="user\user\edit_text.h" />
+    <ClInclude Include="user\user\edit_window.h" />
+    <ClInclude Include="user\user\form.h" />
+    <ClInclude Include="user\user\form_callback.h" />
+    <ClInclude Include="user\user\form_control.h" />
+    <ClInclude Include="user\user\form_data.h" />
+    <ClInclude Include="user\user\form_document.h" />
+    <ClInclude Include="user\user\form_update_hint.h" />
+    <ClInclude Include="user\user\form_view.h" />
+    <ClInclude Include="user\user\form_window.h" />
+    <ClInclude Include="user\user\frame_window.h" />
+    <ClInclude Include="user\user\image_list.h" />
+    <ClInclude Include="user\user\image_manager.h" />
+    <ClInclude Include="user\user\impact.h" />
+    <ClInclude Include="user\user\impact_creator.h" />
+    <ClInclude Include="user\user\impact_data.h" />
+    <ClInclude Include="user\user\impact_host.h" />
+    <ClInclude Include="user\user\impact_system.h" />
+    <ClInclude Include="user\user\impact_update_hint.h" />
+    <ClInclude Include="user\user\main_frame.h" />
+    <ClInclude Include="user\user\margin.h" />
+    <ClInclude Include="user\user\menu.h" />
+    <ClInclude Include="user\user\menu_command.h" />
+    <ClInclude Include="user\user\menu_interaction.h" />
+    <ClInclude Include="user\user\menu_item.h" />
+    <ClInclude Include="user\user\multiple_document_template.h" />
+    <ClInclude Include="user\user\network_configuration.h" />
+    <ClInclude Include="user\user\notification_area.h" />
+    <ClInclude Include="user\user\notify_icon.h" />
+    <ClInclude Include="user\user\notify_icon_listener.h" />
+    <ClInclude Include="user\user\notify_icon_mm.h" />
+    <ClInclude Include="user\user\notify_icon_mm_bridge.h" />
+    <ClInclude Include="user\user\picture.h" />
+    <ClInclude Include="user\user\picture_interaction.h" />
+    <ClInclude Include="user\user\place_holder.h" />
+    <ClInclude Include="user\user\place_holder_container.h" />
+    <ClInclude Include="user\user\print_task.h" />
+    <ClInclude Include="user\user\server.h" />
+    <ClInclude Include="user\user\simple_view.h" />
+    <ClInclude Include="user\user\single_document_template.h" />
+    <ClInclude Include="user\user\split_bar.h" />
+    <ClInclude Include="user\user\split_layout.h" />
+    <ClInclude Include="user\user\split_view.h" />
+    <ClInclude Include="user\user\static_control.h" />
+    <ClInclude Include="user\user\style.h" />
+    <ClInclude Include="user\user\tab.h" />
+    <ClInclude Include="user\user\tab_callback.h" />
+    <ClInclude Include="user\user\tab_drop_target_window.h" />
+    <ClInclude Include="user\user\tab_view.h" />
+    <ClInclude Include="user\user\toolbar.h" />
+    <ClInclude Include="user\user\tool_window.h" />
+    <ClInclude Include="user\user\user.h" />
+    <ClInclude Include="user\user\_.h" />
+    <ClInclude Include="user\user\_const.h" />
+    <None Include="base.def" />
+    <None Include="user\user\_impl.h" />
+    <ClInclude Include="user\user\_user.h" />
+    <ClInclude Include="user\_.h" />
+    <ClInclude Include="_.h" />
+    <ClInclude Include="_defer.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="bitmap.cpp" />
-    <ClCompile Include="brush.cpp" />
-    <ClCompile Include="_.cpp" />
-    <ClCompile Include="_uwp.cpp" />
-    <ClCompile Include="factory_exchange.cpp" />
-    <ClCompile Include="font.cpp" />
+    <ClCompile Include="const\idpool.cpp" />
     <ClCompile Include="framework.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|ARM64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cover|ARM'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|ARM64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cover|ARM64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|ARM64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|ARM64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cover|ARM'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cover|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cover|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="graphics.cpp" />
-    <ClCompile Include="image.cpp" />
-    <ClCompile Include="object.cpp" />
-    <ClCompile Include="palette.cpp" />
-    <ClCompile Include="path.cpp" />
-    <ClCompile Include="pen.cpp" />
-    <ClCompile Include="preview_dc.cpp" />
-    <ClCompile Include="printer.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|ARM64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="region.cpp" />
+    <ClCompile Include="include\_.cpp" />
+    <ClCompile Include="node\windows\frame_window.cpp" />
+    <ClCompile Include="platform\application.cpp" />
+    <ClCompile Include="platform\session.cpp" />
+    <ClCompile Include="platform\system.cpp" />
+    <ClCompile Include="user\experience\button.cpp" />
+    <ClCompile Include="user\experience\control_box.cpp" />
+    <ClCompile Include="user\experience\department.cpp" />
+    <ClCompile Include="user\experience\dock_manager.cpp" />
+    <ClCompile Include="user\experience\experience.cpp" />
+    <ClCompile Include="user\experience\experience_updown.cpp" />
+    <ClCompile Include="user\experience\frame.cpp" />
+    <ClCompile Include="user\experience\frame_window.cpp" />
+    <ClCompile Include="user\experience\menu_manager.cpp" />
+    <ClCompile Include="user\experience\move_manager.cpp" />
+    <ClCompile Include="user\experience\orto_button.cpp" />
+    <ClCompile Include="user\experience\size_manager.cpp" />
+    <ClCompile Include="user\menu\button.cpp" />
+    <ClCompile Include="user\menu\central.cpp" />
+    <ClCompile Include="user\menu\list_view.cpp" />
+    <ClCompile Include="user\menu\list_window.cpp" />
+    <ClCompile Include="user\menu\menu_view.cpp" />
+    <ClCompile Include="user\simple\frame_window.cpp" />
+    <ClCompile Include="user\simple\main_frame.cpp" />
+    <ClCompile Include="user\simple\scroll_bar.cpp" />
+    <ClCompile Include="user\user\control.cpp" />
+    <ClCompile Include="user\user\control_bar.cpp" />
+    <ClCompile Include="user\user\control_descriptor_set.cpp" />
+    <ClCompile Include="user\user\control_property.cpp" />
+    <ClCompile Include="user\user\data_exchange.cpp" />
+    <ClCompile Include="user\user\document.cpp" />
+    <ClCompile Include="user\user\document_manager.cpp" />
+    <ClCompile Include="user\user\document_manager_container.cpp" />
+    <ClCompile Include="user\user\edit_plain_text_view.cpp" />
+    <ClCompile Include="user\user\form_control.cpp" />
+    <ClCompile Include="user\user\form_data.cpp" />
+    <ClCompile Include="user\user\form_document.cpp" />
+    <ClCompile Include="user\user\form_view.cpp" />
+    <ClCompile Include="user\user\form_window.cpp" />
+    <ClCompile Include="user\user\frame_window.cpp" />
+    <ClCompile Include="user\user\hotplugin.cpp" />
+    <ClCompile Include="user\user\image_list.cpp" />
+    <ClCompile Include="user\user\impact.cpp" />
+    <ClCompile Include="user\user\impact_creator.cpp" />
+    <ClCompile Include="user\user\impact_data.cpp" />
+    <ClCompile Include="user\user\impact_host.cpp" />
+    <ClCompile Include="user\user\impact_system.cpp" />
+    <ClCompile Include="user\user\margin.cpp" />
+    <ClCompile Include="user\user\menu.cpp" />
+    <ClCompile Include="user\user\menu_command.cpp" />
+    <ClCompile Include="user\user\menu_interaction.cpp" />
+    <ClCompile Include="user\user\menu_item.cpp" />
+    <ClCompile Include="user\user\multiple_document_template.cpp" />
+    <ClCompile Include="user\user\network_configuration.cpp" />
+    <ClCompile Include="user\user\notification_area.cpp" />
+    <ClCompile Include="user\user\notify_icon.cpp" />
+    <ClCompile Include="user\user\notify_icon_listener.cpp" />
+    <ClCompile Include="user\user\picture.cpp" />
+    <ClCompile Include="user\user\picture_interaction.cpp" />
+    <ClCompile Include="user\user\place_holder.cpp" />
+    <ClCompile Include="user\user\place_holder_container.cpp" />
+    <ClCompile Include="user\user\print_task.cpp" />
+    <ClCompile Include="user\user\server.cpp" />
+    <ClCompile Include="user\user\simple_view.cpp" />
+    <ClCompile Include="user\user\single_document_template.cpp" />
+    <ClCompile Include="user\user\split_bar.cpp" />
+    <ClCompile Include="user\user\split_layout.cpp" />
+    <ClCompile Include="user\user\split_view.cpp" />
+    <ClCompile Include="user\user\static_control.cpp" />
+    <ClCompile Include="user\user\style.cpp" />
+    <ClCompile Include="user\user\tab.cpp" />
+    <ClCompile Include="user\user\tab_callback.cpp" />
+    <ClCompile Include="user\user\tab_view.cpp" />
+    <ClCompile Include="user\user\toolbar.cpp" />
+    <ClCompile Include="user\user\user.cpp" />
+    <ClCompile Include="user\user\validate.cpp" />
+    <ClCompile Include="user\user\_.cpp" />
+    <ClCompile Include="_.cpp" />
+    <ClCompile Include="__matter_ca2.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="w_draw2d_direct2d.def" />
-  </ItemGroup>
-  <ItemGroup>
-    <SDKReference Include="Microsoft.Midi.GmDls, Version=10.0.18362.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\acme\w_acme.vcxproj">
-      <Project>{3cb6829d-4866-4683-8b74-483b80bd5443}</Project>
+    <ProjectReference Include="..\acme\u_acme.vcxproj">
+      <Project>{74a3ea71-9358-4441-a0cc-d5771df8dfbd}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\apex\w_apex.vcxproj">
-      <Project>{612940fe-3d31-4ed0-8355-65896c1d102f}</Project>
+    <ProjectReference Include="..\apex\u_apex.vcxproj">
+      <Project>{b86508de-6e32-42ac-b45c-08bf0932dcf8}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\aqua\w_aqua.vcxproj">
+    <ProjectReference Include="..\aqua\u_aqua.vcxproj">
       <Project>{d6fc3dc0-a19a-4f63-a3f1-3426fe53920b}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\aura\w_aura.vcxproj">
+    <ProjectReference Include="..\aura\u_aura.vcxproj">
       <Project>{b3e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\axis\u_axis.vcxproj">
+      <Project>{0412ea6f-50d0-4baa-99e3-ac14fc63a879}</Project>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{BA9BFF50-1888-4722-8DEE-73A3B5B32BCB}</ProjectGuid>
+    <ProjectGuid>{0680a465-39a7-4e1b-8dc1-0607a3243ea2}</ProjectGuid>
     <Keyword>DynamicLibrary</Keyword>
-    <ProjectName>draw2d_direct2d</ProjectName>
     <RootNamespace>app</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
     <AppContainerApplication>true</AppContainerApplication>
     <ApplicationType>Windows Store</ApplicationType>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
     <WindowsTargetPlatformMinVersion>10.0.17763.0</WindowsTargetPlatformMinVersion>
     <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
+    <ProjectName>base</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
@@ -168,7 +347,17 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|ARM'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|ARM64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
@@ -178,13 +367,12 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|Win32'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -196,31 +384,13 @@
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|ARM'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v142</PlatformToolset>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|ARM64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v142</PlatformToolset>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v142</PlatformToolset>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -235,11 +405,11 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\platform-uwp\Common.props" />
   </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='cover|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\platform-uwp\Common.props" />
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='cover|Win32'" Label="PropertySheets">
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\platform-uwp\Common.props" />
   </ImportGroup>
@@ -247,7 +417,7 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\platform-uwp\Common.props" />
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM64'" Label="PropertySheets">
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='cover|ARM'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\platform-uwp\Common.props" />
   </ImportGroup>
@@ -255,11 +425,7 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\platform-uwp\Common.props" />
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='cover|ARM'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\platform-uwp\Common.props" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM64'" Label="PropertySheets">
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='basis|ARM64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\platform-uwp\Common.props" />
   </ImportGroup>
@@ -267,11 +433,11 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\platform-uwp\Common.props" />
   </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|ARM64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\platform-uwp\Common.props" />
   </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\platform-uwp\Common.props" />
   </ImportGroup>
@@ -279,83 +445,81 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\platform-uwp\Common.props" />
   </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\platform-uwp\Common.props" />
+  </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>
-    </IgnoreImportLibrary>
-    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
-    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
-    <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>
-    </IgnoreImportLibrary>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary />
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
+    <GenerateManifest>false</GenerateManifest>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>
-    </IgnoreImportLibrary>
-    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
-    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM64'">
-    <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary />
-    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
-    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
-    <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>
-    </IgnoreImportLibrary>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|ARM'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary />
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM64'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary />
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM64'">
+    <GenerateManifest>false</GenerateManifest>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|ARM64'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary />
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM64'">
+    <GenerateManifest>false</GenerateManifest>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>
-    </IgnoreImportLibrary>
-    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
-    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
-    <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>
-    </IgnoreImportLibrary>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|x64'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary />
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
+    <GenerateManifest>false</GenerateManifest>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
@@ -363,324 +527,264 @@
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>true</CompileAsWinRT>
-      <PreprocessorDefinitions>_DRAW2D_DIRECT2D_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/bigobj </AdditionalOptions>
-      <CompileAsManaged>false</CompileAsManaged>
-      <FloatingPointModel>Fast</FloatingPointModel>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
-      <ControlFlowGuard>false</ControlFlowGuard>
-      <FunctionLevelLinking>false</FunctionLevelLinking>
-      <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <ExceptionHandling>Async</ExceptionHandling>
-      <LanguageStandard>stdcpp14</LanguageStandard>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
-    </ClCompile>
-    <Link>
-      <SubSystem>Windows</SubSystem>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>WindowsApp.lib;d2d1.lib;d3d11.lib;dxgi.lib;dwrite.lib;dxguid.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <FixedBaseAddress>false</FixedBaseAddress>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
-      <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
-    </Link>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
-    <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <CompileAsWinRT>true</CompileAsWinRT>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/bigobj </AdditionalOptions>
-      <ExceptionHandling>Async</ExceptionHandling>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DRAW2D_DIRECT2D_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <CompileAsManaged>false</CompileAsManaged>
       <LanguageStandard>stdcpp14</LanguageStandard>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsManaged>false</CompileAsManaged>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <PreprocessorDefinitions>_BASE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>WindowsApp.lib;d2d1.lib;d3d11.lib;dxgi.lib;dwrite.lib;dxguid.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
-      <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>true</CompileAsWinRT>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/bigobj </AdditionalOptions>
-      <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DRAW2D_DIRECT2D_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <CompileAsManaged>false</CompileAsManaged>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp14</LanguageStandard>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsManaged>false</CompileAsManaged>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <PreprocessorDefinitions>_BASE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>WindowsApp.lib;d2d1.lib;d3d11.lib;dxgi.lib;dwrite.lib;dxguid.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
-      <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <CompileAsWinRT>true</CompileAsWinRT>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsManaged>false</CompileAsManaged>
+      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <PreprocessorDefinitions>_BASE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|arm'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>true</CompileAsWinRT>
-      <CompileAsManaged>false</CompileAsManaged>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/bigobj </AdditionalOptions>
-      <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DRAW2D_DIRECT2D_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp14</LanguageStandard>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsManaged>false</CompileAsManaged>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <PreprocessorDefinitions>_BASE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>WindowsApp.lib;d2d1.lib;d3d11.lib;dxgi.lib;dwrite.lib;dxguid.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
-      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
-    </Link>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM64'">
-    <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <CompileAsWinRT>true</CompileAsWinRT>
-      <CompileAsManaged>false</CompileAsManaged>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/bigobj </AdditionalOptions>
-      <ExceptionHandling>Async</ExceptionHandling>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DRAW2D_DIRECT2D_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <LanguageStandard>stdcpp14</LanguageStandard>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>WindowsApp.lib;d2d1.lib;d3d11.lib;dxgi.lib;dwrite.lib;dxguid.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
-      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
-    </Link>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|arm'">
-    <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <CompileAsWinRT>true</CompileAsWinRT>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/bigobj </AdditionalOptions>
-      <ExceptionHandling>Async</ExceptionHandling>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DRAW2D_DIRECT2D_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <CompileAsManaged>false</CompileAsManaged>
-      <LanguageStandard>stdcpp14</LanguageStandard>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>WindowsApp.lib;d2d1.lib;d3d11.lib;dxgi.lib;dwrite.lib;dxguid.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
-      <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cover|arm'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>true</CompileAsWinRT>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/bigobj </AdditionalOptions>
-      <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DRAW2D_DIRECT2D_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <CompileAsManaged>false</CompileAsManaged>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp14</LanguageStandard>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsManaged>false</CompileAsManaged>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <PreprocessorDefinitions>_BASE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>WindowsApp.lib;d2d1.lib;d3d11.lib;dxgi.lib;dwrite.lib;dxguid.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
-      <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM64'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|arm'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>true</CompileAsWinRT>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/bigobj </AdditionalOptions>
-      <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DRAW2D_DIRECT2D_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <CompileAsManaged>false</CompileAsManaged>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp14</LanguageStandard>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsManaged>false</CompileAsManaged>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <PreprocessorDefinitions>_BASE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>WindowsApp.lib;d2d1.lib;d3d11.lib;dxgi.lib;dwrite.lib;dxguid.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
-      <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <CompileAsWinRT>true</CompileAsWinRT>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsManaged>false</CompileAsManaged>
+      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <PreprocessorDefinitions>_BASE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cover|ARM64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>true</CompileAsWinRT>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/bigobj </AdditionalOptions>
-      <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DRAW2D_DIRECT2D_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <CompileAsManaged>false</CompileAsManaged>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp14</LanguageStandard>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsManaged>false</CompileAsManaged>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <PreprocessorDefinitions>_BASE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>WindowsApp.lib;d2d1.lib;d3d11.lib;dxgi.lib;dwrite.lib;dxguid.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
-      <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <CompileAsWinRT>true</CompileAsWinRT>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsManaged>false</CompileAsManaged>
+      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <PreprocessorDefinitions>_BASE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>true</CompileAsWinRT>
-      <CompileAsManaged>false</CompileAsManaged>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/bigobj </AdditionalOptions>
-      <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DRAW2D_DIRECT2D_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp14</LanguageStandard>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsManaged>false</CompileAsManaged>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <PreprocessorDefinitions>_BASE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>WindowsApp.lib;d2d1.lib;d3d11.lib;dxgi.lib;dwrite.lib;dxguid.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
-      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
-    </Link>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
-    <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <CompileAsWinRT>true</CompileAsWinRT>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/bigobj </AdditionalOptions>
-      <ExceptionHandling>Async</ExceptionHandling>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DRAW2D_DIRECT2D_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <CompileAsManaged>false</CompileAsManaged>
-      <LanguageStandard>stdcpp14</LanguageStandard>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>WindowsApp.lib;d2d1.lib;d3d11.lib;dxgi.lib;dwrite.lib;dxguid.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
-      <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cover|x64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>true</CompileAsWinRT>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/bigobj </AdditionalOptions>
-      <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DRAW2D_DIRECT2D_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <CompileAsManaged>false</CompileAsManaged>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp14</LanguageStandard>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsManaged>false</CompileAsManaged>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <PreprocessorDefinitions>_BASE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>WindowsApp.lib;d2d1.lib;d3d11.lib;dxgi.lib;dwrite.lib;dxguid.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
-      <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <CompileAsWinRT>true</CompileAsWinRT>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsManaged>false</CompileAsManaged>
+      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <PreprocessorDefinitions>_BASE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

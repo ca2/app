@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{19271f57-3516-47f7-9618-63d96e15b531}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\platform">
+      <UniqueIdentifier>{686fd866-e456-4740-ae7b-1d92c60c4116}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\const">
+      <UniqueIdentifier>{52db2dbe-8555-4ff9-b8ef-646ae24c87b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{543eaf59-171c-467b-9e9f-e46379301686}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\const">
+      <UniqueIdentifier>{164b9807-dd01-4e7b-9dda-91dcbb317c12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\include">
+      <UniqueIdentifier>{3be1cf4b-d95c-42f4-96b6-9e73b67a7e08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\inline">
+      <UniqueIdentifier>{786d0b76-50ce-4988-9f2f-2931fcf0c741}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="const\idpool.cpp">
+      <Filter>Source Files\const</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\system.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\session.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\application.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="_.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="const\idpool.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="include\_.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\__debug_box_clear_impl.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\__debug_box_set_impl.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\_acid_app_impl.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\_app_impl1.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\_application.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\_console_old.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\_draw2d_impl.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\_new_impl.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\application.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\application_common.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\console.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\console_common.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\library.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="_.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_defer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="inline\aaa_want_to_remove_app_prelude.inl">
+      <Filter>Header Files\inline</Filter>
+    </None>
+    <None Include="u_bred.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

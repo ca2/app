@@ -1394,7 +1394,7 @@ namespace user
    class scroll_data;
    class style;
    class box;
-   class interaction_pointer_array;
+   class interaction_array;
 
    using style_pointer = __pointer(style);
 

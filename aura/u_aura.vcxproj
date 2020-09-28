@@ -702,8 +702,6 @@
     <ClCompile Include="node\windows_common\application.cpp" />
     <ClCompile Include="os\argcargv.cpp" />
     <ClCompile Include="os\binreloc.cpp" />
-    <ClCompile Include="os\console.cpp" />
-    <ClCompile Include="os\debug.cpp" />
     <ClCompile Include="os\http.cpp" />
     <ClCompile Include="os\thread.cpp" />
     <ClCompile Include="os\uwp\application_system_run.cpp" />
@@ -776,13 +774,13 @@
     <ResourceCompile Include="aura.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\acme\w_acme.vcxproj">
-      <Project>{3cb6829d-4866-4683-8b74-483b80bd5443}</Project>
+    <ProjectReference Include="..\acme\u_acme.vcxproj">
+      <Project>{74a3ea71-9358-4441-a0cc-d5771df8dfbd}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\apex\w_apex.vcxproj">
-      <Project>{612940fe-3d31-4ed0-8355-65896c1d102f}</Project>
+    <ProjectReference Include="..\apex\u_apex.vcxproj">
+      <Project>{b86508de-6e32-42ac-b45c-08bf0932dcf8}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\aqua\aqua.vcxproj">
+    <ProjectReference Include="..\aqua\u_aqua.vcxproj">
       <Project>{d6fc3dc0-a19a-4f63-a3f1-3426fe53920b}</Project>
     </ProjectReference>
   </ItemGroup>
@@ -1030,7 +1028,7 @@
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <FixedBaseAddress>false</FixedBaseAddress>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
       <AdditionalDependencies>dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
@@ -1056,7 +1054,7 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
       <AdditionalDependencies>dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
@@ -1082,7 +1080,7 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
       <AdditionalDependencies>dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
@@ -1108,7 +1106,7 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
       <AdditionalDependencies>dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
@@ -1135,7 +1133,7 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
       <AdditionalDependencies>dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
@@ -1162,7 +1160,7 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
       <AdditionalDependencies>dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
@@ -1188,7 +1186,7 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
       <AdditionalDependencies>dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
@@ -1214,7 +1212,7 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
       <AdditionalDependencies>dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
@@ -1240,7 +1238,7 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
       <AdditionalDependencies>dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
@@ -1267,7 +1265,7 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
       <AdditionalDependencies>dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
@@ -1294,7 +1292,7 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
       <AdditionalDependencies>dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
@@ -1320,7 +1318,7 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
       <AdditionalDependencies>dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
     </Link>

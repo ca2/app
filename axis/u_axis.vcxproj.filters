@@ -582,6 +582,9 @@
     <ClInclude Include="database\sqlitedb\_.h">
       <Filter>Source Files\database\sqlite</Filter>
     </ClInclude>
+    <ClInclude Include="_.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="database\database\database.cpp">

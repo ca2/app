@@ -124,7 +124,7 @@ namespace user
 
 
    class user;
-   class interaction_pointer_array;
+   class interaction_array;
    class keyboard;
    class copydesk;
    class main_frame;

@@ -318,9 +318,9 @@ namespace user
       inline void parent_client_rect(RECT* prect, e_layout elayout = layout_design) const { state(elayout).parent_client_rect(prect); }
 
 
-      inline auto get_client_rect(e_layout elayout = layout_design) const { ::rect rect; get_client_rect(rect, elayout); return rect; }
-      inline auto get_window_rect(e_layout elayout = layout_design) const { ::rect rect; get_window_rect(rect, elayout); return rect; }
-      inline auto parent_client_rect(e_layout elayout = layout_design) const { ::rect rect; parent_client_rect(rect, elayout); return rect; }
+      inline ::rect get_client_rect(e_layout elayout = layout_design) const { ::rect rect; get_client_rect(rect, elayout); return rect; }
+      inline ::rect get_window_rect(e_layout elayout = layout_design) const { ::rect rect; get_window_rect(rect, elayout); return rect; }
+      inline ::rect parent_client_rect(e_layout elayout = layout_design) const { ::rect rect; parent_client_rect(rect, elayout); return rect; }
 
 
    };

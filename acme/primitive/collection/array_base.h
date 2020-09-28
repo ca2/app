@@ -9,7 +9,12 @@ __pointer(TYPE) & ITEM ## _at(::index i) { return CONTAINER[i]; } \
 TYPE * get_ ## ITEM(::index i) const { return CONTAINER.bounds(i) ? CONTAINER[i] : nullptr; } \
 ::count ITEM ## _count() const { return CONTAINER.get_count(); } \
 bool has_ ## ITEM() const { return CONTAINER.has_element(); } \
+CONTAINER_TYPE ITEM ## a() const { return CONTAINER; } \
+CONTAINER_TYPE & ITEM ## a() { return CONTAINER; } \
+bool contains_ ## ITEM(const TYPE * p) const { return CONTAINER.contains(p); } \
 bool is_there_no_ ## ITEM() const { return CONTAINER.is_empty(); } \
+bool has_no_ ## ITEM() const { return is_there_no_ ## ITEM(); } \
+::index find_first_ ## ITEM(const TYPE * p, ::index iStart = 0, ::count nCount = -1) const { return CONTAINER.find_first(p, iStart, nCount); } \
 __pointer(TYPE) & first_ ## ITEM() { return CONTAINER.first_pointer(); } \
 __pointer(TYPE) & last_ ## ITEM() { return CONTAINER.last_pointer(); } \
 TYPE * get_first_ ## ITEM() const { return CONTAINER.get_first_pointer(); } \
@@ -23,14 +28,23 @@ DEFAULT_TYPED_ARRAY_ACCESSOR_OF(ITEM, CONTAINER, TYPE, __pointer_array(TYPE))
 
 #define DEFAULT_TYPED_ARRAY_OF(ITEM, CONTAINER, TYPE, CONTAINER_TYPE) \
 ::index add_ ## ITEM(TYPE * p) { return CONTAINER.add_item(p); } \
+::index add_unique_ ## ITEM(TYPE * p) { return CONTAINER.add_unique(p); } \
+::index remove_ ## ITEM(TYPE * p) { return CONTAINER.remove(p); } \
+CONTAINER_TYPE ITEM ## a_section(::index iStart = 0, ::count nCount = -1){return CONTAINER.slice < CONTAINER_TYPE >(iStart, nCount);} \
+template < typename ARRAY > \
+void ITEM ## a_slice(ARRAY & a, ::index iStart = 0, ::count nCount = -1){ CONTAINER.slice(a, iStart, nCount);} \
 DEFAULT_TYPED_ARRAY_ACCESSOR_OF(ITEM, CONTAINER, TYPE, CONTAINER_TYPE)
 
 #define HAVE_ARRAY_OF(ITEM, CONTAINER, TYPE) \
 DEFAULT_TYPED_ARRAY_OF(ITEM, CONTAINER, TYPE, __pointer_array(TYPE))
 
-#define DEFAULT_ARRAY_OF(ARRAY, ITEM, CONTAINER, TYPE) \
+#define _DEFAULT_ARRAY_OF(ARRAY, ITEM, CONTAINER, TYPE) \
 ARRAY(const ::std::initializer_list < TYPE * > & list) : CONTAINER(list) { } \
 DEFAULT_TYPED_ARRAY_OF(ITEM, CONTAINER, TYPE, __pointer_array(TYPE))
+
+#define DEFAULT_ARRAY_OF(ARRAY, ITEM, TYPE) \
+_DEFAULT_ARRAY_OF(ARRAY, ITEM, m_ ## ITEM ## a, TYPE)
+
 
 
 

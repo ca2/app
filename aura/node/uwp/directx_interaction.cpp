@@ -38,7 +38,7 @@ namespace uwp
 
       // while drawing layout can occur and change z-order.
       // keep this past z-order
-      ::user::interaction_pointer_array uia = m_uiptraChild;
+      auto uia = m_uiptraChild.m_interactiona;
 
       for (auto & pinteraction : uia)
       {

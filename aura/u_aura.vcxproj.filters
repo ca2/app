@@ -1996,12 +1996,6 @@
     <ClCompile Include="os\binreloc.cpp">
       <Filter>Source Files\os</Filter>
     </ClCompile>
-    <ClCompile Include="os\console.cpp">
-      <Filter>Source Files\os</Filter>
-    </ClCompile>
-    <ClCompile Include="os\debug.cpp">
-      <Filter>Source Files\os</Filter>
-    </ClCompile>
     <ClCompile Include="os\http.cpp">
       <Filter>Source Files\os</Filter>
     </ClCompile>

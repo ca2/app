@@ -980,13 +980,13 @@ namespace user
 
    //}
 
-   interaction_ptra & interaction_ptra::operator=(const interaction_pointer_array & a)
+   interaction_ptra & interaction_ptra::operator=(const interaction_array & a)
    {
 
-      for (index i = 0; i < a.get_count(); i++)
+      for (index i = 0; i < a.interaction_count(); i++)
       {
 
-         add(a[i]);
+         add(a.get_interaction(i));
 
       }
 
@@ -1142,7 +1142,7 @@ namespace user
 
 
 
-   interaction_pointer_array::interaction_pointer_array()
+   interaction_array::interaction_array()
    {
 
    }
@@ -1155,7 +1155,7 @@ namespace user
    //}
 
 
-   interaction_pointer_array::interaction_pointer_array(const address_array < ::user::interaction * > & ptra)
+   interaction_array::interaction_array(const address_array < ::user::interaction * > & ptra)
    {
 
       for (index i = 0; i < ptra.get_count(); i++)
@@ -1164,7 +1164,7 @@ namespace user
          try
          {
 
-            add(ptra[i]);
+            add_interaction(ptra[i]);
 
          }
          catch (...)
@@ -1199,17 +1199,19 @@ namespace user
    //}
 
 
-   __pointer(::user::interaction) interaction_pointer_array::find_first(oswindow oswindow)
+   __pointer(::user::interaction) interaction_array::find_first(oswindow oswindow)
    {
 
-      for (i32 i = 0; i < this->get_size(); i++)
+      for (i32 i = 0; i < this->interaction_count(); i++)
       {
 
-         if (this->element_at(i)->get_safe_handle() == oswindow)
+         if (this->interaction_at(i)->get_safe_handle() == oswindow)
          {
 
-            return this->element_at(i);
+            return this->interaction_at(i);
+
          }
+
       }
 
       return nullptr;
@@ -1217,36 +1219,35 @@ namespace user
    }
 
 
-   interaction_pointer_array & interaction_pointer_array::operator = (const __pointer_array(::user::interaction) & a)
+   interaction_array& interaction_array::operator = (const __pointer_array(::user::interaction) & a)
    {
 
-      copy(a);
+      m_interactiona.copy(a);
 
       return *this;
 
    }
 
 
-   interaction_pointer_array & interaction_pointer_array::operator = (const interaction_pointer_array & a)
+   interaction_array & interaction_array::operator = (const interaction_array& a)
    {
 
-      copy(a);
+      m_interactiona.copy(a.m_interactiona);
 
       return *this;
 
    }
 
 
-
-   oswindow_array interaction_pointer_array::get_hwnda()
+   oswindow_array interaction_array::get_hwnda()
    {
 
       oswindow_array oswindowa;
 
-      for (i32 i = 0; i < this->get_size(); i++)
+      for (i32 i = 0; i < this->interaction_count(); i++)
       {
 
-         oswindowa.add(this->element_at(i)->get_handle());
+         oswindowa.add(this->interaction_at(i)->get_handle());
 
       }
 
@@ -1255,42 +1256,54 @@ namespace user
    }
 
 
-   void interaction_pointer_array::send_message(UINT uiMessage, WPARAM wparam, LPARAM lparam)
+   void interaction_array::send_message(UINT uiMessage, WPARAM wparam, LPARAM lparam)
 
    {
-      for (i32 i = 0; i < this->get_size(); i++)
+      for (i32 i = 0; i < this->interaction_count(); i++)
       {
+
          try
          {
-            this->element_at(i)->send_message(uiMessage, wparam, lparam);
+
+            this->interaction_at(i)->send_message(uiMessage, wparam, lparam);
 
          }
          catch (...)
          {
+
          }
+
       }
+
    }
 
-   void interaction_pointer_array::send_message_to_descendants(UINT uiMessage, WPARAM wparam, LPARAM lparam, bool bRecursive)
 
+   void interaction_array::send_message_to_descendants(UINT uiMessage, WPARAM wparam, LPARAM lparam, bool bRecursive)
    {
-      for (i32 i = 0; i < this->get_size(); i++)
+
+      for (i32 i = 0; i < this->interaction_count(); i++)
       {
+
          try
          {
-            this->element_at(i)->send_message_to_descendants(uiMessage, wparam, lparam, bRecursive);
+
+            this->interaction_at(i)->send_message_to_descendants(uiMessage, wparam, lparam, bRecursive);
 
          }
          catch (...)
          {
+
          }
+
       }
+
    }
 
-   bool interaction_pointer_array::get_child(__pointer(::user::interaction) & pinteraction)
+
+   bool interaction_array::get_child(__pointer(::user::interaction) & pinteraction)
    {
 
-      if (get_count() <= 0)
+      if (interaction_count() <= 0)
       {
 
          return false;
@@ -1300,7 +1313,7 @@ namespace user
       if (pinteraction.is_null())
       {
 
-         pinteraction = element_at(0);
+         pinteraction = interaction_at(0);
 
          return true;
 
@@ -1308,18 +1321,18 @@ namespace user
       else
       {
 
-         for (index i = get_upper_bound(); i >= 0; i--)
+         for (index i = this->interaction_last_index(); i >= 0; i--)
          {
 
-            if (element_at(i) == pinteraction)
+            if (interaction_at(i) == pinteraction)
             {
 
                i++;
 
-               if (i < get_count())
+               if (i < interaction_count())
                {
 
-                  pinteraction = element_at(i);
+                  pinteraction = interaction_at(i);
 
                   return true;
 
@@ -1342,10 +1355,10 @@ namespace user
    }
 
 
-   bool interaction_pointer_array::rget_child(__pointer(::user::interaction) & pinteraction)
+   bool interaction_array::rget_child(__pointer(::user::interaction) & pinteraction)
    {
 
-      if (get_count() <= 0)
+      if (interaction_count() <= 0)
       {
 
          return false;
@@ -1355,7 +1368,7 @@ namespace user
       if (pinteraction == nullptr)
       {
 
-         pinteraction = last_pointer();
+         pinteraction = last_interaction();
 
          return true;
 
@@ -1363,10 +1376,10 @@ namespace user
       else
       {
 
-         for (index i = 0; i < get_size(); i++)
+         for (index i = 0; i < interaction_count(); i++)
          {
 
-            if (element_at(i) == pinteraction)
+            if (interaction_at(i) == pinteraction)
             {
 
                i--;
@@ -1374,7 +1387,7 @@ namespace user
                if (i >= 0)
                {
 
-                  pinteraction = element_at(i);
+                  pinteraction = interaction_at(i);
 
                   return true;
 

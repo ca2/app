@@ -708,14 +708,14 @@ namespace user
 
       }
 
-      if (pholder->m_uiptraChild.is_empty())
+      if (pholder->m_uiptraChild.has_no_interaction())
       {
 
          return true; // assume future child by default is visible
 
       }
 
-      if (!pholder->m_uiptraChild[0]->layout().sketch().is_visible())
+      if (!pholder->m_uiptraChild.first_interaction()->layout().sketch().is_visible())
       {
 
          return false;

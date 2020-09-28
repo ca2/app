@@ -17,6 +17,9 @@
 #endif
 
 
+#undef __spin_namespace
+
+
 #include "base/include/_include.h"
 
 

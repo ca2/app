@@ -36,7 +36,7 @@ namespace user
    //class control_descriptor;
    class interaction_child;
    class interaction_impl;
-   class interaction_pointer_array;
+   class interaction_array;
    //class place_holder;
    //class tab;
    //class tab_pane;

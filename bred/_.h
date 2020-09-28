@@ -15,6 +15,8 @@
 #endif
 
 
+#undef __spin_namespace
+
 
 #include "bred/include/_.h"
 

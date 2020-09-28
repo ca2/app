@@ -5918,7 +5918,7 @@ retry_license:
 
       sync_lock sl(&m_mutexFrame); // recursive lock (on m_framea.add(pwnd)) but m_puiMain is "cared" by m_frame.m_mutex
 
-      if (m_puiptraFrame->add_unique(pwnd))
+      if (m_puiptraFrame->add_unique_interaction(pwnd))
       {
 
          TRACE("::base::application::add_frame ::user::interaction = 0x%" PRIxPTR " (%s) app=%s", pwnd, typeid(*pwnd).name(), typeid(*this).name());
@@ -5940,7 +5940,7 @@ retry_license:
          if (Session.m_puiHost)
          {
 
-            Session.m_puiHost->m_uiptraChild.add_unique(pwnd);
+            Session.m_puiHost->m_uiptraChild.add_unique_interaction(pwnd);
 
             //pwnd->set_need_redraw();
 
@@ -5977,7 +5977,7 @@ retry_license:
       if (m_puiptraFrame != nullptr)
       {
 
-         if (m_puiptraFrame->remove(pwnd) > 0)
+         if (m_puiptraFrame->remove_interaction(pwnd) > 0)
          {
 
             TRACE("::base::application::remove_frame ::user::interaction = 0x%016x (%s) app=%s", pwnd, typeid(*pwnd).name(), typeid(*this).name());
@@ -10562,20 +10562,20 @@ namespace aura
    __pointer(::user::interaction) application::uie_from_point(const ::point& point)
    {
 
-      user::interaction_pointer_array wnda = *m_puiptraFrame;
+      auto uia = *m_puiptraFrame;
 
       user::oswindow_array oswindowa;
 
-      oswindowa = wnda.get_hwnda();
+      oswindowa = uia.get_hwnda();
 
       user::window_util::SortByZOrder(oswindowa);
 
       for (i32 i = 0; i < oswindowa.get_count(); i++)
       {
 
-         __pointer(::user::interaction) puieWindow = wnda.find_first(oswindowa[i]);
+         auto puieWindow = uia.find_first(oswindowa[i]);
 
-         __pointer(::user::interaction) puie = puieWindow->_001FromPoint(point);
+         auto puie = puieWindow->_001FromPoint(point);
 
          if (puie != nullptr)
          {
@@ -11140,12 +11140,15 @@ namespace aura
    i32 application::GetVisibleFrameCount()
    {
 
-      ::user::interaction_pointer_array wnda = *m_puiptraFrame;
+      auto uia = *m_puiptraFrame;
 
       i32 iCount = 0;
-      for (i32 i = 0; i < wnda.get_size(); i++)
+
+      for (i32 i = 0; i < uia.interaction_count(); i++)
       {
-         __pointer(::user::interaction) pwnd = wnda.element_at(i);
+
+         __pointer(::user::interaction) pwnd = uia.interaction_at(i);
+
          if (pwnd != nullptr
             && pwnd->is_window()
             && pwnd->is_window_visible(::user::layout_sketch))

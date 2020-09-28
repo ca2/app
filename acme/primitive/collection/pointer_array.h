@@ -695,8 +695,12 @@ public:
    pointer_array & copy(const ARRAY & a)
    {
 
-      if(&a == dynamic_cast < ARRAY * > (this))
+      if (&a == dynamic_cast <ARRAY*> (this))
+      {
+
          return *this;
+
+      }
 
       this->remove_all();
 

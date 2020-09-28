@@ -218,8 +218,8 @@ namespace uwp
 
       puiHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen.left = 0;
       puiHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen.top = 0;
-      puiHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen.right = m_window->Bounds.Width;
-      puiHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen.bottom = m_window->Bounds.Height;
+      puiHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen.right = (LONG) m_window->Bounds.Width;
+      puiHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen.bottom = (LONG) m_window->Bounds.Height;
 
    }
 

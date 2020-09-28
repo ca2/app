@@ -245,7 +245,7 @@ namespace user
    void impact_host::create_impact(impact_data * pimpactdata, impact_creator * pcreator)
    {
 
-      if (pimpactdata->m_pplaceholder->m_uiptraChild.get_count() > 0)
+      if (pimpactdata->m_pplaceholder->m_uiptraChild.interaction_count() > 0)
       {
 
          return;

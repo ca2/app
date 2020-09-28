@@ -349,7 +349,7 @@ namespace uwp
       if (System.has_property("client_only"))
       {
 
-         ::user::interaction_pointer_array children = m_pimpl->m_puserinteraction->m_uiptraChild;
+         auto children = m_pimpl->m_puserinteraction->m_uiptraChild.m_interactiona;
 
          for (auto & pinteraction : children)
          {

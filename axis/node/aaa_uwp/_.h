@@ -11,7 +11,7 @@
 #include <shlobj.h>
 
 
-#include "exception.h"
+//#include "exception.h"
 
 
 namespace uwp
@@ -40,7 +40,7 @@ string get_error_message(DWORD dwError);
 //#include "_UWP_folder_watch.h"
 #include "factory_exchange.h"
 #include "uac_tools.h"
-#include "thread.h"
+//#include "thread.h"
 #include "file.h"
 #include "native_buffer.h" // soon, from axis library 2015-07-17 20:06 Livecoding(.tv)
 //#include "stdio_file.h"

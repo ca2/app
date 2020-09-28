@@ -49,6 +49,12 @@
     <Filter Include="Source Files\const">
       <UniqueIdentifier>{c8e5fab9-4774-4bfd-89ab-5975b4e50c93}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\os">
+      <UniqueIdentifier>{a1c652a7-51d6-4cd1-bb96-aa8158d7a5f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\os\uwp">
+      <UniqueIdentifier>{d9d75001-1c2f-4ccb-9071-0a13fbaf5dd6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="xml\xmlite.cpp">

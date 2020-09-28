@@ -162,7 +162,7 @@ namespace user
       __pointer(interaction_impl)               m_pimpl2;
       __pointer(interaction)                    m_puserinteraction;
       interaction_ptra                          m_uiptraOwned;
-      interaction_pointer_array                 m_uiptraChild;
+      interaction_array                         m_uiptraChild;
       string                                    m_strName;
       __pointer(interaction)                    m_puiOwner;
       u64                                       m_uiUserInteractionFlags;
@@ -521,7 +521,7 @@ namespace user
       TYPE* typed_descedant(::user::interaction* puiExclude = nullptr)
       {
 
-         for (auto& pinteraction : m_uiptraChild.ptra())
+         for (auto& pinteraction : m_uiptraChild.interactiona())
          {
 
             if (pinteraction != puiExclude)
@@ -541,7 +541,7 @@ namespace user
 
          }
 
-         for (auto& pinteraction : m_uiptraChild.ptra())
+         for (auto& pinteraction : m_uiptraChild.interactiona())
          {
 
             if (pinteraction != puiExclude)

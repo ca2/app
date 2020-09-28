@@ -5901,7 +5901,7 @@ namespace uwp
 
       sync_lock sl(m_puserinteraction->mutex());
 
-      for (auto p : m_puserinteraction->m_uiptraChild)
+      for (auto p : m_puserinteraction->m_uiptraChild.m_interactiona)
       {
 
          if (p != nullptr)
@@ -5930,7 +5930,7 @@ namespace uwp
 
       sync_lock sl(m_puserinteraction->mutex());
 
-      for (auto p : m_puserinteraction->m_uiptraChild)
+      for (auto p : m_puserinteraction->m_uiptraChild.m_interactiona)
       {
 
          p->on_after_graphical_update();

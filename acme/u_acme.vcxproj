@@ -51,7 +51,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{3cb6829d-4866-4683-8b74-483b80bd5443}</ProjectGuid>
+    <ProjectGuid>{74A3EA71-9358-4441-A0CC-D5771DF8DFBD}</ProjectGuid>
     <Keyword>DynamicLibrary</Keyword>
     <RootNamespace>app</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
@@ -285,7 +285,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
@@ -308,7 +308,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">
@@ -331,7 +331,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|arm'">
@@ -354,7 +354,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|arm'">
@@ -377,7 +377,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cover|arm'">
@@ -400,13 +400,13 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <CompileAsWinRT>false</CompileAsWinRT>
+      <CompileAsWinRT>true</CompileAsWinRT>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PreprocessorDefinitions>_ACME_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Async</ExceptionHandling>
@@ -414,20 +414,22 @@
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <LanguageStandard>stdcpp14</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsManaged>false</CompileAsManaged>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalDependencies>zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <CompileAsWinRT>false</CompileAsWinRT>
+      <CompileAsWinRT>true</CompileAsWinRT>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PreprocessorDefinitions>_ACME_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Async</ExceptionHandling>
@@ -435,20 +437,22 @@
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <LanguageStandard>stdcpp14</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsManaged>false</CompileAsManaged>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalDependencies>zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cover|ARM64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <CompileAsWinRT>false</CompileAsWinRT>
+      <CompileAsWinRT>true</CompileAsWinRT>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PreprocessorDefinitions>_ACME_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Async</ExceptionHandling>
@@ -456,13 +460,15 @@
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <LanguageStandard>stdcpp14</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsManaged>false</CompileAsManaged>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalDependencies>zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -486,7 +492,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
@@ -509,7 +515,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cover|x64'">
@@ -532,7 +538,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

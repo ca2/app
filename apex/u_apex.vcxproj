@@ -51,7 +51,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{612940fe-3d31-4ed0-8355-65896c1d102f}</ProjectGuid>
+    <ProjectGuid>{B86508DE-6E32-42AC-B45C-08BF0932DCF8}</ProjectGuid>
     <Keyword>DynamicLibrary</Keyword>
     <RootNamespace>app</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
@@ -285,7 +285,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>ssleay32.lib;libeay32.lib;zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
@@ -308,7 +308,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>ssleay32.lib;libeay32.lib;zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">
@@ -331,7 +331,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>ssleay32.lib;libeay32.lib;zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|arm'">
@@ -354,7 +354,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>ssleay32.lib;libeay32.lib;zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|arm'">
@@ -377,7 +377,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>ssleay32.lib;libeay32.lib;zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cover|arm'">
@@ -400,13 +400,13 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>ssleay32.lib;libeay32.lib;zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <CompileAsWinRT>false</CompileAsWinRT>
+      <CompileAsWinRT>true</CompileAsWinRT>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PreprocessorDefinitions>_APEX_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
@@ -414,19 +414,22 @@
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <LanguageStandard>stdcpp14</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsManaged>false</CompileAsManaged>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalDependencies>ssleay32.lib;libeay32.lib;zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <CompileAsWinRT>false</CompileAsWinRT>
+      <CompileAsWinRT>true</CompileAsWinRT>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PreprocessorDefinitions>_APEX_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
@@ -434,19 +437,22 @@
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <LanguageStandard>stdcpp14</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsManaged>false</CompileAsManaged>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalDependencies>ssleay32.lib;libeay32.lib;zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cover|ARM64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <CompileAsWinRT>false</CompileAsWinRT>
+      <CompileAsWinRT>true</CompileAsWinRT>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PreprocessorDefinitions>_APEX_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
@@ -454,13 +460,16 @@
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <LanguageStandard>stdcpp14</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsManaged>false</CompileAsManaged>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalDependencies>ssleay32.lib;libeay32.lib;zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
@@ -483,7 +492,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>ssleay32.lib;libeay32.lib;zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
@@ -506,7 +515,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>ssleay32.lib;libeay32.lib;zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cover|x64'">
@@ -529,7 +538,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>ssleay32.lib;libeay32.lib;zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -1610,8 +1619,8 @@
     <ClCompile Include="_.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\acme\w_acme.vcxproj">
-      <Project>{3cb6829d-4866-4683-8b74-483b80bd5443}</Project>
+    <ProjectReference Include="..\acme\u_acme.vcxproj">
+      <Project>{74a3ea71-9358-4441-a0cc-d5771df8dfbd}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

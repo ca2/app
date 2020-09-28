@@ -29,16 +29,21 @@
 CLASS_DECL_ACME string normalize_path(const char* lpcszPath);
 
 
-CLASS_DECL_ACME oswindow get_capture();
-CLASS_DECL_ACME oswindow set_capture(oswindow oswindow);
-CLASS_DECL_ACME WINBOOL release_capture();
+//CLASS_DECL_ACME oswindow get_capture();
+//CLASS_DECL_ACME oswindow set_capture(oswindow oswindow);
+//CLASS_DECL_ACME WINBOOL release_capture();
+//
+//CLASS_DECL_ACME oswindow get_active_window();
+//CLASS_DECL_ACME oswindow set_active_window(oswindow oswindow);
+//
+//
+//
+//CLASS_DECL_ACME int_bool is_window(oswindow oswindow);
 
-CLASS_DECL_ACME oswindow get_active_window();
-CLASS_DECL_ACME oswindow set_active_window(oswindow oswindow);
 
-
-
-CLASS_DECL_ACME int_bool is_window(oswindow oswindow);
+void CLASS_DECL_ACME __cdecl _ca2_purecall();
+void CLASS_DECL_ACME __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS* ppointers);
+bool CLASS_DECL_ACME __windows_init();
 
 
 //CLASS_DECL_ACME int WINAPI GetSystemMetrics(int i);
@@ -54,11 +59,11 @@ namespace user
 } // namespace user
 
 
-#include "acme/graphics/graphics/buffer.h"
+//#include "acme/graphics/graphics/buffer.h"
 //#include "_UWP_gdi_winrt.h"
 
 
-#include "oswindow.h"
+//#include "oswindow.h"
 
 
 

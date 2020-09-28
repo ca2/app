@@ -50,9 +50,9 @@ namespace linux
 
 
       file();
-      //file(::generic * pobject);
-      //file(::generic * pobject, int hFile);
-      //file(::generic * pobject, const ::file::path & pszFileName, const cflag < ::file::e_open > & eflag);
+      //file(::elemental * pobject);
+      //file(::elemental * pobject, int hFile);
+      //file(::elemental * pobject, const ::file::path & pszFileName, const cflag < ::file::e_open > & eflag);
 
       virtual ~file();
 

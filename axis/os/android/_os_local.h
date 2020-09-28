@@ -2,7 +2,7 @@
 
 
 class os_local :
-   virtual public generic
+   virtual public elemental
 {
 public:
 

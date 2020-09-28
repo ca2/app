@@ -22,7 +22,7 @@ var::var(const char * psz)
 }
 
 
-var::var(::generic * pelement)
+var::var(::elemental * pelement)
 {
 
    m_etype = type_new;
@@ -32,12 +32,12 @@ var::var(::generic * pelement)
 }
 
 
-var::var(const ::generic & generic)
+var::var(const ::elemental & elemental)
 {
 
    m_etype = type_new;
 
-   operator = (generic);
+   operator = (elemental);
 
 }
 
@@ -1365,7 +1365,7 @@ bool var::is_empty() const
       return m_pid->is_empty();
 
 
-      // generic classes
+      // elemental classes
    case type_element:
       return is_element_null();
    case type_stra:
@@ -5784,7 +5784,7 @@ bool var::is_false() const
    case type_future:
          return ::is_null(m_functionbase.m_pobjectTask);
 
-   // generic classes
+   // elemental classes
    case type_element:
       return is_element_null();
    case type_stra:
@@ -5909,7 +5909,7 @@ bool var::is_set_false() const
    case type_future:
       return ::is_null(m_functionbase.m_pobjectTask);
 
-      // generic classes
+      // elemental classes
    case type_element:
       return is_element_null();
    case type_stra:
@@ -6007,10 +6007,10 @@ void var::_001Add(const string_array & straParam)
 }
 
 
-var & var::operator = (const ::generic & o)
+var & var::operator = (const ::elemental & o)
 {
 
-   set_element((::generic *) &o);
+   set_element((::elemental *) &o);
 
    return *this;
 
@@ -6221,7 +6221,7 @@ void var::receive_response(const ::var & var)
    else if (get_type() == type_future)
    {
 
-      get_future().receive_response(var);
+      get_future().send(var);
 
    }
    else if (get_type() == type_vara)
@@ -6233,7 +6233,7 @@ void var::receive_response(const ::var & var)
          if (varFunction.get_type() == type_future)
          {
             
-            varFunction.get_future().receive_response(var);
+            varFunction.get_future().send(var);
 
          }
 

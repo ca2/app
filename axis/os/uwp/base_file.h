@@ -1,7 +1,7 @@
 #pragma once
 
 
-//CLASS_DECL_AXIS void ensure_file_size(HANDLE h, i64 iSize);
+//CLASS_DECL_AXIS void hfile_set_size(HANDLE h, i64 iSize);
 CLASS_DECL_AXIS DWORD Winwindows_get_file_attributes(const unichar * psz);
 #define WinGetFileAttributes Winwindows_get_file_attributes
 CLASS_DECL_AXIS DWORD GetFileSize(HANDLE h, LPDWORD lpdwHi);

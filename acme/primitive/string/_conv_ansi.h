@@ -61,7 +61,7 @@ namespace str
    inline void from(string & str, const TYPE & t);
 
    template < typename TYPE >
-   inline void from(string & str, const ::generic & t);
+   inline void from(string & str, const ::elemental & t);
 
 
    inline void from(string& str, const bool & b);

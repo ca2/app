@@ -2608,7 +2608,7 @@ bool x11_process_message(Display * pdisplay)
                if(pinteraction->display_state() == ::display_iconic && !msg.hwnd->is_iconic())
                {
 
-                  //file_put_contents_dup("/home/camilo/xxx.txt", "");
+                  //file_put_contents("/home/camilo/xxx.txt", "");
 
                   // 1111111111111111111111111111111111111111111
 

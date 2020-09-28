@@ -38,7 +38,7 @@ namespace linux
 
 
       interaction_impl();
-      interaction_impl(::generic * pobject);
+      interaction_impl(::elemental * pobject);
       virtual ~interaction_impl();
 
 
@@ -49,7 +49,7 @@ namespace linux
       virtual void dump(dump_context & dumpcontext) const override;
 
 
-      //virtual void on_delete(::generic * poc);
+      //virtual void on_delete(::elemental * poc);
 
       static const MESSAGE* PASCAL GetCurrentMessage();
 

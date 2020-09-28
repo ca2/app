@@ -24,12 +24,12 @@ CLASS_DECL_ACME WINBOOL window_set_mouse_cursor(oswindow, HCURSOR hcursor)
 }
 
 
-HCURSOR CreateAlphaCursor(oswindow window, const ::image* pimage, int xHotSpot, int yHotSpot)
-{
-
-   return FALSE;
-
-}
+//HCURSOR CreateAlphaCursor(oswindow window, const ::image* pimage, int xHotSpot, int yHotSpot)
+//{
+//
+//   return FALSE;
+//
+//}
 
 
 HCURSOR load_default_cursor(e_cursor ecursor)

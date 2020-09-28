@@ -3,7 +3,7 @@
 
 
 
-//CLASS_DECL_ACME wstring windows_register_window_class(::generic * pobject, UINT nClassStyle, HCURSOR hCursor = 0, HBRUSH hbrBackground = 0, HICON hIcon = 0);
+//CLASS_DECL_ACME wstring windows_register_window_class(::elemental * pobject, UINT nClassStyle, HCURSOR hCursor = 0, HBRUSH hbrBackground = 0, HICON hIcon = 0);
 CLASS_DECL_ACME bool windows_register_class(WNDCLASSEXW* pwndclass);
 
 //CLASS_DECL_ACME wstring windows_calc_icon_window_class(::user::interaction * pinteraction, u32 dwDefaultStyle, const char * pszMatter);

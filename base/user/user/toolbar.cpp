@@ -2,7 +2,7 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_user.h"
 #endif
-#include "aura/xml/_.h"
+#include "aqua/xml.h"
 #define CLR_TO_RGBQUAD(clr)     (RGB(::blue(clr), ::green(clr), ::red(clr)))
 
 struct __COLORMAP

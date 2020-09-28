@@ -47,14 +47,14 @@ inline BLOCK_TYPE & memory_template < BLOCK_TYPE > ::operator = (const ::block &
 }
 
 struct lparam_dbg :
-   virtual generic
+   virtual elemental
 {
 
 };
 
 extern lparam_dbg g_lparamdbg;
 
-inline lparam::lparam(const ::generic * p)
+inline lparam::lparam(const ::elemental * p)
 {
 
    if (is_null(p))
@@ -66,7 +66,7 @@ inline lparam::lparam(const ::generic * p)
 
    }
 
-   ((generic *) p)->add_ref(OBJ_REF_DBG_PTR(&g_lparamdbg));
+   ((elemental *) p)->add_ref(OBJ_REF_DBG_PTR(&g_lparamdbg));
 
    m_lparam = (LPARAM)p;
 
@@ -131,7 +131,7 @@ public:
 //
 //
 //   template < class APP >
-//   __result(::acme::application) single_application_library < APP > ::get_new_application(::generic * pobject, const char * pszAppId)
+//   __result(::acme::application) single_application_library < APP > ::get_new_application(::elemental * pobject, const char * pszAppId)
 //   {
 //
 //      if(!contains_app(pszAppId))
@@ -229,7 +229,7 @@ void memcnts_inc(T * pthis)
 
       int i = atoi(file_as_string(path));
 
-      file_put_contents_dup(path, __str(i + 1));
+      file_put_contents(path, __str(i + 1));
 
    }
 
@@ -249,7 +249,7 @@ void memcnts_dec(T * pthis)
 
       int i = atoi(file_as_string(path));
 
-      file_put_contents_dup(path, __str(i - 1));
+      file_put_contents(path, __str(i - 1));
 
    }
 
@@ -289,7 +289,7 @@ void memcnts_dec(T * pthis)
 //
 //   sync_lock sl(defer_mutex_channel());
 //
-//   ::generic* pobjectReceiver = dynamic_cast <::generic*> (preceiverDerived);
+//   ::elemental* pobjectReceiver = dynamic_cast <::elemental*> (preceiverDerived);
 //
 //   ::type typeReceiver(typeid(RECEIVER));
 //
@@ -325,7 +325,7 @@ void memcnts_dec(T * pthis)
 //
 //   }
 //
-//   generic * preceiver = dynamic_cast <generic*>(preceiverDerived);
+//   elemental * preceiver = dynamic_cast <elemental*>(preceiverDerived);
 //
 //   if (preceiver == nullptr)
 //   {
@@ -377,7 +377,7 @@ void memcnts_dec(T * pthis)
 //
 //   sync_lock sl(s_pmutexChannel);
 //
-//   ::generic * pobjectReceiver = dynamic_cast < ::generic * > (preceiverDerived);
+//   ::elemental * pobjectReceiver = dynamic_cast < ::elemental * > (preceiverDerived);
 //
 //   ::type typeReceiver(typeid(RECEIVER));
 //
@@ -413,7 +413,7 @@ void memcnts_dec(T * pthis)
 //
 //   }
 //
-//   ::generic * preceiver = dynamic_cast < generic * >(preceiverDerived);
+//   ::elemental * preceiver = dynamic_cast < elemental * >(preceiverDerived);
 //
 //   if (preceiver == nullptr)
 //   {
@@ -493,7 +493,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 
 
 template < typename BASE >
-inline __pointer(BASE) alloc_object(::generic * pobject)
+inline __pointer(BASE) alloc_object(::elemental * pobject)
 {
 
    return BASE::g_pallocfactory->alloc_object(pobject);
@@ -502,7 +502,7 @@ inline __pointer(BASE) alloc_object(::generic * pobject)
 
 
 template < typename BASE >
-inline __pointer(BASE) & alloc_object(__pointer(BASE) & p, ::generic * pobject)
+inline __pointer(BASE) & alloc_object(__pointer(BASE) & p, ::elemental * pobject)
 {
 
    return p = ::alloc_object < BASE > (pobject);
@@ -510,7 +510,7 @@ inline __pointer(BASE) & alloc_object(__pointer(BASE) & p, ::generic * pobject)
 }
 
 //
-//inline class ::sync * generic::get_mutex()
+//inline class ::sync * elemental::get_mutex()
 //{
 //
 //   return ::is_null(this) ? nullptr : mutex();
@@ -552,7 +552,7 @@ inline __pointer(T) clone(const __pointer(T) & t)
 }
 
 
-//CLASS_DECL_ACME inline ::context * get_context(::generic * pobject)
+//CLASS_DECL_ACME inline ::context * get_context(::elemental * pobject)
 //{
 //
 //   if (pobject == nullptr)
@@ -576,7 +576,7 @@ inline __pointer(T) clone(const __pointer(T) & t)
 //}
 //
 //
-//CLASS_DECL_ACME inline ::acme::application * get_context_application(::generic * pobject)
+//CLASS_DECL_ACME inline ::acme::application * get_context_application(::elemental * pobject)
 //{
 //
 //   if (pobject == nullptr)
@@ -600,7 +600,7 @@ inline __pointer(T) clone(const __pointer(T) & t)
 //}
 //
 //
-//CLASS_DECL_ACME inline ::acme::session * get_context_session(::generic * pobject)
+//CLASS_DECL_ACME inline ::acme::session * get_context_session(::elemental * pobject)
 //{
 //
 //   if (pobject == nullptr)
@@ -624,7 +624,7 @@ inline __pointer(T) clone(const __pointer(T) & t)
 //}
 //
 //
-//CLASS_DECL_ACME inline ::acme::system * get_context_system(::generic * pobject)
+//CLASS_DECL_ACME inline ::acme::system * get_context_system(::elemental * pobject)
 //{
 //
 //   if (pobject == nullptr)
@@ -648,7 +648,7 @@ inline __pointer(T) clone(const __pointer(T) & t)
 //}
 //
 //
-//CLASS_DECL_ACME inline ::generic * get_app_object()
+//CLASS_DECL_ACME inline ::elemental * get_app_object()
 //{
 //
 //   return ::get_context_application();
@@ -689,7 +689,7 @@ inline __pointer(T) clone(const __pointer(T) & t)
 
 
 template < typename T >
-inline __pointer(T) & pointer < T >::clone(::generic * pobjectContext)
+inline __pointer(T) & pointer < T >::clone(::elemental * pobjectContext)
 {
 
    if (::is_null(pobjectContext))
@@ -707,7 +707,7 @@ inline __pointer(T) & pointer < T >::clone(::generic * pobjectContext)
 
 
 //template < typename PRED >
-//::image_pointer get_image(::generic * pobject, const var & varFile, bool bAsync = false)
+//::image_pointer get_image(::elemental * pobject, const var & varFile, bool bAsync = false)
 //{
 //
 //   ::file::path path = varFile.get_file_path();
@@ -1218,7 +1218,7 @@ namespace acme
 #if !defined(DEBUG)
 
 
-//inline void generic::set_context(::context* pcontext)
+//inline void elemental::set_context(::context* pcontext)
 //{
 //
 //   m_pcontextContext = pcontext;
@@ -1226,7 +1226,7 @@ namespace acme
 //}
 //
 //
-//inline void generic::set_context_thread(::thread* pthread)
+//inline void elemental::set_context_thread(::thread* pthread)
 //{
 //
 //   m_pthreadContext = pthread;
@@ -1234,7 +1234,7 @@ namespace acme
 //}
 //
 //
-//inline void generic::set_context_app(::acme::application* pappContext)
+//inline void elemental::set_context_app(::acme::application* pappContext)
 //{
 //
 //   m_pappContext = pappContext;
@@ -1242,7 +1242,7 @@ namespace acme
 //}
 //
 //
-//inline void generic::set_context_session(::acme::session* psessionContext)
+//inline void elemental::set_context_session(::acme::session* psessionContext)
 //{
 //
 //   m_psessionContext = psessionContext;
@@ -1250,7 +1250,7 @@ namespace acme
 //}
 //
 //
-//inline void generic::set_context_system(::acme::system* psystemContext)
+//inline void elemental::set_context_system(::acme::system* psystemContext)
 //{
 //
 //   m_psystemContext = psystemContext;

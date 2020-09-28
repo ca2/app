@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aura/id.h"
+#include "core/id.h"
 #include "_html.h"
 
 
@@ -85,7 +85,7 @@ namespace html
    //}
 
 
-   font * core_data::get_font(elemental * pelemental)
+   font * core_data::get_font(::html::elemental * pelemental)
    {
 
       i32 iFont = -1;
@@ -123,7 +123,7 @@ namespace html
    }
 
 
-   i32 core_data::create_font(elemental * pelemental)
+   i32 core_data::create_font(::html::elemental * pelemental)
    {
 
       string strSubClass;
@@ -387,7 +387,7 @@ namespace html
    }
 
 
-   elemental * core_data::get_element_by_name(id id)
+   ::html::elemental * core_data::get_element_by_name(id id)
    {
 
       return m_elemental.get_element_by_name(id);
@@ -395,7 +395,7 @@ namespace html
    }
 
 
-   elemental * core_data::get_element_by_id(id id)
+   ::html::elemental * core_data::get_element_by_id(id id)
    {
 
       return m_elemental.get_element_by_id(id);

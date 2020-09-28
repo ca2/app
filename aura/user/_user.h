@@ -121,7 +121,7 @@ namespace user
 
 
    class CLASS_DECL_AURA alpha_source :
-      virtual public ::generic
+      virtual public ::elemental
    {
    public:
 

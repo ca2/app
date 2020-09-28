@@ -80,7 +80,7 @@ namespace user
 
    class CLASS_DECL_AURA item :
       virtual public item_data,
-      virtual public ::generic
+      virtual public ::elemental
    {
    public:
 

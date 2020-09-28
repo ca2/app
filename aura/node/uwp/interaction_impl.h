@@ -421,7 +421,7 @@ namespace uwp
       void OnHelpUsing();     // ID_HELP_USING
       void UpdateDialogControls(channel* pTarget, bool bDisableIfNoHndler);
       void CenterWindow(::user::interaction * pAlternateOwner = nullptr);
-      virtual id RunModalLoop(u32 dwFlags = 0) override;
+      //virtual id RunModalLoop(u32 dwFlags = 0) override;
       virtual bool ContinueModal() override;
       virtual void EndModalLoop(id nResult) override;
       //virtual void EndAllModalLoops(id nResult);
@@ -452,7 +452,7 @@ namespace uwp
       //    bool OnHelpInfo(HELPINFO* lpHelpInfo);
       void OnIconEraseBkgnd(::draw2d::graphics_pointer & pgraphics);
       void OnKillFocus(::user::interaction_impl * pNewWnd);
-      LRESULT OnMenuChar(UINT nChar, UINT nFlags, ::user::menu* pMenu);
+      //LRESULT OnMenuChar(UINT nChar, UINT nFlags, ::user::menu* pMenu);
       void OnMenuSelect(UINT nItemID, UINT nFlags, HMENU hSysMenu);
       void OnMove(int x, int y);
       DECL_GEN_SIGNAL(_001OnPaint);
@@ -533,8 +533,8 @@ namespace uwp
       void OnTimer(uptr nIDEvent);
 
       // Initialization message handler member functions
-      void OnInitMenu(::user::menu* pMenu);
-      void OnInitMenuPopup(::user::menu* pPopupMenu, UINT nIndex, bool bSysMenu);
+      //void OnInitMenu(::user::menu* pMenu);
+      //void OnInitMenuPopup(::user::menu* pPopupMenu, UINT nIndex, bool bSysMenu);
 
       // Clipboard message handler member functions
       void OnAskCbFormatName(__in UINT nMaxCount, __out_ecount_z(nMaxCount) char * lpszString);

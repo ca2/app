@@ -5,13 +5,13 @@
 
 
 
-
-int __node_is_debugger_attached()
-{
-
-   return ::IsDebuggerPresent();
-
-}
+//
+//int __node_is_debugger_attached()
+//{
+//
+//   return ::IsDebuggerPresent();
+//
+//}
 
 
 // Twitter Automator and Denis Lakic and UpWork contribution

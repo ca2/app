@@ -16,7 +16,7 @@ public:
    enum
    {
       AUTO_LENGTH = 0x01,  // Automatically determine the new length of the string at release.  The string must be nullptr-terminated.
-      SET_LENGTH = 0x02  // set the length of the string generic at GetBuffer time
+      SET_LENGTH = 0x02  // set the length of the string elemental at GetBuffer time
    };
 
    explicit string_file(string_base < TYPE_CHAR >& str) THROWS :

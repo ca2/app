@@ -1,7 +1,7 @@
 //  Created by Camilo Sasuke Tsumanuma on 05/01/18.
 #pragma once
 
-CLASS_DECL_ACME string get_command_line_dup();
+CLASS_DECL_ACME string get_command_line();
 CLASS_DECL_ACME bool is_verbose();
 
 #if defined(MACOS)
@@ -98,5 +98,14 @@ CLASS_DECL_ACME locale_t get_c_locale();
 #include "thread.h"
 
 
-CLASS_DECL_ACME iptr get_window_long_ptr(oswindow oswindow, int iIndex);
-CLASS_DECL_ACME iptr set_window_long_ptr(oswindow oswindow, int iIndex, iptr i);
+//#ifdef 
+//
+//CLASS_DECL_ACME iptr get_window_long_ptr(oswindow oswindow, int iIndex);
+//CLASS_DECL_ACME iptr set_window_long_ptr(oswindow oswindow, int iIndex, iptr i);
+
+
+#include "user.h"
+
+
+
+

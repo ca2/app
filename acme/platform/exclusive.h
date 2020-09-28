@@ -6,7 +6,7 @@ namespace acme
 
 
    class CLASS_DECL_ACME exclusive :
-      virtual public ::generic
+      virtual public ::elemental
    {
    public:
 

@@ -1179,7 +1179,7 @@ namespace user
          //         break;
 
          //         case ::file::exception::badSeek:
-         //         case ::file::exception::generic:
+         //         case ::file::exception::elemental:
          //         case ::file::exception::tooManyOpenFiles:
          //         case ::file::exception::invalidFile:
          //         case ::file::exception::hardIO:

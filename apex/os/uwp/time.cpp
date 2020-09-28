@@ -25,9 +25,4 @@
 
 
 
-CLASS_DECL_APEX void sleep(const ::duration & dur)
-{
 
-   Sleep((DWORD) dur.total_milliseconds());
-
-}

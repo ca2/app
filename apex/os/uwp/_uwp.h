@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 
+#include "acme/os/uwp/_uwp.h"
 #include "gdi_winrt.h"
 
 
@@ -26,19 +27,19 @@
 //CLASS_DECL_APEX oswindow WINAPI WinSetFocus(oswindow oswindow);
 
 
-CLASS_DECL_APEX string normalize_path(const char* lpcszPath);
+//CLASS_DECL_APEX string normalize_path(const char* lpcszPath);
 
 
-CLASS_DECL_APEX oswindow get_capture();
-CLASS_DECL_APEX oswindow set_capture(oswindow oswindow);
-CLASS_DECL_APEX WINBOOL release_capture();
+//CLASS_DECL_APEX oswindow get_capture();
+//CLASS_DECL_APEX oswindow set_capture(oswindow oswindow);
+//CLASS_DECL_APEX WINBOOL release_capture();
 
-CLASS_DECL_APEX oswindow get_active_window();
-CLASS_DECL_APEX oswindow set_active_window(oswindow oswindow);
+//CLASS_DECL_APEX oswindow get_active_window();
+//CLASS_DECL_APEX oswindow set_active_window(oswindow oswindow);
 
 
 
-CLASS_DECL_APEX int_bool is_window(oswindow oswindow);
+//CLASS_DECL_APEX int_bool is_window(oswindow oswindow);
 
 
 //CLASS_DECL_APEX int WINAPI GetSystemMetrics(int i);
@@ -54,15 +55,15 @@ namespace user
 } // namespace user
 
 
-#include "apex/graphics/graphics/buffer.h"
+//#include "apex/graphics/graphics/buffer.h"
 //#include "_UWP_gdi_winrt.h"
 
 
-#include "oswindow.h"
+//#include "oswindow.h"
 
 
 
-#include "exception_engine.h"
+//#include "exception_engine.h"
 
 
 
@@ -72,6 +73,6 @@ namespace user
 //CLASS_DECL_APEX bool get_file_time(::Windows::Storage::StorageFile ^ file, LPFILETIME lpCreationTime, LPFILETIME lpItemTime, LPFILETIME lpLastWriteTime);
 
 
-#include "file_winrt.h"
+//#include "file_winrt.h"
 
 

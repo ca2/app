@@ -10,20 +10,29 @@
 namespace user
 {
 
+
    using estate = cflag < enum_state >;
+
    using eelement = cflag < e_element >;
 
-#if !defined(WINDOWS_DESKTOP) && !defined(MACOS)
    CLASS_DECL_ACME void set_system_dark_mode(bool bDark);
+
    CLASS_DECL_ACME void set_app_dark_mode(bool bDark);
-#endif
-
-
-   CLASS_DECL_ACME COLORREF get_system_app_background_color();
 
    CLASS_DECL_ACME bool is_system_dark_mode();
 
    CLASS_DECL_ACME bool is_app_dark_mode();
+
+   CLASS_DECL_ACME ::color get_system_app_background_color();
+
+   CLASS_DECL_ACME void set_system_app_background_color(::color color);
+
+   CLASS_DECL_ACME double get_system_app_luminance();
+
+   CLASS_DECL_ACME void set_system_app_luminance(double dLuminance);
+
+   CLASS_DECL_ACME void defer_calc_os_dark_mode();
+
 
 } // namespace user
 

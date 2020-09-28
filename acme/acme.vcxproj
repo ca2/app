@@ -1316,6 +1316,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="multithreading\sync_lock.cpp" />
     <ClCompile Include="multithreading\sync_result.cpp" />
     <ClCompile Include="multithreading\sync_task.cpp" />
+    <ClCompile Include="multithreading\thread.cpp" />
     <ClCompile Include="multithreading\thread_impl.cpp" />
     <ClCompile Include="multithreading\thread_os.cpp" />
     <ClCompile Include="multithreading\waitable.cpp" />
@@ -1331,7 +1332,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="node\windows\serial.cpp" />
     <ClCompile Include="node\windows\timer.cpp" />
     <ClCompile Include="node\windows\trace.cpp" />
-    <ClCompile Include="node\windows\tts_speaker.cpp" />
     <ClCompile Include="node\windows\uac_tools.cpp" />
     <ClCompile Include="node\windows\windows.cpp" />
     <ClCompile Include="os\ansios\base.cpp" />
@@ -1417,6 +1417,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="platform\_.cpp" />
     <ClCompile Include="platform\static_start_aura.cpp" />
     <ClCompile Include="primitive\primitive\block.cpp" />
+    <ClCompile Include="primitive\primitive\elemental.cpp" />
     <ClCompile Include="primitive\primitive\layered.cpp" />
     <ClCompile Include="primitive\primitive\match.cpp" />
     <ClCompile Include="primitive\primitive\method.cpp" />
@@ -1595,7 +1596,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="node\windows\registry.h" />
     <ClInclude Include="node\windows\serial.h" />
     <ClInclude Include="node\windows\aaa_stdio_file.h" />
-    <ClInclude Include="node\windows\tts_speaker.h" />
     <ClInclude Include="node\windows\uac_tools.h" />
     <ClInclude Include="node\windows\user.h" />
     <ClInclude Include="node\windows\_.h" />
@@ -1753,6 +1753,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="primitive\primitive\aaa_want_to_remove_pointer1.h" />
     <ClInclude Include="primitive\primitive\block.h" />
     <ClInclude Include="primitive\primitive\compare_pred.h" />
+    <ClInclude Include="primitive\primitive\elemental.h" />
     <ClInclude Include="primitive\primitive\estatus.h" />
     <ClInclude Include="primitive\primitive\layered.h" />
     <ClInclude Include="primitive\primitive\match.h" />
@@ -1767,6 +1768,9 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="primitive\primitive\_id_impl.h" />
     <ClInclude Include="primitive\primitive\_var_impl.h" />
     <ClInclude Include="update.h" />
+    <ClInclude Include="user\_.h" />
+    <ClInclude Include="user\_const.h" />
+    <ClInclude Include="user\_const_key.h" />
     <ClInclude Include="version\version.h" />
     <ClInclude Include="filesystem\file\_var_stream_impl.h" />
     <ClInclude Include="filesystem\file\___serialization_draft.h" />
@@ -1858,7 +1862,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="primitive\primitive\property_set.cpp" />
     <ClCompile Include="primitive\primitive\property_set_composite.cpp" />
     <ClCompile Include="primitive\primitive\property_set_papaya.cpp" />
-    <ClCompile Include="primitive\primitive\generic.cpp" />
     <ClCompile Include="primitive\primitive\runnable.cpp" />
     <ClCompile Include="primitive\primitive\shared_memory.cpp" />
     <ClCompile Include="primitive\primitive\traits.cpp" />
@@ -2091,7 +2094,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="primitive\primitive\memory_container.h" />
     <ClInclude Include="primitive\primitive\natural.h" />
     <ClInclude Include="primitive\primitive\number.h" />
-    <ClInclude Include="primitive\primitive\generic.h" />
     <ClInclude Include="primitive\primitive\pointer.h" />
     <ClInclude Include="primitive\primitive\pointer1.h" />
     <ClInclude Include="primitive\primitive\pointer2.h" />

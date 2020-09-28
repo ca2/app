@@ -151,7 +151,7 @@ public:
    void get_hls(hls & hls) const;
    void set_hls(const hls & hls);
 
-   auto get_hls() const { hls hls; get_hls(hls); return hls; }
+   ::hls get_hls() const { hls hls; get_hls(hls); return hls; }
 
    u32 get_rgb() const;
    u32 get_bgr() const;

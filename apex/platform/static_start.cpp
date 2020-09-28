@@ -120,7 +120,7 @@ namespace apex
 
    critical_section* g_pcsTrace;
 
-   ::generic* g_ptrace;
+   ::elemental* g_ptrace;
 
    simple_trace* g_psimpletrace;
 
@@ -148,7 +148,7 @@ namespace apex
    ::mutex* g_pmutexMessageDispatch;
 
 
-   array < generic* >* g_paAura;
+   array < elemental* >* g_paAura;
 
 
    ::map < ::id, const ::id&, ::id, const ::id& >* g_pmapRTL;
@@ -243,7 +243,8 @@ namespace apex
    void apex::construct()
    {
 
-      set_thread_get_run(&apex_thread_get_run);
+      ::set_thread_get_run(&apex_thread_get_run);
+      ::set_thread_sleep(&apex_thread_sleep);
 
       g_bApex = 0;
 
@@ -518,7 +519,7 @@ namespace apex
 
       //::factory::factory_init();
 
-      g_paAura = new array < generic * >;
+      g_paAura = new array < elemental * >;
 
       //g_pmapAura =new ::map < void *,void *,::apex::application *,::apex::application * >;
 

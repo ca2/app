@@ -568,7 +568,7 @@ void app_core::set_command_line(const char * psz)
 
       ::file::path path = pathFolder / "last_command_line.txt";
 
-      file_put_contents_dup(path, get_command_line());
+      file_put_contents(path, get_command_line());
 
       ::file::path pathExecutable = consume_param(psz, nullptr);
 
@@ -579,7 +579,7 @@ void app_core::set_command_line(const char * psz)
       if (file_is_equal_path_dup(pathExecutable.title(), strAppTitle))
       {
 
-         file_put_contents_dup(path, pathExecutable);
+         file_put_contents(path, pathExecutable);
 
       }
 

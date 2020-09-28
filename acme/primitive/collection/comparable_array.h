@@ -20,7 +20,7 @@ public:
 
 
    comparable_array() { }
-   explicit comparable_array(::generic * pobject) : BASE_ARRAY(pobject) { }
+   explicit comparable_array(::elemental * pobject) : BASE_ARRAY(pobject) { }
    comparable_array(::std::initializer_list < TYPE > l) : BASE_ARRAY(l) {   }
    comparable_array(const comparable_array & array) : BASE_ARRAY(array) {}
    comparable_array(comparable_array && array) : BASE_ARRAY(::move(array)) {}

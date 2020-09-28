@@ -15,7 +15,7 @@ public:
    }
 
 
-   sync_lock(generic * pobject) :
+   sync_lock(elemental * pobject) :
       initial_single_lock(pobject == nullptr ? nullptr : pobject->mutex())
    {
 

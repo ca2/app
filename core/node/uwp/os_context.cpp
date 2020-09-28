@@ -23,7 +23,7 @@ namespace uwp
    string os_context::get_command_line()
    {
 
-      return get_command_line_dup();
+      return get_command_line();
 
    }
 

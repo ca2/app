@@ -128,7 +128,7 @@ template<class TYPE, class ARG_TYPE>
 void list<TYPE, ARG_TYPE>::dump(dump_context& dumpcontext) const
 {
 
-   generic::dump(dumpcontext);
+   elemental::dump(dumpcontext);
 
    dumpcontext << "with " << this->m_count << " elements";
 

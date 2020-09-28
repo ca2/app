@@ -86,7 +86,7 @@ public:
    i8          m_iVisible;
    string      m_strTitle;
    in_addr     m_addr;
-   ::generic    m_pobject;
+   ::elemental    m_pobject;
 
    void exchange(stream & s);
 
@@ -285,7 +285,7 @@ write(u64) m_pfile->write(u64)
 
 
 
-stream & operator >> (stream & stream, generic & o)
+stream & operator >> (stream & stream, elemental & o)
 {
 
     exchange e(stream);
@@ -296,7 +296,7 @@ stream & operator >> (stream & stream, generic & o)
 
 }
 
-stream & operator >> (stream & s, generic & o)
+stream & operator >> (stream & s, elemental & o)
 {
 
     o.exchange(stream);

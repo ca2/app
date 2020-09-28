@@ -121,7 +121,7 @@ int32_t ferror_dup(FILE *fp)
 }
 
 
-uint64_t fsize_dup(FILE * fp)
+uint64_t FILE_get_size(FILE * fp)
 {
 
    auto pos = ftell(fp);
@@ -137,11 +137,11 @@ uint64_t fsize_dup(FILE * fp)
 }
 
 
-uint64_t flen_dup(FILE *str)
+uint64_t FILE_get_size(FILE *str)
 {
 
 
-   return fsize_dup(str);
+   return FILE_get_size(str);
 
 
 }

@@ -2,7 +2,7 @@
 //#include "acme/xml/_.h"
 
 
-void prop_id_debug(::generic * pobject);
+void prop_id_debug(::elemental * pobject);
 
 
 //property::property(property_set * pset) :
@@ -80,7 +80,7 @@ void prop_id_debug(::generic * pobject);
 //      if(m_id.is_empty())
 //      {
 //
-//         output_debug_string("\nHI!! Shouldn't you use a generic find this by use generic and set a breakpoint here!!!\n");
+//         output_debug_string("\nHI!! Shouldn't you use a elemental find this by use elemental and set a breakpoint here!!!\n");
 //         m_id = property.m_id;
 //
 //      }
@@ -128,7 +128,7 @@ void prop_id_debug(::generic * pobject);
 ////}
 //
 //
-////property::property(property_set * pset, const id & id, const var &  var, ::generic * pobject) :
+////property::property(property_set * pset, const id & id, const var &  var, ::elemental * pobject) :
 ////   m_ppropertyset(pset),
 ////   m_var(var)
 ////{
@@ -1403,8 +1403,8 @@ string & property::get_http_post(string & str) const
 //
 //
 //
-////property_ptra::property_ptra(::generic * pobject):
-////   ::generic(pobject)
+////property_ptra::property_ptra(::elemental * pobject):
+////   ::elemental(pobject)
 ////{
 ////   set_size(0, 64);
 ////}
@@ -1472,7 +1472,7 @@ string & property::get_http_post(string & str) const
 //
 //
 //
-//void prop_id_debug(::generic * pobject)
+//void prop_id_debug(::elemental * pobject)
 //{
 //
 //   comparable_array < ::id > idaSchema;

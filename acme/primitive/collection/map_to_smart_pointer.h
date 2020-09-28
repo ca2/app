@@ -8,8 +8,8 @@ class map_to_smart_pointer :
 public:
 
 
-   map_to_smart_pointer(::generic * pobject = nullptr) :
-      ::generic(pobject),
+   map_to_smart_pointer(::elemental * pobject = nullptr) :
+      ::elemental(pobject),
       map < TYPE, ARG_TYPE, pointer < T >, const pointer < T > & > (pobject)
    {
    }
@@ -50,8 +50,8 @@ class int_to_smart_pointer:
 public:
 
 
-   int_to_smart_pointer(::generic * pobject = nullptr, ::count nBlockSize = 10):
-      ::generic(pobject),
+   int_to_smart_pointer(::elemental * pobject = nullptr, ::count nBlockSize = 10):
+      ::elemental(pobject),
       int_ptr_map < pointer < T >,const pointer < T > & >(pobject,nBlockSize)
    {
 

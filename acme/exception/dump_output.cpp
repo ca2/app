@@ -2,7 +2,7 @@
 #include <stdio.h>
 //
 //
-//void __dump_object(const generic * pobject)
+//void __dump_object(const elemental * pobject)
 //{
 //
 //#ifdef __DEBUG

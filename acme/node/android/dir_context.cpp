@@ -20,7 +20,7 @@ namespace android
    }
 
 
-   ::estatus dir_context::initialize(::generic * pobjectContext)
+   ::estatus dir_context::initialize(::elemental * pobjectContext)
    {
 
       auto estatus = ::dir_context::initialize(pobjectContext);

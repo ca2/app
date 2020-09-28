@@ -14,10 +14,10 @@
 */
 
 
-bool file_put_contents_dup(const char * path, const memory_base & memory)
+bool file_put_contents(const char * path, const memory_base & memory)
 {
 
-   return file_put_contents_dup(path, (const char *) memory.get_data(), memory.get_size()) != false;
+   return file_put_contents(path, (const char *) memory.get_data(), memory.get_size()) != false;
 
 }
 
@@ -145,7 +145,7 @@ CLASS_DECL_APEX int_bool file_is_true_dup(const char * path)
 CLASS_DECL_APEX bool file_save_stra(const char * lpszName, const string_array & stra)
 {
 
-   return file_put_contents_dup(lpszName, stra.implode("\n"));
+   return file_put_contents(lpszName, stra.implode("\n"));
 
 }
 

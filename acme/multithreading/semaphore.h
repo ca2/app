@@ -26,7 +26,7 @@ public:
 
 
 #if defined(APPLEOS) || defined(LINUX) || defined(ANDROID) || defined(SOLARIS)
-//   using generic::lock;
+//   using elemental::lock;
    virtual sync_result wait(const duration & durationTimeout) override;
 #endif
 

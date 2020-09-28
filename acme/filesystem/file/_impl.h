@@ -543,7 +543,7 @@ __pointer(BASE_TYPE) __load_object(stream & stream)
 
    }
 
-   __pointer(generic) p = stream.create_object_from_text(strText);
+   __pointer(elemental) p = stream.create_object_from_text(strText);
 
    if (!p)
    {
@@ -593,7 +593,7 @@ inline stream & __save_object(stream & stream, BASE_TYPE * p)
 
 
 //template < typename BASE_TYPE >
-//void generic::save_to(const var & varFile, BASE_TYPE * pobject)
+//void elemental::save_to(const var & varFile, BASE_TYPE * pobject)
 //{
 //
 //   auto writer = Context.file().get_writer(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::mode_truncate | ::file::defer_create_directory | ::file::share_exclusive);
@@ -650,10 +650,10 @@ inline stream & __save_object(stream & stream, BASE_TYPE * p)
 //
 //inline void __io(::stream & s, ::u64 & u) { s.io(u); }
 //
-//inline void __io(property & property, ::generic & generic)
+//inline void __io(property & property, ::elemental & elemental)
 //{
 //
-//   generic.exchange(property.propset());
+//   elemental.exchange(property.propset());
 //
 //}
 //
@@ -797,7 +797,7 @@ inline var_stream::var_stream(::var * pvar) : m_pvar(pvar) {}
 inline var & var_stream::var() { return *m_pvar; }
 inline const var & var_stream::var() const { return *m_pvar; }
 
-//void var_stream::write_object(const ::id & id, ::id & idFactory, ::generic * pobject)
+//void var_stream::write_object(const ::id & id, ::id & idFactory, ::elemental * pobject)
 //{
 //   var_stream stream(new ::var(&var()[id].propset()));
 //   stream.exchange("", idFactory);
@@ -805,12 +805,12 @@ inline const var & var_stream::var() const { return *m_pvar; }
 //}
 
 //
-//__pointer(::generic) var_stream::read_object(const ::id & id)
+//__pointer(::elemental) var_stream::read_object(const ::id & id)
 //{
 //   var_stream stream(new ::var(&var()[id].propset()));
 //   ::id idFactory;
 //   stream.exchange("", idFactory);
-//   auto pobject = __id_create<::generic>(idFactory);
+//   auto pobject = __id_create<::elemental>(idFactory);
 //   pobject->exchange(stream);
 //   return pobject;
 //}
@@ -884,10 +884,10 @@ inline void __exchange(::stream & s, ::block & block)
 }
 
 
-inline void __exchange(::stream & s, ::generic & generic)
+inline void __exchange(::stream & s, ::elemental & elemental)
 {
 
-   generic.exchange(s);
+   elemental.exchange(s);
 
 }
 

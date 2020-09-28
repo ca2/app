@@ -92,9 +92,9 @@ CLASS_DECL_ACME void writeln(const char * psz);
 
 
 
-CLASS_DECL_ACME void set_command_line_dup(const char * psz);
+CLASS_DECL_ACME void set_command_line(const char * psz);
 
-CLASS_DECL_ACME void get_command_line_dup(char * psz, int iBuffer);
+CLASS_DECL_ACME void get_command_line(char * psz, int iBuffer);
 
 
 

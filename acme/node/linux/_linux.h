@@ -65,7 +65,7 @@ WINBOOL mq_get_message(LPMESSAGE pMsg, oswindow hWnd, UINT wMsgFilterMin, UINT w
 
 i32 CLASS_DECL_ACME __linux_main(i32 argc, char * argv[]);
 
-CLASS_DECL_ACME void vfxThrowFileException(::generic * pobject, const ::estatus & estatus, LONG lOsError, const char * pszFileName = nullptr);
+CLASS_DECL_ACME void vfxThrowFileException(::elemental * pobject, const ::estatus & estatus, LONG lOsError, const char * pszFileName = nullptr);
 
 #include "internal.h"
 

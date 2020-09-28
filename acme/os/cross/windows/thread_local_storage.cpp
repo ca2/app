@@ -17,7 +17,7 @@ u32_array* g_puaThreadLocalDataFreeIndexes = nullptr;
 //thread_local thread_local_data t_threadlocaldata;
 
 
-void __node_init_cross_windows_threading()
+CLASS_DECL_ACME void __node_init_cross_windows_threading()
 {
 
    //g_pmutexThreadLocalData = new mutex();
@@ -29,7 +29,7 @@ void __node_init_cross_windows_threading()
 }
 
 
-void __node_term_cross_windows_threading()
+CLASS_DECL_ACME void __node_term_cross_windows_threading()
 {
 
    //::acme::del(g_puaThreadLocalDataFreeIndexes);

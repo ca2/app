@@ -6,7 +6,7 @@ namespace aura
 
 
    class CLASS_DECL_AURA system:
-      virtual public ::apex::system
+      virtual public ::aqua::system
    {
    public:
 
@@ -17,10 +17,6 @@ namespace aura
       //__pointer(::aura::application)                     m_papplicationStartup;
 
       //__composite(::aura::system)                        m_psystemParent;
-
-      __composite(::aura::audio)                         m_paudio;
-
-      __composite(::aura::multimedia)                    m_pmultimedia;
 
       // string_map < string_map < PFN_factory_exchange > > m_mapFactoryExchange;
 
@@ -41,7 +37,7 @@ namespace aura
 
       //__composite(::sockets::sockets)                    m_psockets;
 
-      __pointer(::generic)                                 m_pDraw2dFactoryExchange;
+      __pointer(::elemental)                                 m_pDraw2dFactoryExchange;
       __pointer(::draw2d::draw2d)                          m_pdraw2d;
 
       //::file::path                                       m_pathConfig;
@@ -410,13 +406,6 @@ namespace aura
 
       //::estatus set_factory_exchange(const char* pszComponent, const char * pszImplementation, PFN_factory_exchange pfnFactoryExchange);
 
-      virtual void defer_audio();
-
-      virtual ::aura::audio * defer_get_audio();
-
-      virtual void defer_multimedia();
-
-      virtual ::aura::multimedia * defer_get_multimedia();
 
       //class ::aura::os                             &  os();
       //class base_factory                           &  factory();
@@ -564,8 +553,7 @@ namespace aura
       //virtual void session_remove(index iEdge);
 
 
-      virtual ::estatus defer_xml();
-
+      
       //virtual ::estatus init_system();
 
       //virtual ::estatus process_init();
@@ -784,7 +772,7 @@ namespace aura
 
 
 
-      virtual void __tracea(::generic * pcontextobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz) override;
+      virtual void __tracea(::elemental * pcontextobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz) override;
 
 
       virtual string get_user_language() override;
@@ -1136,10 +1124,10 @@ CLASS_DECL_AURA ::aura::system * create_aura_system();
 
 
 // void CLASS_DECL_AURA __start_core_system_main(::base::system * psystem);
-
-#ifdef _UWP
-
-CLASS_DECL_AURA int app_core_main(const char* psz);
-
-#endif
+//
+//#ifdef _UWP
+//
+//CLASS_DECL_AURA int app_core_main(const char* psz);
+//
+//#endif
 

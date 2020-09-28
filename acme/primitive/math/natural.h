@@ -107,24 +107,27 @@ inline i64 mkint(i64 ll)
 }
 
 
-// if a == b, min returns first argument
+//// if a == b, min returns first argument
 template < typename A, typename B >
 constexpr const auto min(const A & a, const B & b)
 {
 
-   return b < a ? b : a;
+   return a < b ? a : (A) b;
 
 }
+
 
 // if a == b, max returns first argument
 template < typename A, typename B >
 constexpr const auto max(const A & a, const B & b)
 {
 
-   return b > a ? b : a;
+   return b < a ? a : (A) b;
 
 }
 
+//#define max(a, b) ((a) < (b) ? (b) : (a))
+//#define min(a, b) ((a) < (b) ? (a) : (b))
 
 template < typename A, typename B >
 constexpr auto min_non_neg(A a, B b)
@@ -142,7 +145,7 @@ constexpr auto min_non_neg(A a, B b)
       else 
       {
 
-         return b;
+         return (A) b;
 
       }
 

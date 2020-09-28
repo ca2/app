@@ -17,7 +17,7 @@ int_bool file_exists(const char * path1)
 
 
 
-int_bool file_put_contents_dup(const char * path,const char * contents,count len)
+int_bool file_put_contents(const char * path,const char * contents,count len)
 {
 
    dir::mk(dir::name(path));
@@ -56,7 +56,7 @@ filesize file_length_dup(const char * path)
    if(hfile == INVALID_HANDLE_VALUE)
       return 0;
 
-   u64 ui = fsize_dup(hfile);
+   u64 ui = hfile_get_size(hfile);
 
    CloseHandle(hfile);
 
@@ -243,7 +243,7 @@ int_bool file_is_equal_path_dup(const char * psz1,const char * psz2)
 //   if(hfile == INVALID_HANDLE_VALUE)
 //      return false;
 //
-//   u64 uiSize = fsize_dup(hfile);
+//   u64 uiSize = hfile_get_size(hfile);
 //
 //   if(uiSize > ((::count) - 1))
 //   {
@@ -990,7 +990,7 @@ int_bool ensure_file_size_fd(i32 fd,size_t iSize)
 }
 
 
-int_bool ensure_file_size(FILE * file,size_t iSize)
+int_bool FILE_set_size(FILE * file,size_t iSize)
 {
 
    return ensure_file_size_fd(fileno(file),iSize);
@@ -1573,7 +1573,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //
 //}
 //
-//u64 fsize_dup(HANDLE h)
+//u64 hfile_get_size(HANDLE h)
 //{
 //
 //   DWORD dwHi;
@@ -1588,7 +1588,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //
 //
 
-void ensure_file_size(HANDLE h,i64 iSize)
+void hfile_set_size(HANDLE h,i64 iSize)
 {
 
    DWORD dwHi;
@@ -1923,7 +1923,7 @@ bool get_file_time(::Windows::Storage::StorageFile ^ file,LPFILETIME lpCreationT
 //
 
 
-//int_bool file_put_contents_dup(const char * path,const char * contents,::count len)
+//int_bool file_put_contents(const char * path,const char * contents,::count len)
 //{
 //
 //   dir::mk(dir::name(path));
@@ -2126,7 +2126,7 @@ bool file_copy_dup(const char  * pszNew, const char * pszSrc,bool bOverwrite)
 
 
 
-filesize fsize_dup(HANDLE h)
+filesize hfile_get_size(HANDLE h)
 {
 
    DWORD dwHi;

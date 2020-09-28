@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ACME stick :
-   virtual public generic
+   virtual public elemental
 {
 public:
 

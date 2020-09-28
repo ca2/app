@@ -55,12 +55,12 @@ namespace file
    }
 
 
-   /// half-initialization (of file generic)
-   /// seeded (the file generic has been...)
-   /// (the file generic) requires another call to effectively finish creating itself,
+   /// half-initialization (of file elemental)
+   /// seeded (the file elemental has been...)
+   /// (the file elemental) requires another call to effectively finish creating itself,
    ///
-   /// Much probably another ::generic with some assigned ::acme::application should be supplied
-   /// to realize the file generic.
+   /// Much probably another ::elemental with some assigned ::acme::application should be supplied
+   /// to realize the file elemental.
    file::file(const ::file::path & path) :
       m_path(path)
    {
@@ -1192,9 +1192,9 @@ namespace file
       ::exception::throw_interface_only();
    }
 
-   void file::write (generic & generic)
+   void file::write (elemental & elemental)
    {
-      UNREFERENCED_PARAMETER(generic);
+      UNREFERENCED_PARAMETER(elemental);
       ::exception::throw_interface_only();
    }
 

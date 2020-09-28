@@ -23,7 +23,7 @@
 //extern thread_local __pointer(property_set) t_ppropertyset;
 
 
-CLASS_DECL_APEX void main_branch(::generic* pobjectTask, e_priority epriority);
+CLASS_DECL_APEX void main_branch(::elemental* pobjectTask, e_priority epriority);
 
 
 property_set& _thread_property_set();
@@ -70,7 +70,7 @@ class single_lock;
 class multi_lock;
 
 
-//CLASS_DECL_APEX ::estatus __call(::generic * pobject);
+//CLASS_DECL_APEX ::estatus __call(::elemental * pobject);
 
 
 
@@ -295,11 +295,11 @@ public:
 
 
 
-#ifdef _UWP
-
-#include "apex/os/uwp/multithreading_winrt.h"
-
-#endif
+//#ifdef _UWP
+//
+//#include "apex/os/uwp/multithreading_winrt.h"
+//
+//#endif
 
 
 string get_thread_name(HTHREAD hthread);

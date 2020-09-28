@@ -20,7 +20,7 @@
             virtual ~library();
 
 
-            virtual ::generic * new_object(::layered * pobjectContext, const char * pszClass) override;
+            virtual ::elemental * new_object(::layered * pobjectContext, const char * pszClass) override;
 
             
          };

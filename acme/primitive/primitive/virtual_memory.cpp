@@ -2,7 +2,7 @@
 
 
 
-   virtual_memory::virtual_memory(::generic * pobject)
+   virtual_memory::virtual_memory(::elemental * pobject)
    {
 
       m_memory.m_pbStorage = nullptr;

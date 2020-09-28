@@ -63,9 +63,9 @@
 ////
 ////} // namespace papaya
 //
-//typedef CLASS_DECL_ACME __pointer(::generic) context_object_pointer;
+//typedef CLASS_DECL_ACME __pointer(::elemental) context_object_pointer;
 //
-//typedef CLASS_DECL_ACME __pointer_array(::generic) context_object_pointera;
+//typedef CLASS_DECL_ACME __pointer_array(::elemental) context_object_pointera;
 //
 //enum e_notify
 //{
@@ -79,18 +79,18 @@
 //
 //
 ////class CLASS_DECL_ACME trait //:
-////   //virtual public generic
+////   //virtual public elemental
 ////{
 ////public:
 ////   
 ////   
-////   //::generic *        m_pobjectHandler;
+////   //::elemental *        m_pobjectHandler;
 ////   ::i64             m_iTrait;
 ////   ::estatus         m_estatus;
 ////   //::u64                                     m_uTrait;
-////   //__pointer(::generic)                    m_preference;
-////   //__pointer(::generic)               m_pobjectTaskTransport;
-////   //__pointer(::generic)               m_pobjectTask;
+////   //__pointer(::elemental)                    m_preference;
+////   //__pointer(::elemental)               m_pobjectTaskTransport;
+////   //__pointer(::elemental)               m_pobjectTask;
 ////
 ////
 ////   //e_notify                                  m_enotify;
@@ -146,17 +146,17 @@
 //////   void add_notification(const ::trait & traitPayload);
 //////   
 //////
-//////   void fork(::generic * pobject);
+//////   void fork(::elemental * pobject);
 //////   
 //////   ::context_object_pointera * notifya();
 //////   
 //////
-//////   void _notify(::generic * pobjectForker);
+//////   void _notify(::elemental * pobjectForker);
 //////   
 //////   
-//////   void _call_notify(::generic * pobjectForker);
-//////   thread_pointer _fork_notify(::generic * pobjectForker);
-//////   thread_spa _fork_notify_each(::generic * pobjectForker);
+//////   void _call_notify(::elemental * pobjectForker);
+//////   thread_pointer _fork_notify(::elemental * pobjectForker);
+//////   thread_spa _fork_notify_each(::elemental * pobjectForker);
 ////   
 ////   
 ////};

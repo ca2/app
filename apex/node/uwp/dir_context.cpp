@@ -1,5 +1,5 @@
 ﻿#include "framework.h"
-#include "apex/xml/_.h"
+//#include "apex/xml/_.h"
 #include "apex/const/id.h"
 
 
@@ -65,18 +65,18 @@ namespace uwp
       //#endif
 
 
-      auto pdocument = create_xml_document();
+      //auto pdocument = create_xml_document();
 
-      pdocument->load(Context.file().as_string(appdata() / "configuration\\directory.xml"));
+      //pdocument->load(Context.file().as_string(appdata() / "configuration\\directory.xml"));
 
-      if (pdocument->root() && pdocument->root()->get_name() == "directory_configuration")
-      {
+      //if (pdocument->root() && pdocument->root()->get_name() == "directory_configuration")
+      //{
 
-         m_pdirsystem->m_strTimeFolder = pdocument->root()->get_child_value("time");
+      //   m_pdirsystem->m_strTimeFolder = pdocument->root()->get_child_value("time");
 
-         m_pdirsystem->m_strNetSeedFolder = pdocument->root()->get_child_value("netseed");
+      //   m_pdirsystem->m_strNetSeedFolder = pdocument->root()->get_child_value("netseed");
 
-      }
+      //}
 
       if (m_pdirsystem->m_strTimeFolder.is_empty())
       {
@@ -166,7 +166,7 @@ namespace uwp
 
             ::file::listing dira(get_context());
 
-            dira.ls_dir(listing.m_pathFinal);
+            Application.dir().ls_dir(dira, listing.m_pathFinal);
 
             for(i32 i = 0; i < dira.get_count(); i++)
             {
@@ -185,7 +185,7 @@ namespace uwp
 
                }
 
-               listing.ls();
+               Application.dir().ls(listing);
 
             }
 
@@ -566,7 +566,7 @@ try1:;
 
          ::file::listing straPath(get_context());
 
-         straPath.ls(psz);
+         Application.dir().ls(straPath, psz);
 
          for(int i = 0; i < straPath.get_count(); i++)
          {

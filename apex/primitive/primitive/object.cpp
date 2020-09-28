@@ -8,7 +8,7 @@
 
 #ifdef DEBUG
 
-CLASS_DECL_APEX void object_on_add_composite(const generic* pbase);
+CLASS_DECL_APEX void object_on_add_composite(const elemental* pbase);
 
 #endif
 
@@ -133,7 +133,7 @@ void object::to_string(string & str) const
 }
 
 
-::estatus object::add_composite(::generic* pobject)
+::estatus object::add_composite(::elemental* pobject)
 {
 
    sync_lock sl(mutex());
@@ -158,7 +158,7 @@ void object::to_string(string & str) const
 }
 
 
-::estatus object::add_reference(::generic* pobject)
+::estatus object::add_reference(::elemental* pobject)
 {
 
    sync_lock sl(mutex());
@@ -177,7 +177,7 @@ void object::to_string(string & str) const
 }
 
 
-::estatus object::release_composite(::generic* pobject)
+::estatus object::release_composite(::elemental* pobject)
 {
 
    if (::is_null(pobject))
@@ -208,7 +208,7 @@ void object::to_string(string & str) const
 }
 
 
-::estatus object::release_reference(::generic* pobject)
+::estatus object::release_reference(::elemental* pobject)
 {
 
    if (::is_null(pobject))
@@ -344,7 +344,7 @@ void object::send(const ::id & idFuture, const ::var& var)
    if(pcallbacks)
    {
 
-      pcallbacks->pred_each([&var](auto& f) {f.receive_response(var); });
+      pcallbacks->pred_each([&var](auto& f) {f.send(var); });
 
    }
 
@@ -1025,7 +1025,7 @@ CLASS_DECL_ACME mutex* get_children_mutex();
 
 
 /// tells if pobject is dependant of this object or of any dependant objects
-bool object::___is_reference(::generic * pobject) const
+bool object::___is_reference(::elemental * pobject) const
 {
 
    if (::is_null(pobject))
@@ -1056,7 +1056,7 @@ bool object::___is_reference(::generic * pobject) const
 }
 
 
-bool object::__is_composite(::generic * pobject) const
+bool object::__is_composite(::elemental * pobject) const
 {
 
    if (::is_null(pobject))
@@ -1621,7 +1621,7 @@ void debug_context_object(::layered * pobjectContext)
 }
 
 
-CLASS_DECL_APEX void object_on_add_composite(const generic * pbase)
+CLASS_DECL_APEX void object_on_add_composite(const elemental * pbase)
 {
 
    string strType = ::str::demangle(pbase->type_name());
@@ -1859,7 +1859,7 @@ void object::set_context_system(::apex::system* psystemContext)
 #endif
 
 
-// CLASS_DECL_APEX const char* topic_text(::generic* pgeneric)
+// CLASS_DECL_APEX const char* topic_text(::elemental* pgeneric)
 // {
 
 //    if (::is_null(pgeneric))

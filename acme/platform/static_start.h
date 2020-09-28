@@ -84,7 +84,7 @@ namespace acme
    // acme commented
    //extern critical_section* g_pcsTrace;
 
-   //extern ::generic* g_ptrace;
+   //extern ::elemental* g_ptrace;
 
    //// acme commented
    //extern simple_trace* g_psimpletrace;
@@ -113,7 +113,7 @@ namespace acme
    extern ::mutex* g_pmutexMessageDispatch;
 
 
-   extern CLASS_DECL_ACME array < generic* >* g_paAura;
+   extern CLASS_DECL_ACME array < elemental* >* g_paAura;
 
 
    extern ::map < ::id, const ::id&, ::id, const ::id& >* g_pmapRTL;

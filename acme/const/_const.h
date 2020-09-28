@@ -169,7 +169,7 @@ enum e_type
    type_method,
    type_future,
 
-   // generic classes
+   // elemental classes
    type_element = 8000,
    type_stra,
    type_inta,
@@ -225,7 +225,7 @@ enum e_trace_category
    trace_category_database,     // special database trace
    trace_category_internet,     // special internet client trace
    trace_category_dumpcontext,   // traces from dump_context
-   trace_category_memory,      // generic non-kernel memory traces
+   trace_category_memory,      // elemental non-kernel memory traces
    trace_category_html,         // html traces
    trace_category_socket,      // socket traces
    trace_category_colorertake5,

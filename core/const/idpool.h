@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "base/id.h"
+#include "bred/id.h"
 
 
 namespace core
@@ -9,7 +9,7 @@ namespace core
 
 
    class CLASS_DECL_CORE idpool :
-      public ::base::idpool
+      public ::bred::idpool
    {
    public:
 

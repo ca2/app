@@ -1,10 +1,10 @@
 ﻿#pragma once
 
 
-#undef System
-#undef Platform
-#undef Application
-#undef Session
+//#undef System
+//#undef Platform
+////#undef Application
+////#undef Session
 
 
 CLASS_DECL_ACME bool __initialize(bool bDLL, DWORD dwVersion);

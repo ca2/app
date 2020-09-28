@@ -19,7 +19,7 @@ public:
    virtual ~message_box();
 
 
-   //::estatus show(::generic* pobject);
+   //::estatus show(::elemental* pobject);
 
 
 };

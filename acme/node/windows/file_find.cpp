@@ -421,7 +421,7 @@ namespace windows
    void file_find::dump(dump_context & dumpcontext) const
    {
 
-      generic::dump(dumpcontext);
+      elemental::dump(dumpcontext);
 
       dumpcontext << "\nm_hContext = " << m_hContext;
 

@@ -1,5 +1,5 @@
 //
-//  ::generic.h
+//  ::elemental.h
 //  acme
 //
 //  Created by Camilo Sasuke Tsumanuma on 02/06/19.
@@ -16,15 +16,15 @@
 #pragma once
 
 
-//using ::generic = ::generic;
-//using runnablea = __pointer_array(::generic);
+//using ::elemental = ::elemental;
+//using runnablea = __pointer_array(::elemental);
 
 
 
 //
-//struct CLASS_DECL_ACME ::generic :
-//   virtual public generic,
-//   public generic
+//struct CLASS_DECL_ACME ::elemental :
+//   virtual public elemental,
+//   public elemental
 //{
 //   
 //   
@@ -32,8 +32,8 @@
 //   ::i64          m_cRun;
 //   
 //   
-//   ::generic(::generic * pobject = nullptr) : generic(pobject) { m_cRun = 0; }
-//   virtual ~::generic();
+//   ::elemental(::elemental * pobject = nullptr) : elemental(pobject) { m_cRun = 0; }
+//   virtual ~::elemental();
 //   
 //   
 //   virtual ::estatus     call() override;

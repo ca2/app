@@ -1001,10 +1001,10 @@ string property_set::_001Replace(const string & str) const
 
 }
 
-::generic * property_set::source_channel()
+::elemental * property_set::source_channel()
 {
 
-   return set("source_channel").cast < ::generic >();
+   return set("source_channel").cast < ::elemental >();
 
 }
 
@@ -1888,7 +1888,7 @@ namespace handle
    //}
 
 
-   //localini::localini(::generic * pobject)
+   //localini::localini(::elemental * pobject)
    //{
 
    //   auto preader = Ctx(pobject).file().get_reader(::dir::localconfig() / "this.ini");

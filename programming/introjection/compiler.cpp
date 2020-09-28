@@ -437,9 +437,9 @@ namespace introjection
 
       pathEnvTxt = dir::system() / "env.txt";
 
-      file_put_contents_dup(::dir::system() / "env1.bat",::dir::system() / "env.bat > \"" + pathEnvTxt + "\"");
+      file_put_contents(::dir::system() / "env1.bat",::dir::system() / "env.bat > \"" + pathEnvTxt + "\"");
 
-      file_put_contents_dup(::dir::system() / "env.bat","@call " + strBuildCmd + "\r\n@set");
+      file_put_contents(::dir::system() / "env.bat","@call " + strBuildCmd + "\r\n@set");
 
       RunSilent(::dir::system() / "env1.bat","");
 
@@ -1064,7 +1064,7 @@ namespace introjection
 
 #ifdef LINUX
 
-      file_put_contents_dup("/tmp/introj.bash", str);
+      file_put_contents("/tmp/introj.bash", str);
 
       chmod("/tmp/introj.bash", S_IRWXU | S_IRWXG | S_IRWXO);
 
@@ -1248,7 +1248,7 @@ auto tickStart = ::tick::now();
 
 #ifdef LINUX
 
-         file_put_contents_dup("/tmp/introl.bash", str);
+         file_put_contents("/tmp/introl.bash", str);
 
          chmod("/tmp/introl.bash", S_IRWXU | S_IRWXG | S_IRWXO);
 

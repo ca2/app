@@ -70,7 +70,7 @@ void MEMORY_DECL operator delete[](void* p) del_throw_spec
 #if defined(_UWP) //|| defined(ANDROID)
 
 
-inline void* MEMORY_DECL operator new(size_t nSize, void* p) inplace_new_throw_spec
+void* MEMORY_DECL operator new(size_t nSize, void* p) inplace_new_throw_spec
 {
 
    UNREFERENCED_PARAMETER(nSize);
@@ -80,7 +80,7 @@ inline void* MEMORY_DECL operator new(size_t nSize, void* p) inplace_new_throw_s
 }
 
 
-inline void MEMORY_DECL operator delete(void* p, void* palloc) del_throw_spec
+void MEMORY_DECL operator delete(void* p, void* palloc) del_throw_spec
 {
 
    UNREFERENCED_PARAMETER(p);

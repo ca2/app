@@ -336,10 +336,15 @@ namespace uwp
 
    }
 
+
    void directx_base::defer_resize_top_level_windows()
    {
 
-      m_pimpl->m_puserinteraction->set_window_pos(zorder_top, 0, 0, m_size.cx, m_size.cy, SWP_SHOWWINDOW);
+      m_pimpl->m_puserinteraction->order_top();
+      
+      m_pimpl->m_puserinteraction->set_dim(0, 0, m_size.cx, m_size.cy);
+      
+      m_pimpl->m_puserinteraction->display();
 
       if (System.has_property("client_only"))
       {
@@ -352,7 +357,11 @@ namespace uwp
             if (pinteraction->is_window_visible())
             {
 
-               pinteraction->set_window_pos(zorder_top, 0, 0, m_size.cx, m_size.cy, SWP_SHOWWINDOW);
+               pinteraction->order_top();
+               
+               pinteraction->set_dim(0, 0, m_size.cx, m_size.cy);
+               
+               pinteraction->display();
 
                pinteraction->set_need_layout();
 

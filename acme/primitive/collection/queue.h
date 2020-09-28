@@ -7,7 +7,7 @@
 // the container and extracted from the other.
 //
 // queues are implemented as containers adaptors, which are classes that use an
-// encapsulated generic of a specific container class as its underlying container,
+// encapsulated elemental of a specific container class as its underlying container,
 /// providing a specific set of member functions to access its elements. Elements
 // are pushed into the "back" of the specific container and popped from its "front".
 

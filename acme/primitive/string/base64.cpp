@@ -328,7 +328,7 @@ namespace str
    ::estatus base64::initialize(::layered * pobjectContext)
    {
 
-      auto estatus = ::generic::initialize(pobjectContext);
+      auto estatus = ::elemental::initialize(pobjectContext);
 
       if (!estatus)
       {
@@ -644,14 +644,14 @@ namespace str
 
    }
 
-   string base64::encode(::generic & generic, e_mode emode)
+   string base64::encode(::elemental & elemental, e_mode emode)
    {
 
       ::memory_stream streamObject;
 
       streamObject.set_storing();
 
-      generic.write(streamObject);
+      elemental.write(streamObject);
 
       auto str = encode(streamObject->memory());
 
@@ -660,7 +660,7 @@ namespace str
    }
 
 
-   bool base64::decode(::generic & generic, const char * pszBase64)
+   bool base64::decode(::elemental & elemental, const char * pszBase64)
    {
 
       ::string_file fileIn(pszBase64);
@@ -672,7 +672,7 @@ namespace str
          return false;
       }
 
-      generic.read(streamObject);
+      elemental.read(streamObject);
 
       return true;
 

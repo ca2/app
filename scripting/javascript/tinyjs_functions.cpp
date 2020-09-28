@@ -78,10 +78,10 @@ void scMathRand(CScriptVar *ca, void *) {
 }
 
 void scMathRandInt(CScriptVar *ca, void *) {
-    i32 MIN = ca->getParameter("MIN")->getInt();
-    i32 MAX = ca->getParameter("MAX")->getInt();
-    i32 val = MIN + (i32)((long)rand()*(1+MAX-MIN)/RAND_MAX);
-    if (val>MAX) val=MAX;
+    i32 min = ca->getParameter("min")->getInt();
+    i32 max = ca->getParameter("max")->getInt();
+    i32 val = min + (i32)((long)rand()*(1+max-min)/RAND_MAX);
+    if (val>max) val=max;
     ca->getReturnVar()->setInt(val);
 }
 
@@ -270,7 +270,7 @@ void registerFunctions(tinyjs *tinyJS) {
     tinyJS->addNative("function Object.dump()", scObjectDump, 0);
     tinyJS->addNative("function Object.clone()", scObjectClone, 0);
     tinyJS->addNative("function Math.rand()", scMathRand, 0);
-    tinyJS->addNative("function Math.randInt(MIN, MAX)", scMathRandInt, 0);
+    tinyJS->addNative("function Math.randInt(min, max)", scMathRandInt, 0);
     tinyJS->addNative("function charToInt(ch)", scCharToInt, 0); //  convert a character to an i32 - get its value
     tinyJS->addNative("function String.indexOf(search)", scStringIndexOf, 0); // find the position of a string in a string, -1 if not
     tinyJS->addNative("function String.substring(lo,hi)", scStringSubstring, 0);

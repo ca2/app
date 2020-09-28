@@ -736,7 +736,7 @@ string module_path_from_pid(u32 pid)
    //if(!Module32First(hModuleSnap,&me32))
    //{
 
-   //   CloseHandle(hModuleSnap);           // clean the snapshot generic
+   //   CloseHandle(hModuleSnap);           // clean the snapshot elemental
 
    //   return "";
 
@@ -824,7 +824,7 @@ CLASS_DECL_ACME bool is_shared_library_busy(const string_array & stra)
 }
 
 
-//CLASS_DECL_ACME bool launch_application(::generic * pobject, const string & strAppId, const string & strParams, int iBitCount)
+//CLASS_DECL_ACME bool launch_application(::elemental * pobject, const string & strAppId, const string & strParams, int iBitCount)
 //{
 //
 //   ::file::path path;

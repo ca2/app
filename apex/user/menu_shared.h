@@ -8,7 +8,7 @@
 
 
 class CLASS_DECL_APEX menu_shared :
-   virtual public generic
+   virtual public elemental
 {
 public:
 

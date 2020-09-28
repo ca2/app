@@ -210,6 +210,9 @@
     <Filter Include="Source Files\user">
       <UniqueIdentifier>{45f9c4ca-9488-48df-a694-8d9bc73dd9c5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\user">
+      <UniqueIdentifier>{b9f8a6cf-32ca-4bb5-9a95-5986882e2cc6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -1049,9 +1052,6 @@
     <ClInclude Include="primitive\primitive\_papaya.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\generic.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive\simple_object.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
@@ -1326,9 +1326,6 @@
       <Filter>Header Files\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="node\windows\serial.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\tts_speaker.h">
       <Filter>Header Files\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="node\windows\uac_tools.h">
@@ -2189,6 +2186,18 @@
     <ClInclude Include="filesystem\file\_defer_var_stream.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\primitive\elemental.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="user\_.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\_const.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\_const_key.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">
@@ -2231,9 +2240,6 @@
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive\memory_container.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive\generic.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive\property.cpp">
@@ -2920,9 +2926,6 @@
     <ClCompile Include="node\windows\trace.cpp">
       <Filter>Source Files\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="node\windows\tts_speaker.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
     <ClCompile Include="node\windows\uac_tools.cpp">
       <Filter>Source Files\node\windows</Filter>
     </ClCompile>
@@ -3242,6 +3245,12 @@
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
     <ClCompile Include="multithreading\wait_future.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive\elemental.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\thread.cpp">
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
   </ItemGroup>

@@ -54,11 +54,11 @@ namespace linux
       virtual bool open_in_ie(const char * pcsz);
 
 
-      virtual bool create_service(::generic * pobject);
-      virtual bool remove_service(::generic * pobject);
+      virtual bool create_service(::elemental * pobject);
+      virtual bool remove_service(::elemental * pobject);
 
-      virtual bool start_service(::generic * pobject);
-      virtual bool stop_service(::generic * pobject);
+      virtual bool start_service(::elemental * pobject);
+      virtual bool stop_service(::elemental * pobject);
 
       void raise_exception( DWORD dwExceptionCode, DWORD dwExceptionFlags);
 

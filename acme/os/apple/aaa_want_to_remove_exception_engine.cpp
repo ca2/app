@@ -429,8 +429,8 @@ namespace exception
 
 #endif
 
-   engine::engine(::generic * pobject) :
-      generic(pobject)
+   engine::engine(::elemental * pobject) :
+      elemental(pobject)
 #ifdef WINDOWS_DESKTOP
       ,m_bOk(false)
       ,m_bInit(false)

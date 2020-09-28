@@ -13,7 +13,7 @@ namespace windows
 
 
    printer::printer(__pointer(base_application) papp) :
-      ::generic(pobject),
+      ::elemental(pobject),
       ::user::printer(pobject),
       m_documentproperties(pobject)
    {
@@ -67,7 +67,7 @@ namespace windows
 
 
    printer::document_properties::document_properties(__pointer(base_application) papp) :
-      ::generic(pobject)
+      ::elemental(pobject)
    {
       m_hdc = nullptr;
       m_pdevmode = nullptr;

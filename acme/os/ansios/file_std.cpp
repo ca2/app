@@ -133,7 +133,7 @@ i32 ferror_dup(FILE *fp)
 }
 
 
-filesize fsize_dup(FILE * fp)
+filesize FILE_get_size(FILE * fp)
 {
 
    auto pos = ftell(fp);
@@ -149,12 +149,12 @@ filesize fsize_dup(FILE * fp)
 }
 
 
-filesize flen_dup(FILE * str)
-{
-
-   return fsize_dup(str);
-
-}
+//filesize FILE_get_size(FILE * str)
+//{
+//
+//   return FILE_get_size(str);
+//
+//}
 
 
 

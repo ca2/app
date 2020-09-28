@@ -36,7 +36,7 @@ bool __x11_hook_process_event(Display * pdisplay, XEvent & e, XGenericEventCooki
 bool __x11_hook_list_is_empty();
 
 class x11Button :
-   virtual public generic
+   virtual public elemental
 {
 public:
 

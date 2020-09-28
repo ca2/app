@@ -2,7 +2,7 @@
 
 
 /*
-CLASS_DECL_ACME void ensure_file_size(i32 fd, i64 iSize);
+CLASS_DECL_ACME void fd_set_size(i32 fd, i64 iSize);
 CLASS_DECL_ACME i64 get_file_size(i32 fd);
 */
 

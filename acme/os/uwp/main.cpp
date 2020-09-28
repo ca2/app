@@ -242,6 +242,13 @@ void CLASS_DECL_ACME __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_
 }
 
 
+string executable_get_app_id()
+{
+
+   return Windows::ApplicationModel::Package::Current->Id->Name;
+
+}
+
 string ca2_command_line()
 {
 

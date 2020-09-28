@@ -37,7 +37,7 @@ namespace file
 
 
    class CLASS_DECL_ACME file :
-      virtual public ::generic
+      virtual public ::elemental
    {
    public:
 

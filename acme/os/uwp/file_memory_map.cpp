@@ -40,7 +40,7 @@ namespace file
 
       }
 
-      ensure_file_size_handle(m_hfile, m_size);
+      hfile_set_size(m_hfile, m_size);
 
       m_hfilemap = CreateFileMappingFromApp(m_hfile, nullptr, PAGE_READWRITE, m_size, nullptr);
 

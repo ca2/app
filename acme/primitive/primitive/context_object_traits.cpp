@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-//::estatus generic::call(::trait & trait)
+//::estatus elemental::call(::trait & trait)
 //{
 //
 //   ::estatus estatus = error_failed;
@@ -30,7 +30,7 @@
 //}
 //
 //
-//::estatus generic::run(::trait &)
+//::estatus elemental::run(::trait &)
 //{
 //
 //   return ::success;
@@ -39,7 +39,7 @@
 
 
 
-//void generic::notify(::u64 uId)
+//void elemental::notify(::u64 uId)
 //{
 //
 //   if (m_ptraits)
@@ -58,7 +58,7 @@
 //}
 //
 //
-//::thread_pointer generic::_fork_notify(__pointer(::trait) ptrait)
+//::thread_pointer elemental::_fork_notify(__pointer(::trait) ptrait)
 //{
 //
 //   return m_ptraits->_fork_notify(ptrait);
@@ -66,7 +66,7 @@
 //}
 //
 //
-//thread_spa generic::_fork_notify_each(__pointer(::trait) ptrait)
+//thread_spa elemental::_fork_notify_each(__pointer(::trait) ptrait)
 //{
 //
 //   return m_ptraits->_fork_notify_each(ptrait);
@@ -74,7 +74,7 @@
 //}
 //
 //
-//void generic::_notify(::trait * ptrait)
+//void elemental::_notify(::trait * ptrait)
 //{
 //
 //   m_ptraits->_notify(ptrait);
@@ -82,7 +82,7 @@
 //}
 //
 //
-//void generic::_call_notify(::trait * ptrait)
+//void elemental::_call_notify(::trait * ptrait)
 //{
 //
 //   m_ptraits->_call_notify(ptrait);
@@ -90,7 +90,7 @@
 //}
 //
 
-//void generic::set_trait_result(::u64 uId, ::u64 uPromisse, ::generic * preference)
+//void elemental::set_trait_result(::u64 uId, ::u64 uPromisse, ::elemental * preference)
 //{
 //
 //   m_ptraits->set_result(uId, uPromisse, preference);

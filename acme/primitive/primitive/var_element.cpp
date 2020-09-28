@@ -34,7 +34,7 @@ var.P = dynamic_cast < TYPE * >(pobject); \
 if(::is_set(var.m_pstra)) return ENUM_TYPE;
 
 
-e_type set_element(var & var, ::generic * pobject)
+e_type set_element(var & var, ::elemental * pobject)
 {
 
    VAR_SET_ELEMENT(m_pstra    , ::string_array             , ::type_stra);
@@ -53,7 +53,7 @@ e_type set_element(var & var, ::generic * pobject)
 }
 
 
-::e_type var::set_element(::generic * pobject)
+::e_type var::set_element(::elemental * pobject)
 {
 
    release();

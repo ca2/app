@@ -10,7 +10,8 @@ struct FileStatus;
 void CLASS_DECL_ACME vfxGetRoot(const unichar * lpszPath, string& wstrRoot);
 void CLASS_DECL_ACME vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath);
 
-#define HFILE_NULL INVALID_HANDLE_VALUE
+
+
 
 namespace uwp
 {
@@ -36,8 +37,8 @@ namespace uwp
       };
 
 
-      bool              m_bCloseOnDelete;
-      HANDLE            m_hFile;
+      bool                 m_bCloseOnDelete;
+      hfile                m_hfile;
 
 
       file();
@@ -92,8 +93,8 @@ namespace uwp
 
    //   ::estatus OsErrorToException(LONG lOsError);
    //   ::estatus ErrnoToException(int nErrno);
-   //   void ThrowOsError(::generic * pobject, LONG lOsError, const char * lpszFileName = nullptr);
-   //   void ThrowErrno(::generic * pobject, int nErrno, const char * lpszFileName = nullptr);
+   //   void ThrowOsError(::elemental * pobject, LONG lOsError, const char * lpszFileName = nullptr);
+   //   void ThrowErrno(::elemental * pobject, int nErrno, const char * lpszFileName = nullptr);
 
    //}
 

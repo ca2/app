@@ -85,7 +85,7 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
 
    tiny_http::http_retcode ret = g_tinyhttp.t_get(&buffer, &len, callback, callback_param);
 
-   file_put_contents_dup(pszFile, buffer, len);
+   file_put_contents(pszFile, buffer, len);
 
    ca2_free(buffer);
 

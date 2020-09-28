@@ -104,10 +104,10 @@ inline void context_object::defer_propset() { if (!m_pset) ::__construct_new(m_p
 //}
 
 //
-//inline type::type(const ::generic * pobject)
+//inline type::type(const ::elemental * pobject)
 //{
 //
-//  m_strName = typeid(*(generic *)pobject).name();
+//  m_strName = typeid(*(elemental *)pobject).name();
 //
 //  demangle(m_strName);
 //
@@ -1465,7 +1465,7 @@ inline ::estatus object::release_reference(__pointer(SOURCE) & psource)
 }
 
 
-CLASS_DECL_APEX void object_on_add_composite(const generic * pbase);
+CLASS_DECL_APEX void object_on_add_composite(const elemental * pbase);
 
 
 template < typename BASE_TYPE >
@@ -1535,7 +1535,7 @@ template < typename SOURCE >
 inline ::estatus object::add_reference(SOURCE * psource)
 {
 
-  __pointer(::generic) pobject;
+  __pointer(::elemental) pobject;
 
   pobject = (SOURCE *) psource;
 
@@ -1546,7 +1546,7 @@ inline ::estatus object::add_reference(SOURCE * psource)
 
   }
 
-  return add_reference((::generic *) pobject.m_p);
+  return add_reference((::elemental *) pobject.m_p);
 
 }
 
@@ -1677,7 +1677,7 @@ inline void object::defer_set_context_object(::layered * pobjectContext)
 //}
 //
 
-inline ::estatus context::load_from_file(::generic* pobject, const ::var& varFile, const var* pvarOptions)
+inline ::estatus context::load_from_file(::elemental* pobject, const ::var& varFile, const var* pvarOptions)
 {
 
   if (pvarOptions)
@@ -1696,7 +1696,7 @@ inline ::estatus context::load_from_file(::generic* pobject, const ::var& varFil
 }
 
 
-inline ::estatus context::load_from_file(::generic* pobject, const ::var& varFile)
+inline ::estatus context::load_from_file(::elemental* pobject, const ::var& varFile)
 {
 
   return _load_from_file(pobject, varFile, type_empty_argument);
@@ -1704,7 +1704,7 @@ inline ::estatus context::load_from_file(::generic* pobject, const ::var& varFil
 }
 
 
-inline ::estatus context::save_to_file(const ::var& varFile, const var* pvarOptions, const ::generic * pobject)
+inline ::estatus context::save_to_file(const ::var& varFile, const var* pvarOptions, const ::elemental * pobject)
 {
 
   if (pvarOptions)
@@ -1723,7 +1723,7 @@ inline ::estatus context::save_to_file(const ::var& varFile, const var* pvarOpti
 }
 
 
-inline ::estatus context::save_to_file(const ::var& varFile, const ::generic* pobject)
+inline ::estatus context::save_to_file(const ::var& varFile, const ::elemental* pobject)
 {
 
   return _save_to_file(varFile, type_empty_argument, pobject);
@@ -1752,7 +1752,7 @@ inline ::file_result object::get_writer(const var & varFile, efileopen eopen)
 //#ifndef DEBUG
 //
 //
-//inline i64 generic::add_ref(OBJ_REF_DBG_PARAMS_DEF)
+//inline i64 elemental::add_ref(OBJ_REF_DBG_PARAMS_DEF)
 //{
 //
 //  return atomic_increment(&m_countReference);
@@ -1760,7 +1760,7 @@ inline ::file_result object::get_writer(const var & varFile, efileopen eopen)
 //}
 //
 //
-//inline i64 generic::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
+//inline i64 elemental::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
 //{
 //
 //  return atomic_decrement(&m_countReference);
@@ -1768,7 +1768,7 @@ inline ::file_result object::get_writer(const var & varFile, efileopen eopen)
 //}
 //
 //
-//inline i64 generic::release(OBJ_REF_DBG_PARAMS_DEF)
+//inline i64 elemental::release(OBJ_REF_DBG_PARAMS_DEF)
 //{
 //
 //  i64 i = dec_ref(OBJ_REF_DBG_ARGS);
@@ -2380,9 +2380,9 @@ inline ::estatus context_object::__construct_new(__pointer(TYPE)& pbase)
 
 
 //template < typename PRED >
-//procedure::procedure(const ::id& id, PRED pred, ::generic* pobjectHold) : function_base(id, __new(__pred_procedure < PRED >(pred, pobjectHold))) { }
+//procedure::procedure(const ::id& id, PRED pred, ::elemental* pobjectHold) : function_base(id, __new(__pred_procedure < PRED >(pred, pobjectHold))) { }
 //template < typename PRED >
-//procedure::procedure(PRED pred, ::generic* pobjectHold) : procedure(::id(), pred, pobjectHold) { }
+//procedure::procedure(PRED pred, ::elemental* pobjectHold) : procedure(::id(), pred, pobjectHold) { }
 
 
 

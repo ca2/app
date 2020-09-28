@@ -325,7 +325,7 @@ using exception_pointer = ::exception::exception_pointer;
 template < typename EXCEPTION >
 inline __pointer(EXCEPTION) __move_throw_exception(EXCEPTION * pexceptionNew);
 
-CLASS_DECL_ACME __pointer(::exception::exception) __trace_context_move_throw_exception(::generic * pobject, ::exception::exception * pexceptionNew);
+CLASS_DECL_ACME __pointer(::exception::exception) __trace_context_move_throw_exception(::elemental * pobject, ::exception::exception * pexceptionNew);
 
 
 

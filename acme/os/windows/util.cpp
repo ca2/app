@@ -17,15 +17,20 @@ bool CLASS_DECL_ACME __is_combo_box_control(oswindow oswindow, UINT nStyle)
    return ::wcsicmp(szCompare, L"combobox") == 0;
 }
 
-bool CLASS_DECL_ACME __compare_class_name(oswindow oswindow, const char * pszClassName)
 
+bool CLASS_DECL_ACME __compare_class_name(oswindow oswindow, const char * pszClassName)
 {
-   ASSERT(::is_window(oswindow));
+
+   ASSERT(::IsWindow(oswindow));
+
    wchar_t szTemp[32];
+
    ::GetClassNameW(oswindow, szTemp, _countof(szTemp));
+
    return ::wcsicmp(szTemp, wstring(pszClassName)) == 0;
 
 }
+
 
 oswindow CLASS_DECL_ACME __child_window_from_point(oswindow oswindow, const ::point & pointParam)
 {

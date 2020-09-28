@@ -154,7 +154,7 @@ namespace acme
    //critical_section* g_pcsTrace;
 
    // acme commented
-   //::generic* g_ptrace;
+   //::elemental* g_ptrace;
 
    // acme commented
    //simple_trace* g_psimpletrace;
@@ -183,7 +183,7 @@ namespace acme
    ::mutex* g_pmutexMessageDispatch;
 
 
-   array < generic* >* g_paAura;
+   array < elemental* >* g_paAura;
 
 
    ::map < ::id, const ::id&, ::id, const ::id& >* g_pmapRTL;
@@ -586,7 +586,7 @@ namespace acme
 
       ::factory::factory_init();
 
-      g_paAura = new array < generic * >;
+      g_paAura = new array < elemental * >;
 
       //g_pmapAura =new ::map < void *,void *,::acme::application *,::acme::application * >;
 

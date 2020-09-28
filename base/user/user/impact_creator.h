@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_BASE impact_creator :
-      virtual public ::generic
+      virtual public ::elemental
    {
    public:
 

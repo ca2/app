@@ -38,7 +38,7 @@ namespace windows
       //   wndptraRemove[i]->m_handlea[0] = nullptr;
       //   wndptraRemove[i]->m_handlea[1] = nullptr;
 
-      //   (*pMap->m_pfnDestructObject)(wndptraRemove[i]);   // destruct the generic
+      //   (*pMap->m_pfnDestructObject)(wndptraRemove[i]);   // destruct the elemental
       //}
 
       //for(i32 i = 0; i < oswindowaRemove.get_count(); i++)

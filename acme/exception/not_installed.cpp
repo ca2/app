@@ -1,8 +1,8 @@
 #include "framework.h"
 
 
-// not_installed::not_installed(::generic * pobject = ::get_app_object(), const char * pszAppId, const char * pszConfiguration, const char * pszPlatform, const char * pszLocale, const char * pszSchema) :
-//    ::generic(pobject),
+// not_installed::not_installed(::elemental * pobject = ::get_app_object(), const char * pszAppId, const char * pszConfiguration, const char * pszPlatform, const char * pszLocale, const char * pszSchema) :
+//    ::elemental(pobject),
 //    ::callstack(pobject),
 //    ::exception::exception()
 // {
@@ -25,7 +25,7 @@
 // }
 
 // not_installed::not_installed(const not_installed & e) :
-//    generic(e),
+//    elemental(e),
 //    ::callstack(e),
 //    ::exception::exception(e)
 // {

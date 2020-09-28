@@ -56,7 +56,7 @@ namespace macos
    string os_context::get_command_line()
    {
 
-      return get_command_line_dup();
+      return get_command_line();
 
    }
 
@@ -978,7 +978,7 @@ namespace macos
 
          p /= "mypath" / pcommand->m_pcommandline->m_varQuery.propset()["app"].get_string() + ".txt";
 
-         file_put_contents_dup(p, pcommand->m_pcommandline->m_strExe);
+         file_put_contents(p, pcommand->m_pcommandline->m_strExe);
 
          string strApp = pcommand->m_pcommandline->m_strExe;
 
@@ -1010,7 +1010,7 @@ namespace macos
 
             }
 
-            file_put_contents_dup(p, "open -a \""+strApp.Left(iFind + strlen(".app")) + "\"");
+            file_put_contents(p, "open -a \""+strApp.Left(iFind + strlen(".app")) + "\"");
 
             chmod(p, 0777);
 

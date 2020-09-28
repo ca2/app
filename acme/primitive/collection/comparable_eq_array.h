@@ -9,7 +9,7 @@ public:
 
    typedef ARRAY_TYPE BASE_ARRAY;
 
-   explicit comparable_eq_array(::generic * pobject = nullptr) : BASE_ARRAY(pobject) { }
+   explicit comparable_eq_array(::elemental * pobject = nullptr) : BASE_ARRAY(pobject) { }
    comparable_eq_array(::std::initializer_list < TYPE > l) : BASE_ARRAY(l) {   }
    comparable_eq_array(const comparable_eq_array & array) : BASE_ARRAY(array) { }
    comparable_eq_array(comparable_eq_array && array) noexcept : BASE_ARRAY(::move(array)) { }

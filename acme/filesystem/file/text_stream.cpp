@@ -472,7 +472,7 @@ string text_stream::get_location() const
 }
 
 
-//void text_stream::json_write(const ::generic & generic)
+//void text_stream::json_write(const ::elemental & elemental)
 //{
 //
 //   var_stream s;
@@ -490,7 +490,7 @@ string text_stream::get_location() const
 //}
 //
 //
-//void text_stream::json_read(::generic & generic)
+//void text_stream::json_read(::elemental & elemental)
 //{
 //
 //   var_stream s;

@@ -323,7 +323,7 @@ namespace uwp
 
    void file_find::dump(dump_context & dumpcontext) const
    {
-      ::generic::dump(dumpcontext);
+      ::elemental::dump(dumpcontext);
       dumpcontext << "\nm_hContext = " << (UINT) m_hContext;
    }
 

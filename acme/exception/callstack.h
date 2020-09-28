@@ -28,7 +28,7 @@
 
 
 class CLASS_DECL_ACME callstack :
-   public ::generic
+   public ::elemental
 {
 public:
 

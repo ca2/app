@@ -90,7 +90,7 @@ namespace uwp
    }
 
 
-   bool directx_interaction::is_this_visible()
+   bool directx_interaction::is_this_visible(::user::e_layout elayout)
    {
 
       return true;

@@ -1,74 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <None Include="..\..\..\stage\x86\draw2d_direct2d.dll">
-      <Filter>Library</Filter>
-    </None>
-    <None Include="..\..\..\stage\x86\experience_core.dll">
-      <Filter>Library</Filter>
-    </None>
-    <None Include="..\..\..\platform\thirdparty\binary\x64\msvcp120d.dll">
-      <Filter>Library</Filter>
-    </None>
-    <None Include="..\..\..\platform\thirdparty\binary\x64\msvcr120d.dll">
-      <Filter>Library</Filter>
-    </None>
-    <None Include="..\..\..\platform\thirdparty\binary\x64\vccorlib120d.dll">
-      <Filter>Library</Filter>
-    </None>
-    <None Include="..\..\..\platform\thirdparty\binary\x64\vcomp120d.dll">
-      <Filter>Library</Filter>
-    </None>
-    <None Include=".\winmetro_simple_shader.pfx">
-      <Filter>Metrowin</Filter>
-    </None>
-    <None Include="winmetro_simple_shader_simple_shader_TemporaryKey.pfx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="Library">
-      <UniqueIdentifier>{ace2cb1a-7cb1-4097-af9d-cbaf9cebd184}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Metrowin">
-      <UniqueIdentifier>{9ad42556-f808-4fab-bfde-974878552a58}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{339e9f1d-8236-47dc-95e0-1645e20e2658}</UniqueIdentifier>
+    <Filter Include="Common">
+      <UniqueIdentifier>f62af910-5d7c-4d9b-bb55-0e554e937f72</UniqueIdentifier>
     </Filter>
     <Filter Include="Assets">
-      <UniqueIdentifier>{a18158b0-d81a-4990-b993-e7bfcaaec3c5}</UniqueIdentifier>
+      <UniqueIdentifier>d7fbecc1-cbbb-4baf-9ebe-8435fd526219</UniqueIdentifier>
+      <Extensions>bmp;fbx;gif;jpg;jpeg;tga;tiff;tif;png</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="assets\BeatMapper30.png">
+    <ApplicationDefinition Include="App.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\LockScreenLogo.scale-200.png">
       <Filter>Assets</Filter>
     </Image>
-    <Image Include="assets\BeatMapper50.png">
+    <Image Include="Assets\SplashScreen.scale-200.png">
       <Filter>Assets</Filter>
     </Image>
-    <Image Include="assets\BeatMapper70.png">
+    <Image Include="Assets\Square150x150Logo.scale-200.png">
       <Filter>Assets</Filter>
     </Image>
-    <Image Include="assets\BeatMapper150.png">
+    <Image Include="Assets\Square44x44Logo.scale-200.png">
       <Filter>Assets</Filter>
     </Image>
-    <Image Include="assets\BeatMapper310.png">
+    <Image Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
       <Filter>Assets</Filter>
     </Image>
-    <Image Include="assets\BeatMapper310-150.png">
+    <Image Include="Assets\StoreLogo.png">
       <Filter>Assets</Filter>
     </Image>
-    <Image Include="assets\BeatMapper620-300.png">
+    <Image Include="Assets\Wide310x150Logo.scale-200.png">
       <Filter>Assets</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <AppxManifest Include="Package.appxmanifest">
-      <Filter>Metrowin</Filter>
-    </AppxManifest>
+    <AppxManifest Include="Package.appxmanifest" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="winmetro_simple_shader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <Page Include="MainPage.xaml" />
   </ItemGroup>
 </Project>

@@ -28,7 +28,7 @@
 namespace user
 {
 
-   void defer_calc_os_dark_mode();
+   //void defer_calc_os_dark_mode();
 
 #ifdef _UWP
 
@@ -12175,7 +12175,7 @@ restart:
    }
 
 
-   void interaction::post_task(::generic * pobjectTask)
+   void interaction::post_task(::elemental * pobjectTask)
    {
 
       if (::is_set(m_pthreadUserInteraction))
@@ -12242,7 +12242,7 @@ restart:
 #endif
 
 
-   void interaction::send_task(::generic * pobjectTask, ::duration durationTimeout)
+   void interaction::send_task(::elemental * pobjectTask, ::duration durationTimeout)
    {
 
       ::thread * pthread = get_wnd() == nullptr ? (::thread *) nullptr : get_wnd()->m_pthreadUserInteraction;

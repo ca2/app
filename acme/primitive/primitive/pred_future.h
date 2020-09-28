@@ -3,16 +3,16 @@
 
 template < typename PRED >
 class ___pred_future :
-   virtual public ::generic
+   virtual public ::elemental
 {
 public:
 
 
    PRED                             m_pred;
-   __pointer(::generic)      m_pobjectHold;
+   __pointer(::elemental)      m_pobjectHold;
 
 
-   ___pred_future(PRED pred, ::generic* pobjectHold = nullptr) :
+   ___pred_future(PRED pred, ::elemental* pobjectHold = nullptr) :
       m_pred(pred),
       m_pobjectHold(pobjectHold)
    {
@@ -51,7 +51,7 @@ public:
 
 
 template < typename PRED >
-inline auto __pred_future(PRED pred, ::generic* pobjectHold = nullptr)
+inline auto __pred_future(PRED pred, ::elemental* pobjectHold = nullptr)
 {
 
    return __new(___pred_future < PRED >(pred, pobjectHold));

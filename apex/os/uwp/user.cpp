@@ -1,96 +1,96 @@
 ﻿#include "framework.h"
 #include "_winrt.h"
 #include "apex/node/uwp/_uwp.h"
-#include "apex/os/windows_common/draw2d_direct2d_global.h"
+//#include "apex/os/windows_common/draw2d_direct2d_global.h"
 
 
 CLASS_DECL_APEX int g_iMouse = -1;
 
 
-CLASS_DECL_APEX WINBOOL GetCursorPos(LPPOINT lppoint);
+//CLASS_DECL_APEX WINBOOL GetCursorPos(LPPOINT lppoint);
 
+//
+//CLASS_DECL_APEX int_bool ui_get_cursor_pos(POINT * ppt)
+//{
+//
+//   if (ppt == nullptr)
+//      return FALSE;
+//
+//   int_bool iRet = FALSE;
+//
+//   ::point pointCursor;
+//
+//   ::wait(Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new Windows::UI::Core::DispatchedHandler([=, &pointCursor, &iRet]()
+//   {
+//
+//      try
+//      {
+//
+//         iRet = ::GetCursorPos(&pointCursor);
+//
+//      }
+//      catch (...)
+//      {
+//
+//      }
+//
+//   })));
+//
+//   if (iRet != FALSE)
+//   {
+//
+//      *ppt = pointCursor;
+//
+//   }
+//
+//   return iRet;
+//
+//}
+//
 
-CLASS_DECL_APEX int_bool ui_get_cursor_pos(POINT * ppt)
-{
+//int g_iMouseX = 0;
+//int g_iMouseY = 0;
+//
 
-   if (ppt == nullptr)
-      return FALSE;
-
-   int_bool iRet = FALSE;
-
-   ::point pointCursor;
-
-   ::wait(Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new Windows::UI::Core::DispatchedHandler([=, &pointCursor, &iRet]()
-   {
-
-      try
-      {
-
-         iRet = ::GetCursorPos(&pointCursor);
-
-      }
-      catch (...)
-      {
-
-      }
-
-   })));
-
-   if (iRet != FALSE)
-   {
-
-      *ppt = pointCursor;
-
-   }
-
-   return iRet;
-
-}
-
-
-int g_iMouseX = 0;
-int g_iMouseY = 0;
-
-
-CLASS_DECL_APEX WINBOOL GetCursorPos(LPPOINT lppoint)
-{
-
-   lppoint->x = g_iMouseX;
-
-   lppoint->y = g_iMouseY;
-
-   if (g_iMouse < 0)
-      return FALSE;
-
-   Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::Windows::UI::Core::CoreDispatcherPriority::Normal,
-          ref new Windows::UI::Core::DispatchedHandler([]()
-   {
-
-      Windows::Foundation::Collections::IVectorView < Windows::Devices::Input::PointerDevice ^ > ^ deva = ::Windows::Devices::Input::PointerDevice::GetPointerDevices();
-
-      for (unsigned int ui = 0; ui < deva->Size; ui++)
-      {
-
-         Windows::Devices::Input::PointerDevice ^ dev = deva->GetAt(ui);
-
-         if (dev->PointerDeviceType == ::Windows::Devices::Input::PointerDeviceType::Mouse)
-         {
-
-            Windows::UI::Input::PointerPoint ^ pointerPoint = ::Windows::UI::Input::PointerPoint::GetCurrentPoint(g_iMouse);
-
-            g_iMouseX = (LONG)pointerPoint->RawPosition.X;
-
-            g_iMouseY = (LONG)pointerPoint->RawPosition.Y;
-
-         }
-
-      }
-
-   }));
-
-   return TRUE;
-
-}
+//CLASS_DECL_APEX WINBOOL GetCursorPos(LPPOINT lppoint)
+//{
+//
+//   lppoint->x = g_iMouseX;
+//
+//   lppoint->y = g_iMouseY;
+//
+//   if (g_iMouse < 0)
+//      return FALSE;
+//
+//   Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::Windows::UI::Core::CoreDispatcherPriority::Normal,
+//          ref new Windows::UI::Core::DispatchedHandler([]()
+//   {
+//
+//      Windows::Foundation::Collections::IVectorView < Windows::Devices::Input::PointerDevice ^ > ^ deva = ::Windows::Devices::Input::PointerDevice::GetPointerDevices();
+//
+//      for (unsigned int ui = 0; ui < deva->Size; ui++)
+//      {
+//
+//         Windows::Devices::Input::PointerDevice ^ dev = deva->GetAt(ui);
+//
+//         if (dev->PointerDeviceType == ::Windows::Devices::Input::PointerDeviceType::Mouse)
+//         {
+//
+//            Windows::UI::Input::PointerPoint ^ pointerPoint = ::Windows::UI::Input::PointerPoint::GetCurrentPoint(g_iMouse);
+//
+//            g_iMouseX = (LONG)pointerPoint->RawPosition.X;
+//
+//            g_iMouseY = (LONG)pointerPoint->RawPosition.Y;
+//
+//         }
+//
+//      }
+//
+//   }));
+//
+//   return TRUE;
+//
+//}
 
 
 
@@ -102,7 +102,7 @@ CLASS_DECL_APEX void defer_dock_application(int_bool bDock)
 
 }
 
-CLASS_DECL_APEX void main_branch(::generic* pobjectTask, e_priority epriority)
+CLASS_DECL_APEX void main_branch(::elemental* pobjectTask, e_priority epriority)
 {
 
    ::wait(
@@ -578,6 +578,9 @@ uptr virtualkey_to_code(::Windows::System::VirtualKey e)
 namespace user
 {
 
+   /*::color g_colorSystemAppBackground;
+
+   CLASS_DECL_APEX COLORREF set_system_app_background_color()
 
    CLASS_DECL_APEX COLORREF get_system_app_background_color()
    {
@@ -592,23 +595,61 @@ namespace user
 
       return ARGB(255, r, g, b);
 
-   }
+   }*/
 
-   CLASS_DECL_APEX double get_system_app_luminance()
-   {
+   //CLASS_DECL_APEX double get_system_app_luminance()
+   //{
 
-      auto color = ::get_context_system()->get_context_session()->m_directxapplication->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
+   //   auto color = ::get_context_system()->get_context_session()->m_directxapplication->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
 
-      double r = color.R;
+   //   double r = color.R;
 
-      double g = color.G;
+   //   double g = color.G;
 
-      double b = color.B;
+   //   double b = color.B;
 
-      return (r + g + b) / (255.0 * 3.0);
+   //   return (r + g + b) / (255.0 * 3.0);
 
-   }
+   //}
 
+
+   //CLASS_DECL_APEX void os_update_colors()
+   //{
+
+   //   // App Background Color
+   //   {
+
+
+   //      auto color = ::get_context_system()->get_context_session()->m_directxapplication->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
+
+   //      auto r = color.R;
+
+   //      auto g = color.G;
+
+   //      auto b = color.B;
+
+   //      set_system_app_background_color(::color(r, g, b));
+
+   //   }
+
+
+   //   // Luminance
+   //   {
+
+
+   //      auto color = ::get_context_system()->get_context_session()->m_directxapplication->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
+
+   //      double r = color.R;
+
+   //      double g = color.G;
+
+   //      double b = color.B;
+
+   //      set_system_app_luminance((r + g + b) / (255.0 * 3.0));
+
+   //   }
+
+   //}
 
    CLASS_DECL_APEX void os_update_dark_mode()
    {

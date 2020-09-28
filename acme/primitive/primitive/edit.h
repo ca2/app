@@ -7,7 +7,7 @@
 //public:
 //
 //
-//   base_edit(::generic * pobject);
+//   base_edit(::elemental * pobject);
 //   virtual ~base_edit();
 //
 //
@@ -57,7 +57,7 @@
 //public:      
 //
 //
-//   edit(::generic * pobject);
+//   edit(::elemental * pobject);
 //   virtual ~edit();
 //
 //
@@ -72,8 +72,8 @@
 //
 //
 //template < class DATA >
-//edit < DATA >::edit(::generic * pobject) :
-//   ::generic(pobject),
+//edit < DATA >::edit(::elemental * pobject) :
+//   ::elemental(pobject),
 //   base_edit(pobject)
 //{
 //}

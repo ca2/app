@@ -135,10 +135,10 @@ bool is_space_key(XIRawEvent *event)
 
 // Tutor Exilius Q(t)List streaming contribution
 ::mutex * g_pmutexX11Runnable = nullptr;
-list < __pointer(::generic) > * g_prunnableptrlX11 = nullptr;
+list < __pointer(::elemental) > * g_prunnableptrlX11 = nullptr;
 ::mutex * g_pmutexX11Sync = nullptr;
 manual_reset_event * g_peventX11Sync = nullptr;
-__pointer(::generic) g_prunnableX11Sync;
+__pointer(::elemental) g_prunnableX11Sync;
 Display * g_pdisplayX11= nullptr;
 int g_fdX11[2] = {};
 
@@ -168,7 +168,7 @@ WINBOOL x11_get_cursor_pos(LPPOINT ppointCursor);
 
 int xi_opcode = -1;
 __pointer(object_array) g_pobjectaExtendedEventListener;
-void x11_register_extended_event_listener(::generic * pdata, bool bMouse, bool bKeyboard)
+void x11_register_extended_event_listener(::elemental * pdata, bool bMouse, bool bKeyboard)
 {
 
    if(!g_pobjectaExtendedEventListener)
@@ -2809,7 +2809,7 @@ bool x11_step()
       while(g_prunnableptrlX11->has_elements() && ::thread_get_run())
       {
 
-         __pointer(::generic) prunnable = g_prunnableptrlX11->pop_front();
+         __pointer(::elemental) prunnable = g_prunnableptrlX11->pop_front();
 
          sl.unlock();
 
@@ -3404,7 +3404,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                      if(pinteraction->layout().design().display() == ::display_iconic)
                      {
 
-                        //file_put_contents_dup("/home/camilo/xxx.txt", "");
+                        //file_put_contents("/home/camilo/xxx.txt", "");
 
                         // 1111111111111111111111111111111111111111111
 
@@ -4464,7 +4464,7 @@ int_bool os_init_windowing()
 
    g_pmutexX11Runnable = new ::mutex();
 
-   g_prunnableptrlX11 = new list < __pointer(::generic) >();
+   g_prunnableptrlX11 = new list < __pointer(::elemental) >();
 
    g_pmutexX11Sync = new ::mutex();
 
@@ -4697,7 +4697,7 @@ Pixmap x11_create_pixmap(::image * pimage)
 HCURSOR imaging::CreateAlphaCursor(oswindow window, const ::image * pimage, int xHotSpot, int yHotSpot)
 {
 
-   return NULL_HCURSOR;
+   return hcursor_null;
 
 }
 
@@ -4891,13 +4891,13 @@ void x11_kick_idle()
 
 
 extern ::mutex * g_pmutexX11Runnable;
-extern list < __pointer(::generic) > * g_prunnableptrlX11;
+extern list < __pointer(::elemental) > * g_prunnableptrlX11;
 extern ::mutex * g_pmutexX11Sync;
 extern manual_reset_event * g_peventX11Sync;
-extern __pointer(::generic) g_prunnableX11Sync;
+extern __pointer(::elemental) g_prunnableX11Sync;
 
 
-void x11_async_runnable(::generic * prunnable)
+void x11_async_runnable(::elemental * prunnable)
 {
 
    {

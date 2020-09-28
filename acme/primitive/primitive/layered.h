@@ -5,7 +5,7 @@
 
 
 class CLASS_DECL_ACME layered :
-   virtual public ::generic
+   virtual public ::elemental
 {
 private:
 

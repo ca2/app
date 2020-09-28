@@ -19,7 +19,7 @@ public:
    typedef typename ARRAY_BASE::const_iterator_range const_iterator_range;
 
 
-   explicit array(::generic * pobjectContext = nullptr, ::count nGrowBy = 0);
+   explicit array(::elemental * pobjectContext = nullptr, ::count nGrowBy = 0);
 
    template < typename ITERATOR >
    array(ITERATOR iterator, ::count count) :

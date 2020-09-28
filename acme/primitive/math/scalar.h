@@ -41,13 +41,13 @@ namespace str
 
 template < typename SCALAR >
 class scalar_source :
-   virtual public generic
+   virtual public elemental
 {
 public:
 
 
    class listener :
-      virtual public generic
+      virtual public elemental
    {
    public:
 

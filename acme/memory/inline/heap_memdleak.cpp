@@ -529,7 +529,7 @@ CLASS_DECL_ACME int  global_memdleak_enabled()
 #define print str+=
 
 class memblock :
-   virtual public ::generic
+   virtual public ::elemental
 {
 public:
 
@@ -726,7 +726,7 @@ void memdleak_dump()
    output_debug_string(sz);
    output_debug_string(" memory leaks.");
 
-   //file_put_contents_dup(::dir::system() / "m.html", get_mem_info_report1());
+   //file_put_contents(::dir::system() / "m.html", get_mem_info_report1());
 }
 
 #undef print

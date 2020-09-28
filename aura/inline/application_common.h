@@ -59,7 +59,7 @@ const char* br_init_get_symbol();
 #endif
 
 
-CLASS_DECL_APEX ::estatus os_application_system_run(::apex::system* psystem);
+CLASS_DECL_AURA ::estatus os_application_system_run(::apex::system* psystem);
 
 CLASS_DECL_APEX ::estatus set_main_app_id(const char * pszAppId);
 

@@ -810,7 +810,7 @@ namespace install
 
          lpnodeType->remove_child(pnode);
 
-         file_put_contents_dup(dir::appdata() / "install.xml", node.get_xml(nullptr));
+         file_put_contents(dir::appdata() / "install.xml", node.get_xml(nullptr));
 
       }
 

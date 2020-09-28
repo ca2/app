@@ -459,7 +459,7 @@ public:
    template < typename TYPE = T, typename OBJECT >
    inline __pointer(T) & create(OBJECT * pobjectContext, bool bCreate);
 
-   inline __pointer(T) & clone(::generic * pobjectContext);
+   inline __pointer(T) & clone(::elemental * pobjectContext);
 
 
 
@@ -485,11 +485,11 @@ public:
 };
 
 
-// It must not free memory directly allocated to generic pointed by 'p'.
+// It must not free memory directly allocated to elemental pointed by 'p'.
 // It is recommended to let final deletion and destruction happens at normal destructor.
 // 'destruct' semantics gives a class the ability to use the scoped guard_pointer
 // to release outer references (from operating system for example) that would prevent
-// the generic to be deleted/destroyed when the generic is released by a conventional pointer.
+// the elemental to be deleted/destroyed when the elemental is released by a conventional pointer.
 //
 template < class T >
 inline void destruct(T * p)
@@ -567,7 +567,7 @@ inline bool __not_found(const __pointer(T) & p) { return p.is_null(); }
 //
 //
 //   template < typename T>
-//   __pointer(T) & defer_new(__pointer(T) & t, ::generic * p)
+//   __pointer(T) & defer_new(__pointer(T) & t, ::elemental * p)
 //   {
 //
 //      if (t.is_null())

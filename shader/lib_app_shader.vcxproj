@@ -1202,6 +1202,9 @@
     <ProjectReference Include="..\apex\apex.vcxproj">
       <Project>{e000ffaf-392f-4e32-bf51-777ca238991f}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\aqua\aqua.vcxproj">
+      <Project>{1b06fe5f-f783-41a1-ac68-0e02880dbbac}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

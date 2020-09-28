@@ -83,7 +83,7 @@ namespace draw2d
 
       HCURSOR hcursor = get_HCURSOR(pinteraction);
 
-      if(hcursor == NULL_HCURSOR)
+      if(hcursor == hcursor_null)
       {
 
          return false;
@@ -222,7 +222,7 @@ namespace draw2d
    HCURSOR cursor::get_HCURSOR(::user::interaction * pinteraction)
    {
 
-      if(m_hcursor == NULL_HCURSOR || m_bDefaultCursor)
+      if(m_hcursor == hcursor_null || m_bDefaultCursor)
       {
 
 //#ifdef LINUX

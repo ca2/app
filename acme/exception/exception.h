@@ -6,7 +6,7 @@ namespace exception
 
 
    class CLASS_DECL_ACME exception :
-      public generic
+      public elemental
    {
    public:
 
@@ -63,21 +63,21 @@ namespace exception
    };
 
 
-   class CLASS_DECL_ACME array:
-      virtual public __pointer_array(exception)
-   {
-   public:
+   //class CLASS_DECL_ACME array:
+   //   virtual public __pointer_array(exception)
+   //{
+   //public:
 
 
-      array() {}
-      array(::exception::exception * pexception) : __pointer_array(exception)({ pexception }) {}
-      array(const std::initializer_list < ::exception::exception * > & list) : __pointer_array(exception)(list) {}
+   //   array() {}
+   //   array(::exception::exception * pexception) : __pointer_array(exception)({ pexception }) {}
+   //   array(const std::initializer_list < ::exception::exception * > & list) : __pointer_array(exception)(list) {}
 
 
-      string get_all_messages();
+      string get_all_messages(const __pointer_array(exception) & a);
 
 
-   };
+   //};
 
 
    using exception_pointer = __pointer(exception);

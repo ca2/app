@@ -19,7 +19,7 @@ CLASS_DECL_ACME mutex * x11_mutex();
 #include "x11_message_box.h"
 
 class x11_hook :
-virtual public ::generic
+virtual public ::elemental
 {
 public:
 

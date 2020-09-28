@@ -50,11 +50,11 @@ class method_template :
 public:
 
 
-   method_template(::generic* p = nullptr) : ::method(m_idObject, p) {}
+   method_template(::elemental* p = nullptr) : ::method(m_idObject, p) {}
    method_template(const ::method& method) : ::method((const ::function_base&) method) { ASSERT(method.m_id == m_idObject); }
    method_template(const ::function_base& function) : ::method(function) { ASSERT(function.m_id == m_idObject); }
    template < typename PRED >
-   method_template(PRED pred, ::generic* pobjectHold = nullptr) : ::method(pred, pobjectHold) { }
+   method_template(PRED pred, ::elemental* pobjectHold = nullptr) : ::method(pred, pobjectHold) { }
 
 
 };

@@ -1,6 +1,6 @@
 
 
-#include "aura/primitive/primitive/generic.h"
+#include "aura/primitive/primitive/elemental.h"
 
 
 @interface mmos : NSObject
@@ -36,9 +36,9 @@
 
 - (void)deferIconForFile:(NSTimer *)timer;
 
--(void)runRunnableOnMainThread:(::generic *)pobjectTask;
+-(void)runRunnableOnMainThread:(::elemental *)pobjectTask;
 
--(void)runRunnable:(::generic *)pobjectTask;
+-(void)runRunnable:(::elemental *)pobjectTask;
 
 -(NSURL *)browse_folder : (NSURL *) directoryURL canCreateDirectories: (bool) bCanCreateDirectories;
 -(NSArray < NSURL * > *)browse_file_open : (NSURL **) startDir multi: (bool) b;

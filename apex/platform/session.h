@@ -24,11 +24,11 @@ namespace apex
       };
 
 
-#if defined _UWP
-
-      ::uwp::directx_application ^                          m_directxapplication;
-
-#endif
+//#if defined _UWP
+//
+//      ::uwp::directx_application ^                          m_directxapplication;
+//
+//#endif
 
 #ifdef WINDOWS_DESKTOP
 
@@ -37,10 +37,13 @@ namespace apex
 
 #endif
 
-      ::aura::session* m_paurasession;
-      ::axis::session* m_paxissession;
-      ::base::session* m_pbasesession;
-      ::core::session* m_pcoresession;
+
+      ::aqua::session *       m_paquasession;
+      ::aura::session *       m_paurasession;
+      ::axis::session *       m_paxissession;
+      ::base::session *       m_pbasesession;
+      ::bred::session *       m_pbredsession;
+      ::core::session *       m_pcoresession;
 
       // For Mobile systems it is particularly meaningful...
       // ... is is the "Main Window" (sometimes just a concept) holding the App.

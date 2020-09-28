@@ -1442,11 +1442,11 @@ namespace user
       virtual e_stock_icon get_stock_icon();
 
 
-      virtual void post_task(::generic * pobjectTask);
-      virtual void prodevian_schedule(::generic* pobjectTask);
+      virtual void post_task(::elemental * pobjectTask);
+      virtual void prodevian_schedule(::elemental* pobjectTask);
 
 
-      virtual void send_task(::generic * pobjectTask, ::duration durationTimeout = ::duration::infinite());
+      virtual void send_task(::elemental * pobjectTask, ::duration durationTimeout = ::duration::infinite());
 
 
       template < typename PRED >

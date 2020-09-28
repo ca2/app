@@ -12,7 +12,7 @@ namespace file
 
 
    item::item(const item & item) :
-      generic(item),
+      elemental(item),
       m_filepathUser(item.m_filepathUser),
       m_filepathFinal(item.m_filepathFinal),
       m_flags(item.m_flags),

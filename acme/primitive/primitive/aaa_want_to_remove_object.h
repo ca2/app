@@ -1,8 +1,8 @@
 #pragma once
 
 
-class CLASS_DECL_ACME generic :
-   virtual public generic
+class CLASS_DECL_ACME elemental :
+   virtual public elemental
 {
 public:
 
@@ -13,8 +13,8 @@ public:
    ::i64                               m_countTasksPending;
 
 
-   generic();
-   virtual ~generic();
+   elemental();
+   virtual ~elemental();
 
 
    virtual class sync * get_mutex() const override;
@@ -26,7 +26,7 @@ public:
    virtual void delete_this() override;
 
 
-   virtual __pointer(::generic) clone() const;
+   virtual __pointer(::elemental) clone() const;
 
 
    virtual void destruct();
@@ -48,13 +48,13 @@ public:
    virtual bool process_exception(::exception_pointer e);
 
 
-   void copy_this(const generic & o);
+   void copy_this(const elemental & o);
 
 
    virtual bool is_thread() const;
    virtual string get_tag() const;
-   virtual __pointer(::generic) child_running(const char * pszTag) const;
-   virtual bool child_running(::generic * pobject) const;
+   virtual __pointer(::elemental) child_running(const char * pszTag) const;
+   virtual bool child_running(::elemental * pobject) const;
    virtual void child_post_quit(const char * pszTag);
    virtual void child_post_quit_and_wait(const char * pszTag, const duration & duration);
    virtual bool thread_get_run();
@@ -88,18 +88,18 @@ public:
    virtual ::estatus     do_request(::create * pcreate);
 
 
-   virtual void children_add(::generic * pobjectChild);
+   virtual void children_add(::elemental * pobjectChild);
    virtual void children_post_quit();
    virtual void children_wait_quit(duration duration);
-   virtual void children_release(::generic * pobjectChild);
+   virtual void children_release(::elemental * pobjectChild);
 
-   virtual bool children_is(::generic * pobjectDescendantCandidate) const;
+   virtual bool children_is(::elemental * pobjectDescendantCandidate) const;
 
 
    virtual void children_post_quit_and_wait(duration durationTimeout);
 
 
-   // after releasing a parent, the child shouldn't generic it
+   // after releasing a parent, the child shouldn't elemental it
    virtual void release_parents();
    virtual void release_children();
 
@@ -118,8 +118,8 @@ public:
    virtual string __get_text(string str);
 
    
-   using generic::get_image;
-   using generic::matter_image;
+   using elemental::get_image;
+   using elemental::matter_image;
 
    
    template < typename PRED >
@@ -147,7 +147,7 @@ public:
 
    void start();
 
-   //virtual __pointer(::generic) alloc(const class ::type & type);
+   //virtual __pointer(::elemental) alloc(const class ::type & type);
 
    //template < typename T >
    //inline __pointer(T) & alloc(__pointer(T) & point)
@@ -379,20 +379,20 @@ inline i64 ref_count(c_derived * pca)
 }
 
 
-CLASS_DECL_ACME void call(::generic * prunnable);
+CLASS_DECL_ACME void call(::elemental * prunnable);
 
 
-//CLASS_DECL_ACME inline __pointer(::generic) alloc(const ::type & type, ::generic * pobject);
-
-
-
+//CLASS_DECL_ACME inline __pointer(::elemental) alloc(const ::type & type, ::elemental * pobject);
 
 
 
 
 
 
-using runnable_pointer = __pointer(::generic);
+
+
+
+using runnable_pointer = __pointer(::elemental);
 
 
 

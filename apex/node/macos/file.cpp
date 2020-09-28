@@ -509,7 +509,7 @@ namespace macos
    {
       
       "none",
-      "generic",
+      "elemental",
       "fileNotFound",
       "badPath",
       "tooManyOpenFiles",

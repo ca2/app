@@ -387,7 +387,7 @@ extern CLASS_DECL_APEX int g_bApex;
 //#include "apex/multimedia/_c.h"
 
 
-//class generic;
+//class elemental;
 //
 //
 //template < typename T >
@@ -414,22 +414,22 @@ extern CLASS_DECL_APEX int g_bApex;
 
 
 
-CLASS_DECL_APEX ::generic * general_trace_object();
+CLASS_DECL_APEX ::elemental * general_trace_object();
 
 CLASS_DECL_APEX int_bool c_enable_trace_category(e_trace_category ecategory, int_bool iEnable);
 
-inline ::generic * context_trace_object() { return general_trace_object(); }
+inline ::elemental * context_trace_object() { return general_trace_object(); }
 
 
-CLASS_DECL_APEX void __tracea(::generic * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
-CLASS_DECL_APEX void __tracef(::generic * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, ...);
-CLASS_DECL_APEX void __tracev(::generic * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, va_list vargs);
+CLASS_DECL_APEX void __tracea(::elemental * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
+CLASS_DECL_APEX void __tracef(::elemental * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, ...);
+CLASS_DECL_APEX void __tracev(::elemental * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, va_list vargs);
 //CLASS_DECL_APEX const char * trace_category_name(e_trace_category ecategory);
 
 
-//CLASS_DECL_APEX ::generic * trace_object(e_trace_category ecategory);
+//CLASS_DECL_APEX ::elemental * trace_object(e_trace_category ecategory);
 
-//CLASS_DECL_APEX const char * topic_text(::generic * pcontextobject);
+//CLASS_DECL_APEX const char * topic_text(::elemental * pcontextobject);
 
 
 
@@ -443,6 +443,18 @@ CLASS_DECL_APEX void __tracev(::generic * pobject, e_trace_level elevel, const c
 #define FATAL(...) __alog(trace_object(ALOG_CONTEXT), trace_level_fatal, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
 
 #define TRACE(...) INFO(__VA_ARGS__)
+
+
+namespace aqua
+{
+
+
+   class application;
+   class session;
+   class system;
+
+
+} // namespace aqua
 
 
 namespace aura
@@ -481,6 +493,18 @@ namespace base
 
 } // namespace base
 
+
+namespace bred
+{
+
+
+   class application;
+   class session;
+   class system;
+   class user;
+
+
+} // namespace bred
 
 namespace core
 {
@@ -2422,7 +2446,7 @@ namespace primitive
 
 
 
-//#include "apex/primitive/primitive/generic.h"
+//#include "apex/primitive/primitive/elemental.h"
 //#include "apex/primitive/primitive/task.h"
 //#include "apex/primitive/primitive/compare_pred.h"
 
@@ -2518,20 +2542,20 @@ typedef ::estatus THREAD_PROCEDURE(thread_parameter parameter);
 class sticker;
 
 
-//inline ::generic * trace_object(::generic * pobjectContext) { return pobjectContext; }
+//inline ::elemental * trace_object(::elemental * pobjectContext) { return pobjectContext; }
 
 template < typename POINTER_TYPE >
 class ptr_array;
 
-//using composite_ptra = __pointer_array(::generic); // Please use just for composition (ownership).
+//using composite_ptra = __pointer_array(::elemental); // Please use just for composition (ownership).
 
-//using reference_ptra = __pointer_array(::generic); // Please use just for reference (member-based).
+//using reference_ptra = __pointer_array(::elemental); // Please use just for reference (member-based).
 
 //using object_ptra = __pointer_array(::context_object); // Please use just for keeping non-member-based references.
 
-using object_ptra = __pointer_array(::generic); // Please use just for keeping non-member-based references.
+using object_ptra = __pointer_array(::elemental); // Please use just for keeping non-member-based references.
 
-using object_addra = __address_array(::generic); // Please use just for keeping non-member-based references.
+using object_addra = __address_array(::elemental); // Please use just for keeping non-member-based references.
 
 class object_meta;
 
@@ -2546,9 +2570,9 @@ namespace http
 
 } // namespace http
 
-//template < typename PRED > inline auto __task_procedure(PRED pred, ::generic * pobjectHold = nullptr);
+//template < typename PRED > inline auto __task_procedure(PRED pred, ::elemental * pobjectHold = nullptr);
 
-//template < typename PRED > inline auto __task_callback(PRED pred, ::generic* pobjectHold = nullptr);
+//template < typename PRED > inline auto __task_callback(PRED pred, ::elemental* pobjectHold = nullptr);
 
 class context;
 
@@ -2569,7 +2593,7 @@ namespace draw2d
 
 //class create_thread;
 
-using generic_pointer = __pointer(::generic);
+using generic_pointer = __pointer(::elemental);
 
 
 //#ifdef WINDOWS_DESKTOP
@@ -2821,14 +2845,14 @@ namespace apex
 #if defined _UWP
 
 
-namespace uwp
-{
-
-
-   ref class directx_application;
-
-
-} // namespace uwp
+//namespace uwp
+//{
+//
+//
+//   ref class directx_application;
+//
+//
+//} // namespace uwp
 
 
 #endif

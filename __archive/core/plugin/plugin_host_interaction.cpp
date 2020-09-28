@@ -13,8 +13,8 @@ namespace plugin
 {
 
 
-   host_interaction::host_interaction(::generic * pobject) :
-      ::generic(pobject)
+   host_interaction::host_interaction(::elemental * pobject) :
+      ::elemental(pobject)
    {
 
       m_pframe = nullptr;

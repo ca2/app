@@ -22,7 +22,7 @@ namespace experience
       }
 
 
-      ::generic * library::new_object(::layered * pobjectContext,const char * lpszClass)
+      ::elemental * library::new_object(::layered * pobjectContext,const char * lpszClass)
       {
 
          if(string(lpszClass) == "experience")

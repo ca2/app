@@ -1,7 +1,21 @@
 ﻿#include "framework.h"
 
 
-extern bool g_bCoreWindowOnceVisible;
+bool g_bCoreWindowOnceVisible;
+
+void set_core_window_once_visible()
+{
+
+   g_bCoreWindowOnceVisible = true;
+
+}
+
+bool is_core_window_once_visible()
+{
+
+   return g_bCoreWindowOnceVisible;
+
+}
 
 #undef new
 
@@ -17,13 +31,13 @@ ref class message_box_w
 internal:
 
 
-   ::callback     m_callback;
+   ::future     m_future;
 
 
    message_box_w();
 
 
-   ::estatus show(String ^ text, String ^ caption, ::emessagebox emessagebox, ::callback callback);
+   ::estatus show(String ^ text, String ^ caption, ::emessagebox emessagebox, ::future future);
 
 
    void CommandInvokedHandler(IUICommand^ cmd)
@@ -32,7 +46,7 @@ internal:
       if (cmd == nullptr)
       {
 
-         m_callback.receive_response(::error_failed);
+         m_future.send(::error_failed);
 
       }
       else
@@ -42,7 +56,7 @@ internal:
 
          string str(wstr);
 
-         m_callback.receive_response(str);
+         m_future.send(str);
 
       }
 
@@ -66,7 +80,7 @@ message_box_w::message_box_w()
    msg->Commands->Append(ref new UICommand(text,ref new UICommandInvokedHandler(this, &::message_box_w::CommandInvokedHandler),id));
 
 
-::estatus message_box_w::show(String ^ text,String ^ caption, ::emessagebox emessagebox, ::callback callback)
+::estatus message_box_w::show(String ^ text,String ^ caption, ::emessagebox emessagebox, ::future future)
 {
 
    if (!g_bCoreWindowOnceVisible)
@@ -138,14 +152,14 @@ message_box_w::message_box_w()
 }
 
 
-::estatus os_message_box(oswindow oswindow, const char * pszText, const char * pszCaption, emessagebox emessagebox, ::callback callback)
+::estatus os_message_box(oswindow oswindow, const char * pszText, const char * pszCaption, emessagebox emessagebox, ::future future)
 {
 
    UNREFERENCED_PARAMETER(oswindow);
 
    message_box_w a;
 
-   int iResult = a.show(wstring(pszText),wstring(pszCaption), emessagebox, callback);
+   int iResult = a.show(wstring(pszText),wstring(pszCaption), emessagebox, future);
 
    return iResult;
 

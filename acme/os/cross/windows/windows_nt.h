@@ -2593,12 +2593,12 @@ extern struct _TEB * WINAPI NtCurrentTeb(void);
 //    DWORD ne_csip;              /* 14 Initial CS:IP */
 //    DWORD ne_sssp;              /* 18 Initial SS:SP */
 //    WORD  ne_cseg;              /* 1c # of entries in segment table */
-//    WORD  ne_cmod;              /* 1e # of entries in module generic tab. */
+//    WORD  ne_cmod;              /* 1e # of entries in module elemental tab. */
 //    WORD  ne_cbnrestab;         /* 20 Length of nonresident-name table     */
 //    WORD  ne_segtab;            /* 22 Offset to segment table */
 //    WORD  ne_rsrctab;           /* 24 Offset to resource table */
 //    WORD  ne_restab;            /* 26 Offset to resident-name table */
-//    WORD  ne_modtab;            /* 28 Offset to module generic table */
+//    WORD  ne_modtab;            /* 28 Offset to module elemental table */
 //    WORD  ne_imptab;            /* 2a Offset to imported name table */
 //    DWORD ne_nrestab;           /* 2c Offset to nonresident-name table */
 //    WORD  ne_cmovent;           /* 30 # of movable entry points */
@@ -3297,7 +3297,7 @@ typedef struct _IMAGE_BASE_RELOCATION
 
 #define IMAGE_SIZEOF_RELOCATION 10
 
-/* generic relocation types */
+/* elemental relocation types */
 #define IMAGE_REL_BASED_ABSOLUTE 		0
 #define IMAGE_REL_BASED_HIGH			1
 #define IMAGE_REL_BASED_LOW			2

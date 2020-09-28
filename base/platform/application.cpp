@@ -5431,7 +5431,7 @@ namespace base
 //
 //         dir::mk(dir::name(utf8(wstr.c_str())).c_str());
 //
-//         file_put_contents_dup(utf8(wstr.c_str()).c_str(), "");
+//         file_put_contents(utf8(wstr.c_str()).c_str(), "");
 //
 //         iRetry--;
 //
@@ -8304,7 +8304,7 @@ namespace base
 //      }
 //
 //      // handle all the rest
-//      //linux UINT nIDP = __IDP_INTERNAL_FAILURE;   // generic message string
+//      //linux UINT nIDP = __IDP_INTERNAL_FAILURE;   // elemental message string
 //      const char* nIDP = "Internal Failure";
 //      pbase->m_lresult = 0;        // sensible default
 //      if (pbase->m_id == WM_COMMAND)

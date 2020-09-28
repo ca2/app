@@ -1351,9 +1351,9 @@ namespace dynamic_source
 
       pathEnvTxt = dir::system() / "env.txt";
 
-      file_put_contents_dup(::dir::system() / "env1.bat", ::dir::system() / "env.bat > \"" + pathEnvTxt + "\"");
+      file_put_contents(::dir::system() / "env1.bat", ::dir::system() / "env.bat > \"" + pathEnvTxt + "\"");
 
-      file_put_contents_dup(::dir::system() / "env.bat", "@call " + strBuildCmd + "\r\n@set");
+      file_put_contents(::dir::system() / "env.bat", "@call " + strBuildCmd + "\r\n@set");
 
       RunSilent(::dir::system() / "env1.bat", "");
 
@@ -1437,7 +1437,7 @@ namespace dynamic_source
 //   ::process::process_pointer process(e_create);
 //
 //
-//   file_put_contents_dup(::dir::system() / "env.bat","@call " + strBuildCmd + " "+m_strVCVersion+"\r\n@set");
+//   file_put_contents(::dir::system() / "env.bat","@call " + strBuildCmd + " "+m_strVCVersion+"\r\n@set");
 //
 //   set_thread_priority(::priority_highest);
 //   process->prop("inherit") = false;

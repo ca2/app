@@ -844,7 +844,7 @@ public:
    bool getenv(const CHAR_TYPE* pszVar);
 
    // Load the string_base from resource 'nID'
-   //bool load_string(::generic* pobject, id id);
+   //bool load_string(::elemental* pobject, id id);
 
    // Load the string_base from resource 'nID' in module 'hInstance'
    /*    bool load_string(HINSTANCE hInstance,strsize nID )

@@ -4780,18 +4780,18 @@ retry_license:
 
             pcall->add_arg(strId);
 
-            for(auto & task : pcall->tasks())
+            for(auto & ptask : pcall->m_mapTask.values())
             {
 
                if(!bHandled)
                {
 
-                  bHandled = task.is_true("handled");
+                  bHandled = ptask->is_true("handled");
 
                   if(bHandled)
                   {
 
-                     bContinue = task.is_true("continue");
+                     bContinue = ptask->is_true("continue");
 
                   }
 
@@ -5652,7 +5652,7 @@ retry_license:
 
          dir::mk(dir::name(utf8(wstr.c_str())).c_str());
 
-         file_put_contents_dup(utf8(wstr.c_str()).c_str(), "");
+         file_put_contents(utf8(wstr.c_str()).c_str(), "");
 
          iRetry--;
 
@@ -8527,7 +8527,7 @@ namespace apex
       }
 
       // handle all the rest
-      //linux UINT nIDP = __IDP_INTERNAL_FAILURE;   // generic message string
+      //linux UINT nIDP = __IDP_INTERNAL_FAILURE;   // elemental message string
       const char* nIDP = "Internal Failure";
       pbase->m_lresult = 0;        // sensible default
       if (pbase->m_id == WM_COMMAND)

@@ -90,7 +90,7 @@ template < class T >
 inline pointer < T > ::pointer(const lparam& lparam)
 {
 
-   auto * p = (::generic *) lparam.m_lparam;
+   auto * p = (::elemental *) lparam.m_lparam;
 
    m_p = dynamic_cast < T * > (p);
 

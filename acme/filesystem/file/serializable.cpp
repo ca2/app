@@ -5,26 +5,26 @@ namespace file
 {
 
 
-   //generic::generic()
+   //elemental::elemental()
    //{
 
    //}
 
-   //void generic::write(ostream & ostream)
+   //void elemental::write(ostream & ostream)
    //{
 
-   //   ((const generic *) this)->write(ostream);
+   //   ((const elemental *) this)->write(ostream);
 
    //}
 
-   //void generic::write(ostream & ostream) const
+   //void elemental::write(ostream & ostream) const
    //{
    //
-   //   ((generic *) this)->write(ostream);
+   //   ((elemental *) this)->write(ostream);
 
    //}
 
-   //void generic::read(istream & istream)
+   //void elemental::read(istream & istream)
    //{
 
    //}
@@ -42,7 +42,7 @@ namespace file
 
 
 
-// CLASS_DECL_ACME bool file_put(const char * path, ::generic & s, ::acme::application * papp)
+// CLASS_DECL_ACME bool file_put(const char * path, ::elemental & s, ::acme::application * papp)
 // {
 
 //    try
@@ -89,7 +89,7 @@ namespace file
 // }
 
 
-// CLASS_DECL_ACME bool file_as(::generic & s, const char * path, ::acme::application * papp)
+// CLASS_DECL_ACME bool file_as(::elemental & s, const char * path, ::acme::application * papp)
 // {
 
 //    try

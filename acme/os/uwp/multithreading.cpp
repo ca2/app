@@ -6,7 +6,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 #include "framework.h"
 #include "_.h"
-#include "acme/platform/mq.h"
+#include "acme/multithreading/mq.h"
 
 
 #undef System
@@ -88,73 +88,71 @@ void _on_aura_thread_detach()
 }
 
 
+//bool on_init_thread()
+//{
+//
+//   if(!__os_init_thread())
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   return true;
+//
+//}
+//
+//
+//bool on_term_thread()
+//{
+//
+//   bool bOk1 = __os_term_thread();
+//
+//   return bOk1;
+//
+//}
 
 
-bool on_init_thread()
-{
-
-   if(!__os_init_thread())
-   {
-
-      return false;
-
-   }
-
-   return true;
-
-}
-
-
-bool on_term_thread()
-{
-
-   bool bOk1 = __os_term_thread();
-
-   return bOk1;
-
-}
-
-
-void __node_init_multithreading()
-{
-
-   __node_init_cross_windows_threading();
-
-}
-
-
-void __node_term_multithreading()
-{
-
-   __node_term_cross_windows_threading();
-
-}
+//void __node_init_multithreading()
+//{
+//
+//   __node_init_cross_windows_threading();
+//
+//}
+//
+//
+//void __node_term_multithreading()
+//{
+//
+//   __node_term_cross_windows_threading();
+//
+//}
 
 //thread_int_ptr < HRESULT > thread_set("hresult_co_initialize");
 
-bool __os_init_thread()
-{
-
-   return true;
-
-}
-
-
-bool __os_term_thread()
-{
-
-   //thread_shutdown();
-
-   if(SUCCEEDED(thread_value("hresult_co_initialize").i64()))
-   {
-
-      CoUninitialize();
-
-   }
-
-   return true;
-
-}
+//bool __os_init_thread()
+//{
+//
+//   return true;
+//
+//}
+//
+//
+//bool __os_term_thread()
+//{
+//
+//   //thread_shutdown();
+//
+//   if(SUCCEEDED(thread_value("hresult_co_initialize").i64()))
+//   {
+//
+//      CoUninitialize();
+//
+//   }
+//
+//   return true;
+//
+//}
 
 #pragma warning (disable : 4273)
 

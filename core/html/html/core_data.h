@@ -205,8 +205,8 @@ namespace html
 
       ::html_form *                 m_pform;
       bool                          m_bEdit;
-      elemental* m_pElementalSelStart;
-      elemental* m_pElementalSelEnd;
+      ::html::elemental * m_pElementalSelStart;
+      ::html::elemental* m_pElementalSelEnd;
 
       bool                          m_bHasChar;
 
@@ -273,12 +273,12 @@ namespace html
       virtual bool on_create_interaction(__pointer(::user::interaction) pinteraction) override;
 
 
-      font* get_font(elemental* pelemental);
+      font* get_font(::html::elemental* pelemental);
 
 
 
 
-      i32 create_font(elemental* pelemental);
+      i32 create_font(::html::elemental* pelemental);
 
       virtual void update(::update * pupdate) override;
 

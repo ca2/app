@@ -51,6 +51,9 @@
     <ClInclude Include="image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CustomRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -103,9 +106,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="draw2d_direct2d.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="w_draw2d_direct2d.def">
       <Filter>Source Files</Filter>
     </None>

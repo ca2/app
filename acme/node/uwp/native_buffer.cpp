@@ -306,7 +306,7 @@ namespace uwp
       if ((efileopen & ::file::defer_create_directory) && (efileopen & ::file::mode_write))
       {
 
-         Context.dir().mk(path.folder());
+         ::dir::mk(path.folder());
 
       }
 

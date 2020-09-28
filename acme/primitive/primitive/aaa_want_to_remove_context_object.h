@@ -1,32 +1,32 @@
 #pragma once
 
 
-inline ::generic * trace_object(::generic * pobjectContext) { return pobjectContext; }
+inline ::elemental * trace_object(::elemental * pobjectContext) { return pobjectContext; }
 
 
 using eobject = cflag < ::e_object >;
 
 
-struct CLASS_DECL_ACME generic :
-   virtual public generic
+struct CLASS_DECL_ACME elemental :
+   virtual public elemental
 {
 
 
    mutable __pointer(sync)                mutex();
    ::sticker *                            m_psticker;
-   ::generic *                             get_object(); // Context Object
+   ::elemental *                             get_object(); // Context Object
    ::acme::application *                  get_context_application(); // Context Application
    ::eobject                              m_eobject;
    //::id                                   m_id;
-   __pointer(__pointer_array(::generic))     m_preferencea;
+   __pointer(__pointer_array(::elemental))     m_preferencea;
 
 
-   generic() : get_object()(nullptr), get_context_application()(nullptr), m_psticker(nullptr) { }
-   generic(::generic * pobjectContext);
-   virtual ~generic() { }
+   elemental() : get_object()(nullptr), get_context_application()(nullptr), m_psticker(nullptr) { }
+   elemental(::elemental * pobjectContext);
+   virtual ~elemental() { }
 
 
-   virtual ::estatus     initialize(::generic * pobjectContext) override;
+   virtual ::estatus     initialize(::elemental * pobjectContext) override;
    virtual ::estatus     finalize() override;
 
 
@@ -38,9 +38,9 @@ struct CLASS_DECL_ACME generic :
 
    ::acme::application * get_context_application() const { return get_context_application(); }
 
-   ::generic * get_context_object() const { return get_object(); }
+   ::elemental * get_context_object() const { return get_object(); }
 
-   inline void set_context_object(::generic * pobjectContext)
+   inline void set_context_object(::elemental * pobjectContext)
    {
 
       get_object() = pobjectContext;
@@ -50,7 +50,7 @@ struct CLASS_DECL_ACME generic :
    }
 
 
-   inline void defer_set_context_object(::generic * pobjectContext)
+   inline void defer_set_context_object(::elemental * pobjectContext)
    {
 
       if (::is_null(get_object()) && ::is_set(pobjectContext))
@@ -85,7 +85,7 @@ struct CLASS_DECL_ACME generic :
 
 
 
-   inline ::generic * context_trace_object() const { return (::generic *)this; }
+   inline ::elemental * context_trace_object() const { return (::elemental *)this; }
 
 
 
@@ -98,18 +98,18 @@ struct CLASS_DECL_ACME generic :
    //inline void __throw(::exception::exception * pe) const;
 
 
-   virtual void __tracea(generic * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
-   virtual void __tracef(generic * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...);
-   virtual void __tracev(generic * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
+   virtual void __tracea(elemental * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
+   virtual void __tracef(elemental * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...);
+   virtual void __tracev(elemental * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
 
 
-   virtual e_trace_category trace_category(generic * pcontext);
+   virtual e_trace_category trace_category(elemental * pcontext);
    virtual e_trace_category trace_category();
 
 
 
 
-   virtual __pointer(::generic) clone() const;
+   virtual __pointer(::elemental) clone() const;
 
 
    virtual sync * get_mutex() const;
@@ -150,7 +150,7 @@ struct CLASS_DECL_ACME generic :
 
    virtual void dev_log(string str) const;
 
-   ::generic & operator = (const var & var);
+   ::elemental & operator = (const var & var);
 
 
 
@@ -181,7 +181,7 @@ struct CLASS_DECL_ACME generic :
    static u32 s_thread_proc(void * p)
    {
 
-      __pointer(generic) pdata(p);
+      __pointer(elemental) pdata(p);
 
       return pdata->thread_proc();
 
@@ -283,7 +283,7 @@ struct CLASS_DECL_ACME generic :
    //template < typename TYPE >
    //inline ::estatus     destroy(TYPE * & p);
 
-   using generic::release;
+   using elemental::release;
 
    template < typename TYPE >
    inline ::estatus     release(__composite(TYPE) & p);

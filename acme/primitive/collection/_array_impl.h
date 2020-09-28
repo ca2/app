@@ -364,8 +364,8 @@ inline array < TYPE, ARG_TYPE, ALLOCATOR >  & array < TYPE, ARG_TYPE, ALLOCATOR 
 // out-of-line functions
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-array < TYPE, ARG_TYPE, ALLOCATOR > ::array(::generic * pobjectContext, ::count nGrowBy) //:
-   //::generic(pobject)
+array < TYPE, ARG_TYPE, ALLOCATOR > ::array(::elemental * pobjectContext, ::count nGrowBy) //:
+   //::elemental(pobject)
 {
 //   this->m_nGrowBy = max(0, nGrowBy);
 //   this->m_pData = nullptr;
@@ -375,7 +375,7 @@ array < TYPE, ARG_TYPE, ALLOCATOR > ::array(::generic * pobjectContext, ::count 
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 array < TYPE, ARG_TYPE, ALLOCATOR > ::array(const array & a) //:
-//   generic(a)
+//   elemental(a)
 {
 
    operator = (a);

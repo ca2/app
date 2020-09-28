@@ -6,7 +6,7 @@ namespace aura
 
 
    class CLASS_DECL_AURA application :
-      virtual public ::apex::application,
+      virtual public ::aqua::application,
       virtual public ::user::callback,
       virtual public ::filemanager::callback
    {

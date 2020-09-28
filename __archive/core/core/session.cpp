@@ -48,7 +48,7 @@ namespace acme
    }
 
 
-   ::estatus session::initialize(::generic * pobjectContext)
+   ::estatus session::initialize(::elemental * pobjectContext)
    {
 
       auto estatus = ::acme::session::initialize(pobjectContext);
@@ -1317,7 +1317,7 @@ namespace acme
     //}
 
 
-    //::estatus session::initialize(::generic* pobjectContext)
+    //::estatus session::initialize(::elemental* pobjectContext)
     //{
 
     //   auto estatus = ::acme::session::initialize(pobjectContext);

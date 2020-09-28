@@ -1,7 +1,7 @@
 //  Created by Camilo Sasuke Tsumanuma on 05/01/18.
 #pragma once
 
-//CLASS_DECL_AURA string get_command_line_dup();
+//CLASS_DECL_AURA string get_command_line();
 
 
 #include "cross/_.h"
@@ -52,6 +52,12 @@
 #error "The operating system wasn't expected."
 
 #endif
+
+
+CLASS_DECL_AURA iptr get_window_long_ptr(oswindow oswindow, int iIndex);
+CLASS_DECL_AURA iptr set_window_long_ptr(oswindow oswindow, int iIndex, iptr i);
+
+
 
 //template < typename PRED >
 //inline bool pred_Sleep(int iTime, PRED pred);

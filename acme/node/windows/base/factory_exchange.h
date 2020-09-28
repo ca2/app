@@ -10,7 +10,7 @@ namespace base
 
 
       class CLASS_DECL_BASE factory_exchange:
-         virtual public ::generic
+         virtual public ::elemental
       {
       public:
 

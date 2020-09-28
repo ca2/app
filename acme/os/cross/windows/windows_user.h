@@ -15,9 +15,9 @@
 
 //#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 
-CLASS_DECL_ACME WINBOOL destroy_window(oswindow window);
+//CLASS_DECL_ACME WINBOOL destroy_window(oswindow window);
 
-CLASS_DECL_ACME WINBOOL GetCursorPos(LPPOINT lppointCursor);
+//CLASS_DECL_ACME WINBOOL GetCursorPos(LPPOINT lppointCursor);
 
 //CLASS_DECL_ACME int_bool PostMessage(oswindow oswindow, UINT Msg, WPARAM wParam, LPARAM lParam);
 
@@ -960,14 +960,6 @@ typedef struct _hmenu
 
 
 struct visual_cursor;
-
-#ifdef LINUX
-typedef unsigned long HCURSOR;
-#define NULL_HCURSOR ((HCURSOR) 0)
-#else
-typedef void * HCURSOR;
-#define NULL_HCURSOR ((HCURSOR) nullptr)
-#endif
 
 typedef void * HDROP;
 

@@ -316,7 +316,7 @@ namespace linux
 
       strScript += "\n"; */
 
-      //file_put_contents_dup(pathLaunch, strScript);
+      //file_put_contents(pathLaunch, strScript);
 
       strScript = "#!/bin/bash\n";
 
@@ -333,7 +333,7 @@ namespace linux
 
       strScript += "\n";
 
-      file_put_contents_dup(pathUserBin, strScript);
+      file_put_contents(pathUserBin, strScript);
 
       //chmod(pathLaunch, 0755);
       chmod(pathUserBin, 0600);

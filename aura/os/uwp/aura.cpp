@@ -195,344 +195,344 @@ ulong_ptr                        g_gdiplusHookToken         = nullptr;
 
 
 
-int_bool main_initialize()
-{
-
-   //Sleep(15 * 1000);
-
-   /*   g_pgdiplusStartupInput     = new Gdiplus::GdiplusStartupInput();
-      g_pgdiplusStartupOutput    = new Gdiplus::GdiplusStartupOutput();
-      g_gdiplusToken             = nullptr;
-      g_gdiplusHookToken         = nullptr;
-
-      //MessageBox(nullptr, "Gdiplus Failed to Startup. ca2 cannot continue.", "Gdiplus Failure", MB_ICONERROR);
-
-      g_pgdiplusStartupInput->SuppressBackgroundThread = TRUE;
-
-      // Initialize GDI+.
-      Gdiplus::Status statusStartup = GdiplusStartup(&g_gdiplusToken, g_pgdiplusStartupInput, g_pgdiplusStartupOutput);
-
-      if(statusStartup != Gdiplus::Ok)
-      {
-
-         MessageBox(nullptr, "Gdiplus Failed to Startup. ca2 cannot continue.", "Gdiplus Failure", MB_ICONERROR);
-
-         return FALSE;
-
-      }
-
-      statusStartup = g_pgdiplusStartupOutput->NotificationHook(&g_gdiplusHookToken);
-
-
-      if(statusStartup != Gdiplus::Ok)
-      {
-
-         MessageBox(nullptr, "Gdiplus Failed to Hook. ca2 cannot continue.", "Gdiplus Failure", MB_ICONERROR);
-
-         return FALSE;
-
-      }
-      */
-
-   //t_phthread = new hthread();
-
-   //t_phthread->m_bRun = true;
-
-   //currentThread = new hthread();
-
-
-   return TRUE;
-
-}
-
-
-int_bool main_finalize()
-{
-
-
-   return TRUE;
-
-}
-
-
-
-string normalize_path(const char * lpcszPath)
-{
-
-   if(lpcszPath == nullptr)
-      return "";
-
-   if(*lpcszPath == '\0')
-      return "";
-
-   string path = lpcszPath;
-
-   string oldpath;
-
-   while(oldpath != path)
-   {
-
-      oldpath = path;
-
-      path.replace("\\\\", "\\");
-
-   }
-
-   oldpath = "";
-
-   while(oldpath != path)
-   {
-
-      oldpath = path;
-
-      path.replace("...", "..");
-
-   }
-
-   iptr iFind;
-
-   while((iFind = path.find("..")) >= 0)
-   {
-
-      if(iFind <= 0)
-      {
-         path = path.substr(2);
-      }
-      else
-      {
-         iptr iFind2 = path.reverse_find('\\', iFind);
-         if(iFind2 < 0)
-         {
-            path = path.substr(0, iFind) + path.substr(iFind + 2);
-         }
-         else if(iFind2 == 0)
-         {
-            path = path.substr(3);
-         }
-         else
-         {
-            iptr iFind3 = path.reverse_find('\\', iFind2 - 1);
-            if(iFind3 <= 0)
-            {
-               path = path.substr(iFind + 2);
-            }
-            else
-            {
-               path = path.substr(0, iFind3) + path.substr(iFind + 2);
-            }
-         }
-      }
-   }
-
-   return path;
-
-}
-
-
-
-string key_to_char(WPARAM wparam, LPARAM lparam)
-{
-   __throw(::exception::exception("todo"));
-}
-
-
-
-
-string get_system_error_message(u32 dwError)
-{
-   wstring wstr;
-   unichar * p = wstr.get_string_buffer(64 * 1024 / sizeof(unichar));
-   DWORD dw = FormatMessageW(
-              FORMAT_MESSAGE_FROM_SYSTEM,
-              nullptr,
-              dwError,
-              0,
-              p,
-              wstr.get_length() / sizeof(unichar),
-              nullptr);
-   p[dw] = L'\0';
-   wstr.release_string_buffer();
-   string str(wstr);
-   return str;
-}
-
-
-
-
-
-//void output_debug_string(const char * psz)
+//int_bool main_initialize()
 //{
 //
-//   ::output_debug_string(wstring(psz));
+//   //Sleep(15 * 1000);
 //
-//}
-
-
-//DWORD WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ DWORD dwMilliseconds )
-//{
+//   /*   g_pgdiplusStartupInput     = new Gdiplus::GdiplusStartupInput();
+//      g_pgdiplusStartupOutput    = new Gdiplus::GdiplusStartupOutput();
+//      g_gdiplusToken             = nullptr;
+//      g_gdiplusHookToken         = nullptr;
 //
-//   return ::WaitForSingleObjectEx(hHandle, dwMilliseconds, FALSE);
+//      //MessageBox(nullptr, "Gdiplus Failed to Startup. ca2 cannot continue.", "Gdiplus Failure", MB_ICONERROR);
 //
-//}
-
-
-
-//CLASS_DECL_AURA
-//HANDLE
-//WINAPI
-//CreateMutex(
-//    _In_opt_ LPSECURITY_ATTRIBUTES lpMutexAttributes,
-//    _In_ BOOL bInitialOwner,
-//    _In_opt_ LPCSTR lpName
-//    )
-//{
-//   return CreateMutexW(lpMutexAttributes, bInitialOwner, wstring(lpName));
-//}
-
-//CLASS_DECL_AURA char* getenv (const char* name)
-//{
-//   return "";
-//}
+//      g_pgdiplusStartupInput->SuppressBackgroundThread = TRUE;
 //
-
-//CLASS_DECL_AURA
-//_Ret_maybenull_
-//HANDLE
-//WINAPI
-//CreateMutexW(
-//   _In_opt_ LPSECURITY_ATTRIBUTES lpMutexAttributes,
-//   _In_ BOOL bInitialOwner,
-//   _In_opt_ LPCWSTR lpName
-//   )
-//{
-//   return ::CreateMutexEx(lpMutexAttributes, lpName, bInitialOwner ?  CREATE_MUTEX_INITIAL_OWNER : 0, DELETE | SYNCHRONIZE);
-//}
+//      // Initialize GDI+.
+//      Gdiplus::Status statusStartup = GdiplusStartup(&g_gdiplusToken, g_pgdiplusStartupInput, g_pgdiplusStartupOutput);
 //
-
-
-
-
-
-
-
-
+//      if(statusStartup != Gdiplus::Ok)
+//      {
+//
+//         MessageBox(nullptr, "Gdiplus Failed to Startup. ca2 cannot continue.", "Gdiplus Failure", MB_ICONERROR);
+//
+//         return FALSE;
+//
+//      }
+//
+//      statusStartup = g_pgdiplusStartupOutput->NotificationHook(&g_gdiplusHookToken);
 //
 //
-//int_bool is_windows_nt()
-//{
+//      if(statusStartup != Gdiplus::Ok)
+//      {
 //
-//#if defined(_WIN32_WINNT) && (_WIN32_WINNT >= _WIN32_WINNT_WINXP) // winxp or greater
+//         MessageBox(nullptr, "Gdiplus Failed to Hook. ca2 cannot continue.", "Gdiplus Failure", MB_ICONERROR);
 //
-////   return IsWindowsXPOrGreater();
+//         return FALSE;
+//
+//      }
+//      */
+//
+//   //t_phthread = new hthread();
+//
+//   //t_phthread->m_bRun = true;
+//
+//   //currentThread = new hthread();
+//
 //
 //   return TRUE;
 //
-//#else
+//}
 //
-//   return !(GetVersion() & 0x80000000);
 //
-//#endif
+//int_bool main_finalize()
+//{
+//
+//
+//   return TRUE;
 //
 //}
 //
 //
 //
+//string normalize_path(const char * lpcszPath)
+//{
+//
+//   if(lpcszPath == nullptr)
+//      return "";
+//
+//   if(*lpcszPath == '\0')
+//      return "";
+//
+//   string path = lpcszPath;
+//
+//   string oldpath;
+//
+//   while(oldpath != path)
+//   {
+//
+//      oldpath = path;
+//
+//      path.replace("\\\\", "\\");
+//
+//   }
+//
+//   oldpath = "";
+//
+//   while(oldpath != path)
+//   {
+//
+//      oldpath = path;
+//
+//      path.replace("...", "..");
+//
+//   }
+//
+//   iptr iFind;
+//
+//   while((iFind = path.find("..")) >= 0)
+//   {
+//
+//      if(iFind <= 0)
+//      {
+//         path = path.substr(2);
+//      }
+//      else
+//      {
+//         iptr iFind2 = path.reverse_find('\\', iFind);
+//         if(iFind2 < 0)
+//         {
+//            path = path.substr(0, iFind) + path.substr(iFind + 2);
+//         }
+//         else if(iFind2 == 0)
+//         {
+//            path = path.substr(3);
+//         }
+//         else
+//         {
+//            iptr iFind3 = path.reverse_find('\\', iFind2 - 1);
+//            if(iFind3 <= 0)
+//            {
+//               path = path.substr(iFind + 2);
+//            }
+//            else
+//            {
+//               path = path.substr(0, iFind3) + path.substr(iFind + 2);
+//            }
+//         }
+//      }
+//   }
+//
+//   return path;
+//
+//}
 
+//
+//
+//string key_to_char(WPARAM wparam, LPARAM lparam)
+//{
+//   __throw(::exception::exception("todo"));
+//}
+//
+//
+//
+//
+//string get_system_error_message(u32 dwError)
+//{
+//   wstring wstr;
+//   unichar * p = wstr.get_string_buffer(64 * 1024 / sizeof(unichar));
+//   DWORD dw = FormatMessageW(
+//              FORMAT_MESSAGE_FROM_SYSTEM,
+//              nullptr,
+//              dwError,
+//              0,
+//              p,
+//              wstr.get_length() / sizeof(unichar),
+//              nullptr);
+//   p[dw] = L'\0';
+//   wstr.release_string_buffer();
+//   string str(wstr);
+//   return str;
+//}
+//
+//
+//
+//
+//
+////void output_debug_string(const char * psz)
+////{
+////
+////   ::output_debug_string(wstring(psz));
+////
+////}
+//
+//
+////DWORD WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ DWORD dwMilliseconds )
+////{
+////
+////   return ::WaitForSingleObjectEx(hHandle, dwMilliseconds, FALSE);
+////
+////}
+//
+//
+//
+////CLASS_DECL_AURA
+////HANDLE
+////WINAPI
+////CreateMutex(
+////    _In_opt_ LPSECURITY_ATTRIBUTES lpMutexAttributes,
+////    _In_ BOOL bInitialOwner,
+////    _In_opt_ LPCSTR lpName
+////    )
+////{
+////   return CreateMutexW(lpMutexAttributes, bInitialOwner, wstring(lpName));
+////}
+//
+////CLASS_DECL_AURA char* getenv (const char* name)
+////{
+////   return "";
+////}
+////
+//
+////CLASS_DECL_AURA
+////_Ret_maybenull_
+////HANDLE
+////WINAPI
+////CreateMutexW(
+////   _In_opt_ LPSECURITY_ATTRIBUTES lpMutexAttributes,
+////   _In_ BOOL bInitialOwner,
+////   _In_opt_ LPCWSTR lpName
+////   )
+////{
+////   return ::CreateMutexEx(lpMutexAttributes, lpName, bInitialOwner ?  CREATE_MUTEX_INITIAL_OWNER : 0, DELETE | SYNCHRONIZE);
+////}
+////
+//
+//
+//
+//
+//
+//
+//
+//
+////
+////
+////int_bool is_windows_nt()
+////{
+////
+////#if defined(_WIN32_WINNT) && (_WIN32_WINNT >= _WIN32_WINNT_WINXP) // winxp or greater
+////
+//////   return IsWindowsXPOrGreater();
+////
+////   return TRUE;
+////
+////#else
+////
+////   return !(GetVersion() & 0x80000000);
+////
+////#endif
+////
+////}
+////
+////
+////
+//
 
-
-
-
-bool defer_co_initialize_ex(bool bMultiThread)
-{
-
-   auto pthread = ::get_thread();
-
-   if(!pthread)
-   {
-
-      return false;
-
-   }
-
-   HRESULT hr = pthread->m_hresultCoInitialize;
-
-   if(!pthread->m_bCoInitialize)
-   {
-
-      pthread->m_bCoInitialize = true;
-    
-      hr = ::CoInitializeEx(nullptr,COINIT_MULTITHREADED);
-
-   }
-
-   if(FAILED(hr))
-   {
-
-      if (hr == 0x80010106)
-      {
-
-         return true;
-
-      }
-
-      ::output_debug_string("Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init");
-
-      return false;
-
-   }
-
-   return true;
-
-}
-
-
-bool defer_init_winsock();
+//
+//
+//
+//bool defer_co_initialize_ex(bool bMultiThread)
+//{
+//
+//   auto pthread = ::get_thread();
+//
+//   if(!pthread)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   HRESULT hr = pthread->m_hresultCoInitialize;
+//
+//   if(!pthread->m_bCoInitialize)
+//   {
+//
+//      pthread->m_bCoInitialize = true;
+//    
+//      hr = ::CoInitializeEx(nullptr,COINIT_MULTITHREADED);
+//
+//   }
+//
+//   if(FAILED(hr))
+//   {
+//
+//      if (hr == 0x80010106)
+//      {
+//
+//         return true;
+//
+//      }
+//
+//      ::output_debug_string("Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init");
+//
+//      return false;
+//
+//   }
+//
+//   return true;
+//
+//}
+//
+//
+//bool defer_init_winsock();
 
 
 bool __node_aura_pre_init()
 {
 
-   HRESULT hresult = ::CoInitializeEx(nullptr,COINIT_MULTITHREADED);
+   //HRESULT hresult = ::CoInitializeEx(nullptr,COINIT_MULTITHREADED);
 
-   if(FAILED(hresult))
-   {
+   //if(FAILED(hresult))
+   //{
 
-      if(hresult == RPC_E_CHANGED_MODE)
-      {
+   //   if(hresult == RPC_E_CHANGED_MODE)
+   //   {
 
-         hresult = ::CoInitializeEx(nullptr,COINIT_APARTMENTTHREADED);
+   //      hresult = ::CoInitializeEx(nullptr,COINIT_APARTMENTTHREADED);
 
-         if(FAILED(hresult))
-         {
+   //      if(FAILED(hresult))
+   //      {
 
-            ::message_box(nullptr,"Failed to ::CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED) at __node_pre_init","__node_pre_init failure",MB_ICONEXCLAMATION);
+   //         ::message_box(nullptr,"Failed to ::CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED) at __node_pre_init","__node_pre_init failure",MB_ICONEXCLAMATION);
 
-            return false;
+   //         return false;
 
-         }
+   //      }
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         ::message_box(nullptr,"Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init","__node_pre_init failure",MB_ICONEXCLAMATION);
+   //      ::message_box(nullptr,"Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init","__node_pre_init failure",MB_ICONEXCLAMATION);
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-   }
+   //}
 
    return true;
 
 }
 
-void CLASS_DECL_AURA __cdecl _ca2_purecall();
+//void CLASS_DECL_AURA __cdecl _ca2_purecall();
 
 bool __node_aura_pos_init()
 {
 
-   _set_purecall_handler(_ca2_purecall);
+   //_set_purecall_handler(_ca2_purecall);
 
    //HMODULE hmoduleUser32 = ::LoadLibrary("User32");
    //g_pfnChangeWindowMessageFilter = (LPFN_ChangeWindowMessageFilter) ::GetProcAddress(hmoduleUser32,"ChangeWindowMessageFilter");
@@ -592,22 +592,22 @@ bool __node_aura_pos_term()
 
 }
 
-void os_term_application()
-{
-
-   ::Windows::ApplicationModel::Core::CoreApplication::Exit();
-
-}
-
-
+//void os_term_application()
+//{
+//
+//   ::Windows::ApplicationModel::Core::CoreApplication::Exit();
+//
+//}
 
 
 
 
 
-int_bool is_windows_7_or_lower()
-{
 
-   return false; // metro is from windows 8
 
-}
+//int_bool is_windows_7_or_lower()
+//{
+//
+//   return false; // metro is from windows 8
+//
+//}

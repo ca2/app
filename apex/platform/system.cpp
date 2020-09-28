@@ -18,6 +18,25 @@
 ////#endif
 
 
+#ifdef WINDOWS_DESKTOP
+
+
+namespace user
+{
+
+
+   CLASS_DECL_ACME bool calc_system_dark_mode();
+
+
+   CLASS_DECL_ACME bool calc_app_dark_mode();
+
+
+} // namespace user
+
+
+#endif
+
+
 extern ::apex::system* g_papexsystem;
 
 CLASS_DECL_APEX void apex_generate_random_bytes(void* p, memsize s);
@@ -68,7 +87,7 @@ void enum_display_monitors(::apex::system * psystem);
 extern string_map < __pointer(::apex::library) > * g_pmapLibrary;
 
 
-CLASS_DECL_APEX void __simple_tracea(::generic * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
+CLASS_DECL_APEX void __simple_tracea(::elemental * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
 
 
 #ifdef WINDOWS
@@ -1552,7 +1571,7 @@ namespace apex
 
                   ::dir::mk("/ca2core");
 
-                  file_put_contents_dup("/ca2core/teste.txt", str, str.length());
+                  file_put_contents("/ca2core/teste.txt", str, str.length());
                   */
 #endif
 
@@ -1711,7 +1730,7 @@ namespace apex
       }
 
 
-#ifdef WINDOWS
+#ifdef WINDOWS_DESKTOP
 
       if (m_bGdiplus)
       {
@@ -4449,7 +4468,11 @@ namespace apex
    bool system::get_monitor_rect(index iMonitor, RECT * prect)
    {
 
-#if MOBILE_PLATFORM
+#ifdef _UWP
+
+      return false;
+
+#elif MOBILE_PLATFORM
 
       //get_context_session()->m_puiHost->get_window_rect(prect);
 
@@ -4802,7 +4825,7 @@ namespace apex
    bool system::set_standalone_setting(string str, string strSetting)
    {
 
-      return file_put_contents_dup(Context.dir().standalone() / (str + ".txt"), strSetting);
+      return file_put_contents(Context.dir().standalone() / (str + ".txt"), strSetting);
 
    }
 
@@ -4893,23 +4916,23 @@ namespace apex
    void system::on_initial_frame_position(::user::frame * pframe)
    {
 
-      if(has_property("client_only"))
-      {
+//      if(has_property("client_only"))
+//      {
+//
+//#ifdef _UWP
+//
+//         __pointer(::uwp::interaction_impl) pimpl = Session.m_puiHost->m_pimpl;
+//
+//         if (pimpl.is_set())
+//         {
+//
+//            pimpl->m_directxapplication->m_directx->UpdateForWindowSizeChange();
+//
+//         }
+//
+//#endif
 
-#ifdef _UWP
-
-         __pointer(::uwp::interaction_impl) pimpl = Session.m_puiHost->m_pimpl;
-
-         if (pimpl.is_set())
-         {
-
-            pimpl->m_directxapplication->m_directx->UpdateForWindowSizeChange();
-
-         }
-
-#endif
-
-      }
+//      }
 
    }
 
@@ -4920,7 +4943,7 @@ namespace apex
    //}
 
 
-   void system::__tracea(::generic * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
+   void system::__tracea(::elemental * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
    {
 
       if (m_ptrace.is_null())
@@ -6168,7 +6191,7 @@ CLASS_DECL_APEX bool set_application_installed(const ::file::path & pathExe, str
 
    path = application_installer_folder(pathExe, strAppId, pszPlatform, pszConfiguration, pszLocale, pszSchema) / "installed.txt";
 
-   return file_put_contents_dup(path, pszBuild);
+   return file_put_contents(path, pszBuild);
 
 }
 
@@ -6222,7 +6245,7 @@ CLASS_DECL_APEX bool set_last_run_application_path(string strAppId)
 
    ::file::path pathFile = get_last_run_application_path_file(strAppId);
 
-   return file_put_contents_dup(pathFile, path);
+   return file_put_contents(pathFile, path);
 
 }
 
@@ -7319,25 +7342,25 @@ namespace apex
 
       }
 
-      try
-      {
+      //try
+      //{
 
-         if (::is_null(get_context_session()->m_puiHost))
-         {
+      //   if (::is_null(get_context_session()->m_puiHost))
+      //   {
 
-            return false;
+      //      return false;
 
-         }
+      //   }
 
-         get_context_session()->m_puiHost->get_window_rect(prect);
+      //   get_context_session()->m_puiHost->get_window_rect(prect);
 
-      }
-      catch (...)
-      {
+      //}
+      //catch (...)
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
       return true;
 
@@ -8136,7 +8159,7 @@ namespace apex
    void system::defer_calc_os_dark_mode()
    {
 
-   #ifdef LINUX
+#ifdef LINUX
       string strTheme = ::os::get_os_desktop_theme();
 
       if(strTheme.contains_ci("dark"))
@@ -8147,7 +8170,14 @@ namespace apex
       {
       ::user::set_app_dark_mode(false);
       }
-      #endif
+
+#elif defined(WINDOWS_DESKTOP)
+
+      ::user::set_system_dark_mode(::user::calc_system_dark_mode());
+
+      ::user::set_app_dark_mode(::user::calc_app_dark_mode());
+
+#endif
 
    }
 

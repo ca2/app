@@ -11,8 +11,8 @@
 namespace acme
 {
 
-//   application::application(::generic * pobject) :
-//      ::generic(pobject)
+//   application::application(::elemental * pobject) :
+//      ::elemental(pobject)
 //   {
 //
 ////      m_pthreadimpl.create(this);

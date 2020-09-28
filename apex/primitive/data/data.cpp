@@ -33,7 +33,7 @@ namespace data
    void data::assert_valid() const
    {
 
-      ::generic::assert_valid();
+      ::elemental::assert_valid();
 
    }
 
@@ -41,7 +41,7 @@ namespace data
    void data::dump(dump_context & dumpcontext) const
    {
 
-      ::generic::dump(dumpcontext);
+      ::elemental::dump(dumpcontext);
 
       //dumpcontext << "m_strTitle = " << m_strTitle;
       //dumpcontext << "\nm_path = " << m_path;

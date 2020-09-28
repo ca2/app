@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "_android.h"
 #include "aura/platform/static_start.h"
-#include "aura/xml/_.h"
+#include "aqua/xml.h"
 #include "aura/graphics/draw2d/ttf_util.h"
 
 

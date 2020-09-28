@@ -23,12 +23,12 @@
 
 
 // class CLASS_DECL_ACME parents :
-//    virtual public ::generic
+//    virtual public ::elemental
 // {
 // public:
 
 
-//    __pointer_array(generic)            m_ptra;
+//    __pointer_array(elemental)            m_ptra;
 
 //    parents();
 //    ~parents();
@@ -38,12 +38,12 @@
 
 
 // class CLASS_DECL_ACME children :
-//    virtual public ::generic
+//    virtual public ::elemental
 // {
 // public:
 
 
-//    __pointer_array(generic)            m_ptra;
+//    __pointer_array(elemental)            m_ptra;
 //    duration                      m_durationWait;
 
 
@@ -51,18 +51,18 @@
 //    ~children();
 
 
-//    // after posting quit to a child, the PARENT shouldn't generic it
-//    virtual void set_finish(::generic * pobjectParent);
+//    // after posting quit to a child, the PARENT shouldn't elemental it
+//    virtual void set_finish(::elemental * pobjectParent);
 
-//    virtual ::count wait_quit(::generic * pobjectParent, const duration & duration);
-//    virtual ::count _wait_quit(::generic * pobjectParent);
-
-
-//    virtual __pointer(::generic) running(const char * pszTag) const;
-//    virtual bool running(::generic * pobject) const;
+//    virtual ::count wait_quit(::elemental * pobjectParent, const duration & duration);
+//    virtual ::count _wait_quit(::elemental * pobjectParent);
 
 
-//    friend class generic;
+//    virtual __pointer(::elemental) running(const char * pszTag) const;
+//    virtual bool running(::elemental * pobject) const;
+
+
+//    friend class elemental;
 
 // };
 

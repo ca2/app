@@ -38,8 +38,8 @@ namespace linux
    }
 
 
-//   file::file(::generic * pobject, int iFile) :
-//      ::generic(pobject)
+//   file::file(::elemental * pobject, int iFile) :
+//      ::elemental(pobject)
 //   {
 //
 //      m_iFile = iFile;
@@ -47,8 +47,8 @@ namespace linux
 //   }
 //
 //
-//   file::file(::generic * pobject, const ::file::path & pszFileName, const cflag < ::file::e_open > & eopen) :
-//      ::generic(pobject)
+//   file::file(::elemental * pobject, const ::file::path & pszFileName, const cflag < ::file::e_open > & eopen) :
+//      ::elemental(pobject)
 //   {
 //
 //      m_iFile = INVALID_FILE;

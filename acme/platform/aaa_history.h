@@ -6,7 +6,7 @@ namespace acme
 
 
    class CLASS_DECL_ACME history :
-      virtual public ::generic
+      virtual public ::elemental
    {
    public:
 

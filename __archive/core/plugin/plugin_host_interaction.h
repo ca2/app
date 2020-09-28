@@ -28,7 +28,7 @@ namespace plugin
 
 
 
-      host_interaction(::generic * pobject);
+      host_interaction(::elemental * pobject);
       virtual ~host_interaction();
 
       void install_message_routing(::channel * pmessage);

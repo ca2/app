@@ -31,8 +31,8 @@ namespace ios
 
    }
 
-//   file::file(::generic * pobject, i32 hFile) :
-//      ::generic(pobject)
+//   file::file(::elemental * pobject, i32 hFile) :
+//      ::elemental(pobject)
 //   {
 //
 //      m_iFile = hFile;
@@ -41,8 +41,8 @@ namespace ios
 //
 //   }
 //
-//   file::file(::generic * pobject, const char * lpszFileName, UINT nOpenFlags) :
-//      ::generic(pobject)
+//   file::file(::elemental * pobject, const char * lpszFileName, UINT nOpenFlags) :
+//      ::elemental(pobject)
 //   {
 //
 //      ASSERT(__is_valid_string(lpszFileName));
@@ -752,7 +752,7 @@ CLASS_DECL_ACME void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShort
 }
 
 
-//void CLASS_DECL_ACME vfxThrowFileException(::generic * pobject, ::estatus cause, LONG lOsError, const char * lpszFileName /* == nullptr */)
+//void CLASS_DECL_ACME vfxThrowFileException(::elemental * pobject, ::estatus cause, LONG lOsError, const char * lpszFileName /* == nullptr */)
 //{
 //
 //   __throw(::file::exception(cause, lOsError, lpszFileName));
@@ -760,7 +760,7 @@ CLASS_DECL_ACME void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShort
 //}
 //
 //
-//::file::exception * CLASS_DECL_ACME get_FileException(::generic * pobject, ::estatus cause, LONG lOsError, const char * lpszFileName /* == nullptr */)
+//::file::exception * CLASS_DECL_ACME get_FileException(::elemental * pobject, ::estatus cause, LONG lOsError, const char * lpszFileName /* == nullptr */)
 //{
 //
 //   return __new(::file::exception(cause, lOsError, lpszFileName));

@@ -3297,7 +3297,7 @@ typedef struct _IMAGE_BASE_RELOCATION
 
 #define IMAGE_SIZEOF_RELOCATION 10
 
-/* generic relocation types */
+/* elemental relocation types */
 #define IMAGE_REL_BASED_ABSOLUTE 		0
 #define IMAGE_REL_BASED_HIGH			1
 #define IMAGE_REL_BASED_LOW			2

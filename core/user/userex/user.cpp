@@ -5,7 +5,7 @@
 #endif
 #include "apex/platform/static_setup.h"
 #include "aura/update.h"
-#include "aura/xml/_.h"
+#include "aqua/xml.h"
 #include "core/user/user/shell.h"
 #include "core/user/user/_tree.h"
 
@@ -590,7 +590,7 @@ namespace core
 
       }
 
-      future.receive_response(pbox->m_idResponse);
+      future.send(pbox->m_idResponse);
 
       return ::success;
 

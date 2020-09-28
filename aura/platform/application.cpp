@@ -13,13 +13,13 @@
 int windows_desktop1_main(HINSTANCE hInstance, int nCmdShow);
 
 
-#include "aura/node/_node.h"
+//#include "aura/node/_node.h"
 
-#ifdef WINDOWS_DESKTOP
-
-#include "aura/os/windows/_.h"
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//#include "aura/os/windows/_.h"
+//
+//#endif
 
 
 extern ::app_core * g_pappcore;
@@ -34,23 +34,23 @@ extern "C"
 
 }
 
-PFN_factory_exchange g_pfnfactoryDraw2d = nullptr;
+//PFN_factory_exchange g_pfnfactoryDraw2d = nullptr;
+//
+//
+//PFN_factory_exchange get_draw2d_factory_exchange()
+//{
+//
+//   return g_pfnfactoryDraw2d;
+//
+//}
 
 
-PFN_factory_exchange get_draw2d_factory_exchange()
-{
-
-   return g_pfnfactoryDraw2d;
-
-}
-
-
-void set_draw2d_factory_exchange(PFN_factory_exchange pfnfactoryDraw2d)
-{
-
-   g_pfnfactoryDraw2d = pfnfactoryDraw2d;
-
-}
+//void set_draw2d_factory_exchange(PFN_factory_exchange pfnfactoryDraw2d)
+//{
+//
+//   g_pfnfactoryDraw2d = pfnfactoryDraw2d;
+//
+//}
 
 
 
@@ -4783,18 +4783,18 @@ retry_license:
 
             pcall->add_arg(strId);
 
-            for(auto & task : pcall->tasks())
+            for(auto & ptask : pcall->m_mapTask.values())
             {
 
                if(!bHandled)
                {
 
-                  bHandled = task.is_true("handled");
+                  bHandled = ptask->is_true("handled");
 
                   if(bHandled)
                   {
 
-                     bContinue = task.is_true("continue");
+                     bContinue = ptask->is_true("continue");
 
                   }
 
@@ -5655,7 +5655,7 @@ retry_license:
 
          dir::mk(dir::name(utf8(wstr.c_str())).c_str());
 
-         file_put_contents_dup(utf8(wstr.c_str()).c_str(), "");
+         file_put_contents(utf8(wstr.c_str()).c_str(), "");
 
          iRetry--;
 
@@ -8611,7 +8611,7 @@ namespace aura
       }
 
       // handle all the rest
-      //linux UINT nIDP = __IDP_INTERNAL_FAILURE;   // generic message string
+      //linux UINT nIDP = __IDP_INTERNAL_FAILURE;   // elemental message string
       const char* nIDP = "Internal Failure";
       pbase->m_lresult = 0;        // sensible default
       if (pbase->m_id == WM_COMMAND)

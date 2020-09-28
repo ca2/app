@@ -15,7 +15,7 @@ namespace uwp
    file::file()
    {
 
-      m_hFile = HFILE_NULL;
+      m_hfile = hfile_null;
 
       m_bCloseOnDelete = TRUE;
 
@@ -26,27 +26,31 @@ namespace uwp
    file::~file()
    {
 
-      if (m_hFile != HFILE_NULL && m_bCloseOnDelete)
+      if (m_hfile != hfile_null && m_bCloseOnDelete)
+      {
+
          close();
+
+      }
 
    }
 
    //__pointer(::file::file) file::Duplicate() const
    //{
    //   ASSERT_VALID(this);
-   //   ASSERT(m_hFile != (UINT)HFILE_NULL);
+   //   ASSERT(m_hfile != (UINT)hfile_null);
 
    //   __pointer(file) pFile = __new(file());
    //   HANDLE hFile;
-   //   if (!::DuplicateHandle(::GetCurrentProcess(), (HANDLE)m_hFile,
+   //   if (!::DuplicateHandle(::GetCurrentProcess(), (HANDLE)m_hfile,
    //                          ::GetCurrentProcess(), &hFile, 0, FALSE, DUPLICATE_SAME_ACCESS))
    //   {
    //      delete pFile;
    //      //xxx      Ex1::file::throw_os_error((LONG)::get_last_error(), m_path);
    //      __throw(::exception::exception("integer_exception 1"));
    //   }
-   //   pFile->m_hFile = (UINT)hFile;
-   //   ASSERT(pFile->m_hFile != (UINT)HFILE_NULL);
+   //   pFile->m_hfile = (UINT)hFile;
+   //   ASSERT(pFile->m_hfile != (UINT)hfile_null);
    //   pFile->m_bCloseOnDelete = m_bCloseOnDelete;
    //   return pFile;
    //}
@@ -57,7 +61,7 @@ namespace uwp
 
       ::efileopen efileopen(efileopenParam);
 
-      if (m_hFile != HFILE_NULL)
+      if (m_hfile != hfile_null)
          close();
 
       ASSERT_VALID(this);
@@ -88,12 +92,12 @@ namespace uwp
       if ((efileopen & ::file::defer_create_directory) && (efileopen & ::file::mode_write))
       {
 
-         Context.dir().mk(lpszFileName.folder());
+         ::dir::mk(lpszFileName.folder());
 
       }
 
       m_bCloseOnDelete = FALSE;
-      m_hFile = HFILE_NULL;
+      m_hfile = hfile_null;
       m_path.Empty();
 
       m_path     = lpszFileName;
@@ -164,8 +168,8 @@ namespace uwp
 
       // attempt file creation
       //HANDLE hFile = shell::CreateFile(::str::international::utf8_to_unicode(m_path), dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, nullptr);
-      HANDLE hFile = ::create_file(m_path, dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, nullptr);
-      if (hFile == INVALID_HANDLE_VALUE)
+      hfile hfile = ::hfile_create(m_path, dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, nullptr);
+      if (::is_nok(hfile))
       {
          DWORD dwLastError = ::get_last_error();
 
@@ -204,9 +208,9 @@ namespace uwp
 
          //m_path = ::str::international::unicode_to_utf8(m_wstrFileName);
 
-         hFile = ::create_file("\\\\?\\" + m_path, dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, nullptr);
+         hfile = ::hfile_create("\\\\?\\" + m_path, dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, nullptr);
 
-         if (hFile == INVALID_HANDLE_VALUE)
+         if (::is_nok(hfile))
          {
             /*if (pException != nullptr)
             {
@@ -234,7 +238,7 @@ namespace uwp
 
       }
 
-      m_hFile = hFile;
+      m_hfile = hfile;
 
       m_bCloseOnDelete = TRUE;
 
@@ -246,7 +250,7 @@ namespace uwp
    memsize file::read(void * lpBuf, memsize nCount)
    {
       ASSERT_VALID(this);
-      ASSERT(m_hFile != HFILE_NULL);
+      ASSERT(m_hfile != hfile_null);
 
       if (nCount == 0)
          return 0;   // avoid Win32 "nullptr-read"
@@ -255,7 +259,7 @@ namespace uwp
       ASSERT(__is_valid_address(lpBuf, nCount));
 
       DWORD dwRead;
-      if (!::ReadFile((HANDLE)m_hFile, lpBuf, (DWORD) nCount, &dwRead, nullptr))
+      if (!::ReadFile((HANDLE)m_hfile, lpBuf, (DWORD) nCount, &dwRead, nullptr))
          ::file::throw_os_error((LONG)::get_last_error(), m_path);
 
       return (UINT)dwRead;
@@ -264,7 +268,7 @@ namespace uwp
    void file::write(const void * lpBuf, memsize nCount)
    {
       ASSERT_VALID(this);
-      ASSERT(m_hFile != HFILE_NULL);
+      ASSERT(m_hfile != hfile_null);
 
       if (nCount == 0)
          return;     // avoid Win32 "nullptr-write" option
@@ -273,7 +277,7 @@ namespace uwp
       ASSERT(__is_valid_address(lpBuf, nCount, FALSE));
 
       DWORD nWritten;
-      if (!::WriteFile((HANDLE)m_hFile, lpBuf, (DWORD) nCount, &nWritten, nullptr))
+      if (!::WriteFile((HANDLE)m_hfile, lpBuf, (DWORD) nCount, &nWritten, nullptr))
          ::file::throw_os_error((LONG)::get_last_error(), m_path);
 
       // Win32s will not return an error all the time (usually DISK_FULL)
@@ -289,18 +293,18 @@ namespace uwp
    filesize file::seek(filesize lOff, ::file::e_seek nFrom)
    {
 
-      if(m_hFile == HFILE_NULL)
+      if(m_hfile == hfile_null)
          ::file::throw_os_error((LONG)0, m_path);
 
       ASSERT_VALID(this);
-      ASSERT(m_hFile != HFILE_NULL);
+      ASSERT(m_hfile != hfile_null);
       ASSERT(nFrom == ::file::seek_begin || nFrom == ::file::seek_end || nFrom == ::file::seek_current);
       ASSERT(::file::seek_begin == FILE_BEGIN && ::file::seek_end == FILE_END && ::file::seek_current == FILE_CURRENT);
 
       LONG lLoOffset = lOff & 0xffffffff;
       LONG lHiOffset = (lOff >> 32) & 0xffffffff;
 
-      filesize posNew = ::SetFilePointer((HANDLE)m_hFile, lLoOffset, &lHiOffset, (DWORD)nFrom);
+      filesize posNew = ::SetFilePointer((HANDLE)m_hfile, lLoOffset, &lHiOffset, (DWORD)nFrom);
       posNew |= ((filesize) lHiOffset) << 32;
       if(posNew  == (filesize)-1)
          ::file::throw_os_error((LONG)::get_last_error(), m_path);
@@ -311,12 +315,12 @@ namespace uwp
    filesize file::get_position() const
    {
       ASSERT_VALID(this);
-      ASSERT(m_hFile != HFILE_NULL);
+      ASSERT(m_hfile != hfile_null);
 
       LONG lLoOffset = 0;
       LONG lHiOffset = 0;
 
-      filesize pos = ::SetFilePointer((HANDLE)m_hFile, lLoOffset, &lHiOffset, FILE_CURRENT);
+      filesize pos = ::SetFilePointer((HANDLE)m_hfile, lLoOffset, &lHiOffset, FILE_CURRENT);
       pos |= ((filesize)lHiOffset) << 32;
       if(pos  == (filesize)-1)
          ::file::throw_os_error((LONG)::get_last_error(), m_path);
@@ -330,10 +334,10 @@ namespace uwp
 
       ASSERT_VALID(this);
 
-      if (m_hFile == HFILE_NULL)
+      if (m_hfile == hfile_null)
          return;
 
-      if (!::FlushFileBuffers((HANDLE)m_hFile))
+      if (!::FlushFileBuffers((HANDLE)m_hfile))
          ::file::throw_os_error((LONG)::get_last_error(), m_path);
    }
 
@@ -341,13 +345,13 @@ namespace uwp
    void file::close()
    {
       ASSERT_VALID(this);
-      ASSERT(m_hFile != HFILE_NULL);
+      ASSERT(m_hfile != hfile_null);
 
       bool bError = FALSE;
-      if (m_hFile != HFILE_NULL)
-         bError = !::CloseHandle((HANDLE)m_hFile);
+      if (m_hfile != hfile_null)
+         bError = !::CloseHandle((HANDLE)m_hfile);
 
-      m_hFile = HFILE_NULL;
+      m_hfile = hfile_null;
       m_bCloseOnDelete = FALSE;
       m_path.Empty();
 
@@ -358,11 +362,11 @@ namespace uwp
    //void file::Abort()
    //{
    //   ASSERT_VALID(this);
-   //   if (m_hFile != (UINT)HFILE_NULL)
+   //   if (m_hfile != (UINT)hfile_null)
    //   {
    //      // close but ignore errors
-   //      ::CloseHandle((HANDLE)m_hFile);
-   //      m_hFile = (UINT)HFILE_NULL;
+   //      ::CloseHandle((HANDLE)m_hfile);
+   //      m_hfile = (UINT)hfile_null;
    //   }
    //   m_path.Empty();
    //}
@@ -373,7 +377,7 @@ namespace uwp
       
       ASSERT_VALID(this);
 
-      ASSERT(m_hFile != HFILE_NULL);
+      ASSERT(m_hfile != hfile_null);
 
    }
 
@@ -383,7 +387,7 @@ namespace uwp
 
       ASSERT_VALID(this);
 
-      ASSERT(m_hFile != HFILE_NULL);
+      ASSERT(m_hfile != hfile_null);
 
    }
 
@@ -393,12 +397,12 @@ namespace uwp
 
       ASSERT_VALID(this);
 
-      ASSERT(m_hFile != HFILE_NULL);
+      ASSERT(m_hfile != hfile_null);
 
 
       seek((LONG)dwNewLen, (::file::e_seek)::file::seek_begin);
 
-      if (!::SetEndOfFile((HANDLE)m_hFile))
+      if (!::SetEndOfFile((HANDLE)m_hfile))
       {
 
          ::file::throw_os_error((LONG)::get_last_error(), m_path);
@@ -511,7 +515,7 @@ namespace uwp
    {
 
       ::file::file::assert_valid();
-      // we permit the descriptor m_hFile to be any value for derived classes
+      // we permit the descriptor m_hfile to be any value for derived classes
 
    }
 
@@ -520,14 +524,14 @@ namespace uwp
    {
       ::file::file::dump(dumpcontext);
 
-      dumpcontext << "with handle " << (UINT)m_hFile;
+      dumpcontext << "with handle " << (UINT)m_hfile;
       dumpcontext << " and name \"" << m_path << "\"";
       dumpcontext << "\n";
    }
 
 
 
-   // IMPLEMENT_DYNAMIC(file, ::generic)
+   // IMPLEMENT_DYNAMIC(file, ::elemental)
 
    /////////////////////////////////////////////////////////////////////////////
 
@@ -755,13 +759,13 @@ namespace uwp
 
 
 
-   //void WinFileException::ThrowOsError(::generic * pobject, LONG lOsError, const char * lpszFileName /* = nullptr */)
+   //void WinFileException::ThrowOsError(::elemental * pobject, LONG lOsError, const char * lpszFileName /* = nullptr */)
    //{
    //   if (lOsError != 0)
    //      ::file::throw_os_error(pobject, WinFileException::OsErrorToException(lOsError), lOsError, ::error_io, lpszFileName);
    //}
 
-   //void WinFileException::ThrowErrno(::generic * pobject, int nErrno, const char * lpszFileName /* = nullptr */)
+   //void WinFileException::ThrowErrno(::elemental * pobject, int nErrno, const char * lpszFileName /* = nullptr */)
    //{
    //   if (nErrno != 0)
    //      ::file::throw_os_error(pobject, WinFileException::ErrnoToException(nErrno), _doserrno, ::error_io, lpszFileName);
@@ -1045,7 +1049,7 @@ namespace uwp
    bool file::is_opened() const
    {
 
-      return m_hFile != HFILE_NULL;
+      return m_hfile != hfile_null;
 
    }
 
@@ -1065,7 +1069,7 @@ namespace uwp
    file::operator HANDLE() const
    { 
       
-      return m_hFile; 
+      return m_hfile; 
       
    }
 

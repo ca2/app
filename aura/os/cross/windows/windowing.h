@@ -7,9 +7,11 @@
 #pragma once
 
 
-WINBOOL get_client_rect(oswindow hwnd,LPRECT lprect);
+CLASS_DECL_AURA WINBOOL get_client_rect(oswindow hwnd,LPRECT lprect);
 
-WINBOOL get_window_rect(oswindow hwnd,LPRECT lprect);
+CLASS_DECL_AURA WINBOOL get_window_rect(oswindow hwnd,LPRECT lprect);
 
-// void defer_dock_application(int_bool bDock);
+CLASS_DECL_AURA WINBOOL get_cursor_pos(LPPOINT lppointCursor);
+
+
 

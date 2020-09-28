@@ -26,10 +26,10 @@ namespace linux
    }
 
 
-   ::estatus file_context::initialize(::generic * pobjectContext)
+   ::estatus file_context::initialize(::elemental * pobjectContext)
    {
 
-      auto estatus = ::generic::initialize(pobjectContext);
+      auto estatus = ::elemental::initialize(pobjectContext);
 
       if(!estatus)
       {

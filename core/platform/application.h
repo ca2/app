@@ -6,7 +6,7 @@ namespace core
 
 
    class CLASS_DECL_CORE application :
-      virtual public ::base::application
+      virtual public ::bred::application
    {
    public:
 

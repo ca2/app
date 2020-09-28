@@ -1,15 +1,15 @@
 #include "framework.h"
 
 
-int_bool file_put_contents_dup(const char * path, const char * contents)
+int_bool file_put_contents(const char * path, const char * contents)
 {
 
-   return file_put_contents_dup(path, contents, strlen(contents));
+   return file_put_contents(path, contents, strlen(contents));
 
 }
 
 
-CLASS_DECL_ACME bool _os_resolve_alias(::generic * pobject, ::file::path & path, const char * psz, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount);
+CLASS_DECL_ACME bool _os_resolve_alias(::elemental * pobject, ::file::path & path, const char * psz, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount);
 
 CLASS_DECL_ACME bool _os_may_have_alias(const char * psz);
 

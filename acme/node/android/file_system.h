@@ -15,7 +15,7 @@ namespace android
       virtual ~file_system();
 
 
-      virtual ::estatus initialize(::generic * pobjectContext) override;
+      virtual ::estatus initialize(::elemental * pobjectContext) override;
 
 
 

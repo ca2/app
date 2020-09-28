@@ -10,16 +10,16 @@
 
 template < typename PRED >
 class ___pred_method :
-   virtual public ::generic
+   virtual public ::elemental
 {
 public:
 
 
    PRED                                m_pred;
-   __pointer(::generic)         m_pobjectHold;
+   __pointer(::elemental)         m_pobjectHold;
 
 
-   ___pred_method(PRED pred, ::generic * pobjectHold = nullptr) :
+   ___pred_method(PRED pred, ::elemental * pobjectHold = nullptr) :
       m_pred(pred),
       m_pobjectHold(pobjectHold)
    {
@@ -60,11 +60,11 @@ public:
 
 
 
-::estatus run_task(::generic * pobjectTask);
+::estatus run_task(::elemental * pobjectTask);
 
 
 template < typename PRED >
-inline __pointer(generic) __pred_method(PRED pred)
+inline __pointer(elemental) __pred_method(PRED pred)
 {
 
    return __new(___pred_method < PRED >(pred));
@@ -73,7 +73,7 @@ inline __pointer(generic) __pred_method(PRED pred)
 
 
 template < typename PRED >
-inline __pointer(generic) __pred_method(PRED pred, ::generic * pobjectHold)
+inline __pointer(elemental) __pred_method(PRED pred, ::elemental * pobjectHold)
 {
 
    return __new(___pred_method < PRED >(pred, pobjectHold));
@@ -83,7 +83,7 @@ inline __pointer(generic) __pred_method(PRED pred, ::generic * pobjectHold)
 
 
 template < >
-inline __pointer(generic) __pred_method(nullptr_t, ::generic * pobjectHold)
+inline __pointer(elemental) __pred_method(nullptr_t, ::elemental * pobjectHold)
 {
 
    return nullptr;
@@ -94,7 +94,7 @@ class processor
 {
 public:
 
-   virtual void schedule(::generic * pobjectTask, e_priority epriority = priority_normal) = 0;
+   virtual void schedule(::elemental * pobjectTask, e_priority epriority = priority_normal) = 0;
 
 };
 
@@ -123,7 +123,7 @@ inline auto schedule(processor * pprocessor, PRED pred, e_priority epriority = p
 
 
 
-//CLASS_DECL_ACME void main_branch(::generic * pobjectTask, e_priority epriority);
+//CLASS_DECL_ACME void main_branch(::elemental * pobjectTask, e_priority epriority);
 
 
 

@@ -256,7 +256,7 @@ CLASS_DECL_ACME bool set_modified_file_time(const char* psz, const FILETIME& mod
 bool get_file_time(const char * psz,FILETIME & creation,FILETIME & modified)
 {
 
-   HANDLE h = create_file(psz, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
+   hfile hfile = hfile_create(psz, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
 
    bool bOk = false;
 
@@ -266,7 +266,7 @@ bool get_file_time(const char * psz,FILETIME & creation,FILETIME & modified)
       xxf_zero(creation);
       xxf_zero(modified);
 
-      if (::GetFileTime(h, &creation, nullptr, &modified))
+      if (::GetFileTime(hfile, &creation, nullptr, &modified))
       {
 
          bOk = true;
@@ -279,7 +279,7 @@ bool get_file_time(const char * psz,FILETIME & creation,FILETIME & modified)
 
    }
 
-   ::CloseHandle(h);
+   ::CloseHandle(hfile);
 
    return bOk;
 

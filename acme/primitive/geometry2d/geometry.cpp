@@ -20,7 +20,7 @@ namespace geometry
    ::estatus geometry::initialize(::layered * pobjectContext)
    {
 
-      auto estatus = ::generic::initialize(pobjectContext);
+      auto estatus = ::elemental::initialize(pobjectContext);
 
       if (!estatus)
       {
@@ -37,7 +37,7 @@ namespace geometry
    void geometry::finalize()
    {
 
-      ::generic::finalize();
+      ::elemental::finalize();
 
    }
 

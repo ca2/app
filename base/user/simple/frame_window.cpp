@@ -4,7 +4,7 @@
 #endif
 #include "aura/message.h"
 #include "aura/update.h"
-#include "aura/xml/_.h"
+#include "aqua/xml.h"
 
 
 #ifdef WINDOWS_DESKTOP

@@ -15,11 +15,12 @@ namespace apex
    public:
 
 
-
-      ::aura::system* m_paurasystem;
-      ::axis::system* m_paxissystem;
-      ::base::system* m_pbasesystem;
-      ::core::system* m_pcoresystem;
+      ::aqua::system *        m_paquasystem;
+      ::aura::system *        m_paurasystem;
+      ::axis::system *        m_paxissystem;
+      ::base::system *        m_pbasesystem;
+      ::bred::system *        m_pbredsystem;
+      ::core::system *        m_pcoresystem;
       __pointer(::apex::application)                     m_papplicationStartup;
 
       __composite(::apex::system)                        m_psystemParent;
@@ -802,7 +803,7 @@ namespace apex
 
 
 
-      virtual void __tracea(::generic * pcontextobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz) override;
+      virtual void __tracea(::elemental * pcontextobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz) override;
 
 
       virtual string get_user_language();

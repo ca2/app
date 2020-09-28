@@ -35,7 +35,7 @@
 //public:
 //
 //
-//   static __thread_pointer < __pointer_array(::generic) > t_preferencea;
+//   static __thread_pointer < __pointer_array(::elemental) > t_preferencea;
 //
 //   inline operator T *() { return (T *)get(); }
 //   inline T * operator ->() { return operator T *(); }
@@ -47,10 +47,10 @@
 //      if (p != pPrevious)
 //      {
 //
-//         if (t_preferencea.operator pointer_array<generic> * () == nullptr)
+//         if (t_preferencea.operator pointer_array<elemental> * () == nullptr)
 //         {
 //
-//            t_preferencea = __new(__pointer_array(::generic));
+//            t_preferencea = __new(__pointer_array(::elemental));
 //
 //         }
 //

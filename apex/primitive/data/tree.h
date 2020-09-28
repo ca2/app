@@ -26,12 +26,12 @@ namespace data
 
       virtual i64 add_ref(OBJ_REF_DBG_PARAMS) override
       {
-         return ::generic::add_ref(OBJ_REF_DBG_ARGS);
+         return ::elemental::add_ref(OBJ_REF_DBG_ARGS);
       }
 
       virtual i64 dec_ref(OBJ_REF_DBG_PARAMS) override
       {
-         return ::generic::dec_ref(OBJ_REF_DBG_ARGS);
+         return ::elemental::dec_ref(OBJ_REF_DBG_ARGS);
       }
 
 

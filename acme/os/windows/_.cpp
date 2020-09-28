@@ -304,62 +304,62 @@ string key_to_char(WPARAM wparam, LPARAM lparam)
 
 }
 
-string get_system_error_message(u32 dwError)
-{
 
-   LPWSTR pBuffer;
-
-
-   HMODULE Hand = nullptr;
-
-   if(!FormatMessageW(
-         FORMAT_MESSAGE_ALLOCATE_BUFFER |
-         FORMAT_MESSAGE_FROM_SYSTEM,
-         nullptr,
-         dwError,
-         0,
-         (LPWSTR) &pBuffer,
-
-         1,
-         nullptr))
-   {
-
-      HMODULE Hand = ::LoadLibraryW(L"NTDLL.DLL");
-
-      if(!FormatMessageW(
-            FORMAT_MESSAGE_ALLOCATE_BUFFER |
-            FORMAT_MESSAGE_FROM_SYSTEM |
-            FORMAT_MESSAGE_FROM_HMODULE,
-            Hand,
-            dwError,
-            0,
-            (LPWSTR) &pBuffer,
-
-            1,
-            nullptr))
-      {
-         FreeLibrary(Hand);
-         return "";
-      }
-
-   }
-
-   string str(pBuffer);
-
-
-   LocalFree(pBuffer);
-
-
-   if(Hand != nullptr)
-   {
-      FreeLibrary(Hand);
-   }
-
-   return str;
-
-}
-
-
+//string get_system_error_message(u32 dwError)
+//{
+//
+//   LPWSTR pBuffer;
+//
+//   HMODULE Hand = nullptr;
+//
+//   if(!FormatMessageW(
+//         FORMAT_MESSAGE_ALLOCATE_BUFFER |
+//         FORMAT_MESSAGE_FROM_SYSTEM,
+//         nullptr,
+//         dwError,
+//         0,
+//         (LPWSTR) &pBuffer,
+//
+//         1,
+//         nullptr))
+//   {
+//
+//      HMODULE Hand = ::LoadLibraryW(L"NTDLL.DLL");
+//
+//      if(!FormatMessageW(
+//            FORMAT_MESSAGE_ALLOCATE_BUFFER |
+//            FORMAT_MESSAGE_FROM_SYSTEM |
+//            FORMAT_MESSAGE_FROM_HMODULE,
+//            Hand,
+//            dwError,
+//            0,
+//            (LPWSTR) &pBuffer,
+//
+//            1,
+//            nullptr))
+//      {
+//         FreeLibrary(Hand);
+//         return "";
+//      }
+//
+//   }
+//
+//   string str(pBuffer);
+//
+//
+//   LocalFree(pBuffer);
+//
+//
+//   if(Hand != nullptr)
+//   {
+//      FreeLibrary(Hand);
+//   }
+//
+//   return str;
+//
+//}
+//
+//
 
 
 /*

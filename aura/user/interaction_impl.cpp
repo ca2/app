@@ -3436,12 +3436,12 @@ namespace user
 
          }
 
-         pgraphics->m_pimageimplDraw2dGraphics->m_rectTag.Null();
-
          pgraphics->m_puserstyle.release();
 
          if (pgraphics->m_pimageimplDraw2dGraphics)
          {
+
+            pgraphics->m_pimageimplDraw2dGraphics->m_rectTag.Null();
 
             sizeDrawn = pgraphics->m_pimageimplDraw2dGraphics->m_size;
 
@@ -3460,12 +3460,12 @@ namespace user
 
             m_pgraphics->m_bNewBuffer = true;
 
-            pgraphics->m_pimageimplDraw2dGraphics->m_rectTag = r;
-
          }
 
          if (pgraphics->m_pimageimplDraw2dGraphics)
          {
+
+            pgraphics->m_pimageimplDraw2dGraphics->m_rectTag = m_rectUpdateBuffer;
 
             m_sizeDrawn = sizeDrawn;
 

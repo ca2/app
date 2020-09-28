@@ -12,7 +12,7 @@ extern string_to_int * g_pmapFontError2 ;
 
 extern string_map < cairo_font_face_t * > * g_pmapCairoFontFace ;
 
-//extern CLASS_DECL_AURA array < generic * > * g_paAura;
+//extern CLASS_DECL_AURA array < elemental * > * g_paAura;
 
 #ifdef LINUX
 

@@ -37,7 +37,7 @@ struct add_lvalue_reference
 template<class TYPE>
 struct add_rvalue_reference
 {
-   // add rvalue generic
+   // add rvalue elemental
    typedef TYPE&& type;
 };
 

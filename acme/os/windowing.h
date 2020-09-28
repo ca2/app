@@ -10,7 +10,7 @@
 //CLASS_DECL_ACME i64 oswindow_id(oswindow w);
 
 
-CLASS_DECL_ACME WINBOOL is_window(oswindow oswindow);
+//CLASS_DECL_ACME WINBOOL is_window(oswindow oswindow);
 //CLASS_DECL_ACME oswindow get_focus();
 //CLASS_DECL_ACME oswindow set_focus(oswindow oswindow);
 //CLASS_DECL_ACME oswindow get_active_window();

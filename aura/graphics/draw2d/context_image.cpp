@@ -792,5 +792,33 @@ bool context_image::_load_multi_frame_image(image * pimage, memory_pointer pmemo
 
 }
 
+#ifdef _UWP
+
+// platform implementation may use this imaging-"routing" to manipulate the image/clipboard
+bool context_image::_desk_to_image(::image* pimage)
+{
+
+   return false;
+
+}
+// platform implementation may use this imaging-"routing" to manipulate the image/clipboard
+bool context_image::_desk_has_image()
+{
+
+   return false;
+
+}
+
+// platform implementation may use this imaging-"routing" to manipulate the image/clipboard
+bool context_image::_image_to_desk(const ::image* pimage)
+{
+
+   return false;
+
+}
+
+
+#endif // _UWP
+
 
 

@@ -81,7 +81,7 @@
 
 
 
-      using pid_task = id_map < __pointer(task) >;
+      using interprocess_map = id_map < __pointer(interprocess_task) >;
 
 
 
@@ -95,7 +95,7 @@
       string_array                                 m_straModule;
 
       // strTask - Task
-      pid_task                                     m_mapTask;
+      interprocess_map                             m_mapTask;
 
 
       interprocess_intercommunication(const string & strApp);

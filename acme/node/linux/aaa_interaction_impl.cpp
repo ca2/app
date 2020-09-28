@@ -95,7 +95,7 @@ namespace linux
    i64 g_iMouseMove = 0;
 
    class x11data :
-      virtual public generic
+      virtual public elemental
    {
    public:
 
@@ -114,8 +114,8 @@ namespace linux
    }
 
 
-   interaction_impl::interaction_impl(::generic * pobject) :
-      ::generic(pobject)
+   interaction_impl::interaction_impl(::elemental * pobject) :
+      ::elemental(pobject)
    {
 
       linux_interaction_impl_common_construct();
@@ -1074,7 +1074,7 @@ namespace linux
    void interaction_impl::dump(dump_context & dumpcontext) const
    {
 
-      ::generic::dump(dumpcontext);
+      ::elemental::dump(dumpcontext);
 
       dumpcontext << "\nm_hWnd = " << (void *)((interaction_impl *) this)->get_handle();
 
@@ -2411,7 +2411,7 @@ namespace linux
 
 
 //   class print_window :
-//      virtual ::generic
+//      virtual ::elemental
 //   {
 //   public:
 //
@@ -2421,8 +2421,8 @@ namespace linux
 //      oswindow m_hwnd;
 //      HDC m_hdc;
 //
-//      print_window(::generic * pobject, oswindow hwnd, HDC hdc, DWORD tickTimeout) :
-//         ::generic(pobject)
+//      print_window(::elemental * pobject, oswindow hwnd, HDC hdc, DWORD tickTimeout) :
+//         ::elemental(pobject)
 //      {
 //         m_event.ResetEvent();
 //         m_hwnd = hwnd;
@@ -4706,7 +4706,7 @@ namespace linux
 //      return hWnd;    // return the owner as oswindow
 //   }
 //
-//   void interaction_impl::on_delete(::generic * pinteraction)
+//   void interaction_impl::on_delete(::elemental * pinteraction)
 //   {
 //      UNREFERENCED_PARAMETER(pinteraction);
 //   }

@@ -47,7 +47,7 @@ namespace uwp
 
 
    interaction_impl::interaction_impl(::layered * pobjectContext):
-      ::object(pobject)
+      ::object(pobjectContext)
    {
 
       m_bScreenRelativeMouseMessagePosition  = false;
@@ -170,6 +170,8 @@ namespace uwp
          
       }
 
+      m_oswindow = oswindow_get(this);
+
       set_window_long(GWL_STYLE, cs.style);
 
       set_window_long(GWL_EXSTYLE, cs.dwExStyle);
@@ -178,13 +180,11 @@ namespace uwp
 
       send_message(WM_CREATE,0,(LPARAM)&cs);
 
-      m_puserinteraction->set_window_pos(0,cs.x,cs.cy,cs.cx,cs.cy,0);
+      m_puserinteraction->set_dim(cs.x,cs.cy,cs.cx,cs.cy);
 
       send_message(WM_SIZE);
 
-      m_oswindow = oswindow_get(this);
-
-      m_puserinteraction->add_ref(this);
+      m_puserinteraction->add_ref(OBJ_REF_DBG_ARGS);
 
       m_puserinteraction->m_ewindowflag |= ::window_flag_is_window;
 
@@ -739,29 +739,29 @@ namespace uwp
 
 
 
-   bool interaction_impl::SetLayeredWindowAttributes(COLORREF crKey,BYTE bAlpha,u32 dwFlags)
-   {
-      __throw(todo());
-      //ASSERT(::is_window((oswindow)get_os_data()));
-      //return ::SetLayeredWindowAttributes((oswindow)get_os_data(), crKey, bAlpha, dwFlags) != FALSE;
-   }
+   //bool interaction_impl::SetLayeredWindowAttributes(COLORREF crKey,BYTE bAlpha,u32 dwFlags)
+   //{
+   //   __throw(todo());
+   //   //ASSERT(::is_window((oswindow)get_os_data()));
+   //   //return ::SetLayeredWindowAttributes((oswindow)get_os_data(), crKey, bAlpha, dwFlags) != FALSE;
+   //}
 
-   bool interaction_impl::UpdateLayeredWindow(::draw2d::graphics * pDCDst,POINT *pptDst,SIZE *psize,
-         ::draw2d::graphics * pDCSrc,POINT *pptSrc,COLORREF crKey,BLENDFUNCTION *pblend,u32 dwFlags)
-   {
-      __throw(todo());
-      //ASSERT(::is_window((oswindow)get_os_data()));
-      //return ::UpdateLayeredWindow((oswindow)get_os_data(), WIN_HDC(pDCDst), pptDst, psize,
-      //   WIN_HDC(pDCSrc), pptSrc, crKey, pblend, dwFlags) != FALSE;
-   }
+   //bool interaction_impl::UpdateLayeredWindow(::draw2d::graphics * pDCDst,POINT *pptDst,SIZE *psize,
+   //      ::draw2d::graphics * pDCSrc,POINT *pptSrc,COLORREF crKey,BLENDFUNCTION *pblend,u32 dwFlags)
+   //{
+   //   __throw(todo());
+   //   //ASSERT(::is_window((oswindow)get_os_data()));
+   //   //return ::UpdateLayeredWindow((oswindow)get_os_data(), WIN_HDC(pDCDst), pptDst, psize,
+   //   //   WIN_HDC(pDCSrc), pptSrc, crKey, pblend, dwFlags) != FALSE;
+   //}
 
 
-   bool interaction_impl::GetLayeredWindowAttributes(COLORREF *pcrKey,BYTE *pbAlpha,u32 *pdwFlags) const
-   {
-      __throw(todo());
-      //ASSERT(::is_window((oswindow)get_os_data()));
-      //return ::GetLayeredWindowAttributes((oswindow)get_os_data(), pcrKey, pbAlpha, pdwFlags) != FALSE;
-   }
+   //bool interaction_impl::GetLayeredWindowAttributes(COLORREF *pcrKey,BYTE *pbAlpha,u32 *pdwFlags) const
+   //{
+   //   __throw(todo());
+   //   //ASSERT(::is_window((oswindow)get_os_data()));
+   //   //return ::GetLayeredWindowAttributes((oswindow)get_os_data(), pcrKey, pbAlpha, pdwFlags) != FALSE;
+   //}
 
    bool interaction_impl::PrintWindow(::draw2d::graphics_pointer & pgraphics,UINT nFlags) const
    {
@@ -2404,17 +2404,17 @@ return TRUE;
       //Default();
    }
 
-   HBRUSH interaction_impl::OnCtlColor(::draw2d::graphics *,::user::interaction_impl * pWnd,UINT)
-   {
-      //ASSERT(pWnd != nullptr && pWnd->get_handle() != nullptr);
-      //LRESULT lResult;
-      //if(pWnd->SendChildNotifyLastMsg(&lResult))
-      //   return (HBRUSH)lResult;     // eat it
-      //return (HBRUSH)Default();
+   //HBRUSH interaction_impl::OnCtlColor(::draw2d::graphics *,::user::interaction_impl * pWnd,UINT)
+   //{
+   //   //ASSERT(pWnd != nullptr && pWnd->get_handle() != nullptr);
+   //   //LRESULT lResult;
+   //   //if(pWnd->SendChildNotifyLastMsg(&lResult))
+   //   //   return (HBRUSH)lResult;     // eat it
+   //   //return (HBRUSH)Default();
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
    // implementation of OnCtlColor for default gray backgrounds
    //   (works for any interaction_impl containing controls)
@@ -2660,152 +2660,152 @@ return TRUE;
    }
 
 
-   id interaction_impl::RunModalLoop(u32 dwFlags)
-   {
-
-      // for tracking the idle time state
-      bool bIdle = TRUE;
-      LONG lIdleCount = 0;
-//      bool bShowIdle = (dwFlags & MLF_SHOWONIDLE) && !(GetStyle() & WS_VISIBLE);
-      bool bShowIdle = !(GetStyle() & WS_VISIBLE);
-      oswindow hWndParent = oswindow_get(GetParent()->m_pimpl.cast < ::user::interaction_impl >());
-//      m_puserinteraction->m_iModal = m_puserinteraction->m_iModalCount;
-      //    int iLevel = m_puserinteraction->m_iModal;
-      //prop(string("RunModalLoop.thread(") + __str(iLevel) + ")") = ::get_thread();
-      //  m_puserinteraction->m_iModalCount++;
-
-      //m_puserinteraction->m_threadptraModal.add(::get_thread());
-      ::aura::application * pappThis1 = dynamic_cast <::aura::application *> (get_context_application());
-      ::aura::application * pappThis2 = dynamic_cast <::aura::application *> (get_context_application());
-      // acquire and dispatch messages until the modal state is done
-      MESSAGE msg;
-      for(;;)
-      {
-
-         if (!ContinueModal())
-         {
-
-            break;
-
-         }
-
-         while(bIdle && ! mq_peek_message(&msg, nullptr, 0, 0, PM_NOREMOVE))
-         {
-
-            if (!ContinueModal())
-            {
-
-               break;
-
-            }
-
-            // show the dialog when the message queue goes idle
-            if(bShowIdle)
-            {
-               ShowWindow(SW_SHOWNORMAL);
-               UpdateWindow();
-               bShowIdle = FALSE;
-            }
-
-            // call on_idle while in bIdle state
-            //if(!(dwFlags & MLF_NOIDLEMSG) && hWndParent != nullptr && lIdleCount == 0)
-            //{
-            //   // send WM_ENTERIDLE to the parent
-            //   // uwp todo               ::SendMessage(hWndParent, WM_ENTERIDLE, MSGF_DIALOGBOX, (LPARAM)get_handle());
-            //}
-            //if((dwFlags & MLF_NOKICKIDLE))
-
-            //   // uwp todo    ||           !__call_window_procedure(this, get_handle(), WM_KICKIDLE, MSGF_DIALOGBOX, lIdleCount++))
-            //{
-            //   // stop idle processing next time
-            //   bIdle = FALSE;
-            //}
-
-            //get_thread()->m_dwAlive = get_thread()->m_dwAlive = ::get_tick();
-
-            //if(pappThis1 != nullptr)
-            //{
-
-            //   pappThis1->m_dwAlive = get_thread()->m_dwAlive;
-
-            //}
-
-            //if(pappThis2 != nullptr)
-            //{
-
-            //   pappThis1->m_dwAlive = get_thread()->m_dwAlive;
-
-            //}
-
-         }
-
-
-         // phase2: pump messages while available
-         do
-         {
-
-            if (!ContinueModal())
-            {
-
-               goto ExitModal;
-
-            }
-
-            if(!get_thread()->pump_message())
-            {
-
-               __post_quit_message(0);
-
-               return -1;
-
-            }
-
-            // show the interaction_impl when certain special messages rec'd
-            if(bShowIdle &&
-                  (msg.message == 0x118 || msg.message == WM_SYSKEYDOWN))
-            {
-               ShowWindow(SW_SHOWNORMAL);
-               UpdateWindow();
-               bShowIdle = FALSE;
-            }
-
-            if(!ContinueModal())
-               goto ExitModal;
-
-            //// reset "no idle" state after pumping "normal" message
-            //if(__is_idle_message(&msg))
-            //{
-            //   bIdle = TRUE;
-            //   lIdleCount = 0;
-            //}
-
-            //get_thread()->m_dwAlive = ::get_tick();
-            //if(pappThis1 != nullptr)
-            //{
-            //   pappThis1->m_dwAlive = get_thread()->m_dwAlive;
-            //}
-            //if(pappThis2 != nullptr)
-            //{
-            //   pappThis2->m_dwAlive = get_thread()->m_dwAlive;
-            //}
-
-         }
-         while(::mq_peek_message(&msg,nullptr,0,0,PM_NOREMOVE) != FALSE);
-
-         if (!ContinueModal())
-         {
-
-            goto ExitModal;
-
-         }
-
-      }
-
-ExitModal:
-
-      return m_nModalResult;
-
-   }
+//   id interaction_impl::RunModalLoop(u32 dwFlags)
+//   {
+//
+//      // for tracking the idle time state
+//      bool bIdle = TRUE;
+//      LONG lIdleCount = 0;
+////      bool bShowIdle = (dwFlags & MLF_SHOWONIDLE) && !(GetStyle() & WS_VISIBLE);
+//      bool bShowIdle = !(GetStyle() & WS_VISIBLE);
+//      oswindow hWndParent = oswindow_get(GetParent()->m_pimpl.cast < ::user::interaction_impl >());
+////      m_puserinteraction->m_iModal = m_puserinteraction->m_iModalCount;
+//      //    int iLevel = m_puserinteraction->m_iModal;
+//      //prop(string("RunModalLoop.thread(") + __str(iLevel) + ")") = ::get_thread();
+//      //  m_puserinteraction->m_iModalCount++;
+//
+//      //m_puserinteraction->m_threadptraModal.add(::get_thread());
+//      ::aura::application * pappThis1 = dynamic_cast <::aura::application *> (get_context_application());
+//      ::aura::application * pappThis2 = dynamic_cast <::aura::application *> (get_context_application());
+//      // acquire and dispatch messages until the modal state is done
+//      MESSAGE msg;
+//      for(;;)
+//      {
+//
+//         if (!ContinueModal())
+//         {
+//
+//            break;
+//
+//         }
+//
+//         while(bIdle && ! mq_peek_message(&msg, nullptr, 0, 0, PM_NOREMOVE))
+//         {
+//
+//            if (!ContinueModal())
+//            {
+//
+//               break;
+//
+//            }
+//
+//            // show the dialog when the message queue goes idle
+//            if(bShowIdle)
+//            {
+//               ShowWindow(SW_SHOWNORMAL);
+//               UpdateWindow();
+//               bShowIdle = FALSE;
+//            }
+//
+//            // call on_idle while in bIdle state
+//            //if(!(dwFlags & MLF_NOIDLEMSG) && hWndParent != nullptr && lIdleCount == 0)
+//            //{
+//            //   // send WM_ENTERIDLE to the parent
+//            //   // uwp todo               ::SendMessage(hWndParent, WM_ENTERIDLE, MSGF_DIALOGBOX, (LPARAM)get_handle());
+//            //}
+//            //if((dwFlags & MLF_NOKICKIDLE))
+//
+//            //   // uwp todo    ||           !__call_window_procedure(this, get_handle(), WM_KICKIDLE, MSGF_DIALOGBOX, lIdleCount++))
+//            //{
+//            //   // stop idle processing next time
+//            //   bIdle = FALSE;
+//            //}
+//
+//            //get_thread()->m_dwAlive = get_thread()->m_dwAlive = ::get_tick();
+//
+//            //if(pappThis1 != nullptr)
+//            //{
+//
+//            //   pappThis1->m_dwAlive = get_thread()->m_dwAlive;
+//
+//            //}
+//
+//            //if(pappThis2 != nullptr)
+//            //{
+//
+//            //   pappThis1->m_dwAlive = get_thread()->m_dwAlive;
+//
+//            //}
+//
+//         }
+//
+//
+//         // phase2: pump messages while available
+//         do
+//         {
+//
+//            if (!ContinueModal())
+//            {
+//
+//               goto ExitModal;
+//
+//            }
+//
+//            if(!get_thread()->pump_message())
+//            {
+//
+//               __post_quit_message(0);
+//
+//               return -1;
+//
+//            }
+//
+//            // show the interaction_impl when certain special messages rec'd
+//            if(bShowIdle &&
+//                  (msg.message == 0x118 || msg.message == WM_SYSKEYDOWN))
+//            {
+//               ShowWindow(SW_SHOWNORMAL);
+//               UpdateWindow();
+//               bShowIdle = FALSE;
+//            }
+//
+//            if(!ContinueModal())
+//               goto ExitModal;
+//
+//            //// reset "no idle" state after pumping "normal" message
+//            //if(__is_idle_message(&msg))
+//            //{
+//            //   bIdle = TRUE;
+//            //   lIdleCount = 0;
+//            //}
+//
+//            //get_thread()->m_dwAlive = ::get_tick();
+//            //if(pappThis1 != nullptr)
+//            //{
+//            //   pappThis1->m_dwAlive = get_thread()->m_dwAlive;
+//            //}
+//            //if(pappThis2 != nullptr)
+//            //{
+//            //   pappThis2->m_dwAlive = get_thread()->m_dwAlive;
+//            //}
+//
+//         }
+//         while(::mq_peek_message(&msg,nullptr,0,0,PM_NOREMOVE) != FALSE);
+//
+//         if (!ContinueModal())
+//         {
+//
+//            goto ExitModal;
+//
+//         }
+//
+//      }
+//
+//ExitModal:
+//
+//      return m_nModalResult;
+//
+//   }
 
 
    bool interaction_impl::ContinueModal()
@@ -3869,7 +3869,7 @@ ExitModal:
    bool interaction_impl::RedrawWindow(const ::rect& rectUpdate, ::draw2d::region* prgnUpdate, UINT flags)
    {
 
-      m_puserinteraction->m_bRedraw = true;
+      m_puserinteraction->m_bNeedRedraw = true;
 
       //__throw(todo());
 
@@ -4541,12 +4541,13 @@ ExitModal:
       Default();
    }
 
-   bool interaction_impl::OnEraseBkgnd(::draw2d::graphics *)
-   {
+   
+   //bool interaction_impl::OnEraseBkgnd(::draw2d::graphics *)
+   //{
 
-      return Default() != FALSE;
+   //   return Default() != FALSE;
 
-   }
+   //}
 
 
 #ifdef WINDOWS_DESKTOP
@@ -4558,18 +4559,18 @@ ExitModal:
 
 #endif
 
-   void interaction_impl::OnIconEraseBkgnd(::draw2d::graphics *)
-   {
-      Default();
-   }
+   //void interaction_impl::OnIconEraseBkgnd(::draw2d::graphics *)
+   //{
+   //   Default();
+   //}
    void interaction_impl::OnKillFocus(::user::interaction_impl *)
    {
       Default();
    }
-   LRESULT interaction_impl::OnMenuChar(UINT,UINT,::user::menu*)
-   {
-      return Default();
-   }
+   //LRESULT interaction_impl::OnMenuChar(UINT,UINT,::user::menu*)
+   //{
+   //   return Default();
+   //}
    void interaction_impl::OnMenuSelect(UINT,UINT,HMENU)
    {
       Default();
@@ -4855,14 +4856,14 @@ ExitModal:
    {
       Default();
    }
-   void interaction_impl::OnInitMenu(::user::menu*)
-   {
-      Default();
-   }
-   void interaction_impl::OnInitMenuPopup(::user::menu*,UINT,bool)
-   {
-      Default();
-   }
+   //void interaction_impl::OnInitMenu(::user::menu*)
+   //{
+   //   Default();
+   //}
+   //void interaction_impl::OnInitMenuPopup(::user::menu*,UINT,bool)
+   //{
+   //   Default();
+   //}
 
 #ifdef WINDOWS_DESKTOP
 

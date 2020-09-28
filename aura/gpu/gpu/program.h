@@ -6,7 +6,7 @@ namespace gpu
 
 
    class CLASS_DECL_AURA program :
-      virtual public ::generic
+      virtual public ::elemental
    {
    public:
 

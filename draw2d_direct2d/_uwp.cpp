@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "CustomRenderer.h"
 
 #undef new
 #ifdef _UWP

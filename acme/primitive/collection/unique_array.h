@@ -5,7 +5,7 @@ class unique_sort_array :
    protected BASE_ARRAY
 {
 public:
-   unique_sort_array(::generic * pobject = nullptr);
+   unique_sort_array(::elemental * pobject = nullptr);
    unique_sort_array(const unique_sort_array & array);
 
    virtual index add(ARG_TYPE newElement)
@@ -84,7 +84,7 @@ class unique_array :
    protected array < TYPE >
 {
 public:
-   unique_array(::generic * pobject = nullptr);
+   unique_array(::elemental * pobject = nullptr);
    unique_array(const unique_array & array);
 
    virtual index add(TYPE newElement)

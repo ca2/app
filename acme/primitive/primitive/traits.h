@@ -11,16 +11,16 @@
 ////
 ////
 ////class CLASS_DECL_ACME traits :
-////   virtual public ::generic
+////   virtual public ::elemental
 ////{
 ////public:
 ////   
 ////   
-////   ::generic *                    m_pobjectApp;
+////   ::elemental *                    m_pobjectApp;
 ////   __pointer_array(::trait)           m_traits;
 ////   
 ////   
-////   traits(::generic * pobjectApp);
+////   traits(::elemental * pobjectApp);
 ////   virtual ~traits();
 ////   
 ////   
@@ -39,7 +39,7 @@
 ////   inline bool is_traited(::u64 uId, ::u64 uTrait) { return find(uId, uTrait)->is_traited(); }
 ////   
 ////   
-////   virtual void set_result(::u64 uId, ::u64 uPromisse, ::generic * preference);
+////   virtual void set_result(::u64 uId, ::u64 uPromisse, ::elemental * preference);
 ////   
 ////   
 ////   virtual void _notify(::trait * ptrait);

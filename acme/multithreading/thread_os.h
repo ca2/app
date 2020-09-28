@@ -124,9 +124,9 @@ CLASS_DECL_ACME bool thread_get_run();
 //
 
 
-//CLASS_DECL_ACME void __end_thread(::generic * pobject);
+//CLASS_DECL_ACME void __end_thread(::elemental * pobject);
 
-//CLASS_DECL_ACME void __term_thread(::generic * pobject);
+//CLASS_DECL_ACME void __term_thread(::elemental * pobject);
 
 
 
@@ -135,7 +135,7 @@ CLASS_DECL_ACME bool thread_get_run();
 
 #ifdef WINDOWS
 
-///  \brief    global function to wait on a generic item for a specified time
+///  \brief    global function to wait on a elemental item for a specified time
 ///  \lparam    waitableItem item to wait for (can be event, socket, file, semaphore, ...)
 ///  \lparam    duration time period to wait for item (default: infinite)
 ///  \return   result of waiting action as defined in sync_result
@@ -144,7 +144,7 @@ inline sync_result wait(sync * psync,const duration & duration = duration::infin
    return psync->wait(duration);
 }
 
-///  \brief    global function to wait on a generic item for a specified time
+///  \brief    global function to wait on a elemental item for a specified time
 ///  \lparam    waitableItem item to wait for (item can be thread, event, socket, file, semaphore, ...)
 ///  \lparam    duration time period to wait for item (default: infinite)
 ///  \return   result of waiting action as defined in sync_result
@@ -152,13 +152,13 @@ sync_result wait(i32 numberOfItems, sync * psync, const duration & duration = du
 
 #else
 
-///  \brief    global function to wait on a generic item for a specified time
+///  \brief    global function to wait on a elemental item for a specified time
 ///  \lparam    waitableItem item to wait for (can be event, socket, file, semaphore, ...)
 ///  \lparam    duration time period to wait for item (default: infinite)
 ///  \return   result of waiting action as defined in sync_result
 sync_result wait(sync * psync,const duration & duration = duration::infinite());
 
-///  \brief    global function to wait on a generic item for a specified time
+///  \brief    global function to wait on a elemental item for a specified time
 ///  \lparam    waitableItem item to wait for (item can be thread, event, socket, file, semaphore, ...)
 ///  \lparam    duration time period to wait for item (default: infinite)
 ///  \return   result of waiting action as defined in sync_result

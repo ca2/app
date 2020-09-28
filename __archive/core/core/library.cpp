@@ -17,7 +17,7 @@ namespace acme
 
 #if defined(CUBE) || defined(APPLE_IOS)
 extern "C"
-::acme::library * core_get_new_library(::generic * pobject);
+::acme::library * core_get_new_library(::elemental * pobject);
 
 #else
 #ifndef _WIN32
@@ -84,7 +84,7 @@ namespace acme
 
 #if defined(CUBE) || defined(APPLE_IOS)
 extern "C"
-::acme::library * core_get_new_library(::generic * pobject)
+::acme::library * core_get_new_library(::elemental * pobject)
 #else
 #ifndef _WIN32
 extern "C"

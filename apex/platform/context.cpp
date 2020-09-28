@@ -1059,7 +1059,7 @@ void context::add_matter_locator(::apex::application * papp)
 
 
 
-::estatus context::_load_from_file(::generic* pobject, const ::var& varFile, const var& varOptions)
+::estatus context::_load_from_file(::elemental* pobject, const ::var& varFile, const var& varOptions)
 {
 
    binary_stream reader(Context.file().get_reader(varFile));
@@ -1071,7 +1071,7 @@ void context::add_matter_locator(::apex::application * papp)
 }
 
 
-::estatus context::_save_to_file(const ::var& varFile, const var& varOptions, const ::generic * pobject)
+::estatus context::_save_to_file(const ::var& varFile, const var& varOptions, const ::elemental * pobject)
 {
 
    binary_stream writer(Context.file().get_writer(varFile));

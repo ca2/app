@@ -153,7 +153,7 @@ namespace str
    ::count CLASS_DECL_ACME utf8_replace(string & str, const char * pszFind, const char * pszReplace, strsize iStart = 0);
    string CLASS_DECL_ACME utf8_replace(const char * pszFind, const char * pszReplace, const char * psz, strsize iStart = 0);
 
-   string CLASS_DECL_ACME random_replace(::generic * pobject, const string_array & straReplacement, const string_array & straSearch, const char * psz);
+   string CLASS_DECL_ACME random_replace(::elemental * pobject, const string_array & straReplacement, const string_array & straSearch, const char * psz);
 
    strsize CLASS_DECL_ACME find_first(const string_array & straSearch, index & iFound, const string & str, index iStart = 0);
 

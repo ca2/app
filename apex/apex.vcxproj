@@ -1149,7 +1149,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="node\windows\thread.cpp" />
     <ClCompile Include="node\windows\timer.cpp" />
     <ClCompile Include="node\windows\trace.cpp" />
-    <ClCompile Include="node\windows\tts_speaker.cpp" />
     <ClCompile Include="node\windows_common\application.cpp" />
     <ClCompile Include="os\ansios\base.cpp" />
     <ClCompile Include="os\ansios\exception_engine.cpp" />
@@ -1354,7 +1353,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="node\windows\os_context.h" />
     <ClInclude Include="node\windows\process.h" />
     <ClInclude Include="node\windows\thread.h" />
-    <ClInclude Include="node\windows\tts_speaker.h" />
     <ClInclude Include="node\windows\_.h" />
     <ClInclude Include="node\windows\_node_windows.h" />
     <ClInclude Include="node\windows\_node_windows_private.h" />

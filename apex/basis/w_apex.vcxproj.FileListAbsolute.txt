@@ -1,0 +1,17 @@
+C:\basis\platform-uwp\_seed\basis\w_apex\app.pri
+C:\basis\app\apex\basis\w_apex.vcxprojAssemblyReference.cache
+C:\basis\app\apex\basis\priconfig.xml
+C:\basis\app\apex\basis\priconfig.xml.intermediate
+C:\basis\app\apex\basis\unfiltered.layout.resfiles
+C:\basis\app\apex\basis\unfiltered.layout.resfiles.intermediate
+C:\basis\app\apex\basis\filtered.layout.resfiles
+C:\basis\app\apex\basis\filtered.layout.resfiles.intermediate
+C:\basis\app\apex\basis\excluded.layout.resfiles
+C:\basis\app\apex\basis\excluded.layout.resfiles.intermediate
+C:\basis\app\apex\basis\resources.resfiles
+C:\basis\app\apex\basis\resources.resfiles.intermediate
+C:\basis\app\apex\basis\pri.resfiles
+C:\basis\app\apex\basis\pri.resfiles.intermediate
+C:\basis\app\apex\basis\qualifiers.txt
+C:\basis\app\apex\basis\qualifiers.txt.intermediate
+C:\basis\app\apex\basis\MultipleQualifiersPerDimensionFound.txt

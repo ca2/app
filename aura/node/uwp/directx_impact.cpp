@@ -329,12 +329,12 @@ namespace uwp
 
             spbase = pkey;
 
-            bool bTextFocus = m_psystem->get_context_session()->get_focus_ui() != nullptr;
+            bool bTextFocus = Session.get_focus_ui() != nullptr;
 
             bool bSpecialKey = false;
 
             pkey->m_id = WM_KEYDOWN;
-            pkey->m_puserinteraction = m_psystem->get_context_session()->m_puiHost;
+            pkey->m_puserinteraction = Session.m_puiHost;
             pkey->m_nChar = 0;
             pkey->m_ekey = ::user::key_refer_to_text_member;
             pkey->m_wparam = pkey->m_nChar;
@@ -343,8 +343,9 @@ namespace uwp
             pkey->m_strText = m_strNewText;
             //      pkey->m_key = args;
 
+            auto puiHost = __user_interaction(m_psystem->get_context_session()->m_puiHost);
 
-            m_psystem->get_context_session()->m_puiHost->m_pimpl->queue_message_handler(spbase);
+            puiHost->m_pimpl->queue_message_handler(spbase);
 
          }
 

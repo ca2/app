@@ -22,7 +22,7 @@ namespace uwp
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      virtual bool is_this_visible() override;
+      virtual bool is_this_visible(::user::e_layout elayout = ::user::layout_design) override;
 
 
    };

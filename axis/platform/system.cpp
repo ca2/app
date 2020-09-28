@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aura/xml/_.h"
+#include "aqua/xml.h"
 #include "apex/platform/app_core.h"
 #include "acme/const/id.h"
 //#include "axis/node/_node.h"
@@ -46,7 +46,7 @@ CLASS_DECL_AXIS ::user::interaction * create_system_message_window(::layered * p
 extern string_map < __pointer(::apex::library) > * g_pmapLibrary;
 
 
-CLASS_DECL_AXIS void __simple_tracea(::generic * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
+CLASS_DECL_AXIS void __simple_tracea(::elemental * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
 
 
 #ifdef WINDOWS

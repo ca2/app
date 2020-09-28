@@ -3,7 +3,7 @@
 
 template < class T, class T_to_T = map < T, T, T, T > >
 class biunique :
-   virtual public ::generic
+   virtual public ::elemental
 {
 public:
 

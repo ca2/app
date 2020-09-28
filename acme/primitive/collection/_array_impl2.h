@@ -371,8 +371,8 @@ inline array < TYPE, ARG_TYPE, ALLOCATOR >  & array < TYPE, ARG_TYPE, ALLOCATOR 
 // out-of-line functions
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-array < TYPE, ARG_TYPE, ALLOCATOR > ::array(::generic * pobject, ::count nGrowBy) //:
-   //::generic(pobject)
+array < TYPE, ARG_TYPE, ALLOCATOR > ::array(::elemental * pobject, ::count nGrowBy) //:
+   //::elemental(pobject)
 {
 //   this->m_nGrowBy = max(0, nGrowBy);
 //   this->m_pData = nullptr;
@@ -382,7 +382,7 @@ array < TYPE, ARG_TYPE, ALLOCATOR > ::array(::generic * pobject, ::count nGrowBy
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 array < TYPE, ARG_TYPE, ALLOCATOR > ::array(const array & a) //:
-//   generic(a)
+//   elemental(a)
 {
 
    operator = (a);
@@ -478,7 +478,7 @@ inline void array < TYPE, ARG_TYPE, ALLOCATOR >::copy(const array& src)
 //void array < TYPE, ARG_TYPE, ALLOCATOR > ::dump(dump_context & dumpcontext) const
 //{
 //
-////   generic::dump(dumpcontext);
+////   elemental::dump(dumpcontext);
 //
 //   dumpcontext << "with ";
 //
@@ -504,7 +504,7 @@ inline void array < TYPE, ARG_TYPE, ALLOCATOR >::copy(const array& src)
 //void array < TYPE, ARG_TYPE, ALLOCATOR > ::assert_valid() const
 //{
 //   
-//   //generic::assert_valid();
+//   //elemental::assert_valid();
 //
 //   if (this->m_pData == nullptr)
 //   {

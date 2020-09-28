@@ -2,7 +2,7 @@
 
 
 //stream::stream(stream & stream) :
-////   ::generic(::move(stream)),
+////   ::elemental(::move(stream)),
 //   //stream(::move(stream))
 //   m_pfile(::move(stream.m_pfile))
 //{
@@ -14,7 +14,7 @@
 //
 //stream::stream(::file::file * pfile, index iVersion) :
 //   m_pfile(pfile)
-//   //::generic(pfile->get_object()),
+//   //::elemental(pfile->get_object()),
 //   //stream(pfile, iVersion)
 //{
 //   m_iVersion = iVersion;
@@ -31,8 +31,8 @@
 //}
 //
 //
-//stream::stream(e_create_new, ::generic * pobject, index iVersion) :
-//   //::generic(pobject),
+//stream::stream(e_create_new, ::elemental * pobject, index iVersion) :
+//   //::elemental(pobject),
 //   //stream(e_create, iVersion)
 //{
 //
@@ -562,8 +562,8 @@
 ////{
 ////
 ////
-////   byte_stream_memory_file::byte_stream_memory_file(::generic * pobject) :
-////      ::generic(pobject)
+////   byte_stream_memory_file::byte_stream_memory_file(::elemental * pobject) :
+////      ::elemental(pobject)
 ////   {
 ////
 ////      m_pfile = this;

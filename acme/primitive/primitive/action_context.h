@@ -4,13 +4,13 @@
 
 
 class CLASS_DECL_ACME action_context :
-   virtual public generic
+   virtual public elemental
 {
 public:
 
 
    esource                          m_esource;
-   __pointer_array(::generic)             m_objecta;
+   __pointer_array(::elemental)             m_objecta;
 
 
    action_context() { }
@@ -22,9 +22,9 @@ public:
 
 
    inline void add(e_source esource) { m_esource.add(esource); }
-   inline void add(const generic * pobject) { m_objecta.add((::generic *) pobject); }
-   inline index find(const generic * pobject) const { return m_objecta.find_first(pobject); }
-   inline bool contains(const generic * pobject) const { return m_objecta.contains(pobject); }
+   inline void add(const elemental * pobject) { m_objecta.add((::elemental *) pobject); }
+   inline index find(const elemental * pobject) const { return m_objecta.find_first(pobject); }
+   inline bool contains(const elemental * pobject) const { return m_objecta.contains(pobject); }
 
    inline bool is(e_source esource) const { return m_esource.has(esource); }
    inline bool is_user_source() const { return is(source_user); }

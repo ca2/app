@@ -6,18 +6,18 @@
 // // passed as application_bias to bergedge that can later pass or use this information as application_bias
 // // for further actions.
 // class CLASS_DECL_ACME application_bias :
-//    virtual public ::generic
+//    virtual public ::elemental
 // {
 // public:
 
    
 //    class CLASS_DECL_ACME callback :
-//       virtual public ::generic
+//       virtual public ::elemental
 //    {
 //    public:
 
 
-//       void connect_to(::generic * pobject);
+//       void connect_to(::elemental * pobject);
 
 //       void on_call_signal(::message::message * pmessage);
 
@@ -32,7 +32,7 @@
 
 
 //    application_bias();
-//    application_bias(::generic * pobject);
+//    application_bias(::elemental * pobject);
 //    application_bias(const application_bias & bias);
 //    application_bias & operator = (const application_bias & bias);
 //    virtual ~application_bias();

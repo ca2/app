@@ -44,7 +44,7 @@ namespace os
 
 
 
-      simple_ui(::generic * pobject);
+      simple_ui(::elemental * pobject);
 
       virtual ~simple_ui();
 

@@ -373,7 +373,7 @@ CLASS_DECL_ACME ::estatus _os_message_box(oswindow oswindow, const char* pszMess
 
    string strResult = message_box_result_to_string(iResult);
 
-   future.receive_response(strResult);
+   future.send(strResult);
 
    return ::success;
 

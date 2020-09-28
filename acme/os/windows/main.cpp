@@ -146,10 +146,10 @@ void os_post_quit()
 
 //
 //
-//CLASS_DECL_ACME void main_async_runnable(::generic * pobjectTaskParam)
+//CLASS_DECL_ACME void main_async_runnable(::elemental * pobjectTaskParam)
 //{
 //
-//   __pointer(::generic) pobjectTask = pobjectTaskParam;
+//   __pointer(::elemental) pobjectTask = pobjectTaskParam;
 //   
 //   ::get_context_system()->post_pred([pobjectTask]()
 //   {
@@ -161,10 +161,10 @@ void os_post_quit()
 //}
 
 //
-//CLASS_DECL_ACME void main_sync_runnable(::generic * pobjectTaskParam, ::duration durationTimeout)
+//CLASS_DECL_ACME void main_sync_runnable(::elemental * pobjectTaskParam, ::duration durationTimeout)
 //{
 //   
-//   __pointer(::generic) pobjectTask = pobjectTaskParam;
+//   __pointer(::elemental) pobjectTask = pobjectTaskParam;
 //   
 //   ::get_context_system()->send_pred([pobjectTask]()
 //   {

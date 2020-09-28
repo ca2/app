@@ -1,7 +1,7 @@
 #pragma once
 
 
-class generic;
+class elemental;
 
 
 namespace str
@@ -9,7 +9,7 @@ namespace str
 
 
    class CLASS_DECL_ACME base64 :
-      virtual public ::generic
+      virtual public ::elemental
    {
    public:
 
@@ -46,7 +46,7 @@ namespace str
       string encode(const ::block & block, e_mode emode = mode_normal);
       string encode(void  * point, ::count ca, e_mode emode = mode_normal);
       string encode(const char * psz, e_mode emode = mode_normal);
-      string encode(::generic & generic, e_mode emode = mode_normal);
+      string encode(::elemental & elemental, e_mode emode = mode_normal);
 
       // from Base 64 to binary data
       bool decode(::file::file * pfileOutput, ::file::file * pfileInput);
@@ -54,7 +54,7 @@ namespace str
       bool decode(memory_base & storageBinary, const char * pszBase64, strsize s = -1);
       i64 decode(const ::block & block, const char * pszBase64, strsize s = -1);
       string decode(const char * psz);
-      bool decode(::generic & generic, const char * pszBase64);
+      bool decode(::elemental & elemental, const char * pszBase64);
 
       bool is(int iChar);
 

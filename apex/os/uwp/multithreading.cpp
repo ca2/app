@@ -6,7 +6,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 #include "framework.h"
 #include "_.h"
-#include "apex/platform/mq.h"
+#include "acme/multithreading/mq.h"
 
 
 #undef System
@@ -76,10 +76,10 @@ WorkItemPriority GetWorkItemPriority(int nPriority)
 //}
 
 
-void attach_thread_input_to_main_thread(int_bool bAttach)
-{
-
-}
+//void attach_thread_input_to_main_thread(int_bool bAttach)
+//{
+//
+//}
 
 
 void _on_apex_thread_detach()
@@ -205,20 +205,20 @@ void _on_os_hthread_end()
 }
 
 
-ITHREAD get_current_ithread()
-{
-
-   return ::GetCurrentThreadId();
-
-}
-
-
-HTHREAD get_current_hthread()
-{
-
-   return ::GetCurrentThread();
-
-}
+//ITHREAD get_current_ithread()
+//{
+//
+//   return ::GetCurrentThreadId();
+//
+//}
+//
+//
+//HTHREAD get_current_hthread()
+//{
+//
+//   return ::GetCurrentThread();
+//
+//}
 
 
 HTHREAD g_hMainThread = nullptr;

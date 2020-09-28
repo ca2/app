@@ -1133,15 +1133,22 @@ CLASS_DECL_ACME i32 get_current_process_maximum_affinity()
 
 }
 
-#ifndef __APPLE__
+
+#if !defined(__APPLE__) && !defined(WINDOWS)
+
+
 CLASS_DECL_ACME i32 get_current_process_affinity_order()
 {
 
    return 1;
 
 }
-#endif
+
 
 #endif
+
+
+#endif
+
 
 

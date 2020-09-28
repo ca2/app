@@ -47,8 +47,8 @@ namespace user
       virtual void MacroEnd();
 
 
-      inline auto strtext() const { return m_ppropertyText->m_str; }
-      inline auto & strtext() { return m_ppropertyText->m_str; }
+      inline string strtext() const { return m_ppropertyText->m_str; }
+      inline string & strtext() { return m_ppropertyText->m_str; }
       inline string as_string() const { return m_ppropertyText->get_string(); }
 
 

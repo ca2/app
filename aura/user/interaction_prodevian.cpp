@@ -111,7 +111,7 @@ prodevian::~prodevian()
 
    m_synca.add(&m_evUpdateScreen);
 
-#ifdef WINDOWS
+#ifdef WINDOWS_DESKTOP
 
    attach_thread_input_to_main_thread(true);
 
@@ -1062,7 +1062,7 @@ bool prodevian::prodevian_iteration()
    }
 
 
-   void interaction::prodevian_schedule(::generic * pobjectTask)
+   void interaction::prodevian_schedule(::elemental * pobjectTask)
    {
 
       if (is_graphical())

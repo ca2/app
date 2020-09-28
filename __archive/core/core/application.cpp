@@ -52,7 +52,7 @@ namespace acme
    }
 
 
-   ::estatus application::initialize(::generic * pobjectContext)
+   ::estatus application::initialize(::elemental * pobjectContext)
    {
 
       auto estatus = ::acme::application::initialize(pobjectContext);
@@ -932,7 +932,7 @@ namespace acme
       }
 
       // handle all the rest
-      //linux UINT nIDP = __IDP_INTERNAL_FAILURE;   // generic message string
+      //linux UINT nIDP = __IDP_INTERNAL_FAILURE;   // elemental message string
       const char * nIDP = "Internal Failure";
       pbase->m_lresult = 0;        // sensible default
       if (pbase->m_id == WM_COMMAND)
@@ -2440,13 +2440,13 @@ namespace acme
 
 
 
-   /*   property_set & application::propset(generic * pobject)
+   /*   property_set & application::propset(elemental * pobject)
    {
    single_lock sl(&m_mapObjectSet, TRUE);
    return m_mapObjectSet[pobject];
    }
 
-   property_set * application::existing_propset(generic * pobject)
+   property_set * application::existing_propset(elemental * pobject)
    {
    single_lock sl(&m_mapObjectSet, TRUE);
    auto point = m_mapObjectSet.plookup(pobject);
@@ -3222,7 +3222,7 @@ m_tickHeartBeat.Now();
    //::acme::application * application::get_context_system()
    //{
 
-   //   return ::generic::get_context_system();
+   //   return ::elemental::get_context_system();
 
    //}
 
@@ -3771,7 +3771,7 @@ m_tickHeartBeat.Now();
    //}
 
 
-   //::estatus application::initialize(::generic* pobjectContext)
+   //::estatus application::initialize(::elemental* pobjectContext)
    //{
 
    //   auto estatus = ::acme::application::initialize(pobjectContext);
@@ -4113,7 +4113,7 @@ m_tickHeartBeat.Now();
    //}
 
 
-   ::draw2d::icon* application::set_icon(generic* pobject, ::draw2d::icon* picon, bool bBigIcon)
+   ::draw2d::icon* application::set_icon(elemental* pobject, ::draw2d::icon* picon, bool bBigIcon)
    {
 
       ::draw2d::icon* piconOld = get_icon(pobject, bBigIcon);
@@ -4121,13 +4121,13 @@ m_tickHeartBeat.Now();
       if (bBigIcon)
       {
 
-         pobject->value("big_icon") = (__pointer(generic)) picon;
+         pobject->value("big_icon") = (__pointer(elemental)) picon;
 
       }
       else
       {
 
-         pobject->value("small_icon") = (__pointer(generic)) picon;
+         pobject->value("small_icon") = (__pointer(elemental)) picon;
 
       }
 
@@ -4136,19 +4136,19 @@ m_tickHeartBeat.Now();
    }
 
 
-   ::draw2d::icon* application::get_icon(generic* pobject, bool bBigIcon) const
+   ::draw2d::icon* application::get_icon(elemental* pobject, bool bBigIcon) const
    {
 
       if (bBigIcon)
       {
 
-         return const_cast <generic*> (pobject)->cast < ::draw2d::icon >("big_icon");
+         return const_cast <elemental*> (pobject)->cast < ::draw2d::icon >("big_icon");
 
       }
       else
       {
 
-         return const_cast <generic*> (pobject)->cast < ::draw2d::icon >("small_icon");
+         return const_cast <elemental*> (pobject)->cast < ::draw2d::icon >("small_icon");
 
       }
 

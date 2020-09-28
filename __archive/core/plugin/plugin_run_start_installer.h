@@ -18,7 +18,7 @@ namespace plugin
       plugin * m_pplugin;
 
 
-      run_start_installer(::generic * pobject, plugin * pplugin);
+      run_start_installer(::elemental * pobject, plugin * pplugin);
 
 
       virtual void run_start_install(const char * pszStart);

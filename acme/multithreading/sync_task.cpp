@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-sync_task::sync_task(::generic* pobjectRunnable) :
+sync_task::sync_task(::elemental* pobjectRunnable) :
       m_pobjectRunnable(pobjectRunnable)
 {
 

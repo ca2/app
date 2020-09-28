@@ -49,11 +49,11 @@ CLASS_DECL_ACME bool main_initialize();
 CLASS_DECL_ACME bool main_finalize();
 
 /*
-bool os_on_start_application(::generic * pobject);
-::file::path app_desktop_file_path(::generic * pobject);
-::file::path app_desktop_file_path(::generic * pobject, string strAppId);
-bool linux_prepare_app_desktop_file(::generic * pobject);
-bool linux_prepare_app_desktop_file(::generic * pobject, string strAppId);
+bool os_on_start_application(::elemental * pobject);
+::file::path app_desktop_file_path(::elemental * pobject);
+::file::path app_desktop_file_path(::elemental * pobject, string strAppId);
+bool linux_prepare_app_desktop_file(::elemental * pobject);
+bool linux_prepare_app_desktop_file(::elemental * pobject, string strAppId);
 */
 
 #include "x11.h"

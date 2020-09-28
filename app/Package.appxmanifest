@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-  <Identity Name="ca2.app-core.simple_drawing" Publisher="CN=ca2 Desenvolvimento de Software Ltda." Version="1.1.0.0" />
+  <Identity Name="app.app" Publisher="CN=ca2 Desenvolvimento de Software Ltda." Version="1.1.0.0" />
   <Properties>
-    <DisplayName>ca2.app-core.simple_drawing</DisplayName>
+    <DisplayName>app.app</DisplayName>
     <PublisherDisplayName>ca2 Desenvolvimento de Software Ltda.</PublisherDisplayName>
-    <Logo>Assets\HelloMultliverse50.png</Logo>
+    <Logo>assets\StoreLogo.png</Logo>
   </Properties>
   <Prerequisites>
     <OSMinVersion>6.3</OSMinVersion>
@@ -14,17 +14,8 @@
     <Resource Language="x-generate" />
   </Resources>
   <Applications>
-    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="simple_drawing">
-      <Extensions>
-        <Extension Category="windows.fileTypeAssociation">
-          <FileTypeAssociation Name="ca2">
-            <SupportedFileTypes>
-              <FileType>.txt</FileType>
-            </SupportedFileTypes>
-          </FileTypeAssociation>
-        </Extension>
-      </Extensions>
-      <m2:VisualElements DisplayName="BeatMapper" Description="appm" BackgroundColor="#ffffff" ForegroundText="light" Square150x150Logo="assets\BeatMapper150.png" Square30x30Logo="assets\BeatMapper30.png">
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="app.app">
+      <m2:VisualElements DisplayName="AppApp" Description="appm" BackgroundColor="#ffffff" ForegroundText="light" Square30x30Logo="assets\BeatMapper30.png" Square44x44Logo="assets\Square44x44Logo.png" Square150x150Logo="assets\Square150x150Logo.png">
         <m2:DefaultTile Wide310x150Logo="assets\BeatMapper310-150.png" Square310x310Logo="assets\BeatMapper310.png" Square70x70Logo="assets\BeatMapper70.png">
           <m2:ShowNameOnTiles>
             <m2:ShowOn Tile="square150x150Logo" />
@@ -33,6 +24,20 @@
           </m2:ShowNameOnTiles>
         </m2:DefaultTile>
         <m2:SplashScreen BackgroundColor="#ffffff" Image="assets\BeatMapper620-300.png" />
+        <uap:DefaultTile Square310x310Logo="assets\Square310x310Logo.png" Wide310x150Logo="assets\Wide310x150Logo.png" Square71x71Logo="assets\Square71x71Logo.png">
+          <uap:ShowNameOnTiles>
+            <uap:ShowOn Tile="square150x150Logo"/>
+            <uap:ShowOn Tile="wide310x150Logo"/>
+            <uap:ShowOn Tile="square310x310Logo"/>
+          </uap:ShowNameOnTiles>
+        </uap:DefaultTile>
+        <uap:SplashScreen Image="assets\SplashScreen.png"/>
+        <uap:LockScreen BadgeLogo="assets\BadgeLogo.png" Notification="badgeAndTileText"/>
+        <uap:InitialRotationPreference>
+          <uap:Rotation Preference="landscape"/>
+          <uap:Rotation Preference="portrait"/>
+          <uap:Rotation Preference="landscapeFlipped"/>
+          <uap:Rotation Preference="portraitFlipped"/></uap:InitialRotationPreference>
       </m2:VisualElements>
     </Application>
   </Applications>

@@ -273,7 +273,7 @@ public:
    template < typename OBJECT >
    inline __pointer(T) & defer_alloc(OBJECT * pobject);
 
-   inline __pointer(T) & clone(::generic * pobject);
+   inline __pointer(T) & clone(::elemental * pobject);
 
    inline void run_and_release()
    {
@@ -294,11 +294,11 @@ public:
 };
 
 
-// It must not free memory directly allocated to generic pointed by 'p'.
+// It must not free memory directly allocated to elemental pointed by 'p'.
 // It is recommended to let final deletion and destruction happens at normal destructor.
 // 'destruct' semantics gives a class the ability to use the scoped guard_pointer
 // to release outer references (from operating system for example) that would prevent
-// the generic to be deleted/destroyed when the generic is released by a conventional pointer.
+// the elemental to be deleted/destroyed when the elemental is released by a conventional pointer.
 //
 template < class T >
 inline void destruct(T * p)
@@ -369,7 +369,7 @@ namespace papaya
 
 
    template < typename T>
-   __pointer(T) & defer_new(__pointer(T) & t, ::generic * p)
+   __pointer(T) & defer_new(__pointer(T) & t, ::elemental * p)
    {
 
       if (t.is_null())
@@ -408,7 +408,7 @@ inline __pointer(T) move_transfer(T * p) { return ::pointer < T >(e_move_transfe
 // }
 
 // template < typename TYPE >
-// inline auto __alloc(__pointer(TYPE)& t, ::generic* pobject)
+// inline auto __alloc(__pointer(TYPE)& t, ::elemental* pobject)
 // {
 //    return t.operator=(__new(TYPE(pobject)));
 // }

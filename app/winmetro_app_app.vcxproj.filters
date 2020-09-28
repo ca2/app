@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Common">
+      <UniqueIdentifier>697cf756-f62a-4590-bb69-1ef456dcb81b</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>b56b3607-e180-4111-9392-29a15597dd13</UniqueIdentifier>
+      <Extensions>bmp;fbx;gif;jpg;jpeg;tga;tiff;tif;png</Extensions>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{e158df90-895f-41dc-a33b-4f6050669943}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\uwp">
+      <UniqueIdentifier>{a1d64786-692a-45ed-9af9-ea7d868bb66e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries">
+      <UniqueIdentifier>{8a24db2e-6172-4ee0-a0f0-864740b1ff43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries\x86">
+      <UniqueIdentifier>{e906fbd2-0cd9-4e26-9e54-fa42d1cd6306}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries\x86\basis">
+      <UniqueIdentifier>{c9c634d0-e8c4-49a0-88a3-fc06ee544238}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="uwp\_.cpp">
+      <Filter>Source Files\uwp</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\Square71x71Logo.scale-100.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="assets\Square150x150Logo.scale-100.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="assets\Wide310x150Logo.scale-100.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="assets\Square310x310Logo.scale-100.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="assets\Square44x44Logo.scale-100.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="assets\SplashScreen.scale-100.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="assets\BadgeLogo.scale-100.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="assets\StoreLogo.scale-100.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Square71.scale-100.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Square150.scale-100.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Wide310x150.scale-100.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="assets\Square310.scale-100.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Square44.scale-100.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Wide620x300.scale-100.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="assets\Square24.scale-100.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="assets\Square50.scale-100.png">
+      <Filter>Assets</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package10.appxmanifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\__archive\storage-uwp\binary\Win32\basis\libeay32.dll">
+      <Filter>Libraries\x86\basis</Filter>
+    </None>
+    <None Include="..\..\..\__archive\storage-uwp\binary\Win32\basis\ssleay32.dll">
+      <Filter>Libraries\x86\basis</Filter>
+    </None>
+    <None Include="..\..\..\__archive\storage-uwp\third\binary\Win32\basis\pcre.dll">
+      <Filter>Libraries\x86\basis</Filter>
+    </None>
+    <None Include="..\..\..\__archive\storage-uwp\third\binary\Win32\basis\zlib.dll">
+      <Filter>Libraries\x86\basis</Filter>
+    </None>
+  </ItemGroup>
+</Project>

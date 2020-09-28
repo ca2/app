@@ -29,7 +29,7 @@ public:
    ::count remove_by_name(const id & idName);
    ::count remove_by_name(string_array & straName);
 
-   virtual ::generic * source_channel();
+   virtual ::elemental * source_channel();
 
    inline var operator()(const id & id, const var & varDefault = ::error_not_found) const;
 
@@ -361,7 +361,7 @@ namespace handle
    //{
    //public:
 
-   //   localini(::generic * pobject);
+   //   localini(::elemental * pobject);
 
    //};
 

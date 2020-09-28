@@ -6,11 +6,11 @@
 // http://stackoverflow.com/questions/23709329/launch-one-metro-app-from-other-metro-app-windows-8
 // souvickcse http://stackoverflow.com/users/2246798/souvickcse
 
-namespace apex
-{
+//namespace apex
+//{
 
 
-   namespace ipc
+   namespace interprocess_communication
    {
 
 
@@ -95,7 +95,7 @@ namespace apex
 
          string anotherappURI = m_strBaseChannel + ":///send?message=" + ::get_context_system()->url_encode(pszMessage);
 
-         Uri ^uri = ref new Uri(anotherappURI);
+         ::Windows::Foundation::Uri ^uri = ref new ::Windows::Foundation::Uri(anotherappURI);
 
          main_sync([uri, durationTimeout]()
             {
@@ -132,7 +132,7 @@ namespace apex
 
          string anotherappURI = m_strBaseChannel + "://send?messagebin=" + __str(message)+ "," + ::get_context_system()->url_encode(::get_context_system()->base64().encode((byte *)pdata, len));
 
-         Uri ^uri = ref new Uri(anotherappURI);
+         ::Windows::Foundation::Uri ^uri = ref new ::Windows::Foundation::Uri(anotherappURI);
 
          ::wait(Launcher::LaunchUriAsync(uri), durationTimeout);
 
@@ -211,7 +211,7 @@ namespace apex
 
          if (m_preceiver != nullptr)
          {
-            m_preceiver->on_ipc_receive(prx, pszMessage);
+            m_preceiver->on_interprocess_receive(prx, pszMessage);
          }
 
          // ODOW - on date of writing : return ignored by this windows implementation
@@ -225,7 +225,7 @@ namespace apex
 
          if (m_preceiver != nullptr)
          {
-            m_preceiver->on_ipc_receive(prx, message, pdata, len);
+            m_preceiver->on_interprocess_receive(prx, message, pdata, len);
          }
 
          // ODOW - on date of writing : return ignored by this windows implementation
@@ -240,7 +240,7 @@ namespace apex
 
          if (m_preceiver != nullptr)
          {
-            m_preceiver->on_ipc_post(prx, a, b);
+            m_preceiver->on_interprocess_post(prx, a, b);
          }
 
          // ODOW - on date of writing : return ignored by this windows implementation
@@ -266,14 +266,14 @@ namespace apex
       }
 
 
-      ipc::ipc()
+      interprocess_communication::interprocess_communication()
       {
 
 
       }
 
 
-      ipc::~ipc()
+      interprocess_communication::~interprocess_communication()
       {
 
 
@@ -340,7 +340,7 @@ namespace apex
       //}
 
 
-      bool ipc::open_ab(const char * pszChannel, const char * pszModule)
+      bool interprocess_communication::open_ab(const char * pszChannel, const char * pszModule)
       {
 
          m_strChannel = pszChannel;
@@ -370,7 +370,7 @@ namespace apex
       }
 
 
-      bool ipc::open_ba(const char * pszChannel, const char * pszModule)
+      bool interprocess_communication::open_ba(const char * pszChannel, const char * pszModule)
       {
 
          m_strChannel = pszChannel;
@@ -402,7 +402,7 @@ namespace apex
 
 
 
-      bool ipc::is_rx_tx_ok()
+      bool interprocess_communication::is_rx_tx_ok()
       {
 
          return m_rx.is_rx_ok() && is_tx_ok();
@@ -413,7 +413,7 @@ namespace apex
    } // namespace ipc
 
 
-} // namespace apex
+//} // namespace apex
 
 
 

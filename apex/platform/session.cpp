@@ -3539,83 +3539,85 @@ ret:
    ::estatus session::defer_initialize_host_window(LPCRECT lpcrect)
    {
 
-#if !defined(APPLE_IOS) && !defined(_UWP) && !defined(ANDROID)
+//#if !defined(APPLE_IOS) && !defined(_UWP) && !defined(ANDROID)
+//
+//      return ::success;
+//
+//#else
+//
+//      if(m_puiHost)
+//      {
+//
+//         return ::success;
+//
+//      }
+//
+//      auto puserinteraction = ::PLATFORM_NAMESPACE::create_host_window();
+//
+//      if(!puserinteraction)
+//      {
+//
+//         return ::error_failed;
+//
+//      }
+//
+//      auto estatus = puserinteraction->initialize(get_context_system());
+//
+//      if (!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//      estatus = __refer(m_puiHost, puserinteraction);
+//
+//      if (!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//      rect rectScreen(lpcrect);
+//
+////      if(::is_null(lprect))
+////      {
+////
+////         get_main_monitor(rectScreen);
+////
+////      }
+////      else
+////      {
+////
+////         rectScreen = *lprect;
+////
+////      }
+//
+//      ::user::create_struct cs(0, nullptr, nullptr, WS_VISIBLE, rectScreen);
+//
+//      if (!m_puiHost->create_window_ex(cs))
+//      {
+//
+//         return ::error_failed;
+//
+//      }
+//
+////      puserinteraction->place(rectScreen);
+////
+////      puserinteraction->display(display_normal);
+////
+////      puserinteraction->set_need_layout();
+////
+////      puserinteraction->set_need_redraw();
+////
+////      puserinteraction->post_redraw();
+//
+//      return true;
+//
+//#endif
 
       return ::success;
-
-#else
-
-      if(m_puiHost)
-      {
-
-         return ::success;
-
-      }
-
-      auto puserinteraction = ::PLATFORM_NAMESPACE::create_host_window();
-
-      if(!puserinteraction)
-      {
-
-         return ::error_failed;
-
-      }
-
-      auto estatus = puserinteraction->initialize(get_context_system());
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      estatus = __refer(m_puiHost, puserinteraction);
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      rect rectScreen(lpcrect);
-
-//      if(::is_null(lprect))
-//      {
-//
-//         get_main_monitor(rectScreen);
-//
-//      }
-//      else
-//      {
-//
-//         rectScreen = *lprect;
-//
-//      }
-
-      ::user::create_struct cs(0, nullptr, nullptr, WS_VISIBLE, rectScreen);
-
-      if (!m_puiHost->create_window_ex(cs))
-      {
-
-         return ::error_failed;
-
-      }
-
-//      puserinteraction->place(rectScreen);
-//
-//      puserinteraction->display(display_normal);
-//
-//      puserinteraction->set_need_layout();
-//
-//      puserinteraction->set_need_redraw();
-//
-//      puserinteraction->post_redraw();
-
-      return true;
-
-#endif
 
    }
 

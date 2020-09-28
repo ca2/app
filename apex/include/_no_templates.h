@@ -47,7 +47,7 @@ typedef iptr strsize;
 #include "acme/primitive/primitive/uid.h"
 #include "acme/primitive/primitive/estatus.h"
 #include "acme/primitive/primitive/eobject.h"
-#include "acme/primitive/primitive/generic.h"
+#include "acme/primitive/primitive/elemental.h"
 
 
 

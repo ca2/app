@@ -11,14 +11,14 @@
 #include <tlhelp32.h>
 #include <Winternl.h>
 
-// macro do safe cleanp wtih specified function with generic
+// macro do safe cleanp wtih specified function with elemental
 inline void SAFE_ICON_CLEANUP(HICON hIcon)
 {
    if(hIcon)
       DestroyIcon(hIcon);
 }
 
-// macro do safe cleanp wtih specified function with generic
+// macro do safe cleanp wtih specified function with elemental
 inline void SAFE_ARRAY_CLEANUP(void* pData)
 {
    if(pData)

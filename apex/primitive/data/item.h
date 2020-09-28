@@ -14,7 +14,7 @@ namespace data
 
 
    class CLASS_DECL_APEX item :
-      virtual public generic
+      virtual public elemental
    {
    public:
 

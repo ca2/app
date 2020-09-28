@@ -27,6 +27,9 @@
 #define App(pobject) (*pobject->get_app()->m_pbaseapplication)
 
 
+#define __spin_namespace base // back bone / four-letter "spin*" namespace name
+
+
 
 #include "base/user/experience/_const.h"
 

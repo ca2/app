@@ -9,15 +9,15 @@
 #include <shlobj.h>
 
 
-#include "exception.h"
+//#include "exception.h"
 
 
-namespace uwp
-{
-
-   ref class directx_application;
-
-} // namespace uwp
+//namespace uwp
+//{
+//
+//   ref class directx_application;
+//
+//} // namespace uwp
 
 
 
@@ -33,16 +33,16 @@ string get_error_message(DWORD dwError);
 //CLASS_DECL_APEX void reset_message_cache();
 
 
-#include "command.h"
-#include "implementation.h"
+//#include "command.h"
+//#include "implementation.h"
 //#include "_UWP_folder_watch.h"
 #include "factory_exchange.h"
-#include "uac_tools.h"
+//#include "uac_tools.h"
 #include "thread.h"
-#include "file.h"
-#include "native_buffer.h" // soon, from axis library 2015-07-17 20:06 Livecoding(.tv)
+//#include "file.h"
+//#include "native_buffer.h" // soon, from axis library 2015-07-17 20:06 Livecoding(.tv)
 //#include "stdio_file.h"
-#include "os.h"
+//#include "os.h"
 
 
 #include "dir_system.h"
@@ -66,7 +66,7 @@ string get_error_message(DWORD dwError);
 
 //CLASS_DECL_APEX void __cdecl __pre_translate_message(::message::message * pmessage);
 
-#include "tts_speaker.h"
+//#include "tts_speaker.h"
 
 #include "application.h"
 

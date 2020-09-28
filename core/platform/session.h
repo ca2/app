@@ -6,7 +6,7 @@ namespace core
 
 
    class CLASS_DECL_CORE session :
-      virtual public ::base::session
+      virtual public ::bred::session
    {
    public:
 

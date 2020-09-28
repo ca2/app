@@ -6,7 +6,7 @@
 //
 //template <class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, typename COMPARE = ::comparison::less < KEY >, bool m_bMultiKey = false >
 //class sort_map :
-//   virtual public ::generic
+//   virtual public ::elemental
 //{
 //public:
 //
@@ -708,7 +708,7 @@
 //
 //   }
 //
-//   return pnode->element2();  // return new generic
+//   return pnode->element2();  // return new elemental
 //
 //}
 //
@@ -1390,7 +1390,7 @@
 //template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE, bool m_bMultiKey >
 //void sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::dump(dump_context & dumpcontext) const
 //{
-//   generic::dump(dumpcontext);
+//   elemental::dump(dumpcontext);
 //
 //   dumpcontext << "with " << get_count() << " elements";
 //   if (dumpcontext.GetDepth() > 0)
@@ -1415,7 +1415,7 @@
 //void sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::assert_valid() const
 //{
 //
-//   generic::assert_valid();
+//   elemental::assert_valid();
 //
 //}
 //

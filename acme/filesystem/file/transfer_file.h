@@ -18,8 +18,8 @@ namespace file
       __pointer(::mutex)                        m_spmutex;
 
 
-      transfer_file(::generic * pobject, ::mutex * pmutex = nullptr);
-      transfer_file(::generic * pobject, ::memory_file * pmemoryfileIn);
+      transfer_file(::elemental * pobject, ::mutex * pmutex = nullptr);
+      transfer_file(::elemental * pobject, ::memory_file * pmemoryfileIn);
       virtual ~transfer_file();
 
 

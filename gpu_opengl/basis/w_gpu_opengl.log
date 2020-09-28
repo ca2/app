@@ -1,0 +1,3 @@
+﻿  framework.cpp
+C:\basis\app\gpu_opengl\_.h(29,10): fatal error C1083: Cannot open include file: 'GLES2/gl2.h': No such file or directory
+C:\Program Files (x86)\Windows Kits\10\bin\10.0.18362.0\XamlCompiler\Microsoft.Windows.UI.Xaml.Common.targets(482,5): error MSB4181: The "CompileXaml" task returned false but did not log an error.

@@ -1,0 +1,33 @@
+                          /------------------ - - -     /------------------------- - - - -   /-------------------------------------- - - - 
+E>ThomasBS_/----------- - - -  /aura.dll Release (Win32)     /aura.lib Static Release (Win32)     /helloaura.exe Static Release (Win32)   ---- - - - 
+    /2020-08-18 01:38   /17,180kb     ----- - - -     /189,893kb       --------- - - -     /12,187kb                 ------------------ - - -
+   /2020-08-20 07:41   /13,915kb                     /137,668kb                           /9,715kb        ------------------ - - - 
+  /rebuild mark       /---------------- - - - - ---------------------- - - - ---------------------------------- - - -   
+ /------------------ - - -
+
+
+                        aura.dll Release (Win32)        aura.lib Static Release (Win32)     helloaura.exe Static Release (Win32)
+2020-08-18 01:38        17,180kb                        189,893kb                           12,187kb                        
+update Status
+
+Last status from August
+2020-08-21 06:08        13,691kb                        135,398kb                            9,617kb
+
+Sep2020
+      27-17       27-19       27-20    
+      stage64              
+acme  4,124KB     4,124KB     4,124KB
+apex  5,341KB     5,342KB     5,342KB
+aqua    332KB       332KB       387KB
+aura  4,722KB     4,724KB     4,660KB
+axis  1,487KB     1,489KB     1,489KB
+base  3.424KB     3,427KB     3,427KB
+           bred     177KB       177KB
+core  7,575KB     7,765KB     7,764KB
+      
+
+
+
+
+
+

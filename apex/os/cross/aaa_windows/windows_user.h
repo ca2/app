@@ -1010,10 +1010,10 @@ oswindow hWnd);
 //
 //#ifdef LINUX
 //typedef unsigned long HCURSOR;
-//#define NULL_HCURSOR ((HCURSOR) 0)
+//#define hcursor_null ((HCURSOR) 0)
 //#else
 //typedef void * HCURSOR;
-//#define NULL_HCURSOR ((HCURSOR) nullptr)
+//#define hcursor_null ((HCURSOR) nullptr)
 //#endif
 //
 //typedef void * HDROP;

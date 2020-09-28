@@ -23,7 +23,7 @@ typedef struct tag_MSG
 //CLASS_DECL_AURA WINBOOL WINAPI PostThreadMessage(ITHREAD idthread, UINT Msg, WPARAM wParam, LPARAM lParam);
 
 
-CLASS_DECL_AURA void WINAPI TlsShutdown();
+//CLASS_DECL_AURA void WINAPI TlsShutdown();
 
 
 #ifndef _UWP

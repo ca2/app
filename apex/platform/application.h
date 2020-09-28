@@ -26,9 +26,11 @@ namespace apex
       void* m_pnativeapp;
 
 
+      ::aqua::application *                           m_paquaapplication;
       ::aura::application *                           m_pauraapplication;
       ::axis::application *                           m_paxisapplication;
       ::base::application *                           m_pbaseapplication;
+      ::bred::application *                           m_pbredapplication;
       ::core::application *                           m_pcoreapplication;
 
 

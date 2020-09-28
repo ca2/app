@@ -4,8 +4,8 @@
 namespace plugin
 {
 
-   history::history(::generic * pobject, plugin * pplugin) :
-      ::generic(pobject),
+   history::history(::elemental * pobject, plugin * pplugin) :
+      ::elemental(pobject),
       ::acme::history(pobject),
       m_pplugin(pplugin)
    {

@@ -69,7 +69,7 @@ class single_lock;
 class multi_lock;
 
 
-CLASS_DECL_ACME ::estatus __call(::generic * pobject);
+CLASS_DECL_ACME ::estatus __call(::elemental * pobject);
 
 
 
@@ -81,13 +81,13 @@ CLASS_DECL_ACME ::estatus __call(::generic * pobject);
 //   {
 //
 //      template < typename ARRAY >
-//      __pointer(::generic) is_running(ARRAY & array, const char * pszTag)
+//      __pointer(::elemental) is_running(ARRAY & array, const char * pszTag)
 //      {
 //
 //         for (::index i = 0; i < array.get_size(); i++)
 //         {
 //
-//            __pointer(::generic) pobject;
+//            __pointer(::elemental) pobject;
 //
 //            pobject = &__typed(array[i]);
 //
@@ -298,7 +298,16 @@ CLASS_DECL_ACME void set_thread(layered * pthread);
 CLASS_DECL_ACME void thread_release();
 
 
+typedef bool THREAD_SLEEP(tick tick, ::sync* psync);
+using PFN_THREAD_SLEEP = THREAD_SLEEP*;
 
+CLASS_DECL_ACME bool __simple_thread_sleep();
+CLASS_DECL_ACME bool __simple_thread_sleep(tick tick);
+CLASS_DECL_ACME bool __simple_thread_sleep(::sync* psync);
+CLASS_DECL_ACME bool __simple_thread_sleep(tick tick, ::sync* psync);
+CLASS_DECL_ACME bool thread_sleep(tick tick = INFINITE, ::sync * psync = nullptr);
+CLASS_DECL_ACME bool acme_thread_sleep(tick tick = INFINITE, ::sync* psync = nullptr);
+CLASS_DECL_ACME void set_thread_sleep(PFN_THREAD_SLEEP pfnThreadSleep);
 
 #ifdef _UWP
 

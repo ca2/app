@@ -89,7 +89,7 @@ namespace message
 
 
    //::user::impact_data * create::get_impact_data()
-   ::generic * create::get_impact_data()
+   ::elemental * create::get_impact_data()
    {
 
       auto pcreate = get_create();
@@ -197,7 +197,7 @@ namespace message
          new_vk = extended ? VK_RMENU : VK_LMENU;
          break;
       default:
-         // not a key we map from generic to left/right specialized
+         // not a key we map from elemental to left/right specialized
          //  just return it.
          new_vk = vk;
          break;

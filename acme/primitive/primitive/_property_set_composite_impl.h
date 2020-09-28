@@ -1,7 +1,7 @@
 #pragma once
 
 
-inline property * generic::find_property(const id & id) const
+inline property * elemental::find_property(const id & id) const
 {
 
    if (!m_pset)
@@ -16,7 +16,7 @@ inline property * generic::find_property(const id & id) const
 }
 
 
-inline string generic::find_string(const ::id & id, const ansichar * pszDefault) const
+inline string elemental::find_string(const ::id & id, const ansichar * pszDefault) const
 {
 
    if (!m_pset)
@@ -40,7 +40,7 @@ inline string generic::find_string(const ::id & id, const ansichar * pszDefault)
 }
 
 
-inline ::i32 generic::find_i32(const ::id & id, ::i32 iDefault) const
+inline ::i32 elemental::find_i32(const ::id & id, ::i32 iDefault) const
 {
 
    if (!m_pset)
@@ -64,7 +64,7 @@ inline ::i32 generic::find_i32(const ::id & id, ::i32 iDefault) const
 }
 
 
-inline ::u32 generic::find_u32(const ::id & id, ::u32 iDefault) const
+inline ::u32 elemental::find_u32(const ::id & id, ::u32 iDefault) const
 {
 
    if (!m_pset)
@@ -88,7 +88,7 @@ inline ::u32 generic::find_u32(const ::id & id, ::u32 iDefault) const
 }
 
 
-template < typename TYPE > inline TYPE & generic::get_cast(const ::id & id, TYPE * pDefault)
+template < typename TYPE > inline TYPE & elemental::get_cast(const ::id & id, TYPE * pDefault)
 {
 
    return value(id).get_cast <TYPE>(pDefault);
@@ -96,7 +96,7 @@ template < typename TYPE > inline TYPE & generic::get_cast(const ::id & id, TYPE
 }
 
 
-template < typename TYPE > inline __pointer(TYPE) generic::cast(const ::id & id) const
+template < typename TYPE > inline __pointer(TYPE) elemental::cast(const ::id & id) const
 {
 
    auto pproperty = find_property(id);
@@ -113,7 +113,7 @@ template < typename TYPE > inline __pointer(TYPE) generic::cast(const ::id & id)
 }
 
 
-inline var & generic::value(const id & id)
+inline var & elemental::value(const id & id)
 {
 
    auto & set = get_property_set();
@@ -123,7 +123,7 @@ inline var & generic::value(const id & id)
 }
 
 
-inline bool generic::is_true(const ::id & id) const
+inline bool elemental::is_true(const ::id & id) const
 {
 
    return m_pset && value(id).is_true();
@@ -131,7 +131,7 @@ inline bool generic::is_true(const ::id & id) const
 }
 
 
-inline bool generic::is_false(const ::id& id) const
+inline bool elemental::is_false(const ::id& id) const
 {
 
    return !is_true(id);
@@ -139,7 +139,7 @@ inline bool generic::is_false(const ::id& id) const
 }
 
 
-inline bool generic::is_true(const ::id & id, const var & varDefault, bool bDefault = false) const
+inline bool elemental::is_true(const ::id & id, const var & varDefault, bool bDefault = false) const
 {
 
    return value(id).is_true(varDefault, bDefault);
@@ -147,21 +147,21 @@ inline bool generic::is_true(const ::id & id, const var & varDefault, bool bDefa
 }
 
 
-inline var & generic::operator[](const ::id & id) { return value(id); }
+inline var & elemental::operator[](const ::id & id) { return value(id); }
 
-inline var generic::operator[](const ::id & id) const { return find_property(id); }
+inline var elemental::operator[](const ::id & id) const { return find_property(id); }
 
-inline var generic::value(const ::id & id) const { return find_property(id); }
+inline var elemental::value(const ::id & id) const { return find_property(id); }
 
-inline var generic::value(const ::id & id, const var & varDefault) const { return operator()(id, varDefault); }
+inline var elemental::value(const ::id & id, const var & varDefault) const { return operator()(id, varDefault); }
 
-inline var generic::operator()(const ::id & id) const { return find_value(id, ::error_not_found); }
+inline var elemental::operator()(const ::id & id) const { return find_value(id, ::error_not_found); }
 
-inline var generic::operator()(const ::id & id, const var & varDefault) const { return find_value(id, varDefault); }
+inline var elemental::operator()(const ::id & id, const var & varDefault) const { return find_value(id, varDefault); }
 
-inline var generic::find_value(const ::id & id) const { return find_value(id, ::error_not_found); }
+inline var elemental::find_value(const ::id & id) const { return find_value(id, ::error_not_found); }
 
-inline var generic::find_value(const ::id & id, const var & varDefault) const
+inline var elemental::find_value(const ::id & id, const var & varDefault) const
 {
 
    auto pproperty = find_property(id);
@@ -177,12 +177,12 @@ inline var generic::find_value(const ::id & id, const var & varDefault) const
 
 }
 
-inline var generic::attribute(const ::id & id) { return value(id); }
+inline var elemental::attribute(const ::id & id) { return value(id); }
 
-inline ::property * generic::find_attribute(const ::id & id) { return find_property(id); }
+inline ::property * elemental::find_attribute(const ::id & id) { return find_property(id); }
 
 template < typename TYPE >
-inline bool generic::find_attribute(const ::id & id, TYPE & t)
+inline bool elemental::find_attribute(const ::id & id, TYPE & t)
 {
 
    auto p = find_property(id);
@@ -201,7 +201,7 @@ inline bool generic::find_attribute(const ::id & id, TYPE & t)
 }
 
 
-inline var & generic::get_context_object(const ::id & id)
+inline var & elemental::get_context_object(const ::id & id)
 {
 
    auto pproperty = &value(id);

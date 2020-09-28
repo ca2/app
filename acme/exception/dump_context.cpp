@@ -369,7 +369,7 @@ void dump_context::hex_dump(u64 ui)
 }
 
 
-void dump_context::write(const ::generic * pobject)
+void dump_context::write(const ::elemental * pobject)
 {
 
    if (pobject == nullptr)
@@ -390,10 +390,10 @@ void dump_context::write(const ::generic * pobject)
 }
 
 
-void dump_context::write(const ::generic & generic)
+void dump_context::write(const ::elemental & elemental)
 {
 
-   generic.dump(*this);
+   elemental.dump(*this);
 
    return;
 

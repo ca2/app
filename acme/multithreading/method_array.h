@@ -7,8 +7,8 @@
 //public:
 //
 //
-//   procedure_array(::generic * pobject) :
-//      ::generic(pobject)
+//   procedure_array(::elemental * pobject) :
+//      ::elemental(pobject)
 //   {
 //
 //   }

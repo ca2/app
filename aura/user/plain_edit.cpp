@@ -4424,8 +4424,14 @@ finished_update:
                         {
 
                            psz = ::str::uni_dec(buf, &buf[iCur]);
+
                            if (psz == nullptr)
-                              psz = max(buf, &buf[iCur - 1]);
+                           {
+
+                              psz = max((char *) buf, (char *) &buf[iCur - 1]);
+
+                           }
+
                            iMultiByteUtf8DeleteCount = &buf[iCur] - psz;
 
                         }
@@ -4769,7 +4775,7 @@ finished_update:
                      if (m_bTabInsertSpaces)
                      {
 
-                        auto iColumn = SelToColumn(m_ptree->m_iSelEnd);
+                        auto iColumn = plain_edit_sel_to_column(pgraphics, m_ptree->m_iSelEnd);
 
                         str = string(' ', m_iTabWidth - (iColumn % m_iTabWidth));
 
@@ -4814,7 +4820,8 @@ finished_update:
                      {
                         iCode |= 0x80000000;
                      }
-                     str = Session.keyboard().process_key(pkey);
+                     //str = Session.keyboard().process_key(pkey);
+                     __throw(todo("keyboard"));
                   }
 
                   insert_text(str, false);

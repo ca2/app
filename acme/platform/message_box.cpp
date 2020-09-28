@@ -16,7 +16,7 @@ message_box::~message_box()
 }
 
 
-//::estatus message_box::show(::generic* pobject)
+//::estatus message_box::show(::elemental* pobject)
 //{
 //
 //   //if (::is_null(pobject))

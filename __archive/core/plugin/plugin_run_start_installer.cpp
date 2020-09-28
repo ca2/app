@@ -4,7 +4,7 @@
 namespace plugin
 {
 
-   run_start_installer::run_start_installer(::generic * pobject, plugin * pplugin) :
+   run_start_installer::run_start_installer(::elemental * pobject, plugin * pplugin) :
       m_pplugin(pplugin)
    {
       UNREFERENCED_PARAMETER(pobject);

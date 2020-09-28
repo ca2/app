@@ -8,7 +8,7 @@
    public:
 
 
-      virtual_memory(::generic * pobject);
+      virtual_memory(::elemental * pobject);
       virtual_memory(const void *, memsize iCount);
       virtual_memory(const memory_base & memory);
       virtual_memory(const char * psz);
@@ -24,7 +24,7 @@
       virtual byte * impl_realloc(void * pdata, memsize dwAllocation) override;
       virtual void impl_free(byte * pdata) override;
 
-      //virtual ::generic * clone() override;
+      //virtual ::elemental * clone() override;
 
 
    };

@@ -13,8 +13,7 @@ CLASS_DECL_AURA void os_term_windowing();
 
 CLASS_DECL_AURA i64 oswindow_id(oswindow w);
 
-
-//CLASS_DECL_AURA WINBOOL is_window(oswindow oswindow);
+CLASS_DECL_AURA WINBOOL is_window(oswindow oswindow);
 CLASS_DECL_AURA oswindow get_focus();
 CLASS_DECL_AURA oswindow set_focus(oswindow oswindow);
 CLASS_DECL_AURA oswindow get_active_window();
@@ -26,7 +25,7 @@ CLASS_DECL_AURA WINBOOL destroy_window(oswindow oswindow);
 CLASS_DECL_AURA oswindow get_window(oswindow oswindow, int iWindow);
 CLASS_DECL_AURA oswindow get_desktop_window();
 CLASS_DECL_AURA WINBOOL show_window(oswindow oswindow, int iShow);
-CLASS_DECL_AURA WINBOOL set_foregaura_window(oswindow oswindow);
+CLASS_DECL_AURA WINBOOL set_foreground_window(oswindow oswindow);
 
 
 #ifdef WINDOWS_DESKTOP

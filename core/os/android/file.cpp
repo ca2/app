@@ -11,11 +11,11 @@
 //#include <sys/stat.h>
 
 
-void fd_ensure_file_size(i32 fd, i64 iSize)
+void fd_set_size(i32 fd, i64 iSize)
 {
 
    if(ftruncate(fd, iSize) == -1)
-      __throw(::exception::exception("fd_ensure_file_size exception"));
+      __throw(::exception::exception("fd_set_size exception"));
 
 }
 

@@ -296,3 +296,11 @@ void os_post_quit()
 
 }
 
+
+
+
+void apex_application_main(int argc, char* argv[], const char* pszCommandLine)
+{
+
+
+}

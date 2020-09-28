@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "apex/const/idpool.h"
+#include "aqua/id.h"
 
 
 namespace aura
@@ -9,7 +9,7 @@ namespace aura
 
 
    class CLASS_DECL_AURA idpool :
-      public ::apex::idpool
+      public ::aqua::idpool
    {
    public:
 

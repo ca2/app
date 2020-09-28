@@ -42,7 +42,7 @@ namespace interprocess_communication
          if(!file_exists(pszChannel))
          {
 
-            file_put_contents_dup(pszChannel, pszChannel);
+            file_put_contents(pszChannel, pszChannel);
 
          }
 
@@ -210,7 +210,7 @@ namespace interprocess_communication
          if(!file_exists(pszChannel))
          {
 
-            file_put_contents_dup(pszChannel, pszChannel);
+            file_put_contents(pszChannel, pszChannel);
 
          }
 

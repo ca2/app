@@ -134,7 +134,7 @@ CLASS_DECL_ACME bool __enable_memory_leak_override(bool bEnable);
 //#include "memory_state.h"
 
 // Enumerate allocated objects or runtime classes
-/*void __do_for_all_objects(void (c_cdecl *pfn)(generic* pObject, void * pContext),
+/*void __do_for_all_objects(void (c_cdecl *pfn)(elemental* pObject, void * pContext),
    void * pContext);
 void ::acme::DoForAllClasses(void (c_cdecl *pfn)(::type pClass,
    void * pContext), void * pContext);*/
@@ -308,9 +308,9 @@ CLASS_DECL_ACME int __assert_failed_line(const char * pszFileName, int nLine);
 //CLASS_DECL_ACME void TRACE(e_trace_category ecategory, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
 //CLASS_DECL_ACME void __tracef(e_trace_category ecategory, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...);
 //CLASS_DECL_ACME void __tracev(e_trace_category ecategory, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
-CLASS_DECL_ACME void __assert_valid_object(const ::generic * pOb, const char * pszFileName, i32 nLine);
+CLASS_DECL_ACME void __assert_valid_object(const ::elemental * pOb, const char * pszFileName, i32 nLine);
 
-CLASS_DECL_ACME void __dump(const ::generic * pOb);
+CLASS_DECL_ACME void __dump(const ::elemental * pOb);
 
 
 #define THIS_FILE          __FILE__

@@ -11,7 +11,7 @@ namespace linux
 //   public:
 //
 //
-//      thread(::generic * pobject);
+//      thread(::elemental * pobject);
 //      virtual ~thread();
 //
 //

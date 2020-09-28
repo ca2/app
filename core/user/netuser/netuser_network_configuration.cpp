@@ -2,7 +2,7 @@
 //#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/netuser/_netuser.h"
 //#endif
-#include "aura/xml/_.h"
+#include "aqua/xml.h"
 
 
 namespace usernet

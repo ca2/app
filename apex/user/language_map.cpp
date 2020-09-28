@@ -293,7 +293,7 @@ namespace user
       //   str1 += "\nmsgstr\"" + strId + "\"\n";
       //   str1 += "\n";
 
-      //   file_put_contents_dup(point1, str1);
+      //   file_put_contents(point1, str1);
 
       //   strText = "!" + m_planguage->m_strLanguageCode + ":" + strId;
 

@@ -6,14 +6,14 @@
 #include "framework.h"
 
 
-//generic::generic()
+//elemental::elemental()
 //{
 //
 //   mutex() = nullptr;
 //
 //}
 //
-//generic::generic(const generic & objectSrc)
+//elemental::elemental(const elemental & objectSrc)
 //{
 //
 //   UNREFERENCED_PARAMETER(objectSrc);
@@ -24,7 +24,7 @@
 //
 //
 /////  \brief		destructor
-//generic::~generic()
+//elemental::~elemental()
 //{
 //
 //   if(mutex() != nullptr)
@@ -39,7 +39,7 @@
 //}
 //
 /////  \brief		abstract function to initialize a waiting action without a timeout
-//void generic::wait()
+//void elemental::wait()
 //{
 //
 //   wait(duration::infinite());
@@ -49,14 +49,14 @@
 //	///  \brief		abstract function to initialize a waiting action with a timeout
 //	///  \lparam		duration time period to wait for item
 //	///  \return	waiting action result as sync_result
-//sync_result generic::wait(const duration & duration )
+//sync_result elemental::wait(const duration & duration )
 //{
 //
 //
 //   if(mutex() == nullptr)
 //   {
 //
-//      ((generic *)this)->mutex() = new ::mutex();
+//      ((elemental *)this)->mutex() = new ::mutex();
 //
 //   }
 //
@@ -91,8 +91,8 @@
 ////};
 //
 //
-/////  \brief		pauses generic for specified time
-/////  \lparam		duration sleeping time of generic
+/////  \brief		pauses elemental for specified time
+/////  \lparam		duration sleeping time of elemental
 ///*CLASS_DECL_ACME void sleep(const duration & duration)
 //{
 //   Sleep((u32)duration.total_milliseconds());
@@ -107,13 +107,13 @@
 //
 //
 //
-//void * generic::get_os_data() const
+//void * elemental::get_os_data() const
 //{
 //
 //   if(mutex() == nullptr)
 //   {
 //
-//      ((generic *)this)->mutex() = new ::mutex();
+//      ((elemental *)this)->mutex() = new ::mutex();
 //
 //   }
 //
@@ -121,22 +121,22 @@
 //
 //}
 //
-//void generic::lock()
+//void elemental::lock()
 //{
 //
 //   if(!lock(duration::infinite()))
 //      if(!lock(duration::infinite()))
-//         __throw(::exception::exception("failure to lock generic"));
+//         __throw(::exception::exception("failure to lock elemental"));
 //
 //}
 //
-//bool generic::lock(const duration & duration)
+//bool elemental::lock(const duration & duration)
 //{
 //
 //   if(mutex() == nullptr)
 //   {
 //
-//      ((generic *)this)->mutex() = new ::mutex();
+//      ((elemental *)this)->mutex() = new ::mutex();
 //
 //   }
 //
@@ -163,7 +163,7 @@
 //}
 //
 //
-//bool generic::unlock()
+//bool elemental::unlock()
 //{
 //
 //   if(mutex() == nullptr)
@@ -191,7 +191,7 @@
 //
 //}
 //
-//bool generic::unlock(LONG lCount, LPLONG pPrevCount)
+//bool elemental::unlock(LONG lCount, LPLONG pPrevCount)
 
 //{
 //   UNREFERENCED_PARAMETER(lCount);
@@ -201,13 +201,13 @@
 //}
 //
 //
-//bool generic::is_locked() const
+//bool elemental::is_locked() const
 //{
 //
 //   // CRITICAL SECTIONS does *NOT* support is locked and timed locks
-//   ASSERT(dynamic_cast < critical_section * > ( const_cast < generic * > (this)) == nullptr);
+//   ASSERT(dynamic_cast < critical_section * > ( const_cast < elemental * > (this)) == nullptr);
 //
-//   single_lock sl(const_cast < generic * > (this));
+//   single_lock sl(const_cast < elemental * > (this));
 //
 //   bool bWasLocked = !sl.lock(duration::zero());
 //

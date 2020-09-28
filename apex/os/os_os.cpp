@@ -12,7 +12,7 @@ extern ::app_core * g_pappcore;
 //}
 
 
-//CLASS_DECL_APEX string get_command_line_dup()
+//CLASS_DECL_APEX string get_command_line()
 //{
 //
 //   return get_command_line_string();
@@ -39,7 +39,7 @@ extern ::app_core * g_pappcore;
 //
 //      ::file::path path = pathFolder / "last_command_line.txt";
 //
-//      file_put_contents_dup(path, get_command_line_string());
+//      file_put_contents(path, get_command_line_string());
 //
 //      ::file::path pathExecutable = consume_param(psz, nullptr);
 //
@@ -50,7 +50,7 @@ extern ::app_core * g_pappcore;
 //      if (file_is_equal_path_dup(pathExecutable.title(), strAppTitle))
 //      {
 //
-//         file_put_contents_dup(path, pathExecutable);
+//         file_put_contents(path, pathExecutable);
 //
 //      }
 //
@@ -59,10 +59,10 @@ extern ::app_core * g_pappcore;
 //}
 
 //
-//CLASS_DECL_APEX void get_command_line_dup(char * psz, int iBuffer)
+//CLASS_DECL_APEX void get_command_line(char * psz, int iBuffer)
 //{
 //
-//   strncpy(psz, get_command_line_dup(), iBuffer);
+//   strncpy(psz, get_command_line(), iBuffer);
 //
 //}
 

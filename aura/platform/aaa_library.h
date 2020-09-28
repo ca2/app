@@ -76,10 +76,10 @@ namespace aura
       virtual void get_app_list(string_array & stra);
 
 
-      virtual ::generic* new_object(::object* pobjectContext, const char* pszClass);
+      virtual ::elemental* new_object(::object* pobjectContext, const char* pszClass);
 
 
-      virtual __pointer(::generic) create_object(::object* pobjectContext, const char* pszClass);
+      virtual __pointer(::elemental) create_object(::object* pobjectContext, const char* pszClass);
       virtual bool has_object_class(const char * lpszClass);
 
 
@@ -91,10 +91,10 @@ namespace aura
       virtual void get_extension_list(string_array & stra);
 
 
-      virtual ::generic * factory_new(::layered * pobjectContext, const char * lpszClass);
+      virtual ::elemental * factory_new(::layered * pobjectContext, const char * lpszClass);
 
 
-      virtual __pointer(::generic) factory_create(::layered * pobjectContext, const char * lpszClass);
+      virtual __pointer(::elemental) factory_create(::layered * pobjectContext, const char * lpszClass);
       virtual bool factory_has_object_class(const char * lpszClass);
 
       library_object_allocator_base * find_allocator(const char * lpszClass);

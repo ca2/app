@@ -5,7 +5,7 @@
 #include "aura/node/uwp/directx_application.h"
 
 
-CLASS_DECL_AURA ::estatus os_application_system_run(::aura::system * psystem)
+CLASS_DECL_AURA ::estatus os_application_system_run(::apex::system * psystem)
 {
 
    //auto estatus = psystem->begin_synch();
@@ -17,7 +17,7 @@ CLASS_DECL_AURA ::estatus os_application_system_run(::aura::system * psystem)
 
    //}
 
-   auto source = ::uwp::new_directx_application_source(get_context_system(), psystem->m_strCommandLine);
+   auto source = ::uwp::new_directx_application_source(get_context_system()->m_paurasystem, psystem->m_strCommandLine);
 
    ::Windows::ApplicationModel::Core::CoreApplication::Run(source);
 

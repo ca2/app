@@ -47,7 +47,7 @@ namespace axis
          if(!file_exists(pszChannel))
          {
 
-            file_put_contents_dup(pszChannel, pszChannel);
+            file_put_contents(pszChannel, pszChannel);
 
          }
 
@@ -215,7 +215,7 @@ namespace axis
          if(!file_exists(pszChannel))
          {
 
-            file_put_contents_dup(pszChannel, pszChannel);
+            file_put_contents(pszChannel, pszChannel);
 
          }
 

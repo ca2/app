@@ -148,8 +148,8 @@ namespace ansios
 {
 
 
-   process::process(::generic * pobject):
-      generic(pobject),
+   process::process(::elemental * pobject):
+      elemental(pobject),
       ::process::process(pobject)
    {
 

@@ -12,7 +12,7 @@ namespace windows
 
 
       class CLASS_DECL_ACME document_properties :
-         virtual public ::generic
+         virtual public ::elemental
       {
       public:
 

@@ -338,23 +338,23 @@ string key_to_char(WPARAM wparam, LPARAM lparam)
 
 
 
-string get_system_error_message(u32 dwError)
-{
-   wstring wstr;
-   unichar * p = wstr.get_string_buffer(64 * 1024 / sizeof(unichar));
-   DWORD dw = FormatMessageW(
-              FORMAT_MESSAGE_FROM_SYSTEM,
-              nullptr,
-              dwError,
-              0,
-              p,
-              wstr.get_length() / sizeof(unichar),
-              nullptr);
-   p[dw] = L'\0';
-   wstr.release_string_buffer();
-   string str(wstr);
-   return str;
-}
+//string get_system_error_message(u32 dwError)
+//{
+//   wstring wstr;
+//   unichar * p = wstr.get_string_buffer(64 * 1024 / sizeof(unichar));
+//   DWORD dw = FormatMessageW(
+//              FORMAT_MESSAGE_FROM_SYSTEM,
+//              nullptr,
+//              dwError,
+//              0,
+//              p,
+//              wstr.get_length() / sizeof(unichar),
+//              nullptr);
+//   p[dw] = L'\0';
+//   wstr.release_string_buffer();
+//   string str(wstr);
+//   return str;
+//}
 
 
 
@@ -442,48 +442,48 @@ string get_system_error_message(u32 dwError)
 
 
 
-bool defer_co_initialize_ex(bool bMultiThread)
-{
-
-   auto pthread = ::get_thread();
-
-   if(!pthread)
-   {
-
-      return false;
-
-   }
-
-   HRESULT hr = pthread->m_hresultCoInitialize;
-
-   if(!pthread->m_bCoInitialize)
-   {
-
-      pthread->m_bCoInitialize = true;
-    
-      hr = ::CoInitializeEx(nullptr,COINIT_MULTITHREADED);
-
-   }
-
-   if(FAILED(hr))
-   {
-
-      if (hr == 0x80010106)
-      {
-
-         return true;
-
-      }
-
-      ::output_debug_string("Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init");
-
-      return false;
-
-   }
-
-   return true;
-
-}
+//bool defer_co_initialize_ex(bool bMultiThread)
+//{
+//
+//   auto pthread = ::get_thread();
+//
+//   if(!pthread)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   HRESULT hr = pthread->m_hresultCoInitialize;
+//
+//   if(!pthread->m_bCoInitialize)
+//   {
+//
+//      pthread->m_bCoInitialize = true;
+//    
+//      hr = ::CoInitializeEx(nullptr,COINIT_MULTITHREADED);
+//
+//   }
+//
+//   if(FAILED(hr))
+//   {
+//
+//      if (hr == 0x80010106)
+//      {
+//
+//         return true;
+//
+//      }
+//
+//      ::output_debug_string("Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init");
+//
+//      return false;
+//
+//   }
+//
+//   return true;
+//
+//}
 
 
 bool defer_init_winsock();
@@ -505,7 +505,7 @@ bool __node_aura_pre_init()
          if(FAILED(hresult))
          {
 
-            ::message_box(nullptr,"Failed to ::CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED) at __node_pre_init","__node_pre_init failure",MB_ICONEXCLAMATION);
+            os_message_box("Failed to ::CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED) at __node_pre_init","__node_pre_init failure",MB_ICONEXCLAMATION);
 
             return false;
 
@@ -515,7 +515,7 @@ bool __node_aura_pre_init()
       else
       {
 
-         ::message_box(nullptr,"Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init","__node_pre_init failure",MB_ICONEXCLAMATION);
+         os_message_box("Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init","__node_pre_init failure",MB_ICONEXCLAMATION);
 
          return false;
 

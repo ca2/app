@@ -48,7 +48,9 @@ namespace uwp
 
       }
 
-      m_directxapplication = Session.m_directxapplication;
+      auto pdirectxapplication = Session.m_directxapplication;
+
+      m_directxapplication = pdirectxapplication;
 
       return estatus;
 

@@ -213,7 +213,7 @@ void stdio_file::set_size(filesize dwNewLen)
 filesize stdio_file::get_size() const
 {
 
-   return flen_dup(m_pfile);
+   return FILE_get_size(m_pfile);
 
 }
 

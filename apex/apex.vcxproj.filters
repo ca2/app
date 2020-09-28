@@ -749,9 +749,6 @@
     <ClInclude Include="node\windows\thread.h">
       <Filter>Header Files\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\windows\tts_speaker.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="os\chronometer.h">
       <Filter>Header Files\os</Filter>
     </ClInclude>
@@ -1838,9 +1835,6 @@
       <Filter>Source Files\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="node\windows\trace.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\tts_speaker.cpp">
       <Filter>Source Files\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="node\windows_common\application.cpp">

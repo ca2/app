@@ -3,7 +3,7 @@
 //#include "apex/platform/machine_event_data.h"
 //#include "aura/platform/machine_event.h"
 //#include "aura/platform/machine_event_central.h"
-#include "aura/xml/_.h"
+#include "aqua/xml/_.h"
 #include "apex/platform/app_core.h"
 #include "acme/const/id.h"
 #include "aura/node/_node.h"
@@ -22,8 +22,6 @@
 
 int GetMainScreenRect(LPRECT lprect);
 
-
-CLASS_DECL_APEX const char* multimedia_get_library_name();
 
 #ifdef LINUX
 const char * get_main_app_id();
@@ -53,7 +51,7 @@ CLASS_DECL_AURA ::user::interaction * create_system_message_window(::layered * p
 extern string_map < __pointer(::apex::library) > * g_pmapLibrary;
 
 
-CLASS_DECL_AURA void __simple_tracea(::generic * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
+CLASS_DECL_AURA void __simple_tracea(::elemental * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
 
 
 #ifdef WINDOWS
@@ -567,19 +565,6 @@ namespace aura
    }
 
 
-   ::aura::audio * system::defer_get_audio()
-   {
-
-      if (!m_paudio)
-      {
-
-         defer_audio();
-
-      }
-
-      return m_paudio;
-
-   }
 
 
 //   ::estatus system::do_factory_exchange(const char* pszComponent, const char* pszImplementation)
@@ -744,101 +729,6 @@ namespace aura
 //      return ::success;
 //
 //   }
-
-
-   void system::defer_audio()
-   {
-
-      auto plibrary = get_library("audio");
-
-      bool bOk = true;
-
-      bOk = !!plibrary;
-
-      if (bOk)
-      {
-
-         auto pgetnewaudio = plibrary->get<PFUNCTION_GET_NEW_AUDIO>("get_new_audio");
-
-         bOk = !!pgetnewaudio;
-
-         if (bOk)
-         {
-
-            auto estatus = __compose(m_paudio, ::move_transfer(pgetnewaudio()));
-
-            bOk = !!estatus;
-
-            if (bOk)
-            {
-
-               bOk = !!m_paudio->init3();
-
-            }
-
-         }
-
-      }
-
-//      if (!bOk)
-  //    {
-
-         //message_box("Could not open platform audio library.");
-
-    //  }
-
-   }
-
-
-   ::aura::multimedia * system::defer_get_multimedia()
-   {
-
-      if (!m_pmultimedia)
-      {
-
-         defer_multimedia();
-
-      }
-
-      return m_pmultimedia;
-
-   }
-
-
-   void system::defer_multimedia()
-   {
-
-      string strName;
-
-      auto pszName = ::multimedia_get_library_name();
-
-      if (::is_set(pszName) && !strcmp(pszName, "veriwell_multimedia"))
-      {
-
-         strName = "veriwell_multimedia";
-
-      }
-      else
-      {
-
-         strName = "multimedia";
-
-      }
-
-      auto plibrary = get_library(strName);
-
-      if (plibrary)
-      {
-
-         auto pgetnewmultimedia = plibrary->get<PFUNCTION_GET_NEW_MULTIMEDIA>("get_new_multimedia");
-
-         __compose(m_pmultimedia, ::move_transfer(pgetnewmultimedia()));
-
-         m_pmultimedia->initialize_multimedia(this);
-
-      }
-
-   }
 
 
    void system::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema)
@@ -1482,7 +1372,7 @@ namespace aura
 //
 //                  ::dir::mk("/ca2core");
 //
-//                  file_put_contents_dup("/ca2core/teste.txt", str, str.length());
+//                  file_put_contents("/ca2core/teste.txt", str, str.length());
 //                  */
 //#endif
 //
@@ -4779,7 +4669,7 @@ namespace aura
    bool system::set_standalone_setting(string str, string strSetting)
    {
 
-      return file_put_contents_dup(Context.dir().standalone() / (str + ".txt"), strSetting);
+      return file_put_contents(Context.dir().standalone() / (str + ".txt"), strSetting);
 
    }
 
@@ -4897,7 +4787,7 @@ namespace aura
    //}
 
 
-   void system::__tracea(::generic * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
+   void system::__tracea(::elemental * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
    {
 
       if (m_ptrace.is_null())
@@ -6142,7 +6032,7 @@ namespace aura
 //
 //   path = application_installer_folder(pathExe, strAppId, pszPlatform, pszConfiguration, pszLocale, pszSchema) / "installed.txt";
 //
-//   return file_put_contents_dup(path, pszBuild);
+//   return file_put_contents(path, pszBuild);
 //
 //}
 //
@@ -6196,7 +6086,7 @@ namespace aura
 //
 //   ::file::path pathFile = get_last_run_application_path_file(strAppId);
 //
-//   return file_put_contents_dup(pathFile, path);
+//   return file_put_contents(pathFile, path);
 //
 //}
 //
@@ -7287,7 +7177,9 @@ namespace aura
 
          }
 
-         get_context_session()->m_puiHost->get_window_rect(prect);
+         auto puiHost = __user_interaction(get_context_session()->m_puiHost);
+
+         puiHost->get_window_rect(prect);
 
       }
       catch (...)
@@ -8362,47 +8254,6 @@ namespace aura
 
    }
 
-
-   ::estatus system::defer_xml()
-   {
-
-      if (m_pxml)
-      {
-
-         return ::success;
-
-      }
-
-      auto estatus = __compose_new(m_pxml);
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      estatus = m_pxml->init1();
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      estatus = m_pxml->init();
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      return estatus;
-
-   }
 
 
 

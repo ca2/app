@@ -173,7 +173,7 @@ mutex::mutex(enum_create_new, bool bInitiallyOwn, const char * pstrName, LPSECUR
 
       ::dir::mk(::file::path(strName).folder());
 
-      ::file_put_contents_dup(strName, strName);
+      ::file_put_contents(strName, strName);
 
       string strTest = file_as_string(strName);
 
@@ -329,7 +329,7 @@ mutex::mutex(enum_create_new, bool bInitiallyOwn, const char * pstrName, LPSECUR
 
       ::dir::mk(path.folder());
 
-      ::file_put_contents_dup(path, m_pszName);
+      ::file_put_contents(path, m_pszName);
 
       m_key = ftok(path, 1); //Generate a unique key or supply a value
 
@@ -452,7 +452,7 @@ mutex::mutex(enum_create_new, const char * pstrName, void * h, bool bOwner)
 #if defined(MUTEX_NAMED_POSIX)
 
 mutexmutex(const char * pstrName, sem_t * psem, bool bOwner) :
-   ::generic(pobject),
+   ::elemental(pobject),
    sync(pstrName)
 {
 
@@ -468,7 +468,7 @@ mutexmutex(const char * pstrName, sem_t * psem, bool bOwner) :
 }
 
 mutexmutex(const mutex & m):
-   generic(m.get_context_application()),
+   elemental(m.get_context_application()),
    sync(m.m_pszName)
 {
 
@@ -497,7 +497,7 @@ mutex::mutex(enum_create_new, const char * lpszName, int iFd, bool bOwner)
 }
 
 //mutexmutex(const mutex & m) :
-//   generic(m.get_context_application()),
+//   elemental(m.get_context_application()),
 //   sync(m.m_pszName)
 //{
 //
@@ -512,7 +512,7 @@ mutex::mutex(enum_create_new, const char * lpszName, int iFd, bool bOwner)
 #elif defined(MUTEX_NAMED_VSEM)
 
 mutexmutex(e_create_new enew, const char * pstrName, key_t key, i32 semid, bool bOwner):
-   ::generic(pobject),
+   ::elemental(pobject),
    sync(pstrName)
 {
 
@@ -524,7 +524,7 @@ mutexmutex(e_create_new enew, const char * pstrName, key_t key, i32 semid, bool 
 
 
 //mutexmutex(const mutex & m):
-//   generic(m.get_context_application()),
+//   elemental(m.get_context_application()),
 //   sync(m.m_pszName)
 //{
 //
@@ -1666,7 +1666,7 @@ null_dacl_security_attributes::null_dacl_security_attributes()
 
    m_securityattributes.nLength = sizeof(m_securityattributes);
 
-   m_securityattributes.bInheritHandle = FALSE; // generic uninheritable
+   m_securityattributes.bInheritHandle = FALSE; // elemental uninheritable
 
    // declare and initialize a security descriptor
    xxf_zero(m_securitydescriptor);

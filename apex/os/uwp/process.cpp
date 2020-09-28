@@ -116,36 +116,36 @@ int get_current_process_maximum_affinity()
 #endif
 
 
-#ifdef WINDOWS_DESKTOP
-
-int get_current_process_affinity_order()
-{
-
-
-   dword_ptr dwProcessAffinityMask;
-   dword_ptr dwSystemAffinityMask;
-   if(!GetProcessAffinityMask(::GetCurrentProcess(), &dwProcessAffinityMask, & dwSystemAffinityMask))
-   {
-      return 0;
-   }
-   int iCount = 0;
-   dword_ptr dwMask = 1;
-   for(int i = 0; i < sizeof(dwProcessAffinityMask) * 8; i++)
-   {
-      if((dwMask & dwProcessAffinityMask) != 0)
-      {
-         iCount++;
-      }
-      dwMask = dwMask << 1;
-   }
-
-   return iCount;
-
-
-}
-
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//int get_current_process_affinity_order()
+//{
+//
+//
+//   dword_ptr dwProcessAffinityMask;
+//   dword_ptr dwSystemAffinityMask;
+//   if(!GetProcessAffinityMask(::GetCurrentProcess(), &dwProcessAffinityMask, & dwSystemAffinityMask))
+//   {
+//      return 0;
+//   }
+//   int iCount = 0;
+//   dword_ptr dwMask = 1;
+//   for(int i = 0; i < sizeof(dwProcessAffinityMask) * 8; i++)
+//   {
+//      if((dwMask & dwProcessAffinityMask) != 0)
+//      {
+//         iCount++;
+//      }
+//      dwMask = dwMask << 1;
+//   }
+//
+//   return iCount;
+//
+//
+//}
+//
+//
+//#endif
 
 
 #ifdef WINDOWS_DESKTOP
@@ -297,15 +297,15 @@ bool load_modules_diff(string_array & straOld, string_array & straNew, const cha
 
 #endif
 
-
-
-int get_current_process_affinity_order()
-{
-
-   return 1;
-
-
-}
+//
+//
+//int get_current_process_affinity_order()
+//{
+//
+//   return 1;
+//
+//
+//}
 
 
 DWORD_PTR translate_processor_affinity(int i)
@@ -333,24 +333,24 @@ CLASS_DECL_APEX int ui_open_url(const char * pszUrl)
 
 
 
-CLASS_DECL_APEX bool is_shared_library_busy(const string_array & stra)
-{
-
-   return true;
-
-}
-
-
+//CLASS_DECL_APEX bool is_shared_library_busy(const string_array & stra)
+//{
+//
+//   return true;
+//
+//}
 
 
-bool shell_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout)
-{
 
-   return false;
 
-   //return call_sync(pszFile, pszParams, ::file::path(pszFile).folder(), 0, false, (int)durationTimeout.get_total_milliseconds());
-
-}
+//bool shell_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout)
+//{
+//
+//   return false;
+//
+//   //return call_sync(pszFile, pszParams, ::file::path(pszFile).folder(), 0, false, (int)durationTimeout.get_total_milliseconds());
+//
+//}
 
 
 

@@ -27,6 +27,11 @@
 #define App(pobject) (*pobject->get_app()->m_paxisapplication)
 
 
+#define __spin_namespace axis // back bone / four-letter "spin*" namespace name
+
+
+
+
 // C-includes
 #include "axis/os/_c.h"
 

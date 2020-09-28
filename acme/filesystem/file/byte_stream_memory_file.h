@@ -19,7 +19,7 @@
 //   public:
 //
 //
-//      byte_stream_memory_file(::generic * pobject);
+//      byte_stream_memory_file(::elemental * pobject);
 //      virtual ~byte_stream_memory_file();
 //
 //      virtual filesize seek(filesize offset, e_seek seekOrigin);

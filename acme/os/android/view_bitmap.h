@@ -7,7 +7,7 @@
 //
 //   class CLASS_DECL_BASE impact_bitmap :
 //      public window_graphics,
-//      virtual public generic
+//      virtual public elemental
 //   {
 //   public:
 //
@@ -16,7 +16,7 @@
 //      ::mutex                m_mutex;
 //
 //
-//      impact_bitmap(::generic * pobject);
+//      impact_bitmap(::elemental * pobject);
 //      virtual ~impact_bitmap();
 //
 //      virtual void create_window_graphics(oswindow interaction_impl, i64 cx, i64 cy, int iStride = -1);

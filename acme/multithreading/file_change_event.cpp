@@ -10,7 +10,7 @@
 ///				it monitors only the specified directory
 ///  \lparam		filter filter conditions that satisfy a change notification wait
 ///				can take values described by enum filter
-file_change_event::file_change_event(::generic * pobject, const char * path, bool watchsubtree, u32 filter) :
+file_change_event::file_change_event(::elemental * pobject, const char * path, bool watchsubtree, u32 filter) :
    sync(::FindFirstChangeNotificationW(::str::international::utf8_to_unicode(path), watchsubtree, filter))
 {
    if (hsync() == nullptr)

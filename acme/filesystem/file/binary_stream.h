@@ -258,8 +258,8 @@ public:
    virtual void write(const var & var) override;
    virtual void write(const property & property) override;
    virtual void write(const string & str) override;
-   virtual void write(const generic * pobject) override;
-   virtual void write(const generic& generic) override;
+   virtual void write(const elemental * pobject) override;
+   virtual void write(const elemental& elemental) override;
    virtual void write(const property_set& set) override;
    virtual void write(const block & block) override;
 
@@ -301,8 +301,8 @@ public:
    virtual void read_var_body(var & var, e_type etype) override;
    virtual void read(property & property) override;
    virtual void read(string & str) override;
-   //virtual void read(generic * pobject);
-   virtual void read(generic& generic) override;
+   //virtual void read(elemental * pobject);
+   virtual void read(elemental& elemental) override;
    virtual void read(property_set& set) override;
    virtual void read(block & block) override;
 
@@ -322,20 +322,20 @@ public:
    //inline bool is_loading() const { return !m_bStoring; }
 
 
-   //virtual void write_file(const ::file::path & path, const ::generic & generic);
-   //virtual void read_file(const ::file::path & path, ::generic & generic);
+   //virtual void write_file(const ::file::path & path, const ::elemental & elemental);
+   //virtual void read_file(const ::file::path & path, ::elemental & elemental);
 
-   //virtual void write_link(const string & strLink, __pointer(::generic) & generic);
-   //virtual void read_link(const string & strLink, __pointer(::generic) & generic);
+   //virtual void write_link(const string & strLink, __pointer(::elemental) & elemental);
+   //virtual void read_link(const string & strLink, __pointer(::elemental) & elemental);
 
-   //virtual void write_link(const ::generic * preference, const string & strLink, bool bReadOnly, ::generic * pobjectSaveOptions = nullptr);
+   //virtual void write_link(const ::elemental * preference, const string & strLink, bool bReadOnly, ::elemental * pobjectSaveOptions = nullptr);
 
-   //virtual bool write_link(const ::generic * preference) override;
-   //virtual void read_link(::generic * preference) override;
+   //virtual bool write_link(const ::elemental * preference) override;
+   //virtual void read_link(::elemental * preference) override;
 
 
-   //virtual bool get_object_link(const ::generic * preference, string & strLink, bool & bReadOnly) override;
-   //virtual void set_object_link(const ::generic * preference, const string & strLink, bool bReadOnly) override;
+   //virtual bool get_object_link(const ::elemental * preference, string & strLink, bool & bReadOnly) override;
+   //virtual void set_object_link(const ::elemental * preference, const string & strLink, bool bReadOnly) override;
 
 
    //virtual ::file::path get_link_path(string strLink);
@@ -391,7 +391,7 @@ public:
    template < typename BASE_TYPE >
    inline __pointer(BASE_TYPE) load_object();
 
-   virtual __pointer(::generic) create_object_from_text(string strText) override;
+   virtual __pointer(::elemental) create_object_from_text(string strText) override;
 
 
 };

@@ -22,7 +22,7 @@ public:
 	///  \brief		constructor with passed socket handle and read state
 	///  \lparam		socket socket handle (default: -1)
 	///  \lparam		read true if socket should be ready to read (default: true)
-	socket_event(::generic * pobject, u32 socket = -1, bool read = true);
+	socket_event(::elemental * pobject, u32 socket = -1, bool read = true);
 
 	///  \brief		destructor
 	virtual ~socket_event();

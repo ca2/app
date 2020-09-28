@@ -23,7 +23,7 @@ namespace filemanager
          
          
          class folder :
-            virtual public generic
+            virtual public elemental
          {
          public:
 

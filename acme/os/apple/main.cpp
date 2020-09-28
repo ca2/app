@@ -51,7 +51,7 @@
 //
 //         ::create * pcreate = new ::create(::get_context_system());
 //
-//         pcreate->m_pcommandline = new command_line(::get_context_system(), get_command_line_dup());
+//         pcreate->m_pcommandline = new command_line(::get_context_system(), get_command_line());
 //
 //         ::get_context_system()->request({ pcreate });
 //

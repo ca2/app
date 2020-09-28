@@ -98,10 +98,10 @@ __pointer(sync_array) interprocess_call::synca()
 
    auto psynca = __new(sync_array);
 
-   for (auto& interprocess_task : this->tasks())
+   for (auto& ptask : this->m_mapTask.values())
    {
 
-      psynca->add(interprocess_task.m_pevReady);
+      psynca->add(ptask->m_pevReady);
 
    }
 

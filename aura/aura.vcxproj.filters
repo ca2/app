@@ -189,18 +189,6 @@
     <Filter Include="Header Files\gpu\gpu">
       <UniqueIdentifier>{f951e8b3-8dab-43e2-9c46-56692a6c1b47}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\multimedia">
-      <UniqueIdentifier>{4369f9a3-cc56-41f7-a30a-5d5cad0a4149}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\multimedia">
-      <UniqueIdentifier>{74cc418b-ecd3-48fc-95f3-4a4d339e4e5c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\multimedia\audio">
-      <UniqueIdentifier>{5d27eb01-ec6e-4f4e-ab1c-b32150cd1fe2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\multimedia\audio">
-      <UniqueIdentifier>{418db2e9-b7f2-4891-b424-4f4fe142d1b9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\game">
       <UniqueIdentifier>{f0606386-9495-46ce-9b74-b91bd4e7cc54}</UniqueIdentifier>
     </Filter>
@@ -239,12 +227,6 @@
     </Filter>
     <Filter Include="Header Files\filesystem\filemanager">
       <UniqueIdentifier>{c21dbb0c-f9fc-4c28-a0bf-f9c3a36b5bb8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\xml">
-      <UniqueIdentifier>{b0990051-f64e-4d1c-953c-04d534494d82}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\xml">
-      <UniqueIdentifier>{826eb3e2-29ae-4dd8-b2c9-8d877ad154f9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1574,9 +1556,6 @@
     <ClInclude Include="node\windows\_windows.h">
       <Filter>Header Files\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\windows\a.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="node\windows\buffer.h">
       <Filter>Header Files\node\windows</Filter>
     </ClInclude>
@@ -1590,9 +1569,6 @@
       <Filter>Header Files\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="node\windows\system_interaction_impl.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\tts_speaker.h">
       <Filter>Header Files\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="node\windows\user.h">
@@ -2003,45 +1979,6 @@
     <ClInclude Include="primitive\primitive\task.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="multimedia\_.h">
-      <Filter>Header Files\multimedia</Filter>
-    </ClInclude>
-    <ClInclude Include="multimedia\_c.h">
-      <Filter>Header Files\multimedia</Filter>
-    </ClInclude>
-    <ClInclude Include="multimedia\audio.h">
-      <Filter>Header Files\multimedia</Filter>
-    </ClInclude>
-    <ClInclude Include="multimedia\decoder.h">
-      <Filter>Header Files\multimedia</Filter>
-    </ClInclude>
-    <ClInclude Include="multimedia\decoder_plugin.h">
-      <Filter>Header Files\multimedia</Filter>
-    </ClInclude>
-    <ClInclude Include="multimedia\exception.h">
-      <Filter>Header Files\multimedia</Filter>
-    </ClInclude>
-    <ClInclude Include="multimedia\file_application.h">
-      <Filter>Header Files\multimedia</Filter>
-    </ClInclude>
-    <ClInclude Include="multimedia\multimedia.h">
-      <Filter>Header Files\multimedia</Filter>
-    </ClInclude>
-    <ClInclude Include="multimedia\audio\audio.h">
-      <Filter>Header Files\multimedia\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="multimedia\audio\audio_c.h">
-      <Filter>Header Files\multimedia\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="multimedia\audio\out.h">
-      <Filter>Header Files\multimedia\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="multimedia\audio\sound_track_player.h">
-      <Filter>Header Files\multimedia\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="multimedia\audio\speaker.h">
-      <Filter>Header Files\multimedia\audio</Filter>
-    </ClInclude>
     <ClInclude Include="node\windows\_node_windows_private.h">
       <Filter>Header Files\node\windows</Filter>
     </ClInclude>
@@ -2309,69 +2246,6 @@
     <ClInclude Include="user\aaa_command.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="node\windows\aaa_command.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_crypto.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_dir_context.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_dir_system.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_exception.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_file.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_file_context.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_file_find.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_file_os_watcher.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_file_system.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_folder_watch.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_ip_enum.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_os_context.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_pipe.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_process.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_registry.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_serial.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_stdio_file.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_thread.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_uac_tools.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_console.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="platform\aaa_timer.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -2470,81 +2344,6 @@
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\callback.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\_.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\_impl.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\attr.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\base_array.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\data.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\department.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\disp_option.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\document.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\edit.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\entity.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\enum.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\exportable.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\glue.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\importable.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\input_tree.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\node.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\output_tree.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\parse_info.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\property_exchange.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\smart_pointer_array.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\stream.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\tree_base.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\tree_schema.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\var_exchange.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\xmlite.h">
-      <Filter>Header Files\xml</Filter>
     </ClInclude>
     <ClInclude Include="const\aaa_id.h">
       <Filter>Header Files\const</Filter>
@@ -2803,9 +2602,6 @@
     <ClCompile Include="node\windows\trace.cpp">
       <Filter>Source Files\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="node\windows\tts_speaker.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
     <ClCompile Include="node\windows_common\application.cpp">
       <Filter>Source Files\node\windows_common</Filter>
     </ClCompile>
@@ -2850,33 +2646,6 @@
     </ClCompile>
     <ClCompile Include="platform\static_start_aura.cpp">
       <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="multimedia\audio.cpp">
-      <Filter>Source Files\multimedia</Filter>
-    </ClCompile>
-    <ClCompile Include="multimedia\decoder.cpp">
-      <Filter>Source Files\multimedia</Filter>
-    </ClCompile>
-    <ClCompile Include="multimedia\decoder_plugin.cpp">
-      <Filter>Source Files\multimedia</Filter>
-    </ClCompile>
-    <ClCompile Include="multimedia\exception.cpp">
-      <Filter>Source Files\multimedia</Filter>
-    </ClCompile>
-    <ClCompile Include="multimedia\file_application.cpp">
-      <Filter>Source Files\multimedia</Filter>
-    </ClCompile>
-    <ClCompile Include="multimedia\multimedia.cpp">
-      <Filter>Source Files\multimedia</Filter>
-    </ClCompile>
-    <ClCompile Include="multimedia\audio\audio_wave_out.cpp">
-      <Filter>Source Files\multimedia\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="multimedia\audio\sound_track_player.cpp">
-      <Filter>Source Files\multimedia\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="multimedia\audio\speaker.cpp">
-      <Filter>Source Files\multimedia\audio</Filter>
     </ClCompile>
     <ClCompile Include="game\estamira.cpp">
       <Filter>Source Files\game</Filter>
@@ -3019,9 +2788,6 @@
     <ClCompile Include="user\box.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\controller.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\form.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
@@ -3076,9 +2842,6 @@
     <ClCompile Include="os\windows_common\draw2d_direct2d_global.cpp">
       <Filter>Source Files\os\windows_common</Filter>
     </ClCompile>
-    <ClCompile Include="os\windows_common\graphics.cpp">
-      <Filter>Source Files\os\windows_common</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\draw2d\context_image.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
@@ -3087,66 +2850,6 @@
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\item_action.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\_from.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\attr.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\base_array.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\data.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\disp_option.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\document.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\edit.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\entity.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\exportable.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\importable.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\input_tree.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\node.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\output_tree.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\parse_info.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\property_exchange.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\tree_base.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\tree_schema.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\var_exchange.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xml.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xmlite.cpp">
-      <Filter>Source Files\xml</Filter>
     </ClCompile>
     <ClCompile Include="os\windows\multimedia.cpp">
       <Filter>Source Files\os\windows</Filter>

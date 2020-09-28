@@ -311,28 +311,22 @@ enum enum_platform_level
 CLASS_DECL_ACME void set_platform_level(enum_platform_level eplatformlevel);
 CLASS_DECL_ACME enum_platform_level get_platform_level();
 
-#undef min
-#undef max
-
-
-
 
 #define INTABS(i) (((i) >= 0) ? (i) : (-i))
 #define FLOATABS(f) (((f) >= 0.f) ? (f) : (-f))
 #define DOUBLEABS(d) (((d) >= 0.0) ? (d) : (-d))
 
 
+//#define MIN(a, b) (((a) < (b)) ? (a) : (b))
+//#define MAX(a, b) (((b) < (a)) ? (a) : (b))
+
+
 #ifdef __cplusplus
-#define MAX(a, b) (((b) < (a)) ? (a) : (b))
-#define MIN(a, b) (((a) < (b)) ? (a) : (b))
 #include "acme/primitive/comparison/_c.h"
-#else
-#define MAX(a, b) (((a) > (b)) ? (a) : (b))
-#define MIN(a, b) (((a) < (b)) ? (a) : (b))
 #endif
 
 
-#define LIM(a, min, max) min(max, max(min, a))
+#define LIM(a, MIN, MAX) MIN(MAX, MAX(MIN, a))
 #define SORT_LIM(x,minmax,maxmin) ((minmax) < (maxmin) ? LIM(x,minmax,maxmin) : LIM(x,maxmin,minmax))
 #define CLIP_USHRT(x) LIM(x,0,USHRT_MAX)
 
@@ -485,7 +479,7 @@ CLASS_DECL_ACME ::e_priority get_os_class_scheduling_priority(i32 iCa2Priority);
 //#include "acme/multimedia/_c.h"
 
 
-class generic;
+class elemental;
 
 
 template < typename T >
@@ -512,22 +506,22 @@ CLASS_DECL_ACME extern u32 g_tickStartTime;
 
 
 //
-//CLASS_DECL_ACME ::generic * general_trace_object();
+//CLASS_DECL_ACME ::elemental * general_trace_object();
 //
 //CLASS_DECL_ACME int_bool c_enable_trace_category(e_trace_category ecategory, int_bool iEnable);
 //
-//inline ::generic * context_trace_object() { return general_trace_object(); }
+//inline ::elemental * context_trace_object() { return general_trace_object(); }
 
 
-//CLASS_DECL_ACME void __tracea(::generic * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
-//CLASS_DECL_ACME void __tracef(::generic * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, ...);
-//CLASS_DECL_ACME void __tracev(::generic * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, va_list vargs);
+//CLASS_DECL_ACME void __tracea(::elemental * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
+//CLASS_DECL_ACME void __tracef(::elemental * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, ...);
+//CLASS_DECL_ACME void __tracev(::elemental * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, va_list vargs);
 
 
 CLASS_DECL_ACME const char * trace_category_name(e_trace_category ecategory);
-CLASS_DECL_ACME ::generic * trace_object(e_trace_category ecategory);
-CLASS_DECL_ACME const char * topic_text(::generic * pcontextobject);
-CLASS_DECL_ACME e_trace_category object_trace_category(::generic * pcontextobject);
+CLASS_DECL_ACME ::elemental * trace_object(e_trace_category ecategory);
+CLASS_DECL_ACME const char * topic_text(::elemental * pcontextobject);
+CLASS_DECL_ACME e_trace_category object_trace_category(::elemental * pcontextobject);
 
 
 //
@@ -949,8 +943,8 @@ enum enum_command
 
 
 class composite_base;
-class generic;
-class generic;
+class elemental;
+class elemental;
 
 
 //namespace acme
@@ -1156,9 +1150,9 @@ inline void swap(TYPE& a, TYPE& b)
 inline bool is_null(const void * p, size_t s)
 {
 
-   const auto max = (size_t)(-1);
+   const auto MAX = (size_t)(-1);
 
-   return ((size_t)p) <= s || ((size_t)p) >= (max - s);
+   return ((size_t)p) <= s || ((size_t)p) >= (MAX - s);
 
 }
 
@@ -1168,9 +1162,9 @@ template < typename TYPE >
 inline bool is_null(const TYPE * p)
 {
 
-   const auto max = (size_t)(-1) - 65536;
+   const auto MAX = (size_t)(-1) - 65536;
 
-   return ((size_t) p <= 65536) || ((size_t)p) >= (max);
+   return ((size_t) p <= 65536) || ((size_t)p) >= (MAX);
 
 }
 
@@ -1231,7 +1225,7 @@ inline bool nok(const TYPE* p)
 class istring;
 class var;
 class property_set;
-class generic;
+class elemental;
 //class base_edit;
 class var_array;
 class property;
@@ -1522,12 +1516,14 @@ namespace hotplugin
 }
 
 
-
 namespace html
 {
 
 
    class html;
+
+
+   class elemental;
 
 
 } // namespace html
@@ -1656,7 +1652,7 @@ inline void delptr(t *& p)
 template < typename T >
 inline int type_is_null(const T * p)
 {
-   return (((UINT_PTR)(void *)p) < max(4096, sizeof(T)));
+   return (((UINT_PTR)(void *)p) < MAX(4096, sizeof(T)));
 }
 
 
@@ -2120,7 +2116,7 @@ typedef  void(*PFN_factory_exchange)();
 CLASS_DECL_ACME HRESULT defer_co_initialize_ex(bool bMultiThread, bool bDisableOleDDE = false);
 #endif
 
-class generic;
+class elemental;
 
 class var;
 
@@ -2153,7 +2149,7 @@ CLASS_DECL_ACME bool __node_acme_pos_term();
 //CLASS_DECL_ACME void register_acme_library(const char* psz, ::acme::library* plibrary);
 
 //CLASS_DECL_ACME ::context * get_context();
-//CLASS_DECL_ACME inline ::context * get_context(::generic * pobject);
+//CLASS_DECL_ACME inline ::context * get_context(::elemental * pobject);
 //CLASS_DECL_ACME inline ::context * get_context(::context * pcontext);
 
 
@@ -2162,17 +2158,17 @@ CLASS_DECL_ACME bool __node_acme_pos_term();
 
 
 //CLASS_DECL_ACME ::acme::application * get_context_application();
-//CLASS_DECL_ACME inline ::acme::application * get_context_application(::generic * pobject);
+//CLASS_DECL_ACME inline ::acme::application * get_context_application(::elemental * pobject);
 //CLASS_DECL_ACME inline ::acme::application * get_context_application(::acme::application * papp);
 //CLASS_DECL_ACME inline ::acme::application * get_app() { return get_context_application(); }
 
 
 //CLASS_DECL_ACME::acme::session * get_context_session();
-//CLASS_DECL_ACME inline ::acme::session * get_context_session(::generic * pobject);
+//CLASS_DECL_ACME inline ::acme::session * get_context_session(::elemental * pobject);
 //CLASS_DECL_ACME inline ::acme::session * get_context_session(::acme::session * psession);
 
 //CLASS_DECL_ACME::acme::system * get_context_system();
-//CLASS_DECL_ACME inline ::acme::system * get_context_system(::generic * pobject);
+//CLASS_DECL_ACME inline ::acme::system * get_context_system(::elemental * pobject);
 //CLASS_DECL_ACME inline ::acme::system * get_context_system(::acme::system * psystem);
 
 
@@ -2517,7 +2513,7 @@ namespace user
 #include "acme/platform/_global.h"
 
 
-#include "acme/primitive/primitive/generic.h"
+#include "acme/primitive/primitive/elemental.h"
 #include "acme/primitive/primitive/layered.h"
 
 
@@ -2581,7 +2577,7 @@ inline bool failed(const ::property & set) { return !::succeeded(set); }
 #include "acme/primitive/geometry2d/_.h"
 
 
-//#include "acme/primitive/primitive/generic.h"
+//#include "acme/primitive/primitive/elemental.h"
 
 
 #include "acme/primitive/primitive/_factory_prefix.h"
@@ -2618,20 +2614,20 @@ using id_array = ::comparable_array < id >;
 class sticker;
 
 
-inline ::generic * trace_object(::generic * pobjectContext) { return pobjectContext; }
+inline ::elemental * trace_object(::elemental * pobjectContext) { return pobjectContext; }
 
 template < typename POINTER_TYPE >
 class ptr_array;
 
-//using composite_ptra = __pointer_array(::generic); // Please use just for composition (ownership).
+//using composite_ptra = __pointer_array(::elemental); // Please use just for composition (ownership).
 
-//using reference_ptra = __pointer_array(::generic); // Please use just for reference (member-based).
+//using reference_ptra = __pointer_array(::elemental); // Please use just for reference (member-based).
 
-//using object_ptra = __pointer_array(::generic); // Please use just for keeping non-member-based references.
+//using object_ptra = __pointer_array(::elemental); // Please use just for keeping non-member-based references.
 
-using object_ptra = __pointer_array(::generic); // Please use just for keeping non-member-based references.
+using object_ptra = __pointer_array(::elemental); // Please use just for keeping non-member-based references.
 
-using object_addra = __address_array(::generic); // Please use just for keeping non-member-based references.
+using object_addra = __address_array(::elemental); // Please use just for keeping non-member-based references.
 
 class object_meta;
 
@@ -2646,9 +2642,9 @@ namespace http
 
 } // namespace http
 
-template < typename PRED > inline __pointer(::generic) __pred_method(PRED pred);
+template < typename PRED > inline __pointer(::elemental) __pred_method(PRED pred);
 
-template < typename PRED > inline __pointer(::generic) __pred_future(PRED pred);
+template < typename PRED > inline __pointer(::elemental) __pred_future(PRED pred);
 
 //class context;
 
@@ -2674,7 +2670,7 @@ template < typename PRED > inline __pointer(::generic) __pred_future(PRED pred);
 
 //class create_thread;
 
-using generic_pointer = __pointer(::generic);
+using generic_pointer = __pointer(::elemental);
 
 
 #ifdef WINDOWS_DESKTOP
@@ -2723,7 +2719,7 @@ namespace core
 
 class message_box;
 
-//#include "acme/primitive/primitive/generic.h"
+//#include "acme/primitive/primitive/elemental.h"
 
 //#include "acme/primitive/primitive/object_meta.h"
 
@@ -2913,49 +2909,49 @@ inline void dump_elements(dump_context & dumpcontext, const TYPE* pElements, ::c
 #include "acme/multithreading/_.h"
 
 
-namespace acme
-{
-
-#if defined _UWP && defined(__cplusplus_winrt)
-
-   interface class system_window
-      {
-
-         virtual Windows::Foundation::Rect get_window_rect() = 0;
-         virtual Windows::Foundation::Point get_cursor_pos() = 0;
-
-
-
-      };
-
-   //CLASS_DECL_ACME bool get_window_rect(system_window ^ pwindow, RECTD * prect);
-
-   //CLASS_DECL_ACME bool get_window_rect(system_window ^ pwindow, RECT * prect);
-
-
-#endif
-
-
-   class session;
-
-} // namespace acme
-
-
-
-#if defined _UWP
+//namespace acme
+//{
+//
+//#if defined _UWP && defined(__cplusplus_winrt)
+//
+//   interface class system_window
+//      {
+//
+//         virtual Windows::Foundation::Rect get_window_rect() = 0;
+//         virtual Windows::Foundation::Point get_cursor_pos() = 0;
+//
+//
+//
+//      };
+//
+//   //CLASS_DECL_ACME bool get_window_rect(system_window ^ pwindow, RECTD * prect);
+//
+//   //CLASS_DECL_ACME bool get_window_rect(system_window ^ pwindow, RECT * prect);
+//
+//
+//#endif
+//
+//
+//   class session;
+//
+//} // namespace acme
 
 
-namespace uwp
-{
-
-
-   ref class directx_application;
-
-
-} // namespace uwp
-
-
-#endif
+//
+//#if defined _UWP
+//
+//
+//namespace uwp
+//{
+//
+//
+//   ref class directx_application;
+//
+//
+//} // namespace uwp
+//
+//
+//#endif
 
 //namespace account
 //{
@@ -3217,7 +3213,7 @@ namespace file
 
 
 class CLASS_DECL_ACME ptra :
-   virtual public __pointer_array(generic)
+   virtual public __pointer_array(elemental)
 {
 public:
 
@@ -3225,8 +3221,8 @@ public:
 };
 
 
-typedef ::map < __pointer(generic), __pointer(generic), __pointer(generic), __pointer(generic) > element_map;
-typedef ::map < __pointer(generic), __pointer(generic), ptra, ptra > map_many;
+typedef ::map < __pointer(elemental), __pointer(elemental), __pointer(elemental), __pointer(elemental) > element_map;
+typedef ::map < __pointer(elemental), __pointer(elemental), ptra, ptra > map_many;
 
 
 namespace zip
@@ -3702,11 +3698,11 @@ namespace std
    using complex = ::math::complex < T >;
 
 
-   template <class T> const T& min(const T& a,const T& b)
+   template <class T> const T& MIN(const T& a,const T& b)
    {
       return !(a > b) ? a : b;
    }
-   template <class T> const T& max(const T& a,const T& b)
+   template <class T> const T& MAX(const T& a,const T& b)
    {
       return !(a < b) ? a : b;
    }

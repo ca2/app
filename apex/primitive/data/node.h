@@ -20,7 +20,7 @@ namespace data
 
 
    class CLASS_DECL_APEX node :
-      virtual public ::generic
+      virtual public ::elemental
    {
    protected:
       ::xml::node* m_pxmlnode;

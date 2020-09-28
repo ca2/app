@@ -137,7 +137,7 @@ int_bool is_file_or_dir_dup(const char * path1, ::file::e_type * petype)
 }
 
 
-int_bool file_put_contents_dup(const char * path, const char * contents, ::count len)
+int_bool file_put_contents(const char * path, const char * contents, ::count len)
 {
 
    bool bOk = false;
@@ -204,7 +204,7 @@ string file_as_string(const char * path, strsize iReadAtMostByteCount)
    if (f == nullptr)
       return "";
 
-   ::count iSize = fsize_dup(f);
+   ::count iSize = FILE_get_size(f);
 
    iReadAtMostByteCount = min_non_neg(iSize, iReadAtMostByteCount);
 
@@ -244,7 +244,7 @@ bool file_as_memory(memory_base & memory, const char * path, strsize iReadAtMost
    FILE * f = fopen(path, "rb");
    if (f == nullptr)
       return false;
-   strsize iSize = fsize_dup(f);
+   strsize iSize = FILE_get_size(f);
 
    if (iSize < 0)
    {

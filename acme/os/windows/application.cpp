@@ -14,7 +14,7 @@ DWORD TerminateGuiApp(DWORD dwPID, DWORD tickTimeout);
 //int SendCtrlShiftQToChrome(HWND chrome, int iSleep, ::acme::application * papp);
 //int SendURLToChrome(HWND chrome, string strUrl, ::acme::application * papp);
 class block_input :
-   virtual public generic
+   virtual public elemental
 {
 protected:
    ::mutex    m_mutex;

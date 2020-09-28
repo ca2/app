@@ -107,7 +107,7 @@ public:
 
    inline var & value(const ::id & id);
 
-   using generic::set;
+   using elemental::set;
 
    template < typename TYPE >
    inline void set(const ::id & id, const TYPE & t);
@@ -130,7 +130,7 @@ public:
    inline var find_value(const ::id & id) const;
    inline var find_value(const ::id & id, const var & varDefault) const;
 
-   using generic::get_context_object;
+   using elemental::get_context_object;
    inline var & get_context_object(const ::id & id);
 
    inline var operator()(const ::id & id) const;
@@ -199,5 +199,5 @@ using reference_pointer = __pointer(::context_object);
 
 
 
-template < typename TYPE > inline __pointer(TYPE) __cast(::generic * p) { return dynamic_cast <TYPE *> (p); }
+template < typename TYPE > inline __pointer(TYPE) __cast(::elemental * p) { return dynamic_cast <TYPE *> (p); }
    

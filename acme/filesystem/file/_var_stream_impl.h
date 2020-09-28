@@ -54,7 +54,7 @@ inline void __exchange(::var_stream& s, ::memory& memory) { s.default_exchange(m
 
 
 
-inline void __exchange(::var_stream& s, ::generic& generic) { generic.exchange(s); }
+inline void __exchange(::var_stream& s, ::elemental& elemental) { elemental.exchange(s); }
 
 
 

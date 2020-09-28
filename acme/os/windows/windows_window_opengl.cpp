@@ -4,8 +4,8 @@
 
 
 
-window_opengl::window_opengl(::generic * pobject) :
-   generic(pobject),
+window_opengl::window_opengl(::elemental * pobject) :
+   elemental(pobject),
    window_graphics(pobject)
 {
 

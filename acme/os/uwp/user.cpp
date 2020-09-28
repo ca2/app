@@ -1,7 +1,7 @@
 ﻿#include "framework.h"
 #include "_winrt.h"
 #include "acme/node/uwp/_uwp.h"
-#include "acme/os/windows_common/draw2d_direct2d_global.h"
+//#include "acme/os/windows_common/draw2d_direct2d_global.h"
 
 
 CLASS_DECL_ACME int g_iMouse = -1;
@@ -102,7 +102,7 @@ CLASS_DECL_ACME void defer_dock_application(int_bool bDock)
 
 }
 
-CLASS_DECL_ACME void main_branch(::generic* pobjectTask, e_priority epriority)
+CLASS_DECL_ACME void main_branch(::elemental* pobjectTask, e_priority epriority)
 {
 
    ::wait(
@@ -579,52 +579,61 @@ namespace user
 {
 
 
-   CLASS_DECL_ACME COLORREF get_system_app_background_color()
-   {
+   //CLASS_DECL_ACME COLORREF get_system_app_background_color()
+   //{
 
-      auto color = ::get_context_system()->get_context_session()->m_directxapplication->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
+   //   auto color = ::get_context_system()->get_context_session()->m_directxapplication->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
 
-      auto r = color.R;
+   //   auto r = color.R;
 
-      auto g = color.G;
+   //   auto g = color.G;
 
-      auto b = color.B;
+   //   auto b = color.B;
 
-      return ARGB(255, r, g, b);
+   //   return ARGB(255, r, g, b);
 
-   }
+   //}
 
-   CLASS_DECL_ACME double get_system_app_luminance()
-   {
+   //CLASS_DECL_ACME double get_system_app_luminance()
+   //{
 
-      auto color = ::get_context_system()->get_context_session()->m_directxapplication->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
+   //   auto color = ::get_context_system()->get_context_session()->m_directxapplication->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
 
-      double r = color.R;
+   //   double r = color.R;
 
-      double g = color.G;
+   //   double g = color.G;
 
-      double b = color.B;
+   //   double b = color.B;
 
-      return (r + g + b) / (255.0 * 3.0);
+   //   return (r + g + b) / (255.0 * 3.0);
 
-   }
+   //}
 
 
-   CLASS_DECL_ACME void os_update_dark_mode()
-   {
+   //CLASS_DECL_ACME void os_update_dark_mode()
+   //{
 
-      double dLuminance = get_system_app_luminance();
+   //   double dLuminance = get_system_app_luminance();
 
-      bool bDarkMode = dLuminance < 0.5;
+   //   bool bDarkMode = dLuminance < 0.5;
 
-      set_system_dark_mode(bDarkMode);
+   //   set_system_dark_mode(bDarkMode);
 
-      set_app_dark_mode(bDarkMode);
+   //   set_app_dark_mode(bDarkMode);
 
-   }
+   //}
 
 
 } // namespace user
 
 
 
+
+
+
+int _os_message_box(const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox)
+{
+
+   return 0;
+
+}

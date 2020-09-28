@@ -3221,7 +3221,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 ////#endif
 //
-//bool string::load_string(::generic * pobject,id id)
+//bool string::load_string(::elemental * pobject,id id)
 //{
 //   return App(pobject).load_string(*this,id);
 //}

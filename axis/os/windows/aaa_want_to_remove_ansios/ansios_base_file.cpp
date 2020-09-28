@@ -87,7 +87,7 @@ int_bool file_exists(const char * path1)
 
 
 
-int_bool file_put_contents_dup(const char * path, const char * contents, ::count len)
+int_bool file_put_contents(const char * path, const char * contents, ::count len)
 {
 
    bool bOk = false;
@@ -154,7 +154,7 @@ string file_as_string(const char * path)
    if(f == nullptr)
       return "";
 
-   ::count iSize = fsize_dup(f);
+   ::count iSize = FILE_get_size(f);
 
    LPSTR lpsz = str.GetBufferSetLength(iSize);
 
@@ -189,7 +189,7 @@ bool file_as_memory(memory_base & memory, const char * path)
    FILE * f = fopen(path, "rb");
    if(f == nullptr)
       return false;
-   int64_t iSize = fsize_dup(f);
+   int64_t iSize = FILE_get_size(f);
 
    if(iSize <= 0)
    {

@@ -105,12 +105,12 @@ CLASS_DECL_ACME bool file_load_stra(const char * lpszName, string_array & stra, 
 class memory_base;
 
 
-CLASS_DECL_ACME bool file_put_contents_dup(const char * path, const memory_base & memory);
-CLASS_DECL_ACME int_bool file_put_contents_dup(const char * path, const char * contents);
+CLASS_DECL_ACME bool file_put_contents(const char * path, const memory_base & memory);
+CLASS_DECL_ACME int_bool file_put_contents(const char * path, const char * contents);
 CLASS_DECL_ACME bool file_as_memory(memory_base & memory, const char * path, memsize iReadAtMostByteCount = -1);
 CLASS_DECL_ACME memsize file_as_memory(const char * path, void * p, memsize s);
 
-CLASS_DECL_ACME filesize fsize_dup(HANDLE h);
+CLASS_DECL_ACME filesize hfile_get_size(hfile h);
 
 
 
@@ -154,7 +154,7 @@ template < class POD >
 inline bool file_put_pod(const char * path, const POD & pod)
 {
 
-   return file_put_contents_dup(path, &pod, sizeof(pod));
+   return file_put_contents(path, &pod, sizeof(pod));
 
 }
 

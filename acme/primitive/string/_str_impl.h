@@ -596,14 +596,14 @@ inline void to(long  & l, i32 iBase, const ansichar * psz)
    }
 
 
-   inline void to(::generic & generic, const ansichar * psz)
+   inline void to(::elemental & elemental, const ansichar * psz)
    {
 
       var_stream stream;
 
       stream.m_pvar->parse_json(psz);
 
-      generic.exchange(stream);
+      elemental.exchange(stream);
 
    }
 
@@ -617,7 +617,7 @@ inline void to(long  & l, i32 iBase, const ansichar * psz)
    }
 
 
-   inline void from(string & str, const generic & o)
+   inline void from(string & str, const elemental & o)
    {
 
       auto len = o.sz_len();
@@ -631,7 +631,7 @@ inline void to(long  & l, i32 iBase, const ansichar * psz)
    }
 
 
-   //inline void from(string & str, const generic & o)
+   //inline void from(string & str, const elemental & o)
    //{
 
    //   o.to_string(str);
@@ -815,7 +815,7 @@ namespace str
 //
 //}
 
-// besides returning a generic (and const does not really impedes changing), do not change a string_base (or string) directly,
+// besides returning a elemental (and const does not really impedes changing), do not change a string_base (or string) directly,
 // there may be multiple instances of a string (all referencing the same pointer).
 //template < typename TYPE_CHAR >
 //inline const ansichar & string_base < TYPE_CHAR >::operator [](index iChar ) const
@@ -1222,7 +1222,7 @@ namespace str
    }
 
 
-#if !defined(WINDOWS_DESKTOP) && !defined(LINUX)
+#if !defined(WINDOWS) && !defined(LINUX)
 
 
    inline void from(string& str, const unsigned long & ul)

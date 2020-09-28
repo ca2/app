@@ -5,7 +5,7 @@
 #endif
 
 
-#ifdef __APPLE__
+#if defined(__APPLE__) || defined(_UWP)
 
 
 int _os_message_box(const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox);
@@ -23,7 +23,7 @@ namespace acme
 
 
    class os_message_box :
-      virtual public ::generic
+      virtual public ::elemental
    {
    public:
 
@@ -76,7 +76,7 @@ namespace acme
 
          string strResult = message_box_result_to_string(iResult);
 
-         m_future.receive_response(strResult);
+         m_future.send(strResult);
 
          return ::success;
 

@@ -132,7 +132,7 @@ int_bool file_copy_dup(const char * pszNew, const char * pszSrc, int_bool bOverw
       if (::dir::is(path))
       {
 
-         hfile = create_file(path,
+         hfile = hfile_create(path,
                              GENERIC_READ,          // open for reading
                              FILE_SHARE_READ,       // share for reading
                              nullptr,                  // default security
@@ -144,7 +144,7 @@ int_bool file_copy_dup(const char * pszNew, const char * pszSrc, int_bool bOverw
       else
       {
 
-         hfile = create_file(path,
+         hfile = hfile_create(path,
                              FILE_LIST_DIRECTORY,          // open for reading
                              FILE_SHARE_READ,       // share for reading
                              nullptr,                  // default security
@@ -360,3 +360,55 @@ CLASS_DECL_ACME bool _os_may_have_alias(const char * psz)
 
 
 
+
+
+CLASS_DECL_ACME memsize hfile_read(hfile hfile, void* p, memsize s)
+{
+
+   DWORD dwRead = 0;
+
+   if (!::ReadFile(hfile, p, min(INT_MAX, s), &dwRead, nullptr))
+   {
+
+      return 0;
+
+   }
+
+   return dwRead;
+
+}
+
+
+CLASS_DECL_ACME::estatus hfile_write(hfile hfile, const void* p, memsize s)
+{
+
+   memsize dwWrittenTotal = 0;
+
+   while (s > 0)
+   {
+
+      int iWrite = min(INT_MAX, s);
+
+      DWORD dwWritten = 0;
+
+      if (!WriteFile(hfile, p, iWrite, &dwWritten, nullptr))
+      {
+
+         return ::error_failed;
+
+      }
+
+      if (dwWritten != iWrite)
+      {
+
+         return ::error_failed;
+
+      }
+
+      s -= iWrite;
+
+   }
+
+   return ::success;
+
+}

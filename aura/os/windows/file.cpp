@@ -78,7 +78,7 @@ int_bool file_exists(const char * path1)
 }
 
 
-int_bool file_put_contents_dup(const char * path, const char * contents, count len)
+int_bool file_put_contents(const char * path, const char * contents, count len)
 {
 
    dir::mk(dir::name(path));
@@ -299,7 +299,7 @@ string file_as_string(const char * path, strsize iReadAtMostByteCount)
 
    DWORD dwSize;
 
-   dwSize = (DWORD) fsize_dup(file);
+   dwSize = (DWORD) hfile_get_size(file);
 
    iReadAtMostByteCount = iReadAtMostByteCount < 0 ? dwSize :  min(iReadAtMostByteCount, (::strsize)dwSize);
 
@@ -383,7 +383,7 @@ bool file_as_memory(memory_base & memory, const char * path, memsize iReadAtMost
 
    }
 
-   filesize iSize = fsize_dup(file);
+   filesize iSize = FILE_get_size(file);
 
    if(iSize < 0)
    {
@@ -979,7 +979,7 @@ int_bool ensure_file_size_fd(i32 fd, size_t iSize)
 
 }
 
-int_bool ensure_file_size(FILE * file, size_t iSize)
+int_bool FILE_set_size(FILE * file, size_t iSize)
 {
 
    return ensure_file_size_fd(_fileno(file), iSize);

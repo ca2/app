@@ -48,7 +48,7 @@
 //}
 //
 //struct lparam_dbg :
-//   virtual generic
+//   virtual elemental
 //{
 //
 //};
@@ -230,7 +230,7 @@ namespace apex
 //
 //      int i = atoi(file_as_string(path));
 //
-//      file_put_contents_dup(path, __str(i + 1));
+//      file_put_contents(path, __str(i + 1));
 //
 //   }
 //
@@ -250,7 +250,7 @@ namespace apex
 //
 //      int i = atoi(file_as_string(path));
 //
-//      file_put_contents_dup(path, __str(i - 1));
+//      file_put_contents(path, __str(i - 1));
 //
 //   }
 //

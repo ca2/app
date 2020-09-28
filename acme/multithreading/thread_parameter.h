@@ -5,11 +5,11 @@
 //{
 //public:
 //
-//   __pointer(generic)    m_psimpleobject;
+//   __pointer(elemental)    m_psimpleobject;
 //
 //
 //   thread_parameter() {}
-//   thread_parameter(const generic * psimpleobject);
+//   thread_parameter(const elemental * psimpleobject);
 //
 //
 //   template < typename T >

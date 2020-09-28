@@ -10,7 +10,7 @@ namespace str
 
 
       class CLASS_DECL_ACME locale_schema :
-         virtual public ::generic
+         virtual public ::elemental
       {
       public:
 

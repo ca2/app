@@ -9,7 +9,7 @@ namespace data
 
 
    class CLASS_DECL_APEX listener :
-      virtual public ::generic
+      virtual public ::elemental
    {
    public:
 

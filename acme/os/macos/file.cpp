@@ -66,7 +66,7 @@ bool context::_os_resolve_alias(::file::path & path, const char * psz, ::user::p
 #endif
 
 //
-//CLASS_DECL_ACME bool _os_resolve_alias(::generic * pobject, ::file::path & path, const char * psz, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount)
+//CLASS_DECL_ACME bool _os_resolve_alias(::elemental * pobject, ::file::path & path, const char * psz, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount)
 //{
 //
 //   return _os_resolve_alias(path, psz, pinteraction, bNoUI, bNoMount);

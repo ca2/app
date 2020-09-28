@@ -109,7 +109,7 @@ namespace helloworld
             GetTypedParent<::user::split_view>()->get_child_by_id("top_edit_view")->_001SetText(strText,::source_initialize);
 
 
-//            file_put_contents_dup("C:\\dennisheazle\\ft.txt", __str((iptr)GetTopLevel()->get_handle()));
+//            file_put_contents("C:\\dennisheazle\\ft.txt", __str((iptr)GetTopLevel()->get_handle()));
 
             //GetTypedParent<::user::split_view>()->get_child_by_id("top_edit_view")->_001SetText(__str((iptr)GetTopLevel()->get_handle()), ::source_initialize);
 

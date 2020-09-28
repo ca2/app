@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-generic::~generic()
+elemental::~elemental()
 {
 
 }
@@ -13,7 +13,7 @@ generic::~generic()
 
 
 
-stream & generic::do_property_exchange(stream & stream) const
+stream & elemental::do_property_exchange(stream & stream) const
 {
 
    ASSERT(stream.is_storing());
@@ -22,7 +22,7 @@ stream & generic::do_property_exchange(stream & stream) const
 
    set += object_storing;
 
-   ((generic *)this)->exchange(set);
+   ((elemental *)this)->exchange(set);
 
    stream << set;
 
@@ -32,13 +32,13 @@ stream & generic::do_property_exchange(stream & stream) const
 
 
 
-void generic::exchange(::stream & stream)
+void elemental::exchange(::stream & stream)
 {
 
 }
 
 
-stream & generic::do_property_exchange(stream & stream)
+stream & elemental::do_property_exchange(stream & stream)
 {
 
    ASSERT(stream.is_loading());
@@ -55,10 +55,10 @@ stream & generic::do_property_exchange(stream & stream)
 
 }
 
-stream & generic::write(::stream & stream) const
+stream & elemental::write(::stream & stream) const
 {
 
-   generic::write(stream);
+   elemental::write(stream);
 
    if (has_flag(object_default_property_exchange))
    {
@@ -72,10 +72,10 @@ stream & generic::write(::stream & stream) const
 }
 
 
-stream & generic::read(::stream & stream)
+stream & elemental::read(::stream & stream)
 {
 
-   generic::read(stream);
+   elemental::read(stream);
 
    if (has_flag(object_default_property_exchange))
    {

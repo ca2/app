@@ -6,7 +6,7 @@ namespace user
 {
 
 
-   CLASS_DECL_ACME bool is_system_dark_mode()
+   CLASS_DECL_ACME bool calc_system_dark_mode()
    {
 
       try
@@ -47,7 +47,7 @@ namespace user
    }
 
 
-   CLASS_DECL_ACME bool is_app_dark_mode()
+   CLASS_DECL_ACME bool calc_app_dark_mode()
    {
 
       try

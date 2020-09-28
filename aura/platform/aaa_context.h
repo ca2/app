@@ -145,14 +145,14 @@ public:
    virtual void add_matter_locator(::aura::application * papp);
 
 
-   virtual ::estatus _load_from_file(::generic * pobject, const ::var& varFile, const var& varOptions);
-   virtual ::estatus _save_to_file(const ::var& varFile, const var& varOptions, const ::generic* pobject);
+   virtual ::estatus _load_from_file(::elemental * pobject, const ::var& varFile, const var& varOptions);
+   virtual ::estatus _save_to_file(const ::var& varFile, const var& varOptions, const ::elemental* pobject);
 
 
-   inline ::estatus load_from_file(::generic* pobject, const ::var& varFile, const var* pvarOptions);
-   inline ::estatus load_from_file(::generic* pobject, const ::var& varFile);
-   inline ::estatus save_to_file(const ::var& varFile, const var* pvarOptions, const ::generic* pobject);
-   inline ::estatus save_to_file(const ::var& varFile, const ::generic* pobject);
+   inline ::estatus load_from_file(::elemental* pobject, const ::var& varFile, const var* pvarOptions);
+   inline ::estatus load_from_file(::elemental* pobject, const ::var& varFile);
+   inline ::estatus save_to_file(const ::var& varFile, const var* pvarOptions, const ::elemental* pobject);
+   inline ::estatus save_to_file(const ::var& varFile, const ::elemental* pobject);
 
 
    virtual void finalize() override;

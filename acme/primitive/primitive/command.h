@@ -6,7 +6,7 @@
 //
 //
 //   class CLASS_DECL_ACME command :
-//      virtual public ::generic
+//      virtual public ::elemental
 //   {
 //   protected:
 //

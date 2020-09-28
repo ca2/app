@@ -30,7 +30,7 @@ enum e_set_version
 //   stream(stream & stream);
 //   stream(e_set_version = set_version, index iVersion = FIRST_VERSION);
 //   stream(::file::file * pfile, index iVersion = FIRST_VERSION);
-//   stream(e_create_new, ::generic * pobject, index iVersion = FIRST_VERSION);
+//   stream(e_create_new, ::elemental * pobject, index iVersion = FIRST_VERSION);
 //   virtual ~stream();
 //
 //
@@ -115,7 +115,7 @@ enum e_set_version
 //
 //
 //   reader(reader && reader);
-//   reader(::generic * pobject, index iVersion = FIRST_VERSION);
+//   reader(::elemental * pobject, index iVersion = FIRST_VERSION);
 //   reader(::file::file * pfile, index iVersion = FIRST_VERSION);
 //   virtual ~reader();
 //
@@ -133,7 +133,7 @@ enum e_set_version
 //
 //
 //   writer(writer && writer);
-//   writer(::generic * pobject, index iVersion = FIRST_VERSION);
+//   writer(::elemental * pobject, index iVersion = FIRST_VERSION);
 //   writer(::file::file * pfile, index iVersion = FIRST_VERSION);
 //   virtual ~writer();
 //
@@ -151,7 +151,7 @@ enum e_set_version
 //
 //
 //   memory_reader(memory_reader && reader);
-//   memory_reader(::generic * pobject, index iVersion = FIRST_VERSION);
+//   memory_reader(::elemental * pobject, index iVersion = FIRST_VERSION);
 //   virtual ~memory_reader();
 //
 //
@@ -168,7 +168,7 @@ enum e_set_version
 //
 //
 //   memory_writer(memory_writer && writer);
-//   memory_writer(::generic * pobject, index iVersion = FIRST_VERSION);
+//   memory_writer(::elemental * pobject, index iVersion = FIRST_VERSION);
 //   virtual ~memory_writer();
 //
 //

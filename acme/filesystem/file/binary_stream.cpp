@@ -268,7 +268,7 @@ void binary_stream::write(const var & var)
    case type_path:
    {
 
-      __save_object(*this, var.cast < ::generic >());
+      __save_object(*this, var.cast < ::elemental >());
 
    }
    break;
@@ -359,7 +359,7 @@ void binary_stream::write(const string & str)
 }
 
 
-void binary_stream::write(const generic * pobject)
+void binary_stream::write(const elemental * pobject)
 {
 
    pobject->write(*this);
@@ -369,10 +369,10 @@ void binary_stream::write(const generic * pobject)
 }
 
 
-void binary_stream::write(const generic& generic)
+void binary_stream::write(const elemental& elemental)
 {
 
-   generic.write(*this);
+   elemental.write(*this);
 
    return;
 
@@ -479,7 +479,7 @@ void binary_stream::read(id & id)
 
 
 
-//void binary_stream::write_file(const ::file::path & path, const ::generic & generic)
+//void binary_stream::write_file(const ::file::path & path, const ::elemental & elemental)
 //{
 //
 //   if (path.is_empty())
@@ -497,14 +497,14 @@ void binary_stream::read(id & id)
 //
 //   stream.m_pfile = Context.file().get_file(path, nOpenFlags);
 //
-//   generic.write(*this);
+//   elemental.write(*this);
 //
 //   return;
 //
 //}
 //
 //
-//void binary_stream::read_file(const ::file::path & path, ::generic & generic)
+//void binary_stream::read_file(const ::file::path & path, ::elemental & elemental)
 //{
 //
 //   if (path.is_empty())
@@ -518,17 +518,17 @@ void binary_stream::read(id & id)
 //
 //   stream.m_pfile = Context.file().get_reader(path, ::file::share_deny_write);
 //
-//   generic.read(*this);
+//   elemental.read(*this);
 //
 //   return;
 //
 //}
 
 
-//void binary_stream::write_link(const string & strLink, const ::generic & generic)
+//void binary_stream::write_link(const string & strLink, const ::elemental & elemental)
 //{
 //
-//   ::file::path path = get_link_path(generic);
+//   ::file::path path = get_link_path(elemental);
 //
 //   if (path.is_empty())
 //   {
@@ -542,7 +542,7 @@ void binary_stream::read(id & id)
 //   try
 //   {
 //
-//      write_file(path, generic);
+//      write_file(path, elemental);
 //
 //   }
 //   catch (...)
@@ -557,7 +557,7 @@ void binary_stream::read(id & id)
 //}
 //
 //
-//void binary_stream::read_link(const string & strLink, ::generic & generic)
+//void binary_stream::read_link(const string & strLink, ::elemental & elemental)
 //{
 //
 //   ::file::path path = get_link_path(strLink);
@@ -574,7 +574,7 @@ void binary_stream::read(id & id)
 //   try
 //   {
 //
-//      read_file(path, generic);
+//      read_file(path, elemental);
 //
 //   }
 //   catch (...)
@@ -589,7 +589,7 @@ void binary_stream::read(id & id)
 //}
 //
 //
-//bool binary_stream::get_object_link(const ::generic & generic, string & strLink, bool & bLink)
+//bool binary_stream::get_object_link(const ::elemental & elemental, string & strLink, bool & bLink)
 //{
 //
 //   return false;
@@ -597,23 +597,23 @@ void binary_stream::read(id & id)
 //}
 //
 //
-//void binary_stream::set_object_link(const ::generic & generic, const string & strLink, bool bReadOnly)
+//void binary_stream::set_object_link(const ::elemental & elemental, const string & strLink, bool bReadOnly)
 //{
 //
 //}
 //
 //
-//void binary_stream::write_link(const ::generic & generic)
+//void binary_stream::write_link(const ::elemental & elemental)
 //{
 //
 //   string strLink;
 //
 //   bool bReadOnly;
 //
-//   if (get_object_link(generic, strLink, bReadOnly))
+//   if (get_object_link(elemental, strLink, bReadOnly))
 //   {
 //
-//      write_link(generic, strLink, bReadOnly);
+//      write_link(elemental, strLink, bReadOnly);
 //
 //   }
 //
@@ -622,7 +622,7 @@ void binary_stream::read(id & id)
 //}
 //
 //
-//void binary_stream::write_link(const ::generic & generic, const string & strLink, bool bReadOnly)
+//void binary_stream::write_link(const ::elemental & elemental, const string & strLink, bool bReadOnly)
 //{
 //
 //   write(bReadOnly);
@@ -639,7 +639,7 @@ void binary_stream::read(id & id)
 //   if (strLink.has_char())
 //   {
 //
-//      write_link(strLink, generic);
+//      write_link(strLink, elemental);
 //
 //   }
 //
@@ -647,7 +647,7 @@ void binary_stream::read(id & id)
 //
 //}
 //
-//void binary_stream::read_link(::generic & generic)
+//void binary_stream::read_link(::elemental & elemental)
 //{
 //
 //   string strLink;
@@ -661,23 +661,23 @@ void binary_stream::read(id & id)
 //   //if (bReadOnly)
 //   //{
 //
-//   //   generic["read_only_link"] = strLink;
+//   //   elemental["read_only_link"] = strLink;
 //
 //   //}
 //   //else
 //   //{
 //
-//   //   generic["link"] = strLink;
+//   //   elemental["link"] = strLink;
 //
 //   //}
 //
-//   set_object_link(generic, strLink, bReadOnly);
+//   set_object_link(elemental, strLink, bReadOnly);
 //
 //
 //   if (strLink.has_char())
 //   {
 //
-//      read_link(strLink, generic);
+//      read_link(strLink, elemental);
 //
 //   }
 //
@@ -686,7 +686,7 @@ void binary_stream::read(id & id)
 //}
 
 
-//bool binary_stream::get_object_link(const ::generic * preference, string & strLink, bool & bLink)
+//bool binary_stream::get_object_link(const ::elemental * preference, string & strLink, bool & bLink)
 //{
 //
 //   return false;
@@ -694,13 +694,13 @@ void binary_stream::read(id & id)
 //}
 
 
-//void binary_stream::set_object_link(const ::generic * preference, const string & strLink, bool bReadOnly)
+//void binary_stream::set_object_link(const ::elemental * preference, const string & strLink, bool bReadOnly)
 //{
 //
 //}
 
 
-//bool binary_stream::write_link(const ::generic * pobject)
+//bool binary_stream::write_link(const ::elemental * pobject)
 //{
 //
 //   string strLink;
@@ -721,7 +721,7 @@ void binary_stream::read(id & id)
 //}
 
 
-//void binary_stream::write_link(const ::generic * preference, const string & strLink, bool bReadOnly, ::generic * pobjectSaveOptions)
+//void binary_stream::write_link(const ::elemental * preference, const string & strLink, bool bReadOnly, ::elemental * pobjectSaveOptions)
 //{
 //
 //   write(bReadOnly);
@@ -747,7 +747,7 @@ void binary_stream::read(id & id)
 //}
 
 
-//void binary_stream::read_link(::generic * preference)
+//void binary_stream::read_link(::elemental * preference)
 //{
 //
 //   string strLink;
@@ -761,13 +761,13 @@ void binary_stream::read(id & id)
 //   //if (bReadOnly)
 //   //{
 //
-//   //   generic["read_only_link"] = strLink;
+//   //   elemental["read_only_link"] = strLink;
 //
 //   //}
 //   //else
 //   //{
 //
-//   //   generic["link"] = strLink;
+//   //   elemental["link"] = strLink;
 //
 //   //}
 //
@@ -964,7 +964,7 @@ void binary_stream::read_var_body(var & var, e_type etype)
    case type_path:
    {
 
-      var.set_element(::__load_object<::generic>(*this));
+      var.set_element(::__load_object<::elemental>(*this));
 
    }
    break;
@@ -1029,10 +1029,10 @@ filesize binary_stream::get_position()
 }
 
 
-void binary_stream::read(generic & generic)
+void binary_stream::read(elemental & elemental)
 {
 
-   generic.read(*this);
+   elemental.read(*this);
 
    return;
 
@@ -1249,7 +1249,7 @@ void binary_stream::read_to_hex(string & str, filesize tickStart, filesize tickE
 }
 
 
-__pointer(::generic) binary_stream::create_object_from_text(string strText)
+__pointer(::elemental) binary_stream::create_object_from_text(string strText)
 {
 
    if (strText.is_empty())
@@ -1261,7 +1261,7 @@ __pointer(::generic) binary_stream::create_object_from_text(string strText)
 
    auto id = text_to_factory_id(strText);
 
-   return __id_create < ::generic >(id);
+   return __id_create < ::elemental >(id);
 
 }
 

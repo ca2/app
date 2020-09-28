@@ -6,7 +6,7 @@ namespace core
 
 
    class CLASS_DECL_CORE system :
-      virtual public ::base::system
+      virtual public ::bred::system
    {
    public:
 

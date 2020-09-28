@@ -2,7 +2,7 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
-#include "aura/xml/_.h"
+#include "aqua/xml.h"
 
 
 namespace filemanager

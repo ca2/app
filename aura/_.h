@@ -6,7 +6,7 @@
 
 
 
-#include "apex/_.h"
+#include "aqua/_.h"
 
 
 #if defined(_AURA_LIBRARY)
@@ -102,8 +102,8 @@ typedef i64 filesize;
 
 #if defined(WINDOWS)
 
-//#define inplace_new_throw_spec
-#define inplace_new_throw_spec noexcept // as of C++17
+#define inplace_new_throw_spec
+//#define inplace_new_throw_spec noexcept // as of C++17
 #define new_throw_spec
 #define del_throw_spec noexcept
 #define MEMORY_DECL __cdecl

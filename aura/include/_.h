@@ -20,10 +20,6 @@
 
 
 
-#define __spin_namespace aura // back bone / four-letter "spin*" namespace name
-
-
-
 #undef Sys
 #undef Sess
 #undef App
@@ -34,11 +30,9 @@
 #define App(playered) (*::get_context_application(playered)->m_pauraapplication)
 
 
-#define Au(playered) (*(::get_context_audio(playered)))
-#define Audio (Au(get_context()))
+#define __spin_namespace aura // back bone / four-letter "spin*" namespace name
 
-#define Mm(playered) (*(::get_context_multimedia(playered)))
-#define Multimedia (Mm(get_context()))
+
 
 
 
@@ -477,10 +471,10 @@ CLASS_DECL_AURA void aura_ref();
 ////#include "aura/primitive/api/api.h"
 //
 //
-#include "aura/multimedia/_c.h"
+//#include "aura/multimedia/_c.h"
 //
 //
-//class generic;
+//class elemental;
 //
 //
 //template < typename T >
@@ -507,24 +501,24 @@ CLASS_DECL_AURA void aura_ref();
 //
 //
 //
-//CLASS_DECL_AURA ::generic * general_trace_object();
+//CLASS_DECL_AURA ::elemental * general_trace_object();
 //
 //CLASS_DECL_AURA int_bool c_enable_trace_category(e_trace_category ecategory, int_bool iEnable);
 //
-//inline ::generic * context_trace_object() { return general_trace_object(); }
+//inline ::elemental * context_trace_object() { return general_trace_object(); }
 //
 //
-//CLASS_DECL_AURA void __tracea(::generic * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
-//CLASS_DECL_AURA void __tracef(::generic * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, ...);
-//CLASS_DECL_AURA void __tracev(::generic * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, va_list vargs);
+//CLASS_DECL_AURA void __tracea(::elemental * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
+//CLASS_DECL_AURA void __tracef(::elemental * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, ...);
+//CLASS_DECL_AURA void __tracev(::elemental * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, va_list vargs);
 //CLASS_DECL_AURA const char * trace_category_name(e_trace_category ecategory);
 //
 //
-//CLASS_DECL_AURA ::generic * trace_object(e_trace_category ecategory);
+//CLASS_DECL_AURA ::elemental * trace_object(e_trace_category ecategory);
 //
-//const char * topic_text(::generic * pcontextobject);
+//const char * topic_text(::elemental * pcontextobject);
 //
-//e_trace_category object_trace_category(::generic * pcontextobject);
+//e_trace_category object_trace_category(::elemental * pcontextobject);
 //
 //
 //
@@ -1593,14 +1587,6 @@ class form_document;
 //} // namespace html
 //
 //
-namespace audio
-{
-
-
-   class plugin;
-
-
-} // namespace audio
 //
 //
 ////#include "aura/primitive/collection/forward.h"
@@ -1934,44 +1920,23 @@ namespace audio
 //typedef struct RECTD RECTD;
 //
 //
-//namespace aura
-//{
-//
-//
-////#if defined _UWP && defined(__cplusplus_winrt)
-////
-////   interface class system_window
-////   {
-////
-////      virtual Windows::Foundation::Rect get_window_rect() = 0;
-////      virtual Windows::Foundation::Point get_cursor_pos() = 0;
-////
-////
-////
-////   };
-////
-////   CLASS_DECL_AURA bool get_window_rect(system_window ^ pwindow,RECTD * prect);
-//
-////   CLASS_DECL_AURA bool get_window_rect(system_window ^ pwindow,RECT * prect);
-//
-////
-////#endif
-//
-//
-//   class file;
-//
-//
-//   namespace trace
-//   {
-//
-//      class trace;
-//
-//   }
-//
-//   class session;
-//
-//} // namespace aura
-//
+
+namespace aura
+{
+
+   class file;
+
+   namespace trace
+   {
+
+      class trace;
+
+   }
+
+   class session;
+
+} // namespace aura
+
 //CLASS_DECL_AURA bool enable_trace_category(e_trace_category ecategory, bool bEnable = true);
 //
 //// only usable from axis and axis dependants
@@ -2183,7 +2148,7 @@ namespace draw2d
 //// CLASS_DECL_AURA bool defer_co_initialize_ex(bool bMultiThread, bool bDisableOleDDE = false);
 //// #endif
 //
-//class generic;
+//class elemental;
 //
 //class var;
 //
@@ -2565,7 +2530,7 @@ namespace user
 //
 //
 //
-//#include "aura/primitive/primitive/generic.h"
+//#include "aura/primitive/primitive/elemental.h"
 //#include "aura/primitive/primitive/task.h"
 //#include "aura/primitive/primitive/compare_pred.h"
 //
@@ -2661,20 +2626,20 @@ namespace user
 //class sticker;
 //
 //
-//inline ::generic * trace_object(::generic * pobjectContext) { return pobjectContext; }
+//inline ::elemental * trace_object(::elemental * pobjectContext) { return pobjectContext; }
 //
 //template < typename POINTER_TYPE >
 //class ptr_array;
 //
-////using composite_ptra = __pointer_array(::generic); // Please use just for composition (ownership).
+////using composite_ptra = __pointer_array(::elemental); // Please use just for composition (ownership).
 //
-////using reference_ptra = __pointer_array(::generic); // Please use just for reference (member-based).
+////using reference_ptra = __pointer_array(::elemental); // Please use just for reference (member-based).
 //
 ////using object_ptra = __pointer_array(::context_object); // Please use just for keeping non-member-based references.
 //
-//using object_ptra = __pointer_array(::generic); // Please use just for keeping non-member-based references.
+//using object_ptra = __pointer_array(::elemental); // Please use just for keeping non-member-based references.
 //
-//using object_addra = __address_array(::generic); // Please use just for keeping non-member-based references.
+//using object_addra = __address_array(::elemental); // Please use just for keeping non-member-based references.
 //
 //class object_meta;
 //
@@ -2689,9 +2654,9 @@ namespace user
 //
 //} // namespace http
 //
-//template < typename PRED > inline auto __task_procedure(PRED pred, ::generic * pobjectHold = nullptr);
+//template < typename PRED > inline auto __task_procedure(PRED pred, ::elemental * pobjectHold = nullptr);
 //
-//template < typename PRED > inline auto __task_callback(PRED pred, ::generic* pobjectHold = nullptr);
+//template < typename PRED > inline auto __task_callback(PRED pred, ::elemental* pobjectHold = nullptr);
 //
 //class context;
 
@@ -2712,7 +2677,7 @@ namespace draw2d
 
 ////class create_thread;
 //
-//using generic_pointer = __pointer(::generic);
+//using generic_pointer = __pointer(::elemental);
 //
 //
 //#ifdef WINDOWS_DESKTOP
@@ -2930,52 +2895,52 @@ namespace draw2d
 //
 //
 //#include "aura/multithreading/_.h"
-//
-//
-//namespace aura
-//{
-//
-//#if defined _UWP && defined(__cplusplus_winrt)
-//
-//   interface class system_window
-//      {
-//
-//         virtual Windows::Foundation::Rect get_window_rect() = 0;
-//         virtual Windows::Foundation::Point get_cursor_pos() = 0;
-//
-//
-//
-//      };
-//
-//   CLASS_DECL_AURA bool get_window_rect(system_window ^ pwindow, RECTD * prect);
-//
-//   CLASS_DECL_AURA bool get_window_rect(system_window ^ pwindow, RECT * prect);
-//
-//
-//#endif
-//
-//
-//   class session;
-//
-//} // namespace aura
-//
-//
-//
-//#if defined _UWP
-//
-//
-//namespace uwp
-//{
-//
-//
-//   ref class directx_application;
-//
-//
-//} // namespace uwp
-//
-//
-//#endif
-//
+
+
+namespace aura
+{
+
+#if defined _UWP && defined(__cplusplus_winrt)
+
+   interface class system_window
+   {
+
+   
+      virtual Windows::Foundation::Rect get_window_rect() = 0;
+      virtual Windows::Foundation::Point get_cursor_pos() = 0;
+
+   };
+
+   CLASS_DECL_AURA bool get_window_rect(system_window ^ pwindow, RECTD * prect);
+
+   CLASS_DECL_AURA bool get_window_rect(system_window ^ pwindow, RECT * prect);
+
+
+#endif
+
+
+   class session;
+
+} // namespace aura
+
+
+#if defined _UWP
+
+
+namespace uwp
+{
+
+
+   ref class directx_application;
+
+
+} // namespace uwp
+
+
+#endif
+
+
+
 ////namespace account
 ////{
 ////
@@ -3288,7 +3253,7 @@ namespace draw2d
 //
 //
 //
-#include "aura/multimedia/_.h"
+//#include "aqua/multimedia/_.h"
 //
 //
 //
@@ -3406,12 +3371,6 @@ namespace draw2d
 //} // namespace xml
 //
 //
-#include "aura/multimedia/audio/speaker.h"
-//
-//
-#include "aura/multimedia/audio.h"
-//
-#include "aura/multimedia/multimedia.h"
 //
 //#include "aura/platform/app_core.h"
 //

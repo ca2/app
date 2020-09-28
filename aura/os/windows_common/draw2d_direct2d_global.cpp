@@ -19,6 +19,20 @@
 
 #include "draw2d_direct2d_global.h"
 
+
+
+namespace draw2d
+{
+
+   ID2D1Factory1* device_lock::g_pfactory = nullptr;
+
+
+   ::mutex* lock::g_pmutex = nullptr;
+
+} // namespace draw2d
+
+
+
 void dpi_os_initialize();
 
 typedef HRESULT WINAPI FN_DXGIGetDebugInterface(REFIID riid, void **ppDebug);

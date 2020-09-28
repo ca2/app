@@ -6,8 +6,13 @@ namespace axis
 {
 
 
+   idpool* idpool::g_pthis = nullptr;
+
+
    idpool::idpool()
    {
+
+      g_pthis = this;
 
    }
 

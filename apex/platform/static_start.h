@@ -39,13 +39,13 @@ namespace apex
 
    extern critical_section* g_pcsTrace;
 
-   extern ::generic* g_ptrace;
+   extern ::elemental* g_ptrace;
 
    extern simple_trace* g_psimpletrace;
 
 
 
-   extern CLASS_DECL_APEX array < generic* >* g_paAura;
+   extern CLASS_DECL_APEX array < elemental* >* g_paAura;
 
 
 

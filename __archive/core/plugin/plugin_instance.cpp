@@ -2,7 +2,7 @@
 
 
 
-//::hotplugin::plugin * new_hotplugin(::generic * pobject);
+//::hotplugin::plugin * new_hotplugin(::elemental * pobject);
 
 
 namespace plugin
@@ -94,7 +94,7 @@ namespace plugin
 
 
 
-//::hotplugin::plugin * new_hotplugin(::generic * pobject)
+//::hotplugin::plugin * new_hotplugin(::elemental * pobject)
 //{
 //
 //   return new ::plugin::instance(pobject);

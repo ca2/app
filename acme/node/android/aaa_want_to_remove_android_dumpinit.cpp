@@ -19,13 +19,13 @@
 // //      if(_CrtReportBlockType(pvData) != ___CLIENT_BLOCK)
 //       //       return;
 
-// //      ::generic * pca = (::generic * ) pvData;
+// //      ::elemental * pca = (::elemental * ) pvData;
 
-//       ::generic * pobject = nullptr;
+//       ::elemental * pobject = nullptr;
 
 //       if(pobject == nullptr)
 //       {
-// // xxx            C_RUNTIME_ERRORCHECK_SPRINTF(_snprintf_s(sz, _countof(sz), _countof(sz) - 1, "unknown generic at $%p, %u bytes long\n", pvData, nBytes));
+// // xxx            C_RUNTIME_ERRORCHECK_SPRINTF(_snprintf_s(sz, _countof(sz), _countof(sz) - 1, "unknown elemental at $%p, %u bytes long\n", pvData, nBytes));
 //       }
 //       else if(::get_context_system()->m_pdumpcontext->GetDepth() > 0)
 //       {
@@ -35,9 +35,9 @@
 //       }
 //       if(false) // else
 //       {
-//          //::generic & obj = *pobject;
+//          //::elemental & obj = *pobject;
 //          // short form
-// // xxx         C_RUNTIME_ERRORCHECK_SPRINTF(_snprintf_s(sz, _countof(sz), _countof(sz) - 1, "a %hs generic at $%p, %u bytes long\n", typeid(obj).name(), pvData, nBytes));
+// // xxx         C_RUNTIME_ERRORCHECK_SPRINTF(_snprintf_s(sz, _countof(sz), _countof(sz) - 1, "a %hs elemental at $%p, %u bytes long\n", typeid(obj).name(), pvData, nBytes));
 //          *::get_context_system()->m_pdumpcontext << sz;
 //       }
 //    }

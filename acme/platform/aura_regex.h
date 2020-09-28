@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ACME regex :
-   virtual public generic
+   virtual public elemental
 {
 public:
 
@@ -31,7 +31,7 @@ public:
 };
 
 class CLASS_DECL_ACME regex_context :
-   virtual public ::generic
+   virtual public ::elemental
 {
 public:
 

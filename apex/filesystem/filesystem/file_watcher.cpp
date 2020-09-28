@@ -301,7 +301,7 @@ namespace file
       for (auto & pair : m_watchmap)
       {
 
-         if (::file_is_equal_path_dup(pathFolder, pair.element2()->m_pathFolder))
+         if (::file_is_equal_path(pathFolder, pair.element2()->m_pathFolder))
          {
 
             remove_watch(pair.element1());

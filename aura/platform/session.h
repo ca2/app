@@ -6,7 +6,7 @@ namespace aura
 
 
    class CLASS_DECL_AURA session :
-      virtual public ::apex::session,
+      virtual public ::aqua::session,
       //,
       //virtual public ::application_container,
       virtual public ::filemanager::item_action //,

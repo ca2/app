@@ -1984,7 +1984,7 @@ namespace aura
 
          POINT point;
 
-         ::GetCursorPos(&point);
+         ::get_cursor_pos(&point);
 
          m_pointCursor = point;
 

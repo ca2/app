@@ -19,7 +19,7 @@ namespace ios
       virtual ~dir_context();
       
       
-      virtual ::estatus initialize(::generic * pobjectContext) override;
+      virtual ::estatus initialize(::elemental * pobjectContext) override;
       //virtual void update_module_path();
       virtual ::estatus init_context() override;
 
@@ -60,14 +60,14 @@ namespace ios
       virtual ::file::path appdata() override;
       virtual ::file::path commonappdata_root() override;
       
-//      virtual ::file::path usersystemappdata(::generic * pobject, const char * lpcszPrefix);
-//      virtual ::file::path userappdata(::generic * pobject);
-//      virtual ::file::path userdata(::generic * pobject);
-//      //virtual ::file::path userfolder(::generic * pobject);
-//      virtual ::file::path default_os_user_path_prefix(::generic * pobject);
-//      virtual ::file::path default_userappdata(::generic * pobject,const string & lpcszPrefix,const string & lpcszLogin );
-//      virtual ::file::path default_userdata(::generic * pobject,const string & lpcszPrefix,const string & lpcszLogin);
-//      virtual ::file::path default_userfolder(::generic * pobject,const string & lpcszPrefix,const string & lpcszLogin);
+//      virtual ::file::path usersystemappdata(::elemental * pobject, const char * lpcszPrefix);
+//      virtual ::file::path userappdata(::elemental * pobject);
+//      virtual ::file::path userdata(::elemental * pobject);
+//      //virtual ::file::path userfolder(::elemental * pobject);
+//      virtual ::file::path default_os_user_path_prefix(::elemental * pobject);
+//      virtual ::file::path default_userappdata(::elemental * pobject,const string & lpcszPrefix,const string & lpcszLogin );
+//      virtual ::file::path default_userdata(::elemental * pobject,const string & lpcszPrefix,const string & lpcszLogin);
+//      virtual ::file::path default_userfolder(::elemental * pobject,const string & lpcszPrefix,const string & lpcszLogin);
       virtual ::file::path userquicklaunch() override;
       virtual ::file::path userprograms() override;
       

@@ -1,12 +1,12 @@
 #pragma once
 
 //
-//struct CLASS_DECL_ACME generic :
-//   virtual public generic
+//struct CLASS_DECL_ACME elemental :
+//   virtual public elemental
 //{
 //public:
 //
-//   //generic()
+//   //elemental()
 //   //{
 //
 //   //   //m_psticker = nullptr;
@@ -14,8 +14,8 @@
 //   //}
 //
 //
-//   //generic(::generic * pobject) : 
-//   //   generic(pobject) 
+//   //elemental(::elemental * pobject) : 
+//   //   elemental(pobject) 
 //   //{
 //   //
 //   //   //m_psticker = nullptr;
@@ -23,7 +23,7 @@
 //   //}
 //
 //
-//   //virtual ~generic();
+//   //virtual ~elemental();
 //
 //
 //

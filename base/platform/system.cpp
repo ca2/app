@@ -865,7 +865,7 @@ namespace base
 //
 //                  ::dir::mk("/ca2core");
 //
-//                  file_put_contents_dup("/ca2core/teste.txt", str, str.length());
+//                  file_put_contents("/ca2core/teste.txt", str, str.length());
 //                  */
 //#endif
 //
@@ -4478,7 +4478,7 @@ namespace base
 //   bool system::set_standalone_setting(string str, string strSetting)
 //   {
 //
-//      return file_put_contents_dup(Context.dir().standalone() / (str + ".txt"), strSetting);
+//      return file_put_contents(Context.dir().standalone() / (str + ".txt"), strSetting);
 //
 //   }
 //
@@ -4596,7 +4596,7 @@ namespace base
 //   //}
 //
 //
-//   void system::__tracea(::generic * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
+//   void system::__tracea(::elemental * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
 //   {
 //
 //      if (m_ptrace.is_null())
@@ -5813,7 +5813,7 @@ namespace base
 //
 //   path = application_installer_folder(pathExe, strAppId, pszPlatform, pszConfiguration, pszLocale, pszSchema) / "installed.txt";
 //
-//   return file_put_contents_dup(path, pszBuild);
+//   return file_put_contents(path, pszBuild);
 //
 //}
 //
@@ -5867,7 +5867,7 @@ namespace base
 //
 //   ::file::path pathFile = get_last_run_application_path_file(strAppId);
 //
-//   return file_put_contents_dup(pathFile, path);
+//   return file_put_contents(pathFile, path);
 //
 //}
 //

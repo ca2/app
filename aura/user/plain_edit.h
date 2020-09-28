@@ -2,7 +2,7 @@
 
 
 
-struct elemental;
+//struct elemental;
 class element_2d;
 
 namespace colorertake5

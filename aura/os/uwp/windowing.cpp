@@ -614,13 +614,88 @@ int_bool is_window_occluded(oswindow oswindow)
 WINBOOL WINAPI SetWindowPos(oswindow pdata, oswindow pdataAfter, int x, int y, int cx, int cy, UINT uiFlags)
 {
 
-   return pdata->m_pimpl->m_puserinteraction->set_window_pos((iptr)pdataAfter, x, y, cx, cy, uiFlags);
+   pdata->m_pimpl->m_puserinteraction->order(pdata);
+
+   pdata->m_pimpl->m_puserinteraction->set_dim(x, y, cx, cy);
+
+   pdata->m_pimpl->m_puserinteraction->set_need_layout();
+
+   pdata->m_pimpl->m_puserinteraction->set_need_redraw();
+
+   pdata->m_pimpl->m_puserinteraction->post_redraw();
+
+   return TRUE;
 
 }
 
 
 void defer_term_ui()
 {
+
+}
+
+
+//int g_iMouse = -1;
+//
+//
+//int g_iMouseX = 0;
+//int g_iMouseY = 0;
+//
+//
+//CLASS_DECL_AURA WINBOOL GetCursorPos(LPPOINT lppoint)
+//{
+//
+//   lppoint->x = g_iMouseX;
+//
+//   lppoint->y = g_iMouseY;
+//
+//   if (g_iMouse < 0)
+//      return FALSE;
+//
+//   Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::Windows::UI::Core::CoreDispatcherPriority::Normal,
+//      ref new Windows::UI::Core::DispatchedHandler([]()
+//         {
+//
+//            Windows::Foundation::Collections::IVectorView < Windows::Devices::Input::PointerDevice^ >^ deva = ::Windows::Devices::Input::PointerDevice::GetPointerDevices();
+//
+//            for (unsigned int ui = 0; ui < deva->Size; ui++)
+//            {
+//
+//               Windows::Devices::Input::PointerDevice^ dev = deva->GetAt(ui);
+//
+//               if (dev->PointerDeviceType == ::Windows::Devices::Input::PointerDeviceType::Mouse)
+//               {
+//
+//                  Windows::UI::Input::PointerPoint^ pointerPoint = ::Windows::UI::Input::PointerPoint::GetCurrentPoint(g_iMouse);
+//
+//                  g_iMouseX = (LONG)pointerPoint->RawPosition.X;
+//
+//                  g_iMouseY = (LONG)pointerPoint->RawPosition.Y;
+//
+//               }
+//
+//            }
+//
+//         }));
+//
+//   return TRUE;
+//
+//}
+
+
+
+iptr get_window_long_ptr(oswindow_data* oswindow, int iIndex)
+{
+
+   return oswindow->get_window_long_ptr(iIndex);
+
+}
+
+
+iptr set_window_long_ptr(oswindow_data* oswindow, int iIndex, iptr i)
+{
+
+   return oswindow->set_window_long_ptr(iIndex, i);
 
 }
 

@@ -475,3 +475,16 @@ void defer_term_ui()
 //
 //
 //
+
+
+
+
+int_bool get_cursor_pos(LPPOINT ppoint)
+{
+
+   return ::GetCursorPos(ppoint);
+
+}
+
+
+

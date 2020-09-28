@@ -868,7 +868,7 @@ namespace str
 
    }
 
-   string  random_replace(::generic * pobject, const string_array & straReplacement, const string_array & straSearch, const char * psz)
+   string  random_replace(::elemental * pobject, const string_array & straReplacement, const string_array & straSearch, const char * psz)
    {
 
       string str(psz);
@@ -1800,16 +1800,19 @@ namespace str
 #ifdef WINDOWS_DESKTOP
 
          DWORD_PTR lresult = 0;
-auto tickStart = ::tick::now();
 
-         tickTimeout = max(10, tickTimeout);
+         auto tickStart = ::tick::now();
+
+         tickTimeout = max(tickTimeout, 10);
 
          if(!::SendMessageTimeoutW(oswindow,WM_GETTEXTLENGTH,0,0,SMTO_ABORTIFHUNG,__os(tickTimeout),&lresult))
             return "";
 
+         tickTimeout -= tickStart.elapsed();
+
          wstring wstr;
 
-         tickTimeout = min(tickTimeout, max(10, (tickStart.elapsed()) - tickTimeout));
+         tickTimeout = min(tickTimeout, 10);
 
          if(!::SendMessageTimeoutW(oswindow,WM_GETTEXT,(LPARAM)wstr.get_string_buffer(lresult + 1),lresult + 1,SMTO_ABORTIFHUNG,__os(tickTimeout),&lresult))
             return "";

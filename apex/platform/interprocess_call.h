@@ -25,7 +25,7 @@ public:
    interprocess_call(interprocess_intercommunication* pipi, const string& strApp, const string& strObject, const string& strMember);
    virtual ~interprocess_call();
 
-   auto tasks() { return typename interprocess_task_map::dereferenced_value_iterator(nullptr, &m_mapTask); }
+   //inline auto tasks() const { return m_mapTask.values(); }
 
    void add_arg(const var& var);
    void add_args(const var_array& vara);

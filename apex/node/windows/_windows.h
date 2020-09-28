@@ -36,7 +36,7 @@
 #include "file_context.h"
 //#include "system_interaction_impl.h"
 #include "thread.h"
-#include "tts_speaker.h"
+//#include "tts_speaker.h"
 //#include "uac_tools.h"
 #include "user.h"
 //#include "shell.h"

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-relation_set::relation_set(::generic * pobject) :
+relation_set::relation_set(::elemental * pobject) :
    property_set(pobject, true, true)
 {
 

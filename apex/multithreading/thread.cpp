@@ -2806,7 +2806,7 @@ void thread::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
 
 
 
-bool thread::post_task(::generic * pobjectTask)
+bool thread::post_task(::elemental * pobjectTask)
 {
 
    if (::is_null(pobjectTask))
@@ -2827,7 +2827,7 @@ bool thread::post_task(::generic * pobjectTask)
 }
 
 
-bool thread::send_task(::generic * pobjectTask, ::duration durationTimeout)
+bool thread::send_task(::elemental * pobjectTask, ::duration durationTimeout)
 {
 
    return send_object(message_system, system_message_runnable, pobjectTask, durationTimeout);
@@ -4382,7 +4382,7 @@ bool __thread_sleep(thread * pthread, tick tick, sync* psync)
 }
 
 
-CLASS_DECL_APEX bool thread_sleep(tick tick, sync * psync)
+CLASS_DECL_APEX bool apex_thread_sleep(tick tick, sync * psync)
 {
 
    auto pthread = ::get_thread();
@@ -4462,6 +4462,7 @@ CLASS_DECL_APEX bool thread_sleep(tick tick, sync * psync)
 
    }
 }
+
 
 
 CLASS_DECL_APEX bool thread_pump_sleep(DWORD dwMillis, sync * psync)
@@ -4653,7 +4654,7 @@ CLASS_DECL_APEX bool app_sleep(tick tick)
 
 
 
-CLASS_DECL_APEX void defer_create_thread(::object* pobjectContext)
+CLASS_DECL_APEX void defer_create_thread(::layered* pobjectContext)
 {
 
    auto pthread = ::get_thread();
@@ -4661,7 +4662,7 @@ CLASS_DECL_APEX void defer_create_thread(::object* pobjectContext)
    if (::is_null(pthread))
    {
 
-      auto pthreadNew = pobjectContext->__create_new < ::thread > ();
+      auto pthreadNew = __object(pobjectContext)->__create_new < ::thread > ();
 
       pthreadNew->add_ref(OBJ_REF_DBG_P_NOTE(pobjectContext, nullptr));
 

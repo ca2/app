@@ -52,5 +52,5 @@ template<class _Category,
 	typedef _Diff difference_type;
 	typedef _Diff distance_type;	// retained
 	typedef _Pointer pointer;
-	typedef _Reference generic;
+	typedef _Reference elemental;
 };

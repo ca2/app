@@ -1,5 +1,6 @@
 ﻿#include "framework.h"
 #include "aura/user/_user.h"
+#include "CustomRenderer.h"
 #include <math.h>
 
 

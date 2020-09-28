@@ -23046,7 +23046,7 @@
 //
 // MessageText:
 //
-// A generic command executable returned a result that indiCAtes failure.
+// A elemental command executable returned a result that indiCAtes failure.
 //
 #define ERROR_GENERIC_COMMAND_FAILED     14109L
 
@@ -25241,7 +25241,7 @@
 //
 // MessageText:
 //
-// Moniker needs to be generic
+// Moniker needs to be elemental
 //
 #define MK_E_NEEDGENERIC                 _HRESULT_TYPEDEF_(0x800401E2L)
 

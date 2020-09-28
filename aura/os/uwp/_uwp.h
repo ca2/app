@@ -26,7 +26,7 @@
 //CLASS_DECL_AURA oswindow WINAPI WinSetFocus(oswindow oswindow);
 
 
-CLASS_DECL_AURA string normalize_path(const char* lpcszPath);
+//CLASS_DECL_AURA string normalize_path(const char* lpcszPath);
 
 
 CLASS_DECL_AURA oswindow get_capture();
@@ -62,7 +62,7 @@ namespace user
 
 
 
-#include "exception_engine.h"
+//#include "exception_engine.h"
 
 
 

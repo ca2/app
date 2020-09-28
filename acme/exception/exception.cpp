@@ -337,10 +337,10 @@ namespace exception
    }
 
 
-   string array::get_all_messages()
+   string get_all_messages(const __pointer_array(exception)& a)
    {
 
-      ::count c = this->get_count();
+      ::count c = a.get_count();
 
       if (c <= 0)
       {
@@ -351,7 +351,7 @@ namespace exception
       else if (c == 1)
       {
 
-         return element_at(0)->m_pszMessage;
+         return a[0]->m_pszMessage;
 
       }
       else
@@ -361,7 +361,7 @@ namespace exception
 
          index i = 0;
 
-         this->pred_each(
+         a.pred_each(
 
          [&](auto & pe)
          {
@@ -505,7 +505,7 @@ namespace status
 
 
 
-//CLASS_DECL_ACME __pointer(::exception::exception) __trace_context_move_throw_exception(::generic * trace_context, ::exception::exception * pexceptionNew)
+//CLASS_DECL_ACME __pointer(::exception::exception) __trace_context_move_throw_exception(::elemental * trace_context, ::exception::exception * pexceptionNew)
 //{
 //
 //   __trace_logger_level(trace_context, trace_level_error);

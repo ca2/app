@@ -2154,6 +2154,9 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ProjectReference Include="..\apex\apex.vcxproj">
       <Project>{e000ffaf-392f-4e32-bf51-777ca238991f}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\aqua\aqua.vcxproj">
+      <Project>{1b06fe5f-f783-41a1-ac68-0e02880dbbac}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\aura\aura.vcxproj">
       <Project>{e000ffaf-392f-4e32-bf51-fd7ed638991f}</Project>
     </ProjectReference>
@@ -2162,6 +2165,9 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     </ProjectReference>
     <ProjectReference Include="..\base\base.vcxproj">
       <Project>{a216abd4-26c4-4746-96b3-9d30ed28cf92}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\bred\bred.vcxproj">
+      <Project>{1bed7405-1c4b-4ea2-b9ee-8ab46dd518bb}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

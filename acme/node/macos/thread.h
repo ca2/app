@@ -17,7 +17,7 @@ namespace macos
 //      
 //
 //      
-//      thread(::generic * pobject);
+//      thread(::elemental * pobject);
 //      virtual ~thread();
 //      
 //      

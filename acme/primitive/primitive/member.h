@@ -13,7 +13,7 @@ namespace primitive
 
    template < typename TYPE >
    class member// :
-      //virtual public generic
+      //virtual public elemental
    {
    public:
 
@@ -67,7 +67,7 @@ namespace primitive
    public:
 
 
-      //composite() : generic(e_object_acquire) { }
+      //composite() : elemental(e_object_acquire) { }
 
       bool is_composite()const { return true; }
 

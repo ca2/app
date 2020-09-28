@@ -8,7 +8,7 @@
 //
 //template <  typename PRED >
 //class trait_pred :
-//virtual public ::generic
+//virtual public ::elemental
 //{
 //public:
 //   

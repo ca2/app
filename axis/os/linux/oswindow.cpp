@@ -657,7 +657,7 @@ bool oswindow_data::set_icon(::image * pimage)
    if(status != 0)
    {
 
-      //file_put_contents_dup("/home/camilo/window.txt", __str((int)w->window()));
+      //file_put_contents("/home/camilo/window.txt", __str((int)w->window()));
       return false;
 
    }

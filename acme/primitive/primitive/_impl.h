@@ -51,16 +51,16 @@ inline string pointer < T >::type_str()
 }
 //
 //
-//inline bool generic::has_property(const id & id) const { return m_pset && m_pset->has_property(id); }
-//inline property * generic::lookup_property(const id& id) const { return m_pset ? m_pset->find(id) : nullptr; }
-//inline bool generic::remove_key(const id & id) { return m_pset && m_pset->remove_by_name(id); }
-//inline property_set & generic::get_property_set() { defer_propset(); return *m_pset; }
-//inline const property_set & generic::get_property_set() const { ((generic *)this)->defer_propset(); return *m_pset; }
+//inline bool elemental::has_property(const id & id) const { return m_pset && m_pset->has_property(id); }
+//inline property * elemental::lookup_property(const id& id) const { return m_pset ? m_pset->find(id) : nullptr; }
+//inline bool elemental::remove_key(const id & id) { return m_pset && m_pset->remove_by_name(id); }
+//inline property_set & elemental::get_property_set() { defer_propset(); return *m_pset; }
+//inline const property_set & elemental::get_property_set() const { ((elemental *)this)->defer_propset(); return *m_pset; }
 
 //
-//inline ::i64_array& generic::idarray() const { if (!m_pia) ((generic*)this)->m_pia.create_new(); return *m_pia; }
+//inline ::i64_array& elemental::idarray() const { if (!m_pia) ((elemental*)this)->m_pia.create_new(); return *m_pia; }
 //
-//inline bool generic::contains(const property_set & set) const
+//inline bool elemental::contains(const property_set & set) const
 //{
 //
 //   if (set.isEmpty())
@@ -81,7 +81,7 @@ inline string pointer < T >::type_str()
 //
 //}
 //
-//inline void generic::defer_propset() { if (!m_pset) ::__construct_new(m_pset); }
+//inline void elemental::defer_propset() { if (!m_pset) ::__construct_new(m_pset); }
 //
 //
 //inline var & var::operator = (::image * pimage)
@@ -106,10 +106,10 @@ inline string pointer < T >::type_str()
 //}
 //
 
-inline type::type(const ::generic * pobject)
+inline type::type(const ::elemental * pobject)
 {
 
-   m_strName = typeid(*(generic *)pobject).name();
+   m_strName = typeid(*(elemental *)pobject).name();
 
    demangle(m_strName);
 
@@ -180,7 +180,7 @@ inline bool get_memory::get_base64(const string & str)
 
 
 //template < typename PRED >
-//inline ::image_result generic::get_image(const var & varFile, ::u64 uTrait, PRED pred)
+//inline ::image_result elemental::get_image(const var & varFile, ::u64 uTrait, PRED pred)
 //{
 //
 //   return ::get_context_system()->get_image(this, varFile, uTrait, pred);
@@ -191,7 +191,7 @@ inline bool get_memory::get_base64(const string & str)
 #include "acme/primitive/primitive/trait_pred.h"
 
 
-//inline var generic::topic(const ::id & id)
+//inline var elemental::topic(const ::id & id)
 //{
 //
 //   auto pproperty = fetch_property(id);
@@ -784,7 +784,7 @@ inline pointer < T >  & pointer < T >::operator = (const var_type < VAR > & var)
             if(is_set() && m_p->type_name() == strText)
             {
 
-               ::output_debug_string("POINTER: loading into existing generic of same class type (1)");
+               ::output_debug_string("POINTER: loading into existing elemental of same class type (1)");
 
             }
             else
@@ -803,7 +803,7 @@ inline pointer < T >  & pointer < T >::operator = (const var_type < VAR > & var)
                else if(m_p->type_name() != strText)
                {
 
-                  ::output_debug_string("POINTER: allocated generic type is different from streamed generic type (1.2)");
+                  ::output_debug_string("POINTER: allocated elemental type is different from streamed elemental type (1.2)");
 
                   stream.set_fail_bit();
 
@@ -820,7 +820,7 @@ inline pointer < T >  & pointer < T >::operator = (const var_type < VAR > & var)
             if(is_set() && m_p->type_name() == id)
             {
 
-               ::output_debug_string("POINTER: loading into existing generic of same class type (2)");
+               ::output_debug_string("POINTER: loading into existing elemental of same class type (2)");
 
             }
             else
@@ -837,7 +837,7 @@ inline pointer < T >  & pointer < T >::operator = (const var_type < VAR > & var)
                else if(::str::demangle(p->type_name()) != id.to_string())
                {
 
-                  ::output_debug_string("POINTER: allocated generic type is different from streamed generic type (2.2)");
+                  ::output_debug_string("POINTER: allocated elemental type is different from streamed elemental type (2.2)");
 
                   stream.set_fail_bit();
 
@@ -912,7 +912,7 @@ inline bool succeeded(const ::property & property)
 
 //
 //template < typename BASE_TYPE >
-//inline __result(BASE_TYPE) generic::__create()
+//inline __result(BASE_TYPE) elemental::__create()
 //{
 //
 //   auto p = ::__create<BASE_TYPE>();
@@ -937,7 +937,7 @@ inline bool succeeded(const ::property & property)
 //
 //
 //template < typename BASE_TYPE >
-//inline __result(BASE_TYPE) generic::__id_create(const ::id & id)
+//inline __result(BASE_TYPE) elemental::__id_create(const ::id & id)
 //{
 //
 //   auto p = ::__id_create<BASE_TYPE>(id);
@@ -962,7 +962,7 @@ inline bool succeeded(const ::property & property)
 //
 //
 //template < typename TYPE >
-//inline __result(TYPE) generic::__create_new()
+//inline __result(TYPE) elemental::__create_new()
 //{
 //
 //   ASSERT(::is_set(this));
@@ -1036,7 +1036,7 @@ inline __pointer(T) & pointer < T >::create(OBJECT * pobjectContext, bool bCreat
 
 
 //template < typename BASE_TYPE >
-//inline ::estatus generic::__compose(__composite(BASE_TYPE) & pbase)
+//inline ::estatus elemental::__compose(__composite(BASE_TYPE) & pbase)
 //{
 //
 //   if (!pbase)
@@ -1095,7 +1095,7 @@ inline __pointer(T) & pointer < T >::create(OBJECT * pobjectContext, bool bCreat
 //
 //
 //template < typename BASE_TYPE >
-//inline ::estatus generic::__raw_compose(__composite(BASE_TYPE) & pbase)
+//inline ::estatus elemental::__raw_compose(__composite(BASE_TYPE) & pbase)
 //{
 //
 //   if (!pbase)
@@ -1145,7 +1145,7 @@ inline __pointer(T) & pointer < T >::create(OBJECT * pobjectContext, bool bCreat
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline ::estatus generic::__compose(__composite(BASE_TYPE) & pbase, const SOURCE * psource)
+//inline ::estatus elemental::__compose(__composite(BASE_TYPE) & pbase, const SOURCE * psource)
 //{
 //
 //   pbase = psource;
@@ -1173,7 +1173,7 @@ inline __pointer(T) & pointer < T >::create(OBJECT * pobjectContext, bool bCreat
 //}
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline ::estatus generic::__raw_compose(__composite(BASE_TYPE) & pbase, const SOURCE * psource)
+//inline ::estatus elemental::__raw_compose(__composite(BASE_TYPE) & pbase, const SOURCE * psource)
 //{
 //
 //   pbase = psource;
@@ -1192,7 +1192,7 @@ inline __pointer(T) & pointer < T >::create(OBJECT * pobjectContext, bool bCreat
 //}
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline ::estatus generic::__compose(__composite(BASE_TYPE) & pbase, const __pointer(SOURCE) & psource)
+//inline ::estatus elemental::__compose(__composite(BASE_TYPE) & pbase, const __pointer(SOURCE) & psource)
 //{
 //
 //   return __compose(pbase, psource.get());
@@ -1201,7 +1201,7 @@ inline __pointer(T) & pointer < T >::create(OBJECT * pobjectContext, bool bCreat
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline ::estatus generic::__raw_compose(__composite(BASE_TYPE) & pbase, const __pointer(SOURCE) & psource)
+//inline ::estatus elemental::__raw_compose(__composite(BASE_TYPE) & pbase, const __pointer(SOURCE) & psource)
 //{
 //
 //   return __raw_compose(pbase, psource.get());
@@ -1211,7 +1211,7 @@ inline __pointer(T) & pointer < T >::create(OBJECT * pobjectContext, bool bCreat
 //
 //
 //template < typename BASE_TYPE >
-//inline ::estatus generic::__id_compose(__composite(BASE_TYPE) & pbase, const ::id & id)
+//inline ::estatus elemental::__id_compose(__composite(BASE_TYPE) & pbase, const ::id & id)
 //{
 //
 //   auto & pfactory = ::factory::get_factory(id);
@@ -1265,7 +1265,7 @@ inline __pointer(T) & pointer < T >::create(OBJECT * pobjectContext, bool bCreat
 //
 //
 //template < typename TYPE >
-//inline ::estatus generic::__raw_compose_new(__composite(TYPE) & p)
+//inline ::estatus elemental::__raw_compose_new(__composite(TYPE) & p)
 //{
 //
 //   auto ptypeNew = __new(TYPE);
@@ -1296,7 +1296,7 @@ inline __pointer(T) & pointer < T >::create(OBJECT * pobjectContext, bool bCreat
 //
 //
 //template < typename TYPE >
-//inline ::estatus generic::__compose_new(__composite(TYPE) & p)
+//inline ::estatus elemental::__compose_new(__composite(TYPE) & p)
 //{
 //
 //   auto ptypeNew = __new(TYPE);
@@ -1336,7 +1336,7 @@ inline __pointer(T) & pointer < T >::create(OBJECT * pobjectContext, bool bCreat
 //
 //
 //template < typename TYPE >
-//inline ::estatus generic::__construct(__pointer(TYPE) & p)
+//inline ::estatus elemental::__construct(__pointer(TYPE) & p)
 //{
 //
 //   auto estatus = ::__construct(p);
@@ -1354,7 +1354,7 @@ inline __pointer(T) & pointer < T >::create(OBJECT * pobjectContext, bool bCreat
 //
 //
 //template < typename TYPE >
-//inline ::estatus generic::__id_construct(__pointer(TYPE) & p, const ::id & id)
+//inline ::estatus elemental::__id_construct(__pointer(TYPE) & p, const ::id & id)
 //{
 //
 //   auto estatus = ::__id_construct(p, id);
@@ -1372,7 +1372,7 @@ inline __pointer(T) & pointer < T >::create(OBJECT * pobjectContext, bool bCreat
 //
 //
 //template < typename TYPE >
-//inline ::estatus generic::__construct_new(__pointer(TYPE) & p)
+//inline ::estatus elemental::__construct_new(__pointer(TYPE) & p)
 //{
 //
 //   auto estatus = ::__construct_new(p);
@@ -1390,7 +1390,7 @@ inline __pointer(T) & pointer < T >::create(OBJECT * pobjectContext, bool bCreat
 //
 //
 //template < typename BASE_TYPE >
-//inline ::estatus generic::__release(__composite(BASE_TYPE) & pcomposite)
+//inline ::estatus elemental::__release(__composite(BASE_TYPE) & pcomposite)
 //{
 //
 //   if (pcomposite)
@@ -1420,7 +1420,7 @@ inline __pointer(T) & pointer < T >::create(OBJECT * pobjectContext, bool bCreat
 //
 //
 //template < typename BASE_TYPE >
-//inline ::estatus generic::__release(__reference(BASE_TYPE) & preference)
+//inline ::estatus elemental::__release(__reference(BASE_TYPE) & preference)
 //{
 //
 //   if (preference)
@@ -1456,7 +1456,7 @@ inline __pointer(T) & pointer < T >::create(OBJECT * pobjectContext, bool bCreat
 //
 //
 //template < typename SOURCE >
-//inline ::estatus generic::release_reference(__pointer(SOURCE) & psource)
+//inline ::estatus elemental::release_reference(__pointer(SOURCE) & psource)
 //{
 //
 //   return release_reference(psource.m_p);
@@ -1464,11 +1464,11 @@ inline __pointer(T) & pointer < T >::create(OBJECT * pobjectContext, bool bCreat
 //}
 //
 //
-//CLASS_DECL_ACME void object_on_add_composite(const generic * pbase);
+//CLASS_DECL_ACME void object_on_add_composite(const elemental * pbase);
 //
 //
 //template < typename BASE_TYPE >
-//inline ::estatus generic::add_composite(__composite(BASE_TYPE) & pcomposite)
+//inline ::estatus elemental::add_composite(__composite(BASE_TYPE) & pcomposite)
 //{
 //
 //   return add_composite(pcomposite.get());
@@ -1477,7 +1477,7 @@ inline __pointer(T) & pointer < T >::create(OBJECT * pobjectContext, bool bCreat
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline ::estatus generic::__refer(__reference(BASE_TYPE) & preference, const __pointer(SOURCE) & psource, const char* pszObjRefDbg)
+//inline ::estatus elemental::__refer(__reference(BASE_TYPE) & preference, const __pointer(SOURCE) & psource, const char* pszObjRefDbg)
 //{
 //
 //   return __refer(preference, psource.get(), pszObjRefDbg);
@@ -1486,7 +1486,7 @@ inline __pointer(T) & pointer < T >::create(OBJECT * pobjectContext, bool bCreat
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline ::estatus generic::__refer(__reference(BASE_TYPE) & preference, const ::primitive::member < SOURCE > & pmember, const char* pszObjRefDbg)
+//inline ::estatus elemental::__refer(__reference(BASE_TYPE) & preference, const ::primitive::member < SOURCE > & pmember, const char* pszObjRefDbg)
 //{
 //
 //   return __refer(preference, pmember.get(), pszObjRefDbg);
@@ -1495,7 +1495,7 @@ inline __pointer(T) & pointer < T >::create(OBJECT * pobjectContext, bool bCreat
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline ::estatus generic::__refer(__reference(BASE_TYPE) & preference, const SOURCE * psource, const char* pszObjRefDbg)
+//inline ::estatus elemental::__refer(__reference(BASE_TYPE) & preference, const SOURCE * psource, const char* pszObjRefDbg)
 //{
 //
 //   preference = psource;
@@ -1513,7 +1513,7 @@ inline __pointer(T) & pointer < T >::create(OBJECT * pobjectContext, bool bCreat
 //
 //
 //template < typename SOURCE >
-//inline ::estatus generic::add_reference(__pointer(SOURCE) & psource)
+//inline ::estatus elemental::add_reference(__pointer(SOURCE) & psource)
 //{
 //
 //   return add_reference(psource.get());
@@ -1522,7 +1522,7 @@ inline __pointer(T) & pointer < T >::create(OBJECT * pobjectContext, bool bCreat
 //
 //
 //template < typename SOURCE >
-//inline ::estatus generic::add_reference(__reference(SOURCE) & preference)
+//inline ::estatus elemental::add_reference(__reference(SOURCE) & preference)
 //{
 //
 //   return add_reference(preference.get());
@@ -1531,10 +1531,10 @@ inline __pointer(T) & pointer < T >::create(OBJECT * pobjectContext, bool bCreat
 //
 //
 //template < typename SOURCE >
-//inline ::estatus generic::add_reference(SOURCE * psource)
+//inline ::estatus elemental::add_reference(SOURCE * psource)
 //{
 //
-//   __pointer(::generic) pobject;
+//   __pointer(::elemental) pobject;
 //
 //   pobject = (SOURCE *) psource;
 //
@@ -1545,7 +1545,7 @@ inline __pointer(T) & pointer < T >::create(OBJECT * pobjectContext, bool bCreat
 //
 //   }
 //
-//   return add_reference((::generic *) pobject.m_p);
+//   return add_reference((::elemental *) pobject.m_p);
 //
 //}
 //
@@ -1554,10 +1554,10 @@ template < typename T >
 inline __pointer(T) move_transfer(T * p) { return ::pointer < T >(e_move_transfer, p); }
 //
 //
-//inline const char * generic::topic_text() { return ::is_null(m_pmeta) ? nullptr : m_pmeta->m_strTopicText; }
+//inline const char * elemental::topic_text() { return ::is_null(m_pmeta) ? nullptr : m_pmeta->m_strTopicText; }
 //
 //
-//inline var generic::context_value(const var& var)
+//inline var elemental::context_value(const var& var)
 //{
 //
 //   ::var varContextValue;
@@ -1571,7 +1571,7 @@ inline __pointer(T) move_transfer(T * p) { return ::pointer < T >(e_move_transfe
 //}
 //
 //
-//inline void generic::defer_set_context_object(::generic * pobjectContext)
+//inline void elemental::defer_set_context_object(::elemental * pobjectContext)
 //{
 //
 //   if (::is_null(get_context_object()) && ::is_set(pobjectContext))
@@ -1676,7 +1676,7 @@ inline stream & operator >> (stream & is, pointer < T > & sp)
 }
 
 
-//inline ::estatus context::load_from_file(::generic* pobject, const ::var& varFile, const var* pvarOptions)
+//inline ::estatus context::load_from_file(::elemental* pobject, const ::var& varFile, const var* pvarOptions)
 //{
 //
 //   if (pvarOptions)
@@ -1695,7 +1695,7 @@ inline stream & operator >> (stream & is, pointer < T > & sp)
 //}
 //
 //
-//inline ::estatus context::load_from_file(::generic* pobject, const ::var& varFile)
+//inline ::estatus context::load_from_file(::elemental* pobject, const ::var& varFile)
 //{
 //
 //   return _load_from_file(pobject, varFile, type_empty_argument);
@@ -1703,7 +1703,7 @@ inline stream & operator >> (stream & is, pointer < T > & sp)
 //}
 //
 //
-//inline ::estatus context::save_to_file(const ::var& varFile, const var* pvarOptions, const ::generic * pobject)
+//inline ::estatus context::save_to_file(const ::var& varFile, const var* pvarOptions, const ::elemental * pobject)
 //{
 //
 //   if (pvarOptions)
@@ -1722,7 +1722,7 @@ inline stream & operator >> (stream & is, pointer < T > & sp)
 //}
 //
 //
-//inline ::estatus context::save_to_file(const ::var& varFile, const ::generic* pobject)
+//inline ::estatus context::save_to_file(const ::var& varFile, const ::elemental* pobject)
 //{
 //
 //   return _save_to_file(varFile, type_empty_argument, pobject);
@@ -1732,7 +1732,7 @@ inline stream & operator >> (stream & is, pointer < T > & sp)
 //
 
 //
-//inline ::file_result generic::get_reader(const var & varFile, efileopen eopen)
+//inline ::file_result elemental::get_reader(const var & varFile, efileopen eopen)
 //{
 //
 //   return get_file(varFile, eopen | ::file::mode_read) ;
@@ -1740,7 +1740,7 @@ inline stream & operator >> (stream & is, pointer < T > & sp)
 //}
 //
 //
-//inline ::file_result generic::get_writer(const var & varFile, efileopen eopen)
+//inline ::file_result elemental::get_writer(const var & varFile, efileopen eopen)
 //{
 //
 //   return get_file(varFile, eopen | ::file::mode_write);
@@ -1751,7 +1751,7 @@ inline stream & operator >> (stream & is, pointer < T > & sp)
 #ifndef DEBUG
 
 
-inline i64 generic::add_ref(OBJ_REF_DBG_PARAMS_DEF)
+inline i64 elemental::add_ref(OBJ_REF_DBG_PARAMS_DEF)
 {
 
    return atomic_increment(&m_countReference);
@@ -1759,7 +1759,7 @@ inline i64 generic::add_ref(OBJ_REF_DBG_PARAMS_DEF)
 }
 
 
-inline i64 generic::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
+inline i64 elemental::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
 {
 
    return atomic_decrement(&m_countReference);
@@ -1767,7 +1767,7 @@ inline i64 generic::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
 }
 
 
-inline i64 generic::release(OBJ_REF_DBG_PARAMS_DEF)
+inline i64 elemental::release(OBJ_REF_DBG_PARAMS_DEF)
 {
 
    i64 i = dec_ref(OBJ_REF_DBG_ARGS);
@@ -1790,7 +1790,7 @@ inline i64 generic::release(OBJ_REF_DBG_PARAMS_DEF)
 
 //
 //template < typename TYPE >
-//inline void generic::set(const ::id & id, const TYPE & t)
+//inline void elemental::set(const ::id & id, const TYPE & t)
 //{
 //
 //   ::assign(value(id), t);
@@ -1801,7 +1801,7 @@ inline i64 generic::release(OBJ_REF_DBG_PARAMS_DEF)
 //
 //
 //template < typename TYPE >
-//inline void generic::get(const ::id & id, TYPE & t)
+//inline void elemental::get(const ::id & id, TYPE & t)
 //{
 //
 //   ::assign(t, value(id));
@@ -1918,7 +1918,7 @@ IMPL_VAR_REF3(double, d);
 
 //
 //template < typename TYPE >
-//inline ::estatus generic::__construct(::thread_pointer & p, void (TYPE:: * pfn)(), e_priority epriority)
+//inline ::estatus elemental::__construct(::thread_pointer & p, void (TYPE:: * pfn)(), e_priority epriority)
 //{
 //
 //   p = fork(pfn, epriority);
@@ -1936,7 +1936,7 @@ IMPL_VAR_REF3(double, d);
 //
 //
 //template < typename TYPE >
-//inline ::estatus generic::__construct_below_normal(::thread_pointer & p, void (TYPE:: * pfn)())
+//inline ::estatus elemental::__construct_below_normal(::thread_pointer & p, void (TYPE:: * pfn)())
 //{
 //
 //   return __construct(p, pfn, priority_below_normal);
@@ -1945,7 +1945,7 @@ IMPL_VAR_REF3(double, d);
 //
 //
 //template < typename TYPE >
-//inline ::thread_pointer generic::__start_thread(const ::id & id, void(TYPE:: * pfn)(), e_priority epriority)
+//inline ::thread_pointer elemental::__start_thread(const ::id & id, void(TYPE:: * pfn)(), e_priority epriority)
 //{
 //
 //   auto pfork = fork(pfn, epriority);
@@ -1970,7 +1970,7 @@ IMPL_VAR_REF3(double, d);
 
 
 //template < typename HANDLER, typename TYPE >
-//void generic::start_traits(__pointer(HANDLER) phandler, __pointer(TYPE) ptype)
+//void elemental::start_traits(__pointer(HANDLER) phandler, __pointer(TYPE) ptype)
 //{
 //
 //   fork([phandler, ptype]()
@@ -2003,7 +2003,7 @@ IMPL_VAR_REF3(double, d);
 
 
 //template < typename PRED >
-//inline void generic::add_pred(runnable_array & array, PRED pred)
+//inline void elemental::add_pred(runnable_array & array, PRED pred)
 //{
 //   array.add(__new(pred_holder<PRED>(pred)));
 //}
@@ -2226,7 +2226,7 @@ inline void future::pred(PRED pred)
 
 
 //template < typename TYPE >
-//inline __pointer(TYPE) generic::cast(const ::id & id)
+//inline __pointer(TYPE) elemental::cast(const ::id & id)
 //{
 //
 //   return value(id).cast < TYPE>();
@@ -2270,7 +2270,7 @@ inline var __visible(var varOptions, bool bVisible)
 
 //
 //template < typename PRED >
-//inline ::count fork_count_end(::generic* pobject, ::count iCount, PRED pred, index iStart, ::e_priority epriority)
+//inline ::count fork_count_end(::elemental* pobject, ::count iCount, PRED pred, index iStart, ::e_priority epriority)
 //{
 //
 //   if (iCount <= 0)
@@ -2337,7 +2337,7 @@ inline var __visible(var varOptions, bool bVisible)
 //}
 //
 
-inline void future::receive_response(const var & var) const
+inline void future::send(const var & var) const
 {
 
    if (!m_pobjectTask)
@@ -2353,7 +2353,7 @@ inline void future::receive_response(const var & var) const
 
 
 //template < typename TYPE >
-//inline ::estatus generic::__construct_new(__pointer(TYPE)& pbase)
+//inline ::estatus elemental::__construct_new(__pointer(TYPE)& pbase)
 //{
 //
 //   ::estatus estatus = ::__construct_new(pbase);

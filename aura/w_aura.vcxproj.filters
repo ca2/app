@@ -37,18 +37,6 @@
     <Filter Include="Source Files\graphics\draw3d">
       <UniqueIdentifier>{8bce8610-67a0-4abf-9dfb-6ab7a3bc61e6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\multimedia">
-      <UniqueIdentifier>{05052950-a107-4896-8e74-4184d2b9ed6f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\multimedia\audio">
-      <UniqueIdentifier>{86a90574-4d5b-484f-9944-67dd439add50}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\multimedia">
-      <UniqueIdentifier>{6dced9a8-ec8e-40b5-a3a7-4b61bb8aa785}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\multimedia\audio">
-      <UniqueIdentifier>{b573c5cb-1e2b-4cf2-be46-2c9e20c90323}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\net\sockets">
       <UniqueIdentifier>{5c7e7ea5-a067-4eb9-abb3-7cd453930c34}</UniqueIdentifier>
     </Filter>
@@ -117,12 +105,6 @@
     </Filter>
     <Filter Include="Header Files\message">
       <UniqueIdentifier>{76a54bda-71f0-439f-aef3-3587972519c2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\xml">
-      <UniqueIdentifier>{a3374f61-1b9b-4ff7-b75e-06191e84555c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\xml">
-      <UniqueIdentifier>{07fcc160-5796-4843-8cc8-2dc1abda943c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\filesystem\filemanager">
       <UniqueIdentifier>{96eb97df-2894-4831-be2b-3c3665999643}</UniqueIdentifier>
@@ -215,12 +197,6 @@
     </ClInclude>
     <ClInclude Include="framework_c.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="multimedia\audio\audio.h">
-      <Filter>Header Files\multimedia</Filter>
-    </ClInclude>
-    <ClInclude Include="multimedia\audio\audio_c.h">
-      <Filter>Header Files\multimedia\audio</Filter>
     </ClInclude>
     <ClInclude Include="net\sockets\bsd\basic\sockets_listen_socket.h">
       <Filter>Header Files\net\sockets\bsd\basic</Filter>
@@ -338,9 +314,6 @@
     </ClInclude>
     <ClInclude Include="const\timer.h">
       <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\sync.h">
-      <Filter>Header Files\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="policy\_.h">
       <Filter>Header Files\policy</Filter>
@@ -942,81 +915,6 @@
     <ClInclude Include="message\user.h">
       <Filter>Header Files\message</Filter>
     </ClInclude>
-    <ClInclude Include="xml\_.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\_impl.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\attr.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\base_array.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\data.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\department.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\disp_option.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\document.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\edit.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\entity.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\enum.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\exportable.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\glue.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\importable.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\input_tree.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\node.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\output_tree.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\parse_info.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\property_exchange.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\smart_pointer_array.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\stream.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\tree_base.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\tree_schema.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\var_exchange.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\xmlite.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\filemanager\_.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
@@ -1205,12 +1103,6 @@
     </ClInclude>
     <ClInclude Include="programming\introjection\compiler.h">
       <Filter>Header Files\programming\introjection</Filter>
-    </ClInclude>
-    <ClInclude Include="multimedia\audio\out.h">
-      <Filter>Header Files\multimedia\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="multimedia\audio\speaker.h">
-      <Filter>Header Files\multimedia\audio</Filter>
     </ClInclude>
     <ClInclude Include="scripting\javascript\javascript.h">
       <Filter>Header Files\scripting\javascript</Filter>
@@ -1575,30 +1467,6 @@
     <ClInclude Include="platform\mq.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="multimedia\multimedia.h">
-      <Filter>Header Files\multimedia</Filter>
-    </ClInclude>
-    <ClInclude Include="multimedia\_.h">
-      <Filter>Header Files\multimedia</Filter>
-    </ClInclude>
-    <ClInclude Include="multimedia\_c.h">
-      <Filter>Header Files\multimedia</Filter>
-    </ClInclude>
-    <ClInclude Include="multimedia\audio.h">
-      <Filter>Header Files\multimedia</Filter>
-    </ClInclude>
-    <ClInclude Include="multimedia\decoder.h">
-      <Filter>Header Files\multimedia</Filter>
-    </ClInclude>
-    <ClInclude Include="multimedia\decoder_plugin.h">
-      <Filter>Header Files\multimedia</Filter>
-    </ClInclude>
-    <ClInclude Include="multimedia\exception.h">
-      <Filter>Header Files\multimedia</Filter>
-    </ClInclude>
-    <ClInclude Include="multimedia\file_application.h">
-      <Filter>Header Files\multimedia</Filter>
-    </ClInclude>
     <ClInclude Include="os\uwp\host_interaction.h">
       <Filter>Header Files\os\uwp</Filter>
     </ClInclude>
@@ -1741,9 +1609,6 @@
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\control_event.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\controller.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\copydesk.h">
@@ -2050,30 +1915,6 @@
     <ClCompile Include="graphics\draw3d\ortho.cpp">
       <Filter>Source Files\graphics\draw3d</Filter>
     </ClCompile>
-    <ClCompile Include="multimedia\audio.cpp">
-      <Filter>Source Files\multimedia</Filter>
-    </ClCompile>
-    <ClCompile Include="multimedia\decoder.cpp">
-      <Filter>Source Files\multimedia</Filter>
-    </ClCompile>
-    <ClCompile Include="multimedia\decoder_plugin.cpp">
-      <Filter>Source Files\multimedia</Filter>
-    </ClCompile>
-    <ClCompile Include="multimedia\exception.cpp">
-      <Filter>Source Files\multimedia</Filter>
-    </ClCompile>
-    <ClCompile Include="multimedia\file_application.cpp">
-      <Filter>Source Files\multimedia</Filter>
-    </ClCompile>
-    <ClCompile Include="multimedia\multimedia.cpp">
-      <Filter>Source Files\multimedia</Filter>
-    </ClCompile>
-    <ClCompile Include="multimedia\audio\audio_wave_out.cpp">
-      <Filter>Source Files\multimedia\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\sync.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\draw2d\nanosvg.cpp">
       <Filter>Source Files\graphics\draw2d\nopch</Filter>
     </ClCompile>
@@ -2197,80 +2038,17 @@
     <ClCompile Include="message\user.cpp">
       <Filter>Source Files\message</Filter>
     </ClCompile>
-    <ClCompile Include="xml\attr.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\base_array.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\data.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\disp_option.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\document.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\edit.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\entity.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\exportable.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\importable.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\input_tree.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\node.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\output_tree.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\parse_info.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\property_exchange.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\tree_base.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\tree_schema.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\var_exchange.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xml.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xmlite.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\filemanager\callback.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\item_action.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="multimedia\audio\speaker.cpp">
-      <Filter>Source Files\multimedia\audio</Filter>
-    </ClCompile>
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="node\windows_common\application.cpp">
       <Filter>Source Files\node\uwp</Filter>
-    </ClCompile>
-    <ClCompile Include="multimedia\audio\sound_track_player.cpp">
-      <Filter>Source Files\multimedia\audio</Filter>
     </ClCompile>
     <ClCompile Include="game\estamira.cpp">
       <Filter>Source Files\graphics\game</Filter>
@@ -2300,9 +2078,6 @@
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\control_event.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\controller.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\copydesk.cpp">
@@ -2436,9 +2211,6 @@
     </ClCompile>
     <ClCompile Include="platform\aura_mq.cpp">
       <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\_from.cpp">
-      <Filter>Source Files\xml</Filter>
     </ClCompile>
     <ClCompile Include="os\uwp\application_system_run.cpp">
       <Filter>Source Files\os\uwp</Filter>

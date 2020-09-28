@@ -199,18 +199,6 @@
     <ClInclude Include="message\_.h" />
     <ClInclude Include="message\_impl.h" />
     <ClInclude Include="message\_message.h" />
-    <ClInclude Include="multimedia\audio.h" />
-    <ClInclude Include="multimedia\audio\audio.h" />
-    <ClInclude Include="multimedia\audio\audio_c.h" />
-    <ClInclude Include="multimedia\audio\out.h" />
-    <ClInclude Include="multimedia\audio\speaker.h" />
-    <ClInclude Include="multimedia\decoder.h" />
-    <ClInclude Include="multimedia\decoder_plugin.h" />
-    <ClInclude Include="multimedia\exception.h" />
-    <ClInclude Include="multimedia\file_application.h" />
-    <ClInclude Include="multimedia\multimedia.h" />
-    <ClInclude Include="multimedia\_.h" />
-    <ClInclude Include="multimedia\_c.h" />
     <ClInclude Include="net\net.h" />
     <ClInclude Include="net\net_url.h" />
     <ClInclude Include="net\sockets\base\sockets_base_socket.h" />
@@ -506,7 +494,6 @@
     <ClInclude Include="user\box.h" />
     <ClInclude Include="user\callback.h" />
     <ClInclude Include="user\composition_imm_client.h" />
-    <ClInclude Include="user\controller.h" />
     <ClInclude Include="user\control_descriptor.h" />
     <ClInclude Include="user\control_event.h" />
     <ClInclude Include="user\copydesk.h" />
@@ -557,31 +544,6 @@
     <ClInclude Include="user\_interaction_impl.h" />
     <ClInclude Include="user\_prelude.h" />
     <ClInclude Include="user\_user.h" />
-    <ClInclude Include="xml\attr.h" />
-    <ClInclude Include="xml\base_array.h" />
-    <ClInclude Include="xml\data.h" />
-    <ClInclude Include="xml\department.h" />
-    <ClInclude Include="xml\disp_option.h" />
-    <ClInclude Include="xml\document.h" />
-    <ClInclude Include="xml\edit.h" />
-    <ClInclude Include="xml\entity.h" />
-    <ClInclude Include="xml\enum.h" />
-    <ClInclude Include="xml\exportable.h" />
-    <ClInclude Include="xml\glue.h" />
-    <ClInclude Include="xml\importable.h" />
-    <ClInclude Include="xml\input_tree.h" />
-    <ClInclude Include="xml\node.h" />
-    <ClInclude Include="xml\output_tree.h" />
-    <ClInclude Include="xml\parse_info.h" />
-    <ClInclude Include="xml\property_exchange.h" />
-    <ClInclude Include="xml\smart_pointer_array.h" />
-    <ClInclude Include="xml\stream.h" />
-    <ClInclude Include="xml\tree_base.h" />
-    <ClInclude Include="xml\tree_schema.h" />
-    <ClInclude Include="xml\var_exchange.h" />
-    <ClInclude Include="xml\xmlite.h" />
-    <ClInclude Include="xml\_.h" />
-    <ClInclude Include="xml\_impl.h" />
     <ClInclude Include="_.h" />
   </ItemGroup>
   <ItemGroup>
@@ -681,15 +643,6 @@
     <ClCompile Include="graphics\graphics\multiple_buffer.cpp" />
     <ClCompile Include="message\timer.cpp" />
     <ClCompile Include="message\user.cpp" />
-    <ClCompile Include="multimedia\audio.cpp" />
-    <ClCompile Include="multimedia\audio\audio_wave_out.cpp" />
-    <ClCompile Include="multimedia\audio\sound_track_player.cpp" />
-    <ClCompile Include="multimedia\audio\speaker.cpp" />
-    <ClCompile Include="multimedia\decoder.cpp" />
-    <ClCompile Include="multimedia\decoder_plugin.cpp" />
-    <ClCompile Include="multimedia\exception.cpp" />
-    <ClCompile Include="multimedia\file_application.cpp" />
-    <ClCompile Include="multimedia\multimedia.cpp" />
     <ClCompile Include="node\uwp\application.cpp" />
     <ClCompile Include="node\uwp\directx.cpp" />
     <ClCompile Include="node\uwp\directx_application.cpp" />
@@ -736,7 +689,6 @@
     <ClCompile Include="user\box.cpp" />
     <ClCompile Include="user\callback.cpp" />
     <ClCompile Include="user\composition_imm_client.cpp" />
-    <ClCompile Include="user\controller.cpp" />
     <ClCompile Include="user\control_descriptor.cpp" />
     <ClCompile Include="user\control_event.cpp" />
     <ClCompile Include="user\copydesk.cpp" />
@@ -775,26 +727,6 @@
     <ClCompile Include="user\window_map.cpp" />
     <ClCompile Include="user\window_state.cpp" />
     <ClCompile Include="user\window_util.cpp" />
-    <ClCompile Include="xml\attr.cpp" />
-    <ClCompile Include="xml\base_array.cpp" />
-    <ClCompile Include="xml\data.cpp" />
-    <ClCompile Include="xml\disp_option.cpp" />
-    <ClCompile Include="xml\document.cpp" />
-    <ClCompile Include="xml\edit.cpp" />
-    <ClCompile Include="xml\entity.cpp" />
-    <ClCompile Include="xml\exportable.cpp" />
-    <ClCompile Include="xml\importable.cpp" />
-    <ClCompile Include="xml\input_tree.cpp" />
-    <ClCompile Include="xml\node.cpp" />
-    <ClCompile Include="xml\output_tree.cpp" />
-    <ClCompile Include="xml\parse_info.cpp" />
-    <ClCompile Include="xml\property_exchange.cpp" />
-    <ClCompile Include="xml\tree_base.cpp" />
-    <ClCompile Include="xml\tree_schema.cpp" />
-    <ClCompile Include="xml\var_exchange.cpp" />
-    <ClCompile Include="xml\xml.cpp" />
-    <ClCompile Include="xml\xmlite.cpp" />
-    <ClCompile Include="xml\_from.cpp" />
     <ClCompile Include="_.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -806,6 +738,9 @@
     </ProjectReference>
     <ProjectReference Include="..\apex\w_apex.vcxproj">
       <Project>{612940fe-3d31-4ed0-8355-65896c1d102f}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\aqua\aqua.vcxproj">
+      <Project>{d6fc3dc0-a19a-4f63-a3f1-3426fe53920b}</Project>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -888,37 +823,43 @@
   <PropertyGroup />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</IgnoreImportLibrary>
+    <IgnoreImportLibrary>
+    </IgnoreImportLibrary>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</IgnoreImportLibrary>
+    <IgnoreImportLibrary>
+    </IgnoreImportLibrary>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</IgnoreImportLibrary>
+    <IgnoreImportLibrary>
+    </IgnoreImportLibrary>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</IgnoreImportLibrary>
+    <IgnoreImportLibrary>
+    </IgnoreImportLibrary>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</IgnoreImportLibrary>
+    <IgnoreImportLibrary>
+    </IgnoreImportLibrary>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</IgnoreImportLibrary>
+    <IgnoreImportLibrary>
+    </IgnoreImportLibrary>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>

@@ -264,4 +264,9 @@
       <Filter>Header Files\const</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="w_aqua.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>

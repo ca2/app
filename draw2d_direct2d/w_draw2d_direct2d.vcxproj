@@ -128,15 +128,21 @@
     <None Include="w_draw2d_direct2d.def" />
   </ItemGroup>
   <ItemGroup>
+    <SDKReference Include="Microsoft.Midi.GmDls, Version=10.0.18362.0" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\acme\w_acme.vcxproj">
       <Project>{3cb6829d-4866-4683-8b74-483b80bd5443}</Project>
     </ProjectReference>
     <ProjectReference Include="..\apex\w_apex.vcxproj">
       <Project>{612940fe-3d31-4ed0-8355-65896c1d102f}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <SDKReference Include="Microsoft.Midi.GmDls, Version=10.0.18362.0" />
+    <ProjectReference Include="..\aqua\w_aqua.vcxproj">
+      <Project>{d6fc3dc0-a19a-4f63-a3f1-3426fe53920b}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\aura\w_aura.vcxproj">
+      <Project>{b3e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{BA9BFF50-1888-4722-8DEE-73A3B5B32BCB}</ProjectGuid>

@@ -1,0 +1,9 @@
+﻿LIBRARY  "aqua"
+
+
+EXPORTS
+waveout_open
+waveout_start
+waveout_write
+waveout_stop
+waveout_close

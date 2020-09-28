@@ -1754,6 +1754,9 @@
     <None Include="inline\aaa_want_to_remove_app_prelude.inl">
       <Filter>Header Files\inline</Filter>
     </None>
+    <None Include="w_aura.def">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">

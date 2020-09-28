@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project>
-  <ProjectOutputs>C:\time-uwp\Win32\basis\aura.dll;C:\time-uwp\Win32\basis\draw2d_direct2d.dll;C:\time-uwp\Win32\basis\app_app\app_app.dll;C:\basis\platform-uwp\_seed\basis\winmetro_app_app\winmetro_app_app.exe</ProjectOutputs>
-  <ContentFiles>C:\basis\app\app\assets\BadgeLogo.scale-100.png;C:\basis\app\app\assets\SplashScreen.scale-100.png;C:\basis\app\app\Assets\Square150.scale-100.png;C:\basis\app\app\assets\Square150x150Logo.scale-100.png;C:\basis\app\app\assets\Square24.scale-100.png;C:\basis\app\app\assets\Square310.scale-100.png;C:\basis\app\app\assets\Square310x310Logo.scale-100.png;C:\basis\app\app\Assets\Square44.scale-100.png;C:\basis\app\app\assets\Square44x44Logo.scale-100.png;C:\basis\app\app\assets\Square50.scale-100.png;C:\basis\app\app\Assets\Square71.scale-100.png;C:\basis\app\app\assets\Square71x71Logo.scale-100.png;C:\basis\app\app\assets\StoreLogo.scale-100.png;C:\basis\app\app\Assets\Wide310x150.scale-100.png;C:\basis\app\app\assets\Wide310x150Logo.scale-100.png;C:\basis\app\app\Assets\Wide620x300.scale-100.png;C:\__archive\storage-uwp\binary\Win32\basis\libeay32.dll;C:\__archive\storage-uwp\binary\Win32\basis\ssleay32.dll;C:\__archive\storage-uwp\third\binary\Win32\basis\pcre.dll;C:\__archive\storage-uwp\third\binary\Win32\basis\zlib.dll</ContentFiles>
-  <SatelliteDlls></SatelliteDlls>
-  <NonRecipeFileRefs></NonRecipeFileRefs>
-</Project>

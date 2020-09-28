@@ -3215,7 +3215,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
    }
 
-   ::user::interaction_pointer_array uia;
+   ::user::interaction_array uia;
 
    {
 
@@ -3235,7 +3235,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
          try
          {
 
-            for (auto & pinteraction : uia.ptra())
+            for (auto & pinteraction : uia.interactiona())
             {
 
                auto pcontrolbox = pinteraction->cast < ::experience::control_box >();
@@ -3329,7 +3329,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
       try
       {
 
-         for (auto & pinteraction : uia.ptra())
+         for (auto & pinteraction : uia.interactiona())
          {
 
             if (base_class < ::experience::control_box > ::bases(pinteraction))

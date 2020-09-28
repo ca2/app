@@ -1,0 +1,836 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{185ed313-a8e3-4754-ba9c-daae9d8d4726}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\platform">
+      <UniqueIdentifier>{a439290d-6241-49e9-b80c-59e93e281276}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\account">
+      <UniqueIdentifier>{dc3045c6-b3b9-4a6d-89b3-8dc1719fc41a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\geoip">
+      <UniqueIdentifier>{6eb2872f-7165-4331-8b7d-5221e0df88a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\math">
+      <UniqueIdentifier>{6909a3d2-2a35-450a-8547-28af6a2e7c18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\math\kissfft">
+      <UniqueIdentifier>{aa91a513-119d-432a-8e2e-a1ce450f93b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\math\calculator">
+      <UniqueIdentifier>{c147d450-64fe-4c3c-b3dc-1d88b76350ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\database">
+      <UniqueIdentifier>{655b2c23-d0c7-4702-b991-f21f85554c7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\database\database">
+      <UniqueIdentifier>{4e870352-5299-4594-a52b-7ded044eca3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\database\simpledb">
+      <UniqueIdentifier>{f998264e-1769-4e25-b338-2cdcfacfa206}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\database\sqlite">
+      <UniqueIdentifier>{724d5dab-0fc6-4a9f-8983-25add0597ad2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\html">
+      <UniqueIdentifier>{043e1168-7e36-4a5a-a833-a0219acbf430}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\html\html">
+      <UniqueIdentifier>{cb8a94c2-6c3a-4418-a922-550b0456f6fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\html\html_lite">
+      <UniqueIdentifier>{8fe208f2-4a46-4c8b-b955-1b234df8c8cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\compress">
+      <UniqueIdentifier>{2a068ab5-58df-4bc6-9a32-0b920fd4805d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net">
+      <UniqueIdentifier>{d0661fd2-af6f-47d1-a3e2-e708bc6fce09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\netserver">
+      <UniqueIdentifier>{5960a1d1-56af-4f82-8ad4-26f1c492ca42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets">
+      <UniqueIdentifier>{0b2d355f-9834-4a20-9731-aa3905072f16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\bsd">
+      <UniqueIdentifier>{3cd3142b-7235-4791-a6a0-abdbee5b2246}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\bsd\smtp">
+      <UniqueIdentifier>{fc67d642-24e5-4382-b8b1-1293f3e1e3b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user">
+      <UniqueIdentifier>{8a85cb6e-6bd9-4a3e-ae49-ad515cfd70a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\include">
+      <UniqueIdentifier>{64e2d807-3f4a-4236-9439-e2e8f8c8df40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\inline">
+      <UniqueIdentifier>{0e962952-2552-417c-8269-c0382c4e1202}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics">
+      <UniqueIdentifier>{e447b2a9-3e85-4110-8092-92cd2177def2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\render">
+      <UniqueIdentifier>{bafb5f0a-de85-4493-8067-dd55e6c206eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\pcre">
+      <UniqueIdentifier>{94311143-395a-4b8d-ae8a-3da8f8a8d40a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\const">
+      <UniqueIdentifier>{cb225371-13f1-4b27-a1b8-ce1a8b921969}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{8f84c35b-c0cb-4a51-bd10-7c2ad709866d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\platform">
+      <UniqueIdentifier>{4d223404-15cd-468d-8050-091b9fb499e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\account">
+      <UniqueIdentifier>{e1cdac82-2c1a-48f1-8f2f-ca5cd3c376e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\geoip">
+      <UniqueIdentifier>{f183a8fd-f2c1-4bda-bf9e-1c261f3a5fe1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\database">
+      <UniqueIdentifier>{e8fb5788-0ff0-4c1d-b7a5-3fae4eab374e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\database\database">
+      <UniqueIdentifier>{f3b0fd3a-1a11-4933-9b8b-42bb46b46c7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\database\simpledb">
+      <UniqueIdentifier>{f646cc7f-ba80-49e4-af8c-ec6ea8d0d0c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\database\sqlite">
+      <UniqueIdentifier>{d3d9c610-c5c1-491a-be8e-134db7221b74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\math">
+      <UniqueIdentifier>{eaadd83b-565f-4dc4-b166-254c6c0f28eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\math\kissfft">
+      <UniqueIdentifier>{4f61320c-5006-43a1-923b-8414ad75f8cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\math\calculator">
+      <UniqueIdentifier>{c1246f14-7ac6-4333-826d-c396e6f451d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\html">
+      <UniqueIdentifier>{8d056929-a7cc-43d1-9707-6782116b1841}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\html\html_lite">
+      <UniqueIdentifier>{fe44145c-ef27-49d7-a3a4-855dd149b3d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\html\html">
+      <UniqueIdentifier>{003602c0-0507-472a-9c3a-9a8f52c7f67a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\compress">
+      <UniqueIdentifier>{ecb65efa-7557-4258-a7dd-db36a7be6c27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net">
+      <UniqueIdentifier>{6d62dd40-4d63-40d5-9d9f-54de038a0c44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets">
+      <UniqueIdentifier>{b2d510a5-3128-4efa-8a33-4b72c2fccde5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\bsd">
+      <UniqueIdentifier>{07e6ee8b-3d1c-48e2-9f0b-a5b602ea6057}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\bsd\smtp">
+      <UniqueIdentifier>{5a83b085-9d96-441a-9f1c-25ae53981a8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\netserver">
+      <UniqueIdentifier>{62b1d2f2-12c3-4930-8d9e-62aec803af62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user">
+      <UniqueIdentifier>{f1a08788-e425-4d92-9cca-d4c40723d889}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics">
+      <UniqueIdentifier>{a02d013e-e754-495e-831f-561a5a4458f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\render">
+      <UniqueIdentifier>{d36d6f8d-b7e5-4dbd-b520-f2673d1c2e33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\pcre">
+      <UniqueIdentifier>{95812362-ea87-4f76-8693-78d7c49f474b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\const">
+      <UniqueIdentifier>{9b3eb761-6866-4960-be82-a0b2f17987c6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="id.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\application.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\geo_department.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\openweather_city.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\session.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\system.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="account\aaa_want_to_remove_account_authentication_map.h">
+      <Filter>Header Files\account</Filter>
+    </ClInclude>
+    <ClInclude Include="account\aaa_want_to_remove_account_authorization_task.h">
+      <Filter>Header Files\account</Filter>
+    </ClInclude>
+    <ClInclude Include="account\aaa_want_to_remove_account_object.h">
+      <Filter>Header Files\account</Filter>
+    </ClInclude>
+    <ClInclude Include="account\aaa_want_to_remove_account_user_authentication.h">
+      <Filter>Header Files\account</Filter>
+    </ClInclude>
+    <ClInclude Include="account\authenticator.h">
+      <Filter>Header Files\account</Filter>
+    </ClInclude>
+    <ClInclude Include="account\const.h">
+      <Filter>Header Files\account</Filter>
+    </ClInclude>
+    <ClInclude Include="account\contact_list.h">
+      <Filter>Header Files\account</Filter>
+    </ClInclude>
+    <ClInclude Include="account\credentials.h">
+      <Filter>Header Files\account</Filter>
+    </ClInclude>
+    <ClInclude Include="account\department.h">
+      <Filter>Header Files\account</Filter>
+    </ClInclude>
+    <ClInclude Include="account\e_status.h">
+      <Filter>Header Files\account</Filter>
+    </ClInclude>
+    <ClInclude Include="account\interactive.h">
+      <Filter>Header Files\account</Filter>
+    </ClInclude>
+    <ClInclude Include="account\network_authenticator.h">
+      <Filter>Header Files\account</Filter>
+    </ClInclude>
+    <ClInclude Include="account\product.h">
+      <Filter>Header Files\account</Filter>
+    </ClInclude>
+    <ClInclude Include="account\product_array.h">
+      <Filter>Header Files\account</Filter>
+    </ClInclude>
+    <ClInclude Include="account\storage.h">
+      <Filter>Header Files\account</Filter>
+    </ClInclude>
+    <ClInclude Include="account\storage_client.h">
+      <Filter>Header Files\account</Filter>
+    </ClInclude>
+    <ClInclude Include="account\system_storage.h">
+      <Filter>Header Files\account</Filter>
+    </ClInclude>
+    <ClInclude Include="account\user.h">
+      <Filter>Header Files\account</Filter>
+    </ClInclude>
+    <ClInclude Include="account\usera.h">
+      <Filter>Header Files\account</Filter>
+    </ClInclude>
+    <ClInclude Include="account\user_array.h">
+      <Filter>Header Files\account</Filter>
+    </ClInclude>
+    <ClInclude Include="account\user_set.h">
+      <Filter>Header Files\account</Filter>
+    </ClInclude>
+    <ClInclude Include="account\_.h">
+      <Filter>Header Files\account</Filter>
+    </ClInclude>
+    <ClInclude Include="account\_account.h">
+      <Filter>Header Files\account</Filter>
+    </ClInclude>
+    <ClInclude Include="geoip\city.h">
+      <Filter>Header Files\geoip</Filter>
+    </ClInclude>
+    <ClInclude Include="geoip\global.h">
+      <Filter>Header Files\geoip</Filter>
+    </ClInclude>
+    <ClInclude Include="geoip\internal.h">
+      <Filter>Header Files\geoip</Filter>
+    </ClInclude>
+    <ClInclude Include="geoip\update.h">
+      <Filter>Header Files\geoip</Filter>
+    </ClInclude>
+    <ClInclude Include="geoip\_.h">
+      <Filter>Header Files\geoip</Filter>
+    </ClInclude>
+    <ClInclude Include="math\_.h">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\kissfft\fft.h">
+      <Filter>Header Files\math\kissfft</Filter>
+    </ClInclude>
+    <ClInclude Include="math\kissfft\fftd.h">
+      <Filter>Header Files\math\kissfft</Filter>
+    </ClInclude>
+    <ClInclude Include="math\kissfft\fft_guts.h">
+      <Filter>Header Files\math\kissfft</Filter>
+    </ClInclude>
+    <ClInclude Include="math\kissfft\ifft.h">
+      <Filter>Header Files\math\kissfft</Filter>
+    </ClInclude>
+    <ClInclude Include="math\kissfft\ifftd.h">
+      <Filter>Header Files\math\kissfft</Filter>
+    </ClInclude>
+    <ClInclude Include="math\kissfft\_.h">
+      <Filter>Header Files\math\kissfft</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\calculator.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\element.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\parser.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\parser_exception.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\scanner.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\token.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\value.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\_.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html\html.h">
+      <Filter>Header Files\html\html</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html\_.h">
+      <Filter>Header Files\html\html</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html\_const.h">
+      <Filter>Header Files\html\html</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_lite\attributes.h">
+      <Filter>Header Files\html\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_lite\common.h">
+      <Filter>Header Files\html\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_lite\entity_resolver.h">
+      <Filter>Header Files\html\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_lite\reader.h">
+      <Filter>Header Files\html\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_lite\tag.h">
+      <Filter>Header Files\html\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_lite\_.h">
+      <Filter>Header Files\html\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\_.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\bz.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\bzip.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="net\email_department.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\_.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\_impl.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\_net.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\netserver\socket.h">
+      <Filter>Header Files\net\netserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\netserver\socket_handler.h">
+      <Filter>Header Files\net\netserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\netserver\socket_thread.h">
+      <Filter>Header Files\net\netserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\netserver\_.h">
+      <Filter>Header Files\net\netserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\_sockets.h">
+      <Filter>Header Files\net\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\smtp\smtpd_socket.h">
+      <Filter>Header Files\net\sockets\bsd\smtp</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\smtp\smtp_socket.h">
+      <Filter>Header Files\net\sockets\bsd\smtp</Filter>
+    </ClInclude>
+    <ClInclude Include="user\button.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\check_box.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\combo_box.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\combo_list.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple_ui_draw.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\slider.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\still.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\style.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\validate.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\_.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\_user.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="include\objc.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\objcpp.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\winrt.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\_.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\_c.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\_c_bridge.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\_include.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\_no_templates.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\_setup.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\application.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\application_common.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\console.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\console_common.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\library.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\_acid_app_impl.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\_application.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\_app_impl1.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\_console_old.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\_draw2d_impl.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\_new_impl.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\__debug_box_clear_impl.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\__debug_box_set_impl.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\render\water_routine.h">
+      <Filter>Header Files\graphics\render</Filter>
+    </ClInclude>
+    <ClInclude Include="pcre\code.h">
+      <Filter>Header Files\pcre</Filter>
+    </ClInclude>
+    <ClInclude Include="pcre\code_impl.h">
+      <Filter>Header Files\pcre</Filter>
+    </ClInclude>
+    <ClInclude Include="pcre\context.h">
+      <Filter>Header Files\pcre</Filter>
+    </ClInclude>
+    <ClInclude Include="pcre\context_impl.h">
+      <Filter>Header Files\pcre</Filter>
+    </ClInclude>
+    <ClInclude Include="pcre\regex.h">
+      <Filter>Header Files\pcre</Filter>
+    </ClInclude>
+    <ClInclude Include="pcre\util_impl.h">
+      <Filter>Header Files\pcre</Filter>
+    </ClInclude>
+    <ClInclude Include="pcre\_.h">
+      <Filter>Header Files\pcre</Filter>
+    </ClInclude>
+    <ClInclude Include="pcre\_pcre.h">
+      <Filter>Header Files\pcre</Filter>
+    </ClInclude>
+    <ClInclude Include="const\idpool.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="database\_.h">
+      <Filter>Source Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\const.h">
+      <Filter>Source Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database.h">
+      <Filter>Source Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\dataset.h">
+      <Filter>Source Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\definition.h">
+      <Filter>Source Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\field_definition.h">
+      <Filter>Source Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\template.h">
+      <Filter>Source Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\_.h">
+      <Filter>Source Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\_impl.h">
+      <Filter>Source Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\aaa_want_to_removesimpledb_database.h">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\file_set.h">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\item.h">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\queue_item.h">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\server.h">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb.h">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\storage.h">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\thread.h">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\thread_localdatabase.h">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\veiev_post.h">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\_.h">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\_simpledb.h">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\sqlitedb\database.h">
+      <Filter>Source Files\database\sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="database\sqlitedb\dataset.h">
+      <Filter>Source Files\database\sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="database\sqlitedb\_.h">
+      <Filter>Source Files\database\sqlite</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="database\database\database.cpp">
+      <Filter>Header Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\dataset.cpp">
+      <Filter>Header Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\definition.cpp">
+      <Filter>Header Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\field_definition.cpp">
+      <Filter>Header Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\file_set.cpp">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\item.cpp">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\server.cpp">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb.cpp">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\storage.cpp">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\thread.cpp">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\thread_localdatabase.cpp">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\sqlitedb\database.cpp">
+      <Filter>Header Files\database\sqlite</Filter>
+    </ClCompile>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="_.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\application.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\geo_department.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\session.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\system.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="account\account.cpp">
+      <Filter>Source Files\account</Filter>
+    </ClCompile>
+    <ClCompile Include="account\authenticator.cpp">
+      <Filter>Source Files\account</Filter>
+    </ClCompile>
+    <ClCompile Include="account\contact_list.cpp">
+      <Filter>Source Files\account</Filter>
+    </ClCompile>
+    <ClCompile Include="account\credentials.cpp">
+      <Filter>Source Files\account</Filter>
+    </ClCompile>
+    <ClCompile Include="account\department.cpp">
+      <Filter>Source Files\account</Filter>
+    </ClCompile>
+    <ClCompile Include="account\interactive.cpp">
+      <Filter>Source Files\account</Filter>
+    </ClCompile>
+    <ClCompile Include="account\network_authenticator.cpp">
+      <Filter>Source Files\account</Filter>
+    </ClCompile>
+    <ClCompile Include="account\product.cpp">
+      <Filter>Source Files\account</Filter>
+    </ClCompile>
+    <ClCompile Include="account\product_array.cpp">
+      <Filter>Source Files\account</Filter>
+    </ClCompile>
+    <ClCompile Include="account\storage.cpp">
+      <Filter>Source Files\account</Filter>
+    </ClCompile>
+    <ClCompile Include="account\storage_client.cpp">
+      <Filter>Source Files\account</Filter>
+    </ClCompile>
+    <ClCompile Include="account\system_storage.cpp">
+      <Filter>Source Files\account</Filter>
+    </ClCompile>
+    <ClCompile Include="account\user.cpp">
+      <Filter>Source Files\account</Filter>
+    </ClCompile>
+    <ClCompile Include="account\usera.cpp">
+      <Filter>Source Files\account</Filter>
+    </ClCompile>
+    <ClCompile Include="account\user_array.cpp">
+      <Filter>Source Files\account</Filter>
+    </ClCompile>
+    <ClCompile Include="account\user_set.cpp">
+      <Filter>Source Files\account</Filter>
+    </ClCompile>
+    <ClCompile Include="geoip\city.cpp">
+      <Filter>Source Files\geoip</Filter>
+    </ClCompile>
+    <ClCompile Include="geoip\geoip.cpp">
+      <Filter>Source Files\geoip</Filter>
+    </ClCompile>
+    <ClCompile Include="geoip\region_name.cpp">
+      <Filter>Source Files\geoip</Filter>
+    </ClCompile>
+    <ClCompile Include="geoip\time_zone.cpp">
+      <Filter>Source Files\geoip</Filter>
+    </ClCompile>
+    <ClCompile Include="geoip\update.cpp">
+      <Filter>Source Files\geoip</Filter>
+    </ClCompile>
+    <ClCompile Include="math\kissfft\fft.cpp">
+      <Filter>Source Files\math\kissfft</Filter>
+    </ClCompile>
+    <ClCompile Include="math\kissfft\fftd.cpp">
+      <Filter>Source Files\math\kissfft</Filter>
+    </ClCompile>
+    <ClCompile Include="math\kissfft\fft_shared.cpp">
+      <Filter>Source Files\math\kissfft</Filter>
+    </ClCompile>
+    <ClCompile Include="math\kissfft\ifft.cpp">
+      <Filter>Source Files\math\kissfft</Filter>
+    </ClCompile>
+    <ClCompile Include="math\kissfft\ifftd.cpp">
+      <Filter>Source Files\math\kissfft</Filter>
+    </ClCompile>
+    <ClCompile Include="math\calculator\calculator.cpp">
+      <Filter>Source Files\math\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="math\calculator\element.cpp">
+      <Filter>Source Files\math\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="math\calculator\parser.cpp">
+      <Filter>Source Files\math\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="math\calculator\parser_exception.cpp">
+      <Filter>Source Files\math\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="math\calculator\scanner.cpp">
+      <Filter>Source Files\math\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="math\calculator\value.cpp">
+      <Filter>Source Files\math\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="html\html_lite\attributes.cpp">
+      <Filter>Source Files\html\html_lite</Filter>
+    </ClCompile>
+    <ClCompile Include="html\html_lite\entity_resolver.cpp">
+      <Filter>Source Files\html\html_lite</Filter>
+    </ClCompile>
+    <ClCompile Include="html\html_lite\reader.cpp">
+      <Filter>Source Files\html\html_lite</Filter>
+    </ClCompile>
+    <ClCompile Include="html\html_lite\tag.cpp">
+      <Filter>Source Files\html\html_lite</Filter>
+    </ClCompile>
+    <ClCompile Include="html\html\html.cpp">
+      <Filter>Source Files\html\html</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\bz.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="net\email_department.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\smtp\smtpd_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\smtp</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\smtp\smtp_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\smtp</Filter>
+    </ClCompile>
+    <ClCompile Include="net\netserver\socket.cpp">
+      <Filter>Source Files\net\netserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\netserver\socket_handler.cpp">
+      <Filter>Source Files\net\netserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\netserver\socket_thread.cpp">
+      <Filter>Source Files\net\netserver</Filter>
+    </ClCompile>
+    <ClCompile Include="user\button.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\check_box.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\combo_box.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\combo_list.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple_ui_draw.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\slider.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\still.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\style.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\validate.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\render\water_routine.cpp">
+      <Filter>Source Files\graphics\render</Filter>
+    </ClCompile>
+    <ClCompile Include="pcre\code.cpp">
+      <Filter>Source Files\pcre</Filter>
+    </ClCompile>
+    <ClCompile Include="pcre\code_impl.cpp">
+      <Filter>Source Files\pcre</Filter>
+    </ClCompile>
+    <ClCompile Include="pcre\context.cpp">
+      <Filter>Source Files\pcre</Filter>
+    </ClCompile>
+    <ClCompile Include="pcre\context_impl.cpp">
+      <Filter>Source Files\pcre</Filter>
+    </ClCompile>
+    <ClCompile Include="pcre\regex.cpp">
+      <Filter>Source Files\pcre</Filter>
+    </ClCompile>
+    <ClCompile Include="pcre\system.cpp">
+      <Filter>Source Files\pcre</Filter>
+    </ClCompile>
+    <ClCompile Include="pcre\util_impl.cpp">
+      <Filter>Source Files\pcre</Filter>
+    </ClCompile>
+    <ClCompile Include="const\idpool.cpp">
+      <Filter>Source Files\const</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="axis.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

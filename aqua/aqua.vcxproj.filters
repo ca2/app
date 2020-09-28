@@ -1,111 +1,239 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{72a25395-b36d-49a4-8df1-67e555fe47de}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{13665303-bc65-43a3-97fe-26627c579084}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\xml">
-      <UniqueIdentifier>{99754e9b-442d-4891-a314-6d38390676a0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\platform">
-      <UniqueIdentifier>{56d8ff49-4b64-4955-a70f-da02d4156ed2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\include">
-      <UniqueIdentifier>{8584dd80-6870-4951-93cd-96bc489a1858}</UniqueIdentifier>
+      <UniqueIdentifier>{ef06b4aa-aea8-481f-a357-14ec7fd18d55}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\include">
-      <UniqueIdentifier>{14764e21-9153-4469-99c1-f6d1dd25dd3c}</UniqueIdentifier>
+      <UniqueIdentifier>{e73b9bb9-c726-4abb-98a4-7737f7c0ecc6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\inline">
-      <UniqueIdentifier>{c8ba3a9f-1e0a-40e8-af36-cfa0ad20c11c}</UniqueIdentifier>
+      <UniqueIdentifier>{cf6c72f9-3368-440e-b488-f352a9cf92ac}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\platform">
-      <UniqueIdentifier>{345abc8e-2d96-479a-b631-cfcf366a8138}</UniqueIdentifier>
+      <UniqueIdentifier>{36ce9182-dffc-4368-ad02-15d228e1b348}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\multimedia">
-      <UniqueIdentifier>{b536e52f-1576-46e9-913e-679333cc9bdc}</UniqueIdentifier>
+      <UniqueIdentifier>{f1408680-b59e-446f-a902-c6eeca3c2d17}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\multimedia\audio">
-      <UniqueIdentifier>{fa1b66df-224c-4306-ab49-152b1ef849f2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\multimedia">
-      <UniqueIdentifier>{c2a37f76-1266-40db-8d91-3c7e386d3e8b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\multimedia\audio">
-      <UniqueIdentifier>{9a0c5add-18ea-40be-bde4-b121fb058452}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\user">
-      <UniqueIdentifier>{235739c5-73d1-40be-8038-bb569441238d}</UniqueIdentifier>
+      <UniqueIdentifier>{39ee8db8-ad28-4ad0-bd90-8d21633a64dd}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\user">
-      <UniqueIdentifier>{352f184a-ba43-4ba3-b781-cf15b343e893}</UniqueIdentifier>
+      <UniqueIdentifier>{168ea230-ce83-4199-a897-712f155b8049}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\const">
-      <UniqueIdentifier>{a0220a7b-0cf5-4e31-8fe5-f4854de6f9dc}</UniqueIdentifier>
+      <UniqueIdentifier>{6fc21995-1225-4b7b-8d36-166f83dba56d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{e61edb41-436c-4e0f-812d-d34bddf4617c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\xml">
+      <UniqueIdentifier>{76575e23-0206-4b28-b3c6-e770402f480a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\platform">
+      <UniqueIdentifier>{245fdb0f-6829-4abb-bd3f-4f754f5ab438}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\include">
+      <UniqueIdentifier>{585c3aae-09f8-4632-839e-aa82f9bc11a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\multimedia">
+      <UniqueIdentifier>{bed11c75-f7c6-4cbe-af2c-06540bc2ac27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\multimedia\audio">
+      <UniqueIdentifier>{128aae78-6ec9-4f14-bb5d-889d991238bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user">
+      <UniqueIdentifier>{0a84bbef-ff11-4ea1-867a-2a3aa6ed4b67}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\const">
-      <UniqueIdentifier>{c8e5fab9-4774-4bfd-89ab-5975b4e50c93}</UniqueIdentifier>
+      <UniqueIdentifier>{28e5c993-7608-46fa-ad2a-2011b35072ee}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="xml\xmlite.cpp">
-      <Filter>Source Files\xml</Filter>
+    <ClInclude Include="inline\application.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\application_common.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\console.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\console_common.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\library.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\_acid_app_impl.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\_application.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\_app_impl1.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\_console_old.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\_draw2d_impl.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\_new_impl.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\__debug_box_clear_impl.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\__debug_box_set_impl.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\_.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\application.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\session.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\system.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\_platform.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="multimedia\audio.h">
+      <Filter>Header Files\multimedia</Filter>
+    </ClInclude>
+    <ClInclude Include="multimedia\decoder.h">
+      <Filter>Header Files\multimedia</Filter>
+    </ClInclude>
+    <ClInclude Include="multimedia\decoder_plugin.h">
+      <Filter>Header Files\multimedia</Filter>
+    </ClInclude>
+    <ClInclude Include="multimedia\exception.h">
+      <Filter>Header Files\multimedia</Filter>
+    </ClInclude>
+    <ClInclude Include="multimedia\file_application.h">
+      <Filter>Header Files\multimedia</Filter>
+    </ClInclude>
+    <ClInclude Include="multimedia\multimedia.h">
+      <Filter>Header Files\multimedia</Filter>
+    </ClInclude>
+    <ClInclude Include="multimedia\_.h">
+      <Filter>Header Files\multimedia</Filter>
+    </ClInclude>
+    <ClInclude Include="multimedia\_c.h">
+      <Filter>Header Files\multimedia</Filter>
+    </ClInclude>
+    <ClInclude Include="multimedia\audio\audio_c.h">
+      <Filter>Header Files\multimedia\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="multimedia\audio\out.h">
+      <Filter>Header Files\multimedia\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="multimedia\audio\sound_track_player.h">
+      <Filter>Header Files\multimedia\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="multimedia\audio\speaker.h">
+      <Filter>Header Files\multimedia\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="multimedia\audio\_.h">
+      <Filter>Header Files\multimedia\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="user\controller.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="const\idpool.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_defer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="console.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="id.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="library.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="xml.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="xml\xml.cpp">
-      <Filter>Source Files\xml</Filter>
+    <ClCompile Include="_.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="xml\var_exchange.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\tree_schema.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\tree_base.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\property_exchange.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\parse_info.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\output_tree.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\node.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\input_tree.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\importable.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\exportable.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\entity.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\edit.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\document.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\disp_option.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\data.cpp">
+    <ClCompile Include="xml\attr.cpp">
       <Filter>Source Files\xml</Filter>
     </ClCompile>
     <ClCompile Include="xml\base_array.cpp">
       <Filter>Source Files\xml</Filter>
     </ClCompile>
-    <ClCompile Include="xml\attr.cpp">
+    <ClCompile Include="xml\data.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\disp_option.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\document.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\edit.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\entity.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\exportable.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\importable.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\input_tree.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\node.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\output_tree.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\parse_info.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\property_exchange.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\tree_base.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\tree_schema.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\var_exchange.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\xml.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\xmlite.cpp">
       <Filter>Source Files\xml</Filter>
     </ClCompile>
     <ClCompile Include="xml\_from.cpp">
@@ -119,15 +247,6 @@
     </ClCompile>
     <ClCompile Include="platform\system.cpp">
       <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="multimedia\audio\audio_wave_out.cpp">
-      <Filter>Source Files\multimedia\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="multimedia\audio\sound_track_player.cpp">
-      <Filter>Source Files\multimedia\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="multimedia\audio\speaker.cpp">
-      <Filter>Source Files\multimedia\audio</Filter>
     </ClCompile>
     <ClCompile Include="multimedia\audio.cpp">
       <Filter>Source Files\multimedia</Filter>
@@ -147,11 +266,14 @@
     <ClCompile Include="multimedia\multimedia.cpp">
       <Filter>Source Files\multimedia</Filter>
     </ClCompile>
-    <ClCompile Include="framework.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="multimedia\audio\audio_wave_out.cpp">
+      <Filter>Source Files\multimedia\audio</Filter>
     </ClCompile>
-    <ClCompile Include="_.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="multimedia\audio\sound_track_player.cpp">
+      <Filter>Source Files\multimedia\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="multimedia\audio\speaker.cpp">
+      <Filter>Source Files\multimedia\audio</Filter>
     </ClCompile>
     <ClCompile Include="user\controller.cpp">
       <Filter>Source Files\user</Filter>
@@ -161,107 +283,8 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="platform\system.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\session.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\application.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\_platform.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="multimedia\audio\speaker.h">
-      <Filter>Header Files\multimedia\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="multimedia\audio\sound_track_player.h">
-      <Filter>Header Files\multimedia\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="multimedia\audio\out.h">
-      <Filter>Header Files\multimedia\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="multimedia\audio\audio_c.h">
-      <Filter>Header Files\multimedia\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="multimedia\audio\_.h">
-      <Filter>Header Files\multimedia\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="multimedia\multimedia.h">
-      <Filter>Header Files\multimedia</Filter>
-    </ClInclude>
-    <ClInclude Include="multimedia\file_application.h">
-      <Filter>Header Files\multimedia</Filter>
-    </ClInclude>
-    <ClInclude Include="multimedia\exception.h">
-      <Filter>Header Files\multimedia</Filter>
-    </ClInclude>
-    <ClInclude Include="multimedia\decoder_plugin.h">
-      <Filter>Header Files\multimedia</Filter>
-    </ClInclude>
-    <ClInclude Include="multimedia\decoder.h">
-      <Filter>Header Files\multimedia</Filter>
-    </ClInclude>
-    <ClInclude Include="multimedia\audio.h">
-      <Filter>Header Files\multimedia</Filter>
-    </ClInclude>
-    <ClInclude Include="multimedia\_c.h">
-      <Filter>Header Files\multimedia</Filter>
-    </ClInclude>
-    <ClInclude Include="multimedia\_.h">
-      <Filter>Header Files\multimedia</Filter>
-    </ClInclude>
-    <ClInclude Include="include\_.h">
-      <Filter>Header Files\inline</Filter>
-    </ClInclude>
-    <ClInclude Include="inline\library.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="inline\console_common.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="inline\console.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="inline\application_common.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="inline\application.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="inline\_new_impl.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="inline\_draw2d_impl.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="inline\_console_old.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="inline\_application.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="inline\_app_impl1.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="inline\_acid_app_impl.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="inline\__debug_box_set_impl.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="inline\__debug_box_clear_impl.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="framework.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="user\controller.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="const\idpool.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
+    <None Include="aqua.def">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

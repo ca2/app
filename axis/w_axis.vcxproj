@@ -1,0 +1,586 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="basis|ARM">
+      <Configuration>basis</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="basis|ARM64">
+      <Configuration>basis</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="basis|Win32">
+      <Configuration>basis</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="basis|x64">
+      <Configuration>basis</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="cover|ARM">
+      <Configuration>cover</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="cover|ARM64">
+      <Configuration>cover</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="cover|Win32">
+      <Configuration>cover</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="cover|x64">
+      <Configuration>cover</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="stage|ARM">
+      <Configuration>stage</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="stage|ARM64">
+      <Configuration>stage</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="stage|Win32">
+      <Configuration>stage</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="stage|x64">
+      <Configuration>stage</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="account\aaa_want_to_remove_account_authentication_map.h" />
+    <ClInclude Include="account\aaa_want_to_remove_account_authorization_task.h" />
+    <ClInclude Include="account\aaa_want_to_remove_account_object.h" />
+    <ClInclude Include="account\aaa_want_to_remove_account_user_authentication.h" />
+    <ClInclude Include="account\authenticator.h" />
+    <ClInclude Include="account\const.h" />
+    <ClInclude Include="account\contact_list.h" />
+    <ClInclude Include="account\credentials.h" />
+    <ClInclude Include="account\department.h" />
+    <ClInclude Include="account\e_status.h" />
+    <ClInclude Include="account\interactive.h" />
+    <ClInclude Include="account\network_authenticator.h" />
+    <ClInclude Include="account\product.h" />
+    <ClInclude Include="account\product_array.h" />
+    <ClInclude Include="account\storage.h" />
+    <ClInclude Include="account\storage_client.h" />
+    <ClInclude Include="account\system_storage.h" />
+    <ClInclude Include="account\user.h" />
+    <ClInclude Include="account\usera.h" />
+    <ClInclude Include="account\user_array.h" />
+    <ClInclude Include="account\user_set.h" />
+    <ClInclude Include="account\_.h" />
+    <ClInclude Include="account\_account.h" />
+    <ClInclude Include="compress\bz.h" />
+    <ClInclude Include="compress\bzip.h" />
+    <ClInclude Include="compress\_.h" />
+    <ClInclude Include="const\idpool.h" />
+    <ClInclude Include="database\database\const.h" />
+    <ClInclude Include="database\database\database.h" />
+    <ClInclude Include="database\database\dataset.h" />
+    <ClInclude Include="database\database\definition.h" />
+    <ClInclude Include="database\database\field_definition.h" />
+    <ClInclude Include="database\database\template.h" />
+    <ClInclude Include="database\database\_.h" />
+    <ClInclude Include="database\database\_impl.h" />
+    <ClInclude Include="database\simpledb\aaa_want_to_removesimpledb_database.h" />
+    <ClInclude Include="database\simpledb\file_set.h" />
+    <ClInclude Include="database\simpledb\item.h" />
+    <ClInclude Include="database\simpledb\queue_item.h" />
+    <ClInclude Include="database\simpledb\server.h" />
+    <ClInclude Include="database\simpledb\simpledb.h" />
+    <ClInclude Include="database\simpledb\storage.h" />
+    <ClInclude Include="database\simpledb\thread.h" />
+    <ClInclude Include="database\simpledb\thread_localdatabase.h" />
+    <ClInclude Include="database\simpledb\veiev_post.h" />
+    <ClInclude Include="database\simpledb\_.h" />
+    <ClInclude Include="database\simpledb\_simpledb.h" />
+    <ClInclude Include="database\sqlitedb\database.h" />
+    <ClInclude Include="database\sqlitedb\dataset.h" />
+    <ClInclude Include="database\sqlitedb\_.h" />
+    <ClInclude Include="database\_.h" />
+    <ClInclude Include="framework.h" />
+    <ClInclude Include="geoip\city.h" />
+    <ClInclude Include="geoip\global.h" />
+    <ClInclude Include="geoip\internal.h" />
+    <ClInclude Include="geoip\update.h" />
+    <ClInclude Include="geoip\_.h" />
+    <ClInclude Include="graphics\render\water_routine.h" />
+    <ClInclude Include="html\html\html.h" />
+    <ClInclude Include="html\html\_.h" />
+    <ClInclude Include="html\html\_const.h" />
+    <ClInclude Include="html\html_lite\attributes.h" />
+    <ClInclude Include="html\html_lite\common.h" />
+    <ClInclude Include="html\html_lite\entity_resolver.h" />
+    <ClInclude Include="html\html_lite\reader.h" />
+    <ClInclude Include="html\html_lite\tag.h" />
+    <ClInclude Include="html\html_lite\_.h" />
+    <ClInclude Include="id.h" />
+    <ClInclude Include="include\objc.h" />
+    <ClInclude Include="include\objcpp.h" />
+    <ClInclude Include="include\winrt.h" />
+    <ClInclude Include="include\_.h" />
+    <ClInclude Include="include\_c.h" />
+    <ClInclude Include="include\_c_bridge.h" />
+    <ClInclude Include="include\_include.h" />
+    <ClInclude Include="include\_no_templates.h" />
+    <ClInclude Include="include\_setup.h" />
+    <ClInclude Include="inline\application.h" />
+    <ClInclude Include="inline\application_common.h" />
+    <ClInclude Include="inline\console.h" />
+    <ClInclude Include="inline\console_common.h" />
+    <ClInclude Include="inline\library.h" />
+    <ClInclude Include="inline\_acid_app_impl.h" />
+    <ClInclude Include="inline\_application.h" />
+    <ClInclude Include="inline\_app_impl1.h" />
+    <ClInclude Include="inline\_console_old.h" />
+    <ClInclude Include="inline\_draw2d_impl.h" />
+    <ClInclude Include="inline\_new_impl.h" />
+    <ClInclude Include="inline\__debug_box_clear_impl.h" />
+    <ClInclude Include="inline\__debug_box_set_impl.h" />
+    <ClInclude Include="math\calculator\calculator.h" />
+    <ClInclude Include="math\calculator\element.h" />
+    <ClInclude Include="math\calculator\parser.h" />
+    <ClInclude Include="math\calculator\parser_exception.h" />
+    <ClInclude Include="math\calculator\scanner.h" />
+    <ClInclude Include="math\calculator\token.h" />
+    <ClInclude Include="math\calculator\value.h" />
+    <ClInclude Include="math\calculator\_.h" />
+    <ClInclude Include="math\kissfft\fft.h" />
+    <ClInclude Include="math\kissfft\fftd.h" />
+    <ClInclude Include="math\kissfft\fft_guts.h" />
+    <ClInclude Include="math\kissfft\ifft.h" />
+    <ClInclude Include="math\kissfft\ifftd.h" />
+    <ClInclude Include="math\kissfft\_.h" />
+    <ClInclude Include="math\_.h" />
+    <ClInclude Include="net\email_department.h" />
+    <ClInclude Include="net\netserver\socket.h" />
+    <ClInclude Include="net\netserver\socket_handler.h" />
+    <ClInclude Include="net\netserver\socket_thread.h" />
+    <ClInclude Include="net\netserver\_.h" />
+    <ClInclude Include="net\sockets\bsd\smtp\smtpd_socket.h" />
+    <ClInclude Include="net\sockets\bsd\smtp\smtp_socket.h" />
+    <ClInclude Include="net\sockets\_sockets.h" />
+    <ClInclude Include="net\_.h" />
+    <ClInclude Include="net\_impl.h" />
+    <ClInclude Include="net\_net.h" />
+    <ClInclude Include="pcre\code.h" />
+    <ClInclude Include="pcre\code_impl.h" />
+    <ClInclude Include="pcre\context.h" />
+    <ClInclude Include="pcre\context_impl.h" />
+    <ClInclude Include="pcre\regex.h" />
+    <ClInclude Include="pcre\util_impl.h" />
+    <ClInclude Include="pcre\_.h" />
+    <ClInclude Include="pcre\_pcre.h" />
+    <ClInclude Include="platform\application.h" />
+    <ClInclude Include="platform\geo_department.h" />
+    <ClInclude Include="platform\openweather_city.h" />
+    <ClInclude Include="platform\session.h" />
+    <ClInclude Include="platform\system.h" />
+    <ClInclude Include="user\button.h" />
+    <ClInclude Include="user\check_box.h" />
+    <ClInclude Include="user\combo_box.h" />
+    <ClInclude Include="user\combo_list.h" />
+    <ClInclude Include="user\simple_ui_draw.h" />
+    <ClInclude Include="user\slider.h" />
+    <ClInclude Include="user\still.h" />
+    <ClInclude Include="user\style.h" />
+    <ClInclude Include="user\user.h" />
+    <ClInclude Include="user\validate.h" />
+    <ClInclude Include="user\_.h" />
+    <ClInclude Include="user\_user.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="account\account.cpp" />
+    <ClCompile Include="account\authenticator.cpp" />
+    <ClCompile Include="account\contact_list.cpp" />
+    <ClCompile Include="account\credentials.cpp" />
+    <ClCompile Include="account\department.cpp" />
+    <ClCompile Include="account\interactive.cpp" />
+    <ClCompile Include="account\network_authenticator.cpp" />
+    <ClCompile Include="account\product.cpp" />
+    <ClCompile Include="account\product_array.cpp" />
+    <ClCompile Include="account\storage.cpp" />
+    <ClCompile Include="account\storage_client.cpp" />
+    <ClCompile Include="account\system_storage.cpp" />
+    <ClCompile Include="account\user.cpp" />
+    <ClCompile Include="account\usera.cpp" />
+    <ClCompile Include="account\user_array.cpp" />
+    <ClCompile Include="account\user_set.cpp" />
+    <ClCompile Include="compress\bz.cpp" />
+    <ClCompile Include="const\idpool.cpp" />
+    <ClCompile Include="database\database\database.cpp" />
+    <ClCompile Include="database\database\dataset.cpp" />
+    <ClCompile Include="database\database\definition.cpp" />
+    <ClCompile Include="database\database\field_definition.cpp" />
+    <ClCompile Include="database\simpledb\file_set.cpp" />
+    <ClCompile Include="database\simpledb\item.cpp" />
+    <ClCompile Include="database\simpledb\server.cpp" />
+    <ClCompile Include="database\simpledb\simpledb.cpp" />
+    <ClCompile Include="database\simpledb\storage.cpp" />
+    <ClCompile Include="database\simpledb\thread.cpp" />
+    <ClCompile Include="database\simpledb\thread_localdatabase.cpp" />
+    <ClCompile Include="database\sqlitedb\database.cpp" />
+    <ClCompile Include="framework.cpp" />
+    <ClCompile Include="geoip\city.cpp" />
+    <ClCompile Include="geoip\geoip.cpp" />
+    <ClCompile Include="geoip\region_name.cpp" />
+    <ClCompile Include="geoip\time_zone.cpp" />
+    <ClCompile Include="geoip\update.cpp" />
+    <ClCompile Include="graphics\render\water_routine.cpp" />
+    <ClCompile Include="html\html\html.cpp" />
+    <ClCompile Include="html\html_lite\attributes.cpp" />
+    <ClCompile Include="html\html_lite\entity_resolver.cpp" />
+    <ClCompile Include="html\html_lite\reader.cpp" />
+    <ClCompile Include="html\html_lite\tag.cpp" />
+    <ClCompile Include="math\calculator\calculator.cpp" />
+    <ClCompile Include="math\calculator\element.cpp" />
+    <ClCompile Include="math\calculator\parser.cpp" />
+    <ClCompile Include="math\calculator\parser_exception.cpp" />
+    <ClCompile Include="math\calculator\scanner.cpp" />
+    <ClCompile Include="math\calculator\value.cpp" />
+    <ClCompile Include="math\kissfft\fft.cpp" />
+    <ClCompile Include="math\kissfft\fftd.cpp" />
+    <ClCompile Include="math\kissfft\fft_shared.cpp" />
+    <ClCompile Include="math\kissfft\ifft.cpp" />
+    <ClCompile Include="math\kissfft\ifftd.cpp" />
+    <ClCompile Include="net\email_department.cpp" />
+    <ClCompile Include="net\netserver\socket.cpp" />
+    <ClCompile Include="net\netserver\socket_handler.cpp" />
+    <ClCompile Include="net\netserver\socket_thread.cpp" />
+    <ClCompile Include="net\sockets\bsd\smtp\smtpd_socket.cpp" />
+    <ClCompile Include="net\sockets\bsd\smtp\smtp_socket.cpp" />
+    <ClCompile Include="pcre\code.cpp" />
+    <ClCompile Include="pcre\code_impl.cpp" />
+    <ClCompile Include="pcre\context.cpp" />
+    <ClCompile Include="pcre\context_impl.cpp" />
+    <ClCompile Include="pcre\regex.cpp" />
+    <ClCompile Include="pcre\system.cpp" />
+    <ClCompile Include="pcre\util_impl.cpp" />
+    <ClCompile Include="platform\application.cpp" />
+    <ClCompile Include="platform\geo_department.cpp" />
+    <ClCompile Include="platform\session.cpp" />
+    <ClCompile Include="platform\system.cpp" />
+    <ClCompile Include="user\button.cpp" />
+    <ClCompile Include="user\check_box.cpp" />
+    <ClCompile Include="user\combo_box.cpp" />
+    <ClCompile Include="user\combo_list.cpp" />
+    <ClCompile Include="user\simple_ui_draw.cpp" />
+    <ClCompile Include="user\slider.cpp" />
+    <ClCompile Include="user\still.cpp" />
+    <ClCompile Include="user\style.cpp" />
+    <ClCompile Include="user\user.cpp" />
+    <ClCompile Include="user\validate.cpp" />
+    <ClCompile Include="_.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="axis.def" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{0412ea6f-50d0-4baa-99e3-ac14fc63a879}</ProjectGuid>
+    <Keyword>DynamicLibrary</Keyword>
+    <RootNamespace>axis</RootNamespace>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
+    <AppContainerApplication>true</AppContainerApplication>
+    <ApplicationType>Windows Store</ApplicationType>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformMinVersion>10.0.17763.0</WindowsTargetPlatformMinVersion>
+    <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
+    <ProjectName>axis</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|ARM'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|ARM64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='cover|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='cover|ARM'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='basis|ARM64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='cover|ARM64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|ARM64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='cover|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
+    <GenerateManifest>false</GenerateManifest>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">
+    <GenerateManifest>false</GenerateManifest>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
+    <GenerateManifest>false</GenerateManifest>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
+    <GenerateManifest>false</GenerateManifest>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|ARM'">
+    <GenerateManifest>false</GenerateManifest>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
+    <GenerateManifest>false</GenerateManifest>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM64'">
+    <GenerateManifest>false</GenerateManifest>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|ARM64'">
+    <GenerateManifest>false</GenerateManifest>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM64'">
+    <GenerateManifest>false</GenerateManifest>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
+    <GenerateManifest>false</GenerateManifest>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|x64'">
+    <GenerateManifest>false</GenerateManifest>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
+    <GenerateManifest>false</GenerateManifest>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|arm'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cover|arm'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|arm'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cover|ARM64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cover|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

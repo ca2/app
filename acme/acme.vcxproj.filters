@@ -1055,9 +1055,6 @@
     <ClInclude Include="primitive\primitive\simple_object.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\generic.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\comparison\_c.h">
       <Filter>Header Files\primitive\comparison</Filter>
     </ClInclude>
@@ -2592,9 +2589,6 @@
     </ClCompile>
     <ClCompile Include="filesystem\file\binary_stream.cpp">
       <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive\generic.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive\generic.cpp">
       <Filter>Source Files\primitive\primitive</Filter>

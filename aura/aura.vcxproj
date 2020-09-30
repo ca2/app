@@ -1124,7 +1124,6 @@
     <ClCompile Include="os\windows\graphics.cpp" />
     <ClCompile Include="os\windows\imm_context.cpp" />
     <ClCompile Include="os\windows\main.cpp" />
-    <ClCompile Include="os\windows\multimedia.cpp" />
     <ClCompile Include="os\windows\windowing.cpp" />
     <ClCompile Include="os\windows_common\draw2d_direct2d_global.cpp" />
     <ClCompile Include="platform\application.cpp" />

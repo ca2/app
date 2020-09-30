@@ -137,7 +137,7 @@ namespace aura
 void os_post_quit()
 {
 
-   exception::translator::detach();
+   ::get_context_system()->exception::translator::detach();
 
 }
 

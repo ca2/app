@@ -2851,9 +2851,6 @@
     <ClCompile Include="filesystem\filemanager\item_action.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="os\windows\multimedia.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="platform\aura_mq.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>

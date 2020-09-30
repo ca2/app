@@ -38,6 +38,7 @@ namespace uwp
       ::aura::system *                 m_psystem;
       ::mutex                          m_mutexDc;
       size                             m_size;
+      ::size                           m_sizeBuffer;
       ::user::interaction_impl *       m_pimpl;
       bool                             m_bInitialized;
       bool                             m_bInit;

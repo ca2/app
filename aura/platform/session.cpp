@@ -1979,14 +1979,14 @@ namespace aura
    void session::get_cursor_pos(LPPOINT ppoint)
    {
 
-#ifndef __APPLE__
+#if defined(WINDOWS_DESKTOP)
       
       if (m_bSystemSynchronizedCursor)
       {
 
          POINT point;
 
-         get_cursor_pos(&point);
+         ::get_cursor_pos(&point);
 
          m_pointCursor = point;
 

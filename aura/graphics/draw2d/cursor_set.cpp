@@ -134,32 +134,37 @@ namespace draw2d
 
       auto path = pathParam;
 
+      if (System.m_bImaging)
+      {
+
       //fork([this, pcursor, path, bFromCache]()
-         {
+      {
 
          pcursor->initialize_system_default();
 
-            if (Application.image().load_cursor(pcursor, path, true, bFromCache))
+         if (Application.image().load_cursor(pcursor, path, true, bFromCache))
+         {
+
+            //return pcursor;
+
+         }
+         else
+         {
+
+
             {
 
                //return pcursor;
 
             }
-            else
-            {
 
-               
-               {
+            //return nullptr;
 
-                  //return pcursor;
+         }
 
-               }
+      }//);
 
-               //return nullptr;
-
-            }
-
-         }//);
+      }
 
       return pcursor;
 

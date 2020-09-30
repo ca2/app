@@ -2122,7 +2122,7 @@ namespace user
    void interaction::_001OnClip(::draw2d::graphics_pointer & pgraphics)
    {
 
-#if defined(MACOS) || defined(LINUX)
+#if defined(MACOS) || defined(LINUX) || defined(_UWP)
 
       return;
 

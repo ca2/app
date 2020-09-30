@@ -3,6 +3,8 @@
 #include "_uwp.h"
 
 
+::size winrt_get_big_back_buffer_size();
+
 using namespace Windows::UI::Core;
 using namespace Windows::Foundation;
 using namespace Microsoft::WRL;
@@ -396,7 +398,7 @@ namespace uwp
 
       if(m_swapChain != nullptr)
       {
-
+         return;
          ID3D11RenderTargetView * nullViews[] = { nullptr };
          m_d3dContext->OMSetRenderTargets(ARRAYSIZE(nullViews), nullViews, nullptr);
          m_d3dRenderTargetView = nullptr;
@@ -453,10 +455,12 @@ namespace uwp
       }
       else
       {
+
+         m_sizeBuffer = winrt_get_big_back_buffer_size();
          // Otherwise, create a new one using the same adapter as the existing Direct3D device.
          DXGI_SWAP_CHAIN_DESC1 swapChainDesc = {0};
-         swapChainDesc.Width = m_size.cx;                                     // Use automatic sizing.
-         swapChainDesc.Height = m_size.cy;
+         swapChainDesc.Width = m_sizeBuffer.cx;                                     // Use automatic sizing.
+         swapChainDesc.Height = m_sizeBuffer.cy;
          swapChainDesc.Format = DXGI_FORMAT_B8G8R8A8_UNORM;           // This is the most common __swap chain format.
          swapChainDesc.Stereo = false;
          swapChainDesc.SampleDesc.Count = 1;                          // Don't use multi-sampling.

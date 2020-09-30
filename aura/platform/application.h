@@ -1409,6 +1409,8 @@ namespace aura
       virtual string sound_path(const char* psz) override;
       virtual string get_default_playlist_path() override;
 
+      virtual icon_result load_icon(const ::var& varFile);
+
 
    };
 

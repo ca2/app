@@ -25,7 +25,7 @@ public:
    virtual ::image_result load_thumbnail(const ::var & varFile, int w, int h);
    virtual ::image_result load_thumbnail(const string & strPath);
    virtual ::image_result load_dib(const ::file::path & pathDib);
-   virtual ::icon_result load_icon(const ::var & varFile);
+   //virtual ::icon_result load_icon(const ::var & varFile);
 
 
    virtual ::estatus _get_image(image * pimage, const ::var & varFile, bool bSync = true);

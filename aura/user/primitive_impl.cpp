@@ -1089,7 +1089,7 @@ namespace user
    bool primitive_impl::SetCapture(::user::interaction * pinteraction)
    {
 
-      return get_wnd()->SetCapture(pinteraction);
+      return get_host_wnd()->SetCapture(pinteraction);
 
    }
 
@@ -1114,7 +1114,7 @@ namespace user
    bool primitive_impl::ReleaseCapture()
    {
 
-      return get_wnd()->ReleaseCapture();
+      return get_host_wnd()->ReleaseCapture();
 
    }
 
@@ -1333,7 +1333,7 @@ namespace user
    bool primitive_impl::mouse_hover_remove(::user::interaction * pinterface)
    {
 
-      ::user::interaction * pinteraction = get_wnd();
+      ::user::interaction * pinteraction = get_host_wnd();
 
       if (pinteraction != nullptr)
       {
@@ -1594,7 +1594,7 @@ namespace user
 
       }
 
-      __pointer(::user::interaction) pinteraction = m_puserinteraction->get_wnd();
+      __pointer(::user::interaction) pinteraction = m_puserinteraction->get_host_wnd();
 
       if (pinteraction.is_null())
       {

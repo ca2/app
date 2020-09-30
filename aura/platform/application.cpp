@@ -11976,6 +11976,54 @@ namespace aura
    }
 
 
+   icon_result application::load_icon(const ::var& varFile)
+   {
+
+#ifdef WINDOWS_DESKTOP
+
+      string_array straMatter;
+
+      straMatter.add("main");
+
+      if (::is_set(get_context_application()))
+      {
+
+         straMatter.add(get_context_application()->m_straMatterLocator);
+
+      }
+
+      HICON hicon = ::load_icon(this, straMatter, "icon.ico", 24, 24);
+
+      if (hicon == nullptr)
+      {
+
+         return ::error_failed;
+
+      }
+
+      auto picon = __create_new < ::draw2d::icon >();
+
+      if (!picon)
+      {
+
+         return ::error_failed;
+
+      }
+
+      picon->attach_os_data(hicon);
+
+      return picon;
+
+#else
+
+      return ::success;
+
+#endif
+
+   }
+
+
+
 } // namespace aura
 
 

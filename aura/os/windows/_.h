@@ -42,4 +42,7 @@
 //#include "api.h"
 
 
+CLASS_DECL_AURA int_bool get_cursor_pos(LPPOINT ppoint);
+
+
 

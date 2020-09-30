@@ -53,4 +53,5 @@ WINBOOL get_uiwindow_rect(oswindow hwnd, LPRECT lprect);
 
 
 WINBOOL set_nswindow_frame(oswindow hwnd, LPCRECT prect, int iDisplay);
+WINBOOL size_nswindow(oswindow hwnd, int cx, int cy);
 WINBOOL move_nswindow(oswindow hwnd, int x, int y);

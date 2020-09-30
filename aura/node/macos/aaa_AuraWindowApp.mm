@@ -10,7 +10,7 @@
 
 #include "aura/user/menu_shared.h"
 
-bool on_application_menu_action(const char * pszCommand);int file_put_contents_dup(const char * path, const char * contents);
+bool on_application_menu_action(const char * pszCommand);int file_put_contents(const char * path, const char * contents);
 void file_add_contents_raw(const char * path, const char * psz);
 i32 defer_run_system();
 u32 __start_system_with_file(const char * pszFileName);
@@ -218,7 +218,7 @@ NSAppleEventManager *appleEventManager = [NSAppleEventManager sharedAppleEventMa
 - (BOOL)applicationOpenUntitledFile:(NSApplication *)sender
 {
    
-   file_put_contents_dup("/eco/001.txt", "applicationOpenUntitledFile");
+   file_put_contents("/eco/001.txt", "applicationOpenUntitledFile");
    //MessageBox(NULL, "applicationOpenUntitledFile", "applicationOpenUntitledFile", MB_OK);
    
    defer_run_system();
@@ -234,8 +234,8 @@ NSAppleEventManager *appleEventManager = [NSAppleEventManager sharedAppleEventMa
 - (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename
 {
    
-   file_put_contents_dup("/eco/002.txt", "applicationOpenFile");
-   file_put_contents_dup("/eco/003.txt", [filename UTF8String]);
+   file_put_contents("/eco/002.txt", "applicationOpenFile");
+   file_put_contents("/eco/003.txt", [filename UTF8String]);
 
    //MessageBox(NULL, "application: openFile", "application: openFile", MB_OK);
    
@@ -276,7 +276,7 @@ NSAppleEventManager *appleEventManager = [NSAppleEventManager sharedAppleEventMa
 }
 - (void)application:(NSApplication *)application open:(NSURL * )url
 {
-   file_put_contents_dup("/eco/006.txt", "open");
+   file_put_contents("/eco/006.txt", "open");
    file_add_contents_raw("/eco/006.txt", [[url absoluteString] UTF8String]);
    
    //MessageBox(NULL, "application: openFile", "application: openFile", MB_OK);
@@ -287,7 +287,7 @@ NSAppleEventManager *appleEventManager = [NSAppleEventManager sharedAppleEventMa
 - (BOOL)application:(id)sender
   openFileWithoutUI:(NSString *)filename;
 {
-   file_put_contents_dup("/eco/007.txt", "openFileWithoutUI");
+   file_put_contents("/eco/007.txt", "openFileWithoutUI");
    file_add_contents_raw("/eco/007.txt", [filename UTF8String]);
    
    //MessageBox(NULL, "application: openFile", "application: openFile", MB_OK);

@@ -83,4 +83,5 @@ WINBOOL cg_release_color(CGColorRef colorref);
 
 
 WINBOOL set_nswindow_frame(oswindow hwnd, const ::rect & rect, int iDisplay);
+WINBOOL size_nswindow(oswindow hwnd, int cx, int cy);
 WINBOOL move_nswindow(oswindow hwnd, int x, int y);

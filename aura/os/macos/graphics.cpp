@@ -695,40 +695,42 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 // }
 
 
-WINBOOL get_client_rect(oswindow hwnd, RECT * prect)
+//WINBOOL get_client_rect(oswindow hwnd, RECT * prect)
+//{
+//   
+//   /*   XWindowAttributes attrs;
+//     Fill attribute structure with information about root window */
+//   /* if(XGetWindowAttributes(XOpenDisplay(nullptr), hwnd, &attrs) == 0)
+//    {
+//    return false;
+//    }
+//    prect->left      = 0;
+//
+//    prect->top       = 0;
+//
+//    prect->right     = prect->left    + attrs.width;
+//
+//    prect->bottom    = prect->top     + attrs.height;*/
+//
+//   if(!get_window_rect(hwnd, prect))
+//   {
+//      
+//      return FALSE;
+//      
+//   }
+//
+//   prect->right   -=  prect->left;
+//
+//   prect->bottom  -=  prect->top;
+//
+//   prect->left    =   0;
+//
+//   prect->top     =   0;
+//
+//   return TRUE;
+//
+//}
 
-{
-   /*   XWindowAttributes attrs;
-     Fill attribute structure with information about root window */
-   /* if(XGetWindowAttributes(XOpenDisplay(nullptr), hwnd, &attrs) == 0)
-    {
-    return false;
-    }
-    prect->left      = 0;
-
-    prect->top       = 0;
-
-    prect->right     = prect->left    + attrs.width;
-
-    prect->bottom    = prect->top     + attrs.height;*/
-
-
-   if(!get_window_rect(hwnd, prect))
-
-      return FALSE;
-
-   prect->right   -=  prect->left;
-
-   prect->bottom  -=  prect->top;
-
-   prect->left    =   0;
-
-   prect->top     =   0;
-
-
-   return TRUE;
-
-}
 
 //
 //WINBOOL get_window_rect(oswindow hwnd, RECT * prect)

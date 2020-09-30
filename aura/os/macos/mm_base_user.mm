@@ -68,6 +68,29 @@ WINBOOL move_nswindow(oswindow hwnd, int x, int y)
 }
 
 
+WINBOOL size_nswindow(oswindow hwnd, int cx, int cy)
+{
+   
+   ns_main_async(^
+              {
+                        
+                  CGRect rect;
+
+                  rect = [__nswindow(hwnd) frame];
+      
+                  rect.size.width = cx;
+      
+                  rect.size.height = cy;
+
+                  [__nswindow(hwnd) setFrame: rect display:TRUE];
+      
+              });
+   
+   return 1;
+   
+}
+
+
 WINBOOL make_key_and_order_front_nswindow(oswindow hwnd)
 {
 
@@ -280,14 +303,7 @@ WINBOOL SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int 
    else if(bSize)
    {
       
-      RECT rect;
-      
-      get_window_rect(hwnd, &rect);
-      
-      rect.right     = rect.left + cx;
-      rect.bottom    = rect.top + cy;
-      
-      set_nswindow_frame(hwnd, &rect, (uFlags & SWP_SHOWWINDOW) != 0);
+      size_nswindow(hwnd, cx, cy);
       
    }
    else if(bMove)

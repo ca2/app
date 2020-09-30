@@ -59,10 +59,10 @@ namespace user
    inline bool interaction_array::get_typed_child(CHILD*& pchild)
    {
 
-      for (i32 i = 0; i < this->get_size(); i++)
+      for (i32 i = 0; i < this->interaction_count(); i++)
       {
 
-         pchild = this->element_at(i).cast < CHILD >();
+         pchild = this->interaction_at(i).cast < CHILD >();
 
          if (pchild)
          {
@@ -73,10 +73,10 @@ namespace user
 
       }
 
-      for (i32 i = 0; i < this->get_size(); i++)
+      for (i32 i = 0; i < this->interaction_count(); i++)
       {
 
-         if (this->element_at(i)->get_typed_child(pchild))
+         if (this->interaction_at(i)->get_typed_child(pchild))
          {
 
             return true;

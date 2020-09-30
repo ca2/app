@@ -652,8 +652,9 @@ bool XfplayerViewLineSelection::OnTimer(xfplayer_view_line & viewline, UINT user
    {
       if(viewline.is_hover())
       {
-         ::point point;
-         GetCursorPos(&point);
+         
+         ::point point = Session.get_cursor_pos();
+         
          viewline.get_interaction()->_001ScreenToClient(point);
          viewline.update_hover(point);
          if(!viewline.is_hover())

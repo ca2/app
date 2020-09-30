@@ -176,7 +176,7 @@ CLASS_DECL_APEX string message_box_result_to_string(int iResult);
    
    string strResult = message_box_result_to_string(iResult);
 
-   future.receive_response(strResult);
+   future.send(strResult);
    
    return ::success;
    

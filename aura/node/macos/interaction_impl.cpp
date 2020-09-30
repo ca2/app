@@ -1252,8 +1252,12 @@ namespace macos
 
                   if (m_bScreenRelativeMouseMessagePosition)
                   {
+                     
+#ifndef __APPLE__
 
                      ::get_window_rect(get_handle(), &rect);
+                     
+#endif
 
                   }
                   else
@@ -3486,10 +3490,14 @@ namespace macos
    ::user::interaction *  interaction_impl::GetTopWindow()
    {
 
-      if (m_puserinteraction->m_uiptraChild.get_size() <= 0)
+      if (m_puserinteraction->m_uiptraChild.is_there_no_interaction())
+      {
+         
          return nullptr;
+         
+      }
 
-      return m_puserinteraction->m_uiptraChild[0];
+      return m_puserinteraction->m_uiptraChild.interaction_at(0);
 
    }
 

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 
@@ -110,8 +110,9 @@ CLASS_DECL_ACME int_bool file_put_contents(const char * path, const char * conte
 CLASS_DECL_ACME bool file_as_memory(memory_base & memory, const char * path, memsize iReadAtMostByteCount = -1);
 CLASS_DECL_ACME memsize file_as_memory(const char * path, void * p, memsize s);
 
+#ifdef WINDOWS
 CLASS_DECL_ACME filesize hfile_get_size(hfile h);
-
+#endif
 
 
 template < typename N > class numeric_array;

@@ -154,11 +154,11 @@ void ns_main_sync(dispatch_block_t block, unsigned int)
    
 }
 
-class generic;
+class elemental;
 
-CLASS_DECL_ACME ::estatus __call(::generic * prunnable);
+CLASS_DECL_ACME ::estatus __call(::elemental * prunnable);
 
-void main_async_runnable(::generic * prunnable)
+void main_async_runnable(::elemental * prunnable)
 {
    
    ns_main_async(^
@@ -173,7 +173,7 @@ void main_async_runnable(::generic * prunnable)
 }
 
 
-void _main_sync_runnable(::generic * prunnable, DWORD dwMillis)
+void _main_sync_runnable(::elemental * prunnable, DWORD dwMillis)
 {
    
    ns_main_sync(^

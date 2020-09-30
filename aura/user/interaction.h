@@ -215,7 +215,7 @@ namespace user
       class control_descriptor& descriptor();
       const class control_descriptor& descriptor() const;
 
-      ::user::interaction* get_host_wnd();
+      ::user::interaction* get_host_wnd() override;
 
       ::user::item* get_user_item(const ::user::item& item);
 

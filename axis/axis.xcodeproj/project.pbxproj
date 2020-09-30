@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A281A4F25243059009FA9CB /* libaqua.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A281A4E25243059009FA9CB /* libaqua.dylib */; };
 		9A4E5D4C2519375800CC6817 /* idpool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E5D4B2519375800CC6817 /* idpool.cpp */; };
 		9AD1183424F51CF500177261 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD1181924F51C3C00177261 /* libaura.dylib */; };
 		9AD126E824F5230A00177261 /* procedure.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD120B624F5230300177261 /* procedure.h */; };
@@ -355,6 +356,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9A281A4E25243059009FA9CB /* libaqua.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaqua.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4E5D4B2519375800CC6817 /* idpool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = idpool.cpp; sourceTree = "<group>"; };
 		9AD117DE24F51BA500177261 /* libaxis.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AD1181224F51C3B00177261 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../aura/aura.xcodeproj; sourceTree = "<group>"; };
@@ -648,6 +650,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A281A4F25243059009FA9CB /* libaqua.dylib in Frameworks */,
 				9AD19A392512CEFF00B4C44A /* libacme.dylib in Frameworks */,
 				9AD12C4A24F52DBC00177261 /* libpcre.tbd in Frameworks */,
 				9AD19A3B2512CEFF00B4C44A /* libapex.dylib in Frameworks */,
@@ -691,6 +694,7 @@
 		9AD1183324F51CF500177261 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A281A4E25243059009FA9CB /* libaqua.dylib */,
 				9AD19A372512CEFF00B4C44A /* libacme.dylib */,
 				9AD19A382512CEFF00B4C44A /* libapex.dylib */,
 				9AD12C4924F52DBC00177261 /* libpcre.tbd */,

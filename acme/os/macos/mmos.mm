@@ -234,7 +234,7 @@ bool mm2_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 }
 
 
--(void)runRunnableOnMainThread:(generic *)prunnable
+-(void)runRunnableOnMainThread:(elemental *)prunnable
 {
    
    [[self dd_invokeOnMainThread] runRunnable: prunnable];
@@ -242,7 +242,7 @@ bool mm2_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 }
 
 
--(void)runRunnable:(generic *)prunnable
+-(void)runRunnable:(elemental *)prunnable
 {
    
    prunnable->call();

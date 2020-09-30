@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A281A51252430CC009FA9CB /* libaqua.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A281A50252430CC009FA9CB /* libaqua.dylib */; };
 		9A389A3124F538B900185630 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A389A3024F538B900185630 /* AppKit.framework */; };
 		9A4E5C9E2519315800CC6817 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4E5C9D2519315800CC6817 /* libacme.dylib */; };
 		9A4E5CA02519315800CC6817 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4E5C9F2519315800CC6817 /* libapex.dylib */; };
@@ -250,6 +251,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9A281A50252430CC009FA9CB /* libaqua.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaqua.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A389A2A24F5385C00185630 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		9A389A2C24F5386D00185630 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9A389A2E24F5388800185630 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -484,6 +486,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A281A51252430CC009FA9CB /* libaqua.dylib in Frameworks */,
 				9A4E5C9E2519315800CC6817 /* libacme.dylib in Frameworks */,
 				9A4E5CA02519315800CC6817 /* libapex.dylib in Frameworks */,
 				9A389A3124F538B900185630 /* AppKit.framework in Frameworks */,
@@ -538,6 +541,7 @@
 		9AD1182F24F51CE500177261 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A281A50252430CC009FA9CB /* libaqua.dylib */,
 				9A4E5C9D2519315800CC6817 /* libacme.dylib */,
 				9A4E5C9F2519315800CC6817 /* libapex.dylib */,
 				9A389A3024F538B900185630 /* AppKit.framework */,

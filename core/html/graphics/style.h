@@ -6,7 +6,7 @@ namespace html
 {
 
    
-   class ::html::elemental;
+   class elemental;
 
    
    /*enum edisplay

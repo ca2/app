@@ -33,23 +33,29 @@ bool uiwindow_is_iconic(UIWindow * window)
 int move_nswindow(oswindow hwnd, int x, int y)
 {
    
-//   RECT rect;
-   
-//   get_nswindow_rect(hwnd, &rect);
-   
    CGPoint point;
    
    point.x = x;
    point.y = [[UIScreen mainScreen] applicationFrame].size.height - y;
    
-//   [hwnd->window() setFrameTopLeftPoint : point];
-   
    return 1;
-   
    
 }
 
 
+int size_nswindow(oswindow hwnd, int cx, int cy)
+{
+   
+   CGSize size;
+   
+   size.cx = cx;
+   size.cy = cy;
+   
+   //[hwnd->window() : point];
+   
+   return 1;
+   
+}
 
 
 void ns_redraw_window(oswindow w)

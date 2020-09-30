@@ -1986,10 +1986,10 @@ namespace filemanager
 
                sync_lock sl(mutex_draw());
 
-               if (filemanager_data()->m_pholderFileList->m_uiptraChild.get_size() > 0)
+               if (filemanager_data()->m_pholderFileList->m_uiptraChild.has_interaction())
                {
 
-                  filemanager_data()->m_pholderFileList->m_uiptraChild[0]->display(display_none);
+                  filemanager_data()->m_pholderFileList->m_uiptraChild.interaction_at(0)->display(display_none);
 
                }
 

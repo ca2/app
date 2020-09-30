@@ -7,11 +7,11 @@
 #pragma once
 
 
-CLASS_DECL_AURA WINBOOL get_client_rect(oswindow hwnd,LPRECT lprect);
+//CLASS_DECL_AURA WINBOOL get_client_rect(oswindow hwnd,LPRECT lprect);
 
-CLASS_DECL_AURA WINBOOL get_window_rect(oswindow hwnd,LPRECT lprect);
+//CLASS_DECL_AURA WINBOOL get_window_rect(oswindow hwnd,LPRECT lprect);
 
-CLASS_DECL_AURA WINBOOL get_cursor_pos(LPPOINT lppointCursor);
+//CLASS_DECL_AURA WINBOOL get_cursor_pos(LPPOINT lppointCursor);
 
 
 

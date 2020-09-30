@@ -171,12 +171,11 @@ CLASS_DECL_AURA string message_box_result_to_string(int iResult);
 ::estatus os_message_box(oswindow window, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, ::future future)
 {
    
-   
    int iResult = _os_message_box(window, pszMessage, pszTitle, emessagebox);
    
    string strResult = message_box_result_to_string(iResult);
 
-   future.receive_response(strResult);
+   future.send(strResult);
    
    return ::success;
    

@@ -111,12 +111,12 @@ namespace userex
 
          __pointer(::user::interaction) puiNext = m_pimpactdata->m_puserinteraction;
 
-         user::interaction_pointer_array wnda;
+         ::user::interaction_array uia;
 
          while(true)
          {
 
-            wnda.add(pinteraction);
+            uia.add_interaction(pinteraction);
 
             puiNext = pinteraction->GetParent();
 
@@ -131,13 +131,11 @@ namespace userex
 
          }
 
-         pinteraction = wnda[wnda.get_size() + m_pimpactdata->m_iExtendOnParent];
+         pinteraction = uia.interaction_at(uia.interaction_count() + m_pimpactdata->m_iExtendOnParent);
 
          pinteraction->get_window_rect(prect);
 
-
          _001ScreenToClient(prect);
-
 
       }
 

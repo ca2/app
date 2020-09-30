@@ -175,7 +175,6 @@
 		9A68BC4A2511444E008DABD2 /* email.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B5432511444A008DABD2 /* email.cpp */; };
 		9A68BC4B2511444E008DABD2 /* email_address.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B5442511444A008DABD2 /* email_address.cpp */; };
 		9A68BC4C2511444E008DABD2 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B5452511444A008DABD2 /* _.h */; };
-		9A68BC6A2511444E008DABD2 /* new.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B56E2511444A008DABD2 /* new.cpp */; };
 		9A68BC6B2511444E008DABD2 /* library.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B5742511444A008DABD2 /* library.h */; };
 		9A68BC6C2511444E008DABD2 /* astr.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B5762511444A008DABD2 /* astr.h */; };
 		9A68BC6D2511444E008DABD2 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B5772511444A008DABD2 /* framework.cpp */; };
@@ -1539,7 +1538,6 @@
 		9AD695A6251A754800C0EBD7 /* initializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B46D2511444A008DABD2 /* initializer.cpp */; };
 		9AD695A7251A754800C0EBD7 /* language.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B8612511444C008DABD2 /* language.cpp */; };
 		9AD695A8251A754800C0EBD7 /* pthread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B79F2511444B008DABD2 /* pthread.cpp */; };
-		9AD695A9251A754800C0EBD7 /* new.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B56E2511444A008DABD2 /* new.cpp */; };
 		9AD695AA251A754800C0EBD7 /* item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B67F2511444B008DABD2 /* item.cpp */; };
 		9AD695AB251A754800C0EBD7 /* selection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B4252511444A008DABD2 /* selection.cpp */; };
 		9AD695AC251A754800C0EBD7 /* os_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B9EF2511444C008DABD2 /* os_context.cpp */; };
@@ -1799,7 +1797,6 @@
 		9A68B5432511444A008DABD2 /* email.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = email.cpp; sourceTree = "<group>"; };
 		9A68B5442511444A008DABD2 /* email_address.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = email_address.cpp; sourceTree = "<group>"; };
 		9A68B5452511444A008DABD2 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
-		9A68B56E2511444A008DABD2 /* new.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = new.cpp; sourceTree = "<group>"; };
 		9A68B56F2511444A008DABD2 /* cube_new.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube_new.inl; sourceTree = "<group>"; };
 		9A68B5702511444A008DABD2 /* new.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = new.inl; sourceTree = "<group>"; };
 		9A68B5742511444A008DABD2 /* library.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = library.h; sourceTree = "<group>"; };
@@ -2888,7 +2885,6 @@
 		9A68B56D2511444A008DABD2 /* asset */ = {
 			isa = PBXGroup;
 			children = (
-				9A68B56E2511444A008DABD2 /* new.cpp */,
 				9A68B56F2511444A008DABD2 /* cube_new.inl */,
 				9A68B5702511444A008DABD2 /* new.inl */,
 			);
@@ -5295,7 +5291,6 @@
 				9A68BB832511444E008DABD2 /* initializer.cpp in Sources */,
 				9A68BF062511444F008DABD2 /* language.cpp in Sources */,
 				9A68BE4B2511444F008DABD2 /* pthread.cpp in Sources */,
-				9A68BC6A2511444E008DABD2 /* new.cpp in Sources */,
 				9A68BD5A2511444F008DABD2 /* item.cpp in Sources */,
 				9A68BB542511444D008DABD2 /* selection.cpp in Sources */,
 				9A68C05D25114450008DABD2 /* os_context.cpp in Sources */,
@@ -5608,7 +5603,6 @@
 				9AD695A6251A754800C0EBD7 /* initializer.cpp in Sources */,
 				9AD695A7251A754800C0EBD7 /* language.cpp in Sources */,
 				9AD695A8251A754800C0EBD7 /* pthread.cpp in Sources */,
-				9AD695A9251A754800C0EBD7 /* new.cpp in Sources */,
 				9AD695AA251A754800C0EBD7 /* item.cpp in Sources */,
 				9AD695AB251A754800C0EBD7 /* selection.cpp in Sources */,
 				9AD695AC251A754800C0EBD7 /* os_context.cpp in Sources */,

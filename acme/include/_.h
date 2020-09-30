@@ -317,8 +317,8 @@ CLASS_DECL_ACME enum_platform_level get_platform_level();
 #define DOUBLEABS(d) (((d) >= 0.0) ? (d) : (-d))
 
 
-//#define MIN(a, b) (((a) < (b)) ? (a) : (b))
-//#define MAX(a, b) (((b) < (a)) ? (a) : (b))
+#define MIN(a, b) (((a) < (b)) ? (a) : (b))
+#define MAX(a, b) (((b) < (a)) ? (a) : (b))
 
 
 #ifdef __cplusplus

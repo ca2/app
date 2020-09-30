@@ -1009,9 +1009,6 @@
     <ClCompile Include="os\uwp\direct2d_tls.cpp">
       <Filter>Source Files\os\uwp</Filter>
     </ClCompile>
-    <ClCompile Include="os\uwp\dpi.cpp">
-      <Filter>Source Files\os\uwp</Filter>
-    </ClCompile>
     <ClCompile Include="os\uwp\dummy_ipc.cpp">
       <Filter>Source Files\os\uwp</Filter>
     </ClCompile>

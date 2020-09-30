@@ -2897,31 +2897,31 @@ namespace draw2d
 //#include "aura/multithreading/_.h"
 
 
-namespace aura
-{
-
-#if defined _UWP && defined(__cplusplus_winrt)
-
-   interface class system_window
-   {
-
-   
-      virtual Windows::Foundation::Rect get_window_rect() = 0;
-      virtual Windows::Foundation::Point get_cursor_pos() = 0;
-
-   };
-
-   CLASS_DECL_AURA bool get_window_rect(system_window ^ pwindow, RECTD * prect);
-
-   CLASS_DECL_AURA bool get_window_rect(system_window ^ pwindow, RECT * prect);
-
-
-#endif
-
-
-   class session;
-
-} // namespace aura
+//namespace aura
+//{
+//
+//#if defined _UWP && defined(__cplusplus_winrt)
+//
+//   interface class system_window
+//   {
+//
+//   
+//      virtual Windows::Foundation::Rect get_window_rect() = 0;
+//      virtual Windows::Foundation::Point get_cursor_pos() = 0;
+//
+//   };
+//
+//   CLASS_DECL_AURA bool get_window_rect(system_window ^ pwindow, RECTD * prect);
+//
+//   CLASS_DECL_AURA bool get_window_rect(system_window ^ pwindow, RECT * prect);
+//
+//
+//#endif
+//
+//
+//   class session;
+//
+//} // namespace aura
 
 
 #if defined _UWP

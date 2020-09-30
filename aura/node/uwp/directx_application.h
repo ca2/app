@@ -38,7 +38,7 @@ namespace uwp
 
       //::aura::application *                     m_papp;
 
-      __pointer(directx_interaction)            m_pdxi;
+      __pointer(directx_interaction)            m_pdxinteraction;
 
       bool                                      m_bLeftButton;
 
@@ -51,7 +51,10 @@ namespace uwp
       Windows::Foundation::Rect                 m_rectInputSelectionRect;
 
 
-      directx_application(::aura::system * psystem,String ^ strId);
+      directx_application();
+
+
+      virtual ::estatus initialize_directx_application(::aura::system* psystem, String^ strId);
 
 
       void install_directx_application_message_routing();

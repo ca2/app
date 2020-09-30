@@ -999,21 +999,7 @@ namespace aura
 
       //}
 
-#ifdef LINUX
-
       os_post_quit();
-
-#elif defined(__APPLE__)
-
-      os_post_quit();
-
-#endif
-
-#ifndef WINDOWS
-
-      exception::translator::detach();
-
-#endif
 
    }
 
@@ -3401,24 +3387,26 @@ namespace aura
    __result(::apex::session) system::on_create_session(index iEdge)
    {
 
-      __pointer(::apex::session) psession;
+      return ::aqua::system::on_create_session(iEdge);
 
-      auto estatus = __construct(psession);
+      //__pointer(::apex::session) psession;
 
-      if (!estatus)
-      {
+      //auto estatus = __construct(psession);
 
-         return estatus;
+      //if (!estatus)
+      //{
 
-      }
+      //   return estatus;
 
-      psession->set_context_system(this);
+      //}
 
-      set_context_session(psession);
+      //psession->set_context_system(this);
 
-      psession->m_iEdge = iEdge;
+      //set_context_session(psession);
 
-      return psession;
+      //psession->m_iEdge = iEdge;
+
+      //return psession;
 
    }
 
@@ -4097,49 +4085,49 @@ namespace aura
 
 #endif
 
-#ifdef _UWP
-
-
-
-   CLASS_DECL_AURA bool get_window_rect(::aura::system_window ^ pwindow, RECTD * prect)
-
-   {
-
-      Windows::Foundation::Rect rect = pwindow->get_window_rect();
-
-      prect->left = rect.X;
-
-      prect->top = rect.Y;
-
-      prect->right = prect->left + rect.Width;
-
-      prect->bottom = prect->top + rect.Height;
-
-
-      return true;
-   }
-
-
-   CLASS_DECL_AURA bool get_window_rect(::aura::system_window ^ pwindow, RECT * prect)
-   {
-
-      ::rectd rect;
-
-      if (!get_window_rect(pwindow, (RECTD*)rect))
-      {
-
-         return false;
-
-      }
-
-      ::copy(prect, rect);
-
-      return true;
-
-   }
-
-
-#endif
+//#ifdef _UWP
+//
+//
+//
+//   CLASS_DECL_AURA bool get_window_rect(::aura::system_window ^ pwindow, RECTD * prect)
+//
+//   {
+//
+//      Windows::Foundation::Rect rect = pwindow->get_window_rect();
+//
+//      prect->left = rect.X;
+//
+//      prect->top = rect.Y;
+//
+//      prect->right = prect->left + rect.Width;
+//
+//      prect->bottom = prect->top + rect.Height;
+//
+//
+//      return true;
+//   }
+//
+//
+//   CLASS_DECL_AURA bool get_window_rect(::aura::system_window ^ pwindow, RECT * prect)
+//   {
+//
+//      ::rectd rect;
+//
+//      if (!get_window_rect(pwindow, (RECTD*)rect))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      ::copy(prect, rect);
+//
+//      return true;
+//
+//   }
+//
+//
+//#endif
 
 
 
@@ -4765,7 +4753,9 @@ namespace aura
 
 #ifdef _UWP
 
-         __pointer(::uwp::interaction_impl) pimpl = Session.m_puiHost->m_pimpl;
+         auto puiHost = __user_interaction(Session.m_puiHost);
+
+         __pointer(::uwp::interaction_impl) pimpl = puiHost->m_pimpl;
 
          if (pimpl.is_set())
          {

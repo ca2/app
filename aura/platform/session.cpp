@@ -4149,7 +4149,9 @@ ret:
 
       ::user::create_struct cs(0, nullptr, nullptr, WS_VISIBLE, rectScreen);
 
-      if (!m_puiHost->create_window_ex(cs))
+      auto puiHost = __user_interaction(m_puiHost);
+
+      if (!puiHost->create_window_ex(cs))
       {
 
          return ::error_failed;

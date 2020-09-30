@@ -496,7 +496,7 @@ namespace imaging_wic
 #ifdef _UWP
 
 
-   bool node_save_image(::Windows::Storage::Streams::InMemoryRandomAccessStream ^ randomAccessStream, const ::image * pimage, ::save_image * psaveimage)
+   bool node_save_image(::Windows::Storage::Streams::InMemoryRandomAccessStream ^ randomAccessStream, const ::image * pimage, const ::save_image * psaveimage)
    {
 
       comptr < IStream > pstream;

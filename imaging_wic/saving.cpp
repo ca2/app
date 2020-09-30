@@ -352,12 +352,11 @@ namespace imaging_wic
 
 #ifdef _UWP
 
-   bool node_save_image(Windows::Storage::Streams::IRandomAccessStream ^ stream, const ::image * pimage, ::save_image * psaveimage)
+
+   bool node_save_image(Windows::Storage::Streams::IRandomAccessStream ^ stream, const ::image * pimage, const ::save_image * psaveimage)
    {
 
       Windows::Storage::Streams::InMemoryRandomAccessStream ^ randomAccessStream = ref new Windows::Storage::Streams::InMemoryRandomAccessStream();
-
-      //::wait(randomAccessStream->WriteAsync(get_os_buffer()));
 
       comptr < IStream > pstream;
 
@@ -365,16 +364,10 @@ namespace imaging_wic
 
       return node_save_image(pstream, pimage, psaveimage);
 
-
    }
 
+
 #endif
-
-
-
-
-
-
 
 
 } // namespace imaging_wic

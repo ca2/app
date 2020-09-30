@@ -56,6 +56,12 @@ namespace user
 
       m_ewindowflag += window_flag_enable | window_flag_graphical;
 
+      //#ifdef __APPLE__
+
+      //m_puserinteraction->m_ewindowflag |= window_flag_postpone_visual_update;
+
+      //#endif
+
       m_bFocus = false;
 
       m_bParentScroll = true;
@@ -192,6 +198,33 @@ namespace user
    {
 
       return *m_pdescriptor;
+
+   }
+
+
+   ::user::interaction* interaction::get_host_wnd()
+   {
+
+      if (get_context_session() == nullptr
+         || get_context_session()->m_paurasession == nullptr)
+      {
+
+         return nullptr;
+
+      }
+
+      if (get_context_session()->m_paurasession->m_puiHost)
+      {
+
+         return __user_interaction(get_context_session()->m_paurasession->m_puiHost);
+
+      }
+      else
+      {
+
+         return get_wnd();
+
+      }
 
    }
 
@@ -588,7 +621,7 @@ namespace user
 
       }
 
-      auto* pinteraction = get_wnd();
+      auto* pinteraction = get_host_wnd();
 
       if (::is_null(pinteraction))
       {
@@ -1082,7 +1115,7 @@ namespace user
       else if (edisplay == display_zoomed)
       {
 
-         output_debug_string("display_zoomed");
+         output_debug_string("\ndisplay_zoomed\n");
 
 #ifdef INFO_LAYOUT_DISPLAY
 
@@ -4692,7 +4725,7 @@ namespace user
          if (puiParent == nullptr && Session.m_puiHost.is_set() && Session.m_puiHost != this)
          {
 
-            puiParent = Session.m_puiHost;
+            puiParent = __user_interaction(Session.m_puiHost);
 
          }
 
@@ -4827,10 +4860,12 @@ namespace user
 
          //}
 
-         if (puiParent == nullptr && this != Session.m_puiHost && Session.m_puiHost.is_set())
+         auto puiHost = Session.m_puiHost;
+
+         if (puiParent == nullptr && this != puiHost && ::is_set(puiHost))
          {
 
-            puiParent = Session.m_puiHost;
+            puiParent = __user_interaction(Session.m_puiHost);
 
          }
 
@@ -4878,7 +4913,7 @@ namespace user
             if (puiParent == nullptr && this != Session.m_puiHost && Session.m_puiHost.is_set())
             {
 
-               puiParent = Session.m_puiHost;
+               puiParent = __user_interaction(Session.m_puiHost);
 
             }
 
@@ -7887,6 +7922,8 @@ namespace user
          if (!bLayoutReady)
          {
 
+            output_debug_string("LAYOUT NOT READY\n");
+
             return;
 
          }
@@ -7895,6 +7932,8 @@ namespace user
 
          if (!bLayoutModified)
          {
+
+            output_debug_string("LAYOUT NOT MODIFIED\n");
 
             return;
 
@@ -7909,6 +7948,12 @@ namespace user
       {
 
          //output_debug_string("albertopibiri_keyboard::main_frame");
+
+      }
+      else if (strType.contains("main_frame"))
+      {
+
+         output_debug_string("main_frame");
 
       }
       else if (strType.contains("combo_box"))

@@ -33,6 +33,8 @@ namespace base
 simple_frame_window::simple_frame_window()
 {
 
+   m_bFramePayloadFlags = false;
+
    m_bProdevianFrame = true;
 
    m_etranslucencyFrame = ::user::translucency_present;
@@ -674,7 +676,7 @@ void simple_frame_window::_001OnCreate(::message::message * pmessage)
 
    }
 
-   //if (m_bWindowFrame)
+   if (m_bWindowFrame || m_bFramePayloadFlags)
    {
 
       if (!(m_ewindowflag & window_flag_window_created))
@@ -2146,13 +2148,6 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
 
       //on_frame_position();
 
-      if(GetParent() == nullptr)
-      {
-
-         set_need_redraw();
-
-      }
-
    }
    catch(...)
    {
@@ -2164,6 +2159,21 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
    //set_need_redraw();
 
    output_debug_string("\nm_bLayoutEnable TRUE");
+
+   if (GetParent() == nullptr || is_host_top_level())
+   {
+
+      set_need_layout();
+
+      set_need_redraw();
+
+      set_layout_ready();
+
+      post_redraw();
+
+      output_debug_string("\nframe_window::POST_READRAW\n");
+
+   }
 
 }
 

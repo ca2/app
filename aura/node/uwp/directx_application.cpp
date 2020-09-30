@@ -31,7 +31,13 @@ namespace uwp
 {
 
 
-   directx_application::directx_application(::aura::system * psystem, ::String ^ strId)
+   directx_application::directx_application()
+   {
+
+   }
+      
+    
+   ::estatus directx_application::initialize_directx_application(::aura::system * psystem, String ^ strId)
    {
 
       draw2d_direct2d::defer_direct2d_initialize();
@@ -56,7 +62,11 @@ namespace uwp
       if (!main_initialize())
       {
 
-         __throw(::exception::exception("Failed to run main_initialize at directx_application constructor."));
+         ::output_debug_string("Failed to run main_initialize at directx_application constructor.");
+
+         //__throw(::exception::exception("Failed to run main_initialize at directx_application constructor.")
+
+         return ::error_failed;
 
       }
 
@@ -64,7 +74,16 @@ namespace uwp
 
 //      psystem->get_context_session()->m_directxapplication = this;
 
-      m_pdxi = __new(directx_interaction);
+      auto estatus = __construct_new(m_pdxinteraction);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 
@@ -89,7 +108,7 @@ namespace uwp
 
       }
 
-      auto estatus = m_pdxi->initialize(m_psystem);
+      auto estatus = m_pdxinteraction->initialize(m_psystem);
 
       if (!estatus)
       {
@@ -98,9 +117,11 @@ namespace uwp
 
       }
 
-      m_psystem->get_context_session()->m_paurasession->m_directxapplication = this;
+      auto psession = m_psystem->get_context_session()->m_paurasession;
 
-      m_psystem->get_context_session()->m_puiHost = m_pdxi;
+      psession->m_paurasession->m_directxapplication = this;
+
+      psession->m_puiHost = m_pdxinteraction;
 
       m_directx->defer_init();
 
@@ -108,7 +129,7 @@ namespace uwp
 
       ::user::create_struct cs;
 
-      auto puiHost = __user_interaction(m_psystem->get_context_session()->m_puiHost);
+      auto puiHost = __user_interaction(psession->m_puiHost);
 
       if (!puiHost->create_window_ex(cs))
       {
@@ -119,7 +140,7 @@ namespace uwp
 
       }
 
-      auto puserinteraction = m_pdxi;
+      auto puserinteraction = m_pdxinteraction;
 
       auto pimpl = puiHost->m_pimpl;
 
@@ -135,13 +156,13 @@ namespace uwp
 
 
 
-      puserinteraction->display(display_normal);
+      //puserinteraction->display(display_normal);
 
-      puserinteraction->set_need_layout();
+      //puserinteraction->set_need_layout();
 
-      puserinteraction->set_need_redraw();
+      //puserinteraction->set_need_redraw();
 
-      puserinteraction->post_redraw();
+      //puserinteraction->post_redraw();
 
 
    }
@@ -214,7 +235,13 @@ namespace uwp
 
       m_rectLastWindowRect = m_window->Bounds;
 
-      auto puiHost = __user_interaction(::get_context_system()->get_context_session()->m_puiHost);
+      auto psystem = ::get_context_system();
+
+      auto psession = psystem->get_context_session();
+
+      auto phost = psession->m_puiHost;
+
+      auto puiHost = __user_interaction(phost);
 
       puiHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen.left = 0;
       puiHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen.top = 0;
@@ -255,6 +282,8 @@ namespace uwp
    void directx_application::OnWindowSizeChanged(CoreWindow ^ sender, WindowSizeChangedEventArgs ^ args)
    {
 
+
+
       m_directx->m_size.set_size((i32) args->Size.Width, (i32)args->Size.Height);
 
       m_rectLastWindowRect.Width = (float) m_directx->m_size.cx;
@@ -262,6 +291,18 @@ namespace uwp
       m_rectLastWindowRect.Height = (float) m_directx->m_size.cy;
 
       m_directx->OnWindowSizeChange();
+
+      //{
+
+      //   auto puiHost = Sess(m_psystem).host();
+
+      //   puiHost->set_need_layout();
+
+      //   puiHost->set_need_redraw();
+
+      //   puiHost->post_redraw();
+
+      //}
 
    }
 
@@ -325,6 +366,17 @@ namespace uwp
 
       }
 
+      //{
+
+      //   auto puiHost = Sess(m_psystem).host();
+
+      //   puiHost->set_need_layout();
+
+      //   puiHost->set_need_redraw();
+
+      //   puiHost->post_redraw();
+
+      //}
 
    }
 
@@ -526,6 +578,22 @@ namespace uwp
 
          }
 
+         //{
+
+         //   __pointer(::user::interaction) pframe;
+
+         //   auto& app = App(m_psystem);
+         //   
+         //   //app.get_frame(pframe);
+
+         //   //pframe->set_need_layout();
+
+         //   //pframe->set_need_redraw();
+
+         //   //pframe->post_redraw();
+
+         //}
+
       }
 
    }
@@ -543,7 +611,16 @@ namespace uwp
       if(m_psystem == nullptr)
          return;
 
-      if(m_psystem->get_context_session()->m_puiHost == nullptr)
+      auto pcontextsession = m_psystem->get_context_session();
+
+      if (::is_null(pcontextsession))
+      {
+
+         return;
+
+      }
+
+      if(pcontextsession->m_puiHost == nullptr)
          return;
 
       auto puiHost = __user_interaction(m_psystem->get_context_session()->m_puiHost);
@@ -727,7 +804,11 @@ namespace uwp
    Windows::ApplicationModel::Core::IFrameworkView^ directx_application_source::CreateView()
    {
 
-      return ref new directx_application(m_psystem,m_strId);
+      auto papp =  ref new directx_application;
+
+      papp->initialize_directx_application(m_psystem, m_strId);
+
+      return papp;
 
    }
 

@@ -599,6 +599,7 @@ namespace apex
       // apex commented
       //virtual ::color get_color(::user::e_element eelement, ::user::estate estate);
 
+      inline ::user::interaction* host() { return __user_interaction(m_puiHost); }
 
    };
 

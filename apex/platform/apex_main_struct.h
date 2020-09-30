@@ -25,6 +25,7 @@ typedef NEW_APEX_APPLICATION* PFN_NEW_APEX_APPLICATION;
 struct CLASS_DECL_APEX apex_main_struct
 {
 
+   ::set                         m_bLocalization;
    ::set                         m_bConsole;
    ::set                         m_bDraw2d;
    ::set                         m_bUser;
@@ -78,8 +79,8 @@ struct CLASS_DECL_APEX apex_main_struct
       m_pfnNewAuraApplication = nullptr;
       m_pfnNewAuraLibrary = nullptr;
       
-      
    }
+
 
    apex_main_struct & operator = (const apex_main_struct & mainstruct)
    {

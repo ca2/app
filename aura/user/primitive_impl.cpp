@@ -1319,7 +1319,7 @@ namespace user
    void primitive_impl::mouse_hover_add(::user::interaction * pinterface)
    {
 
-      ::user::interaction * pinteraction = get_wnd();
+      ::user::interaction * pinteraction = get_host_wnd();
 
       if (pinteraction != nullptr)
       {

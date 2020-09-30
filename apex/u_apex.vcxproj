@@ -1338,7 +1338,6 @@
     <ClCompile Include="os\uwp\application_system_run.cpp" />
     <ClCompile Include="os\uwp\apex.cpp" />
     <ClCompile Include="os\uwp\direct2d_tls.cpp" />
-    <ClCompile Include="os\uwp\dpi.cpp" />
     <ClCompile Include="os\uwp\dummy_ipc.cpp" />
     <ClCompile Include="os\uwp\language.cpp" />
     <ClCompile Include="os\uwp\launcher.cpp" />

@@ -669,6 +669,8 @@ namespace uwp
       virtual bool is_active() override;
 
 
+      virtual void _001UpdateScreen() override;
+
       void _001OnTriggerMouseInside();
 
 

@@ -9,8 +9,6 @@ namespace uwp
    directx_interaction::directx_interaction()
    {
 
-      
-
    }
 
 

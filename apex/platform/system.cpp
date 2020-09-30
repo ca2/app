@@ -4288,49 +4288,49 @@ namespace apex
 
 #endif
 
-#ifdef _UWP
-
-
-
-   CLASS_DECL_APEX bool get_window_rect(::apex::system_window ^ pwindow, RECTD * prect)
-
-   {
-
-      Windows::Foundation::Rect rect = pwindow->get_window_rect();
-
-      prect->left = rect.X;
-
-      prect->top = rect.Y;
-
-      prect->right = prect->left + rect.Width;
-
-      prect->bottom = prect->top + rect.Height;
-
-
-      return true;
-   }
-
-
-   CLASS_DECL_APEX bool get_window_rect(::apex::system_window ^ pwindow, RECT * prect)
-   {
-
-      ::rectd rect;
-
-      if (!get_window_rect(pwindow, (RECTD*)rect))
-      {
-
-         return false;
-
-      }
-
-      ::copy(prect, rect);
-
-      return true;
-
-   }
-
-
-#endif
+//#ifdef _UWP
+//
+//
+//
+//   CLASS_DECL_APEX bool get_window_rect(::apex::system_window ^ pwindow, RECTD * prect)
+//
+//   {
+//
+//      Windows::Foundation::Rect rect = pwindow->get_window_rect();
+//
+//      prect->left = rect.X;
+//
+//      prect->top = rect.Y;
+//
+//      prect->right = prect->left + rect.Width;
+//
+//      prect->bottom = prect->top + rect.Height;
+//
+//
+//      return true;
+//   }
+//
+//
+//   CLASS_DECL_APEX bool get_window_rect(::apex::system_window ^ pwindow, RECT * prect)
+//   {
+//
+//      ::rectd rect;
+//
+//      if (!get_window_rect(pwindow, (RECTD*)rect))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      ::copy(prect, rect);
+//
+//      return true;
+//
+//   }
+//
+//
+//#endif
 
 
 
@@ -4473,8 +4473,6 @@ namespace apex
       return false;
 
 #elif MOBILE_PLATFORM
-
-      //get_context_session()->m_puiHost->get_window_rect(prect);
 
       GetMainScreenRect(prect);
 
@@ -4916,31 +4914,7 @@ namespace apex
    void system::on_initial_frame_position(::user::frame * pframe)
    {
 
-//      if(has_property("client_only"))
-//      {
-//
-//#ifdef _UWP
-//
-//         __pointer(::uwp::interaction_impl) pimpl = Session.m_puiHost->m_pimpl;
-//
-//         if (pimpl.is_set())
-//         {
-//
-//            pimpl->m_directxapplication->m_directx->UpdateForWindowSizeChange();
-//
-//         }
-//
-//#endif
-
-//      }
-
    }
-
-
-   //void system::on_graphics_ready()
-   //{
-
-   //}
 
 
    void system::__tracea(::elemental * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
@@ -7342,40 +7316,12 @@ namespace apex
 
       }
 
-      //try
-      //{
-
-      //   if (::is_null(get_context_session()->m_puiHost))
-      //   {
-
-      //      return false;
-
-      //   }
-
-      //   get_context_session()->m_puiHost->get_window_rect(prect);
-
-      //}
-      //catch (...)
-      //{
-
-      //   return false;
-
-      //}
-
       return true;
 
    }
 
 
 #endif
-
-
-   //::estatus     system::do_request(::create* pcreate)
-   //{
-
-   //   return apex::system::do_request(pcreate);
-
-   //}
 
 
    void system::assert_valid() const

@@ -12,25 +12,26 @@
 
 #endif //!__DEBUG
 
+
 #if defined _UWP && defined(__cplusplus_winrt)
 
 
-namespace user
-{
-
-
-   class CLASS_DECL_AURA native_window
-   {
-   public:
-
-
-      ::aura::system_window ^ m_pwindow;
-
-
-   };
-
-
-} // namespace user
+//namespace user
+//{
+//
+//
+//   class CLASS_DECL_AURA native_window
+//   {
+//   public:
+//
+//
+//      ::aura::system_window ^ m_pwindow;
+//
+//
+//   };
+//
+//
+//} // namespace user
 
 
 
@@ -109,7 +110,7 @@ namespace user
       point                               m_point;
       size                                m_size;
 
-      native_window *                     m_pwindow;
+      //native_window *                     m_pwindow;
 
       __composite(::graphics::graphics)   m_pgraphics;
 

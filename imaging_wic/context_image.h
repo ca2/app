@@ -62,6 +62,11 @@ namespace imaging_wic
       //virtual ::estatus load_svg(::image* pimage, ::memory_pointer pmemory);
 
 
+#ifdef _UWP
+      virtual bool _desk_to_image(::image* pimage);
+      virtual bool _desk_has_image();
+      virtual bool _image_to_desk(const ::image* pimage);
+#endif
 
 
    };

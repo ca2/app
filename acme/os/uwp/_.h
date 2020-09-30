@@ -62,4 +62,4 @@ inline int_bool is_nok(hfile hfile);
 inline int_bool is_ok(hfile hfile);
 
 
-
+CLASS_DECL_ACME void dpi_os_initialize();

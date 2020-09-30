@@ -152,14 +152,14 @@ namespace uwp
    bool buffer::update_window()
    {
 
-      if (m_bNewBuffer)
-      {
+      //if (m_bNewBuffer)
+      //{
 
          m_directxapplication->m_directx->Present();
 
-         m_bNewBuffer = false;
+         //m_bNewBuffer = false;
 
-      }
+      //}
 
       return true;
 

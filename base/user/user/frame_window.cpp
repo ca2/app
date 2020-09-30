@@ -2473,6 +2473,18 @@ namespace user
          // show the interaction_impl as specified
          display(edisplay);
 
+         layout().sketch().set_modified();
+
+         set_need_layout();
+
+         set_need_redraw();
+
+         set_layout_ready();
+
+         post_redraw();
+
+         ::output_debug_string("\npos reddfkgjhsdfkjgraw \n");
+
          // and finally, bring to top after showing
          //BringToTop(edisplay);
       }

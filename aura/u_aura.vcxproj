@@ -707,10 +707,10 @@
     <ClCompile Include="os\uwp\application_system_run.cpp" />
     <ClCompile Include="os\uwp\aura.cpp" />
     <ClCompile Include="os\uwp\direct2d_tls.cpp" />
-    <ClCompile Include="os\uwp\dpi.cpp" />
     <ClCompile Include="os\uwp\dummy_ipc.cpp" />
     <ClCompile Include="os\uwp\graphics.cpp" />
     <ClCompile Include="os\uwp\lock.cpp" />
+    <ClCompile Include="os\uwp\main.cpp" />
     <ClCompile Include="os\uwp\user.cpp" />
     <ClCompile Include="os\uwp\windowing.cpp" />
     <ClCompile Include="os\windowing.cpp" />

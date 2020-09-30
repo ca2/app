@@ -3719,12 +3719,17 @@ retry_license:
 
       }
 
-      string strLang = System.get_user_language();
-
-      if (!m_puserlanguagemap->set_language(this, strLang))
+      if (System.m_bLocalization)
       {
 
-         m_puserlanguagemap->set_default_language(this);
+         string strLang = System.get_user_language();
+
+         if (!m_puserlanguagemap->set_language(this, strLang))
+         {
+
+            m_puserlanguagemap->set_default_language(this);
+
+         }
 
       }
 
@@ -3747,155 +3752,164 @@ retry_license:
          if (!estatus)
          {
 
+            TRACE("context_image required but missing");
+
+            ::os_message_box("context_image required but missing", "context_image missing", ::message_box_ok);
+
             return estatus;
 
          }
 
-      }
+         //__throw(todo("xml"));
 
-      //__throw(todo("xml"));
+         //string strLocaleSystem;
 
-      //string strLocaleSystem;
+         //string strSchemaSystem;
 
-      //string strSchemaSystem;
+         //string strPath = Context.dir().appdata() / "langstyle_settings.xml";
 
-      //string strPath = Context.dir().appdata() / "langstyle_settings.xml";
+         //if (Context.file().exists(strPath))
+         //{
 
-      //if (Context.file().exists(strPath))
-      //{
+         //   string strSystem = Context.file().as_string(strPath);
 
-      //   string strSystem = Context.file().as_string(strPath);
+         //   ::xml::document docSystem;
 
-      //   ::xml::document docSystem;
+         //   if (docSystem.load(strSystem))
+         //   {
 
-      //   if (docSystem.load(strSystem))
-      //   {
+         //      if (docSystem.get_child("lang") != nullptr)
+         //      {
 
-      //      if (docSystem.get_child("lang") != nullptr)
-      //      {
+         //         strLocaleSystem = docSystem.get_child("lang")->get_value();
 
-      //         strLocaleSystem = docSystem.get_child("lang")->get_value();
+         //      }
 
-      //      }
+         //      if (docSystem.get_child("style") != nullptr)
+         //      {
 
-      //      if (docSystem.get_child("style") != nullptr)
-      //      {
+         //         strSchemaSystem = docSystem.get_child("style")->get_value();
 
-      //         strSchemaSystem = docSystem.get_child("style")->get_value();
+         //      }
 
-      //      }
+         //   }
 
-      //   }
-
-      //}
-
-      string strLocale;
-
-      string strSchema;
-
-      if (System.get_user_language().has_char())
-      {
-
-         m_strLocale = System.get_user_language();
-
-         m_strSchema = m_strLocale;
+         //}
 
       }
-      else
+
+      if (System.m_bLocalization)
       {
+
+         string strLocale;
+
+         string strSchema;
+
+         if (System.get_user_language().has_char())
+         {
+
+            m_strLocale = System.get_user_language();
+
+            m_strSchema = m_strLocale;
+
+         }
+         else
+         {
 
 #ifdef _UWP
 
-         string_array stra;
+            string_array stra;
 
-         try
-         {
+            try
+            {
 
-            stra.explode("-", ::Windows::Globalization::ApplicationLanguages::PrimaryLanguageOverride);
+               stra.explode("-", ::Windows::Globalization::ApplicationLanguages::PrimaryLanguageOverride);
 
-         }
-         catch (long)
-         {
+            }
+            catch (long)
+            {
 
-         }
+            }
 
-         strLocale = stra[0];
+            strLocale = stra[0];
 
-         strSchema = stra[0];
+            strSchema = stra[0];
 
 #elif defined(WINDOWS)
 
-         LANGID langid = ::GetUserDefaultLangID();
+            LANGID langid = ::GetUserDefaultLangID();
 
-         string strIso = ::windows::langid_to_iso(langid);
+            string strIso = ::windows::langid_to_iso(langid);
 
-         strLocale = strIso;
+            strLocale = strIso;
 
-         strSchema = strIso;
+            strSchema = strIso;
 
 #endif
 
+         }
+
+         if (strLocale.is_empty())
+         {
+
+            strLocale = "_std";
+
+         }
+
+         if (strSchema.is_empty())
+         {
+
+            strSchema = strLocale;
+
+         }
+
+         //if (strLocaleSystem.has_char())
+         //{
+
+         //   strLocale = strLocaleSystem;
+
+         //}
+
+         //if (strSchemaSystem.has_char())
+         //{
+
+         //   strSchema = strSchemaSystem;
+
+         //}
+
+         if (System.value("locale").get_count() > 0)
+         {
+
+            strLocale = System.value("locale").stra()[0];
+
+         }
+
+         if (System.value("schema").get_count() > 0)
+         {
+
+            strSchema = System.value("schema").stra()[0];
+
+         }
+
+         if (Application.value("locale").get_count() > 0)
+         {
+
+            strLocale = Application.value("locale").stra()[0];
+
+         }
+
+         if (Application.value("schema").get_count() > 0)
+         {
+
+            strSchema = Application.value("schema").stra()[0];
+
+         }
+
+         set_locale(strLocale, ::source_database);
+
+         set_schema(strSchema, ::source_database);
+
       }
-
-      if (strLocale.is_empty())
-      {
-
-         strLocale = "_std";
-
-      }
-
-      if (strSchema.is_empty())
-      {
-
-         strSchema = strLocale;
-
-      }
-
-      //if (strLocaleSystem.has_char())
-      //{
-
-      //   strLocale = strLocaleSystem;
-
-      //}
-
-      //if (strSchemaSystem.has_char())
-      //{
-
-      //   strSchema = strSchemaSystem;
-
-      //}
-
-      if (System.value("locale").get_count() > 0)
-      {
-
-         strLocale = System.value("locale").stra()[0];
-
-      }
-
-      if (System.value("schema").get_count() > 0)
-      {
-
-         strSchema = System.value("schema").stra()[0];
-
-      }
-
-      if (Application.value("locale").get_count() > 0)
-      {
-
-         strLocale = Application.value("locale").stra()[0];
-
-      }
-
-      if (Application.value("schema").get_count() > 0)
-      {
-
-         strSchema = Application.value("schema").stra()[0];
-
-      }
-
-      set_locale(strLocale, ::source_database);
-
-      set_schema(strSchema, ::source_database);
 
       if (!initialize_contextualized_theme())
       {
@@ -5940,7 +5954,9 @@ retry_license:
          if (Session.m_puiHost)
          {
 
-            Session.m_puiHost->m_uiptraChild.add_unique_interaction(pwnd);
+            auto puiHost = __user_interaction(Session.m_puiHost);
+
+            puiHost->m_uiptraChild.add_unique_interaction(pwnd);
 
             //pwnd->set_need_redraw();
 

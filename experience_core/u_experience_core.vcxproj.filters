@@ -43,7 +43,7 @@
     <ClCompile Include="library.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="theme.cpp">
+    <ClCompile Include="style.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

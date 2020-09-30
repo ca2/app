@@ -27,7 +27,7 @@ namespace uwp
       m_nModalResult                         = 0;
       m_pfont                                = nullptr;
       m_pguieCapture                         = nullptr;
-      m_pwindow                              = new ::user::native_window;
+      //m_pwindow                              = new ::user::native_window;
 
    }
 
@@ -41,7 +41,7 @@ namespace uwp
       // m_bMouseHover = false;
       m_pfont = nullptr;
       m_pguieCapture = nullptr;
-      m_pwindow = nullptr;
+      //m_pwindow = nullptr;
 
    }
 
@@ -56,7 +56,7 @@ namespace uwp
       // m_bMouseHover = false;
       m_pfont = nullptr;
       m_pguieCapture = nullptr;
-      m_pwindow = new ::user::native_window;
+      //m_pwindow = new ::user::native_window;
 
    }
 
@@ -3470,6 +3470,7 @@ return TRUE;
 
    }
 
+
    void interaction_impl::set_window_text(const char * lpszString)
    {
 
@@ -5866,7 +5867,9 @@ namespace uwp
 
    Agile<Windows::UI::Core::CoreWindow> interaction_impl::get_os_window()
    {
+      
       return m_window;
+
    }
 
 
@@ -5936,6 +5939,15 @@ namespace uwp
          p->on_after_graphical_update();
 
       }
+
+      main_async([this]()
+         {
+
+            auto presizemanager = ::Windows::UI::Core::CoreWindowResizeManager::GetForCurrentView();
+
+            presizemanager->NotifyLayoutCompleted();
+
+         });
 
    }
 
@@ -6032,10 +6044,40 @@ namespace uwp
 
    }
 
+
    bool interaction_impl::is_active()
    {
 
       return get_handle() == ::get_active_window();
+
+   }
+
+   int alskdjfh = 0;
+
+   void interaction_impl::_001UpdateScreen()
+   {
+
+      ::user::interaction_impl::_001UpdateScreen();
+
+      alskdjfh++;
+      ::output_debug_string("::uwp::interaction_impl::_001UpdateScreen " + __str(alskdjfh) + "\n");
+
+      //if (m_directxapplication)
+      //{
+
+      //   if (m_directxapplication->m_window.Get())
+      //   {
+
+      //      main_async([this]()
+      //         {
+
+      //            m_directxapplication->m_window->Activate();
+
+      //         });
+
+      //   }
+
+      //}
 
    }
 

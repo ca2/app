@@ -555,11 +555,11 @@ namespace user
 
       m_puserinteraction->m_pimpl2 = this;
 
-      //#ifdef __APPLE__
+      #if !defined(_UWP)
 
             m_puserinteraction->m_ewindowflag |= window_flag_postpone_visual_update;
 
-      //#endif
+      #endif
 
 
 

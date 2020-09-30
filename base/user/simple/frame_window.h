@@ -8,6 +8,7 @@ class CLASS_DECL_BASE simple_frame_window :
 public:
 
 
+   bool                                            m_bFramePayloadFlags;
    bool                                            m_bProdevianFrame;
    __pointer(::user::tool_window)                  m_ptoolwindowFont;
    bool                                            m_bFirstShow;

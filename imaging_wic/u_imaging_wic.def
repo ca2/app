@@ -2,7 +2,7 @@ LIBRARY "imaging_wic"
 
 
 EXPORTS
-imaging_factory_exchange
+imaging_wic_factory_exchange
 
 
 

@@ -9,8 +9,13 @@ using namespace Microsoft::WRL;
 using namespace Windows::Graphics::Display;
 using namespace D2D1;
 
+
 extern CLASS_DECL_AURA image_array * g_pimagea;
-void dpi_os_initialize();
+
+
+CLASS_DECL_ACME void dpi_os_initialize();
+
+
 namespace uwp
 {
 
@@ -300,7 +305,7 @@ namespace uwp
          if (m_size.area() > 0)
          {
 
-            ::fork(m_psystem, [this]()
+            m_psystem->fork([this]()
             {
 
                m_psystem->on_graphics_ready();
@@ -309,22 +314,24 @@ namespace uwp
 
          }
 
-         m_pimpl->m_puserinteraction->display(display_normal);
-
-         m_pimpl->m_puserinteraction->set_dim(0, 0, m_size.cx, m_size.cy);
-
-         m_pimpl->m_puserinteraction->set_reposition();
-
-         m_pimpl->m_puserinteraction->set_need_layout();
-
-         m_pimpl->m_puserinteraction->set_need_redraw();
-
-         m_pimpl->m_puserinteraction->post_redraw();
-
-
       }
 
+      m_pimpl->m_puserinteraction->start_layout();
+
       defer_resize_top_level_windows();
+
+      m_pimpl->m_puserinteraction->display(display_normal);
+
+      m_pimpl->m_puserinteraction->set_dim(0, 0, m_size.cx, m_size.cy);
+
+      m_pimpl->m_puserinteraction->set_reposition();
+
+      m_pimpl->m_puserinteraction->set_need_layout();
+
+      m_pimpl->m_puserinteraction->set_need_redraw();
+
+      m_pimpl->m_puserinteraction->post_redraw();
+
 
    }
 
@@ -458,6 +465,7 @@ namespace uwp
          swapChainDesc.BufferCount = 2;                               // Use double-buffering to minimize latency.
          swapChainDesc.Scaling = DXGI_SCALING_NONE;
          swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL; // All Metro style apps must use this SwapEffect.
+         //swapChainDesc.AlphaMode = DXGI_ALPHA_MODE_PREMULTIPLIED;
          swapChainDesc.Flags = 0;
 
          ComPtr<IDXGIDevice1> dxgiDevice;

@@ -233,6 +233,33 @@ namespace user
    }
 
 
+   ::user::interaction* primitive::get_host_wnd()
+   {
+
+      if (get_context_session() == nullptr
+         || get_context_session()->m_paurasession == nullptr)
+      {
+
+         return nullptr;
+
+      }
+
+      if (get_context_session()->m_paurasession->m_puiHost)
+      {
+
+         return __user_interaction(get_context_session()->m_paurasession->m_puiHost);
+
+      }
+      else
+      {
+
+         return get_wnd();
+
+      }
+
+   }
+
+
    bool primitive::enable_window(bool bEnable)
    {
 

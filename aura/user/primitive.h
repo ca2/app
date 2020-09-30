@@ -98,6 +98,8 @@ namespace user
       __pointer(::message::base) get_message_base(UINT uiMessage, WPARAM wparam, lparam lparam) override;
 
 
+      virtual ::user::interaction* get_host_wnd();
+
 
       virtual bool enable_window(bool bEnable = true);
       virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;

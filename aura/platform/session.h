@@ -42,7 +42,7 @@ namespace aura
       // ... is is the "Main Window" (sometimes just a concept) holding the App.
       // For Desktop Applications a meaning should be given or this member could be ignored?
       // The Main Application window?
-      __reference(::user::interaction)                      m_puiHost;
+      //__reference(::user::interaction)                      m_puiHost;
       //__pointer(::user::interaction)                        m_puiMain2;
 
       __composite(::user::keyboard)                         m_pkeyboard;

@@ -3077,7 +3077,7 @@ bool thread::on_get_thread_name(string& strThreadName)
 ::estatus thread::__thread_init()
 {
 
-   auto estatus = on_thread_init();
+   m_result = on_thread_init();
 
    if (m_pevent)
    {
@@ -3086,7 +3086,7 @@ bool thread::on_get_thread_name(string& strThreadName)
 
    }
 
-   return estatus;
+   return m_estatus;
 
 }
 

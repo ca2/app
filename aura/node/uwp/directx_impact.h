@@ -7,8 +7,8 @@ namespace uwp
 
    ref class impact abstract :
       //public Windows::UI::Xaml::Controls::UserControl
-      public Windows::ApplicationModel::Core::IFrameworkView,
-      public ::aura::system_window
+      public Windows::ApplicationModel::Core::IFrameworkView
+      //, public ::aura::system_window
    {
    public:
 
@@ -59,6 +59,7 @@ namespace uwp
       // Apps can also ask the keyboard to show or hide.
       Agile < Windows::UI::ViewManagement::InputPane > _inputPane;
 
+      Windows::Foundation::EventRegistrationToken m_tokenActivated;
       Windows::Foundation::EventRegistrationToken m_tokenKeyDown;
       Windows::Foundation::EventRegistrationToken m_tokenPointerPressed;
       //TypedEventHandler < ::Windows::UI::Core::CoreWindow^, ::Windows::UI::Core::KeyEventArgs^> m_refPointer;
@@ -68,7 +69,7 @@ namespace uwp
 
 
       
-
+      inline ::user::interaction* host() { return Sess(m_psystem).host(); }
 
 
       void CoreWindow_PointerPressed(::Windows::UI::Core::CoreWindow^ sender, Windows::UI::Core::PointerEventArgs^ args);
@@ -115,6 +116,10 @@ namespace uwp
          // then composition will not start.
       void EditContext_CompositionStarted(::Windows::UI::Text::Core::CoreTextEditContext^ sender, ::Windows::UI::Text::Core::CoreTextCompositionStartedEventArgs^ args);
       void EditContext_CompositionCompleted(::Windows::UI::Text::Core::CoreTextEditContext^ sender, ::Windows::UI::Text::Core::CoreTextCompositionCompletedEventArgs^ args);
+
+      // Revoke with event_token
+      void CoreWindow_WindowActivated(::Windows::UI::Core::CoreWindow^ sender, Windows::UI::Core::WindowActivatedEventArgs^ args);
+
 
       void CoreWindow_KeyDown(::Windows::UI::Core::CoreWindow^ sender, Windows::UI::Core::KeyEventArgs^ args);
       // Adjust the active endpoint of the selection in the specified direction.

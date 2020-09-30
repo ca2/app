@@ -2813,32 +2813,32 @@ namespace core
 #include "apex/multithreading/_.h"
 
 
-namespace apex
-{
-
-#if defined _UWP && defined(__cplusplus_winrt)
-
-   interface class system_window
-      {
-
-         virtual Windows::Foundation::Rect get_window_rect() = 0;
-         virtual Windows::Foundation::Point get_cursor_pos() = 0;
-
-
-
-      };
-
-   CLASS_DECL_APEX bool get_window_rect(system_window ^ pwindow, RECTD * prect);
-
-   CLASS_DECL_APEX bool get_window_rect(system_window ^ pwindow, RECT * prect);
-
-
-#endif
-
-
-   class session;
-
-} // namespace apex
+//namespace apex
+//{
+//
+//#if defined _UWP && defined(__cplusplus_winrt)
+//
+//   interface class system_window
+//      {
+//
+//         virtual Windows::Foundation::Rect get_window_rect() = 0;
+//         virtual Windows::Foundation::Point get_cursor_pos() = 0;
+//
+//
+//
+//      };
+//
+//   CLASS_DECL_APEX bool get_window_rect(system_window ^ pwindow, RECTD * prect);
+//
+//   CLASS_DECL_APEX bool get_window_rect(system_window ^ pwindow, RECT * prect);
+//
+//
+//#endif
+//
+//
+//   class session;
+//
+//} // namespace apex
 
 
 

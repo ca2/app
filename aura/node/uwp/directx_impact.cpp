@@ -47,6 +47,21 @@ namespace uwp
       // The CoreTextEditContext processes text input, but other keys are
       // the apps's responsibility.
       m_window = window;
+      
+      auto presizemanager = ::Windows::UI::Core::CoreWindowResizeManager::GetForCurrentView();
+
+      presizemanager->ShouldWaitForLayoutCompletion = true;
+
+
+      //auto coreTitleBar = ::Windows::ApplicationModel::Core::CoreApplication::GetCurrentView()->TitleBar;
+      //coreTitleBar->ExtendViewIntoTitleBar = true;
+      //::Windows::ApplicationModel::Core::CoreApplication::GetCurrentView()->
+
+      // Register
+      m_tokenActivated = m_window->Activated += ref new TypedEventHandler < ::Windows::UI::Core::CoreWindow^, ::Windows::UI::Core::WindowActivatedEventArgs^>(this, &impact::CoreWindow_WindowActivated);
+
+
+      m_tokenKeyDown = m_window->KeyDown += ref new TypedEventHandler < ::Windows::UI::Core::CoreWindow^, ::Windows::UI::Core::KeyEventArgs^>(this, &impact::CoreWindow_KeyDown);
 
       m_tokenKeyDown = m_window->KeyDown += ref new TypedEventHandler < ::Windows::UI::Core::CoreWindow^, ::Windows::UI::Core::KeyEventArgs^>(this, &impact::CoreWindow_KeyDown);
 
@@ -110,7 +125,9 @@ namespace uwp
 
       // Set our initial UI.
       UpdateTextUI();
+
       UpdateFocusUI();
+
    }
 
    void impact::CoreWindow_PointerPressed(::Windows::UI::Core::CoreWindow^ sender, ::Windows::UI::Core::PointerEventArgs ^args)
@@ -334,7 +351,7 @@ namespace uwp
             bool bSpecialKey = false;
 
             pkey->m_id = WM_KEYDOWN;
-            pkey->m_puserinteraction = Session.m_puiHost;
+            pkey->m_puserinteraction = __user_interaction(Session.m_puiHost);
             pkey->m_nChar = 0;
             pkey->m_ekey = ::user::key_refer_to_text_member;
             pkey->m_wparam = pkey->m_nChar;
@@ -476,6 +493,25 @@ namespace uwp
       {
 
          pfocusui->on_text_composition_done();
+
+      }
+
+   }
+
+
+   void impact::CoreWindow_WindowActivated(::Windows::UI::Core::CoreWindow^ sender, Windows::UI::Core::WindowActivatedEventArgs^ args)
+   {
+
+      if (args->WindowActivationState != ::Windows::UI::Core::CoreWindowActivationState::Deactivated)
+      {
+
+         //auto puiHost = Sess(m_psystem).host();
+
+         //puiHost->set_need_layout();
+
+         //puiHost->set_need_redraw();
+
+         //puiHost->post_redraw();
 
       }
 

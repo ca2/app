@@ -134,12 +134,12 @@ namespace aura
 
 
 
-//void os_post_quit()
-//{
-//
-//
-//
-//}
+void os_post_quit()
+{
+
+   exception::translator::detach();
+
+}
 
 
 //CLASS_DECL_AURA void main_async_runnable(::context_object * pobjectTaskParam)

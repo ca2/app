@@ -5940,7 +5940,14 @@ finished_update:
       if (Session.m_puiHost)
       {
 
-         Session.m_puiHost->edit_on_set_focus(this);
+         auto puiHost = __user_interaction(Session.m_puiHost);
+
+         if (puiHost)
+         {
+
+            puiHost->edit_on_set_focus(this);
+
+         }
 
       }
 
@@ -6008,7 +6015,9 @@ finished_update:
       if (Session.m_puiHost)
       {
 
-         Session.m_puiHost->edit_on_kill_focus(this);
+         auto puiHost = __user_interaction(Session.m_puiHost);
+
+         puiHost->edit_on_kill_focus(this);
 
       }
 

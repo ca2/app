@@ -107,5 +107,7 @@ CLASS_DECL_ACME locale_t get_c_locale();
 #include "user.h"
 
 
+#include "file.h"
+
 
 

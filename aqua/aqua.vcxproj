@@ -54,6 +54,10 @@
     <ClInclude Include="console.h" />
     <ClInclude Include="const\idpool.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="game\estamira.h" />
+    <ClInclude Include="game\game.h" />
+    <ClInclude Include="game\_.h" />
+    <ClInclude Include="game\_game.h" />
     <ClInclude Include="id.h" />
     <ClInclude Include="include\_.h" />
     <ClInclude Include="inline\application.h" />
@@ -83,6 +87,7 @@
     <ClInclude Include="multimedia\multimedia.h" />
     <ClInclude Include="multimedia\_.h" />
     <ClInclude Include="multimedia\_c.h" />
+    <ClInclude Include="os\_.h" />
     <ClInclude Include="platform\application.h" />
     <ClInclude Include="platform\session.h" />
     <ClInclude Include="platform\system.h" />
@@ -108,6 +113,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cover|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cover|ARM'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="game\estamira.cpp" />
+    <ClCompile Include="game\game.cpp" />
     <ClCompile Include="multimedia\audio.cpp" />
     <ClCompile Include="multimedia\audio\audio_wave_out.cpp" />
     <ClCompile Include="multimedia\audio\sound_track_player.cpp" />
@@ -117,6 +124,7 @@
     <ClCompile Include="multimedia\exception.cpp" />
     <ClCompile Include="multimedia\file_application.cpp" />
     <ClCompile Include="multimedia\multimedia.cpp" />
+    <ClCompile Include="os\windows\audio.cpp" />
     <ClCompile Include="platform\application.cpp" />
     <ClCompile Include="platform\session.cpp" />
     <ClCompile Include="platform\system.cpp" />

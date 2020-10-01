@@ -906,7 +906,7 @@ namespace draw2d
    }
 
 
-   bool graphics::Arc(i32 x1, i32 y1, i32 w, i32 h, double start, double extends)
+   bool graphics::Arc(i32 x1, i32 y1, i32 w, i32 h, angle start, angle extends)
    {
 
 //      ::point pointCenter;
@@ -923,13 +923,14 @@ namespace draw2d
 //      double endx = (cos((start + extends) * System.math().GetPi() / 180.0) * dx) + pointCenter.x;
 //      double endy = (sin((start + extends) * System.math().GetPi() / 180.0) * dy) + pointCenter.y;
 
-      return Arc((double)x1, (double)y1, (double)w, (double)h, start, extends);
+      return Arc((double)x1, (double)y1, (double)w, (double)h, start.degree(), extends.degree());
 
    }
 
-   bool graphics::Arc(const ::rect & rect, double start, double extends)
 
+   bool graphics::Arc(const ::rect & rect, angle start, angle extends)
    {
+
       return Arc(rect.left, rect.top, rect.width(), rect.height(), start, extends);
 
    }
@@ -956,7 +957,7 @@ namespace draw2d
    }
 
 
-   bool graphics::Arc(double x1, double y1, double w, double h, double start, double extends)
+   bool graphics::Arc(double x1, double y1, double w, double h, angle start, angle extends)
    {
 
       pointd pointCenter;
@@ -967,18 +968,18 @@ namespace draw2d
       double dx = w / 2.0;
       double dy = h / 2.0;
 
-      double startx = (cos(start * System.math().GetPi() / 180.0) * dx) + pointCenter.x;
-      double starty = (sin(start * System.math().GetPi() / 180.0) * dy) + pointCenter.y;
+      double startx = cos(start.radian()) * dx + pointCenter.x;
+      double starty = sin(start.radian()) * dy + pointCenter.y;
 
-      double endx = (cos((start + extends) * System.math().GetPi() / 180.0) * dx) + pointCenter.x;
-      double endy = (sin((start + extends) * System.math().GetPi() / 180.0) * dy) + pointCenter.y;
+      double endx = cos(start.radian() + extends.radian()) * dx + pointCenter.x;
+      double endy = sin(start.radian() + extends.radian()) * dy + pointCenter.y;
 
-      return Arc(x1, y1, x1 + w, y1 + h,(double)startx,(double)starty,(double)endx,(double)endy);
+      return Arc(x1, y1, x1 + w, y1 + h, startx, starty, endx, endy);
 
    }
 
 
-   bool graphics::Arc(const ::rectd & rect, double start, double extends)
+   bool graphics::Arc(const ::rectd & rect, angle start, angle extends)
    {
 
       return Arc(rect.left, rect.top, rect.right, rect.bottom, start, extends);
@@ -2858,7 +2859,7 @@ namespace draw2d
    }
 
 
-   bool graphics::AngleArc(i32 x, i32 y, i32 nRadius, float fStartAngle, float fSweepAngle)
+   bool graphics::AngleArc(i32 x, i32 y, i32 nRadius, angle fStartAngle, angle fSweepAngle)
    {
 
       UNREFERENCED_PARAMETER(x);

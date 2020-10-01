@@ -1371,7 +1371,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="os\windows\lock.cpp" />
     <ClCompile Include="os\windows\main.cpp" />
     <ClCompile Include="os\windows\message_loop.cpp" />
-    <ClCompile Include="os\windows\multimedia.cpp" />
     <ClCompile Include="os\windows\thread.cpp" />
     <ClCompile Include="os\windows\process.cpp" />
     <ClCompile Include="os\windows\registry.cpp" />

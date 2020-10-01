@@ -267,13 +267,13 @@ namespace draw2d_direct2d
       bool line_to(const ::pointd & point) override;
       bool draw_line(const ::pointd & point1, const ::pointd & point2, ::draw2d::pen * ppen) override;
       //  bool line_to(const ::point & point) override;
-      bool Arc(double x1, double y1, double w, double h, double start, double extends) override;
+      bool Arc(double x1, double y1, double w, double h, angle start, angle extends) override;
       bool Arc(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4) override;
       bool Arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) override;
       bool Arc(const ::rect & rect, const ::point & pointStart, const ::point & pointEnd) override;
       bool Polyline(const POINT* lpPoints,count nCount) override;
 
-      bool AngleArc(int x, int y, int nRadius, float fStartAngle, float fSweepAngle) override;
+      bool AngleArc(int x, int y, int nRadius, angle fStartAngle, angle fSweepAngle) override;
       bool ArcTo(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4) override;
       bool ArcTo(const ::rect & rect, const ::point & pointStart, const ::point & pointEnd) override;
       int GetArcDirection() override;

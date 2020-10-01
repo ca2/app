@@ -1,14 +1,13 @@
 #pragma once
 
 
-namespace game
+namespace aura
 {
 
 
    class CLASS_DECL_AURA game :
-      virtual public ::aura::drawable,
-      virtual public ::timer_callback,
-      virtual public channel
+      virtual public ::aqua::game,
+      virtual public ::aura::drawable
    {
    public:
 

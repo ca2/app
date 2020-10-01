@@ -93,19 +93,19 @@ HBITMAP pixmap::update_windows_dib(const ::size& size)
 
 
 
-CLASS_DECL_AURA WINBOOL context_image::window_set_mouse_cursor(oswindow , HCURSOR hcursor)
-{
-
-   if (!::SetCursor(hcursor))
-   {
-
-      return FALSE;
-
-   }
-
-   return TRUE;
-
-}
+//CLASS_DECL_AURA WINBOOL context_image::window_set_mouse_cursor(oswindow oswindow, HCURSOR hcursor)
+//{
+//
+//   if (!::SetCursor(hcursor))
+//   {
+//
+//      return FALSE;
+//
+//   }
+//
+//   return TRUE;
+//
+//}
 
 
 int_bool delete_hcursor(HCURSOR hcursor)
@@ -180,3 +180,31 @@ namespace draw2d
 //
 //
 //}
+
+CLASS_DECL_AURA LPTSTR windows_get_system_cursor(e_cursor ecursor);
+
+namespace aura
+{
+
+
+   HCURSOR application::load_default_cursor(e_cursor ecursor)
+   {
+
+      auto pcursor = windows_get_system_cursor(ecursor);
+
+      if (pcursor == nullptr)
+      {
+
+         return NULL;
+
+      }
+
+      return ::LoadCursor(NULL, pcursor);
+
+   }
+
+
+} // namespace aura
+
+
+

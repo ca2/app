@@ -176,7 +176,7 @@ context_image::~context_image()
 
       pimage = System.matter_cache_image(this, strMatter);
 
-      if (pimage)
+      if (::is_ok(pimage))
       {
 
          return pimage;
@@ -185,7 +185,7 @@ context_image::~context_image()
 
    }
 
-   auto estatus = __construct(pimage);
+   auto estatus = __defer_construct(pimage);
 
    if (!estatus)
    {

@@ -1643,9 +1643,6 @@
     <ClInclude Include="primitive\primitive\var.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\generic.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="net\_net_impl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -2590,9 +2587,6 @@
     <ClCompile Include="filesystem\file\binary_stream.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\generic.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\comparison\var_strict.cpp">
       <Filter>Source Files\primitive\comparison</Filter>
     </ClCompile>
@@ -3072,9 +3066,6 @@
     </ClCompile>
     <ClCompile Include="node\windows\windows_desktop.cpp">
       <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\multimedia.cpp">
-      <Filter>Source Files\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filesystem\path.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>

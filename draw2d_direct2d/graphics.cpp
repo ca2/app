@@ -913,7 +913,7 @@ namespace draw2d_direct2d
 
    }
 
-   bool graphics::Arc(double x1, double y1, double w, double h, double start, double extends)
+   bool graphics::Arc(double x1, double y1, double w, double h, angle start, angle extends)
    {
 
       ::draw2d::path_pointer path(e_create);
@@ -2336,7 +2336,7 @@ namespace draw2d_direct2d
 
    }
 
-   bool graphics::AngleArc(int x, int y, int nRadius, float fStartAngle, float fSweepAngle)
+   bool graphics::AngleArc(int x, int y, int nRadius, angle fStartAngle, angle fSweepAngle)
    {
 
       __throw(todo());

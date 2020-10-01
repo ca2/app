@@ -366,19 +366,19 @@ namespace draw2d
 
       virtual bool Arc(i32 x1, i32 y1, i32 x2, i32 y2, i32 x3, i32 y3, i32 x4, i32 y4);
       virtual bool Arc(const ::rect & rect,const point & pointStart,const point & pointEnd);
-      virtual bool Arc(i32 x1, i32 y1, i32 x2, i32 y2, double start, double extends);
-      virtual bool Arc(const ::rect & rect,double start,double extends);
+      virtual bool Arc(i32 x1, i32 y1, i32 x2, i32 y2, angle start, angle extends);
+      virtual bool Arc(const ::rect & rect, angle start, angle extends);
       virtual bool Polyline(const POINT * ppoints,count nCount);
 
 
       virtual bool Arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4);
       virtual bool Arc(const rectd & rect, const pointd & pointStart, const pointd & pointEnd);
 
-      virtual bool Arc(double x1, double y1, double x2, double y2, double start, double extends);
-      virtual bool Arc(const rectd & rect, double start, double extends);
+      virtual bool Arc(double x1, double y1, double x2, double y2, angle start, angle extends);
+      virtual bool Arc(const rectd & rect, angle start, angle extends);
 
 
-      virtual bool AngleArc(i32 x, i32 y, i32 nRadius, float fStartAngle, float fSweepAngle);
+      virtual bool AngleArc(i32 x, i32 y, i32 nRadius, angle fStartAngle, angle fSweepAngle);
       virtual bool ArcTo(i32 x1, i32 y1, i32 x2, i32 y2, i32 x3, i32 y3, i32 x4, i32 y4);
       virtual bool ArcTo(const ::rect & rect,const point & pointStart,const point & pointEnd);
       virtual i32 GetArcDirection();

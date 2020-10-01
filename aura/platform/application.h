@@ -44,7 +44,7 @@ namespace aura
 
       __pointer(::apex::application_menu)             m_papplicationmenu;
 
-      __composite(::game::game)                       m_pgame;
+      //__composite(::game::game)                       m_pgame;
 
       ::user::primitive *                             m_puiCurrent;
       //bool                                            m_bContextTheme;
@@ -1409,7 +1409,10 @@ namespace aura
       virtual string sound_path(const char* psz) override;
       virtual string get_default_playlist_path() override;
 
+      virtual WINBOOL window_set_mouse_cursor(oswindow window, HCURSOR hcursor);
       virtual icon_result load_icon(const ::var& varFile);
+      virtual HCURSOR load_default_cursor(e_cursor ecursor);
+
 
 
    };

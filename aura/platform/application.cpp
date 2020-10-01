@@ -11976,6 +11976,28 @@ namespace aura
    }
 
 
+
+   WINBOOL application::window_set_mouse_cursor(oswindow window, HCURSOR hcursor)
+   {
+
+#ifdef WINDOWS_DESKTOP
+
+      UNREFERENCED_PARAMETER(window);
+
+      if (!::SetCursor(hcursor))
+      {
+
+         return FALSE;
+
+      }
+
+#endif
+
+      return true;
+
+   }
+
+
    icon_result application::load_icon(const ::var& varFile)
    {
 

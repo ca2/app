@@ -581,7 +581,7 @@ HCURSOR context_image::CreateAlphaCursor(oswindow window, const ::image * pimage
 }
 
 
-LPTSTR windows_get_system_cursor(e_cursor ecursor)
+CLASS_DECL_AURA LPTSTR windows_get_system_cursor(e_cursor ecursor)
 {
 
    switch (ecursor)
@@ -615,21 +615,21 @@ LPTSTR windows_get_system_cursor(e_cursor ecursor)
 }
 
 
-HCURSOR context_image::load_default_cursor(e_cursor ecursor)
-{
-
-   auto pcursor = windows_get_system_cursor(ecursor);
-
-   if (pcursor == nullptr)
-   {
-
-      return NULL;
-
-   }
-
-   return ::LoadCursor(NULL, pcursor);
-
-}
+//HCURSOR context_image::load_default_cursor(e_cursor ecursor)
+//{
+//
+//   auto pcursor = windows_get_system_cursor(ecursor);
+//
+//   if (pcursor == nullptr)
+//   {
+//
+//      return NULL;
+//
+//   }
+//
+//   return ::LoadCursor(NULL, pcursor);
+//
+//}
 
 
 //

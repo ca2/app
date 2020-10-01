@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace aura
+namespace aqua
 {
 
 
@@ -19,12 +19,12 @@ namespace aura
    }
 
 
-   void game::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
-   {
+   //void game::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   //{
 
 
 
-   }
+   //}
 
 
    string game::sound_path(const char* psz)

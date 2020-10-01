@@ -674,6 +674,13 @@ bool prodevian::prodevian_iteration()
       }
 
    }
+   
+   if (!m_puserinteraction)
+   {
+
+      return false;
+
+   }
 
    if ((m_puserinteraction->m_ewindowflag & window_flag_postpone_visual_update))
    {

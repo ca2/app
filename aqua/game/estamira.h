@@ -1,12 +1,12 @@
 #pragma once
 
 
-namespace aura
+namespace aqua
 {
 
 
-   class CLASS_DECL_AURA estamira :
-      virtual public ::aqua::estamira
+   class CLASS_DECL_AQUA estamira :
+      virtual public ::apex::department
    {
    public:
 

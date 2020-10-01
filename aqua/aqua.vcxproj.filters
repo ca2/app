@@ -49,6 +49,21 @@
     <Filter Include="Source Files\const">
       <UniqueIdentifier>{28e5c993-7608-46fa-ad2a-2011b35072ee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\game">
+      <UniqueIdentifier>{906a8a0b-f60b-4fa7-9981-ddd212c9e981}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\game">
+      <UniqueIdentifier>{a7fafa56-be62-4b65-8e63-2449a2d57b82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\os">
+      <UniqueIdentifier>{fe52dbf4-68f8-442f-a754-9f6b79f5908a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\os">
+      <UniqueIdentifier>{78fbcce4-d5d1-47f5-94fb-2af447d0ef28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\os\windows">
+      <UniqueIdentifier>{67a44733-0a0b-4eca-95c8-fda0ff76b3b3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inline\application.h">
@@ -171,6 +186,21 @@
     <ClInclude Include="xml.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="game\game.h">
+      <Filter>Header Files\game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\estamira.h">
+      <Filter>Header Files\game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\_game.h">
+      <Filter>Header Files\game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\_.h">
+      <Filter>Header Files\game</Filter>
+    </ClInclude>
+    <ClInclude Include="os\_.h">
+      <Filter>Header Files\os</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -280,6 +310,15 @@
     </ClCompile>
     <ClCompile Include="const\idpool.cpp">
       <Filter>Source Files\const</Filter>
+    </ClCompile>
+    <ClCompile Include="game\estamira.cpp">
+      <Filter>Source Files\game</Filter>
+    </ClCompile>
+    <ClCompile Include="game\game.cpp">
+      <Filter>Source Files\game</Filter>
+    </ClCompile>
+    <ClCompile Include="os\windows\audio.cpp">
+      <Filter>Source Files\os\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -90,15 +90,10 @@ namespace draw2d
 
       }
 
-      if (System.m_bImaging)
+      if (!Application.window_set_mouse_cursor(pinteraction->get_handle(), hcursor))
       {
 
-         if (!Application.image().window_set_mouse_cursor(pinteraction->get_handle(), hcursor))
-         {
-
-            return false;
-
-         }
+         return false;
 
       }
 
@@ -119,7 +114,7 @@ namespace draw2d
 
       }
 
-      Application.image().window_set_mouse_cursor(pinteraction->get_handle(), 0);
+      Application.window_set_mouse_cursor(pinteraction->get_handle(), 0);
 
       return true;
 
@@ -257,7 +252,7 @@ namespace draw2d
             if (!hcursor)
             {
 
-               hcursor = App(pinteraction).image().load_default_cursor(m_ecursor);
+               hcursor = App(pinteraction).load_default_cursor(m_ecursor);
 
             }
 
@@ -282,12 +277,7 @@ namespace draw2d
          else if(!m_bDefaultCursor)
          {
             
-            if(System.m_bImaging)
-            {
-
-               m_hcursor = App(pinteraction).image().load_default_cursor(m_ecursor);
-               
-            }
+            m_hcursor = App(pinteraction).load_default_cursor(m_ecursor);
 
          }
 

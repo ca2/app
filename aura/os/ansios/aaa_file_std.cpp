@@ -169,7 +169,7 @@ filesize FILE_get_size(FILE * str)
 #endif
 
 
-i32 file_touch_dup(const char * psz)
+i32 file_touch(const char * psz)
 {
 
    FILE * pfile = ::fopen(psz, "a");

@@ -11,6 +11,9 @@ namespace aqua
    public:
 
 
+      __composite(::aqua::game)                       m_pgame;
+
+
       application();
       virtual ~application();
 

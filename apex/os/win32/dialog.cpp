@@ -17,12 +17,39 @@ namespace win32
    }
 
 
-   dialog::dialog(::object * pobject, LPCWSTR pszResource) :
-      ::object(pobject),
-      m_pszResource(pszResource)
+   dialog::dialog(::layered* pobjectContext, LPCWSTR pszResource)
    {
+
       m_bCreated = false;
       m_bNew = true;
+      m_pszResource = nullptr;
+
+      auto estatus = initialize_dialog(pobjectContext, pszResource);
+
+      if (!estatus)
+      {
+
+         __throw(::exception::exception(estatus));
+
+      }
+
+   }
+
+   ::estatus dialog::initialize_dialog(::layered * pobjectContext, LPCWSTR pszResource) 
+   {
+
+      auto estatus = ::object::initialize(pobjectContext);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      m_pszResource = pszResource;
+
+      return estatus;
 
    }
 

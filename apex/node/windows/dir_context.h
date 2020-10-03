@@ -23,7 +23,7 @@ namespace windows
 
       virtual ::estatus init_system() override;
 
-
+      using ::dir_context::ls;
       // rls fetchs should set a meaningful m_iRelative value at each returned path
       virtual ::file::listing & ls(::file::listing & path);
       virtual ::file::listing & ls_relative_name(::file::listing & path);

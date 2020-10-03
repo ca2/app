@@ -400,9 +400,9 @@ namespace windows
 
             listing.m_statusresult.clear();
 
-            ::file::listing dira(get_context());
+            ::file::listing dira;
 
-            Context.dir().ls_dir(dira, listing.m_pathUser);
+            ls_dir(dira, listing.m_pathUser);
 
             for (i32 i = 0; i < dira.get_count(); i++)
             {
@@ -584,9 +584,9 @@ namespace windows
             }
 
 
-            ::file::listing dira(get_context());
+            ::file::listing dira;
 
-            Context.dir().ls_dir(dira, listing.m_pathUser);
+            ls_dir(dira, listing.m_pathUser);
 
             for (i32 i = 0; i < dira.get_count(); i++)
             {
@@ -1003,17 +1003,21 @@ namespace windows
    }
 
 
-   bool dir_context::rm(const ::file::path & psz, bool bRecursive)
+   bool dir_context::rm(const ::file::path & path, bool bRecursive)
    {
+
       if (bRecursive)
       {
-         ::file::listing patha(get_context());
-         Context.dir().ls(patha, psz);
+         
+         ::file::listing patha;
+
+         ls(patha, path);
+
          for (auto & path : patha)
          {
             if (is(path))
             {
-               rm(psz / path.name(), true);
+               rm(path / path.name(), true);
             }
             else
             {
@@ -1021,7 +1025,9 @@ namespace windows
             }
          }
       }
-      return RemoveDirectoryW(wstring(psz)) != FALSE;
+      
+      return RemoveDirectoryW(wstring(path)) != FALSE;
+
    }
 
 

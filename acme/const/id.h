@@ -200,6 +200,8 @@ enum e_id : u64
    id_raw_keyup,
 
    id_no_client_frame,
+   id_before_show_main_dialog,
+   id_after_show_main_dialog,
 
 
    // procedures:

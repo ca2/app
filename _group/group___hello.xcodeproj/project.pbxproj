@@ -12,7 +12,6 @@
 		9A2E621F252584EA0001CC7E /* libaqua.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A2E6219252584B70001CC7E /* libaqua.dylib */; };
 		9AD19B062512D98E00B4C44A /* libacme.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AD19B022512D98A00B4C44A /* libacme.dylib */; };
 		9AD19B072512D99000B4C44A /* libapex.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AD19B052512D98A00B4C44A /* libapex.dylib */; };
-		9AD19B082512D99100B4C44A /* libaura.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AD19B042512D98A00B4C44A /* libaura.dylib */; };
 		9AD19B0A2512D99800B4C44A /* libidn.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AD19B032512D98A00B4C44A /* libidn.dylib */; };
 /* End PBXBuildFile section */
 
@@ -107,7 +106,6 @@
 				9AD19B0A2512D99800B4C44A /* libidn.dylib in CopyFiles */,
 				9AD19B062512D98E00B4C44A /* libacme.dylib in CopyFiles */,
 				9AD19B072512D99000B4C44A /* libapex.dylib in CopyFiles */,
-				9AD19B082512D99100B4C44A /* libaura.dylib in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

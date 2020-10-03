@@ -32,7 +32,7 @@ namespace database
 
       }
 
-      if (get_context_application()->is_system() || get_context_application()->is_session())
+      if (get_context()->is_system() || get_context()->is_session())
       {
 
          m_bRemote = false;

@@ -13,7 +13,6 @@
 		9A1B496416A494A600875A94 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B496316A494A600875A94 /* framework.h */; };
 		9A1B496716A4A10100875A94 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B496616A4A10100875A94 /* framework.cpp */; };
 		9A8997BD177D0E7F00C7761E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8997BC177D0E7D00C7761E /* Carbon.framework */; };
-		9A8D32E22453CBFC0028C696 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A86864122CC3B0200186E72 /* libaura.dylib */; };
 		9A8EAF3317C563A300C458D1 /* command.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8EAF2817C563A300C458D1 /* command.h */; };
 		9A8EAF3417C563A300C458D1 /* factory_exchange.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EAF2917C563A300C458D1 /* factory_exchange.cpp */; };
 		9A8EAF3517C563A300C458D1 /* factory_exchange.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8EAF2A17C563A300C458D1 /* factory_exchange.h */; };
@@ -25,6 +24,9 @@
 		9A8EAF3B17C563A300C458D1 /* wave_out.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8EAF3017C563A300C458D1 /* wave_out.h */; };
 		9A8EAF3C17C563A300C458D1 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8EAF3217C563A300C458D1 /* _.h */; };
 		9AA1B44A176361950019E812 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA1B449176361950019E812 /* Cocoa.framework */; };
+		9AAEB4DC25291CFF00B39BA1 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AAEB4DB25291CFF00B39BA1 /* libacme.dylib */; };
+		9AAEB4DE25291CFF00B39BA1 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AAEB4DD25291CFF00B39BA1 /* libapex.dylib */; };
+		9AAEB4E025291CFF00B39BA1 /* libaqua.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AAEB4DF25291CFF00B39BA1 /* libaqua.dylib */; };
 		9AC9451C1828E7CE00AA7325 /* aligned_pointer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC9451A1828E7CE00AA7325 /* aligned_pointer.cpp */; };
 		9AC9451D1828E7CE00AA7325 /* aligned_pointer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC9451B1828E7CE00AA7325 /* aligned_pointer.h */; };
 		9AC9452018290B7700AA7325 /* aligned.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC9451E18290B7700AA7325 /* aligned.cpp */; };
@@ -95,6 +97,9 @@
 		9A8EAF3017C563A300C458D1 /* wave_out.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wave_out.h; sourceTree = "<group>"; };
 		9A8EAF3217C563A300C458D1 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9AA1B449176361950019E812 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		9AAEB4DB25291CFF00B39BA1 /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AAEB4DD25291CFF00B39BA1 /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AAEB4DF25291CFF00B39BA1 /* libaqua.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaqua.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC9451A1828E7CE00AA7325 /* aligned_pointer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aligned_pointer.cpp; sourceTree = "<group>"; };
 		9AC9451B1828E7CE00AA7325 /* aligned_pointer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aligned_pointer.h; sourceTree = "<group>"; };
 		9AC9451E18290B7700AA7325 /* aligned.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aligned.cpp; sourceTree = "<group>"; };
@@ -115,8 +120,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AAEB4DC25291CFF00B39BA1 /* libacme.dylib in Frameworks */,
+				9AAEB4DE25291CFF00B39BA1 /* libapex.dylib in Frameworks */,
+				9AAEB4E025291CFF00B39BA1 /* libaqua.dylib in Frameworks */,
 				9ACA48B22454040A007277DD /* libaudio.dylib in Frameworks */,
-				9A8D32E22453CBFC0028C696 /* libaura.dylib in Frameworks */,
 				07A27B461808E111005F7B47 /* AudioToolbox.framework in Frameworks */,
 				9AA1B44A176361950019E812 /* Cocoa.framework in Frameworks */,
 				9A8997BD177D0E7F00C7761E /* Carbon.framework in Frameworks */,
@@ -129,6 +136,9 @@
 		9A8C493F1F606995004A5BA4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9AAEB4DB25291CFF00B39BA1 /* libacme.dylib */,
+				9AAEB4DD25291CFF00B39BA1 /* libapex.dylib */,
+				9AAEB4DF25291CFF00B39BA1 /* libaqua.dylib */,
 				9A86864122CC3B0200186E72 /* libaura.dylib */,
 			);
 			name = Frameworks;

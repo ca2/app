@@ -61,7 +61,7 @@ namespace graphics
       virtual void update_image();
       virtual void draw_write(char ch, int x, int y, int iColor);
 
-      virtual void to_string(string& str) const override;
+      virtual void to_string(const string_exchange & str) const override;
 
    };
 

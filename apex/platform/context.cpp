@@ -85,6 +85,22 @@ bool context::is_system() const
 }
 
 
+bool context::is_session() const
+{
+
+   return false;
+
+}
+
+
+bool context::is_local_data() const
+{
+
+   return true;
+
+}
+
+
 ::estatus context::initialize_context()
 {
 

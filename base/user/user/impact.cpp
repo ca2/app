@@ -839,6 +839,8 @@ namespace user
 
          if (pobject.is_null() || ::is_null(pobject->get_context_application()))
          {
+            
+            ERROR("document doesn't have context application");
 
             return nullptr;
 

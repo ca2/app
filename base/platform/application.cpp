@@ -20,7 +20,7 @@ namespace base
    ::estatus     application::initialize(::layered * pobjectContext)
    {
 
-      auto estatus = ::thread::initialize(pobjectContext);
+      auto estatus = ::axis::application::initialize(pobjectContext);
 
       if (!estatus)
       {
@@ -38,36 +38,6 @@ namespace base
 
       }
 
-      set_context_app(this);
-
-      set_context(this);
-
-      if (::is_set(m_pappParent))
-      {
-
-         set_context_session(m_pappParent->get_context_session());
-
-         set_context_system(m_pappParent->get_context_system());
-
-      }
-
-      {
-
-#include "build.h"
-
-         m_strBuild = pszBuild;
-
-      }
-
-
-
-      if (m_strBuild.is_empty())
-      {
-
-         m_strBuild = "(unknown build version)";
-
-      }
-
       estatus = __compose_new(m_puiptraFrame);
 
       if (!estatus)
@@ -76,18 +46,6 @@ namespace base
          return estatus;
 
       }
-
-
-
-// #if defined(LINUX)
-
-// //      os_shell_initialize();
-
-// #elif defined(ANDROID)
-
-//       os_shell_initialize();
-
-// #endif // LINUX
 
       return estatus;
 

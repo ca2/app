@@ -735,9 +735,10 @@ bool thread::pump_message()
 
       if (m_message.message == message_destroy_window && m_strDebugType.contains("notify_icon"))
       {
+         
          INFO("notify_icon");
+         
       }
-
 
       process_message();
 

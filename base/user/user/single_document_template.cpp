@@ -174,7 +174,7 @@ namespace user
             if(!result.has < exit_exception >())
             {
 
-               System.message_box("Failed to create Document");
+               Context.message_box("Failed to create Document");
 
             }
 

@@ -33,7 +33,7 @@ namespace simpledb
 
       }
 
-      m_bRemote = !Application.is_local_data();
+      m_bRemote = !Context.is_local_data();
 
       if (m_pdatabaseLocal.is_set())
       {

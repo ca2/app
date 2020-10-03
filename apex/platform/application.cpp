@@ -242,6 +242,8 @@ namespace apex
       set_context_app(this);
 
       set_context(this);
+      
+      set_context_object(this);
 
       if (::is_set(m_pappParent))
       {

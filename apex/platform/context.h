@@ -37,6 +37,8 @@ public:
 
 
    virtual bool is_system() const;
+   virtual bool is_session() const;
+   virtual bool is_local_data() const;
 
 
    inline ::http::context & http() { return *m_phttp; }

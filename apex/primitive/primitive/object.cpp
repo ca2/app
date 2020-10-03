@@ -1768,7 +1768,14 @@ string object::get_text(const var& var, const ::id& id)
       if(strTitle.is_empty())
       {
          
-         strTitle = Application.get_app_user_friendly_task_bar_name();
+         auto papp = get_context_application();
+         
+         if(papp)
+         {
+         
+            strTitle = papp->get_app_user_friendly_task_bar_name();
+            
+         }
          
       }
 

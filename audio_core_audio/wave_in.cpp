@@ -16,11 +16,12 @@ namespace multimedia
          m_estate = state_initial;
          m_bResetting = false;
 
-
       }
 
+   
       in::~in()
       {
+         
       }
 
 

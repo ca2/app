@@ -56,7 +56,7 @@ namespace macos
    string os_context::get_command_line()
    {
 
-      return get_command_line();
+      return System.get_command_line();
 
    }
 

@@ -663,20 +663,10 @@ inline void to(long  & l, i32 iBase, const ansichar * psz)
    }
 
 
-   inline void from(string & str, const ::string_stream & strstream)
-   {
-
-      strstream.to_string(str);
-
-   }
+void from(string & str, const ::string_stream & strstream);
 
 
-   inline void from(string & str, const ::text_stream & strstream)
-   {
-
-      strstream.to_string(str);
-
-   }
+void from(string & str, const ::text_stream & strstream);
 
    inline string _001Concat(const string & str1, const string & strMid, const string & str2)
    {

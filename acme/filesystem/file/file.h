@@ -81,7 +81,7 @@ namespace file
       virtual ::filesize get_left() const;
 
 
-      virtual void to_string(string & str) const override;
+      virtual void to_string(const string_exchange & str) const override;
 
       virtual void write(const memory_base & memory);
 

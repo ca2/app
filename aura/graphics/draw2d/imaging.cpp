@@ -6854,21 +6854,21 @@ HCURSOR context_image::CreateAlphaCursor(oswindow oswindow, const image * pimage
 }
 
 
-HCURSOR context_image::load_default_cursor(e_cursor ecursor)
-{
-
-   return NULL;
-
-}
-
-
-WINBOOL context_image::window_set_mouse_cursor(oswindow window, HCURSOR hcursor)
-{
-
-
-   return false;
-
-}
+//HCURSOR context_image::load_default_cursor(e_cursor ecursor)
+//{
+//
+//   return NULL;
+//
+//}
+//
+//
+//WINBOOL context_image::window_set_mouse_cursor(oswindow window, HCURSOR hcursor)
+//{
+//
+//
+//   return false;
+//
+//}
 
 #endif
 

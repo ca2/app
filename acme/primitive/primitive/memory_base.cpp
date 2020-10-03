@@ -1270,7 +1270,7 @@ void memory_base::from_string(const var & var)
 }
 
 
-void memory_base::to_string(string & str) const
+void memory_base::to_string(const class string_exchange & str) const
 {
 
    str = to_string(0);

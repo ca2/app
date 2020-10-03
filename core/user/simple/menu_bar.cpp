@@ -195,7 +195,7 @@ void simple_menu_bar::pre_translate_message(::message::message * pmessage)
 
    SCAST_PTR(::message::base, pbase, pmessage);
 
-   if (pbase->m_id == WM_USER && pbase->m_puserinteraction == this)
+   if (pbase->m_id == WM_USER && pbase->userinteraction() == this)
    {
 
       if (pbase->m_wparam == 33)

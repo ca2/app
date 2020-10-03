@@ -525,3 +525,139 @@ CLASS_DECL_APEX ::estatus load_factory_library(string strLibrary)
    return ::success;
 
 }
+
+
+
+CLASS_DECL_APEX ::context * get_context(::layered * pobjectContext)
+{
+
+  if (pobjectContext == nullptr)
+  {
+
+     return ::get_context();
+
+  }
+
+  auto pobject = __object(pobjectContext);
+
+  if (::is_null(pobject))
+  {
+
+     return ::get_context();
+
+  }
+
+  ::context * pcontext = pobject->get_context();
+
+  if (pcontext != nullptr)
+  {
+
+     return pcontext;
+
+  }
+
+  return ::get_context();
+
+}
+
+
+CLASS_DECL_APEX ::apex::application * get_context_application(::layered * pobjectContext)
+{
+
+  if (pobjectContext == nullptr)
+  {
+
+     return ::get_context_application();
+
+  }
+
+  auto pobject = __object(pobjectContext);
+
+  if (::is_null(pobject))
+  {
+
+     return ::get_context_application();
+
+  }
+
+  ::apex::application * papplication = pobject->get_context_application();
+
+  if (papplication != nullptr)
+  {
+
+     return papplication;
+
+  }
+
+  return ::get_context_application();
+
+}
+
+
+CLASS_DECL_APEX ::apex::session * get_context_session(::layered * pobjectContext)
+{
+
+  if (pobjectContext == nullptr)
+  {
+
+     return ::get_context_session();
+
+  }
+
+  auto pobject = __object(pobjectContext);
+
+  if (::is_null(pobject))
+  {
+
+     return ::get_context_session();
+
+  }
+
+  ::apex::session * psessionContext = pobject->get_context_session();
+
+  if (psessionContext != nullptr)
+  {
+
+     return psessionContext;
+
+  }
+
+  return ::get_context_session();
+
+}
+
+
+CLASS_DECL_APEX ::apex::system * get_context_system(::layered * pobjectContext)
+{
+
+  if (pobjectContext == nullptr)
+  {
+
+     return ::get_context_system();
+
+  }
+
+  auto pobject = __object(pobjectContext);
+
+  if (::is_null(pobject))
+  {
+
+     return ::get_context_system();
+
+  }
+
+  ::apex::system * psystemContext = pobject->get_context_system();
+
+  if (psystemContext != nullptr)
+  {
+
+     return psystemContext;
+
+  }
+
+  return ::get_context_system();
+
+}
+
+
+

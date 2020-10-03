@@ -12,7 +12,7 @@ namespace message
 
 
       __pointer(::channel)       m_pchannel;
-      ::user::primitive *        m_puserinteraction;
+      __pointer(::layered)       m_playeredUserPrimitive;
       bool                       m_bConditional;
       bool                       m_bReflect;
       bool                       m_bDestroyed;
@@ -20,15 +20,28 @@ namespace message
 
 
       base();
-      base(::user::primitive * pwnd, UINT uiMessage, WPARAM wparam, ::lparam lparam);
+      base(::layered * playeredUserPrimitive, UINT uiMessage, WPARAM wparam, ::lparam lparam);
 
       base(const base & base);
       virtual ~base();
 
+      inline ::user::primitive * userprimitive()
+      {
+         
+         return __user_primitive(m_playeredUserPrimitive);
+         
+      }
 
-      virtual void set(::user::primitive * pwnd, UINT uiMessage, WPARAM wparam, ::lparam lparam) override;
+      inline ::user::interaction * userinteraction()
+      {
+         
+         return __user_interaction(m_playeredUserPrimitive);
+         
+      }
 
-      inline void change(WPARAM wparam, ::lparam lparam) { set(m_puserinteraction, m_id.u32(), wparam, lparam); }
+      virtual void set(::layered * playeredUserPrimitive, UINT uiMessage, WPARAM wparam, ::lparam lparam) override;
+
+      inline void change(WPARAM wparam, ::lparam lparam) { set(m_playeredUserPrimitive, m_id.u32(), wparam, lparam); }
 
       //base & operator = (const base & base);
 

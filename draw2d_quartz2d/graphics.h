@@ -203,7 +203,18 @@ namespace draw2d_quartz2d
       //virtual i32 OffsetClipRgn(const ::size & size) override;
       //virtual i32 SelectClipRgn(::draw2d::region* pRgn, i32 nMode) override;
       
-      virtual void on_apply_clip_region() override;
+      
+      virtual ::estatus reset_clip() override;
+      virtual ::estatus intersect_clip() override;
+      virtual ::estatus add_shape(const ::rect & rect) override;
+      virtual ::estatus add_shape(const ::rectd & rect) override;
+      virtual ::estatus add_shape(const ::oval & oval) override;
+      virtual ::estatus add_shape(const ::ovald & oval) override;
+      virtual ::estatus add_shape(const ::polygon & polygon) override;
+      virtual ::estatus add_shape(const ::polygond & polygon) override;
+
+      
+      //virtual void on_apply_clip_region() override;
 
       // Line-Output Functions
       virtual pointd current_position() override;
@@ -214,11 +225,11 @@ namespace draw2d_quartz2d
 //      virtual bool Arc(i32 x1, i32 y1, i32 w, i32 h, double start, double extends) override;
   //    virtual bool Arc(i32 x1, i32 y1, i32 x2, i32 y2, i32 x3, i32 y3, i32 x4, i32 y4) override;
 //      virtual bool Arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) override;
-      virtual bool Arc(double x, double y, double w, double h, double start, double end) override;
+      virtual bool Arc(double x, double y, double w, double h, angle start, angle end) override;
 //      virtual bool Arc(const ::rectd & rect, const ::pointd & pointStart, const ::pointd & pointEnd) override;
       virtual bool Polyline(const POINT* lpPoints, count nCount) override;
 
-      virtual bool AngleArc(i32 x, i32 y, i32 nRadius, float fStartAngle, float fSweepAngle) override;
+      virtual bool AngleArc(i32 x, i32 y, i32 nRadius, angle fStartAngle, angle fSweepAngle) override;
 //      virtual bool ArcTo(i32 x1, i32 y1, i32 x2, i32 y2, i32 x3, i32 y3, i32 x4, i32 y4) override;
       virtual bool ArcTo(const ::rect & rect, const ::point & pointStart, const ::point & pointEnd) override;
       virtual i32 GetArcDirection() override;

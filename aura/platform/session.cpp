@@ -1914,7 +1914,7 @@ namespace aura
             for(auto & pinteraction : uiptraToolWindow.ptra())
             {
 
-               if(pinteraction != pmouse->m_puserinteraction)
+               if(pinteraction != pmouse->userinteraction())
                {
 
                   if(pinteraction->m_bFocus)
@@ -3137,7 +3137,7 @@ namespace aura
 
       auto rectTolerance(rectWkspace);
 
-      auto sizeMax = rectWkspace.size() * 0.8;
+      auto sizeMax = rectWkspace.size();
 
       bool b1 = !rectTolerance.contains(rectRestore);
       bool b2 = rectIntersect.width() < sizeMin.cx || rectIntersect.height() < sizeMin.cy;

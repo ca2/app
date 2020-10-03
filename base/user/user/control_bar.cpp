@@ -517,8 +517,6 @@ namespace user
    void control_bar::EraseNonClient(::draw2d::graphics_pointer & pgraphics)
    {
 
-
-
       // get interaction_impl DC that is clipped to the non-client area
       ::rect rectClient;
       get_client_rect(rectClient);
@@ -526,7 +524,10 @@ namespace user
       get_window_rect(rectWindow);
       _001ScreenToClient(rectWindow);
       rectClient.offset(-rectWindow.left, -rectWindow.top);
-      pgraphics->ExcludeClipRect(rectClient);
+      
+      //pgraphics->exclude_clip();
+      
+      //pgraphics->ExcludeClipRect(rectClient);
 
       // draw borders in non-client area
       rectWindow.offset(-rectWindow.left, -rectWindow.top);
@@ -535,7 +536,7 @@ namespace user
       // erase parts not drawn
       //pgraphics->IntersectClipRect(rectWindow);
       //SendMessage(WM_ERASEBKGND, (WPARAM)spgraphics->get_handle1());
-      pgraphics->SelectClipRgn(nullptr);
+      pgraphics->reset_clip();
       pgraphics->fill_solid_rect_dim(
       0,
       0,
@@ -552,13 +553,18 @@ namespace user
 
    void control_bar::_001OnCtlColor(::message::message * pmessage)
    {
+      
       SCAST_PTR(::message::ctl_color,pctlcolor,pmessage);
 
-      __pointer(::user::interaction) pinteraction =pctlcolor->m_puserinteraction;
-      if (pinteraction.is_set() && pinteraction->OnChildNotify(pctlcolor))
+      auto pinteraction =pctlcolor->userinteraction();
+      
+      if (::is_set(pinteraction) && pinteraction->OnChildNotify(pctlcolor))
       {
+         
          pctlcolor->m_bRet = true;
+         
          return;
+         
       }
 
       // force black text on gray background all the time

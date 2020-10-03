@@ -51,6 +51,8 @@ namespace user
    {
 
       set_layer(LAYERED_USER_INTERACTION, this);
+      
+      m_bDerivedHeight = false;
 
       m_bLayoutModified = false;
 
@@ -2124,7 +2126,7 @@ namespace user
 
 #if defined(MACOS) || defined(LINUX) || defined(_UWP)
 
-      return;
+      //return;
 
 #endif
 
@@ -2165,37 +2167,42 @@ namespace user
          }
 
          ::user::interaction * pinteraction = this;
-
-         ::rect rectIntersect;
-
-         index i = 0;
-
-         pgraphics->SelectClipRgn(nullptr);
-
-         while (pinteraction != nullptr)
+         
+         if(!m_pshapeaClip)
          {
+            
+            __construct_new(m_pshapeaClip);
 
-            pinteraction->get_client_rect(rectClient);
+            ::rect rectIntersect;
 
-            pinteraction->_001ClientToScreen(rectClient);
+            index i = 0;
 
-            _001ScreenToClient(rectClient);
+            while (pinteraction != nullptr)
+            {
 
-            rectClient += m_pointScroll;
+               pinteraction->get_client_rect(rectClient);
 
-            pgraphics->IntersectClipRect(rectClient);
+               pinteraction->_001ClientToScreen(rectClient);
 
-            i++;
+               _001ScreenToClient(rectClient);
 
-            pinteraction = pinteraction->GetParent();
+               rectClient += m_pointScroll;
+               
+               m_pshapeaClip->add_item(__new(rect_shape(rectClient)));
 
+               m_pshapeaClip->add_item(__new(intersect_clip_shape()));
+
+               i++;
+
+               pinteraction = pinteraction->GetParent();
+
+            }
+            
          }
 
-         //pgraphics->OffsetClipRgn(m_pointScroll.x, m_pointScroll.y);
+         pgraphics->reset_clip();
 
-         ::rect rectClipbox3;
-
-         pgraphics->GetClipBox(rectClipbox3);
+         pgraphics->add_shapes(*m_pshapeaClip);
 
       }
       catch (...)
@@ -2269,17 +2276,6 @@ namespace user
 
          }
 
-         //if(false)
-//         {
-//
-//            _001OnClip(pgraphics);
-//
-//         }
-
-         //throw 0;
-
-
-
          {
 
 #ifdef __DEBUG
@@ -2298,13 +2294,6 @@ namespace user
             {
 
             }
-//
-//            if (!pointScroll.is_null())
-//            {
-//
-//               pgraphics->OffsetViewportOrg(pointScroll.x, pointScroll.y);
-//
-//            }
 
 #ifdef __DEBUG
 
@@ -2386,7 +2375,7 @@ namespace user
    }
 
 
-   void interaction::_001CallOnDraw(::draw2d::graphics_pointer & pgraphics)
+void interaction::_001CallOnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       point pointScroll = m_pointScroll;
@@ -3421,6 +3410,7 @@ namespace user
 
       m_ewindowflag |= window_flag_is_window;
 
+      m_bReposition = true;
 
       ::user::control_event ev;
 
@@ -6626,6 +6616,8 @@ namespace user
       }
 
       auto pgraphics = create_memory_graphics();
+      
+      m_pshapeaClip.release();
 
       m_pimpl->on_layout(pgraphics);
 
@@ -7652,7 +7644,6 @@ namespace user
 
       return m_pimpl->post_message(uiMessage, wparam, lparam);
 
-
    }
 
 
@@ -7905,6 +7896,22 @@ namespace user
    }
 
 
+   int interaction::get_derived_height(int iWidth)
+   {
+
+      return -1;
+
+   }
+
+
+   int interaction::get_derived_width(int iHeight)
+   {
+
+      return -1;
+
+   }
+
+
    static i64 g_i_prodevian_update_visual = 0;
 
 
@@ -7939,7 +7946,6 @@ namespace user
 
          }
 
-
       }
 
       string strType = type_name();
@@ -7954,6 +7960,12 @@ namespace user
       {
 
          output_debug_string("main_frame");
+
+      }
+      else if (strType.contains("place_holder"))
+      {
+
+         output_debug_string("place_holder");
 
       }
       else if (strType.contains("combo_box"))
@@ -8001,9 +8013,45 @@ namespace user
       ::size sizeSketch = layout().sketch().size();
 
       ::size sizeDesign = layout().design().size();
+      
+      if(m_bDerivedHeight)
+      {
+         
+         int iDerivedWidth = sizeSketch.cx;
+         
+         int iDerivedHeight = get_derived_height(iDerivedWidth);
+         
+         ::size sizeMinimum = get_window_minimum_size();
+         
+         if(iDerivedHeight > 0)
+         {
+         
+            if(iDerivedHeight < sizeMinimum.cy)
+            {
+            
+               iDerivedHeight = sizeMinimum.cy;
+               
+               iDerivedWidth = get_derived_width(iDerivedHeight);
+               
+            }
+            
+         }
+         
+         if(iDerivedWidth >= sizeMinimum.cx && iDerivedHeight >= sizeMinimum.cy)
+         {
+            
+            sizeSketch.cx = iDerivedWidth;
+            
+            sizeSketch.cy = iDerivedHeight;
+            
+            layout().sketch() = sizeSketch;
+            
+         }
+         
+      }
 
       bool bLayout = sizeSketch != sizeDesign || m_bNeedLayout;
-
+      
       m_bNeedLayout = false;
 
       // mark sketch up-to-date
@@ -11848,7 +11896,7 @@ restart:
                   pmouse->m_eflagMessage += ::message::flag_synthesized;
 
                   pmouse->m_id = WM_MOUSEMOVE;
-                  pmouse->m_puserinteraction = pinteraction;
+                  pmouse->m_playeredUserPrimitive = pinteraction;
                   pmouse->m_point = pointCurrent;
                   pmouse->m_bTranslated = true;
 

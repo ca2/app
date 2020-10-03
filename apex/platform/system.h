@@ -949,16 +949,6 @@ namespace apex
       //virtual ::estatus do_request(::create* pcommand) override;
 
 
-#ifdef DEBUG
-
-      virtual void set_context(::context* pcontext) override;
-      virtual void set_context_thread(::thread* pthread) override;
-      virtual void set_context_app(::apex::application* pappContext) override;
-      virtual void set_context_session(::apex::session* psessionContext) override;
-      virtual void set_context_system(::apex::system* psystemContext) override;
-
-#endif
-
 
       void assert_valid() const override;
       void dump(dump_context& action_context) const override;

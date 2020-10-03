@@ -527,7 +527,7 @@
 
          ::file::path path = pathFolder / (str + string("?sessid=noauth"));
 
-         pfileset->m_straFileAddUp.add(path);
+         pfileset->m_listingAddUp.add(path);
 
       }
 

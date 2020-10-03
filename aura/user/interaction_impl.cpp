@@ -971,7 +971,7 @@ namespace user
       if (!bPointInside)
       {
 
-         if (pmouse->m_puserinteraction == m_puserinteraction)
+         if (pmouse->userinteraction() == m_puserinteraction)
          {
 
             bPointInside = true;
@@ -2294,9 +2294,9 @@ namespace user
    LRESULT interaction_impl::send_message(UINT message, WPARAM wparam, lparam lparam)
    {
 
-      ::pointer < ::message::base > spbase;
+      ::pointer < ::message::base > pbase;
 
-      spbase = m_puserinteraction->get_message_base(message, wparam, lparam);
+      pbase = m_puserinteraction->get_message_base(message, wparam, lparam);
 
       if(m_puserinteraction->layout().is_moving())
       {
@@ -2313,20 +2313,20 @@ namespace user
       else
       {
 
-         m_puserinteraction->walk_pre_translate_tree(spbase);
+         m_puserinteraction->walk_pre_translate_tree(pbase);
 
-         if(spbase->m_bRet)
+         if(pbase->m_bRet)
          {
 
-            return spbase->m_lresult;
+            return pbase->m_lresult;
 
          }
 
       }
 
-      message_handler(spbase);
+      message_handler(pbase);
 
-      return spbase->m_lresult;
+      return pbase->m_lresult;
 
    }
 

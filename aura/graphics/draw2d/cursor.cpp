@@ -114,7 +114,7 @@ namespace draw2d
 
       }
 
-      Application.window_set_mouse_cursor(pinteraction->get_handle(), 0);
+      App(pinteraction).window_set_mouse_cursor(pinteraction->get_handle(), 0);
 
       return true;
 

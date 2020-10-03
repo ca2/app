@@ -18,7 +18,7 @@ namespace message
 
 
       using ::message::base::set;
-      virtual void set(::user::primitive * pwnd, UINT uiMessage, WPARAM wparam, ::lparam lparam);
+      virtual void set(::layered * playeredUserPrimitive, UINT uiMessage, WPARAM wparam, ::lparam lparam) override;
 
 
 

@@ -125,7 +125,7 @@ void object::create_object_meta()
 }
 
 
-void object::to_string(string & str) const
+void object::to_string(const class string_exchange & str) const
 {
 
    str = string(type_name()) + " (0x" + ::hex::lower_from((uptr)this) + ")";
@@ -1422,7 +1422,7 @@ void object::_001OnUpdate(::message::message * pmessage)
    else
    {
 
-      call_update((::id) (::iptr) pmessage->m_wparam);
+      call_update((::__id) (::iptr) pmessage->m_wparam);
 
    }
 

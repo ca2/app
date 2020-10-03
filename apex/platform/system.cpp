@@ -930,51 +930,6 @@ namespace apex
    }
 
 
-#ifdef DEBUG
-
-
-   void system::set_context(::context* pcontext)
-   {
-
-      m_pcontextContext = pcontext;
-
-   }
-
-
-   void system::set_context_thread(::thread* pthread)
-   {
-
-      m_pthreadContext = pthread;
-
-   }
-
-
-   void system::set_context_app(::apex::application* pappContext)
-   {
-
-      m_pappContext = pappContext;
-
-   }
-
-
-   void system::set_context_session(::apex::session* psessionContext)
-   {
-
-      m_psessionContext = psessionContext;
-
-   }
-
-
-   void system::set_context_system(::apex::system* psystemContext)
-   {
-
-      m_psystemContext = psystemContext;
-
-   }
-
-
-#endif
-
 
    //::apex::library * system::on_get_library(const char * pszLibrary)
    //{

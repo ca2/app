@@ -265,3 +265,17 @@ void library_launch(const char *psz)
    
    
 }
+
+
+
+char * macos_get_version()
+{
+
+   NSString *appVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+ 
+   return strdup([appVersion UTF8String]);
+   
+}
+
+
+

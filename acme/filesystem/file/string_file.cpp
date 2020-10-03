@@ -96,7 +96,10 @@ void string_file::destroy()
    m_iPos = 0;
 }
 
-
+void string_file::to_string(const class string_exchange & str) const
+{
+   
+}
 //void string_file::alloc(strsize iSize)
 //{
 

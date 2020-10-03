@@ -74,7 +74,7 @@ namespace experience
 
          SCAST_PTR(::message::key, pkey, pmessage);
 
-         if (pkey->m_puserinteraction == this)
+         if (pkey->userinteraction() == this)
          {
 
             if (pmessage->m_id == WM_KEYDOWN || pmessage->m_id == WM_SYSKEYDOWN)

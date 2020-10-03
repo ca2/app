@@ -4,6 +4,7 @@
 struct NSVGimage;
 
 
+
 namespace draw2d
 {
 
@@ -327,18 +328,43 @@ namespace draw2d
 
       virtual i32 GetClipBox(rect64 * prect);
 
-      virtual bool PtVisible(i32 x, i32 y);
-      virtual bool PtVisible(const ::point & point);
-      virtual bool RectVisible(const ::rect & rect);
-      virtual i32 SelectClipRgn(::draw2d::region* pRgn);
-      virtual i32 ExcludeClipRect(i32 x1, i32 y1, i32 x2, i32 y2);
-      virtual i32 ExcludeClipRect(const ::rect & rect);
-//      virtual i32 ExcludeUpdateRgn(::user::interaction_impl * pwindow);
-      virtual i32 IntersectClipRect(i32 x1, i32 y1, i32 x2, i32 y2);
-      virtual i32 IntersectClipRect(const ::rect & rect);
-      virtual i32 OffsetClipRgn(i32 x, i32 y);
-      virtual i32 OffsetClipRgn(const ::size & size);
-      virtual i32 SelectClipRgn(::draw2d::region* pregion, ::draw2d::enum_combine ecombine);
+      //virtual bool PtVisible(i32 x, i32 y);
+      //virtual bool PtVisible(const ::point & point);
+      //virtual bool RectVisible(const ::rect & rect);
+      
+
+      
+      virtual ::estatus add_shapes(const shape_array & shapea);
+      virtual ::estatus add_shape(___shape * pshape);
+
+      // Generally for backend implementators
+      virtual ::estatus reset_clip();
+      virtual ::estatus intersect_clip();
+      virtual ::estatus add_shape(const ::rect & rect);
+      virtual ::estatus add_shape(const ::rectd & rect);
+      virtual ::estatus add_shape(const ::oval & oval);
+      virtual ::estatus add_shape(const ::ovald & oval);
+      virtual ::estatus add_shape(const ::polygon & polygon);
+      virtual ::estatus add_shape(const ::polygond & polygon);
+
+      
+      virtual ::estatus intersect_clip(const ::rect & rect);
+      virtual ::estatus intersect_clip(const ::rectd & rect);
+      virtual ::estatus intersect_clip(const ::oval & oval);
+      virtual ::estatus intersect_clip(const ::ovald & oval);
+      virtual ::estatus intersect_clip(const ::polygon & polygon);
+      virtual ::estatus intersect_clip(const ::polygond & polygon);
+
+      
+      //virtual ::estatus IntersectClipRgn(::draw2d::region * pregion);
+      //virtual ::estatus IntersectClipRect(i32 x1, i32 y1, i32 x2, i32 y2);
+      //virtual ::estatus IntersectClipRect(const ::rect & rect);
+      //virtual i32 ExcludeClipRect(i32 x1, i32 y1, i32 x2, i32 y2);
+      //virtual i32 ExcludeClipRect(const ::rect & rect);
+      //virtual i32 ExcludeUpdateRgn(::user::interaction_impl * pwindow);
+      //virtual i32 OffsetClipRgn(i32 x, i32 y);
+      //virtual i32 OffsetClipRgn(const ::size & size);
+      //virtual i32 SelectClipRgn(::draw2d::region* pregion, ::draw2d::enum_combine ecombine);
 
       virtual void on_apply_clip_region();
 

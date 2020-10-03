@@ -8,6 +8,8 @@ class layered;
 class object;
 class dump_context;
 class sync;
+class __id;
+class string_exchange;
 
 
 inline ::object* __object(::layered* playered);
@@ -211,8 +213,8 @@ public:
    virtual const char * topic_text() const;
 
 
-   virtual void call_update(const ::id & id, const ::action_context & context);
-   virtual void call_update(const ::id & id);
+   virtual void call_update(const class ::__id & id, const ::action_context & context);
+   virtual void call_update(const class ::__id & id);
    virtual void call_update(::update * pupdate);
    virtual void update(::update * pupdate);
    virtual bool already_handled(::update * pupdate) const;
@@ -230,7 +232,7 @@ public:
    virtual stream& read(::stream& stream);
 
 
-   virtual void to_string(string& str) const;
+   virtual void to_string(const string_exchange & str) const;
    virtual strsize sz_len() const;
    virtual void to_sz(char* sz, strsize len) const;
 

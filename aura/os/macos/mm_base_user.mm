@@ -80,6 +80,8 @@ WINBOOL size_nswindow(oswindow hwnd, int cx, int cy)
       
                   rect.size.width = cx;
       
+                  rect.origin.y += rect.size.height - cy;
+
                   rect.size.height = cy;
 
                   [__nswindow(hwnd) setFrame: rect display:TRUE];

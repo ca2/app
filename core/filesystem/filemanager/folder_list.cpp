@@ -110,7 +110,6 @@ namespace filemanager
    }
 
 
-
    void folder_list::browse_sync(const ::action_context & context)
    {
 
@@ -118,12 +117,9 @@ namespace filemanager
 
       m_foldera.clear();
 
-      //      m_foldera.clear(nullptr, nullptr);
-
       Folder folder;
 
-
-      ::file::listing patha(get_context());
+      ::file::listing patha;
 
       Application.dir().ls(patha, strParent);
 
@@ -142,11 +138,9 @@ namespace filemanager
 
       ::user::list_column * pcolumn = m_columna.get_by_subitem(1);
 
-
       _001CreateImageList(pcolumn);
 
    }
-
 
 
    void folder_list::_001CreateImageList(::user::list_column * pcolumn)

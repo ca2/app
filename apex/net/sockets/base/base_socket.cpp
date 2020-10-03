@@ -2563,7 +2563,7 @@ namespace sockets
    }
 
 
-   void base_socket::to_string(string & str) const
+   void base_socket::to_string(const class string_exchange & str) const
    {
 
       ::object::to_string(str);

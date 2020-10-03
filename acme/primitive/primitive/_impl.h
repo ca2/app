@@ -1552,40 +1552,7 @@ inline __pointer(T) & pointer < T >::create(OBJECT * pobjectContext, bool bCreat
 //
 template < typename T >
 inline __pointer(T) move_transfer(T * p) { return ::pointer < T >(e_move_transfer, p); }
-//
-//
-//inline const char * elemental::topic_text() { return ::is_null(m_pmeta) ? nullptr : m_pmeta->m_strTopicText; }
-//
-//
-//inline var elemental::context_value(const var& var)
-//{
-//
-//   ::var varContextValue;
-//
-//   varContextValue["context"] = get_context();
-//
-//   varContextValue["value"] = var;
-//
-//   return varContextValue;
-//
-//}
-//
-//
-//inline void elemental::defer_set_context_object(::elemental * pobjectContext)
-//{
-//
-//   if (::is_null(get_context_object()) && ::is_set(pobjectContext))
-//   {
-//
-//      set_context_object(pobjectContext);
-//
-//   }
-//
-//}
-//
-//
-//#include "_property_set_composite_impl.h"
-//
+
 
 template < typename TYPE >
 TYPE & operator |=(TYPE & o, enum_object eobject)
@@ -2350,33 +2317,6 @@ inline void future::send(const var & var) const
    return m_pobjectTask->receive_response(var);
 
 }
-
-
-//template < typename TYPE >
-//inline ::estatus elemental::__construct_new(__pointer(TYPE)& pbase)
-//{
-//
-//   ::estatus estatus = ::__construct_new(pbase);
-//
-//   if (!estatus)
-//   {
-//
-//      return estatus;
-//
-//   }
-//
-//   estatus = pbase->initialize(get_context_object());
-//
-//   if (!estatus)
-//   {
-//
-//      return estatus;
-//
-//   }
-//
-//   return estatus;
-//
-//}
 
 
 template < typename PRED >

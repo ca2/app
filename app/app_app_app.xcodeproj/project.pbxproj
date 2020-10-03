@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A2E626525258C4E0001CC7E /* libaqua.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2E626425258C4E0001CC7E /* libaqua.dylib */; };
 		9A44E7FE24F706D20077A431 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A44E7FA24F706D20077A431 /* _.h */; };
 		9A44E7FF24F706D20077A431 /* _user.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A44E7FD24F706D20077A431 /* _user.h */; };
 		9A4889F924EB4A7400119EC4 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4889F324EB4A7400119EC4 /* framework.h */; };
@@ -52,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9A2E626425258C4E0001CC7E /* libaqua.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaqua.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A44E7FA24F706D20077A431 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = SOURCE_ROOT; };
 		9A44E7FD24F706D20077A431 /* _user.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _user.h; sourceTree = SOURCE_ROOT; };
 		9A48898624EB48DE00119EC4 /* libapp_app.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libapp_app.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A2E626525258C4E0001CC7E /* libaqua.dylib in Frameworks */,
 				9AC3970425195DFA0036B92A /* libacme.dylib in Frameworks */,
 				9AC3970625195DFA0036B92A /* libapex.dylib in Frameworks */,
 				9A488A5224EB4BAF00119EC4 /* libaura.dylib in Frameworks */,
@@ -126,6 +129,7 @@
 		9A488A5124EB4BAF00119EC4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A2E626425258C4E0001CC7E /* libaqua.dylib */,
 				9AC3970325195DFA0036B92A /* libacme.dylib */,
 				9AC3970525195DFA0036B92A /* libapex.dylib */,
 			);

@@ -50,12 +50,7 @@ namespace http
       }
 
 
-      inline void to_string(string & str) const override
-      {
-
-         m_varValue.to_string(str);
-
-      }
+      virtual void to_string(const string_exchange & str) const override;
 
 
       inline string to_string() const

@@ -59,7 +59,7 @@ namespace file
    ::count set::get_file_count()
    {
 
-      return m_straFile.get_size();
+      return m_listing.get_size();
 
    }
 
@@ -67,7 +67,7 @@ namespace file
    void set::file_at(::index i, string & str)
    {
 
-      str = m_straFile[i];
+      str = m_listing[i];
 
    }
 
@@ -76,8 +76,7 @@ namespace file
 
    {
 
-      return m_straFile.find_first_ci(pcsz, iStart);
-
+      return m_listing.find_first_ci(pcsz, iStart);
 
    }
 
@@ -107,26 +106,26 @@ namespace file
 
          }
 
-         m_straFile.m_pprovider = get_context();
+         m_listing.m_pprovider = get_context();
 
          ::file::path & pathFolder = m_ppathaSearch->element_at(i);
 
          if(bRecursive)
          {
 
-            Context.dir().rls_pattern(m_straFile, pathFolder, m_straFilter);
+            Context.dir().rls_pattern(m_listing, pathFolder, m_straFilter);
 
          }
          else
          {
 
-            Context.dir().ls_pattern(m_straFile, pathFolder, m_straFilter);
+            Context.dir().ls_pattern(m_listing, pathFolder, m_straFilter);
 
          }
 
       }
 
-      m_straFile.add(m_straFileAddUp);
+      m_listing.add(m_listingAddUp);
 
    }
 
@@ -134,7 +133,7 @@ namespace file
    void set::clear_file()
    {
 
-      m_straFile.clear();
+      m_listing.clear();
 
    }
 
@@ -171,21 +170,21 @@ namespace file
 
       index iNext = iFind + 1;
 
-      if(iNext >= m_straFile.get_count())
+      if(iNext >= m_listing.get_count())
       {
 
          iNext = 0;
 
       }
 
-      if(iNext >= m_straFile.get_count())
+      if(iNext >= m_listing.get_count())
       {
 
          return false;
 
       }
 
-      strNext =  m_straFile[iNext];
+      strNext = m_listing[iNext];
 
       return true;
 
@@ -221,7 +220,7 @@ namespace file
 
       refresh();
 
-      if(m_straFile.is_empty())
+      if(m_listing.is_empty())
       {
 
          if (!bAddSearch)
@@ -231,7 +230,7 @@ namespace file
 
             ::file::set::refresh();
 
-            if (m_straFile.is_empty())
+            if (m_listing.is_empty())
             {
 
                Context.os().::os_context::initialize_wallpaper_fileset(this, bAddSearch);

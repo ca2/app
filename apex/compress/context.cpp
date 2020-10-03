@@ -262,7 +262,7 @@ bool compress_context::zip(const ::file::path & pszZip, const ::file::path & psz
    if (Context.dir().is(psz))
    {
 
-      ::file::listing patha(get_context());
+      ::file::listing patha;
 
       ::file::path strPath;
 

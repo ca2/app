@@ -91,7 +91,7 @@ namespace user
 
       pgraphics->GetClipBox(rectClipBox);
 
-      pgraphics->SelectClipRgn(nullptr);
+      pgraphics->reset_clip();
 
       _001OnDrawComboList(pgraphics);
 

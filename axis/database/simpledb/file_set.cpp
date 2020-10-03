@@ -11,8 +11,8 @@ namespace simpledb
    file_set::file_set()
    {
 
-      m_straFile.m_bDir      = false;
-      m_straFile.m_bFile     = true;
+      m_listing.m_bDir      = false;
+      m_listing.m_bFile     = true;
 
    }
 

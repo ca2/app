@@ -978,10 +978,10 @@ namespace user
    LRESULT primitive::send(::message::base * pbase)
    {
 
-      if(pbase->m_puserinteraction == nullptr)
+      if(pbase->userprimitive() == nullptr)
       {
 
-         pbase->m_puserinteraction = this;
+         pbase->m_playeredUserPrimitive = this;
 
       }
 

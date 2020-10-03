@@ -23,7 +23,7 @@ namespace file
 
       virtual strsize sz_len() const override;
       virtual void to_sz(char* sz, strsize size) const override;
-      virtual void to_string(string& str) const override;
+      virtual void to_string(const string_exchange& string) const override;
 
       using elemental::set;
       using elemental::has;

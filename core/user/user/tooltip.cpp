@@ -80,7 +80,7 @@ namespace user
    void tooltip::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      pgraphics->SelectClipRgn(nullptr);
+      pgraphics->reset_clip();
 
       ::rect rectClient;
 

@@ -12,8 +12,7 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE data :
-      virtual public ::data::data,
-      virtual public ::database::client
+      virtual public ::data::data
    {
    public:
 
@@ -87,22 +86,25 @@ namespace filemanager
       bool is_topic();
 
 
-
       virtual ::estatus initialize_filemanager_data(::layered * pobjectContext);
 
+      
       bool open(::apex::application * pappOnBehalfOf = nullptr, ::file::path path = "", const ::action_context & action_context = ::source_system);
+      
+      
       //::filemanager::document * open(::file::path path = "");
       //virtual ::filemanager::document * document();
+      
 
       virtual bool do_prompt_file_name(var & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
 
 
-      virtual void defer_update_data_key() override;
+      //virtual void defer_update_data_key() override;
 
 
       virtual ::id get_local_machine_id();
-      virtual string get_last_browse_path(const char * pszDefault = nullptr);
-      virtual ::estatus set_last_browse_path(const ::file::path & path);
+      virtual string get_last_browse_path(::object * pobjectContext, const char * pszDefault = nullptr);
+      virtual ::estatus set_last_browse_path(::object * pobjectContext, const ::file::path & path);
 
 
    };

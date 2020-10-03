@@ -4,7 +4,9 @@
 #include "aura/update.h"
 
 
-CLASS_DECL_APEX bool defer_init_winsock();
+//#ifdef WIN32
+//CLASS_DECL_APEX bool defer_init_winsock();
+//#endif
 
 
 namespace app_app
@@ -14,7 +16,10 @@ namespace app_app
    application::application()
    {
 
-      defer_init_winsock();
+//#ifdef WIN32
+//      defer_init_winsock();
+      
+      
 
       m_strAppId = "app/app";
 

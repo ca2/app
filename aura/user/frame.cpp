@@ -77,24 +77,6 @@ namespace user
    }
 
 
-   int frame::get_derived_height(int iWidth)
-   {
-
-      return -1;
-
-
-   }
-
-
-   int frame::get_derived_width(int iHeight)
-   {
-
-      return -1;
-
-
-   }
-
-
    ::color frame::get_border_main_body_color()
    {
 

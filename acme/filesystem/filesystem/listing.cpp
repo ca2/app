@@ -5,12 +5,20 @@ namespace file
 {
 
 
-   listing::listing(listing_provider * pprovider)
+   listing::listing()
    {
 
-      m_pprovider = pprovider;
       m_nGrowBy = 128;
 
+   }
+
+
+   listing::listing(const listing & listing) :
+      patha(listing)
+   {
+      
+      m_nGrowBy = 128;
+      
    }
 
 
@@ -20,40 +28,15 @@ namespace file
    }
 
 
-   //listing & listing::ls()
-   //{
-
-   //   m_pathFinal = Context.defer_process_path(m_pathUser | ::file::flag_resolve_alias);
-
-   //   return m_pprovider->perform_file_listing(*this);
-
-   //}
-
-
-   //listing & listing::ls_relative_name()
-   //{
-
-   //   m_pathFinal = Context.defer_process_path(m_pathUser);
-
-   //   return m_pprovider->perform_file_relative_name_listing(*this);
-
-   //}
-
-
-   //listing & relative_name_listing::ls()
-   //{
-
-   //   m_pathFinal = Context.defer_process_path(m_pathUser);
-
-   //   return m_pprovider->perform_file_relative_name_listing(*this);
-
-   //}
-
-
-   relative_name_listing::relative_name_listing(listing_provider * pprovider)
+   relative_name_listing::relative_name_listing()
    {
 
-      m_pprovider = pprovider;
+   }
+
+
+   relative_name_listing::relative_name_listing(const relative_name_listing & listing) :
+      ::file::listing(listing)
+   {
 
    }
 

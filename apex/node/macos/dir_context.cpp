@@ -216,7 +216,7 @@ namespace macos
 
             }
 
-            ::file::listing dira(get_context_application());
+            ::file::listing dira;
 
             Application.dir().ls_dir(dira, listing.m_pathFinal);
 
@@ -812,7 +812,7 @@ try1:
    bool dir_context::has_subdir(const ::file::path & pszDir)
    {
 
-      ::file::listing stra(::get_context_application());
+      ::file::listing stra;
 
       Application.dir().ls_dir(stra, pszDir);
 
@@ -1078,7 +1078,7 @@ try1:
       if(bRecursive)
       {
 
-         ::file::listing patha(get_context());
+         ::file::listing patha;
 
          Application.dir().ls(patha, psz);
 

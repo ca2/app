@@ -102,7 +102,7 @@
       }
 
 
-      virtual void to_string(string & str) const override { str = m_str; }
+      virtual void to_string(const string_exchange & str) const override;
 
 
       string_file & operator += (const string & str)

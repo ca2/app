@@ -541,7 +541,7 @@ namespace draw2d_quartz2d
 //   }
 
 
-   bool graphics::Arc(double x, double y, double w, double h, double start, double extends)
+   bool graphics::Arc(double x, double y, double w, double h, angle start, angle extends)
    {
 
       double end = start + extends;
@@ -1094,15 +1094,15 @@ namespace draw2d_quartz2d
 
    }
 
-   bool graphics::set_polygon(const POINTD * pa, count nCount)
+   bool graphics::set_polygon(const POINTD * p, count c)
    {
 
-      CGContextMoveToPoint(m_pdc, pa[0].x, pa[0].y);
+      CGContextMoveToPoint(m_pdc, p[0].x, p[0].y);
 
-      for(i32 i = 1; i < nCount; i++)
+      for(i32 i = 1; i < c; i++)
       {
 
-         CGContextAddLineToPoint(m_pdc, pa[i].x, pa[i].y);
+         CGContextAddLineToPoint(m_pdc, p[i].x, p[i].y);
 
       }
 
@@ -1111,15 +1111,15 @@ namespace draw2d_quartz2d
    }
 
 
-   bool graphics::set_polygon(const POINT * pa, count nCount)
+   bool graphics::set_polygon(const POINT * p, count c)
    {
 
-      CGContextMoveToPoint(m_pdc, pa[0].x, pa[0].y);
+      CGContextMoveToPoint(m_pdc, p[0].x, p[0].y);
 
-      for(i32 i = 1; i < nCount; i++)
+      for(i32 i = 1; i < c; i++)
       {
 
-         CGContextAddLineToPoint(m_pdc, pa[i].x, pa[i].y);
+         CGContextAddLineToPoint(m_pdc, p[i].x, p[i].y);
 
       }
 
@@ -2221,7 +2221,7 @@ namespace draw2d_quartz2d
 
    }
 
-   bool graphics::AngleArc(i32 x, i32 y, i32 nRadius, float fStartAngle, float fSweepAngle)
+   bool graphics::AngleArc(i32 x, i32 y, i32 nRadius, angle fStartAngle, angle fSweepAngle)
    {
 
       __throw(not_implemented());
@@ -4195,19 +4195,124 @@ namespace draw2d_quartz2d
    }
 
 
-   void graphics::on_apply_clip_region()
+   ::estatus graphics::reset_clip()
    {
-      
+   
       CGContextResetClip(m_pdc);
       
-      if(m_pregion)
-      {
-
-         _clip(m_pregion);
-         
-      }
- 
+      return ::success;
+   
    }
+
+
+   ::estatus graphics::intersect_clip()
+   {
+      
+      CGContextClip(m_pdc);
+      
+      return ::success;
+      
+   }
+
+
+   ::estatus graphics::add_shape(const ::rect & rect)
+   {
+   
+      CGRect r;
+      
+      __copy(r, rect);
+   
+      CGContextAddRect(m_pdc, r);
+      
+      return ::success;
+      
+   }
+
+
+   ::estatus graphics::add_shape(const ::rectd & rect)
+   {
+   
+      CGRect r;
+         
+      __copy(r, rect);
+      
+      CGContextAddRect(m_pdc, r);
+         
+      return ::success;
+      
+   }
+
+
+   ::estatus graphics::add_shape(const ::oval & oval)
+   {
+   
+      CGRect r;
+      
+      __copy(r, oval);
+   
+      CGContextAddEllipseInRect(m_pdc, r);
+      
+      return ::success;
+      
+   }
+
+
+   ::estatus graphics::add_shape(const ::ovald & oval)
+   {
+   
+      CGRect r;
+      
+      __copy(r, oval);
+   
+      CGContextAddEllipseInRect(m_pdc, r);
+      
+      return ::success;
+      
+   }
+
+
+   ::estatus graphics::add_shape(const ::polygon & polygon)
+   {
+   
+      CGContextBeginPath(m_pdc);
+   
+      set_polygon(polygon.get_data(), polygon.get_count());
+      
+      CGContextClosePath(m_pdc);
+      
+      return ::success;
+      
+   }
+
+
+   ::estatus graphics::add_shape(const ::polygond & polygon)
+   {
+
+      CGContextBeginPath(m_pdc);
+      
+      set_polygon(polygon.get_data(), polygon.get_count());
+         
+      CGContextClosePath(m_pdc);
+         
+      return ::success;
+      
+   }
+
+
+
+//   void graphics::on_apply_clip_region()
+//   {
+//
+//      CGContextResetClip(m_pdc);
+//
+//      if(m_pregion)
+//      {
+//
+//         _clip(m_pregion);
+//
+//      }
+//
+//   }
 
 
    void graphics::LPtoDP(LPSIZE lpSize)
@@ -6182,16 +6287,18 @@ namespace draw2d_quartz2d
       //CGContextTranslateCTM(pgraphics, x, y);
       //CGContextScaleCTM(pgraphics, 1.0, -1.0);
 
-      CGContextSetTextMatrix(pgraphics, CGAffineTransformIdentity);
-      CGContextTranslateCTM(pgraphics, x, y);
-      CGContextScaleCTM(pgraphics, 1.0, -1.0);
+      //CGContextSetTextMatrix(pgraphics, CGAffineTransformIdentity);
+      CGContextSetTextMatrix(pgraphics, CGAffineTransformScale(CGAffineTransformMakeTranslation(x, y), 1.f, -1.f));
+      //CGContextTranslateCTM(pgraphics, x, y);
+      //CGContextScaleCTM(pgraphics, 1.0, -1.0);
       // CGContextSetTextMatrix(pgraphics, CGAffineTransformScale(CGAffineTransformMakeTranslation(x, y), 1.f, -1.f));
+      
       CGContextSetTextDrawingMode(pgraphics, emode);
 
       CTLineDraw(line, pgraphics);
 
-      CGContextScaleCTM(pgraphics, 1.0, -1.0);
-      CGContextTranslateCTM(pgraphics, -x, -y);
+      //CGContextScaleCTM(pgraphics, 1.0, -1.0);
+      //CGContextTranslateCTM(pgraphics, -x, -y);
 
       if(pbrush != nullptr)
       {

@@ -192,7 +192,7 @@ public:
    void from_string(const string & str);
    void from_string(const var & var);
    //void to_string(string & str, memsize iStart = 0, memsize uiSize = -1) const;
-   virtual void to_string(string & str) const override;
+   virtual void to_string(const string_exchange & str) const override;
    string to_string(memsize iStart, memsize uiSize = -1) const;
 
    void delete_begin(memsize iSize);

@@ -421,7 +421,7 @@ namespace core
       create_factory <simple_toolbar >();
       create_factory <::experience::orto_button >();
 
-      estatus = initialize_filemanager_component(Session.m_pappCurrent);
+      estatus = initialize_filemanager_component(this);
 
       if (!estatus)
       {

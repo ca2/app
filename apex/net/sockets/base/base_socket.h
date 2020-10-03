@@ -562,7 +562,7 @@ namespace sockets
       // TCP options in tcp_socket.h/tcp_socket.cpp
 
 
-      virtual void to_string(string & str) const override;
+      virtual void to_string(const class string_exchange & str) const override;
 
 
 

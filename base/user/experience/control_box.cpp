@@ -1399,7 +1399,7 @@ namespace experience
 #ifdef MACOS
       
       // clip
-      return;
+      //return;
       
 #endif
 
@@ -1429,61 +1429,36 @@ namespace experience
             bFirst = false;
 
          }
-
-         ::user::interaction * pframewindow = this;
-
-         ::rect rectFocus;
-
-         ::rect rectIntersect;
-
-         index i = 0;
-
-         while (pframewindow != nullptr)
+         
+         if(!m_pshapeaClip)
          {
+            
+            __construct_new(m_pshapeaClip);
 
-            pframewindow->get_window_rect(rectClient);
+            ::user::interaction * pinteraction = this;
 
-            if (pframewindow == m_pframewindow)
+            ::rect rectFocus;
+
+            while (pinteraction != nullptr)
             {
 
-               m_pframewindow->m_pframe->GetFrameRect(&rectFocus);
+               pinteraction->get_window_rect(rectFocus);
 
+               _001ScreenToClient(rectFocus);
+
+               m_pshapeaClip->add_item({__new(rect_shape(rectFocus))});
+
+               m_pshapeaClip->add_item(__new(intersect_clip_shape));
+
+               pinteraction = pinteraction->GetParent();
+               
             }
-            else
-            {
-
-               pframewindow->get_client_rect(rectFocus);
-
-            }
-
-
-            rectFocus.offset(rectClient.top_left());
-
-            _001ScreenToClient(rectFocus);
-
-            //rectFocus.bottom;
-            //rectFocus.right;
-
-            if (i == 0)
-            {
-
-               rectIntersect = rectFocus;
-
-            }
-            else
-            {
-
-               rectIntersect.intersect(rectFocus);
-
-            }
-
-            i++;
-
-            pframewindow = pframewindow->GetParent();
 
          }
+         
+         pgraphics->reset_clip();
 
-         pgraphics->IntersectClipRect(rectIntersect);
+         pgraphics->add_shapes(*m_pshapeaClip);
 
       }
       catch (...)

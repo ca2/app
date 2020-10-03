@@ -11,11 +11,11 @@ namespace file
    public:
 
 
-      __pointer(::file::patha)   m_ppathaSearch;
-      __pointer(bool_array)      m_pbaRecursive;
-      string_array                    m_straFilter;
-      ::file::listing            m_straFile;
-      ::file::listing            m_straFileAddUp;
+      __pointer(::file::patha)      m_ppathaSearch;
+      __pointer(bool_array)         m_pbaRecursive;
+      string_array                  m_straFilter;
+      ::file::listing               m_listing;
+      ::file::listing               m_listingAddUp;
 
 
       set();

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
@@ -91,7 +91,7 @@ namespace filemanager
 
       }
 
-      ::file::listing listing(::userfs::tree::get_document()->fs_data());
+      ::file::listing listing;
 
       ::file::listing listingFinal;
 
@@ -464,15 +464,17 @@ namespace filemanager
 
    void tree::_001OnMainPostMessage(::message::message * pmessage)
    {
+      
       SCAST_PTR(::message::base, pbase, pmessage);
+      
       switch(pbase->m_wparam)
       {
       case MessageMainPostCreateImageListItemRedraw:
       {
 
-         pbase->m_puserinteraction->m_puiThis->set_need_redraw();
+         pbase->userinteraction()->set_need_redraw();
 
-         pbase->m_puserinteraction->m_puiThis->KillTimer(123);
+         pbase->userinteraction()->KillTimer(123);
 
          /*
          ::rect rect;

@@ -64,8 +64,7 @@ public:
    }
    virtual ~text_stream();
 
-   virtual void to_string(string & str) const override { m_p->to_string(str); }
-
+   virtual void to_string(const string_exchange & str) const override;
 
    template < typename TYPE >
    void number_read(TYPE & t)
@@ -256,9 +255,9 @@ namespace str
 {
 
 
-   inline void from(string & str, const text_stream & strstream);
+   void from(string & str, const text_stream & strstream);
 
-   inline void from(string & str, const string_stream & strstream);
+   void from(string & str, const string_stream & strstream);
 
 
 } // namespace str

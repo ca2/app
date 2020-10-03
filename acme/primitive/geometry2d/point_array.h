@@ -22,6 +22,8 @@ public:
 
 
    inline point_array_base() : comparable_array < POINT_TYPE >() {}
+   template < std::size_t n >
+   inline point_array_base(const POINT_TYPE p[n]) : comparable_array < POINT_TYPE >(p, n){ }
    inline point_array_base(point_array_base && pointset) : comparable_array < POINT_TYPE >(::move(pointset)) { }
    inline point_array_base(const point_array_base & pointset) { operator=(pointset); }
    virtual ~point_array_base() { }

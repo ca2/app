@@ -50,7 +50,7 @@ bool ifs::has_subdir(const ::file::path & path)
 
    }
 
-   ::file::listing listing(this);
+   ::file::listing listing;
 
    Context.dir().ls(listing, path);
 
@@ -307,7 +307,7 @@ int ifs::is_dir(const ::file::path & path)
    if(::get_tick() > dir.m_uiTimeout)
    {
 
-      ::file::listing listing(this);
+      ::file::listing listing;
 
       Context.dir().ls(listing, path.folder());
 

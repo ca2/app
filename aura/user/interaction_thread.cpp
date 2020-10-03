@@ -446,7 +446,7 @@ catch(...)
    bool thread::process_base_message(::message::base * pbase)
    {
 
-      if(::is_set(pbase->m_puserinteraction))
+      if(::is_set(pbase->userinteraction()))
       {
 
          ::i64 iMessage = pbase->m_id;
@@ -460,7 +460,7 @@ catch(...)
                //__throw(todo("interaction"));
                //__throw(todo("thread"));
 
-            __pointer(::user::interaction) pinteraction = pbase->m_puserinteraction;
+            auto pinteraction = pbase->userinteraction();
 
             if(pinteraction)
             {
@@ -475,7 +475,7 @@ catch(...)
          else if (iMessage == message_update_notify_icon)
          {
 
-            pbase->m_puserinteraction->route_message(pbase);
+            pbase->userinteraction()->route_message(pbase);
 
             return true;
 
@@ -483,7 +483,7 @@ catch(...)
          else if (iMessage == message_simple_command)
          {
 
-            __pointer(::user::interaction) pinteraction = pbase->m_puserinteraction;
+            auto pinteraction = pbase->userinteraction();
 
             pinteraction->m_pimpl2->_001OnApplyVisual(pbase);
 
@@ -508,7 +508,7 @@ catch(...)
          //   //__throw(todo("interaction"));
          //   //__throw(todo("thread"));
 
-            pbase->m_puserinteraction->message_handler(pbase);
+            pbase->userinteraction()->message_handler(pbase);
 
          //}
 

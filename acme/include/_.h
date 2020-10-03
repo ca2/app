@@ -160,7 +160,7 @@ CLASS_DECL_ACME void debug_print(const char * psz,...);
 CLASS_DECL_ACME int throw_assert_exception(const char * pszFileName,int iLineNumber);
 CLASS_DECL_ACME void throw_what_exclamation_exclamation(const char * psz);
 
-
+#define __pass_array(A) A, sizeof(A)
 
 #ifndef __cplusplus
 
@@ -2011,16 +2011,6 @@ namespace str
 
 
 
-
-//class random_access_iterator
-//{
-//public:
-//};
-
-
-
-
-
 class event;
 
 
@@ -2052,34 +2042,6 @@ namespace html
 
 #define SCAST_PTR(TYPE, ptarget, psource) TYPE * ptarget = dynamic_cast < TYPE * > (psource);
 #define SCAST_REF(TYPE, rtarget, psource) TYPE & rtarget = *(dynamic_cast < TYPE * > (psource))
-
-//#define Au(pobject) (*(::get_context_audio(pobject)))
-//#define Audio (Au(get_context()))
-//
-//#define Mm(pobject) (*(::get_context_multimedia(pobject)))
-//#define Multimedia (Mm(get_context()))
-//
-//
-//#undef Sys
-//#define Sys(pobject) (*::get_context_system(pobject))
-//
-//#undef Sess
-//#define Sess(pobject) (*::get_context_session(pobject))
-//
-//#undef App
-//#define App(pobject) (*::get_context_application(pobject))
-//
-//
-//#define System Sys(get_context())
-//#define Session Sess(get_context())
-//#define Application App(get_context())
-//#define ThisApp (*::application_consumer < application >::get_app())
-//#define NamespaceApp(namespace) (*::application_consumer < ::namespace::application >::get_app())
-//
-//
-//#undef Ctx
-//#define Ctx(pobject) (*(::get_context(pobject)))
-//#define Context (Ctx(get_context()))
 
 
 // return - result - if not ok
@@ -2139,37 +2101,6 @@ CLASS_DECL_ACME bool __node_acme_pos_init();
 
 CLASS_DECL_ACME bool __node_acme_pre_term();
 CLASS_DECL_ACME bool __node_acme_pos_term();
-
-
-//extern "C" CLASS_DECL_ACME PFN_NEW_ACME_LIBRARY get_get_new_acme_library(const char * psz);
-//extern "C" CLASS_DECL_ACME void register_get_new_acme_library(const char* psz, PFN_NEW_ACME_LIBRARY pfnNewAuraLibrary);
-//
-//
-//CLASS_DECL_ACME ::acme::library & get_library(const char* psz);
-//CLASS_DECL_ACME void register_acme_library(const char* psz, ::acme::library* plibrary);
-
-//CLASS_DECL_ACME ::context * get_context();
-//CLASS_DECL_ACME inline ::context * get_context(::elemental * pobject);
-//CLASS_DECL_ACME inline ::context * get_context(::context * pcontext);
-
-
-//CLASS_DECL_ACME void set_global_application(::acme::application * papp);
-//CLASS_DECL_ACME ::acme::application * get_global_application();
-
-
-//CLASS_DECL_ACME ::acme::application * get_context_application();
-//CLASS_DECL_ACME inline ::acme::application * get_context_application(::elemental * pobject);
-//CLASS_DECL_ACME inline ::acme::application * get_context_application(::acme::application * papp);
-//CLASS_DECL_ACME inline ::acme::application * get_app() { return get_context_application(); }
-
-
-//CLASS_DECL_ACME::acme::session * get_context_session();
-//CLASS_DECL_ACME inline ::acme::session * get_context_session(::elemental * pobject);
-//CLASS_DECL_ACME inline ::acme::session * get_context_session(::acme::session * psession);
-
-//CLASS_DECL_ACME::acme::system * get_context_system();
-//CLASS_DECL_ACME inline ::acme::system * get_context_system(::elemental * pobject);
-//CLASS_DECL_ACME inline ::acme::system * get_context_system(::acme::system * psystem);
 
 
 #define BAD_WCHAR ((widechar)(-1))
@@ -2750,6 +2681,8 @@ class message_box;
 #include "acme/primitive/primitive/traits.h"
 
 //#include "acme/static_setup.h"
+
+#include "acme/platform/string_exchange.h"
 
 CLASS_DECL_ACME string merge_colon_args(const array < string_array > & str2a);
 

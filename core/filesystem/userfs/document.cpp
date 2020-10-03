@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "aura/update.h"
 #include "_userfs.h"
 #include "acme/const/id.h"
@@ -98,7 +98,7 @@ namespace userfs
 
       }
 
-      ::file::listing listingUser(fs_data());
+      ::file::listing listingUser;
 
       if(strlen(pitem->m_filepathUser) == 0)
       {
@@ -163,7 +163,7 @@ namespace userfs
 
       }
 
-      ::file::listing listingFinal(fs_data());
+      ::file::listing listingFinal;
 
       listingFinal.m_straPattern = listingUser.m_straPattern;
 
@@ -193,9 +193,9 @@ namespace userfs
 
       }
 
-      ::file::listing listingFolderUser(fs_data());
+      ::file::listing listingFolderUser;
 
-      ::file::listing listingFolderFinal(fs_data());
+      ::file::listing listingFolderFinal;
 
       ASSERT(listingUser.get_count() == listingFinal.get_count());
 

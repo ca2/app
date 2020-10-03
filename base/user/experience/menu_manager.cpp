@@ -29,7 +29,7 @@ namespace experience
 
       SCAST_PTR(::message::base, pbase, pmessage);
 
-      if (m_pframewindow == nullptr || pbase->m_puserinteraction != m_pframewindow)
+      if (m_pframewindow == nullptr || pbase->userinteraction() != m_pframewindow)
       {
 
          return;

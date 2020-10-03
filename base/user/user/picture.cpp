@@ -929,20 +929,16 @@ namespace user
 
       ::rectd rectClip(m_ppictureimpl->m_rectDrawing);
 
-      pointd_array pta;
+      ::polygond polygon;
 
-      pta.set_size(4);
+      polygon.set_size(4);
 
-      pta[0] = _transform_drawing(rectClip.top_left());
-      pta[1] = _transform_drawing(rectClip.top_right());
-      pta[2] = _transform_drawing(rectClip.bottom_right());
-      pta[3] = _transform_drawing(rectClip.bottom_left());
+      polygon[0] = _transform_drawing(rectClip.top_left());
+      polygon[1] = _transform_drawing(rectClip.top_right());
+      polygon[2] = _transform_drawing(rectClip.bottom_right());
+      polygon[3] = _transform_drawing(rectClip.bottom_left());
 
-      ::draw2d::region_pointer rgn(e_create);
-
-      rgn->create_polygon(pta.get_data(), (int)pta.get_count(), ::draw2d::fill_mode_winding);
-
-      pgraphics->SelectClipRgn(rgn, ::draw2d::e_combine_intersect);
+      pgraphics->intersect_clip(polygon);
 
       mRot.append(::draw2d::matrix::rotation(m_ppictureimpl->m_dRotate));
 

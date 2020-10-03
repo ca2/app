@@ -208,7 +208,7 @@ namespace fs
    bool data::file_exists(const ::file::path & path)
    {
 
-      ::file::listing listing(this);
+      ::file::listing listing;
 
       Context.dir().ls(listing, path.folder());
 
@@ -220,7 +220,7 @@ namespace fs
    var data::file_length(const ::file::path & path)
    {
 
-      ::file::listing listing(this);
+      ::file::listing listing;
 
       Context.dir().ls(listing, path.folder());
 

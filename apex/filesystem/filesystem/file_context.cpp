@@ -290,7 +290,7 @@ restart:
 
    Context.dir().mk(str);
 
-   ::file::listing ls(get_context());
+   ::file::listing ls;
 
    string strFormat;
 
@@ -963,7 +963,7 @@ bool file_context::put_contents_utf8(const var & varFile, const char * pcszConte
    if (Context.dir().is(varSource.get_file_path()) && (eextract == extract_first || eextract == extract_all || !(::str::ends_ci(varSource.get_file_path(), ".zip"))))
    {
       
-      ::file::listing patha(get_context());
+      ::file::listing patha;
       
       Context.dir().rls(patha, varSource);
       
@@ -1503,7 +1503,7 @@ bool file_context::get_status(const ::file::path & path, ::file::file_status & s
 
    ::status::result e;
 
-   ::file::listing straTitle(get_context());
+   ::file::listing straTitle;
    Context.dir().ls(straTitle, pszContext);
    string strOld;
    string strNew;
@@ -1759,7 +1759,7 @@ i32 file_context::cmp(const ::file::path & psz1, const ::file::path & psz2)
 void file_context::dtf(const ::file::path & pszFile, const ::file::path & pszDir)
 {
 
-   ::file::listing ls(get_context());
+   ::file::listing ls;
 
    Context.dir().rls(ls, pszDir);
 

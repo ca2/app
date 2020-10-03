@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A2E626B25258D640001CC7E /* libaqua.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2E626A25258D640001CC7E /* libaqua.dylib */; };
 		9A488A2924EB4AF400119EC4 /* application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A488A2324EB4AF300119EC4 /* application.h */; };
 		9A488A2A24EB4AF400119EC4 /* render.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A488A2424EB4AF300119EC4 /* render.h */; };
 		9A488A2B24EB4AF400119EC4 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A488A2524EB4AF300119EC4 /* application.cpp */; };
@@ -50,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9A2E626A25258D640001CC7E /* libaqua.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaqua.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4889B624EB494600119EC4 /* libapp_shader.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libapp_shader.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A488A2324EB4AF300119EC4 /* application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = application.h; sourceTree = SOURCE_ROOT; };
 		9A488A2424EB4AF300119EC4 /* render.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = render.h; sourceTree = SOURCE_ROOT; };
@@ -67,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A2E626B25258D640001CC7E /* libaqua.dylib in Frameworks */,
 				9AC3971425195E790036B92A /* libacme.dylib in Frameworks */,
 				9AC3971625195E790036B92A /* libapex.dylib in Frameworks */,
 				9A488A5424EB4BB700119EC4 /* libaura.dylib in Frameworks */,
@@ -120,6 +123,7 @@
 		9A488A5324EB4BB700119EC4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A2E626A25258D640001CC7E /* libaqua.dylib */,
 				9AC3971325195E790036B92A /* libacme.dylib */,
 				9AC3971525195E790036B92A /* libapex.dylib */,
 			);

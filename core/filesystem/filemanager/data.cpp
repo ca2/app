@@ -83,8 +83,6 @@ namespace filemanager
 
       }
 
-      ::database::client::initialize_data_client(Application.dataserver());
-
       m_strLevelUp.Empty();
       m_setToolbar[::userfs::mode_normal] = "matter://filemanager_toolbar.xml";
       m_setToolbar[::userfs::mode_saving] = "matter://filemanager_saving_toolbar.xml";
@@ -251,20 +249,20 @@ namespace filemanager
 
 
 
-   void data::defer_update_data_key()
-   {
+//   void data::defer_update_data_key()
+//   {
+//
+//      if(m_datakey.is_empty())
+//      {
+//
+//         m_datakey.m_strDataKey.Format("%s", m_id.str().c_str());
+//
+//      }
+//
+//   }
 
-      if(m_datakey.is_empty())
-      {
 
-         m_datakey.m_strDataKey.Format("%s", m_id.str().c_str());
-
-      }
-
-   }
-
-
-   string data::get_last_browse_path(const char * pszDefault)
+   string data::get_last_browse_path(::object * pobjectContext, const char * pszDefault)
    {
 
       string strPath;
@@ -341,7 +339,7 @@ namespace filemanager
    }
 
 
-   ::estatus data::set_last_browse_path(const ::file::path& path)
+   ::estatus data::set_last_browse_path(::object * pobjectContext, const ::file::path& path)
    {
 
       string strPath(path);

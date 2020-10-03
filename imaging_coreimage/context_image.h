@@ -20,11 +20,11 @@ namespace coreimage_imaging
       virtual ::estatus save_image(memory & memory, const ::image * pimage, const ::save_image * psaveimage = nullptr) override;
 
       virtual HCURSOR CreateAlphaCursor(oswindow oswindow, const image * pimage, int xHotSpot, int yHotSpot) override;
-      virtual HCURSOR load_default_cursor(e_cursor ecursor) override;
+      //virtual HCURSOR load_default_cursor(e_cursor ecursor) override;
       virtual void set_cursor_image(const image * pimage, int xHotSpot, int yHotSpot) override;
 
       //virtual ::estatus _load_image(::object * pobject, image_frame_array * pimageframea, const ::memory & memory);
-      virtual WINBOOL window_set_mouse_cursor(oswindow window, HCURSOR hcursor) override;
+      //virtual WINBOOL window_set_mouse_cursor(oswindow window, HCURSOR hcursor) override;
 
    };
 

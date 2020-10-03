@@ -208,7 +208,7 @@ public:
    //static u32 s_thread_proc(void* p);
 
 
-   virtual void to_string(string & str) const override;
+   virtual void to_string(const string_exchange & str) const override;
 
    //::image_result create_image();
    //::image_result create_image(const ::size & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);

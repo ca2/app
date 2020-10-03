@@ -931,40 +931,6 @@ void stream::save_var_type(e_type etype)
 }
 
 
-//void stream::xml_export(const ::xml::exportable & xmlexportable)
-//{
-//
-//   __throw(todo("xml"));
-//   //string strXml;
-//
-//   //::xml::output_tree outputtree(get_context_object());
-//
-//   //xmlexportable.xml_export(outputtree);
-//
-//   //return write(outputtree.m_pdocument->get_xml());
-//
-//}
-
-
-
-
-//void stream::xml_import(::xml::importable & xmlimportable)
-//{
-//
-//   __throw(todo("xml"));
-//   //string strXml;
-//
-//   //read(strXml);
-//
-//   //::xml::input_tree inputtree(get_context_object(), strXml);
-//
-//   //xmlimportable.xml_import(inputtree);
-//
-//   //return;
-//
-//}
-
-
 var & stream::options()
 {
 

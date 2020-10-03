@@ -1192,7 +1192,6 @@ namespace user
       if (m_bFrameMoveEnable)
       {
 
-         //sketch_prepare_window_restore(display_restore);
          display(display_restore);
 
       }

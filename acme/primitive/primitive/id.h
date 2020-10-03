@@ -751,3 +751,14 @@ namespace acme
    CLASS_DECL_ACME ::id id(const char* psz);
 
 }
+
+
+class CLASS_DECL_ACME __id :
+public id
+{
+  
+public:
+   
+   using id::id;
+   
+};

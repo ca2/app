@@ -99,20 +99,20 @@ namespace coreimage_imaging
    }
 
 
-   HCURSOR context_image::load_default_cursor(e_cursor ecursor)
-   {
-      
-   #ifdef MACOS
-      
-      return nscursor_system(ecursor);
-      
-   #else
-      
-      return nullptr;
-      
-   #endif
-      
-   }
+//   HCURSOR context_image::load_default_cursor(e_cursor ecursor)
+//   {
+//      
+//   #ifdef MACOS
+//      
+//      return nscursor_system(ecursor);
+//      
+//   #else
+//      
+//      return nullptr;
+//      
+//   #endif
+//      
+//   }
 
 
    void context_image::set_cursor_image(const ::image * pimage, int xHotSpot, int yHotSpot)

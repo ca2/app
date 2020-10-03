@@ -59,7 +59,7 @@ const char* br_init_get_symbol();
 #endif
 
 
-//CLASS_DECL_APEX ::estatus os_application_system_run(::apex::system* psystem);
+CLASS_DECL_APEX ::estatus os_application_system_run(::apex::system* psystem);
 
 
 void application_common(::apex::system * psystem)

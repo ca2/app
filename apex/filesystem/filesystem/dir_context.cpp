@@ -664,7 +664,7 @@ inline bool myspace(char ch)
 bool dir_context::has_subdir(const ::file::path & pathFolder)
 {
 
-   ::file::listing ls(get_context());
+   ::file::listing ls;
 
    Context.dir().ls_dir(ls, pathFolder);
 

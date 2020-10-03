@@ -622,7 +622,7 @@ string context_object::get_text(const var & var, const ::id & id)
 }
 
 
-void context_object::to_string(string & str) const
+void context_object::to_string(const class string_exchange & str) const
 {
 
    str = typeid(*this).name();
@@ -654,7 +654,7 @@ void context_object::to_sz(char * sz, strsize len) const
 }
 
 
-void context_object::call_update(const ::id& id)
+void context_object::call_update(const ::__id& id)
 {
 
    auto pupdate = new_update();
@@ -666,7 +666,7 @@ void context_object::call_update(const ::id& id)
 }
 
 
-void context_object::call_update(const ::id& id, const ::action_context& context)
+void context_object::call_update(const ::__id& id, const ::action_context& context)
 {
 
    auto pupdate = new_update();

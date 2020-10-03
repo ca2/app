@@ -50,7 +50,7 @@ inline uptr uptr_hash(const ::rect& rect)
 }
 
 
-
+#include "shape.h"
 
 
 

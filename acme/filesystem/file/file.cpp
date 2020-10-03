@@ -1249,12 +1249,12 @@ namespace file
    }
 
 
-   void file::to_string(string & str) const
+   void file::to_string(const class string_exchange & str) const
    {
 
       auto pfile = (file *)this;
 
-      pfile->full_read_string(str);
+      pfile->full_read_string(*str.m_pstr);
 
    }
 

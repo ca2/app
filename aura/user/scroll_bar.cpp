@@ -256,7 +256,7 @@ namespace user
                rectFocus.bottom++;
                rectFocus.right++;
 
-               pgraphics->IntersectClipRect(rectFocus);
+               pgraphics->intersect_clip(rectFocus);
 
             }
 

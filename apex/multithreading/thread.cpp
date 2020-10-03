@@ -5,6 +5,8 @@
 #include "apex/os/_.h"
 #include "apex/os/_os.h"
 #include "acme/multithreading/mq.h"
+#include "acme/id.h"
+
 
 
 CLASS_DECL_ACME mq * get_mq(ITHREAD idthread, bool bCreate);
@@ -913,7 +915,7 @@ bool thread::raw_pump_message()
 void thread::process_message(::message::base * pbase)
 {
 
-   if (pbase->m_puserinteraction == nullptr)
+   if (pbase->m_playeredUserPrimitive == nullptr)
    {
 
       process_thread_message(pbase);
@@ -934,9 +936,9 @@ void thread::process_message(::message::base * pbase)
 void thread::process_thread_message(::message::base * pbase)
 {
 
-   ASSERT(pbase->m_puserinteraction == nullptr);
+   ASSERT(pbase->m_playeredUserPrimitive == nullptr);
 
-   if (pbase->m_puserinteraction != nullptr)
+   if (pbase->m_playeredUserPrimitive != nullptr)
    {
 
       __throw(todo("apex"));
@@ -3713,7 +3715,7 @@ bool thread::process_message()
          else
          {
 
-            call_update((::iptr) msg.wParam);
+            call_update((const __id &)(::iptr) msg.wParam);
 
          }
 

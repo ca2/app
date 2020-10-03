@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #if !defined(WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID)
@@ -552,140 +552,6 @@ inline __pointer(T) clone(const __pointer(T) & t)
 }
 
 
-//CLASS_DECL_ACME inline ::context * get_context(::elemental * pobject)
-//{
-//
-//   if (pobject == nullptr)
-//   {
-//
-//      return ::get_context();
-//
-//   }
-//
-//   ::context * pcontext = pobject->get_context();
-//
-//   if (pcontext != nullptr)
-//   {
-//
-//      return pcontext;
-//
-//   }
-//
-//   return ::get_context();
-//
-//}
-//
-//
-//CLASS_DECL_ACME inline ::acme::application * get_context_application(::elemental * pobject)
-//{
-//
-//   if (pobject == nullptr)
-//   {
-//
-//      return ::get_context_application();
-//
-//   }
-//
-//   ::acme::application * papplication = pobject->get_context_application();
-//
-//   if (papplication != nullptr)
-//   {
-//
-//      return papplication;
-//
-//   }
-//
-//   return ::get_context_application();
-//
-//}
-//
-//
-//CLASS_DECL_ACME inline ::acme::session * get_context_session(::elemental * pobject)
-//{
-//
-//   if (pobject == nullptr)
-//   {
-//
-//      return ::get_context_session();
-//
-//   }
-//
-//   ::acme::session * psessionContext = pobject->get_context_session();
-//
-//   if (psessionContext != nullptr)
-//   {
-//
-//      return psessionContext;
-//
-//   }
-//
-//   return ::get_context_session();
-//
-//}
-//
-//
-//CLASS_DECL_ACME inline ::acme::system * get_context_system(::elemental * pobject)
-//{
-//
-//   if (pobject == nullptr)
-//   {
-//
-//      return ::get_context_system();
-//
-//   }
-//
-//   ::acme::system * psystemContext = pobject->get_context_system();
-//
-//   if (psystemContext != nullptr)
-//   {
-//
-//      return psystemContext;
-//
-//   }
-//
-//   return ::get_context_system();
-//
-//}
-//
-//
-//CLASS_DECL_ACME inline ::elemental * get_app_object()
-//{
-//
-//   return ::get_context_application();
-//
-//}
-//
-//
-//CLASS_DECL_ACME inline ::context * get_context(::context * pcontext)
-//{
-//
-//   return pcontext;
-//
-//}
-//
-//
-//CLASS_DECL_ACME inline ::acme::application * get_context_application(::acme::application * papp)
-//{
-//
-//   return papp;
-//
-//}
-//
-//
-//CLASS_DECL_ACME inline ::acme::session * get_context_session(::acme::session * psession)
-//{
-//
-//   return psession;
-//
-//}
-//
-//
-//CLASS_DECL_ACME inline ::acme::system * get_context_system(::acme::system * psystem)
-//{
-//
-//   return psystem;
-//
-//}
 
 
 template < typename T >
@@ -704,41 +570,6 @@ inline __pointer(T) & pointer < T >::clone(::elemental * pobjectContext)
    return operator = (pobjectContext->clone());
 
 }
-
-
-//template < typename PRED >
-//::image_pointer get_image(::elemental * pobject, const var & varFile, bool bAsync = false)
-//{
-//
-//   ::file::path path = varFile.get_file_path();
-//
-//   if (path.is_empty())
-//   {
-//
-//      return nullptr;
-//
-//   }
-//
-//   sync_lock sl(::acme::get_image_mutex());
-//
-//   ::image_pointer & pimage = ::get_context_system()->m_mapImage[path];
-//
-//   if (!pimage)
-//   {
-//
-//      pimage = pobject->create_image();
-//
-//      pimage->set_nok();
-//
-//      sl.unlock();
-//
-//      System.m_pimaging->_load_image(pobject->get_context(), pimage, varFile, !bAsync, false);
-//
-//   }
-//
-//   return pimage;
-//
-//}
 
 
 #ifndef __DEBUG

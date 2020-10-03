@@ -2006,24 +2006,20 @@ namespace html
 #define SCAST_PTR(TYPE, ptarget, psource) TYPE * ptarget = dynamic_cast < TYPE * > (psource);
 #define SCAST_REF(TYPE, rtarget, psource) TYPE & rtarget = *(dynamic_cast < TYPE * > (psource))
 
-//#define Au(pobject) (*(::get_context_audio(pobject)))
-//#define Audio (Au(get_context()))
-//
-//#define Mm(pobject) (*(::get_context_multimedia(pobject)))
-//#define Multimedia (Mm(get_context()))
+#define System (Sys(get_context_object()))
 
-#define System (Sys(get_context()))
+#define Session (Sess(get_context_object()))
 
-#define Session (Sess(get_context()))
-
-#define Application (App(get_context()))
+#define Application (App(get_context_object()))
 #define ThisApp (*::application_consumer < application >::get_app())
 #define NamespaceApp(namespace) (*::application_consumer < ::namespace::application >::get_app())
 
 
 #undef Ctx
 #define Ctx(pobject) (*(::get_context(pobject)))
-#define Context (Ctx(get_context()))
+#define Context (Ctx(get_context_object()))
+
+
 
 
 // return - result - if not ok
@@ -2082,8 +2078,11 @@ CLASS_DECL_APEX ::apex::library & get_library(const char* psz);
 CLASS_DECL_APEX void register_apex_library(const char* psz, ::apex::library* plibrary);
 
 CLASS_DECL_APEX ::context * get_context();
-CLASS_DECL_APEX inline ::context * get_context(::layered * pobjectContext);
+CLASS_DECL_APEX ::context * get_context(::layered * pobjectContext);
 CLASS_DECL_APEX inline ::context * get_context(::context * pcontext);
+
+
+inline ::object * get_context_object();
 
 
 CLASS_DECL_APEX void set_global_application(::apex::application * papp);
@@ -2091,17 +2090,18 @@ CLASS_DECL_APEX ::apex::application * get_global_application();
 
 
 CLASS_DECL_APEX ::apex::application * get_context_application();
-CLASS_DECL_APEX inline ::apex::application * get_context_application(::layered * pobjectContext);
+CLASS_DECL_APEX ::apex::application * get_context_application(::layered * pobjectContext);
 CLASS_DECL_APEX inline ::apex::application * get_context_application(::apex::application * papp);
 CLASS_DECL_APEX inline ::apex::application * get_app() { return get_context_application(); }
 
 
-CLASS_DECL_APEX::apex::session * get_context_session();
-CLASS_DECL_APEX inline ::apex::session * get_context_session(::layered * pobjectContext);
+CLASS_DECL_APEX ::apex::session * get_context_session();
+CLASS_DECL_APEX ::apex::session * get_context_session(::layered * pobjectContext);
 CLASS_DECL_APEX inline ::apex::session * get_context_session(::apex::session * psession);
 
-CLASS_DECL_APEX::apex::system * get_context_system();
-CLASS_DECL_APEX inline ::apex::system * get_context_system(::layered * pobjectContext);
+
+CLASS_DECL_APEX ::apex::system * get_context_system();
+CLASS_DECL_APEX ::apex::system * get_context_system(::layered * pobjectContext);
 CLASS_DECL_APEX inline ::apex::system * get_context_system(::apex::system * psystem);
 
 
@@ -3926,5 +3926,6 @@ namespace std
 
 
 #include "apex/os/_impl.h"
+
 
 

@@ -35,7 +35,7 @@ namespace file
    }
 
 
-   void path_object::to_string(string& str) const
+   void path_object::to_string(const class string_exchange & str) const
    {
 
       str = (const string&)*this;

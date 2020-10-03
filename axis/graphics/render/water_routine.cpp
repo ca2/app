@@ -5,6 +5,7 @@
 namespace draw2d
 {
 
+
    water_routine::water_routine()
    {
 
@@ -33,7 +34,10 @@ namespace draw2d
 
       m_iHeightField1 = nullptr;
       m_iHeightField2 = nullptr;
+      
    }
+
+
    void water_routine::create(i32 iWidth,i32 iHeight)
    {
       if(m_iHeightField1 != nullptr)

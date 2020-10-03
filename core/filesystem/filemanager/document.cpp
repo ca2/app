@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
@@ -94,7 +94,7 @@ namespace filemanager
 
          m_pfsset->m_spafsdata.add(Session.fs());
 
-         ::file::listing listing(m_pfsset);
+         ::file::listing listing;
 
          m_pfsset->root_ones(listing);
 
@@ -686,7 +686,7 @@ namespace filemanager
          if (User.m_pathFilemanagerProject.is_empty())
          {
 
-            filemanager_data()->set_last_browse_path(m_pitem->m_filepathUser);
+            filemanager_data()->set_last_browse_path(this, m_pitem->m_filepathUser);
 
          }
          else
@@ -1055,7 +1055,7 @@ namespace filemanager
 
          string str;
 
-         auto path = filemanager_data()->get_last_browse_path(filemanager_data()->m_pathDefault);
+         auto path = filemanager_data()->get_last_browse_path(this, filemanager_data()->m_pathDefault);
 
             browse(path, ::source_initialize);
 

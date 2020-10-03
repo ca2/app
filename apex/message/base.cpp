@@ -23,7 +23,6 @@ namespace message
    {
 
       m_uiMessageFlags     = 0;
-      m_puserinteraction       = nullptr;
       m_lresult            = 0;
       m_bDestroyed         = false;
       m_bDoSystemDefault   = true;
@@ -31,15 +30,14 @@ namespace message
    }
 
 
-   base::base(::user::primitive * pwnd, UINT uiMessage, WPARAM wparam, ::lparam lparam)
+   base::base(::layered * playeredUserPrimitive, UINT uiMessage, WPARAM wparam, ::lparam lparam)
    {
 
       m_uiMessageFlags     = 0;
-      m_puserinteraction               = nullptr;
       m_lresult            = 0;
       m_bDestroyed         = false;
       m_bDoSystemDefault   = true;
-      set(pwnd,uiMessage,wparam,lparam);
+      set(playeredUserPrimitive,uiMessage,wparam,lparam);
 
 
       //Application.tellme_destroyed(pwnd, &m_bDestroyed);
@@ -50,15 +48,15 @@ namespace message
    base::base(const base & base)
    {
 
-      m_uiMessageFlags     = base.m_uiMessageFlags;
-      m_puserinteraction               = base.m_puserinteraction;
-      m_id                 = base.m_id;
-      m_wparam             = base.m_wparam;
-      m_lparam             = base.m_lparam;
-      m_bConditional       = base.m_bConditional;
-      m_bReflect           = base.m_bReflect;
-      m_bDoSystemDefault   = base.m_bDoSystemDefault;
-      m_bDestroyed         = false;
+      m_uiMessageFlags        = base.m_uiMessageFlags;
+      m_playeredUserPrimitive = base.m_playeredUserPrimitive;
+      m_id                    = base.m_id;
+      m_wparam                = base.m_wparam;
+      m_lparam                = base.m_lparam;
+      m_bConditional          = base.m_bConditional;
+      m_bReflect              = base.m_bReflect;
+      m_bDoSystemDefault      = base.m_bDoSystemDefault;
+      m_bDestroyed            = false;
 
       //Application.tellme_destroyed(m_puserinteraction, &m_bDestroyed);
 
@@ -90,12 +88,12 @@ namespace message
    }
 
 
-   void base::set(::user::primitive * pwnd, UINT uiMessage, WPARAM wparam, ::lparam lparam)
+   void base::set(::layered * playeredUserPrimitive, UINT uiMessage, WPARAM wparam, ::lparam lparam)
    {
+      
+      m_playeredUserPrimitive = playeredUserPrimitive;
 
-      ::message::message::set(pwnd, uiMessage, wparam, lparam);
-
-      m_puserinteraction            = pwnd;
+      ::message::message::set(playeredUserPrimitive, uiMessage, wparam, lparam);
 
    }
 

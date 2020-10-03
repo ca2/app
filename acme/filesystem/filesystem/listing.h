@@ -39,18 +39,20 @@ namespace file
    {
    public:
 
-      ::file::path         m_pathUser;
-      ::file::path         m_pathFinal;
-      string_array              m_straPattern;
-      string_array              m_straIgnoreName;
-      ::status::result     m_statusresult;
-      string_array              m_straTitle;
+      
+      ::file::path            m_pathUser;
+      ::file::path            m_pathFinal;
+      string_array            m_straPattern;
+      string_array            m_straIgnoreName;
+      ::status::result        m_statusresult;
+      string_array            m_straTitle;
 
 
-      listing(listing_provider * pprovider = nullptr);
-      listing(const listing & listing):patha(listing) { m_nGrowBy = 128; }
+      listing();
+      listing(const listing & listing);
       virtual ~listing();
 
+      
       bool succeeded() const
       {
 
@@ -115,172 +117,6 @@ namespace file
 
       }
 
-
-      //listing & ls(const ::file::path & path)
-      //{
-
-      //   m_pathUser = path;
-
-      //   return ls();
-
-      //}
-
-
-      //listing & ls_file(const ::file::path & path)
-      //{
-
-      //   m_pathUser = path;
-
-      //   m_bDir = false;
-
-      //   return ls();
-
-      //}
-
-
-      //listing & ls_dir(const ::file::path & path)
-      //{
-
-      //   m_pathUser = path;
-
-      //   m_bFile = false;
-
-      //   return ls();
-
-      //}
-
-
-      //listing & rls(const ::file::path & path = nullptr, e_extract eextract = extract_first)
-      //{
-
-      //   m_pathUser = path;
-
-      //   m_bRecursive = true;
-
-      //   m_eextract = eextract;
-
-      //   return ls();
-
-      //}
-
-
-      //listing & rls_file(const ::file::path & path)
-      //{
-
-      //   m_pathUser = path;
-
-      //   m_bRecursive = true;
-
-      //   m_bDir = false;
-
-      //   return ls();
-
-      //}
-
-
-      //listing & rls_dir(const ::file::path & path)
-      //{
-
-      //   m_pathUser = path;
-
-      //   m_bRecursive = true;
-
-      //   m_bFile = false;
-
-      //   return ls();
-
-      //}
-
-
-      //listing & ls_pattern(const ::file::path & path, const string_array & straPattern)
-      //{
-
-      //   m_pathUser = path;
-
-      //   m_straPattern = straPattern;
-
-      //   return ls();
-
-      //}
-
-
-      //listing & ls_pattern_file(const ::file::path & path,const string_array & straPattern)
-      //{
-
-      //   m_pathUser = path;
-
-      //   m_straPattern = straPattern;
-
-      //   m_bDir = false;
-
-      //   return ls();
-
-      //}
-
-
-      //listing & ls_pattern_dir(const ::file::path & path,const string_array & straPattern)
-      //{
-
-      //   m_pathUser = path;
-
-      //   m_straPattern = straPattern;
-
-      //   m_bFile = false;
-
-      //   return ls();
-
-      //}
-
-
-      //listing & rls_pattern(const ::file::path & path,const string_array & straPattern)
-      //{
-
-      //   m_pathUser = path;
-
-      //   m_straPattern = straPattern;
-
-      //   m_bRecursive = true;
-
-      //   return ls();
-
-      //}
-
-
-      //listing & rls_pattern_file(const ::file::path & path,const string_array & straPattern)
-      //{
-
-      //   m_pathUser = path;
-
-      //   m_straPattern = straPattern;
-
-      //   m_bRecursive = true;
-
-      //   m_bDir = false;
-
-      //   return ls();
-
-      //}
-
-
-      //listing & rls_pattern_dir(const ::file::path & path,const string_array & straPattern)
-      //{
-
-      //   m_pathUser = path;
-
-      //   m_straPattern = straPattern;
-
-      //   m_bRecursive = true;
-
-      //   m_bFile = false;
-
-      //   return ls();
-
-      //}
-
-
-      //virtual listing & ls();
-
-      //virtual listing & ls_relative_name();
 
       void clear_results() { m_straTitle.remove_all(); m_statusresult.clear(); remove_all(); }
 
@@ -400,22 +236,19 @@ namespace file
 
    };
 
+
    class CLASS_DECL_ACME relative_name_listing :
       virtual public listing
    {
    public:
 
 
-      relative_name_listing(listing_provider * pprovider = nullptr);
-      relative_name_listing(const relative_name_listing & listing) { operator = (listing); }
+      relative_name_listing();
+      relative_name_listing(const relative_name_listing & listing);
       virtual ~relative_name_listing();
 
-
-      //using listing::ls;
-      //virtual listing & ls() override;
-
+     
    };
-
 
 
 } // namespace file

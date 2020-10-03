@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/user/user/_user.h"
 #endif
@@ -35,9 +35,12 @@ namespace user
       {
       case WM_MOUSEMOVE:
       {
-         if(ptool->BaseToolTipGetWnd()->GetTopLevel() == pbase->m_puserinteraction)
+         
+         if(ptool->BaseToolTipGetWnd()->GetTopLevel() == pbase->userinteraction())
          {
+            
             auto point = Session.get_cursor_pos();
+            
             if(m_iEventTool != ptool->BaseToolTipGetIndex()
                   || point != m_point)
             {

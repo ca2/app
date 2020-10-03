@@ -456,7 +456,7 @@ const char * elemental::topic_text() const
 }
 
 
-void elemental::call_update(const ::id & id, const ::action_context & context)
+void elemental::call_update(const ::__id & id, const ::action_context & context)
 {
 
    //auto pupdate = new_update();
@@ -473,7 +473,7 @@ void elemental::call_update(const ::id & id, const ::action_context & context)
 
 
 
-void elemental::call_update(const ::id & id)
+void elemental::call_update(const ::__id & id)
 {
 
    //auto pupdate = new_update();
@@ -675,7 +675,7 @@ stream& elemental::read(stream& s)
 }
 
 
-void elemental::to_string(string& str) const
+void elemental::to_string(const class string_exchange & str) const
 {
 
    str = type_c_str();

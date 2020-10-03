@@ -443,6 +443,14 @@ void memory_file::flush()
 }
 
 
+void memory_file::to_string(const class string_exchange & str) const
+{
+   
+   return memory_container::to_string(str);
+   
+}
+
+
 void memory_file::assert_valid() const
 {
 

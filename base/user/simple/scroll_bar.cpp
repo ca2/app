@@ -1168,6 +1168,8 @@ void simple_scroll_bar::_001OnClip(::draw2d::graphics_pointer & pgraphics)
       ::rect rectClient;
 
       bool bFirst = true;
+      
+      pgraphics->reset_clip();
 
       if (pdrawcontext != nullptr)
       {
@@ -1184,58 +1186,75 @@ void simple_scroll_bar::_001OnClip(::draw2d::graphics_pointer & pgraphics)
          bFirst = false;
 
       }
-
-      ::user::interaction * pinteraction = this;
-
-      ::rect rectFocus;
-
-      ::rect rectIntersect;
-
-      index i = 0;
-
-      while (pinteraction != nullptr)
+      
+      if(!m_pshapeaClip)
       {
+         
+         __construct_new(m_pshapeaClip);
 
-         if (i == 1)
+         ::user::interaction * pinteraction = this;
+
+         ::rect rectFocus;
+
+         ::rect rectIntersect;
+
+         index i = 0;
+
+         while (pinteraction != nullptr)
          {
 
-            pinteraction->::user::interaction::get_client_rect(rectFocus);
+            if (i == 1)
+            {
+
+               pinteraction->::user::interaction::get_client_rect(rectFocus);
+
+            }
+            else
+            {
+
+               pinteraction->get_client_rect(rectFocus);
+
+            }
+
+            pinteraction->_001ClientToScreen(rectFocus);
+
+            _001ScreenToClient(rectFocus);
+            
+            if(m_pshapeaClip->has_element())
+            {
+               
+               m_pshapeaClip->add_item(__new(intersect_clip_shape()));
+               
+            }
+               
+            m_pshapeaClip->add_item(__new(rect_shape(rectClient)));
+
+            if (i == 0)
+            {
+
+               rectIntersect = rectFocus;
+
+            }
+            else
+            {
+
+               rectIntersect.intersect(rectFocus);
+
+            }
+
+            i++;
+
+            pinteraction = pinteraction->GetParent();
 
          }
-         else
-         {
-
-            pinteraction->get_client_rect(rectFocus);
-
-         }
-
-         pinteraction->_001ClientToScreen(rectFocus);
-
-         _001ScreenToClient(rectFocus);
-
-         //rectFocus.bottom++;
-         //rectFocus.right++;
-
-         if (i == 0)
-         {
-
-            rectIntersect = rectFocus;
-
-         }
-         else
-         {
-
-            rectIntersect.intersect(rectFocus);
-
-         }
-
-         i++;
-
-         pinteraction = pinteraction->GetParent();
-
+         
+         m_pshapeaClip->add_item({__new(intersect_clip_shape)});
+         
       }
+      
+      pgraphics->reset_clip();
 
-      pgraphics->IntersectClipRect(rectIntersect);
+      pgraphics->add_shapes(*m_pshapeaClip);
 
    }
    catch (...)
@@ -1591,10 +1610,9 @@ void simple_scroll_bar::draw_mac_thumb_simple(::draw2d::graphics_pointer & pgrap
 
    ::draw2d::savedc dc(pgraphics);
 
-   pgraphics->SelectClipRgn(nullptr);
+   pgraphics->reset_clip();
 
    ::rect rectDraw(rectDrawParam);
-
 
    rectDraw.deflate(1,1);
 

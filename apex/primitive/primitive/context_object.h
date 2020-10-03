@@ -180,12 +180,12 @@ public:
 
    virtual ::object * parent_property_set_holder() const;
 
-   virtual void to_string(string & str) const override;
+   virtual void to_string(const string_exchange & str) const override;
    virtual strsize sz_len() const override;
    virtual void to_sz(char * sz, strsize len) const override;
 
-   virtual void call_update(const ::id& id, const ::action_context& context) override;
-   virtual void call_update(const ::id& id) override;
+   virtual void call_update(const ::__id& id, const ::action_context& context) override;
+   virtual void call_update(const ::__id& id) override;
    virtual void call_update(::update* pupdate) override;
 
 

@@ -215,21 +215,28 @@ namespace fs
       {
          if(::get_tick() > tickTimeout)
          {
-            ::file::listing l(this);
+            
+            ::file::listing l;
 
             Context.dir().ls(l, path);
+            
          }
          else
          {
+            
             return 0;
+            
          }
+         
       }
 
       if(m_mapdirTimeout.lookup(path,tickTimeout))
       {
+         
          if(::get_tick() > tickTimeout)
          {
-            ::file::listing l(this);
+            
+            ::file::listing l;
 
             Context.dir().ls(l, path);
          }

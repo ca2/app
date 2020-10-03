@@ -29,7 +29,7 @@ namespace message
       create() { }
 
 
-      virtual void set(::user::primitive * pwnd, UINT uiMessage, WPARAM wparam, ::lparam lparam) override;
+      virtual void set(::layered * playeredUserPrimitive, UINT uiMessage, WPARAM wparam, ::lparam lparam) override;
 
       virtual void error(const char * pcszErrorMessage);
 
@@ -57,7 +57,7 @@ namespace message
 
       using ::message::base::set;
 
-      virtual void set(::user::primitive * pwnd, UINT uiMessage, WPARAM wparam, ::lparam lparam) override;
+      virtual void set(::layered * playeredUserPrimitive, UINT uiMessage, WPARAM wparam, ::lparam lparam) override;
 
 
    };
@@ -73,7 +73,7 @@ namespace message
 
       using ::message::base::set;
 
-      virtual void set(::user::primitive * pwnd, UINT uiMessage, WPARAM wparam, ::lparam lparam) override;
+      virtual void set(::layered * playeredUserPrimitive, UINT uiMessage, WPARAM wparam, ::lparam lparam) override;
 
 
    };
@@ -91,7 +91,7 @@ namespace message
 
       using ::message::base::set;
 
-      virtual void set(::user::primitive * pwnd, UINT uiMessage, WPARAM wparam, ::lparam lparam) override;
+      virtual void set(::layered * playeredUserPrimitive, UINT uiMessage, WPARAM wparam, ::lparam lparam) override;
 
    };
 
@@ -110,7 +110,7 @@ namespace message
 
       using ::message::base::set;
 
-      virtual void set(::user::primitive * pwnd, UINT uiMessage, WPARAM wparam, ::lparam lparam) override;
+      virtual void set(::layered * playeredUserPrimitive, UINT uiMessage, WPARAM wparam, ::lparam lparam) override;
 
 
    };
@@ -129,7 +129,7 @@ namespace message
 
       using ::message::base::set;
 
-      virtual void set(::user::primitive * pwnd, UINT uiMessage, WPARAM wparam, ::lparam lparam) override;
+      virtual void set(::layered * playeredUserPrimitive, UINT uiMessage, WPARAM wparam, ::lparam lparam) override;
 
       static mouse * cast(::message::message * pmessage)
       {
@@ -159,7 +159,7 @@ namespace message
 
       using ::message::base::set;
 
-      virtual void set(::user::primitive * pwnd, UINT uiMessage, WPARAM wparam, ::lparam lparam) override;
+      virtual void set(::layered * playeredUserPrimitive, UINT uiMessage, WPARAM wparam, ::lparam lparam) override;
 
    };
 
@@ -222,7 +222,7 @@ namespace message
 
       using ::message::base::set;
 
-      virtual void set(::user::primitive * pwnd, UINT uiMessage, WPARAM wparam, ::lparam lparam) override;
+      virtual void set(::layered * playeredUserPrimitive, UINT uiMessage, WPARAM wparam, ::lparam lparam) override;
 
 
    };
@@ -239,7 +239,7 @@ namespace message
 
       using ::message::base::set;
 
-      virtual void set(::user::primitive * pwnd, UINT uiMessage, WPARAM wparam, ::lparam lparam) override;
+      virtual void set(::layered * playeredUserPrimitive, UINT uiMessage, WPARAM wparam, ::lparam lparam) override;
 
 
    };
@@ -299,7 +299,7 @@ namespace message
 
       using ::message::base::set;
 
-      virtual void set(::user::primitive * pwnd, UINT uiMessage, WPARAM wparam, ::lparam lparam) override;
+      virtual void set(::layered * playeredUserPrimitive, UINT uiMessage, WPARAM wparam, ::lparam lparam) override;
 
    };
 
@@ -315,7 +315,7 @@ namespace message
       nc_activate();
 
       using ::message::base::set;
-      virtual void set(::user::primitive * pwnd, UINT uiMessage, WPARAM wparam, ::lparam lparam) override;
+      virtual void set(::layered * playeredUserPrimitive, UINT uiMessage, WPARAM wparam, ::lparam lparam) override;
 
    };
 
@@ -378,7 +378,7 @@ namespace message
 
       using ::message::base::set;
 
-      virtual void set(::user::primitive * pwnd, UINT uiMessage, WPARAM wparam, ::lparam lparam) override;
+      virtual void set(::layered * playeredUserPrimitive, UINT uiMessage, WPARAM wparam, ::lparam lparam) override;
 
 
    };
@@ -397,7 +397,7 @@ namespace message
 
       using ::message::base::set;
 
-      virtual void set(::user::primitive * pwnd, UINT uiMessage, WPARAM wparam, ::lparam lparam) override;
+      virtual void set(::layered * playeredUserPrimitive, UINT uiMessage, WPARAM wparam, ::lparam lparam) override;
 
 
    };
@@ -438,7 +438,7 @@ namespace message
 
       using ::message::base::set;
 
-      virtual void set(::user::primitive * pwnd, UINT uiMessage, WPARAM wparam, ::lparam lparam) override;
+      virtual void set(::layered * playeredUserPrimitive, UINT uiMessage, WPARAM wparam, ::lparam lparam) override;
 
 
    };
@@ -461,12 +461,12 @@ namespace message
    public:
 
       
-      drag_and_drop(::user::primitive * pwnd,UINT uiMessage)
+      drag_and_drop(::layered * playeredUserPrimitive,UINT uiMessage)
       {
 
          m_lresult = 0;
 
-         set(pwnd,uiMessage,0,0);
+         set(playeredUserPrimitive,uiMessage,0,0);
 
       }
 

@@ -339,7 +339,7 @@ __pointer(::mutex) channel::s_pmutexChannel;
 
       //__throw(todo("message"));
       //__throw(todo("interaction"));
-      ::user::primitive * pinteraction = nullptr;
+      ::layered * playeredUserPrimitive = nullptr;
 
       //if (pinteraction == nullptr && pmsg->hwnd != nullptr)
       //{
@@ -396,7 +396,7 @@ __pointer(::mutex) channel::s_pmutexChannel;
 
       }
 
-      pbase->set(pinteraction, pmsg->message, pmsg->wParam, pmsg->lParam);
+      pbase->set(playeredUserPrimitive, pmsg->message, pmsg->wParam, pmsg->lParam);
 
 
       return pbase;
@@ -580,7 +580,7 @@ __pointer(::mutex) channel::s_pmutexChannel;
       for (auto & pnotify : notifya)
       {
 
-         pnotify->call_update(id, context);
+         pnotify->call_update((const ::__id & ) id, context);
 
       }
 

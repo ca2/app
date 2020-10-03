@@ -36,8 +36,6 @@ namespace user
    void place_holder::_001OnShowWindow(::message::message * /* pmessage */ )
    {
 
-      //SCAST_PTR(::message::show_window, pshowwindow, pmessage);
-
 
    }
 
@@ -239,9 +237,6 @@ namespace user
    void place_holder::_001DrawThis(::draw2d::graphics_pointer & pgraphics)
    {
 
-      //on_viewport_offset(pgraphics);
-      //UNREFERENCED_PARAMETER(pgraphics);
-
    }
 
 
@@ -271,6 +266,7 @@ namespace user
       UNREFERENCED_PARAMETER(pgraphics);
 
    }
+
 
    void place_holder::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
@@ -318,26 +314,37 @@ namespace user
 
       for(i32 i = 0; i < this->get_count(); i++)
       {
+         
          try
          {
+            
             if(this->element_at(i)->unplace(pinteraction))
             {
+               
                count++;
+               
             }
+            
          }
          catch(...)
          {
+            
          }
+         
       }
 
       return count;
 
    }
 
+
    bool place_holder::is_place_holder()
    {
+      
       return true;
+      
    }
+
 
    bool place_holder::_001IsBackgroundBypass()
    {

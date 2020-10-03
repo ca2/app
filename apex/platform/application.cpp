@@ -10285,7 +10285,7 @@ namespace apex
 
       SCAST_PTR(::message::base, pbase, pmessage);
 
-      if (pbase->m_id == WM_USER + 124 && pbase->m_puserinteraction == nullptr)
+      if (pbase->m_id == WM_USER + 124 && pbase->m_playeredUserPrimitive == nullptr)
       {
 
          /*

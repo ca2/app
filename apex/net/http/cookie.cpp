@@ -22,6 +22,14 @@ namespace http
    }
 
 
+   void cookie::to_string(const string_exchange & str) const
+   {
+
+      m_varValue.to_string(*str.m_pstr);
+
+   }
+
+
    cookie::~cookie()
    {
 

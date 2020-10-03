@@ -697,33 +697,33 @@ namespace draw2d
       return false;
    }
 
-   bool graphics::PtVisible(i32 x, i32 y)
-   {
-      UNREFERENCED_PARAMETER(x);
-      UNREFERENCED_PARAMETER(y);
+//   bool graphics::PtVisible(i32 x, i32 y)
+//   {
+//      UNREFERENCED_PARAMETER(x);
+//      UNREFERENCED_PARAMETER(y);
+//
+//
+//      return false;
+//   }
+//
+//   bool graphics::PtVisible(const ::point & point)
+//   {
+//      UNREFERENCED_PARAMETER(point);
+//
+//
+//      return false;
+//   }
 
 
-      return false;
-   }
-
-   bool graphics::PtVisible(const ::point & point)
-   {
-      UNREFERENCED_PARAMETER(point);
-
-
-      return false;
-   }
-
-
-   bool graphics::RectVisible(const ::rect & rect)
-   {
-
-      UNREFERENCED_PARAMETER(rect);
-
-
-
-      return false;
-   }
+//   bool graphics::RectVisible(const ::rect & rect)
+//   {
+//
+//      UNREFERENCED_PARAMETER(rect);
+//
+//
+//
+//      return false;
+//   }
 
 
    pointd graphics::current_position()
@@ -3745,104 +3745,104 @@ namespace draw2d
    }
 
 
-   i32 graphics::ExcludeClipRect(i32 x1, i32 y1, i32 x2, i32 y2)
-   {
-
-      UNREFERENCED_PARAMETER(x1);
-      UNREFERENCED_PARAMETER(y1);
-      UNREFERENCED_PARAMETER(x2);
-      UNREFERENCED_PARAMETER(y2);
-
-      return -1;
-
-   }
-
-
-   i32 graphics::ExcludeClipRect(const ::rect & rect)
-   {
-
-      UNREFERENCED_PARAMETER(rect);
-
-
-
-      return -1;
-
-   }
-
-
-   i32 graphics::IntersectClipRect(i32 x1, i32 y1, i32 x2, i32 y2)
-   {
-
-      ::rect rect;
-
-      rect.left = x1;
-      rect.top = y1;
-      rect.right = x2;
-      rect.bottom = y2;
-
-      return IntersectClipRect(rect);
-
-   }
-
-
-   i32 graphics::IntersectClipRect(const ::rect & rectParam)
-   {
-
-      ::draw2d::region_pointer pregion(e_create);
-
-      pregion->create_rect(rectParam);
-
-      if(m_pregion)
-      {
-
-         auto pregionOld = m_pregion;
-
-         __construct(m_pregion);
-
-         m_pregion->combine(pregionOld, pregion, ::draw2d::e_combine_intersect, this);
-
-      }
-      else
-      {
-
-         m_pregion = pregion;
-
-      }
-
-      //m_pregion->defer_update(this, 0);
-
-      on_apply_clip_region();
-
-      return 0;
-
-   }
-
-
-   i32 graphics::OffsetClipRgn(i32 x, i32 y)
-   {
-
-      if(m_pregion)
-      {
-
-         m_pregion->m_pointOffset += ::size(x, y);
-
-         m_pregion->set_modified();
-
-         on_apply_clip_region();
-
-      }
-
-      return 0;
-
-   }
-
-
-   i32 graphics::OffsetClipRgn(const ::size & size)
-   {
-
-      return OffsetClipRgn(size.cx, size.cy);
-
-   }
+//   i32 graphics::ExcludeClipRect(i32 x1, i32 y1, i32 x2, i32 y2)
+//   {
+//
+//      UNREFERENCED_PARAMETER(x1);
+//      UNREFERENCED_PARAMETER(y1);
+//      UNREFERENCED_PARAMETER(x2);
+//      UNREFERENCED_PARAMETER(y2);
+//
+//      return -1;
+//
+//   }
+//
+//
+//   i32 graphics::ExcludeClipRect(const ::rect & rect)
+//   {
+//
+//      UNREFERENCED_PARAMETER(rect);
+//
+//
+//
+//      return -1;
+//
+//   }
+//
+//
+//   i32 graphics::IntersectClipRect(i32 x1, i32 y1, i32 x2, i32 y2)
+//   {
+//
+//      ::rect rect;
+//
+//      rect.left = x1;
+//      rect.top = y1;
+//      rect.right = x2;
+//      rect.bottom = y2;
+//
+//      return IntersectClipRect(rect);
+//
+//   }
+//
+//
+//   i32 graphics::IntersectClipRect(const ::rect & rectParam)
+//   {
+//
+//      ::draw2d::region_pointer pregion(e_create);
+//
+//      pregion->create_rect(rectParam);
+//
+//      if(m_pregion)
+//      {
+//
+//         auto pregionOld = m_pregion;
+//
+//         __construct(m_pregion);
+//
+//         m_pregion->combine(pregionOld, pregion, ::draw2d::e_combine_intersect, this);
+//
+//      }
+//      else
+//      {
+//
+//         m_pregion = pregion;
+//
+//      }
+//
+//      //m_pregion->defer_update(this, 0);
+//
+//      on_apply_clip_region();
+//
+//      return 0;
+//
+//   }
+//
+//
+//   i32 graphics::OffsetClipRgn(i32 x, i32 y)
+//   {
+//
+//      if(m_pregion)
+//      {
+//
+//         m_pregion->m_pointOffset += ::size(x, y);
+//
+//         m_pregion->set_modified();
+//
+//         on_apply_clip_region();
+//
+//      }
+//
+//      return 0;
+//
+//   }
+//
+//
+//   i32 graphics::OffsetClipRgn(const ::size & size)
+//   {
+//
+//      return OffsetClipRgn(size.cx, size.cy);
+//
+//   }
 
 
    void graphics::on_apply_clip_region()
@@ -4020,50 +4020,309 @@ namespace draw2d
    }
 
 
-   i32 graphics::SelectClipRgn(::draw2d::region * pregion)
+   ::estatus graphics::reset_clip()
    {
+   
+      return ::success;
+   
+   }
 
-      if(pregion == nullptr)
+
+   ::estatus graphics::add_shapes(const shape_array & shapea)
+   {
+      
+      for(auto & pshape : shapea)
       {
-
-         m_pregion.release();
-
-      }
-      else
-      {
-
-         m_pregion = pregion;
-
+         
+         add_shape(pshape);
+         
       }
 
-      on_apply_clip_region();
-
-      return 0;
+      return ::success;
 
    }
 
 
-   i32 graphics::SelectClipRgn(::draw2d::region * pregion, enum_combine ecombine)
+   ::estatus graphics::add_shape(___shape * pshape)
    {
-
-      if(pregion != nullptr)
+   
+      switch(pshape->eshape())
       {
-
-         auto pregionOld = m_pregion;
-
-         __construct(m_pregion);
-
-         m_pregion->combine(pregionOld, pregion, ecombine);
-
-         m_pregion = pregion;
-
+      case e_shape_none:
+         return ::success_none;
+      case e_shape_intersect_clip:
+         return intersect_clip();
+      case e_shape_rect:
+         return add_shape(pshape->shape < ::rect >());
+      case e_shape_rectd:
+         return add_shape(pshape->shape < ::rectd >());
+      case e_shape_oval:
+         return add_shape(pshape->shape < ::oval >());
+      case e_shape_ovald:
+         return add_shape(pshape->shape < ::ovald >());
+      case e_shape_polygon:
+         return add_shape(pshape->shape < ::polygon >());
+      case e_shape_polygond:
+         return add_shape(pshape->shape < ::polygond >());
+      default:
+         break;
+            
       }
 
-      on_apply_clip_region();
+      return error_not_implemented;
+      
+   }
 
-      return 0;
+
+   ::estatus graphics::intersect_clip()
+   {
+
+      __throw(interface_only_exception);
+
+      return error_interface_only;
 
    }
+
+
+   ::estatus graphics::add_shape(const ::rect & rect)
+   {
+   
+      __throw(interface_only_exception);
+   
+      return error_interface_only;
+   
+   }
+
+
+   ::estatus graphics::add_shape(const ::rectd & rect)
+   {
+   
+      __throw(interface_only_exception);
+   
+      return error_interface_only;
+   
+   }
+
+
+   ::estatus graphics::add_shape(const ::oval & oval)
+   {
+   
+      __throw(interface_only_exception);
+   
+      return error_interface_only;
+   
+   }
+
+
+   ::estatus graphics::add_shape(const ::ovald & oval)
+   {
+   
+      __throw(interface_only_exception);
+   
+      return error_interface_only;
+   
+   }
+
+
+   ::estatus graphics::add_shape(const ::polygon & polygon)
+   {
+   
+      __throw(interface_only_exception);
+   
+      return error_interface_only;
+   
+   }
+
+
+   ::estatus graphics::add_shape(const ::polygond & polygon)
+   {
+
+      __throw(interface_only_exception);
+
+      return error_interface_only;
+
+   }
+
+
+   ::estatus graphics::intersect_clip(const ::rect & rect)
+   {
+   
+      auto estatus = add_shape(rect);
+      
+      if(!estatus)
+      {
+       
+         return estatus;
+         
+      }
+      
+      estatus = intersect_clip();
+      
+      if(!estatus)
+      {
+       
+         return estatus;
+         
+      }
+      
+      return estatus;
+   
+   }
+
+
+   ::estatus graphics::intersect_clip(const ::rectd & rect)
+   {
+   
+      auto estatus = add_shape(rect);
+      
+      if(!estatus)
+      {
+       
+         return estatus;
+         
+      }
+      
+      estatus = intersect_clip();
+      
+      if(!estatus)
+      {
+       
+         return estatus;
+         
+      }
+      
+      return estatus;
+   
+   }
+
+
+   ::estatus graphics::intersect_clip(const ::oval & oval)
+   {
+   
+      auto estatus = add_shape(oval);
+      
+      if(!estatus)
+      {
+       
+         return estatus;
+         
+      }
+      
+      estatus = intersect_clip();
+      
+      if(!estatus)
+      {
+       
+         return estatus;
+         
+      }
+      
+      return estatus;
+   
+   }
+
+
+   ::estatus graphics::intersect_clip(const ::ovald & oval)
+   {
+   
+      auto estatus = add_shape(oval);
+      
+      if(!estatus)
+      {
+       
+         return estatus;
+         
+      }
+      
+      estatus = intersect_clip();
+      
+      if(!estatus)
+      {
+       
+         return estatus;
+         
+      }
+      
+      return estatus;
+   
+   }
+
+
+   ::estatus graphics::intersect_clip(const ::polygon & polygon)
+   {
+   
+      auto estatus = add_shape(polygon);
+      
+      if(!estatus)
+      {
+       
+         return estatus;
+         
+      }
+      
+      estatus = intersect_clip();
+      
+      if(!estatus)
+      {
+       
+         return estatus;
+         
+      }
+      
+      return estatus;
+   
+   }
+
+
+   ::estatus graphics::intersect_clip(const ::polygond & polygon)
+   {
+
+      auto estatus = add_shape(polygon);
+      
+      if(!estatus)
+      {
+       
+         return estatus;
+         
+      }
+      
+      estatus = intersect_clip();
+      
+      if(!estatus)
+      {
+       
+         return estatus;
+         
+      }
+      
+      return estatus;
+
+   }
+
+
+
+
+//   i32 graphics::SelectClipRgn(::draw2d::region * pregion, enum_combine ecombine)
+//   {
+//
+//      if(pregion != nullptr)
+//      {
+//
+//         auto pregionOld = m_pregion;
+//
+//         __construct(m_pregion);
+//
+//         m_pregion->combine(pregionOld, pregion, ecombine);
+//
+//         m_pregion = pregion;
+//
+//      }
+//
+//      on_apply_clip_region();
+//
+//      return 0;
+//
+//   }
 
 
 #ifdef WINDOWS

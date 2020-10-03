@@ -4956,10 +4956,27 @@ namespace str
 
 
 
+void from(string & str, const ::string_stream & strstream)
+{
+
+   strstream.to_string(str);
+
+}
+
+
+void from(string & str, const ::text_stream & strstream)
+{
+
+   strstream.to_string(str);
+
+}
 
 
 
 } // namespace str
+
+
+
 
 
 

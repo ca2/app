@@ -25,9 +25,9 @@ namespace message
 {
 
 
-   void create::set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam)
+   void create::set(::layered * playeredUserPrimitive,UINT uiMessage,WPARAM wparam,::lparam lparam)
    {
-      base::set(pwnd,uiMessage,wparam,lparam);
+      base::set(playeredUserPrimitive,uiMessage,wparam,lparam);
 
       m_lpcreatestruct = reinterpret_cast<::user::create_struct *>(lparam.m_lparam);
 
@@ -119,11 +119,11 @@ namespace message
    }
 
 
-   void activate::set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam)
+   void activate::set(::layered * playeredUserPrimitive,UINT uiMessage,WPARAM wparam,::lparam lparam)
 
    {
 
-      base::set(pwnd,uiMessage,wparam,lparam);
+      base::set(playeredUserPrimitive,uiMessage,wparam,lparam);
 
 
       m_nState = (UINT)(LOWORD(wparam));
@@ -209,10 +209,10 @@ namespace message
 #endif
 
 
-   void key::set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam)
+   void key::set(::layered * playeredUserPrimitive,UINT uiMessage,WPARAM wparam,::lparam lparam)
    {
 
-      base::set(pwnd,uiMessage,wparam,lparam);
+      base::set(playeredUserPrimitive,uiMessage,wparam,lparam);
 
       m_nChar = static_cast<UINT>(wparam);
 
@@ -245,30 +245,30 @@ namespace message
    }
 
 
-   void nc_activate::set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam)
+   void nc_activate::set(::layered * playeredUserPrimitive,UINT uiMessage,WPARAM wparam,::lparam lparam)
    {
 
-      base::set(pwnd,uiMessage,wparam,lparam);
+      base::set(playeredUserPrimitive,uiMessage,wparam,lparam);
 
       m_bActive = wparam != FALSE;
 
    }
 
 
-   void move::set(::user::primitive * pwnd, UINT uiMessage, WPARAM wparam, ::lparam lparam)
+   void move::set(::layered * playeredUserPrimitive, UINT uiMessage, WPARAM wparam, ::lparam lparam)
    {
 
-      base::set(pwnd, uiMessage, wparam, lparam);
+      base::set(playeredUserPrimitive, uiMessage, wparam, lparam);
 
       m_point = __point(lparam);
 
    }
 
 
-   void size::set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam)
+   void size::set(::layered * playeredUserPrimitive,UINT uiMessage,WPARAM wparam,::lparam lparam)
    {
 
-      base::set(pwnd,uiMessage,wparam,lparam);
+      base::set(playeredUserPrimitive,uiMessage,wparam,lparam);
 
       m_nType     = static_cast < UINT > (wparam);
 
@@ -295,10 +295,10 @@ namespace message
       try
       {
 
-         if(m_puserinteraction)
+         if(userinteraction())
          {
 
-            auto papplication = m_puserinteraction->get_context_application();
+            auto papplication = userinteraction()->get_context_application();
 
             if (papplication)
             {
@@ -306,13 +306,13 @@ namespace message
                if (m_pcursor != nullptr && papplication->get_context_session() != nullptr)
                {
 
-                  Sess(m_puserinteraction).set_cursor(dynamic_cast <::user::interaction *> (m_puserinteraction), m_pcursor);
+                  Sess(userinteraction()).set_cursor(dynamic_cast <::user::interaction *> (userinteraction()), m_pcursor);
 
                }
                else if (m_ecursor != cursor_unmodified && papplication->get_context_session() != nullptr)
                {
 
-                  Sess(m_puserinteraction).set_cursor(dynamic_cast <::user::interaction *> (m_puserinteraction), m_ecursor);
+                  Sess(userinteraction()).set_cursor(dynamic_cast <::user::interaction *> (userinteraction()), m_ecursor);
 
                }
 
@@ -329,10 +329,10 @@ namespace message
    }
 
 
-   void mouse::set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam)
+   void mouse::set(::layered * playeredUserPrimitive,UINT uiMessage,WPARAM wparam,::lparam lparam)
    {
 
-      base::set(pwnd,uiMessage,wparam,lparam);
+      base::set(playeredUserPrimitive,uiMessage,wparam,lparam);
 
       m_nFlags   = wparam;
 
@@ -355,10 +355,10 @@ namespace message
    }
 
 
-   void mouse_wheel::set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam)
+   void mouse_wheel::set(::layered * playeredUserPrimitive,UINT uiMessage,WPARAM wparam,::lparam lparam)
    {
 
-      base::set(pwnd,uiMessage,wparam,lparam);
+      base::set(playeredUserPrimitive,uiMessage,wparam,lparam);
 
       m_nFlags    = wparam;
 
@@ -405,10 +405,10 @@ namespace message
    }
 
 
-   void scroll::set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam)
+   void scroll::set(::layered * playeredUserPrimitive,UINT uiMessage,WPARAM wparam,::lparam lparam)
    {
 
-      base::set(pwnd,uiMessage,wparam,lparam);
+      base::set(playeredUserPrimitive,uiMessage,wparam,lparam);
 
       m_nSBCode = (i16)LOWORD(wparam);
 
@@ -419,10 +419,10 @@ namespace message
    }
 
 
-   void show_window::set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam)
+   void show_window::set(::layered * playeredUserPrimitive,UINT uiMessage,WPARAM wparam,::lparam lparam)
    {
 
-      base::set(pwnd,uiMessage,wparam,lparam);
+      base::set(playeredUserPrimitive,uiMessage,wparam,lparam);
 
       m_bShow = wparam != FALSE;
 
@@ -431,42 +431,42 @@ namespace message
    }
 
 
-   void kill_focus::set(::user::primitive * pwnd, UINT uiMessage, WPARAM wparam, ::lparam lparam)
+   void kill_focus::set(::layered * playeredUserPrimitive, UINT uiMessage, WPARAM wparam, ::lparam lparam)
    {
 
-      base::set(pwnd, uiMessage, wparam, lparam);
+      base::set(playeredUserPrimitive, uiMessage, wparam, lparam);
 
       m_oswindowNew = (oswindow) wparam;
 
    }
 
 
-   void set_focus::set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam)
+   void set_focus::set(::layered * playeredUserPrimitive,UINT uiMessage,WPARAM wparam,::lparam lparam)
    {
 
-      base::set(pwnd,uiMessage,wparam,lparam);
+      base::set(playeredUserPrimitive,uiMessage,wparam,lparam);
 
       //m_puserinteraction = System.ui_from_handle(reinterpret_cast<oswindow>(wparam));
 
-      m_puserinteraction = nullptr;
+      //m_puserinteraction = nullptr;
 
    }
 
 
-   void window_pos::set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam)
+   void window_pos::set(::layered * playeredUserPrimitive,UINT uiMessage,WPARAM wparam,::lparam lparam)
    {
 
-      base::set(pwnd,uiMessage,wparam,lparam);
+      base::set(playeredUserPrimitive,uiMessage,wparam,lparam);
 
       m_pwindowpos = reinterpret_cast<WINDOWPOS*>(lparam.m_lparam);
 
    }
 
 
-   void nc_calc_size::set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam)
+   void nc_calc_size::set(::layered * playeredUserPrimitive,UINT uiMessage,WPARAM wparam,::lparam lparam)
    {
 
-      base::set(pwnd,uiMessage,wparam,lparam);
+      base::set(playeredUserPrimitive,uiMessage,wparam,lparam);
 
       m_pparams = reinterpret_cast<NCCALCSIZE_PARAMS*>(lparam.m_lparam);
 

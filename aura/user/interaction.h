@@ -51,15 +51,14 @@ namespace user
 
 
       ewindowflag                               m_ewindowflag;
-
-
+      bool                                      m_bDerivedHeight;
 
       // updown
       __pointer(::user::interaction)            m_pupdowntarget;
       ::user::interaction::e_updown             m_eupdown;
       //end updown
       __pointer(control_descriptor)             m_pdescriptor;
-
+      __pointer(shape_array)                    m_pshapeaClip;
 
       ::user::interaction_layout                m_layout;
 
@@ -208,6 +207,7 @@ namespace user
       virtual ~interaction();
 
 
+      
       void user_interaction_common_construct();
 
       virtual void on_create_user_interaction();
@@ -251,6 +251,10 @@ namespace user
 
       virtual::edisplay window_stored_display() const;
       virtual::edisplay window_previous_display() const;
+
+      
+      virtual int get_derived_height(int iWidth);
+      virtual int get_derived_width(int iHeight);
 
 
       virtual bool is_full_screen_enabled() const;

@@ -1360,5 +1360,30 @@ namespace draw2d
 
 } // namespace draw2d
 
+void * nscursor_system(e_cursor ecursor);
+int os_window_set_mouse_cursor(void *, void * p);
+
+namespace aura
+{
+
+
+   HCURSOR application::load_default_cursor(e_cursor ecursor)
+   {
+      
+      return nscursor_system(ecursor);
+      
+   }
+
+   
+   WINBOOL application::window_set_mouse_cursor(oswindow window, HCURSOR hcursor)
+   {
+
+      return os_window_set_mouse_cursor(window, hcursor);
+
+   }
+
+
+} // namespace aura
+
 
 

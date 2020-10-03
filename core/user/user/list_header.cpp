@@ -603,58 +603,57 @@ namespace user
             bFirst = false;
 
          }
-
-         ::user::interaction * pinteraction = this;
-
-         ::rect rectFocus;
-
-         ::rect rectIntersect;
-
-         index i = 0;
-
-         while (pinteraction != nullptr)
+         
+         if(!m_pshapeaClip)
          {
 
-            if (i == 1)
-            {
-               // guess list client rect doesn't include header?
-               pinteraction->::user::interaction::get_client_rect(rectFocus);
+            __construct_new(m_pshapeaClip);
+            
+            ::user::interaction * pinteraction = this;
 
-            }
-            else
-            {
+            ::rect rectFocus;
 
-               pinteraction->get_client_rect(rectFocus);
+            ::rect rectIntersect;
 
-            }
+            index i = 0;
 
-            pinteraction->_001ClientToScreen(rectFocus);
-
-            _001ScreenToClient(rectFocus);
-
-            rectFocus.bottom++;
-            rectFocus.right++;
-
-            if (i == 0)
+            while (pinteraction != nullptr)
             {
 
-               rectIntersect = rectFocus;
+               if (i == 1)
+               {
+                  // guess list client rect doesn't include header?
+                  pinteraction->::user::interaction::get_client_rect(rectFocus);
+
+               }
+               else
+               {
+
+                  pinteraction->get_client_rect(rectFocus);
+
+               }
+
+               pinteraction->_001ClientToScreen(rectFocus);
+
+               _001ScreenToClient(rectFocus);
+
+               rectFocus.bottom++;
+               rectFocus.right++;
+
+               m_pshapeaClip->add_item({__new(rect_shape(rectIntersect))});
+
+               m_pshapeaClip->add_item({__new(intersect_clip_shape)});
+
+               i++;
+
+               pinteraction = pinteraction->GetParent();
 
             }
-            else
-            {
-
-               rectIntersect.intersect(rectFocus);
-
-            }
-
-            i++;
-
-            pinteraction = pinteraction->GetParent();
-
+            
          }
+         
+         pgraphics->add_shapes(*m_pshapeaClip);
 
-         pgraphics->IntersectClipRect(rectIntersect);
 
       }
       catch (...)

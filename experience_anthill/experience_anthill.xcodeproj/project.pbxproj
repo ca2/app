@@ -24,8 +24,6 @@
 		9A4E5CB62519348700CC6817 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4E5CB52519348700CC6817 /* libacme.dylib */; };
 		9A4E5CB82519348700CC6817 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4E5CB72519348700CC6817 /* libapex.dylib */; };
 		9A833BC024F5424A00C079FB /* style.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A833BBE24F5424A00C079FB /* style.cpp */; };
-		9A833BC724F5427D00C079FB /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A833BB924F5423A00C079FB /* libaura.dylib */; };
-		9A833BC824F5428200C079FB /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A833BB124F5423A00C079FB /* libaxis.dylib */; };
 		9A833BC924F5428700C079FB /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A833BAB24F5423900C079FB /* libbase.dylib */; };
 		9A833BDE24F5437200C079FB /* style.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A833BBE24F5424A00C079FB /* style.cpp */; };
 		9A8EB48C24498E390056E362 /* frame_013.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8EB47024498E370056E362 /* frame_013.h */; };
@@ -59,8 +57,9 @@
 		9AE24E6C1904CFE2001AEFFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24E5C1904CFE2001AEFFB /* Foundation.framework */; };
 		9AE24E6E1904CFE2001AEFFB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24E6D1904CFE2001AEFFB /* UIKit.framework */; };
 		9AE24E711904CFE2001AEFFB /* libexperience_anthill.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24E5A1904CFE2001AEFFB /* libexperience_anthill.a */; };
-		9AE24E771904CFE2001AEFFB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9AE24E751904CFE2001AEFFB /* InfoPlist.strings */; };
-		9AE24E791904CFE2001AEFFB /* app_core_uinteraction_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE24E781904CFE2001AEFFB /* app_core_uinteraction_iosTests.m */; };
+		9AE649FD252A679E00BED5B8 /* libaqua.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE649FC252A679E00BED5B8 /* libaqua.dylib */; };
+		9AE649FF252A679E00BED5B8 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE649FE252A679E00BED5B8 /* libaura.dylib */; };
+		9AE64A08252A67D700BED5B8 /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE64A07252A67D700BED5B8 /* libaxis.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,48 +69,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 9AD117F324F51BE400177261;
 			remoteInfo = base;
-		};
-		9A833BB024F5423A00C079FB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A833BAC24F5423900C079FB /* axis.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9AD117DE24F51BA500177261;
-			remoteInfo = axis;
-		};
-		9A833BB824F5423A00C079FB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A833BB224F5423A00C079FB /* aura.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9A98A6151771D67E000AE16E;
-			remoteInfo = aura;
-		};
-		9A833BBA24F5423A00C079FB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A833BB224F5423A00C079FB /* aura.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9A20198A24772E9000A31CBF;
-			remoteInfo = ios_aura;
-		};
-		9A833BBC24F5423A00C079FB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A833BB224F5423A00C079FB /* aura.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9AE24D431904CEFE001AEFFB;
-			remoteInfo = aura_iosTests;
-		};
-		9A833BC124F5426800C079FB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A833BB224F5423A00C079FB /* aura.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
-			remoteInfo = aura;
-		};
-		9A833BC324F5426E00C079FB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A833BAC24F5423900C079FB /* axis.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9AD117DD24F51BA500177261;
-			remoteInfo = axis;
 		};
 		9A833BC524F5427300C079FB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -159,8 +116,6 @@
 		9A6716861D15586E0069A961 /* libaxis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxis.dylib; path = "../../app/axis/build/Debug-iphoneos/libaxis.dylib"; sourceTree = "<group>"; };
 		9A6716881D1558770069A961 /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-ios-hcjyrbebieoraofrrypdpkveyzyc/Build/Products/Debug-iphonesimulator/libaura.dylib"; sourceTree = "<group>"; };
 		9A833BA624F5423900C079FB /* base.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = base.xcodeproj; path = ../base/base.xcodeproj; sourceTree = "<group>"; };
-		9A833BAC24F5423900C079FB /* axis.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axis.xcodeproj; path = ../axis/axis.xcodeproj; sourceTree = "<group>"; };
-		9A833BB224F5423A00C079FB /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../aura/aura.xcodeproj; sourceTree = "<group>"; };
 		9A833BBE24F5424A00C079FB /* style.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = style.cpp; sourceTree = "<group>"; };
 		9A833BBF24F5424A00C079FB /* style.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = style.h; sourceTree = "<group>"; };
 		9A8EB47024498E370056E362 /* frame_013.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = frame_013.h; sourceTree = "<group>"; };
@@ -195,9 +150,9 @@
 		9AE24E691904CFE2001AEFFB /* experience_core_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = experience_core_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE24E6A1904CFE2001AEFFB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		9AE24E6D1904CFE2001AEFFB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		9AE24E741904CFE2001AEFFB /* app_core_uinteraction_iosTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "app_core_uinteraction_iosTests-Info.plist"; sourceTree = "<group>"; };
-		9AE24E761904CFE2001AEFFB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		9AE24E781904CFE2001AEFFB /* app_core_uinteraction_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = app_core_uinteraction_iosTests.m; sourceTree = "<group>"; };
+		9AE649FC252A679E00BED5B8 /* libaqua.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaqua.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AE649FE252A679E00BED5B8 /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AE64A07252A67D700BED5B8 /* libaxis.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaxis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AEB75F416F78EDC0085103B /* libexperience_anthill.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libexperience_anthill.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -224,11 +179,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AE64A08252A67D700BED5B8 /* libaxis.dylib in Frameworks */,
+				9AE649FD252A679E00BED5B8 /* libaqua.dylib in Frameworks */,
+				9AE649FF252A679E00BED5B8 /* libaura.dylib in Frameworks */,
 				9A4E5CB62519348700CC6817 /* libacme.dylib in Frameworks */,
 				9A4E5CB82519348700CC6817 /* libapex.dylib in Frameworks */,
 				9A833BC924F5428700C079FB /* libbase.dylib in Frameworks */,
-				9A833BC824F5428200C079FB /* libaxis.dylib in Frameworks */,
-				9A833BC724F5427D00C079FB /* libaura.dylib in Frameworks */,
 				07B6597D190F44A9002DAADE /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -240,24 +196,6 @@
 			isa = PBXGroup;
 			children = (
 				9A833BAB24F5423900C079FB /* libbase.dylib */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		9A833BAD24F5423900C079FB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9A833BB124F5423A00C079FB /* libaxis.dylib */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		9A833BB324F5423A00C079FB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9A833BB924F5423A00C079FB /* libaura.dylib */,
-				9A833BBB24F5423A00C079FB /* libios_aura.a */,
-				9A833BBD24F5423A00C079FB /* aura_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -301,6 +239,9 @@
 		9AE24E5B1904CFE2001AEFFB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9AE64A07252A67D700BED5B8 /* libaxis.dylib */,
+				9AE649FC252A679E00BED5B8 /* libaqua.dylib */,
+				9AE649FE252A679E00BED5B8 /* libaura.dylib */,
 				9A4E5CB52519348700CC6817 /* libacme.dylib */,
 				9A4E5CB72519348700CC6817 /* libapex.dylib */,
 				9A6630581D210B0200664CE3 /* libios_aura.dylib */,
@@ -324,32 +265,11 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		9AE24E721904CFE2001AEFFB /* app_core_uinteraction_iosTests */ = {
-			isa = PBXGroup;
-			children = (
-				9AE24E781904CFE2001AEFFB /* app_core_uinteraction_iosTests.m */,
-				9AE24E731904CFE2001AEFFB /* Supporting Files */,
-			);
-			path = app_core_uinteraction_iosTests;
-			sourceTree = "<group>";
-		};
-		9AE24E731904CFE2001AEFFB /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				9AE24E741904CFE2001AEFFB /* app_core_uinteraction_iosTests-Info.plist */,
-				9AE24E751904CFE2001AEFFB /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		9AEB75EB16F78EDC0085103B = {
 			isa = PBXGroup;
 			children = (
-				9A833BB224F5423A00C079FB /* aura.xcodeproj */,
-				9A833BAC24F5423900C079FB /* axis.xcodeproj */,
 				9A833BA624F5423900C079FB /* base.xcodeproj */,
 				9A8F8901240C031B0097E249 /* experience_anthill */,
-				9AE24E721904CFE2001AEFFB /* app_core_uinteraction_iosTests */,
 				9AE24E5B1904CFE2001AEFFB /* Frameworks */,
 				9AEB75F516F78EDC0085103B /* Products */,
 			);
@@ -439,8 +359,6 @@
 			);
 			dependencies = (
 				9A833BC624F5427300C079FB /* PBXTargetDependency */,
-				9A833BC424F5426E00C079FB /* PBXTargetDependency */,
-				9A833BC224F5426800C079FB /* PBXTargetDependency */,
 			);
 			name = experience_anthill;
 			productName = app_core_uinteraction;
@@ -474,14 +392,6 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 9A833BB324F5423A00C079FB /* Products */;
-					ProjectRef = 9A833BB224F5423A00C079FB /* aura.xcodeproj */;
-				},
-				{
-					ProductGroup = 9A833BAD24F5423900C079FB /* Products */;
-					ProjectRef = 9A833BAC24F5423900C079FB /* axis.xcodeproj */;
-				},
-				{
 					ProductGroup = 9A833BA724F5423900C079FB /* Products */;
 					ProjectRef = 9A833BA624F5423900C079FB /* base.xcodeproj */;
 				},
@@ -503,34 +413,6 @@
 			remoteRef = 9A833BAA24F5423900C079FB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A833BB124F5423A00C079FB /* libaxis.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libaxis.dylib;
-			remoteRef = 9A833BB024F5423A00C079FB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9A833BB924F5423A00C079FB /* libaura.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libaura.dylib;
-			remoteRef = 9A833BB824F5423A00C079FB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9A833BBB24F5423A00C079FB /* libios_aura.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libios_aura.a;
-			remoteRef = 9A833BBA24F5423A00C079FB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9A833BBD24F5423A00C079FB /* aura_iosTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = aura_iosTests.xctest;
-			remoteRef = 9A833BBC24F5423A00C079FB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -538,7 +420,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AE24E771904CFE2001AEFFB /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -569,7 +450,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AE24E791904CFE2001AEFFB /* app_core_uinteraction_iosTests.m in Sources */,
 				9A833BC024F5424A00C079FB /* style.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -598,16 +478,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9A833BC224F5426800C079FB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = aura;
-			targetProxy = 9A833BC124F5426800C079FB /* PBXContainerItemProxy */;
-		};
-		9A833BC424F5426E00C079FB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = axis;
-			targetProxy = 9A833BC324F5426E00C079FB /* PBXContainerItemProxy */;
-		};
 		9A833BC624F5427300C079FB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = base;
@@ -619,17 +489,6 @@
 			targetProxy = 9AE24E6F1904CFE2001AEFFB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		9AE24E751904CFE2001AEFFB /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9AE24E761904CFE2001AEFFB /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		9AE24E7A1904CFE2001AEFFB /* Debug */ = {

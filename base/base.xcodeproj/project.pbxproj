@@ -241,11 +241,11 @@
 			remoteGlobalIDString = 9AD117DE24F51BA500177261;
 			remoteInfo = axis;
 		};
-		9AD1182624F51CAA00177261 /* PBXContainerItemProxy */ = {
+		9AE649FA252A664C00BED5B8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9AD1181E24F51C4000177261 /* axis.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 9AD117DD24F51BA500177261;
+			remoteGlobalIDString = 9AE63E9A252A5B7800BED5B8;
 			remoteInfo = axis;
 		};
 /* End PBXContainerItemProxy section */
@@ -1038,7 +1038,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				9AD1182724F51CAA00177261 /* PBXTargetDependency */,
+				9AE649FB252A664C00BED5B8 /* PBXTargetDependency */,
 			);
 			name = base;
 			productName = base;
@@ -1184,10 +1184,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9AD1182724F51CAA00177261 /* PBXTargetDependency */ = {
+		9AE649FB252A664C00BED5B8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = axis;
-			targetProxy = 9AD1182624F51CAA00177261 /* PBXContainerItemProxy */;
+			targetProxy = 9AE649FA252A664C00BED5B8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

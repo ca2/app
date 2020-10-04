@@ -3,41 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>SchemeUserState</key>
-	<dict>
-		<key>libca2 copy.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>12</integer>
-		</dict>
-	</dict>
+	<dict/>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>9A19A1A419C6F50B0018DF7D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9A8897B514C2C8DB006B4023</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9AA1B459176404890019E812</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9ACA760716F7CAAC00AA1CEE</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9AE24DDB1904CF6E001AEFFB</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9AE24DEA1904CF6E001AEFFB</key>
+		<key>9AE63303252A5A0300BED5B8</key>
 		<dict>
 			<key>primary</key>
 			<true/>

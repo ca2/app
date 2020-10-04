@@ -18,7 +18,6 @@
 		9A258EB724DA97980013F50E /* libgpu_opengl.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A8B644624CBE7B500A93185 /* libgpu_opengl.dylib */; };
 		9A258EB824DA97980013F50E /* libimaging_coreimage.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A8B638324CBD68100A93185 /* libimaging_coreimage.dylib */; };
 		9A281A4825242A97009FA9CB /* libaqua.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A281915252424CE009FA9CB /* libaqua.dylib */; };
-		9A2E649E25267E2A0001CC7E /* libbred.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A281A6E2524338B009FA9CB /* libbred.dylib */; };
 		9A3BA7D924F5EF7000150704 /* libaxis.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AD1180B24F51C1A00177261 /* libaxis.dylib */; };
 		9A3BA7EA24F5EF7B00150704 /* libbase.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AD1181124F51C2400177261 /* libbase.dylib */; };
 		9AAE6E7C25191E9600F10692 /* libacme.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AAE6E6125191E5800F10692 /* libacme.dylib */; };
@@ -143,13 +142,6 @@
 			containerPortal = 9A281A692524338B009FA9CB /* bred.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9A281A5D252432B5009FA9CB;
-			remoteInfo = bred;
-		};
-		9A2E64F32526E5900001CC7E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A281A692524338B009FA9CB /* bred.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9A281A5C252432B5009FA9CB;
 			remoteInfo = bred;
 		};
 		9A3E0B432309FA7F00B5459B /* PBXContainerItemProxy */ = {
@@ -357,13 +349,12 @@
 			dstPath = "$(WorkspaceDir)/time/$(PLATFORM_MODIFIER)";
 			dstSubfolderSpec = 0;
 			files = (
-				9AAE6E7C25191E9600F10692 /* libacme.dylib in CopyFiles */,
-				9AAE6E7D25191EA000F10692 /* libapex.dylib in CopyFiles */,
 				9A281A4825242A97009FA9CB /* libaqua.dylib in CopyFiles */,
-				9A258EB124DA97980013F50E /* libaura.dylib in CopyFiles */,
-				9A3BA7D924F5EF7000150704 /* libaxis.dylib in CopyFiles */,
-				9A2E649E25267E2A0001CC7E /* libbred.dylib in CopyFiles */,
+				9AAE6E7D25191EA000F10692 /* libapex.dylib in CopyFiles */,
+				9AAE6E7C25191E9600F10692 /* libacme.dylib in CopyFiles */,
 				9A3BA7EA24F5EF7B00150704 /* libbase.dylib in CopyFiles */,
+				9A3BA7D924F5EF7000150704 /* libaxis.dylib in CopyFiles */,
+				9A258EB124DA97980013F50E /* libaura.dylib in CopyFiles */,
 				9A258EB224DA97980013F50E /* libcore.dylib in CopyFiles */,
 				9A258EB324DA97980013F50E /* libdraw2d_quartz2d.dylib in CopyFiles */,
 				9A258EB424DA97980013F50E /* libexperience_anthill.dylib in CopyFiles */,
@@ -582,16 +573,15 @@
 			buildRules = (
 			);
 			dependencies = (
-				9AAE6E7925191E8000F10692 /* PBXTargetDependency */,
-				9AAE6E7B25191E8400F10692 /* PBXTargetDependency */,
 				9A281A4725242A8A009FA9CB /* PBXTargetDependency */,
-				9A2488DA2452C5EA00F23D28 /* PBXTargetDependency */,
+				9AAE6E7B25191E8400F10692 /* PBXTargetDependency */,
+				9AAE6E7925191E8000F10692 /* PBXTargetDependency */,
 				9AD120A024F51D7900177261 /* PBXTargetDependency */,
 				9AD120A224F51D7900177261 /* PBXTargetDependency */,
-				9A2E64F42526E5900001CC7E /* PBXTargetDependency */,
 				9A25828424DA17E80013F50E /* PBXTargetDependency */,
 				9A8B644E24CBE7C400A93185 /* PBXTargetDependency */,
 				9A8B638924CBD69F00A93185 /* PBXTargetDependency */,
+				9A2488DA2452C5EA00F23D28 /* PBXTargetDependency */,
 				9A3E0B4C2309FA9200B5459B /* PBXTargetDependency */,
 				9A6FAD0323047CA100340A3D /* PBXTargetDependency */,
 				9A6FAD0523047CA100340A3D /* PBXTargetDependency */,
@@ -963,11 +953,6 @@
 			isa = PBXTargetDependency;
 			name = aqua;
 			targetProxy = 9A281A4625242A8A009FA9CB /* PBXContainerItemProxy */;
-		};
-		9A2E64F42526E5900001CC7E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = bred;
-			targetProxy = 9A2E64F32526E5900001CC7E /* PBXContainerItemProxy */;
 		};
 		9A3E0B4C2309FA9200B5459B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

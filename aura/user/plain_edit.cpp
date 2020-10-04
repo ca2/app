@@ -6366,7 +6366,7 @@ finished_update:
    void plain_edit::plain_edit_insert_text(::draw2d::graphics_pointer & pgraphics, string strText, bool bForceNewStep)
    {
 
-      ::output_debug_string("plain_edit::insert_text: \"" + strText + "\" \n");
+      ::output_debug_string("plain_edit::insert_text: \"" + strText.Left(64) + "\" \n");
 
       sync_lock sl(mutex());
 

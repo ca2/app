@@ -260,7 +260,7 @@ namespace userex
 
          ::rect rect;
 
-         System.get_main_monitor(rect);
+         Session.get_main_monitor(rect);
 
          rect.deflate(rect.width() / 6, rect.height() / 3, rect.width() / 6, rect.height() / 2);
 

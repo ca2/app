@@ -1526,7 +1526,7 @@ namespace core
    string_array user::get_wallpaper()
    {
 
-      ::count iMonitorCount = System.get_monitor_count();
+      ::count iMonitorCount = Session.get_monitor_count();
 
       string_array stra;
 
@@ -1573,7 +1573,7 @@ namespace core
 
       }
 
-      ::count iMonitorCount = System.get_monitor_count();
+      ::count iMonitorCount = Session.get_monitor_count();
 
 #ifdef LINUX
 

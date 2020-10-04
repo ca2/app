@@ -160,7 +160,7 @@ namespace aura
 #endif
 
 
-      virtual void enum_display_monitors();
+      virtual void enum_display_monitors() override;
 
       virtual index get_main_monitor(RECT* prect = nullptr) override;
 

@@ -1241,10 +1241,10 @@ namespace macos
 
                pmouse->m_bTranslated = true;
 
-               if (System.get_monitor_count() > 0)
+               if (Session.get_monitor_count() > 0)
                {
 
-                  System.get_monitor_rect(0, &rect);
+                  Session.get_monitor_rect(0, &rect);
 
                }
                else

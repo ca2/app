@@ -267,7 +267,7 @@ namespace filemanager
 
       string strPath;
 
-      if (Application.data_get({true, "last_browse_folder"}, strPath))
+      if (App(pobjectContext).data_get({true, "last_browse_folder"}, strPath))
       {
 
          if (strPath == "machinefs://")
@@ -348,13 +348,13 @@ namespace filemanager
          || ::str::begins(path, astr.FsProtocol))
       {
 
-         Application.data_set({ true, "last_browse_folder" }, strPath);
+         App(pobjectContext).data_set({ true, "last_browse_folder" }, strPath);
 
       }
       else
       {
 
-         Application.data_set({ true, "last_browse_folder" }, "machinefs://");
+         App(pobjectContext).data_set({ true, "last_browse_folder" }, "machinefs://");
 
          auto idMachine = get_local_machine_id();
 
@@ -362,7 +362,7 @@ namespace filemanager
 
          strId = "last_browse_folder." + __str(idMachine);
 
-         Application.data_set({ true, strId }, strPath);
+         App(pobjectContext).data_set({ true, strId }, strPath);
 
       }
 

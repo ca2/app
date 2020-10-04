@@ -150,7 +150,28 @@ namespace apex
 
       virtual bool is_session() const override;
 
+      virtual void enum_display_monitors();
+
       //void construct(::object * pobject, int iPhase) override;
+
+      virtual index get_main_monitor(RECT* prect = nullptr);
+
+      virtual ::count get_monitor_count();
+      virtual bool  get_monitor_rect(index iMonitor, RECT* prect);
+
+      virtual ::count get_desk_monitor_count();
+      virtual bool  get_desk_monitor_rect(index iMonitor, RECT* prect);
+
+
+      virtual index get_main_wkspace(RECT* prect = nullptr);
+
+      virtual ::count get_wkspace_count();
+      virtual bool  get_wkspace_rect(index iWkspace, RECT* prect);
+
+      virtual ::count get_desk_wkspace_count();
+      virtual bool  get_desk_wkspace_rect(index iWkspace, RECT* prect);
+
+      //virtual index get_ui_wkspace(::user::interaction * pinteraction);
 
       virtual ::estatus process_init();
 
@@ -341,17 +362,17 @@ namespace apex
       // apex commented
       virtual void set_cursor_pos(const ::point & point);
 
-      virtual index get_main_monitor(RECT * prect = nullptr);
+      //virtual index get_main_monitor(RECT * prect = nullptr);
 
       virtual bool set_main_monitor(index iMonitor);
-      virtual ::count get_monitor_count();
-      virtual bool  get_monitor_rect(index iMonitor, RECT * prect);
+      //virtual ::count get_monitor_count();
+      //virtual bool  get_monitor_rect(index iMonitor, RECT * prect);
 
-      virtual index get_main_wkspace(RECT * prect = nullptr);
+      //virtual index get_main_wkspace(RECT * prect = nullptr);
 
       virtual bool set_main_wkspace(index iWkspace);
-      virtual ::count get_wkspace_count();
-      virtual bool  get_wkspace_rect(index iWkspace, RECT * prect);
+      //virtual ::count get_wkspace_count();
+      //virtual bool  get_wkspace_rect(index iWkspace, RECT * prect);
 
       virtual bool wkspace_to_monitor(RECT * prect, index iMonitor, index iWkspace);
 
@@ -361,8 +382,8 @@ namespace apex
 
       virtual bool monitor_to_wkspace(RECT * prect);
 
-      virtual ::count get_desk_monitor_count();
-      virtual bool  get_desk_monitor_rect(index iMonitor, RECT * prect);
+      //virtual ::count get_desk_monitor_count();
+      //virtual bool  get_desk_monitor_rect(index iMonitor, RECT * prect);
 
       virtual void  get_monitor(rect_array & rectaMonitor, rect_array & rectaIntersect, const ::rect & rect);
 

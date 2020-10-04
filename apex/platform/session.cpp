@@ -6,6 +6,9 @@
 #include "apex/platform/static_setup.h"
 
 
+
+
+
 //CLASS_DECL_APEX ::user::interaction * create_system_message_window(::object* pobject);
 
 
@@ -221,7 +224,147 @@ namespace apex
 
    }
 
+   
+   void session::enum_display_monitors()
+   {
 
+
+   }
+   
+
+   index session::get_main_monitor(RECT* prect)
+   {
+
+      return -1;
+
+   }
+
+
+   ::count session::get_monitor_count()
+   {
+
+      return -1;
+
+   }
+
+   
+   bool  session::get_monitor_rect(index iMonitor, RECT* prect)
+   {
+
+      return false;
+
+   }
+
+   
+   ::count session::get_desk_monitor_count()
+   {
+
+      return -1;
+
+   }
+
+
+   bool  session::get_desk_monitor_rect(index iMonitor, RECT* prect)
+   {
+
+      return false;
+
+   }
+
+
+   index session::get_main_wkspace(RECT* prect)
+   {
+
+      return -1;
+
+   }
+
+
+   ::count session::get_wkspace_count()
+   {
+
+      return -1;
+
+   }
+
+
+   bool  session::get_wkspace_rect(index iWkspace, RECT* prect)
+   {
+
+      return false;
+
+   }
+
+   
+   ::count session::get_desk_wkspace_count()
+   {
+
+      return -1;
+
+   }
+  
+   
+   bool  session::get_desk_wkspace_rect(index iWkspace, RECT* prect)
+   {
+
+      return false;
+
+   }
+
+
+   bool session::set_main_monitor(index iMonitor)
+   {
+
+      return false;
+
+   }
+   
+
+   bool session::set_main_wkspace(index iWkspace)
+   {
+
+      return false;
+
+   }
+
+
+   bool session::wkspace_to_monitor(RECT* prect, index iMonitor, index iWkspace)
+   {
+
+      return false;
+
+   }
+
+
+   bool session::monitor_to_wkspace(RECT* prect, index iWkspace, index iMonitor)
+   {
+
+      return false;
+
+   }
+
+
+   bool session::wkspace_to_monitor(RECT* prect)
+   {
+
+      return false;
+
+   }
+
+
+   bool session::monitor_to_wkspace(RECT* prect)
+   {
+
+      return false;
+
+   }
+
+
+   void session::get_monitor(rect_array& rectaMonitor, rect_array& rectaIntersect, const ::rect& rect)
+   {
+
+
+   }
 
 
    COLORREF session::get_default_color(u64 ui)
@@ -1532,446 +1675,6 @@ namespace apex
    //   return *m_pcopydesk;
 
    //}
-
-
-   index session::get_main_wkspace(RECT * prect)
-   {
-
-      if (m_bSystemSynchronizedScreen)
-      {
-
-         if (m_iMainWkspace >= 0 && m_iMainWkspace < System.get_monitor_count())
-         {
-
-            return System.get_main_wkspace(prect);
-
-         }
-         else
-         {
-
-            if (System.get_monitor_rect(m_iMainWkspace, prect))
-            {
-
-               return m_iMainMonitor;
-
-            }
-            else
-            {
-
-               System.get_wkspace_rect(0, prect);
-
-
-               return 0;
-
-            }
-
-         }
-
-      }
-      else
-      {
-
-         index iMainWkspace = m_iMainWkspace;
-
-         if (iMainWkspace < 0 || iMainWkspace >= m_rectaWkspace.get_count())
-         {
-
-            iMainWkspace = 0;
-
-         }
-
-         if (m_rectaWkspace.get_count() <= 0)
-         {
-
-            return -1;
-
-         }
-
-         if(prect != nullptr)
-         {
-
-            *prect = m_rectaWkspace[iMainWkspace];
-
-         }
-
-         return iMainWkspace;
-
-      }
-
-   }
-
-
-   bool session::set_main_wkspace(index iWkspace)
-   {
-
-      if (iWkspace == -1)
-      {
-
-         m_iMainWkspace = -1;
-
-         return true;
-
-      }
-      else if (iWkspace < 0 || iWkspace >= get_wkspace_count())
-      {
-
-         return false;
-
-      }
-      else
-      {
-
-         m_iMainWkspace = iWkspace;
-
-         return true;
-
-      }
-
-   }
-
-
-   index session::get_main_monitor(RECT * prect)
-   {
-
-      if (m_bSystemSynchronizedScreen)
-      {
-
-         if (m_iMainMonitor < 0 || m_iMainMonitor >= System.get_monitor_count())
-         {
-
-            return System.get_main_monitor(prect);
-
-         }
-         else
-         {
-
-            if (System.get_monitor_rect(m_iMainMonitor, prect))
-            {
-
-               return m_iMainMonitor;
-
-            }
-            else
-            {
-
-               System.get_monitor_rect(0, prect);
-
-               return 0;
-
-            }
-
-         }
-
-      }
-      else
-      {
-
-         index iMainMonitor = m_iMainMonitor;
-
-         if (iMainMonitor < 0 || iMainMonitor >= m_rectaMonitor.get_count())
-         {
-
-            iMainMonitor = 0;
-
-         }
-
-         if (m_rectaMonitor.get_count() <= 0)
-         {
-
-            return -1;
-
-         }
-
-         *prect = m_rectaMonitor[iMainMonitor];
-
-         return iMainMonitor;
-
-      }
-
-   }
-
-
-   bool session::set_main_monitor(index iMonitor)
-   {
-
-      if (iMonitor == -1)
-      {
-
-         m_iMainMonitor = -1;
-
-         return true;
-
-      }
-      else if (iMonitor < 0 || iMonitor >= get_monitor_count())
-      {
-
-         return false;
-
-      }
-      else
-      {
-
-         m_iMainMonitor = iMonitor;
-
-         return true;
-
-      }
-
-   }
-
-
-   ::count session::get_wkspace_count()
-   {
-
-      if (m_bSystemSynchronizedScreen)
-      {
-
-         return System.get_wkspace_count();
-
-      }
-      else
-      {
-
-         return m_rectaWkspace.get_count();
-
-      }
-
-   }
-
-
-   ::count session::get_monitor_count()
-   {
-
-      //if (get_document() != nullptr && get_view() != nullptr)
-      //{
-
-      //   return 1;
-
-      //}
-
-
-      if (m_bSystemSynchronizedScreen)
-      {
-
-         return System.get_monitor_count();
-
-      }
-      else
-      {
-
-         return m_rectaMonitor.get_count();
-
-      }
-
-   }
-
-
-   bool session::get_monitor_rect(index iMonitor, RECT * prect)
-   {
-
-      //if (get_document() != nullptr && get_view() != nullptr)
-      //{
-
-      //   get_view()->get_window_rect(prect);
-
-
-      //   return true;
-
-      //}
-
-
-      if (m_bSystemSynchronizedScreen)
-      {
-
-         return System.get_monitor_rect(iMonitor, prect);
-
-
-      }
-      else
-      {
-
-         if (iMonitor < 0 || iMonitor >= m_rectaMonitor.get_count())
-         {
-
-            return false;
-
-         }
-
-         *prect = m_rectaMonitor[iMonitor];
-
-         return true;
-
-      }
-
-   }
-
-
-   bool session::wkspace_to_monitor(RECT * prect, index iMonitor, index iWkspace)
-   {
-
-      ::rect rect(*prect);
-
-      ::rect rectWkspace;
-
-      if (!get_wkspace_rect(iWkspace, rectWkspace))
-      {
-
-         return false;
-
-      }
-
-      rect -= rectWkspace.top_left();
-
-      ::rect rectMonitor;
-
-      if (!get_monitor_rect(iMonitor, rectMonitor))
-      {
-
-         return false;
-
-      }
-
-      rect += rectMonitor.top_left();
-
-      *prect = rect;
-
-
-      return true;
-
-   }
-
-
-   bool session::wkspace_to_monitor(RECT * prect)
-   {
-
-      index iWkspace = get_best_wkspace(nullptr, rect(prect));
-
-      return wkspace_to_monitor(prect, iWkspace, iWkspace);
-
-   }
-
-
-   bool session::monitor_to_wkspace(RECT * prect)
-   {
-
-      index iMonitor = get_best_monitor(nullptr, rect(prect));
-
-      return monitor_to_wkspace(prect, iMonitor, iMonitor);
-
-   }
-
-
-   bool session::monitor_to_wkspace(RECT * prect, index iWkspace, index iMonitor)
-   {
-
-      ::rect rect(prect);
-
-      ::rect rectMonitor;
-
-      if (!get_monitor_rect(iMonitor, rectMonitor))
-      {
-
-         return false;
-
-      }
-
-      rect -= rectMonitor.top_left();
-
-      ::rect rectWkspace;
-
-      if (!get_wkspace_rect(iWkspace, rectWkspace))
-      {
-
-         return false;
-
-      }
-
-      rect += rectWkspace.top_left();
-
-      *prect = rect;
-
-      return true;
-
-   }
-
-
-   bool session::get_wkspace_rect(index iWkspace, RECT * prect)
-   {
-
-      if (m_bSystemSynchronizedScreen)
-      {
-
-         return System.get_wkspace_rect(iWkspace, prect);
-
-      }
-      else
-      {
-
-         if (iWkspace < 0 || iWkspace >= m_rectaWkspace.get_count())
-         {
-
-            return false;
-
-         }
-
-         *prect = m_rectaWkspace[iWkspace];
-
-         return true;
-
-      }
-
-   }
-
-
-   ::count session::get_desk_monitor_count()
-   {
-
-      return get_monitor_count();
-
-   }
-
-
-   bool session::get_desk_monitor_rect(index iMonitor, RECT * prect)
-   {
-
-      return get_monitor_rect(iMonitor, prect);
-
-   }
-
-
-   void session::get_monitor(rect_array & rectaMonitor, rect_array & rectaIntersect, const rect & rectParam)
-   {
-
-      for (index iMonitor = 0; iMonitor < get_monitor_count(); iMonitor++)
-      {
-
-         ::rect rectIntersect;
-
-         ::rect rectMonitor;
-
-         if (get_monitor_rect(iMonitor, rectMonitor))
-         {
-
-            if (rectIntersect.top_left_null_intersect(&rectParam, rectMonitor))
-            {
-
-               if (rectIntersect.area() >= 0)
-               {
-
-                  rectaMonitor.add(rectMonitor);
-
-                  rectaIntersect.add(rectIntersect);
-
-               }
-
-            }
-
-         }
-
-      }
-
-   }
-
 
 
 

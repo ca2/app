@@ -86,10 +86,9 @@ namespace message
 
 
    void message::set(::layered * playeredUserPrimitive, UINT uiMessage, WPARAM wparam, ::lparam lparam)
-
    {
       
-      set_context_object(playeredUserPrimitive);
+      initialize(playeredUserPrimitive);
 
       m_id = ::message::id(::id((iptr) uiMessage), ::message::type_message);
 

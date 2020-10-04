@@ -106,7 +106,14 @@ namespace user
 
 
       ::point origin() const { return m_point; }
-      visual_state& operator = (const ::point & point) { set_modified(); m_point = point; return *this; }
+      visual_state& operator = (const ::point & point)
+      { 
+         set_modified(); 
+         
+         m_point = point; 
+         
+         return *this; 
+      }
 
 
       ::point screen_origin() const { return m_pointScreen; }

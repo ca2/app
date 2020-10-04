@@ -161,21 +161,7 @@ namespace apex
       bool                                               m_bSystemSynchronizedCursor;
       bool                                               m_bSystemSynchronizedScreen;
 
-      // 2020-01-25: removing from here (::apex::system), placing at ::context
-      //__pointer(::user::language_map)                    m_puserlanguagemap;
-#ifdef WINDOWS_DESKTOP
 
-//#pragma message("at macos??")
-      raw_array < MONITORINFO >                          m_monitorinfoa;
-      raw_array < HMONITOR >                             m_hmonitora;
-      raw_array < MONITORINFO >                          m_monitorinfoaDesk;
-
-#else
-
-      rect_array                                         m_rectaMonitor;
-      rect_array                                         m_rectaWork;
-
-#endif
 
       //factory_map                                      m_factorymap;
 
@@ -757,34 +743,16 @@ namespace apex
       //virtual ::user::interaction * ui_from_handle(void * posdata);
 
 
-      void enum_display_monitors();
+      //void enum_display_monitors();
+//
+//#if defined(WINDOWS)
+//      //#pragma message("at macos??")
+//      static BOOL CALLBACK monitor_enum_proc(HMONITOR hmonitor, HDC hdcMonitor, RECT * prcMonitor, LPARAM dwData);
+//
+//      void monitor_enum(HMONITOR hmonitor, HDC hdcMonitor, RECT * prcMonitor);
+//
+//#endif
 
-#if defined(WINDOWS)
-      //#pragma message("at macos??")
-      static BOOL CALLBACK monitor_enum_proc(HMONITOR hmonitor, HDC hdcMonitor, RECT * prcMonitor, LPARAM dwData);
-
-      void monitor_enum(HMONITOR hmonitor, HDC hdcMonitor, RECT * prcMonitor);
-
-#endif
-
-      virtual index get_main_monitor(RECT * prect = nullptr);
-
-      virtual ::count get_monitor_count();
-      virtual bool  get_monitor_rect(index iMonitor, RECT * prect);
-
-      virtual ::count get_desk_monitor_count();
-      virtual bool  get_desk_monitor_rect(index iMonitor, RECT * prect);
-
-
-      virtual index get_main_wkspace(RECT * prect = nullptr);
-
-      virtual ::count get_wkspace_count();
-      virtual bool  get_wkspace_rect(index iWkspace, RECT * prect);
-
-      virtual ::count get_desk_wkspace_count();
-      virtual bool  get_desk_wkspace_rect(index iWkspace, RECT * prect);
-
-      //virtual index get_ui_wkspace(::user::interaction * pinteraction);
 
       virtual void on_extra(string str);
 
@@ -998,8 +966,6 @@ namespace apex
 
 
 
-      virtual DWORD get_monitor_color_temperature(index iMonitor);
-      virtual bool adjust_monitor(index iMonitor, DWORD dwTemperature, double dBrightness, double dwGamma);
       //virtual bool get_monitor_rect(index iMonitor, RECT* prect) override;
 
       //virtual ::count get_monitor_count() override;

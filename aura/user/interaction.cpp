@@ -7389,7 +7389,7 @@ void interaction::_001CallOnDraw(::draw2d::graphics_pointer & pgraphics)
 
       ::rect rectMainMonitor;
 
-      System.get_main_monitor(rectMainMonitor);
+      Session.get_main_monitor(rectMainMonitor);
 
       int x = (rectMainMonitor.width() - cx) / 2;
 
@@ -13260,7 +13260,7 @@ restart:
 
       ::rect rectMainMonitor;
 
-      System.get_main_monitor(rectMainMonitor);
+      Session.get_main_monitor(rectMainMonitor);
 
       ::rect rectWindow;
 

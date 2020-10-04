@@ -1931,30 +1931,8 @@ sync_result thread::wait(const duration & duration)
 void thread::pre_translate_message(::message::message * pmessage)
 {
 
-//   try
-//   {
-//
-//      if(get_context_application()->get_context_session() != nullptr)
-//      {
-//
-//         get_context_application()->get_context_session()->frame_pre_translate_message(pmessage);
-//
-//      }
-//
-//   }
-//   catch(::exception_pointer pe)
-//   {
-//
-//      __rethrow(e);
-//
-//   }
-//   catch(...)
-//   {
-//   }
 
 }
-
-
 
 
 void thread::app_pre_translate_message(::message::message * pmessage)

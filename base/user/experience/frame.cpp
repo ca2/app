@@ -282,7 +282,7 @@ namespace experience
    bool frame::_001OnMouseMove(::message::mouse * pmouse)
    {
 
-      pmouse->m_point = Session.get_cursor_pos();
+      Session.set_cursor_pos(pmouse->m_point);
 
       if(!m_pframewindow->layout().is_zoomed() && !m_pframewindow->layout().is_full_screen())
       {

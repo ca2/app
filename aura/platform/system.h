@@ -726,34 +726,8 @@ namespace aura
       virtual ::user::interaction_impl * impl_from_handle(void * posdata);
       virtual ::user::interaction * ui_from_handle(void * posdata);
 
-      void enum_display_monitors();
-
-#if defined(WINDOWS)
-      //#pragma message("at macos??")
-      static BOOL CALLBACK monitor_enum_proc(HMONITOR hmonitor, HDC hdcMonitor, RECT * prcMonitor, LPARAM dwData);
-
-      void monitor_enum(HMONITOR hmonitor, HDC hdcMonitor, RECT * prcMonitor);
-
-#endif
-
-      virtual index get_main_monitor(RECT * prect = nullptr) override;
-
-      virtual ::count get_monitor_count() override;
-      virtual bool  get_monitor_rect(index iMonitor, RECT * prect) override;
-
-      virtual ::count get_desk_monitor_count() override;
-      virtual bool  get_desk_monitor_rect(index iMonitor, RECT * prect) override;
 
 
-      virtual index get_main_wkspace(RECT * prect = nullptr) override;
-
-      virtual ::count get_wkspace_count() override;
-      virtual bool  get_wkspace_rect(index iWkspace, RECT * prect) override;
-
-      virtual ::count get_desk_wkspace_count() override;
-      virtual bool  get_desk_wkspace_rect(index iWkspace, RECT * prect) override;
-
-      virtual index get_ui_wkspace(::user::interaction * pinteraction);
 
       virtual void on_extra(string str) override;
 

@@ -22,6 +22,8 @@ void context_object::dump(dump_context& context) const
 ::estatus     context_object::initialize(::layered * pobjectContext)
 {
 
+   set_context_object(pobjectContext);
+
    return ::success;
 
 }

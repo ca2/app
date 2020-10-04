@@ -94,8 +94,24 @@ namespace aura
 
 
       bool                                                  m_bSystemSynchronizedScreen;
-      rect_array                                            m_rectaMonitor;
-      rect_array                                            m_rectaWkspace;
+      //rect_array                                            m_rectaMonitor;
+      //rect_array                                            m_rectaWkspace;
+
+      // 2020-01-25: removing from here (::apex::system), placing at ::context
+      //__pointer(::user::language_map)                    m_puserlanguagemap;
+#ifdef WINDOWS_DESKTOP
+
+//#pragma message("at macos??")
+      raw_array < MONITORINFO >                          m_monitorinfoa;
+      raw_array < HMONITOR >                             m_hmonitora;
+      raw_array < MONITORINFO >                          m_monitorinfoaDesk;
+
+#else
+
+      rect_array                                         m_rectaMonitor;
+      rect_array                                         m_rectaWork;
+
+#endif
       index                                                 m_iMainMonitor;
       index                                                 m_iMainWkspace;
 
@@ -128,6 +144,42 @@ namespace aura
 
       session();
       virtual ~session();
+
+
+      virtual DWORD get_monitor_color_temperature(index iMonitor);
+      virtual bool adjust_monitor(index iMonitor, DWORD dwTemperature, double dBrightness, double dwGamma);
+
+
+#if defined(WINDOWS)
+
+      //#pragma message("at macos??")
+      static BOOL CALLBACK monitor_enum_proc(HMONITOR hmonitor, HDC hdcMonitor, RECT* prcMonitor, LPARAM dwData);
+
+      void monitor_enum(HMONITOR hmonitor, HDC hdcMonitor, RECT* prcMonitor);
+
+#endif
+
+
+      virtual void enum_display_monitors();
+
+      virtual index get_main_monitor(RECT* prect = nullptr) override;
+
+      virtual ::count get_monitor_count() override;
+      virtual bool  get_monitor_rect(index iMonitor, RECT* prect) override;
+
+      virtual ::count get_desk_monitor_count() override;
+      virtual bool  get_desk_monitor_rect(index iMonitor, RECT* prect) override;
+
+
+      virtual index get_main_wkspace(RECT* prect = nullptr) override;
+
+      virtual ::count get_wkspace_count() override;
+      virtual bool  get_wkspace_rect(index iWkspace, RECT* prect) override;
+
+      virtual ::count get_desk_wkspace_count() override;
+      virtual bool  get_desk_wkspace_rect(index iWkspace, RECT* prect) override;
+
+      virtual index get_ui_wkspace(::user::interaction* pinteraction);
 
 
       virtual ::estatus     initialize(::layered * pobjectContext) override;
@@ -318,17 +370,17 @@ namespace aura
 
       virtual void set_cursor_pos(const ::point & point) override;
 
-      virtual index get_main_monitor(RECT * prect = nullptr) override;
+//      virtual index get_main_monitor(RECT * prect = nullptr) override;
 
       virtual bool set_main_monitor(index iMonitor) override;
-      virtual ::count get_monitor_count() override;
-      virtual bool  get_monitor_rect(index iMonitor, RECT * prect) override;
+      //virtual ::count get_monitor_count() override//;
+      //virtual bool  get_monitor_rect(index iMonitor, RECT * prect) override//;
 
-      virtual index get_main_wkspace(RECT * prect = nullptr) override;
+//      virtual index get_main_wkspace(RECT * prect = nullptr) override;
 
       virtual bool set_main_wkspace(index iWkspace) override;
-      virtual ::count get_wkspace_count() override;
-      virtual bool  get_wkspace_rect(index iWkspace, RECT * prect) override;
+      //virtual ::count get_wkspace_count() override;
+      //virtual bool  get_wkspace_rect(index iWkspace, RECT * prect) override;
 
       virtual bool wkspace_to_monitor(RECT * prect, index iMonitor, index iWkspace) override;
 
@@ -338,8 +390,8 @@ namespace aura
 
       virtual bool monitor_to_wkspace(RECT * prect) override;
 
-      virtual ::count get_desk_monitor_count() override;
-      virtual bool  get_desk_monitor_rect(index iMonitor, RECT * prect) override;
+      //virtual ::count get_desk_monitor_count() override;
+      //virtual bool  get_desk_monitor_rect(index iMonitor, RECT * prect) override;
 
       virtual void  get_monitor(rect_array & rectaMonitor, rect_array & rectaIntersect, const ::rect & rect) override;
 
@@ -359,7 +411,7 @@ namespace aura
 
       virtual index get_good_move(RECT * prect, const ::rect & rect, ::user::interaction * pinteraction);
 
-      virtual index get_ui_wkspace(::user::interaction * pinteraction);
+      //virtual index get_ui_wkspace(::user::interaction * pinteraction);
 
 
       //virtual void defer_instantiate_user_theme(const char * pszUiInteractionLibrary = nullptr);

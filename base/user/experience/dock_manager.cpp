@@ -113,9 +113,16 @@ namespace experience
       if (!m_mapWorkspaceRect.lookup(iMonitor, rectWork))
       {
 
-         System.get_wkspace_rect(iMonitor, rectWork);
+         Session.get_wkspace_rect(iMonitor, rectWork);
 
          m_mapWorkspaceRect.set_at(iMonitor, rectWork);
+
+      }
+
+      if (rectWork.is_empty())
+      {
+
+         __throw(::exception::exception(error_failed));
 
       }
 

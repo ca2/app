@@ -35,9 +35,14 @@ extern "C"
 #endif
 
 
+#ifdef WINDOWS_DESKTOP
+#include <highlevelmonitorconfigurationapi.h>
+#endif
+
+
 //void ___compile_test_sort_array_21304528734();
 
-void enum_display_monitors(::aura::system * psystem);
+//void enum_display_monitors(::aura::system * psystem);
 
 #ifdef WINDOWS_DESKTOP
 CLASS_DECL_AURA ::user::interaction * create_system_message_window(::layered * pobjectContext);
@@ -2282,7 +2287,7 @@ namespace aura
 
 #endif
 
-      enum_display_monitors();
+//      enum_display_monitors();
 
       return true;
 
@@ -4168,114 +4173,47 @@ namespace aura
    }
 
 
+//   index system::get_main_monitor(RECT * prect)
+//   {
+//
+//      index iMainMonitor = 0;
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//      HMONITOR hmonitorPrimary = GetPrimaryMonitorHandle();
+//
+//      for (index iMonitor = 0; iMonitor < get_monitor_count(); iMonitor++)
+//      {
+//
+//         if (m_hmonitora[iMonitor] == hmonitorPrimary)
+//         {
+//
+//            iMainMonitor = iMonitor;
+//
+//            break;
+//
+//         }
+//
+//      }
+//
+//
+//#endif
+//
+//      if (prect != nullptr)
+//
+//      {
+//
+//         get_monitor_rect(iMainMonitor, prect);
+//
+//
+//      }
+//
+//      return iMainMonitor;
+//
+//   }
 
 
-   void system::enum_display_monitors()
-   {
-
-#ifdef WINDOWS_DESKTOP
-
-      m_monitorinfoa.remove_all();
-
-      ::EnumDisplayMonitors(nullptr, nullptr, &system::monitor_enum_proc, (LPARAM)(dynamic_cast < ::aura::system * > (this)));
-
-#elif defined(LINUX)
-
-      ::enum_display_monitors(this);
-
-#endif
-
-   }
-
-
-#ifdef WINDOWS_DESKTOP
-
-   BOOL CALLBACK system::monitor_enum_proc(HMONITOR hmonitor, HDC hdcMonitor, RECT * prcMonitor, LPARAM dwData)
-
-   {
-
-      ::aura::system * psystem = (::aura::system *) dwData;
-
-      psystem->monitor_enum(hmonitor, hdcMonitor, prcMonitor);
-
-
-      return TRUE; // to enumerate all
-
-   }
-
-   void system::monitor_enum(HMONITOR hmonitor, HDC hdcMonitor, RECT * prcMonitor)
-
-   {
-
-      UNREFERENCED_PARAMETER(hdcMonitor);
-      UNREFERENCED_PARAMETER(prcMonitor);
-
-
-      m_monitorinfoa.allocate(m_monitorinfoa.get_size() + 1);
-
-      xxf_zero(m_monitorinfoa.last());
-
-      m_hmonitora.add(hmonitor);
-
-      m_monitorinfoa.last().cbSize = sizeof(MONITORINFO);
-
-      ::GetMonitorInfo(hmonitor, &m_monitorinfoa.last());
-
-      MONITORINFO mi = m_monitorinfoa.last();
-
-      TRACE("session::monitor_enum\n");
-      TRACE("upper_bound %d\n", m_monitorinfoa.get_upper_bound());
-      TRACE("rcMonitor(left, top, right, bottom) %d, %d, %d, %d\n", mi.rcMonitor.left, mi.rcMonitor.top, mi.rcMonitor.right, mi.rcMonitor.bottom);
-      TRACE("rcWork(left, top, right, bottom) %d, %d, %d, %d\n", mi.rcWork.left, mi.rcWork.top, mi.rcWork.right, mi.rcWork.bottom);
-
-   }
-
-
-#endif
-
-
-   index system::get_main_monitor(RECT * prect)
-
-   {
-
-      index iMainMonitor = 0;
-
-#ifdef WINDOWS_DESKTOP
-
-      HMONITOR hmonitorPrimary = GetPrimaryMonitorHandle();
-
-      for (index iMonitor = 0; iMonitor < get_monitor_count(); iMonitor++)
-      {
-
-         if (m_hmonitora[iMonitor] == hmonitorPrimary)
-         {
-
-            iMainMonitor = iMonitor;
-
-            break;
-
-         }
-
-      }
-
-
-#endif
-
-      if (prect != nullptr)
-
-      {
-
-         get_monitor_rect(iMainMonitor, prect);
-
-
-      }
-
-      return iMainMonitor;
-
-   }
-
-
-   ::count system::get_monitor_count()
+   /*::count system::get_monitor_count()
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -4298,271 +4236,271 @@ namespace aura
 
 #endif
 
-   }
-
-
-   bool system::get_monitor_rect(index iMonitor, RECT * prect)
-   {
-
-#if MOBILE_PLATFORM
-
-      //get_context_session()->m_puiHost->get_window_rect(prect);
-
-      GetMainScreenRect(prect);
-
-      return true;
-
-#elif defined(WINDOWS_DESKTOP)
-
-      if (iMonitor < 0 || iMonitor >= get_monitor_count())
-      {
-
-         return false;
-
-      }
-
-      *prect = m_monitorinfoa[iMonitor].rcMonitor;
-
-
-#elif defined(_UWP)
-
-
-      return false;
-
-
-#elif defined(LINUX)
-
-      sync_lock sl(mutex());
-
-      if (iMonitor < 0 || iMonitor >= get_monitor_count())
-      {
-
-         return false;
-
-      }
-
-      *prect = m_rectaMonitor[iMonitor];
-
-
-#elif defined(__APPLE__)
-
-      if (iMonitor < 0 || iMonitor >= get_monitor_count())
-      {
-
-         return false;
-
-      }
-
-      GetScreenRect(prect, (int) iMonitor);
-
-
-#else
-
-      prect->left = 0;
-
-      prect->top = 0;
-
-      prect->right = oslocal().m_iScreenWidth;
-
-      prect->bottom = oslocal().m_iScreenHeight;
-
-
-#endif
-
-      return true;
-
-   }
-
-
-   ::count system::get_desk_monitor_count()
-   {
-
-      return get_monitor_count();
-
-   }
-
-
-   bool system::get_desk_monitor_rect(index iMonitor, RECT * prect)
-
-   {
-
-      return get_monitor_rect(iMonitor, prect);
-
-
-   }
-
-
-   index system::get_main_wkspace(RECT * prect)
-
-   {
-
-      index iMainWkspace = 0;
-
-#ifdef WINDOWS_DESKTOP
-
-      HMONITOR hwkspacePrimary = GetPrimaryMonitorHandle();
-
-      for (index iWkspace = 0; iWkspace < get_wkspace_count(); iWkspace++)
-      {
-
-         if (m_hmonitora[iWkspace] == hwkspacePrimary)
-         {
-
-            iMainWkspace = iWkspace;
-
-            break;
-
-         }
-
-      }
-
-
-#endif
-
-      if (prect != nullptr)
-
-      {
-
-         get_wkspace_rect(iMainWkspace, prect);
-
-
-      }
-
-      return iMainWkspace;
-
-   }
-
-
-   ::count system::get_wkspace_count()
-   {
-
-#ifdef WINDOWS_DESKTOP
-
-      return m_monitorinfoa.get_count();
-
-#else
-
-      return get_monitor_count();
-
-#endif
-
-   }
-
-
-   bool system::get_wkspace_rect(index iWkspace, RECT * prect)
-   {
-
-#ifdef WINDOWS_DESKTOP
-
-      if (iWkspace < 0 || iWkspace >= get_wkspace_count())
-         return false;
-
-      *prect = m_monitorinfoa[iWkspace].rcWork;
-
-
-#elif defined(_UWP)
-
-      return get_monitor_rect(iWkspace, prect);
-
-
-      //#elif defined(LINUX)
-      //
-      //return false;
-      //
-#elif defined(__APPLE__)
-
-      if (iWkspace < 0 || iWkspace >= get_wkspace_count())
-      {
-
-         return false;
-
-      }
-
-      GetWkspaceRect(prect, (int) iWkspace);
-
-
-      //      prect->top += ::mac::get_system_main_menu_bar_height();
-
-      //    prect->bottom -= ::mac::get_system_dock_height();
-
-#elif defined(LINUX)
-
-      sync_lock sl(mutex());
-
-      if (iWkspace < 0 || iWkspace >= get_wkspace_count())
-      {
-
-         return false;
-
-      }
-
-      *prect = m_rectaWork[iWkspace];
-
-
-      return true;
-
-#else
-
-      //__throw(todo());
-
-      //::get_window_rect(::get_desktop_window(),prect);
-
-
-      get_monitor_rect(iWkspace, prect);
-
-
-#endif
-
-      return true;
-
-   }
-
-
-   ::count system::get_desk_wkspace_count()
-   {
-
-      return get_wkspace_count();
-
-   }
-
-
-   bool system::get_desk_wkspace_rect(index iWkspace, RECT * prect)
-
-   {
-
-      return get_wkspace_rect(iWkspace, prect);
-
-
-   }
-
-   index system::get_ui_wkspace(::user::interaction * pinteraction)
-   {
-
-      index iMainWkspace = 0;
-
-#ifdef WINDOWS_DESKTOP
-
-      HMONITOR hwkspacePrimary = GetUiMonitorHandle(pinteraction->get_handle());
-
-      for (index iWkspace = 0; iWkspace < get_wkspace_count(); iWkspace++)
-      {
-
-         if (m_hmonitora[iWkspace] == hwkspacePrimary)
-         {
-
-            iMainWkspace = iWkspace;
-
-            break;
-
-         }
-
-      }
-
-#endif
-
-      return iMainWkspace;
-
-   }
+   }*/
+
+
+//   bool system::get_monitor_rect(index iMonitor, RECT * prect)
+//   {
+//
+//#if MOBILE_PLATFORM
+//
+//      //get_context_session()->m_puiHost->get_window_rect(prect);
+//
+//      GetMainScreenRect(prect);
+//
+//      return true;
+//
+//#elif defined(WINDOWS_DESKTOP)
+//
+//      if (iMonitor < 0 || iMonitor >= get_monitor_count())
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      *prect = m_monitorinfoa[iMonitor].rcMonitor;
+//
+//
+//#elif defined(_UWP)
+//
+//
+//      return false;
+//
+//
+//#elif defined(LINUX)
+//
+//      sync_lock sl(mutex());
+//
+//      if (iMonitor < 0 || iMonitor >= get_monitor_count())
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      *prect = m_rectaMonitor[iMonitor];
+//
+//
+//#elif defined(__APPLE__)
+//
+//      if (iMonitor < 0 || iMonitor >= get_monitor_count())
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      GetScreenRect(prect, (int) iMonitor);
+//
+//
+//#else
+//
+//      prect->left = 0;
+//
+//      prect->top = 0;
+//
+//      prect->right = oslocal().m_iScreenWidth;
+//
+//      prect->bottom = oslocal().m_iScreenHeight;
+//
+//
+//#endif
+//
+//      return true;
+//
+//   }
+//
+//
+//   ::count system::get_desk_monitor_count()
+//   {
+//
+//      return get_monitor_count();
+//
+//   }
+//
+//
+//   bool system::get_desk_monitor_rect(index iMonitor, RECT * prect)
+//
+//   {
+//
+//      return get_monitor_rect(iMonitor, prect);
+//
+//
+//   }
+//
+//
+//   index system::get_main_wkspace(RECT * prect)
+//
+//   {
+//
+//      index iMainWkspace = 0;
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//      HMONITOR hwkspacePrimary = GetPrimaryMonitorHandle();
+//
+//      for (index iWkspace = 0; iWkspace < get_wkspace_count(); iWkspace++)
+//      {
+//
+//         if (m_hmonitora[iWkspace] == hwkspacePrimary)
+//         {
+//
+//            iMainWkspace = iWkspace;
+//
+//            break;
+//
+//         }
+//
+//      }
+//
+//
+//#endif
+//
+//      if (prect != nullptr)
+//
+//      {
+//
+//         get_wkspace_rect(iMainWkspace, prect);
+//
+//
+//      }
+//
+//      return iMainWkspace;
+//
+//   }
+
+
+//   ::count system::get_wkspace_count()
+//   {
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//      return m_monitorinfoa.get_count();
+//
+//#else
+//
+//      return get_monitor_count();
+//
+//#endif
+//
+//   }
+//
+
+//   bool system::get_wkspace_rect(index iWkspace, RECT * prect)
+//   {
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//      if (iWkspace < 0 || iWkspace >= get_wkspace_count())
+//         return false;
+//
+//      *prect = m_monitorinfoa[iWkspace].rcWork;
+//
+//
+//#elif defined(_UWP)
+//
+//      return get_monitor_rect(iWkspace, prect);
+//
+//
+//      //#elif defined(LINUX)
+//      //
+//      //return false;
+//      //
+//#elif defined(__APPLE__)
+//
+//      if (iWkspace < 0 || iWkspace >= get_wkspace_count())
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      GetWkspaceRect(prect, (int) iWkspace);
+//
+//
+//      //      prect->top += ::mac::get_system_main_menu_bar_height();
+//
+//      //    prect->bottom -= ::mac::get_system_dock_height();
+//
+//#elif defined(LINUX)
+//
+//      sync_lock sl(mutex());
+//
+//      if (iWkspace < 0 || iWkspace >= get_wkspace_count())
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      *prect = m_rectaWork[iWkspace];
+//
+//
+//      return true;
+//
+//#else
+//
+//      //__throw(todo());
+//
+//      //::get_window_rect(::get_desktop_window(),prect);
+//
+//
+//      get_monitor_rect(iWkspace, prect);
+//
+//
+//#endif
+//
+//      return true;
+//
+//   }
+//
+//
+//   ::count system::get_desk_wkspace_count()
+//   {
+//
+//      return get_wkspace_count();
+//
+//   }
+//
+//
+//   bool system::get_desk_wkspace_rect(index iWkspace, RECT * prect)
+//
+//   {
+//
+//      return get_wkspace_rect(iWkspace, prect);
+//
+//
+//   }
+//
+//   index system::get_ui_wkspace(::user::interaction * pinteraction)
+//   {
+//
+//      index iMainWkspace = 0;
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//      HMONITOR hwkspacePrimary = GetUiMonitorHandle(pinteraction->get_handle());
+//
+//      for (index iWkspace = 0; iWkspace < get_wkspace_count(); iWkspace++)
+//      {
+//
+//         if (m_hmonitora[iWkspace] == hwkspacePrimary)
+//         {
+//
+//            iMainWkspace = iWkspace;
+//
+//            break;
+//
+//         }
+//
+//      }
+//
+//#endif
+//
+//      return iMainWkspace;
+//
+//   }
 
    ::image_pointer system::matter_cache_image(::layered * pobjectContext, const string & strMatter)
    {
@@ -6206,7 +6144,7 @@ typedef void BASECORE_INIT();
 namespace aura
 {
 
-   CLASS_DECL_AURA void black_body(float* r, float* g, float* b, DWORD dwTemp);
+   //CLASS_DECL_AURA void black_body(float* r, float* g, float* b, DWORD dwTemp);
 
    /*  bool system::on_application_menu_action(const char * pszCommand)
      {
@@ -8214,35 +8152,37 @@ namespace aura
    static void
       interpolate_color(float a, const float* c1, const float* c2, float* r, float* g, float* b)
    {
+
       *r = (1.0f - a) * c1[0] + a * c2[0];
       *g = (1.0f - a) * c1[1] + a * c2[1];
       *b = (1.0f - a) * c1[2] + a * c2[2];
-   }
-
-
-   CLASS_DECL_AURA void black_body(float* r, float* g, float* b, DWORD dwTemp)
-   {
-
-      int temp_index = ((dwTemp - 1000) / 100) * 3;
-
-      if (temp_index < 0)
-      {
-
-         temp_index = 0;
-
-      }
-      else if (temp_index > (sizeof(g_fa_blackbody_color) / sizeof(float)) - 3)
-      {
-
-         temp_index = (sizeof(g_fa_blackbody_color) / sizeof(float)) - 3;
-
-      }
-
-      float alpha = (dwTemp % 100) / 100.0f;
-
-      interpolate_color(alpha, &g_fa_blackbody_color[temp_index], &g_fa_blackbody_color[temp_index + 3], r, g, b);
 
    }
+
+
+   //CLASS_DECL_AURA void black_body(float* r, float* g, float* b, DWORD dwTemp)
+   //{
+
+   //   int temp_index = ((dwTemp - 1000) / 100) * 3;
+
+   //   if (temp_index < 0)
+   //   {
+
+   //      temp_index = 0;
+
+   //   }
+   //   else if (temp_index > (sizeof(g_fa_blackbody_color) / sizeof(float)) - 3)
+   //   {
+
+   //      temp_index = (sizeof(g_fa_blackbody_color) / sizeof(float)) - 3;
+
+   //   }
+
+   //   float alpha = (dwTemp % 100) / 100.0f;
+
+   //   interpolate_color(alpha, &g_fa_blackbody_color[temp_index], &g_fa_blackbody_color[temp_index + 3], r, g, b);
+
+   //}
 
 
 

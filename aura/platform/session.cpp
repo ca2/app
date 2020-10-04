@@ -8,6 +8,86 @@
 #include "apex/platform/str_context.h"
 
 
+#ifdef WINDOWS_DESKTOP
+
+
+
+//#include "base/os/windows/windows_system_interaction_impl.h"
+
+
+#include <HighLevelMonitorConfigurationAPI.h>
+
+DWORD mc_color_kelvin(MC_COLOR_TEMPERATURE e)
+{
+   switch (e)
+   {
+   case MC_COLOR_TEMPERATURE_4000K:
+      return 4000;
+   case MC_COLOR_TEMPERATURE_5000K:
+      return 5000;
+   case MC_COLOR_TEMPERATURE_6500K:
+      return 6500;
+   case MC_COLOR_TEMPERATURE_7500K:
+      return 7500;
+   case MC_COLOR_TEMPERATURE_8200K:
+      return 8200;
+   case MC_COLOR_TEMPERATURE_9300K:
+      return 9300;
+   case MC_COLOR_TEMPERATURE_10000K:
+      return 10000;
+   case MC_COLOR_TEMPERATURE_11500K:
+      return 11500;
+   default:
+      return 0;
+   }
+}
+
+MC_COLOR_TEMPERATURE kelvin_mc_color(DWORD kelvin)
+{
+   if (kelvin < 4500)
+   {
+      return MC_COLOR_TEMPERATURE_4000K;
+   }
+   else if (kelvin < 5750)
+   {
+      return MC_COLOR_TEMPERATURE_5000K;
+   }
+   else if (kelvin < 7000)
+   {
+      return MC_COLOR_TEMPERATURE_6500K;
+   }
+   else if (kelvin < 7850)
+   {
+      return MC_COLOR_TEMPERATURE_7500K;
+   }
+   else if (kelvin < 8750)
+   {
+      return MC_COLOR_TEMPERATURE_8200K;
+   }
+   else if (kelvin < 9650)
+   {
+      return MC_COLOR_TEMPERATURE_9300K;
+   }
+   else if (kelvin < 10750)
+   {
+      return MC_COLOR_TEMPERATURE_10000K;
+   }
+   else
+   {
+      return MC_COLOR_TEMPERATURE_11500K;
+   }
+}
+
+
+
+
+#elif defined(LINUX)
+
+
+#endif
+
+
+
 CLASS_DECL_AURA ::user::interaction * create_system_message_window(::layered * pobject);
 
 
@@ -63,6 +143,306 @@ void x11_on_start_session();
 
 namespace aura
 {
+
+
+   /* colorramp.c -- color temperature calculation source
+This file is part of Redshift.
+Redshift is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+Redshift is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with Redshift.  If not, see <http://www.gnu.org/licenses/>.
+Copyright (c) 2013-2014  Jon Lund Steffensen <jonlst@gmail.com>
+Copyright (c) 2013  Ingo Thies <ithies@astro.uni-bonn.de>
+*/
+
+/* Whitepoint values for temperatures at 100K intervals.
+These will be interpolated for the actual temperature.
+This table was provided by Ingo Thies, 2013. See
+the file README-colorramp for more information. */
+   static const float g_fa_blackbody_color[] =
+   {
+      1.00000000f,  0.18172716f,  0.00000000f, /* 1000K */
+      1.00000000f,  0.25503671f,  0.00000000f, /* 1100K */
+      1.00000000f,  0.30942099f,  0.00000000f, /* 1200K */
+      1.00000000f,  0.35357379f,  0.00000000f, /* ...   */
+      1.00000000f,  0.39091524f,  0.00000000f,
+      1.00000000f,  0.42322816f,  0.00000000f,
+      1.00000000f,  0.45159884f,  0.00000000f,
+      1.00000000f,  0.47675916f,  0.00000000f,
+      1.00000000f,  0.49923747f,  0.00000000f,
+      1.00000000f,  0.51943421f,  0.00000000f,
+      1.00000000f,  0.54360078f,  0.08679949f,
+      1.00000000f,  0.56618736f,  0.14065513f,
+      1.00000000f,  0.58734976f,  0.18362641f,
+      1.00000000f,  0.60724493f,  0.22137978f,
+      1.00000000f,  0.62600248f,  0.25591950f,
+      1.00000000f,  0.64373109f,  0.28819679f,
+      1.00000000f,  0.66052319f,  0.31873863f,
+      1.00000000f,  0.67645822f,  0.34786758f,
+      1.00000000f,  0.69160518f,  0.37579588f,
+      1.00000000f,  0.70602449f,  0.40267128f,
+      1.00000000f,  0.71976951f,  0.42860152f,
+      1.00000000f,  0.73288760f,  0.45366838f,
+      1.00000000f,  0.74542112f,  0.47793608f,
+      1.00000000f,  0.75740814f,  0.50145662f,
+      1.00000000f,  0.76888303f,  0.52427322f,
+      1.00000000f,  0.77987699f,  0.54642268f,
+      1.00000000f,  0.79041843f,  0.56793692f,
+      1.00000000f,  0.80053332f,  0.58884417f,
+      1.00000000f,  0.81024551f,  0.60916971f,
+      1.00000000f,  0.81957693f,  0.62893653f,
+      1.00000000f,  0.82854786f,  0.64816570f,
+      1.00000000f,  0.83717703f,  0.66687674f,
+      1.00000000f,  0.84548188f,  0.68508786f,
+      1.00000000f,  0.85347859f,  0.70281616f,
+      1.00000000f,  0.86118227f,  0.72007777f,
+      1.00000000f,  0.86860704f,  0.73688797f,
+      1.00000000f,  0.87576611f,  0.75326132f,
+      1.00000000f,  0.88267187f,  0.76921169f,
+      1.00000000f,  0.88933596f,  0.78475236f,
+      1.00000000f,  0.89576933f,  0.79989606f,
+      1.00000000f,  0.90198230f,  0.81465502f,
+      1.00000000f,  0.90963069f,  0.82838210f,
+      1.00000000f,  0.91710889f,  0.84190889f,
+      1.00000000f,  0.92441842f,  0.85523742f,
+      1.00000000f,  0.93156127f,  0.86836903f,
+      1.00000000f,  0.93853986f,  0.88130458f,
+      1.00000000f,  0.94535695f,  0.89404470f,
+      1.00000000f,  0.95201559f,  0.90658983f,
+      1.00000000f,  0.95851906f,  0.91894041f,
+      1.00000000f,  0.96487079f,  0.93109690f,
+      1.00000000f,  0.97107439f,  0.94305985f,
+      1.00000000f,  0.97713351f,  0.95482993f,
+      1.00000000f,  0.98305189f,  0.96640795f,
+      1.00000000f,  0.98883326f,  0.97779486f,
+      1.00000000f,  0.99448139f,  0.98899179f,
+      1.00000000f,  1.00000000f,  1.00000000f, /* 6500K */
+      0.98947904f,  0.99348723f,  1.00000000f,
+      0.97940448f,  0.98722715f,  1.00000000f,
+      0.96975025f,  0.98120637f,  1.00000000f,
+      0.96049223f,  0.97541240f,  1.00000000f,
+      0.95160805f,  0.96983355f,  1.00000000f,
+      0.94303638f,  0.96443333f,  1.00000000f,
+      0.93480451f,  0.95923080f,  1.00000000f,
+      0.92689056f,  0.95421394f,  1.00000000f,
+      0.91927697f,  0.94937330f,  1.00000000f,
+      0.91194747f,  0.94470005f,  1.00000000f,
+      0.90488690f,  0.94018594f,  1.00000000f,
+      0.89808115f,  0.93582323f,  1.00000000f,
+      0.89151710f,  0.93160469f,  1.00000000f,
+      0.88518247f,  0.92752354f,  1.00000000f,
+      0.87906581f,  0.92357340f,  1.00000000f,
+      0.87315640f,  0.91974827f,  1.00000000f,
+      0.86744421f,  0.91604254f,  1.00000000f,
+      0.86191983f,  0.91245088f,  1.00000000f,
+      0.85657444f,  0.90896831f,  1.00000000f,
+      0.85139976f,  0.90559011f,  1.00000000f,
+      0.84638799f,  0.90231183f,  1.00000000f,
+      0.84153180f,  0.89912926f,  1.00000000f,
+      0.83682430f,  0.89603843f,  1.00000000f,
+      0.83225897f,  0.89303558f,  1.00000000f,
+      0.82782969f,  0.89011714f,  1.00000000f,
+      0.82353066f,  0.88727974f,  1.00000000f,
+      0.81935641f,  0.88452017f,  1.00000000f,
+      0.81530175f,  0.88183541f,  1.00000000f,
+      0.81136180f,  0.87922257f,  1.00000000f,
+      0.80753191f,  0.87667891f,  1.00000000f,
+      0.80380769f,  0.87420182f,  1.00000000f,
+      0.80018497f,  0.87178882f,  1.00000000f,
+      0.79665980f,  0.86943756f,  1.00000000f,
+      0.79322843f,  0.86714579f,  1.00000000f,
+      0.78988728f,  0.86491137f,  1.00000000f, /* 10000K */
+      0.78663296f,  0.86273225f,  1.00000000f,
+      0.78346225f,  0.86060650f,  1.00000000f,
+      0.78037207f,  0.85853224f,  1.00000000f,
+      0.77735950f,  0.85650771f,  1.00000000f,
+      0.77442176f,  0.85453121f,  1.00000000f,
+      0.77155617f,  0.85260112f,  1.00000000f,
+      0.76876022f,  0.85071588f,  1.00000000f,
+      0.76603147f,  0.84887402f,  1.00000000f,
+      0.76336762f,  0.84707411f,  1.00000000f,
+      0.76076645f,  0.84531479f,  1.00000000f,
+      0.75822586f,  0.84359476f,  1.00000000f,
+      0.75574383f,  0.84191277f,  1.00000000f,
+      0.75331843f,  0.84026762f,  1.00000000f,
+      0.75094780f,  0.83865816f,  1.00000000f,
+      0.74863017f,  0.83708329f,  1.00000000f,
+      0.74636386f,  0.83554194f,  1.00000000f,
+      0.74414722f,  0.83403311f,  1.00000000f,
+      0.74197871f,  0.83255582f,  1.00000000f,
+      0.73985682f,  0.83110912f,  1.00000000f,
+      0.73778012f,  0.82969211f,  1.00000000f,
+      0.73574723f,  0.82830393f,  1.00000000f,
+      0.73375683f,  0.82694373f,  1.00000000f,
+      0.73180765f,  0.82561071f,  1.00000000f,
+      0.72989845f,  0.82430410f,  1.00000000f,
+      0.72802807f,  0.82302316f,  1.00000000f,
+      0.72619537f,  0.82176715f,  1.00000000f,
+      0.72439927f,  0.82053539f,  1.00000000f,
+      0.72263872f,  0.81932722f,  1.00000000f,
+      0.72091270f,  0.81814197f,  1.00000000f,
+      0.71922025f,  0.81697905f,  1.00000000f,
+      0.71756043f,  0.81583783f,  1.00000000f,
+      0.71593234f,  0.81471775f,  1.00000000f,
+      0.71433510f,  0.81361825f,  1.00000000f,
+      0.71276788f,  0.81253878f,  1.00000000f,
+      0.71122987f,  0.81147883f,  1.00000000f,
+      0.70972029f,  0.81043789f,  1.00000000f,
+      0.70823838f,  0.80941546f,  1.00000000f,
+      0.70678342f,  0.80841109f,  1.00000000f,
+      0.70535469f,  0.80742432f,  1.00000000f,
+      0.70395153f,  0.80645469f,  1.00000000f,
+      0.70257327f,  0.80550180f,  1.00000000f,
+      0.70121928f,  0.80456522f,  1.00000000f,
+      0.69988894f,  0.80364455f,  1.00000000f,
+      0.69858167f,  0.80273941f,  1.00000000f,
+      0.69729688f,  0.80184943f,  1.00000000f,
+      0.69603402f,  0.80097423f,  1.00000000f,
+      0.69479255f,  0.80011347f,  1.00000000f,
+      0.69357196f,  0.79926681f,  1.00000000f,
+      0.69237173f,  0.79843391f,  1.00000000f,
+      0.69119138f,  0.79761446f,  1.00000000f, /* 15000K */
+      0.69003044f,  0.79680814f,  1.00000000f,
+      0.68888844f,  0.79601466f,  1.00000000f,
+      0.68776494f,  0.79523371f,  1.00000000f,
+      0.68665951f,  0.79446502f,  1.00000000f,
+      0.68557173f,  0.79370830f,  1.00000000f,
+      0.68450119f,  0.79296330f,  1.00000000f,
+      0.68344751f,  0.79222975f,  1.00000000f,
+      0.68241029f,  0.79150740f,  1.00000000f,
+      0.68138918f,  0.79079600f,  1.00000000f,
+      0.68038380f,  0.79009531f,  1.00000000f,
+      0.67939381f,  0.78940511f,  1.00000000f,
+      0.67841888f,  0.78872517f,  1.00000000f,
+      0.67745866f,  0.78805526f,  1.00000000f,
+      0.67651284f,  0.78739518f,  1.00000000f,
+      0.67558112f,  0.78674472f,  1.00000000f,
+      0.67466317f,  0.78610368f,  1.00000000f,
+      0.67375872f,  0.78547186f,  1.00000000f,
+      0.67286748f,  0.78484907f,  1.00000000f,
+      0.67198916f,  0.78423512f,  1.00000000f,
+      0.67112350f,  0.78362984f,  1.00000000f,
+      0.67027024f,  0.78303305f,  1.00000000f,
+      0.66942911f,  0.78244457f,  1.00000000f,
+      0.66859988f,  0.78186425f,  1.00000000f,
+      0.66778228f,  0.78129191f,  1.00000000f,
+      0.66697610f,  0.78072740f,  1.00000000f,
+      0.66618110f,  0.78017057f,  1.00000000f,
+      0.66539706f,  0.77962127f,  1.00000000f,
+      0.66462376f,  0.77907934f,  1.00000000f,
+      0.66386098f,  0.77854465f,  1.00000000f,
+      0.66310852f,  0.77801705f,  1.00000000f,
+      0.66236618f,  0.77749642f,  1.00000000f,
+      0.66163375f,  0.77698261f,  1.00000000f,
+      0.66091106f,  0.77647551f,  1.00000000f,
+      0.66019791f,  0.77597498f,  1.00000000f,
+      0.65949412f,  0.77548090f,  1.00000000f,
+      0.65879952f,  0.77499315f,  1.00000000f,
+      0.65811392f,  0.77451161f,  1.00000000f,
+      0.65743716f,  0.77403618f,  1.00000000f,
+      0.65676908f,  0.77356673f,  1.00000000f,
+      0.65610952f,  0.77310316f,  1.00000000f,
+      0.65545831f,  0.77264537f,  1.00000000f,
+      0.65481530f,  0.77219324f,  1.00000000f,
+      0.65418036f,  0.77174669f,  1.00000000f,
+      0.65355332f,  0.77130560f,  1.00000000f,
+      0.65293404f,  0.77086988f,  1.00000000f,
+      0.65232240f,  0.77043944f,  1.00000000f,
+      0.65171824f,  0.77001419f,  1.00000000f,
+      0.65112144f,  0.76959404f,  1.00000000f,
+      0.65053187f,  0.76917889f,  1.00000000f,
+      0.64994941f,  0.76876866f,  1.00000000f, /* 20000K */
+      0.64937392f,  0.76836326f,  1.00000000f,
+      0.64880528f,  0.76796263f,  1.00000000f,
+      0.64824339f,  0.76756666f,  1.00000000f,
+      0.64768812f,  0.76717529f,  1.00000000f,
+      0.64713935f,  0.76678844f,  1.00000000f,
+      0.64659699f,  0.76640603f,  1.00000000f,
+      0.64606092f,  0.76602798f,  1.00000000f,
+      0.64553103f,  0.76565424f,  1.00000000f,
+      0.64500722f,  0.76528472f,  1.00000000f,
+      0.64448939f,  0.76491935f,  1.00000000f,
+      0.64397745f,  0.76455808f,  1.00000000f,
+      0.64347129f,  0.76420082f,  1.00000000f,
+      0.64297081f,  0.76384753f,  1.00000000f,
+      0.64247594f,  0.76349813f,  1.00000000f,
+      0.64198657f,  0.76315256f,  1.00000000f,
+      0.64150261f,  0.76281076f,  1.00000000f,
+      0.64102399f,  0.76247267f,  1.00000000f,
+      0.64055061f,  0.76213824f,  1.00000000f,
+      0.64008239f,  0.76180740f,  1.00000000f,
+      0.63961926f,  0.76148010f,  1.00000000f,
+      0.63916112f,  0.76115628f,  1.00000000f,
+      0.63870790f,  0.76083590f,  1.00000000f,
+      0.63825953f,  0.76051890f,  1.00000000f,
+      0.63781592f,  0.76020522f,  1.00000000f,
+      0.63737701f,  0.75989482f,  1.00000000f,
+      0.63694273f,  0.75958764f,  1.00000000f,
+      0.63651299f,  0.75928365f,  1.00000000f,
+      0.63608774f,  0.75898278f,  1.00000000f,
+      0.63566691f,  0.75868499f,  1.00000000f,
+      0.63525042f,  0.75839025f,  1.00000000f,
+      0.63483822f,  0.75809849f,  1.00000000f,
+      0.63443023f,  0.75780969f,  1.00000000f,
+      0.63402641f,  0.75752379f,  1.00000000f,
+      0.63362667f,  0.75724075f,  1.00000000f,
+      0.63323097f,  0.75696053f,  1.00000000f,
+      0.63283925f,  0.75668310f,  1.00000000f,
+      0.63245144f,  0.75640840f,  1.00000000f,
+      0.63206749f,  0.75613641f,  1.00000000f,
+      0.63168735f,  0.75586707f,  1.00000000f,
+      0.63131096f,  0.75560036f,  1.00000000f,
+      0.63093826f,  0.75533624f,  1.00000000f,
+      0.63056920f,  0.75507467f,  1.00000000f,
+      0.63020374f,  0.75481562f,  1.00000000f,
+      0.62984181f,  0.75455904f,  1.00000000f,
+      0.62948337f,  0.75430491f,  1.00000000f,
+      0.62912838f,  0.75405319f,  1.00000000f,
+      0.62877678f,  0.75380385f,  1.00000000f,
+      0.62842852f,  0.75355685f,  1.00000000f,
+      0.62808356f,  0.75331217f,  1.00000000f,
+      0.62774186f,  0.75306977f,  1.00000000f, /* 25000K */
+      0.62740336f,  0.75282962f,  1.00000000f  /* 25100K */
+   };
+
+   static void
+      interpolate_color(float a, const float* c1, const float* c2, float* r, float* g, float* b)
+   {
+      *r = (1.0f - a) * c1[0] + a * c2[0];
+      *g = (1.0f - a) * c1[1] + a * c2[1];
+      *b = (1.0f - a) * c1[2] + a * c2[2];
+   }
+
+
+   CLASS_DECL_AURA void black_body(float* r, float* g, float* b, DWORD dwTemp)
+   {
+
+      int temp_index = ((dwTemp - 1000) / 100) * 3;
+
+      if (temp_index < 0)
+      {
+
+         temp_index = 0;
+
+      }
+      else if (temp_index > (sizeof(g_fa_blackbody_color) / sizeof(float)) - 3)
+      {
+
+         temp_index = (sizeof(g_fa_blackbody_color) / sizeof(float)) - 3;
+
+      }
+
+      float alpha = (dwTemp % 100) / 100.0f;
+
+      interpolate_color(alpha, &g_fa_blackbody_color[temp_index], &g_fa_blackbody_color[temp_index + 3], r, g, b);
+
+   }
 
 
    session::session()
@@ -2087,71 +2467,71 @@ namespace aura
    }
 
 
-   index session::get_main_wkspace(RECT * prect)
-   {
+   //index session::get_main_wkspace(RECT * prect)
+   //{
 
-      if (m_bSystemSynchronizedScreen)
-      {
+   //   if (m_bSystemSynchronizedScreen)
+   //   {
 
-         if (m_iMainWkspace >= 0 && m_iMainWkspace < System.get_monitor_count())
-         {
+   //      if (m_iMainWkspace >= 0 && m_iMainWkspace < get_monitor_count())
+   //      {
 
-            return System.get_main_wkspace(prect);
+   //         return get_main_wkspace(prect);
 
-         }
-         else
-         {
+   //      }
+   //      else
+   //      {
 
-            if (System.get_monitor_rect(m_iMainWkspace, prect))
-            {
+   //         if (get_monitor_rect(m_iMainWkspace, prect))
+   //         {
 
-               return m_iMainMonitor;
+   //            return m_iMainMonitor;
 
-            }
-            else
-            {
+   //         }
+   //         else
+   //         {
 
-               System.get_wkspace_rect(0, prect);
+   //            get_wkspace_rect(0, prect);
 
 
-               return 0;
+   //            return 0;
 
-            }
+   //         }
 
-         }
+   //      }
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         index iMainWkspace = m_iMainWkspace;
+   //      index iMainWkspace = m_iMainWkspace;
 
-         if (iMainWkspace < 0 || iMainWkspace >= m_rectaWkspace.get_count())
-         {
+   //      if (iMainWkspace < 0 || iMainWkspace >= m_rectaWkspace.get_count())
+   //      {
 
-            iMainWkspace = 0;
+   //         iMainWkspace = 0;
 
-         }
+   //      }
 
-         if (m_rectaWkspace.get_count() <= 0)
-         {
+   //      if (m_rectaWkspace.get_count() <= 0)
+   //      {
 
-            return -1;
+   //         return -1;
 
-         }
+   //      }
 
-         if(prect != nullptr)
-         {
+   //      if(prect != nullptr)
+   //      {
 
-            *prect = m_rectaWkspace[iMainWkspace];
+   //         *prect = m_rectaWkspace[iMainWkspace];
 
-         }
+   //      }
 
-         return iMainWkspace;
+   //      return iMainWkspace;
 
-      }
+   //   }
 
-   }
+   //}
 
 
    bool session::set_main_wkspace(index iWkspace)
@@ -2183,65 +2563,461 @@ namespace aura
    }
 
 
-   index session::get_main_monitor(RECT * prect)
+#ifdef WINDOWS_DESKTOP
+
+   BOOL CALLBACK session::monitor_enum_proc(HMONITOR hmonitor, HDC hdcMonitor, RECT* prcMonitor, LPARAM dwData)
+
    {
 
-      if (m_bSystemSynchronizedScreen)
-      {
+      ::aura::session* psystem = (::aura::session*) dwData;
 
-         if (m_iMainMonitor < 0 || m_iMainMonitor >= System.get_monitor_count())
-         {
+      psystem->monitor_enum(hmonitor, hdcMonitor, prcMonitor);
 
-            return System.get_main_monitor(prect);
 
-         }
-         else
-         {
-
-            if (System.get_monitor_rect(m_iMainMonitor, prect))
-            {
-
-               return m_iMainMonitor;
-
-            }
-            else
-            {
-
-               System.get_monitor_rect(0, prect);
-
-               return 0;
-
-            }
-
-         }
-
-      }
-      else
-      {
-
-         index iMainMonitor = m_iMainMonitor;
-
-         if (iMainMonitor < 0 || iMainMonitor >= m_rectaMonitor.get_count())
-         {
-
-            iMainMonitor = 0;
-
-         }
-
-         if (m_rectaMonitor.get_count() <= 0)
-         {
-
-            return -1;
-
-         }
-
-         *prect = m_rectaMonitor[iMainMonitor];
-
-         return iMainMonitor;
-
-      }
+      return TRUE; // to enumerate all
 
    }
+
+   void session::monitor_enum(HMONITOR hmonitor, HDC hdcMonitor, RECT* prcMonitor)
+
+   {
+
+      UNREFERENCED_PARAMETER(hdcMonitor);
+      UNREFERENCED_PARAMETER(prcMonitor);
+
+
+      m_monitorinfoa.allocate(m_monitorinfoa.get_size() + 1);
+
+      xxf_zero(m_monitorinfoa.last());
+
+      m_hmonitora.add(hmonitor);
+
+      m_monitorinfoa.last().cbSize = sizeof(MONITORINFO);
+
+      ::GetMonitorInfo(hmonitor, &m_monitorinfoa.last());
+
+      MONITORINFO mi = m_monitorinfoa.last();
+
+      TRACE("session::monitor_enum\n");
+      TRACE("upper_bound %d\n", m_monitorinfoa.get_upper_bound());
+      TRACE("rcMonitor(left, top, right, bottom) %d, %d, %d, %d\n", mi.rcMonitor.left, mi.rcMonitor.top, mi.rcMonitor.right, mi.rcMonitor.bottom);
+      TRACE("rcWork(left, top, right, bottom) %d, %d, %d, %d\n", mi.rcWork.left, mi.rcWork.top, mi.rcWork.right, mi.rcWork.bottom);
+
+   }
+
+
+#endif
+
+
+   void session::enum_display_monitors()
+   {
+
+#ifdef WINDOWS_DESKTOP
+
+      m_monitorinfoa.remove_all();
+
+      ::EnumDisplayMonitors(nullptr, nullptr, &session::monitor_enum_proc, (LPARAM)(dynamic_cast <::aura::session*> (this)));
+
+#elif defined(LINUX)
+
+      ::enum_display_monitors(this);
+
+#endif
+
+   }
+
+
+
+   index session::get_main_monitor(RECT* prect)
+   {
+
+      index iMainMonitor = 0;
+
+#ifdef WINDOWS_DESKTOP
+
+      HMONITOR hmonitorPrimary = GetPrimaryMonitorHandle();
+
+      for (index iMonitor = 0; iMonitor < get_monitor_count(); iMonitor++)
+      {
+
+         if (m_hmonitora[iMonitor] == hmonitorPrimary)
+         {
+
+            iMainMonitor = iMonitor;
+
+            break;
+
+         }
+
+      }
+
+
+#endif
+
+      if (prect != nullptr)
+
+      {
+
+         get_monitor_rect(iMainMonitor, prect);
+
+
+      }
+
+      return iMainMonitor;
+
+   }
+
+
+   ::count session::get_monitor_count()
+   {
+
+#ifdef WINDOWS_DESKTOP
+
+      return m_monitorinfoa.get_count();
+
+#elif defined(MACOS)
+
+      return GetScreenCount();
+
+#elif defined(LINUX)
+
+      sync_lock sl(mutex());
+
+      return m_rectaMonitor.get_count();
+
+#else
+
+      return 1;
+
+#endif
+
+   }
+
+
+   bool session::get_monitor_rect(index iMonitor, RECT* prect)
+   {
+
+#ifdef _UWP
+
+      return false;
+
+#elif MOBILE_PLATFORM
+
+      GetMainScreenRect(prect);
+
+      return true;
+
+#elif defined(WINDOWS_DESKTOP)
+
+      if (iMonitor < 0 || iMonitor >= get_monitor_count())
+      {
+
+         return false;
+
+      }
+
+      *prect = m_monitorinfoa[iMonitor].rcMonitor;
+
+
+#elif defined(_UWP)
+
+
+      return false;
+
+
+#elif defined(LINUX)
+
+      sync_lock sl(mutex());
+
+      if (iMonitor < 0 || iMonitor >= get_monitor_count())
+      {
+
+         return false;
+
+      }
+
+      *prect = m_rectaMonitor[iMonitor];
+
+
+#elif defined(__APPLE__)
+
+      if (iMonitor < 0 || iMonitor >= get_monitor_count())
+      {
+
+         return false;
+
+      }
+
+      GetScreenRect(prect, (int)iMonitor);
+
+
+#else
+
+      prect->left = 0;
+
+      prect->top = 0;
+
+      prect->right = oslocal().m_iScreenWidth;
+
+      prect->bottom = oslocal().m_iScreenHeight;
+
+
+#endif
+
+      return true;
+
+   }
+
+
+   ::count session::get_desk_monitor_count()
+   {
+
+      return get_monitor_count();
+
+   }
+
+
+   bool session::get_desk_monitor_rect(index iMonitor, RECT* prect)
+
+   {
+
+      return get_monitor_rect(iMonitor, prect);
+
+
+   }
+
+
+   index session::get_main_wkspace(RECT* prect)
+
+   {
+
+      index iMainWkspace = 0;
+
+#ifdef WINDOWS_DESKTOP
+
+      HMONITOR hwkspacePrimary = GetPrimaryMonitorHandle();
+
+      for (index iWkspace = 0; iWkspace < get_wkspace_count(); iWkspace++)
+      {
+
+         if (m_hmonitora[iWkspace] == hwkspacePrimary)
+         {
+
+            iMainWkspace = iWkspace;
+
+            break;
+
+         }
+
+      }
+
+
+#endif
+
+      if (prect != nullptr)
+
+      {
+
+         get_wkspace_rect(iMainWkspace, prect);
+
+
+      }
+
+      return iMainWkspace;
+
+   }
+
+
+   ::count session::get_wkspace_count()
+   {
+
+#ifdef WINDOWS_DESKTOP
+
+      return m_monitorinfoa.get_count();
+
+#else
+
+      return get_monitor_count();
+
+#endif
+
+   }
+
+
+   bool session::get_wkspace_rect(index iWkspace, RECT* prect)
+   {
+
+#ifdef WINDOWS_DESKTOP
+
+      if (iWkspace < 0 || iWkspace >= get_wkspace_count())
+         return false;
+
+      *prect = m_monitorinfoa[iWkspace].rcWork;
+
+
+#elif defined(_UWP)
+
+      return get_monitor_rect(iWkspace, prect);
+
+
+      //#elif defined(LINUX)
+      //
+      //return false;
+      //
+#elif defined(__APPLE__)
+
+      if (iWkspace < 0 || iWkspace >= get_wkspace_count())
+      {
+
+         return false;
+
+      }
+
+      GetWkspaceRect(prect, (int)iWkspace);
+
+
+      //      prect->top += ::mac::get_system_main_menu_bar_height();
+
+      //    prect->bottom -= ::mac::get_system_dock_height();
+
+#elif defined(LINUX)
+
+      sync_lock sl(mutex());
+
+      if (iWkspace < 0 || iWkspace >= get_wkspace_count())
+      {
+
+         return false;
+
+      }
+
+      *prect = m_rectaWork[iWkspace];
+
+
+      return true;
+
+#else
+
+      //__throw(todo());
+
+      //::get_window_rect(::get_desktop_window(),prect);
+
+
+      get_monitor_rect(iWkspace, prect);
+
+
+#endif
+
+      return true;
+
+   }
+
+
+   ::count session::get_desk_wkspace_count()
+   {
+
+      return get_wkspace_count();
+
+   }
+
+
+   bool session::get_desk_wkspace_rect(index iWkspace, RECT* prect)
+
+   {
+
+      return get_wkspace_rect(iWkspace, prect);
+
+
+   }
+
+   //   index session::get_ui_wkspace(::user::interaction * pinteraction)
+   //   {
+   //
+   //      index iMainWkspace = 0;
+   //
+   //#ifdef WINDOWS_DESKTOP
+   //
+   //      HMONITOR hwkspacePrimary = GetUiMonitorHandle(pinteraction->get_handle());
+   //
+   //      for (index iWkspace = 0; iWkspace < get_wkspace_count(); iWkspace++)
+   //      {
+   //
+   //         if (m_hmonitora[iWkspace] == hwkspacePrimary)
+   //         {
+   //
+   //            iMainWkspace = iWkspace;
+   //
+   //            break;
+   //
+   //         }
+   //
+   //      }
+   //
+   //#endif
+   //
+   //      return iMainWkspace;
+   //
+   //   }
+
+   //index session::get_main_monitor(RECT * prect)
+   //{
+
+   //   if (m_bSystemSynchronizedScreen)
+   //   {
+
+   //      if (m_iMainMonitor < 0 || m_iMainMonitor >= System.get_monitor_count())
+   //      {
+
+   //         return System.get_main_monitor(prect);
+
+   //      }
+   //      else
+   //      {
+
+   //         if (System.get_monitor_rect(m_iMainMonitor, prect))
+   //         {
+
+   //            return m_iMainMonitor;
+
+   //         }
+   //         else
+   //         {
+
+   //            System.get_monitor_rect(0, prect);
+
+   //            return 0;
+
+   //         }
+
+   //      }
+
+   //   }
+   //   else
+   //   {
+
+   //      index iMainMonitor = m_iMainMonitor;
+
+   //      if (iMainMonitor < 0 || iMainMonitor >= m_rectaMonitor.get_count())
+   //      {
+
+   //         iMainMonitor = 0;
+
+   //      }
+
+   //      if (m_rectaMonitor.get_count() <= 0)
+   //      {
+
+   //         return -1;
+
+   //      }
+
+   //      *prect = m_rectaMonitor[iMainMonitor];
+
+   //      return iMainMonitor;
+
+   //   }
+
+   //}
 
 
    bool session::set_main_monitor(index iMonitor)
@@ -2273,90 +3049,90 @@ namespace aura
    }
 
 
-   ::count session::get_wkspace_count()
-   {
+   //::count session::get_wkspace_count()
+   //{
 
-      if (m_bSystemSynchronizedScreen)
-      {
+   //   if (m_bSystemSynchronizedScreen)
+   //   {
 
-         return System.get_wkspace_count();
+   //      return System.get_wkspace_count();
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         return m_rectaWkspace.get_count();
+   //      return m_rectaWkspace.get_count();
 
-      }
+   //   }
 
-   }
-
-
-   ::count session::get_monitor_count()
-   {
-
-      //if (get_document() != nullptr && get_view() != nullptr)
-      //{
-
-      //   return 1;
-
-      //}
+   //}
 
 
-      if (m_bSystemSynchronizedScreen)
-      {
+   //::count session::get_monitor_count()
+   //{
 
-         return System.get_monitor_count();
+   //   //if (get_document() != nullptr && get_view() != nullptr)
+   //   //{
 
-      }
-      else
-      {
+   //   //   return 1;
 
-         return m_rectaMonitor.get_count();
-
-      }
-
-   }
+   //   //}
 
 
-   bool session::get_monitor_rect(index iMonitor, RECT * prect)
-   {
+   //   if (m_bSystemSynchronizedScreen)
+   //   {
 
-      //if (get_document() != nullptr && get_view() != nullptr)
-      //{
+   //      return System.get_monitor_count();
 
-      //   get_view()->get_window_rect(prect);
+   //   }
+   //   else
+   //   {
 
+   //      return m_rectaMonitor.get_count();
 
-      //   return true;
+   //   }
 
-      //}
-
-
-      if (m_bSystemSynchronizedScreen)
-      {
-
-         return System.get_monitor_rect(iMonitor, prect);
+   //}
 
 
-      }
-      else
-      {
+   //bool session::get_monitor_rect(index iMonitor, RECT * prect)
+   //{
 
-         if (iMonitor < 0 || iMonitor >= m_rectaMonitor.get_count())
-         {
+   //   //if (get_document() != nullptr && get_view() != nullptr)
+   //   //{
 
-            return false;
+   //   //   get_view()->get_window_rect(prect);
 
-         }
 
-         *prect = m_rectaMonitor[iMonitor];
+   //   //   return true;
 
-         return true;
+   //   //}
 
-      }
 
-   }
+   //   if (m_bSystemSynchronizedScreen)
+   //   {
+
+   //      return System.get_monitor_rect(iMonitor, prect);
+
+
+   //   }
+   //   else
+   //   {
+
+   //      if (iMonitor < 0 || iMonitor >= m_rectaMonitor.get_count())
+   //      {
+
+   //         return false;
+
+   //      }
+
+   //      *prect = m_rectaMonitor[iMonitor];
+
+   //      return true;
+
+   //   }
+
+   //}
 
 
    bool session::wkspace_to_monitor(RECT * prect, index iMonitor, index iWkspace)
@@ -2448,51 +3224,490 @@ namespace aura
    }
 
 
-   bool session::get_wkspace_rect(index iWkspace, RECT * prect)
-   {
+   //bool session::get_wkspace_rect(index iWkspace, RECT * prect)
+   //{
 
-      if (m_bSystemSynchronizedScreen)
-      {
+   //   if (m_bSystemSynchronizedScreen)
+   //   {
 
-         return System.get_wkspace_rect(iWkspace, prect);
+   //      return System.get_wkspace_rect(iWkspace, prect);
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         if (iWkspace < 0 || iWkspace >= m_rectaWkspace.get_count())
-         {
+   //      if (iWkspace < 0 || iWkspace >= m_rectaWkspace.get_count())
+   //      {
 
-            return false;
+   //         return false;
 
-         }
+   //      }
 
-         *prect = m_rectaWkspace[iWkspace];
+   //      *prect = m_rectaWkspace[iWkspace];
 
-         return true;
+   //      return true;
 
-      }
+   //   }
 
-   }
-
-
-   ::count session::get_desk_monitor_count()
-   {
-
-      return get_monitor_count();
-
-   }
+   //}
 
 
-   bool session::get_desk_monitor_rect(index iMonitor, RECT * prect)
-   {
+   //::count session::get_desk_monitor_count()
+   //{
 
-      return get_monitor_rect(iMonitor, prect);
+   //   return get_monitor_count();
 
-   }
+   //}
 
 
-   void session::get_monitor(rect_array & rectaMonitor, rect_array & rectaIntersect, const rect & rectParam)
+   //bool session::get_desk_monitor_rect(index iMonitor, RECT * prect)
+   //{
+
+   //   return get_monitor_rect(iMonitor, prect);
+
+   //}
+
+
+   //void session::get_monitor(rect_array & rectaMonitor, rect_array & rectaIntersect, const rect & rectParam)
+   //{
+
+   //   for (index iMonitor = 0; iMonitor < get_monitor_count(); iMonitor++)
+   //   {
+
+   //      ::rect rectIntersect;
+
+   //      ::rect rectMonitor;
+
+   //      if (get_monitor_rect(iMonitor, rectMonitor))
+   //      {
+
+   //         if (rectIntersect.top_left_null_intersect(&rectParam, rectMonitor))
+   //         {
+
+   //            if (rectIntersect.area() >= 0)
+   //            {
+
+   //               rectaMonitor.add(rectMonitor);
+
+   //               rectaIntersect.add(rectIntersect);
+
+   //            }
+
+   //         }
+
+   //      }
+
+   //   }
+
+   //}
+
+
+   //index session::get_main_wkspace(RECT* prect)
+   //{
+
+   //   if (m_bSystemSynchronizedScreen)
+   //   {
+
+   //      if (m_iMainWkspace >= 0 && m_iMainWkspace < System.get_monitor_count())
+   //      {
+
+   //         return System.get_main_wkspace(prect);
+
+   //      }
+   //      else
+   //      {
+
+   //         if (System.get_monitor_rect(m_iMainWkspace, prect))
+   //         {
+
+   //            return m_iMainMonitor;
+
+   //         }
+   //         else
+   //         {
+
+   //            System.get_wkspace_rect(0, prect);
+
+
+   //            return 0;
+
+   //         }
+
+   //      }
+
+   //}
+   //   else
+   //   {
+
+   //      index iMainWkspace = m_iMainWkspace;
+
+   //      if (iMainWkspace < 0 || iMainWkspace >= m_rectaWkspace.get_count())
+   //      {
+
+   //         iMainWkspace = 0;
+
+   //      }
+
+   //      if (m_rectaWkspace.get_count() <= 0)
+   //      {
+
+   //         return -1;
+
+   //      }
+
+   //      if (prect != nullptr)
+   //      {
+
+   //         *prect = m_rectaWkspace[iMainWkspace];
+
+   //      }
+
+   //      return iMainWkspace;
+
+   //   }
+
+   //}
+
+
+   //bool session::set_main_wkspace(index iWkspace)
+   //{
+
+   //   if (iWkspace == -1)
+   //   {
+
+   //      m_iMainWkspace = -1;
+
+   //      return true;
+
+   //   }
+   //   else if (iWkspace < 0 || iWkspace >= get_wkspace_count())
+   //   {
+
+   //      return false;
+
+   //   }
+   //   else
+   //   {
+
+   //      m_iMainWkspace = iWkspace;
+
+   //      return true;
+
+   //   }
+
+   //}
+
+
+   //index session::get_main_monitor(RECT* prect)
+   //{
+
+   //   if (m_bSystemSynchronizedScreen)
+   //   {
+
+   //      if (m_iMainMonitor < 0 || m_iMainMonitor >= System.get_monitor_count())
+   //      {
+
+   //         return System.get_main_monitor(prect);
+
+   //      }
+   //      else
+   //      {
+
+   //         if (System.get_monitor_rect(m_iMainMonitor, prect))
+   //         {
+
+   //            return m_iMainMonitor;
+
+   //         }
+   //         else
+   //         {
+
+   //            System.get_monitor_rect(0, prect);
+
+   //            return 0;
+
+   //         }
+
+   //      }
+
+   //   }
+   //   else
+   //   {
+
+   //      index iMainMonitor = m_iMainMonitor;
+
+   //      if (iMainMonitor < 0 || iMainMonitor >= m_rectaMonitor.get_count())
+   //      {
+
+   //         iMainMonitor = 0;
+
+   //      }
+
+   //      if (m_rectaMonitor.get_count() <= 0)
+   //      {
+
+   //         return -1;
+
+   //      }
+
+   //      *prect = m_rectaMonitor[iMainMonitor];
+
+   //      return iMainMonitor;
+
+   //   }
+
+   //}
+
+
+   //bool session::set_main_monitor(index iMonitor)
+   //{
+
+   //   if (iMonitor == -1)
+   //   {
+
+   //      m_iMainMonitor = -1;
+
+   //      return true;
+
+   //   }
+   //   else if (iMonitor < 0 || iMonitor >= get_monitor_count())
+   //   {
+
+   //      return false;
+
+   //   }
+   //   else
+   //   {
+
+   //      m_iMainMonitor = iMonitor;
+
+   //      return true;
+
+   //   }
+
+   //}
+
+
+   //::count session::get_wkspace_count()
+   //{
+
+   //   if (m_bSystemSynchronizedScreen)
+   //   {
+
+   //      return System.get_wkspace_count();
+
+   //   }
+   //   else
+   //   {
+
+   //      return m_rectaWkspace.get_count();
+
+   //   }
+
+   //}
+
+
+   //::count session::get_monitor_count()
+   //{
+
+   //   //if (get_document() != nullptr && get_view() != nullptr)
+   //   //{
+
+   //   //   return 1;
+
+   //   //}
+
+
+   //   if (m_bSystemSynchronizedScreen)
+   //   {
+
+   //      return System.get_monitor_count();
+
+   //   }
+   //   else
+   //   {
+
+   //      return m_rectaMonitor.get_count();
+
+   //   }
+
+   //}
+
+
+   //bool session::get_monitor_rect(index iMonitor, RECT* prect)
+   //{
+
+   //   //if (get_document() != nullptr && get_view() != nullptr)
+   //   //{
+
+   //   //   get_view()->get_window_rect(prect);
+
+
+   //   //   return true;
+
+   //   //}
+
+
+   //   if (m_bSystemSynchronizedScreen)
+   //   {
+
+   //      return System.get_monitor_rect(iMonitor, prect);
+
+
+   //   }
+   //   else
+   //   {
+
+   //      if (iMonitor < 0 || iMonitor >= m_rectaMonitor.get_count())
+   //      {
+
+   //         return false;
+
+   //      }
+
+   //      *prect = m_rectaMonitor[iMonitor];
+
+   //      return true;
+
+   //   }
+
+   //}
+
+
+   //bool session::wkspace_to_monitor(RECT* prect, index iMonitor, index iWkspace)
+   //{
+
+   //   ::rect rect(*prect);
+
+   //   ::rect rectWkspace;
+
+   //   if (!get_wkspace_rect(iWkspace, rectWkspace))
+   //   {
+
+   //      return false;
+
+   //   }
+
+   //   rect -= rectWkspace.top_left();
+
+   //   ::rect rectMonitor;
+
+   //   if (!get_monitor_rect(iMonitor, rectMonitor))
+   //   {
+
+   //      return false;
+
+   //   }
+
+   //   rect += rectMonitor.top_left();
+
+   //   *prect = rect;
+
+
+   //   return true;
+
+   //}
+
+
+   //bool session::wkspace_to_monitor(RECT* prect)
+   //{
+
+   //   index iWkspace = get_best_wkspace(nullptr, rect(prect));
+
+   //   return wkspace_to_monitor(prect, iWkspace, iWkspace);
+
+   //}
+
+
+   //bool session::monitor_to_wkspace(RECT* prect)
+   //{
+
+   //   index iMonitor = get_best_monitor(nullptr, rect(prect));
+
+   //   return monitor_to_wkspace(prect, iMonitor, iMonitor);
+
+   //}
+
+
+   //bool session::monitor_to_wkspace(RECT* prect, index iWkspace, index iMonitor)
+   //{
+
+   //   ::rect rect(prect);
+
+   //   ::rect rectMonitor;
+
+   //   if (!get_monitor_rect(iMonitor, rectMonitor))
+   //   {
+
+   //      return false;
+
+   //   }
+
+   //   rect -= rectMonitor.top_left();
+
+   //   ::rect rectWkspace;
+
+   //   if (!get_wkspace_rect(iWkspace, rectWkspace))
+   //   {
+
+   //      return false;
+
+   //   }
+
+   //   rect += rectWkspace.top_left();
+
+   //   *prect = rect;
+
+   //   return true;
+
+   //}
+
+
+   //bool session::get_wkspace_rect(index iWkspace, RECT* prect)
+   //{
+
+   //   if (m_bSystemSynchronizedScreen)
+   //   {
+
+   //      return System.get_wkspace_rect(iWkspace, prect);
+
+   //   }
+   //   else
+   //   {
+
+   //      if (iWkspace < 0 || iWkspace >= m_rectaWkspace.get_count())
+   //      {
+
+   //         return false;
+
+   //      }
+
+   //      *prect = m_rectaWkspace[iWkspace];
+
+   //      return true;
+
+   //   }
+
+   //}
+
+
+   //::count session::get_desk_monitor_count()
+   //{
+
+   //   return get_monitor_count();
+
+   //}
+
+
+   //bool session::get_desk_monitor_rect(index iMonitor, RECT* prect)
+   //{
+
+   //   return get_monitor_rect(iMonitor, prect);
+
+   //}
+
+
+   void session::get_monitor(rect_array& rectaMonitor, rect_array& rectaIntersect, const rect& rectParam)
    {
 
       for (index iMonitor = 0; iMonitor < get_monitor_count(); iMonitor++)
@@ -2526,6 +3741,416 @@ namespace aura
    }
 
 
+   DWORD session::get_monitor_color_temperature(index iMonitor)
+   {
+
+#ifdef _UWP
+
+      return 0;
+
+#elif defined(LINUX)
+
+      return 0;
+
+#elif defined(MACOS)
+
+      return 0;
+
+#elif defined(APPLE_IOS)
+
+      return 0;
+
+#elif defined(ANDROID)
+
+      return 0;
+
+#else
+
+      if (iMonitor < 0)
+      {
+
+         return 0;
+
+      }
+
+      if (iMonitor >= m_hmonitora.get_count())
+      {
+
+         return 0;
+
+      }
+
+      MC_COLOR_TEMPERATURE e;
+
+      if (!GetMonitorColorTemperature(m_hmonitora[iMonitor], &e))
+      {
+
+         return 0;
+
+      }
+
+      return mc_color_kelvin(e);
+
+#endif
+
+   }
+
+   ::mutex g_monitor_adjust;
+
+   bool session::adjust_monitor(index iMonitor, DWORD dwTemperature, double dBrightness, double dGamma)
+   {
+
+#ifdef _UWP
+
+      return true;
+
+#elif defined(LINUX)
+
+      return true;
+
+#elif defined(MACOS)
+
+      return true;
+
+#elif defined(APPLE_IOS)
+
+      return true;
+
+#elif defined(ANDROID)
+
+      return true;
+
+#else
+
+      sync_lock sl(&g_monitor_adjust);
+
+      if (iMonitor < 0)
+      {
+
+         return 0;
+
+      }
+
+      if (iMonitor >= m_hmonitora.get_count())
+      {
+
+         return 0;
+
+      }
+
+      if (dBrightness <= 0.0)
+      {
+
+         dBrightness = 0.1;
+
+      }
+
+      if (dBrightness >= 1.0)
+      {
+
+         dBrightness = 1.0;
+
+      }
+
+      if (dGamma <= 0.1)
+      {
+
+         dGamma = 0.1;
+
+      }
+
+      if (dGamma >= 10.0)
+      {
+
+         dGamma = 10.0;
+
+      }
+
+
+      DWORD dwMinDriveR;
+      DWORD dwCurDriveR;
+      DWORD dwMaxDriveR;
+      DWORD dwMinDriveG;
+      DWORD dwCurDriveG;
+      DWORD dwMaxDriveG;
+      DWORD dwMinDriveB;
+      DWORD dwCurDriveB;
+      DWORD dwMaxDriveB;
+      DWORD dwMinGainR;
+      DWORD dwCurGainR;
+      DWORD dwMaxGainR;
+      DWORD dwMinGainG;
+      DWORD dwCurGainG;
+      DWORD dwMaxGainG;
+      DWORD dwMinGainB;
+      DWORD dwCurGainB;
+      DWORD dwMaxGainB;
+
+      float fR;
+      float fG;
+      float fB;
+
+      //dwTemperature = 4000;
+
+      black_body(&fR, &fG, &fB, dwTemperature);
+
+      MC_COLOR_TEMPERATURE e = kelvin_mc_color(dwTemperature);
+
+      HMONITOR hMonitor = nullptr;
+      DWORD cPhysicalMonitors;
+      LPPHYSICAL_MONITOR pPhysicalMonitors = nullptr;
+
+      // Get the number of physical monitors.
+      BOOL bSuccess = GetNumberOfPhysicalMonitorsFromHMONITOR(
+         m_hmonitora[iMonitor],
+         &cPhysicalMonitors
+      );
+
+      if (!bSuccess || cPhysicalMonitors <= 0)
+      {
+
+         return 0;
+
+      }
+
+      PHYSICAL_MONITOR monitor;
+
+      bSuccess = GetPhysicalMonitorsFromHMONITOR(m_hmonitora[iMonitor], 1, &monitor);
+
+      Sleep(500);
+
+      //MC_COLOR_TEMPERATURE e = kelvin_mc_color(dwTemperature);
+
+
+
+      //if (!SetMonitorColorTemperature(monitor.hPhysicalMonitor, e))
+      //{
+
+      //   return false;
+
+      //}
+      //return true;
+
+
+      if (!GetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_RED_GAIN, &dwMinGainR, &dwCurGainR, &dwMaxGainR))
+      {
+
+         DWORD dwLastError = get_last_error();
+
+         TRACELASTERROR();
+
+         goto error;
+
+      }
+
+      if (!GetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_GREEN_GAIN, &dwMinGainG, &dwCurGainG, &dwMaxGainG))
+      {
+
+         return false;
+
+      }
+
+      if (!GetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_BLUE_GAIN, &dwMinGainB, &dwCurGainB, &dwMaxGainB))
+      {
+
+         return false;
+
+      }
+
+      if (!GetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_RED_DRIVE, &dwMinDriveR, &dwCurDriveR, &dwMaxDriveR))
+      {
+
+         return false;
+
+      }
+
+      if (!GetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_GREEN_DRIVE, &dwMinDriveG, &dwCurDriveG, &dwMaxDriveG))
+      {
+
+         return false;
+
+      }
+
+      if (!GetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_BLUE_DRIVE, &dwMinDriveB, &dwCurDriveB, &dwMaxDriveB))
+      {
+
+         return false;
+
+      }
+
+
+      //    SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_RED_GAIN, dwMinGainR);
+      //    SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_GREEN_GAIN, dwMinGainG);
+      //    SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_BLUE_GAIN, dwMinGainB);
+            //SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_RED_DRIVE, (DWORD)(dwMinDriveR + (dwMaxDriveR - dwMinDriveR) * r));
+            //SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_GREEN_DRIVE, (DWORD)(dwMinDriveG + (dwMaxDriveG - dwMinDriveG) * g));
+            //SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_BLUE_DRIVE, (DWORD)(dwMinDriveB + (dwMaxDriveB - dwMinDriveB) * b));
+            //SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_RED_GAIN, dwMaxGainR);
+            //SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_GREEN_GAIN, dwMaxGainG);
+            //SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_BLUE_GAIN, dwMaxGainB);
+      bool bDifferent = false;
+      if (dwMaxDriveR != dwCurDriveR)
+      {
+         SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_RED_DRIVE, dwMaxDriveR);
+         bDifferent = true;
+      }
+      if (dwMaxDriveG != dwCurDriveG)
+      {
+         SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_GREEN_DRIVE, dwMaxDriveG);
+         bDifferent = true;
+      }
+      if (dwMaxDriveB != dwCurDriveB)
+      {
+         SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_BLUE_DRIVE, dwMaxDriveB);
+         bDifferent = true;
+      }
+
+
+      /* Helper macro used in the fill functions */
+//#define F(Y, C)  pow(dBrightness * C, 1.0 / dGamma)
+#define F(C)  pow(dBrightness * C, 1.0 / dGamma)
+
+      DWORD dwR = (DWORD)(dwMinGainR + (dwMaxGainR - dwMinGainR) * F(fR));
+      DWORD dwG = (DWORD)(dwMinGainG + (dwMaxGainG - dwMinGainG) * F(fG));
+      DWORD dwB = (DWORD)(dwMinGainB + (dwMaxGainB - dwMinGainB) * F(fB));
+
+      if (dwR != dwCurGainR)
+      {
+         SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_RED_GAIN, dwR);
+         bDifferent = true;
+      }
+      if (dwG != dwCurGainG)
+      {
+         SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_GREEN_GAIN, dwG);
+         bDifferent = true;
+      }
+      if (dwB != dwCurGainB)
+      {
+         SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_BLUE_GAIN, dwB);
+         bDifferent = true;
+      }
+
+#undef F
+
+      if (!bDifferent)
+      {
+
+         goto finalize;
+
+      }
+
+      int iRepeat = 0;
+   repeat:
+
+      bDifferent = false;
+
+      if (GetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_RED_DRIVE, &dwMinDriveR, &dwCurDriveR, &dwMaxDriveR))
+      {
+
+         if (dwCurDriveR != dwMaxDriveR)
+         {
+            Sleep(500);
+            SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_RED_DRIVE, dwMaxDriveR);
+            Sleep(500);
+            bDifferent = true;
+         }
+
+      }
+
+      if (GetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_GREEN_DRIVE, &dwMinDriveG, &dwCurDriveG, &dwMaxDriveG))
+      {
+
+         if (dwCurDriveG != dwMaxDriveG)
+         {
+            Sleep(500);
+            SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_GREEN_DRIVE, dwMaxDriveG);
+            Sleep(500);
+            bDifferent = true;
+         }
+
+      }
+
+      if (GetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_BLUE_DRIVE, &dwMinDriveB, &dwCurDriveB, &dwMaxDriveB))
+      {
+
+         if (dwCurDriveB != dwMaxDriveB)
+         {
+            Sleep(500);
+            SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_BLUE_DRIVE, dwMaxDriveB);
+            Sleep(500);
+            bDifferent = true;
+         }
+
+      }
+
+      if (GetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_RED_GAIN, &dwMinGainR, &dwCurGainR, &dwMaxGainR))
+      {
+
+         if (dwCurGainR != dwR)
+         {
+            Sleep(500);
+            SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_RED_GAIN, dwR);
+            Sleep(500);
+            bDifferent = true;
+         }
+
+
+      }
+
+      if (GetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_GREEN_GAIN, &dwMinGainG, &dwCurGainG, &dwMaxGainG))
+      {
+
+         if (dwCurGainG != dwG)
+         {
+            Sleep(500);
+            SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_GREEN_GAIN, dwG);
+            Sleep(500);
+            bDifferent = true;
+         }
+
+      }
+
+      if (GetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_BLUE_GAIN, &dwMinGainB, &dwCurGainB, &dwMaxGainB))
+      {
+
+         if (dwCurGainB != dwB)
+         {
+            Sleep(500);
+            SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_BLUE_GAIN, dwB);
+            Sleep(500);
+            bDifferent = true;
+         }
+
+      }
+
+      if (bDifferent)
+      {
+
+         iRepeat++;
+
+         if (iRepeat < 3)
+         {
+
+            goto repeat;
+
+         }
+
+      }
+      Sleep(500);
+   finalize:
+      ;
+      DestroyPhysicalMonitors(1, &monitor);
+      return true;
+   error:
+      ;
+      Sleep(500);
+      // Close the monitor handles.
+      DestroyPhysicalMonitors(1, &monitor);
+      return false;
+
+#endif
+
+   }
 
 
 #define ZONEING_COMPARE ::comparison
@@ -3404,7 +5029,7 @@ namespace aura
       if (m_bSystemSynchronizedScreen)
       {
 
-         return System.get_ui_wkspace(pinteraction);
+         return get_ui_wkspace(pinteraction);
 
       }
       else
@@ -4087,6 +5712,8 @@ ret:
          System.draw2d().enum_draw2d_fonts(m_fontenumitema);
 
       }
+
+      enum_display_monitors();
 
       return true;
 

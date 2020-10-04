@@ -235,16 +235,12 @@ namespace apex
 
       }
 
-      //m_pappParent = ::get_context_application(pobjectContext);
-
-
-      //set_context_object(this);
+      set_context_object(this);
+      
       set_context_app(this);
 
       set_context(this);
       
-      set_context_object(this);
-
       if (::is_set(m_pappParent))
       {
 
@@ -262,36 +258,12 @@ namespace apex
 
       }
 
-
-
       if (m_strBuild.is_empty())
       {
 
          m_strBuild = "(unknown build version)";
 
       }
-
-      //// apex commented
-      //estatus = __compose_new(m_puiptraFrame);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-
-
-// #if defined(LINUX)
-
-// //      os_shell_initialize();
-
-// #elif defined(ANDROID)
-
-//       os_shell_initialize();
-
-// #endif // LINUX
 
       return estatus;
 

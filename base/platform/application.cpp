@@ -38,15 +38,6 @@ namespace base
 
       }
 
-      estatus = __compose_new(m_puiptraFrame);
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
       return estatus;
 
    }

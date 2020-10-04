@@ -455,37 +455,13 @@ void object::set_topic_text(const ::string & strTopicText)
 }
 
 
-void object::set_context_object(::layered * pobjectContext)
-{
-
-   ::context_object::set_context_object(pobjectContext);
-
-   set_context_app(::get_context_application(pobjectContext));
-
-   set_context_session(::get_context_session(pobjectContext));
-
-   set_context_system(::get_context_system(pobjectContext));
-
-   if (m_pappContext)
-   {
-
-      set_context(m_pappContext.get());
-
-   }
-   else if (m_psessionContext)
-   {
-
-      set_context(m_psessionContext.get());
-
-   }
-   else if (m_psystemContext)
-   {
-
-      set_context(m_psystemContext.get());
-
-   }
-
-}
+//void object::set_context_object(::layered * pobjectContext)
+//{
+//
+//   ::context_object::set_context_object(pobjectContext);
+//
+//
+//}
 
 
 
@@ -509,6 +485,40 @@ void object::set_context_object(::layered * pobjectContext)
 #endif
 
    set_context_object(pobjectContext);
+   
+   set_context_app(::get_context_application(pobjectContext));
+
+   set_context_session(::get_context_session(pobjectContext));
+
+   set_context_system(::get_context_system(pobjectContext));
+   
+   auto pcontext = ::get_context(pobjectContext);
+
+   if (pcontext)
+   {
+
+      set_context(pcontext);
+
+   }
+   else if (m_pappContext)
+   {
+
+      set_context(m_pappContext.get());
+
+   }
+   else if (m_psessionContext)
+   {
+
+      set_context(m_psessionContext.get());
+
+   }
+   else if (m_psystemContext)
+   {
+
+      set_context(m_psystemContext.get());
+
+   }
+
 
    return estatus;
 

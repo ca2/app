@@ -179,7 +179,7 @@ public:
 #endif
 
 
-   virtual void set_context_object(::layered * pobjectContext) override;
+   //virtual void set_context_object(::layered * pobjectContext) override;
 
 
    inline void defer_set_context_object(::layered * pobjectContext);

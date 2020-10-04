@@ -133,10 +133,14 @@ namespace user
       }
       else
       {
+         
          // create a new ::user::document
          pdocument = create_new_document(pcreate);
+         
          ASSERT(pFrame == nullptr);     // will be created below
+         
          bCreated = TRUE;
+         
       }
 
       if (pdocument == nullptr)

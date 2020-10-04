@@ -19,10 +19,12 @@ object::object(::layered * pobjectContext)
    m_pmeta = nullptr;
 
    set_layer(0, this);
+   
+   initialize(pobjectContext);
 
    //m_pObjectThis = nullptr;
 
-   set_context_object(__object(pobjectContext));
+   //set_context_object(__object(pobjectContext));
 
    //__refer(m_pobjectContext, pobject);
 

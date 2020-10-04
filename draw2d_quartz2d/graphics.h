@@ -205,13 +205,13 @@ namespace draw2d_quartz2d
       
       
       virtual ::estatus reset_clip() override;
-      virtual ::estatus intersect_clip() override;
-      virtual ::estatus add_shape(const ::rect & rect) override;
-      virtual ::estatus add_shape(const ::rectd & rect) override;
-      virtual ::estatus add_shape(const ::oval & oval) override;
-      virtual ::estatus add_shape(const ::ovald & oval) override;
-      virtual ::estatus add_shape(const ::polygon & polygon) override;
-      virtual ::estatus add_shape(const ::polygond & polygon) override;
+      virtual ::estatus _intersect_clip() override;
+      virtual ::estatus _add_shape(const ::rect & rect) override;
+      virtual ::estatus _add_shape(const ::rectd & rect) override;
+      virtual ::estatus _add_shape(const ::oval & oval) override;
+      virtual ::estatus _add_shape(const ::ovald & oval) override;
+      virtual ::estatus _add_shape(const ::polygon & polygon) override;
+      virtual ::estatus _add_shape(const ::polygond & polygon) override;
 
       
       //virtual void on_apply_clip_region() override;

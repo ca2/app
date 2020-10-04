@@ -1241,17 +1241,6 @@ namespace apex
 
       }
 
-      estatus = system_init();
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-
-
       if (!create_session())
       {
 
@@ -1273,6 +1262,15 @@ namespace apex
       }
 
       set_main_struct(*m_papplicationStartup);
+      
+      estatus = system_init();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
 
       if (m_bConsole.undefined())
       {

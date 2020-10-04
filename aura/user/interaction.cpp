@@ -6703,19 +6703,23 @@ void interaction::_001CallOnDraw(::draw2d::graphics_pointer & pgraphics)
          return;
 
       }
+      
+      auto psession = get_context_session();
 
-      if (::is_set(get_context_session()))
+      if (::is_set(psession))
       {
 
-         auto puiSession = Session.get_session_window();
+         auto puiSession = psession->get_session_window();
 
          if (puiSession == nullptr || puiSession != this)
          {
 
             if (!(pmessage->m_uiMessageFlags & 2)) // message already pre translated
             {
+               
+               auto paurasession = psession->m_paurasession;
 
-               Session.pre_translate_message(pmessage);
+               paurasession->pre_translate_message(pmessage);
 
                if (pmessage->m_bRet)
                {

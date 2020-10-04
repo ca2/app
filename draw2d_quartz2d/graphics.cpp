@@ -4205,7 +4205,7 @@ namespace draw2d_quartz2d
    }
 
 
-   ::estatus graphics::intersect_clip()
+   ::estatus graphics::_intersect_clip()
    {
       
       CGContextClip(m_pdc);
@@ -4215,7 +4215,7 @@ namespace draw2d_quartz2d
    }
 
 
-   ::estatus graphics::add_shape(const ::rect & rect)
+   ::estatus graphics::_add_shape(const ::rect & rect)
    {
    
       CGRect r;
@@ -4229,7 +4229,7 @@ namespace draw2d_quartz2d
    }
 
 
-   ::estatus graphics::add_shape(const ::rectd & rect)
+   ::estatus graphics::_add_shape(const ::rectd & rect)
    {
    
       CGRect r;
@@ -4243,7 +4243,7 @@ namespace draw2d_quartz2d
    }
 
 
-   ::estatus graphics::add_shape(const ::oval & oval)
+   ::estatus graphics::_add_shape(const ::oval & oval)
    {
    
       CGRect r;
@@ -4257,7 +4257,7 @@ namespace draw2d_quartz2d
    }
 
 
-   ::estatus graphics::add_shape(const ::ovald & oval)
+   ::estatus graphics::_add_shape(const ::ovald & oval)
    {
    
       CGRect r;
@@ -4271,7 +4271,7 @@ namespace draw2d_quartz2d
    }
 
 
-   ::estatus graphics::add_shape(const ::polygon & polygon)
+   ::estatus graphics::_add_shape(const ::polygon & polygon)
    {
    
       CGContextBeginPath(m_pdc);
@@ -4285,7 +4285,7 @@ namespace draw2d_quartz2d
    }
 
 
-   ::estatus graphics::add_shape(const ::polygond & polygon)
+   ::estatus graphics::_add_shape(const ::polygond & polygon)
    {
 
       CGContextBeginPath(m_pdc);

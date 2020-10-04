@@ -4034,7 +4034,7 @@ namespace draw2d
       for(auto & pshape : shapea)
       {
          
-         add_shape(pshape);
+         _add_shape(pshape);
          
       }
 
@@ -4043,7 +4043,7 @@ namespace draw2d
    }
 
 
-   ::estatus graphics::add_shape(___shape * pshape)
+   ::estatus graphics::_add_shape(___shape * pshape)
    {
    
       switch(pshape->eshape())
@@ -4051,19 +4051,19 @@ namespace draw2d
       case e_shape_none:
          return ::success_none;
       case e_shape_intersect_clip:
-         return intersect_clip();
+         return _intersect_clip();
       case e_shape_rect:
-         return add_shape(pshape->shape < ::rect >());
+         return _add_shape(pshape->shape < ::rect >());
       case e_shape_rectd:
-         return add_shape(pshape->shape < ::rectd >());
+         return _add_shape(pshape->shape < ::rectd >());
       case e_shape_oval:
-         return add_shape(pshape->shape < ::oval >());
+         return _add_shape(pshape->shape < ::oval >());
       case e_shape_ovald:
-         return add_shape(pshape->shape < ::ovald >());
+         return _add_shape(pshape->shape < ::ovald >());
       case e_shape_polygon:
-         return add_shape(pshape->shape < ::polygon >());
+         return _add_shape(pshape->shape < ::polygon >());
       case e_shape_polygond:
-         return add_shape(pshape->shape < ::polygond >());
+         return _add_shape(pshape->shape < ::polygond >());
       default:
          break;
             
@@ -4074,7 +4074,7 @@ namespace draw2d
    }
 
 
-   ::estatus graphics::intersect_clip()
+   ::estatus graphics::_intersect_clip()
    {
 
       __throw(interface_only_exception);
@@ -4084,7 +4084,7 @@ namespace draw2d
    }
 
 
-   ::estatus graphics::add_shape(const ::rect & rect)
+   ::estatus graphics::_add_shape(const ::rect & rect)
    {
    
       __throw(interface_only_exception);
@@ -4094,7 +4094,7 @@ namespace draw2d
    }
 
 
-   ::estatus graphics::add_shape(const ::rectd & rect)
+   ::estatus graphics::_add_shape(const ::rectd & rect)
    {
    
       __throw(interface_only_exception);
@@ -4104,7 +4104,7 @@ namespace draw2d
    }
 
 
-   ::estatus graphics::add_shape(const ::oval & oval)
+   ::estatus graphics::_add_shape(const ::oval & oval)
    {
    
       __throw(interface_only_exception);
@@ -4114,7 +4114,7 @@ namespace draw2d
    }
 
 
-   ::estatus graphics::add_shape(const ::ovald & oval)
+   ::estatus graphics::_add_shape(const ::ovald & oval)
    {
    
       __throw(interface_only_exception);
@@ -4124,7 +4124,7 @@ namespace draw2d
    }
 
 
-   ::estatus graphics::add_shape(const ::polygon & polygon)
+   ::estatus graphics::_add_shape(const ::polygon & polygon)
    {
    
       __throw(interface_only_exception);
@@ -4134,7 +4134,7 @@ namespace draw2d
    }
 
 
-   ::estatus graphics::add_shape(const ::polygond & polygon)
+   ::estatus graphics::_add_shape(const ::polygond & polygon)
    {
 
       __throw(interface_only_exception);
@@ -4147,7 +4147,7 @@ namespace draw2d
    ::estatus graphics::intersect_clip(const ::rect & rect)
    {
    
-      auto estatus = add_shape(rect);
+      auto estatus = _add_shape(rect);
       
       if(!estatus)
       {
@@ -4156,7 +4156,7 @@ namespace draw2d
          
       }
       
-      estatus = intersect_clip();
+      estatus = _intersect_clip();
       
       if(!estatus)
       {
@@ -4173,7 +4173,7 @@ namespace draw2d
    ::estatus graphics::intersect_clip(const ::rectd & rect)
    {
    
-      auto estatus = add_shape(rect);
+      auto estatus = _add_shape(rect);
       
       if(!estatus)
       {
@@ -4182,7 +4182,7 @@ namespace draw2d
          
       }
       
-      estatus = intersect_clip();
+      estatus = _intersect_clip();
       
       if(!estatus)
       {
@@ -4199,7 +4199,7 @@ namespace draw2d
    ::estatus graphics::intersect_clip(const ::oval & oval)
    {
    
-      auto estatus = add_shape(oval);
+      auto estatus = _add_shape(oval);
       
       if(!estatus)
       {
@@ -4208,7 +4208,7 @@ namespace draw2d
          
       }
       
-      estatus = intersect_clip();
+      estatus = _intersect_clip();
       
       if(!estatus)
       {
@@ -4225,7 +4225,7 @@ namespace draw2d
    ::estatus graphics::intersect_clip(const ::ovald & oval)
    {
    
-      auto estatus = add_shape(oval);
+      auto estatus = _add_shape(oval);
       
       if(!estatus)
       {
@@ -4234,7 +4234,7 @@ namespace draw2d
          
       }
       
-      estatus = intersect_clip();
+      estatus = _intersect_clip();
       
       if(!estatus)
       {
@@ -4251,7 +4251,7 @@ namespace draw2d
    ::estatus graphics::intersect_clip(const ::polygon & polygon)
    {
    
-      auto estatus = add_shape(polygon);
+      auto estatus = _add_shape(polygon);
       
       if(!estatus)
       {
@@ -4260,7 +4260,7 @@ namespace draw2d
          
       }
       
-      estatus = intersect_clip();
+      estatus = _intersect_clip();
       
       if(!estatus)
       {
@@ -4277,7 +4277,7 @@ namespace draw2d
    ::estatus graphics::intersect_clip(const ::polygond & polygon)
    {
 
-      auto estatus = add_shape(polygon);
+      auto estatus = _add_shape(polygon);
       
       if(!estatus)
       {
@@ -4286,7 +4286,7 @@ namespace draw2d
          
       }
       
-      estatus = intersect_clip();
+      estatus = _intersect_clip();
       
       if(!estatus)
       {

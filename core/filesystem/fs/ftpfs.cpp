@@ -88,9 +88,11 @@ bool ftpfs::has_subdir(const ::file::path & path)
 
    }
 
-   ::file::listing listing(this);
+   ::file::listing listing;
 
-   Application.dir().ls(listing, path);
+   listing.m_pathUser = path;
+
+   ls(listing);
 
    if (::get_tick() < dir.m_uiLsTimeout)
    {
@@ -347,9 +349,11 @@ int ftpfs::is_dir(const ::file::path & path)
    if (::get_tick() > dir.m_uiTimeout)
    {
 
-      ::file::listing listing(this);
+      ::file::listing listing;
       
-      Application.dir().ls(listing,path.folder());
+      listing.m_pathUser = path.folder();
+
+      ls(listing);
 
    }
 

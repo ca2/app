@@ -1013,19 +1013,26 @@ namespace windows
 
          ls(patha, path);
 
-         for (auto & path : patha)
+         for (auto & pathItem : patha)
          {
-            if (is(path))
+
+            if (is(pathItem))
             {
-               rm(path / path.name(), true);
+
+               rm(pathItem, true);
+
             }
             else
             {
-               ::DeleteFileW(wstring(path));
+
+               ::DeleteFileW(wstring(pathItem));
+
             }
+
          }
+
       }
-      
+
       return RemoveDirectoryW(wstring(path)) != FALSE;
 
    }

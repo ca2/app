@@ -5842,7 +5842,8 @@ namespace windows
 
          message::drag_and_drop * pdrag = (::message::drag_and_drop *) pbase;
 
-         __pointer(::user::interaction) pinteraction = pdrag->m_puserinteraction;
+         auto pinteraction = pdrag->userinteraction();
+
          //user::oswindow_array oswindowa;
          //user::interaction_pointer_array wnda;
          //wnda = *System.m_puiptraFrame;

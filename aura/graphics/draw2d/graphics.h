@@ -335,25 +335,29 @@ namespace draw2d
 
       
       virtual ::estatus add_shapes(const shape_array & shapea);
-      virtual ::estatus add_shape(___shape * pshape);
-
-      // Generally for backend implementators
       virtual ::estatus reset_clip();
-      virtual ::estatus intersect_clip();
-      virtual ::estatus add_shape(const ::rect & rect);
-      virtual ::estatus add_shape(const ::rectd & rect);
-      virtual ::estatus add_shape(const ::oval & oval);
-      virtual ::estatus add_shape(const ::ovald & oval);
-      virtual ::estatus add_shape(const ::polygon & polygon);
-      virtual ::estatus add_shape(const ::polygond & polygon);
+      virtual ::estatus intersect_clip(const ::rect& rect);
+      virtual ::estatus intersect_clip(const ::rectd& rect);
+      virtual ::estatus intersect_clip(const ::oval& oval);
+      virtual ::estatus intersect_clip(const ::ovald& oval);
+      virtual ::estatus intersect_clip(const ::polygon& polygon);
+      virtual ::estatus intersect_clip(const ::polygond& polygon);
+
+      // Maybe used by some 2d Graphics backends as group of helper
+      // methods working together for some purpose
+      // (initially created for clipping).
+      // It should be an aid when the 2d graphics backend supports
+      // "inline" paths.
+      virtual ::estatus _intersect_clip();
+      virtual ::estatus _add_shape(___shape* pshape);
+      virtual ::estatus _add_shape(const ::rect & rect);
+      virtual ::estatus _add_shape(const ::rectd & rect);
+      virtual ::estatus _add_shape(const ::oval & oval);
+      virtual ::estatus _add_shape(const ::ovald & oval);
+      virtual ::estatus _add_shape(const ::polygon & polygon);
+      virtual ::estatus _add_shape(const ::polygond & polygon);
 
       
-      virtual ::estatus intersect_clip(const ::rect & rect);
-      virtual ::estatus intersect_clip(const ::rectd & rect);
-      virtual ::estatus intersect_clip(const ::oval & oval);
-      virtual ::estatus intersect_clip(const ::ovald & oval);
-      virtual ::estatus intersect_clip(const ::polygon & polygon);
-      virtual ::estatus intersect_clip(const ::polygond & polygon);
 
       
       //virtual ::estatus IntersectClipRgn(::draw2d::region * pregion);

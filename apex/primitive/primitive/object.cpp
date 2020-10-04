@@ -469,6 +469,13 @@ void object::set_topic_text(const ::string & strTopicText)
 ::estatus object::initialize(::layered * pobjectContext)
 {
 
+   if (get_context_object())
+   {
+
+      return ::success;
+
+   }
+
    auto estatus = ::success;
 
 #if OBJ_TYP_CTR

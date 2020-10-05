@@ -2880,7 +2880,7 @@ ch_else:
 
       string strPath = m_pmanager->m_strNetseedDsCa2Path/ "core/persistent";
 
-      ::file::listing stra(get_context());
+      ::file::listing stra;
 
       Application.dir().rls(stra, strPath);
 
@@ -3155,7 +3155,7 @@ ch_else:
    void script_compiler::parse_pstr_set()
    {
 
-      ::file::listing straFile(get_context());
+      ::file::listing straFile;
 
       Application.dir().rls(straFile, m_pmanager->m_strNetnodePath / "net/aura/pstr_set");
 

@@ -4,6 +4,7 @@
 #endif
 #include "aura/update.h"
 #include "acme/const/timer.h"
+#include "aqua/xml.h"
 
 
 //extern CLASS_DECL_BASE thread_int_ptr < DWORD_PTR > t_time1;
@@ -195,7 +196,6 @@ namespace user
 
 
    bool tab::add_tab(const char * pcsz, id id, bool bVisible, bool bPermanent, ::user::place_holder * pholder)
-
    {
 
       __pointer(::user::tab_pane) ppane = __new(::user::tab_pane(this));
@@ -2623,7 +2623,18 @@ namespace user
    void tab_pane::set_title(const char * pszTitle)
    {
 
-      m_strTitle = pszTitle;
+      string strTitle(pszTitle);
+
+      auto pdocument = create_xml_document();
+
+      if (pdocument->load(strTitle))
+      {
+
+         strTitle = pdocument->root()->get_value();
+
+      }
+
+      m_strTitle = strTitle;
 
       m_ptab->set_need_layout();
 

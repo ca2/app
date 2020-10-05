@@ -17,11 +17,14 @@ namespace linux
       public:
 
 
+         ::context_image m_contextimage;
+
 
          shell();
          virtual ~shell();
 
 
+         virtual ::estatus initialize(::layered * pobjectContext) override;
          //virtual void initialize() override;
 
          //virtual void defer_start();

@@ -751,7 +751,6 @@
 		<Unit filename="user/_.cpp" />
 		<Unit filename="user/_.h" />
 		<Unit filename="user/_const.h" />
-		<Unit filename="user/_const_key.h" />
 		<Unit filename="user/_data.h" />
 		<Unit filename="user/_experience_const.h" />
 		<Unit filename="user/_impl.h" />
@@ -768,7 +767,6 @@
 		<Unit filename="user/control_descriptor.h" />
 		<Unit filename="user/control_event.cpp" />
 		<Unit filename="user/control_event.h" />
-		<Unit filename="user/controller.h" />
 		<Unit filename="user/copydesk.cpp" />
 		<Unit filename="user/copydesk.h" />
 		<Unit filename="user/create.cpp" />
@@ -803,7 +801,6 @@
 		<Unit filename="user/keyboard.h" />
 		<Unit filename="user/main_window.cpp" />
 		<Unit filename="user/main_window.h" />
-		<Unit filename="user/menu_shared.h" />
 		<Unit filename="user/message_queue.cpp" />
 		<Unit filename="user/message_queue.h" />
 		<Unit filename="user/message_queue_listener.h" />

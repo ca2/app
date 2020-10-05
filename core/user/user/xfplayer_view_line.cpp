@@ -40,7 +40,7 @@ xfplayer_view_line::xfplayer_view_line() :
 
 
 xfplayer_view_line::xfplayer_view_line(xfplayer_view_linea * pContainer) :
-   object(pContainer->get_context_application()),
+   object(pContainer),
    m_font(e_create)
 {
    m_pContainer = pContainer;
@@ -66,7 +66,7 @@ xfplayer_view_line::xfplayer_view_line(xfplayer_view_linea * pContainer) :
 
 
 xfplayer_view_line::xfplayer_view_line(const xfplayer_view_line & line) :
-   object(line.get_context_application()),
+   object(line.get_context_object()),
    m_font(e_create)
 {
 
@@ -74,8 +74,10 @@ xfplayer_view_line::xfplayer_view_line(const xfplayer_view_line & line) :
 
 }
 
+
 xfplayer_view_line::~xfplayer_view_line()
 {
+
 }
 
 
@@ -1457,7 +1459,7 @@ void xfplayer_view_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, con
    //TRACE("CLyricViewLine::CacheEmboss: %s\n", pcsz);
 
    ::size size;
-   
+
    pgraphics->set(m_font);
 
    m_dcextension.GetTextExtent(pgraphics, pcsz, iLen, size);

@@ -5,6 +5,7 @@
 		<Option title="apex" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
+		<Option check_files="0" />
 		<Build>
 			<Target title="linux_basis">
 				<Option output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />

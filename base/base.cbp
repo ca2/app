@@ -34,13 +34,13 @@
 					<Add option="-lncurses" />
 					<Add option="-lacme" />
 					<Add option="-lapex" />
+					<Add option="-laqua" />
 					<Add option="-laura" />
 					<Add option="-laxis" />
 					<Add option="-Wl,-z,defs" />
 					<Add directory="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 					<Add directory="$(#archive)/storage-linux/third/library/x64/" />
 				</Linker>
-
 			</Target>
 			<Target title="linux_stage">
 				<Option output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />

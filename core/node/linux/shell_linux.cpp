@@ -73,6 +73,31 @@ namespace linux
 
       }
 
+
+      ::estatus shell::initialize(::layered * pobjectContext)
+      {
+
+         auto estatus = ::user::shell::initialize(pobjectContext);
+
+         if(!estatus)
+         {
+
+            return estatus;
+
+         }
+
+         estatus = m_contextimage.initialize(pobjectContext);
+
+         if(!estatus)
+         {
+
+            return estatus;
+
+         }
+
+         return estatus;
+
+      }
 //
 //      void linux::initialize()
 //      {
@@ -751,7 +776,8 @@ namespace linux
          if (strIcon48.has_char())
          {
 
-            ::image_pointer pimage1 = Application.image().load_image(strIcon16);
+
+            ::image_pointer pimage1 = m_contextimage.load_image(strIcon16);
 
             if (!::is_ok(pimage1))
             {

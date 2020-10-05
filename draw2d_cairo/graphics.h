@@ -185,18 +185,34 @@ namespace draw2d_cairo
 
       // Clipping Functions
       virtual i32 GetClipBox(RECT * prect) override;
-      virtual bool PtVisible(i32 x, i32 y) override;
-      bool PtVisible(const ::point & point) override;
-      virtual bool RectVisible(const ::rect & rect) override;
-      i32 SelectClipRgn(::draw2d::region* pRgn) override;
-      i32 ExcludeClipRect(i32 x1, i32 y1, i32 x2, i32 y2) override;
-      i32 ExcludeClipRect(const ::rect & rect) override;
-      i32 ExcludeUpdateRgn(::user::primitive * pwindow);
-      virtual i32 IntersectClipRect(i32 x1, i32 y1, i32 x2, i32 y2) override;
-      virtual i32 IntersectClipRect(const ::rect & rect) override;
-      i32 OffsetClipRgn(i32 x, i32 y) override;
-      i32 OffsetClipRgn(const ::size & size) override;
-      i32 SelectClipRgn(::draw2d::region* pRgn, ::draw2d::enum_combine ecombine) override;
+      //virtual bool PtVisible(i32 x, i32 y) override;
+      //bool PtVisible(const ::point & point) override;
+      //virtual bool RectVisible(const ::rect & rect) override;
+      //i32 SelectClipRgn(::draw2d::region* pRgn) override;
+      //i32 ExcludeClipRect(i32 x1, i32 y1, i32 x2, i32 y2) override;
+      //i32 ExcludeClipRect(const ::rect & rect) override;
+      //i32 ExcludeUpdateRgn(::user::primitive * pwindow);
+      //virtual i32 IntersectClipRect(i32 x1, i32 y1, i32 x2, i32 y2) override;
+      //virtual i32 IntersectClipRect(const ::rect & rect) override;
+      //i32 OffsetClipRgn(i32 x, i32 y) override;
+      //i32 OffsetClipRgn(const ::size & size) override;
+      //i32 SelectClipRgn(::draw2d::region* pRgn, ::draw2d::enum_combine ecombine) override;
+
+
+      virtual ::estatus reset_clip() override;
+
+      // Maybe used by some 2d Graphics backends as group of helper
+      // methods working together for some purpose
+      // (initially created for clipping).
+      // It should be an aid when the 2d graphics backend supports
+      // "inline" paths.
+      virtual ::estatus _intersect_clip() override;
+      virtual ::estatus _add_shape(const ::rect & rect) override;
+      virtual ::estatus _add_shape(const ::rectd & rect) override;
+      virtual ::estatus _add_shape(const ::oval & oval) override;
+      virtual ::estatus _add_shape(const ::ovald & oval) override;
+      virtual ::estatus _add_shape(const ::polygon & polygon) override;
+      virtual ::estatus _add_shape(const ::polygond & polygon) override;
 
       // Line-Output Functions
       pointd current_position() override;
@@ -209,11 +225,11 @@ namespace draw2d_cairo
       virtual bool draw_line(const ::pointd & point1, const ::pointd & point2, ::draw2d::pen * ppen) override;
       bool Arc(i32 x1, i32 y1, i32 x2, i32 y2, i32 x3, i32 y3, i32 x4, i32 y4) override;
       bool Arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) override;
-      bool Arc(double x, double y, double w, double h, double start, double extends) override;
+      bool Arc(double x, double y, double w, double h, angle start, angle extends) override;
       bool Arc(const ::rect & rect, const ::point & pointStart, const ::point & pointEnd) override;
       bool Polyline(const POINT* lpPoints, count nCount) override;
 
-      bool AngleArc(i32 x, i32 y, i32 nRadius, float fStartAngle, float fSweepAngle) override;
+      bool AngleArc(i32 x, i32 y, i32 nRadius, angle fStartAngle, angle fSweepAngle) override;
       bool ArcTo(i32 x1, i32 y1, i32 x2, i32 y2, i32 x3, i32 y3, i32 x4, i32 y4) override;
       bool ArcTo(const ::rect & rect, const ::point & pointStart, const ::point & pointEnd) override;
       i32 GetArcDirection() override;
@@ -545,7 +561,7 @@ namespace draw2d_cairo
 
       FT_Face ftface(const char* pszFontName);
 
-      virtual void on_apply_clip_region() override;
+      //virtual void on_apply_clip_region() override;
 
 
    };

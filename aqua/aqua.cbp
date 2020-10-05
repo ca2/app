@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="aqua" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="linux_basis">
+				<Option output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-fPIC" />
+					<Add option="-m64" />
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+					<Add directory="$(WORKSPACE_DIR)/../../platform-linux" />
+					<Add directory="$(WORKSPACE_DIR)/../../platform-linux/_include" />
+					<Add directory="$(#archive)/third-linux/third/include" />
+				</Compiler>
+				<Linker>
+					<Add option="-m64" />
+					<Add option="-Wl,-rpath=\\$$$ORIGIN" />
+					<Add option="-lacme" />
+					<Add option="-lapex" />
+					<Add option="-Wl,-z,defs" />
+					<Add directory="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
+					<Add directory="$(#archive)/storage-linux/third/library/x64/" />
+				</Linker>
+			</Target>
+			<Target title="linux_stage">
+				<Option output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-pg" />
+					<Add option="-fPIC" />
+					<Add option="-m64" />
+					<Add option="-g" />
+					<Add option="-O0" />
+					<Add directory="$(WORKSPACE_DIR)/../../platform-linux" />
+				</Compiler>
+				<Linker>
+					<Add option="-pg" />
+					<Add option="-m64" />
+					<Add option="-Wl,-rpath=\\$$$ORIGIN" />
+					<Add option="-lz" />
+					<Add option="-lbz2" />
+					<Add option="-ldl" />
+					<Add option="-lrt" />
+					<Add option="-lbfd" />
+					<Add option="-lX11" />
+					<Add option="-lX11-xcb" />
+					<Add option="-lxcb" />
+					<Add option="-lXinerama" />
+					<Add option="-lXmu" />
+					<Add option="-lXrandr" />
+					<Add option="-lXext" />
+					<Add option="-lXxf86vm" />
+					<Add option="-lXrender" />
+					<Add option="-lidn" />
+					<Add option="-lpthread" />
+					<Add option="-lncurses" />
+					<Add option="-lssl" />
+					<Add option="-lcrypto" />
+					<Add option="-lfreeimage" />
+					<Add option="-lpcre2-8" />
+					<Add option="`pkg-config --libs glib-2.0 gtk+-3.0 gdk-3.0 appindicator3-0.1`" />
+					<Add option="`$(#archive)/tool/bin/not_platform_setup raspbian -lapexsn`" />
+					<Add option="-lace" />
+					<Add option="-lapex" />
+					<Add option="-Wl,-z,defs" />
+					<Add directory="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
+				</Linker>
+			</Target>
+			<Target title="memdleak">
+				<Option output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+					<Add option="-DMEMDLEAK" />
+					<Add directory="$(WORKSPACE_DIR)/../../platform-linux" />
+				</Compiler>
+				<Linker>
+					<Add directory="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
+				</Linker>
+			</Target>
+			<Target title="arm64_basis">
+				<Option output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-pg" />
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+					<Add directory="$(WORKSPACE_DIR)/../../platform-raspbian" />
+					<Add directory="$(WORKSPACE_DIR)/../../platform-raspbian/_include" />
+					<Add directory="$(#archive)/third-raspbian/third/include" />
+				</Compiler>
+				<Linker>
+					<Add option="-pg" />
+					<Add option="-Wl,-rpath=\\$$$ORIGIN" />
+					<Add option="-lz" />
+					<Add option="-ldl" />
+					<Add option="-lrt" />
+					<Add option="-lbfd" />
+					<Add option="-lX11" />
+					<Add option="-lX11-xcb" />
+					<Add option="-lxcb" />
+					<Add option="-lxcb-util" />
+					<Add option="-lXinerama" />
+					<Add option="-lXmu" />
+					<Add option="-lXrandr" />
+					<Add option="-lXext" />
+					<Add option="-lXxf86vm" />
+					<Add option="-lidn" />
+					<Add option="-lpthread" />
+					<Add option="-lncurses" />
+					<Add option="-lssl" />
+					<Add option="-lcrypto" />
+					<Add option="`pkg-config --libs gtk+-3.0 gdk-3.0 gthread-2.0`" />
+					<Add option="-lacme" />
+					<Add option="-Wl,-z,defs" />
+					<Add directory="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
+				</Linker>
+			</Target>
+			<Target title="sanitizers">
+				<Option output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/basis/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/basis/" />
+				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/intermediate/basis/$(PROJECT_NAME)" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-fPIC" />
+					<Add option="-g" />
+					<Add option="-fsanitize=address" />
+					<Add option="-fsanitize-recover=address" />
+					<Add option="-fsanitize=undefined" />
+					<Add option="-D_DEBUG" />
+					<Add directory="$(WORKSPACE_DIR)/../../platform-linux" />
+				</Compiler>
+				<Linker>
+					<Add option="-Wl,-rpath=\\$$$ORIGIN" />
+					<Add option="-lasan" />
+					<Add option="-lubsan" />
+					<Add option="-lz" />
+					<Add option="-lbz2" />
+					<Add option="-ldl" />
+					<Add option="-lrt" />
+					<Add option="-lbfd" />
+					<Add option="-lX11" />
+					<Add option="-lX11-xcb" />
+					<Add option="-lxcb" />
+					<Add option="-lXinerama" />
+					<Add option="-lXmu" />
+					<Add option="-lXrandr" />
+					<Add option="-lXext" />
+					<Add option="-lXxf86vm" />
+					<Add option="-lXrender" />
+					<Add option="-lidn" />
+					<Add option="-lpthread" />
+					<Add option="-lncurses" />
+					<Add option="-lssl" />
+					<Add option="-lcrypto" />
+					<Add option="-lfreeimage" />
+					<Add option="`pkg-config --libs gtk+-3.0 gdk-3.0 appindicator3-0.1`" />
+					<Add option="`$(#archive)/tool/bin/not_platform_setup raspbian -lapexsn`" />
+					<Add option="-lace" />
+					<Add option="-lapex" />
+					<Add option="-Wl,-z,defs" />
+					<Add directory="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
+				</Linker>
+			</Target>
+		</Build>
+		<VirtualTargets>
+			<Add alias="all_sanitizers" targets="sanitizers;" />
+		</VirtualTargets>
+		<Compiler>
+			<Add option="-std=c++14" />
+			<Add option="-fPIC" />
+			<Add option="-fexceptions" />
+			<Add option="-fnon-call-exceptions" />
+			<Add option="-fno-stack-protector" />
+			<Add option="-fno-omit-frame-pointer" />
+			<Add option="-Wno-pointer-arith" />
+			<Add option="-Wno-attributes" />
+			<Add option="-Winvalid-pch" />
+			<Add option="-pthread" />
+			<Add option="`pkg-config --cflags glib-2.0 gtk+-3.0 gdk-3.0 gthread-2.0`" />
+			<Add option="-D_APEX_LIBRARY" />
+			<Add directory="." />
+			<Add directory="$(PROJECT_DIR)" />
+			<Add directory="$(#archive)" />
+			<Add directory="$(#config)" />
+			<Add directory="$(WORKSPACE_DIR)/../.." />
+			<Add directory="$(WORKSPACE_DIR)/../../inc" />
+			<Add directory="$(WORKSPACE_DIR)/../../include" />
+			<Add directory="$(WORKSPACE_DIR)/../../app/_include" />
+			<Add directory="$(WORKSPACE_DIR)/../../app" />
+			<Add directory="$(#sensitive)/sensitive/include" />
+			<Add directory="$(#archive)/third-linux/third/include" />
+		</Compiler>
+		<Linker>
+			<Add directory="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
+		</Linker>
+		<Unit filename="../aura/aura.cbp" />
+		<Unit filename="_.cpp" />
+		<Unit filename="_.h" />
+		<Unit filename="_defer.h" />
+		<Unit filename="console.h" />
+		<Unit filename="const/idpool.cpp" />
+		<Unit filename="const/idpool.h" />
+		<Unit filename="framework.cpp" />
+		<Unit filename="framework.h" />
+		<Unit filename="game/_.h" />
+		<Unit filename="game/_game.h" />
+		<Unit filename="game/estamira.cpp" />
+		<Unit filename="game/estamira.h" />
+		<Unit filename="game/game.cpp" />
+		<Unit filename="game/game.h" />
+		<Unit filename="id.h" />
+		<Unit filename="include/_.h" />
+		<Unit filename="inline/__debug_box_clear_impl.h" />
+		<Unit filename="inline/__debug_box_set_impl.h" />
+		<Unit filename="inline/_acid_app_impl.h" />
+		<Unit filename="inline/_app_impl1.h" />
+		<Unit filename="inline/_application.h" />
+		<Unit filename="inline/_console_old.h" />
+		<Unit filename="inline/_draw2d_impl.h" />
+		<Unit filename="inline/_new_impl.h" />
+		<Unit filename="inline/aaa_application/android.h" />
+		<Unit filename="inline/aaa_application/ios.h" />
+		<Unit filename="inline/aaa_application/linux.h" />
+		<Unit filename="inline/aaa_application/macos.h" />
+		<Unit filename="inline/aaa_application/uwp.h" />
+		<Unit filename="inline/aaa_application/windows.h" />
+		<Unit filename="inline/aaa_console/linux.h" />
+		<Unit filename="inline/aaa_console/macos.h" />
+		<Unit filename="inline/aaa_console/windows.h" />
+		<Unit filename="inline/application.h" />
+		<Unit filename="inline/application_common.h" />
+		<Unit filename="inline/console.h" />
+		<Unit filename="inline/console_common.h" />
+		<Unit filename="inline/library.h" />
+		<Unit filename="library.h" />
+		<Unit filename="multimedia/_.h" />
+		<Unit filename="multimedia/_c.h" />
+		<Unit filename="multimedia/audio.cpp" />
+		<Unit filename="multimedia/audio.h" />
+		<Unit filename="multimedia/audio/_.h" />
+		<Unit filename="multimedia/audio/audio_c.h" />
+		<Unit filename="multimedia/audio/audio_wave_out.cpp" />
+		<Unit filename="multimedia/audio/out.h" />
+		<Unit filename="multimedia/audio/sound_track_player.cpp" />
+		<Unit filename="multimedia/audio/sound_track_player.h" />
+		<Unit filename="multimedia/audio/speaker.cpp" />
+		<Unit filename="multimedia/audio/speaker.h" />
+		<Unit filename="multimedia/decoder.cpp" />
+		<Unit filename="multimedia/decoder.h" />
+		<Unit filename="multimedia/decoder_plugin.cpp" />
+		<Unit filename="multimedia/decoder_plugin.h" />
+		<Unit filename="multimedia/exception.cpp" />
+		<Unit filename="multimedia/exception.h" />
+		<Unit filename="multimedia/file_application.cpp" />
+		<Unit filename="multimedia/file_application.h" />
+		<Unit filename="multimedia/multimedia.cpp" />
+		<Unit filename="multimedia/multimedia.h" />
+		<Unit filename="os/_.h" />
+		<Unit filename="platform/_platform.h" />
+		<Unit filename="platform/application.cpp" />
+		<Unit filename="platform/application.h" />
+		<Unit filename="platform/session.cpp" />
+		<Unit filename="platform/session.h" />
+		<Unit filename="platform/system.cpp" />
+		<Unit filename="platform/system.h" />
+		<Unit filename="user/controller.cpp" />
+		<Unit filename="user/controller.h" />
+		<Unit filename="xml.h" />
+		<Unit filename="xml/_.h" />
+		<Unit filename="xml/_from.cpp" />
+		<Unit filename="xml/_impl.h" />
+		<Unit filename="xml/attr.cpp" />
+		<Unit filename="xml/attr.h" />
+		<Unit filename="xml/base_array.cpp" />
+		<Unit filename="xml/base_array.h" />
+		<Unit filename="xml/data.cpp" />
+		<Unit filename="xml/data.h" />
+		<Unit filename="xml/department.h" />
+		<Unit filename="xml/disp_option.cpp" />
+		<Unit filename="xml/disp_option.h" />
+		<Unit filename="xml/document.cpp" />
+		<Unit filename="xml/document.h" />
+		<Unit filename="xml/edit.cpp" />
+		<Unit filename="xml/edit.h" />
+		<Unit filename="xml/entity.cpp" />
+		<Unit filename="xml/entity.h" />
+		<Unit filename="xml/enum.h" />
+		<Unit filename="xml/exportable.cpp" />
+		<Unit filename="xml/exportable.h" />
+		<Unit filename="xml/glue.h" />
+		<Unit filename="xml/importable.cpp" />
+		<Unit filename="xml/importable.h" />
+		<Unit filename="xml/input_tree.cpp" />
+		<Unit filename="xml/input_tree.h" />
+		<Unit filename="xml/node.cpp" />
+		<Unit filename="xml/node.h" />
+		<Unit filename="xml/output_tree.cpp" />
+		<Unit filename="xml/output_tree.h" />
+		<Unit filename="xml/parse_info.cpp" />
+		<Unit filename="xml/parse_info.h" />
+		<Unit filename="xml/property_exchange.cpp" />
+		<Unit filename="xml/property_exchange.h" />
+		<Unit filename="xml/smart_pointer_array.h" />
+		<Unit filename="xml/stream.h" />
+		<Unit filename="xml/tree_base.cpp" />
+		<Unit filename="xml/tree_base.h" />
+		<Unit filename="xml/tree_schema.cpp" />
+		<Unit filename="xml/tree_schema.h" />
+		<Unit filename="xml/var_exchange.cpp" />
+		<Unit filename="xml/var_exchange.h" />
+		<Unit filename="xml/xml.cpp" />
+		<Unit filename="xml/xmlite.cpp" />
+		<Unit filename="xml/xmlite.h" />
+		<Extensions />
+	</Project>
+</CodeBlocks_project_file>

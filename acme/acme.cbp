@@ -654,6 +654,7 @@
 		<Unit filename="multithreading/sync_result.h" />
 		<Unit filename="multithreading/sync_task.cpp" />
 		<Unit filename="multithreading/sync_task.h" />
+		<Unit filename="multithreading/thread.cpp" />
 		<Unit filename="multithreading/thread.h" />
 		<Unit filename="multithreading/thread_impl.cpp" />
 		<Unit filename="multithreading/thread_impl.h" />
@@ -1298,7 +1299,6 @@
 		<Unit filename="primitive/primitive/bit.h" />
 		<Unit filename="primitive/primitive/block.cpp" />
 		<Unit filename="primitive/primitive/block.h" />
-		<Unit filename="primitive/primitive/callback.h" />
 		<Unit filename="primitive/primitive/cflag.h" />
 		<Unit filename="primitive/primitive/collection.h" />
 		<Unit filename="primitive/primitive/collection_file.h" />
@@ -1308,6 +1308,8 @@
 		<Unit filename="primitive/primitive/context_object_traits.cpp" />
 		<Unit filename="primitive/primitive/edit.cpp" />
 		<Unit filename="primitive/primitive/edit.h" />
+		<Unit filename="primitive/primitive/elemental.cpp" />
+		<Unit filename="primitive/primitive/elemental.h" />
 		<Unit filename="primitive/primitive/enum.h" />
 		<Unit filename="primitive/primitive/enum_type.h" />
 		<Unit filename="primitive/primitive/eobject.h" />
@@ -1317,8 +1319,6 @@
 		<Unit filename="primitive/primitive/function_base.h" />
 		<Unit filename="primitive/primitive/future.cpp" />
 		<Unit filename="primitive/primitive/future.h" />
-		<Unit filename="primitive/primitive/generic.cpp" />
-		<Unit filename="primitive/primitive/generic.h" />
 		<Unit filename="primitive/primitive/handler.cpp" />
 		<Unit filename="primitive/primitive/id.cpp" />
 		<Unit filename="primitive/primitive/id.h" />
@@ -1348,13 +1348,10 @@
 		<Unit filename="primitive/primitive/method.h" />
 		<Unit filename="primitive/primitive/natural.h" />
 		<Unit filename="primitive/primitive/number.h" />
-		<Unit filename="primitive/primitive/object_meta.h" />
 		<Unit filename="primitive/primitive/papaya.h" />
 		<Unit filename="primitive/primitive/pointer.h" />
 		<Unit filename="primitive/primitive/pointer2.h" />
 		<Unit filename="primitive/primitive/primitive_update.h" />
-		<Unit filename="primitive/primitive/procedure.h" />
-		<Unit filename="primitive/primitive/promise.h" />
 		<Unit filename="primitive/primitive/property.cpp" />
 		<Unit filename="primitive/primitive/property.h" />
 		<Unit filename="primitive/primitive/property_set.cpp" />
@@ -1380,7 +1377,6 @@
 		<Unit filename="primitive/primitive/type.cpp" />
 		<Unit filename="primitive/primitive/type.h" />
 		<Unit filename="primitive/primitive/uid.h" />
-		<Unit filename="primitive/primitive/update.h" />
 		<Unit filename="primitive/primitive/util.h" />
 		<Unit filename="primitive/primitive/value.h" />
 		<Unit filename="primitive/primitive/var.cpp" />

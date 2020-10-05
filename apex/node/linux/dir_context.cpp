@@ -241,9 +241,9 @@ namespace linux
 
             __restore(listing.m_eextract);
 
-            ::file::listing straDir(get_context());
+            ::file::listing straDir;
 
-            Application.dir().ls_dir(straDir, listing.m_pathFinal);
+            ls_dir(straDir, listing.m_pathFinal);
 
             for(i32 i = 0; i < straDir.get_count(); i++)
             {
@@ -594,29 +594,29 @@ namespace linux
    }
 
 
-   bool dir_context::rm(const ::file::path & psz, bool bRecursive)
+   bool dir_context::rm(const ::file::path & path, bool bRecursive)
    {
 
       if(bRecursive)
       {
 
-         ::file::listing straPath(::get_context());
+         ::file::listing listing;
 
-         Application.dir().ls(straPath, psz);
+         ls(listing, path);
 
-         for(i32 i = 0; i < straPath.get_count(); i++)
+         for(auto & pathItem : listing)
          {
 
-            if(is(straPath[i]))
+            if(is(pathItem))
             {
 
-               rm(psz / straPath[i].name(), true);
+               rm(pathItem, true);
 
             }
             else
             {
 
-               ::unlink(straPath[i]);
+               ::unlink(pathItem);
 
             }
 
@@ -624,7 +624,7 @@ namespace linux
 
       }
 
-      return ::rmdir(psz) != FALSE;
+      return ::rmdir(path) != FALSE;
 
    }
 
@@ -736,12 +736,12 @@ namespace linux
    }
 
 
-   bool dir_context::has_subdir(const ::file::path & pszDir)
+   bool dir_context::has_subdir(const ::file::path & path)
    {
 
-      ::file::listing listing(get_context());
+      ::file::listing listing;
 
-      Application.dir().ls_dir(listing, pszDir);
+      ls_dir(listing, path);
 
       return listing.get_size() > 0;
 

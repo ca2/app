@@ -24,7 +24,7 @@ namespace linux
       virtual ::estatus init_system() override;
       virtual ::estatus init_context() override;
 
-
+      using ::dir_context::ls;
       virtual ::file::listing & ls(::file::listing & ls) override;
 
 

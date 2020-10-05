@@ -73,7 +73,7 @@ extern "C"
 
 //void ___compile_test_sort_array_21304528734();
 
-void enum_display_monitors(::apex::system * psystem);
+//void enum_display_monitors(::apex::system * psystem);
 
 //#ifdef WINDOWS_DESKTOP
 //CLASS_DECL_APEX ::user::interaction * create_system_message_window(::layered * pobjectContext);

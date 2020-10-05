@@ -797,7 +797,7 @@ bool simple_ui_display::on_click(const char * pszResult)
 
    string strResult(pszResult);
 
-   m_future.receive_response(strResult);
+   m_future.send(strResult);
 
    XUnmapWindow(x11_get_display(), m_window);
 

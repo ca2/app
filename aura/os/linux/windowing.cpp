@@ -3666,7 +3666,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
                   auto & app = App(papplication);
 
-                  auto uiptraFrame = *app.m_puiptraFrame;
+                  auto uiptraFrame = app.m_puiptraFrame->interactiona();
 
                   for(auto & pframe : uiptraFrame)
                   {
@@ -4386,94 +4386,6 @@ WINBOOL ca2_GetClientRect(oswindow window, RECT * prect)
 }
 
 
-HCURSOR context_image::load_default_cursor(e_cursor ecursor)
-{
-
-   int iCursor = 0;
-
-   if(ecursor == cursor_size_top_left)
-   {
-
-      iCursor = XC_top_left_corner;
-
-   }
-   else if(ecursor == cursor_size_top_right)
-   {
-
-      iCursor = XC_top_right_corner;
-
-   }
-   else if(ecursor == cursor_size_top)
-   {
-
-      iCursor = XC_top_side;
-
-   }
-   else if(ecursor == cursor_size_right)
-   {
-
-      iCursor = XC_right_side;
-
-   }
-   else if(ecursor == cursor_size_left)
-   {
-
-      iCursor = XC_left_side;
-
-   }
-   else if(ecursor == cursor_size_bottom)
-   {
-
-      iCursor = XC_bottom_side;
-
-   }
-   else if(ecursor == cursor_size_bottom_left)
-   {
-
-      iCursor = XC_bottom_left_corner;
-
-   }
-   else if(ecursor == cursor_size_bottom_right)
-   {
-
-      iCursor = XC_bottom_right_corner;
-
-   }
-   else if(ecursor == cursor_arrow)
-   {
-
-      iCursor = XC_arrow;
-
-   }
-
-   if(iCursor == 0)
-   {
-
-      return 0;
-
-   }
-
-   sync_lock sl(x11_mutex());
-
-   windowing_output_debug_string("\n::x11_GetWindowRect 1");
-
-   xdisplay d(x11_get_display());
-
-   if(d.is_null())
-   {
-
-      windowing_output_debug_string("\n::x11_GetWindowRect 1.1");
-
-      return 0;
-
-   }
-
-   HCURSOR hcursor = XCreateFontCursor(d.display(), iCursor);
-
-   return hcursor;
-
-}
-
 
 
 WINBOOL x11_get_cursor_pos(LPPOINT ppointCursor)
@@ -4655,45 +4567,6 @@ i64 oswindow_id(oswindow w)
 }
 
 
-WINBOOL context_image::window_set_mouse_cursor(oswindow window, HCURSOR hcursor)
-{
-
-   if(::is_null(window))
-   {
-
-      return FALSE;
-
-   }
-
-   if(window->m_hcursorLast == hcursor)
-   {
-
-      return TRUE;
-
-   }
-
-   sync_lock sl(x11_mutex());
-
-   windowing_output_debug_string("\n::SetCursor 1");
-
-   xdisplay d(window->display());
-
-   if(d.is_null())
-   {
-
-      windowing_output_debug_string("\n::SetCursor 1.1");
-
-      return FALSE;
-
-   }
-
-   XDefineCursor(d, window->window(), hcursor);
-
-   window->m_hcursorLast = hcursor;
-
-   return TRUE;
-
-}
 
 
 XImage * _x11_create_image(Display * pdisplay,  ::image_pointer pimage)
@@ -5493,6 +5366,37 @@ bool post_ui_message(const MESSAGE & message)
 }
 
 
+WINBOOL set_foreground_window(oswindow oswindow)
+{
+
+   if(!::is_window(oswindow))
+   {
+
+      return FALSE;
+
+   }
+
+   x11_fork([oswindow]()
+   {
+
+      xdisplay d(oswindow->display());
+
+      if(d.is_null())
+      {
+
+         return;
+
+      }
+
+      XRaiseWindow(d, oswindow->window());
+
+      XSetInputFocus(d, oswindow->window(), RevertToNone, CurrentTime);
+
+   });
+
+   return TRUE;
+
+}
 
 
 

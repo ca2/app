@@ -8,6 +8,11 @@
 #include "apex/platform/str_context.h"
 
 
+#ifdef LINUX
+void enum_display_monitors(::aura::session * psession);
+#endif // LINUX
+
+
 #ifdef WINDOWS_DESKTOP
 
 
@@ -1910,7 +1915,7 @@ the file README-colorramp for more information. */
             return pimpl->m_puserinteraction;
 
          }
-         
+
 #ifdef WINDOWS_DESKTOP
 
          oswindow = ::GetParent(oswindow);
@@ -1921,11 +1926,11 @@ the file README-colorramp for more information. */
             oswindow = ::get_window(oswindow, GW_OWNER);
 
          }
-         
+
 #else
-      
+
          break;
-         
+
 #endif
 
       }
@@ -2360,7 +2365,7 @@ the file README-colorramp for more information. */
    {
 
 #if defined(WINDOWS_DESKTOP)
-      
+
       if (m_bSystemSynchronizedCursor)
       {
 
@@ -2371,7 +2376,7 @@ the file README-colorramp for more information. */
          m_pointCursor = point;
 
       }
-      
+
 #endif
 
       if (ppoint != nullptr)

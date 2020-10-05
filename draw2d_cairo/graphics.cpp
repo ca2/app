@@ -293,14 +293,146 @@ bool graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
 }
 
 
-i32 graphics::ExcludeUpdateRgn(::user::primitive * pwindow)
+::estatus graphics::reset_clip()
 {
 
-    ::exception::throw_not_implemented();
+   cairo_reset_clip(m_pdc);
 
-    return 0;
+   return ::success;
 
 }
+
+
+::estatus graphics::_intersect_clip()
+{
+
+   cairo_clip(m_pdc);
+
+   return ::success;
+
+}
+
+
+::estatus graphics::_add_shape(const ::rect & rect)
+{
+
+   cairo_rectangle(m_pdc, rect.left, rect.top, rect.width(), rect.height());
+
+   return ::success;
+
+}
+
+
+::estatus graphics::_add_shape(const ::rectd & rect)
+{
+
+   cairo_rectangle(m_pdc, rect.left, rect.top, rect.width(), rect.height());
+
+   return ::success;
+
+}
+
+
+::estatus graphics::_add_shape(const ::oval & oval)
+{
+
+   cairo_keep keep(m_pdc);
+
+   cairo_new_sub_path(m_pdc);
+
+   cairo_translate(m_pdc, (oval.left + oval.right) / 2.0, (oval.top + oval.bottom) / 2.0);
+
+   cairo_scale(m_pdc, (oval.right - oval.left) / 2.0, (oval.bottom - oval.top) / 2.0);
+
+   cairo_arc(m_pdc, 0.0, 0.0, 1.0, 0.0, 2.0 * 3.1415);
+
+   return ::success;
+
+}
+
+
+::estatus graphics::_add_shape(const ::ovald & oval)
+{
+
+   cairo_keep keep(m_pdc);
+
+   cairo_new_sub_path(m_pdc);
+
+   cairo_translate(m_pdc, (oval.left + oval.right) / 2.0, (oval.top + oval.bottom) / 2.0);
+
+   cairo_scale(m_pdc, (oval.right - oval.left) / 2.0, (oval.bottom - oval.top) / 2.0);
+
+   cairo_arc(m_pdc, 0.0, 0.0, 1.0, 0.0, 2.0 * 3.1415);
+
+   return ::success;
+
+}
+
+
+::estatus graphics::_add_shape(const ::polygon & polygon)
+{
+
+    if (polygon.is_empty())
+    {
+
+        return ::success;
+
+    }
+
+    cairo_new_sub_path(m_pdc);
+
+    cairo_move_to(m_pdc, polygon[0].x, polygon[0].y);
+
+    for (i32 i = 1; i < polygon.get_count(); i++)
+    {
+
+        cairo_line_to(m_pdc, polygon[i].x, polygon[i].y);
+
+    }
+
+    cairo_close_path(m_pdc);
+
+    return ::success;
+
+}
+
+
+::estatus graphics::_add_shape(const ::polygond & polygon)
+{
+
+    if (polygon.is_empty())
+    {
+
+        return ::success;
+
+    }
+
+    cairo_new_sub_path(m_pdc);
+
+    cairo_move_to(m_pdc, polygon[0].x, polygon[0].y);
+
+    for (i32 i = 1; i < polygon.get_count(); i++)
+    {
+
+        cairo_line_to(m_pdc, polygon[i].x, polygon[i].y);
+
+    }
+
+    cairo_close_path(m_pdc);
+
+    return ::success;
+
+}
+
+
+//i32 graphics::ExcludeUpdateRgn(::user::primitive * pwindow)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return 0;
+//
+//}
 
 
 i32 graphics::GetDevicecaps(i32 nIndex)
@@ -599,34 +731,34 @@ bool graphics::PaintRgn(::draw2d::region* pRgn)
 }
 
 
-bool graphics::PtVisible(i32 x, i32 y)
-{
-
-    ::exception::throw_not_implemented();
-
-    return false;
-
-}
-
-
-bool graphics::PtVisible(const ::point & point)
-{
-
-    ::exception::throw_not_implemented();
-
-    return false;
-
-}
+//bool graphics::PtVisible(i32 x, i32 y)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return false;
+//
+//}
 
 
-bool graphics::RectVisible(const ::rect & rect)
-{
+//bool graphics::PtVisible(const ::point & point)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return false;
+//
+//}
 
-    ::exception::throw_not_implemented();
 
-    return false;
-
-}
+//bool graphics::RectVisible(const ::rect & rect)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return false;
+//
+//}
 
 
 pointd graphics::current_position()
@@ -711,7 +843,7 @@ bool graphics::Arc(double x1, double y1, double x2, double y2, double x3, double
 }
 
 
-bool graphics::Arc(double x, double y, double w, double h, double start, double extends)
+bool graphics::Arc(double x, double y, double w, double h, angle start, angle extends)
 {
 
    sync_lock ml(cairo_mutex());
@@ -1381,27 +1513,27 @@ bool graphics::PatBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, u32 dwRop)
 }
 
 
-void graphics::on_apply_clip_region()
-{
-
-   cairo_reset_clip(m_pdc);
-
-   if(m_pregion)
-   {
-
-      m_pregion.cast < region >()->clip(m_pdc);
-
-   }
-
-//         if(m_pregion)
-//         {
+//void graphics::on_apply_clip_region()
+//{
 //
-//            _mask(m_pregion);
+//   cairo_reset_clip(m_pdc);
 //
-//         }
+//   if(m_pregion)
+//   {
 //
-
-}
+//      m_pregion.cast < region >()->clip(m_pdc);
+//
+//   }
+//
+////         if(m_pregion)
+////         {
+////
+////            _mask(m_pregion);
+////
+////         }
+////
+//
+//}
 
 
 bool graphics::BitBltRaw(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, u32 dwRop)
@@ -2395,7 +2527,7 @@ bool graphics::SetPixelV(const ::point & point, const ::color & color)
 }
 
 
-bool graphics::AngleArc(i32 x, i32 y, i32 nRadius, float fStartAngle, float fSweepAngle)
+bool graphics::AngleArc(i32 x, i32 y, i32 nRadius, angle fStartAngle, angle fSweepAngle)
 {
 
    ::exception::throw_not_implemented();
@@ -3351,95 +3483,96 @@ i32 graphics::GetClipBox(RECT * prect)
 }
 
 
-i32 graphics::SelectClipRgn(::draw2d::region * pregion)
-{
-
-   sync_lock ml(cairo_mutex());
-
-   if (pregion == nullptr)
-   {
-
-      cairo_reset_clip(m_pdc);
-
-   }
-   else
-   {
-
-      pregion->cast < region >()->clip(m_pdc);
-
-   }
-
-   return 0;
-
-}
-
-
-i32 graphics::ExcludeClipRect(i32 x1, i32 y1, i32 x2, i32 y2)
-{
-
-    //::exception::throw_not_implemented();
-
-    return ::draw2d::graphics::ExcludeClipRect(x1, y1, x2, y2);
-
-}
+//i32 graphics::SelectClipRgn(::draw2d::region * pregion)
+//{
+//
+//   sync_lock ml(cairo_mutex());
+//
+//   if (pregion == nullptr)
+//   {
+//
+//      cairo_reset_clip(m_pdc);
+//
+//   }
+//   else
+//   {
+//
+//      pregion->cast < region >()->clip(m_pdc);
+//
+//   }
+//
+//   return 0;
+//
+//}
 
 
-i32 graphics::ExcludeClipRect(const ::rect & rect)
-{
+//i32 graphics::ExcludeClipRect(i32 x1, i32 y1, i32 x2, i32 y2)
+//{
+//
+//    //::exception::throw_not_implemented();
+//
+//    return ::draw2d::graphics::ExcludeClipRect(x1, y1, x2, y2);
+//
+//}
+//
 
-    ::exception::throw_not_implemented();
+//i32 graphics::ExcludeClipRect(const ::rect & rect)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return 0;
+//
+//}
+//
 
-    return 0;
-
-}
-
-
-i32 graphics::IntersectClipRect(i32 x1, i32 y1, i32 x2, i32 y2)
-{
-
-   sync_lock ml(cairo_mutex());
-
-   cairo_rectangle(m_pdc, x1, y1, x2 - x1, y2 - y1);
-
-   cairo_clip(m_pdc);
-
-   return 0;
-
-}
-
-
-i32 graphics::IntersectClipRect(const ::rect & rect)
-{
-
-   return IntersectClipRect(rect.left, rect.top, rect.right, rect.bottom);
-
-}
+//i32 graphics::IntersectClipRect(i32 x1, i32 y1, i32 x2, i32 y2)
+//{
+//
+//   sync_lock ml(cairo_mutex());
+//
+//   cairo_rectangle(m_pdc, x1, y1, x2 - x1, y2 - y1);
+//
+//   cairo_clip(m_pdc);
+//
+//   return 0;
+//
+//}
 
 
-i32 graphics::OffsetClipRgn(i32 x, i32 y)
-{
+//i32 graphics::IntersectClipRect(const ::rect & rect)
+//{
+//
+//   return IntersectClipRect(rect.left, rect.top, rect.right, rect.bottom);
+//
+//}
 
-   return ::draw2d::graphics::OffsetClipRgn(x, y);
 
-    //::exception::throw_not_implemented();
+//i32 graphics::OffsetClipRgn(i32 x, i32 y)
+//{
+//
+//   return ::draw2d::graphics::OffsetClipRgn(x, y);
+//
+//    //::exception::throw_not_implemented();
+//
+//    // does cairo automatically offset clip region
+//    // according to current transformation?
+//
+//    //return 0;
+//
+//}
 
-    // does cairo automatically offset clip region
-    // according to current transformation?
 
-    //return 0;
-
-}
-
-i32 graphics::OffsetClipRgn(const ::size & size)
-{
-
-    //::exception::throw_not_implemented();
-
-    //return 0;
-
-    return ::draw2d::graphics::OffsetClipRgn(size);
-
-}
+//i32 graphics::OffsetClipRgn(const ::size & size)
+//{
+//
+//    //::exception::throw_not_implemented();
+//
+//    //return 0;
+//
+//    return ::draw2d::graphics::OffsetClipRgn(size);
+//
+//}
 
 
 bool graphics::move_to(const ::point & point)
@@ -3588,12 +3721,12 @@ bool graphics::SelectClipPath(i32 nMode)
 }
 
 
-i32 graphics::SelectClipRgn(::draw2d::region* pRgn, ::draw2d::enum_combine ecombine)
-{
-
-    return SelectClipRgn(pRgn);
-
-}
+//i32 graphics::SelectClipRgn(::draw2d::region* pRgn, ::draw2d::enum_combine ecombine)
+//{
+//
+//    return SelectClipRgn(pRgn);
+//
+//}
 
 
 void graphics::LPtoDP(LPSIZE lpSize)

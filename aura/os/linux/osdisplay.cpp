@@ -258,10 +258,10 @@ Window osdisplay_data::default_root_window()
 
 
 
-void enum_display_monitors(::aura::system * psystem)
+void enum_display_monitors(::aura::session * psession)
 {
 
-   main_async([psystem]
+   main_async([psession]
    {
 
       sync_lock sl(x11_mutex());
@@ -277,22 +277,22 @@ void enum_display_monitors(::aura::system * psystem)
 
       }
 
-      sync_lock slSystem(psystem->mutex());
+      sync_lock slSession(psession->mutex());
 
       ::count iMonitorCount = gdk_display_get_n_monitors(pdisplay);
 
-      psystem->m_rectaWork.set_size(iMonitorCount);
+      psession->m_rectaWork.set_size(iMonitorCount);
 
-      psystem->m_rectaMonitor.set_size(iMonitorCount);
+      psession->m_rectaMonitor.set_size(iMonitorCount);
 
       for(index iMonitor = 0; iMonitor < iMonitorCount; iMonitor++)
       {
 
          GdkMonitor * pmonitor = gdk_display_get_monitor(pdisplay, iMonitor);
 
-         auto & rectWork = psystem->m_rectaWork[iMonitor];
+         auto & rectWork = psession->m_rectaWork[iMonitor];
 
-         auto & rectMonitor = psystem->m_rectaMonitor[iMonitor];
+         auto & rectMonitor = psession->m_rectaMonitor[iMonitor];
 
          if(pmonitor == nullptr)
          {

@@ -158,9 +158,9 @@ int xinerama_get_screen_size(int& width, int& height)
 
    ::array < ::rect > rectaMonitor;
 
-   ::aura::system & system = Sys(pobjectContext);
+   ::aura::session & session = Sess(pobjectContext);
 
-   ::count cMonitor = system.get_monitor_count();
+   ::count cMonitor = session.get_monitor_count();
 
    ::rect rectMonitor;
 
@@ -169,7 +169,7 @@ int xinerama_get_screen_size(int& width, int& height)
    for(; iMonitor < cMonitor; iMonitor++)
    {
 
-      system.get_monitor_rect(iMonitor, &rectMonitor);
+      session.get_monitor_rect(iMonitor, &rectMonitor);
 
       rectaMonitor[iMonitor] = rectMonitor;
 

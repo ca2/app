@@ -109,6 +109,7 @@
 			<Add option="`pkg-config --libs cairo pangocairo`" />
 			<Add option="-lacme" />
 			<Add option="-lapex" />
+			<Add option="-laqua" />
 			<Add option="-laura" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />

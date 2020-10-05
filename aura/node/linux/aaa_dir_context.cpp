@@ -241,9 +241,9 @@ namespace linux
 
             __restore(listing.m_eextract);
 
-            ::file::listing straDir(get_context());
+            ::file::listing straDir;
 
-            Application.dir().ls_dir(straDir, listing.m_pathFinal);
+            ls_dir(straDir, listing.m_pathFinal);
 
             for(i32 i = 0; i < straDir.get_count(); i++)
             {
@@ -599,17 +599,17 @@ namespace linux
    }
 
 
-   bool dir_context::rm(const ::file::path & psz, bool bRecursive)
+   bool dir_context::rm(const ::file::path & path, bool bRecursive)
    {
 
       if(bRecursive)
       {
 
-         ::file::listing straPath(::get_context());
+         ::file::listing listing;
 
-         Application.dir().ls(straPath, psz);
+         ls(listing, path);
 
-         for(i32 i = 0; i < straPath.get_count(); i++)
+         for(auto & pathItem : listing)
          {
 
             if(is(straPath[i]))

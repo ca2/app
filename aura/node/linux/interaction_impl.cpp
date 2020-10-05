@@ -1548,22 +1548,26 @@ namespace linux
          {
             pmouse->m_bTranslated = true;
             ::rect rectWindow;
-            if(m_bScreenRelativeMouseMessagePosition)
-            {
-
-               INFO("Screen Relative Mouse Message Position");
-               ::rect rectWindow32;
-               ::get_window_rect((oswindow) get_handle(), &rectWindow32);
-               ::copy(rectWindow, rectWindow32);
-            }
-            else
+//            if(m_bScreenRelativeMouseMessagePosition)
+//            {
+//
+//               INFO("Screen Relative Mouse Message Position");
+//
+//               ::rect rectWindow32;
+//
+//               ::get_window_rect((oswindow) get_handle(), &rectWindow32);
+//
+//               ::copy(rectWindow, rectWindow32);
+//
+//            }
+//            else
             {
                m_puserinteraction->get_window_rect(rectWindow);
             }
-            if(System.get_monitor_count() > 0)
+            if(Session.get_monitor_count() > 0)
             {
                ::rect rcMonitor;
-               System.get_monitor_rect(0, &rcMonitor);
+               Session.get_monitor_rect(0, &rcMonitor);
                if(rectWindow.left >= rcMonitor.left)
                   pmouse->m_point.x += (LONG) rectWindow.left;
                if(rectWindow.top >= rcMonitor.top)
@@ -4232,7 +4236,7 @@ namespace linux
    bool interaction_impl::SetForegroundWindow()
    {
 
-      return ::set_foregaura_window(get_handle()) != FALSE;
+      return ::set_foreground_window(get_handle()) != FALSE;
 
    }
 

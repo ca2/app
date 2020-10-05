@@ -279,7 +279,7 @@ namespace filemanager
 
             strId = "last_browse_folder." + __str(idMachine);
 
-            if (!Application.data_get({ true, strId }, strPath))
+            if (!App(pobjectContext).data_get({ true, strId }, strPath))
             {
 
                strPath.empty();
@@ -290,7 +290,7 @@ namespace filemanager
 
          //Context.dir().mk(strPath);
 
-         if (Context.dir().is(strPath))
+         if (App(pobjectContext).dir().is(strPath))
          {
 
             return strPath;
@@ -308,7 +308,7 @@ namespace filemanager
       else
       {
 
-         strPath = Context.dir().desktop();
+         strPath = App(pobjectContext).dir().desktop();
 
       }
 

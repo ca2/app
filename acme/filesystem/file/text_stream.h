@@ -255,9 +255,9 @@ namespace str
 {
 
 
-   void from(string & str, const text_stream & strstream);
+   CLASS_DECL_ACME void from(string & str, const text_stream & strstream);
 
-   void from(string & str, const string_stream & strstream);
+   CLASS_DECL_ACME void from(string & str, const string_stream & strstream);
 
 
 } // namespace str

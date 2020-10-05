@@ -466,7 +466,7 @@ namespace music
           * may be called.
           *
           ***************************************************************************/
-         ::estatus     sequence::get_ticks(imedia_position &  pTicks)
+         ::estatus     sequence::get_ticks(imedia_time &  pTicks)
          {
 
             sync_lock sl(mutex());
@@ -623,7 +623,7 @@ namespace music
           * Returns the number of ticks into the stream.
           *
           ***************************************************************************/
-         imedia_position sequence::MillisecsToTicks(imedia_time msOffset)
+         imedia_time sequence::MillisecsToTicks(imedia_time msOffset)
          {
             return file()->MillisecsToTicks(msOffset);
          }
@@ -642,7 +642,7 @@ namespace music
           * Returns the number of milliseconds into the stream.
           *
           ***************************************************************************/
-         imedia_time sequence::TicksToMillisecs(imedia_position tkOffset)
+         imedia_time sequence::TicksToMillisecs(imedia_time tkOffset)
          {
             return file()->TicksToMillisecs(tkOffset);
          }
@@ -820,7 +820,7 @@ namespace music
              void sequence::SetKeyShift(i32 iShift)
              {*/
             bool bPlay = IsPlaying();
-            imedia_position ticks = 0;
+            imedia_time ticks = 0;
             if(bPlay)
             {
 
@@ -967,7 +967,7 @@ namespace music
    //         }
    //      }
 
-         /*imedia_position sequence::GetPositionTicks()
+         /*imedia_time sequence::GetPositionTicks()
           {
           single_lock sl(mutex());
           if(!sl.lock(millis(0)))
@@ -1013,14 +1013,14 @@ namespace music
          }
 
 
-         imedia_position sequence::TimeToPosition(imedia_time millis)
+         imedia_time sequence::TimeToPosition(imedia_time millis)
          {
-            return imedia_position(MillisecsToTicks((iptr) millis));
+            return imedia_time(MillisecsToTicks((iptr) millis));
          }
 
-         imedia_time sequence::PositionToTime(imedia_position tk)
+         imedia_time sequence::PositionToTime(imedia_time tk)
          {
-            return imedia_time(TicksToMillisecs((imedia_position) (iptr) tk));
+            return imedia_time(TicksToMillisecs((imedia_time) (iptr) tk));
          }
 
 
@@ -1194,7 +1194,7 @@ namespace music
 
             bool bPlay = IsPlaying();
 
-            imedia_position ticks = 0;
+            imedia_time ticks = 0;
 
             if(bPlay)
             {
@@ -1224,7 +1224,7 @@ namespace music
 
             bool bPlay = IsPlaying();
 
-            imedia_position ticks = 0;
+            imedia_time ticks = 0;
 
             if(bPlay)
             {
@@ -1249,7 +1249,7 @@ namespace music
          }
 
 
-         imedia_position sequence::GetQuarterNote()
+         imedia_time sequence::GetQuarterNote()
          {
             return get_file()->m_pFileHeader->GetQuarterNoteTicks();
          }

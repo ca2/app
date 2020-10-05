@@ -899,7 +899,7 @@ seq_Preroll_Cleanup:
          * may be called.
          *
          ***************************************************************************/
-         ::estatus     sequence::get_ticks(imedia_position &  pTicks)
+         ::estatus     sequence::get_ticks(imedia_time &  pTicks)
          {
             single_lock sl(&m_mutex);
             if(!sl.lock(millis(184)))
@@ -1049,7 +1049,7 @@ seq_Preroll_Cleanup:
          * Returns the number of ticks into the stream.
          *
          ***************************************************************************/
-         imedia_position sequence::MillisecsToTicks(imedia_time msOffset)
+         imedia_time sequence::MillisecsToTicks(imedia_time msOffset)
          {
             return file()->MillisecsToTicks(msOffset);
          }
@@ -1068,7 +1068,7 @@ seq_Preroll_Cleanup:
          * Returns the number of milliseconds into the stream.
          *
          ***************************************************************************/
-         imedia_time sequence::TicksToMillisecs(imedia_position tkOffset)
+         imedia_time sequence::TicksToMillisecs(imedia_time tkOffset)
          {
             return file()->TicksToMillisecs(tkOffset);
          }
@@ -1425,7 +1425,7 @@ seq_Preroll_Cleanup:
 
             bool bPlay = IsPlaying();
 
-            imedia_position ticks = 0;
+            imedia_time ticks = 0;
 
             if(bPlay)
             {
@@ -1680,7 +1680,7 @@ seq_Preroll_Cleanup:
             }
          }
 
-         imedia_position sequence::GetPositionTicks()
+         imedia_time sequence::GetPositionTicks()
          {
             single_lock sl(&m_mutex);
             if(!sl.lock(millis(0)))
@@ -1720,17 +1720,17 @@ seq_Preroll_Cleanup:
             return false;
          }
 
-         imedia_position sequence::TimeToPosition(imedia_time millis)
+         imedia_time sequence::TimeToPosition(imedia_time millis)
          {
-            return imedia_position(MillisecsToTicks((iptr) millis));
+            return imedia_time(MillisecsToTicks((iptr) millis));
          }
 
-         imedia_time sequence::PositionToTime(imedia_position tk)
+         imedia_time sequence::PositionToTime(imedia_time tk)
          {
-            return imedia_time(TicksToMillisecs((imedia_position) (iptr) tk));
+            return imedia_time(TicksToMillisecs((imedia_time) (iptr) tk));
          }
 
-         void sequence::GetPosition(imedia_position & position)
+         void sequence::GetPosition(imedia_time & position)
          {
             get_ticks(position);
          }
@@ -1763,8 +1763,8 @@ seq_Preroll_Cleanup:
 
             ASSERT(!file.IsNull());
             file.GetTracks().seek_begin();
-            imedia_position               tkMax = file.m_tkLength;
-            imedia_position               tkLastPosition = 0;
+            imedia_time               tkMax = file.m_tkLength;
+            imedia_time               tkLastPosition = 0;
 
 
             ::ikaraoke::static_data & staticdata = data.GetStaticData();
@@ -2285,7 +2285,7 @@ seq_Preroll_Cleanup:
          }
 
 
-         void sequence::GetPositionLength(imedia_position &position)
+         void sequence::GetPositionLength(imedia_time &position)
          {
             position = m_tkLength;
          }
@@ -2467,7 +2467,7 @@ seq_Preroll_Cleanup:
          void sequence::MuteAll(bool bMute, i32 iExcludeTrack)
          {
             bool bPlay = IsPlaying();
-            imedia_position ticks = 0;
+            imedia_time ticks = 0;
             if(bPlay)
             {
                ticks = GetPositionTicks();
@@ -2484,7 +2484,7 @@ seq_Preroll_Cleanup:
          void sequence::MuteTrack(i32 iIndex, bool bMute)
          {
             bool bPlay = IsPlaying();
-            imedia_position ticks = 0;
+            imedia_time ticks = 0;
             if(bPlay)
             {
                ticks = GetPositionTicks();
@@ -2498,7 +2498,7 @@ seq_Preroll_Cleanup:
             }
          }
 
-         imedia_position sequence::GetQuarterNote()
+         imedia_time sequence::GetQuarterNote()
          {
             return get_file()->m_pFileHeader->GetQuarterNoteTicks();
          }

@@ -35,9 +35,9 @@ namespace music
          //void PostNotifyEvent(e_notify_event eevent);
 
          void PrerollAndWait(double rate = 0.0) override;
-         void PrerollRateAndWait(imedia_position tkStart) override;
+         void PrerollRateAndWait(imedia_time tkStart) override;
          void PlayRate(double dRate = 0.0) override;
-         void Play(imedia_position tkStart) override;
+         void Play(imedia_time tkStart) override;
          void PostGMReset() override;
          void PostTempoChange() override;
          void SendTempoChange() override;

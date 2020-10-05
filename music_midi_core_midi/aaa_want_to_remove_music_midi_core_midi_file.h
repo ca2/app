@@ -52,7 +52,7 @@ namespace music
 
              ::estatus     InsertTempoEvent();
 
-             ::music::midi::tempo_map_entry * GetTempoMapEntry(const imedia_position & position);
+             ::music::midi::tempo_map_entry * GetTempoMapEntry(const imedia_time & position);
 
              i32 GetTempoShift();
 
@@ -78,7 +78,7 @@ namespace music
 
              ::estatus     WriteHeader(MIDIFILEHDR * lpmfh);
 
-             ::estatus     ChangeEventDelta(::music::midi::event *pEvent, imedia_position tkNewDelta);
+             ::estatus     ChangeEventDelta(::music::midi::event *pEvent, imedia_time tkNewDelta);
 
              ::estatus     ReplaceSameDeltaEvent(::music::midi::event & pEventNew);
 
@@ -96,21 +96,21 @@ namespace music
 
              ::estatus     WorkMergeTracks();
 
-             ::estatus     WorkStreamRender(LPMIDIHDR lpmh, imedia_position tkMax, u32 cbPrerollNomimalMax);
+             ::estatus     WorkStreamRender(LPMIDIHDR lpmh, imedia_time tkMax, u32 cbPrerollNomimalMax);
 
-             ::estatus     WorkGetNextEvent(::music::midi::event * & pevent, imedia_position tkMax, bool bTkMaxInclusive);
+             ::estatus     WorkGetNextEvent(::music::midi::event * & pevent, imedia_time tkMax, bool bTkMaxInclusive);
 
-             ::estatus     WorkGetNextRawEvent(::music::midi::event * & pevent, imedia_position tkMax, bool bTkMaxInclusive);
+             ::estatus     WorkGetNextRawEvent(::music::midi::event * & pevent, imedia_time tkMax, bool bTkMaxInclusive);
 
-             ::estatus     WorkGetNextRawMidiEvent(::music::midi::event * & pevent, imedia_position tkMax, bool bTkMaxInclusive);
+             ::estatus     WorkGetNextRawMidiEvent(::music::midi::event * & pevent, imedia_time tkMax, bool bTkMaxInclusive);
 
-             ::estatus     WorkSeek(::imedia_position tkPosition, LPMIDIHDR lpmh);
+             ::estatus     WorkSeek(::imedia_time tkPosition, LPMIDIHDR lpmh);
 
              void delete_contents();
 
              i32 GetDivision();
 
-             imedia_position GetPosition();
+             imedia_time GetPosition();
 
              void AttachSeekSync(::ikaraoke::events_tracks_v1 * ptracksv1);
 
@@ -132,7 +132,7 @@ namespace music
 
              ::estatus     GetFileInfo(PSMFFILEINFO psfi);
 
-             iptr TicksToMillisecs(imedia_position tkOffset);
+             iptr TicksToMillisecs(imedia_time tkOffset);
 
              void TicksToMillisecs(imedia_time_array *pMillisArray, imedia_position_array *pTickArray, iptr tkOffset);
 
@@ -142,41 +142,41 @@ namespace music
 
              void PositionToTime(imedia_time_array  & timea, imedia_position_array  & positiona, iptr tkOffset);
 
-             imedia_position MillisecsToTicks(imedia_time msOffset);
+             imedia_time MillisecsToTicks(imedia_time msOffset);
 
-             imedia_time PositionToTime(imedia_position msOffset);
+             imedia_time PositionToTime(imedia_time msOffset);
 
-             imedia_position TimeToPosition(imedia_time msOffset);
+             imedia_time TimeToPosition(imedia_time msOffset);
 
              void MillisecsToTicks(imedia_position_array * pTickArray, imedia_time_array *pMillisArray, imedia_time msOffset);
 
              void TimeToPosition(imedia_position_array & positiona, imedia_time_array & timea, imedia_time msOffset);
 
-             ::estatus     StreamRender(LPMIDIHDR lpmh, imedia_position tkMax, u32 cbPrerollNomimalMax);
+             ::estatus     StreamRender(LPMIDIHDR lpmh, imedia_time tkMax, u32 cbPrerollNomimalMax);
 
-             ::estatus     StreamEvent(imedia_position tkDelta, ::music::midi::event * Event, LPMIDIHDR lpmh, imedia_position tkMax, u32 cbPrerollNomimalMax);
+             ::estatus     StreamEvent(imedia_time tkDelta, ::music::midi::event * Event, LPMIDIHDR lpmh, imedia_time tkMax, u32 cbPrerollNomimalMax);
 
-             ::estatus     StreamEventF1(imedia_position tkDelta, array < ::music::midi::event *, ::music::midi::event * > & eventptra, LPMIDIHDR lpmh, imedia_position tkMax, u32 cbPrerollNomimalMax);
+             ::estatus     StreamEventF1(imedia_time tkDelta, array < ::music::midi::event *, ::music::midi::event * > & eventptra, LPMIDIHDR lpmh, imedia_time tkMax, u32 cbPrerollNomimalMax);
 
-             ::estatus     seek(imedia_position tkPosition, LPMIDIHDR lpmh);
+             ::estatus     seek(imedia_time tkPosition, LPMIDIHDR lpmh);
 
-             ::estatus     seek(imedia_position tkPosition);
+             ::estatus     seek(imedia_time tkPosition);
 
              ::estatus     Build();
 
-             ::estatus     GetNextEvent(::music::midi::event *& pevent, imedia_position tkMax, bool   bTkMaxInclusive);
+             ::estatus     GetNextEvent(::music::midi::event *& pevent, imedia_time tkMax, bool   bTkMaxInclusive);
 
-             ::estatus     GetNextEventTkPosition(imedia_position * pTkPosition, imedia_position tkMax);
+             ::estatus     GetNextEventTkPosition(imedia_time * pTkPosition, imedia_time tkMax);
 
-             void _SyncSeek(imedia_position tkPosition, ::ikaraoke::events_tracks_v1 * ptracksv1);
+             void _SyncSeek(imedia_time tkPosition, ::ikaraoke::events_tracks_v1 * ptracksv1);
 
-             void _SyncSeek(imedia_position tkPosition);
+             void _SyncSeek(imedia_time tkPosition);
 
-             ::estatus     InsertParmData(imedia_position tkDelta, LPMIDIHDR lpmh);
+             ::estatus     InsertParmData(imedia_time tkDelta, LPMIDIHDR lpmh);
 
              ::estatus     InsertLyricEvents(::ikaraoke::lyric_event_v1 * pLyricEvent, LPMIDIHDR lpmh);
 
-             ::estatus     InsertPadEvent(imedia_position tkDelta, LPMIDIHDR lpmh);
+             ::estatus     InsertPadEvent(imedia_time tkDelta, LPMIDIHDR lpmh);
 
              void SetOpened(bool bOpened = true);
              */

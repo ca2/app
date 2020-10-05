@@ -132,7 +132,7 @@ namespace music
             int2a & ia2TokenLine,
             ::ikaraoke::data & data);
 
-            imedia_position GetPositionTicks();
+            imedia_time GetPositionTicks();
             void SetLevelMeter(i32 iLevel);
             ::estatus     CloseStream();
             bool SetMidiOutDevice(u32 uiDevice);
@@ -145,13 +145,13 @@ namespace music
             void OnPositionCB(LPMIDIHDR lpmidihdr);
             void OnDone(HMIDISTRM hmidistream, LPMIDIHDR lpmidihdr);
             virtual void GetTimeLength(imedia_time & time);
-            virtual void GetPositionLength(imedia_position & position);
+            virtual void GetPositionLength(imedia_time & position);
 
             using ::ikaraoke::karaoke::TimeToPosition;
             using ::ikaraoke::karaoke::PositionToTime;
 
-            virtual imedia_position TimeToPosition(imedia_time time);
-            virtual imedia_time PositionToTime(imedia_position position);
+            virtual imedia_time TimeToPosition(imedia_time time);
+            virtual imedia_time PositionToTime(imedia_time position);
 
             virtual bool IsOpened();
 
@@ -193,16 +193,16 @@ namespace music
             //::estatus     Stop(u32 dwEllapse);
             ::estatus     Stop();
 
-            void get_position(imedia_position  & time);
+            void get_position(imedia_time  & time);
             void get_time(imedia_time  & time);
 
-            ::estatus     get_ticks(imedia_position & time);
+            ::estatus     get_ticks(imedia_time & time);
             ::estatus     get_millis(imedia_time & time);
 
 
-            imedia_position MillisecsToTicks(imedia_time msOffset);
+            imedia_time MillisecsToTicks(imedia_time msOffset);
 
-            imedia_time TicksToMillisecs(imedia_position tkOffset);
+            imedia_time TicksToMillisecs(imedia_time tkOffset);
 
             bool IsPlaying();
 
@@ -212,7 +212,7 @@ namespace music
             bool IsSettingPosition();
             void SetSettingPositionFlag(bool bSet = TRUE);
 
-            imedia_position GetQuarterNote();
+            imedia_time GetQuarterNote();
 
 
             inline __pointer(::music::midi::mmsystem::buffer) file()

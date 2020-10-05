@@ -36,9 +36,9 @@ namespace music
             void PostNotifyEvent(::music::midi::player::e_notify_event eevent);
 
             void PrerollAndWait(double rate = 0.0);
-            void PrerollAndWait(imedia_position tkStart);
+            void PrerollAndWait(imedia_time tkStart);
             void Play(double dRate = 0.0);
-            void Play(imedia_position tkStart);
+            void Play(imedia_time tkStart);
             void PostGMReset();
             void PostTempoChange();
             void SendTempoChange();

@@ -57,12 +57,12 @@ namespace multimedia
          virtual ~out();
 
 
-         ::estatus     out_start(const imedia_position & position);
+         ::estatus     out_start(const imedia_time & position);
          //virtual bool  on_run_step();
          void install_message_routing(::channel * pchannel);
 
-         virtual imedia_time out_get_position_millis() override;
-         virtual imedia_position out_get_position() override;
+         virtual imedia_time out_get_time() override;
+         virtual imedia_time out_get_time() override;
          virtual void out_filled(index iBuffer) override;
          //virtual void out_buffer_ready(LPWAVEHDR lpwavehdr);
 

@@ -49,7 +49,7 @@ namespace music
                void SendMmsgDone(::music::midi::sequence *pSeq, ::music::midi::LPMIDIDONEDATA lpmdd);
                void SetCallbackWindow(__pointer(::user::interaction) puie);
                bool Play(double dRate = 0.0, u32 dwEllapse = 584);
-               bool Play(imedia_position tkStart, u32 dwEllapse = 584);
+               bool Play(imedia_time tkStart, u32 dwEllapse = 584);
 
                virtual bool initialize_thread() override;
                virtual i32 exit_instance();
@@ -67,7 +67,7 @@ namespace music
                u32 GetMidiOutDevice();
                void PostNotifyEvent(::music::midi::player::e_notify_event eevent);
 
-               imedia_position RateToTicks(double dRate);
+               imedia_time RateToTicks(double dRate);
 
                bool SetTempoShift(i32 iTempoShift);
 

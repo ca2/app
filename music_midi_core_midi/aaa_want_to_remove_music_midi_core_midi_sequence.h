@@ -116,8 +116,8 @@ namespace music
             using ::ikaraoke::karaoke::TimeToPosition;
             using ::ikaraoke::karaoke::PositionToTime;
 
-            virtual imedia_position TimeToPosition(imedia_time time) override;
-            virtual imedia_time PositionToTime(imedia_position position) override;
+            virtual imedia_time TimeToPosition(imedia_time time) override;
+            virtual imedia_time PositionToTime(imedia_time position) override;
 
             virtual bool IsOpened() override;
 
@@ -133,20 +133,20 @@ namespace music
             virtual ::estatus     Stop();
 
 
-            ::estatus     get_ticks(imedia_position & time) override;
+            ::estatus     get_ticks(imedia_time & time) override;
             ::estatus     get_millis(imedia_time & time) override;
 
 
-            imedia_position MillisecsToTicks(imedia_time msOffset) override;
+            imedia_time MillisecsToTicks(imedia_time msOffset) override;
 
-            imedia_time TicksToMillisecs(imedia_position tkOffset) override;
+            imedia_time TicksToMillisecs(imedia_time tkOffset) override;
 
             bool IsPlaying() override;
 
             bool IsSettingPosition() override;
             void SetSettingPositionFlag(bool bSet = TRUE) override;
 
-            imedia_position GetQuarterNote() override;
+            imedia_time GetQuarterNote() override;
 
 
             inline __pointer(::music::midi::core_midi::file) file()

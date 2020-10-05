@@ -405,7 +405,7 @@ namespace multimedia
       }
 
 
-      imedia_time out::out_get_position_millis()
+      imedia_time out::out_get_time()
       {
 
          single_lock sLock(mutex(), TRUE);
@@ -447,7 +447,7 @@ namespace multimedia
       }
 
 
-      imedia_position out::out_get_position()
+      imedia_time out::out_get_time()
       {
 
          single_lock sLock(mutex(), TRUE);
@@ -547,7 +547,7 @@ namespace multimedia
       }
 
 
-      ::estatus     out::out_start(const imedia_position & position)
+      ::estatus     out::out_start(const imedia_time & position)
       {
 
          ::estatus     estatus = ::wave::out::out_start(position);

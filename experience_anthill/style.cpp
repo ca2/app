@@ -177,7 +177,124 @@ namespace experience
          else if (eelement == ::user::element_item_text)
          {
 
-            return ::color::black;
+            if (estate & ::user::e_state_hover)
+            {
+
+               if (::user::is_app_dark_mode())
+               {
+
+                  return ::color(50, 120, 190, 127);
+
+               }
+               else
+               {
+
+                  return ::color(100, 160, 220, 127);
+
+               }
+
+            }
+            else
+            {
+
+               if (::user::is_app_dark_mode())
+               {
+
+                  return ::color::white;
+
+               }
+               else
+               {
+
+                  return ::color::black;
+
+               }
+
+            }
+
+         }
+         else if (eelement == ::user::element_item_background)
+         {
+
+            if (estate & ::user::e_state_selected)
+            {
+
+               if (estate & ::user::e_state_hover)
+               {
+
+                  if (::user::is_app_dark_mode())
+                  {
+
+                     return ::color(100, 110, 120, 127);
+
+                  }
+                  else
+                  {
+
+                     return ::color(180, 190, 200, 127);
+
+                  }
+
+               }
+               else
+               {
+
+                  if (::user::is_app_dark_mode())
+                  {
+
+                     return ::color::black;
+
+                  }
+                  else
+                  {
+
+                     return ::color::white;
+
+                  }
+
+               }
+
+
+            }
+            else
+            {
+
+               if (estate & ::user::e_state_hover)
+               {
+
+                  if (::user::is_app_dark_mode())
+                  {
+
+                     return ::color(100, 160, 220, 127);
+
+                  }
+                  else
+                  {
+
+                     return ::color(50, 120, 190, 127);
+
+                  }
+
+               }
+               else
+               {
+
+                  if (::user::is_app_dark_mode())
+                  {
+
+                     return ::color::black;
+
+                  }
+                  else
+                  {
+
+                     return ::color::white;
+
+                  }
+
+               }
+
+            }
 
          }
 

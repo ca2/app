@@ -562,7 +562,6 @@ namespace user
 
          }
 
-
          {
 
 #ifdef _DEBUG
@@ -3329,6 +3328,14 @@ namespace user
    }
 
 
+   void list::on_hover_select_timer()
+   {
+
+      mesh::on_hover_select_timer();
+
+   }
+
+
    void list::_001OnMouseMove(::message::message * pmessage)
    {
 
@@ -3360,6 +3367,7 @@ namespace user
             m_bDrag = false;
 
          }
+
 #endif
 
       }
@@ -3372,7 +3380,7 @@ namespace user
          set_need_redraw();
 
       }
-      else if (m_bHoverSelect)
+      else if (m_bHoverSelect2)
       {
 
          if (m_bLButtonDown)
@@ -3390,7 +3398,6 @@ namespace user
          }
 
       }
-
 
       if (m_bDrag)
       {
@@ -3465,6 +3472,7 @@ namespace user
                      }
 
                      _001OnSelectionChange();
+
                   }
 
                }
@@ -3481,15 +3489,11 @@ namespace user
 
       }
 
-      //pmouse->previous(); // give chance to child control
-
-      //set_need_redraw();
-
       track_mouse_leave();
 
       {
 
-         update_hover();
+         update_hover(pmouse);
 
          pmessage->m_bRet = true;
 
@@ -3500,7 +3504,7 @@ namespace user
          if (_001DisplayHitTest(point, iItemEnter, iSubItemEnter))
          {
 
-            if (m_bSelect && m_bHoverSelect &&
+            if (m_bSelect && m_bHoverSelect2 &&
                (m_iSubItemEnter != iSubItemEnter ||
                   m_iItemEnter != iItemEnter)
                && !m_rangeSelection.has_item(iItemEnter))
@@ -3512,7 +3516,9 @@ namespace user
 
                m_iSubItemEnter = iSubItemEnter;
 
-               SetTimer(12321, 800, nullptr);
+               m_iTimerHoverSelect = 0;
+
+               //SetTimer(12321, 800, nullptr);
 
             }
 
@@ -3652,7 +3658,7 @@ namespace user
       if (m_bSelect)
       {
 
-         if (m_bHoverSelect)
+         if (m_bHoverSelect2)
          {
 
             if (_001DisplayHitTest(point, iItem))
@@ -3900,7 +3906,7 @@ namespace user
          set_need_redraw();
 
       }
-      else if(m_bHoverSelect)
+      else if(m_bHoverSelect2)
       {
 
          if (m_bLButtonDown)
@@ -4348,7 +4354,7 @@ namespace user
 
       index iDisplayItem = -1;
 
-      if(!m_bHoverSelect)
+      if(!m_bHoverSelect2)
       {
 
          if (_001DisplayHitTest(point, iDisplayItem))
@@ -6580,7 +6586,7 @@ namespace user
 
       CacheHint();
 
-      update_hover();
+      update_hover(Session.get_cursor_pos());
 
       ::user::scroll_base::on_change_viewport_offset();
 
@@ -6620,23 +6626,33 @@ namespace user
    }
 
 
-
-   void list::update_hover()
+   bool list::update_hover(const ::point & point, bool bAvoidRedraw)
    {
-      index iItemHover;
-      index iSubItemHover;
-      auto point = Session.get_cursor_pos();
-      _001ScreenToClient(point);
 
-      if (_001DisplayHitTest(point, iItemHover, iSubItemHover))
+      index iItemHover;
+
+      index iSubItemHover;
+
+      auto pointClient = point;
+
+      _001ScreenToClient(pointClient);
+
+      bool bAnyHoverChange = false;
+
+      if (_001DisplayHitTest(pointClient, iItemHover, iSubItemHover))
       {
-         if (m_iSubItemHover != iSubItemHover ||
-               m_iDisplayItemHover != iItemHover)
+
+         if (m_iSubItemHover != iSubItemHover || m_iDisplayItemHover != iItemHover)
          {
+
             m_iDisplayItemHover = iItemHover;
+
             m_iSubItemHover = iSubItemHover;
-            set_need_redraw();
+
+            bAnyHoverChange = true;
+
          }
+
       }
       else
       {
@@ -6645,11 +6661,30 @@ namespace user
          {
 
             m_iDisplayItemHover = -1;
+
             m_iSubItemHover = -1;
-            set_need_redraw();
+
+            bAnyHoverChange = true;
+
          }
 
       }
+
+      if (!bAvoidRedraw)
+      {
+
+         if (bAnyHoverChange)
+         {
+
+            set_need_redraw();
+
+            post_redraw();
+
+         }
+
+      }
+
+      return bAnyHoverChange;
 
    }
 

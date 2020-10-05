@@ -44,16 +44,13 @@ namespace user
       m_bSortEnable              = true;
       m_bFilter1                 = false;
       m_nColumnCount             = 1;
+      m_iTimerHoverSelect = 0;
 
       m_pcache                   = nullptr;
       m_bTopText                 = false;
 
       m_bEmboss                  = true;
-#if defined(ANDROID)
-      m_bHoverSelect = false;
-#else
-      m_bHoverSelect = true;
-#endif
+      m_bHoverSelect2            = true;
       m_bMultiSelect             = true;
       m_iLateralGroupWidth       = 200;
 
@@ -2511,7 +2508,7 @@ namespace user
          set_need_redraw();
 
       }
-      else if(m_bHoverSelect)
+      else if(m_bHoverSelect2)
       {
 
          if (m_bLButtonDown)
@@ -2534,7 +2531,7 @@ namespace user
 
       {
 
-         update_hover();
+         update_hover(Session.get_cursor_pos());
 
          pmessage->m_bRet = true;
 
@@ -2545,7 +2542,7 @@ namespace user
          if (_001DisplayHitTest(point, iItemEnter, iSubItemEnter))
          {
 
-            if (m_bSelect && m_bHoverSelect &&
+            if (m_bSelect && m_bHoverSelect2 &&
                   (m_iSubItemEnter != iSubItemEnter ||
                    m_iItemEnter != iItemEnter)
                   && !m_rangeSelection.has_item((::index) iItemEnter))
@@ -2557,7 +2554,7 @@ namespace user
 
                m_iSubItemEnter = iSubItemEnter;
 
-               SetTimer(12321, 800, nullptr);
+               m_iTimerHoverSelect = 0;
 
             }
 
@@ -2648,7 +2645,7 @@ namespace user
       if(m_bSelect)
       {
 
-         if(m_bHoverSelect)
+         if(m_bHoverSelect2)
          {
 
             if(_001DisplayHitTest(point,iItem))
@@ -3172,6 +3169,8 @@ namespace user
 
       pmessage->previous();
 
+      on_enable_hover_select();
+
       descriptor().set_control_type(::user::control_type_mesh);
 
       m_dcextension.initialize(this);
@@ -3290,12 +3289,177 @@ namespace user
    //}
 
 
+   void mesh::on_hover_select_timer()
+   {
+
+      index iItemSel;
+
+      index iSubItemSel;
+
+      auto point = Session.get_cursor_pos();
+
+      _001ScreenToClient(point);
+
+      try
+      {
+
+         if (_001DisplayHitTest(point, iItemSel, iSubItemSel))
+         {
+
+            if (m_iSubItemEnter == iSubItemSel && m_iItemEnter == iItemSel)
+            {
+
+               m_iSubItemEnter = -1;
+
+               m_iItemEnter = -1;
+
+               bool bLShiftKeyDown = Session.is_key_pressed(::user::key_lshift);
+               bool bRShiftKeyDown = Session.is_key_pressed(::user::key_rshift);
+               bool bLControlKeyDown = Session.is_key_pressed(::user::key_lcontrol);
+               bool bRControlKeyDown = Session.is_key_pressed(::user::key_rcontrol);
+               bool bShiftKeyDown = bLShiftKeyDown || bRShiftKeyDown;
+               bool bControlKeyDown = bLControlKeyDown || bRControlKeyDown;
+
+               if (m_bMultiSelect && bShiftKeyDown)
+               {
+
+                  if (bControlKeyDown)
+                  {
+
+                     item_range itemrange;
+
+                     itemrange.set(
+                        min(iItemSel, m_iItemSel),
+                        max(iItemSel, m_iItemSel),
+                        min(iSubItemSel, m_iSubItemSel),
+                        max(iSubItemSel, m_iSubItemSel),
+                        -1,
+                        -1);
+
+                     _001AddSelection(itemrange);
+
+                  }
+                  else
+                  {
+
+                     item_range itemrange;
+
+                     itemrange.set(
+                        min(iItemSel, m_iItemSel),
+                        max(iItemSel, m_iItemSel),
+                        min(iSubItemSel, m_iSubItemSel),
+                        max(iSubItemSel, m_iSubItemSel),
+                        -1,
+                        -1);
+
+                     ::user::range range;
+
+                     range.add_item(itemrange);
+
+                     _001SetSelection(range);
+
+                  }
+
+               }
+               else if (m_bMultiSelect && bControlKeyDown)
+               {
+
+                  m_iLastItemSel = m_iItemSel;
+
+                  m_iLastSubItemSel = m_iSubItemSel;
+
+                  m_iItemSel = iItemSel;
+
+                  m_iSubItemSel = iSubItemSel;
+
+                  item_range itemrange;
+
+                  itemrange.set(
+                     m_iItemSel,
+                     m_iItemSel,
+                     m_iSubItemSel,
+                     m_iSubItemSel,
+                     -1,
+                     -1);
+
+                  _001AddSelection(itemrange);
+
+               }
+               else
+               {
+
+                  m_iLastItemSel = m_iItemSel;
+
+                  m_iLastSubItemSel = m_iSubItemSel;
+
+                  m_iItemSel = iItemSel;
+
+                  m_iSubItemSel = iSubItemSel;
+
+                  item_range itemrange;
+
+                  itemrange.set(
+                     _001DisplayToStrict(m_iItemSel),
+                     _001DisplayToStrict(m_iItemSel),
+                     m_iSubItemSel,
+                     m_iSubItemSel,
+                     -1,
+                     -1);
+
+                  ::user::range range;
+
+                  range.add_item(itemrange);
+
+                  _001SetSelection(range);
+
+               }
+
+            }
+
+         }
+
+      }
+      catch (...)
+      {
+
+      }
+
+      m_iSubItemEnter = -1;
+
+      m_iItemEnter = -1;
+
+   }
+
+
    void mesh::_001OnTimer(::timer * ptimer)
    {
 
       ::user::interaction::_001OnTimer(ptimer);
 
-      if(ptimer->m_nIDEvent == 12345679) // left click
+      if (ptimer->m_nIDEvent == timer_hover_select)
+      {
+
+         int iHoverSelectTimeout = 3;
+
+         if (m_iTimerHoverSelect < iHoverSelectTimeout)
+         {
+
+            m_iTimerHoverSelect++;
+
+         }
+         else if (m_iTimerHoverSelect == iHoverSelectTimeout)
+         {
+
+            on_hover_select_timer();
+
+            m_iTimerHoverSelect++;
+
+         }
+
+         
+
+      }
+      else if(ptimer->m_nIDEvent == 12345679) // left click
       {
 
          KillTimer(12345679);
@@ -3303,7 +3467,7 @@ namespace user
          if(m_bSelect)
          {
 
-            if(m_bHoverSelect)
+            if(m_bHoverSelect2)
             {
 
             }
@@ -3386,7 +3550,7 @@ namespace user
 
          KillTimer(ptimer->m_nIDEvent);
 
-         if(!m_bHoverSelect)
+         if(!m_bHoverSelect2)
          {
 
          }
@@ -3398,146 +3562,41 @@ namespace user
          }
 
       }
-      else if(ptimer->m_nIDEvent == 12321)
+      //else if(ptimer->m_nIDEvent == 12321)
+      //{
+
+
+      //}
+
+   }
+
+
+   void mesh::enable_hover_select(bool bEnable)
+   {
+
+      if (is_different(bEnable, m_bEnableSaveWindowRect2))
       {
 
-         KillTimer(ptimer->m_nIDEvent);
+         on_enable_hover_select();
 
-         index iItemSel;
+      }
 
-         index iSubItemSel;
+   }
 
-         auto point = Session.get_cursor_pos();
 
-         _001ScreenToClient(point);
+   void mesh::on_enable_hover_select()
+   {
 
-         try
-         {
+      if (m_bHoverSelect2)
+      {
 
-            if(_001DisplayHitTest(point, iItemSel,iSubItemSel))
-            {
+         SetTimer(timer_hover_select, 200);
 
-               if(m_iSubItemEnter == iSubItemSel && m_iItemEnter == iItemSel)
-               {
+      }
+      else
+      {
 
-                  m_iSubItemEnter = -1;
-
-                  m_iItemEnter = -1;
-
-                  bool bLShiftKeyDown     = Session.is_key_pressed(::user::key_lshift);
-                  bool bRShiftKeyDown     = Session.is_key_pressed(::user::key_rshift);
-                  bool bLControlKeyDown   = Session.is_key_pressed(::user::key_lcontrol);
-                  bool bRControlKeyDown   = Session.is_key_pressed(::user::key_rcontrol);
-                  bool bShiftKeyDown      = bLShiftKeyDown || bRShiftKeyDown;
-                  bool bControlKeyDown    = bLControlKeyDown || bRControlKeyDown;
-
-                  if(m_bMultiSelect && bShiftKeyDown)
-                  {
-
-                     if(bControlKeyDown)
-                     {
-
-                        item_range itemrange;
-
-                        itemrange.set(
-                        min(iItemSel,m_iItemSel),
-                        max(iItemSel,m_iItemSel),
-                        min(iSubItemSel,m_iSubItemSel),
-                        max(iSubItemSel,m_iSubItemSel),
-                        -1,
-                        -1);
-
-                        _001AddSelection(itemrange);
-
-                     }
-                     else
-                     {
-
-                        item_range itemrange;
-
-                        itemrange.set(
-                        min(iItemSel,m_iItemSel),
-                        max(iItemSel,m_iItemSel),
-                        min(iSubItemSel,m_iSubItemSel),
-                        max(iSubItemSel,m_iSubItemSel),
-                        -1,
-                        -1);
-
-                        ::user::range range;
-
-                        range.add_item(itemrange);
-
-                        _001SetSelection(range);
-
-                     }
-
-                  }
-                  else if(m_bMultiSelect && bControlKeyDown)
-                  {
-
-                     m_iLastItemSel = m_iItemSel;
-
-                     m_iLastSubItemSel = m_iSubItemSel;
-
-                     m_iItemSel = iItemSel;
-
-                     m_iSubItemSel = iSubItemSel;
-
-                     item_range itemrange;
-
-                     itemrange.set(
-                     m_iItemSel,
-                     m_iItemSel,
-                     m_iSubItemSel,
-                     m_iSubItemSel,
-                     -1,
-                     -1);
-
-                     _001AddSelection(itemrange);
-
-                  }
-                  else
-                  {
-
-                     m_iLastItemSel = m_iItemSel;
-
-                     m_iLastSubItemSel = m_iSubItemSel;
-
-                     m_iItemSel = iItemSel;
-
-                     m_iSubItemSel = iSubItemSel;
-
-                     item_range itemrange;
-
-                     itemrange.set(
-                     _001DisplayToStrict(m_iItemSel),
-                     _001DisplayToStrict(m_iItemSel),
-                     m_iSubItemSel,
-                     m_iSubItemSel,
-                     -1,
-                     -1);
-
-                     ::user::range range;
-
-                     range.add_item(itemrange);
-
-                     _001SetSelection(range);
-
-                  }
-
-               }
-
-            }
-
-         }
-         catch(...)
-         {
-
-         }
-
-         m_iSubItemEnter = -1;
-
-         m_iItemEnter = -1;
+         KillTimer(timer_hover_select);
 
       }
 
@@ -4592,7 +4651,7 @@ namespace user
 
       CacheHint();
 
-      update_hover();
+      update_hover(Session.get_cursor_pos());
 
    }
 
@@ -4619,37 +4678,67 @@ namespace user
    //   return m_fontHover;
    //}
 
+
    void mesh::_001OnMouseLeave(::message::message * pmessage)
    {
+      
       m_iDisplayItemHover = -1;
+      
       m_iSubItemHover = -1;
+      
       set_need_redraw();
+      
       pmessage->m_bRet = true;
+
    }
 
 
-
-   void mesh::update_hover()
+   bool mesh::update_hover(const ::point & point, bool bAvoidRedraw)
    {
-      index iItemHover;
-      index iSubItemHover;
-      auto point = Session.get_cursor_pos();
-      _001ScreenToClient(point);
 
-      if(_001DisplayHitTest(point,iItemHover,iSubItemHover))
+      index iItemHover;
+      
+      index iSubItemHover;
+      
+      auto pointClient = point;
+
+      _001ScreenToClient(pointClient);
+
+      bool bAnyHoverChange = false;
+
+      if(_001DisplayHitTest(point, iItemHover, iSubItemHover))
       {
-         if(m_iSubItemHover != iSubItemHover ||
-               m_iDisplayItemHover != iItemHover)
+
+         if(m_iSubItemHover != iSubItemHover || m_iDisplayItemHover != iItemHover)
          {
+
             m_iDisplayItemHover = iItemHover;
+
             m_iSubItemHover = iSubItemHover;
-            set_need_redraw();
+
+            bAnyHoverChange = true;
+
          }
+
       }
 
+      if (!bAvoidRedraw)
+      {
+
+         if (bAnyHoverChange)
+         {
+
+            set_need_redraw();
+
+            post_redraw();
+
+         }
+
+      }
+
+      return bAnyHoverChange;
+
    }
-
-
 
 
    ::user::mesh_data * mesh::GetDataInterface()

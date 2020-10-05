@@ -15,7 +15,7 @@ namespace filemanager
       m_bStatic = false;
       m_bFileSize = false;
       m_bShow = false;
-      m_bHoverSelect = true;
+      m_bHoverSelect2 = false;
 
    }
 

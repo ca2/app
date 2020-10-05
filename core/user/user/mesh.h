@@ -9,6 +9,14 @@ namespace user
       virtual public ::user::scroll_base,
       public ::sort::compare_interface
    {
+   protected:
+
+
+      /// Hovering items select them? Imply single-click open.
+      bool                             m_bHoverSelect2;
+      int                              m_iTimerHoverSelect;
+
+
    public:
 
       enum EView
@@ -124,8 +132,6 @@ namespace user
       /// Are items selectable?
       bool                             m_bSelect;
 
-      /// Hovering items select them? Imply single-click open.
-      bool                             m_bHoverSelect;
 
       /// Is multiple selection of items enabled?
       bool                             m_bMultiSelect;
@@ -249,7 +255,8 @@ namespace user
       virtual void install_message_routing(::channel * pchannel) override;
 
       virtual mesh_data * GetDataInterface();
-      virtual void update_hover();
+      using interaction::update_hover;
+      virtual bool update_hover(const ::point& point, bool bAvoidRedraw = true) override;
       //::draw2d::font * _001GetFont();
       //::draw2d::font * _001GetFontHover();
       virtual ::draw2d::pen * _001GetPenFocused();
@@ -277,6 +284,9 @@ namespace user
 
       virtual bool is_valid_display_item(index iDisplayItem);
       virtual bool is_valid_strict_item(index iStrictItem);
+
+
+      virtual void on_hover_select_timer();
 
 
       virtual ::size get_item_size();
@@ -452,6 +462,10 @@ namespace user
 
 
       virtual void _001OnTimer(::timer * ptimer) override;
+
+
+      virtual void enable_hover_select(bool bEnable = true);
+      virtual void on_enable_hover_select();
 
 
       virtual bool on_click(const ::user::item & item) override;

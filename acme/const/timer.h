@@ -49,6 +49,8 @@ enum e_timer : ::i64
    timer_after_text_change_delayed,
    
    timer_reload,
+   timer_hover_select,
+
 
 };
 

@@ -1344,7 +1344,8 @@ namespace user
       using ::aura::drawable::on_hit_test;
       virtual void on_hit_test(::user::item & item) override;
 
-      virtual void update_hover(::message::mouse* pmouse = nullptr, bool bAvoidRedraw = true);
+      virtual bool update_hover(const ::point & point, bool bAvoidRedraw = true);
+      virtual bool update_hover(::message::mouse * pmouse, bool bAvoidRedraw = true);
 
       virtual bool get_rect(::user::item& item);
 

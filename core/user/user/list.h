@@ -62,12 +62,14 @@ namespace user
       __pointer(list_column) new_list_column();
 
 
+      virtual void on_hover_select_timer() override;
 
 
       virtual void install_message_routing(::channel * pchannel) override;
 
       //mesh_data * GetDataInterface();
-      void update_hover() override;
+      using mesh::update_hover;
+      virtual bool update_hover(const ::point& point, bool bAvoidRedraw = true) override;
       //::draw2d::font * _001GetFont();
       //::draw2d::font * _001GetFontHover();
       //::draw2d::pen * _001GetPenFocused();

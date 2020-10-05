@@ -2175,8 +2175,6 @@ namespace user
 
             ::rect rectIntersect;
 
-            index i = 0;
-
             while (pinteraction != nullptr)
             {
 
@@ -2186,13 +2184,9 @@ namespace user
 
                _001ScreenToClient(rectClient);
 
-               rectClient += m_pointScroll;
-               
                m_pshapeaClip->add_item(__new(rect_shape(rectClient)));
 
                m_pshapeaClip->add_item(__new(intersect_clip_shape()));
-
-               i++;
 
                pinteraction = pinteraction->GetParent();
 
@@ -2201,6 +2195,8 @@ namespace user
          }
 
          pgraphics->reset_clip();
+
+         pgraphics->m_pointAddShapeTranslate = m_pointScroll;
 
          pgraphics->add_shapes(*m_pshapeaClip);
 
@@ -7720,7 +7716,11 @@ void interaction::_001CallOnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       if (m_pimpl == nullptr)
+      {
+
          return false;
+
+      }
 
       return m_pimpl->KillTimer(nIDEvent);
 
@@ -12770,34 +12770,22 @@ restart:
       if (m_bSimpleUIDefaultMouseHandling)
       {
 
-         update_hover(pmouse, false);
+         update_hover(pmouse->m_point, false);
 
       }
 
    }
 
 
-   void interaction::update_hover(::message::mouse* pmouse, bool bAvoidRedraw)
+
+   bool interaction::update_hover(const ::point& point, bool bAvoidRedraw)
    {
 
       sync_lock sl(mutex());
 
-      point pointCursor;
+      auto pointClient = point;
 
-      if (::is_set(pmouse))
-      {
-
-         pointCursor = pmouse->m_point;
-
-      }
-      else
-      {
-
-         pointCursor = Session.get_cursor_pos();
-
-      }
-
-      auto itemHitTest = hit_test(pointCursor);
+      auto itemHitTest = hit_test(pointClient);
 
       bool bAnyHoverChange = false;
 
@@ -12810,15 +12798,41 @@ restart:
 
       }
 
+      if (!bAvoidRedraw)
+      {
+
+         if (bAnyHoverChange || !m_itemHover.is_drawn())
+         {
+
+            set_need_redraw();
+
+            post_redraw();
+
+         }
+
+      }
+
+      return bAnyHoverChange;
+
+   }
+
+
+   bool interaction::update_hover(::message::mouse * pmouse, bool bAvoidRedraw)
+   {
+
+      sync_lock sl(mutex());
+
+      bool bAnyHoverChange = update_hover(pmouse->m_point, false);
+
       if (::is_set(pmouse))
       {
 
-         if (itemHitTest != m_itemHoverMouse)
+         if (m_itemHover != m_itemHoverMouse)
          {
 
             auto itemOldMouseHover = m_itemHoverMouse;
 
-            m_itemHoverMouse = itemHitTest;
+            m_itemHoverMouse = m_itemHover;
 
             bAnyHoverChange = true;
 
@@ -12843,7 +12857,7 @@ restart:
 
       }
 
-      if(bAnyHoverChange || !m_itemHover.is_drawn())
+      if (bAnyHoverChange || !m_itemHover.is_drawn())
       {
 
          if (!bAvoidRedraw)
@@ -12856,6 +12870,8 @@ restart:
          }
 
       }
+
+      return bAnyHoverChange;
 
    }
 

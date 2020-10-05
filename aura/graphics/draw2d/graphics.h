@@ -53,6 +53,7 @@ namespace draw2d
       bool                                m_bPrinting;
       void *                              m_osdata[8];
       ::user::style_pointer               m_puserstyle;
+      ::point                             m_pointAddShapeTranslate;
 
 
       graphics();

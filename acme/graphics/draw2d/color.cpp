@@ -520,7 +520,7 @@ u32 color::get_bgr() const
 
 u32 color::get_rgba() const
 {
-   return m_iR | (m_iG << 8) | (m_iB << 16) | (m_iA << 24);
+   return m_iA >= 0 ? m_iR | (m_iG << 8) | (m_iB << 16) | (m_iA << 24) : 0;
 }
 
 u32 color::get_bgra() const

@@ -419,6 +419,7 @@ namespace core
       create_factory <form_child_frame >();
 
       create_factory <simple_toolbar >();
+      create_factory <simple_toolbar, ::user::toolbar >();
       create_factory <::experience::orto_button >();
 
       estatus = initialize_filemanager_component(this);

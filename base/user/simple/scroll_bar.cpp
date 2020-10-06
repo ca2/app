@@ -1161,31 +1161,27 @@ void simple_scroll_bar::_001OnClip(::draw2d::graphics_pointer & pgraphics)
    try
    {
 
-      ::rect rectClip;
+      //::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 
-      ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
+      //bool bFirst = true;
+      //
+      //if (pdrawcontext != nullptr)
+      //{
 
-      ::rect rectClient;
+      //   ::rect rectClient;
 
-      bool bFirst = true;
-      
-      pgraphics->reset_clip();
+      //   rectClient = pdrawcontext->m_rectWindow;
 
-      if (pdrawcontext != nullptr)
-      {
+      //   _001ScreenToClient(rectClient);
 
-         rectClient = pdrawcontext->m_rectWindow;
+      //   rectClient.bottom++;
+      //   rectClient.right++;
 
-         _001ScreenToClient(rectClient);
+      //   rectClip = rectClient;
 
-         rectClient.bottom++;
-         rectClient.right++;
+      //   bFirst = false;
 
-         rectClip = rectClient;
-
-         bFirst = false;
-
-      }
+      //}
       
       if(!m_pshapeaClip)
       {
@@ -1195,8 +1191,6 @@ void simple_scroll_bar::_001OnClip(::draw2d::graphics_pointer & pgraphics)
          ::user::interaction * pinteraction = this;
 
          ::rect rectFocus;
-
-         ::rect rectIntersect;
 
          index i = 0;
 
@@ -1220,27 +1214,9 @@ void simple_scroll_bar::_001OnClip(::draw2d::graphics_pointer & pgraphics)
 
             _001ScreenToClient(rectFocus);
             
-            if(m_pshapeaClip->has_element())
-            {
-               
-               m_pshapeaClip->add_item(__new(intersect_clip_shape()));
-               
-            }
-               
-            m_pshapeaClip->add_item(__new(rect_shape(rectClient)));
+            m_pshapeaClip->add_item(__new(rect_shape(rectFocus)));
 
-            if (i == 0)
-            {
-
-               rectIntersect = rectFocus;
-
-            }
-            else
-            {
-
-               rectIntersect.intersect(rectFocus);
-
-            }
+            m_pshapeaClip->add_item(__new(intersect_clip_shape()));
 
             i++;
 
@@ -1248,11 +1224,11 @@ void simple_scroll_bar::_001OnClip(::draw2d::graphics_pointer & pgraphics)
 
          }
          
-         m_pshapeaClip->add_item({__new(intersect_clip_shape)});
-         
       }
       
       pgraphics->reset_clip();
+
+      pgraphics->m_pointAddShapeTranslate.Null();
 
       pgraphics->add_shapes(*m_pshapeaClip);
 

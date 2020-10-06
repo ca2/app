@@ -17,7 +17,7 @@ namespace user
       // on m_rectParentClient values of the interaction_impl and its ascendants.
       size                                m_size;
       bool                                m_bCreate;
-      __pointer(::user::interaction)             m_puiMessage;
+      __pointer(::user::interaction)      m_puiMessage;
       interaction *                       m_puiOwner;
       ::mutex                             m_mutexLongPtr;
       int_ptr_to_int_ptr                  m_longptr;
@@ -77,6 +77,10 @@ namespace user
       virtual bool create_window(::user::interaction * pinteraction, const char * pszClassName, const char * pszWindowName, u32 uStyle, const ::rect & rect, ::user::interaction * puiParent, id id, ::create * pContext = nullptr) override;
 
       virtual bool create_window_ex(::user::interaction * pinteraction, ::user::create_struct & cs, ::user::interaction * puiParent, id id) override;
+
+
+      virtual LONG_PTR get_window_long_ptr(i32 nIndex) const override;
+      virtual LONG_PTR set_window_long_ptr(i32 nIndex, LONG_PTR lValue) override;
 
 
       virtual bool is_this_visible(e_layout elayout) override;

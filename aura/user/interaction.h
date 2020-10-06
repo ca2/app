@@ -35,6 +35,7 @@ namespace user
 
          non_client_background = 1,
          non_client_focus_rect = 2,
+         non_client_hover_rect = 4,
 
       };
 
@@ -111,7 +112,7 @@ namespace user
       item                                      m_itemHoverMouse;
       ::size                                    m_sizeRestoreBroad;
       ::size                                    m_sizeRestoreCompact;
-      flags < e_non_client >                    m_flagNonClient;
+      cflag < e_non_client >                    m_flagNonClient;
       bool                                      m_bTrackMouseLeave;
       bool                                      m_bMouseHover;
       bool                                      m_bSimpleUIDefaultMouseHandling;

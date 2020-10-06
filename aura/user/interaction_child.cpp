@@ -420,6 +420,28 @@ namespace user
    }
 
 
+   LONG_PTR interaction_child::get_window_long_ptr(i32 nIndex) const
+   {
+
+      return m_longptr[nIndex];
+
+   }
+
+
+   LONG_PTR interaction_child::set_window_long_ptr(i32 nIndex, LONG_PTR lValue)
+   {
+
+      auto & l = m_longptr[nIndex];
+
+      auto lOld = l;
+
+      l = lValue;
+
+      return lOld;
+
+   }
+
+
    bool interaction_child::is_this_visible(e_layout elayout)
    {
 

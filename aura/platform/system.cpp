@@ -111,6 +111,7 @@ namespace aura
 
    }
 
+
    system::system()
    {
 
@@ -161,7 +162,7 @@ namespace aura
    ::estatus system::initialize(::layered * pobjectContext)
    {
 
-      auto estatus = ::apex::system::initialize(pobjectContext);
+      auto estatus = ::aqua::system::initialize(pobjectContext);
 
       if (!estatus)
       {
@@ -170,18 +171,18 @@ namespace aura
 
       }
 
-      set_context_system(this);
+      //set_context_system(this);
 
-      set_context(this);
+      //set_context(this);
 
-      set_context_thread(this);
+      //set_context_thread(this);
 
-      if (::is_set(get_context_application()))
-      {
+      //if (::is_set(get_context_application()))
+      //{
 
-         __compose(m_psystemParent, get_context_application()->get_context_system());
+      //   __compose(m_psystemParent, get_context_application()->get_context_system());
 
-      }
+      //}
 
       __compose_new(m_pthreading);
 

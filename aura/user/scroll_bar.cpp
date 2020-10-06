@@ -208,7 +208,7 @@ namespace user
 
       try
       {
-
+         return;
          ::rect rectClip;
 
          ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();

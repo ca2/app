@@ -197,7 +197,7 @@ namespace axis
 
          ::draw2d::brush_pointer brush(e_create);
 
-         if (pinteraction->hover_item().is_set() && !pinteraction->has_text_input())
+         if (!pinteraction->m_flagNonClient.has(::user::interaction::non_client_hover_rect) && pinteraction->hover_item().is_set() && !pinteraction->has_text_input())
          {
 
             brush->create_solid(pinteraction->get_color(this, ::user::element_background, ::user::e_state_hover));

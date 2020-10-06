@@ -146,6 +146,9 @@ namespace apex
 
       m_bMessageThread = true;
 
+      m_bSystemSynchronizedCursor = true;
+      m_bSystemSynchronizedScreen = true;
+
       set_context_system(this);
 
       if (g_papexsystem == nullptr)
@@ -369,8 +372,6 @@ namespace apex
       //m_bDoNotExitIfNoApplications = true;
 
 
-      m_bSystemSynchronizedCursor = true;
-      m_bSystemSynchronizedScreen = true;
 
 
       //      m_peengine = nullptr;

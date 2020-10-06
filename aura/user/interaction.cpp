@@ -2939,6 +2939,12 @@ void interaction::_001CallOnDraw(::draw2d::graphics_pointer & pgraphics)
          output_debug_string("plain_edit");
 
       }
+      else if (strType.contains_ci("font_list"))
+      {
+
+         output_debug_string("font_list");
+
+      }
       else if (strType.contains_ci("combo_box"))
       {
 

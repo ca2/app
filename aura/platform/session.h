@@ -52,7 +52,6 @@ namespace aura
 
       bool                                                  m_bProgrammerMode;
 
-      bool                                                  m_bSystemSynchronizedCursor;
       point                                                 m_pointCursor;
       bool                                                  m_bAcceptsFirstResponder;
 
@@ -93,7 +92,6 @@ namespace aura
       __composite(::apex::str_context)                      m_puserstrcontext;
 
 
-      bool                                                  m_bSystemSynchronizedScreen;
       //rect_array                                            m_rectaMonitor;
       //rect_array                                            m_rectaWkspace;
 

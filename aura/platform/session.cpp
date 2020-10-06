@@ -496,7 +496,7 @@ the file README-colorramp for more information. */
    ::estatus session::initialize(::layered * pobjectContext)
    {
 
-      auto estatus = ::thread::initialize(pobjectContext);
+      auto estatus = ::aqua::session::initialize(pobjectContext);
 
       if (!estatus)
       {
@@ -514,17 +514,6 @@ the file README-colorramp for more information. */
       m_bSystemSynchronizedScreen      = true;
 
       m_pimplPendingFocus2             = nullptr;
-
-      set_context_session(this);
-
-      if (get_context_system() != nullptr)
-      {
-
-         m_bSystemSynchronizedCursor   = get_context_system()->m_bSystemSynchronizedCursor;
-
-         m_bSystemSynchronizedScreen   = get_context_system()->m_bSystemSynchronizedScreen;
-
-      }
 
       m_ecursorDefault                 = cursor_arrow;
 

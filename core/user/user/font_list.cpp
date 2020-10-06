@@ -21,6 +21,8 @@ namespace user
    void font_list::user_font_list_common_construct()
    {
 
+      m_flagNonClient.add(non_client_hover_rect);
+
       m_bFirstShown = false;
       m_idView = FONTSEL_IMPACT;
       //m_puserstyle = this;
@@ -271,6 +273,7 @@ namespace user
    void font_list::_001OnClip(::draw2d::graphics_pointer & pgraphics)
    {
 
+      ::user::combo_list::_001OnClip(pgraphics);
 
    }
 

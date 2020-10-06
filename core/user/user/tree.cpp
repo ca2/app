@@ -34,6 +34,8 @@ namespace user
 
       m_bHoverStart = false;
 
+      m_flagNonClient += ::user::interaction::non_client_hover_rect;
+
       m_pitemFirstVisible        = nullptr;
       m_pitemHover               = nullptr;
       m_iItemCount               = 0;
@@ -204,9 +206,9 @@ namespace user
 
          get_client_rect(rectClient);
 
-         pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+         //pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         pgraphics->fill_rect(rectClient, m_colorTreeBackground);
+         //pgraphics->fill_rect(rectClient, m_colorTreeBackground);
 
 
          auto pointCursor=      Session.get_cursor_pos();
@@ -1143,7 +1145,11 @@ namespace user
 
       m_pitemFirstVisible = CalcFirstVisibleItem(m_iFirstVisibleItemProperIndex);
 
-      //update_hover();
+      update_hover(Session.get_cursor_pos());
+
+      set_need_redraw();
+
+      post_redraw();
 
    }
 

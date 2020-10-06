@@ -316,7 +316,7 @@ bool graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
 ::estatus graphics::_add_shape(const ::rect & rect)
 {
 
-   cairo_rectangle(m_pdc, rect.left, rect.top, rect.width(), rect.height());
+   cairo_rectangle(m_pdc, rect.left + m_pointAddShapeTranslate.x, rect.top + m_pointAddShapeTranslate.y, rect.width(), rect.height());
 
    return ::success;
 
@@ -326,7 +326,7 @@ bool graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
 ::estatus graphics::_add_shape(const ::rectd & rect)
 {
 
-   cairo_rectangle(m_pdc, rect.left, rect.top, rect.width(), rect.height());
+   cairo_rectangle(m_pdc, rect.left + m_pointAddShapeTranslate.x, rect.top + m_pointAddShapeTranslate.y, rect.width(), rect.height());
 
    return ::success;
 
@@ -340,7 +340,7 @@ bool graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
 
    cairo_new_sub_path(m_pdc);
 
-   cairo_translate(m_pdc, (oval.left + oval.right) / 2.0, (oval.top + oval.bottom) / 2.0);
+   cairo_translate(m_pdc, (oval.left + oval.right) / 2.0 + m_pointAddShapeTranslate.x, (oval.top + oval.bottom) / 2.0 + m_pointAddShapeTranslate.y);
 
    cairo_scale(m_pdc, (oval.right - oval.left) / 2.0, (oval.bottom - oval.top) / 2.0);
 
@@ -358,7 +358,7 @@ bool graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
 
    cairo_new_sub_path(m_pdc);
 
-   cairo_translate(m_pdc, (oval.left + oval.right) / 2.0, (oval.top + oval.bottom) / 2.0);
+   cairo_translate(m_pdc, (oval.left + oval.right) / 2.0 + m_pointAddShapeTranslate.x, (oval.top + oval.bottom) / 2.0 + m_pointAddShapeTranslate.y);
 
    cairo_scale(m_pdc, (oval.right - oval.left) / 2.0, (oval.bottom - oval.top) / 2.0);
 
@@ -381,12 +381,12 @@ bool graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
 
     cairo_new_sub_path(m_pdc);
 
-    cairo_move_to(m_pdc, polygon[0].x, polygon[0].y);
+    cairo_move_to(m_pdc, polygon[0].x + m_pointAddShapeTranslate.x, polygon[0].y+ m_pointAddShapeTranslate.y);
 
     for (i32 i = 1; i < polygon.get_count(); i++)
     {
 
-        cairo_line_to(m_pdc, polygon[i].x, polygon[i].y);
+        cairo_line_to(m_pdc, polygon[i].x + m_pointAddShapeTranslate.x, polygon[i].y + m_pointAddShapeTranslate.y);
 
     }
 
@@ -409,12 +409,12 @@ bool graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
 
     cairo_new_sub_path(m_pdc);
 
-    cairo_move_to(m_pdc, polygon[0].x, polygon[0].y);
+    cairo_move_to(m_pdc, polygon[0].x + m_pointAddShapeTranslate.x, polygon[0].y + m_pointAddShapeTranslate.y);
 
     for (i32 i = 1; i < polygon.get_count(); i++)
     {
 
-        cairo_line_to(m_pdc, polygon[i].x, polygon[i].y);
+        cairo_line_to(m_pdc, polygon[i].x + m_pointAddShapeTranslate.x, polygon[i].y + m_pointAddShapeTranslate.y);
 
     }
 

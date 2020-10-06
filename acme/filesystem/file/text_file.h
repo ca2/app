@@ -31,7 +31,7 @@ namespace file
    };
 
 
-   typedef pointer < text_file > text_buffer_pointer;
+   typedef ___pointer < text_file > text_buffer_pointer;
 
 
 } // namespace file

@@ -3,14 +3,14 @@
 
 template < class TYPE, class ARG_TYPE, class T >
 class map_to_smart_pointer :
-   public map < TYPE, ARG_TYPE, pointer < T >, const pointer < T > & >
+   public map < TYPE, ARG_TYPE, ___pointer < T >, const ___pointer < T > & >
 {
 public:
 
 
    map_to_smart_pointer(::elemental * pobject = nullptr) :
       ::elemental(pobject),
-      map < TYPE, ARG_TYPE, pointer < T >, const pointer < T > & > (pobject)
+      map < TYPE, ARG_TYPE, ___pointer < T >, const ___pointer < T > & > (pobject)
    {
    }
 
@@ -25,7 +25,7 @@ public:
 
 template < class T >
 class string_to_smart_pointer :
-   public string_map < pointer < T >, const pointer < T > & >
+   public string_map < ___pointer < T >, const ___pointer < T > & >
 {
 public:
 
@@ -45,14 +45,14 @@ public:
 
 template < class T >
 class int_to_smart_pointer:
-   public int_ptr_map < pointer < T >,const pointer < T > & >
+   public int_ptr_map < ___pointer < T >,const ___pointer < T > & >
 {
 public:
 
 
    int_to_smart_pointer(::elemental * pobject = nullptr, ::count nBlockSize = 10):
       ::elemental(pobject),
-      int_ptr_map < pointer < T >,const pointer < T > & >(pobject,nBlockSize)
+      int_ptr_map < ___pointer < T >,const ___pointer < T > & >(pobject,nBlockSize)
    {
 
    }

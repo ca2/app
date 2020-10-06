@@ -1599,10 +1599,6 @@ double _001GetWindowTopLeftWeightedOccludedOpaqueRate(oswindow oswindow)
 }
 
 
-
-
-
-
 int GetMainScreenRect(LPRECT lprect)
 {
 
@@ -1611,10 +1607,6 @@ int GetMainScreenRect(LPRECT lprect)
    return TRUE;
 
 }
-
-
-
-
 
 
 int SetMainScreenRect(LPCRECT lpcrect)

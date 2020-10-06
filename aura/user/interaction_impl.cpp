@@ -2294,7 +2294,7 @@ namespace user
    LRESULT interaction_impl::send_message(UINT message, WPARAM wparam, lparam lparam)
    {
 
-      ::pointer < ::message::base > pbase;
+      ::___pointer < ::message::base > pbase;
 
       pbase = m_puserinteraction->get_message_base(message, wparam, lparam);
 

@@ -15,7 +15,7 @@ namespace crypto
    public:
 
 
-      
+
       // salt here may be dangerous for the universe
 
 
@@ -117,7 +117,7 @@ namespace crypto
    };
 
 
-   typedef pointer < crypto > crypto_pointer;
+   typedef ___pointer < crypto > crypto_pointer;
 
 //#if (!defined(_UWP) || defined(__cplusplus_winrt)) && ! defined(OPENSSL_CRYPTO)
 

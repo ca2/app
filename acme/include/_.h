@@ -1013,7 +1013,7 @@ typename remove_reference<T>::TYPE&& move(T && t)
 
 
 template < class T >
-class pointer;
+class ___pointer;
 
 template < class T >
 class pointer_array;
@@ -1021,7 +1021,7 @@ class pointer_array;
 
 //#define __composite(TYPE) ::reference < TYPE >
 
-#define __pointer(TYPE) ::pointer < TYPE >
+#define __pointer(TYPE) ::___pointer < TYPE >
 #define __pointer_array(TYPE) ::pointer_array < TYPE >
 #define __address_array(TYPE) ::comparable_array < TYPE * >
 

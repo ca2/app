@@ -32,6 +32,7 @@
 					<Add option="-lX11" />
 					<Add option="-lXinerama" />
 					<Add option="-lXrender" />
+					<Add option="-lXft" />
 					<Add option="-lbfd" />
 					<Add option="-lidn" />
 					<Add option="-lpthread" />

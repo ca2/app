@@ -7939,7 +7939,7 @@ void interaction::_001CallOnDraw(::draw2d::graphics_pointer & pgraphics)
          if (!bLayoutReady)
          {
 
-            output_debug_string("LAYOUT NOT READY\n");
+            //output_debug_string("LAYOUT NOT READY\n");
 
             return;
 
@@ -7950,7 +7950,7 @@ void interaction::_001CallOnDraw(::draw2d::graphics_pointer & pgraphics)
          if (!bLayoutModified)
          {
 
-            output_debug_string("LAYOUT NOT MODIFIED\n");
+            //output_debug_string("LAYOUT NOT MODIFIED\n");
 
             return;
 

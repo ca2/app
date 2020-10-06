@@ -46,7 +46,7 @@ namespace draw2d
    public:
 
 
-      
+
 
       class text
       {
@@ -81,7 +81,7 @@ namespace draw2d
       text_metric             m_textmetric;
       bool                    m_bTextMetric;
       string_map < text >     m_mapText;
-      
+
 
 
       font();
@@ -136,27 +136,27 @@ namespace draw2d
       virtual double get_pixel_font_height(::draw2d::graphics * pgraphics);
 
       virtual bool get_text_metric(::draw2d::graphics * pgraphics, text_metric & tm);
-      
+
       virtual bool _get_text_metric(::draw2d::graphics * pgraphics, text_metric & tm);
-      
+
       virtual double get_ascent(::draw2d::graphics * pgraphics);
-      
+
       virtual double get_descent(::draw2d::graphics * pgraphics);
-      
+
       virtual double get_leading(::draw2d::graphics * pgraphics);
-      
+
       virtual double get_height(::draw2d::graphics * pgraphics);
-      
+
 #ifdef WINDOWS
-      
+
       virtual bool GetLogFont(LOGFONTW * pfontw);
-      
+
 #endif
 
    };
 
 
-   typedef pointer < font > font_pointer;
+   typedef ___pointer < font > font_pointer;
 
 #ifdef WINDOWS
 

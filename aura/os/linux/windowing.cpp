@@ -4216,7 +4216,7 @@ namespace user
 
       XEvent * pevent = (XEvent *) pvoidEvent;
 
-      pointer < ::message::base > spbase;
+      ___pointer < ::message::base > spbase;
 
       spbase = Session.get_message_base(pvoidEvent, m_puserinteraction);
 

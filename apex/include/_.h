@@ -1985,7 +1985,7 @@ class thread;
 class thread;
 
 
-typedef pointer < thread > thread_pointer;
+typedef ___pointer < thread > thread_pointer;
 typedef pointer_array < thread > thread_spa;
 
 

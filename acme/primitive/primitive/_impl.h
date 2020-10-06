@@ -43,7 +43,7 @@ inline duration & duration::operator -= (const ::datetime::time_span & span)
 
 
 template < class T >
-inline string pointer < T >::type_str()
+inline string ___pointer < T >::type_str()
 {
 
    return __type_str(T);
@@ -753,7 +753,7 @@ inline bool id::begins_ci(const string & strPrefix) const
 
 template < class T >
 template < typename VAR >
-inline pointer < T >  & pointer < T >::operator = (const var_type < VAR > & var)
+inline ___pointer < T >  & ___pointer < T >::operator = (const var_type < VAR > & var)
 {
 
    if (var.this_var()->m_etype == type_element)
@@ -983,7 +983,7 @@ inline bool succeeded(const ::property & property)
 //
 template < class T >
 template < typename TEMPLATER >
-inline __pointer(T) & pointer < T >::create(TEMPLATER)
+inline __pointer(T) & ___pointer < T >::create(TEMPLATER)
 {
 
    __construct(*this);
@@ -995,7 +995,7 @@ inline __pointer(T) & pointer < T >::create(TEMPLATER)
 
 template < class T >
 template < typename TYPE, typename OBJECT >
-inline __pointer(T) & pointer < T >::create(OBJECT * pobjectContext)
+inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext)
 {
 
   auto p = __create < TYPE >();
@@ -1014,7 +1014,7 @@ inline __pointer(T) & pointer < T >::create(OBJECT * pobjectContext)
 
 template < class T >
 template < typename TYPE, typename OBJECT >
-inline __pointer(T) & pointer < T >::create(OBJECT * pobjectContext, bool bCreate)
+inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext, bool bCreate)
 {
 
   if (bCreate)
@@ -1551,7 +1551,7 @@ inline __pointer(T) & pointer < T >::create(OBJECT * pobjectContext, bool bCreat
 //
 //
 template < typename T >
-inline __pointer(T) move_transfer(T * p) { return ::pointer < T >(e_move_transfer, p); }
+inline __pointer(T) move_transfer(T * p) { return ::___pointer < T >(e_move_transfer, p); }
 
 
 template < typename TYPE >
@@ -1589,7 +1589,7 @@ TYPE & operator -=(TYPE & o, enum_object eobject)
 
 template < typename T >
 template < typename TEMPLATER >
-inline __pointer(T) & pointer<T> ::defer_create(TEMPLATER)
+inline __pointer(T) & ___pointer<T> ::defer_create(TEMPLATER)
 {
 
    if (is_null())
@@ -1606,7 +1606,7 @@ inline __pointer(T) & pointer<T> ::defer_create(TEMPLATER)
 
 template < typename T >
 template < typename TYPE, typename OBJECT  >
-inline __pointer(T) & pointer<T> ::defer_create(OBJECT * pobjectContext)
+inline __pointer(T) & ___pointer<T> ::defer_create(OBJECT * pobjectContext)
 {
 
    if (is_null())
@@ -1622,7 +1622,7 @@ inline __pointer(T) & pointer<T> ::defer_create(OBJECT * pobjectContext)
 
 
 template < class T >
-inline stream & operator << (stream & os, const pointer < T > & sp)
+inline stream & operator << (stream & os, const ___pointer < T > & sp)
 {
 
    os << *sp.m_p;
@@ -1633,7 +1633,7 @@ inline stream & operator << (stream & os, const pointer < T > & sp)
 
 
 template < class T >
-inline stream & operator >> (stream & is, pointer < T > & sp)
+inline stream & operator >> (stream & is, ___pointer < T > & sp)
 {
 
    is >> *sp.m_p;

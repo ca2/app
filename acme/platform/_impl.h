@@ -39,9 +39,9 @@ inline BLOCK_TYPE & memory_template < BLOCK_TYPE > ::operator = (const ::block &
       __throw(invalid_argument_exception());
 
    }
-   
+
    ::memcpy_dup(get_data(), block.get_data(), (size_t) get_size());
-   
+
    return *get_data();
 
 }
@@ -555,7 +555,7 @@ inline __pointer(T) clone(const __pointer(T) & t)
 
 
 template < typename T >
-inline __pointer(T) & pointer < T >::clone(::elemental * pobjectContext)
+inline __pointer(T) & ___pointer < T >::clone(::elemental * pobjectContext)
 {
 
    if (::is_null(pobjectContext))

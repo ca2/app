@@ -11,7 +11,7 @@ CLASS_DECL_ACME void throw_resource_exception(const char * psz);
 //
 // Curitiba, inha-metro-win-ubuntu-mountain-lion-macos 4 de novembro de 2012
 template < class T >
-inline pointer < T > ::pointer() :
+inline ___pointer < T > ::___pointer() :
    m_p(nullptr)
 {
 
@@ -19,7 +19,7 @@ inline pointer < T > ::pointer() :
 
 
 template < class T >
-inline pointer < T > ::pointer(std::nullptr_t) :
+inline ___pointer < T > ::___pointer(std::nullptr_t) :
    m_p(nullptr)
 {
 
@@ -27,7 +27,7 @@ inline pointer < T > ::pointer(std::nullptr_t) :
 
 template < class T >
 template < typename OBJECT >
-inline pointer < T > ::pointer(enum_move_transfer, OBJECT * p)
+inline ___pointer < T > ::___pointer(enum_move_transfer, OBJECT * p)
 {
 
    if(::is_set(p))
@@ -56,7 +56,7 @@ inline pointer < T > ::pointer(enum_move_transfer, OBJECT * p)
 
 
 template < class T >
-inline pointer < T > ::pointer(const pointer & t) :
+inline ___pointer < T > ::___pointer(const ___pointer & t) :
    m_p(nullptr)
 {
 
@@ -66,7 +66,7 @@ inline pointer < T > ::pointer(const pointer & t) :
 
 
 template < class T >
-inline pointer < T > ::pointer(pointer && t)
+inline ___pointer < T > ::___pointer(___pointer && t)
 {
 
    m_p      = t.m_p;
@@ -77,7 +77,7 @@ inline pointer < T > ::pointer(pointer && t)
 
 
 template < class T >
-inline pointer < T > ::pointer(const T * p) :
+inline ___pointer < T > ::___pointer(const T * p) :
    m_p((T *) p)
 {
 
@@ -87,7 +87,7 @@ inline pointer < T > ::pointer(const T * p) :
 
 
 template < class T >
-inline pointer < T > ::pointer(const lparam& lparam)
+inline ___pointer < T > ::___pointer(const lparam& lparam)
 {
 
    auto * p = (::elemental *) lparam.m_lparam;
@@ -105,7 +105,7 @@ inline pointer < T > ::pointer(const lparam& lparam)
 
 
 template < class T >
-inline pointer < T > ::~pointer()
+inline ___pointer < T > ::~___pointer()
 {
 
    release();
@@ -114,7 +114,7 @@ inline pointer < T > ::~pointer()
 
 
 template < class T >
-inline T * pointer < T > ::operator ->()
+inline T * ___pointer < T > ::operator ->()
 {
 
    return m_p;
@@ -123,7 +123,7 @@ inline T * pointer < T > ::operator ->()
 
 
 template < class T >
-inline T * pointer < T > ::operator ->() const
+inline T * ___pointer < T > ::operator ->() const
 {
 
    return m_p;
@@ -132,7 +132,7 @@ inline T * pointer < T > ::operator ->() const
 
 
 template < class T >
-inline T & pointer < T > ::operator * ()
+inline T & ___pointer < T > ::operator * ()
 {
 
    return *m_p;
@@ -141,7 +141,7 @@ inline T & pointer < T > ::operator * ()
 
 
 template < class T >
-inline T & pointer < T > ::operator * () const
+inline T & ___pointer < T > ::operator * () const
 {
 
    return *m_p;
@@ -150,7 +150,7 @@ inline T & pointer < T > ::operator * () const
 
 
 template < class T >
-inline pointer < T > ::operator T * ()
+inline ___pointer < T > ::operator T * ()
 {
 
    return m_p;
@@ -159,7 +159,7 @@ inline pointer < T > ::operator T * ()
 
 
 template < class T >
-inline pointer < T > ::operator T * const () const
+inline ___pointer < T > ::operator T * const () const
 {
 
    return m_p;
@@ -168,7 +168,7 @@ inline pointer < T > ::operator T * const () const
 
 
 template < class T >
-inline T * pointer < T > ::get()
+inline T * ___pointer < T > ::get()
 {
 
    return m_p;
@@ -177,7 +177,7 @@ inline T * pointer < T > ::get()
 
 
 template < class T >
-inline const T * pointer < T > ::get() const
+inline const T * ___pointer < T > ::get() const
 {
 
    return m_p;
@@ -186,7 +186,7 @@ inline const T * pointer < T > ::get() const
 
 
 template < class T >
-inline bool pointer < T > ::is_null() const
+inline bool ___pointer < T > ::is_null() const
 {
 
    return ::is_null(m_p);
@@ -195,7 +195,7 @@ inline bool pointer < T > ::is_null() const
 
 
 template < class T >
-inline bool pointer < T > ::is_set() const
+inline bool ___pointer < T > ::is_set() const
 {
 
    return ::is_set(m_p);
@@ -204,7 +204,7 @@ inline bool pointer < T > ::is_set() const
 
 
 template < class T >
-inline pointer < T > & pointer < T > ::reset (T * pNew OBJ_REF_DBG_ADD_PARAMS_DEF)
+inline ___pointer < T > & ___pointer < T > ::reset (T * pNew OBJ_REF_DBG_ADD_PARAMS_DEF)
 {
 
    if(m_p != pNew)
@@ -237,7 +237,7 @@ inline pointer < T > & pointer < T > ::reset (T * pNew OBJ_REF_DBG_ADD_PARAMS_DE
 
 
 template < class T >
-inline pointer < T > & pointer < T > ::operator = (const pointer  & t)
+inline ___pointer < T > & ___pointer < T > ::operator = (const ___pointer  & t)
 {
 
    return operator = (t.m_p);
@@ -246,7 +246,7 @@ inline pointer < T > & pointer < T > ::operator = (const pointer  & t)
 
 
 template < class T >
-inline pointer < T > & pointer < T > ::operator = (pointer && t)
+inline ___pointer < T > & ___pointer < T > ::operator = (___pointer && t)
 {
 
    if(&t != this)
@@ -268,7 +268,7 @@ inline pointer < T > & pointer < T > ::operator = (pointer && t)
 
 
 template < class T >
-inline __pointer(T) pointer < T > ::detach()
+inline __pointer(T) ___pointer < T > ::detach()
 {
 
    auto p = m_p;
@@ -283,7 +283,7 @@ inline __pointer(T) pointer < T > ::detach()
 // cut and paste with very good capabilities of RealVNC for MacOS in OVH.fr/eu/pt cloud from Windows client.
 // slashes with ABNT 2 keyboard and even c cedilha working with RealVNC
 template < class T >
-inline i64 pointer <T>::release(OBJ_REF_DBG_PARAMS_DEF)
+inline i64 ___pointer <T>::release(OBJ_REF_DBG_PARAMS_DEF)
 {
 
    return ::release(m_p OBJ_REF_DBG_ADD_ARGS);
@@ -292,7 +292,7 @@ inline i64 pointer <T>::release(OBJ_REF_DBG_PARAMS_DEF)
 
 
 template < class T1, class T2 >
-inline bool operator ==(const T1  * t1, const pointer < T2 > & t2)
+inline bool operator ==(const T1  * t1, const ___pointer < T2 > & t2)
 {
    auto p1 = dynamic_cast < T1 * > (t2.m_p);
    if(p1 != nullptr)
@@ -309,7 +309,7 @@ inline bool operator ==(const T1  * t1, const pointer < T2 > & t2)
 
 
 template < class T1, class T2 >
-inline bool operator ==(const pointer < T1 > & t1, const T2 * t2)
+inline bool operator ==(const ___pointer < T1 > & t1, const T2 * t2)
 {
    auto p1 = dynamic_cast < T1 * > ((T2 *) t2);
    if(p1 != nullptr)
@@ -326,7 +326,7 @@ inline bool operator ==(const pointer < T1 > & t1, const T2 * t2)
 
 
 template < class T1, class T2 >
-inline bool operator ==(const pointer < T1 > & t1, const pointer < T2 > & t2)
+inline bool operator ==(const ___pointer < T1 > & t1, const ___pointer < T2 > & t2)
 {
    auto p1 = dynamic_cast < T1 * > (t2.m_p);
    if(p1 != nullptr)
@@ -343,7 +343,7 @@ inline bool operator ==(const pointer < T1 > & t1, const pointer < T2 > & t2)
 
 
 template < class T1, class T2 >
-inline bool operator ==(T1 * t1, const pointer < T2 > & t2)
+inline bool operator ==(T1 * t1, const ___pointer < T2 > & t2)
 {
 
    return operator == ((const T1 *) t1, t2);
@@ -352,7 +352,7 @@ inline bool operator ==(T1 * t1, const pointer < T2 > & t2)
 
 
 template < class T1, class T2 >
-inline bool operator ==(const pointer < T1 > & t1, T2 * t2)
+inline bool operator ==(const ___pointer < T1 > & t1, T2 * t2)
 {
 
    return operator == (t1,  (const T2 *) t2);
@@ -361,7 +361,7 @@ inline bool operator ==(const pointer < T1 > & t1, T2 * t2)
 
 
 template < class T1, class T2 >
-inline bool operator !=(const T1 * t1, const pointer < T2 > & t2)
+inline bool operator !=(const T1 * t1, const ___pointer < T2 > & t2)
 {
 
    return !operator == (t1, t2);
@@ -370,7 +370,7 @@ inline bool operator !=(const T1 * t1, const pointer < T2 > & t2)
 
 
 template < class T1, class T2 >
-inline bool operator !=(const pointer < T1 > & t1, const T2 * t2)
+inline bool operator !=(const ___pointer < T1 > & t1, const T2 * t2)
 {
 
    return !operator == (t1, t2);
@@ -379,7 +379,7 @@ inline bool operator !=(const pointer < T1 > & t1, const T2 * t2)
 
 
 template < class T1, class T2 >
-inline bool operator !=(T1 * t1, const pointer < T2 > & t2)
+inline bool operator !=(T1 * t1, const ___pointer < T2 > & t2)
 {
 
    return !operator == ((const T1 *) t1, t2);
@@ -388,14 +388,14 @@ inline bool operator !=(T1 * t1, const pointer < T2 > & t2)
 
 
 template < class T1, class T2 >
-inline bool operator !=(const pointer < T1 > & t1, T2 * t2)
+inline bool operator !=(const ___pointer < T1 > & t1, T2 * t2)
 {
    return !operator == (t1, (const T2 *) t2);
 }
 
 
 template < class T1, class T2 >
-inline bool operator !=(const pointer < T1 > & t1, const pointer < T2 > & t2)
+inline bool operator !=(const ___pointer < T1 > & t1, const ___pointer < T2 > & t2)
 {
 
    return !operator == (t1, t2);
@@ -404,11 +404,11 @@ inline bool operator !=(const pointer < T1 > & t1, const pointer < T2 > & t2)
 
 
 template < class T >
-inline bool operator ==(LPARAM l, const pointer < T > & sp) { return ((T *) l) == sp.m_p; }
+inline bool operator ==(LPARAM l, const ___pointer < T > & sp) { return ((T *) l) == sp.m_p; }
 
 
 template < class T >
-inline bool operator !=(LPARAM l, const pointer < T > & sp) { return ((T *) l) != sp.m_p; }
+inline bool operator !=(LPARAM l, const ___pointer < T > & sp) { return ((T *) l) != sp.m_p; }
 
 
 

@@ -11,7 +11,7 @@ namespace draw2d
    public:
 
 
-      
+
       palette();
       virtual ~palette();
 
@@ -40,7 +40,7 @@ namespace draw2d
    };
 
 
-   typedef pointer < palette > palette_pointer;
+   typedef ___pointer < palette > palette_pointer;
 
 
 } // namespace draw2d

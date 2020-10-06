@@ -31,10 +31,10 @@ namespace papaya
 
 
 template < class T >
-inline stream & operator << (stream & os, const pointer < T > & sp);
+inline stream & operator << (stream & os, const ___pointer < T > & sp);
 
 
 template < class T >
-inline stream & operator >> (stream & is, pointer < T > & sp);
+inline stream & operator >> (stream & is, ___pointer < T > & sp);
 
 

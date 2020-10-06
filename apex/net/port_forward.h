@@ -26,7 +26,7 @@ namespace net
    {
    public:
 
-      
+
       // a public enum which is used by classes that respond to the registered interaction_impl message
       // UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, so they can decode the wParam and lParam values
 
@@ -68,7 +68,7 @@ namespace net
       public:
 
 
-         
+
          // see http://msdn.microsoft.com/library/en-us/upnp/upnp/iupnpdevice.asp
 
          string Children;			// Child devices of the device.
@@ -117,7 +117,7 @@ namespace net
    };
 
 
-   typedef pointer < port_forward > port_forward_pointer;
+   typedef ___pointer < port_forward > port_forward_pointer;
 
 
 } // namespace net

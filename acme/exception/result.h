@@ -350,7 +350,7 @@ public:
 
 
    result_pointer(T * point) :
-      pointer<T>(point)
+      ___pointer<T>(point)
    {
 
       if (this->is_null())
@@ -364,7 +364,7 @@ public:
 
    template < typename TYPE >
    result_pointer(const __pointer(TYPE) & p) :
-      pointer<T>(p)
+      ___pointer<T>(p)
    {
 
       if (this->is_null())
@@ -378,7 +378,7 @@ public:
 
    template < typename TYPE >
    result_pointer(result_pointer && point) :
-      pointer<T>(::move(point)),
+      ___pointer<T>(::move(point)),
       ::status::result(::move(point))
    {
 

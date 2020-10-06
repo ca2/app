@@ -509,7 +509,7 @@ namespace user
 
    LONG_PTR primitive_impl::get_window_long_ptr(i32 nIndex) const
    {
-      
+
       return 0;
 //
 //      if (nIndex == GWL_STYLE)
@@ -553,9 +553,9 @@ namespace user
 //      m_longptr[nIndex] = lValue;
 //
 //      return lValue;
-      
+
       //return lValue;
-      
+
       return 0;
 
    }
@@ -1008,7 +1008,7 @@ namespace user
    LRESULT primitive_impl::message_call(UINT uiMessage, WPARAM wparam, lparam lparam)
    {
 
-      pointer < ::message::base > spbase;
+      ___pointer < ::message::base > spbase;
 
       if (m_puserinteraction == nullptr)
       {

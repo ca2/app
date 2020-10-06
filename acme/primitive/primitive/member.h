@@ -46,7 +46,7 @@ namespace primitive
       member& operator = (const ::primitive::member < TYPE >& member) { m_p = member.m_p; return *this; }
 
       template < typename OBJECT >
-      member& operator = (const ::pointer < OBJECT >& p) { m_p = dynamic_cast <TYPE*> ((OBJECT*)p.m_p); return *this; }
+      member& operator = (const ::___pointer < OBJECT >& p) { m_p = dynamic_cast <TYPE*> ((OBJECT*)p.m_p); return *this; }
 
       template < typename OBJECT >
       member& operator = (const OBJECT* p) { m_p = dynamic_cast <TYPE*> ((OBJECT*)p); return *this; }

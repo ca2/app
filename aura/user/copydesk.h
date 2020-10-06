@@ -70,7 +70,7 @@ namespace user
    };
 
 
-   typedef pointer < copydesk > copydesk_pointer;
+   typedef ___pointer < copydesk > copydesk_pointer;
 
 
 } // namespace user

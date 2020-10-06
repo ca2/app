@@ -201,7 +201,7 @@
    };
 
 
-   typedef pointer < dir_context > dir_context_pointer;
+   typedef ___pointer < dir_context > dir_context_pointer;
 
 
 //} // namespace file

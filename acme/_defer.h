@@ -35,7 +35,7 @@ namespace primitive
 
 template < class T >
 template < typename T2 >
-inline __pointer(T) & pointer < T >::defer_create_new()
+inline __pointer(T) & ___pointer < T >::defer_create_new()
 {
 
    if (is_null())
@@ -52,7 +52,7 @@ inline __pointer(T) & pointer < T >::defer_create_new()
 
 template < class T >
 template < typename T2 >
-inline __pointer(T) & pointer < T >::defer_assign_to(T2 * & p)
+inline __pointer(T) & ___pointer < T >::defer_assign_to(T2 * & p)
 {
 
    if (!is_null())
@@ -78,7 +78,7 @@ inline __pointer(T) & pointer < T >::defer_assign_to(T2 * & p)
 
 template < class T >
 template < typename T2 >
-inline __pointer(T) & pointer < T >::create_new()
+inline __pointer(T) & ___pointer < T >::create_new()
 {
 
    auto p = __new(T2);
@@ -90,7 +90,7 @@ inline __pointer(T) & pointer < T >::create_new()
 
 template < class T >
 template < typename T2, typename OBJECT >
-inline __pointer(T) & pointer < T >::defer_create_new(OBJECT * pobjectContext)
+inline __pointer(T) & ___pointer < T >::defer_create_new(OBJECT * pobjectContext)
 {
 
    if (is_null())
@@ -107,7 +107,7 @@ inline __pointer(T) & pointer < T >::defer_create_new(OBJECT * pobjectContext)
 
 template < class T >
 template < typename T2, typename OBJECT >
-inline __pointer(T) & pointer < T >::create_new(OBJECT * pobjectContext)
+inline __pointer(T) & ___pointer < T >::create_new(OBJECT * pobjectContext)
 {
 
    auto p = __new(T2);
@@ -148,7 +148,7 @@ namespace papaya
    namespace array
    {
 
-      
+
       template < class TDST,class TSRC >
       ::count __copy(TDST & dsta,const TSRC & srca)
       {
@@ -166,7 +166,7 @@ namespace papaya
 
       }
 
-   
+
    } // namespace array
 
 

@@ -14,13 +14,13 @@ Copyright (ca) 1998 by PJ Naughter.
 namespace net
 {
 
-   
+
    class CLASS_DECL_APEX ip_enum :
       virtual public ::object
    {
    public:
 
-      
+
 
       ip_enum();
       virtual ~ip_enum();
@@ -32,7 +32,7 @@ namespace net
    };
 
 
-   typedef pointer < ip_enum > ip_enum_pointer;
+   typedef ___pointer < ip_enum > ip_enum_pointer;
 
 
 } // namespace net

@@ -40,14 +40,14 @@ namespace file
 
       virtual string get_next_file(const char * psz);
 
-      
+
       virtual bool initialize_os_wallpaper(bool bAddSearch);
 
 
    };
 
 
-   typedef pointer < set > set_pointer;
+   typedef ___pointer < set > set_pointer;
 
 
 } // namespace file

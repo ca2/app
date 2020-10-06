@@ -33,27 +33,27 @@ inline i64 release(root_derived * & pca OBJ_REF_DBG_ADD_PARAMS);
 //
 // Curitiba, inha-metro-win-ubuntu-mountain-lion-macos 4 de novembro de 2012
 template < class T >
-class pointer
+class ___pointer
 {
 public:
 
    using TYPE = T;
 
-   using RAW_POINTER = TYPE *;
+   using RAW____pointer = TYPE *;
 
    T * m_p;
 
 
-   inline pointer();
-   inline pointer(std::nullptr_t);
-   inline pointer(const lparam & lparam);
+   inline ___pointer();
+   inline ___pointer(std::nullptr_t);
+   inline ___pointer(const lparam & lparam);
 
-   inline pointer(const pointer & t);
-   inline pointer(pointer && t);
-   //inline pointer(const ::trait & trait);
+   inline ___pointer(const ___pointer & t);
+   inline ___pointer(___pointer && t);
+   //inline ___pointer(const ::trait & trait);
 
 
-   inline pointer(enum_create_new) :
+   inline ___pointer(enum_create_new) :
       m_p(nullptr)
    {
 
@@ -62,7 +62,7 @@ public:
    }
 
 
-   inline pointer(enum_create_new, ::layered * pobject) :
+   inline ___pointer(enum_create_new, ::layered * pobject) :
       m_p(nullptr)
    {
 
@@ -73,7 +73,7 @@ public:
    }
 
    template < TEMPLATE_TYPE >
-   inline pointer(enum_create, TEMPLATE_ARG) :
+   inline ___pointer(enum_create, TEMPLATE_ARG) :
       m_p(nullptr)
    {
 
@@ -82,7 +82,7 @@ public:
    }
 
    template < typename OBJECT >
-   inline pointer(enum_create, OBJECT * p) :
+   inline ___pointer(enum_create, OBJECT * p) :
       m_p(nullptr)
    {
 
@@ -92,13 +92,13 @@ public:
 
    }
 
-   inline pointer(enum_move_transfer, T * p) : m_p(p) {}
+   inline ___pointer(enum_move_transfer, T * p) : m_p(p) {}
 
    template < typename OBJECT >
-   inline pointer(enum_move_transfer, OBJECT * p);
+   inline ___pointer(enum_move_transfer, OBJECT * p);
 
    template < class T2 >
-   inline pointer(const T2 * p)
+   inline ___pointer(const T2 * p)
    {
 
       if (::is_null(p))
@@ -122,7 +122,7 @@ public:
    }
 
    template < class T2 >
-   inline pointer(const __composite(T2) & p)
+   inline ___pointer(const __composite(T2) & p)
    {
 
       if (!p)
@@ -162,17 +162,17 @@ public:
    }
 
 
-   inline pointer(const T * p);
+   inline ___pointer(const T * p);
 
-   inline pointer(const void * p) : pointer(e_move_transfer, (T *)p) {}
+   inline ___pointer(const void * p) : ___pointer(e_move_transfer, (T *)p) {}
 
    template < class T2 >
-   inline pointer(const pointer < T2 > & t2) :
+   inline ___pointer(const ___pointer < T2 > & t2) :
       m_p(nullptr)
    {
-      
+
       auto p2 = (T2 *) t2.m_p;
-      
+
       auto p = dynamic_cast <T *>(p2);
 
       operator = (p);
@@ -181,7 +181,7 @@ public:
 
 
    template < class T2 >
-   inline pointer(pointer < T2 > && t)
+   inline ___pointer(___pointer < T2 > && t)
    {
 
       if (::is_set(t.m_p))
@@ -207,13 +207,13 @@ public:
    }
 
 
-   inline ~pointer();
+   inline ~___pointer();
 
    //template < typename OTHER >
-   //inline pointer & operator +=(__composite(OTHER) & p) { m_p->compose(p); return *this; }
+   //inline ___pointer & operator +=(__composite(OTHER) & p) { m_p->compose(p); return *this; }
 
    //template < typename OTHER >
-   //inline pointer & operator -=(__composite(OTHER) & p) { m_p->release(p); return *this; }
+   //inline ___pointer & operator -=(__composite(OTHER) & p) { m_p->release(p); return *this; }
 
    inline static string type_str();
 
@@ -231,15 +231,15 @@ public:
    inline bool is_null() const;
    inline bool is_set() const;
 
-   inline pointer & operator = (const pointer & t);
-   inline pointer & operator = (pointer && t);
+   inline ___pointer & operator = (const ___pointer & t);
+   inline ___pointer & operator = (___pointer && t);
 
    template < typename VAR >
-   inline pointer & operator = (const var_type < VAR > & var);
+   inline ___pointer & operator = (const var_type < VAR > & var);
 
 
    template < class T2 >
-   inline pointer & operator = (const T2 * p)
+   inline ___pointer & operator = (const T2 * p)
    {
 
       return operator = (dynamic_cast <T *> ((T2 *) p));
@@ -247,7 +247,7 @@ public:
    }
 
 
-   inline pointer & operator = (const T * p)
+   inline ___pointer & operator = (const T * p)
    {
 
       return reset((T *) p);
@@ -256,7 +256,7 @@ public:
 
 
    template < class T2 >
-   inline pointer& operator = (const ::primitive::composite < T2 >& composite)
+   inline ___pointer& operator = (const ::primitive::composite < T2 >& composite)
    {
 
       return operator = (composite.get());
@@ -265,7 +265,7 @@ public:
 
 
    template < class T2 >
-   inline pointer& operator = (const ::primitive::reference < T2 >& reference)
+   inline ___pointer& operator = (const ::primitive::reference < T2 >& reference)
    {
 
       return operator = (reference.get());
@@ -273,7 +273,7 @@ public:
    }
 
    template < class T2 >
-   inline pointer & operator = (const pointer < T2 > & t)
+   inline ___pointer & operator = (const ___pointer < T2 > & t)
    {
 
       return operator = (dynamic_cast <T *> (t.m_p));
@@ -282,7 +282,7 @@ public:
 
 
    template < class T2 >
-   inline pointer & operator = (pointer < T2 > && t)
+   inline ___pointer & operator = (___pointer < T2 > && t)
    {
 
       auto pOld = m_p;
@@ -363,7 +363,7 @@ public:
 
 
    template < typename CONTAINER, typename OBJECT, typename ATTRIBUTE >
-   pointer & merge(const CONTAINER & pcontainer, const OBJECT & pobject, const ATTRIBUTE & attribute)
+   ___pointer & merge(const CONTAINER & pcontainer, const OBJECT & pobject, const ATTRIBUTE & attribute)
    {
 
       auto pModified = __new(TYPE(*m_p));
@@ -375,7 +375,7 @@ public:
    }
 
    template < typename OBJECT, typename ATTRIBUTE >
-   pointer & container_merge(const OBJECT & pobject, const ATTRIBUTE & attribute)
+   ___pointer & container_merge(const OBJECT & pobject, const ATTRIBUTE & attribute)
    {
 
       return merge(m_p->m_pcontainer, pobject, attribute);
@@ -383,7 +383,7 @@ public:
    }
 
    template < typename CONTAINER, typename OBJECT >
-   pointer & copy(const CONTAINER & pcontainer, const OBJECT & pobject)
+   ___pointer & copy(const CONTAINER & pcontainer, const OBJECT & pobject)
    {
 
       ::layered * pobjectParent = m_p->get_context_object();
@@ -406,7 +406,7 @@ public:
 
 
    template < typename OBJECT >
-   pointer & container_copy(const OBJECT & pobject)
+   ___pointer & container_copy(const OBJECT & pobject)
    {
 
       return copy(m_p->m_pcontainer, pobject);
@@ -414,7 +414,7 @@ public:
    }
 
 
-   inline pointer & reset(T * ptr OBJ_REF_DBG_ADD_PARAMS);
+   inline ___pointer & reset(T * ptr OBJ_REF_DBG_ADD_PARAMS);
 
    inline bool operator ==(std::nullptr_t) const { return is_null(); }
 
@@ -487,9 +487,9 @@ public:
 
 // It must not free memory directly allocated to elemental pointed by 'p'.
 // It is recommended to let final deletion and destruction happens at normal destructor.
-// 'destruct' semantics gives a class the ability to use the scoped guard_pointer
+// 'destruct' semantics gives a class the ability to use the scoped guard____pointer
 // to release outer references (from operating system for example) that would prevent
-// the elemental to be deleted/destroyed when the elemental is released by a conventional pointer.
+// the elemental to be deleted/destroyed when the elemental is released by a conventional ___pointer.
 //
 template < class T >
 inline void destruct(T * p)
@@ -512,32 +512,32 @@ inline void destruct(T * p)
 // finalize solves this.
 
 template < class T >
-class guard_pointer :
-   public ::pointer < T >
+class guard____pointer :
+   public ::___pointer < T >
 {
 public:
-   guard_pointer() {}
-   guard_pointer(const lparam& lparam) : ::pointer<T>(lparam) {}
+   guard____pointer() {}
+   guard____pointer(const lparam& lparam) : ::___pointer<T>(lparam) {}
 
-   guard_pointer(const pointer < T > & t): ::pointer< T>(t) {}
-   guard_pointer(guard_pointer < T > && t): ::pointer<T>(::move(t)) {}
-   guard_pointer(const allocer & allocer): ::pointer<T>(allocer) {}
+   guard____pointer(const ___pointer < T > & t): ::___pointer< T>(t) {}
+   guard____pointer(guard____pointer < T > && t): ::___pointer<T>(::move(t)) {}
+   guard____pointer(const allocer & allocer): ::___pointer<T>(allocer) {}
    template < class T2 >
-   guard_pointer(T2 * p) : ::pointer <T>(p) {}
-   guard_pointer(T * p) : ::pointer <T>(p) {}
-
-   template < class T2 >
-   guard_pointer(const T2 * p): ::pointer <T>(p) {}
+   guard____pointer(T2 * p) : ::___pointer <T>(p) {}
+   guard____pointer(T * p) : ::___pointer <T>(p) {}
 
    template < class T2 >
-   guard_pointer(const pointer < T2 > & t): ::pointer <T>(t) {}
+   guard____pointer(const T2 * p): ::___pointer <T>(p) {}
+
+   template < class T2 >
+   guard____pointer(const ___pointer < T2 > & t): ::___pointer <T>(t) {}
 
 
    template < class T2 >
-   guard_pointer(guard_pointer < T2 > && t) :
-      ::pointer <T>(::move(t)) {}
+   guard____pointer(guard____pointer < T2 > && t) :
+      ::___pointer <T>(::move(t)) {}
 
-   ~guard_pointer()
+   ~guard____pointer()
    {
 
       if(::is_set(this->m_p))
@@ -567,7 +567,7 @@ inline bool __not_found(const __pointer(T) & p) { return p.is_null(); }
 //
 //
 //   template < typename T>
-//   __pointer(T) & defer_new(__pointer(T) & t, ::elemental * p)
+//   _____pointer(T) & defer_new(_____pointer(T) & t, ::elemental * p)
 //   {
 //
 //      if (t.is_null())
@@ -593,7 +593,7 @@ inline bool __not_found(const __pointer(T) & p) { return p.is_null(); }
 
 
 template < typename T >
-inline __pointer(T) __move_transfer(T * p) { return ::pointer < T >(e_move_transfer, p); }
+inline __pointer(T) __move_transfer(T * p) { return ::___pointer < T >(e_move_transfer, p); }
 
 
 

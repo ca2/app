@@ -4,7 +4,7 @@
 namespace draw2d
 {
 
-   
+
 
    class CLASS_DECL_AURA bitmap :
       virtual public ::draw2d::object
@@ -88,7 +88,7 @@ namespace draw2d
    };
 
 
-   typedef pointer < bitmap > bitmap_pointer;
+   typedef ___pointer < bitmap > bitmap_pointer;
 
 
 } // namespace draw2d

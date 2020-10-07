@@ -451,7 +451,7 @@ start_processing_adding:
             if (pstreamsocket && pstreamsocket->Connecting()) // 'open' called before adding socket
             {
 
-               set(socket, true, true);
+               set(socket, true, false);
 
             }
             else
@@ -765,14 +765,15 @@ end_processing_adding:
          m_tickLastError = tickNow;
 
       }
-      else if (n == 0)
+      else if(n == 0)
       {
 
          m_iPreviousError = -1;
 
       }
-      else
+      else // n > 0
       {
+
          auto pos = m_fds.begin();
          for (; pos && n; pos++)
          {

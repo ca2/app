@@ -246,18 +246,29 @@ namespace draw2d_direct2d
 
       // Clipping Functions
       virtual int GetClipBox(RECT * prect) override;
-      virtual bool PtVisible(int x, int y) override;
-      bool PtVisible(const ::point & point) override;
-      virtual bool RectVisible(const ::rect & rect) override;
-      int SelectClipRgn(::draw2d::region* pRgn) override;
-      int ExcludeClipRect(int x1, int y1, int x2, int y2) override;
-      int ExcludeClipRect(const ::rect & rect) override;
-      //int ExcludeUpdateRgn(::user::primitive * pwindow) override;
-      int IntersectClipRect(int x1, int y1, int x2, int y2) override;
-      int IntersectClipRect(const ::rect & rect) override;
-      int OffsetClipRgn(int x, int y) override;
-      int OffsetClipRgn(const ::size & size) override;
-      int SelectClipRgn(::draw2d::region* pRgn, ::draw2d::enum_combine ecombine) override;
+
+
+      virtual ::estatus add_shapes(const shape_array& shapea);
+      virtual ::estatus reset_clip();
+      virtual ::estatus intersect_clip(const ::rect& rect);
+      virtual ::estatus intersect_clip(const ::rectd& rect);
+      virtual ::estatus intersect_clip(const ::oval& oval);
+      virtual ::estatus intersect_clip(const ::ovald& oval);
+      virtual ::estatus intersect_clip(const ::polygon& polygon);
+      virtual ::estatus intersect_clip(const ::polygond& polygon);
+
+      //virtual bool PtVisible(int x, int y) override;
+      //bool PtVisible(const ::point & point) override;
+      //virtual bool RectVisible(const ::rect & rect) override;
+      //int SelectClipRgn(::draw2d::region* pRgn) override;
+      //int ExcludeClipRect(int x1, int y1, int x2, int y2) override;
+      //int ExcludeClipRect(const ::rect & rect) override;
+      ////int ExcludeUpdateRgn(::user::primitive * pwindow) override;
+      //int IntersectClipRect(int x1, int y1, int x2, int y2) override;
+      //int IntersectClipRect(const ::rect & rect) override;
+      //int OffsetClipRgn(int x, int y) override;
+      //int OffsetClipRgn(const ::size & size) override;
+      //int SelectClipRgn(::draw2d::region* pRgn, ::draw2d::enum_combine ecombine) override;
 
       // Line-Output Functions
       pointd current_position() override;

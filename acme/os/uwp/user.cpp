@@ -631,9 +631,9 @@ namespace user
 
 
 
-int _os_message_box(const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox)
-{
-
-   return 0;
-
-}
+//int _os_message_box(const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox)
+//{
+//
+//   return 0;
+//
+//}

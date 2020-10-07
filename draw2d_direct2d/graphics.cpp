@@ -844,36 +844,36 @@ namespace draw2d_direct2d
 
    }
 
-   bool graphics::PtVisible(int x, int y)
-   {
+   //bool graphics::PtVisible(int x, int y)
+   //{
 
-      __throw(todo());
-      //ASSERT(get_handle1() != nullptr);
+   //   __throw(todo());
+   //   //ASSERT(get_handle1() != nullptr);
 
-      //return ::PtVisible(get_handle1(), x, y) != FALSE;
+   //   //return ::PtVisible(get_handle1(), x, y) != FALSE;
 
-   }
+   //}
 
-   bool graphics::PtVisible(const ::point & point)
-   {
+   //bool graphics::PtVisible(const ::point & point)
+   //{
 
-      ASSERT(get_handle1() != nullptr);
+   //   ASSERT(get_handle1() != nullptr);
 
-      return PtVisible(point.x, point.y);
+   //   return PtVisible(point.x, point.y);
 
-   } // call virtual
+   //} // call virtual
 
 
-   bool graphics::RectVisible(const ::rect & rect)
-   {
+   //bool graphics::RectVisible(const ::rect & rect)
+   //{
 
-      __throw(todo());
+   //   __throw(todo());
 
-      //ASSERT(get_handle1() != nullptr);
+   //   //ASSERT(get_handle1() != nullptr);
 
-      //return ::RectVisible(get_handle1(), rect) != FALSE;
+   //   //return ::RectVisible(get_handle1(), rect) != FALSE;
 
-   }
+   //}
 
 
    pointd graphics::current_position()
@@ -3557,33 +3557,16 @@ namespace draw2d_direct2d
       //return ::GetClipBox(get_handle1(), rect);
    }
 
-   int graphics::SelectClipRgn(::draw2d::region * pregion)
+   
+   ::estatus graphics::reset_clip()
    {
 
       ::draw2d::lock draw2dlock;
 
-      if (pregion == nullptr)
+      for (index iState = m_statea.get_upper_bound(); iState >= 0; iState--)
       {
 
-         for (index iState = m_statea.get_upper_bound(); iState >= 0; iState--)
-         {
-
-            auto state = m_statea[iState];
-
-            for (index iItem = state->m_maRegion.get_upper_bound(); iItem >= 0; iItem--)
-            {
-
-               m_prendertarget->PopLayer();
-
-            }
-
-            state->m_maRegion.remove_all();
-
-            state->m_sparegionClip.remove_all();
-
-         }
-
-         auto & state = m_pstate;
+         auto state = m_statea[iState];
 
          for (index iItem = state->m_maRegion.get_upper_bound(); iItem >= 0; iItem--)
          {
@@ -3597,95 +3580,74 @@ namespace draw2d_direct2d
          state->m_sparegionClip.remove_all();
 
       }
-      else
+
+      auto& state = m_pstate;
+
+      for (index iItem = state->m_maRegion.get_upper_bound(); iItem >= 0; iItem--)
       {
 
-         D2D1::Matrix3x2F m;
-
-         m_prendertarget->GetTransform(&m);
-
-         m_pstate->m_sparegionClip.add(pregion);
-
-         m_pstate->m_maRegion.add(m);
-
-         auto pgeometry = pregion->get_os_data < ID2D1Geometry * >(this);
-
-         m_prendertarget->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(),pgeometry),nullptr);
+         m_prendertarget->PopLayer();
 
       }
 
-      return 0;
+      state->m_maRegion.remove_all();
 
-      //__throw(todo());
+      state->m_sparegionClip.remove_all();
 
+      return ::success;
 
-      //if(pregion == nullptr)
-      //{
-      //   m_prendertarget->ResetClip();
-      //}
-      //else
-      //{
-      //   m_prendertarget->SetClip((Gdiplus::Region *) pregion->get_os_data());
-      //}
-
-      //return 0;
-
-      ///*      int nRetVal = ERROR;
-      //if(get_handle1() != nullptr && get_handle1() != get_handle2())
-      //nRetVal = ::SelectClipRgn(get_handle1(), pRgn == nullptr ? nullptr : (HRGN) pRgn->get_os_data());
-      //if(get_handle2() != nullptr)
-      //nRetVal = ::SelectClipRgn(get_handle2(), pRgn == nullptr ? nullptr : (HRGN) pRgn->get_os_data());
-      //return nRetVal;*/
    }
 
-   int graphics::ExcludeClipRect(int x1, int y1, int x2, int y2)
+
+   ::estatus graphics::add_shapes(const shape_array& shapea)
    {
 
-      ::draw2d::lock draw2dlock;
-
+      for (int i = 0; i < shapea.get_count(); i++)
       {
 
-         UINT uiMax = m_pdevicecontext->GetMaximumBitmapSize();
+         if (i + 1 < shapea.get_count())
+         {
 
-         ::draw2d::region_pointer regionBig(e_create);
+            if (shapea[i + 1]->eshape() == e_shape_intersect_clip)
+            {
 
-         regionBig->create_rect_dim(-(int) uiMax/2, -(int)uiMax / 2, uiMax / 2, uiMax / 2);
+               switch (shapea[i]->eshape())
+               {
+               case e_shape_rect:
+                  intersect_clip(shapea[i]->shape < ::rect>());
+                  break;
+               case e_shape_rectd:
+                  intersect_clip(shapea[i]->shape < ::rectd>());
+                  break;
+               case e_shape_oval:
+                  intersect_clip(shapea[i]->shape < ::oval>());
+                  break;
+               case e_shape_ovald:
+                  intersect_clip(shapea[i]->shape < ::ovald>());
+                  break;
+               case e_shape_polygon:
+                  intersect_clip(shapea[i]->shape < ::polygon>());
+                  break;
+               case e_shape_polygond:
+                  intersect_clip(shapea[i]->shape < ::polygond>());
+                  break;
 
-         ::draw2d::region_pointer regionSmall(e_create);
+               }
 
-         regionSmall->create_rect_dim(x1, y1, x2, y2);
+               i++;
 
-         ::draw2d::region_pointer regionExclude(e_create);
+            }
 
-         regionExclude->combine(regionBig, regionSmall, ::draw2d::e_combine_exclude);
-
-         D2D1::Matrix3x2F m;
-
-         m_prendertarget->GetTransform(&m);
-
-         m_pstate->m_sparegionClip.add(regionExclude);
-
-         m_pstate->m_maRegion.add(m);
-
-         auto pgeometry = regionExclude->get_os_data < ID2D1Geometry * >(this);
-
-         m_prendertarget->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), pgeometry), nullptr);
+         }
 
       }
 
-      return 0;
-
-   }
-
-   int graphics::ExcludeClipRect(const ::rect & rect)
-   {
-
-      return ExcludeClipRect(rect.left, rect.top, rect.right, rect.bottom);
+      return ::success;
 
    }
 
 
-   int graphics::IntersectClipRect(int x1, int y1, int x2, int y2)
+   ::estatus graphics::intersect_clip(const ::rect& rect)
    {
 
       ::draw2d::lock draw2dlock;
@@ -3694,7 +3656,7 @@ namespace draw2d_direct2d
 
          ::draw2d::region_pointer pregion(e_create);
 
-         pregion->create_rect_dim(x1, y1, x2, y2);
+         pregion->create_rect(rect);
 
          D2D1::Matrix3x2F m = {};
 
@@ -3704,7 +3666,7 @@ namespace draw2d_direct2d
 
          m_pstate->m_maRegion.add(m);
 
-         ID2D1Geometry * pgeometry = (ID2D1Geometry *)pregion->get_os_data(this);
+         ID2D1Geometry* pgeometry = (ID2D1Geometry*)pregion->get_os_data(this);
 
          m_prendertarget->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), pgeometry), nullptr);
 
@@ -3715,28 +3677,269 @@ namespace draw2d_direct2d
    }
 
 
-   int graphics::IntersectClipRect(const ::rect & rect)
+   ::estatus graphics::intersect_clip(const ::rectd& rect)
    {
 
-      return IntersectClipRect(rect.left, rect.top, rect.right, rect.bottom);
+      ::draw2d::lock draw2dlock;
+
+      {
+
+         ::draw2d::region_pointer pregion(e_create);
+
+         pregion->create_rect(rect);
+
+         D2D1::Matrix3x2F m = {};
+
+         m_prendertarget->GetTransform(&m);
+
+         m_pstate->m_sparegionClip.add(pregion);
+
+         m_pstate->m_maRegion.add(m);
+
+         ID2D1Geometry* pgeometry = (ID2D1Geometry*)pregion->get_os_data(this);
+
+         m_prendertarget->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), pgeometry), nullptr);
+
+      }
+
+      return 0;
+
 
    }
 
 
-   int graphics::OffsetClipRgn(int x, int y)
+
+
+   ::estatus graphics::intersect_clip(const ::oval& oval)
    {
 
-      __throw(todo());
+      ::draw2d::lock draw2dlock;
+
+      {
+
+         ::draw2d::region_pointer pregion(e_create);
+
+         pregion->create_oval(oval);
+
+         D2D1::Matrix3x2F m = {};
+
+         m_prendertarget->GetTransform(&m);
+
+         m_pstate->m_sparegionClip.add(pregion);
+
+         m_pstate->m_maRegion.add(m);
+
+         ID2D1Geometry* pgeometry = (ID2D1Geometry*)pregion->get_os_data(this);
+
+         m_prendertarget->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), pgeometry), nullptr);
+
+      }
+
+      return 0;
+
 
    }
 
 
-   int graphics::OffsetClipRgn(const ::size & size)
+   ::estatus graphics::intersect_clip(const ::ovald& oval)
    {
 
-      __throw(todo());
+      ::draw2d::lock draw2dlock;
+
+      {
+
+         ::draw2d::region_pointer pregion(e_create);
+
+         pregion->create_oval(oval);
+
+         D2D1::Matrix3x2F m = {};
+
+         m_prendertarget->GetTransform(&m);
+
+         m_pstate->m_sparegionClip.add(pregion);
+
+         m_pstate->m_maRegion.add(m);
+
+         ID2D1Geometry* pgeometry = (ID2D1Geometry*)pregion->get_os_data(this);
+
+         m_prendertarget->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), pgeometry), nullptr);
+
+      }
+
+      return 0;
+
 
    }
+
+
+   ::estatus graphics::intersect_clip(const ::polygon& polygon)
+   {
+
+      ::draw2d::lock draw2dlock;
+
+      {
+
+         ::draw2d::region_pointer pregion(e_create);
+
+         pregion->create_polygon(polygon.get_data(), polygon.get_count(), ::draw2d::fill_mode_winding);
+
+         D2D1::Matrix3x2F m = {};
+
+         m_prendertarget->GetTransform(&m);
+
+         m_pstate->m_sparegionClip.add(pregion);
+
+         m_pstate->m_maRegion.add(m);
+
+         ID2D1Geometry* pgeometry = (ID2D1Geometry*)pregion->get_os_data(this);
+
+         m_prendertarget->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), pgeometry), nullptr);
+
+      }
+
+      return 0;
+
+
+   }
+
+
+   ::estatus graphics::intersect_clip(const ::polygond& polygon)
+   {
+
+      ::draw2d::lock draw2dlock;
+
+      {
+
+         ::draw2d::region_pointer pregion(e_create);
+
+         pregion->create_polygon(polygon.get_data(), polygon.get_count(), ::draw2d::fill_mode_winding);
+
+         D2D1::Matrix3x2F m = {};
+
+         m_prendertarget->GetTransform(&m);
+
+         m_pstate->m_sparegionClip.add(pregion);
+
+         m_pstate->m_maRegion.add(m);
+
+         ID2D1Geometry* pgeometry = (ID2D1Geometry*)pregion->get_os_data(this);
+
+         m_prendertarget->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), pgeometry), nullptr);
+
+      }
+
+      return 0;
+
+
+   }
+
+
+   //void graphics::
+
+   //   }
+   //   else
+   //   {
+
+   //      D2D1::Matrix3x2F m;
+
+   //      m_prendertarget->GetTransform(&m);
+
+   //      m_pstate->m_sparegionClip.add(pregion);
+
+   //      m_pstate->m_maRegion.add(m);
+
+   //      auto pgeometry = pregion->get_os_data < ID2D1Geometry * >(this);
+
+   //      m_prendertarget->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(),pgeometry),nullptr);
+
+   //   }
+
+   //   return 0;
+
+   //   //__throw(todo());
+
+
+   //   //if(pregion == nullptr)
+   //   //{
+   //   //   m_prendertarget->ResetClip();
+   //   //}
+   //   //else
+   //   //{
+   //   //   m_prendertarget->SetClip((Gdiplus::Region *) pregion->get_os_data());
+   //   //}
+
+   //   //return 0;
+
+   //   ///*      int nRetVal = ERROR;
+   //   //if(get_handle1() != nullptr && get_handle1() != get_handle2())
+   //   //nRetVal = ::SelectClipRgn(get_handle1(), pRgn == nullptr ? nullptr : (HRGN) pRgn->get_os_data());
+   //   //if(get_handle2() != nullptr)
+   //   //nRetVal = ::SelectClipRgn(get_handle2(), pRgn == nullptr ? nullptr : (HRGN) pRgn->get_os_data());
+   //   //return nRetVal;*/
+   //}
+
+   //int graphics::ExcludeClipRect(int x1, int y1, int x2, int y2)
+   //{
+
+   //   ::draw2d::lock draw2dlock;
+
+   //   {
+
+   //      UINT uiMax = m_pdevicecontext->GetMaximumBitmapSize();
+
+   //      ::draw2d::region_pointer regionBig(e_create);
+
+   //      regionBig->create_rect_dim(-(int) uiMax/2, -(int)uiMax / 2, uiMax / 2, uiMax / 2);
+
+   //      ::draw2d::region_pointer regionSmall(e_create);
+
+   //      regionSmall->create_rect_dim(x1, y1, x2, y2);
+
+   //      ::draw2d::region_pointer regionExclude(e_create);
+
+   //      regionExclude->combine(regionBig, regionSmall, ::draw2d::e_combine_exclude);
+
+   //      D2D1::Matrix3x2F m;
+
+   //      m_prendertarget->GetTransform(&m);
+
+   //      m_pstate->m_sparegionClip.add(regionExclude);
+
+   //      m_pstate->m_maRegion.add(m);
+
+   //      auto pgeometry = regionExclude->get_os_data < ID2D1Geometry * >(this);
+
+   //      m_prendertarget->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), pgeometry), nullptr);
+
+   //   }
+
+   //   return 0;
+
+   //}
+
+   //int graphics::ExcludeClipRect(const ::rect & rect)
+   //{
+
+   //   return ExcludeClipRect(rect.left, rect.top, rect.right, rect.bottom);
+
+   //}
+
+
+
+   //int graphics::OffsetClipRgn(int x, int y)
+   //{
+
+   //   __throw(todo());
+
+   //}
+
+
+   //int graphics::OffsetClipRgn(const ::size & size)
+   //{
+
+   //   __throw(todo());
+
+   //}
 
 
    UINT graphics::SetTextAlign(UINT nFlags)
@@ -3947,12 +4150,12 @@ namespace draw2d_direct2d
    }
 
 
-   int graphics::SelectClipRgn(::draw2d::region* pRgn, ::draw2d::enum_combine ecombine)
-   {
+   //int graphics::SelectClipRgn(::draw2d::region* pRgn, ::draw2d::enum_combine ecombine)
+   //{
 
-      return 0;
+   //   return 0;
 
-   }
+   //}
 
    /////////////////////////////////////////////////////////////////////////////
    // Special handling for metafile playback

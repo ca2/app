@@ -83,7 +83,7 @@ namespace imaging_wic
 
       bool bOk = true;
 
-      defer_main_thread([&]()
+      main_sync([&]()
          {
 
             auto dataPackage = ::Windows::ApplicationModel::DataTransfer::Clipboard::GetContent();
@@ -106,18 +106,36 @@ namespace imaging_wic
 
             }
 
-            ::Windows::Storage::Streams::IRandomAccessStream^ stream = (::Windows::Storage::Streams::IRandomAccessStream^) ::wait(dataPackage->GetDataAsync(L"DeviceIndependentBitmap"));
+            auto p = ::wait(dataPackage->GetDataAsync(L"DeviceIndependentBitmap"));
+
+            //::Windows::Storage::Streams::IRandomAccessStream^ stream = (::Windows::Storage::Streams::IRandomAccessStream^)
 
             //auto ref = ::wait(dataPackage->GetDataAsync(L"DeviceIndependentBitmap"));
 
-            if (stream == nullptr)
+            if (p == nullptr)
             {
 
-               bOk = false;
+               p = (::Windows::Storage::Streams::IRandomAccessStream^) ::wait(dataPackage->GetDataAsync(L"DeviceIndependentBitmapV5"));
 
-               return;
+               if (p == nullptr)
+               {
+                  
+                  p = (::Windows::Storage::Streams::IRandomAccessStream^) ::wait(dataPackage->GetDataAsync(L"DeviceInterchangeFormat"));
+
+                  if (p == nullptr)
+                  {
+
+                     bOk = false;
+
+                     return;
+
+                  }
+
+               }
 
             }
+
+            ::Windows::Storage::Streams::IRandomAccessStream^ stream = (::Windows::Storage::Streams::IRandomAccessStream ^ ) p;
 
             //::Windows::Storage::Streams::IRandomAccessStreamWithContentType ^ stream = ::wait(ref->OpenReadAsync());
 
@@ -184,7 +202,7 @@ namespace imaging_wic
 
       bool bOk = false;
 
-      defer_main_thread([&bOk]()
+      main_sync([&bOk]()
          {
 
             auto dataPackage = ::Windows::ApplicationModel::DataTransfer::Clipboard::GetContent();

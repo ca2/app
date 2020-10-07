@@ -1,9 +1,11 @@
 ﻿#include "framework.h"
+#include <collection.h>
 
 
 bool g_bCoreWindowOnceVisible;
 
-void set_core_window_once_visible()
+
+CLASS_DECL_ACME void set_core_window_once_visible()
 {
 
    g_bCoreWindowOnceVisible = true;
@@ -26,48 +28,37 @@ using namespace Windows::UI::Xaml::Controls;
 using namespace Windows::UI::Xaml::Navigation;
 
 
+
 ref class message_box_w
 {
+private:
+   ~message_box_w()
+   {
+
+      output_debug_string("~message_box_w");
+
+   }
+
 internal:
 
-
+   int m_iMessageBox;
    ::future     m_future;
-
+   Platform::Agile<Windows::UI::Popups::MessageDialog> m_msg;
 
    message_box_w();
 
 
-   ::estatus show(String ^ text, String ^ caption, ::emessagebox emessagebox, ::future future);
+   ::estatus init(String ^ text, String ^ caption, ::emessagebox emessagebox, ::future future);
 
 
-   void CommandInvokedHandler(IUICommand^ cmd)
-   {
-
-      if (cmd == nullptr)
-      {
-
-         m_future.send(::error_failed);
-
-      }
-      else
-      {
-
-         wstring wstr(cmd->Id);
-
-         string str(wstr);
-
-         m_future.send(str);
-
-      }
-
-      // Display message showing the label of the command that was invoked
-      //rootPage.NotifyUser("The '" + command.Label + "' command has been selected.",
-         //NotifyType.StatusMessage);
-
-   }
-
+   void CommandInvokedHandler(IUICommand^ cmd);
 
 };
+
+
+comparable_array < message_box_w^ > g_messageboxa;
+
+
 
 
 message_box_w::message_box_w()
@@ -80,10 +71,10 @@ message_box_w::message_box_w()
    msg->Commands->Append(ref new UICommand(text,ref new UICommandInvokedHandler(this, &::message_box_w::CommandInvokedHandler),id));
 
 
-::estatus message_box_w::show(String ^ text,String ^ caption, ::emessagebox emessagebox, ::future future)
+::estatus message_box_w::init(String ^ text,String ^ caption, ::emessagebox emessagebox, ::future future)
 {
 
-   if (!g_bCoreWindowOnceVisible)
+   if (!is_core_window_once_visible())
    {
 
       debug_break();
@@ -93,6 +84,8 @@ message_box_w::message_box_w()
    }
 
    MessageDialog ^ msg = ref new MessageDialog(text, caption);
+
+   m_msg = msg;
 
    u32 uiType = emessagebox & MB_TYPEMASK;
 
@@ -145,25 +138,63 @@ message_box_w::message_box_w()
 
    }
 
-   msg->ShowAsync();
+   m_future = future;
+
+
+   return ::success;
+
+}
+
+::estatus _os_message_box(const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, ::future future)
+{
+
+   message_box_w ^ pmessageboxw = ref new message_box_w;
+
+   pmessageboxw->init(wstring(pszMessage),wstring(pszTitle), emessagebox, future);
+
+   g_messageboxa.add(pmessageboxw);
+
+   main_async([pmessageboxw]()
+      {
+
+         pmessageboxw->m_msg->ShowAsync();
+
+      });
 
    return ::success;
 
 }
 
 
-::estatus os_message_box(oswindow oswindow, const char * pszText, const char * pszCaption, emessagebox emessagebox, ::future future)
+
+void message_box_w::CommandInvokedHandler(IUICommand^ cmd)
 {
 
-   UNREFERENCED_PARAMETER(oswindow);
+   if (cmd == nullptr)
+   {
 
-   message_box_w a;
+      m_future.send(::error_failed);
 
-   int iResult = a.show(wstring(pszText),wstring(pszCaption), emessagebox, future);
+   }
+   else
+   {
 
-   return iResult;
+      wstring wstr(cmd->Id);
+
+      string str(wstr);
+
+      m_future.send(str);
+
+   }
+
+   // Display message showing the label of the command that was invoked
+   //rootPage.NotifyUser("The '" + command.Label + "' command has been selected.",
+      //NotifyType.StatusMessage);
+   g_messageboxa.remove(this);
 
 }
+
+
 
 
 

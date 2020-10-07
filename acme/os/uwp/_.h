@@ -63,3 +63,21 @@ inline int_bool is_ok(hfile hfile);
 
 
 CLASS_DECL_ACME void dpi_os_initialize();
+
+
+template < typename PRED >
+inline void main_async(PRED pred, e_priority epriority = priority_normal)
+{
+
+   ::wait(
+      Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new Windows::UI::Core::DispatchedHandler([pred]()
+         {
+
+            pred();
+
+         })));
+
+}
+
+
+

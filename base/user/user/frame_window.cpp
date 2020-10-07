@@ -2860,7 +2860,7 @@ namespace user
       else if(strType.contains_ci("simple_child_frame"))
       {
 
-         ::output_debug_string("simple_child_frame");
+         //::output_debug_string("simple_child_frame");
 
       }
 

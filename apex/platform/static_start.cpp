@@ -9,6 +9,10 @@
 CLASS_DECL_APEX string __apex_get_text(string str);
 
 
+extern ::mutex* g_pmutexThreadDeferredCreation;
+extern ::array < __pointer(thread) >* g_pthreadaDeferredCreate;
+
+
 //#include <sqlite3.h>
 
 
@@ -389,6 +393,8 @@ namespace apex
 
       create_factory < ::apex::idpool >();
 
+
+
    }
 
 
@@ -603,6 +609,10 @@ namespace apex
 
       g_pmapFontFaceName = new string_to_string();
 
+      g_pmutexThreadDeferredCreation = new mutex;
+
+      g_pthreadaDeferredCreate = new ::array < __pointer(thread) >();
+
       init();
 
    }
@@ -612,6 +622,10 @@ namespace apex
    {
 
       term();
+
+      ::acme::del(g_pthreadaDeferredCreate);
+
+      ::acme::del(g_pmutexThreadDeferredCreation);
 
       ::acme::del(g_pmapFontFaceName);
 

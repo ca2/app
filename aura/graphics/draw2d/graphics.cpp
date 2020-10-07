@@ -923,7 +923,7 @@ namespace draw2d
 //      double endx = (cos((start + extends) * System.math().GetPi() / 180.0) * dx) + pointCenter.x;
 //      double endy = (sin((start + extends) * System.math().GetPi() / 180.0) * dy) + pointCenter.y;
 
-      return Arc((double)x1, (double)y1, (double)w, (double)h, start.degree(), extends.degree());
+      return Arc((double)x1, (double)y1, (double)w, (double)h, start, extends);
 
    }
 

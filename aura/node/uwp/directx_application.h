@@ -99,6 +99,8 @@ namespace uwp
       _In_ Windows::UI::Core::WindowSizeChangedEventArgs^ args
       );
 
+      void on_size(const ::size& size);
+
       void DpiChanged(::Windows::Graphics::Display::DisplayInformation ^ sender, Object ^ obj);
 
       void DisplayContentsInvalidated(::Windows::Graphics::Display::DisplayInformation ^ sender, Object ^ obj);

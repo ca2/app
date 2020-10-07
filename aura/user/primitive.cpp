@@ -2338,7 +2338,7 @@ namespace user
    double primitive::get_config_fps()
    {
 
-      return get_wnd()->m_pimpl->get_config_fps();
+      return get_host_wnd()->m_pimpl->get_config_fps();
 
    }
 
@@ -2346,7 +2346,7 @@ namespace user
    double primitive::get_output_fps()
    {
 
-      auto pinteraction = get_wnd();
+      auto pinteraction = get_host_wnd();
 
       if (pinteraction == nullptr)
       {

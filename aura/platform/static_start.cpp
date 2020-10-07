@@ -638,6 +638,8 @@ namespace aura
 
       term();
 
+
+
       ::acme::del(g_pmapFontFaceName);
 
       ::acme::del(g_pcsFont);

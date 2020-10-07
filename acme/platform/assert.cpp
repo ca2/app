@@ -5,10 +5,13 @@
 #endif
 
 
-#if defined(__APPLE__) || defined(_UWP)
-
+#if defined(__APPLE__) 
 
 int _os_message_box(const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox);
+
+#elif defined(_UWP)
+
+::estatus _os_message_box(const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, ::future future);
 
 #endif
 
@@ -65,6 +68,18 @@ namespace acme
 #elif defined(LINUX)
 
          x11_message_box(m_strText, m_strTitle, m_emessagebox, m_future);
+
+         return ::success;
+
+#elif defined(_UWP)
+
+               _os_message_box(m_strText, m_strTitle, m_emessagebox, m_future);
+
+            //   string strResult = message_box_result_to_string(iResult);
+
+            //   m_future.send(strResult);
+
+            //});
 
          return ::success;
 

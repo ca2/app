@@ -6,6 +6,8 @@
 #include "buffer.h"
 
 
+CLASS_DECL_ACME void set_core_window_once_visible();
+
 extern int g_iMouse;
 
 
@@ -154,8 +156,6 @@ namespace uwp
 
       m_directx->m_pimpl = puwpui;
 
-
-
       //puserinteraction->display(display_normal);
 
       //puserinteraction->set_need_layout();
@@ -248,6 +248,12 @@ namespace uwp
       puiHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen.right = (LONG) m_window->Bounds.Width;
       puiHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen.bottom = (LONG) m_window->Bounds.Height;
 
+      m_directx->m_bCreated = true;
+
+      ::set_core_window_once_visible();
+
+      on_size({ (LONG)window->Bounds.Width, (LONG)window->Bounds.Height });
+
    }
 
 
@@ -279,30 +285,24 @@ namespace uwp
    }
 
 
-   void directx_application::OnWindowSizeChanged(CoreWindow ^ sender, WindowSizeChangedEventArgs ^ args)
+   void directx_application::on_size(const ::size& size)
    {
 
+      m_directx->m_size = size;
 
+      m_rectLastWindowRect.Width = (float)m_directx->m_size.cx;
 
-      m_directx->m_size.set_size((i32) args->Size.Width, (i32)args->Size.Height);
-
-      m_rectLastWindowRect.Width = (float) m_directx->m_size.cx;
-
-      m_rectLastWindowRect.Height = (float) m_directx->m_size.cy;
+      m_rectLastWindowRect.Height = (float)m_directx->m_size.cy;
 
       m_directx->OnWindowSizeChange();
 
-      //{
+   }
 
-      //   auto puiHost = Sess(m_psystem).host();
 
-      //   puiHost->set_need_layout();
+   void directx_application::OnWindowSizeChanged(CoreWindow ^ sender, WindowSizeChangedEventArgs ^ args)
+   {
 
-      //   puiHost->set_need_redraw();
-
-      //   puiHost->post_redraw();
-
-      //}
+      on_size({ (LONG) args->Size.Width, (LONG) args->Size.Height });
 
    }
 
@@ -411,14 +411,14 @@ namespace uwp
 
       }
 
-      pointer < ::message::base > spbase;
+      ___pointer < ::message::base > spbase;
 
       auto pkey  = __new(::message::key);
 
       spbase = pkey;
 
       pkey->m_id = WM_CHAR;
-      pkey->m_puserinteraction = puiHost;
+      pkey->m_playeredUserPrimitive = puiHost;
       pkey->m_nChar = keycode_to_char(args->KeyCode);
 
       puiHost->m_pimpl->queue_message_handler(spbase);
@@ -444,7 +444,7 @@ namespace uwp
       if (puiHost->m_pimpl == nullptr)
          return;
 
-      pointer < ::message::base > spbase;
+      ___pointer < ::message::base > spbase;
 
       auto pkey  = __new(::message::key);
 
@@ -461,7 +461,7 @@ namespace uwp
       {
 
          pkey->m_id                 = WM_KEYDOWN;
-         pkey->m_puserinteraction   = puiHost;
+         pkey->m_playeredUserPrimitive = puiHost;
          pkey->m_nChar              = virtualkey_to_char(args->VirtualKey);
          pkey->m_ekey               = ekey;
          pkey->m_wparam             = pkey->m_nChar;
@@ -496,7 +496,7 @@ namespace uwp
       if (puiHost->m_pimpl == nullptr)
          return;
 
-      pointer < ::message::base > spbase;
+      ___pointer < ::message::base > spbase;
 
       ::message::key * pkey = new  ::message::key;
 
@@ -518,7 +518,7 @@ namespace uwp
       {
 
          pkey->m_id = WM_KEYUP;
-         pkey->m_puserinteraction = puiHost;
+         pkey->m_playeredUserPrimitive = puiHost;
          pkey->m_nChar = virtualkey_to_char(args->VirtualKey);
          pkey->m_ekey = ekey;
          pkey->m_wparam = pkey->m_nChar;
@@ -632,7 +632,7 @@ namespace uwp
 
       ::g_iMouse = pointerPoint->PointerId;
 
-      pointer < ::message::base > spbase;
+      ___pointer < ::message::base > spbase;
 
       ::message::mouse * pmouse = new ::message::mouse;
 
@@ -641,7 +641,7 @@ namespace uwp
       pmouse->m_point.x             = (LONG) pointerPoint->RawPosition.X;
       pmouse->m_point.y             = (LONG) pointerPoint->RawPosition.Y;
       pmouse->m_id                  = WM_MOUSEMOVE;
-      pmouse->m_puserinteraction    = puiHost;
+      pmouse->m_playeredUserPrimitive = puiHost;
 
       m_pointLastCursor = pointerPoint->RawPosition;
 
@@ -670,7 +670,7 @@ namespace uwp
 
       ::g_iMouse = pointerPoint->PointerId;
 
-      pointer < ::message::base > spbase;
+      ___pointer < ::message::base > spbase;
 
       ::message::mouse * pmouse = new  ::message::mouse;
 
@@ -711,7 +711,7 @@ namespace uwp
 
       }
 
-      pmouse->m_puserinteraction = puiHost;
+      pmouse->m_playeredUserPrimitive = puiHost;
 
       m_pointLastCursor = pointerPoint->RawPosition;
 
@@ -734,7 +734,7 @@ namespace uwp
 
       ::g_iMouse = pointerPoint->PointerId;
 
-      pointer < ::message::base > spbase;
+      ___pointer < ::message::base > spbase;
 
       ::message::mouse * pmouse = new  ::message::mouse;
 
@@ -782,7 +782,7 @@ namespace uwp
 
       }
 
-      pmouse->m_puserinteraction = puiHost;
+      pmouse->m_playeredUserPrimitive = puiHost;
 
       m_pointLastCursor = pointerPoint->RawPosition;
 

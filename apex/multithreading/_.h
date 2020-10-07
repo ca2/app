@@ -308,7 +308,7 @@ string get_thread_name(HTHREAD hthread);
 // Use instead of PostQuitMessage in OLE server applications
 CLASS_DECL_APEX void __post_quit_message(i32 nExitCode);
 
-
+#if !defined(_UWP)
 template < typename PRED >
 inline void main_async(PRED pred, e_priority epriority = priority_normal)
 {
@@ -316,6 +316,7 @@ inline void main_async(PRED pred, e_priority epriority = priority_normal)
    async_pred(&main_branch, pred, epriority);
 
 }
+#endif
 
 
 template < typename PRED >

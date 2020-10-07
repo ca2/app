@@ -4,22 +4,12 @@
 #include "aura/update.h"
 
 
-//#ifdef WIN32
-//CLASS_DECL_APEX bool defer_init_winsock();
-//#endif
-
-
 namespace app_app
 {
 
 
    application::application()
    {
-
-//#ifdef WIN32
-//      defer_init_winsock();
-      
-      
 
       m_strAppId = "app/app";
 
@@ -118,25 +108,5 @@ namespace app_app
 
 } // namespace app_app
 
-
-
-
-
-
-
-//
-//extern "C"
-//::apex::library * app_simple_drawing_get_new_library()
-//{
-//
-//   return new ::apex::single_application_library < ::app_app::application >("app-simple/drawing");
-//
-//}
-//
-//
-//aura_app aura_app_simple_drawing("app-simple/drawing", &app_simple_drawing_get_new_library);
-//
-//
-//app_app::application application;
 
 

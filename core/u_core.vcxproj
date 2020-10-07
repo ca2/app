@@ -50,17 +50,660 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="astr.h" />
+    <ClInclude Include="console.h" />
+    <ClInclude Include="const\charset.h" />
+    <ClInclude Include="const\check.h" />
+    <ClInclude Include="const\context.h" />
+    <ClInclude Include="const\id.h" />
+    <ClInclude Include="const\idpool.h" />
+    <ClInclude Include="const\impact.h" />
+    <ClInclude Include="const\message.h" />
+    <ClInclude Include="const\procedure.h" />
+    <ClInclude Include="const\simple_command.h" />
+    <ClInclude Include="const\source.h" />
+    <ClInclude Include="const\status.h" />
+    <ClInclude Include="const\status_range_authentication.h" />
+    <ClInclude Include="const\thread.h" />
+    <ClInclude Include="const\timer.h" />
+    <ClInclude Include="const\_const.h" />
+    <ClInclude Include="filesystem\filehandler\handler.h" />
+    <ClInclude Include="filesystem\filehandler\item.h" />
+    <ClInclude Include="filesystem\filehandler\library.h" />
+    <ClInclude Include="filesystem\filehandler\menu_library.h" />
+    <ClInclude Include="filesystem\filehandler\tree_interface.h" />
+    <ClInclude Include="filesystem\filehandler\_.h" />
+    <ClInclude Include="filesystem\filehandler\_filehandler.h" />
+    <ClInclude Include="filesystem\filemanager\aaa_want_to_remove_callback.h" />
+    <ClInclude Include="filesystem\filemanager\aaa_want_to_remove_form_view.h" />
+    <ClInclude Include="filesystem\filemanager\aaa_want_to_remove_item_action.h" />
+    <ClInclude Include="filesystem\filemanager\child_frame.h" />
+    <ClInclude Include="filesystem\filemanager\component.h" />
+    <ClInclude Include="filesystem\filemanager\const.h" />
+    <ClInclude Include="filesystem\filemanager\context_menu.h" />
+    <ClInclude Include="filesystem\filemanager\data.h" />
+    <ClInclude Include="filesystem\filemanager\document.h" />
+    <ClInclude Include="filesystem\filemanager\file_list.h" />
+    <ClInclude Include="filesystem\filemanager\file_list_callback.h" />
+    <ClInclude Include="filesystem\filemanager\file_properties_form.h" />
+    <ClInclude Include="filesystem\filemanager\folder_list.h" />
+    <ClInclude Include="filesystem\filemanager\folder_list_data.h" />
+    <ClInclude Include="filesystem\filemanager\folder_list_view.h" />
+    <ClInclude Include="filesystem\filemanager\folder_selection_list_view.h" />
+    <ClInclude Include="filesystem\filemanager\form.h" />
+    <ClInclude Include="filesystem\filemanager\form_child_frame.h" />
+    <ClInclude Include="filesystem\filemanager\form_document.h" />
+    <ClInclude Include="filesystem\filemanager\frame.h" />
+    <ClInclude Include="filesystem\filemanager\fs_simple_list_view.h" />
+    <ClInclude Include="filesystem\filemanager\fs_simple_tree.h" />
+    <ClInclude Include="filesystem\filemanager\fs_simple_view.h" />
+    <ClInclude Include="filesystem\filemanager\icon.h" />
+    <ClInclude Include="filesystem\filemanager\iconoverlayer.h" />
+    <ClInclude Include="filesystem\filemanager\impact.h" />
+    <ClInclude Include="filesystem\filemanager\left_view.h" />
+    <ClInclude Include="filesystem\filemanager\main_frame.h" />
+    <ClInclude Include="filesystem\filemanager\main_view.h" />
+    <ClInclude Include="filesystem\filemanager\operation.h" />
+    <ClInclude Include="filesystem\filemanager\operation_child_frame.h" />
+    <ClInclude Include="filesystem\filemanager\operation_document.h" />
+    <ClInclude Include="filesystem\filemanager\operation_info_view.h" />
+    <ClInclude Include="filesystem\filemanager\operation_list_view.h" />
+    <ClInclude Include="filesystem\filemanager\operation_thread.h" />
+    <ClInclude Include="filesystem\filemanager\operation_view.h" />
+    <ClInclude Include="filesystem\filemanager\path_view.h" />
+    <ClInclude Include="filesystem\filemanager\preview.h" />
+    <ClInclude Include="filesystem\filemanager\save_as_name_view.h" />
+    <ClInclude Include="filesystem\filemanager\tab_view.h" />
+    <ClInclude Include="filesystem\filemanager\tree.h" />
+    <ClInclude Include="filesystem\filemanager\update_hint.h" />
+    <ClInclude Include="filesystem\filemanager\view.h" />
+    <ClInclude Include="filesystem\filemanager\_.h" />
+    <ClInclude Include="filesystem\filemanager\_filemanager.h" />
+    <ClInclude Include="filesystem\filemanager\_tree.h" />
+    <ClInclude Include="filesystem\filesystem.h" />
+    <ClInclude Include="filesystem\fs\ftpfs.h" />
+    <ClInclude Include="filesystem\fs\ftp_file.h" />
+    <ClInclude Include="filesystem\fs\ftp_net.h" />
+    <ClInclude Include="filesystem\fs\_.h" />
+    <ClInclude Include="filesystem\fs\_fs.h" />
+    <ClInclude Include="filesystem\userfs\const.h" />
+    <ClInclude Include="filesystem\userfs\document.h" />
+    <ClInclude Include="filesystem\userfs\item.h" />
+    <ClInclude Include="filesystem\userfs\list.h" />
+    <ClInclude Include="filesystem\userfs\list_data.h" />
+    <ClInclude Include="filesystem\userfs\list_item.h" />
+    <ClInclude Include="filesystem\userfs\list_item_array.h" />
+    <ClInclude Include="filesystem\userfs\main_view.h" />
+    <ClInclude Include="filesystem\userfs\tree.h" />
+    <ClInclude Include="filesystem\userfs\userfs.h" />
+    <ClInclude Include="filesystem\userfs\_.h" />
+    <ClInclude Include="filesystem\userfs\_data.h" />
+    <ClInclude Include="filesystem\userfs\_tree.h" />
+    <ClInclude Include="filesystem\userfs\_userfs.h" />
+    <ClInclude Include="html\elemental\elemental.h" />
+    <ClInclude Include="html\elemental\_.h" />
+    <ClInclude Include="html\elemental\_elemental.h" />
+    <ClInclude Include="html\graphics\attribute.h" />
+    <ClInclude Include="html\graphics\base.h" />
+    <ClInclude Include="html\graphics\border.h" />
+    <ClInclude Include="html\graphics\box.h" />
+    <ClInclude Include="html\graphics\font.h" />
+    <ClInclude Include="html\graphics\form.h" />
+    <ClInclude Include="html\graphics\message.h" />
+    <ClInclude Include="html\graphics\point.h" />
+    <ClInclude Include="html\graphics\reader.h" />
+    <ClInclude Include="html\graphics\size.h" />
+    <ClInclude Include="html\graphics\style.h" />
+    <ClInclude Include="html\graphics\style_sheet.h" />
+    <ClInclude Include="html\graphics\style_sheet_array.h" />
+    <ClInclude Include="html\graphics\tag.h" />
+    <ClInclude Include="html\graphics\value.h" />
+    <ClInclude Include="html\graphics\_.h" />
+    <ClInclude Include="html\graphics\_graphics.h" />
+    <ClInclude Include="html\hi5\hi5_twitter_authorization.h" />
+    <ClInclude Include="html\html\core_data.h" />
+    <ClInclude Include="html\html\data.h" />
+    <ClInclude Include="html\html\_.h" />
+    <ClInclude Include="html\html\_html.h" />
+    <ClInclude Include="html\impl\cell.h" />
+    <ClInclude Include="html\impl\elemental.h" />
+    <ClInclude Include="html\impl\form.h" />
+    <ClInclude Include="html\impl\image.h" />
+    <ClInclude Include="html\impl\input_button.h" />
+    <ClInclude Include="html\impl\input_checkbox.h" />
+    <ClInclude Include="html\impl\input_text.h" />
+    <ClInclude Include="html\impl\select.h" />
+    <ClInclude Include="html\impl\table.h" />
+    <ClInclude Include="html\impl\table_elemental.h" />
+    <ClInclude Include="html\impl\table_row.h" />
+    <ClInclude Include="html\impl\text.h" />
+    <ClInclude Include="html\impl\_.h" />
+    <ClInclude Include="html\impl\_impl.h" />
+    <ClInclude Include="html\user\child_frame.h" />
+    <ClInclude Include="html\user\document.h" />
+    <ClInclude Include="html\user\form.h" />
+    <ClInclude Include="html\user\form_view.h" />
+    <ClInclude Include="html\user\frame.h" />
+    <ClInclude Include="html\user\view.h" />
+    <ClInclude Include="html\user\_.h" />
+    <ClInclude Include="html\user\_user.h" />
+    <ClInclude Include="include\objc.h" />
+    <ClInclude Include="include\objcpp.h" />
+    <ClInclude Include="include\winrt.h" />
+    <ClInclude Include="include\_.h" />
+    <ClInclude Include="include\_c_bridge.h" />
+    <ClInclude Include="include\_include.h" />
+    <ClInclude Include="inline\application.h" />
+    <ClInclude Include="inline\application\linux.h" />
+    <ClInclude Include="inline\application\macos.h" />
+    <ClInclude Include="inline\application\uwp.h" />
+    <ClInclude Include="inline\application\windows.h" />
+    <ClInclude Include="inline\application_common.h" />
+    <ClInclude Include="inline\console.h" />
+    <ClInclude Include="inline\console\linux.h" />
+    <ClInclude Include="inline\console\windows.h" />
+    <ClInclude Include="inline\console_common.h" />
+    <ClInclude Include="inline\library.h" />
+    <ClInclude Include="inline\_acid_app_impl.h" />
+    <ClInclude Include="inline\_application.h" />
+    <ClInclude Include="inline\_app_impl1.h" />
+    <ClInclude Include="inline\_console_old.h" />
+    <ClInclude Include="inline\_draw2d_impl.h" />
+    <ClInclude Include="inline\_new_impl.h" />
+    <ClInclude Include="inline\__debug_box_clear_impl.h" />
+    <ClInclude Include="inline\__debug_box_set_impl.h" />
+    <ClInclude Include="net\ftp\client_socket.h" />
+    <ClInclude Include="net\ftp\data_types.h" />
+    <ClInclude Include="net\ftp\file.h" />
+    <ClInclude Include="net\ftp\file_list_parser.h" />
+    <ClInclude Include="net\ftp\file_status.h" />
+    <ClInclude Include="net\ftp\interface.h" />
+    <ClInclude Include="net\ftp\output.h" />
+    <ClInclude Include="net\ftp\output_stream.h" />
+    <ClInclude Include="net\ftp\transfer_notification.h" />
+    <ClInclude Include="net\ftp\_.h" />
+    <ClInclude Include="net\_.h" />
+    <ClInclude Include="net\_impl.h" />
+    <ClInclude Include="node\uwp\shell_uwp.h" />
+    <ClInclude Include="node\uwp\_.h" />
+    <ClInclude Include="node\uwp\_uwp.h" />
+    <ClInclude Include="os\aura_gdk.h" />
+    <ClInclude Include="os\binreloc.h" />
+    <ClInclude Include="os\chronometer.h" />
+    <ClInclude Include="os\console.h" />
+    <ClInclude Include="os\core.h" />
+    <ClInclude Include="os\cross.h" />
+    <ClInclude Include="os\cross\cross.h" />
+    <ClInclude Include="os\cross\windows\_.h" />
+    <ClInclude Include="os\file.h" />
+    <ClInclude Include="os\graphics.h" />
+    <ClInclude Include="os\os_windowing2.h" />
+    <ClInclude Include="os\process.h" />
+    <ClInclude Include="os\text.h" />
+    <ClInclude Include="os\threading.h" />
+    <ClInclude Include="os\time.h" />
+    <ClInclude Include="os\windowing.h" />
+    <ClInclude Include="os\windows\_.h" />
+    <ClInclude Include="os\windows\_c.h" />
+    <ClInclude Include="os\windows\_windows.h" />
+    <ClInclude Include="os\windows\_windows_impl.h" />
+    <ClInclude Include="os\winpr_input.h" />
+    <ClInclude Include="os\_.h" />
+    <ClInclude Include="os\_application.h" />
+    <ClInclude Include="os\_c.h" />
+    <ClInclude Include="os\_impl.h" />
+    <ClInclude Include="os\_os.h" />
+    <ClInclude Include="platform\application.h" />
+    <ClInclude Include="platform\session.h" />
+    <ClInclude Include="platform\system.h" />
+    <ClInclude Include="version\version.h" />
+    <None Include="core.def" />
+    <None Include="filesystem\_impl.h" />
+    <ClInclude Include="framework.h" />
+    <ClInclude Include="framework_c.h" />
+    <ClInclude Include="id.h" />
+    <ClInclude Include="message.h" />
+    <ClInclude Include="net\_net_impl.h" />
+    <ClInclude Include="node\opengl\buffer.h" />
+    <ClInclude Include="node\opengl\context.h" />
+    <ClInclude Include="node\opengl\opengl.h" />
+    <ClInclude Include="node\opengl\program.h" />
+    <ClInclude Include="node\opengl\shader.h" />
+    <ClInclude Include="platform\_generic_object_constructor_impl.h" />
+    <ClInclude Include="update.h" />
+    <ClInclude Include="user.h" />
+    <ClInclude Include="user\account\dialog.h" />
+    <ClInclude Include="user\account\login.h" />
+    <ClInclude Include="user\account\simple_ui.h" />
+    <ClInclude Include="user\account\simple_ui_style.h" />
+    <ClInclude Include="user\account\view.h" />
+    <ClInclude Include="user\account\_.h" />
+    <ClInclude Include="user\account\_account.h" />
+    <ClInclude Include="user\databaseuser\key_mesh_data.h" />
+    <ClInclude Include="user\databaseuser\mesh_data.h" />
+    <ClInclude Include="user\databaseuser\_.h" />
+    <ClInclude Include="user\databaseuser\_databaseuser.h" />
+    <ClInclude Include="user\netuser\network_configuration.h" />
+    <ClInclude Include="user\netuser\_.h" />
+    <ClInclude Include="user\netuser\_netuser.h" />
+    <ClInclude Include="user\rich_text\box.h" />
+    <ClInclude Include="user\rich_text\data.h" />
+    <ClInclude Include="user\rich_text\document.h" />
+    <ClInclude Include="user\rich_text\edit.h" />
+    <ClInclude Include="user\rich_text\edit_impl.h" />
+    <ClInclude Include="user\rich_text\format.h" />
+    <ClInclude Include="user\rich_text\format_tool.h" />
+    <ClInclude Include="user\rich_text\global.h" />
+    <ClInclude Include="user\rich_text\layout.h" />
+    <ClInclude Include="user\rich_text\line.h" />
+    <ClInclude Include="user\rich_text\rich_text.h" />
+    <ClInclude Include="user\rich_text\span.h" />
+    <ClInclude Include="user\rich_text\text_format.h" />
+    <ClInclude Include="user\rich_text\text_format_object.h" />
+    <ClInclude Include="user\rich_text\_const.h" />
+    <None Include="user\rich_text\_impl.h" />
+    <ClInclude Include="user\rich_text\_rich_text.h" />
+    <ClInclude Include="user\simple\child_frame.h" />
+    <ClInclude Include="user\simple\form_list_view.h" />
+    <ClInclude Include="user\simple\form_view.h" />
+    <ClInclude Include="user\simple\frame_window.h" />
+    <ClInclude Include="user\simple\list_control.h" />
+    <ClInclude Include="user\simple\list_data.h" />
+    <ClInclude Include="user\simple\list_header_control.h" />
+    <ClInclude Include="user\simple\list_view.h" />
+    <ClInclude Include="user\simple\main_frame.h" />
+    <ClInclude Include="user\simple\menu_bar.h" />
+    <ClInclude Include="user\simple\mesh_data.h" />
+    <ClInclude Include="user\simple\message_box.h" />
+    <ClInclude Include="user\simple\pane_document.h" />
+    <ClInclude Include="user\simple\printer_list_view.h" />
+    <ClInclude Include="user\simple\scroll_bar.h" />
+    <ClInclude Include="user\simple\simple.h" />
+    <ClInclude Include="user\simple\static.h" />
+    <ClInclude Include="user\simple\status_bar.h" />
+    <ClInclude Include="user\simple\tab_control.h" />
+    <ClInclude Include="user\simple\tab_view.h" />
+    <ClInclude Include="user\simple\toolbar.h" />
+    <ClInclude Include="user\simple\tree_view.h" />
+    <ClInclude Include="user\simple\_.h" />
+    <ClInclude Include="user\simple\_impl.h" />
+    <ClInclude Include="user\simple\_simple.h" />
+    <ClInclude Include="user\simple_ui\edit_box.h" />
+    <ClInclude Include="user\simple_ui\interaction.h" />
+    <ClInclude Include="user\simple_ui\label.h" />
+    <ClInclude Include="user\simple_ui\message_box.h" />
+    <ClInclude Include="user\simple_ui\password.h" />
+    <ClInclude Include="user\simple_ui\style.h" />
+    <ClInclude Include="user\simple_ui\tap.h" />
+    <ClInclude Include="user\simple_ui\top.h" />
+    <ClInclude Include="user\simple_ui\_.h" />
+    <ClInclude Include="user\simple_ui\_simple_ui.h" />
+    <ClInclude Include="user\userex\aaa_want_to_remove_form_update_hint.h" />
+    <ClInclude Include="user\userex\calculator_edit_view.h" />
+    <ClInclude Include="user\userex\color_view.h" />
+    <ClInclude Include="user\userex\const.h" />
+    <ClInclude Include="user\userex\dialog.h" />
+    <ClInclude Include="user\userex\error_dialog.h" />
+    <ClInclude Include="user\userex\font_view.h" />
+    <ClInclude Include="user\userex\form_child_frame.h" />
+    <ClInclude Include="user\userex\form_document.h" />
+    <ClInclude Include="user\userex\form_frame.h" />
+    <ClInclude Include="user\userex\form_view.h" />
+    <ClInclude Include="user\userex\group_image_list.h" />
+    <ClInclude Include="user\userex\home_view.h" />
+    <ClInclude Include="user\userex\image_list.h" />
+    <ClInclude Include="user\userex\impact_host.h" />
+    <ClInclude Include="user\userex\menu_document.h" />
+    <ClInclude Include="user\userex\menu_frame.h" />
+    <ClInclude Include="user\userex\menu_view.h" />
+    <ClInclude Include="user\userex\message_box.h" />
+    <ClInclude Include="user\userex\mini_dock_frame_window.h" />
+    <ClInclude Include="user\userex\pane_split_view.h" />
+    <ClInclude Include="user\userex\pane_tab_view.h" />
+    <ClInclude Include="user\userex\pane_view.h" />
+    <ClInclude Include="user\userex\progress.h" />
+    <ClInclude Include="user\userex\property_page.h" />
+    <ClInclude Include="user\userex\property_sheet.h" />
+    <ClInclude Include="user\userex\split_view.h" />
+    <ClInclude Include="user\userex\top_edit_view.h" />
+    <ClInclude Include="user\userex\top_toggle_view.h" />
+    <ClInclude Include="user\userex\top_view.h" />
+    <ClInclude Include="user\userex\user.h" />
+    <ClInclude Include="user\userex\wait_message_dialog.h" />
+    <ClInclude Include="user\userex\_.h" />
+    <ClInclude Include="user\userex\_impl.h" />
+    <ClInclude Include="user\userex\_userex.h" />
+    <ClInclude Include="user\user\00.h" />
+    <ClInclude Include="user\user\color_combo_box.h" />
+    <ClInclude Include="user\user\control_ddx_dbflags.h" />
+    <ClInclude Include="user\user\elastic_slider.h" />
+    <ClInclude Include="user\user\font_combo_box.h" />
+    <ClInclude Include="user\user\font_list.h" />
+    <ClInclude Include="user\user\form_list.h" />
+    <ClInclude Include="user\user\form_list_view.h" />
+    <ClInclude Include="user\user\form_mesh.h" />
+    <ClInclude Include="user\user\form_update_hint.h" />
+    <ClInclude Include="user\user\image_manager.h" />
+    <ClInclude Include="user\user\inline.h" />
+    <ClInclude Include="user\user\list.h" />
+    <ClInclude Include="user\user\listing.h" />
+    <ClInclude Include="user\user\list_cache.h" />
+    <ClInclude Include="user\user\list_column.h" />
+    <ClInclude Include="user\user\list_column_array.h" />
+    <ClInclude Include="user\user\list_data.h" />
+    <ClInclude Include="user\user\list_header.h" />
+    <ClInclude Include="user\user\list_item.h" />
+    <ClInclude Include="user\user\list_view.h" />
+    <ClInclude Include="user\user\main_frame.h" />
+    <ClInclude Include="user\user\mesh.h" />
+    <ClInclude Include="user\user\mesh_cache.h" />
+    <ClInclude Include="user\user\mesh_cache_interface.h" />
+    <ClInclude Include="user\user\mesh_data.h" />
+    <ClInclude Include="user\user\mesh_item.h" />
+    <ClInclude Include="user\user\shell.h" />
+    <ClInclude Include="user\user\statusbar.h" />
+    <ClInclude Include="user\user\step_slider.h" />
+    <ClInclude Include="user\user\toggle_switch.h" />
+    <ClInclude Include="user\user\toolbar.h" />
+    <ClInclude Include="user\user\toolbar_control.h" />
+    <ClInclude Include="user\user\tooltip.h" />
+    <ClInclude Include="user\user\tool_command.h" />
+    <ClInclude Include="user\user\tool_tip_tool.h" />
+    <ClInclude Include="user\user\tool_tip_window.h" />
+    <ClInclude Include="user\user\tool_window.h" />
+    <ClInclude Include="user\user\tree.h" />
+    <ClInclude Include="user\user\tree_data.h" />
+    <ClInclude Include="user\user\xfplayer_view_line.h" />
+    <ClInclude Include="user\user\xfplayer_view_lines.h" />
+    <ClInclude Include="user\user\xfplayer_view_line_selection.h" />
+    <ClInclude Include="user\user\_.h" />
+    <ClInclude Include="user\user\_const.h" />
+    <None Include="user\user\_impl.h" />
+    <ClInclude Include="user\user\_tree.h" />
+    <ClInclude Include="user\user\_user.h" />
+    <ClInclude Include="user\_.h" />
+    <ClInclude Include="xml.h" />
+    <ClInclude Include="_.h" />
+    <ClInclude Include="_defer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="asset\cube_new.cpp" />
+    <ClCompile Include="const\idpool.cpp" />
+    <ClCompile Include="filesystem\filehandler\handler.cpp" />
+    <ClCompile Include="filesystem\filehandler\item.cpp" />
+    <ClCompile Include="filesystem\filehandler\library.cpp" />
+    <ClCompile Include="filesystem\filehandler\menu_library.cpp" />
+    <ClCompile Include="filesystem\filehandler\tree_interface.cpp" />
+    <ClCompile Include="filesystem\filemanager\child_frame.cpp" />
+    <ClCompile Include="filesystem\filemanager\component.cpp" />
+    <ClCompile Include="filesystem\filemanager\context_menu.cpp" />
+    <ClCompile Include="filesystem\filemanager\data.cpp" />
+    <ClCompile Include="filesystem\filemanager\document.cpp" />
+    <ClCompile Include="filesystem\filemanager\file_list.cpp" />
+    <ClCompile Include="filesystem\filemanager\file_list_callback.cpp" />
+    <ClCompile Include="filesystem\filemanager\file_properties_form.cpp" />
+    <ClCompile Include="filesystem\filemanager\folder_list.cpp" />
+    <ClCompile Include="filesystem\filemanager\folder_list_data.cpp" />
+    <ClCompile Include="filesystem\filemanager\folder_list_view.cpp" />
+    <ClCompile Include="filesystem\filemanager\folder_selection_list_view.cpp" />
+    <ClCompile Include="filesystem\filemanager\form.cpp" />
+    <ClCompile Include="filesystem\filemanager\form_child_frame.cpp" />
+    <ClCompile Include="filesystem\filemanager\form_document.cpp" />
+    <ClCompile Include="filesystem\filemanager\frame.cpp" />
+    <ClCompile Include="filesystem\filemanager\fs_simple_list_view.cpp" />
+    <ClCompile Include="filesystem\filemanager\fs_simple_tree.cpp" />
+    <ClCompile Include="filesystem\filemanager\fs_simple_view.cpp" />
+    <ClCompile Include="filesystem\filemanager\icon.cpp" />
+    <ClCompile Include="filesystem\filemanager\iconoverlayer.cpp" />
+    <ClCompile Include="filesystem\filemanager\impact.cpp" />
+    <ClCompile Include="filesystem\filemanager\left_view.cpp" />
+    <ClCompile Include="filesystem\filemanager\main_frame.cpp" />
+    <ClCompile Include="filesystem\filemanager\main_view.cpp" />
+    <ClCompile Include="filesystem\filemanager\operation.cpp" />
+    <ClCompile Include="filesystem\filemanager\operation_child_frame.cpp" />
+    <ClCompile Include="filesystem\filemanager\operation_document.cpp" />
+    <ClCompile Include="filesystem\filemanager\operation_info_view.cpp" />
+    <ClCompile Include="filesystem\filemanager\operation_list_view.cpp" />
+    <ClCompile Include="filesystem\filemanager\operation_thread.cpp" />
+    <ClCompile Include="filesystem\filemanager\operation_view.cpp" />
+    <ClCompile Include="filesystem\filemanager\path_view.cpp" />
+    <ClCompile Include="filesystem\filemanager\preview.cpp" />
+    <ClCompile Include="filesystem\filemanager\save_as_name_view.cpp" />
+    <ClCompile Include="filesystem\filemanager\tab_view.cpp" />
+    <ClCompile Include="filesystem\filemanager\tree.cpp" />
+    <ClCompile Include="filesystem\filemanager\update_hint.cpp" />
+    <ClCompile Include="filesystem\filemanager\view.cpp" />
+    <ClCompile Include="filesystem\filemanager\_.cpp" />
+    <ClCompile Include="filesystem\fs\ftpfs.cpp" />
+    <ClCompile Include="filesystem\fs\ftp_file.cpp" />
+    <ClCompile Include="filesystem\userfs\document.cpp" />
+    <ClCompile Include="filesystem\userfs\item.cpp" />
+    <ClCompile Include="filesystem\userfs\list.cpp" />
+    <ClCompile Include="filesystem\userfs\list_data.cpp" />
+    <ClCompile Include="filesystem\userfs\list_item.cpp" />
+    <ClCompile Include="filesystem\userfs\list_item_array.cpp" />
+    <ClCompile Include="filesystem\userfs\main_view.cpp" />
+    <ClCompile Include="filesystem\userfs\tree.cpp" />
+    <ClCompile Include="filesystem\userfs\userfs.cpp" />
+    <ClCompile Include="framework.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cover|ARM64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|ARM64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|ARM64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cover|ARM'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cover|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="html\elemental\elemental.cpp" />
+    <ClCompile Include="html\graphics\attribute.cpp" />
+    <ClCompile Include="html\graphics\base.cpp" />
+    <ClCompile Include="html\graphics\font.cpp" />
+    <ClCompile Include="html\graphics\form.cpp" />
+    <ClCompile Include="html\graphics\message.cpp" />
+    <ClCompile Include="html\graphics\reader.cpp" />
+    <ClCompile Include="html\graphics\style.cpp" />
+    <ClCompile Include="html\graphics\style_sheet.cpp" />
+    <ClCompile Include="html\graphics\style_sheet_array.cpp" />
+    <ClCompile Include="html\graphics\tag.cpp" />
+    <ClCompile Include="html\graphics\value.cpp" />
+    <ClCompile Include="html\hi5\hi5_twitter_authorization.cpp" />
+    <ClCompile Include="html\html\core_data.cpp" />
+    <ClCompile Include="html\html\data.cpp" />
+    <ClCompile Include="html\impl\cell.cpp" />
+    <ClCompile Include="html\impl\elemental.cpp" />
+    <ClCompile Include="html\impl\form.cpp" />
+    <ClCompile Include="html\impl\image.cpp" />
+    <ClCompile Include="html\impl\input_button.cpp" />
+    <ClCompile Include="html\impl\input_checkbox.cpp" />
+    <ClCompile Include="html\impl\input_text.cpp" />
+    <ClCompile Include="html\impl\select.cpp" />
+    <ClCompile Include="html\impl\table.cpp" />
+    <ClCompile Include="html\impl\table_elemental.cpp" />
+    <ClCompile Include="html\impl\table_row.cpp" />
+    <ClCompile Include="html\impl\text.cpp" />
+    <ClCompile Include="html\impl\_.cpp" />
+    <ClCompile Include="html\user\child_frame.cpp" />
+    <ClCompile Include="html\user\document.cpp" />
+    <ClCompile Include="html\user\form.cpp" />
+    <ClCompile Include="html\user\form_view.cpp" />
+    <ClCompile Include="html\user\frame.cpp" />
+    <ClCompile Include="html\user\user.cpp" />
+    <ClCompile Include="html\user\view.cpp" />
+    <ClCompile Include="include\_.cpp" />
+    <ClCompile Include="net\ftp\client_socket.cpp" />
+    <ClCompile Include="net\ftp\data_types.cpp" />
+    <ClCompile Include="net\ftp\file.cpp" />
+    <ClCompile Include="net\ftp\file_list_parser.cpp" />
+    <ClCompile Include="net\ftp\file_status.cpp" />
+    <ClCompile Include="net\ftp\output.cpp" />
+    <ClCompile Include="net\ftp\output_stream.cpp" />
+    <ClCompile Include="node\uwp\shell_uwp.cpp" />
+    <ClCompile Include="node\windows_common\application.cpp" />
+    <ClCompile Include="os\ansios\base.cpp" />
+    <ClCompile Include="os\ansios\datetime.cpp" />
+    <ClCompile Include="os\ansios\exception_engine.cpp" />
+    <ClCompile Include="os\ansios\file.cpp" />
+    <ClCompile Include="os\ansios\file_raw.cpp" />
+    <ClCompile Include="os\ansios\file_std.cpp" />
+    <ClCompile Include="os\ansios\language.cpp" />
+    <ClCompile Include="os\ansios\memory.cpp" />
+    <ClCompile Include="os\ansios\process.cpp" />
+    <ClCompile Include="os\ansios\user.cpp" />
+    <ClCompile Include="os\ansios\win.cpp" />
+    <ClCompile Include="platform\application.cpp" />
+    <ClCompile Include="platform\session.cpp" />
+    <ClCompile Include="platform\system.cpp" />
+    <ClCompile Include="user\account\account.cpp" />
+    <ClCompile Include="user\account\account_dialog.cpp" />
+    <ClCompile Include="user\account\account_login.cpp" />
+    <ClCompile Include="user\account\account_simple_ui.cpp" />
+    <ClCompile Include="user\account\view.cpp" />
+    <ClCompile Include="user\databaseuser\key_mesh_data.cpp" />
+    <ClCompile Include="user\databaseuser\mesh_data.cpp" />
+    <ClCompile Include="user\netuser\netuser_network_configuration.cpp" />
+    <ClCompile Include="user\rich_text\box.cpp" />
+    <ClCompile Include="user\rich_text\data.cpp" />
+    <ClCompile Include="user\rich_text\document.cpp" />
+    <ClCompile Include="user\rich_text\edit.cpp" />
+    <ClCompile Include="user\rich_text\edit_impl.cpp" />
+    <ClCompile Include="user\rich_text\format.cpp" />
+    <ClCompile Include="user\rich_text\format_tool.cpp" />
+    <ClCompile Include="user\rich_text\global.cpp" />
+    <ClCompile Include="user\rich_text\line.cpp" />
+    <ClCompile Include="user\rich_text\span.cpp" />
+    <ClCompile Include="user\rich_text\text_format.cpp" />
+    <ClCompile Include="user\rich_text\text_format_object.cpp" />
+    <ClCompile Include="user\simple\child_frame.cpp" />
+    <ClCompile Include="user\simple\form_list_view.cpp" />
+    <ClCompile Include="user\simple\form_view.cpp" />
+    <ClCompile Include="user\simple\list_control.cpp" />
+    <ClCompile Include="user\simple\list_data.cpp" />
+    <ClCompile Include="user\simple\list_header_control.cpp" />
+    <ClCompile Include="user\simple\list_view.cpp" />
+    <ClCompile Include="user\simple\menu_bar.cpp" />
+    <ClCompile Include="user\simple\mesh_data.cpp" />
+    <ClCompile Include="user\simple\message_box.cpp" />
+    <ClCompile Include="user\simple\pane_document.cpp" />
+    <ClCompile Include="user\simple\printer_list_view.cpp" />
+    <ClCompile Include="user\simple\static.cpp" />
+    <ClCompile Include="user\simple\status_bar.cpp" />
+    <ClCompile Include="user\simple\tab_control.cpp" />
+    <ClCompile Include="user\simple\tab_view.cpp" />
+    <ClCompile Include="user\simple\toolbar.cpp" />
+    <ClCompile Include="user\simple\tree_view.cpp" />
+    <ClCompile Include="user\simple\_.cpp" />
+    <ClCompile Include="user\simple_ui\edit_box.cpp" />
+    <ClCompile Include="user\simple_ui\interaction.cpp" />
+    <ClCompile Include="user\simple_ui\label.cpp" />
+    <ClCompile Include="user\simple_ui\message_box.cpp" />
+    <ClCompile Include="user\simple_ui\password.cpp" />
+    <ClCompile Include="user\simple_ui\style.cpp" />
+    <ClCompile Include="user\simple_ui\tap.cpp" />
+    <ClCompile Include="user\simple_ui\top.cpp" />
+    <ClCompile Include="user\userex\-ehrror_dialog.cpp" />
+    <ClCompile Include="user\userex\calculator_edit_view.cpp" />
+    <ClCompile Include="user\userex\color_view.cpp" />
+    <ClCompile Include="user\userex\dialog.cpp" />
+    <ClCompile Include="user\userex\font_view.cpp" />
+    <ClCompile Include="user\userex\form_child_frame.cpp" />
+    <ClCompile Include="user\userex\form_frame.cpp" />
+    <ClCompile Include="user\userex\group_image_list.cpp" />
+    <ClCompile Include="user\userex\home_view.cpp" />
+    <ClCompile Include="user\userex\image_list.cpp" />
+    <ClCompile Include="user\userex\impact_host.cpp" />
+    <ClCompile Include="user\userex\menu_document.cpp" />
+    <ClCompile Include="user\userex\menu_frame.cpp" />
+    <ClCompile Include="user\userex\menu_view.cpp" />
+    <ClCompile Include="user\userex\message_box.cpp" />
+    <ClCompile Include="user\userex\pane_split_view.cpp" />
+    <ClCompile Include="user\userex\pane_tab_view.cpp" />
+    <ClCompile Include="user\userex\pane_view.cpp" />
+    <ClCompile Include="user\userex\progress.cpp" />
+    <ClCompile Include="user\userex\property_page.cpp" />
+    <ClCompile Include="user\userex\property_sheet.cpp" />
+    <ClCompile Include="user\userex\split_view.cpp" />
+    <ClCompile Include="user\userex\top_edit_view.cpp" />
+    <ClCompile Include="user\userex\top_toggle_view.cpp" />
+    <ClCompile Include="user\userex\top_view.cpp" />
+    <ClCompile Include="user\userex\user.cpp" />
+    <ClCompile Include="user\userex\wait_message_dialog.cpp" />
+    <ClCompile Include="user\user\color_combo_box.cpp" />
+    <ClCompile Include="user\user\elastic_slider.cpp" />
+    <ClCompile Include="user\user\font_combo_box.cpp" />
+    <ClCompile Include="user\user\font_list.cpp" />
+    <ClCompile Include="user\user\form_list.cpp" />
+    <ClCompile Include="user\user\form_list_view.cpp" />
+    <ClCompile Include="user\user\form_mesh.cpp" />
+    <ClCompile Include="user\user\image_manager.cpp" />
+    <ClCompile Include="user\user\list.cpp" />
+    <ClCompile Include="user\user\list_cache.cpp" />
+    <ClCompile Include="user\user\list_data.cpp" />
+    <ClCompile Include="user\user\list_header.cpp" />
+    <ClCompile Include="user\user\list_view.cpp" />
+    <ClCompile Include="user\user\mesh.cpp" />
+    <ClCompile Include="user\user\mesh_cache.cpp" />
+    <ClCompile Include="user\user\mesh_cache_interface.cpp" />
+    <ClCompile Include="user\user\mesh_data.cpp" />
+    <ClCompile Include="user\user\shell.cpp" />
+    <ClCompile Include="user\user\statusbar.cpp" />
+    <ClCompile Include="user\user\step_slider.cpp" />
+    <ClCompile Include="user\user\toggle_switch.cpp" />
+    <ClCompile Include="user\user\toolbar_ctrl.cpp" />
+    <ClCompile Include="user\user\tooltip.cpp" />
+    <ClCompile Include="user\user\tool_command.cpp" />
+    <ClCompile Include="user\user\tool_tip_tool.cpp" />
+    <ClCompile Include="user\user\tool_tip_window.cpp" />
+    <ClCompile Include="user\user\tree.cpp" />
+    <ClCompile Include="user\user\tree_data.cpp" />
+    <ClCompile Include="user\user\tree_window.cpp" />
+    <ClCompile Include="user\user\xfplayer_view_line.cpp" />
+    <ClCompile Include="user\user\xfplayer_view_lines.cpp" />
+    <ClCompile Include="user\user\xfplayer_view_line_selection.cpp" />
+    <ClCompile Include="user\user\_.cpp" />
+    <ClCompile Include="_.cpp" />
+    <ClCompile Include="__matter_ca2.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\acme\u_acme.vcxproj">
+      <Project>{74a3ea71-9358-4441-a0cc-d5771df8dfbd}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\apex\u_apex.vcxproj">
+      <Project>{b86508de-6e32-42ac-b45c-08bf0932dcf8}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\aqua\u_aqua.vcxproj">
+      <Project>{d6fc3dc0-a19a-4f63-a3f1-3426fe53920b}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\aura\u_aura.vcxproj">
+      <Project>{b3e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\axis\u_axis.vcxproj">
+      <Project>{0412ea6f-50d0-4baa-99e3-ac14fc63a879}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\base\u_base.vcxproj">
+      <Project>{0680a465-39a7-4e1b-8dc1-0607a3243ea2}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\bred\u_bred.vcxproj">
+      <Project>{08c317fc-6ee8-4371-84cb-18150e439021}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{65070f1f-14db-474e-96de-cb920740dcc4}</ProjectGuid>
     <Keyword>DynamicLibrary</Keyword>
-    <RootNamespace>u_core</RootNamespace>
+    <RootNamespace>app</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
     <AppContainerApplication>true</AppContainerApplication>
     <ApplicationType>Windows Store</ApplicationType>
-    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
-    <WindowsTargetPlatformMinVersion>10.0.17763.0</WindowsTargetPlatformMinVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformMinVersion>10.0.18362.0</WindowsTargetPlatformMinVersion>
     <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
+    <ProjectName>core</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
@@ -134,245 +777,354 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\platform-uwp\Common.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='cover|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\platform-uwp\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\platform-uwp\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\platform-uwp\Common.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='cover|ARM'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\platform-uwp\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\platform-uwp\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='basis|ARM64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\platform-uwp\Common.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='cover|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\platform-uwp\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|ARM64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\platform-uwp\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\platform-uwp\Common.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='cover|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\platform-uwp\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\platform-uwp\Common.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
     <GenerateManifest>false</GenerateManifest>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">
     <GenerateManifest>false</GenerateManifest>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
     <GenerateManifest>false</GenerateManifest>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
     <GenerateManifest>false</GenerateManifest>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|ARM'">
     <GenerateManifest>false</GenerateManifest>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
     <GenerateManifest>false</GenerateManifest>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM64'">
     <GenerateManifest>false</GenerateManifest>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|ARM64'">
     <GenerateManifest>false</GenerateManifest>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM64'">
     <GenerateManifest>false</GenerateManifest>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
     <GenerateManifest>false</GenerateManifest>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|x64'">
     <GenerateManifest>false</GenerateManifest>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
     <GenerateManifest>false</GenerateManifest>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <CompileAsWinRT>false</CompileAsWinRT>
+      <CompileAsWinRT>true</CompileAsWinRT>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsManaged>false</CompileAsManaged>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <PreprocessorDefinitions>_CORE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <CompileAsWinRT>false</CompileAsWinRT>
+      <CompileAsWinRT>true</CompileAsWinRT>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsManaged>false</CompileAsManaged>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <PreprocessorDefinitions>_CORE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <CompileAsWinRT>false</CompileAsWinRT>
+      <CompileAsWinRT>true</CompileAsWinRT>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsManaged>false</CompileAsManaged>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <PreprocessorDefinitions>_CORE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|arm'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <CompileAsWinRT>false</CompileAsWinRT>
+      <CompileAsWinRT>true</CompileAsWinRT>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsManaged>false</CompileAsManaged>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <PreprocessorDefinitions>_CORE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cover|arm'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <CompileAsWinRT>false</CompileAsWinRT>
+      <CompileAsWinRT>true</CompileAsWinRT>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsManaged>false</CompileAsManaged>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <PreprocessorDefinitions>_CORE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|arm'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <CompileAsWinRT>false</CompileAsWinRT>
+      <CompileAsWinRT>true</CompileAsWinRT>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsManaged>false</CompileAsManaged>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <PreprocessorDefinitions>_CORE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <CompileAsWinRT>false</CompileAsWinRT>
+      <CompileAsWinRT>true</CompileAsWinRT>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsManaged>false</CompileAsManaged>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <PreprocessorDefinitions>_CORE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cover|ARM64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <CompileAsWinRT>false</CompileAsWinRT>
+      <CompileAsWinRT>true</CompileAsWinRT>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsManaged>false</CompileAsManaged>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <PreprocessorDefinitions>_CORE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <CompileAsWinRT>false</CompileAsWinRT>
+      <CompileAsWinRT>true</CompileAsWinRT>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsManaged>false</CompileAsManaged>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <PreprocessorDefinitions>_CORE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <CompileAsWinRT>false</CompileAsWinRT>
+      <CompileAsWinRT>true</CompileAsWinRT>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsManaged>false</CompileAsManaged>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <PreprocessorDefinitions>_CORE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cover|x64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <CompileAsWinRT>false</CompileAsWinRT>
+      <CompileAsWinRT>true</CompileAsWinRT>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsManaged>false</CompileAsManaged>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <PreprocessorDefinitions>_CORE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <CompileAsWinRT>false</CompileAsWinRT>
+      <CompileAsWinRT>true</CompileAsWinRT>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../include;$(__archive)/local/include;$(__archive)/third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)/third-uwp/include;$(__archive)/third-uwp/third/include;$(__archive)/third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../app/_include;$(SolutionDir)../../third/include;.;$(IntDir);$(SolutionDir)../../;$(SolutionDir)../../app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsManaged>false</CompileAsManaged>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <PreprocessorDefinitions>_CORE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-uwp\third\library\$(PlatformName)\$(Configuration)\;$(__archive)\storage-uwp\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="u_core.h" />
-    <ClInclude Include="pch.h" />
-    <ClInclude Include="targetver.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="dllmain.cpp" />
-    <ClCompile Include="u_core.cpp" />
-    <ClCompile Include="pch.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cover|ARM'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|ARM64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cover|ARM64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|ARM64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cover|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x64'">Create</PrecompiledHeader>
-    </ClCompile>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -26,6 +26,8 @@ namespace uwp
       m_dpi(-1.0f)
    {
 
+      m_bCreated = false;
+
       m_pimpl = nullptr;
 
       m_b3D = false;
@@ -49,7 +51,6 @@ namespace uwp
       CreateDeviceIndependentResources();
 
       m_bInit = true;
-
 
    }
 
@@ -75,7 +76,11 @@ namespace uwp
 
       CreateDeviceResources();
 
-      SetDpi(m_dpiIni);
+      //SetDpi(m_dpiIni);
+
+      m_dpi = m_dpiIni;
+
+      System.m_dpi = m_dpiIni;
 
       m_bInitialized = true;
 
@@ -270,11 +275,18 @@ namespace uwp
 
          System.m_dpi = dpi;
 
-         m_size.cx = (LONG)m_window->Bounds.Width;
+         if (m_bCreated)
+         {
 
-         m_size.cy = (LONG)m_window->Bounds.Height;
+            //m_size.cx = (LONG)m_window->Bounds.Width;
 
-         OnWindowSizeChange();
+            //m_size.cy = (LONG)m_window->Bounds.Height;
+
+
+
+            OnWindowSizeChange();
+
+         }
 
       }
 
@@ -320,11 +332,11 @@ namespace uwp
 
       m_pimpl->m_puserinteraction->start_layout();
 
-      defer_resize_top_level_windows();
-
       m_pimpl->m_puserinteraction->display(display_normal);
 
       m_pimpl->m_puserinteraction->set_dim(0, 0, m_size.cx, m_size.cy);
+
+      defer_resize_top_level_windows();
 
       m_pimpl->m_puserinteraction->set_reposition();
 

@@ -1861,7 +1861,10 @@ namespace user
 
                      }
 
-                     str = Session.keyboard().process_key(pkey);
+                     //str = Session.keyboard().process_key(pkey);
+                                          //str = Session.keyboard().process_key(pkey);
+                     __throw(todo("keyboard"));
+
 
                   }
                   

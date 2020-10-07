@@ -164,9 +164,9 @@ namespace uwp
 
             }
 
-            ::file::listing dira(get_context());
+            ::file::listing dira;
 
-            Application.dir().ls_dir(dira, listing.m_pathFinal);
+            ls_dir(dira, listing.m_pathFinal);
 
             for(i32 i = 0; i < dira.get_count(); i++)
             {
@@ -564,9 +564,9 @@ try1:;
       if(bRecursive)
       {
 
-         ::file::listing straPath(get_context());
+         ::file::listing straPath;
 
-         Application.dir().ls(straPath, psz);
+         ls(straPath, psz);
 
          for(int i = 0; i < straPath.get_count(); i++)
          {

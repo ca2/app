@@ -1136,6 +1136,14 @@ bool thread::set_thread_name(const char * pszThreadName)
 }
 
 
+void thread::set_thread_run(bool bRun)
+{
+
+   m_bRunThisThread = bRun;
+
+}
+
+
 bool thread::is_set_finish() const
 {
 
@@ -4634,6 +4642,9 @@ CLASS_DECL_APEX bool app_sleep(tick tick)
 //}
 
 
+::mutex * g_pmutexThreadDeferredCreation = nullptr;
+::array < __pointer(thread) > * g_pthreadaDeferredCreate = nullptr;
+
 
 CLASS_DECL_APEX void defer_create_thread(::layered* pobjectContext)
 {
@@ -4647,7 +4658,13 @@ CLASS_DECL_APEX void defer_create_thread(::layered* pobjectContext)
 
       pthreadNew->add_ref(OBJ_REF_DBG_P_NOTE(pobjectContext, nullptr));
 
+      pthreadNew->set_thread_run();
+
       set_thread(pthreadNew);
+
+      sync_lock sl(g_pmutexThreadDeferredCreation);
+
+      g_pthreadaDeferredCreate->add(pthreadNew);
 
    }
 

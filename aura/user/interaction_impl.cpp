@@ -4067,7 +4067,7 @@ namespace user
 
       }
 
-      ::user::interaction * pinteraction = pprimitive->get_wnd();
+      ::user::interaction * pinteraction = pprimitive->get_host_wnd();
 
       if (pinteraction == nullptr)
       {

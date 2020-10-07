@@ -3264,14 +3264,14 @@ void interaction::_001CallOnDraw(::draw2d::graphics_pointer & pgraphics)
    bool interaction::add_prodevian(::context_object * pobject)
    {
 
-      if (get_wnd() == nullptr)
+      if (get_host_wnd() == nullptr)
       {
 
          return false;
 
       }
 
-      return get_wnd()->m_pimpl->add_prodevian(pobject);
+      return get_host_wnd()->m_pimpl->add_prodevian(pobject);
 
    }
 

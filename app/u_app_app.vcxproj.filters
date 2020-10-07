@@ -34,7 +34,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="w_app_app.def">
+    <None Include="u_app_app.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

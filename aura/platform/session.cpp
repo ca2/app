@@ -1978,7 +1978,7 @@ the file README-colorramp for more information. */
 
       }
 
-      ::user::interaction * pinteraction = pprimitive->get_wnd();
+      ::user::interaction * pinteraction = pprimitive->get_host_wnd();
 
       if (pinteraction == nullptr)
       {
@@ -1987,7 +1987,7 @@ the file README-colorramp for more information. */
 
       }
 
-      ::user::interaction * puiImpl = pinteraction->get_wnd();
+      ::user::interaction * puiImpl = pinteraction->get_host_wnd();
 
       if (puiImpl == nullptr)
       {
@@ -2693,7 +2693,15 @@ the file README-colorramp for more information. */
 
 #ifdef _UWP
 
-      return false;
+      prect->left = 0;
+
+      prect->top = 0;
+
+      prect->right = __user_interaction(m_puiHost)->layout().sketch().width();
+
+      prect->bottom = __user_interaction(m_puiHost)->layout().sketch().height();
+
+      return true;
 
 #elif MOBILE_PLATFORM
 

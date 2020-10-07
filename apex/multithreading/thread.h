@@ -205,6 +205,8 @@ public:
 
    virtual bool set_thread_name(const char * pszName);
 
+   virtual void set_thread_run(bool bRun = true);
+
    //inline ::command::command * command() { return m_pcommand; }
    //inline ::command::command * command() const { return ((thread *)this)->m_pcommand; }
    //virtual ::command::command * get_command();

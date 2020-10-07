@@ -58,8 +58,8 @@
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
     <AppContainerApplication>true</AppContainerApplication>
     <ApplicationType>Windows Store</ApplicationType>
-    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
-    <WindowsTargetPlatformMinVersion>10.0.17763.0</WindowsTargetPlatformMinVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformMinVersion>10.0.18362.0</WindowsTargetPlatformMinVersion>
     <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
     <ProjectName>aqua</ProjectName>
   </PropertyGroup>
@@ -532,6 +532,10 @@
   <ItemGroup>
     <ClInclude Include="const\idpool.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="game\estamira.h" />
+    <ClInclude Include="game\game.h" />
+    <ClInclude Include="game\_.h" />
+    <ClInclude Include="game\_game.h" />
     <ClInclude Include="include\_.h" />
     <ClInclude Include="inline\application.h" />
     <ClInclude Include="inline\application_common.h" />
@@ -581,6 +585,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cover|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="game\estamira.cpp" />
+    <ClCompile Include="game\game.cpp" />
     <ClCompile Include="multimedia\audio.cpp" />
     <ClCompile Include="multimedia\audio\audio_wave_out.cpp" />
     <ClCompile Include="multimedia\audio\sound_track_player.cpp" />

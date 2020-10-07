@@ -3069,6 +3069,8 @@ namespace user
 
       sync_lock sl(mutex());
 
+      pgraphics.defer_create();
+
       pgraphics->set_font(this);
 
       ::rect rectClient;

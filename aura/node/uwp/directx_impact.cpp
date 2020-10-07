@@ -338,9 +338,7 @@ namespace uwp
          else
          {
 
-
-
-            pointer < ::message::base > spbase;
+            ___pointer < ::message::base > spbase;
 
             auto pkey = __new(::message::key);
 
@@ -351,7 +349,7 @@ namespace uwp
             bool bSpecialKey = false;
 
             pkey->m_id = WM_KEYDOWN;
-            pkey->m_puserinteraction = __user_interaction(Session.m_puiHost);
+            pkey->m_playeredUserPrimitive = Session.m_puiHost;
             pkey->m_nChar = 0;
             pkey->m_ekey = ::user::key_refer_to_text_member;
             pkey->m_wparam = pkey->m_nChar;

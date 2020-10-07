@@ -18,6 +18,21 @@ namespace aura
 
    }
 
+   WINBOOL application::window_set_mouse_cursor(oswindow, HCURSOR hcursor)
+   {
+
+      return FALSE;
+
+   }
+
+
+   HCURSOR application::load_default_cursor(e_cursor ecursor)
+   {
+
+      return nullptr;
+
+   }
+
 
 } // namespace aura
 

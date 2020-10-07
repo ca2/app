@@ -43,6 +43,7 @@ namespace uwp
       bool                             m_bInitialized;
       bool                             m_bInit;
       ::image_pointer                  m_pimage;
+      bool                             m_bCreated;
 
 
       directx_base();

@@ -23,6 +23,8 @@ namespace app_app
 
       main_window::on_create_user_interaction();
 
+      set_prodevian();
+
 #ifdef WINDOWS_DESKTOP
 
       ModifyStyle(WS_CAPTION, 0);

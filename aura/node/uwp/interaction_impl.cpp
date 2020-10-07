@@ -1938,7 +1938,7 @@ return TRUE;
       // walk from the target interaction_impl up to the hWndStop interaction_impl checking
       //  if any interaction_impl wants to translate this message
 
-      for(::user::interaction * pinteraction = pbase->m_puserinteraction->m_puiThis; pinteraction != nullptr; pinteraction->GetParent())
+      for(::user::interaction * pinteraction = pbase->userinteraction(); pinteraction != nullptr; pinteraction->GetParent())
       {
 
          pinteraction->pre_translate_message(pmessage);
@@ -3406,7 +3406,7 @@ return TRUE;
    LRESULT interaction_impl::send_message(UINT uiMessage,WPARAM wparam,lparam lparam)
    {
 
-      pointer < ::message::base > spbase;
+      ___pointer < ::message::base > spbase;
 
       spbase = m_puserinteraction->get_message_base(uiMessage,wparam,lparam);
 
@@ -6052,15 +6052,15 @@ namespace uwp
 
    }
 
-   int alskdjfh = 0;
+   //int alskdjfh = 0;
 
    void interaction_impl::_001UpdateScreen()
    {
 
       ::user::interaction_impl::_001UpdateScreen();
 
-      alskdjfh++;
-      ::output_debug_string("::uwp::interaction_impl::_001UpdateScreen " + __str(alskdjfh) + "\n");
+      //alskdjfh++;
+      //::output_debug_string("::uwp::interaction_impl::_001UpdateScreen " + __str(alskdjfh) + "\n");
 
       //if (m_directxapplication)
       //{

@@ -9,7 +9,7 @@
 #include "framework.h"
 
 
-int _os_message_box(const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox)
+void _os_message_box(const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, ::future future)
 {
 
    //convert the strings from char* to CFStringRef

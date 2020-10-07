@@ -184,23 +184,8 @@ namespace sockets {
 #define IPV6_ADD_MEMBERSHIP IPV6_JOIN_GROUP
 #define IPV6_DROP_MEMBERSHIP IPV6_LEAVE_GROUP
 
-#elif defined(_UWP)
+#elif defined(WINDOWS)
 
-CLASS_DECL_APEX const char *bsd_socket_error(int x);
-#define Errno get_last_error()
-
-#elif defined(WINDOWS_DESKTOP)
-
-#define strcasecmp _stricmp
-
-
-
-#define MSG_NOSIGNAL 0
-//#define SHUT_RDWR 2
-#define SHUT_WR 1
-
-#define Errno WSAGetLastError()
-CLASS_DECL_APEX const char *bsd_socket_error(int x);
 
 namespace sockets
 {
@@ -226,6 +211,26 @@ namespace sockets
 
 } // namespace sockets
 
+#if defined(_UWP)
+
+CLASS_DECL_APEX const char *bsd_socket_error(int x);
+#define Errno get_last_error()
+
+#elif defined(WINDOWS_DESKTOP)
+
+#define strcasecmp _stricmp
+
+
+
+#define MSG_NOSIGNAL 0
+//#define SHUT_RDWR 2
+#define SHUT_WR 1
+
+#define Errno WSAGetLastError()
+CLASS_DECL_APEX const char *bsd_socket_error(int x);
+
+
+#endif
 
 #else
 

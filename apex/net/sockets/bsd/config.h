@@ -205,32 +205,6 @@ namespace sockets
 #define Errno WSAGetLastError()
 CLASS_DECL_APEX string bsd_socket_error(i32 x);
 
-//namespace sockets
-//{
-//
-//   // class WSAInitializer is a part of the socket class (on win32)
-//   // as a static instance - so whenever an application uses a socket,
-//   // winsock is initialized
-//   class WSAInitializer // Winsock Initializer
-//   {
-//   public:
-//
-//      WSADATA m_wsadata;
-//
-//      WSAInitializer()
-//      {
-//         if (WSAStartup(0x101,&m_wsadata))
-//         {
-//            exit(-1);
-//         }
-//      }
-//      ~WSAInitializer() {
-//         WSACleanup();
-//      }
-//   };
-//
-//} // namespace sockets
-
 #elif defined(_UWP)
 
 CLASS_DECL_APEX const char *bsd_socket_error(i32 x);

@@ -19,17 +19,6 @@ namespace sockets
 
 
 
-//#ifdef WINDOWS_DESKTOP
-//#ifdef WINDOWS
-//
-//      static WSAInitializer   m_winsock_init; ///< Winsock initialization singleton class
-//
-//#endif
-
-
-
-
-
       /** "Default" constructor */
       socket(base_socket_handler & h);
 

@@ -89,20 +89,13 @@ namespace sockets
 
       defer_create_mutex();
 
-      //#ifdef WIN32
-      //      // Initialize the Winsock dll version 2.0
-      //      WSADATA  wsaData = { 0 };
-      //      VERIFY(WSAStartup(MAKEWORD(2, 0), &wsaData) == 0);
-      //      VERIFY(LOBYTE(wsaData.wVersion) == 2 && HIBYTE(wsaData.wVersion) == 0);
-      //#endif
+      defer_init_winsock();
+
    }
 
    transfer_socket::~transfer_socket()
    {
-      //      cleanup();
-      //#ifdef WIN32
-      //      WSACleanup();
-      //#endif
+
    }
 
    //void transfer_socket::cleanup()
@@ -310,20 +303,14 @@ namespace sockets
       tcp_socket(handler),
       transfer_socket(handler)
    {
-      //#ifdef WIN32
-      //      // Initialize the Winsock dll version 2.0
-      //      WSADATA  wsaData = { 0 };
-      //      VERIFY(WSAStartup(MAKEWORD(2, 0), &wsaData) == 0);
-      //      VERIFY(LOBYTE(wsaData.wVersion) == 2 && HIBYTE(wsaData.wVersion) == 0);
-      //#endif
+
+      defer_init_winsock();
+
    }
 
    read_socket::~read_socket()
    {
-      //      cleanup();
-      //#ifdef WIN32
-      //      WSACleanup();
-      //#endif
+
    }
 
 
@@ -420,12 +407,9 @@ namespace sockets
       tcp_socket(handler),
       transfer_socket(handler)
    {
-      //#ifdef WIN32
-      //      // Initialize the Winsock dll version 2.0
-      //      WSADATA  wsaData = { 0 };
-      //      VERIFY(WSAStartup(MAKEWORD(2, 0), &wsaData) == 0);
-      //      VERIFY(LOBYTE(wsaData.wVersion) == 2 && HIBYTE(wsaData.wVersion) == 0);
-      //#endif
+
+      defer_init_winsock();
+
    }
 
    write_socket::~write_socket()

@@ -325,12 +325,6 @@ namespace sockets
       if (net::isipv4(str))
          hints.ai_flags |= AI_NUMERICHOST;
 
-#ifdef WIN32
-      
-      defer_init_winsock();
-
-#endif
-
       i32 n = getaddrinfo(str, nullptr, &hints, &res);
       if (n)
       {

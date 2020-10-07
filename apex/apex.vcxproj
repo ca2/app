@@ -1178,7 +1178,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="os\windows\windowing.cpp" />
     <ClCompile Include="os\windows\_.cpp" />
     <ClCompile Include="os\windows_common\file.cpp" />
-    <ClCompile Include="os\windows_common\net.cpp" />
     <ClCompile Include="os\_application.cpp" />
     <ClCompile Include="platform\apex_main_data.cpp" />
     <ClCompile Include="platform\apex_main_struct.cpp" />

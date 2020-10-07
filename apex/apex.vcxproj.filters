@@ -2089,9 +2089,6 @@
     <ClCompile Include="primitive\primitive\object.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="os\windows_common\net.cpp">
-      <Filter>Source Files\os\windows_common</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\datetime\department.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>

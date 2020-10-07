@@ -1385,6 +1385,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="os\windows_common\bstring.cpp" />
     <ClCompile Include="os\windows_common\com.cpp" />
     <ClCompile Include="os\windows_common\file_c.cpp" />
+    <ClCompile Include="os\windows_common\net.cpp" />
     <ClCompile Include="os\windows_common\thread.cpp" />
     <ClCompile Include="os\windows_common\unicode.cpp" />
     <ClCompile Include="os\windows_common\_dll.cpp" />

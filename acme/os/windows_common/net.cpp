@@ -6,7 +6,7 @@ WSADATA g_wsadata = {};
 bool g_bWsaStartup = false;
 
 
-CLASS_DECL_APEX bool defer_init_winsock()
+CLASS_DECL_ACME bool defer_init_winsock()
 {
 
    BYTE byteHi = 2;

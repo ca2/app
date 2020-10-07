@@ -28,3 +28,9 @@ CLASS_DECL_ACME int_bool is_windows_native_unicode();
 
 
 
+
+CLASS_DECL_ACME bool defer_init_winsock();
+
+
+
+

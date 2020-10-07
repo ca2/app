@@ -3238,6 +3238,9 @@
     <ClCompile Include="multithreading\thread.cpp">
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
+    <ClCompile Include="os\windows_common\net.cpp">
+      <Filter>Source Files\os\windows_common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\primitive\papaya.inl">

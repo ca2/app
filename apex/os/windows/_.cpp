@@ -103,11 +103,12 @@ CLASS_DECL_APEX i32 __cdecl _memory_type(const void* p);
 //
 //// }
 
-bool defer_init_winsock();
-
 
 bool __node_apex_pre_init()
 {
+
+
+   defer_init_winsock();
 
    //xxdebug_box("__node_apex_pre_init","box",MB_OK);
 

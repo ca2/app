@@ -2173,6 +2173,7 @@
     <ClCompile Include="os\windows_common\com.cpp" />
     <ClCompile Include="os\windows_common\debug.cpp" />
     <ClCompile Include="os\windows_common\file_c.cpp" />
+    <ClCompile Include="os\windows_common\net.cpp" />
     <ClCompile Include="os\windows_common\thread.cpp" />
     <ClCompile Include="os\windows_common\time.cpp" />
     <ClCompile Include="os\windows_common\unicode.cpp" />

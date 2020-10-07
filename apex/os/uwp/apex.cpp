@@ -486,11 +486,13 @@ bool defer_co_initialize_ex(bool bMultiThread)
 }
 
 
-bool defer_init_winsock();
+//bool defer_init_winsock();
 
 
 bool __node_apex_pre_init()
 {
+
+   defer_init_winsock();
 
    HRESULT hresult = ::CoInitializeEx(nullptr,COINIT_MULTITHREADED);
 

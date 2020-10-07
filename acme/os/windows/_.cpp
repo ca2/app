@@ -86,7 +86,6 @@ CLASS_DECL_ACME i32 __cdecl _memory_type(const void * p);
 
 // }
 
-// bool defer_init_winsock();
 
 
 bool __node_acme_pre_init()

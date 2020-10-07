@@ -691,9 +691,6 @@
     <ClCompile Include="os\windows_common\file.cpp">
       <Filter>Source Files\os\windows_common</Filter>
     </ClCompile>
-    <ClCompile Include="os\windows_common\net.cpp">
-      <Filter>Source Files\os\windows_common</Filter>
-    </ClCompile>
     <ClCompile Include="message\application.cpp">
       <Filter>Source Files\message</Filter>
     </ClCompile>

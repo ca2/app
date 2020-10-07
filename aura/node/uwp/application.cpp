@@ -366,6 +366,22 @@ namespace aura
 
    }
 
+   
+   WINBOOL application::window_set_mouse_cursor(oswindow, HCURSOR hcursor)
+   {
+
+      return FALSE;
+
+   }
+   
+   
+   HCURSOR application::load_default_cursor(enum e_cursor)
+   {
+
+      return nullptr;
+
+   }
+
 } // namespace uwp
 
 

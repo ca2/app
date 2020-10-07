@@ -16,12 +16,7 @@ void os_term_imaging()
 }
 
 
-CLASS_DECL_ACME WINBOOL window_set_mouse_cursor(oswindow, HCURSOR hcursor)
-{
 
-   return FALSE;
-
-}
 
 
 //HCURSOR CreateAlphaCursor(oswindow window, const ::image* pimage, int xHotSpot, int yHotSpot)

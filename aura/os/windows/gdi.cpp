@@ -581,39 +581,6 @@ HCURSOR context_image::CreateAlphaCursor(oswindow window, const ::image * pimage
 }
 
 
-CLASS_DECL_AURA LPTSTR windows_get_system_cursor(e_cursor ecursor)
-{
-
-   switch (ecursor)
-   {
-   case cursor_arrow:
-      return IDC_ARROW;
-   case cursor_text_select:
-      return IDC_IBEAM;
-   case cursor_hand:
-      return IDC_HAND;
-   case cursor_size_bottom_right:
-      return IDC_SIZENWSE;
-   case cursor_size_top_left:
-      return IDC_SIZENWSE;
-   case cursor_size_bottom_left:
-      return IDC_SIZENESW;
-   case cursor_size_top_right:
-      return IDC_SIZENESW;
-   case cursor_size_left:
-      return IDC_SIZEWE;
-   case cursor_size_right:
-      return IDC_SIZEWE;
-   case cursor_size_top:
-      return IDC_SIZENS;
-   case cursor_size_bottom:
-      return IDC_SIZENS;
-   default:
-      return IDC_ARROW;
-   }
-
-}
-
 
 //HCURSOR context_image::load_default_cursor(e_cursor ecursor)
 //{

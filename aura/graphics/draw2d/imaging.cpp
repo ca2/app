@@ -6862,13 +6862,6 @@ HCURSOR context_image::CreateAlphaCursor(oswindow oswindow, const image * pimage
 //}
 //
 //
-//WINBOOL context_image::window_set_mouse_cursor(oswindow window, HCURSOR hcursor)
-//{
-//
-//
-//   return false;
-//
-//}
 
 #endif
 

@@ -183,28 +183,4 @@ namespace draw2d
 
 CLASS_DECL_AURA LPTSTR windows_get_system_cursor(e_cursor ecursor);
 
-namespace aura
-{
-
-
-   HCURSOR application::load_default_cursor(e_cursor ecursor)
-   {
-
-      auto pcursor = windows_get_system_cursor(ecursor);
-
-      if (pcursor == nullptr)
-      {
-
-         return NULL;
-
-      }
-
-      return ::LoadCursor(NULL, pcursor);
-
-   }
-
-
-} // namespace aura
-
-
 

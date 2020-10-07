@@ -47,7 +47,6 @@ public:
    
    virtual HCURSOR CreateAlphaCursor(oswindow oswindow, const image * pimage, int xHotSpot, int yHotSpot);
    virtual void set_cursor_image(const image * pimage, int xHotSpot, int yHotSpot);
-   ///virtual WINBOOL window_set_mouse_cursor(oswindow window, HCURSOR hcursor);
 
 
    virtual ::image_result _load_image_from_file(const ::var & varFile, const var & varOptions);

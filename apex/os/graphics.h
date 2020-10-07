@@ -9,7 +9,4 @@
 #endif
 
 
-//CLASS_DECL_APEX WINBOOL window_set_mouse_cursor(oswindow oswindow, HCURSOR hcursor);
-
-
 

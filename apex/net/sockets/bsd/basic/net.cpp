@@ -8,9 +8,6 @@
 #include <unistd.h>
 #endif
 
-#ifdef WIN32
-CLASS_DECL_APEX bool defer_init_winsock();
-#endif
 
 #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 #undef USE_MISC

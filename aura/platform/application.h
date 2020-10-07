@@ -1413,7 +1413,9 @@ namespace aura
       virtual icon_result load_icon(const ::var& varFile);
       virtual HCURSOR load_default_cursor(e_cursor ecursor);
 
-
+#ifdef WINDOWS_DESKTOP
+      virtual LPTSTR windows_get_system_cursor(e_cursor ecursor);
+#endif
 
    };
 

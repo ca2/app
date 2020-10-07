@@ -9,7 +9,3 @@
 #endif
 
 
-//CLASS_DECL_ACME WINBOOL window_set_mouse_cursor(oswindow oswindow, HCURSOR hcursor);
-
-
-

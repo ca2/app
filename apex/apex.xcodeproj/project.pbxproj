@@ -10,6 +10,27 @@
 		9A220F68251A1C64002B42B7 /* thread_set.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A220F67251A1C63002B42B7 /* thread_set.h */; };
 		9A28C568251D56BF006E7693 /* menu_shared_commnand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28C565251D56BF006E7693 /* menu_shared_commnand.cpp */; };
 		9A4E5D742519423600CC6817 /* application_system_run.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B8292511444C008DABD2 /* application_system_run.cpp */; };
+		9A4F4E0825311CFC00733584 /* http_base_socket.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4F4E0625311CFC00733584 /* http_base_socket.h */; };
+		9A4F4E0925311CFC00733584 /* http_base_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4F4E0725311CFC00733584 /* http_base_socket.cpp */; };
+		9A4F4E0B25311D3400733584 /* _system_sockets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4F4E0A25311D3400733584 /* _system_sockets.cpp */; };
+		9A4F4E1525311DA400733584 /* _crypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4F4E0C25311DA300733584 /* _crypto.h */; };
+		9A4F4E1625311DA400733584 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4F4E0D25311DA300733584 /* _.h */; };
+		9A4F4E1725311DA400733584 /* hasher_algorithm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4F4E0E25311DA300733584 /* hasher_algorithm.cpp */; };
+		9A4F4E1825311DA400733584 /* crypto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4F4E0F25311DA400733584 /* crypto.cpp */; };
+		9A4F4E1925311DA400733584 /* hasher_algorithm.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4F4E1025311DA400733584 /* hasher_algorithm.h */; };
+		9A4F4E1A25311DA400733584 /* rsa.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4F4E1125311DA400733584 /* rsa.h */; };
+		9A4F4E1B25311DA400733584 /* hasher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4F4E1225311DA400733584 /* hasher.cpp */; };
+		9A4F4E1C25311DA400733584 /* hasher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4F4E1325311DA400733584 /* hasher.h */; };
+		9A4F4E1D25311DA400733584 /* rsa.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4F4E1425311DA400733584 /* rsa.cpp */; };
+		9A4F4E2825311DAB00733584 /* hasher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4F4E1F25311DAB00733584 /* hasher.cpp */; };
+		9A4F4E2925311DAB00733584 /* hasher_algorithm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4F4E2025311DAB00733584 /* hasher_algorithm.cpp */; };
+		9A4F4E2A25311DAB00733584 /* hasher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4F4E2125311DAB00733584 /* hasher.h */; };
+		9A4F4E2B25311DAB00733584 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4F4E2225311DAB00733584 /* _.cpp */; };
+		9A4F4E2C25311DAB00733584 /* _openssl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4F4E2325311DAB00733584 /* _openssl.h */; };
+		9A4F4E2D25311DAB00733584 /* crypto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4F4E2425311DAB00733584 /* crypto.cpp */; };
+		9A4F4E2E25311DAB00733584 /* rsa.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4F4E2525311DAB00733584 /* rsa.h */; };
+		9A4F4E2F25311DAB00733584 /* hasher_algorithm.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4F4E2625311DAB00733584 /* hasher_algorithm.h */; };
+		9A4F4E3025311DAB00733584 /* rsa.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4F4E2725311DAB00733584 /* rsa.cpp */; };
 		9A68BB3A2511444D008DABD2 /* procedure.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B4092511444A008DABD2 /* procedure.h */; };
 		9A68BB3B2511444D008DABD2 /* console.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B40A2511444A008DABD2 /* console.h */; };
 		9A68BB3C2511444D008DABD2 /* _impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B40D2511444A008DABD2 /* _impl.h */; };
@@ -30,11 +51,7 @@
 		9A68BB542511444D008DABD2 /* selection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B4252511444A008DABD2 /* selection.cpp */; };
 		9A68BB552511444D008DABD2 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B4262511444A008DABD2 /* _.h */; };
 		9A68BB562511444D008DABD2 /* server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B4272511444A008DABD2 /* server.cpp */; };
-		9A68BB572511444D008DABD2 /* crypto_crypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B42B2511444A008DABD2 /* crypto_crypto.h */; };
-		9A68BB582511444D008DABD2 /* crypto_crypto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B42C2511444A008DABD2 /* crypto_crypto.cpp */; };
 		9A68BB592511444D008DABD2 /* crypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B42D2511444A008DABD2 /* crypto.h */; };
-		9A68BB5A2511444D008DABD2 /* crypto_openssl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B42E2511444A008DABD2 /* crypto_openssl.cpp */; };
-		9A68BB5B2511444D008DABD2 /* crypto_openssl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B42F2511444A008DABD2 /* crypto_openssl.h */; };
 		9A68BB5D2511444D008DABD2 /* zip_is_dir.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B4322511444A008DABD2 /* zip_is_dir.h */; };
 		9A68BB5E2511444D008DABD2 /* context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B4332511444A008DABD2 /* context.cpp */; };
 		9A68BB5F2511444D008DABD2 /* context.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B4342511444A008DABD2 /* context.h */; };
@@ -86,8 +103,6 @@
 		9A68BBA42511444E008DABD2 /* sockets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B48F2511444A008DABD2 /* sockets.cpp */; };
 		9A68BBA52511444E008DABD2 /* httpd_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B4912511444A008DABD2 /* httpd_socket.cpp */; };
 		9A68BBA62511444E008DABD2 /* httpd_socket.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B4922511444A008DABD2 /* httpd_socket.h */; };
-		9A68BBA72511444E008DABD2 /* http_base_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B4932511444A008DABD2 /* http_base_socket.cpp */; };
-		9A68BBA82511444E008DABD2 /* http_base_socket.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B4942511444A008DABD2 /* http_base_socket.h */; };
 		9A68BBA92511444E008DABD2 /* sockets.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B4952511444A008DABD2 /* sockets.h */; };
 		9A68BBAA2511444E008DABD2 /* socket_id_list.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B4972511444A008DABD2 /* socket_id_list.h */; };
 		9A68BBAB2511444E008DABD2 /* resolv_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B4992511444A008DABD2 /* resolv_socket.cpp */; };
@@ -97,7 +112,6 @@
 		9A68BBAF2511444E008DABD2 /* include.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B49D2511444A008DABD2 /* include.cpp */; };
 		9A68BBB02511444E008DABD2 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B49E2511444A008DABD2 /* _.h */; };
 		9A68BBB12511444E008DABD2 /* _strconv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B49F2511444A008DABD2 /* _strconv.cpp */; };
-		9A68BBB22511444E008DABD2 /* _system_sockets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B4A02511444A008DABD2 /* _system_sockets.cpp */; };
 		9A68BBB32511444E008DABD2 /* link_out_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B4A12511444A008DABD2 /* link_out_socket.cpp */; };
 		9A68BBB42511444E008DABD2 /* link_in_socket.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B4A22511444A008DABD2 /* link_in_socket.h */; };
 		9A68BBB52511444E008DABD2 /* http_batch_buffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B4A32511444A008DABD2 /* http_batch_buffer.h */; };
@@ -849,7 +863,6 @@
 		9AD692F4251A754800C0EBD7 /* transaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B5402511444A008DABD2 /* transaction.h */; };
 		9AD692F5251A754800C0EBD7 /* application_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B6252511444B008DABD2 /* application_array.h */; };
 		9AD692F6251A754800C0EBD7 /* aaa_RoundWindowFrameView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68BA1A2511444C008DABD2 /* aaa_RoundWindowFrameView.h */; };
-		9AD692F7251A754800C0EBD7 /* crypto_crypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B42B2511444A008DABD2 /* crypto_crypto.h */; };
 		9AD692F8251A754800C0EBD7 /* file.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B7BE2511444B008DABD2 /* file.h */; };
 		9AD692F9251A754800C0EBD7 /* windowing.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B8F42511444C008DABD2 /* windowing.h */; };
 		9AD692FA251A754800C0EBD7 /* selection_item.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B4222511444A008DABD2 /* selection_item.h */; };
@@ -884,7 +897,6 @@
 		9AD69317251A754800C0EBD7 /* ifs.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B7222511444B008DABD2 /* ifs.h */; };
 		9AD69318251A754800C0EBD7 /* file_os_watcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B9D82511444C008DABD2 /* file_os_watcher.h */; };
 		9AD69319251A754800C0EBD7 /* session.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B4B62511444A008DABD2 /* session.h */; };
-		9AD6931A251A754800C0EBD7 /* http_base_socket.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B4942511444A008DABD2 /* http_base_socket.h */; };
 		9AD6931B251A754800C0EBD7 /* check.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B6BC2511444B008DABD2 /* check.h */; };
 		9AD6931C251A754800C0EBD7 /* application_heap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B6262511444B008DABD2 /* application_heap.h */; };
 		9AD6931D251A754800C0EBD7 /* list.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B68D2511444B008DABD2 /* list.h */; };
@@ -911,7 +923,6 @@
 		9AD69332251A754800C0EBD7 /* thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68BA1F2511444C008DABD2 /* thread.h */; };
 		9AD69333251A754800C0EBD7 /* savings.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B5D72511444B008DABD2 /* savings.h */; };
 		9AD69334251A754800C0EBD7 /* listener.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B4AE2511444A008DABD2 /* listener.h */; };
-		9AD69335251A754800C0EBD7 /* crypto_openssl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B42F2511444A008DABD2 /* crypto_openssl.h */; };
 		9AD69336251A754800C0EBD7 /* file_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B9DE2511444C008DABD2 /* file_context.h */; };
 		9AD69337251A754800C0EBD7 /* objc.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B5B02511444B008DABD2 /* objc.h */; };
 		9AD69338251A754800C0EBD7 /* simple_trace.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B5EA2511444B008DABD2 /* simple_trace.h */; };
@@ -1272,7 +1283,6 @@
 		9AD6949C251A754800C0EBD7 /* file_os_watcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B9D52511444C008DABD2 /* file_os_watcher.cpp */; };
 		9AD6949D251A754800C0EBD7 /* context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B46E2511444A008DABD2 /* context.cpp */; };
 		9AD6949E251A754800C0EBD7 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B6292511444B008DABD2 /* application.cpp */; };
-		9AD6949F251A754800C0EBD7 /* _system_sockets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B4A02511444A008DABD2 /* _system_sockets.cpp */; };
 		9AD694A0251A754800C0EBD7 /* keyboard_mm.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B9E92511444C008DABD2 /* keyboard_mm.mm */; };
 		9AD694A1251A754800C0EBD7 /* base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B8642511444C008DABD2 /* base.cpp */; };
 		9AD694A2251A754800C0EBD7 /* timer_item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B5DB2511444B008DABD2 /* timer_item.cpp */; };
@@ -1476,7 +1486,6 @@
 		9AD69568251A754800C0EBD7 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B9EE2511444C008DABD2 /* main.cpp */; };
 		9AD69569251A754800C0EBD7 /* sockets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B48F2511444A008DABD2 /* sockets.cpp */; };
 		9AD6956A251A754800C0EBD7 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B6AC2511444B008DABD2 /* application.cpp */; };
-		9AD6956B251A754800C0EBD7 /* crypto_crypto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B42C2511444A008DABD2 /* crypto_crypto.cpp */; };
 		9AD6956C251A754800C0EBD7 /* history.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B5E92511444B008DABD2 /* history.cpp */; };
 		9AD6956D251A754800C0EBD7 /* ApexWindow.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B9E62511444C008DABD2 /* ApexWindow.mm */; };
 		9AD6956E251A754800C0EBD7 /* os_history.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B63D2511444B008DABD2 /* os_history.cpp */; };
@@ -1492,14 +1501,12 @@
 		9AD69578251A754800C0EBD7 /* ip_enum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B5202511444A008DABD2 /* ip_enum.cpp */; };
 		9AD69579251A754800C0EBD7 /* context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B5E32511444B008DABD2 /* context.cpp */; };
 		9AD6957A251A754800C0EBD7 /* language_map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B6B72511444B008DABD2 /* language_map.cpp */; };
-		9AD6957B251A754800C0EBD7 /* crypto_openssl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B42E2511444A008DABD2 /* crypto_openssl.cpp */; };
 		9AD6957C251A754800C0EBD7 /* idpool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B7592511444B008DABD2 /* idpool.cpp */; };
 		9AD6957D251A754800C0EBD7 /* file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B9E02511444C008DABD2 /* file.cpp */; };
 		9AD6957E251A754800C0EBD7 /* machine_event.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B6062511444B008DABD2 /* machine_event.cpp */; };
 		9AD6957F251A754800C0EBD7 /* context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B52E2511444A008DABD2 /* context.cpp */; };
 		9AD69580251A754800C0EBD7 /* machine_event_central.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B5D82511444B008DABD2 /* machine_event_central.cpp */; };
 		9AD69581251A754800C0EBD7 /* net.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B5FA2511444B008DABD2 /* net.cpp */; };
-		9AD69582251A754800C0EBD7 /* http_base_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B4932511444A008DABD2 /* http_base_socket.cpp */; };
 		9AD69583251A754800C0EBD7 /* sync_socket_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B47C2511444A008DABD2 /* sync_socket_handler.cpp */; };
 		9AD69584251A754800C0EBD7 /* simple_trace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B6422511444B008DABD2 /* simple_trace.cpp */; };
 		9AD69585251A754800C0EBD7 /* put_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B4AF2511444A008DABD2 /* put_socket.cpp */; };
@@ -1615,6 +1622,27 @@
 /* Begin PBXFileReference section */
 		9A220F67251A1C63002B42B7 /* thread_set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thread_set.h; sourceTree = "<group>"; };
 		9A28C565251D56BF006E7693 /* menu_shared_commnand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = menu_shared_commnand.cpp; sourceTree = "<group>"; };
+		9A4F4E0625311CFC00733584 /* http_base_socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = http_base_socket.h; sourceTree = "<group>"; };
+		9A4F4E0725311CFC00733584 /* http_base_socket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = http_base_socket.cpp; sourceTree = "<group>"; };
+		9A4F4E0A25311D3400733584 /* _system_sockets.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _system_sockets.cpp; sourceTree = "<group>"; };
+		9A4F4E0C25311DA300733584 /* _crypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _crypto.h; sourceTree = "<group>"; };
+		9A4F4E0D25311DA300733584 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
+		9A4F4E0E25311DA300733584 /* hasher_algorithm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hasher_algorithm.cpp; sourceTree = "<group>"; };
+		9A4F4E0F25311DA400733584 /* crypto.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypto.cpp; sourceTree = "<group>"; };
+		9A4F4E1025311DA400733584 /* hasher_algorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hasher_algorithm.h; sourceTree = "<group>"; };
+		9A4F4E1125311DA400733584 /* rsa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rsa.h; sourceTree = "<group>"; };
+		9A4F4E1225311DA400733584 /* hasher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hasher.cpp; sourceTree = "<group>"; };
+		9A4F4E1325311DA400733584 /* hasher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hasher.h; sourceTree = "<group>"; };
+		9A4F4E1425311DA400733584 /* rsa.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rsa.cpp; sourceTree = "<group>"; };
+		9A4F4E1F25311DAB00733584 /* hasher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hasher.cpp; sourceTree = "<group>"; };
+		9A4F4E2025311DAB00733584 /* hasher_algorithm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hasher_algorithm.cpp; sourceTree = "<group>"; };
+		9A4F4E2125311DAB00733584 /* hasher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hasher.h; sourceTree = "<group>"; };
+		9A4F4E2225311DAB00733584 /* _.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
+		9A4F4E2325311DAB00733584 /* _openssl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _openssl.h; sourceTree = "<group>"; };
+		9A4F4E2425311DAB00733584 /* crypto.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypto.cpp; sourceTree = "<group>"; };
+		9A4F4E2525311DAB00733584 /* rsa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rsa.h; sourceTree = "<group>"; };
+		9A4F4E2625311DAB00733584 /* hasher_algorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hasher_algorithm.h; sourceTree = "<group>"; };
+		9A4F4E2725311DAB00733584 /* rsa.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rsa.cpp; sourceTree = "<group>"; };
 		9A68A446251143F8008DABD2 /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A68B4092511444A008DABD2 /* procedure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = procedure.h; sourceTree = "<group>"; };
 		9A68B40A2511444A008DABD2 /* console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = console.h; sourceTree = "<group>"; };
@@ -1645,11 +1673,7 @@
 		9A68B4252511444A008DABD2 /* selection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = selection.cpp; sourceTree = "<group>"; };
 		9A68B4262511444A008DABD2 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A68B4272511444A008DABD2 /* server.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = server.cpp; sourceTree = "<group>"; };
-		9A68B42B2511444A008DABD2 /* crypto_crypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_crypto.h; sourceTree = "<group>"; };
-		9A68B42C2511444A008DABD2 /* crypto_crypto.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypto_crypto.cpp; sourceTree = "<group>"; };
 		9A68B42D2511444A008DABD2 /* crypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto.h; sourceTree = "<group>"; };
-		9A68B42E2511444A008DABD2 /* crypto_openssl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypto_openssl.cpp; sourceTree = "<group>"; };
-		9A68B42F2511444A008DABD2 /* crypto_openssl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_openssl.h; sourceTree = "<group>"; };
 		9A68B4322511444A008DABD2 /* zip_is_dir.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip_is_dir.h; sourceTree = "<group>"; };
 		9A68B4332511444A008DABD2 /* context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = context.cpp; sourceTree = "<group>"; };
 		9A68B4342511444A008DABD2 /* context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = context.h; sourceTree = "<group>"; };
@@ -1702,8 +1726,6 @@
 		9A68B48F2511444A008DABD2 /* sockets.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sockets.cpp; sourceTree = "<group>"; };
 		9A68B4912511444A008DABD2 /* httpd_socket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = httpd_socket.cpp; sourceTree = "<group>"; };
 		9A68B4922511444A008DABD2 /* httpd_socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = httpd_socket.h; sourceTree = "<group>"; };
-		9A68B4932511444A008DABD2 /* http_base_socket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = http_base_socket.cpp; sourceTree = "<group>"; };
-		9A68B4942511444A008DABD2 /* http_base_socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = http_base_socket.h; sourceTree = "<group>"; };
 		9A68B4952511444A008DABD2 /* sockets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sockets.h; sourceTree = "<group>"; };
 		9A68B4962511444A008DABD2 /* ref_Anders_Hedstrom_sockets_library.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ref_Anders_Hedstrom_sockets_library.txt; sourceTree = "<group>"; };
 		9A68B4972511444A008DABD2 /* socket_id_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = socket_id_list.h; sourceTree = "<group>"; };
@@ -1714,7 +1736,6 @@
 		9A68B49D2511444A008DABD2 /* include.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = include.cpp; sourceTree = "<group>"; };
 		9A68B49E2511444A008DABD2 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A68B49F2511444A008DABD2 /* _strconv.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _strconv.cpp; sourceTree = "<group>"; };
-		9A68B4A02511444A008DABD2 /* _system_sockets.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _system_sockets.cpp; sourceTree = "<group>"; };
 		9A68B4A12511444A008DABD2 /* link_out_socket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = link_out_socket.cpp; sourceTree = "<group>"; };
 		9A68B4A22511444A008DABD2 /* link_in_socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = link_in_socket.h; sourceTree = "<group>"; };
 		9A68B4A32511444A008DABD2 /* http_batch_buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = http_batch_buffer.h; sourceTree = "<group>"; };
@@ -2537,6 +2558,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9A4F4E1E25311DAB00733584 /* openssl */ = {
+			isa = PBXGroup;
+			children = (
+				9A4F4E1F25311DAB00733584 /* hasher.cpp */,
+				9A4F4E2025311DAB00733584 /* hasher_algorithm.cpp */,
+				9A4F4E2125311DAB00733584 /* hasher.h */,
+				9A4F4E2225311DAB00733584 /* _.cpp */,
+				9A4F4E2325311DAB00733584 /* _openssl.h */,
+				9A4F4E2425311DAB00733584 /* crypto.cpp */,
+				9A4F4E2525311DAB00733584 /* rsa.h */,
+				9A4F4E2625311DAB00733584 /* hasher_algorithm.h */,
+				9A4F4E2725311DAB00733584 /* rsa.cpp */,
+			);
+			path = openssl;
+			sourceTree = "<group>";
+		};
 		9A68A43D251143F8008DABD2 = {
 			isa = PBXGroup;
 			children = (
@@ -2640,11 +2677,17 @@
 		9A68B42A2511444A008DABD2 /* crypto */ = {
 			isa = PBXGroup;
 			children = (
-				9A68B42B2511444A008DABD2 /* crypto_crypto.h */,
-				9A68B42C2511444A008DABD2 /* crypto_crypto.cpp */,
+				9A4F4E1E25311DAB00733584 /* openssl */,
+				9A4F4E0D25311DA300733584 /* _.h */,
+				9A4F4E0C25311DA300733584 /* _crypto.h */,
+				9A4F4E0F25311DA400733584 /* crypto.cpp */,
+				9A4F4E0E25311DA300733584 /* hasher_algorithm.cpp */,
+				9A4F4E1025311DA400733584 /* hasher_algorithm.h */,
+				9A4F4E1225311DA400733584 /* hasher.cpp */,
+				9A4F4E1325311DA400733584 /* hasher.h */,
+				9A4F4E1425311DA400733584 /* rsa.cpp */,
+				9A4F4E1125311DA400733584 /* rsa.h */,
 				9A68B42D2511444A008DABD2 /* crypto.h */,
-				9A68B42E2511444A008DABD2 /* crypto_openssl.cpp */,
-				9A68B42F2511444A008DABD2 /* crypto_openssl.h */,
 			);
 			path = crypto;
 			sourceTree = "<group>";
@@ -2698,11 +2741,14 @@
 		9A68B4662511444A008DABD2 /* sockets */ = {
 			isa = PBXGroup;
 			children = (
+				9A68B46B2511444A008DABD2 /* bsd */,
+				9A68B4AB2511444A008DABD2 /* http */,
+				9A68B5112511444A008DABD2 /* base */,
+				9A4F4E0A25311D3400733584 /* _system_sockets.cpp */,
 				9A68B4672511444A008DABD2 /* transfer_socket.cpp */,
 				9A68B4682511444A008DABD2 /* websocket_client.cpp */,
 				9A68B4692511444A008DABD2 /* sockets_base.cpp */,
 				9A68B46A2511444A008DABD2 /* transfer_socket.h */,
-				9A68B46B2511444A008DABD2 /* bsd */,
 				9A68B4A12511444A008DABD2 /* link_out_socket.cpp */,
 				9A68B4A22511444A008DABD2 /* link_in_socket.h */,
 				9A68B4A32511444A008DABD2 /* http_batch_buffer.h */,
@@ -2713,10 +2759,8 @@
 				9A68B4A82511444A008DABD2 /* trace_interface.cpp */,
 				9A68B4A92511444A008DABD2 /* link_out_socket.h */,
 				9A68B4AA2511444A008DABD2 /* http_buffer.h */,
-				9A68B4AB2511444A008DABD2 /* http */,
 				9A68B50F2511444A008DABD2 /* link_in_socket.cpp */,
 				9A68B5102511444A008DABD2 /* logger.h */,
-				9A68B5112511444A008DABD2 /* base */,
 				9A68B5172511444A008DABD2 /* _.h */,
 			);
 			path = sockets;
@@ -2726,20 +2770,19 @@
 			isa = PBXGroup;
 			children = (
 				9A68B46C2511444A008DABD2 /* ssl */,
+				9A68B4792511444A008DABD2 /* basic */,
+				9A68B4902511444A008DABD2 /* webserver */,
+				9A68B4982511444A008DABD2 /* dns */,
 				9A68B4762511444A008DABD2 /* config.h */,
 				9A68B4772511444A008DABD2 /* _strconv.h */,
 				9A68B4782511444A008DABD2 /* aaa_want_to_remove_sockets_sockets.h */,
-				9A68B4792511444A008DABD2 /* basic */,
 				9A68B48F2511444A008DABD2 /* sockets.cpp */,
-				9A68B4902511444A008DABD2 /* webserver */,
 				9A68B4952511444A008DABD2 /* sockets.h */,
 				9A68B4962511444A008DABD2 /* ref_Anders_Hedstrom_sockets_library.txt */,
 				9A68B4972511444A008DABD2 /* socket_id_list.h */,
-				9A68B4982511444A008DABD2 /* dns */,
 				9A68B49D2511444A008DABD2 /* include.cpp */,
 				9A68B49E2511444A008DABD2 /* _.h */,
 				9A68B49F2511444A008DABD2 /* _strconv.cpp */,
-				9A68B4A02511444A008DABD2 /* _system_sockets.cpp */,
 			);
 			path = bsd;
 			sourceTree = "<group>";
@@ -2793,8 +2836,6 @@
 			children = (
 				9A68B4912511444A008DABD2 /* httpd_socket.cpp */,
 				9A68B4922511444A008DABD2 /* httpd_socket.h */,
-				9A68B4932511444A008DABD2 /* http_base_socket.cpp */,
-				9A68B4942511444A008DABD2 /* http_base_socket.h */,
 			);
 			path = webserver;
 			sourceTree = "<group>";
@@ -2813,6 +2854,8 @@
 		9A68B4AB2511444A008DABD2 /* http */ = {
 			isa = PBXGroup;
 			children = (
+				9A4F4E0725311CFC00733584 /* http_base_socket.cpp */,
+				9A4F4E0625311CFC00733584 /* http_base_socket.h */,
 				9A68B4AC2511444A008DABD2 /* post_socket.cpp */,
 				9A68B4AD2511444A008DABD2 /* debug_socket.cpp */,
 				9A68B4AE2511444A008DABD2 /* listener.h */,
@@ -3920,6 +3963,7 @@
 				9A68C07525114450008DABD2 /* _m.h in Headers */,
 				9A68BDC92511444F008DABD2 /* set.h in Headers */,
 				9A68BCF42511444E008DABD2 /* timer_array.h in Headers */,
+				9A4F4E2A25311DAB00733584 /* hasher.h in Headers */,
 				9A68BD742511444F008DABD2 /* message.h in Headers */,
 				9A68BC2B2511444E008DABD2 /* byte_order.h in Headers */,
 				9A68BE952511444F008DABD2 /* file.h in Headers */,
@@ -3937,6 +3981,7 @@
 				9A68BE622511444F008DABD2 /* _mm.h in Headers */,
 				9A68BCAE2511444E008DABD2 /* apex_main_data.h in Headers */,
 				9A68BC6E2511444E008DABD2 /* application.h in Headers */,
+				9A4F4E1C25311DA400733584 /* hasher.h in Headers */,
 				9A68BCE12511444E008DABD2 /* static_setup.h in Headers */,
 				9A68BD682511444F008DABD2 /* message.h in Headers */,
 				9A68BE972511444F008DABD2 /* cross.h in Headers */,
@@ -3961,7 +4006,6 @@
 				9A68BC472511444E008DABD2 /* transaction.h in Headers */,
 				9A68BD082511444E008DABD2 /* application_array.h in Headers */,
 				9A68C08725114450008DABD2 /* aaa_RoundWindowFrameView.h in Headers */,
-				9A68BB572511444D008DABD2 /* crypto_crypto.h in Headers */,
 				9A68BE692511444F008DABD2 /* file.h in Headers */,
 				9A68BF9625114450008DABD2 /* windowing.h in Headers */,
 				9A68BB512511444D008DABD2 /* selection_item.h in Headers */,
@@ -3996,7 +4040,6 @@
 				9A68BDF02511444F008DABD2 /* ifs.h in Headers */,
 				9A68C04625114450008DABD2 /* file_os_watcher.h in Headers */,
 				9A68BBC72511444E008DABD2 /* session.h in Headers */,
-				9A68BBA82511444E008DABD2 /* http_base_socket.h in Headers */,
 				9A68BD8F2511444F008DABD2 /* check.h in Headers */,
 				9A68BD092511444E008DABD2 /* application_heap.h in Headers */,
 				9A68BD652511444F008DABD2 /* list.h in Headers */,
@@ -4017,13 +4060,13 @@
 				9A68BDFA2511444F008DABD2 /* set.h in Headers */,
 				9A68BC9D2511444E008DABD2 /* objcpp.h in Headers */,
 				9A68BBB52511444E008DABD2 /* http_batch_buffer.h in Headers */,
+				9A4F4E2C25311DAB00733584 /* _openssl.h in Headers */,
 				9A68BC392511444E008DABD2 /* signal.h in Headers */,
 				9A68BC6C2511444E008DABD2 /* astr.h in Headers */,
 				9A68BC932511444E008DABD2 /* retry.h in Headers */,
 				9A68C08C25114450008DABD2 /* thread.h in Headers */,
 				9A68BCBD2511444E008DABD2 /* savings.h in Headers */,
 				9A68BBBF2511444E008DABD2 /* listener.h in Headers */,
-				9A68BB5B2511444D008DABD2 /* crypto_openssl.h in Headers */,
 				9A68C04C25114450008DABD2 /* file_context.h in Headers */,
 				9A68BC9A2511444E008DABD2 /* objc.h in Headers */,
 				9A68BCCF2511444E008DABD2 /* simple_trace.h in Headers */,
@@ -4034,6 +4077,7 @@
 				9A68BF002511444F008DABD2 /* _ansios.h in Headers */,
 				9A68BF1325114450008DABD2 /* _.h in Headers */,
 				9A68BCDA2511444E008DABD2 /* _system_object_impl.h in Headers */,
+				9A4F4E1925311DA400733584 /* hasher_algorithm.h in Headers */,
 				9A68BE0E2511444F008DABD2 /* application_common.h in Headers */,
 				9A68BE042511444F008DABD2 /* console_common.h in Headers */,
 				9A68BF1425114450008DABD2 /* apex.h in Headers */,
@@ -4096,6 +4140,7 @@
 				9A68BB782511444E008DABD2 /* _defer.h in Headers */,
 				9A68BD752511444F008DABD2 /* cross_windows.h in Headers */,
 				9A68BCA72511444E008DABD2 /* error.h in Headers */,
+				9A4F4E1525311DA400733584 /* _crypto.h in Headers */,
 				9A68BD392511444E008DABD2 /* property_set_papaya.h in Headers */,
 				9A68BCA22511444E008DABD2 /* app_launcher.h in Headers */,
 				9A68BE0F2511444F008DABD2 /* _app_impl1.h in Headers */,
@@ -4113,6 +4158,7 @@
 				9A68BD222511444E008DABD2 /* _system_var_impl.h in Headers */,
 				9A68BD022511444E008DABD2 /* obj_ref_dbg.h in Headers */,
 				9A68C06125114450008DABD2 /* _.h in Headers */,
+				9A4F4E2E25311DAB00733584 /* rsa.h in Headers */,
 				9A68BEE02511444F008DABD2 /* mm_graphics.h in Headers */,
 				9A68BD912511444F008DABD2 /* command.h in Headers */,
 				9A68BC202511444E008DABD2 /* _net_impl.h in Headers */,
@@ -4160,6 +4206,7 @@
 				9A68BCE72511444E008DABD2 /* machine_event_central2.h in Headers */,
 				9A68C05025114450008DABD2 /* keyboard.h in Headers */,
 				9A68BE472511444F008DABD2 /* _.h in Headers */,
+				9A4F4E0825311CFC00733584 /* http_base_socket.h in Headers */,
 				9A68BDFD2511444F008DABD2 /* _draw2d_impl.h in Headers */,
 				9A68BEFE2511444F008DABD2 /* datetime_c.h in Headers */,
 				9A68BBC52511444E008DABD2 /* debug_socket.h in Headers */,
@@ -4182,6 +4229,7 @@
 				9A68BE7D2511444F008DABD2 /* graphics_mm.h in Headers */,
 				9A68BDE82511444F008DABD2 /* ifs_file.h in Headers */,
 				9A68BC902511444E008DABD2 /* create_thread.h in Headers */,
+				9A4F4E1625311DA400733584 /* _.h in Headers */,
 				9A68BD0D2511444E008DABD2 /* international_locale_schema.h in Headers */,
 				9A68BBA02511444E008DABD2 /* udp_socket.h in Headers */,
 				9A68BE182511444F008DABD2 /* charset.h in Headers */,
@@ -4318,6 +4366,7 @@
 				9AAE6EAA251921CF00F10692 /* interprocess_call.h in Headers */,
 				9A68BE1D2511444F008DABD2 /* timer.h in Headers */,
 				9A68BD522511444F008DABD2 /* listener.h in Headers */,
+				9A4F4E2F25311DAB00733584 /* hasher_algorithm.h in Headers */,
 				9A68C03E25114450008DABD2 /* application.h in Headers */,
 				9A68BDE72511444F008DABD2 /* item.h in Headers */,
 				9A68C09225114450008DABD2 /* os_context.h in Headers */,
@@ -4363,6 +4412,7 @@
 				9A68BC212511444E008DABD2 /* url_department.h in Headers */,
 				9A68BBAD2511444E008DABD2 /* resolv_server.h in Headers */,
 				9A68BE8A2511444F008DABD2 /* _.h in Headers */,
+				9A4F4E1A25311DA400733584 /* rsa.h in Headers */,
 				9A68BE792511444F008DABD2 /* window_impl.h in Headers */,
 				9A68BC792511444E008DABD2 /* service_base.h in Headers */,
 				9A68BBC32511444E008DABD2 /* client_socket.h in Headers */,
@@ -4438,7 +4488,6 @@
 				9AD692F4251A754800C0EBD7 /* transaction.h in Headers */,
 				9AD692F5251A754800C0EBD7 /* application_array.h in Headers */,
 				9AD692F6251A754800C0EBD7 /* aaa_RoundWindowFrameView.h in Headers */,
-				9AD692F7251A754800C0EBD7 /* crypto_crypto.h in Headers */,
 				9AD692F8251A754800C0EBD7 /* file.h in Headers */,
 				9AD692F9251A754800C0EBD7 /* windowing.h in Headers */,
 				9AD692FA251A754800C0EBD7 /* selection_item.h in Headers */,
@@ -4473,7 +4522,6 @@
 				9AD69317251A754800C0EBD7 /* ifs.h in Headers */,
 				9AD69318251A754800C0EBD7 /* file_os_watcher.h in Headers */,
 				9AD69319251A754800C0EBD7 /* session.h in Headers */,
-				9AD6931A251A754800C0EBD7 /* http_base_socket.h in Headers */,
 				9AD6931B251A754800C0EBD7 /* check.h in Headers */,
 				9AD6931C251A754800C0EBD7 /* application_heap.h in Headers */,
 				9AD6931D251A754800C0EBD7 /* list.h in Headers */,
@@ -4500,7 +4548,6 @@
 				9AD69332251A754800C0EBD7 /* thread.h in Headers */,
 				9AD69333251A754800C0EBD7 /* savings.h in Headers */,
 				9AD69334251A754800C0EBD7 /* listener.h in Headers */,
-				9AD69335251A754800C0EBD7 /* crypto_openssl.h in Headers */,
 				9AD69336251A754800C0EBD7 /* file_context.h in Headers */,
 				9AD69337251A754800C0EBD7 /* objc.h in Headers */,
 				9AD69338251A754800C0EBD7 /* simple_trace.h in Headers */,
@@ -5024,7 +5071,6 @@
 				9A68BB842511444E008DABD2 /* context.cpp in Sources */,
 				9A68BD0C2511444E008DABD2 /* application.cpp in Sources */,
 				9A7D920B251AF16300DE81AE /* menu_shared.cpp in Sources */,
-				9A68BBB22511444E008DABD2 /* _system_sockets.cpp in Sources */,
 				9A68C05725114450008DABD2 /* keyboard_mm.mm in Sources */,
 				9A68BF0925114450008DABD2 /* base.cpp in Sources */,
 				9A68BCC12511444E008DABD2 /* timer_item.cpp in Sources */,
@@ -5055,6 +5101,7 @@
 				9A68BCD52511444E008DABD2 /* assert_running_task.cpp in Sources */,
 				9A68BC4A2511444E008DABD2 /* email.cpp in Sources */,
 				9A68C04825114450008DABD2 /* ApexWindowApp.mm in Sources */,
+				9A4F4E1D25311DA400733584 /* rsa.cpp in Sources */,
 				9A68C04B25114450008DABD2 /* file_context.cpp in Sources */,
 				9A68BC712511444E008DABD2 /* thread.cpp in Sources */,
 				9A68BBCC2511444E008DABD2 /* client_socket.cpp in Sources */,
@@ -5091,6 +5138,7 @@
 				9A68BD782511444F008DABD2 /* base.cpp in Sources */,
 				9A68BB5E2511444D008DABD2 /* context.cpp in Sources */,
 				9A68BC1E2511444E008DABD2 /* base_socket_handler.cpp in Sources */,
+				9A4F4E0925311CFC00733584 /* http_base_socket.cpp in Sources */,
 				9A68BE672511444F008DABD2 /* cross_win_file.cpp in Sources */,
 				9A68BE612511444F008DABD2 /* NSPasteboard++.mm in Sources */,
 				9A68BD6F2511444F008DABD2 /* channel.cpp in Sources */,
@@ -5111,8 +5159,10 @@
 				9A68BD692511444F008DABD2 /* sender.cpp in Sources */,
 				9A68BBB82511444E008DABD2 /* http_batch_buffer.cpp in Sources */,
 				9A68BE6A2511444F008DABD2 /* mm_graphics.mm in Sources */,
+				9A4F4E2D25311DAB00733584 /* crypto.cpp in Sources */,
 				9A68BCD82511444E008DABD2 /* apex_main_struct.cpp in Sources */,
 				9A68C17D25114451008DABD2 /* department.cpp in Sources */,
+				9A4F4E1B25311DA400733584 /* hasher.cpp in Sources */,
 				9A68BCEF2511444E008DABD2 /* _.cpp in Sources */,
 				9A68BB972511444E008DABD2 /* tcp_socket.cpp in Sources */,
 				9A68BD342511444E008DABD2 /* object_meta.cpp in Sources */,
@@ -5136,6 +5186,7 @@
 				9A68BBB32511444E008DABD2 /* link_out_socket.cpp in Sources */,
 				9A68C04425114450008DABD2 /* trace.cpp in Sources */,
 				9A68BDF12511444F008DABD2 /* remote_native_file.cpp in Sources */,
+				9A4F4E1825311DA400733584 /* crypto.cpp in Sources */,
 				9A68C03625114450008DABD2 /* util.cpp in Sources */,
 				9A68BCC02511444E008DABD2 /* build_debug.cpp in Sources */,
 				9A68BF9825114450008DABD2 /* http.cpp in Sources */,
@@ -5160,6 +5211,7 @@
 				9A68BC182511444E008DABD2 /* link_in_socket.cpp in Sources */,
 				9A68BC2E2511444E008DABD2 /* address.cpp in Sources */,
 				9A68BC2C2511444E008DABD2 /* url_department.cpp in Sources */,
+				9A4F4E3025311DAB00733584 /* rsa.cpp in Sources */,
 				9A68BD3E2511444E008DABD2 /* create.cpp in Sources */,
 				9A68BB402511444D008DABD2 /* client.cpp in Sources */,
 				9A68BB992511444E008DABD2 /* udp_socket.cpp in Sources */,
@@ -5171,6 +5223,7 @@
 				9A68BDD62511444F008DABD2 /* file_context.cpp in Sources */,
 				9A68BE812511444F008DABD2 /* small_ipca_channel.cpp in Sources */,
 				9AEF22442512F1470000D8E1 /* ApexWindowFrameView.mm in Sources */,
+				9A4F4E2925311DAB00733584 /* hasher_algorithm.cpp in Sources */,
 				9A68C17B25114451008DABD2 /* timer.mm in Sources */,
 				9A68BBC82511444E008DABD2 /* session.cpp in Sources */,
 				9A68BD492511444F008DABD2 /* command_line.cpp in Sources */,
@@ -5207,6 +5260,7 @@
 				9A68BB902511444E008DABD2 /* sctp_socket.cpp in Sources */,
 				9A68BD282511444E008DABD2 /* department.cpp in Sources */,
 				9A68BC772511444E008DABD2 /* retry_multi_lock.cpp in Sources */,
+				9A4F4E2B25311DAB00733584 /* _.cpp in Sources */,
 				9A68BE772511444F008DABD2 /* file.cpp in Sources */,
 				9A68BE8B2511444F008DABD2 /* multithreading.cpp in Sources */,
 				9A68BBBA2511444E008DABD2 /* trace_interface.cpp in Sources */,
@@ -5229,7 +5283,6 @@
 				9A68C05C25114450008DABD2 /* main.cpp in Sources */,
 				9A68BBA42511444E008DABD2 /* sockets.cpp in Sources */,
 				9A68BD802511444F008DABD2 /* application.cpp in Sources */,
-				9A68BB582511444D008DABD2 /* crypto_crypto.cpp in Sources */,
 				9A68BCCE2511444E008DABD2 /* history.cpp in Sources */,
 				9AEF22462512F14F0000D8E1 /* ApexWindow.mm in Sources */,
 				9A68BD1F2511444E008DABD2 /* os_history.cpp in Sources */,
@@ -5245,20 +5298,19 @@
 				9A68BC282511444E008DABD2 /* ip_enum.cpp in Sources */,
 				9A68BCC92511444E008DABD2 /* context.cpp in Sources */,
 				9A68BD8A2511444F008DABD2 /* language_map.cpp in Sources */,
-				9A68BB5A2511444D008DABD2 /* crypto_openssl.cpp in Sources */,
 				9A68BE1E2511444F008DABD2 /* idpool.cpp in Sources */,
 				9A68C04E25114450008DABD2 /* file.cpp in Sources */,
 				9A68BCEB2511444E008DABD2 /* machine_event.cpp in Sources */,
 				9A68BC352511444E008DABD2 /* context.cpp in Sources */,
 				9A68BCBE2511444E008DABD2 /* machine_event_central.cpp in Sources */,
 				9A68BCDF2511444E008DABD2 /* net.cpp in Sources */,
-				9A68BBA72511444E008DABD2 /* http_base_socket.cpp in Sources */,
 				9A68BB912511444E008DABD2 /* sync_socket_handler.cpp in Sources */,
 				9A68BD242511444E008DABD2 /* simple_trace.cpp in Sources */,
 				9A68BBC02511444E008DABD2 /* put_socket.cpp in Sources */,
 				9A68BD122511444E008DABD2 /* simple_log.cpp in Sources */,
 				9A68BE642511444F008DABD2 /* file.mm in Sources */,
 				9A68BC3F2511444E008DABD2 /* _.cpp in Sources */,
+				9A4F4E2825311DAB00733584 /* hasher.cpp in Sources */,
 				9A68BD572511444F008DABD2 /* node.cpp in Sources */,
 				9A68BD622511444F008DABD2 /* simple_item.cpp in Sources */,
 				9A68BDEB2511444F008DABD2 /* data.cpp in Sources */,
@@ -5272,6 +5324,7 @@
 				9A68BE6F2511444F008DABD2 /* aura.cpp in Sources */,
 				9A68BB9D2511444E008DABD2 /* listen_socket.cpp in Sources */,
 				9A68BCD02511444E008DABD2 /* timer_callback.cpp in Sources */,
+				9A4F4E0B25311D3400733584 /* _system_sockets.cpp in Sources */,
 				9A68BE532511444F008DABD2 /* os_os.cpp in Sources */,
 				9A68BD7F2511444F008DABD2 /* command_target.cpp in Sources */,
 				9A68BD7D2511444F008DABD2 /* debug.cpp in Sources */,
@@ -5286,6 +5339,7 @@
 				9A68BE522511444F008DABD2 /* thread.cpp in Sources */,
 				9A68BC402511444E008DABD2 /* signal.cpp in Sources */,
 				9A68BE4D2511444F008DABD2 /* timer.cpp in Sources */,
+				9A4F4E1725311DA400733584 /* hasher_algorithm.cpp in Sources */,
 				9A68BD8C2511444F008DABD2 /* command.cpp in Sources */,
 				9A68BDEC2511444F008DABD2 /* remote_native_fs.cpp in Sources */,
 				9A68BB832511444E008DABD2 /* initializer.cpp in Sources */,
@@ -5318,7 +5372,6 @@
 				9AD6949C251A754800C0EBD7 /* file_os_watcher.cpp in Sources */,
 				9AD6949D251A754800C0EBD7 /* context.cpp in Sources */,
 				9AD6949E251A754800C0EBD7 /* application.cpp in Sources */,
-				9AD6949F251A754800C0EBD7 /* _system_sockets.cpp in Sources */,
 				9AD694A0251A754800C0EBD7 /* keyboard_mm.mm in Sources */,
 				9AD694A1251A754800C0EBD7 /* base.cpp in Sources */,
 				9AD694A2251A754800C0EBD7 /* timer_item.cpp in Sources */,
@@ -5537,7 +5590,6 @@
 				9AD69568251A754800C0EBD7 /* main.cpp in Sources */,
 				9AD69569251A754800C0EBD7 /* sockets.cpp in Sources */,
 				9AD6956A251A754800C0EBD7 /* application.cpp in Sources */,
-				9AD6956B251A754800C0EBD7 /* crypto_crypto.cpp in Sources */,
 				9AD6956C251A754800C0EBD7 /* history.cpp in Sources */,
 				9AD6956D251A754800C0EBD7 /* ApexWindow.mm in Sources */,
 				9AD6956E251A754800C0EBD7 /* os_history.cpp in Sources */,
@@ -5554,7 +5606,6 @@
 				9AD69578251A754800C0EBD7 /* ip_enum.cpp in Sources */,
 				9AD69579251A754800C0EBD7 /* context.cpp in Sources */,
 				9AD6957A251A754800C0EBD7 /* language_map.cpp in Sources */,
-				9AD6957B251A754800C0EBD7 /* crypto_openssl.cpp in Sources */,
 				9AD6957C251A754800C0EBD7 /* idpool.cpp in Sources */,
 				9ACC5DA8251A9699008528B1 /* aaa_shell.cpp in Sources */,
 				9AD6957D251A754800C0EBD7 /* file.cpp in Sources */,
@@ -5562,7 +5613,6 @@
 				9AD6957F251A754800C0EBD7 /* context.cpp in Sources */,
 				9AD69580251A754800C0EBD7 /* machine_event_central.cpp in Sources */,
 				9AD69581251A754800C0EBD7 /* net.cpp in Sources */,
-				9AD69582251A754800C0EBD7 /* http_base_socket.cpp in Sources */,
 				9AD69583251A754800C0EBD7 /* sync_socket_handler.cpp in Sources */,
 				9AD69584251A754800C0EBD7 /* simple_trace.cpp in Sources */,
 				9AD69585251A754800C0EBD7 /* put_socket.cpp in Sources */,

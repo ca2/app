@@ -102,6 +102,7 @@ namespace hex
       return str;
    }
 
+
    inline CLASS_DECL_ACME string upper_from(const void * p, memsize s)
    {
       string str;
@@ -109,7 +110,6 @@ namespace hex
       str.release_string_buffer(s * 2);
       return str;
    }
-
 
    inline string upper_from(::i64 i)
    {

@@ -60,9 +60,6 @@ namespace openssl
    };
 
 
-   ::crypto::hasher get_os_hasher(enum_hash ehash);
-
-
 } // namespace winrt
 
 

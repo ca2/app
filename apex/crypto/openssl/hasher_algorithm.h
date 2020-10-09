@@ -65,12 +65,7 @@ namespace openssl
       }
 
 
-      virtual __pointer(::crypto::hasher) create_hasher()
-      {
-
-         return __new(::openssl::hasher< CTX, m_ehash>(this));
-
-      }
+      virtual __pointer(::crypto::hasher) create_hasher();
 
 
    };

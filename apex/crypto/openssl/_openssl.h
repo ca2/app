@@ -71,3 +71,17 @@ namespace crypto
 #include "rsa.h"
 
 
+
+namespace openssl
+{
+
+   template < typename CTX, enum_hash m_ehash >
+__pointer(::crypto::hasher) hasher_algorithm<CTX, m_ehash>::create_hasher()
+{
+
+   return __new(::openssl::hasher< CTX, m_ehash>(this));
+
+}
+
+
+}

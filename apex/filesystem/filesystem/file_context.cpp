@@ -2026,7 +2026,7 @@ string file_context::get_hash(const var& varFile, enum_hash ehash)
 
    }
 
-   return phasher->get_hash_and_reset();
+   return ::hex::upper_from(phasher->get_hash_and_reset());
 
 }
 

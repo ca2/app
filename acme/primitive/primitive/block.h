@@ -85,4 +85,25 @@ struct CLASS_DECL_ACME fork_block :
 };
 
 
+namespace hex
+{
+
+
+   inline CLASS_DECL_ACME string lower_from(const block & block)
+   {
+      
+      return lower_from(block.get_data(), block.get_size());
+
+   }
+
+   inline CLASS_DECL_ACME string upper_from(const block & block)
+   {
+      
+      return upper_from(block.get_data(), block.get_size());
+
+   }
+
+
+} // namespace hex
+
 

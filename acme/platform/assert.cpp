@@ -7,7 +7,7 @@
 
 #if defined(__APPLE__) 
 
-int _os_message_box(const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox);
+void _os_message_box(const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, ::future future);
 
 #elif defined(_UWP)
 
@@ -64,16 +64,18 @@ namespace acme
          wstring wstrTitle(m_strTitle);
 
          iResult = ::MessageBox(nullptr, wstrText, wstrTitle, iMessageBox);
+         string strResult = message_box_result_to_string(iResult);
 
+                 m_future.send(strResult);
 #elif defined(LINUX)
 
          x11_message_box(m_strText, m_strTitle, m_emessagebox, m_future);
 
          return ::success;
 
-#elif defined(_UWP)
+#elif defined(_UWP) || defined(__APPLE__)
 
-               _os_message_box(m_strText, m_strTitle, m_emessagebox, m_future);
+         _os_message_box(m_strText, m_strTitle, m_emessagebox, m_future);
 
             //   string strResult = message_box_result_to_string(iResult);
 
@@ -81,17 +83,15 @@ namespace acme
 
             //});
 
-         return ::success;
-
 #else
 
          iResult = _os_message_box(m_strText, m_strTitle, m_emessagebox);
-
-#endif
-
          string strResult = message_box_result_to_string(iResult);
 
          m_future.send(strResult);
+
+
+#endif
 
          return ::success;
 

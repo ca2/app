@@ -168,15 +168,13 @@ void _os_message_box(const char* pszMessage, const char* pszTitle, ::emessagebox
 CLASS_DECL_ACME string message_box_result_to_string(int iResult);
 
 
+void _os_message_box(const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, ::future future);
+
 ::estatus os_message_box(oswindow window, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, ::future future)
 {
    
    
-   int iResult = _os_message_box(pszMessage, pszTitle, emessagebox);
-   
-   string strResult = message_box_result_to_string(iResult);
-
-   future.send(strResult);
+   _os_message_box(pszMessage, pszTitle, emessagebox, future);
    
    return ::success;
    

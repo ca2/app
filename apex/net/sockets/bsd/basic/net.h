@@ -124,7 +124,7 @@ namespace sockets
       };
 
       class CLASS_DECL_APEX reverse_cache_item:
-         virtual public ::elemental
+         virtual public ::element
       {
       public:
 

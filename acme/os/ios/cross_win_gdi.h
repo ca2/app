@@ -13,7 +13,7 @@
 // WINBOOL SetBkMode(HDC hdc, int iMode);
 // WINBOOL DeleteDC(HDC hdc);
 // WINBOOL AlphaBlend(HDC hdcDest, int xoriginDest, int yoriginDest, int wDest, int hDest, HDC hdcSrc, int xoriginSrc, int yoriginSrc, int wSrc, int hSrc, BLENDFUNCTION ftn);
-// WINBOOL GetObject(HGDIOBJ hgdiobj, int iSize, void * elemental);
+// WINBOOL GetObject(HGDIOBJ hgdiobj, int iSize, void * element);
 // WINBOOL GetTextExtentPoint(HDC hdc, const char * pszText, int iSize, SIZE * psize);
 /*WINBOOL WINAPI TransparentBlt(HDC hdcDest,
     __in int xoriginDest,

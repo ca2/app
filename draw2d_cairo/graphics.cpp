@@ -119,7 +119,7 @@ string_to_int * g_pmapFontError = nullptr;
 
 string_to_int * g_pmapFontError2 = nullptr;
 
-extern CLASS_DECL_AURA array < elemental * > * g_paAura;
+extern CLASS_DECL_AURA array < element * > * g_paAura;
 
 
 

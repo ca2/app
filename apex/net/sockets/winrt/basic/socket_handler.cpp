@@ -28,7 +28,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "framework.h"
-#include "apex/net/net_sockets.h"
+//#include "apex/net/net_sockets.h"
 ////
 ////#include <errno.h>
 
@@ -36,10 +36,9 @@ namespace sockets
 {
 
 
-   socket_handler::socket_handler(::object * pobject, logger * plogger) :
-      ::object(pobject),
-      base_socket_handler(papp, plogger),
-
+   socket_handler::socket_handler(::layered * pobjectContext, ::apex::log * plog) :
+      ::object(pobjectContext),
+      base_socket_handler(pobjectContext, plog),
       m_b_use_mutex(false)
       ,m_maxsock(0)
       ,m_preverror(-1)
@@ -62,32 +61,31 @@ namespace sockets
    }
 
 
-   socket_handler::socket_handler(::object * pobject, ::mutex& ::mutex, logger *plogger) :
-      ::object(pobject),
-      base_socket_handler(papp, plogger)
-      ,m_mutex(::mutex)
-      ,m_b_use_mutex(true)
-      ,m_maxsock(0)
-      ,m_preverror(-1)
-      ,m_errcnt(0)
-      ,m_tlast(0)
-      ,m_socks4_port(0)
-      ,m_bTryDirect(false)
-      ,m_resolv_id(0)
-      ,m_resolver(nullptr)
-      ,m_b_enable_pool(false)
-      ,m_next_trigger_id(0)
-      ,m_slave(false)
-   {
+   //socket_handler::socket_handler(::layered * pobjectContext, ::apex::log *plog) :
+   //   ::object(pobjectContext),
+   //   base_socket_handler(pobjectContext, plog)
+   //   ,m_b_use_mutex(true)
+   //   ,m_maxsock(0)
+   //   ,m_preverror(-1)
+   //   ,m_errcnt(0)
+   //   ,m_tlast(0)
+   //   ,m_socks4_port(0)
+   //   ,m_bTryDirect(false)
+   //   ,m_resolv_id(0)
+   //   ,m_resolver(nullptr)
+   //   ,m_b_enable_pool(false)
+   //   ,m_next_trigger_id(0)
+   //   ,m_slave(false)
+   //{
 
-      __memset(&m_socks4_host, 0, sizeof(m_socks4_host));
+   //   __memset(&m_socks4_host, 0, sizeof(m_socks4_host));
 
-      m_mutex.lock();
+   //   //m_mutex.lock();
 
-      /*      FD_ZERO(&m_rfds);
-            FD_ZERO(&m_wfds);
-            FD_ZERO(&m_efds);*/
-   }
+   //   /*      FD_ZERO(&m_rfds);
+   //         FD_ZERO(&m_wfds);
+   //         FD_ZERO(&m_efds);*/
+   //}
 
 
    socket_handler::~socket_handler()
@@ -97,12 +95,13 @@ namespace sockets
          m_resolver -> Quit();
       }
       {
-         POSITION pos = m_sockets.get_start_position();
-         SOCKET s;
-         while(pos != nullptr)
+         auto ppair = m_sockets.get_start();
+         //SOCKET s;
+         while(ppair != nullptr)
          {
-            socket_pointer p;
-            m_sockets.get_next_assoc(pos, s, p);
+            //socket_pointer p;
+            ///.get_next_assoc(pos, s, p);
+            auto p = ppair->element2();
             if(p)
             {
                try
@@ -123,6 +122,7 @@ namespace sockets
                   }
                }
             }
+            ppair = ppair->m_pnext;
          }
       }
       m_sockets.remove_all();
@@ -132,14 +132,16 @@ namespace sockets
       }
       if (m_b_use_mutex)
       {
-         m_mutex.unlock();
+         //m_mutex.unlock();
       }
    }
 
 
-   ::mutex& socket_handler::GetMutex() const
+   ::sync& socket_handler::GetMutex() const
    {
-      return m_mutex;
+      
+      return *mutex();
+
    }
 
 
@@ -162,19 +164,28 @@ namespace sockets
          WARN(p, "add", -1, "Invalid socket");
          if (p -> IsCloseAndDelete())
          {
-            m_delete.add_tail(p);
+            m_delete.add_tail(p->GetSocket());
          }
          return;
       }
+      
       socket_pointer plookup;
+
       if (m_add.lookup(p -> GetSocket(), plookup))
       {
-         FATAL(log_this, p, "add", (int)p -> GetSocket(), "Attempt to add socket already in add queue");
-         m_delete.add_tail(p);
+         
+         //FATAL(log_this, p, "add", (int)p -> GetSocket(), "Attempt to add socket already in add queue");
+
+         m_delete.add_tail(p->GetSocket());
+
          return;
+
       }
+      
       m_add[p -> GetSocket()] = p;
-      p->m_estatus = socketresult_status_succeeded;
+      
+      p->m_estatus = ::success;
+
    }
 
 
@@ -264,17 +275,17 @@ namespace sockets
    int socket_handler::select(struct timeval *tsel)
    {
 
-      POSITION pos = m_add.get_start_position();
+      auto ppair = m_add.get_start();
       SOCKET s;
       socket_pointer psocket;
-      while(pos != nullptr)
+      while(ppair != nullptr)
       {
 
          s = 0;
 
-         psocket = nullptr;
+         psocket = ppair->element2();
 
-         m_add.get_next_assoc(pos, s, psocket);
+         //m_add.get_next_assoc(pos, s, psocket);
 
          if(psocket != nullptr)
          {
@@ -287,23 +298,25 @@ namespace sockets
 
          }
 
+         ppair = ppair->m_pnext;
+
       }
 
-      pos = m_sockets.get_start_position();
+      ppair = m_sockets.get_start();
 
 
 
-      while(pos != nullptr)
+      while(ppair != nullptr)
       {
          s = 0;
-         psocket = nullptr;
-         m_sockets.get_next_assoc(pos, s, psocket);
+         psocket = ppair->element2();
+         //m_sockets.get_next_assoc(pos, s, psocket);
          if(psocket != nullptr)
          {
             psocket->m_event.wait(seconds(tsel->tv_sec));
             if(psocket->is_connecting())
             {
-               psocket->m_estatus = ::sockets::socket::status_connection_timed_out;
+               psocket->m_estatus = ::error_timeout;
                remove(psocket);
                break;
             }
@@ -311,10 +324,10 @@ namespace sockets
             __pointer(stream_socket) pstreamsocket = psocket;
             if(pstreamsocket != nullptr)
             {
-               if(pstreamsocket->m_posdata->m_writer != nullptr)
+               if(pstreamsocket->m_writer != nullptr)
                {
 
-                  auto writer = pstreamsocket->m_posdata->m_writer;
+                  auto writer = pstreamsocket->m_writer;
 
                   psocket->m_event.ResetEvent();
 
@@ -325,37 +338,50 @@ namespace sockets
                      psocket->m_event.SetEvent();
                   });
 
-                  pstreamsocket->m_posdata->m_writer = nullptr;
+                  pstreamsocket->m_writer = nullptr;
 
                }
+
             }
+
             if(psocket->m_bClose)
             {
+
                remove(psocket);
+
 //               delete psocket;
+
                break;
+
             }
+
 //            psocket->step();
+
          }
+
       }
+
       return 0;
+
    }
 
 
    bool socket_handler::Resolving(base_socket * p0)
    {
+
       return m_resolve_q.plookup(p0) != nullptr;
+
    }
 
 
    bool socket_handler::Valid(base_socket * p0)
    {
-      socket_map::pair * ppair = m_sockets.get_start();
+      auto ppair = m_sockets.get_start();
       while(ppair != nullptr)
       {
          if (p0 == ppair->element2())
             return true;
-         ppair = m_sockets.get_next(ppair);
+         ppair = ppair->m_pnext;
       }
       return false;
    }
@@ -378,6 +404,9 @@ namespace sockets
    }
 
 
+#if defined(BSD_STYLE_SOCKETS)
+
+
    void socket_handler::SetSocks4Host(in_addr a)
    {
 
@@ -386,12 +415,16 @@ namespace sockets
    }
 
 
+//#if defined(BSD_STYLE_SOCKETS)
+
    void socket_handler::SetSocks4Host(const string & host)
    {
 
-      Session.sockets().net().convert(m_socks4_host, host);
+      System.sockets().net().convert(m_socks4_host, host);
 
    }
+
+#endif
 
 
    void socket_handler::SetSocks4Port(port_t port)
@@ -420,7 +453,7 @@ namespace sockets
       //Session.sockets().net().convert(local, "127.0.0.1");
       if(!resolv -> open(addressLocal))
       {
-         FATAL(log_this, resolv, "Resolve", -1, "Can't connect to local resolve server");
+         //FATAL(log_this, resolv, "Resolve", -1, "Can't connect to local resolve server");
       }
       add(resolv);
       m_resolve_q[p] = true;
@@ -438,7 +471,7 @@ namespace sockets
       ::net::address addressLocal("127.0.0.1",m_resolver_port);
       if(!resolv -> open(addressLocal))
       {
-         FATAL(log_this, resolv, "Resolve", -1, "Can't connect to local resolve server");
+         //FATAL(log_this, resolv, "Resolve", -1, "Can't connect to local resolve server");
       }
       add(resolv);
       m_resolve_q[p] = true;
@@ -456,7 +489,7 @@ namespace sockets
       ::net::address addressLocal("127.0.0.1",m_resolver_port);
       if(!resolv -> open(addressLocal))
       {
-         FATAL(log_this, resolv, "Resolve", -1, "Can't connect to local resolve server");
+         //FATAL(log_this, resolv, "Resolve", -1, "Can't connect to local resolve server");
       }
       add(resolv);
       m_resolve_q[p] = true;
@@ -474,7 +507,7 @@ namespace sockets
       ::net::address addressLocal("127.0.0.1",m_resolver_port);
       if(!resolv -> open(addressLocal))
       {
-         FATAL(log_this, resolv, "Resolve", -1, "Can't connect to local resolve server");
+         //FATAL(log_this, resolv, "Resolve", -1, "Can't connect to local resolve server");
       }
       add(resolv);
       m_resolve_q[p] = true;
@@ -537,9 +570,9 @@ namespace sockets
       return m_resolver_port;
    }
 
-   base_socket_handler::pool_socket *socket_handler::FindConnection(int type,const string & protocol, const ::net::address & ad)
+   __pointer(base_socket_handler::pool_socket) socket_handler::FindConnection(int type,const string & protocol, const ::net::address & ad)
    {
-      socket_map::pair * ppair = m_sockets.get_start();
+      auto ppair = m_sockets.get_start();
       while(ppair != nullptr)
       {
          __pointer(pool_socket) pools = ppair->element2();
@@ -555,7 +588,8 @@ namespace sockets
                return pools; // Caller is responsible that this socket is deleted
             }
          }
-         ppair = m_sockets.get_next(ppair);
+         //ppair = m_sockets.get_next(ppair);
+         ppair->m_pnext;
       }
       return nullptr;
    }
@@ -582,7 +616,7 @@ namespace sockets
       {
          return;
       }
-      socket_map::pair * ppair = m_sockets.get_start();
+      auto ppair = m_sockets.get_start();
       while(ppair != nullptr)
       {
          if(ppair->element2() == p)
@@ -591,9 +625,9 @@ namespace sockets
             m_sockets.remove_key(ppair->element1());
             return;
          }
-         ppair = m_sockets.get_next(ppair);
+         ppair = ppair->m_pnext;
       }
-      socket_map::pair * ppair2 = m_add.get_start();
+      auto ppair2 = m_add.get_start();
       while(ppair2 != nullptr)
       {
          if (ppair2->element2() == p)
@@ -602,9 +636,9 @@ namespace sockets
             m_add.remove_key(ppair2->element1());
             return;
          }
-         ppair2 = m_add.get_next(ppair2);
+         ppair2 = ppair2->m_pnext;
       }
-      if(m_delete.remove(p) > 0)
+      if(m_delete.remove(p->GetSocket()) > 0)
       {
          WARN(p, "remove", -3, "socket destructor called while still in use");
          return;
@@ -624,22 +658,20 @@ namespace sockets
    }
 
 
-   void socket_handler::CheckList(socket_id_list& ref,const string & listname)
+   void socket_handler::CheckList(socket_list& ref,const string & listname)
    {
-      POSITION pos = ref.get_head_position();
-      while(pos != nullptr)
+      auto pnode = ref.get_head();
+      while(pnode != nullptr)
       {
-         SOCKET s = ref.get_next(pos);
-         if(m_sockets.plookup(s) != nullptr)
+         if(m_sockets.plookup(pnode->m_value) != nullptr)
             continue;
-         if(m_add.plookup(s) != nullptr)
+         if(m_add.plookup(pnode->m_value) != nullptr)
             continue;
          bool found = false;
-         POSITION pos = m_delete.get_head_position();
+         auto pos = m_delete.get_head();
          while(pos != nullptr)
          {
-            socket_pointer p = m_delete.get_next(pos);
-            if(p->GetSocket() == s)
+            if(pos->m_value == pnode->m_value)
             {
                found = true;
                break;
@@ -647,7 +679,8 @@ namespace sockets
          }
          if (!found)
          {
-            TRACE("CheckList failed for \"%s\": fd %d\n", listname, s);
+            //TRACE("CheckList failed for \"%s\": fd %d\n", listname, s);
+            TRACE("CheckList failed for \"%s\"\n", listname);
          }
       }
    }
@@ -660,7 +693,7 @@ namespace sockets
          TRACE("AddList:  invalid_socket\n");
          return;
       }
-      socket_id_list& ref =
+      socket_list& ref =
       (which_one == LIST_CALLONCONNECT) ? m_fds_callonconnect :
       (which_one == LIST_DETACH) ? m_fds_detach :
       (which_one == LIST_TIMEOUT) ? m_fds_timeout :
@@ -686,6 +719,37 @@ namespace sockets
    }
 
 
+   bool socket_handler::contains(base_socket* pbasesocket)
+   {
+
+      socket_pointer psocket = pbasesocket;
+
+      if (::contains_value(m_sockets, psocket))
+      {
+
+         return true;
+
+      }
+
+      if (::contains_value(m_add, psocket))
+      {
+
+         return true;
+
+      }
+
+      if (m_delete.contains(psocket))
+      {
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
    int socket_handler::TriggerID(base_socket *src)
    {
       int id = m_next_trigger_id++;
@@ -703,10 +767,10 @@ namespace sockets
             m_trigger_dst[id][dst] = true;
             return true;
          }
-         INFO(log_this, dst, "Subscribe", id, "Already subscribed");
+         //INFO(log_this, dst, "Subscribe", id, "Already subscribed");
          return false;
       }
-      INFO(log_this, dst, "Subscribe", id, "Trigger id not found");
+      //INFO(log_this, dst, "Subscribe", id, "Trigger id not found");
       return false;
    }
 
@@ -720,40 +784,61 @@ namespace sockets
             m_trigger_dst[id].remove_key(dst);
             return true;
          }
-         INFO(log_this, dst, "Unsubscribe", id, "Not subscribed");
+         //INFO(log_this, dst, "Unsubscribe", id, "Not subscribed");
          return false;
       }
-      INFO(log_this, dst, "Unsubscribe", id, "Trigger id not found");
+      //INFO(log_this, dst, "Unsubscribe", id, "Trigger id not found");
       return false;
    }
 
 
    void socket_handler::Trigger(int id, socket::trigger_data& data, bool erase)
    {
+      
       if(m_trigger_src.plookup(id) != nullptr)
       {
+         
          data.SetSource( m_trigger_src[id]);
-         socket_bool::pair * ppair = m_trigger_dst[id].get_start();
-         while(ppair != nullptr);
+
+         auto ppair = m_trigger_dst[id].get_start();
+
+         while(ppair != nullptr)
          {
+            
             socket_pointer dst = ppair->element1();
+
             if (Valid(dst))
             {
+               
                dst->OnTrigger(id, data);
+
             }
-            ppair = m_trigger_dst[id].get_next(ppair);
+            
+            ppair = ppair->m_pnext;
+
          }
+
          if (erase)
          {
+
             m_trigger_src.remove_key(id);
+
             m_trigger_dst.remove_key(id);
+
          }
+
       }
       else
       {
-         INFO(log_this, nullptr, "Trigger", id, "Trigger id not found");
+         
+         //INFO(log_this, nullptr, "Trigger", id, "Trigger id not found");
+
       }
+
    }
 
+
 }
+
+
 

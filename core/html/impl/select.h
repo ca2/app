@@ -9,7 +9,7 @@ namespace html
    {
 
 
-      class CLASS_DECL_CORE select : public elemental
+      class CLASS_DECL_CORE select : public element
       {
       public:
 
@@ -23,7 +23,7 @@ namespace html
          
          
          void _001OnDraw(html_data * pdocument);
-         virtual void implement_phase1(html_data * pdocument, ::html::elemental * pelemental);
+         virtual void implement_phase1(html_data * pdocument, ::html::element * pelemental);
          
          
          virtual bool layout_phase1(html_data * pdocument);

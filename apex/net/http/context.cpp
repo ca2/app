@@ -1212,7 +1212,9 @@ namespace http
          else if (!psession->is_valid())
          {
 
-            handler.remove(psession);
+            //handler.remove(psession);
+
+            psession->SetCloseAndDelete();
 
             bSeemsOk = false;
 
@@ -1734,9 +1736,9 @@ namespace http
 
       }
 
-#ifdef BSD_STYLE_SOCKETS
+//#ifdef BSD_STYLE_SOCKETS
       retry :
-#endif
+//#endif
 
       iTry++;
 
@@ -2072,6 +2074,19 @@ namespace http
 
       }
 
+      if (set.has_property("connection_retry") > 0)
+      {
+
+         psocket->SetConnectionRetry(set["connection_retry"].i32());
+
+      }
+      //else
+      //{
+
+      //   psocket->SetConnectionRetry(3);
+
+      //}
+
       //if (papp != nullptr)
       //{
 
@@ -2085,6 +2100,7 @@ namespace http
 
       if (handler.PoolEnabled())
       {
+
          psocket->SetRetain();
 
       }

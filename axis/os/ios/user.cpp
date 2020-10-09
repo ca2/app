@@ -8,7 +8,7 @@
 #include <stdio.h>
 
 
-CLASS_DECL_AXIS void main_branch(::elemental* pobjectTask, e_priority epriority)
+CLASS_DECL_AXIS void main_branch(::element* pobjectTask, e_priority epriority)
 {
 
    ns_main_sync(^()

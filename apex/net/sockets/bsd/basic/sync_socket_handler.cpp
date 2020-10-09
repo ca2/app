@@ -6,9 +6,9 @@ namespace sockets
 {
 
 
-   sync_socket_handler::sync_socket_handler(::object * pobject, ::apex::log * plog) :
-      ::object(pobject),
-      m_handler(pobject, plog)
+   sync_socket_handler::sync_socket_handler(::layered * pobjectContext, ::apex::log * plog) :
+      ::object(pobjectContext),
+      m_handler(pobjectContext, plog)
    {
 
       m_psocket            = nullptr;

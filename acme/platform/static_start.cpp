@@ -9,6 +9,11 @@
 #include "acme/os/_os.h"
 
 
+static void delete_all_release_on_end();
+
+
+
+
 enum_platform_level g_eplatformlevel = ::e_platform_level_acme;
 
 
@@ -88,6 +93,10 @@ namespace acme
 {
 
 
+   static element_address_array* g_pelementaddraReleaseOnEnd;
+
+
+
 #if OBJ_TYP_CTR
 
    map < const char*, const char*, ::i64, ::i64 >* g_pmapObjTypCtr;
@@ -154,7 +163,7 @@ namespace acme
    //critical_section* g_pcsTrace;
 
    // acme commented
-   //::elemental* g_ptrace;
+   //::element* g_ptrace;
 
    // acme commented
    //simple_trace* g_psimpletrace;
@@ -183,7 +192,7 @@ namespace acme
    ::mutex* g_pmutexMessageDispatch;
 
 
-   array < elemental* >* g_paAura;
+   array < element* >* g_paAura;
 
 
    ::map < ::id, const ::id&, ::id, const ::id& >* g_pmapRTL;
@@ -524,6 +533,8 @@ namespace acme
 
       g_pcsGlobal = new critical_section();
 
+      g_pelementaddraReleaseOnEnd = new element_address_array();
+
 #ifndef __MCRTDBG
 
       g_pheap = new plex_heap_alloc_array();
@@ -586,7 +597,7 @@ namespace acme
 
       ::factory::factory_init();
 
-      g_paAura = new array < elemental * >;
+      g_paAura = new array < element * >;
 
       //g_pmapAura =new ::map < void *,void *,::acme::application *,::acme::application * >;
 
@@ -926,6 +937,10 @@ namespace acme
       ::acme::del(pheap);
 
 #endif
+
+      delete_all_release_on_end();
+
+      ::acme::del(g_pelementaddraReleaseOnEnd);
 
       ::acme::del(g_pcsGlobal);
 
@@ -1479,3 +1494,30 @@ CLASS_DECL_ACME mutex* get_children_mutex()
    return ::acme::g_pmutexChildren;
 
 }
+
+
+CLASS_DECL_ACME void release_on_end(::element* pelement)
+{
+
+   cslock l(::acme::g_pcsGlobal);
+
+   ::acme::g_pelementaddraReleaseOnEnd->add(pelement);
+
+}
+
+
+static void delete_all_release_on_end()
+{
+
+   cslock l(::acme::g_pcsGlobal);
+
+   for (auto pelement : *::acme::g_pelementaddraReleaseOnEnd)
+   {
+
+      ::acme::del(pelement);
+
+   }
+
+}
+
+

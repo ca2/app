@@ -7,7 +7,7 @@ namespace file
 
 
    class CLASS_DECL_ACME memory_map :
-      virtual public elemental
+      virtual public element
    {
    public:
 

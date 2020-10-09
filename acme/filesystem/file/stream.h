@@ -62,7 +62,7 @@ inline ::file::file & operator << (::file::file & file, const TYPE & t);
  inline void __exchange(::stream & s, ::id & id);
  inline void __exchange(::stream & s, ::var & var);
  inline void __exchange(::stream & s, ::property & property);
- inline void __exchange(::stream & s, ::elemental & elemental);
+ inline void __exchange(::stream & s, ::element & element);
 
 
  inline void __exchange(::stream & s, RECT & rect);
@@ -150,7 +150,7 @@ enum e_set_loading
 
 
 struct CLASS_DECL_ACME stream_meta :
-   public ::elemental
+   public ::element
 {
 
 
@@ -259,7 +259,7 @@ public:
 
 //
 //class CLASS_DECL_ACME property_set_stream :
-//   virtual public elemental
+//   virtual public element
 //{
 //public:
 //
@@ -276,7 +276,7 @@ public:
 //
 //
 //class CLASS_DECL_ACME var_stream :
-//   virtual public elemental
+//   virtual public element
 //{
 //public:
 //
@@ -396,9 +396,9 @@ public:
    virtual void on_catch_all_exception();
 
 
-   virtual void write_object(const ::id & id, ::elemental * pobject);
+   virtual void write_object(const ::id & id, ::element * pobject);
 
-   virtual __pointer(::elemental) read_object(const ::id & id);
+   virtual __pointer(::element) read_object(const ::id & id);
 
 
 
@@ -548,8 +548,8 @@ public:
    virtual void write(const var & var);
    virtual void write(const property & property);
    virtual void write(const string & str) ;
-   virtual void write(const ::elemental * pobject);
-   virtual void write(const ::elemental & elemental);
+   virtual void write(const ::element * pobject);
+   virtual void write(const ::element & element);
    virtual void write(const property_set & set);
    virtual void write(const block & block);
 
@@ -594,8 +594,8 @@ public:
    virtual void read_var_body(var & var, e_type etype);
    virtual void read(property & property);
    virtual void read(string & str);
-   //virtual void read(::elemental * pobject);
-   virtual void read(::elemental & elemental);
+   //virtual void read(::element * pobject);
+   virtual void read(::element & element);
    virtual void read(::property_set & set);
    virtual void read(block & block);
 
@@ -637,8 +637,8 @@ public:
    virtual void exchange(const ::id & id, var & var);
    virtual void exchange(const ::id & id, property & property);
    virtual void exchange(const ::id & id, string & str) ;
-   virtual void exchange(const ::id & id, ::elemental * pobject);
-   virtual void exchange(const ::id & id, ::elemental & elemental);
+   virtual void exchange(const ::id & id, ::element * pobject);
+   virtual void exchange(const ::id & id, ::element & element);
    virtual void exchange(const ::id & id, property_set & set);
    virtual void exchange(const ::id & id, block & block);
 
@@ -657,20 +657,20 @@ public:
    //inline bool is_loading() const { return !m_bStoring; }
 
 
-   //virtual void write_file(const ::file::path & path, const ::elemental & elemental);
-   //virtual void read_file(const ::file::path & path, ::elemental & elemental);
+   //virtual void write_file(const ::file::path & path, const ::element & element);
+   //virtual void read_file(const ::file::path & path, ::element & element);
 
-   //virtual void write_link(const string & strLink, __pointer(::elemental) & elemental);
-   //virtual void read_link(const string & strLink, __pointer(::elemental) & elemental);
+   //virtual void write_link(const string & strLink, __pointer(::element) & element);
+   //virtual void read_link(const string & strLink, __pointer(::element) & element);
 
-   //virtual void write_link(const ::elemental * preference, const string & strLink, bool bReadOnly, ::elemental * pobjectSaveOptions = nullptr);
+   //virtual void write_link(const ::element * preference, const string & strLink, bool bReadOnly, ::element * pobjectSaveOptions = nullptr);
 
-   //virtual bool write_link(const ::elemental * preference);
-   //virtual void read_link(::elemental * preference);
+   //virtual bool write_link(const ::element * preference);
+   //virtual void read_link(::element * preference);
 
 
-   //virtual bool get_object_link(const ::elemental * preference, string & strLink, bool & bReadOnly);
-   //virtual void set_object_link(const ::elemental * preference, const string & strLink, bool bReadOnly);
+   //virtual bool get_object_link(const ::element * preference, string & strLink, bool & bReadOnly);
+   //virtual void set_object_link(const ::element * preference, const string & strLink, bool bReadOnly);
 
 
    //virtual ::file::path get_link_path(string strLink);
@@ -724,7 +724,7 @@ public:
    template < typename BASE_TYPE >
    inline __pointer(BASE_TYPE) load_object();
 
-   virtual __pointer(::elemental) create_object_from_text(string strText);
+   virtual __pointer(::element) create_object_from_text(string strText);
 
 
 
@@ -911,9 +911,9 @@ namespace std
 //
 //inline stream & operator << (stream & s, const property & property) { s.write(property); return s; }
 //
-//inline stream & operator << (stream & s, const ::elemental * pobject) { s.write(pobject); return s; }
+//inline stream & operator << (stream & s, const ::element * pobject) { s.write(pobject); return s; }
 //
-//inline stream & operator << (stream & s, const ::elemental & elemental) { s.write(elemental); return s; }
+//inline stream & operator << (stream & s, const ::element & element) { s.write(element); return s; }
 //
 //inline stream & operator << (stream & s, const block & block) { s.write(block); return s; }
 //

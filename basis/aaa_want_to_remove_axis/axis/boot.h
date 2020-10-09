@@ -60,22 +60,8 @@ class application;
 #include "boot_math.h"
 
 
-
-
-#ifdef _UWP
-
-#define BYESHYTOULA_STYLE_SOCKS
-
-#else
-
-#define BSD_STYLE_SOCKETS
-//#include "boot_small_ipc_channel.h"
-
-#endif
-
-
-
 //#include "boot_library.h"
+
 
 #include "boot_file_watcher.h"
 #include "boot_file_watcher_impl.h"

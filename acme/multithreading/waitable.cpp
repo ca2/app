@@ -6,14 +6,14 @@
 #include "framework.h"
 
 
-//elemental::elemental()
+//element::element()
 //{
 //
 //   mutex() = nullptr;
 //
 //}
 //
-//elemental::elemental(const elemental & objectSrc)
+//element::element(const element & objectSrc)
 //{
 //
 //   UNREFERENCED_PARAMETER(objectSrc);
@@ -24,7 +24,7 @@
 //
 //
 /////  \brief		destructor
-//elemental::~elemental()
+//element::~element()
 //{
 //
 //   if(mutex() != nullptr)
@@ -39,7 +39,7 @@
 //}
 //
 /////  \brief		abstract function to initialize a waiting action without a timeout
-//void elemental::wait()
+//void element::wait()
 //{
 //
 //   wait(duration::infinite());
@@ -49,14 +49,14 @@
 //	///  \brief		abstract function to initialize a waiting action with a timeout
 //	///  \lparam		duration time period to wait for item
 //	///  \return	waiting action result as sync_result
-//sync_result elemental::wait(const duration & duration )
+//sync_result element::wait(const duration & duration )
 //{
 //
 //
 //   if(mutex() == nullptr)
 //   {
 //
-//      ((elemental *)this)->mutex() = new ::mutex();
+//      ((element *)this)->mutex() = new ::mutex();
 //
 //   }
 //
@@ -91,8 +91,8 @@
 ////};
 //
 //
-/////  \brief		pauses elemental for specified time
-/////  \lparam		duration sleeping time of elemental
+/////  \brief		pauses element for specified time
+/////  \lparam		duration sleeping time of element
 ///*CLASS_DECL_ACME void sleep(const duration & duration)
 //{
 //   Sleep((u32)duration.total_milliseconds());
@@ -107,13 +107,13 @@
 //
 //
 //
-//void * elemental::get_os_data() const
+//void * element::get_os_data() const
 //{
 //
 //   if(mutex() == nullptr)
 //   {
 //
-//      ((elemental *)this)->mutex() = new ::mutex();
+//      ((element *)this)->mutex() = new ::mutex();
 //
 //   }
 //
@@ -121,22 +121,22 @@
 //
 //}
 //
-//void elemental::lock()
+//void element::lock()
 //{
 //
 //   if(!lock(duration::infinite()))
 //      if(!lock(duration::infinite()))
-//         __throw(::exception::exception("failure to lock elemental"));
+//         __throw(::exception::exception("failure to lock element"));
 //
 //}
 //
-//bool elemental::lock(const duration & duration)
+//bool element::lock(const duration & duration)
 //{
 //
 //   if(mutex() == nullptr)
 //   {
 //
-//      ((elemental *)this)->mutex() = new ::mutex();
+//      ((element *)this)->mutex() = new ::mutex();
 //
 //   }
 //
@@ -163,7 +163,7 @@
 //}
 //
 //
-//bool elemental::unlock()
+//bool element::unlock()
 //{
 //
 //   if(mutex() == nullptr)
@@ -191,7 +191,7 @@
 //
 //}
 //
-//bool elemental::unlock(LONG lCount, LPLONG pPrevCount)
+//bool element::unlock(LONG lCount, LPLONG pPrevCount)
 
 //{
 //   UNREFERENCED_PARAMETER(lCount);
@@ -201,13 +201,13 @@
 //}
 //
 //
-//bool elemental::is_locked() const
+//bool element::is_locked() const
 //{
 //
 //   // CRITICAL SECTIONS does *NOT* support is locked and timed locks
-//   ASSERT(dynamic_cast < critical_section * > ( const_cast < elemental * > (this)) == nullptr);
+//   ASSERT(dynamic_cast < critical_section * > ( const_cast < element * > (this)) == nullptr);
 //
-//   single_lock sl(const_cast < elemental * > (this));
+//   single_lock sl(const_cast < element * > (this));
 //
 //   bool bWasLocked = !sl.lock(duration::zero());
 //

@@ -31,7 +31,7 @@ memory_file::memory_file(memsize size) :
 
 
 memory_file::memory_file(const memory_file & m) :
-   ::elemental((const elemental &)m),
+   ::element((const element &)m),
    file((const file &)m),
    memory_container((const memory_container &)m)
 {
@@ -41,7 +41,7 @@ memory_file::memory_file(const memory_file & m) :
 }
 
 memory_file::memory_file(memory_file && m) :
-   ::elemental(::move(m)),
+   ::element(::move(m)),
    file(::move(m)),
    memory_container(::move(m))
 {
@@ -601,7 +601,7 @@ memory_file & memory_file::operator = (const memory_file & file)
 
    }
 
-   //::elemental::copy_this(file);
+   //::element::copy_this(file);
 
    //::file::file::copy_this(file);
 

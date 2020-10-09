@@ -296,7 +296,7 @@ void html_form::_001OnMouseMove(::message::message * pmessage)
 
       sync_lock sl(get_html_data()->mutex());
 
-      html::elemental * pelemental = get_html_data()->m_pcoredata->m_elemental.hit_test(get_html_data(), point);
+      html::element * pelemental = get_html_data()->m_pcoredata->m_elemental.hit_test(get_html_data(), point);
 
       if(pelemental != nullptr)
       {
@@ -368,7 +368,7 @@ void html_form::_001OnLButtonUp(::message::message * pmessage)
 
    _001ScreenToClient(point);
 
-   html::elemental * pelemental = nullptr;
+   html::element * pelemental = nullptr;
 
    if(get_html_data() != nullptr
       && get_html_data()->m_pcoredata != nullptr)

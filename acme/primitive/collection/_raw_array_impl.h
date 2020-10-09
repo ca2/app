@@ -254,9 +254,9 @@ inline raw_array < TYPE, ARG_TYPE, ALLOCATOR > & raw_array < TYPE, ARG_TYPE, ALL
 // out-of-line functions
 
 template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_array(::elemental * pobject)
+raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_array(::element * pobject)
    //:
-   //::elemental(pobject)
+   //::element(pobject)
 {
 
 }
@@ -578,7 +578,7 @@ template<class TYPE, class ARG_TYPE, class ALLOCATOR >
 //void raw_array < TYPE, ARG_TYPE, ALLOCATOR >::dump(dump_context & dumpcontext) const
 //{
 //
-//   elemental::dump(dumpcontext);
+//   element::dump(dumpcontext);
 //
 //   dumpcontext << "with " << this->m_nSize << " elements";
 //
@@ -600,7 +600,7 @@ template<class TYPE, class ARG_TYPE, class ALLOCATOR >
 //void raw_array < TYPE, ARG_TYPE, ALLOCATOR >::assert_valid() const
 //{
 //
-//   elemental::assert_valid();
+//   element::assert_valid();
 //
 //
 //   if (get_data() == nullptr)

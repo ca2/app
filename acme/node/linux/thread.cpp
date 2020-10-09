@@ -8,8 +8,8 @@ namespace linux
 {
 
 
-//   thread::thread(::elemental * pobject) :
-//      ::elemental(pobject),
+//   thread::thread(::element * pobject) :
+//      ::element(pobject),
 //      ::ansios::thread_impl(pobject),
 //      ::thread_impl(pobject)
 //   {

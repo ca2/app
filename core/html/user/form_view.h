@@ -6,7 +6,7 @@ class CLASS_DECL_CORE html_form_view :
 public:
 
 
-   html::elemental * m_pelementalLButtonDown;
+   html::element * m_pelementalLButtonDown;
 
 
    html_form_view();

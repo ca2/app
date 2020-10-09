@@ -64,7 +64,7 @@ namespace serial
 }
 
 class serial::Serial::SerialImpl :
-  virtual public elemental
+  virtual public element
 {
 public:
   SerialImpl (const string &port,

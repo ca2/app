@@ -28,7 +28,7 @@ namespace std
 
 
       bad_alloc() :
-         elemental(get_object()),
+         element(get_object()),
          ::callstack(get_object()),
          ::exception::exception(),
          ::exception::exception(),

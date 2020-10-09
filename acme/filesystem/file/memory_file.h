@@ -100,35 +100,35 @@ public:
       if (nCount == 1)
       {
 
-         *((byte*)pdata) = m_pmemory.m_p->m_memory.m_pbComputed[m_position];
+         *((byte*)pdata) = m_pmemory.m_p->m_memory.m_pdata[m_position];
 
 
       }
       else if (nCount == 2)
       {
 
-         *((u16 *)pdata) = *((u16 *)&m_pmemory.m_p->m_memory.m_pbComputed[m_position]);
+         *((u16 *)pdata) = *((u16 *)&m_pmemory.m_p->m_memory.m_pdata[m_position]);
 
 
       }
       else if (nCount == 4)
       {
 
-         *((u32*)pdata) = *((u32*)&m_pmemory.m_p->m_memory.m_pbComputed[m_position]);
+         *((u32*)pdata) = *((u32*)&m_pmemory.m_p->m_memory.m_pdata[m_position]);
 
 
       }
       else if (nCount == 8)
       {
 
-         *((u64 *)pdata) = *((u64 *)&m_pmemory.m_p->m_memory.m_pbComputed[m_position]);
+         *((u64 *)pdata) = *((u64 *)&m_pmemory.m_p->m_memory.m_pdata[m_position]);
 
 
       }
       else
       {
 
-         ::memcpy_dup(pdata, &m_pmemory.m_p->m_memory.m_pbComputed[m_position], (size_t)nCount);
+         ::memcpy_dup(pdata, &m_pmemory.m_p->m_memory.m_pdata[m_position], (size_t)nCount);
 
 
       }

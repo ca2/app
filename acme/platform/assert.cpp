@@ -26,7 +26,7 @@ namespace acme
 
 
    class os_message_box :
-      virtual public ::elemental
+      virtual public ::element
    {
    public:
 

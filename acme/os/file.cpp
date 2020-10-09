@@ -9,7 +9,7 @@ int_bool file_put_contents(const char * path, const char * contents)
 }
 
 
-CLASS_DECL_ACME bool _os_resolve_alias(::elemental * pobject, ::file::path & path, const char * psz, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount);
+CLASS_DECL_ACME bool _os_resolve_alias(::element * pobject, ::file::path & path, const char * psz, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount);
 
 CLASS_DECL_ACME bool _os_may_have_alias(const char * psz);
 

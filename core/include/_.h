@@ -187,7 +187,9 @@ class ifs;
 
 //#include "axis/programming/javascript/javascript.h"
 
+#if !defined(_UWP)
 #include "core/filesystem/fs/_fs.h"
+#endif
 
 //#include "core/database/sqlitedb/_.h"
 

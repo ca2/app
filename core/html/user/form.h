@@ -9,9 +9,9 @@ public:
 
 
 
-   ::html::elemental *                 m_pelementalLButtonDown;
-   ::html::elemental *                 m_pelementalHover;
-   __pointer_array(::html::elemental)       m_elementalptraMouseMove;
+   ::html::element *                 m_pelementalLButtonDown;
+   ::html::element *                 m_pelementalHover;
+   __pointer_array(::html::element)       m_elementalptraMouseMove;
    __pointer(::html_data)              m_phtmldata;
    
 

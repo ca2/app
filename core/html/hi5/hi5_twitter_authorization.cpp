@@ -145,7 +145,7 @@ namespace hi5
 
          }
 
-         //::html::elemental * pelemental = m_pdocAuth->get_html_data()->get_element_by_id("authorization_link");
+         //::html::element * pelemental = m_pdocAuth->get_html_data()->get_element_by_id("authorization_link");
 
          //::html::impl::text * ptext = dynamic_cast < ::html::impl::text * > (pelemental->m_pimpl);
 

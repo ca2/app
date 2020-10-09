@@ -7,11 +7,11 @@ class CLASS_DECL_ACME future :
 public:
 
 
-   future(const ::id & id = ::id(), ::elemental* p = nullptr) : function_base(id, p) {}
+   future(const ::id & id = ::id(), ::element* p = nullptr) : function_base(id, p) {}
    future(const ::future& future) : function_base((const ::function_base &) future) { }
    future(const ::function_base& function) : function_base(function) { }
    template < typename PRED >
-   future(const ::id & id, PRED pred, ::elemental * pobjectHold = nullptr) : function_base(id, __pred_future < PRED >(pred, pobjectHold)) { }
+   future(const ::id & id, PRED pred, ::element * pobjectHold = nullptr) : function_base(id, __pred_future < PRED >(pred, pobjectHold)) { }
 
 
    void send(const var& var) const;
@@ -59,11 +59,11 @@ class future_template :
 public:
 
 
-   future_template(::elemental* p = nullptr) : ::future(m_idObject, p) {}
+   future_template(::element* p = nullptr) : ::future(m_idObject, p) {}
    future_template(const ::future & future) : ::future((const ::function_base&) future) { ASSERT(future.m_id == m_idObject); }
    future_template(const ::function_base& function) : ::future(function) { ASSERT(function.m_id == m_idObject); }
    template < typename PRED >
-   future_template(PRED pred, ::elemental* pobjectHold = nullptr) : ::future(pred, pobjectHold) { }
+   future_template(PRED pred, ::element* pobjectHold = nullptr) : ::future(pred, pobjectHold) { }
 
 
 };

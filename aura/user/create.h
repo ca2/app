@@ -27,7 +27,7 @@ namespace user
       ::user::primitive *              m_puiLastView;
       ::user::primitive *              m_puiCurrentFrame;
       //__pointer(impact_data)         m_pimpactdata;
-      __pointer(::elemental)             m_pimpactdata;
+      __pointer(::element)             m_pimpactdata;
 
 
       create();

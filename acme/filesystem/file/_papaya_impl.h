@@ -1,7 +1,7 @@
 #pragma once
 
 
-//inline ::file_result elemental::get_reader(const ::var & varFile, const ::efileopen & efileopen)
+//inline ::file_result element::get_reader(const ::var & varFile, const ::efileopen & efileopen)
 //{
 //
 //   return Context.file().get_reader(varFile, efileopen);
@@ -9,7 +9,7 @@
 //}
 //
 //
-//inline ::file_result elemental::get_writer(const ::var & varFile, const ::efileopen & efileopen)
+//inline ::file_result element::get_writer(const ::var & varFile, const ::efileopen & efileopen)
 //{
 //
 //   return Context.file().get_writer(varFile, efileopen);

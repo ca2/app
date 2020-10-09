@@ -12,7 +12,7 @@ public:
    __pointer(::layered)                   m_psender;
    __pointer(::object)                    m_pobjectTopic;
    ::action_context                       m_actioncontext;
-   address_array < ::elemental * >          m_handledbya;
+   address_array < ::element * >          m_handledbya;
    __pointer(::layered)                   m_puserinteraction; // user::interaction
    __pointer(::layered)                   m_pcontrolevent; // user::control_event
    __pointer(::file::item)                m_pfileitem;
@@ -28,8 +28,8 @@ public:
    inline bool operator ==(::u64 uId) const { return m_uId == uId || m_uId == FULL_ID; }
 
 
-   void set_handled_by(const ::elemental * pobject) { m_handledbya.add((::elemental *) pobject); }
-   bool handled_by(const ::elemental * pobject) const { return m_handledbya.has((::elemental *) pobject); }
+   void set_handled_by(const ::element * pobject) { m_handledbya.add((::element *) pobject); }
+   bool handled_by(const ::element * pobject) const { return m_handledbya.has((::element *) pobject); }
 
 
    template < typename CAST >

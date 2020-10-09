@@ -49,7 +49,7 @@ namespace acme
       virtual ~session();
 
 
-      virtual ::estatus initialize(::elemental * pobjectContext) override;
+      virtual ::estatus initialize(::element * pobjectContext) override;
 
       virtual void install_message_routing(::channel * pchannel) override;
 
@@ -104,7 +104,7 @@ namespace acme
 
       virtual void will_use_view_hint(::id idView);
 
-      //virtual void on_app_request_bergedge_callback(::elemental * pobject);
+      //virtual void on_app_request_bergedge_callback(::element * pobject);
 
       virtual ::draw2d::font_list * get_single_column_font_list();
 
@@ -202,7 +202,7 @@ namespace acme
       //virtual __pointer(::user::impact)                      get_view();
 
 
-      //virtual ::estatus     initialize(::elemental* pobjectContext) override;
+      //virtual ::estatus     initialize(::element* pobjectContext) override;
 
 
       virtual void frame_pre_translate_message(::message::message* pmessage) override;

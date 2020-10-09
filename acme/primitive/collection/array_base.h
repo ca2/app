@@ -53,7 +53,7 @@ _DEFAULT_ARRAY_OF(ARRAY, ITEM, m_ ## ITEM ## a, TYPE)
 // array is an array that call default constructors, copy constructs and destructors in elements
 template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE > >
 class array_base :
-   public ::elemental
+   public ::element
 {
 public:
 

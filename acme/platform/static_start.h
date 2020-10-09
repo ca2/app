@@ -11,6 +11,7 @@
 
 
 
+
 class plex_heap_alloc_array;
 
 
@@ -26,7 +27,7 @@ namespace acme
 #endif
 
 
-   extern CLASS_DECL_ACME critical_section* g_pcsGlobal;
+   extern CLASS_DECL_ACME critical_section * g_pcsGlobal;
 
    extern CLASS_DECL_ACME string_to_string* g_pmapFontFaceName;
 
@@ -84,7 +85,7 @@ namespace acme
    // acme commented
    //extern critical_section* g_pcsTrace;
 
-   //extern ::elemental* g_ptrace;
+   //extern ::element* g_ptrace;
 
    //// acme commented
    //extern simple_trace* g_psimpletrace;
@@ -113,7 +114,7 @@ namespace acme
    extern ::mutex* g_pmutexMessageDispatch;
 
 
-   extern CLASS_DECL_ACME array < elemental* >* g_paAura;
+   extern CLASS_DECL_ACME array < element* >* g_paAura;
 
 
    extern ::map < ::id, const ::id&, ::id, const ::id& >* g_pmapRTL;

@@ -10,7 +10,7 @@ namespace windows
 
 
    class CLASS_DECL_ACME registry :
-      virtual public ::elemental
+      virtual public ::element
    {
    public:
 

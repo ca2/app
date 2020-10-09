@@ -12,7 +12,7 @@
 
 #include "core/html/html/_.h"
 
-#include "core/html/elemental/elemental.h"
+#include "core/html/element/element.h"
 
 #include "core/html/html/_html.h"
 

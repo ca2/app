@@ -24,7 +24,7 @@ enum enum_shape
 };
 
 class CLASS_DECL_ACME ___shape :
-   virtual public elemental
+   virtual public element
 {
 protected:
    

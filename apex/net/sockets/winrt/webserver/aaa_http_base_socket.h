@@ -6,7 +6,8 @@ namespace sockets
 
    class response;
 
-   class CLASS_DECL_APEX http_base_socket : public http_socket
+   class CLASS_DECL_APEX http_base_socket : 
+      virtual public http_socket
    {
    public:
 

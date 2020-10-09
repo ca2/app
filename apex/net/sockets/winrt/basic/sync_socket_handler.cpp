@@ -1,17 +1,19 @@
 #include "framework.h"
-#include "apex/net/net_sockets.h"
+//#include "apex/net/net_sockets.h"
 
 
 namespace sockets
 {
 
-   sync_socket_handler::sync_socket_handler(::axis::application * papp, logger * plog) :
-      ::object(pobject),
-      m_handler(papp, plog),
-      m_file(pobject)
+
+   sync_socket_handler::sync_socket_handler(::layered * pobjectContext, ::apex::log * plog) :
+      ::object(pobjectContext),
+      m_handler(pobjectContext, plog)
    {
+
       m_psocket            = nullptr;
       m_iDefaultTimeout    = 60;
+
    }
 
    sync_socket_handler::~sync_socket_handler()
@@ -38,7 +40,7 @@ namespace sockets
 
    void sync_socket_handler::write(string &str)
    {
-      m_psocket->write(str);
+      m_psocket->write(str, str.get_length());
    }
 
    void sync_socket_handler::write(void * pdata, memsize len)

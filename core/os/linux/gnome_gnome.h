@@ -14,7 +14,7 @@ namespace user
 } // namespace user
 
 
-void gdk_branch(::elemental * preference, e_priority epriority = priority_normal);
+void gdk_branch(::element * preference, e_priority epriority = priority_normal);
 
 
 template < typename PRED >

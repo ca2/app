@@ -37,7 +37,7 @@ namespace aura
 
       //__composite(::sockets::sockets)                    m_psockets;
 
-      __pointer(::elemental)                                 m_pDraw2dFactoryExchange;
+      __pointer(::element)                                 m_pDraw2dFactoryExchange;
       __pointer(::draw2d::draw2d)                          m_pdraw2d;
 
       //::file::path                                       m_pathConfig;
@@ -746,7 +746,7 @@ namespace aura
 
 
 
-      virtual void __tracea(::elemental * pcontextobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz) override;
+      virtual void __tracea(::element * pcontextobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz) override;
 
 
       virtual string get_user_language() override;

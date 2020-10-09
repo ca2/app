@@ -6,7 +6,7 @@ namespace process
 
 
    class CLASS_DECL_ACME bidi_pipe:
-      virtual public ::elemental
+      virtual public ::element
    {
    public:
 

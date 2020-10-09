@@ -2,7 +2,7 @@
 
 
 
-// void application_bias::callback::connect_to(::elemental * pobject)
+// void application_bias::callback::connect_to(::element * pobject)
 // {
 
 //    set_context_object(pobject);
@@ -37,8 +37,8 @@
 //    m_puserinteractionParent                            = nullptr;
 // }
 
-// application_bias::application_bias(::elemental * pobject) :
-//    ::elemental(pobject)
+// application_bias::application_bias(::element * pobject) :
+//    ::element(pobject)
 // {
 //    m_set["SessionSynchronizedInput"]      = true;
 //    m_set["NativeWindowFocus"]             = true;

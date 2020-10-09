@@ -28,7 +28,7 @@ public:
    ///				it monitors only the specified directory
    ///  \lparam		filter filter conditions that satisfy a change notification wait
    ///				can take values described by enum filter
-   file_change_event (::elemental * pobject, const char * path, bool watchsubtree, u32 filter);
+   file_change_event (::element * pobject, const char * path, bool watchsubtree, u32 filter);
 
    ///  \brief		destructor
    ~file_change_event();

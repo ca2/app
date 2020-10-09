@@ -21,7 +21,7 @@
 
 
 class trait;
-class elemental;
+class element;
 class stream;
 class string;
 typedef iptr strsize;
@@ -47,7 +47,7 @@ typedef iptr strsize;
 #include "acme/primitive/primitive/uid.h"
 #include "acme/primitive/primitive/estatus.h"
 #include "acme/primitive/primitive/eobject.h"
-#include "acme/primitive/primitive/elemental.h"
+#include "acme/primitive/primitive/element.h"
 #include "acme/primitive/primitive/layered.h"
 
 

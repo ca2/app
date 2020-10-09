@@ -116,9 +116,9 @@ public:
 
 // As of 2019-Nov, property had no base class(es)
 // As of 2020-Jan, property had no base class(es) again
-//    - plus: doesn't elemental parent property set? m_ppropertyset
+//    - plus: doesn't element parent property set? m_ppropertyset
 //class CLASS_DECL_ACME property : public var
-//   //virtual public elemental
+//   //virtual public element
 //{
 //public:
 //
@@ -142,7 +142,7 @@ public:
 ////   //property(const property * pproperty);
 ////   //property(const ::property * & pproperty) : property(pproperty.m_p) { }
 ////   //pr//operty(property_set * pset, const id & strName);
-////   //property(property_set * pset, const id & strName, const var & var, ::elemental * pobject = nullptr);
+////   //property(property_set * pset, const id & strName, const var & var, ::element * pobject = nullptr);
 ////   template < typename VALUE >
 ////   property(const ::id & id, const VALUE & value) : m_id(id), m_var(value) { }
 ////
@@ -538,7 +538,7 @@ public:
 ////   }
 ////
 ////
-////   property & operator =(::elemental * p)
+////   property & operator =(::element * p)
 ////   {
 ////
 ////      m_var = p;

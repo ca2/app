@@ -452,7 +452,7 @@ mutex::mutex(enum_create_new, const char * pstrName, void * h, bool bOwner)
 #if defined(MUTEX_NAMED_POSIX)
 
 mutexmutex(const char * pstrName, sem_t * psem, bool bOwner) :
-   ::elemental(pobject),
+   ::element(pobject),
    sync(pstrName)
 {
 
@@ -468,7 +468,7 @@ mutexmutex(const char * pstrName, sem_t * psem, bool bOwner) :
 }
 
 mutexmutex(const mutex & m):
-   elemental(m.get_context_application()),
+   element(m.get_context_application()),
    sync(m.m_pszName)
 {
 
@@ -497,7 +497,7 @@ mutex::mutex(enum_create_new, const char * lpszName, int iFd, bool bOwner)
 }
 
 //mutexmutex(const mutex & m) :
-//   elemental(m.get_context_application()),
+//   element(m.get_context_application()),
 //   sync(m.m_pszName)
 //{
 //
@@ -512,7 +512,7 @@ mutex::mutex(enum_create_new, const char * lpszName, int iFd, bool bOwner)
 #elif defined(MUTEX_NAMED_VSEM)
 
 mutexmutex(e_create_new enew, const char * pstrName, key_t key, i32 semid, bool bOwner):
-   ::elemental(pobject),
+   ::element(pobject),
    sync(pstrName)
 {
 
@@ -524,7 +524,7 @@ mutexmutex(e_create_new enew, const char * pstrName, key_t key, i32 semid, bool 
 
 
 //mutexmutex(const mutex & m):
-//   elemental(m.get_context_application()),
+//   element(m.get_context_application()),
 //   sync(m.m_pszName)
 //{
 //
@@ -1666,7 +1666,7 @@ null_dacl_security_attributes::null_dacl_security_attributes()
 
    m_securityattributes.nLength = sizeof(m_securityattributes);
 
-   m_securityattributes.bInheritHandle = FALSE; // elemental uninheritable
+   m_securityattributes.bInheritHandle = FALSE; // element uninheritable
 
    // declare and initialize a security descriptor
    xxf_zero(m_securitydescriptor);

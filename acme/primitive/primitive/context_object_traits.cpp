@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-//::estatus elemental::call(::trait & trait)
+//::estatus element::call(::trait & trait)
 //{
 //
 //   ::estatus estatus = error_failed;
@@ -30,7 +30,7 @@
 //}
 //
 //
-//::estatus elemental::run(::trait &)
+//::estatus element::run(::trait &)
 //{
 //
 //   return ::success;
@@ -39,7 +39,7 @@
 
 
 
-//void elemental::notify(::u64 uId)
+//void element::notify(::u64 uId)
 //{
 //
 //   if (m_ptraits)
@@ -58,7 +58,7 @@
 //}
 //
 //
-//::thread_pointer elemental::_fork_notify(__pointer(::trait) ptrait)
+//::thread_pointer element::_fork_notify(__pointer(::trait) ptrait)
 //{
 //
 //   return m_ptraits->_fork_notify(ptrait);
@@ -66,7 +66,7 @@
 //}
 //
 //
-//thread_spa elemental::_fork_notify_each(__pointer(::trait) ptrait)
+//thread_spa element::_fork_notify_each(__pointer(::trait) ptrait)
 //{
 //
 //   return m_ptraits->_fork_notify_each(ptrait);
@@ -74,7 +74,7 @@
 //}
 //
 //
-//void elemental::_notify(::trait * ptrait)
+//void element::_notify(::trait * ptrait)
 //{
 //
 //   m_ptraits->_notify(ptrait);
@@ -82,7 +82,7 @@
 //}
 //
 //
-//void elemental::_call_notify(::trait * ptrait)
+//void element::_call_notify(::trait * ptrait)
 //{
 //
 //   m_ptraits->_call_notify(ptrait);
@@ -90,7 +90,7 @@
 //}
 //
 
-//void elemental::set_trait_result(::u64 uId, ::u64 uPromisse, ::elemental * preference)
+//void element::set_trait_result(::u64 uId, ::u64 uPromisse, ::element * preference)
 //{
 //
 //   m_ptraits->set_result(uId, uPromisse, preference);

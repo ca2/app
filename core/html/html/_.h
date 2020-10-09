@@ -33,7 +33,7 @@ namespace html
 
    class image;
 
-   class elemental;
+   class element;
 
 } // namespace html
 

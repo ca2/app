@@ -6,8 +6,8 @@
 //{
 //
 //
-//   folder_watch::folder_watch(::elemental * pobject) :
-//      ::elemental(pobject),
+//   folder_watch::folder_watch(::element * pobject) :
+//      ::element(pobject),
 //      ::thread(pobject)
 //   {
 //

@@ -70,17 +70,17 @@ public:
    }
 
 
-   virtual void write_object(const ::id & id, const ::id & idFactory, ::elemental * pobject)
+   virtual void write_object(const ::id & id, const ::id & idFactory, ::element * pobject)
    {
       exchange("id", idFactory);
       exchange("", pobject);
    }
 
-   virtual __pointer(::elemental) read_object(const ::id & id)
+   virtual __pointer(::element) read_object(const ::id & id)
    {
       ::id idFactory;
       exchange("id", idFactory);
-      auto pobject = __id_create<::elemental>(idFactory);
+      auto pobject = __id_create<::element>(idFactory);
       exchange("", pobject);
       return pobject;
    }
@@ -112,7 +112,7 @@ public:
 
 
 
-   virtual void write_object(const ::id & id, const ::id & idFactory, ::elemental * pobject) override
+   virtual void write_object(const ::id & id, const ::id & idFactory, ::element * pobject) override
    {
       var_stream stream(new var(&var()[id].propset()));
       stream.exchange("id", idFactory);
@@ -124,7 +124,7 @@ public:
       var_stream stream(new var(&var()[id].propset()));
       ::id idFactory;
       stream.exchange("id", idFactory);
-      auto pobject = __id_create<::elemental>(idFactory);
+      auto pobject = __id_create<::element>(idFactory);
       stream.exchange("", pobject);
       return pobject;
    }
@@ -146,14 +146,14 @@ public:
 
 
 class window :
-   virtual public elemental
+   virtual public element
 {
 public:
 
    i8                   m_iVisible;
    string               m_strTitle;
    in_addr              m_addr;
-   __pointer(::elemental)  m_pobject;
+   __pointer(::element)  m_pobject;
 
    virtual void exchange(stream & s);
 
@@ -358,7 +358,7 @@ class exchanger
 
 
 
-              stream & operator >> (stream & stream, elemental & o)
+              stream & operator >> (stream & stream, element & o)
            {
 
               exchange e(stream);
@@ -369,7 +369,7 @@ class exchanger
 
            }
 
-           stream & operator >> (stream & s, elemental & o)
+           stream & operator >> (stream & s, element & o)
            {
 
               o.exchange(stream);

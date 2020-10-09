@@ -1,9 +1,10 @@
 #include "framework.h"
-#include "apex/net/net_sockets.h"
+#include "apex/net/sockets/_.h"
 
 
 namespace sockets
 {
+
 
    udp_socket::udp_socket(base_socket_handler& h, int ibufsz, bool ipv6, int retries) :
       ::object(h.get_context_application()),
@@ -33,12 +34,13 @@ namespace sockets
    int udp_socket::Bind(port_t port, int range)
    {
 
-      m_posdata->m_datagramsocket = ref new ::Windows::Networking::Sockets::DatagramSocket;
-      ::sockets::socket::os_data data;
-      data.o = m_posdata->m_datagramsocket;
-      attach(data);
+      m_datagramsocket = ref new ::Windows::Networking::Sockets::DatagramSocket;
+      //::sockets::socket::os_data data;
+      //data.o = m_datagramsocket;
+      //attach(data);
+      create_socket();
 
-      m_posdata->m_datagramsocket->MessageReceived +=
+      m_datagramsocket->MessageReceived +=
       ref new ::Windows::Foundation::TypedEventHandler < ::Windows::Networking::Sockets::DatagramSocket ^, ::Windows::Networking::Sockets::DatagramSocketMessageReceivedEventArgs ^ >
       ([this](Windows::Networking::Sockets::DatagramSocket ^ socket, ::Windows::Networking::Sockets::DatagramSocketMessageReceivedEventArgs ^ args)
       {
@@ -51,7 +53,7 @@ namespace sockets
 
       });
 
-      m_posdata->m_datagramsocket->BindServiceNameAsync(__str(port))->Completed =
+      m_datagramsocket->BindServiceNameAsync(__str(port))->Completed =
       ref new ::Windows::Foundation::AsyncActionCompletedHandler
       ([this] (::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)
       {
@@ -83,15 +85,17 @@ namespace sockets
 
       //         attach(CreateSocket(ad.GetFamily(), SOCK_DGRAM, "udp"));
 
-      m_posdata->m_datagramsocket = ref new ::Windows::Networking::Sockets::DatagramSocket();
+      m_datagramsocket = ref new ::Windows::Networking::Sockets::DatagramSocket();
 
-      ::sockets::socket::os_data data;
-      data.o = m_posdata->m_datagramsocket;
-      attach(data);
+      //::sockets::socket::os_data data;
+      //data.o = m_datagramsocket;
+      //attach(data);
+
+      create_socket();
 
       SetNonblocking(true);
 
-      m_posdata->m_datagramsocket->BindEndpointAsync(ad.m_posdata->m_hostname, __str(ad.get_service_number()))->Completed =
+      m_datagramsocket->BindEndpointAsync(ad.m_hostname, __str(ad.get_service_number()))->Completed =
       ref new ::Windows::Foundation::AsyncActionCompletedHandler
       ([this](::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)
       {
@@ -136,15 +140,17 @@ namespace sockets
    bool udp_socket::open(::net::address & ad)
    {
 
-      m_posdata->m_datagramsocket = ref new ::Windows::Networking::Sockets::DatagramSocket();
+      m_datagramsocket = ref new ::Windows::Networking::Sockets::DatagramSocket();
 
-      ::sockets::socket::os_data data;
-      data.o = m_posdata->m_datagramsocket;
-      attach(data);
+      //::sockets::socket::os_data data;
+      //data.o = m_datagramsocket;
+      //attach(data);
+
+      create_socket();
 
       SetNonblocking(true);
 
-      m_posdata->m_datagramsocket->ConnectAsync(ad.m_posdata->m_hostname, __str(ad.get_service_number()))->Completed =
+      m_datagramsocket->ConnectAsync(ad.m_hostname, __str(ad.get_service_number()))->Completed =
       ref new ::Windows::Foundation::AsyncActionCompletedHandler
       ([this](::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)
       {
@@ -263,13 +269,17 @@ namespace sockets
    /** send to connected address */
    void udp_socket::SendBuf(const char *data, memsize len, int flags)
    {
+      
       if (!IsConnected())
       {
-         __error("SendBuf", 0, "not connected");
+         
+         //__error("SendBuf", 0, "not connected");
+
          return;
+
       }
 
-      ::Windows::Storage::Streams::DataWriter ^ writer = ref new ::Windows::Storage::Streams::DataWriter(m_posdata->m_datagramsocket->OutputStream);
+      ::Windows::Storage::Streams::DataWriter ^ writer = ref new ::Windows::Storage::Streams::DataWriter(m_datagramsocket->OutputStream);
 
       writer->WriteBytes(ref new Array < unsigned char, 1U >((unsigned char *) data, len));
 
@@ -779,7 +789,7 @@ namespace sockets
    port_t udp_socket::GetRemotePort()
    {
 
-      return Session.sockets().net().service_port(m_posdata->m_datagramsocket->Information->RemotePort);
+      return System.sockets().net().service_port(m_datagramsocket->Information->RemotePort);
 
    }
 
@@ -787,7 +797,7 @@ namespace sockets
    ::net::address udp_socket::GetRemoteAddress()
    {
 
-      return ::net::address(get_context_application(), m_posdata->m_datagramsocket->Information->RemoteAddress->CanonicalName, m_posdata->m_datagramsocket->Information->RemotePort);
+      return ::net::address(get_context_application(), m_datagramsocket->Information->RemoteAddress->CanonicalName, m_datagramsocket->Information->RemotePort);
 
    }
 
@@ -795,7 +805,7 @@ namespace sockets
    port_t udp_socket::GetLocalPort()
    {
 
-      return Session.sockets().net().service_port(m_posdata->m_datagramsocket->Information->LocalPort);
+      return System.sockets().net().service_port(m_datagramsocket->Information->LocalPort);
 
    }
 
@@ -803,7 +813,7 @@ namespace sockets
    ::net::address udp_socket::GetLocalAddress()
    {
 
-      return ::net::address(get_context_application(), m_posdata->m_datagramsocket->Information->LocalAddress->CanonicalName, m_posdata->m_datagramsocket->Information->LocalPort);
+      return ::net::address(get_context_application(), m_datagramsocket->Information->LocalAddress->CanonicalName, m_datagramsocket->Information->LocalPort);
 
    }
 

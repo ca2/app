@@ -33,6 +33,14 @@ namespace str
 #endif // _RUN_DP
 
 
+namespace sockets
+{
+
+
+   class ssl_context;
+
+
+} // namespace sockets
 
 
 /* Ipv6 support. */
@@ -250,8 +258,6 @@ typedef u16 port_t;
 #endif
 
 
-using socket_list = ::comparable_list < SOCKET >;
-
 
 // getaddrinfo / getnameinfo replacements
 #ifdef NO_GETADDRINFO
@@ -293,7 +299,7 @@ using socket_list = ::comparable_list < SOCKET >;
 //#include "webserver/ajp13_socket.h"
 //#include "webserver/ajp13.h"
 #include "apex/net/sockets/http/socket.h"
-#include "webserver/http_base_socket.h"
+//#include "webserver/http_base_socket.h"
 #include "webserver/httpd_socket.h"
 
 //#include "sip/sip_base.h"

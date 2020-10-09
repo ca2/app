@@ -9,7 +9,7 @@ namespace acme
 
 
    // Throw a atl_exception corresponding to the result of ::get_last_error
-   NOINLINE DECLSPEC_NO_RETURN inline void WINAPI gen_ThrowLastWin32(::elemental * pobject)
+   NOINLINE DECLSPEC_NO_RETURN inline void WINAPI gen_ThrowLastWin32(::element * pobject)
    {
       DWORD dwError = ::get_last_error();
       __throw(hresult_exception(HRESULT_FROM_WIN32( dwError ) ));
@@ -18,7 +18,7 @@ namespace acme
 #else  // no exception handling
 
    // Throw a atl_exception corresponding to the result of ::get_last_error
-   NOINLINE inline void WINAPI gen_ThrowLastWin32(::elemental * pobject)
+   NOINLINE inline void WINAPI gen_ThrowLastWin32(::element * pobject)
    {
       DWORD dwError = ::get_last_error();
       __throw(hresult_exception(HRESULT_FROM_WIN32( dwError ) ));

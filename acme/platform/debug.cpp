@@ -18,9 +18,9 @@
 void debug_object_event_promisse_pred()
 {
 
-   //::elemental o;
+   //::element o;
 
-   //::elemental * po = new elemental();
+   //::element * po = new element();
 
    //// 2 arguments
    //o.treat(ok, po, [&](auto & result) { output_debug_string("o += ok..."); return success; } };
@@ -29,7 +29,7 @@ void debug_object_event_promisse_pred()
    //o += { ok, id_text, [&](auto & result) { output_debug_string("o += ok, id_text ..."); return ::success; } };
 
 
-   //__pointer(::elemental) pobject;
+   //__pointer(::element) pobject;
 
    //__keep(pobject, nullptr);
    ////   // 4 arguments

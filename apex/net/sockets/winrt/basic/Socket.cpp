@@ -28,7 +28,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "framework.h"
-#include "apex/net/net_sockets.h"
 #ifdef _WIN32
 #else
 //#include <errno.h>
@@ -53,7 +52,6 @@ namespace sockets
    {
 
       m_iBindPort    = -1;
-auto m_tickStart = ::tick::now();
       m_pcallback    = nullptr;
       m_bExpectResponse = false;
       m_bExpectRequest = false;
@@ -68,7 +66,7 @@ auto m_tickStart = ::tick::now();
    }
 
 
-   void socket::attach(os_data & data)
+   void socket::create_socket()
    {
 
       sync_lock ml(s_pmutex);
@@ -79,39 +77,57 @@ auto m_tickStart = ::tick::now();
 
       s_socketNextIdSeed++;
 
-
    }
 
 
-
-   void socket::run()
+   ::estatus socket::run()
    {
+
       if(m_bOnConnect)
       {
+
          m_bOnConnect = false;
+
          if(m_bEnableSsl)
          {
+
             OnSSLConnect();
             OnConnect();
+
          }
          else
          {
+
             OnConnect();
+
          }
-         return;
+
+         return ::success;
+
       }
+
       if(m_bExpectRequest)
       {
+
          m_bExpectRequest = false;
+
          step();
-         return;
+
+         return ::success;
+
       }
+
       if(m_bExpectResponse)
       {
+
          m_bExpectResponse = false;
+
          OnRead();
-         return;
+
+         return ::success;
+
       }
+
       if (!m_bReading && !m_bWriting)
       {
 
@@ -119,22 +135,35 @@ auto m_tickStart = ::tick::now();
 
       }
 
+      return ::success;
+
    }
+
 
    void socket::close()
    {
+
       if (m_socket == INVALID_SOCKET) // this could happen
       {
+
          WARN("base_socket::close", 0, "file descriptor invalid");
+
          __throw(io_exception());
+
       }
+
       int n = 0;
+
       if(close_socket(m_socket) == -1)
       {
+
          // failed...
-         __error("close", Errno, bsd_socket_error(Errno));
+         //__error("close", Errno, bsd_socket_error(Errno));
+
          n = -1;
+
       }
+
       Handler().set(m_socket, false, false, false); // remove from fd_set's
       Handler().AddList(m_socket, LIST_CALLONCONNECT, false);
       Handler().AddList(m_socket, LIST_DETACH, false);

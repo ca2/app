@@ -2,7 +2,7 @@
 
 
 //::exception::exception::exception::exception(const char * pszMessage):
-//   ::elemental(pobject),
+//   ::element(pobject),
 //   ::callstack(pobject),
 //   ::exception::exception()
 //{
@@ -28,7 +28,7 @@
 //
 //
 //::exception::exception::exception::exception(const char * pszMessage, ::acme::application * papp):
-//   elemental(papp),
+//   element(papp),
 //   ::callstack(papp),
 //   ::exception::exception(papp)
 //{

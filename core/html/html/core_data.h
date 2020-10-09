@@ -20,7 +20,7 @@
 //
 //
 //
-//#include "core/html/elemental/elemental_elemental.h"
+//#include "core/html/element/elemental_elemental.h"
 //
 //
 //
@@ -185,7 +185,7 @@ namespace html
       ::file::path                     m_strPathName;
       ::user::interaction_ptra         m_uiptra;
       tag *                            m_ptag;
-      ::html::elemental                m_elemental;
+      ::html::element                m_elemental;
       bool                             m_bImplemented;
 
 
@@ -205,8 +205,8 @@ namespace html
 
       ::html_form *                 m_pform;
       bool                          m_bEdit;
-      ::html::elemental * m_pElementalSelStart;
-      ::html::elemental* m_pElementalSelEnd;
+      ::html::element * m_pElementalSelStart;
+      ::html::element* m_pElementalSelEnd;
 
       bool                          m_bHasChar;
 
@@ -261,8 +261,8 @@ namespace html
       void on_image_loaded(image* pimage);
 
 
-      ::html::elemental* get_element_by_name(id id);
-      ::html::elemental* get_element_by_id(id id);
+      ::html::element* get_element_by_name(id id);
+      ::html::element* get_element_by_id(id id);
 
       void delete_contents();
       void destroy();
@@ -273,12 +273,12 @@ namespace html
       virtual bool on_create_interaction(__pointer(::user::interaction) pinteraction) override;
 
 
-      font* get_font(::html::elemental* pelemental);
+      font* get_font(::html::element* pelemental);
 
 
 
 
-      i32 create_font(::html::elemental* pelemental);
+      i32 create_font(::html::element* pelemental);
 
       virtual void update(::update * pupdate) override;
 

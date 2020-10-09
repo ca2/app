@@ -14,7 +14,7 @@ void _debug_debug_string_string()
 
 }
 
-void __assert_valid_object(const ::elemental * pOb, const char * pszFileName, i32 nLine)
+void __assert_valid_object(const ::element * pOb, const char * pszFileName, i32 nLine)
 
 {
 
@@ -33,7 +33,7 @@ void __assert_valid_object(const ::elemental * pOb, const char * pszFileName, i3
 
    }
 
-   if (!__is_valid_address(pOb, sizeof(elemental)))
+   if (!__is_valid_address(pOb, sizeof(element)))
    {
 
       ///TRACE(trace_category_appmsg, 0, "ASSERT_VALID fails with illegal pointer.\n");
@@ -51,7 +51,7 @@ void __assert_valid_object(const ::elemental * pOb, const char * pszFileName, i3
    }
 
    // check to make sure the VTable pointer is valid
-   //   ASSERT(sizeof(::elemental) == sizeof(void *));
+   //   ASSERT(sizeof(::element) == sizeof(void *));
    //   if (!__is_valid_address(*(void **)pOb, sizeof(void *), FALSE))
    if (!__is_valid_address(*(void **)pOb, sizeof(void *), FALSE))
    {
@@ -85,7 +85,7 @@ void __assert_valid_object(const ::elemental * pOb, const char * pszFileName, i3
 
 
 
-//CLASS_DECL_ACME void call(::elemental * pobjectTask)
+//CLASS_DECL_ACME void call(::element * pobjectTask)
 //{
 //
 //   pobjectTask->call();
@@ -95,7 +95,7 @@ void __assert_valid_object(const ::elemental * pOb, const char * pszFileName, i3
 
 
 
-CLASS_DECL_ACME void call(__pointer(::elemental) pobjectRunnable)
+CLASS_DECL_ACME void call(__pointer(::element) pobjectRunnable)
 {
 
    pobjectRunnable->call();

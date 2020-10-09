@@ -728,7 +728,7 @@ namespace aura
    }
 
 
-   ::elemental* library::new_object(::object* pobjectContext, const char* pszClassId)
+   ::element* library::new_object(::object* pobjectContext, const char* pszClassId)
    {
 
       return nullptr;
@@ -736,7 +736,7 @@ namespace aura
    }
 
 
-   __pointer(::elemental) library::create_object(::layered * pobjectContext, const char * pszClass)
+   __pointer(::element) library::create_object(::layered * pobjectContext, const char * pszClass)
    {
 
       sync_lock sl(&::get_context_system()->m_mutexLibrary);
@@ -748,7 +748,7 @@ namespace aura
 
       }
       
-      ::elemental * p = nullptr;
+      ::element * p = nullptr;
 
       if(get_ca2_library() != nullptr)
       {
@@ -872,7 +872,7 @@ namespace aura
    }
 
    
-   ::elemental* library::factory_new(::object* pobjectContext, const char* lpszClass)
+   ::element* library::factory_new(::object* pobjectContext, const char* lpszClass)
    {
 
       return nullptr;
@@ -880,7 +880,7 @@ namespace aura
    }
 
 
-   __pointer(::elemental) library::factory_create(::layered * pobjectContext, const char * lpszClass)
+   __pointer(::element) library::factory_create(::layered * pobjectContext, const char * lpszClass)
    {
 
       library_object_allocator_base * pallocator = find_allocator(lpszClass);

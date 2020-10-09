@@ -294,7 +294,7 @@ CLASS_DECL_ACME void set_thread_get_run(PFN_THREAD_GET_RUN pthreadrun)
 //   try
 //   {
 //
-//      if(::is_null(::get_thread()) || !::get_thread()->is_thread()) // system threads don't have generally associated ca2 thread elemental
+//      if(::is_null(::get_thread()) || !::get_thread()->is_thread()) // system threads don't have generally associated ca2 thread element
 //      {
 //         ////////// and have short life, so it is safe to keep it running
 //         //return true;
@@ -429,7 +429,7 @@ namespace multithreading
 
 
 
-CLASS_DECL_ACME ::estatus call(::elemental * pobject)
+CLASS_DECL_ACME ::estatus call(::element * pobject)
 {
 
    ::estatus estatus;
@@ -678,7 +678,7 @@ void thread_name_abbreviate(string & strName, int len)
 
 
 
-::estatus     run_runnable(::elemental* pobjectTask)
+::estatus     run_runnable(::element* pobjectTask)
 {
 
    ::estatus     estatus = error_exception;
@@ -686,7 +686,7 @@ void thread_name_abbreviate(string & strName, int len)
    try
    {
 
-      __pointer(elemental) pobject(e_move_transfer, pobjectTask);
+      __pointer(element) pobject(e_move_transfer, pobjectTask);
 
       try
       {

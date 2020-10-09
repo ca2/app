@@ -1,16 +1,16 @@
 #pragma once
 
 
-struct CLASS_DECL_ACME elemental :
-   virtual public elemental
+struct CLASS_DECL_ACME element :
+   virtual public element
 {
 
    
    __pointer(property_set)    m_pset;
 
 
-   elemental() { }
-   virtual ~elemental();
+   element() { }
+   virtual ~element();
 
 
    virtual stream & do_property_exchange(stream & stream) const;
@@ -21,7 +21,7 @@ struct CLASS_DECL_ACME elemental :
    virtual stream & write(::stream & stream) const override;
    virtual stream & read(::stream & stream) override;
 
-   using elemental::cast;
+   using element::cast;
 
    inline bool has_property(const id & id) const;
    inline property * lookup_property(const id & id) const;
@@ -52,7 +52,7 @@ struct CLASS_DECL_ACME elemental :
    inline var find_value(const ::id & id, const var & varDefault) const;
    
    
-   inline var & elemental(const ::id & id);
+   inline var & element(const ::id & id);
 
 
    inline var operator()(const ::id & id) const;
@@ -89,7 +89,7 @@ struct CLASS_DECL_ACME elemental :
    inline bool is_true(const ::id & id, const var & varDefault, bool bDefault) const;
 
 
-}; // struct elemental
+}; // struct element
 
 
 

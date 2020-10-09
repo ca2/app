@@ -31,7 +31,7 @@ class numeric_array :
 {
 public:
 
-   explicit numeric_array(::elemental * pobject = nullptr) : comparable_raw_array < TYPE >(pobject) {}
+   explicit numeric_array(::element * pobject = nullptr) : comparable_raw_array < TYPE >(pobject) {}
 
    numeric_array(std::initializer_list < TYPE >  l):
       comparable_raw_array < TYPE >(l)

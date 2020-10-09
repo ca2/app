@@ -16,7 +16,7 @@
 //      WINUSHORT               m_atomSystemTopic;
 //
 //
-//      application(::elemental * pobject);
+//      application(::element * pobject);
 //      virtual ~application();
 //
 //      virtual HINSTANCE GetHinstance();

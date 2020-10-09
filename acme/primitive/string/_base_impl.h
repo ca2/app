@@ -3043,7 +3043,7 @@ void __cdecl string_base < TYPE_CHAR >::FormatMessage(const CHAR_TYPE* pszFormat
 //#endif
 
 //template < typename TYPE_CHAR >
-//bool string_base < TYPE_CHAR >::load_string(::elemental* pobject, id id)
+//bool string_base < TYPE_CHAR >::load_string(::element* pobject, id id)
 //{
 //   string str;
 //   bool bOk = pobject->get_context_application()->load_string(str, id);

@@ -11,7 +11,7 @@ namespace html
 
    class form;
    class box;
-   class elemental;
+   class element;
 
 }
 

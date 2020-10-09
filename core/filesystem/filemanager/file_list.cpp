@@ -2042,7 +2042,7 @@ namespace filemanager
          if (pupdate->value(id_after_browse) == "filemanager\\replace_name_in_file_system.xhtml")
          {
 
-            //html::elemental * pelemental = dynamic_cast < html::elemental * > (pupdate->m_pformview->get_html_data()->get_element_by_name("encontrar"));
+            //html::element * pelemental = dynamic_cast < html::element * > (pupdate->m_pformview->get_html_data()->get_element_by_name("encontrar"));
 
             //html::impl::input_text * pinput = dynamic_cast < html::impl::input_text * > (pelemental->m_pimpl);
 

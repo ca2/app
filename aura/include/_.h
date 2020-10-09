@@ -474,7 +474,7 @@ CLASS_DECL_AURA void aura_ref();
 //#include "aura/multimedia/_c.h"
 //
 //
-//class elemental;
+//class element;
 //
 //
 //template < typename T >
@@ -501,24 +501,24 @@ CLASS_DECL_AURA void aura_ref();
 //
 //
 //
-//CLASS_DECL_AURA ::elemental * general_trace_object();
+//CLASS_DECL_AURA ::element * general_trace_object();
 //
 //CLASS_DECL_AURA int_bool c_enable_trace_category(e_trace_category ecategory, int_bool iEnable);
 //
-//inline ::elemental * context_trace_object() { return general_trace_object(); }
+//inline ::element * context_trace_object() { return general_trace_object(); }
 //
 //
-//CLASS_DECL_AURA void __tracea(::elemental * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
-//CLASS_DECL_AURA void __tracef(::elemental * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, ...);
-//CLASS_DECL_AURA void __tracev(::elemental * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, va_list vargs);
+//CLASS_DECL_AURA void __tracea(::element * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
+//CLASS_DECL_AURA void __tracef(::element * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, ...);
+//CLASS_DECL_AURA void __tracev(::element * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, va_list vargs);
 //CLASS_DECL_AURA const char * trace_category_name(e_trace_category ecategory);
 //
 //
-//CLASS_DECL_AURA ::elemental * trace_object(e_trace_category ecategory);
+//CLASS_DECL_AURA ::element * trace_object(e_trace_category ecategory);
 //
-//const char * topic_text(::elemental * pcontextobject);
+//const char * topic_text(::element * pcontextobject);
 //
-//e_trace_category object_trace_category(::elemental * pcontextobject);
+//e_trace_category object_trace_category(::element * pcontextobject);
 //
 //
 //
@@ -2148,7 +2148,7 @@ namespace draw2d
 //// CLASS_DECL_AURA bool defer_co_initialize_ex(bool bMultiThread, bool bDisableOleDDE = false);
 //// #endif
 //
-//class elemental;
+//class element;
 //
 //class var;
 //
@@ -2530,7 +2530,7 @@ namespace user
 //
 //
 //
-//#include "aura/primitive/primitive/elemental.h"
+//#include "aura/primitive/primitive/element.h"
 //#include "aura/primitive/primitive/task.h"
 //#include "aura/primitive/primitive/compare_pred.h"
 //
@@ -2626,20 +2626,20 @@ namespace user
 //class sticker;
 //
 //
-//inline ::elemental * trace_object(::elemental * pobjectContext) { return pobjectContext; }
+//inline ::element * trace_object(::element * pobjectContext) { return pobjectContext; }
 //
 //template < typename POINTER_TYPE >
 //class ptr_array;
 //
-////using composite_ptra = __pointer_array(::elemental); // Please use just for composition (ownership).
+////using composite_ptra = __pointer_array(::element); // Please use just for composition (ownership).
 //
-////using reference_ptra = __pointer_array(::elemental); // Please use just for reference (member-based).
+////using reference_ptra = __pointer_array(::element); // Please use just for reference (member-based).
 //
 ////using object_ptra = __pointer_array(::context_object); // Please use just for keeping non-member-based references.
 //
-//using object_ptra = __pointer_array(::elemental); // Please use just for keeping non-member-based references.
+//using object_ptra = __pointer_array(::element); // Please use just for keeping non-member-based references.
 //
-//using object_addra = __address_array(::elemental); // Please use just for keeping non-member-based references.
+//using object_addra = __address_array(::element); // Please use just for keeping non-member-based references.
 //
 //class object_meta;
 //
@@ -2654,9 +2654,9 @@ namespace user
 //
 //} // namespace http
 //
-//template < typename PRED > inline auto __task_procedure(PRED pred, ::elemental * pobjectHold = nullptr);
+//template < typename PRED > inline auto __task_procedure(PRED pred, ::element * pobjectHold = nullptr);
 //
-//template < typename PRED > inline auto __task_callback(PRED pred, ::elemental* pobjectHold = nullptr);
+//template < typename PRED > inline auto __task_callback(PRED pred, ::element* pobjectHold = nullptr);
 //
 //class context;
 
@@ -2677,7 +2677,7 @@ namespace draw2d
 
 ////class create_thread;
 //
-//using generic_pointer = __pointer(::elemental);
+//using generic_pointer = __pointer(::element);
 //
 //
 //#ifdef WINDOWS_DESKTOP

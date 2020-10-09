@@ -2,7 +2,7 @@
 
 
 //class CLASS_DECL_APEX create_thread :
-//   virtual public ::elemental
+//   virtual public ::element
 //{
 //public:
 //

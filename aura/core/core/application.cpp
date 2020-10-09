@@ -932,7 +932,7 @@ namespace aura
       }
 
       // handle all the rest
-      //linux UINT nIDP = __IDP_INTERNAL_FAILURE;   // elemental message string
+      //linux UINT nIDP = __IDP_INTERNAL_FAILURE;   // element message string
       const char * nIDP = "Internal Failure";
       pbase->m_lresult = 0;        // sensible default
       if (pbase->m_id == WM_COMMAND)

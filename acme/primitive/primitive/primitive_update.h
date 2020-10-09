@@ -2,16 +2,16 @@
 
 
 class update :
-   virtual public ::elemental
+   virtual public ::element
 {
 public:
 
 
    e_update                m_eupdate;
-   ::elemental *              m_pobjectTopic;
+   ::element *              m_pobjectTopic;
    ::action_context       m_context;
 
-   update(::elemental * pobject) : ::elemental(pobject) {}
+   update(::element * pobject) : ::element(pobject) {}
    virtual ~update() {}
 
 };

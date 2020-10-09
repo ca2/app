@@ -37,7 +37,7 @@ Display * x11_get_display()
 #define SIMPLE_UI_MAX_BUTTON_COUNT 8
 
 class x11Button :
-   virtual public elemental
+   virtual public element
 {
 public:
 

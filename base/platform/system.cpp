@@ -4596,7 +4596,7 @@ namespace base
 //   //}
 //
 //
-//   void system::__tracea(::elemental * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
+//   void system::__tracea(::element * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
 //   {
 //
 //      if (m_ptrace.is_null())

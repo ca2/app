@@ -6,7 +6,7 @@ namespace uwp
 
 #ifdef WINDOWS_DESKTOP
 
-   class CLASS_DECL_ACME file_find : public ::elemental
+   class CLASS_DECL_ACME file_find : public ::element
    {
    public:
 

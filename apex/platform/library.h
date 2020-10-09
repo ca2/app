@@ -76,10 +76,10 @@ namespace apex
       virtual void get_app_list(string_array & stra);
 
 
-      virtual ::elemental* new_object(::layered * pobjectContext, const char* pszClass);
+      virtual ::element* new_object(::layered * pobjectContext, const char* pszClass);
 
 
-      virtual __pointer(::elemental) create_object(::layered * pobjectContext, const char* pszClass);
+      virtual __pointer(::element) create_object(::layered * pobjectContext, const char* pszClass);
       virtual bool has_object_class(const char * lpszClass);
 
 
@@ -91,10 +91,10 @@ namespace apex
       virtual void get_extension_list(string_array & stra);
 
 
-      virtual ::elemental * factory_new(::layered * pobjectContext, const char * lpszClass);
+      virtual ::element * factory_new(::layered * pobjectContext, const char * lpszClass);
 
 
-      virtual __pointer(::elemental) factory_create(::layered * pobjectContext, const char * lpszClass);
+      virtual __pointer(::element) factory_create(::layered * pobjectContext, const char * lpszClass);
       virtual bool factory_has_object_class(const char * lpszClass);
 
       library_object_allocator_base * find_allocator(const char * lpszClass);

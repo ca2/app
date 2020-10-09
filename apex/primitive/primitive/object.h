@@ -93,7 +93,7 @@ public:
 
 
    template < typename PRED >
-   inline void add_method(const ::id & id, PRED pred, ::elemental* pobjectHold = nullptr)
+   inline void add_method(const ::id & id, PRED pred, ::element* pobjectHold = nullptr)
    {
 
       add(::method(id, pred, pobjectHold));
@@ -101,7 +101,7 @@ public:
    }
 
    template < typename PRED >
-   inline void add_future(const ::id & id, PRED pred, ::elemental * pobjectHold = nullptr)
+   inline void add_future(const ::id & id, PRED pred, ::element * pobjectHold = nullptr)
    {
 
       add(::future(id, pred, pobjectHold));
@@ -297,12 +297,12 @@ public:
    inline ::estatus release_reference(__pointer(SOURCE) & psource);
 
 
-   virtual ::estatus add_composite(::elemental* pobject) override;
-   virtual ::estatus add_reference(::elemental* pobject) override;
+   virtual ::estatus add_composite(::element* pobject) override;
+   virtual ::estatus add_reference(::element* pobject) override;
 
 
-   virtual ::estatus release_composite(::elemental* pobject) override;
-   virtual ::estatus release_reference(::elemental* pobject) override;
+   virtual ::estatus release_composite(::element* pobject) override;
+   virtual ::estatus release_reference(::element* pobject) override;
 
 
 
@@ -397,9 +397,9 @@ public:
 
    virtual __pointer(::object) running(const char * pszTag) const;
 
-   virtual bool ___is_reference(::elemental * pobject) const;
+   virtual bool ___is_reference(::element * pobject) const;
 
-   virtual bool __is_composite(::elemental * pobject) const;
+   virtual bool __is_composite(::element * pobject) const;
 
    virtual void on_finalize();
 

@@ -42,18 +42,18 @@ enum e_memory
 };
 
 
-__memory(MEMORY)
+__memory(MEMORY), public block
 {
 public:
 
    bool                    m_bOwn;
    byte *                  m_pbStorage;
-   byte *                  m_pbComputed;
+   //byte *                  m_pdata;
 
    memsize                 m_iOffset;
    memsize                 m_iMaxOffset;
    memsize                 m_cbStorage;
-   memsize                 m_dwAllocation;
+   //memsize                 m_dwAllocation;
    double                  m_dAllocationRateUp;
    DWORD                   m_dwAllocationAddUp;
 
@@ -78,7 +78,7 @@ MUTABLE * __mutable(const MUTABLE * pmutable) { return (MUTABLE *)pmutable; }
 
 
 class CLASS_DECL_ACME memory_base :
-   virtual public ::elemental
+   virtual public ::element
 {
 public:
 
@@ -154,7 +154,7 @@ public:
    void allocate_add_up(memsize iAddUp);
 
 
-   virtual ::elemental * clone() const override;
+   virtual ::element * clone() const override;
 
 
    inline byte *           internal_get_data() const;
@@ -288,7 +288,7 @@ public:
 
 inline byte * memory_base::internal_get_data() const
 {
-   return m_memory.m_pbComputed;
+   return (byte *) m_memory.m_pdata;
 }
 inline memsize memory_base::get_size() const
 {
@@ -300,11 +300,11 @@ inline memsize memory_base::size() const
 }
 inline byte * memory_base::get_data() const
 {
-   return m_memory.m_pbComputed;
+   return (byte*)m_memory.m_pdata;
 }
 inline byte * memory_base::get_data()
 {
-   return m_memory.m_pbComputed;
+   return (byte*)m_memory.m_pdata;
 }
 inline byte * memory_base::data() const
 {

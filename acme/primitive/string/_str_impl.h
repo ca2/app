@@ -596,14 +596,14 @@ inline void to(long  & l, i32 iBase, const ansichar * psz)
    }
 
 
-   inline void to(::elemental & elemental, const ansichar * psz)
+   inline void to(::element & element, const ansichar * psz)
    {
 
       var_stream stream;
 
       stream.m_pvar->parse_json(psz);
 
-      elemental.exchange(stream);
+      element.exchange(stream);
 
    }
 
@@ -617,7 +617,19 @@ inline void to(long  & l, i32 iBase, const ansichar * psz)
    }
 
 
-   inline void from(string & str, const elemental & o)
+#ifdef _UWP
+
+
+   inline void from(string& str, Platform::String ^ strSource)
+   {
+
+      str = strSource->Begin();
+
+   }
+
+#endif
+
+   inline void from(string & str, const element & o)
    {
 
       auto len = o.sz_len();
@@ -631,7 +643,7 @@ inline void to(long  & l, i32 iBase, const ansichar * psz)
    }
 
 
-   //inline void from(string & str, const elemental & o)
+   //inline void from(string & str, const element & o)
    //{
 
    //   o.to_string(str);
@@ -805,7 +817,7 @@ namespace str
 //
 //}
 
-// besides returning a elemental (and const does not really impedes changing), do not change a string_base (or string) directly,
+// besides returning a element (and const does not really impedes changing), do not change a string_base (or string) directly,
 // there may be multiple instances of a string (all referencing the same pointer).
 //template < typename TYPE_CHAR >
 //inline const ansichar & string_base < TYPE_CHAR >::operator [](index iChar ) const

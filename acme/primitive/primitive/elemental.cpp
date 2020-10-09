@@ -8,7 +8,7 @@
 void defer_delete(obj_ref_dbg* p);
 #endif
 
-elemental::~elemental()
+element::~element()
 {
 
 #if OBJ_REF_DBG
@@ -24,21 +24,21 @@ elemental::~elemental()
 }
 
 
-void elemental::assert_valid() const
+void element::assert_valid() const
 {
 
 
 }
 
 
-void elemental::dump(dump_context & dumpcontext) const
+void element::dump(dump_context & dumpcontext) const
 {
 
 
 }
 
 
-::estatus elemental::initialize(::layered * pobjectContext)
+::estatus element::initialize(::layered * pobjectContext)
 {
 
    set_context_object(pobjectContext);
@@ -49,20 +49,20 @@ void elemental::dump(dump_context & dumpcontext) const
 
 
 
-void elemental::finalize()
+void element::finalize()
 {
 
 
 }
 
-const char* elemental::debug_note() const
+const char* element::debug_note() const
 {
 
    return nullptr;
 
 }
 
-//bool elemental::is_ok() const
+//bool element::is_ok() const
 //{
 //
 //   return has_id(OK);
@@ -72,7 +72,7 @@ const char* elemental::debug_note() const
 
 #ifdef _DEBUG
 
-i64 elemental::add_ref(OBJ_REF_DBG_PARAMS_DEF)
+i64 element::add_ref(OBJ_REF_DBG_PARAMS_DEF)
 {
 
    auto c = atomic_increment(&m_countReference);
@@ -88,7 +88,7 @@ i64 elemental::add_ref(OBJ_REF_DBG_PARAMS_DEF)
 }
 
 
-i64 elemental::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
+i64 element::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
 {
 
    auto c = atomic_decrement(&m_countReference);
@@ -109,7 +109,7 @@ i64 elemental::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
 }
 
 
-i64 elemental::release(OBJ_REF_DBG_PARAMS_DEF)
+i64 element::release(OBJ_REF_DBG_PARAMS_DEF)
 {
 
    i64 i = dec_ref(OBJ_REF_DBG_ARGS);
@@ -129,7 +129,7 @@ i64 elemental::release(OBJ_REF_DBG_PARAMS_DEF)
 #endif
 
 
-::elemental * elemental::clone() const
+::element * element::clone() const
 {
 
    __throw(interface_only_exception());
@@ -139,7 +139,7 @@ i64 elemental::release(OBJ_REF_DBG_PARAMS_DEF)
 }
 
 
-void elemental::set_mutex(sync* psync)
+void element::set_mutex(sync* psync)
 {
 
    ::release(m_pmutex);
@@ -149,7 +149,7 @@ void elemental::set_mutex(sync* psync)
 }
 
 
-void elemental::defer_create_mutex()
+void element::defer_create_mutex()
 {
 
    if (!m_pmutex)
@@ -162,7 +162,7 @@ void elemental::defer_create_mutex()
 }
 
 
-void elemental::set_context_object(::layered * pobjectContext)
+void element::set_context_object(::layered * pobjectContext)
 {
 
    auto pold = m_pobjectContext;
@@ -183,13 +183,13 @@ void elemental::set_context_object(::layered * pobjectContext)
 
 
 
-void elemental::set_finish()
+void element::set_finish()
 {
 
 }
 
 
-::estatus elemental::call()
+::estatus element::call()
 {
 
    ::estatus estatus;
@@ -212,19 +212,19 @@ void elemental::set_finish()
 }
 
 
-void elemental::call(const ::var & var)
+void element::call(const ::var & var)
 {
 
 }
 
 
-void elemental::receive_response(const ::var& var)
+void element::receive_response(const ::var& var)
 {
 
 }
 
 
-::estatus elemental::run()
+::estatus element::run()
 {
 
    return ::success;
@@ -235,10 +235,10 @@ void elemental::receive_response(const ::var& var)
 #ifdef WINDOWS
 
 
-DWORD WINAPI elemental::s_os_thread_proc(void* p)
+DWORD WINAPI element::s_os_thread_proc(void* p)
 {
 
-   ::elemental* pobject = (::elemental *) p;
+   ::element* pobject = (::element *) p;
 
    return pobject->__thread_proc();
 
@@ -248,10 +248,10 @@ DWORD WINAPI elemental::s_os_thread_proc(void* p)
 #else
 
 
-void * elemental::s_os_thread_proc(void* p)
+void * element::s_os_thread_proc(void* p)
 {
 
-   ::elemental* pobject = (::elemental*) p;
+   ::element* pobject = (::element*) p;
 
    return (void*)(iptr)pobject->__thread_proc();
 
@@ -262,7 +262,7 @@ void * elemental::s_os_thread_proc(void* p)
 
 
 
-::estatus elemental::add_composite(::elemental* pobject)
+::estatus element::add_composite(::element* pobject)
 {
 
    return ::success_none;
@@ -270,12 +270,12 @@ void * elemental::s_os_thread_proc(void* p)
 }
 
 
-::estatus elemental::os_fork(::e_priority epriority, UINT nStackSize, u32 uiCreateFlags, ITHREAD * pithread, HTHREAD * phthread)
+::estatus element::os_fork(::e_priority epriority, UINT nStackSize, u32 uiCreateFlags, ITHREAD * pithread, HTHREAD * phthread)
 {
 
    add_ref(OBJ_REF_DBG_P_NOTE(this, "os_fork"));
 
-   ::elemental* p = this;
+   ::element* p = this;
 
    HTHREAD hthread = NULL_HTHREAD;
 
@@ -285,7 +285,7 @@ void * elemental::s_os_thread_proc(void* p)
 
    DWORD dwThread = 0;
 
-   hthread = ::CreateThread(nullptr, nStackSize, &::elemental::s_os_thread_proc, (LPVOID)p, uiCreateFlags, &dwThread);
+   hthread = ::CreateThread(nullptr, nStackSize, &::element::s_os_thread_proc, (LPVOID)p, uiCreateFlags, &dwThread);
 
    ithread = dwThread;
 
@@ -307,7 +307,7 @@ void * elemental::s_os_thread_proc(void* p)
    pthread_create(
       &hthread,
       &threadAttr,
-      &elemental::s_os_thread_proc,
+      &element::s_os_thread_proc,
       (LPVOID)p);
 
 #endif
@@ -343,7 +343,7 @@ void * elemental::s_os_thread_proc(void* p)
 
 
 
-::estatus elemental::add_reference(::elemental* pobject)
+::estatus element::add_reference(::element* pobject)
 {
 
    return ::success_none;
@@ -351,7 +351,7 @@ void * elemental::s_os_thread_proc(void* p)
 }
 
 
-::estatus elemental::release_composite(::elemental* pobject)
+::estatus element::release_composite(::element* pobject)
 {
 
    return ::success_none;
@@ -359,7 +359,7 @@ void * elemental::s_os_thread_proc(void* p)
 }
 
 
-::estatus elemental::release_reference(::elemental* pobject)
+::estatus element::release_reference(::element* pobject)
 {
 
    return ::success_none;
@@ -367,7 +367,7 @@ void * elemental::s_os_thread_proc(void* p)
 }
 
 
-::estatus elemental::set_generic_object_name(const char* pszName)
+::estatus element::set_generic_object_name(const char* pszName)
 {
 
    return ::success_none;
@@ -375,7 +375,7 @@ void * elemental::s_os_thread_proc(void* p)
 }
 
 
-void elemental::delete_this()
+void element::delete_this()
 {
 
    try
@@ -398,7 +398,7 @@ void elemental::delete_this()
 
 
 
-void elemental::__tracea(::elemental * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz)
+void element::__tracea(::element * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz)
 {
 
    // acme commented
@@ -407,7 +407,7 @@ void elemental::__tracea(::elemental * pobject, e_trace_level elevel, const char
 }
 
 
-void elemental::__tracef(::elemental * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...)
+void element::__tracef(::element * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...)
 {
 
    va_list valist;
@@ -421,7 +421,7 @@ void elemental::__tracef(::elemental * pobject, e_trace_level elevel, const char
 }
 
 
-void elemental::__tracev(::elemental * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list valist)
+void element::__tracev(::element * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list valist)
 {
 
    string str;
@@ -432,7 +432,7 @@ void elemental::__tracev(::elemental * pobject, e_trace_level elevel, const char
 
 }
 
-e_trace_category elemental::trace_category()
+e_trace_category element::trace_category()
 {
 
    return trace_category_general;
@@ -440,7 +440,7 @@ e_trace_category elemental::trace_category()
 }
 
 
-e_trace_category elemental::trace_category(::elemental * pobject)
+e_trace_category element::trace_category(::element * pobject)
 {
 
    return pobject->trace_category();
@@ -448,7 +448,7 @@ e_trace_category elemental::trace_category(::elemental * pobject)
 }
 
 
-const char * elemental::topic_text() const
+const char * element::topic_text() const
 {
 
    return typeid(*this).name();
@@ -456,7 +456,7 @@ const char * elemental::topic_text() const
 }
 
 
-void elemental::call_update(const ::__id & id, const ::action_context & context)
+void element::call_update(const ::__id & id, const ::action_context & context)
 {
 
    //auto pupdate = new_update();
@@ -473,7 +473,7 @@ void elemental::call_update(const ::__id & id, const ::action_context & context)
 
 
 
-void elemental::call_update(const ::__id & id)
+void element::call_update(const ::__id & id)
 {
 
    //auto pupdate = new_update();
@@ -485,14 +485,14 @@ void elemental::call_update(const ::__id & id)
 }
 
 
-void elemental::update(::update * pupdate)
+void element::update(::update * pupdate)
 {
 
 
 }
 
 
-bool elemental::already_handled(::update * pupdate) const
+bool element::already_handled(::update * pupdate) const
 {
 
   //if (::is_set(pupdate))
@@ -512,7 +512,7 @@ bool elemental::already_handled(::update * pupdate) const
 }
 
 
-void elemental::call_update(::update * pupdate)
+void element::call_update(::update * pupdate)
 {
 
    //if (!pupdate->handled_by(this))
@@ -527,7 +527,7 @@ void elemental::call_update(::update * pupdate)
 }
 
 
-strsize elemental::sz_len() const
+strsize element::sz_len() const
 {
 
    return strlen(typeid(*this).name());
@@ -535,7 +535,7 @@ strsize elemental::sz_len() const
 }
 
 
-void elemental::to_sz(char * sz, strsize len) const
+void element::to_sz(char * sz, strsize len) const
 {
 
    strncpy(sz, typeid(*this).name(), len);
@@ -543,7 +543,7 @@ void elemental::to_sz(char * sz, strsize len) const
 }
 
 
-::estatus elemental::__thread_main()
+::estatus element::__thread_main()
 {
 
    ::estatus estatus = call();
@@ -553,7 +553,7 @@ void elemental::to_sz(char * sz, strsize len) const
 }
 
 
-::estatus elemental::__thread_proc()
+::estatus element::__thread_proc()
 {
 
    ::u32 u = -1;
@@ -621,7 +621,7 @@ void elemental::to_sz(char * sz, strsize len) const
 
 
 
-::estatus elemental::osthread_init()
+::estatus element::osthread_init()
 {
 
    return ::success;
@@ -629,7 +629,7 @@ void elemental::to_sz(char * sz, strsize len) const
 }
 
 
-::estatus elemental::__thread_init()
+::estatus element::__thread_init()
 {
 
    return ::success;
@@ -637,7 +637,7 @@ void elemental::to_sz(char * sz, strsize len) const
 }
 
 
-::estatus elemental::__thread_term()
+::estatus element::__thread_term()
 {
 
    return ::success;
@@ -645,7 +645,7 @@ void elemental::to_sz(char * sz, strsize len) const
 }
 
 
-::estatus elemental::osthread_term()
+::estatus element::osthread_term()
 {
 
    return ::success;
@@ -653,13 +653,13 @@ void elemental::to_sz(char * sz, strsize len) const
 }
 
 
-void elemental::exchange(stream& s)
+void element::exchange(stream& s)
 {
 
 }
 
 
-stream & elemental::write(stream& s) const
+stream & element::write(stream& s) const
 {
 
    return s;
@@ -667,7 +667,7 @@ stream & elemental::write(stream& s) const
 }
 
 
-stream& elemental::read(stream& s)
+stream& element::read(stream& s)
 {
 
    return s;
@@ -675,7 +675,7 @@ stream& elemental::read(stream& s)
 }
 
 
-void elemental::to_string(const class string_exchange & str) const
+void element::to_string(const class string_exchange & str) const
 {
 
    str = type_c_str();
@@ -685,7 +685,7 @@ void elemental::to_string(const class string_exchange & str) const
 
 
 
-CLASS_DECL_ACME ::estatus __call(::elemental* pobjectTask)
+CLASS_DECL_ACME ::estatus __call(::element* pobjectTask)
 {
 
    return pobjectTask->call();

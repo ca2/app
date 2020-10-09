@@ -1,58 +1,21 @@
 #include "framework.h"
-#include "crypto_openssl.h"
+#include "_openssl.h"
 
 
-#include <openssl/ssl.h>
-#include <openssl/md5.h>
-#include <openssl/err.h>
-
-
-namespace str
-{
-
-
-   CLASS_DECL_APEX void from(string & str, const MD5_CTX & ctx)
-   {
-
-      unsigned char digest[MD5_DIGEST_LENGTH];
-
-      MD5_Final(digest, (MD5_CTX *)&ctx);
-
-      str = ::hex::lower_from(digest, MD5_DIGEST_LENGTH);
-
-   }
-
-
-   CLASS_DECL_APEX void from(string & str, const WHIRLPOOL_CTX & ctx)
-   {
-
-      unsigned char digest[WHIRLPOOL_DIGEST_LENGTH];
-
-      WHIRLPOOL_Final(digest, (WHIRLPOOL_CTX *) &ctx);
-
-      str = ::hex::lower_from(digest, WHIRLPOOL_DIGEST_LENGTH);
-
-   }
-
-
-} // namespace str
-
-
-
-i32 crypto_encrypt(memory & storageEncrypt, const memory & storageDecrypt, memory & key)
+i32 crypto_encrypt(memory& storageEncrypt, const memory& storageDecrypt, memory& key)
 {
    i32 plainlen = (i32)storageDecrypt.get_size();
    i32 cipherlen, tmplen;
    unsigned char iv[8] = { 1,2,3,4,5,6,7,8 };
-   EVP_CIPHER_CTX * pctx = EVP_CIPHER_CTX_new();
-   EVP_EncryptInit(pctx, EVP_bf_cbc(), (unsigned char *)key.get_data(), iv);
+   EVP_CIPHER_CTX* pctx = EVP_CIPHER_CTX_new();
+   EVP_EncryptInit(pctx, EVP_bf_cbc(), (unsigned char*)key.get_data(), iv);
    cipherlen = (i32)(storageDecrypt.get_size() + 16 - 1); //; 16 = key size
    storageEncrypt.set_size(cipherlen);
-   if (!EVP_EncryptUpdate(pctx, (unsigned char *)storageEncrypt.get_data(), &cipherlen, (const unsigned char *)storageDecrypt.get_data(), plainlen))
+   if (!EVP_EncryptUpdate(pctx, (unsigned char*)storageEncrypt.get_data(), &cipherlen, (const unsigned char*)storageDecrypt.get_data(), plainlen))
    {
       return -1;
    }
-   if (!EVP_EncryptFinal(pctx, ((unsigned char *)storageEncrypt.get_data()) + cipherlen, &tmplen))
+   if (!EVP_EncryptFinal(pctx, ((unsigned char*)storageEncrypt.get_data()) + cipherlen, &tmplen))
    {
       return -1;
    }
@@ -62,20 +25,20 @@ i32 crypto_encrypt(memory & storageEncrypt, const memory & storageDecrypt, memor
    return cipherlen;
 }
 
-i32 crypto_decrypt(memory & storageDecrypt, const memory & storageEncrypt, memory & key)
+i32 crypto_decrypt(memory& storageDecrypt, const memory& storageEncrypt, memory& key)
 {
    i32 cipherlen = (i32)storageEncrypt.get_size();
    i32 plainlen, tmplen;
    unsigned char iv[8] = { 1,2,3,4,5,6,7,8 };
-   EVP_CIPHER_CTX * pctx = EVP_CIPHER_CTX_new();
-   EVP_DecryptInit(pctx, EVP_bf_cbc(), (const unsigned char *)key.get_data(), iv);
+   EVP_CIPHER_CTX* pctx = EVP_CIPHER_CTX_new();
+   EVP_DecryptInit(pctx, EVP_bf_cbc(), (const unsigned char*)key.get_data(), iv);
    plainlen = (i32)storageEncrypt.get_size();
    storageDecrypt.set_size(plainlen);
-   if (!EVP_DecryptUpdate(pctx, (unsigned char *)storageDecrypt.get_data(), &plainlen, (const unsigned char *)storageEncrypt.get_data(), cipherlen))
+   if (!EVP_DecryptUpdate(pctx, (unsigned char*)storageDecrypt.get_data(), &plainlen, (const unsigned char*)storageEncrypt.get_data(), cipherlen))
    {
       return -1;
    }
-   if (!EVP_DecryptFinal(pctx, ((unsigned char *)storageDecrypt.get_data()) + plainlen, &tmplen))
+   if (!EVP_DecryptFinal(pctx, ((unsigned char*)storageDecrypt.get_data()) + plainlen, &tmplen))
    {
       storageDecrypt.set_size(plainlen);
       EVP_CIPHER_CTX_free(pctx);
@@ -277,7 +240,7 @@ static void php_openssl_load_cipher_mode(struct php_openssl_cipher_mode* mode, c
 
 CLASS_DECL_APEX i32 crypto_decrypt2(memory& storageDecrypt, const memory& storageEncrypt, memory& key)
 {
-   const char * iv = "skdajhgbmvkbjghs";
+   const char* iv = "skdajhgbmvkbjghs";
    EVP_CIPHER_CTX* cipher_ctx = EVP_CIPHER_CTX_new();
    auto cipher_type = EVP_aes_128_cbc();
    auto data_len = storageEncrypt.get_length();
@@ -287,7 +250,7 @@ CLASS_DECL_APEX i32 crypto_decrypt2(memory& storageDecrypt, const memory& storag
       return 0;
    }
 
-   if (!EVP_CipherInit_ex(cipher_ctx, NULL, NULL, (unsigned char *) key.get_data(), (unsigned char *) (iv), 0))
+   if (!EVP_CipherInit_ex(cipher_ctx, NULL, NULL, (unsigned char*)key.get_data(), (unsigned char*)(iv), 0))
    {
 
       return 0;
@@ -295,7 +258,7 @@ CLASS_DECL_APEX i32 crypto_decrypt2(memory& storageDecrypt, const memory& storag
    }
    storageDecrypt.set_size((int)data_len + EVP_CIPHER_block_size(cipher_type));
    int outlen = 0;
-   if (!EVP_CipherUpdate(cipher_ctx, (unsigned char*)storageDecrypt.get_data(), &outlen, (const unsigned char*)storageEncrypt.get_data(), (int) data_len))
+   if (!EVP_CipherUpdate(cipher_ctx, (unsigned char*)storageDecrypt.get_data(), &outlen, (const unsigned char*)storageEncrypt.get_data(), (int)data_len))
    {
       return -1;
    }
@@ -337,7 +300,7 @@ CLASS_DECL_APEX i32 crypto_encrypt2(memory& storageDecrypt, const memory& storag
    }
    storageDecrypt.set_size((int)data_len + EVP_CIPHER_block_size(cipher_type));
    int outlen = 0;
-   if (!EVP_CipherUpdate(cipher_ctx, (unsigned char*)storageDecrypt.get_data(), &outlen, (const unsigned char*)storageEncrypt.get_data(), (int) data_len))
+   if (!EVP_CipherUpdate(cipher_ctx, (unsigned char*)storageDecrypt.get_data(), &outlen, (const unsigned char*)storageEncrypt.get_data(), (int)data_len))
    {
       return -1;
    }
@@ -356,41 +319,8 @@ CLASS_DECL_APEX i32 crypto_encrypt2(memory& storageDecrypt, const memory& storag
    //EVP_CIPHER_CTX_cleanup(cipher_ctx);
    EVP_CIPHER_CTX_free(cipher_ctx);
    return outlen;
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -30,12 +30,12 @@ namespace html
       }
 
 
-      void text::implement_phase1(html_data * pdata, ::html::elemental * pelemental)
+      void text::implement_phase1(html_data * pdata, ::html::element * pelemental)
       {
 
          sync_lock lock(pdata->m_pcoredata->mutex());
 
-         ::html::impl::elemental::implement_phase1(pdata, pelemental);
+         ::html::impl::element::implement_phase1(pdata, pelemental);
 
          e_tag etag = m_pelemental->m_etag;
 
@@ -132,7 +132,7 @@ namespace html
 
          sync_lock lock(pdata->m_pcoredata->mutex());
 
-         ::html::impl::elemental::layout_phase0(pdata);
+         ::html::impl::element::layout_phase0(pdata);
 
          if (m_pelemental->m_elementalptra.get_size() > 0 || m_pelemental->m_strBody.is_empty())
          {
@@ -289,7 +289,7 @@ namespace html
       bool text::layout_phase1(html_data * pdata)
       {
 
-         ::html::impl::elemental::layout_phase1(pdata);
+         ::html::impl::element::layout_phase1(pdata);
 
          e_tag etag = m_pelemental->m_etag;
 
@@ -546,7 +546,7 @@ namespace html
       void text::layout_phase3(html_data * pdata)
       {
 
-         ::html::impl::elemental::layout_phase3(pdata);
+         ::html::impl::element::layout_phase3(pdata);
 
       }
 
@@ -559,7 +559,7 @@ namespace html
       void text::_001OnDraw(html_data * pdata)
       {
 
-         ::html::impl::elemental::_001OnDraw(pdata);
+         ::html::impl::element::_001OnDraw(pdata);
 
 //         if(pdata->is_locked())
 //         {
@@ -697,7 +697,7 @@ namespace html
          if(m_pelemental->m_elementalptra.get_size() > 0 || m_pelemental->m_strBody.is_empty())
             return;
 //       ::draw2d::graphics_pointer & pgraphics = pgraphics;
-         ::html::impl::elemental::_001OnDraw(pdata);
+         ::html::impl::element::_001OnDraw(pdata);
 
 
          COLORREF cr = 0;
@@ -978,7 +978,7 @@ namespace html
          else
          {
 
-            return ::html::impl::elemental::has_link();
+            return ::html::impl::element::has_link();
 
          }
 
@@ -997,7 +997,7 @@ namespace html
          else
          {
 
-            return ::html::impl::elemental::link();
+            return ::html::impl::element::link();
 
          }
 
@@ -1067,7 +1067,7 @@ namespace html
          else
          {
 
-            ::html::impl::elemental::OnLButtonDown(pmessage);
+            ::html::impl::element::OnLButtonDown(pmessage);
 
          }
 
@@ -1099,7 +1099,7 @@ namespace html
          else
          {
 
-            ::html::impl::elemental::OnLButtonUp(pmessage);
+            ::html::impl::element::OnLButtonUp(pmessage);
 
          }
 
@@ -1109,7 +1109,7 @@ namespace html
       void text::OnMouseMove(::message::message * pmessage)
       {
 
-         ::html::impl::elemental::OnMouseMove(pmessage);
+         ::html::impl::element::OnMouseMove(pmessage);
 
          if (m_pelemental->m_pdata->m_pcoredata->m_bEdit)
          {

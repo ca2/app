@@ -13,7 +13,7 @@ WINBOOL SetTextColor(HDC hdc, COLORREF cr);
 WINBOOL SetBkMode(HDC hdc, i32 iMode);
 WINBOOL DeleteDC(HDC hdc);
 WINBOOL AlphaBlend(HDC hdcDest, i32 xoriginDest, i32 yoriginDest, i32 wDest, i32 hDest, HDC hdcSrc, i32 xoriginSrc, i32 yoriginSrc, i32 wSrc, i32 hSrc, BLENDFUNCTION ftn);
-WINBOOL GetObject(HGDIOBJ hgdiobj, i32 iSize, void * elemental);
+WINBOOL GetObject(HGDIOBJ hgdiobj, i32 iSize, void * element);
 WINBOOL GetTextExtentPoint(HDC hdc, const char * pszText, i32 iSize, SIZE * psize);
 /*WINBOOL WINAPI TransparentBlt(HDC hdcDest,
     __in i32 xoriginDest,

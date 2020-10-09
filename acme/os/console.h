@@ -43,7 +43,7 @@ namespace console
 
 
    class CLASS_DECL_ACME console:
-      virtual public ::elemental
+      virtual public ::element
    {
    public:
 

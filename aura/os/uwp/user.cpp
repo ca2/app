@@ -102,7 +102,7 @@ CLASS_DECL_AURA WINBOOL get_cursor_pos(LPPOINT lppoint)
 //
 //}
 
-//CLASS_DECL_AURA void main_branch(::elemental* pobjectTask, e_priority epriority)
+//CLASS_DECL_AURA void main_branch(::element* pobjectTask, e_priority epriority)
 //{
 //
 //   ::wait(

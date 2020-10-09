@@ -67,12 +67,12 @@ namespace html
       }
 
 
-      void input_checkbox::implement_phase1(html_data * pdata, ::html::elemental * pelemental)
+      void input_checkbox::implement_phase1(html_data * pdata, ::html::element * pelemental)
       {
 
          m_bHasChar = true;
 
-         elemental::implement_phase1(pdata, pelemental);
+         element::implement_phase1(pdata, pelemental);
 
          ::id id = pelemental->m_pbase->get_tag()->get_attr_value("id");
 
@@ -144,7 +144,7 @@ namespace html
       void input_checkbox::layout_phase3(html_data * pdata)
       {
 
-         elemental::layout_phase3(pdata);
+         element::layout_phase3(pdata);
 
          m_pcheckbox->place(m_box);
 

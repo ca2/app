@@ -2,7 +2,7 @@
 
 
 class os_local :
-   virtual public elemental
+   virtual public element
 {
 public:
 

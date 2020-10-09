@@ -61,9 +61,9 @@ private:
 };
 
    class serial::Serial::SerialImpl :
-   virtual public elemental{
+   virtual public element{
 public:
-      SerialImpl (::elemental * pobject, const string &port,
+      SerialImpl (::element * pobject, const string &port,
               unsigned long baudrate,
               bytesize_t bytesize,
               parity_t parity,

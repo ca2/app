@@ -47,7 +47,7 @@ inline BLOCK_TYPE & memory_template < BLOCK_TYPE > ::operator = (const ::block &
 }
 
 struct lparam_dbg :
-   virtual elemental
+   virtual element
 {
 
 };

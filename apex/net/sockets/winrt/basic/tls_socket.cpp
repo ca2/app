@@ -1,3 +1,4 @@
+#include "framework.h"
 
 
 namespace sockets
@@ -27,5 +28,6 @@ namespace sockets
 
 
 } // namespace sockets
+
 
 

@@ -252,6 +252,18 @@
     <Filter Include="Source Files\primitive\data">
       <UniqueIdentifier>{835c7b7e-b728-418f-b4e6-dbd3ecab7f7e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\crypto">
+      <UniqueIdentifier>{2c023ae4-19da-43f2-98ec-7bd160bb2def}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\crypto\openssl">
+      <UniqueIdentifier>{05147215-12a4-40cf-b2b7-d8f8d5368a10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\crypto\openssl">
+      <UniqueIdentifier>{ef60f9ff-0945-49f5-81d9-12fa6c3dae42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\crypto\macos">
+      <UniqueIdentifier>{df2a4f13-4c81-43cc-8afc-41791d4c6d1f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -1490,6 +1502,39 @@
     <ClInclude Include="platform\machine_event.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
+    <ClInclude Include="crypto\openssl\hasher.h">
+      <Filter>Header Files\crypto\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\hasher.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\crypto.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\_crypto.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\_.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\openssl\rsa.h">
+      <Filter>Header Files\crypto\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\rsa.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\openssl\_openssl.h">
+      <Filter>Header Files\crypto\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\hasher_algorithm.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\openssl\hasher_algorithm.h">
+      <Filter>Header Files\crypto\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\http_base_socket.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\command_line.cpp">
@@ -1587,9 +1632,6 @@
     </ClCompile>
     <ClCompile Include="net\sockets\bsd\ssl\initializer.cpp">
       <Filter>Source Files\net\sockets\bsd\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\webserver\http_base_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\webserver</Filter>
     </ClCompile>
     <ClCompile Include="net\sockets\bsd\webserver\httpd_socket.cpp">
       <Filter>Source Files\net\sockets\bsd\webserver</Filter>
@@ -1706,9 +1748,6 @@
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
     <ClCompile Include="net\sockets\bsd\sockets.cpp">
-      <Filter>Source Files\net\sockets\bsd</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\_system_sockets.cpp">
       <Filter>Source Files\net\sockets\bsd</Filter>
     </ClCompile>
     <ClCompile Include="net\sockets\sockets_base.cpp">
@@ -1839,12 +1878,6 @@
     </ClCompile>
     <ClCompile Include="node\windows_common\application.cpp">
       <Filter>Source Files\node\windows_common</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_crypto.cpp">
-      <Filter>Source Files\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_openssl.cpp">
-      <Filter>Source Files\crypto</Filter>
     </ClCompile>
     <ClCompile Include="compress\zip\context.cpp">
       <Filter>Source Files\compress\zip</Filter>
@@ -2199,6 +2232,42 @@
     </ClCompile>
     <ClCompile Include="os\windows\menu.cpp">
       <Filter>Source Files\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\openssl\hasher.cpp">
+      <Filter>Source Files\crypto\openssl</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\hasher.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\openssl\hasher_algorithm.cpp">
+      <Filter>Source Files\crypto\openssl</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\hasher_algorithm.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\openssl\rsa.cpp">
+      <Filter>Source Files\crypto\openssl</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\rsa.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\macos\rsa.cpp">
+      <Filter>Source Files\crypto\macos</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\openssl\crypto.cpp">
+      <Filter>Source Files\crypto\openssl</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\openssl\_.cpp">
+      <Filter>Source Files\crypto\openssl</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\_system_sockets.cpp">
+      <Filter>Source Files\net\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\http_base_socket.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

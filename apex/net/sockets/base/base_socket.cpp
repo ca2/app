@@ -77,10 +77,14 @@ namespace sockets
       // Line protocol
       ,m_bLineProtocol(false)
       ,m_skip_c(false)
-#if !defined(BSD_STYLE_SOCKETS)
-      ,m_event(h.get_context_application())
-#endif
+//#if !defined(BSD_STYLE_SOCKETS)
+      //,m_event(h.get_())
+//#endif
    {
+
+      m_bErrorReading = false;
+      m_bErrorWriting = false;
+      m_bWaitingResponse = false;
       m_pmemfileInput = nullptr;
       m_iBindPort    = -1;
       m_tickStart.Now();
@@ -127,16 +131,25 @@ namespace sockets
 
    void base_socket::OnWrite()
    {
+
    }
 
 
    void base_socket::OnException()
    {
+      
+
+#ifdef BSD_STYLE_SOCKETS
+
       // %! exception doesn't always mean something bad happened, this code should be reworked
       // errno valid here?
       int err = SoError();
-      FATAL(log_this, "exception on select %d %s" , err, __cstr(bsd_socket_error(err)));
+      FATAL(log_this, "exception on select %d %s" , err, __str(bsd_socket_error(err)));
+
+#endif
+
       SetCloseAndDelete();
+
    }
 
 
@@ -158,7 +171,11 @@ namespace sockets
    void base_socket::close()
    {
 
+#ifdef BSD_STYLE_SOCKETS
+
       m_psslcontext.release();
+
+#endif
 
    }
 
@@ -212,6 +229,7 @@ namespace sockets
    return s;
    }
    */
+
 
    void base_socket::attach(SOCKET s)
    {
@@ -675,7 +693,9 @@ namespace sockets
    void base_socket::CopyConnection(base_socket * psocket)
    {
 
+#ifdef BSD_STYLE_SOCKETS
       m_psslcontext = psocket->m_psslcontext;
+#endif
       //m_ssl_ctx = psocket->m_ssl_ctx; ///< ssl context
       //m_ssl_session = psocket->m_ssl_session; ///< ssl session
       //ssl_method() = psocket->ssl_method(); ///< ssl method
@@ -698,13 +718,14 @@ namespace sockets
 
       psocket->m_socket = INVALID_SOCKET;
 
+#ifdef BSD_STYLE_SOCKETS
       if (psocket->m_psslcontext)
       {
 
          psocket->m_psslcontext.release();
 
       }
-
+#endif
       //psocket->m_psslcontext->m_iSslCtxRetry = 0;
       //psocket->m_psslcontext->m_ssl = nullptr;
       //psocket->m_psslcontext->m_sbio = nullptr;
@@ -787,12 +808,18 @@ namespace sockets
    }
 
 
+#if defined(BSD_STYLE_SOCKETS)
+
+
    void base_socket::SetSocks4Host(const string & host)
    {
 
       System.sockets().net().convert(m_socks4_host, host);
 
    }
+
+
+#endif
 
 
    bool base_socket::Socks4()
@@ -2644,6 +2671,8 @@ namespace sockets
    void base_socket::free_ssl_session()
    {
 
+#ifdef BSD_STYLE_SOCKETS
+
       sync_lock sl(mutex());
 
       if (m_psslcontext->m_pclientcontext->get_context_session() != nullptr)
@@ -2653,6 +2682,8 @@ namespace sockets
 
       }
 
+#endif
+
    }
 
 
@@ -2661,12 +2692,14 @@ namespace sockets
 
       sync_lock sl(mutex());
 
+#ifdef BSD_STYLE_SOCKETS
       if (m_psslcontext->m_pclientcontext->m_psslsession == nullptr)
       {
 
          m_psslcontext->m_pclientcontext->m_psslsession = SSL_get1_session(m_psslcontext->m_ssl);
 
       }
+#endif
 
    }
 

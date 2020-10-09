@@ -6,7 +6,7 @@ namespace exception
 
 
    class CLASS_DECL_ACME exception :
-      public elemental
+      public element
    {
    public:
 

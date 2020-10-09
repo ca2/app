@@ -13,7 +13,7 @@ namespace uwp
 
 
       //class os_buffer :
-      //   virtual public ::elemental
+      //   virtual public ::element
       //{
       //public:
 

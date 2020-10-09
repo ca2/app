@@ -3,7 +3,7 @@
 // primitive array is a special array and should be used with care
 // it uses operations like __memmov and memcopy to move objects and does not
 // call constructors and destructors for the elements
-// it is faster than the more elemental arrays, can be faster than raw array
+// it is faster than the more element arrays, can be faster than raw array
 // for many "primitive" types because the arguments are passed as the own
 // "primitive" type data and it is proper for use with primitive data types.
 

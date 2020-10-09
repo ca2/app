@@ -48,12 +48,17 @@ namespace sockets
    public:
 
 
+      memsize m_received;
+      string m_http_date;
+
+
+
       httpd_socket(base_socket_handler& );
       virtual ~httpd_socket();
 
 
 
-      virtual bool read_file(const ::file::path & pcsz,pointer_array < int_array > * prangea = nullptr,const char * pszContentType = nullptr);
+      //virtual bool read_file(const ::file::path & pcsz,pointer_array < int_array > * prangea = nullptr,const char * pszContentType = nullptr);
 
 
 
@@ -71,8 +76,8 @@ namespace sockets
 
 
 
-      memsize m_received;
-      string m_http_date;
+      
+
 
    };
 

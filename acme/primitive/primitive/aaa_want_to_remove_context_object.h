@@ -1,32 +1,32 @@
 #pragma once
 
 
-inline ::elemental * trace_object(::elemental * pobjectContext) { return pobjectContext; }
+inline ::element * trace_object(::element * pobjectContext) { return pobjectContext; }
 
 
 using eobject = cflag < ::e_object >;
 
 
-struct CLASS_DECL_ACME elemental :
-   virtual public elemental
+struct CLASS_DECL_ACME element :
+   virtual public element
 {
 
 
    mutable __pointer(sync)                mutex();
    ::sticker *                            m_psticker;
-   ::elemental *                             get_object(); // Context Object
+   ::element *                             get_object(); // Context Object
    ::acme::application *                  get_context_application(); // Context Application
    ::eobject                              m_eobject;
    //::id                                   m_id;
-   __pointer(__pointer_array(::elemental))     m_preferencea;
+   __pointer(__pointer_array(::element))     m_preferencea;
 
 
-   elemental() : get_object()(nullptr), get_context_application()(nullptr), m_psticker(nullptr) { }
-   elemental(::elemental * pobjectContext);
-   virtual ~elemental() { }
+   element() : get_object()(nullptr), get_context_application()(nullptr), m_psticker(nullptr) { }
+   element(::element * pobjectContext);
+   virtual ~element() { }
 
 
-   virtual ::estatus     initialize(::elemental * pobjectContext) override;
+   virtual ::estatus     initialize(::element * pobjectContext) override;
    virtual ::estatus     finalize() override;
 
 
@@ -38,9 +38,9 @@ struct CLASS_DECL_ACME elemental :
 
    ::acme::application * get_context_application() const { return get_context_application(); }
 
-   ::elemental * get_context_object() const { return get_object(); }
+   ::element * get_context_object() const { return get_object(); }
 
-   inline void set_context_object(::elemental * pobjectContext)
+   inline void set_context_object(::element * pobjectContext)
    {
 
       get_object() = pobjectContext;
@@ -50,7 +50,7 @@ struct CLASS_DECL_ACME elemental :
    }
 
 
-   inline void defer_set_context_object(::elemental * pobjectContext)
+   inline void defer_set_context_object(::element * pobjectContext)
    {
 
       if (::is_null(get_object()) && ::is_set(pobjectContext))
@@ -85,7 +85,7 @@ struct CLASS_DECL_ACME elemental :
 
 
 
-   inline ::elemental * context_trace_object() const { return (::elemental *)this; }
+   inline ::element * context_trace_object() const { return (::element *)this; }
 
 
 
@@ -98,18 +98,18 @@ struct CLASS_DECL_ACME elemental :
    //inline void __throw(::exception::exception * pe) const;
 
 
-   virtual void __tracea(elemental * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
-   virtual void __tracef(elemental * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...);
-   virtual void __tracev(elemental * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
+   virtual void __tracea(element * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
+   virtual void __tracef(element * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...);
+   virtual void __tracev(element * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
 
 
-   virtual e_trace_category trace_category(elemental * pcontext);
+   virtual e_trace_category trace_category(element * pcontext);
    virtual e_trace_category trace_category();
 
 
 
 
-   virtual __pointer(::elemental) clone() const;
+   virtual __pointer(::element) clone() const;
 
 
    virtual sync * get_mutex() const;
@@ -150,7 +150,7 @@ struct CLASS_DECL_ACME elemental :
 
    virtual void dev_log(string str) const;
 
-   ::elemental & operator = (const var & var);
+   ::element & operator = (const var & var);
 
 
 
@@ -181,7 +181,7 @@ struct CLASS_DECL_ACME elemental :
    static u32 s_thread_proc(void * p)
    {
 
-      __pointer(elemental) pdata(p);
+      __pointer(element) pdata(p);
 
       return pdata->thread_proc();
 
@@ -283,7 +283,7 @@ struct CLASS_DECL_ACME elemental :
    //template < typename TYPE >
    //inline ::estatus     destroy(TYPE * & p);
 
-   using elemental::release;
+   using element::release;
 
    template < typename TYPE >
    inline ::estatus     release(__composite(TYPE) & p);

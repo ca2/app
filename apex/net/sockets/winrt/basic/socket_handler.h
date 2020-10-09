@@ -44,17 +44,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
       public:
          /** socket_handler constructor.
          \param log Optional log class pointer */
-         socket_handler(::object * pobject, logger *log = nullptr);
+         socket_handler(::layered * pobjectContext, ::apex::log* plogger = nullptr);
 
          /** socket_handler threadsafe constructor.
          \param ::mutex Externally declared ::mutex var
          \param log Optional log class pointer */
-         socket_handler(::object * pobject,::mutex & ::mutex,logger *log = nullptr);
+         //socket_handler(::object * pobject,::mutex & ::mutex,logger *log = nullptr);
 
          ~socket_handler();
 
          /** get ::mutex context_object for threadsafe operations. */
-         ::mutex & GetMutex() const;
+         ::sync & GetMutex() const;
 
          /** add socket instance to socket ::map. Removal is always automatic. */
          void add(base_socket *);
@@ -87,9 +87,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          /** Called by socket when a socket changes state. */
          void AddList(SOCKET s,list_t which_one,bool add);
 
+
+         virtual bool contains(base_socket* pbasesocket) override;
+
          // Connection pool
          /** find available open connection (used by connection pool). */
-         pool_socket * FindConnection(int type, const string & protocol, const ::net::address &);
+         __pointer(pool_socket) FindConnection(int type, const string & protocol, const ::net::address &);
          /** Enable connection pool (by default disabled). */
          void EnablePool(bool x = true);
          /** Check pool status.
@@ -97,10 +100,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          bool PoolEnabled();
 
          // Socks4
+#if defined(BSD_STYLE_SOCKETS)
          /** Set socks4 server ip that all new tcp sockets should use. */
          void SetSocks4Host(in_addr);
          /** Set socks4 server hostname that all new tcp sockets should use. */
          void SetSocks4Host(const string & );
+#endif
          /** Set socks4 server port number that all new tcp sockets should use. */
          void SetSocks4Port(port_t);
          /** Set optional socks4 userid. */
@@ -168,11 +173,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          socket_map     m_add; ///< Sockets to be added to sockets ::map
          socket_list    m_delete; ///< Sockets to be deleted (failed when add)
       protected:
-         ::mutex & m_mutex; ///< Thread safety ::mutex
+         //::mutex & m_mutex; ///< Thread safety ::mutex
          bool m_b_use_mutex; ///< ::mutex correctly initialized
 
       private:
-         void CheckList(socket_id_list&,const string &); ///< Used by CheckSanity
+         void CheckList(socket_list&,const string &); ///< Used by CheckSanity
          /** remove socket from socket ::map, used by socket class. */
          void remove(base_socket *);
          SOCKET m_maxsock; ///< Highest file descriptor + 1 in active sockets list
@@ -184,13 +189,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          time_t m_tlast; ///< timeout control
 
          // state lists
-         socket_id_list m_fds; ///< Active file descriptor list
-         socket_id_list m_fds_erase; ///< File descriptors that are to be erased from m_sockets
-         socket_id_list m_fds_callonconnect; ///< checklist CallOnConnect
-         socket_id_list m_fds_detach; ///< checklist detach
-         socket_id_list m_fds_timeout; ///< checklist timeout
-         socket_id_list m_fds_retry; ///< checklist retry client connect
-         socket_id_list m_fds_close; ///< checklist close and delete
+         socket_list m_fds; ///< Active file descriptor list
+         socket_list m_fds_erase; ///< File descriptors that are to be erased from m_sockets
+         socket_list m_fds_callonconnect; ///< checklist CallOnConnect
+         socket_list m_fds_detach; ///< checklist detach
+         socket_list m_fds_timeout; ///< checklist timeout
+         socket_list m_fds_retry; ///< checklist retry client connect
+         socket_list m_fds_close; ///< checklist close and delete
          in_addr m_socks4_host; ///< Socks4 server host ip
          port_t m_socks4_port; ///< Socks4 server port number
          string m_socks4_userid; ///< Socks4 userid
@@ -198,11 +203,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          int m_resolv_id; ///< Resolver id counter
          resolv_server *m_resolver; ///< Resolver thread pointer
          port_t m_resolver_port; ///< Resolver listen port
-         socket_bool m_resolve_q; ///< resolve queue
+         socket_flag_map m_resolve_q; ///< resolve queue
          bool m_b_enable_pool; ///< Connection pool enabled if true
          int m_next_trigger_id; ///< Unique trigger id counter
          socket_map m_trigger_src; ///< mapping trigger id to source socket
-         socket_socket_bool m_trigger_dst; ///< mapping trigger id to destination sockets
+         socket_socket_flag_map m_trigger_dst; ///< mapping trigger id to destination sockets
          bool m_slave; ///< Indicates that this is a base_socket_handler run in socket_thread
       };
 

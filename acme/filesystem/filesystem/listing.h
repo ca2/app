@@ -9,7 +9,7 @@ namespace file
 
 
    class CLASS_DECL_ACME listing_provider :
-      virtual public ::elemental
+      virtual public ::element
    {
    public:
 

@@ -56,7 +56,7 @@ CLASS_DECL_AURA ::user::interaction * create_system_message_window(::layered * p
 extern string_map < __pointer(::apex::library) > * g_pmapLibrary;
 
 
-CLASS_DECL_AURA void __simple_tracea(::elemental * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
+CLASS_DECL_AURA void __simple_tracea(::element * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
 
 
 #ifdef WINDOWS
@@ -4716,7 +4716,7 @@ namespace aura
    //}
 
 
-   void system::__tracea(::elemental * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
+   void system::__tracea(::element * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
    {
 
       if (m_ptrace.is_null())

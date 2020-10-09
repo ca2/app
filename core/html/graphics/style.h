@@ -6,7 +6,7 @@ namespace html
 {
 
    
-   class elemental;
+   class element;
 
    
    /*enum edisplay
@@ -48,15 +48,15 @@ namespace html
       static bool parse_border_width(const char * psz, float & f);
       static bool parse_border_color(const char * psz, COLORREF & cr);
 
-      bool get_dimension(bool bParent, id idName, const string & strSubClass, html_data * pdata, ::html::elemental * pelemental, float & f);
-      bool get_surround_box(id idName, const string & strSubClass, html_data * pdata, ::html::elemental * pelemental, ::rectf & rect);
-      bool get_border_box(id idName, const string & strSubClass, html_data * pdata, ::html::elemental * pelemental, border & border);
-      bool get_border_color(id idName, const string & strSubClass, html_data * pdata, ::html::elemental * pelemental, border & border);
+      bool get_dimension(bool bParent, id idName, const string & strSubClass, html_data * pdata, ::html::element * pelemental, float & f);
+      bool get_surround_box(id idName, const string & strSubClass, html_data * pdata, ::html::element * pelemental, ::rectf & rect);
+      bool get_border_box(id idName, const string & strSubClass, html_data * pdata, ::html::element * pelemental, border & border);
+      bool get_border_color(id idName, const string & strSubClass, html_data * pdata, ::html::element * pelemental, border & border);
       // todo
-      // bool get_border_style(id idName, const string & strSubClass, const html_data * pdata, ::html::elemental * pelemental, COLORREF & cr);
-      bool get_color(id idName, const string & strSubClass, html_data * pdata, const ::html::elemental * pelemental, COLORREF & cr);
-      bool get_text(id idName, const string & strSubClass, html_data * pdata, const ::html::elemental * pelemental, string & str);
-      bool get_alpha(const string & strSubClass, html_data * pdata, const ::html::elemental * pelemental, double & d);
+      // bool get_border_style(id idName, const string & strSubClass, const html_data * pdata, ::html::element * pelemental, COLORREF & cr);
+      bool get_color(id idName, const string & strSubClass, html_data * pdata, const ::html::element * pelemental, COLORREF & cr);
+      bool get_text(id idName, const string & strSubClass, html_data * pdata, const ::html::element * pelemental, string & str);
+      bool get_alpha(const string & strSubClass, html_data * pdata, const ::html::element * pelemental, double & d);
 
       bool matches(e_tag etag, const string & strClass, const string & strSubClass, id idName);
       bool matches_border_width(e_tag etag, const string & strClass, const string & strSubClass, id idName, float & f);

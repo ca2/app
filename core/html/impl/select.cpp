@@ -51,12 +51,12 @@ namespace html
       }
 
 
-      void select::implement_phase1(html_data * pdata, ::html::elemental * pelemental)
+      void select::implement_phase1(html_data * pdata, ::html::element * pelemental)
       {
 
          m_bHasChar = true;
 
-         elemental::implement_phase1(pdata, pelemental);
+         element::implement_phase1(pdata, pelemental);
          if (pelemental->m_pbase->get_type() != ::html::base::type_tag)
          {
 
@@ -131,7 +131,7 @@ namespace html
          if (m_pelemental->m_pbase->get_type() != ::html::base::type_tag)
             return;
 
-         ::html::impl::elemental::layout_phase1_end(pdata);
+         ::html::impl::element::layout_phase1_end(pdata);
 
       }
 
@@ -140,7 +140,7 @@ namespace html
          if (m_pelemental->m_pbase->get_type() != ::html::base::type_tag)
             return;
 
-         ::html::impl::elemental::layout_phase3_end(pdata);
+         ::html::impl::element::layout_phase3_end(pdata);
 
       }
 
@@ -183,7 +183,7 @@ namespace html
 
          }
 
-         elemental::layout_phase3(pdata);
+         element::layout_phase3(pdata);
 
          m_pcombo->place(m_box);
 

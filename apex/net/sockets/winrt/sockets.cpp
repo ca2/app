@@ -5,88 +5,151 @@ namespace sockets
 {
 
 
-   sockets::sockets(::layered * pobjectContext) :
-      ::object(pobject),
-      ::apex::department(pobject),
-      
-      m_mutexResolvCache(pobject)
+   sockets::sockets()
    {
 
-      m_pajpbasesocketinit    = nullptr;
+      //m_pajpbasesocketinit    = nullptr;
 
    }
 
 
-   bool sockets::init1()
+   sockets::~sockets()
    {
 
-      m_spnet = __new(::sockets::net(get_object()));
+
+   }
+
+
+   ::estatus sockets::initialize(::layered* pobjectContext)
+   {
+
+      auto estatus = ::apex::department::initialize(pobjectContext);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      //System.math().random_bytes(m_baTicketKey, sizeof(m_baTicketKey));
+
+
+      //m_psslinit = new ::sockets::SSLInitializer(get_context_object());
+
+      m_spnet = __create_new<::sockets::net>();
       //m_spnet.create(this);
 
-      if(m_spnet.is_null())
+      if (m_spnet.is_null())
       {
 
          m_iErrorCode = -1986;
 
-         return false;
+         return error_failed;
 
       }
 
 
-      if(!m_spnet->initialize())
-         return false;
-
-      if(Application.is_system())
+      if (!m_spnet->initialize(this))
       {
 
-         /*            ::sockets::SSLInitializer ssl_init(m_psystem);*/
+         return error_failed;
 
-         //create_factory <::http::memory_file > ();
-         //create_factory < ::sockets::winrt_address  >  (System.template type_info < ::net::address_base > ());
-         /*            create_factory < ::sockets::ipv4_address  > ();
-                  create_factory < ::sockets::ipv6_address  > ();*/
-
-         m_pajpbasesocketinit = new AjpBaseSocket::Initializer;
       }
+
+      //if (!::apex::department::initialize())
+      //{
+
+      //   return error_failed;
+
+      //}
+
+
+      //m_spportforward.create();
+
+      //m_pajpaxissocketinit = new AjpBaseSocket::Initializer;
 
       m_countHttpPostBoundary = 0;
 
-      return true;
+      return ::success;
 
    }
 
-   bool sockets::finalize()
+
+   //bool sockets::init1()
+   //{
+
+   //   m_spnet = __new(::sockets::net(get_object()));
+   //   //m_spnet.create(this);
+
+   //   if(m_spnet.is_null())
+   //   {
+
+   //      m_iErrorCode = -1986;
+
+   //      return false;
+
+   //   }
+
+
+   //   if(!m_spnet->initialize())
+   //      return false;
+
+   //   if(Application.is_system())
+   //   {
+
+   //      /*            ::sockets::SSLInitializer ssl_init(m_psystem);*/
+
+   //      //create_factory <::http::memory_file > ();
+   //      //create_factory < ::sockets::winrt_address  >  (System.template type_info < ::net::address_base > ());
+   //      /*            create_factory < ::sockets::ipv4_address  > ();
+   //               create_factory < ::sockets::ipv6_address  > ();*/
+
+   //      m_pajpbasesocketinit = new AjpBaseSocket::Initializer;
+   //   }
+
+   //   m_countHttpPostBoundary = 0;
+
+   //   return true;
+
+   //}
+
+
+   void sockets::finalize()
    {
 
-      bool bOk = true;
+      //bool bOk = true;
 
-      if(Application.is_system())
-      {
-         if(m_pajpbasesocketinit != nullptr)
-         {
-            delete m_pajpbasesocketinit;
-            m_pajpbasesocketinit = nullptr;
-         }
-      }
+      //if(Application.is_system())
+      //{
+      //   if(m_pajpbasesocketinit != nullptr)
+      //   {
+      //      delete m_pajpbasesocketinit;
+      //      m_pajpbasesocketinit = nullptr;
+      //   }
+      //}
 
-      return bOk;
+      //return bOk;
 
    }
 
 
-   void sockets::http_config_proxy(const char * pszUrl, http_tunnel * psocket)
-   {
-      UNREFERENCED_PARAMETER(pszUrl);
-      //UNREFERENCED_PARAMETER(psocket);
-      //__throw(not_implemented());
-      psocket->m_bDirect = true;
-   }
+   //void sockets::http_config_proxy(const char * pszUrl, http_tunnel * psocket)
+   //{
+   //   UNREFERENCED_PARAMETER(pszUrl);
+   //   //UNREFERENCED_PARAMETER(psocket);
+   //   //__throw(not_implemented());
+   //   psocket->m_bDirect = true;
+   //}
 
 
    ::sockets::net & sockets::net()
    {
+
       return *m_spnet;
+
    }
+
 
 } // namespace kar
 

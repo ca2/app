@@ -20,7 +20,7 @@ namespace experience
       }
 
 
-      ::elemental * library::new_object(::layered * pobjectContext, const char * pszClass)
+      ::element * library::new_object(::layered * pobjectContext, const char * pszClass)
       {
 
          if(string(pszClass) == "experience")

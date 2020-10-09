@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-elemental::~elemental()
+element::~element()
 {
 
 }
@@ -13,7 +13,7 @@ elemental::~elemental()
 
 
 
-stream & elemental::do_property_exchange(stream & stream) const
+stream & element::do_property_exchange(stream & stream) const
 {
 
    ASSERT(stream.is_storing());
@@ -22,7 +22,7 @@ stream & elemental::do_property_exchange(stream & stream) const
 
    set += object_storing;
 
-   ((elemental *)this)->exchange(set);
+   ((element *)this)->exchange(set);
 
    stream << set;
 
@@ -32,13 +32,13 @@ stream & elemental::do_property_exchange(stream & stream) const
 
 
 
-void elemental::exchange(::stream & stream)
+void element::exchange(::stream & stream)
 {
 
 }
 
 
-stream & elemental::do_property_exchange(stream & stream)
+stream & element::do_property_exchange(stream & stream)
 {
 
    ASSERT(stream.is_loading());
@@ -55,10 +55,10 @@ stream & elemental::do_property_exchange(stream & stream)
 
 }
 
-stream & elemental::write(::stream & stream) const
+stream & element::write(::stream & stream) const
 {
 
-   elemental::write(stream);
+   element::write(stream);
 
    if (has_flag(object_default_property_exchange))
    {
@@ -72,10 +72,10 @@ stream & elemental::write(::stream & stream) const
 }
 
 
-stream & elemental::read(::stream & stream)
+stream & element::read(::stream & stream)
 {
 
-   elemental::read(stream);
+   element::read(stream);
 
    if (has_flag(object_default_property_exchange))
    {

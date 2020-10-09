@@ -213,6 +213,7 @@ namespace sockets
       /** get counter of number of bytes sent. */
       u64 GetBytesSent(bool clear = false) override;
 
+#if defined(BSD_STYLE_SOCKETS)
       /** Socks4 specific callback. */
       void OnSocks4Connect() override;
       /** Socks4 specific callback. */
@@ -220,6 +221,7 @@ namespace sockets
       /** Socks4 specific callback.
       \return 'need_more' */
       bool OnSocks4Read() override;
+#endif
 
       /** Callback executed when resolver thread has finished a resolve request. */
       void OnResolved(i32 id, const ::net::address & addr) override;

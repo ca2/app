@@ -28,7 +28,7 @@ namespace html
       table * table_row::get_table()
       {
 
-         ::html::elemental * pelemental = m_pelemental;
+         ::html::element * pelemental = m_pelemental;
 
          while(true)
          {
@@ -48,12 +48,12 @@ namespace html
       }
 
 
-      void table_row::implement_phase1(html_data * pdata, ::html::elemental * pelemental)
+      void table_row::implement_phase1(html_data * pdata, ::html::element * pelemental)
       {
 
          m_bHasChar = true;
 
-         elemental::implement_phase1(pdata, pelemental);
+         element::implement_phase1(pdata, pelemental);
 
          table * ptable = get_table();
 
@@ -256,7 +256,7 @@ namespace html
       }
 
 
-      bool table_row::use_in_final_layout(::html::impl::elemental * pimplChild)
+      bool table_row::use_in_final_layout(::html::impl::element * pimplChild)
       {
 
          if(pimplChild->m_pelemental->m_etag == tag_tr)

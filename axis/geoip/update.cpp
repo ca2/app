@@ -199,12 +199,19 @@ i16 parse_http_proxy(char **proxy_host, i32 *port) {
 }
 
 
+#ifdef BSD_STYLE_SOCKETS
+
+
 string GeoIP_get_host_or_proxy()
 {
 
    return ip_reverse(GeoIPUpdateHost);
 
 }
+
+
+#endif
+
 
 //thread_pointer < hostent > t_phostentGeoip;
 

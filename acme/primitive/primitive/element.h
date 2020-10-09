@@ -19,7 +19,7 @@ inline ::object* __object(::layered* playered);
 // Shared with:
 // Objective-C++
 
-class CLASS_DECL_ACME elemental
+class CLASS_DECL_ACME element
 {
 private:
 
@@ -36,14 +36,14 @@ public:
 
 
 #if OBJ_REF_DBG
-   inline elemental() : m_pmutex(nullptr), m_pobjectContext(nullptr), m_pobjrefdbg(nullptr), m_countReference(0) { add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_ADD_NOTE("Initial Reference")); }
-   inline elemental(const eobject& eobject) : m_pmutex(nullptr), m_pobjectContext(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(eobject) { add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_ADD_NOTE("Initial Reference (2)")); }
+   inline element() : m_pmutex(nullptr), m_pobjectContext(nullptr), m_pobjrefdbg(nullptr), m_countReference(0) { add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_ADD_NOTE("Initial Reference")); }
+   inline element(const eobject& eobject) : m_pmutex(nullptr), m_pobjectContext(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(eobject) { add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_ADD_NOTE("Initial Reference (2)")); }
 #else
-   inline elemental() : m_pmutex(nullptr), m_pobjectContext(nullptr), m_countReference(1) { }
-   inline elemental(const eobject & eobject) : m_pmutex(nullptr), m_pobjectContext(nullptr),m_countReference(1), m_eobject(eobject) { }
+   inline element() : m_pmutex(nullptr), m_pobjectContext(nullptr), m_countReference(1) { }
+   inline element(const eobject & eobject) : m_pmutex(nullptr), m_pobjectContext(nullptr),m_countReference(1), m_eobject(eobject) { }
 #endif
 
-   virtual ~elemental();
+   virtual ~element();
 
 
    virtual void assert_valid() const;
@@ -54,8 +54,8 @@ public:
 
    obj_ref_dbg* m_pobjrefdbg;
 
-   void add_ref_history(elemental* p, const char* pszObjRefDbg);
-   void dec_ref_history(elemental* p, const char* pszObjRefDbgNotUsedCurrently);
+   void add_ref_history(element* p, const char* pszObjRefDbg);
+   void dec_ref_history(element* p, const char* pszObjRefDbgNotUsedCurrently);
    void check_pending_releases();
 
 #endif
@@ -63,7 +63,7 @@ public:
    inline bool is_set() const { return ::is_set(this); }
 
    // sync/mutex
-   inline sync* mutex() const { return is_set() ? ((::elemental*)this)->m_pmutex : nullptr; }
+   inline sync* mutex() const { return is_set() ? ((::element*)this)->m_pmutex : nullptr; }
    void set_mutex(sync* psync);
    void defer_create_mutex();
 
@@ -156,12 +156,12 @@ public:
       HTHREAD * phthread = nullptr);
 
 
-   virtual ::estatus add_composite(::elemental* pobject);
-   virtual ::estatus add_reference(::elemental* pobject);
+   virtual ::estatus add_composite(::element* pobject);
+   virtual ::estatus add_reference(::element* pobject);
 
 
-   virtual ::estatus release_composite(::elemental* pobject);
-   virtual ::estatus release_reference(::elemental* pobject);
+   virtual ::estatus release_composite(::element* pobject);
+   virtual ::estatus release_reference(::element* pobject);
 
    virtual ::estatus set_generic_object_name(const char* pszName);
 
@@ -169,7 +169,7 @@ public:
    virtual void delete_this();
 
    virtual const char* debug_note() const;
-   virtual ::elemental * clone() const;
+   virtual ::element * clone() const;
 
    inline void set(const ::eobject & eobject) { m_eobject |= eobject; }
    inline void clear(const ::eobject& eobject) { m_eobject -= eobject; }
@@ -200,13 +200,13 @@ public:
    inline void defer_set_storing() { if (!is_storing()) set_storing(); }
    inline void defer_set_loading() { if (!is_loading()) set_loading(); }
 
-   inline ::elemental * context_trace_object() const { return (::elemental *)this; }
+   inline ::element * context_trace_object() const { return (::element *)this; }
 
-   virtual void __tracea(elemental * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
-   virtual void __tracef(elemental * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...);
-   virtual void __tracev(elemental * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
+   virtual void __tracea(element * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
+   virtual void __tracef(element * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...);
+   virtual void __tracev(element * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
 
-   virtual e_trace_category trace_category(elemental * pcontext);
+   virtual e_trace_category trace_category(element * pcontext);
    virtual e_trace_category trace_category();
 
 

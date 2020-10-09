@@ -20,6 +20,8 @@ namespace net
    public:
 
 
+#ifdef BSD_STYLE_SOCKETS
+
       union address_union
       {
 
@@ -44,16 +46,32 @@ namespace net
       int   m_iLen;
 
 
+#elif defined(WINRT_SOCKETS)
+
+      Windows::Networking::HostName^ m_hostname;
+      port_t      m_port;
+
+
+#else
+
+#error "what sockets?"
+
+
+#endif
+
+
       address();
+      address(const address& address);
       address(i32 family, port_t port = 0);
       address(const string & strAddress, port_t port = 0);
       address(::object * pobject, const string & strAddress, const string & strServiceName);
+#if defined(BSD_STYLE_SOCKETS)
       address(const in_addr & a, port_t port = 0);
       address(const in6_addr & a, port_t port = 0);
       address(const sockaddr_in & a);
       address(const sockaddr_in6 & a, int iLen = -1);
       address(const sockaddr & sa, int iLen = -1);
-      address(const address & address);
+#endif
       ~address();
 
 
@@ -83,20 +101,23 @@ namespace net
       inline i32 get_family() const;
 
 
+#if defined(BSD_STYLE_SOCKETS)
+
       inline sockaddr * sa();
       inline const sockaddr * sa() const;
       i32 sa_len() const;
 
       void * addr_data();
 
+#endif
 
       void from_string(const string & strAddress);
       string to_string() const;
 
-
+#ifdef BSD_STYLE_SOCKETS
       inline void SetFlowinfo(u32 x);
       inline u32 GetFlowinfo();
-
+#endif
 
 #ifndef WINDOWS
       inline void SetScopeId(u32 x);
@@ -112,7 +133,37 @@ namespace net
    inline i32 address::get_family() const
    {
 
+#if defined(BSD_STYLE_SOCKETS)
+
       return u.s.m_family;
+
+#elif defined(WINRT_SOCKETS)
+
+      if (is_ipv4())
+      {
+
+         return AF_INET;
+
+      }
+      else if (is_ipv6())
+      {
+
+         return AF_INET6;
+
+      }
+      else
+      {
+
+         return -1;
+
+      }
+
+#else
+
+#error "what socket?"
+
+#endif
+
 
    }
 
@@ -121,7 +172,21 @@ namespace net
    inline bool address::is_ipv4() const
    {
 
+
+#if defined(BSD_STYLE_SOCKETS)
+
       return u.s.m_family == AF_INET;
+
+#elif defined(WINRT_SOCKETS)
+
+      return false;
+
+#else
+
+#error "what socket?"
+
+#endif
+
 
    }
 
@@ -129,7 +194,20 @@ namespace net
    inline bool address::is_ipv6() const
    {
 
+
+#if defined(BSD_STYLE_SOCKETS)
+
       return u.s.m_family == AF_INET6;
+
+#elif defined(WINRT_SOCKETS)
+
+      return false;
+
+#else
+
+#error "what socket?"
+
+#endif
 
    }
 
@@ -144,6 +222,10 @@ namespace net
          ;
 
    }
+
+
+
+#ifdef BSD_STYLE_SOCKETS
 
 
    inline sockaddr * address::sa()
@@ -162,6 +244,12 @@ namespace net
    }
 
 
+#endif
+
+
+#ifdef BSD_STYLE_SOCKETS
+
+
    inline void address::SetFlowinfo(u32 x)
    {
       ASSERT(is_ipv6());
@@ -174,6 +262,9 @@ namespace net
       ASSERT(is_ipv6());
       return u.m_addr6.sin6_flowinfo;
    }
+
+
+#endif
 
 
 #ifndef WINDOWS

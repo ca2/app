@@ -1,7 +1,7 @@
 #pragma once
 
 
-typedef CLASS_DECL_ACME __pointer_array(::elemental) object_array;
+typedef CLASS_DECL_ACME __pointer_array(::element) object_array;
 
 
 namespace data

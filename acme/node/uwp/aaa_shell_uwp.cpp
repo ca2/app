@@ -133,7 +133,7 @@ namespace uwp
    }
 
 
-   shell::e_folder shell::get_folder_type(::elemental * pobject, const char * lpcsz)
+   shell::e_folder shell::get_folder_type(::element * pobject, const char * lpcsz)
    {
 
       return get_folder_type(pobject, ::str::international::utf8_to_unicode(lpcsz));
@@ -141,7 +141,7 @@ namespace uwp
    }
 
 
-   shell::e_folder shell::get_folder_type(::elemental * pobject, const unichar * lpcszPath)
+   shell::e_folder shell::get_folder_type(::element * pobject, const unichar * lpcszPath)
    {
 
       string strPath;

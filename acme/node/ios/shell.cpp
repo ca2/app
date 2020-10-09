@@ -1302,7 +1302,7 @@ namespace ios
 
 
 
-//   e_folder ios::get_folder_type(::elemental * pobject, const char * pcsz)
+//   e_folder ios::get_folder_type(::element * pobject, const char * pcsz)
 //   {
 //
 //      return get_folder_type(papp, ::str::international::utf8_to_unicode(pcsz));
@@ -1310,7 +1310,7 @@ namespace ios
 //   }
 
 
-//   e_folder ios::get_folder_type(::elemental * pobject, const unichar * lpcszPath)
+//   e_folder ios::get_folder_type(::element * pobject, const unichar * lpcszPath)
 //   {
 //
 //      string strPath;
@@ -1994,7 +1994,7 @@ namespace ios
 
    }
 
-   shell::e_folder shell::get_folder_type(::elemental * pobject, const char * lpcszPath)
+   shell::e_folder shell::get_folder_type(::element * pobject, const char * lpcszPath)
    {
 
       string strPath(lpcszPath);

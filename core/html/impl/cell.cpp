@@ -33,7 +33,7 @@ namespace html
       table * cell::get_table()
       {
 
-         ::html::elemental * pelemental = m_pelemental;
+         ::html::element * pelemental = m_pelemental;
 
          while(true)
          {
@@ -56,7 +56,7 @@ namespace html
       table_row * cell::get_row()
       {
 
-         ::html::elemental * pelemental = m_pelemental;
+         ::html::element * pelemental = m_pelemental;
 
          while(true)
          {
@@ -76,7 +76,7 @@ namespace html
       }
 
 
-      void cell::implement_phase1(html_data * pdata, ::html::elemental * pelemental)
+      void cell::implement_phase1(html_data * pdata, ::html::element * pelemental)
       {
 
          m_bHasChar = true;
@@ -408,7 +408,7 @@ namespace html
       void cell::layout_phase1_end(html_data * pdata)
       {
 
-         ::html::impl::elemental::layout_phase1_end(pdata);
+         ::html::impl::element::layout_phase1_end(pdata);
 
       }
 
@@ -455,7 +455,7 @@ namespace html
       ::sizef cell::get_content_size()
       {
 
-         auto size = ::html::impl::elemental::get_content_size();
+         auto size = ::html::impl::element::get_content_size();
 
          //::sizef.cx -= get_table()->m_iCellSpacing;
 
@@ -487,17 +487,17 @@ namespace html
       float cell::get_extra_content_height()
       {
 
-         return ::html::impl::elemental::get_extra_content_height();
+         return ::html::impl::element::get_extra_content_height();
          /*if (m_iRowBeg == 0 || m_iRowBeg == get_table()->m_rowptra.get_upper_bound())
          {
 
-            return elemental::get_extra_content_cy() + get_table()->m_iCellSpacing + get_table()->m_iCellSpacing / 2.f;
+            return element::get_extra_content_cy() + get_table()->m_iCellSpacing + get_table()->m_iCellSpacing / 2.f;
 
          }
          else
          {
 
-            return elemental::get_extra_content_cy() + get_table()->m_iCellSpacing;
+            return element::get_extra_content_cy() + get_table()->m_iCellSpacing;
 
          }*/
 
@@ -507,7 +507,7 @@ namespace html
       ::pointf cell::get_content_top_left()
       {
 
-         auto point = ::html::impl::elemental::get_content_top_left();
+         auto point = ::html::impl::element::get_content_top_left();
 
          /*if(m_iColBeg == 0)
          {
@@ -545,7 +545,7 @@ namespace html
             for(i32 i = 0; i < prow->m_pelemental->m_elementalptra.get_count(); i++)
             {
 
-               ::html::elemental * pelemental = prow->m_pelemental->m_elementalptra[i];
+               ::html::element * pelemental = prow->m_pelemental->m_elementalptra[i];
 
                if(pelemental == m_pelemental)
                   break;
@@ -653,7 +653,7 @@ namespace html
 
          text::_001OnDraw(pdata);
 
-         //::html::impl::elemental::_001OnDraw(pdata);
+         //::html::impl::element::_001OnDraw(pdata);
 
       }
 

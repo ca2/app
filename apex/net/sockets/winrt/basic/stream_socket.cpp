@@ -1,9 +1,10 @@
 #include "framework.h"
-#include "apex/net/net_sockets.h"
+#include "apex/net/sockets/_.h"
 
 
 namespace sockets
 {
+
 
    stream_socket::stream_socket(base_socket_handler& h) :
       ::object(h.get_context_application()),
@@ -18,49 +19,62 @@ namespace sockets
       ,m_b_retry_connect(false)
       ,m_shutdown(0)
    {
-      m_posdata = new os_data;
+      
    }
 
 
    stream_socket::~stream_socket()
    {
-      delete m_posdata;
-      //if(m_streamsocket != nullptr)
-      {
-         //m_streamsocket->Close();
 
-      }
    }
 
 
    void stream_socket::SetConnecting(bool x)
    {
+      
       if (x != m_bConnecting)
       {
+         
          m_bConnecting = x;
+
          if (x)
          {
+            
             SetTimeout( GetConnectTimeout() );
+
          }
          else
          {
+            
             SetTimeout( 0 );
+
          }
+
       }
+
    }
 
 
    bool stream_socket::Connecting()
    {
+      
       return m_bConnecting;
+
    }
 
 
    bool stream_socket::Ready()
    {
+      
       if (GetSocket() != INVALID_SOCKET && !Connecting() && !IsCloseAndDelete())
+      {
+
          return true;
+
+      }
+
       return false;
+
    }
 
 
@@ -167,10 +181,11 @@ namespace sockets
 
    }
 
+
    port_t stream_socket::GetRemotePort()
    {
 
-      return Session.sockets().net().service_port(m_posdata->m_streamsocket->Information->RemotePort);
+      return System.sockets().net().service_port(m_streamsocket->Information->RemotePort);
 
    }
 
@@ -178,7 +193,7 @@ namespace sockets
    ::net::address stream_socket::GetRemoteAddress()
    {
 
-      return ::net::address(get_context_application(), m_posdata->m_streamsocket->Information->RemoteAddress->CanonicalName, m_posdata->m_streamsocket->Information->RemotePort);
+      return ::net::address(get_context_application(), m_streamsocket->Information->RemoteAddress->CanonicalName, m_streamsocket->Information->RemotePort);
 
    }
 
@@ -186,7 +201,7 @@ namespace sockets
    port_t stream_socket::GetLocalPort()
    {
 
-      return Session.sockets().net().service_port(m_posdata->m_streamsocket->Information->LocalPort);
+      return System.sockets().net().service_port(m_streamsocket->Information->LocalPort);
 
    }
 
@@ -194,16 +209,20 @@ namespace sockets
    ::net::address stream_socket::GetLocalAddress()
    {
 
-      return ::net::address(get_context_application(), m_posdata->m_streamsocket->Information->LocalAddress->CanonicalName, m_posdata->m_streamsocket->Information->LocalPort);
+      return ::net::address(get_context_application(), m_streamsocket->Information->LocalAddress->CanonicalName, m_streamsocket->Information->LocalPort);
 
    }
 
 
    bool stream_socket::is_connecting()
    {
+
       return m_bConnecting;
+
    }
 
 
 } // namespace sockets
+
+
 

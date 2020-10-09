@@ -37,7 +37,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
       /** Async DNS resolver thread.
       \ingroup async */
       class resolv_server :
-         public go_thread
+         public ::thread
       {
       public:
 
@@ -47,7 +47,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          bool m_ready;
 
 
-         resolv_server(::object * pobject, port_t);
+         resolv_server(::layered * pobjectContext, port_t);
          ~resolv_server();
 
 

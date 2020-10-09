@@ -17,7 +17,7 @@ namespace acme
 
       ::userex::pane_tab_view *              m_pmainpane;
 
-      //__pointer(::elemental)                           m_spobjectUserFs;
+      //__pointer(::element)                           m_spobjectUserFs;
 
       __composite(::userfs::userfs)                   m_puserfs;
 
@@ -67,7 +67,7 @@ namespace acme
       application();
       virtual ~application();
 
-      virtual ::estatus initialize(::elemental * pobjectContext) override;
+      virtual ::estatus initialize(::element * pobjectContext) override;
 
       virtual ::estatus process_init() override;
 
@@ -222,7 +222,7 @@ namespace acme
       
       //   bool GetPrinterDeviceDefaults(PRINTDLG* pPrintDlg);
 
-      // run this cast as an embedded elemental.
+      // run this cast as an embedded element.
       bool RunEmbedded();
 
       // run this cast as an OLE automation server.
@@ -512,7 +512,7 @@ namespace acme
 
       virtual void data_on_after_change(::message::message * pmessage);
 
-      virtual ::user::document * open_document_file(::elemental * pobject, const char * pszFileName);
+      virtual ::user::document * open_document_file(::element * pobject, const char * pszFileName);
 
 
 
@@ -560,7 +560,7 @@ namespace acme
       //virtual ~application();
 
 
-      //virtual ::estatus     initialize(::elemental* pobjectContext) override;
+      //virtual ::estatus     initialize(::element* pobjectContext) override;
 
 
       //virtual void install_message_routing(::channel * pchannel) override;
@@ -607,9 +607,9 @@ namespace acme
 
       //virtual void SetCurrentHandles() override;
 
-      virtual ::draw2d::icon* set_icon(elemental* pobject, ::draw2d::icon* picon, bool bBigIcon) override;
+      virtual ::draw2d::icon* set_icon(element* pobject, ::draw2d::icon* picon, bool bBigIcon) override;
 
-      virtual ::draw2d::icon* get_icon(elemental* pobject, bool bBigIcon) const override;
+      virtual ::draw2d::icon* get_icon(element* pobject, bool bBigIcon) const override;
 
       virtual void on_control_event(::user::control_event* pevent) override;
 

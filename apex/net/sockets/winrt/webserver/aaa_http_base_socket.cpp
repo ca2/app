@@ -46,23 +46,23 @@ namespace sockets
    void http_base_socket::OnHeaderComplete()
    {
       http_socket::OnHeaderComplete();
-      TRACE0("\n");
-      TRACE0(m_request.attr("http_protocol").get_string() + "://" + m_request.header("host").get_string() + m_request.attr("request_uri").get_string() + "\n");
+      //TRACE0("\n");
+      //TRACE0(m_request.attr("http_protocol").get_string() + "://" + m_request.header("host").get_string() + m_request.attr("request_uri").get_string() + "\n");
       if(m_request.attr("request_uri").get_string().find("/passthrough/") >= 0)
       {
-         TRACE0( "Passthrought");
+         //TRACE0( "Passthrought");
       }
       if(m_request.headers().has_property("user-agent"))
       {
-         TRACE0("user-agent: " + m_request.header("user-agent") + "\n");
+         //TRACE0("user-agent: " + m_request.header("user-agent") + "\n");
       }
       if(m_request.headers().has_property("from"))
       {
-         TRACE0("from: " + m_request.header("from") + "\n");
+         //TRACE0("from: " + m_request.header("from") + "\n");
       }
       if(m_request.headers().has_property("accept-language"))
       {
-         TRACE0("accept-language: " + m_request.header("accept-language") + "\n");
+         //TRACE0("accept-language: " + m_request.header("accept-language") + "\n");
       }
 
       if (m_body_size_left > 0)
@@ -143,12 +143,12 @@ namespace sockets
 
       }
 
-      m_response.m_propertysetHeader.set(__id(content_length), (i64) m_response.file().get_length());
+      m_response.m_propertysetHeader.set_at(__id(content_length), (i64) m_response.file()->get_size());
 
       for(int i = 0; i < m_response.cookies().get_size(); i++)
       {
       
-         m_response.m_propertysetHeader.add(__id(set_cookie), m_response.cookies().element_at(i)->get_cookie_string());
+         m_response.m_propertysetHeader.set_at(__id(set_cookie), m_response.cookies().element_at(i)->get_cookie_string());
 
       }
 
@@ -174,7 +174,7 @@ namespace sockets
          OnWriteComplete();
       }
 
-      response().file().set_length(0);
+      response().file()->set_size(0);
 
    }
 
@@ -214,8 +214,8 @@ namespace sockets
 
    void http_base_socket::OnResponseComplete()
    {
-   }
 
+   }
 
 
    string http_base_socket::set_cookie(
@@ -226,6 +226,7 @@ namespace sockets
          const char * domain,
          bool bSecure)
    {
+
       m_request.cookies().set_cookie(
          name,
          var,
@@ -233,14 +234,11 @@ namespace sockets
          path,
          domain,
          bSecure);
-      return m_response.cookies().set_cookie(
-         name,
-         var,
-         iExpire,
-         path,
-         domain,
-         bSecure);
+
+      return m_response.cookies().cookie(name);
+
    }
+
 
    void http_base_socket::on_compress()
    {
@@ -251,18 +249,32 @@ namespace sockets
          if(outheader(__id(content_type)).get_string().find_ci("text") >= 0)
          {
        
-            m_response.m_propertysetHeader.set(__id(content_encoding), "gzip");
+            m_response.m_propertysetHeader.set_at(__id(content_encoding), "gzip");
 
-            ::memory_file file(get_object());
+            auto pfile = create_memory_file();
 
-            ::gzip_stream gz(&file);
+            compress_context compress(this);
 
-            gz.transfer_from(response().file());
+            if (response().m_strFile.has_char())
+            {
 
-            gz.finish();
+               compress.gz(pfile, Context.file().get_reader(response().m_strFile));
 
-            response().file().set_length(0);
-            response().file().write(file.get_data(), file.get_size());
+               response().m_strFile.Empty();
+
+            }
+            else
+            {
+
+               response().file()->seek_to_begin();
+
+               compress.gz(pfile, response().file());
+
+            }
+
+            response().file()->from_begin(pfile);
+
+
 
          }
 

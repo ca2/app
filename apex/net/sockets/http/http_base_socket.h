@@ -36,6 +36,9 @@ namespace sockets
    public:
 
 
+      i32 m_iContentLength;
+
+
       http_base_socket(base_socket_handler& h);
       ~http_base_socket();
 
@@ -70,7 +73,11 @@ namespace sockets
       void Reset();
 
       void Execute();
-      i32 m_iContentLength;
+
+      
+      virtual bool read_file(const ::file::path& pcszParam, pointer_array < int_array >* prangea = nullptr, const char* pszContentType = nullptr);
+
+
    };
 
 

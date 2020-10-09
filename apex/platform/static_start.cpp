@@ -124,7 +124,7 @@ namespace apex
 
    critical_section* g_pcsTrace;
 
-   ::elemental* g_ptrace;
+   ::element* g_ptrace;
 
    simple_trace* g_psimpletrace;
 
@@ -152,7 +152,7 @@ namespace apex
    ::mutex* g_pmutexMessageDispatch;
 
 
-   array < elemental* >* g_paAura;
+   array < element* >* g_paAura;
 
 
    ::map < ::id, const ::id&, ::id, const ::id& >* g_pmapRTL;
@@ -525,7 +525,7 @@ namespace apex
 
       //::factory::factory_init();
 
-      g_paAura = new array < elemental * >;
+      g_paAura = new array < element * >;
 
       //g_pmapAura =new ::map < void *,void *,::apex::application *,::apex::application * >;
 

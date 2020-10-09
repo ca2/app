@@ -1,6 +1,6 @@
 
 
-#include "acme/primitive/primitive/elemental.h"
+#include "acme/primitive/primitive/element.h"
 
 
 @interface mmos : NSObject
@@ -36,9 +36,9 @@
 
 - (void)deferIconForFile:(NSTimer *)timer;
 
--(void)runRunnableOnMainThread:(::elemental *)pobjectTask;
+-(void)runRunnableOnMainThread:(::element *)pobjectTask;
 
--(void)runRunnable:(::elemental *)pobjectTask;
+-(void)runRunnable:(::element *)pobjectTask;
 
 -(NSURL *)browse_folder : (NSURL *) directoryURL canCreateDirectories: (bool) bCanCreateDirectories;
 -(NSArray < NSURL * > *)browse_file_open : (NSURL **) startDir multi: (bool) b;

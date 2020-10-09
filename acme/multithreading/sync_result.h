@@ -43,7 +43,7 @@ public:
 
 public:
 //#if defined(WIN32) || defined(WIN64)
-   ///  \brief		constructor with result value and elemental ::count passed (Windows only)
+   ///  \brief		constructor with result value and element ::count passed (Windows only)
    ///  \lparam		value waiting result value as passed by Windows API function
    ///  \lparam		objectCount number of items in event_collection
    explicit sync_result(u32 value, ::count objectCount = 1);

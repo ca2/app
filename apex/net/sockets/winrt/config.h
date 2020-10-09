@@ -68,44 +68,44 @@ in read operations - helps on ECOS */
 //#include <openssl/ssl.h>
 //#include "internal/SSLInitializer.h"
 
-
-#ifndef _WIN32
-// ----------------------------------------
-// common unix includes / defines
-#undef USE_MISC
-
-//#include <sys/time.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-//#include <netdb.h>
-
-// all typedefs in this file will be declared outside the sockets namespace,
-// because some System's will already have one or more of the type defined.
-typedef int SOCKET;
-#define Errno errno
-#define bsd_socket_error strerror
-
-#ifdef sockets
-namespace sockets {
-#endif
-
-
-   // WIN32 adapt
-#define closesocket close
-#define INVALID_SOCKET -1
-#define SOCKET_ERROR -1
-
-#ifndef INADDR_NONE
-#define INADDR_NONE ((unsigned long) -1)
-#endif // INADDR_NONE
-
-#ifdef sockets
-}
-#endif
-
-#endif // !_WIN32
+//
+//#ifndef _WIN32
+//// ----------------------------------------
+//// common unix includes / defines
+//#undef USE_MISC
+//
+////#include <sys/time.h>
+//#include <sys/types.h>
+//#include <sys/socket.h>
+//#include <netinet/in.h>
+//#include <arpa/inet.h>
+////#include <netdb.h>
+//
+//// all typedefs in this file will be declared outside the sockets namespace,
+//// because some System's will already have one or more of the type defined.
+//typedef int SOCKET;
+//#define Errno errno
+//#define bsd_socket_error strerror
+//
+//#ifdef sockets
+//namespace sockets {
+//#endif
+//
+//
+//   // WIN32 adapt
+//#define closesocket close
+//#define INVALID_SOCKET -1
+//#define SOCKET_ERROR -1
+//
+//#ifndef INADDR_NONE
+//#define INADDR_NONE ((unsigned long) -1)
+//#endif // INADDR_NONE
+//
+//#ifdef sockets
+//}
+//#endif
+//
+//#endif // !_WIN32
 
 
 // ----------------------------------------
@@ -252,7 +252,7 @@ namespace sockets
 namespace sockets
 {
    /** List type containing file descriptors. */
-   class CLASS_DECL_APEX socket_id_list :
+   class CLASS_DECL_APEX socket_list :
       public ::comparable_list<SOCKET>
    {
    };

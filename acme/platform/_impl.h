@@ -47,14 +47,14 @@ inline BLOCK_TYPE & memory_template < BLOCK_TYPE > ::operator = (const ::block &
 }
 
 struct lparam_dbg :
-   virtual elemental
+   virtual element
 {
 
 };
 
 extern lparam_dbg g_lparamdbg;
 
-inline lparam::lparam(const ::elemental * p)
+inline lparam::lparam(const ::element * p)
 {
 
    if (is_null(p))
@@ -66,7 +66,7 @@ inline lparam::lparam(const ::elemental * p)
 
    }
 
-   ((elemental *) p)->add_ref(OBJ_REF_DBG_PTR(&g_lparamdbg));
+   ((element *) p)->add_ref(OBJ_REF_DBG_PTR(&g_lparamdbg));
 
    m_lparam = (LPARAM)p;
 
@@ -131,7 +131,7 @@ public:
 //
 //
 //   template < class APP >
-//   __result(::acme::application) single_application_library < APP > ::get_new_application(::elemental * pobject, const char * pszAppId)
+//   __result(::acme::application) single_application_library < APP > ::get_new_application(::element * pobject, const char * pszAppId)
 //   {
 //
 //      if(!contains_app(pszAppId))
@@ -289,7 +289,7 @@ void memcnts_dec(T * pthis)
 //
 //   sync_lock sl(defer_mutex_channel());
 //
-//   ::elemental* pobjectReceiver = dynamic_cast <::elemental*> (preceiverDerived);
+//   ::element* pobjectReceiver = dynamic_cast <::element*> (preceiverDerived);
 //
 //   ::type typeReceiver(typeid(RECEIVER));
 //
@@ -325,7 +325,7 @@ void memcnts_dec(T * pthis)
 //
 //   }
 //
-//   elemental * preceiver = dynamic_cast <elemental*>(preceiverDerived);
+//   element * preceiver = dynamic_cast <element*>(preceiverDerived);
 //
 //   if (preceiver == nullptr)
 //   {
@@ -377,7 +377,7 @@ void memcnts_dec(T * pthis)
 //
 //   sync_lock sl(s_pmutexChannel);
 //
-//   ::elemental * pobjectReceiver = dynamic_cast < ::elemental * > (preceiverDerived);
+//   ::element * pobjectReceiver = dynamic_cast < ::element * > (preceiverDerived);
 //
 //   ::type typeReceiver(typeid(RECEIVER));
 //
@@ -413,7 +413,7 @@ void memcnts_dec(T * pthis)
 //
 //   }
 //
-//   ::elemental * preceiver = dynamic_cast < elemental * >(preceiverDerived);
+//   ::element * preceiver = dynamic_cast < element * >(preceiverDerived);
 //
 //   if (preceiver == nullptr)
 //   {
@@ -493,7 +493,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 
 
 template < typename BASE >
-inline __pointer(BASE) alloc_object(::elemental * pobject)
+inline __pointer(BASE) alloc_object(::element * pobject)
 {
 
    return BASE::g_pallocfactory->alloc_object(pobject);
@@ -502,7 +502,7 @@ inline __pointer(BASE) alloc_object(::elemental * pobject)
 
 
 template < typename BASE >
-inline __pointer(BASE) & alloc_object(__pointer(BASE) & p, ::elemental * pobject)
+inline __pointer(BASE) & alloc_object(__pointer(BASE) & p, ::element * pobject)
 {
 
    return p = ::alloc_object < BASE > (pobject);
@@ -510,7 +510,7 @@ inline __pointer(BASE) & alloc_object(__pointer(BASE) & p, ::elemental * pobject
 }
 
 //
-//inline class ::sync * elemental::get_mutex()
+//inline class ::sync * element::get_mutex()
 //{
 //
 //   return ::is_null(this) ? nullptr : mutex();
@@ -555,7 +555,7 @@ inline __pointer(T) clone(const __pointer(T) & t)
 
 
 template < typename T >
-inline __pointer(T) & ___pointer < T >::clone(::elemental * pobjectContext)
+inline __pointer(T) & ___pointer < T >::clone(::element * pobjectContext)
 {
 
    if (::is_null(pobjectContext))
@@ -1049,7 +1049,7 @@ namespace acme
 #if !defined(DEBUG)
 
 
-//inline void elemental::set_context(::context* pcontext)
+//inline void element::set_context(::context* pcontext)
 //{
 //
 //   m_pcontextContext = pcontext;
@@ -1057,7 +1057,7 @@ namespace acme
 //}
 //
 //
-//inline void elemental::set_context_thread(::thread* pthread)
+//inline void element::set_context_thread(::thread* pthread)
 //{
 //
 //   m_pthreadContext = pthread;
@@ -1065,7 +1065,7 @@ namespace acme
 //}
 //
 //
-//inline void elemental::set_context_app(::acme::application* pappContext)
+//inline void element::set_context_app(::acme::application* pappContext)
 //{
 //
 //   m_pappContext = pappContext;
@@ -1073,7 +1073,7 @@ namespace acme
 //}
 //
 //
-//inline void elemental::set_context_session(::acme::session* psessionContext)
+//inline void element::set_context_session(::acme::session* psessionContext)
 //{
 //
 //   m_psessionContext = psessionContext;
@@ -1081,7 +1081,7 @@ namespace acme
 //}
 //
 //
-//inline void elemental::set_context_system(::acme::system* psystemContext)
+//inline void element::set_context_system(::acme::system* psystemContext)
 //{
 //
 //   m_psystemContext = psystemContext;

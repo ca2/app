@@ -4,8 +4,8 @@
 
 CLASS_DECL_APEX void __simple_tracev(e_trace_category ecategory, e_trace_level elevel, const char* pszFunction, const char* pszFile, i32 iLine, const char* pszFormat, va_list args);
 CLASS_DECL_APEX void __simple_tracea(e_trace_category ecategory, e_trace_level elevel, const char* pszFunction, const char* pszFileName, i32 iLine, const char* psz);
-CLASS_DECL_APEX void __simple_tracev(elemental* pobject, e_trace_level elevel, const char* pszFunction, const char* pszFile, i32 iLine, const char* pszFormat, va_list args);
-CLASS_DECL_APEX void __simple_tracea(elemental* pobject, e_trace_level elevel, const char* pszFunction, const char* pszFileName, i32 iLine, const char* psz);
+CLASS_DECL_APEX void __simple_tracev(element* pobject, e_trace_level elevel, const char* pszFunction, const char* pszFile, i32 iLine, const char* pszFormat, va_list args);
+CLASS_DECL_APEX void __simple_tracea(element* pobject, e_trace_level elevel, const char* pszFunction, const char* pszFileName, i32 iLine, const char* psz);
 
 
 //#include "apex/update.h"
@@ -91,7 +91,7 @@ void system_call_update_app_activated()
 //
 
 
-CLASS_DECL_APEX void __tracea(::elemental * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
+CLASS_DECL_APEX void __tracea(::element * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
 {
 
    if (::is_null(::get_context_system()))
@@ -108,7 +108,7 @@ CLASS_DECL_APEX void __tracea(::elemental * pobject, e_trace_level elevel, const
 }
 
 
-CLASS_DECL_APEX void __tracef(::elemental * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...)
+CLASS_DECL_APEX void __tracef(::element * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...)
 {
 
    va_list list;
@@ -131,7 +131,7 @@ CLASS_DECL_APEX void __tracef(::elemental * pobject, e_trace_level elevel, const
 }
 
 
-CLASS_DECL_APEX void __tracev(::elemental * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args)
+CLASS_DECL_APEX void __tracev(::element * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args)
 {
 
    if (::is_null(::get_context_system()))

@@ -22,7 +22,7 @@ namespace fs
 
 
 class CLASS_DECL_ACME command_line :
-   virtual public ::elemental
+   virtual public ::element
 {
 public:
 

@@ -2,11 +2,11 @@
 
 
 
-   virtual_memory::virtual_memory(::elemental * pobject)
+   virtual_memory::virtual_memory(::element * pobject)
    {
 
       m_memory.m_pbStorage = nullptr;
-      m_memory.m_pbComputed = nullptr;
+      m_memory.m_pdata = nullptr;
 
    }
 
@@ -16,7 +16,7 @@
 
       m_memory.m_pbStorage = nullptr;
 
-      m_memory.m_pbComputed = nullptr;
+      m_memory.m_pdata = nullptr;
 
       set_size(iCount);
 
@@ -32,7 +32,7 @@
 
       m_memory.m_pbStorage = nullptr;
 
-      m_memory.m_pbComputed = nullptr;
+      m_memory.m_pdata = nullptr;
 
       memory_base::operator = (s);
 
@@ -52,7 +52,7 @@
 
       m_memory.m_pbStorage = nullptr;
 
-      m_memory.m_pbComputed = nullptr;
+      m_memory.m_pdata = nullptr;
 
       set_size(size);
 
@@ -69,7 +69,7 @@
       UNREFERENCED_PARAMETER(nAllocFlags);
 
       m_memory.m_pbStorage          = nullptr;
-      m_memory.m_pbComputed = nullptr;
+      m_memory.m_pdata = nullptr;
       m_memory.m_pcontainer         = pcontainer;
       m_memory.m_dAllocationRateUp  = dAllocationRateUp;
 
@@ -105,7 +105,7 @@
 
    //   if(m_iOffset > 0)
    //   {
-   //      virtual_memory mem(m_pbComputed, m_cbStorage);
+   //      virtual_memory mem(m_pdata, m_cbStorage);
 
    //      point = mem.detach();
 
@@ -121,7 +121,7 @@
 
    //   m_cbStorage       = 0;
 
-   //   m_dwAllocation    = 0;
+   //   m_iSize    = 0;
 
    //   return point;
 
@@ -139,7 +139,7 @@
    byte * virtual_memory::impl_realloc(void * pdata, memsize dwAllocation)
    {
 
-      return (byte *) ::MidRealloc(pdata, (size_t) m_memory.m_dwAllocation, (size_t)dwAllocation);
+      return (byte *) ::MidRealloc(pdata, (size_t) m_memory.m_iSize, (size_t)dwAllocation);
 
    }
 

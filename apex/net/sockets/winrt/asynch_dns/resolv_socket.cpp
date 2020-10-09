@@ -28,7 +28,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "framework.h"
-#include "apex/net/net_sockets.h"
+#include "apex/net/sockets/_.h"
 #ifdef _WIN32
 #else
 //#include <netdb.h>
@@ -49,7 +49,9 @@ namespace sockets
       ,m_resolve_ipv6(false)
       ,m_cached(false)
    {
+      
       SetLineProtocol();
+
    }
 
 
@@ -66,7 +68,9 @@ namespace sockets
    ,m_resolve_ipv6(ipv6)
    ,m_cached(false)
    {
+      
       SetLineProtocol();
+
    }
 
 
@@ -83,7 +87,9 @@ namespace sockets
    ,m_resolve_ipv6(false)
    ,m_cached(false)
    {
+      
       SetLineProtocol();
+
    }
 
 
@@ -100,186 +106,299 @@ namespace sockets
    ,m_resolv_address6(a)
    ,m_cached(false)
    {
+      
       SetLineProtocol();
+
    }
 
 
    resolv_socket::~resolv_socket()
    {
+
    }
 
 
    void resolv_socket::OnLine(const string & line)
    {
+      
       ::str::parse pa(line, ":");
+
       if (m_bServer)
       {
+
          m_query = pa.getword();
+
          m_data = pa.getrest();
-   TRACE(" *** resolv_socket server; query=%s, data=%s\n", m_query, m_data);
+
+         TRACE(" *** resolv_socket server; query=%s, data=%s\n", m_query, m_data);
+
          // %! check cache
          {
-            single_lock lock(&Session.sockets().m_mutexResolvCache, true);
+
+            single_lock lock(&System.sockets().m_mutexResolvCache, true);
+
             string result;
-            if(Session.sockets().m_resolvcache[m_query].lookup(m_data, result))
+
+            if(System.sockets().m_resolvcache[m_query].lookup(m_data, result))
             {
-               if (time(nullptr) - Session.sockets().m_resolvtimeout[m_query][m_data] < 3600) // ttl
+
+               if (time(nullptr) - System.sockets().m_resolvtimeout[m_query][m_data] < 3600) // ttl
                {
-   TRACE(" *** Returning cache for [%s][%s] = '%s'\n", m_query, m_data, result);
-                  write("Cached\n");
+                  
+                  TRACE(" *** Returning cache for [%s][%s] = '%s'\n", m_query, m_data, result);
+
+                  print("Cached\n");
+
                   if (result.is_empty()) /* failed */
                   {
-                     write("Failed\n\n");
+
+                     print("Failed\n\n");
+
                      SetCloseAndDelete();
+
                      return;
+
                   }
                   else if (m_query == "gethostbyname")
                   {
-                     write("A: " + result + "\n\n");
+
+                     print("A: " + result + "\n\n");
+
                      SetCloseAndDelete();
+
                      return;
+
                   }
                   else if (m_query == "gethostbyname2")
                   {
-                     write("AAAA: " + result + "\n\n");
+                     
+                     print("AAAA: " + result + "\n\n");
+
                      SetCloseAndDelete();
+
                      return;
+
                   }
                   else if (m_query == "gethostbyaddr")
                   {
-                     write("Name: " + result + "\n\n");
+                     
+                     print("Name: " + result + "\n\n");
+
                      SetCloseAndDelete();
+
                      return;
+
                   }
+
                }
+
             }
+
          }
+
          if (!detach()) // detach failed?
          {
+
             SetCloseAndDelete();
+
          }
+
          return;
+
       }
+
       string key = pa.getword();
+
       string value = pa.getrest();
-   TRACE(" *** resolv_socket response;  %s: %s\n", key, value);
+
+      TRACE(" *** resolv_socket response;  %s: %s\n", key, value);
 
       if (key == "Cached")
       {
+
          m_cached = true;
+
       }
-      else
-      if (key == "Failed" && m_parent)
+      else if (key == "Failed" && m_parent)
       {
-   TRACE(" ************ Resolve failed\n");
+
+         TRACE(" ************ Resolve failed\n");
+
          if (Handler().Resolving(m_parent) || Handler().Valid(m_parent))
          {
+
             m_parent -> OnResolveFailed(m_resolv_id);
+
          }
+
          // update cache
          if (!m_cached)
          {
-            single_lock lock(&Session.sockets().m_mutexResolvCache, true);
-   TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
-            Session.sockets().m_resolvcache[m_query][m_data] = value;
-            Session.sockets().m_resolvtimeout[m_query][m_data] = time(nullptr);
+
+            single_lock lock(&System.sockets().m_mutexResolvCache, true);
+   
+            TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
+            
+            System.sockets().m_resolvcache[m_query][m_data] = value;
+
+            System.sockets().m_resolvtimeout[m_query][m_data] = time(nullptr);
+
          }
+
          m_parent = nullptr;
+
       }
-      else
-      if (key == "Name" && !m_resolv_host.get_length() && m_parent)
+      else if (key == "Name" && !m_resolv_host.get_length() && m_parent)
       {
+
          if (Handler().Resolving(m_parent) || Handler().Valid(m_parent))
          {
+
             m_parent -> OnReverseResolved(m_resolv_id, value);
+
          }
+
          // update cache
          if (!m_cached)
          {
-            single_lock lock(&Session.sockets().m_mutexResolvCache, true);
-   TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
-            Session.sockets().m_resolvcache[m_query][m_data] = value;
-            Session.sockets().m_resolvtimeout[m_query][m_data] = time(nullptr);
+
+            single_lock lock(&System.sockets().m_mutexResolvCache, true);
+            
+            TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
+
+            System.sockets().m_resolvcache[m_query][m_data] = value;
+
+            System.sockets().m_resolvtimeout[m_query][m_data] = time(nullptr);
+
          }
+
          m_parent = nullptr;
+
       }
-      else
-      if (key == "A" && m_parent)
+      else if (key == "A" && m_parent)
       {
+
          if (Handler().Resolving(m_parent) || Handler().Valid(m_parent))
          {
+
             //in_addr l;
             //Session.sockets().net().convert(l, value); // ip2ipaddr_t
 
             m_parent -> OnResolved(m_resolv_id, ::net::address(value, m_resolv_port));
+
          }
+
          // update cache
          if (!m_cached)
          {
-            single_lock lock(&Session.sockets().m_mutexResolvCache, true);
-   TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
-            Session.sockets().m_resolvcache[m_query][m_data] = value;
-            Session.sockets().m_resolvtimeout[m_query][m_data] = time(nullptr);
+
+            single_lock lock(&System.sockets().m_mutexResolvCache, true);
+
+            TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
+
+            System.sockets().m_resolvcache[m_query][m_data] = value;
+
+            System.sockets().m_resolvtimeout[m_query][m_data] = time(nullptr);
+
          }
+
          m_parent = nullptr; // always use first ip in case there are several
+
       }
       else if (key == "AAAA" && m_parent)
       {
+
          if (Handler().Resolving(m_parent) || Handler().Valid(m_parent))
          {
+
             //in6_addr a;
             //Session.sockets().net().convert(a, value);
+
             m_parent -> OnResolved(m_resolv_id, ::net::address(value, m_resolv_port));
+
          }
+
          // update cache
          if (!m_cached)
          {
-            single_lock lock(&Session.sockets().m_mutexResolvCache, true);
-   TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
-            Session.sockets().m_resolvcache[m_query][m_data] = value;
-            Session.sockets().m_resolvtimeout[m_query][m_data] = time(nullptr);
+         
+            single_lock lock(&System.sockets().m_mutexResolvCache, true);
+   
+            TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
+            
+            System.sockets().m_resolvcache[m_query][m_data] = value;
+            
+            System.sockets().m_resolvtimeout[m_query][m_data] = time(nullptr);
+
          }
+
          m_parent = nullptr;
+
       }
+
    }
 
 
    void resolv_socket::OnDetached()
    {
+      
       TRACE(" *** resolv_socket::OnDetached(); query=%s, data=%s\n", m_query, m_data);
+
       if(m_query == "gethostbyname")
       {
-         in_addr sa;
-         if(Session.sockets().net().convert(sa, m_data))
-         {
-            string ip;
-            Session.sockets().net().convert(ip, sa);
-            write("A: " + ip + "\n");
-         }
-         else
-         {
-            write("Failed\n");
-         }
-         write("\n");
+
+         //in_addr sa;
+
+         //if(System.sockets().net().convert(sa, m_data))
+         //{
+
+         //   string ip;
+         //   
+         //   System.sockets().net().convert(ip, sa);
+
+         //   write("A: " + ip + "\n");
+
+         //}
+         //else
+         //{
+         //   write("Failed\n");
+         //}
+         //write("\n");
+
       }
       else if(m_query == "gethostbyname2")
       {
+
+#ifdef HAVE_OPENSSL
+
          in6_addr sa;
-         if(Session.sockets().net().convert(sa, m_data))
+
+         if(System.sockets().net().convert(sa, m_data))
          {
+            
             string ip;
+            
             Session.sockets().net().convert(ip, sa);
+
             write("AAAA: " + ip + "\n");
+
          }
          else
          {
+
             write("Failed\n");
+
          }
+
          write("\n");
+
+#endif
+
       }
-      else
-      if (m_query == "gethostbyaddr")
+      else if (m_query == "gethostbyaddr")
       {
+
+#ifdef HAVE_OPENSSL
 
          ::net::address addr(m_data);
 
@@ -290,78 +409,149 @@ namespace sockets
 
             if(Session.sockets().net().isipv4(strCanonicalName) || Session.sockets().net().isipv6(strCanonicalName))
             {
+               
                write("Failed: convert to sockaddr_in failed\n");
+
             }
             else
             {
+
                write("Name: " + strCanonicalName+ "\n");
+
             }
 
          }
          else
          {
+
             write("Failed: malformed address\n");
+
          }
+
          write("\n");
+
+#endif
+
       }
       else
       {
+
+#ifdef HAVE_OPENSSL
+
          string msg = "Unknown query type: " + m_query;
+
          log("OnDetached", 0, msg);
+
          write("Unknown\n\n");
+
+#endif
+
       }
+
       SetCloseAndDelete();
+
    }
 
 
    void resolv_socket::OnConnect()
    {
+
       if (m_resolv_host.get_length())
       {
+
+#ifdef HAVE_OPENSSL
+
          string msg = (m_resolve_ipv6 ? "gethostbyname2 " : "gethostbyname ") + m_resolv_host + "\n";
+         
          m_query = m_resolve_ipv6 ? "gethostbyname2" : "gethostbyname";
+         
          m_data = m_resolv_host;
+         
          write( msg );
+
+#endif
+
          return;
+
       }
+
       if (m_resolve_ipv6)
       {
+
+#ifdef HAVE_OPENSSL
+
          string tmp;
+
          Session.sockets().net().convert(tmp, m_resolv_address6);
+
          m_query = "gethostbyaddr";
+
          m_data = tmp;
+
          string msg = "gethostbyaddr " + tmp + "\n";
+
          write( msg );
+
+#endif
+
       }
+
+#ifdef HAVE_OPENSSL
+
       string tmp;
-      Session.sockets().net().convert(tmp, m_resolv_address);
+
+      System.sockets().net().convert(tmp, m_resolv_address);
+
       m_query = "gethostbyaddr";
+
       m_data = tmp;
+
       string msg = "gethostbyaddr " + tmp + "\n";
+
       write( msg );
+
+#endif
+
    }
 
 
    void resolv_socket::OnDelete()
    {
+
       if (m_parent)
       {
+
          if (Handler().Resolving(m_parent) || Handler().Valid(m_parent))
          {
+
             m_parent -> OnResolveFailed(m_resolv_id);
+
          }
+
          // update cache
          if (!m_cached)
          {
-            single_lock lock(&Session.sockets().m_mutexResolvCache, true);
+
+            single_lock lock(&System.sockets().m_mutexResolvCache, true);
+
             string value;
-   TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
-            Session.sockets().m_resolvcache[m_query][m_data] = value;
-            Session.sockets().m_resolvtimeout[m_query][m_data] = time(nullptr);
+
+            TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
+            
+            System.sockets().m_resolvcache[m_query][m_data] = value;
+            
+            System.sockets().m_resolvtimeout[m_query][m_data] = time(nullptr);
+
          }
+
          m_parent = nullptr;
+
       }
+
    }
 
+
 } // namespace sockets
+
+
 

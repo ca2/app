@@ -287,7 +287,7 @@ protected:
 
 
 class CLASS_DECL_APP_SCRIPTING tinyjs :
-   virtual public ::elemental
+   virtual public ::element
 {
 public:
 

@@ -3,7 +3,7 @@
 
 template < class TYPE, class ARG_TYPE = const TYPE & >
 class list :
-   public ::elemental
+   public ::element
 {
 public:
 
@@ -1740,7 +1740,7 @@ void list<TYPE, ARG_TYPE>::Serialize(CArchive& ar)
 {
    ASSERT_VALID(this);
 
-   elemental::Serialize(ar);
+   element::Serialize(ar);
 
    if (ar.IsStoring())
    {
@@ -1751,7 +1751,7 @@ void list<TYPE, ARG_TYPE>::Serialize(CArchive& ar)
          TYPE* pData;
          //
          // in some cases the & operator might be overloaded, and we cannot use it to obtain
-         //the address of a given elemental.  We then use the following trick to get the address
+         //the address of a given element.  We then use the following trick to get the address
          //
          pData = reinterpret_cast< TYPE* >( &reinterpret_cast< i32& >( static_cast< TYPE& >( pnode->m_value ) ) );
          SerializeElements<TYPE>(ar, pData, 1);
@@ -1776,7 +1776,7 @@ template<class TYPE, class ARG_TYPE>
 void list<TYPE, ARG_TYPE>::assert_valid() const
 {
 
-   elemental::assert_valid();
+   element::assert_valid();
 
    if (this->m_count == 0)
    {

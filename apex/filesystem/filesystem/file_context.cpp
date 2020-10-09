@@ -1756,238 +1756,239 @@ i32 file_context::cmp(const ::file::path & psz1, const ::file::path & psz2)
 }
 
 
-void file_context::dtf(const ::file::path & pszFile, const ::file::path & pszDir)
-{
-
-   ::file::listing ls;
-
-   Context.dir().rls(ls, pszDir);
-
-   dtf(pszFile, ls);
-
-}
-
-
-void file_context::dtf(const ::file::path & pszFile, ::file::patha & stra)
-{
-
-   file_pointer spfile = get_file(pszFile, ::file::mode_create | ::file::mode_write | ::file::type_binary);
-
-   if (spfile.is_null())
-   {
-
-      __throw(::exception::exception("failed"));
-
-   }
-
-   string strVersion;
-
-   strVersion = "fileset v1";
-
-   MD5_CTX ctx;
-
-   write_gen_string(spfile, nullptr, strVersion);
-
-   __pointer(::file::file) pfile2;
-
-   __construct(pfile2);
-
-   memsize iBufSize = 1024 * 1024;
-
-   memsize uiRead;
-
-   memory buf;
-
-   buf.set_size(iBufSize);
-
-   string strMd5 = "01234567012345670123456701234567";
-
-   u64 iPos;
-
-   for (i32 i = 0; i < stra.get_size(); i++)
-   {
-      if (::str::ends_ci(stra[i], ".zip"))
-      {
-      }
-      else if (Context.dir().is(stra[i]))
-         continue;
-      write_n_number(spfile, nullptr, 1);
-      iPos = spfile->get_position();
-      write_gen_string(spfile, nullptr, strMd5);
-      MD5_Init(&ctx);
-      string strRelative = stra[i].relative();
-      write_gen_string(spfile, &ctx, strRelative);
-      if (pfile2->open(stra[i], ::file::mode_read | ::file::type_binary).failed())
-         __throw(::exception::exception("failed"));
-      write_n_number(spfile, &ctx, (i32)pfile2->get_size());
-      while ((uiRead = pfile2->read(buf, iBufSize)) > 0)
-      {
-         spfile->write(buf, uiRead);
-         MD5_Update(&ctx, buf, (size_t)uiRead);
-      }
-      spfile->seek(iPos, ::file::seek_begin);
-      strMd5 = __str(ctx);
-      write_gen_string(spfile, nullptr, strMd5);
-      spfile->seek_to_end();
-
-   }
-
-   write_n_number(spfile, nullptr, 2);
-
-}
-
-
-void file_context::ftd(const ::file::path & pszDir, const ::file::path & pszFile)
-{
-
-   string strVersion;
-
-   file_pointer spfile = get_file(pszFile, ::file::mode_read | ::file::type_binary);
-
-   if (spfile.is_null())
-      __throw(::exception::exception("failed"));
-
-   read_gen_string(spfile, nullptr, strVersion);
-
-   i64 n;
-
-   string strRelative;
-   string strMd5;
-   string strMd5New;
-   i32 iBufSize = 1024 * 1024;
-   memory buf;
-   buf.set_size(iBufSize);
-   i64 iLen;
-   MD5_CTX ctx;
-
-   auto pfile2 = __create < ::file::file >();
-
-   memsize uiRead;
-
-   if (strVersion == "fileset v1")
-   {
-      while (true)
-      {
-         read_n_number(spfile, nullptr, n);
-         if (n == 2)
-            break;
-         read_gen_string(spfile, nullptr, strMd5);
-         MD5_Init(&ctx);
-         read_gen_string(spfile, &ctx, strRelative);
-         ::file::path strPath = ::file::path(pszDir) / strRelative;
-         Context.dir().mk(strPath.folder());
-         if (pfile2->open(strPath, ::file::mode_create | ::file::type_binary | ::file::mode_write).failed())
-            __throw(::exception::exception("failed"));
-         read_n_number(spfile, &ctx, iLen);
-         while (iLen > 0)
-         {
-            uiRead = spfile->read(buf, (UINT)(min(iBufSize, iLen)));
-            if (uiRead == 0)
-               break;
-            pfile2->write(buf, uiRead);
-            MD5_Update(&ctx, buf, (size_t)uiRead);
-            iLen -= uiRead;
-         }
-         pfile2->close();
-         strMd5New = __str(ctx);
-         if (strMd5 != strMd5New)
-            __throw(::exception::exception("failed"));
-      }
-   }
-
-}
-
-
-
-
-void file_context::write_n_number(::file::file * pfile, void * pctx, i64 iNumber)
-{
-
-   string str;
-
-   str.Format("%I64dn", iNumber);
-
-   pfile->write((const char *)str, str.get_length());
-
-   if (pctx != nullptr)
-   {
-
-      MD5_Update((MD5_CTX *)pctx, (const char *)str, (i32)str.get_length());
-
-   }
-
-}
-
-void file_context::read_n_number(::file::file * pfile, void * pctx, i64 & iNumber)
-{
-
-   u64 uiRead;
-
-   string str;
-
-   char ch;
-
-   while ((uiRead = pfile->read(&ch, 1)) == 1)
-   {
-
-      if (ch >= '0' && ch <= '9')
-         str += ch;
-      else
-         break;
-
-      if (pctx != nullptr)
-      {
-         MD5_Update((MD5_CTX *)pctx, &ch, 1);
-      }
-
-   }
-
-   if (ch != 'n')
-      __throw(::exception::exception("failed"));
-
-   if (pctx != nullptr)
-   {
-      MD5_Update((MD5_CTX *)pctx, &ch, 1);
-   }
-
-   iNumber = ::str::to_i64(str);
-
-}
-
-void file_context::write_gen_string(::file::file * pfile, void * pctx, string & str)
-{
-   ::count iLen = str.get_length();
-   write_n_number(pfile, pctx, iLen);
-   pfile->write((const char *)str, str.get_length());
-   if (pctx != nullptr)
-   {
-      MD5_Update((MD5_CTX *)pctx, (const char *)str, (i32)str.get_length());
-   }
-}
-
-void file_context::read_gen_string(::file::file * pfile, void * pctx, string & str)
-{
-   i64 iLen;
-   read_n_number(pfile, pctx, iLen);
-   LPSTR psz = str.get_string_buffer((strsize)(iLen + 1));
-
-   pfile->read(psz, (memsize)iLen);
-
-   if (pctx != nullptr)
-   {
-      i64 iProcessed = 0;
-      while (iLen - iProcessed > 0)
-      {
-         i32 iProcess = (i32)min(1024 * 1024, iLen - iProcessed);
-         MD5_Update((MD5_CTX *)pctx, &psz[iProcessed], iProcess);
-
-         iProcessed += iProcess;
-      }
-   }
-   psz[iLen] = '\0';
-
-   str.release_string_buffer();
-}
+//void file_context::dtf(const ::file::path & pszFile, const ::file::path & pszDir)
+//{
+//
+//   ::file::listing ls;
+//
+//   Context.dir().rls(ls, pszDir);
+//
+//   dtf(pszFile, ls);
+//
+//}
+//
+//
+//void file_context::dtf(const ::file::path & pszFile, ::file::patha & stra)
+//{
+//
+//   file_pointer spfile = get_file(pszFile, ::file::mode_create | ::file::mode_write | ::file::type_binary);
+//
+//   if (spfile.is_null())
+//   {
+//
+//      __throw(::exception::exception("failed"));
+//
+//   }
+//
+//   string strVersion;
+//
+//   strVersion = "fileset v1";
+//
+//   //MD5_CTX ctx;
+//
+//   write_gen_string(spfile, nullptr, strVersion);
+//
+//   __pointer(::file::file) pfile2;
+//
+//   __construct(pfile2);
+//
+//   memsize iBufSize = 1024 * 1024;
+//
+//   memsize uiRead;
+//
+//   memory buf;
+//
+//   buf.set_size(iBufSize);
+//
+//   string strMd5 = "01234567012345670123456701234567";
+//
+//   u64 iPos;
+//
+//   for (i32 i = 0; i < stra.get_size(); i++)
+//   {
+//      if (::str::ends_ci(stra[i], ".zip"))
+//      {
+//      }
+//      else if (Context.dir().is(stra[i]))
+//         continue;
+//      write_n_number(spfile, nullptr, 1);
+//      iPos = spfile->get_position();
+//      write_gen_string(spfile, nullptr, strMd5);
+//      MD5_Init(&ctx);
+//      string strRelative = stra[i].relative();
+//      write_gen_string(spfile, &ctx, strRelative);
+//      if (pfile2->open(stra[i], ::file::mode_read | ::file::type_binary).failed())
+//         __throw(::exception::exception("failed"));
+//      write_n_number(spfile, &ctx, (i32)pfile2->get_size());
+//      while ((uiRead = pfile2->read(buf, iBufSize)) > 0)
+//      {
+//         spfile->write(buf, uiRead);
+//         MD5_Update(&ctx, buf, (size_t)uiRead);
+//      }
+//      spfile->seek(iPos, ::file::seek_begin);
+//      strMd5 = __str(ctx);
+//      write_gen_string(spfile, nullptr, strMd5);
+//      spfile->seek_to_end();
+//
+//   }
+//
+//   write_n_number(spfile, nullptr, 2);
+//
+//}
+//
+//
+//void file_context::ftd(const ::file::path & pszDir, const ::file::path & pszFile)
+//{
+//
+//   string strVersion;
+//
+//   file_pointer spfile = get_file(pszFile, ::file::mode_read | ::file::type_binary);
+//
+//   if (spfile.is_null())
+//      __throw(::exception::exception("failed"));
+//
+//   read_gen_string(spfile, nullptr, strVersion);
+//
+//   i64 n;
+//
+//   string strRelative;
+//   string strMd5;
+//   string strMd5New;
+//   i32 iBufSize = 1024 * 1024;
+//   memory buf;
+//   buf.set_size(iBufSize);
+//   i64 iLen;
+//   MD5_CTX ctx;
+//
+//   auto pfile2 = __create < ::file::file >();
+//
+//   memsize uiRead;
+//
+//   if (strVersion == "fileset v1")
+//   {
+//      while (true)
+//      {
+//         read_n_number(spfile, nullptr, n);
+//         if (n == 2)
+//            break;
+//         read_gen_string(spfile, nullptr, strMd5);
+//         MD5_Init(&ctx);
+//         read_gen_string(spfile, &ctx, strRelative);
+//         ::file::path strPath = ::file::path(pszDir) / strRelative;
+//         Context.dir().mk(strPath.folder());
+//         if (pfile2->open(strPath, ::file::mode_create | ::file::type_binary | ::file::mode_write).failed())
+//            __throw(::exception::exception("failed"));
+//         read_n_number(spfile, &ctx, iLen);
+//         while (iLen > 0)
+//         {
+//            uiRead = spfile->read(buf, (UINT)(min(iBufSize, iLen)));
+//            if (uiRead == 0)
+//               break;
+//            pfile2->write(buf, uiRead);
+//            MD5_Update(&ctx, buf, (size_t)uiRead);
+//            iLen -= uiRead;
+//         }
+//         pfile2->close();
+//         strMd5New = __str(ctx);
+//         if (strMd5 != strMd5New)
+//            __throw(::exception::exception("failed"));
+//      }
+//   }
+//
+//}
+
+
+
+
+//void file_context::write_n_number(::file::file * pfile, void * pctx, i64 iNumber)
+//{
+//
+//   string str;
+//
+//   str.Format("%I64dn", iNumber);
+//
+//   pfile->write((const char *)str, str.get_length());
+//
+//   if (pctx != nullptr)
+//   {
+//
+//      MD5_Update((MD5_CTX *)pctx, (const char *)str, (i32)str.get_length());
+//
+//   }
+//
+//}
+
+
+//void file_context::read_n_number(::file::file * pfile, void * pctx, i64 & iNumber)
+//{
+//
+//   u64 uiRead;
+//
+//   string str;
+//
+//   char ch;
+//
+//   while ((uiRead = pfile->read(&ch, 1)) == 1)
+//   {
+//
+//      if (ch >= '0' && ch <= '9')
+//         str += ch;
+//      else
+//         break;
+//
+//      if (pctx != nullptr)
+//      {
+//         MD5_Update((MD5_CTX *)pctx, &ch, 1);
+//      }
+//
+//   }
+//
+//   if (ch != 'n')
+//      __throw(::exception::exception("failed"));
+//
+//   if (pctx != nullptr)
+//   {
+//      MD5_Update((MD5_CTX *)pctx, &ch, 1);
+//   }
+//
+//   iNumber = ::str::to_i64(str);
+//
+//}
+
+//void file_context::write_gen_string(::file::file * pfile, void * pctx, string & str)
+//{
+//   ::count iLen = str.get_length();
+//   write_n_number(pfile, pctx, iLen);
+//   pfile->write((const char *)str, str.get_length());
+//   if (pctx != nullptr)
+//   {
+//      MD5_Update((MD5_CTX *)pctx, (const char *)str, (i32)str.get_length());
+//   }
+//}
+
+//void file_context::read_gen_string(::file::file * pfile, void * pctx, string & str)
+//{
+//   i64 iLen;
+//   read_n_number(pfile, pctx, iLen);
+//   LPSTR psz = str.get_string_buffer((strsize)(iLen + 1));
+//
+//   pfile->read(psz, (memsize)iLen);
+//
+//   if (pctx != nullptr)
+//   {
+//      i64 iProcessed = 0;
+//      while (iLen - iProcessed > 0)
+//      {
+//         i32 iProcess = (i32)min(1024 * 1024, iLen - iProcessed);
+//         MD5_Update((MD5_CTX *)pctx, &psz[iProcessed], iProcess);
+//
+//         iProcessed += iProcess;
+//      }
+//   }
+//   psz[iLen] = '\0';
+//
+//   str.release_string_buffer();
+//}
 
 
 bool file_context::resolve_link(::file::path & pathTarget, const string & strSource, string * pstrDirectory, string * pstrParams)
@@ -1998,7 +1999,7 @@ bool file_context::resolve_link(::file::path & pathTarget, const string & strSou
 }
 
 
-string file_context::md5(const var & varFile)
+string file_context::get_hash(const var& varFile, enum_hash ehash)
 {
 
    auto pfile = get_file(varFile, ::file::type_binary | ::file::mode_read);
@@ -2014,20 +2015,26 @@ string file_context::md5(const var & varFile)
 
    mem.set_size(1024 * 256);
 
-   MD5_CTX ctx;
-
-   MD5_Init(&ctx);
+   auto phasher = System.crypto().create_hasher(ehash);
 
    memsize iRead;
 
    while ((iRead = (memsize)pfile->read(mem.get_data(), mem.get_size())) > 0)
    {
 
-      MD5_Update(&ctx, mem.get_data(), (size_t)iRead);
+      phasher->update({ mem.get_data(), iRead });
 
    }
 
-   return __str(ctx);
+   return phasher->get_hash_and_reset();
+
+}
+
+
+string file_context::md5(const var & varFile)
+{
+
+   return get_hash(varFile, e_hash_md5);
 
 }
 
@@ -2035,33 +2042,37 @@ string file_context::md5(const var & varFile)
 string file_context::nessie(const var & varFile)
 {
 
-   auto pfile = get_file(varFile, ::file::type_binary | ::file::mode_read);
+   __throw(todo("nessie"));
 
-   if (!pfile)
-   {
+   return "";
 
-      return "";
+   //auto pfile = get_file(varFile, ::file::type_binary | ::file::mode_read);
 
-   }
+   //if (!pfile)
+   //{
 
-   memory mem;
+   //   return "";
 
-   mem.set_size(1024 * 256);
+   //}
 
-   WHIRLPOOL_CTX ns;
+   //memory mem;
 
-   WHIRLPOOL_Init(&ns);
+   //mem.set_size(1024 * 256);
 
-   memsize iRead;
+   //WHIRLPOOL_CTX ns;
 
-   while ((iRead = (memsize)pfile->read(mem.get_data(), mem.get_size())) > 0)
-   {
+   //WHIRLPOOL_Init(&ns);
 
-      WHIRLPOOL_Update(&ns, mem.get_data(), (size_t)iRead);
+   //memsize iRead;
 
-   }
+   //while ((iRead = (memsize)pfile->read(mem.get_data(), mem.get_size())) > 0)
+   //{
 
-   return __str(ns);
+   //   WHIRLPOOL_Update(&ns, mem.get_data(), (size_t)iRead);
+
+   //}
+
+   //return __str(ns);
 
 }
 

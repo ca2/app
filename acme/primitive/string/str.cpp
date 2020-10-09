@@ -868,7 +868,7 @@ namespace str
 
    }
 
-   string  random_replace(::elemental * pobject, const string_array & straReplacement, const string_array & straSearch, const char * psz)
+   string  random_replace(::element * pobject, const string_array & straReplacement, const string_array & straSearch, const char * psz)
    {
 
       string str(psz);

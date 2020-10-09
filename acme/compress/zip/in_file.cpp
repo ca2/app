@@ -509,13 +509,13 @@ namespace zip
 
    void in_file::assert_valid() const
    {
-      //elemental::assert_valid();
+      //element::assert_valid();
       // we permit the descriptor m_hFile to be any value for derived classes
    }
 
    void in_file::dump(dump_context & dumpcontext) const
    {
-      //   elemental::dump(dumpcontext);
+      //   element::dump(dumpcontext);
 
       dumpcontext << "with handle " << (uptr)get_zip_file();
       dumpcontext << " and name \"" << m_strFileName << "\"";

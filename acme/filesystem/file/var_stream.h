@@ -36,7 +36,7 @@ inline void __exchange(::var_stream & s, ::memory & memory);
 
 
 
-inline void __exchange(::var_stream & s, ::elemental & elemental);
+inline void __exchange(::var_stream & s, ::element & element);
 
 
 template < typename OBJECT >
@@ -92,8 +92,8 @@ public:
    template < typename TYPE >
    void var_exchange(const ::id & id, TYPE & t);
 
-   //virtual void write_object(const ::id & id, ::elemental * pobject) override;
-   //virtual __pointer(::elemental) read_object(const ::id & id) override;
+   //virtual void write_object(const ::id & id, ::element * pobject) override;
+   //virtual __pointer(::element) read_object(const ::id & id) override;
 
 
    virtual void read(block & block) override;

@@ -16,6 +16,7 @@ namespace sockets
       stream_socket(h),
       tcp_socket(h),
       http_base_socket(h),
+      http_socket(h),
       m_received(0)
    {
 
@@ -89,7 +90,9 @@ namespace sockets
          t = mktime(&tp);
          if (t == -1)
          {
-            log("datetime2httpdate", 0, "mktime() failed");
+            
+            //log("datetime2httpdate", 0, "mktime() failed");
+
          }
 
          sprintf(s,"%s, %02d %s %d %02d:%02d:%02d GMT",

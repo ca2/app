@@ -2,16 +2,16 @@
 
 
 class CLASS_DECL_ACME sync_task :
-   virtual public ::elemental
+   virtual public ::element
 {
 public:
 
 
    manual_reset_event               m_event;
-   __pointer(::elemental)      m_pobjectRunnable;
+   __pointer(::element)      m_pobjectRunnable;
 
 
-   sync_task(::elemental* pobjectRunnable);
+   sync_task(::element* pobjectRunnable);
    virtual ~sync_task();
 
 

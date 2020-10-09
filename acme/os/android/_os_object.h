@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ACME os_object :
-   virtual public ::elemental
+   virtual public ::element
 {
 public:
 

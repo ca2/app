@@ -93,8 +93,8 @@ namespace uwp
 
    //   ::estatus OsErrorToException(LONG lOsError);
    //   ::estatus ErrnoToException(int nErrno);
-   //   void ThrowOsError(::elemental * pobject, LONG lOsError, const char * lpszFileName = nullptr);
-   //   void ThrowErrno(::elemental * pobject, int nErrno, const char * lpszFileName = nullptr);
+   //   void ThrowOsError(::element * pobject, LONG lOsError, const char * lpszFileName = nullptr);
+   //   void ThrowErrno(::element * pobject, int nErrno, const char * lpszFileName = nullptr);
 
    //}
 

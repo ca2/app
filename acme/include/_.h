@@ -479,7 +479,7 @@ CLASS_DECL_ACME ::e_priority get_os_class_scheduling_priority(i32 iCa2Priority);
 //#include "acme/multimedia/_c.h"
 
 
-class elemental;
+class element;
 
 
 template < typename T >
@@ -498,6 +498,21 @@ void __finalize_and_release(T& p)
 }
 
 
+CLASS_DECL_ACME void release_on_end(::element* pelement);
+
+
+template < typename TYPE >
+TYPE * __release_on_end(TYPE * pelement)
+{
+
+   release_on_end(pelement);
+
+   return pelement;
+
+}
+
+
+
 CLASS_DECL_ACME extern u32 g_tickStartTime;
 //
 //#define ALOG_CONTEXT context_trace_object()
@@ -506,22 +521,22 @@ CLASS_DECL_ACME extern u32 g_tickStartTime;
 
 
 //
-//CLASS_DECL_ACME ::elemental * general_trace_object();
+//CLASS_DECL_ACME ::element * general_trace_object();
 //
 //CLASS_DECL_ACME int_bool c_enable_trace_category(e_trace_category ecategory, int_bool iEnable);
 //
-//inline ::elemental * context_trace_object() { return general_trace_object(); }
+//inline ::element * context_trace_object() { return general_trace_object(); }
 
 
-//CLASS_DECL_ACME void __tracea(::elemental * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
-//CLASS_DECL_ACME void __tracef(::elemental * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, ...);
-//CLASS_DECL_ACME void __tracev(::elemental * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, va_list vargs);
+//CLASS_DECL_ACME void __tracea(::element * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
+//CLASS_DECL_ACME void __tracef(::element * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, ...);
+//CLASS_DECL_ACME void __tracev(::element * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, va_list vargs);
 
 
 CLASS_DECL_ACME const char * trace_category_name(e_trace_category ecategory);
-CLASS_DECL_ACME ::elemental * trace_object(e_trace_category ecategory);
-CLASS_DECL_ACME const char * topic_text(::elemental * pcontextobject);
-CLASS_DECL_ACME e_trace_category object_trace_category(::elemental * pcontextobject);
+CLASS_DECL_ACME ::element * trace_object(e_trace_category ecategory);
+CLASS_DECL_ACME const char * topic_text(::element * pcontextobject);
+CLASS_DECL_ACME e_trace_category object_trace_category(::element * pcontextobject);
 
 
 //
@@ -786,6 +801,7 @@ using wstring = string_base < widechar >;
 
 inline const ansichar* __c_str(const string& str);
 
+
 class machine_event_central;
 
 
@@ -943,8 +959,8 @@ enum enum_command
 
 
 class composite_base;
-class elemental;
-class elemental;
+class element;
+class element;
 
 
 //namespace acme
@@ -1225,7 +1241,7 @@ inline bool nok(const TYPE* p)
 class istring;
 class var;
 class property_set;
-class elemental;
+class element;
 //class base_edit;
 class var_array;
 class property;
@@ -1523,7 +1539,7 @@ namespace html
    class html;
 
 
-   class elemental;
+   class element;
 
 
 } // namespace html
@@ -2078,7 +2094,7 @@ typedef  void(*PFN_factory_exchange)();
 CLASS_DECL_ACME HRESULT defer_co_initialize_ex(bool bMultiThread, bool bDisableOleDDE = false);
 #endif
 
-class elemental;
+class element;
 
 class var;
 
@@ -2444,7 +2460,7 @@ namespace user
 #include "acme/platform/_global.h"
 
 
-#include "acme/primitive/primitive/elemental.h"
+#include "acme/primitive/primitive/element.h"
 #include "acme/primitive/primitive/layered.h"
 
 
@@ -2508,7 +2524,7 @@ inline bool failed(const ::property & set) { return !::succeeded(set); }
 #include "acme/primitive/geometry2d/_.h"
 
 
-//#include "acme/primitive/primitive/elemental.h"
+//#include "acme/primitive/primitive/element.h"
 
 
 #include "acme/primitive/primitive/_factory_prefix.h"
@@ -2530,11 +2546,18 @@ inline bool failed(const ::property & set) { return !::succeeded(set); }
 
 using id_array = ::comparable_array < id >;
 
+using element_array = __pointer_array(element);
+
+
+
 //#include "acme/primitive/collection/_papaya_array_decl.h"
 #include "acme/primitive/collection/_papaya_heap.h"
 
 
 #include "acme/primitive/collection/address_array.h"
+
+
+using element_address_array = ::address_array < element * >;
 
 
 #include "acme/primitive/collection/_papaya.h"
@@ -2545,20 +2568,20 @@ using id_array = ::comparable_array < id >;
 class sticker;
 
 
-inline ::elemental * trace_object(::elemental * pobjectContext) { return pobjectContext; }
+inline ::element * trace_object(::element * pobjectContext) { return pobjectContext; }
 
 template < typename POINTER_TYPE >
 class ptr_array;
 
-//using composite_ptra = __pointer_array(::elemental); // Please use just for composition (ownership).
+//using composite_ptra = __pointer_array(::element); // Please use just for composition (ownership).
 
-//using reference_ptra = __pointer_array(::elemental); // Please use just for reference (member-based).
+//using reference_ptra = __pointer_array(::element); // Please use just for reference (member-based).
 
-//using object_ptra = __pointer_array(::elemental); // Please use just for keeping non-member-based references.
+//using object_ptra = __pointer_array(::element); // Please use just for keeping non-member-based references.
 
-using object_ptra = __pointer_array(::elemental); // Please use just for keeping non-member-based references.
+using object_ptra = __pointer_array(::element); // Please use just for keeping non-member-based references.
 
-using object_addra = __address_array(::elemental); // Please use just for keeping non-member-based references.
+using object_addra = __address_array(::element); // Please use just for keeping non-member-based references.
 
 class object_meta;
 
@@ -2573,9 +2596,9 @@ namespace http
 
 } // namespace http
 
-template < typename PRED > inline __pointer(::elemental) __pred_method(PRED pred);
+template < typename PRED > inline __pointer(::element) __pred_method(PRED pred);
 
-template < typename PRED > inline __pointer(::elemental) __pred_future(PRED pred);
+template < typename PRED > inline __pointer(::element) __pred_future(PRED pred);
 
 //class context;
 
@@ -2601,7 +2624,7 @@ template < typename PRED > inline __pointer(::elemental) __pred_future(PRED pred
 
 //class create_thread;
 
-using generic_pointer = __pointer(::elemental);
+using generic_pointer = __pointer(::element);
 
 
 #ifdef WINDOWS_DESKTOP
@@ -2650,7 +2673,7 @@ namespace core
 
 class message_box;
 
-//#include "acme/primitive/primitive/elemental.h"
+//#include "acme/primitive/primitive/element.h"
 
 //#include "acme/primitive/primitive/object_meta.h"
 
@@ -3146,7 +3169,7 @@ namespace file
 
 
 class CLASS_DECL_ACME ptra :
-   virtual public __pointer_array(elemental)
+   virtual public __pointer_array(element)
 {
 public:
 
@@ -3154,8 +3177,8 @@ public:
 };
 
 
-typedef ::map < __pointer(elemental), __pointer(elemental), __pointer(elemental), __pointer(elemental) > element_map;
-typedef ::map < __pointer(elemental), __pointer(elemental), ptra, ptra > map_many;
+typedef ::map < __pointer(element), __pointer(element), __pointer(element), __pointer(element) > element_map;
+typedef ::map < __pointer(element), __pointer(element), ptra, ptra > map_many;
 
 
 namespace zip

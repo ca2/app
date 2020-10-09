@@ -2136,7 +2136,7 @@ LPWORD     lpCharType);
 //        parameters (ported from Win95).  To be compatible, we
 //        must break the relationship between the A and W versions
 //        of GetStringType.  There will be NO function call for the
-//        elemental GetStringType.
+//        element GetStringType.
 //
 //        GetStringTypeEx (above) should be used instead.
 //

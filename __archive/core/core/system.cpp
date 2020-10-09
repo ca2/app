@@ -140,7 +140,7 @@ namespace acme
    }
 
 
-   ::estatus system::initialize_system(::elemental * pobject, app_core * pappcore)
+   ::estatus system::initialize_system(::element * pobject, app_core * pappcore)
    {
 
       auto estatus = ::acme::system::initialize_system(pobject, pappcore);
@@ -277,7 +277,7 @@ namespace acme
    }
 
 
-   void system::discard_to_factory(__pointer(elemental) pca)
+   void system::discard_to_factory(__pointer(element) pca)
    {
 
       UNREFERENCED_PARAMETER(pca);
@@ -785,7 +785,7 @@ namespace acme
    }
 
 
-   void system::on_allocation_error(const ::string & str, ::elemental * pobject)
+   void system::on_allocation_error(const ::string & str, ::element * pobject)
    {
 
       string strMessage;
@@ -1099,7 +1099,7 @@ namespace acme
 
 
 //
-//   ::estatus system::initialize_system(::elemental* pobjectContext, ::app_core* pappcore)
+//   ::estatus system::initialize_system(::element* pobjectContext, ::app_core* pappcore)
 //   {
 //
 //      auto estatus = ::acme::system::initialize_system(pobjectContext, pappcore);

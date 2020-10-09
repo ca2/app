@@ -22,7 +22,7 @@ namespace linux
    }
 
 
-   ::estatus dir_system::initialize(::elemental * pobjectContext)
+   ::estatus dir_system::initialize(::element * pobjectContext)
    {
 
       auto estatus = ::dir_system::initialize(pobjectContext);

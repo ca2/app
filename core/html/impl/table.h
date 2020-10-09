@@ -9,7 +9,7 @@ namespace html
    {
 
 
-      class CLASS_DECL_CORE table : public elemental
+      class CLASS_DECL_CORE table : public element
       {
       public:
 
@@ -48,7 +48,7 @@ namespace html
          void set_cell(index iCol, index iRow, cell * pcell);
 
 
-         void implement_phase1(html_data * pdata, ::html::elemental * pelemental);
+         void implement_phase1(html_data * pdata, ::html::element * pelemental);
 
 
          virtual void layout_phase0(html_data * pdata);

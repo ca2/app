@@ -12,6 +12,7 @@
 namespace sockets
 {
 
+
    /** Binds incoming port number to new socket class X.
    \ingroup basic */
    class CLASS_DECL_APEX listen_socket_base :
@@ -123,6 +124,7 @@ namespace sockets
 
 
    };
+
 
    /** Binds incoming port number to new socket class X.
    \ingroup basic */

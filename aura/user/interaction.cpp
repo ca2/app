@@ -12286,7 +12286,7 @@ restart:
    }
 
 
-   void interaction::post_task(::elemental * pobjectTask)
+   void interaction::post_task(::element * pobjectTask)
    {
 
       if (::is_set(m_pthreadUserInteraction))
@@ -12353,7 +12353,7 @@ restart:
 #endif
 
 
-   void interaction::send_task(::elemental * pobjectTask, ::duration durationTimeout)
+   void interaction::send_task(::element * pobjectTask, ::duration durationTimeout)
    {
 
       ::thread * pthread = get_wnd() == nullptr ? (::thread *) nullptr : get_wnd()->m_pthreadUserInteraction;

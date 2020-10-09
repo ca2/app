@@ -22,7 +22,7 @@ template<size_t _Bits>
 			: _Bits <= 16 ? 2
 			: _Bits <= 32 ? 4
 			: 8>,
-virtual public ::elemental
+virtual public ::element
 {	// store fixed-length sequence of Boolean elements
 public:
 
@@ -39,25 +39,25 @@ public:
 
 	typedef bool element_type;	// retained
 
-   // CLASS elemental
-	class elemental
+   // CLASS element
+	class element
    {	// proxy for an element
 		friend class bitset<_Bits>;
 
 	public:
-		elemental& operator=(bool _Val)
+		element& operator=(bool _Val)
       {	// assign Boolean to element
 			_Pbitset->set(_Mypos, _Val);
 			return (*this);
       }
 
-		elemental& operator=(const elemental& _Bitref)
-      {	// assign elemental to element
+		element& operator=(const element& _Bitref)
+      {	// assign element to element
 			_Pbitset->set(_Mypos, bool(_Bitref));
 			return (*this);
       }
 
-		elemental& flip()
+		element& flip()
       {	// complement stored element
 			_Pbitset->flip(_Mypos);
 			return (*this);
@@ -74,9 +74,9 @@ public:
       }
 
 	private:
-		elemental(bitset<_Bits>& _Bitset, size_t _Pos)
+		element(bitset<_Bits>& _Bitset, size_t _Pos)
       : _Pbitset(&_Bitset), _Mypos(_Pos)
-      {	// construct from bitset elemental and position
+      {	// construct from bitset element and position
       }
 
 		bitset<_Bits> *_Pbitset;	// pointer to the bitset
@@ -104,9 +104,9 @@ public:
 		return (test(_Pos));
 		}
 
-	elemental at(size_t _Pos)	// retained
+	element at(size_t _Pos)	// retained
 		{	// subscript mutable sequence with checking
-		return (elemental(*this, _Pos));
+		return (element(*this, _Pos));
 		}
 
 	bool operator[](size_t _Pos) const
@@ -114,7 +114,7 @@ public:
 		return (test(_Pos));
 		}
 
-	elemental operator[](size_t _Pos)
+	element operator[](size_t _Pos)
 		{	// subscript mutable sequence
  //#if _ITERATOR_DEBUG_LEVEL == 2
 	//	if (_Bits <= _Pos)
@@ -126,7 +126,7 @@ public:
 //		_SCL_SECURE_VALIDATE_RANGE(_Pos < _Bits);
 // #endif /* _ITERATOR_DEBUG_LEVEL == 2 */
 
-		return (elemental(*this, _Pos));
+		return (element(*this, _Pos));
 		}
 
 	bitset()

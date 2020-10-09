@@ -202,6 +202,7 @@ namespace sockets
       m_response.attr(__id(request_uri))        = strRequestUri;
       m_strUrl                                  = strUrlParam;
 
+#ifdef BSD_STYLE_SOCKETS
       if (m_host.is_empty())
       {
 
@@ -214,6 +215,7 @@ namespace sockets
          m_strInitSSLClientContext = m_host;
 
       }
+#endif
 
       m_strConnectHost                          = m_host;
       m_iConnectPort                            = m_port;

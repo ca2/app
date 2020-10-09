@@ -1,66 +1,54 @@
 #pragma once
 
 
-#include "basic/sockets_socket.h"
-#include "basic/sockets_stream_socket.h"
-#include "basic/sockets_sctp_socket.h"
-#include "basic/sockets_tcp_socket.h"
-#include "basic/sockets_udp_socket.h"
-
-#include "basic/sockets_tls_socket.h"
+namespace sockets
+{
 
 
-#include "axis/net/sockets/base/sockets_base_socket_handler.h"
-#include "basic/sockets_socket_handler.h"
-#include "basic/sockets_listen_socket.h"
+   class CLASS_DECL_APEX sockets :
+      virtual public ::apex::department
+   {
+   public:
+
+      i32                                       m_iErrorCode;
+#ifdef HAVE_OPENSSL
+      ssl_client_context_map                    m_clientcontextmap;
+#endif
+
+#ifdef _UWP
+      long                                      m_lHttpGetSerial;
+#endif
+
+#ifdef AJP_SOCKET
+      AjpBaseSocket::Initializer *              m_pajpbasesocketinit;
+#endif
+
+      count                                     m_countHttpPostBoundary;
+      ::mutex                                   m_mutexHttpPostBoundary;
+
+      resolv_socket::cache_t                    m_resolvcache;
+      resolv_socket::timeout_t                  m_resolvtimeout;
+      ::mutex                                   m_mutexResolvCache;
+
+      __pointer(::sockets::net)                 m_spnet;
 
 
-#include "axis/net/sockets/http/sockets_http.h"
+      sockets();
+      virtual ~sockets();
 
 
-#include "webserver/webserver_ajp_base_socket.h"
-#include "webserver/webserver_ajp13_socket.h"
-#include "webserver/webserver_ajp13.h"
-#include "webserver/webserver_http_base_socket.h"
-#include "webserver/webserver_httpd_socket.h"
-
-#include "sip/sip_base.h"
-
-#include "sip/sip_transaction.h"
-#include "sip/sip_request.h"
-#include "sip/sip_response.h"
-
-#include "sip/sip_base_client_socket.h"
-#include "sip/sip_tcp_client_socket.h"
-#include "sip/sip_udp_client_socket.h"
-#include "sip/sip_client.h"
-#include "sip/sip_server.h"
+      class ::sockets::net& net();
 
 
-#include "axis/net/net_email_address.h"
-#include "axis/net/net_email.h"
+      virtual ::estatus initialize(::layered* pobjectContext) override;
+      virtual void finalize() override;
 
-#include "smtp/smtp_socket.h"
-#include "smtp/smtpd_socket.h"
+//      virtual void http_config_proxy(const char * pszUrl, http_tunnel * psocket);
 
-#include "timer/sockets_event_time.h"
-#include "timer/sockets_event.h"
-
-#include "timer/sockets_ievent_handler.h"
-#include "timer/sockets_ievent_owner.h"
-#include "timer/sockets_event_handler.h"
-
-#include "asynch_dns/sockets_resolv_socket.h"
-#include "asynch_dns/sockets_resolv_server.h"
+   };
 
 
-#include "basic/sockets_sync_socket_handler.h"
+} // namespace sockets
 
 
-#include "sockets_link_out_socket.h"
-#include "sockets_link_in_socket.h"
-
-#include "basic/sockets_net.h"
-
-#include "sockets_sockets.h"
 

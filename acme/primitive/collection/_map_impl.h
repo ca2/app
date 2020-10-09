@@ -22,7 +22,7 @@ template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class PAIR >
 void map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::dump(dump_context& dumpcontext) const
 {
 
-   ::elemental::dump(dumpcontext);
+   ::element::dump(dumpcontext);
 
    dumpcontext << "with " << m_nCount << " elements";
    if (dumpcontext.GetDepth() > 0)

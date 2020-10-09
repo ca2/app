@@ -183,9 +183,9 @@ void CLASS_DECL_ACME __term_local_data(HINSTANCE hInst, bool bAll)
       __thread_data->DeleteValues(hInst, bAll);
 }*/
 
-// This elemental count is needed to support Win32s, such that the
+// This element count is needed to support Win32s, such that the
 // thread-local and process-local data is not destroyed prematurely.
-// It is basically a elemental count of the number of processes that
+// It is basically a element count of the number of processes that
 // have attached to the ca2 API DLL.
 
 long gen_TlsRef = 0;

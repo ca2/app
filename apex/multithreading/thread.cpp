@@ -2795,7 +2795,7 @@ void thread::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
 
 
 
-bool thread::post_task(::elemental * pobjectTask)
+bool thread::post_task(::element * pobjectTask)
 {
 
    if (::is_null(pobjectTask))
@@ -2816,7 +2816,7 @@ bool thread::post_task(::elemental * pobjectTask)
 }
 
 
-bool thread::send_task(::elemental * pobjectTask, ::duration durationTimeout)
+bool thread::send_task(::element * pobjectTask, ::duration durationTimeout)
 {
 
    return send_object(message_system, system_message_runnable, pobjectTask, durationTimeout);

@@ -33,7 +33,7 @@ inline void __string_exchange(text_stream & s, ::id & id) { s.string_exchange(id
 inline void __string_exchange(text_stream & s, void * & p) { s.number_exchange((::iptr &)p); }
 inline void __string_exchange(text_stream & s, oswindow & oswindow) { s.number_exchange((::iptr &)oswindow); }
 inline void __string_exchange(text_stream & s, wchar_t wsz[]) { s.string_exchange(wsz); }
-//inline void __string_exchange(text_stream & s, elemental & elemental) { s.json_exchange(elemental); }
+//inline void __string_exchange(text_stream & s, element & element) { s.json_exchange(element); }
 
 
 //inline void __string_exchange(text_stream & s, ::rect & r) { s.json_exchange(r); }

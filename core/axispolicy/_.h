@@ -46,7 +46,7 @@ namespace user
 {
 
 
-   class elemental;
+   class element;
    class interaction;
    class interaction_impl;
    class interaction_child;

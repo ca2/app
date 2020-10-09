@@ -70,7 +70,7 @@ namespace aura
 
    //extern critical_section* g_pcsTrace;
 
-   //extern ::elemental* g_ptrace;
+   //extern ::element* g_ptrace;
 
    //extern simple_trace* g_psimpletrace;
 
@@ -98,7 +98,7 @@ namespace aura
    //extern ::mutex* g_pmutexMessageDispatch;
 
 
-   //extern CLASS_DECL_AURA array < elemental* >* g_paAura;
+   //extern CLASS_DECL_AURA array < element* >* g_paAura;
 
 
    //extern ::map < ::id, const ::id&, ::id, const ::id& >* g_pmapRTL;

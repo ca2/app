@@ -1,5 +1,5 @@
 //
-//  ::elemental.h
+//  ::element.h
 //  acme
 //
 //  Created by Camilo Sasuke Tsumanuma on 02/06/19.
@@ -16,15 +16,15 @@
 #pragma once
 
 
-//using ::elemental = ::elemental;
-//using runnablea = __pointer_array(::elemental);
+//using ::element = ::element;
+//using runnablea = __pointer_array(::element);
 
 
 
 //
-//struct CLASS_DECL_ACME ::elemental :
-//   virtual public elemental,
-//   public elemental
+//struct CLASS_DECL_ACME ::element :
+//   virtual public element,
+//   public element
 //{
 //   
 //   
@@ -32,8 +32,8 @@
 //   ::i64          m_cRun;
 //   
 //   
-//   ::elemental(::elemental * pobject = nullptr) : elemental(pobject) { m_cRun = 0; }
-//   virtual ~::elemental();
+//   ::element(::element * pobject = nullptr) : element(pobject) { m_cRun = 0; }
+//   virtual ~::element();
 //   
 //   
 //   virtual ::estatus     call() override;

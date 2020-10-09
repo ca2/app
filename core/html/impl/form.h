@@ -10,7 +10,7 @@ namespace html
    {
 
 
-      class CLASS_DECL_CORE form : public elemental
+      class CLASS_DECL_CORE form : public element
       {
       public:
 

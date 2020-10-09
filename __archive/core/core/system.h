@@ -65,9 +65,9 @@ namespace acme
       system();
       virtual ~system();
 
-      virtual ::estatus  initialize_system(::elemental * pobjectContext, app_core * pappcore) override;
+      virtual ::estatus  initialize_system(::element * pobjectContext, app_core * pappcore) override;
 
-      virtual void discard_to_factory(__pointer(elemental) pca);
+      virtual void discard_to_factory(__pointer(element) pca);
 
       virtual bool is_system() const override;
 
@@ -125,7 +125,7 @@ namespace acme
 
       //virtual i32 main();
 
-      virtual void on_allocation_error(const ::string & str, ::elemental * pobjectSometimes) override;
+      virtual void on_allocation_error(const ::string & str, ::element * pobjectSometimes) override;
 
       //virtual __pointer(::acme::session) on_create_session() override;
 
@@ -213,7 +213,7 @@ namespace acme
       //virtual ~system();
 
 
-      ///virtual ::estatus initialize_system(::elemental* pobjectContext, app_core* pappcore) override;
+      ///virtual ::estatus initialize_system(::element* pobjectContext, app_core* pappcore) override;
 
 
       //virtual ::estatus process_init() override;

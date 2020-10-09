@@ -327,7 +327,7 @@ namespace music
                                                                          kAudioUnitScope_Output, 0,
                                                                          &sampleRate, &theSize), home);
                         } else {
-                           // remove device output node and add elemental output
+                           // remove device output node and add element output
                            require_noerr (result = AUGraphRemoveNode (inGraph, node), home);
                            desc.componentSubType = kAudioUnitSubType_GenericOutput;
                            require_noerr (result = AUGraphAddNode (inGraph, &desc, &node), home);

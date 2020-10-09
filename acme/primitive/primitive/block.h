@@ -4,10 +4,12 @@
 struct CLASS_DECL_ACME block
 {
 
-   void *                     m_pdata;
+   
+   byte *                     m_pdata;
    memsize_storage            m_iSize;
 
-   block(const void * pdata = nullptr, i64 iSize = 0) : m_pdata((void *) pdata), m_iSize(iSize) {}
+
+   block(const void * pdata = nullptr, i64 iSize = 0) : m_pdata((byte *) pdata), m_iSize(iSize) {}
    block(const memory_base & memory);
    block(const memory_base * pmemory);
    block(const block & block) : ::block(block.m_pdata, block.m_iSize) {}
@@ -19,6 +21,12 @@ struct CLASS_DECL_ACME block
    memsize get_size() const { return (memsize_cast) m_iSize; }
    memsize size() const { return (memsize)m_iSize; }
 
+#ifdef _UWP
+   
+   ::Windows::Storage::Streams::IBuffer^ get_os_buffer(memsize pos = 0, memsize size = -1) const;
+   Array < uchar, 1U >^ get_os_bytes(memsize pos, memsize size) const;
+
+#endif
 
    block & from_base64(const char * psz, strsize iSize) const;
    string to_base64() const;

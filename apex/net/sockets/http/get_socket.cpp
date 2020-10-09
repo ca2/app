@@ -107,9 +107,11 @@ namespace sockets
             else
                inheader(__id(host)) = GetUrlHost();*/
 
-#if !defined(BSD_STYLE_SOCKETS)
+#if defined(WINRT_SOCKETS)
 
-      m_bExpectResponse = true;
+      m_bWaitingResponse = true;
+
+      m_bExpectResponse = false;
 
       m_bExpectRequest = false;
 

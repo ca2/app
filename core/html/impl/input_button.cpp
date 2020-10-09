@@ -51,7 +51,7 @@ namespace html
       }
 
 
-      void input_button::implement_phase1(html_data * pdata, ::html::elemental * pelemental)
+      void input_button::implement_phase1(html_data * pdata, ::html::element * pelemental)
       {
 
          m_bHasChar = true;
@@ -76,7 +76,7 @@ namespace html
 
          }
 
-         elemental::implement_phase1(pdata, pelemental);
+         element::implement_phase1(pdata, pelemental);
 
          auto value = pelemental->m_pbase->get_tag()->get_attr_value("value");
 
@@ -106,7 +106,7 @@ namespace html
       void input_button::layout_phase3(html_data * pdata)
       {
 
-         elemental::layout_phase3(pdata);
+         element::layout_phase3(pdata);
 
          m_pbutton->place(m_box);
 

@@ -76,7 +76,7 @@ extern "C" {
 *    that contains references to other important objects, e.g. the
 *    ANativeActivity obejct instance the application is running in.
 *
-* 3/ the "android_app" elemental holds an ALooper instance that already
+* 3/ the "android_app" element holds an ALooper instance that already
 *    listens to two important things:
 *
 *      - activity lifecycle events (e.g. "pause", "resume"). See APP_CMD_XXX
@@ -136,7 +136,7 @@ struct android_poll_source
 */
 struct android_app
 {
-   // The application can place a pointer to its own state elemental
+   // The application can place a pointer to its own state element
    // here if it likes.
    void* userData;
 
@@ -149,7 +149,7 @@ struct android_app
    // dispatching.
    i32(*onInputEvent)(struct android_app* app, AInputEvent* event);
 
-   // The ANativeActivity elemental instance that this app is running in.
+   // The ANativeActivity element instance that this app is running in.
    ANativeActivity* activity;
 
    // The current configuration the app is running in.
@@ -227,7 +227,7 @@ enum
    * application's window, which is returned as an identifier from
    * ALooper_pollOnce().  The data for this identifier is a pointer to an
    * android_poll_source structure.  These can be read via the inputQueue
-   * elemental of android_app.
+   * element of android_app.
    */
    LOOPER_ID_INPUT = 2,
 

@@ -5,7 +5,7 @@ using hsync_array = ::address_array < HSYNC >;
 
 
 class CLASS_DECL_ACME sync_array :
-   public elemental
+   public element
 {
 public:
 

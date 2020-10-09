@@ -102,7 +102,7 @@ CLASS_DECL_CORE void defer_dock_application(int_bool bDock)
 
 }
 
-CLASS_DECL_CORE void main_branch(::elemental* pobjectTask, e_priority epriority)
+CLASS_DECL_CORE void main_branch(::element* pobjectTask, e_priority epriority)
 {
 
    ::wait(

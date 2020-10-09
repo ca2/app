@@ -30,7 +30,7 @@ namespace draw2d
 
 
       class CLASS_DECL_AURA element :
-         virtual public ::elemental
+         virtual public ::element
       {
       public:
 

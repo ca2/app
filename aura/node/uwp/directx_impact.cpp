@@ -60,10 +60,9 @@ namespace uwp
       // Register
       m_tokenActivated = m_window->Activated += ref new TypedEventHandler < ::Windows::UI::Core::CoreWindow^, ::Windows::UI::Core::WindowActivatedEventArgs^>(this, &impact::CoreWindow_WindowActivated);
 
-
       m_tokenKeyDown = m_window->KeyDown += ref new TypedEventHandler < ::Windows::UI::Core::CoreWindow^, ::Windows::UI::Core::KeyEventArgs^>(this, &impact::CoreWindow_KeyDown);
 
-      m_tokenKeyDown = m_window->KeyDown += ref new TypedEventHandler < ::Windows::UI::Core::CoreWindow^, ::Windows::UI::Core::KeyEventArgs^>(this, &impact::CoreWindow_KeyDown);
+      //m_tokenKeyDown = m_window->KeyDown += ref new TypedEventHandler < ::Windows::UI::Core::CoreWindow^, ::Windows::UI::Core::KeyEventArgs^>(this, &impact::CoreWindow_KeyDown);
 
       m_tokenPointerPressed = m_window->PointerPressed += ref new TypedEventHandler < ::Windows::UI::Core::CoreWindow^, ::Windows::UI::Core::PointerEventArgs^>(this, &impact::CoreWindow_PointerPressed);
 

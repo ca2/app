@@ -177,7 +177,7 @@ void sync::release_ownership()
 //void sync::assert_valid() const
 //{
 //
-//   elemental::assert_valid();
+//   element::assert_valid();
 //
 //}
 
@@ -192,7 +192,7 @@ void sync::release_ownership()
 //
 //   dumpcontext << " named " << m_pszName << "\n";
 //
-//   elemental::dump(dumpcontext);
+//   element::dump(dumpcontext);
 //
 //}
 

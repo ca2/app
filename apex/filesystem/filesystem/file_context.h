@@ -166,6 +166,7 @@ public:
    virtual void normalize(string & str);
    virtual i32 cmp(const ::file::path & psz1, const ::file::path & psz2);
 
+   virtual string get_hash(const var& varFile, enum_hash ehash);
 
    //virtual string md5(::file::file * pfile);
    virtual string md5(const var & varFile);
@@ -179,19 +180,19 @@ public:
 
    virtual bool get_last_write_time(FILETIME * pfiletime, const string & strFilename);
 
-   virtual void dtf(const ::file::path & pszFile, const ::file::path & pszDir);
+   //virtual void dtf(const ::file::path & pszFile, const ::file::path & pszDir);
 
-   virtual void dtf(const ::file::path & pszFile, ::file::patha & stra);
+   //virtual void dtf(const ::file::path & pszFile, ::file::patha & stra);
 
-   virtual void ftd(const ::file::path & pszDir, const ::file::path & pszFile);
+   //virtual void ftd(const ::file::path & pszDir, const ::file::path & pszFile);
 
    // 'n' (natural) terminated ascii number, example: 245765487n
    // pmd5ctx = openssl/md5.h's MD5_CTX
-   virtual void write_n_number(::file::file * pfile, void * pmd5ctx, i64 iNumber);
-   virtual void read_n_number(::file::file * pfile, void * pmd5ctx, i64 & iNumber);
+   //virtual void write_n_number(::file::file * pfile, void * pmd5ctx, i64 iNumber);
+   //virtual void read_n_number(::file::file * pfile, void * pmd5ctx, i64 & iNumber);
 
-   virtual void write_gen_string(::file::file * pfile, void * pmd5ctx, string & str);
-   virtual void read_gen_string(::file::file * pfile, void * pmd5ctx, string & str);
+   //virtual void write_gen_string(::file::file * pfile, void * pmd5ctx, string & str);
+   //virtual void read_gen_string(::file::file * pfile, void * pmd5ctx, string & str);
 
    virtual ::file_result file_get_file(::file::path path, const efileopen & eopen);
 

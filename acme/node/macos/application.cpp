@@ -10,8 +10,8 @@ namespace acme
 {
 
 
-//   application::application(::elemental * pobject) :
-//      ::elemental(pobject)
+//   application::application(::element * pobject) :
+//      ::element(pobject)
 //   {
 ////      m_pthreadimpl.create(this);
 ////      m_pthreadimpl->m_pthread = this;

@@ -69,7 +69,7 @@ class single_lock;
 class multi_lock;
 
 
-CLASS_DECL_ACME ::estatus __call(::elemental * pobject);
+CLASS_DECL_ACME ::estatus __call(::element * pobject);
 
 
 
@@ -81,13 +81,13 @@ CLASS_DECL_ACME ::estatus __call(::elemental * pobject);
 //   {
 //
 //      template < typename ARRAY >
-//      __pointer(::elemental) is_running(ARRAY & array, const char * pszTag)
+//      __pointer(::element) is_running(ARRAY & array, const char * pszTag)
 //      {
 //
 //         for (::index i = 0; i < array.get_size(); i++)
 //         {
 //
-//            __pointer(::elemental) pobject;
+//            __pointer(::element) pobject;
 //
 //            pobject = &__typed(array[i]);
 //

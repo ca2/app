@@ -148,8 +148,8 @@ namespace ansios
 {
 
 
-   process::process(::elemental * pobject):
-      elemental(pobject),
+   process::process(::element * pobject):
+      element(pobject),
       ::process::process(pobject)
    {
 

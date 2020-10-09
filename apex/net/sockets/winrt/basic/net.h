@@ -91,7 +91,7 @@ namespace sockets
 
 
       string            m_host; ///< local hostname
-      ipaddr_t          m_ip; ///< local ip address
+      in_addr           m_ip; ///< local ip address
       string            m_addr; ///< local ip address in string format
       string            m_local_addr6; ///< local ip address in string format
       struct in6_addr   m_local_ip6; ///< local ipv6 address
@@ -105,28 +105,30 @@ namespace sockets
       {
       public:
 
-         ipaddr_t       m_ipaddr;
-         tick m_tickLastChecked;
-         bool           r;
+
+         in_addr        m_ipaddr;
+         tick           m_tickLastChecked;
+         bool           m_bOk;
+
 
       };
 
 
-      ::mutex                                           m_mutexCache;
-      ::string_map < dns_cache_item >                 m_mapCache;
+      ::mutex                                            m_mutexCache;
+      ::string_map < dns_cache_item >                    m_mapCache;
 
 
-      net(::layered * pobjectContext);
+      net();
       virtual ~net();
 
 
-      virtual bool initialize();
+      virtual ::estatus initialize(::layered* pobjectContext) override;
 
       virtual bool gudo_set();
 
       virtual bool gudo_get();
 
-      virtual bool finalize();
+      virtual void finalize();
 
       /*
       * Encode string per RFC1738 URL encoding rules
@@ -144,6 +146,8 @@ namespace sockets
 
       static bool isipv6(const string & str);
 
+#ifdef BSD_STYLE_SOCKETS
+
       static bool convert(in_addr & addr, const string & psz, int ai_flags = 0);
 
       static bool convert(in6_addr & addr, const string & psz, int ai_flags = 0);
@@ -152,6 +156,8 @@ namespace sockets
 
       static bool convert(string & str, const in6_addr & addr, int ai_flags = 0);
 
+#endif
+
       // use __memcmp;
       //int in6_addr_compare(struct ::in6_addr a, struct ::in6_addr b);
 
@@ -159,7 +165,7 @@ namespace sockets
 
       const string & GetLocalHostname();
 
-      ipaddr_t GetLocalIP();
+      in_addr GetLocalIP();
 
       const string & GetLocalAddress();
 

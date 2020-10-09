@@ -121,7 +121,7 @@ namespace userstack
       //   else if(get_view_id() ==CONFIGURATION_IMPACT)
       //   {
       ///*      __pointer(::user::interaction) pinteraction = m_pformOptions->ve_display_bandwidth");
-      //      elemental * pcheck = dynamic_cast < elemental * > (puie);
+      //      element * pcheck = dynamic_cast < element * > (puie);
       //      if(Session.savings().save().has(::ca2::save_display_bandwidth))
       //      {
       //         pcheck->_001SetCheck(check_checked, false);

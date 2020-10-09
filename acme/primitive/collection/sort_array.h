@@ -16,7 +16,7 @@ public:
 
 template < typename ARG_TYPE >
 class sort_data :
-   virtual public ::elemental
+   virtual public ::element
 {
 public:
 
@@ -54,7 +54,7 @@ public:
 
 template < class TYPE, class ARG_TYPE = const TYPE &, class BASE_ARRAY_TYPE = array < TYPE,ARG_TYPE > >
 class sort_array :
-   virtual public elemental
+   virtual public element
 {
 public:
 

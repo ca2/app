@@ -9,7 +9,7 @@ namespace html
    {
 
 
-      class CLASS_DECL_CORE table_elemental : public elemental
+      class CLASS_DECL_CORE table_elemental : public element
       {
       public:
 

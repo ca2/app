@@ -8,7 +8,7 @@
 
 #ifdef DEBUG
 
-CLASS_DECL_APEX void object_on_add_composite(const elemental* pbase);
+CLASS_DECL_APEX void object_on_add_composite(const element* pbase);
 
 #endif
 
@@ -135,7 +135,7 @@ void object::to_string(const class string_exchange & str) const
 }
 
 
-::estatus object::add_composite(::elemental* pobject)
+::estatus object::add_composite(::element* pobject)
 {
 
    sync_lock sl(mutex());
@@ -160,7 +160,7 @@ void object::to_string(const class string_exchange & str) const
 }
 
 
-::estatus object::add_reference(::elemental* pobject)
+::estatus object::add_reference(::element* pobject)
 {
 
    sync_lock sl(mutex());
@@ -179,7 +179,7 @@ void object::to_string(const class string_exchange & str) const
 }
 
 
-::estatus object::release_composite(::elemental* pobject)
+::estatus object::release_composite(::element* pobject)
 {
 
    if (::is_null(pobject))
@@ -210,7 +210,7 @@ void object::to_string(const class string_exchange & str) const
 }
 
 
-::estatus object::release_reference(::elemental* pobject)
+::estatus object::release_reference(::element* pobject)
 {
 
    if (::is_null(pobject))
@@ -1044,7 +1044,7 @@ CLASS_DECL_ACME mutex* get_children_mutex();
 
 
 /// tells if pobject is dependant of this object or of any dependant objects
-bool object::___is_reference(::elemental * pobject) const
+bool object::___is_reference(::element * pobject) const
 {
 
    if (::is_null(pobject))
@@ -1075,7 +1075,7 @@ bool object::___is_reference(::elemental * pobject) const
 }
 
 
-bool object::__is_composite(::elemental * pobject) const
+bool object::__is_composite(::element * pobject) const
 {
 
    if (::is_null(pobject))
@@ -1640,7 +1640,7 @@ void debug_context_object(::layered * pobjectContext)
 }
 
 
-CLASS_DECL_APEX void object_on_add_composite(const elemental * pbase)
+CLASS_DECL_APEX void object_on_add_composite(const element * pbase)
 {
 
    string strType = ::str::demangle(pbase->type_name());
@@ -1885,7 +1885,7 @@ void object::set_context_system(::apex::system* psystemContext)
 #endif
 
 
-// CLASS_DECL_APEX const char* topic_text(::elemental* pgeneric)
+// CLASS_DECL_APEX const char* topic_text(::element* pgeneric)
 // {
 
 //    if (::is_null(pgeneric))

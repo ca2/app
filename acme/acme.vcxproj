@@ -1753,7 +1753,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="primitive\primitive\aaa_want_to_remove_pointer1.h" />
     <ClInclude Include="primitive\primitive\block.h" />
     <ClInclude Include="primitive\primitive\compare_pred.h" />
-    <ClInclude Include="primitive\primitive\elemental.h" />
+    <ClInclude Include="primitive\primitive\element.h" />
     <ClInclude Include="primitive\primitive\estatus.h" />
     <ClInclude Include="primitive\primitive\layered.h" />
     <ClInclude Include="primitive\primitive\match.h" />

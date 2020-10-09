@@ -9,7 +9,7 @@ namespace user
 
 
    class CLASS_DECL_BASE tab_pane:
-      virtual public ::elemental
+      virtual public ::element
    {
    public: 
 

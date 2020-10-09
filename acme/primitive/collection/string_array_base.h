@@ -1278,7 +1278,7 @@ void string_array_base < Type, RawType >::insert_at(::index nStartIndex,const st
 //template < typename Type, typename RawType >
 //void string_array_base < Type, RawType >::dump(dump_context & dumpcontext) const
 //{
-//   //elemental::dump(dumpcontext);
+//   //element::dump(dumpcontext);
 //
 //   dumpcontext << "with " << this->m_nSize << " elements";
 //   if(dumpcontext.GetDepth() > 0)
@@ -1295,7 +1295,7 @@ void string_array_base < Type, RawType >::insert_at(::index nStartIndex,const st
 //void string_array_base < Type, RawType >::assert_valid() const
 //{
 //
-//   elemental::assert_valid();
+//   element::assert_valid();
 //
 //   if(this->m_pData == nullptr)
 //   {

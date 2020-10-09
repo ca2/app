@@ -320,6 +320,7 @@ namespace sockets
 
    }
 
+
    bool socket_handler::call_on_connect()
    {
 
@@ -634,6 +635,7 @@ end_processing_adding:
             FD_ZERO(&rfds);
             FD_ZERO(&wfds);
             FD_ZERO(&efds);
+
             ::count countR = 0;
             ::count countW = 0;
             ::count countE = 0;
@@ -775,6 +777,7 @@ end_processing_adding:
       {
 
          auto pos = m_fds.begin();
+
          for (; pos && n; pos++)
          {
             SOCKET socket = *pos;
@@ -829,6 +832,8 @@ end_processing_adding:
                socket_pointer psocket;
                if (m_sockets.lookup(socket, psocket)) // found
                {
+                  // Out-Of-Band data
+                  // recv with MSG_OOB
                   time_t tnow = time(nullptr);
                   if (psocket->Timeout(tnow))
                   {

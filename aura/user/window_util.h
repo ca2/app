@@ -53,7 +53,7 @@ namespace user
 
 
    class CLASS_DECL_AURA interaction_array :
-      virtual public elemental
+      virtual public element
    {
    public:
 

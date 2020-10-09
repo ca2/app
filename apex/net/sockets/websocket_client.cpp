@@ -719,13 +719,21 @@ namespace sockets
    long websocket_client::cert_common_name_check(const char * common_name)
    {
 
+#ifdef BSD_STYLE_SOCKETS
 
       int iResult = (int) SSL_get_verify_result(m_psslcontext->m_ssl);
 
+#else
+
+      int iResult = 0;
+
+#endif
+
+
       return iResult;
 
-
       return X509_V_ERR_APPLICATION_VERIFICATION;
+
 
    }
 

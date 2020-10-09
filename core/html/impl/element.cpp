@@ -10,7 +10,7 @@ namespace html
    {
 
 
-      elemental::elemental()
+      element::element()
       {
 
          m_cxMax = -2;
@@ -23,13 +23,13 @@ namespace html
       }
 
 
-      elemental::~elemental()
+      element::~element()
       {
 
       }
 
 
-      ::estatus elemental::initialize_html_impl_elemental(::html_data * pdata)
+      ::estatus element::initialize_html_impl_elemental(::html_data * pdata)
       {
 
          auto estatus = initialize(pdata);
@@ -46,7 +46,7 @@ namespace html
       }
 
 
-      void elemental::delete_implementation(html_data * pdocument)
+      void element::delete_implementation(html_data * pdocument)
       {
 
          m_cxMax = -2;
@@ -55,7 +55,7 @@ namespace html
       }
 
 
-      bool elemental::hit_test(html_data * pdata, const ::pointf & point)
+      bool element::hit_test(html_data * pdata, const ::pointf & point)
       {
 
          UNREFERENCED_PARAMETER(pdata);
@@ -76,7 +76,7 @@ namespace html
       }
 
 
-      double elemental::bound_hit_test(html_data * pdata, const ::pointf & point)
+      double element::bound_hit_test(html_data * pdata, const ::pointf & point)
       {
 
          UNREFERENCED_PARAMETER(pdata);
@@ -116,7 +116,7 @@ namespace html
          return sqrt(dx * dx + dy * dy);
       }
 
-      void elemental::OnLButtonDown(::message::message * pmessage)
+      void element::OnLButtonDown(::message::message * pmessage)
       {
          
          SCAST_PTR(::html::message, phtml, pmessage);
@@ -134,7 +134,7 @@ namespace html
 
       }
 
-      void elemental::OnMouseMove(::message::message * pmessage)
+      void element::OnMouseMove(::message::message * pmessage)
       {
 
          SCAST_PTR(::html::message, phtml, pmessage);
@@ -197,7 +197,7 @@ namespace html
 
       }
 
-      void elemental::OnLButtonUp(::message::message * pmessage)
+      void element::OnLButtonUp(::message::message * pmessage)
       {
          SCAST_PTR(::html::message, phtml, pmessage);
          if (has_link())
@@ -206,7 +206,7 @@ namespace html
          }
       }
 
-      void elemental::implement_phase1(html_data * pdata, ::html::elemental * pelemental)
+      void element::implement_phase1(html_data * pdata, ::html::element * pelemental)
       {
 
          UNREFERENCED_PARAMETER(pdata);
@@ -220,7 +220,7 @@ namespace html
       }
 
 
-      void elemental::implement_phase2(html_data * pdata)
+      void element::implement_phase2(html_data * pdata)
       {
 
          UNREFERENCED_PARAMETER(pdata);
@@ -228,7 +228,7 @@ namespace html
       }
 
 
-      void elemental::layout_phase0(html_data * pdata)
+      void element::layout_phase0(html_data * pdata)
       {
 
          m_box.left = 0;
@@ -244,7 +244,7 @@ namespace html
       }
 
 
-      void elemental::container_raw_max_width(html_data * pdata)
+      void element::container_raw_max_width(html_data * pdata)
       {
 
          if (m_pelemental->m_elementalptra.is_empty())
@@ -267,7 +267,7 @@ namespace html
          for (index i = 0; i < m_pelemental->m_elementalptra.get_count(); i++)
          {
 
-            elemental * pelemental = m_pelemental->m_elementalptra[i]->m_pimpl;
+            element * pelemental = m_pelemental->m_elementalptra[i]->m_pimpl;
 
             if (pelemental == nullptr)
                continue;
@@ -306,7 +306,7 @@ namespace html
       }
 
 
-      void elemental::layout_phase0_end(html_data * pdata)
+      void element::layout_phase0_end(html_data * pdata)
       {
 
          if (m_pelemental->m_elementalptra.is_empty())
@@ -321,7 +321,7 @@ namespace html
       }
 
 
-      index elemental::find(elemental * pelemental)
+      index element::find(element * pelemental)
       {
 
          for (index i = 0; i < m_pelemental->m_pparent->m_elementalptra.get_count(); i++)
@@ -340,7 +340,7 @@ namespace html
 
       }
 
-      elemental * elemental::get_sibling(index i)
+      element * element::get_sibling(index i)
       {
 
          if (i < 0)
@@ -354,7 +354,7 @@ namespace html
       }
 
 
-      elemental * elemental::get_next_sibling()
+      element * element::get_next_sibling()
       {
 
          if (m_pelemental->m_pstyle->m_edisplay == display_block)
@@ -371,7 +371,7 @@ namespace html
 
          }
 
-         elemental * pelemental = get_sibling(find(this) + 1);
+         element * pelemental = get_sibling(find(this) + 1);
 
          if (pelemental == nullptr)
          {
@@ -406,12 +406,12 @@ namespace html
       }
 
 
-      elemental * elemental::get_first_sibling()
+      element * element::get_first_sibling()
       {
 
-         elemental * pelemental = this;
+         element * pelemental = this;
 
-         elemental * pelementalPrevious = this;
+         element * pelementalPrevious = this;
 
          while (true)
          {
@@ -472,7 +472,7 @@ namespace html
 
       }
 
-      elemental * elemental::get_previous_sibling()
+      element * element::get_previous_sibling()
       {
 
          return get_sibling(find(this) - 1);
@@ -480,7 +480,7 @@ namespace html
       }
 
 
-      bool elemental::layout_phase1(html_data * pdata)
+      bool element::layout_phase1(html_data * pdata)
       {
 
          if (m_pelemental == nullptr)
@@ -539,7 +539,7 @@ namespace html
 
          float fTotalMin = 0;
 
-         elemental * pelemental = get_first_sibling();
+         element * pelemental = get_first_sibling();
 
          int iCount = 0;
 
@@ -582,7 +582,7 @@ namespace html
       }
 
 
-      void elemental::layout_phase1_end(html_data * pdata)
+      void element::layout_phase1_end(html_data * pdata)
       {
 
          if (m_pelemental == nullptr)
@@ -637,7 +637,7 @@ namespace html
       }
 
 
-      void elemental::layout_phase2(html_data * pdata)
+      void element::layout_phase2(html_data * pdata)
       {
 
          UNREFERENCED_PARAMETER(pdata);
@@ -645,7 +645,7 @@ namespace html
       }
 
 
-      void elemental::layout_phase3(html_data * pdata)
+      void element::layout_phase3(html_data * pdata)
       {
 
          move_to(pdata);
@@ -717,7 +717,7 @@ namespace html
       }
 
 
-      void elemental::move_to(html_data * pdata)
+      void element::move_to(html_data * pdata)
       {
 
          move_to(pdata, (float)pdata->m_pcoredata->m_layoutstate3.m_x, (float)pdata->m_pcoredata->m_layoutstate3.m_y);
@@ -725,7 +725,7 @@ namespace html
       }
 
 
-      void elemental::_001OnDraw(html_data * pdata)
+      void element::_001OnDraw(html_data * pdata)
       {
 
          ::draw2d::graphics_pointer pgraphics = pdata->m_pcoredata->m_pgraphics;
@@ -910,7 +910,7 @@ namespace html
       }
 
 
-      bool elemental::get_color(COLORREF & cr)
+      bool element::get_color(COLORREF & cr)
       {
 
          cr = ARGB(255, 0, 0, 0);
@@ -920,7 +920,7 @@ namespace html
       }
 
 
-      bool elemental::has_link()
+      bool element::has_link()
       {
 
          if (m_pelemental->m_pparent != nullptr && m_pelemental->m_pparent->m_pimpl != nullptr)
@@ -939,7 +939,7 @@ namespace html
       }
 
 
-      string elemental::link()
+      string element::link()
       {
          if (m_pelemental->m_pparent != nullptr)
          {
@@ -951,13 +951,13 @@ namespace html
          }
       }
 
-      void elemental::on_change_layout(html_data * pdata)
+      void element::on_change_layout(html_data * pdata)
       {
          UNREFERENCED_PARAMETER(pdata);
       }
 
 
-      float elemental::left()
+      float element::left()
       {
 
          return m_box.left;
@@ -965,7 +965,7 @@ namespace html
       }
 
 
-      float elemental::top()
+      float element::top()
       {
 
          return m_box.top;
@@ -973,7 +973,7 @@ namespace html
       }
 
 
-      float elemental::right()
+      float element::right()
       {
 
          return m_box.right;
@@ -981,7 +981,7 @@ namespace html
       }
 
 
-      float elemental::bottom()
+      float element::bottom()
       {
 
          return m_box.bottom;
@@ -989,7 +989,7 @@ namespace html
       }
 
 
-      float elemental::height()
+      float element::height()
       {
 
          return m_box.height();
@@ -997,7 +997,7 @@ namespace html
       }
 
 
-      float elemental::get_first_line_height()
+      float element::get_first_line_height()
       {
 
          return m_box.height();
@@ -1005,7 +1005,7 @@ namespace html
       }
 
 
-      float elemental::get_last_line_height()
+      float element::get_last_line_height()
       {
 
          return m_box.height();
@@ -1013,7 +1013,7 @@ namespace html
       }
 
 
-      float elemental::width()
+      float element::width()
       {
 
          return m_box.width();
@@ -1021,7 +1021,7 @@ namespace html
       }
 
 
-      ::pointf elemental::top_left()
+      ::pointf element::top_left()
       {
 
          return m_box.top_left();
@@ -1029,7 +1029,7 @@ namespace html
       }
 
 
-      ::sizef elemental::size()
+      ::sizef element::size()
       {
 
          return m_box.size();
@@ -1037,7 +1037,7 @@ namespace html
       }
 
 
-      ::sizef elemental::get_bound_size()
+      ::sizef element::get_bound_size()
       {
 
          return m_bound.size();
@@ -1045,7 +1045,7 @@ namespace html
       }
 
 
-      void elemental::set_bound_size(html_data * pdata, const ::sizef & size)
+      void element::set_bound_size(html_data * pdata, const ::sizef & size)
       {
 
          m_bound.set_size(size);
@@ -1055,7 +1055,7 @@ namespace html
       }
 
 
-      ::pointf elemental::get_bound_top_left()
+      ::pointf element::get_bound_top_left()
       {
 
          return m_bound.top_left();
@@ -1063,7 +1063,7 @@ namespace html
       }
 
 
-      void elemental::move_bound_to(html_data * pdata, const ::pointf & point)
+      void element::move_bound_to(html_data * pdata, const ::pointf & point)
       {
 
          m_bound.move_to(point);
@@ -1084,7 +1084,7 @@ namespace html
       }
 
 
-      void elemental::move_left_to(html_data * pdata, float x)
+      void element::move_left_to(html_data * pdata, float x)
       {
 
          m_box.move_left_to(x);
@@ -1094,7 +1094,7 @@ namespace html
       }
 
 
-      void elemental::move_top_to(html_data * pdata, float y)
+      void element::move_top_to(html_data * pdata, float y)
       {
 
          m_box.move_top_to(y);
@@ -1104,7 +1104,7 @@ namespace html
       }
 
 
-      void elemental::set_width(html_data * pdata, float cx)
+      void element::set_width(html_data * pdata, float cx)
       {
 
          m_box.set_width(cx);
@@ -1114,7 +1114,7 @@ namespace html
       }
 
 
-      void elemental::set_height(html_data * pdata, float cy)
+      void element::set_height(html_data * pdata, float cy)
       {
 
          m_box.set_height(cy);
@@ -1124,7 +1124,7 @@ namespace html
       }
 
 
-      void elemental::move_to(html_data * pdata, float x, float y)
+      void element::move_to(html_data * pdata, float x, float y)
       {
 
          m_box.move_to(x, y);
@@ -1134,7 +1134,7 @@ namespace html
       }
 
 
-      void elemental::set_size(html_data * pdata, float cx, float cy)
+      void element::set_size(html_data * pdata, float cx, float cy)
       {
 
          m_box.set_size(cx, cy);
@@ -1144,7 +1144,7 @@ namespace html
       }
 
 
-      void elemental::set_dim(html_data * pdata, float l, float t, float w, float h)
+      void element::set_dim(html_data * pdata, float l, float t, float w, float h)
       {
 
          m_box.set_dim(l, t, w, h);
@@ -1154,7 +1154,7 @@ namespace html
       }
 
 
-      bool elemental::use_in_final_layout(::html::impl::elemental * pimplChild)
+      bool element::use_in_final_layout(::html::impl::element * pimplChild)
       {
 
          ::html::impl::cell * pcell = dynamic_cast < ::html::impl::cell * > (pimplChild);
@@ -1178,7 +1178,7 @@ namespace html
 
       }
 
-      void elemental::layout_phase3_end(html_data * pdata)
+      void element::layout_phase3_end(html_data * pdata)
       {
 
          e_tag etag = m_pelemental->m_etag;
@@ -1200,7 +1200,7 @@ namespace html
          for (i32 i = 0; i < m_pelemental->m_elementalptra.get_size(); i++)
          {
 
-            elemental * pelemental = m_pelemental->m_elementalptra[i]->m_pimpl;
+            element * pelemental = m_pelemental->m_elementalptra[i]->m_pimpl;
 
             if (pelemental == nullptr)
                continue;
@@ -1233,7 +1233,7 @@ namespace html
       }
 
 
-      float elemental::calc_width()
+      float element::calc_width()
       {
 
          if (m_pelemental != nullptr && m_pelemental->m_pparent != nullptr)
@@ -1252,7 +1252,7 @@ namespace html
       }
 
 
-      bool elemental::is_tag()
+      bool element::is_tag()
       {
 
          return m_pelemental->m_pbase->get_type() == ::html::base::type_tag;
@@ -1260,7 +1260,7 @@ namespace html
       }
 
 
-      bool elemental::is_value()
+      bool element::is_value()
       {
 
          return m_pelemental->m_pbase->get_type() == ::html::base::type_value;
@@ -1271,7 +1271,7 @@ namespace html
 
 
 
-      ::sizef elemental::get_content_size()
+      ::sizef element::get_content_size()
       {
 
          auto size = m_box.size();
@@ -1284,7 +1284,7 @@ namespace html
       }
 
 
-      ::pointf elemental::get_content_top_left()
+      ::pointf element::get_content_top_left()
       {
 
          auto point = m_box.top_left();
@@ -1297,7 +1297,7 @@ namespace html
       }
 
 
-      float elemental::get_table_border()
+      float element::get_table_border()
       {
 
          return 0.f;
@@ -1305,7 +1305,7 @@ namespace html
       }
 
 
-      float elemental::get_cell_spacing()
+      float element::get_cell_spacing()
       {
 
          return 0.f;
@@ -1313,7 +1313,7 @@ namespace html
       }
 
 
-      float elemental::get_cell_padding()
+      float element::get_cell_padding()
       {
 
          return 0.f;
@@ -1321,7 +1321,7 @@ namespace html
       }
 
 
-      float elemental::get_extra_content_width()
+      float element::get_extra_content_width()
       {
 
          return m_margin.left
@@ -1334,7 +1334,7 @@ namespace html
       }
 
 
-      float elemental::get_extra_content_height()
+      float element::get_extra_content_height()
       {
 
          return m_margin.top

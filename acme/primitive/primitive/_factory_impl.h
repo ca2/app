@@ -48,7 +48,7 @@ namespace factory
    //      if (p && ::str::demangle(p->type_name()) == strText)
    //      {
 
-   //         ::output_debug_string("loading into existing elemental of same class type (1)");
+   //         ::output_debug_string("loading into existing element of same class type (1)");
 
    //      }
    //      else
@@ -67,7 +67,7 @@ namespace factory
    //         else if (::str::demangle(p->type_name()) != strText)
    //         {
 
-   //            ::output_debug_string("allocated elemental type is different from streamed elemental type (1.2)");
+   //            ::output_debug_string("allocated element type is different from streamed element type (1.2)");
 
    //            stream.set_fail_bit();
 
@@ -84,7 +84,7 @@ namespace factory
    //      if (p && id == ::str::demangle(p->type_name()))
    //      {
 
-   //         ::output_debug_string("loading into existing elemental of same class type (2)");
+   //         ::output_debug_string("loading into existing element of same class type (2)");
 
    //      }
    //      else
@@ -101,7 +101,7 @@ namespace factory
    //         else if (::str::demangle(p->type_name()) != id.to_string())
    //         {
 
-   //            ::output_debug_string("allocated elemental type is different from streamed elemental type (2.2)");
+   //            ::output_debug_string("allocated element type is different from streamed element type (2.2)");
 
    //            stream.set_fail_bit();
 
@@ -152,7 +152,7 @@ inline __pointer(BASE_TYPE) __create()
 
    }
 
-   __pointer(::elemental) ptypeNew = pfactory->call_new();
+   __pointer(::element) ptypeNew = pfactory->call_new();
 
    if (!ptypeNew)
    {
@@ -176,7 +176,7 @@ inline __pointer(BASE_TYPE) __create()
 
 
 template < typename BASE_TYPE >
-inline __pointer(BASE_TYPE) __create(::elemental * pobject)
+inline __pointer(BASE_TYPE) __create(::element * pobject)
 {
 
    auto p = __create < BASE_TYPE >();
@@ -277,7 +277,7 @@ inline __pointer(TYPE) __create_new(const TYPE & t)
 
 
 template < typename TYPE >
-inline __pointer(TYPE) __create_new(::elemental * pobjectContext)
+inline __pointer(TYPE) __create_new(::element * pobjectContext)
 {
 
    auto ptype = __create_new< TYPE > ();

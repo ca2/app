@@ -100,7 +100,9 @@ namespace sockets
       else
       {
 
+#ifdef BSD_STYLE_SOCKETS
          FATAL(log_this, "AddFile", Errno, bsd_socket_error(Errno));
+#endif
 
          SetCloseAndDelete();
 

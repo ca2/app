@@ -10,7 +10,7 @@
 //   public:
 //
 //
-//      thread(::elemental * pobject);
+//      thread(::element * pobject);
 //      virtual ~thread();
 //
 //

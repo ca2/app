@@ -95,8 +95,8 @@ namespace ios
 //
 //      ::estatus os_error_to_exception(LONG lOsError);
 //      ::estatus err_no_to_exception(i32 nErrno);
-//      void throw_os_error(::elemental * pobject, LONG lOsError, const char * lpszFileName = nullptr);
-//      void throw_err_no(::elemental * pobject, i32 nErrno, const char * lpszFileName = nullptr);
+//      void throw_os_error(::element * pobject, LONG lOsError, const char * lpszFileName = nullptr);
+//      void throw_err_no(::element * pobject, i32 nErrno, const char * lpszFileName = nullptr);
 //
 //
 //   }  // namespace file_exception

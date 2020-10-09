@@ -701,7 +701,7 @@ namespace linux
 
    }
 
-   bool os_context::create_service(::elemental * pobject)
+   bool os_context::create_service(::element * pobject)
    {
 
       //__throw(not_implemented());
@@ -754,7 +754,7 @@ namespace linux
    }
 
 
-   bool os_context::remove_service(::elemental * pobject)
+   bool os_context::remove_service(::element * pobject)
    {
 //      __throw(not_implemented());
       return false;
@@ -795,7 +795,7 @@ namespace linux
       */
    }
 
-   bool os_context::start_service(::elemental * pobject)
+   bool os_context::start_service(::element * pobject)
    {
       //__throw(not_implemented());
       return false;
@@ -836,7 +836,7 @@ namespace linux
             */
    }
 
-   bool os_context::stop_service(::elemental * pobject)
+   bool os_context::stop_service(::element * pobject)
    {
       __throw(not_implemented());
       return false;

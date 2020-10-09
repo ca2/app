@@ -44,7 +44,7 @@ namespace ios
       virtual i32 impl_get_file_image(const image_key & imagekey) override;
 
 
-      virtual ::user::shell::e_folder get_folder_type(::elemental * pobject, const char * lpcszPath) override;
+      virtual ::user::shell::e_folder get_folder_type(::element * pobject, const char * lpcszPath) override;
 
        
       i32 get_image(image_key key, const unichar * lpcszExtra, COLORREF crBk);

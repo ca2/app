@@ -360,7 +360,7 @@ public:
    virtual ::stream & read(::stream & stream);
 
    
-   virtual ::elemental * clone() const;
+   virtual ::element * clone() const;
 
 
    inline int line(int line);

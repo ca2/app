@@ -18,7 +18,7 @@ namespace android
    }
 
 
-   ::estatus file_context::initialize(::elemental * pobjectContext)
+   ::estatus file_context::initialize(::element * pobjectContext)
    {
 
       auto estatus = ::file_context::initialize(pobjectContext);

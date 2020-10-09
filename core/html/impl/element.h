@@ -4,19 +4,19 @@
 namespace html
 {
 
-   class elemental;
+   class element;
 
    namespace impl
    {
 
 
-      class CLASS_DECL_CORE elemental :
+      class CLASS_DECL_CORE element :
          virtual public object
       {
       public:
 
 
-         ::html::elemental *     m_pelemental;
+         ::html::element *     m_pelemental;
          ::rectf                 m_box;
          ::rectf                 m_bound;
          ::rectf                 m_padding;
@@ -37,8 +37,8 @@ namespace html
 
 
 
-         elemental();
-         virtual ~elemental();
+         element();
+         virtual ~element();
 
 
          virtual ::estatus initialize_html_impl_elemental(::html_data * pdata);
@@ -52,13 +52,13 @@ namespace html
          virtual bool has_link();
          virtual string link();
 
-         virtual index find(elemental * pelemental);
+         virtual index find(element * pelemental);
 
-         virtual elemental * get_sibling(index i);
+         virtual element * get_sibling(index i);
 
-         virtual elemental * get_next_sibling();
-         virtual elemental * get_first_sibling();
-         virtual elemental * get_previous_sibling();
+         virtual element * get_next_sibling();
+         virtual element * get_first_sibling();
+         virtual element * get_previous_sibling();
 
          bool hit_test(html_data * pdata, const ::pointf & point);
          double bound_hit_test(html_data * pdata, const ::pointf & point);
@@ -103,7 +103,7 @@ namespace html
          virtual float get_extra_content_height();
 
 
-         virtual void implement_phase1(html_data * pdocument, ::html::elemental * pelemental);
+         virtual void implement_phase1(html_data * pdocument, ::html::element * pelemental);
          virtual void implement_phase2(html_data * pdocument);
 
 
@@ -127,7 +127,7 @@ namespace html
          virtual void on_change_layout(html_data * pdocument);
 
          virtual float calc_width();
-         virtual bool use_in_final_layout(::html::impl::elemental * pimplChild);
+         virtual bool use_in_final_layout(::html::impl::element * pimplChild);
 
          virtual bool is_tag();
          virtual bool is_value();

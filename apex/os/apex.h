@@ -36,41 +36,6 @@ inline bool IsDirSep(WCHAR ch);
 #include "time.h"
 
 
-#if defined(MACOS)
-
-#elif defined(APPLE_IOS)
-
-#elif defined(LINUX)
-
-#elif defined(_UWP)
-
-#define BSD_STYLE_SOCKETS
-
-#elif defined(WINDOWS_DESKTOP)
-
-#define BSD_STYLE_SOCKETS
-#define HAVE_MYSQL
-#define HAVE_OPENSSL
-
-#elif defined(ANDROID)
-
-#define BSD_STYLE_SOCKETS
-#define HAVE_MYSQL
-#define HAVE_OPENSSL
-
-#elif defined(SOLARIS)
-
-#define BSD_STYLE_SOCKETS
-#define HAVE_MYSQL
-#define HAVE_OPENSSL
-
-#elif defined(APPLE_IOS)
-
-#else
-
-#error Not supported operating system
-
-#endif
 
 
 

@@ -26,10 +26,10 @@ public:
 
 
 
-#define ASSERT_KINDOF(class_name, elemental) ASSERT(base_class < class_name > ::bases(elemental))
-#define DYNAMIC_DOWNCAST(class_name, elemental) (dynamic_cast < class_name * > (elemental))
-#define STATIC_DOWNCAST(class_name, elemental) (dynamic_cast<class_name*>(elemental))
-#define STATIC_DOWNCAST_T(class_name, T1, elemental) (static_cast<class_name<T1>*>(::acme::StaticDownCast(RUNTIME_CLASS_T(class_name, T1), elemental)))
-#define STATIC_DOWNCAST_T2(class_name, T1, T2, elemental) (static_cast<class_name<T1, T2>*>(::acme::StaticDownCast(RUNTIME_CLASS_T2(class_name, T1, T2), elemental)))
+#define ASSERT_KINDOF(class_name, element) ASSERT(base_class < class_name > ::bases(element))
+#define DYNAMIC_DOWNCAST(class_name, element) (dynamic_cast < class_name * > (element))
+#define STATIC_DOWNCAST(class_name, element) (dynamic_cast<class_name*>(element))
+#define STATIC_DOWNCAST_T(class_name, T1, element) (static_cast<class_name<T1>*>(::acme::StaticDownCast(RUNTIME_CLASS_T(class_name, T1), element)))
+#define STATIC_DOWNCAST_T2(class_name, T1, T2, element) (static_cast<class_name<T1, T2>*>(::acme::StaticDownCast(RUNTIME_CLASS_T2(class_name, T1, T2), element)))
 
 

@@ -5,7 +5,9 @@
 #include "trace_interface.h"
 
 
-
+#ifdef BSD_STYLE_SOCKETS
+CLASS_DECL_APEX string bsd_socket_error(i32 x);
+#endif
 
 
 namespace net
@@ -26,7 +28,7 @@ namespace net
 
 #include "bsd/_.h"
 
-#if defined(_UWP) || defined(LINUX)
+#if defined(LINUX)
 
 extern "C"
 CLASS_DECL_APEX const SSL_METHOD * TLS_client_method();
@@ -36,7 +38,7 @@ CLASS_DECL_APEX const SSL_METHOD * TLS_server_method();
 
 #endif
 
-#elif defined(_UWP)
+#elif defined(WINRT_SOCKETS)
 
 #include "winrt/_.h"
 
@@ -65,3 +67,9 @@ CLASS_DECL_APEX const SSL_METHOD * TLS_server_method();
 
 
 CLASS_DECL_APEX string ip_reverse(string str);
+
+
+//#include "http_base_socket.h"
+
+
+

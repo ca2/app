@@ -217,8 +217,8 @@ namespace file
 
 
 
-//CLASS_DECL_ACME bool file_put(const char * path, ::elemental & s, ::acme::application * papp = nullptr);
-//CLASS_DECL_ACME bool file_as(::elemental & s, const char * path, ::acme::application * papp = nullptr);
+//CLASS_DECL_ACME bool file_put(const char * path, ::element & s, ::acme::application * papp = nullptr);
+//CLASS_DECL_ACME bool file_as(::element & s, const char * path, ::acme::application * papp = nullptr);
 
 
 

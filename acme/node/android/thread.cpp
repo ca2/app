@@ -6,8 +6,8 @@
 //{
 //
 //
-//   thread::thread(::elemental * pobject) :
-//      ::elemental(pobject),
+//   thread::thread(::element * pobject) :
+//      ::element(pobject),
 //      ::thread_impl(pobject),
 //      ::ansios::thread_impl(pobject)
 //   {

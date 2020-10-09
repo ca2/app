@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "apex/net/net_sockets.h"
+//#include "apex/net/net_sockets.h"
 
 //#include <fcntl.h>
 //#include <assert.h>
@@ -97,14 +97,21 @@ namespace sockets
 #ifdef SOCKETS_DYNAMIC_TEMP
       delete[] m_buf;
 #endif
+      
       // %! is_empty m_obuf
-      POSITION pos = m_obuf.get_head_position();
-      while(pos != nullptr)
+      auto pnode = m_obuf.get_head();
+      
+      while(pnode != nullptr)
       {
-         OUTPUT * p = m_obuf.get_next(pos);
-         delete p;
+
+         delete pnode->m_value;
+
+         pnode = pnode->m_pnext;
+
       }
+
       m_obuf.remove_all();
+
 #ifdef HAVE_OPENSSL
       if (m_ssl)
       {
@@ -134,19 +141,17 @@ namespace sockets
 
       m_bConnecting = true;
 
-      m_posdata->m_streamsocket = ref new ::Windows::Networking::Sockets::StreamSocket;
+      m_streamsocket = ref new ::Windows::Networking::Sockets::StreamSocket;
 
-      ::sockets::socket::os_data data;
+      //attach(data);
 
-      data.o = m_posdata->m_streamsocket;
-
-      attach(data);
+      create_socket();
 
       m_event.ResetEvent();
 
       String ^ strService = __str(ad.get_service_number());
 
-      m_posdata->m_streamsocket->ConnectAsync(ad.m_posdata->m_hostname, strService)->Completed =
+      m_streamsocket->ConnectAsync(ad.m_hostname, strService)->Completed =
       ref new ::Windows::Foundation::AsyncActionCompletedHandler
       ([this](::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)
       {
@@ -194,14 +199,14 @@ namespace sockets
             }*/
 
 
-      m_posdata->m_streamsocket = ref new ::Windows::Networking::Sockets::StreamSocket;
+      m_streamsocket = ref new ::Windows::Networking::Sockets::StreamSocket;
 
-      ::Windows::Networking::EndpointPair ^ pair = ref new ::Windows::Networking::EndpointPair(bind_ad.m_posdata->m_hostname,  ansi_string_from_i64(bind_ad.get_service_number()), ad.m_posdata->m_hostname, ansi_string_from_i64(ad.get_service_number()));
-      ::sockets::socket::os_data data;
-      data.o = m_posdata->m_streamsocket;
-      attach(data);
+      ::Windows::Networking::EndpointPair ^ pair = ref new ::Windows::Networking::EndpointPair(bind_ad.m_hostname,  ansi_string_from_i64(bind_ad.get_service_number()), ad.m_hostname, ansi_string_from_i64(ad.get_service_number()));
+      //::sockets::socket::os_data data;
+      //data.o = m_posdata->m_streamsocket;
+      //attach(data);
 
-      m_posdata->m_streamsocket->ConnectAsync(pair)->Completed =
+      m_streamsocket->ConnectAsync(pair)->Completed =
       ref new ::Windows::Foundation::AsyncActionCompletedHandler
       ([this](::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)
       {
@@ -216,9 +221,13 @@ namespace sockets
       });
 
 
-      m_posdata->m_streamsocket = ref new ::Windows::Networking::Sockets::StreamSocket();
-      data.o = m_posdata->m_streamsocket;
-      attach(data);
+      m_streamsocket = ref new ::Windows::Networking::Sockets::StreamSocket();
+
+      //data.o = m_posdata->m_streamsocket;
+      
+      //attach(data);
+
+
 
       SetConnecting(false);
       SetSocks4(false);
@@ -432,25 +441,37 @@ namespace sockets
       m_bExpectRequest = false;
       m_bExpectResponse = false;
 
-      ::Windows::Storage::Streams::DataReader ^ reader = ref new ::Windows::Storage::Streams::DataReader(m_posdata->m_streamsocket->InputStream);
+      ::Windows::Storage::Streams::IInputStream ^ inputstream = m_streamsocket->InputStream;
 
-      if(reader->UnconsumedBufferLength > 0)
-      {
-         Array < unsigned char, 1U > ^ ucha = ref new Array < unsigned char, 1U >(reader->UnconsumedBufferLength);
-         reader->ReadBytes(ucha);
-         on_read((char *) ucha->Data, ucha->Length);
-         return ;
-      }
+      //if(inputstream->UnconsumedBufferLength > 0)
+      //{
 
-      reader->InputStreamOptions = ::Windows::Storage::Streams::InputStreamOptions::Partial;
+      //   Array < unsigned char, 1U > ^ ucha = ref new Array < unsigned char, 1U >(reader->UnconsumedBufferLength);
+
+      //   reader->ReadBytes(ucha);
+
+      //   on_read((char *) ucha->Data, ucha->Length);
+
+      //   return ;
+
+      //}
+
+      //reader->InputStreamOptions = ::Windows::Storage::Streams::InputStreamOptions::Partial;
 
 
-      ::Windows::Storage::Streams::DataReaderLoadOperation ^ op  = nullptr;
+      //::Windows::Storage::Streams::DataReaderLoadOperation ^ op  = nullptr;
+
+      m_memoryRead.set_size(16 * 1024);
+
+      m_bufferRead = m_memoryRead.get_os_buffer();
+      m_event.ResetEvent();
 
       try
       {
 
-         op = reader->LoadAsync(16 * 1024);
+         auto res = wait(inputstream->ReadAsync(m_bufferRead, m_memoryRead.get_size(), Windows::Storage::Streams::InputStreamOptions::Partial));
+
+         m_memoryRead.set_os_buffer(res);
 
       }
       catch(...)
@@ -464,34 +485,40 @@ namespace sockets
 
       }
 
-      m_event.ResetEvent();
+      m_event.SetEvent();
 
-      op->Completed =
-      ref new ::Windows::Foundation::AsyncOperationCompletedHandler < unsigned int >([=]
-            (::Windows::Foundation::IAsyncOperation<unsigned int> ^ asyncInfo, ::Windows::Foundation::AsyncStatus asyncStatus)
-      {
-         if(IsCloseAndDelete())
-         {
-            TRACE("Close and delete set");
-         }
-         else if(asyncStatus == ::Windows::Foundation::AsyncStatus::Completed)
-         {
-            //int n = reader->UnconsumedBufferLength;
-            Array < unsigned char, 1U > ^ ucha = ref new Array < unsigned char, 1U >(reader->UnconsumedBufferLength);
-            reader->ReadBytes(ucha);
-            memory mem;
-            mem.assign(ucha->Data, ucha->Length);
-            on_read((char *) mem.get_data(), mem.get_size());
-         }
-         else
-         {
-            SetCloseAndDelete();
-         }
-         //delete reader;
-         reader->DetachStream();
-         m_bReading = false;
-         m_event.SetEvent();
-      });
+      on_read((char*)m_memoryRead.get_data(), m_memoryRead.get_size());
+
+      
+
+
+
+      //op->Completed =
+      //ref new ::Windows::Foundation::AsyncOperationCompletedHandler < unsigned int >([=]
+      //      (::Windows::Foundation::IAsyncOperation<unsigned int> ^ asyncInfo, ::Windows::Foundation::AsyncStatus asyncStatus)
+      //{
+      //   if(IsCloseAndDelete())
+      //   {
+      //      TRACE("Close and delete set");
+      //   }
+      //   else if(asyncStatus == ::Windows::Foundation::AsyncStatus::Completed)
+      //   {
+      //      //int n = reader->UnconsumedBufferLength;
+      //      Array < unsigned char, 1U > ^ ucha = ref new Array < unsigned char, 1U >(reader->UnconsumedBufferLength);
+      //      reader->ReadBytes(ucha);
+      //      memory mem;
+      //      mem.assign(ucha->Data, ucha->Length);
+      //      on_read((char *) mem.get_data(), mem.get_size());
+      //   }
+      //   else
+      //   {
+      //      SetCloseAndDelete();
+      //   }
+      //   //delete reader;
+      //   reader->DetachStream();
+      //   m_bReading = false;
+      //   m_event.SetEvent();
+      //});
 
    }
 
@@ -556,7 +583,9 @@ namespace sockets
             SetCallOnConnect();
             return;
          }
+#ifdef BSD_STYLE_SOCKETS
          FATAL(log_this, "tcp: connect failed", err, bsd_socket_error(err));
+#endif
          Set(false, false); // no more monitoring because connection failed
 
          // failed
@@ -589,10 +618,10 @@ namespace sockets
       memsize sz = m_transfer_limit ? GetOutputLength() : 0;
       do
       {
-         POSITION pos = m_obuf.get_head_position();
-         if(pos == nullptr)
+         auto pnode = m_obuf.get_head();
+         if(pnode == nullptr)
             return;
-         OUTPUT * p = m_obuf.get_at(pos);
+         OUTPUT * p = pnode->m_value;
          repeat = false;
          int n = TryWrite(p -> Buf(), p -> Len());
          if (n > 0)
@@ -602,7 +631,7 @@ namespace sockets
             if (!left)
             {
                delete p;
-               m_obuf.remove_at(pos);
+               m_obuf.remove_item(pnode);
                if (!m_obuf.get_size())
                {
                   m_obuf_top = nullptr;
@@ -638,102 +667,66 @@ namespace sockets
 
    int tcp_socket::TryWrite(const char *buf, memsize len)
    {
-      /*      int n = 0;
-         #ifdef HAVE_OPENSSL
-            if (IsSSL())
+
+      m_memoryWrite.append(buf, len);
+
+      m_bufferWrite = m_memoryWrite.get_os_buffer();
+
+      m_bErrorWriting = false;
+
+      m_streamsocket->OutputStream->WriteAsync(m_bufferWrite)
+         ->Completed = ref new ::Windows::Foundation::AsyncOperationWithProgressCompletedHandler <unsigned int, unsigned int >([this](::Windows::Foundation::IAsyncOperationWithProgress <unsigned int, unsigned int >^ operation, ::Windows::Foundation::AsyncStatus status)
             {
-               n = SSL_write(m_ssl, buf, (int)len);
-               if (n == -1)
+
+               if (status == ::Windows::Foundation::AsyncStatus::Completed)
                {
-                  int errnr = SSL_get_error(m_ssl, n);
-                  if ( errnr != SSL_ERROR_WANT_READ && errnr != SSL_ERROR_WANT_WRITE )
+
+                  if (m_bWaitingResponse)
                   {
-                     OnDisconnect();
-                     SetCloseAndDelete(true);
-                     SetFlushBeforeClose(false);
-                     SetLost();
-                     const char *errbuf = ERR_error_string(errnr, nullptr);
-                     FATAL(log_this, "OnWrite/SSL_write", errnr, errbuf);
+
+                     m_bWaitingResponse = false;
+
+                     m_bExpectResponse = true;
+
                   }
-                  return 0;
+
                }
                else
-               if (!n)
                {
-                  OnDisconnect();
-                  SetCloseAndDelete(true);
-                  SetFlushBeforeClose(false);
-                  SetLost();
-                  int errnr = SSL_get_error(m_ssl, n);
-                  const char *errbuf = ERR_error_string(errnr, nullptr);
-                  TRACE("SSL_write() returns 0: %d : %s\n",errnr, errbuf);
-               }
-            }
-            else
-         #endif // HAVE_OPENSSL
-            {
-               n = send(GetSocket(), buf, (int)len, MSG_NOSIGNAL);
-               if (n == -1)
-               {
-               // normal error codes:
-               // WSAEWOULDBLOCK
-               //       EAGAIN or EWOULDBLOCK
-         #ifdef _WIN32
-                  if (Errno != WSAEWOULDBLOCK)
-         #else
-                  if (Errno != EWOULDBLOCK)
-         #endif
-                  {
-                     FATAL(log_this, "send", Errno, bsd_socket_error(Errno));
-                     OnDisconnect();
-                     SetCloseAndDelete(true);
-                     SetFlushBeforeClose(false);
-                     SetLost();
-                  }
-                  return 0;
-               }
-            }
-            if (n > 0)
-            {
-               m_bytes_sent += n;
-               if (GetTrafficMonitor())
-               {
-                  GetTrafficMonitor() -> write(buf, n);
-               }
-            }
-            return n;*/
 
-      //m_event.wait();
+                  m_bErrorWriting = true;
 
-      if (m_posdata->m_writer == nullptr)
+               }
+
+            });
+
+
+      if (m_bWaitingResponse)
       {
 
-         m_posdata->m_writer = ref new ::Windows::Storage::Streams::DataWriter(m_posdata->m_streamsocket->OutputStream);
+
 
       }
 
-      m_posdata->m_writer->WriteBytes(ref new Array < unsigned char, 1U >((unsigned char *)buf, len));
-
-
       //int n = reader->UnconsumedBufferLength;
-
-
-
-
-
 
       /*if(ucha != nullptr)
       {
          OnRawData(ucha->Data, ucha->Length);
       }*/
+
       return len;
+
    }
 
 
    void tcp_socket::buffer(const char *buf, memsize len)
    {
+
       memsize ptr = 0;
+
       m_output_length += len;
+
       while (ptr < len)
       {
          // buf/len => pbuf/sz
@@ -768,28 +761,28 @@ namespace sockets
 
       const char * buf = (const char * ) pdata;
 
-      if (!Ready() && !Connecting())
-      {
-         log("SendBuf", -1, "Attempt to write to a non-ready socket" ); // warning
-         if (GetSocket() == INVALID_SOCKET)
-            INFO(log_this, "SendBuf", 0, " * GetSocket() == INVALID_SOCKET");
-         if (Connecting())
-            INFO(log_this, "SendBuf", 0, " * Connecting()");
-         if (IsCloseAndDelete())
-            INFO(log_this, "SendBuf", 0, " * IsCloseAndDelete()");
-         return;
-      }
-      if (!IsConnected())
-      {
-         log("SendBuf", -1, "Attempt to write to a non-connected socket, will be sent on connect" ); // warning
-         buffer(buf, len);
-         return;
-      }
-      if (m_obuf_top)
-      {
-         buffer(buf, len);
-         return;
-      }
+      //if (!Ready() && !Connecting())
+      //{
+      //   //log("SendBuf", -1, "Attempt to write to a non-ready socket" ); // warning
+      //   if (GetSocket() == INVALID_SOCKET)
+      //      INFO(log_this, "SendBuf", 0, " * GetSocket() == INVALID_SOCKET");
+      //   if (Connecting())
+      //      INFO(log_this, "SendBuf", 0, " * Connecting()");
+      //   if (IsCloseAndDelete())
+      //      INFO(log_this, "SendBuf", 0, " * IsCloseAndDelete()");
+      //   return;
+      //}
+      //if (!IsConnected())
+      //{
+      //   //log("SendBuf", -1, "Attempt to write to a non-connected socket, will be sent on connect" ); // warning
+      //   buffer(buf, len);
+      //   return;
+      //}
+      //if (m_obuf_top)
+      //{
+      //   buffer(buf, len);
+      //   return;
+      //}
       int n = TryWrite(buf, len);
       if (n >= 0 && n < (int)len)
       {
@@ -822,11 +815,12 @@ namespace sockets
    }
 
 
-
+#if defined(BSD_STYLE_SOCKETS)
 
 
    void tcp_socket::OnSocks4Connect()
    {
+
       char request[1000];
       __memset(request, 0, sizeof(request));
       request[0] = 4; // socks v4
@@ -837,7 +831,7 @@ namespace sockets
          {
             port_t port = ad.get_service_number();
             in_addr addr;
-            Session.sockets().net().convert(addr, ad.get_display_number());
+            System.sockets().net().convert(addr, ad.get_display_number());
             ::memcpy_dup(request + 2, &port, sizeof(port_t)); // nwbo is ok here
             ::memcpy_dup(request + 2 + sizeof(port_t), &addr, sizeof(in_addr));
          }
@@ -928,10 +922,14 @@ namespace sockets
    }
 
 
+#endif
+
 
    void tcp_socket::OnSSLConnect()
    {
-      ::wait(m_posdata->m_streamsocket->UpgradeToSslAsync(::Windows::Networking::Sockets::SocketProtectionLevel::Tls10, m_addressRemote.m_posdata->m_hostname));
+
+      ::wait(m_streamsocket->UpgradeToSslAsync(::Windows::Networking::Sockets::SocketProtectionLevel::Tls10, m_addressRemote.m_hostname));
+
       /*      SetNonblocking(true);
             {
                if (m_ssl_ctx)
@@ -1445,9 +1443,10 @@ namespace sockets
 
    void tcp_socket::OnConnectTimeout()
    {
+      
       FATAL(log_this, "connect", -1, "connect timeout");
 
-      m_estatus = status_connection_timed_out;
+      m_estatus = ::error_timeout;
 
       if (Socks4())
       {
@@ -1486,11 +1485,13 @@ namespace sockets
    {
       if (Connecting())
       {
+         
          int iError = this->Handler().m_iSelectErrno;
+
          if(iError == ETIMEDOUT)
          {
 
-            m_estatus = status_connection_timed_out;
+            m_estatus = ::error_timeout;
 
          }
          else
@@ -1519,7 +1520,9 @@ namespace sockets
       // %! exception doesn't always mean something bad happened, this code should be reworked
       // errno valid here?
       int err = SoError();
+#ifdef BSD_STYLE_SOCKETS
       FATAL(log_this, "exception on select", err, bsd_socket_error(err));
+#endif
       SetCloseAndDelete();
    }
 #endif // _WIN32

@@ -1,15 +1,13 @@
 #include "framework.h"
-#include "apex/net/net_sockets.h"
+#include "apex/net/sockets/_.h"
 
 
 namespace sockets
 {
 
 
-   resolv_server::resolv_server(::object * pobject, port_t port) :
-      ::object(pobject),
-      thread(pobject),
-      ::thread(pobject),
+   resolv_server::resolv_server(::layered * pobjectContext, port_t port) :
+      ::object(pobjectContext),
       m_quit(false),
       m_port(port),
       m_ready(false)
@@ -28,8 +26,9 @@ namespace sockets
 
    void resolv_server::go()
    {
-   //   trace_log log;
-      socket_handler h(get_object());
+
+      socket_handler h(this);
+
       listen_socket<resolv_socket> l(h);
 
       if (l.Bind("127.0.0.1", m_port))

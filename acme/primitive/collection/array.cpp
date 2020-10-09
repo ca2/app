@@ -1,11 +1,11 @@
 #include "framework.h"
 
 
-void _123abc_debug_gen_array_randomize(::elemental * pobject);
+void _123abc_debug_gen_array_randomize(::element * pobject);
 void ___arrayStdSortTest();
 
 /*
-void _123abc_debug_gen_array_randomize(::elemental * pobject)
+void _123abc_debug_gen_array_randomize(::element * pobject)
 {
    int_array a;
    a.add_unique(1);

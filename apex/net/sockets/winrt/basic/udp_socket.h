@@ -41,22 +41,8 @@ namespace sockets
    {
    private:
 
-#if defined(__cplusplus_winrt)
 
-      class os_data
-      {
-      public:
-
-         ::Windows::Networking::Sockets::DatagramSocket ^      m_datagramsocket;
-
-      };
-#else
-
-      class os_data;
-
-#endif
-
-      os_data * m_posdata;
+      ::Windows::Networking::Sockets::DatagramSocket^ m_datagramsocket;
       char *m_ibuf; ///< Input buffer
       int m_ibufsz; ///< size of input buffer
       bool m_bind_ok; ///< Bind completed successfully

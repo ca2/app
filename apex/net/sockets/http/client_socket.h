@@ -33,6 +33,12 @@ namespace sockets
    public:
 
 
+#ifdef _UWP
+
+      string m_strTlsHostName;
+
+#endif
+
       ::mutex                          m_mutexData;
       ::memory_file                    m_memoryfile;
       ::file::file *                   m_pfile;
@@ -140,11 +146,14 @@ namespace http
    {
    public:
 
-      ::sockets::socket_handler           m_handler;
-      __pointer(::sockets::http_client_socket)   m_psocket;
+
+      ::sockets::socket_handler                    m_handler;
+      __pointer(::sockets::http_client_socket)     m_psocket;
+
 
       session(::layered * pobjectContext);
       virtual ~session();
+
 
    };
 

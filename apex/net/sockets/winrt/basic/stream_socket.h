@@ -12,22 +12,11 @@
       {
       public:
 
-#if defined(__cplusplus_winrt)
 
-         class os_data
-         {
-         public:
+         ::Windows::Networking::Sockets::StreamSocket ^  m_streamsocket;
+         ::Windows::Storage::Streams::DataWriter ^       m_writer;
 
-            ::Windows::Networking::Sockets::StreamSocket ^ m_streamsocket;
-            ::Windows::Storage::Streams::DataWriter ^ m_writer;
 
-         };
-#else
-
-         class os_data;
-
-#endif
-         os_data *m_posdata;
          bool m_bConnecting; ///< Flag indicating connection in progress
          int m_connect_timeout; ///< Connection timeout (seconds)
          bool m_flush_before_close; ///< Send all data before closing (default true)

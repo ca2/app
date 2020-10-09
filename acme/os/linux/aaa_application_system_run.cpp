@@ -272,20 +272,20 @@ void os_post_quit()
 
 }
 
-::estatus     run_runnable(::elemental * pobjectTask);
+::estatus     run_runnable(::element * pobjectTask);
 
 
 gboolean gdk_callback_run_runnable(gpointer pdata)
 {
 
-   run_runnable((elemental *) pdata);
+   run_runnable((element *) pdata);
 
    return FALSE;
 
 }
 
 
-void gdk_branch(elemental * prunnable, e_priority epriority)
+void gdk_branch(element * prunnable, e_priority epriority)
 {
 
    prunnable->add_ref(OBJ_REF_DBG_P_NOTE(nullptr, "gdk_branch"));
@@ -301,7 +301,7 @@ void gdk_branch(elemental * prunnable, e_priority epriority)
 }
 
 
-CLASS_DECL_ACME void main_branch(::elemental * prunnable, e_priority epriority)
+CLASS_DECL_ACME void main_branch(::element * prunnable, e_priority epriority)
 {
 
    prunnable->add_ref(OBJ_REF_DBG_P_NOTE(nullptr, "main_branch"));

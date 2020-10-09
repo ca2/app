@@ -36,7 +36,7 @@ public:
    ::message::id_route                             m_idroute;
    ::message::id_route                             m_idrouteNew;
    bool                                            m_bNewChannel;
-   id_map < __pointer_array(::elemental) >           m_mapUpdate;
+   id_map < __pointer_array(::element) >           m_mapUpdate;
    id_map < runnable_array >                       m_mapRunnable;
 
 

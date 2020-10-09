@@ -26,13 +26,13 @@ enum e_clipboard
 
 
 struct clipboard_data :
-   virtual public ::elemental
+   virtual public ::element
 {
 public:
 
 
-   clipboard_data(::elemental * pobject, e_clipboard eclipboard) :
-      elemental(pobject)
+   clipboard_data(::element * pobject, e_clipboard eclipboard) :
+      element(pobject)
    {
 
       m_eclipboard = eclipboard;
@@ -470,7 +470,7 @@ namespace linux
    }
 
 
-   ::estatus copydesk::initialize(::elemental * pobjectContext)
+   ::estatus copydesk::initialize(::element * pobjectContext)
    {
 
       auto estatus = ::user::copydesk::initialize(pobjectContext);

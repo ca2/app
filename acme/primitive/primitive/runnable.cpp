@@ -2,16 +2,16 @@
 
 
 //
-//::elemental::~::elemental()
+//::element::~::element()
 //{
 //
 //}
 //
 //
-//::estatus     ::elemental::call()
+//::estatus     ::element::call()
 //{
 //
-//   auto estatus = ::elemental::call();
+//   auto estatus = ::element::call();
 //
 //   m_cRun++;
 //
@@ -20,10 +20,10 @@
 //}
 //
 //
-//::estatus     ::elemental::call(::trait & trait)
+//::estatus     ::element::call(::trait & trait)
 //{
 //
-//   auto estatus = ::elemental::call(trait);
+//   auto estatus = ::element::call(trait);
 //
 //   m_cRun++;
 //

@@ -1085,8 +1085,27 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="compress\zip_is_dir.cpp" />
     <ClCompile Include="compress\zip\context.cpp" />
     <ClCompile Include="const\idpool.cpp" />
-    <ClCompile Include="crypto\crypto_crypto.cpp" />
-    <ClCompile Include="crypto\crypto_openssl.cpp" />
+    <ClCompile Include="crypto\crypto.cpp" />
+    <ClCompile Include="crypto\hasher.cpp" />
+    <ClCompile Include="crypto\hasher_algorithm.cpp" />
+    <ClCompile Include="crypto\macos\rsa.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="crypto\openssl\hasher.cpp" />
+    <ClCompile Include="crypto\openssl\hasher_algorithm.cpp" />
+    <ClCompile Include="crypto\openssl\rsa.cpp" />
+    <ClCompile Include="crypto\openssl\crypto.cpp" />
+    <ClCompile Include="crypto\openssl\_.cpp" />
+    <ClCompile Include="crypto\rsa.cpp" />
     <ClCompile Include="database\client.cpp" />
     <ClCompile Include="database\event_change.cpp" />
     <ClCompile Include="database\id.cpp" />
@@ -1135,6 +1154,8 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="multithreading\thread_os.cpp" />
     <ClCompile Include="multithreading\tools.cpp" />
     <ClCompile Include="multithreading\_.cpp" />
+    <ClCompile Include="net\sockets\http\http_base_socket.cpp" />
+    <ClCompile Include="net\sockets\_system_sockets.cpp" />
     <ClCompile Include="node\windows\dir_system.cpp" />
     <ClCompile Include="node\windows\file_os_watcher.cpp" />
     <ClCompile Include="node\windows\application.cpp" />
@@ -1251,6 +1272,16 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="user\text.cpp" />
     <ClCompile Include="_.cpp" />
     <ClInclude Include="astr.h" />
+    <ClInclude Include="crypto\crypto.h" />
+    <ClInclude Include="crypto\hasher.h" />
+    <ClInclude Include="crypto\hasher_algorithm.h" />
+    <ClInclude Include="crypto\openssl\hasher.h" />
+    <ClInclude Include="crypto\openssl\hasher_algorithm.h" />
+    <ClInclude Include="crypto\openssl\rsa.h" />
+    <ClInclude Include="crypto\openssl\_openssl.h" />
+    <ClInclude Include="crypto\rsa.h" />
+    <ClInclude Include="crypto\_.h" />
+    <ClInclude Include="crypto\_crypto.h" />
     <ClInclude Include="future.h" />
     <ClInclude Include="compress\_.h" />
     <ClInclude Include="compress\context.h" />
@@ -1333,6 +1364,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="multithreading\_.h" />
     <ClInclude Include="multithreading\_impl.h" />
     <ClInclude Include="multithreading\_thread_os_create_impl.h" />
+    <ClInclude Include="net\sockets\http\http_base_socket.h" />
     <ClInclude Include="net\_net_impl.h" />
     <ClInclude Include="node\opengl\buffer.h" />
     <ClInclude Include="node\opengl\context.h" />
@@ -1568,9 +1600,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="net\sockets\bsd\ssl\context.cpp" />
     <ClCompile Include="net\sockets\bsd\ssl\initializer.cpp" />
     <ClCompile Include="net\sockets\bsd\webserver\httpd_socket.cpp" />
-    <ClCompile Include="net\sockets\bsd\webserver\http_base_socket.cpp" />
     <ClCompile Include="net\sockets\bsd\_strconv.cpp" />
-    <ClCompile Include="net\sockets\bsd\_system_sockets.cpp" />
     <ClCompile Include="net\sockets\http\client_socket.cpp" />
     <ClCompile Include="net\sockets\http\debug_socket.cpp" />
     <ClCompile Include="net\sockets\http\get_socket.cpp" />

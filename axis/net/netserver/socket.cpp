@@ -124,25 +124,37 @@ namespace netserver
 
    bool socket::http_filter_response_header(id key, string_array & straValue)
    {
+      
       if (key == __id(location) && straValue.get_count() >= 1)
       {
+         
          for (int i = 0; i < straValue.get_size(); i++)
          {
+
             url_domain domain;
+
             domain.create(System.url().get_server(straValue[i]));
+
             if (domain.m_strName == "ca2.cc")
             {
+
                //straValue[i] = "https://" + Application.m_strFontopusServer + System.url().get_object(straValue[i]);
+
             }
+
          }
+
       }
       else if (!m_bSetCookie && key == __id(set_cookie))
       {
+         
          return false;
-      }
-      return true;
-   }
 
+      }
+
+      return true;
+
+   }
 
 
    void socket::simple_file_server(const char * pszPath, bool bMatter)
@@ -152,34 +164,53 @@ namespace netserver
 
       if (strlen(inheader("range")) > 0)
       {
+         
          string_array straItem;
+         
          straItem.explode("=", inheader("range"));
+
          if (straItem.get_count() == 2)
          {
+            
             string strUnit = straItem[0];
+            
             string_array stra;
+            
             stra.explode(",", straItem[1]);
+
             for (i32 i = 0; i < stra.get_count(); i++)
             {
+               
                string_array straRange;
+               
                straRange.explode("-", stra[i]);
+
                if (straRange.get_count() == 2)
                {
+                  
                   rangea.add(new int_array());
+                  
                   rangea.last_ptr()->add(atoi(straRange[0]));
+                  
                   straRange[1].trim();
+
                   if (strlen(straRange[1]) == 0)
                      rangea.last_ptr()->add(-1);
                   else
                      rangea.last_ptr()->add(atoi(straRange[1]));
+
                }
+
             }
+
          }
+
       }
 
       read_file(pszPath, &rangea);
 
    }
+
 
    //void socket::simple_image_server(const char * pszPath, int iMaxWidth, int iMaxHeight)
    //{

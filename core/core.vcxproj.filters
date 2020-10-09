@@ -111,9 +111,6 @@
     <Filter Include="Source Files\html">
       <UniqueIdentifier>{bbd4a0ea-bb5f-4544-b795-8dfd398d01bb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\html\elemental">
-      <UniqueIdentifier>{3394504c-c614-4aa7-b40f-9375ed0fa0d4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\html\impl">
       <UniqueIdentifier>{f0a18cf3-2322-4fe7-9c3c-c850b77fb3ff}</UniqueIdentifier>
     </Filter>
@@ -195,9 +192,6 @@
     <Filter Include="Header Files\html\impl">
       <UniqueIdentifier>{f795e5f2-1ded-4faf-90bc-5e0abb4234ff}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\html\elemental">
-      <UniqueIdentifier>{00fd2a98-1ad5-4005-9478-c4b51b8b942c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\html\graphics">
       <UniqueIdentifier>{d0c2f595-4047-4137-b6c1-56b9c00bf056}</UniqueIdentifier>
     </Filter>
@@ -236,6 +230,12 @@
     </Filter>
     <Filter Include="Header Files\user\netuser">
       <UniqueIdentifier>{7414d1f0-8f4e-4376-ad9a-c252779030d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\html\element">
+      <UniqueIdentifier>{3394504c-c614-4aa7-b40f-9375ed0fa0d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\html\element">
+      <UniqueIdentifier>{00fd2a98-1ad5-4005-9478-c4b51b8b942c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1058,9 +1058,6 @@
     <ClInclude Include="html\impl\cell.h">
       <Filter>Header Files\html\impl</Filter>
     </ClInclude>
-    <ClInclude Include="html\impl\elemental.h">
-      <Filter>Header Files\html\impl</Filter>
-    </ClInclude>
     <ClInclude Include="html\impl\form.h">
       <Filter>Header Files\html\impl</Filter>
     </ClInclude>
@@ -1090,9 +1087,6 @@
     </ClInclude>
     <ClInclude Include="html\impl\text.h">
       <Filter>Header Files\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="html\elemental\elemental.h">
-      <Filter>Header Files\html\elemental</Filter>
     </ClInclude>
     <ClInclude Include="html\graphics\attribute.h">
       <Filter>Header Files\html\graphics</Filter>
@@ -1403,12 +1397,6 @@
     <ClInclude Include="user\userex\calculator_edit_view.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="html\elemental\_.h">
-      <Filter>Header Files\html\elemental</Filter>
-    </ClInclude>
-    <ClInclude Include="html\elemental\_elemental.h">
-      <Filter>Header Files\html\elemental</Filter>
-    </ClInclude>
     <ClInclude Include="html\graphics\_.h">
       <Filter>Header Files\html\graphics</Filter>
     </ClInclude>
@@ -1456,6 +1444,18 @@
     </ClInclude>
     <ClInclude Include="user\simple_ui\_simple_ui.h">
       <Filter>Header Files\user\simple_ui</Filter>
+    </ClInclude>
+    <ClInclude Include="html\element\element.h">
+      <Filter>Header Files\html\element</Filter>
+    </ClInclude>
+    <ClInclude Include="html\element\_element.h">
+      <Filter>Header Files\html\element</Filter>
+    </ClInclude>
+    <ClInclude Include="html\element\_.h">
+      <Filter>Header Files\html\element</Filter>
+    </ClInclude>
+    <ClInclude Include="html\impl\element.h">
+      <Filter>Header Files\html\impl</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1924,13 +1924,7 @@
     <ClCompile Include="user\netuser\netuser_network_configuration.cpp">
       <Filter>Source Files\user\netuser</Filter>
     </ClCompile>
-    <ClCompile Include="html\elemental\elemental.cpp">
-      <Filter>Source Files\html\elemental</Filter>
-    </ClCompile>
     <ClCompile Include="html\impl\cell.cpp">
-      <Filter>Source Files\html\impl</Filter>
-    </ClCompile>
-    <ClCompile Include="html\impl\elemental.cpp">
       <Filter>Source Files\html\impl</Filter>
     </ClCompile>
     <ClCompile Include="html\impl\form.cpp">
@@ -2244,6 +2238,12 @@
     </ClCompile>
     <ClCompile Include="user\rich_text\format_tool.cpp">
       <Filter>Source Files\user\rich_text</Filter>
+    </ClCompile>
+    <ClCompile Include="html\element\element.cpp">
+      <Filter>Source Files\html\element</Filter>
+    </ClCompile>
+    <ClCompile Include="html\impl\element.cpp">
+      <Filter>Source Files\html\impl</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

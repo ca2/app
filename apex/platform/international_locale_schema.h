@@ -10,7 +10,7 @@ namespace str
 
 
       class CLASS_DECL_APEX locale_schema :
-         virtual public ::elemental
+         virtual public ::element
       {
       public:
 

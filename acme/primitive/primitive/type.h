@@ -59,7 +59,7 @@ public:
 
    }
 
-   type(const ::elemental * pobject);
+   type(const ::element * pobject);
 
    template < typename BASE >
    type(const __pointer(BASE) & point);
@@ -139,7 +139,7 @@ public:
    }
 
 
-   bool operator == (const ::elemental * pobject) const
+   bool operator == (const ::element * pobject) const
    {
 
       return operator ==(::type(pobject));
@@ -147,14 +147,14 @@ public:
    }
 
 
-   bool operator != (const ::elemental* pobject) const
+   bool operator != (const ::element* pobject) const
    {
 
       return !operator==(pobject);
 
    }
 
-   //inline __pointer(elemental) alloc(::elemental * pobject) const;
+   //inline __pointer(element) alloc(::element * pobject) const;
 
    inline operator bool() const { return m_strName.has_char(); }
 

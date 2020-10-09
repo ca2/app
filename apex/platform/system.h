@@ -771,7 +771,7 @@ namespace apex
 
 
 
-      virtual void __tracea(::elemental * pcontextobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz) override;
+      virtual void __tracea(::element * pcontextobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz) override;
 
 
       virtual string get_user_language();

@@ -3,7 +3,7 @@
 
 template < typename ARG_TYPE >
 class less_pred_base :
-   virtual public elemental
+   virtual public element
 {
 public:
 

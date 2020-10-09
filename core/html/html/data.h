@@ -55,8 +55,8 @@ public:
    //void on_image_loaded(::html::image::image * pimage);
 
 
-   ::html::elemental * get_element_by_name(id id);
-   ::html::elemental * get_element_by_id(id id);
+   ::html::element * get_element_by_name(id id);
+   ::html::element * get_element_by_id(id id);
 
    void delete_contents();
    void destroy();
@@ -67,7 +67,7 @@ public:
    virtual bool on_create_interaction(__pointer(::user::interaction) pinteraction);
 
 
-   ::html::font * get_font(::html::elemental * pelemental);
+   ::html::font * get_font(::html::element * pelemental);
 
 
 
@@ -75,7 +75,7 @@ public:
 protected:
 
 
-   i32 create_font(::html::elemental * pelemental);
+   i32 create_font(::html::element * pelemental);
 
 
 

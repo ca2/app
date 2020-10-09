@@ -17,7 +17,7 @@ using HSYNC = sync *;
 
 
 class CLASS_DECL_ACME sync :
-   virtual public elemental
+   virtual public element
 {
 public:
 

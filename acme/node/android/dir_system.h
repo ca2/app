@@ -25,7 +25,7 @@ namespace android
       virtual ~dir_system();
 
 
-      virtual ::estatus initialize(::elemental * pobjectContext) override;
+      virtual ::estatus initialize(::element * pobjectContext) override;
 
 
 

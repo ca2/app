@@ -6,7 +6,7 @@ namespace user
 
    
    class CLASS_DECL_CORE list_column :
-      virtual public elemental
+      virtual public element
 {
 public:
 

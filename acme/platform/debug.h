@@ -279,7 +279,7 @@ CLASS_DECL_ACME ::count get_mem_info2(i32 ** ppiUse, const char *** ppszFile, DW
 
 
 //extern critical_section * g_pcsTrace;
-//extern elemental * g_pobjecTracer;
+//extern element * g_pobjecTracer;
 //
 CLASS_DECL_ACME void os_trace(e_trace_level elevel, const char * pszTag, const char * pszMessage);
 //CLASS_DECL_ACME void trace(e_trace_level elevel, const char * pszTag, const char * psz, const char * pszFile = nullptr, int iLine = -1);

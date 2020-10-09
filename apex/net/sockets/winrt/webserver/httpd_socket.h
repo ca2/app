@@ -13,7 +13,8 @@ namespace sockets
    /** \defgroup webserver Webserver framework */
    /** Web server socket framework.
       \ingroup webserver */
-   class CLASS_DECL_APEX httpd_socket : public http_base_socket
+   class CLASS_DECL_APEX httpd_socket : 
+      virtual public http_base_socket
    {
    public:
       httpd_socket(base_socket_handler& );

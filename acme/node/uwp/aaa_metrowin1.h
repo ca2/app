@@ -22,7 +22,7 @@ namespace uwp
    CLASS_DECL_ACME HICON       ExtractIcon(HINSTANCE hInst, const char * lpszExeFileName, UINT nIconIndex);
    CLASS_DECL_ACME bool        DeleteFile(const char * lpFileName);
    CLASS_DECL_ACME int         GetMenuStringW(HMENU hMenu, UINT uIDItem, string & str, UINT flags);
-   CLASS_DECL_ACME void        TimeToFileTime(::elemental * pobject, const ::datetime::time& time, LPFILETIME pFileTime);
+   CLASS_DECL_ACME void        TimeToFileTime(::element * pobject, const ::datetime::time& time, LPFILETIME pFileTime);
 
 
 } // namespace uwp
@@ -54,11 +54,11 @@ CLASS_DECL_ACME ::_UWP::thread * __get_thread();
 CLASS_DECL_ACME void __set_thread(::thread * pthread);
 CLASS_DECL_ACME MSG* __get_current_message();
 
-CLASS_DECL_ACME void __end_thread(::elemental * pobject, UINT nExitCode, bool bDelete = TRUE);
+CLASS_DECL_ACME void __end_thread(::element * pobject, UINT nExitCode, bool bDelete = TRUE);
 
 CLASS_DECL_ACME void __init_thread();
-//CLASS_DECL_ACME void __term_thread(::elemental * pobject, HINSTANCE hInstTerm = nullptr);
-//CLASS_DECL_ACME void __term_thread(::elemental * pobject);
+//CLASS_DECL_ACME void __term_thread(::element * pobject, HINSTANCE hInstTerm = nullptr);
+//CLASS_DECL_ACME void __term_thread(::element * pobject);
 
 
 //CLASS_DECL_ACME __pointer(::user::interaction) __get_main_window();

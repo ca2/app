@@ -11,14 +11,14 @@ namespace html
 {
 
 
-   class elemental;
+   class element;
 
 
    namespace impl
    {
 
 
-      class elemental;
+      class element;
       class table;
 
 
@@ -28,7 +28,7 @@ namespace html
 } // namespace html
 
 
-#include "core/html/elemental/_elemental.h"
+#include "core/html/element/_element.h"
 
 
 #include "core_data.h"

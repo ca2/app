@@ -2279,25 +2279,51 @@ namespace sockets
 
 
 #ifdef _WIN32
+
    void tcp_socket::OnException()
    {
+
       if(Connecting())
       {
+
          i32 iError = this->Handler().m_iSelectErrno;
+
          if(iError == ETIMEDOUT)
          {
+
             m_estatus = error_connection_timed_out;
+
          }
          else
          {
             //m_estatus = status_failed;
          }
-         if(Socks4())
-            OnSocks4ConnectFailed();
-         else if(GetConnectionRetry() == -1 ||
-                 (GetConnectionRetry() &&
-                  GetConnectionRetries() < GetConnectionRetry()))
+
+         int iGetConnectionRetry = GetConnectionRetry();
+
+         int iGetConnectionRetries = GetConnectionRetries();
+
+         if (Socks4())
          {
+
+            OnSocks4ConnectFailed();
+
+         }
+         else if(iGetConnectionRetry == -1 ||
+                 (iGetConnectionRetry &&
+                    iGetConnectionRetries < iGetConnectionRetry))
+         {
+
+            const int nBufSize = 1024;
+
+            char buf[nBufSize];
+
+            int iGetSocket = GetSocket();
+
+            int n = ::recv(iGetSocket, (char*)buf, (int)nBufSize, MSG_OOB);
+
+            output_debug_string("got " + __str(n) + " bytes of Out of Band Data");
+
             // even though the connection failed at once, only retry after
             // the connection timeout
             // should we even try to connect again, when CheckConnect returns

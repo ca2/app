@@ -19,7 +19,7 @@ namespace experience
             virtual ~library();
 
 
-            virtual ::elemental * new_object(::layered * pobjectContext,const char * lpszClass) override;
+            virtual ::element * new_object(::layered * pobjectContext,const char * lpszClass) override;
 
 
          };

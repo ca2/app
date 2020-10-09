@@ -18,7 +18,7 @@
 //   public:
 //
 //      ::index                 m_iStep;
-//      elemental *        m_p;
+//      element *        m_p;
 //      string                  m_strNote;
 //
 //   };
@@ -58,7 +58,7 @@
 //};
 //
 //
-//string object_name(elemental* p)
+//string object_name(element* p)
 //{
 //
 //   iptr i = (iptr)p;
@@ -76,7 +76,7 @@
 //
 //#if OBJ_REF_DBG
 //
-//void elemental::add_ref_history(elemental* p, const char* pszObjRefDbg)
+//void element::add_ref_history(element* p, const char* pszObjRefDbg)
 //{
 //   
 //   if (!g_bAura)
@@ -127,7 +127,7 @@
 //}
 //
 //
-//void elemental::dec_ref_history(elemental* p, const char* /*pszObjRefDbgNotUsedCurrently*/)
+//void element::dec_ref_history(element* p, const char* /*pszObjRefDbgNotUsedCurrently*/)
 //{
 //
 //   cslock sl(&::apex::g_csRefDbg);
@@ -151,7 +151,7 @@
 //}
 //
 //
-//void elemental::check_pending_releases()
+//void element::check_pending_releases()
 //{
 //
 //   cslock sl(&::apex::g_csRefDbg);
@@ -186,7 +186,7 @@
 //
 //         ::index iStep = item.m_iStep;
 //
-//         ::elemental* pobj = item.m_p;
+//         ::element* pobj = item.m_p;
 //
 //         string str = item.m_strNote;
 //

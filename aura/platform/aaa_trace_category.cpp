@@ -51,7 +51,7 @@ void trace_category_static_init()
       "database",     // special database trace
       "internet",     // special internet client trace
       "dumpcontext",   // traces from dump_context
-      "memory",      // elemental non-kernel memory traces
+      "memory",      // element non-kernel memory traces
       "html",         // html traces
       "socket",      // socket traces
       "colorertake5",

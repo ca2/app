@@ -180,8 +180,8 @@ typedef ACCESS_MASK *PACCESS_MASK;
 
 
 //
-//  Define the elemental mapping array.  This is used to denote the
-//  mapping of each elemental access right to a specific access mask.
+//  Define the element mapping array.  This is used to denote the
+//  mapping of each element access right to a specific access mask.
 //
 
 /*typedef struct _GENERIC_MAPPING {

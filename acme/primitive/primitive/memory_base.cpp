@@ -17,10 +17,10 @@ MEMORY::MEMORY()
 
    m_bOwn = false;
    m_pbStorage = nullptr;
-   m_pbComputed = nullptr;
+   m_pdata = nullptr;
 
    m_cbStorage = 0;
-   m_dwAllocation = 0;
+   m_iSize = 0;
    m_dwAllocationAddUp = 4096;
    m_dAllocationRateUp = (double)(1.0 - ((double)m_dwAllocationAddUp / 2.0) * log((double)m_dwAllocationAddUp - 1.0)) / (1 - log((double)m_dwAllocationAddUp - 1.0));
    m_iOffset = 0;
@@ -37,9 +37,9 @@ memory_base::~memory_base()
 {
 
    m_memory.m_cbStorage          = 0;
-   m_memory.m_dwAllocation       =  0;
+   m_memory.m_iSize       =  0;
    m_memory.m_pbStorage          = nullptr;
-   m_memory.m_pbComputed         = nullptr;
+   m_memory.m_pdata         = nullptr;
    m_memory.m_iOffset            = 0;
 
 }
@@ -116,13 +116,13 @@ bool memory_base::set_size(memsize dwNewLength)
 
    if((m_memory.m_iOffset + dwNewLength) <= 0)
    {
-      m_memory.m_pbComputed   =m_memory. m_pbStorage + m_memory.m_iOffset;
+      m_memory.m_pdata   =m_memory. m_pbStorage + m_memory.m_iOffset;
       m_memory.m_iOffset = 0;
       m_memory.m_cbStorage = 0;
       return true;
    }
 
-   if((m_memory.m_iOffset + dwNewLength) > m_memory.m_dwAllocation)
+   if((m_memory.m_iOffset + dwNewLength) > m_memory.m_iSize)
    {
 
       if (!allocate_internal(m_memory.m_iOffset + dwNewLength))
@@ -134,12 +134,12 @@ bool memory_base::set_size(memsize dwNewLength)
 
    }
 
-   if((m_memory.m_iOffset + dwNewLength) > m_memory.m_dwAllocation)
+   if((m_memory.m_iOffset + dwNewLength) > m_memory.m_iSize)
       return false;
 
    m_memory.m_cbStorage    = dwNewLength;
 
-   m_memory.m_pbComputed   = m_memory.m_pbStorage + m_memory.m_iOffset;
+   m_memory.m_pdata   = m_memory.m_pbStorage + m_memory.m_iOffset;
 
    return true;
 
@@ -203,7 +203,7 @@ bool memory_base::allocate_internal(memsize dwNewLength)
       if (!m_memory.m_bOwn)
       {
 
-         ::memcpy_dup(pb, m_memory.m_pbStorage, min(m_memory.m_dwAllocation, dwAllocation));
+         ::memcpy_dup(pb, m_memory.m_pbStorage, min(m_memory.m_iSize, dwAllocation));
 
 
       }
@@ -212,7 +212,7 @@ bool memory_base::allocate_internal(memsize dwNewLength)
    else
    {
 
-      if(dwNewLength < m_memory.m_dwAllocation)
+      if(dwNewLength < m_memory.m_iSize)
       {
 
          return true;
@@ -273,12 +273,12 @@ bool memory_base::allocate_internal(memsize dwNewLength)
 
    }
 
-   m_memory.m_dwAllocation    = dwAllocation;
+   m_memory.m_iSize    = dwAllocation;
 
    m_memory.m_pbStorage       = pb;
 
 
-   m_memory.m_pbComputed      = m_memory.m_pbStorage;
+   m_memory.m_pdata      = m_memory.m_pbStorage;
 
    m_memory.m_bOwn            = true;
 
@@ -290,7 +290,7 @@ bool memory_base::allocate_internal(memsize dwNewLength)
 void memory_base::reserve(memsize dwNewLength)
 {
 
-   if(dwNewLength <= m_memory.m_dwAllocation)
+   if(dwNewLength <= m_memory.m_iSize)
       return;
 
    if(!allocate_internal(dwNewLength))
@@ -302,14 +302,14 @@ void memory_base::reserve(memsize dwNewLength)
 void memory_base::remove_offset()
 {
 
-   if(m_memory.m_pbStorage == nullptr || m_memory.m_pbComputed == nullptr || m_memory.m_iOffset <= 0)
+   if(m_memory.m_pbStorage == nullptr || m_memory.m_pdata == nullptr || m_memory.m_iOffset <= 0)
       return;
 
-   __memmov(m_memory.m_pbStorage,m_memory.m_pbComputed,m_memory.m_cbStorage);
+   __memmov(m_memory.m_pbStorage,m_memory.m_pdata,m_memory.m_cbStorage);
 
    m_memory.m_iOffset      = 0;
 
-   m_memory.m_pbComputed   = m_memory.m_pbStorage;
+   m_memory.m_pdata   = m_memory.m_pbStorage;
 
 }
 
@@ -379,9 +379,9 @@ void memory_base::delete_begin(memsize iSize)
 
    m_memory.m_cbStorage -= iSize;
 
-   m_memory.m_pbComputed += iSize;
+   m_memory.m_pdata += iSize;
 
-   if(m_memory.m_iOffset >= m_memory.m_iMaxOffset || (memsize)m_memory.m_iOffset >= m_memory.m_dwAllocation)
+   if(m_memory.m_iOffset >= m_memory.m_iMaxOffset || (memsize)m_memory.m_iOffset >= m_memory.m_iSize)
    {
 
       remove_offset();
@@ -1799,7 +1799,7 @@ memsize memory_base::length() const
 }
 
 
-::elemental * memory_base::clone() const
+::element * memory_base::clone() const
 {
 
    auto pmemory = new memory();
@@ -1958,7 +1958,7 @@ CLASS_DECL_ACME stream & operator >> (stream & stream, memory_container & memcon
 
 
 
-//const char * elemental::type_name() const
+//const char * element::type_name() const
 //{
 //
 //   return typeid(*this).name();

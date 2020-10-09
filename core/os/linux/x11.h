@@ -7,8 +7,8 @@ extern ITHREAD g_ithreadXlib;
 
 
 void x11_kick_idle();
-void x11_async_runnable(::elemental * prunnable);
-void x11_sync_runnable(::elemental * prunnable);
+void x11_async_runnable(::element * prunnable);
+void x11_sync_runnable(::element * prunnable);
 
 
 

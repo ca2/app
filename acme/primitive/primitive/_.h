@@ -23,12 +23,12 @@
 
 
 // class CLASS_DECL_ACME parents :
-//    virtual public ::elemental
+//    virtual public ::element
 // {
 // public:
 
 
-//    __pointer_array(elemental)            m_ptra;
+//    __pointer_array(element)            m_ptra;
 
 //    parents();
 //    ~parents();
@@ -38,12 +38,12 @@
 
 
 // class CLASS_DECL_ACME children :
-//    virtual public ::elemental
+//    virtual public ::element
 // {
 // public:
 
 
-//    __pointer_array(elemental)            m_ptra;
+//    __pointer_array(element)            m_ptra;
 //    duration                      m_durationWait;
 
 
@@ -51,18 +51,18 @@
 //    ~children();
 
 
-//    // after posting quit to a child, the PARENT shouldn't elemental it
-//    virtual void set_finish(::elemental * pobjectParent);
+//    // after posting quit to a child, the PARENT shouldn't element it
+//    virtual void set_finish(::element * pobjectParent);
 
-//    virtual ::count wait_quit(::elemental * pobjectParent, const duration & duration);
-//    virtual ::count _wait_quit(::elemental * pobjectParent);
-
-
-//    virtual __pointer(::elemental) running(const char * pszTag) const;
-//    virtual bool running(::elemental * pobject) const;
+//    virtual ::count wait_quit(::element * pobjectParent, const duration & duration);
+//    virtual ::count _wait_quit(::element * pobjectParent);
 
 
-//    friend class elemental;
+//    virtual __pointer(::element) running(const char * pszTag) const;
+//    virtual bool running(::element * pobject) const;
+
+
+//    friend class element;
 
 // };
 

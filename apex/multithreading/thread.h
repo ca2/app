@@ -4,7 +4,7 @@
 
 class mq;
 
-typedef __pointer_array(::elemental) object_array;
+typedef __pointer_array(::element) object_array;
 typedef isomap < ITHREAD, __pointer(thread) > thread_map;
 typedef isomap < thread *, ITHREAD > thread_id_map;
 
@@ -225,8 +225,8 @@ public:
 
    virtual bool send_object(UINT message, WPARAM wParam, lparam lParam, ::duration durationTimeout = ::duration::infinite());
 
-   virtual bool post_task(::elemental * pobjectTask);
-   virtual bool send_task(::elemental * pobjectTask, ::duration durationTimeout = ::duration::infinite());
+   virtual bool post_task(::element * pobjectTask);
+   virtual bool send_task(::element * pobjectTask, ::duration durationTimeout = ::duration::infinite());
 
    template < typename PRED >
    bool pred(PRED pred)

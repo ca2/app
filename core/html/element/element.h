@@ -21,7 +21,7 @@ namespace html
 {
 
 
-   class CLASS_DECL_CORE elemental :
+   class CLASS_DECL_CORE element :
       virtual public ::user::primitive,
       virtual public ::user::text
    {
@@ -30,13 +30,13 @@ namespace html
 
       // always present property?! "text"
       property_set               m_propertyset;
-      __pointer(impl::elemental) m_pimpl;
-      elemental *                m_pparent;
+      __pointer(impl::element) m_pimpl;
+      element *                m_pparent;
       base *                     m_pbase;
       html_data *                m_pdata;
 
       __pointer(::html::style)   m_pstyle;
-      __pointer_array(elemental)      m_elementalptra;
+      __pointer_array(element)      m_elementalptra;
 
       e_tag                      m_etag;
       string                     m_strBody;
@@ -47,11 +47,11 @@ namespace html
       string                     m_strInlineStyle;
 
 
-      elemental();
-      virtual ~elemental();
+      element();
+      virtual ~element();
 
 
-      virtual ::estatus initialize_html_elemental(html_data * pdata, elemental * pparent = nullptr);
+      virtual ::estatus initialize_html_elemental(html_data * pdata, element * pparent = nullptr);
 
 
       virtual void _001SetText(const string & str, const ::action_context & action_context) override;
@@ -68,12 +68,12 @@ namespace html
       //virtual void nextstyle(::user::style_context * pcontext) override;
 
 
-      elemental * get_element_by_name(id id);
-      elemental * get_element_by_id(id id);
+      element * get_element_by_name(id id);
+      element * get_element_by_id(id id);
 
-      virtual elemental * hit_test(html_data * pdocument, const ::pointf & point);
-      virtual elemental * bound_hit_test(html_data * pdocument, const ::pointf & point);
-      virtual elemental * bound_hit_test(html_data * pdocument, const ::pointf & point, double & dMin);
+      virtual element * hit_test(html_data * pdocument, const ::pointf & point);
+      virtual element * bound_hit_test(html_data * pdocument, const ::pointf & point);
+      virtual element * bound_hit_test(html_data * pdocument, const ::pointf & point, double & dMin);
 
 
       virtual void implement(html_data * pdocument);

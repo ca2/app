@@ -18,17 +18,17 @@ public:
    lparam(i64 i) { m_lparam = (LPARAM) i; }
 
 
-   /// catching/receiving elemental
+   /// catching/receiving element
    inline lparam(void * p) { m_lparam = (LPARAM)p;  }
 
 
-   /// posting/sending elemental
-   inline lparam(const ::elemental * pobject);
+   /// posting/sending element
+   inline lparam(const ::element * pobject);
 
 
-   /// posting/sending elemental
+   /// posting/sending element
    template < typename T >
-   inline lparam(const __pointer(T) & p) : lparam((const ::elemental *) p.m_p) { }
+   inline lparam(const __pointer(T) & p) : lparam((const ::element *) p.m_p) { }
 
 
 

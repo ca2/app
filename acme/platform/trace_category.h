@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ACME trace_category :
-   virtual public elemental
+   virtual public element
 {
 public:
 

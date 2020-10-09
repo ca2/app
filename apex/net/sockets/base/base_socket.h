@@ -5,8 +5,6 @@ namespace sockets
 {
 
 
-   class ssl_context;
-
    class base_socket_handler;
 
    class base_socket;
@@ -86,24 +84,21 @@ namespace sockets
 
       };
 
-      // former TCP_SOCKET ::sockets::tcp_socket
-
-      __pointer(ssl_context)            m_psslcontext;
-      string m_password; ///< ssl password
-
-
-
+#ifdef BSD_STYLE_SOCKETS
+      __pointer(ssl_context)  m_psslcontext;
+#endif
+      string                  m_password; ///< ssl password
 
       base_socket_handler &   m_handler; ///< Reference of base_socket_handler in control of this socket
       SOCKET                  m_socket; ///< File descriptor
 
-      static ::mutex *           s_pmutex;
+      static ::mutex *        s_pmutex;
 
       ::net::address          m_addressRemote; ///< Remote end ::net::address
       ::net::address          m_addressRemoteClient; ///< Address of last connect()
-      file_pointer       m_spfileTrafficMonitor;
+      file_pointer            m_spfileTrafficMonitor;
 
-      bool                 m_b_chunked;
+      bool                    m_b_chunked;
 
 
       ::memory_file *         m_pmemfileInput;
@@ -142,15 +137,15 @@ namespace sockets
       bool                    m_bRetain; ///< keep connection on close
       bool                    m_bEnablePool; ///< true if this socket may enter in a pool
 
-      bool                    m_bSocks4; ///< socks4 negotiation mode (tcp_socket)
-      in_addr                 m_socks4_host; ///< socks4 server ::net::address
-      port_t                  m_socks4_port; ///< socks4 server port number
-      string                  m_socks4_userid; ///< socks4 server usedid
+      bool                             m_bSocks4; ///< socks4 negotiation mode (tcp_socket)
+      in_addr                          m_socks4_host; ///< socks4 server ::net::address
+      port_t                           m_socks4_port; ///< socks4 server port number
+      string                           m_socks4_userid; ///< socks4 server usedid
 
-      bool                    m_detach; ///< base_socket ordered to detach flag
-      bool                    m_detached; ///< base_socket has been detached
+      bool                             m_detach; ///< base_socket ordered to detach flag
+      bool                             m_detached; ///< base_socket has been detached
       __composite(socket_thread)       m_psocketthread; ///< detach base_socket thread class pointer
-      __pointer(base_socket_handler) m_phandlerSlave; ///< Actual sockethandler while detached
+      __pointer(base_socket_handler)   m_phandlerSlave; ///< Actual sockethandler while detached
 
 
       // LineProtocol
@@ -163,6 +158,9 @@ namespace sockets
       tick m_tickStart;
 
 #if !defined(BSD_STYLE_SOCKETS)
+      bool                    m_bErrorWriting;
+      bool                    m_bErrorReading;
+      bool                    m_bWaitingResponse;
       bool                    m_bExpectResponse;
       bool                    m_bExpectRequest;
       bool                    m_bReading;
@@ -251,7 +249,7 @@ namespace sockets
 
       /** Assign this socket a file descriptor created
       by a call to socket() or otherwise. */
-      void attach(SOCKET s);
+      void create_socket();
 
       /** Return file descriptor assigned to this base_socket. */
       SOCKET GetSocket();
@@ -565,7 +563,7 @@ namespace sockets
       virtual void to_string(const class string_exchange & str) const override;
 
 
-
+      virtual void attach(SOCKET s);
 
       /** Called after OnRead if base_socket is in line protocol mode.
       \sa SetLineProtocol */
@@ -661,8 +659,10 @@ namespace sockets
 
       /** Set socks4 server host address/port to use */
       void SetSocks4Host(in_addr a);
+#if defined(BSD_STYLE_SOCKETS)
       /** Set socks4 server hostname to use. */
       void SetSocks4Host(const string & );
+#endif
       /** Socks4 server port to use. */
       void SetSocks4Port(port_t point);
       /** Provide a socks4 userid if required by the socks4 server. */
@@ -732,6 +732,7 @@ namespace sockets
       void DetachSocket();
       //@}
 
+
       virtual void write(const void * buf, memsize c);
       void inline print(const ::string & str) { write(str.c_str(), str.get_length()); }
 
@@ -787,6 +788,10 @@ __declare_pair_tuple_size(::sockets::socket_flag_map);
 __declare_pair_tuple_size(::sockets::socket_socket_flag_map);
 __declare_pair_tuple_size(::sockets::socket_map);
 #endif
+
+
+using socket_list = ::comparable_list < SOCKET >;
+
 
 
 

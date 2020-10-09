@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "apex/net/net_sockets.h"
+//#include "apex/net/net_sockets.h"
 
 #if defined(LINUX) || defined(MACOS)
 #if defined(MACOS)
@@ -17,25 +17,41 @@ namespace sockets
 {
 
 
-   net::net(::layered * pobjectContext) :
-      ::object(pobject),
-      m_mutexCache(pobject)
+   net::net()
    {
 
    }
 
+   
    net::~net()
    {
 
    }
 
 
-   bool net::initialize()
+   ::estatus net::initialize(::layered* pobjectContext)
    {
 
-      return true;
+      auto estatus = ::object::initialize(pobjectContext);
+
+      if (estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
+
+
+   //::estatus net::initialize(::layered* pobjectContext)
+   //{
+
+   //   return ::success;
+
+   //}
 
 
    bool net::gudo_set()
@@ -54,10 +70,10 @@ namespace sockets
    }
 
 
-   bool net::finalize()
+   void net::finalize()
    {
 
-      return true;
+      //return true;
 
    }
 
@@ -219,11 +235,16 @@ namespace sockets
             continue;
          if(name->IPInformation->NetworkAdapter->NetworkAdapterId == InternetConnectionProfile->NetworkAdapter->NetworkAdapterId)
          {
+            
             // there may be more than one local address though
-            m_host = begin(name->CanonicalName);
+            m_host = name->CanonicalName;
+
             m_local_resolved = true;
+
             break;
+
          }
+
       }
 
 
@@ -270,7 +291,7 @@ namespace sockets
    }
 
 
-   ipaddr_t net::GetLocalIP()
+   in_addr net::GetLocalIP()
    {
       if (!m_local_resolved)
       {
@@ -360,18 +381,30 @@ namespace sockets
    }
    */
 
+
+#if defined(BSD_STYLE_SOCKETS)
+
+
    bool net::convert(in_addr & addr, const string & host,int ai_flags)
    {
 
       ::Windows::Foundation::Collections::IVectorView < ::Windows::Networking::EndpointPair ^ > ^ data = ::wait(::Windows::Networking::Sockets::DatagramSocket::GetEndpointPairsAsync(ref new ::Windows::Networking::HostName(host), "0"));
 
-      if(data->Size <= 0)
+      if (data->Size <= 0)
+      {
+
          return false;
 
-      string str = begin(data->GetAt(0)->RemoteHostName->DisplayName);
+      }
 
-      if(!net::isipv4(str))
+      string str = data->GetAt(0)->RemoteHostName->DisplayName;
+
+      if (!net::isipv4(str))
+      {
+
          return false;
+
+      }
 
       addr.S_un.S_addr = c_inet_addr(str);
 
@@ -388,12 +421,12 @@ namespace sockets
       if(data->Size <= 0)
          return false;
 
-      string str = begin(data->GetAt(0)->RemoteHostName->DisplayName);
+      string str = data->GetAt(0)->RemoteHostName->DisplayName;
 
       if(!net::isipv6(str))
          return false;
 
-      from_string(sa, str);
+      //from_string(sa, str);
 
       return true;
 
@@ -428,6 +461,9 @@ namespace sockets
       return true;
 
    }
+
+
+#endif
 
 
    bool net::reverse(string & number, const string & hostname, int flags)
@@ -743,15 +779,12 @@ namespace sockets
    }
 
 
-
    string net::canonical_name(const ::net::address & address)
    {
 
-      return address.m_posdata->m_hostname->CanonicalName;
+      return address.m_hostname->CanonicalName;
 
    }
-
-
 
 
 } // namespace sockets

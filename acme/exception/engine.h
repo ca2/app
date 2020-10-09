@@ -31,7 +31,7 @@ class os_engine;
 
 
 class CLASS_DECL_ACME exception_engine :
-   virtual public elemental
+   virtual public element
 {
 public:
 

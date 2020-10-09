@@ -44,7 +44,7 @@
 //      main_init_data *     m_pmaindata;
 //
 //
-//      application(::elemental * pobject);
+//      application(::element * pobject);
 //      virtual ~application();
 //
 //      virtual HINSTANCE GetHinstance();

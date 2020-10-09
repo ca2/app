@@ -51,8 +51,8 @@ namespace user
 
       bool                          m_bUpdatingScreen;
       tick                          m_tickLastScreenUpdate;
-      __pointer(elemental)            m_ptaskUpdateScreen;
-      __pointer(elemental)            m_ptaskWindowShow;
+      __pointer(element)            m_ptaskUpdateScreen;
+      __pointer(element)            m_ptaskWindowShow;
 
 
       prodevian();

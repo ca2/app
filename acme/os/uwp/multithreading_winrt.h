@@ -236,7 +236,7 @@ public:
 
 
 template < typename T, typename PRED >
-void fork_then(::elemental * pobject, ::Windows::Foundation::IAsyncOperation < T > ^ operation, PRED pred, DWORD dwMillis = INFINITE, CallbackContext callbackcontext = CallbackContext::Any)
+void fork_then(::element * pobject, ::Windows::Foundation::IAsyncOperation < T > ^ operation, PRED pred, DWORD dwMillis = INFINITE, CallbackContext callbackcontext = CallbackContext::Any)
 {
 
    pobject->fork([=]()

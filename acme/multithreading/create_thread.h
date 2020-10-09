@@ -2,12 +2,12 @@
 
 
 //class CLASS_DECL_ACME create_thread :
-//   virtual public ::elemental
+//   virtual public ::element
 //{
 //public:
 //
 //
-//   ::elemental *                       m_pobjectRun;
+//   ::element *                       m_pobjectRun;
 //   __pointer(manual_reset_event)    m_pevent;
 //
 //

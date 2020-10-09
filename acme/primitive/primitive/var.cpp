@@ -22,7 +22,7 @@ var::var(const char * psz)
 }
 
 
-var::var(::elemental * pelement)
+var::var(::element * pelement)
 {
 
    m_etype = type_new;
@@ -32,12 +32,12 @@ var::var(::elemental * pelement)
 }
 
 
-var::var(const ::elemental & elemental)
+var::var(const ::element & element)
 {
 
    m_etype = type_new;
 
-   operator = (elemental);
+   operator = (element);
 
 }
 
@@ -1365,7 +1365,7 @@ bool var::is_empty() const
       return m_pid->is_empty();
 
 
-      // elemental classes
+      // element classes
    case type_element:
       return is_element_null();
    case type_stra:
@@ -5784,7 +5784,7 @@ bool var::is_false() const
    case type_future:
          return ::is_null(m_functionbase.m_pobjectTask);
 
-   // elemental classes
+   // element classes
    case type_element:
       return is_element_null();
    case type_stra:
@@ -5909,7 +5909,7 @@ bool var::is_set_false() const
    case type_future:
       return ::is_null(m_functionbase.m_pobjectTask);
 
-      // elemental classes
+      // element classes
    case type_element:
       return is_element_null();
    case type_stra:
@@ -6007,10 +6007,10 @@ void var::_001Add(const string_array & straParam)
 }
 
 
-var & var::operator = (const ::elemental & o)
+var & var::operator = (const ::element & o)
 {
 
-   set_element((::elemental *) &o);
+   set_element((::element *) &o);
 
    return *this;
 

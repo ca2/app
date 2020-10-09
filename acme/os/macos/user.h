@@ -169,7 +169,7 @@ typedef int wxCoord;
 //   bool IsFullySpecified() const { return x != wxDefaultCoord && y != wxDefaultCoord; }
 //   
 //   // combine this size with the other one replacing the default (i.e. equal
-//   // to wxDefaultCoord) components of this elemental with those of the other
+//   // to wxDefaultCoord) components of this element with those of the other
 //   void SetDefaults(const wxSize& size)
 //   {
 //      if(x == wxDefaultCoord)

@@ -3,14 +3,14 @@
 #include "core/html/html/_.h"
 #include "core/html/impl/_impl.h"
 #include "core/user/user/_.h"
-#include "_elemental.h"
+#include "_element.h"
 
 
 namespace html
 {
 
 
-   elemental::elemental()
+   element::element()
    {
 
       m_pstyle = __new(::html::style(this));
@@ -18,7 +18,7 @@ namespace html
    }
 
 
-   elemental::~elemental()
+   element::~element()
    {
 
       try
@@ -61,7 +61,7 @@ namespace html
    }
 
 
-   void elemental::implement(html_data * pdata)
+   void element::implement(html_data * pdata)
    {
 
       m_pdata = pdata;
@@ -75,7 +75,7 @@ namespace html
    }
 
 
-   tag * elemental::get_tag()
+   tag * element::get_tag()
    {
 
       if (m_pbase == nullptr)
@@ -94,7 +94,7 @@ namespace html
    }
 
 
-   void elemental::initialize()
+   void element::initialize()
    {
 
       if (m_pparent != nullptr && m_idTagName.is_empty())
@@ -150,7 +150,7 @@ namespace html
 
 
 
-   void elemental::implement_phase1(html_data * pdata)
+   void element::implement_phase1(html_data * pdata)
    {
 
       if (m_pbase == nullptr)
@@ -210,7 +210,7 @@ namespace html
             if (m_etag == tag_head || m_etag == tag_html)
             {
 
-               m_pimpl = __new(::html::impl::elemental());
+               m_pimpl = __new(::html::impl::element());
 
             }
             else if (m_etag == tag_body)
@@ -222,7 +222,7 @@ namespace html
             else
             {
 
-               m_pimpl = __new(::html::impl::elemental());
+               m_pimpl = __new(::html::impl::element());
 
             }
 
@@ -235,13 +235,13 @@ namespace html
 
                pdata->m_pcoredata->m_strTitle = m_pbase->get_value()->get_value();
 
-               m_pimpl = __new(::html::impl::elemental());
+               m_pimpl = __new(::html::impl::element());
 
             }
             else
             {
 
-               m_pimpl = __new(::html::impl::elemental());
+               m_pimpl = __new(::html::impl::element());
 
             }
 
@@ -413,7 +413,7 @@ namespace html
    }
 
 
-   void elemental::implement_phase2(html_data * pdata)
+   void element::implement_phase2(html_data * pdata)
    {
 
       UNREFERENCED_PARAMETER(pdata);
@@ -421,7 +421,7 @@ namespace html
    }
 
 
-   void elemental::on_layout(html_data * pdata)
+   void element::on_layout(html_data * pdata)
    {
 
       pdata->m_pcoredata->m_bHasChar = false;
@@ -437,7 +437,7 @@ namespace html
    }
 
 
-   void elemental::layout_phase0(html_data * pdata)
+   void element::layout_phase0(html_data * pdata)
    {
 
       if (m_pimpl == nullptr)
@@ -467,7 +467,7 @@ namespace html
    }
 
 
-   void elemental::layout_phase1(html_data * pdata)
+   void element::layout_phase1(html_data * pdata)
    {
 
       if (m_pimpl == nullptr)
@@ -625,7 +625,7 @@ namespace html
    }
 
 
-   void elemental::layout_phase2(html_data * pdata)
+   void element::layout_phase2(html_data * pdata)
    {
 
       if (m_pimpl == nullptr)
@@ -642,7 +642,7 @@ namespace html
 
    }
 
-   void elemental::layout_phase3(html_data * pdata)
+   void element::layout_phase3(html_data * pdata)
    {
 
       if (m_pimpl == nullptr)
@@ -786,7 +786,7 @@ namespace html
    }
 
 
-   void elemental::_001OnDraw(html_data * pdata)
+   void element::_001OnDraw(html_data * pdata)
    {
 
       if (m_pstyle->m_edisplay == display_table)
@@ -820,7 +820,7 @@ namespace html
          for (i32 i = 0; i < m_elementalptra.get_size(); )
          {
 
-            elemental * pelemental = m_elementalptra[i];
+            element * pelemental = m_elementalptra[i];
 
             if (::is_null(pelemental))
             {
@@ -851,7 +851,7 @@ namespace html
    }
 
 
-   void elemental::load(html_data * pdata, base * pbase)
+   void element::load(html_data * pdata, base * pbase)
    {
 
       if (pdata == nullptr)
@@ -929,7 +929,7 @@ namespace html
          }
          for (i32 i = 0; i < ptag->baseptra().get_size(); i++)
          {
-            auto pelemental  = __new(elemental);
+            auto pelemental  = __new(element);
 
             pelemental->initialize_html_elemental(pdata, this);
             pelemental->load(pdata, ptag->baseptra()[i]);
@@ -965,7 +965,7 @@ namespace html
       }
    }
 
-   bool elemental::parse(html_data * pdata, const char * & pszParam)
+   bool element::parse(html_data * pdata, const char * & pszParam)
    {
       const char * psz = pszParam;
       // skip white space
@@ -1036,7 +1036,7 @@ namespace html
       while (true)
       {
 
-         __pointer(elemental) pelemental = __new(elemental);
+         __pointer(element) pelemental = __new(element);
 
          pelemental->initialize_html_elemental(pdata, this);
 
@@ -1087,7 +1087,7 @@ namespace html
    }
 
 
-   void elemental::parse_attributes(html_data * pdata, const char * & psz)
+   void element::parse_attributes(html_data * pdata, const char * & psz)
    {
       UNREFERENCED_PARAMETER(pdata);
       char chQuote;
@@ -1159,14 +1159,14 @@ namespace html
 
 
 
-   elemental * elemental::get_element_by_name(id id)
+   element * element::get_element_by_name(id id)
    {
       if (m_pbase->get_type() == base::type_value)
          return nullptr;
       ::html::tag * ptag = m_pbase->get_tag();
       if (id == ptag->get_attr_value("name"))
          return this;
-      elemental * pelemental = nullptr;
+      element * pelemental = nullptr;
       for (i32 i = 0; i < m_elementalptra.get_size(); i++)
       {
          pelemental = m_elementalptra[i]->get_element_by_name(id);
@@ -1179,7 +1179,7 @@ namespace html
    }
 
 
-   elemental * elemental::get_element_by_id(id id)
+   element * element::get_element_by_id(id id)
    {
 
       if (m_pbase->get_type() == base::type_value)
@@ -1198,7 +1198,7 @@ namespace html
 
       }
 
-      elemental * pelemental = nullptr;
+      element * pelemental = nullptr;
 
       for (i32 i = 0; i < m_elementalptra.get_size(); i++)
       {
@@ -1219,7 +1219,7 @@ namespace html
    }
 
 
-   void elemental::OnLButtonDown(::message::message * pmessage)
+   void element::OnLButtonDown(::message::message * pmessage)
    {
 
       m_pimpl->OnLButtonDown(pmessage);
@@ -1227,7 +1227,7 @@ namespace html
    }
 
 
-   void elemental::OnMouseMove(::message::message * pmessage)
+   void element::OnMouseMove(::message::message * pmessage)
    {
 
       m_pimpl->OnMouseMove(pmessage);
@@ -1235,7 +1235,7 @@ namespace html
    }
 
 
-   void elemental::OnLButtonUp(::message::message * pmessage)
+   void element::OnLButtonUp(::message::message * pmessage)
    {
 
       m_pimpl->OnLButtonUp(pmessage);
@@ -1243,7 +1243,7 @@ namespace html
    }
 
 
-   elemental * elemental::hit_test(html_data * pdata, const ::pointf & point)
+   element * element::hit_test(html_data * pdata, const ::pointf & point)
    {
 
       if (m_pimpl != nullptr)
@@ -1252,7 +1252,7 @@ namespace html
          if (m_pimpl->hit_test(pdata, point))
          {
 
-            elemental * pelemental;
+            element * pelemental;
 
             for (i32 i = 0; i < m_elementalptra.get_size(); i++)
             {
@@ -1307,7 +1307,7 @@ namespace html
    }
 
 
-   elemental * elemental::bound_hit_test(html_data * pdata, const ::pointf & point)
+   element * element::bound_hit_test(html_data * pdata, const ::pointf & point)
    {
 
       double dMin = -1.0;
@@ -1317,7 +1317,7 @@ namespace html
    }
 
 
-   elemental * elemental::bound_hit_test(html_data * pdata, const ::pointf & point, double & dMin)
+   element * element::bound_hit_test(html_data * pdata, const ::pointf & point, double & dMin)
    {
 
       if (m_pimpl != nullptr)
@@ -1333,7 +1333,7 @@ namespace html
             for (i32 i = 0; i < m_elementalptra.get_size(); i++)
             {
 
-               elemental * pelemental = m_elementalptra[i]->bound_hit_test(pdata, point, dMin);
+               element * pelemental = m_elementalptra[i]->bound_hit_test(pdata, point, dMin);
 
                if (pelemental != nullptr)
                {
@@ -1355,7 +1355,7 @@ namespace html
    }
 
 
-   ::estatus elemental::initialize_html_elemental(html_data * pdata, elemental * pparent)
+   ::estatus element::initialize_html_elemental(html_data * pdata, element * pparent)
    {
 
       auto estatus = ::user::primitive::initialize(pdata);
@@ -1381,7 +1381,7 @@ namespace html
    }
 
 
-   void elemental::_001SetText(const string & str, const ::action_context & context)
+   void element::_001SetText(const string & str, const ::action_context & context)
    {
 
       if (m_pbase->get_type() == base::type_tag)
@@ -1411,7 +1411,7 @@ namespace html
    }
 
 
-   void elemental::delete_implementation(html_data * pdata)
+   void element::delete_implementation(html_data * pdata)
    {
 
       m_propertyset.clear();
@@ -1454,7 +1454,7 @@ namespace html
    }
 
 
-   void elemental::destroy(html_data * pdata)
+   void element::destroy(html_data * pdata)
    {
 
       m_propertyset.clear();
@@ -1567,7 +1567,7 @@ namespace html
    }
 
 
-   void elemental::get_html(html_data * pdata, string & str)
+   void element::get_html(html_data * pdata, string & str)
    {
 
       if (m_pbase->get_type() == base::type_value)
@@ -1635,7 +1635,7 @@ namespace html
    }
 
 
-   //bool elemental::get_color(COLORREF & cr, ::user::e_color ecolor, ::user::style_context * pcontext)
+   //bool element::get_color(COLORREF & cr, ::user::e_color ecolor, ::user::style_context * pcontext)
    //{
 
    //   if(ecolor == ::user::color_text)
@@ -1673,7 +1673,7 @@ namespace html
    //}
 
 
-   ::color elemental::get_color(::css::enum_color ecolor)
+   ::color element::get_color(::css::enum_color ecolor)
    {
 
       COLORREF cr;
@@ -1715,7 +1715,7 @@ namespace html
    }
 
 
-   ::draw2d::font_pointer elemental::get_font()
+   ::draw2d::font_pointer element::get_font()
    {
 
       //font = m_pdata->get_font(this)->m_font;
@@ -1734,7 +1734,7 @@ namespace html
    }
 
 
-   //void elemental::nextstyle(::user::style_context * pcontext)
+   //void element::nextstyle(::user::style_context * pcontext)
    //{
 
    //   pcontext->m_pstyle = m_pdata->m_pcoredata->m_pform;

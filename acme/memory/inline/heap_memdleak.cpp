@@ -529,7 +529,7 @@ CLASS_DECL_ACME int  global_memdleak_enabled()
 #define print str+=
 
 class memblock :
-   virtual public ::elemental
+   virtual public ::element
 {
 public:
 

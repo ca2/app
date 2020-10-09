@@ -49,7 +49,7 @@ namespace html
    }
 
 
-   bool style::get_dimension(bool bParent, id idName, const string & strSubClass, html_data * pdata, ::html::elemental * pelemental, float & f)
+   bool style::get_dimension(bool bParent, id idName, const string & strSubClass, html_data * pdata, ::html::element * pelemental, float & f)
    {
 
       f = 0.f;
@@ -98,7 +98,7 @@ namespace html
    }
 
 
-   bool style::get_surround_box(id idName, const string & strSubClass, html_data * pdata, ::html::elemental * pelemental, ::rectf & rect)
+   bool style::get_surround_box(id idName, const string & strSubClass, html_data * pdata, ::html::element * pelemental, ::rectf & rect)
    {
 
       e_tag etag = pelemental->m_etag;
@@ -251,7 +251,7 @@ namespace html
    }
 
 
-   bool style::get_border_box(id idName, const string & strSubClass, html_data * pdata, ::html::elemental * pelemental, border & rect)
+   bool style::get_border_box(id idName, const string & strSubClass, html_data * pdata, ::html::element * pelemental, border & rect)
    {
 
       e_tag etag = pelemental->m_etag;
@@ -419,7 +419,7 @@ namespace html
    }
 
 
-   bool style::get_border_color(id idName, const string & strSubClass, html_data * pdata, ::html::elemental * pelemental, border & rect)
+   bool style::get_border_color(id idName, const string & strSubClass, html_data * pdata, ::html::element * pelemental, border & rect)
    {
 
       e_tag etag = pelemental->m_etag;
@@ -588,7 +588,7 @@ namespace html
    }
 
 
-   bool style::get_color(id idName, const string & strSubClass, html_data * pdata, const ::html::elemental * pelemental, COLORREF & cr)
+   bool style::get_color(id idName, const string & strSubClass, html_data * pdata, const ::html::element * pelemental, COLORREF & cr)
    {
 
       e_tag etag = pelemental->m_etag;
@@ -620,7 +620,7 @@ namespace html
    }
 
 
-   bool style::get_text(id idName, const string & strSubClass, html_data * pdata, const ::html::elemental * pelemental, string & str)
+   bool style::get_text(id idName, const string & strSubClass, html_data * pdata, const ::html::element * pelemental, string & str)
    {
 
       e_tag etag = pelemental->m_etag;
@@ -778,7 +778,7 @@ namespace html
    }
 
 
-   bool style::get_alpha(const string & strSubClass, html_data * pdata, const ::html::elemental * pelemental, double & d)
+   bool style::get_alpha(const string & strSubClass, html_data * pdata, const ::html::element * pelemental, double & d)
    {
 
       const char* idName = "opacity";

@@ -170,21 +170,6 @@
     <Filter Include="Source Files\net\sockets\base">
       <UniqueIdentifier>{3bf771b4-1f21-47d7-8981-5326a3c48cad}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\net\sockets\bsd">
-      <UniqueIdentifier>{9c947f75-f3da-4b31-8612-17011c0d1dab}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net\sockets\bsd\basic">
-      <UniqueIdentifier>{9ce71454-673a-42cb-865f-926b98e090c9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net\sockets\bsd\webserver">
-      <UniqueIdentifier>{e050ef96-eca8-4336-baf1-ff92b77cdb24}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net\sockets\bsd\dns">
-      <UniqueIdentifier>{a8cae012-1f2f-496b-8c64-c319088ab9bc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net\sockets\bsd\ssl">
-      <UniqueIdentifier>{850095de-2443-422d-800d-39d0acd03c23}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\net\sockets\http">
       <UniqueIdentifier>{cbae3270-16f3-492a-8638-3f4e01c750fd}</UniqueIdentifier>
     </Filter>
@@ -265,6 +250,48 @@
     </Filter>
     <Filter Include="Source Files\asset">
       <UniqueIdentifier>{409763c6-f1ed-40e3-b1f8-399af4001505}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\winrt">
+      <UniqueIdentifier>{16d353b6-2b65-40ab-8cf1-74acd739d21b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\winrt\basic">
+      <UniqueIdentifier>{140517a3-8911-46a0-9cd4-5704a43a1cfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\winrt">
+      <UniqueIdentifier>{0847e535-d222-4975-a3cb-8eed30a0cc0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\winrt\basic">
+      <UniqueIdentifier>{baf9f280-c5dc-494b-bbcd-248723692a23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\winrt\asynch_dns">
+      <UniqueIdentifier>{43590d98-0ad7-4516-8366-5f3d6c73bed4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\crypto">
+      <UniqueIdentifier>{de62ff2b-9088-4aa5-b09d-4a12a97dd919}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\crypto\openssl">
+      <UniqueIdentifier>{eb04ebab-3f3d-45ef-9960-fa6e419f7836}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\crypto\winrt">
+      <UniqueIdentifier>{96bfc827-2c83-4a75-9fca-0accbe9c89df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\crypto\winrt">
+      <UniqueIdentifier>{bc4b5cbc-10d2-425e-a22c-64f455c0ca28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\crypto\openssl">
+      <UniqueIdentifier>{30ad367a-6c96-411a-9765-d6a03ce15d7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\crypto\macos">
+      <UniqueIdentifier>{2867bf3d-438d-4820-bbcd-6f2e9fa5c010}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\winrt\webserver">
+      <UniqueIdentifier>{7e20f500-3450-4342-a9cf-8f9141103b83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\winrt\webserver">
+      <UniqueIdentifier>{b4858716-8bae-46cc-a7c6-a74993690ecc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\winrt\asynch_dns">
+      <UniqueIdentifier>{83a08ae0-98ac-4d5d-8310-ba048b2c8172}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -493,72 +520,6 @@
     <ClCompile Include="net\sockets\base\base_socket_handler.cpp">
       <Filter>Source Files\net\sockets\base</Filter>
     </ClCompile>
-    <ClCompile Include="net\sockets\bsd\include.cpp">
-      <Filter>Source Files\net\sockets\bsd</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\sockets.cpp">
-      <Filter>Source Files\net\sockets\bsd</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\_strconv.cpp">
-      <Filter>Source Files\net\sockets\bsd</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\_system_sockets.cpp">
-      <Filter>Source Files\net\sockets\bsd</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\listen_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\net.cpp">
-      <Filter>Source Files\net\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\sctp_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\socket_handler.cpp">
-      <Filter>Source Files\net\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\stream_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\sync_socket_handler.cpp">
-      <Filter>Source Files\net\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\tcp_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\tls_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\udp_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\webserver\httpd_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\webserver\http_base_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\dns\resolv_server.cpp">
-      <Filter>Source Files\net\sockets\bsd\dns</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\dns\resolv_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\dns</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\ssl\client_context.cpp">
-      <Filter>Source Files\net\sockets\bsd\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\ssl\client_context_map.cpp">
-      <Filter>Source Files\net\sockets\bsd\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\ssl\context.cpp">
-      <Filter>Source Files\net\sockets\bsd\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\ssl\initializer.cpp">
-      <Filter>Source Files\net\sockets\bsd\ssl</Filter>
-    </ClCompile>
     <ClCompile Include="net\sockets\http\client_socket.cpp">
       <Filter>Source Files\net\sockets\http</Filter>
     </ClCompile>
@@ -774,12 +735,6 @@
     </ClCompile>
     <ClCompile Include="node\windows_common\application.cpp">
       <Filter>Source Files\node\windows_common</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_crypto.cpp">
-      <Filter>Source Files\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_openssl.cpp">
-      <Filter>Source Files\crypto</Filter>
     </ClCompile>
     <ClCompile Include="compress\context.cpp">
       <Filter>Source Files\compress</Filter>
@@ -1059,6 +1014,78 @@
     </ClCompile>
     <ClCompile Include="node\uwp\thread.cpp">
       <Filter>Source Files\node\uwp</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\basic\net.cpp">
+      <Filter>Source Files\net\sockets\winrt\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\basic\sctp_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\basic\socket_handler.cpp">
+      <Filter>Source Files\net\sockets\winrt\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\basic\stream_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\basic\sync_socket_handler.cpp">
+      <Filter>Source Files\net\sockets\winrt\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\basic\tcp_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\basic\tls_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\basic\udp_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\hasher.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\winrt\hasher.cpp">
+      <Filter>Source Files\crypto\winrt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\hasher_algorithm.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="rsa.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\winrt\rsa.cpp">
+      <Filter>Source Files\crypto\winrt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\winrt\hasher_algorithm.cpp">
+      <Filter>Source Files\crypto\winrt</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\webserver\httpd_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\winrt\crypto.cpp">
+      <Filter>Source Files\crypto\winrt</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\asynch_dns\resolv_server.cpp">
+      <Filter>Source Files\net\sockets\winrt\asynch_dns</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\asynch_dns\resolv_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\asynch_dns</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\_system_sockets.cpp">
+      <Filter>Source Files\net\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\basic\socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\sockets.cpp">
+      <Filter>Source Files\net\sockets\winrt</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\basic\listen_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\http_base_socket.cpp">
+      <Filter>Source Files\net\http</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -2366,6 +2393,105 @@
     </ClInclude>
     <ClInclude Include="node\uwp\aaa_buffer.h">
       <Filter>Header Files\node\uwp</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\listen_socket.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\net.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\sctp_socket.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\socket.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\socket_handler.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\stream_socket.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\sync_socket_handler.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\tcp_socket.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\tls_socket.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\udp_socket.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\config.h">
+      <Filter>Header Files\net\sockets\winrt</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\_.h">
+      <Filter>Header Files\net\sockets\winrt</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sockets.h">
+      <Filter>Header Files\net\sockets\winrt</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\asynch_dns\resolv_server.h">
+      <Filter>Header Files\net\sockets\winrt\asynch_dns</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\asynch_dns\resolv_socket.h">
+      <Filter>Header Files\net\sockets\winrt\asynch_dns</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\_.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\_crypto.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\crypto.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\hasher.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\winrt\hasher.h">
+      <Filter>Header Files\crypto\winrt</Filter>
+    </ClInclude>
+    <ClInclude Include="rsa.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\openssl\hasher.h">
+      <Filter>Header Files\crypto\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\hasher_algorithm.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\winrt\hasher_algorithm.h">
+      <Filter>Header Files\crypto\winrt</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\winrt\_winrt.h">
+      <Filter>Header Files\crypto\winrt</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\winrt\rsa.h">
+      <Filter>Header Files\crypto\winrt</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\macos\rsa.h">
+      <Filter>Header Files\crypto\macos</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\webserver\httpd_socket.h">
+      <Filter>Header Files\net\sockets\winrt\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\webserver\ajp13_socket.h">
+      <Filter>Header Files\net\sockets\winrt\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\webserver\ajp13.h">
+      <Filter>Header Files\net\sockets\winrt\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\webserver\ajp_base_socket.h">
+      <Filter>Header Files\net\sockets\winrt\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\http_base_socket.h">
+      <Filter>Header Files\net\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\webserver\aaa_http_base_socket.h">
+      <Filter>Header Files\net\sockets\winrt\webserver</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

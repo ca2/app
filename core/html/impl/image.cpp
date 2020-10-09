@@ -35,12 +35,12 @@ namespace html
       }
 
 
-      void image::implement_phase1(html_data * pdata, ::html::elemental * pelemental)
+      void image::implement_phase1(html_data * pdata, ::html::element * pelemental)
       {
 
          m_bHasChar = true;
 
-         elemental::implement_phase1(pdata, pelemental);
+         element::implement_phase1(pdata, pelemental);
          if (pelemental->m_pbase->get_type() == ::html::base::type_tag)
          {
 
@@ -120,7 +120,7 @@ namespace html
       void image::layout_phase3(html_data * pdata)
       {
 
-         elemental::layout_phase3(pdata);
+         element::layout_phase3(pdata);
          
          if (m_pelemental->m_pbase->get_type() == ::html::base::type_tag)
          {

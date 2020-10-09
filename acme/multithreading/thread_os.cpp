@@ -2,7 +2,7 @@
 
 
 //class thread_proc_runner :
-//   virtual public elemental
+//   virtual public element
 //{
 //public:
 //

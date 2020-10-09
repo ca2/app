@@ -18,7 +18,7 @@ namespace geometry
    };
 
    class CLASS_DECL_ACME geometry :
-      virtual public ::elemental
+      virtual public ::element
    {
    public:
 

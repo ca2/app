@@ -2180,9 +2180,6 @@
     <ClInclude Include="filesystem\file\_defer_var_stream.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\elemental.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="user\_.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -2191,6 +2188,9 @@
     </ClInclude>
     <ClInclude Include="user\_const_key.h">
       <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\element.h">
+      <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

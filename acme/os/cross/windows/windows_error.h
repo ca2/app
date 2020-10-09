@@ -2519,7 +2519,7 @@
 //
 // MessageText:
 //
-// An event pair synchronization operation was performed using the thread specific client/server event pair elemental, but no event pair elemental was associated with the thread.
+// An event pair synchronization operation was performed using the thread specific client/server event pair element, but no event pair element was associated with the thread.
 //
 #define ERROR_NO_EVENT_PAIR              580L
 
@@ -2720,7 +2720,7 @@
 //
 // MessageText:
 //
-// The attempt to find the elemental found an elemental matching by ID on the volume but it is out of the scope of the handle used for the operation.
+// The attempt to find the element found an element matching by ID on the volume but it is out of the scope of the handle used for the operation.
 //
 #define ERROR_FOUND_OUT_OF_SCOPE         601L
 
@@ -3166,7 +3166,7 @@
 //
 // MessageText:
 //
-// The create operation failed because the name contained at least one mount point which resolves to a volume to which the specified device elemental is not attached.
+// The create operation failed because the name contained at least one mount point which resolves to a volume to which the specified device element is not attached.
 //
 #define ERROR_MOUNT_POINT_NOT_RESOLVED   649L
 
@@ -3175,7 +3175,7 @@
 //
 // MessageText:
 //
-// The device elemental parameter is either not a valid device elemental or is not attached to the volume specified by the file name.
+// The device element parameter is either not a valid device element or is not attached to the volume specified by the file name.
 //
 #define ERROR_INVALID_DEVICE_OBJECT_PARAMETER 650L
 
@@ -3530,7 +3530,7 @@
 // MessageText:
 //
 // {Object Exists}
-// An attempt was made to create an elemental and the elemental name already existed.
+// An attempt was made to create an element and the element name already existed.
 //
 #define ERROR_OBJECT_NAME_EXISTS         698L
 
@@ -4578,7 +4578,7 @@
 //
 // MessageText:
 //
-// An attempt was made to elemental a token that does not exist.
+// An attempt was made to element a token that does not exist.
 //
 #define ERROR_NO_TOKEN                   1008L
 
@@ -5526,7 +5526,7 @@
 //
 // MessageText:
 //
-// The property set specified does not exist on the elemental.
+// The property set specified does not exist on the element.
 //
 #define ERROR_SET_NOT_FOUND              1170L
 
@@ -6348,7 +6348,7 @@
 //
 // MessageText:
 //
-// An attempt to do an operation on a debug elemental failed because the elemental is in the process of being deleted.
+// An attempt to do an operation on a debug element failed because the element is in the process of being deleted.
 //
 #define ERROR_DEBUGGER_INACTIVE          1284L
 
@@ -6493,7 +6493,7 @@
 //
 // MessageText:
 //
-// IndiCAtes a particular Security ID may not be assigned as the label of an elemental.
+// IndiCAtes a particular Security ID may not be assigned as the label of an element.
 //
 #define ERROR_INVALID_LABEL              1299L
 
@@ -6565,7 +6565,7 @@
 //
 // MessageText:
 //
-// This security ID may not be assigned as the owner of this elemental.
+// This security ID may not be assigned as the owner of this element.
 //
 #define ERROR_INVALID_OWNER              1307L
 
@@ -6574,7 +6574,7 @@
 //
 // MessageText:
 //
-// This security ID may not be assigned as the primary group of an elemental.
+// This security ID may not be assigned as the primary group of an element.
 //
 #define ERROR_INVALID_PRIMARY_GROUP      1308L
 
@@ -6943,7 +6943,7 @@
 //
 // MessageText:
 //
-// Unable to perform a security operation on an elemental that has no associated security.
+// Unable to perform a security operation on an element that has no associated security.
 //
 #define ERROR_NO_SECURITY_ON_OBJECT      1350L
 
@@ -7716,7 +7716,7 @@
 //
 // MessageText:
 //
-// Cannot destroy elemental created by another thread.
+// Cannot destroy element created by another thread.
 //
 #define ERROR_DESTROY_OBJECT_OF_OTHER_THREAD 1435L
 
@@ -8702,7 +8702,7 @@
 //
 // MessageText:
 //
-// The elemental universal unique identifier (UUID) was not found.
+// The element universal unique identifier (UUID) was not found.
 //
 #define RPC_S_OBJECT_NOT_FOUND           1710L
 
@@ -8711,7 +8711,7 @@
 //
 // MessageText:
 //
-// The elemental universal unique identifier (UUID) has already been registered.
+// The element universal unique identifier (UUID) has already been registered.
 //
 #define RPC_S_ALREADY_REGISTERED         1711L
 
@@ -9305,7 +9305,7 @@
 //
 // MessageText:
 //
-// A null elemental pointer was passed to the stub.
+// A null element pointer was passed to the stub.
 //
 #define RPC_X_NULL_REF_POINTER           1780L
 
@@ -9755,7 +9755,7 @@
 //
 // MessageText:
 //
-// The RPC pipe elemental is invalid or corrupted.
+// The RPC pipe element is invalid or corrupted.
 //
 #define RPC_X_INVALID_PIPE_OBJECT        1830L
 
@@ -9764,7 +9764,7 @@
 //
 // MessageText:
 //
-// An invalid operation was attempted on an RPC pipe elemental.
+// An invalid operation was attempted on an RPC pipe element.
 //
 #define RPC_X_WRONG_PIPE_ORDER           1831L
 
@@ -9809,7 +9809,7 @@
 //
 // MessageText:
 //
-// The elemental universal unique identifier (UUID) is the nil UUID.
+// The element universal unique identifier (UUID) is the nil UUID.
 //
 #define RPC_S_INVALID_OBJECT             1900L
 
@@ -9899,7 +9899,7 @@
 //
 // MessageText:
 //
-// The elemental exporter specified was not found.
+// The element exporter specified was not found.
 //
 #define OR_INVALID_OXID                  1910L
 
@@ -9908,7 +9908,7 @@
 //
 // MessageText:
 //
-// The elemental specified was not found.
+// The element specified was not found.
 //
 #define OR_INVALID_OID                   1911L
 
@@ -9917,7 +9917,7 @@
 //
 // MessageText:
 //
-// The elemental resolver set specified was not found.
+// The element resolver set specified was not found.
 //
 #define OR_INVALID_SET                   1912L
 
@@ -9953,7 +9953,7 @@
 //
 // MessageText:
 //
-// The RPC pipe elemental has already been closed.
+// The RPC pipe element has already been closed.
 //
 #define RPC_X_PIPE_CLOSED                1916L
 
@@ -10016,7 +10016,7 @@
 //
 // MessageText:
 //
-// Not all elemental UUIDs could be exported to the specified entry.
+// Not all element UUIDs could be exported to the specified entry.
 //
 #define RPC_S_NOT_ALL_OBJS_EXPORTED      1923L
 
@@ -10774,7 +10774,7 @@
 //
 // MessageText:
 //
-// The supplied elemental has not been initialized.
+// The supplied element has not been initialized.
 //
 #define PEERDIST_ERROR_NOT_INITIALIZED   4054L
 
@@ -10783,7 +10783,7 @@
 //
 // MessageText:
 //
-// The supplied elemental has already been initialized.
+// The supplied element has already been initialized.
 //
 #define PEERDIST_ERROR_ALREADY_INITIALIZED 4055L
 
@@ -10801,7 +10801,7 @@
 //
 // MessageText:
 //
-// The supplied elemental has already been invalidated.
+// The supplied element has already been invalidated.
 //
 #define PEERDIST_ERROR_INVALIDATED       4057L
 
@@ -11172,7 +11172,7 @@
 //
 // MessageText:
 //
-// The elemental identifier does not represent a valid elemental.
+// The element identifier does not represent a valid element.
 //
 #define ERROR_OBJECT_NOT_FOUND           4312L
 
@@ -11650,7 +11650,7 @@
 //
 // MessageText:
 //
-// The elemental already exists.
+// The element already exists.
 //
 #define ERROR_OBJECT_ALREADY_EXISTS      5010L
 
@@ -11659,7 +11659,7 @@
 //
 // MessageText:
 //
-// The elemental is already in the list.
+// The element is already in the list.
 //
 #define ERROR_OBJECT_IN_LIST             5011L
 
@@ -11992,7 +11992,7 @@
 //
 // MessageText:
 //
-// The cluster request is not valid for this elemental.
+// The cluster request is not valid for this element.
 //
 #define ERROR_CLUSTER_INVALID_REQUEST    5048L
 
@@ -12779,7 +12779,7 @@
 //
 // MessageText:
 //
-// An attempt to use the specified cluster name failed because an enabled computer elemental with the given name already exists in the domain.
+// An attempt to use the specified cluster name failed because an enabled computer element with the given name already exists in the domain.
 //
 #define ERROR_CLUSTER_OBJECT_ALREADY_USED 5936L
 
@@ -13668,7 +13668,7 @@
 //
 // MessageText:
 //
-// The requested operation is not valid on the Transaction elemental in its current state.
+// The requested operation is not valid on the Transaction element in its current state.
 //
 #define ERROR_TRANSACTION_REQUEST_NOT_VALID 6702L
 
@@ -13731,7 +13731,7 @@
 //
 // MessageText:
 //
-// The Transaction elemental already has a superior enlistment, and the caller attempted an operation that would have created a new superior. Only a single superior enlistment is allow.
+// The Transaction element already has a superior enlistment, and the caller attempted an operation that would have created a new superior. Only a single superior enlistment is allow.
 //
 #define ERROR_TRANSACTION_SUPERIOR_EXISTS 6709L
 
@@ -13776,7 +13776,7 @@
 //
 // MessageText:
 //
-// The current transaction action_context associated with the thread is not a valid handle to a transaction elemental.
+// The current transaction action_context associated with the thread is not a valid handle to a transaction element.
 //
 #define ERROR_CURRENT_TRANSACTION_NOT_VALID 6714L
 
@@ -13785,7 +13785,7 @@
 //
 // MessageText:
 //
-// The specified Transaction elemental could not be opened, because it was not found.
+// The specified Transaction element could not be opened, because it was not found.
 //
 #define ERROR_TRANSACTION_NOT_FOUND      6715L
 
@@ -13794,7 +13794,7 @@
 //
 // MessageText:
 //
-// The specified ResourceManager elemental could not be opened, because it was not found.
+// The specified ResourceManager element could not be opened, because it was not found.
 //
 #define ERROR_RESOURCEMANAGER_NOT_FOUND  6716L
 
@@ -13803,7 +13803,7 @@
 //
 // MessageText:
 //
-// The specified Enlistment elemental could not be opened, because it was not found.
+// The specified Enlistment element could not be opened, because it was not found.
 //
 #define ERROR_ENLISTMENT_NOT_FOUND       6717L
 
@@ -13812,7 +13812,7 @@
 //
 // MessageText:
 //
-// The specified TransactionManager elemental could not be opened, because it was not found.
+// The specified TransactionManager element could not be opened, because it was not found.
 //
 #define ERROR_TRANSACTIONMANAGER_NOT_FOUND 6718L
 
@@ -13821,7 +13821,7 @@
 //
 // MessageText:
 //
-// The elemental specified could not be created or opened, because its associated TransactionManager is not online.  The TransactionManager must be brought fully Online by calling RecoverTransactionManager to recover to the end of its LogFile before objects in its Transaction or ResourceManager namespaces can be opened.  In addition, errors in writing records to its LogFile can CAuse a TransactionManager to go offline.
+// The element specified could not be created or opened, because its associated TransactionManager is not online.  The TransactionManager must be brought fully Online by calling RecoverTransactionManager to recover to the end of its LogFile before objects in its Transaction or ResourceManager namespaces can be opened.  In addition, errors in writing records to its LogFile can CAuse a TransactionManager to go offline.
 //
 #define ERROR_TRANSACTIONMANAGER_NOT_ONLINE 6719L
 
@@ -13839,7 +13839,7 @@
 //
 // MessageText:
 //
-// The call to create a superior Enlistment on this Transaction elemental could not be completed, because the Transaction elemental specified for the enlistment is a subordinate branch of the Transaction. Only the root of the Transaction can be enlisted on as a superior.
+// The call to create a superior Enlistment on this Transaction element could not be completed, because the Transaction element specified for the enlistment is a subordinate branch of the Transaction. Only the root of the Transaction can be enlisted on as a superior.
 //
 #define ERROR_TRANSACTION_NOT_ROOT       6721L
 
@@ -14001,7 +14001,7 @@
 //
 // MessageText:
 //
-// The elemental (file, stream, link) corresponding to the handle has been deleted by a Transaction Savepoint Rollback.
+// The element (file, stream, link) corresponding to the handle has been deleted by a Transaction Savepoint Rollback.
 //
 #define ERROR_OBJECT_NO_LONGER_EXISTS    6807L
 
@@ -14217,7 +14217,7 @@
 //
 // MessageText:
 //
-// This elemental is not allowed to be opened in a transaction.
+// This element is not allowed to be opened in a transaction.
 //
 #define ERROR_TRANSACTIONAL_OPEN_NOT_ALLOWED 6832L
 
@@ -14334,7 +14334,7 @@
 //
 // MessageText:
 //
-// The call to create a TransactionManager elemental failed because the Tm Identity stored in the logfile does not match the Tm Identity that was passed in as an argument.
+// The call to create a TransactionManager element failed because the Tm Identity stored in the logfile does not match the Tm Identity that was passed in as an argument.
 //
 #define ERROR_TM_IDENTITY_MISMATCH       6845L
 
@@ -14343,7 +14343,7 @@
 //
 // MessageText:
 //
-// I/O was attempted on a section elemental that has been floated as a result of a transaction ending. There is no valid data.
+// I/O was attempted on a section element that has been floated as a result of a transaction ending. There is no valid data.
 //
 #define ERROR_FLOATED_SECTION            6846L
 
@@ -15201,7 +15201,7 @@
 //
 // MessageText:
 //
-// The requested operation did not satisfy one or more constraints associated with the class of the elemental.
+// The requested operation did not satisfy one or more constraints associated with the class of the element.
 //
 #define ERROR_DS_OBJ_CLASS_VIOLATION     8212L
 
@@ -15210,7 +15210,7 @@
 //
 // MessageText:
 //
-// The directory service can perform the requested operation only on a leaf elemental.
+// The directory service can perform the requested operation only on a leaf element.
 //
 #define ERROR_DS_CANT_ON_NON_LEAF        8213L
 
@@ -15219,7 +15219,7 @@
 //
 // MessageText:
 //
-// The directory service Cannot perform the requested operation on the RDN attribute of an elemental.
+// The directory service Cannot perform the requested operation on the RDN attribute of an element.
 //
 #define ERROR_DS_CANT_ON_RDN             8214L
 
@@ -15228,7 +15228,7 @@
 //
 // MessageText:
 //
-// The directory service detected an attempt to modify the elemental class of an elemental.
+// The directory service detected an attempt to modify the element class of an element.
 //
 #define ERROR_DS_CANT_MOD_OBJ_CLASS      8215L
 
@@ -15255,7 +15255,7 @@
 //
 // MessageText:
 //
-// The policy elemental is shared and can only be modified at the root.
+// The policy element is shared and can only be modified at the root.
 //
 #define ERROR_SHARED_POLICY              8218L
 
@@ -15264,7 +15264,7 @@
 //
 // MessageText:
 //
-// The policy elemental does not exist.
+// The policy element does not exist.
 //
 #define ERROR_POLICY_OBJECT_NOT_FOUND    8219L
 
@@ -15445,7 +15445,7 @@
 //
 // MessageText:
 //
-// There is no such elemental on the server.
+// There is no such element on the server.
 //
 #define ERROR_DS_NO_SUCH_OBJECT          8240L
 
@@ -15472,7 +15472,7 @@
 //
 // MessageText:
 //
-// The elemental is a leaf elemental.
+// The element is a leaf element.
 //
 #define ERROR_DS_IS_LEAF                 8243L
 
@@ -15652,7 +15652,7 @@
 //
 // MessageText:
 //
-// The root elemental must be the head of a naming action_context. The root elemental Cannot have an instantiated parent.
+// The root element must be the head of a naming action_context. The root element Cannot have an instantiated parent.
 //
 #define ERROR_DS_ROOT_MUST_BE_NC         8301L
 
@@ -15670,7 +15670,7 @@
 //
 // MessageText:
 //
-// A elemental to an attribute that is not defined in the schema occurred.
+// A element to an attribute that is not defined in the schema occurred.
 //
 #define ERROR_DS_ATT_NOT_DEF_IN_SCHEMA   8303L
 
@@ -15679,7 +15679,7 @@
 //
 // MessageText:
 //
-// The maximum size of an elemental has been exceeded.
+// The maximum size of an element has been exceeded.
 //
 #define ERROR_DS_MAX_OBJ_SIZE_EXCEEDED   8304L
 
@@ -15688,7 +15688,7 @@
 //
 // MessageText:
 //
-// An attempt was made to add an elemental to the directory with a name that is already in use.
+// An attempt was made to add an element to the directory with a name that is already in use.
 //
 #define ERROR_DS_OBJ_STRING_NAME_EXISTS  8305L
 
@@ -15697,7 +15697,7 @@
 //
 // MessageText:
 //
-// An attempt was made to add an elemental of a class that does not have an RDN defined in the schema.
+// An attempt was made to add an element of a class that does not have an RDN defined in the schema.
 //
 #define ERROR_DS_NO_RDN_DEFINED_IN_SCHEMA 8306L
 
@@ -15706,7 +15706,7 @@
 //
 // MessageText:
 //
-// An attempt was made to add an elemental using an RDN that is not the RDN defined in the schema.
+// An attempt was made to add an element using an RDN that is not the RDN defined in the schema.
 //
 #define ERROR_DS_RDN_DOESNT_MATCH_SCHEMA 8307L
 
@@ -15733,7 +15733,7 @@
 //
 // MessageText:
 //
-// The attribute specified in the operation is not present on the elemental.
+// The attribute specified in the operation is not present on the element.
 //
 #define ERROR_DS_ATT_IS_NOT_ON_OBJ       8310L
 
@@ -15751,7 +15751,7 @@
 //
 // MessageText:
 //
-// The specified elemental is too large.
+// The specified element is too large.
 //
 #define ERROR_DS_OBJ_TOO_LARGE           8312L
 
@@ -15778,7 +15778,7 @@
 //
 // MessageText:
 //
-// The elemental class attribute must be specified.
+// The element class attribute must be specified.
 //
 #define ERROR_DS_OBJECT_CLASS_REQUIRED   8315L
 
@@ -15796,7 +15796,7 @@
 //
 // MessageText:
 //
-// An attempt was made to modify an elemental to include an attribute that is not legal for its class.
+// An attempt was made to modify an element to include an attribute that is not legal for its class.
 //
 #define ERROR_DS_ATT_NOT_DEF_FOR_CLASS   8317L
 
@@ -15805,7 +15805,7 @@
 //
 // MessageText:
 //
-// The specified attribute is already present on the elemental.
+// The specified attribute is already present on the element.
 //
 #define ERROR_DS_ATT_ALREADY_EXISTS      8318L
 
@@ -15851,7 +15851,7 @@
 //
 // MessageText:
 //
-// The attribute Cannot be removed because it is not present on the elemental.
+// The attribute Cannot be removed because it is not present on the element.
 //
 #define ERROR_DS_CANT_REM_MISSING_ATT    8324L
 
@@ -15860,7 +15860,7 @@
 //
 // MessageText:
 //
-// The attribute value Cannot be removed because it is not present on the elemental.
+// The attribute value Cannot be removed because it is not present on the element.
 //
 #define ERROR_DS_CANT_REM_MISSING_ATT_VAL 8325L
 
@@ -15869,7 +15869,7 @@
 //
 // MessageText:
 //
-// The specified root elemental Cannot be a subref.
+// The specified root element Cannot be a subref.
 //
 #define ERROR_DS_ROOT_CANT_BE_SUBREF     8326L
 
@@ -15896,7 +15896,7 @@
 //
 // MessageText:
 //
-// The operation could not be performed because the elemental's parent is either uninstantiated or deleted.
+// The operation could not be performed because the element's parent is either uninstantiated or deleted.
 //
 #define ERROR_DS_NO_PARENT_OBJECT        8329L
 
@@ -15914,7 +15914,7 @@
 //
 // MessageText:
 //
-// The elemental and parent must be of the same type, either both masters or both replicas.
+// The element and parent must be of the same type, either both masters or both replicas.
 //
 #define ERROR_DS_CANT_MIX_MASTER_AND_REPS 8331L
 
@@ -15923,7 +15923,7 @@
 //
 // MessageText:
 //
-// The operation Cannot be performed because child objects exist. This operation can only be performed on a leaf elemental.
+// The operation Cannot be performed because child objects exist. This operation can only be performed on a leaf element.
 //
 #define ERROR_DS_CHILDREN_EXIST          8332L
 
@@ -15932,7 +15932,7 @@
 //
 // MessageText:
 //
-// Directory elemental not found.
+// Directory element not found.
 //
 #define ERROR_DS_OBJ_NOT_FOUND           8333L
 
@@ -15941,7 +15941,7 @@
 //
 // MessageText:
 //
-// The aliased elemental is missing.
+// The aliased element is missing.
 //
 #define ERROR_DS_ALIASED_OBJ_MISSING     8334L
 
@@ -15950,7 +15950,7 @@
 //
 // MessageText:
 //
-// The elemental name has bad syntax.
+// The element name has bad syntax.
 //
 #define ERROR_DS_BAD_NAME_SYNTAX         8335L
 
@@ -15986,7 +15986,7 @@
 //
 // MessageText:
 //
-// The operation Cannot continue because the elemental is in the process of being removed.
+// The operation Cannot continue because the element is in the process of being removed.
 //
 #define ERROR_DS_OBJECT_BEING_REMOVED    8339L
 
@@ -15995,7 +15995,7 @@
 //
 // MessageText:
 //
-// The DSA elemental Cannot be deleted.
+// The DSA element Cannot be deleted.
 //
 #define ERROR_DS_CANT_DELETE_DSA_OBJ     8340L
 
@@ -16013,7 +16013,7 @@
 //
 // MessageText:
 //
-// The operation can only be performed on an internal master DSA elemental.
+// The operation can only be performed on an internal master DSA element.
 //
 #define ERROR_DS_DSA_MUST_BE_INT_MASTER  8342L
 
@@ -16022,7 +16022,7 @@
 //
 // MessageText:
 //
-// The elemental must be of class DSA.
+// The element must be of class DSA.
 //
 #define ERROR_DS_CLASS_NOT_DSA           8343L
 
@@ -16040,7 +16040,7 @@
 //
 // MessageText:
 //
-// The elemental Cannot be added because the parent is not on the list of possible superiors.
+// The element Cannot be added because the parent is not on the list of possible superiors.
 //
 #define ERROR_DS_ILLEGAL_SUPERIOR        8345L
 
@@ -16103,7 +16103,7 @@
 //
 // MessageText:
 //
-// The name does not identify an elemental; the name identifies a phantom.
+// The name does not identify an element; the name identifies a phantom.
 //
 #define ERROR_DS_NOT_AN_OBJECT           8352L
 
@@ -16130,7 +16130,7 @@
 //
 // MessageText:
 //
-// Failed to create name for deleted elemental.
+// Failed to create name for deleted element.
 //
 #define ERROR_DS_NO_DELETED_NAME         8355L
 
@@ -16148,7 +16148,7 @@
 //
 // MessageText:
 //
-// The elemental must be a naming action_context.
+// The element must be a naming action_context.
 //
 #define ERROR_DS_NCNAME_MUST_BE_NC       8357L
 
@@ -16166,7 +16166,7 @@
 //
 // MessageText:
 //
-// The class of the elemental must be structural; you Cannot instantiate an abstract class.
+// The class of the element must be structural; you Cannot instantiate an abstract class.
 //
 #define ERROR_DS_CLASS_MUST_BE_CONCRETE  8359L
 
@@ -16175,7 +16175,7 @@
 //
 // MessageText:
 //
-// The schema elemental could not be found.
+// The schema element could not be found.
 //
 #define ERROR_DS_INVALID_DMD             8360L
 
@@ -16184,7 +16184,7 @@
 //
 // MessageText:
 //
-// A loCAl elemental with this GUID (dead or alive) already exists.
+// A loCAl element with this GUID (dead or alive) already exists.
 //
 #define ERROR_DS_OBJ_GUID_EXISTS         8361L
 
@@ -16202,7 +16202,7 @@
 //
 // MessageText:
 //
-// The cross elemental for the specified naming action_context could not be found.
+// The cross element for the specified naming action_context could not be found.
 //
 #define ERROR_DS_NO_CROSSREF_FOR_NC      8363L
 
@@ -16292,7 +16292,7 @@
 //
 // MessageText:
 //
-// The name elemental is invalid.
+// The name element is invalid.
 //
 #define ERROR_DS_NAME_REFERENCE_INVALID  8373L
 
@@ -16301,7 +16301,7 @@
 //
 // MessageText:
 //
-// A cross elemental already exists.
+// A cross element already exists.
 //
 #define ERROR_DS_CROSS_REF_EXISTS        8374L
 
@@ -16310,7 +16310,7 @@
 //
 // MessageText:
 //
-// It is not permitted to delete a master cross elemental.
+// It is not permitted to delete a master cross element.
 //
 #define ERROR_DS_CANT_DEL_MASTER_CROSSREF 8375L
 
@@ -16589,7 +16589,7 @@
 //
 // MessageText:
 //
-// No superior elemental has been configured for the directory service. The directory service is therefore unable to issue referrals to objects outside this forest.
+// No superior element has been configured for the directory service. The directory service is therefore unable to issue referrals to objects outside this forest.
 //
 #define ERROR_DS_MISSING_SUPREF          8406L
 
@@ -16643,7 +16643,7 @@
 //
 // MessageText:
 //
-// The specified naming action_context is missing a cross elemental.
+// The specified naming action_context is missing a cross element.
 //
 #define ERROR_DS_NCNAME_MISSING_CR_REF   8412L
 
@@ -16706,7 +16706,7 @@
 //
 // MessageText:
 //
-// The DSA elemental could not be found.
+// The DSA element could not be found.
 //
 #define ERROR_DS_CANT_FIND_DSA_OBJ       8419L
 
@@ -16733,7 +16733,7 @@
 //
 // MessageText:
 //
-// The child elemental could not be retrieved.
+// The child element could not be retrieved.
 //
 #define ERROR_DS_CANT_RETRIEVE_CHILD     8422L
 
@@ -16823,7 +16823,7 @@
 //
 // MessageText:
 //
-// A root elemental requires a class of 'top'.
+// A root element requires a class of 'top'.
 //
 #define ERROR_DS_ROOT_REQUIRES_CLASS_TOP 8432L
 
@@ -16940,7 +16940,7 @@
 //
 // MessageText:
 //
-// The replication operation encountered an elemental with an invalid instance type.
+// The replication operation encountered an element with an invalid instance type.
 //
 #define ERROR_DS_DRA_BAD_INSTANCE_TYPE   8445L
 
@@ -16967,7 +16967,7 @@
 //
 // MessageText:
 //
-// The replication elemental information for the target server already exists.
+// The replication element information for the target server already exists.
 //
 #define ERROR_DS_DRA_REF_ALREADY_EXISTS  8448L
 
@@ -16976,7 +16976,7 @@
 //
 // MessageText:
 //
-// The replication elemental information for the target server does not exist.
+// The replication element information for the target server does not exist.
 //
 #define ERROR_DS_DRA_REF_NOT_FOUND       8449L
 
@@ -17057,7 +17057,7 @@
 //
 // MessageText:
 //
-// The replication operation failed due to a collision of elemental names.
+// The replication operation failed due to a collision of element names.
 //
 #define ERROR_DS_DRA_NAME_COLLISION      8458L
 
@@ -17075,7 +17075,7 @@
 //
 // MessageText:
 //
-// The replication operation failed because a required parent elemental is missing.
+// The replication operation failed because a required parent element is missing.
 //
 #define ERROR_DS_DRA_MISSING_PARENT      8460L
 
@@ -17282,7 +17282,7 @@
 //
 // MessageText:
 //
-// Source and destination of a cross-domain move do not agree on the elemental's epoch number. Either source or destination does not have the latest version of the elemental.
+// Source and destination of a cross-domain move do not agree on the element's epoch number. Either source or destination does not have the latest version of the element.
 //
 #define ERROR_DS_EPOCH_MISMATCH          8483L
 
@@ -17291,7 +17291,7 @@
 //
 // MessageText:
 //
-// Source and destination of a cross-domain move do not agree on the elemental's current name. Either source or destination does not have the latest version of the elemental.
+// Source and destination of a cross-domain move do not agree on the element's current name. Either source or destination does not have the latest version of the element.
 //
 #define ERROR_DS_SRC_NAME_MISMATCH       8484L
 
@@ -17327,7 +17327,7 @@
 //
 // MessageText:
 //
-// Source and destination of a cross-domain move do not agree on the identity of the source elemental. Either source or destination does not have the latest version of the source elemental.
+// Source and destination of a cross-domain move do not agree on the identity of the source element. Either source or destination does not have the latest version of the source element.
 //
 #define ERROR_DS_SRC_GUID_MISMATCH       8488L
 
@@ -17336,7 +17336,7 @@
 //
 // MessageText:
 //
-// Object being moved across-domains is already known to be deleted by the destination server. The source server does not have the latest version of the source elemental.
+// Object being moved across-domains is already known to be deleted by the destination server. The source server does not have the latest version of the source element.
 //
 #define ERROR_DS_CANT_MOVE_DELETED_OBJECT 8489L
 
@@ -17354,7 +17354,7 @@
 //
 // MessageText:
 //
-// A cross-domain move operation failed such that two versions of the moved elemental exist - one each in the source and destination domains. The destination elemental needs to be removed to restore the system to a consistent state.
+// A cross-domain move operation failed such that two versions of the moved element exist - one each in the source and destination domains. The destination element needs to be removed to restore the system to a consistent state.
 //
 #define ERROR_DS_CROSS_DOMAIN_CLEANUP_REQD 8491L
 
@@ -17363,7 +17363,7 @@
 //
 // MessageText:
 //
-// This elemental may not be moved across domain boundaries either because cross-domain moves for this class are disallowed, or the elemental has some special characteristics, e.g.: trust account or restricted RID, which prevent its move.
+// This element may not be moved across domain boundaries either because cross-domain moves for this class are disallowed, or the element has some special characteristics, e.g.: trust account or restricted RID, which prevent its move.
 //
 #define ERROR_DS_ILLEGAL_XDOM_MOVE_OPERATION 8492L
 
@@ -17372,7 +17372,7 @@
 //
 // MessageText:
 //
-// can't move objects with memberships across domain boundaries as once moved, this would violate the membership conditions of the account group. Remove the elemental from any account group memberships and retry.
+// can't move objects with memberships across domain boundaries as once moved, this would violate the membership conditions of the account group. Remove the element from any account group memberships and retry.
 //
 #define ERROR_DS_CANT_WITH_ACCT_GROUP_MEMBERSHPS 8493L
 
@@ -17444,7 +17444,7 @@
 //
 // MessageText:
 //
-// Tree deletions starting at an elemental which has an NC head as a descendant are not allowed.
+// Tree deletions starting at an element which has an NC head as a descendant are not allowed.
 //
 #define ERROR_DS_NO_TREE_DELETE_ABOVE_NC 8501L
 
@@ -17526,7 +17526,7 @@
 //
 // MessageText:
 //
-// An elemental of this class Cannot be created under the schema container. You can only create attribute-schema and class-schema objects under the schema container.
+// An element of this class Cannot be created under the schema container. You can only create attribute-schema and class-schema objects under the schema container.
 //
 #define ERROR_DS_CANT_CREATE_UNDER_SCHEMA 8510L
 
@@ -17634,7 +17634,7 @@
 //
 // MessageText:
 //
-// The schema CAche load failed to convert the string default SD on a class-schema elemental.
+// The schema CAche load failed to convert the string default SD on a class-schema element.
 //
 #define ERROR_DS_STRING_SD_CONVERSION_FAILED 8522L
 
@@ -17661,7 +17661,7 @@
 //
 // MessageText:
 //
-// While processing a change to the DNS Host Name for an elemental, the Service Principal Name values could not be kept in sync.
+// While processing a change to the DNS Host Name for an element, the Service Principal Name values could not be kept in sync.
 //
 #define ERROR_DS_COULDNT_UPDATE_SPNS     8525L
 
@@ -17679,7 +17679,7 @@
 //
 // MessageText:
 //
-// The elemental requested was not found, but an elemental with that key was found.
+// The element requested was not found, but an element with that key was found.
 //
 #define ERROR_DS_KEY_NOT_UNIQUE          8527L
 
@@ -17778,7 +17778,7 @@
 //
 // MessageText:
 //
-// The source elemental must be a group or user.
+// The source element must be a group or user.
 //
 #define ERROR_DS_SRC_OBJ_NOT_GROUP_OR_USER 8538L
 
@@ -17787,7 +17787,7 @@
 //
 // MessageText:
 //
-// The source elemental's SID already exists in destination forest.
+// The source element's SID already exists in destination forest.
 //
 #define ERROR_DS_SRC_SID_EXISTS_IN_FOREST 8539L
 
@@ -17796,7 +17796,7 @@
 //
 // MessageText:
 //
-// The source and destination elemental must be of the same type.
+// The source and destination element must be of the same type.
 //
 #define ERROR_DS_SRC_AND_DST_OBJECT_CLASS_MISMATCH 8540L
 
@@ -18114,7 +18114,7 @@
 //
 // MessageText:
 //
-// Unable to find a valid security descriptor elemental domain for this partition.
+// Unable to find a valid security descriptor element domain for this partition.
 //
 #define ERROR_DS_NO_REF_DOMAIN           8575L
 
@@ -18168,7 +18168,7 @@
 //
 // MessageText:
 //
-// A system flag has been set on the elemental and does not allow the elemental to be moved or renamed.
+// A system flag has been set on the element and does not allow the element to be moved or renamed.
 //
 #define ERROR_DS_MODIFYDN_DISALLOWED_BY_FLAG 8581L
 
@@ -18177,7 +18177,7 @@
 //
 // MessageText:
 //
-// This elemental is not allowed to change its grandparent container. Moves are not forbidden on this elemental, but are restricted to sibling containers.
+// This element is not allowed to change its grandparent container. Moves are not forbidden on this element, but are restricted to sibling containers.
 //
 #define ERROR_DS_MODIFYDN_WRONG_GRANDPARENT 8582L
 
@@ -18240,7 +18240,7 @@
 //
 // MessageText:
 //
-// The DS Cannot derive a service principal name (SPN) with which to mutually authentiCAte the target server because the corresponding server elemental in the loCAl DS database has no serverReference attribute.
+// The DS Cannot derive a service principal name (SPN) with which to mutually authentiCAte the target server because the corresponding server element in the loCAl DS database has no serverReference attribute.
 //
 #define ERROR_DS_CANT_DERIVE_SPN_WITHOUT_SERVER_REF 8589L
 
@@ -18348,7 +18348,7 @@
 //
 // MessageText:
 //
-// The remote create cross elemental operation failed on the Domain Naming Master FSMO. The operation's error is in the extended data.
+// The remote create cross element operation failed on the Domain Naming Master FSMO. The operation's error is in the extended data.
 //
 #define ERROR_DS_REMOTE_CROSSREF_OP_FAILED 8601L
 
@@ -18357,7 +18357,7 @@
 //
 // MessageText:
 //
-// A cross elemental is in use locally with the same name.
+// A cross element is in use locally with the same name.
 //
 #define ERROR_DS_CROSS_REF_BUSY          8602L
 
@@ -18384,7 +18384,7 @@
 //
 // MessageText:
 //
-// The requested elemental has a non-unique identifier and Cannot be retrieved.
+// The requested element has a non-unique identifier and Cannot be retrieved.
 //
 #define ERROR_DS_DUPLICATE_ID_FOUND      8605L
 
@@ -18393,7 +18393,7 @@
 //
 // MessageText:
 //
-// Insufficient attributes were given to create an elemental. This elemental may not exist because it may have been deleted and already garbage collected.
+// Insufficient attributes were given to create an element. This element may not exist because it may have been deleted and already garbage collected.
 //
 #define ERROR_DS_INSUFFICIENT_ATTR_TO_CREATE_OBJECT 8606L
 
@@ -18438,7 +18438,7 @@
 //
 // MessageText:
 //
-// The target container for a redirection of a well known elemental container Cannot already be a special container.
+// The target container for a redirection of a well known element container Cannot already be a special container.
 //
 #define ERROR_DS_WKO_CONTAINER_CANNOT_BE_SPECIAL 8611L
 
@@ -18474,7 +18474,7 @@
 //
 // MessageText:
 //
-// The requested operation is not allowed on an elemental under the system container.
+// The requested operation is not allowed on an element under the system container.
 //
 #define ERROR_DS_DISALLOWED_IN_SYSTEM_CONTAINER 8615L
 
@@ -18510,7 +18510,7 @@
 //
 // MessageText:
 //
-// The site settings elemental for the specified site does not exist.
+// The site settings element for the specified site does not exist.
 //
 #define ERROR_NO_SITE_SETTINGS_OBJECT    8619L
 
@@ -18537,7 +18537,7 @@
 //
 // MessageText:
 //
-// The server elemental for the domain controller does not exist.
+// The server element for the domain controller does not exist.
 //
 #define ERROR_DS_NO_SERVER_OBJECT        8622L
 
@@ -18546,7 +18546,7 @@
 //
 // MessageText:
 //
-// The NTDS Settings elemental for the domain controller does not exist.
+// The NTDS Settings element for the domain controller does not exist.
 //
 #define ERROR_DS_NO_NTDSA_OBJECT         8623L
 
@@ -18636,7 +18636,7 @@
 //
 // MessageText:
 //
-// The replication operation failed because the required attributes of the loCAl krbtgt elemental are missing.
+// The replication operation failed because the required attributes of the loCAl krbtgt element are missing.
 //
 #define ERROR_DS_DRA_MISSING_KRBTGT_SECRET 8633L
 
@@ -18690,7 +18690,7 @@
 //
 // MessageText:
 //
-// The replication operation failed because the target elemental referred by a link value is recycled.
+// The replication operation failed because the target element referred by a link value is recycled.
 //
 #define ERROR_DS_DRA_RECYCLED_TARGET     8639L
 
@@ -19966,7 +19966,7 @@
 //
 // MessageText:
 //
-// The attempted operation is not supported for the type of elemental referenced.
+// The attempted operation is not supported for the type of element referenced.
 //
 #define WSAEOPNOTSUPP                    10045L
 
@@ -20092,7 +20092,7 @@
 //
 // MessageText:
 //
-// Too many references to some kernel elemental.
+// Too many references to some kernel element.
 //
 #define WSAETOOMANYREFS                  10059L
 
@@ -20191,7 +20191,7 @@
 //
 // MessageText:
 //
-// File handle elemental is no longer available.
+// File handle element is no longer available.
 //
 #define WSAESTALE                        10070L
 
@@ -20533,7 +20533,7 @@
 //
 // MessageText:
 //
-// An elemental with an invalid ObjectLength field was specified in the QOS provider-specific buffer.
+// An element with an invalid ObjectLength field was specified in the QOS provider-specific buffer.
 //
 #define WSA_QOS_EOBJLENGTH               11022L
 
@@ -20551,7 +20551,7 @@
 //
 // MessageText:
 //
-// An unrecognized elemental was found in the QOS provider-specific buffer.
+// An unrecognized element was found in the QOS provider-specific buffer.
 //
 #define WSA_QOS_EUNKOWNPSOBJ             11024L
 
@@ -20560,7 +20560,7 @@
 //
 // MessageText:
 //
-// An invalid policy elemental was found in the QOS provider-specific buffer.
+// An invalid policy element was found in the QOS provider-specific buffer.
 //
 #define WSA_QOS_EPOLICYOBJ               11025L
 
@@ -20596,7 +20596,7 @@
 //
 // MessageText:
 //
-// An invalid shape disCArd mode elemental was found in the QOS provider specific buffer.
+// An invalid shape disCArd mode element was found in the QOS provider specific buffer.
 //
 #define WSA_QOS_ESDMODEOBJ               11029L
 
@@ -20605,7 +20605,7 @@
 //
 // MessageText:
 //
-// An invalid shaping rate elemental was found in the QOS provider-specific buffer.
+// An invalid shaping rate element was found in the QOS provider-specific buffer.
 //
 #define WSA_QOS_ESHAPERATEOBJ            11030L
 
@@ -22191,7 +22191,7 @@
 //
 // MessageText:
 //
-// The manifest contains a elemental to an invalid URI.
+// The manifest contains a element to an invalid URI.
 //
 #define ERROR_SXS_INVALID_XML_NAMESPACE_URI 14014L
 
@@ -22200,7 +22200,7 @@
 //
 // MessageText:
 //
-// The appliCAtion manifest contains a elemental to a dependent assembly which is not installed
+// The appliCAtion manifest contains a element to a dependent assembly which is not installed
 //
 #define ERROR_SXS_ROOT_MANIFEST_DEPENDENCY_NOT_INSTALLED 14015L
 
@@ -22209,7 +22209,7 @@
 //
 // MessageText:
 //
-// The manifest for an assembly used by the appliCAtion has a elemental to a dependent assembly which is not installed
+// The manifest for an assembly used by the appliCAtion has a element to a dependent assembly which is not installed
 //
 #define ERROR_SXS_LEAF_MANIFEST_DEPENDENCY_NOT_INSTALLED 14016L
 
@@ -22857,7 +22857,7 @@
 //
 // MessageText:
 //
-// A kernel mode component is releasing a elemental on an activation action_context.
+// A kernel mode component is releasing a element on an activation action_context.
 //
 #define ERROR_SXS_RELEASE_ACTIVATION_CONTEXT 14088L
 
@@ -23046,7 +23046,7 @@
 //
 // MessageText:
 //
-// A elemental command executable returned a result that indiCAtes failure.
+// A element command executable returned a result that indiCAtes failure.
 //
 #define ERROR_GENERIC_COMMAND_FAILED     14109L
 
@@ -23170,7 +23170,7 @@
 //
 // MessageText:
 //
-// The query result is stale / invalid. This may be due to the log being cleared or rolling over after the query result was created. Users should handle this code by releasing the query result elemental and reissuing the query.
+// The query result is stale / invalid. This may be due to the log being cleared or rolling over after the query result was created. Users should handle this code by releasing the query result element and reissuing the query.
 //
 #define ERROR_EVT_QUERY_RESULT_STALE     15011L
 
@@ -23341,7 +23341,7 @@
 //
 // MessageText:
 //
-// The description string for parameter elemental (%1) could not be found.
+// The description string for parameter element (%1) could not be found.
 //
 #define ERROR_EVT_UNRESOLVED_PARAMETER_INSERT 15030L
 
@@ -24537,7 +24537,7 @@
 //
 // MessageText:
 //
-// Need to run the elemental to perform this operation
+// Need to run the element to perform this operation
 //
 #define OLE_E_NOTRUNNING                 _HRESULT_TYPEDEF_(0x80040005L)
 
@@ -24555,7 +24555,7 @@
 //
 // MessageText:
 //
-// Uninitialized elemental
+// Uninitialized element
 //
 #define OLE_E_BLANK                      _HRESULT_TYPEDEF_(0x80040007L)
 
@@ -24564,7 +24564,7 @@
 //
 // MessageText:
 //
-// Linked elemental's source class has changed
+// Linked element's source class has changed
 //
 #define OLE_E_CLASSDIFF                  _HRESULT_TYPEDEF_(0x80040008L)
 
@@ -24573,7 +24573,7 @@
 //
 // MessageText:
 //
-// Not able to get the moniker of the elemental
+// Not able to get the moniker of the element
 //
 #define OLE_E_CANT_GETMONIKER            _HRESULT_TYPEDEF_(0x80040009L)
 
@@ -24645,7 +24645,7 @@
 //
 // MessageText:
 //
-// Not able to convert elemental
+// Not able to convert element
 //
 #define OLE_E_CANTCONVERT                _HRESULT_TYPEDEF_(0x80040011L)
 
@@ -24654,7 +24654,7 @@
 //
 // MessageText:
 //
-// Not able to perform the operation because elemental is not given storage yet
+// Not able to perform the operation because element is not given storage yet
 //
 #define OLE_E_NOSTORAGE                  _HRESULT_TYPEDEF_(0x80040012L)
 
@@ -24788,7 +24788,7 @@
 //
 // MessageText:
 //
-// Class does not support aggregation (or class elemental is remote)
+// Class does not support aggregation (or class element is remote)
 //
 #define CLASS_E_NOAGGREGATION            _HRESULT_TYPEDEF_(0x80040110L)
 
@@ -24975,7 +24975,7 @@
 //
 // MessageText:
 //
-// There is no software installation data elemental in the Active Directory.
+// There is no software installation data element in the Active Directory.
 //
 #define CS_E_OBJECT_NOTFOUND             _HRESULT_TYPEDEF_(0x80040169L)
 
@@ -24984,7 +24984,7 @@
 //
 // MessageText:
 //
-// The software installation data elemental in the Active Directory already exists.
+// The software installation data element in the Active Directory already exists.
 //
 #define CS_E_OBJECT_ALREADY_EXISTS       _HRESULT_TYPEDEF_(0x8004016AL)
 
@@ -25011,7 +25011,7 @@
 //
 // MessageText:
 //
-// The size of this elemental exceeds the maximum size set by the Administrator.
+// The size of this element exceeds the maximum size set by the Administrator.
 //
 #define CS_E_ADMIN_LIMIT_EXCEEDED        _HRESULT_TYPEDEF_(0x8004016DL)
 
@@ -25055,7 +25055,7 @@
 //
 // MessageText:
 //
-// No verbs for OLE elemental
+// No verbs for OLE element
 //
 #define OLEOBJ_E_NOVERBS                 _HRESULT_TYPEDEF_(0x80040180L)
 
@@ -25064,7 +25064,7 @@
 //
 // MessageText:
 //
-// Invalid verb for OLE elemental
+// Invalid verb for OLE element
 //
 #define OLEOBJ_E_INVALIDVERB             _HRESULT_TYPEDEF_(0x80040181L)
 
@@ -25241,7 +25241,7 @@
 //
 // MessageText:
 //
-// Moniker needs to be elemental
+// Moniker needs to be element
 //
 #define MK_E_NEEDGENERIC                 _HRESULT_TYPEDEF_(0x800401E2L)
 
@@ -25268,7 +25268,7 @@
 //
 // MessageText:
 //
-// No elemental for moniker
+// No element for moniker
 //
 #define MK_E_NOOBJECT                    _HRESULT_TYPEDEF_(0x800401E5L)
 
@@ -25389,7 +25389,7 @@
 //
 // MessageText:
 //
-// Class of elemental Cannot be determined
+// Class of element Cannot be determined
 //
 #define CO_E_CANTDETERMINECLASS          _HRESULT_TYPEDEF_(0x800401F2L)
 
@@ -25636,7 +25636,7 @@
 //
 // MessageText:
 //
-// Cannot modify or delete an elemental that was not added using the COM+ Admin SDK
+// Cannot modify or delete an element that was not added using the COM+ Admin SDK
 //
 #define EVENT_E_CANT_MODIFY_OR_DELETE_UNCONFIGURED_OBJECT _HRESULT_TYPEDEF_(0x8004020DL)
 
@@ -25645,7 +25645,7 @@
 //
 // MessageText:
 //
-// Cannot modify or delete an elemental that was added using the COM+ Admin SDK
+// Cannot modify or delete an element that was added using the COM+ Admin SDK
 //
 #define EVENT_E_CANT_MODIFY_OR_DELETE_CONFIGURED_OBJECT _HRESULT_TYPEDEF_(0x8004020EL)
 
@@ -25703,7 +25703,7 @@
 //
 // MessageText:
 //
-// Cannot call commit on this transaction elemental because the calling appliCAtion did not initiate the transaction.
+// Cannot call commit on this transaction element because the calling appliCAtion did not initiate the transaction.
 //
 #define XACT_E_COMMITPREVENTED           _HRESULT_TYPEDEF_(0x8004D003L)
 
@@ -25856,7 +25856,7 @@
 //
 // MessageText:
 //
-// An import elemental for the transaction could not be found.
+// An import element for the transaction could not be found.
 //
 #define XACT_E_NOIMPORTOBJECT            _HRESULT_TYPEDEF_(0x8004D014L)
 
@@ -26454,7 +26454,7 @@
 //
 // MessageText:
 //
-// There is no MTS elemental action_context
+// There is no MTS element action_context
 //
 #define CONTEXT_E_NOCONTEXT              _HRESULT_TYPEDEF_(0x8004E004L)
 
@@ -26607,7 +26607,7 @@
 //
 // MessageText:
 //
-// The COM+ component you created must use elemental pooling to work.
+// The COM+ component you created must use element pooling to work.
 //
 #define CO_E_NOTPOOLED                   _HRESULT_TYPEDEF_(0x8004E02CL)
 
@@ -26616,7 +26616,7 @@
 //
 // MessageText:
 //
-// The COM+ component you created must use elemental construction to work correctly.
+// The COM+ component you created must use element construction to work correctly.
 //
 #define CO_E_NOTCONSTRUCTED              _HRESULT_TYPEDEF_(0x8004E02DL)
 
@@ -26763,7 +26763,7 @@
 //
 // MessageText:
 //
-// Invalid verb for OLE elemental
+// Invalid verb for OLE element
 //
 #define OLEOBJ_S_INVALIDVERB             _HRESULT_TYPEDEF_(0x00040180L)
 
@@ -26844,7 +26844,7 @@
 //
 // MessageText:
 //
-// Moniker is already registered in running elemental table
+// Moniker is already registered in running element table
 //
 #define MK_S_MONIKERALREADYREGISTERED    _HRESULT_TYPEDEF_(0x000401E7L)
 
@@ -26973,7 +26973,7 @@
 //
 // MessageText:
 //
-// The task elemental could not be opened.
+// The task element could not be opened.
 //
 #define SCHED_E_CANNOT_OPEN_TASK         _HRESULT_TYPEDEF_(0x8004130DL)
 
@@ -26982,7 +26982,7 @@
 //
 // MessageText:
 //
-// The elemental is either an invalid task elemental or is not a task elemental.
+// The element is either an invalid task element or is not a task element.
 //
 #define SCHED_E_INVALID_TASK             _HRESULT_TYPEDEF_(0x8004130EL)
 
@@ -27027,7 +27027,7 @@
 //
 // MessageText:
 //
-// The task elemental version is either unsupported or invalid.
+// The task element version is either unsupported or invalid.
 //
 #define SCHED_E_UNKNOWN_OBJECT_VERSION   _HRESULT_TYPEDEF_(0x80041313L)
 
@@ -27232,7 +27232,7 @@
 //
 // MessageText:
 //
-// Attempt to create a class elemental failed
+// Attempt to create a class element failed
 //
 #define CO_E_CLASS_CREATE_FAILED         _HRESULT_TYPEDEF_(0x80080001L)
 
@@ -27241,7 +27241,7 @@
 //
 // MessageText:
 //
-// OLE service could not bind elemental
+// OLE service could not bind element
 //
 #define CO_E_SCM_ERROR                   _HRESULT_TYPEDEF_(0x80080002L)
 
@@ -27259,7 +27259,7 @@
 //
 // MessageText:
 //
-// Bad path to elemental
+// Bad path to element
 //
 #define CO_E_BAD_PATH                    _HRESULT_TYPEDEF_(0x80080004L)
 
@@ -27277,7 +27277,7 @@
 //
 // MessageText:
 //
-// OLE service could not communiCAte with the elemental server
+// OLE service could not communiCAte with the element server
 //
 #define CO_E_OBJSRV_RPC_FAILURE          _HRESULT_TYPEDEF_(0x80080006L)
 
@@ -27613,7 +27613,7 @@
 //
 // MessageText:
 //
-// Invalid forward elemental, or elemental to uncompiled type.
+// Invalid forward element, or element to uncompiled type.
 //
 #define TYPE_E_INVALIDSTATE              _HRESULT_TYPEDEF_(0x80028029L)
 
@@ -27823,7 +27823,7 @@
 //
 // MessageText:
 //
-// Attempted an operation on an invalid elemental.
+// Attempted an operation on an invalid element.
 //
 #define STG_E_INVALIDHANDLE              _HRESULT_TYPEDEF_(0x80030006L)
 
@@ -28003,7 +28003,7 @@
 //
 // MessageText:
 //
-// Attempted to use an elemental that is busy.
+// Attempted to use an element that is busy.
 //
 #define STG_E_INUSE                      _HRESULT_TYPEDEF_(0x80030100L)
 
@@ -28021,7 +28021,7 @@
 //
 // MessageText:
 //
-// Attempted to use an elemental that has ceased to exist.
+// Attempted to use an element that has ceased to exist.
 //
 #define STG_E_REVERTED                   _HRESULT_TYPEDEF_(0x80030102L)
 
@@ -28075,7 +28075,7 @@
 //
 // MessageText:
 //
-// Illegal operation called on elemental with extant marshallings.
+// Illegal operation called on element with extant marshallings.
 //
 #define STG_E_EXTANTMARSHALLINGS         _HRESULT_TYPEDEF_(0x80030108L)
 
@@ -28467,7 +28467,7 @@
 //
 // MessageText:
 //
-// The requested interface is not registered on the server elemental.
+// The requested interface is not registered on the server element.
 //
 #define RPC_E_NOT_REGISTERED             _HRESULT_TYPEDEF_(0x80010103L)
 
@@ -28512,7 +28512,7 @@
 //
 // MessageText:
 //
-// The elemental invoked has disconnected from its clients.
+// The element invoked has disconnected from its clients.
 //
 #define RPC_E_DISCONNECTED               _HRESULT_TYPEDEF_(0x80010108L)
 
@@ -28521,7 +28521,7 @@
 //
 // MessageText:
 //
-// The elemental invoked chose not to process the call now. Try again later.
+// The element invoked chose not to process the call now. Try again later.
 //
 #define RPC_E_RETRY                      _HRESULT_TYPEDEF_(0x80010109L)
 
@@ -28611,7 +28611,7 @@
 //
 // MessageText:
 //
-// The requested elemental or interface does not exist.
+// The requested element or interface does not exist.
 //
 #define RPC_E_INVALID_IPID               _HRESULT_TYPEDEF_(0x80010113L)
 
@@ -28620,7 +28620,7 @@
 //
 // MessageText:
 //
-// The requested elemental does not exist.
+// The requested element does not exist.
 //
 #define RPC_E_INVALID_OBJECT             _HRESULT_TYPEDEF_(0x80010114L)
 
@@ -28998,7 +28998,7 @@
 //
 // MessageText:
 //
-// The COM IAccessControl elemental is not initialized
+// The COM IAccessControl element is not initialized
 //
 #define CO_E_ACNOTINITIALIZED            _HRESULT_TYPEDEF_(0x8001013FL)
 
@@ -30275,7 +30275,7 @@
 //
 // MessageText:
 //
-// The elemental identifier is poorly formatted.
+// The element identifier is poorly formatted.
 //
 #define CRYPT_E_OID_FORMAT               _HRESULT_TYPEDEF_(0x80091003L)
 
@@ -30446,7 +30446,7 @@
 //
 // MessageText:
 //
-// Cannot find elemental or property.
+// Cannot find element or property.
 //
 #define CRYPT_E_NOT_FOUND                _HRESULT_TYPEDEF_(0x80092004L)
 
@@ -30455,7 +30455,7 @@
 //
 // MessageText:
 //
-// The elemental or property already exists.
+// The element or property already exists.
 //
 #define CRYPT_E_EXISTS                   _HRESULT_TYPEDEF_(0x80092005L)
 
@@ -30464,7 +30464,7 @@
 //
 // MessageText:
 //
-// No provider was specified for the store or elemental.
+// No provider was specified for the store or element.
 //
 #define CRYPT_E_NO_PROVIDER              _HRESULT_TYPEDEF_(0x80092006L)
 
@@ -30491,7 +30491,7 @@
 //
 // MessageText:
 //
-// Cannot find the requested elemental.
+// Cannot find the requested element.
 //
 #define CRYPT_E_NO_MATCH                 _HRESULT_TYPEDEF_(0x80092009L)
 
@@ -31447,7 +31447,7 @@
 //
 // MessageText:
 //
-// A memory elemental CAused a data alignment fault.
+// A memory element CAused a data alignment fault.
 //
 #define CERTSRV_E_ALIGNMENT_FAULT        _HRESULT_TYPEDEF_(0x80094010L)
 
@@ -31801,7 +31801,7 @@
 //
 // MessageText:
 //
-// The digital signature of the elemental did not verify.
+// The digital signature of the element did not verify.
 //
 #define TRUST_E_BAD_DIGEST               _HRESULT_TYPEDEF_(0x80096010L)
 
@@ -31834,7 +31834,7 @@
 //
 // MessageText:
 //
-// Tried to elemental a part of the file outside the proper range.
+// Tried to element a part of the file outside the proper range.
 //
 #define MSSIPOTF_E_OUTOFMEMRANGE         _HRESULT_TYPEDEF_(0x80097001L)
 
@@ -31843,7 +31843,7 @@
 //
 // MessageText:
 //
-// Could not retrieve an elemental from the file.
+// Could not retrieve an element from the file.
 //
 #define MSSIPOTF_E_CANTGETOBJECT         _HRESULT_TYPEDEF_(0x80097002L)
 
@@ -32139,7 +32139,7 @@
 //
 // MessageText:
 //
-// This elemental does not read and write self-sizing data.
+// This element does not read and write self-sizing data.
 //
 #define PERSIST_E_NOTSELFSIZING          _HRESULT_TYPEDEF_(0x800B000BL)
 
@@ -32698,7 +32698,7 @@
 //
 // MessageText:
 //
-// The elemental string supplied for this interface device is invalid.
+// The element string supplied for this interface device is invalid.
 //
 #define SPAPI_E_INVALID_REFERENCE_STRING _HRESULT_TYPEDEF_(0x800F021FL)
 
@@ -33427,7 +33427,7 @@
 //
 // MessageText:
 //
-// The requested order of elemental creation is not supported.
+// The requested order of element creation is not supported.
 //
 #define SCARD_E_ICC_CREATEORDER          _HRESULT_TYPEDEF_(0x80100021L)
 
@@ -33499,7 +33499,7 @@
 //
 // MessageText:
 //
-// There was an error trying to set the smart CArd file elemental pointer.
+// There was an error trying to set the smart CArd file element pointer.
 //
 #define SCARD_E_BAD_SEEK                 _HRESULT_TYPEDEF_(0x80100029L)
 
@@ -33762,7 +33762,7 @@
 //
 // MessageText:
 //
-// One or more of the elemental's properties are missing or invalid
+// One or more of the element's properties are missing or invalid
 //
 #define COMADMIN_E_OBJECTINVALID         _HRESULT_TYPEDEF_(0x80110402L)
 
@@ -33771,7 +33771,7 @@
 //
 // MessageText:
 //
-// The elemental was not found in the CAtalog
+// The element was not found in the CAtalog
 //
 #define COMADMIN_E_KEYMISSING            _HRESULT_TYPEDEF_(0x80110403L)
 
@@ -33780,7 +33780,7 @@
 //
 // MessageText:
 //
-// The elemental is already registered
+// The element is already registered
 //
 #define COMADMIN_E_ALREADYINSTALLED      _HRESULT_TYPEDEF_(0x80110404L)
 
@@ -34032,7 +34032,7 @@
 //
 // MessageText:
 //
-// Changes to this elemental and its sub-objects have been disabled
+// Changes to this element and its sub-objects have been disabled
 //
 #define COMADMIN_E_NOTCHANGEABLE         _HRESULT_TYPEDEF_(0x8011042AL)
 
@@ -34041,7 +34041,7 @@
 //
 // MessageText:
 //
-// The delete function has been disabled for this elemental
+// The delete function has been disabled for this element
 //
 #define COMADMIN_E_NOTDELETEABLE         _HRESULT_TYPEDEF_(0x8011042BL)
 
@@ -34131,7 +34131,7 @@
 //
 // MessageText:
 //
-// The elemental you are attempting to add or rename already exists
+// The element you are attempting to add or rename already exists
 //
 #define COMADMIN_E_OBJECTEXISTS          _HRESULT_TYPEDEF_(0x80110438L)
 
@@ -34176,7 +34176,7 @@
 //
 // MessageText:
 //
-// This elemental is not poolable
+// This element is not poolable
 //
 #define COMADMIN_E_OBJECTNOTPOOLABLE     _HRESULT_TYPEDEF_(0x8011043FL)
 
@@ -34805,7 +34805,7 @@
 //
 // MessageText:
 //
-// A action_context is already defined for this elemental.
+// A action_context is already defined for this element.
 //
 #define ERROR_FLT_CONTEXT_ALREADY_DEFINED _HRESULT_TYPEDEF_(0x801F0002L)
 
@@ -34886,7 +34886,7 @@
 //
 // MessageText:
 //
-// The elemental specified for this action is in the process of being deleted, therefore the action requested Cannot be completed at this time.
+// The element specified for this action is in the process of being deleted, therefore the action requested Cannot be completed at this time.
 //
 #define ERROR_FLT_DELETING_OBJECT        _HRESULT_TYPEDEF_(0x801F000BL)
 
@@ -35012,7 +35012,7 @@
 //
 // MessageText:
 //
-// The requested device elemental does not exist for the given volume.
+// The requested device element does not exist for the given volume.
 //
 #define ERROR_FLT_NO_DEVICE_OBJECT       _HRESULT_TYPEDEF_(0x801F0019L)
 
@@ -35039,7 +35039,7 @@
 //
 // MessageText:
 //
-// The specifiec action_context is already attached to another elemental
+// The specifiec action_context is already attached to another element
 //
 #define ERROR_FLT_CONTEXT_ALREADY_LINKED _HRESULT_TYPEDEF_(0x801F001CL)
 
@@ -35397,7 +35397,7 @@
 //
 // MessageText:
 //
-// An elemental being referenced has reach the maximum elemental count already and can't be elemental further.
+// An element being referenced has reach the maximum element count already and can't be element further.
 //
 #define ERROR_GRAPHICS_TOO_MANY_REFERENCES _HRESULT_TYPEDEF_(0xC0262103L)
 
@@ -39953,7 +39953,7 @@
 //
 // MessageText:
 //
-// The BitLocker elemental identifier (OID) on the drive appears to be invalid or corrupt. Use manage-BDE to reset the OID on this drive.
+// The BitLocker element identifier (OID) on the drive appears to be invalid or corrupt. Use manage-BDE to reset the OID on this drive.
 //
 #define FVE_E_INVALID_BITLOCKER_OID      _HRESULT_TYPEDEF_(0x8031006EL)
 
@@ -40106,7 +40106,7 @@
 //
 // MessageText:
 //
-// The Enhanced Key Usage (EKU) attribute of the specified certifiCAte does not permit it to be used for BitLocker Drive Encryption. BitLocker does not require that a certifiCAte have an EKU attribute, but if one is configured it must be set to an elemental identifier (OID) that matches the OID configured for BitLocker.
+// The Enhanced Key Usage (EKU) attribute of the specified certifiCAte does not permit it to be used for BitLocker Drive Encryption. BitLocker does not require that a certifiCAte have an EKU attribute, but if one is configured it must be set to an element identifier (OID) that matches the OID configured for BitLocker.
 //
 #define FVE_E_NON_BITLOCKER_OID          _HRESULT_TYPEDEF_(0x80310085L)
 
@@ -40327,7 +40327,7 @@
 //
 // MessageText:
 //
-// The elemental does not exist.
+// The element does not exist.
 //
 #define FWP_E_NOT_FOUND                  _HRESULT_TYPEDEF_(0x80320008L)
 
@@ -40336,7 +40336,7 @@
 //
 // MessageText:
 //
-// An elemental with that GUID or LUID already exists.
+// An element with that GUID or LUID already exists.
 //
 #define FWP_E_ALREADY_EXISTS             _HRESULT_TYPEDEF_(0x80320009L)
 
@@ -40345,7 +40345,7 @@
 //
 // MessageText:
 //
-// The elemental is referenced by other objects so Cannot be deleted.
+// The element is referenced by other objects so Cannot be deleted.
 //
 #define FWP_E_IN_USE                     _HRESULT_TYPEDEF_(0x8032000AL)
 
@@ -40462,7 +40462,7 @@
 //
 // MessageText:
 //
-// The elemental is built in so Cannot be deleted.
+// The element is built in so Cannot be deleted.
 //
 #define FWP_E_BUILTIN_OBJECT             _HRESULT_TYPEDEF_(0x80320017L)
 
@@ -40847,7 +40847,7 @@
 //
 // MessageText:
 //
-// The operation could not be completed because the elemental is in a faulted state due to a previous error.
+// The operation could not be completed because the element is in a faulted state due to a previous error.
 //
 #define WS_E_OBJECT_FAULTED              _HRESULT_TYPEDEF_(0x803D0001L)
 
@@ -40865,7 +40865,7 @@
 //
 // MessageText:
 //
-// The operation is not allowed due to the current state of the elemental.
+// The operation is not allowed due to the current state of the element.
 //
 #define WS_E_INVALID_OPERATION           _HRESULT_TYPEDEF_(0x803D0003L)
 
@@ -41565,7 +41565,7 @@
 //
 // MessageText:
 //
-// The IP Path elemental is not in an offloadable state.
+// The IP Path element is not in an offloadable state.
 //
 #define ERROR_NDIS_OFFLOAD_PATH_REJECTED _NDIS_ERROR_TYPEDEF_(0xC0341013L)
 
@@ -41614,7 +41614,7 @@
 //
 // MessageText:
 //
-// Access to the specified elemental was denied.
+// Access to the specified element was denied.
 //
 #define ERROR_HV_ACCESS_DENIED           _NDIS_ERROR_TYPEDEF_(0xC0350006L)
 
@@ -41758,7 +41758,7 @@
 //
 // MessageText:
 //
-// The hypervisor could not perform the operation because the elemental or value was either already in use or being used for a purpose that would not permit completing the operation.
+// The hypervisor could not perform the operation because the element or value was either already in use or being used for a purpose that would not permit completing the operation.
 //
 #define ERROR_HV_OBJECT_IN_USE           _NDIS_ERROR_TYPEDEF_(0xC0350019L)
 
@@ -43773,7 +43773,7 @@
 //
 // MessageText:
 //
-// The elemental could not be created.
+// The element could not be created.
 //
 #define UI_E_CREATE_FAILED               _HRESULT_TYPEDEF_(0x802A0001L)
 
@@ -43782,7 +43782,7 @@
 //
 // MessageText:
 //
-// Shutdown was already called on this elemental or the elemental that owns it.
+// Shutdown was already called on this element or the element that owns it.
 //
 #define UI_E_SHUTDOWN_CALLED             _HRESULT_TYPEDEF_(0x802A0002L)
 
@@ -43800,7 +43800,7 @@
 //
 // MessageText:
 //
-// This elemental has been sealed, so this change is no longer allowed.
+// This element has been sealed, so this change is no longer allowed.
 //
 #define UI_E_OBJECT_SEALED               _HRESULT_TYPEDEF_(0x802A0004L)
 
@@ -43845,7 +43845,7 @@
 //
 // MessageText:
 //
-// A parameter that should be owned by this elemental is owned by a different elemental.
+// A parameter that should be owned by this element is owned by a different element.
 //
 #define UI_E_DIFFERENT_OWNER             _HRESULT_TYPEDEF_(0x802A0009L)
 
@@ -43872,7 +43872,7 @@
 //
 // MessageText:
 //
-// This method can only be called from the thread that created the elemental.
+// This method can only be called from the thread that created the element.
 //
 #define UI_E_WRONG_THREAD                _HRESULT_TYPEDEF_(0x802A000CL)
 

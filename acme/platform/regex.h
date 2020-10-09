@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ACME regex :
-   virtual public elemental
+   virtual public element
 {
 public:
 
@@ -40,7 +40,7 @@ public:
 };
 
 class CLASS_DECL_ACME regex_context :
-   virtual public ::elemental
+   virtual public ::element
 {
 public:
 

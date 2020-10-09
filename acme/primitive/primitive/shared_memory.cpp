@@ -13,7 +13,7 @@
       m_hGlobalMemory   = nullptr;
       m_bAllowGrow      = TRUE;
       m_memory.m_pbStorage = nullptr;
-      m_memory.m_pbComputed = nullptr;
+      m_memory.m_pdata = nullptr;
 
       memory_base::operator             = (s);
 
@@ -27,7 +27,7 @@
       m_memory.m_pcontainer         = pcontainer;
       m_memory.m_dAllocationRateUp  = dAllocationRateUp;
       m_memory.m_pbStorage = nullptr;
-      m_memory.m_pbComputed = nullptr;
+      m_memory.m_pdata = nullptr;
 
    }
 
@@ -38,7 +38,7 @@
       m_memory.m_pcontainer      = pcontainer;
       m_bAllowGrow      = TRUE;
       m_memory.m_pbStorage = nullptr;
-      m_memory.m_pbComputed = nullptr;
+      m_memory.m_pdata = nullptr;
 
       set_size(dwSize);
 
@@ -56,7 +56,7 @@
       m_memory.m_pcontainer      = nullptr;
       m_bAllowGrow      = TRUE;
       m_memory.m_pbStorage = nullptr;
-      m_memory.m_pbComputed = nullptr;
+      m_memory.m_pdata = nullptr;
 
       set_size(dwSize);
 
@@ -104,9 +104,9 @@
 
       m_hGlobalMemory      = nullptr;
       m_memory.m_pbStorage          = nullptr;
-      m_memory.m_pbComputed   = nullptr;
+      m_memory.m_pdata   = nullptr;
       m_memory.m_cbStorage          = 0;
-      m_memory.m_dwAllocation       = 0;
+      m_memory.m_iSize       = 0;
 
       return pbStorage;
 
@@ -133,9 +133,9 @@
 
       m_memory.m_pbStorage = (BYTE*)::GlobalLock(m_hGlobalMemory);
 
-      m_memory.m_pbComputed = m_memory.m_pbStorage;
+      m_memory.m_pdata = m_memory.m_pbStorage;
 
-      m_memory.m_dwAllocation = m_memory.m_cbStorage = (WINULONG)::GlobalSize(m_hGlobalMemory);
+      m_memory.m_iSize = m_memory.m_cbStorage = (WINULONG)::GlobalSize(m_hGlobalMemory);
 
       // xxx m_bAllowGrow = bAllowGrow;
 
@@ -205,7 +205,7 @@
    //{
    //   if(m_pbStorage != nullptr)
    //   {
-   //      m_dwAllocation    = 0;
+   //      m_iSize    = 0;
    //      try
    //      {
    //         ::GlobalUnlock(m_hGlobalMemory);
@@ -215,7 +215,7 @@
    //      {
    //      }
    //      m_pbStorage       = nullptr;
-   //      m_pbComputed = nullptr;
+   //      m_pdata = nullptr;
    //   }
    //}
 

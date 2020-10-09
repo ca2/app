@@ -13,6 +13,7 @@
 
 #endif
 
+
 namespace net
 {
 
@@ -20,33 +21,41 @@ namespace net
    address::address()
    {
 
+#ifdef BSD_STYLE_SOCKETS
       ::zero(this, sizeof(u.m_sa));
+      m_iLen = -1;
+#endif
 
 //#ifdef _UWP
 //
 //      m_posdata = new os_data();
 //
 //#endif
-      m_iLen = -1;
+      
    }
 
 
    address::address(i32 family, port_t port)
    {
 
+#ifdef BSD_STYLE_SOCKETS
       ::zero(this, sizeof(u.m_sa));
+      m_iLen = -1;
+      u.s.m_family = family;
+      u.s.m_port = htons(port);
+#endif
 
 //#ifdef _UWP
 //
 //      m_posdata = new os_data();
 //
 //#endif
-      m_iLen = -1;
-      u.s.m_family = family;
-      u.s.m_port = htons(port);
       sync_os_service();
 
    }
+
+
+#ifdef BSD_STYLE_SOCKETS
 
 
    address::address(const sockaddr & sa, int iLen)
@@ -83,48 +92,16 @@ namespace net
    }
 
 
-   address::address(const string & host, port_t port)
-   {
-
-      ::zero(this, sizeof(address));
-
-      m_iLen = -1;
-
-      from_string(host);
-
-      u.s.m_port = htons(port);
-
-      sync_os_service();
-
-   }
-
-
-   address::address(::object * pobject, const string & host, const string & strService)
+   address::address(const in6_addr& a, port_t port)
    {
 
       ::zero(this, sizeof(u.m_sa));
 
-      m_iLen = -1;
-
-      from_string(host);
-
-      u.s.m_port = Sys(pobject).sockets().net().service_port(strService);
-
-      sync_os_service();
-
-   }
-
-
-   address::address(const in6_addr & a, port_t port)
-   {
-
-      ::zero(this, sizeof(u.m_sa));
-
-//#ifdef _UWP
-//
-//      m_posdata = new os_data();
-//
-//#endif
+      //#ifdef _UWP
+      //
+      //      m_posdata = new os_data();
+      //
+      //#endif
       m_iLen = -1;
       u.s.m_family = AF_INET6;
       u.s.m_port = htons(port);
@@ -134,14 +111,14 @@ namespace net
 
    }
 
-   address::address(const sockaddr_in6 & sa, int iLen)
+   address::address(const sockaddr_in6& sa, int iLen)
    {
 
-//#ifdef _UWP
-//
-//      m_posdata = new os_data();
-//
-//#endif
+      //#ifdef _UWP
+      //
+      //      m_posdata = new os_data();
+      //
+      //#endif
 
       ::zero(this, sizeof(u.m_sa));
 
@@ -167,11 +144,11 @@ namespace net
 
       ::zero(this, sizeof(u.m_sa));
 
-//#ifdef _UWP
-//
-//      m_posdata = new os_data();
-//
-//#endif
+      //#ifdef _UWP
+      //
+      //      m_posdata = new os_data();
+      //
+      //#endif
       m_iLen = -1;
       u.s.m_family = AF_INET;
       u.s.m_port = htons(port);
@@ -181,17 +158,17 @@ namespace net
 
    }
 
-   address::address(const sockaddr_in & sa)
+   address::address(const sockaddr_in& sa)
    {
 
       ::zero(this, sizeof(u.m_sa));
       u.m_addr = sa;
 
-//#ifdef _UWP
-//
-//      m_posdata = new os_data();
-//
-//#endif
+      //#ifdef _UWP
+      //
+      //      m_posdata = new os_data();
+      //
+      //#endif
       m_iLen = -1;
       if (u.s.m_family != AF_INET)
       {
@@ -202,6 +179,62 @@ namespace net
          sync_os_address();
          sync_os_service();
       }
+
+   }
+
+
+#endif
+
+   address::address(const string & host, port_t port)
+   {
+
+      ::zero(this, sizeof(address));
+
+#ifdef BSD_STYLE_SOCKETS
+
+      m_iLen = -1;
+
+#endif
+
+      from_string(host);
+
+#if defined(WINRT_SOCKETS)
+
+      m_port = port;
+
+#endif
+
+#ifdef BSD_STYLE_SOCKETS
+
+      u.s.m_port = htons(port);
+
+#endif
+
+      sync_os_service();
+
+   }
+
+
+   address::address(::object * pobject, const string & host, const string & strService)
+   {
+
+#ifdef BSD_STYLE_SOCKETS
+
+      ::zero(this, sizeof(u.m_sa));
+
+      m_iLen = -1;
+
+#endif
+
+      from_string(host);
+
+#ifdef BSD_STYLE_SOCKETS
+
+      u.s.m_port = Sys(pobject).sockets().net().service_port(strService);
+
+#endif
+
+      sync_os_service();
 
    }
 
@@ -272,6 +305,8 @@ namespace net
 
       string str;
 
+#ifdef BSD_STYLE_SOCKETS
+
       if (is_ipv4())
       {
 
@@ -285,6 +320,8 @@ namespace net
 
       }
 
+#endif
+
       return str;
 
    }
@@ -295,6 +332,8 @@ namespace net
 
       if (is_ipv4() && addr.is_ipv4() && addrMask.is_ipv4())
       {
+
+#ifdef BSD_STYLE_SOCKETS
 
          in_addr a1 = u.m_addr.sin_addr;
 
@@ -308,9 +347,16 @@ namespace net
 
          return __memcmp(&a1, &a2, sizeof(aM)) == 0;
 
+#endif
+
+         return false;
+
+
       }
       else if (is_ipv6() && addr.is_ipv6() && addrMask.is_ipv6())
       {
+
+#ifdef BSD_STYLE_SOCKETS
 
          in6_addr a1 = u.m_addr6.sin6_addr;
 
@@ -324,6 +370,10 @@ namespace net
 
          return __memcmp(&a1, &a2, sizeof(aM)) == 0;
 
+#endif
+
+         return false;
+
       }
       else
       {
@@ -334,6 +384,9 @@ namespace net
 
    bool address::is_equal(const address & addr) const
    {
+
+
+#ifdef BSD_STYLE_SOCKETS
 
       if (u.s.m_port != addr.u.s.m_port)
          return false;
@@ -352,6 +405,11 @@ namespace net
       }
 
       return false;
+#else
+
+      return false;
+
+#endif
 
    }
 
@@ -395,6 +453,8 @@ namespace net
    }
 
 
+#if defined(BSD_STYLE_SOCKETS)
+
    void * address::addr_data()
    {
       if (u.m_sa.sa_family == AF_INET)
@@ -417,8 +477,13 @@ namespace net
    }
 
 
+#endif
+
+
    void address::from_string(const string & strAddress)
    {
+
+#if defined(BSD_STYLE_SOCKETS)
 
       ::apex::application * pappThread = get_context_application();
 
@@ -457,6 +522,13 @@ namespace net
 
       }
 
+#elif defined(WINRT_SOCKETS)
+
+      m_hostname = ref new Windows::Networking::HostName(strAddress);
+
+
+#endif
+
    }
 
 
@@ -465,16 +537,21 @@ namespace net
 
       string str;
 
+#if defined(BSD_STYLE_SOCKETS)
+
       if (u.s.m_family == AF_INET)
          ::str::from(str, u.m_addr);
       else if (u.s.m_family == AF_INET6)
          ::str::from(str, u.m_addr6);
          
+#endif
 
       return str;
 
    }
 
+
+#if defined(BSD_STYLE_SOCKETS)
 
    i32 address::sa_len() const
    {
@@ -487,6 +564,10 @@ namespace net
          return m_iLen;
 
    }
+
+
+#endif
+
 
    void address::copy(const address & address)
    {
@@ -503,6 +584,8 @@ namespace net
    {
 
       address a;
+
+#if defined(BSD_STYLE_SOCKETS)
 
       ::zero(&a, sizeof(a));
 
@@ -521,6 +604,8 @@ namespace net
       a.sync_os_address();
       a.sync_os_service();
 
+#endif
+
       return a;
 
    }
@@ -529,6 +614,8 @@ namespace net
    {
 
       address a;
+
+#if defined(BSD_STYLE_SOCKETS)
 
       ::zero(&a, sizeof(a));
 
@@ -540,6 +627,8 @@ namespace net
       a.sync_os_address();
       a.sync_os_service();
 
+#endif
+
       return a;
 
    }
@@ -548,7 +637,19 @@ namespace net
    port_t address::get_service_number() const
    {
 
+#if defined(BSD_STYLE_SOCKETS)
+
       return ntohs(u.s.m_port);
+
+#elif defined(WINRT_SOCKETS)
+
+      return m_port;
+
+#else
+
+      return 0;
+
+#endif
 
    }
 
@@ -556,14 +657,16 @@ namespace net
    void address::set_service_number(port_t port)
    {
 
+#if defined(BSD_STYLE_SOCKETS)
+
       u.s.m_port = htons(port);
+
+#endif
 
    }
 
 
-
 } // namespace net
-
 
 
 

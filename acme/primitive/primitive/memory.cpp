@@ -146,10 +146,10 @@ memory::memory(const char * psz)
 
    m_memory.m_pprimitivememory   = this;
    m_memory.m_pbStorage          = (byte *) psz;
-   m_memory.m_pbComputed         = m_memory.m_pbStorage;
+   m_memory.m_pdata              = m_memory.m_pbStorage;
    m_memory.m_cbStorage          = strlen(psz);
-   m_memory.m_dwAllocation       = m_memory.m_cbStorage;
-   m_bAligned           = false;
+   m_memory.m_iSize              = m_memory.m_cbStorage;
+   m_bAligned                    = false;
 
 }
 
@@ -179,11 +179,11 @@ memory::memory(memory_container * pcontainer, const void * pMemory, memsize dwSi
 
    m_memory.m_pprimitivememory   = this;
    m_memory.m_pbStorage          = (byte *) pMemory;
-   m_memory.m_pbComputed         = m_memory.m_pbStorage;
+   m_memory.m_pdata              = m_memory.m_pbStorage;
    m_memory.m_pcontainer         = pcontainer;
    m_memory.m_cbStorage          = dwSize;
-   m_memory.m_dwAllocation       = m_memory.m_cbStorage;
-   m_bAligned           = false;
+   m_memory.m_iSize              = m_memory.m_cbStorage;
+   m_bAligned                    = false;
 
 }
 

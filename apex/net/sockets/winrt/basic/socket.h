@@ -17,20 +17,6 @@ namespace sockets
    {
    public:
 
-#if defined(__cplusplus_winrt)
-
-      class os_data
-      {
-      public:
-         
-         Object ^ o;
-
-      };
-#else
-
-      class os_data;
-
-#endif
 
       friend class base_socket_handler;
 
@@ -49,11 +35,16 @@ namespace sockets
 
       /** Assign this base_socket a file descriptor created
       by a call to base_socket() or otherwise. */
-      void attach(os_data & osdata);
+      //void attach(os_data & osdata);
 
       virtual ::estatus     run() override;
 
       void close();
+
+
+      void create_socket();
+
+
    };
 
 

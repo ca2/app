@@ -332,22 +332,37 @@ namespace sockets
 
    void resolv_socket::OnConnect()
    {
+
       if (m_resolv_host.get_length())
       {
+
          string msg = (m_resolve_ipv6 ? "gethostbyname2 " : "gethostbyname ") + m_resolv_host + "\n";
+
          m_query = m_resolve_ipv6 ? "gethostbyname2" : "gethostbyname";
+
          m_data = m_resolv_host;
+
          print( msg );
+
          return;
+
       }
+
       if (m_resolve_ipv6)
       {
+
          string tmp;
+
          System.sockets().net().convert(tmp, m_resolv_address6);
+
          m_query = "gethostbyaddr";
+
          m_data = tmp;
+
          string msg = "gethostbyaddr " + tmp + "\n";
+
          print( msg );
+
       }
       string tmp;
       System.sockets().net().convert(tmp, m_resolv_address);

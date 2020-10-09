@@ -10,7 +10,7 @@ namespace html
 
 
       class text :
-         virtual public elemental
+         virtual public element
       {
       public:
 
@@ -37,7 +37,7 @@ namespace html
 
          virtual void _001OnDraw(html_data * pdocument);
          virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
-         void implement_phase1(html_data * pdocument, ::html::elemental * pelemental);
+         void implement_phase1(html_data * pdocument, ::html::element * pelemental);
          void layout_phase0(html_data * pdata);
          bool layout_phase1(html_data * pdata);
          void layout_phase3(html_data * pdata);

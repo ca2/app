@@ -46,7 +46,7 @@
 #pragma once
 
 class CLASS_DECL_ACME compress_gz :
-   virtual public ::elemental
+   virtual public ::element
 {
 public:
 
@@ -65,7 +65,7 @@ public:
 
 
 class CLASS_DECL_ACME uncompress_gz :
-   virtual public ::elemental
+   virtual public ::element
 {
 public:
 

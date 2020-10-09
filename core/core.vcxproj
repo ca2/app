@@ -1143,7 +1143,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="html\elemental\elemental.cpp" />
+    <ClCompile Include="html\element\element.cpp" />
     <ClCompile Include="html\graphics\attribute.cpp" />
     <ClCompile Include="html\graphics\base.cpp" />
     <ClCompile Include="html\graphics\font.cpp" />
@@ -1159,7 +1159,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="html\html\core_data.cpp" />
     <ClCompile Include="html\html\data.cpp" />
     <ClCompile Include="html\impl\cell.cpp" />
-    <ClCompile Include="html\impl\elemental.cpp" />
+    <ClCompile Include="html\impl\element.cpp" />
     <ClCompile Include="html\impl\form.cpp" />
     <ClCompile Include="html\impl\image.cpp" />
     <ClCompile Include="html\impl\input_button.cpp" />
@@ -1732,9 +1732,9 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="filesystem\userfs\_tree.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="framework_c.h" />
-    <ClInclude Include="html\elemental\elemental.h" />
-    <ClInclude Include="html\elemental\_elemental.h" />
-    <ClInclude Include="html\elemental\_.h" />
+    <ClInclude Include="html\element\element.h" />
+    <ClInclude Include="html\element\_.h" />
+    <ClInclude Include="html\element\_element.h" />
     <ClInclude Include="html\graphics\attribute.h" />
     <ClInclude Include="html\graphics\base.h" />
     <ClInclude Include="html\graphics\border.h" />
@@ -1755,7 +1755,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="html\hi5\hi5_twitter_authorization.h" />
     <ClInclude Include="html\html\_html.h" />
     <ClInclude Include="html\impl\cell.h" />
-    <ClInclude Include="html\impl\elemental.h" />
+    <ClInclude Include="html\impl\element.h" />
     <ClInclude Include="html\impl\form.h" />
     <ClInclude Include="html\impl\image.h" />
     <ClInclude Include="html\impl\input_button.h" />

@@ -31,7 +31,7 @@ namespace ios
    }
 
 
-   ::estatus file_system::initialize(::elemental * pobjectContext)
+   ::estatus file_system::initialize(::element * pobjectContext)
    {
    
       auto estatus = ::file_system::initialize(pobjectContext);

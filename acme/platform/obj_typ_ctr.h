@@ -3,10 +3,10 @@
 
 #if OBJ_TYP_CTR
 
-class elemental;
+class element;
 
-void obj_type_ctr_inc(::elemental* pobject);
-void obj_type_ctr_dec(::elemental* pobject);
+void obj_type_ctr_inc(::element* pobject);
+void obj_type_ctr_dec(::element* pobject);
 
 #define OBJ_TYP_CTR_INC obj_type_ctr_inc(this)
 #define OBJ_TYP_CTR_DEC obj_type_ctr_dec(this)

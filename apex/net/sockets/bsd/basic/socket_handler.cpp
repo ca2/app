@@ -452,7 +452,7 @@ start_processing_adding:
             if (pstreamsocket && pstreamsocket->Connecting()) // 'open' called before adding socket
             {
 
-               set(socket, true, false);
+               set(socket, true, true);
 
             }
             else

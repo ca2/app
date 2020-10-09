@@ -17,6 +17,7 @@ namespace sockets
       http_socket(h)
    {
 
+
    }
 
 
@@ -29,17 +30,22 @@ namespace sockets
       http_socket(s)
    {
 
+
    }
 
 
    http_base_socket::~http_base_socket()
    {
+
+
    }
 
 
    void http_base_socket::OnFirst()
    {
+      
       m_iContentLength = 0;
+
    }
 
 
@@ -401,48 +407,64 @@ namespace sockets
 
          if (strExtension == "ttf")
          {
+            
             outheader("access-control-allow-origin") = strOrigin;
+            
             outheader("vary") = "origin";
+
          }
          else if (strExtension == "otf")
          {
+            
             outheader("access-control-allow-origin") = strOrigin;
+            
             outheader("vary") = "origin";
+
          }
          else if (strExtension == "woff")
          {
+            
             outheader("access-control-allow-origin") = strOrigin;
+            
             outheader("vary") = "origin";
+
          }
          else if (strExtension == "woff2")
          {
+            
             outheader("access-control-allow-origin") = strOrigin;
+            
             outheader("vary") = "origin";
+
          }
 
       }
 
-
       if (!file_exists(pcsz))
-
       {
-         if (::dir::is(pcsz))
 
+         if (::dir::is(pcsz))
          {
+            
             outattr(__id(http_status_code)) = 200;
+            
             outattr(__id(http_status)) = "OK";
+            
             outheader("x-fstype") = "directory";
+
          }
          else
          {
+            
             outattr(__id(http_status_code)) = 404;
+            
             outattr(__id(http_status)) = "Not Found";
+
          }
 
-
          return false;
-      }
 
+      }
 
       outheader("x-fstype") = "file";
 
@@ -521,17 +543,30 @@ namespace sockets
 
          if (prangea->get_count() > 1)
          {
+            
             memsize uiTotal = 0;
+            
             memory mem;
+            
             mem.set_size(128 * 1024 * 1024);
+
             for (i32 i = 0; i < prangea->get_count(); i++)
             {
+               
                memsize iStart = prangea->element_at(i)->element_at(0);
+               
                memsize iEnd = prangea->element_at(i)->element_at(1);
+
                if (iStart >= iLen)
+               {
+
                   continue;
+
+               }
+               
                // iEnd > iLen is not verified because file may be growing
                preader->seek(iStart, ::file::seek_begin);
+
                memsize uiRead;
 
                auto pfile = create_memory_file();
@@ -540,20 +575,30 @@ namespace sockets
 
                if (iEnd >= iStart)
                {
+
                }
                else if (iStart > 0)
                {
+                  
                   iEnd = (::memsize) (iLen - 1);
+
                }
                else
                {
+                  
                   continue;
+
                }
+               
                response().println("--THIS_STRING_SEPARATES\r\n");
+               
                response().println("Content-range: bytes " + __str(iStart) + "-" + __str(iEnd) + "/" + __str(iLen));
+               
                response().println("Content-Transfer-Encoding: base64");
+
                while (true)
                {
+
                   if (iEnd >= iStart)
                   {
                      uiRead = min(mem.get_size(), (memsize)(iEnd - iPos + 1));
@@ -571,69 +616,122 @@ namespace sockets
                   if (iPos >= preader->get_size())
                      break;
                }
+               
                response().println(System.base64().encode(*pfile->get_memory()));
+
             }
+            
             response().println("--THIS_STRING_SEPARATES--\r\n");
+            
             outheader(__id(content_type)) = "multipart/x-byteranges; boundary=THIS_STRING_SEPARATES";
+
          }
          else
          {
+            
             memsize uiTotal = 0;
+            
             memory mem;
+            
             mem.set_size(128 * 1024 * 1024);
+            
             memsize iStart = prangea->element_at(0)->element_at(0);
+            
             memsize iEnd = prangea->element_at(0)->element_at(1);
+
             if (iStart < iLen)
             {
+               
                // iEnd > iLen is not verified because file may be growing
                preader->seek(iStart, ::file::seek_begin);
+               
                memsize uiRead;
+
                ::memory_file memfile;
+               
                memsize iPos = iStart;
+               
                if (iEnd >= iStart)
                {
+
                }
                else if (iStart > 0)
                {
+                  
                   iEnd = (::memsize) (iLen - 1);
+
                }
+
                while (true)
                {
+
                   if (iEnd != -1 && iEnd >= iStart)
                   {
+
                      uiRead = min(mem.get_size(), (memsize)(iEnd - iPos + 1));
+
                   }
                   else
                   {
+                     
                      uiRead = mem.get_size();
+
                   }
+                  
                   uiRead = preader->read(mem.get_data(), uiRead);
+                  
                   uiTotal += uiRead;
+
                   if (uiRead == 0)
+                  {
+
                      break;
+
+                  }
+                  
                   response().file()->write(mem.get_data(), uiRead);
+                  
                   iPos += uiRead;
+
                   if (iPos >= preader->get_size())
+                  {
+
                      break;
+
+                  }
+
                }
+
             }
+
             outattr("http_status_code") = 206;
+
             outattr("http_status") = "Partial Content";
+
             if (iEnd == -1)
             {
+               
                outheader("Content-range") = "bytes " + __str(iStart) + "-" + __str(iEnd) + "/*";
+
             }
             else
             {
+
                outheader("Content-range") = "bytes " + __str(iStart) + "-" + __str(iEnd) + "/" + __str(iLen);
+
             }
 
          }
-         //      brk1:;
+         
       }
+
       return true;
+
    }
 
 
 
 } // namespace sockets
+
+
+

@@ -107,9 +107,6 @@ LPDWORD pcbData
 
 // }
 
-bool defer_init_winsock();
-
-
 bool __node_aura_pre_init()
 {
 

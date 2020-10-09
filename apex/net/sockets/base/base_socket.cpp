@@ -82,9 +82,15 @@ namespace sockets
 //#endif
    {
 
+#ifdef WINRT_SOCKETS
       m_bErrorReading = false;
       m_bErrorWriting = false;
       m_bWaitingResponse = false;
+      m_bExpectResponse = false;
+      m_bExpectRequest = false;
+      m_bReading = false;
+      m_bWriting = false;
+#endif
       m_pmemfileInput = nullptr;
       m_iBindPort    = -1;
       m_tickStart.Now();

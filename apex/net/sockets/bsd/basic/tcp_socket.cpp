@@ -2318,7 +2318,7 @@ namespace sockets
 
             char buf[nBufSize];
 
-            int iGetSocket = GetSocket();
+            SOCKET iGetSocket = GetSocket();
 
             int n = ::recv(iGetSocket, (char*)buf, (int)nBufSize, MSG_OOB);
 

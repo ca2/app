@@ -1417,7 +1417,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="platform\_.cpp" />
     <ClCompile Include="platform\static_start_aura.cpp" />
     <ClCompile Include="primitive\primitive\block.cpp" />
-    <ClCompile Include="primitive\primitive\elemental.cpp" />
+    <ClCompile Include="primitive\primitive\element.cpp" />
     <ClCompile Include="primitive\primitive\layered.cpp" />
     <ClCompile Include="primitive\primitive\match.cpp" />
     <ClCompile Include="primitive\primitive\method.cpp" />

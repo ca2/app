@@ -173,17 +173,17 @@ namespace user
       m_pbuttonSuperscript->m_flagNonClient.remove(::user::interaction::non_client_focus_rect);
       m_pbuttonSuperscript->m_flagNonClient.remove(::user::interaction::non_client_background);
 
-      m_pbuttonAlignLeft->create_window(this, "align_left");
+      m_pbuttonAlignLeft->create_window(this, "e_align_left");
       m_pbuttonAlignLeft->LoadBitmaps("matter://fontformat/align-to-left12.png");
       m_pbuttonAlignLeft->m_flagNonClient.remove(::user::interaction::non_client_focus_rect);
       m_pbuttonAlignLeft->m_flagNonClient.remove(::user::interaction::non_client_background);
 
-      m_pbuttonAlignCenter->create_window(this, "align_center");
+      m_pbuttonAlignCenter->create_window(this, "e_align_center");
       m_pbuttonAlignCenter->LoadBitmaps("matter://fontformat/center-text-alignment12.png");
       m_pbuttonAlignCenter->m_flagNonClient.remove(::user::interaction::non_client_focus_rect);
       m_pbuttonAlignCenter->m_flagNonClient.remove(::user::interaction::non_client_background);
 
-      m_pbuttonAlignRight->create_window(this, "align_right");
+      m_pbuttonAlignRight->create_window(this, "e_align_right");
       m_pbuttonAlignRight->LoadBitmaps("matter://fontformat/align-to-right12.png");
       m_pbuttonAlignRight->m_flagNonClient.remove(::user::interaction::non_client_focus_rect);
       m_pbuttonAlignRight->m_flagNonClient.remove(::user::interaction::non_client_background);
@@ -349,7 +349,7 @@ namespace user
 
             }
 
-            else if (pevent->m_puie->m_id == "align_left")
+            else if (pevent->m_puie->m_id == "e_align_left")
             {
 
                m_pbuttonAlignLeft->_001SetCheck(::check_checked, ::source_user);
@@ -375,7 +375,7 @@ namespace user
                pevent->Ret();
 
             }
-            else if (pevent->m_puie->m_id == "align_center")
+            else if (pevent->m_puie->m_id == "e_align_center")
             {
 
                m_pbuttonAlignCenter->_001SetCheck(::check_checked, ::source_user);
@@ -401,7 +401,7 @@ namespace user
                pevent->Ret();
 
             }
-            else if (pevent->m_puie->m_id == "align_right")
+            else if (pevent->m_puie->m_id == "e_align_right")
             {
 
                m_pbuttonAlignRight->_001SetCheck(::check_checked, ::source_user);
@@ -641,19 +641,19 @@ namespace user
          if (m_pbuttonAlignRight->echeck() == ::check_checked)
          {
 
-            m_formata[0]->m_ealign = align_right;
+            m_formata[0]->m_ealign = e_align_right;
 
          }
          else if (m_pbuttonAlignCenter->echeck() == ::check_checked)
          {
 
-            m_formata[0]->m_ealign = align_center;
+            m_formata[0]->m_ealign = e_align_center;
 
          }
          else
          {
 
-            m_formata[0]->m_ealign = align_left;
+            m_formata[0]->m_ealign = e_align_left;
 
          }
 
@@ -683,9 +683,9 @@ namespace user
          m_pbuttonItalic->_001SetCheck(m_formata[0]->m_bItalic ? ::check_checked : ::check_unchecked, ::source_sync);
          m_pbuttonUnderline->_001SetCheck(m_formata[0]->m_bUnderline ? ::check_checked : ::check_unchecked, ::source_sync);
 
-         bool bLeft = m_formata[0]->m_ealign == align_left;
-         bool bCenter = m_formata[0]->m_ealign == align_center;
-         bool bRight = m_formata[0]->m_ealign == align_right;
+         bool bLeft = m_formata[0]->m_ealign == e_align_left;
+         bool bCenter = m_formata[0]->m_ealign == e_align_center;
+         bool bRight = m_formata[0]->m_ealign == e_align_right;
 
          m_pbuttonAlignLeft->_001SetCheck(bLeft, ::source_sync);
          m_pbuttonAlignCenter->_001SetCheck(bCenter, ::source_sync);

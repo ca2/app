@@ -32,7 +32,7 @@ namespace user
          // cache or transport (not serialized)
          mutable bool                 m_bUpdated;
          mutable ::draw2d::font_pointer    m_font;
-         mutable e_align              m_ealign;
+         mutable ::e_align              m_ealign;
 
 
          format(__pointer_array(format) * pcontainer);

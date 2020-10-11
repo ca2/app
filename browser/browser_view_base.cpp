@@ -313,7 +313,7 @@ auto m_tickRoll = ::tick::now();
          //if (0)
          {
 
-            if (pgraphics->m_pimageimplDraw2dGraphics->is_set())
+            if (pgraphics->m_pimage->is_set())
             {
 
                pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
@@ -337,7 +337,7 @@ auto m_tickRoll = ::tick::now();
 
             byte a, r, g, b, rm, gm, bm;
 
-/*            ::image_pointer pimage = pgraphics->m_pimageimplDraw2dGraphics;
+/*            ::image_pointer pimage = pgraphics->m_pimage;
 
 /*            if (pimage->is_null())
             {
@@ -396,7 +396,7 @@ auto m_tickRoll = ::tick::now();
 
             }
 
-            if (pgraphics->m_pimageimplDraw2dGraphics->is_null())
+            if (pgraphics->m_pimage->is_null())
             {
 
                pgraphics->BitBlt(0, 0, size.cx, size.cy, m_pimage2->get_graphics(), 0, 0, SRCCOPY);

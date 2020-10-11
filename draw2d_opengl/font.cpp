@@ -81,7 +81,7 @@ namespace draw2d_opengl
    }
 
 
-   bool font::create(::draw2d::graphics * pgraphics)
+   bool font::create(::draw2d::graphics * pgraphics, i8 iCreate)
    {
 
       if (m_hdcFont == nullptr || is_modified())

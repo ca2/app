@@ -4,7 +4,6 @@
 struct NSVGimage;
 
 
-
 namespace draw2d
 {
 
@@ -28,7 +27,7 @@ namespace draw2d
       __pointer(::task)                   m_ptask;
 
 
-      image *                             m_pimageimplDraw2dGraphics;
+      image *                             m_pimage;
       ::draw2d::bitmap_pointer            m_pbitmap;
       ::draw2d::pen_pointer               m_ppen;
       ::draw2d::brush_pointer             m_pbrush;
@@ -628,26 +627,19 @@ namespace draw2d
       virtual bool TextOutAlphaBlend(double x, double y, const string & str);
 
 
-      virtual bool _001DrawText(const string & str, rectd & prect, UINT nFormat, bool bMeasure = false);
+      virtual bool _001DrawText(const string & str, rectd & prect, const e_align & ealign = e_align_top_left, const e_draw_text & edrawtext = e_draw_text_none, bool bMeasure = false);
 
 
-      virtual bool draw_text(const char * pszString,strsize nCount,const ::rect & prect,UINT nFormat);
+      virtual bool draw_text(const string & str, const ::rect & prect, const e_align & ealign = e_align_top_left, const e_draw_text & edrawtext = e_draw_text_none);
 
-      virtual bool draw_text(const string & str, const ::rect & prect, UINT nFormat);
-
-      virtual bool draw_text(const char * pszString,strsize nCount,const rectd & prect,UINT nFormat);
-
-      virtual bool draw_text(const string & str,const rectd & prect,UINT nFormat);
+      virtual bool draw_text(const string & str,const rectd & prect, const e_align & ealign = e_align_top_left, const e_draw_text & edrawtext = e_draw_text_none);
 
 
 #ifndef _UWP
-      virtual bool draw_text_ex(const char * pszString,strsize nCount,const ::rect & prect,UINT nFormat,LPDRAWTEXTPARAMS lpDTParams);
 
-      virtual bool draw_text_ex(const string & str,const ::rect & prect,UINT nFormat,LPDRAWTEXTPARAMS lpDTParams);
+      virtual bool draw_text_ex(const string & str,const ::rect & prect, const e_align & ealign = e_align_top_left, const e_draw_text & edrawtext = e_draw_text_none,LPDRAWTEXTPARAMS lpDTParams = nullptr);
 
-      virtual bool draw_text_ex(const char * pszString,strsize nCount,const rectd & prect,UINT nFormat,LPDRAWTEXTPARAMS lpDTParams);
-
-      virtual bool draw_text_ex(const string & str,const rectd & prect,UINT nFormat,LPDRAWTEXTPARAMS lpDTParams);
+      virtual bool draw_text_ex(const string & str,const rectd & prect, const e_align & ealign = e_align_top_left, const e_draw_text & edrawtext = e_draw_text_none,LPDRAWTEXTPARAMS lpDTParams = nullptr);
 
 #endif
 
@@ -752,7 +744,7 @@ namespace draw2d
 
 //       virtual UINT GetOutlineTextMetrics(UINT cbData, LPOUTLINETEXTMETRICW potm);
 
-//       virtual u32 GetGlyphOutline(UINT nChar, UINT nFormat, LPGLYPHMETRICS pgm, u32 cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2);
+//       virtual u32 GetGlyphOutline(UINT nChar, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPGLYPHMETRICS pgm, u32 cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2);
 
 
 //       virtual bool GetCharABCWidths(UINT nFirstChar, UINT nLastChar, LPABCFLOAT pABCF);
@@ -926,11 +918,7 @@ namespace draw2d
 
       bool round_rect(const ::rect & rect, i32 radius);
 
-      virtual i32 _DrawText(const char * pcsz, strsize iCount, const ::rect &  pcolorect, UINT uiFormat, ::draw2d::font * pfontUnderline = nullptr);
-
-      virtual i32 _DrawText(const string & str, const ::rect &  pcolorect, UINT uiFormat, ::draw2d::font * pfontUnderline = nullptr);
-
-
+      virtual i32 _DrawText(const string & str, const ::rect & rect, const ::e_align& e_align = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, ::draw2d::font * pfontUnderline = nullptr);
 
       virtual void debug();
 

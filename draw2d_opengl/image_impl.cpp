@@ -100,7 +100,7 @@ namespace draw2d_opengl
 
       COLORREF * pcolorref = nullptr;
 
-      if(!m_pbitmap->CreateDIBSection(nullptr, size, DIB_RGB_COLORS, (void **) & pcolorref, &iStride, nullptr, 0))
+      if(!m_pbitmap->create_bitmap(nullptr, size, (void **) & pcolorref, &iStride))
       {
 
          return false;
@@ -116,9 +116,9 @@ namespace draw2d_opengl
 
       }
 
-      m_pgraphics->SelectObject(m_pbitmap);
+      m_pgraphics->set(m_pbitmap);
 
-      m_pgraphics->m_pimageimplDraw2dGraphics = this;
+      m_pgraphics->m_pimage = this;
 
       this->init(size, pcolorref, iStride);
 
@@ -133,11 +133,11 @@ namespace draw2d_opengl
    {
       /*      if(bSelect)
             {
-               return m_pgraphics->SelectObject(m_pbitmap) != nullptr;
+               return m_pgraphics->set(m_pbitmap) != nullptr;
             }
             else
             {
-               return m_pgraphics->SelectObject(m_hbitmapOriginal) != nullptr;
+               return m_pgraphics->set(m_hbitmapOriginal) != nullptr;
             }*/
 
       return true;
@@ -195,31 +195,31 @@ namespace draw2d_opengl
 
       bitmap->CreateCompatibleBitmap(pgraphics, 1, 1);
 
-      ::draw2d::bitmap * pbitmap = GL2D_GRAPHICS(pgraphics)->SelectObject(bitmap);
+      auto estatus = GL2D_GRAPHICS(pgraphics)->set(bitmap);
 
-      if (pbitmap == nullptr)
+      if (!estatus)
       {
 
          return false;
 
       }
 
-      ::size size = pbitmap->get_size();
+      ::size size = pgraphics->m_pimage->get_size();
 
       if(!create(size))
       {
 
-         GL2D_GRAPHICS(pgraphics)->SelectObject(pbitmap);
-
          return false;
 
       }
 
-      bool bOk = GetDIBits(GL2D_HDC(pgraphics), (HBITMAP) pbitmap->get_os_data(), 0, m_size.cy, get_data(), &(m_bitmapinfo), DIB_RGB_COLORS) != FALSE;
+      __throw(todo("::opengl::image"));
 
-      GL2D_GRAPHICS(pgraphics)->SelectObject(pbitmap);
+      //bool bOk = GetDIBits(GL2D_HDC(pgraphics), (HBITMAP) pbitmap->get_os_data(), 0, m_size.cy, get_data(), &(m_bitmapinfo), DIB_RGB_COLORS) != FALSE;
 
-      return bOk;
+      //GL2D_GRAPHICS(pgraphics)->set(pbitmap);
+
+      //return bOk;
 
    }
 
@@ -2362,7 +2362,7 @@ namespace draw2d_opengl
 
       unmap();
 
-      m_pgraphics->SelectObject(m_pbitmap);
+      m_pgraphics->set(m_pbitmap);
 
       return m_pgraphics;
 

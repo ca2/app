@@ -160,6 +160,11 @@ namespace aura
 
       virtual string __get_text(string str) override;
 
+
+      inline ::aura::game* game() { return m_pgame->m_pauragame; }
+
+
+
       //virtual ::user::style* get_user_style() const;
       //virtual bool app_data_get(const ::id & id, stream & os) override;
       //virtual bool app_data_set(const ::id & id, stream & is) override;

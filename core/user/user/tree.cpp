@@ -44,7 +44,8 @@ namespace user
       m_iImageCollapse           = -1;
       m_pimagelist               = nullptr;
       m_uchHoverAlphaInit        = 0;
-      m_iDrawTextFlags = DT_LEFT | DT_VCENTER;
+      m_ealignText = e_align_left_center;
+      m_edrawtext = e_draw_text_none;
       m_evOpen.m_eobject += e_object_alertable_wait;
       m_evExpand.m_eobject += e_object_alertable_wait;
 
@@ -534,7 +535,7 @@ namespace user
 
          data.m_pdc->set(m_fontTreeItem);
 
-         data.m_pdc->_DrawText(strItem, strItem.get_length(), rect, m_iDrawTextFlags);
+         data.m_pdc->_DrawText(strItem, rect, m_ealignText, m_edrawtext);
 
       }
 

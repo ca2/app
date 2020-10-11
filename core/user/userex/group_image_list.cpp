@@ -109,7 +109,7 @@ namespace userex
 
       //m_buttonMenu.create_color(::user::color_button_text, ARGB(255, 80, 80, 80));
       //m_buttonMenu.create_color(::user::color_button_background, ARGB(255, 255, 255, 255));
-      //m_buttonMenu.create_int(::user::int_button_draw_text_and_image_flags, DT_LEFT | DT_VCENTER | DT_SINGLELINE);
+      //m_buttonMenu.create_int(::user::int_button_draw_text_and_image_flags, e_align_left_center | DT_SINGLELINE);
 
       m_buttonMenu.m_flagNonClient.remove(::user::interaction::non_client_focus_rect);
 
@@ -199,7 +199,7 @@ namespace userex
 
          plist = create_view < ::userex::image_list_view >(nullptr, nullptr, idGroup);
 
-         plist->m_ealign = align_top_center;
+         plist->m_ealign = e_align_top_center;
 
          plist->m_bMultiSel = false;
 

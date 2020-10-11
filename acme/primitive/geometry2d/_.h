@@ -952,7 +952,11 @@ namespace design
 } // namespace design
 
 
+
 #include "align.h"
+
+
+using e_align = cflag < enum_align >;
 
 
 inline LONG area(LONG cx, LONG cy) { return (cx < 0 && cy < 0 ? -1 : 1) * cx * cy; }
@@ -1379,23 +1383,20 @@ inline void collapse_rect(RECT1 * prect, const RECT2 & r)
 }
 
 
-class CLASS_DECL_ACME oval :
-public ::rect
-{
-public:
-   oval() : rect(){}
-   oval(const ::rect & r) : rect(r){}
-};
+#include "arc.h"
 
+#include "line.h"
 
-class CLASS_DECL_ACME ovald :
-public ::rectd
-{
-public:
-   ovald() : rectd(){}
-   ovald(const ::rectd & r) : rectd(r){}
+#include "lines.h"
 
-};
+#include "oval.h"
+
+#include "shape.h"
+
+#include "bounding_rect.h"
+
+#include "contains.h"
+
 
 
 

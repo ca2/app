@@ -254,7 +254,7 @@ namespace user
         pgraphics->set_text_color(RGB(0, 60, 90));
         rectText = rectClient;
         rectText.deflate(2, 2, 2, 2);
-        pgraphics->draw_text(m_strTip, rectText, DT_LEFT | DT_BOTTOM | DT_END_ELLIPSIS);
+        pgraphics->draw_text(m_strTip, rectText, e_align_bottom_left, e_draw_text_end_ellipsis);
       }
       else if(((m_ealign & AlignRight) == AlignRight) &&
         ((m_ealign & AlignTop) == AlignTop))
@@ -268,7 +268,7 @@ namespace user
         pgraphics->set_text_color(RGB(0, 60, 90));
         rectText = rectClient;
         rectText.deflate(2, 2, 2, 2);
-        pgraphics->draw_text(m_strTip, rectText, DT_LEFT | DT_BOTTOM | DT_END_ELLIPSIS);
+        pgraphics->draw_text(m_strTip, rectText, e_align_bottom_left, e_draw_text_end_ellipsis);
       }
       else
       {
@@ -281,7 +281,7 @@ namespace user
         pgraphics->set_text_color(RGB(0, 60, 90));
         rectText = rectClient;
         rectText.deflate(2, 2, 2, 2);
-        pgraphics->draw_text(m_strTip, rectText, DT_LEFT | DT_BOTTOM | DT_END_ELLIPSIS);
+        pgraphics->draw_text(m_strTip, rectText, e_align_bottom_left, e_draw_text_end_ellipsis);
       }*/
    }
 

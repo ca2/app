@@ -57,24 +57,25 @@ namespace user
       rect *                     m_prectClient;
 
 
-      index              m_iGroupRectGroup;
+      index                      m_iGroupRectGroup;
 
-      index              m_iItemRectItem;
+      index                      m_iItemRectItem;
 
       i32                        m_iColumnWidth;
 
-      index              m_iSubItemRectItem;
-      index              m_iSubItemRectSubItem;
-      index              m_iSubItemRectOrder;
-      index              m_iSubItemRectColumn;
+      index                      m_iSubItemRectItem;
+      index                      m_iSubItemRectSubItem;
+      index                      m_iSubItemRectOrder;
+      index                      m_iSubItemRectColumn;
 
 
-      index              m_iListItemRectItem;
-      index              m_iListItemRectSubItem;
-      index              m_iListItemRectListItem;
+      index                      m_iListItemRectItem;
+      index                      m_iListItemRectSubItem;
+      index                      m_iListItemRectListItem;
 
       ::draw2d::font *           m_pfont;
-      int                        m_iDrawTextFlags;
+      ::e_align                  m_ealign;
+      ::e_draw_text              m_edrawtext;
 
 
       draw_mesh_item(mesh * pmesh);

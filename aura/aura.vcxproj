@@ -1311,6 +1311,12 @@
     <ClInclude Include="gpu\gpu\shader.h" />
     <ClInclude Include="gpu\gpu\_.h" />
     <ClInclude Include="graphics\draw2d\context_image.h" />
+    <ClInclude Include="graphics\draw2d\_draw2d.h" />
+    <ClInclude Include="graphics\text\bounding_rect.h" />
+    <ClInclude Include="graphics\text\contains.h" />
+    <ClInclude Include="graphics\text\draw_text.h" />
+    <ClInclude Include="graphics\text\text.h" />
+    <ClInclude Include="graphics\text\text_out.h" />
     <ClInclude Include="id.h" />
     <ClInclude Include="include\_c.h" />
     <ClInclude Include="include\_no_templates.h" />
@@ -1616,7 +1622,6 @@
     <ClInclude Include="graphics\draw2d\region.h" />
     <ClInclude Include="graphics\draw2d\text_box.h" />
     <ClInclude Include="graphics\draw2d\thread_tool.h" />
-    <ClInclude Include="graphics\draw2d\_const.h" />
     <ClInclude Include="graphics\draw2d\_.h" />
     <ClInclude Include="graphics\draw2d\_image_impl.h" />
     <ClInclude Include="graphics\_.h" />
@@ -1730,6 +1735,9 @@
     <ProjectReference Include="..\aqua\aqua.vcxproj">
       <Project>{1b06fe5f-f783-41a1-ac68-0e02880dbbac}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="graphics\text\_.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

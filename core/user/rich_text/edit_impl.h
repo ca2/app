@@ -43,7 +43,7 @@ namespace user
 
          //virtual void do_layout() override;
 
-         __pointer(span) add_span(e_align ealignNewLine = align_none);
+         __pointer(span) add_span(::e_align ealignNewLine = e_align_none);
 
          virtual void on_hit_test(::user::item & item) override;
 

@@ -9,3 +9,78 @@
 #include "framework.h"
 
 
+bool ___shape::expand_bounding_rect(RECTD* prect) const
+{
+
+   rectd r;
+
+   if (!get_bounding_rect(&r))
+   {
+
+      return false;
+
+   }
+
+   expand_rect(prect, r);
+
+   return true;
+
+}
+
+
+bool ___shape::expand_bounding_rect(RECT* prect) const
+{
+
+   rectd r;
+
+   if (!expand_bounding_rect(&r))
+   {
+
+      return false;
+
+   }
+
+   expand_rect(prect, r);
+
+   return true;
+
+}
+
+
+bool ___shape::get_bounding_rect(RECTD* prect) const
+{
+
+   ::null_rect(prect);
+
+   return false;
+
+}
+
+
+bool ___shape::get_bounding_rect(RECT* prect) const
+{
+
+   ::null_rect(prect);
+
+   return false;
+
+}
+
+
+bool ___shape::contains(const ::pointd& point) const
+{
+
+   // BUG SS (STILL SIMPLE) using bounding box HAHA LOL ROFL
+
+   ::rectd r;
+
+   if (!get_bounding_rect(r))
+   {
+
+      return false;
+
+   }
+
+   return r.contains(point);
+
+}

@@ -170,7 +170,7 @@ namespace draw2d_opengl
       bool CreateCompatibleBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight);
       bool CreateDiscardableBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight);
       
-      virtual bool CreateDIBSection(::draw2d::graphics * pgraphics, const ::size& size, UINT usage, void** ppcolorref, int* piScan, HANDLE hSection, u32 offset) override;
+      virtual bool create_bitmap(::draw2d::graphics * pgraphics, const ::size& size, void** ppcolorref, int* piScan) override;
       virtual bool CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, u32 flInit, const void* pjBits, UINT iUsage) override;
 
 

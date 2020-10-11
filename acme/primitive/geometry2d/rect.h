@@ -133,8 +133,8 @@ public:
 
  UNIT_TYPE max_border() const noexcept { return ::max(::max(this->top, this->left), ::max(this->bottom, this->right)); }
 
- UNIT_TYPE minimum_natural_dimension() const noexcept { return ::min(::max(0, width()), ::max(0, height())); }
- UNIT_TYPE maximum_natural_dimension() const noexcept { return ::max(::max(0, width()), ::max(0, height())); }
+ UNIT_TYPE minimum_natural_dimension() const noexcept { return ::min(::max((UNIT_TYPE) 0, width()), ::max((UNIT_TYPE)0, height())); }
+ UNIT_TYPE maximum_natural_dimension() const noexcept { return ::max(::max((UNIT_TYPE) 0, width()), ::max((UNIT_TYPE)0, height())); }
 
  UNIT_TYPE minimum_absolute_dimension() const noexcept { return ::min(abs(width()), abs(height())); }
  UNIT_TYPE maximum_absolute_dimension() const noexcept { return ::min(abs(width()), abs(height())); }
@@ -502,41 +502,47 @@ public:
  }
 
 
- void Align(cflag < e_align > ealign, const rect_type & rect)
+ void Align(::e_align e_align, const rect_type & rect)
  {
 
     POINT_TYPE point;
 
-    if ((ealign & align_horizontal) == align_horizontal_center)
+    if ((e_align & e_align_horizontal) == e_align_horizontal_center)
     {
 
        point.x = rect.left + (rect.right - rect.left) / 2 - width() / 2 - this->left;
 
     }
-    else if ((ealign & align_horizontal) == align_left)
+    else if ((e_align & e_align_horizontal) == e_align_left)
     {
 
        point.x = rect.left - this->left;
 
     }
-    else if ((ealign & align_horizontal) == align_right)
+    else if ((e_align & e_align_horizontal) == e_align_right)
     {
 
        point.x = rect.right - this->right;
 
     }
 
-    if ((ealign & align_vertical) == align_vertical_center)
+    if ((e_align & e_align_vertical) == e_align_vertical_center)
     {
+       
        point.y = rect.top + (rect.bottom - rect.top) / 2 - height() / 2 - this->top;
+
     }
-    else if ((ealign & align_vertical) == align_top)
+    else if ((e_align & e_align_vertical) == e_align_top)
     {
+       
        point.y = rect.top - this->top;
+
     }
-    else if ((ealign & align_vertical) == align_bottom)
+    else if ((e_align & e_align_vertical) == e_align_bottom)
     {
+
        point.y = rect.bottom - this->bottom;
+
     }
 
     offset(point);

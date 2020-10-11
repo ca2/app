@@ -152,7 +152,7 @@ namespace user
 
       pgraphics->set_font(this);
 
-      int iDrawTextFlags = DT_LEFT | DT_VCENTER;
+      int iDrawTextFlags = e_align_left_center;
 
       pgraphics->draw_text(strText, rectText, iDrawTextFlags);
 

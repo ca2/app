@@ -8,7 +8,7 @@
 //   {
 //      type_undefined,
 //      type_pen,
-//      type_brush,
+//      ::draw2d::e_pen_brush,
 //      type_bitmap,
 //      type_font,
 //   };

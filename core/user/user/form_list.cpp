@@ -2205,7 +2205,7 @@ break_click:;
          //            rect.right = 15;
          //            rect.bottom = 15;
 
-         //            rect.Align(::align_center, pdrawitem->m_rectSubItem);
+         //            rect.Align(::e_align_center, pdrawitem->m_rectSubItem);
 
          //            _001GetItemText(pdrawitem);
 

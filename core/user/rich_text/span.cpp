@@ -15,8 +15,7 @@ namespace user
       span::span()
       {
          
-         //m_pformat = m_pdata->m_pformatCurrent;
-         m_ealignNewLine = align_none;
+         m_ealignNewLine = e_align_none;
 
          ASSERT(m_pformat != nullptr);
 
@@ -29,14 +28,15 @@ namespace user
       {
 
          m_pformat = m_pdata->m_pformatCurrent;
-         m_ealignNewLine = align_none;
+
+         m_ealignNewLine = e_align_none;
 
          ASSERT(m_pformat != nullptr);
 
       }
 
 
-      span::span(data * pdata, e_align ealignNewLine) :
+      span::span(data * pdata, ::e_align ealignNewLine) :
          ::object(pdata),
          m_pdata(pdata)
       {
@@ -83,10 +83,10 @@ namespace user
       }
 
 
-      e_align span::get_align() const
+      ::e_align span::get_align() const
       {
 
-         e_align ealign = align_none;
+         ::e_align e_align = e_align_none;
 
          index i = m_pdata->m_spana.find_first(this);
 
@@ -96,7 +96,7 @@ namespace user
             if (m_pdata->m_spana[i]->is_new_line())
             {
 
-               ealign = m_pdata->m_spana[i]->m_ealignNewLine;
+               e_align = m_pdata->m_spana[i]->m_ealignNewLine;
 
                break;
 
@@ -104,7 +104,7 @@ namespace user
 
          }
 
-         return ealign;
+         return e_align;
 
       }
 
@@ -171,7 +171,7 @@ namespace user
 
          stream >> set;
 
-         m_ealignNewLine = set["align"].e< e_align>();
+         m_ealignNewLine = set["align"].e< ::e_align>();
          m_str = set["text"];
          ::index iFormatIndex = set["format_index"];
          if (iFormatIndex >= 0 && iFormatIndex < m_pdata->m_pformata->get_count())

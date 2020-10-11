@@ -72,9 +72,6 @@
     <Filter Include="Header Files\inline">
       <UniqueIdentifier>{ca5a634b-db67-405b-b94e-e17dbe4fdeeb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{884e337b-3347-4863-8d95-d6b0a4245427}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\const">
       <UniqueIdentifier>{f8ac833f-c335-48be-81bf-1c8408752720}</UniqueIdentifier>
     </Filter>
@@ -192,6 +189,12 @@
     <Filter Include="Header Files\filesystem\filemanager">
       <UniqueIdentifier>{c21dbb0c-f9fc-4c28-a0bf-f9c3a36b5bb8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\graphics\text">
+      <UniqueIdentifier>{2f1acfc1-10fb-47b5-8b52-b81dfb0e47ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Resource Files">
+      <UniqueIdentifier>{884e337b-3347-4863-8d95-d6b0a4245427}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="net\sockets\bsd\webserver\http_base_socket.h">
@@ -229,9 +232,6 @@
     </ClInclude>
     <ClInclude Include="graphics\draw3d\ortho.h">
       <Filter>Header Files\graphics\draw3d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\_const.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
     <ClInclude Include="graphics\draw2d\api.h">
       <Filter>Header Files\graphics\draw2d</Filter>
@@ -1169,6 +1169,24 @@
     <ClInclude Include="platform\theme.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\text\draw_text.h">
+      <Filter>Header Files\graphics\text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\text\text.h">
+      <Filter>Header Files\graphics\text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\text\text_out.h">
+      <Filter>Header Files\graphics\text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\text\bounding_rect.h">
+      <Filter>Header Files\graphics\text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\text\contains.h">
+      <Filter>Header Files\graphics\text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\_draw2d.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="graphics\draw2d\apple\image_gif.cpp">
@@ -1644,7 +1662,12 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\platform-windows\version.rc">
-      <Filter>Resource Files</Filter>
+      <Filter>Source Files\Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="graphics\text\_.h">
+      <Filter>Header Files\graphics\text</Filter>
+    </Text>
   </ItemGroup>
 </Project>

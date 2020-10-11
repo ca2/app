@@ -3749,7 +3749,7 @@ void graphics::DPtoLP(LPSIZE lpSize)
 }
 
 
-bool graphics::draw_text(const char * lpszString, strsize nCount, const ::rect & rect, UINT nFormat)
+bool graphics::draw_text(const char * lpszString, strsize nCount, const ::rect & rect, const ::e_align & ealign, const ::e_draw_text & edrawtext)
 {
 
     return draw_text(string(lpszString, nCount), rect, nFormat);
@@ -3760,7 +3760,7 @@ bool graphics::draw_text(const char * lpszString, strsize nCount, const ::rect &
 #if defined(USE_PANGO)
 
 
-bool graphics::draw_text(const string & strParam, const ::rect & rectParam, UINT nFormat)
+bool graphics::draw_text(const string & strParam, const ::rect & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext)
 {
 
     sync_lock ml(cairo_mutex());
@@ -3776,7 +3776,7 @@ bool graphics::draw_text(const string & strParam, const ::rect & rectParam, UINT
 }
 
 
-bool graphics::internal_draw_text(const char * lpszString, strsize nCount, const ::rectd & rect, UINT nFormat)
+bool graphics::internal_draw_text(const char * lpszString, strsize nCount, const ::rectd & rect, const ::e_align & ealign, const ::e_draw_text & edrawtext)
 {
 
     return internal_draw_text_pango(lpszString, nCount, rect, nFormat, &pango_cairo_show_layout);
@@ -3784,7 +3784,7 @@ bool graphics::internal_draw_text(const char * lpszString, strsize nCount, const
 }
 
 
-bool graphics::internal_draw_text_pango(const char * lpszString, strsize nCount, const ::rectd & rectParam, UINT nFormat, PFN_PANGO_TEXT pfnPango)
+bool graphics::internal_draw_text_pango(const char * lpszString, strsize nCount, const ::rectd & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext, PFN_PANGO_TEXT pfnPango)
 {
 
     sync_lock ml(cairo_mutex());
@@ -3835,7 +3835,7 @@ bool graphics::internal_draw_text_pango(const char * lpszString, strsize nCount,
 
     pointd ptRef;
 
-    if(nFormat & DT_BOTTOM)
+    if(nFormat & e_align_bottom)
     {
 
         cairo_translate(m_pdc, 0, rectParam.bottom - rect.height);
@@ -3843,7 +3843,7 @@ bool graphics::internal_draw_text_pango(const char * lpszString, strsize nCount,
         ptRef.y = rectParam.bottom - rect.height;
 
     }
-    else if(nFormat & DT_VCENTER)
+    else if(nFormat & e_align_vertical_center)
     {
 
         cairo_translate(m_pdc, 0, ((rectParam.top + rectParam.bottom) / 2 - (rect.height / 2)));
@@ -3868,7 +3868,7 @@ bool graphics::internal_draw_text_pango(const char * lpszString, strsize nCount,
         ptRef.x = rectParam.right - rect.width;
 
     }
-    else if(nFormat & DT_CENTER)
+    else if(nFormat & e_align_horizontal_center)
     {
 
         cairo_translate(m_pdc, ((rectParam.left + rectParam.right) / 2) - (rect.width/2), 0);
@@ -3909,7 +3909,7 @@ bool graphics::internal_draw_text_pango(const char * lpszString, strsize nCount,
 #else
 
 
-bool graphics::draw_text(const string & strParam, const ::rect & rect, UINT nFormat)
+bool graphics::draw_text(const string & strParam, const ::rect & rect, const ::e_align & ealign, const ::e_draw_text & edrawtext)
 {
 
     return internal_draw_text(strParam, strParam.get_length(), rect, nFormat, &cairo_show_text);
@@ -3917,7 +3917,7 @@ bool graphics::draw_text(const string & strParam, const ::rect & rect, UINT nFor
 }
 
 
-bool graphics::internal_draw_text(const char * lpszString, strsize nCount, const ::rectd & rect, UINT nFormat, PFN_CAIRO_TEXT ftext)
+bool graphics::internal_draw_text(const char * lpszString, strsize nCount, const ::rectd & rect, const ::e_align & ealign, const ::e_draw_text & edrawtext, PFN_CAIRO_TEXT ftext)
 {
 
     string str(lpszString, nCount);
@@ -3969,7 +3969,7 @@ bool graphics::internal_draw_text(const char * lpszString, strsize nCount, const
         dx = rect.right - rect.left - sz.cx;
 
     }
-    else if (nFormat & DT_CENTER)
+    else if (nFormat & e_align_horizontal_center)
     {
 
         dx = ((rect.right - rect.left) - (sz.cx)) / 2.0;
@@ -3982,13 +3982,13 @@ bool graphics::internal_draw_text(const char * lpszString, strsize nCount, const
 
     }
 
-    if (nFormat & DT_BOTTOM)
+    if (nFormat & e_align_bottom)
     {
 
         dy = rect.bottom - rect.top - e.ascent;
 
     }
-    else if (nFormat & DT_VCENTER)
+    else if (nFormat & e_align_vertical_center)
     {
 
         dy = ((rect.bottom - rect.top) - (e.ascent)) / 2.0;
@@ -4081,7 +4081,7 @@ bool graphics::internal_draw_text(const char * lpszString, strsize nCount, const
 #endif
 
 
-bool graphics::draw_text_ex(LPTSTR lpszString, strsize nCount, const ::rect & rect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams)
+bool graphics::draw_text_ex(LPTSTR lpszString, strsize nCount, const ::rect & rect, const ::e_align & ealign, const ::e_draw_text & edrawtext, LPDRAWTEXTPARAMS lpDTParams)
 {
 
     ::exception::throw_not_implemented();
@@ -4091,7 +4091,7 @@ bool graphics::draw_text_ex(LPTSTR lpszString, strsize nCount, const ::rect & re
 }
 
 
-bool graphics::draw_text_ex(const string & str, const ::rect & rect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams)
+bool graphics::draw_text_ex(const string & str, const ::rect & rect, const ::e_align & ealign, const ::e_draw_text & edrawtext, LPDRAWTEXTPARAMS lpDTParams)
 {
 
     ::exception::throw_not_implemented();
@@ -4129,7 +4129,7 @@ sized graphics::GetTextExtent(const char * lpszString, strsize nCount)
 sized graphics::GetTextExtent(const string & str)
 {
 
-    return GetTextExtent(str, str.get_length());
+    return GetTextExtent(str);
 
 }
 
@@ -4413,7 +4413,7 @@ bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCou
 bool graphics::GetTextExtent(sized & size, const string & str)
 {
 
-    return GetTextExtent(size, str, str.get_length());
+    return GetTextExtent(size, str);
 
 }
 
@@ -4479,7 +4479,7 @@ bool graphics::TextOutRaw(double x, double y, const string & str)
 
     auto rect = ::rectd(pointd(x, y), sized(65535.0, 65535.0));
 
-    internal_draw_text(str, str.get_length(), rect, 0);
+    internal_draw_text(str, rect, 0);
 
 #else
 
@@ -4490,7 +4490,7 @@ bool graphics::TextOutRaw(double x, double y, const string & str)
                       65535
                   );
 
-    internal_draw_text(str, str.get_length(), rect, 0, &cairo_show_text);
+    internal_draw_text(str, rect, 0, &cairo_show_text);
 
     return true;
 
@@ -4920,7 +4920,7 @@ bool graphics::_set(::draw2d::pen * ppen)
 
    sync_lock ml(cairo_mutex());
 
-   if (ppen->m_etype == ::draw2d::pen::type_brush)
+   if (ppen->m_etype == ::draw2d::pen::::draw2d::e_pen_brush)
    {
 
       _set(ppen->m_pbrush);

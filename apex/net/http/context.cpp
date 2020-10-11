@@ -2074,7 +2074,7 @@ namespace http
 
       }
 
-      if (set.has_property("connection_retry") > 0)
+      if (set.has_property("connection_retry"))
       {
 
          psocket->SetConnectionRetry(set["connection_retry"].i32());

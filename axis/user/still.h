@@ -21,7 +21,7 @@ namespace user
       //::rect                              m_rectMargin;
       //::rect                              m_rectBorder;
       //::rect                              m_rectPadding;
-      e_align                             m_ealignText;
+      ::e_align                             m_ealignText;
       e_style                             m_estyle;
       ::rect                              m_rectText;
       index                               m_iClick;

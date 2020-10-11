@@ -72,7 +72,7 @@ namespace sip
       {
          attr("query_string") = System.url().object_get_query(attr("request_uri"));
          string str = attrs()["query_string"];
-         m_form.parse_query_string(str, str.get_length());
+         m_form.parse_query_string(str);
       }
       attr("http_host") = header("host");
       attr("http_referer") = header("referer");

@@ -162,10 +162,17 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image * pm_p, i32 dx, i32 dy, void *
 
 
 #include "brush.h"
-#include "font.h"
 #include "palette.h"
 #include "region.h"
 #include "igui.h"
+
+
+#include "font.h"
+
+
+#include "aura/graphics/text/_.h"
+
+
 #include "path.h"
 
 

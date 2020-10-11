@@ -29,20 +29,16 @@
 #include "bitmap.h"
 #include "brush.h"
 #include "font.h"
-//#include "palette.h"
 #include "region.h"
 #include "image.h"
 #include "path.h"
-
-//#include "printer.h"
 
 
 #include "graphics.h"
 
 
-
-#define GL2D_GRAPHICS(pgraphics) (dynamic_cast < ::draw2d_opengl::graphics * > (dynamic_cast < ::draw2d::graphics * > (pgraphics)))
-#define GL2D_HDC(pgraphics) ((dynamic_cast < ::draw2d_opengl::graphics * > (dynamic_cast < ::draw2d::graphics * > (pgraphics)))->m_hdc)
+#define GL2D_GRAPHICS(pgraphics) (dynamic_cast < ::draw2d_opengl::graphics * > (pgraphics))
+#define GL2D_HDC(pgraphics) (GL2D_GRAPHICS(pgraphics)->m_hdc)
 
 
 namespace opengl

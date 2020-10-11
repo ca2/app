@@ -308,7 +308,7 @@ namespace experience_core
 
                pgraphics->SelectObject(brushText);
 
-               pgraphics->draw_text("x",rectClose,DT_CENTER | DT_VCENTER);
+               pgraphics->draw_text("x",rectClose,e_align_horizontal_center | e_align_vertical_center);
 
             }
 
@@ -331,7 +331,7 @@ namespace experience_core
       if(straTitle.get_count() <= 1)
       {
 
-         pgraphics->_DrawText(pane.get_title(),*lpcrect,DT_LEFT | DT_BOTTOM | DT_NOPREFIX);
+         pgraphics->_DrawText(pane.get_title(),*lpcrect,e_align_bottom_left, e_draw_text_no_prefix);
 
       }
       else
@@ -348,7 +348,7 @@ namespace experience_core
             string str = straTitle[i];
             size s = pane.m_sizeaText[i];
             rectText.right =rectText.left + s.cx;
-            pgraphics->_DrawText(str,rectText,DT_LEFT | DT_BOTTOM | DT_NOPREFIX);
+            pgraphics->_DrawText(str,rectText,e_align_bottom_left, e_draw_text_no_prefix);
             rectText.left += s.cx;
             if(i < straTitle.get_upper_bound())
             {
@@ -369,7 +369,7 @@ namespace experience_core
                }
                pgraphics->set_font(ptab->get_data()->m_fontBigBold);
                pgraphics->set_alpha_mode(emode);
-               pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT,rectText,DT_CENTER | DT_VCENTER | DT_NOPREFIX);
+               pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT,rectText,e_align_horizontal_center | e_align_vertical_center | DT_NOPREFIX);
                rectText.left += sSep.cx;
                pgraphics->selectFont(font);
                pgraphics->SelectObject(brushText);
@@ -896,9 +896,9 @@ namespace experience_core
       }
 
 
-      penArrow->m_elinecapBeg = ::draw2d::pen::line_cap_round;
-      penArrow->m_elinecapEnd = ::draw2d::pen::line_cap_round;
-      penArrow->m_elinejoin = ::draw2d::pen::line_join_round;
+      penArrow->m_elinecapBeg = ::draw2d::e_line_cap_round;
+      penArrow->m_elinecapEnd = ::draw2d::e_line_cap_round;
+      penArrow->m_elinejoin = ::draw2d::e_line_join_round;
 
       penArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(::user::element_scrollbar_rectA));
 

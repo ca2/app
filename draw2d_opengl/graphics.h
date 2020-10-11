@@ -366,17 +366,13 @@ namespace draw2d_opengl
 
       virtual bool text_out(double x, double y, const char* lpszString, strsize nCount) override;
 
-      virtual bool draw_text(const char * lpszString,strsize nCount,const ::rect & rect,UINT nFormat);
-      virtual bool draw_text(const string & str,const ::rect & rect,UINT nFormat);
+      virtual bool draw_text(const string & str,const ::rect & rect, const e_align & ealign = e_align_top_left, const e_draw_text & edrawtext = e_draw_text_none);
 
-      virtual bool draw_text_ex(LPTSTR lpszString,strsize nCount,const ::rect & rect,UINT nFormat,LPDRAWTEXTPARAMS lpDTParams);
-      virtual bool draw_text_ex(const string & str,const ::rect & rect,UINT nFormat,LPDRAWTEXTPARAMS lpDTParams);
+      virtual bool draw_text_ex(const string & str,const ::rect & rect, const e_align & ealign = e_align_top_left, const e_draw_text & edrawtext = e_draw_text_none,LPDRAWTEXTPARAMS lpDTParams = nullptr);
 
-      virtual bool draw_text(const char * lpszString,strsize nCount,const ::rectd & rect,UINT nFormat);
-      virtual bool draw_text(const string & str,const ::rectd & rect,UINT nFormat);
+      virtual bool draw_text(const string & str,const ::rectd & rect, const e_align & ealign = e_align_top_left, const e_draw_text & edrawtext = e_draw_text_none);
 
-      virtual bool draw_text_ex(const char * lpszString,strsize nCount,const ::rectd & rect,UINT nFormat,LPDRAWTEXTPARAMS lpDTParams);
-      virtual bool draw_text_ex(const string & str,const ::rectd & rect,UINT nFormat,LPDRAWTEXTPARAMS lpDTParams);
+      virtual bool draw_text_ex(const string & str,const ::rectd & rect, const e_align & ealign = e_align_top_left, const e_draw_text & edrawtext = e_draw_text_none,LPDRAWTEXTPARAMS lpDTParams = nullptr);
 
       virtual sized GetTextExtent(const char * lpszString, strsize nCount, strsize iIndex) override;
       virtual sized GetTextExtent(const char * lpszString, strsize nCount) override;
@@ -431,7 +427,7 @@ namespace draw2d_opengl
       u32 GetFontData(u32 dwTable, u32 dwOffset, LPVOID lpData, u32 cbData) const;
       i32 GetKerningPairs(i32 nPairs, LPKERNINGPAIR lpkrnpair) const;
       UINT GetOutlineTextMetrics(UINT cbData, LPOUTLINETEXTMETRICW lpotm) const;
-      u32 GetGlyphOutline(UINT nChar, UINT nFormat, LPGLYPHMETRICS lpgm,
+      u32 GetGlyphOutline(UINT nChar, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPGLYPHMETRICS lpgm,
                                u32 cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2) const;
 
       bool GetCharABCWidths(UINT nFirstChar, UINT nLastChar,
@@ -547,9 +543,12 @@ namespace draw2d_opengl
 
       virtual bool prefer_mapped_image_on_mix();
 
-      virtual void set(::draw2d::pen * ppen);
-      virtual void set(::draw2d::brush * pbrush);
-      virtual void set(const ::draw2d::font * pfont);
+      virtual ::estatus set(::draw2d::region* pregion) override;
+      virtual ::estatus set(::draw2d::pen* ppen) override;
+      virtual ::estatus set(::draw2d::font* pfont) override;
+      virtual ::estatus set(::draw2d::brush* pbrush) override;
+      virtual ::estatus set(::draw2d::bitmap* pbitmap) override;
+      virtual ::draw2d::object* set_stock_object(i32 nIndex) override;
 
       virtual bool CreateWindowDC(oswindow wnd) override;
       virtual bool is_valid_update_window_thread() override;

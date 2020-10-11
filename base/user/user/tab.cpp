@@ -923,7 +923,7 @@ namespace user
 
                pgraphics->set(brushText);
 
-               pgraphics->draw_text("x", rectClose, DT_CENTER | DT_VCENTER);
+               pgraphics->draw_text("x", rectClose, e_align_center);
 
             }
 
@@ -1137,7 +1137,7 @@ namespace user
 
             pgraphics->set(brushText);
 
-            pgraphics->_DrawText(tab_pane.get_title(), tab_pane.get_title().get_length(), rectText, DT_LEFT | DT_BOTTOM);
+            pgraphics->_DrawText(tab_pane.get_title(), rectText, e_align_bottom_left);
 
          }
 
@@ -1163,7 +1163,7 @@ namespace user
 
             pgraphics->set(brushText);
 
-            pgraphics->draw_text("x", rectClose, DT_CENTER | DT_VCENTER);
+            pgraphics->draw_text("x", rectClose, e_align_horizontal_center | e_align_vertical_center);
 
          }
 

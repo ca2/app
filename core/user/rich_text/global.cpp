@@ -325,7 +325,7 @@ namespace user
          for (auto & pspan : spana.ptra())
          {
 
-            if (pspan->m_ealignNewLine != align_none)
+            if (pspan->m_ealignNewLine != e_align_none)
             {
 
                if (!bFirstBox)
@@ -363,7 +363,7 @@ namespace user
             if (i > 0)
             {
                
-               if (pspan->m_ealignNewLine != align_none)
+               if (pspan->m_ealignNewLine != e_align_none)
                {
 
                   iPos++;
@@ -391,7 +391,7 @@ namespace user
       }
 
 
-      e_align box_align(__pointer_array(span) & spana, index iBox)
+      ::e_align box_align(__pointer_array(span) & spana, index iBox)
       {
 
          while (true)
@@ -407,11 +407,11 @@ namespace user
             if (iBox < 0)
             {
 
-               return align_left;
+               return e_align_left;
 
             }
 
-            if (spana[iBox]->m_ealignNewLine != align_none)
+            if (spana[iBox]->m_ealignNewLine != e_align_none)
             {
 
                return spana[iBox]->m_ealignNewLine;
@@ -426,7 +426,7 @@ namespace user
       }
 
 
-      bool box_align(__pointer_array(span) & spana, index iBox, e_align ealign)
+      bool box_align(__pointer_array(span) & spana, index iBox, ::e_align e_align)
       {
 
          if (iBox > spana.get_count())
@@ -446,10 +446,10 @@ namespace user
 
             }
 
-            if (spana[iBox]->m_ealignNewLine != align_none)
+            if (spana[iBox]->m_ealignNewLine != e_align_none)
             {
 
-               spana[iBox]->m_ealignNewLine = ealign;
+               spana[iBox]->m_ealignNewLine = e_align;
 
                return true;
 
@@ -527,11 +527,11 @@ namespace user
 
          }
 
-         auto ealign = pline->first_ptr()->m_pspan->m_ealignNewLine;
+         auto e_align = pline->first_ptr()->m_pspan->m_ealignNewLine;
 
          // pline->last().m_str += "\n";
 
-         if (ealign == align_left)
+         if (e_align == e_align_left)
          {
 
             // Nothing to do:
@@ -547,7 +547,7 @@ namespace user
 
             int iOffset = (::i32)(rect.right - iWidth);
 
-            if (ealign == align_center)
+            if (e_align == e_align_center)
             {
 
                iOffset /= 2;

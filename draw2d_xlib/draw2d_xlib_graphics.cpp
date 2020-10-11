@@ -2169,7 +2169,7 @@ namespace draw2d_xlib
 
       }
 
-      u32 graphics::GetGlyphOutline(UINT nChar, UINT nFormat, LPGLYPHMETRICS lpgm, u32 cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2) const
+      u32 graphics::GetGlyphOutline(UINT nChar, const ::e_align & ealign, const ::e_draw_text & edrawtext, LPGLYPHMETRICS lpgm, u32 cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2) const
       {
 
          __throw(not_implemented());
@@ -4507,7 +4507,7 @@ namespace draw2d_xlib
 
 
 
-   i32 graphics::draw_text(const char * lpszString, i32 nCount, RECT * prect, UINT nFormat)
+   i32 graphics::draw_text(const char * lpszString, i32 nCount, RECT * prect, const ::e_align & ealign, const ::e_draw_text & edrawtext)
    {
       /*if(get_handle1() == nullptr)
          return -1;
@@ -4522,7 +4522,7 @@ namespace draw2d_xlib
    }
 
 
-   i32 graphics::draw_text(const string & str, RECT * prect, UINT nFormat)
+   i32 graphics::draw_text(const string & str, RECT * prect, const ::e_align & ealign, const ::e_draw_text & edrawtext)
    {
 
       //sync_lock ml(&xlib_mutex());
@@ -4553,7 +4553,7 @@ namespace draw2d_xlib
       {
          dx = rect.right - rect.left - sz.cx;
       }
-      else if(nFormat & DT_CENTER)
+      else if(nFormat & e_align_horizontal_center)
       {
          dx = ((rect.right - rect.left) - (sz.cx)) / 2.0;
       }
@@ -4562,11 +4562,11 @@ namespace draw2d_xlib
          dx = 0.;
       }
 
-      if(nFormat & DT_BOTTOM)
+      if(nFormat & e_align_bottom)
       {
          dy = rect.bottom - rect.top - sz.cy;
       }
-      else if(nFormat & DT_VCENTER)
+      else if(nFormat & e_align_vertical_center)
       {
          dy = ((rect.bottom - rect.top) - (sz.cy)) / 2.0;
       }
@@ -4575,7 +4575,7 @@ namespace draw2d_xlib
          dy = 0.;
       }
 
-      /*      array < XChar2b > xa = utf8toXChar2b(str, str.get_length());
+      /*      array < XChar2b > xa = utf8toXChar2b(str);
 
             ::XDrawString16(
                m_pdc->m_pdisplay,
@@ -4610,7 +4610,7 @@ namespace draw2d_xlib
 
       XftDrawStringUtf8(pdraw, &ftc, pfont->m_pft,
                         rect.left + dx + m_pdc->m_pointOffset.x,
-                        rect.top + h + dy + m_pdc->m_pointOffset.y, (const FcChar8 *) (const char *) str, str.get_length());
+                        rect.top + h + dy + m_pdc->m_pointOffset.y, (const FcChar8 *) (const char *) str);
 
 //      XftColorFree(m_pdc->m_pdisplay, pbitmap->m_ui.m_window->draw2d(), pbitmap->m_ui.m_window->m_colormap, &ftc);
 
@@ -4620,7 +4620,7 @@ namespace draw2d_xlib
 
    }
 
-   i32 graphics::draw_text_ex(LPTSTR lpszString, i32 nCount, RECT * prect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams)
+   i32 graphics::draw_text_ex(LPTSTR lpszString, i32 nCount, RECT * prect, const ::e_align & ealign, const ::e_draw_text & edrawtext, LPDRAWTEXTPARAMS lpDTParams)
    {
 
       __throw(not_implemented());
@@ -4637,7 +4637,7 @@ namespace draw2d_xlib
       */
    }
 
-   i32 graphics::draw_text_ex(const string & str, RECT * prect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams)
+   i32 graphics::draw_text_ex(const string & str, RECT * prect, const ::e_align & ealign, const ::e_draw_text & edrawtext, LPDRAWTEXTPARAMS lpDTParams)
    {
 
       __throw(not_implemented());
@@ -4714,7 +4714,7 @@ namespace draw2d_xlib
    size graphics::GetTextExtent(const string & str) const
    {
 
-      return GetTextExtent(str, str.get_length());
+      return GetTextExtent(str);
 
    }
 
@@ -4779,7 +4779,7 @@ namespace draw2d_xlib
    bool graphics::GetTextExtent(sized & size, const string & str) const
    {
 
-      return GetTextExtent(size, str, str.get_length(), 0);
+      return GetTextExtent(size, str, 0);
 
    }
 
@@ -5728,7 +5728,7 @@ ok:
 
             XftDrawString8(pdraw, &ftc, pfont->m_pft,
             rect.left + dx + m_pdc->m_pointOffset.x,
-            rect.top + h + dy + m_pdc->m_pointOffset.y, (FcChar8 *) (const char *) str, str.get_length());
+            rect.top + h + dy + m_pdc->m_pointOffset.y, (FcChar8 *) (const char *) str);
 
             XftColorFree(m_pdc->m_pdisplay, pbitmap->m_ui.m_window->draw2d(), pbitmap->m_ui.m_window->m_colormap, &ftc);
 

@@ -1026,7 +1026,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
       if (_001GetElementRect(iItem, rectText, ::user::element_text, estate) && rectText.right > 0)
       {
 
-         pgraphics->_DrawText(item.m_str, item.m_str.get_length(), rectText, DT_BOTTOM | DT_LEFT | DT_NOPREFIX);
+         pgraphics->_DrawText(item.m_str, rectText, e_align_bottom_left, e_draw_text_no_prefix);
 
       }
 

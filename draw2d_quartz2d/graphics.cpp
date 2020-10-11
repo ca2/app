@@ -1282,7 +1282,7 @@ namespace draw2d_quartz2d
 
          }
 
-         __pointer(::draw2d_quartz2d::image) imageSrc = pgraphicsSrc->m_pimageimplDraw2dGraphics;
+         __pointer(::draw2d_quartz2d::image) imageSrc = pgraphicsSrc->m_pimage;
 
          __pointer(::draw2d::graphics) imageGraphics;
 
@@ -3233,7 +3233,7 @@ namespace draw2d_quartz2d
 
       }
 
-      m_pimageimplDraw2dGraphics = nullptr;
+      m_pimage = nullptr;
 
       m_etextrenderinghint  = ::draw2d::text_rendering_hint_anti_alias_grid_fit;
 
@@ -4342,7 +4342,7 @@ namespace draw2d_quartz2d
 
 
 
-   i32 graphics::draw_text(const char * lpszString, i32 nCount, const ::rectd & rect, UINT nFormat)
+   i32 graphics::draw_text(const char * lpszString, i32 nCount, const ::rectd & rect, const ::e_align & ealign, const ::e_draw_text & edrawtext)
    {
 
       return draw_text(string(lpszString, nCount), rect, nFormat);
@@ -4350,7 +4350,7 @@ namespace draw2d_quartz2d
    }
 
 
-   bool graphics::draw_text(const string & str, const ::rect & rect, UINT nFormat)
+   bool graphics::draw_text(const string & str, const ::rect & rect, const ::e_align & ealign, const ::e_draw_text & edrawtext)
    {
 
       ::draw2d::graphics::draw_text(str, rect, nFormat);
@@ -4360,7 +4360,7 @@ namespace draw2d_quartz2d
    }
 
 
-   i32 graphics::draw_text_ex(LPTSTR lpszString, i32 nCount, const ::rectd & rect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams)
+   i32 graphics::draw_text_ex(LPTSTR lpszString, i32 nCount, const ::rectd & rect, const ::e_align & ealign, const ::e_draw_text & edrawtext, LPDRAWTEXTPARAMS lpDTParams)
    {
 
       __throw(not_implemented());
@@ -4370,7 +4370,7 @@ namespace draw2d_quartz2d
    }
 
 
-   bool graphics::draw_text_ex(const string & str, const ::rectd & rect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams)
+   bool graphics::draw_text_ex(const string & str, const ::rectd & rect, const ::e_align & ealign, const ::e_draw_text & edrawtext, LPDRAWTEXTPARAMS lpDTParams)
    {
 
       __throw(not_implemented());
@@ -4414,7 +4414,7 @@ namespace draw2d_quartz2d
 
       ::sized size;
 
-      if(!GetTextExtent(size, str, str.get_length(), (int)str.get_length()))
+      if(!GetTextExtent(size, str, (int)str.get_length()))
       {
          
          return ::size(0, 0);
@@ -4493,7 +4493,7 @@ namespace draw2d_quartz2d
    bool graphics::GetTextExtent(sized & size, const string & str)
    {
 
-      return GetTextExtent(size, str, str.get_length());
+      return GetTextExtent(size, str);
 
    }
 
@@ -4528,7 +4528,7 @@ namespace draw2d_quartz2d
    }
 
 
-   bool graphics::internal_show_text(double x, double y, double wAlign, UINT nFormat, const string & str, CGTextDrawingMode emode, bool bDraw, CGFloat * pascent, CGFloat * pdescent, CGFloat * pleading, CGFloat * pwidth, ::draw2d::pen * ppen, ::draw2d::brush * pbrush, ::draw2d::font * pfont)
+   bool graphics::internal_show_text(double x, double y, double wAlign, const ::e_align & ealign, const ::e_draw_text & edrawtext, const string & str, CGTextDrawingMode emode, bool bDraw, CGFloat * pascent, CGFloat * pdescent, CGFloat * pleading, CGFloat * pwidth, ::draw2d::pen * ppen, ::draw2d::brush * pbrush, ::draw2d::font * pfont)
    {
 
       if(pfont == nullptr)
@@ -4912,7 +4912,7 @@ namespace draw2d_quartz2d
          
       }
 
-      if(ppen->m_etype == ::draw2d::pen::type_brush && ppen->m_pbrush)
+      if(ppen->m_etype == ::draw2d::pen::::draw2d::e_pen_brush && ppen->m_pbrush)
       {
 
          if(ppen->m_pbrush->m_etype == ::draw2d::brush::type_solid)
@@ -5163,7 +5163,7 @@ namespace draw2d_quartz2d
       if(ppen == nullptr || ppen->m_etype == ::draw2d::pen::type_null)
          return true;
 
-      //if(ppen->m_etype == ::draw2d::pen::type_solid)
+      //if(ppen->m_etype == ::draw2d::e_pen_solid)
       {
 
 
@@ -5171,7 +5171,7 @@ namespace draw2d_quartz2d
 
          _set(ppen);
 
-         if(ppen->m_etype == ::draw2d::pen::type_brush && ppen->m_pbrush.is_set()
+         if(ppen->m_etype == ::draw2d::pen::::draw2d::e_pen_brush && ppen->m_pbrush.is_set()
                && (ppen->m_pbrush->m_etype == ::draw2d::brush::type_linear_gradient_point_color
                    || ppen->m_pbrush->m_etype == ::draw2d::brush::type_radial_gradient_color
                    || ppen->m_pbrush->m_etype == ::draw2d::brush::type_pattern)
@@ -5208,7 +5208,7 @@ namespace draw2d_quartz2d
       if(pbrush == nullptr || pbrush->m_etype == ::draw2d::brush::type_null)
          return true;
 
-      //if(ppen->m_etype == ::draw2d::pen::type_solid)
+      //if(ppen->m_etype == ::draw2d::e_pen_solid)
       {
 
 
@@ -5686,7 +5686,7 @@ namespace draw2d_quartz2d
    }
 
 
-   bool graphics::draw_text(const string & strParam,const ::rectd & rect,UINT nFormat)
+   bool graphics::draw_text(const string & strParam,const ::rectd & rect, const ::e_align & ealign, const ::e_draw_text & edrawtext)
    {
 
       string str(strParam);
@@ -5714,13 +5714,13 @@ namespace draw2d_quartz2d
 
       double y;
 
-      if(nFormat & DT_BOTTOM)
+      if(nFormat & e_align_bottom)
       {
 
          y = rect.bottom;
 
       }
-      else if(nFormat & DT_VCENTER)
+      else if(nFormat & e_align_vertical_center)
       {
 
          y = rect.top + ::height(rect) / 2.0;
@@ -5772,7 +5772,7 @@ namespace draw2d_quartz2d
 
          CGFloat ascent, descent, leading;
 
-         if(!(nFormat & DT_BOTTOM) && ! (nFormat & DT_VCENTER))
+         if(!(nFormat & e_align_bottom) && ! (nFormat & e_align_vertical_center))
          {
 
             for(auto str : stra)
@@ -5806,7 +5806,7 @@ namespace draw2d_quartz2d
             }
 
          }
-         else if(nFormat & DT_BOTTOM)
+         else if(nFormat & e_align_bottom)
          {
 
             for(auto str : stra)
@@ -5840,7 +5840,7 @@ namespace draw2d_quartz2d
             }
 
          }
-         else if(nFormat & DT_VCENTER)
+         else if(nFormat & e_align_vertical_center)
          {
 
             rectd rectUpper(rect);
@@ -5891,12 +5891,12 @@ namespace draw2d_quartz2d
                draw_text(
                stra.implode("\n", 0, stra.get_middle_index() + 1),
                rectUpper,
-               (nFormat & ~DT_VCENTER) | DT_BOTTOM);
+               (nFormat & ~e_align_vertical_center) | e_align_bottom);
 
                draw_text(
                stra.implode("\n", stra.get_middle_index() + 1),
                rectLower,
-               (nFormat & ~DT_VCENTER) | DT_TOP);
+               (nFormat & ~e_align_vertical_center) | e_align_top);
 
             }
 
@@ -5909,7 +5909,7 @@ namespace draw2d_quartz2d
    }
 
 
-   bool graphics::internal_show_text(::draw2d::font_pointer spfont,::draw2d::brush_pointer spbrush,::draw2d::pen_pointer sppen, double x, double y, double wAlign, UINT nFormat, const string & str, CGTextDrawingMode emode, bool bDraw, CGFloat * pascent, CGFloat * pdescent, CGFloat * pleading, CGFloat * pwidth)
+   bool graphics::internal_show_text(::draw2d::font_pointer spfont,::draw2d::brush_pointer spbrush,::draw2d::pen_pointer sppen, double x, double y, double wAlign, const ::e_align & ealign, const ::e_draw_text & edrawtext, const string & str, CGTextDrawingMode emode, bool bDraw, CGFloat * pascent, CGFloat * pdescent, CGFloat * pleading, CGFloat * pwidth)
    {
 
       sync_lock sl(mutex());
@@ -6185,7 +6185,7 @@ namespace draw2d_quartz2d
             x += wAlign - width;
    
          }
-         else if(nFormat & DT_CENTER)
+         else if(nFormat & e_align_horizontal_center)
          {
    
   
@@ -6193,7 +6193,7 @@ namespace draw2d_quartz2d
    
          }
    
-         if(nFormat & (DT_BOTTOM | DT_VCENTER))
+         if(nFormat & ({ e_align_bottom, e_align_vertical_center }))
          {
    
     
@@ -6207,7 +6207,7 @@ namespace draw2d_quartz2d
    
             }
    
-            if(nFormat & DT_VCENTER)
+            if(nFormat & e_align_vertical_center)
             {
    
                cy /= 2.0;

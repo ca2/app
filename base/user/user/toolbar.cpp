@@ -1125,7 +1125,7 @@ return { 0,0 };
          str = pszText;
 
          // add new string to toolbar list
-         string strTemp(str, str.get_length());
+         string strTemp(str);
          ::exception::throw_not_implemented();
          // xxx nString = (index)default_window_procedure(TB_ADDSTRINGW, 0, (LPARAM)(const char *)(const unichar *)strTemp);
          if (nString == -1)

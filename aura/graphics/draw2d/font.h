@@ -22,8 +22,6 @@ namespace draw2d
       LONG        tmDescent;
       LONG        tmInternalLeading;
       LONG        tmExternalLeading;
-      //LONG        tmAveCharWidth;
-      //LONG        tmMaxCharWidth;
       LONG        tmWeight;
       LONG        tmOverhang;
       LONG        tmDigitizedAspectX;
@@ -40,12 +38,11 @@ namespace draw2d
 
    };
 
+
    class CLASS_DECL_AURA font :
       virtual public ::draw2d::object
    {
    public:
-
-
 
 
       class text
@@ -83,7 +80,6 @@ namespace draw2d
       string_map < text >     m_mapText;
 
 
-
       font();
       font(const font & font);
       virtual ~font();
@@ -110,13 +106,6 @@ namespace draw2d
       double dWidth = 1.0);
 
       virtual void destroy() override;
-      //    i32 nEscapement
-      //    i32 nOrientation
-      //    BYTE nCharSet
-      //    BYTE nOutPrecision
-      //    BYTE nClipPrecision
-      //    BYTE nQuality
-      //    BYTE nPitchAndFamily
 
       font & operator = (const font & font);
 

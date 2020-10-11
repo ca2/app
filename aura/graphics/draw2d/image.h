@@ -47,9 +47,6 @@ public:
    virtual bool set_alpha_mode(::draw2d::e_alpha_mode e_alpha_mode);
 
 
-   //virtual void delete_this();
-
-
    virtual bool create_helper_map();
    virtual bool _create_helper_map();
 
@@ -197,7 +194,6 @@ public:
    virtual bool create_thumbnail(const char * pszPath);
 
 
-   //using ::context_object::create;
    virtual ::estatus create(::draw2d::graphics* pgraphics);
    virtual ::estatus create(const ::size & size, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1, bool bPreserve = false);
    inline ::estatus preserve(const ::size & size, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1)

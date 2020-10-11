@@ -210,7 +210,7 @@ namespace user
          if (m_ealign != format.m_ealign)
          {
 
-            m_ealign = align_left;
+            m_ealign = e_align_left;
 
          }
 

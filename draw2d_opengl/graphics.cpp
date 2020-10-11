@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aura/platform/app_core.h"
+//#include "aura/platform/app_core.h"
 
 #include <math.h>
 #include <dwmapi.h>
@@ -2074,7 +2074,7 @@ namespace draw2d_opengl
    }
 
 
-   u32 graphics::GetGlyphOutline(UINT nChar, UINT nFormat, LPGLYPHMETRICS lpgm,
+   u32 graphics::GetGlyphOutline(UINT nChar, const ::e_align & ealign, const ::e_draw_text & edrawtext, LPGLYPHMETRICS lpgm,
                                       u32 cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2) const
    {
       // ASSERT(m_hdc != nullptr);
@@ -2914,24 +2914,24 @@ namespace draw2d_opengl
    }
 
 
-   inline bool graphics::GetTextExtentExPointI(LPWORD pgiIn, i32 cgi, i32 nMaxExtent, LPINT lpnFit, LPINT alpDx, LPSIZE lpSize) const
-   {
-      ENSURE(lpSize != nullptr);
-      // ASSERT(m_hdc != nullptr);
-      //return ::GetTextExtentExPointI(m_hdc, pgiIn, cgi, nMaxExtent, lpnFit, alpDx, lpSize) != FALSE;
-      return false;
+   //inline bool graphics::GetTextExtentExPointI(LPWORD pgiIn, i32 cgi, i32 nMaxExtent, LPINT lpnFit, LPINT alpDx, LPSIZE lpSize) const
+   //{
+   //   ENSURE(lpSize != nullptr);
+   //   // ASSERT(m_hdc != nullptr);
+   //   //return ::GetTextExtentExPointI(m_hdc, pgiIn, cgi, nMaxExtent, lpnFit, alpDx, lpSize) != FALSE;
+   //   return false;
 
-   }
+   //}
 
 
-   inline bool graphics::GetTextExtentPointI(LPWORD pgiIn, i32 cgi, LPSIZE lpSize) const
-   {
-      ENSURE(lpSize != nullptr);
-      // ASSERT(m_hdc != nullptr);
-      //return ::GetTextExtentPointI(m_hdc, pgiIn, cgi, lpSize) != FALSE;
-      return false;
+   //inline bool graphics::GetTextExtentPointI(LPWORD pgiIn, i32 cgi, LPSIZE lpSize) const
+   //{
+   //   ENSURE(lpSize != nullptr);
+   //   // ASSERT(m_hdc != nullptr);
+   //   //return ::GetTextExtentPointI(m_hdc, pgiIn, cgi, lpSize) != FALSE;
+   //   return false;
 
-   }
+   //}
 
 
 #define HIMETRIC_INCH   2540    // HIMETRIC units per inch
@@ -3541,7 +3541,7 @@ namespace draw2d_opengl
       m_fontxyz = *pFont;
       return &m_fontxyz;*/
 
-      if(!select_font(pfont))
+      if(!set(pfont))
          return nullptr;
 
       return m_pfont;
@@ -4454,35 +4454,19 @@ namespace draw2d_opengl
    }
 
 
-   bool graphics::draw_text(const char * lpszString,strsize nCount,const ::rect & rect,UINT nFormat)
-   {
-
-      return draw_text(string(lpszString,nCount),rect,nFormat);
-
-   }
-
-
-   bool graphics::draw_text(const string & str,const ::rect & rectParam,UINT nFormat)
+   bool graphics::draw_text(const string & str,const ::rect & rectParam, const ::e_align& ealign, const ::e_draw_text& edrawtext)
    {
 
       ::rectd rect;
 
       __copy(rect,&rectParam);
 
-      return draw_text(str,rect,nFormat);
+      return draw_text(str, rect, ealign, edrawtext);
 
    }
 
 
-   bool graphics::draw_text(const char * lpszString, strsize nCount, const ::rectd & rectParam, UINT nFormat)
-   {
-
-      return draw_text(string(lpszString,nCount),rectParam,nFormat);
-
-   }
-
-
-   bool graphics::draw_text(const string & str, const ::rectd & rectParam, UINT nFormat)
+   bool graphics::draw_text(const string & str, const ::rectd & rectParam, const ::e_align& ealign, const ::e_draw_text& edrawtext)
    {
 
       //try
@@ -4532,7 +4516,7 @@ namespace draw2d_opengl
       //                      | plusplus::StringFormatFlagsNoClip | plusplus::StringFormatFlagsMeasureTrailingSpaces
       //                      | plusplus::StringFormatFlagsLineLimit);
 
-      //if(nFormat & DT_LEFT)
+      //if(nFormat & e_align_left)
       //{
       //   format.SetAlignment(plusplus::StringAlignmentNear);
       //}
@@ -4540,7 +4524,7 @@ namespace draw2d_opengl
       //{
       //   format.SetAlignment(plusplus::StringAlignmentFar);
       //}
-      //else if(nFormat & DT_CENTER)
+      //else if(nFormat & e_align_horizontal_center)
       //{
       //   format.SetAlignment(plusplus::StringAlignmentCenter);
       //}
@@ -4549,15 +4533,15 @@ namespace draw2d_opengl
       //   format.SetAlignment(plusplus::StringAlignmentNear);
       //}
 
-      //if(nFormat & DT_BOTTOM)
+      //if(nFormat & e_align_bottom)
       //{
       //   format.SetLineAlignment(plusplus::StringAlignmentFar);
       //}
-      //else if(nFormat & DT_TOP)
+      //else if(nFormat & e_align_top)
       //{
       //   format.SetLineAlignment(plusplus::StringAlignmentNear);
       //}
-      //else if(nFormat & DT_VCENTER)
+      //else if(nFormat & e_align_vertical_center)
       //{
       //   format.SetLineAlignment(plusplus::StringAlignmentCenter);
       //}
@@ -4601,27 +4585,7 @@ namespace draw2d_opengl
    }
 
 
-   bool graphics::draw_text_ex(LPTSTR lpszString,strsize nCount,const ::rect & rectParam,UINT nFormat,LPDRAWTEXTPARAMS lpDTParams)
-   {
-
-      if (m_hdc == nullptr)
-      {
-
-         return false;
-
-      }
-
-      // these flags would modify the string
-      //ASSERT((nFormat & (DT_END_ELLIPSIS | DT_MODIFYSTRING)) != (DT_END_ELLIPSIS | DT_MODIFYSTRING));
-      //ASSERT((nFormat & (DT_PATH_ELLIPSIS | DT_MODIFYSTRING)) != (DT_PATH_ELLIPSIS | DT_MODIFYSTRING));
-      //wstring wstr = ::str::international::utf8_to_unicode(string(lpszString, nCount));
-      //return ::DrawTextExW(m_hdc,const_cast<wchar_t *>((const wchar_t *)wstr),(i32)wcslen(wstr),(LPRECT) &rectParam,nFormat,lpDTParams);
-      return false;
-
-   }
-
-
-   bool graphics::draw_text_ex(const string & str,const ::rect & rectParam,UINT nFormat,LPDRAWTEXTPARAMS lpDTParams)
+   bool graphics::draw_text_ex(const string & str, const ::rect & rectParam, const ::e_align& ealign, const ::e_draw_text& edrawtext, LPDRAWTEXTPARAMS lpDTParams)
    {
 
       // ASSERT(m_hdc != nullptr);
@@ -4637,18 +4601,12 @@ namespace draw2d_opengl
    }
 
 
-   bool graphics::draw_text_ex(const char * lpszString,strsize nCount,const ::rectd & rectParam,UINT nFormat,LPDRAWTEXTPARAMS lpDTParams)
+
+
+   bool graphics::draw_text_ex(const string & str,const ::rectd & rectParam, const ::e_align& ealign, const ::e_draw_text& edrawtext,LPDRAWTEXTPARAMS lpDTParams)
    {
 
-      return ::draw2d::graphics::draw_text_ex(lpszString,nCount,rectParam,nFormat,lpDTParams);
-
-   }
-
-
-   bool graphics::draw_text_ex(const string & str,const ::rectd & rectParam,UINT nFormat,LPDRAWTEXTPARAMS lpDTParams)
-   {
-
-      return ::draw2d::graphics::draw_text_ex(str,rectParam,nFormat,lpDTParams);
+      return ::draw2d::graphics::draw_text_ex(str,rectParam,ealign, edrawtext,lpDTParams);
 
    }
 
@@ -5022,28 +4980,60 @@ namespace draw2d_opengl
    }
 
 
-   void graphics::set(::draw2d::pen * ppen)
+   ::estatus graphics::set(::draw2d::region* pregion)
+   {
+
+      return ::success;
+
+   }
+
+
+   ::estatus graphics::set(::draw2d::pen * ppen)
    {
 
       //glLineWidth(ppen->m_dWidth);
 
       ::opengl::color(ppen->m_color);
 
+      return ::success;
+
    }
 
 
-   void graphics::set(::draw2d::brush * pbrush)
+
+   ::estatus graphics::set(::draw2d::brush * pbrush)
    {
 
       ::opengl::color(pbrush->m_color);
+      
+      return ::success;
 
    }
 
 
-   void graphics::set(const ::draw2d::font * pfont)
+
+   ::estatus graphics::set(::draw2d::font * pfont)
    {
 
       pfont->get_os_data(this);
+
+      return ::success;
+
+   }
+
+
+   ::estatus graphics::set(::draw2d::bitmap* pbitmap)
+   {
+
+      return ::success;
+
+   }
+
+
+   ::draw2d::object* graphics::set_stock_object(i32 nIndex)
+   {
+
+      return nullptr;
 
    }
 

@@ -93,33 +93,33 @@
 //
 //   point64 ::point();
 //
-//   if((align & align_horizontal) == align_horizontal_center)
+//   if((align & align_horizontal) == e_align_horizontal_center)
 //   {
 //      point.x = rect.left + (rect.right - rect.left) / 2 - width() / 2 - left;
 //
 //   }
-//   else if((align & align_horizontal) == align_left)
+//   else if((align & align_horizontal) == e_align_left)
 //   {
 //      point.x = rect.left - left;
 //
 //   }
-//   else if((align & align_horizontal) == align_right)
+//   else if((align & align_horizontal) == e_align_right)
 //   {
 //      point.x = rect.right - right;
 //
 //   }
 //
-//   if((align & align_vertical) ==  align_vertical_center)
+//   if((align & align_vertical) ==  e_align_vertical_center)
 //   {
 //      point.y = rect.top + (rect.bottom - rect.top) / 2 - height() / 2 - top;
 //
 //   }
-//   else if((align & align_vertical) == align_top)
+//   else if((align & align_vertical) == e_align_top)
 //   {
 //      point.y = rect.top - top;
 //
 //   }
-//   else if((align & align_vertical) == align_bottom)
+//   else if((align & align_vertical) == e_align_bottom)
 //   {
 //      point.y = rect.bottom - bottom;
 //

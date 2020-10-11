@@ -1907,7 +1907,7 @@ i32 file_context::cmp(const ::file::path & psz1, const ::file::path & psz2)
 //
 //   str.Format("%I64dn", iNumber);
 //
-//   pfile->write((const char *)str, str.get_length());
+//   pfile->write((const char *)str);
 //
 //   if (pctx != nullptr)
 //   {
@@ -1959,7 +1959,7 @@ i32 file_context::cmp(const ::file::path & psz1, const ::file::path & psz2)
 //{
 //   ::count iLen = str.get_length();
 //   write_n_number(pfile, pctx, iLen);
-//   pfile->write((const char *)str, str.get_length());
+//   pfile->write((const char *)str);
 //   if (pctx != nullptr)
 //   {
 //      MD5_Update((MD5_CTX *)pctx, (const char *)str, (i32)str.get_length());

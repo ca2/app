@@ -11,53 +11,11 @@ namespace draw2d
    public:
 
 
-      
-      enum e_type
-      {
-
-         type_null,
-         type_solid,
-         type_dot,
-         type_brush,
-         type_dash
-
-      };
-
-
-      enum e_line_cap
-      {
-
-         line_cap_flat,
-         line_cap_round,
-         line_cap_square,
-
-      };
-
-      enum e_align
-      {
-
-         align_center,
-         align_inset,
-
-      };
-
-
-      enum e_line_join
-      {
-
-         line_join_miter,
-         line_join_bevel,
-         line_join_round,
-         line_join_miter_clipped
-
-      };
-
-
-      e_type                  m_etype;
-      e_line_cap              m_elinecapBeg;
-      e_line_cap              m_elinecapEnd;
-      e_line_join             m_elinejoin;
-      e_align                 m_ealign;
+      enum_pen                m_epen;
+      enum_line_cap           m_elinecapBeg;
+      enum_line_cap           m_elinecapEnd;
+      enum_line_join          m_elinejoin;
+      enum_pen_align          m_epenalign;
       double                  m_dWidth;
       ::color                 m_color;
       __pointer(brush)        m_pbrush;
@@ -70,17 +28,17 @@ namespace draw2d
       virtual void dump(dump_context & dumpcontext) const;
 
       virtual bool create_null();
-      virtual bool create_solid(double dWidth, COLORREF crColor);
+      virtual bool create_solid(double dWidth, const ::color &color);
       virtual bool create_brush(double dWidth, ::draw2d::brush * pbrush);
 
-      virtual e_line_cap get_beg_cap();
-      virtual bool set_beg_cap(e_line_cap ebegcap);
+      virtual enum_line_cap get_beg_cap();
+      virtual bool set_beg_cap(enum_line_cap ebegcap);
 
-      virtual e_line_cap get_end_cap();
-      virtual bool set_end_cap(e_line_cap eendcap);
+      virtual enum_line_cap get_end_cap();
+      virtual bool set_end_cap(enum_line_cap eendcap);
 
-      virtual e_line_join get_line_join();
-      virtual bool set_line_join(e_line_join elinejoin);
+      virtual enum_line_join get_line_join();
+      virtual bool set_line_join(enum_line_join elinejoin);
 
       pen & operator = (const pen & penSrc);
 

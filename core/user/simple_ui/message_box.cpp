@@ -257,7 +257,7 @@ namespace simple_ui
 
       rect.deflate(10, 10);
 
-      pgraphics->draw_text(strMessage, rect,DT_LEFT | DT_TOP | DT_EXPANDTABS);
+      pgraphics->draw_text(strMessage, rect,e_align_top_left | DT_EXPANDTABS);
 
    }
 

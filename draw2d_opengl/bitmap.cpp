@@ -100,7 +100,7 @@ namespace draw2d_opengl
    }
 
 
-   bool bitmap::CreateDIBSection(::draw2d::graphics * pgraphics, const ::size& size, UINT usage, void** ppcolorref, int* piScan, HANDLE hSection, u32 offset)
+   bool bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::size& size, void** ppcolorref, int* piScan)
    {
 
       UNREFERENCED_PARAMETER(pgraphics);

@@ -110,7 +110,7 @@ namespace draw2d_quartz2d
       
       init(size, pcolorref, iScan);
 
-      m_pgraphics->m_pimageimplDraw2dGraphics = this;
+      m_pgraphics->m_pimage = this;
       
 //      m_sizeRaw = size;
 //

@@ -8,6 +8,7 @@ namespace aqua
    game::game()
    {
 
+      m_pauragame = nullptr;
 
    }
 

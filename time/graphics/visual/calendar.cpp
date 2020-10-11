@@ -52,7 +52,7 @@ namespace datetime
             rectDay.deflate(m_iColWidth / 10,m_iLineHeight / 10);
             string strDay;
             strDay.Format("%s",GetTinyWeekDay(pgraphics->str_context(),iDay));
-            pgraphics->draw_text(strDay,rectDay,DT_BOTTOM | DT_RIGHT);
+            pgraphics->draw_text(strDay,rectDay,e_align_bottom_right);
          }
          for(iDay = 1; iDay <= 33; iDay++)
          {
@@ -75,7 +75,7 @@ namespace datetime
             rectDay.deflate(m_iColWidth / 5,m_iLineHeight / 5);
             string strDay;
             strDay.Format("%d",iDay);
-            pgraphics->draw_text(strDay,rectDay,DT_BOTTOM | DT_RIGHT);
+            pgraphics->draw_text(strDay,rectDay,e_align_bottom_right);
             time += timespan;
             if(time.GetMonth() != iMonth)
                break;
@@ -93,7 +93,7 @@ namespace datetime
             rectDay.deflate(m_iColWidth / 5,m_iLineHeight / 5);
             string strDay;
             strDay.Format("%d",timeNow.GetDay());
-            pgraphics->draw_text(strDay,rectDay,DT_BOTTOM | DT_RIGHT);
+            pgraphics->draw_text(strDay,rectDay,e_align_bottom_right);
          }
          ::datetime::time timeEmp = m_time;
          for(int32_t iDay = timeEmp.GetDay(); time.GetYear() == iYear
@@ -110,7 +110,7 @@ namespace datetime
             rectDay.deflate(m_iColWidth / 5,m_iLineHeight / 5);
             string strDay;
             strDay.Format("%d",timeEmp.GetDay());
-            pgraphics->draw_text(strDay,rectDay,DT_BOTTOM | DT_RIGHT);
+            pgraphics->draw_text(strDay,rectDay,e_align_bottom_right);
          }
 
          pgraphics->set(m_pfontYear);
@@ -118,23 +118,23 @@ namespace datetime
          GetRect(rect,e_element_year_title);
          string strYear;
          strYear.Format("%d",iYear);
-         pgraphics->draw_text(strYear,rect,DT_CENTER | DT_VCENTER);
+         pgraphics->draw_text(strYear,rect,e_align_horizontal_center | e_align_vertical_center);
 
          pgraphics->set(m_pfontMonth);
          GetRect(rect,e_element_month_title);
          string strMonth;
          strMonth = GetMonth(pgraphics->str_context(),iMonth);
-         pgraphics->draw_text(strMonth,rect,DT_CENTER | DT_VCENTER);
+         pgraphics->draw_text(strMonth,rect,e_align_horizontal_center | e_align_vertical_center);
 
          pgraphics->set(m_pfontSpin);
          GetRect(rect,e_element_previous_year);
-         pgraphics->draw_text("<<",rect,DT_CENTER | DT_VCENTER);
+         pgraphics->draw_text("<<",rect,e_align_horizontal_center | e_align_vertical_center);
          GetRect(rect,e_element_next_year);
-         pgraphics->draw_text(">>",rect,DT_CENTER | DT_VCENTER);
+         pgraphics->draw_text(">>",rect,e_align_horizontal_center | e_align_vertical_center);
          GetRect(rect,e_element_previous_month);
-         pgraphics->draw_text("<",rect,DT_CENTER | DT_VCENTER);
+         pgraphics->draw_text("<",rect,e_align_horizontal_center | e_align_vertical_center);
          GetRect(rect,e_element_next_month);
-         pgraphics->draw_text(">",rect,DT_CENTER | DT_VCENTER);
+         pgraphics->draw_text(">",rect,e_align_horizontal_center | e_align_vertical_center);
       }
 
 

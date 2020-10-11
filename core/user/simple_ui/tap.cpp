@@ -476,7 +476,7 @@ namespace simple_ui
 
       pgraphics->set(f);
 
-      pgraphics->draw_text(get_window_text(), rectClient, DT_LEFT | DT_VCENTER);
+      pgraphics->draw_text(get_window_text(), rectClient, e_align_left_center);
 
    }
 

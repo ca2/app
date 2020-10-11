@@ -22,7 +22,7 @@ namespace user
          __pointer(class format)        m_pformat;
 
 
-         e_align           m_ealignNewLine;
+         ::e_align           m_ealignNewLine;
          string            m_str;
 
          // Common thing among indexes:
@@ -48,7 +48,7 @@ namespace user
 
          span();
          span(class data * pdata);
-         span(class data * pdata, e_align ealignNewLine);
+         span(class data * pdata, ::e_align ealignNewLine);
          span(class data * pdata, const span & span);
          span(const span & span);
          virtual ~span();
@@ -56,9 +56,9 @@ namespace user
 
          void set_new_format();
 
-         bool is_new_line() const { return m_ealignNewLine != align_none; }
+         bool is_new_line() const { return m_ealignNewLine != e_align_none; }
 
-         e_align get_align() const;
+         ::e_align get_align() const;
 
          inline __pointer(class format) fork_format();
 

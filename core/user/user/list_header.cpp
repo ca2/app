@@ -56,7 +56,7 @@ namespace user
 
          rC.left += 2;
 
-         rect.Align(::align_left_center, rC);
+         rect.Align(::e_align_left_center, rC);
 
          pgraphics->draw(rect, plist->m_columna.get_visible(iColumn)->m_pimageHeader->get_graphics());
 
@@ -78,9 +78,12 @@ namespace user
          //      pgraphics->SetBkMode(TRANSPARENT);
 
          pgraphics->set_text_color(get_color(pstyle, ::user::element_text));
-         int i = plist->_001GetDrawTextFlags(plist->m_eview);
+         
+         ::e_align ealign = plist->get_draw_text_align(plist->m_eview);
+         
+         ::e_draw_text edrawtext = plist->get_draw_text_flags(plist->m_eview);
 
-         pgraphics->draw_text(str, str.get_length(), rectColumn, i);
+         pgraphics->draw_text(str, rectColumn, ealign, edrawtext);
 
       }
 

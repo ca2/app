@@ -342,17 +342,17 @@ namespace draw2d_cairo
       virtual size TabbedTextOut(i32 x, i32 y, const string & str, count nTabPositions, LPINT lpnTabStopPositions, i32 nTabOrigin) override;
 
 #if defined(USE_PANGO)
-      //virtual bool internal_draw_text_cairo(const char * lpszString, strsize nCount, const ::rect & rect, UINT nFormat, PFN_CAIRO_TEXT pfnText);
-      virtual bool internal_draw_text_pango(const char * lpszString, strsize nCount, const ::rectd & rect, UINT nFormat, PFN_PANGO_TEXT pfnText);
-      virtual bool internal_draw_text(const char * lpszString, strsize nCount, const ::rectd & rect, UINT nFormat);
+      //virtual bool internal_draw_text_cairo(const char * lpszString, strsize nCount, const ::rect & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, PFN_CAIRO_TEXT pfnText);
+      virtual bool internal_draw_text_pango(const char * lpszString, strsize nCount, const ::rectd & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, PFN_PANGO_TEXT pfnText);
+      virtual bool internal_draw_text(const char * lpszString, strsize nCount, const ::rectd & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none);
 #else
-      virtual bool internal_draw_text(const char * lpszString, strsize nCount, const ::rectd & rect, UINT nFormat, PFN_CAIRO_TEXT ftext);
+      virtual bool internal_draw_text(const char * lpszString, strsize nCount, const ::rectd & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, PFN_CAIRO_TEXT ftext);
 #endif
-      virtual bool draw_text(const char * lpszString, strsize nCount, const ::rect & rect, UINT nFormat) override;
-      virtual bool draw_text(const string & str, const ::rect & rect, UINT nFormat) override;
+      virtual bool draw_text(const char * lpszString, strsize nCount, const ::rect & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
+      virtual bool draw_text(const string & str, const ::rect & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
 
-      virtual bool draw_text_ex(LPTSTR lpszString, strsize nCount, const ::rect & rect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
-      virtual bool draw_text_ex(const string & str, const ::rect & rect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams) override;
+      virtual bool draw_text_ex(LPTSTR lpszString, strsize nCount, const ::rect & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPDRAWTEXTPARAMS lpDTParams);
+      virtual bool draw_text_ex(const string & str, const ::rect & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPDRAWTEXTPARAMS lpDTParams) override;
 
       sized GetTextExtent(const char * lpszString, strsize nCount, strsize iIndex) override;
       sized GetTextExtent(const char * lpszString, strsize nCount) override;
@@ -406,7 +406,7 @@ namespace draw2d_cairo
 //      u32 GetFontData(u32 dwTable, u32 dwOffset, LPVOID lpData, u32 cbData) override;
       //xxx      i32 GetKerningPairs(i32 nPairs, LPKERNINGPAIR lpkrnpair) override;
       //xxx      UINT GetOutlineTextMetrics(UINT cbData, LPOUTLINETEXTMETRICW lpotm) override;
-      //xxx      u32 GetGlyphOutline(UINT nChar, UINT nFormat, LPGLYPHMETRICS lpgm,
+      //xxx      u32 GetGlyphOutline(UINT nChar, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPGLYPHMETRICS lpgm,
       //xxx    u32 cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2) override;
 
       //xxx      bool GetCharABCWidths(UINT nFirstChar, UINT nLastChar,

@@ -371,7 +371,8 @@ namespace draw2d
    ::draw2d::fastblur & blur,
    ::image_pointer & imageBlur,
    ::draw2d::font * pfont,
-   int iDrawTextFlags,
+   const ::e_align & e_align,
+   const ::e_draw_text& edrawtext,
    COLORREF crText,
    COLORREF crGlow,
    int iSpreadRadius,
@@ -392,7 +393,7 @@ namespace draw2d
       {
 
          pgraphics->set(pfont);
-         pgraphics->_DrawText(strText, *rect, iDrawTextFlags);
+         pgraphics->_DrawText(strText, *rect, e_align, edrawtext);
 
       };
 
@@ -414,7 +415,7 @@ namespace draw2d
       pbrushText->create_solid((crText & 0x00ffffffu) | (bA << 24));
       pgraphics->set(pbrushText);
       pgraphics->set(pfont);
-      pgraphics->_DrawText(strText, *rect, iDrawTextFlags);
+      pgraphics->_DrawText(strText, *rect, e_align, edrawtext);
 
       return true;
 

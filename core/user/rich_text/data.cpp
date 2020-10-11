@@ -112,7 +112,7 @@ namespace user
 
       }
 
-      __pointer(span) data::create_span(e_align ealignNewLine)
+      __pointer(span) data::create_span(::e_align ealignNewLine)
       {
 
          return __new(span(this, ealignNewLine));
@@ -130,7 +130,7 @@ namespace user
       }
 
 
-      __pointer(span) data::add_span(e_align ealignNewLine)
+      __pointer(span) data::add_span(::e_align ealignNewLine)
       {
 
          sync_lock sl(mutex());
@@ -200,9 +200,9 @@ namespace user
 
             *pformat = *pspanBeg->m_pformat;
 
-            e_align ealign = pspanBeg->get_align();
+            ::e_align e_align = pspanBeg->get_align();
 
-            pformat->m_ealign = ealign;
+            pformat->m_ealign = e_align;
 
             while (true)
             {
@@ -216,10 +216,10 @@ namespace user
 
                }
 
-               if (m_spana[iSpanBeg]->m_ealignNewLine != align_none)
+               if (m_spana[iSpanBeg]->m_ealignNewLine != e_align_none)
                {
 
-                  ealign = align_none;
+                  e_align = e_align_none;
 
                }
 
@@ -555,7 +555,7 @@ namespace user
                   else
                   {
 
-                     pspanNext->m_ealignNewLine = align_none;
+                     pspanNext->m_ealignNewLine = e_align_none;
 
                   }
 
@@ -670,7 +670,7 @@ namespace user
 
             pformat = m_pformatCurrent;
 
-            ealignNewLine = align_left;
+            ealignNewLine = e_align_left;
 
             iSpan = 0;
 
@@ -695,7 +695,7 @@ namespace user
             if (pformatParam != nullptr)
             {
 
-               if (iLine <= 0 || pformatParam->m_ealign != align_none)
+               if (iLine <= 0 || pformatParam->m_ealign != e_align_none)
                {
 
                   pspan = create_span(pformatParam->m_ealign);
@@ -1107,10 +1107,10 @@ namespace user
 
          }
 
-         if (m_spana.first()->m_ealignNewLine == align_none)
+         if (m_spana.first()->m_ealignNewLine == e_align_none)
          {
 
-            m_spana.first()->m_ealignNewLine = align_left;
+            m_spana.first()->m_ealignNewLine = e_align_left;
 
          }
 
@@ -1144,7 +1144,7 @@ namespace user
          //if (m_spana.is_empty())
          //{
 
-         //   add_span(align_left);
+         //   add_span(e_align_left);
 
          //   m_spana.first_pointer()->m_iFormat = 0;
 
@@ -1159,13 +1159,13 @@ namespace user
          //else if (!m_spana[0]->is_new_line())
          //{
 
-         //   m_spana[0]->m_ealignNewLine = align_left;
+         //   m_spana[0]->m_ealignNewLine = e_align_left;
 
          //}
 
          // horizontal span
 
-         e_align ealign = align_center;
+         ::e_align e_align = e_align_center;
 
          __pointer_array(span) spana;
 
@@ -1251,7 +1251,7 @@ namespace user
 
                bLineWrap = false;
 
-               ealign = pspan->m_ealignNewLine;
+               e_align = pspan->m_ealignNewLine;
 
                x = (int) rect.left;
 
@@ -2175,8 +2175,8 @@ namespace user
 
                   ::draw2d::path_pointer path(e_create);
 
-                  //path->add_draw_text(pbox->get_text(), rect, DT_LEFT | DT_BOTTOM | DT_SINGLELINE, pformat->get_font(pgraphics), pformat->m_crForeground);
-                  path->add_draw_text(pbox->get_text(), rect, DT_LEFT | DT_BOTTOM | DT_SINGLELINE, pformat->get_font(pgraphics));
+                  //path->add_draw_text(pbox->get_text(), rect, e_align_bottom_left | DT_SINGLELINE, pformat->get_font(pgraphics), pformat->m_crForeground);
+                  path->add_draw_text(pbox->get_text(), rect, e_align_bottom_left, e_draw_text_single_line, pformat->get_font(pgraphics));
 
                   ::draw2d::pen_pointer pen(e_create);
 
@@ -2202,7 +2202,7 @@ namespace user
 
                   string strText = pbox->get_text();
 
-                  pgraphics->draw_text(strText, rect, DT_LEFT | DT_BOTTOM | DT_SINGLELINE);
+                  pgraphics->draw_text(strText, rect, e_align_bottom_left | DT_SINGLELINE);
 
                }
 

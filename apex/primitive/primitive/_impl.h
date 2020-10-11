@@ -160,7 +160,7 @@ inline void context_object::defer_propset() { if (!m_pset) ::__construct_new(m_p
 //  if (::is_set(m_pmemory))
 //  {
 //
-//     m_pmemory->from_base64(str, str.get_length());
+//     m_pmemory->from_base64(str);
 //
 //     return true;
 //
@@ -168,7 +168,7 @@ inline void context_object::defer_propset() { if (!m_pset) ::__construct_new(m_p
 //  else
 //  {
 //
-//     return ::get_context_system()->m_pbase64->decode(m_block, str, str.get_length());
+//     return ::get_context_system()->m_pbase64->decode(m_block, str);
 //
 //  }
 //

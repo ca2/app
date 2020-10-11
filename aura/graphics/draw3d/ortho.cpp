@@ -141,11 +141,11 @@ namespace draw3d
             pen->create_solid((1.05 - r) * 10.0,ARGB((int)(dA * (255.0 - r * 200.0)),ca.m_iR,ca.m_iG,ca.m_iB));
             if(i < 6)
             {
-               pen->m_etype = ::draw2d::pen::type_dot;
+               pen->m_epen = ::draw2d::e_pen_dot;
             }
             else
             {
-               pen->m_etype = ::draw2d::pen::type_solid;
+               pen->m_epen = ::draw2d::e_pen_solid;
             }
 
             m_pdc->set(pen);
@@ -301,11 +301,11 @@ namespace draw3d
             /*pen->create_solid((1.05 - r) * 10.0,ARGB((int)(dA * (255.0 - r * 200.0)),ca.m_iR,ca.m_iG,ca.m_iB));
             if(i < 6)
             {
-            pen->m_etype = ::draw2d::pen::type_dot;
+            pen->m_etype = ::draw2d::e_pen_dot;
             }
             else
             {
-            pen->m_etype = ::draw2d::pen::type_solid;
+            pen->m_etype = ::draw2d::e_pen_solid;
             }
             m_pdc->set(pen);*/
 

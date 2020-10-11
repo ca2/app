@@ -201,7 +201,9 @@ namespace user
 
          get_window_text(strText);
 
-         int iDrawParams = DT_LEFT | DT_VCENTER | DT_SINGLELINE;
+         ::e_align ealign = e_align_left_center;
+         
+         ::e_draw_text edrawtext = e_draw_text_single_line;
 
          pgraphics->set_font(this);
 
@@ -222,7 +224,7 @@ namespace user
 
          pgraphics->set_text_color(crText);
 
-         pgraphics->draw_text(strText, rectText, iDrawParams);
+         pgraphics->draw_text(strText, rectText, ealign, edrawtext);
 
       }
 
@@ -338,7 +340,7 @@ namespace user
 
       p0->create_solid(2.0, ARGB(255, 90, 150, 255));
 
-      point1->m_ealign = draw2d::pen::align_center;
+      point1->m_epenalign = ::draw2d::e_pen_align_center;
 
       br1->create_solid(ARGB(255, 90, 150, 255));
 
@@ -427,7 +429,7 @@ namespace user
          if (echeck() == ::check_unchecked)
          {
 
-            rectEllipse.Align({align_left, align_vertical_center}, rect);
+            rectEllipse.Align({ e_align_left, e_align_vertical_center}, rect);
 
             rectEllipse.rate(0.6);
 
@@ -458,7 +460,7 @@ namespace user
 
             pgraphics->path(point);
 
-            rectEllipse.Align(align_right | align_vertical_center, rect);
+            rectEllipse.Align(e_align_right | e_align_vertical_center, rect);
 
             rectEllipse.rate(0.6);
 

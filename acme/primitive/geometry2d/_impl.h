@@ -160,6 +160,39 @@ inline string __xmlpri<double>()
 }
 
 
+template < >
+inline ___shape* __new_shape(const enum_shape& eshape)
+{
+
+   switch (eshape)
+   {
+   case e_shape_none:
+      return nullptr;
+   case e_shape_begin_clip:
+      return new begin_clip_shape;
+   case e_shape_intersect_clip:
+      return new intersect_clip_shape;
+   case e_shape_begin_figure:
+      return new begin_figure_shape;
+   case e_shape_close_figure:
+      return new close_figure_shape;
+   default:
+      __throw(not_implemented("new geometry processor or not a geometry processor?"));
+      return nullptr;
+   }
+
+}
+
+
+template < typename GEOMETRY >
+inline ___shape* __new_shape(const GEOMETRY& geometry)
+{
+
+   __throw(not_implemented("unimplemented geometry"));
+
+   return nullptr;
+
+}
 
 
 

@@ -233,7 +233,7 @@ namespace user
                rect.right = rectClient.right;
                rect.bottom = LONG(y - pointOffset.y);
 
-               pgraphics->_DrawText(m_strTopText.Mid(iStart, i - iStart), rect, DT_LEFT);
+               pgraphics->_DrawText(m_strTopText.Mid(iStart, i - iStart), rect, e_align_left);
                iStart = iNewStart;
             }
          }
@@ -480,7 +480,9 @@ namespace user
 
       rectClient.offset(get_viewport_offset());
 
-      m_pdrawlistitem->m_iDrawTextFlags = _001GetDrawTextFlags(m_eview);
+      m_pdrawlistitem->m_ealign = get_draw_text_align(m_eview);
+
+      m_pdrawlistitem->m_edrawtext = get_draw_text_flags(m_eview);
 
       bool bHoverFont = false;
 
@@ -3091,7 +3093,7 @@ namespace user
                         rectAlign.left = x;
                         ::rect rectIcon;
                         rectIcon.set(0, 0, pdrawitem->m_pcolumn->m_sizeIcon.cx, pdrawitem->m_pcolumn->m_sizeIcon.cy);
-                        rectIcon.Align(align_left_center, rectAlign);
+                        rectIcon.Align(e_align_left_center, rectAlign);
                         pdrawitem->m_rectImage = rectIcon;
 
                         return_(pdrawitem->m_bOk, true);
@@ -3136,7 +3138,7 @@ namespace user
                         rectAlign.left = x;
                         ::rect rectIcon;
                         rectIcon.set(0, 0, ii.m_rect.width(), ii.m_rect.height());
-                        rectIcon.Align(align_left_center, rectAlign);
+                        rectIcon.Align(e_align_left_center, rectAlign);
                         pdrawitem->m_rectImage = rectIcon;
 
                         return_(pdrawitem->m_bOk, true);
@@ -5856,18 +5858,18 @@ namespace user
    //}
 
 
-   void list::_001EnsureVisible(index iItem, e_align ealign, bool bRedraw)
+   void list::_001EnsureVisible(index iItem, ::e_align e_align, bool bRedraw)
    {
 
       auto pointOffset = get_viewport_offset();
 
-      if (ealign & align_vertical_center)
+      if (e_align & e_align_vertical_center)
       {
 
          iItem = iItem - (max(0, m_nDisplayCount - 2) / 2);
 
       }
-      else if (ealign & align_bottom)
+      else if (e_align & e_align_bottom)
       {
 
          iItem = min(iItem + m_nDisplayCount - 1, _001GetItemCount() - 1);
@@ -7533,7 +7535,7 @@ namespace user
                      m_plist->m_blur,
                      pimage2,
                      m_pgraphics->m_pfont,
-                     m_iDrawTextFlags,
+                  m_ealign, m_edrawtext,
                      m_crText,
                      m_crTextBackground,
                      m_plist->m_iTextSpreadRadius, m_plist->m_iTextBlurRadius,
@@ -7707,10 +7709,18 @@ namespace user
    }
 
 
-   i32 list::_001GetDrawTextFlags(EView eview)
+   e_align list::get_draw_text_align(EView eview)
    {
 
-      return m_pdrawmeshitem->m_iDrawTextFlags;
+      return m_pdrawmeshitem->m_ealign;
+
+   }
+
+
+   e_draw_text list::get_draw_text_flags(EView eview)
+   {
+
+      return m_pdrawmeshitem->m_edrawtext;
 
    }
 

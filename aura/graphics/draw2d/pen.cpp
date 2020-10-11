@@ -8,17 +8,20 @@ namespace draw2d
    pen::pen()
    {
 
-      m_elinecapBeg           = line_cap_flat;
-      m_elinecapEnd           = line_cap_flat;
-      m_elinejoin             = line_join_miter;
+      m_elinecapBeg           = ::draw2d::e_line_cap_flat;
+      m_elinecapEnd           = ::draw2d::e_line_cap_flat;
+      m_elinejoin             = ::draw2d::e_line_join_miter;
       m_color                 = ARGB(127, 0, 0, 0);
-      m_etype                 = type_solid;
+      m_epen                  = e_pen_solid;
       m_dWidth                = 1.0;
-      m_ealign                = align_center;
+      m_epenalign             = e_pen_align_center;
+
    }
+
 
    pen::~pen()
    {
+
    }
 
 
@@ -32,7 +35,7 @@ namespace draw2d
    bool pen::create_null()
    {
 
-      m_etype                 = type_null;
+      m_epen                  = e_pen_null;
       m_dWidth                = 0.0;
       m_color                 = ARGB(0, 0, 0, 0);
       
@@ -43,18 +46,18 @@ namespace draw2d
    }
 
 
-   bool pen::create_solid(double dWidth, COLORREF crColor)
+   bool pen::create_solid(double dWidth, const ::color& color)
    {
 
-      if (m_etype == type_solid
+      if (m_epen == e_pen_solid
             && dWidth >= (m_dWidth - 0.1)
             && dWidth <= (m_dWidth + 0.1)
-            && m_color == crColor)
+            && m_color == color)
          return true;
 
-      m_etype                 = type_solid;
-      m_dWidth                = dWidth;
-      m_color                 = crColor;
+      m_epen            = e_pen_solid;
+      m_dWidth          = dWidth;
+      m_color           = color;
       
       set_modified();
 
@@ -66,7 +69,7 @@ namespace draw2d
    bool pen::create_brush(double dWidth, ::draw2d::brush * pbrush)
    {
 
-      m_etype = type_brush;
+      m_epen = e_pen_brush;
       m_dWidth = dWidth;
       m_pbrush = pbrush;
 
@@ -80,27 +83,30 @@ namespace draw2d
    pen & pen::operator = (const pen & penSrc)
    {
 
-      m_etype           = penSrc.m_etype;
+      m_epen            = penSrc.m_epen;
       m_dWidth          = penSrc.m_dWidth;
       m_color           = penSrc.m_color;
       m_pbrush          = penSrc.m_pbrush;
       m_elinecapBeg     = penSrc.m_elinecapBeg;
       m_elinecapEnd     = penSrc.m_elinecapEnd;
       m_elinejoin       = penSrc.m_elinejoin;
+      m_epenalign       = penSrc.m_epenalign;
       set_modified();
 
       return *this;
 
    }
 
-   pen::e_line_cap pen::get_beg_cap()
+
+   enum_line_cap pen::get_beg_cap()
    {
 
       return m_elinecapBeg;
 
    }
 
-   bool pen::set_beg_cap(e_line_cap elinecapBeg)
+
+   bool pen::set_beg_cap(enum_line_cap elinecapBeg)
    {
 
       m_elinecapBeg = elinecapBeg;
@@ -110,14 +116,15 @@ namespace draw2d
    }
 
 
-   pen::e_line_cap pen::get_end_cap()
+   enum_line_cap pen::get_end_cap()
    {
 
       return m_elinecapEnd;
 
    }
 
-   bool pen::set_end_cap(e_line_cap elinecapEnd)
+
+   bool pen::set_end_cap(enum_line_cap elinecapEnd)
    {
 
       m_elinecapEnd = elinecapEnd;
@@ -127,7 +134,7 @@ namespace draw2d
    }
 
 
-   pen::e_line_join pen::get_line_join()
+   enum_line_join pen::get_line_join()
    {
 
       return m_elinejoin;
@@ -135,7 +142,7 @@ namespace draw2d
    }
 
    
-   bool pen::set_line_join(e_line_join elinejoin)
+   bool pen::set_line_join(enum_line_join elinejoin)
    {
 
       m_elinejoin = elinejoin;

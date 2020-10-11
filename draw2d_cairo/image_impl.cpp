@@ -169,7 +169,7 @@ namespace draw2d_cairo
 
       m_pgraphics->set(m_pbitmap);
       m_pgraphics->SetViewportOrg(m_point);
-      m_pgraphics->m_pimageimplDraw2dGraphics = this;
+      m_pgraphics->m_pimage = this;
       m_sizeRaw = size;
       m_sizeAlloc = size;
       m_pcolorref1 = nullptr;

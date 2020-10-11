@@ -688,7 +688,7 @@ namespace experience
 
                   pgraphics->set_font(pframewindow, ::user::element_window_title);
 
-                  pgraphics->_DrawText(wstrWindowText, m_rectWindowText, DT_LEFT | DT_VCENTER | DT_NOPREFIX);
+                  pgraphics->_DrawText(wstrWindowText, m_rectWindowText, { e_align_left, e_align_vertical_center}, e_draw_text_no_prefix);
 
                }
 

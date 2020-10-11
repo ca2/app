@@ -779,14 +779,14 @@ size simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
       draw2d::graphics_extension::_DrawText(pgraphics,
          button.m_wstr,
          rect,
-         DT_VCENTER | DT_LEFT);
+         e_align_left_center);
    }
 
    pgraphics->set_text_color(RGB(0, 0, 0));
    draw2d::graphics_extension::_DrawText(pgraphics,
       button.m_wstr,
       rectText,
-      DT_VCENTER | DT_LEFT);
+      e_align_left_center);
 
 
 }

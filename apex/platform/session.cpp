@@ -4363,7 +4363,7 @@ namespace apex
    //   if (straTitle.get_count() <= 1)
    //   {
 
-   //      pgraphics->_DrawText(pane.get_title(), rect, DT_LEFT | DT_BOTTOM | DT_NOPREFIX);
+   //      pgraphics->_DrawText(pane.get_title(), recte_bottom_left, e_draw_text_no_prefix);
 
    //   }
    //   else
@@ -4381,7 +4381,7 @@ namespace apex
    //         string str = straTitle[i];
    //         size s = pane.m_sizeaText[i];
    //         rectText.right = rectText.left + s.cx;
-   //         pgraphics->_DrawText(str, rectText, DT_LEFT | DT_BOTTOM | DT_NOPREFIX);
+   //         pgraphics->_DrawText(str, rectTexte_bottom_left, e_draw_text_no_prefix);
    //         rectText.left += s.cx;
    //         if (i < straTitle.get_upper_bound())
    //         {
@@ -4402,7 +4402,7 @@ namespace apex
    //            }
    //            pgraphics->set(ptab->m_pfontTab);
    //            pgraphics->set_alpha_mode(emode);
-   //            pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT, rectText, DT_CENTER | DT_VCENTER | DT_NOPREFIX);
+   //            pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT, rectText, e_align_horizontal_center | e_align_vertical_center | DT_NOPREFIX);
    //            rectText.left += sSep.cx;
    //            pgraphics->set(font);
    //            pgraphics->set(brushText);

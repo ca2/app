@@ -449,7 +449,7 @@ namespace draw2d_direct2d
 
             // The following commented out code does not work well when there is clipping
             // and some calculations are not precise
-            //if (m_pimageimplDraw2dGraphics->is_set() && pgraphicsSrc->m_pimageimplDraw2dGraphics->is_set())
+            //if (m_pimage->is_set() && pgraphicsSrc->m_pimage->is_set())
             //{
 
             //   ::point pointOff = GetViewportOrg();
@@ -458,7 +458,7 @@ namespace draw2d_direct2d
 
             //   y += pointOff.y;
 
-            //   return m_pimageimplDraw2dGraphics->blend(::point(x, y), pgraphicsSrc->m_pimageimplDraw2dGraphics, ::point(xSrc, ySrc), m_pimageAlphaBlend, point(m_pointAlphaBlend.x - x, m_pointAlphaBlend.y - y), rectBlt.size());
+            //   return m_pimage->blend(::point(x, y), pgraphicsSrc->m_pimage, ::point(xSrc, ySrc), m_pimageAlphaBlend, point(m_pointAlphaBlend.x - x, m_pointAlphaBlend.y - y), rectBlt.size());
 
             //}
             //else
@@ -2206,7 +2206,7 @@ namespace draw2d_direct2d
 //
 //   }
 //
-//   u32 graphics::GetGlyphOutline(UINT nChar, UINT nFormat, LPGLYPHMETRICS lpgm,  u32 cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2)
+//   u32 graphics::GetGlyphOutline(UINT nChar, const ::e_align & ealign, const ::e_draw_text & edrawtext, LPGLYPHMETRICS lpgm,  u32 cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2)
 //   {
 //
 //      __throw(todo());
@@ -4309,7 +4309,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics::draw_text(const char * lpszString, strsize nCount, const ::rect & rect, UINT nFormat)
+   bool graphics::draw_text(const char * lpszString, strsize nCount, const ::rect & rect, const ::e_align & ealign, const ::e_draw_text & edrawtext)
    {
 
       if (nCount < 0)
@@ -4324,7 +4324,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics::draw_text(const string & str,const ::rect & rect,UINT nFormat)
+   bool graphics::draw_text(const string & str,const ::rect & rect, const ::e_align & ealign, const ::e_draw_text & edrawtext)
    {
 
       if (str.is_empty())
@@ -4379,7 +4379,7 @@ namespace draw2d_direct2d
          pfont->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_TRAILING);
 
       }
-      else if (nFormat & DT_CENTER)
+      else if (nFormat & e_align_horizontal_center)
       {
 
          pfont->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_CENTER);
@@ -4392,13 +4392,13 @@ namespace draw2d_direct2d
 
       }
 
-      if (nFormat & DT_BOTTOM)
+      if (nFormat & e_align_bottom)
       {
 
          pfont->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_FAR);
 
       }
-      else if (nFormat & DT_VCENTER)
+      else if (nFormat & e_align_vertical_center)
       {
 
          pfont->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_CENTER);
@@ -4658,7 +4658,7 @@ namespace draw2d_direct2d
    bool graphics::GetTextExtent(sized & size, const string & str)
    {
 
-      return GetTextExtent(size, str, str.get_length());
+      return GetTextExtent(size, str);
 
    }
 

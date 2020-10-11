@@ -361,7 +361,7 @@ namespace draw2d_opengl
       //   {
       //      delete m_ppen;
       //   }
-      //   if (m_etype == type_brush)
+      //   if (m_epen == ::draw2d::e_pen_brush)
       //   {
       //      
       //      ((pen *) this)->m_ppen = new plusplus::Pen((plusplus::Brush *) m_br.cast < brush >()->get_os_data(), (plusplus::REAL) m_dWidth);
@@ -378,44 +378,44 @@ namespace draw2d_opengl
       //   }
       //   switch(m_elinejoin)
       //   {
-      //   case line_join_miter:
+      //   case ::draw2d::e_line_join_miter:
       //      ((pen *) this)->m_ppen->SetLineJoin(plusplus::LineJoinMiter);
       //      break;
-      //   case line_join_bevel:
+      //   case ::draw2d::e_line_join_bevel:
       //      ((pen *) this)->m_ppen->SetLineJoin(plusplus::LineJoinBevel);
       //      break;
-      //   case line_join_round:
+      //   case ::draw2d::e_line_join_round:
       //      ((pen *) this)->m_ppen->SetLineJoin(plusplus::LineJoinRound);
       //      break;
-      //   case line_join_miter_clipped:
+      //   case ::draw2d::e_line_join_miter_clipped:
       //      ((pen *) this)->m_ppen->SetLineJoin(plusplus::LineJoinMiterClipped);
       //      break;
       //   }
       //   switch(m_elinecapBeg)
       //   {
-      //   case line_cap_flat:
+      //   case ::draw2d::e_line_cap_flat:
       //      ((pen *) this)->m_ppen->SetStartCap(plusplus::LineCapFlat);
       //      break;
-      //   case line_cap_round:
+      //   case ::draw2d::e_line_cap_round:
       //      ((pen *) this)->m_ppen->SetStartCap(plusplus::LineCapRound);
       //      break;
-      //   case line_cap_square:
+      //   case ::draw2d::e_line_cap_square:
       //      ((pen *) this)->m_ppen->SetStartCap(plusplus::LineCapSquare);
       //      break;
       //   }
       //   switch(m_elinecapEnd)
       //   {
-      //   case line_cap_flat:
+      //   case ::draw2d::e_line_cap_flat:
       //      ((pen *) this)->m_ppen->SetEndCap(plusplus::LineCapFlat);
       //      break;
-      //   case line_cap_round:
+      //   case ::draw2d::e_line_cap_round:
       //      ((pen *) this)->m_ppen->SetEndCap(plusplus::LineCapRound);
       //      break;
-      //   case line_cap_square:
+      //   case ::draw2d::e_line_cap_square:
       //      ((pen *) this)->m_ppen->SetEndCap(plusplus::LineCapSquare);
       //      break;
       //   }
-      //   if(m_etype == type_dot)
+      //   if(m_epen == ::draw2d::e_pen_dot)
       //   {
       //      plusplus::REAL dashVals[4];
 

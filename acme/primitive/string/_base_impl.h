@@ -180,7 +180,7 @@ string_base < TYPE_CHAR >::string_base(Object^ o)
 //template < typename TYPE_CHAR >
 //string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::operator+=(const string_base < TYPE_CHAR >& str)
 //{
-//   append(str, str.get_length());
+//   append(str);
 //
 //   return *this;
 //}

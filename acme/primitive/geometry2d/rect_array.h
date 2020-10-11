@@ -1,10 +1,6 @@
 #pragma once
 
 
-
-#pragma once
-
-
 template < typename RECT_TYPE >
 class rect_array_base :
    public array < RECT_TYPE >

@@ -29,7 +29,7 @@ namespace draw2d_quartz2d
 //
 //         void get(CGFloat * pascent, CGFloat * pdescent, CGFloat * pleading, CGFloat * pwidth);
 //
-//         void align(double & x, double & y, double wAlign, UINT nFormat);
+//         void align(double & x, double & y, double wAlign, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none);
 //
 //      };
       

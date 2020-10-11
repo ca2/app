@@ -140,7 +140,9 @@ namespace user
          if (m_estockicon == stock_icon_none)
          {
 
-            int iDrawTextFlags =  get_int(pstyle, ::user::int_edit_draw_text_flags,DT_LEFT | DT_VCENTER | DT_SINGLELINE);
+            ::e_align ealign = get_int(pstyle, ::user::int_edit_text_align, ::e_align(e_align_left_center));
+            
+            ::e_draw_text edrawtext = get_int(pstyle, ::user::int_edit_draw_text_flags, e_draw_text_single_line);
 
             if(m_pfont)
             {
@@ -155,7 +157,7 @@ namespace user
 
             }
 
-            pgraphics->draw_text(strText, rectClient, iDrawTextFlags);
+            pgraphics->draw_text(strText, rectClient, ealign, edrawtext);
 
          }
          else
@@ -762,7 +764,7 @@ namespace user
 
       pgraphics->set_font(this);
 
-      pgraphics->draw_text(strText, rectText, DT_LEFT | DT_TOP);
+      pgraphics->draw_text(strText, rectText, e_align_top_left);
 
    }
 
@@ -890,7 +892,7 @@ namespace user
 
          rectAspect.bottom = (LONG) (pimage->height() * dMin);
 
-         rectAspect.Align(align_center, rectClient);
+         rectAspect.Align(e_align_center, rectClient);
 
         pgraphics->draw(rectClient, pimage->g(), ::rect(pimage->get_size()));
 

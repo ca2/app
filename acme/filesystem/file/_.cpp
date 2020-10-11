@@ -661,7 +661,7 @@ bool write_memory_to_file(FILE * file,const void * pdata,memsize nCount,memsize 
 
 
 
-CLASS_DECL_ACME bool file_append_wait_dup(const string & strFile, const char * psz, strsize s, DWORD tickTimeout)
+CLASS_DECL_ACME bool file_append_wait(const string & strFile, const char * psz, strsize s, DWORD tickTimeout)
 {
 
    ::dir::mk(::dir::name(strFile));
@@ -676,9 +676,8 @@ CLASS_DECL_ACME bool file_append_wait_dup(const string & strFile, const char * p
    wstring wstr(strFile);
 
    FILE * pfile = nullptr;
-auto tickStart = ::tick::now();
 
-
+   auto tickStart = ::tick::now();
 
    while (true)
    {
@@ -716,25 +715,25 @@ auto tickStart = ::tick::now();
 }
 
 
-
-bool file_append_wait_dup(const string & strFile, const string & str, DWORD tickTimeout)
+bool file_append_wait(const string & strFile, const string & str, DWORD tickTimeout)
 {
 
-   return file_append_wait_dup(strFile, str, str.get_length(), tickTimeout);
+   return file_append_wait(strFile, str, str.get_length(), tickTimeout);
 
 }
 
-CLASS_DECL_ACME bool file_append_dup(const string & strFile, const char * psz, strsize s)
+
+CLASS_DECL_ACME bool file_append(const string & strFile, const char * psz, strsize s)
 {
 
-   return file_append_wait_dup(strFile, psz, s, 0);
+   return file_append_wait(strFile, psz, s, 0);
 
 }
 
-bool file_append_dup(const string & strFile, const string & str)
+bool file_append(const string & strFile, const string & str)
 {
 
-   return file_append_dup(strFile, str, str.get_length());
+   return file_append(strFile, str, str.get_length());
 
 }
 

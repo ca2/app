@@ -14,8 +14,8 @@ namespace user
       void update_span_cache(__pointer_array(span) & spana);
       //void update_span_cache(__pointer_array(span) & spana, __pointer_array(line) & layouta);
       index find_span(__pointer_array(span) & spana, index iSel);
-      e_align box_align(__pointer_array(span) & spana, index iBox);
-      bool box_align(__pointer_array(span) & spana, index iBox, e_align ealign);
+      ::e_align box_align(__pointer_array(span) & spana, index iBox);
+      bool box_align(__pointer_array(span) & spana, index iBox, ::e_align e_align);
       index find_char_span(__pointer_array(span) & spana, strsize iChar);
       box * find_box(__pointer_array(line) & span, index iSel);
       string layout_text(const __pointer_array(line) & span);

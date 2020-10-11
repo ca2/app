@@ -713,7 +713,7 @@ namespace file
 
       memsize iOldLen = pinsertitem->m_memstorage.get_size();
 
-      pinsertitem->m_memstorage.assign(str, str.get_length());
+      pinsertitem->m_memstorage.assign(str);
 
       m_size += (str.get_length() - iOldLen);
 

@@ -420,7 +420,7 @@ namespace user
 
                               pimage->g()->set_text_color(ARGB(255, 0, 0, 0));
 
-                              pimage->g()->draw_text(str, rect(pimage->get_size()), DT_LEFT | DT_BOTTOM);
+                              pimage->g()->draw_text(str, rect(pimage->get_size()), e_align_bottom_left);
 
                               return true;
 

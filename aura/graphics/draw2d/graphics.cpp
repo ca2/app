@@ -1710,17 +1710,17 @@ namespace draw2d
       if(m_bPat)
       {
 
-         if(::is_set(pgraphicsSrc->m_pimageimplDraw2dGraphics)
-            && pgraphicsSrc->m_pimageimplDraw2dGraphics->is_ok())
+         if(::is_set(pgraphicsSrc->m_pimage)
+            && pgraphicsSrc->m_pimage->is_ok())
          {
 
             int xs = 0;
 
             int ys = 0;
 
-            i32 w1 = pgraphicsSrc->m_pimageimplDraw2dGraphics->width();
+            i32 w1 = pgraphicsSrc->m_pimage->width();
 
-            i32 h1 = pgraphicsSrc->m_pimageimplDraw2dGraphics->height();
+            i32 h1 = pgraphicsSrc->m_pimage->height();
 
             i32 w0 = w1 - xSrc;
 
@@ -1916,7 +1916,7 @@ namespace draw2d
 
       }
 
-      ::image_pointer pimage = pgraphicsSrc->m_pimageimplDraw2dGraphics;
+      ::image_pointer pimage = pgraphicsSrc->m_pimage;
 
       if(pimage->is_null())
       {
@@ -2727,7 +2727,7 @@ namespace draw2d
 //      return -1;
 //   }
 //
-//   u32 graphics::GetGlyphOutline(UINT nChar, UINT nFormat, LPGLYPHMETRICS pgm,  u32 cbBuffer, LPVOID pBuffer, const MAT2* pmat2)
+//   u32 graphics::GetGlyphOutline(UINT nChar, const ::e_align & ealign, const ::e_draw_text & edrawtext, LPGLYPHMETRICS pgm,  u32 cbBuffer, LPVOID pBuffer, const MAT2* pmat2)
 //
 //
 //
@@ -4448,7 +4448,7 @@ namespace draw2d
 
          daLeft.add(dLeft);
 
-         dLeft = GetTextExtent(str, str.get_length(), iAsciiCharCount).cx;
+         dLeft = GetTextExtent(str, iAsciiCharCount).cx;
 
          daRight.add(dLeft);
 
@@ -4499,7 +4499,7 @@ namespace draw2d
    sized graphics::GetTextExtent(const string & str)
    {
 
-      return GetTextExtent(str, str.get_length());
+      return GetTextExtent(str);
 
    }
 
@@ -4562,47 +4562,28 @@ namespace draw2d
    }
 
 
-   bool graphics::draw_text(const char * pszString, strsize nCount, const rect & rectParam, UINT nFormat)
+   bool graphics::draw_text(const string & str, const rect & rectParam, const ::e_align& ealign, const ::e_draw_text& edrawtext)
    {
 
       ::rectd rect(rectParam);
 
-      return _001DrawText(string(pszString, nCount), rect, nFormat, false);
+      return _001DrawText(str, rect, ealign, edrawtext, false);
 
    }
 
 
-   bool graphics::draw_text(const string & str, const rect & rectParam, UINT nFormat)
+
+   bool graphics::draw_text(const string & strParam, const ::rectd & rectParam, const ::e_align& ealign, const ::e_draw_text& edrawtext)
    {
 
       ::rectd rect(rectParam);
 
-      return _001DrawText(str, rect, nFormat, false);
+      return _001DrawText(strParam, rect, ealign, edrawtext, false);
 
    }
 
 
-   bool graphics::draw_text(const char * pszString, strsize nCount, const rectd & rectParam, UINT nFormat)
-   {
-
-      ::rectd rect(rectParam);
-
-      return _001DrawText(string(pszString, nCount), rect, nFormat, false);
-
-   }
-
-
-   bool graphics::draw_text(const string & strParam, const ::rectd & rectParam, UINT nFormat)
-   {
-
-      ::rectd rect(rectParam);
-
-      return _001DrawText(strParam, rect, nFormat, false);
-
-   }
-
-
-   bool graphics::_001DrawText(const string & strParam, rectd & rectParam, UINT nFormat, bool bMeasure)
+   bool graphics::_001DrawText(const string & strParam, rectd & rectParam, const ::e_align& ealign, const ::e_draw_text& edrawtext, bool bMeasure)
    {
 
       string str(strParam);
@@ -4613,13 +4594,13 @@ namespace draw2d
 
       double dy;
 
-      if(nFormat & DT_RIGHT)
+      if(ealign & e_align_right)
       {
 
          dx = rectParam.right - rectParam.left - size.cx;
 
       }
-      else if(nFormat & DT_CENTER)
+      else if(ealign & e_align_horizontal_center)
       {
 
          dx = ((rectParam.right - rectParam.left) - (size.cx)) / 2.0;
@@ -4632,13 +4613,13 @@ namespace draw2d
 
       }
 
-      if(nFormat & DT_BOTTOM)
+      if(ealign & e_align_bottom)
       {
 
          dy = rectParam.bottom - rectParam.top - size.cy;
 
       }
-      else if(nFormat & DT_VCENTER)
+      else if(ealign & e_align_vertical_center)
       {
 
          dy = ((rectParam.bottom - rectParam.top) - (size.cy)) / 2.0;
@@ -4651,7 +4632,7 @@ namespace draw2d
 
       }
 
-      if(nFormat & DT_EXPANDTABS)
+      if(edrawtext & e_draw_text_expand_tabs)
       {
 
          str.replace("\t", "        ");
@@ -4664,7 +4645,7 @@ namespace draw2d
 
       }
 
-      if(nFormat & DT_SINGLELINE)
+      if(edrawtext & e_draw_text_single_line)
       {
 
          str.replace("\rect", "");
@@ -4706,68 +4687,35 @@ namespace draw2d
 #ifndef _UWP
 
 
-   bool graphics::draw_text_ex(const char * pszString, strsize nCount, const rect & rect, UINT nFormat, LPDRAWTEXTPARAMS pDTParams)
-
-
-   {
-      UNREFERENCED_PARAMETER(pszString);
-
-      UNREFERENCED_PARAMETER(nCount);
-      UNREFERENCED_PARAMETER(rect);
-
-      UNREFERENCED_PARAMETER(nFormat);
-      UNREFERENCED_PARAMETER(pDTParams);
-
-
-      return false;
-   }
-
-
-   bool graphics::draw_text_ex(const string & str, const rect & rect, UINT nFormat, LPDRAWTEXTPARAMS pDTParams)
-
-
-   {
-      UNREFERENCED_PARAMETER(str);
-      UNREFERENCED_PARAMETER(rect);
-
-      UNREFERENCED_PARAMETER(nFormat);
-      UNREFERENCED_PARAMETER(pDTParams);
-
-
-      return false;
-   }
-
-
-   bool graphics::draw_text_ex(const char * pszString, strsize nCount, const rectd & rect, UINT nFormat, LPDRAWTEXTPARAMS pDTParams)
-   {
-
-      UNREFERENCED_PARAMETER(pszString);
-      UNREFERENCED_PARAMETER(nCount);
-      UNREFERENCED_PARAMETER(rect);
-      UNREFERENCED_PARAMETER(nFormat);
-      UNREFERENCED_PARAMETER(pDTParams);
-
-
-
-      return false;
-
-   }
-
-
-   bool graphics::draw_text_ex(const string & str, const rectd & rect, UINT nFormat, LPDRAWTEXTPARAMS pDTParams)
+   bool graphics::draw_text_ex(const string & str, const rect & rect, const ::e_align& ealign, const ::e_draw_text& edrawtext, LPDRAWTEXTPARAMS pDTParams)
    {
 
       UNREFERENCED_PARAMETER(str);
       UNREFERENCED_PARAMETER(rect);
 
-      UNREFERENCED_PARAMETER(nFormat);
+      UNREFERENCED_PARAMETER(ealign);
+      UNREFERENCED_PARAMETER(edrawtext);
       UNREFERENCED_PARAMETER(pDTParams);
-
-
 
       return false;
 
    }
+
+
+   bool graphics::draw_text_ex(const string & str, const rectd & rect, const ::e_align& ealign, const ::e_draw_text& edrawtext, LPDRAWTEXTPARAMS pDTParams)
+   {
+
+      UNREFERENCED_PARAMETER(str);
+      UNREFERENCED_PARAMETER(rect);
+
+      UNREFERENCED_PARAMETER(ealign);
+      UNREFERENCED_PARAMETER(edrawtext);
+      UNREFERENCED_PARAMETER(pDTParams);
+
+      return false;
+
+   }
+
 
 #endif
 
@@ -5443,18 +5391,10 @@ namespace draw2d
    }
 
 
-   i32 graphics::_DrawText(const string & str, const ::rect & rect, UINT uiFormat, ::draw2d::font * pfontUnderline)
+   i32 graphics::_DrawText(const string& strArg, const rect & rectParam, const ::e_align & e_align, const ::e_draw_text & edrawtext, ::draw2d::font * pfontUnderline)
    {
 
-      return _DrawText(str, str.get_length(), rect, uiFormat, pfontUnderline);
-
-   }
-
-
-   i32 graphics::_DrawText(const char * pcsz, strsize iCount, const rect & rectParam, UINT uiFormat, ::draw2d::font * pfontUnderline)
-   {
-
-      string strParam(pcsz, iCount);
+      string strParam(strArg);
 
       strParam = ::str::q_valid(strParam);
 
@@ -5503,7 +5443,7 @@ namespace draw2d
 
       strsize iUnderline = -1;
 
-      if(!(uiFormat & DT_NOPREFIX))
+      if(!(edrawtext & e_draw_text_no_prefix))
       {
 
          iUnderline = _EncodeV033(str);
@@ -5514,15 +5454,15 @@ namespace draw2d
 
       bool bLastLine = false;
 
-      if((uiFormat & DT_WORDBREAK) != 0)
+      if((edrawtext & e_draw_text_word_break) != 0)
       {
 
-         bLastLine = !word_break(pgraphics, pcsz, rectClip, str, str2, (uiFormat & DT_END_ELLIPSIS));
+         bLastLine = !word_break(pgraphics, str, rectClip, str, str2, (edrawtext & e_draw_text_end_ellipsis));
 
          sz = pgraphics->GetTextExtent(str);
 
       }
-      else if ((uiFormat & DT_END_ELLIPSIS) != 0)
+      else if ((edrawtext & e_draw_text_end_ellipsis) != 0)
       {
 
          sz = pgraphics->GetTextExtent(str, (i32)iLen);
@@ -5561,41 +5501,54 @@ namespace draw2d
             }
 
          }
+
       }
       else
       {
 
          sz = pgraphics->GetTextExtent(str);
 
-         /*::GetTextExtentPoint32U(
-         (HDC) pgraphics->get_os_data(),
-         str,
-         iLen,
-         &sz);*/
-
-         //         u32 dw = ::get_last_error();
-
          if (sz.cx > rectClip.width())
          {
+
             strsize i = iLen;
+
             if (i < 0)
+            {
+
                i = 0;
+
+            }
+
             char * psz = str.get_string_buffer(max(0, i));
 
             while (i > 0)
             {
+
                sz = pgraphics->GetTextExtent(str, (i32)i);
+
                if ((int) sz.cx > rectClip.width())
                {
+
                   i = ::str::uni_dec(str, &((const char *)str)[i]) - ((const char *)str);
+
                   if (i <= 0)
+                  {
+
                      break;
+
+                  }
+
                }
                else
                {
+
                   break;
+
                }
+
             }
+
             psz[i] = L'\0';
 
             str.release_string_buffer();
@@ -5637,33 +5590,47 @@ namespace draw2d
       rect.right = (LONG) sz.cx;
       rect.bottom = iLineSpacing;
 
-      cflag < e_align> align;
-      if (uiFormat & DT_BOTTOM)
-      {
-         align |= ::align_bottom;
-      }
-      else if (uiFormat & DT_VCENTER)
-      {
-         align |= ::align_vertical_center;
-      }
-      else
-      {
-         align |= ::align_top;
-      }
-      if (uiFormat & DT_RIGHT)
-      {
-         align |= ::align_right;
-      }
-      else if (uiFormat & DT_CENTER)
-      {
-         align |= ::align_horizontal_center;
-      }
-      else
-      {
-         align |= ::align_left;
-      }
+      //::e_align e_align;
 
-      rect.Align(align, rectParam);
+      //if (ealig & e_align_bottom)
+      //{
+      //   
+      //   e_align |= ::e_align_bottom;
+
+      //}
+      //else if (uiFormat & e_align_vertical_center)
+      //{
+      //   
+      //   e_align |= ::e_align_vertical_center;
+
+      //}
+      //else
+      //{
+      //   
+      //   e_align |= ::e_align_top;
+
+      //}
+
+      //if (uiFormat & DT_RIGHT)
+      //{
+      //   
+      //   e_align |= ::e_align_right;
+
+      //}
+      //else if (uiFormat & e_align_horizontal_center)
+      //{
+
+      //   e_align |= ::e_align_horizontal_center;
+
+      //}
+      //else
+      //{
+
+      //   e_align |= ::e_align_left;
+
+      //}
+
+      rect.Align(e_align, rectParam);
 
       if (iUnderline >= 0 && iUnderline < str.get_length())
       {
@@ -5725,14 +5692,13 @@ namespace draw2d
 
          rectClip.top += iLineSpacing;
 
-         _DrawText(str2, str2.get_length(), rectClip, uiFormat);
+         _DrawText(str2, rectClip, e_align, edrawtext);
 
       }
 
       return 1;
 
    }
-
 
 
    bool word_break(::draw2d::graphics * pgraphics, const string & strSource, const rect & rectParam, string &str1, string & str2, int iEll)
@@ -5975,8 +5941,8 @@ namespace draw2d
 
          draw_rect(rect);
 
-         //m_ppen->m_elinecapBeg = ::draw2d::pen::line_cap_flat;
-         //m_ppen->m_elinecapEnd = ::draw2d::pen::line_cap_flat;
+         //m_ppen->m_elinecapBeg = ::draw2d::e_line_cap_flat;
+         //m_ppen->m_elinecapEnd = ::draw2d::e_line_cap_flat;
          //move_to(rect.top_left() + ::size(0,(LONG) (pen->m_dWidth/2.0)));
          //line_to(rect.top_right() + ::size(0,(LONG)(pen->m_dWidth / 2.0)));
          //move_to(rect.top_left() + ::size(0,(LONG)(pen->m_dWidth)));
@@ -5998,12 +5964,12 @@ namespace draw2d
 
          ::rectd rect2(rect1);
 
-         rect2.Align(align_bottom_right, rect);
+         rect2.Align(e_align_bottom_right, rect);
 
          draw_rect(rect2);
 
-         m_ppen->m_elinecapBeg = ::draw2d::pen::line_cap_flat;
-         m_ppen->m_elinecapEnd = ::draw2d::pen::line_cap_flat;
+         m_ppen->m_elinecapBeg = ::draw2d::e_line_cap_flat;
+         m_ppen->m_elinecapEnd = ::draw2d::e_line_cap_flat;
          move_to(rect2.top_left() + ::sized(0.,(m_ppen->m_dWidth / 2.0)));
          line_to(rect2.top_right() + ::sized(0.,(m_ppen->m_dWidth / 2.0)));
          move_to(rect2.top_left() + ::sized(0.,(m_ppen->m_dWidth)));
@@ -6019,8 +5985,8 @@ namespace draw2d
 
 
 
-         m_ppen->m_elinecapBeg = ::draw2d::pen::line_cap_square;
-         m_ppen->m_elinecapEnd = ::draw2d::pen::line_cap_square;
+         m_ppen->m_elinecapBeg = ::draw2d::e_line_cap_square;
+         m_ppen->m_elinecapEnd = ::draw2d::e_line_cap_square;
          m_ppen->set_modified();
 
          move_to(rect1.top_left() + ::sized(0,(m_ppen->m_dWidth)));
@@ -7023,7 +6989,7 @@ namespace draw2d
 
       point1->create_solid(iWidth, color);
 
-      point1->m_ealign = ::draw2d::pen::align_inset;
+      point1->m_epenalign = e_pen_align_inset;
 
       set(point1);
 

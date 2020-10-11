@@ -810,6 +810,16 @@ void simple_frame_window::_001OnCreate(::message::message * pmessage)
 
          notify_icon_insert_item(iNotifyIconItem++, strAppTitle, "notify_icon_topic");
 
+         auto c = Application.applicationmenu().get_count();
+
+         for (auto i = 0; i < c; i++)
+         {
+            auto& item = Application.applicationmenu()[i];
+
+            notify_icon_insert_item(iNotifyIconItem++, item.m_strName, item.m_strId);
+
+         }
+
          if (m_pframe != nullptr
             && m_pframe->get_control_box() != nullptr
             && m_pframe->get_control_box()->has_button(::experience::button_transparent_frame))

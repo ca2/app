@@ -156,7 +156,7 @@ namespace filehandler
       ::draw2d::brush_pointer brushText(e_create);
       brushText->create_solid(cr);
       //pgraphics->set_color(cr);
-      pgraphics->draw_text(m_strApp, m_rectName, DT_LEFT | DT_BOTTOM);
+      pgraphics->draw_text(m_strApp, m_rectName, e_align_bottom_left);
    }
 
 

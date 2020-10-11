@@ -274,7 +274,7 @@ namespace http
 
                         strMessage = System.datetime().international().get_gmt_date_time() + " " + strTempFile;
 
-                        file_append_wait_dup("C:\\ca2\\toomuchuploads.txt", strMessage);
+                        file_append_wait("C:\\ca2\\toomuchuploads.txt", strMessage);
 
                         i++;
 

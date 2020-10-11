@@ -217,7 +217,7 @@ namespace sockets
    {
       string str(psz);
       put_integer(buf, ptr, (short)str.get_length() );
-      ::memcpy_dup(buf + ptr, (const char *) str, str.get_length());
+      ::memcpy_dup(buf + ptr, (const char *) str);
       ptr += (int)str.get_length();
       put_byte(buf, ptr, 0);
    }

@@ -356,12 +356,12 @@ namespace draw2d_xlib
                          i32 nTabPositions, LPINT lpnTabStopPositions, i32 nTabOrigin);
 
       using ::draw2d::graphics::draw_text;
-      virtual i32 draw_text(const char * lpszString, i32 nCount, RECT * prect, UINT nFormat);
-      virtual i32 draw_text(const string & str, RECT * prect, UINT nFormat);
+      virtual i32 draw_text(const char * lpszString, i32 nCount, RECT * prect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none);
+      virtual i32 draw_text(const string & str, RECT * prect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none);
 
       using ::draw2d::graphics::draw_text_ex;
-      virtual i32 draw_text_ex(LPTSTR lpszString, i32 nCount, RECT * prect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
-      virtual i32 draw_text_ex(const string & str, RECT * prect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
+      virtual i32 draw_text_ex(LPTSTR lpszString, i32 nCount, RECT * prect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPDRAWTEXTPARAMS lpDTParams);
+      virtual i32 draw_text_ex(const string & str, RECT * prect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPDRAWTEXTPARAMS lpDTParams);
 
       size GetTextExtent(const char * lpszString, strsize nCount, i32 iIndex) const;
       size GetTextExtent(const char * lpszString, strsize nCount) const;
@@ -418,7 +418,7 @@ namespace draw2d_xlib
       u32 GetFontData(u32 dwTable, u32 dwOffset, LPVOID lpData, u32 cbData) const;
 //xxx      i32 GetKerningPairs(i32 nPairs, LPKERNINGPAIR lpkrnpair) const;
 //xxx      UINT GetOutlineTextMetrics(UINT cbData, LPOUTLINETEXTMETRICW lpotm) const;
-//xxx      u32 GetGlyphOutline(UINT nChar, UINT nFormat, LPGLYPHMETRICS lpgm,
+//xxx      u32 GetGlyphOutline(UINT nChar, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPGLYPHMETRICS lpgm,
       //xxx    u32 cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2) const;
 
 //xxx      bool GetCharABCWidths(UINT nFirstChar, UINT nLastChar,

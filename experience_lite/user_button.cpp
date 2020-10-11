@@ -122,7 +122,7 @@ namespace user
 
          pgraphics->set_text_color(crText);
 
-         pgraphics->draw_text(str, rectClient, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+         pgraphics->draw_text(str, rectClient, e_align_horizontal_center | e_align_vertical_center | DT_SINGLELINE);
 
       }
       else

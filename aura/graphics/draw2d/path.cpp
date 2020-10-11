@@ -45,274 +45,274 @@ namespace draw2d
 {
 
 
-   bool path::element::expand_bounding_rect(RECTD* prect) const
-   {
-
-      rectd r;
-
-      if (!get_bounding_rect(&r))
-      {
-
-         return false;
-
-      }
-
-      expand_rect(prect, r);
-
-      return true;
-
-   }
-
-
-   bool path::element::expand_bounding_rect(RECT* prect) const
-   {
-
-      rectd r;
-
-      if (!expand_bounding_rect(&r))
-      {
-
-         return false;
-
-      }
-
-      expand_rect(prect, r);
-
-      return true;
-
-   }
-
-
-   bool path::element::get_bounding_rect(RECTD* prect) const
-   {
-
-      ::null_rect(prect);
-
-      return false;
-
-   }
-
-
-   bool path::element::get_bounding_rect(RECT* prect) const
-   {
-
-      ::null_rect(prect);
-
-      return false;
-
-   }
-
-
-   bool path::element::contains(const ::pointd& point) const
-   {
-
-      // BUG SS (STILL SIMPLE) using bounding box HAHA LOL ROFL
-
-      ::rectd r;
-
-      if (!get_bounding_rect(r))
-      {
-
-         return false;
-
-      }
-
-      return r.contains(point);
-
-   }
-
-
-   bool path::arc::get_bounding_rect(RECTD* prectd) const
-   {
-
-      // BUG SS (STILL SIMPLE) m_dRotationAngle ignored
-
-      prectd->left = m_pointCenter.x - m_sizeRadius.cx;
-      prectd->right = m_pointCenter.x + m_sizeRadius.cx;
-      prectd->top = m_pointCenter.y - m_sizeRadius.cy;
-      prectd->bottom = m_pointCenter.y + m_sizeRadius.cy;
-
-      return true;
-
-   }
-
-
-
-   bool path::arc::contains(const ::pointd & point) const
-   {
-
-      // BUG SS (STILL SIMPLE) using bounding box HAHA LOL ROFL
-
-      return path::element::contains(point);
-
-   }
-
-
-   bool path::rect::get_bounding_rect(RECTD* prect) const
-   {
-
-      __copy(prect, m_rect);
-
-      return true;
-
-   }
-
-
-   bool path::rect::contains(const ::pointd& point) const
-   {
-
-      return m_rect.contains(point);
-
-   }
-
-
-   bool path::lines::get_bounding_rect(RECTD* prect) const
-   {
-
-      m_pointa.get_bounding_rect(prect);
-
-      return true;
-
-   }
-
-
-   bool path::lines::contains(const ::pointd& point) const
-   {
-
-      return m_pointa.polygon_contains(point);
-
-   }
-
-
-
-   bool path::polygon::get_bounding_rect(RECTD* prect) const
-   {
-
-      m_pointa.get_bounding_rect(prect);
-
-      return true;
-
-   }
-
-
-   bool path::polygon::contains(const ::pointd& point) const
-   {
-
-      return m_pointa.polygon_contains(point);
-
-   }
-
-
-   bool path::line::get_bounding_rect(RECTD* prect) const
-   {
-
-      prect->left = min(m_pointBeg.x, m_pointEnd.x);
-      prect->right = max(m_pointBeg.x, m_pointEnd.x);
-      prect->top = min(m_pointBeg.y, m_pointEnd.y);
-      prect->bottom = max(m_pointBeg.y, m_pointEnd.y);
-
-      return true;
-
-   }
-
-   //bool path::line::contains(const ::pointd& point) const
+   //bool path::element::expand_bounding_rect(RECTD* prect) const
    //{
+
+   //   rectd r;
+
+   //   if (!get_bounding_rect(&r))
+   //   {
+
+   //      return false;
+
+   //   }
+
+   //   expand_rect(prect, r);
+
+   //   return true;
+
+   //}
+
+
+   //bool path::element::expand_bounding_rect(RECT* prect) const
+   //{
+
+   //   rectd r;
+
+   //   if (!expand_bounding_rect(&r))
+   //   {
+
+   //      return false;
+
+   //   }
+
+   //   expand_rect(prect, r);
+
+   //   return true;
+
+   //}
+
+
+   //bool path::element::get_bounding_rect(RECTD* prect) const
+   //{
+
+   //   ::null_rect(prect);
 
    //   return false;
 
    //}
 
 
-   bool path::text_out::get_bounding_rect(RECTD* prect) const
-   {
-
-      //__copy(prect, m_rect);
-
-      return true;
-
-   }
-
-
-   bool path::text_out::contains(const ::pointd& point) const
-   {
-
-      return path::element::contains(point);
-
-   }
-
-
-   bool path::draw_text::get_bounding_rect(RECTD* prect) const
-   {
-
-      __copy(prect, m_rect);
-
-      return true;
-
-   }
-
-
-
-   bool path::draw_text::contains(const ::pointd& point) const
-   {
-
-      return path::element::contains(point);
-
-   }
-
-
-   //path::text::text()
+   //bool path::element::get_bounding_rect(RECT* prect) const
    //{
+
+   //   ::null_rect(prect);
+
+   //   return false;
 
    //}
 
 
-   //path::text::text(const text& text)
+   //bool path::element::contains(const ::pointd& point) const
    //{
 
-   //   operator = (text);
+   //   // BUG SS (STILL SIMPLE) using bounding box HAHA LOL ROFL
 
-   //}
+   //   ::rectd r;
 
-
-   //path::text::~text()
-   //{
-
-   //}
-
-
-   //path::text& path::text::operator = (const text& text)
-   //{
-
-   //   if (this == &text)
+   //   if (!get_bounding_rect(r))
    //   {
 
-   //      return *this;
+   //      return false;
 
    //   }
 
-   //   m_point        = text.m_point;
-   //   m_rect         = text.m_rect;
-   //   m_strText      = text.m_strText;
-   //   m_pfont        = text.m_pfont;
-
-   //   return *this;
+   //   return r.contains(point);
 
    //}
 
 
-   path::element::element()
-   {
+   //bool path::arc::get_bounding_rect(RECTD* prectd) const
+   //{
 
-      m_etype = type_none;
+   //   // BUG SS (STILL SIMPLE) m_dRotationAngle ignored
 
-   }
+   //   prectd->left = m_pointCenter.x - m_sizeRadius.cx;
+   //   prectd->right = m_pointCenter.x + m_sizeRadius.cx;
+   //   prectd->top = m_pointCenter.y - m_sizeRadius.cy;
+   //   prectd->bottom = m_pointCenter.y + m_sizeRadius.cy;
+
+   //   return true;
+
+   //}
 
 
-   path::element::~element()
-   {
+
+   //bool path::arc::contains(const ::pointd & point) const
+   //{
+
+   //   // BUG SS (STILL SIMPLE) using bounding box HAHA LOL ROFL
+
+   //   return path::element::contains(point);
+
+   //}
 
 
-   }
+   //bool path::rect::get_bounding_rect(RECTD* prect) const
+   //{
+
+   //   __copy(prect, m_rect);
+
+   //   return true;
+
+   //}
+
+
+   //bool path::rect::contains(const ::pointd& point) const
+   //{
+
+   //   return m_rect.contains(point);
+
+   //}
+
+
+   //bool path::lines::get_bounding_rect(RECTD* prect) const
+   //{
+
+   //   m_pointa.get_bounding_rect(prect);
+
+   //   return true;
+
+   //}
+
+
+   //bool path::lines::contains(const ::pointd& point) const
+   //{
+
+   //   return m_pointa.polygon_contains(point);
+
+   //}
+
+
+
+   //bool path::polygon::get_bounding_rect(RECTD* prect) const
+   //{
+
+   //   m_pointa.get_bounding_rect(prect);
+
+   //   return true;
+
+   //}
+
+
+   //bool path::polygon::contains(const ::pointd& point) const
+   //{
+
+   //   return m_pointa.polygon_contains(point);
+
+   //}
+
+
+   //bool path::line::get_bounding_rect(RECTD* prect) const
+   //{
+
+   //   prect->left = min(m_pointBeg.x, m_pointEnd.x);
+   //   prect->right = max(m_pointBeg.x, m_pointEnd.x);
+   //   prect->top = min(m_pointBeg.y, m_pointEnd.y);
+   //   prect->bottom = max(m_pointBeg.y, m_pointEnd.y);
+
+   //   return true;
+
+   //}
+
+   ////bool path::line::contains(const ::pointd& point) const
+   ////{
+
+   ////   return false;
+
+   ////}
+
+
+   //bool path::text_out::get_bounding_rect(RECTD* prect) const
+   //{
+
+   //   //__copy(prect, m_rect);
+
+   //   return true;
+
+   //}
+
+
+   //bool path::text_out::contains(const ::pointd& point) const
+   //{
+
+   //   return path::element::contains(point);
+
+   //}
+
+
+   //bool path::draw_text::get_bounding_rect(RECTD* prect) const
+   //{
+
+   //   __copy(prect, m_rect);
+
+   //   return true;
+
+   //}
+
+
+
+   //bool path::draw_text::contains(const ::pointd& point) const
+   //{
+
+   //   return path::element::contains(point);
+
+   //}
+
+
+   ////path::text::text()
+   ////{
+
+   ////}
+
+
+   ////path::text::text(const text& text)
+   ////{
+
+   ////   operator = (text);
+
+   ////}
+
+
+   ////path::text::~text()
+   ////{
+
+   ////}
+
+
+   ////path::text& path::text::operator = (const text& text)
+   ////{
+
+   ////   if (this == &text)
+   ////   {
+
+   ////      return *this;
+
+   ////   }
+
+   ////   m_point        = text.m_point;
+   ////   m_rect         = text.m_rect;
+   ////   m_strText      = text.m_strText;
+   ////   m_pfont        = text.m_pfont;
+
+   ////   return *this;
+
+   ////}
+
+
+   //path::element::element()
+   //{
+
+   //   m_etype = type_none;
+
+   //}
+
+
+   //path::element::~element()
+   //{
+
+
+   //}
 
 
    path::path()
@@ -355,7 +355,7 @@ namespace draw2d
 
       bool bGotAny = false;
 
-      for(auto & pelement : m_elementa)
+      for(auto & pelement : m_shapea)
       {
 
          if (pelement->expand_bounding_rect(r))
@@ -388,7 +388,7 @@ namespace draw2d
 
       bool bGotAny = false;
 
-      for (auto& pelement : m_elementa)
+      for (auto& pelement : m_shapea)
       {
 
          if (pelement->expand_bounding_rect(r))
@@ -504,7 +504,7 @@ namespace draw2d
 
    //   __copy(prect->m_rect, rectParam);
 
-   //   m_elementa.add(prect);
+   //   m_shapea.add(prect);
 
    //   return true;
 
@@ -514,113 +514,42 @@ namespace draw2d
    bool path::add_rect(const ::rectd& rectParam)
    {
 
-      auto prect = __new(rect);
-
-      __copy(prect->m_rect, rectParam);
-
-      m_elementa.add(prect);
+      m_shapea.add_shape(rectParam);
 
       return true;
 
    }
-
-
-   //bool path::add_rect(const ::rect& rect, const ::point & point, const ::angle& angleRotationCenter)
-   //{
-
-   //   auto ppolygon = __new(polygon);
-
-   //   ppolygon->m_pointa.set_size(4);
-
-   //   ppolygon->m_pointa[0].x = rect.left;
-   //   ppolygon->m_pointa[0].y = rect.top;
-
-   //   ppolygon->m_pointa[1].x = rect.right;
-   //   ppolygon->m_pointa[1].y = rect.top;
-
-   //   ppolygon->m_pointa[2].x = rect.right;
-   //   ppolygon->m_pointa[2].y = rect.bottom;
-
-   //   ppolygon->m_pointa[3].x = rect.left;
-   //   ppolygon->m_pointa[3].y = rect.bottom;
-
-   //   ppolygon->m_pointa.rotate(angleRotationCenter, point);
-
-   //   m_elementa.add(ppolygon);
-
-   //   return true;
-
-   //}
 
 
    bool path::add_rect(const ::rectd& rect, const ::pointd& point, const ::angle& angleRotationCenter)
    {
 
-      auto ppolygon = __new(polygon);
+      ::polygond polygon;
 
-      ppolygon->m_pointa.set_size(4);
+      polygon.set_size(4);
+      
+      polygon[0].x = rect.left;
+      polygon[0].y = rect.top;
+      
+      polygon[1].x = rect.right;
+      polygon[1].y = rect.top;
+      
+      polygon[2].x = rect.right;
+      polygon[2].y = rect.bottom;
+      
+      polygon[3].x = rect.left;
+      polygon[3].y = rect.bottom;
 
-      ppolygon->m_pointa[0].x = rect.left;
-      ppolygon->m_pointa[0].y = rect.top;
+      polygon.rotate(angleRotationCenter, point);
 
-      ppolygon->m_pointa[1].x = rect.right;
-      ppolygon->m_pointa[1].y = rect.top;
-
-      ppolygon->m_pointa[2].x = rect.right;
-      ppolygon->m_pointa[2].y = rect.bottom;
-
-      ppolygon->m_pointa[3].x = rect.left;
-      ppolygon->m_pointa[3].y = rect.bottom;
-
-      ppolygon->m_pointa.rotate(angleRotationCenter, point);
-
-      m_elementa.add(ppolygon);
+      m_shapea.add_shape(polygon);
 
       return true;
 
    }
 
 
-   //bool path::add_arc(const ::rect & rect, const ::angle & angleBeg, const ::angle& angleSweep)
-   //{
-
-   //   if (rect.width() <= 0 || rect.height() <= 0)
-   //   {
-
-   //      return true;
-
-   //   }
-
-   //   auto parc = __new(arc);
-
-   //   auto& arc = *parc;
-
-   //   arc.m_pointCenter.x  = ((double) rect.right + (double) rect.left) / 2.0;
-   //   arc.m_pointCenter.y  = ((double) rect.bottom + (double) rect.top) / 2.0;
-   //   arc.m_sizeRadius.cx  = (double) rect.right - parc->m_pointCenter.x;
-   //   arc.m_sizeRadius.cy  = (double) rect.bottom - parc->m_pointCenter.y;
-   //   arc.m_angleBeg       = angleBeg;
-   //   arc.m_angleEnd       = angleBeg + angleSweep;
-   //   arc.m_angleRotation  = 0.0;
-   //   arc.m_pointBeg       = parc->m_pointCenter + arc_point(parc->m_angleBeg, parc->m_sizeRadius);
-   //   arc.m_pointEnd       = parc->m_pointCenter + arc_point(parc->m_angleEnd, parc->m_sizeRadius);
-
-
-   //   m_elementa.add(parc);
-
-   //   m_bHasPoint = true;
-
-   //   m_pointBeg = parc->m_pointBeg;
-
-   //   m_pointEnd = parc->m_pointEnd;
-
-   //   set_modified();
-
-   //   return true;
-
-   //}
-
-
+   
 
    bool path::varc(const ::pointd & point, double h, const ::angle& angle)
    {
@@ -630,37 +559,39 @@ namespace draw2d
          return false;
       }
 
-      auto parc = __new(arc);
+      auto parc = __new(arc_shape);
+
+      ::arc& arc = parc->m_shape;
 
       ::angle t = 90_degrees - angle;
       double x = point.x;
       double y = point.y;
-      parc->m_pointCenter.y = point.y + h/2.0;
-      double b = point.y - parc->m_pointCenter.y / sin(t);
+      arc.m_pointCenter.y = point.y + h/2.0;
+      double b = point.y - arc.m_pointCenter.y / sin(t);
       double a = sqrt((b*b*x*x) / (y*y - b *b));
 
-      parc->m_sizeRadius.cx = a;
-      parc->m_sizeRadius.cy = b;
-      parc->m_pointCenter.x = point.x - a * cos(t);
-      parc->m_angleBeg = t;
-      parc->m_angleEnd = t - 90_degrees;
-      parc->m_angleRotation = 0.0;
-      ///parc->m_dAngle = (parc->m_angleEnd - parc->m_angleBeg) * g_dPi / 180.0;
-      parc->m_pointBeg = parc->m_pointCenter + arc_point(parc->m_angleBeg, parc->m_sizeRadius);
-      parc->m_pointEnd = parc->m_pointCenter + arc_point(parc->m_angleEnd, parc->m_sizeRadius);
+      arc.m_sizeRadius.cx = a;
+      arc.m_sizeRadius.cy = b;
+      arc.m_pointCenter.x = point.x - a * cos(t);
+      arc.m_angleBeg = t;
+      arc.m_angleEnd = t - 90_degrees;
+      arc.m_angleRotation = 0.0;
+      ///arc.m_dAngle = (arc.m_angleEnd - arc.m_angleBeg) * g_dPi / 180.0;
+      arc.m_pointBeg = arc.m_pointCenter + arc_point(arc.m_angleBeg, arc.m_sizeRadius);
+      arc.m_pointEnd = arc.m_pointCenter + arc_point(arc.m_angleEnd, arc.m_sizeRadius);
 
-      //parc->m_pointBeg.x = parc->m_pointCenter.x + parc->m_dRadiusX * cos(parc->m_angleBeg);
-      //parc->m_pointBeg.y = parc->m_pointCenter.y +parc->m_dRadiusY * sin(parc->m_angleBeg);
-      //parc->m_pointEnd.x = parc->m_pointCenter.x + parc->m_dRadiusX * cos(parc->m_angleEnd);
-      //parc->m_pointEnd.y = parc->m_pointCenter.y + parc->m_dRadiusY * sin(parc->m_angleEnd);
+      //arc.m_pointBeg.x = arc.m_pointCenter.x + arc.m_dRadiusX * cos(arc.m_angleBeg);
+      //arc.m_pointBeg.y = arc.m_pointCenter.y +arc.m_dRadiusY * sin(arc.m_angleBeg);
+      //arc.m_pointEnd.x = arc.m_pointCenter.x + arc.m_dRadiusX * cos(arc.m_angleEnd);
+      //arc.m_pointEnd.y = arc.m_pointCenter.y + arc.m_dRadiusY * sin(arc.m_angleEnd);
 
-      m_elementa.add(parc);
+      m_shapea.add(parc);
 
       m_bHasPoint = true;
 
-      m_pointBeg = parc->m_pointBeg;
+      m_pointBeg = arc.m_pointBeg;
 
-      m_pointEnd = parc->m_pointEnd;
+      m_pointEnd = arc.m_pointEnd;
 
       set_modified();
 
@@ -680,34 +611,36 @@ namespace draw2d
 
       }
 
-      auto parc = __new(arc);
+      auto parc = __new(arc_shape);
+
+      ::arc& arc = parc->m_shape;
 
       ::angle t = angle + 90_degrees;
-      parc->m_pointBeg.x = point.x + w / 2.0;
-      double a = (point.x - parc->m_pointBeg.x) / cos(t);
-      double x = point.x - parc->m_pointBeg.x;
+      arc.m_pointBeg.x = point.x + w / 2.0;
+      double a = (point.x - arc.m_pointBeg.x) / cos(t);
+      double x = point.x - arc.m_pointBeg.x;
       double b = 0;
       //double y = b * b  *w / (4.0* tan(dAngle));
       double y = 0;
       b = sqrt((a*a*y*y) / (a*a-x *x));
 
-      parc->m_sizeRadius.cx = a;
-      parc->m_sizeRadius.cy = b;
-      parc->m_pointCenter.y = point.y - b * sin(t);
-      parc->m_angleBeg = t;
-      parc->m_angleEnd = fmod(180_degrees - parc->m_angleBeg, 360_degrees);
-      parc->m_angleRotation = parc->m_angleEnd - parc->m_angleBeg;
+      arc.m_sizeRadius.cx = a;
+      arc.m_sizeRadius.cy = b;
+      arc.m_pointCenter.y = point.y - b * sin(t);
+      arc.m_angleBeg = t;
+      arc.m_angleEnd = fmod(180_degrees - arc.m_angleBeg, 360_degrees);
+      arc.m_angleRotation = arc.m_angleEnd - arc.m_angleBeg;
 
-      parc->m_pointBeg = parc->m_pointCenter + arc_point(parc->m_angleBeg, parc->m_sizeRadius);
-      parc->m_pointEnd = parc->m_pointCenter + arc_point(parc->m_angleEnd, parc->m_sizeRadius);
+      arc.m_pointBeg = arc.m_pointCenter + arc_point(arc.m_angleBeg, arc.m_sizeRadius);
+      arc.m_pointEnd = arc.m_pointCenter + arc_point(arc.m_angleEnd, arc.m_sizeRadius);
 
-      m_elementa.add(parc);
+      m_shapea.add_item(parc);
 
       m_bHasPoint = true;
 
-      m_pointBeg = parc->m_pointBeg;
+      m_pointBeg = arc.m_pointBeg;
 
-      m_pointEnd = parc->m_pointEnd;
+      m_pointEnd = arc.m_pointEnd;
 
       set_modified();
 
@@ -726,25 +659,27 @@ namespace draw2d
 
       }
 
-      auto parc = __new(arc);
+      auto parc = __new(arc_shape);
 
-      parc->m_pointCenter.x   = (rect.right + rect.left) / 2.0;
-      parc->m_pointCenter.y   = (rect.bottom + rect.top) / 2.0;
-      parc->m_sizeRadius.cx   = fabs(rect.right - rect.left) / 2.0;
-      parc->m_sizeRadius.cy   = fabs(rect.bottom - rect.top) / 2.0;
-      parc->m_angleBeg        = angleBeg;
-      parc->m_angleEnd        = angleBeg + angleSweep;
-      parc->m_angleRotation   = 0_degrees;
-      parc->m_pointBeg        = parc->m_pointCenter + arc_point(parc->m_angleBeg, parc->m_sizeRadius);
-      parc->m_pointEnd        = parc->m_pointCenter + arc_point(parc->m_angleEnd, parc->m_sizeRadius);
+      ::arc& arc = parc->m_shape;
 
-      m_elementa.add(parc);
+      arc.m_pointCenter.x   = (rect.right + rect.left) / 2.0;
+      arc.m_pointCenter.y   = (rect.bottom + rect.top) / 2.0;
+      arc.m_sizeRadius.cx   = fabs(rect.right - rect.left) / 2.0;
+      arc.m_sizeRadius.cy   = fabs(rect.bottom - rect.top) / 2.0;
+      arc.m_angleBeg        = angleBeg;
+      arc.m_angleEnd        = angleBeg + angleSweep;
+      arc.m_angleRotation   = 0_degrees;
+      arc.m_pointBeg        = arc.m_pointCenter + arc_point(arc.m_angleBeg, arc.m_sizeRadius);
+      arc.m_pointEnd        = arc.m_pointCenter + arc_point(arc.m_angleEnd, arc.m_sizeRadius);
+
+      m_shapea.add(parc);
 
       m_bHasPoint = true;
 
-      m_pointBeg = parc->m_pointBeg;
+      m_pointBeg = arc.m_pointBeg;
 
-      m_pointEnd = parc->m_pointEnd;
+      m_pointEnd = arc.m_pointEnd;
 
       set_modified();
 
@@ -764,7 +699,7 @@ namespace draw2d
    //   pelement->u.m_move.m_x          = x;
    //   pelement->u.m_move.m_y          = y;
 
-   //   m_elementa.add(pelement);
+   //   m_shapea.add(pelement);
 
    //   m_bHasPoint = true;
    //   m_point.x = x;
@@ -813,7 +748,7 @@ namespace draw2d
 
    //   pline->m_pointEnd.y = y2;
 
-   //   m_elementa.add(pline);
+   //   m_shapea.add(pline);
 
    //   m_bHasPoint = true;
 
@@ -839,9 +774,7 @@ namespace draw2d
    bool path::begin_figure()
    {
 
-      auto pbegin = __new(begin);
-
-      m_elementa.add(pbegin);
+      m_shapea.add_shape(e_shape_begin_figure);
 
       m_bHasPoint = false;
 
@@ -855,9 +788,7 @@ namespace draw2d
    bool path::close_figure()
    {
 
-      auto pend = __new(close);
-
-      m_elementa.add(pend);
+      m_shapea.add_shape(e_shape_close_figure);
 
       set_modified();
 
@@ -869,52 +800,59 @@ namespace draw2d
    bool path::add_text_out(const ::pointd & point, const string & strText,::draw2d::font_pointer pfont)
    {
 
-      auto ptextout = __new(text_out);
+      auto ptextout = __new(text_out_shape);
 
-      ptextout->m_strText     = strText;
-      ptextout->m_pfont       = pfont;
-      ptextout->m_point       = point;
+      auto& textout = ptextout->m_shape;
 
-      m_elementa.add(ptextout);
+      textout.m_strText     = strText;
+      textout.m_pfont       = pfont;
+      textout.m_point       = point;
 
-      return true;
-
-   }
-
-
-   bool path::add_draw_text(const string & strText, const ::rectd & rect, int iDrawTextFlags, ::draw2d::font_pointer pfont)
-   {
-
-      auto pdrawtext = __new(draw_text);
-
-      pdrawtext->m_strText          = strText;
-      pdrawtext->m_pfont            = pfont;
-
-      pdrawtext->m_rect             = rect;
-      pdrawtext->m_iDrawTextFlags   = iDrawTextFlags;
-      //pdrawtext->m_crForeground     = crForeground;
-
-      m_elementa.add(pdrawtext);
+      m_shapea.add_item(ptextout);
 
       return true;
 
    }
 
 
-   bool path::add_line(const pointd & pointBeg, const pointd & pointEnd)
+   bool path::add_draw_text(const string& strText, const ::rectd& rect, const ::e_align & ealign, const ::e_draw_text & edrawtext , ::draw2d::font_pointer pfont)
    {
 
-      auto pline = __new(line);
+      auto pdrawtext = __new(draw_text_shape);
 
-      pline->m_pointBeg = pointBeg;
+      ::draw_text & drawtext = pdrawtext->m_shape;
 
-      pline->m_pointEnd = pointEnd;
+      drawtext.m_strText          = strText;
+      drawtext.m_pfont            = pfont;
 
-      m_elementa.add(pline);
+      drawtext.m_rect             = rect;
+      drawtext.m_ealign = ealign;
+      drawtext.m_edrawtext   = edrawtext;
 
-      m_pointBeg = pline->m_pointBeg;
 
-      m_pointEnd = pline->m_pointEnd;
+      m_shapea.add(pdrawtext);
+
+      return true;
+
+   }
+
+
+   bool path::add_line(const pointd & p1, const pointd & p2)
+   {
+
+      auto pline = __new(lined_shape);
+
+      ::lined& line = pline->m_shape;
+
+      line.m_p1 = p1;
+      
+      line.m_p2 = p2;
+
+      m_shapea.add(pline);
+
+      m_pointBeg = line.m_p1;
+
+      m_pointEnd = line.m_p2;
 
       return true;
 
@@ -924,17 +862,19 @@ namespace draw2d
    bool path::add_line(const pointd & point)
    {
 
-      auto pline = __new(line);
+      auto pline = __new(lined_shape);
 
-      pline->m_pointBeg = m_pointEnd;
+      ::lined& line = pline->m_shape;
 
-      pline->m_pointEnd = point;
+      line.m_p1 = m_pointEnd;
 
-      m_elementa.add(pline);
+      line.m_p2 = point;
 
-      m_pointBeg = pline->m_pointBeg;
+      m_shapea.add(pline);
 
-      m_pointEnd = pline->m_pointEnd;
+      m_pointBeg = line.m_p1;
+
+      m_pointEnd = line.m_p2;
 
       return true;
 
@@ -944,16 +884,16 @@ namespace draw2d
    bool path::add_polygon(const POINT* ppoint, ::count nCount)
    {
 
-      auto ppolygon = __new(polygon);
+      auto ppolygon = __new(polygon_shape);
 
       for (i32 i = 0; i < nCount; i++)
       {
 
-         ppolygon->m_pointa.add(pointd(ppoint[i].x, ppoint[i].y));
+         ppolygon->m_shape.add(pointd(ppoint[i].x, ppoint[i].y));
 
       }
 
-      m_elementa.add(ppolygon);
+      m_shapea.add_item(ppolygon);
 
       return true;
 
@@ -963,13 +903,13 @@ namespace draw2d
    bool path::add_polygon(const POINTD* ppoint, ::count nCount)
    {
 
-      auto plines = __new(lines);
+      auto ppolygon = __new(polygond_shape);
 
-      plines->m_pointa.set_size(nCount);
+      ppolygon->m_shape.set_size(nCount);
 
-      memcpy(plines->m_pointa.get_data(), ppoint, plines->m_pointa.get_size_in_bytes());
+      memcpy(ppolygon->m_shape.get_data(), ppoint, ppolygon->m_shape.get_size_in_bytes());
 
-      m_elementa.add(plines);
+      m_shapea.add(ppolygon);
 
       return true;
 
@@ -980,16 +920,13 @@ namespace draw2d
    bool path::add_lines(const POINT * ppoint, ::count nCount)
    {
 
-      auto plines = __new(lines);
+      auto plines = __new(lines_shape);
 
-      for (i32 i = 0; i < nCount; i++)
-      {
+      plines->m_shape.set_size(nCount);
 
-         plines->m_pointa.add(pointd(ppoint[i].x, ppoint[i].y));
+      memcpy(plines->m_shape.get_data(), ppoint, plines->m_shape.get_size_in_bytes());
 
-      }
-
-      m_elementa.add(plines);
+      m_shapea.add(plines);
 
       return true;
 
@@ -999,13 +936,13 @@ namespace draw2d
    bool path::add_lines(const POINTD * ppoint, ::count nCount)
    {
 
-      auto plines = __new(lines);
+      auto plines = __new(linesd_shape);
 
-      plines->m_pointa.set_size(nCount);
+      plines->m_shape.set_size(nCount);
 
-      memcpy(plines->m_pointa.get_data(), ppoint, plines->m_pointa.get_size_in_bytes());
+      memcpy(plines->m_shape.get_data(), ppoint, plines->m_shape.get_size_in_bytes());
 
-      m_elementa.add(plines);
+      m_shapea.add(plines);
 
       return true;
 
@@ -1022,251 +959,6 @@ namespace draw2d
    }
 
 
-//   void path::get_bounding_rect(RECT * prect)
-//
-//   {
-//
-//      prect->right     = 0x80000000;
-//
-//      prect->left      = 0x7fffffff;
-//
-//      prect->bottom    = 0x80000000;
-//
-//      prect->top       = 0x7fffffff;
-//
-//
-//
-//      for(int i = 0; i < m_elementa.get_count(); i++)
-//      {
-//
-//         get_bounding_rect(prect, m_elementa(i));
-//
-//
-//      }
-//
-//   }
-//
-//   void path::get_bounding_rect(RECT * prect, element & element)
-//
-//   {
-//
-//      switch(element.m_etype)
-//      {
-//      case ::draw2d::path::element::type_arc:
-//         get_bounding_rect(prect, element.u.m_arc);
-//
-//         break;
-//      case ::draw2d::path::element::type_line:
-//         get_bounding_rect(prect, element.u.m_line);
-//
-//         break;
-//      case ::draw2d::path::element::type_move:
-//         get_bounding_rect(prect, element.u.m_move);
-//
-//         break;
-//      case ::draw2d::path::element::type_rect:
-//         get_bounding_rect(prect,element.u.m_rect);
-//
-//         break;
-//      case ::draw2d::path::element::type_string:
-//         get_bounding_rect(prect,element.m_stringpath);
-//
-//         break;
-//      case ::draw2d::path::element::type_end:
-//      {
-//
-//      }
-//      break;
-//      default:
-//         __throw(::exception::exception("unexpected simple os graphics element type"));
-//      }
-//
-//
-//
-//
-//   }
-//
-//   void path::get_bounding_rect(RECT * prect,rect & rect)
-//
-//   {
-//
-//      prect->left = (LONG) rect.m_x;
-//
-//      prect->top = (LONG)rect.m_y;
-//
-//      prect->right= (LONG)(rect.m_x + rect.m_cx);
-//
-//      prect->bottom = (LONG)(rect.m_y + rect.m_cy);
-//
-//
-//   }
-//
-//   void path::get_bounding_rect(RECT * prect, arc & a)
-//
-//   {
-//
-//      ::rect rect;
-//
-//      rect.left         = (LONG) (a.m_pointCenter.x - a.m_sizeRadius.cx);
-//
-//      rect.right        = (LONG) (a.m_pointCenter.x + a.m_sizeRadius.cx);
-//
-//      rect.top          = (LONG) (a.m_pointCenter.y - a.m_sizeRadius.cy);
-//
-//      rect.bottom       = (LONG) (a.m_pointCenter.y + a.m_sizeRadius.cy);
-//
-//      ::point point1;
-//
-//      ::point point2;
-//
-//      prect->left   = (LONG) min(a.m_pointCenter.x, prect->left);
-//
-//      prect->top    = (LONG) min(a.m_pointCenter.y, prect->top);
-//
-//      prect->right  = (LONG) max(a.m_pointCenter.x, prect->right);
-//
-//      prect->bottom = (LONG) max(a.m_pointCenter.y, prect->bottom);
-//
-//
-////      double pelement = a.m_dRadiusY / a.m_dRadiusX;
-//
-//      double f1 = a.m_angleBeg;
-//
-//      double f2 = a.m_angleEnd;
-//
-//      point1.x          = (LONG) (a.m_pointCenter.x + a.m_sizeRadius.cx * cos(f1));
-//
-//      point1.y          = (LONG) (a.m_pointCenter.y - a.m_sizeRadius.cy * sin(f1));
-//
-//      point2.x          = (LONG) (a.m_pointCenter.x + a.m_sizeRadius.cx * cos(f2));
-//
-//      point2.y          = (LONG) (a.m_pointCenter.y - a.m_sizeRadius.cy * sin(f2));
-//
-//      prect->left   = (LONG) min(point1.x, prect->left);
-//
-//
-//      prect->top    = (LONG) min(point1.y, prect->top);
-//
-//
-//      prect->right  = (LONG) max(point1.x, prect->right);
-//
-//
-//      prect->bottom = (LONG) max(point1.y, prect->bottom);
-//
-//
-//      prect->left   = (LONG) min(point2.x, prect->left);
-//
-//
-//      prect->top    = (LONG) min(point2.y, prect->top);
-//
-//
-//      prect->right  = (LONG) max(point2.x, prect->right);
-//
-//
-//      prect->bottom = (LONG) max(point2.y, prect->bottom);
-//
-//
-//      if((f1 >= 0 && f2 <= f1) || (f1 <= 0 && f2 >= 0))
-//      {
-//
-//         prect->left   = (LONG) min(rect.right, prect->left);
-//
-//
-//         prect->right  = (LONG) max(rect.right, prect->right);
-//
-//
-//      }
-//
-//      f1 -= System.math().GetPi() / 2.0;
-//
-//      f2 -= System.math().GetPi() / 2.0;
-//
-//      if((f1 >= 0 && f2 <= f1) || (f1 <= 0 && f2 >= 0))
-//      {
-//
-//         prect->top    = (LONG) min(rect.top, prect->top);
-//
-//
-//         prect->bottom = (LONG) max(rect.top, prect->bottom);
-//
-//
-//      }
-//
-//      f1 -= System.math().GetPi() / 2.0;
-//
-//      f2 -= System.math().GetPi() / 2.0;
-//
-//      if((f1 >= 0 && f2 <= f1) || (f1 <= 0 && f2 >= 0))
-//      {
-//
-//         prect->left   = (LONG) min(rect.left, prect->left);
-//
-//
-//         prect->right  = (LONG) max(rect.left, prect->right);
-//
-//
-//      }
-//
-//      f1 -= System.math().GetPi() / 2.0;
-//
-//      f2 -= System.math().GetPi() / 2.0;
-//
-//      if((f1 >= 0 && f2 <= f1) || (f1 <= 0 && f2 >= 0))
-//      {
-//
-//         prect->top    = (LONG) min(rect.bottom, prect->top);
-//
-//
-//         prect->bottom = (LONG) max(rect.bottom, prect->bottom);
-//
-//
-//      }
-//
-//   }
-//
-   //void path::get_bounding_rect(RECT * prect, move & m)
-
-   //{
-
-   //   prect->left   = (LONG) min(m.m_x, prect->left);
-
-
-   //   prect->top    = (LONG) min(m.m_y, prect->top);
-
-
-   //   prect->right  = (LONG) max(m.m_x, prect->right);
-
-
-   //   prect->bottom = (LONG) max(m.m_y, prect->bottom);
-
-
-   //}
-
-
-   //void path::get_bounding_rect(RECT * prect, line & l)
-
-   //{
-
-   //   prect->left   = (LONG) min(l.m_x, prect->left);
-
-
-   //   prect->top    = (LONG) min(l.m_y, prect->top);
-
-
-   //   prect->right  = (LONG) max(l.m_x, prect->right);
-
-
-   //   prect->bottom = (LONG) max(l.m_y, prect->bottom);
-
-
-   //}
-
-   //void path::get_bounding_rect(RECT * prect,string_path & point)
-
-   //{
-
-
-   //}
 
 
 
@@ -1736,7 +1428,7 @@ namespace draw2d
    bool path::_set_create(::draw2d::graphics* pgraphics)
    {
 
-      for (auto& pelement : m_elementa)
+      for (auto& pelement : m_shapea)
       {
 
          if (!_set(pgraphics, pelement))
@@ -1753,30 +1445,41 @@ namespace draw2d
    }
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, ::draw2d::path::element * pelement)
+   bool path::_set(::draw2d::graphics* pgraphics, ___shape * pshape)
    {
 
-      switch (pelement->m_etype)
-      {
-      case ::draw2d::path::type_begin:
-         return _set(pgraphics, dynamic_cast <begin*>(pelement));
-      case ::draw2d::path::type_arc:
-         return _set(pgraphics, dynamic_cast <arc*>(pelement));
-      case ::draw2d::path::type_rect:
-         return _set(pgraphics, dynamic_cast <rect*>(pelement));
-      case ::draw2d::path::type_line:
-         return  _set(pgraphics, dynamic_cast <line*>(pelement));
-      case ::draw2d::path::type_lines:
-         return _set(pgraphics, dynamic_cast <lines*>(pelement));
-      case ::draw2d::path::type_polygon:
-         return _set(pgraphics, dynamic_cast <polygon*>(pelement));
-      case ::draw2d::path::type_text_out:
-         return _set(pgraphics, dynamic_cast <text_out*>(pelement));
-      case ::draw2d::path::type_draw_text:
-         return _set(pgraphics, dynamic_cast <draw_text*>(pelement));
-      case ::draw2d::path::type_close:
-         return _set(pgraphics, dynamic_cast <close*>(pelement));
+      auto eshape = pshape->eshape();
 
+      switch (eshape)
+      {
+      case e_shape_begin_figure:
+         return _set(pgraphics, e_shape_begin_figure);
+      case e_shape_close_figure:
+         return _set(pgraphics, e_shape_close_figure);
+      case e_shape_end_figure:
+         return _set(pgraphics, e_shape_end_figure);
+      case e_shape_arc:
+         return _set(pgraphics, pshape->shape < ::arc>());
+      case e_shape_line:
+         return  _set(pgraphics, pshape->shape < ::line>());
+      case e_shape_lined:
+         return  _set(pgraphics, pshape->shape < ::lined>());
+      case e_shape_lines:
+         return _set(pgraphics, pshape->shape < ::lines>());
+      case e_shape_linesd:
+         return _set(pgraphics, pshape->shape < ::linesd>());
+      case e_shape_rect:
+         return _set(pgraphics, pshape->shape < ::rect>());
+      case e_shape_rectd:
+         return _set(pgraphics, pshape->shape < ::rectd>());
+      case e_shape_polygon:     
+         return _set(pgraphics, pshape->shape < ::polygon>());
+      case e_shape_polygond:    
+         return _set(pgraphics, pshape->shape < ::polygond>());
+      case e_shape_draw_text:   
+         return _set(pgraphics, pshape->shape < ::draw_text>());
+      case e_shape_text_out:    
+         return _set(pgraphics, pshape->shape < ::text_out>());
       default:
          throw "unexpected simple os graphics element type";
       }
@@ -1786,7 +1489,15 @@ namespace draw2d
    }
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, ::draw2d::path::begin* pbegin)
+   bool path::_set(::draw2d::graphics* pgraphics, const enum_shape& eshape)
+   {
+
+      return false;
+
+   }
+
+
+   bool path::_set(::draw2d::graphics* pgraphics, const::arc & arc)
    {
 
       __throw(interface_only_exception);
@@ -1796,7 +1507,7 @@ namespace draw2d
    }
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, ::draw2d::path::arc* parc)
+   bool path::_set(::draw2d::graphics* pgraphics, const::line& line)
    {
 
       __throw(interface_only_exception);
@@ -1806,7 +1517,7 @@ namespace draw2d
    }
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, ::draw2d::path::rect* prect)
+   bool path::_set(::draw2d::graphics* pgraphics, const::lined& line)
    {
 
       __throw(interface_only_exception);
@@ -1816,7 +1527,7 @@ namespace draw2d
    }
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, ::draw2d::path::line* pline)
+   bool path::_set(::draw2d::graphics* pgraphics, const::lines& lines)
    {
 
       __throw(interface_only_exception);
@@ -1826,7 +1537,7 @@ namespace draw2d
    }
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, ::draw2d::path::lines* plines)
+   bool path::_set(::draw2d::graphics* pgraphics, const::linesd& lines)
    {
 
       __throw(interface_only_exception);
@@ -1836,7 +1547,7 @@ namespace draw2d
    }
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, ::draw2d::path::polygon* pline)
+   bool path::_set(::draw2d::graphics* pgraphics, const ::rect & rect)
    {
 
       __throw(interface_only_exception);
@@ -1846,7 +1557,7 @@ namespace draw2d
    }
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, ::draw2d::path::text_out* ptextout)
+   bool path::_set(::draw2d::graphics* pgraphics, const ::rectd & rect)
    {
 
       __throw(interface_only_exception);
@@ -1856,7 +1567,7 @@ namespace draw2d
    }
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, ::draw2d::path::draw_text* pdrawtext)
+   bool path::_set(::draw2d::graphics* pgraphics, const ::polygon& polygon)
    {
 
       __throw(interface_only_exception);
@@ -1866,7 +1577,27 @@ namespace draw2d
    }
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, ::draw2d::path::close* pclose)
+   bool path::_set(::draw2d::graphics* pgraphics, const ::polygond& polygond)
+   {
+
+      __throw(interface_only_exception);
+
+      return false;
+
+   }
+
+
+   bool path::_set(::draw2d::graphics* pgraphics, const ::text_out & textout)
+   {
+
+      __throw(interface_only_exception);
+
+      return false;
+
+   }
+
+
+   bool path::_set(::draw2d::graphics* pgraphics, const ::draw_text& drawtext)
    {
 
       __throw(interface_only_exception);
@@ -2217,7 +1948,7 @@ namespace draw2d
 
       int iFill = 0;
 
-      for (auto& pelement : m_elementa)
+      for (auto& pelement : m_shapea)
       {
 
          if (pelement->contains(point))

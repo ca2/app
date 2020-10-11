@@ -441,9 +441,9 @@ bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool
       if (bDraw)
       {
          pgraphics->_DrawText(
-         strFinal, strFinal.get_length(),
+         strFinal,
          rectTextOut,
-         DT_LEFT | DT_BOTTOM);
+         e_align_bottom_left);
       }
    }
    break;
@@ -483,10 +483,9 @@ bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool
       rectTextOut.left += iLeftOffset;
       if (bDraw)
       {
-         pgraphics->_DrawText(
-         strLeft, strLeft.get_length(),
-         rectTextOut,
-         DT_LEFT | DT_BOTTOM);
+         
+         pgraphics->_DrawText(strLeft, rectTextOut, e_align_bottom_left);
+
       }
       /*           pFont->TextOutEx(
                       pdcForeground,
@@ -520,10 +519,8 @@ bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool
          if (bDraw)
          {
 
-            pgraphics->_DrawText(
-            strRight, strRight.get_length(),
-            rectTextOut,
-            DT_LEFT | DT_BOTTOM);
+            pgraphics->_DrawText(strRight, rectTextOut, e_align_bottom_left);
+
          }
          /*               pFont->TextOutEx(
                              pdcForeground,

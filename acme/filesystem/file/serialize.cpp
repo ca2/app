@@ -272,7 +272,7 @@
 //void stream::write_from_hex(const string & str)
 //{
 //
-//   stream::write_from_hex(str, str.get_length());
+//   stream::write_from_hex(str);
 //
 //}
 //

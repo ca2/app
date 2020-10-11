@@ -341,9 +341,9 @@ namespace draw2d_quartz2d
       virtual bool _set(const ::draw2d::matrix & matrix) override;
 
       // Text Functions
-      virtual bool internal_show_text(double x, double y, double w, UINT nFormat, const string & str, CGTextDrawingMode emode, bool bDraw = true, CGFloat * pascent = nullptr, CGFloat * pdescent = nullptr, CGFloat * pleading = nullptr, CGFloat * pwidth = nullptr, ::draw2d::pen * ppen=nullptr, ::draw2d::brush * pbrush = nullptr, ::draw2d::font * pfont = nullptr);
+      virtual bool internal_show_text(double x, double y, double w, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, const string & str, CGTextDrawingMode emode, bool bDraw = true, CGFloat * pascent = nullptr, CGFloat * pdescent = nullptr, CGFloat * pleading = nullptr, CGFloat * pwidth = nullptr, ::draw2d::pen * ppen=nullptr, ::draw2d::brush * pbrush = nullptr, ::draw2d::font * pfont = nullptr);
 
-      virtual bool internal_show_text(::draw2d::font_pointer spfont,::draw2d::brush_pointer spbrush,::draw2d::pen_pointer sppen, double x, double y, double w, UINT nFormat, const string & str, CGTextDrawingMode emode, bool bDraw = true, CGFloat * pascent = nullptr, CGFloat * pdescent = nullptr, CGFloat * pleading = nullptr, CGFloat * pwidth = nullptr);
+      virtual bool internal_show_text(::draw2d::font_pointer spfont,::draw2d::brush_pointer spbrush,::draw2d::pen_pointer sppen, double x, double y, double w, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, const string & str, CGTextDrawingMode emode, bool bDraw = true, CGFloat * pascent = nullptr, CGFloat * pdescent = nullptr, CGFloat * pleading = nullptr, CGFloat * pwidth = nullptr);
 
       void internal_draw_text(CGTextDrawingMode emode, double x, double y, CTLineRef line, ::draw2d::brush * pbrush);
 
@@ -364,12 +364,12 @@ namespace draw2d_quartz2d
       size TabbedTextOut(i32 x, i32 y, const string & str,
                          i32 nTabPositions, LPINT lpnTabStopPositions, i32 nTabOrigin);
 
-      virtual i32 draw_text(const char * lpszString, i32 nCount, const ::rectd & rect, UINT nFormat);
-      virtual bool draw_text(const string & str, const ::rectd & rect, UINT nFormat) override;
-      virtual bool draw_text(const string & strParam,const ::rect & rect,UINT nFormat) override;
+      virtual i32 draw_text(const char * lpszString, i32 nCount, const ::rectd & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none);
+      virtual bool draw_text(const string & str, const ::rectd & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
+      virtual bool draw_text(const string & strParam,const ::rect & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
 
-      virtual i32 draw_text_ex(LPTSTR lpszString, i32 nCount, const ::rectd & rect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
-      virtual bool draw_text_ex(const string & str, const ::rectd & rect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams) override;
+      virtual i32 draw_text_ex(LPTSTR lpszString, i32 nCount, const ::rectd & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPDRAWTEXTPARAMS lpDTParams);
+      virtual bool draw_text_ex(const string & str, const ::rectd & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPDRAWTEXTPARAMS lpDTParams) override;
 
       sized GetTextExtent(const char * lpszString, strsize nCount, i32 iIndex);
       sized GetTextExtent(const char * lpszString, strsize nCount) override;
@@ -426,7 +426,7 @@ namespace draw2d_quartz2d
 //      DWORD GetFontData(DWORD dwTable, DWORD dwOffset, LPVOID lpData, DWORD cbData) override;
 //      //xxx      i32 GetKerningPairs(i32 nPairs, LPKERNINGPAIR lpkrnpair) const;
 //      //xxx      UINT GetOutlineTextMetrics(UINT cbData, LPOUTLINETEXTMETRIC lpotm) const;
-//      //xxx      DWORD GetGlyphOutline(UINT nChar, UINT nFormat, LPGLYPHMETRICS lpgm,
+//      //xxx      DWORD GetGlyphOutline(UINT nChar, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPGLYPHMETRICS lpgm,
 //      //xxx    DWORD cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2) const;
 //
 //      //xxx      bool GetCharABCWidths(UINT nFirstChar, UINT nLastChar,

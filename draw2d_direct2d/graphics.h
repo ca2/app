@@ -397,11 +397,11 @@ namespace draw2d_direct2d
       virtual size TabbedTextOut(int x, int y, const char * lpszString, strsize nCount, count nTabPositions, LPINT lpnTabStopPositions, i32 nTabOrigin) override;
       virtual size TabbedTextOut(int x, int y, const string & str, count nTabPositions, LPINT lpnTabStopPositions, i32 nTabOrigin) override;
 
-      virtual bool draw_text(const char * lpszString, strsize nCount, const ::rect & rect, UINT nFormat) override;
-      virtual bool draw_text(const string & str,const ::rect & rect,UINT nFormat) override;
+      virtual bool draw_text(const char * lpszString, strsize nCount, const ::rect & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
+      virtual bool draw_text(const string & str,const ::rect & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
 
-//      virtual int draw_text_ex(LPTSTR lpszString, int nCount, RECT * prect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams) override;
-      //    virtual int draw_text_ex(const string & str, RECT * prect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams) override;
+//      virtual int draw_text_ex(LPTSTR lpszString, int nCount, RECT * prect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPDRAWTEXTPARAMS lpDTParams) override;
+      //    virtual int draw_text_ex(const string & str, RECT * prect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPDRAWTEXTPARAMS lpDTParams) override;
 
       virtual sized GetTextExtent(const char * lpszString, strsize nCount, strsize iIndex) override;
       //virtual sized GetTextExtent(const char * lpszString, strsize nCount) override;
@@ -456,7 +456,7 @@ namespace draw2d_direct2d
 //      u32 GetFontData(u32 dwTable, u32 dwOffset, LPVOID lpData, u32 cbData) override;
 ////      int GetKerningPairs(int nPairs, LPKERNINGPAIR lpkrnpair) override;
 ////      UINT GetOutlineTextMetrics(UINT cbData, LPOUTLINETEXTMETRICW lpotm) override;
-////      u32 GetGlyphOutline(UINT nChar, UINT nFormat, LPGLYPHMETRICS lpgm,
+////      u32 GetGlyphOutline(UINT nChar, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPGLYPHMETRICS lpgm,
 ////         u32 cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2) override;
 //
 ////      bool GetCharABCWidths(UINT nFirstChar, UINT nLastChar,

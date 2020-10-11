@@ -441,7 +441,7 @@ namespace user
 
       pgraphics->set_font(this);
 
-      pgraphics->draw_text(strText, rectText, DT_LEFT | DT_TOP);
+      pgraphics->draw_text(strText, rectText, e_align_top_left);
 
    }
 
@@ -638,18 +638,42 @@ namespace user
 
             pgraphics->set_text_color(crText);
 
-            int iDrawTextFlags;
+            ::e_align ealign;
+
+            ::e_draw_text edrawtext = e_draw_text_single_line;
 
             if (m_estyle == style_image_and_text)
             {
 
-               iDrawTextFlags = m_ealignText ? m_ealignText : DT_LEFT | DT_BOTTOM | DT_SINGLELINE;
+               if(m_ealignText)
+               {
+
+                  ealign = m_ealignText;
+
+               }
+               else
+               {
+
+                  ealign =  e_align_bottom_left;
+
+               }
 
             }
             else
             {
 
-               iDrawTextFlags = m_ealignText ? m_ealignText : DT_CENTER | DT_VCENTER | DT_SINGLELINE;
+               if(m_ealignText)
+               {
+
+                  ealign = m_ealignText;
+
+               }
+               else
+               {
+
+                  ealign =  e_align_center;
+
+               }
 
             }
 
@@ -773,7 +797,7 @@ namespace user
 
          rectAspect.bottom = (LONG) (pimage->height() * dMin);
 
-         rectAspect.Align(align_center, rectClient);
+         rectAspect.Align(e_align_center, rectClient);
 
          pgraphics->SetStretchBltMode(HALFTONE);
 
@@ -837,7 +861,7 @@ namespace user
 
            rectAspect.bottom = (LONG) (pimage->height() * dMin);
 
-            rectAspect.Align(align_bottom_left, rectPadded);
+            rectAspect.Align(e_align_bottom_left, rectPadded);
 
             pgraphics->SetStretchBltMode(HALFTONE);
 

@@ -136,7 +136,7 @@ namespace user
 
       rectBody.offset(4,0);
 
-      pgraphics->draw_text(m_str,rectBody,DT_VCENTER);
+      pgraphics->draw_text(m_str,rectBody,e_align_vertical_center);
 
    }
 

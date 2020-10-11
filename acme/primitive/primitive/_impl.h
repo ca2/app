@@ -162,7 +162,7 @@ inline bool get_memory::get_base64(const string & str)
    if (::is_set(m_pmemory))
    {
 
-      m_pmemory->from_base64(str, str.get_length());
+      m_pmemory->from_base64(str);
 
       return true;
 
@@ -172,7 +172,7 @@ inline bool get_memory::get_base64(const string & str)
 
       ::str::base64 base64;
 
-      return base64.decode(m_block, str, str.get_length());
+      return base64.decode(m_block, str);
 
    }
 

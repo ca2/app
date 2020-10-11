@@ -1,6 +1,17 @@
 #pragma once
 
 
+namespace aura
+{
+
+
+   class game;
+
+
+} // namespace aura
+
+
+
 #include "game.h"
 
 

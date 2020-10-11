@@ -814,7 +814,7 @@ namespace tranquillum
 
                pgraphics->set(brushText);
 
-               pgraphics->draw_text("x", rectClose, DT_CENTER | DT_VCENTER);
+               pgraphics->draw_text("x", rectClose, e_align_horizontal_center | e_align_vertical_center);
 
             }
 
@@ -838,7 +838,7 @@ namespace tranquillum
       if(straTitle.get_count() <= 1)
       {
 
-         pgraphics->_DrawText(pane.get_title(), rectParam, DT_LEFT | DT_BOTTOM | DT_NOPREFIX);
+         pgraphics->_DrawText(pane.get_title(), rectParam, e_align_bottom_left, e_draw_text_no_prefix);
 
       }
       else
@@ -859,7 +859,7 @@ namespace tranquillum
             string str = straTitle[i];
             size s = pane.m_sizeaText[i];
             rectText.right =rectText.left + s.cx;
-            pgraphics->_DrawText(str,rectText,DT_LEFT | DT_BOTTOM | DT_NOPREFIX);
+            pgraphics->_DrawText(str,rectText,e_align_bottom_left, e_draw_text_no_prefix);
             rectText.left += s.cx;
             if(i < straTitle.get_upper_bound())
             {
@@ -880,7 +880,7 @@ namespace tranquillum
                }
                pgraphics->set_font(ptab, ::user::element_close_tab_button);
                pgraphics->set_alpha_mode(emode);
-               pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT,rectText,DT_CENTER | DT_VCENTER | DT_NOPREFIX);
+               pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT,rectText,e_align_horizontal_center | e_align_vertical_center | DT_NOPREFIX);
                rectText.left += sSep.cx;
 
             }
@@ -1230,7 +1230,7 @@ namespace tranquillum
    //      if (ptoolbar->_001GetElementRect(iItem, rectText, eelementText) && rectText.right > 0)
    //      {
 
-   //         pgraphics->_DrawText(item.m_str, item.m_str.get_length(), rectText, DT_BOTTOM | DT_LEFT | DT_NOPREFIX);
+   //         pgraphics->_DrawText(item.m_str, item.m_str.get_length(), rectText, e_align_bottom_left, e_draw_text_no_prefix);
 
    //      }
 
@@ -1561,7 +1561,7 @@ namespace tranquillum
    //      if (ptoolbar->_001GetElementRect(iItem, rectText, eelementText) && rectText.right > 0)
    //      {
 
-   //         pgraphics->_DrawText(item.m_str, item.m_str.get_length(), rectText, DT_BOTTOM | DT_LEFT | DT_NOPREFIX);
+   //         pgraphics->_DrawText(item.m_str, item.m_str.get_length(), rectText, e_align_bottom_left, e_draw_text_no_prefix);
 
    //      }
 

@@ -629,7 +629,7 @@ namespace file
    void file::print(const string & str)
    {
 
-      write(str, str.get_length());
+      write(str);
 
    }
 

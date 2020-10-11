@@ -198,6 +198,47 @@ namespace draw2d
 
    };
 
+   enum enum_pen
+   {
+
+      e_pen_null,
+      e_pen_solid,
+      e_pen_dot,
+      e_pen_brush,
+      e_pen_dash
+
+   };
+
+
+   enum enum_line_cap
+   {
+
+      e_line_cap_flat,
+      e_line_cap_round,
+      e_line_cap_square,
+
+   };
+
+
+   enum enum_pen_align
+   {
+
+      e_pen_align_center,
+      e_pen_align_inset,
+
+   };
+
+
+   enum enum_line_join
+   {
+
+      e_line_join_miter,
+      e_line_join_bevel,
+      e_line_join_round,
+      e_line_join_miter_clipped
+
+   };
+
 
 } // namespace draw2d
 

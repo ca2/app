@@ -559,7 +559,7 @@ namespace user
       }
 
 
-      __pointer(span) edit_impl::add_span(e_align ealignNewLine)
+      __pointer(span) edit_impl::add_span(::e_align ealignNewLine)
       {
 
          return m_pdata->add_span(ealignNewLine);

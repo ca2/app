@@ -17,7 +17,8 @@ namespace user
 
 
       //size                           m_sizeTotal;
-      int                                       m_iDrawTextFlags;
+      ::e_align                                 m_ealignText;
+      ::e_draw_text                             m_edrawtext;
       __composite(::data::tree)                 m_ptree;
       __reference_array(::data::tree)           m_treeaBound;
       __composite(::data::tree_item_ptr_array)  m_pitemptraSelected;

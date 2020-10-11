@@ -2667,7 +2667,7 @@ namespace core
 
 #include "acme/primitive/primitive/pred_future.h"
 
-#include "acme/primitive/geometry2d/collection.h"
+#include "acme/primitive/geometry2d/_collection.h"
 
 #include "acme/primitive/geometry3d/_.h"
 

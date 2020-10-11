@@ -1,9 +1,6 @@
 #pragma once
 
 
-#pragma once
-
-
 template < typename _SIZE_TYPE >
 class size_array_base :
    public array < _SIZE_TYPE >

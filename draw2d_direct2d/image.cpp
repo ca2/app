@@ -159,7 +159,7 @@ namespace draw2d_direct2d
 
       m_hrEndDraw = S_OK;
 
-      m_pgraphics->m_pimageimplDraw2dGraphics = this;
+      m_pgraphics->m_pimage = this;
 
       m_eobject = eobjectCreate;
 

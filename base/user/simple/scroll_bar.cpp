@@ -1542,11 +1542,11 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    ::draw2d::pen_pointer penArrow(e_create);
 
-   penArrow->m_elinecapBeg = ::draw2d::pen::line_cap_round;
+   penArrow->m_elinecapBeg = ::draw2d::e_line_cap_round;
 
-   penArrow->m_elinecapEnd = ::draw2d::pen::line_cap_round;
+   penArrow->m_elinecapEnd = ::draw2d::e_line_cap_round;
 
-   penArrow->m_elinejoin = ::draw2d::pen::line_join_round;
+   penArrow->m_elinejoin = ::draw2d::e_line_join_round;
 
    cr = scrollbar_draw_color(pstyle, ::user::element_scrollbar_rectA);
 
@@ -1608,7 +1608,7 @@ void simple_scroll_bar::draw_mac_thumb_simple(::draw2d::graphics_pointer & pgrap
 
    pgraphics->set(brush);
 
-   rectDotto.Align(align_center, rectDraw);
+   rectDotto.Align(e_align_center, rectDraw);
 
    pgraphics->fill_ellipse(rectDotto);
 

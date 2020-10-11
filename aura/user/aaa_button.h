@@ -54,7 +54,7 @@ namespace user
       //e_rect                            m_erectMargin;
       //e_rect                            m_erectBorder;
       //e_rect                            m_erectPadding;
-      e_align                             m_ealignText;
+      e_align                              m_ealignText;
       e_style                             m_estyle;
       //::enum_check                    m_echeck;
       ::rect                              m_rectText;

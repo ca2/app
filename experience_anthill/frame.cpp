@@ -648,7 +648,7 @@ namespace experience
 
                   pgraphics->set(pframewindow->get_font(pstyle));
 
-                  pgraphics->draw_text(wstrWindowText, m_rectWindowText, DT_LEFT | DT_VCENTER | DT_NOPREFIX);
+                  pgraphics->draw_text(wstrWindowText, m_rectWindowText, e_align_left_center | DT_NOPREFIX);
 
                }
 

@@ -2713,19 +2713,19 @@ void interaction::_001CallOnDraw(::draw2d::graphics_pointer & pgraphics)
 
       windowing_output_debug_string("\n_001UpdateBuffer : after set alphamode");
 
-      if (pgraphics->m_pimageimplDraw2dGraphics->is_ok())
+      if (pgraphics->m_pimage->is_ok())
       {
 
          if (m_pimpl->is_composite())
          {
 
-            pgraphics->m_pimageimplDraw2dGraphics->fill(0);
+            pgraphics->m_pimage->fill(0);
 
          }
          else
          {
 
-            pgraphics->m_pimageimplDraw2dGraphics->fill(255, 192, 192, 192);
+            pgraphics->m_pimage->fill(255, 192, 192, 192);
 
          }
 
@@ -2927,10 +2927,10 @@ void interaction::_001CallOnDraw(::draw2d::graphics_pointer & pgraphics)
 
       string strType(type_c_str());
 
-      if (strType.contains_ci("albertopibiri_keyboard") && strType.contains_ci("main_frame"))
+      if (strType.contains_ci("veriwell_keyboard") && strType.contains_ci("main_frame"))
       {
 
-        // output_debug_string("albertopibiri_keyboard::main_frame");
+        // output_debug_string("veriwell_keyboard::main_frame");
 
       }
       else if (strType.contains_ci("plain_edit"))
@@ -7960,10 +7960,10 @@ void interaction::_001CallOnDraw(::draw2d::graphics_pointer & pgraphics)
 
       string strType = type_name();
 
-      if (strType.contains("albertopibiri_keyboard") && strType.contains("main_frame"))
+      if (strType.contains("veriwell_keyboard") && strType.contains("main_frame"))
       {
 
-         //output_debug_string("albertopibiri_keyboard::main_frame");
+         //output_debug_string("veriwell_keyboard::main_frame");
 
       }
       else if (strType.contains("main_frame"))

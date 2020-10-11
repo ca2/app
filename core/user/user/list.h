@@ -55,7 +55,8 @@ namespace user
       virtual i32 _001CalcItemWidth(::draw2d::graphics_pointer & pgraphics, index iItem, index iSubItem) override;
       virtual i32 _001CalcItemWidth(::draw2d::graphics_pointer & pgraphics, ::draw2d::font * pfont, index iItem, index iSubItem);
       virtual i32 _001CalcItemHeight(::user::style * pstyle, int iBaseHeight);
-      virtual i32 _001GetDrawTextFlags(EView eview);
+      virtual ::e_align get_draw_text_align(EView eview);
+      virtual ::e_draw_text get_draw_text_flags(EView eview);
 
 
 
@@ -124,7 +125,7 @@ namespace user
       virtual void _001RemoveSelection() override;
       virtual bool _001OnRemoveItem(index iItem) override;
       virtual bool _001RemoveItem(index iItem, bool bRedraw = true) override;
-      virtual void _001EnsureVisible(index iItem, e_align ealign = align_vertical_center, bool bRedraw = true);
+      virtual void _001EnsureVisible(index iItem, ::e_align e_align = e_align_vertical_center, bool bRedraw = true);
       virtual void _001EnsureVisible(index iItem, range & rangeRedraw) override;
       virtual void _001ItemScroll(index iItem, bool bRedraw = true) override;
       virtual index config_id_index(const ::database::key & key);

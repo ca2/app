@@ -1505,10 +1505,10 @@ void thread::thread_remove(::thread * pthread)
       if (is_set_finish() && m_threada.is_empty())
       {
 
-         if (strThreadThis == "albertopibiri_keyboard::application")
+         if (strThreadThis == "veriwell_keyboard::application")
          {
 
-            output_debug_string("albertopibiri_keyboard::application");
+            output_debug_string("veriwell_keyboard::application");
 
          }
 

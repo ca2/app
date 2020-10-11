@@ -14,7 +14,7 @@ namespace user
       int                     m_iTextHeight;
       bool                    m_bNoName;
       int                     m_iPad;
-      e_align                 m_ealign;
+      ::e_align                 m_ealign;
       string_to_string        m_mapName;
 
       image_array             m_imagea;

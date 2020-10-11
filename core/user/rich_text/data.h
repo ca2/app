@@ -48,11 +48,11 @@ namespace user
          virtual ::rectd get_drawing_rect();
 
          // if span has alignment set, it generates new line
-         __pointer(span) create_span(e_align ealignNewLine = align_none);
+         __pointer(span) create_span(::e_align ealignNewLine = e_align_none);
 
          __pointer(format) add_format();
 
-         __pointer(span) add_span(e_align ealignNewLine = align_none);
+         __pointer(span) add_span(::e_align ealignNewLine = e_align_none);
 
          __pointer(span) add_span(const span & span);
 

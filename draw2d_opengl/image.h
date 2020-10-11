@@ -24,32 +24,22 @@ namespace draw2d_opengl
       virtual ~image();
 
 
-      //virtual void construct_image_impl(::layered * pobjectContext);
-
-
       virtual ::draw2d::graphics * _get_graphics() const;
       virtual ::draw2d::bitmap_pointer get_bitmap() const;
       virtual ::draw2d::bitmap_pointer detach_bitmap();
 
 
-      /*virtual COLORREF * get_data() const;
-
-      */
       bool host(const ::pixmap* ppixmap);
 
       virtual bool stretch_image(::image * pimage) override;
 
-
       bool dc_select(bool bSelect = true);
-
-
-
 
       using ::image::create;
 
       virtual ::estatus create(const ::size& size, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1, bool bPreserve = false) override;
 
-      ::estatus create(::draw2d::graphics * pgraphics);
+      virtual ::estatus create(::draw2d::graphics* pgraphics);
 
       bool destroy();
 

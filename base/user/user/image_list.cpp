@@ -22,7 +22,7 @@ namespace user
 
       m_bNoName = false;
       m_iPad = 10;
-      m_ealign = align_top_left;
+      m_ealign = e_align_top_left;
 
       //m_scrolldataVert.m_bScrollEnable = true;
 
@@ -227,7 +227,7 @@ namespace user
 
          int xLeft;
 
-         if (m_ealign & align_horizontal_center)
+         if (m_ealign & e_align_horizontal_center)
          {
 
             xLeft = (cx - cxInternal) / 2;
@@ -564,7 +564,7 @@ namespace user
 
                pgraphics->set_text_color(get_color(pstyle, element_text));
 
-               pgraphics->draw_text(str, itemText.m_rect, DT_CENTER | DT_VCENTER);
+               pgraphics->draw_text(str, itemText.m_rect, e_align_horizontal_center | e_align_vertical_center);
 
             }
 

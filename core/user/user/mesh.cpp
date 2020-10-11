@@ -219,7 +219,7 @@ namespace user
                rect.right = rectClient.right;
                rect.bottom = LONG(y - pointScroll.y);
 
-               pgraphics->_DrawText(m_strTopText.Mid(iStart,i - iStart),rect,DT_LEFT);
+               pgraphics->_DrawText(m_strTopText.Mid(iStart,i - iStart),rect,e_align_left);
                iStart = iNewStart;
             }
          }
@@ -450,11 +450,18 @@ namespace user
 
       if(m_eview == impact_icon)
       {
-         m_pdrawmeshitem->m_iDrawTextFlags = DT_TOP | DT_CENTER | DT_END_ELLIPSIS | DT_WORDBREAK;
+
+         m_pdrawmeshitem->m_ealign = e_align_top_center;
+
+         m_pdrawmeshitem->m_edrawtext = { e_draw_text_end_ellipsis, e_draw_text_word_break };
       }
       else
       {
-         m_pdrawmeshitem->m_iDrawTextFlags = DT_VCENTER | DT_LEFT | DT_END_ELLIPSIS | DT_SINGLELINE;
+         
+         m_pdrawmeshitem->m_ealign = e_align_left_center;
+
+         m_pdrawmeshitem->m_edrawtext = { e_draw_text_end_ellipsis, e_draw_text_single_line };
+
       }
 
       bool bHoverFont = false;
@@ -3181,13 +3188,16 @@ namespace user
       if (m_eview == ::user::mesh::impact_icon)
       {
 
-         m_pdrawmeshitem->m_iDrawTextFlags = DT_TOP | DT_CENTER | DT_END_ELLIPSIS | DT_WORDBREAK | DT_NOPREFIX;
+         m_pdrawmeshitem->m_ealign = e_align_top_center;
 
+         m_pdrawmeshitem->m_edrawtext = { e_draw_text_end_ellipsis, e_draw_text_word_break };
       }
       else
       {
 
-         m_pdrawmeshitem->m_iDrawTextFlags = DT_VCENTER | DT_LEFT | DT_END_ELLIPSIS | DT_SINGLELINE | DT_NOPREFIX;
+         m_pdrawmeshitem->m_ealign = e_align_left_center;
+
+         m_pdrawmeshitem->m_edrawtext = { e_draw_text_end_ellipsis, e_draw_text_single_line };
 
       }
 
@@ -4757,13 +4767,16 @@ namespace user
       if (m_eview == ::user::mesh::impact_icon)
       {
 
-         m_pdrawmeshitem->m_iDrawTextFlags = DT_TOP | DT_CENTER | DT_END_ELLIPSIS | DT_WORDBREAK | DT_NOPREFIX;
+         m_pdrawmeshitem->m_ealign = e_align_top_center;
 
+         m_pdrawmeshitem->m_edrawtext = { e_draw_text_end_ellipsis, e_draw_text_word_break };
       }
       else
       {
 
-         m_pdrawmeshitem->m_iDrawTextFlags = DT_VCENTER | DT_LEFT | DT_END_ELLIPSIS | DT_SINGLELINE | DT_NOPREFIX;
+         m_pdrawmeshitem->m_ealign = e_align_left_center;
+
+         m_pdrawmeshitem->m_edrawtext = { e_draw_text_end_ellipsis, e_draw_text_single_line };
 
       }
 
@@ -5456,7 +5469,7 @@ namespace user
             rectCache.right = rectCache.left + (i32)m_rectText.width();
             rectCache.bottom = rectCache.top + (i32)m_rectText.height();
             pimage1->get_graphics()->set(m_pfont);
-            pimage1->get_graphics()->_DrawText(m_strText,rectCache,m_iDrawTextFlags);
+            pimage1->get_graphics()->_DrawText(m_strText,rectCache,m_ealign, m_edrawtext);
 
             //::aura::application * get_context_application() = m_pmesh->get_context_application();
 
@@ -5474,14 +5487,14 @@ namespace user
             brushText->create_solid(ARGB(255,255,255,255));
             m_pgraphics->set(brushText);
             m_pgraphics->set(m_pfont);
-            m_pgraphics->_DrawText(m_strText,m_rectText,m_iDrawTextFlags);
+            m_pgraphics->_DrawText(m_strText,m_rectText,m_ealign, m_edrawtext);
          }
          else
          {
             ::draw2d::brush_pointer brushText(e_create);
             brushText->create_solid(m_crText);
             m_pgraphics->set(brushText);
-            m_pgraphics->_DrawText(m_strText,m_rectText,m_iDrawTextFlags);
+            m_pgraphics->_DrawText(m_strText,m_rectText, m_ealign, m_edrawtext);
          }
       }
    }

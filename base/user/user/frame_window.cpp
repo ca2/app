@@ -2851,10 +2851,10 @@ namespace user
 
       string strType = type_name();
 
-      if(strType.contains_ci("albertopibiri_keyboard") && strType.contains_ci("main_frame"))
+      if(strType.contains_ci("veriwell_keyboard") && strType.contains_ci("main_frame"))
       {
 
-         //::output_debug_string("albertopibiri_keyboard::main_frame");
+         //::output_debug_string("veriwell_keyboard::main_frame");
 
       }
       else if(strType.contains_ci("simple_child_frame"))

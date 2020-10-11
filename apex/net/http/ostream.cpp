@@ -31,7 +31,7 @@
 //   void stream::write (const string & str)
 //   {
 //
-//      write((const char *) str, str.get_length());
+//      write((const char *) str);
 //
 //   }
 //

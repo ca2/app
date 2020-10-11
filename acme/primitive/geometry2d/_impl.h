@@ -195,4 +195,45 @@ inline ___shape* __new_shape(const GEOMETRY& geometry)
 }
 
 
+template < typename SHAPE, enum_shape ESHAPE >
+bool _shape < SHAPE, ESHAPE >::expand_bounding_rect(RECTD* prect) const
+      {
+
+         ::RECTD r;
+
+         if (!this->get_bounding_rect(&r))
+         {
+
+            return false;
+
+         }
+
+         ::union_rect(prect, prect, &r);
+
+         return true;
+
+      }
+
+
+template < typename SHAPE, enum_shape ESHAPE >
+bool _shape < SHAPE, ESHAPE >::expand_bounding_rect(RECT* prect) const
+   {
+
+      ::RECT r;
+
+      if (!this->get_bounding_rect(&r))
+      {
+
+         return false;
+
+      }
+
+      ::union_rect(prect, prect, &r);
+
+      return true;
+
+   }
+
+
+
 

@@ -1437,7 +1437,7 @@ namespace draw2d_direct2d
 
       }
 
-      if (ppen->m_etype == ::draw2d::pen::type_null)
+      if (ppen->m_etype == ::draw2d::e_pen_null)
       {
 
          return true;
@@ -4373,7 +4373,7 @@ namespace draw2d_direct2d
 
       }
 
-      if (nFormat & DT_RIGHT)
+      if (nFormat & e_align_right)
       {
 
          pfont->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_TRAILING);

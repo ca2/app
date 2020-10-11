@@ -37,7 +37,11 @@ namespace experience
       ::user::interaction::get_client_rect(rectClient);
 
       if (rectClient.area() <= 0)
+      {
+
          return;
+
+      }
 
       COLORREF crText;
 
@@ -83,7 +87,7 @@ namespace experience
 
          pgraphics->set_text_color(crText);
 
-         pgraphics->draw_text(str, rectClient, e_align_horizontal_center | e_align_vertical_center | DT_SINGLELINE);
+         pgraphics->draw_text(str, rectClient, e_align_center, e_draw_text_single_line);
 
       }
       else
@@ -110,7 +114,6 @@ namespace experience
          rectIcon.deflate(rectIcon.width() / 6, rectIcon.height() / 6);
 
          pgraphics->draw_stock_icon(rectIcon, m_estockicon);
-
 
       }
 

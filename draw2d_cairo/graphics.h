@@ -342,17 +342,17 @@ namespace draw2d_cairo
       virtual size TabbedTextOut(i32 x, i32 y, const string & str, count nTabPositions, LPINT lpnTabStopPositions, i32 nTabOrigin) override;
 
 #if defined(USE_PANGO)
-      //virtual bool internal_draw_text_cairo(const char * lpszString, strsize nCount, const ::rect & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, PFN_CAIRO_TEXT pfnText);
-      virtual bool internal_draw_text_pango(const char * lpszString, strsize nCount, const ::rectd & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, PFN_PANGO_TEXT pfnText);
-      virtual bool internal_draw_text(const char * lpszString, strsize nCount, const ::rectd & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none);
+      //virtual bool internal_draw_text_cairo(const block & block, const ::rect & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, PFN_CAIRO_TEXT pfnText = nullptr);
+      virtual bool internal_draw_text_pango(const block & block, const ::rectd & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, PFN_PANGO_TEXT pfnText = nullptr);
+      virtual bool internal_draw_text(const block & block, const ::rectd & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none);
 #else
       virtual bool internal_draw_text(const char * lpszString, strsize nCount, const ::rectd & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, PFN_CAIRO_TEXT ftext);
 #endif
-      virtual bool draw_text(const char * lpszString, strsize nCount, const ::rect & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
+      //virtual bool draw_text(const char * lpszString, strsize nCount, const ::rect & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
       virtual bool draw_text(const string & str, const ::rect & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
 
-      virtual bool draw_text_ex(LPTSTR lpszString, strsize nCount, const ::rect & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPDRAWTEXTPARAMS lpDTParams);
-      virtual bool draw_text_ex(const string & str, const ::rect & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPDRAWTEXTPARAMS lpDTParams) override;
+      //virtual bool draw_text_ex(LPTSTR lpszString, strsize nCount, const ::rect & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPDRAWTEXTPARAMS lpDTParams);
+      virtual bool draw_text_ex(const string & str, const ::rect & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPDRAWTEXTPARAMS lpDTParams = nullptr) override;
 
       sized GetTextExtent(const char * lpszString, strsize nCount, strsize iIndex) override;
       sized GetTextExtent(const char * lpszString, strsize nCount) override;
@@ -517,18 +517,23 @@ namespace draw2d_cairo
       bool _set(::draw2d::font * pfont);
 #endif
       bool _set(::draw2d::path * ppath);
-      bool _set(::draw2d::path::element * pelement);
-      bool _set(::draw2d::path::begin * pbegin);
-      bool _set(::draw2d::path::arc * parc);
-      //bool set(const ::draw2d::path::move & move);
-      bool _set(::draw2d::path::rect * prect);
-      bool _set(::draw2d::path::line * pline);
+
+      bool _set(const ::point_array & pointa);
       bool _set(const ::pointd_array & pointa);
-      bool _set(::draw2d::path::lines * plines);
-      bool _set(::draw2d::path::polygon * ppolygon);
-      bool _set(::draw2d::path::text_out * ptextout);
-      bool _set(::draw2d::path::draw_text * pdrawtext);
-      bool _set(::draw2d::path::close * pclose);
+
+      bool _set(___shape * pshape);
+      bool _set(const enum_shape & eshape);
+      bool _set(const ::arc & arc);
+      bool _set(const ::line & line);
+      bool _set(const ::lined & line);
+      bool _set(const ::lines & lines);
+      bool _set(const ::linesd & lines);
+      bool _set(const ::rect & rect);
+      bool _set(const ::rectd & rect);
+      bool _set(const ::polygon & polygon);
+      bool _set(const ::polygond & polygond);
+      bool _set(const ::text_out & textout);
+      bool _set(const ::draw_text & textout);
       bool fill_and_draw(::draw2d::brush * pbrush, ::draw2d::pen * ppen);
       bool fill(::draw2d::brush * pbrush, double xOrg  = 0.0, double yOrg = 0.0);
       bool _fill1(::draw2d::brush* pbrush, double xOrg = 0.0, double yOrg = 0.0);

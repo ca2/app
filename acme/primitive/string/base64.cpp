@@ -561,40 +561,32 @@ namespace str
    }
 
 
-   string base64::encode(const char * psz, e_mode emode)
-   {
-
-      return encode((void *)psz, (::count) ansi_length(psz), emode);
-
-   }
-
-
-   string base64::encode(void * p, ::count ca, e_mode emode)
+   string base64::encode(const ::block & block, e_mode emode)
    {
 
       ::string_file file;
 
-      encode(&file, (u8 *) p, (memsize) ca, emode);
+      encode(&file, (u8 *) block.m_pdata, (memsize) block.m_iSize, emode);
 
       return file.m_str;
 
    }
 
 
-   string base64::encode(memory_base & mem, e_mode emode)
-   {
+//   string base64::encode(memory_base & mem, e_mode emode)
+//   {
+//
+//      return encode(mem.get_data(), mem.get_size(), emode);
+//
+//   }
 
-      return encode(mem.get_data(), mem.get_size(), emode);
 
-   }
-
-
-   string base64::encode(const ::block & block, e_mode emode)
-   {
-
-      return encode(block.get_data(), block.get_size(), emode);
-
-   }
+//   string base64::encode(const ::block & block, e_mode emode)
+//   {
+//
+//      return encode(block.get_data(), block.get_size(), emode);
+//
+//   }
 
 
 
@@ -644,7 +636,8 @@ namespace str
 
    }
 
-   string base64::encode(::element & element, e_mode emode)
+
+   string base64::encode_element(::element & element, e_mode emode)
    {
 
       ::memory_stream streamObject;
@@ -741,5 +734,6 @@ namespace str
    }
 
 } // namespace str
+
 
 

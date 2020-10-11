@@ -1193,7 +1193,7 @@ void memory_base::to_base64(string & str, memsize pos, memsize size)
 
    ::str::base64 base64;
 
-   str = base64.encode(&get_data()[pos], min(get_size() - pos, size));
+   str = base64.encode({&get_data()[pos], min(get_size() - pos, size)});
 
 }
 
@@ -1607,7 +1607,7 @@ void memory_base::assign(const char * psz)
 
 Array < uchar, 1U > ^ memory_base::get_os_bytes(memsize pos, memsize size) const
 {
-   
+
    if (pos > get_size())
    {
 
@@ -1639,11 +1639,11 @@ Array < uchar, 1U > ^ memory_base::get_os_bytes(memsize pos, memsize size) const
 
 ::Windows::Storage::Streams::IBuffer ^ memory_base::get_os_buffer(memsize pos, memsize size) const
 {
-   
+
    ::Windows::Storage::Streams::DataWriter ^ writer = ref new ::Windows::Storage::Streams::DataWriter();
 
    Array < uchar, 1U >^ pbytes = get_os_bytes(pos, size);
-   
+
    writer->WriteBytes(pbytes);
 
    return writer->DetachBuffer();

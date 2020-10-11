@@ -564,7 +564,7 @@ namespace user
 
                pgraphics->set_text_color(get_color(pstyle, element_text));
 
-               pgraphics->draw_text(str, itemText.m_rect, e_align_horizontal_center | e_align_vertical_center);
+               pgraphics->draw_text(str, itemText.m_rect, e_align_center);
 
             }
 

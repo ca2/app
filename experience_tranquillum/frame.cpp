@@ -786,7 +786,7 @@ namespace experience
 
             pgraphics->set_font(pframewindow, ::user::element_window_title);
 
-            pgraphics->draw_text(wstrWindowText, m_rectWindowText, e_align_left_center | DT_NOPREFIX);
+            pgraphics->draw_text(wstrWindowText, m_rectWindowText, e_align_left_center, e_draw_text_no_prefix);
 
             //printf("G. frame::on_draw_frame %d\n", tick5.elapsed().m_i);
 

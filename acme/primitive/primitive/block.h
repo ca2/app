@@ -1,18 +1,27 @@
 #pragma once
 
 
-struct CLASS_DECL_ACME block
+struct CLASS_DECL_ACME BLOCK
 {
 
-   
    byte *                     m_pdata;
    memsize_storage            m_iSize;
 
+};
 
-   block(const void * pdata = nullptr, i64 iSize = 0) : m_pdata((byte *) pdata), m_iSize(iSize) {}
+
+struct CLASS_DECL_ACME block :
+   public BLOCK
+{
+
+
+   block(const void * pdata = nullptr, i64 iSize = 0) { m_pdata = (byte *) pdata; m_iSize = iSize; }
    block(const memory_base & memory);
    block(const memory_base * pmemory);
    block(const block & block) : ::block(block.m_pdata, block.m_iSize) {}
+   block(const string & str) : ::block(str.c_str(), str.get_length()) {}
+   block(const string & str, ::strsize s) : ::block((const void *)str.c_str(), (::i64)( s >= 0 ? s : str.get_length() + s + 1)) {}
+   block(const char * psz, ::strsize s = -1) : ::block((const void *)psz, (::i64) (s >= 0 ? s : strlen(psz) + s + 1)) {}
 
 
    block & operator = (const block & block) { if (this != &block) { m_pdata = block.m_pdata; m_iSize = block.m_iSize; } return *this; }
@@ -22,7 +31,7 @@ struct CLASS_DECL_ACME block
    memsize size() const { return (memsize)m_iSize; }
 
 #ifdef _UWP
-   
+
    ::Windows::Storage::Streams::IBuffer^ get_os_buffer(memsize pos = 0, memsize size = -1) const;
    Array < uchar, 1U >^ get_os_bytes(memsize pos, memsize size) const;
 
@@ -91,14 +100,14 @@ namespace hex
 
    inline CLASS_DECL_ACME string lower_from(const block & block)
    {
-      
+
       return lower_from(block.get_data(), block.get_size());
 
    }
 
    inline CLASS_DECL_ACME string upper_from(const block & block)
    {
-      
+
       return upper_from(block.get_data(), block.get_size());
 
    }

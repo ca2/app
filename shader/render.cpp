@@ -558,7 +558,7 @@ namespace app_shader
       //if(bDrawText)
       //{
       //
-      //   pgraphics->draw_text(strTitle, rectText, e_align_horizontal_center | e_align_vertical_center);
+      //   pgraphics->draw_text(strTitle, rectText, e_align_center);
       //   
       //}
 

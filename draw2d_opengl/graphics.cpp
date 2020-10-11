@@ -4520,7 +4520,7 @@ namespace draw2d_opengl
       //{
       //   format.SetAlignment(plusplus::StringAlignmentNear);
       //}
-      //else if(nFormat & DT_RIGHT)
+      //else if(nFormat & e_align_right)
       //{
       //   format.SetAlignment(plusplus::StringAlignmentFar);
       //}

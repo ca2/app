@@ -814,7 +814,7 @@ namespace tranquillum
 
                pgraphics->set(brushText);
 
-               pgraphics->draw_text("x", rectClose, e_align_horizontal_center | e_align_vertical_center);
+               pgraphics->draw_text("x", rectClose, e_align_center);
 
             }
 
@@ -880,7 +880,7 @@ namespace tranquillum
                }
                pgraphics->set_font(ptab, ::user::element_close_tab_button);
                pgraphics->set_alpha_mode(emode);
-               pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT,rectText,e_align_horizontal_center | e_align_vertical_center | DT_NOPREFIX);
+               pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT,rectText, e align_center, e_draw_text_no_prefix);
                rectText.left += sSep.cx;
 
             }

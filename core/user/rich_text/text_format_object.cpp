@@ -25,7 +25,7 @@ namespace user
    {
 
       pgraphics->fill_rect(m_rect, ARGB(127, 255, 255, 180));
-      pgraphics->draw_text(m_str, m_rect, e_align_horizontal_center | e_align_vertical_center);
+      pgraphics->draw_text(m_str, m_rect, e_align_center);
       ::rect rect(m_rect);
       pgraphics->draw_rect(rect, ARGB(127, 255, 255, 255));
       rect.deflate(1, 1);

@@ -1163,7 +1163,7 @@ namespace user
 
             pgraphics->set(brushText);
 
-            pgraphics->draw_text("x", rectClose, e_align_horizontal_center | e_align_vertical_center);
+            pgraphics->draw_text("x", rectClose, e_align_center);
 
          }
 

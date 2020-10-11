@@ -4549,7 +4549,7 @@ namespace draw2d_xlib
 
       double dy;
 
-      if(nFormat & DT_RIGHT)
+      if(nFormat & e_align_right)
       {
          dx = rect.right - rect.left - sz.cx;
       }
@@ -5466,7 +5466,7 @@ ok:
    bool graphics::fill_and_draw()
    {
 
-      /*bool bPen = m_ppen->m_etype != ::draw2d::pen::type_null;
+      /*bool bPen = m_ppen->m_etype != ::draw2d::e_pen_null;
 
       xlib_keep keep(this);
 
@@ -5531,7 +5531,7 @@ ok:
    bool graphics::draw(::draw2d::pen * ppen)
    {
 
-      /*if(ppen == nullptr || ppen->m_etype == ::draw2d::pen::type_null)
+      /*if(ppen == nullptr || ppen->m_etype == ::draw2d::e_pen_null)
          return true;
 
       xlib_keep keep(m_pdc);

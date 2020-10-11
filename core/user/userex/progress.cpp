@@ -305,7 +305,7 @@ namespace userex
 
       pgraphics->set_text_color(ARGB(255, 80, 80, 80));
 
-      pgraphics->draw_text(m_pprogresscontrol->m_strStatus, m_rectStatus, e_align_horizontal_center | e_align_vertical_center);
+      pgraphics->draw_text(m_pprogresscontrol->m_strStatus, m_rectStatus, e_align_center);
 
    }
 

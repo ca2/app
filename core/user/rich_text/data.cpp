@@ -1053,7 +1053,7 @@ namespace user
 
       //   //if (m_rect.is_empty())
       //   //{
-      //   //   
+      //   //
       //   //   if (m_pedit->is_picture_enabled())
       //   //   {
 
@@ -1211,11 +1211,11 @@ namespace user
 
                if(iLenSpan != iLenMeasure)
                {
-                  
+
                   ASSERT(FALSE);
-                  
+
                   output_debug_string("unexpected: iLenSpan != iLenMeasure");
-                  
+
                }
 
             }
@@ -1483,10 +1483,10 @@ namespace user
 
       }
 
-      
+
       ::rectd data::get_drawing_rect()
       {
-      
+
          ::rectd rect;
 
          if (m_pedit->is_picture_enabled())
@@ -2202,7 +2202,7 @@ namespace user
 
                   string strText = pbox->get_text();
 
-                  pgraphics->draw_text(strText, rect, e_align_bottom_left | DT_SINGLELINE);
+                  pgraphics->draw_text(strText, rect, e_align_bottom_left, e_draw_text_single_line);
 
                }
 

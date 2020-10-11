@@ -29,7 +29,7 @@ namespace experience
 
    void button::_001OnClip(::draw2d::graphics_pointer & pgraphics)
    {
-      
+
       ::user::interaction::_001OnClip(pgraphics);
 
    }
@@ -136,7 +136,7 @@ namespace experience
 
          pgraphics->set_text_color(crText);
 
-         pgraphics->draw_text(str, rectClient, e_align_horizontal_center | e_align_vertical_center | DT_SINGLELINE);
+         pgraphics->draw_text(str, rectClient, e_align_center, e_draw_text_single_line);
 
       }
       else

@@ -10,7 +10,7 @@
 
 enum enum_shape
 {
-   
+
    e_shape_none,
    e_shape_begin_clip,
    e_shape_intersect_clip,
@@ -30,7 +30,7 @@ enum enum_shape
    e_shape_polygond,
    e_shape_text_out,
    e_shape_draw_text,
-   
+
 };
 
 
@@ -38,30 +38,30 @@ class CLASS_DECL_ACME ___shape :
    virtual public element
 {
 protected:
-   
-   
+
+
    enum_shape     m_eshape;
 
    ___shape(enum_shape eshape) : m_eshape(eshape) { }
-   
-   
+
+
 public:
-   
-   
+
+
    inline enum_shape eshape() const { return m_eshape; }
    virtual void * raw_type() const {return nullptr;}
-   
+
 
    template < typename SHAPE >
    SHAPE & shape() { return *(SHAPE *)raw_type(); }
-   
+
 
    template < typename SHAPE >
    const SHAPE & shape() const { return *(SHAPE *)raw_type(); }
 
 
    virtual bool expand_bounding_rect(RECTD* prect) const;
-   
+
    virtual bool expand_bounding_rect(RECT* prect) const;
 
    virtual bool get_bounding_rect(RECTD* prect) const;
@@ -77,9 +77,9 @@ class CLASS_DECL_ACME begin_clip_shape :
 virtual public ___shape
 {
 public:
-   
+
    begin_clip_shape():___shape(e_shape_begin_clip) {}
-   
+
 };
 
 
@@ -87,9 +87,9 @@ class CLASS_DECL_ACME intersect_clip_shape :
 virtual public ___shape
 {
 public:
-   
+
    intersect_clip_shape():___shape(e_shape_intersect_clip) {}
-   
+
 };
 
 
@@ -129,86 +129,34 @@ class _shape :
 virtual public ___shape
 {
 public:
-   
+
 
    SHAPE       m_shape;
-   
-   
+
+
    _shape():___shape(ESHAPE) {}
    _shape(const SHAPE & shape) : ___shape(ESHAPE), m_shape(shape) {}
-   
-   
+
+
    virtual void * raw_type() const { return (void*) &m_shape; }
-   
-
-   virtual bool expand_bounding_rect(RECTD* prect) const
-   {
-
-      ::RECTD r;
-
-      if (!::get_bounding_rect(&r, &m_shape))
-      {
-
-         return false;
-
-      }
-
-      ::union_rect(prect, prect, &r);
-
-      return true;
-
-   }
 
 
-   virtual bool expand_bounding_rect(RECT* prect) const
-   {
-
-      ::RECT r;
-
-      if (!::get_bounding_rect(&r, &m_shape))
-      {
-
-         return false;
-
-      }
-
-      ::union_rect(prect, prect, &r);
-
-      return true;
-
-   }
+   virtual bool expand_bounding_rect(RECTD* prect) const;
 
 
-   virtual bool get_bounding_rect(RECTD* prect) const
-   {
-
-      return ::get_bounding_rect(prect, &m_shape);
-
-   }
+   virtual bool expand_bounding_rect(RECT* prect) const;
 
 
-   virtual bool get_bounding_rect(RECT* prect) const
-   {
-
-      return ::get_bounding_rect(prect, &m_shape);
-
-   }
+   virtual bool get_bounding_rect(RECTD* prect) const;
 
 
-   virtual bool contains(const ::POINT & point) const
-   {
-
-      return ::shape_contains(&m_shape, point);
-
-   }
+   virtual bool get_bounding_rect(RECT* prect) const;
 
 
-   virtual bool contains(const ::POINTD & point) const
-   {
+   virtual bool contains(const ::POINT & point) const;
 
-      return ::shape_contains(&m_shape, point);
 
-   }
+   virtual bool contains(const ::POINTD & point) const;
 
 
 };

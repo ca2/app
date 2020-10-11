@@ -100,7 +100,7 @@ namespace base
 //      theme_current_control(control_menu);
 //
 //      create_int(int_menu_check_padding, 3);
-//      create_int(int_button_draw_text_flags, e_align_horizontal_center | e_align_vertical_center | DT_SINGLELINE);
+//      create_int(int_button_draw_text_flags, e_align_center | DT_SINGLELINE);
 //      create_int(int_menu_item_draw_text_flags, e_align_left_center | DT_SINGLELINE);
 //
 //      create_rect_coord(rect_menu_margin, 4, 4, 4, 4);

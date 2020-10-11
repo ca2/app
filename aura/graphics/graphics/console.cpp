@@ -732,7 +732,7 @@ namespace graphics
             m_pimage->g()->set_text_color(console_COLORREF(iColor));
 
            m_pimage->g()->draw_text(str, rect(m_iBorder + x * m_sizeTile.cx, m_iBorder + y * m_sizeTile.cy,
-               m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx, m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy), e_align_horizontal_center | e_align_vertical_center);
+               m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx, m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy), e_align_center);
 
          }
 

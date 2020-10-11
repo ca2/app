@@ -4912,7 +4912,7 @@ namespace draw2d_quartz2d
          
       }
 
-      if(ppen->m_etype == ::draw2d::pen::::draw2d::e_pen_brush && ppen->m_pbrush)
+      if(ppen->m_etype == ::draw2d::e_pen_brush && ppen->m_pbrush)
       {
 
          if(ppen->m_pbrush->m_etype == ::draw2d::brush::type_solid)
@@ -5160,7 +5160,7 @@ namespace draw2d_quartz2d
    bool graphics::_draw(::draw2d::pen * ppen)
    {
 
-      if(ppen == nullptr || ppen->m_etype == ::draw2d::pen::type_null)
+      if(ppen == nullptr || ppen->m_etype == ::draw2d::e_pen_null)
          return true;
 
       //if(ppen->m_etype == ::draw2d::e_pen_solid)
@@ -5171,7 +5171,7 @@ namespace draw2d_quartz2d
 
          _set(ppen);
 
-         if(ppen->m_etype == ::draw2d::pen::::draw2d::e_pen_brush && ppen->m_pbrush.is_set()
+         if(ppen->m_etype == ::draw2d::e_pen_brush && ppen->m_pbrush.is_set()
                && (ppen->m_pbrush->m_etype == ::draw2d::brush::type_linear_gradient_point_color
                    || ppen->m_pbrush->m_etype == ::draw2d::brush::type_radial_gradient_color
                    || ppen->m_pbrush->m_etype == ::draw2d::brush::type_pattern)
@@ -6177,7 +6177,7 @@ namespace draw2d_quartz2d
       if(bDraw)
       {
 
-         if(nFormat & DT_RIGHT)
+         if(nFormat & e_align_right)
          {
             
 

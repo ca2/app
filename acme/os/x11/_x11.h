@@ -1,5 +1,17 @@
 #pragma once
 
+#include <X11/Xlib.h>
+#include <X11/extensions/Xinerama.h>
+#include <X11/Xft/Xft.h>
+#include <X11/extensions/Xrender.h>
+
+
+Display * x11_get_display();
+
+Visual * get_32bit_visual(Display * pdisplay);
+
+
+
 //
 //#include "acme/user/_const.h"
 //#include "acme/user/_const_key.h"
@@ -16,22 +28,11 @@ CLASS_DECL_ACME mutex * x11_mutex();
 
 #include "x11_exception.h"
 #include "x11_keyboard.h"
+#include "x11_hook.h"
+#include "x11_button.h"
+#include "x11_simple_ui_display.h"
 #include "x11_message_box.h"
 
-class x11_hook :
-virtual public ::element
-{
-public:
-
-
-
-   virtual bool process_event(Display * pdisplay, XEvent & e, XGenericEventCookie * cookie);
-
-   ::estatus hook();
-   ::estatus unhook();
-
-
-};
 
 
 void defer_init_x11();

@@ -118,23 +118,23 @@ namespace datetime
          GetRect(rect,e_element_year_title);
          string strYear;
          strYear.Format("%d",iYear);
-         pgraphics->draw_text(strYear,rect,e_align_horizontal_center | e_align_vertical_center);
+         pgraphics->draw_text(strYear,rect,e_align_center);
 
          pgraphics->set(m_pfontMonth);
          GetRect(rect,e_element_month_title);
          string strMonth;
          strMonth = GetMonth(pgraphics->str_context(),iMonth);
-         pgraphics->draw_text(strMonth,rect,e_align_horizontal_center | e_align_vertical_center);
+         pgraphics->draw_text(strMonth,rect,e_align_center);
 
          pgraphics->set(m_pfontSpin);
          GetRect(rect,e_element_previous_year);
-         pgraphics->draw_text("<<",rect,e_align_horizontal_center | e_align_vertical_center);
+         pgraphics->draw_text("<<",rect,e_align_center);
          GetRect(rect,e_element_next_year);
-         pgraphics->draw_text(">>",rect,e_align_horizontal_center | e_align_vertical_center);
+         pgraphics->draw_text(">>",rect,e_align_center);
          GetRect(rect,e_element_previous_month);
-         pgraphics->draw_text("<",rect,e_align_horizontal_center | e_align_vertical_center);
+         pgraphics->draw_text("<",rect,e_align_center);
          GetRect(rect,e_element_next_month);
-         pgraphics->draw_text(">",rect,e_align_horizontal_center | e_align_vertical_center);
+         pgraphics->draw_text(">",rect,e_align_center);
       }
 
 

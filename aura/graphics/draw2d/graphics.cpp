@@ -5611,7 +5611,7 @@ namespace draw2d
 
       //}
 
-      //if (uiFormat & DT_RIGHT)
+      //if (uiFormat & e_align_right)
       //{
       //   
       //   e_align |= ::e_align_right;

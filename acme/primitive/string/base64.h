@@ -35,18 +35,18 @@ namespace str
       base64();
       virtual ~base64();
 
-      
+
       virtual ::estatus initialize(::layered * pobjectContext) override;
 
 
       // from arbitrary binary data to Base 64
       void encode(::file::file * pfileOutput, u8 * pdata, memsize size, e_mode emode);
       void encode(::file::file * pfileOutput, ::file::file * pfileInput, e_mode emode = mode_normal);
-      string encode(memory_base & memory, e_mode emode = mode_normal);
+      //string encode(memory_base & memory, e_mode emode = mode_normal);
       string encode(const ::block & block, e_mode emode = mode_normal);
-      string encode(void  * point, ::count ca, e_mode emode = mode_normal);
-      string encode(const char * psz, e_mode emode = mode_normal);
-      string encode(::element & element, e_mode emode = mode_normal);
+      //string encode(void  * point, ::count ca, e_mode emode = mode_normal);
+      //string encode(const char * psz, e_mode emode = mode_normal);
+      string encode_element(::element & element, e_mode emode = mode_normal);
 
       // from Base 64 to binary data
       bool decode(::file::file * pfileOutput, ::file::file * pfileInput);

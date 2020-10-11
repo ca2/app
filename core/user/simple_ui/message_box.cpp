@@ -6,23 +6,23 @@
 
 void maximum_line_length(string_array & stra, int iLen)
 {
-   
+
    for(index i = 0; i < stra.get_size(); i++)
    {
-      
+
       string & strLine = stra[i];
-      
+
       if(strLine.length() > iLen - 16)
       {
-         
+
          stra.insert_at(i + 1, strLine.Mid(iLen));
-         
+
          strLine.truncate(iLen);
-         
+
       }
-      
+
    }
-   
+
 }
 
 
@@ -106,7 +106,7 @@ namespace simple_ui
       stra.add("\r\n");
 
       m_stra.add_smallest_tokens(m_strMessage,stra);
-      
+
       maximum_line_length(m_stra, 100);
 
       ::user::interaction * puiParent = Session.cast < ::user::interaction > ("plugin_parent");
@@ -257,7 +257,7 @@ namespace simple_ui
 
       rect.deflate(10, 10);
 
-      pgraphics->draw_text(strMessage, rect,e_align_top_left | DT_EXPANDTABS);
+      pgraphics->draw_text(strMessage, rect, e_align_top_left, e_draw_text_expand_tabs);
 
    }
 
@@ -458,7 +458,7 @@ namespace simple_ui
 } // namespace simple_ui
 
 // os_message_box / with async response wrapper
-// TODO: clip functionality to common behavior from 
+// TODO: clip functionality to common behavior from
 // all native message boxes at each platform.
 // MessageBox that doesn't need user::interaction
 //
@@ -478,7 +478,7 @@ namespace simple_ui
 
 // message_box with async response
 // defaults to ui_message_box
-// It fallbacks to os_message_box (with no timeout) when 
+// It fallbacks to os_message_box (with no timeout) when
 // user interaction isn't available.
 
 

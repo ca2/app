@@ -5202,7 +5202,7 @@ namespace base
 //               }
 //               pgraphics->set(ptab->m_pfontTab);
 //               pgraphics->set_alpha_mode(emode);
-//               pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT, rectText, e_align_horizontal_center | e_align_vertical_center | DT_NOPREFIX);
+//               pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT, rectText, e_align_center, e_draw_text_no_prefix);
 //               rectText.left += sSep.cx;
 //               pgraphics->set(font);
 //               pgraphics->set(brushText);

@@ -897,12 +897,17 @@
 		<Unit filename="os/winpr_scancode.cpp" />
 		<Unit filename="os/x11/_x11.h" />
 		<Unit filename="os/x11/debug.cpp" />
+		<Unit filename="os/x11/x11_button.cpp" />
+		<Unit filename="os/x11/x11_button.h" />
 		<Unit filename="os/x11/x11_exception.h" />
 		<Unit filename="os/x11/x11_hook.cpp" />
+		<Unit filename="os/x11/x11_hook.h" />
 		<Unit filename="os/x11/x11_keyboard.cpp" />
 		<Unit filename="os/x11/x11_keyboard.h" />
 		<Unit filename="os/x11/x11_message_box.cpp" />
 		<Unit filename="os/x11/x11_message_box.h" />
+		<Unit filename="os/x11/x11_simple_ui_display.cpp" />
+		<Unit filename="os/x11/x11_simple_ui_display.h" />
 		<Unit filename="os/x11/x11_windowing.cpp" />
 		<Unit filename="os/x11/x11_xrender.cpp" />
 		<Unit filename="papaya/papaya_zoneing.h" />
@@ -1204,6 +1209,7 @@
 		<Unit filename="primitive/datetime/zonetime.h" />
 		<Unit filename="primitive/geometry2d/_.cpp" />
 		<Unit filename="primitive/geometry2d/_.h" />
+		<Unit filename="primitive/geometry2d/_defer.h" />
 		<Unit filename="primitive/geometry2d/_impl.h" />
 		<Unit filename="primitive/geometry2d/_rect_impl.h" />
 		<Unit filename="primitive/geometry2d/_size_impl.h" />
@@ -1218,6 +1224,7 @@
 		<Unit filename="primitive/geometry2d/rect.cpp" />
 		<Unit filename="primitive/geometry2d/rect.h" />
 		<Unit filename="primitive/geometry2d/rect_array.h" />
+		<Unit filename="primitive/geometry2d/shape.cpp" />
 		<Unit filename="primitive/geometry2d/size.cpp" />
 		<Unit filename="primitive/geometry2d/size.h" />
 		<Unit filename="primitive/geometry2d/size_array.h" />
@@ -1309,8 +1316,8 @@
 		<Unit filename="primitive/primitive/context_object_traits.cpp" />
 		<Unit filename="primitive/primitive/edit.cpp" />
 		<Unit filename="primitive/primitive/edit.h" />
-		<Unit filename="primitive/primitive/elemental.cpp" />
-		<Unit filename="primitive/primitive/elemental.h" />
+		<Unit filename="primitive/primitive/element.cpp" />
+		<Unit filename="primitive/primitive/element.h" />
 		<Unit filename="primitive/primitive/enum.h" />
 		<Unit filename="primitive/primitive/enum_type.h" />
 		<Unit filename="primitive/primitive/eobject.h" />

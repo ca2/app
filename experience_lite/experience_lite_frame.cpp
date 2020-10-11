@@ -675,7 +675,7 @@
 
                   pgraphics->SelectObject(pframewindow->_001GetFont(::user::font_default));
 
-                  pgraphics->draw_text(wstrWindowText, m_rectWindowText, e_align_left_center | DT_NOPREFIX);
+                  pgraphics->draw_text(wstrWindowText, m_rectWindowText, e_align_left_center, e_draw_text_no_prefix);
 
                }
 

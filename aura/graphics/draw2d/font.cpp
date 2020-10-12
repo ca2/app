@@ -204,6 +204,7 @@ namespace draw2d
    {
 
       m_strFontFamilyName  = pszFamilyName;
+      
       set_modified();
 
    }

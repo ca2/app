@@ -224,6 +224,10 @@ namespace userex
 
                m_ptopview->m_peditview->_001SetText(strText, source_sync);
 
+               m_ptopview->m_peditview->m_pfont.defer_create();
+
+               m_ptopview->m_peditview->m_pfont->set_family_name(strText);
+
                m_pview->m_pfontlist->m_strText = "";
 
             }

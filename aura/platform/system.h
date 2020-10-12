@@ -478,7 +478,7 @@ namespace aura
       //::mutex * get_openweather_city_mutex();
 
 
-      virtual os_local & oslocal() override;
+      //virtual os_local & oslocal() override;
 
 
       template < typename T >

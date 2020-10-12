@@ -706,13 +706,6 @@ inline __time64_t duration::GetTimeSpan() const
 }
 
 
-inline void duration::sleep() const
-{
-
-   ::sleep(*this);
-
-}
-
 inline i64 duration::get_total_seconds() const
 {
    return (get_total_milliseconds() + 500) / 1000;

@@ -8,17 +8,6 @@ class single_lock;
 
 
 
-#ifdef WINDOWS
-
-typedef u32 ITHREAD;
-typedef DWORD thread_data_index;
-
-#else
-
-using thread_data_index = ::u32;
-
-#endif
-
 
 
 #ifdef APPLEOS

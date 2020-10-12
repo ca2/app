@@ -110,4 +110,8 @@ CLASS_DECL_ACME locale_t get_c_locale();
 #include "file.h"
 
 
+CLASS_DECL_ACME void output_debug_string(const char * psz);
+CLASS_DECL_ACME void output_debug_string(const wchar_t * psz);
+
+
 

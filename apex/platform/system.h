@@ -491,7 +491,7 @@ namespace apex
       //::mutex * get_openweather_city_mutex();
 
 
-      virtual os_local & oslocal();
+      //virtual os_local & oslocal();
 
 
       template < typename T >

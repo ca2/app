@@ -48,3 +48,16 @@ inline duration& duration::operator = (const ::duration& duration)
 //}
 
 
+
+
+
+inline void duration::sleep() const
+{
+
+   ::sleep(*this);
+
+}
+
+
+
+

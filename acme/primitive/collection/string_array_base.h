@@ -4406,13 +4406,6 @@ void string_array_base < Type, RawType > ::make_upper()
 }
 
 
-template < class Type, class RawType >
-void string_array_base < Type, RawType > ::debug_output(::index iStart, ::count inCountLastOut)
-{
-
-   output_debug_string(implode(STR_NEWLINE, iStart, inCountLastOut));
-
-}
 
 
 

@@ -199,6 +199,9 @@ CLASS_DECL_ACME void throw_what_exclamation_exclamation(const char * psz);
 #endif
 
 
+#include "acme/multithreading/_types.h"
+
+
 #define low_byte(w)              ((byte)((w) & 0xff))
 
 

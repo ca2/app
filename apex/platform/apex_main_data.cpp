@@ -1,5 +1,17 @@
 #include "framework.h"
-#include "apex/os/android/_os_local.h"
+
+
+//#ifdef ANDROID
+//
+//#include "acme/os/android/_os_local.h"
+//
+//#endif
+
+
+#ifdef ANDROID
+
+
+#endif
 
 
 #if defined(WINDOWS_DESKTOP)
@@ -33,8 +45,11 @@ void apex_main_data::system_construct(int argc, char** argv)
 
    m_iPathInstallFolderExeArg = -1;
 
-   m_poslocal = nullptr;
 
+//#
+//
+//   g_poslocal = nullptr;
+//
    m_wargv = nullptr;
 
 #ifdef WINDOWS_DESKTOP
@@ -65,7 +80,7 @@ void apex_main_data::system_construct(int argc, wchar_t** argv)
 
    m_iPathInstallFolderExeArg = -1;
 
-   m_poslocal = nullptr;
+   //m_poslocal = nullptr;
 
    m_wargv = argv;
 
@@ -95,20 +110,25 @@ void apex_main_data::system_construct(const char* pszCommandLine, const ::edispl
 
    m_edisplay = windows_show_window_to_edisplay(edisplay, m_eactivation);
 
-   m_poslocal = nullptr;
+   //m_poslocal = nullptr;
 
    xxf_zero(m_mainrunnera);
 
 }
 
+
 void apex_main_data::system_construct(os_local* poslocal, const ::edisplay& edisplay)
 {
 
-   m_strCommandLine = poslocal->m_strCommandLine;
+#ifdef ANDROID
+
+   m_strCommandLine = g_poslocal->m_strCommandLine;
+
+#endif
 
    m_edisplay = windows_show_window_to_edisplay(edisplay, m_eactivation);
 
-   m_poslocal = poslocal;
+   //m_poslocal = poslocal;
 
    xxf_zero(m_mainrunnera);
 
@@ -139,7 +159,7 @@ void apex_main_data::system_construct(HINSTANCE hinstance, HINSTANCE hPrevInstan
 
    m_wargv = __wargv;
 
-   m_poslocal = nullptr;
+   //m_poslocal = nullptr;
 
    xxf_zero(m_mainrunnera);
 

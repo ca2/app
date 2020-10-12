@@ -5,36 +5,6 @@
 typedef ::u32 uint32;
 
 
-#ifdef WINDOWS
-
-
-typedef HANDLE HTHREAD;
-
-typedef uint32 ITHREAD;
-
-
-#define NULL_HTHREAD ((HTHREAD)0)
-#define NULL_ITHREAD ((ITHREAD)0)
-
-
-inline int ithread_equals(ITHREAD a, ITHREAD b) { return a == b; }
-
-#else
-
-
-
-#define HTHREAD pthread_t
-
-#define ITHREAD pthread_t
-
-#define NULL_HTHREAD ((HTHREAD)0)
-#define NULL_ITHREAD ((ITHREAD)0)
-
-inline int ithread_equals(ITHREAD a, ITHREAD b) { return pthread_equal(a, b); }
-
-
-#endif
-
 
 
 

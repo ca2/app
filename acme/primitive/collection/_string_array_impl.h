@@ -276,3 +276,15 @@ void string_array_base < Type, RawType >::get_quick_sort_ci(index_array & ia)
 
 
 
+
+
+template < class Type, class RawType >
+inline void string_array_base < Type, RawType > ::debug_output(::index iStart, ::count inCountLastOut)
+{
+
+   ::output_debug_string(implode(STR_NEWLINE, iStart, inCountLastOut));
+
+}
+
+
+

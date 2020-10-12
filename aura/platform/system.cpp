@@ -2777,12 +2777,12 @@ namespace aura
    }
 
 
-   os_local & system::oslocal()
-   {
+   //os_local & system::oslocal()
+   //{
 
-      return *m_poslocal;
+   //   return *m_poslocal;
 
-   }
+   //}
 
 
 //void system::discard_to_factory(object * pca)

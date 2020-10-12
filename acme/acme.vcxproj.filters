@@ -2240,6 +2240,9 @@
     <ClInclude Include="primitive\geometry2d\_collection_contains.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
+    <ClInclude Include="multithreading\_types.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">
@@ -3190,16 +3193,10 @@
     <ClCompile Include="multithreading\sync_array.cpp">
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
-    <ClCompile Include="multithreading\sync_lock.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
     <ClCompile Include="multithreading\sync_result.cpp">
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
     <ClCompile Include="multithreading\sync_task.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\thread_impl.cpp">
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
     <ClCompile Include="multithreading\thread_os.cpp">

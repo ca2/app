@@ -1313,11 +1313,9 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="multithreading\socket_event.cpp" />
     <ClCompile Include="multithreading\sync.cpp" />
     <ClCompile Include="multithreading\sync_array.cpp" />
-    <ClCompile Include="multithreading\sync_lock.cpp" />
     <ClCompile Include="multithreading\sync_result.cpp" />
     <ClCompile Include="multithreading\sync_task.cpp" />
     <ClCompile Include="multithreading\thread.cpp" />
-    <ClCompile Include="multithreading\thread_impl.cpp" />
     <ClCompile Include="multithreading\thread_os.cpp" />
     <ClCompile Include="multithreading\waitable.cpp" />
     <ClCompile Include="multithreading\wait_future.cpp" />
@@ -1585,6 +1583,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="multithreading\_.h" />
     <ClInclude Include="multithreading\_impl.h" />
     <ClInclude Include="multithreading\_thread_os_create_impl.h" />
+    <ClInclude Include="multithreading\_types.h" />
     <ClInclude Include="net\_net_impl.h" />
     <ClInclude Include="node\opengl\opengl.h" />
     <ClInclude Include="node\windows\a.h" />

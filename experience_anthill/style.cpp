@@ -771,7 +771,7 @@ namespace experience
                }
                pgraphics->set(ptab->get_font(pstyle, ::user::element_close_tab_button));
                pgraphics->set_alpha_mode(emode);
-               pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT,rectText, e align_center, e_draw_text_no_prefix);
+               pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT,rectText, e_align_center, e_draw_text_no_prefix);
                rectText.left += sSep.cx;
             }
          }

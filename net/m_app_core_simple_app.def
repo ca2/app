@@ -1,0 +1,8 @@
+﻿; app_simple_drawing.def
+
+LIBRARY  "m_simple_drawing_simple_drawing"
+; For Win32 DLLs, only EXPORTs really required.
+
+EXPORTS
+get_new_library
+

@@ -68,9 +68,16 @@ CLASS_DECL_ACME wint_t FILE_ungetwc(wint_t w, FILE * s);
 
 CLASS_DECL_ACME filesize FILE_size(FILE * f);
 
-CLASS_DECL_ACME int_bool HFILE_set_size(HANDLE h,u64 iSize);
 CLASS_DECL_ACME int_bool fd_set_size(i32 fd,size_t iSize);
 CLASS_DECL_ACME int_bool FILE_set_size(FILE * file,size_t iSize);
+
+
+#ifdef WINDOWS
+
+CLASS_DECL_ACME int_bool HFILE_set_size(HANDLE h, u64 iSize);
+
+#endif
+
 
 
 

@@ -13,6 +13,10 @@ void _os_message_box(const char * pszMessage, const char * pszTitle, ::emessageb
 
 ::estatus _os_message_box(const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, ::future future);
 
+#else
+
+::estatus _os_message_box(const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox);
+
 #endif
 
 CLASS_DECL_ACME int __cpp_assert_failed_line(const char * pszFileName, int iLineNumber);

@@ -25,7 +25,7 @@
 
 #include "android/_.h"
 
-#include "posix/file_os_watcher.h"
+//#include "posix/file_os_watcher.h"
 
 #endif
 

@@ -8,6 +8,11 @@
 #include "acme/astr.h"
 #include "acme/os/_os.h"
 
+#ifdef ANDROID
+
+os_local * g_poslocal;
+
+#endif
 
 static void delete_all_release_on_end();
 

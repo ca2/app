@@ -24,7 +24,7 @@
     <ApplicationType>Android</ApplicationType>
     <ApplicationTypeRevision>3.0</ApplicationTypeRevision>
     <ProjectName>draw2d_cairo</ProjectName>
-    <RootNamespace>draw2d_cairo</RootNamespace>
+    <RootNamespace>app</RootNamespace>
     <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

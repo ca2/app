@@ -51,7 +51,7 @@
 
 //#include "acme/platform/struct.h"
 
-#include "acme/os/acme.h"
+//#include "acme/os/acme.h"
 
 #include "acme/memory/heap_c.h"
 

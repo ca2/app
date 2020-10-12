@@ -1,7 +1,9 @@
 #include "framework.h"
 //#include "acme/platform/app_core.h"
 
-
+#ifdef ANDROID
+extern os_local* g_poslocal;
+#endif
 #ifdef WINDOWS_DESKTOP
 
 
@@ -139,13 +141,13 @@
 
 #elif defined(ANDROID)
 
-   if (is_null(::get_context_system(), 65535))
+   if (is_null(g_poslocal, 65535))
    {
 
       output_debug_string("dir::config(err1)\n");
 
    }
-   else if (is_null(::get_context_system()->m_poslocal, 65535))
+   else if (is_null(g_poslocal, 65535))
    {
 
       output_debug_string("dir::config(err3)\n");

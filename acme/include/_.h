@@ -428,8 +428,6 @@ CLASS_DECL_ACME void set_last_error(DWORD dw);
 
 typedef char ansichar;
 
-i32 CLASS_DECL_ACME MultiByteToWideChar2(UINT CodePage, DWORD dwFlags, const ansichar * pMultByteStr, i32 cbMultiByte, widechar * pWideCharStr, i32 cchWideChar);
-i32 CLASS_DECL_ACME WideCharToMultiByte2(UINT CodePage, DWORD dwFlags, const widechar * pWideCharStr, i32 cchWideChar, ansichar * pMultByteStr, i32 cbMultiByte, LPCSTR pDefaultChar, LPBOOL pUsedDefaultChar);
 
 
 enum e_image_type
@@ -3468,6 +3466,10 @@ return __str(value);
 // C++ Includes
 #include "acme/os/_.h"
 #include "acme/node/_.h"
+
+
+i32 CLASS_DECL_ACME MultiByteToWideChar2(UINT CodePage, DWORD dwFlags, const ansichar* pMultByteStr, i32 cbMultiByte, widechar* pWideCharStr, i32 cchWideChar);
+i32 CLASS_DECL_ACME WideCharToMultiByte2(UINT CodePage, DWORD dwFlags, const widechar* pWideCharStr, i32 cchWideChar, ansichar* pMultByteStr, i32 cbMultiByte, LPCSTR pDefaultChar, LPBOOL pUsedDefaultChar);
 
 
 #include "acme/multithreading/data.h"

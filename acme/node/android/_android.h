@@ -9,26 +9,26 @@ CLASS_DECL_ACME::estatus os_shell_initialize();
 
 string get_error_message(DWORD dwError);
 
-::acme::application* win_instantiate_application(::acme::application* pappSystem, const char* pszId);
+//::acme::application* win_instantiate_application(::acme::application* pappSystem, const char* pszId);
 
 
 #include "android1.h"
 #include "implementation.h"
 #include "factory_exchange.h"
 #include "thread.h"
-#include "os_context.h"
+//#include "os_context.h"
 
-#include "dir_system.h"
-#include "file_system.h"
+//#include "dir_system.h"
+//#include "file_system.h"
 
-#include "dir_context.h"
-#include "file_context.h"
+//#include "dir_context.h"
+//#include "file_context.h"
 
 //#define ANDROID_THREAD(pthread) (dynamic_cast < ::android::thread * > (dynamic_cast < ::thread * >(pthread)))
 
-#include "shell.h"
+//#include "shell.h"
 
-#include "host_interaction.h"
+//#include "host_interaction.h"
 
 //CLASS_DECL_ACME void __trace_message(const char * lpszPrefix, ::message::message * pmessage);
 //CLASS_DECL_ACME void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);

@@ -15,7 +15,7 @@
 
 #include "exception_engine.h"
 
-#include "windowing.h"
+//#include "windowing.h"
 
 #define ENABLE_BINRELOC
 //#include "c_os_binreloc.h"

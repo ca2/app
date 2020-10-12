@@ -39,109 +39,109 @@ int g_iScreenH = 0;
 const char* g_pszCommandLine = NULL;
 const char* g_pszCacheDir = NULL;
 
-
-void android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t)
-{
-
-   if (::get_context_system() == nullptr)
-   {
-
-      output_debug_string("android_fill_plasma : aura_system is null");
-
-      return;
-
-   }
-
-   if (::get_context_system()->get_context_session() == nullptr)
-   {
-
-      output_debug_string("android_fill_plasma : context_session is null");
-
-      return;
-
-   }
-
-   if (::get_context_system()->get_context_session()->m_puiHost == nullptr)
-   {
-
-      output_debug_string("android_fill_plasma : Host Window is null");
-
-      return;
-
-   }
-
-   if (::get_context_system()->get_context_session()->m_puiHost->m_pimpl == nullptr)
-   {
-
-      output_debug_string("android_fill_plasma : Host Window impl is null");
-
-      return;
-
-   }
-
-   if (::get_context_system()->get_context_session()->m_puiHost->get_window_graphics() == nullptr)
-   {
-
-      //   output_debug_string("android_fill_plasma : get_window_graphics returned null");
-
-      return;
-
-   }
-
-   auto pbuffer = dynamic_cast <::graphics::double_buffer *> (::get_context_system()->get_context_session()->m_puiHost->get_window_graphics());
-
-   if(pbuffer == nullptr)
-   {
-
-      output_debug_string("android_fill_plasma : double_buffer is null");
-
-      return;
-
-   }
-
-   sync_lock slScreen(pbuffer->get_screen_sync());
-
-   auto pimage = pbuffer->get_screen_image();
-
-   pimage->map();
-
-   if (!::is_ok(pimage))
-   {
-
-      output_debug_string("android_fill_plasma : image is null or empty");
-
-      return;
-
-   }
-
-   auto pdata = pimage->get_data();
-
-   auto image_width = pimage->width();
-
-   auto image_height = pimage->height();
-
-   auto image_stride = pimage->m_iScan;
-
-   auto window_width = info->width;
-
-   auto window_height = info->height;
-
-   auto window_stride = info->stride;
-
-   auto transfer_width = min(image_width, window_width);
-
-   auto transfer_height = min(image_height, window_height);
-
-   ::copy_colorref_swap_red_blue((COLORREF *) pixels,
-   transfer_width,
-   transfer_height,
-   window_stride,
-   pdata,
-   image_stride);
-
-   //output_debug_string("android_fill_plasma OK (area="+__str(pbuffer->m_spimageBuffer.area())+")");
-
-}
+//
+//void android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t)
+//{
+//
+//   if (::get_context_system() == nullptr)
+//   {
+//
+//      output_debug_string("android_fill_plasma : aura_system is null");
+//
+//      return;
+//
+//   }
+//
+//   if (::get_context_system()->get_context_session() == nullptr)
+//   {
+//
+//      output_debug_string("android_fill_plasma : context_session is null");
+//
+//      return;
+//
+//   }
+//
+//   if (::get_context_system()->get_context_session()->m_puiHost == nullptr)
+//   {
+//
+//      output_debug_string("android_fill_plasma : Host Window is null");
+//
+//      return;
+//
+//   }
+//
+//   if (::get_context_system()->get_context_session()->m_puiHost->m_pimpl == nullptr)
+//   {
+//
+//      output_debug_string("android_fill_plasma : Host Window impl is null");
+//
+//      return;
+//
+//   }
+//
+//   if (::get_context_system()->get_context_session()->m_puiHost->get_window_graphics() == nullptr)
+//   {
+//
+//      //   output_debug_string("android_fill_plasma : get_window_graphics returned null");
+//
+//      return;
+//
+//   }
+//
+//   auto pbuffer = dynamic_cast <::graphics::double_buffer *> (::get_context_system()->get_context_session()->m_puiHost->get_window_graphics());
+//
+//   if(pbuffer == nullptr)
+//   {
+//
+//      output_debug_string("android_fill_plasma : double_buffer is null");
+//
+//      return;
+//
+//   }
+//
+//   sync_lock slScreen(pbuffer->get_screen_sync());
+//
+//   auto pimage = pbuffer->get_screen_image();
+//
+//   pimage->map();
+//
+//   if (!::is_ok(pimage))
+//   {
+//
+//      output_debug_string("android_fill_plasma : image is null or empty");
+//
+//      return;
+//
+//   }
+//
+//   auto pdata = pimage->get_data();
+//
+//   auto image_width = pimage->width();
+//
+//   auto image_height = pimage->height();
+//
+//   auto image_stride = pimage->m_iScan;
+//
+//   auto window_width = info->width;
+//
+//   auto window_height = info->height;
+//
+//   auto window_stride = info->stride;
+//
+//   auto transfer_width = min(image_width, window_width);
+//
+//   auto transfer_height = min(image_height, window_height);
+//
+//   ::copy_colorref_swap_red_blue((COLORREF *) pixels,
+//   transfer_width,
+//   transfer_height,
+//   window_stride,
+//   pdata,
+//   image_stride);
+//
+//   //output_debug_string("android_fill_plasma OK (area="+__str(pbuffer->m_spimageBuffer.area())+")");
+//
+//}
 
 
 void* load_lib(const char* l)

@@ -39,7 +39,7 @@ namespace aqua
 
       virtual ::aqua::multimedia* defer_get_multimedia();
 
-
+      
 
    };
 

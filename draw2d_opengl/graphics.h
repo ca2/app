@@ -427,8 +427,8 @@ namespace draw2d_opengl
       u32 GetFontData(u32 dwTable, u32 dwOffset, LPVOID lpData, u32 cbData) const;
       i32 GetKerningPairs(i32 nPairs, LPKERNINGPAIR lpkrnpair) const;
       UINT GetOutlineTextMetrics(UINT cbData, LPOUTLINETEXTMETRICW lpotm) const;
-      u32 GetGlyphOutline(UINT nChar, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPGLYPHMETRICS lpgm,
-                               u32 cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2) const;
+      //u32 GetGlyphOutline(UINT nChar, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPGLYPHMETRICS lpgm,
+      //                         u32 cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2) const;
 
       bool GetCharABCWidths(UINT nFirstChar, UINT nLastChar,
                             LPABCFLOAT lpABCF) const;

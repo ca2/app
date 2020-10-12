@@ -1837,7 +1837,12 @@ namespace draw2d_opengl
    bool graphics::get_text_metrics(::draw2d::text_metric * lpMetrics)
    {
 
-      set(m_pfont);
+      if (!set(m_pfont))
+      {
+
+         return false;
+
+      }
 
       __pointer(font) pfont = m_pfont;
 
@@ -2074,15 +2079,15 @@ namespace draw2d_opengl
    }
 
 
-   u32 graphics::GetGlyphOutline(UINT nChar, const ::e_align & ealign, const ::e_draw_text & edrawtext, LPGLYPHMETRICS lpgm,
-                                      u32 cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2) const
-   {
-      // ASSERT(m_hdc != nullptr);
-      //return ::GetGlyphOutline(m_hdc, nChar, nFormat,
-        //                       lpgm, cbBuffer, lpBuffer, lpmat2);
-      return 0;
+   //u32 graphics::GetGlyphOutline(UINT nChar, const ::e_align & ealign, const ::e_draw_text & edrawtext, LPGLYPHMETRICS lpgm,
+   //                                   u32 cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2) const
+   //{
+   //   // ASSERT(m_hdc != nullptr);
+   //   //return ::GetGlyphOutline(m_hdc, nChar, nFormat,
+   //     //                       lpgm, cbBuffer, lpBuffer, lpmat2);
+   //   return 0;
 
-   }
+   //}
 
 
    // ::user::document handling functions
@@ -5014,6 +5019,13 @@ namespace draw2d_opengl
 
    ::estatus graphics::set(::draw2d::font * pfont)
    {
+
+      if (::is_null(pfont))
+      {
+
+         return ::error_failed;
+
+      }
 
       pfont->get_os_data(this);
 

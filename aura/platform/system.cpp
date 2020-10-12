@@ -7884,6 +7884,39 @@ namespace aura
    }
 
 
+   ::estatus system::initialize_estamira()
+   {
+
+      if (m_pestamira)
+      {
+
+         return ::success;
+
+      }
+      
+      auto estatus = __compose(m_pestamira);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = m_pestamira->init_instance();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
    /* colorramp.c -- color temperature calculation source
    This file is part of Redshift.
    Redshift is free software: you can redistribute it and/or modify

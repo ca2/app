@@ -509,31 +509,31 @@ namespace multimedia
             return m_pprebuffer->m_position + position - m_dwLostSampleCount * m_pwaveformat->wBitsPerSample * m_pwaveformat->nChannels / 8;
       }*/
 
-      imedia_time out::out_get_time()
-      {
-
-         single_lock sLock(mutex(), TRUE);
-
-//         ::estatus                    estatus;
-
-         XAUDIO2_VOICE_STATE s;
-
-         if (m_psourcevoice != nullptr)
-         {
-
-            m_psourcevoice->GetState(&s);
-
-            return s.SamplesPlayed;
-
-         }
-         else
-         {
-
-            return 0;
-
-         }
-
-      }
+//      imedia_time out::out_get_time()
+//      {
+//
+//         single_lock sLock(mutex(), TRUE);
+//
+////         ::estatus                    estatus;
+//
+//         XAUDIO2_VOICE_STATE s;
+//
+//         if (m_psourcevoice != nullptr)
+//         {
+//
+//            m_psourcevoice->GetState(&s);
+//
+//            return s.SamplesPlayed;
+//
+//         }
+//         else
+//         {
+//
+//            return 0;
+//
+//         }
+//
+//      }
 
 
       void out::out_free(index iBuffer)

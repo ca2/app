@@ -38,10 +38,14 @@ namespace sockets
       }
    }
 
+   
    void sync_socket_handler::write(string &str)
    {
-      m_psocket->write(str);
+      
+      m_psocket->write(str, str.get_length());
+
    }
+
 
    void sync_socket_handler::write(void * pdata, memsize len)
    {

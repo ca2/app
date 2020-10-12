@@ -397,7 +397,7 @@ namespace draw2d_direct2d
       virtual size TabbedTextOut(int x, int y, const char * lpszString, strsize nCount, count nTabPositions, LPINT lpnTabStopPositions, i32 nTabOrigin) override;
       virtual size TabbedTextOut(int x, int y, const string & str, count nTabPositions, LPINT lpnTabStopPositions, i32 nTabOrigin) override;
 
-      virtual bool draw_text(const char * lpszString, strsize nCount, const ::rect & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
+      //virtual bool draw_text(const char * lpszString, strsize nCount, const ::rect & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
       virtual bool draw_text(const string & str,const ::rect & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
 
 //      virtual int draw_text_ex(LPTSTR lpszString, int nCount, RECT * prect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPDRAWTEXTPARAMS lpDTParams) override;
@@ -551,13 +551,13 @@ namespace draw2d_direct2d
       //ID2D1Brush * get_os_brush(::draw2d::brush * pbrush);
       //ID2D1Brush * get_os_pen_brush(::draw2d::pen * ppen);
 
-      virtual bool draw(::draw2d::path::text_out * ptextout, ::draw2d::pen * ppen);
+      virtual bool draw(const ::text_out & textout, ::draw2d::pen * ppen);
 
-      virtual bool fill(::draw2d::path::text_out * ptextout, ::draw2d::brush * pbrush);
+      virtual bool fill(const ::text_out & textout, ::draw2d::brush * pbrush);
 
-      virtual bool draw(::draw2d::path::draw_text * ptextout, ::draw2d::pen* ppen);
+      virtual bool draw(const ::draw_text & drawtext, ::draw2d::pen* ppen);
 
-      virtual bool fill(::draw2d::path::draw_text* ptextout, ::draw2d::brush* pbrush);
+      virtual bool fill(const ::draw_text & drawtext, ::draw2d::brush* pbrush);
 
 
       virtual bool flush() override;

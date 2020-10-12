@@ -33,7 +33,7 @@ namespace draw2d
 
 
 
-void dpi_os_initialize();
+// void dpi_os_initialize();
 
 typedef HRESULT WINAPI FN_DXGIGetDebugInterface(REFIID riid, void **ppDebug);
 

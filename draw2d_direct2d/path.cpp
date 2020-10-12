@@ -6,7 +6,7 @@ namespace draw2d_direct2d
 {
 
 
-   graphics_path::graphics_path()
+   path::path()
    {
 
       m_pthis = this;
@@ -15,7 +15,7 @@ namespace draw2d_direct2d
    }
 
 
-   graphics_path::~graphics_path()
+   path::~path()
    {
 
       destroy();
@@ -23,7 +23,7 @@ namespace draw2d_direct2d
    }
 
 
-   //bool graphics_path::internal_begin_figure(bool bFill, ::draw2d::e_fill_mode efillmode)
+   //bool path::internal_begin_figure(bool bFill, ::draw2d::e_fill_mode efillmode)
    //{
 
    //   if(m_psink != nullptr)
@@ -41,7 +41,7 @@ namespace draw2d_direct2d
    //}
 
 
-   bool graphics_path::internal_end_figure(bool bClose)
+   bool path::internal_end_figure(bool bClose)
    {
 
       if (m_psink == nullptr)
@@ -71,14 +71,14 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics_path::internal_add_arc(::draw2d::graphics* pgraphics, ::draw2d::path::arc * parc)
+   bool path::internal_add_arc(::draw2d::graphics* pgraphics, const ::arc & arc)
    {
 
       ::pointd point;
 
       D2D1_ARC_SEGMENT arcseg;
 
-      internal_get_arc(point, arcseg, parc);
+      internal_get_arc(point, arcseg, arc);
 
       if (!internal_start_figure(pgraphics, point.x, point.y))
       {
@@ -94,7 +94,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics_path::internal_add_rect(::draw2d::graphics* pgraphics, double x, double y, double cx, double cy)
+   bool path::internal_add_rect(::draw2d::graphics* pgraphics, double x, double y, double cx, double cy)
    {
 
       internal_start_figure(pgraphics, x, y);
@@ -110,7 +110,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics_path::internal_add_lines(::draw2d::graphics* pgraphics, const ::pointd_array& pointa, bool bClose)
+   bool path::internal_add_lines(::draw2d::graphics* pgraphics, const ::point_array& pointa, bool bClose)
    {
 
       if (pointa.get_count() < 1)
@@ -129,14 +129,40 @@ namespace draw2d_direct2d
 
       }
 
-      internal_end_figure(true);
+      internal_end_figure(bClose);
 
       return true;
 
    }
 
 
-   bool graphics_path::internal_add_string(::draw2d_direct2d::graphics * pgraphics, double x, double y, const string & strText, ::draw2d::font * pfont)
+   bool path::internal_add_lines(::draw2d::graphics* pgraphics, const ::pointd_array& pointa, bool bClose)
+   {
+
+      if (pointa.get_count() < 1)
+      {
+
+         return false;
+
+      }
+
+      internal_start_figure(pgraphics, pointa[0].x, pointa[0].y);
+
+      for (index i = 1; i < pointa.get_count(); i++)
+      {
+
+         internal_add_line(pgraphics, pointa[i].x, pointa[i].y);
+
+      }
+
+      internal_end_figure(bClose);
+
+      return true;
+
+   }
+
+
+   bool path::internal_add_string(::draw2d_direct2d::graphics * pgraphics, double x, double y, const string & strText, ::draw2d::font * pfont)
    {
 
       HRESULT hr;
@@ -168,7 +194,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics_path::internal_add_line(::draw2d::graphics* pgraphics, double x, double y)
+   bool path::internal_add_line(::draw2d::graphics* pgraphics, double x, double y)
    {
 
       if (::is_null(m_psink.Get()))
@@ -185,7 +211,7 @@ namespace draw2d_direct2d
    }
 
 
-   //bool graphics_path::internal_add_line(int x, int y)
+   //bool path::internal_add_line(int x, int y)
    //{
 
    //   D2D1_POINT_2F point;
@@ -197,7 +223,7 @@ namespace draw2d_direct2d
    //}
 
 
-   //bool graphics_path::internal_add_move(int x, int y)
+   //bool path::internal_add_move(int x, int y)
    //{
 
    //   internal_end_figure(false);
@@ -212,7 +238,7 @@ namespace draw2d_direct2d
    //}
 
 
-   bool graphics_path::internal_start_figure(::draw2d::graphics* pgraphics, double x, double y)
+   bool path::internal_start_figure(::draw2d::graphics* pgraphics, double x, double y)
    {
 
       if (m_psink == nullptr)
@@ -264,7 +290,7 @@ namespace draw2d_direct2d
    }
 
 
-   //bool graphics_path::internal_prepare(::draw2d::graphics * pgraphics, const ::pointd & point)
+   //bool path::internal_prepare(::draw2d::graphics * pgraphics, const ::pointd & point)
    //{
 
    //   if(m_psink == nullptr)
@@ -306,24 +332,24 @@ namespace draw2d_direct2d
 
    //}
 
-   bool graphics_path::internal_get_arc(::pointd & pointStart,D2D1_ARC_SEGMENT & arcseg, ::draw2d::path::arc * parc)
+   bool path::internal_get_arc(::pointd & pointStart,D2D1_ARC_SEGMENT & arcseg, const ::arc & arc)
    {
 
       D2D1_POINT_2F pointCenter;
 
-      pointCenter.x = (FLOAT)parc->m_pointCenter.x;
-      pointCenter.y = (FLOAT)parc->m_pointCenter.y;
+      pointCenter.x = (FLOAT)arc.m_pointCenter.x;
+      pointCenter.y = (FLOAT)arc.m_pointCenter.y;
 
-      double rx = parc->m_sizeRadius.cx;
-      double ry = parc->m_sizeRadius.cy;
+      double rx = arc.m_sizeRadius.cx;
+      double ry = arc.m_sizeRadius.cy;
 
-      pointStart.x = parc->m_pointBeg.x;
-      pointStart.y = parc->m_pointBeg.y;
+      pointStart.x = arc.m_pointBeg.x;
+      pointStart.y = arc.m_pointBeg.y;
 
-      arcseg.point.x = (FLOAT)parc->m_pointEnd.x;
-      arcseg.point.y = (FLOAT)parc->m_pointEnd.y;
+      arcseg.point.x = (FLOAT)arc.m_pointEnd.x;
+      arcseg.point.y = (FLOAT)arc.m_pointEnd.y;
 
-      if(parc->m_angleEnd > parc->m_angleBeg)
+      if(arc.m_angleEnd > arc.m_angleBeg)
       {
 
          arcseg.sweepDirection = D2D1_SWEEP_DIRECTION_CLOCKWISE;
@@ -336,7 +362,7 @@ namespace draw2d_direct2d
 
       }
 
-      if(fabs(parc->m_angleEnd - parc->m_angleBeg) < MATH_PI)
+      if(fabs(arc.m_angleEnd - arc.m_angleBeg) < MATH_PI)
       {
 
          arcseg.arcSize = D2D1_ARC_SIZE_SMALL;
@@ -349,7 +375,7 @@ namespace draw2d_direct2d
 
       }
 
-      arcseg.rotationAngle = (FLOAT) parc->m_angleRotation;
+      arcseg.rotationAngle = (FLOAT) arc.m_angleRotation;
 
       arcseg.size.width    = (FLOAT) rx;
 
@@ -360,7 +386,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics_path::create(::draw2d::graphics* pgraphicsParam, ::i8 iCreate)
+   bool path::create(::draw2d::graphics* pgraphicsParam, ::i8 iCreate)
    {
 
       auto pgraphics = __graphics(pgraphicsParam);
@@ -454,7 +480,7 @@ namespace draw2d_direct2d
    }
 
 
-   void * graphics_path::detach(::draw2d::graphics* pgraphicsParam)
+   void * path::detach(::draw2d::graphics* pgraphicsParam)
    {
 
       defer_update(pgraphicsParam, 0);
@@ -464,7 +490,7 @@ namespace draw2d_direct2d
    }
 
 
-   void graphics_path::destroy()
+   void path::destroy()
    {
 
       m_psink = nullptr;
@@ -478,7 +504,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics_path::create()
+   bool path::create()
    {
 
       return true;
@@ -486,7 +512,7 @@ namespace draw2d_direct2d
    }
 
 
-   //bool graphics_path::set(::draw2d_direct2d::graphics * pgraphics, const ::draw2d::path::element & e)
+   //bool path::set(::draw2d_direct2d::graphics * pgraphics, const ::draw2d::path::element & e)
    //{
 
    //   switch(e.m_etype)
@@ -518,52 +544,82 @@ namespace draw2d_direct2d
    //}
 
 
-   bool graphics_path::_set(::draw2d::graphics * pgraphics, ::draw2d::path::arc * parc)
+   bool path::_set(::draw2d::graphics * pgraphics, const ::arc & arc)
    {
 
       //::rectd rect;
 
-      //rect.left      = (LONG) (parc->m_pointCenter.x - parc->m_sizeRadius.cx);
-      //rect.right     = (LONG) (parc->m_pointCenter.x + parc->m_sizeRadius.cx);
-      //rect.top       = (LONG) (parc->m_pointCenter.y - parc->m_sizeRadius.cy);
-      //rect.bottom    = (LONG) (parc->m_pointCenter.y + parc->m_sizeRadius.cy);
+      //rect.left      = (LONG) (arc.m_pointCenter.x - arc.m_sizeRadius.cx);
+      //rect.right     = (LONG) (arc.m_pointCenter.x + arc.m_sizeRadius.cx);
+      //rect.top       = (LONG) (arc.m_pointCenter.y - arc.m_sizeRadius.cy);
+      //rect.bottom    = (LONG) (arc.m_pointCenter.y + arc.m_sizeRadius.cy);
 
       //bool bOk = internal_add_arc(pgraphics, parc);
 
       //return bOk;
 
-      return internal_add_arc(pgraphics, parc);
+      return internal_add_arc(pgraphics, arc);
 
    }
 
 
-   bool graphics_path::_set(::draw2d::graphics* pgraphics, ::draw2d::path::begin* pbegin)
+   bool path::_set(::draw2d::graphics* pgraphics, const enum_shape& eshape)
    {
 
-      //::rectd rect;
-
-      //rect.left      = (LONG) (parc->m_pointCenter.x - parc->m_sizeRadius.cx);
-      //rect.right     = (LONG) (parc->m_pointCenter.x + parc->m_sizeRadius.cx);
-      //rect.top       = (LONG) (parc->m_pointCenter.y - parc->m_sizeRadius.cy);
-      //rect.bottom    = (LONG) (parc->m_pointCenter.y + parc->m_sizeRadius.cy);
-
-      //bool bOk = internal_add_arc(pgraphics, parc);
-
-      //return bOk;
-
-      if (m_bFigureOpened)
+      if (eshape == e_shape_begin_figure)
       {
 
-         internal_end_figure(false);
+         if (m_bFigureOpened)
+         {
+
+            internal_end_figure(false);
+
+         }
+
+         return true;
 
       }
+      else if (eshape == e_shape_close_figure)
+      {
+
+         if (m_bFigureOpened)
+         {
+
+            internal_end_figure(true);
+
+         }
+
+
+         return true;
+
+      }
+      else if (eshape == e_shape_end_figure)
+      {
+
+         if (m_bFigureOpened)
+         {
+
+            internal_end_figure(false);
+
+         }
+
+         return true;
+
+      }
+      else
+      {
+
+         return ::draw2d::path::_set(pgraphics, eshape);
+
+      }
+
 
       return true;
 
    }
 
 
-   //bool graphics_path::_set(const ::draw2d::path::move & move)
+   //bool path::_set(const ::draw2d::path::move & move)
    //{
 
    //   return internal_add_move((int) move.m_x, (int) move.m_y);
@@ -571,13 +627,13 @@ namespace draw2d_direct2d
    //}
 
 
-   bool graphics_path::_set(::draw2d::graphics* pgraphics, ::draw2d::path::line * pline)
+   bool path::_set(::draw2d::graphics* pgraphics, const ::line & line)
    {
 
-      if (pline->m_pointBeg != m_pointEnd)
+      if (line.m_p1 != m_pointEnd)
       {
 
-         if (!internal_start_figure(pgraphics, pline->m_pointBeg.x, pline->m_pointBeg.y))
+         if (!internal_start_figure(pgraphics, line.m_p1.x, line.m_p1.y))
          {
 
             return false;
@@ -586,76 +642,117 @@ namespace draw2d_direct2d
 
       }
 
-      return internal_add_line(pgraphics, pline->m_pointEnd.x, pline->m_pointEnd.y);
+      return internal_add_line(pgraphics, line.m_p2.x, line.m_p2.y);
 
    }
 
 
-   bool graphics_path::_set(::draw2d::graphics* pgraphics, ::draw2d::path::rect * prect)
+   bool path::_set(::draw2d::graphics* pgraphics, const ::lined& line)
    {
 
-      return internal_add_rect(pgraphics, prect->m_rect.left, prect->m_rect.top, prect->m_rect.width(), prect->m_rect.height());
-
-   }
-
-
-   bool graphics_path::_set(::draw2d::graphics* pgraphics, ::draw2d::path::lines* plines)
-   {
-
-      return internal_add_lines(pgraphics, plines->m_pointa, false);
-
-   }
-
-
-   bool graphics_path::_set(::draw2d::graphics* pgraphics, ::draw2d::path::polygon * plines)
-   {
-
-      return internal_add_lines(pgraphics, plines->m_pointa, true);
-
-   }
-
-
-
-   bool graphics_path::_set(::draw2d::graphics * pgraphics, ::draw2d::path::text_out * ptextout)
-   {
-
-      return true;
-
-   }
-
-
-   bool graphics_path::_set(::draw2d::graphics* pgraphics, ::draw2d::path::draw_text * pdrawtext)
-   {
-
-      return true;
-
-   }
-
-
-   bool graphics_path::_set(::draw2d::graphics* pgraphics, ::draw2d::path::close* pclose)
-   {
-
-      //::rectd rect;
-
-      //rect.left      = (LONG) (parc->m_pointCenter.x - parc->m_sizeRadius.cx);
-      //rect.right     = (LONG) (parc->m_pointCenter.x + parc->m_sizeRadius.cx);
-      //rect.top       = (LONG) (parc->m_pointCenter.y - parc->m_sizeRadius.cy);
-      //rect.bottom    = (LONG) (parc->m_pointCenter.y + parc->m_sizeRadius.cy);
-
-      //bool bOk = internal_add_arc(pgraphics, parc);
-
-      //return bOk;
-
-      if (m_bFigureOpened)
+      if (line.m_p1 != m_pointEnd)
       {
 
-         internal_end_figure(true);
+         if (!internal_start_figure(pgraphics, line.m_p1.x, line.m_p1.y))
+         {
+
+            return false;
+
+         }
 
       }
 
+      return internal_add_line(pgraphics, line.m_p2.x, line.m_p2.y);
+
+   }
+
+
+   bool path::_set(::draw2d::graphics* pgraphics, const ::rect & rect)
+   {
+
+      return internal_add_rect(pgraphics, rect.left, rect.top, rect.width(), rect.height());
+
+   }
+
+
+   bool path::_set(::draw2d::graphics* pgraphics, const ::rectd& rect)
+   {
+
+      return internal_add_rect(pgraphics, rect.left, rect.top, rect.width(), rect.height());
+
+   }
+
+
+   bool path::_set(::draw2d::graphics* pgraphics, const ::lines & lines)
+   {
+
+      return internal_add_lines(pgraphics, (const ::point_array &) lines, false);
+
+   }
+
+
+   bool path::_set(::draw2d::graphics* pgraphics, const ::linesd& lines)
+   {
+
+      return internal_add_lines(pgraphics, (const ::pointd_array&) lines, false);
+
+   }
+
+
+   bool path::_set(::draw2d::graphics* pgraphics, const ::polygon & polygon)
+   {
+
+      return internal_add_lines(pgraphics, (const ::point_array&)polygon, true);
+
+   }
+
+   bool path::_set(::draw2d::graphics* pgraphics, const ::polygond& polygon)
+   {
+
+      return internal_add_lines(pgraphics, (const ::pointd_array&)polygon, true);
+
+   }
+
+   bool path::_set(::draw2d::graphics * pgraphics, const ::text_out & textout)
+   {
+
       return true;
 
    }
+
+
+   bool path::_set(::draw2d::graphics* pgraphics, const ::draw_text & drawtext)
+   {
+
+      return true;
+
+   }
+
+
+   //bool path::_set(::draw2d::graphics* pgraphics, ::draw2d::path::close* pclose)
+   //{
+
+   //   //::rectd rect;
+
+   //   //rect.left      = (LONG) (arc.m_pointCenter.x - arc.m_sizeRadius.cx);
+   //   //rect.right     = (LONG) (arc.m_pointCenter.x + arc.m_sizeRadius.cx);
+   //   //rect.top       = (LONG) (arc.m_pointCenter.y - arc.m_sizeRadius.cy);
+   //   //rect.bottom    = (LONG) (arc.m_pointCenter.y + arc.m_sizeRadius.cy);
+
+   //   //bool bOk = internal_add_arc(pgraphics, parc);
+
+   //   //return bOk;
+
+   //   if (m_bFigureOpened)
+   //   {
+
+   //      internal_end_figure(true);
+
+   //   }
+
+   //   return true;
+
+   //}
 
 
 } // namespace draw2d_direct2d
@@ -792,7 +889,7 @@ _In_opt_ IUnknown* clientDrawingEffect
       return S_OK;
    }
 
-   ::draw2d_direct2d::graphics_path * dc = static_cast<::draw2d_direct2d::graphics_path*>(clientDrawingContext);
+   ::draw2d_direct2d::path * dc = static_cast<::draw2d_direct2d::path*>(clientDrawingContext);
 
    HRESULT hr = glyphRun->fontFace->GetGlyphRunOutline(
                 glyphRun->fontEmSize,
@@ -915,7 +1012,7 @@ ULONG PathTextRenderer::Release()
 
 namespace draw2d_direct2d
 {
-   void graphics_path::CreatePathTextRenderer(FLOAT pixelsPerDip, IDWriteTextRenderer **textRenderer)
+   void path::CreatePathTextRenderer(FLOAT pixelsPerDip, IDWriteTextRenderer **textRenderer)
    {
       *textRenderer = nullptr;
 

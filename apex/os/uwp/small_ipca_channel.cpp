@@ -128,9 +128,7 @@
 
          memory m;
 
-
-
-         string anotherappURI = m_strBaseChannel + "://send?messagebin=" + __str(message)+ "," + ::get_context_system()->url_encode(::get_context_system()->base64().encode((byte *)pdata, len));
+         string anotherappURI = m_strBaseChannel + "://send?messagebin=" + __str(message) + "," + ::get_context_system()->url_encode(::get_context_system()->base64().encode({ pdata, len }));
 
          ::Windows::Foundation::Uri ^uri = ref new ::Windows::Foundation::Uri(anotherappURI);
 

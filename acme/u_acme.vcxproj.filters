@@ -1273,9 +1273,6 @@
     <ClCompile Include="user\os_colors.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\elemental.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
-    </ClCompile>
     <ClCompile Include="node\uwp\error.cpp">
       <Filter>Source Files\node\uwp</Filter>
     </ClCompile>
@@ -1392,6 +1389,12 @@
     </ClCompile>
     <ClCompile Include="os\windows_common\net.cpp">
       <Filter>Source Files\os\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive\element.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\geometry2d\shape.cpp">
+      <Filter>Source Files\primitive\geometry2d</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -3360,9 +3363,6 @@
     <ClInclude Include="const\_const.h">
       <Filter>Header Files\const</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\elemental.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="node\uwp\_.h">
       <Filter>Header Files\node\uwp</Filter>
     </ClInclude>
@@ -3437,6 +3437,9 @@
     </ClInclude>
     <ClInclude Include="os\user.h">
       <Filter>Header Files\os</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\element.h">
+      <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

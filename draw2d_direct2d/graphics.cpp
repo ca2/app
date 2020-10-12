@@ -1437,7 +1437,7 @@ namespace draw2d_direct2d
 
       }
 
-      if (ppen->m_etype == ::draw2d::e_pen_null)
+      if (ppen->m_epen == ::draw2d::e_pen_null)
       {
 
          return true;
@@ -4309,19 +4309,19 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics::draw_text(const char * lpszString, strsize nCount, const ::rect & rect, const ::e_align & ealign, const ::e_draw_text & edrawtext)
-   {
+   //bool graphics::draw_text(const char * lpszString, strsize nCount, const ::rect & rect, const ::e_align & ealign, const ::e_draw_text & edrawtext)
+   //{
 
-      if (nCount < 0)
-      {
+   //   if (nCount < 0)
+   //   {
 
-         nCount = strlen(lpszString) + nCount + 1;
+   //      nCount = strlen(lpszString) + nCount + 1;
 
-      }
+   //   }
 
-      return draw_text(string(lpszString, nCount), rect, nFormat);
+   //   return draw_text(string(lpszString, nCount), rect, nFormat);
 
-   }
+   //}
 
 
    bool graphics::draw_text(const string & str,const ::rect & rect, const ::e_align & ealign, const ::e_draw_text & edrawtext)
@@ -4373,13 +4373,13 @@ namespace draw2d_direct2d
 
       }
 
-      if (nFormat & e_align_right)
+      if (ealign & e_align_right)
       {
 
          pfont->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_TRAILING);
 
       }
-      else if (nFormat & e_align_horizontal_center)
+      else if (ealign & e_align_horizontal_center)
       {
 
          pfont->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_CENTER);
@@ -4392,13 +4392,13 @@ namespace draw2d_direct2d
 
       }
 
-      if (nFormat & e_align_bottom)
+      if (ealign & e_align_bottom)
       {
 
          pfont->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_FAR);
 
       }
-      else if (nFormat & e_align_vertical_center)
+      else if (ealign & e_align_vertical_center)
       {
 
          pfont->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_CENTER);
@@ -5189,19 +5189,19 @@ namespace draw2d_direct2d
 
       }
 
-      for(index i = 0; i < ppath->m_elementa.get_size(); i++)
+      for(index i = 0; i < ppath->m_shapea.get_size(); i++)
       {
 
-         if(ppath->m_elementa[i]->m_etype == ::draw2d::path::type_text_out)
+         if(ppath->m_shapea[i]->eshape() == e_shape_text_out)
          {
 
-            draw(ppath->m_elementa[i].cast < ::draw2d::path::text_out>(), ppen);
+            draw(ppath->m_shapea[i]->shape < ::text_out>(), ppen);
 
          }
-         else if (ppath->m_elementa[i]->m_etype == ::draw2d::path::type_draw_text)
+         else if (ppath->m_shapea[i]->eshape() == e_shape_draw_text)
          {
 
-            draw(ppath->m_elementa[i].cast < ::draw2d::path::draw_text>(), ppen);
+            draw(ppath->m_shapea[i]->shape < ::draw_text>(), ppen);
 
          }
 
@@ -5246,19 +5246,19 @@ namespace draw2d_direct2d
 
       }
 
-      for (index i = 0; i < ppath->m_elementa.get_size(); i++)
+      for (index i = 0; i < ppath->m_shapea.get_size(); i++)
       {
 
-         if (ppath->m_elementa[i]->m_etype == ::draw2d::path::type_text_out)
+         if (ppath->m_shapea[i]->eshape() == ::e_shape_text_out)
          {
 
-            fill(ppath->m_elementa[i].cast < ::draw2d::path::text_out >(), m_pbrush);
+            fill(ppath->m_shapea[i]->shape < ::text_out >(), m_pbrush);
 
          }
-         else if (ppath->m_elementa[i]->m_etype == ::draw2d::path::type_draw_text)
+         else if (ppath->m_shapea[i]->eshape() == ::e_shape_draw_text)
          {
 
-            fill(ppath->m_elementa[i].cast < ::draw2d::path::draw_text >(), m_pbrush);
+            fill(ppath->m_shapea[i]->shape < ::draw_text >(), m_pbrush);
 
          }
 
@@ -5303,19 +5303,19 @@ namespace draw2d_direct2d
 
       }
 
-      for (index i = 0; i < ppath->m_elementa.get_size(); i++)
+      for (index i = 0; i < ppath->m_shapea.get_size(); i++)
       {
 
-         if (ppath->m_elementa[i]->m_etype == ::draw2d::path::type_text_out)
+         if (ppath->m_shapea[i]->eshape() == ::e_shape_text_out)
          {
 
-            fill(ppath->m_elementa[i].cast < ::draw2d::path::text_out >(), pbrushParam);
+            fill(ppath->m_shapea[i]->shape < ::text_out >(), pbrushParam);
 
          }
-         else if (ppath->m_elementa[i]->m_etype == ::draw2d::path::type_draw_text)
+         else if (ppath->m_shapea[i]->eshape() == ::e_shape_draw_text)
          {
 
-            fill(ppath->m_elementa[i].cast < ::draw2d::path::draw_text >(), pbrushParam);
+            fill(ppath->m_shapea[i]->shape < ::draw_text >(), pbrushParam);
 
          }
 
@@ -5345,12 +5345,12 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics::draw(::draw2d::path::text_out * ptextout, ::draw2d::pen * ppen)
+   bool graphics::draw(const ::text_out & textout, ::draw2d::pen * ppen)
    {
 
-      wstring szOutline(ptextout->m_strText);
+      wstring szOutline(textout.m_strText);
 
-      IDWriteTextFormat * pformat = ptextout->m_pfont->get_os_data < IDWriteTextFormat * > (this);
+      IDWriteTextFormat * pformat = textout.m_pfont->get_os_data < IDWriteTextFormat * > (this);
 
       IDWriteFactory * pfactory = global_draw_get_write_factory();
 
@@ -5378,19 +5378,19 @@ namespace draw2d_direct2d
 
       defer_text_rendering_hint();
 
-      playout->Draw(nullptr, &renderer, (FLOAT) ptextout->m_point.x, (FLOAT) ptextout->m_point.y);
+      playout->Draw(nullptr, &renderer, (FLOAT) textout.m_point.x, (FLOAT) textout.m_point.y);
 
       return true;
 
    }
 
 
-   bool graphics::fill(::draw2d::path::text_out * ptextout, ::draw2d::brush * pbrush)
+   bool graphics::fill(const ::text_out & textout, ::draw2d::brush * pbrush)
    {
 
-      wstring szOutline(ptextout->m_strText);
+      wstring szOutline(textout.m_strText);
 
-      IDWriteTextFormat * pformat = ptextout->m_pfont->get_os_data < IDWriteTextFormat * >(this);
+      IDWriteTextFormat * pformat = textout.m_pfont->get_os_data < IDWriteTextFormat * >(this);
 
       IDWriteFactory * pfactory = global_draw_get_write_factory();
 
@@ -5423,7 +5423,7 @@ namespace draw2d_direct2d
 
          defer_text_rendering_hint();
 
-         playout->Draw(nullptr, &renderer, (FLOAT)ptextout->m_point.x, (FLOAT)ptextout->m_point.y);
+         playout->Draw(nullptr, &renderer, (FLOAT)textout.m_point.x, (FLOAT)textout.m_point.y);
 
       }
 
@@ -5432,12 +5432,12 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics::draw(::draw2d::path::draw_text* pdrawtext, ::draw2d::pen* ppen)
+   bool graphics::draw(const ::draw_text & drawtext, ::draw2d::pen* ppen)
    {
 
-      wstring szOutline(pdrawtext->m_strText);
+      wstring szOutline(drawtext.m_strText);
 
-      IDWriteTextFormat* pformat = pdrawtext->m_pfont->get_os_data < IDWriteTextFormat* >(this);
+      IDWriteTextFormat* pformat = drawtext.m_pfont->get_os_data < IDWriteTextFormat* >(this);
 
       IDWriteFactory* pfactory = global_draw_get_write_factory();
 
@@ -5465,19 +5465,19 @@ namespace draw2d_direct2d
 
       defer_text_rendering_hint();
 
-      playout->Draw(nullptr, &renderer, (FLOAT)pdrawtext->m_rect.left, (FLOAT)pdrawtext->m_rect.top);
+      playout->Draw(nullptr, &renderer, (FLOAT)drawtext.m_rect.left, (FLOAT)drawtext.m_rect.top);
 
       return true;
 
    }
 
 
-   bool graphics::fill(::draw2d::path::draw_text * pdrawtext, ::draw2d::brush* pbrush)
+   bool graphics::fill(const ::draw_text & drawtext, ::draw2d::brush* pbrush)
    {
 
-      wstring szOutline(pdrawtext->m_strText);
+      wstring szOutline(drawtext.m_strText);
 
-      IDWriteTextFormat* pformat = pdrawtext->m_pfont->get_os_data < IDWriteTextFormat* >(this);
+      IDWriteTextFormat* pformat = drawtext.m_pfont->get_os_data < IDWriteTextFormat* >(this);
 
       IDWriteFactory* pfactory = global_draw_get_write_factory();
 
@@ -5510,7 +5510,7 @@ namespace draw2d_direct2d
 
          defer_text_rendering_hint();
 
-         playout->Draw(nullptr, &renderer, (FLOAT)pdrawtext->m_rect.left, (FLOAT)pdrawtext->m_rect.top);
+         playout->Draw(nullptr, &renderer, (FLOAT)drawtext.m_rect.left, (FLOAT)drawtext.m_rect.top);
 
       }
 

@@ -25,7 +25,7 @@ void draw2d_direct2d_factory_exchange()
 
       create_factory < ::draw2d_direct2d::image, ::image >();
       create_factory < ::draw2d_direct2d::bitmap, ::draw2d::bitmap >();
-      create_factory < ::draw2d_direct2d::graphics_path, ::draw2d::path >();
+      create_factory < ::draw2d_direct2d::path, ::draw2d::path >();
       create_factory < ::draw2d_direct2d::pen, ::draw2d::pen >();
       create_factory < ::draw2d_direct2d::brush, ::draw2d::brush >();
       create_factory < ::draw2d_direct2d::palette, ::draw2d::palette >();

@@ -235,6 +235,7 @@ namespace user
       element_tab,
       element_tab_layout_background,
       element_tab_client_background,
+      element_tab_item_background,
       element_tab_near_scroll,
       element_tab_far_scroll,
       element_close_tab_button,

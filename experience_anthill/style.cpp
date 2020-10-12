@@ -88,7 +88,18 @@ namespace experience
                if (eelement == ::user::element_background)
                {
 
-                  return __acolor(0, 0, 0, 0);
+                  if (::user::is_app_dark_mode())
+                  {
+
+                     return __acolor(255, 0, 0, 0);
+
+                  }
+                  else
+                  {
+
+                     return __acolor(255, 255, 255, 255);
+
+                  }
 
                }
 
@@ -99,7 +110,21 @@ namespace experience
                if (eelement == ::user::element_background)
                {
 
-                  return __acolor(255, 0x30, 0x75, 0xA0);
+                  if (::user::is_app_dark_mode())
+                  {
+
+
+                     return __acolor(255, 0x20, 0x45, 0x60);
+
+                  }
+                  else
+                  {
+
+
+                     return __acolor(255, 0x30, 0x75, 0xA0);
+
+                  }
+
 
                }
 
@@ -145,26 +170,103 @@ namespace experience
 
          }
 
-         if (eelement == ::user::element_background)
+         if (eelement == ::user::element_tab_item_background)
          {
 
-            return __acolor(255, 255, 255, 255);
+            if (estate & ::user::e_state_selected)
+            {
+
+               if (::user::is_app_dark_mode())
+               {
+
+                  return __acolor(255, 185, 185, 180);
+
+               }
+               else
+               {
+
+
+                  return __acolor(255, 235, 235, 230);
+
+               }
+
+            }
+            else
+            {
+
+               if (::user::is_app_dark_mode())
+               {
+
+                  return __acolor(255, 125, 125, 120);
+
+               }
+               else
+               {
+
+
+                  return __acolor(255, 175, 175, 170);
+
+               }
+
+            }
+
+         }
+         else if (eelement == ::user::element_background
+            || eelement == ::user::element_tab_client_background
+            || eelement == ::user::element_tab_layout_background)
+         {
+
+            if (::user::is_app_dark_mode())
+            {
+
+               return __acolor(255, 0, 0, 0);
+
+            }
+            else
+            {
+
+               return __acolor(255, 255, 255, 255);
+
+            }
 
          }
          else if (eelement == ::user::element_text)
          {
             
-            if(estate & ::user::e_state_new_input)
+            if (::user::is_app_dark_mode())
             {
 
-               return __acolor(255, 192, 192, 192);
-               
+
+               if (estate & ::user::e_state_new_input)
+               {
+
+                  return __acolor(255, 127, 127, 127);
+
+               }
+               else
+               {
+
+                  return __acolor(255, 255, 255, 255);
+
+               }
+
             }
             else
             {
-               
-               return __acolor(255, 0, 0, 0);
-               
+
+               if (estate & ::user::e_state_new_input)
+               {
+
+                  return __acolor(255, 192, 192, 192);
+
+               }
+               else
+               {
+
+                  return __acolor(255, 0, 0, 0);
+
+               }
+
             }
 
          }
@@ -319,7 +421,15 @@ namespace experience
 
       pgraphics->GetClipBox(r2);
 
-      pgraphics->fill_rect(r1, ARGB(255, 255, 255, 255));
+      auto pstyle = ptab->get_style(pgraphics);
+
+      {
+
+         color colorBack = ptab->get_color(pstyle, ::user::element_background);
+
+         pgraphics->fill_rect(r1, colorBack);
+
+      }
 
       ptab->get_data()->m_pen->create_solid(1,RGB(32,32,32));
 
@@ -333,8 +443,6 @@ namespace experience
 
       ::rect rcTabs(rcTab);
       
-      auto pstyle = ptab->get_style(pgraphics);
-
       ::rect rcClient;
 
       rcClient = ptab->get_data()->m_rectTabClient;
@@ -364,6 +472,12 @@ namespace experience
          pgraphics->fill_rect(rcClient, colorBack);
          
       }
+
+      ::color color1 = ptab->get_color(pstyle, ::user::element_tab_item_background);
+
+      ::color color2(color1);
+
+      color2.hls_rate(0.0, 0.2, 0.0);
 
       ::index iTab = -1;
 
@@ -417,7 +531,13 @@ namespace experience
 
                   path->close_figure();
 
-                  pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),ARGB(230,235,235,230),ARGB(250,255,255,250));
+                  ::color colorSel1 = ptab->get_color(pstyle, ::user::element_tab_item_background, ::user::e_state_selected);
+
+                  ::color colorSel2(colorSel1);
+
+                  colorSel2.hls_rate(0.0, 0.2, 0.0);
+
+                  pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),colorSel1,colorSel2);
 
                   pgraphics->set(pane.m_brushFillSel);
 
@@ -556,9 +676,13 @@ namespace experience
 
                   path->close_figure();
 
-                  //pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),ARGB(230,235,235,230),ARGB(250,255,255,250));
+                  ::color colorSel1 = ptab->get_color(pstyle, ::user::element_tab_item_background, ::user::e_state_selected);
 
-                  pane.m_brushFillSel->create_solid(ARGB(255, 255, 255, 255));
+                  ::color colorSel2(colorSel1);
+
+                  colorSel2.hls_rate(0.0, 0.2, 0.0);
+
+                  pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),colorSel1, colorSel2);
 
                   pgraphics->set(pane.m_brushFillSel);
 
@@ -586,6 +710,10 @@ namespace experience
                      pgraphics->set(ptab->get_font(pstyle, ::user::e_state_selected));
 
                   }
+
+                  ::color colorText = ptab->get_color(pstyle, ::user::element_text);
+
+                  ptab->get_data()->m_brushTextSel->create_solid(colorText);
 
                   brushText = ptab->get_data()->m_brushTextSel;
 
@@ -635,7 +763,7 @@ namespace experience
                   else
                   {
 
-                     pane.m_brushFill->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),ARGB(230,175,175,170),ARGB(250,195,195,190));
+                     pane.m_brushFill->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(), color1, color2);
 
                      pgraphics->set(pane.m_brushFill);
 

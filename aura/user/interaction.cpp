@@ -3075,10 +3075,13 @@ void interaction::_001CallOnDraw(::draw2d::graphics_pointer & pgraphics)
       try
       {
 
-         //string strType = type_name();
+         string strType = type_name();
 
-         //if (strType == "type_messing_viewport_offset_question")
-         //{
+         if (strType == "waven::view")
+         {
+
+            output_debug_string("waven::view");
+         }
 
          //   if (!is_custom_draw() && pgraphics->m_pnext == nullptr)
          //   {

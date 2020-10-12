@@ -3,7 +3,7 @@
   <Identity Name="app.app" Publisher="CN=camilo" Version="1.1.20.0" />
   <mp:PhoneIdentity PhoneProductId="1e4c7cd3-fcc2-44e7-9e13-eb7aacb60680" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>Simple Application</DisplayName>
+    <DisplayName>App App</DisplayName>
     <PublisherDisplayName>ca2 Desenvolvimento de Software</PublisherDisplayName>
     <Logo>assets\Square50.png</Logo>
   </Properties>
@@ -14,8 +14,8 @@
     <Resource Language="x-generate" />
   </Resources>
   <Applications>
-    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="SimpleApp.SimpleApp">
-      <uap:VisualElements DisplayName="Simple App" Square150x150Logo="Assets\Square150.png" Square44x44Logo="Assets\Square44.png" Description="Simple Application" BackgroundColor="transparent">
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="AppApp.AppApp">
+      <uap:VisualElements DisplayName="App App" Square150x150Logo="Assets\Square150.png" Square44x44Logo="Assets\Square44.png" Description="Simple Application" BackgroundColor="transparent">
         <uap:LockScreen Notification="badge" BadgeLogo="assets\Square24.png" />
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150.png" ShortName="Beat Mapper!!" Square310x310Logo="assets\Square310.png" Square71x71Logo="Assets\Square71.png">
           <uap:ShowNameOnTiles>

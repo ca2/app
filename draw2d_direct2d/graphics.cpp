@@ -4658,7 +4658,7 @@ namespace draw2d_direct2d
    bool graphics::GetTextExtent(sized & size, const string & str)
    {
 
-      return GetTextExtent(size, str);
+      return GetTextExtent(size, str, str.get_length());
 
    }
 

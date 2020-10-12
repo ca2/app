@@ -51,9 +51,6 @@
     <ProjectReference Include="..\..\app-core\audio\u_audio.vcxproj">
       <Project>{1935706b-4846-4a53-808f-9123fcba7dfd}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\aura\w_aura.vcxproj">
-      <Project>{b3e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\multimedia_xaudio\u_multimedia_xaudio.vcxproj">
       <Project>{84775184-ed25-4ab8-a8d3-4d680dd9ac84}</Project>
     </ProjectReference>

@@ -52,7 +52,7 @@ namespace aura
 
       bool                                                  m_bProgrammerMode;
 
-      point                                                 m_pointCursor;
+      //point                                                 m_pointCursor;
       bool                                                  m_bAcceptsFirstResponder;
 
       comparable_array < __reference(::user::interaction) > m_uiptraToolWindow;

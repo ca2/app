@@ -48,9 +48,6 @@
     <ProjectReference Include="..\..\app-core\audio\u_audio.vcxproj">
       <Project>{1935706b-4846-4a53-808f-9123fcba7dfd}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\aura\w_aura.vcxproj">
-      <Project>{b3e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D04B626B-5830-429E-B633-71874563AF6F}</ProjectGuid>

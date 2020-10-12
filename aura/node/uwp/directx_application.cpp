@@ -598,6 +598,7 @@ namespace uwp
 
    }
 
+
    void directx_application::OnPointerMoved(Windows::UI::Core::CoreWindow ^, Windows::UI::Core::PointerEventArgs ^ args)
    {
 
@@ -608,8 +609,12 @@ namespace uwp
 
       }
 
-      if(m_psystem == nullptr)
+      if (m_psystem == nullptr)
+      {
+
          return;
+
+      }
 
       auto pcontextsession = m_psystem->get_context_session();
 
@@ -620,13 +625,21 @@ namespace uwp
 
       }
 
-      if(pcontextsession->m_puiHost == nullptr)
+      if (pcontextsession->m_puiHost == nullptr)
+      {
+
          return;
+
+      }
 
       auto puiHost = __user_interaction(m_psystem->get_context_session()->m_puiHost);
 
       if (puiHost->m_pimpl == nullptr)
+      {
+
          return;
+
+      }
 
       Windows::UI::Input::PointerPoint^ pointerPoint = args->CurrentPoint;
 
@@ -644,6 +657,8 @@ namespace uwp
       pmouse->m_playeredUserPrimitive = puiHost;
 
       m_pointLastCursor = pointerPoint->RawPosition;
+
+      m_psystem->get_context_session()->m_pointCursor = pmouse->m_point;
 
       puiHost->m_pimpl->queue_message_handler(spbase);
 

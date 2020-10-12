@@ -785,7 +785,7 @@
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{B3E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}</ProjectGuid>
+    <ProjectGuid>{B3B6A9D8-7776-434E-8E3B-D2696632DF39}</ProjectGuid>
     <Keyword>DynamicLibrary</Keyword>
     <ProjectName>aura</ProjectName>
     <RootNamespace>app</RootNamespace>

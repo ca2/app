@@ -2330,7 +2330,7 @@ namespace user
    void primitive::set_config_fps(double dConfigFps)
    {
 
-      get_wnd()->m_pimpl->set_config_fps(dConfigFps);
+      get_host_wnd()->m_pimpl->set_config_fps(dConfigFps);
 
    }
 

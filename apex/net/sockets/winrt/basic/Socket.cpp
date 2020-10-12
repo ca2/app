@@ -128,12 +128,12 @@ namespace sockets
 
       }
 
-      if (!m_bReading && !m_bWriting)
-      {
+      //if (!m_bReading && !m_bWriting)
+      //{
 
-         SetCloseAndDelete();
+      //   SetCloseAndDelete();
 
-      }
+      //}
 
       return ::success;
 

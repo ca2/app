@@ -95,7 +95,7 @@
     <ProjectGuid>{365C15BF-3B96-4615-AA45-E6EA7E82405D}</ProjectGuid>
     <Keyword>DynamicLibrary</Keyword>
     <ProjectName>app_app</ProjectName>
-    <RootNamespace>app-simple</RootNamespace>
+    <RootNamespace>app</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
     <AppContainerApplication>true</AppContainerApplication>

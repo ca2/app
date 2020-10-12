@@ -311,9 +311,6 @@
     <ProjectReference Include="..\aqua\u_aqua.vcxproj">
       <Project>{d6fc3dc0-a19a-4f63-a3f1-3426fe53920b}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\aura\u_aura.vcxproj">
-      <Project>{b3e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\axis\u_axis.vcxproj">
       <Project>{0412ea6f-50d0-4baa-99e3-ac14fc63a879}</Project>
     </ProjectReference>

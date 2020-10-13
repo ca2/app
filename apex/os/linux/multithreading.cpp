@@ -104,17 +104,6 @@ bool __os_term_thread()
 
 
 
-int get_current_process_affinity_order()
-{
-
-   return get_processor_count();
-
-}
-
-
-
-
-
 
 //#if OSBIT != 64
 //

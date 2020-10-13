@@ -507,9 +507,6 @@ int get_current_process_affinity_order()
 }
 
 
-
-
-
 bool thread_set_name(const char * psz)
 {
 

@@ -133,11 +133,17 @@ int get_proc_cpuinfo_core_count()
 
 }
 
-int get_processor_count()
-{
+// int get_processor_count()
+// {
 
-   return get_proc_cpuinfo_core_count();
-}
+//    return get_proc_cpuinfo_core_count();
+// }
 
 
+// int get_processor_count()
+// {
+
+//    return sysconf(_SC_NPROCESSORS_ONLN);
+
+// }
 

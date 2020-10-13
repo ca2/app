@@ -1,7 +1,6 @@
 #pragma once
 
 
-
 #ifndef WINDOWS
 
 #ifdef cplusplus

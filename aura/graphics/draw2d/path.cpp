@@ -527,16 +527,16 @@ namespace draw2d
       ::polygond polygon;
 
       polygon.set_size(4);
-      
+
       polygon[0].x = rect.left;
       polygon[0].y = rect.top;
-      
+
       polygon[1].x = rect.right;
       polygon[1].y = rect.top;
-      
+
       polygon[2].x = rect.right;
       polygon[2].y = rect.bottom;
-      
+
       polygon[3].x = rect.left;
       polygon[3].y = rect.bottom;
 
@@ -549,7 +549,7 @@ namespace draw2d
    }
 
 
-   
+
 
    bool path::varc(const ::pointd & point, double h, const ::angle& angle)
    {
@@ -574,11 +574,12 @@ namespace draw2d
       arc.m_sizeRadius.cy = b;
       arc.m_pointCenter.x = point.x - a * cos(t);
       arc.m_angleBeg = t;
-      arc.m_angleEnd = t - 90_degrees;
+      arc.m_angleExt = -90_degrees;
+      arc.m_angleEnd2 = t - 90_degrees;
       arc.m_angleRotation = 0.0;
       ///arc.m_dAngle = (arc.m_angleEnd - arc.m_angleBeg) * g_dPi / 180.0;
       arc.m_pointBeg = arc.m_pointCenter + arc_point(arc.m_angleBeg, arc.m_sizeRadius);
-      arc.m_pointEnd = arc.m_pointCenter + arc_point(arc.m_angleEnd, arc.m_sizeRadius);
+      arc.m_pointEnd = arc.m_pointCenter + arc_point(arc.m_angleEnd2, arc.m_sizeRadius);
 
       //arc.m_pointBeg.x = arc.m_pointCenter.x + arc.m_dRadiusX * cos(arc.m_angleBeg);
       //arc.m_pointBeg.y = arc.m_pointCenter.y +arc.m_dRadiusY * sin(arc.m_angleBeg);
@@ -628,11 +629,12 @@ namespace draw2d
       arc.m_sizeRadius.cy = b;
       arc.m_pointCenter.y = point.y - b * sin(t);
       arc.m_angleBeg = t;
-      arc.m_angleEnd = fmod(180_degrees - arc.m_angleBeg, 360_degrees);
-      arc.m_angleRotation = arc.m_angleEnd - arc.m_angleBeg;
+      arc.m_angleEnd2 = fmod(180_degrees - arc.m_angleBeg, 360_degrees);
+      arc.m_angleExt = arc.m_angleEnd2 - arc.m_angleBeg;
+      arc.m_angleRotation = arc.m_angleEnd2 - arc.m_angleBeg;
 
       arc.m_pointBeg = arc.m_pointCenter + arc_point(arc.m_angleBeg, arc.m_sizeRadius);
-      arc.m_pointEnd = arc.m_pointCenter + arc_point(arc.m_angleEnd, arc.m_sizeRadius);
+      arc.m_pointEnd = arc.m_pointCenter + arc_point(arc.m_angleEnd2, arc.m_sizeRadius);
 
       m_shapea.add_item(parc);
 
@@ -649,7 +651,7 @@ namespace draw2d
    }
 
 
-   bool path::add_arc(const ::rectd & rect, const ::angle & angleBeg, const ::angle& angleSweep)
+   bool path::add_arc(const ::rectd & rect, const ::angle & angleBeg, const ::angle& angleExt)
    {
 
       if (rect.width() <= 0 || rect.height() <= 0)
@@ -668,10 +670,11 @@ namespace draw2d
       arc.m_sizeRadius.cx   = fabs(rect.right - rect.left) / 2.0;
       arc.m_sizeRadius.cy   = fabs(rect.bottom - rect.top) / 2.0;
       arc.m_angleBeg        = angleBeg;
-      arc.m_angleEnd        = angleBeg + angleSweep;
+      arc.m_angleExt        = angleExt;
+      arc.m_angleEnd2       = angleBeg + angleExt;
       arc.m_angleRotation   = 0_degrees;
       arc.m_pointBeg        = arc.m_pointCenter + arc_point(arc.m_angleBeg, arc.m_sizeRadius);
-      arc.m_pointEnd        = arc.m_pointCenter + arc_point(arc.m_angleEnd, arc.m_sizeRadius);
+      arc.m_pointEnd        = arc.m_pointCenter + arc_point(arc.m_angleEnd2, arc.m_sizeRadius);
 
       m_shapea.add(parc);
 
@@ -845,7 +848,7 @@ namespace draw2d
       ::lined& line = pline->m_shape;
 
       line.m_p1 = p1;
-      
+
       line.m_p2 = p2;
 
       m_shapea.add(pline);
@@ -1472,13 +1475,13 @@ namespace draw2d
          return _set(pgraphics, pshape->shape < ::rect>());
       case e_shape_rectd:
          return _set(pgraphics, pshape->shape < ::rectd>());
-      case e_shape_polygon:     
+      case e_shape_polygon:
          return _set(pgraphics, pshape->shape < ::polygon>());
-      case e_shape_polygond:    
+      case e_shape_polygond:
          return _set(pgraphics, pshape->shape < ::polygond>());
-      case e_shape_draw_text:   
+      case e_shape_draw_text:
          return _set(pgraphics, pshape->shape < ::draw_text>());
-      case e_shape_text_out:    
+      case e_shape_text_out:
          return _set(pgraphics, pshape->shape < ::text_out>());
       default:
          throw "unexpected simple os graphics element type";

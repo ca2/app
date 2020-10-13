@@ -5,10 +5,8 @@
 //  Created by Camilo Sasuke Tsumanuma on 03/09/17.
 //  Copyright © 2017 Camilo Sasuke Tsumanuma. All rights reserved.
 //
-
 #include "macos.h"
 #include <sys/sysctl.h>
-
 
 
 int get_processor_count()
@@ -43,25 +41,7 @@ int get_processor_count()
 
    return count;
 
-   //#else
-   // return sysconf(_SC_NPROCESSORS_ONLN);
-   //#endif
 }
 
 
-//
-//#undef new
-//
-//#include <chrono>
-//#include <thread>
-//
-//void Sleep(unsigned int dwMillis)
-//{
-//
-//
-//      std::this_thread::sleep_for (std::chrono::milliseconds(dwMillis));
-//
-//
-//}
-//
 

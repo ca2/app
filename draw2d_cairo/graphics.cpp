@@ -5468,9 +5468,20 @@ bool graphics::_set(const ::arc & arc)
 
     cairo_scale(m_pdc, 1.0, arc.m_sizeRadius.cy / arc.m_sizeRadius.cx);
 
-    cairo_arc(m_pdc, 0.0, 0.0, arc.m_sizeRadius.cx, arc.m_angleBeg, arc.m_angleEnd);
+   if(arc.m_angleExt > 0)
+   {
 
-    return true;
+      cairo_arc(m_pdc, 0.0, 0.0, arc.m_sizeRadius.cx, arc.m_angleBeg, arc.m_angleEnd2);
+
+   }
+   else
+   {
+
+      cairo_arc_negative(m_pdc, 0.0, 0.0, arc.m_sizeRadius.cx, arc.m_angleBeg, arc.m_angleEnd2);
+
+   }
+
+   return true;
 
 }
 

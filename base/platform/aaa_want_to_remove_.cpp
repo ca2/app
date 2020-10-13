@@ -472,14 +472,6 @@ int __cdecl debug_report(int iType, wchar_t const* pszFile, int iLine, wchar_t c
 }
 
 
-CLASS_DECL_BASE void writeln(const char* psz)
-{
-
-   output_debug_string(string(psz) + "\n");
-
-}
-
-
 CLASS_DECL_BASE int is_ptr_null(const void* p, size_t s)
 {
 

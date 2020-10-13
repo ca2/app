@@ -69,11 +69,7 @@ struct memdleak_block
    i32                           m_iBlockUse;
    i32                           m_iEnabled;
    const char *                  m_pszFileName;
-#if OSBIT == 32
-   DWORD                         m_puiStack[64];
-#else
-   DWORD64                       m_puiStack[64];
-#endif
+   uptr                          m_uaStack[64];
    int                           m_iStack;
    u32                           m_uiLine;
    memsize                       m_size;

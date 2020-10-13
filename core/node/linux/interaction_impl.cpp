@@ -1402,7 +1402,7 @@ namespace linux
          if(iDebugmessage_handlerTime > 20)
          {
 
-            writeln("interaction_impl::message handler flooded?");
+            ::output_debug_string("interaction_impl::message handler flooded?\n");
 
          }
          else

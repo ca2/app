@@ -2905,7 +2905,7 @@ namespace draw2d
 //   interface class system_window
 //   {
 //
-//   
+//
 //      virtual Windows::Foundation::Rect get_window_rect() = 0;
 //      virtual Windows::Foundation::Point get_cursor_pos() = 0;
 //
@@ -3924,11 +3924,7 @@ namespace uwp
 //#include "aura/database/_impl.h"
 
 
-
-
-
-
-
 #include "aura/os/_impl.h"
+
 
 

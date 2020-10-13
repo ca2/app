@@ -1669,7 +1669,7 @@ inline void delptr(t *& p)
 template < typename T >
 inline int type_is_null(const T * p)
 {
-   return (((UINT_PTR)(void *)p) < MAX(4096, sizeof(T)));
+   return (((uptr)(void *)p) < MAX(4096, sizeof(T)));
 }
 
 
@@ -2349,14 +2349,8 @@ using wparam = c_number < WPARAM >;
 #include "acme/primitive/datetime/file_time.h"
 
 
-
-
-
-
-//#include "acme/os/_.h"
-
-
 class update;
+
 
 namespace status
 {

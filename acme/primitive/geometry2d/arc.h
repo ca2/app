@@ -11,7 +11,8 @@ public:
    pointd      m_pointBeg;
    pointd      m_pointEnd;
    angle       m_angleBeg;
-   angle       m_angleEnd;
+   angle       m_angleExt;
+   angle       m_angleEnd2;
    angle       m_angleRotation;
 
 

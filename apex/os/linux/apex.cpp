@@ -77,67 +77,67 @@ CLASS_DECL_APEX bool __node_apex_pos_term()
 }
 
 
-// http://stackoverflow.com/questions/150355/programmatically-find-the-number-of-cores-on-a-machine
-// http://stackoverflow.com/users/1275169/l3x
-int get_proc_stat_core_count()
-{
+// // http://stackoverflow.com/questions/150355/programmatically-find-the-number-of-cores-on-a-machine
+// // http://stackoverflow.com/users/1275169/l3x
+// int get_proc_stat_core_count()
+// {
 
-   string str = file_as_string("/proc/stat");
+//    string str = file_as_string("/proc/stat");
 
-   string_array stra;
+//    string_array stra;
 
-   stra.add_lines(str);
+//    stra.add_lines(str);
 
-   return stra.pred_get_count([](auto str) { return ::str::begins(str, "cpu"); });
+//    return stra.pred_get_count([](auto str) { return ::str::begins(str, "cpu"); });
 
-}
+// }
 
 
 
-// http://stackoverflow.com/questions/150355/programmatically-find-the-number-of-cores-on-a-machine
-// http://stackoverflow.com/users/1275169/l3x
-int get_proc_cpuinfo_core_count()
-{
+// // http://stackoverflow.com/questions/150355/programmatically-find-the-number-of-cores-on-a-machine
+// // http://stackoverflow.com/users/1275169/l3x
+// int get_proc_cpuinfo_core_count()
+// {
 
-   char str[256];
+//    char str[256];
 
-   int procCount = 0;
+//    int procCount = 0;
 
-   FILE *fp;
+//    FILE *fp;
 
-   if( (fp = fopen("/proc/cpuinfo", "r")) )
-   {
+//    if( (fp = fopen("/proc/cpuinfo", "r")) )
+//    {
 
-      while(fgets(str, sizeof str, fp))
-      {
+//       while(fgets(str, sizeof str, fp))
+//       {
 
-         if( !__memcmp(str, "handler", 9) )
-         {
+//          if( !__memcmp(str, "handler", 9) )
+//          {
 
-            procCount++;
+//             procCount++;
 
-         }
+//          }
 
-      }
+//       }
 
-   }
+//    }
 
-   if ( !procCount )
-   {
-      printf("Unable to get proc count. Defaulting to 2");
-      procCount=2;
-   }
+//    if ( !procCount )
+//    {
+//       printf("Unable to get proc count. Defaulting to 2");
+//       procCount=2;
+//    }
 
-   printf("Proc Count:%d\n", procCount);
-   return procCount;
+//    printf("Proc Count:%d\n", procCount);
+//    return procCount;
 
-}
+// }
 
-int get_processor_count()
-{
+// int get_processor_count()
+// {
 
-   return get_proc_cpuinfo_core_count();
-}
+//    return get_proc_cpuinfo_core_count();
+// }
 
 
 

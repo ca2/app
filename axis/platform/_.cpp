@@ -472,14 +472,6 @@ void __post_quit_message(i32 nExitCode)
 //}
 //
 //
-//CLASS_DECL_AXIS void writeln(const char* psz)
-//{
-//
-//   output_debug_string(string(psz) + "\n");
-//
-//}
-//
-//
 //CLASS_DECL_AXIS int is_ptr_null(const void* p, size_t s)
 //{
 //

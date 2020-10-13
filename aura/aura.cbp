@@ -634,6 +634,8 @@
 		<Unit filename="os/chronometer.h" />
 		<Unit filename="os/console.h" />
 		<Unit filename="os/cross.h" />
+		<Unit filename="os/cross/_.h" />
+		<Unit filename="os/cross/cross.h" />
 		<Unit filename="os/cross/windows/windows_ole_automation.h.txt" />
 		<Unit filename="os/file.h" />
 		<Unit filename="os/graphics.h" />

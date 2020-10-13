@@ -89,7 +89,6 @@ bool __os_init_thread()
 }
 
 
-
 bool __os_term_thread()
 {
 
@@ -100,8 +99,41 @@ bool __os_term_thread()
 }
 
 
+int get_processor_count()
+{
 
+   int c = 0;
 
+   int s, j;
+
+   cpu_set_t cpuset;
+
+   pthread_t thread = pthread_self();
+
+   s = pthread_getaffinity_np(thread, sizeof(cpu_set_t), &cpuset);
+
+   if (s != 0)
+   {
+
+      return -1;
+
+   }
+
+   for (j = 0; j < CPU_SETSIZE; j++)
+   {
+
+      if (CPU_ISSET(j, &cpuset))
+      {
+
+         c++;
+
+      }
+
+   }
+
+   return c;
+
+}
 
 
 int get_current_process_affinity_order()
@@ -110,7 +142,6 @@ int get_current_process_affinity_order()
    return get_processor_count();
 
 }
-
 
 
 

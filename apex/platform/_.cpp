@@ -449,12 +449,6 @@ CLASS_DECL_APEX::apex::system * apex_create_apex_system()
 //}
 //
 //
-//CLASS_DECL_APEX void writeln(const char* psz)
-//{
-//
-//   output_debug_string(string(psz) + "\n");
-//
-//}
 //
 //
 //CLASS_DECL_APEX int is_ptr_null(const void* p, size_t s)

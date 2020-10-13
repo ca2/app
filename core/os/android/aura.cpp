@@ -109,54 +109,6 @@ bool __node_pos_term()
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 bool __node_aura_pos_init()
 {
 
@@ -174,6 +126,7 @@ bool __node_aura_pre_term()
 
 }
 
+
 bool __node_aura_pos_term()
 {
 
@@ -182,114 +135,20 @@ bool __node_aura_pos_term()
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 CLASS_DECL_CORE int __node_is_debugger_attached()
 {
+   
    return 0;
+
 }
-
-
 
 
 int get_processor_count()
 {
+
    return 1;
+
 }
+
+
 

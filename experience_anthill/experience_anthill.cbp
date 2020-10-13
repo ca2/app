@@ -6,7 +6,7 @@
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
-			<Target title="basis">
+			<Target title="linux_basis">
 				<Option output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
 				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
@@ -26,9 +26,10 @@
 				</Compiler>
 				<Linker>
 					<Add option="-m64" />
+					<Add directory="$(#archive)/storage-linux/third/library/x64/" />
 				</Linker>
 			</Target>
-			<Target title="stage">
+			<Target title="linux_stage">
 				<Option output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
 				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
@@ -68,11 +69,11 @@
 			</Target>
 		</Build>
 		<VirtualTargets>
-			<Add alias="all_sanitizers" targets="basis;" />
+			<Add alias="all_sanitizers" targets="linux_basis;" />
 		</VirtualTargets>
 		<Compiler>
-			<Add option="-fPIC" />
 			<Add option="-std=c++17" />
+			<Add option="-fPIC" />
 			<Add option="-fexceptions" />
 			<Add option="-fnon-call-exceptions" />
 			<Add option="-fno-pie" />
@@ -92,16 +93,19 @@
 			<Add directory="$(WORKSPACE_DIR)/../../platform-linux/_include" />
 			<Add directory="$(WORKSPACE_DIR)/../../app/_include" />
 			<Add directory="$(WORKSPACE_DIR)/../../app" />
-
 			<Add directory="$(#sensitive)/sensitive/include" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-rpath=\\$$$ORIGIN" />
+			<Add option="-lacme" />
+			<Add option="-lapex" />
+			<Add option="-laqua" />
 			<Add option="-laura" />
+			<Add option="-laxis" />
+			<Add option="-lbase" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 		</Linker>
-
 		<Unit filename="and_experience_anthill.vcxproj" />
 		<Unit filename="button.cpp" />
 		<Unit filename="button.h" />
@@ -132,8 +136,7 @@
 		</Unit>
 		<Unit filename="library.cpp" />
 		<Unit filename="library.h" />
-		<Unit filename="theme.cpp" />
-		<Unit filename="theme.h" />
+		<Unit filename="style.cpp" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

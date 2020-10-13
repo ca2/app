@@ -4,9 +4,6 @@
 //CLASS_DECL_AURA string get_command_line();
 
 
-#include "cross/_.h"
-
-
 #if defined(MACOS)
 
 #include "aura/os/ansios/_.h"

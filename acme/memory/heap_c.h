@@ -23,9 +23,9 @@ CLASS_DECL_ACME memsize memory_size_dbg(void * p, i32 iBlockType);
 
 
 #if !defined(MCHECK) && !defined(__VLD) && !defined(__MCRTDBG)
-CLASS_DECL_ACME void * CDECL memory_alloc(memsize size);
-CLASS_DECL_ACME void * CDECL memory_realloc(void * p, memsize nSize);
-CLASS_DECL_ACME void   CDECL memory_free(void * p);
+CLASS_DECL_ACME void * memory_alloc(memsize size);
+CLASS_DECL_ACME void * memory_realloc(void * p, memsize nSize);
+CLASS_DECL_ACME void   memory_free(void * p);
 #endif
 
 #if MEMDLEAK

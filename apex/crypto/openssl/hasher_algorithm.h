@@ -47,7 +47,7 @@ namespace openssl
       }
 
 
-      virtual enum_hash ehash() const
+      virtual enum_hash ehash() const override
       {
 
          return m_ehash;
@@ -65,7 +65,7 @@ namespace openssl
       }
 
 
-      virtual __pointer(::crypto::hasher) create_hasher();
+      virtual __pointer(::crypto::hasher) create_hasher() override;
 
 
    };

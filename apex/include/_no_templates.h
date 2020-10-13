@@ -33,7 +33,7 @@ typedef iptr strsize;
 #include "acme/os/thread.h"
 //#include "apex/platform/struct.h"
 #include "apex/os/cross/cross.h"
-#include "acme/os/acme.h"
+//#include "acme/os/acme.h"
 
 
 #include "apex/include/_c.h"

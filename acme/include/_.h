@@ -442,8 +442,7 @@ enum e_image_type
 };
 
 
-
-
+#include "acme/platform/text.h"
 
 #include "acme/primitive/primitive/_c_memory.h"
 

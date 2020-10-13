@@ -15,9 +15,9 @@
 
 //#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 
-//CLASS_DECL_ACME WINBOOL destroy_window(oswindow window);
+//CLASS_DECL_ACME int_bool destroy_window(oswindow window);
 
-//CLASS_DECL_ACME WINBOOL GetCursorPos(LPPOINT lppointCursor);
+//CLASS_DECL_ACME int_bool GetCursorPos(LPPOINT lppointCursor);
 
 //CLASS_DECL_ACME int_bool PostMessage(oswindow oswindow, UINT Msg, WPARAM wParam, LPARAM lParam);
 
@@ -30,26 +30,26 @@
 
 
 
-WINBOOL is_window(oswindow oswindow);
-WINBOOL IsChild(oswindow oswindowParent, oswindow oswindowcandidateChildOrDescendant);
+int_bool is_window(oswindow oswindow);
+int_bool IsChild(oswindow oswindowParent, oswindow oswindowcandidateChildOrDescendant);
 // oswindow GetParent(oswindow oswindow);
 // oswindow SetParent(oswindow oswindowChild, oswindow oswindowNewParent);
-WINBOOL show_window(oswindow oswindow, i32 iShow);
+int_bool show_window(oswindow oswindow, i32 iShow);
 //LONG GetWindowLongA(oswindow oswindow, int nIndex);
 //LONG SetWindowLongA(oswindow oswindow, int nIndex, LONG l);
-WINBOOL _001ClientToScreen(oswindow oswindow, LPPOINT lppoint);
-WINBOOL _001ScreenToClient(oswindow oswindow, LPPOINT lppoint);
-WINBOOL IsIconic(oswindow oswindow);
-WINBOOL IsWindowVisible(oswindow oswindow);
+int_bool _001ClientToScreen(oswindow oswindow, LPPOINT lppoint);
+int_bool _001ScreenToClient(oswindow oswindow, LPPOINT lppoint);
+int_bool IsIconic(oswindow oswindow);
+int_bool IsWindowVisible(oswindow oswindow);
 //#define GetWindowLong GetWindowLongA
 //#define SetWindowLong SetWindowLongA
 
 
 
-CLASS_DECL_ACME WINBOOL is_window(oswindow oswindow);
+CLASS_DECL_ACME int_bool is_window(oswindow oswindow);
 
 
-//CLASS_DECL_ACME WINBOOL GetCursorPos(LPPOINT lppointCursor);
+//CLASS_DECL_ACME int_bool GetCursorPos(LPPOINT lppointCursor);
 
 #ifndef HWND_MESSAGE
 
@@ -62,16 +62,16 @@ CLASS_DECL_ACME WINBOOL is_window(oswindow oswindow);
 
 
 typedef VOID(CALLBACK* TIMERPROC)(oswindow,UINT,uptr,DWORD);
-typedef WINBOOL(CALLBACK* GRAYSTRINGPROC)(HDC,LPARAM,i32);
-typedef WINBOOL(CALLBACK* WNDENUMPROC)(oswindow,LPARAM);
+typedef int_bool(CALLBACK* GRAYSTRINGPROC)(HDC,LPARAM,i32);
+typedef int_bool(CALLBACK* WNDENUMPROC)(oswindow,LPARAM);
 typedef LRESULT(CALLBACK* HOOKPROC)(i32 code,WPARAM wParam,LPARAM lParam);
 typedef VOID(CALLBACK* SENDASYNCPROC)(oswindow,UINT,ulong_ptr,LRESULT);
 
-typedef WINBOOL(CALLBACK* PROPENUMPROca)(oswindow,LPCSTR,HANDLE);
-typedef WINBOOL(CALLBACK* PROPENUMPROCW)(oswindow,LPCWSTR,HANDLE);
+typedef int_bool(CALLBACK* PROPENUMPROca)(oswindow,LPCSTR,HANDLE);
+typedef int_bool(CALLBACK* PROPENUMPROCW)(oswindow,LPCWSTR,HANDLE);
 
-typedef WINBOOL(CALLBACK* PROPENUMPROCEXA)(oswindow,LPSTR,HANDLE,ulong_ptr);
-typedef WINBOOL(CALLBACK* PROPENUMPROCEXW)(oswindow,LPWSTR,HANDLE,ulong_ptr);
+typedef int_bool(CALLBACK* PROPENUMPROCEXA)(oswindow,LPSTR,HANDLE,ulong_ptr);
+typedef int_bool(CALLBACK* PROPENUMPROCEXW)(oswindow,LPWSTR,HANDLE,ulong_ptr);
 
 typedef i32(CALLBACK* EDITWORDBREAKPROca)(LPSTR lpch,i32 ichCurrent,i32 cch,i32 code);
 typedef i32(CALLBACK* EDITWORDBREAKPROCW)(LPWSTR lpch,i32 ichCurrent,i32 cch,i32 code);
@@ -595,13 +595,13 @@ LPCWSTR lpString);
 //#endif /* _WIN32_WINNT >= 0x0500 */
 
 
-/*WINBOOL
+/*int_bool
 WINAPI
 EnableWindow(
 oswindow hWnd,
-WINBOOL bEnable);
+int_bool bEnable);
 
-WINBOOL
+int_bool
 WINAPI
 IsWindowEnabled(
 oswindow hWnd);
@@ -962,10 +962,10 @@ typedef LPACCEL HACCEL;
 typedef struct tagPAINTSTRUCT
 {
    HDC         hdc;
-   WINBOOL        fErase;
+   int_bool        fErase;
    RECT        rcPaint;
-   WINBOOL        fRestore;
-   WINBOOL        fIncUpdate;
+   int_bool        fRestore;
+   int_bool        fIncUpdate;
    BYTE        rgbReserved[32];
 } PAINTSTRUCT,*PPAINTSTRUCT,*NPPAINTSTRUCT,*LPPAINTSTRUCT;
 
@@ -1047,7 +1047,7 @@ POINT       pt;
 
 HDC BeginPaint(oswindow hwnd,PAINTSTRUCT * ps);
 
-WINBOOL EndPaint(oswindow hwnd,PAINTSTRUCT * ps);
+int_bool EndPaint(oswindow hwnd,PAINTSTRUCT * ps);
 
 #endif
 
@@ -1059,11 +1059,11 @@ WINBOOL EndPaint(oswindow hwnd,PAINTSTRUCT * ps);
 #endif
 
 
-WINBOOL WINAPI SetWindowPos(oswindow hWnd,oswindow hWndInsertAfter,i32 X,i32 Y,i32 cx,i32 cy,UINT uFlags);
+int_bool WINAPI SetWindowPos(oswindow hWnd,oswindow hWndInsertAfter,i32 X,i32 Y,i32 cx,i32 cy,UINT uFlags);
 
-WINBOOL WINAPI IsWindowVisible(oswindow hWnd);
+int_bool WINAPI IsWindowVisible(oswindow hWnd);
 
-WINBOOL WINAPI IsIconic(oswindow hWnd);
+int_bool WINAPI IsIconic(oswindow hWnd);
 
 //#ifndef _UWP
 //
@@ -1074,7 +1074,7 @@ WINBOOL WINAPI IsIconic(oswindow hWnd);
 //
 //#endif
 
-//WINBOOL RedrawWindow(oswindow hWnd, CONST RECT *lprcUpdate, HRGN hrgnUpdate, UINT flags);
+//int_bool RedrawWindow(oswindow hWnd, CONST RECT *lprcUpdate, HRGN hrgnUpdate, UINT flags);
 
 
 /*

@@ -366,7 +366,7 @@ CLASS_DECL_AURA string process_version_dir_name()
 //extern "C"
 //{
 
-   CLASS_DECL_AURA WINBOOL IsProcessRunning(DWORD pid)
+   CLASS_DECL_AURA int_bool IsProcessRunning(DWORD pid)
    {
 
 #ifdef WINDOWS

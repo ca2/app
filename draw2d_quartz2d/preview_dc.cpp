@@ -190,10 +190,10 @@
  return nAttribIndex;
  }
  
- WINBOOL preview_dc::RestoreDC(i32 nSavedDC)
+ int_bool preview_dc::RestoreDC(i32 nSavedDC)
  {
  ASSERT(get_handle2() != nullptr);
- WINBOOL bSuccess = ::RestoreDC(get_handle2(), nSavedDC);
+ int_bool bSuccess = ::RestoreDC(get_handle2(), nSavedDC);
  if (bSuccess)
  {
  if (m_nSaveDCDelta != 0x7fff)
@@ -492,7 +492,7 @@
  // Compute a character delta table for correctly positioning the screen
  // font characters where the printer characters will appear on the page
  size preview_dc::ComputeDeltas(i32& x, const char * lpszString, UINT &nCount,
- WINBOOL bTabbed, UINT nTabStops, LPINT lpnTabStops, i32 nTabOrigin,
+ int_bool bTabbed, UINT nTabStops, LPINT lpnTabStops, i32 nTabOrigin,
  __out_z LPTSTR lpszOutputString, i32* pnDxWidths, i32& nRightFixup)
  {
  ASSERT_VALID(this);
@@ -507,7 +507,7 @@
  
  ::point pointCurrent;
  UINT nAlignment = ::GetTextAlign(get_handle2());
- WINBOOL bUpdateCP = (nAlignment & TA_UPDATECP) != 0;
+ int_bool bUpdateCP = (nAlignment & TA_UPDATECP) != 0;
  if (bUpdateCP)
  {
  ::GetCurrentPositionEx(get_os_data(), &pointCurrent);
@@ -538,7 +538,7 @@
  
  for (UINT i = 0; i < nCount; i++)
  {
- WINBOOL bSpace = ((_TUCHAR)*lpszCurChar == (_TUCHAR)tmAttrib.tmBreakChar);
+ int_bool bSpace = ((_TUCHAR)*lpszCurChar == (_TUCHAR)tmAttrib.tmBreakChar);
  if (bSpace || (bTabbed && *lpszCurChar == '\t'))
  {
  // bSpace will be either TRUE (==1) or FALSE (==0).  For spaces
@@ -634,12 +634,12 @@
  return sizeExtent;
  }
  
- WINBOOL preview_dc::text_out(i32 x, i32 y, const char * lpszString, i32 nCount)
+ int_bool preview_dc::text_out(i32 x, i32 y, const char * lpszString, i32 nCount)
  {
  return ExtTextOut(x, y, 0, nullptr, lpszString, nCount, nullptr);
  }
  
- WINBOOL preview_dc::ExtTextOut(i32 x, i32 y, UINT nOptions, const ::rect & rect,
+ int_bool preview_dc::ExtTextOut(i32 x, i32 y, UINT nOptions, const ::rect & rect,
  const char * lpszString, UINT nCount, LPINT lpDxWidths)
  {
  ASSERT(get_os_data() != nullptr);
@@ -678,7 +678,7 @@
  lpszString = pOutputString;
  }
  
- WINBOOL bSuccess = ::ExtTextOut(get_os_data(), x, y, nOptions, rect, lpszString,
+ int_bool bSuccess = ::ExtTextOut(get_os_data(), x, y, nOptions, rect, lpszString,
  nCount, lpDxWidths);
  if (nRightFixup != 0 && bSuccess && (GetTextAlign() & TA_UPDATECP))
  {
@@ -728,7 +728,7 @@
  nTabPositions, lpnTabStopPositions, nTabOrigin,
  pOutputString, pDeltas, nRightFixup);
  
- WINBOOL bSuccess = ExtTextOut(x, y, 0, nullptr, pOutputString, uCount, pDeltas);
+ int_bool bSuccess = ExtTextOut(x, y, 0, nullptr, pOutputString, uCount, pDeltas);
  
  delete[] pDeltas;
  delete[] pOutputString;
@@ -785,8 +785,8 @@
  return retVal;
  }
  
- WINBOOL preview_dc::GrayString(::draw2d::brush*,
- WINBOOL (CALLBACK *)(HDC, LPARAM, i32),
+ int_bool preview_dc::GrayString(::draw2d::brush*,
+ int_bool (CALLBACK *)(HDC, LPARAM, i32),
  LPARAM lpData, i32 nCount, i32 x, i32 y, i32, i32)
  {
  TRACE(::ca2::trace::category_AppMsg, 0, "text_out() substituted for GrayString() in Print Preview.\n");
@@ -849,7 +849,7 @@
  }
  }
  
- void preview_dc::MirrorMappingMode(WINBOOL bCompute)
+ void preview_dc::MirrorMappingMode(int_bool bCompute)
  {
  ASSERT(get_handle2() != nullptr);
  if (bCompute)

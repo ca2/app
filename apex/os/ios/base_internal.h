@@ -46,11 +46,11 @@ typedef const RECT FAR* LPCRECT;
 //CGContextRef get_nswindow_cgcontext(oswindow pnswindow);
 
 
-WINBOOL get_uiwindow_rect(oswindow hwnd, LPRECT lprect);
+int_bool get_uiwindow_rect(oswindow hwnd, LPRECT lprect);
 
 
 
 
 
-WINBOOL set_nswindow_frame(oswindow hwnd, LPCRECT prect, int iDisplay);
-WINBOOL move_nswindow(oswindow hwnd, int x, int y);
+int_bool set_nswindow_frame(oswindow hwnd, LPCRECT prect, int iDisplay);
+int_bool move_nswindow(oswindow hwnd, int x, int y);

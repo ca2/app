@@ -157,7 +157,7 @@ CGContextRef get_nswindow_cgcontext(oswindow oswindow)
 }
 
 
-WINBOOL SetForegroundWindow(oswindow oswindow)
+int_bool SetForegroundWindow(oswindow oswindow)
 {
    
    if(!::is_window(oswindow))
@@ -196,7 +196,7 @@ WINBOOL SetForegroundWindow(oswindow oswindow)
 }
 
 
-WINBOOL BringWindowToTop(oswindow window)
+int_bool BringWindowToTop(oswindow window)
 {
    
    if(!::is_window(window))

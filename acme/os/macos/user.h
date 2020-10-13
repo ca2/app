@@ -83,7 +83,7 @@ namespace macos
 CGContextRef get_nswindow_cgcontext(oswindow pnswindow);
 
 
-WINBOOL get_nswindow_rect(oswindow hwnd,RECT * prect);
+int_bool get_nswindow_rect(oswindow hwnd,RECT * prect);
 
 
 
@@ -322,7 +322,7 @@ typedef int wxCoord;
 //
 //
 //CGColorRef cg_create_color(COLORREF crText);
-//WINBOOL cg_release_color(CGColorRef colorref);
+//int_bool cg_release_color(CGColorRef colorref);
 
 
 
@@ -339,16 +339,16 @@ typedef int wxCoord;
 
 
 
-WINBOOL set_nswindow_frame(oswindow hwnd, const RECT * prect, int iDisplay);
-WINBOOL move_nswindow(oswindow hwnd,int x,int y);
-WINBOOL make_key_and_order_front_nswindow(oswindow hwnd);
-WINBOOL order_front_nswindow(oswindow hwnd);
-WINBOOL nswindow_set_level_normal(oswindow hwnd);
-WINBOOL nswindow_set_level_floating(oswindow hwnd);
-WINBOOL nswindow_set_level_main_menu(oswindow hwnd);
-WINBOOL nswindow_is_level_normal(oswindow hwnd);
-WINBOOL nswindow_is_level_floating(oswindow hwnd);
-WINBOOL nswindow_is_level_main_menu(oswindow hwnd);
+int_bool set_nswindow_frame(oswindow hwnd, const RECT * prect, int iDisplay);
+int_bool move_nswindow(oswindow hwnd,int x,int y);
+int_bool make_key_and_order_front_nswindow(oswindow hwnd);
+int_bool order_front_nswindow(oswindow hwnd);
+int_bool nswindow_set_level_normal(oswindow hwnd);
+int_bool nswindow_set_level_floating(oswindow hwnd);
+int_bool nswindow_set_level_main_menu(oswindow hwnd);
+int_bool nswindow_is_level_normal(oswindow hwnd);
+int_bool nswindow_is_level_floating(oswindow hwnd);
+int_bool nswindow_is_level_main_menu(oswindow hwnd);
 
 
 

@@ -93,7 +93,7 @@ HBITMAP pixmap::update_windows_dib(const ::size& size)
 
 
 
-//CLASS_DECL_AURA WINBOOL context_image::window_set_mouse_cursor(oswindow oswindow, HCURSOR hcursor)
+//CLASS_DECL_AURA int_bool context_image::window_set_mouse_cursor(oswindow oswindow, HCURSOR hcursor)
 //{
 //
 //   if (!::SetCursor(hcursor))

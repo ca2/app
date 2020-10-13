@@ -44,7 +44,7 @@ namespace draw2d_quartz2d
 
    /*
 
-    WINBOOL palette::CreatePalette(LPLOGPALETTE lpLogPalette)
+    int_bool palette::CreatePalette(LPLOGPALETTE lpLogPalette)
     {
 
     //   return Attach(::CreatePalette(lpLogPalette));
@@ -59,7 +59,7 @@ namespace draw2d_quartz2d
 
    /*
 
-    WINBOOL palette::CreateHalftonePalette(::image * pimage)
+    int_bool palette::CreateHalftonePalette(::image * pimage)
     {
 
     //ASSERT(pgraphics != nullptr && (dynamic_cast<::win::graphics * >(pgraphics))->get_handle1() != nullptr);
@@ -118,7 +118,7 @@ namespace draw2d_quartz2d
 
    /*
 
-    WINBOOL palette::ResizePalette(UINT nNumEntries)
+    int_bool palette::ResizePalette(UINT nNumEntries)
     {
 
     //ASSERT(get_os_data() != nullptr);

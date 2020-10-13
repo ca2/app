@@ -47,7 +47,7 @@ typedef const rect & FAR* const rect &;
 CGContextRef get_nswindow_cgcontext(oswindow pnswindow);
 
 
-WINBOOL get_nswindow_rect(oswindow hwnd, RECT * prect);
+int_bool get_nswindow_rect(oswindow hwnd, RECT * prect);
 
 
 
@@ -64,7 +64,7 @@ inline int wxRound(double x)
 
 
 CGColorRef cg_create_color(COLORREF crText);
-WINBOOL cg_release_color(CGColorRef colorref);
+int_bool cg_release_color(CGColorRef colorref);
 
 
 
@@ -82,6 +82,6 @@ WINBOOL cg_release_color(CGColorRef colorref);
 
 
 
-WINBOOL set_nswindow_frame(oswindow hwnd, const ::rect & rect, int iDisplay);
-WINBOOL size_nswindow(oswindow hwnd, int cx, int cy);
-WINBOOL move_nswindow(oswindow hwnd, int x, int y);
+int_bool set_nswindow_frame(oswindow hwnd, const ::rect & rect, int iDisplay);
+int_bool size_nswindow(oswindow hwnd, int cx, int cy);
+int_bool move_nswindow(oswindow hwnd, int x, int y);

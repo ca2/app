@@ -707,20 +707,20 @@ typedef LPLOGRGN HRGN;
 HBITMAP CreateCompatibleBitmap(HDC hdc,i32 cx,i32 cy);
 
 
-WINBOOL BitBlt(HDC hdcDest,i32 nXDest,i32 nYDest,i32 nWidth,i32 nHeight,HDC hdcSrc,i32 nXSrc,i32 nYSrc,DWORD dwRop);
+int_bool BitBlt(HDC hdcDest,i32 nXDest,i32 nYDest,i32 nWidth,i32 nHeight,HDC hdcSrc,i32 nXSrc,i32 nYSrc,DWORD dwRop);
 
 
-//WINBOOL SetViewportOrgEx(HDC hdc, i32 X, i32 Y, LPPOINT lpPoint);
+//int_bool SetViewportOrgEx(HDC hdc, i32 X, i32 Y, LPPOINT lpPoint);
 
 
 
-WINBOOL get_client_rect(oswindow hwnd,LPRECT lprect);
+int_bool get_client_rect(oswindow hwnd,LPRECT lprect);
 
-WINBOOL get_window_rect(oswindow hwnd,LPRECT lprect);
+int_bool get_window_rect(oswindow hwnd,LPRECT lprect);
 
 i32 FillRect(HDC hDC,const RECT *lprc,HBRUSH hbr);
 
-//WINBOOL ReleaseDC(oswindow hwnd,HDC hdc);
+//int_bool ReleaseDC(oswindow hwnd,HDC hdc);
 
 //HDC GetWindowDC(oswindow hwnd);
 

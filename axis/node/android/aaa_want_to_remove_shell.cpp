@@ -277,7 +277,7 @@ namespace android
       else                                     // Windows Me/98/95
           dwBuild =  0;
 
-      WINBOOL bNativeUnicode;
+      int_bool bNativeUnicode;
       if (dwVersion < 0x80000000)              // Windows NT
           bNativeUnicode = TRUE;
       else if (dwWindowsMajorVersion < 4)      // Win32s
@@ -329,7 +329,7 @@ namespace android
    }
 
    /*
-   WINBOOL shell::_SHGetPathFromIDList(LPCITEMIDLIST pidl, unichar * pszPath)
+   int_bool shell::_SHGetPathFromIDList(LPCITEMIDLIST pidl, unichar * pszPath)
    {
       CHAR pszPathA[MAX_PATH * 2];
       if(!::SHGetPathFromIDListA(pidl, pszPathA))
@@ -337,7 +337,7 @@ namespace android
       return ::str::international::ACPToUnicode(pszPath, MAX_PATH * 2, pszPathA) ? TRUE : FALSE;
    }
 
-   WINBOOL shell::_MoveFile(const unichar * lpExistingFileName, const unichar * lpNewFileName)
+   int_bool shell::_MoveFile(const unichar * lpExistingFileName, const unichar * lpNewFileName)
    {
       string str1, str2;
       ::str::international::UnicodeToACP(str1, lpExistingFileName);
@@ -368,10 +368,10 @@ namespace android
       return handle;
    }
 
-   WINBOOL shell::_FindNextFile(HANDLE handle, WIN32_FIND_DATAW * lpdata)
+   int_bool shell::_FindNextFile(HANDLE handle, WIN32_FIND_DATAW * lpdata)
    {
       WIN32_FIND_DATAA data;
-      WINBOOL b = ::FindNextFileA(handle, &data);
+      int_bool b = ::FindNextFileA(handle, &data);
       if(b == FALSE)
          return FALSE;
 
@@ -457,7 +457,7 @@ namespace android
    return dw;
    }
 
-   WINBOOL WINAPI shell::_GetVolumeInformation(
+   int_bool WINAPI shell::_GetVolumeInformation(
      const unichar * lpRootPathName,           // root directory
      unichar * lpVolumeNameBuffer,        // volume name buffer
      DWORD nVolumeNameSize,            // length of name buffer
@@ -471,7 +471,7 @@ namespace android
    string strVolumeNameBuffer;
    string strFileSystemNameBuffer;
    ::str::international::UnicodeToACP(strRootPathName, lpRootPathName);
-   WINBOOL b = ::GetVolumeInformation(
+   int_bool b = ::GetVolumeInformation(
      strRootPathName,
      strVolumeNameBuffer.GetBuffer(nVolumeNameSize),
      nVolumeNameSize,
@@ -522,7 +522,7 @@ namespace android
    }
 
 
-   WINBOOL shell::_GetStringTypeEx(
+   int_bool shell::_GetStringTypeEx(
    LCID uiCodePage,
    DWORD dwInfoType,
    const unichar * lpSrcStr,
@@ -628,7 +628,7 @@ namespace android
    return dw;
    }
 
-   WINBOOL shell::_GetClassInfo(
+   int_bool shell::_GetClassInfo(
    HINSTANCE hInstance ,
    const unichar * lpClassName,
    LPWNDCLASSW lpWndClass)

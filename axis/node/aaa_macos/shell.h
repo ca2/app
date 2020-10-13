@@ -16,13 +16,13 @@
 //      static shell theLinuxShell;
 //      
 //      static bool Initialize();
-//      // xxx   static WINBOOL WINAPI _SHGetPathFromIDList(LPCITEMIDLIST pidl, unichar * pszPath);
+//      // xxx   static int_bool WINAPI _SHGetPathFromIDList(LPCITEMIDLIST pidl, unichar * pszPath);
 //      // xxx   static HANDLE WINAPI _FindFirstFile(const unichar * pcsz, WIN32_FIND_DATAW * lpdata);
-//      // xxx   static WINBOOL WINAPI _FindNextFile(HANDLE handle, WIN32_FIND_DATAW * lpdata);
-//      /*   static WINBOOL WINAPI _MoveFile(const unichar * lpExistingFileName, const unichar * lpNewFileName);
+//      // xxx   static int_bool WINAPI _FindNextFile(HANDLE handle, WIN32_FIND_DATAW * lpdata);
+//      /*   static int_bool WINAPI _MoveFile(const unichar * lpExistingFileName, const unichar * lpNewFileName);
 //       static DWORD WINAPI _GetFullPathName(const unichar * lpFileName, DWORD nBufferLength, unichar * lpBuffer, unichar ** lpFilePart);
 //       static WCHAR * __cdecl __fullpath(WCHAR *UserBuf, const WCHAR *path, size_t maxlen);
-//       static WINBOOL WINAPI _GetVolumeInformation(
+//       static int_bool WINAPI _GetVolumeInformation(
 //       const unichar * lpRootPathName,           // root directory
 //       unichar * lpVolumeNameBuffer,        // volume name buffer
 //       DWORD nVolumeNameSize,            // length of name buffer
@@ -37,7 +37,7 @@
 //       // xxx SHFILEINFOW *psfi,
 //       // xxx UINT cbFileInfo,
 //       // xxx UINT uFlags);
-//       static WINBOOL __stdcall _GetStringTypeEx(
+//       static int_bool __stdcall _GetStringTypeEx(
 //       LCID Locale,
 //       DWORD dwInfoType,
 //       const unichar * lpSrcStr,
@@ -65,7 +65,7 @@
 //       unichar * lpFilename,
 //       DWORD nSize
 //       );
-//       // xxx    static WINBOOL WINAPI _GetClassInfo(
+//       // xxx    static int_bool WINAPI _GetClassInfo(
 //       // xxx        HINSTANCE hInstance ,
 //       // xxx        const unichar * lpClassName,
 //       // xxx        LPWNDCLASSW lpWndClass);
@@ -90,13 +90,13 @@
 //       
 //       
 //       
-//       // xxx    WINBOOL (WINAPI * m_pfnSHGetPathFromIDList)(LPCITEMIDLIST pidl, unichar * pszPath);
+//       // xxx    int_bool (WINAPI * m_pfnSHGetPathFromIDList)(LPCITEMIDLIST pidl, unichar * pszPath);
 //       // xxx    HANDLE (WINAPI * m_pfnFindFirstFile)(const unichar * pcsz, WIN32_FIND_DATAW * lpdata);
-//       // xxx    WINBOOL (WINAPI * m_pfnFindNextFile)(HANDLE handle, WIN32_FIND_DATAW * lpdata);
-//       WINBOOL (WINAPI * m_pfnMoveFile)(const unichar * lpExistingFileName, const unichar * lpNewFileName);
+//       // xxx    int_bool (WINAPI * m_pfnFindNextFile)(HANDLE handle, WIN32_FIND_DATAW * lpdata);
+//       int_bool (WINAPI * m_pfnMoveFile)(const unichar * lpExistingFileName, const unichar * lpNewFileName);
 //       WCHAR * (__cdecl * m_pfn_fullpath)(WCHAR *UserBuf, const WCHAR *path, size_t maxlen);
 //       DWORD (WINAPI * m_pfnGetFullPathName)(const unichar * lpFileName, DWORD nBufferLength, unichar * lpBuffer, unichar ** lpFilePart);
-//       WINBOOL (WINAPI * m_pfnGetVolumeInformation)(
+//       int_bool (WINAPI * m_pfnGetVolumeInformation)(
 //       const unichar * lpRootPathName,           // root directory
 //       unichar * lpVolumeNameBuffer,        // volume name buffer
 //       DWORD nVolumeNameSize,            // length of name buffer
@@ -112,7 +112,7 @@
 //       // xxx       SHFILEINFOW *psfi,
 //       // xxx       UINT cbFileInfo,
 //       // xxx       UINT uFlags);
-//       WINBOOL (__stdcall * m_pfnGetStringTypeEx)(
+//       int_bool (__stdcall * m_pfnGetStringTypeEx)(
 //       LCID Locale,
 //       DWORD dwInfoType,
 //       const unichar * lpSrcStr,
@@ -142,7 +142,7 @@
 //       DWORD nSize
 //       );
 //       
-//       // xxx    WINBOOL (WINAPI * m_pfnGetClassInfo)(
+//       // xxx    int_bool (WINAPI * m_pfnGetClassInfo)(
 //       // xxx HINSTANCE hInstance ,
 //       // xxx        const unichar * lpClassName,
 //       // xxx        LPWNDCLASSW lpWndClass);
@@ -171,14 +171,14 @@
 //       
 //       
 //       
-//       // xxx    static WINBOOL SHGetPathFromIDList(LPCITEMIDLIST pidl, string & str);
-//       // xxx    static WINBOOL SHGetPathFromIDList(LPCITEMIDLIST pidl, unichar * pszPath);
+//       // xxx    static int_bool SHGetPathFromIDList(LPCITEMIDLIST pidl, string & str);
+//       // xxx    static int_bool SHGetPathFromIDList(LPCITEMIDLIST pidl, unichar * pszPath);
 //       // xxx    static HANDLE FindFirstFile(const unichar * pcsz, WIN32_FIND_DATAW * lpdata);
-//       // xxx    static WINBOOL WINAPI FindNextFile(HANDLE handle, WIN32_FIND_DATAW * lpdata);
-//       static WINBOOL MoveFile(const unichar * lpExistingFileName, const unichar * lpNewFileName);
+//       // xxx    static int_bool WINAPI FindNextFile(HANDLE handle, WIN32_FIND_DATAW * lpdata);
+//       static int_bool MoveFile(const unichar * lpExistingFileName, const unichar * lpNewFileName);
 //       static WCHAR * __cdecl _fullpath(WCHAR *UserBuf, const WCHAR *path, size_t maxlen);
 //       static DWORD GetFullPathName(const unichar * lpFileName, DWORD nBufferLength, unichar * lpBuffer, unichar ** lpFilePart);
-//       static WINBOOL GetVolumeInformation(
+//       static int_bool GetVolumeInformation(
 //       const unichar * lpRootPathName,           // root directory
 //       unichar * lpVolumeNameBuffer,        // volume name buffer
 //       DWORD nVolumeNameSize,            // length of name buffer
@@ -195,7 +195,7 @@
 //       // xxx       UINT cbFileInfo,
 //       // xxx       UINT uFlags);
 //       
-//       static WINBOOL  GetStringTypeEx(
+//       static int_bool  GetStringTypeEx(
 //       LCID Locale,
 //       DWORD dwInfoType,
 //       const char * lpSrcStr,
@@ -227,7 +227,7 @@
 //       DWORD nSize
 //       );
 //       
-//       // xxx    static WINBOOL WINAPI GetClassInfo(
+//       // xxx    static int_bool WINAPI GetClassInfo(
 //       // xxx        HINSTANCE hInstance ,
 //       // xxx        const unichar * lpClassName,
 //       // xxx        LPWNDCLASSW lpWndClass);
@@ -265,13 +265,13 @@
 //       UINT uUnique,
 //       string & str);
 //       
-//       static WINBOOL MoveFile(const char * lpExistingFileName, const char * lpNewFileName);
+//       static int_bool MoveFile(const char * lpExistingFileName, const char * lpNewFileName);
 //       */
 //   };
 //   
 //   
 //   
-//   /*inline WINBOOL shell::SHGetPathFromIDList(LPCITEMIDLIST pidl, string & str)
+//   /*inline int_bool shell::SHGetPathFromIDList(LPCITEMIDLIST pidl, string & str)
 //    {
 //    unichar * pwszPath = (unichar *) malloc(sizeof(unichar) * MAX_PATH * 4);
 //    if(!(*theLinuxShell.m_pfnSHGetPathFromIDList)(pidl, pwszPath))
@@ -286,7 +286,7 @@
 //    */
 //   /*
 //    
-//    inline WINBOOL shell::SHGetPathFromIDList(LPCITEMIDLIST pidl, unichar * pszPath)
+//    inline int_bool shell::SHGetPathFromIDList(LPCITEMIDLIST pidl, unichar * pszPath)
 //    {
 //    return (*theLinuxShell.m_pfnSHGetPathFromIDList)(pidl, pszPath);
 //    }
@@ -297,7 +297,7 @@
 //    return (*theLinuxShell.m_pfnFindFirstFile)(pcsz, lpdata);
 //    }
 //    
-//    inline WINBOOL shell::FindNextFile(HANDLE handle, WIN32_FIND_DATAW * lpdata)
+//    inline int_bool shell::FindNextFile(HANDLE handle, WIN32_FIND_DATAW * lpdata)
 //    {
 //    return (*theLinuxShell.m_pfnFindNextFile)(handle, lpdata);
 //    }
@@ -316,12 +316,12 @@
 //    }
 //    
 //    
-//    inline WINBOOL shell::MoveFile(const unichar * lpExistingFileName, const unichar * lpNewFileName)
+//    inline int_bool shell::MoveFile(const unichar * lpExistingFileName, const unichar * lpNewFileName)
 //    {
 //    return (*theLinuxShell.m_pfnMoveFile)(lpExistingFileName, lpNewFileName);
 //    }
 //    
-//    inline WINBOOL shell::GetVolumeInformation(
+//    inline int_bool shell::GetVolumeInformation(
 //    const unichar * lpRootPathName,           // root directory
 //    unichar * lpVolumeNameBuffer,        // volume name buffer
 //    DWORD nVolumeNameSize,            // length of name buffer
@@ -412,7 +412,7 @@
 //    nSize);
 //    }
 //    
-//    inline WINBOOL shell::GetClassInfo(
+//    inline int_bool shell::GetClassInfo(
 //    HINSTANCE hInstance ,
 //    const unichar * lpClassName,
 //    LPWNDCLASSW lpWndClass)
@@ -484,7 +484,7 @@
 //    return uiResult;
 //    }
 //    
-//    inline WINBOOL shell::MoveFile(const char * lpExistingFileName, const char * lpNewFileName)
+//    inline int_bool shell::MoveFile(const char * lpExistingFileName, const char * lpNewFileName)
 //    {
 //    return MoveFile(gen::international::utf8_to_unicode(lpExistingFileName), gen::international::utf8_to_unicode(lpNewFileName));
 //    }

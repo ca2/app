@@ -77,11 +77,11 @@ struct __CTLCOLOR
 //extern cairo_surface_t *  g_cairosurface;
 //extern cairo_t *  g_cairo;
 
-// WINBOOL PeekMessage(LPMESSAGE pMsg, oswindow hWnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg);
+// int_bool PeekMessage(LPMESSAGE pMsg, oswindow hWnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg);
 
 
 
-// WINBOOL GetMessage(LPMESSAGE pMsg, oswindow hWnd, UINT wMsgFilterMin, UINT wMsgFilterMax);
+// int_bool GetMessage(LPMESSAGE pMsg, oswindow hWnd, UINT wMsgFilterMin, UINT wMsgFilterMax);
 
 
 /*
@@ -3944,7 +3944,7 @@ namespace linux
 //   */
 //
 //   /*
-//      UINT interaction_impl::GetDlgItemInt(i32 nID, WINBOOL * pTrans, bool bSigned) const
+//      UINT interaction_impl::GetDlgItemInt(i32 nID, int_bool * pTrans, bool bSigned) const
 //
 //      {
 //

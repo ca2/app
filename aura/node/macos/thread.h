@@ -1,7 +1,7 @@
 #pragma once
 
 
-WINBOOL AfxInternalPreTranslateMessage(MESSAGE* pMsg);
+int_bool AfxInternalPreTranslateMessage(MESSAGE* pMsg);
 
 
 namespace macos

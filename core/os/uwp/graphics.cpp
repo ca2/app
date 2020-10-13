@@ -16,7 +16,7 @@ void os_term_imaging()
 }
 
 
-CLASS_DECL_CORE WINBOOL window_set_mouse_cursor(oswindow, HCURSOR hcursor)
+CLASS_DECL_CORE int_bool window_set_mouse_cursor(oswindow, HCURSOR hcursor)
 {
 
    return FALSE;

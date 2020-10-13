@@ -5,7 +5,7 @@
 namespace VistaTools
 {
 
-   WINBOOL CLASS_DECL_ACME IsVista();
+   int_bool CLASS_DECL_ACME IsVista();
 
    /*
    Use IsVista() to determine whether the current process is running under Windows Vista or
@@ -21,7 +21,7 @@ namespace VistaTools
 
 #ifndef WIN64
 
-   WINBOOL CLASS_DECL_ACME
+   int_bool CLASS_DECL_ACME
    IsWow64();
 
    /*
@@ -73,7 +73,7 @@ namespace VistaTools
    */
 
    HRESULT CLASS_DECL_ACME
-   IsElevated( __out_opt WINBOOL * pbElevated = nullptr );
+   IsElevated( __out_opt int_bool * pbElevated = nullptr );
 
    /*
    Use IsElevated() to determine whether the current process is elevated or not.
@@ -81,7 +81,7 @@ namespace VistaTools
    Parameters:
 
    pbElevated
-      [out] [optional] Pointer to a WINBOOL var that, if non-nullptr, receives the result.
+      [out] [optional] Pointer to a int_bool var that, if non-nullptr, receives the result.
 
       The possible values are:
 
@@ -101,7 +101,7 @@ namespace VistaTools
       call get_last_error().
    */
 
-   WINBOOL CLASS_DECL_ACME
+   int_bool CLASS_DECL_ACME
    RunElevated(
    __in      oswindow   hwnd,
    __in      const char * pszPath,
@@ -152,7 +152,7 @@ namespace VistaTools
 #endif//NO_DLL_IMPORTS
 
 
-   WINBOOL CLASS_DECL_ACME
+   int_bool CLASS_DECL_ACME
    RunNonElevated(
    __in      oswindow   hwnd,
    __in      const char * pszPath,
@@ -202,7 +202,7 @@ namespace VistaTools
 // MyShellExec is just a wrapper around a call to ShellExecuteEx,
 // to be able to specify the verb easily.
 
-   WINBOOL CLASS_DECL_ACME
+   int_bool CLASS_DECL_ACME
    MyShellExec(   oswindow hwnd,
                   const char * pszVerb,
                   const char * pszPath,

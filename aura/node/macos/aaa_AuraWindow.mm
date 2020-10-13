@@ -206,7 +206,7 @@ CGWindowID get_os_window_window_number(oswindow oswindow)
 
 
 
-WINBOOL EnableWindow(oswindow hwnd, WINBOOL bEnable)
+int_bool EnableWindow(oswindow hwnd, int_bool bEnable)
 {
    
    if(hwnd == NULL)

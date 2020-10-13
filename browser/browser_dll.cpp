@@ -7,7 +7,7 @@
 #ifdef _UWP
 [MTAThread]
 #endif
-WINBOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
+int_bool WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
 {
 
    return _001DefaultDllMain(hInstance, dwReason, lpReserved);

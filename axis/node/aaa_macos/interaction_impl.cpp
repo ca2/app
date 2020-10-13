@@ -17,9 +17,9 @@ struct __CTLCOLOR
 };
 
 
-// WINBOOL PeekMessage(LPMESSAGE lpMsg, oswindow hWnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg);
+// int_bool PeekMessage(LPMESSAGE lpMsg, oswindow hWnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg);
 
-// WINBOOL GetMessage(LPMESSAGE lpMsg, oswindow hWnd, UINT wMsgFilterMin, UINT wMsgFilterMax);
+// int_bool GetMessage(LPMESSAGE lpMsg, oswindow hWnd, UINT wMsgFilterMin, UINT wMsgFilterMax);
 
 
 namespace macos

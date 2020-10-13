@@ -170,7 +170,7 @@ struct CLASS_DECL_ACME oswindow_data
 
 
 // define portable types for 32-bit / 64-bit OS
-//typedef i32 WINBOOL;
+//typedef i32 int_bool;
 typedef u8 BYTE;
 //typedef u16 WORD;
 typedef u32 DWORD;

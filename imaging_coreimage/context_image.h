@@ -24,7 +24,7 @@ namespace coreimage_imaging
       virtual void set_cursor_image(const image * pimage, int xHotSpot, int yHotSpot) override;
 
       //virtual ::estatus _load_image(::object * pobject, image_frame_array * pimageframea, const ::memory & memory);
-      //virtual WINBOOL window_set_mouse_cursor(oswindow window, HCURSOR hcursor) override;
+      //virtual int_bool window_set_mouse_cursor(oswindow window, HCURSOR hcursor) override;
 
    };
 

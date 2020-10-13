@@ -145,7 +145,7 @@ Display * g_pdisplayX11= nullptr;
 int g_fdX11[2] = {};
 
 
-WINBOOL _x11_get_cursor_pos(Display * d, LPPOINT ppointCursor);
+int_bool _x11_get_cursor_pos(Display * d, LPPOINT ppointCursor);
 
 
 ::mutex * g_pmutexX11 = nullptr;
@@ -164,7 +164,7 @@ void wm_state_hidden_raw(oswindow w, bool bSet);
 CLASS_DECL_ACME int_bool mq_remove_window_from_all_queues(oswindow oswindow);
 
 
-WINBOOL x11_get_cursor_pos(LPPOINT ppointCursor);
+int_bool x11_get_cursor_pos(LPPOINT ppointCursor);
 
 #if !defined(RASPBIAN)
 
@@ -463,7 +463,7 @@ void unmapped_net_state_raw(Display * d, Window w, ...)
 }
 
 
-WINBOOL x11_get_window_rect(Display * d, Window window, RECT * prect)
+int_bool x11_get_window_rect(Display * d, Window window, RECT * prect)
 
 {
 
@@ -561,7 +561,7 @@ oswindow set_capture(oswindow window)
 }
 
 
-WINBOOL release_capture()
+int_bool release_capture()
 {
 
    sync_lock sl(x11_mutex());
@@ -577,7 +577,7 @@ WINBOOL release_capture()
 
    xdisplay d(x11_get_display());
 
-   WINBOOL bRet = XUngrabPointer(d, CurrentTime) != FALSE;
+   int_bool bRet = XUngrabPointer(d, CurrentTime) != FALSE;
 
    //if(bRet)
    {
@@ -1651,7 +1651,7 @@ oswindow get_window(oswindow windowParam, int iParentHood)
 }
 
 
-WINBOOL destroy_window(oswindow window)
+int_bool destroy_window(oswindow window)
 {
 
    bool bOk = false;
@@ -1733,7 +1733,7 @@ WINBOOL destroy_window(oswindow window)
 }
 
 
-WINBOOL is_window(oswindow oswindow)
+int_bool is_window(oswindow oswindow)
 {
 
    if(::oswindow_data::s_pdataptra->find_first(oswindow) < 0)
@@ -2423,7 +2423,7 @@ void _wm_nodecorations(oswindow w, int bMap)
 }
 
 
-WINBOOL IsWindowVisibleRaw(Display * display, Window window);
+int_bool IsWindowVisibleRaw(Display * display, Window window);
 
 
 void wm_iconify_window(oswindow oswindow)
@@ -2478,7 +2478,7 @@ void wm_iconify_window(oswindow oswindow)
 }
 
 
-WINBOOL IsWindowVisibleRaw(Display * display, Window window)
+int_bool IsWindowVisibleRaw(Display * display, Window window)
 {
 
    sync_lock sl(x11_mutex());
@@ -2497,7 +2497,7 @@ WINBOOL IsWindowVisibleRaw(Display * display, Window window)
 }
 
 
-WINBOOL IsWindowVisibleRaw(oswindow w)
+int_bool IsWindowVisibleRaw(oswindow w)
 {
 
    sync_lock sl(x11_mutex());
@@ -4208,7 +4208,7 @@ namespace user
 //} // namespace acme
 //
 
-WINBOOL set_window_pos(oswindow hwnd, oswindow hwndInsertAfter, i32 x, i32 y, i32 cx, i32 cy, UINT nFlags)
+int_bool set_window_pos(oswindow hwnd, oswindow hwndInsertAfter, i32 x, i32 y, i32 cx, i32 cy, UINT nFlags)
 {
 
    sync_lock sl(x11_mutex());
@@ -4221,7 +4221,7 @@ WINBOOL set_window_pos(oswindow hwnd, oswindow hwndInsertAfter, i32 x, i32 y, i3
 
 
 
-WINBOOL get_window_rect(oswindow hwnd, RECT * prect)
+int_bool get_window_rect(oswindow hwnd, RECT * prect)
 {
 
    sync_lock sl(x11_mutex());
@@ -4242,7 +4242,7 @@ WINBOOL get_window_rect(oswindow hwnd, RECT * prect)
 }
 
 
-WINBOOL get_client_rect(oswindow window, RECT * prect)
+int_bool get_client_rect(oswindow window, RECT * prect)
 {
 
    sync_lock sl(x11_mutex());
@@ -4284,7 +4284,7 @@ WINBOOL get_client_rect(oswindow window, RECT * prect)
 }
 
 
-WINBOOL ca2_GetClientRect(oswindow window, RECT * prect)
+int_bool ca2_GetClientRect(oswindow window, RECT * prect)
 {
 
    sync_lock sl(window->m_pimpl->m_puserinteraction->mutex());
@@ -4388,7 +4388,7 @@ HCURSOR imaging::load_default_cursor(e_cursor ecursor)
 
 
 
-WINBOOL x11_get_cursor_pos(LPPOINT ppointCursor)
+int_bool x11_get_cursor_pos(LPPOINT ppointCursor)
 {
 
    Window root_return;
@@ -4433,7 +4433,7 @@ WINBOOL x11_get_cursor_pos(LPPOINT ppointCursor)
 }
 
 
-WINBOOL GetCursorPos(LPPOINT ppointCursor)
+int_bool GetCursorPos(LPPOINT ppointCursor)
 {
 
    x11_sync([&]()
@@ -4569,7 +4569,7 @@ i64 oswindow_id(oswindow w)
 }
 
 
-WINBOOL imaging::window_set_mouse_cursor(oswindow window, HCURSOR hcursor)
+int_bool imaging::window_set_mouse_cursor(oswindow window, HCURSOR hcursor)
 {
 
    if(::is_null(window))
@@ -4862,7 +4862,7 @@ HCURSOR imaging::CreateAlphaCursor(oswindow window, const ::image * pimage, int 
 
 
 
-WINBOOL WINAPI SetWindowPos(oswindow hWnd,oswindow hWndInsertAfter,i32 X,i32 Y,i32 cx,i32 cy,UINT uFlags)
+int_bool WINAPI SetWindowPos(oswindow hWnd,oswindow hWndInsertAfter,i32 X,i32 Y,i32 cx,i32 cy,UINT uFlags)
 {
 
    return hWnd->set_window_pos(hWndInsertAfter, X, Y, cx, cy, uFlags);
@@ -4938,7 +4938,7 @@ void x11_async_runnable(::element * prunnable)
 }
 
 
-WINBOOL set_foreground_window(oswindow oswindow)
+int_bool set_foreground_window(oswindow oswindow)
 {
 
    if(!::is_window(oswindow))

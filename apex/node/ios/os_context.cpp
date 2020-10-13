@@ -891,7 +891,7 @@ CLASS_DECL_APEX bool _istlead(i32 ch)
 
 
 
-WINBOOL GetCursorPos(LPPOINT lppointCursor)
+int_bool GetCursorPos(LPPOINT lppointCursor)
 {
 
    /*   HIPoint point;

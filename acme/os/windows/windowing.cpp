@@ -48,7 +48,7 @@
 //}
 //
 
-CLASS_DECL_ACME WINBOOL is_window(oswindow oswindow)
+CLASS_DECL_ACME int_bool is_window(oswindow oswindow)
 {
 
    return ::IsWindow(oswindow);
@@ -151,7 +151,7 @@ CLASS_DECL_ACME WINBOOL is_window(oswindow oswindow)
 //}
 //
 //
-//CLASS_DECL_ACME WINBOOL release_capture()
+//CLASS_DECL_ACME int_bool release_capture()
 //{
 //
 //   return ::ReleaseCapture();
@@ -159,7 +159,7 @@ CLASS_DECL_ACME WINBOOL is_window(oswindow oswindow)
 //}
 //
 //
-//CLASS_DECL_ACME WINBOOL destroy_window(oswindow oswindow)
+//CLASS_DECL_ACME int_bool destroy_window(oswindow oswindow)
 //{
 //
 //   return ::DestroyWindow(oswindow);
@@ -200,7 +200,7 @@ CLASS_DECL_ACME WINBOOL is_window(oswindow oswindow)
 //
 //// }
 //
-//CLASS_DECL_ACME WINBOOL show_window(oswindow oswindow, int iShowCmd)
+//CLASS_DECL_ACME int_bool show_window(oswindow oswindow, int iShowCmd)
 //{
 //
 //   return ::ShowWindow(oswindow, iShowCmd);

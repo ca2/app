@@ -163,7 +163,7 @@ DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, HSYNC * synca, DWORD tickTimeout
 }
 
 
-DWORD MsgWaitForMultipleObjects(DWORD dwSize, HSYNC * synca, WINBOOL bWaitForAll, DWORD tickTimeout, DWORD dwWakeMask)
+DWORD MsgWaitForMultipleObjects(DWORD dwSize, HSYNC * synca, int_bool bWaitForAll, DWORD tickTimeout, DWORD dwWakeMask)
 {
 
    return MsgWaitForMultipleObjectsEx(dwSize, synca, tickTimeout, dwWakeMask, (bWaitForAll ? MWMO_WAITALL : 0));
@@ -171,7 +171,7 @@ DWORD MsgWaitForMultipleObjects(DWORD dwSize, HSYNC * synca, WINBOOL bWaitForAll
 }
 
 
-DWORD WaitForMultipleObjectsEx(DWORD dwSize, HSYNC * synca, WINBOOL bWaitForAll, DWORD tickTimeout, WINBOOL bAlertable)
+DWORD WaitForMultipleObjectsEx(DWORD dwSize, HSYNC * synca, int_bool bWaitForAll, DWORD tickTimeout, int_bool bAlertable)
 {
 
    return MsgWaitForMultipleObjectsEx(dwSize, synca, tickTimeout, 0, (bWaitForAll ? MWMO_WAITALL : 0) | (bAlertable ? MWMO_ALERTABLE : 0));
@@ -179,7 +179,7 @@ DWORD WaitForMultipleObjectsEx(DWORD dwSize, HSYNC * synca, WINBOOL bWaitForAll,
 }
 
 
-DWORD WaitForMultipleObjects(DWORD dwSize, HSYNC * synca, WINBOOL bWaitForAll, DWORD tickTimeout)
+DWORD WaitForMultipleObjects(DWORD dwSize, HSYNC * synca, int_bool bWaitForAll, DWORD tickTimeout)
 {
 
    return WaitForMultipleObjectsEx(dwSize, synca, bWaitForAll, tickTimeout, FALSE);
@@ -187,7 +187,7 @@ DWORD WaitForMultipleObjects(DWORD dwSize, HSYNC * synca, WINBOOL bWaitForAll, D
 }
 
 
-DWORD WaitForSingleObjectEx(HSYNC hsync, DWORD tickTimeout, WINBOOL bAlertable)
+DWORD WaitForSingleObjectEx(HSYNC hsync, DWORD tickTimeout, int_bool bAlertable)
 {
 
    return WaitForMultipleObjectsEx(1, &hsync, TRUE, tickTimeout, bAlertable);

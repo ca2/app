@@ -59,7 +59,7 @@ device_context::device_context()
 // }
 
 
-// WINBOOL ReleaseDC(oswindow hwnd, HDC hdc)
+// int_bool ReleaseDC(oswindow hwnd, HDC hdc)
 // {
 
 
@@ -105,7 +105,7 @@ device_context::device_context()
 // }
 
 
-// WINBOOL EndPaint(oswindow hwnd, PAINTSTRUCT * ps)
+// int_bool EndPaint(oswindow hwnd, PAINTSTRUCT * ps)
 // {
 
 //    return ReleaseDC(hwnd, ps->hdc);

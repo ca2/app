@@ -341,7 +341,7 @@ oswindow set_capture(oswindow __oswindow)
 }
 
 
-WINBOOL release_capture()
+int_bool release_capture()
 {
 
    ::oswindow oswindowOldCapture = g_oswindowCapture;
@@ -386,7 +386,7 @@ oswindow  set_active_window(oswindow __oswindow)
 
 
 
-WINBOOL is_window(oswindow oswindow)
+int_bool is_window(oswindow oswindow)
 {
 
    if (((void *)oswindow) == nullptr)
@@ -428,7 +428,7 @@ int_bool point_is_window_origin(POINT ptHitTest, oswindow oswindowExclude, int i
 }
 
 
-WINBOOL os_init_windowing()
+int_bool os_init_windowing()
 {
 
    return true;
@@ -566,7 +566,7 @@ CLASS_DECL_AURA oswindow get_window(oswindow oswindow, int iWindow)
 
 
 
-CLASS_DECL_AURA WINBOOL show_window(oswindow oswindow, int iShowCmd)
+CLASS_DECL_AURA int_bool show_window(oswindow oswindow, int iShowCmd)
 {
 
    UNREFERENCED_PARAMETER(oswindow);
@@ -611,7 +611,7 @@ int_bool is_window_occluded(oswindow oswindow)
 
 
 
-WINBOOL WINAPI SetWindowPos(oswindow pdata, oswindow pdataAfter, int x, int y, int cx, int cy, UINT uiFlags)
+int_bool WINAPI SetWindowPos(oswindow pdata, oswindow pdataAfter, int x, int y, int cx, int cy, UINT uiFlags)
 {
 
    pdata->m_pimpl->m_puserinteraction->order(pdata);
@@ -642,7 +642,7 @@ void defer_term_ui()
 //int g_iMouseY = 0;
 //
 //
-//CLASS_DECL_AURA WINBOOL GetCursorPos(LPPOINT lppoint)
+//CLASS_DECL_AURA int_bool GetCursorPos(LPPOINT lppoint)
 //{
 //
 //   lppoint->x = g_iMouseX;

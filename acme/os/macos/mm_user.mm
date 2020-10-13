@@ -206,7 +206,7 @@ oswindow set_active_window(oswindow window);
 //}
 //
 
-//WINBOOL SetForegroundWindow(oswindow window)
+//int_bool SetForegroundWindow(oswindow window)
 //{
 //
 //   if(!::is_window(window))
@@ -229,7 +229,7 @@ oswindow set_active_window(oswindow window);
 //}
 
 //
-//WINBOOL BringWindowToTop(oswindow window)
+//int_bool BringWindowToTop(oswindow window)
 //{
 //
 //   if(!::is_window(window))

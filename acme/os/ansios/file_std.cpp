@@ -136,13 +136,25 @@ i32 ferror_dup(FILE *fp)
 filesize FILE_get_size(FILE * fp)
 {
 
-   auto pos = ftell(fp);
+#ifdef WINDOWS
+   auto pos = _ftelli64(fp);
+#else
+   auto pos = ftello64(fp);
+#endif
 
    fseek(fp, 0, SEEK_END);
 
-   auto len = ftell(fp);
+#ifdef WINDOWS
+   auto len = _ftelli64(fp);
+#else
+   auto len = ftello64(fp);
+#endif
 
-   fseek(fp, (long) (pos), SEEK_SET);
+#ifdef WINDOWS
+   _fseeki64(fp, (long) (pos), SEEK_SET);
+#else
+   fseeko64(fp, (long) (pos), SEEK_SET);
+#endif
 
    return len;
 

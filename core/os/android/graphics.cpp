@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-//WINBOOL window_set_mouse_cursor(oswindow window, HCURSOR hcursor)
+//int_bool window_set_mouse_cursor(oswindow window, HCURSOR hcursor)
 //{
 //
 //   return FALSE;

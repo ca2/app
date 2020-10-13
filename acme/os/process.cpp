@@ -363,35 +363,6 @@ CLASS_DECL_ACME string process_version_dir_name()
 }
 
 
-//extern "C"
-//{
-
-   CLASS_DECL_ACME WINBOOL IsProcessRunning(DWORD pid)
-   {
-
-#ifdef WINDOWS
-
-      HANDLE process = OpenProcess(SYNCHRONIZE, FALSE, pid);
-
-      DWORD ret = WaitForSingleObject(process, 0);
-
-      CloseHandle(process);
-
-      return ret == WAIT_TIMEOUT;
-
-#else
-
-      int i = kill(pid, 0);
-
-      return (i == 0) || (i == -1 && errno == EPERM);
-
-#endif
-
-   }
-
-//}
-
-
 void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
 {
 

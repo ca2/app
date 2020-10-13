@@ -47,7 +47,7 @@ SetFilePointer(
 }
 
 
-WINBOOL
+int_bool
 WINAPI
 WriteFile(
           HANDLE hFile,
@@ -67,7 +67,7 @@ WriteFile(
     return TRUE;
 }
 
-WINBOOL
+int_bool
 WINAPI
 ReadFile(
          HANDLE hFile,
@@ -87,7 +87,7 @@ ReadFile(
     return TRUE;
 }
 
-WINBOOL
+int_bool
 WINAPI
 FlushFileBuffers(
                  HANDLE hFile
@@ -100,7 +100,7 @@ FlushFileBuffers(
 }
 
 
-WINBOOL
+int_bool
 WINAPI
 __win_CloseFile(
             HANDLE hFile
@@ -113,7 +113,7 @@ __win_CloseFile(
     return fclose(hFile->m_file.m_pfile) != FALSE;
 }
 
-WINBOOL
+int_bool
 WINAPI
 CloseHandle(
             HANDLE hObject
@@ -121,7 +121,7 @@ CloseHandle(
 {
    if(hObject == INVALID_HANDLE_VALUE)
       return FALSE;
-   WINBOOL bOk = FALSE;
+   int_bool bOk = FALSE;
    switch(hObject->m_etype)
    {
       case win_handle::type_file:

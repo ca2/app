@@ -644,7 +644,7 @@ bool write_memory_to_file(FILE * file,const void * pdata,memsize nCount,memsize 
    dw = ::fwrite(pdata, 1, (size_t) nCount, file);
 
 
-   WINBOOL bOk = dw == nCount;
+   int_bool bOk = dw == nCount;
 
    if(puiWritten != nullptr)
    {

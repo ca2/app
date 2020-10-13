@@ -13,8 +13,8 @@ string get_error_message(DWORD dwError);
 
 CLASS_DECL_AXIS void __trace_message(const char * lpszPrefix, ::message::message * pmessage);
 CLASS_DECL_AXIS void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
-WINBOOL mq_peek_message(LPMESSAGE lpMsg,oswindow hWnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg);
-WINBOOL mq_get_message(LPMESSAGE lpMsg,oswindow hWnd,UINT wMsgFilterMin,UINT wMsgFilterMax);
+int_bool mq_peek_message(LPMESSAGE lpMsg,oswindow hWnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg);
+int_bool mq_get_message(LPMESSAGE lpMsg,oswindow hWnd,UINT wMsgFilterMin,UINT wMsgFilterMax);
 i32 CLASS_DECL_AXIS __mac_main(i32 argc, char * argv[]);
 
 

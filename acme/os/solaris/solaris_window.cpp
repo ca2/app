@@ -961,7 +961,7 @@ oswindow SetCapture(oswindow window)
 }
 
 
-WINBOOL ReleaseCapture()
+int_bool ReleaseCapture()
 {
 
    single_lock sl(&user_mutex(), true);
@@ -969,7 +969,7 @@ WINBOOL ReleaseCapture()
    xdisplay d(g_oswindowCapture->display());
 
 
-   WINBOOL bRet = XUngrabPointer(g_oswindowCapture->display(), CurrentTime) != FALSE;
+   int_bool bRet = XUngrabPointer(g_oswindowCapture->display(), CurrentTime) != FALSE;
 
    if(bRet)
       g_oswindowCapture = nullptr;
@@ -1159,7 +1159,7 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
 
 
 
-WINBOOL DestroyWindow(oswindow window)
+int_bool DestroyWindow(oswindow window)
 {
 
    single_lock sl(&user_mutex(), true);

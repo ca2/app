@@ -9,7 +9,7 @@
 #endif
 
 
-//CLASS_DECL_AURA WINBOOL window_set_mouse_cursor(oswindow oswindow, HCURSOR hcursor);
+//CLASS_DECL_AURA int_bool window_set_mouse_cursor(oswindow oswindow, HCURSOR hcursor);
 
 
 

@@ -544,7 +544,7 @@ catch(...)
 
       //   }
       //}
-            WINBOOL    fResult = TRUE;
+            int_bool    fResult = TRUE;
 
             //while (fResult)
             //{

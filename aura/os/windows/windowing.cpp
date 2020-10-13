@@ -48,7 +48,7 @@ CLASS_DECL_AURA void os_term_windowing()
 //}
 
 //
-//CLASS_DECL_AURA WINBOOL is_window(oswindow oswindow)
+//CLASS_DECL_AURA int_bool is_window(oswindow oswindow)
 //{
 //
 //   return ::IsWindow(oswindow);
@@ -151,7 +151,7 @@ CLASS_DECL_AURA void os_term_windowing()
 //}
 //
 //
-//CLASS_DECL_AURA WINBOOL release_capture()
+//CLASS_DECL_AURA int_bool release_capture()
 //{
 //
 //   return ::ReleaseCapture();
@@ -159,7 +159,7 @@ CLASS_DECL_AURA void os_term_windowing()
 //}
 //
 //
-//CLASS_DECL_AURA WINBOOL destroy_window(oswindow oswindow)
+//CLASS_DECL_AURA int_bool destroy_window(oswindow oswindow)
 //{
 //
 //   return ::DestroyWindow(oswindow);
@@ -200,7 +200,7 @@ CLASS_DECL_AURA void os_term_windowing()
 
 // }
 
-//CLASS_DECL_AURA WINBOOL show_window(oswindow oswindow, int iShowCmd)
+//CLASS_DECL_AURA int_bool show_window(oswindow oswindow, int iShowCmd)
 //{
 //
 //   return ::ShowWindow(oswindow, iShowCmd);

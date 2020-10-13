@@ -69,7 +69,7 @@ bool oswindow_data::_001ScreenToClient(POINT *lppoint)
 
 
 
-WINBOOL SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int cx, int cy, UINT uFlags)
+int_bool SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int cx, int cy, UINT uFlags)
 {
    
    return TRUE;

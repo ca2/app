@@ -367,7 +367,7 @@ namespace aura
    }
 
    
-   WINBOOL application::window_set_mouse_cursor(oswindow, HCURSOR hcursor)
+   int_bool application::window_set_mouse_cursor(oswindow, HCURSOR hcursor)
    {
 
       return FALSE;

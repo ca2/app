@@ -14,7 +14,7 @@ public:
    ::ref_array < MESSAGE >           m_msgptra;
 
 
-   WINBOOL GetMessage(MESSAGE * pmsg);
+   int_bool GetMessage(MESSAGE * pmsg);
 
 
 };
@@ -26,7 +26,7 @@ public:
 
 
 
-WINBOOL sys_message_queue::GetMessage(MESSAGE * pmsg)
+int_bool sys_message_queue::GetMessage(MESSAGE * pmsg)
 {
    single_lock lockMutex(m_mutex, false);
    while(true)
@@ -60,7 +60,7 @@ sys_thread::sys_thread(pthread_t pthread) :
 {
 }
 
-WINBOOL sys_thread::GetMessage(MESSAGE * pmsg)
+int_bool sys_thread::GetMessage(MESSAGE * pmsg)
 {
       return m_messagequeue.GetMessage(pmsg);
 }

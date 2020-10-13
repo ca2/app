@@ -31,7 +31,7 @@ CLASS_DECL_AXIS string normalize_path(const char* lpcszPath);
 
 CLASS_DECL_AXIS oswindow get_capture();
 CLASS_DECL_AXIS oswindow set_capture(oswindow oswindow);
-CLASS_DECL_AXIS WINBOOL release_capture();
+CLASS_DECL_AXIS int_bool release_capture();
 
 CLASS_DECL_AXIS oswindow get_active_window();
 CLASS_DECL_AXIS oswindow set_active_window(oswindow oswindow);

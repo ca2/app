@@ -570,7 +570,7 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECT * prect)
 }
 
 
-//WINBOOL IsChild(oswindow oswindowParent, ::oswindow oswindowcandidateChildOrDescendant)
+//int_bool IsChild(oswindow oswindowParent, ::oswindow oswindowcandidateChildOrDescendant)
 //{
 //
 //   auto puiParent = ::oswindow_interaction(oswindowParent);
@@ -629,7 +629,7 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECT * prect)
 //#ifndef _UWP
 //
 //
-//WINBOOL show_window(::oswindow oswindow, ::edisplay edisplay)
+//int_bool show_window(::oswindow oswindow, ::edisplay edisplay)
 //{
 //
 //   if(::is_null(oswindow))
@@ -707,7 +707,7 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECT * prect)
 //}
 
 //
-//WINBOOL WINAPI _001ClientToScreen(::oswindow oswindow, LPPOINT ppoint)
+//int_bool WINAPI _001ClientToScreen(::oswindow oswindow, LPPOINT ppoint)
 //{
 //
 //   if(::is_null(oswindow))
@@ -722,7 +722,7 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECT * prect)
 //}
 
 
-//WINBOOL WINAPI _001ScreenToClient(::oswindow oswindow, LPPOINT ppoint)
+//int_bool WINAPI _001ScreenToClient(::oswindow oswindow, LPPOINT ppoint)
 //{
 //
 //   if(::is_null(oswindow))
@@ -737,7 +737,7 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECT * prect)
 //}
 
 
-//WINBOOL WINAPI is_iconic(::oswindow oswindow)
+//int_bool WINAPI is_iconic(::oswindow oswindow)
 //{
 //
 //   if(::is_null(oswindow))
@@ -752,7 +752,7 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECT * prect)
 //}
 
 //
-//WINBOOL WINAPI IsWindowVisible(::oswindow oswindow)
+//int_bool WINAPI IsWindowVisible(::oswindow oswindow)
 //{
 //
 //   if(::is_null(oswindow))
@@ -774,7 +774,7 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECT * prect)
 //
 //#endif
 //
-//CLASS_DECL_ACME WINBOOL is_window(oswindow oswindow);
+//CLASS_DECL_ACME int_bool is_window(oswindow oswindow);
 //
 //
 //

@@ -2,7 +2,7 @@
 
 
 // interesting function
-/*WINBOOL CLASS_DECL_lnx AfxCustomLogFont(UINT nIDS, LOGFONT* pLogFont)
+/*int_bool CLASS_DECL_lnx AfxCustomLogFont(UINT nIDS, LOGFONT* pLogFont)
  {
  ENSURE_ARG(pLogFont != nullptr);
  ASSERT(nIDS != 0);
@@ -25,7 +25,7 @@
  }*/
 
 /*
- WINBOOL CLASS_DECL_lnx _AfxIsComboBoxControl(oswindow hWnd, UINT nStyle)
+ int_bool CLASS_DECL_lnx _AfxIsComboBoxControl(oswindow hWnd, UINT nStyle)
  {
  if (hWnd == nullptr)
  return FALSE;
@@ -39,7 +39,7 @@
  return ::AfxInvariantStrICmp(szCompare, "combobox") == 0;
  }
 
- WINBOOL CLASS_DECL_lnx _AfxCompareClassName(oswindow hWnd, const char * lpszClassName)
+ int_bool CLASS_DECL_lnx _AfxCompareClassName(oswindow hWnd, const char * lpszClassName)
  {
  ASSERT(::is_window(hWnd));
  char szTemp[32];

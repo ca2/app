@@ -1414,7 +1414,7 @@ namespace aura
       virtual string sound_path(const char* psz) override;
       virtual string get_default_playlist_path() override;
 
-      virtual WINBOOL window_set_mouse_cursor(oswindow window, HCURSOR hcursor);
+      virtual int_bool window_set_mouse_cursor(oswindow window, HCURSOR hcursor);
       virtual icon_result load_icon(const ::var& varFile);
       virtual HCURSOR load_default_cursor(e_cursor ecursor);
 

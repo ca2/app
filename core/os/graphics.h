@@ -9,7 +9,7 @@
 #endif
 
 
-//CLASS_DECL_CORE WINBOOL window_set_mouse_cursor(oswindow oswindow, HCURSOR hcursor);
+//CLASS_DECL_CORE int_bool window_set_mouse_cursor(oswindow oswindow, HCURSOR hcursor);
 
 
 

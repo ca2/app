@@ -2,7 +2,7 @@
 
 
 CLASS_DECL_ACME DWORD windows_get_file_attributes(const char* path);
-CLASS_DECL_ACME WINBOOL windows_create_directory(const char* pszPath, LPSECURITY_ATTRIBUTES lpSecurityAttributes);
+CLASS_DECL_ACME int_bool windows_create_directory(const char* pszPath, LPSECURITY_ATTRIBUTES lpSecurityAttributes);
 
 
 #define hfile_null INVALID_HANDLE_VALUE

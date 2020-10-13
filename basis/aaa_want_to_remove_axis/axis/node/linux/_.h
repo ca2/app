@@ -14,14 +14,14 @@ CLASS_DECL_AXIS void AfxProcessWndProcException(::exception::exception*, ::messa
 CLASS_DECL_AXIS void __cdecl __pre_translate_message(::message::message * pmessage);
 
 
-WINBOOL PeekMessage(
+int_bool PeekMessage(
 LPMESSAGE lpMsg,
 oswindow hWnd,
 UINT wMsgFilterMin,
 UINT wMsgFilterMax,
 UINT wRemoveMsg);
 
-WINBOOL GetMessage(
+int_bool GetMessage(
 LPMESSAGE lpMsg,
 oswindow hWnd,
 UINT wMsgFilterMin,

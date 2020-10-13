@@ -8,16 +8,16 @@
 #import "_mm.h"
 
 
-WINBOOL get_nswindow_rect(oswindow oswindow, LPRECT lprect);
+int_bool get_nswindow_rect(oswindow oswindow, LPRECT lprect);
 void copy(LPRECT lprectDst, const CGRect & rectSrc);
 
 
 
 
-WINBOOL move_nswindow(oswindow hwnd, int x, int y);
+int_bool move_nswindow(oswindow hwnd, int x, int y);
 
 
-WINBOOL set_nswindow_frame(oswindow hwnd, LPCRECT lpcrect, int iDisplay)
+int_bool set_nswindow_frame(oswindow hwnd, LPCRECT lpcrect, int iDisplay)
 {
    
    RECT r(*lpcrect);
@@ -45,7 +45,7 @@ WINBOOL set_nswindow_frame(oswindow hwnd, LPCRECT lpcrect, int iDisplay)
 }
 
 
-WINBOOL move_nswindow(oswindow hwnd, int x, int y)
+int_bool move_nswindow(oswindow hwnd, int x, int y)
 {
    
    ns_main_async(^
@@ -68,7 +68,7 @@ WINBOOL move_nswindow(oswindow hwnd, int x, int y)
 }
 
 
-WINBOOL make_key_and_order_front_nswindow(oswindow hwnd)
+int_bool make_key_and_order_front_nswindow(oswindow hwnd)
 {
 
 //   printf("\nmake_key_and_order_front_nswindow");
@@ -85,7 +85,7 @@ WINBOOL make_key_and_order_front_nswindow(oswindow hwnd)
 }
 
 
-WINBOOL order_front_nswindow(oswindow hwnd)
+int_bool order_front_nswindow(oswindow hwnd)
 {
 
    //   printf("\norder_front_nswindow");
@@ -102,7 +102,7 @@ WINBOOL order_front_nswindow(oswindow hwnd)
 }
 
 
-WINBOOL nswindow_set_level_main_menu(oswindow hwnd)
+int_bool nswindow_set_level_main_menu(oswindow hwnd)
 {
    
    ns_main_async(^
@@ -117,7 +117,7 @@ WINBOOL nswindow_set_level_main_menu(oswindow hwnd)
 }
 
 
-WINBOOL nswindow_set_level_floating(oswindow hwnd)
+int_bool nswindow_set_level_floating(oswindow hwnd)
 {
    
    ns_main_async(^
@@ -132,7 +132,7 @@ WINBOOL nswindow_set_level_floating(oswindow hwnd)
 }
 
 
-WINBOOL nswindow_set_level_normal(oswindow hwnd)
+int_bool nswindow_set_level_normal(oswindow hwnd)
 {
    
    ns_main_async(^
@@ -152,7 +152,7 @@ WINBOOL nswindow_set_level_normal(oswindow hwnd)
 }
 
 
-WINBOOL nswindow_is_level_main_menu(oswindow hwnd)
+int_bool nswindow_is_level_main_menu(oswindow hwnd)
 {
    
    return __nswindow(hwnd) .level == NSMainMenuWindowLevel;
@@ -160,7 +160,7 @@ WINBOOL nswindow_is_level_main_menu(oswindow hwnd)
 }
 
 
-WINBOOL nswindow_is_level_floating(oswindow hwnd)
+int_bool nswindow_is_level_floating(oswindow hwnd)
 {
    
    return __nswindow(hwnd) .level == NSFloatingWindowLevel;
@@ -168,7 +168,7 @@ WINBOOL nswindow_is_level_floating(oswindow hwnd)
 }
 
 
-WINBOOL nswindow_is_level_normal(oswindow hwnd)
+int_bool nswindow_is_level_normal(oswindow hwnd)
 {
    
    return __nswindow(hwnd) .level == NSNormalWindowLevel;
@@ -225,7 +225,7 @@ void on_end_thread()
 //}
 
 
-WINBOOL get_nswindow_rect(oswindow oswindow, LPRECT lprect)
+int_bool get_nswindow_rect(oswindow oswindow, LPRECT lprect)
 {
    
    NSRect rect = [__nswindow(oswindow) frame];
@@ -243,7 +243,7 @@ WINBOOL get_nswindow_rect(oswindow oswindow, LPRECT lprect)
 int cx100;
 int cy100;
 
-WINBOOL SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int cx, int cy, UINT uFlags)
+int_bool SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int cx, int cy, UINT uFlags)
 {
    
    ns_main_async([=]()

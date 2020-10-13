@@ -322,7 +322,7 @@ oswindow set_capture(oswindow window)
 }
 
 
-WINBOOL release_capture()
+int_bool release_capture()
 {
 
    g_oswindowCapture = nullptr;
@@ -443,7 +443,7 @@ oswindow set_active_window(oswindow window)
 
 
 //
-//WINBOOL ui_SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int cx, int cy, UINT uFlags)
+//int_bool ui_SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int cx, int cy, UINT uFlags)
 //{
 //   
 //   main_async([=]()
@@ -463,7 +463,7 @@ oswindow set_active_window(oswindow window)
 //
 
 
-WINBOOL get_window_rect(oswindow hwnd, LPRECT lprect)
+int_bool get_window_rect(oswindow hwnd, LPRECT lprect)
 {
 
    if(void_ptr_is_null(hwnd))
@@ -479,7 +479,7 @@ WINBOOL get_window_rect(oswindow hwnd, LPRECT lprect)
 }
 
 
-WINBOOL SetWindowRect(oswindow hwnd, LPRECT lprect)
+int_bool SetWindowRect(oswindow hwnd, LPRECT lprect)
 {
 
    if(hwnd == nullptr)
@@ -492,7 +492,7 @@ WINBOOL SetWindowRect(oswindow hwnd, LPRECT lprect)
 }
 
 
-WINBOOL EnableWindow(oswindow hwnd, WINBOOL bEnable)
+int_bool EnableWindow(oswindow hwnd, int_bool bEnable)
 {
 
    if(hwnd == nullptr)
@@ -550,7 +550,7 @@ int_bool destroy_window(oswindow window)
 
 void mm_init_workspace_rect();
 
-WINBOOL os_init_windowing()
+int_bool os_init_windowing()
 {
 
 //   set_TranslateMessage(&axis_TranslateMessage);

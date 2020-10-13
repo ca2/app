@@ -27,14 +27,14 @@ __pointer(::aura::application)     ios_instantiate_application(__pointer(::aura:
 
 
 
-WINBOOL PeekMessage(
+int_bool PeekMessage(
                     LPMESSAGE lpMsg,
                     oswindow hWnd,
                     UINT wMsgFilterMin,
                     UINT wMsgFilterMax,
                     UINT wRemoveMsg);
 
-WINBOOL GetMessage(
+int_bool GetMessage(
                    LPMESSAGE lpMsg,
                    oswindow hWnd,
                    UINT wMsgFilterMin,

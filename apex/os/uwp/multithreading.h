@@ -16,11 +16,11 @@ typedef struct tag_MSG
 
 
 
-//CLASS_DECL_APEX WINBOOL WINAPI GetMessage(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax);
+//CLASS_DECL_APEX int_bool WINAPI GetMessage(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax);
 
-//CLASS_DECL_APEX WINBOOL WINAPI PeekMessage(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax,UINT wRemoveMsg);
+//CLASS_DECL_APEX int_bool WINAPI PeekMessage(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax,UINT wRemoveMsg);
 
-//CLASS_DECL_APEX WINBOOL WINAPI PostThreadMessage(ITHREAD idthread, UINT Msg, WPARAM wParam, LPARAM lParam);
+//CLASS_DECL_APEX int_bool WINAPI PostThreadMessage(ITHREAD idthread, UINT Msg, WPARAM wParam, LPARAM lParam);
 
 
 //CLASS_DECL_APEX void WINAPI TlsShutdown();

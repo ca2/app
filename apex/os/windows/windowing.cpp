@@ -45,7 +45,7 @@ CLASS_DECL_APEX i64 oswindow_id(HWND hwnd)
 }
 
 
-//CLASS_DECL_APEX WINBOOL is_window(oswindow oswindow)
+//CLASS_DECL_APEX int_bool is_window(oswindow oswindow)
 //{
 //
 //   return ::IsWindow(oswindow);
@@ -148,7 +148,7 @@ CLASS_DECL_APEX oswindow set_capture(oswindow oswindow)
 }
 
 
-CLASS_DECL_APEX WINBOOL release_capture()
+CLASS_DECL_APEX int_bool release_capture()
 {
 
    return ::ReleaseCapture();
@@ -156,7 +156,7 @@ CLASS_DECL_APEX WINBOOL release_capture()
 }
 
 
-CLASS_DECL_APEX WINBOOL destroy_window(oswindow oswindow)
+CLASS_DECL_APEX int_bool destroy_window(oswindow oswindow)
 {
 
    return ::DestroyWindow(oswindow);
@@ -197,7 +197,7 @@ CLASS_DECL_APEX oswindow get_window(oswindow oswindow, int iWindow)
 
 // }
 
-CLASS_DECL_APEX WINBOOL show_window(oswindow oswindow, int iShowCmd)
+CLASS_DECL_APEX int_bool show_window(oswindow oswindow, int iShowCmd)
 {
 
    return ::ShowWindow(oswindow, iShowCmd);

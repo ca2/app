@@ -50,23 +50,23 @@ int GetWkspaceCount();
 //#define HWND_MESSAGE ((::oswindow_data *) (iptr) 1)
 
 
-WINBOOL destroy_window(oswindow w);
+int_bool destroy_window(oswindow w);
 
 
 oswindow get_capture();
 oswindow set_capture(oswindow window);
-WINBOOL release_capture();
+int_bool release_capture();
 oswindow set_focus(oswindow window);
 oswindow get_focus();
 oswindow get_active_window();
 oswindow set_active_window(oswindow window);
-WINBOOL enable_window(oswindow hwnd, WINBOOL bEnable);
+int_bool enable_window(oswindow hwnd, int_bool bEnable);
 
 //void GetMainScreenRect(RECT * prect);
 
 
-WINBOOL SetForegroundWindow(oswindow window);
-WINBOOL BringWindowToTop(oswindow window);
+int_bool SetForegroundWindow(oswindow window);
+int_bool BringWindowToTop(oswindow window);
 
 void ns_redraw_window(oswindow window);
 

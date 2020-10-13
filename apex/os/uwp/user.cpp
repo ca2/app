@@ -7,7 +7,7 @@
 CLASS_DECL_APEX int g_iMouse = -1;
 
 
-//CLASS_DECL_APEX WINBOOL GetCursorPos(LPPOINT lppoint);
+//CLASS_DECL_APEX int_bool GetCursorPos(LPPOINT lppoint);
 
 //
 //CLASS_DECL_APEX int_bool ui_get_cursor_pos(POINT * ppt)
@@ -52,7 +52,7 @@ CLASS_DECL_APEX int g_iMouse = -1;
 //int g_iMouseY = 0;
 //
 
-//CLASS_DECL_APEX WINBOOL GetCursorPos(LPPOINT lppoint)
+//CLASS_DECL_APEX int_bool GetCursorPos(LPPOINT lppoint)
 //{
 //
 //   lppoint->x = g_iMouseX;

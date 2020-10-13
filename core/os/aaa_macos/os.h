@@ -26,7 +26,7 @@
 
 oswindow get_capture();
 oswindow set_capture(oswindow window);
-WINBOOL release_capture();
+int_bool release_capture();
 oswindow set_foucs(oswindow window);
 oswindow get_focus();
 oswindow get_active_window();
@@ -47,8 +47,8 @@ int GetWkspaceRect(RECT * prect, int iMonitor);
 int GetWkspaceCount();
 
 
-WINBOOL SetForegroundWindow(oswindow window);
-WINBOOL BringWindowToTop(oswindow window);
+int_bool SetForegroundWindow(oswindow window);
+int_bool BringWindowToTop(oswindow window);
 
 void ns_redraw_window(oswindow window);
 

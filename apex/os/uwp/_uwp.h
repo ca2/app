@@ -32,7 +32,7 @@
 
 //CLASS_DECL_APEX oswindow get_capture();
 //CLASS_DECL_APEX oswindow set_capture(oswindow oswindow);
-//CLASS_DECL_APEX WINBOOL release_capture();
+//CLASS_DECL_APEX int_bool release_capture();
 
 //CLASS_DECL_APEX oswindow get_active_window();
 //CLASS_DECL_APEX oswindow set_active_window(oswindow oswindow);

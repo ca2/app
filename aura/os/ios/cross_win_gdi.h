@@ -4,18 +4,18 @@
 // HFONT CreateFontIndirect(const LOGFONT * lf);
 // HPEN CreatePen(int iPenStyle, int iWidth, COLORREF crColor);
 // HGDIOBJ GetStockObject(int iStockObject);
-// WINBOOL SelectObject(HDC hdc, HGDIOBJ hgdiobj);
-// WINBOOL Rectangle(HDC hdc, int x1, int y1, int x2, int y2);
-// WINBOOL DeleteObject(HGDIOBJ hgdiobj);
+// int_bool SelectObject(HDC hdc, HGDIOBJ hgdiobj);
+// int_bool Rectangle(HDC hdc, int x1, int y1, int x2, int y2);
+// int_bool DeleteObject(HGDIOBJ hgdiobj);
 // HDC CreateCompatibleDC(HDC hdc);
 // HBITMAP WINAPI CreateDIBSection(HDC hdc, const BITMAPINFO *lpbmi, UINT usage, void **ppvBits, HANDLE hSection, DWORD offset);
-// WINBOOL SetTextColor(HDC hdc, COLORREF cr);
-// WINBOOL SetBkMode(HDC hdc, int iMode);
-// WINBOOL DeleteDC(HDC hdc);
-// WINBOOL AlphaBlend(HDC hdcDest, int xoriginDest, int yoriginDest, int wDest, int hDest, HDC hdcSrc, int xoriginSrc, int yoriginSrc, int wSrc, int hSrc, BLENDFUNCTION ftn);
-// WINBOOL GetObject(HGDIOBJ hgdiobj, int iSize, void * object);
-// WINBOOL GetTextExtentPoint(HDC hdc, const char * pszText, int iSize, SIZE * psize);
-/*WINBOOL WINAPI TransparentBlt(HDC hdcDest,
+// int_bool SetTextColor(HDC hdc, COLORREF cr);
+// int_bool SetBkMode(HDC hdc, int iMode);
+// int_bool DeleteDC(HDC hdc);
+// int_bool AlphaBlend(HDC hdcDest, int xoriginDest, int yoriginDest, int wDest, int hDest, HDC hdcSrc, int xoriginSrc, int yoriginSrc, int wSrc, int hSrc, BLENDFUNCTION ftn);
+// int_bool GetObject(HGDIOBJ hgdiobj, int iSize, void * object);
+// int_bool GetTextExtentPoint(HDC hdc, const char * pszText, int iSize, SIZE * psize);
+/*int_bool WINAPI TransparentBlt(HDC hdcDest,
     __in int xoriginDest,
     __in int yoriginDest,
     __in int wDest,

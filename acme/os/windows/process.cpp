@@ -1360,3 +1360,20 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 //   return TRUE;
 //}
 //
+
+
+CLASS_DECL_ACME int_bool is_process_running(DWORD pid)
+{
+
+   HANDLE process = OpenProcess(SYNCHRONIZE, FALSE, pid);
+
+   DWORD ret = WaitForSingleObject(process, 0);
+
+   CloseHandle(process);
+
+   return ret == WAIT_TIMEOUT;
+
+}
+
+
+

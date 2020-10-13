@@ -261,13 +261,13 @@ extern oswindow g_oswindowDesktop;
 
 oswindow GetCapture();
 oswindow SetCapture(oswindow window);
-WINBOOL ReleaseCapture();
+int_bool ReleaseCapture();
 oswindow SetFocus(oswindow window);
 oswindow GetFocus();
 oswindow GetWindow(oswindow window, int iParentHood);
 oswindow GetActiveWindow();
 oswindow SetActiveWindow(oswindow window);
-WINBOOL DestroyWindow(oswindow window);
+int_bool DestroyWindow(oswindow window);
 oswindow get_desktop_window();
 
 class osdisplay_dataptra :

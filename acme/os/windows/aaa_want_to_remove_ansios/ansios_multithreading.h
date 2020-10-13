@@ -20,17 +20,17 @@ void set_defer_process_x_message(bool (* pfn)(HTHREAD hthread,LPMESSAGE lpMsg,os
 class sync_object;
 
 
-DWORD WaitForMultipleObjectsEx(DWORD dwSize, sync_object ** pwaitableptra, WINBOOL bWaitForAll, DWORD tickTimeout, WINBOOL bAlertable);
+DWORD WaitForMultipleObjectsEx(DWORD dwSize, sync_object ** pwaitableptra, int_bool bWaitForAll, DWORD tickTimeout, int_bool bAlertable);
 
-DWORD WaitForMultipleObjects(DWORD dwSize, sync_object ** pwaitableptra, WINBOOL bWaitForAll, DWORD tickTimeout);
+DWORD WaitForMultipleObjects(DWORD dwSize, sync_object ** pwaitableptra, int_bool bWaitForAll, DWORD tickTimeout);
 
-DWORD MsgWaitForMultipleObjects(DWORD dwSize, sync_object ** pwaitableptra, WINBOOL bWaitForAll, DWORD tickTimeout, DWORD dwWakeMask);
+DWORD MsgWaitForMultipleObjects(DWORD dwSize, sync_object ** pwaitableptra, int_bool bWaitForAll, DWORD tickTimeout, DWORD dwWakeMask);
 
 DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, sync_object ** pwaitableptra, DWORD tickTimeout, DWORD dwWakeMask, DWORD dwFlags);
 
 DWORD WaitForSingleObject(sync_object * pwaitable, DWORD dwMilliseconds);
 
-DWORD WaitForSingleObjectEx(sync_object * pwaitable, DWORD dwMilliseconds, WINBOOL bAlertable);
+DWORD WaitForSingleObjectEx(sync_object * pwaitable, DWORD dwMilliseconds, int_bool bAlertable);
 
 
 #endif

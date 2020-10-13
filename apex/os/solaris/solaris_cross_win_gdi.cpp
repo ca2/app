@@ -40,7 +40,7 @@
 // }
 
 
-// WINBOOL ReleaseDC(oswindow hwnd, HDC hdc)
+// int_bool ReleaseDC(oswindow hwnd, HDC hdc)
 // {
 
 
@@ -59,7 +59,7 @@
 // }
 
 
-// WINBOOL get_client_rect(oswindow hwnd, LPRECT lprect)
+// int_bool get_client_rect(oswindow hwnd, LPRECT lprect)
 // {
 
 //    mutex_lock sl(user_mutex(), true);
@@ -85,7 +85,7 @@
 // }
 
 
-// WINBOOL get_window_rect(oswindow hwnd, LPRECT lprect)
+// int_bool get_window_rect(oswindow hwnd, LPRECT lprect)
 // {
 
 
@@ -159,7 +159,7 @@
 // }
 
 
-// WINBOOL EndPaint(oswindow hwnd, PAINTSTRUCT * ps)
+// int_bool EndPaint(oswindow hwnd, PAINTSTRUCT * ps)
 // {
 
 //    return ReleaseDC(hwnd, ps->hdc);
@@ -167,7 +167,7 @@
 // }
 
 
-// WINBOOL GetCursorPos(LPPOINT lppointCursor)
+// int_bool GetCursorPos(LPPOINT lppointCursor)
 // {
 
 //    //mutex_lock sl(user_mutex(), true);
@@ -194,7 +194,7 @@
 
 
 
-// WINBOOL set_window_pos(oswindow hwnd, oswindow hwndInsertAfter, i32 x, i32 y, i32 cx, i32 cy, UINT uFlags)
+// int_bool set_window_pos(oswindow hwnd, oswindow hwndInsertAfter, i32 x, i32 y, i32 cx, i32 cy, UINT uFlags)
 // {
 
 //    mutex_lock sl(user_mutex(), true);

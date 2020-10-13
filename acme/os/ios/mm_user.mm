@@ -115,7 +115,7 @@ CGRect mm_get_workspace_rect()
 
 
 
-WINBOOL get_uiwindow_rect(oswindow oswindow, LPRECT lprect)
+int_bool get_uiwindow_rect(oswindow oswindow, LPRECT lprect)
 {
    
    CGRect rect = [__uiwindow(oswindow) frame];

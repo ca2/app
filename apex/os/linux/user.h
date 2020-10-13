@@ -5,4 +5,4 @@
 
 
 
-WINBOOL IsWindowVisibleRaw(oswindow w);
+int_bool IsWindowVisibleRaw(oswindow w);

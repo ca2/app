@@ -615,7 +615,7 @@ CLASS_DECL_AXIS int_bool IsRectEmpty(const RECT * prect)
 }
 
 
-WINBOOL IsChild(oswindow oswindowParent, ::oswindow oswindowcandidateChildOrDescendant)
+int_bool IsChild(oswindow oswindowParent, ::oswindow oswindowcandidateChildOrDescendant)
 {
 
    auto puiParent = ::oswindow_interaction(oswindowParent);
@@ -674,7 +674,7 @@ oswindow WINAPI SetParent(::oswindow oswindow, ::oswindow oswindowNewParent)
 #ifndef _UWP
 
 
-WINBOOL show_window(::oswindow oswindow, ::edisplay edisplay)
+int_bool show_window(::oswindow oswindow, ::edisplay edisplay)
 {
 
    if(::is_null(oswindow))
@@ -752,7 +752,7 @@ LONG_PTR WINAPI SetWindowLongPtrA(::oswindow oswindow, int nIndex, LONG_PTR l)
 }
 
 
-WINBOOL WINAPI _001ClientToScreen(::oswindow oswindow, LPPOINT ppoint)
+int_bool WINAPI _001ClientToScreen(::oswindow oswindow, LPPOINT ppoint)
 {
 
    if(::is_null(oswindow))
@@ -767,7 +767,7 @@ WINBOOL WINAPI _001ClientToScreen(::oswindow oswindow, LPPOINT ppoint)
 }
 
 
-WINBOOL WINAPI _001ScreenToClient(::oswindow oswindow, LPPOINT ppoint)
+int_bool WINAPI _001ScreenToClient(::oswindow oswindow, LPPOINT ppoint)
 {
 
    if(::is_null(oswindow))
@@ -782,7 +782,7 @@ WINBOOL WINAPI _001ScreenToClient(::oswindow oswindow, LPPOINT ppoint)
 }
 
 
-WINBOOL WINAPI is_iconic(::oswindow oswindow)
+int_bool WINAPI is_iconic(::oswindow oswindow)
 {
 
    if(::is_null(oswindow))
@@ -797,7 +797,7 @@ WINBOOL WINAPI is_iconic(::oswindow oswindow)
 }
 
 
-WINBOOL WINAPI IsWindowVisible(::oswindow oswindow)
+int_bool WINAPI IsWindowVisible(::oswindow oswindow)
 {
 
    if(::is_null(oswindow))
@@ -819,7 +819,7 @@ WINBOOL WINAPI IsWindowVisible(::oswindow oswindow)
 
 #endif
 
-CLASS_DECL_AXIS WINBOOL is_window(oswindow oswindow);
+CLASS_DECL_AXIS int_bool is_window(oswindow oswindow);
 
 
 

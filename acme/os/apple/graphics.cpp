@@ -30,7 +30,7 @@ CGColorRef cg_create_color(COLORREF cr)
 }
 
 
-WINBOOL cg_release_color(CGColorRef colorref)
+int_bool cg_release_color(CGColorRef colorref)
 {
    CGColorRelease(colorref);
    return TRUE;

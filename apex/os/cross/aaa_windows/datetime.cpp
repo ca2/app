@@ -214,7 +214,7 @@ PTIME_FIELDS TimeFields)
  *   Success: TRUE.
  *   Failure: FALSE.
  */
-WINBOOL WINAPI RtlTimeFieldsToTime(
+int_bool WINAPI RtlTimeFieldsToTime(
 PTIME_FIELDS tfTimeFields,
 PLARGE_INTEGER Time)
 {
@@ -369,7 +369,7 @@ NTSTATUS WINAPI RtlSystemTimeToLocalTime( const LARGE_INTEGER *SystemTime,
  *   Success: TRUE.
  *   Failure: FALSE, if the resulting value will not fit in a DWORD.
  */
-WINBOOL WINAPI RtlTimeToSecondsSince1970( const LARGE_INTEGER *Time, LPDWORD Seconds )
+int_bool WINAPI RtlTimeToSecondsSince1970( const LARGE_INTEGER *Time, LPDWORD Seconds )
 {
    ULONGLONG tmp = ((ULONGLONG)Time->u.HighPart << 32) | Time->u.LowPart;
    tmp = tmp / TICKSPERSEC - SECS_1601_TO_1970;
@@ -391,7 +391,7 @@ WINBOOL WINAPI RtlTimeToSecondsSince1970( const LARGE_INTEGER *Time, LPDWORD Sec
  *   Success: TRUE.
  *   Failure: FALSE, if the resulting value will not fit in a DWORD.
  */
-WINBOOL WINAPI RtlTimeToSecondsSince1980( const LARGE_INTEGER *Time, LPDWORD Seconds )
+int_bool WINAPI RtlTimeToSecondsSince1980( const LARGE_INTEGER *Time, LPDWORD Seconds )
 {
    ULONGLONG tmp = ((ULONGLONG)Time->u.HighPart << 32) | Time->u.LowPart;
    tmp = tmp / TICKSPERSEC - SECS_1601_TO_1980;
@@ -628,7 +628,7 @@ static i32 weekday_to_mday(i32 year, i32 day, i32 mon, i32 day_of_week)
    return mday;
 }
 
-WINBOOL match_tz_date(const RTL_SYSTEM_TIME *st, const RTL_SYSTEM_TIME *reg_st)
+int_bool match_tz_date(const RTL_SYSTEM_TIME *st, const RTL_SYSTEM_TIME *reg_st)
 {
    WORD wDay;
 
@@ -649,7 +649,7 @@ WINBOOL match_tz_date(const RTL_SYSTEM_TIME *st, const RTL_SYSTEM_TIME *reg_st)
    return TRUE;
 }
 
-WINBOOL match_tz_info(const RTL_TIME_ZONE_INFORMATION *tzi, const RTL_TIME_ZONE_INFORMATION *reg_tzi)
+int_bool match_tz_info(const RTL_TIME_ZONE_INFORMATION *tzi, const RTL_TIME_ZONE_INFORMATION *reg_tzi)
 {
    if (tzi->Bias == reg_tzi->Bias &&
          match_tz_date(&tzi->StandardDate, &reg_tzi->StandardDate) &&
@@ -661,7 +661,7 @@ WINBOOL match_tz_info(const RTL_TIME_ZONE_INFORMATION *tzi, const RTL_TIME_ZONE_
 
 /*
 
-static WINBOOL reg_query_value(HKEY hkey, LPCWSTR name, DWORD type, void *data, DWORD count)
+static int_bool reg_query_value(HKEY hkey, LPCWSTR name, DWORD type, void *data, DWORD count)
 {
     UNICODE_STRING nameW;
     char buf[256];
@@ -916,7 +916,7 @@ NTSTATUS WINAPI NtSetSystemTime(const LARGE_INTEGER *NewTime, LARGE_INTEGER *Old
 /*********************************************************************
  *      LocalFileTimeToFileTime                         (KERNEL32.@)
  */
-CLASS_DECL_APEX WINBOOL WINAPI LocalFileTimeToFileTime( const FILETIME *localft, LPFILETIME utcft )
+CLASS_DECL_APEX int_bool WINAPI LocalFileTimeToFileTime( const FILETIME *localft, LPFILETIME utcft )
 {
    NTSTATUS status;
    LARGE_INTEGER local, utc;
@@ -941,7 +941,7 @@ CLASS_DECL_APEX WINBOOL WINAPI LocalFileTimeToFileTime( const FILETIME *localft,
 /*********************************************************************
  *      FileTimeToLocalFileTime                         (KERNEL32.@)
  */
-CLASS_DECL_APEX WINBOOL WINAPI FileTimeToLocalFileTime( const FILETIME *utcft, LPFILETIME localft )
+CLASS_DECL_APEX int_bool WINAPI FileTimeToLocalFileTime( const FILETIME *utcft, LPFILETIME localft )
 {
    NTSTATUS status;
    LARGE_INTEGER local, utc;
@@ -969,7 +969,7 @@ CLASS_DECL_APEX WINBOOL WINAPI FileTimeToLocalFileTime( const FILETIME *utcft, L
 /*********************************************************************
  *      FileTimeToSystemTime                            (KERNEL32.@)
  */
-WINBOOL WINAPI FileTimeToSystemTime( const FILETIME *ft, LPSYSTEMTIME syst )
+int_bool WINAPI FileTimeToSystemTime( const FILETIME *ft, LPSYSTEMTIME syst )
 {
    TIME_FIELDS tf;
    LARGE_INTEGER t;
@@ -993,7 +993,7 @@ WINBOOL WINAPI FileTimeToSystemTime( const FILETIME *ft, LPSYSTEMTIME syst )
 /*********************************************************************
  *      SystemTimeToFileTime                            (KERNEL32.@)
  */
-WINBOOL WINAPI SystemTimeToFileTime( const SYSTEMTIME *syst, LPFILETIME ft )
+int_bool WINAPI SystemTimeToFileTime( const SYSTEMTIME *syst, LPFILETIME ft )
 {
    TIME_FIELDS tf;
    LARGE_INTEGER t;

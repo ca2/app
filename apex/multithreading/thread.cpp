@@ -2402,7 +2402,7 @@ void thread::__priority_and_affinity()
 
 #if defined(WINDOWS_DESKTOP) || defined(LINUX)
 
-      WINBOOL bOk = ::SetThreadAffinityMask(m_hthread1, m_dwThreadAffinityMask) != 0;
+      int_bool bOk = ::SetThreadAffinityMask(m_hthread1, m_dwThreadAffinityMask) != 0;
 
       if (bOk)
       {
@@ -2869,7 +2869,7 @@ bool thread::post_message(UINT message,WPARAM wParam,lparam lParam)
    if (m_hthread1 && !m_bAuraMessageQueue && (m_bMessageThread || message != WM_QUIT))
    {
 
-      WINBOOL bOk = ::PostThreadMessage(m_ithread1, message, wParam, lParam) != FALSE;
+      int_bool bOk = ::PostThreadMessage(m_ithread1, message, wParam, lParam) != FALSE;
 
       if (bOk)
       {

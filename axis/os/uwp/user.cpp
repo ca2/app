@@ -7,7 +7,7 @@
 CLASS_DECL_AXIS int g_iMouse = -1;
 
 
-CLASS_DECL_AXIS WINBOOL GetCursorPos(LPPOINT lppoint);
+CLASS_DECL_AXIS int_bool GetCursorPos(LPPOINT lppoint);
 
 
 CLASS_DECL_AXIS int_bool ui_get_cursor_pos(POINT * ppt)
@@ -52,7 +52,7 @@ int g_iMouseX = 0;
 int g_iMouseY = 0;
 
 
-CLASS_DECL_AXIS WINBOOL GetCursorPos(LPPOINT lppoint)
+CLASS_DECL_AXIS int_bool GetCursorPos(LPPOINT lppoint)
 {
 
    lppoint->x = g_iMouseX;

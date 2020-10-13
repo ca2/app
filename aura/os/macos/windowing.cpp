@@ -352,10 +352,10 @@ oswindow set_capture(oswindow window)
 }
 
 
-WINBOOL release_capture()
+int_bool release_capture()
 {
 
-   WINBOOL bRet = TRUE;
+   int_bool bRet = TRUE;
 
    if(bRet)
    {
@@ -517,7 +517,7 @@ void defer_dock_application(int_bool bDock)
 }
 
 
-WINBOOL destroy_window(oswindow w)
+int_bool destroy_window(oswindow w)
 {
    
    if(is_null(w))
@@ -586,7 +586,7 @@ bool oswindow_data::is_null() const
 #include <CoreFoundation/CoreFoundation.h>
 
 
-WINBOOL set_need_redraw(oswindow hWnd, LPCRECT pcrect, HRGN hrgnUpdate, UINT flags)
+int_bool set_need_redraw(oswindow hWnd, LPCRECT pcrect, HRGN hrgnUpdate, UINT flags)
 {
 
    return true;
@@ -638,7 +638,7 @@ CLASS_DECL_AURA ::user::interaction_impl * oswindow_get(oswindow oswindow)
 
 void mm_init_workspace_rect();
 
-WINBOOL os_init_windowing()
+int_bool os_init_windowing()
 {
 
 //   set_TranslateMessage(&axis_TranslateMessage);

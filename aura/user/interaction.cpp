@@ -1020,6 +1020,13 @@ namespace user
       IGUI_MSG_LINK(WM_COMMAND, pchannel, this, &interaction::_001OnCommand);
       IGUI_MSG_LINK(message_simple_command, pchannel, this, &interaction::_001OnSimpleCommand);
 
+      if (m_bSimpleUIDefaultMouseHandling)
+      {
+
+         install_simple_ui_default_mouse_handling(pchannel);
+
+      }
+
    }
 
 
@@ -12778,6 +12785,8 @@ restart:
 
       if (m_bSimpleUIDefaultMouseHandling)
       {
+
+         track_mouse_leave();
 
          update_hover(pmouse->m_point, false);
 

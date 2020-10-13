@@ -47,7 +47,7 @@ namespace VistaTools
 // MyShellExec is just a wrapper around a call to ShellExecuteEx,
 // to be able to specify the verb easily.
 
-   WINBOOL
+   int_bool
    MyShellExec(   HWND hwnd,
                   const char * pszVerb,
                   const char * pszPath,
@@ -72,7 +72,7 @@ namespace VistaTools
 
       shex.nShow         = SW_NORMAL;
 
-      WINBOOL bRet = ::ShellExecuteEx( &shex );
+      int_bool bRet = ::ShellExecuteEx( &shex );
 
       if ( phProcess )
          *phProcess = shex.hProcess;
@@ -80,7 +80,7 @@ namespace VistaTools
       return bRet;
    }
 
-   WINBOOL IsVista()
+   int_bool IsVista()
    {
       OSVERSIONINFO osver;
 
@@ -96,15 +96,15 @@ namespace VistaTools
 
 #ifndef WIN64 // we need this when compiling 32-bit code only
 
-   typedef WINBOOL (WINAPI *LPFN_ISWOW64PROCESS) (HANDLE hProcess,PBOOL Wow64Process);
+   typedef int_bool (WINAPI *LPFN_ISWOW64PROCESS) (HANDLE hProcess,PBOOL Wow64Process);
 
    LPFN_ISWOW64PROCESS fnIsWow64Process =
    (LPFN_ISWOW64PROCESS)::GetProcAddress( ::GetModuleHandle("kernel32"),"IsWow64Process");
 
-   WINBOOL
+   int_bool
    IsWow64()
    {
-      WINBOOL bIsWow64 = FALSE;
+      int_bool bIsWow64 = FALSE;
 
       if (nullptr != fnIsWow64Process)
       {
@@ -162,7 +162,7 @@ namespace VistaTools
    }
 
    HRESULT
-   IsElevated( __out_opt WINBOOL * pbElevated ) //= nullptr )
+   IsElevated( __out_opt int_bool * pbElevated ) //= nullptr )
    {
       if ( !IsVista() )
          return E_FAIL;
@@ -210,7 +210,7 @@ namespace VistaTools
 // RunElevated simply calls ShellExecuteEx with the verb "runas" to start the elevated process.
 // I wish there was a just as easy way to start a non-elevated process, as well.
 
-   WINBOOL
+   int_bool
    RunElevated(
    __in      HWND   hwnd,
    __in      const char * pszPath,
@@ -244,7 +244,7 @@ namespace VistaTools
    UINT   uVEMsg                     = 0;
 
    __declspec(allocate("ve_shared"))
-   WINBOOL   bVESuccess                  = FALSE;
+   int_bool   bVESuccess                  = FALSE;
 
    __declspec(allocate("ve_shared"))
    char   szVE_Path[ MAX_PATH ]         = "";
@@ -256,7 +256,7 @@ namespace VistaTools
    char   szVE_Directory[ MAX_PATH ]      = "";
 
    __declspec(allocate("ve_shared"))
-   WINBOOL    bVE_NeedProcessHandle         = FALSE;
+   int_bool    bVE_NeedProcessHandle         = FALSE;
 
    __declspec(allocate("ve_shared"))
    HANDLE   hVE_Process               = nullptr;
@@ -294,7 +294,7 @@ namespace VistaTools
 
    typedef
    WINBASEAPI
-   WINBOOL
+   int_bool
    (WINAPI
     *PGetModuleHandleExW)(
     __in        DWORD    dwFlags,
@@ -305,7 +305,7 @@ namespace VistaTools
 
    static PGetModuleHandleExW pGetModuleHandleExW = nullptr;
 
-   WINBOOL
+   int_bool
    RunNonElevated(
    __in      HWND   hwnd,
    __in      const char * pszPath,

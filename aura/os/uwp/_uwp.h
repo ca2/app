@@ -31,7 +31,7 @@
 
 CLASS_DECL_AURA oswindow get_capture();
 CLASS_DECL_AURA oswindow set_capture(oswindow oswindow);
-CLASS_DECL_AURA WINBOOL release_capture();
+CLASS_DECL_AURA int_bool release_capture();
 
 CLASS_DECL_AURA oswindow get_active_window();
 CLASS_DECL_AURA oswindow set_active_window(oswindow oswindow);

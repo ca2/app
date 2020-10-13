@@ -14,7 +14,7 @@ static LCID user_lcid, system_lcid;
 static LANGID system_ui_language;
 
 UINT setup_unix_locales(void);
-WINBOOL is_genitive_name_supported( LCTYPE lctype );
+int_bool is_genitive_name_supported( LCTYPE lctype );
 LCID convert_default_lcid( LCID lcid, LCTYPE lctype );
 const WCHAR *get_locale_value_name( DWORD lctype );
 INT get_registry_locale_info( LPCWSTR value, LPWSTR buffer, INT len );
@@ -179,7 +179,7 @@ i32 WINAPI GetLocaleInfoW( LCID lcid, LCTYPE lctype, LPWSTR buffer, i32 len )
  *
  * Determine could LCTYPE basically support genitive name form or not.
  */
-WINBOOL is_genitive_name_supported( LCTYPE lctype )
+int_bool is_genitive_name_supported( LCTYPE lctype )
 {
    switch(lctype & 0xffff)
    {
@@ -603,7 +603,7 @@ LCID WINAPI ConvertDefaultLocale( LCID lcid )
 /**********************************************************************
  *	NtQueryDefaultLocale  (NTDLL.@)
  */
-NTSTATUS WINAPI NtQueryDefaultLocale( WINBOOL user, LCID *lcid )
+NTSTATUS WINAPI NtQueryDefaultLocale( int_bool user, LCID *lcid )
 {
    *lcid = user ? user_lcid : system_lcid;
 #ifdef _UWP
@@ -617,7 +617,7 @@ NTSTATUS WINAPI NtQueryDefaultLocale( WINBOOL user, LCID *lcid )
 /**********************************************************************
  *	NtSetDefaultLocale  (NTDLL.@)
  */
-NTSTATUS WINAPI NtSetDefaultLocale( WINBOOL user, LCID lcid )
+NTSTATUS WINAPI NtSetDefaultLocale( int_bool user, LCID lcid )
 {
    if (user) user_lcid = lcid;
    else

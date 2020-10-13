@@ -3586,7 +3586,7 @@ namespace android
    */
 
    /*
-   UINT interaction_impl::GetDlgItemInt(i32 nID, WINBOOL * lpTrans, bool bSigned) const
+   UINT interaction_impl::GetDlgItemInt(i32 nID, int_bool * lpTrans, bool bSigned) const
    {
 
    ASSERT(::is_window((oswindow) get_handle()));

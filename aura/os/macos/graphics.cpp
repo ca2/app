@@ -64,7 +64,7 @@ bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const 
 //}
 //
 //
-//WINBOOL cg_release_color(CGColorRef colorref)
+//int_bool cg_release_color(CGColorRef colorref)
 //{
 //   CGColorRelease(colorref);
 //   return TRUE;
@@ -86,15 +86,15 @@ bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const 
 //{
 //   return nullptr;
 //}
-//WINBOOL SelectObject(HDC hdc, HGDIOBJ hgdiobj)
+//int_bool SelectObject(HDC hdc, HGDIOBJ hgdiobj)
 //{
 //   return FALSE;
 //}
-//WINBOOL Rectangle(HDC hdc, int x1, int y1, int x2, int y2)
+//int_bool Rectangle(HDC hdc, int x1, int y1, int x2, int y2)
 //{
 //   return FALSE;
 //}
-//WINBOOL DeleteObject(HGDIOBJ hgdiobj)
+//int_bool DeleteObject(HGDIOBJ hgdiobj)
 //{
 //   return FALSE;
 //}
@@ -106,30 +106,30 @@ bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const 
 //{
 //   return nullptr;
 //}
-//WINBOOL SetBkMode(HDC hdc, int iMode)
+//int_bool SetBkMode(HDC hdc, int iMode)
 //{
 //   return FALSE;
 //}
-//WINBOOL DeleteDC(HDC hdc)
+//int_bool DeleteDC(HDC hdc)
 //{
 //   return FALSE;
 //}
-//WINBOOL AlphaBlend(HDC hdcDest, int xoriginDest, int yoriginDest, int wDest, int hDest, HDC hdcSrc, int xoriginSrc, int yoriginSrc, int wSrc, int hSrc, BLENDFUNCTION ftn)
+//int_bool AlphaBlend(HDC hdcDest, int xoriginDest, int yoriginDest, int wDest, int hDest, HDC hdcSrc, int xoriginSrc, int yoriginSrc, int wSrc, int hSrc, BLENDFUNCTION ftn)
 //{
 //   return FALSE;
 //}
-//WINBOOL GetObject(HGDIOBJ hgdiobj, int iSize, void * object)
+//int_bool GetObject(HGDIOBJ hgdiobj, int iSize, void * object)
 //{
 //   return FALSE;
 //}
-//WINBOOL GetTextExtentPoint(HDC hdc, const char * pszText, int iSize, SIZE * psize)
+//int_bool GetTextExtentPoint(HDC hdc, const char * pszText, int iSize, SIZE * psize)
 //{
 //   return FALSE;
 //}
 //
 //
 
-//WINBOOL SetTextColor(HDC hdc, COLORREF crText)
+//int_bool SetTextColor(HDC hdc, COLORREF crText)
 //{
 //
 //   cg_release_color(hdc->m_cgcolorrefText);
@@ -628,7 +628,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 //}
 
 
-//WINBOOL cg_release_color(CGColorRef colorref)
+//int_bool cg_release_color(CGColorRef colorref)
 //{
 //   CGColorRelease(colorref);
 //   return TRUE;
@@ -676,7 +676,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 // }
 
 
-// WINBOOL ReleaseDC(oswindow hwnd, HDC hdc)
+// int_bool ReleaseDC(oswindow hwnd, HDC hdc)
 // {
 
 //    if(hdc == nullptr)
@@ -695,7 +695,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 // }
 
 
-//WINBOOL get_client_rect(oswindow hwnd, RECT * prect)
+//int_bool get_client_rect(oswindow hwnd, RECT * prect)
 //{
 //   
 //   /*   XWindowAttributes attrs;
@@ -733,7 +733,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 
 
 //
-//WINBOOL get_window_rect(oswindow hwnd, RECT * prect)
+//int_bool get_window_rect(oswindow hwnd, RECT * prect)
 //
 //{
 //   /* XWindowAttributes attrs;
@@ -810,7 +810,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 // }
 
 
-// WINBOOL EndPaint(oswindow hwnd, PAINTSTRUCT * ps)
+// int_bool EndPaint(oswindow hwnd, PAINTSTRUCT * ps)
 // {
 
 //    return ReleaseDC(hwnd, ps->hdc);
@@ -843,15 +843,15 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 // {
 //     return nullptr;
 // }
-// WINBOOL SelectObject(HDC hdc, HGDIOBJ hgdiobj)
+// int_bool SelectObject(HDC hdc, HGDIOBJ hgdiobj)
 // {
 //     return FALSE;
 // }
-// WINBOOL Rectangle(HDC hdc, int x1, int y1, int x2, int y2)
+// int_bool Rectangle(HDC hdc, int x1, int y1, int x2, int y2)
 // {
 //     return FALSE;
 // }
-// WINBOOL DeleteObject(HGDIOBJ hgdiobj)
+// int_bool DeleteObject(HGDIOBJ hgdiobj)
 // {
 //     return FALSE;
 // }
@@ -864,30 +864,30 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 // {
 //     return nullptr;
 // }
-// WINBOOL SetBkMode(HDC hdc, int iMode)
+// int_bool SetBkMode(HDC hdc, int iMode)
 // {
 //     return FALSE;
 // }
-// WINBOOL DeleteDC(HDC hdc)
+// int_bool DeleteDC(HDC hdc)
 // {
 //     return FALSE;
 // }
-// WINBOOL AlphaBlend(HDC hdcDest, int xoriginDest, int yoriginDest, int wDest, int hDest, HDC hdcSrc, int xoriginSrc, int yoriginSrc, int wSrc, int hSrc, BLENDFUNCTION ftn)
+// int_bool AlphaBlend(HDC hdcDest, int xoriginDest, int yoriginDest, int wDest, int hDest, HDC hdcSrc, int xoriginSrc, int yoriginSrc, int wSrc, int hSrc, BLENDFUNCTION ftn)
 // {
 //     return FALSE;
 // }
-// WINBOOL GetObject(HGDIOBJ hgdiobj, int iSize, void * object)
+// int_bool GetObject(HGDIOBJ hgdiobj, int iSize, void * object)
 // {
 //     return FALSE;
 // }
-// WINBOOL GetTextExtentPoint(HDC hdc, const char * pszText, int iSize, SIZE * psize)
+// int_bool GetTextExtentPoint(HDC hdc, const char * pszText, int iSize, SIZE * psize)
 // {
 //     return FALSE;
 // }
 
 
 
-// WINBOOL SetTextColor(HDC hdc, COLORREF crText)
+// int_bool SetTextColor(HDC hdc, COLORREF crText)
 // {
 
 //    cg_release_color(hdc->m_cgcolorrefText);
@@ -1203,7 +1203,7 @@ void os_term_imaging()
 
 
 
-WINBOOL get_window_rect(oswindow hwnd, RECT * prect)
+int_bool get_window_rect(oswindow hwnd, RECT * prect)
 
 {
    /* XWindowAttributes attrs;
@@ -1375,7 +1375,7 @@ namespace aura
    }
 
    
-   WINBOOL application::window_set_mouse_cursor(oswindow window, HCURSOR hcursor)
+   int_bool application::window_set_mouse_cursor(oswindow window, HCURSOR hcursor)
    {
 
       return os_window_set_mouse_cursor(window, hcursor);

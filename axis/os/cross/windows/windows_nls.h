@@ -1138,28 +1138,28 @@ typedef enum _NORM_FORM
 
 #ifdef STRICT
 
-typedef WINBOOL (CALLBACK* LANGUAGEGROUP_ENUMPROCA)(LGRPID, LPSTR, LPSTR, DWORD, iptr);
-//xxx linux typedef WINBOOL (CALLBACK* LANGGROUPLOCALE_ENUMPROCA)(LGRPID, LCID, LPSTR, long_ptr);
-typedef WINBOOL (CALLBACK* UILANGUAGE_ENUMPROCA)(LPSTR, iptr);
-typedef WINBOOL (CALLBACK* LOCALE_ENUMPROCA)(LPSTR);
-typedef WINBOOL (CALLBACK* CODEPAGE_ENUMPROCA)(LPSTR);
-typedef WINBOOL (CALLBACK* DATEFMT_ENUMPROCA)(LPSTR);
-typedef WINBOOL (CALLBACK* DATEFMT_ENUMPROCEXA)(LPSTR, CALID);
-typedef WINBOOL (CALLBACK* TIMEFMT_ENUMPROCA)(LPSTR);
-typedef WINBOOL (CALLBACK* CALINFO_ENUMPROCA)(LPSTR);
-typedef WINBOOL (CALLBACK* CALINFO_ENUMPROCEXA)(LPSTR, CALID);
+typedef int_bool (CALLBACK* LANGUAGEGROUP_ENUMPROCA)(LGRPID, LPSTR, LPSTR, DWORD, iptr);
+//xxx linux typedef int_bool (CALLBACK* LANGGROUPLOCALE_ENUMPROCA)(LGRPID, LCID, LPSTR, long_ptr);
+typedef int_bool (CALLBACK* UILANGUAGE_ENUMPROCA)(LPSTR, iptr);
+typedef int_bool (CALLBACK* LOCALE_ENUMPROCA)(LPSTR);
+typedef int_bool (CALLBACK* CODEPAGE_ENUMPROCA)(LPSTR);
+typedef int_bool (CALLBACK* DATEFMT_ENUMPROCA)(LPSTR);
+typedef int_bool (CALLBACK* DATEFMT_ENUMPROCEXA)(LPSTR, CALID);
+typedef int_bool (CALLBACK* TIMEFMT_ENUMPROCA)(LPSTR);
+typedef int_bool (CALLBACK* CALINFO_ENUMPROCA)(LPSTR);
+typedef int_bool (CALLBACK* CALINFO_ENUMPROCEXA)(LPSTR, CALID);
 
-typedef WINBOOL (CALLBACK* LANGUAGEGROUP_ENUMPROCW)(LGRPID, LPWSTR, LPWSTR, DWORD, iptr);
-//xxx linux typedef WINBOOL (CALLBACK* LANGGROUPLOCALE_ENUMPROCW)(LGRPID, LCID, LPWSTR, long_ptr);
-typedef WINBOOL (CALLBACK* UILANGUAGE_ENUMPROCW)(LPWSTR, iptr);
-typedef WINBOOL (CALLBACK* LOCALE_ENUMPROCW)(LPWSTR);
-typedef WINBOOL (CALLBACK* CODEPAGE_ENUMPROCW)(LPWSTR);
-typedef WINBOOL (CALLBACK* DATEFMT_ENUMPROCW)(LPWSTR);
-typedef WINBOOL (CALLBACK* DATEFMT_ENUMPROCEXW)(LPWSTR, CALID);
-typedef WINBOOL (CALLBACK* TIMEFMT_ENUMPROCW)(LPWSTR);
-typedef WINBOOL (CALLBACK* CALINFO_ENUMPROCW)(LPWSTR);
-typedef WINBOOL (CALLBACK* CALINFO_ENUMPROCEXW)(LPWSTR, CALID);
-typedef WINBOOL (CALLBACK* GEO_ENUMPROC)(GEOID);
+typedef int_bool (CALLBACK* LANGUAGEGROUP_ENUMPROCW)(LGRPID, LPWSTR, LPWSTR, DWORD, iptr);
+//xxx linux typedef int_bool (CALLBACK* LANGGROUPLOCALE_ENUMPROCW)(LGRPID, LCID, LPWSTR, long_ptr);
+typedef int_bool (CALLBACK* UILANGUAGE_ENUMPROCW)(LPWSTR, iptr);
+typedef int_bool (CALLBACK* LOCALE_ENUMPROCW)(LPWSTR);
+typedef int_bool (CALLBACK* CODEPAGE_ENUMPROCW)(LPWSTR);
+typedef int_bool (CALLBACK* DATEFMT_ENUMPROCW)(LPWSTR);
+typedef int_bool (CALLBACK* DATEFMT_ENUMPROCEXW)(LPWSTR, CALID);
+typedef int_bool (CALLBACK* TIMEFMT_ENUMPROCW)(LPWSTR);
+typedef int_bool (CALLBACK* CALINFO_ENUMPROCW)(LPWSTR);
+typedef int_bool (CALLBACK* CALINFO_ENUMPROCEXW)(LPWSTR, CALID);
+typedef int_bool (CALLBACK* GEO_ENUMPROC)(GEOID);
 
 #else // !STRICT
 
@@ -1303,7 +1303,7 @@ typedef struct _FILEMUIINFO
 //
 
 //xxx linux WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 IsValidCodePage(
 UINT  CodePage);
@@ -1319,21 +1319,21 @@ WINAPI
 GetOEMCP(void);
 
 //xxx linux WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 GetCPInfo(
 UINT       CodePage,
 LPCPINFO  lpCPInfo);
 
 //xxx linux WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 GetCPInfoExA(
 UINT          CodePage,
 DWORD         dwFlags,
 LPCPINFOEXA  lpCPInfoEx);
 //xxx linux WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 GetCPInfoExW(
 UINT          CodePage,
@@ -1346,13 +1346,13 @@ LPCPINFOEXW  lpCPInfoEx);
 #endif // !UNICODE
 
 //xxx linux WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 IsDBCSLeadByte(
 BYTE  TestChar);
 
 //xxx linux WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 IsDBCSLeadByteEx(
 UINT  CodePage,
@@ -1451,7 +1451,7 @@ LPCWSTR lpStringSource,
 i32 cchSource,
 LPCWSTR lpStringValue,
 i32 cchValue,
-WINBOOL bIgnoreCase);
+int_bool bIgnoreCase);
 
 #endif //(WINVER >= _WIN32_WINNT_WIN7)
 
@@ -1508,14 +1508,14 @@ i32      cchData);
 #endif // !UNICODE
 
 //xxx linux WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 SetLocaleInfoA(
 LCID     Locale,
 LCTYPE   LCType,
 LPCSTR  lpLCData);
 //xxx linux WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 SetLocaleInfoW(
 LCID     Locale,
@@ -1557,7 +1557,7 @@ LPDWORD  lpValue);
 #endif // !UNICODE
 
 WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 SetCalendarInfoA(
 LCID     Locale,
@@ -1565,7 +1565,7 @@ CALID    Calendar,
 CALTYPE  CalType,
 LPCSTR  lpCalData);
 WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 SetCalendarInfoW(
 LCID     Locale,
@@ -1728,7 +1728,7 @@ i32                cchCurrency);
 
 // For Windows Vista and above EnumCalendarInfoExEx is preferred
 //xxx linux WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 EnumCalendarInfoA(
 CALINFO_ENUMPROCA lpCalInfoEnumProc,
@@ -1737,7 +1737,7 @@ CALID             Calendar,
 CALTYPE           CalType);
 // For Windows Vista and above EnumCalendarInfoExEx is preferred
 //xxx linux WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 EnumCalendarInfoW(
 CALINFO_ENUMPROCW lpCalInfoEnumProc,
@@ -1753,7 +1753,7 @@ CALTYPE           CalType);
 #if(WINVER >= 0x0500)
 // For Windows Vista and above EnumCalendarInfoExEx is preferred
 WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 EnumCalendarInfoExA(
 CALINFO_ENUMPROCEXA lpCalInfoEnumProcEx,
@@ -1762,7 +1762,7 @@ CALID               Calendar,
 CALTYPE             CalType);
 // For Windows Vista and above EnumCalendarInfoExEx is preferred
 WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 EnumCalendarInfoExW(
 CALINFO_ENUMPROCEXW lpCalInfoEnumProcEx,
@@ -1778,7 +1778,7 @@ CALTYPE             CalType);
 
 // For Windows Vista and above EnumTimeFormatsEx is preferred
 //xxx linux WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 EnumTimeFormatsA(
 TIMEFMT_ENUMPROCA lpTimeFmtEnumProc,
@@ -1786,7 +1786,7 @@ LCID              Locale,
 DWORD             dwFlags);
 // For Windows Vista and above EnumTimeFormatsEx is preferred
 //xxx linux WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 EnumTimeFormatsW(
 TIMEFMT_ENUMPROCW lpTimeFmtEnumProc,
@@ -1800,7 +1800,7 @@ DWORD             dwFlags);
 
 // For Windows Vista and above EnumDateFormatsExEx is preferred
 //xxx linux WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 EnumDateFormatsA(
 DATEFMT_ENUMPROCA lpDateFmtEnumProc,
@@ -1808,7 +1808,7 @@ LCID              Locale,
 DWORD             dwFlags);
 // For Windows Vista and above EnumDateFormatsExEx is preferred
 //xxx linux WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 EnumDateFormatsW(
 DATEFMT_ENUMPROCW lpDateFmtEnumProc,
@@ -1823,7 +1823,7 @@ DWORD             dwFlags);
 #if(WINVER >= 0x0500)
 // For Windows Vista and above EnumDateFormatsExEx is preferred
 WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 EnumDateFormatsExA(
 DATEFMT_ENUMPROCEXA lpDateFmtEnumProcEx,
@@ -1831,7 +1831,7 @@ LCID                Locale,
 DWORD               dwFlags);
 // For Windows Vista and above EnumDateFormatsExEx is preferred
 WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 EnumDateFormatsExW(
 DATEFMT_ENUMPROCEXW lpDateFmtEnumProcEx,
@@ -1846,7 +1846,7 @@ DWORD               dwFlags);
 
 #if(WINVER >= 0x0500)
 WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 IsValidLanguageGroup(
 LGRPID  LanguageGroup,
@@ -1855,7 +1855,7 @@ DWORD   dwFlags);
 
 // For Windows Vista and above GetNLSVersionEx is preferred
 //xxx linux WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 GetNLSVersion(
 NLS_FUNCTION     Function,
@@ -1863,7 +1863,7 @@ LCID             Locale,
 LPNLSVERSIONINFO lpVersionInformation);
 
 //xxx linux WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 IsNLSDefinedString(
 NLS_FUNCTION     Function,
@@ -1874,7 +1874,7 @@ INT              cchStr);
 
 // For Windows Vista and above IsValidLocaleName is preferred
 //xxx linux WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 IsValidLocale(
 LCID   Locale,
@@ -1905,7 +1905,7 @@ LANGID      LangId);
 #endif // !UNICODE
 
 //xxx linux WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 EnumSystemGeoID(
 GEOCLASS        GeoClass,
@@ -1919,7 +1919,7 @@ GetUserGeoID(
 GEOCLASS    GeoClass);
 
 //xxx linux WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 SetUserGeoID(
 GEOID       GeoId);
@@ -1936,7 +1936,7 @@ WINAPI
 GetThreadLocale(void);
 
 //xxx linux WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 SetThreadLocale(
 LCID  Locale
@@ -1990,7 +1990,7 @@ WINAPI
 GetThreadUILanguage(void);
 
 WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 GetProcessPreferredUILanguages(
 DWORD dwFlags,
@@ -2001,7 +2001,7 @@ PWINULONG pcchLanguagesBuffer
 
 
 WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 SetProcessPreferredUILanguages(
 DWORD dwFlags,
@@ -2011,7 +2011,7 @@ PWINULONG pulNumLanguages
 
 
 WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 GetUserPreferredUILanguages (
 DWORD dwFlags,
@@ -2022,7 +2022,7 @@ PWINULONG pcchLanguagesBuffer
 
 
 WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 GetSystemPreferredUILanguages (
 DWORD dwFlags,
@@ -2033,7 +2033,7 @@ PWINULONG pcchLanguagesBuffer
 
 
 WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 GetThreadPreferredUILanguages(
 DWORD dwFlags,
@@ -2044,7 +2044,7 @@ PWINULONG pcchLanguagesBuffer
 
 
 WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 SetThreadPreferredUILanguages(
 DWORD dwFlags,
@@ -2054,7 +2054,7 @@ PWINULONG pulNumLanguages
 
 WINAXISAPI
 __success(return==1)
-WINBOOL
+int_bool
 WINAPI
 GetFileMUIInfo(
 DWORD           dwFlags,
@@ -2063,7 +2063,7 @@ __inout_bcount_part_opt(*pcbFileMUIInfo,*pcbFileMUIInfo) PFILEMUIINFO    pFileMU
 DWORD*          pcbFileMUIInfo);
 
 WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 GetFileMUIPath(
 DWORD      dwFlags,
@@ -2077,7 +2077,7 @@ PULONGLONG pululEnumerator
 
 
 WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 GetUILanguageInfo(
 DWORD dwFlags,
@@ -2089,7 +2089,7 @@ PDWORD pAttributes
 
 
 WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 NotifyUILanguageChange(
 DWORD dwFlags,
@@ -2106,7 +2106,7 @@ PDWORD pdwStatusRtrn
 //
 
 //xxx linux WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 GetStringTypeExA(
 LCID       Locale,
@@ -2115,7 +2115,7 @@ LPCSTR   lpSrcStr,
 i32        cchSrc,
 LPWORD     lpCharType);
 //xxx linux WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 GetStringTypeExW(
 LCID       Locale,
@@ -2141,7 +2141,7 @@ LPWORD     lpCharType);
 //        GetStringTypeEx (above) should be used instead.
 //
 //xxx linux WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 GetStringTypeA(
 LCID     Locale,
@@ -2151,7 +2151,7 @@ i32      cchSrc,
 LPWORD  lpCharType);
 
 //xxx linux WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 GetStringTypeW(
 DWORD    dwInfoType,
@@ -2186,14 +2186,14 @@ i32      cchDest);
 
 #if(WINVER >= 0x0500)
 WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 EnumSystemLanguageGroupsA(
 LANGUAGEGROUP_ENUMPROCA lpLanguageGroupEnumProc,
 DWORD                   dwFlags,
 long_ptr                lParam);
 WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 EnumSystemLanguageGroupsW(
 LANGUAGEGROUP_ENUMPROCW lpLanguageGroupEnumProc,
@@ -2206,7 +2206,7 @@ long_ptr                lParam);
 #endif // !UNICODE
 
 WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 EnumLanguageGroupLocalesA(
 LANGGROUPLOCALE_ENUMPROCA lpLangGroupLocaleEnumProc,
@@ -2214,7 +2214,7 @@ LGRPID                    LanguageGroup,
 DWORD                     dwFlags,
 long_ptr                  lParam);
 WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 EnumLanguageGroupLocalesW(
 LANGGROUPLOCALE_ENUMPROCW lpLangGroupLocaleEnumProc,
@@ -2228,14 +2228,14 @@ long_ptr                  lParam);
 #endif // !UNICODE
 
 WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 EnumUILanguagesA(
 UILANGUAGE_ENUMPROCA lpUILanguageEnumProc,
 DWORD                dwFlags,
 long_ptr             lParam);
 WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 EnumUILanguagesW(
 UILANGUAGE_ENUMPROCW lpUILanguageEnumProc,
@@ -2249,13 +2249,13 @@ long_ptr             lParam);
 #endif /* WINVER >= 0x0500 */
 
 //xxx linux WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 EnumSystemLocalesA(
 LOCALE_ENUMPROCA lpLocaleEnumProc,
 DWORD            dwFlags);
 //xxx linux WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 EnumSystemLocalesW(
 LOCALE_ENUMPROCW lpLocaleEnumProc,
@@ -2267,13 +2267,13 @@ DWORD            dwFlags);
 #endif // !UNICODE
 
 //xxx linux WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 EnumSystemCodePagesA(
 CODEPAGE_ENUMPROCA lpCodePageEnumProc,
 DWORD              dwFlags);
 //xxx linux WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 EnumSystemCodePagesW(
 CODEPAGE_ENUMPROCW lpCodePageEnumProc,
@@ -2299,7 +2299,7 @@ WINAPI NormalizeString(                          NORM_FORM NormForm,
       i32       cwDstLength );
 
 WINNORMALIZEAPI
-WINBOOL
+int_bool
 WINAPI IsNormalizedString(                   NORM_FORM NormForm,
       __in_ecount(cwLength)  LPCWSTR   lpString,
       i32       cwLength );
@@ -2332,7 +2332,7 @@ WINAPI IdnToUnicode(                        	 DWORD   dwFlags,
       i32     cchUnicodeChar);
 
 WINAXISAPI
-WINBOOL
+int_bool
 WINAPI VerifyScripts(
 DWORD   dwFlags,            // optional behavior flags
 LPCWSTR lpLocaleScripts,    // Locale list of scripts string
@@ -2463,7 +2463,7 @@ i32 cchLocaleName
 );
 
 WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 GetNLSVersionEx(
 NLS_FUNCTION function,
@@ -2526,20 +2526,20 @@ LPCWSTR lpString1,
 i32     cchCount1,
 LPCWSTR lpString2,
 i32     cchCount2,
-WINBOOL    bIgnoreCase
+int_bool    bIgnoreCase
 );
 
 WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 IsValidLocaleName(
 LPCWSTR lpLocaleName
 );
 
-typedef WINBOOL (CALLBACK* CALINFO_ENUMPROCEXEX)(LPWSTR, CALID, LPWSTR, LPARAM);
+typedef int_bool (CALLBACK* CALINFO_ENUMPROCEXEX)(LPWSTR, CALID, LPWSTR, LPARAM);
 
 WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 EnumCalendarInfoExEx(
 CALINFO_ENUMPROCEXEX pCalInfoEnumProcExEx,
@@ -2550,10 +2550,10 @@ CALTYPE CalType,
 LPARAM lParam
 );
 
-typedef WINBOOL (CALLBACK* DATEFMT_ENUMPROCEXEX)(LPWSTR, CALID, LPARAM);
+typedef int_bool (CALLBACK* DATEFMT_ENUMPROCEXEX)(LPWSTR, CALID, LPARAM);
 
 WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 EnumDateFormatsExEx(
 DATEFMT_ENUMPROCEXEX lpDateFmtEnumProcExEx,
@@ -2562,10 +2562,10 @@ DWORD dwFlags,
 LPARAM lParam
 );
 
-typedef WINBOOL (CALLBACK* TIMEFMT_ENUMPROCEX)(LPWSTR, LPARAM);
+typedef int_bool (CALLBACK* TIMEFMT_ENUMPROCEX)(LPWSTR, LPARAM);
 
 WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 EnumTimeFormatsEx(
 TIMEFMT_ENUMPROCEX lpTimeFmtEnumProcEx,
@@ -2574,10 +2574,10 @@ DWORD dwFlags,
 LPARAM lParam
 );
 
-typedef WINBOOL (CALLBACK* LOCALE_ENUMPROCEX)(LPWSTR, DWORD, LPARAM);
+typedef int_bool (CALLBACK* LOCALE_ENUMPROCEX)(LPWSTR, DWORD, LPARAM);
 
 WINAXISAPI
-WINBOOL
+int_bool
 WINAPI
 EnumSystemLocalesEx(
 LOCALE_ENUMPROCEX lpLocaleEnumProcEx,

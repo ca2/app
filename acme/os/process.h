@@ -38,6 +38,8 @@ CLASS_DECL_ACME string process_platform_dir_name();
 CLASS_DECL_ACME string process_platform_dir_name2();
 CLASS_DECL_ACME string process_version_dir_name();
 
+CLASS_DECL_ACME int_bool is_process_running(DWORD pid);
+
 //CLASS_DECL_ACME ::file::path core_app_path(string strApp);
 
 #if !defined(_UWP)

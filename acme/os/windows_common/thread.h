@@ -1,7 +1,7 @@
 #pragma once
 
 
-CLASS_DECL_ACME WINBOOL SetThreadName(DWORD dwThreadID, const char* threadName);
+CLASS_DECL_ACME int_bool SetThreadName(DWORD dwThreadID, const char* threadName);
 
 
 

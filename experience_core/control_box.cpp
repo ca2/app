@@ -90,8 +90,6 @@ namespace experience
 
          UNREFERENCED_PARAMETER(pmessage);
 
-         set_need_redraw();
-
       }
 
 

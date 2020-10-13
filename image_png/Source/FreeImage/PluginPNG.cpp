@@ -97,7 +97,7 @@ warning_handler(png_structp, const char *warning)
 // Metadata routines
 // ==========================================================
 
-static WINBOOL
+static int_bool
 /*ReadMetadata(png_structp png_ptr, png_infop info_ptr, FIBITMAP * pimage)
 {
    // XMP keyword
@@ -180,7 +180,7 @@ static WINBOOL
    return TRUE;
 }
 
-static WINBOOL
+static int_bool
 /*WriteMetadata(png_structp png_ptr, png_infop info_ptr, FIBITMAP * pimage)
 {
    // XMP keyword
@@ -188,7 +188,7 @@ static WINBOOL
 
    FITAG *tag = nullptr;
    FIMETADATA *mdhandle = nullptr;
-   WINBOOL bResult = TRUE;
+   int_bool bResult = TRUE;
 
    png_text text_metadata;
 
@@ -284,7 +284,7 @@ MimeType()
    return "image/png";
 }
 
-static WINBOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 Validate(FreeImageIO *io, fi_handle handle)
 {
    BYTE png_signature[8] = { 137, 80, 78, 71, 13, 10, 26, 10 };
@@ -295,7 +295,7 @@ Validate(FreeImageIO *io, fi_handle handle)
    return (memcmp(png_signature, signature, 8) == 0);
 }
 
-static WINBOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 SupportsExportDepth(int depth)
 {
    return (
@@ -307,7 +307,7 @@ SupportsExportDepth(int depth)
           );
 }
 
-static WINBOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 SupportsExportType(FREE_IMAGE_TYPE type)
 {
    return (
@@ -318,13 +318,13 @@ SupportsExportType(FREE_IMAGE_TYPE type)
           );
 }
 
-static WINBOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 SupportsICCProfiles()
 {
    return TRUE;
 }
 
-static WINBOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 SupportsNoPixels()
 {
    return TRUE;
@@ -353,7 +353,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
 
    if (handle)
    {
-      WINBOOL header_only = (flags & FIF_LOAD_NOPIXELS) == FIF_LOAD_NOPIXELS;
+      int_bool header_only = (flags & FIF_LOAD_NOPIXELS) == FIF_LOAD_NOPIXELS;
 
       try
       {
@@ -784,14 +784,14 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
    return nullptr;
 }
 
-static WINBOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 /*Save(FreeImageIO *io, FIBITMAP * pimage, fi_handle handle, int page, int flags, void *data)
 {
    png_structp png_ptr;
    png_infop info_ptr;
    png_colorp palette = nullptr;
    png_uint_32 width, height;
-   WINBOOL has_alpha_channel = FALSE;
+   int_bool has_alpha_channel = FALSE;
 
    RGBQUAD *pal;					// pointer to image palette
    int bit_depth, pixel_depth;		// pixel_depth = bit_depth * channels
@@ -862,7 +862,7 @@ static WINBOOL DLL_CALLCONV
 /*         height = FreeImage_GetHeight(pimage);
 /*         pixel_depth = FreeImage_GetBPP(pimage);
 
-         WINBOOL bInterlaced = FALSE;
+         int_bool bInterlaced = FALSE;
          if( (flags & PNG_INTERLACED) == PNG_INTERLACED)
          {
             interlace_type = PNG_INTERLACE_ADAM7;
@@ -908,7 +908,7 @@ static WINBOOL DLL_CALLCONV
          }
 
          // check for transparent images
-         WINBOOL bIsTransparent =
+         int_bool bIsTransparent =
 /*         (image_type == FIT_BITMAP) && FreeImage_IsTransparent(pimage) && (FreeImage_GetTransparencyCount(pimage) > 0) ? TRUE : FALSE;
 
 /*         switch (FreeImage_GetColorType(pimage))

@@ -31,7 +31,7 @@ CLASS_DECL_ACME string normalize_path(const char* lpcszPath);
 
 //CLASS_DECL_ACME oswindow get_capture();
 //CLASS_DECL_ACME oswindow set_capture(oswindow oswindow);
-//CLASS_DECL_ACME WINBOOL release_capture();
+//CLASS_DECL_ACME int_bool release_capture();
 //
 //CLASS_DECL_ACME oswindow get_active_window();
 //CLASS_DECL_ACME oswindow set_active_window(oswindow oswindow);

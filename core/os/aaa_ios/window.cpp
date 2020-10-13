@@ -289,15 +289,15 @@ iptr oswindow_data::set_window_long_ptr(iptr iIndex, iptr iNewLong)
 //}
 //
 //
-//WINBOOL ReleaseCapture()
+//int_bool ReleaseCapture()
 //{
 //
 //   //ifGetCapture().display() == nullptr)
 //   // return FALSE;
 //
-//   //  WINBOOL bRet = XUngrabPointer(GetCapture().display(), CurrentTime) != FALSE;
+//   //  int_bool bRet = XUngrabPointer(GetCapture().display(), CurrentTime) != FALSE;
 //
-//   WINBOOL bRet = TRUE;
+//   int_bool bRet = TRUE;
 //
 //   if(bRet)
 //      g_oswindowCapture = nullptr;

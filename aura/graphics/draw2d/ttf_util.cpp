@@ -87,7 +87,7 @@ string ttf_util::GetFontNameFromFile(::file::path lpszFilePath)
       return csRetVal;
 
    TT_TABLE_DIRECTORY tblDir;
-   WINBOOL bFound = FALSE;
+   int_bool bFound = FALSE;
    string csTemp;
 
    for (int i = 0; i < ttOffsetTable.uNumOfTables; i++)

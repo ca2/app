@@ -31,7 +31,7 @@ DWORD windows_get_file_attributes(const char* path)
 }
 
 
-WINBOOL windows_create_directory(const char* path, LPSECURITY_ATTRIBUTES lpSecurityAttributes)
+int_bool windows_create_directory(const char* path, LPSECURITY_ATTRIBUTES lpSecurityAttributes)
 {
 
    wstring wstr(path);

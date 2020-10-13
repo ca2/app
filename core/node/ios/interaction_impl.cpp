@@ -172,9 +172,9 @@ string strNow)
 
 }
 
-WINBOOL SetWindowRect(oswindow hwnd, LPRECT lprect);
+int_bool SetWindowRect(oswindow hwnd, LPRECT lprect);
 
-// WINBOOL PeekMessage(
+// int_bool PeekMessage(
 // LPMESSAGE lpMsg,
 // oswindow hWnd,
 // UINT wMsgFilterMin,
@@ -182,7 +182,7 @@ WINBOOL SetWindowRect(oswindow hwnd, LPRECT lprect);
 // UINT wRemoveMsg);
 
 
-// WINBOOL GetMessage(
+// int_bool GetMessage(
 // LPMESSAGE lpMsg,
 // oswindow hWnd,
 // UINT wMsgFilterMin,
@@ -3818,7 +3818,7 @@ namespace ios
     */
 
    /*
-    UINT interaction_impl::GetDlgItemInt(i32 nID, WINBOOL * lpTrans, bool bSigned) const
+    UINT interaction_impl::GetDlgItemInt(i32 nID, int_bool * lpTrans, bool bSigned) const
     {
 
     ASSERT(::is_window(get_handle()));

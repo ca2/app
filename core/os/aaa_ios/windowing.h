@@ -38,7 +38,7 @@ int GetWkspaceCount();
 
 oswindow get_capture();
 oswindow set_capture(oswindow window);
-WINBOOL release_capture();
+int_bool release_capture();
 oswindow set_focus(oswindow window);
 oswindow get_focus();
 oswindow get_active_window();
@@ -47,8 +47,8 @@ oswindow set_active_window(oswindow window);
 
 //void GetMainScreenRect(LPRECT lprect);
 
-WINBOOL SetForegroundWindow(oswindow window);
-WINBOOL BringWindowToTop(oswindow window);
+int_bool SetForegroundWindow(oswindow window);
+int_bool BringWindowToTop(oswindow window);
 
 void ns_redraw_window(oswindow window);
 

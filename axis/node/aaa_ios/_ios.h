@@ -62,14 +62,14 @@ CLASS_DECL_AXIS void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
 //#include "crypto.h"
 
 
-// WINBOOL PeekMessage(
+// int_bool PeekMessage(
 // LPMESSAGE lpMsg,
 // oswindow hWnd,
 // UINT wMsgFilterMin,
 // UINT wMsgFilterMax,
 // UINT wRemoveMsg);
 
-// WINBOOL GetMessage(
+// int_bool GetMessage(
 // LPMESSAGE lpMsg,
 // oswindow hWnd,
 // UINT wMsgFilterMin,

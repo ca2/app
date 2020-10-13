@@ -171,7 +171,7 @@ void * nscursor_system(e_cursor ecursor)
    
 }
 
-// WINBOOL window_set_mouse_cursor(oswindow window, HCURSOR hcursor)
+// int_bool window_set_mouse_cursor(oswindow window, HCURSOR hcursor)
 int os_window_set_mouse_cursor(void *, void * p)
 {
 

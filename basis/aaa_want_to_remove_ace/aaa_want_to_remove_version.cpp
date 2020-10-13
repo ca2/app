@@ -15,7 +15,7 @@
 
 
 
-// WINBOOL get_version_ex_a(LPOSVERSIONINFOEXA pVersionInformation)
+// int_bool get_version_ex_a(LPOSVERSIONINFOEXA pVersionInformation)
 
 // {
 

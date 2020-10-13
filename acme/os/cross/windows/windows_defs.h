@@ -141,13 +141,13 @@ typedef WINUCHAR *PWINUCHAR;
 #endif
 
 typedef u32       DWORD;
-//typedef i32                 WINBOOL;
+//typedef i32                 int_bool;
 typedef unsigned char       BYTE;
 typedef unsigned short      WORD;
 typedef float               FLOAT;
 typedef FLOAT               *PFLOAT;
-typedef WINBOOL near           *PBOOL;
-typedef WINBOOL far            *LPBOOL;
+typedef int_bool near           *PBOOL;
+typedef int_bool far            *LPBOOL;
 typedef BYTE near           *PBYTE;
 typedef BYTE far            *LPBYTE;
 typedef i32 near            *PINT;
@@ -364,13 +364,13 @@ struct tagHandle
 
 
 ///typedef u32       DWORD;
-//typedef i32                 WINBOOL;
+//typedef i32                 int_bool;
 //typedef unsigned char       BYTE;
 //typedef unsigned short      WORD;
 //typedef float               FLOAT;
 //typedef FLOAT               *PFLOAT;
-//typedef WINBOOL near           *PBOOL;
-//typedef WINBOOL far            *LPBOOL;
+//typedef int_bool near           *PBOOL;
+//typedef int_bool far            *LPBOOL;
 //typedef BYTE near           *PBYTE;
 //typedef BYTE far            *LPBYTE;
 //typedef i32 near            *PINT;

@@ -27,11 +27,11 @@ CLASS_DECL_AURA DWORD WINAPI MsgWaitForMultipleObjectsEx(DWORD nCount, const HAN
 
 #else
 
-DWORD WaitForMultipleObjectsEx(DWORD dwSize, HSYNC * synca, WINBOOL bWaitForAll, DWORD tickTimeout, WINBOOL bAlertable);
+DWORD WaitForMultipleObjectsEx(DWORD dwSize, HSYNC * synca, int_bool bWaitForAll, DWORD tickTimeout, int_bool bAlertable);
 
-DWORD WaitForMultipleObjects(DWORD dwSize, HSYNC * synca, WINBOOL bWaitForAll, DWORD tickTimeout);
+DWORD WaitForMultipleObjects(DWORD dwSize, HSYNC * synca, int_bool bWaitForAll, DWORD tickTimeout);
 
-DWORD MsgWaitForMultipleObjects(DWORD dwSize, HSYNC * synca, WINBOOL bWaitForAll, DWORD tickTimeout, DWORD dwWakeMask);
+DWORD MsgWaitForMultipleObjects(DWORD dwSize, HSYNC * synca, int_bool bWaitForAll, DWORD tickTimeout, DWORD dwWakeMask);
 
 DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, HSYNC * synca, DWORD tickTimeout, DWORD dwWakeMask, DWORD dwFlags);
 
@@ -42,7 +42,7 @@ DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, HSYNC * synca, DWORD tickTimeout
 
 DWORD WaitForSingleObject(HSYNC hsync, DWORD dwMilliseconds);
 
-DWORD WaitForSingleObjectEx(HSYNC hsync, DWORD dwMilliseconds, WINBOOL bAlertable);
+DWORD WaitForSingleObjectEx(HSYNC hsync, DWORD dwMilliseconds, int_bool bAlertable);
 
 #endif
 

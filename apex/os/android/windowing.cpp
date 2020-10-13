@@ -745,7 +745,7 @@ int_bool get_window_rect(oswindow_data * pdata, RECT * prect)
 }
 
 
-WINBOOL show_window(oswindow_data * pdata, int nCmdShow)
+int_bool show_window(oswindow_data * pdata, int nCmdShow)
 {
 
    return pdata->show_window(nCmdShow);
@@ -753,7 +753,7 @@ WINBOOL show_window(oswindow_data * pdata, int nCmdShow)
 }
 
 
-WINBOOL SetWindowPos(oswindow_data * pdata, oswindow_data * pdataAfter, int x, int y, int cx, int cy, unsigned int uiFlags)
+int_bool SetWindowPos(oswindow_data * pdata, oswindow_data * pdataAfter, int x, int y, int cx, int cy, unsigned int uiFlags)
 {
 
    return pdata->m_pimpl->m_puserinteraction->set_window_pos((iptr)pdataAfter, x, y, cx, cy, uiFlags);
@@ -1419,7 +1419,7 @@ CLASS_DECL_APEX ::user::interaction_impl * oswindow_get(oswindow oswindow)
 
 oswindow_dataptra * oswindow_data::s_pdataptra = nullptr;
 
-WINBOOL os_init_windowing()
+int_bool os_init_windowing()
 {
 
    //set_TranslateMessage(&axis_TranslateMessage);
@@ -1445,7 +1445,7 @@ void os_term_windowing()
 }
 
 
-WINBOOL is_window(oswindow oswindow)
+int_bool is_window(oswindow oswindow)
 {
 
    if (::oswindow_data::s_pdataptra->find_first(oswindow) < 0)

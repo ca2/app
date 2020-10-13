@@ -97,7 +97,7 @@
 //
 //}
 //
-//DWORD MsgWaitForMultipleObjects(DWORD dwSize, HSYNC * pwaitableptra, WINBOOL bWaitForAll, DWORD dwTimeout, DWORD dwWakeMask)
+//DWORD MsgWaitForMultipleObjects(DWORD dwSize, HSYNC * pwaitableptra, int_bool bWaitForAll, DWORD dwTimeout, DWORD dwWakeMask)
 //{
 //
 //   return MsgWaitForMultipleObjectsEx(dwSize, pwaitableptra, dwTimeout, dwWakeMask, (bWaitForAll ?  MWMO_WAITALL : 0));
@@ -105,7 +105,7 @@
 //}
 //
 //
-//DWORD WaitForMultipleObjectsEx(DWORD dwSize, HSYNC * pwaitableptra, WINBOOL bWaitForAll, DWORD dwTimeout, WINBOOL bAlertable)
+//DWORD WaitForMultipleObjectsEx(DWORD dwSize, HSYNC * pwaitableptra, int_bool bWaitForAll, DWORD dwTimeout, int_bool bAlertable)
 //{
 //
 //   return MsgWaitForMultipleObjectsEx(dwSize, pwaitableptra, dwTimeout, 0, (bWaitForAll ?  MWMO_WAITALL : 0) | (bAlertable ?  MWMO_ALERTABLE : 0));
@@ -113,7 +113,7 @@
 //}
 //
 //
-//DWORD WaitForMultipleObjects(DWORD dwSize, HSYNC * pwaitableptra, WINBOOL bWaitForAll, DWORD dwTimeout)
+//DWORD WaitForMultipleObjects(DWORD dwSize, HSYNC * pwaitableptra, int_bool bWaitForAll, DWORD dwTimeout)
 //{
 //
 //   return WaitForMultipleObjectsEx(dwSize, pwaitableptra, bWaitForAll, dwTimeout, FALSE);
@@ -121,7 +121,7 @@
 //}
 //
 //
-//DWORD WaitForSingleObjectEx(HSYNC  pwaitable, DWORD dwTimeout, WINBOOL bAlertable)
+//DWORD WaitForSingleObjectEx(HSYNC  pwaitable, DWORD dwTimeout, int_bool bAlertable)
 //{
 //
 //   return WaitForMultipleObjectsEx(1, &pwaitable, TRUE, dwTimeout, bAlertable);
@@ -1394,7 +1394,7 @@ LPVOID TlsGetValue(thread_data_index dwTlsIndex)
 	return value;
 }
 
-WINBOOL TlsSetValue(thread_data_index dwTlsIndex, LPVOID lpTlsValue)
+int_bool TlsSetValue(thread_data_index dwTlsIndex, LPVOID lpTlsValue)
 {
 	pthread_key_t key;
 	key = (pthread_key_t) dwTlsIndex;
@@ -1402,7 +1402,7 @@ WINBOOL TlsSetValue(thread_data_index dwTlsIndex, LPVOID lpTlsValue)
 	return TRUE;
 }
 
-WINBOOL TlsFree(thread_data_index dwTlsIndex)
+int_bool TlsFree(thread_data_index dwTlsIndex)
 {
 	pthread_key_t key;
 	key = (pthread_key_t) dwTlsIndex;

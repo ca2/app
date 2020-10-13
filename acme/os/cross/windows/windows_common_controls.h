@@ -974,7 +974,7 @@ typedef struct tagNMREBAR
 typedef struct tagNMRBAUTOSIZE
 {
    NMHDR hdr;
-   WINBOOL fChanged;
+   int_bool fChanged;
    RECT rcTarget;
    RECT rcActual;
 } NMRBAUTOSIZE,*LPNMRBAUTOSIZE;
@@ -1009,7 +1009,7 @@ typedef struct tagNMREBARAUTOBREAK
    LPARAM lParam;
    UINT uMsg;
    UINT fStyleCurrent;
-   WINBOOL fAutoBreak;
+   int_bool fAutoBreak;
 } NMREBARAUTOBREAK,*LPNMREBARAUTOBREAK;
 #endif
 
@@ -1430,7 +1430,7 @@ typedef struct tagNMTTDISPINFOW {
 #ifndef NOMENUHELP
 
 //WINCOMMCTRLAPI void WINAPI MenuHelp(UINT uMsg,WPARAM wParam,LPARAM lParam,HMENU hMainMenu,HINSTANCE hInst,oswindow hwndStatus,_In_reads_(_Inexpressible_(2 + 2n && n >= 1)) UINT *lpwIDs);
-//WINCOMMCTRLAPI WINBOOL WINAPI ShowHideMenuCtl(_In_ oswindow hWnd,_In_ UINT_PTR uFlags,_In_z_ LPINT lpInfo);
+//WINCOMMCTRLAPI int_bool WINAPI ShowHideMenuCtl(_In_ oswindow hWnd,_In_ UINT_PTR uFlags,_In_z_ LPINT lpInfo);
 //WINCOMMCTRLAPI void WINAPI GetEffectiveClientRect(_In_ oswindow hWnd,_Out_ LPRECT lprc,_In_z_ const INT *lpInfo);
 
 #define MINSYSCOMMAND   SC_SIZE

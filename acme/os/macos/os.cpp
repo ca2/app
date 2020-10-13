@@ -23,7 +23,7 @@ CLASS_DECL_ACME bool _istlead(i32 ch)
 
 
 
-//WINBOOL GetCursorPos(LPPOINT ppointCursor)
+//int_bool GetCursorPos(LPPOINT ppointCursor)
 //
 //{
 //

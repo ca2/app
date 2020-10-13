@@ -1193,7 +1193,7 @@ namespace aura
    };
 
 
-   WINBOOL CALLBACK enum_proc(oswindow hwnd, LPARAM lparam)
+   int_bool CALLBACK enum_proc(oswindow hwnd, LPARAM lparam)
    {
 
       open_browser_enum * penum = (open_browser_enum *)lparam;
@@ -1214,7 +1214,7 @@ namespace aura
    }
 
 
-   WINBOOL CALLBACK enum_proc_ff_topic(oswindow hwnd, LPARAM lparam)
+   int_bool CALLBACK enum_proc_ff_topic(oswindow hwnd, LPARAM lparam)
    {
 
       open_browser_enum * penum = (open_browser_enum *)lparam;
@@ -1232,7 +1232,7 @@ namespace aura
 
    }
 
-   WINBOOL CALLBACK enum_proc_ff_counter_topic(oswindow hwnd, LPARAM lparam)
+   int_bool CALLBACK enum_proc_ff_counter_topic(oswindow hwnd, LPARAM lparam)
 
    {
 
@@ -11935,7 +11935,7 @@ namespace aura
 
 
 
-//   WINBOOL application::window_set_mouse_cursor(oswindow window, HCURSOR hcursor)
+//   int_bool application::window_set_mouse_cursor(oswindow window, HCURSOR hcursor)
 //   {
 //
 //#ifdef WINDOWS_DESKTOP

@@ -11,4 +11,4 @@
 //CLASS_DECL_ACME float x_dpi(float x);
 //
 //
-//CLASS_DECL_ACME WINBOOL GetCursorPos(LPPOINT lppoint);
+//CLASS_DECL_ACME int_bool GetCursorPos(LPPOINT lppoint);

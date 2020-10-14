@@ -15,9 +15,12 @@
 
 //#else
 
-::estatus _os_message_box(const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox);
+
+int _os_message_box(const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox);
+
 
 //#endif
+
 
 CLASS_DECL_ACME int __cpp_assert_failed_line(const char * pszFileName, int iLineNumber);
 
@@ -27,6 +30,7 @@ CLASS_DECL_ACME string message_box_result_to_string(int iResult);
 
 namespace acme
 {
+
 
    class os_message_box :
       virtual public ::element
@@ -63,9 +67,7 @@ namespace acme
    var os_message_box::realize()
    {
 
-      int iMessageBox = m_emessagebox.m_eenum & 0x7f;
-
-      int iResult = ::_os_message_box(m_strText, m_strTitle, iMessageBox);
+      int iResult = ::_os_message_box(m_strText, m_strTitle, m_emessagebox);
 
       string strResult = message_box_result_to_string(iResult);
 

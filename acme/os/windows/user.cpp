@@ -142,4 +142,20 @@ namespace user
 //
 
 
+int _os_message_box(const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox)
+{
+
+   int iMessageBox = emessagebox.m_eenum & 0x7f;
+
+   wstring wstrText(pszMessage);
+
+   wstring wstrTitle(pszTitle);
+
+   int iResult = ::MessageBox(nullptr, wstrText, wstrTitle, iMessageBox);
+
+   return iResult;
+
+}
+
+
 

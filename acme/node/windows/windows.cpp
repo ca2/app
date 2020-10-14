@@ -3,7 +3,6 @@
 #include "acme/os/windows_common/file.h"
 
 
-
 namespace windows
 {
 

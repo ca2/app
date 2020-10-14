@@ -53,53 +53,53 @@
 
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
-class pmutex_lock
-{
-public:
-
-   pthread_mutex_t * m_pmutex;
-
-   bool m_bLock;
-
-   pmutex_lock(pthread_mutex_t * pmutex, bool bStartLocked = true) :
-      m_pmutex(pmutex)
-   {
-
-      if(bStartLocked)
-      {
-
-         lock();
-
-
-      }
-
-
-   }
-
-   ~pmutex_lock()
-   {
-
-
-   }
-
-
-   void lock()
-   {
-
-      pthread_mutex_lock(m_pmutex);
-
-   }
-
-
-   void unlock()
-   {
-
-      pthread_mutex_unlock(m_pmutex);
-
-   }
-
-};
-
+//class pmutex_lock
+//{
+//public:
+//
+//   pthread_mutex_t * m_pmutex;
+//
+//   bool m_bLock;
+//
+//   pmutex_lock(pthread_mutex_t * pmutex, bool bStartLocked = true) :
+//      m_pmutex(pmutex)
+//   {
+//
+//      if(bStartLocked)
+//      {
+//
+//         lock();
+//
+//
+//      }
+//
+//
+//   }
+//
+//   ~pmutex_lock()
+//   {
+//
+//
+//   }
+//
+//
+//   void lock()
+//   {
+//
+//      pthread_mutex_lock(m_pmutex);
+//
+//   }
+//
+//
+//   void unlock()
+//   {
+//
+//      pthread_mutex_unlock(m_pmutex);
+//
+//   }
+//
+//};
+//
 
 void os_post_quit();
 //
@@ -427,294 +427,6 @@ void g_safe_free(void * pfree)
 //
 //#endif
 
-
-namespace user
-{
-
-
-   bool g_bGInitialized = false;
-
-
-   pthread_mutex_t g_mutexG;
-
-
-   bool gsettings_set(const char * pszSchema, const char * pszKey, const char * pszValue)
-   {
-
-      if(pszSchema == nullptr)
-      {
-
-         return false;
-
-      }
-
-      if(pszKey == nullptr)
-      {
-
-         return false;
-
-      }
-
-      if(pszValue == nullptr)
-      {
-
-         return false;
-
-      }
-
-      GSettings *settings = g_settings_new(pszSchema);
-
-      if(settings == nullptr)
-      {
-
-         return false;
-
-      }
-
-      gboolean bOk = g_settings_set_string(settings, pszKey, pszValue);
-
-      if (settings != nullptr)
-      {
-
-         g_object_unref (settings);
-
-      }
-
-      return bOk;
-
-   }
-
-
-   bool gsettings_sync()
-   {
-
-      g_settings_sync ();
-
-      return true;
-
-   }
-
-
-   char * gsettings_get_malloc(const char * pszSchema, const char * pszKey)
-   {
-
-      if(pszSchema == nullptr)
-      {
-
-         return nullptr;
-
-      }
-
-      if(pszKey == nullptr)
-      {
-
-         return nullptr;
-
-      }
-
-      GSettings *settings = g_settings_new(pszSchema);
-
-      if(settings == nullptr)
-      {
-
-         return nullptr;
-
-      }
-
-      gchar * pgchar = g_settings_get_string (settings, pszKey);
-
-      if(pgchar == nullptr)
-      {
-
-         g_object_unref (settings);
-
-         return nullptr;
-
-      }
-
-      char * psz = strdup(pgchar);
-
-      g_free (pgchar);
-
-      g_object_unref (settings);
-
-      return psz;
-
-   }
-
-
-   e_desktop g_edesktop = desktop_gnome;
-
-
-   e_desktop get_edesktop()
-   {
-
-      return g_edesktop;
-
-   }
-
-
-   void initialize_edesktop()
-   {
-
-      g_edesktop = calc_edesktop();
-
-   }
-
-
-   e_desktop calc_edesktop()
-   {
-
-      const char * pszDesktop = getenv("XDG_CURRENT_DESKTOP");
-
-      utsname name;
-
-      memset(&name, 0, sizeof(utsname));
-
-      uname(&name);
-
-      if(pszDesktop != nullptr)
-      {
-
-         if(strcasecmp(pszDesktop, "Unity") == 0)
-         {
-
-            return desktop_unity_gnome;
-
-         }
-
-      }
-
-      if(strcasecmp(pszDesktop, "ubuntu:gnome") == 0)
-      {
-
-         return desktop_ubuntu_gnome;
-
-      }
-      else if(is_dir("/etc/xdg/lubuntu"))
-      {
-
-         return desktop_lxde;
-
-      }
-      else if(file_exists("/usr/bin/xfconf-query"))
-      {
-
-         return desktop_xfce;
-
-      }
-      else if(file_exists("/usr/bin/mate-about"))
-      {
-
-         return desktop_mate;
-
-      }
-      else if(file_exists("/usr/bin/unity"))
-      {
-
-         return desktop_unity_gnome;
-
-      }
-
-      return desktop_gnome;
-
-   }
-
-
-   void wallpaper_change_notification (GSettings   *settings,             const gchar *key,             gpointer     data)
-   {
-
-      c_post_system_event(id_wallpaper_change);
-
-   }
-
-
-   GAction * g_pactionWallpaper = nullptr;
-
-
-   bool g_enable_wallpaper_change_notification(const char * pszSchema, const char * pszKey)
-   {
-
-      if(!g_bGInitialized)
-      {
-
-         return false;
-
-      }
-
-      pmutex_lock lock(&g_mutexG);
-
-      if(g_pactionWallpaper != nullptr)
-      {
-
-         return true;
-
-      }
-
-      GSettings * settings = g_settings_new(pszSchema);
-
-      if(settings == nullptr)
-      {
-
-         return false;
-
-      }
-
-      g_pactionWallpaper = g_settings_create_action (settings, pszKey);
-
-      g_object_unref (settings);
-
-      g_signal_connect (g_pactionWallpaper, "notify::state", G_CALLBACK (wallpaper_change_notification), nullptr);
-
-      return true;
-
-   }
-
-
-   void g_defer_init()
-   {
-
-      if(g_bGInitialized)
-      {
-
-         return;
-
-      }
-
-      g_bGInitialized = true;
-
-      pthread_mutex_init(&g_mutexG, nullptr);
-
-   }
-
-
-   void g_defer_term()
-   {
-
-      if(!g_bGInitialized)
-      {
-
-         return;
-
-      }
-
-      g_bGInitialized = false;
-
-      if(g_pactionWallpaper != nullptr)
-      {
-
-         g_object_unref(g_pactionWallpaper);
-
-         g_pactionWallpaper = nullptr;
-
-      }
-
-      pthread_mutex_destroy(&g_mutexG);
-
-   }
-
-
-} // namespace user
 
 
 

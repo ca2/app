@@ -151,7 +151,6 @@ enum e_id : u64
    id_place_child_title_change,
    id_hover_font_family_name,
    id_main_title,
-   id_calc_os_dark_mode,
    id_result,
    id_open_hyperlink,
 
@@ -202,6 +201,7 @@ enum e_id : u64
    id_no_client_frame,
    id_before_show_main_dialog,
    id_after_show_main_dialog,
+   id_dark_mode,
 
 
    // procedures:

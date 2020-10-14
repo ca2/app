@@ -1,5 +1,5 @@
 #include "framework.h"
-//#include "acme/message.h"
+#include "acme/id.h"
 #include <stdio.h>
 
 
@@ -8,6 +8,7 @@
 #pragma comment(lib, "Dxva2.lib")
 
 #endif
+
 
 //extern string_map < __pointer(::acme::library) >* g_pmapLibrary;
 
@@ -528,21 +529,32 @@ void set_system_call_update(PFN_CALL_UPDATE pfnCallUpdate)
 
 }
 
+
 void system_call_update(int iUpdate, const var & var)
 {
-   
+
    if(g_pfnCallUpdateSystem)
    {
 
       g_pfnCallUpdateSystem(iUpdate, var);
 
    }
-   
+   else if(iUpdate == id_dark_mode)
+   {
+
+      ::user::os_calc_dark_mode();
+
+   }
+
 }
+
 
 void int_system_call_update(int iUpdate, int iArg)
 {
-   
+
    system_call_update(iUpdate, iArg);
-   
+
 }
+
+
+

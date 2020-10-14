@@ -6,6 +6,13 @@ __pointer_array(x11_hook) g_x11hooka;
 
 //LPFN_X11_PROCESS_EVENT g_x11processeventa[8];
 
+
+x11_hook::x11_hook()
+{
+
+}
+
+
 ::estatus x11_hook::hook()
 {
 
@@ -29,6 +36,11 @@ __pointer_array(x11_hook) g_x11hooka;
 
 }
 
+
+void x11_hook::on_idle(Display * pdisplay)
+{
+
+}
 
 bool __x11_hook_list_is_empty()
 {
@@ -56,6 +68,21 @@ bool __x11_hook_process_event(Display * pdisplay, XEvent & e, XGenericEventCooki
    return false;
 
 }
+
+
+void __x11_hook_on_idle(Display * pdisplay)
+{
+
+   for(auto & phook : g_x11hooka)
+   {
+
+      phook->on_idle(pdisplay);
+
+   }
+
+}
+
+
 
 //   for(int i = 0; i < g_cX11; i++)
 //   {

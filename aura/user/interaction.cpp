@@ -51,7 +51,7 @@ namespace user
    {
 
       set_layer(LAYERED_USER_INTERACTION, this);
-      
+
       m_bDerivedHeight = false;
 
       m_bLayoutModified = false;
@@ -2174,10 +2174,10 @@ namespace user
          }
 
          ::user::interaction * pinteraction = this;
-         
+
          if(!m_pshapeaClip)
          {
-            
+
             __construct_new(m_pshapeaClip);
 
             ::rect rectIntersect;
@@ -2198,7 +2198,7 @@ namespace user
                pinteraction = pinteraction->GetParent();
 
             }
-            
+
          }
 
          pgraphics->reset_clip();
@@ -2378,7 +2378,7 @@ namespace user
    }
 
 
-void interaction::_001CallOnDraw(::draw2d::graphics_pointer & pgraphics)
+   void interaction::_001CallOnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       point pointScroll = m_pointScroll;
@@ -2685,8 +2685,6 @@ void interaction::_001CallOnDraw(::draw2d::graphics_pointer & pgraphics)
 
    void interaction::_001PrintBuffer(::draw2d::graphics_pointer & pgraphics)
    {
-
-      ::user::defer_calc_os_dark_mode();
 
       windowing_output_debug_string("\n_001UpdateBuffer : before graphics lock");
 
@@ -3409,6 +3407,8 @@ void interaction::_001CallOnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       UNREFERENCED_PARAMETER(pmessage);
+
+      ::update_notification_task::add(id_dark_mode, this);
 
       on_create_user_interaction();
 
@@ -6628,7 +6628,7 @@ void interaction::_001CallOnDraw(::draw2d::graphics_pointer & pgraphics)
       }
 
       auto pgraphics = create_memory_graphics();
-      
+
       m_pshapeaClip.release();
 
       m_pimpl->on_layout(pgraphics);
@@ -6715,7 +6715,7 @@ void interaction::_001CallOnDraw(::draw2d::graphics_pointer & pgraphics)
          return;
 
       }
-      
+
       auto psession = get_context_session();
 
       if (::is_set(psession))
@@ -6728,7 +6728,7 @@ void interaction::_001CallOnDraw(::draw2d::graphics_pointer & pgraphics)
 
             if (!(pmessage->m_uiMessageFlags & 2)) // message already pre translated
             {
-               
+
                auto paurasession = psession->m_paurasession;
 
                paurasession->pre_translate_message(pmessage);
@@ -8033,45 +8033,45 @@ void interaction::_001CallOnDraw(::draw2d::graphics_pointer & pgraphics)
       ::size sizeSketch = layout().sketch().size();
 
       ::size sizeDesign = layout().design().size();
-      
+
       if(m_bDerivedHeight)
       {
-         
+
          int iDerivedWidth = sizeSketch.cx;
-         
+
          int iDerivedHeight = get_derived_height(iDerivedWidth);
-         
+
          ::size sizeMinimum = get_window_minimum_size();
-         
+
          if(iDerivedHeight > 0)
          {
-         
+
             if(iDerivedHeight < sizeMinimum.cy)
             {
-            
+
                iDerivedHeight = sizeMinimum.cy;
-               
+
                iDerivedWidth = get_derived_width(iDerivedHeight);
-               
+
             }
-            
+
          }
-         
+
          if(iDerivedWidth >= sizeMinimum.cx && iDerivedHeight >= sizeMinimum.cy)
          {
-            
+
             sizeSketch.cx = iDerivedWidth;
-            
+
             sizeSketch.cy = iDerivedHeight;
-            
+
             layout().sketch() = sizeSketch;
-            
+
          }
-         
+
       }
 
       bool bLayout = sizeSketch != sizeDesign || m_bNeedLayout;
-      
+
       m_bNeedLayout = false;
 
       // mark sketch up-to-date

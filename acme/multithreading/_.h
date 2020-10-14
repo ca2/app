@@ -330,5 +330,7 @@ CLASS_DECL_ACME void set_get_thread_name(LPFN_GET_THREAD_NAME);
 string get_thread_name(::thread* pthread);
 
 
+#include "update_notification_task.h"
+
 
 

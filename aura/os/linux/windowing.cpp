@@ -147,8 +147,8 @@ list < __pointer(::element) > * g_prunnableptrlX11 = nullptr;
 ::mutex * g_pmutexX11Sync = nullptr;
 manual_reset_event * g_peventX11Sync = nullptr;
 __pointer(::element) g_prunnableX11Sync;
-Display * g_pdisplayX11= nullptr;
-int g_fdX11[2] = {};
+Window g_windowX11Client = 0;
+
 
 
 int_bool _x11_get_cursor_pos(Display * d, LPPOINT ppointCursor);
@@ -2910,8 +2910,6 @@ bool post_ui_message(const MESSAGE & message);
 
 
 
-Window g_windowX11Client = 0;
-
 
 Atom g_atomKickIdle = 0;
 
@@ -2930,7 +2928,7 @@ void x11_thread(osdisplay_data * pdisplaydata)
 
    ::thread_set_name("x11_thread");
 
-   g_pdisplayX11 = pdisplay;
+//   g_pdisplayX11 = pdisplay;
 
    {
 
@@ -2960,61 +2958,13 @@ void x11_thread(osdisplay_data * pdisplaydata)
 
 #endif
 
-   int retval = fcntl(g_fdX11[0], F_SETFL, fcntl(g_fdX11[0], F_GETFL) | O_NONBLOCK);
-
    while(::get_context_system() != nullptr && ::thread_get_run())
    {
 
       try
       {
 
-         struct timeval tv;
-
-         // This returns the FD of the X11 display (or something like that)
-         int x11_fd = ConnectionNumber(pdisplay);
-
-         fd_set in_fds;
-
-         // Create a File Description Set containing x11_fd
-         FD_ZERO(&in_fds);
-         FD_SET(x11_fd, &in_fds);
-         FD_SET(g_fdX11[0], &in_fds);
-
-         // Set our timer.  One second sounds good.
-         tv.tv_usec = 0;
-         tv.tv_sec = 1;
-
-         // Wait for X Event or a Timer
-         int num_ready_fds = select(max(x11_fd, g_fdX11[0]) + 1, &in_fds, NULL, NULL, &tv);
-
-         if (num_ready_fds > 0)
-         {
-
-            //printf("Event Received!\n");
-
-            char buf[32];
-            int iRead;
-            while((iRead = read(g_fdX11[0], buf, sizeof(buf)))>0)
-            {
-
-               //printf("X11 fork count = %d\n", iRead);
-
-            }
-
-         }
-         else if (num_ready_fds == 0)
-         {
-
-            // Handle timer here
-            //printf("Timer Fired!\n");
-
-         }
-         else
-         {
-
-            //printf("An error occured!\n");
-
-         }
+         x11_wait_timer_or_event(pdisplay);
 
          sync_lock sl(x11_mutex());
 
@@ -3239,9 +3189,9 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
             pupdate->m_id = eid;
 
-            pupdate->value("return") = is_return_key((XIRawEvent*)cookie->data);
+            pupdate->m_set["return"] = is_return_key((XIRawEvent*)cookie->data);
 
-            pupdate->value("space") = is_space_key((XIRawEvent*)cookie->data);
+            pupdate->m_set["space"] = is_space_key((XIRawEvent*)cookie->data);
 
             for(auto & p : *g_pobjectaExtendedEventListener)
             {
@@ -4479,11 +4429,12 @@ CLASS_DECL_AURA void defer_dock_application(int_bool bDock)
 
 void sn_start_context();
 
+void acme_defer_os_init_windowing();
 
 int_bool os_init_windowing()
 {
 
-   pipe(g_fdX11);
+   acme_defer_os_init_windowing();
 
    g_pmutexX11Runnable = new ::mutex();
 
@@ -4828,50 +4779,51 @@ int_bool WINAPI SetWindowPos(oswindow hWnd,oswindow hWndInsertAfter,i32 X,i32 Y,
 
 }
 
-void x11_kick_idle()
-{
 
-   if(!g_pdisplayX11)
-   {
-
-      return;
-
-   }
-
-   if(!g_windowX11Client)
-   {
-
-      return;
-
-   }
-
-   //sync_lock sl(x11_mutex());
-
-   char ch = 1;
-
-   ::write(g_fdX11[1], &ch, 1);
-
-//   windowing_output_debug_string("\n::x11_kick_idle");
+//void x11_kick_idle()
+//{
 //
-//   xdisplay d(g_pdisplayX11);
+//   if(!g_pdisplayX11)
+//   {
 //
-//   XClientMessageEvent dummyEvent;
+//      return;
 //
-//   memset(&dummyEvent, 0, sizeof(XClientMessageEvent));
+//   }
 //
-//   dummyEvent.message_type = g_atomKickIdle;
+//   if(!g_windowX11Client)
+//   {
 //
-//   dummyEvent.type = ClientMessage;
+//      return;
 //
-//   dummyEvent.window = g_windowX11Client;
+//   }
 //
-//   dummyEvent.format = 32;
+//   //sync_lock sl(x11_mutex());
 //
-//   XSendEvent(g_pdisplayX11, g_windowX11Client, 0, 0, (XEvent*)&dummyEvent);
+//   char ch = 1;
 //
-//   XFlush(g_pdisplayX11);
+//   ::write(g_fdX11[1], &ch, 1);
 //
-}
+////   windowing_output_debug_string("\n::x11_kick_idle");
+////
+////   xdisplay d(g_pdisplayX11);
+////
+////   XClientMessageEvent dummyEvent;
+////
+////   memset(&dummyEvent, 0, sizeof(XClientMessageEvent));
+////
+////   dummyEvent.message_type = g_atomKickIdle;
+////
+////   dummyEvent.type = ClientMessage;
+////
+////   dummyEvent.window = g_windowX11Client;
+////
+////   dummyEvent.format = 32;
+////
+////   XSendEvent(g_pdisplayX11, g_windowX11Client, 0, 0, (XEvent*)&dummyEvent);
+////
+////   XFlush(g_pdisplayX11);
+////
+//}
 
 
 extern ::mutex * g_pmutexX11Runnable;

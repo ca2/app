@@ -232,6 +232,14 @@ void element::receive_response(const ::var& var)
 }
 
 
+::var element::promise()
+{
+
+   return ::success;
+
+}
+
+
 #ifdef WINDOWS
 
 
@@ -456,31 +464,43 @@ const char * element::topic_text() const
 }
 
 
-void element::call_update(const ::__id & id, const ::action_context & context)
+void element::call_update(const ::__id& id)
 {
 
-   //auto pupdate = new_update();
+   auto pupdate = new_update();
 
-   //pupdate->m_id = id;
+   pupdate->m_id = id;
 
-   //pupdate->m_actioncontext = context;
-
-   //call_update(pupdate);
+   call_update(pupdate);
 
 }
 
 
-
-
-
-void element::call_update(const ::__id & id)
+void element::call_update(const ::__id& id, const ::action_context& context)
 {
 
-   //auto pupdate = new_update();
+   auto pupdate = new_update();
 
-   //pupdate->m_id = id;
+   pupdate->m_id = id;
 
-   //call_update(pupdate);
+   pupdate->m_actioncontext = context;
+
+   call_update(pupdate);
+
+}
+
+
+void element::call_update(::update* pupdate)
+{
+
+   if (!pupdate->handled_by(this))
+   {
+
+      pupdate->set_handled_by(this);
+
+      this->update(pupdate);
+
+   }
 
 }
 
@@ -495,34 +515,19 @@ void element::update(::update * pupdate)
 bool element::already_handled(::update * pupdate) const
 {
 
-  //if (::is_set(pupdate))
-  //{
+  if (::is_set(pupdate))
+  {
 
-  //   if (pupdate->handled_by(this))
-  //   {
+      if (pupdate->handled_by(this))
+      {
 
-  //      return true;
+         return true;
 
-  //   }
+      }
 
-  //}
+  }
 
   return false;
-
-}
-
-
-void element::call_update(::update * pupdate)
-{
-
-   //if (!pupdate->handled_by(this))
-   //{
-
-   //   pupdate->set_handled_by(this);
-
-   //   this->update(pupdate);
-
-   //}
 
 }
 

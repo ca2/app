@@ -222,6 +222,7 @@ public:
    virtual ::estatus call();
    virtual void call(const ::var & var);
    virtual ::estatus run();
+   virtual ::var realize();
    virtual void receive_response(const ::var& var);
 
    virtual void clear_member() { }

@@ -2009,7 +2009,7 @@ namespace filemanager
       else if (pupdate->m_id == id_filter)
       {
 
-         if (pupdate->value(id_filter).is_empty())
+         if (pupdate->m_set[(const ::id &)id_filter].is_empty())
          {
 
             FilterClose();
@@ -2020,7 +2020,7 @@ namespace filemanager
 
             FilterBegin();
 
-            Filter1(pupdate->value(id_filter));
+            Filter1(pupdate->m_set[(const ::id &)id_filter]);
 
          }
 
@@ -2039,7 +2039,7 @@ namespace filemanager
       else if (pupdate->m_id == id_after_browse)
       {
 
-         if (pupdate->value(id_after_browse) == "filemanager\\replace_name_in_file_system.xhtml")
+         if (pupdate->m_set[(const ::id &)id_after_browse] == "filemanager\\replace_name_in_file_system.xhtml")
          {
 
             //html::element * pelemental = dynamic_cast < html::element * > (pupdate->m_pformview->get_html_data()->get_element_by_name("encontrar"));
@@ -2055,7 +2055,7 @@ namespace filemanager
             if (pitem)
             {
 
-               pinteraction->_001SetText(pupdate->value(id_name), pupdate->m_actioncontext);
+               pinteraction->_001SetText(pupdate->m_set[(const ::id &)id_name], pupdate->m_actioncontext);
 
             }
 
@@ -2064,12 +2064,12 @@ namespace filemanager
          if (pupdate->m_id == id_replace_name)
          {
 
-            if (pupdate->value(id_find).has_char())
+            if (pupdate->m_set[(const ::id &)id_find].has_char())
             {
 
                ::file::path pathFolder = filemanager_item()->get_user_path();
 
-               Context.file().replace(pathFolder, pupdate->value(id_find), pupdate->value(id_replace));
+               Context.file().replace(pathFolder, pupdate->m_set[(const ::id &)id_find], pupdate->m_set[(const ::id &)id_replace]);
 
             }
 
@@ -2077,10 +2077,10 @@ namespace filemanager
          else if (pupdate->m_id == id_new_folder)
          {
 
-            if (pupdate->value(id_folder).has_char())
+            if (pupdate->m_set[(const ::id &)id_folder].has_char())
             {
 
-               ::file::path pathFolder = filemanager_item()->get_user_path() / pupdate->value(id_folder);
+               ::file::path pathFolder = filemanager_item()->get_user_path() / pupdate->m_set[(const ::id &)id_folder];
 
                Context.dir().mk(pathFolder);
 

@@ -44,15 +44,15 @@ namespace user
          if(pupdate->m_id == id_browse)
          {
 
-            if(!pupdate->value(id_form).is_empty())
+            if(!pupdate->m_set[(const ::id &)id_form].is_empty())
             {
 
-               string strMatter = Context.dir().matter(pupdate->value(id_form));
+               string strMatter = Context.dir().matter(pupdate->m_set[(const ::id &)id_form]);
 
                if(get_document()->on_open_document(strMatter))
                {
 
-                  m_strPath = pupdate->value(id_form);
+                  m_strPath = pupdate->m_set[(const ::id &)id_form];
 
                }
 
@@ -62,7 +62,7 @@ namespace user
          else if(pupdate->m_id == id_get_form_view)
          {
 
-            pupdate->value(id_form) = this;
+            pupdate->m_set[(const ::id &)id_form] = this;
 
          }
 
@@ -71,7 +71,7 @@ namespace user
       if(m_pcallback != nullptr)
       {
 
-         pupdate->value(id_form) = this;
+         pupdate->m_set[(const ::id &)id_form] = this;
 
          m_pcallback->update(pupdate);
 
@@ -91,7 +91,7 @@ namespace user
          return estatus;
 
       }
-         
+
       estatus = ::user::form_view::initialize(pobjectContext);
 
       if (!estatus)
@@ -111,7 +111,7 @@ namespace user
       }
 
       return estatus;
-   
+
    }
 
 

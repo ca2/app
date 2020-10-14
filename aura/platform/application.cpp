@@ -610,9 +610,9 @@ namespace aura
    {
 
       pcreate->set_context_object(this);
-      
+
       pcreate->set_context(this);
-      
+
       pcreate->set_context_app(this);
 
       if (pcreate->m_ecommand == ::command_protocol)

@@ -1623,6 +1623,10 @@ public:
 
    inline set & operator = (bool b) { m_eset = (b ? set_true : set_false); return *this; }
 
+   inline bool operator == (bool b) const { return (m_eset == set_true && b) || (m_eset == set_false && !b); }
+
+   inline bool operator != (bool b) const { return !operator ==(b); }
+
    inline set& operator = (const ::set& set) { if (this != &set && !set.undefined()) { m_eset = set.m_eset; }; return *this; }
 
    inline void defer(int i) { if(is_empty()) operator =(i); }
@@ -2538,9 +2542,14 @@ inline bool failed(const ::property & set) { return !::succeeded(set); }
 
 #include "acme/primitive/collection/pointer_array.h"
 
-using id_array = ::comparable_array < id >;
+#include "acme/primitive/primitive/id_array.h"
 
-using element_array = __pointer_array(element);
+#include "acme/primitive/primitive/element_array.h"
+
+
+
+
+
 
 
 

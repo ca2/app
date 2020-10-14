@@ -1,6 +1,21 @@
 #include "console_common.h"
 
 
+void process_main();
+
+
+
+int main(int argc, TCHAR ** argv)
+{
+
+   process_set_args(argc, argv);
+
+   process_main();
+
+   return process_get_status();
+
+}
+
 #if !defined(CUBE)
 
 

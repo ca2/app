@@ -3446,7 +3446,7 @@ namespace user
       if (pupdate->m_id == id_get_topic_view_id)
       {
 
-         pupdate->value(id_id) = get_cur_tab_id();
+         pupdate->m_set[(const ::id &)id_id] = get_cur_tab_id();
 
          pupdate->m_bRet = true;
 
@@ -3454,7 +3454,7 @@ namespace user
       else if (pupdate->m_id == id_set_topic_view_by_id)
       {
 
-         set_cur_tab_by_id(pupdate->value(id_id));
+         set_cur_tab_by_id(pupdate->m_set[(const ::id &)id_id]);
 
          pupdate->m_bRet = true;
 

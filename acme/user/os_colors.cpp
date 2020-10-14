@@ -12,14 +12,6 @@ namespace user
    bool g_bAppDarkMode;
 
 
-   void defer_calc_os_dark_mode()
-   {
-
-      system_call_update(id_calc_os_dark_mode);
-
-   }
-
-
    CLASS_DECL_ACME void set_system_dark_mode(bool bDark)
    {
 
@@ -39,8 +31,6 @@ namespace user
    CLASS_DECL_ACME bool is_system_dark_mode()
    {
 
-      defer_calc_os_dark_mode();
-
       return g_bSystemDarkMode;
 
    }
@@ -53,7 +43,7 @@ namespace user
 
    }
 
-   
+
    ::color g_colorSystemAppBackground;
 
 
@@ -125,6 +115,5 @@ COLORREF argb_swap_rb(COLORREF cr)
       colorref_get_r_value(cr));
 
 }
-
 
 

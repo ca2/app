@@ -9,6 +9,8 @@ class simple_ui_display :
 public:
 
 
+   bool                             m_bDarkModeModified;
+   bool                             m_bInvalidated;
    string_array                     m_stra;
    string                           m_strTitle;
    string                           m_strFontName;
@@ -64,7 +66,15 @@ public:
 
    GC create_gc();
 
-   void on_expose();
+   virtual void invalidate();
+
+   virtual void on_idle(Display * pdisplay) override;
+
+   void on_expose(Display * pdisplay);
+
+   void call_expose(Display * pdisplay);
+
+   virtual void update(::update * pupdate) override;
 
    void on_layout(Display * pdisplay);
 

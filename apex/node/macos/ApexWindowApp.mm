@@ -192,6 +192,8 @@ if(str != nil)
    }
    
 }
+
+
 - (void)applicationWillFinishLaunching:(NSNotification *)notification
 {
    
@@ -199,11 +201,12 @@ if(str != nil)
    
    os_system_start();
 
+   NSAppleEventManager *appleEventManager = [NSAppleEventManager sharedAppleEventManager];
 
-NSAppleEventManager *appleEventManager = [NSAppleEventManager sharedAppleEventManager];// 1
-[appleEventManager setEventHandler:self andSelector:@selector(handleGetURLEvent:withReplyEvent:) forEventClass:kInternetEventClass andEventID:kAEGetURL];
+   [appleEventManager setEventHandler:self andSelector:@selector(handleGetURLEvent:withReplyEvent:) forEventClass:kInternetEventClass andEventID:kAEGetURL];
    
 }
+
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {

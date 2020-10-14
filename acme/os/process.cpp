@@ -1123,3 +1123,72 @@ CLASS_DECL_ACME i32 get_current_process_affinity_order()
 
 
 
+
+int g_iProcessStatus = 0;
+
+
+int process_get_status()
+{
+
+   return g_iProcessStatus;
+
+}
+
+
+void process_set_status(int iStatus)
+{
+
+   g_iProcessStatus = iStatus;
+
+}
+
+
+int g_argc = 0;
+
+
+TCHAR ** g_argv = nullptr;
+
+
+void process_set_args(int argc, TCHAR ** argv)
+{
+
+   g_argc = argc;
+
+   g_argv = argv;
+
+}
+
+
+int * process_get_pargc()
+{
+
+   return &g_argc;
+
+}
+
+
+int process_get_argc()
+{
+
+   return *process_get_pargc();
+
+}
+
+
+TCHAR *** process_get_pargv()
+{
+
+   return &g_argv;
+
+}
+
+
+TCHAR ** process_get_argv()
+{
+
+   return *process_get_pargv();
+
+}
+
+
+

@@ -30,13 +30,13 @@ namespace user
       if (pupdate->m_id == id_browse)
       {
 
-         if (!pupdate->value(id_form).is_empty())
+         if (!pupdate->m_set[(const ::id &)id_form].is_empty())
          {
 
-            if (get_document()->on_open_document(pupdate->value(id_form)))
+            if (get_document()->on_open_document(pupdate->m_set[(const ::id &)id_form]))
             {
 
-               m_strPath = pupdate->value(id_form);
+               m_strPath = pupdate->m_set[(const ::id &)id_form];
 
             }
 
@@ -46,14 +46,14 @@ namespace user
       else if (pupdate->m_id == id_get_form_view)
       {
 
-         pupdate->value(id_form) = this;
+         pupdate->m_set[(const ::id &)id_form] = this;
 
       }
 
       if(m_pcallback != nullptr)
       {
 
-         pupdate->value(id_form) = this;
+         pupdate->m_set[(const ::id &)id_form] = this;
 
          m_pcallback->call_update(pupdate);
 

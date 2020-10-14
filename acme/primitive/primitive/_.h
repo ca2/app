@@ -22,6 +22,11 @@
 #include "acme/primitive/primitive/property_set_papaya.h"
 
 
+#include "acme/user/_const_key.h"
+
+
+#include "update.h"
+
 // class CLASS_DECL_ACME parents :
 //    virtual public ::element
 // {

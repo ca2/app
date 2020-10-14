@@ -1263,7 +1263,7 @@ namespace apex
       }
 
       set_main_struct(*m_papplicationStartup);
-      
+
       estatus = system_init();
 
       if (!estatus)
@@ -7198,7 +7198,7 @@ namespace apex
          }
 
       }
-      else if(pupdate->m_id == id_calc_os_dark_mode)
+      else if(pupdate->m_id == id_dark_mode)
       {
 
          defer_calc_os_dark_mode();
@@ -7245,16 +7245,8 @@ namespace apex
    {
 
 #ifdef LINUX
-      string strTheme = ::os::get_os_desktop_theme();
 
-      if(strTheme.contains_ci("dark"))
-      {
-         ::user::set_app_dark_mode(true);
-      }
-      else
-      {
-      ::user::set_app_dark_mode(false);
-      }
+      ::user::os_calc_dark_mode();
 
 #elif defined(WINDOWS_DESKTOP)
 
@@ -7303,7 +7295,7 @@ namespace apex
 
    }
 
-   
+
    __namespace_system_factory(system);
 
 

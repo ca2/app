@@ -784,7 +784,7 @@ void html_form_view::update(::update * pupdate)
 
          defer_html_layout();
 
-         on_document_complete(pupdate->value(id_url));
+         on_document_complete(pupdate->m_set[(const ::id &)id_url]);
 
          GetParentFrame()->SetActiveView(this);
 
@@ -800,24 +800,26 @@ void html_form_view::update(::update * pupdate)
       if (pupdate->m_id == id_browse)
       {
 
-         if (!pupdate->value(id_form).is_empty())
+         if (!pupdate->m_set[(const ::id &)id_form].is_empty())
          {
 
             ::file::path matter;
 
-            matter = Context.dir().matter(pupdate->value(id_form));
+            matter = Context.dir().matter(pupdate->m_set[(const ::id &)id_form]);
 
             if (get_document()->on_open_document(matter))
             {
 
-               m_strPath = pupdate->value(id_form);
+               m_strPath = pupdate->m_set[(const ::id &)id_form];
 
             }
 
          }
          else if (pupdate->m_id == id_get_form_view)
          {
-            pupdate->value(id_form) = this;
+
+            pupdate->m_set[(const ::id &)id_form] = this;
+
          }
 
       }
@@ -825,7 +827,7 @@ void html_form_view::update(::update * pupdate)
       if (m_pcallback != nullptr)
       {
 
-         pupdate->value(id_form) = this;
+         pupdate->m_set[(const ::id &)id_form] = this;
 
          m_pcallback->call_update(pupdate);
 
@@ -863,7 +865,7 @@ void html_view::update(::update * pupdate)
 
          }
 
-         on_document_complete(pupdate->value(id_url));
+         on_document_complete(pupdate->m_set[(const ::id &)id_url]);
 
          set_need_layout();
 

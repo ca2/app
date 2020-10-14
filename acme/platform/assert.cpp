@@ -5,19 +5,19 @@
 #endif
 
 
-#if defined(__APPLE__) 
+//#if defined(__APPLE__)
 
-void _os_message_box(const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, ::future future);
+//void _os_message_box(const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, ::future future);
 
-#elif defined(_UWP)
+//#elif defined(_UWP)
 
-::estatus _os_message_box(const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, ::future future);
+//::estatus _os_message_box(const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, ::future future);
 
-#else
+//#else
 
 ::estatus _os_message_box(const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox);
 
-#endif
+//#endif
 
 CLASS_DECL_ACME int __cpp_assert_failed_line(const char * pszFileName, int iLineNumber);
 
@@ -28,7 +28,6 @@ CLASS_DECL_ACME string message_box_result_to_string(int iResult);
 namespace acme
 {
 
-
    class os_message_box :
       virtual public ::element
    {
@@ -38,11 +37,12 @@ namespace acme
       string            m_strText;
       string            m_strTitle;
       ::emessagebox     m_emessagebox;
-      ::future          m_future;
 
 
-      os_message_box(const string & strText, const string & strTitle, ::emessagebox emessagebox, ::future future) :
-         m_strText(strText), m_strTitle(strTitle), m_emessagebox(emessagebox), m_future(future)
+      os_message_box(const string & strText, const string & strTitle, ::emessagebox emessagebox) :
+         m_strText(strText),
+         m_strTitle(strTitle),
+         m_emessagebox(emessagebox)
       {
 
       }
@@ -54,68 +54,35 @@ namespace acme
       }
 
 
-      virtual ::estatus run() override
-      {
-
-         int iMessageBox = m_emessagebox.m_eenum & 0x7f;
-
-         int iResult = 0;
-
-#ifdef WINDOWS_DESKTOP
-
-         wstring wstrText(m_strText);
-
-         wstring wstrTitle(m_strTitle);
-
-         iResult = ::MessageBox(nullptr, wstrText, wstrTitle, iMessageBox);
-         string strResult = message_box_result_to_string(iResult);
-
-                 m_future.send(strResult);
-#elif defined(LINUX)
-
-         x11_message_box(m_strText, m_strTitle, m_emessagebox, m_future);
-
-         return ::success;
-
-#elif defined(_UWP) || defined(__APPLE__)
-
-         _os_message_box(m_strText, m_strTitle, m_emessagebox, m_future);
-
-            //   string strResult = message_box_result_to_string(iResult);
-
-            //   m_future.send(strResult);
-
-            //});
-
-#else
-
-         iResult = _os_message_box(m_strText, m_strTitle, m_emessagebox);
-         string strResult = message_box_result_to_string(iResult);
-
-         m_future.send(strResult);
-
-
-#endif
-
-         return ::success;
-
-      }
+      virtual var realize() override;
 
 
    };
 
 
+   var os_message_box::realize()
+   {
+
+      int iMessageBox = m_emessagebox.m_eenum & 0x7f;
+
+      int iResult = ::_os_message_box(m_strText, m_strTitle, iMessageBox);
+
+      string strResult = message_box_result_to_string(iResult);
+
+      return strResult;
+
+   }
+
+
 } // namespace acme
 
 
-::estatus os_message_box(const char* pszText, const char* pszTitle, ::emessagebox emessagebox, ::future future)
+::estatus os_message_box(const char * pszText, const char * pszTitle, ::emessagebox emessagebox, ::future future)
 {
 
-   auto posmessagebox = __new(::acme::os_message_box(pszText, pszTitle, emessagebox, future));
+   auto posmessagebox = __new(::acme::os_message_box(pszText, pszTitle, emessagebox));
 
-   posmessagebox->os_fork();
-
-   return ::success;
+   return __launch(posmessagebox, future);
 
 }
 

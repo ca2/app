@@ -225,7 +225,7 @@ namespace filemanager
 
          auto pupdate = new_update();
 
-         pupdate->value(DOCUMENT_ID) = pdocument;
+         pupdate->m_set[(const ::id &)DOCUMENT_ID] = pdocument;
 
          pupdate->m_pfileitem = itema.get_first_pointer();
 
@@ -957,7 +957,7 @@ namespace filemanager
 
          auto pupdate = new_update();
 
-         pupdate->value(id_document) = this;
+         pupdate->m_set[(const ::id &)id_document] = this;
 
          pupdate->m_id = id_topic_ok;
 
@@ -980,7 +980,7 @@ namespace filemanager
 
          auto pupdate = new_update();
 
-         pupdate->value(id_document) = this;
+         pupdate->m_set[(const ::id &)id_document] = this;
 
          pupdate->m_id = id_topic_ok;
 
@@ -1001,7 +1001,7 @@ namespace filemanager
 
          auto pupdate = new_update();
 
-         pupdate->value(id_document) = this;
+         pupdate->m_set[(const ::id &)id_document] = this;
 
          pupdate->m_id = id_topic_ok;
 
@@ -1021,7 +1021,7 @@ namespace filemanager
 
       auto pupdate = new_update();
 
-      pupdate->value(id_document) = this;
+      pupdate->m_set[(const ::id &)id_document] = this;
 
       browse(path, ::source_database);
 
@@ -1048,7 +1048,7 @@ namespace filemanager
 
       auto pupdate = new_update();
 
-      pupdate->value(id_document) = this;
+      pupdate->m_set[(const ::id &)id_document] = this;
 
       if (bInitialBrowsePath)
       {
@@ -1138,12 +1138,12 @@ namespace filemanager
 
       pupdate->m_id = id_initialize;
 //      update.m_uiId = filemanager_data()->m_iDocument;
-      pupdate->value(id_document) = this;
+      pupdate->m_set[(const ::id &)id_document] = this;
       update_all_views(pupdate);
 
       pupdate->m_id = id_synchronize_locations;
       //update.m_uiId = filemanager_data()->m_iDocument;
-      pupdate->value(id_document) = this;
+      pupdate->m_set[(const ::id &)id_document] = this;
       pupdate->m_actioncontext = ::source_sync;
       update_all_views(pupdate);
 
@@ -1155,7 +1155,7 @@ namespace filemanager
 
       auto pupdate = new_update();
 //      update.m_uiId = filemanager_data()->m_iDocument;
-      pupdate->value(id_document) = this;
+      pupdate->m_set[(const ::id &)id_document] = this;
       pupdate->m_id = id_create_bars;
       update_all_views(pupdate);
       pupdate->m_id = id_pop;
@@ -1284,7 +1284,7 @@ namespace filemanager
 
       auto pupdate = new_update();
 
-      pupdate->value(id_document) = this;
+      pupdate->m_set[(const ::id &)id_document] = this;
 
       pupdate->m_id = id_topic_start;
 
@@ -1305,7 +1305,7 @@ namespace filemanager
       m_emode = ::userfs::mode_import;
 
       auto pupdate = new_update();
-      pupdate->value(id_document) = this;
+      pupdate->m_set[(const ::id &)id_document] = this;
       pupdate->m_id = id_topic_start;
       update_all_views(pupdate);
       pupdate->m_id = id_create_bars;
@@ -1322,7 +1322,7 @@ namespace filemanager
       m_emode = ::userfs::mode_export;
 
       auto pupdate = new_update();
-      pupdate->value(id_document) = this;
+      pupdate->m_set[(const ::id &)id_document] = this;
       pupdate->m_id = id_topic_start;
       update_all_views(pupdate);
       pupdate->m_id = id_create_bars;

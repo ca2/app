@@ -1,17 +1,21 @@
 #include "framework.h"
+#include "acme/id.h"
 #include "_x11.h"
+
+
+void acme_defer_os_init_windowing();
 
 
 simple_ui_display::simple_ui_display(const string & strMessageParam, const string & strTitle, ::emessagebox emessagebox, ::future future):
    m_strTitle(strTitle),
    m_strFontName("serif"),
    m_size(300, 200),
-   m_future(future)
+   m_future(future),
+   m_bDarkModeModified(false),
+   m_bInvalidated(false)
 {
 
-   ::user::defer_calc_os_dark_mode();
-
-   //::user::initialize_edesktop();
+   acme_defer_os_init_windowing();
 
    common_construct();
 
@@ -73,6 +77,8 @@ void simple_ui_display::common_construct()
 
 simple_ui_display::~ simple_ui_display()
 {
+
+   ::update_notification_task::remove(id_dark_mode, this);
 
    sync_lock sl(x11_mutex());
 
@@ -218,17 +224,82 @@ GC simple_ui_display::create_gc()
 }
 
 
-
-
-
-void simple_ui_display::on_expose()
+void simple_ui_display::call_expose(Display * pdisplay)
 {
 
-   sync_lock sl(x11_mutex());
+   XWindowAttributes a{};
 
-   Display * pdisplay = x11_get_display();
+   XGetWindowAttributes(pdisplay, m_window, &a);
 
-   XLockDisplay(pdisplay);
+   if(a.width > 0 && a.height > 0)
+   {
+
+      m_size.cx = a.width;
+
+      m_size.cy = a.height;
+
+   }
+
+   on_expose(pdisplay);
+
+}
+
+
+void simple_ui_display::update(::update * pupdate)
+{
+
+   if(pupdate->m_id == id_dark_mode)
+   {
+
+      m_bDarkModeModified = true;
+
+      invalidate();
+
+   }
+
+}
+
+
+void simple_ui_display::invalidate()
+{
+
+   m_bInvalidated = true;
+
+   x11_kick_idle();
+
+}
+
+
+void simple_ui_display::on_idle(Display * pdisplay)
+{
+
+   if(m_bInvalidated)
+   {
+
+      m_bInvalidated = false;
+
+      call_expose(pdisplay);
+
+   }
+
+}
+
+
+void simple_ui_display::on_expose(Display * pdisplay)
+{
+
+   //sync_lock sl(x11_mutex());
+
+   //Display * pdisplay = x11_get_display();
+
+   //XLockDisplay(pdisplay);
+
+   if(m_bDarkModeModified)
+   {
+
+      on_colors(pdisplay);
+
+   }
 
    try
    {
@@ -459,7 +530,6 @@ void simple_ui_display::on_expose()
 //         XFreeGC(pdisplay, m_gcButtonHover);
 //         XFreeGC(pdisplay, m_gcButtonPress);
 
-         XFlush(pdisplay);
 
 //         XFreeGC(pdisplay, gc);
 
@@ -471,7 +541,7 @@ void simple_ui_display::on_expose()
 
    }
 
-   XUnlockDisplay(pdisplay);
+   //XUnlockDisplay(pdisplay);
 
 
 }
@@ -480,112 +550,120 @@ void simple_ui_display::on_expose()
 ::estatus simple_ui_display::show()
 {
 
-   sync_lock sl(x11_mutex());
-
-   Display * pdisplay = x11_get_display();
-
-   XLockDisplay(pdisplay);
-
-   try
    {
 
-      m_iScreen = DefaultScreen(pdisplay);
+      sync_lock sl(x11_mutex());
 
-      //printf("Default Screen %pdisplay\n", iScreen);
+      Display * pdisplay = x11_get_display();
 
-      auto windowRoot = DefaultRootWindow(pdisplay);
+      XLockDisplay(pdisplay);
 
-      //printf("Default Root Window %" PRId64 "\n", windowRoot);
+      try
+      {
 
-      XSetWindowAttributes attr={};
+         m_iScreen = DefaultScreen(pdisplay);
 
-      m_pvisual = get_32bit_visual(pdisplay);
+         //printf("Default Screen %pdisplay\n", iScreen);
 
-      m_colormap = XCreateColormap(pdisplay, windowRoot, m_pvisual, AllocNone);
+         auto windowRoot = DefaultRootWindow(pdisplay);
 
-      attr.colormap = m_colormap;
-      attr.border_pixel = 0;
-      attr.background_pixel = ARGB(255, 255, 255, 255);
-      attr.event_mask =
-         KeyPressMask |
-         KeyReleaseMask |
-         ButtonPressMask |
-         ButtonReleaseMask |
-         EnterWindowMask |
-         LeaveWindowMask |
-         PointerMotionMask |
-         ExposureMask |
-         VisibilityChangeMask |
-         StructureNotifyMask |
-         FocusChangeMask |
-         PropertyChangeMask |
-         ColormapChangeMask;
+         //printf("Default Root Window %" PRId64 "\n", windowRoot);
 
-//      char **missingCharset_list = NULL;
-//
-//      int missingCharset_count = 0;
-//
-//      m_fs = XCreateFontSet(pdisplay,
-//         "-*-*-medium-r-*-*-*-140-75-75-*-*-*-*" ,
-//         &missingCharset_list, &missingCharset_count, NULL);
-//
-//      if (missingCharset_count)
-//      {
-//
-//         fprintf(stderr, "Missing charsets :\n");
-//
-//         for(int i = 0; i < missingCharset_count; i++)
-//         {
-//
-//            fprintf(stderr, "%s\n", missingCharset_list[i]);
-//
-//         }
-//
-//         XFreeStringList(missingCharset_list);
-//
-//      }
+         XSetWindowAttributes attr={};
+
+         m_pvisual = get_32bit_visual(pdisplay);
+
+         m_colormap = XCreateColormap(pdisplay, windowRoot, m_pvisual, AllocNone);
+
+         attr.colormap = m_colormap;
+         attr.border_pixel = 0;
+         attr.background_pixel = ARGB(255, 255, 255, 255);
+         attr.event_mask =
+            KeyPressMask |
+            KeyReleaseMask |
+            ButtonPressMask |
+            ButtonReleaseMask |
+            EnterWindowMask |
+            LeaveWindowMask |
+            PointerMotionMask |
+            ExposureMask |
+            VisibilityChangeMask |
+            StructureNotifyMask |
+            FocusChangeMask |
+            PropertyChangeMask |
+            ColormapChangeMask;
+
+   //      char **missingCharset_list = NULL;
+   //
+   //      int missingCharset_count = 0;
+   //
+   //      m_fs = XCreateFontSet(pdisplay,
+   //         "-*-*-medium-r-*-*-*-140-75-75-*-*-*-*" ,
+   //         &missingCharset_list, &missingCharset_count, NULL);
+   //
+   //      if (missingCharset_count)
+   //      {
+   //
+   //         fprintf(stderr, "Missing charsets :\n");
+   //
+   //         for(int i = 0; i < missingCharset_count; i++)
+   //         {
+   //
+   //            fprintf(stderr, "%s\n", missingCharset_list[i]);
+   //
+   //         }
+   //
+   //         XFreeStringList(missingCharset_list);
+   //
+   //      }
 
 
-      m_window = XCreateWindow(
-            pdisplay, windowRoot,
-            0, 0, 1, 1, 0,
-            32,
-            InputOutput,
-            m_pvisual,
-            CWColormap |
-            CWBorderPixel |
-            CWBackPixel |
-            CWEventMask,
-            &attr);
+         m_window = XCreateWindow(
+               pdisplay, windowRoot,
+               0, 0, 1, 1, 0,
+               32,
+               InputOutput,
+               m_pvisual,
+               CWColormap |
+               CWBorderPixel |
+               CWBackPixel |
+               CWEventMask,
+               &attr);
 
-      //printf("Window created %" PRId64 "\n", m_window);
-      XStoreName(pdisplay, m_window, m_strTitle);
+         //printf("Window created %" PRId64 "\n", m_window);
+         XStoreName(pdisplay, m_window, m_strTitle);
 
-      const char * pszFont = "Ubuntu:size=12";
+         const char * pszFont = "Ubuntu:size=12";
 
-      m_pfont = XftFontOpenName(pdisplay, m_iScreen, pszFont);
+         m_pfont = XftFontOpenName(pdisplay, m_iScreen, pszFont);
 
-      m_pdraw = XftDrawCreate(pdisplay, m_window, m_pvisual, m_colormap);
+         m_pdraw = XftDrawCreate(pdisplay, m_window, m_pvisual, m_colormap);
 
-      on_alloc_colors(pdisplay);
+         system_call_update(id_dark_mode);
 
-      on_layout(pdisplay);
+         on_alloc_colors(pdisplay);
 
-      XMapWindow(pdisplay, m_window);
+         ::update_notification_task::add(id_dark_mode, this);
 
-      XResizeWindow(pdisplay, m_window, m_size.cx, m_size.cy);
+         on_layout(pdisplay);
 
-      XMoveWindow(pdisplay, m_window, m_point.x, m_point.y);
+         XMapWindow(pdisplay, m_window);
 
-      hook();
+         XResizeWindow(pdisplay, m_window, m_size.cx, m_size.cy);
+
+         XMoveWindow(pdisplay, m_window, m_point.x, m_point.y);
+
+         hook();
+
+      }
+      catch(...)
+      {
+
+      }
+
+      XUnlockDisplay(pdisplay);
 
    }
-   catch(...)
-   {
-
-   }
-
-   XUnlockDisplay(pdisplay);
 
    x11_defer_handle_just_hooks();
 
@@ -670,7 +748,9 @@ bool simple_ui_display::process_event(Display * pdisplay, XEvent & e, XGenericEv
       if (e.type == Expose)
       {
 
-         on_expose();
+         call_expose(pdisplay);
+
+         XFlush(pdisplay);
 
       }
       else if (e.type == MotionNotify)
@@ -699,7 +779,7 @@ bool simple_ui_display::process_event(Display * pdisplay, XEvent & e, XGenericEv
          if(bRedraw)
          {
 
-            on_expose();
+            call_expose(pdisplay);
 
          }
 
@@ -730,7 +810,7 @@ bool simple_ui_display::process_event(Display * pdisplay, XEvent & e, XGenericEv
          if(bRedraw)
          {
 
-            on_expose();
+            call_expose(pdisplay);
 
          }
 
@@ -771,7 +851,7 @@ bool simple_ui_display::process_event(Display * pdisplay, XEvent & e, XGenericEv
          if(bRedraw)
          {
 
-            on_expose();
+            call_expose(pdisplay);
 
          }
 

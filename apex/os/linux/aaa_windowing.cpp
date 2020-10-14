@@ -4455,12 +4455,13 @@ CLASS_DECL_APEX void defer_dock_application(int_bool bDock)
 void sn_start_context();
 
 
+void acme_defer_os_init_windowing();
+
+
 int_bool os_init_windowing()
 {
 
-   pipe(g_fdX11);
-
-   g_pmutexX11 = new ::mutex();
+   acme_defer_os_init_windowing();
 
    g_pmutexX11Runnable = new ::mutex();
 
@@ -4842,51 +4843,6 @@ int_bool WINAPI SetWindowPos(oswindow hWnd,oswindow hWndInsertAfter,i32 X,i32 Y,
 
    return hWnd->set_window_pos(hWndInsertAfter, X, Y, cx, cy, uFlags);
 
-}
-
-void x11_kick_idle()
-{
-
-   if(!g_pdisplayX11)
-   {
-
-      return;
-
-   }
-
-   if(!g_windowX11Client)
-   {
-
-      return;
-
-   }
-
-   //sync_lock sl(x11_mutex());
-
-   char ch = 1;
-
-   ::write(g_fdX11[1], &ch, 1);
-
-//   windowing_output_debug_string("\n::x11_kick_idle");
-//
-//   xdisplay d(g_pdisplayX11);
-//
-//   XClientMessageEvent dummyEvent;
-//
-//   memset(&dummyEvent, 0, sizeof(XClientMessageEvent));
-//
-//   dummyEvent.message_type = g_atomKickIdle;
-//
-//   dummyEvent.type = ClientMessage;
-//
-//   dummyEvent.window = g_windowX11Client;
-//
-//   dummyEvent.format = 32;
-//
-//   XSendEvent(g_pdisplayX11, g_windowX11Client, 0, 0, (XEvent*)&dummyEvent);
-//
-//   XFlush(g_pdisplayX11);
-//
 }
 
 

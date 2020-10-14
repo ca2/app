@@ -10,8 +10,10 @@ Display * x11_get_display();
 
 Visual * get_32bit_visual(Display * pdisplay);
 
+void x11_kick_idle();
 
-
+void x11_wait_timer_or_event(Display * pdisplay);
+void __x11_hook_on_idle(Display * pdisplay);
 //
 //#include "acme/user/_const.h"
 //#include "acme/user/_const_key.h"

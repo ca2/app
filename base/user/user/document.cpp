@@ -319,7 +319,7 @@ namespace user
 
       update_all_views(pupdate.get());
 
-      return pupdate->value(id_id);
+      return pupdate->m_set[(const ::id &) id_id];
 
    }
 
@@ -331,7 +331,7 @@ namespace user
 
       pupdate->m_id = id_get_topic_view_id;
 
-      pupdate->value(id_id) = id;
+      pupdate->m_set[(const ::id &)id_id] = id;
 
       update_all_views(pupdate);
 

@@ -53,52 +53,52 @@
 
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
-class pmutex_lock
-{
-public:
-
-   pthread_mutex_t * m_pmutex;
-
-   bool m_bLock;
-
-   pmutex_lock(pthread_mutex_t * pmutex, bool bStartLocked = true) :
-      m_pmutex(pmutex)
-   {
-
-      if(bStartLocked)
-      {
-
-         lock();
-
-
-      }
-
-
-   }
-
-   ~pmutex_lock()
-   {
-
-
-   }
-
-
-   void lock()
-   {
-
-      pthread_mutex_lock(m_pmutex);
-
-   }
-
-
-   void unlock()
-   {
-
-      pthread_mutex_unlock(m_pmutex);
-
-   }
-
-};
+//class pmutex_lock
+//{
+//public:
+//
+//   pthread_mutex_t * m_pmutex;
+//
+//   bool m_bLock;
+//
+//   pmutex_lock(pthread_mutex_t * pmutex, bool bStartLocked = true) :
+//      m_pmutex(pmutex)
+//   {
+//
+//      if(bStartLocked)
+//      {
+//
+//         lock();
+//
+//
+//      }
+//
+//
+//   }
+//
+//   ~pmutex_lock()
+//   {
+//
+//
+//   }
+//
+//
+//   void lock()
+//   {
+//
+//      pthread_mutex_lock(m_pmutex);
+//
+//   }
+//
+//
+//   void unlock()
+//   {
+//
+//      pthread_mutex_unlock(m_pmutex);
+//
+//   }
+//
+//};
 
 
 void os_post_quit();

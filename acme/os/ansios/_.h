@@ -10,6 +10,9 @@ CLASS_DECL_ACME void* memmem(const void* l, size_t l_len, const void* s, size_t 
 #endif
 
 
+#include "pmutex_lock.h"
+
+
 #include "datetime_c.h"
 
 

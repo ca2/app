@@ -36,6 +36,10 @@ off_t tell64(int fd);
 
 //int_bool gdk_launch_uri(const char * pszUri, char * pszError = NULL, int iBufferSize = 0);
 
+::estatus os_defer_init_gtk();
+
+#include "gdk.h"
+
 
 typedef struct _cairo_rectangle_int cairo_rectangle_int_t;
 typedef cairo_rectangle_int_t         GdkRectangle;
@@ -47,8 +51,8 @@ void copy(GdkRectangle * prectTarget, const RECT * prectSource);
 namespace os
 {
 
-  string get_os_desktop_theme();
-  string get_wallpaper(::index iIndex);
+    string get_os_desktop_theme();
+    string get_wallpaper(::index iIndex);
 
 } // namespace os
 

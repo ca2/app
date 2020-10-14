@@ -153,12 +153,7 @@ i32 _c_XErrorHandler(Display * display, XErrorEvent * perrorevent);
 
 #if !defined(__SANITIZE_ADDRESS__)
 
-   if(!gtk_init_check(&psystem->m_argc, &psystem->m_argv))
-   {
-
-      return ::error_failed;
-
-   }
+   os_defer_init_gtk();
 
 #endif
 

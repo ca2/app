@@ -1,16 +1,16 @@
 #pragma once
 
 
-class CLASS_DECL_APEX update :
-   virtual public ::context_object
+class CLASS_DECL_ACME update :
+   virtual public ::element
 {
 public:
 
 
-   ::u64                                  m_uId; // this 'id' <=== 'update {id}'
+   ::id                                   m_id;
    bool                                   m_bRet;
    __pointer(::layered)                   m_psender;
-   __pointer(::object)                    m_pobjectTopic;
+   __pointer(::layered)                   m_pobjectTopic;
    ::action_context                       m_actioncontext;
    address_array < ::element * >          m_handledbya;
    __pointer(::layered)                   m_puserinteraction; // user::interaction
@@ -18,14 +18,15 @@ public:
    __pointer(::file::item)                m_pfileitem;
    ::user::e_key                          m_ekey;
    ::var                                  m_var;
+   ::property_set                         m_set;
 
 
    update();
    virtual ~update();
 
 
-   ::update & operator =(::u64 uId) { m_uId = uId; return *this; }
-   inline bool operator ==(::u64 uId) const { return m_uId == uId || m_uId == FULL_ID; }
+   ::update & operator =(::i64 iId) { m_id = iId; return *this; }
+   inline bool operator ==(::i64 iId) const { return m_id == iId || m_id == FULL_ID; }
 
 
    void set_handled_by(const ::element * pobject) { m_handledbya.add((::element *) pobject); }
@@ -33,7 +34,7 @@ public:
 
 
    template < typename CAST >
-   __pointer(CAST) cast(const ::id & id) { return operator[](id).cast < CAST >(); }
+   __pointer(CAST) cast(const ::id & id) { return m_set[id].cast < CAST >(); }
 
 
 };

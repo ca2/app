@@ -36,11 +36,11 @@ public:
    virtual void         finalize() override;
 
 
-   
 
 
 
-   
+
+
    template < typename TYPE >
    inline ::estatus __construct_new(__pointer(TYPE)& pbase);
 
@@ -80,7 +80,7 @@ public:
    virtual stream & write(::stream & stream) const override;
    virtual stream & read(::stream & stream) override;
 
-   
+
    template < typename TYPE >
    inline __pointer(TYPE) cast() {return this;}
 
@@ -184,9 +184,9 @@ public:
    virtual strsize sz_len() const override;
    virtual void to_sz(char * sz, strsize len) const override;
 
-   virtual void call_update(const ::__id& id, const ::action_context& context) override;
-   virtual void call_update(const ::__id& id) override;
-   virtual void call_update(::update* pupdate) override;
+   //virtual void call_update(const ::__id& id, const ::action_context& context) override;
+   //virtual void call_update(const ::__id& id) override;
+   //virtual void call_update(::update* pupdate) override;
 
 
 };
@@ -200,4 +200,4 @@ using reference_pointer = __pointer(::context_object);
 
 
 template < typename TYPE > inline __pointer(TYPE) __cast(::element * p) { return dynamic_cast <TYPE *> (p); }
-   
+

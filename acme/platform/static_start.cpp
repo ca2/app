@@ -538,6 +538,8 @@ namespace acme
 
       g_pcsGlobal = new critical_section();
 
+      ::update_notification_task::g_pcs = new critical_section();
+
       g_pelementaddraReleaseOnEnd = new element_address_array();
 
 #ifndef __MCRTDBG
@@ -944,6 +946,8 @@ namespace acme
 #endif
 
       delete_all_release_on_end();
+
+      ::update_notification_task::post_destroy_all();
 
       ::acme::del(g_pelementaddraReleaseOnEnd);
 

@@ -1,5 +1,5 @@
 #include "framework.h"
-
+#include "acme/id.h"
 //extern thread_pointer < os_thread > t_posthread;
 //extern thread_pointer < hthread > t_hthread;
 
@@ -147,3 +147,19 @@ int get_proc_cpuinfo_core_count()
 
 // }
 
+
+
+
+int os_get_system_update_poll_time(::i64 iUpdate)
+{
+
+   if(iUpdate == id_dark_mode)
+   {
+
+      return 300;
+
+   }
+
+   return 500;
+
+}

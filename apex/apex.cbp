@@ -1210,17 +1210,11 @@
 		<Unit filename="primitive/primitive/_.cpp" />
 		<Unit filename="primitive/primitive/_.h" />
 		<Unit filename="primitive/primitive/_defer.h" />
-		<Unit filename="primitive/primitive/_factory_impl.h" />
-		<Unit filename="primitive/primitive/_factory_prefix.h" />
 		<Unit filename="primitive/primitive/_impl.h" />
-		<Unit filename="primitive/primitive/_memory.h" />
 		<Unit filename="primitive/primitive/_property_set_composite_impl.h" />
 		<Unit filename="primitive/primitive/action_context.h" />
-		<Unit filename="primitive/primitive/application_bias.h" />
-		<Unit filename="primitive/primitive/command.h" />
 		<Unit filename="primitive/primitive/command_line.cpp" />
 		<Unit filename="primitive/primitive/command_line.h" />
-		<Unit filename="primitive/primitive/compare_pred.h" />
 		<Unit filename="primitive/primitive/context_object.cpp" />
 		<Unit filename="primitive/primitive/context_object.h" />
 		<Unit filename="primitive/primitive/create.cpp" />
@@ -1230,8 +1224,6 @@
 		<Unit filename="primitive/primitive/object_meta.cpp" />
 		<Unit filename="primitive/primitive/object_meta.h" />
 		<Unit filename="primitive/primitive/property_set_papaya.h" />
-		<Unit filename="primitive/primitive/update.cpp" />
-		<Unit filename="primitive/primitive/update.h" />
 		<Unit filename="process/_.h" />
 		<Unit filename="process/department.cpp" />
 		<Unit filename="process/department.h" />

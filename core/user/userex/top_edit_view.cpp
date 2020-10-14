@@ -2,7 +2,7 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
 #endif
-#include "aura/update.h" 
+#include "aura/update.h"
 
 
 namespace userex
@@ -129,7 +129,7 @@ namespace userex
 
             pupdate->m_puserinteraction = this;
 
-            pupdate->value(id_enter_key_pressed) = bEnterKeyPressed;
+            pupdate->m_set[(const ::id &)id_enter_key_pressed] = bEnterKeyPressed;
 
             pdocument->update_all_views(pupdate);
 

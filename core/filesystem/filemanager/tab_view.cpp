@@ -83,19 +83,19 @@ namespace filemanager
          if (pimpactdata->m_id == "new_folder")
          {
 
-            pupdate->value(FORM_ID) = "matter://filemanager/new_folder.html";
+            pupdate->m_set[(const ::id &)FORM_ID] = "matter://filemanager/new_folder.html";
 
          }
          if (pimpactdata->m_id == "replace_name")
          {
 
-            pupdate->value(FORM_ID) = "matter://filemanager/replace_name_in_file_system.html";
+            pupdate->m_set[(const ::id &)FORM_ID] = "matter://filemanager/replace_name_in_file_system.html";
 
          }
          else if (pimpactdata->m_id == "add_location")
          {
 
-            pupdate->value(FORM_ID) = "matter://filemanager/add_location_1.html";
+            pupdate->m_set[(const ::id &)FORM_ID] = "matter://filemanager/add_location_1.html";
 
          }
 

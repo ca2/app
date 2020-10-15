@@ -34,6 +34,16 @@ inline auto __future(PRED pred)
 }
 
 
+inline auto __async_future()
+{
+
+   return __future([](const ::var& var){ });
+
+}
+
+
+
+
 
 inline var operator + (var var, const ::future& future)
 {

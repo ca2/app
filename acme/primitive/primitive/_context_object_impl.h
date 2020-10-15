@@ -1,6 +1,40 @@
 #pragma once
 
 
+inline bool context_object::has_property(const id & id) const { return m_pset && m_pset->has_property(id); }
+inline property * context_object::lookup_property(const id& id) const { return m_pset ? m_pset->find(id) : nullptr; }
+inline bool context_object::remove_key(const id & id) { return m_pset && m_pset->remove_by_name(id); }
+inline property_set & context_object::get_property_set() { defer_propset(); return *m_pset; }
+inline const property_set & context_object::get_property_set() const { ((context_object *)this)->defer_propset(); return *m_pset; }
+
+
+inline ::i64_array& context_object::idarray() const { if (!m_pia) ((context_object*)this)->m_pia.create_new(); return *m_pia; }
+
+inline bool context_object::contains(const property_set & set) const
+{
+
+  if (set.isEmpty())
+  {
+
+     return true;
+
+  }
+
+  if (m_pset.is_null())
+  {
+
+     return false;
+
+  }
+
+  return m_pset->contains(set);
+
+}
+
+inline void context_object::defer_propset() { if (!m_pset) ::__construct_new(m_pset); }
+
+
+
 inline property * context_object::find_property(const id & id) const
 {
 

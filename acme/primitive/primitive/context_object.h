@@ -181,7 +181,7 @@ public:
 
    virtual property * on_fetch_property(const ::id & id) const;
 
-   virtual ::object * parent_property_set_holder() const;
+   virtual ::context_object * parent_property_set_holder() const;
 
    virtual void to_string(const string_exchange & str) const override;
    virtual strsize sz_len() const override;

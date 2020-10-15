@@ -2654,6 +2654,8 @@ namespace core
 
 #include "acme/exception/_.h"
 
+#include "acme/primitive/primitive/context_object.h"
+
 #include "acme/primitive/comparison/var_strict.h"
 
 #include "acme/filesystem/filesystem/path.h"
@@ -3959,6 +3961,9 @@ namespace draw2d
 
 
 #include "acme/primitive/primitive/_var_impl.h"
+
+
+#include "acme/primitive/primitive/_context_object_impl.h"
 
 
 

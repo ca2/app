@@ -19,7 +19,7 @@ object::object(::layered * pobjectContext)
    m_pmeta = nullptr;
 
    set_layer(0, this);
-   
+
    initialize(pobjectContext);
 
    //m_pObjectThis = nullptr;
@@ -494,13 +494,13 @@ void object::set_topic_text(const ::string & strTopicText)
 #endif
 
    set_context_object(pobjectContext);
-   
+
    set_context_app(::get_context_application(pobjectContext));
 
    set_context_session(::get_context_session(pobjectContext));
 
    set_context_system(::get_context_system(pobjectContext));
-   
+
    auto pcontext = ::get_context(pobjectContext);
 
    if (pcontext)
@@ -1002,7 +1002,7 @@ void object::release_references()
          {
 
             release_composite(p);
-            
+
          }
          catch (...)
          {
@@ -1123,7 +1123,7 @@ bool object::__is_composite(::element * pobject) const
 // ->at simple objects (from set_finish point of view)...
 // ->for objects that doesn't have custom finalization
 // set_finish calls set_finish_composites and finalize.
-// 
+//
 // ->for complex objects (from set_finish point of view)...
 // ->for objects that have custom finalization
 // set_finish wouldn't call *finalize*,
@@ -1577,6 +1577,7 @@ __pointer(::object) object::running(const char * pszTag) const
 
 }
 
+
 ::object * object::parent_property_set_holder() const
 {
 
@@ -1779,23 +1780,23 @@ string object::get_text(const var& var, const ::id& id)
 
    if (!estatus)
    {
-      
+
       string strMessage(pszMessage);
-      
+
       string strTitle(pszTitle);
-      
+
       if(strTitle.is_empty())
       {
-         
+
          auto papp = get_context_application();
-         
+
          if(papp)
          {
-         
+
             strTitle = papp->get_app_user_friendly_task_bar_name();
-            
+
          }
-         
+
       }
 
       estatus = ::os_message_box(strMessage, strTitle, emessagebox, future);

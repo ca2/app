@@ -352,10 +352,10 @@ stream & context_object::read(::stream & stream)
 
 
 
-::object * context_object::parent_property_set_holder() const
+::context_object * context_object::parent_property_set_holder() const
 {
 
-   return get_context_application();
+   return nullptr;
 
 }
 

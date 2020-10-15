@@ -19,7 +19,7 @@
 //#include "apex/primitive/primitive/virtual_memory.h"
 //
 //
-#include "apex/primitive/primitive/property_set_papaya.h"
+//#include "apex/primitive/primitive/property_set_papaya.h"
 //
 //
 //// class CLASS_DECL_APEX parents :

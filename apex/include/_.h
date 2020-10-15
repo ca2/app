@@ -2485,7 +2485,7 @@ typedef ::estatus THREAD_PROCEDURE(thread_parameter parameter);
 //#include "apex/primitive/primitive/member.h"
 
 
-#include "apex/primitive/primitive/context_object.h"
+//#include "apex/primitive/primitive/context_object.h"
 
 
 //#include "apex/primitive/primitive/trait.h"

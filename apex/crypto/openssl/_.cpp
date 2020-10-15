@@ -2,7 +2,52 @@
 #include "_openssl.h"
 
 
-i32 crypto_encrypt(memory& storageEncrypt, const memory& storageDecrypt, memory& key)
+#include "crypto_openssl.h"
+
+
+#include <openssl/ssl.h>
+#include <openssl/md5.h>
+#include <openssl/err.h>
+
+//int SHA1_Init(SHA_CTX* c);
+//int SHA1_Update(SHA_CTX* c, const void* data, size_t len);
+//int SHA1_Final(unsigned char* md, SHA_CTX* c);
+//unsigned char* SHA1(const unsigned char* d, size_t n, unsigned char* md);
+//void SHA1_Transform(SHA_CTX* c, const unsigned char* data);
+
+namespace str
+{
+
+
+   CLASS_DECL_APEX void from(string & str, const MD5_CTX & ctx)
+   {
+
+      unsigned char digest[MD5_DIGEST_LENGTH];
+
+      MD5_Final(digest, (MD5_CTX *)&ctx);
+
+      str = ::hex::lower_from(digest, MD5_DIGEST_LENGTH);
+
+   }
+
+
+   CLASS_DECL_APEX void from(string & str, const WHIRLPOOL_CTX & ctx)
+   {
+
+      unsigned char digest[WHIRLPOOL_DIGEST_LENGTH];
+
+      WHIRLPOOL_Final(digest, (WHIRLPOOL_CTX *) &ctx);
+
+      str = ::hex::lower_from(digest, WHIRLPOOL_DIGEST_LENGTH);
+
+   }
+
+
+} // namespace str
+
+
+
+i32 crypto_encrypt(memory & storageEncrypt, const memory & storageDecrypt, memory & key)
 {
    i32 plainlen = (i32)storageDecrypt.get_size();
    i32 cipherlen, tmplen;

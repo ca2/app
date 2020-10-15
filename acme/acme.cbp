@@ -1263,6 +1263,7 @@
 		<Unit filename="primitive/primitive/_.cpp" />
 		<Unit filename="primitive/primitive/_.h" />
 		<Unit filename="primitive/primitive/_c_memory.h" />
+		<Unit filename="primitive/primitive/_context_object_impl.h" />
 		<Unit filename="primitive/primitive/_defer.h" />
 		<Unit filename="primitive/primitive/_factory_impl.h" />
 		<Unit filename="primitive/primitive/_factory_prefix.h" />
@@ -1294,6 +1295,8 @@
 		<Unit filename="primitive/primitive/command.cpp" />
 		<Unit filename="primitive/primitive/command.h" />
 		<Unit filename="primitive/primitive/compare_pred.h" />
+		<Unit filename="primitive/primitive/context_object.cpp" />
+		<Unit filename="primitive/primitive/context_object.h" />
 		<Unit filename="primitive/primitive/context_object_traits.cpp" />
 		<Unit filename="primitive/primitive/edit.cpp" />
 		<Unit filename="primitive/primitive/edit.h" />

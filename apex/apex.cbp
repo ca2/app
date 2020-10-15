@@ -1215,8 +1215,6 @@
 		<Unit filename="primitive/primitive/action_context.h" />
 		<Unit filename="primitive/primitive/command_line.cpp" />
 		<Unit filename="primitive/primitive/command_line.h" />
-		<Unit filename="primitive/primitive/context_object.cpp" />
-		<Unit filename="primitive/primitive/context_object.h" />
 		<Unit filename="primitive/primitive/create.cpp" />
 		<Unit filename="primitive/primitive/create.h" />
 		<Unit filename="primitive/primitive/object.cpp" />

@@ -114,7 +114,7 @@ namespace filemanager
 
                auto pinteraction = get_child_by_name("name");
 
-               pinteraction->_001GetText(pupdate->m_set[(const ::id &)id_text]);
+               pinteraction->_001GetText(pupdate->value(id_text));
 
                auto pdocument = filemanager_document();
 

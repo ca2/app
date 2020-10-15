@@ -583,7 +583,7 @@ namespace userfs
          if (pupdate->m_id == id_filter)
          {
 
-            if (pupdate->m_set[(const ::id &)id_filter].is_empty())
+            if (pupdate->value(id_filter).is_empty())
             {
                //               FilterClose();
             }

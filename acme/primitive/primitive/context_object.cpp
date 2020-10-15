@@ -78,7 +78,7 @@ public:
 
 string get_message_text(UINT message, bool bWithNumbers);
 
-CLASS_DECL_APEX void debug_debug_reference()
+CLASS_DECL_ACME void debug_debug_reference()
 {
    auto message = WM_CREATE;
 #if OSBIT == 64

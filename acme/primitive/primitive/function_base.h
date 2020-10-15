@@ -7,11 +7,14 @@ public:
 
 
    ::id                       m_id;
-   __pointer(element)       m_pobjectTask;
+   __pointer(element)         m_pobjectTask;
 
 
    function_base(const ::id & id = ::id(), ::element * p = nullptr) : m_id(id), m_pobjectTask(p) {}
    function_base(const ::function_base& functionbase) : m_id(functionbase.m_id), m_pobjectTask(functionbase.m_pobjectTask) { }
+
+
+   inline operator bool () const { return ::is_set(m_pobjectTask); }
 
 
 };

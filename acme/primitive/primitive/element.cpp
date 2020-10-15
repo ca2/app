@@ -232,7 +232,7 @@ void element::receive_response(const ::var& var)
 }
 
 
-::var element::promise()
+::var element::realize()
 {
 
    return ::success;

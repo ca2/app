@@ -28,9 +28,9 @@ public:
    XftFont *                        m_pfont;
    XftDraw *                        m_pdraw;
    //XFontSet                         m_fs;
-   char **                          m_listMissingCharset;
-   GC                               m_gcText;
-   GC                               m_gcTextHover;
+   //char **                          m_listMissingCharset;
+   //GC                               m_gcText;
+   //GC                               m_gcTextHover;
    //GC                               m_gcBar;
    XftColor                         m_colorButton;
    XftColor                         m_colorButtonHover;
@@ -55,12 +55,17 @@ public:
    XftColor                         m_colorFaceHover;
    XftColor                         m_colorFacePress;
 
-   ::future                         m_future;
+   int                              m_iResult;
 
 
-   simple_ui_display(const string & strMessage, const string & strTitle, ::emessagebox emessagebox, ::future future);
-
+   simple_ui_display(const string & strMessage, const string & strTitle, ::emessagebox emessagebox);
    ~simple_ui_display();
+
+
+   virtual i64 add_ref(OBJ_REF_DBG_PARAMS);
+   virtual i64 dec_ref(OBJ_REF_DBG_PARAMS);
+   virtual i64 release(OBJ_REF_DBG_PARAMS);
+
 
    void common_construct();
 
@@ -86,11 +91,14 @@ public:
 
    virtual bool process_event(Display * pdisplay, XEvent & e, XGenericEventCookie * cookie) override;
 
-   ::estatus show();
+   int show();
 
    void on_show();
 
-   bool on_click(const char * pszResult);
+   bool on_click(int iResult);
+
+   virtual void close_window();
+
 
 };
 

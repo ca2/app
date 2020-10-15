@@ -3652,7 +3652,6 @@ retry_license:
    //}
 
 
-
    ::estatus application::init1()
    {
 

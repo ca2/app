@@ -6,7 +6,7 @@
 
 
 critical_section * update_notification_task::g_pcs = nullptr;
-::i64_map < update_notification_task * > * update_notification_task::g_pmap = nullptr;
+::i64_map < __pointer(update_notification_task) > * update_notification_task::g_pmap = nullptr;
 bool update_notification_task::g_bDestroyAll = false;
 
 
@@ -21,36 +21,13 @@ update_notification_task::update_notification_task()
 update_notification_task::~update_notification_task()
 {
 
-   cslock sl(g_pcs);
-
-   g_pmap->remove_key(m_iUpdate);
-
-   if(g_pmap->is_empty())
-   {
-
-      auto pmap = g_pmap;
-
-      g_pmap = nullptr;
-
-      delete pmap;
-
-      if(g_bDestroyAll)
-      {
-
-         ::acme::del(g_pcs);
-
-      }
-
-   }
-
 }
 
 
 ::estatus update_notification_task::run()
 {
 
-
-   while(true)
+   while(!g_bDestroyAll)
    {
 
       if(m_bModified)
@@ -101,8 +78,6 @@ update_notification_task::~update_notification_task()
 
    }
 
-   delete this;
-
    return ::success;
 
 }
@@ -116,7 +91,7 @@ void update_notification_task::notify()
 }
 
 
-update_notification_task * & update_notification_task::task(::i64 iUpdate)
+__pointer(update_notification_task) & update_notification_task::task(::i64 iUpdate)
 {
 
    cslock sl(g_pcs);
@@ -124,7 +99,7 @@ update_notification_task * & update_notification_task::task(::i64 iUpdate)
    if(!g_pmap)
    {
 
-      g_pmap = new i64_map < update_notification_task * >;
+      g_pmap = new i64_map < __pointer(update_notification_task) >;
 
    }
 
@@ -168,11 +143,36 @@ void update_notification_task::remove(::element * pelement)
 void update_notification_task::remove(::i64 iUpdate, ::element * pelement)
 {
 
-   cslock sl(::update_notification_task::g_pcs);
+   cslock sl(g_pcs);
 
    auto & ptask = update_notification_task::task(iUpdate);
 
    ptask->remove(pelement);
+
+//   if(ptask->m_elementa.is_empty())
+//   {
+//
+//      g_pmap->remove_key(ptask->m_iUpdate);
+//
+//      if(g_pmap->is_empty())
+//      {
+//
+//         auto pmap = g_pmap;
+//
+//         g_pmap = nullptr;
+//
+//         delete pmap;
+//
+//         if(g_bDestroyAll)
+//         {
+//
+//            ::acme::del(g_pcs);
+//
+//         }
+//
+//      }
+//
+//   }
 
 }
 
@@ -214,13 +214,6 @@ void update_notification_task::post_destroy_all()
    }
 
    g_bDestroyAll = true;
-
-   for(auto & ptask : g_pmap->values())
-   {
-
-      ptask->m_elementa.remove_all();
-
-   }
 
 }
 

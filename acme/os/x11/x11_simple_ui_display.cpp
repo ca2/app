@@ -6,11 +6,10 @@
 void acme_defer_os_init_windowing();
 
 
-simple_ui_display::simple_ui_display(const string & strMessageParam, const string & strTitle, ::emessagebox emessagebox, ::future future):
+simple_ui_display::simple_ui_display(const string & strMessageParam, const string & strTitle, ::emessagebox emessagebox):
    m_strTitle(strTitle),
    m_strFontName("serif"),
    m_size(300, 200),
-   m_future(future),
    m_bDarkModeModified(false),
    m_bInvalidated(false)
 {
@@ -30,36 +29,60 @@ simple_ui_display::simple_ui_display(const string & strMessageParam, const strin
    switch(uType)
    {
       case MB_OKCANCEL:
-         m_buttona.add(__new(x11_button("OK", "ok")));
-         m_buttona.add(__new(x11_button("Cancel", "cancel")));
+         m_buttona.add(__new(x11_button("OK", IDOK)));
+         m_buttona.add(__new(x11_button("Cancel", IDCANCEL)));
          break;
       case MB_ABORTRETRYIGNORE:
-         m_buttona.add(__new(x11_button("Abort", "abort")));
-         m_buttona.add(__new(x11_button("Retry", "retry")));
-         m_buttona.add(__new(x11_button("Ignore", "ignore")));
+         m_buttona.add(__new(x11_button("Abort", IDABORT)));
+         m_buttona.add(__new(x11_button("Retry", IDRETRY)));
+         m_buttona.add(__new(x11_button("Ignore", IDIGNORE)));
          break;
       case MB_YESNOCANCEL:
-         m_buttona.add(__new(x11_button("Yes", "yes")));
-         m_buttona.add(__new(x11_button("No", "no")));
-         m_buttona.add(__new(x11_button("Cancel", "cancel")));
+         m_buttona.add(__new(x11_button("Yes", IDYES)));
+         m_buttona.add(__new(x11_button("No", IDNO)));
+         m_buttona.add(__new(x11_button("Cancel", IDCANCEL)));
          break;
       case MB_YESNO:
-         m_buttona.add(__new(x11_button("Yes", "yes")));
-         m_buttona.add(__new(x11_button("No", "no")));
+         m_buttona.add(__new(x11_button("Yes", IDYES)));
+         m_buttona.add(__new(x11_button("No", IDNO)));
          break;
       case MB_RETRYCANCEL:
-         m_buttona.add(__new(x11_button("Retry", "retry")));
-         m_buttona.add(__new(x11_button("Cancel", "cancel")));
+         m_buttona.add(__new(x11_button("Retry", IDRETRY)));
+         m_buttona.add(__new(x11_button("Cancel", IDCANCEL)));
          break;
       case MB_CANCELTRYCONTINUE:
-         m_buttona.add(__new(x11_button("Cancel", "cancel")));
-         m_buttona.add(__new(x11_button("Try", "try")));
-         m_buttona.add(__new(x11_button("Continue", "continue")));
+         m_buttona.add(__new(x11_button("Cancel", IDCANCEL)));
+         m_buttona.add(__new(x11_button("Try", IDRETRY)));
+         m_buttona.add(__new(x11_button("Continue", IDCONTINUE)));
          break;
       default:
-         m_buttona.add(__new(x11_button("OK", "ok")));
+         m_buttona.add(__new(x11_button("OK", IDOK)));
          break;
    }
+
+}
+
+
+i64 simple_ui_display::add_ref(OBJ_REF_DBG_PARAMS)
+{
+
+   return x11_hook::add_ref(OBJ_REF_DBG_ADD_ARGS);
+
+}
+
+
+i64 simple_ui_display::dec_ref(OBJ_REF_DBG_PARAMS)
+{
+
+   return x11_hook::dec_ref(OBJ_REF_DBG_ADD_ARGS);
+
+}
+
+
+i64 simple_ui_display::release(OBJ_REF_DBG_PARAMS)
+{
+
+   return x11_hook::release(OBJ_REF_DBG_ADD_ARGS);
 
 }
 
@@ -70,15 +93,13 @@ void simple_ui_display::common_construct()
    m_iMargin = 10;
    m_iMarginTop = 40;
    m_iMarginLine = 10;
-   m_listMissingCharset = NULL;
+   //m_listMissingCharset = NULL;
 
 }
 
 
 simple_ui_display::~ simple_ui_display()
 {
-
-   ::update_notification_task::remove(id_dark_mode, this);
 
    sync_lock sl(x11_mutex());
 
@@ -90,7 +111,7 @@ simple_ui_display::~ simple_ui_display()
 
    on_free_colors(pdisplay);
 
-   XFreeStringList(m_listMissingCharset);
+//   XFreeStringList(m_listMissingCharset);
    XDestroyWindow(pdisplay, m_window);
    XFreeColormap(pdisplay, m_colormap);
 
@@ -547,7 +568,7 @@ void simple_ui_display::on_expose(Display * pdisplay)
 }
 
 
-::estatus simple_ui_display::show()
+int simple_ui_display::show()
 {
 
    {
@@ -667,7 +688,7 @@ void simple_ui_display::on_expose(Display * pdisplay)
 
    x11_defer_handle_just_hooks();
 
-   return ::success;
+   return m_iResult;
 
 }
 
@@ -699,7 +720,6 @@ void simple_ui_display::on_layout(Display * pdisplay)
    m_size = m_size.max(size);
 
    m_iButtonTop = m_size.cy - m_iButtonHeight - m_iMarginLine * 2;
-
 
    int iScreenCount = 0;
 
@@ -835,7 +855,7 @@ bool simple_ui_display::process_event(Display * pdisplay, XEvent & e, XGenericEv
                if(pbutton->m_rect.contains(point))
                {
 
-                  if(on_click(pbutton->m_strResult))
+                  if(on_click(pbutton->m_iResult))
                   {
 
                      break;
@@ -866,17 +886,24 @@ bool simple_ui_display::process_event(Display * pdisplay, XEvent & e, XGenericEv
 }
 
 
-
-bool simple_ui_display::on_click(const char * pszResult)
+void simple_ui_display::close_window()
 {
-
-   string strResult(pszResult);
-
-   m_future.send(strResult);
 
    XUnmapWindow(x11_get_display(), m_window);
 
    unhook();
+
+   ::update_notification_task::remove(id_dark_mode, this);
+
+}
+
+
+bool simple_ui_display::on_click(int iResult)
+{
+
+   m_iResult = iResult;
+
+   close_window();
 
    return true;
 

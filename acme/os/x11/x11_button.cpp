@@ -2,9 +2,9 @@
 #include "_x11.h"
 
 
-x11_button::x11_button(const char * psz, const char * pszResult) :
+x11_button::x11_button(const char * psz, int iResult) :
    m_strLabel(psz),
-   m_strResult(pszResult)
+   m_iResult(iResult)
 {
 
    m_bTextRect = false;

@@ -1345,6 +1345,8 @@
 		<Unit filename="primitive/primitive/pointer.h" />
 		<Unit filename="primitive/primitive/pointer2.h" />
 		<Unit filename="primitive/primitive/primitive_update.h" />
+		<Unit filename="primitive/primitive/promise.cpp" />
+		<Unit filename="primitive/primitive/promise.h" />
 		<Unit filename="primitive/primitive/property.cpp" />
 		<Unit filename="primitive/primitive/property.h" />
 		<Unit filename="primitive/primitive/property_set.cpp" />
@@ -1511,6 +1513,7 @@
 		<Unit filename="process/process_department.h" />
 		<Unit filename="process/process_pipe.h" />
 		<Unit filename="process/process_process.h" />
+		<Unit filename="promise.cpp" />
 		<Unit filename="update.h" />
 		<Unit filename="user/_.h" />
 		<Unit filename="user/_const.h" />

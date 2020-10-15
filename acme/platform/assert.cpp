@@ -69,9 +69,7 @@ namespace acme
 
       int iResult = ::_os_message_box(m_strText, m_strTitle, m_emessagebox);
 
-      string strResult = message_box_result_to_string(iResult);
-
-      return strResult;
+      return iResult;
 
    }
 

@@ -13,10 +13,10 @@ public:
    XGlyphInfo        m_infoText;
    bool              m_bPress;
    bool              m_bHover;
-   string            m_strResult;
+   int               m_iResult;
 
 
-   x11_button(const char * psz, const char * pszResult);
+   x11_button(const char * psz, int iResult);
 
    virtual ~x11_button();
 

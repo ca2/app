@@ -55,14 +55,14 @@ GC x11_create_gc(Colormap colormap, Display* pdisplay, Window window, byte a, by
 }
 
 
-void x11_message_box(const string & str, const string & strTitle, ::emessagebox emessagebox, ::future future)
+int x11_message_box(const string & str, const string & strTitle, ::emessagebox emessagebox)
 {
 
    defer_init_x11();
 
-   auto pdisplay = __new(simple_ui_display(str, strTitle, emessagebox, future));
+   auto pdisplay = __new(simple_ui_display(str, strTitle, emessagebox));
 
-   pdisplay->show();
+   return pdisplay->show();
 
 }
 
@@ -72,14 +72,14 @@ CLASS_DECL_ACME string message_box_result_to_string(int iResult);
 
 CLASS_DECL_ACME void x11_message_box(const string & strMessage, const string & strTitle, ::emessagebox emessagebox, ::future future);
 
-::estatus os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, ::future future)
-{
-
-   x11_message_box(pszMessage, pszTitle, emessagebox, future);
-
-   return ::success;
-
-}
+//::estatus os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, ::future future)
+//{
+//
+//   x11_message_box(pszMessage, pszTitle, emessagebox, future);
+//
+//   return ::success;
+//
+//}
 
 
 bool g_bX11Idle = false;
@@ -264,6 +264,13 @@ void x11_handle_just_hooks()
       }
 
       x11_wait_timer_or_event(pdisplay);
+
+      if(__x11_hook_list_is_empty())
+      {
+
+         break;
+
+      }
 
    }
 

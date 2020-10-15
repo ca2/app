@@ -16,6 +16,7 @@ protected:
 
    element_array m_elementa;
 
+   static __pointer(update_notification_task) & task(::i64 iUpdate);
 
    virtual void add(::element * pelement);
    virtual void remove(::element * pelement);
@@ -25,7 +26,7 @@ public:
 
 
    static ::critical_section * g_pcs;
-   static ::i64_map < update_notification_task * > * g_pmap;
+   static ::i64_map < __pointer(update_notification_task) > * g_pmap;
    static bool g_bDestroyAll;
 
 
@@ -49,7 +50,6 @@ public:
 
    virtual ::estatus run() override;
 
-   static update_notification_task * & task(::i64 iUpdate);
    static void post_destroy_all();
 
    inline bool is_ending() { sync_lock sl(mutex()); return m_elementa.is_empty();};

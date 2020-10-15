@@ -44,11 +44,16 @@ namespace user
 
 
       virtual int _get_notification_area_action_count();
-      virtual bool _get_notification_area_action_info(char ** ppszName, char ** ppszId, char ** ppszLabel, char ** ppszAccelerator, char ** ppszDescription, int iIndex);
+      virtual const char * _get_notification_area_action_name(int iIndex);
+      virtual const char * _get_notification_area_action_id(int iIndex);
+      virtual const char * _get_notification_area_action_label(int iIndex);
+      virtual const char * _get_notification_area_action_accelerator(int iIndex);
+      virtual const char * _get_notification_area_action_description(int iIndex);
       virtual void call_notification_area_action(const char * pszId);
 
 
-      virtual bool notify_icon_insert_item(index iIndex, string strName, string strId = "", string strLabel = "", string strAccelerator = "", string strDescription = "");
+      virtual bool notify_icon_insert_item(index & iIndex, string strName, string strId = "", string strLabel = "", string strAccelerator = "", string strDescription = "");
+
 
    };
 

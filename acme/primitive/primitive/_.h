@@ -25,6 +25,9 @@
 #include "acme/user/_const_key.h"
 
 
+#include "acme/primitive/primitive/context_object.h"
+
+
 #include "acme/primitive/primitive/update.h"
 
 

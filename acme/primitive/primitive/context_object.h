@@ -11,7 +11,7 @@ class object;
 class runnable_array;
 
 
-class CLASS_DECL_APEX context_object :
+class CLASS_DECL_ACME context_object :
    virtual public layered
 {
 public:
@@ -105,8 +105,6 @@ public:
    inline const property_set & get_property_set() const;
    inline bool contains(const ::property_set & set) const;
 
-   inline var & value(const ::id & id);
-
    using element::set;
 
    template < typename TYPE >
@@ -127,8 +125,7 @@ public:
    template < typename TYPE >
    inline bool find_attribute(const ::id & id, TYPE & t);
 
-   inline var find_value(const ::id & id) const;
-   inline var find_value(const ::id & id, const var & varDefault) const;
+
 
    using element::get_context_object;
    inline var & get_context_object(const ::id & id);
@@ -140,8 +137,14 @@ public:
 
    inline var operator[](const ::id & id) const;
 
+   inline var & value(const ::id & id);
+
    inline var value(const ::id & id) const;
    inline var value(const ::id & id, const var & varDefault) const;
+
+   inline var find_value(const ::id & id) const;
+   inline var find_value(const ::id & id, const var & varDefault) const;
+
 
    inline string find_string(const ::id & id, const ansichar * pszDefault = nullptr) const;
 

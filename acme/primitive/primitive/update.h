@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ACME update :
-   virtual public ::element
+   virtual public ::context_object
 {
 public:
 
@@ -18,7 +18,6 @@ public:
    __pointer(::file::item)                m_pfileitem;
    ::user::e_key                          m_ekey;
    ::var                                  m_var;
-   ::property_set                         m_set;
 
 
    update();
@@ -33,9 +32,6 @@ public:
    bool handled_by(const ::element * pobject) const { return m_handledbya.has((::element *) pobject); }
 
 
-   template < typename CAST >
-   __pointer(CAST) cast(const ::id & id) { return m_set[id].cast < CAST >(); }
-
 
 };
 
@@ -44,6 +40,4 @@ using update_pointer = __pointer(::update);
 
 
 inline auto new_update() { return __new(::update); }
-
-
 

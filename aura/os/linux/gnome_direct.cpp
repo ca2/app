@@ -299,31 +299,31 @@ bool gnome_appindicator::init(user_notify_icon_bridge * pbridge)
 
          GtkActionEntry * entries = new GtkActionEntry[pbridge->_get_notification_area_action_count()];
 
-         gchar * ui_info = (gchar *) g_malloc(1024 * 1024);
+         string strInfo;
 
-         strcpy(ui_info, "<ui>");
+         strInfo += "<ui>";
 
-         strcat(ui_info, "  <popup name='IndicatorPopup'>");
+         strInfo += "  <popup name='IndicatorPopup'>";
 
          int iEntry = 0;
 
          for(int i = 0; i < iCount; i++)
          {
 
-            char * lpszName = nullptr;
-            char * pszId = nullptr;
-            char * pszLabel = nullptr;
-            char * pszAccelerator = nullptr;
-            char * pszDescription = nullptr;
-
             int iIndex = i;
 
-            pbridge->_get_notification_area_action_info(&lpszName, &pszId, &pszLabel, &pszAccelerator, &pszDescription, iIndex);
+            const char * pszName = pbridge->_get_notification_area_action_name(iIndex);
+            const char * pszId = pbridge->_get_notification_area_action_id(iIndex);
+            const char * pszLabel = pbridge->_get_notification_area_action_label(iIndex);
+            const char * pszAccelerator = pbridge->_get_notification_area_action_accelerator(iIndex);
+            const char * pszDescription = pbridge->_get_notification_area_action_description(iIndex);
 
-            if(strcasecmp(lpszName, "separator") == 0)
+            memset(&entries[iEntry], 0, sizeof(GtkActionEntry));
+
+            if(strcasecmp(pszName, "separator") == 0)
             {
 
-               strcat(ui_info, "<separator/>\n");
+               strInfo += "<separator/>\n";
 
             }
             else
@@ -331,13 +331,13 @@ bool gnome_appindicator::init(user_notify_icon_bridge * pbridge)
 
                entries[iEntry].name = g_strdup(pszLabel);
 
-               strcat(ui_info, "    <menuitem action='");
-               strcat(ui_info, pszLabel);
-               strcat(ui_info, "' />");
+               strInfo += "    <menuitem action='";
+               strInfo += pszLabel;
+               strInfo += "' />";
 
                entries[iEntry].stock_id = g_strdup(pszId);
 
-               entries[iEntry].label = g_strdup(lpszName);
+               entries[iEntry].label = g_strdup(pszName);
 
                //entries[iEntry].accelerator = g_strdup(pszAccelerator);
 
@@ -351,24 +351,18 @@ bool gnome_appindicator::init(user_notify_icon_bridge * pbridge)
 
             }
 
-
-            safe_free((void *) lpszName);
-            safe_free((void *) pszId);
-            safe_free((void *) pszLabel);
-            safe_free((void *) pszAccelerator);
-            safe_free((void *) pszDescription);
-
-
          }
 
-         strcat(ui_info, "  </popup>");
-         strcat(ui_info, "</ui>");
+         strInfo += "  </popup>";
+         strInfo += "</ui>";
 
          gtk_action_group_add_actions (action_group, entries, iEntry, pbridge);
 
          GtkUIManager * uim = gtk_ui_manager_new ();
 
          bool bOk = false;
+
+         gchar * ui_info = (gchar *) g_strdup(strInfo);
 
          if(uim != nullptr)
          {

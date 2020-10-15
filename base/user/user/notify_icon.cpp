@@ -492,10 +492,42 @@ namespace user
    }
 
 
-   bool notify_icon::_get_notification_area_action_info(char ** ppszName, char ** ppszId, char ** ppszLabel, char ** ppszAccelerator, char ** ppszDescription, int iIndex)
+   const char * notify_icon::_get_notification_area_action_name(int iIndex)
    {
 
-      return m_plistener->_get_notification_area_action_info(ppszName, ppszId, ppszLabel, ppszAccelerator, ppszDescription, iIndex);
+      return m_plistener->_get_notification_area_action_name(iIndex);
+
+   }
+
+
+   const char * notify_icon::_get_notification_area_action_id(int iIndex)
+   {
+
+      return m_plistener->_get_notification_area_action_id(iIndex);
+
+   }
+
+
+   const char * notify_icon::_get_notification_area_action_label(int iIndex)
+   {
+
+      return m_plistener->_get_notification_area_action_label(iIndex);
+
+   }
+
+
+   const char * notify_icon::_get_notification_area_action_accelerator(int iIndex)
+   {
+
+      return m_plistener->_get_notification_area_action_accelerator(iIndex);
+
+   }
+
+
+   const char * notify_icon::_get_notification_area_action_description(int iIndex)
+   {
+
+      return m_plistener->_get_notification_area_action_description(iIndex);
 
    }
 

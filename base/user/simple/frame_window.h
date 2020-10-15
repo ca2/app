@@ -102,14 +102,12 @@ public:
    virtual bool WindowDataSaveWindowRect() override;
    virtual bool WindowDataLoadWindowRect(bool bForceRestore = false, bool bInitialFramePosition = false) override;
 
-   
+
    virtual ::experience::frame * experience_get_frame();
 
    virtual bool LoadFrame(const char * pszMatter, u32 dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, ::user::interaction * puiParent = nullptr, ::create * pcreate = nullptr) override;
 
    void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics) override;
-
-   virtual void defer_create_notification_icon();
 
    virtual bool LoadToolBar(::type sptype,id idToolBar,const char * pszToolBar,u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
 
@@ -232,9 +230,6 @@ public:
    virtual bool frame_is_transparent() override;
 
 
-   virtual void OnNotifyIconContextMenu(UINT uiNotifyIcon) override;
-   virtual void OnNotifyIconLButtonDblClk(UINT uiNotifyIcon) override;
-   virtual void OnNotifyIconLButtonDown(UINT uiNotifyIcon) override;
 
 
    virtual void OnInitialFrameUpdate(bool bMakeVisible) override;
@@ -249,13 +244,20 @@ public:
 
    virtual void on_select_user_style();
 
+
+   virtual void defer_create_notification_icon();
+
+   virtual void OnNotifyIconContextMenu(UINT uiNotifyIcon) override;
+   virtual void OnNotifyIconLButtonDblClk(UINT uiNotifyIcon) override;
+   virtual void OnNotifyIconLButtonDown(UINT uiNotifyIcon) override;
+
    virtual void notification_area_action(const char * pszId);
 
    virtual void call_notification_area_action(const char * pszId) override;
 
    virtual string notification_area_get_xml_menu();
 
-   
+
 };
 
 

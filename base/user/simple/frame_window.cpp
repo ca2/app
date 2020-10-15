@@ -808,7 +808,7 @@ void simple_frame_window::_001OnCreate(::message::message * pmessage)
 
          index iNotifyIconItem = 0;
 
-         notify_icon_insert_item(iNotifyIconItem++, strAppTitle, "notify_icon_topic");
+         notify_icon_insert_item(iNotifyIconItem, strAppTitle, "notify_icon_topic");
 
          auto c = Application.applicationmenu().get_count();
 
@@ -816,7 +816,7 @@ void simple_frame_window::_001OnCreate(::message::message * pmessage)
          {
             auto& item = Application.applicationmenu()[i];
 
-            notify_icon_insert_item(iNotifyIconItem++, item.m_strName, item.m_strId);
+            notify_icon_insert_item(iNotifyIconItem, item.m_strName, item.m_strId);
 
          }
 
@@ -825,15 +825,15 @@ void simple_frame_window::_001OnCreate(::message::message * pmessage)
             && m_pframe->get_control_box()->has_button(::experience::button_transparent_frame))
          {
 
-            notify_icon_insert_item(iNotifyIconItem++, "separator");
+            notify_icon_insert_item(iNotifyIconItem, "separator");
 
-            notify_icon_insert_item(iNotifyIconItem++, _("Transparent Frame"), "transparent_frame");
+            notify_icon_insert_item(iNotifyIconItem, _("Transparent Frame"), "transparent_frame");
 
          }
 
-         notify_icon_insert_item(iNotifyIconItem++, "separator");
+         notify_icon_insert_item(iNotifyIconItem, "separator");
 
-         notify_icon_insert_item(iNotifyIconItem++, _("Exit"), "app_exit");
+         notify_icon_insert_item(iNotifyIconItem, _("Exit"), "app_exit");
 
          post_message(message_update_notify_icon);
 

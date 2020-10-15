@@ -6,6 +6,8 @@
 #endif
 
 
+
+
 #ifdef LINUX
 namespace linux { class appindicator; }
 #endif
@@ -13,6 +15,9 @@ namespace linux { class appindicator; }
 
 namespace user
 {
+
+
+
 
 
    class notify_icon_listener;
@@ -58,22 +63,6 @@ namespace user
       virtual ~notify_icon();
 
 
-
-      //virtual i64 add_ref(OBJ_REF_DBG_PARAMS) override
-      //{
-
-      //   return ::object::add_ref(OBJ_REF_DBG_ARGS);
-
-      //}
-
-
-      //virtual i64 dec_ref(OBJ_REF_DBG_PARAMS) override
-      //{
-
-      //   return ::object::dec_ref(OBJ_REF_DBG_ARGS);
-
-      //}
-
       void AddHiddenWindow(__pointer(::user::interaction) pwnd);
 
       #ifdef WINDOWS_DESKTOP
@@ -113,7 +102,11 @@ namespace user
       virtual void notify_icon_play(const char * action) override;
 #endif
       virtual int _get_notification_area_action_count() override;
-      virtual bool _get_notification_area_action_info(char ** ppszName, char ** ppszId, char ** ppszLabel, char ** ppszAccelerator, char ** ppszDescription, int iIndex) override;
+      virtual const char * _get_notification_area_action_name(int iIndex) override;
+      virtual const char * _get_notification_area_action_id(int iIndex) override;
+      virtual const char * _get_notification_area_action_label(int iIndex) override;
+      virtual const char * _get_notification_area_action_accelerator(int iIndex) override;
+      virtual const char * _get_notification_area_action_description(int iIndex) override;
       virtual void call_notification_area_action(const char * pszId) override;
 #endif
 

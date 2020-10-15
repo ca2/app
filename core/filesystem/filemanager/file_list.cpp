@@ -2064,12 +2064,12 @@ namespace filemanager
          if (pupdate->m_id == id_replace_name)
          {
 
-            if (pupdate->m_set[(const ::id &)id_find].has_char())
+            if (pupdate->value(id_find).has_char())
             {
 
                ::file::path pathFolder = filemanager_item()->get_user_path();
 
-               Context.file().replace(pathFolder, pupdate->m_set[(const ::id &)id_find], pupdate->m_set[(const ::id &)id_replace]);
+               Context.file().replace(pathFolder, pupdate->value(id_find), pupdate->value(id_replace));
 
             }
 

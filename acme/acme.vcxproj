@@ -1797,6 +1797,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="primitive\primitive\member.h" />
     <ClInclude Include="primitive\primitive\task.h" />
     <ClInclude Include="primitive\primitive\update.h" />
+    <ClInclude Include="primitive\primitive\_context_object_impl.h" />
     <ClInclude Include="primitive\primitive\_id_impl.h" />
     <ClInclude Include="primitive\primitive\_var_impl.h" />
     <ClInclude Include="update.h" />

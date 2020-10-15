@@ -800,17 +800,17 @@ void html_form_view::update(::update * pupdate)
       if (pupdate->m_id == id_browse)
       {
 
-         if (!pupdate->m_set[(const ::id &)id_form].is_empty())
+         if (!pupdate->value(id_form).is_empty())
          {
 
             ::file::path matter;
 
-            matter = Context.dir().matter(pupdate->m_set[(const ::id &)id_form]);
+            matter = Context.dir().matter(pupdate->value(id_form));
 
             if (get_document()->on_open_document(matter))
             {
 
-               m_strPath = pupdate->m_set[(const ::id &)id_form];
+               m_strPath = pupdate->value(id_form);
 
             }
 
@@ -818,7 +818,7 @@ void html_form_view::update(::update * pupdate)
          else if (pupdate->m_id == id_get_form_view)
          {
 
-            pupdate->m_set[(const ::id &)id_form] = this;
+            pupdate->value(id_form) = this;
 
          }
 
@@ -827,7 +827,7 @@ void html_form_view::update(::update * pupdate)
       if (m_pcallback != nullptr)
       {
 
-         pupdate->m_set[(const ::id &)id_form] = this;
+         pupdate->value(id_form) = this;
 
          m_pcallback->call_update(pupdate);
 

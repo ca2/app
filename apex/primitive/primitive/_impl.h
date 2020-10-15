@@ -155,22 +155,6 @@
 #include "acme/primitive/primitive/trait_pred.h"
 
 
-inline var context_object::topic(const ::id & id)
-{
-
-  auto pproperty = fetch_property(id);
-
-  if (!pproperty)
-  {
-
-     __throw(resource_exception());
-
-  }
-
-  return pproperty;
-
-}
-
 
 //inline ::index property_set::find_index(const ::id & id, ::index i) const
 //{

@@ -251,3 +251,22 @@ inline var & context_object::get_context_object(const ::id & id)
 
 }
 
+
+
+
+inline var context_object::topic(const ::id& id)
+{
+
+   auto pproperty = fetch_property(id);
+
+   if (!pproperty)
+   {
+
+      __throw(resource_exception());
+
+   }
+
+   return pproperty;
+
+}
+

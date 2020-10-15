@@ -2255,6 +2255,9 @@
     <ClInclude Include="multithreading\update_notification_task.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\primitive\_context_object_impl.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">

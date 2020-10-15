@@ -8,7 +8,7 @@ using PFN_UPDATE_SERIAL = UPDATE_SERIAL *;
 CLASS_DECL_ACME int os_get_system_update_poll_time(::i64 iUpdate);
 
 
-struct update_notification_task :
+struct CLASS_DECL_ACME update_notification_task :
    virtual public ::element
 {
 protected:

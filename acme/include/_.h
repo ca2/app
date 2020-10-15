@@ -3521,7 +3521,7 @@ CLASS_DECL_ACME string get_system_error_message(u32 dwError);
 #include "acme/platform/simple_app.h"
 
 
-typedef void CALL_UPDATE(int iUpdate, const var & var);
+typedef void CALL_UPDATE(::i64 iUpdate, const var & var);
 using PFN_CALL_UPDATE = CALL_UPDATE *;
 
 

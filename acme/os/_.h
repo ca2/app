@@ -114,20 +114,20 @@ CLASS_DECL_ACME locale_t get_c_locale();
 CLASS_DECL_ACME void output_debug_string(const char * psz);
 CLASS_DECL_ACME void output_debug_string(const wchar_t * psz);
 
-
-int process_get_status();
-
-void process_set_status(int iStatus);
-
-void process_set_args(int argc, TCHAR ** argv);
-
-int * process_get_pargc();
-
-TCHAR *** process_get_pargv();
-
-int process_get_argc();
-
-TCHAR ** process_get_argv();
+//#include 
+//int process_get_status();
+//
+//void process_set_status(int iStatus);
+//
+//void process_set_args(int argc, TCHAR ** argv);
+//
+//int * process_get_pargc();
+//
+//TCHAR *** process_get_pargv();
+//
+//int process_get_argc();
+//
+//TCHAR ** process_get_argv();
 
 
 struct update_notification_task;

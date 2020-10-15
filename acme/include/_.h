@@ -3526,7 +3526,7 @@ using PFN_CALL_UPDATE = CALL_UPDATE *;
 
 
 CLASS_DECL_ACME void set_system_call_update(PFN_CALL_UPDATE pfnCallUpdate);
-CLASS_DECL_ACME void system_call_update(int iUpdate, const var & var = ::type_new);
+CLASS_DECL_ACME void system_call_update(::i64 iUpdate, const var & var = ::type_new);
 
 
 

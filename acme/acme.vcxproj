@@ -1317,6 +1317,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="multithreading\sync_task.cpp" />
     <ClCompile Include="multithreading\thread.cpp" />
     <ClCompile Include="multithreading\thread_os.cpp" />
+    <ClCompile Include="multithreading\update_notification_task.cpp" />
     <ClCompile Include="multithreading\waitable.cpp" />
     <ClCompile Include="multithreading\wait_future.cpp" />
     <ClCompile Include="multithreading\_.cpp" />
@@ -1423,12 +1424,16 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="platform\static_start_aura.cpp" />
     <ClCompile Include="primitive\geometry2d\shape.cpp" />
     <ClCompile Include="primitive\primitive\block.cpp" />
+    <ClCompile Include="primitive\primitive\context_object.cpp" />
     <ClCompile Include="primitive\primitive\element.cpp" />
+    <ClCompile Include="primitive\primitive\element_array.cpp" />
     <ClCompile Include="primitive\primitive\layered.cpp" />
     <ClCompile Include="primitive\primitive\match.cpp" />
     <ClCompile Include="primitive\primitive\method.cpp" />
     <ClCompile Include="primitive\primitive\future.cpp" />
+    <ClCompile Include="primitive\primitive\promise.cpp" />
     <ClCompile Include="primitive\primitive\task.cpp" />
+    <ClCompile Include="primitive\primitive\update.cpp" />
     <ClCompile Include="process\exit_status.cpp" />
     <ClCompile Include="process\bidi_pipe.cpp" />
     <ClCompile Include="process\pipe.cpp" />
@@ -1586,6 +1591,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="multithreading\thread_os.h" />
     <ClInclude Include="multithreading\thread_parameter.h" />
     <ClInclude Include="multithreading\tools.h" />
+    <ClInclude Include="multithreading\update_notification_task.h" />
     <ClInclude Include="multithreading\wait_future.h" />
     <ClInclude Include="multithreading\_.h" />
     <ClInclude Include="multithreading\_impl.h" />
@@ -1776,6 +1782,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="primitive\primitive\aaa_want_to_remove_pointer1.h" />
     <ClInclude Include="primitive\primitive\block.h" />
     <ClInclude Include="primitive\primitive\compare_pred.h" />
+    <ClInclude Include="primitive\primitive\context_object.h" />
     <ClInclude Include="primitive\primitive\element.h" />
     <ClInclude Include="primitive\primitive\estatus.h" />
     <ClInclude Include="primitive\primitive\layered.h" />
@@ -1783,11 +1790,13 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="primitive\primitive\pred_method.h" />
     <ClInclude Include="primitive\primitive\pred_future.h" />
     <ClInclude Include="primitive\primitive\method.h" />
+    <ClInclude Include="primitive\primitive\promise.h" />
     <ClInclude Include="primitive\primitive\promise1.h" />
     <ClInclude Include="primitive\primitive\future.h" />
     <ClInclude Include="primitive\primitive\function_base.h" />
     <ClInclude Include="primitive\primitive\member.h" />
     <ClInclude Include="primitive\primitive\task.h" />
+    <ClInclude Include="primitive\primitive\update.h" />
     <ClInclude Include="primitive\primitive\_id_impl.h" />
     <ClInclude Include="primitive\primitive\_var_impl.h" />
     <ClInclude Include="update.h" />

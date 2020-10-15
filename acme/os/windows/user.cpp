@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "id.h"
 #include "acme/node/windows/_windows.h"
 
 
@@ -6,7 +7,7 @@ namespace user
 {
 
 
-   CLASS_DECL_ACME bool calc_system_dark_mode()
+   CLASS_DECL_ACME bool _os_calc_system_dark_mode()
    {
 
       try
@@ -47,7 +48,7 @@ namespace user
    }
 
 
-   CLASS_DECL_ACME bool calc_app_dark_mode()
+   CLASS_DECL_ACME bool _os_calc_app_dark_mode()
    {
 
       try
@@ -82,6 +83,38 @@ namespace user
       {
 
          return false;
+
+      }
+
+   }
+
+
+
+   ::set g_bLastDarkModeApp;
+
+   ::set g_bLastDarkModeSystem;
+
+
+   void os_calc_dark_mode()
+   {
+
+      bool bDarkModeApp = _os_calc_app_dark_mode();
+
+      bool bDarkModeSystem = _os_calc_system_dark_mode();
+
+      if (g_bLastDarkModeApp != bDarkModeApp
+         || g_bLastDarkModeSystem != bDarkModeSystem)
+      {
+
+         ::user::set_app_dark_mode(bDarkModeApp);
+
+         ::user::set_system_dark_mode(bDarkModeSystem);
+
+         g_bLastDarkModeApp = bDarkModeApp;
+
+         g_bLastDarkModeSystem = bDarkModeSystem;
+
+         ::update_notification_task::set_modified(id_dark_mode);
 
       }
 
@@ -156,6 +189,9 @@ int _os_message_box(const char* pszMessage, const char* pszTitle, ::emessagebox 
    return iResult;
 
 }
+
+
+
 
 
 

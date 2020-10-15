@@ -109,4 +109,13 @@ CLASS_DECL_ACME string_array get_c_args(int argc, char** argv);
 //#endif
 
 
+CLASS_DECL_ACME int process_get_status();
+CLASS_DECL_ACME void process_set_status(int iStatus);
+CLASS_DECL_ACME void process_set_args(int argc, TCHAR** argv);
+CLASS_DECL_ACME int * process_get_pargc();
+CLASS_DECL_ACME int process_get_argc();
+CLASS_DECL_ACME TCHAR*** process_get_pargv();
+CLASS_DECL_ACME TCHAR** process_get_argv();
+
+
 

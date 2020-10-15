@@ -1,5 +1,6 @@
 ﻿#include "framework.h"
 #include "acme/node/_node.h"
+#include "acme/id.h"
 #include <VersionHelpers.h>
 
 #ifndef USE_OS_IMAGE_LOADER
@@ -793,6 +794,28 @@ CLASS_DECL_ACME string executable_get_app_id(HINSTANCE hinstance)
 {
 
    return read_resource_as_string(hinstance, 1, "APPID");
+
+}
+
+
+
+
+
+
+
+
+
+int os_get_system_update_poll_time(::i64 iUpdate)
+{
+
+   if (iUpdate == id_dark_mode)
+   {
+
+      return 300;
+
+   }
+
+   return 500;
 
 }
 

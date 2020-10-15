@@ -1625,8 +1625,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="primitive\primitive\command_line.cpp" />
     <ClCompile Include="primitive\primitive\create.cpp" />
     <ClCompile Include="primitive\primitive\object_meta.cpp" />
-    <ClCompile Include="primitive\primitive\context_object.cpp" />
-    <ClCompile Include="primitive\primitive\update.cpp" />
     <ClCompile Include="primitive\primitive\_.cpp" />
     <ClInclude Include="const\id.h" />
     <ClInclude Include="const\idpool.h" />

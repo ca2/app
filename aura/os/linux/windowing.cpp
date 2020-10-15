@@ -3189,9 +3189,9 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
             pupdate->m_id = eid;
 
-            pupdate->m_set["return"] = is_return_key((XIRawEvent*)cookie->data);
+            pupdate->value("return") = is_return_key((XIRawEvent*)cookie->data);
 
-            pupdate->m_set["space"] = is_space_key((XIRawEvent*)cookie->data);
+            pupdate->value("space") = is_space_key((XIRawEvent*)cookie->data);
 
             for(auto & p : *g_pobjectaExtendedEventListener)
             {

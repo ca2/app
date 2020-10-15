@@ -18,23 +18,23 @@
 ////#endif
 
 
-#ifdef WINDOWS_DESKTOP
-
-
-namespace user
-{
-
-
-   CLASS_DECL_ACME bool calc_system_dark_mode();
-
-
-   CLASS_DECL_ACME bool calc_app_dark_mode();
-
-
-} // namespace user
-
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//
+//namespace user
+//{
+//
+//
+//   //CLASS_DECL_ACME bool calc_system_dark_mode();
+//
+//
+//   //CLASS_DECL_ACME bool calc_app_dark_mode();
+//
+//
+//} // namespace user
+//
+//
+//#endif
 
 
 extern ::apex::system* g_papexsystem;
@@ -46,7 +46,7 @@ int GetMainScreenRect(LPRECT lprect);
 
 const char* g_pszMultimediaLibraryName = nullptr;
 
-void apex_system_call_update(int iUpdate, const ::var& var);
+void apex_system_call_update(::i64 iUpdate, const ::var& var);
 
 
 CLASS_DECL_APEX void multimedia_set_library_name(const char* psz)
@@ -7250,9 +7250,11 @@ namespace apex
 
 #elif defined(WINDOWS_DESKTOP)
 
-      ::user::set_system_dark_mode(::user::calc_system_dark_mode());
+      ::user::os_calc_dark_mode();
 
-      ::user::set_app_dark_mode(::user::calc_app_dark_mode());
+      //::user::set_system_dark_mode(::user::calc_system_dark_mode());
+
+      //::user::set_app_dark_mode(::user::calc_app_dark_mode());
 
 #endif
 
@@ -7418,8 +7420,7 @@ namespace apex
 } // namespace apex
 
 
-
-void apex_system_call_update(int iUpdate, const ::var& var)
+void apex_system_call_update(::i64 iUpdate, const ::var& var)
 {
 
    auto pupdate = new_update();

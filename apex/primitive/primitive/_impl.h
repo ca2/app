@@ -1553,7 +1553,7 @@ inline void object::defer_set_context_object(::layered * pobjectContext)
 }
 
 
-#include "_property_set_composite_impl.h"
+//#include "_property_set_composite_impl.h"
 
 
 //template < typename TYPE >

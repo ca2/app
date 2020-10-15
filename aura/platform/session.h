@@ -366,7 +366,7 @@ namespace aura
       virtual void get_cursor_pos(LPPOINT ppoint) override;
       inline ::point get_cursor_pos() {::point point; get_cursor_pos(&point); return point;}
 
-      virtual void set_cursor_pos(const ::point & point) override;
+      //virtual void set_cursor_pos(const ::point & point) override;
 
 //      virtual index get_main_monitor(RECT * prect = nullptr) override;
 

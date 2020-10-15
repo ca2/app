@@ -2386,16 +2386,16 @@ the file README-colorramp for more information. */
    }
 
 
-   void session::set_cursor_pos(const ::point & point)
-   {
-
-#ifdef WINDOWS_DESKTOP
-
-      ::SetCursorPos(point.x, point.y);
-
-#endif
-
-   }
+//   void session::set_cursor_pos(const ::point & point)
+//   {
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//      ::SetCursorPos(point.x, point.y);
+//
+//#endif
+//
+//   }
 
 
    bool session::ReleaseCapture()

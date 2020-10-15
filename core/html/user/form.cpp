@@ -784,7 +784,7 @@ void html_form_view::update(::update * pupdate)
 
          defer_html_layout();
 
-         on_document_complete(pupdate->m_set[(const ::id &)id_url]);
+         on_document_complete(pupdate->value(id_url));
 
          GetParentFrame()->SetActiveView(this);
 
@@ -865,7 +865,7 @@ void html_view::update(::update * pupdate)
 
          }
 
-         on_document_complete(pupdate->m_set[(const ::id &)id_url]);
+         on_document_complete(pupdate->value(id_url));
 
          set_need_layout();
 

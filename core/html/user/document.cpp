@@ -246,7 +246,7 @@ bool html_document::on_open_document(const var & varFile)
 
    pupdate->m_id = id_document_complete;
 
-   pupdate->m_set[(const ::id &)id_url] = varFile;
+   pupdate->value(id_url) = varFile;
 
    update_all_views(pupdate);
 

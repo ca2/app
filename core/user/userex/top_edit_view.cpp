@@ -129,7 +129,7 @@ namespace userex
 
             pupdate->m_puserinteraction = this;
 
-            pupdate->m_set[(const ::id &)id_enter_key_pressed] = bEnterKeyPressed;
+            pupdate->value(id_enter_key_pressed) = bEnterKeyPressed;
 
             pdocument->update_all_views(pupdate);
 

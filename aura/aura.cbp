@@ -290,7 +290,10 @@
 			<Add directory="$(WORKSPACE_DIR)/../../inc" />
 			<Add directory="$(WORKSPACE_DIR)/../../include" />
 			<Add directory="$(WORKSPACE_DIR)/../../app/_include" />
-			<Add directory="$(WORKSPACE_DIR)/../../app" />
+			<Add directory="$(WORKSPACE_DIR)/../../app/" />
+			<Add directory="$(WORKSPACE_DIR)/../../platform-$(#platform_modifier)" />
+			<Add directory="$(WORKSPACE_DIR)/../../platform-$(#platform_modifier)/_include" />
+			<Add directory="$(#archive)/third-$(#platform_modifier)/third/include" />
 			<Add directory="$(#sensitive)/sensitive/include" />
 		</Compiler>
 		<Linker>

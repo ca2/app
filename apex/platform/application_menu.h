@@ -10,6 +10,7 @@
 namespace apex
 {
 
+
    class CLASS_DECL_APEX  application_menu_item
    {
    public:

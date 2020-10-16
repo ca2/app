@@ -822,15 +822,6 @@
 		<Unit filename="os/linux/_c.h" />
 		<Unit filename="os/linux/_linux.h" />
 		<Unit filename="os/linux/_user.h" />
-		<Unit filename="os/linux/aaa_desktop_file.h" />
-		<Unit filename="os/linux/aaa_gnome.h" />
-		<Unit filename="os/linux/aaa_gnome_gnome.h" />
-		<Unit filename="os/linux/aaa_gnome_internal_glue.h" />
-		<Unit filename="os/linux/aaa_gnome_shared.h" />
-		<Unit filename="os/linux/aaa_graphics.h" />
-		<Unit filename="os/linux/aaa_graphics2.h" />
-		<Unit filename="os/linux/appindicator.h" />
-		<Unit filename="os/linux/bloat_pad.h" />
 		<Unit filename="os/linux/cross_win_file.cpp" />
 		<Unit filename="os/linux/cross_win_file.h" />
 		<Unit filename="os/linux/cross_win_gdi.cpp" />
@@ -1271,7 +1262,6 @@
 		<Unit filename="primitive/primitive/_memory.h" />
 		<Unit filename="primitive/primitive/_papaya.h" />
 		<Unit filename="primitive/primitive/_papaya_impl.h" />
-		<Unit filename="primitive/primitive/_property_set_composite_impl.h" />
 		<Unit filename="primitive/primitive/aaa_want_to_remove_app_object.h" />
 		<Unit filename="primitive/primitive/aaa_want_to_remove_array.h" />
 		<Unit filename="primitive/primitive/aaa_want_to_remove_context_object.h" />

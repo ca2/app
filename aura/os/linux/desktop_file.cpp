@@ -363,15 +363,25 @@ namespace linux
 
       straLine._007SetLine("[Desktop Entry]", "StartupWMClass", "cc.ca2." + strPrgName);
 
-      straLine._007SetLine("[Desktop Entry]", "Actions", "transparent-frame;");
+      // straLine._007SetLine("[Desktop Entry]", "Actions", "transparent-frame;");
 
-      straLine._007SetLine("[Desktop Action transparent-frame]", "Name", "Transparent Frame");
-      //straLine._007SetLine("[Desktop Action transparent-frame]", "StartupWMClass", "cc.ca2." + strPrgName);
-      //straLine._007SetLine("[Desktop Action transparent-frame]", "Exec", pathLaunch + " : post transparent_frame");
-      //straLine._007SetLine("[Desktop Action transparent-frame]", "Exec", strName + " : post transparent_frame");
-      //straLine._007SetLine("[Desktop Action transparent-frame]", "Exec", string(Context.file().module()) + " : post transparent_frame");
-      //straLine._007SetLine("[Desktop Action transparent-frame]", "Exec", strName + " : post transparent_frame");
-      straLine._007SetLine("[Desktop Action transparent-frame]", "Exec", strModule + " : post transparent_frame");
+      // for(index i = 0; i < Application.applicationmenu().get_count(); i++)
+      // {
+
+      //    auto & item = Application.applicationmenu()[i];
+
+      //    if()
+
+
+      // }
+
+      // straLine._007SetLine("[Desktop Action transparent-frame]", "Name", "Transparent Frame");
+      // //straLine._007SetLine("[Desktop Action transparent-frame]", "StartupWMClass", "cc.ca2." + strPrgName);
+      // //straLine._007SetLine("[Desktop Action transparent-frame]", "Exec", pathLaunch + " : post transparent_frame");
+      // //straLine._007SetLine("[Desktop Action transparent-frame]", "Exec", strName + " : post transparent_frame");
+      // //straLine._007SetLine("[Desktop Action transparent-frame]", "Exec", string(Context.file().module()) + " : post transparent_frame");
+      // //straLine._007SetLine("[Desktop Action transparent-frame]", "Exec", strName + " : post transparent_frame");
+      // straLine._007SetLine("[Desktop Action transparent-frame]", "Exec", strModule + " : post transparent_frame");
 
       if(straLine.last().has_char())
       {

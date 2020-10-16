@@ -737,6 +737,8 @@ void oswindow_set_active_window(oswindow oswindow)
 
                g_oswindowActive->m_pimpl->m_puserinteraction->m_ewindowflag -= ::window_flag_active;
 
+               g_oswindowActive->m_pimpl->m_puserinteraction->post_message(WM_ACTIVATE, 0);
+
             }
 
          }
@@ -764,6 +766,8 @@ void oswindow_set_active_window(oswindow oswindow)
             {
 
                g_oswindowActive->m_pimpl->m_puserinteraction->m_ewindowflag += ::window_flag_active;
+
+               g_oswindowActive->m_pimpl->m_puserinteraction->post_message(WM_ACTIVATE, 1);
 
             }
 
@@ -3392,7 +3396,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
             if(atom == e.xproperty.atom)
             {
 
-               oswindow_set_active_window(get_active_window());
+               oswindow_set_active_window(_x11_get_active_window());
 
             }
 

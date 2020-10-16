@@ -16,7 +16,7 @@ namespace axis
       m_paxisapplication = this;
 
       m_bInitializeDataCentral = true;
-      
+
    }
 
 
@@ -1422,36 +1422,6 @@ namespace axis
    }
 
 
-   //::estatus application::init()
-   //{
-
-   //   return true;
-
-
-   //}
-//
-//
-//   void application::term()
-//   {
-//
-//      //::acme::del(m_pimaging);
-//
-////      bool bOk = true;
-////
-////      return bOk;
-//
-//   }
-
-
-
-
-   //void application::release_children()
-   //{
-
-   //   ::thread::release_children();
-
-   //}
-
 
    void application::term_application()
    {
@@ -1611,72 +1581,6 @@ namespace axis
       m_psimpledb.release();
 
    }
-
-
-//   bool application::impl_process_init()
-//   {
-//
-//      return true;
-//
-//   }
-
-//   bool application::impl_init1()
-//   {
-//
-//      //set_run();
-//
-//      return true;
-//
-//   }
-
-//   bool application::impl_init2()
-//   {
-//      return true;
-//   }
-
-//   bool application::impl_init3()
-//   {
-//      return true;
-//   }
-
-// thread termination
-//   void application::impl_process_term() // default will 'delete this'
-//   {
-//
-//      set_os_data(nullptr);
-//
-//      //i32 iRet = ::aura::application::term_instance();
-//
-//      //return 0;
-//
-//   }
-
-
-//   void application::impl_term3()
-//   {
-//
-//
-//   }
-//
-//
-//   void application::impl_term2()
-//   {
-//
-//
-//   }
-//
-//
-//   void application::impl_term1()
-//   {
-//
-//
-//   }
- /*  bool application::is_running()
-   {
-
-      return is_alive();
-
-   }*/
 
 
    bool application::Ex2OnAppInstall()
@@ -2063,129 +1967,6 @@ namespace axis
    //}
 
 
-   //::estatus application::process_init()
-   //{
-
-   //   create_factory < ::database::field_array >();
-   //   create_factory < ::database::row >();
-   //   create_factory < ::database::row_array >();
-
-   //   //if (m_bAxisProcessInitialize)
-   //   //{
-
-   //   //   return m_bAxisProcessInitializeResult;
-
-   //   //}
-
-   //   INFO("axis::application::process_init");
-
-   //   //m_bAxisProcessInitialize = true;
-
-   //   //m_bAxisProcessInitializeResult = false;
-
-   //   if (m_psimpledb.is_null())
-   //   {
-
-   //      __construct_new(m_psimpledb);
-
-   //   }
-
-   //   if (!::aura::application::process_init())
-   //   {
-
-   //      FATAL("axis::application::process_init .1");
-
-   //      return false;
-
-   //   }
-
-
-   //   //m_bAxisProcessInitializeResult = true;
-
-   //   FATAL("axis::application::process_init success");
-
-   //   return true;
-
-   //}
-
-
-   //::estatus application::init_instance()
-   //{
-
-   //   //if (m_bAxisInitializeInstance)
-   //   //{
-
-   //   //   return m_bAxisInitializeInstanceResult;
-
-   //   //}
-
-   //   INFO("axis::application::init_instance .1");
-
-   //   //m_bAxisInitializeInstance = true;
-
-   //   //m_bAxisInitializeInstanceResult = false;
-
-   //   if (!::aura::application::init_instance())
-   //   {
-
-   //      FATAL("axis::application::init_instance .2");
-
-   //      return false;
-
-   //   }
-
-
-   //   if (m_bInitializeDataCentral)
-   //   {
-
-
-   //      ::file::path pathDatabase;
-
-   //      if (is_system())
-   //      {
-
-   //         pathDatabase = Context.dir().appdata() / "system.sqlite";
-
-   //      }
-   //      else if (is_session())
-   //      {
-
-   //         pathDatabase = Context.dir().appdata() / "session.sqlite";
-
-   //      }
-   //      else
-   //      {
-
-   //         pathDatabase = Context.dir().appdata() / "app.sqlite";
-
-   //      }
-
-   //      auto estatus = m_psimpledb->initialize_simpledb_server(this, pathDatabase);
-
-   //      if (!estatus)
-   //      {
-
-   //         m_result.add(estatus);
-
-   //         return false;
-
-   //      }
-
-   //      set_data_server(m_psimpledb);
-
-   //   }
-
-
-
-   //   //m_bAxisInitializeInstanceResult = true;
-
-   //   INFO("axis::application::init_instance success");
-
-   //   return true;
-
-   //}
-
-
    ::database::key application::calc_data_key()
    {
 
@@ -2266,199 +2047,16 @@ namespace axis
    ::estatus application::init()
    {
 
-      //if (m_bAxisInitialize)
-      //{
+      auto estatus = ::aura::application::init();
 
-      //   return m_bAxisInitializeResult;
-
-      //}
-
-      //m_bAxisInitialize = true;
-
-      //m_bAxisInitializeResult = false;
-
-      //::apex::application_message signal(::apex::application_message_init);
-
-      //route_message(&signal);
-
-      //if (!signal.m_bOk)
-      //{
-
-      //   return false;
-
-      //}
-
-      m_tickHeartBeat.Now();
-
-      if (is_system())
+      if(!estatus)
       {
 
-         if (has_property("save_processing"))
-         {
-
-            Session.savings().save(::e_resource_processing);
-
-         }
-
-         if (has_property("save_blur_back"))
-         {
-
-            Session.savings().save(::e_resource_blur_background);
-
-         }
-
-         if (has_property("save_transparent_back"))
-         {
-
-            Session.savings().save(::e_resource_translucent_background);
-
-         }
+         return estatus;
 
       }
 
-      if (has_property("install"))
-      {
-         // aura level app install
-         if (!Ex2OnAppInstall())
-            return false;
-      }
-      else if (has_property("uninstall"))
-      {
-         // aura level app uninstall
-         if (!Ex2OnAppUninstall())
-            return false;
-      }
-      else
-      {
-#ifdef WINDOWS_DESKTOP
-         // when this process is started in the context of a system account,
-         // for example, this code ensure that the process will
-         // impersonate a loggen on ::account::user
-         HANDLE hprocess;
-         HANDLE htoken;
-
-         hprocess = ::GetCurrentProcess();
-
-         if (!OpenProcessToken(
-            hprocess,
-            TOKEN_ALL_ACCESS,
-            &htoken))
-            return false;
-
-         if (!ImpersonateLoggedOnUser(htoken))
-         {
-            TRACELASTERROR();
-            return false;
-         }
-#endif
-      }
-      m_tickHeartBeat.Now();
-
-      //if(is_system()
-      //      && !m_varTopicQuery["app"].get_string().begins_ci("app-core/netnode")
-      //      && m_varTopicQuery["app"] != "app-core/netnode_dynamic_web_server"
-      //      && m_varTopicQuery["app"] != "app-gtech/alarm"
-      //      && m_varTopicQuery["app"] != "app-gtech/sensible_service")
-      //{
-      //   Context.http().defer_auto_initialize_proxy_configuration();
-      //}
-      m_tickHeartBeat.Now();
-
-      //      m_bAxisInitializeResult = true;
-
-      //      dappy(string(typeid(*this).name()) + " : initialize ok : " + __str(m_iErrorCode));
-
-
-      //::estatus application::init()
-      //{
-
-      //   if (!::aura::application::init())
-      //   {
-
-      //      return false;
-
-      //   }
-
-         //xxdebug_box("::aura::application::initialize ok", "::aura::application::initialize ok", MB_ICONINFORMATION);
-
-         //xxdebug_box("m_pcalculator::initialize ok", "m_pcalculator::initialize ok", MB_ICONINFORMATION);
-
-         //xxdebug_box("m_pcolorertake5::initialize ok", "m_pcolorertake5::initialize ok", MB_ICONINFORMATION);
-
-         m_tickHeartBeat.Now();
-
-         //if (!initialize_userex())
-         //{
-
-         //   return false;
-
-         //}
-
-         //xxdebug_box("m_pfilemanager::initialize ok", "m_pfilemanager::initialize ok", MB_ICONINFORMATION);
-
-         //xxdebug_box("m_pusermail::initialize ok", "m_pusermail::initialize ok", MB_ICONINFORMATION);
-         m_tickHeartBeat.Now();
-
-         //xxdebug_box("register_bergedge_application ok", "register_bergedge_application ok", MB_ICONINFORMATION);
-         m_tickHeartBeat.Now();
-
-         ensure_app_interest();
-
-         //xxdebug_box("ensure_app_interest ok", "ensure_app_interest ok", MB_ICONINFORMATION);
-
-
-         INFO(".2");
-
-         if (!is_session() && !is_system())
-         {
-
-            if (is_true("install"))
-            {
-
-               if (is_user_service())
-               {
-
-                  //               if (Session.account()->m_puser != nullptr && Session.account()->m_puser->m_strLogin == "system")
-                  //               {
-                  //
-                  //                  Session.account()->m_puser = nullptr;
-                  //
-                  //               }
-                  //
-                  //               if (!m_strAppId.begins_ci("app-core/netnode") && m_strAppId != "app-core/mydns")
-                  //               {
-                  //
-                  //                  ApplicationUser;
-                  //
-                  //               }
-
-               }
-
-            }
-            else
-            {
-
-               //Session.keyboard();
-
-            }
-
-            ERR("1.1");
-
-            index i = applicationmenu().get_count();
-
-            applicationmenu().add_item(i++, _("Transparent Frame"), "transparent_frame");
-
-            application_menu_update();
-
-         }
-
-         INFO("success");
-
-      //   return true;
-
-      //}
-
-      return true;
+      return estatus;
 
    }
 

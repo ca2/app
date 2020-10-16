@@ -423,37 +423,6 @@ oswindow_data * oswindow_get(Window window)
 }
 
 
-// void oswindow_set_active_window(oswindow oswindow)
-// {
-
-//    single_lock slOsWindow(::oswindow_data::s_pmutex, true);
-
-//    for(auto & point : *::oswindow_data::s_pdataptra)
-//    {
-
-//       if(::is_set(point->m_pimpl) && ::is_set(point->m_pimpl->m_puserinteraction))
-//       {
-
-//          if(point == oswindow)
-//          {
-
-//             point->m_pimpl->m_puserinteraction->m_ewindowflag |= ::window_flag_active;
-
-//          }
-//          else
-//          {
-
-//             point->m_pimpl->m_puserinteraction->m_ewindowflag -= window_flag_active;
-
-//          }
-
-//       }
-
-//    }
-
-// }
-
-
 bool oswindow_data::bamf_set_icon()
 {
 

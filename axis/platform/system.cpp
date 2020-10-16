@@ -333,10 +333,10 @@ namespace axis
    }
 
 
-   void system::TermApplication()
+   void system::TermSystem()
    {
 
-      ::aura::system::TermApplication();
+      ::aura::system::TermSystem();
 
    }
 

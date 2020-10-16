@@ -583,7 +583,7 @@ namespace base
 //
 //      //virtual void term();
 //
-//      virtual void TermApplication();
+//      virtual void TermSystem();
 //
 //
 //      virtual void process_term();

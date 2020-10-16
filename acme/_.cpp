@@ -78,8 +78,8 @@ string object_name(element* p)
 
 void element::add_ref_history(element* p, const char* pszObjRefDbg)
 {
-   
-   if (!g_bAura)
+
+   if (!::acme::g_bAcme)
    {
 
       return;
@@ -167,10 +167,10 @@ void element::check_pending_releases()
    {
 
       ::output_debug_string("\nThere are pending releases:\n");
-      
+
       try
       {
-         
+
          ::output_debug_string("For "+__str(typeid(*this).name())+"("+string(debug_note())+")\n");
 
       }

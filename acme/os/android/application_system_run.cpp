@@ -14,10 +14,10 @@
 // void os_term_application()
 // {
 
-//    //   if(g_pappBloatPad != nullptr)
+//    //   if(g_papexapplication != nullptr)
 //    //   {
 //    //
-//    //      g_application_quit(G_APPLICATION(g_pappBloatPad));
+//    //      g_application_quit(G_APPLICATION(g_papexapplication));
 //    //
 //    //   }
 
@@ -160,10 +160,10 @@ string ca2_command_line()
 //void os_term_application()
 //{
 //
-//   //   if(g_pappBloatPad != nullptr)
+//   //   if(g_papexapplication != nullptr)
 //   //   {
 //   //
-//   //      g_application_quit(G_APPLICATION(g_pappBloatPad));
+//   //      g_application_quit(G_APPLICATION(g_papexapplication));
 //   //
 //   //   }
 //

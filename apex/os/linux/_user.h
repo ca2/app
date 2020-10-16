@@ -88,7 +88,7 @@ void set_xcolor(XColor & color, COLORREF cr);
 //#define HWND_MESSAGE ((::oswindow_data *) (iptr) 1)
 //#
 
-
+#include "gnome_apex_application.h"
 
 
 

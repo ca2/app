@@ -63,26 +63,26 @@ simple_ui_display::simple_ui_display(const string & strMessageParam, const strin
 }
 
 
-i64 simple_ui_display::add_ref(OBJ_REF_DBG_PARAMS)
+i64 simple_ui_display::add_ref(OBJ_REF_DBG_PARAMS_DEF)
 {
 
-   return x11_hook::add_ref(OBJ_REF_DBG_ADD_ARGS);
+   return x11_hook::add_ref(OBJ_REF_DBG_ARGS);
 
 }
 
 
-i64 simple_ui_display::dec_ref(OBJ_REF_DBG_PARAMS)
+i64 simple_ui_display::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
 {
 
-   return x11_hook::dec_ref(OBJ_REF_DBG_ADD_ARGS);
+   return x11_hook::dec_ref(OBJ_REF_DBG_ARGS);
 
 }
 
 
-i64 simple_ui_display::release(OBJ_REF_DBG_PARAMS)
+i64 simple_ui_display::release(OBJ_REF_DBG_PARAMS_DEF)
 {
 
-   return x11_hook::release(OBJ_REF_DBG_ADD_ARGS);
+   return x11_hook::release(OBJ_REF_DBG_ARGS);
 
 }
 

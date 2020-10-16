@@ -2570,6 +2570,8 @@ namespace apex
    void system::term()
    {
 
+      ::update_notification_task::post_destroy_all();
+
       __release(m_phistory);
 
       //__throw(todo("filehandler"));
@@ -2834,7 +2836,7 @@ namespace apex
 
       }
 
-            try
+      try
       {
 
          term();
@@ -2856,11 +2858,10 @@ namespace apex
 
       }
 
-
       try
       {
 
-         TermApplication();
+         TermSystem();
 
       }
       catch (...)
@@ -2868,14 +2869,13 @@ namespace apex
 
       }
 
-
    }
 
 
-   void system::TermApplication()
+   void system::TermSystem()
    {
 
-      //::apex::application::TermApplication();
+      //::apex::application::TermSystem();
 
 
 #ifdef LINUX
@@ -5340,52 +5340,8 @@ namespace apex
    }
 
 
-////#ifdef _OPENGL
-//   ::estatus system::create_gpu()
-//   {
-//
-//      if (m_pgpu)
-//      {
-//
-//         return ::success;
-//
-//      }
-//
-//      //System.load_library("gpu_opengl");
-//
-//      auto estatus = System.do_factory_exchange("gpu", "opengl");
-//
-//      //System.get_library("gpu_opengl");
-//
-//
-//
-//      if (!estatus)
-//      {
-//
-//         return estatus;
-//
-//      }
-//
-//      estatus = __compose(m_pgpu);
-//
-//      if (!estatus)
-//      {
-//
-//         return estatus;
-//
-//      }
-//
-//      return ::success;
-//
-//   }
-////#endif
-
-
-
    ::thread_group * system::thread_group(::e_priority epriority)
    {
-
-      //return nullptr;
 
       if (m_bAvoidProcFork)
       {
@@ -5453,38 +5409,6 @@ namespace apex
    }
 
 
-
-   //::thread_toolset * system::toolset(e_tool etool)
-   //{
-
-   //   if (m_bAvoidProcFork)
-   //   {
-
-   //      return nullptr;
-
-   //   }
-
-   //   __pointer(thread_toolset) & pset = m_toolset.element_at_grow((index)etool);
-
-   //   if (pset.is_null())
-   //   {
-
-   //      pset = create_thread_toolset(etool);
-
-   //   }
-
-   //   if (!m_toolmap[::priority_none]->select_toolset(pset))
-   //   {
-
-   //      return nullptr;
-
-   //   }
-
-   //   return pset;
-
-   //}
-
-
    void system::open_profile_link(string strUrl, string strProfile, string strTarget)
    {
 
@@ -5506,243 +5430,12 @@ namespace apex
    }
 
 
-
-   //::estatus system::init_system()
-   //{
-
-   //   if (!::apex::system::init_system())
-   //   {
-
-   //      return false;
-
-   //   }
-
-   //   //if (!::axis::application::init_application())
-   //   //{
-
-   //   //   return false;
-
-   //   //}
-
-   //   return true;
-
-   //}
-
-
-   //void system::term()
-   //{
-
-   //   //__wait_threading_count_except(this,::millis((5000) * 77));
-
-   //   if (::ftp::command::info2::g_pTheOneAndOnly != nullptr)
-   //   {
-
-   //      try
-   //      {
-
-   //         delete ::ftp::command::info2::g_pTheOneAndOnly;
-
-   //      }
-   //      catch (...)
-   //      {
-
-   //         m_result.add(error_failed);
-
-   //      }
-
-   //   }
-
-
-   //   //try
-   //   //{
-
-   //   //   if(m_spcrypto.is_set())
-   //   //   {
-
-   //   //      m_spcrypto.release();
-
-   //   //   }
-
-   //   //}
-   //   //catch(...)
-   //   //{
-
-   //   //   m_result.add(error_failed);
-
-   //   //}
-
-   //   //try
-   //   //{
-
-   //   //   ::axis::application::term();
-
-   //   //}
-   //   //catch(...)
-   //   //{
-
-   //   //   m_result.add(error_failed);
-
-   //   //}
-
-   //   //try
-   //   //{
-
-   //   //   if(m_spfile.is_set())
-   //   //   {
-
-   //   //      m_spfile.release();
-
-   //   //   }
-
-   //   //}
-   //   //catch(...)
-   //   //{
-
-   //   //   m_result.add(error_failed);
-
-   //   //}
-
-   //}
-
-
-   //::estatus system::init()
-   //{
-
-   //   //if (!::axis::application::init())
-   //   //{
-
-   //   //   return false;
-
-   //   //}
-
-   //   if (!::apex::system::init())
-   //   {
-
-   //      return false;
-
-   //   }
-
-   //   return true;
-
-   //}
-
-
-   //void system::term_system()
-   //{
-
-   //   //      __wait_threading_count(::millis((5000) * 8));
-
-   //         //axis::application::term_application();
-
-   //         //::acme::del(m_phtml);
-
-   //   try
-   //   {
-
-   //      ::apex::system::term_system();
-
-   //   }
-   //   catch (...)
-   //   {
-
-   //      m_result.add(error_failed);
-
-   //   }
-
-   //}
-
-
-   //bool system::is_system() const
-   //{
-
-   //   return true;
-
-   //}
-
-
-
    string system::crypto_md5_text(const string & str)
    {
 
       return crypto().md5(str);
 
    }
-
-
-   //__pointer(::apex::session) system::on_create_session()
-   //{
-
-   //   return __new(::axis::session);
-
-   //}
-
-
-   //void system::on_request(::create * pcreate)
-   //{
-
-   //   ::apex::system::on_request(pcreate);
-
-   //}
-
-
-
-
-
-
-
-   //::user::document * system::place_hold(::user::interaction * pinteraction)
-   //{
-
-
-   //   //if(m_pcubeInterface != nullptr)
-   //   //{
-   //   // return m_pcubeInterface->hold(pinteraction);
-   //   //}
-
-   //   return nullptr;
-
-   //}
-
-
-   //::apex::session * system::query_session(index iEdge)
-   //{
-
-   //   return nullptr;
-
-   //}
-
-
-
-
-
-
-
-
-
-   //void system::hist_hist(const char * psz)
-   //{
-   //}
-
-   //void system::on_request(::create * pcreate)
-   //{
-
-   //   ::axis::system::on_request(pcreate);
-
-   //}
-
-   //::user::interaction_impl * system::impl_from_handle(void * posdata)
-   //{
-
-   //   return nullptr;
-
-   //}
-
-   //::user::interaction * system::ui_from_handle(void * posdata)
-   //{
-
-   //   return nullptr;
-
-   //}
 
 
    string system::url_encode(const string & str)
@@ -6368,160 +6061,7 @@ namespace apex
    }
 
 
-   //::estatus system::init3()
-   //{
 
-   //   //if(!::apex::application::init3())
-   //   //{
-
-   //   //   return false;
-
-   //   //}
-
-   //   if(m_phistory == nullptr)
-   //   {
-   //      m_phistory = __new(os_history(this));
-   //   }
-
-   //   return true;
-
-   //}
-
-
-   //::estatus system::init_system()
-   //{
-
-   //   if (!::apex::system::init_system())
-   //   {
-
-   //      return false;
-
-   //   }
-
-   //   /*set_enum_name(::type_null      , "null");
-   //   set_enum_name(::type_empty     , "is_empty");
-   //   set_enum_name(::type_string    , "string");
-   //   set_enum_name(::type_int32   , "integer");
-   //   set_enum_name(::type_uint32     , "ulong");
-   //   set_enum_name(::type_element       , "ca2");
-   //   set_enum_name(::type_bool      , "bool");
-   //   set_enum_name(::type_double    , "double");*/
-
-   //   //if (!::apex::application::init_application())
-   //   //{
-
-   //   //   return false;
-
-   //   //}
-
-   //   //m_pbergedgemap = __new(::apex::session::map);
-
-
-   //   return true;
-
-   //}
-
-
-   //::estatus system::bergedge_start()
-   //{
-
-   //   return true;
-
-   //}
-
-
-
-
-
-//
-//
-//
-//   void system::term_system()
-//   {
-//
-//
-//
-//      //__wait_threading_count(::millis((5000) * 8));
-//
-//      //::multithreading::wait_threads(40_s);
-//
-////#ifdef LINUX
-////
-////      BASECORE_INIT * f =  (BASECORE_INIT *) dlsym(g_pbasecore, "linux_g_direct_term");
-////
-////      if(f != nullptr)
-////      {
-////
-////         output_debug_string("linux_g_direct_term entry point not found at basecore library");
-////
-////         (*f)();
-////
-////      }
-////
-////#endif
-//      //::apex::application::term_application();
-//      try
-//      {
-//
-//         ::apex::system::term_system();
-//
-//      }
-//      catch (...)
-//      {
-//
-//         m_result.add(error_failed);
-//
-//      }
-//
-//#ifdef LINUX
-//
-//      try
-//      {
-//
-//         ::user::g_defer_term();
-//
-//      }
-//      catch (...)
-//      {
-//
-//      }
-//
-//#endif // LINUX
-//
-//
-//   }
-
-
-   //__pointer(::apex::session) system::on_create_session()
-   //{
-
-   //   return __new(::apex::session);
-
-   //}
-
-
-   //::apex::session * system::query_session(index iEdge)
-   //{
-
-   //   ::apex::session * pbergedge = nullptr;
-
-   //   if (m_pbergedgemap == nullptr)
-   //   {
-
-   //      return nullptr;
-
-   //   }
-
-   //   if(!m_pbergedgemap->lookup(iEdge,pbergedge))
-   //   {
-
-   //      return nullptr;
-
-   //   }
-
-   //   return pbergedge;
-
-   //}
 
 #ifdef LINUX
 
@@ -6963,213 +6503,6 @@ namespace apex
 //      return estatus;
 //
 //   }
-
-
-   //void system::term_system()
-   //{
-
-   //   //apex::application::term_application();
-   //   apex::system::term_system();
-
-   //}
-
-
-//   void system::set_active_guie(::user::interaction* pinteraction)
-//   {
-//
-//#ifdef WINDOWS_DESKTOP
-//
-//      if (pinteraction == nullptr)
-//      {
-//
-//         ::set_active_window(nullptr);
-//
-//      }
-//      else
-//      {
-//
-//         ::set_active_window(pinteraction->get_wnd()->get_safe_handle());
-//
-//      }
-//
-//#endif
-//
-//   }
-//
-//
-//   void system::set_focus_guie(::user::interaction* pinteraction)
-//   {
-//
-//      if (pinteraction == nullptr)
-//      {
-//
-//         ::set_focus(nullptr);
-//
-//         return;
-//
-//      }
-//
-//
-//      ::set_focus(pinteraction->get_safe_handle());
-//
-//      if (pinteraction->get_wnd() != nullptr)
-//      {
-//
-//         pinteraction->SetFocus();
-//
-//      }
-//
-//      return;
-//
-//   }
-
-
-   //::count system::get_monitor_count()
-   //{
-
-   //   return ::apex::system::get_monitor_count();
-
-   //}
-
-
-
-
-//   bool system::get_monitor_rect(index iMonitor, RECT* prect)
-//   {
-//
-//#ifdef _UWP
-//
-//      get_window_rect(prect);
-//
-//      return true;
-//
-//#elif defined(LINUX)
-//
-//
-//      return ::apex::system::get_monitor_rect(iMonitor, prect);
-//
-//      //return os_get_monitor_rect(iMonitor, prect);
-//
-//
-//
-//#else
-//
-//      return ::apex::system::get_monitor_rect(iMonitor, prect);
-//
-//
-//#endif
-//
-//   }
-
-
-   //bool system::get_wkspace_rect(index iWkspace, RECT* prect)
-   //{
-
-   //   //#ifdef LINUX
-   //   //
-   //   //      xdisplay  d;
-   //   //
-   //   //      if(!d.open(nullptr))
-   //   //         return false;
-   //   //
-   //   //      prect->left = 0;
-
-   //   //      prect->right = WidthOfScreen(DefaultScreenOfDisplay(d.m_pdata->m_pdisplay));
-
-   //   //      prect->top = 0;
-
-   //   //      prect->bottom= HeightOfScreen(DefaultScreenOfDisplay(d.m_pdata->m_pdisplay));
-
-   //   //
-   //   //      return true;
-   //   //
-   //   //#else
-
-   //   return ::apex::system::get_wkspace_rect(iWkspace, prect);
-
-
-   //   //#endif
-
-   //}
-
-   //
-   //   ::estatus system::process_init()
-   //   {
-   //
-   //
-   //      //::apex::application * papp = ::get_context_application(get_object());
-   //
-   //      //if (papp == nullptr)
-   //      //{
-   //
-   //      //   set("parent_system") = nullptr;
-   //
-   //      //}
-   //      //else
-   //      //{
-   //
-   //      //   set("parent_system") = papp->m_psystem;
-   //
-   //      //}
-   ////#if !defined(WINDOWS) && !defined(MACOS)
-   ////
-   ////      i32 error = FT_Init_FreeType((FT_Library *)&m_ftlibrary);
-   ////
-   ////      if (error)
-   ////      {
-   ////
-   ////         TRACE("an error occurred during Free Type library initialization");
-   ////
-   ////         return false;
-   ////
-   ////      }
-   ////
-   ////#endif
-   //
-   //      //if (m_peengine != nullptr)
-   //      //{
-   //
-   //      //   m_peengine = new ::exception::engine(this);
-   //
-   //      //}
-   //
-   //
-   //      //if (!::apex::application::process_init())
-   //        // return false;
-   //
-   //      if (!::apex::system::process_init())
-   //         return false;
-   //
-   //
-   //      //create_factory < ::OS::window_buffer >   (__type(::window_graphics));
-   //
-   //
-   //
-   //      //m_spos.create(this);
-   //
-   //
-   //
-   //
-   //
-   //      return true;
-   //
-   //   }
-
-
-   //   bool system::initialize_native_window1()
-   //   {
-   //
-   //#if !defined(LINUX) && !defined(WINDOWS_DESKTOP) && !defined(MACOS)
-   //
-   //      get_context_session()->m_puiMain = __new(::user::interaction);
-   //
-   //      get_context_session()->m_puiMain->initialize(get_context_session());
-   //
-   //#endif
-   //
-   //      return true;
-   //
-   //   }
 
    void system::update(::update* pupdate)
    {

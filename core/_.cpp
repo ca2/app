@@ -78,15 +78,15 @@ string object_name(element* p)
 
 void element::add_ref_history(element* p, const char* pszObjRefDbg)
 {
-   
-   if (!g_bAura)
+
+   if (!::acme::g_bAcme)
    {
 
       return;
 
    }
 
-   cslock sl(&::aura::g_csRefDbg);
+   cslock sl(&::acme::g_csRefDbg);
 
    if (g_bEnableObjRefDbg)
    {
@@ -130,7 +130,7 @@ void element::add_ref_history(element* p, const char* pszObjRefDbg)
 void element::dec_ref_history(element* p, const char* /*pszObjRefDbgNotUsedCurrently*/)
 {
 
-   cslock sl(&::aura::g_csRefDbg);
+   cslock sl(&::acme::g_csRefDbg);
 
    if (m_pobjrefdbg == nullptr || m_countReference <= 0 || m_pobjrefdbg->m_itema.isEmpty())
    {
@@ -154,7 +154,7 @@ void element::dec_ref_history(element* p, const char* /*pszObjRefDbgNotUsedCurre
 void element::check_pending_releases()
 {
 
-   cslock sl(&::aura::g_csRefDbg);
+   cslock sl(&::acme::g_csRefDbg);
 
    if (m_pobjrefdbg == nullptr)
    {
@@ -167,10 +167,10 @@ void element::check_pending_releases()
    {
 
       ::output_debug_string("\nThere are pending releases:\n");
-      
+
       try
       {
-         
+
          ::output_debug_string("For "+__str(typeid(*this).name())+"("+string(debug_note())+")\n");
 
       }

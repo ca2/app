@@ -151,7 +151,7 @@ CLASS_DECL_ACME void throw_todo(void);
 CLASS_DECL_ACME void set_last_status(const ::estatus & estatus);
 CLASS_DECL_ACME void windowing_output_debug_string(const char * pszDebugString);
 //CLASS_DECL_ACME void c_function_call(void * p);
-extern CLASS_DECL_ACME int g_bAcme;
+namespace acme { extern CLASS_DECL_ACME bool g_bAcme; }
 CLASS_DECL_ACME int __assert_failed_line(const char * pszFileName,int iLineNumber);
 CLASS_DECL_ACME int is_debugger_attached(void);
 CLASS_DECL_ACME void debug_print(const char * psz,...);

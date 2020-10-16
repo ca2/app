@@ -2198,6 +2198,31 @@ namespace aura
    ::estatus system::init()
    {
 
+
+      m_tickHeartBeat.Now();
+
+      if (has_property("save_processing"))
+      {
+
+         Session.savings().save(::e_resource_processing);
+
+         }
+
+         if (has_property("save_blur_back"))
+         {
+
+            Session.savings().save(::e_resource_blur_background);
+
+         }
+
+         if (has_property("save_transparent_back"))
+         {
+
+            Session.savings().save(::e_resource_translucent_background);
+
+         }
+
+
       if (::is_set(m_pdraw2d))
       {
 
@@ -2345,59 +2370,61 @@ namespace aura
    }
 
 
-   ::estatus system::init_system()
-   {
-
-      if (m_bConsole)
-      {
-
-         auto estatus = get_context_session()->inline_init();
-
-         if (!estatus)
-         {
-
-            return estatus;
-
-         }
-
-      }
-      else
-      {
-
-         if (!get_context_session()->begin_synch())
-         {
-
-            return false;
-
-         }
-
-      }
-
-      auto estatus = init1();
-
-      if(!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      estatus = init2();
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      return ::success;
-
-   }
-
+//   ::estatus system::init_system()
+//   {
+//
+//      if (m_bConsole)
+//      {
+//
+//         auto estatus = get_context_session()->inline_init();
+//
+//         if (!estatus)
+//         {
+//
+//            return estatus;
+//
+//         }
+//
+//      }
+//      else
+//      {
+//
+//         if (!get_context_session()->begin_synch())
+//         {
+//
+//            return false;
+//
+//         }
+//
+//      }
+//
+//      auto estatus = init1();
+//
+//      if(!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//      estatus = init2();
+//
+//      if (!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//      return ::success;
+//
+//   }
+//
 
    void system::term()
    {
+
+      ::aqua::system::term();
 
       __release(m_phistory);
 
@@ -2455,6 +2482,8 @@ namespace aura
 
    void system::term2()
    {
+
+      ::aqua::system::term2();
 
       for (int i = 0; i < m_serviceptra.get_size(); i++)
       {
@@ -2656,74 +2685,75 @@ namespace aura
    }
 
 
-   void system::term_system()
+//   void system::term_system()
+//   {
+//
+//      try
+//      {
+//
+//         term2();
+//
+//      }
+//      catch (...)
+//      {
+//
+//      }
+//
+//      try
+//      {
+//
+//         term1();
+//
+//      }
+//      catch (...)
+//      {
+//
+//      }
+//
+//            try
+//      {
+//
+//         term();
+//
+//      }
+//      catch (...)
+//      {
+//
+//      }
+//
+//      try
+//      {
+//
+//         process_term();
+//
+//      }
+//      catch (...)
+//      {
+//
+//      }
+//
+//
+//      try
+//      {
+//
+//         TermSystem();
+//
+//      }
+//      catch (...)
+//      {
+//
+//      }
+//
+//
+//   }
+//
+//
+
+
+   void system::TermSystem()
    {
 
-      try
-      {
-
-         term2();
-
-      }
-      catch (...)
-      {
-
-      }
-
-      try
-      {
-
-         term1();
-
-      }
-      catch (...)
-      {
-
-      }
-
-            try
-      {
-
-         term();
-
-      }
-      catch (...)
-      {
-
-      }
-
-      try
-      {
-
-         process_term();
-
-      }
-      catch (...)
-      {
-
-      }
-
-
-      try
-      {
-
-         TermApplication();
-
-      }
-      catch (...)
-      {
-
-      }
-
-
-   }
-
-
-   void system::TermApplication()
-   {
-
-      //::aura::application::TermApplication();
-
+      ::aqua::system::TermSystem();
 
 #ifdef LINUX
 
@@ -2733,7 +2763,7 @@ namespace aura
       // ... do this call, but this requires all references to ::aura::system ...
       // ... to be released. This is a bit of an ideal situation that may not ...
       // ... always happen as the wish the program finishes when it is closed ...
-      os_post_quit();
+      //os_post_quit();
 
 #elif defined(__APPLE__)
 
@@ -5777,60 +5807,6 @@ namespace aura
    //}
 
 
-   //::estatus system::init()
-   //{
-
-   //   //if (!::axis::application::init())
-   //   //{
-
-   //   //   return false;
-
-   //   //}
-
-   //   if (!::aura::system::init())
-   //   {
-
-   //      return false;
-
-   //   }
-
-   //   return true;
-
-   //}
-
-
-   //void system::term_system()
-   //{
-
-   //   //      __wait_threading_count(::millis((5000) * 8));
-
-   //         //axis::application::term_application();
-
-   //         //::acme::del(m_phtml);
-
-   //   try
-   //   {
-
-   //      ::aura::system::term_system();
-
-   //   }
-   //   catch (...)
-   //   {
-
-   //      m_result.add(error_failed);
-
-   //   }
-
-   //}
-
-
-   //bool system::is_system() const
-   //{
-
-   //   return true;
-
-   //}
-
 
 
    string system::crypto_md5_text(const string & str)
@@ -7893,7 +7869,7 @@ namespace aura
          return ::success;
 
       }
-      
+
       auto estatus = __compose(m_pestamira);
 
       if (!estatus)

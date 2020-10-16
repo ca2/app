@@ -947,8 +947,6 @@ namespace acme
 
       delete_all_release_on_end();
 
-      ::update_notification_task::post_destroy_all();
-
       ::acme::del(g_pelementaddraReleaseOnEnd);
 
       ::acme::del(g_pcsGlobal);

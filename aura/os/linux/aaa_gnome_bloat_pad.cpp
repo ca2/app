@@ -16,7 +16,7 @@ ApexApplication * apex_application_new (const char * pszAppName, const char * ps
 
    ApexApplication * apex_application;
 
-   g_set_application_name (pszAppName);
+   //g_set_application_name (pszAppName);
 
    apex_application = (ApexApplication *) g_object_new (apex_application_get_type (),
                                           "application-id", pszProgName,
@@ -98,7 +98,7 @@ void apex_application_startup (GApplication *application)
 
    gtk_application_add_window(app, g_pmainwindow);
 
-   ::aura::system * psystem = (::aura::system *) ::get_context_system();
+   ::apex::system * psystem = (::apex::system *) ::get_context_system();
 
    //psystem->m_strAppId = psystem->m_pmaindata->m_strAppId;
 

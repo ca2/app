@@ -224,7 +224,6 @@
 		<Linker>
 			<Add directory="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 		</Linker>
-		<Unit filename="../aura/aura.cbp" />
 		<Unit filename="_.cpp" />
 		<Unit filename="_.h" />
 		<Unit filename="_defer.h" />

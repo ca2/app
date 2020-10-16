@@ -764,6 +764,10 @@ namespace acme
    void system::term()
    {
 
+
+      ::update_notification_task::post_destroy_all();
+
+
       m_phistory.release();
 
 

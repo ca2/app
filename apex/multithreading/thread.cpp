@@ -2708,7 +2708,7 @@ void thread::__set_thread_off()
 
    set_thread_off(::get_current_ithread());
 
-   //::get_context_system()->unset_thread(::get_current_ithread());
+   ::set_thread(nullptr);
 
 }
 

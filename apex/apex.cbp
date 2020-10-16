@@ -1016,7 +1016,8 @@
 		<Unit filename="os/linux/file.h" />
 		<Unit filename="os/linux/gnome.cpp" />
 		<Unit filename="os/linux/gnome.h" />
-		<Unit filename="os/linux/gnome_bloat_pad.cpp" />
+		<Unit filename="os/linux/gnome_apex_application.cpp" />
+		<Unit filename="os/linux/gnome_apex_application.h" />
 		<Unit filename="os/linux/gnome_direct.cpp" />
 		<Unit filename="os/linux/gnome_gnome.h" />
 		<Unit filename="os/linux/gnome_internal_glue.h" />

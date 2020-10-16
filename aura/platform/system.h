@@ -262,8 +262,8 @@ namespace aura
       virtual ::estatus inline_init() override;
       virtual ::estatus inline_term() override;
 
-      virtual ::estatus init_system() override;
-      virtual void term_system() override;
+//      virtual ::estatus init_system() override;
+//      virtual void term_system() override;
 
       virtual void term() override;
 
@@ -553,7 +553,7 @@ namespace aura
       //virtual void session_remove(index iEdge);
 
 
-      
+
       //virtual ::estatus init_system();
 
       //virtual ::estatus process_init();
@@ -587,7 +587,7 @@ namespace aura
 
       //virtual void term();
 
-      virtual void TermApplication() override;
+      virtual void TermSystem() override;
 
 
       virtual void process_term() override;

@@ -3,7 +3,7 @@
 #include <gio/gio.h>
 #include "third/sn/sn.h"
 #include "apex/platform/app_core.h"
-#include "bloat_pad.h"
+#include "gnome_apex_application.h"
 
 extern ::app_core * g_pappcore;
 
@@ -178,39 +178,39 @@ i32 _c_XErrorHandler(Display * display, XErrorEvent * perrorevent);
 
    }
 
-   if(psystem->m_bGtkApp)
+   //if(psystem->m_bGtkApp)
    {
 
-      bloat_pad_run(psystem->m_strAppId, psystem->m_strProgName);
+      apex_application_run(psystem->m_strAppId, psystem->m_strProgName);
 
    }
-   else
-   {
-
-//      g_set_application_name(psystem->m_strAppId);
+//   else
+//   {
 //
-//      g_set_prgname(psystem->m_strProgName);
+////      g_set_application_name(psystem->m_strAppId);
+////
+////      g_set_prgname(psystem->m_strProgName);
+////
+////      //auto idle_source = g_idle_source_new();
+////
+////      //g_source_set_callback(idle_source, &linux_start_system, (::apex::system *) m_psystem, nullptr);
+////
+////      //g_source_attach(idle_source, g_main_context_default());
+////
+////      //int c = 2;
+////
+////      //const char * argv[]={"app", "--g-fatal-warnings"};
+////
+////#if !defined(__SANITIZE_ADDRESS__)
+////
+////      gtk_init_check(&psystem->m_argc, &psystem->m_argv);
+////
+////#endif
 //
-//      //auto idle_source = g_idle_source_new();
+//      gtk_main();
 //
-//      //g_source_set_callback(idle_source, &linux_start_system, (::apex::system *) m_psystem, nullptr);
+//   }
 //
-//      //g_source_attach(idle_source, g_main_context_default());
-//
-//      //int c = 2;
-//
-//      //const char * argv[]={"app", "--g-fatal-warnings"};
-//
-//#if !defined(__SANITIZE_ADDRESS__)
-//
-//      gtk_init_check(&psystem->m_argc, &psystem->m_argv);
-//
-//#endif
-
-      gtk_main();
-
-   }
-
    //::multithreading::post_quit_and_wait(get_context_system(), one_minute());
 
    return ::success;
@@ -238,10 +238,10 @@ void sn_start_context();
 void os_term_application()
 {
 
-//   if(g_pappBloatPad != nullptr)
+//   if(g_papexapplication != nullptr)
 //   {
 //
-//      g_application_quit(G_APPLICATION(g_pappBloatPad));
+//      g_application_quit(G_APPLICATION(g_papexapplication));
 //
 //   }
 

@@ -1,9 +1,9 @@
 #include "framework.h"
 #include "_user.h"
-#include <gio/gio.h>
+#include <gtk/gtk.h>
 #include "third/sn/sn.h"
 #include "apex/platform/app_core.h"
-#include "bloat_pad.h"
+#include "apex/os/linux/gnome_apex_application.h"
 
 extern ::app_core * g_pappcore;
 
@@ -189,7 +189,7 @@ i32 _c_XErrorHandler(Display * display, XErrorEvent * perrorevent);
    if(psystem->m_bGtkApp)
    {
 
-      bloat_pad_run(psystem->m_strAppId, psystem->m_strProgName);
+      apex_application_run(psystem->m_strAppId, psystem->m_strProgName);
 
    }
    else
@@ -246,10 +246,10 @@ bool os_init_application()
 void os_term_application()
 {
 
-//   if(g_pappBloatPad != nullptr)
+//   if(g_papexapplication != nullptr)
 //   {
 //
-//      g_application_quit(G_APPLICATION(g_pappBloatPad));
+//      g_application_quit(G_APPLICATION(g_papexapplication));
 //
 //   }
 

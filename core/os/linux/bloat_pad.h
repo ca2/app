@@ -15,16 +15,16 @@ typedef struct
   //GMenu *time;
   //guint timeout;
 
-} BloatPad; // you can search for BloatPad in 2017 and so Internet
+} ApexApplication; // you can search for ApexApplication in 2017 and so Internet
 
 typedef GtkApplicationClass BloatPadClass;
 
 
 
-extern BloatPad * g_pappBloatPad;
+extern ApexApplication * g_papexapplication;
 
 
-void bloat_pad_run(const char * pszAppName, const char * pszProgName);
+void apex_application_run(const char * pszAppName, const char * pszProgName);
 
 
 

@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "bloat_pad.h"
+#include "apex_application.h"
 
 
 
@@ -7,25 +7,25 @@ void sn_start_context();
 
 GtkWindow * g_pmainwindow = nullptr;
 
-G_DEFINE_TYPE (BloatPad, bloat_pad, GTK_TYPE_APPLICATION)
+G_DEFINE_TYPE (ApexApplication, apex_application, GTK_TYPE_APPLICATION)
 
-BloatPad * g_pappBloatPad = nullptr;
+ApexApplication * g_papexapplication = nullptr;
 
-BloatPad * bloat_pad_new (const char * pszAppName, const char * pszProgName)
+ApexApplication * apex_application_new (const char * pszAppName, const char * pszProgName)
 {
 
-   BloatPad * bloat_pad;
+   ApexApplication * apex_application;
 
    //g_set_application_name (pszAppName);
 
-   bloat_pad = (BloatPad *) g_object_new (bloat_pad_get_type (),
+   apex_application = (ApexApplication *) g_object_new (apex_application_get_type (),
                                           "application-id", pszProgName,
                                           "flags", G_APPLICATION_FLAGS_NONE,
                                           "inactivity-timeout", 30000,
                                           "register-session", TRUE,
                                           nullptr);
 
-   return bloat_pad;
+   return apex_application;
 
 }
 
@@ -48,7 +48,7 @@ gboolean linux_start_system(gpointer data)
 }
 
 
-void bloat_pad_activate(GApplication * application)
+void apex_application_activate(GApplication * application)
 {
 
    //GCancellable * pc = g_cancellable_new();
@@ -67,32 +67,32 @@ void bloat_pad_activate(GApplication * application)
 }
 
 
-void bloat_pad_run_mainloop(GApplication * application)
+void apex_application_run_mainloop(GApplication * application)
 {
 
-   BloatPad * bloatpad = (BloatPad *) application;
+   ApexApplication * papexapplication = (ApexApplication *) application;
 
    GtkApplication * app = GTK_APPLICATION (application);
 
-   G_APPLICATION_CLASS (bloat_pad_parent_class)->run_mainloop(application);
+   G_APPLICATION_CLASS (apex_application_parent_class)->run_mainloop(application);
 
 }
 
 
-void bloat_pad_init (BloatPad *app)
+void apex_application_init (ApexApplication *app)
 {
 
 }
 
 
-void bloat_pad_startup (GApplication *application)
+void apex_application_startup (GApplication *application)
 {
 
-   BloatPad * bloatpad = (BloatPad *) application;
+   ApexApplication * papexapplication = (ApexApplication *) application;
 
    GtkApplication * app = GTK_APPLICATION (application);
 
-   G_APPLICATION_CLASS (bloat_pad_parent_class)->startup (application);
+   G_APPLICATION_CLASS (apex_application_parent_class)->startup (application);
 
    g_pmainwindow = GTK_WINDOW(gtk_window_new(GTK_WINDOW_TOPLEVEL));
 
@@ -111,7 +111,7 @@ void bloat_pad_startup (GApplication *application)
 }
 
 
-void bloat_pad_open(GApplication * application, GFile ** files, gint n_files, const gchar * hint)
+void apex_application_open(GApplication * application, GFile ** files, gint n_files, const gchar * hint)
 {
 
 //   gint i;
@@ -126,62 +126,62 @@ void bloat_pad_open(GApplication * application, GFile ** files, gint n_files, co
 }
 
 
-void bloat_pad_finalize (GObject *object)
+void apex_application_finalize (GObject *object)
 {
 
-   G_OBJECT_CLASS (bloat_pad_parent_class)->finalize (object);
+   G_OBJECT_CLASS (apex_application_parent_class)->finalize (object);
 
 }
 
 
-void bloat_pad_shutdown(GApplication *application)
+void apex_application_shutdown(GApplication *application)
 {
 
-   BloatPad * bloatpad = (BloatPad *) application;
+   ApexApplication * papexapplication = (ApexApplication *) application;
 
    /*
 
-   if (bloatpad->timeout)
+   if (papexapplication->timeout)
    {
 
-      g_source_remove (bloatpad->timeout);
+      g_source_remove (papexapplication->timeout);
 
-      bloatpad->timeout = 0;
+      papexapplication->timeout = 0;
 
    }
 
    */
 
-   G_APPLICATION_CLASS (bloat_pad_parent_class)->shutdown (application);
+   G_APPLICATION_CLASS (apex_application_parent_class)->shutdown (application);
 
 }
 
 
-void bloat_pad_class_init (BloatPadClass * pclass)
+void apex_application_class_init (BloatPadClass * pclass)
 {
 
-   GApplicationClass *application_class    = G_APPLICATION_CLASS (pclass);
+   GApplicationClass *papplicationclass    = G_APPLICATION_CLASS (pclass);
 
-   GObjectClass *object_class              = G_OBJECT_CLASS (pclass);
+   GObjectClass *pobjectclass              = G_OBJECT_CLASS (pclass);
 
-   application_class->startup              = bloat_pad_startup;
-   application_class->shutdown             = bloat_pad_shutdown;
-   application_class->activate             = bloat_pad_activate;
-   application_class->open                 = bloat_pad_open;
+   papplicationclass->startup              = apex_application_startup;
+   papplicationclass->shutdown             = apex_application_shutdown;
+   papplicationclass->activate             = apex_application_activate;
+   papplicationclass->open                 = apex_application_open;
 
-   application_class->run_mainloop         = bloat_pad_run_mainloop;
+   papplicationclass->run_mainloop         = apex_application_run_mainloop;
 
-   object_class->finalize                  = bloat_pad_finalize;
+   pobjectclass->finalize                  = apex_application_finalize;
 
 }
 
 
-void bloat_pad_run(const char * pszAppName, const char * pszProgName)
+void apex_application_run(const char * pszAppName, const char * pszProgName)
 {
 
-   g_pappBloatPad = bloat_pad_new(pszAppName, pszProgName);
+   g_papexapplication = apex_application_new(pszAppName, pszProgName);
 
-   if(g_pappBloatPad == nullptr)
+   if(g_papexapplication == nullptr)
    {
 
       output_debug_string("Failed to initialize GtkApplication (gtk_application_new return nullptr)");
@@ -190,11 +190,11 @@ void bloat_pad_run(const char * pszAppName, const char * pszProgName)
 
    }
 
-   int status = g_application_run (G_APPLICATION (g_pappBloatPad), 0, nullptr);
+   int status = g_application_run (G_APPLICATION (g_papexapplication), 0, nullptr);
 
-   g_object_unref(g_pappBloatPad);
+   g_object_unref(g_papexapplication);
 
-   g_pappBloatPad = nullptr;
+   g_papexapplication = nullptr;
 
 }
 

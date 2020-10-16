@@ -98,7 +98,7 @@ namespace axis
 
       //virtual void term();
 
-      virtual void TermApplication() override;
+      virtual void TermSystem() override;
 
 
       virtual void process_term() override;

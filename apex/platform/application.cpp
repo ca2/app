@@ -14,6 +14,7 @@ int windows_desktop1_main(HINSTANCE hInstance, int nCmdShow);
 
 
 #include "apex/node/_node.h"
+#include "apex/os/_os.h"
 
 #ifdef WINDOWS_DESKTOP
 
@@ -236,11 +237,11 @@ namespace apex
       }
 
       set_context_object(this);
-      
+
       set_context_app(this);
 
       set_context(this);
-      
+
       if (::is_set(m_pappParent))
       {
 
@@ -314,7 +315,16 @@ namespace apex
    void application::application_menu_update()
    {
 
+      if(System.m_bGtkApp)
+      {
 
+#ifdef LINUX
+
+         apex_application_set_application_menu(m_papplicationmenu, this);
+
+#endif
+
+      }
 
    }
 
@@ -7097,64 +7107,31 @@ retry_license:
    ::estatus application::init()
    {
 
-      //if (m_bAxisInitialize)
-      //{
-
-      //   return m_bAxisInitializeResult;
-
-      //}
-
-      //m_bAxisInitialize = true;
-
-      //m_bAxisInitializeResult = false;
-
-      //::apex::::message::application signal(::apex::::message::application_init);
-
-      //route_message(&signal);
-
-      //if (!signal.m_bOk)
-      //   return false;
       m_tickHeartBeat.Now();
-
-      if (is_system())
-      {
-
-         // apex commented
-         //__throw(todo("savings"))
-         //if (has_property("save_processing"))
-         //{
-
-         //   Session.savings().save(::apex::resource_processing);
-
-         //}
-
-         //if (has_property("save_blur_back"))
-         //{
-
-         //   Session.savings().save(::apex::resource_blur_background);
-
-         //}
-
-         //if (has_property("save_transparent_back"))
-         //{
-
-         //   Session.savings().save(::apex::resource_translucent_background);
-
-         //}
-
-      }
 
       if (has_property("install"))
       {
+
          // apex level app install
          if (!Ex2OnAppInstall())
+         {
+
             return false;
+
+         }
+
       }
       else if (has_property("uninstall"))
       {
+
          // apex level app uninstall
          if (!Ex2OnAppUninstall())
+         {
+
             return false;
+
+         }
+
       }
       else
       {
@@ -7180,111 +7157,33 @@ retry_license:
          }
 #endif
       }
+
       m_tickHeartBeat.Now();
 
-      //if(is_system()
-      //      && !m_varTopicQuery["app"].get_string().begins_ci("app-core/netnode")
-      //      && m_varTopicQuery["app"] != "app-core/netnode_dynamic_web_server"
-      //      && m_varTopicQuery["app"] != "app-gtech/alarm"
-      //      && m_varTopicQuery["app"] != "app-gtech/sensible_service")
-      //{
-      //   Context.http().defer_auto_initialize_proxy_configuration();
-      //}
-      m_tickHeartBeat.Now();
+      ensure_app_interest();
 
-      //      m_bAxisInitializeResult = true;
+      INFO(".2");
 
-      //      dappy(string(typeid(*this).name()) + " : initialize ok : " + __str(m_iErrorCode));
+      if (is_true("install"))
+      {
 
-
-      //::estatus application::init()
-      //{
-
-      //   if (!::apex::application::init())
-      //   {
-
-      //      return false;
-
-      //   }
-
-         //xxdebug_box("::apex::application::initialize ok", "::apex::application::initialize ok", MB_ICONINFORMATION);
-
-         //xxdebug_box("m_pcalculator::initialize ok", "m_pcalculator::initialize ok", MB_ICONINFORMATION);
-
-         //xxdebug_box("m_pcolorertake5::initialize ok", "m_pcolorertake5::initialize ok", MB_ICONINFORMATION);
-
-         m_tickHeartBeat.Now();
-
-         //if (!initialize_userex())
-         //{
-
-         //   return false;
-
-         //}
-
-         //xxdebug_box("m_pfilemanager::initialize ok", "m_pfilemanager::initialize ok", MB_ICONINFORMATION);
-
-         //xxdebug_box("m_pusermail::initialize ok", "m_pusermail::initialize ok", MB_ICONINFORMATION);
-         m_tickHeartBeat.Now();
-
-         //xxdebug_box("register_bergedge_application ok", "register_bergedge_application ok", MB_ICONINFORMATION);
-         m_tickHeartBeat.Now();
-
-         ensure_app_interest();
-
-         //xxdebug_box("ensure_app_interest ok", "ensure_app_interest ok", MB_ICONINFORMATION);
-
-
-         INFO(".2");
-
-         if (!is_session() && !is_system())
+         if (is_user_service())
          {
 
-            if (is_true("install"))
-            {
-
-               if (is_user_service())
-               {
-
-                  //               if (Session.account()->m_puser != nullptr && Session.account()->m_puser->m_strLogin == "system")
-                  //               {
-                  //
-                  //                  Session.account()->m_puser = nullptr;
-                  //
-                  //               }
-                  //
-                  //               if (!m_strAppId.begins_ci("app-core/netnode") && m_strAppId != "app-core/mydns")
-                  //               {
-                  //
-                  //                  ApplicationUser;
-                  //
-                  //               }
-
-               }
-
-            }
-            else
-            {
-
-               //Session.keyboard();
-
-            }
-
-            ERR("1.1");
-
-            index i = applicationmenu().get_count();
-
-            applicationmenu().add_item(i++, _("Transparent Frame"), "transparent_frame");
-
-            application_menu_update();
 
          }
 
-         INFO("success");
+      }
 
-      //   return true;
+      ERR("1.1");
 
-      //}
+      index i = applicationmenu().get_count();
+
+      applicationmenu().add_item(i++, _("Transparent Frame"), "transparent_frame");
+
+      application_menu_update();
+
+      INFO("success");
 
       return true;
 

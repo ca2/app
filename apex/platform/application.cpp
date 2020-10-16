@@ -315,16 +315,16 @@ namespace apex
    void application::application_menu_update()
    {
 
+#ifdef LINUX
+
       if(System.m_bGtkApp)
       {
 
-#ifdef LINUX
-
          apex_application_set_application_menu(m_papplicationmenu, this);
 
-#endif
-
       }
+
+#endif
 
    }
 

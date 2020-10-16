@@ -149,8 +149,7 @@ enum e_set_loading
 };
 
 
-struct CLASS_DECL_ACME stream_meta :
-   public ::element
+struct CLASS_DECL_ACME stream_meta
 {
 
 
@@ -160,7 +159,6 @@ struct CLASS_DECL_ACME stream_meta :
    filesize                   m_width;
    filesize                   m_precision;
    memsize                    m_gcount;
-   ::estatus                  m_estatus;
 
 
    stream_meta()
@@ -311,7 +309,8 @@ public:
 //
 
 class CLASS_DECL_ACME stream :
-   public stream_meta
+   public stream_meta,
+   virtual public ::context_object
 {
 public:
 

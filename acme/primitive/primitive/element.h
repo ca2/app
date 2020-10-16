@@ -182,14 +182,14 @@ public:
    virtual void set_finish();
 
    inline void set_ok() { set(e_object_success); clear(e_object_timeout); clear(e_object_failure); }
-   inline void set_nok() { clear(e_object_success); }
+   inline void set_nok(enum_object estatusFailure = e_object_failure) { clear(e_object_success); set(estatusFailure); }
 
    inline void set_fail() { set(e_object_failure); clear(e_object_success); }
    inline void set_timeout() { set(e_object_timeout); }
    inline void set_persistent(bool bSet = true) { set(e_object_persist, bSet); }
 
    inline bool is_ok() const { return has(e_object_success); }
-   inline bool fail() const { return has(e_object_failure) || has(e_object_timeout); }
+   inline bool nok() const { return has(e_object_failure) || has(e_object_timeout); }
    inline bool is_persistent() { return has(e_object_persist); }
 
    inline bool is_storing() const { return has(e_object_storing); }

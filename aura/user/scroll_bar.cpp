@@ -111,7 +111,7 @@ namespace user
    ::color scroll_bar::scrollbar_color_strong(::user::style* pstyle, ::user::e_element eelement)
    {
 
-      if (m_itemCurrent == eelement || m_itemHover== eelement)
+      if (*m_pitemCurrent == eelement || *m_pitemHover== eelement)
       {
 
          return ARGB(130, 190, 180, 250);
@@ -130,7 +130,7 @@ namespace user
    ::color scroll_bar::scrollbar_color(::user::style * pstyle, ::user::e_element eelement)
    {
 
-      if(m_itemCurrent == eelement || m_itemHover== eelement)
+      if(*m_pitemCurrent == eelement || *m_pitemHover== eelement)
       {
 
          return ARGB(100, 190, 180, 250);
@@ -149,7 +149,7 @@ namespace user
    ::color scroll_bar::scrollbar_border_color(::user::style* pstyle, ::user::e_element eelement)
    {
 
-      if(m_itemCurrent == eelement || m_itemHover== eelement)
+      if(*m_pitemCurrent == eelement || *m_pitemHover== eelement)
       {
 
          return ARGB(190, 180, 180, 180);
@@ -168,7 +168,7 @@ namespace user
    ::color scroll_bar::scrollbar_lite_border_color(::user::style* pstyle, ::user::e_element eelement)
    {
 
-      if(m_itemCurrent == eelement || m_itemHover== eelement)
+      if(*m_pitemCurrent == eelement || *m_pitemHover== eelement)
       {
 
          return ARGB(190, 90, 110, 180);
@@ -187,7 +187,7 @@ namespace user
    ::color scroll_bar::scrollbar_draw_color(::user::style* pstyle, ::user::e_element eelement)
    {
 
-      if (m_itemCurrent == eelement || m_itemHover == eelement)
+      if (*m_pitemCurrent == eelement || *m_pitemHover == eelement)
       {
 
          return ARGB(127, 90, 90, 90);

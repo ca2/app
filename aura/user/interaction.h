@@ -42,7 +42,7 @@ namespace user
 
       enum e_updown
       {
-         
+
          updown_normal_frame,
          updown_none,
          updown_up,
@@ -105,11 +105,11 @@ namespace user
       __pointer_array(::user::item)             m_itema;
       bool                                      m_bOverdraw;
       __pointer(::user::frame)                  m_pframe;
-      ::user::item                              m_itemLButtonDown;
       ::index                                   m_iIndex;
-      item                                      m_itemCurrent;
-      item                                      m_itemHover;
-      item                                      m_itemHoverMouse;
+      __pointer(item)                           m_pitemLButtonDown;
+      __pointer(item)                           m_pitemCurrent;
+      __pointer(item)                           m_pitemHover;
+      __pointer(item)                           m_pitemHoverMouse;
       ::size                                    m_sizeRestoreBroad;
       ::size                                    m_sizeRestoreCompact;
       cflag < e_non_client >                    m_flagNonClient;
@@ -208,7 +208,7 @@ namespace user
       virtual ~interaction();
 
 
-      
+
       void user_interaction_common_construct();
 
       virtual void on_create_user_interaction();
@@ -253,7 +253,7 @@ namespace user
       virtual::edisplay window_stored_display() const;
       virtual::edisplay window_previous_display() const;
 
-      
+
       virtual int get_derived_height(int iWidth);
       virtual int get_derived_width(int iHeight);
 
@@ -477,10 +477,10 @@ namespace user
 
 
       virtual void set_current_item(const ::user::item & item, const ::action_context & action_context);
-      virtual ::user::item current_item();
+      virtual ::user::item * current_item();
 
 
-      virtual ::user::item hover_item();
+      virtual ::user::item * hover_item();
 
 
       virtual bool _is_window() const override;

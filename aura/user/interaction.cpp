@@ -2418,9 +2418,9 @@ namespace user
 
 #ifdef __DEBUG
 
-            m_itemHover.set_drawn();
+            m_pitemHover->set_drawn();
 
-            m_itemCurrent.set_drawn();
+            m_pitemCurrent->set_drawn();
 
             auto tickEnd = tick::now();
 
@@ -11502,23 +11502,23 @@ restart:
    void interaction::set_current_item(const ::user::item & item, const ::action_context & context)
    {
 
-      m_itemCurrent = item;
+      m_pitemCurrent = __new(::user::item(item));
 
    }
 
 
-   item interaction::current_item()
+   item * interaction::current_item()
    {
 
-      return m_itemCurrent;
+      return m_pitemCurrent;
 
    }
 
 
-   item interaction::hover_item()
+   item * interaction::hover_item()
    {
 
-      return m_itemHover;
+      return m_pitemHover;
 
    }
 

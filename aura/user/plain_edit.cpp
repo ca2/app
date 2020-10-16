@@ -1805,7 +1805,7 @@ namespace user
 
             }
 
-            m_itemHover = element_client;
+            m_pitemHover->operator =(element_client);
 
          }
 
@@ -1817,7 +1817,7 @@ namespace user
    void plain_edit::_001OnMouseLeave(::message::message * pmessage)
    {
 
-      m_itemHover = element_none;
+      m_pitemHover->operator=(element_none);
 
       set_need_redraw();
 

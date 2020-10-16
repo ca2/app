@@ -348,7 +348,7 @@ namespace draw2d
          if (bCheckHover && rect.contains_y(pointCursor.y))
          {
 
-            pgraphics->m_puserinteraction->m_itemHover = { ::user::element_item, i };
+            pgraphics->m_puserinteraction->m_pitemHover = __new(::user::item({ ::user::element_item, i }));
 
             m_iHover = i;
 

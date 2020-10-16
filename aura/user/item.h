@@ -62,20 +62,20 @@ namespace user
    struct CLASS_DECL_AURA item_data :
       public ITEM
    {
-    
+
       ::point                       m_pointScreen;
       ::point                       m_pointClient;
       ::point                       m_pointHitTest;
       ::rect                        m_rect;
       ::user::e_event               m_eevent;
       u64                           m_uFlags;
-      
+
       item_data & operator = (const item_data& item) { if (this != &item) memcpy(this, &item, sizeof(item_data)); return *this; }
 
       bool operator == (const item_data & item)  const { return ITEM::operator==(item); }
       bool operator != (const item_data & item)  const { return ITEM::operator!=(item); }
 
-      
+
    };
 
    class CLASS_DECL_AURA item :
@@ -135,6 +135,21 @@ namespace user
          m_uFlags = 0;
 
          operator = (iItem);
+
+      }
+
+      item(const item & item):
+         item_data(item),
+         element(item)
+      {
+
+      }
+
+
+      item(item && item):
+      item_data(item),
+      element(::move(item))
+      {
 
       }
 

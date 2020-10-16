@@ -6,7 +6,7 @@
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
-			<Target title="linux_basis">
+			<Target title="basis">
 				<Option output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
 				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
@@ -29,7 +29,7 @@
 					<Add directory="$(#archive)/storage-linux/third/library/x64/" />
 				</Linker>
 			</Target>
-			<Target title="linux_stage">
+			<Target title="stage">
 				<Option output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
 				<Option object_output="$(WORKSPACEDIR)/../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
@@ -69,7 +69,7 @@
 			</Target>
 		</Build>
 		<VirtualTargets>
-			<Add alias="all_sanitizers" targets="linux_basis;" />
+			<Add alias="all_sanitizers" targets="basis;" />
 		</VirtualTargets>
 		<Compiler>
 			<Add option="-std=c++17" />

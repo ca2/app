@@ -18,6 +18,7 @@ public:
 
 
    sync_array();
+   sync_array(const ::sync_array & array);
    virtual ~sync_array();
 
 
@@ -44,6 +45,8 @@ public:
    sync_result wait(bool waitForAll, const duration & duration, bool bWaitMessageQueue = false);
 
    sync_result contains(const sync_result & result) const;
+
+   sync_array & operator = (const sync_array & synca);
 
 
 };

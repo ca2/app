@@ -51,7 +51,8 @@ create::create(::object * pobject, arguments arguments) :
       else if(auto pcreate = arg.cast < create >())
       {
 
-         operator = (*pcreate);
+         __throw(todo("Fix this. This shouldn't happen. (create is \"fat\" object, so it is not meant to be copied through copy constructors, assign operators,...)"));
+         //operator = (*pcreate);
 
       }
 

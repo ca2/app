@@ -21,7 +21,7 @@ namespace http
       transaction(const transaction & src);
       virtual ~transaction();
 
-      
+      transaction & operator = (const transaction & transaction);
 
       void SetAccept(const string & value);
       string Accept();
@@ -58,7 +58,7 @@ namespace http
 
       property_set & headers();
       property & header(id idKey);
-      
+
       property_set & attrs();
       property & attr(id idKey);
 

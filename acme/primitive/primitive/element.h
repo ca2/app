@@ -32,15 +32,18 @@ public:
 
    i64                     m_countReference;
    ::eobject               m_eobject;
-   ::layered *             m_pobjectContext;
 
 
 #if OBJ_REF_DBG
-   inline element() : m_pmutex(nullptr), m_pobjectContext(nullptr), m_pobjrefdbg(nullptr), m_countReference(0) { add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_ADD_NOTE("Initial Reference")); }
-   inline element(const eobject& eobject) : m_pmutex(nullptr), m_pobjectContext(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(eobject) { add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_ADD_NOTE("Initial Reference (2)")); }
+   inline element() : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0) { add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_ADD_NOTE("Initial Reference")); }
+   inline element(const eobject& eobject) : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(eobject) { add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_ADD_NOTE("Initial Reference (2)")); }
+   inline element(const element& element) : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(element.m_eobject) { if(element.m_pmutex) defer_create_mutex(); add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_ADD_NOTE("Initial Reference (3)")); }
+   inline element(element&& element) : m_pmutex(element.m_pmutex), m_pobjrefdbg(element.m_pobjrefdbg), m_countReference(element.m_countReference), m_eobject(element.m_eobject) { element.m_pmutex = nullptr; element.m_pobjrefdbg = nullptr;}
 #else
-   inline element() : m_pmutex(nullptr), m_pobjectContext(nullptr), m_countReference(1) { }
-   inline element(const eobject & eobject) : m_pmutex(nullptr), m_pobjectContext(nullptr),m_countReference(1), m_eobject(eobject) { }
+   inline element() : m_pmutex(nullptr), m_countReference(1) { }
+   inline element(const eobject & eobject) : m_pmutex(nullptr), m_countReference(1), m_eobject(eobject) { }
+   inline element(const element & element) : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(1), m_eobject(element.m_eobject) { if(element.m_pmutex) defer_create_mutex(); }
+   inline element(element&& element) : m_pmutex(element.m_pmutex), m_pobjrefdbg(element.m_pobjrefdbg), m_countReference(element.m_countReference), m_eobject(element.m_eobject) { element.m_pmutex = nullptr; element.m_pobjectContext = nullptr; }
 #endif
 
    virtual ~element();
@@ -69,8 +72,6 @@ public:
 
 
 
-   inline ::object * get_context_object() const { return __object(m_pobjectContext); }
-   virtual void set_context_object(::layered * pobjectContext);
 
 
    inline bool is_shared() const { return m_countReference > 1; }

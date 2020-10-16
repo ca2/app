@@ -1671,32 +1671,34 @@ return { 0,0 };
    }
 
 
-   bool toolbar::_001GetItem(index iItem,::user::toolbar_item *pitem)
+   ::user::toolbar_item * toolbar::_001GetItem(index iItem)
    {
-      if(iItem >= 0
-            && iItem < m_itema.get_size())
+
+      if(iItem < 0 || iItem >= m_itema.get_size())
       {
-         *pitem = m_itema(iItem);
-         return true;
+
+         return nullptr;
+
       }
-      else
-      {
-         return false;
-      }
+
+      return m_itema[iItem];
+
    }
+
 
    bool toolbar::_001SetItem(index iItem,::user::toolbar_item *pitem)
    {
-      if(iItem >= 0
-            && iItem < m_itema.get_size())
+
+      if(iItem < 0 || iItem >= m_itema.get_size())
       {
-         m_itema(iItem) = *pitem;
-         return true;
-      }
-      else
-      {
+
          return false;
+
       }
+
+      m_itema[iItem] = pitem;
+
+      return true;
 
    }
 

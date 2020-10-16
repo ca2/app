@@ -17,7 +17,7 @@ element::~element()
 
 #endif
 
-   ::release(m_pobjectContext);
+   //::release(m_pobjectContext);
 
    ::release(m_pmutex);
 
@@ -40,8 +40,6 @@ void element::dump(dump_context & dumpcontext) const
 
 ::estatus element::initialize(::layered * pobjectContext)
 {
-
-   set_context_object(pobjectContext);
 
    return ::success;
 
@@ -161,24 +159,6 @@ void element::defer_create_mutex()
 
 }
 
-
-void element::set_context_object(::layered * pobjectContext)
-{
-
-   auto pold = m_pobjectContext;
-
-   if(::is_set(pobjectContext))
-   {
-
-      pobjectContext->add_ref();
-
-   }
-
-   m_pobjectContext = pobjectContext;
-
-   ::release(pold);
-
-}
 
 
 

@@ -17,14 +17,22 @@ class CLASS_DECL_ACME context_object :
 public:
 
 
+   __pointer(::layered)             m_pobjectContext;
    ::id                             m_id;
    __pointer(::i64_array)           m_pia;
    ::estatus                        m_estatus;
    __pointer(property_set)          m_pset;
 
 
-
    context_object() { }
+   context_object(const context_object & object);
+   context_object(context_object && object) :
+      element(::move(object)),
+      m_id(::move(object.m_id)),
+      m_pia(::move(object.m_pia)),
+      m_estatus(object.m_estatus),
+      m_pset(::move(object.m_pset))
+      {  }
    virtual ~context_object();
 
 
@@ -35,6 +43,9 @@ public:
    virtual ::estatus    initialize(::layered * pobjectContext) override;
    virtual void         finalize() override;
 
+
+   inline ::object * get_context_object() const { return __object(m_pobjectContext); }
+   virtual void set_context_object(::layered * pobjectContext);
 
 
 
@@ -127,7 +138,7 @@ public:
 
 
 
-   using element::get_context_object;
+   //using element::get_context_object;
    inline var & get_context_object(const ::id & id);
 
    inline var operator()(const ::id & id) const;

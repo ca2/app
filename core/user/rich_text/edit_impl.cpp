@@ -826,9 +826,9 @@ namespace user
             ::rect rWindow;
 
             get_window_rect(rWindow);
-            
+
             rectd rectWindow;
-            
+
             __copy(rectWindow, rWindow);
 
             GetParent()->_001ScreenToClient(rectWindow);
@@ -1123,11 +1123,11 @@ namespace user
 
          }
 
-         m_keymessageLast = *pkey;
+         m_pkeymessageLast = pkey;
 
          m_bKeyPressed = true;
 
-         key_to_char(&m_keymessageLast);
+         key_to_char(m_pkeymessageLast);
 
          pkey->m_bRet = true;
 
@@ -1177,7 +1177,7 @@ namespace user
                KillTimer(500);
                SetTimer(501, 300, nullptr);
             }
-            key_to_char(&m_keymessageLast);
+            key_to_char(m_pkeymessageLast);
          }
          else if (ptimer->m_nIDEvent == timer_redraw)
          {
@@ -1803,7 +1803,7 @@ namespace user
 #if defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(MACOS)
 
                   return;
-                  
+
 #else
 
                   on_reset_focus_start_tick();
@@ -1867,7 +1867,7 @@ namespace user
 
 
                   }
-                  
+
 
 
                   m_pdata->_001InsertText(str);
@@ -1876,7 +1876,7 @@ namespace user
 
                }
 
-               
+
             }
 
 

@@ -8,8 +8,36 @@ sync_array::sync_array()
 }
 
 
+sync_array::sync_array(const ::sync_array & array) :
+   element(array),
+   m_hsyncaCache(array.m_hsyncaCache),
+   m_synca(array.m_synca)
+{
+
+   memcpy(m_byteaSyncIndex, array.m_byteaSyncIndex, sizeof(m_byteaSyncIndex));
+
+}
+
+
 sync_array::~sync_array()
 {
+
+}
+
+
+sync_array & sync_array::operator = (const sync_array & synca)
+{
+
+   if(this != &synca)
+   {
+
+      m_hsyncaCache = synca.m_hsyncaCache;
+      memcpy(&m_byteaSyncIndex, synca.m_byteaSyncIndex, sizeof(m_byteaSyncIndex));
+      m_synca = synca.m_synca;
+
+   }
+
+   return *this;
 
 }
 

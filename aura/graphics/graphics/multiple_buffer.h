@@ -33,8 +33,8 @@ namespace graphics
       // any=all all allsquare2-arrayofpointers.... ca2 framework (RR)
       // you may need to repeat much more times to train a biological neural network though....
       // so they learn what is really, actually and simpley and complexly and all good!!
-      __pointer_array(image)             m_imageaBuffer;
-      array < ::mutex >             m_mutexa;
+      __pointer_array(::image)            m_imageaBuffer;
+      __pointer_array(::mutex)            m_mutexa;
 
 
       multiple_buffer();

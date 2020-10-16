@@ -22,7 +22,7 @@ namespace user
       __composite(::data::tree)                 m_ptree;
       __reference_array(::data::tree)           m_treeaBound;
       __composite(::data::tree_item_ptr_array)  m_pitemptraSelected;
-      ::data::tree_item *                       m_pitemHover;
+      ::data::tree_item *                       m_itemHover;
 
       ::draw2d::graphics_extension              m_dcextension;
       index                                     m_dwFirstVisibleItem;

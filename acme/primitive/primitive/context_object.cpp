@@ -35,6 +35,25 @@ void context_object::finalize()
 }
 
 
+void context_object::set_context_object(::layered * pobjectContext)
+{
+
+   auto pold = m_pobjectContext;
+
+   if(::is_set(pobjectContext))
+   {
+
+      pobjectContext->add_ref(this, "element::set_context_object");
+
+   }
+
+   m_pobjectContext.m_p = pobjectContext;
+
+   ::release(pold);
+
+}
+
+
 ::object * context_object::source_channel()
 {
 

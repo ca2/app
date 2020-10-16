@@ -106,10 +106,10 @@ namespace user
       bool                                      m_bOverdraw;
       __pointer(::user::frame)                  m_pframe;
       ::index                                   m_iIndex;
-      __pointer(item)                           m_pitemLButtonDown;
-      __pointer(item)                           m_pitemCurrent;
-      __pointer(item)                           m_pitemHover;
-      __pointer(item)                           m_pitemHoverMouse;
+      ::user::item                              m_itemLButtonDown;
+      ::user::item                              m_itemCurrent;
+      ::user::item                              m_itemHover;
+      ::user::item                              m_itemHoverMouse;
       ::size                                    m_sizeRestoreBroad;
       ::size                                    m_sizeRestoreCompact;
       cflag < e_non_client >                    m_flagNonClient;
@@ -477,10 +477,10 @@ namespace user
 
 
       virtual void set_current_item(const ::user::item & item, const ::action_context & action_context);
-      virtual ::user::item * current_item();
+      virtual ::user::item current_item();
 
 
-      virtual ::user::item * hover_item();
+      virtual ::user::item hover_item();
 
 
       virtual bool _is_window() const override;

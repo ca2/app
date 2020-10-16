@@ -1,6 +1,17 @@
 #pragma once
 
 
+inline context_object::context_object(const context_object & object) :
+      element(object),
+      m_id(object.m_id),
+      m_pia(__new(::i64_array(*object.m_pia))),
+      m_estatus(object.m_estatus),
+      m_pset(__new(::property_set(*object.m_pset)))
+{
+
+}
+
+
 inline bool context_object::has_property(const id & id) const { return m_pset && m_pset->has_property(id); }
 inline property * context_object::lookup_property(const id& id) const { return m_pset ? m_pset->find(id) : nullptr; }
 inline bool context_object::remove_key(const id & id) { return m_pset && m_pset->remove_by_name(id); }

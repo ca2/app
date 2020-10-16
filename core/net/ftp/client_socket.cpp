@@ -264,10 +264,10 @@ namespace ftp
 
    /// Logs on to a FTP server.
    /// @lparam[in] logonInfo Structure with logon information.
-   bool client_socket::Login(logon& logonInfo)
+   bool client_socket::Login(logon * plogon)
    {
-      logonInfo.m_bFailedBecauseOfSecurityLevelCanUpgrade = false;
-      m_LastLogonInfo = logonInfo;
+      plogon->m_bFailedBecauseOfSecurityLevelCanUpgrade = false;
+      m_plogon = plogon;
 
       enum
       {
@@ -303,13 +303,13 @@ namespace ftp
          Logout();
 
 
-      if (logonInfo.FwType() == firewall_type::None())
+      if (plogon->FwType() == firewall_type::None())
       {
 
          if (m_econnectiontype == connection_type_tls_implicit)
          {
 
-            strTemp = logonInfo.Hostname();
+            strTemp = plogon->Hostname();
             ushPort = 990;
             EnableSSL();
             m_strHost = strTemp;
@@ -318,21 +318,21 @@ namespace ftp
          else
          {
 
-            strTemp = logonInfo.Hostname();
-            ushPort = logonInfo.Hostport();
+            strTemp = plogon->Hostname();
+            ushPort = plogon->Hostport();
 
          }
 
       }
       else
       {
-         strTemp = logonInfo.FwHost();
-         ushPort = logonInfo.FwPort();
+         strTemp = plogon->FwHost();
+         ushPort = plogon->FwPort();
       }
 
-      string strHostnamePort(logonInfo.Hostname());
-      if (logonInfo.Hostport() != DEFAULT_FTP_PORT)
-         strHostnamePort = logonInfo.Hostname() + ":" + __str(logonInfo.Hostport()); // add port to hostname (only if port is not 21)
+      string strHostnamePort(plogon->Hostname());
+      if (plogon->Hostport() != DEFAULT_FTP_PORT)
+         strHostnamePort = plogon->Hostname() + ":" + __str(plogon->Hostport()); // add port to hostname (only if port is not 21)
 
 
       if (!OpenControlChannel(strTemp, ushPort))
@@ -357,21 +357,21 @@ namespace ftp
       {
          // send command, get response
          reply Reply;
-         switch (iLogonSeq[logonInfo.FwType().AsEnum()][iLogonPoint])
+         switch (iLogonSeq[plogon->FwType().AsEnum()][iLogonPoint])
          {
          // state                 command           command argument                                                                              success     fail
-         case 0:  if (SendCommand(command::USER(), { logonInfo.Username() }, Reply)) break; else return false;
-         case 1:  if (SendCommand(command::PASS(), {logonInfo.Password() }, Reply)) break; else return false;
-         case 2:  if (SendCommand(command::ACCT(), {logonInfo.Account() }, Reply)) break; else return false;
-         case 3:  if (SendCommand(command::USER(), {logonInfo.FwUsername() }, Reply)) break; else return false;
-         case 4:  if (SendCommand(command::PASS(), {logonInfo.FwPassword() }, Reply)) break; else return false;
+         case 0:  if (SendCommand(command::USER(), {plogon->Username() }, Reply)) break; else return false;
+         case 1:  if (SendCommand(command::PASS(), {plogon->Password() }, Reply)) break; else return false;
+         case 2:  if (SendCommand(command::ACCT(), {plogon->Account() }, Reply)) break; else return false;
+         case 3:  if (SendCommand(command::USER(), {plogon->FwUsername() }, Reply)) break; else return false;
+         case 4:  if (SendCommand(command::PASS(), {plogon->FwPassword() }, Reply)) break; else return false;
          case 5:  if (SendCommand(command::SITE(), {strHostnamePort }, Reply)) break; else return false;
-         case 6:  if (SendCommand(command::USER(), {logonInfo.Username() + "@" + strHostnamePort }, Reply)) break; else return false;
+         case 6:  if (SendCommand(command::USER(), {plogon->Username() + "@" + strHostnamePort }, Reply)) break; else return false;
          case 7:  if (SendCommand(command::OPEN(), {strHostnamePort }, Reply)) break; else return false;
-         case 8:  if (SendCommand(command::USER(), {logonInfo.FwUsername() + "@" + strHostnamePort }, Reply)) break; else return false;
-         case 9:  if (SendCommand(command::USER(), {logonInfo.Username() + "@" + strHostnamePort + " " + logonInfo.FwUsername() }, Reply)) break; else return false;
-         case 10: if (SendCommand(command::USER(), { logonInfo.Username() + "@" + logonInfo.FwUsername() + "@" + strHostnamePort }, Reply)) break; else return false;
-         case 11: if (SendCommand(command::PASS(), { logonInfo.Password() + "@" + logonInfo.FwPassword() }, Reply)) break; else return false;
+         case 8:  if (SendCommand(command::USER(), {plogon->FwUsername() + "@" + strHostnamePort }, Reply)) break; else return false;
+         case 9:  if (SendCommand(command::USER(), {plogon->Username() + "@" + strHostnamePort + " " + plogon->FwUsername() }, Reply)) break; else return false;
+         case 10: if (SendCommand(command::USER(), {plogon->Username() + "@" + plogon->FwUsername() + "@" + strHostnamePort }, Reply)) break; else return false;
+         case 11: if (SendCommand(command::PASS(), {plogon->Password() + "@" + plogon->FwPassword() }, Reply)) break; else return false;
          }
 
          if (!Reply.Code().IsPositiveCompletionReply() && !Reply.Code().IsPositiveIntermediateReply())
@@ -385,7 +385,7 @@ namespace ftp
 
                   m_econnectiontype = connection_type_tls_implicit;
 
-                  logonInfo.m_bFailedBecauseOfSecurityLevelCanUpgrade = true;
+                  plogon->m_bFailedBecauseOfSecurityLevelCanUpgrade = true;
 
                   Sleep(1000);
 
@@ -398,7 +398,7 @@ namespace ftp
          }
 
          const unsigned int uiFirstDigitOfReplyCode = ansi_to_i32(Reply.Code().Value()) / 100;
-         iLogonPoint = iLogonSeq[logonInfo.FwType().AsEnum()][iLogonPoint + uiFirstDigitOfReplyCode - 1]; //get next command from array
+         iLogonPoint = iLogonSeq[plogon->FwType().AsEnum()][iLogonPoint + uiFirstDigitOfReplyCode - 1]; //get next command from array
          switch (iLogonPoint)
          {
          case ER: // ER means somewhat has gone wrong
@@ -577,7 +577,7 @@ namespace ftp
    /// @lparam[in] fPasv see documentation of client_socket::Passive
    bool client_socket::DownloadFile(const string& strRemoteFile, const string& strLocalFile, const representation& repType, bool fPasv)
    {
-      
+
       ::ftp::file file;
 
       if (!file.Open(strLocalFile, (m_fResumeIfPossible ? ::file::mode_no_truncate : ::file::mode_create) | ::file::mode_write

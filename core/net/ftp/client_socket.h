@@ -105,7 +105,7 @@ namespace ftp
       bool                       m_fAbortTransfer;           ///< indicates that a running filetransfer should be canceled
       bool                       m_fResumeIfPossible;        ///< try to resume download/upload if possible
       observer_array             m_setObserver;              ///< list of observers, which are notified about particular actions
-      logon                      m_LastLogonInfo;            ///< logon-info, which was used at the last call of login
+      __pointer(logon)           m_plogon;            ///< logon-info, which was used at the last call of login
 
       e_state                    m_estate;
 
@@ -128,9 +128,9 @@ namespace ftp
       bool IsResumeModeEnabled();
       void SetResumeMode(bool fEnable = true);
 
-      bool Login(logon& loginInfo);
+      bool Login(logon * plogon);
       int  Logout();
-      const logon& LastLogonInfo() const { return m_LastLogonInfo; }
+      const logon * get_logon() const { return m_plogon; }
 
       bool List(const string& strPath, string_array& vstrFileList, bool fPasv = false);
       bool NameList(const string& strPath, string_array& vstrFileList, bool fPasv = false);

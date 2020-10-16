@@ -18,7 +18,7 @@ namespace user
          bool                          m_bComposing;
          __pointer(data)                      m_pdata;
          bool                          m_bSelDrag;
-         ::message::key                m_keymessageLast;
+         __pointer(::message::key)     m_pkeymessageLast;
          bool                          m_bKeyPressed;
          bool                          m_bEditable2;
          /// If true, mouse events over empty

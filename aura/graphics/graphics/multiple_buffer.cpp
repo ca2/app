@@ -69,7 +69,7 @@ namespace graphics
    ::sync * multiple_buffer::get_draw_lock()
    {
 
-      return &m_mutexa[m_iBuffer];
+      return m_mutexa[m_iBuffer];
 
    }
 
@@ -332,7 +332,7 @@ namespace graphics
 
       }
 
-      return &m_mutexa[m_iScreen];
+      return m_mutexa[m_iScreen];
 
    }
 

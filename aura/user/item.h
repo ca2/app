@@ -138,6 +138,7 @@ namespace user
 
       }
 
+
       item(const item & item):
          item_data(item),
          element(item)
@@ -206,11 +207,12 @@ namespace user
 } // namespace item
 
 
-
-
 inline bool is_set(const ::user::item * pitem)
 {
 
    return ::is_set((const void * )pitem) && pitem->is_set();
 
 }
+
+
+

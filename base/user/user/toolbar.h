@@ -11,16 +11,17 @@ namespace user
    public:
 
 
-      index                 m_iIndex;
-      index                 m_iImage;
-      ::image_pointer        m_pimage;
-      id                      m_id;
-      BYTE                    m_fsState;
-      BYTE                    m_fsStyle;
-      string                  m_str;
-      ::rect                  m_rect;
-      bool                    m_bEnableIfHasCommandHandler;
-      ::draw2d::font_pointer       m_font;
+      index                      m_iIndex;
+      index                      m_iImage;
+      ::image_pointer            m_pimage;
+      id                         m_id;
+      BYTE                       m_fsState;
+      BYTE                       m_fsStyle;
+      string                     m_str;
+      ::rect                     m_rect;
+      bool                       m_bEnableIfHasCommandHandler;
+      ::draw2d::font_pointer     m_font;
+
 
       toolbar_item();
       virtual ~toolbar_item();
@@ -55,7 +56,7 @@ namespace user
 
       __pointer_array(toolbar_item)    m_itema;
 
-      bool                 m_bDelayedButtonLayout; // used to manage when button on_layout should be done
+      bool                             m_bDelayedButtonLayout; // used to manage when button on_layout should be done
 
       ::size               m_sizeImage;  // current image size
       ::size               m_sizeButton; // current button size
@@ -129,7 +130,7 @@ namespace user
       virtual bool _001GetElementRect(index iItem,RECT * prect,e_element eelement, estate estate);
 
       virtual bool _001SetItem(index iItem, toolbar_item * pitem);
-      virtual bool _001GetItem(index iItem, toolbar_item * pitem);
+      virtual toolbar_item * _001GetItem(index iItem);
       virtual index _001GetItemCount();
 
 

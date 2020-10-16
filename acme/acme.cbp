@@ -19,9 +19,6 @@
 					<Add option="-m64" />
 					<Add option="-g" />
 					<Add option="-D_DEBUG" />
-					<Add directory="$(WORKSPACE_DIR)/../../platform-linux" />
-					<Add directory="$(WORKSPACE_DIR)/../../platform-linux/_include" />
-					<Add directory="$(#archive)/third-linux/third/include" />
 				</Compiler>
 				<Linker>
 					<Add option="-m64" />
@@ -60,8 +57,6 @@
 					<Add option="-m64" />
 					<Add option="-g" />
 					<Add option="-O0" />
-					<Add directory="$(WORKSPACE_DIR)/../../platform-linux" />
-					<Add directory="$(WORKSPACE_DIR)/../../platform-linux/_include" />
 				</Compiler>
 				<Linker>
 					<Add option="-pg" />
@@ -1515,6 +1510,10 @@
 		<Unit filename="user/os_colors.h" />
 		<Unit filename="version/version.config.h" />
 		<Unit filename="version/version.h" />
-		<Extensions />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

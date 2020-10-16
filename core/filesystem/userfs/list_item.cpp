@@ -29,8 +29,6 @@ namespace userfs
 
       }
 
-      set_context_object(item.get_context_object());
-
       m_filepathUser    = item.m_filepathUser;
       m_filepathFinal   = item.m_filepathFinal;
       m_strName         = item.m_strName;

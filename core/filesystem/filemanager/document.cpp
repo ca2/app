@@ -1148,7 +1148,7 @@ namespace filemanager
 
          action.value(id_document) = this;
 
-         update_all_views(paction);
+         update_all_views(action);
 
       }
 

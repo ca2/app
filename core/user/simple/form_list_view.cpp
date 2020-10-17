@@ -43,9 +43,9 @@ bool simple_form_list_view::pre_create_window(::user::create_struct& cs)
    return ::user::impact::pre_create_window(cs);
 }
 
-void simple_form_list_view::update(::update * pupdate)
+void simple_form_list_view::on_apply(::action * paction)
 {
 
-   BASE::update(pupdate);
+   BASE::on_apply(paction);
 
 }

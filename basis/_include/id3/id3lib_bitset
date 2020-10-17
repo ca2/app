@@ -749,7 +749,7 @@ public:
     return bitset<_Nb,_WordT>(*this).flip();
   }
 
-  // element access:
+  // matter access:
   //for b[i];
   reference operator[](size_t __pos) { return reference(*this,__pos); }
   bool operator[](size_t __pos) const { return _Unchecked_test(__pos); }

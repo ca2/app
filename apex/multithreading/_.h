@@ -23,7 +23,7 @@
 //extern thread_local __pointer(property_set) t_ppropertyset;
 
 
-CLASS_DECL_APEX void main_branch(::element* pobjectTask, e_priority epriority);
+CLASS_DECL_APEX void main_branch(::matter* pobjectTask, e_priority epriority);
 
 
 property_set& _thread_property_set();
@@ -70,7 +70,7 @@ class single_lock;
 class multi_lock;
 
 
-//CLASS_DECL_APEX ::estatus __call(::element * pobject);
+//CLASS_DECL_APEX ::estatus __call(::matter * pobject);
 
 
 

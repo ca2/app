@@ -59,8 +59,18 @@ namespace draw2d
       };
 
 
+   protected:
+
+
+      ::rect                                          m_rectClient;
+      e_type                                          m_etype;
+
+
+   public:
+
+
       string                                          m_strFontFamily;
-      index                                           m_iSequentialItemToLayout;
+      ::i32                                           m_iLayoutSerial;
       __pointer(::draw2d::font_enumeration)           m_pfontenumeration;
       __pointer(::draw2d::font_enum_item_array)       m_pitema;
 
@@ -71,13 +81,11 @@ namespace draw2d
       u32_array                                       m_dwaFg;
       ::user::interaction *                           m_puserinteraction;
 
-      e_type                                          m_etype;
       point                                           m_point;
       ::size                                          m_size;
       string                                          m_strText;
       string                                          m_strTextLayout;
 
-      ::rect                                          m_rectClient;
       ::rect                                          m_rectMargin;
       int                                             m_iBaseSizeLayout;
       tick                                            m_tickLastLayout;
@@ -89,14 +97,21 @@ namespace draw2d
       ::index                                         m_iSel;
       ::index                                         m_iHover;
       bool                                            m_bUpdating;
+      bool                                            m_bUpdatesHooked;
 
 
       font_list();
       virtual ~font_list();
 
 
-      virtual void defer_update();
-      virtual void update();
+      virtual ::estatus initialize(::layered* pobjectContext) override;
+
+
+      virtual void on_apply(::action * paction) override;
+
+
+      //virtual void defer_update();
+      //virtual void update();
 
       virtual void defer_font_enumeration();
       virtual void update_font_enumeration();
@@ -107,9 +122,11 @@ namespace draw2d
       
       virtual void set_need_layout();
 
+      virtual void set_need_redraw();
+
       virtual void layout();
-      virtual void layout_wide();
-      virtual void layout_single_column();
+      virtual ::size layout_wide();
+      virtual ::size layout_single_column();
 
       virtual bool is_updating() const;
 
@@ -131,6 +148,12 @@ namespace draw2d
       virtual bool get_box_rect(LPRECT lprect, ::index i);
       virtual bool get_box_rect_wide(LPRECT lprect, ::index i);
       virtual bool get_box_rect_single_column(LPRECT lprect, ::index i);
+
+
+      virtual void set_client_rect(LPCRECT lpcrect);
+
+      virtual void set_font_list_type(e_type etype);
+      virtual e_type get_font_list_type() const;
 
 
    };

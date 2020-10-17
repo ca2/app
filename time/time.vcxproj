@@ -559,7 +559,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="calculator\_.h" />
-    <ClInclude Include="calculator\element.h" />
+    <ClInclude Include="calculator\matter.h" />
     <ClInclude Include="calculator\parser.h" />
     <ClInclude Include="calculator\parser_exception.h" />
     <ClInclude Include="calculator\scanner.h" />
@@ -580,7 +580,7 @@
     <ClInclude Include="_.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="calculator\element.cpp" />
+    <ClCompile Include="calculator\matter.cpp" />
     <ClCompile Include="calculator\parser.cpp" />
     <ClCompile Include="calculator\parser_exception.cpp" />
     <ClCompile Include="calculator\scanner.cpp" />

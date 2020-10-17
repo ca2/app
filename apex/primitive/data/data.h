@@ -1,7 +1,7 @@
 #pragma once
 
 
-typedef CLASS_DECL_ACME __pointer_array(::element) object_array;
+typedef CLASS_DECL_ACME __pointer_array(::matter) object_array;
 
 
 namespace data
@@ -44,7 +44,7 @@ namespace data
       virtual ::count get_data_bound_view_count() const;
       virtual ::user::primitive * get_data_bound_view(index iInteraction);
 
-      virtual void update(::update * pupdate) override;
+      virtual void on_apply(::action * paction) override;
 
       virtual void on_update_data(i32 iHint);
 

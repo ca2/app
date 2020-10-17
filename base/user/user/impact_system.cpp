@@ -417,15 +417,15 @@ namespace user
    }
 
 
-   void impact_system::update(::update * pupdate)
+   void impact_system::on_apply(::action * paction)
    {
 
-      update_all_views(pupdate);
+      update_all_views(paction);
 
    }
 
 
-   void impact_system::update_all_views(::update * pupdate)
+   void impact_system::update_all_views(::action * paction)
    {
 
       ::count count = get_document_count();
@@ -435,7 +435,7 @@ namespace user
 
          ::user::document * pdocument = get_document(index);
 
-         pdocument->update_all_views(pupdate);
+         pdocument->update_all_views(paction);
 
       }
 
@@ -472,7 +472,7 @@ namespace user
    }
 
 
-   void impact_system::update_all_views(::user::impact * pimpact, ::u64 uId)
+   void impact_system::update_all_views(::user::impact * pimpact, const ::id & id)
    {
 
       ::count count = get_document_count();
@@ -482,7 +482,7 @@ namespace user
 
          ::user::document * pdocument = get_document(index);
 
-         pdocument->update_all_views(pimpact, uId);
+         pdocument->update_all_views(pimpact, id);
 
       }
 

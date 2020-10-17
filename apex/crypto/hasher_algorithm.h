@@ -6,7 +6,7 @@ namespace crypto
 
 
    class CLASS_DECL_APEX hasher_algorithm :
-      virtual public ::element
+      virtual public ::matter
    {
    public:
 

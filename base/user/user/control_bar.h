@@ -299,7 +299,7 @@ namespace user
       friend class BaseDockBar;
 
 
-      virtual void update(::update * pupdate) override;
+      virtual void on_apply(::action * paction) override;
 
 
 

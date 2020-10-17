@@ -11,7 +11,7 @@ namespace linux
 
 
    class desktop_file :
-      virtual public ::element
+      virtual public ::matter
    {
    public:
 

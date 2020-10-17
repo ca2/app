@@ -6,7 +6,7 @@ namespace file
 
 
    class CLASS_DECL_ACME item :
-      virtual public element
+      virtual public matter
    {
    public:
 

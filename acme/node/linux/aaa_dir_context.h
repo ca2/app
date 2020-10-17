@@ -19,7 +19,7 @@ namespace linux
       virtual ~dir_context();
 
 
-      virtual ::estatus initialize(::element * pobjectContext) override;
+      virtual ::estatus initialize(::matter * pobjectContext) override;
 
       virtual ::estatus init_system() override;
       virtual ::estatus init_context() override;
@@ -52,14 +52,14 @@ namespace linux
       virtual ::file::path netseed() override;
 
       // stage in ca2os spalib
-      //  virtual string element(const char * pcsz, const char * lpcsz2 = nullptr);
+      //  virtual string matter(const char * pcsz, const char * lpcsz2 = nullptr);
 
       //virtual ::file::path install();
-//      virtual string element(const string & str);
-//      virtual string element(const string & str, const string & str2);
-//      virtual string element(const char * pcsz, const string & str2);
+//      virtual string matter(const string & str);
+//      virtual string matter(const string & str, const string & str2);
+//      virtual string matter(const char * pcsz, const string & str2);
 
-//      virtual string element(const string & str, const char * pcsz2);
+//      virtual string matter(const string & str, const char * pcsz2);
 
 
 //      virtual ::file::path module();
@@ -76,18 +76,18 @@ namespace linux
 
 //      virtual ::file::path usersystemappdata(const string & pcszPrefix);
 
-//      virtual ::file::path userappdata(::element * pobject);
-//      virtual ::file::path userdata(::element * pobject);
-//      //virtual ::file::path userfolder(::element * pobject);
-//      virtual ::file::path default_os_user_path_prefix(::element * pobject);
+//      virtual ::file::path userappdata(::matter * pobject);
+//      virtual ::file::path userdata(::matter * pobject);
+//      //virtual ::file::path userfolder(::matter * pobject);
+//      virtual ::file::path default_os_user_path_prefix(::matter * pobject);
 //      virtual ::file::path default_userappdata(const string & pcszPrefix, const string & lpcszLogin);
 
 //      virtual ::file::path default_userdata(const string & pcszPrefix, const string & lpcszLogin);
 
 //      virtual ::file::path default_userfolder(const string & pcszPrefix, const string & lpcszLogin);
 
-      virtual ::file::path userquicklaunch(::element * pobject);
-      virtual ::file::path userprograms(::element * pobject);
+      virtual ::file::path userquicklaunch(::matter * pobject);
+      virtual ::file::path userprograms(::matter * pobject);
 
       virtual ::file::path commonprograms() override;
 

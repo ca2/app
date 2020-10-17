@@ -8,7 +8,7 @@
 
 #ifdef DEBUG
 
-CLASS_DECL_APEX void object_on_add_composite(const element* pbase);
+CLASS_DECL_APEX void object_on_add_composite(const matter* pbase);
 
 #endif
 
@@ -135,7 +135,7 @@ void object::to_string(const class string_exchange & str) const
 }
 
 
-::estatus object::add_composite(::element* pobject)
+::estatus object::add_composite(::matter* pobject)
 {
 
    sync_lock sl(mutex());
@@ -160,7 +160,7 @@ void object::to_string(const class string_exchange & str) const
 }
 
 
-::estatus object::add_reference(::element* pobject)
+::estatus object::add_reference(::matter* pobject)
 {
 
    sync_lock sl(mutex());
@@ -179,7 +179,7 @@ void object::to_string(const class string_exchange & str) const
 }
 
 
-::estatus object::release_composite(::element* pobject)
+::estatus object::release_composite(::matter* pobject)
 {
 
    if (::is_null(pobject))
@@ -210,7 +210,7 @@ void object::to_string(const class string_exchange & str) const
 }
 
 
-::estatus object::release_reference(::element* pobject)
+::estatus object::release_reference(::matter* pobject)
 {
 
    if (::is_null(pobject))
@@ -1044,7 +1044,7 @@ CLASS_DECL_ACME mutex* get_children_mutex();
 
 
 /// tells if pobject is dependant of this object or of any dependant objects
-bool object::___is_reference(::element * pobject) const
+bool object::___is_reference(::matter * pobject) const
 {
 
    if (::is_null(pobject))
@@ -1075,7 +1075,7 @@ bool object::___is_reference(::element * pobject) const
 }
 
 
-bool object::__is_composite(::element * pobject) const
+bool object::__is_composite(::matter * pobject) const
 {
 
    if (::is_null(pobject))
@@ -1430,20 +1430,11 @@ void object::message_receiver_destruct()
 void object::_001OnUpdate(::message::message * pmessage)
 {
 
-   if (pmessage->m_lparam)
-   {
+  ::action action((::iptr)pmessage->m_wparam);
 
-      __pointer(::update) pupdate(pmessage->m_lparam);
+  action.m_var = (::matter*) (::iptr) pmessage->m_lparam;
 
-      call_update(pupdate);
-
-   }
-   else
-   {
-
-      call_update((::__id) (::iptr) pmessage->m_wparam);
-
-   }
+  apply(action);
 
 }
 
@@ -1641,7 +1632,7 @@ void debug_context_object(::layered * pobjectContext)
 }
 
 
-CLASS_DECL_APEX void object_on_add_composite(const element * pbase)
+CLASS_DECL_APEX void object_on_add_composite(const matter * pbase)
 {
 
    string strType = ::str::demangle(pbase->type_name());
@@ -1886,7 +1877,7 @@ void object::set_context_system(::apex::system* psystemContext)
 #endif
 
 
-// CLASS_DECL_APEX const char* topic_text(::element* pgeneric)
+// CLASS_DECL_APEX const char* topic_text(::matter* pgeneric)
 // {
 
 //    if (::is_null(pgeneric))

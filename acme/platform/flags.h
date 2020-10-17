@@ -6,7 +6,7 @@
 
 template < class ENUM >
 class flags :
-   virtual public ::element
+   virtual public ::matter
 {
 public:
 

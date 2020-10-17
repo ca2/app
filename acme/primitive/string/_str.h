@@ -57,7 +57,7 @@ namespace str
    ::count CLASS_DECL_ACME utf8_replace(string & str, const ansichar * pszFind, const ansichar * pszReplace, strsize iStart = 0);
    string CLASS_DECL_ACME utf8_replace(const ansichar * pszFind, const ansichar * pszReplace, const ansichar * psz, strsize iStart = 0);
 
-   string CLASS_DECL_ACME random_replace(::element * pobject, const string_array & straReplacement, const string_array & straSearch, const ansichar * psz);
+   string CLASS_DECL_ACME random_replace(::matter * pobject, const string_array & straReplacement, const string_array & straSearch, const ansichar * psz);
 
    strsize CLASS_DECL_ACME find_first(const string_array & straSearch, index & iFound, const string & str, index iStart = 0);
 
@@ -164,7 +164,7 @@ namespace str
    inline  void           to(::id & id, const ansichar * psz);
 
 
-   inline void to(::element & element, const ansichar * psz);
+   inline void to(::matter & matter, const ansichar * psz);
 
 
    CLASS_DECL_ACME  bool           trim_any_quotes(string & str);

@@ -30,7 +30,7 @@ void stream::on_catch_all_exception()
 }
 
 
-void stream::write_object(const ::id & id, ::element * pobject)
+void stream::write_object(const ::id & id, ::matter * pobject)
 {
 
    auto strId = factory_id_to_text(pobject->type_name());
@@ -42,7 +42,7 @@ void stream::write_object(const ::id & id, ::element * pobject)
 }
 
 
-__pointer(::element) stream::read_object(const ::id & id)
+__pointer(::matter) stream::read_object(const ::id & id)
 {
 
    string strId;
@@ -494,7 +494,7 @@ void stream::write(const var & var)
    case type_path:
    {
 
-      __save_object(*this, var.cast <::element>());
+      __save_object(*this, var.cast <::matter>());
 
    }
    break;
@@ -540,7 +540,7 @@ void stream::write(const string & str)
 }
 
 
-void stream::write(const ::element * pobject)
+void stream::write(const ::matter * pobject)
 {
 
    pobject->write(*this);
@@ -548,10 +548,10 @@ void stream::write(const ::element * pobject)
 }
 
 
-void stream::write(const ::element & element)
+void stream::write(const ::matter & matter)
 {
 
-   element.write(*this);
+   matter.write(*this);
 
 }
 
@@ -592,7 +592,7 @@ void stream::write(const memory_base & m)
 
 
 
-//bool stream::get_object_link(const ::element * preference, string & strLink, bool & bLink)
+//bool stream::get_object_link(const ::matter * preference, string & strLink, bool & bLink)
 //{
 //
 //   return false;
@@ -600,13 +600,13 @@ void stream::write(const memory_base & m)
 //}
 //
 //
-//void stream::set_object_link(const ::element * preference, const string & strLink, bool bReadOnly)
+//void stream::set_object_link(const ::matter * preference, const string & strLink, bool bReadOnly)
 //{
 //
 //}
 //
 //
-//bool stream::write_link(const ::element * pobject)
+//bool stream::write_link(const ::matter * pobject)
 //{
 //
 //   string strLink;
@@ -627,7 +627,7 @@ void stream::write(const memory_base & m)
 //}
 
 
-//void stream::write_link(const ::element * preference, const string & strLink, bool bReadOnly, ::element * pobjectSaveOptions)
+//void stream::write_link(const ::matter * preference, const string & strLink, bool bReadOnly, ::matter * pobjectSaveOptions)
 //{
 //
 //   write(bReadOnly);
@@ -653,7 +653,7 @@ void stream::write(const memory_base & m)
 //}
 //
 //
-//void stream::read_link(::element * preference)
+//void stream::read_link(::matter * preference)
 //{
 //
 //   string strLink;
@@ -667,13 +667,13 @@ void stream::write(const memory_base & m)
 //   //if (bReadOnly)
 //   //{
 //
-//   //   element["read_only_link"] = strLink;
+//   //   matter["read_only_link"] = strLink;
 //
 //   //}
 //   //else
 //   //{
 //
-//   //   element["link"] = strLink;
+//   //   matter["link"] = strLink;
 //
 //   //}
 //
@@ -892,7 +892,7 @@ void stream::read(string & str)
 }
 
 
-void stream::read(::element& element)
+void stream::read(::matter& matter)
 {
 
    set_fail_bit();
@@ -946,7 +946,7 @@ var & stream::options()
 }
 
 
-__pointer(::element) stream::create_object_from_text(string strText)
+__pointer(::matter) stream::create_object_from_text(string strText)
 {
 
    if (strText.is_empty())
@@ -958,7 +958,7 @@ __pointer(::element) stream::create_object_from_text(string strText)
 
    auto id = text_to_factory_id(strText);
 
-   return __id_create < ::element >(id);
+   return __id_create < ::matter >(id);
 
 }
 
@@ -1039,7 +1039,7 @@ void stream::exchange(const ::id & id, string & str)
 }
 
 
-void stream::exchange(const ::id & id, ::element * pobject)
+void stream::exchange(const ::id & id, ::matter * pobject)
 {
 
    pobject->exchange(*this);
@@ -1047,10 +1047,10 @@ void stream::exchange(const ::id & id, ::element * pobject)
 }
 
 
-void stream::exchange(const ::id & id, ::element & element)
+void stream::exchange(const ::id & id, ::matter & matter)
 {
 
-   element.exchange(*this);
+   matter.exchange(*this);
 
 }
 

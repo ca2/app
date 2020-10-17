@@ -93,13 +93,13 @@ namespace factory
 
 
 
-CLASS_DECL_ACME bool safe_destroy_element(element * pelement)
+CLASS_DECL_ACME bool safe_destroy_element(matter * pmatter)
 {
 
    try
    {
 
-      pelement->~element();
+      pmatter->~matter();
 
    }
    catch(...)

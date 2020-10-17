@@ -52,11 +52,11 @@ public:
 
    static static_setup* get_first(::static_setup::e_flag eflag, const char* pszName = nullptr);
 
-   virtual ::element * create_new_object();
+   virtual ::matter * create_new_object();
    virtual ::aura::application* create_new_application();
    virtual ::apex::library* create_new_library();
 
-   virtual ::element* new_object();
+   virtual ::matter* new_object();
    virtual ::aura::application* new_application();
    virtual ::apex::library* new_library();
 
@@ -92,7 +92,7 @@ class static_object_factory :
 public:
 
 
-   virtual ::element * new_object() override { return new OBJECT; }
+   virtual ::matter * new_object() override { return new OBJECT; }
 
 
    static_object_factory(::static_setup::e_flag eflag, const char* pszName = "") :

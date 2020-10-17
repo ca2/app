@@ -5,21 +5,21 @@ namespace calculator
 {
 
 
-   class CLASS_DECL_CA2_MATH element:
+   class CLASS_DECL_CA2_MATH matter:
       virtual public ::object
    {
    public:
 
 
-      element();
-      ~element();
+      matter();
+      ~matter();
 
 
       token *     m_ptoken;
-      element *   m_pparent;
-      element *   m_pelement1;
-      element *   m_pelement2;
-      element *   m_pelement3;
+      matter *   m_pparent;
+      matter *   m_pelement1;
+      matter *   m_pelement2;
+      matter *   m_pelement3;
 
 
       value get_value();

@@ -513,7 +513,7 @@
     <ClCompile Include="primitive\primitive\bit.cpp" />
     <ClCompile Include="primitive\primitive\block.cpp" />
     <ClCompile Include="primitive\primitive\command_line.cpp" />
-    <ClCompile Include="primitive\primitive\element.cpp" />
+    <ClCompile Include="primitive\primitive\matter.cpp" />
     <ClCompile Include="primitive\primitive\future.cpp" />
     <ClCompile Include="primitive\primitive\edit.cpp" />
     <ClCompile Include="primitive\primitive\factory.cpp" />

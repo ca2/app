@@ -1,5 +1,5 @@
 //
-//  ::element.h
+//  ::matter.h
 //  acme
 //
 //  Created by Camilo Sasuke Tsumanuma on 02/06/19.
@@ -16,15 +16,15 @@
 #pragma once
 
 
-//using ::element = ::element;
-//using runnablea = __pointer_array(::element);
+//using ::matter = ::matter;
+//using runnablea = __pointer_array(::matter);
 
 
 
 //
-//struct CLASS_DECL_ACME ::element :
-//   virtual public element,
-//   public element
+//struct CLASS_DECL_ACME ::matter :
+//   virtual public matter,
+//   public matter
 //{
 //   
 //   
@@ -32,8 +32,8 @@
 //   ::i64          m_cRun;
 //   
 //   
-//   ::element(::element * pobject = nullptr) : element(pobject) { m_cRun = 0; }
-//   virtual ~::element();
+//   ::matter(::matter * pobject = nullptr) : matter(pobject) { m_cRun = 0; }
+//   virtual ~::matter();
 //   
 //   
 //   virtual ::estatus     call() override;

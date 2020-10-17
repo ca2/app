@@ -65,12 +65,12 @@ CLASS_DECL_ACME bool __enable_memory_tracking(bool bTrack);
 
 //struct CLASS_DECL_ACME ___ENUM_CONTEXT
 //{
-//   void (*m_pfn)(element*,void *);
+//   void (*m_pfn)(matter*,void *);
 //   void * m_pContext;
 //};
 
 //CLASS_DECL_ACME void __do_for_all_objects_proxy(void * pObject, void * pContext);
-//CLASS_DECL_ACME void __do_for_all_objects(void (c_cdecl *pfn)(element*, void *), void * pContext);
+//CLASS_DECL_ACME void __do_for_all_objects(void (c_cdecl *pfn)(matter*, void *), void * pContext);
 
 /////////////////////////////////////////////////////////////////////////////
 // Automatic debug memory diagnostics

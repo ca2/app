@@ -12,7 +12,7 @@ public:
 };
 
 class CLASS_DECL_AURA db_long_set_queue_item:
-   virtual public element
+   virtual public matter
 {
 public:
 
@@ -60,7 +60,7 @@ public:
    class db_long_sync_queue *                m_pqueue;
 
    db_long_set_core(db_server * pserver):
-      element(pserver->get_context_application()),
+      matter(pserver->get_context_application()),
       db_set(pserver,"integertable"),
       m_handler(get_object()),
       
@@ -190,7 +190,7 @@ void db_long_sync_queue::queue(const char * pszKey,i64 l)
 
 
 db_long_set::db_long_set(db_server * pserver):
-element(pserver->get_context_application())
+matter(pserver->get_context_application())
 {
 
    m_pcore = new db_long_set_core(pserver);

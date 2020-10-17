@@ -1057,7 +1057,7 @@ void context::add_matter_locator(::aura::application * papp)
 
 
 
-::estatus context::_load_from_file(::element* pobject, const ::var& varFile, const var& varOptions)
+::estatus context::_load_from_file(::matter* pobject, const ::var& varFile, const var& varOptions)
 {
 
    binary_stream reader(Context.file().get_reader(varFile));
@@ -1069,7 +1069,7 @@ void context::add_matter_locator(::aura::application * papp)
 }
 
 
-::estatus context::_save_to_file(const ::var& varFile, const var& varOptions, const ::element * pobject)
+::estatus context::_save_to_file(const ::var& varFile, const var& varOptions, const ::matter * pobject)
 {
 
    binary_stream writer(Context.file().get_writer(varFile));

@@ -23,7 +23,7 @@ namespace filemanager
          
          
          class folder :
-            virtual public element
+            virtual public matter
          {
          public:
 

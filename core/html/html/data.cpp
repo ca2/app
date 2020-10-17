@@ -49,7 +49,7 @@ i64 html_data::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
 }
 
 
-::html::font * html_data::get_font(::html::element * pelemental)
+::html::font * html_data::get_font(::html::element* pelemental)
 {
 
    return m_pcoredata->get_font(pelemental);
@@ -57,7 +57,7 @@ i64 html_data::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
 }
 
 
-i32 html_data::create_font(::html::element * pelemental)
+i32 html_data::create_font(::html::element* pelemental)
 {
 
    return m_pcoredata->create_font(pelemental);
@@ -147,7 +147,7 @@ void html_data::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 }
 
 
-html::element * html_data::get_element_by_name(id id)
+html::element* html_data::get_element_by_name(id id)
 {
 
    return m_pcoredata->get_element_by_name(id);
@@ -155,7 +155,7 @@ html::element * html_data::get_element_by_name(id id)
 }
 
 
-html::element * html_data::get_element_by_id(id id)
+html::element* html_data::get_element_by_id(id id)
 {
 
    return m_pcoredata->get_element_by_name(id);

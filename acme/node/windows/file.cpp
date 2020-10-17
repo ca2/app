@@ -415,7 +415,7 @@ namespace windows
    void file::assert_valid() const
    {
 
-      ::element::assert_valid();
+      ::matter::assert_valid();
       
    }
 
@@ -423,7 +423,7 @@ namespace windows
    void file::dump(dump_context& dumpcontext) const
    {
 
-      ::element::dump(dumpcontext);
+      ::matter::dump(dumpcontext);
 
       dumpcontext << "with handle " << m_handleFile;
       dumpcontext << " and name \"" << m_path << "\"";

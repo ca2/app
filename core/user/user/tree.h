@@ -171,7 +171,7 @@ namespace user
 
       virtual void      _001EnsureVisible(::data::tree_item * pitem);
 
-      virtual void update(::update * pupdate) override;
+      virtual void on_apply(::action * paction) override;
 
       virtual bool keyboard_focus_is_focusable() override;
 

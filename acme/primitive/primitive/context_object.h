@@ -27,7 +27,7 @@ public:
    context_object() { }
    context_object(const context_object & object);
    context_object(context_object && object) :
-      element(::move(object)),
+      matter(::move(object)),
       m_id(::move(object.m_id)),
       m_pia(::move(object.m_pia)),
       m_estatus(object.m_estatus),
@@ -116,7 +116,7 @@ public:
    inline const property_set & get_property_set() const;
    inline bool contains(const ::property_set & set) const;
 
-   using element::set;
+   using matter::set;
 
    template < typename TYPE >
    inline void set(const ::id & id, const TYPE & t);
@@ -138,7 +138,7 @@ public:
 
 
 
-   //using element::get_context_object;
+   //using matter::get_context_object;
    inline var & get_context_object(const ::id & id);
 
    inline var operator()(const ::id & id) const;
@@ -200,7 +200,7 @@ public:
 
    //virtual void call_update(const ::__id& id, const ::action_context& context) override;
    //virtual void call_update(const ::__id& id) override;
-   //virtual void call_update(::update* pupdate) override;
+   //virtual void call_update(::change * pchange) override;
 
 
 };
@@ -213,5 +213,5 @@ using reference_pointer = __pointer(::context_object);
 
 
 
-template < typename TYPE > inline __pointer(TYPE) __cast(::element * p) { return dynamic_cast <TYPE *> (p); }
+template < typename TYPE > inline __pointer(TYPE) __cast(::matter * p) { return dynamic_cast <TYPE *> (p); }
 

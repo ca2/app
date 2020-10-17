@@ -45,7 +45,7 @@ namespace draw2d
 {
 
 
-   //bool path::element::expand_bounding_rect(RECTD* prect) const
+   //bool path::matter::expand_bounding_rect(RECTD* prect) const
    //{
 
    //   rectd r;
@@ -64,7 +64,7 @@ namespace draw2d
    //}
 
 
-   //bool path::element::expand_bounding_rect(RECT* prect) const
+   //bool path::matter::expand_bounding_rect(RECT* prect) const
    //{
 
    //   rectd r;
@@ -83,7 +83,7 @@ namespace draw2d
    //}
 
 
-   //bool path::element::get_bounding_rect(RECTD* prect) const
+   //bool path::matter::get_bounding_rect(RECTD* prect) const
    //{
 
    //   ::null_rect(prect);
@@ -93,7 +93,7 @@ namespace draw2d
    //}
 
 
-   //bool path::element::get_bounding_rect(RECT* prect) const
+   //bool path::matter::get_bounding_rect(RECT* prect) const
    //{
 
    //   ::null_rect(prect);
@@ -103,7 +103,7 @@ namespace draw2d
    //}
 
 
-   //bool path::element::contains(const ::pointd& point) const
+   //bool path::matter::contains(const ::pointd& point) const
    //{
 
    //   // BUG SS (STILL SIMPLE) using bounding box HAHA LOL ROFL
@@ -143,7 +143,7 @@ namespace draw2d
 
    //   // BUG SS (STILL SIMPLE) using bounding box HAHA LOL ROFL
 
-   //   return path::element::contains(point);
+   //   return path::matter::contains(point);
 
    //}
 
@@ -236,7 +236,7 @@ namespace draw2d
    //bool path::text_out::contains(const ::pointd& point) const
    //{
 
-   //   return path::element::contains(point);
+   //   return path::matter::contains(point);
 
    //}
 
@@ -255,7 +255,7 @@ namespace draw2d
    //bool path::draw_text::contains(const ::pointd& point) const
    //{
 
-   //   return path::element::contains(point);
+   //   return path::matter::contains(point);
 
    //}
 
@@ -300,7 +300,7 @@ namespace draw2d
    ////}
 
 
-   //path::element::element()
+   //path::matter::matter()
    //{
 
    //   m_etype = type_none;
@@ -308,7 +308,7 @@ namespace draw2d
    //}
 
 
-   //path::element::~element()
+   //path::matter::~matter()
    //{
 
 
@@ -355,10 +355,10 @@ namespace draw2d
 
       bool bGotAny = false;
 
-      for(auto & pelement : m_shapea)
+      for(auto & pmatter : m_shapea)
       {
 
-         if (pelement->expand_bounding_rect(r))
+         if (pmatter->expand_bounding_rect(r))
          {
 
             bGotAny = true;
@@ -388,10 +388,10 @@ namespace draw2d
 
       bool bGotAny = false;
 
-      for (auto& pelement : m_shapea)
+      for (auto& pmatter : m_shapea)
       {
 
-         if (pelement->expand_bounding_rect(r))
+         if (pmatter->expand_bounding_rect(r))
          {
 
             bGotAny = true;
@@ -694,15 +694,15 @@ namespace draw2d
    //bool path::add_move(double x, double y)
    //{
 
-   //   __pointer(element) pelement;
+   //   __pointer(matter) pmatter;
 
-   //   pelement = __new(element);
+   //   pmatter = __new(matter);
 
-   //   pelement->m_etype               = element::type_move;
-   //   pelement->u.m_move.m_x          = x;
-   //   pelement->u.m_move.m_y          = y;
+   //   pmatter->m_etype               = matter::type_move;
+   //   pmatter->u.m_move.m_x          = x;
+   //   pmatter->u.m_move.m_y          = y;
 
-   //   m_shapea.add(pelement);
+   //   m_shapea.add(pmatter);
 
    //   m_bHasPoint = true;
    //   m_point.x = x;
@@ -1431,10 +1431,10 @@ namespace draw2d
    bool path::_set_create(::draw2d::graphics* pgraphics)
    {
 
-      for (auto& pelement : m_shapea)
+      for (auto& pmatter : m_shapea)
       {
 
-         if (!_set(pgraphics, pelement))
+         if (!_set(pgraphics, pmatter))
          {
 
             return false;
@@ -1484,7 +1484,7 @@ namespace draw2d
       case e_shape_text_out:
          return _set(pgraphics, pshape->shape < ::text_out>());
       default:
-         throw "unexpected simple os graphics element type";
+         throw "unexpected simple os graphics matter type";
       }
 
       return false;
@@ -1951,10 +1951,10 @@ namespace draw2d
 
       int iFill = 0;
 
-      for (auto& pelement : m_shapea)
+      for (auto& pmatter : m_shapea)
       {
 
-         if (pelement->contains(point))
+         if (pmatter->contains(point))
          {
 
             if (m_efillmode == ::draw2d::fill_mode_winding)

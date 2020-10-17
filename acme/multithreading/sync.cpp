@@ -177,7 +177,7 @@ void sync::release_ownership()
 //void sync::assert_valid() const
 //{
 //
-//   element::assert_valid();
+//   matter::assert_valid();
 //
 //}
 
@@ -192,7 +192,7 @@ void sync::release_ownership()
 //
 //   dumpcontext << " named " << m_pszName << "\n";
 //
-//   element::dump(dumpcontext);
+//   matter::dump(dumpcontext);
 //
 //}
 

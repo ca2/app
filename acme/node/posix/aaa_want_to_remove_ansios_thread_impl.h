@@ -13,7 +13,7 @@ namespace ansios
 //
 //
 //
-//      thread_impl(::element * pobject);
+//      thread_impl(::matter * pobject);
 //      virtual ~thread_impl();
 //
 //

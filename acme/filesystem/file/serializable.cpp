@@ -5,26 +5,26 @@ namespace file
 {
 
 
-   //element::element()
+   //matter::matter()
    //{
 
    //}
 
-   //void element::write(ostream & ostream)
+   //void matter::write(ostream & ostream)
    //{
 
-   //   ((const element *) this)->write(ostream);
+   //   ((const matter *) this)->write(ostream);
 
    //}
 
-   //void element::write(ostream & ostream) const
+   //void matter::write(ostream & ostream) const
    //{
    //
-   //   ((element *) this)->write(ostream);
+   //   ((matter *) this)->write(ostream);
 
    //}
 
-   //void element::read(istream & istream)
+   //void matter::read(istream & istream)
    //{
 
    //}
@@ -42,7 +42,7 @@ namespace file
 
 
 
-// CLASS_DECL_ACME bool file_put(const char * path, ::element & s, ::acme::application * papp)
+// CLASS_DECL_ACME bool file_put(const char * path, ::matter & s, ::acme::application * papp)
 // {
 
 //    try
@@ -89,7 +89,7 @@ namespace file
 // }
 
 
-// CLASS_DECL_ACME bool file_as(::element & s, const char * path, ::acme::application * papp)
+// CLASS_DECL_ACME bool file_as(::matter & s, const char * path, ::acme::application * papp)
 // {
 
 //    try

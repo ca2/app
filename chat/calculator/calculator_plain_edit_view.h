@@ -38,7 +38,7 @@ namespace calculator
 
       virtual void _001OnAfterChangeText(const ::action_context & action_context);
 
-      virtual void update(::update * pupdate) override;
+      virtual void on_apply(::action * paction) override;
 
       bool keyboard_focus_is_focusable();
 

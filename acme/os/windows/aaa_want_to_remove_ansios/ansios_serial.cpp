@@ -105,11 +105,11 @@ timespec_from_ms (const uint32_t millis)
   return time;
 }
 
-Serial::SerialImpl::SerialImpl (::element * pobject, const string &port, unsigned long baudrate,
+Serial::SerialImpl::SerialImpl (::matter * pobject, const string &port, unsigned long baudrate,
                                 bytesize_t bytesize,
                                 parity_t parity, stopbits_t stopbits,
                                 flowcontrol_t flowcontrol)
-  : element(pobject), port_ (port), fd_ (-1), is_open_ (false), xonxoff_ (false), rtscts_ (false),
+  : matter(pobject), port_ (port), fd_ (-1), is_open_ (false), xonxoff_ (false), rtscts_ (false),
     baudrate_ (baudrate), parity_ (parity),
     bytesize_ (bytesize), stopbits_ (stopbits), flowcontrol_ (flowcontrol)
 {

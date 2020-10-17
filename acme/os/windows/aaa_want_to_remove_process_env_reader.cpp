@@ -222,7 +222,7 @@ void CProcessEnvReader::EnumProcessInfo(ProcessInfoArray& arrProcessInfo)
    if(!Process32First(hProcessSnap,&pe32))
    {
       CloseHandle(hProcessSnap);    // Must clean up the
-      //   snapshot element!
+      //   snapshot matter!
       return;
    }
 

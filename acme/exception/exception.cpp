@@ -505,7 +505,7 @@ namespace status
 
 
 
-//CLASS_DECL_ACME __pointer(::exception::exception) __trace_context_move_throw_exception(::element * trace_context, ::exception::exception * pexceptionNew)
+//CLASS_DECL_ACME __pointer(::exception::exception) __trace_context_move_throw_exception(::matter * trace_context, ::exception::exception * pexceptionNew)
 //{
 //
 //   __trace_logger_level(trace_context, trace_level_error);

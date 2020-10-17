@@ -28,17 +28,17 @@ namespace html
       table * table_row::get_table()
       {
 
-         ::html::element * pelemental = m_pelemental;
+         ::html::element * pelement = m_pelemental;
 
          while(true)
          {
 
-            pelemental = pelemental->m_pparent;
+            pelement = pelement->m_pparent;
 
-            if(pelemental == nullptr)
+            if(pelement == nullptr)
                return nullptr;
 
-            __pointer(table) ptable = pelemental->m_pimpl;
+            __pointer(table) ptable = pelement->m_pimpl;
 
             if(ptable != nullptr)
                return ptable;
@@ -48,12 +48,12 @@ namespace html
       }
 
 
-      void table_row::implement_phase1(html_data * pdata, ::html::element * pelemental)
+      void table_row::implement_phase1(html_data * pdata, ::html::element * pelement)
       {
 
          m_bHasChar = true;
 
-         element::implement_phase1(pdata, pelemental);
+         element::implement_phase1(pdata, pelement);
 
          table * ptable = get_table();
 

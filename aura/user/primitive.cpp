@@ -3489,7 +3489,7 @@ namespace user
    }
 
 
-   i32 primitive::get_total_page_count(::task * ptask)
+   i32 primitive::get_total_page_count(::change * pchange)
    {
 
       return 1;

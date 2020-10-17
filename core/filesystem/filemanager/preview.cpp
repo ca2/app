@@ -56,12 +56,12 @@ namespace filemanager
    }
 
 
-   void preview::update(::update * pupdate)
+   void preview::on_apply(::action * paction)
    {
 
-      ::filemanager::impact::update(pupdate);
+      ::filemanager::impact::on_apply(paction);
 
-      if (pupdate->m_id == INITIALIZE_ID)
+      if (paction->id() == INITIALIZE_ID)
       {
 
          /*            m_pserverNext = simpledb::AppGet()->GetDataServer();
@@ -77,16 +77,16 @@ namespace filemanager
                      DISetSection(str);
                      _001UpdateColumns();*/
       }
-      else if (pupdate->m_id == FILTER_ID)
+      else if (paction->id() == FILTER_ID)
       {
-         /*if(pupdate->value(id_filter).is_empty())
+         /*if(paction->value(id_filter).is_empty())
          {
          FilterClose();
          }
          else
          {
          FilterBegin();
-         Filter1(pupdate->value(id_filter));
+         Filter1(paction->value(id_filter));
          FilterApply();
          }*/
       }

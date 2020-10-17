@@ -51,16 +51,16 @@ inline string ___pointer < T >::type_str()
 }
 //
 //
-//inline bool element::has_property(const id & id) const { return m_pset && m_pset->has_property(id); }
-//inline property * element::lookup_property(const id& id) const { return m_pset ? m_pset->find(id) : nullptr; }
-//inline bool element::remove_key(const id & id) { return m_pset && m_pset->remove_by_name(id); }
-//inline property_set & element::get_property_set() { defer_propset(); return *m_pset; }
-//inline const property_set & element::get_property_set() const { ((element *)this)->defer_propset(); return *m_pset; }
+//inline bool matter::has_property(const id & id) const { return m_pset && m_pset->has_property(id); }
+//inline property * matter::lookup_property(const id& id) const { return m_pset ? m_pset->find(id) : nullptr; }
+//inline bool matter::remove_key(const id & id) { return m_pset && m_pset->remove_by_name(id); }
+//inline property_set & matter::get_property_set() { defer_propset(); return *m_pset; }
+//inline const property_set & matter::get_property_set() const { ((matter *)this)->defer_propset(); return *m_pset; }
 
 //
-//inline ::i64_array& element::idarray() const { if (!m_pia) ((element*)this)->m_pia.create_new(); return *m_pia; }
+//inline ::i64_array& matter::idarray() const { if (!m_pia) ((matter*)this)->m_pia.create_new(); return *m_pia; }
 //
-//inline bool element::contains(const property_set & set) const
+//inline bool matter::contains(const property_set & set) const
 //{
 //
 //   if (set.isEmpty())
@@ -81,7 +81,7 @@ inline string ___pointer < T >::type_str()
 //
 //}
 //
-//inline void element::defer_propset() { if (!m_pset) ::__construct_new(m_pset); }
+//inline void matter::defer_propset() { if (!m_pset) ::__construct_new(m_pset); }
 //
 //
 //inline var & var::operator = (::image * pimage)
@@ -106,10 +106,10 @@ inline string ___pointer < T >::type_str()
 //}
 //
 
-inline type::type(const ::element * pobject)
+inline type::type(const ::matter * pobject)
 {
 
-   m_strName = typeid(*(element *)pobject).name();
+   m_strName = typeid(*(matter *)pobject).name();
 
    demangle(m_strName);
 
@@ -180,7 +180,7 @@ inline bool get_memory::get_base64(const string & str)
 
 
 //template < typename PRED >
-//inline ::image_result element::get_image(const var & varFile, ::u64 uTrait, PRED pred)
+//inline ::image_result matter::get_image(const var & varFile, ::u64 uTrait, PRED pred)
 //{
 //
 //   return ::get_context_system()->get_image(this, varFile, uTrait, pred);
@@ -191,7 +191,7 @@ inline bool get_memory::get_base64(const string & str)
 #include "acme/primitive/primitive/trait_pred.h"
 
 
-//inline var element::topic(const ::id & id)
+//inline var matter::topic(const ::id & id)
 //{
 //
 //   auto pproperty = fetch_property(id);
@@ -784,7 +784,7 @@ inline ___pointer < T >  & ___pointer < T >::operator = (const var_type < VAR > 
             if(is_set() && m_p->type_name() == strText)
             {
 
-               ::output_debug_string("POINTER: loading into existing element of same class type (1)");
+               ::output_debug_string("POINTER: loading into existing matter of same class type (1)");
 
             }
             else
@@ -803,7 +803,7 @@ inline ___pointer < T >  & ___pointer < T >::operator = (const var_type < VAR > 
                else if(m_p->type_name() != strText)
                {
 
-                  ::output_debug_string("POINTER: allocated element type is different from streamed element type (1.2)");
+                  ::output_debug_string("POINTER: allocated matter type is different from streamed matter type (1.2)");
 
                   stream.set_fail_bit();
 
@@ -820,7 +820,7 @@ inline ___pointer < T >  & ___pointer < T >::operator = (const var_type < VAR > 
             if(is_set() && m_p->type_name() == id)
             {
 
-               ::output_debug_string("POINTER: loading into existing element of same class type (2)");
+               ::output_debug_string("POINTER: loading into existing matter of same class type (2)");
 
             }
             else
@@ -837,7 +837,7 @@ inline ___pointer < T >  & ___pointer < T >::operator = (const var_type < VAR > 
                else if(::str::demangle(p->type_name()) != id.to_string())
                {
 
-                  ::output_debug_string("POINTER: allocated element type is different from streamed element type (2.2)");
+                  ::output_debug_string("POINTER: allocated matter type is different from streamed matter type (2.2)");
 
                   stream.set_fail_bit();
 
@@ -912,7 +912,7 @@ inline bool succeeded(const ::property & property)
 
 //
 //template < typename BASE_TYPE >
-//inline __result(BASE_TYPE) element::__create()
+//inline __result(BASE_TYPE) matter::__create()
 //{
 //
 //   auto p = ::__create<BASE_TYPE>();
@@ -937,7 +937,7 @@ inline bool succeeded(const ::property & property)
 //
 //
 //template < typename BASE_TYPE >
-//inline __result(BASE_TYPE) element::__id_create(const ::id & id)
+//inline __result(BASE_TYPE) matter::__id_create(const ::id & id)
 //{
 //
 //   auto p = ::__id_create<BASE_TYPE>(id);
@@ -962,7 +962,7 @@ inline bool succeeded(const ::property & property)
 //
 //
 //template < typename TYPE >
-//inline __result(TYPE) element::__create_new()
+//inline __result(TYPE) matter::__create_new()
 //{
 //
 //   ASSERT(::is_set(this));
@@ -1036,7 +1036,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext, bool bCr
 
 
 //template < typename BASE_TYPE >
-//inline ::estatus element::__compose(__composite(BASE_TYPE) & pbase)
+//inline ::estatus matter::__compose(__composite(BASE_TYPE) & pbase)
 //{
 //
 //   if (!pbase)
@@ -1095,7 +1095,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext, bool bCr
 //
 //
 //template < typename BASE_TYPE >
-//inline ::estatus element::__raw_compose(__composite(BASE_TYPE) & pbase)
+//inline ::estatus matter::__raw_compose(__composite(BASE_TYPE) & pbase)
 //{
 //
 //   if (!pbase)
@@ -1145,7 +1145,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext, bool bCr
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline ::estatus element::__compose(__composite(BASE_TYPE) & pbase, const SOURCE * psource)
+//inline ::estatus matter::__compose(__composite(BASE_TYPE) & pbase, const SOURCE * psource)
 //{
 //
 //   pbase = psource;
@@ -1173,7 +1173,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext, bool bCr
 //}
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline ::estatus element::__raw_compose(__composite(BASE_TYPE) & pbase, const SOURCE * psource)
+//inline ::estatus matter::__raw_compose(__composite(BASE_TYPE) & pbase, const SOURCE * psource)
 //{
 //
 //   pbase = psource;
@@ -1192,7 +1192,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext, bool bCr
 //}
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline ::estatus element::__compose(__composite(BASE_TYPE) & pbase, const __pointer(SOURCE) & psource)
+//inline ::estatus matter::__compose(__composite(BASE_TYPE) & pbase, const __pointer(SOURCE) & psource)
 //{
 //
 //   return __compose(pbase, psource.get());
@@ -1201,7 +1201,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext, bool bCr
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline ::estatus element::__raw_compose(__composite(BASE_TYPE) & pbase, const __pointer(SOURCE) & psource)
+//inline ::estatus matter::__raw_compose(__composite(BASE_TYPE) & pbase, const __pointer(SOURCE) & psource)
 //{
 //
 //   return __raw_compose(pbase, psource.get());
@@ -1211,7 +1211,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext, bool bCr
 //
 //
 //template < typename BASE_TYPE >
-//inline ::estatus element::__id_compose(__composite(BASE_TYPE) & pbase, const ::id & id)
+//inline ::estatus matter::__id_compose(__composite(BASE_TYPE) & pbase, const ::id & id)
 //{
 //
 //   auto & pfactory = ::factory::get_factory(id);
@@ -1265,7 +1265,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext, bool bCr
 //
 //
 //template < typename TYPE >
-//inline ::estatus element::__raw_compose_new(__composite(TYPE) & p)
+//inline ::estatus matter::__raw_compose_new(__composite(TYPE) & p)
 //{
 //
 //   auto ptypeNew = __new(TYPE);
@@ -1296,7 +1296,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext, bool bCr
 //
 //
 //template < typename TYPE >
-//inline ::estatus element::__compose_new(__composite(TYPE) & p)
+//inline ::estatus matter::__compose_new(__composite(TYPE) & p)
 //{
 //
 //   auto ptypeNew = __new(TYPE);
@@ -1336,7 +1336,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext, bool bCr
 //
 //
 //template < typename TYPE >
-//inline ::estatus element::__construct(__pointer(TYPE) & p)
+//inline ::estatus matter::__construct(__pointer(TYPE) & p)
 //{
 //
 //   auto estatus = ::__construct(p);
@@ -1354,7 +1354,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext, bool bCr
 //
 //
 //template < typename TYPE >
-//inline ::estatus element::__id_construct(__pointer(TYPE) & p, const ::id & id)
+//inline ::estatus matter::__id_construct(__pointer(TYPE) & p, const ::id & id)
 //{
 //
 //   auto estatus = ::__id_construct(p, id);
@@ -1372,7 +1372,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext, bool bCr
 //
 //
 //template < typename TYPE >
-//inline ::estatus element::__construct_new(__pointer(TYPE) & p)
+//inline ::estatus matter::__construct_new(__pointer(TYPE) & p)
 //{
 //
 //   auto estatus = ::__construct_new(p);
@@ -1390,7 +1390,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext, bool bCr
 //
 //
 //template < typename BASE_TYPE >
-//inline ::estatus element::__release(__composite(BASE_TYPE) & pcomposite)
+//inline ::estatus matter::__release(__composite(BASE_TYPE) & pcomposite)
 //{
 //
 //   if (pcomposite)
@@ -1420,7 +1420,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext, bool bCr
 //
 //
 //template < typename BASE_TYPE >
-//inline ::estatus element::__release(__reference(BASE_TYPE) & preference)
+//inline ::estatus matter::__release(__reference(BASE_TYPE) & preference)
 //{
 //
 //   if (preference)
@@ -1456,7 +1456,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext, bool bCr
 //
 //
 //template < typename SOURCE >
-//inline ::estatus element::release_reference(__pointer(SOURCE) & psource)
+//inline ::estatus matter::release_reference(__pointer(SOURCE) & psource)
 //{
 //
 //   return release_reference(psource.m_p);
@@ -1464,11 +1464,11 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext, bool bCr
 //}
 //
 //
-//CLASS_DECL_ACME void object_on_add_composite(const element * pbase);
+//CLASS_DECL_ACME void object_on_add_composite(const matter * pbase);
 //
 //
 //template < typename BASE_TYPE >
-//inline ::estatus element::add_composite(__composite(BASE_TYPE) & pcomposite)
+//inline ::estatus matter::add_composite(__composite(BASE_TYPE) & pcomposite)
 //{
 //
 //   return add_composite(pcomposite.get());
@@ -1477,7 +1477,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext, bool bCr
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline ::estatus element::__refer(__reference(BASE_TYPE) & preference, const __pointer(SOURCE) & psource, const char* pszObjRefDbg)
+//inline ::estatus matter::__refer(__reference(BASE_TYPE) & preference, const __pointer(SOURCE) & psource, const char* pszObjRefDbg)
 //{
 //
 //   return __refer(preference, psource.get(), pszObjRefDbg);
@@ -1486,7 +1486,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext, bool bCr
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline ::estatus element::__refer(__reference(BASE_TYPE) & preference, const ::primitive::member < SOURCE > & pmember, const char* pszObjRefDbg)
+//inline ::estatus matter::__refer(__reference(BASE_TYPE) & preference, const ::primitive::member < SOURCE > & pmember, const char* pszObjRefDbg)
 //{
 //
 //   return __refer(preference, pmember.get(), pszObjRefDbg);
@@ -1495,7 +1495,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext, bool bCr
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline ::estatus element::__refer(__reference(BASE_TYPE) & preference, const SOURCE * psource, const char* pszObjRefDbg)
+//inline ::estatus matter::__refer(__reference(BASE_TYPE) & preference, const SOURCE * psource, const char* pszObjRefDbg)
 //{
 //
 //   preference = psource;
@@ -1513,7 +1513,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext, bool bCr
 //
 //
 //template < typename SOURCE >
-//inline ::estatus element::add_reference(__pointer(SOURCE) & psource)
+//inline ::estatus matter::add_reference(__pointer(SOURCE) & psource)
 //{
 //
 //   return add_reference(psource.get());
@@ -1522,7 +1522,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext, bool bCr
 //
 //
 //template < typename SOURCE >
-//inline ::estatus element::add_reference(__reference(SOURCE) & preference)
+//inline ::estatus matter::add_reference(__reference(SOURCE) & preference)
 //{
 //
 //   return add_reference(preference.get());
@@ -1531,10 +1531,10 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext, bool bCr
 //
 //
 //template < typename SOURCE >
-//inline ::estatus element::add_reference(SOURCE * psource)
+//inline ::estatus matter::add_reference(SOURCE * psource)
 //{
 //
-//   __pointer(::element) pobject;
+//   __pointer(::matter) pobject;
 //
 //   pobject = (SOURCE *) psource;
 //
@@ -1545,7 +1545,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext, bool bCr
 //
 //   }
 //
-//   return add_reference((::element *) pobject.m_p);
+//   return add_reference((::matter *) pobject.m_p);
 //
 //}
 //
@@ -1643,7 +1643,7 @@ inline stream & operator >> (stream & is, ___pointer < T > & sp)
 }
 
 
-//inline ::estatus context::load_from_file(::element* pobject, const ::var& varFile, const var* pvarOptions)
+//inline ::estatus context::load_from_file(::matter* pobject, const ::var& varFile, const var* pvarOptions)
 //{
 //
 //   if (pvarOptions)
@@ -1662,7 +1662,7 @@ inline stream & operator >> (stream & is, ___pointer < T > & sp)
 //}
 //
 //
-//inline ::estatus context::load_from_file(::element* pobject, const ::var& varFile)
+//inline ::estatus context::load_from_file(::matter* pobject, const ::var& varFile)
 //{
 //
 //   return _load_from_file(pobject, varFile, type_empty_argument);
@@ -1670,7 +1670,7 @@ inline stream & operator >> (stream & is, ___pointer < T > & sp)
 //}
 //
 //
-//inline ::estatus context::save_to_file(const ::var& varFile, const var* pvarOptions, const ::element * pobject)
+//inline ::estatus context::save_to_file(const ::var& varFile, const var* pvarOptions, const ::matter * pobject)
 //{
 //
 //   if (pvarOptions)
@@ -1689,7 +1689,7 @@ inline stream & operator >> (stream & is, ___pointer < T > & sp)
 //}
 //
 //
-//inline ::estatus context::save_to_file(const ::var& varFile, const ::element* pobject)
+//inline ::estatus context::save_to_file(const ::var& varFile, const ::matter* pobject)
 //{
 //
 //   return _save_to_file(varFile, type_empty_argument, pobject);
@@ -1699,7 +1699,7 @@ inline stream & operator >> (stream & is, ___pointer < T > & sp)
 //
 
 //
-//inline ::file_result element::get_reader(const var & varFile, efileopen eopen)
+//inline ::file_result matter::get_reader(const var & varFile, efileopen eopen)
 //{
 //
 //   return get_file(varFile, eopen | ::file::mode_read) ;
@@ -1707,7 +1707,7 @@ inline stream & operator >> (stream & is, ___pointer < T > & sp)
 //}
 //
 //
-//inline ::file_result element::get_writer(const var & varFile, efileopen eopen)
+//inline ::file_result matter::get_writer(const var & varFile, efileopen eopen)
 //{
 //
 //   return get_file(varFile, eopen | ::file::mode_write);
@@ -1718,7 +1718,7 @@ inline stream & operator >> (stream & is, ___pointer < T > & sp)
 #ifndef DEBUG
 
 
-inline i64 element::add_ref(OBJ_REF_DBG_PARAMS_DEF)
+inline i64 matter::add_ref(OBJ_REF_DBG_PARAMS_DEF)
 {
 
    return atomic_increment(&m_countReference);
@@ -1726,7 +1726,7 @@ inline i64 element::add_ref(OBJ_REF_DBG_PARAMS_DEF)
 }
 
 
-inline i64 element::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
+inline i64 matter::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
 {
 
    return atomic_decrement(&m_countReference);
@@ -1734,7 +1734,7 @@ inline i64 element::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
 }
 
 
-inline i64 element::release(OBJ_REF_DBG_PARAMS_DEF)
+inline i64 matter::release(OBJ_REF_DBG_PARAMS_DEF)
 {
 
    i64 i = dec_ref(OBJ_REF_DBG_ARGS);
@@ -1757,7 +1757,7 @@ inline i64 element::release(OBJ_REF_DBG_PARAMS_DEF)
 
 //
 //template < typename TYPE >
-//inline void element::set(const ::id & id, const TYPE & t)
+//inline void matter::set(const ::id & id, const TYPE & t)
 //{
 //
 //   ::assign(value(id), t);
@@ -1768,7 +1768,7 @@ inline i64 element::release(OBJ_REF_DBG_PARAMS_DEF)
 //
 //
 //template < typename TYPE >
-//inline void element::get(const ::id & id, TYPE & t)
+//inline void matter::get(const ::id & id, TYPE & t)
 //{
 //
 //   ::assign(t, value(id));
@@ -1885,7 +1885,7 @@ IMPL_VAR_REF3(double, d);
 
 //
 //template < typename TYPE >
-//inline ::estatus element::__construct(::thread_pointer & p, void (TYPE:: * pfn)(), e_priority epriority)
+//inline ::estatus matter::__construct(::thread_pointer & p, void (TYPE:: * pfn)(), e_priority epriority)
 //{
 //
 //   p = fork(pfn, epriority);
@@ -1903,7 +1903,7 @@ IMPL_VAR_REF3(double, d);
 //
 //
 //template < typename TYPE >
-//inline ::estatus element::__construct_below_normal(::thread_pointer & p, void (TYPE:: * pfn)())
+//inline ::estatus matter::__construct_below_normal(::thread_pointer & p, void (TYPE:: * pfn)())
 //{
 //
 //   return __construct(p, pfn, priority_below_normal);
@@ -1912,7 +1912,7 @@ IMPL_VAR_REF3(double, d);
 //
 //
 //template < typename TYPE >
-//inline ::thread_pointer element::__start_thread(const ::id & id, void(TYPE:: * pfn)(), e_priority epriority)
+//inline ::thread_pointer matter::__start_thread(const ::id & id, void(TYPE:: * pfn)(), e_priority epriority)
 //{
 //
 //   auto pfork = fork(pfn, epriority);
@@ -1937,7 +1937,7 @@ IMPL_VAR_REF3(double, d);
 
 
 //template < typename HANDLER, typename TYPE >
-//void element::start_traits(__pointer(HANDLER) phandler, __pointer(TYPE) ptype)
+//void matter::start_traits(__pointer(HANDLER) phandler, __pointer(TYPE) ptype)
 //{
 //
 //   fork([phandler, ptype]()
@@ -1970,7 +1970,7 @@ IMPL_VAR_REF3(double, d);
 
 
 //template < typename PRED >
-//inline void element::add_pred(runnable_array & array, PRED pred)
+//inline void matter::add_pred(runnable_array & array, PRED pred)
 //{
 //   array.add(__new(pred_holder<PRED>(pred)));
 //}
@@ -2193,7 +2193,7 @@ inline void future::pred(PRED pred)
 
 
 //template < typename TYPE >
-//inline __pointer(TYPE) element::cast(const ::id & id)
+//inline __pointer(TYPE) matter::cast(const ::id & id)
 //{
 //
 //   return value(id).cast < TYPE>();
@@ -2237,7 +2237,7 @@ inline var __visible(var varOptions, bool bVisible)
 
 //
 //template < typename PRED >
-//inline ::count fork_count_end(::element* pobject, ::count iCount, PRED pred, index iStart, ::e_priority epriority)
+//inline ::count fork_count_end(::matter* pobject, ::count iCount, PRED pred, index iStart, ::e_priority epriority)
 //{
 //
 //   if (iCount <= 0)
@@ -2391,4 +2391,17 @@ inline bool property_set::get_string(string& strResult, const id& idKey) const
 }
 
 
+inline bool change::is_up_to_date(::update * pupdate) const
+{ 
+   
+   return m_iUpdateSerial == pupdate->m_iUpdateSerial;
 
+}
+
+
+
+
+//inline ::id& action::id() { return m_pupdate->id(); }
+//inline const ::id& action::id() const { return m_pupdate->id(); }
+inline ::id& update::id() { return m_psource->m_id; }
+inline const ::id& update::id() const { return m_psource->m_id; }

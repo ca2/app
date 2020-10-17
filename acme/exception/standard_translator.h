@@ -37,7 +37,7 @@ namespace exception
 
 
    class CLASS_DECL_ACME translator :
-      virtual public element
+      virtual public matter
    {
    public:
 

@@ -384,7 +384,7 @@ namespace user
    }
 
 
-   //void impact::update(::update * pupdate)
+   //void impact::on_apply(::action * paction)
    //{
 
    //   //call_update(INITIAL_UPDATE);        // initial update
@@ -392,10 +392,10 @@ namespace user
    //}
 
 
-   //void impact::update(::update * pupdate)
+   //void impact::on_apply(::action * paction)
    //{
 
-   //   ::user::box::update(pupdate);
+   //   ::user::box::on_apply(paction);
 
    //   //if (pHint != nullptr)
    //   //{
@@ -406,7 +406,7 @@ namespace user
    //   //   }
    //   //}
 
-   //   //if(pupdate->m_id == id_set_edit_file)
+   //   //if(paction->id() == id_set_edit_file)
    //   //{
 
    //   //   post_simple_command(simple_command_set_edit_file, pobject);
@@ -687,7 +687,7 @@ namespace user
 
    }
 
-   //void impact::update(::update * pupdate)
+   //void impact::on_apply(::action * paction)
    //{
 
    //   SCAST_PTR(::message::base, pbase, pmessage);
@@ -869,7 +869,11 @@ namespace user
       if (pview.is_set())
       {
 
-         pview->call_update(INITIAL_UPDATE);
+         auto pdocument = pview->get_document();
+
+         ::action action(id_initial_update);
+         
+         pview->apply(action);
 
       }
 
@@ -945,7 +949,7 @@ namespace user
    //}
 
 
-   i32 impact::get_total_page_count(::task* ptask)
+   i32 impact::get_total_page_count(::change * pchange)
    {
 
       return 1;
@@ -1046,14 +1050,14 @@ namespace user
    // ::user::impact drawing support
 
 
-   /*void impact::update(::update * pupdate)
+   /*void impact::on_apply(::action * paction)
    {
    call_update(INITIAL_UPDATE);        // initial update
    }*/
 
    /*   void impact::on_update(::user::impact * pSender, LPARAM lHint, object * pHint)
    {
-   ::user::impact::update(pupdate);
+   ::user::impact::on_apply(paction);
    }
    */
    /////////////////////////////////////////////////////////////////////////////
@@ -1281,7 +1285,7 @@ namespace user
    }
 
    __pointer(::user::impact) pview =  (pview);
-   pview->update(::update * pupdate);
+   pview->on_apply(::action * paction);
    if (afxData.bWin4 && (pview->GetExStyle() & WS_EX_CLIENTEDGE))
    {
    // remove the 3d style from the frame, since the ::user::impact is
@@ -1317,7 +1321,7 @@ namespace user
    return nullptr;        // can't continue without a ::user::impact
    }
 
-   ( (pview))->update(::update * pupdate);
+   ( (pview))->on_apply(::action * paction);
    if (afxData.bWin4 && (pview->GetExStyle() & WS_EX_CLIENTEDGE))
    {
    // remove the 3d style from the frame, since the ::user::impact is

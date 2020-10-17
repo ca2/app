@@ -648,8 +648,8 @@
 		<Unit filename="multithreading/thread_os.cpp" />
 		<Unit filename="multithreading/thread_os.h" />
 		<Unit filename="multithreading/thread_parameter.h" />
-		<Unit filename="multithreading/update_notification_task.cpp" />
-		<Unit filename="multithreading/update_notification_task.h" />
+		<Unit filename="multithreading/update_task.cpp" />
+		<Unit filename="multithreading/update_task.h" />
 		<Unit filename="multithreading/wait_future.cpp" />
 		<Unit filename="node/_.h" />
 		<Unit filename="node/_node.h" />
@@ -1288,8 +1288,8 @@
 		<Unit filename="primitive/primitive/context_object_traits.cpp" />
 		<Unit filename="primitive/primitive/edit.cpp" />
 		<Unit filename="primitive/primitive/edit.h" />
-		<Unit filename="primitive/primitive/element.cpp" />
-		<Unit filename="primitive/primitive/element.h" />
+		<Unit filename="primitive/primitive/matter.cpp" />
+		<Unit filename="primitive/primitive/matter.h" />
 		<Unit filename="primitive/primitive/element_array.cpp" />
 		<Unit filename="primitive/primitive/element_array.h" />
 		<Unit filename="primitive/primitive/enum.h" />

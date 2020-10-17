@@ -58,8 +58,8 @@ namespace android
       virtual i32 get_file_extension_image(const string & strExtension, e_file_attribute eattribute, e_icon eicon, COLORREF crBk = 0) override;
       virtual i32 impl_get_file_image( const image_key& imagekey) override;
 
-      virtual ::user::shell::e_folder get_folder_type(::element * pobject, const widechar * lpcszPath) override;
-      virtual ::user::shell::e_folder get_folder_type(::element * pobject, const char * lpcszPath) override;
+      virtual ::user::shell::e_folder get_folder_type(::matter * pobject, const widechar * lpcszPath) override;
+      virtual ::user::shell::e_folder get_folder_type(::matter * pobject, const char * lpcszPath) override;
 
       //         int add_icon_set(per_fork * pfork, SHFILEINFOW * pinfo16, SHFILEINFOW * pinfo48, COLORREF crBk, bool & bUsedImageList16, bool & bUsedImageList48);
       //
@@ -109,7 +109,7 @@ namespace android
       //         //      string CLASS_DECL_ACME _017FilePathGetParent(const char * pcsz);
       //
       //         HICON CalcIcon(LPITEMIDLIST lpiidl, const char * lpcszExtra, i32 cx, i32 cy);
-      //         bool _017HasSubFolder(::element * pobject, LPITEMIDLIST lpiidl, const char * lpcszExtra);
+      //         bool _017HasSubFolder(::matter * pobject, LPITEMIDLIST lpiidl, const char * lpcszExtra);
       //         //      void CLASS_DECL_ACME GetChildren(string_array & stra, const char * lpcszPath);
       //         LPITEMIDLIST _017ItemIDListGetLast(per_fork * pfork, LPITEMIDLIST lpiidl);
       //         LPITEMIDLIST _017ItemIDListDup(per_fork * pfork, LPITEMIDLIST lpiidl);

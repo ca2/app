@@ -96,10 +96,10 @@ namespace prompt
 
 
 
-   void view::update(::update * pupdate)
+   void view::on_apply(::action * paction)
    {
       
-      if(pupdate->m_id == id_update_current_area)
+      if(paction->id() == id_update_current_area)
       {
 
          SetTimer(::timer_update_current_area, 100, nullptr);

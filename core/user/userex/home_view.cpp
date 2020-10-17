@@ -69,10 +69,10 @@ namespace userex
    }
 
 
-   void home_view::update(::update * pupdate)
+   void home_view::on_apply(::action * paction)
    {
 
-      ::user::impact::update(pupdate);
+      ::user::impact::on_apply(paction);
 
    }
 

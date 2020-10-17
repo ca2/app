@@ -202,10 +202,10 @@ namespace filemanager
          }
 
 
-         void list_view::update(::update * pupdate)
+         void list_view::on_apply(::action * paction)
          {
 
-            simple_list_view::update(pupdate);
+            simple_list_view::on_apply(paction);
 
             //if(::is_null(pobject))
             {

@@ -16,7 +16,7 @@ message_box::~message_box()
 }
 
 
-//::estatus message_box::show(::element* pobject)
+//::estatus message_box::show(::matter* pobject)
 //{
 //
 //   //if (::is_null(pobject))

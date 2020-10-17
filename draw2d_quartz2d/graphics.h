@@ -526,14 +526,14 @@ namespace draw2d_quartz2d
       bool _set(::draw2d::pen * ppen);
 //      //bool set(const ::draw2d::font * pfont);
 //      bool _set(::draw2d::path * ppath);
-//      bool _set(::draw2d::path::element * pelement);
+//      bool _set(::draw2d::path::matter * pmatter);
 //      bool _set(::draw2d::path::arc * parc);
 //      //bool set(const ::draw2d::path::move & move);
 //      bool _set(::draw2d::path::line * pline);
       bool _fill_inline(::draw2d::path * ppath, ::draw2d::brush * pbrush);
       bool _draw_inline(::draw2d::path * ppath, ::draw2d::pen * ppen);
-      bool _fill_inline(::draw2d::path::element * pelement, ::draw2d::brush * pbrush);
-      bool _draw_inline(::draw2d::path::element * pelement, ::draw2d::pen * ppen);
+      bool _fill_inline(::draw2d::path::matter * pmatter, ::draw2d::brush * pbrush);
+      bool _draw_inline(::draw2d::path::matter * pmatter, ::draw2d::pen * ppen);
       bool _set(::draw2d::path::text_out * ptextout);
       bool _fill_inline(::draw2d::path::text_out * ptextout, ::draw2d::brush * pbrush);
       bool _draw_inline(::draw2d::path::text_out * ptextout, ::draw2d::pen * ppen);

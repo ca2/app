@@ -51,7 +51,7 @@ void trace_category_static_init()
       "database",     // special database trace
       "internet",     // special internet client trace
       "dumpcontext",   // traces from dump_context
-      "memory",      // element non-kernel memory traces
+      "memory",      // matter non-kernel memory traces
       "html",         // html traces
       "socket",      // socket traces
       "colorertake5",
@@ -162,7 +162,7 @@ CLASS_DECL_ACME int_bool c_enable_trace_category(e_trace_category ecategory, int
 }
 
 
-CLASS_DECL_ACME ::element* general_trace_object()
+CLASS_DECL_ACME ::matter* general_trace_object()
 {
 
    return trace_category::s_ptracecategorya->element_at(0);
@@ -170,7 +170,7 @@ CLASS_DECL_ACME ::element* general_trace_object()
 }
 
 
-CLASS_DECL_ACME ::element* trace_object(e_trace_category ecategory)
+CLASS_DECL_ACME ::matter* trace_object(e_trace_category ecategory)
 {
 
    return trace_category::s_ptracecategorya->element_at((iptr)ecategory);
@@ -209,7 +209,7 @@ char g_chaTraceLevel[] =
 
 
 
-e_trace_category object_trace_category(::element * pobject)
+e_trace_category object_trace_category(::matter * pobject)
 {
 
    return pobject->trace_category();
@@ -217,7 +217,7 @@ e_trace_category object_trace_category(::element * pobject)
 }
 
 
-const char* topic_text(::element * pobject)
+const char* topic_text(::matter * pobject)
 {
 
    if (::is_null(pobject))

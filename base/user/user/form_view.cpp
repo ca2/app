@@ -22,40 +22,40 @@ namespace user
    }
 
 
-   void form_view::update(::update * pupdate)
+   void form_view::on_apply(::action * paction)
    {
 
-      ::user::impact::update(pupdate);
+      ::user::impact::on_apply(paction);
 
-      if (pupdate->m_id == id_browse)
+      if (paction->id() == id_browse)
       {
 
-         if (!pupdate->value(id_form).is_empty())
+         if (!paction->value(id_form).is_empty())
          {
 
-            if (get_document()->on_open_document(pupdate->value(id_form)))
+            if (get_document()->on_open_document(paction->value(id_form)))
             {
 
-               m_strPath = pupdate->value(id_form);
+               m_strPath = paction->value(id_form);
 
             }
 
          }
 
       }
-      else if (pupdate->m_id == id_get_form_view)
+      else if (paction->id() == id_get_form_view)
       {
 
-         pupdate->value(id_form) = this;
+         paction->value(id_form) = this;
 
       }
 
       if(m_pcallback != nullptr)
       {
 
-         pupdate->value(id_form) = this;
+         paction->value(id_form) = this;
 
-         m_pcallback->call_update(pupdate);
+         m_pcallback->apply(paction);
 
       }
 

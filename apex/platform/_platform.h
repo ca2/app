@@ -198,7 +198,10 @@ namespace apex
 
 
 
-class task;
+class source;
+class update;
+class change;
+
 
 
 

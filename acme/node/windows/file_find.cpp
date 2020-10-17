@@ -421,7 +421,7 @@ namespace windows
    void file_find::dump(dump_context & dumpcontext) const
    {
 
-      element::dump(dumpcontext);
+      matter::dump(dumpcontext);
 
       dumpcontext << "\nm_hContext = " << m_hContext;
 

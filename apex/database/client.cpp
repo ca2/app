@@ -125,7 +125,7 @@ namespace database
    //}
 
 
-   bool client::_data_set(const key & key, const var & var, ::update * pupdate)
+   bool client::_data_set(const key & key, const var & var, ::action * paction)
    {
 
       if(::is_null(m_pdataserver))
@@ -139,12 +139,12 @@ namespace database
 
       os << var;
 
-      return m_pdataserver->_data_server_save(this, key, os->memory(), pupdate);
+      return m_pdataserver->_data_server_save(this, key, os->memory(), paction);
 
    }
 
 
-   bool client::_data_set(const selection & selection, const var & var, ::update * pupdate)
+   bool client::_data_set(const selection & selection, const var & var, ::action * paction)
    {
 
       if (::is_null(m_pdataserver))
@@ -167,7 +167,7 @@ namespace database
 
          auto & item = selection.get_item(iItem);
 
-         if (!m_pdataserver->_data_server_save(this, item.m_datakey, os->memory(), pupdate))
+         if (!m_pdataserver->_data_server_save(this, item.m_datakey, os->memory(), paction))
          {
 
             bOk = false;
@@ -232,13 +232,13 @@ namespace database
    }
 
 
-   bool client::data_pulse_change(const key & key, ::update * pupdate)
+   bool client::data_pulse_change(const key & key, ::action * paction)
    {
 
       if(m_pdataserver != nullptr)
       {
 
-         if (!m_pdataserver->data_pulse_change(this, key, pupdate))
+         if (!m_pdataserver->data_pulse_change(this, key, paction))
          {
 
             return false;
@@ -399,14 +399,14 @@ namespace database
    }
 
 
-   bool client::data_on_before_change(client* pclient, const key& id, var& var, ::update* pupdate)
+   bool client::data_on_before_change(client* pclient, const key& id, var& var, ::action * paction)
    {
 
       return true;
 
    }
 
-   void client::data_on_after_change(client* pclient, const key& id, const var& var, ::update* pupdate)
+   void client::data_on_after_change(client* pclient, const key& id, const var& var, ::action * paction)
    {
 
    }

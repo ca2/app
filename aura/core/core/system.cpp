@@ -1755,7 +1755,7 @@ namespace aura
 
 
 
-   void system::update(::update* pupdate)
+   void system::on_apply(::action * paction)
    {
 
       //::update updateSetting(pupdate);
@@ -1784,7 +1784,7 @@ namespace aura
 
       //           iFrame++;
 
-      //           pinteraction->call_update(pupdate);
+      //           pinteraction->apply(paction);
 
       //        }
 

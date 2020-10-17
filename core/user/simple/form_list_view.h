@@ -24,7 +24,7 @@ public:
    virtual void dump(dump_context & dumpcontext) const override;
 
    
-   virtual void update(::update * pupdate) override;
+   virtual void on_apply(::action * paction) override;
 
 
 };

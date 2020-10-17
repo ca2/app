@@ -66,7 +66,7 @@ kiss_fft_cfg kiss_fft_alloc(i32 nfft,i32 inverse_fft,void * mem,size_t * lenmem)
  * for a forward FFT,
  * fin should be  f[0] , f[1] , ... ,f[nfft-1]
  * fout will be   F[0] , F[1] , ... ,F[nfft-1]
- * Note that each element is complex and can be accessed like
+ * Note that each matter is complex and can be accessed like
     f[k].r and f[k].i
  * */
 void kiss_fft(kiss_fft_cfg cfg,const kiss_fft_cpx *fin,kiss_fft_cpx *fout);

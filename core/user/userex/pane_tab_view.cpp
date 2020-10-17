@@ -726,10 +726,10 @@ namespace userex
    }
 
 
-   void pane_tab_view::update(::update * pupdate)
+   void pane_tab_view::on_apply(::action * paction)
    {
 
-      ::user::tab_view::update(pupdate);
+      ::user::tab_view::on_apply(paction);
 
    }
 

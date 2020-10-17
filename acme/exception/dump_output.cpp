@@ -2,7 +2,7 @@
 #include <stdio.h>
 //
 //
-//void __dump_object(const element * pobject)
+//void __dump_object(const matter * pobject)
 //{
 //
 //#ifdef __DEBUG

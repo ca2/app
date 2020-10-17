@@ -96,10 +96,10 @@ namespace user
       //__pointer(::user::frame_window) CreateOleFrame(::user::interaction_impl * puiParent, ::user::document * pDoc,
       //   bool bCreateView);
 
-      virtual void update_all_views(::user::impact * pimpact, ::u64 uId);
-      virtual void update_all_views(::update * pupdate);
+      virtual void update_all_views(::user::impact * pimpact, const ::id & id);
+      virtual void update_all_views(::action * paction);
 
-      virtual void update(::update * pupdate) override;
+      virtual void on_apply(::action * paction) override;
 
       virtual Confidence MatchDocType(const ::file::path & pszPathName,::user::document *& rpDocMatch);
 

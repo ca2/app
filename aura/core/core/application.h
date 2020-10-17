@@ -565,7 +565,7 @@ namespace aura
 
       //virtual void install_message_routing(::channel * pchannel) override;
 
-      //virtual void update(::update * pupdate) override;
+      //virtual void on_apply(::action * paction) override;
 
       //virtual ::estatus process_init() override;
 

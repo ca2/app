@@ -63,9 +63,9 @@
 ////
 ////} // namespace papaya
 //
-//typedef CLASS_DECL_ACME __pointer(::element) context_object_pointer;
+//typedef CLASS_DECL_ACME __pointer(::matter) context_object_pointer;
 //
-//typedef CLASS_DECL_ACME __pointer_array(::element) context_object_pointera;
+//typedef CLASS_DECL_ACME __pointer_array(::matter) context_object_pointera;
 //
 //enum e_notify
 //{
@@ -79,18 +79,18 @@
 //
 //
 ////class CLASS_DECL_ACME trait //:
-////   //virtual public element
+////   //virtual public matter
 ////{
 ////public:
 ////   
 ////   
-////   //::element *        m_pobjectHandler;
+////   //::matter *        m_pobjectHandler;
 ////   ::i64             m_iTrait;
 ////   ::estatus         m_estatus;
 ////   //::u64                                     m_uTrait;
-////   //__pointer(::element)                    m_preference;
-////   //__pointer(::element)               m_pobjectTaskTransport;
-////   //__pointer(::element)               m_pobjectTask;
+////   //__pointer(::matter)                    m_preference;
+////   //__pointer(::matter)               m_pobjectTaskTransport;
+////   //__pointer(::matter)               m_pobjectTask;
 ////
 ////
 ////   //e_notify                                  m_enotify;
@@ -146,17 +146,17 @@
 //////   void add_notification(const ::trait & traitPayload);
 //////   
 //////
-//////   void fork(::element * pobject);
+//////   void fork(::matter * pobject);
 //////   
 //////   ::context_object_pointera * notifya();
 //////   
 //////
-//////   void _notify(::element * pobjectForker);
+//////   void _notify(::matter * pobjectForker);
 //////   
 //////   
-//////   void _call_notify(::element * pobjectForker);
-//////   thread_pointer _fork_notify(::element * pobjectForker);
-//////   thread_spa _fork_notify_each(::element * pobjectForker);
+//////   void _call_notify(::matter * pobjectForker);
+//////   thread_pointer _fork_notify(::matter * pobjectForker);
+//////   thread_spa _fork_notify_each(::matter * pobjectForker);
 ////   
 ////   
 ////};

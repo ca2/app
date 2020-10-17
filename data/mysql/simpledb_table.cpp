@@ -6,7 +6,7 @@ namespace simpledb
 
 
    table::table(base * pdatabase, const char * pszName) :
-      element(pdatabase->get_context_application()),
+      matter(pdatabase->get_context_application()),
       m_spfileMeta(pdatabase->get_context_application()),
       m_spfileFixed(pdatabase->get_context_application()),
       m_xmldocumentMeta(pdatabase->get_context_application())

@@ -203,7 +203,7 @@ inline strsize replacement_utf8_char(char * psz)
 // The High Surrogate is first UTF-16 character
 // The Losh Surrogate is secnd UTF-16 codepointchar
 // I suggest if you want to transmit a face, you can use <img tag>
-// or if your font support a cad library with 512-bit wide encoding, you can __create <element type="cad/application-x">512-bit wide of honda civic tweaked by john peter etcetra and used by ann (brakes light dimmed (don't tell the police))</test>
+// or if your font support a cad library with 512-bit wide encoding, you can __create <matter type="cad/application-x">512-bit wide of honda civic tweaked by john peter etcetra and used by ann (brakes light dimmed (don't tell the police))</test>
 
 
 //inline int_bool utf16_is_surrogate(wd16char u16) { return (u16 - 0xd800u) < 2048u; }

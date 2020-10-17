@@ -16,12 +16,12 @@ namespace calculator
    {
    }
 
-   ::calculator::element * parser::new_node()
+   ::calculator::matter * parser::new_node()
    {
-      return m_elementa.add(__new(::calculator::element));
+      return m_elementa.add(__new(::calculator::matter));
    }
 
-   //::calculator::element * parser::parse(const char * psz)
+   //::calculator::matter * parser::parse(const char * psz)
    /********************************************/
    /* Parsing functions */
 
@@ -34,9 +34,9 @@ namespace calculator
    */
 
 
-   ::calculator::element * parser::parse(const char * psz)
+   ::calculator::matter * parser::parse(const char * psz)
    {
-      ::calculator::element *node;
+      ::calculator::matter *node;
       m_scanner.initialize(psz);
       node = expr(term(factor()));
       if(m_scanner.m_ptoken->m_etype != token::type_end)
@@ -44,9 +44,9 @@ namespace calculator
       return node;
    }
 
-   ::calculator::element * parser::expr(::calculator::element * pelement1)
+   ::calculator::matter * parser::expr(::calculator::matter * pelement1)
    {
-      ::calculator::element * top_node;
+      ::calculator::matter * top_node;
       m_scanner.peek();
       if(m_scanner.m_ptoken->m_etype == token::type_addition || m_scanner.m_ptoken->m_etype == token::type_subtraction)
       {
@@ -60,9 +60,9 @@ namespace calculator
       return pelement1;
    }
 
-   ::calculator::element *parser::term(::calculator::element *m_pelement1)
+   ::calculator::matter *parser::term(::calculator::matter *m_pelement1)
    {
-      ::calculator::element *top_node;
+      ::calculator::matter *top_node;
       m_scanner.peek();
       if(m_scanner.m_ptoken->m_etype == token::type_multiplication || m_scanner.m_ptoken->m_etype == token::type_division)
       {
@@ -77,9 +77,9 @@ namespace calculator
    }
 
 
-   ::calculator::element *parser::factor()
+   ::calculator::matter *parser::factor()
    {
-      ::calculator::element *node;
+      ::calculator::matter *node;
       m_scanner.peek();
       if(m_scanner.m_ptoken->m_etype == token::type_addition)
       {

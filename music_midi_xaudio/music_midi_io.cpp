@@ -454,11 +454,11 @@ void MessageIO::Field3ComboBoxSelectionChanged(Object^ sender, SelectionChangedE
 
 void MessageIO::RawMessageTextBlockTapped(Object^ sender, Windows::UI::Xaml::Input::TappedRoutedEventArgs^ e)
 {
-   FrameworkElement^ element = static_cast<FrameworkElement^>(sender);
+   FrameworkElement^ matter = static_cast<FrameworkElement^>(sender);
 
-   if (element != nullptr && MidiMessageType::SystemExclusive == _messageType)
+   if (matter != nullptr && MidiMessageType::SystemExclusive == _messageType)
    {
-      Windows::UI::Xaml::Controls::Primitives::FlyoutBase::ShowAttachedFlyout(element);
+      Windows::UI::Xaml::Controls::Primitives::FlyoutBase::ShowAttachedFlyout(matter);
    }
 }
 

@@ -223,15 +223,13 @@ namespace filemanager
 
          __pointer(document) pdocument = this;
 
-         auto pupdate = new_update();
+         auto paction = action(TOPIC_OK_ID);
 
-         pupdate->value(DOCUMENT_ID) = pdocument;
+         paction->value(DOCUMENT_ID) = pdocument;
 
-         pupdate->m_pfileitem = itema.get_first_pointer();
+         paction->m_pfileitem = itema.get_first_pointer();
 
-         pupdate->m_id = TOPIC_OK_ID;
-
-         pdocument->update_all_views(pupdate);
+         pdocument->update_all_views(paction);
 
          filemanager_data()->m_pdocumentTopic = nullptr;
 
@@ -627,17 +625,16 @@ namespace filemanager
       if (!fs_data()->is_zero_latency(pitem->m_filepathFinal))
       {
 
-         auto pupdate = new_update();
+         auto paction = fork_action(SYNCHRONIZE_PATH_ID);
 
-         pupdate->m_id = SYNCHRONIZE_PATH_ID;
+         paction->m_actioncontext = context + ::source_sync + ::source_system;
 
-         pupdate->m_actioncontext = context + ::source_sync + ::source_system;
+         paction->m_pfileitem = pitem;
 
-         pupdate->m_pfileitem = pitem;
-
-         update_all_views(pupdate);
+         update_all_views(paction);
 
       }
+
 
       opt_fork([=]()
       {
@@ -645,6 +642,7 @@ namespace filemanager
          full_browse(pitem, context);
 
       });
+
 
    }
 
@@ -662,15 +660,15 @@ namespace filemanager
 
       }
 
-      auto pupdate = new_update();
+      auto pupdate = update(SYNCHRONIZE_PATH_ID);
 
-      pupdate->m_id = SYNCHRONIZE_PATH_ID;
+      auto paction = new_action(pupdate);
 
-      pupdate->m_actioncontext = context + ::source_sync;
+      paction->m_actioncontext = context + ::source_sync;
 
-      pupdate->m_pfileitem = pitem;
+      paction->m_pfileitem = pitem;
 
-      update_all_views(pupdate);
+      update_all_views(paction);
 
    }
 
@@ -704,11 +702,11 @@ namespace filemanager
    void document::OpenSelectionProperties()
    {
 
-      auto pupdate = new_update();
+      auto pupdate = update(id_open_selection_properties);
 
-      pupdate->m_id = id_open_selection_properties;
+      auto paction = new_action(pupdate);
 
-      update_all_views(pupdate);
+      update_all_views(paction);
 
    }
 
@@ -955,13 +953,13 @@ namespace filemanager
       if (m_emode == ::userfs::mode_saving || m_emode == ::userfs::mode_export)
       {
 
-         auto pupdate = new_update();
+         auto pupdate = update(id_topic_ok);
 
-         pupdate->value(id_document) = this;
+         auto paction = new_action(pupdate);
 
-         pupdate->m_id = id_topic_ok;
+         paction->value(id_document) = this;
 
-         update_all_views(pupdate);
+         update_all_views(paction);
 
       }
 
@@ -978,13 +976,13 @@ namespace filemanager
       if (m_emode == ::userfs::mode_import)
       {
 
-         auto pupdate = new_update();
+         auto pupdate = update(id_topic_ok);
 
-         pupdate->value(id_document) = this;
+         auto paction = new_action(pupdate);
 
-         pupdate->m_id = id_topic_ok;
+         paction->value(id_document) = this;
 
-         update_all_views(pupdate);
+         update_all_views(paction);
 
       }
 
@@ -999,13 +997,13 @@ namespace filemanager
       if (m_emode == ::userfs::mode_saving)
       {
 
-         auto pupdate = new_update();
+         auto pupdate = update(id_topic_ok);
 
-         pupdate->value(id_document) = this;
+         auto paction = new_action(pupdate);
 
-         pupdate->m_id = id_topic_ok;
+         paction->value(id_document) = this;
 
-         update_all_views(pupdate);
+         update_all_views(paction);
 
       }
 
@@ -1019,22 +1017,22 @@ namespace filemanager
 
       CreateViews();
 
-      auto pupdate = new_update();
+      auto pupdate = update(id_create_bars);
 
-      pupdate->value(id_document) = this;
+      auto paction = new_action(pupdate);
+
+      paction->value(id_document) = this;
 
       browse(path, ::source_database);
 
-      pupdate->m_id = id_create_bars;
-
-      update_all_views(pupdate);
+      update_all_views(paction);
 
       if (bMakeVisible)
       {
 
-         pupdate->m_id = id_pop;
+         paction->m_pupdate = update(id_pop);
 
-         update_all_views(pupdate);
+         update_all_views(paction);
 
       }
 
@@ -1046,9 +1044,9 @@ namespace filemanager
 
       CreateViews();
 
-      auto pupdate = new_update();
+      auto paction = fork_action(id_create_bars);
 
-      pupdate->value(id_document) = this;
+      paction->value(id_document) = this;
 
       if (bInitialBrowsePath)
       {
@@ -1116,9 +1114,9 @@ namespace filemanager
 
       }
 
-      pupdate->m_id = id_create_bars;
+      //paction->id() = ;
 
-      update_all_views(pupdate);
+      //update_all_views(pupdate);
 
    }
 
@@ -1134,18 +1132,25 @@ namespace filemanager
    void document::CreateViews()
    {
 
-      auto pupdate = new_update();
+      {
 
-      pupdate->m_id = id_initialize;
-//      update.m_uiId = filemanager_data()->m_iDocument;
-      pupdate->value(id_document) = this;
-      update_all_views(pupdate);
+         ::action action(id_initialize);
 
-      pupdate->m_id = id_synchronize_locations;
-      //update.m_uiId = filemanager_data()->m_iDocument;
-      pupdate->value(id_document) = this;
-      pupdate->m_actioncontext = ::source_sync;
-      update_all_views(pupdate);
+         action.value(id_document) = this;
+
+         update_all_views(action);
+
+      }
+
+      {
+
+         ::action action(id_synchronize_locations, ::source_sync);
+
+         action.value(id_document) = this;
+
+         update_all_views(paction);
+
+      }
 
    }
 
@@ -1153,14 +1158,15 @@ namespace filemanager
    void document::PopViews()
    {
 
-      auto pupdate = new_update();
-//      update.m_uiId = filemanager_data()->m_iDocument;
-      pupdate->value(id_document) = this;
-      pupdate->m_id = id_create_bars;
-      update_all_views(pupdate);
-      pupdate->m_id = id_pop;
+      auto paction = fork_action(id_create_bars);
 
-      update_all_views(pupdate);
+      paction->value(id_document) = this;
+
+      update_all_views(paction);
+
+      paction->reset_update(id_pop);
+
+      update_all_views(paction);
 
    }
 
@@ -1264,13 +1270,11 @@ namespace filemanager
    void document::GetActiveViewSelection(::file::item_array & itema)
    {
 
-      auto pupdate = new_update();
+      auto paction = fork_action(id_get_active_view_selection);
 
-      pupdate->m_id = id_get_active_view_selection;
+      update_all_views(paction);
 
-      update_all_views(pupdate);
-
-      itema = *pupdate->cast < ::file::item_array>(id_selected);
+      itema = *paction->cast < ::file::item_array>(id_selected);
 
    }
 
@@ -1282,17 +1286,15 @@ namespace filemanager
 
       m_emode = ::userfs::mode_saving;
 
-      auto pupdate = new_update();
+      auto paction = fork_action(id_topic_start);
 
-      pupdate->value(id_document) = this;
+      paction->value(id_document) = this;
 
-      pupdate->m_id = id_topic_start;
+      update_all_views(paction);
 
-      update_all_views(pupdate);
+      paction->reset_update(id_create_bars);
 
-      pupdate->m_id = id_create_bars;
-
-      update_all_views(pupdate);
+      update_all_views(paction);
 
    }
 
@@ -1304,12 +1306,15 @@ namespace filemanager
 
       m_emode = ::userfs::mode_import;
 
-      auto pupdate = new_update();
-      pupdate->value(id_document) = this;
-      pupdate->m_id = id_topic_start;
-      update_all_views(pupdate);
-      pupdate->m_id = id_create_bars;
-      update_all_views(pupdate);
+      auto paction = fork_action(id_topic_start);
+
+      paction->value(id_document) = this;
+      
+      update_all_views(paction);
+
+      paction->reset_update(id_create_bars);
+
+      update_all_views(paction);
 
    }
 
@@ -1321,12 +1326,15 @@ namespace filemanager
 
       m_emode = ::userfs::mode_export;
 
-      auto pupdate = new_update();
-      pupdate->value(id_document) = this;
-      pupdate->m_id = id_topic_start;
-      update_all_views(pupdate);
-      pupdate->m_id = id_create_bars;
-      update_all_views(pupdate);
+      auto paction = fork_action(id_topic_start);
+
+      paction->value(id_document) = this;
+
+      update_all_views(paction);
+
+      paction->reset_update(id_create_bars);
+
+      update_all_views(paction);
 
    }
 

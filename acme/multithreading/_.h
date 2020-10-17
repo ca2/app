@@ -69,7 +69,7 @@ class single_lock;
 class multi_lock;
 
 
-CLASS_DECL_ACME ::estatus __call(::element * pobject);
+CLASS_DECL_ACME ::estatus __call(::matter * pobject);
 
 
 
@@ -81,13 +81,13 @@ CLASS_DECL_ACME ::estatus __call(::element * pobject);
 //   {
 //
 //      template < typename ARRAY >
-//      __pointer(::element) is_running(ARRAY & array, const char * pszTag)
+//      __pointer(::matter) is_running(ARRAY & array, const char * pszTag)
 //      {
 //
 //         for (::index i = 0; i < array.get_size(); i++)
 //         {
 //
-//            __pointer(::element) pobject;
+//            __pointer(::matter) pobject;
 //
 //            pobject = &__typed(array[i]);
 //
@@ -330,7 +330,7 @@ CLASS_DECL_ACME void set_get_thread_name(LPFN_GET_THREAD_NAME);
 string get_thread_name(::thread* pthread);
 
 
-#include "update_notification_task.h"
+//#include "update_task_item_array.h"
 
 
 

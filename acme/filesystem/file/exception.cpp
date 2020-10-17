@@ -322,7 +322,7 @@ namespace file
       void exception::dump(dump_context& dumpcontext) const
       {
          UNREFERENCED_PARAMETER(dumpcontext);
-         //element::dump(dumpcontext);
+         //matter::dump(dumpcontext);
 
          /*   dumpcontext << "m_cause = ";
          if (m_cause >= 0 && m_cause < _countof(rgszFileExceptionCause))

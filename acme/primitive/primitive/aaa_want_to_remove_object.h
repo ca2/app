@@ -1,8 +1,8 @@
 #pragma once
 
 
-class CLASS_DECL_ACME element :
-   virtual public element
+class CLASS_DECL_ACME matter :
+   virtual public matter
 {
 public:
 
@@ -13,8 +13,8 @@ public:
    ::i64                               m_countTasksPending;
 
 
-   element();
-   virtual ~element();
+   matter();
+   virtual ~matter();
 
 
    virtual class sync * get_mutex() const override;
@@ -26,7 +26,7 @@ public:
    virtual void delete_this() override;
 
 
-   virtual __pointer(::element) clone() const;
+   virtual __pointer(::matter) clone() const;
 
 
    virtual void destruct();
@@ -48,13 +48,13 @@ public:
    virtual bool process_exception(::exception_pointer e);
 
 
-   void copy_this(const element & o);
+   void copy_this(const matter & o);
 
 
    virtual bool is_thread() const;
    virtual string get_tag() const;
-   virtual __pointer(::element) child_running(const char * pszTag) const;
-   virtual bool child_running(::element * pobject) const;
+   virtual __pointer(::matter) child_running(const char * pszTag) const;
+   virtual bool child_running(::matter * pobject) const;
    virtual void child_post_quit(const char * pszTag);
    virtual void child_post_quit_and_wait(const char * pszTag, const duration & duration);
    virtual bool thread_get_run();
@@ -88,18 +88,18 @@ public:
    virtual ::estatus     do_request(::create * pcreate);
 
 
-   virtual void children_add(::element * pobjectChild);
+   virtual void children_add(::matter * pobjectChild);
    virtual void children_post_quit();
    virtual void children_wait_quit(duration duration);
-   virtual void children_release(::element * pobjectChild);
+   virtual void children_release(::matter * pobjectChild);
 
-   virtual bool children_is(::element * pobjectDescendantCandidate) const;
+   virtual bool children_is(::matter * pobjectDescendantCandidate) const;
 
 
    virtual void children_post_quit_and_wait(duration durationTimeout);
 
 
-   // after releasing a parent, the child shouldn't element it
+   // after releasing a parent, the child shouldn't matter it
    virtual void release_parents();
    virtual void release_children();
 
@@ -118,8 +118,8 @@ public:
    virtual string __get_text(string str);
 
    
-   using element::get_image;
-   using element::matter_image;
+   using matter::get_image;
+   using matter::matter_image;
 
    
    template < typename PRED >
@@ -147,7 +147,7 @@ public:
 
    void start();
 
-   //virtual __pointer(::element) alloc(const class ::type & type);
+   //virtual __pointer(::matter) alloc(const class ::type & type);
 
    //template < typename T >
    //inline __pointer(T) & alloc(__pointer(T) & point)
@@ -379,20 +379,20 @@ inline i64 ref_count(c_derived * pca)
 }
 
 
-CLASS_DECL_ACME void call(::element * prunnable);
+CLASS_DECL_ACME void call(::matter * prunnable);
 
 
-//CLASS_DECL_ACME inline __pointer(::element) alloc(const ::type & type, ::element * pobject);
-
-
-
+//CLASS_DECL_ACME inline __pointer(::matter) alloc(const ::type & type, ::matter * pobject);
 
 
 
 
 
 
-using runnable_pointer = __pointer(::element);
+
+
+
+using runnable_pointer = __pointer(::matter);
 
 
 

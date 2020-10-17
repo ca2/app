@@ -72,7 +72,7 @@ public:
       ::enum_command             m_ecommand;
       ::enum_check               m_echeck;
 
-      ::element *         m_p;
+      ::matter *         m_p;
       ::string_array *           m_pstra;
       ::int_array *              m_pia;
       ::var_array *              m_pvara;
@@ -122,8 +122,8 @@ public:
    var(var * pvar);
    var(const var * pvar);
    var(property * pproperty);
-   var(::element * pobject);
-   var(const ::element & element);
+   var(::matter * pobject);
+   var(const ::matter & matter);
    //var(::image * pimage);
    var(const ::file::path & path);
    var(const string_array & var);
@@ -214,7 +214,7 @@ public:
 
    ::i64 release();
 
-   ::e_type set_element(::element * pobject);
+   ::e_type set_element(::matter * pobject);
 
    bool is_element() const { return m_etype >= type_element && m_etype < __type_last_element; }
 
@@ -439,7 +439,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
 
    inline var & operator = (nullptr_t) { set_type(type_null, false); return *this; }
 
-   inline var & operator = (::element * p)
+   inline var & operator = (::matter * p)
    {
 
       set_element(p);
@@ -462,7 +462,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
 
    }
 
-   var & operator = (const ::element & o);
+   var & operator = (const ::matter & o);
 
    inline var & operator = (const ::file::path & path)
    {
@@ -602,13 +602,13 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    template < class T >
    __pointer(T) cast();
 
-   ::element * element()
+   ::matter * matter()
    {
       if (m_etype == type_element) { return m_p; }
-      return cast < ::element >();
+      return cast < ::matter >();
    }
 
-   ::element * element() const { return ((var *)this)->element(); }
+   ::matter * matter() const { return ((var *)this)->matter(); }
 
    template < class T >
    T * cast() const
@@ -703,7 +703,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    //template < typename TYPE >
    //void exchange_from(const TYPE & t) { operator =(t); }
 
-   //void exchange_from(const ::element & element) { propset().exchange(element); }
+   //void exchange_from(const ::matter & matter) { propset().exchange(matter); }
 
    string implode(const char * pszGlue) const;
    var explode(const char * pszGlue,bool bAddEmpty = true) const;
@@ -1174,7 +1174,7 @@ inline void var::set_string(string && str)
 
 
 class CLASS_DECL_ACME ovar :
-   virtual public element
+   virtual public matter
 {
 public:
 

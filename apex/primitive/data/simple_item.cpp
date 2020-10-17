@@ -21,13 +21,13 @@ namespace data
 
    }
 
-   string simple_item::data_item_get_text(element * pobject) const
+   string simple_item::data_item_get_text(matter * pobject) const
    {
       UNREFERENCED_PARAMETER(pobject);
       return m_str;
    }
    
-   index simple_item::data_item_get_image(element * pobject) const
+   index simple_item::data_item_get_image(matter * pobject) const
    {
 
       if(m_pdatatree->is_selected(this))
@@ -45,7 +45,7 @@ namespace data
 
    }
 
-   image_list * simple_item::data_item_get_image_list(element * pobject) const
+   image_list * simple_item::data_item_get_image_list(matter * pobject) const
    {
 
       return m_pdatatree->get_image_list();

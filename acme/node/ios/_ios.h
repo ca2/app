@@ -80,9 +80,9 @@ CLASS_DECL_ACME void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
 i32 CLASS_DECL_ACME __ios_main(i32 argc, char * argv[]);
 
 
-CLASS_DECL_ACME void vfxThrowFileException(::element * pobject, const ::estatus & estatus, LONG lOsError, const char * lpszFileName = nullptr);
+CLASS_DECL_ACME void vfxThrowFileException(::matter * pobject, const ::estatus & estatus, LONG lOsError, const char * lpszFileName = nullptr);
 
-CLASS_DECL_ACME ::file::exception * get_FileException(::element * pobject, const ::estatus & estatus, LONG lOsError, const char * lpszFileName = nullptr);
+CLASS_DECL_ACME ::file::exception * get_FileException(::matter * pobject, const ::estatus & estatus, LONG lOsError, const char * lpszFileName = nullptr);
 
 
 

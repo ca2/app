@@ -24,21 +24,21 @@ namespace database
       virtual ::estatus initialize(::layered * pobjectContext) override;
 
 
-      virtual bool _data_server_load(client * pclient, const key & key, get_memory getmemory, ::update * pupdate = nullptr);
+      virtual bool _data_server_load(client * pclient, const key & key, get_memory getmemory, ::action * paction = nullptr);
 
 
-      virtual bool _data_server_save(client * pclient, const key & key, block block, ::update * pupdate = nullptr);
+      virtual bool _data_server_save(client * pclient, const key & key, block block, ::action * paction = nullptr);
 
 
-      virtual bool data_pulse_change      (client * pclient, const key & key, ::update * pupdate = nullptr);
+      virtual bool data_pulse_change      (client * pclient, const key & key, ::action * paction = nullptr);
 
 
-      virtual bool on_before_data_change  (client * pclient, const key & key, var & varNew, ::update * pupdate = nullptr);
-      virtual bool on_after_data_change   (client * pclient, const key & key, const var & var, ::update * pupdate = nullptr);
+      virtual bool on_before_data_change  (client * pclient, const key & key, var & varNew, ::action * paction = nullptr);
+      virtual bool on_after_data_change   (client * pclient, const key & key, const var & var, ::action * paction = nullptr);
 
 
-      virtual var data_load(client * pclient, const key & key, ::update * pupdate = nullptr);
-      virtual bool data_save(client * pclient, const key & key, var & var, ::update * pupdate = nullptr);
+      virtual var data_load(client * pclient, const key & key, ::action * paction = nullptr);
+      virtual bool data_save(client * pclient, const key & key, var & var, ::action * paction = nullptr);
 
 
    };

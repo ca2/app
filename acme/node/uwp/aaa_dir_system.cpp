@@ -18,7 +18,7 @@ namespace uwp
    }
 
 
-   ::estatus dir_system::initialize(::element * pobjectContext)
+   ::estatus dir_system::initialize(::matter * pobjectContext)
    {
 
       auto estatus = ::dir_system::initialize(pobjectContext);
@@ -125,7 +125,7 @@ namespace uwp
    //}
 
 
-   //::file::path dir_system::usersystemappdata(::element * pobject, const string & strPrefix)
+   //::file::path dir_system::usersystemappdata(::matter * pobject, const string & strPrefix)
    //{
 
    //   UNREFERENCED_PARAMETER(pobject);
@@ -135,7 +135,7 @@ namespace uwp
    //}
 
 
-   //::file::path dir_system::userdata(::element * pobject)
+   //::file::path dir_system::userdata(::matter * pobject)
    //{
 
    //   return userfolder(pobject) / "data";
@@ -143,7 +143,7 @@ namespace uwp
    //}
 
 
-   //::file::path dir_system::userfolder(::element * pobject)
+   //::file::path dir_system::userfolder(::matter * pobject)
    //{
 
    //   string str = appdata();
@@ -160,7 +160,7 @@ namespace uwp
    //}
 
 
-   //::file::path dir_system::default_os_user_path_prefix(::element * pobject)
+   //::file::path dir_system::default_os_user_path_prefix(::matter * pobject)
    //{
 
    //   UNREFERENCED_PARAMETER(pobject);
@@ -170,7 +170,7 @@ namespace uwp
    //}
 
 
-   //::file::path dir_system::default_userappdata(::element * pobject,const string & lpcszPrefix,const string & lpcszLogin)
+   //::file::path dir_system::default_userappdata(::matter * pobject,const string & lpcszPrefix,const string & lpcszLogin)
    //{
 
    //   return default_userfolder(pobject,lpcszPrefix,lpcszLogin) / "appdata";
@@ -178,7 +178,7 @@ namespace uwp
    //}
 
 
-   //::file::path dir_system::default_userdata(::element * pobject,const string & lpcszPrefix,const string & lpcszLogin)
+   //::file::path dir_system::default_userdata(::matter * pobject,const string & lpcszPrefix,const string & lpcszLogin)
    //{
 
    //   return default_userfolder(pobject,lpcszPrefix,lpcszLogin) / "data";
@@ -186,7 +186,7 @@ namespace uwp
    //}
 
 
-   //::file::path dir_system::default_userfolder(::element * pobject,const string & strPrefix,const string & strLogin)
+   //::file::path dir_system::default_userfolder(::matter * pobject,const string & strPrefix,const string & strLogin)
    //{
 
    //   return userfolder(pobject) / strPrefix / strLogin;
@@ -194,7 +194,7 @@ namespace uwp
    //}
 
 
-   //::file::path dir_system::userquicklaunch(::element* pobject)
+   //::file::path dir_system::userquicklaunch(::matter* pobject)
    //{
 
    //   __throw(todo());
@@ -202,7 +202,7 @@ namespace uwp
    //}
 
 
-   //::file::path dir_system::userprograms(::element* pobject)
+   //::file::path dir_system::userprograms(::matter* pobject)
    //{
 
    //   __throw(todo());
@@ -234,7 +234,7 @@ namespace uwp
    //}
 
 
-   //bool dir_system::has_subdir(::element* pobject, const ::file::path& pszDir)
+   //bool dir_system::has_subdir(::matter* pobject, const ::file::path& pszDir)
    //{
 
    //   return ::file::system_dir::has_subdir(pobject, pszDir);

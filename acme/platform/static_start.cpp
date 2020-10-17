@@ -168,7 +168,7 @@ namespace acme
    //critical_section* g_pcsTrace;
 
    // acme commented
-   //::element* g_ptrace;
+   //::matter* g_ptrace;
 
    // acme commented
    //simple_trace* g_psimpletrace;
@@ -197,7 +197,7 @@ namespace acme
    ::mutex* g_pmutexMessageDispatch;
 
 
-   array < element* >* g_paAura;
+   array < matter* >* g_paAura;
 
 
    ::map < ::id, const ::id&, ::id, const ::id& >* g_pmapRTL;
@@ -538,7 +538,7 @@ namespace acme
 
       g_pcsGlobal = new critical_section();
 
-      ::update_notification_task::g_pcs = new critical_section();
+      //::update::g_pcs = new critical_section();
 
       g_pelementaddraReleaseOnEnd = new element_address_array();
 
@@ -604,7 +604,7 @@ namespace acme
 
       ::factory::factory_init();
 
-      g_paAura = new array < element * >;
+      g_paAura = new array < matter * >;
 
       //g_pmapAura =new ::map < void *,void *,::acme::application *,::acme::application * >;
 
@@ -1503,12 +1503,12 @@ CLASS_DECL_ACME mutex* get_children_mutex()
 }
 
 
-CLASS_DECL_ACME void release_on_end(::element* pelement)
+CLASS_DECL_ACME void release_on_end(::matter* pmatter)
 {
 
    cslock l(::acme::g_pcsGlobal);
 
-   ::acme::g_pelementaddraReleaseOnEnd->add(pelement);
+   ::acme::g_pelementaddraReleaseOnEnd->add(pmatter);
 
 }
 
@@ -1518,10 +1518,10 @@ static void delete_all_release_on_end()
 
    cslock l(::acme::g_pcsGlobal);
 
-   for (auto pelement : *::acme::g_pelementaddraReleaseOnEnd)
+   for (auto pmatter : *::acme::g_pelementaddraReleaseOnEnd)
    {
 
-      ::acme::del(pelement);
+      ::acme::del(pmatter);
 
    }
 

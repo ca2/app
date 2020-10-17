@@ -531,7 +531,7 @@ namespace uwp
 
 
 
-   // IMPLEMENT_DYNAMIC(file, ::element)
+   // IMPLEMENT_DYNAMIC(file, ::matter)
 
    /////////////////////////////////////////////////////////////////////////////
 
@@ -759,13 +759,13 @@ namespace uwp
 
 
 
-   //void WinFileException::ThrowOsError(::element * pobject, LONG lOsError, const char * lpszFileName /* = nullptr */)
+   //void WinFileException::ThrowOsError(::matter * pobject, LONG lOsError, const char * lpszFileName /* = nullptr */)
    //{
    //   if (lOsError != 0)
    //      ::file::throw_os_error(pobject, WinFileException::OsErrorToException(lOsError), lOsError, ::error_io, lpszFileName);
    //}
 
-   //void WinFileException::ThrowErrno(::element * pobject, int nErrno, const char * lpszFileName /* = nullptr */)
+   //void WinFileException::ThrowErrno(::matter * pobject, int nErrno, const char * lpszFileName /* = nullptr */)
    //{
    //   if (nErrno != 0)
    //      ::file::throw_os_error(pobject, WinFileException::ErrnoToException(nErrno), _doserrno, ::error_io, lpszFileName);

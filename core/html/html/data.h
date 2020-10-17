@@ -55,8 +55,8 @@ public:
    //void on_image_loaded(::html::image::image * pimage);
 
 
-   ::html::element * get_element_by_name(id id);
-   ::html::element * get_element_by_id(id id);
+   ::html::element* get_element_by_name(id id);
+   ::html::element* get_element_by_id(id id);
 
    void delete_contents();
    void destroy();
@@ -75,7 +75,7 @@ public:
 protected:
 
 
-   i32 create_font(::html::element * pelemental);
+   i32 create_font(::html::element* pelemental);
 
 
 

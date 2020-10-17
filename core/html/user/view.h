@@ -34,7 +34,7 @@ public:
 
    virtual void install_message_routing(::channel * pchannel) override;
    virtual bool pre_create_window(::user::create_struct& cs) override;
-   virtual void update(::update * pupdate) override;
+   virtual void on_apply(::action * paction) override;
 
    DECL_GEN_SIGNAL(_001OnDestroy);
    DECL_GEN_SIGNAL(_001OnCreate);

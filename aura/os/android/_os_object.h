@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_AURA os_object :
-   virtual public ::element
+   virtual public ::matter
 {
 public:
 

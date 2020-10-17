@@ -18,7 +18,7 @@ public:
    public:
 
       ::index                 m_iStep;
-      element *        m_p;
+      matter *        m_p;
       string                  m_strNote;
 
    };
@@ -58,7 +58,7 @@ void defer_delete(obj_ref_dbg* p)
 };
 
 
-string object_name(element* p)
+string object_name(matter* p)
 {
 
    iptr i = (iptr)p;
@@ -76,7 +76,7 @@ string object_name(element* p)
 
 #if OBJ_REF_DBG
 
-void element::add_ref_history(element* p, const char* pszObjRefDbg)
+void matter::add_ref_history(matter* p, const char* pszObjRefDbg)
 {
 
    if (!::acme::g_bAcme)
@@ -127,7 +127,7 @@ void element::add_ref_history(element* p, const char* pszObjRefDbg)
 }
 
 
-void element::dec_ref_history(element* p, const char* /*pszObjRefDbgNotUsedCurrently*/)
+void matter::dec_ref_history(matter* p, const char* /*pszObjRefDbgNotUsedCurrently*/)
 {
 
    cslock sl(&::acme::g_csRefDbg);
@@ -151,7 +151,7 @@ void element::dec_ref_history(element* p, const char* /*pszObjRefDbgNotUsedCurre
 }
 
 
-void element::check_pending_releases()
+void matter::check_pending_releases()
 {
 
    cslock sl(&::acme::g_csRefDbg);
@@ -186,7 +186,7 @@ void element::check_pending_releases()
 
          ::index iStep = item.m_iStep;
 
-         ::element* pobj = item.m_p;
+         ::matter* pobj = item.m_p;
 
          string str = item.m_strNote;
 

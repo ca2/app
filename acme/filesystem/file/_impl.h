@@ -148,9 +148,9 @@ inline stream & operator >>(stream & s, ::tick & tick)
 //{
 //   ::count c = s.get_count();
 //   operator()(c);
-//   for (auto & element : s)
+//   for (auto & matter : s)
 //   {
-//      operator()(element);
+//      operator()(matter);
 //      if (s.fail())
 //         break;
 //   }
@@ -167,11 +167,11 @@ inline stream & operator >>(stream & s, ::tick & tick)
 //   while (c > 0)
 //   {
 //      c--;
-//      typename SET::BASE_TYPE element;
-//      operator()(element);
+//      typename SET::BASE_TYPE matter;
+//      operator()(matter);
 //      if (s.fail())
 //         break;
-//      s.add(element);
+//      s.add(matter);
 //   }
 //   return * this;
 //}
@@ -242,10 +242,10 @@ inline stream & operator <<(stream & s, const __pointer_array(TYPE) & a)
 
    s << c;
 
-   for (auto & element : a.ptra())
+   for (auto & matter : a.ptra())
    {
 
-      if (element.is_null())
+      if (matter.is_null())
       {
 
          s.set_fail_bit();
@@ -254,7 +254,7 @@ inline stream & operator <<(stream & s, const __pointer_array(TYPE) & a)
 
       }
 
-      __save_object(s, element);
+      __save_object(s, matter);
 
       if (s.fail())
       {
@@ -292,9 +292,9 @@ inline stream & operator >>(stream & s, __pointer_array(TYPE) & a)
       for (; i < c; i++)
       {
 
-         auto pelement = __load_object < TYPE >(s);
+         auto pmatter = __load_object < TYPE >(s);
 
-         if (s.fail() || !pelement)
+         if (s.fail() || !pmatter)
          {
 
             s.set_fail_bit();
@@ -303,7 +303,7 @@ inline stream & operator >>(stream & s, __pointer_array(TYPE) & a)
 
          }
 
-         a.add(pelement);
+         a.add(pmatter);
 
       }
 
@@ -325,10 +325,10 @@ inline stream & operator >>(stream & s, __pointer_array(TYPE) & a)
 //
 //      operator()(c);
 //
-//      for (auto & element : a.ptra())
+//      for (auto & matter : a.ptra())
 //      {
 //
-//         if (element.is_null())
+//         if (matter.is_null())
 //         {
 //
 //            s.set_fail_bit()();
@@ -337,7 +337,7 @@ inline stream & operator >>(stream & s, __pointer_array(TYPE) & a)
 //
 //         }
 //
-//         stream_array(*element);
+//         stream_array(*matter);
 //
 //         if (s.fail())
 //         {
@@ -369,13 +369,13 @@ inline stream & operator >>(stream & s, __pointer_array(TYPE) & a)
 //      for (; i < c; i++)
 //      {
 //
-//         __pointer(TYPE) pelement;
+//         __pointer(TYPE) pmatter;
 //
-//         pelement->alloc(get_object());
+//         pmatter->alloc(get_object());
 //
-//         stream_array(*pelement);
+//         stream_array(*pmatter);
 //
-//         if (s.fail() || pelement->is_null())
+//         if (s.fail() || pmatter->is_null())
 //         {
 //
 //            s.set_fail_bit()();
@@ -384,7 +384,7 @@ inline stream & operator >>(stream & s, __pointer_array(TYPE) & a)
 //
 //         }
 //
-//         a.add(pelement);
+//         a.add(pmatter);
 //
 //      }
 //
@@ -543,7 +543,7 @@ __pointer(BASE_TYPE) __load_object(stream & stream)
 
    }
 
-   __pointer(element) p = stream.create_object_from_text(strText);
+   __pointer(matter) p = stream.create_object_from_text(strText);
 
    if (!p)
    {
@@ -593,7 +593,7 @@ inline stream & __save_object(stream & stream, BASE_TYPE * p)
 
 
 //template < typename BASE_TYPE >
-//void element::save_to(const var & varFile, BASE_TYPE * pobject)
+//void matter::save_to(const var & varFile, BASE_TYPE * pobject)
 //{
 //
 //   auto writer = Context.file().get_writer(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::mode_truncate | ::file::defer_create_directory | ::file::share_exclusive);
@@ -650,10 +650,10 @@ inline stream & __save_object(stream & stream, BASE_TYPE * p)
 //
 //inline void __io(::stream & s, ::u64 & u) { s.io(u); }
 //
-//inline void __io(property & property, ::element & element)
+//inline void __io(property & property, ::matter & matter)
 //{
 //
-//   element.exchange(property.propset());
+//   matter.exchange(property.propset());
 //
 //}
 //
@@ -797,7 +797,7 @@ inline var_stream::var_stream(::var * pvar) : m_pvar(pvar) {}
 inline var & var_stream::var() { return *m_pvar; }
 inline const var & var_stream::var() const { return *m_pvar; }
 
-//void var_stream::write_object(const ::id & id, ::id & idFactory, ::element * pobject)
+//void var_stream::write_object(const ::id & id, ::id & idFactory, ::matter * pobject)
 //{
 //   var_stream stream(new ::var(&var()[id].propset()));
 //   stream.exchange("", idFactory);
@@ -805,12 +805,12 @@ inline const var & var_stream::var() const { return *m_pvar; }
 //}
 
 //
-//__pointer(::element) var_stream::read_object(const ::id & id)
+//__pointer(::matter) var_stream::read_object(const ::id & id)
 //{
 //   var_stream stream(new ::var(&var()[id].propset()));
 //   ::id idFactory;
 //   stream.exchange("", idFactory);
-//   auto pobject = __id_create<::element>(idFactory);
+//   auto pobject = __id_create<::matter>(idFactory);
 //   pobject->exchange(stream);
 //   return pobject;
 //}
@@ -884,10 +884,10 @@ inline void __exchange(::stream & s, ::block & block)
 }
 
 
-inline void __exchange(::stream & s, ::element & element)
+inline void __exchange(::stream & s, ::matter & matter)
 {
 
-   element.exchange(s);
+   matter.exchange(s);
 
 }
 

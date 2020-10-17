@@ -5,7 +5,7 @@
 		// TEMPLATE CLASS _Bitset_base
 template<i32>
 	struct _Bitset_base
-	{	// default element size
+	{	// default matter size
 	typedef u32 _Ty;
 	};
 
@@ -22,7 +22,7 @@ template<size_t _Bits>
 			: _Bits <= 16 ? 2
 			: _Bits <= 32 ? 4
 			: 8>,
-virtual public ::element
+virtual public ::matter
 {	// store fixed-length sequence of Boolean elements
 public:
 
@@ -39,48 +39,48 @@ public:
 
 	typedef bool element_type;	// retained
 
-   // CLASS element
-	class element
-   {	// proxy for an element
+   // CLASS matter
+	class matter
+   {	// proxy for an matter
 		friend class bitset<_Bits>;
 
 	public:
-		element& operator=(bool _Val)
-      {	// assign Boolean to element
+		matter& operator=(bool _Val)
+      {	// assign Boolean to matter
 			_Pbitset->set(_Mypos, _Val);
 			return (*this);
       }
 
-		element& operator=(const element& _Bitref)
-      {	// assign element to element
+		matter& operator=(const matter& _Bitref)
+      {	// assign matter to matter
 			_Pbitset->set(_Mypos, bool(_Bitref));
 			return (*this);
       }
 
-		element& flip()
-      {	// complement stored element
+		matter& flip()
+      {	// complement stored matter
 			_Pbitset->flip(_Mypos);
 			return (*this);
       }
 
 		bool operator~() const
-      {	// return complemented element
+      {	// return complemented matter
 			return (!_Pbitset->test(_Mypos));
       }
 
 		operator bool() const
-      {	// return element
+      {	// return matter
 			return (_Pbitset->test(_Mypos));
       }
 
 	private:
-		element(bitset<_Bits>& _Bitset, size_t _Pos)
+		matter(bitset<_Bits>& _Bitset, size_t _Pos)
       : _Pbitset(&_Bitset), _Mypos(_Pos)
-      {	// construct from bitset element and position
+      {	// construct from bitset matter and position
       }
 
 		bitset<_Bits> *_Pbitset;	// pointer to the bitset
-		size_t _Mypos;	// position of element in bitset
+		size_t _Mypos;	// position of matter in bitset
    };
 
 
@@ -104,9 +104,9 @@ public:
 		return (test(_Pos));
 		}
 
-	element at(size_t _Pos)	// retained
+	matter at(size_t _Pos)	// retained
 		{	// subscript mutable sequence with checking
-		return (element(*this, _Pos));
+		return (matter(*this, _Pos));
 		}
 
 	bool operator[](size_t _Pos) const
@@ -114,7 +114,7 @@ public:
 		return (test(_Pos));
 		}
 
-	element operator[](size_t _Pos)
+	matter operator[](size_t _Pos)
 		{	// subscript mutable sequence
  //#if _ITERATOR_DEBUG_LEVEL == 2
 	//	if (_Bits <= _Pos)
@@ -126,7 +126,7 @@ public:
 //		_SCL_SECURE_VALIDATE_RANGE(_Pos < _Bits);
 // #endif /* _ITERATOR_DEBUG_LEVEL == 2 */
 
-		return (element(*this, _Pos));
+		return (matter(*this, _Pos));
 		}
 
 	bitset()
@@ -450,7 +450,7 @@ private:
 		}
 
 	void _Xinv() const
-   {	// report invalid string element in bitset conversion
+   {	// report invalid string matter in bitset conversion
 		__throw(invalid_argument_exception("invalid bitset<N> char"));
 	}
 

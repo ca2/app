@@ -394,7 +394,7 @@ namespace user
 
          g_bLastDarkMode = bDarkMode;
 
-         ::update_notification_task::set_modified(id_dark_mode);
+         ::update_task::set_modified(id_dark_mode);
 
          x11_kick_idle();
 

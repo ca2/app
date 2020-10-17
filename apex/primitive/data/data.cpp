@@ -33,7 +33,7 @@ namespace data
    void data::assert_valid() const
    {
 
-      ::element::assert_valid();
+      ::matter::assert_valid();
 
    }
 
@@ -41,7 +41,7 @@ namespace data
    void data::dump(dump_context & dumpcontext) const
    {
 
-      ::element::dump(dumpcontext);
+      ::matter::dump(dumpcontext);
 
       //dumpcontext << "m_strTitle = " << m_strTitle;
       //dumpcontext << "\nm_path = " << m_path;
@@ -104,43 +104,33 @@ namespace data
    }
 
 
-   void data::update(::update * pupdate)
+   void data::on_apply(::action * paction)
    {
 
       if (m_pdatacontainerbase)
       {
 
-         m_pdatacontainerbase->call_update(pupdate);
+         m_pdatacontainerbase->apply(paction);
 
       }
 
    }
 
-
-//   bool data::is_locked() const
-//   {
-//      return ::data::simple_data::is_locked() || (m_spdataParentLock.is_set() && m_spdataParentLock->is_locked());
-//   }
 
    void data::on_update_data(i32 iHint)
    {
+
       for(i32 i = 0; i < m_listenera.get_count(); i++)
       {
+
          m_listenera[i]->on_update_data(this, iHint);
+
       }
+
    }
-
-   //void data::edit(base_edit * pbaseedit)
-   //{
-
-   //   UNREFERENCED_PARAMETER(pbaseedit);
-
-   //}
 
 
 } // namespace data
-
-
 
 
 

@@ -416,7 +416,7 @@ private:
 {
    friend class translator;
 protected:
-   standard_sigsegv (siginfo_t * psiginfo, void * pc) : ::element(pobject), standard_exception(psiginfo, pc) {}
+   standard_sigsegv (siginfo_t * psiginfo, void * pc) : ::matter(pobject), standard_exception(psiginfo, pc) {}
 public:
    //bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
    //uptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }
@@ -426,7 +426,7 @@ public:
 {
    friend class translator;
 protected:
-   standard_sigfpe (siginfo_t * psiginfo, void * pc) : ::element(pobject), standard_exception(psiginfo, pc) {}
+   standard_sigfpe (siginfo_t * psiginfo, void * pc) : ::matter(pobject), standard_exception(psiginfo, pc) {}
 public:
 //   bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
   // uptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }

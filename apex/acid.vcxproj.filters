@@ -4711,7 +4711,7 @@
     <ClCompile Include="apex\apex\drawable.cpp">
       <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="apex\apex\element.cpp">
+    <ClCompile Include="apex\apex\matter.cpp">
       <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
     <ClCompile Include="apex\apex\fixed_alloc.cpp">

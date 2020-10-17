@@ -83,7 +83,7 @@ namespace userfs
 
       void RenameFile(i32 iLine, string & str, const ::action_context & action_context);
 
-      virtual void update(::update * pupdate) override;
+      virtual void on_apply(::action * paction) override;
 
       DECL_GEN_SIGNAL(_001OnLButtonDblClk);
       DECL_GEN_SIGNAL(_001OnContextMenu);

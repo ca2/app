@@ -11,7 +11,7 @@
 //   var         m_varQuery;
 //
 //
-//   request_signal(::element * pobject);
+//   request_signal(::matter * pobject);
 //
 //
 //};

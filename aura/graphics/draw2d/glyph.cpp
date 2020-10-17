@@ -160,7 +160,7 @@ namespace draw2d
    *               representation and appends them to a list of Bezier points.
    *
    *               WARNING - The array must have at least one valid
-   *               start point prior to the address of the element passed.
+   *               start point prior to the address of the matter passed.
    *
    *  RETURNS    : number of Bezier points added to the const point & array.
    ****************************************************************************/
@@ -220,7 +220,7 @@ namespace draw2d
    *               representation and appends them to a list of Bezier points.
    *
    *               WARNING - The array must have at least one valid
-   *               start point prior to the address of the element passed.
+   *               start point prior to the address of the matter passed.
    *
    *  RETURNS    : number of Bezier points added to the const point & array.
    ****************************************************************************/
@@ -369,7 +369,7 @@ namespace draw2d
       u32               dwBuffSize;
 
       dwBuffSize = dwMaxPts *     // Maximum possible # of contour points.
-                   sizeof(const point &) * // sizeof buffer element
+                   sizeof(const point &) * // sizeof buffer matter
                    3;             // Worst case multiplier of one additional point
       // of line expanding to three points of a bezier
 

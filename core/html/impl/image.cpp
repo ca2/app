@@ -35,30 +35,35 @@ namespace html
       }
 
 
-      void image::implement_phase1(html_data * pdata, ::html::element * pelemental)
+      void image::implement_phase1(html_data * pdata, ::html::element * pelement)
       {
 
          m_bHasChar = true;
 
-         element::implement_phase1(pdata, pelemental);
-         if (pelemental->m_pbase->get_type() == ::html::base::type_tag)
+         element::implement_phase1(pdata, pelement);
+
+         if (pelement->m_pbase->get_type() == ::html::base::type_tag)
          {
 
-            string strSrc = pelemental->m_propertyset["src"];
+            string strSrc = pelement->m_propertyset["src"];
+
             m_pimage = pdata->get_image(strSrc);
+
             int cx = m_pimage->width();
+
             int cy = m_pimage->height();
-            if (pelemental->m_propertyset.has_property("width"))
+
+            if (pelement->m_propertyset.has_property("width"))
             {
 
-               cx = pelemental->m_propertyset["width"];
+               cx = pelement->m_propertyset["width"];
 
             }
 
-            if (pelemental->m_propertyset.has_property("height"))
+            if (pelement->m_propertyset.has_property("height"))
             {
                
-               cy = pelemental->m_propertyset["height"];
+               cy = pelement->m_propertyset["height"];
 
             }
 

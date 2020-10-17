@@ -55,7 +55,7 @@ namespace uwp
       // or false if the user is adjusting the ending point of the selection.
       bool _extendingLeft = false;
 
-      // The input pane element indicates the visibility of the on screen keyboard.
+      // The input pane matter indicates the visibility of the on screen keyboard.
       // Apps can also ask the keyboard to show or hide.
       Agile < Windows::UI::ViewManagement::InputPane > _inputPane;
 
@@ -128,7 +128,7 @@ namespace uwp
 
       void UpdateTextUI();
 
-     // static Rect GetElementRect(FrameworkElement element);
+     // static Rect GetElementRect(FrameworkElement matter);
    };
 
 

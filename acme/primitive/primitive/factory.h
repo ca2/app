@@ -6,7 +6,7 @@ namespace factory
 
 
    class CLASS_DECL_ACME factory_interface :
-      virtual public element
+      virtual public matter
    {
    public:
 
@@ -15,7 +15,7 @@ namespace factory
       virtual ~factory_interface();
 
 
-      virtual __pointer(::element) call_new() = 0;
+      virtual __pointer(::matter) call_new() = 0;
 
       
 
@@ -32,7 +32,7 @@ namespace factory
 
       virtual __pointer(BASE_TYPE) _call_new() = 0;
 
-      virtual __pointer(::element) call_new() override
+      virtual __pointer(::matter) call_new() override
       {
 
          return _call_new();

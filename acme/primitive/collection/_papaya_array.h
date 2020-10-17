@@ -94,11 +94,11 @@ namespace papaya
 
          index i = (index)(rand() % a.get_size());
 
-         auto element = a.element_at(i);
+         auto matter = a.element_at(i);
 
          a.remove_at(i);
 
-         return element;
+         return matter;
 
       }
 

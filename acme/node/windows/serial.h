@@ -50,7 +50,7 @@ namespace serial
    using serial::IOException;
 
    class serial::Serial::SerialImpl :
-      virtual public element
+      virtual public matter
    {
    public:
 

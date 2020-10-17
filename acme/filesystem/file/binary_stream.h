@@ -258,8 +258,8 @@ public:
    virtual void write(const var & var) override;
    virtual void write(const property & property) override;
    virtual void write(const string & str) override;
-   virtual void write(const element * pobject) override;
-   virtual void write(const element& element) override;
+   virtual void write(const matter * pobject) override;
+   virtual void write(const matter& matter) override;
    virtual void write(const property_set& set) override;
    virtual void write(const block & block) override;
 
@@ -301,8 +301,8 @@ public:
    virtual void read_var_body(var & var, e_type etype) override;
    virtual void read(property & property) override;
    virtual void read(string & str) override;
-   //virtual void read(element * pobject);
-   virtual void read(element& element) override;
+   //virtual void read(matter * pobject);
+   virtual void read(matter& matter) override;
    virtual void read(property_set& set) override;
    virtual void read(block & block) override;
 
@@ -322,20 +322,20 @@ public:
    //inline bool is_loading() const { return !m_bStoring; }
 
 
-   //virtual void write_file(const ::file::path & path, const ::element & element);
-   //virtual void read_file(const ::file::path & path, ::element & element);
+   //virtual void write_file(const ::file::path & path, const ::matter & matter);
+   //virtual void read_file(const ::file::path & path, ::matter & matter);
 
-   //virtual void write_link(const string & strLink, __pointer(::element) & element);
-   //virtual void read_link(const string & strLink, __pointer(::element) & element);
+   //virtual void write_link(const string & strLink, __pointer(::matter) & matter);
+   //virtual void read_link(const string & strLink, __pointer(::matter) & matter);
 
-   //virtual void write_link(const ::element * preference, const string & strLink, bool bReadOnly, ::element * pobjectSaveOptions = nullptr);
+   //virtual void write_link(const ::matter * preference, const string & strLink, bool bReadOnly, ::matter * pobjectSaveOptions = nullptr);
 
-   //virtual bool write_link(const ::element * preference) override;
-   //virtual void read_link(::element * preference) override;
+   //virtual bool write_link(const ::matter * preference) override;
+   //virtual void read_link(::matter * preference) override;
 
 
-   //virtual bool get_object_link(const ::element * preference, string & strLink, bool & bReadOnly) override;
-   //virtual void set_object_link(const ::element * preference, const string & strLink, bool bReadOnly) override;
+   //virtual bool get_object_link(const ::matter * preference, string & strLink, bool & bReadOnly) override;
+   //virtual void set_object_link(const ::matter * preference, const string & strLink, bool bReadOnly) override;
 
 
    //virtual ::file::path get_link_path(string strLink);
@@ -391,7 +391,7 @@ public:
    template < typename BASE_TYPE >
    inline __pointer(BASE_TYPE) load_object();
 
-   virtual __pointer(::element) create_object_from_text(string strText) override;
+   virtual __pointer(::matter) create_object_from_text(string strText) override;
 
 
 };

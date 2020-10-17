@@ -1371,7 +1371,7 @@ namespace user
 
 
    class call_message_handler_task :
-      virtual public element
+      virtual public matter
    {
    public:
 

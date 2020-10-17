@@ -1268,7 +1268,7 @@ typedef struct _FILEMUIINFO
 #define FILEMUIINFO_GET_MAIN_TYPEIDS(pInfo)       \
     ((DWORD*)((pInfo->dwTypeIDMainOffset>0)?(ulong_ptr)pInfo+pInfo->dwTypeIDMainOffset:nullptr))
 //
-// Gets the main module type array element iType (DWORD), the array is not initialized or index is out of bounds
+// Gets the main module type array matter iType (DWORD), the array is not initialized or index is out of bounds
 #define FILEMUIINFO_GET_MAIN_TYPEID(pInfo,iType)  \
     (((iType<pInfo->dwTypeIDMainSize)&&(pInfo->dwTypeIDMainOffset>0))?*((DWORD*)((ulong_ptr)pInfo+pInfo->dwTypeIDMainOffset)+iType):0)
 //
@@ -1280,7 +1280,7 @@ typedef struct _FILEMUIINFO
 #define FILEMUIINFO_GET_MUI_TYPEIDS(pInfo)        \
     ((DWORD*)((pInfo->dwTypeIDMUIOffset>0)?(ulong_ptr)pInfo+pInfo->dwTypeIDMUIOffset:nullptr))
 //
-// Gets the mui module type array element iType (DWORD), the array is not initialized or index is out of bounds
+// Gets the mui module type array matter iType (DWORD), the array is not initialized or index is out of bounds
 #define FILEMUIINFO_GET_MUI_TYPEID(pInfo,iType)   \
     (((iType<pInfo->dwTypeIDMUISize)&&(pInfo->dwTypeIDMUIOffset>0))?*((DWORD*)((ulong_ptr)pInfo+pInfo->dwTypeIDMUIOffset)+iType):0)
 //
@@ -2136,7 +2136,7 @@ LPWORD     lpCharType);
 //        parameters (ported from Win95).  To be compatible, we
 //        must break the relationship between the A and W versions
 //        of GetStringType.  There will be NO function call for the
-//        element GetStringType.
+//        matter GetStringType.
 //
 //        GetStringTypeEx (above) should be used instead.
 //

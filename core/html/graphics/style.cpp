@@ -49,14 +49,14 @@ namespace html
    }
 
 
-   bool style::get_dimension(bool bParent, id idName, const string & strSubClass, html_data * pdata, ::html::element * pelemental, float & f)
+   bool style::get_dimension(bool bParent, id idName, const string & strSubClass, html_data * pdata, ::html::element* pelement, float & f)
    {
 
       f = 0.f;
 
-      e_tag etag = pelemental->m_etag;
+      e_tag etag = pelement->m_etag;
 
-      string strClass = pelemental->m_strClass;
+      string strClass = pelement->m_strClass;
 
       if(m_propertyset.is_new_or_null(idName))
       {
@@ -69,10 +69,10 @@ namespace html
             if(bParent)
             {
 
-               if(pelemental->m_pparent != nullptr && ansi_compare_ci(idName, "background-color"))
+               if(pelement->m_pparent != nullptr && ansi_compare_ci(idName, "background-color"))
                {
 
-                  if(pelemental->m_pparent->m_pstyle->get_dimension(true, idName, strSubClass, pdata, pelemental->m_pparent, f))
+                  if(pelement->m_pparent->m_pstyle->get_dimension(true, idName, strSubClass, pdata, pelement->m_pparent, f))
                   {
 
                      return true;
@@ -87,7 +87,7 @@ namespace html
 
          }
 
-         return pstyle->get_dimension(bParent, idName, strSubClass, pdata, pelemental, f);
+         return pstyle->get_dimension(bParent, idName, strSubClass, pdata, pelement, f);
 
       }
 
@@ -98,12 +98,12 @@ namespace html
    }
 
 
-   bool style::get_surround_box(id idName, const string & strSubClass, html_data * pdata, ::html::element * pelemental, ::rectf & rect)
+   bool style::get_surround_box(id idName, const string & strSubClass, html_data * pdata, ::html::element * pelement, ::rectf & rect)
    {
 
-      e_tag etag = pelemental->m_etag;
+      e_tag etag = pelement->m_etag;
 
-      string strClass = pelemental->m_strClass;
+      string strClass = pelement->m_strClass;
 
       const style * pstyleCur = nullptr;
       const style * pstyle = nullptr;
@@ -251,12 +251,12 @@ namespace html
    }
 
 
-   bool style::get_border_box(id idName, const string & strSubClass, html_data * pdata, ::html::element * pelemental, border & rect)
+   bool style::get_border_box(id idName, const string & strSubClass, html_data * pdata, ::html::element* pelement, border & rect)
    {
 
-      e_tag etag = pelemental->m_etag;
+      e_tag etag = pelement->m_etag;
 
-      string strClass = pelemental->m_strClass;
+      string strClass = pelement->m_strClass;
 
       const style * pstyle          = nullptr;
       const style * pstyleLeft      = nullptr;
@@ -419,12 +419,12 @@ namespace html
    }
 
 
-   bool style::get_border_color(id idName, const string & strSubClass, html_data * pdata, ::html::element * pelemental, border & rect)
+   bool style::get_border_color(id idName, const string & strSubClass, html_data * pdata, ::html::element * pelement, border & rect)
    {
 
-      e_tag etag = pelemental->m_etag;
+      e_tag etag = pelement->m_etag;
 
-      string strClass= pelemental->m_strClass;
+      string strClass= pelement->m_strClass;
 
       const style * pstyle          = nullptr;
       const style * pstyleLeft      = nullptr;
@@ -588,12 +588,12 @@ namespace html
    }
 
 
-   bool style::get_color(id idName, const string & strSubClass, html_data * pdata, const ::html::element * pelemental, COLORREF & cr)
+   bool style::get_color(id idName, const string & strSubClass, html_data * pdata, const ::html::element * pelement, COLORREF & cr)
    {
 
-      e_tag etag = pelemental->m_etag;
+      e_tag etag = pelement->m_etag;
 
-      string strClass = pelemental->m_strClass;
+      string strClass = pelement->m_strClass;
 
       if(m_propertyset.is_new_or_null(idName))
       {
@@ -603,29 +603,29 @@ namespace html
          if(pstyle == nullptr)
          {
 
-            if(pelemental->m_pparent != nullptr && ansi_compare_ci(idName, "background-color"))
+            if(pelement->m_pparent != nullptr && ansi_compare_ci(idName, "background-color"))
             {
 
-               if(pelemental->m_pparent->m_pstyle->get_color(idName, strSubClass, pdata, pelemental->m_pparent, cr))
+               if(pelement->m_pparent->m_pstyle->get_color(idName, strSubClass, pdata, pelement->m_pparent, cr))
                {
                   return true;
                }
             }
             return false;
          }
-         return pstyle->get_color(idName, strSubClass, pdata, pelemental, cr);
+         return pstyle->get_color(idName, strSubClass, pdata, pelement, cr);
       }
       cr = parse_color(m_propertyset[idName]);
       return true;
    }
 
 
-   bool style::get_text(id idName, const string & strSubClass, html_data * pdata, const ::html::element * pelemental, string & str)
+   bool style::get_text(id idName, const string & strSubClass, html_data * pdata, const ::html::element * pelement, string & str)
    {
 
-      e_tag etag = pelemental->m_etag;
+      e_tag etag = pelement->m_etag;
 
-      string strClass = pelemental->m_strClass;
+      string strClass = pelement->m_strClass;
 
       if(m_propertyset.is_new_or_null(idName))
       {
@@ -633,12 +633,12 @@ namespace html
          style * pstyle = pdata->m_pcoredata->m_stylesheeta.rfind(etag, strClass, strSubClass, idName);
          if(pstyle == nullptr)
          {
-            if(pelemental->m_pparent != nullptr
+            if(pelement->m_pparent != nullptr
                   && ansi_compare_ci(idName, "padding") != 0
                   && ansi_compare_ci(idName, "margin") != 0
                   && ansi_compare_ci(idName, "border") != 0)
             {
-               if(pelemental->m_pparent->m_pstyle->get_text(idName, strSubClass, pdata, pelemental->m_pparent, str))
+               if(pelement->m_pparent->m_pstyle->get_text(idName, strSubClass, pdata, pelement->m_pparent, str))
                {
                   return true;
                }
@@ -748,7 +748,7 @@ namespace html
                return false;
             }
          }
-         return pstyle->get_text(idName, strSubClass, pdata, pelemental, str);
+         return pstyle->get_text(idName, strSubClass, pdata, pelement, str);
       }
       str = m_propertyset[idName];
       string strEm = str;
@@ -756,10 +756,10 @@ namespace html
       {
          if(::str::find_awwci("em", str) > 0)
          {
-            if(pelemental->m_pparent != nullptr)
+            if(pelement->m_pparent != nullptr)
             {
                string strParent;
-               if(pelemental->m_pparent->m_pstyle->get_text(idName, strSubClass, pdata, pelemental->m_pparent, strParent))
+               if(pelement->m_pparent->m_pstyle->get_text(idName, strSubClass, pdata, pelement->m_pparent, strParent))
                {
                   str = __str((i32)((double) atof(str) * atoi(strParent)));
                }
@@ -778,14 +778,14 @@ namespace html
    }
 
 
-   bool style::get_alpha(const string & strSubClass, html_data * pdata, const ::html::element * pelemental, double & d)
+   bool style::get_alpha(const string & strSubClass, html_data * pdata, const ::html::element * pelement, double & d)
    {
 
       const char* idName = "opacity";
 
-      e_tag etag = pelemental->m_etag;
+      e_tag etag = pelement->m_etag;
 
-      string strClass = pelemental->m_strClass;
+      string strClass = pelement->m_strClass;
 
       if(m_propertyset.is_new_or_null(idName))
       {
@@ -795,7 +795,7 @@ namespace html
          if(pstyle == nullptr)
             return false;
 
-         return pstyle->get_alpha(strSubClass, pdata, pelemental, d);
+         return pstyle->get_alpha(strSubClass, pdata, pelement, d);
 
       }
 

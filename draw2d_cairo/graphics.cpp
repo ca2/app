@@ -119,7 +119,7 @@ string_to_int * g_pmapFontError = nullptr;
 
 string_to_int * g_pmapFontError2 = nullptr;
 
-extern CLASS_DECL_AURA array < element * > * g_paAura;
+extern CLASS_DECL_AURA array < matter * > * g_paAura;
 
 
 
@@ -5393,7 +5393,7 @@ bool graphics::_set(___shape * pshape)
    case ::e_shape_draw_text:
       return _set(pshape->shape < ::draw_text > ());
    default:
-      throw "unexpected simple os graphics element type";
+      throw "unexpected simple os graphics matter type";
    }
 
    return false;

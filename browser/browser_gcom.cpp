@@ -76,7 +76,7 @@ namespace browser
    }
 
 
-   void gcom::update(::update * pupdate)
+   void gcom::on_apply(::action * paction)
    {
 
       UNREFERENCED_PARAMETER(pupdate);

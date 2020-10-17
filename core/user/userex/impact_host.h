@@ -62,7 +62,7 @@ namespace userex
       virtual void assert_valid() const override;
       virtual void dump(dump_context & dumpcontext) const override;
 
-      virtual void update(::update * pupdate) override;
+      virtual void on_apply(::action * paction) override;
 
 
       virtual __pointer(::userex::pane_tab_view) get_pane_tab_view();

@@ -9,9 +9,9 @@ public:
 
 
 
-   ::html::element *                 m_pelementalLButtonDown;
-   ::html::element *                 m_pelementalHover;
-   __pointer_array(::html::element)       m_elementalptraMouseMove;
+   __pointer(::html::element)          m_pelementLButtonDown;
+   __pointer(::html::element)          m_pelementHover;
+   __pointer_array(::html::element)    m_elementaMouseMove;
    __pointer(::html_data)              m_phtmldata;
    
 
@@ -28,7 +28,7 @@ public:
    //virtual void on_layout(::html_data * phtmldata);
    virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-   virtual void update(::update * pupdate) override;
+   virtual void on_apply(::action * paction) override;
 
    virtual void install_message_routing(::channel * pchannel) override;
 

@@ -550,10 +550,10 @@ namespace user
    }
 
 
-   void button::update(::update * pupdate)
+   void button::on_apply(::action * paction)
    {
 
-      interaction::update(pupdate);
+      interaction::on_apply(paction);
 
    }
 

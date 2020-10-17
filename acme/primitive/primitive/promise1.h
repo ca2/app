@@ -10,8 +10,8 @@
 //
 //   /// result ahead of the promisse?
 //   /// Oh!!
-//   /// Why not an allocated pointer of unitialized element,
-//   /// that will hold the final built element as result?
+//   /// Why not an allocated pointer of unitialized matter,
+//   /// that will hold the final built matter as result?
 //   /// (a pointer is smart and safe solution)
 //   TYPE        m_result;
 //   PRED        m_pred;

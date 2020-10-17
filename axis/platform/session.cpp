@@ -1294,7 +1294,7 @@ namespace axis
          if (papp.is_set())
          {
 
-            papp->call_update(id_change_user);
+            papp->apply_update(id_change_user);
 
          }
 

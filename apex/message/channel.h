@@ -25,7 +25,8 @@ namespace message
 
 
 class CLASS_DECL_APEX channel :
-   virtual public ::object
+   virtual public ::object //,
+   //virtual public ::source
 {
 public:
 
@@ -36,7 +37,7 @@ public:
    ::message::id_route                             m_idroute;
    ::message::id_route                             m_idrouteNew;
    bool                                            m_bNewChannel;
-   id_map < __pointer_array(::element) >           m_mapUpdate;
+   //id_map < __pointer_array(::matter) >           m_mapUpdate;
    id_map < runnable_array >                       m_mapRunnable;
 
 
@@ -168,10 +169,10 @@ public:
    void add_update_route(RECEIVER * preceiver, const ::id & id)
    {
 
-      add_update_route_pred(preceiver, id, [preceiver, id](::message::message * pmessage)
+      add_update_route_pred(preceiver, id, [this, preceiver, id](::message::message * pmessage)
       {
 
-         preceiver->call_update((const ::__id &) id);
+         preceiver->apply(action((const ::__id &) id, preceiver));
 
       });
 
@@ -182,8 +183,8 @@ public:
    virtual void _001SendCommandProbe(::user::command * pcommand);
 
 
-   using ::object::call_update;
-   virtual void call_update(const ::id & id, const ::action_context & action_context);
+   //using ::object::call_update;
+   //virtual void apply(const ::id & id, const ::action_context & action_context);
 
 
    virtual void on_command(::user::command * pcommand);

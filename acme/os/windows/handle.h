@@ -29,9 +29,9 @@
 //      the developer.  The C++ constructor for the wrapper class will
 //      insert the mapping into the permanent dictionary and the C++
 //      destructor will remove it and possibly free up the associated
-//      Windows element.
+//      Windows matter.
 //  When a handle passes through a C++ interface that doesn't exist in
-//      the permanent dictionary, we allocate a temporary wrapping element
+//      the permanent dictionary, we allocate a temporary wrapping matter
 //      and store that mapping into the temporary dictionary.
 //  At idle time the temporary wrapping objects are flushed (since you better
 //      not be holding onto something you didn't create).
@@ -80,7 +80,7 @@ namespace windows
 
    class window;
    class graphics;
-   class element;
+   class matter;
 
    template < i32 t_iHandleCount >
    class handle_base
@@ -125,11 +125,11 @@ namespace windows
 template<class TYPE>
 struct ConstructDestruct
 {
-   static void Construct(element* pObject)
+   static void Construct(matter* pObject)
    {
       new (pObject) TYPE;
    }
-   static void Destruct(element* pObject)
+   static void Destruct(matter* pObject)
    {
       TYPE* p = dynamic_cast < TYPE * > (pObject);
       p->~TYPE();
@@ -147,12 +147,12 @@ struct ConstructDestruct
    }
 };
 
-class WindowsThread;       // forward element for friend declaration
+class WindowsThread;       // forward matter for friend declaration
 
 
 template < class HT, class CT >
 class handle_map :
-   virtual public ::element
+   virtual public ::matter
 {
 public:
 
@@ -164,7 +164,7 @@ public:
    map < HANDLE, HANDLE, CT *, CT *> m_permanentMap;
    map < HANDLE, HANDLE, CT *, CT *> m_temporaryMap;
 
-   handle_map(::element * pobject);
+   handle_map(::matter * pobject);
    virtual ~handle_map()
    {
       delete_temp();
@@ -188,7 +188,7 @@ class CLASS_DECL_ACME oswindow_map :
    public handle_map < ::windows::oswindow_handle, ::windows::window >
 {
 public:
-   oswindow_map(::element * pobject) : handle_map < ::windows::oswindow_handle, ::windows::window >(pobject) {}
+   oswindow_map(::matter * pobject) : handle_map < ::windows::oswindow_handle, ::windows::window >(pobject) {}
 };
 
 /*class CLASS_DECL_ACME hdc_map :
@@ -198,7 +198,7 @@ public:
 };*/
 
 /*class hgdiobj_map :
-   public handle_map < ::windows::hgdiobj_handle, ::windows::element >
+   public handle_map < ::windows::hgdiobj_handle, ::windows::matter >
 {
 public:
 };*/
@@ -213,8 +213,8 @@ public:
 
 
 template < class HT, class CT >
-handle_map < HT, CT > ::handle_map(::element * pobject) :
-   ::element(pobject),
+handle_map < HT, CT > ::handle_map(::matter * pobject) :
+   ::matter(pobject),
    m_permanentMap(papp, 1024),
    m_temporaryMap(papp, 1024),
    m_alloc(sizeof(CT), 1024),
@@ -259,7 +259,7 @@ CT* handle_map < HT, CT >::from_handle(HANDLE h, CT * (*pfnAllocator) (__pointer
    }
 
    // This handle wasn't created by us, so we must create a temporary
-   // C++ element to wrap it.  We don't want the ::account::user to see this memory
+   // C++ matter to wrap it.  We don't want the ::account::user to see this memory
    // allocation, so we turn tracing off.
 
    //bool bEnable = __enable_memory_tracking(FALSE);
@@ -278,13 +278,13 @@ CT* handle_map < HT, CT >::from_handle(HANDLE h, CT * (*pfnAllocator) (__pointer
       }
       else
       {
-         // get memory for the element from the fixed allocator
+         // get memory for the matter from the fixed allocator
    //      ASSERT((UINT)m_pClass->m_nObjectSize == m_alloc.GetAllocSize());
          pTemp = (CT*)m_alloc.Alloc();
          if (pTemp == nullptr)
             __throw(memory_exception());
 
-         // now construct the element in place
+         // now construct the matter in place
          ASSERT(m_pfnConstructObject != nullptr);
          (*m_pfnConstructObject)(pTemp);
       }
@@ -307,8 +307,8 @@ CT* handle_map < HT, CT >::from_handle(HANDLE h, CT * (*pfnAllocator) (__pointer
 #endif
    //__enable_memory_tracking(bEnable);
 
-   // now set the handle in the element
-   HANDLE* ph = pTemp->m_handlea;  // after element
+   // now set the handle in the matter
+   HANDLE* ph = pTemp->m_handlea;  // after matter
    ph[0] = h;
    if (HT::s_iHandleCount == 2)
       ph[1] = h;
@@ -354,7 +354,7 @@ void handle_map < HT, CT > ::remove_handle(HANDLE h)
    {
       HANDLE* ph = pTemp->m_handlea;
       ASSERT(ph[0] == h);
-      // permanent element may have secondary handles that are different
+      // permanent matter may have secondary handles that are different
    }
    // remove only from permanent map -- temporary objects are removed
    //  at idle in CHandleMap::delete_temp, always!
@@ -380,7 +380,7 @@ void handle_map < HT, CT >::delete_temp()
 
       // zero out the handles
       ASSERT(HT::s_iHandleCount == 1 || HT::s_iHandleCount == 2);
-      HANDLE* ph = pTemp->m_handlea;  // after element
+      HANDLE* ph = pTemp->m_handlea;  // after matter
       ASSERT(ph[0] == h || ph[0] == nullptr);
       ph[0] = nullptr;
       if (HT::s_iHandleCount == 2)
@@ -391,7 +391,7 @@ void handle_map < HT, CT >::delete_temp()
 
       ASSERT(m_pfnDestructObject != nullptr);
       //pTemp->get_context_application() = nullptr;
-      (*m_pfnDestructObject)(pTemp);   // destruct the element
+      (*m_pfnDestructObject)(pTemp);   // destruct the matter
    }
 
    m_temporaryMap.remove_all();       // free up dictionary links etc

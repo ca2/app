@@ -96,14 +96,14 @@ _AFX_INLINE void CArchive::SetObjectSchema(UINT nSchema)
 _AFX_INLINE void CArchive::SetStoreParams(UINT nHashSize, UINT nBlockSize)
 {
 ASSERT(IsStoring());
-ASSERT(m_pStoreMap == nullptr);    // must be before first element written
+ASSERT(m_pStoreMap == nullptr);    // must be before first matter written
 m_nHashSize = nHashSize;
 m_nGrowSize = nBlockSize;
 }
 _AFX_INLINE void CArchive::SetLoadParams(UINT nGrowBy)
 {
 ASSERT(IsLoading());
-ASSERT(m_pLoadArray == nullptr);   // must be before first element read
+ASSERT(m_pLoadArray == nullptr);   // must be before first matter read
 m_nGrowSize = nGrowBy;
 }
 _AFX_INLINE CArchive& CArchive::operator<<(i32 i)
@@ -262,10 +262,10 @@ l = *(UNALIGNED LONG*)m_lpBufCur; m_lpBufCur += sizeof(LONG); return *this;
 //   { }
 //_AFX_INLINE void CArchive::operator=(const CArchive& /* arSrc */)
 /*   { }
-CLASS_DECL_COREapi00000001 CArchive& operator<<(CArchive& ar, const element* pOb);
-_AFX_INLINE CArchive& operator>>(CArchive& ar, element*& pOb)
+CLASS_DECL_COREapi00000001 CArchive& operator<<(CArchive& ar, const matter* pOb);
+_AFX_INLINE CArchive& operator>>(CArchive& ar, matter*& pOb)
    { pOb = ar.ReadObject(nullptr); return ar; }
-_AFX_INLINE CArchive& operator>>(CArchive& ar, const element*& pOb)
+_AFX_INLINE CArchive& operator>>(CArchive& ar, const matter*& pOb)
    { pOb = ar.ReadObject(nullptr); return ar; }
 
 _AFX_INLINE void CArchive::EnsureRead(void *pdata, UINT nCount)

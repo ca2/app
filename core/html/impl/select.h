@@ -23,7 +23,7 @@ namespace html
          
          
          void _001OnDraw(html_data * pdocument);
-         virtual void implement_phase1(html_data * pdocument, ::html::element * pelemental);
+         virtual void implement_phase1(html_data * pdocument, ::html::element* pelemental);
          
          
          virtual bool layout_phase1(html_data * pdocument);

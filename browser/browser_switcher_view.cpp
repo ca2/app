@@ -41,9 +41,9 @@ namespace browser
    }
 
 
-   void switcher_view::update(::update * pupdate)
+   void switcher_view::on_apply(::action * paction)
    {
-      ::user::split_view::update(pupdate);
+      ::user::split_view::on_apply(paction);
    }
 
 

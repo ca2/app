@@ -157,7 +157,7 @@ namespace aura
       //set_trace_category(trace_category_database, "category_Database", trace_level_warning);      // special database trace
       //set_trace_category(trace_category_internet, "category_Internet", trace_level_warning);      // special Internet client trace
       //set_trace_category(trace_category_dumpcontext, "category_dumpContext", trace_level_warning);    // traces from dump_context
-      //set_trace_category(trace_category_memory, "category_Memory", trace_level_warning);       // element non-kernel memory traces
+      //set_trace_category(trace_category_memory, "category_Memory", trace_level_warning);       // matter non-kernel memory traces
       //set_trace_category(trace_category_html, "category_Html", trace_level_warning);          // Html traces
       //set_trace_category(trace_category_socket, "category_Socket", trace_level_warning);       // socket traces
 
@@ -310,7 +310,7 @@ namespace aura
    //}
 
 
-   void log::__tracea(::element * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
+   void log::__tracea(::matter * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
    {
 
       const char * pszTopicText = ::is_set(pobjectContext) ? pobjectContext->topic_text() : nullptr;

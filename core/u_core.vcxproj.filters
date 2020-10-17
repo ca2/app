@@ -208,10 +208,10 @@
     <Filter Include="Header Files\node\uwp">
       <UniqueIdentifier>{d9e0eae9-a79f-43e4-a757-5ccc1de8e877}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\html\element">
+    <Filter Include="Source Files\html\matter">
       <UniqueIdentifier>{4341eb08-4b1b-4049-8b79-8899300b345e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\html\element">
+    <Filter Include="Header Files\html\matter">
       <UniqueIdentifier>{69f0a763-0ed0-41f3-ab45-1d6a5febaf95}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -1317,16 +1317,16 @@
     <ClInclude Include="node\uwp\_uwp.h">
       <Filter>Header Files\node\uwp</Filter>
     </ClInclude>
-    <ClInclude Include="html\element\element.h">
-      <Filter>Header Files\html\element</Filter>
+    <ClInclude Include="html\matter\matter.h">
+      <Filter>Header Files\html\matter</Filter>
     </ClInclude>
-    <ClInclude Include="html\element\_element.h">
-      <Filter>Header Files\html\element</Filter>
+    <ClInclude Include="html\matter\_element.h">
+      <Filter>Header Files\html\matter</Filter>
     </ClInclude>
-    <ClInclude Include="html\element\_.h">
-      <Filter>Header Files\html\element</Filter>
+    <ClInclude Include="html\matter\_.h">
+      <Filter>Header Files\html\matter</Filter>
     </ClInclude>
-    <ClInclude Include="html\impl\element.h">
+    <ClInclude Include="html\impl\matter.h">
       <Filter>Header Files\html\impl</Filter>
     </ClInclude>
   </ItemGroup>
@@ -2020,10 +2020,10 @@
     <ClCompile Include="node\uwp\shell_uwp.cpp">
       <Filter>Source Files\node\uwp</Filter>
     </ClCompile>
-    <ClCompile Include="html\element\element.cpp">
-      <Filter>Source Files\html\element</Filter>
+    <ClCompile Include="html\matter\matter.cpp">
+      <Filter>Source Files\html\matter</Filter>
     </ClCompile>
-    <ClCompile Include="html\impl\element.cpp">
+    <ClCompile Include="html\impl\matter.cpp">
       <Filter>Source Files\html\impl</Filter>
     </ClCompile>
   </ItemGroup>

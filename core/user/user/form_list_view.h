@@ -32,7 +32,7 @@ namespace user
 
       virtual void route_command_message(::user::command * pcommand) override;
       virtual void on_command(::user::command* pcommand) override;
-      virtual void update(::update * pupdate) override;
+      virtual void on_apply(::action * paction) override;
 
       virtual void set_viewport_offset(int, int) override;
       virtual ::point get_viewport_offset() override;

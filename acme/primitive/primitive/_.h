@@ -28,19 +28,34 @@
 #include "acme/primitive/primitive/context_object.h"
 
 
+//#include "acme/platform/update_item.h"
+
+
+//#include "acme/platform/update.h"
+
+
+#include "acme/primitive/primitive/action.h"
+
+
+#include "acme/primitive/primitive/change.h"
+
+
 #include "acme/primitive/primitive/update.h"
+
+
+#include "acme/primitive/primitive/source.h"
 
 
 #include "acme/primitive/primitive/promise.h"
 
 
 // class CLASS_DECL_ACME parents :
-//    virtual public ::element
+//    virtual public ::matter
 // {
 // public:
 
 
-//    __pointer_array(element)            m_ptra;
+//    __pointer_array(matter)            m_ptra;
 
 //    parents();
 //    ~parents();
@@ -50,12 +65,12 @@
 
 
 // class CLASS_DECL_ACME children :
-//    virtual public ::element
+//    virtual public ::matter
 // {
 // public:
 
 
-//    __pointer_array(element)            m_ptra;
+//    __pointer_array(matter)            m_ptra;
 //    duration                      m_durationWait;
 
 
@@ -63,18 +78,18 @@
 //    ~children();
 
 
-//    // after posting quit to a child, the PARENT shouldn't element it
-//    virtual void set_finish(::element * pobjectParent);
+//    // after posting quit to a child, the PARENT shouldn't matter it
+//    virtual void set_finish(::matter * pobjectParent);
 
-//    virtual ::count wait_quit(::element * pobjectParent, const duration & duration);
-//    virtual ::count _wait_quit(::element * pobjectParent);
-
-
-//    virtual __pointer(::element) running(const char * pszTag) const;
-//    virtual bool running(::element * pobject) const;
+//    virtual ::count wait_quit(::matter * pobjectParent, const duration & duration);
+//    virtual ::count _wait_quit(::matter * pobjectParent);
 
 
-//    friend class element;
+//    virtual __pointer(::matter) running(const char * pszTag) const;
+//    virtual bool running(::matter * pobject) const;
+
+
+//    friend class matter;
 
 // };
 

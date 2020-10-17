@@ -1,7 +1,7 @@
 #pragma once
 
 
-class task;
+//class task;
 
 
 namespace draw2d

@@ -26,12 +26,12 @@ namespace data
 
       virtual i64 add_ref(OBJ_REF_DBG_PARAMS) override
       {
-         return ::element::add_ref(OBJ_REF_DBG_ARGS);
+         return ::matter::add_ref(OBJ_REF_DBG_ARGS);
       }
 
       virtual i64 dec_ref(OBJ_REF_DBG_PARAMS) override
       {
-         return ::element::dec_ref(OBJ_REF_DBG_ARGS);
+         return ::matter::dec_ref(OBJ_REF_DBG_ARGS);
       }
 
 
@@ -95,7 +95,7 @@ namespace data
       virtual bool      selection_set(::data::item * pitem, bool bIfNotInSelection = false, bool bIfParentInSelection = false);
       virtual bool      selection_set(index iIndex, ::data::item * pitem, bool bIfNotInSelection = false, bool bIfParentInSelection = false);
 
-      virtual void update(::update * pupdate) override;
+      virtual void on_apply(::action * paction) override;
 
 
       virtual void on_fill_children() override;

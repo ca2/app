@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-//::estatus element::call(::trait & trait)
+//::estatus matter::call(::trait & trait)
 //{
 //
 //   ::estatus estatus = error_failed;
@@ -30,7 +30,7 @@
 //}
 //
 //
-//::estatus element::run(::trait &)
+//::estatus matter::run(::trait &)
 //{
 //
 //   return ::success;
@@ -39,7 +39,7 @@
 
 
 
-//void element::notify(::u64 uId)
+//void matter::notify(::u64 uId)
 //{
 //
 //   if (m_ptraits)
@@ -58,7 +58,7 @@
 //}
 //
 //
-//::thread_pointer element::_fork_notify(__pointer(::trait) ptrait)
+//::thread_pointer matter::_fork_notify(__pointer(::trait) ptrait)
 //{
 //
 //   return m_ptraits->_fork_notify(ptrait);
@@ -66,7 +66,7 @@
 //}
 //
 //
-//thread_spa element::_fork_notify_each(__pointer(::trait) ptrait)
+//thread_spa matter::_fork_notify_each(__pointer(::trait) ptrait)
 //{
 //
 //   return m_ptraits->_fork_notify_each(ptrait);
@@ -74,7 +74,7 @@
 //}
 //
 //
-//void element::_notify(::trait * ptrait)
+//void matter::_notify(::trait * ptrait)
 //{
 //
 //   m_ptraits->_notify(ptrait);
@@ -82,7 +82,7 @@
 //}
 //
 //
-//void element::_call_notify(::trait * ptrait)
+//void matter::_call_notify(::trait * ptrait)
 //{
 //
 //   m_ptraits->_call_notify(ptrait);
@@ -90,7 +90,7 @@
 //}
 //
 
-//void element::set_trait_result(::u64 uId, ::u64 uPromisse, ::element * preference)
+//void matter::set_trait_result(::u64 uId, ::u64 uPromisse, ::matter * preference)
 //{
 //
 //   m_ptraits->set_result(uId, uPromisse, preference);

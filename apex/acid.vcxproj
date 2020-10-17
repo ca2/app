@@ -902,7 +902,7 @@
     <ClCompile Include="apex\apex\display.cpp" />
     <ClCompile Include="apex\apex\drawable.cpp" />
     <ClCompile Include="apex\apex\draw_context.cpp" />
-    <ClCompile Include="apex\apex\element.cpp" />
+    <ClCompile Include="apex\apex\matter.cpp" />
     <ClCompile Include="apex\apex\exclusive.cpp" />
     <ClCompile Include="apex\apex\fixed_alloc.cpp" />
     <ClCompile Include="apex\apex\flags.cpp" />

@@ -6,7 +6,7 @@ namespace windows
 
 
    class CLASS_DECL_ACME file_find :
-      public ::element
+      public ::matter
    {
       // ementation
    protected:

@@ -4711,7 +4711,7 @@
     <ClCompile Include="acme\acme\drawable.cpp">
       <Filter>Source Files\acme\acme</Filter>
     </ClCompile>
-    <ClCompile Include="acme\acme\element.cpp">
+    <ClCompile Include="acme\acme\matter.cpp">
       <Filter>Source Files\acme\acme</Filter>
     </ClCompile>
     <ClCompile Include="acme\acme\fixed_alloc.cpp">

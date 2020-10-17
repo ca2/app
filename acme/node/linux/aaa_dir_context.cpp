@@ -80,10 +80,10 @@ namespace linux
    }
 
 
-   ::estatus dir_context::initialize(::element * pobjectContext)
+   ::estatus dir_context::initialize(::matter * pobjectContext)
    {
 
-      auto estatus = ::element::initialize(pobjectContext);
+      auto estatus = ::matter::initialize(pobjectContext);
 
       if (!estatus)
       {
@@ -689,7 +689,7 @@ namespace linux
    }
 
 
-   ::file::path dir_context::userquicklaunch(::element * pobject)
+   ::file::path dir_context::userquicklaunch(::matter * pobject)
    {
 
       ::file::path path;
@@ -701,7 +701,7 @@ namespace linux
    }
 
 
-   ::file::path dir_context::userprograms(::element * pobject)
+   ::file::path dir_context::userprograms(::matter * pobject)
    {
 
       ::file::path path;

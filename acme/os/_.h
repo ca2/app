@@ -130,13 +130,13 @@ CLASS_DECL_ACME void output_debug_string(const wchar_t * psz);
 //TCHAR ** process_get_argv();
 
 
-struct update_notification_task;
-update_notification_task * os_dark_mode_change();
+//struct update_task;
+//update_task * os_dark_mode_change();
 
-void os_register_dark_mode_change(::element * pelement, bool * pbChanged);
-void os_unregister_dark_mode_change(::element * pelement);
+//void os_register_dark_mode_change(::matter * pmatter, bool * pbChanged);
+//void os_unregister_dark_mode_change(::matter * pmatter);
 
-void os_destroy_dark_mode_change();
+//void os_destroy_dark_mode_change();
 
 
 

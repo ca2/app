@@ -30,12 +30,12 @@ namespace html
       }
 
 
-      void text::implement_phase1(html_data * pdata, ::html::element * pelemental)
+      void text::implement_phase1(html_data * pdata, ::html::element * pelement)
       {
 
          sync_lock lock(pdata->m_pcoredata->mutex());
 
-         ::html::impl::element::implement_phase1(pdata, pelemental);
+         ::html::impl::element::implement_phase1(pdata, pelement);
 
          e_tag etag = m_pelemental->m_etag;
 
@@ -47,16 +47,16 @@ namespace html
             if(m_strLink.is_empty())
             {
 
-               if(!pelemental->m_pparent->m_propertyset.is_new_or_null("href"))
+               if(!pelement->m_pparent->m_propertyset.is_new_or_null("href"))
                {
 
-                  m_strLink = pelemental->m_pparent->m_propertyset["href"];
+                  m_strLink = pelement->m_pparent->m_propertyset["href"];
 
                }
-               else if(!pelemental->m_propertyset.is_new_or_null("href"))
+               else if(!pelement->m_propertyset.is_new_or_null("href"))
                {
 
-                  m_strLink = pelemental->m_propertyset["href"];
+                  m_strLink = pelement->m_propertyset["href"];
 
                }
 
@@ -81,7 +81,7 @@ namespace html
 
          }
 
-         if (pelemental->m_elementalptra.get_size() > 0 || pelemental->m_strBody.is_empty())
+         if (pelement->m_elementalptra.get_size() > 0 || pelement->m_strBody.is_empty())
          {
 
             return;

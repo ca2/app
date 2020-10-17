@@ -10,7 +10,7 @@ public:
    menu_view();
 
 
-   void update(::update * pupdate);
+   void on_apply(::action * paction);
    virtual void on_control_event(::user::control_event * pevent);
    DECL_GEN_SIGNAL(_001OnCreate);
    void _001OnTimer(::timer * ptimer);

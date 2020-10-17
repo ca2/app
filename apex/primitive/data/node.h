@@ -9,18 +9,18 @@ namespace data
    {
 
       e_node_none,
-      e_node_xml_element,     // general node '<element>...</element>' or <element/>
+      e_node_xml_element,     // general node '<matter>...</matter>' or <matter/>
       e_node_xml_pi,          // <?xml version="1.0" ?>
       e_node_xml_comment,     // <!-- comment -->
       e_node_xml_cdata,       // <![CDATA[ cdata ]]>
       e_node_xml_document,    // internal virtual root
-      e_node_xml_text        // special node_element - final node element
+      e_node_xml_text        // special node_element - final node matter
 
    };
 
 
    class CLASS_DECL_APEX node :
-      virtual public ::element
+      virtual public ::matter
    {
    protected:
       ::xml::node* m_pxmlnode;

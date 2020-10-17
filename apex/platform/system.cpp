@@ -46,7 +46,9 @@ int GetMainScreenRect(LPRECT lprect);
 
 const char* g_pszMultimediaLibraryName = nullptr;
 
-void apex_system_call_update(::i64 iUpdate, const ::var& var);
+void apex_system_update(const ::id & id, const ::var& var);
+
+void apex_system_set_modified(const ::id& id);
 
 
 CLASS_DECL_APEX void multimedia_set_library_name(const char* psz)
@@ -87,7 +89,7 @@ extern "C"
 extern string_map < __pointer(::apex::library) > * g_pmapLibrary;
 
 
-CLASS_DECL_APEX void __simple_tracea(::element * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
+CLASS_DECL_APEX void __simple_tracea(::matter * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
 
 
 #ifdef WINDOWS
@@ -1231,7 +1233,9 @@ namespace apex
    ::estatus system::process_init()
    {
 
-      set_system_call_update(&apex_system_call_update);
+      set_system_update(&apex_system_update);
+
+      set_system_set_modified(&apex_system_set_modified);
 
       auto estatus = system_prep();
 
@@ -2570,7 +2574,7 @@ namespace apex
    void system::term()
    {
 
-      ::update_notification_task::post_destroy_all();
+      post_destroy_all();
 
       __release(m_phistory);
 
@@ -4541,7 +4545,7 @@ namespace apex
    }
 
 
-   void system::__tracea(::element * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
+   void system::__tracea(::matter * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
    {
 
       if (m_ptrace.is_null())
@@ -5391,20 +5395,14 @@ namespace apex
    }
 
 
-   ::update * system::new_update(const MESSAGE& message)
+   __pointer(::action) system::new_action(const MESSAGE& message)
    {
 
-      //auto pupdate = new_update();
+      auto paction = action((::iptr) message.wParam);
 
-      //pupdate->m_id = (::iptr) msg.wParam;
+      paction->m_pobjectTopic = (::object*) message.lParam;
 
-      //pupdate->m_pobjectTopic = (::object*) msg.lParam;
-
-      //return pupdate;
-
-      __throw(interface_only_exception);
-
-      return nullptr;
+      return paction;
 
    }
 
@@ -6504,13 +6502,13 @@ namespace apex
 //
 //   }
 
-   void system::update(::update* pupdate)
+   void system::on_apply(::action * paction)
    {
 
-      if (pupdate->m_id == id_open_hyperlink)
+      if (paction->id() == id_open_hyperlink)
       {
 
-         auto plink = pupdate->m_var.cast < ::hyperlink >();
+         auto plink = paction->m_var.cast < ::hyperlink >();
 
          if (plink)
          {
@@ -6531,7 +6529,7 @@ namespace apex
          }
 
       }
-      else if(pupdate->m_id == id_dark_mode)
+      else if(paction->id() == id_dark_mode)
       {
 
          defer_calc_os_dark_mode();
@@ -6565,7 +6563,7 @@ namespace apex
 
       //           iFrame++;
 
-      //           pinteraction->call_update(pupdate);
+      //           pinteraction->apply(paction);
 
       //        }
 
@@ -6753,15 +6751,21 @@ namespace apex
 } // namespace apex
 
 
-void apex_system_call_update(::i64 iUpdate, const ::var& var)
+void apex_system_update(const ::id & id, const ::var& var)
 {
 
-   auto pupdate = new_update();
-
-   pupdate->m_id = iUpdate;
-
-   pupdate->m_var = var;
-
-   ::get_context_system()->call_update(pupdate);
+   System.apply_update(id);
 
 }
+
+
+
+void apex_system_set_modified(const ::id& id)
+{
+
+   System.set_modified(id);
+
+}
+
+
+

@@ -369,9 +369,9 @@ namespace user
 
          _001GetSelection(pinteraction->descriptor().m_datakey, selection);
 
-         auto pupdate = new_update();
+         //auto ptask = new_task();
 
-         pupdate->set_handled_by(this);
+         //ptask->set_handled_by(this);
 
          throw_todo();
 
@@ -384,9 +384,13 @@ namespace user
    }
 
 
-   void form_window::update(::update * pupdate)
+   void form_window::on_apply(::action * paction)
    {
-      UNREFERENCED_PARAMETER(pupdate);
+      
+      
+      UNREFERENCED_PARAMETER(paction);
+
+
       //for(i32 i = 0; i < m_controldescriptorset.get_size(); i++)
       //{
       //   ::user::interaction * pinteraction = m_controldescriptorset[i]->m_pcontrol;
@@ -753,17 +757,15 @@ namespace user
    }
 
 
-   void form_window::data_on_after_change(::database::client* pclient, const ::database::key& key, const var& var, ::update* pupdate)
+   void form_window::data_on_after_change(::database::client* pclient, const ::database::key& key, const var& var, ::action * paction)
    {
-
-      //SCAST_PTR(::database::change_event, pchange, pmessage);
 
       sync_lock sl(mutex());
 
-      if(pupdate != nullptr)
+      if(paction != nullptr)
       {
 
-         if(pupdate->handled_by(this))
+         if(!paction->is_modified())
          {
 
             return;

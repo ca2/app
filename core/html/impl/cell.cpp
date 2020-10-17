@@ -33,17 +33,17 @@ namespace html
       table * cell::get_table()
       {
 
-         ::html::element * pelemental = m_pelemental;
+         ::html::element * pelement = m_pelemental;
 
          while(true)
          {
 
-            pelemental = pelemental->m_pparent;
+            pelement = pelement->m_pparent;
 
-            if(pelemental == nullptr)
+            if(pelement == nullptr)
                return nullptr;
 
-            __pointer(table) ptable = pelemental->m_pimpl;
+            __pointer(table) ptable = pelement->m_pimpl;
 
             if(ptable != nullptr)
                return ptable;
@@ -56,17 +56,17 @@ namespace html
       table_row * cell::get_row()
       {
 
-         ::html::element * pelemental = m_pelemental;
+         ::html::element * pelement = m_pelemental;
 
          while(true)
          {
 
-            pelemental = pelemental->m_pparent;
+            pelement = pelement->m_pparent;
 
-            if(pelemental == nullptr)
+            if(pelement == nullptr)
                return nullptr;
 
-            __pointer(table_row) prow = pelemental->m_pimpl;
+            __pointer(table_row) prow = pelement->m_pimpl;
 
             if(prow != nullptr)
                return prow;
@@ -76,12 +76,12 @@ namespace html
       }
 
 
-      void cell::implement_phase1(html_data * pdata, ::html::element * pelemental)
+      void cell::implement_phase1(html_data * pdata, ::html::element * pelement)
       {
 
          m_bHasChar = true;
 
-         ::html::impl::text::implement_phase1(pdata, pelemental);
+         ::html::impl::text::implement_phase1(pdata, pelement);
 
          if (!m_pelemental->m_propertyset.is_new_or_null("colspan"))
          {
@@ -545,12 +545,12 @@ namespace html
             for(i32 i = 0; i < prow->m_pelemental->m_elementalptra.get_count(); i++)
             {
 
-               ::html::element * pelemental = prow->m_pelemental->m_elementalptra[i];
+               ::html::element * pelement = prow->m_pelemental->m_elementalptra[i];
 
-               if(pelemental == m_pelemental)
+               if(pelement == m_pelemental)
                   break;
 
-               __pointer(cell) pcell = pelemental->m_pimpl;
+               __pointer(cell) pcell = pelement->m_pimpl;
 
                if(pcell != nullptr)
                {
@@ -558,13 +558,13 @@ namespace html
                   iMinCol += pcell->m_iColSpan;
 
                }
-               else if(pelemental->m_etag == tag_td)
+               else if(pelement->m_etag == tag_td)
                {
 
-                  if(!pelemental->m_propertyset.is_new_or_null("colspan"))
+                  if(!pelement->m_propertyset.is_new_or_null("colspan"))
                   {
 
-                     iMinCol += pelemental->m_propertyset["colspan"].i32();
+                     iMinCol += pelement->m_propertyset["colspan"].i32();
 
                   }
                   else

@@ -13,7 +13,7 @@ namespace plugin
       plugin * m_pplugin;
 
 
-      history(::element * pobject, plugin * pplugin);
+      history(::matter * pobject, plugin * pplugin);
 
 
       virtual bool hist(const char *pszUrl);

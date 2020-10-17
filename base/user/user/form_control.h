@@ -76,7 +76,7 @@ namespace user
 
       virtual void install_message_routing(::channel * pchannel) override;
       virtual void _001InitializeFormPreData();
-      virtual void update(::update * pupdate) override;
+      virtual void on_apply(::action * paction) override;
       virtual bool update_data(bool bSaveAndValidate) override;
       virtual void _001Update(::user::interaction * pinteraction);
       virtual void _001UpdateCheckBox(::user::interaction * pinteraction);
@@ -101,7 +101,7 @@ namespace user
 
 
 
-      virtual void data_on_after_change(::database::client* pclient, const ::database::key& key, const var& var, ::update* pupdate = nullptr);
+      virtual void data_on_after_change(::database::client* pclient, const ::database::key& key, const var& var, ::action * paction = nullptr);
 
 
       virtual bool create_control(class control_descriptor * pdescriptor, index iItem) override;
@@ -125,7 +125,7 @@ namespace user
 
       //      ::user::form_window(::layered * pobjectContext);
 
-      //virtual void update(::update * pupdate) override;
+      //virtual void on_apply(::action * paction) override;
       //      virtual void on_control_event(::user::control_event * pevent);
       //      DECL_GEN_SIGNAL(_001OnCreate);
       virtual void _001OnTimer(::timer * ptimer) override;

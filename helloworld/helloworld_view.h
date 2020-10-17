@@ -47,7 +47,7 @@ namespace helloworld
 
       virtual void _006OnDraw(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void update(::update * pupdate) override;
+      virtual void on_apply(::action * paction) override;
 
       ::user::document * get_document();
 

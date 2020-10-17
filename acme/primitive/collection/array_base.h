@@ -53,7 +53,7 @@ _DEFAULT_ARRAY_OF(ARRAY, ITEM, m_ ## ITEM ## a, TYPE)
 // array is an array that call default constructors, copy constructs and destructors in elements
 template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE > >
 class array_base :
-   public ::element
+   public ::matter
 {
 public:
 
@@ -98,9 +98,9 @@ public:
          this->m_pelement = this->m_pelementBeg;
       }
 
-      make_iterator(const CONTAINER * parray, const TYPE * pelement = nullptr, const TYPE * pelementEnd = nullptr)
+      make_iterator(const CONTAINER * parray, const TYPE * pmatter = nullptr, const TYPE * pelementEnd = nullptr)
       {
-         this->m_pelementBeg = (TYPE *) pelement;
+         this->m_pelementBeg = (TYPE *) pmatter;
          this->m_pelementEnd = (TYPE *) pelementEnd;
          this->m_pcontainer = (CONTAINER *)parray;
          this->m_pelement = this->m_pelementBeg;
@@ -260,93 +260,93 @@ public:
       }
 
 
-      bool operator == (const TYPE * pelement) const
+      bool operator == (const TYPE * pmatter) const
       {
 
 
-         if (!this->m_pcontainer->contains(pelement))
+         if (!this->m_pcontainer->contains(pmatter))
          {
 
             return false;
 
          }
 
-         return this->m_pelement == pelement;
+         return this->m_pelement == pmatter;
 
       }
 
 
-      bool operator >= (const TYPE * pelement) const
+      bool operator >= (const TYPE * pmatter) const
       {
 
 
-         if (!this->m_pcontainer->contains(pelement))
+         if (!this->m_pcontainer->contains(pmatter))
          {
 
             return false;
 
          }
 
-         return this->m_pelement >= pelement;
+         return this->m_pelement >= pmatter;
 
       }
 
 
-      bool operator > (const TYPE * pelement) const
+      bool operator > (const TYPE * pmatter) const
       {
 
-         if (!this->m_pcontainer->contains(pelement))
+         if (!this->m_pcontainer->contains(pmatter))
          {
 
             return false;
 
          }
 
-         return this->m_pelement > pelement;
+         return this->m_pelement > pmatter;
 
       }
 
 
-      bool operator != (const TYPE * pelement) const
+      bool operator != (const TYPE * pmatter) const
       {
 
-         if (!this->m_pcontainer->contains(pelement))
+         if (!this->m_pcontainer->contains(pmatter))
          {
 
             return true;
 
          }
 
-         return this->m_pelement != pelement;
+         return this->m_pelement != pmatter;
 
       }
 
-      bool operator < (const TYPE * pelement) const
+      bool operator < (const TYPE * pmatter) const
       {
 
-         if (!this->m_pcontainer->contains(pelement))
+         if (!this->m_pcontainer->contains(pmatter))
          {
 
             return false;
 
          }
 
-         return this->m_pelement < pelement;
+         return this->m_pelement < pmatter;
 
 
       }
 
-      bool operator <= (const TYPE * pelement) const
+      bool operator <= (const TYPE * pmatter) const
       {
 
-         if (!this->m_pcontainer->contains(pelement))
+         if (!this->m_pcontainer->contains(pmatter))
          {
 
             return false;
 
          }
 
-         return this->m_pelement <= pelement;
+         return this->m_pelement <= pmatter;
 
 
       }
@@ -410,7 +410,7 @@ public:
    }
 
 
-   inline bool contains(const TYPE * pelement) const { return pelement >= m_pData && pelement < m_pData + m_nSize; }
+   inline bool contains(const TYPE * pmatter) const { return pmatter >= m_pData && pmatter < m_pData + m_nSize; }
 
 
    inline ::count get_size() const;

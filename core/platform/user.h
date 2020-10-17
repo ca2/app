@@ -758,7 +758,7 @@
 //
 //      virtual string get_app_user_friendly_task_bar_name();
 //
-//      virtual void update(::update * pupdate) override;
+//      virtual void on_apply(::action * paction) override;
 //
 //      //virtual bool compress_ungz(::file::file * pfileUncompressed, ::file::file * pfileCompressed);
 //
@@ -1352,7 +1352,7 @@
 //
 //      //virtual void install_message_routing(::channel * pchannel) override;
 //
-//      //virtual void update(::update * pupdate) override;
+//      //virtual void on_apply(::action * paction) override;
 //
 //      //virtual ::estatus process_init() override;
 //

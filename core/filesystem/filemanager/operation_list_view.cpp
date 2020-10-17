@@ -130,12 +130,12 @@ namespace filemanager
    }
 
 
-   void operation_list_view::update(::update * pupdate)
+   void operation_list_view::on_apply(::action * paction)
    {
 
-      BASE::update(pupdate);
+      BASE::on_apply(paction);
 
-      if (pupdate->m_id == INITIAL_UPDATE)
+      if (paction->id() == INITIAL_UPDATE)
       {
 
          _001UpdateColumns();

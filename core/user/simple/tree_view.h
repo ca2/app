@@ -15,7 +15,7 @@ public:
 
    DECL_GEN_SIGNAL(_001OnCreate);
 
-   virtual void update(::update * pupdate) override;
+   virtual void on_apply(::action * paction) override;
 
 
    virtual void assert_valid() const override;

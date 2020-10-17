@@ -3,7 +3,7 @@
 
 template < class TYPE, class ARG_TYPE = const TYPE & >
 class list :
-   public ::element
+   public ::matter
 {
 public:
 
@@ -207,7 +207,7 @@ public:
    // helper functions (note: O(n) speed)
    // defaults to starting at the HEAD, return nullptr if not found
    iterator index_iterator(index nIndex);
-   // get the 'nIndex'th element (may return nullptr)
+   // get the 'nIndex'th matter (may return nullptr)
    index iterator_index(iterator iterator);
    // get the reverse 'nIndex' of the position (may return -1)
    iterator reverse_index_iterator(index nIndex);
@@ -231,7 +231,7 @@ public:
    }
 
 
-   // getting/modifying an element at a given position
+   // getting/modifying an matter at a given position
    TYPE & get_at(node * pnode) { return pnode->m_value; }
    const TYPE & get_at(node * pnode) const { return pnode->m_value; }
    void set_at(node * pnode, ARG_TYPE newElement) { pnode->m_value = newElement; }
@@ -1740,7 +1740,7 @@ void list<TYPE, ARG_TYPE>::Serialize(CArchive& ar)
 {
    ASSERT_VALID(this);
 
-   element::Serialize(ar);
+   matter::Serialize(ar);
 
    if (ar.IsStoring())
    {
@@ -1751,7 +1751,7 @@ void list<TYPE, ARG_TYPE>::Serialize(CArchive& ar)
          TYPE* pData;
          //
          // in some cases the & operator might be overloaded, and we cannot use it to obtain
-         //the address of a given element.  We then use the following trick to get the address
+         //the address of a given matter.  We then use the following trick to get the address
          //
          pData = reinterpret_cast< TYPE* >( &reinterpret_cast< i32& >( static_cast< TYPE& >( pnode->m_value ) ) );
          SerializeElements<TYPE>(ar, pData, 1);
@@ -1776,7 +1776,7 @@ template<class TYPE, class ARG_TYPE>
 void list<TYPE, ARG_TYPE>::assert_valid() const
 {
 
-   element::assert_valid();
+   matter::assert_valid();
 
    if (this->m_count == 0)
    {

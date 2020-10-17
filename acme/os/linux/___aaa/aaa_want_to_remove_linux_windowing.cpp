@@ -18,7 +18,7 @@ CLASS_DECL_ACME void update_application_session_cursor(void * pvoidApp, const po
 
 // Tutor Exilius Q(t)List streaming contribution
 ::mutex * x11_mutex() = nullptr;
-list < sp(element) > * g_pobjectTaskptrlX11 = nullptr;
+list < sp(matter) > * g_pobjectTaskptrlX11 = nullptr;
 
 int_bool _x11_get_cursor_pos(Display * d, LPPOINT ppointCursor);
 
@@ -2243,7 +2243,7 @@ bool x11_step()
    while(g_pobjectTaskptrlX11->has_elements())
    {
 
-      sp(element) pobject = g_pobjectTaskptrlX11->pop_front();
+      sp(matter) pobject = g_pobjectTaskptrlX11->pop_front();
 
       sl.unlock();
 
@@ -3476,7 +3476,7 @@ bool os_init_windowing()
 
    sudo rebootx11_mutex() = new ::mutex();
 
-   g_pobjectTaskptrlX11 = new list < sp(element) >();
+   g_pobjectTaskptrlX11 = new list < sp(matter) >();
 
    //set_TranslateMessage(&axis_TranslateMessage);
 

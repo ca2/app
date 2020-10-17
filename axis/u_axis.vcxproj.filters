@@ -288,7 +288,7 @@
     <ClInclude Include="math\calculator\calculator.h">
       <Filter>Header Files\math\calculator</Filter>
     </ClInclude>
-    <ClInclude Include="math\calculator\element.h">
+    <ClInclude Include="math\calculator\matter.h">
       <Filter>Header Files\math\calculator</Filter>
     </ClInclude>
     <ClInclude Include="math\calculator\parser.h">
@@ -722,7 +722,7 @@
     <ClCompile Include="math\calculator\calculator.cpp">
       <Filter>Source Files\math\calculator</Filter>
     </ClCompile>
-    <ClCompile Include="math\calculator\element.cpp">
+    <ClCompile Include="math\calculator\matter.cpp">
       <Filter>Source Files\math\calculator</Filter>
     </ClCompile>
     <ClCompile Include="math\calculator\parser.cpp">

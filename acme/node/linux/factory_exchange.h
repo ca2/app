@@ -10,7 +10,7 @@
 //
 //
 //      class CLASS_DECL_ACME factory_exchange :
-//         virtual public ::element
+//         virtual public ::matter
 //      {
 //      public:
 //

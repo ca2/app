@@ -191,7 +191,7 @@
 //         retPos = i;
 //         break;
 //      };
-//      // next element
+//      // next matter
 //      if (i != 0)
 //      {
 //         next->next = new SRegInfo;

@@ -755,8 +755,8 @@ typedef struct tagENHMETAHEADER
    DWORD   offDescription;     // Offset to the metafile description record.
    // This is 0 if there is no description string
    DWORD   nPalEntries;        // Number of entries in the metafile palette.
-   SIZEL   szlDevice;          // Size of the element device in pels
-   SIZEL   szlMillimeters;     // Size of the element device in millimeters
+   SIZEL   szlDevice;          // Size of the matter device in pels
+   SIZEL   szlMillimeters;     // Size of the matter device in millimeters
 #if(WINVER >= 0x0400)
    DWORD   cbPixelFormat;      // Size of PIXELFORMATDESCRIPTOR information
    // This is 0 if no pixel format is set
@@ -766,7 +766,7 @@ typedef struct tagENHMETAHEADER
    // the metafile, otherwise FALSE
 #endif /* WINVER >= 0x0400 */
 #if(WINVER >= 0x0500)
-   SIZEL   szlMicrometers;     // Size of the element device in micrometers
+   SIZEL   szlMicrometers;     // Size of the matter device in micrometers
 #endif /* WINVER >= 0x0500 */
 
 } ENHMETAHEADER,*PENHMETAHEADER,*LPENHMETAHEADER;

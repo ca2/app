@@ -6,13 +6,13 @@ namespace file
 
 
    class CLASS_DECL_ACME path_object :
-      virtual public element,
+      virtual public matter,
       virtual public path
    {
    public:
 
       path_object() {}
-      path_object(::element*) {}
+      path_object(::matter*) {}
       path_object(const ::file::path& path) : ::file::path(path) {}
       path_object(::file::path&& path) : ::file::path(::move(path)) {}
 
@@ -25,8 +25,8 @@ namespace file
       virtual void to_sz(char* sz, strsize size) const override;
       virtual void to_string(const string_exchange& string) const override;
 
-      using element::set;
-      using element::has;
+      using matter::set;
+      using matter::has;
 
       using path::set;
       using path::has;

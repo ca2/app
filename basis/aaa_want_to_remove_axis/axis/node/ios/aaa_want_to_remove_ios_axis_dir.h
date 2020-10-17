@@ -47,12 +47,12 @@ namespace ios
          //      virtual string netseed(const char * pcsz = nullptr, const char * lpcsz2 = nullptr);
          //
          //      // stage in ccwarehouse spalib
-         //      virtual string element(const char * pcsz, const char * lpcsz2 = nullptr);
-         //      virtual string element();
-         //      virtual string element(const string & str);
-         //      virtual string element(const string & str, const string & str2);
-         //      virtual string element(const char * pcsz, const string & str2);
-         //      virtual string element(const string & str, const char * lpcsz2);
+         //      virtual string matter(const char * pcsz, const char * lpcsz2 = nullptr);
+         //      virtual string matter();
+         //      virtual string matter(const string & str);
+         //      virtual string matter(const string & str, const string & str2);
+         //      virtual string matter(const char * pcsz, const string & str2);
+         //      virtual string matter(const string & str, const char * lpcsz2);
          //
          //      virtual string module(const char * pcsz = nullptr, const char * lpcsz2 = nullptr);
          //      virtual string ca2module(const char * pcsz = nullptr, const char * lpcsz2 = nullptr);
@@ -110,12 +110,12 @@ namespace ios
          //virtual string netseed(const char * pcsz = nullptr,const char * lpcsz2 = nullptr);
 
          //// stage in ca2os spalib
-         //virtual string element(const char * pcsz,const char * lpcsz2 = nullptr);
-         //virtual string element();
-         //virtual string element(const string & str);
-         //virtual string element(const string & str,const string & str2);
-         //virtual string element(const char * pcsz,const string & str2);
-         //virtual string element(const string & str,const char * lpcsz2);
+         //virtual string matter(const char * pcsz,const char * lpcsz2 = nullptr);
+         //virtual string matter();
+         //virtual string matter(const string & str);
+         //virtual string matter(const string & str,const string & str2);
+         //virtual string matter(const char * pcsz,const string & str2);
+         //virtual string matter(const string & str,const char * lpcsz2);
 
          //virtual string module(const char * pcsz = nullptr,const char * lpcsz2 = nullptr);
          //virtual string ca2module(const char * pcsz = nullptr,const char * lpcsz2 = nullptr);

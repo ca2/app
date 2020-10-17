@@ -25,7 +25,7 @@ namespace prompt
    }
 
 
-   void primary_view::update(::update * pupdate)
+   void primary_view::on_apply(::action * paction)
    {
 
       UNREFERENCED_PARAMETER(pupdate);
@@ -66,13 +66,13 @@ namespace prompt
 
                   ::calculator::parser parser(get_object());
 
-                  ::calculator::element * pelement = parser.parse(strLine);
+                  ::calculator::matter * pmatter = parser.parse(strLine);
 
                   string strValue;
 
-                  strValue.Format("%f", pelement->get_value().to_string().c_str());
+                  strValue.Format("%f", pmatter->get_value().to_string().c_str());
 
-                  string strNewText = str + pelement->get_expression() + " = " + strValue  + "\n";
+                  string strNewText = str + pmatter->get_expression() + " = " + strValue  + "\n";
 
                   strNewText.replace("\r\n", "\n");
 
@@ -106,25 +106,25 @@ namespace prompt
 
                         calculator::parser parser(get_object());
 
-                        calculator::element * pelement = parser.parse(stra[1]);
+                        calculator::matter * pmatter = parser.parse(stra[1]);
 
                         string strValue;
 
-                        strValue.Format("%f", pelement->get_value().to_string().c_str());
+                        strValue.Format("%f", pmatter->get_value().to_string().c_str());
 
                         string strMinFrac;
 
-                        strMinFrac.Format("%f", pelement->get_value().mod() / 60.0);
+                        strMinFrac.Format("%f", pmatter->get_value().mod() / 60.0);
 
                         string strMin;
 
-                        strMin.Format("%d", ((i32)pelement->get_value().mod() / 60));
+                        strMin.Format("%d", ((i32)pmatter->get_value().mod() / 60));
 
                         string strMinSec;
 
-                        strMinSec.Format("%f", fmod(pelement->get_value().mod(), 60.0));
+                        strMinSec.Format("%f", fmod(pmatter->get_value().mod(), 60.0));
 
-                        string strNewText = str + pelement->get_expression() + " segundos = " + strValue  + " segundos = " + strMinFrac + " minutos = " + strMin + " minutos e " + strMinSec + " segundos\n";
+                        string strNewText = str + pmatter->get_expression() + " segundos = " + strValue  + " segundos = " + strMinFrac + " minutos = " + strMin + " minutos e " + strMinSec + " segundos\n";
 
                         strNewText.replace("\r\n", "\n");
 
@@ -142,25 +142,25 @@ namespace prompt
 
                         calculator::parser parser(get_object());
 
-                        calculator::element * pelement = parser.parse(stra[1]);
+                        calculator::matter * pmatter = parser.parse(stra[1]);
 
                         string strValue;
 
-                        strValue.Format("%f", pelement->get_value().to_string().c_str());
+                        strValue.Format("%f", pmatter->get_value().to_string().c_str());
 
                         string strMinFrac;
 
-                        strMinFrac.Format("%f", pelement->get_value().mod() / 60.0);
+                        strMinFrac.Format("%f", pmatter->get_value().mod() / 60.0);
 
                         string strMin;
 
-                        strMin.Format("%d", ((i32)pelement->get_value().mod() / 60));
+                        strMin.Format("%d", ((i32)pmatter->get_value().mod() / 60));
 
                         string strMinSec;
 
-                        strMinSec.Format("%f", fmod(pelement->get_value().mod(), 60.0));
+                        strMinSec.Format("%f", fmod(pmatter->get_value().mod(), 60.0));
 
-                        string strNewText = str + pelement->get_expression() + " segundos = " + strValue  + " segundos = " + strMinFrac + " minutos = " + strMin + " minutos e " + strMinSec + " segundos\n";
+                        string strNewText = str + pmatter->get_expression() + " segundos = " + strValue  + " segundos = " + strMinFrac + " minutos = " + strMin + " minutos e " + strMinSec + " segundos\n";
 
                         strNewText.replace("\r\n", "\n");
 
@@ -170,7 +170,7 @@ namespace prompt
 
                         m_iCompromised = m_ptree->m_iSelBeg = m_ptree->m_iSelEnd = strNewText.get_length();
 
-                        Application.send_simple_command("winactionareaview::show_calendar(\""+ __str((i32) pelement->get_value().mod()) +"\")", (void *) get_wnd()->get_os_data());
+                        Application.send_simple_command("winactionareaview::show_calendar(\""+ __str((i32) pmatter->get_value().mod()) +"\")", (void *) get_wnd()->get_os_data());
 
                         bOk = true;
 

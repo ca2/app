@@ -31,7 +31,7 @@ inline void __string_exchange(text_stream & s, ::id & id);
 inline void __string_exchange(text_stream & s, void * & p);
 inline void __string_exchange(text_stream & s, oswindow & oswindow);
 inline void __string_exchange(text_stream & s, wchar_t sz[]);
-//inline void __string_exchange(text_stream & s, ::element & element);
+//inline void __string_exchange(text_stream & s, ::matter & matter);
 
 //inline void __string_exchange(text_stream & s, ::rect & r);
 
@@ -193,7 +193,7 @@ public:
    template < typename TYPE >
    void json_write(const TYPE & t);
 
-   //virtual void json_write(const ::element & element);
+   //virtual void json_write(const ::matter & matter);
 
 
    virtual void raw_print(const string & str);
@@ -226,7 +226,7 @@ public:
    virtual void read(::id & id) override;
 
    template < typename TYPE >
-   void json_read(TYPE & element);
+   void json_read(TYPE & matter);
 
 
 };

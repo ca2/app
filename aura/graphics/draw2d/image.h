@@ -356,7 +356,7 @@ public:
    virtual ::stream & read(::stream & stream);
 
    
-   virtual ::element * clone() const;
+   virtual ::matter * clone() const;
 
 
    inline int line(int line);

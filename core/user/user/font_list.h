@@ -27,7 +27,7 @@ namespace user
       ::rect                           m_rectMargin;
       bool                             m_bEnsureVisible;
       bool                             m_bFirstShown;
-
+      ::i32                            m_iLayoutSerial;
 
 
       font_list();
@@ -37,7 +37,7 @@ namespace user
       void user_font_list_common_construct();
 
 
-      virtual void on_font_change();
+      //virtual void on_font_change();
 
 
       virtual void on_change_combo_sel(index iSel) override;
@@ -59,7 +59,7 @@ namespace user
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void update(::update * pupdate) override;
+      virtual void on_apply(::action * paction) override;
 
 
       virtual ::user::item current_item() override;

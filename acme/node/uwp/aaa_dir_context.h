@@ -20,7 +20,7 @@ namespace uwp
       virtual ~dir_context();
 
 
-      virtual ::estatus initialize(::element * pobjectContext) override;
+      virtual ::estatus initialize(::matter * pobjectContext) override;
 
       virtual ::estatus init_system() override;
 

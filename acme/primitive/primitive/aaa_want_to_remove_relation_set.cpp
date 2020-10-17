@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-relation_set::relation_set(::element * pobject) :
+relation_set::relation_set(::matter * pobject) :
    property_set(pobject, true, true)
 {
 

@@ -151,7 +151,18 @@ CLASS_DECL_ACME void throw_todo(void);
 CLASS_DECL_ACME void set_last_status(const ::estatus & estatus);
 CLASS_DECL_ACME void windowing_output_debug_string(const char * pszDebugString);
 //CLASS_DECL_ACME void c_function_call(void * p);
-namespace acme { extern CLASS_DECL_ACME bool g_bAcme; }
+
+
+namespace acme 
+{
+
+   class acme;  
+   
+   extern CLASS_DECL_ACME bool g_bAcme; 
+
+} // namespace acme 
+
+
 CLASS_DECL_ACME int __assert_failed_line(const char * pszFileName,int iLineNumber);
 CLASS_DECL_ACME int is_debugger_attached(void);
 CLASS_DECL_ACME void debug_print(const char * psz,...);
@@ -259,6 +270,12 @@ CLASS_DECL_ACME void throw_what_exclamation_exclamation(const char * psz);
 
 
 inline int trailingBytesForUTF8(char ch);
+
+
+class source;
+class update;
+class change;
+class action;
 
 
 extern CLASS_DECL_ACME const char g_trailingBytesForUTF8[256];
@@ -479,7 +496,7 @@ CLASS_DECL_ACME ::e_priority get_os_class_scheduling_priority(i32 iCa2Priority);
 //#include "acme/multimedia/_c.h"
 
 
-class element;
+class matter;
 
 
 template < typename T >
@@ -498,16 +515,16 @@ void __finalize_and_release(T& p)
 }
 
 
-CLASS_DECL_ACME void release_on_end(::element* pelement);
+CLASS_DECL_ACME void release_on_end(::matter* pmatter);
 
 
 template < typename TYPE >
-TYPE * __release_on_end(TYPE * pelement)
+TYPE * __release_on_end(TYPE * pmatter)
 {
 
-   release_on_end(pelement);
+   release_on_end(pmatter);
 
-   return pelement;
+   return pmatter;
 
 }
 
@@ -521,22 +538,22 @@ CLASS_DECL_ACME extern u32 g_tickStartTime;
 
 
 //
-//CLASS_DECL_ACME ::element * general_trace_object();
+//CLASS_DECL_ACME ::matter * general_trace_object();
 //
 //CLASS_DECL_ACME int_bool c_enable_trace_category(e_trace_category ecategory, int_bool iEnable);
 //
-//inline ::element * context_trace_object() { return general_trace_object(); }
+//inline ::matter * context_trace_object() { return general_trace_object(); }
 
 
-//CLASS_DECL_ACME void __tracea(::element * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
-//CLASS_DECL_ACME void __tracef(::element * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, ...);
-//CLASS_DECL_ACME void __tracev(::element * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, va_list vargs);
+//CLASS_DECL_ACME void __tracea(::matter * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
+//CLASS_DECL_ACME void __tracef(::matter * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, ...);
+//CLASS_DECL_ACME void __tracev(::matter * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, va_list vargs);
 
 
 CLASS_DECL_ACME const char * trace_category_name(e_trace_category ecategory);
-CLASS_DECL_ACME ::element * trace_object(e_trace_category ecategory);
-CLASS_DECL_ACME const char * topic_text(::element * pcontextobject);
-CLASS_DECL_ACME e_trace_category object_trace_category(::element * pcontextobject);
+CLASS_DECL_ACME ::matter * trace_object(e_trace_category ecategory);
+CLASS_DECL_ACME const char * topic_text(::matter * pcontextobject);
+CLASS_DECL_ACME e_trace_category object_trace_category(::matter * pcontextobject);
 
 
 //
@@ -959,8 +976,8 @@ enum enum_command
 
 
 class composite_base;
-class element;
-class element;
+class matter;
+class matter;
 
 
 //namespace acme
@@ -1040,6 +1057,14 @@ class pointer_array;
 #define __pointer(TYPE) ::___pointer < TYPE >
 #define __pointer_array(TYPE) ::pointer_array < TYPE >
 #define __address_array(TYPE) ::comparable_array < TYPE * >
+
+
+using source_pointer = __pointer(source);
+using update_pointer = __pointer(update);
+using change_pointer = __pointer(change);
+using action_pointer = __pointer(action);
+
+
 
 namespace draw2d
 {
@@ -1241,7 +1266,7 @@ inline bool nok(const TYPE* p)
 class istring;
 class var;
 class property_set;
-class element;
+class matter;
 //class base_edit;
 class var_array;
 class property;
@@ -2098,7 +2123,7 @@ typedef  void(*PFN_factory_exchange)();
 CLASS_DECL_ACME HRESULT defer_co_initialize_ex(bool bMultiThread, bool bDisableOleDDE = false);
 #endif
 
-class element;
+class matter;
 
 class var;
 
@@ -2352,7 +2377,7 @@ using wparam = c_number < WPARAM >;
 #include "acme/primitive/datetime/file_time.h"
 
 
-class update;
+
 
 
 namespace status
@@ -2458,13 +2483,17 @@ namespace user
 #include "acme/platform/_global.h"
 
 
-#include "acme/primitive/primitive/element.h"
+#include "acme/primitive/primitive/matter.h"
 #include "acme/primitive/primitive/layered.h"
 
 
 
 
 #include "acme/primitive/primitive/task.h"
+
+
+
+
 #include "acme/primitive/primitive/compare_pred.h"
 
 
@@ -2522,7 +2551,7 @@ inline bool failed(const ::property & set) { return !::succeeded(set); }
 #include "acme/primitive/geometry2d/_.h"
 
 
-//#include "acme/primitive/primitive/element.h"
+//#include "acme/primitive/primitive/matter.h"
 
 
 #include "acme/primitive/primitive/_factory_prefix.h"
@@ -2560,7 +2589,7 @@ inline bool failed(const ::property & set) { return !::succeeded(set); }
 #include "acme/primitive/collection/address_array.h"
 
 
-using element_address_array = ::address_array < element * >;
+using element_address_array = ::address_array < matter * >;
 
 
 #include "acme/primitive/collection/_papaya.h"
@@ -2571,20 +2600,20 @@ using element_address_array = ::address_array < element * >;
 class sticker;
 
 
-inline ::element * trace_object(::element * pobjectContext) { return pobjectContext; }
+inline ::matter * trace_object(::matter * pobjectContext) { return pobjectContext; }
 
 template < typename POINTER_TYPE >
 class ptr_array;
 
-//using composite_ptra = __pointer_array(::element); // Please use just for composition (ownership).
+//using composite_ptra = __pointer_array(::matter); // Please use just for composition (ownership).
 
-//using reference_ptra = __pointer_array(::element); // Please use just for reference (member-based).
+//using reference_ptra = __pointer_array(::matter); // Please use just for reference (member-based).
 
-//using object_ptra = __pointer_array(::element); // Please use just for keeping non-member-based references.
+//using object_ptra = __pointer_array(::matter); // Please use just for keeping non-member-based references.
 
-using object_ptra = __pointer_array(::element); // Please use just for keeping non-member-based references.
+using object_ptra = __pointer_array(::matter); // Please use just for keeping non-member-based references.
 
-using object_addra = __address_array(::element); // Please use just for keeping non-member-based references.
+using object_addra = __address_array(::matter); // Please use just for keeping non-member-based references.
 
 class object_meta;
 
@@ -2599,9 +2628,9 @@ namespace http
 
 } // namespace http
 
-template < typename PRED > inline __pointer(::element) __pred_method(PRED pred);
+template < typename PRED > inline __pointer(::matter) __pred_method(PRED pred);
 
-template < typename PRED > inline __pointer(::element) __pred_future(PRED pred);
+template < typename PRED > inline __pointer(::matter) __pred_future(PRED pred);
 
 //class context;
 
@@ -2627,7 +2656,7 @@ template < typename PRED > inline __pointer(::element) __pred_future(PRED pred);
 
 //class create_thread;
 
-using generic_pointer = __pointer(::element);
+using generic_pointer = __pointer(::matter);
 
 
 #ifdef WINDOWS_DESKTOP
@@ -2678,7 +2707,7 @@ namespace core
 
 class message_box;
 
-//#include "acme/primitive/primitive/element.h"
+//#include "acme/primitive/primitive/matter.h"
 
 //#include "acme/primitive/primitive/object_meta.h"
 
@@ -3174,7 +3203,7 @@ namespace file
 
 
 class CLASS_DECL_ACME ptra :
-   virtual public __pointer_array(element)
+   virtual public __pointer_array(matter)
 {
 public:
 
@@ -3182,8 +3211,8 @@ public:
 };
 
 
-typedef ::map < __pointer(element), __pointer(element), __pointer(element), __pointer(element) > element_map;
-typedef ::map < __pointer(element), __pointer(element), ptra, ptra > map_many;
+typedef ::map < __pointer(matter), __pointer(matter), __pointer(matter), __pointer(matter) > element_map;
+typedef ::map < __pointer(matter), __pointer(matter), ptra, ptra > map_many;
 
 
 namespace zip
@@ -3521,13 +3550,20 @@ CLASS_DECL_ACME string get_system_error_message(u32 dwError);
 #include "acme/platform/simple_app.h"
 
 
-typedef void CALL_UPDATE(::i64 iUpdate, const var & var);
+typedef void CALL_UPDATE(const ::id & id, const var & var);
 using PFN_CALL_UPDATE = CALL_UPDATE *;
 
+typedef void SET_MODIFIED(const ::id& id);
+using PFN_SET_MODIFIED = SET_MODIFIED*;
 
-CLASS_DECL_ACME void set_system_call_update(PFN_CALL_UPDATE pfnCallUpdate);
-CLASS_DECL_ACME void system_call_update(::i64 iUpdate, const var & var = ::type_new);
 
+CLASS_DECL_ACME void set_system_update(PFN_CALL_UPDATE pfnCallUpdate);
+CLASS_DECL_ACME void system_update(const ::id & id, const var & var = ::type_new);
+
+
+
+CLASS_DECL_ACME void set_system_set_modified(PFN_SET_MODIFIED pfnSetModified);
+CLASS_DECL_ACME void system_set_modified(const ::id& id);
 
 
 

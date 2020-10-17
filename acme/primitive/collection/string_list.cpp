@@ -51,7 +51,7 @@
 //
 //void string_list::assert_valid() const
 //{
-//   element::assert_valid();
+//   matter::assert_valid();
 //
 //   if (m_count == 0)
 //   {
@@ -70,7 +70,7 @@
 //
 //void string_list::dump(dump_context & dumpcontext) const
 //{
-//   element::dump(dumpcontext);
+//   matter::dump(dumpcontext);
 //
 //   dumpcontext << "with " << m_count << " elements";
 //   if (dumpcontext.GetDepth() > 0)

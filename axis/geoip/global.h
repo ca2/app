@@ -13,7 +13,7 @@ The following makes PROTOTYPES default to 0 if it has not already
 #define PROTOTYPES 0
 #endif
 
-/* POINTER defines a element pointer type */
+/* POINTER defines a matter pointer type */
 typedef uchar *POINTER;
 
 /* UINT2 defines a two byte u16 */

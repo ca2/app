@@ -35,7 +35,7 @@ enum enum_shape
 
 
 class CLASS_DECL_ACME ___shape :
-   virtual public element
+   virtual public matter
 {
 protected:
 

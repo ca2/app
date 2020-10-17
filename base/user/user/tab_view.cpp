@@ -57,12 +57,12 @@ namespace user
    }
 
 
-   void tab_view::update(::update * pupdate)
+   void tab_view::on_apply(::action * paction)
    {
 
-      tab::update(pupdate);
+      tab::on_apply(paction);
 
-      impact::update(pupdate);
+      impact::on_apply(paction);
 
    }
 

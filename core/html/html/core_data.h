@@ -20,7 +20,7 @@
 //
 //
 //
-//#include "core/html/element/elemental_elemental.h"
+//#include "core/html/matter/elemental_elemental.h"
 //
 //
 //
@@ -185,7 +185,7 @@ namespace html
       ::file::path                     m_strPathName;
       ::user::interaction_ptra         m_uiptra;
       tag *                            m_ptag;
-      ::html::element                m_elemental;
+      ::html::element                  m_element;
       bool                             m_bImplemented;
 
 
@@ -205,8 +205,8 @@ namespace html
 
       ::html_form *                 m_pform;
       bool                          m_bEdit;
-      ::html::element * m_pElementalSelStart;
-      ::html::element* m_pElementalSelEnd;
+      ::html::element *             m_pElementalSelStart;
+      ::html::element *             m_pElementalSelEnd;
 
       bool                          m_bHasChar;
 
@@ -280,7 +280,7 @@ namespace html
 
       i32 create_font(::html::element* pelemental);
 
-      virtual void update(::update * pupdate) override;
+      virtual void on_apply(::action * paction) override;
 
 
    };

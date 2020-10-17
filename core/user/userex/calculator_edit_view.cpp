@@ -69,10 +69,10 @@ namespace calculator
    }
 
 
-   void plain_edit_view::update(::update* pupdate)
+   void plain_edit_view::on_apply(::action * paction)
    {
 
-      if (pupdate->m_id == id_after_change_text)
+      if (paction->id() == id_after_change_text)
       {
 
          {
@@ -91,7 +91,7 @@ namespace calculator
             e.m_iStart = -1;
             e.m_tick.Now();
 
-            ::calculator::element* pelement = nullptr;
+            ::calculator::element * pelement = nullptr;
 
             string strSource;
 
@@ -347,11 +347,7 @@ namespace calculator
       if (context.is_user_source())
       {
 
-
-         //      if(m_ptopview == nullptr || m_ptopview->m_pview == nullptr)
-         //       return;
-
-         call_update(id_after_change_text);
+         apply_update(id_after_change_text);
 
       }
 

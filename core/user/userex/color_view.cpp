@@ -401,10 +401,10 @@ namespace userex
    }
 
 
-   void color_view::update(::update * pupdate)
+   void color_view::on_apply(::action * paction)
    {
 
-      ::user::impact::update(pupdate);
+      ::user::impact::on_apply(paction);
 
    }
 

@@ -10,9 +10,9 @@
 //   {
 //   public:
 //
-//      ::html::element *              m_pelementalLButtonDown;
-//      ::html::element *              m_pelementalHover;
-//      __pointer_array(::html::element)           m_elementalptraMouseMove;
+//      ::html::matter *              m_pelementalLButtonDown;
+//      ::html::matter *              m_pelementalHover;
+//      __pointer_array(::html::matter)           m_elementalptraMouseMove;
 //      __pointer(::html_data)                  m_phtmldata;
 //
 //      form();

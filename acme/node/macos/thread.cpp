@@ -13,8 +13,8 @@ namespace macos
 
 
 
-//   thread::thread(::element * pobject) :
-//   ::element(pobject),
+//   thread::thread(::matter * pobject) :
+//   ::matter(pobject),
 //   ::thread_impl(pobject),
 //   ::ansios::thread_impl(pobject)
 //   {

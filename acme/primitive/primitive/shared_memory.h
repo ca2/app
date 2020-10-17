@@ -35,7 +35,7 @@
 
 
 
-      //virtual ::element * clone() override;
+      //virtual ::matter * clone() override;
 
    };
 

@@ -1,12 +1,12 @@
 #include "framework.h"
 
 
-promise::promise(::element * pelement, ::future future) :
-   m_pelement(pelement),
+promise::promise(::matter * pmatter, ::future future) :
+   m_pelement(pmatter),
    m_future(future)
 {
 
-   os_fork();
+   fork_run();
 
 }
 
@@ -29,13 +29,13 @@ promise::~promise()
 }
 
 
-CLASS_DECL_ACME var __launch(::element * pelement, ::future future)
+CLASS_DECL_ACME var __launch(::matter * pmatter, ::future future)
 {
 
    if(future)
    {
 
-      new promise(pelement, future);
+      new promise(pmatter, future);
 
       return ::success_promise;
 
@@ -43,7 +43,7 @@ CLASS_DECL_ACME var __launch(::element * pelement, ::future future)
    else
    {
 
-      return pelement->realize();
+      return pmatter->realize();
 
    }
 

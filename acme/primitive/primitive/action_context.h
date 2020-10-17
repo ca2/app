@@ -4,13 +4,13 @@
 
 
 class CLASS_DECL_ACME action_context :
-   virtual public element
+   virtual public matter
 {
 public:
 
 
    esource                          m_esource;
-   __pointer_array(::element)             m_objecta;
+   __pointer_array(::matter)             m_objecta;
 
 
    action_context() { }
@@ -22,9 +22,9 @@ public:
 
 
    inline void add(e_source esource) { m_esource.add(esource); }
-   inline void add(const element * pobject) { m_objecta.add((::element *) pobject); }
-   inline index find(const element * pobject) const { return m_objecta.find_first(pobject); }
-   inline bool contains(const element * pobject) const { return m_objecta.contains(pobject); }
+   inline void add(const matter * pobject) { m_objecta.add((::matter *) pobject); }
+   inline index find(const matter * pobject) const { return m_objecta.find_first(pobject); }
+   inline bool contains(const matter * pobject) const { return m_objecta.contains(pobject); }
 
    inline bool is(e_source esource) const { return m_esource.has(esource); }
    inline bool is_user_source() const { return is(source_user); }

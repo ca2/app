@@ -369,7 +369,7 @@ void dump_context::hex_dump(u64 ui)
 }
 
 
-void dump_context::write(const ::element * pobject)
+void dump_context::write(const ::matter * pobject)
 {
 
    if (pobject == nullptr)
@@ -390,10 +390,10 @@ void dump_context::write(const ::element * pobject)
 }
 
 
-void dump_context::write(const ::element & element)
+void dump_context::write(const ::matter & matter)
 {
 
-   element.dump(*this);
+   matter.dump(*this);
 
    return;
 

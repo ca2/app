@@ -158,10 +158,10 @@ namespace userex
    }
 
 
-   void impact_host::update(::update * pupdate)
+   void impact_host::on_apply(::action * paction)
    {
 
-      ::user::impact::update(pupdate);
+      ::user::impact::on_apply(paction);
 
    }
 

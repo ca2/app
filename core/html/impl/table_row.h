@@ -31,7 +31,7 @@ namespace html
          void set_cell(index iCol, index iRow, cell * pcell);
 
 
-         virtual void implement_phase1(html_data * pdocument, ::html::element * pelemental);
+         virtual void implement_phase1(html_data * pdocument, ::html::element* pelemental);
          
          
          virtual void layout_phase0(html_data * pdocument);
@@ -42,7 +42,7 @@ namespace html
          virtual void layout_phase3_end(html_data * pdata);
 
 
-         virtual bool use_in_final_layout(::html::impl::element * pimplChild);
+         virtual bool use_in_final_layout(::html::impl::element* pimplChild);
 
       };
 

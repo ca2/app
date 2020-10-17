@@ -166,10 +166,10 @@ namespace hellobase
    }
 
 
-   void view::update(::update * pupdate)
+   void view::on_apply(::action * paction)
    {
 
-      impact_base::update(pupdate);
+      impact_base::on_apply(paction);
 
       ::update * pupdate = dynamic_cast < ::update *> (pupdate);
 

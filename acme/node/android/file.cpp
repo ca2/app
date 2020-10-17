@@ -106,16 +106,16 @@ namespace android
 
    }
 
-   //file::file(::element * pobject, i32 hFile) :
-   //   ::element(pobject)
+   //file::file(::matter * pobject, i32 hFile) :
+   //   ::matter(pobject)
    //{
 
    //   m_iFile = hFile;
 
    //}
 
-   //file::file(::element * pobject, const char * lpszFileName, UINT nOpenFlags) :
-   //   ::element(pobject)
+   //file::file(::matter * pobject, const char * lpszFileName, UINT nOpenFlags) :
+   //   ::matter(pobject)
    //{
 
    //   ASSERT(__is_valid_string(lpszFileName));
@@ -674,13 +674,13 @@ namespace android
 
 
 
-   //void PASCAL ::file::throw_os_error(::element * pobject, LONG lOsError, const char * lpszFileName /* = nullptr */)
+   //void PASCAL ::file::throw_os_error(::matter * pobject, LONG lOsError, const char * lpszFileName /* = nullptr */)
    //{
    //   if (lOsError != 0)
    //      vfxThrowFileexception(file_exception::os_error_to_exception(lOsError), lOsError, lpszFileName);
    //}
 
-   //void PASCAL file_exception::ThrowErrno(::element * pobject, i32 nErrno, const char * lpszFileName /* = nullptr */)
+   //void PASCAL file_exception::ThrowErrno(::matter * pobject, i32 nErrno, const char * lpszFileName /* = nullptr */)
    //{
    //   if (nErrno != 0)
    //      vfxThrowFileexception(file_exception::errno_to_status(nErrno), errno, lpszFileName);
@@ -792,7 +792,7 @@ bool CLASS_DECL_ACME vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
 }
 
 //
-//void CLASS_DECL_ACME vfxThrowFileException(::element * pobject, const ::estatus & estatus, LONG lOsError, const char * lpszFileName /* == nullptr */)
+//void CLASS_DECL_ACME vfxThrowFileException(::matter * pobject, const ::estatus & estatus, LONG lOsError, const char * lpszFileName /* == nullptr */)
 //{
 //
 //   __throw(::file::exception(ecause, lOsError, lpszFileName));

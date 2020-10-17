@@ -25,11 +25,11 @@ void simple_tree_view::install_message_routing(::channel * pchannel)
 }
 
 
-void simple_tree_view::update(::update * pupdate)
+void simple_tree_view::on_apply(::action * paction)
 {
 
-   ::user::impact::update(pupdate);
-   ::user::tree::update(pupdate);
+   ::user::impact::on_apply(paction);
+   ::user::tree::on_apply(paction);
 
 }
 

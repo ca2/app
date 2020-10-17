@@ -9,7 +9,7 @@ namespace user
 
 
    class CLASS_DECL_BASE tab_pane:
-      virtual public ::element
+      virtual public ::matter
    {
    public: 
 
@@ -211,7 +211,7 @@ namespace user
       virtual void _001CloseTab(::index iTab);
 
 
-      virtual void update(::update * pupdate) override;
+      virtual void on_apply(::action * paction) override;
 
       virtual void rotate();
 

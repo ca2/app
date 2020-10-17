@@ -1606,7 +1606,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="platform\department_container.cpp" />
     <ClCompile Include="platform\display.cpp" />
     <ClCompile Include="platform\draw_context.cpp" />
-    <ClCompile Include="platform\element.cpp" />
+    <ClCompile Include="platform\matter.cpp" />
     <ClCompile Include="platform\exclusive.cpp" />
     <ClCompile Include="platform\factory.cpp" />
     <ClCompile Include="platform\fixed_alloc.cpp" />

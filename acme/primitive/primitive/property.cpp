@@ -2,7 +2,7 @@
 //#include "acme/xml/_.h"
 
 
-void prop_id_debug(::element * pobject);
+void prop_id_debug(::matter * pobject);
 
 
 //property::property(property_set * pset) :
@@ -80,7 +80,7 @@ void prop_id_debug(::element * pobject);
 //      if(m_id.is_empty())
 //      {
 //
-//         output_debug_string("\nHI!! Shouldn't you use a element find this by use element and set a breakpoint here!!!\n");
+//         output_debug_string("\nHI!! Shouldn't you use a matter find this by use matter and set a breakpoint here!!!\n");
 //         m_id = property.m_id;
 //
 //      }
@@ -128,7 +128,7 @@ void prop_id_debug(::element * pobject);
 ////}
 //
 //
-////property::property(property_set * pset, const id & id, const var &  var, ::element * pobject) :
+////property::property(property_set * pset, const id & id, const var &  var, ::matter * pobject) :
 ////   m_ppropertyset(pset),
 ////   m_var(var)
 ////{
@@ -1403,8 +1403,8 @@ string & property::get_http_post(string & str) const
 //
 //
 //
-////property_ptra::property_ptra(::element * pobject):
-////   ::element(pobject)
+////property_ptra::property_ptra(::matter * pobject):
+////   ::matter(pobject)
 ////{
 ////   set_size(0, 64);
 ////}
@@ -1472,7 +1472,7 @@ string & property::get_http_post(string & str) const
 //
 //
 //
-//void prop_id_debug(::element * pobject)
+//void prop_id_debug(::matter * pobject)
 //{
 //
 //   comparable_array < ::id > idaSchema;

@@ -6,8 +6,8 @@
 html_form::html_form()
 {
 
-   m_pelementalLButtonDown = nullptr;
-   m_pelementalHover = nullptr;
+   m_pelementLButtonDown = nullptr;
+   m_pelementHover = nullptr;
 
    //m_flagNonClient.remove(non_client_background);
    m_flagNonClient.remove(non_client_focus_rect);
@@ -246,11 +246,11 @@ void html_form::_001OnLButtonDown(::message::message * pmessage)
       && get_html_data()->m_pcoredata != nullptr)
    {
 
-      m_pelementalLButtonDown = get_html_data()->m_pcoredata->m_elemental.hit_test(get_html_data(), point);
+      m_pelementLButtonDown = get_html_data()->m_pcoredata->m_element.hit_test(get_html_data(), point);
 
    }
 
-   if(m_pelementalLButtonDown != nullptr)
+   if(m_pelementLButtonDown != nullptr)
    {
 
       ::html::message htmlmessage;
@@ -261,7 +261,7 @@ void html_form::_001OnLButtonDown(::message::message * pmessage)
 
       htmlmessage.m_pchannel = pmouse->m_pchannel;
 
-      m_pelementalLButtonDown->OnLButtonDown(&htmlmessage);
+      m_pelementLButtonDown->OnLButtonDown(&htmlmessage);
 
    }
    else
@@ -296,27 +296,27 @@ void html_form::_001OnMouseMove(::message::message * pmessage)
 
       sync_lock sl(get_html_data()->mutex());
 
-      html::element * pelemental = get_html_data()->m_pcoredata->m_elemental.hit_test(get_html_data(), point);
+      html::element * pelement = get_html_data()->m_pcoredata->m_element.hit_test(get_html_data(), point);
 
-      if(pelemental != nullptr)
+      if(pelement != nullptr)
       {
 
-         if (pelemental != m_pelementalHover)
+         if (pelement != m_pelementHover)
          {
 
-            if (m_pelementalHover != nullptr)
+            if (m_pelementHover != nullptr)
             {
 
-               if (m_pelementalHover->m_pimpl != nullptr)
+               if (m_pelementHover->m_pimpl != nullptr)
                {
 
-                  m_pelementalHover->m_pimpl->m_bHover = false;
+                  m_pelementHover->m_pimpl->m_bHover = false;
 
                }
 
             }
 
-            m_pelementalHover = pelemental;
+            m_pelementHover = pelement;
 
          }
 
@@ -330,7 +330,7 @@ void html_form::_001OnMouseMove(::message::message * pmessage)
 
          htmlmessage.m_pchannel = pmouse->m_pchannel;
 
-         pelemental->OnMouseMove(&htmlmessage);
+         pelement->OnMouseMove(&htmlmessage);
 
       }
 
@@ -342,17 +342,17 @@ void html_form::_001OnMouseMove(::message::message * pmessage)
 void html_form::_001OnMouseLeave(::message::message * pmessage)
 {
 
-   if(m_pelementalHover != nullptr)
+   if(m_pelementHover != nullptr)
    {
 
-      if (m_pelementalHover->m_pimpl != nullptr)
+      if (m_pelementHover->m_pimpl != nullptr)
       {
 
-         m_pelementalHover->m_pimpl->m_bHover = false;
+         m_pelementHover->m_pimpl->m_bHover = false;
 
       }
 
-      m_pelementalHover = nullptr;
+      m_pelementHover = nullptr;
 
    }
 
@@ -368,17 +368,17 @@ void html_form::_001OnLButtonUp(::message::message * pmessage)
 
    _001ScreenToClient(point);
 
-   html::element * pelemental = nullptr;
+   html::element * pelement = nullptr;
 
    if(get_html_data() != nullptr
       && get_html_data()->m_pcoredata != nullptr)
    {
 
-      get_html_data()->m_pcoredata->m_elemental.hit_test(get_html_data(), point);
+      get_html_data()->m_pcoredata->m_element.hit_test(get_html_data(), point);
 
    }
 
-   if(m_pelementalLButtonDown != nullptr && pelemental == m_pelementalLButtonDown)
+   if(m_pelementLButtonDown != nullptr && pelement == m_pelementLButtonDown)
    {
 
       ::html::message htmlmessage;
@@ -389,7 +389,7 @@ void html_form::_001OnLButtonUp(::message::message * pmessage)
 
       htmlmessage.m_pchannel = pmouse->m_pchannel;
 
-      m_pelementalLButtonDown->OnLButtonUp(&htmlmessage);
+      m_pelementLButtonDown->OnLButtonUp(&htmlmessage);
 
    }
 }
@@ -545,7 +545,7 @@ void html_form::set_need_load_form_data()
 void html_form::_001GetText(string & str) const
 {
 
-   ((html_form *) this)->get_html_data()->m_pcoredata->m_elemental.get_html((const_cast < html_form * > (this)->get_html_data()), str);
+   ((html_form *) this)->get_html_data()->m_pcoredata->m_element.get_html((const_cast < html_form * > (this)->get_html_data()), str);
 
 }
 
@@ -714,15 +714,15 @@ bool html_form::load_html(const string & str)
 
 
 
-void html_form::update(::update * pupdate)
+void html_form::on_apply(::action * paction)
 {
 
-   ::user::form_view::update(pupdate);
+   ::user::form_view::on_apply(paction);
 
    ////__update(::update)
    {
 
-      if (pupdate->m_id == id_document_complete)
+      if (paction->id() == id_document_complete)
       {
 
          m_phtmldata = get_document()->get_html_data();
@@ -731,7 +731,7 @@ void html_form::update(::update * pupdate)
 
    }
 
-   if (pupdate->m_id == id_open_document)
+   if (paction->id() == id_open_document)
    {
 
       if (m_strOpenOnCreate.has_char())
@@ -749,15 +749,15 @@ void html_form::update(::update * pupdate)
 
 
 
-void html_form_view::update(::update * pupdate)
+void html_form_view::on_apply(::action * paction)
 {
 
-   ::html_form::update(pupdate);
+   ::html_form::on_apply(paction);
 
    ////__update(::update)
    {
 
-      if (pupdate->m_id == id_document_complete)
+      if (paction->id() == id_document_complete)
       {
 
          ASSERT(get_html_data() != nullptr);
@@ -784,7 +784,7 @@ void html_form_view::update(::update * pupdate)
 
          defer_html_layout();
 
-         on_document_complete(pupdate->value(id_url));
+         on_document_complete(paction->value(id_url));
 
          GetParentFrame()->SetActiveView(this);
 
@@ -797,28 +797,28 @@ void html_form_view::update(::update * pupdate)
    ////__update(::update)
    {
 
-      if (pupdate->m_id == id_browse)
+      if (paction->id() == id_browse)
       {
 
-         if (!pupdate->value(id_form).is_empty())
+         if (!paction->value(id_form).is_empty())
          {
 
             ::file::path matter;
 
-            matter = Context.dir().matter(pupdate->value(id_form));
+            matter = Context.dir().matter(paction->value(id_form));
 
             if (get_document()->on_open_document(matter))
             {
 
-               m_strPath = pupdate->value(id_form);
+               m_strPath = paction->value(id_form);
 
             }
 
          }
-         else if (pupdate->m_id == id_get_form_view)
+         else if (paction->id() == id_get_form_view)
          {
 
-            pupdate->value(id_form) = this;
+            paction->value(id_form) = this;
 
          }
 
@@ -827,9 +827,9 @@ void html_form_view::update(::update * pupdate)
       if (m_pcallback != nullptr)
       {
 
-         pupdate->value(id_form) = this;
+         paction->value(id_form) = this;
 
-         m_pcallback->call_update(pupdate);
+         m_pcallback->apply(paction);
 
       }
 
@@ -839,15 +839,15 @@ void html_form_view::update(::update * pupdate)
 
 
 
-void html_view::update(::update * pupdate)
+void html_view::on_apply(::action * paction)
 {
 
-   ::html_form::update(pupdate);
+   ::html_form::on_apply(paction);
 
    ////__update(::update)
    {
 
-      if (pupdate->m_id == id_document_complete)
+      if (paction->id() == id_document_complete)
       {
 
          {
@@ -865,7 +865,7 @@ void html_view::update(::update * pupdate)
 
          }
 
-         on_document_complete(pupdate->value(id_url));
+         on_document_complete(paction->value(id_url));
 
          set_need_layout();
 

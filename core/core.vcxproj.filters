@@ -231,11 +231,11 @@
     <Filter Include="Header Files\user\netuser">
       <UniqueIdentifier>{7414d1f0-8f4e-4376-ad9a-c252779030d9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\html\element">
-      <UniqueIdentifier>{3394504c-c614-4aa7-b40f-9375ed0fa0d4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\html\element">
       <UniqueIdentifier>{00fd2a98-1ad5-4005-9478-c4b51b8b942c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\html\element">
+      <UniqueIdentifier>{3394504c-c614-4aa7-b40f-9375ed0fa0d4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1445,13 +1445,16 @@
     <ClInclude Include="user\simple_ui\_simple_ui.h">
       <Filter>Header Files\user\simple_ui</Filter>
     </ClInclude>
-    <ClInclude Include="html\element\element.h">
+    <ClInclude Include="html\matter\_element.h">
+      <Filter>Header Files\html\element</Filter>
+    </ClInclude>
+    <ClInclude Include="html\matter\_.h">
       <Filter>Header Files\html\element</Filter>
     </ClInclude>
     <ClInclude Include="html\element\_element.h">
       <Filter>Header Files\html\element</Filter>
     </ClInclude>
-    <ClInclude Include="html\element\_.h">
+    <ClInclude Include="html\element\element.h">
       <Filter>Header Files\html\element</Filter>
     </ClInclude>
     <ClInclude Include="html\impl\element.h">

@@ -524,9 +524,9 @@ namespace aura
 
          __compose(m_pfontlistSingleColumn, __create_new < ::draw2d::font_list > ());
 
-         m_pfontlistSingleColumn->m_etype = ::draw2d::font_list::type_single_column;
+         m_pfontlistSingleColumn->set_font_list_type(::draw2d::font_list::type_single_column);
 
-         m_pfontlistSingleColumn->set_need_layout();
+         // m_pfontlistSingleColumn->set_need_layout();
 
       }
 

@@ -9,7 +9,7 @@ namespace user
 
 
    class CLASS_DECL_BASE impact_data :
-      virtual public ::element
+      virtual public ::matter
    {
    public:
 

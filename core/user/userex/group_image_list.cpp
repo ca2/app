@@ -41,10 +41,10 @@ namespace userex
    }
 
 
-   void group_image_list_view::update(::update * pupdate)
+   void group_image_list_view::on_apply(::action * paction)
    {
 
-      ::user::impact::update(pupdate);
+      ::user::impact::on_apply(paction);
 
    }
 

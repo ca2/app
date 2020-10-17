@@ -38,7 +38,7 @@ namespace filemanager
 
       virtual void GetSel(string_array & stra);
 
-      virtual void update(::update * pupdate) override;
+      virtual void on_apply(::action * paction) override;
 
 
    };

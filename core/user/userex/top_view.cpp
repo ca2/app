@@ -39,10 +39,10 @@ namespace userex
    }
 
 
-   void top_view::update(::update * pupdate)
+   void top_view::on_apply(::action * paction)
    {
 
-      ::user::split_view::update(pupdate);
+      ::user::split_view::on_apply(paction);
 
    }
 

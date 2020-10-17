@@ -50,7 +50,7 @@ namespace database
    }
 
 
-   bool server::_data_server_load(client * pclient, const key & id, get_memory getmemory, ::update * pupdate)
+   bool server::_data_server_load(client * pclient, const key & id, get_memory getmemory, ::action * paction)
    {
 
 #if MEMDLEAK
@@ -64,7 +64,7 @@ namespace database
    }
 
 
-   bool server::_data_server_save(client * pclient, const key & id, block block, ::update * pupdate)
+   bool server::_data_server_save(client * pclient, const key & id, block block, ::action * paction)
    {
 
       return true;
@@ -72,15 +72,15 @@ namespace database
    }
 
 
-   bool server::data_pulse_change(client * pclient, const key & id, ::update * pupdate)
+   bool server::data_pulse_change(client * pclient, const key & id, ::action * paction)
    {
 
-      return on_after_data_change(pclient, id, pupdate);
+      return on_after_data_change(pclient, id, paction);
 
    }
 
 
-   bool server::on_before_data_change(client * pclient, const key & id, var & var, ::update * pupdate)
+   bool server::on_before_data_change(client * pclient, const key & id, var & var, ::action * paction)
    {
 
       //::database::change_event signal(var);
@@ -88,12 +88,12 @@ namespace database
       //signal.m_pserver = this;
       //signal.m_pclient = pclient;
       //signal.m_datakey = id;
-      //signal.m_pupdate = pupdate;
+      //signal.m_pupdate = pchange;
 
       for(i32 i = 0; i < m_clienta.get_count(); i++)
       {
 
-         bool bOk = m_clienta.element_at(i)->data_on_before_change(pclient, id, var, pupdate);
+         bool bOk = m_clienta.element_at(i)->data_on_before_change(pclient, id, var, paction);
 
          if(!bOk)
          {
@@ -109,18 +109,26 @@ namespace database
    }
 
 
-   bool server::on_after_data_change(client * pclient, const key & id, const ::var & var, ::update * pupdate)
+   bool server::on_after_data_change(client * pclient, const key & id, const ::var & var, ::action * paction)
    {
+
       //::database::change_event signal;
       //signal.m_pserver       = this;
       //signal.m_pclient     = pclient;
       //signal.m_datakey          = id;
-      //signal.m_pupdate = pupdate;
+      //signal.m_pupdate = pchange;
 
       for(i32 i = 0; i < m_clienta.get_count(); i++)
       {
 
-         m_clienta.element_at(i)->data_on_after_change(pclient, id, var, pupdate);
+         if (::is_set(paction))
+         {
+
+            paction->m_pmatter = m_clienta.element_at(i);
+
+         }
+
+         m_clienta.element_at(i)->data_on_after_change(pclient, id, var, paction);
 
       }
 
@@ -129,14 +137,14 @@ namespace database
    }
 
 
-   var server::data_load(client * pclient, const key & id, ::update * pupdate)
+   var server::data_load(client * pclient, const key & id, ::action * paction)
    {
 
       ::memory_stream is;
 
       {
 
-         if (!_data_server_load(pclient, id, is->memory(), pupdate))
+         if (!_data_server_load(pclient, id, is->memory(), paction))
          {
 
             return ::type_null;
@@ -154,7 +162,7 @@ namespace database
    }
 
 
-   bool server::data_save(client * pclient, const key & id, var & var, ::update * pupdate)
+   bool server::data_save(client * pclient, const key & id, var & var, ::action * paction)
    {
 
       ::memory_stream writer;
@@ -163,7 +171,7 @@ namespace database
 
       {
 
-         if (!_data_server_load(pclient, id, writer->memory(), pupdate))
+         if (!_data_server_load(pclient, id, writer->memory(), paction))
          {
 
             return false;

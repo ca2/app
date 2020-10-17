@@ -532,8 +532,7 @@ __pointer(::mutex) channel::s_pmutexChannel;
 
             }
 
-            call_update(pproperty->m_id, pcommand->m_actioncontext);
-
+            this->update(pproperty->m_id)->apply(pcommand->m_actioncontext);
 
       });
 
@@ -572,28 +571,28 @@ __pointer(::mutex) channel::s_pmutexChannel;
    }
 
 
-   void channel::call_update(const ::id & id, const ::action_context & context)
-   {
+   //void channel::apply(const ::id & id, const ::action_context & context)
+   //{
 
-      auto & notifya = m_mapUpdate[id];
+   //   auto & notifya = m_mapUpdate[id];
 
-      for (auto & pnotify : notifya)
-      {
+   //   for (auto & pnotify : notifya)
+   //   {
 
-         pnotify->call_update((const ::__id & ) id, context);
+   //      pnotify->call_update((const ::__id & ) id, context);
 
-      }
+   //   }
 
-      if(context.is_user_source())
-      {
+   //   if(context.is_user_source())
+   //   {
 
-         auto& runnablea = m_mapRunnable[id];
+   //      auto& runnablea = m_mapRunnable[id];
 
-         ::call_sync(runnablea);
+   //      ::call_sync(runnablea);
 
-      }
+   //   }
 
-   }
+   //}
 
 
 

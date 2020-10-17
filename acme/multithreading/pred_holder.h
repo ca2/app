@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ACME pred_holder_base :
-   virtual public element
+   virtual public matter
 {
 public:
 

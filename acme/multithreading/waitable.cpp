@@ -6,14 +6,14 @@
 #include "framework.h"
 
 
-//element::element()
+//matter::matter()
 //{
 //
 //   mutex() = nullptr;
 //
 //}
 //
-//element::element(const element & objectSrc)
+//matter::matter(const matter & objectSrc)
 //{
 //
 //   UNREFERENCED_PARAMETER(objectSrc);
@@ -24,7 +24,7 @@
 //
 //
 /////  \brief		destructor
-//element::~element()
+//matter::~matter()
 //{
 //
 //   if(mutex() != nullptr)
@@ -39,7 +39,7 @@
 //}
 //
 /////  \brief		abstract function to initialize a waiting action without a timeout
-//void element::wait()
+//void matter::wait()
 //{
 //
 //   wait(duration::infinite());
@@ -49,14 +49,14 @@
 //	///  \brief		abstract function to initialize a waiting action with a timeout
 //	///  \lparam		duration time period to wait for item
 //	///  \return	waiting action result as sync_result
-//sync_result element::wait(const duration & duration )
+//sync_result matter::wait(const duration & duration )
 //{
 //
 //
 //   if(mutex() == nullptr)
 //   {
 //
-//      ((element *)this)->mutex() = new ::mutex();
+//      ((matter *)this)->mutex() = new ::mutex();
 //
 //   }
 //
@@ -91,8 +91,8 @@
 ////};
 //
 //
-/////  \brief		pauses element for specified time
-/////  \lparam		duration sleeping time of element
+/////  \brief		pauses matter for specified time
+/////  \lparam		duration sleeping time of matter
 ///*CLASS_DECL_ACME void sleep(const duration & duration)
 //{
 //   Sleep((u32)duration.total_milliseconds());
@@ -107,13 +107,13 @@
 //
 //
 //
-//void * element::get_os_data() const
+//void * matter::get_os_data() const
 //{
 //
 //   if(mutex() == nullptr)
 //   {
 //
-//      ((element *)this)->mutex() = new ::mutex();
+//      ((matter *)this)->mutex() = new ::mutex();
 //
 //   }
 //
@@ -121,22 +121,22 @@
 //
 //}
 //
-//void element::lock()
+//void matter::lock()
 //{
 //
 //   if(!lock(duration::infinite()))
 //      if(!lock(duration::infinite()))
-//         __throw(::exception::exception("failure to lock element"));
+//         __throw(::exception::exception("failure to lock matter"));
 //
 //}
 //
-//bool element::lock(const duration & duration)
+//bool matter::lock(const duration & duration)
 //{
 //
 //   if(mutex() == nullptr)
 //   {
 //
-//      ((element *)this)->mutex() = new ::mutex();
+//      ((matter *)this)->mutex() = new ::mutex();
 //
 //   }
 //
@@ -163,7 +163,7 @@
 //}
 //
 //
-//bool element::unlock()
+//bool matter::unlock()
 //{
 //
 //   if(mutex() == nullptr)
@@ -191,7 +191,7 @@
 //
 //}
 //
-//bool element::unlock(LONG lCount, LPLONG pPrevCount)
+//bool matter::unlock(LONG lCount, LPLONG pPrevCount)
 
 //{
 //   UNREFERENCED_PARAMETER(lCount);
@@ -201,13 +201,13 @@
 //}
 //
 //
-//bool element::is_locked() const
+//bool matter::is_locked() const
 //{
 //
 //   // CRITICAL SECTIONS does *NOT* support is locked and timed locks
-//   ASSERT(dynamic_cast < critical_section * > ( const_cast < element * > (this)) == nullptr);
+//   ASSERT(dynamic_cast < critical_section * > ( const_cast < matter * > (this)) == nullptr);
 //
-//   single_lock sl(const_cast < element * > (this));
+//   single_lock sl(const_cast < matter * > (this));
 //
 //   bool bWasLocked = !sl.lock(duration::zero());
 //

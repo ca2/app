@@ -15,8 +15,8 @@
 //   {
 //
 //
-//      base::base(::element * pobject) :
-//         element(pobject)
+//      base::base(::matter * pobject) :
+//         matter(pobject)
 //      {
 //
 //         m_iSerial = 1;
@@ -39,8 +39,8 @@
 //      }
 //
 //
-//      tx::tx(::element * pobject):
-//         element(pobject),
+//      tx::tx(::matter * pobject):
+//         matter(pobject),
 //         base(pobject)
 //      {
 //
@@ -145,8 +145,8 @@
 //
 //
 //
-//      rx::rx(::element * pobject) :
-//         element(pobject),
+//      rx::rx(::matter * pobject) :
+//         matter(pobject),
 //         base(pobject)
 //      {
 //
@@ -459,8 +459,8 @@
 //
 //      }
 //
-//      ipc::ipc(::element * pobject):
-//         element(pobject),
+//      ipc::ipc(::matter * pobject):
+//         matter(pobject),
 //         base(pobject),
 //         tx(pobject),
 //         m_rx(pobject)

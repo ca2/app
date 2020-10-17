@@ -190,7 +190,7 @@ namespace uwp
 
 
 
-      //// Create a DirectWrite text format element.
+      //// Create a DirectWrite text format matter.
       //::uwp::throw_if_failed(
       //m_dwriteFactory->CreateTextFormat(
       //L"Gabriola",

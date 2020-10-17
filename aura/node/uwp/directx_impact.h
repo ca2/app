@@ -133,7 +133,7 @@ namespace uwp
 
       void UpdateTextUI();
 
-     // static Rect GetElementRect(FrameworkElement element);
+     // static Rect GetElementRect(FrameworkElement matter);
    };
 
 

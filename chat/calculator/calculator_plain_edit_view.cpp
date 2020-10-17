@@ -24,7 +24,7 @@ namespace calculator
    }
 
 
-   void plain_edit_view::update(::update * pupdate)
+   void plain_edit_view::on_apply(::action * paction)
    {
 
       if(eupdate == 2000)
@@ -47,7 +47,7 @@ namespace calculator
             e.m_iStart = -1;
             e.m_dwTime= ::get_tick();
 
-            ::calculator::element * pelement = nullptr;
+            ::calculator::matter * pmatter = nullptr;
 
             string strSource;
 
@@ -141,7 +141,7 @@ namespace calculator
             try
             {
 
-               pelement = parser.parse(strExp);
+               pmatter = parser.parse(strExp);
 
             }
             catch(numeric_parser_exception & exp)
@@ -155,10 +155,10 @@ namespace calculator
 
             string str;
 
-            if(pelement != nullptr)
+            if(pmatter != nullptr)
             {
 
-               m_val = pelement->get_value();
+               m_val = pmatter->get_value();
 
                str = strExp;
 

@@ -1085,7 +1085,7 @@
     <ClInclude Include="primitive\primitive\command.h" />
     <ClInclude Include="primitive\primitive\compare_pred.h" />
     <ClInclude Include="primitive\primitive\edit.h" />
-    <ClInclude Include="primitive\primitive\element.h" />
+    <ClInclude Include="primitive\primitive\matter.h" />
     <ClInclude Include="primitive\primitive\enum.h" />
     <ClInclude Include="primitive\primitive\enum_type.h" />
     <ClInclude Include="primitive\primitive\eobject.h" />
@@ -2267,7 +2267,7 @@
     <ClCompile Include="primitive\primitive\command.cpp" />
     <ClCompile Include="primitive\primitive\context_object_traits.cpp" />
     <ClCompile Include="primitive\primitive\edit.cpp" />
-    <ClCompile Include="primitive\primitive\element.cpp" />
+    <ClCompile Include="primitive\primitive\matter.cpp" />
     <ClCompile Include="primitive\primitive\factory.cpp" />
     <ClCompile Include="primitive\primitive\future.cpp" />
     <ClCompile Include="primitive\primitive\handler.cpp" />

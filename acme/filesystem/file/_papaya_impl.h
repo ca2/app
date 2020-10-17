@@ -1,7 +1,7 @@
 #pragma once
 
 
-//inline ::file_result element::get_reader(const ::var & varFile, const ::efileopen & efileopen)
+//inline ::file_result matter::get_reader(const ::var & varFile, const ::efileopen & efileopen)
 //{
 //
 //   return Context.file().get_reader(varFile, efileopen);
@@ -9,7 +9,7 @@
 //}
 //
 //
-//inline ::file_result element::get_writer(const ::var & varFile, const ::efileopen & efileopen)
+//inline ::file_result matter::get_writer(const ::var & varFile, const ::efileopen & efileopen)
 //{
 //
 //   return Context.file().get_writer(varFile, efileopen);
@@ -106,10 +106,10 @@ inline stream & operator <<(stream & stream, const ::array_base < TYPE, ARG_TYPE
 
    stream << c;
 
-   for (auto & element : array.values())
+   for (auto & matter : array.values())
    {
 
-      stream << element;
+      stream << matter;
 
       if (stream.fail())
       {

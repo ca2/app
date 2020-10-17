@@ -52,7 +52,7 @@ namespace acme
    }
 
 
-   ::estatus application::initialize(::element * pobjectContext)
+   ::estatus application::initialize(::matter * pobjectContext)
    {
 
       auto estatus = ::acme::application::initialize(pobjectContext);
@@ -932,7 +932,7 @@ namespace acme
       }
 
       // handle all the rest
-      //linux UINT nIDP = __IDP_INTERNAL_FAILURE;   // element message string
+      //linux UINT nIDP = __IDP_INTERNAL_FAILURE;   // matter message string
       const char * nIDP = "Internal Failure";
       pbase->m_lresult = 0;        // sensible default
       if (pbase->m_id == WM_COMMAND)
@@ -2440,13 +2440,13 @@ namespace acme
 
 
 
-   /*   property_set & application::propset(element * pobject)
+   /*   property_set & application::propset(matter * pobject)
    {
    single_lock sl(&m_mapObjectSet, TRUE);
    return m_mapObjectSet[pobject];
    }
 
-   property_set * application::existing_propset(element * pobject)
+   property_set * application::existing_propset(matter * pobject)
    {
    single_lock sl(&m_mapObjectSet, TRUE);
    auto point = m_mapObjectSet.plookup(pobject);
@@ -3222,7 +3222,7 @@ m_tickHeartBeat.Now();
    //::acme::application * application::get_context_system()
    //{
 
-   //   return ::element::get_context_system();
+   //   return ::matter::get_context_system();
 
    //}
 
@@ -3771,7 +3771,7 @@ m_tickHeartBeat.Now();
    //}
 
 
-   //::estatus application::initialize(::element* pobjectContext)
+   //::estatus application::initialize(::matter* pobjectContext)
    //{
 
    //   auto estatus = ::acme::application::initialize(pobjectContext);
@@ -3795,10 +3795,10 @@ m_tickHeartBeat.Now();
    //   }
 
 
-      //void application::update(::update * pupdate)
+      //void application::on_apply(::action * paction)
       //{
 
-      //   ::acme::application::update(pupdate);
+      //   ::acme::application::on_apply(paction);
 
       //   if (pupdate->m_bRet)
       //   {
@@ -3807,7 +3807,7 @@ m_tickHeartBeat.Now();
 
       //   }
       //
-      //   ::user::form_callback::update(pupdate);
+      //   ::user::form_callback::on_apply(paction);
 
       //   if (pupdate->m_bRet)
       //   {
@@ -4113,7 +4113,7 @@ m_tickHeartBeat.Now();
    //}
 
 
-   ::draw2d::icon* application::set_icon(element* pobject, ::draw2d::icon* picon, bool bBigIcon)
+   ::draw2d::icon* application::set_icon(matter* pobject, ::draw2d::icon* picon, bool bBigIcon)
    {
 
       ::draw2d::icon* piconOld = get_icon(pobject, bBigIcon);
@@ -4121,13 +4121,13 @@ m_tickHeartBeat.Now();
       if (bBigIcon)
       {
 
-         pobject->value("big_icon") = (__pointer(element)) picon;
+         pobject->value("big_icon") = (__pointer(matter)) picon;
 
       }
       else
       {
 
-         pobject->value("small_icon") = (__pointer(element)) picon;
+         pobject->value("small_icon") = (__pointer(matter)) picon;
 
       }
 
@@ -4136,19 +4136,19 @@ m_tickHeartBeat.Now();
    }
 
 
-   ::draw2d::icon* application::get_icon(element* pobject, bool bBigIcon) const
+   ::draw2d::icon* application::get_icon(matter* pobject, bool bBigIcon) const
    {
 
       if (bBigIcon)
       {
 
-         return const_cast <element*> (pobject)->cast < ::draw2d::icon >("big_icon");
+         return const_cast <matter*> (pobject)->cast < ::draw2d::icon >("big_icon");
 
       }
       else
       {
 
-         return const_cast <element*> (pobject)->cast < ::draw2d::icon >("small_icon");
+         return const_cast <matter*> (pobject)->cast < ::draw2d::icon >("small_icon");
 
       }
 

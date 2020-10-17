@@ -112,8 +112,8 @@ namespace android
 
    //   ::estatus PASCAL OsErrorToException(LONG lOsError);
    //   ::estatus PASCAL ErrnoToException(i32 nErrno);
-   //   void PASCAL ThrowOsError(::element * pobject, LONG lOsError, const char * lpszFileName = nullptr);
-   //   void PASCAL ThrowErrno(::element * pobject, i32 nErrno, const char * lpszFileName = nullptr);
+   //   void PASCAL ThrowOsError(::matter * pobject, LONG lOsError, const char * lpszFileName = nullptr);
+   //   void PASCAL ThrowErrno(::matter * pobject, i32 nErrno, const char * lpszFileName = nullptr);
 
 
    //}  // namespace file_exception

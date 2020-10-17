@@ -236,8 +236,8 @@ struct memory_state;
 #include "smart_pointer_query.h"
 
 
-#define ASSERT_KINDOF(class_name, element) ASSERT(base_class < class_name > ::bases(element))
-#define DYNAMIC_CAST(class_name, element) (dynamic_cast < class_name * > (element))
+#define ASSERT_KINDOF(class_name, matter) ASSERT(base_class < class_name > ::bases(matter))
+#define DYNAMIC_CAST(class_name, matter) (dynamic_cast < class_name * > (matter))
 #define ZERO_INIT_JUST_THIS(base_class) __memset(((base_class*)this)+1, 0, sizeof(*this) - sizeof(class base_class));
 
 
@@ -255,7 +255,7 @@ namespace acme
 namespace draw2d
 {
    class graphics;                   // a Display Context / HDC wrapper
-   class element;            // ::draw2d::graphics_pointer drawing tool
+   class matter;            // ::draw2d::graphics_pointer drawing tool
    class bitmap;           // a bitmap
    class palette;          // a palette
    class region;
@@ -277,7 +277,7 @@ class channel;            // a target for ::account::user commands
 namespace user
 {
    class plain_edit;            // Edit control
-   class document_manager;      // impact_system manager element
+   class document_manager;      // impact_system manager matter
    class frame_window;        // standard SDI frame
    class interaction_child;
    class combo_box;        // ComboBox control

@@ -2140,13 +2140,13 @@ namespace user
    }
 
 
-   void tree::update(::update * pupdate)
+   void tree::on_apply(::action * paction)
    {
 
       if (m_ptree)
       {
 
-         m_ptree->update(pupdate);
+         m_ptree->apply(paction);
 
       }
 

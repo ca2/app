@@ -91,7 +91,7 @@ namespace userstack
    }
 
 
-   void view::update(::update * pupdate)
+   void view::on_apply(::action * paction)
    {
 
       UNREFERENCED_PARAMETER(pupdate);

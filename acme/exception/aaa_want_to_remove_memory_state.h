@@ -12,7 +12,7 @@
 //   enum blockUsage
 //   {
 //      freeBlock,    // memory not used
-//      objectBlock,  // contains a element derived class element
+//      objectBlock,  // contains a matter derived class matter
 //      bitBlock,     // contains ::operator new data
 //      crtBlock,
 //      ignoredBlock,

@@ -887,11 +887,9 @@ break_click:;
 
          _001SetItemText(&item);
 
-         auto pupdate = new_update();
+         auto paction = fork_action(id_control_saved);
 
-         pupdate->m_id = id_control_saved;
-
-         call_update(pupdate);
+         apply(paction);
 
          return true;
 
@@ -961,11 +959,9 @@ break_click:;
 
          _001SetItemText(&item);
 
-         auto pupdate = new_update();
+         auto paction = fork_action(id_control_saved);
 
-         pupdate->m_id = id_control_saved;
-
-         call_update(pupdate);
+         apply(paction);
 
          if (pinteraction->descriptor().has_function(::user::control_function_duplicate_on_check_box))
          {

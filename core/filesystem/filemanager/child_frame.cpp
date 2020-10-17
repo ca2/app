@@ -128,7 +128,7 @@ namespace filemanager
 ////
 ////         auto pupdate = new_update();
 ////
-////         pupdate->m_id = id_filter;
+////         paction->id() = id_filter;
 ////
 ////         string str;
 ////
@@ -147,7 +147,7 @@ namespace filemanager
 //
 //         auto pupdate = new_update();
 //
-//         pupdate->m_id = id_filter;
+//         paction->id() = id_filter;
 //
 //         string str;
 //

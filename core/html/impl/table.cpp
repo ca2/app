@@ -28,7 +28,7 @@ namespace html
       }
 
 
-      void table::implement_phase1(html_data * pdata, ::html::element * pelemental)
+      void table::implement_phase1(html_data * pdata, ::html::element* pelemental)
       {
 
          m_bHasChar = true;

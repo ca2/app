@@ -33,7 +33,7 @@ namespace acme
 
 
    class os_message_box :
-      virtual public ::element
+      virtual public ::matter
    {
    public:
 

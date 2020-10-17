@@ -932,7 +932,7 @@ namespace aura
       }
 
       // handle all the rest
-      //linux UINT nIDP = __IDP_INTERNAL_FAILURE;   // element message string
+      //linux UINT nIDP = __IDP_INTERNAL_FAILURE;   // matter message string
       const char * nIDP = "Internal Failure";
       pbase->m_lresult = 0;        // sensible default
       if (pbase->m_id == WM_COMMAND)
@@ -3795,10 +3795,10 @@ m_tickHeartBeat.Now();
    //   }
 
 
-      //void application::update(::update * pupdate)
+      //void application::on_apply(::action * paction)
       //{
 
-      //   ::aura::application::update(pupdate);
+      //   ::aura::application::on_apply(paction);
 
       //   if (pupdate->m_bRet)
       //   {
@@ -3807,7 +3807,7 @@ m_tickHeartBeat.Now();
 
       //   }
       //
-      //   ::user::form_callback::update(pupdate);
+      //   ::user::form_callback::on_apply(paction);
 
       //   if (pupdate->m_bRet)
       //   {

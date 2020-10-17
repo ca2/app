@@ -5,16 +5,16 @@
 
 
 class CLASS_DECL_ACME promise :
-   virtual public ::element
+   virtual public ::matter
 {
 public:
 
 
    ::future                m_future;
-   __pointer(::element)    m_pelement;
+   __pointer(::matter)    m_pelement;
 
 
-   promise(::element * pelement, ::future future);
+   promise(::matter * pmatter, ::future future);
 
    virtual ~promise();
 
@@ -25,7 +25,7 @@ public:
 };
 
 
-CLASS_DECL_ACME var __launch(::element * pelement, ::future future = ::future());
+CLASS_DECL_ACME var __launch(::matter * pmatter, ::future future = ::future());
 
 
 

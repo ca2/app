@@ -79,7 +79,7 @@ public:
 
    void call_expose(Display * pdisplay);
 
-   virtual void update(::update * pupdate) override;
+   virtual void on_apply(::action * paction) override;
 
    void on_layout(Display * pdisplay);
 

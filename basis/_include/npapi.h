@@ -357,7 +357,7 @@ typedef enum
    /* Get the NPObject wrapper for the browser window. */
    NPNVWindowNPObject = 15,
 
-   /* Get the NPObject wrapper for the plugins DOM element. */
+   /* Get the NPObject wrapper for the plugins DOM matter. */
    NPNVPluginElementNPObject = 16,
 
    NPNVSupportsWindowless = 17,

@@ -201,8 +201,14 @@ enum e_id : u64
    id_no_client_frame,
    id_before_show_main_dialog,
    id_after_show_main_dialog,
+   id_run,
    id_dark_mode,
-
+   id_os_font_change,
+   id_font_enumeration,
+   id_font_extents,
+   id_font_list_layout,
+   id_font_list_total_size,
+   id_font_list_redraw,
 
    // procedures:
 

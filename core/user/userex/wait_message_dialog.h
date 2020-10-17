@@ -36,7 +36,7 @@ namespace userex
       virtual void on_timer_soft_reload(tick tickTimeout);
 
       
-      //virtual void update(::update * pupdate) override;
+      //virtual void on_apply(::action * paction) override;
       
 
    };

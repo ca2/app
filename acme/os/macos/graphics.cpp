@@ -118,7 +118,7 @@ bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const 
 //{
 //   return FALSE;
 //}
-//int_bool GetObject(HGDIOBJ hgdiobj, int iSize, void * element)
+//int_bool GetObject(HGDIOBJ hgdiobj, int iSize, void * matter)
 //{
 //   return FALSE;
 //}
@@ -874,7 +874,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 // {
 //     return FALSE;
 // }
-// int_bool GetObject(HGDIOBJ hgdiobj, int iSize, void * element)
+// int_bool GetObject(HGDIOBJ hgdiobj, int iSize, void * matter)
 // {
 //     return FALSE;
 // }

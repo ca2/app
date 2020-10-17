@@ -734,10 +734,10 @@ namespace filemanager
    }
 
 
-   void tree::update(::update * pupdate)
+   void tree::on_apply(::action * paction)
    {
 
-      ::filemanager::impact::update(pupdate);
+      ::filemanager::impact::on_apply(paction);
 
    }
 

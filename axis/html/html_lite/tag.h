@@ -96,7 +96,7 @@ private:
    LiteHTMLAttributes   *m_pcollAttr;
 
    /**
-    * tag name of the element
+    * tag name of the matter
     * @since 1.0
     */
    string            m_strTagName;

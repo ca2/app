@@ -387,7 +387,7 @@ extern CLASS_DECL_APEX int g_bApex;
 //#include "apex/multimedia/_c.h"
 
 
-//class element;
+//class matter;
 //
 //
 //template < typename T >
@@ -414,22 +414,22 @@ extern CLASS_DECL_APEX int g_bApex;
 
 
 
-CLASS_DECL_APEX ::element * general_trace_object();
+CLASS_DECL_APEX ::matter * general_trace_object();
 
 CLASS_DECL_APEX int_bool c_enable_trace_category(e_trace_category ecategory, int_bool iEnable);
 
-inline ::element * context_trace_object() { return general_trace_object(); }
+inline ::matter * context_trace_object() { return general_trace_object(); }
 
 
-CLASS_DECL_APEX void __tracea(::element * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
-CLASS_DECL_APEX void __tracef(::element * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, ...);
-CLASS_DECL_APEX void __tracev(::element * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, va_list vargs);
+CLASS_DECL_APEX void __tracea(::matter * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
+CLASS_DECL_APEX void __tracef(::matter * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, ...);
+CLASS_DECL_APEX void __tracev(::matter * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, va_list vargs);
 //CLASS_DECL_APEX const char * trace_category_name(e_trace_category ecategory);
 
 
-//CLASS_DECL_APEX ::element * trace_object(e_trace_category ecategory);
+//CLASS_DECL_APEX ::matter * trace_object(e_trace_category ecategory);
 
-//CLASS_DECL_APEX const char * topic_text(::element * pcontextobject);
+//CLASS_DECL_APEX const char * topic_text(::matter * pcontextobject);
 
 
 
@@ -2449,7 +2449,7 @@ namespace primitive
 
 
 
-//#include "apex/primitive/primitive/element.h"
+//#include "apex/primitive/primitive/matter.h"
 //#include "apex/primitive/primitive/task.h"
 //#include "apex/primitive/primitive/compare_pred.h"
 
@@ -2545,20 +2545,20 @@ typedef ::estatus THREAD_PROCEDURE(thread_parameter parameter);
 class sticker;
 
 
-//inline ::element * trace_object(::element * pobjectContext) { return pobjectContext; }
+//inline ::matter * trace_object(::matter * pobjectContext) { return pobjectContext; }
 
 template < typename POINTER_TYPE >
 class ptr_array;
 
-//using composite_ptra = __pointer_array(::element); // Please use just for composition (ownership).
+//using composite_ptra = __pointer_array(::matter); // Please use just for composition (ownership).
 
-//using reference_ptra = __pointer_array(::element); // Please use just for reference (member-based).
+//using reference_ptra = __pointer_array(::matter); // Please use just for reference (member-based).
 
 //using object_ptra = __pointer_array(::context_object); // Please use just for keeping non-member-based references.
 
-using object_ptra = __pointer_array(::element); // Please use just for keeping non-member-based references.
+using object_ptra = __pointer_array(::matter); // Please use just for keeping non-member-based references.
 
-using object_addra = __address_array(::element); // Please use just for keeping non-member-based references.
+using object_addra = __address_array(::matter); // Please use just for keeping non-member-based references.
 
 class object_meta;
 
@@ -2573,9 +2573,9 @@ namespace http
 
 } // namespace http
 
-//template < typename PRED > inline auto __task_procedure(PRED pred, ::element * pobjectHold = nullptr);
+//template < typename PRED > inline auto __task_procedure(PRED pred, ::matter * pobjectHold = nullptr);
 
-//template < typename PRED > inline auto __task_callback(PRED pred, ::element* pobjectHold = nullptr);
+//template < typename PRED > inline auto __task_callback(PRED pred, ::matter* pobjectHold = nullptr);
 
 class context;
 
@@ -2596,7 +2596,7 @@ namespace draw2d
 
 //class create_thread;
 
-using generic_pointer = __pointer(::element);
+using generic_pointer = __pointer(::matter);
 
 
 //#ifdef WINDOWS_DESKTOP

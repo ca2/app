@@ -570,27 +570,27 @@ namespace userfs
 
 
 
-   void tree::update(::update * pupdate)
+   void tree::on_apply(::action * paction)
    {
 
       ////__update(::update)
       {
 
-         if (pupdate->m_id == id_initialize)
+         if (paction->id() == id_initialize)
          {
 
          }
-         if (pupdate->m_id == id_filter)
+         if (paction->id() == id_filter)
          {
 
-            if (pupdate->value(id_filter).is_empty())
+            if (paction->value(id_filter).is_empty())
             {
                //               FilterClose();
             }
             else
             {
                //             FilterBegin();
-               //           Filter1(pupdate->value(id_filter));
+               //           Filter1(paction->value(id_filter));
                //         FilterApply();
             }
 

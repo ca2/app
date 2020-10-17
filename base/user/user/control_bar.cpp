@@ -653,7 +653,7 @@ namespace user
 //    }
 
 
-   void control_bar::update(::update * pupdate)
+   void control_bar::on_apply(::action * paction)
    {
 
       // // update the indicators before becoming visible

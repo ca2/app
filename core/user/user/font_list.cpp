@@ -30,6 +30,8 @@ namespace user
       m_scrolldataVert.m_bScrollEnable = true;
       m_bEnsureVisible = false;
 
+      //m_bNeedLayoutAfterExtentUpdate = false;
+
    }
 
 
@@ -69,35 +71,30 @@ namespace user
 
       }
 
-      Session.add(method(e_method_font_change, [this]()
-      {
-
-         on_font_change();
-
-      }));
+      //Session.add(method(e_method_font_change, [this]() { on_font_change(); }));
 
    }
 
 
-   void font_list::on_font_change()
-   {
+   // void font_list::on_font_change()
+   // {
 
-      ::rect rectClient;
+   //    ::rect rectClient;
 
-      get_client_rect(rectClient);
+   //    get_client_rect(rectClient);
 
-      if (rectClient.area() > 0)
-      {
+   //    if (rectClient.area() > 0)
+   //    {
 
-         m_pfontlist->m_rectClient = rectClient;
+   //       m_pfontlist->m_rectClient = rectClient;
 
-         m_pfontlist->update();
+   //       m_pfontlist->update();
 
-      }
+   //    }
 
-      TRACE("pane_tab_view::on_change_cur_sel font_check_need_update thread finished!!");
+   //    TRACE("pane_tab_view::on_change_cur_sel font_check_need_update thread finished!!");
 
-   }
+   // }
 
 
    void font_list::set_font_list_type(::draw2d::font_list::e_type etype)
@@ -112,12 +109,12 @@ namespace user
       else if (etype == ::draw2d::font_list::type_wide)
       {
 
-         if (m_pfontlist.is_null() || m_pfontlist->m_etype != ::draw2d::font_list::type_wide)
+         if (m_pfontlist.is_null() || m_pfontlist->get_font_list_type() != ::draw2d::font_list::type_wide)
          {
 
             m_pfontlist = __create_new < ::draw2d::font_list >();
 
-            m_pfontlist->m_etype = ::draw2d::font_list::type_wide;
+            m_pfontlist->set_font_list_type(::draw2d::font_list::type_wide);
 
          }
 
@@ -254,10 +251,10 @@ namespace user
    }
 
 
-   void font_list::update(::update * pupdate)
+   void font_list::on_apply(::action * paction)
    {
 
-      combo_list::update(pupdate);
+      combo_list::on_apply(paction);
 
    }
 
@@ -326,7 +323,7 @@ namespace user
 
       auto rectClient = get_client_rect();
 
-      if (m_pfontlist->m_etype != ::draw2d::font_list::type_wide)
+      if (m_pfontlist->get_font_list_type() != ::draw2d::font_list::type_wide)
       {
 
          auto pstyle = get_style(pgraphics);
@@ -419,27 +416,20 @@ namespace user
 
       sync_lock sl(m_pfontlist->mutex());
 
-      if (m_pfontlist->m_etype != ::draw2d::font_list::type_wide)
+      if (m_pfontlist->get_font_list_type() != ::draw2d::font_list::type_wide)
       {
 
          rectFontList.right -= GetSystemMetrics(SM_CXVSCROLL);
 
       }
 
-
       rectFontList.bottom -= GetSystemMetrics(SM_CYHSCROLL);
 
-      m_pfontlist->m_rectClient = rectFontList;
-
-      m_pfontlist->defer_update();
-
-      m_pfontlist->layout();
+      m_pfontlist->set_client_rect(rectFontList);
 
       m_sizeTotal = m_pfontlist->m_size;
 
       on_change_view_size();
-
-      ::user::interaction::on_layout(pgraphics);
 
    }
 
@@ -596,12 +586,14 @@ namespace user
 
             m_bFirstShown = true;
 
-            fork([this]()
-               {
+            System.set_modified(id_font_enumeration);
 
-                  Session.call(e_method_font_change);
+            //fork([this]()
+  //             {
+//
+    //              Session.call(e_method_font_change);
 
-               });
+      //         });
 
          }
 

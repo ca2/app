@@ -83,10 +83,10 @@ namespace userstack
    }
 
 
-   void pane_view::update(::update * pupdate)
+   void pane_view::on_apply(::action * paction)
    {
 
-      ::user::tab_view::update(pupdate);
+      ::user::tab_view::on_apply(paction);
       
    }
 
@@ -121,7 +121,7 @@ namespace userstack
       //   else if(get_view_id() ==CONFIGURATION_IMPACT)
       //   {
       ///*      __pointer(::user::interaction) pinteraction = m_pformOptions->ve_display_bandwidth");
-      //      element * pcheck = dynamic_cast < element * > (puie);
+      //      matter * pcheck = dynamic_cast < matter * > (puie);
       //      if(Session.savings().save().has(::ca2::save_display_bandwidth))
       //      {
       //         pcheck->_001SetCheck(check_checked, false);

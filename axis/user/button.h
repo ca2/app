@@ -143,7 +143,7 @@ namespace user
       virtual COLORREF get_button_text_color();
 
 
-      virtual void update(::update * pupdate) override;
+      virtual void on_apply(::action * paction) override;
 
 
    };

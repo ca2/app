@@ -20,7 +20,7 @@ public:
    typedef typename ARRAY_BASE::iterator iterator;
 
 
-   explicit raw_array(::element * pobject = nullptr);
+   explicit raw_array(::matter * pobject = nullptr);
    raw_array(std::initializer_list < TYPE >  l);
    raw_array(const raw_array <TYPE, ARG_TYPE, ALLOCATOR> & a);
    raw_array(raw_array <TYPE,ARG_TYPE,ALLOCATOR> && a) noexcept;
@@ -50,7 +50,7 @@ public:
    inline void set_at(::index nIndex, ARG_TYPE newElement);
 
 
-   // Direct Access to the element data (may return nullptr)
+   // Direct Access to the matter data (may return nullptr)
    inline const TYPE* get_data() const;
    inline TYPE* get_data();
 

@@ -102,7 +102,7 @@ CLASS_DECL_ACME void defer_dock_application(int_bool bDock)
 
 }
 
-CLASS_DECL_ACME void main_branch(::element* pobjectTask, e_priority epriority)
+CLASS_DECL_ACME void main_branch(::matter* pobjectTask, e_priority epriority)
 {
 
    ::wait(

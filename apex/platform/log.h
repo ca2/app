@@ -56,7 +56,7 @@ namespace apex
 
       virtual bool process_init();
 
-      virtual void __tracea(::element * pcontextobject, e_trace_level elevel, const char * pszFunction, const char * pszFileName, i32 iLine, const char * psz) override;
+      virtual void __tracea(::matter * pcontextobject, e_trace_level elevel, const char * pszFunction, const char * pszFileName, i32 iLine, const char * psz) override;
 
       void set_trace_category(e_trace_category ecategory, e_trace_level elevelMin);
 

@@ -98,7 +98,7 @@ namespace file
    //public:
 
 
-   //   os_file_watcher(::element * pobject);
+   //   os_file_watcher(::matter * pobject);
    //   virtual ~os_file_watcher();
 
 

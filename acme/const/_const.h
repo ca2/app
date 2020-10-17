@@ -169,7 +169,7 @@ enum e_type
    type_method,
    type_future,
 
-   // element classes
+   // matter classes
    type_element = 8000,
    type_stra,
    type_inta,
@@ -225,7 +225,7 @@ enum e_trace_category
    trace_category_database,     // special database trace
    trace_category_internet,     // special internet client trace
    trace_category_dumpcontext,   // traces from dump_context
-   trace_category_memory,      // element non-kernel memory traces
+   trace_category_memory,      // matter non-kernel memory traces
    trace_category_html,         // html traces
    trace_category_socket,      // socket traces
    trace_category_colorertake5,
@@ -284,16 +284,18 @@ enum enum_object : i64
    e_object_acquire = 1 << 6,
    e_object_default = 1 << 7,
    e_object_synchro = 1 << 8,
-   aaa_want_to_remove_object_locked = 1 << 9,
-   aaa_want_to_remove_object_shared = 1 << 10,
-   aaa_want_to_remove_object_read_only_link = 1 << 11,
-   e_object_log_disable = 1 << 12,
-   e_object_property_set_modified = 1 << 13,
-   //e_object_default_property_exchange = 1 << 14, //
+   e_object_changed = 1 << 9,
+   aaa_want_to_remove_object_locked = 1 << 10,
+   aaa_want_to_remove_object_shared = 1 << 11,
+   aaa_want_to_remove_object_read_only_link = 1 << 12,
+   e_object_log_disable = 1 << 13,
+   e_object_property_set_modified = 1 << 14,
    e_object_default_io_exchange = 1 << 15,
    e_object_alertable_wait = 1 << 16,
+   e_object_any_hook = 1 << 17,
+   e_object_any_update = (1 << 18) | e_object_any_hook,
 #if OBJ_TYP_CTR
-   e_object_obj_typ_ctr = 1 << 17,
+   e_object_obj_typ_ctr = 1 << 19,
 #endif
 
 };

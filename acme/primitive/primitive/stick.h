@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ACME stick :
-   virtual public element
+   virtual public matter
 {
 public:
 

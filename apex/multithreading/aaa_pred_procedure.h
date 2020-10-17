@@ -1,12 +1,12 @@
 #pragma once
 
 
-CLASS_DECL_ACME void main_async_runnable(::element * pobjectTask);
-CLASS_DECL_ACME void main_sync_runnable(::element * pobjectTask, ::duration durationTimeout = one_minute());
-CLASS_DECL_ACME void main_branch(::element* pobjectTask, e_priority epriority);
+CLASS_DECL_ACME void main_async_runnable(::matter * pobjectTask);
+CLASS_DECL_ACME void main_sync_runnable(::matter * pobjectTask, ::duration durationTimeout = one_minute());
+CLASS_DECL_ACME void main_branch(::matter* pobjectTask, e_priority epriority);
 
 
-::estatus run_task(::element * pobjectTask);
+::estatus run_task(::matter * pobjectTask);
 
 
 

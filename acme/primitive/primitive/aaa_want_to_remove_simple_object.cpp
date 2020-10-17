@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-element::~element()
+matter::~matter()
 {
 
 }
@@ -13,7 +13,7 @@ element::~element()
 
 
 
-stream & element::do_property_exchange(stream & stream) const
+stream & matter::do_property_exchange(stream & stream) const
 {
 
    ASSERT(stream.is_storing());
@@ -22,7 +22,7 @@ stream & element::do_property_exchange(stream & stream) const
 
    set += object_storing;
 
-   ((element *)this)->exchange(set);
+   ((matter *)this)->exchange(set);
 
    stream << set;
 
@@ -32,13 +32,13 @@ stream & element::do_property_exchange(stream & stream) const
 
 
 
-void element::exchange(::stream & stream)
+void matter::exchange(::stream & stream)
 {
 
 }
 
 
-stream & element::do_property_exchange(stream & stream)
+stream & matter::do_property_exchange(stream & stream)
 {
 
    ASSERT(stream.is_loading());
@@ -55,10 +55,10 @@ stream & element::do_property_exchange(stream & stream)
 
 }
 
-stream & element::write(::stream & stream) const
+stream & matter::write(::stream & stream) const
 {
 
-   element::write(stream);
+   matter::write(stream);
 
    if (has_flag(object_default_property_exchange))
    {
@@ -72,10 +72,10 @@ stream & element::write(::stream & stream) const
 }
 
 
-stream & element::read(::stream & stream)
+stream & matter::read(::stream & stream)
 {
 
-   element::read(stream);
+   matter::read(stream);
 
    if (has_flag(object_default_property_exchange))
    {

@@ -358,7 +358,7 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 //
 //
 //template < typename PRED >
-//auto sync_pred(void (* pfnBranch )(::element * pobjectTask, e_priority), PRED pred, ::duration durationTimeout, e_priority epriority)
+//auto sync_pred(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRED pred, ::duration durationTimeout, e_priority epriority)
 //{
 //
 //   auto pobjectTask = __sync_pred(pred);
@@ -385,7 +385,7 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 //
 //
 //template < typename PRED >
-//void async_pred(void (* pfnBranch )(::element * pobjectTask, e_priority), PRED pred, e_priority epriority)
+//void async_pred(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRED pred, e_priority epriority)
 //{
 //
 //   auto pobjectTask = __task_procedure(pred);

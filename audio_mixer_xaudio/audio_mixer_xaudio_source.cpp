@@ -19,7 +19,7 @@ namespace multimedia
       }
 
       source::source(source & source) :
-         ::element(source.get_context_application()),
+         ::matter(source.get_context_application()),
          ::multimedia::audio_mixer::source(source.get_context_application())
       {
          operator =(source);

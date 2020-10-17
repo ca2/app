@@ -113,7 +113,7 @@ namespace user
    }
 
 
-   void split_view::update(::update * pupdate)
+   void split_view::on_apply(::action * paction)
    {
 
    }

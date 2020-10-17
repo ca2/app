@@ -58,7 +58,7 @@ namespace filemanager
       virtual ~folder_list ();
 
       virtual void install_message_routing(::channel * pchannel) override;
-      virtual void update(::update * pupdate) override;
+      virtual void on_apply(::action * paction) override;
       virtual bool pre_create_window(::user::create_struct& cs) override;
 
 

@@ -183,10 +183,10 @@ namespace hotplugin
    }
 
 
-   void plugin::update(::update * pupdate)
+   void plugin::on_apply(::action * paction)
    {
 
-      ::user::interaction::update(pupdate);
+      ::user::interaction::on_apply(paction);
 
    }
 

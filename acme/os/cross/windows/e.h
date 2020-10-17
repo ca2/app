@@ -2498,7 +2498,7 @@
 //
 // MessageText:
 //
-// An event pair synchronization operation was performed using the thread specific client/server event pair element, but no event pair element was associated with the thread.
+// An event pair synchronization operation was performed using the thread specific client/server event pair matter, but no event pair matter was associated with the thread.
 //
 #define ERROR_NO_EVENT_PAIR              580L
 
@@ -2699,7 +2699,7 @@
 //
 // MessageText:
 //
-// The attempt to find the element found an element matching by ID on the volume but it is out of the scope of the handle used for the operation.
+// The attempt to find the matter found an matter matching by ID on the volume but it is out of the scope of the handle used for the operation.
 //
 #define ERROR_FOUND_OUT_OF_SCOPE         601L
 
@@ -3145,7 +3145,7 @@
 //
 // MessageText:
 //
-// The create operation failed because the name contained at least one mount point which resolves to a volume to which the specified device element is not attached.
+// The create operation failed because the name contained at least one mount point which resolves to a volume to which the specified device matter is not attached.
 //
 #define ERROR_MOUNT_POINT_NOT_RESOLVED   649L
 
@@ -3154,7 +3154,7 @@
 //
 // MessageText:
 //
-// The device element parameter is either not a valid device element or is not attached to the volume specified by the file name.
+// The device matter parameter is either not a valid device matter or is not attached to the volume specified by the file name.
 //
 #define ERROR_INVALID_DEVICE_OBJECT_PARAMETER 650L
 
@@ -3509,7 +3509,7 @@
 // MessageText:
 //
 // {Object Exists}
-// An attempt was made to create an element and the element name already existed.
+// An attempt was made to create an matter and the matter name already existed.
 //
 #define ERROR_OBJECT_NAME_EXISTS         698L
 
@@ -4557,7 +4557,7 @@
 //
 // MessageText:
 //
-// An attempt was made to element a token that does not exist.
+// An attempt was made to matter a token that does not exist.
 //
 #define ERROR_NO_TOKEN                   1008L
 
@@ -5415,7 +5415,7 @@
 //
 // MessageText:
 //
-// The indiCAted source element has no media.
+// The indiCAted source matter has no media.
 //
 #define ERROR_SOURCE_ELEMENT_EMPTY       1160L
 
@@ -5424,7 +5424,7 @@
 //
 // MessageText:
 //
-// The indiCAted destination element already contains media.
+// The indiCAted destination matter already contains media.
 //
 #define ERROR_DESTINATION_ELEMENT_FULL   1161L
 
@@ -5433,7 +5433,7 @@
 //
 // MessageText:
 //
-// The indiCAted element does not exist.
+// The indiCAted matter does not exist.
 //
 #define ERROR_ILLEGAL_ELEMENT_ADDRESS    1162L
 
@@ -5442,7 +5442,7 @@
 //
 // MessageText:
 //
-// The indiCAted element is part of a magazine that is not present.
+// The indiCAted matter is part of a magazine that is not present.
 //
 #define ERROR_MAGAZINE_NOT_PRESENT       1163L
 
@@ -5505,7 +5505,7 @@
 //
 // MessageText:
 //
-// The property set specified does not exist on the element.
+// The property set specified does not exist on the matter.
 //
 #define ERROR_SET_NOT_FOUND              1170L
 
@@ -6327,7 +6327,7 @@
 //
 // MessageText:
 //
-// An attempt to do an operation on a debug element failed because the element is in the process of being deleted.
+// An attempt to do an operation on a debug matter failed because the matter is in the process of being deleted.
 //
 #define ERROR_DEBUGGER_INACTIVE          1284L
 
@@ -6472,7 +6472,7 @@
 //
 // MessageText:
 //
-// IndiCAtes a particular Security ID may not be assigned as the label of an element.
+// IndiCAtes a particular Security ID may not be assigned as the label of an matter.
 //
 #define ERROR_INVALID_LABEL              1299L
 
@@ -6544,7 +6544,7 @@
 //
 // MessageText:
 //
-// This security ID may not be assigned as the owner of this element.
+// This security ID may not be assigned as the owner of this matter.
 //
 #define ERROR_INVALID_OWNER              1307L
 
@@ -6553,7 +6553,7 @@
 //
 // MessageText:
 //
-// This security ID may not be assigned as the primary group of an element.
+// This security ID may not be assigned as the primary group of an matter.
 //
 #define ERROR_INVALID_PRIMARY_GROUP      1308L
 
@@ -6922,7 +6922,7 @@
 //
 // MessageText:
 //
-// Unable to perform a security operation on an element that has no associated security.
+// Unable to perform a security operation on an matter that has no associated security.
 //
 #define ERROR_NO_SECURITY_ON_OBJECT      1350L
 
@@ -7695,7 +7695,7 @@
 //
 // MessageText:
 //
-// Cannot destroy element created by another thread.
+// Cannot destroy matter created by another thread.
 //
 #define ERROR_DESTROY_OBJECT_OF_OTHER_THREAD 1435L
 
@@ -8681,7 +8681,7 @@
 //
 // MessageText:
 //
-// The element universal unique identifier (UUID) was not found.
+// The matter universal unique identifier (UUID) was not found.
 //
 #define RPC_S_OBJECT_NOT_FOUND           1710L
 
@@ -8690,7 +8690,7 @@
 //
 // MessageText:
 //
-// The element universal unique identifier (UUID) has already been registered.
+// The matter universal unique identifier (UUID) has already been registered.
 //
 #define RPC_S_ALREADY_REGISTERED         1711L
 
@@ -9284,7 +9284,7 @@
 //
 // MessageText:
 //
-// A null element pointer was passed to the stub.
+// A null matter pointer was passed to the stub.
 //
 #define RPC_X_NULL_REF_POINTER           1780L
 
@@ -9734,7 +9734,7 @@
 //
 // MessageText:
 //
-// The RPC pipe element is invalid or corrupted.
+// The RPC pipe matter is invalid or corrupted.
 //
 #define RPC_X_INVALID_PIPE_OBJECT        1830L
 
@@ -9743,7 +9743,7 @@
 //
 // MessageText:
 //
-// An invalid operation was attempted on an RPC pipe element.
+// An invalid operation was attempted on an RPC pipe matter.
 //
 #define RPC_X_WRONG_PIPE_ORDER           1831L
 
@@ -9788,7 +9788,7 @@
 //
 // MessageText:
 //
-// The element universal unique identifier (UUID) is the nil UUID.
+// The matter universal unique identifier (UUID) is the nil UUID.
 //
 #define RPC_S_INVALID_OBJECT             1900L
 
@@ -9878,7 +9878,7 @@
 //
 // MessageText:
 //
-// The element exporter specified was not found.
+// The matter exporter specified was not found.
 //
 #define OR_INVALID_OXID                  1910L
 
@@ -9887,7 +9887,7 @@
 //
 // MessageText:
 //
-// The element specified was not found.
+// The matter specified was not found.
 //
 #define OR_INVALID_OID                   1911L
 
@@ -9896,7 +9896,7 @@
 //
 // MessageText:
 //
-// The element resolver set specified was not found.
+// The matter resolver set specified was not found.
 //
 #define OR_INVALID_SET                   1912L
 
@@ -9932,7 +9932,7 @@
 //
 // MessageText:
 //
-// The RPC pipe element has already been closed.
+// The RPC pipe matter has already been closed.
 //
 #define RPC_X_PIPE_CLOSED                1916L
 
@@ -9995,7 +9995,7 @@
 //
 // MessageText:
 //
-// Not all element UUIDs could be exported to the specified entry.
+// Not all matter UUIDs could be exported to the specified entry.
 //
 #define RPC_S_NOT_ALL_OBJS_EXPORTED      1923L
 
@@ -10022,7 +10022,7 @@
 //
 // MessageText:
 //
-// The specified profile element could not be added.
+// The specified profile matter could not be added.
 //
 #define RPC_S_PRF_ELT_NOT_ADDED          1926L
 
@@ -10031,7 +10031,7 @@
 //
 // MessageText:
 //
-// The specified profile element could not be removed.
+// The specified profile matter could not be removed.
 //
 #define RPC_S_PRF_ELT_NOT_REMOVED        1927L
 
@@ -10040,7 +10040,7 @@
 //
 // MessageText:
 //
-// The group element could not be added.
+// The group matter could not be added.
 //
 #define RPC_S_GRP_ELT_NOT_ADDED          1928L
 
@@ -10049,7 +10049,7 @@
 //
 // MessageText:
 //
-// The group element could not be removed.
+// The group matter could not be removed.
 //
 #define RPC_S_GRP_ELT_NOT_REMOVED        1929L
 
@@ -10753,7 +10753,7 @@
 //
 // MessageText:
 //
-// The supplied element has not been initialized.
+// The supplied matter has not been initialized.
 //
 #define PEERDIST_ERROR_NOT_INITIALIZED   4054L
 
@@ -10762,7 +10762,7 @@
 //
 // MessageText:
 //
-// The supplied element has already been initialized.
+// The supplied matter has already been initialized.
 //
 #define PEERDIST_ERROR_ALREADY_INITIALIZED 4055L
 
@@ -10780,7 +10780,7 @@
 //
 // MessageText:
 //
-// The supplied element has already been invalidated.
+// The supplied matter has already been invalidated.
 //
 #define PEERDIST_ERROR_INVALIDATED       4057L
 
@@ -10789,7 +10789,7 @@
 //
 // MessageText:
 //
-// An element already exists and was not replaced.
+// An matter already exists and was not replaced.
 //
 #define PEERDIST_ERROR_ALREADY_EXISTS    4058L
 
@@ -11151,7 +11151,7 @@
 //
 // MessageText:
 //
-// The element identifier does not represent a valid element.
+// The matter identifier does not represent a valid matter.
 //
 #define ERROR_OBJECT_NOT_FOUND           4312L
 
@@ -11629,7 +11629,7 @@
 //
 // MessageText:
 //
-// The element already exists.
+// The matter already exists.
 //
 #define ERROR_OBJECT_ALREADY_EXISTS      5010L
 
@@ -11638,7 +11638,7 @@
 //
 // MessageText:
 //
-// The element is already in the list.
+// The matter is already in the list.
 //
 #define ERROR_OBJECT_IN_LIST             5011L
 
@@ -11971,7 +11971,7 @@
 //
 // MessageText:
 //
-// The cluster request is not valid for this element.
+// The cluster request is not valid for this matter.
 //
 #define ERROR_CLUSTER_INVALID_REQUEST    5048L
 
@@ -12758,7 +12758,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// An attempt to use the specified cluster name failed because an enabled computer element with the given name already exists in the domain.
+// An attempt to use the specified cluster name failed because an enabled computer matter with the given name already exists in the domain.
 //
 #define ERROR_CLUSTER_OBJECT_ALREADY_USED 5936L
 
@@ -13647,7 +13647,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The requested operation is not valid on the Transaction element in its current state.
+// The requested operation is not valid on the Transaction matter in its current state.
 //
 #define ERROR_TRANSACTION_REQUEST_NOT_VALID 6702L
 
@@ -13710,7 +13710,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The Transaction element already has a superior enlistment, and the caller attempted an operation that would have created a new superior. Only a single superior enlistment is allow.
+// The Transaction matter already has a superior enlistment, and the caller attempted an operation that would have created a new superior. Only a single superior enlistment is allow.
 //
 #define ERROR_TRANSACTION_SUPERIOR_EXISTS 6709L
 
@@ -13755,7 +13755,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The current transaction action_context associated with the thread is not a valid handle to a transaction element.
+// The current transaction action_context associated with the thread is not a valid handle to a transaction matter.
 //
 #define ERROR_CURRENT_TRANSACTION_NOT_VALID 6714L
 
@@ -13764,7 +13764,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The specified Transaction element could not be opened, because it was not found.
+// The specified Transaction matter could not be opened, because it was not found.
 //
 #define ERROR_TRANSACTION_NOT_FOUND      6715L
 
@@ -13773,7 +13773,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The specified ResourceManager element could not be opened, because it was not found.
+// The specified ResourceManager matter could not be opened, because it was not found.
 //
 #define ERROR_RESOURCEMANAGER_NOT_FOUND  6716L
 
@@ -13782,7 +13782,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The specified Enlistment element could not be opened, because it was not found.
+// The specified Enlistment matter could not be opened, because it was not found.
 //
 #define ERROR_ENLISTMENT_NOT_FOUND       6717L
 
@@ -13791,7 +13791,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The specified TransactionManager element could not be opened, because it was not found.
+// The specified TransactionManager matter could not be opened, because it was not found.
 //
 #define ERROR_TRANSACTIONMANAGER_NOT_FOUND 6718L
 
@@ -13800,7 +13800,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The element specified could not be created or opened, because its associated TransactionManager is not online.  The TransactionManager must be brought fully Online by calling RecoverTransactionManager to recover to the end of its LogFile before objects in its Transaction or ResourceManager namespaces can be opened.  In addition, errors in writing records to its LogFile can CAuse a TransactionManager to go offline.
+// The matter specified could not be created or opened, because its associated TransactionManager is not online.  The TransactionManager must be brought fully Online by calling RecoverTransactionManager to recover to the end of its LogFile before objects in its Transaction or ResourceManager namespaces can be opened.  In addition, errors in writing records to its LogFile can CAuse a TransactionManager to go offline.
 //
 #define ERROR_TRANSACTIONMANAGER_NOT_ONLINE 6719L
 
@@ -13818,7 +13818,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The call to create a superior Enlistment on this Transaction element could not be completed, because the Transaction element specified for the enlistment is a subordinate branch of the Transaction. Only the root of the Transaction can be enlisted on as a superior.
+// The call to create a superior Enlistment on this Transaction matter could not be completed, because the Transaction matter specified for the enlistment is a subordinate branch of the Transaction. Only the root of the Transaction can be enlisted on as a superior.
 //
 #define ERROR_TRANSACTION_NOT_ROOT       6721L
 
@@ -13980,7 +13980,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The element (file, stream, link) corresponding to the handle has been deleted by a Transaction Savepoint Rollback.
+// The matter (file, stream, link) corresponding to the handle has been deleted by a Transaction Savepoint Rollback.
 //
 #define ERROR_OBJECT_NO_LONGER_EXISTS    6807L
 
@@ -14196,7 +14196,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// This element is not allowed to be opened in a transaction.
+// This matter is not allowed to be opened in a transaction.
 //
 #define ERROR_TRANSACTIONAL_OPEN_NOT_ALLOWED 6832L
 
@@ -14313,7 +14313,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The call to create a TransactionManager element failed because the Tm Identity stored in the logfile does not match the Tm Identity that was passed in as an argument.
+// The call to create a TransactionManager matter failed because the Tm Identity stored in the logfile does not match the Tm Identity that was passed in as an argument.
 //
 #define ERROR_TM_IDENTITY_MISMATCH       6845L
 
@@ -14322,7 +14322,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// I/O was attempted on a section element that has been floated as a result of a transaction ending. There is no valid data.
+// I/O was attempted on a section matter that has been floated as a result of a transaction ending. There is no valid data.
 //
 #define ERROR_FLOATED_SECTION            6846L
 
@@ -15180,7 +15180,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The requested operation did not satisfy one or more constraints associated with the class of the element.
+// The requested operation did not satisfy one or more constraints associated with the class of the matter.
 //
 #define ERROR_DS_OBJ_CLASS_VIOLATION     8212L
 
@@ -15189,7 +15189,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The directory service can perform the requested operation only on a leaf element.
+// The directory service can perform the requested operation only on a leaf matter.
 //
 #define ERROR_DS_CANT_ON_NON_LEAF        8213L
 
@@ -15198,7 +15198,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The directory service Cannot perform the requested operation on the RDN attribute of an element.
+// The directory service Cannot perform the requested operation on the RDN attribute of an matter.
 //
 #define ERROR_DS_CANT_ON_RDN             8214L
 
@@ -15207,7 +15207,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The directory service detected an attempt to modify the element class of an element.
+// The directory service detected an attempt to modify the matter class of an matter.
 //
 #define ERROR_DS_CANT_MOD_OBJ_CLASS      8215L
 
@@ -15234,7 +15234,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The policy element is shared and can only be modified at the root.
+// The policy matter is shared and can only be modified at the root.
 //
 #define ERROR_SHARED_POLICY              8218L
 
@@ -15243,7 +15243,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The policy element does not exist.
+// The policy matter does not exist.
 //
 #define ERROR_POLICY_OBJECT_NOT_FOUND    8219L
 
@@ -15424,7 +15424,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// There is no such element on the server.
+// There is no such matter on the server.
 //
 #define ERROR_DS_NO_SUCH_OBJECT          8240L
 
@@ -15451,7 +15451,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The element is a leaf element.
+// The matter is a leaf matter.
 //
 #define ERROR_DS_IS_LEAF                 8243L
 
@@ -15631,7 +15631,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The root element must be the head of a naming action_context. The root element Cannot have an instantiated parent.
+// The root matter must be the head of a naming action_context. The root matter Cannot have an instantiated parent.
 //
 #define ERROR_DS_ROOT_MUST_BE_NC         8301L
 
@@ -15649,7 +15649,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A element to an attribute that is not defined in the schema occurred.
+// A matter to an attribute that is not defined in the schema occurred.
 //
 #define ERROR_DS_ATT_NOT_DEF_IN_SCHEMA   8303L
 
@@ -15658,7 +15658,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The maximum size of an element has been exceeded.
+// The maximum size of an matter has been exceeded.
 //
 #define ERROR_DS_MAX_OBJ_SIZE_EXCEEDED   8304L
 
@@ -15667,7 +15667,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// An attempt was made to add an element to the directory with a name that is already in use.
+// An attempt was made to add an matter to the directory with a name that is already in use.
 //
 #define ERROR_DS_OBJ_STRING_NAME_EXISTS  8305L
 
@@ -15676,7 +15676,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// An attempt was made to add an element of a class that does not have an RDN defined in the schema.
+// An attempt was made to add an matter of a class that does not have an RDN defined in the schema.
 //
 #define ERROR_DS_NO_RDN_DEFINED_IN_SCHEMA 8306L
 
@@ -15685,7 +15685,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// An attempt was made to add an element using an RDN that is not the RDN defined in the schema.
+// An attempt was made to add an matter using an RDN that is not the RDN defined in the schema.
 //
 #define ERROR_DS_RDN_DOESNT_MATCH_SCHEMA 8307L
 
@@ -15712,7 +15712,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The attribute specified in the operation is not present on the element.
+// The attribute specified in the operation is not present on the matter.
 //
 #define ERROR_DS_ATT_IS_NOT_ON_OBJ       8310L
 
@@ -15730,7 +15730,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The specified element is too large.
+// The specified matter is too large.
 //
 #define ERROR_DS_OBJ_TOO_LARGE           8312L
 
@@ -15757,7 +15757,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The element class attribute must be specified.
+// The matter class attribute must be specified.
 //
 #define ERROR_DS_OBJECT_CLASS_REQUIRED   8315L
 
@@ -15775,7 +15775,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// An attempt was made to modify an element to include an attribute that is not legal for its class.
+// An attempt was made to modify an matter to include an attribute that is not legal for its class.
 //
 #define ERROR_DS_ATT_NOT_DEF_FOR_CLASS   8317L
 
@@ -15784,7 +15784,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The specified attribute is already present on the element.
+// The specified attribute is already present on the matter.
 //
 #define ERROR_DS_ATT_ALREADY_EXISTS      8318L
 
@@ -15830,7 +15830,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The attribute Cannot be removed because it is not present on the element.
+// The attribute Cannot be removed because it is not present on the matter.
 //
 #define ERROR_DS_CANT_REM_MISSING_ATT    8324L
 
@@ -15839,7 +15839,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The attribute value Cannot be removed because it is not present on the element.
+// The attribute value Cannot be removed because it is not present on the matter.
 //
 #define ERROR_DS_CANT_REM_MISSING_ATT_VAL 8325L
 
@@ -15848,7 +15848,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The specified root element Cannot be a subref.
+// The specified root matter Cannot be a subref.
 //
 #define ERROR_DS_ROOT_CANT_BE_SUBREF     8326L
 
@@ -15875,7 +15875,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The operation could not be performed because the element's parent is either uninstantiated or deleted.
+// The operation could not be performed because the matter's parent is either uninstantiated or deleted.
 //
 #define ERROR_DS_NO_PARENT_OBJECT        8329L
 
@@ -15893,7 +15893,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The element and parent must be of the same type, either both masters or both replicas.
+// The matter and parent must be of the same type, either both masters or both replicas.
 //
 #define ERROR_DS_CANT_MIX_MASTER_AND_REPS 8331L
 
@@ -15902,7 +15902,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The operation Cannot be performed because child objects exist. This operation can only be performed on a leaf element.
+// The operation Cannot be performed because child objects exist. This operation can only be performed on a leaf matter.
 //
 #define ERROR_DS_CHILDREN_EXIST          8332L
 
@@ -15911,7 +15911,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Directory element not found.
+// Directory matter not found.
 //
 #define ERROR_DS_OBJ_NOT_FOUND           8333L
 
@@ -15920,7 +15920,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The aliased element is missing.
+// The aliased matter is missing.
 //
 #define ERROR_DS_ALIASED_OBJ_MISSING     8334L
 
@@ -15929,7 +15929,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The element name has bad syntax.
+// The matter name has bad syntax.
 //
 #define ERROR_DS_BAD_NAME_SYNTAX         8335L
 
@@ -15965,7 +15965,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The operation Cannot continue because the element is in the process of being removed.
+// The operation Cannot continue because the matter is in the process of being removed.
 //
 #define ERROR_DS_OBJECT_BEING_REMOVED    8339L
 
@@ -15974,7 +15974,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The DSA element Cannot be deleted.
+// The DSA matter Cannot be deleted.
 //
 #define ERROR_DS_CANT_DELETE_DSA_OBJ     8340L
 
@@ -15992,7 +15992,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The operation can only be performed on an internal master DSA element.
+// The operation can only be performed on an internal master DSA matter.
 //
 #define ERROR_DS_DSA_MUST_BE_INT_MASTER  8342L
 
@@ -16001,7 +16001,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The element must be of class DSA.
+// The matter must be of class DSA.
 //
 #define ERROR_DS_CLASS_NOT_DSA           8343L
 
@@ -16019,7 +16019,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The element Cannot be added because the parent is not on the list of possible superiors.
+// The matter Cannot be added because the parent is not on the list of possible superiors.
 //
 #define ERROR_DS_ILLEGAL_SUPERIOR        8345L
 
@@ -16082,7 +16082,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The name does not identify an element; the name identifies a phantom.
+// The name does not identify an matter; the name identifies a phantom.
 //
 #define ERROR_DS_NOT_AN_OBJECT           8352L
 
@@ -16109,7 +16109,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Failed to create name for deleted element.
+// Failed to create name for deleted matter.
 //
 #define ERROR_DS_NO_DELETED_NAME         8355L
 
@@ -16127,7 +16127,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The element must be a naming action_context.
+// The matter must be a naming action_context.
 //
 #define ERROR_DS_NCNAME_MUST_BE_NC       8357L
 
@@ -16145,7 +16145,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The class of the element must be structural; you Cannot instantiate an abstract class.
+// The class of the matter must be structural; you Cannot instantiate an abstract class.
 //
 #define ERROR_DS_CLASS_MUST_BE_CONCRETE  8359L
 
@@ -16154,7 +16154,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The schema element could not be found.
+// The schema matter could not be found.
 //
 #define ERROR_DS_INVALID_DMD             8360L
 
@@ -16163,7 +16163,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A loCAl element with this GUID (dead or alive) already exists.
+// A loCAl matter with this GUID (dead or alive) already exists.
 //
 #define ERROR_DS_OBJ_GUID_EXISTS         8361L
 
@@ -16181,7 +16181,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The cross element for the specified naming action_context could not be found.
+// The cross matter for the specified naming action_context could not be found.
 //
 #define ERROR_DS_NO_CROSSREF_FOR_NC      8363L
 
@@ -16271,7 +16271,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The name element is invalid.
+// The name matter is invalid.
 //
 #define ERROR_DS_NAME_REFERENCE_INVALID  8373L
 
@@ -16280,7 +16280,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A cross element already exists.
+// A cross matter already exists.
 //
 #define ERROR_DS_CROSS_REF_EXISTS        8374L
 
@@ -16289,7 +16289,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// It is not permitted to delete a master cross element.
+// It is not permitted to delete a master cross matter.
 //
 #define ERROR_DS_CANT_DEL_MASTER_CROSSREF 8375L
 
@@ -16568,7 +16568,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// No superior element has been configured for the directory service. The directory service is therefore unable to issue referrals to objects outside this forest.
+// No superior matter has been configured for the directory service. The directory service is therefore unable to issue referrals to objects outside this forest.
 //
 #define ERROR_DS_MISSING_SUPREF          8406L
 
@@ -16622,7 +16622,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The specified naming action_context is missing a cross element.
+// The specified naming action_context is missing a cross matter.
 //
 #define ERROR_DS_NCNAME_MISSING_CR_REF   8412L
 
@@ -16685,7 +16685,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The DSA element could not be found.
+// The DSA matter could not be found.
 //
 #define ERROR_DS_CANT_FIND_DSA_OBJ       8419L
 
@@ -16712,7 +16712,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The child element could not be retrieved.
+// The child matter could not be retrieved.
 //
 #define ERROR_DS_CANT_RETRIEVE_CHILD     8422L
 
@@ -16802,7 +16802,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A root element requires a class of 'top'.
+// A root matter requires a class of 'top'.
 //
 #define ERROR_DS_ROOT_REQUIRES_CLASS_TOP 8432L
 
@@ -16919,7 +16919,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The replication operation encountered an element with an invalid instance type.
+// The replication operation encountered an matter with an invalid instance type.
 //
 #define ERROR_DS_DRA_BAD_INSTANCE_TYPE   8445L
 
@@ -16946,7 +16946,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The replication element information for the target server already exists.
+// The replication matter information for the target server already exists.
 //
 #define ERROR_DS_DRA_REF_ALREADY_EXISTS  8448L
 
@@ -16955,7 +16955,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The replication element information for the target server does not exist.
+// The replication matter information for the target server does not exist.
 //
 #define ERROR_DS_DRA_REF_NOT_FOUND       8449L
 
@@ -17036,7 +17036,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The replication operation failed due to a collision of element names.
+// The replication operation failed due to a collision of matter names.
 //
 #define ERROR_DS_DRA_NAME_COLLISION      8458L
 
@@ -17054,7 +17054,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The replication operation failed because a required parent element is missing.
+// The replication operation failed because a required parent matter is missing.
 //
 #define ERROR_DS_DRA_MISSING_PARENT      8460L
 
@@ -17261,7 +17261,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Source and destination of a cross-domain move do not agree on the element's epoch number. Either source or destination does not have the latest version of the element.
+// Source and destination of a cross-domain move do not agree on the matter's epoch number. Either source or destination does not have the latest version of the matter.
 //
 #define ERROR_DS_EPOCH_MISMATCH          8483L
 
@@ -17270,7 +17270,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Source and destination of a cross-domain move do not agree on the element's current name. Either source or destination does not have the latest version of the element.
+// Source and destination of a cross-domain move do not agree on the matter's current name. Either source or destination does not have the latest version of the matter.
 //
 #define ERROR_DS_SRC_NAME_MISMATCH       8484L
 
@@ -17306,7 +17306,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Source and destination of a cross-domain move do not agree on the identity of the source element. Either source or destination does not have the latest version of the source element.
+// Source and destination of a cross-domain move do not agree on the identity of the source matter. Either source or destination does not have the latest version of the source matter.
 //
 #define ERROR_DS_SRC_GUID_MISMATCH       8488L
 
@@ -17315,7 +17315,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Object being moved across-domains is already known to be deleted by the destination server. The source server does not have the latest version of the source element.
+// Object being moved across-domains is already known to be deleted by the destination server. The source server does not have the latest version of the source matter.
 //
 #define ERROR_DS_CANT_MOVE_DELETED_OBJECT 8489L
 
@@ -17333,7 +17333,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A cross-domain move operation failed such that two versions of the moved element exist - one each in the source and destination domains. The destination element needs to be removed to restore the system to a consistent state.
+// A cross-domain move operation failed such that two versions of the moved matter exist - one each in the source and destination domains. The destination matter needs to be removed to restore the system to a consistent state.
 //
 #define ERROR_DS_CROSS_DOMAIN_CLEANUP_REQD 8491L
 
@@ -17342,7 +17342,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// This element may not be moved across domain boundaries either because cross-domain moves for this class are disallowed, or the element has some special characteristics, e.g.: trust account or restricted RID, which prevent its move.
+// This matter may not be moved across domain boundaries either because cross-domain moves for this class are disallowed, or the matter has some special characteristics, e.g.: trust account or restricted RID, which prevent its move.
 //
 #define ERROR_DS_ILLEGAL_XDOM_MOVE_OPERATION 8492L
 
@@ -17351,7 +17351,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// can't move objects with memberships across domain boundaries as once moved, this would violate the membership conditions of the account group. Remove the element from any account group memberships and retry.
+// can't move objects with memberships across domain boundaries as once moved, this would violate the membership conditions of the account group. Remove the matter from any account group memberships and retry.
 //
 #define ERROR_DS_CANT_WITH_ACCT_GROUP_MEMBERSHPS 8493L
 
@@ -17423,7 +17423,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Tree deletions starting at an element which has an NC head as a descendant are not allowed.
+// Tree deletions starting at an matter which has an NC head as a descendant are not allowed.
 //
 #define ERROR_DS_NO_TREE_DELETE_ABOVE_NC 8501L
 
@@ -17505,7 +17505,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// An element of this class Cannot be created under the schema container. You can only create attribute-schema and class-schema objects under the schema container.
+// An matter of this class Cannot be created under the schema container. You can only create attribute-schema and class-schema objects under the schema container.
 //
 #define ERROR_DS_CANT_CREATE_UNDER_SCHEMA 8510L
 
@@ -17613,7 +17613,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The schema CAche load failed to convert the string default SD on a class-schema element.
+// The schema CAche load failed to convert the string default SD on a class-schema matter.
 //
 #define ERROR_DS_STRING_SD_CONVERSION_FAILED 8522L
 
@@ -17640,7 +17640,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// While processing a change to the DNS Host Name for an element, the Service Principal Name values could not be kept in sync.
+// While processing a change to the DNS Host Name for an matter, the Service Principal Name values could not be kept in sync.
 //
 #define ERROR_DS_COULDNT_UPDATE_SPNS     8525L
 
@@ -17658,7 +17658,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The element requested was not found, but an element with that key was found.
+// The matter requested was not found, but an matter with that key was found.
 //
 #define ERROR_DS_KEY_NOT_UNIQUE          8527L
 
@@ -17757,7 +17757,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The source element must be a group or user.
+// The source matter must be a group or user.
 //
 #define ERROR_DS_SRC_OBJ_NOT_GROUP_OR_USER 8538L
 
@@ -17766,7 +17766,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The source element's SID already exists in destination forest.
+// The source matter's SID already exists in destination forest.
 //
 #define ERROR_DS_SRC_SID_EXISTS_IN_FOREST 8539L
 
@@ -17775,7 +17775,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The source and destination element must be of the same type.
+// The source and destination matter must be of the same type.
 //
 #define ERROR_DS_SRC_AND_DST_OBJECT_CLASS_MISMATCH 8540L
 
@@ -18093,7 +18093,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Unable to find a valid security descriptor element domain for this partition.
+// Unable to find a valid security descriptor matter domain for this partition.
 //
 #define ERROR_DS_NO_REF_DOMAIN           8575L
 
@@ -18147,7 +18147,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A system flag has been set on the element and does not allow the element to be moved or renamed.
+// A system flag has been set on the matter and does not allow the matter to be moved or renamed.
 //
 #define ERROR_DS_MODIFYDN_DISALLOWED_BY_FLAG 8581L
 
@@ -18156,7 +18156,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// This element is not allowed to change its grandparent container. Moves are not forbidden on this element, but are restricted to sibling containers.
+// This matter is not allowed to change its grandparent container. Moves are not forbidden on this matter, but are restricted to sibling containers.
 //
 #define ERROR_DS_MODIFYDN_WRONG_GRANDPARENT 8582L
 
@@ -18219,7 +18219,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The DS Cannot derive a service principal name (SPN) with which to mutually authentiCAte the target server because the corresponding server element in the loCAl DS database has no serverReference attribute.
+// The DS Cannot derive a service principal name (SPN) with which to mutually authentiCAte the target server because the corresponding server matter in the loCAl DS database has no serverReference attribute.
 //
 #define ERROR_DS_CANT_DERIVE_SPN_WITHOUT_SERVER_REF 8589L
 
@@ -18327,7 +18327,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The remote create cross element operation failed on the Domain Naming Master FSMO. The operation's error is in the extended data.
+// The remote create cross matter operation failed on the Domain Naming Master FSMO. The operation's error is in the extended data.
 //
 #define ERROR_DS_REMOTE_CROSSREF_OP_FAILED 8601L
 
@@ -18336,7 +18336,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A cross element is in use locally with the same name.
+// A cross matter is in use locally with the same name.
 //
 #define ERROR_DS_CROSS_REF_BUSY          8602L
 
@@ -18363,7 +18363,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The requested element has a non-unique identifier and Cannot be retrieved.
+// The requested matter has a non-unique identifier and Cannot be retrieved.
 //
 #define ERROR_DS_DUPLICATE_ID_FOUND      8605L
 
@@ -18372,7 +18372,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Insufficient attributes were given to create an element. This element may not exist because it may have been deleted and already garbage collected.
+// Insufficient attributes were given to create an matter. This matter may not exist because it may have been deleted and already garbage collected.
 //
 #define ERROR_DS_INSUFFICIENT_ATTR_TO_CREATE_OBJECT 8606L
 
@@ -18417,7 +18417,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The target container for a redirection of a well known element container Cannot already be a special container.
+// The target container for a redirection of a well known matter container Cannot already be a special container.
 //
 #define ERROR_DS_WKO_CONTAINER_CANNOT_BE_SPECIAL 8611L
 
@@ -18453,7 +18453,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The requested operation is not allowed on an element under the system container.
+// The requested operation is not allowed on an matter under the system container.
 //
 #define ERROR_DS_DISALLOWED_IN_SYSTEM_CONTAINER 8615L
 
@@ -18489,7 +18489,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The site settings element for the specified site does not exist.
+// The site settings matter for the specified site does not exist.
 //
 #define ERROR_NO_SITE_SETTINGS_OBJECT    8619L
 
@@ -18516,7 +18516,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The server element for the domain controller does not exist.
+// The server matter for the domain controller does not exist.
 //
 #define ERROR_DS_NO_SERVER_OBJECT        8622L
 
@@ -18525,7 +18525,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The NTDS Settings element for the domain controller does not exist.
+// The NTDS Settings matter for the domain controller does not exist.
 //
 #define ERROR_DS_NO_NTDSA_OBJECT         8623L
 
@@ -18615,7 +18615,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The replication operation failed because the required attributes of the loCAl krbtgt element are missing.
+// The replication operation failed because the required attributes of the loCAl krbtgt matter are missing.
 //
 #define ERROR_DS_DRA_MISSING_KRBTGT_SECRET 8633L
 
@@ -18669,7 +18669,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The replication operation failed because the target element referred by a link value is recycled.
+// The replication operation failed because the target matter referred by a link value is recycled.
 //
 #define ERROR_DS_DRA_RECYCLED_TARGET     8639L
 
@@ -19945,7 +19945,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The attempted operation is not supported for the type of element referenced.
+// The attempted operation is not supported for the type of matter referenced.
 //
 #define WSAEOPNOTSUPP                    10045L
 
@@ -20071,7 +20071,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Too many references to some kernel element.
+// Too many references to some kernel matter.
 //
 #define WSAETOOMANYREFS                  10059L
 
@@ -20170,7 +20170,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// File handle element is no longer available.
+// File handle matter is no longer available.
 //
 #define WSAESTALE                        10070L
 
@@ -20512,7 +20512,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// An element with an invalid ObjectLength field was specified in the QOS provider-specific buffer.
+// An matter with an invalid ObjectLength field was specified in the QOS provider-specific buffer.
 //
 #define WSA_QOS_EOBJLENGTH               11022L
 
@@ -20530,7 +20530,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// An unrecognized element was found in the QOS provider-specific buffer.
+// An unrecognized matter was found in the QOS provider-specific buffer.
 //
 #define WSA_QOS_EUNKOWNPSOBJ             11024L
 
@@ -20539,7 +20539,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// An invalid policy element was found in the QOS provider-specific buffer.
+// An invalid policy matter was found in the QOS provider-specific buffer.
 //
 #define WSA_QOS_EPOLICYOBJ               11025L
 
@@ -20575,7 +20575,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// An invalid shape disCArd mode element was found in the QOS provider specific buffer.
+// An invalid shape disCArd mode matter was found in the QOS provider specific buffer.
 //
 #define WSA_QOS_ESDMODEOBJ               11029L
 
@@ -20584,7 +20584,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// An invalid shaping rate element was found in the QOS provider-specific buffer.
+// An invalid shaping rate matter was found in the QOS provider-specific buffer.
 //
 #define WSA_QOS_ESHAPERATEOBJ            11030L
 
@@ -20593,7 +20593,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A reserved policy element was found in the QOS provider-specific buffer.
+// A reserved policy matter was found in the QOS provider-specific buffer.
 //
 #define WSA_QOS_RESERVED_PETYPE          11031L
 
@@ -22170,7 +22170,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The manifest contains a element to an invalid URI.
+// The manifest contains a matter to an invalid URI.
 //
 #define ERROR_SXS_INVALID_XML_NAMESPACE_URI 14014L
 
@@ -22179,7 +22179,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The appliCAtion manifest contains a element to a dependent assembly which is not installed
+// The appliCAtion manifest contains a matter to a dependent assembly which is not installed
 //
 #define ERROR_SXS_ROOT_MANIFEST_DEPENDENCY_NOT_INSTALLED 14015L
 
@@ -22188,7 +22188,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The manifest for an assembly used by the appliCAtion has a element to a dependent assembly which is not installed
+// The manifest for an assembly used by the appliCAtion has a matter to a dependent assembly which is not installed
 //
 #define ERROR_SXS_LEAF_MANIFEST_DEPENDENCY_NOT_INSTALLED 14016L
 
@@ -22206,7 +22206,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The manifest is missing the required default namespace specifiCAtion on the assembly element.
+// The manifest is missing the required default namespace specifiCAtion on the assembly matter.
 //
 #define ERROR_SXS_MANIFEST_MISSING_REQUIRED_DEFAULT_NAMESPACE 14018L
 
@@ -22215,7 +22215,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The manifest has a default namespace specified on the assembly element but its value is not "urn:schemas-microsoft-com:asm.v1".
+// The manifest has a default namespace specified on the assembly matter but its value is not "urn:schemas-microsoft-com:asm.v1".
 //
 #define ERROR_SXS_MANIFEST_INVALID_REQUIRED_DEFAULT_NAMESPACE 14019L
 
@@ -22530,7 +22530,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Manifest Parse Error : Only one top level element is allowed in an XML document.
+// Manifest Parse Error : Only one top level matter is allowed in an XML document.
 //
 #define ERROR_SXS_XML_E_MULTIPLEROOTS    14054L
 
@@ -22557,7 +22557,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Manifest Parse Error : XML document must have a top level element.
+// Manifest Parse Error : XML document must have a top level matter.
 //
 #define ERROR_SXS_XML_E_MISSINGROOT      14057L
 
@@ -22593,7 +22593,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Manifest Parse Error : End element was missing the character '>'.
+// Manifest Parse Error : End matter was missing the character '>'.
 //
 #define ERROR_SXS_XML_E_UNCLOSEDENDTAG   14061L
 
@@ -22836,7 +22836,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A kernel mode component is releasing a element on an activation action_context.
+// A kernel mode component is releasing a matter on an activation action_context.
 //
 #define ERROR_SXS_RELEASE_ACTIVATION_CONTEXT 14088L
 
@@ -23025,7 +23025,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A element command executable returned a result that indiCAtes failure.
+// A matter command executable returned a result that indiCAtes failure.
 //
 #define ERROR_GENERIC_COMMAND_FAILED     14109L
 
@@ -23149,7 +23149,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The query result is stale / invalid. This may be due to the log being cleared or rolling over after the query result was created. Users should handle this code by releasing the query result element and reissuing the query.
+// The query result is stale / invalid. This may be due to the log being cleared or rolling over after the query result was created. Users should handle this code by releasing the query result matter and reissuing the query.
 //
 #define ERROR_EVT_QUERY_RESULT_STALE     15011L
 
@@ -23185,7 +23185,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// can't perform a step operation from a term that does not represent an element set.
+// can't perform a step operation from a term that does not represent an matter set.
 //
 #define ERROR_EVT_FILTER_NOTELTSET       15015L
 
@@ -23320,7 +23320,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The description string for parameter element (%1) could not be found.
+// The description string for parameter matter (%1) could not be found.
 //
 #define ERROR_EVT_UNRESOLVED_PARAMETER_INSERT 15030L
 
@@ -24520,7 +24520,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Need to run the element to perform this operation
+// Need to run the matter to perform this operation
 //
 #define OLE_E_NOTRUNNING                 _HRESULT_TYPEDEF_(0x80040005L)
 
@@ -24538,7 +24538,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Uninitialized element
+// Uninitialized matter
 //
 #define OLE_E_BLANK                      _HRESULT_TYPEDEF_(0x80040007L)
 
@@ -24547,7 +24547,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Linked element's source class has changed
+// Linked matter's source class has changed
 //
 #define OLE_E_CLASSDIFF                  _HRESULT_TYPEDEF_(0x80040008L)
 
@@ -24556,7 +24556,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Not able to get the moniker of the element
+// Not able to get the moniker of the matter
 //
 #define OLE_E_CANT_GETMONIKER            _HRESULT_TYPEDEF_(0x80040009L)
 
@@ -24628,7 +24628,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Not able to convert element
+// Not able to convert matter
 //
 #define OLE_E_CANTCONVERT                _HRESULT_TYPEDEF_(0x80040011L)
 
@@ -24637,7 +24637,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Not able to perform the operation because element is not given storage yet
+// Not able to perform the operation because matter is not given storage yet
 //
 #define OLE_E_NOSTORAGE                  _HRESULT_TYPEDEF_(0x80040012L)
 
@@ -24771,7 +24771,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Class does not support aggregation (or class element is remote)
+// Class does not support aggregation (or class matter is remote)
 //
 #define CLASS_E_NOAGGREGATION            _HRESULT_TYPEDEF_(0x80040110L)
 
@@ -24958,7 +24958,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// There is no software installation data element in the Active Directory.
+// There is no software installation data matter in the Active Directory.
 //
 #define CS_E_OBJECT_NOTFOUND             _HRESULT_TYPEDEF_(0x80040169L)
 
@@ -24967,7 +24967,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// The software installation data element in the Active Directory already exists.
+// The software installation data matter in the Active Directory already exists.
 //
 #define CS_E_OBJECT_ALREADY_EXISTS       _HRESULT_TYPEDEF_(0x8004016AL)
 
@@ -24994,7 +24994,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// The size of this element exceeds the maximum size set by the Administrator.
+// The size of this matter exceeds the maximum size set by the Administrator.
 //
 #define CS_E_ADMIN_LIMIT_EXCEEDED        _HRESULT_TYPEDEF_(0x8004016DL)
 
@@ -25038,7 +25038,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// No verbs for OLE element
+// No verbs for OLE matter
 //
 #define OLEOBJ_E_NOVERBS                 _HRESULT_TYPEDEF_(0x80040180L)
 
@@ -25047,7 +25047,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Invalid verb for OLE element
+// Invalid verb for OLE matter
 //
 #define OLEOBJ_E_INVALIDVERB             _HRESULT_TYPEDEF_(0x80040181L)
 
@@ -25224,7 +25224,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Moniker needs to be element
+// Moniker needs to be matter
 //
 #define MK_E_NEEDGENERIC                 _HRESULT_TYPEDEF_(0x800401E2L)
 
@@ -25251,7 +25251,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// No element for moniker
+// No matter for moniker
 //
 #define MK_E_NOOBJECT                    _HRESULT_TYPEDEF_(0x800401E5L)
 
@@ -25372,7 +25372,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Class of element Cannot be determined
+// Class of matter Cannot be determined
 //
 #define CO_E_CANTDETERMINECLASS          _HRESULT_TYPEDEF_(0x800401F2L)
 
@@ -25619,7 +25619,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Cannot modify or delete an element that was not added using the COM+ Admin SDK
+// Cannot modify or delete an matter that was not added using the COM+ Admin SDK
 //
 #define EVENT_E_CANT_MODIFY_OR_DELETE_UNCONFIGURED_OBJECT _HRESULT_TYPEDEF_(0x8004020DL)
 
@@ -25628,7 +25628,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Cannot modify or delete an element that was added using the COM+ Admin SDK
+// Cannot modify or delete an matter that was added using the COM+ Admin SDK
 //
 #define EVENT_E_CANT_MODIFY_OR_DELETE_CONFIGURED_OBJECT _HRESULT_TYPEDEF_(0x8004020EL)
 
@@ -25686,7 +25686,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Cannot call commit on this transaction element because the calling appliCAtion did not initiate the transaction.
+// Cannot call commit on this transaction matter because the calling appliCAtion did not initiate the transaction.
 //
 #define XACT_E_COMMITPREVENTED           _HRESULT_TYPEDEF_(0x8004D003L)
 
@@ -25839,7 +25839,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// An import element for the transaction could not be found.
+// An import matter for the transaction could not be found.
 //
 #define XACT_E_NOIMPORTOBJECT            _HRESULT_TYPEDEF_(0x8004D014L)
 
@@ -26437,7 +26437,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// There is no MTS element action_context
+// There is no MTS matter action_context
 //
 #define CONTEXT_E_NOCONTEXT              _HRESULT_TYPEDEF_(0x8004E004L)
 
@@ -26590,7 +26590,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// The COM+ component you created must use element pooling to work.
+// The COM+ component you created must use matter pooling to work.
 //
 #define CO_E_NOTPOOLED                   _HRESULT_TYPEDEF_(0x8004E02CL)
 
@@ -26599,7 +26599,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// The COM+ component you created must use element construction to work correctly.
+// The COM+ component you created must use matter construction to work correctly.
 //
 #define CO_E_NOTCONSTRUCTED              _HRESULT_TYPEDEF_(0x8004E02DL)
 
@@ -26746,7 +26746,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Invalid verb for OLE element
+// Invalid verb for OLE matter
 //
 #define OLEOBJ_S_INVALIDVERB             _HRESULT_TYPEDEF_(0x00040180L)
 
@@ -26827,7 +26827,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Moniker is already registered in running element table
+// Moniker is already registered in running matter table
 //
 #define MK_S_MONIKERALREADYREGISTERED    _HRESULT_TYPEDEF_(0x000401E7L)
 
@@ -26956,7 +26956,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// The task element could not be opened.
+// The task matter could not be opened.
 //
 #define SCHED_E_CANNOT_OPEN_TASK         _HRESULT_TYPEDEF_(0x8004130DL)
 
@@ -26965,7 +26965,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// The element is either an invalid task element or is not a task element.
+// The matter is either an invalid task matter or is not a task matter.
 //
 #define SCHED_E_INVALID_TASK             _HRESULT_TYPEDEF_(0x8004130EL)
 
@@ -27010,7 +27010,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// The task element version is either unsupported or invalid.
+// The task matter version is either unsupported or invalid.
 //
 #define SCHED_E_UNKNOWN_OBJECT_VERSION   _HRESULT_TYPEDEF_(0x80041313L)
 
@@ -27046,7 +27046,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// The task XML contains an element or attribute from an unexpected namespace.
+// The task XML contains an matter or attribute from an unexpected namespace.
 //
 #define SCHED_E_NAMESPACE                _HRESULT_TYPEDEF_(0x80041317L)
 
@@ -27064,7 +27064,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// The task XML is missing a required element or attribute.
+// The task XML is missing a required matter or attribute.
 //
 #define SCHED_E_MISSINGNODE              _HRESULT_TYPEDEF_(0x80041319L)
 
@@ -27215,7 +27215,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Attempt to create a class element failed
+// Attempt to create a class matter failed
 //
 #define CO_E_CLASS_CREATE_FAILED         _HRESULT_TYPEDEF_(0x80080001L)
 
@@ -27224,7 +27224,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// OLE service could not bind element
+// OLE service could not bind matter
 //
 #define CO_E_SCM_ERROR                   _HRESULT_TYPEDEF_(0x80080002L)
 
@@ -27242,7 +27242,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Bad path to element
+// Bad path to matter
 //
 #define CO_E_BAD_PATH                    _HRESULT_TYPEDEF_(0x80080004L)
 
@@ -27260,7 +27260,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// OLE service could not communiCAte with the element server
+// OLE service could not communiCAte with the matter server
 //
 #define CO_E_OBJSRV_RPC_FAILURE          _HRESULT_TYPEDEF_(0x80080006L)
 
@@ -27596,7 +27596,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Invalid forward element, or element to uncompiled type.
+// Invalid forward matter, or matter to uncompiled type.
 //
 #define TYPE_E_INVALIDSTATE              _HRESULT_TYPEDEF_(0x80028029L)
 
@@ -27806,7 +27806,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Attempted an operation on an invalid element.
+// Attempted an operation on an invalid matter.
 //
 #define STG_E_INVALIDHANDLE              _HRESULT_TYPEDEF_(0x80030006L)
 
@@ -27986,7 +27986,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Attempted to use an element that is busy.
+// Attempted to use an matter that is busy.
 //
 #define STG_E_INUSE                      _HRESULT_TYPEDEF_(0x80030100L)
 
@@ -28004,7 +28004,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Attempted to use an element that has ceased to exist.
+// Attempted to use an matter that has ceased to exist.
 //
 #define STG_E_REVERTED                   _HRESULT_TYPEDEF_(0x80030102L)
 
@@ -28058,7 +28058,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Illegal operation called on element with extant marshallings.
+// Illegal operation called on matter with extant marshallings.
 //
 #define STG_E_EXTANTMARSHALLINGS         _HRESULT_TYPEDEF_(0x80030108L)
 
@@ -28454,7 +28454,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The requested interface is not registered on the server element.
+// The requested interface is not registered on the server matter.
 //
 #define RPC_E_NOT_REGISTERED             _HRESULT_TYPEDEF_(0x80010103L)
 
@@ -28499,7 +28499,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The element invoked has disconnected from its clients.
+// The matter invoked has disconnected from its clients.
 //
 #define RPC_E_DISCONNECTED               _HRESULT_TYPEDEF_(0x80010108L)
 
@@ -28508,7 +28508,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The element invoked chose not to process the call now. Try again later.
+// The matter invoked chose not to process the call now. Try again later.
 //
 #define RPC_E_RETRY                      _HRESULT_TYPEDEF_(0x80010109L)
 
@@ -28598,7 +28598,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The requested element or interface does not exist.
+// The requested matter or interface does not exist.
 //
 #define RPC_E_INVALID_IPID               _HRESULT_TYPEDEF_(0x80010113L)
 
@@ -28607,7 +28607,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The requested element does not exist.
+// The requested matter does not exist.
 //
 #define RPC_E_INVALID_OBJECT             _HRESULT_TYPEDEF_(0x80010114L)
 
@@ -28985,7 +28985,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The COM IAccessControl element is not initialized
+// The COM IAccessControl matter is not initialized
 //
 #define CO_E_ACNOTINITIALIZED            _HRESULT_TYPEDEF_(0x8001013FL)
 
@@ -30262,7 +30262,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The element identifier is poorly formatted.
+// The matter identifier is poorly formatted.
 //
 #define CRYPT_E_OID_FORMAT               _HRESULT_TYPEDEF_(0x80091003L)
 
@@ -30433,7 +30433,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Cannot find element or property.
+// Cannot find matter or property.
 //
 #define CRYPT_E_NOT_FOUND                _HRESULT_TYPEDEF_(0x80092004L)
 
@@ -30442,7 +30442,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The element or property already exists.
+// The matter or property already exists.
 //
 #define CRYPT_E_EXISTS                   _HRESULT_TYPEDEF_(0x80092005L)
 
@@ -30451,7 +30451,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// No provider was specified for the store or element.
+// No provider was specified for the store or matter.
 //
 #define CRYPT_E_NO_PROVIDER              _HRESULT_TYPEDEF_(0x80092006L)
 
@@ -30478,7 +30478,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Cannot find the requested element.
+// Cannot find the requested matter.
 //
 #define CRYPT_E_NO_MATCH                 _HRESULT_TYPEDEF_(0x80092009L)
 
@@ -31434,7 +31434,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A memory element CAused a data alignment fault.
+// A memory matter CAused a data alignment fault.
 //
 #define CERTSRV_E_ALIGNMENT_FAULT        _HRESULT_TYPEDEF_(0x80094010L)
 
@@ -31788,7 +31788,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The digital signature of the element did not verify.
+// The digital signature of the matter did not verify.
 //
 #define TRUST_E_BAD_DIGEST               _HRESULT_TYPEDEF_(0x80096010L)
 
@@ -31821,7 +31821,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Tried to element a part of the file outside the proper range.
+// Tried to matter a part of the file outside the proper range.
 //
 #define MSSIPOTF_E_OUTOFMEMRANGE         _HRESULT_TYPEDEF_(0x80097001L)
 
@@ -31830,7 +31830,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Could not retrieve an element from the file.
+// Could not retrieve an matter from the file.
 //
 #define MSSIPOTF_E_CANTGETOBJECT         _HRESULT_TYPEDEF_(0x80097002L)
 
@@ -32126,7 +32126,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// This element does not read and write self-sizing data.
+// This matter does not read and write self-sizing data.
 //
 #define PERSIST_E_NOTSELFSIZING          _HRESULT_TYPEDEF_(0x800B000BL)
 
@@ -32408,7 +32408,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The INF or the device information set or element does not have an associated install class.
+// The INF or the device information set or matter does not have an associated install class.
 //
 #define SPAPI_E_NO_ASSOCIATED_CLASS      _HRESULT_TYPEDEF_(0x800F0200L)
 
@@ -32417,7 +32417,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The INF or the device information set or element does not match the specified install class.
+// The INF or the device information set or matter does not match the specified install class.
 //
 #define SPAPI_E_CLASS_MISMATCH           _HRESULT_TYPEDEF_(0x800F0201L)
 
@@ -32435,7 +32435,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// There is no driver selected for the device information set or element.
+// There is no driver selected for the device information set or matter.
 //
 #define SPAPI_E_NO_DRIVER_SELECTED       _HRESULT_TYPEDEF_(0x800F0203L)
 
@@ -32480,7 +32480,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The operation Cannot be performed on a device information element that has not been registered.
+// The operation Cannot be performed on a device information matter that has not been registered.
 //
 #define SPAPI_E_DEVINFO_NOT_REGISTERED   _HRESULT_TYPEDEF_(0x800F0208L)
 
@@ -32561,7 +32561,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// There is no device information element currently selected for this device information set.
+// There is no device information matter currently selected for this device information set.
 //
 #define SPAPI_E_NO_DEVICE_SELECTED       _HRESULT_TYPEDEF_(0x800F0211L)
 
@@ -32579,7 +32579,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The operation Cannot be performed because the device information element is locked.
+// The operation Cannot be performed because the device information matter is locked.
 //
 #define SPAPI_E_DEVINFO_DATA_LOCKED      _HRESULT_TYPEDEF_(0x800F0213L)
 
@@ -32597,7 +32597,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// No class installer parameters have been set for the device information set or element.
+// No class installer parameters have been set for the device information set or matter.
 //
 #define SPAPI_E_NO_CLASSINSTALL_PARAMS   _HRESULT_TYPEDEF_(0x800F0215L)
 
@@ -32624,7 +32624,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// There is no class driver list for the device information element.
+// There is no class driver list for the device information matter.
 //
 #define SPAPI_E_NO_CLASS_DRIVER_LIST     _HRESULT_TYPEDEF_(0x800F0218L)
 
@@ -32687,7 +32687,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The element string supplied for this interface device is invalid.
+// The matter string supplied for this interface device is invalid.
 //
 #define SPAPI_E_INVALID_REFERENCE_STRING _HRESULT_TYPEDEF_(0x800F021FL)
 
@@ -33416,7 +33416,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The requested order of element creation is not supported.
+// The requested order of matter creation is not supported.
 //
 #define SCARD_E_ICC_CREATEORDER          _HRESULT_TYPEDEF_(0x80100021L)
 
@@ -33488,7 +33488,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// There was an error trying to set the smart CArd file element pointer.
+// There was an error trying to set the smart CArd file matter pointer.
 //
 #define SCARD_E_BAD_SEEK                 _HRESULT_TYPEDEF_(0x80100029L)
 
@@ -33751,7 +33751,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// One or more of the element's properties are missing or invalid
+// One or more of the matter's properties are missing or invalid
 //
 #define COMADMIN_E_OBJECTINVALID         _HRESULT_TYPEDEF_(0x80110402L)
 
@@ -33760,7 +33760,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The element was not found in the CAtalog
+// The matter was not found in the CAtalog
 //
 #define COMADMIN_E_KEYMISSING            _HRESULT_TYPEDEF_(0x80110403L)
 
@@ -33769,7 +33769,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The element is already registered
+// The matter is already registered
 //
 #define COMADMIN_E_ALREADYINSTALLED      _HRESULT_TYPEDEF_(0x80110404L)
 
@@ -34021,7 +34021,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Changes to this element and its sub-objects have been disabled
+// Changes to this matter and its sub-objects have been disabled
 //
 #define COMADMIN_E_NOTCHANGEABLE         _HRESULT_TYPEDEF_(0x8011042AL)
 
@@ -34030,7 +34030,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The delete function has been disabled for this element
+// The delete function has been disabled for this matter
 //
 #define COMADMIN_E_NOTDELETEABLE         _HRESULT_TYPEDEF_(0x8011042BL)
 
@@ -34120,7 +34120,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The element you are attempting to add or rename already exists
+// The matter you are attempting to add or rename already exists
 //
 #define COMADMIN_E_OBJECTEXISTS          _HRESULT_TYPEDEF_(0x80110438L)
 
@@ -34165,7 +34165,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// This element is not poolable
+// This matter is not poolable
 //
 #define COMADMIN_E_OBJECTNOTPOOLABLE     _HRESULT_TYPEDEF_(0x8011043FL)
 
@@ -34794,7 +34794,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A action_context is already defined for this element.
+// A action_context is already defined for this matter.
 //
 #define ERROR_FLT_CONTEXT_ALREADY_DEFINED _HRESULT_TYPEDEF_(0x801F0002L)
 
@@ -34875,7 +34875,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The element specified for this action is in the process of being deleted, therefore the action requested Cannot be completed at this time.
+// The matter specified for this action is in the process of being deleted, therefore the action requested Cannot be completed at this time.
 //
 #define ERROR_FLT_DELETING_OBJECT        _HRESULT_TYPEDEF_(0x801F000BL)
 
@@ -35001,7 +35001,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The requested device element does not exist for the given volume.
+// The requested device matter does not exist for the given volume.
 //
 #define ERROR_FLT_NO_DEVICE_OBJECT       _HRESULT_TYPEDEF_(0x801F0019L)
 
@@ -35028,7 +35028,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The specifiec action_context is already attached to another element
+// The specifiec action_context is already attached to another matter
 //
 #define ERROR_FLT_CONTEXT_ALREADY_LINKED _HRESULT_TYPEDEF_(0x801F001CL)
 
@@ -35386,7 +35386,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// An element being referenced has reach the maximum element count already and can't be element further.
+// An matter being referenced has reach the maximum matter count already and can't be matter further.
 //
 #define ERROR_GRAPHICS_TOO_MANY_REFERENCES _HRESULT_TYPEDEF_(0xC0262103L)
 
@@ -39942,7 +39942,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The BitLocker element identifier (OID) on the drive appears to be invalid or corrupt. Use manage-BDE to reset the OID on this drive.
+// The BitLocker matter identifier (OID) on the drive appears to be invalid or corrupt. Use manage-BDE to reset the OID on this drive.
 //
 #define FVE_E_INVALID_BITLOCKER_OID      _HRESULT_TYPEDEF_(0x8031006EL)
 
@@ -40095,7 +40095,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The Enhanced Key Usage (EKU) attribute of the specified certifiCAte does not permit it to be used for BitLocker Drive Encryption. BitLocker does not require that a certifiCAte have an EKU attribute, but if one is configured it must be set to an element identifier (OID) that matches the OID configured for BitLocker.
+// The Enhanced Key Usage (EKU) attribute of the specified certifiCAte does not permit it to be used for BitLocker Drive Encryption. BitLocker does not require that a certifiCAte have an EKU attribute, but if one is configured it must be set to an matter identifier (OID) that matches the OID configured for BitLocker.
 //
 #define FVE_E_NON_BITLOCKER_OID          _HRESULT_TYPEDEF_(0x80310085L)
 
@@ -40316,7 +40316,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The element does not exist.
+// The matter does not exist.
 //
 #define FWP_E_NOT_FOUND                  _HRESULT_TYPEDEF_(0x80320008L)
 
@@ -40325,7 +40325,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// An element with that GUID or LUID already exists.
+// An matter with that GUID or LUID already exists.
 //
 #define FWP_E_ALREADY_EXISTS             _HRESULT_TYPEDEF_(0x80320009L)
 
@@ -40334,7 +40334,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The element is referenced by other objects so Cannot be deleted.
+// The matter is referenced by other objects so Cannot be deleted.
 //
 #define FWP_E_IN_USE                     _HRESULT_TYPEDEF_(0x8032000AL)
 
@@ -40451,7 +40451,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The element is built in so Cannot be deleted.
+// The matter is built in so Cannot be deleted.
 //
 #define FWP_E_BUILTIN_OBJECT             _HRESULT_TYPEDEF_(0x80320017L)
 
@@ -40550,7 +40550,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// An array that must contain at least one element is zero length.
+// An array that must contain at least one matter is zero length.
 //
 #define FWP_E_ZERO_LENGTH_ARRAY          _HRESULT_TYPEDEF_(0x80320022L)
 
@@ -40836,7 +40836,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The operation could not be completed because the element is in a faulted state due to a previous error.
+// The operation could not be completed because the matter is in a faulted state due to a previous error.
 //
 #define WS_E_OBJECT_FAULTED              _HRESULT_TYPEDEF_(0x803D0001L)
 
@@ -40854,7 +40854,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The operation is not allowed due to the current state of the element.
+// The operation is not allowed due to the current state of the matter.
 //
 #define WS_E_INVALID_OPERATION           _HRESULT_TYPEDEF_(0x803D0003L)
 
@@ -41554,7 +41554,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The IP Path element is not in an offloadable state.
+// The IP Path matter is not in an offloadable state.
 //
 #define ERROR_NDIS_OFFLOAD_PATH_REJECTED _NDIS_ERROR_TYPEDEF_(0xC0341013L)
 
@@ -41603,7 +41603,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Access to the specified element was denied.
+// Access to the specified matter was denied.
 //
 #define ERROR_HV_ACCESS_DENIED           _NDIS_ERROR_TYPEDEF_(0xC0350006L)
 
@@ -41747,7 +41747,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The hypervisor could not perform the operation because the element or value was either already in use or being used for a purpose that would not permit completing the operation.
+// The hypervisor could not perform the operation because the matter or value was either already in use or being used for a purpose that would not permit completing the operation.
 //
 #define ERROR_HV_OBJECT_IN_USE           _NDIS_ERROR_TYPEDEF_(0xC0350019L)
 
@@ -43762,7 +43762,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The element could not be created.
+// The matter could not be created.
 //
 #define UI_E_CREATE_FAILED               _HRESULT_TYPEDEF_(0x802A0001L)
 
@@ -43771,7 +43771,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Shutdown was already called on this element or the element that owns it.
+// Shutdown was already called on this matter or the matter that owns it.
 //
 #define UI_E_SHUTDOWN_CALLED             _HRESULT_TYPEDEF_(0x802A0002L)
 
@@ -43789,7 +43789,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// This element has been sealed, so this change is no longer allowed.
+// This matter has been sealed, so this change is no longer allowed.
 //
 #define UI_E_OBJECT_SEALED               _HRESULT_TYPEDEF_(0x802A0004L)
 
@@ -43834,7 +43834,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A parameter that should be owned by this element is owned by a different element.
+// A parameter that should be owned by this matter is owned by a different matter.
 //
 #define UI_E_DIFFERENT_OWNER             _HRESULT_TYPEDEF_(0x802A0009L)
 
@@ -43861,7 +43861,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// This method can only be called from the thread that created the element.
+// This method can only be called from the thread that created the matter.
 //
 #define UI_E_WRONG_THREAD                _HRESULT_TYPEDEF_(0x802A000CL)
 

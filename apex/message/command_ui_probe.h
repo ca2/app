@@ -116,7 +116,7 @@ struct CPrintInfo;          // print preview customization info
 // interaction_impl - a Microsoft Windows application interaction_impl
 
 
-// interaction_impl::m_nFlags (element to interaction_impl)
+// interaction_impl::m_nFlags (matter to interaction_impl)
 #define WF_TOOLTIPS         0x0001  // interaction_impl is enabled for tooltips
 #define WF_TEMPHIDE         0x0002  // interaction_impl is temporarily hidden
 #define WF_STAYDISABLED     0x0004  // interaction_impl should stay disabled

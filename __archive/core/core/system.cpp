@@ -140,7 +140,7 @@ namespace acme
    }
 
 
-   ::estatus system::initialize_system(::element * pobject, app_core * pappcore)
+   ::estatus system::initialize_system(::matter * pobject, app_core * pappcore)
    {
 
       auto estatus = ::acme::system::initialize_system(pobject, pappcore);
@@ -277,7 +277,7 @@ namespace acme
    }
 
 
-   void system::discard_to_factory(__pointer(element) pca)
+   void system::discard_to_factory(__pointer(matter) pca)
    {
 
       UNREFERENCED_PARAMETER(pca);
@@ -765,7 +765,7 @@ namespace acme
    {
 
 
-      ::update_notification_task::post_destroy_all();
+      ::update_task::post_destroy_all();
 
 
       m_phistory.release();
@@ -789,7 +789,7 @@ namespace acme
    }
 
 
-   void system::on_allocation_error(const ::string & str, ::element * pobject)
+   void system::on_allocation_error(const ::string & str, ::matter * pobject)
    {
 
       string strMessage;
@@ -1103,7 +1103,7 @@ namespace acme
 
 
 //
-//   ::estatus system::initialize_system(::element* pobjectContext, ::app_core* pappcore)
+//   ::estatus system::initialize_system(::matter* pobjectContext, ::app_core* pappcore)
 //   {
 //
 //      auto estatus = ::acme::system::initialize_system(pobjectContext, pappcore);
@@ -1759,7 +1759,7 @@ namespace acme
 
 
 
-   void system::update(::update* pupdate)
+   void system::on_apply(::action * paction)
    {
 
       //::update updateSetting(pupdate);
@@ -1788,7 +1788,7 @@ namespace acme
 
       //           iFrame++;
 
-      //           pinteraction->call_update(pupdate);
+      //           pinteraction->apply(paction);
 
       //        }
 

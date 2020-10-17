@@ -724,12 +724,12 @@ restart:
 
       i64 locale_schema::add_ref(OBJ_REF_DBG_PARAMS_DEF)
       {
-         return element::add_ref(OBJ_REF_DBG_ARGS);
+         return matter::add_ref(OBJ_REF_DBG_ARGS);
       }
 
       i64 locale_schema::release(OBJ_REF_DBG_PARAMS_DEF)
       {
-         return element::release(OBJ_REF_DBG_ARGS);
+         return matter::release(OBJ_REF_DBG_ARGS);
       }
 
 

@@ -902,7 +902,7 @@
     <ClCompile Include="acme\acme\display.cpp" />
     <ClCompile Include="acme\acme\drawable.cpp" />
     <ClCompile Include="acme\acme\draw_context.cpp" />
-    <ClCompile Include="acme\acme\element.cpp" />
+    <ClCompile Include="acme\acme\matter.cpp" />
     <ClCompile Include="acme\acme\exclusive.cpp" />
     <ClCompile Include="acme\acme\fixed_alloc.cpp" />
     <ClCompile Include="acme\acme\flags.cpp" />

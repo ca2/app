@@ -2,7 +2,7 @@
 
 
 inline context_object::context_object(const context_object & object) :
-      element(object),
+      matter(object),
       m_id(object.m_id),
       m_pia(__new(::i64_array(*object.m_pia))),
       m_estatus(object.m_estatus),

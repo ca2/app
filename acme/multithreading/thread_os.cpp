@@ -2,7 +2,7 @@
 
 
 //class thread_proc_runner :
-//   virtual public element
+//   virtual public matter
 //{
 //public:
 //

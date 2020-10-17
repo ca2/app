@@ -18,9 +18,9 @@
 void debug_object_event_promisse_pred()
 {
 
-   //::element o;
+   //::matter o;
 
-   //::element * po = new element();
+   //::matter * po = new matter();
 
    //// 2 arguments
    //o.treat(ok, po, [&](auto & result) { output_debug_string("o += ok..."); return success; } };
@@ -29,7 +29,7 @@ void debug_object_event_promisse_pred()
    //o += { ok, id_text, [&](auto & result) { output_debug_string("o += ok, id_text ..."); return ::success; } };
 
 
-   //__pointer(::element) pobject;
+   //__pointer(::matter) pobject;
 
    //__keep(pobject, nullptr);
    ////   // 4 arguments
@@ -73,7 +73,7 @@ void debug_object_event_promisse_pred()
 //
 //   auto pupdate = new_update();
 //
-//   pupdate->value(id_filter) = "*.jpg";
+//   paction->value(id_filter) = "*.jpg";
 //
 //}
 

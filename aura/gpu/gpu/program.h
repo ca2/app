@@ -6,7 +6,7 @@ namespace gpu
 
 
    class CLASS_DECL_AURA program :
-      virtual public ::element
+      virtual public ::matter
    {
    public:
 

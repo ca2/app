@@ -15,7 +15,7 @@ namespace linux
       virtual ~file_system();
 
 
-      virtual ::estatus initialize(::element * pobjectContext) override;
+      virtual ::estatus initialize(::matter * pobjectContext) override;
 
       virtual ::estatus init_system() override;
 

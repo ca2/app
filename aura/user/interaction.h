@@ -1222,8 +1222,7 @@ namespace user
       virtual void layout_scroll_bar();
 
 
-      using primitive::update;
-      virtual void update(::update * pupdate) override;
+      virtual void on_apply(::action * paction) override;
 
 
       virtual void keyboard_focus_OnKeyDown(::message::message* pmessage) override;
@@ -1448,11 +1447,11 @@ namespace user
       virtual e_stock_icon get_stock_icon();
 
 
-      virtual void post_task(::element * pobjectTask);
-      virtual void prodevian_schedule(::element* pobjectTask);
+      virtual void post_task(::matter * pobjectTask);
+      virtual void prodevian_schedule(::matter* pobjectTask);
 
 
-      virtual void send_task(::element * pobjectTask, ::duration durationTimeout = ::duration::infinite());
+      virtual void send_task(::matter * pobjectTask, ::duration durationTimeout = ::duration::infinite());
 
 
       template < typename PRED >

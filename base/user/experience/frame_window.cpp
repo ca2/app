@@ -2212,10 +2212,10 @@ namespace experience
 
 
 
-   void frame_window::update(::update * pupdate)
+   void frame_window::on_apply(::action * paction)
    {
 
-      if(pupdate->m_id == id_app_activated)
+      if(paction->id() == id_app_activated)
       {
 
          toggle_restore();

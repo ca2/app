@@ -244,7 +244,7 @@ namespace aura
       //virtual ::user::interaction_impl * impl_from_handle(void * pdata) override;
       //virtual ::user::interaction * ui_from_handle(void * pdata) override;
 
-      virtual void update(::update* pupdate) override;
+      virtual void on_apply(::action * paction) override;
 
 
 

@@ -9,7 +9,7 @@ sync_array::sync_array()
 
 
 sync_array::sync_array(const ::sync_array & array) :
-   element(array),
+   matter(array),
    m_hsyncaCache(array.m_hsyncaCache),
    m_synca(array.m_synca)
 {
@@ -332,7 +332,7 @@ sync_result sync_array::contains( const sync_result& result ) const
    throw todo();
 
    //if ( !result.abandoned() && !result.signaled() )
-   //   __throw(range_error("no element signaled"));
+   //   __throw(range_error("no matter signaled"));
 
    //index position = result.abandoned() ? result.abandoned_index() : result.signaled_index();
 

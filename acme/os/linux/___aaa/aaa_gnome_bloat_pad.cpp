@@ -126,10 +126,10 @@ void bloat_pad_open(GApplication * application, GFile ** files, gint n_files, co
 }
 
 
-void bloat_pad_finalize (GObject *element)
+void bloat_pad_finalize (GObject *matter)
 {
 
-   G_OBJECT_CLASS (bloat_pad_parent_class)->finalize (element);
+   G_OBJECT_CLASS (bloat_pad_parent_class)->finalize (matter);
 
 }
 

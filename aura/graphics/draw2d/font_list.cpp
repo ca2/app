@@ -29,6 +29,8 @@ namespace draw2d
    font_list::font_list()
    {
 
+      m_bUpdatesHooked = false;
+
       m_bUpdating = false;
 
       m_iSelUpdateId = -1;
@@ -577,9 +579,15 @@ namespace draw2d
    void font_list::set_need_layout()
    {
 
-//      on_layout_sync();
-
       m_puserinteraction->set_need_layout();
+
+      set_need_redraw();
+
+   }
+
+
+   void font_list::set_need_redraw()
+   {
 
       m_puserinteraction->set_need_redraw();
 
@@ -588,37 +596,102 @@ namespace draw2d
    }
 
 
-   void font_list::defer_update()
+   ::estatus font_list::initialize(::layered* pobjectContext)
    {
 
-      if (m_bUpdating)
+      auto estatus = ::object::initialize(pobjectContext);
+
+      if (!estatus)
       {
 
-         return;
+         return estatus;
 
       }
 
-      m_bUpdating = true;
+      return estatus;
 
-      fork([this]()
+   }
+
+
+   void font_list::on_apply(::action * paction)
+   {
+
+      e_id eid = (e_id) paction->id().i64();
+
+      if (eid == id_font_enumeration)
+      {
+
+         sync_font_enumeration();
+
+         if (!m_rectClient.is_empty())
          {
 
-            try
-            {
+            set_modified(id_font_extents);
 
-               update();
+         }
 
-            }
-            catch (...)
-            {
+      }
+      else if (eid == id_font_extents)
+      {
 
-            }
+         update_extents();
 
-            sleep(3_s);
+      }
+      else if (eid == id_font_list_layout)
+      {
 
-            m_bUpdating = false;
+         layout();
 
-         });
+      }
+      else if (eid == id_font_list_total_size)
+      {
+
+         set_need_layout();
+
+      }
+      else if (eid == id_font_list_redraw)
+      {
+
+         set_need_redraw();
+
+      }
+
+   }
+
+   
+   void font_list::set_font_list_type(e_type etype)
+   {
+
+      m_etype = etype;
+
+      if (!m_bUpdatesHooked)
+      {
+
+         m_bUpdatesHooked = true;
+
+         System.add_update(id_font_enumeration, this, true);
+
+         add_update(id_font_extents, this, true);
+
+         add_update(id_font_list_layout, this, true);
+
+         add_update(id_font_list_total_size, this, true);
+
+      }
+      else
+      {
+
+         set_modified(id_font_extents);
+
+      }
+
+   }
+
+
+   font_list::e_type font_list::get_font_list_type() const
+   {
+
+      return m_etype;
 
    }
 
@@ -628,7 +701,21 @@ namespace draw2d
 
       sync_lock sl(mutex());
 
+      if (!m_pitema)
+      {
+
+         return;
+
+      }
+
       if (m_etype != type_single_column && !m_rectClient)
+      {
+
+         return;
+
+      }
+
+      if (m_rectClient.is_empty())
       {
 
          return;
@@ -661,13 +748,12 @@ namespace draw2d
       auto plistdata = m_plistdata;
 
       if (plistdata.is_set() &&
-         plistdata->get_count() == m_pitema->get_count()
-            && plistdata->m_iUpdateId == m_pfontenumeration->m_iUpdateId
+            plistdata->m_iUpdateId == m_pfontenumeration->m_iUpdateId
             && (m_etype == type_single_column ||
                plistdata->m_rectClient == m_rectClient))
       {
 
-         set_need_layout();
+         set_modified(id_font_list_layout);
 
          return;
 
@@ -681,7 +767,7 @@ namespace draw2d
          if (plistdata->m_iUpdateId == m_pfontenumeration->m_iUpdateId)
          {
 
-            set_need_layout();
+            set_modified(id_font_list_layout);
 
             return;
 
@@ -714,7 +800,7 @@ namespace draw2d
          && plistdata->m_iUpdateId == m_pfontenumeration->m_iUpdateId)
       {
 
-         set_need_layout();
+         set_modified(id_font_list_layout);
 
          return;
 
@@ -803,7 +889,7 @@ namespace draw2d
 
       plistdata->m_bLayoutStillIntersect = true;
 
-      m_iSequentialItemToLayout = 0;
+      m_iLayoutSerial = 0;
 
       sl.unlock();
 
@@ -830,9 +916,7 @@ namespace draw2d
 
          __pointer(font_list_item) pitem;
 
-         index iItem;
-
-         for (index i = iStart; i < plistdata->get_count(); i += iScan)
+         for (index iItem = iStart; iItem < plistdata->get_count(); iItem += iScan)
          {
 
             {
@@ -845,10 +929,6 @@ namespace draw2d
                   goto restart;
 
                }
-
-               iItem = m_iSequentialItemToLayout;
-
-               m_iSequentialItemToLayout++;
 
                if (iItem >= m_pitema->get_count())
                {
@@ -927,7 +1007,7 @@ namespace draw2d
 
       });
 
-      if (pcounter->lock(seconds(30)))
+      if (pcounter->lock(30_s))
       {
 
          {
@@ -941,19 +1021,7 @@ namespace draw2d
 
             }
 
-            set_need_layout();
-            /*on_layout_sync();
-
-            if (::is_set(m_puserinteraction))
-            {
-
-               m_puserinteraction->set_need_layout();
-
-               m_puserinteraction->set_need_redraw();
-
-               m_puserinteraction->post_redraw();
-
-            }*/
+            set_modified(id_font_list_layout);
 
          }
 
@@ -997,7 +1065,7 @@ namespace draw2d
 
          });
 
-         if (pcounter->lock(seconds(30)))
+         if (pcounter->lock(30_s))
          {
 
             {
@@ -1011,27 +1079,13 @@ namespace draw2d
 
                }
 
-               //on_layout_sync();
-
-               //if (::is_set(m_puserinteraction))
-               //{
-
-               //   m_puserinteraction->set_need_layout();
-
-               //   m_puserinteraction->set_need_redraw();
-
-               //   m_puserinteraction->post_redraw();
-
-               //}
-
-               set_need_layout();
+               set_modified(id_font_list_layout);
 
             }
 
          }
 
       }
-
 
    }
 
@@ -1041,28 +1095,48 @@ namespace draw2d
 
       sync_lock sl(mutex());
 
+      ::size sizeTotal;
+
       if (m_etype == type_wide)
       {
 
-         layout_wide();
+         sizeTotal = layout_wide();
 
       }
       else
       {
 
-         layout_single_column();
+         sizeTotal = layout_single_column();
+
+      }
+
+      if (sizeTotal != m_size)
+      {
+
+         m_size = sizeTotal;
+
+         set_modified(id_font_list_total_size);
 
       }
 
    }
 
 
-   void font_list::layout_wide()
+   ::size font_list::layout_wide()
    {
+
+      if (::is_null(m_puserinteraction))
+      {
+
+         return ::size();
+
+      }
 
       TRACE("font_list::layout_wide");
 
       sync_lock sl(mutex());
+
+      ::size sizeTotal;
 
       bool bIntersected = false;
 
@@ -1088,7 +1162,7 @@ namespace draw2d
 
       int nextx;
 
-      m_size.cx = m_rectClient.width();
+      sizeTotal.cx = m_rectClient.width();
 
       ::rect rectClient = m_puserinteraction->get_client_rect();
 
@@ -1099,7 +1173,7 @@ namespace draw2d
       if (plistdata.is_null())
       {
 
-         return;
+         return sizeTotal;
 
       }
 
@@ -1130,9 +1204,9 @@ namespace draw2d
          if (pitem == nullptr)
          {
 
-            m_size.cy = y + hExtra;
+            sizeTotal.cy = y + hExtra;
 
-            return;
+            return sizeTotal;
 
          }
 
@@ -1277,16 +1351,19 @@ namespace draw2d
 
       }
 
-      m_size.cy = y + hExtra + 5;
+      sizeTotal.cy = y + hExtra + 5;
 
+      return sizeTotal;
 
    }
 
 
-   void font_list::layout_single_column()
+   ::size font_list::layout_single_column()
    {
 
       sync_lock sl(mutex());
+
+      ::size sizeTotal;
 
       string strText = m_strTextLayout;
 
@@ -1294,7 +1371,7 @@ namespace draw2d
 
       int h = 0;
 
-      m_size.cx = 0;
+      sizeTotal.cx = 0;
 
       int xSingleColumn = 0;
       int ySingleColumn = 0;
@@ -1309,9 +1386,9 @@ namespace draw2d
          if (pitem == nullptr)
          {
 
-            m_size.cy = ySingleColumn;
+            sizeTotal.cy = ySingleColumn;
 
-            return;
+            return sizeTotal;
 
          }
 
@@ -1326,7 +1403,7 @@ namespace draw2d
          pitem->m_box[0].m_rect.right = xSingleColumn + s.cx;
          pitem->m_box[0].m_rect.bottom = ySingleColumn + s.cy;
 
-         m_size.cx = max(m_size.cx, pitem->m_box[0].m_rect.right + 4);
+         sizeTotal.cx = max(m_size.cx, pitem->m_box[0].m_rect.right + 4);
 
          ySingleColumn += s.cy;
 
@@ -1334,7 +1411,9 @@ namespace draw2d
 
       }
 
-      m_size.cy = ySingleColumn;
+      sizeTotal.cy = ySingleColumn;
+
+      return sizeTotal;
 
    }
 
@@ -1546,6 +1625,31 @@ namespace draw2d
    }
 
 
+   void font_list::set_client_rect(LPCRECT lpcrect)
+   {
+
+      ::rect rect(lpcrect);
+
+      if (rect != m_rectClient)
+      {
+
+         ::size sizeOld(m_rectClient.size());
+
+         ::size sizeNew(rect.size());
+
+         m_rectClient = *lpcrect;
+
+         if (sizeOld != sizeNew)
+         {
+
+            set_modified(id_font_extents);
+
+         }
+
+      }
+
+   }
+
 
    index font_list::find_name(string str)
    {
@@ -1586,46 +1690,47 @@ namespace draw2d
    }
 
 
-   void font_list::update()
-   {
+   //void font_list::update()
+   //{
 
-      m_bUpdating = true;
+   //   m_bUpdating = true;
 
-      try
-      {
+   //   try
+   //   {
 
-         update_font_enumeration();
+   //      //update_font_enumeration();
+   //      sync_font_enumeration();
 
-         sync_font_enumeration();
 
-         update_extents();
 
-      }
-      catch (...)
-      {
+   //      update_extents();
 
-      }
+   //   }
+   //   catch (...)
+   //   {
 
-      set_need_layout();
+   //   }
 
-      //try
-      //{
+   //   set_need_layout();
 
-      //   m_puserinteraction->set_need_layout();
+   //   //try
+   //   //{
 
-      //   m_puserinteraction->set_need_redraw();
+   //   //   m_puserinteraction->set_need_layout();
 
-      //   m_puserinteraction->post_redraw();
+   //   //   m_puserinteraction->set_need_redraw();
 
-      //}
-      //catch (...)
-      //{
+   //   //   m_puserinteraction->post_redraw();
 
-      //}
+   //   //}
+   //   //catch (...)
+   //   //{
 
-      m_bUpdating = false;
+   //   //}
 
-   }
+   //   m_bUpdating = false;
+
+   //}
 
 
    bool font_list::is_updating() const

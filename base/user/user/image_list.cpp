@@ -696,18 +696,18 @@ namespace user
    }
 
 
-   void image_list_view::update(::update * pupdate)
+   void image_list_view::on_apply(::action * paction)
    {
 
-      ::user::impact::update(pupdate);
+      ::user::impact::on_apply(paction);
 
-      if (pupdate->m_id == id_after_change_text)
+      if (paction->id() == id_after_change_text)
       {
 
          __throw(todo("core"));
          //auto * peditview = _001TypedWindow < ::userex::top_edit_view >();
 
-         //if (peditview != nullptr && pupdate->m_puserinteraction == peditview)
+         //if (peditview != nullptr && paction->m_puserinteraction == peditview)
          //{
 
          //   string strText;

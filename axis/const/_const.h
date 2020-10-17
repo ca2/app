@@ -225,7 +225,7 @@ enum e_trace_category
    trace_category_database,     // special database trace
    trace_category_internet,     // special internet client trace
    trace_category_dumpcontext,   // traces from dump_context
-   trace_category_memory,      // element non-kernel memory traces
+   trace_category_memory,      // matter non-kernel memory traces
    trace_category_html,         // html traces
    trace_category_socket,      // socket traces
    trace_category_colorertake5,

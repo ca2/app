@@ -10,7 +10,7 @@ class CLASS_DECL_ACME message_array :
 
 
 class CLASS_DECL_ACME mq :
-   virtual public element
+   virtual public matter
 {
 public:
 

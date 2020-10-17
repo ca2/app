@@ -10,9 +10,9 @@ menu_view::menu_view()
 }
 
 
-void menu_view::update(::update * pupdate)
+void menu_view::on_apply(::action * paction)
 {
-   ::user::form_view::update(pupdate);
+   ::user::form_view::on_apply(paction);
 }
 
 

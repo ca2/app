@@ -52,7 +52,7 @@ public:
 
 
 class CLASS_DECL_ACME strid_array :
-   virtual public element
+   virtual public matter
 {
 protected:
 

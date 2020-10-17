@@ -757,7 +757,7 @@ namespace aura
 
       virtual string get_app_user_friendly_task_bar_name() override;
 
-      virtual void update(::update * pupdate) override;
+      virtual void on_apply(::action * paction) override;
 
       //virtual bool compress_ungz(::file::file * pfileUncompressed, ::file::file * pfileCompressed);
 
@@ -1292,7 +1292,7 @@ namespace aura
       }
 
 
-      virtual void data_on_after_change(::database::client* pclient, const ::database::key& id, const var& var, ::update* pupdate) override;
+      virtual void data_on_after_change(::database::client* pclient, const ::database::key& id, const var& var, ::action * paction) override;
 
 
       //user virtual ::user::document* open_document_file(::object* pobject, const char* pszFileName);
@@ -1348,7 +1348,7 @@ namespace aura
 
       //virtual void install_message_routing(::channel * pchannel) override;
 
-      //virtual void update(::update * pupdate) override;
+      //virtual void on_apply(::action * paction) override;
 
       //virtual ::estatus process_init() override;
 

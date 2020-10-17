@@ -313,13 +313,11 @@ namespace user
    ::id document::get_topic_view_id()
    {
 
-      auto pupdate = new_update();
+      auto paction = action(id_get_topic_view_id);
 
-      pupdate->m_id = id_get_topic_view_id;
+      update_all_views(paction);
 
-      update_all_views(pupdate.get());
-
-      return pupdate->value(id_id);
+      return paction->value(id_id);
 
    }
 
@@ -327,15 +325,13 @@ namespace user
    bool document::set_topic_view_by_id(::id id)
    {
 
-      auto pupdate = new_update();
+      auto paction = action(id_get_topic_view_id);
 
-      pupdate->m_id = id_get_topic_view_id;
+      paction->value(id_id) = id;
 
-      pupdate->value(id_id) = id;
+      update_all_views(paction);
 
-      update_all_views(pupdate);
-
-      return pupdate->m_bRet;
+      return paction->m_bRet;
 
    }
 
@@ -459,18 +455,18 @@ namespace user
    //   ASSERT(pSender == nullptr || !m_viewa.is_empty());
    //   // must have views if sent by one of them
 
-   //   update * pupdate;
+   //   update * ptask;
    //   ::count count = get_view_count();
    //   for (index index = 0; index < count; index++)
    //   {
    //      __pointer(::user::impact) pview = get_view(index);
 
-   //      pupdate = new update;
-   //      pupdate->m_pSender = pSender;
-   //      pupdate->m_lHint = lHint;
-   //      pupdate->m_pHint = pHint;
+   //      ptask = new update;
+   //      ptask->m_pSender = pSender;
+   //      ptask->m_lHint = lHint;
+   //      ptask->m_pHint = pHint;
    //      if (pview != pSender)
-   //         pview->send_message(WM_VIEW, 0, (LPARAM)pupdate);
+   //         pview->send_message(WM_VIEW, 0, (LPARAM)ptask);
    //   }
    //}
 
@@ -1179,7 +1175,7 @@ namespace user
          //         break;
 
          //         case ::file::exception::badSeek:
-         //         case ::file::exception::element:
+         //         case ::file::exception::matter:
          //         case ::file::exception::tooManyOpenFiles:
          //         case ::file::exception::invalidFile:
          //         case ::file::exception::hardIO:
@@ -1784,22 +1780,22 @@ namespace user
    }
 
 
-   void document::update_all_views(::update * pupdate)
+   void document::update_all_views(::action * paction)
    {
 
-      ASSERT(pupdate->m_psender == nullptr || !m_viewa.is_empty());
+      ASSERT(paction->m_psender == nullptr || !m_viewa.is_empty());
 
       for (auto & pview : m_viewa.ptra())
       {
 
          ASSERT_VALID(pview);
 
-         if (pview != pupdate->m_psender)
+         if (pview != paction->m_psender)
          {
 
-            pview->call_update(pupdate);
+            pview->apply(paction);
 
-            if(pupdate->m_bRet)
+            if(paction->m_bRet)
             {
 
                break;
@@ -1813,10 +1809,10 @@ namespace user
    }
 
 
-   void document::update(::update * pupdate)
+   void document::on_apply(::action * paction)
    {
 
-      update_all_views(pupdate);
+      update_all_views(paction);
 
    }
 
@@ -1824,13 +1820,11 @@ namespace user
    void document::update_all_views(impact * pimpact, const ::id & id)
    {
 
-      auto pupdate = new_update();
+      ::action action(id);
 
-      pupdate->m_id = id;
+      action.m_psender = pimpact;
 
-      pupdate->m_psender = pimpact;
-
-      update_all_views(pupdate);
+      update_all_views(action);
 
    }
 

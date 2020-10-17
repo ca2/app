@@ -122,7 +122,7 @@ namespace aura
 
    //critical_section* g_pcsTrace;
 
-   //::element* g_ptrace;
+   //::matter* g_ptrace;
 
    //simple_trace* g_psimpletrace;
    // aura commented
@@ -150,7 +150,7 @@ namespace aura
    ::mutex* g_pmutexMessageDispatch;
 
 
-   //array < element* >* g_paAura;
+   //array < matter* >* g_paAura;
 
 
    //::map < ::id, const ::id&, ::id, const ::id& >* g_pmapRTL;
@@ -538,7 +538,7 @@ namespace aura
 
       //::factory::factory_init();
 
-      //g_paAura = new array < element * >;
+      //g_paAura = new array < matter * >;
 
       //g_pmapAura =new ::map < void *,void *,::aura::application *,::aura::application * >;
 

@@ -700,11 +700,11 @@ namespace user
 
       //      auto pupdate = new_update();
 
-      //      pupdate->m_id = id_place_child_title_change;
+      //      paction->id() = id_place_child_title_change;
 
-      //      pupdate->m_puserinteraction = pholder;
+      //      paction->m_puserinteraction = pholder;
 
-      //      pparent->call_update(pupdate);
+      //      pparent->apply(paction);
 
       //   }
 
@@ -2573,13 +2573,7 @@ namespace user
       //// keep this past z-order
       //interaction_pointer_array uia;
 
-      //{
-
-      //   sync_lock sl(mutex_children());
-
-      //   uia = m_uiptraChild;
-
-      //}
+      sync_lock sl(mutex_children());
 
       for (auto & pinteraction : m_uiptraChild.interactiona())
       {
@@ -3408,7 +3402,7 @@ namespace user
 
       UNREFERENCED_PARAMETER(pmessage);
 
-      ::update_notification_task::add(id_dark_mode, this);
+      System.apply_update(id_dark_mode);
 
       on_create_user_interaction();
 
@@ -12296,7 +12290,7 @@ restart:
    }
 
 
-   void interaction::post_task(::element * pobjectTask)
+   void interaction::post_task(::matter * pobjectTask)
    {
 
       if (::is_set(m_pthreadUserInteraction))
@@ -12363,7 +12357,7 @@ restart:
 #endif
 
 
-   void interaction::send_task(::element * pobjectTask, ::duration durationTimeout)
+   void interaction::send_task(::matter * pobjectTask, ::duration durationTimeout)
    {
 
       ::thread * pthread = get_wnd() == nullptr ? (::thread *) nullptr : get_wnd()->m_pthreadUserInteraction;
@@ -13215,10 +13209,10 @@ restart:
    }
 
 
-   void interaction::update(::update * pupdate)
+   void interaction::on_apply(::action * paction)
    {
 
-      if (pupdate->m_id == REDRAW_ID || pupdate->m_id == m_id)
+      if (paction->id() == REDRAW_ID || paction->id() == m_id)
       {
 
          set_need_redraw();

@@ -178,7 +178,7 @@ namespace user
    }
 
 
-   void frame_window::update_active_document(::update * pupdate)
+   void frame_window::update_active_document(::action * paction)
    {
 
       auto pdocument = GetActiveDocument();
@@ -190,7 +190,7 @@ namespace user
 
       }
 
-      pdocument->update_all_views(pupdate);
+      pdocument->update_all_views(paction);
 
    }
 

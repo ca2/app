@@ -27,10 +27,10 @@ namespace papaya
       }
 
 
-      //inline string get_string(const ::element & element, const string & strKey)
+      //inline string get_string(const ::matter & matter, const string & strKey)
       //{
 
-      //   return element.property_set_get_string(strKey);
+      //   return matter.property_set_get_string(strKey);
 
       //}
 

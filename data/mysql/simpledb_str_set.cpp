@@ -16,7 +16,7 @@ public:
 
 
 class CLASS_DECL_AURA db_str_set_queue_item:
-   virtual public element
+   virtual public matter
 {
 public:
 
@@ -66,7 +66,7 @@ public:
 
 
    db_str_set_core(db_server * pserver):
-      element(pserver->get_context_application()),
+      matter(pserver->get_context_application()),
       db_set(pserver,"stringtable"),
       m_handler(get_object()),
       
@@ -238,7 +238,7 @@ void db_str_sync_queue::queue(const char * pszKey,const char * psz)
 
 
 db_str_set::db_str_set(db_server * pserver):
-element(pserver->get_context_application()),
+matter(pserver->get_context_application()),
 m_mutex(pserver->get_context_application())
 {
 

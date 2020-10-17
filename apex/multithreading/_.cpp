@@ -972,7 +972,7 @@ CLASS_DECL_APEX ::estatus call(::layered * pobjectContext)
 
 //
 //
-//::estatus     run_runnable(::element* pobjectTask)
+//::estatus     run_runnable(::matter* pobjectTask)
 //{
 //
 //   ::estatus     estatus = error_exception;
@@ -980,7 +980,7 @@ CLASS_DECL_APEX ::estatus call(::layered * pobjectContext)
 //   try
 //   {
 //
-//      __pointer(element) pobject(e_move_transfer, pobjectTask);
+//      __pointer(matter) pobject(e_move_transfer, pobjectTask);
 //
 //      try
 //      {

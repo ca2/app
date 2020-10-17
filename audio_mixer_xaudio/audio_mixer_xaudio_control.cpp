@@ -22,7 +22,7 @@ namespace multimedia
 
 
       control::control(control & control) :
-         element(control.get_context_application()),
+         matter(control.get_context_application()),
          ::multimedia::audio_mixer::control(control.get_context_application())
       {
 

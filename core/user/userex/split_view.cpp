@@ -66,11 +66,11 @@ namespace userex
    }
 
 
-   void split_view::update(::update * pupdate)
+   void split_view::on_apply(::action * paction)
    {
 
-      ::user::split_view::update(pupdate);
-      ::user::impact_host::update(pupdate);
+      ::user::split_view::on_apply(paction);
+      ::user::impact_host::on_apply(paction);
 
    }
 

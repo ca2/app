@@ -38,7 +38,7 @@
 //   ////public:
 //   //   ///
 //   //   ///
-//   //   os_watch(::element * pobject);
+//   //   os_watch(::matter * pobject);
 //
 //   //   ///
 //   //   ///
@@ -92,7 +92,7 @@
 //
 //   //class watch :
 //   //   public watch_item,
-//   //   virtual public ::element
+//   //   virtual public ::matter
 //   //{
 //   //public:
 //

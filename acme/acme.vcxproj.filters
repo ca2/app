@@ -1655,9 +1655,6 @@
     <ClInclude Include="compress\aaa_want_to_move_compress_bz.h">
       <Filter>Header Files\compress</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\task.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="callback.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -2189,7 +2186,7 @@
     <ClInclude Include="user\_const_key.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\element.h">
+    <ClInclude Include="primitive\primitive\matter.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\geometry2d\oval.h">
@@ -2246,16 +2243,34 @@
     <ClInclude Include="primitive\primitive\context_object.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\update.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive\promise.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="multithreading\update_notification_task.h">
+    <ClInclude Include="primitive\primitive\_context_object_impl.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\aaa_update.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\zaa_update_task.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\_context_object_impl.h">
+    <ClInclude Include="multithreading\zaa_update_task_item.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\zaa_update_task_item_array.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\update.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\change.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\source.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\action.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
   </ItemGroup>
@@ -3154,9 +3169,6 @@
     <ClCompile Include="platform\static_start_aura.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\task.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
-    </ClCompile>
     <ClCompile Include="platform\message_box.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -3298,7 +3310,7 @@
     <ClCompile Include="os\windows_common\net.cpp">
       <Filter>Source Files\os\windows_common</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\element.cpp">
+    <ClCompile Include="primitive\primitive\matter.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\geometry2d\shape.cpp">
@@ -3313,14 +3325,26 @@
     <ClCompile Include="primitive\primitive\context_object.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\update.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\primitive\promise.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="multithreading\update_notification_task.cpp">
+    <ClCompile Include="multithreading\zaa_update.cpp">
       <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive\update.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive\source.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive\action.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive\change.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive\task.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

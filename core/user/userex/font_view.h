@@ -28,7 +28,7 @@ namespace userex
 
       virtual void on_create_split_impact() override;
 
-      virtual void update(::update * pupdate) override;
+      virtual void on_apply(::action * paction) override;
 
       virtual void on_control_event(::user::control_event * pevent) override;
 

@@ -872,7 +872,7 @@ namespace user
    }
 
 
-   void document_manager::update(::update * pupdate)
+   void document_manager::on_apply(::action * paction)
    {
 
       auto templateptra = m_templateptra;
@@ -880,7 +880,7 @@ namespace user
       for(auto & ptemplate : templateptra.ptra())
       {
 
-         ptemplate->call_update(pupdate);
+         ptemplate->apply(paction);
 
       }
 

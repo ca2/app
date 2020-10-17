@@ -10,7 +10,7 @@ namespace str
 
 
       class CLASS_DECL_ACME locale_schema :
-         virtual public ::element
+         virtual public ::matter
       {
       public:
 

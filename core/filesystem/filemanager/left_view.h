@@ -31,7 +31,7 @@ namespace filemanager
       void FileManagerBrowse(const char * pcwstr, const ::action_context & action_context);
 
 
-      virtual void update(::update * pupdate) override;
+      virtual void on_apply(::action * paction) override;
 
    };
 

@@ -5,7 +5,7 @@
 class strid_array;
 
 
-CLASS_DECL_ACME bool safe_destroy_element(element * pobject);
+CLASS_DECL_ACME bool safe_destroy_element(matter * pobject);
 
 CLASS_DECL_ACME bool safe_free_memory(void * ptype);
 
@@ -174,14 +174,14 @@ public:
 /////////////////////////////////////////////////////////////////////////////
 // Classes declared in this file
 
-//element
+//matter
 
 // Lists
 class pointer_list;             // list of void *
-class object_list;              // list of element*
+class object_list;              // list of matter*
 
 //   // Maps (aka Dictionaries)
-//   class CMapWordToOb;         // map from WORD to element*
+//   class CMapWordToOb;         // map from WORD to matter*
 //   class CMapWordToPtr;        // map from WORD to void *
 //   class CMapPtrToWord;        // map from void * to WORD
 //   class map_ptr_to_ptr;         // map from void * to void *
@@ -189,7 +189,7 @@ class object_list;              // list of element*
 //   // Special string variants
 //   class string_list;          // list of Strings
 //   class CMapStringToPtr;      // map from string to void *
-//   class CMapStringToOb;       // map from string to element*
+//   class CMapStringToOb;       // map from string to matter*
 ////   class string_to_string;   // map from string to string
 
 
@@ -221,7 +221,7 @@ public:
 };
 
 class CLASS_DECL_ACME map_word_to_ob :
-   virtual public map < WORD, WORD, element *, element * >
+   virtual public map < WORD, WORD, matter *, matter * >
 {
 public:
    map_word_to_ob();
@@ -236,7 +236,7 @@ public:
 };
 
 class CLASS_DECL_ACME map_string_to_ob :
-   virtual public map < string, const string &, element *, element * >
+   virtual public map < string, const string &, matter *, matter * >
 {
 public:
    map_string_to_ob();

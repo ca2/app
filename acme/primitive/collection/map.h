@@ -122,7 +122,7 @@ public:
 
 template <class KEY,class ARG_KEY,class VALUE,class ARG_VALUE, class PAIR >
 class map :
-   public ::element
+   public ::matter
 {
 public:
 
@@ -1065,7 +1065,7 @@ template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class PAIR >
 VALUE& map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::operator[](ARG_KEY key)
 {
 
-   return get_assoc(key)->element2();  // return new element
+   return get_assoc(key)->element2();  // return new matter
 
 }
 
@@ -1073,7 +1073,7 @@ template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class PAIR >
 const VALUE & map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::operator[](ARG_KEY key) const
 {
 
-   return get_assoc(key)->element2();  // return new element
+   return get_assoc(key)->element2();  // return new matter
 
 }
 
@@ -1183,7 +1183,7 @@ template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class PAIR >
 void map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::assert_valid() const
 {
 
-   ::element::assert_valid();
+   ::matter::assert_valid();
 
    ASSERT(GetHashTableSize() > 0);
 

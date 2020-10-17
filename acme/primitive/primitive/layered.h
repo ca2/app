@@ -5,7 +5,7 @@
 
 
 class CLASS_DECL_ACME layered :
-   virtual public ::element
+   virtual public ::matter
 {
 private:
 

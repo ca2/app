@@ -729,7 +729,7 @@ namespace user
 
       virtual bool SetPlacement(const ::rect & rect, UINT nFlags = SWP_SHOWWINDOW);
 
-      virtual i32 get_total_page_count(::task* ptask);
+      virtual i32 get_total_page_count(::change * pchange);
 
       virtual void edit_on_text(string str);
       virtual void edit_on_sel(strsize iBeg, strsize iEnd);

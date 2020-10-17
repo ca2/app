@@ -64,7 +64,7 @@ namespace serial
 }
 
 class serial::Serial::SerialImpl :
-  virtual public element
+  virtual public matter
 {
 public:
   SerialImpl (const string &port,

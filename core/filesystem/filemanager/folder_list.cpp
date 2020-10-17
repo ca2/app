@@ -378,12 +378,12 @@ namespace filemanager
 
 
 
-   void folder_list::update(::update * pupdate)
+   void folder_list::on_apply(::action * paction)
    {
 
-      ::filemanager::impact::update(pupdate);
+      ::filemanager::impact::on_apply(paction);
 
-      if (pupdate->m_id == INITIALIZE_ID)
+      if (paction->id() == INITIALIZE_ID)
       {
 
          if (filemanager_data()->m_bPassBk)

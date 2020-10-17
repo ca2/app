@@ -244,28 +244,28 @@ namespace draw2d_quartz2d
    }
 
    
-//   bool path::set(const ::draw2d::path::element & e)
+//   bool path::set(const ::draw2d::path::matter & e)
 //   {
 //
 //      switch(e.m_etype)
 //      {
-//         case ::draw2d::path::element::type_move:
+//         case ::draw2d::path::matter::type_move:
 //            set(e.u.m_move);
 //            break;
-//         case ::draw2d::path::element::type_arc:
+//         case ::draw2d::path::matter::type_arc:
 //            set(e.u.m_arc);
 //            break;
-//         case ::draw2d::path::element::type_line:
+//         case ::draw2d::path::matter::type_line:
 //            set(e.u.m_line);
 //            break;
-//         case ::draw2d::path::element::type_string:
+//         case ::draw2d::path::matter::type_string:
 ////            set(e.m_stringpath);
 //            break;
-//         case ::draw2d::path::element::type_end:
+//         case ::draw2d::path::matter::type_end:
 //            internal_end_figure(e.u.m_end.m_bClose);
 //            break;
 //         default:
-//            __throw(::exception::exception("unexpected simple os graphics element type"));
+//            __throw(::exception::exception("unexpected simple os graphics matter type"));
 //      }
 //
 //      return false;

@@ -98,7 +98,7 @@ namespace file
 
 
 //template < class T >
-//bool ::file::system::output(::element * pobject, const ::file::path & pathOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
+//bool ::file::system::output(::matter * pobject, const ::file::path & pathOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
 //{
 
 //   ::file::path pathDownloading;
@@ -165,7 +165,7 @@ namespace file
 
 
 //template < class T >
-//bool system::output(::element * pobject, const ::file::path & pathOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
+//bool system::output(::matter * pobject, const ::file::path & pathOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
 //{
 
 //   ::file::path pathDownloading;
@@ -227,7 +227,7 @@ namespace file
 
 
 //template < class T >
-//bool ::file::system::output(::element * pobject, ::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), const ::file::path & pathIn)
+//bool ::file::system::output(::matter * pobject, ::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), const ::file::path & pathIn)
 //{
 
 //   ::file::path pathDownloading;
@@ -274,7 +274,7 @@ namespace file
 
 
 //template < class T >
-//bool ::file::system::output(::element * pobject, ::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
+//bool ::file::system::output(::matter * pobject, ::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
 //{
 
 //   ::file::path pathDownloading;
@@ -322,7 +322,7 @@ namespace file
 
 
 //template < class T >
-//bool system::output(::element * pobject, ::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
+//bool system::output(::matter * pobject, ::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
 //{
 
 //   ::file::path pathDownloading;
@@ -368,7 +368,7 @@ namespace file
 
 
 //template < class T >
-//bool ::file::system::output(::element * pobject, ::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), const ::file::path & pathIn)
+//bool ::file::system::output(::matter * pobject, ::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), const ::file::path & pathIn)
 //{
 
 //   ::file::path pathDownloading;
@@ -407,7 +407,7 @@ namespace file
 
 
 //template < class T >
-//bool ::file::system::output(::element * pobject, ::file::file & os, T * point, bool (T::*pfnOuput)(::file::file &, ::file::file &), ::file::file * pfileIn)
+//bool ::file::system::output(::matter * pobject, ::file::file & os, T * point, bool (T::*pfnOuput)(::file::file &, ::file::file &), ::file::file * pfileIn)
 
 //{
 
@@ -447,7 +447,7 @@ namespace file
 
 
 //template < class T >
-//bool system::output(::element * pobject, ::file::file & os, T * point, bool (T::*pfnOuput)(::file::file &, ::file::file &), ::file::file * preader)
+//bool system::output(::matter * pobject, ::file::file & os, T * point, bool (T::*pfnOuput)(::file::file &, ::file::file &), ::file::file * preader)
 //{
 
 //   ::file::path pathDownloading;

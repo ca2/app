@@ -294,10 +294,10 @@ namespace user
    }
 
 
-   void plain_edit::update(::update * pupdate)
+   void plain_edit::on_apply(::action * paction)
    {
 
-      if(pupdate->m_id == id_current_text_changed)
+      if(paction->id() == id_current_text_changed)
       {
 
          ::draw2d::graphics_pointer pgraphics = ::draw2d::create_memory_graphics();
@@ -312,7 +312,7 @@ namespace user
       else
       {
 
-         ::user::interaction::update(pupdate);
+         ::user::interaction::on_apply(paction);
 
       }
 
@@ -381,7 +381,7 @@ namespace user
 
       m_pinternal->update(pgraphics, this);
 
-      //::task * ptask = pgraphics->m_ptask;
+      //::change * pchange = pgraphics->m_ptask;
 
       //::user::print_task * pprinttask = nullptr;
 
@@ -5717,7 +5717,7 @@ finished_update:
 
             plain_edit_get_text(strtext());
 
-            get_context_application()->call_update(m_ppropertyText->m_id, context);
+            get_context_application()->apply_update(m_ppropertyText->m_id, context);
 
          }
 

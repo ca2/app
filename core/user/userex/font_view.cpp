@@ -77,18 +77,18 @@ namespace userex
    }
 
 
-   void font_view::update(::update * pupdate)
+   void font_view::on_apply(::action * paction)
    {
 
-      ::user::split_view::update(pupdate);
+      ::user::split_view::on_apply(paction);
 
       ////__update(::update)
       {
 
-         if (pupdate->m_id == id_after_change_text)
+         if (paction->id() == id_after_change_text)
          {
 
-            if (m_ptopview != nullptr && pupdate->m_puserinteraction == m_ptopview->m_peditview)
+            if (m_ptopview != nullptr && paction->m_puserinteraction == m_ptopview->m_peditview)
             {
 
                sync_lock sl(m_pview->m_pfontlist->mutex());

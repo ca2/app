@@ -29,7 +29,7 @@
 //      main_init_data *     m_pmaindata;
 //      
 //      
-//      application(::element * pobject);
+//      application(::matter * pobject);
 //      virtual ~application();
 //      
 //      virtual HINSTANCE GetHinstance();

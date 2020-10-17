@@ -26,7 +26,7 @@ namespace prompt
 
 
       virtual void _001OnAfterChangeText(const ::action_context & action_context);
-      void update(::update * pupdate);
+      void on_apply(::action * paction);
 
 
       DECL_GEN_SIGNAL(_001OnUpdateEditCopy);

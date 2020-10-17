@@ -345,7 +345,7 @@ namespace user
    }
 
 
-   void form_control::update(::update * pupdate)
+   void form_control::on_apply(::action * paction)
    {
 
       for(auto & pdescriptor : m_controldescriptorset.ptra())
@@ -805,17 +805,8 @@ namespace user
    }
 
 
-   void form_control::data_on_after_change(::database::client* pclient, const ::database::key& key, const var& var, ::update* pupdate)
+   void form_control::data_on_after_change(::database::client* pclient, const ::database::key& key, const var& var, ::action * paction)
    {
-
-      //SCAST_PTR(::database::change_event,pchange,pmessage);
-
-      if (already_handled(pupdate))
-      {
-
-         return;
-
-      }
 
       for(auto & pdescriptor : m_controldescriptorset.ptra())
       {

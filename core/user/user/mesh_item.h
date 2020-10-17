@@ -8,7 +8,7 @@ namespace user
 
 
    class CLASS_DECL_CORE mesh_item :
-      virtual public ::element
+      virtual public ::matter
    {
    public:
 

@@ -12,7 +12,7 @@ namespace user
 }
 
 class CLASS_DECL_APEX object :
-   virtual public context_object
+   virtual public source
 {
 protected:
 
@@ -21,7 +21,6 @@ protected:
    __pointer(::apex::application)                     m_pappContext;
    __pointer(::apex::session)                         m_psessionContext;
    __pointer(::apex::system)                          m_psystemContext;
-   //__pointer(::object)                                m_puserContext;
    __pointer(::context)                               m_pcontextContext;
    __pointer(object_addra)                            m_pcompositea;
    __pointer(object_addra)                            m_preferencea;
@@ -29,7 +28,7 @@ protected:
 
 public:
 
-   //void *                                             m_pObjectThis;
+
    ::object_meta *                                    m_pmeta;
    ::i64                                              m_cRun;
 
@@ -41,13 +40,21 @@ public:
 
 
 #ifdef DEBUG
+   
+   
    virtual i64 add_ref(OBJ_REF_DBG_PARAMS) override;
    virtual i64 dec_ref(OBJ_REF_DBG_PARAMS) override;
    virtual i64 release(OBJ_REF_DBG_PARAMS) override;
+
+
 #else
+   
+   
    virtual i64 add_ref(OBJ_REF_DBG_PARAMS);
    virtual i64 dec_ref(OBJ_REF_DBG_PARAMS);
    virtual i64 release(OBJ_REF_DBG_PARAMS);
+
+
 #endif
 
 
@@ -93,7 +100,7 @@ public:
 
 
    template < typename PRED >
-   inline void add_method(const ::id & id, PRED pred, ::element* pobjectHold = nullptr)
+   inline void add_method(const ::id & id, PRED pred, ::matter* pobjectHold = nullptr)
    {
 
       add(::method(id, pred, pobjectHold));
@@ -101,7 +108,7 @@ public:
    }
 
    template < typename PRED >
-   inline void add_future(const ::id & id, PRED pred, ::element * pobjectHold = nullptr)
+   inline void add_future(const ::id & id, PRED pred, ::matter * pobjectHold = nullptr)
    {
 
       add(::future(id, pred, pobjectHold));
@@ -297,12 +304,12 @@ public:
    inline ::estatus release_reference(__pointer(SOURCE) & psource);
 
 
-   virtual ::estatus add_composite(::element* pobject) override;
-   virtual ::estatus add_reference(::element* pobject) override;
+   virtual ::estatus add_composite(::matter* pobject) override;
+   virtual ::estatus add_reference(::matter* pobject) override;
 
 
-   virtual ::estatus release_composite(::element* pobject) override;
-   virtual ::estatus release_reference(::element* pobject) override;
+   virtual ::estatus release_composite(::matter* pobject) override;
+   virtual ::estatus release_reference(::matter* pobject) override;
 
 
 
@@ -397,9 +404,9 @@ public:
 
    virtual __pointer(::object) running(const char * pszTag) const;
 
-   virtual bool ___is_reference(::element * pobject) const;
+   virtual bool ___is_reference(::matter * pobject) const;
 
-   virtual bool __is_composite(::element * pobject) const;
+   virtual bool __is_composite(::matter * pobject) const;
 
    virtual void on_finalize();
 

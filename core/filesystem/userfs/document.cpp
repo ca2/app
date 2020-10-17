@@ -252,15 +252,13 @@ namespace userfs
 
       }
 
-      auto pupdate = new_update();
+      auto paction = fork_action(id_synchronize_path);
 
-      pupdate->m_id = id_synchronize_path;
+      paction->m_pfileitem = pitem;
 
-      pupdate->m_pfileitem = pitem;
+      paction->m_actioncontext = context + ::source_sync;
 
-      pupdate->m_actioncontext = context + ::source_sync;
-
-      update_all_views(pupdate);
+      update_all_views(paction);
 
       return true;
 

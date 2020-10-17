@@ -7,7 +7,7 @@
 #pragma once
 
 class menu_shared :
-   virtual public element
+   virtual public matter
 {
 public:
    

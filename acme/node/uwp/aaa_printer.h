@@ -10,7 +10,7 @@ namespace uwp
 
 
       class CLASS_DECL_ACME document_properties :
-         virtual public ::element
+         virtual public ::matter
       {
       public:
 
@@ -19,7 +19,7 @@ namespace uwp
          HDC            m_hdc;
 
 
-         document_properties(::element * pobject);
+         document_properties(::matter * pobject);
          virtual ~document_properties();
 
 
@@ -34,7 +34,7 @@ namespace uwp
       document_properties     m_documentproperties;
 
 
-      printer(::element * pobject);
+      printer(::matter * pobject);
       virtual ~printer();
 
 

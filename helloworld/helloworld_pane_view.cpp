@@ -504,7 +504,7 @@ namespace helloworld
    }
 
 
-   void pane_view::update(::update * pupdate)
+   void pane_view::on_apply(::action * paction)
    {
 
       ::update * pupdate = dynamic_cast <::update *> (pupdate);
@@ -513,7 +513,7 @@ namespace helloworld
       {
 
          if (pupdate->m_ehint == CONTROL_EVENT_UPDATE
-               && pupdate->m_puserinteraction == m_pfontview
+               && paction->m_puserinteraction == m_pfontview
                && m_pviewLast != nullptr)
          {
 
@@ -554,7 +554,7 @@ namespace helloworld
 
       }
 
-      ::userex::pane_tab_view::update(pupdate);
+      ::userex::pane_tab_view::on_apply(paction);
 
    }
 

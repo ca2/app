@@ -43,7 +43,7 @@ void context_object::set_context_object(::layered * pobjectContext)
    if(::is_set(pobjectContext))
    {
 
-      pobjectContext->add_ref(this, "element::set_context_object");
+      pobjectContext->add_ref(this, "matter::set_context_object");
 
    }
 

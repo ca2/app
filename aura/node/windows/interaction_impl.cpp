@@ -2007,7 +2007,7 @@ namespace windows
 
          m_hdc = hdc;
 
-         os_fork();
+         fork_run();
 
          if (m_event.wait(tickTimeout).timeout())
          {

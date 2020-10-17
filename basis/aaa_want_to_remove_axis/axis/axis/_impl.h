@@ -25,7 +25,7 @@
 //   ASSERT(nCount == 0 ||
 //      __is_valid_address(pSrc, (size_t)nCount * sizeof(TYPE)));
 //
-//   // default is element-copy using assignment
+//   // default is matter-copy using assignment
 //   while (nCount--)
 //      *pDest++ = *pSrc++;
 //}

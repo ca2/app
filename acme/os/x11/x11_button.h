@@ -2,7 +2,7 @@
 
 
 class x11_button :
-   virtual public element
+   virtual public matter
 {
 public:
 

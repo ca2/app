@@ -728,7 +728,7 @@ namespace apex
    }
 
 
-   ::element* library::new_object(::layered * pobjectContext, const char* pszClassId)
+   ::matter* library::new_object(::layered * pobjectContext, const char* pszClassId)
    {
 
       return nullptr;
@@ -736,7 +736,7 @@ namespace apex
    }
 
 
-   __pointer(::element) library::create_object(::layered * pobjectContext, const char * pszClass)
+   __pointer(::matter) library::create_object(::layered * pobjectContext, const char * pszClass)
    {
 
       sync_lock sl(&::get_context_system()->m_mutexLibrary);
@@ -748,7 +748,7 @@ namespace apex
 
       }
       
-      ::element * p = nullptr;
+      ::matter * p = nullptr;
 
       if(get_ca2_library() != nullptr)
       {
@@ -872,7 +872,7 @@ namespace apex
    }
 
    
-   ::element* library::factory_new(::layered * pobjectContext, const char* lpszClass)
+   ::matter* library::factory_new(::layered * pobjectContext, const char* lpszClass)
    {
 
       return nullptr;
@@ -880,7 +880,7 @@ namespace apex
    }
 
 
-   __pointer(::element) library::factory_create(::layered * pobjectContext, const char * lpszClass)
+   __pointer(::matter) library::factory_create(::layered * pobjectContext, const char * lpszClass)
    {
 
       library_object_allocator_base * pallocator = find_allocator(lpszClass);

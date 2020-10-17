@@ -93,6 +93,7 @@ public:
    id(::i32 i);
    id(::i64 i);
    id(::u64 u);
+   id(const ::lparam & lparam);
    id(const string & str);
    id(const var & var);
    id(const type & type);
@@ -316,6 +317,16 @@ inline id::id(::u64 u)
    m_etype = type_integer;
 
    m_u = u;
+
+}
+
+
+inline id::id(const ::lparam& lparam)
+{
+
+   m_etype = type_integer;
+
+   m_u = lparam.m_lparam;
 
 }
 

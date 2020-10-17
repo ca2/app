@@ -73,7 +73,7 @@ void debug_id_eid()
 
    auto pupdate = new_update();
 
-   pupdate->value(id_filter) = "*.jpg";
+   paction->value(id_filter) = "*.jpg";
 
 }
 

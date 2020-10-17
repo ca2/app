@@ -1895,14 +1895,14 @@ namespace filemanager
    }
 
 
-   void file_list::update(::update * pupdate)
+   void file_list::on_apply(::action * paction)
    {
 
-      ::filemanager::impact::update(pupdate);
+      ::filemanager::impact::on_apply(paction);
 
-      ::userfs::list::update(pupdate);
+      ::userfs::list::on_apply(paction);
 
-      if (m_bStatic && pupdate->m_id == id_add_location)
+      if (m_bStatic && paction->id() == id_add_location)
       {
 
          ::file::patha filepatha;
@@ -1935,26 +1935,26 @@ namespace filemanager
          }
 
       }
-      else if (pupdate->m_id == id_view_list)
+      else if (paction->id() == id_view_list)
       {
 
          _001SetView(impact_list);
 
       }
-      else if (pupdate->m_id == id_view_report)
+      else if (paction->id() == id_view_report)
       {
 
          _001SetView(impact_report);
 
       }
-      else if (pupdate->m_id == id_view_icon)
+      else if (paction->id() == id_view_icon)
       {
 
          _001SetView(impact_icon);
 
       }
 
-      if (pupdate->m_id == id_initialize)
+      if (paction->id() == id_initialize)
       {
 
          if (filemanager_data()->m_bPassBk)
@@ -1969,10 +1969,10 @@ namespace filemanager
          _001OnUpdateItemCount();
 
       }
-      else if (!m_bStatic && pupdate->m_id == id_synchronize_path)
+      else if (!m_bStatic && paction->id() == id_synchronize_path)
       {
 
-         if (pupdate->m_pfileitem->m_filepathUser != filemanager_item()->m_filepathUser)
+         if (paction->m_pfileitem->m_filepathUser != filemanager_item()->m_filepathUser)
          {
 
             return;
@@ -2006,10 +2006,10 @@ namespace filemanager
          _001OnUpdateItemCount();
 
       }
-      else if (pupdate->m_id == id_filter)
+      else if (paction->id() == id_filter)
       {
 
-         if (pupdate->value(id_filter).is_empty())
+         if (paction->value(id_filter).is_empty())
          {
 
             FilterClose();
@@ -2020,33 +2020,33 @@ namespace filemanager
 
             FilterBegin();
 
-            Filter1(pupdate->value(id_filter));
+            Filter1(paction->value(id_filter));
 
          }
 
       }
-      else if (pupdate->m_id == id_get_active_view_selection)
+      else if (paction->id() == id_get_active_view_selection)
       {
 
          if (GetParentFrame()->GetActiveView() == (this))
          {
 
-            get_selected_items(*pupdate->cast <::file::item_array>(id_selected));
+            get_selected_items(*paction->cast <::file::item_array>(id_selected));
 
          }
 
       }
-      else if (pupdate->m_id == id_after_browse)
+      else if (paction->id() == id_after_browse)
       {
 
-         if (pupdate->value(id_after_browse) == "filemanager\\replace_name_in_file_system.xhtml")
+         if (paction->value(id_after_browse) == "filemanager\\replace_name_in_file_system.xhtml")
          {
 
-            //html::element * pelemental = dynamic_cast < html::element * > (pupdate->m_pformview->get_html_data()->get_element_by_name("encontrar"));
+            //html::matter * pelemental = dynamic_cast < html::matter * > (pupdate->m_pformview->get_html_data()->get_element_by_name("encontrar"));
 
             //html::impl::input_text * pinput = dynamic_cast < html::impl::input_text * > (pelemental->m_pimpl);
 
-            auto puserinteractionParent = __user_interaction(pupdate->m_puserinteraction);
+            auto puserinteractionParent = __user_interaction(paction->m_puserinteraction);
 
             auto pinteraction = puserinteractionParent->get_child_by_id("encontrar");
 
@@ -2055,36 +2055,36 @@ namespace filemanager
             if (pitem)
             {
 
-               pinteraction->_001SetText(pupdate->value(id_name), pupdate->m_actioncontext);
+               pinteraction->_001SetText(paction->value(id_name), paction->m_actioncontext);
 
             }
 
          }
 
-         if (pupdate->m_id == id_replace_name)
+         if (paction->id() == id_replace_name)
          {
 
-            if (pupdate->value(id_find).has_char())
+            if (paction->value(id_find).has_char())
             {
 
                ::file::path pathFolder = filemanager_item()->get_user_path();
 
-               Context.file().replace(pathFolder, pupdate->value(id_find), pupdate->value(id_replace));
+               Context.file().replace(pathFolder, paction->value(id_find), paction->value(id_replace));
 
             }
 
          }
-         else if (pupdate->m_id == id_new_folder)
+         else if (paction->id() == id_new_folder)
          {
 
-            if (pupdate->value(id_folder).has_char())
+            if (paction->value(id_folder).has_char())
             {
 
-               ::file::path pathFolder = filemanager_item()->get_user_path() / pupdate->value(id_folder);
+               ::file::path pathFolder = filemanager_item()->get_user_path() / paction->value(id_folder);
 
                Context.dir().mk(pathFolder);
 
-               pupdate->m_bRet = true;
+               paction->m_bRet = true;
 
             }
 

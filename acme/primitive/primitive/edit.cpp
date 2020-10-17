@@ -1,8 +1,8 @@
 #include "framework.h"
 
 
-//base_edit::base_edit(::element * pobject) :
-//   ::element(pobject)
+//base_edit::base_edit(::matter * pobject) :
+//   ::matter(pobject)
 //{
 //}
 //

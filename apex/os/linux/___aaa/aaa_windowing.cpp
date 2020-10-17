@@ -135,10 +135,10 @@ bool is_space_key(XIRawEvent *event)
 
 // Tutor Exilius Q(t)List streaming contribution
 ::mutex * g_pmutexX11Runnable = nullptr;
-list < __pointer(::element) > * g_prunnableptrlX11 = nullptr;
+list < __pointer(::matter) > * g_prunnableptrlX11 = nullptr;
 ::mutex * g_pmutexX11Sync = nullptr;
 manual_reset_event * g_peventX11Sync = nullptr;
-__pointer(::element) g_prunnableX11Sync;
+__pointer(::matter) g_prunnableX11Sync;
 Display * g_pdisplayX11= nullptr;
 int g_fdX11[2] = {};
 
@@ -168,7 +168,7 @@ int_bool x11_get_cursor_pos(LPPOINT ppointCursor);
 
 int xi_opcode = -1;
 __pointer(object_array) g_pobjectaExtendedEventListener;
-void x11_register_extended_event_listener(::element * pdata, bool bMouse, bool bKeyboard)
+void x11_register_extended_event_listener(::matter * pdata, bool bMouse, bool bKeyboard)
 {
 
    if(!g_pobjectaExtendedEventListener)
@@ -2809,7 +2809,7 @@ bool x11_step()
       while(g_prunnableptrlX11->has_elements() && ::thread_get_run())
       {
 
-         __pointer(::element) prunnable = g_prunnableptrlX11->pop_front();
+         __pointer(::matter) prunnable = g_prunnableptrlX11->pop_front();
 
          sl.unlock();
 
@@ -3156,7 +3156,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
             }
 
-            pupdate->m_id = eid;
+            paction->id() = eid;
 
             pupdate->value("return") = is_return_key((XIRawEvent*)cookie->data);
 
@@ -3165,7 +3165,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
             for(auto & p : *g_pobjectaExtendedEventListener)
             {
 
-               p->call_update(pupdate);
+               p->apply(paction);
 
             }
 
@@ -4465,7 +4465,7 @@ int_bool os_init_windowing()
 
    g_pmutexX11Runnable = new ::mutex();
 
-   g_prunnableptrlX11 = new list < __pointer(::element) >();
+   g_prunnableptrlX11 = new list < __pointer(::matter) >();
 
    g_pmutexX11Sync = new ::mutex();
 
@@ -4847,13 +4847,13 @@ int_bool WINAPI SetWindowPos(oswindow hWnd,oswindow hWndInsertAfter,i32 X,i32 Y,
 
 
 extern ::mutex * g_pmutexX11Runnable;
-extern list < __pointer(::element) > * g_prunnableptrlX11;
+extern list < __pointer(::matter) > * g_prunnableptrlX11;
 extern ::mutex * g_pmutexX11Sync;
 extern manual_reset_event * g_peventX11Sync;
-extern __pointer(::element) g_prunnableX11Sync;
+extern __pointer(::matter) g_prunnableX11Sync;
 
 
-void x11_async_runnable(::element * prunnable)
+void x11_async_runnable(::matter * prunnable)
 {
 
    {

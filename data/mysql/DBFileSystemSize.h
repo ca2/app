@@ -39,7 +39,7 @@ public:
 
 
    class item :
-      virtual public element
+      virtual public matter
    {
    public:
 

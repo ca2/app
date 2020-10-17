@@ -1069,7 +1069,7 @@ bool prodevian::prodevian_iteration()
    }
 
 
-   void interaction::prodevian_schedule(::element * pobjectTask)
+   void interaction::prodevian_schedule(::matter * pobjectTask)
    {
 
       if (is_graphical())

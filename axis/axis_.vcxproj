@@ -1128,7 +1128,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClCompile Include="html\html_lite\tag.cpp" />
     <ClCompile Include="include\_.cpp" />
     <ClCompile Include="math\calculator\calculator.cpp" />
-    <ClCompile Include="math\calculator\element.cpp" />
+    <ClCompile Include="math\calculator\matter.cpp" />
     <ClCompile Include="math\calculator\parser.cpp" />
     <ClCompile Include="math\calculator\parser_exception.cpp" />
     <ClCompile Include="math\calculator\scanner.cpp" />
@@ -1269,7 +1269,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="inline\_new_impl.h" />
     <ClInclude Include="math\calculator\_.h" />
     <ClInclude Include="math\calculator\calculator.h" />
-    <ClInclude Include="math\calculator\element.h" />
+    <ClInclude Include="math\calculator\matter.h" />
     <ClInclude Include="math\calculator\parser.h" />
     <ClInclude Include="math\calculator\parser_exception.h" />
     <ClInclude Include="math\calculator\scanner.h" />

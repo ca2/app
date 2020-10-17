@@ -1,8 +1,8 @@
 #include "framework.h"
 
 
-// not_installed::not_installed(::element * pobject = ::get_app_object(), const char * pszAppId, const char * pszConfiguration, const char * pszPlatform, const char * pszLocale, const char * pszSchema) :
-//    ::element(pobject),
+// not_installed::not_installed(::matter * pobject = ::get_app_object(), const char * pszAppId, const char * pszConfiguration, const char * pszPlatform, const char * pszLocale, const char * pszSchema) :
+//    ::matter(pobject),
 //    ::callstack(pobject),
 //    ::exception::exception()
 // {
@@ -25,7 +25,7 @@
 // }
 
 // not_installed::not_installed(const not_installed & e) :
-//    element(e),
+//    matter(e),
 //    ::callstack(e),
 //    ::exception::exception(e)
 // {

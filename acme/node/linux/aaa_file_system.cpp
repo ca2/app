@@ -18,7 +18,7 @@ namespace linux
    }
 
 
-   ::estatus file_system::initialize(::element * pobjectContext)
+   ::estatus file_system::initialize(::matter * pobjectContext)
    {
 
       auto estatus = ::file_system::initialize(pobjectContext);

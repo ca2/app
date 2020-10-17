@@ -32,7 +32,7 @@ namespace userex
 
       virtual void install_message_routing(::channel * pchannel) override;
 
-      virtual void update(::update * pupdate) override;
+      virtual void on_apply(::action * paction) override;
 
       virtual void on_control_event(::user::control_event * pevent) override;
 

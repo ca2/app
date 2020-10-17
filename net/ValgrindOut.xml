@@ -12525,7 +12525,7 @@
     <frame>
       <ip>0x5A52C96</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>draw2d::path::element::~element()</fn>
+      <fn>draw2d::path::matter::~matter()</fn>
       <dir>/xcore/app/aura/graphics/draw2d</dir>
       <file>draw2d_path.cpp</file>
       <line>65</line>
@@ -12549,7 +12549,7 @@
     <frame>
       <ip>0x5AA69DD</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>long release&lt;draw2d::path::element&gt;(draw2d::path::element*&amp;)</fn>
+      <fn>long release&lt;draw2d::path::matter&gt;(draw2d::path::matter*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/primitive</dir>
       <file>object.h</file>
       <line>572</line>
@@ -12557,7 +12557,7 @@
     <frame>
       <ip>0x5AA68F3</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>pointer&lt;draw2d::path::element&gt;::release()</fn>
+      <fn>pointer&lt;draw2d::path::matter&gt;::release()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_smart_pointer2.h</file>
       <line>317</line>
@@ -12565,7 +12565,7 @@
     <frame>
       <ip>0x5A9B793</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>pointer&lt;draw2d::path::element&gt;::~pointer()</fn>
+      <fn>pointer&lt;draw2d::path::matter&gt;::~pointer()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_smart_pointer2.h</file>
       <line>124</line>
@@ -12573,7 +12573,7 @@
     <frame>
       <ip>0x5ABBF76</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>destructor::def&lt;pointer&lt;draw2d::path::element&gt; &gt;::destruct(pointer&lt;draw2d::path::element&gt;*, long)</fn>
+      <fn>destructor::def&lt;pointer&lt;draw2d::path::matter&gt; &gt;::destruct(pointer&lt;draw2d::path::matter&gt;*, long)</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_decl.h</file>
       <line>113</line>
@@ -12581,7 +12581,7 @@
     <frame>
       <ip>0x5AB9739</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>allocator::def&lt;pointer&lt;draw2d::path::element&gt; &gt;::destruct(pointer&lt;draw2d::path::element&gt;*, long)</fn>
+      <fn>allocator::def&lt;pointer&lt;draw2d::path::matter&gt; &gt;::destruct(pointer&lt;draw2d::path::matter&gt;*, long)</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_decl.h</file>
       <line>335</line>
@@ -12589,7 +12589,7 @@
     <frame>
       <ip>0x5AB195C</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>array_base&lt;pointer&lt;draw2d::path::element&gt;, pointer&lt;draw2d::path::element&gt; const&amp;, allocator::def&lt;pointer&lt;draw2d::path::element&gt; &gt; &gt;::allocate(long, long)</fn>
+      <fn>array_base&lt;pointer&lt;draw2d::path::matter&gt;, pointer&lt;draw2d::path::matter&gt; const&amp;, allocator::def&lt;pointer&lt;draw2d::path::matter&gt; &gt; &gt;::allocate(long, long)</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_array_base.inl</file>
       <line>572</line>
@@ -12597,7 +12597,7 @@
     <frame>
       <ip>0x5AA68D9</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>array_base&lt;pointer&lt;draw2d::path::element&gt;, pointer&lt;draw2d::path::element&gt; const&amp;, allocator::def&lt;pointer&lt;draw2d::path::element&gt; &gt; &gt;::remove_all()</fn>
+      <fn>array_base&lt;pointer&lt;draw2d::path::matter&gt;, pointer&lt;draw2d::path::matter&gt; const&amp;, allocator::def&lt;pointer&lt;draw2d::path::matter&gt; &gt; &gt;::remove_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_array_impl.inl</file>
       <line>110</line>
@@ -12605,7 +12605,7 @@
     <frame>
       <ip>0x5A9B5E4</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>pointer_array&lt;draw2d::path::element&gt;::~pointer_array()</fn>
+      <fn>pointer_array&lt;draw2d::path::matter&gt;::~pointer_array()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_smart_pointer_array.h</file>
       <line>196</line>

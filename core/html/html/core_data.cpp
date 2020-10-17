@@ -32,7 +32,7 @@ namespace html
 
       m_pcoredata = this;
 
-      m_elemental.m_pdata = this;
+      m_element.m_pdata = this;
       m_pcookies = nullptr;
       m_bEdit = false;
       m_puserinteraction = nullptr;
@@ -85,37 +85,37 @@ namespace html
    //}
 
 
-   font * core_data::get_font(::html::element * pelemental)
+   font * core_data::get_font(::html::element* pelement)
    {
 
       i32 iFont = -1;
 
-      if (pelemental->m_pimpl->m_bHover)
+      if (pelement->m_pimpl->m_bHover)
       {
 
-         if (!pelemental->m_pimpl->m_mapFont.lookup("hover", iFont))
+         if (!pelement->m_pimpl->m_mapFont.lookup("hover", iFont))
          {
 
-            iFont = create_font(pelemental);
-            pelemental->m_pimpl->m_mapFont.set_at("hover", iFont);
+            iFont = create_font(pelement);
+            pelement->m_pimpl->m_mapFont.set_at("hover", iFont);
          }
          return m_fonta.element_at(iFont);
       }
-      else if (pelemental->m_pimpl->has_link())
+      else if (pelement->m_pimpl->has_link())
       {
-         if (!pelemental->m_pimpl->m_mapFont.lookup("link", iFont))
+         if (!pelement->m_pimpl->m_mapFont.lookup("link", iFont))
          {
-            iFont = create_font(pelemental);
-            pelemental->m_pimpl->m_mapFont.set_at("link", iFont);
+            iFont = create_font(pelement);
+            pelement->m_pimpl->m_mapFont.set_at("link", iFont);
          }
          return m_fonta.element_at(iFont);
       }
       else
       {
-         if (!pelemental->m_pimpl->m_mapFont.lookup("", iFont))
+         if (!pelement->m_pimpl->m_mapFont.lookup("", iFont))
          {
-            iFont = create_font(pelemental);
-            pelemental->m_pimpl->m_mapFont.set_at("", iFont);
+            iFont = create_font(pelement);
+            pelement->m_pimpl->m_mapFont.set_at("", iFont);
          }
          return m_fonta.element_at(iFont);
       }
@@ -123,47 +123,47 @@ namespace html
    }
 
 
-   i32 core_data::create_font(::html::element * pelemental)
+   i32 core_data::create_font(::html::element * pelement)
    {
 
       string strSubClass;
 
       class font font;
 
-      if (!pelemental->m_pimpl->m_bHover
-         || !pelemental->m_pstyle->get_text("font-family", "hover", this, pelemental, font.m_strFamily))
+      if (!pelement->m_pimpl->m_bHover
+         || !pelement->m_pstyle->get_text("font-family", "hover", this, pelement, font.m_strFamily))
       {
-         if (!pelemental->m_pimpl->has_link()
-            || !pelemental->m_pstyle->get_text("font-family", "link", this, pelemental, font.m_strFamily))
+         if (!pelement->m_pimpl->has_link()
+            || !pelement->m_pstyle->get_text("font-family", "link", this, pelement, font.m_strFamily))
          {
-            pelemental->m_pstyle->get_text("font-family", "", this, pelemental, font.m_strFamily);
+            pelement->m_pstyle->get_text("font-family", "", this, pelement, font.m_strFamily);
          }
       }
-      if (!pelemental->m_pimpl->m_bHover
-         || !pelemental->m_pstyle->get_text("font-size", "hover", this, pelemental, font.m_strSize))
+      if (!pelement->m_pimpl->m_bHover
+         || !pelement->m_pstyle->get_text("font-size", "hover", this, pelement, font.m_strSize))
       {
-         if (!pelemental->m_pimpl->has_link()
-            || !pelemental->m_pstyle->get_text("font-sizef", "link", this, pelemental, font.m_strSize))
+         if (!pelement->m_pimpl->has_link()
+            || !pelement->m_pstyle->get_text("font-sizef", "link", this, pelement, font.m_strSize))
          {
-            pelemental->m_pstyle->get_text("font-size", "", this, pelemental, font.m_strSize);
+            pelement->m_pstyle->get_text("font-size", "", this, pelement, font.m_strSize);
          }
       }
-      if (!pelemental->m_pimpl->m_bHover
-         || !pelemental->m_pstyle->get_text("font-weight", "hover", this, pelemental, font.m_strWeight))
+      if (!pelement->m_pimpl->m_bHover
+         || !pelement->m_pstyle->get_text("font-weight", "hover", this, pelement, font.m_strWeight))
       {
-         if (!pelemental->m_pimpl->has_link()
-            || !pelemental->m_pstyle->get_text("font-weight", "link", this, pelemental, font.m_strWeight))
+         if (!pelement->m_pimpl->has_link()
+            || !pelement->m_pstyle->get_text("font-weight", "link", this, pelement, font.m_strWeight))
          {
-            pelemental->m_pstyle->get_text("font-weight", "", this, pelemental, font.m_strWeight);
+            pelement->m_pstyle->get_text("font-weight", "", this, pelement, font.m_strWeight);
          }
       }
-      if (pelemental->m_pimpl->m_bHover
-         && !pelemental->m_pstyle->get_text("text-decoration", "hover", this, pelemental, font.m_strTextDecoration))
+      if (pelement->m_pimpl->m_bHover
+         && !pelement->m_pstyle->get_text("text-decoration", "hover", this, pelement, font.m_strTextDecoration))
       {
-         if (pelemental->m_pimpl->has_link()
-            && !pelemental->m_pstyle->get_text("text-decoration", "link", this, pelemental, font.m_strTextDecoration))
+         if (pelement->m_pimpl->has_link()
+            && !pelement->m_pstyle->get_text("text-decoration", "link", this, pelement, font.m_strTextDecoration))
          {
-            pelemental->m_pstyle->get_text("text-decoration", "", this, pelemental, font.m_strTextDecoration);
+            pelement->m_pstyle->get_text("text-decoration", "", this, pelement, font.m_strTextDecoration);
          }
       }
       font.m_strFamily.trim();
@@ -193,10 +193,10 @@ namespace html
    }
 
 
-   void core_data::update(::update * pupdate)
+   void core_data::on_apply(::action * paction)
    {
 
-      html_data::update(pupdate);
+      html_data::on_apply(paction);
 
    }
 
@@ -206,7 +206,7 @@ namespace html
 
       m_focusptra.remove_all();
 
-      m_elemental.destroy(this);
+      m_element.destroy(this);
 
       m_bImplemented = false;
 
@@ -220,7 +220,7 @@ namespace html
 
       m_focusptra.remove_all();
 
-      m_elemental.delete_implementation(this);
+      m_element.delete_implementation(this);
 
       m_bImplemented = false;
 
@@ -262,7 +262,7 @@ namespace html
 
       }
 
-      m_elemental.load(this, m_ptag);
+      m_element.load(this, m_ptag);
 
       m_pform->set_need_layout();
 
@@ -282,7 +282,7 @@ namespace html
 
       m_focusptra.remove_all();
 
-      m_elemental.implement(this);
+      m_element.implement(this);
 
       IGUI_MSG_LINK(WM_KEYDOWN, m_puserinteraction, this, &core_data::_001OnKeyDown);
 
@@ -336,7 +336,7 @@ namespace html
 
       m_layoutstate3.reset();
 
-      m_elemental.on_layout(this);
+      m_element.on_layout(this);
 
       if (m_pcallback != nullptr)
       {
@@ -375,7 +375,7 @@ namespace html
 
       m_bDrawFirstBody = false;
 
-      m_elemental._001OnDraw(this);
+      m_element._001OnDraw(this);
 
       //if(m_strPathName.find_ci("alarms_index") >= 0)
       //{
@@ -390,7 +390,7 @@ namespace html
    ::html::element * core_data::get_element_by_name(id id)
    {
 
-      return m_elemental.get_element_by_name(id);
+      return m_element.get_element_by_name(id);
 
    }
 
@@ -398,7 +398,7 @@ namespace html
    ::html::element * core_data::get_element_by_id(id id)
    {
 
-      return m_elemental.get_element_by_id(id);
+      return m_element.get_element_by_id(id);
 
    }
 

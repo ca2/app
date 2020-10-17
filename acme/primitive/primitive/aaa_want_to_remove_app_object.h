@@ -1,8 +1,8 @@
 #pragma once
 
 
-class CLASS_DECL_ACME element :
-   virtual public element
+class CLASS_DECL_ACME matter :
+   virtual public matter
 {
 public:
 
@@ -10,24 +10,24 @@ public:
    __pointer(::traits)                    m_ptraits;
 
 
-   inline element() {}
-   element(e_default_init);
-   //element(::element * pobject);
-   virtual ~element();
+   inline matter() {}
+   matter(e_default_init);
+   //matter(::matter * pobject);
+   virtual ~matter();
 
    virtual ::acme::application * get_context_application() const;
-   virtual ::element * get_object() const;
+   virtual ::matter * get_object() const;
 
 
    void call_update(::u64 uId);
-   virtual void call_update(::update * pupdate);
-   virtual void update(::update * pupdate);
+   virtual void apply(::action * paction);
+   virtual void on_apply(::action * paction);
    virtual bool update((::update * pupdate);
 
 
    virtual void notify(::u64 uId) override;
 
-   virtual ::element * source_channel() override;
+   virtual ::matter * source_channel() override;
 
    virtual ::file_result get_file(const var& varFile, efileopen eopen);
    virtual ::file_result get_reader(const var& varFile, efileopen eopen = ::file::mode_read | ::file::type_binary);
@@ -68,7 +68,7 @@ public:
 
    virtual property * parent_lookup_property(const id & id) const;
 
-   virtual void set_trait_result(::u64 uId, ::u64 uTrait, ::element * preference);
+   virtual void set_trait_result(::u64 uId, ::u64 uTrait, ::matter * preference);
 
 
    virtual void _notify(::trait * ptrait);
@@ -89,7 +89,7 @@ public:
 
    inline void add_notification(const ::trait & traitPayload);
 
-   element & operator =(const ::trait & trait)
+   matter & operator =(const ::trait & trait)
    {
 
       this->set_action(trait);
@@ -98,7 +98,7 @@ public:
 
    }
 
-   element & operator +=(const ::trait & trait)
+   matter & operator +=(const ::trait & trait)
    {
 
       this->add_notification(trait);
@@ -122,11 +122,11 @@ public:
 
    virtual property * on_fetch_property(const ::id & id) const;
 
-   virtual ::element * parent_property_set_holder() const;
+   virtual ::matter * parent_property_set_holder() const;
 
    ::estatus  bind_update(property * pproperty);
    ::estatus  bind_update(const ::id & id, bool bCreate = true);
-   ::estatus  bind_update(const ::id & id, ::element * pobject);
+   ::estatus  bind_update(const ::id & id, ::matter * pobject);
 
 
    inline ::papaya::topic topic(const ::id & id);

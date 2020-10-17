@@ -2,7 +2,7 @@
 
 
 
-//struct element;
+//struct matter;
 class element_2d;
 
 namespace colorertake5
@@ -222,7 +222,7 @@ namespace user
 
       virtual void install_message_routing(::channel * pchannel) override;
       virtual void OnDraw(::image * pimage);      // overridden to draw this ::user::impact
-      virtual void update(::update * pupdate) override;
+      virtual void on_apply(::action * paction) override;
 
 
 

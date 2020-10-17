@@ -1733,8 +1733,10 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="framework.h" />
     <ClInclude Include="framework_c.h" />
     <ClInclude Include="html\element\element.h" />
-    <ClInclude Include="html\element\_.h" />
     <ClInclude Include="html\element\_element.h" />
+    <ClInclude Include="html\impl\element.h" />
+    <ClInclude Include="html\matter\_.h" />
+    <ClInclude Include="html\matter\_element.h" />
     <ClInclude Include="html\graphics\attribute.h" />
     <ClInclude Include="html\graphics\base.h" />
     <ClInclude Include="html\graphics\border.h" />
@@ -1755,7 +1757,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="html\hi5\hi5_twitter_authorization.h" />
     <ClInclude Include="html\html\_html.h" />
     <ClInclude Include="html\impl\cell.h" />
-    <ClInclude Include="html\impl\element.h" />
     <ClInclude Include="html\impl\form.h" />
     <ClInclude Include="html\impl\image.h" />
     <ClInclude Include="html\impl\input_button.h" />

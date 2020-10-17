@@ -902,7 +902,7 @@
     <ClCompile Include="aura\aura\display.cpp" />
     <ClCompile Include="aura\aura\drawable.cpp" />
     <ClCompile Include="aura\aura\draw_context.cpp" />
-    <ClCompile Include="aura\aura\element.cpp" />
+    <ClCompile Include="aura\aura\matter.cpp" />
     <ClCompile Include="aura\aura\exclusive.cpp" />
     <ClCompile Include="aura\aura\fixed_alloc.cpp" />
     <ClCompile Include="aura\aura\flags.cpp" />

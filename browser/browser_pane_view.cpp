@@ -603,12 +603,12 @@ namespace browser
    }
 
 
-   void pane_view::update(::update * pupdate)
+   void pane_view::on_apply(::action * paction)
    {
 
 
 
-      ::userex::pane_tab_view::update(pupdate);
+      ::userex::pane_tab_view::on_apply(paction);
 
    }
 

@@ -5415,7 +5415,7 @@
 //
 // MessageText:
 //
-// The indiCAted source element has no media.
+// The indiCAted source matter has no media.
 //
 #define ERROR_SOURCE_ELEMENT_EMPTY       1160L
 
@@ -5424,7 +5424,7 @@
 //
 // MessageText:
 //
-// The indiCAted destination element already contains media.
+// The indiCAted destination matter already contains media.
 //
 #define ERROR_DESTINATION_ELEMENT_FULL   1161L
 
@@ -5433,7 +5433,7 @@
 //
 // MessageText:
 //
-// The indiCAted element does not exist.
+// The indiCAted matter does not exist.
 //
 #define ERROR_ILLEGAL_ELEMENT_ADDRESS    1162L
 
@@ -5442,7 +5442,7 @@
 //
 // MessageText:
 //
-// The indiCAted element is part of a magazine that is not present.
+// The indiCAted matter is part of a magazine that is not present.
 //
 #define ERROR_MAGAZINE_NOT_PRESENT       1163L
 
@@ -10022,7 +10022,7 @@
 //
 // MessageText:
 //
-// The specified profile element could not be added.
+// The specified profile matter could not be added.
 //
 #define RPC_S_PRF_ELT_NOT_ADDED          1926L
 
@@ -10031,7 +10031,7 @@
 //
 // MessageText:
 //
-// The specified profile element could not be removed.
+// The specified profile matter could not be removed.
 //
 #define RPC_S_PRF_ELT_NOT_REMOVED        1927L
 
@@ -10040,7 +10040,7 @@
 //
 // MessageText:
 //
-// The group element could not be added.
+// The group matter could not be added.
 //
 #define RPC_S_GRP_ELT_NOT_ADDED          1928L
 
@@ -10049,7 +10049,7 @@
 //
 // MessageText:
 //
-// The group element could not be removed.
+// The group matter could not be removed.
 //
 #define RPC_S_GRP_ELT_NOT_REMOVED        1929L
 
@@ -10789,7 +10789,7 @@
 //
 // MessageText:
 //
-// An element already exists and was not replaced.
+// An matter already exists and was not replaced.
 //
 #define PEERDIST_ERROR_ALREADY_EXISTS    4058L
 
@@ -20593,7 +20593,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A reserved policy element was found in the QOS provider-specific buffer.
+// A reserved policy matter was found in the QOS provider-specific buffer.
 //
 #define WSA_QOS_RESERVED_PETYPE          11031L
 
@@ -22206,7 +22206,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The manifest is missing the required default namespace specifiCAtion on the assembly element.
+// The manifest is missing the required default namespace specifiCAtion on the assembly matter.
 //
 #define ERROR_SXS_MANIFEST_MISSING_REQUIRED_DEFAULT_NAMESPACE 14018L
 
@@ -22215,7 +22215,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The manifest has a default namespace specified on the assembly element but its value is not "urn:schemas-microsoft-com:asm.v1".
+// The manifest has a default namespace specified on the assembly matter but its value is not "urn:schemas-microsoft-com:asm.v1".
 //
 #define ERROR_SXS_MANIFEST_INVALID_REQUIRED_DEFAULT_NAMESPACE 14019L
 
@@ -22530,7 +22530,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Manifest Parse Error : Only one top level element is allowed in an XML document.
+// Manifest Parse Error : Only one top level matter is allowed in an XML document.
 //
 #define ERROR_SXS_XML_E_MULTIPLEROOTS    14054L
 
@@ -22557,7 +22557,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Manifest Parse Error : XML document must have a top level element.
+// Manifest Parse Error : XML document must have a top level matter.
 //
 #define ERROR_SXS_XML_E_MISSINGROOT      14057L
 
@@ -22593,7 +22593,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Manifest Parse Error : End element was missing the character '>'.
+// Manifest Parse Error : End matter was missing the character '>'.
 //
 #define ERROR_SXS_XML_E_UNCLOSEDENDTAG   14061L
 
@@ -23025,7 +23025,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A element command executable returned a result that indiCAtes failure.
+// A matter command executable returned a result that indiCAtes failure.
 //
 #define ERROR_GENERIC_COMMAND_FAILED     14109L
 
@@ -23185,7 +23185,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// can't perform a step operation from a term that does not represent an element set.
+// can't perform a step operation from a term that does not represent an matter set.
 //
 #define ERROR_EVT_FILTER_NOTELTSET       15015L
 
@@ -25224,7 +25224,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Moniker needs to be element
+// Moniker needs to be matter
 //
 #define MK_E_NEEDGENERIC                 _HRESULT_TYPEDEF_(0x800401E2L)
 
@@ -27046,7 +27046,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// The task XML contains an element or attribute from an unexpected namespace.
+// The task XML contains an matter or attribute from an unexpected namespace.
 //
 #define SCHED_E_NAMESPACE                _HRESULT_TYPEDEF_(0x80041317L)
 
@@ -27064,7 +27064,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// The task XML is missing a required element or attribute.
+// The task XML is missing a required matter or attribute.
 //
 #define SCHED_E_MISSINGNODE              _HRESULT_TYPEDEF_(0x80041319L)
 
@@ -32408,7 +32408,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The INF or the device information set or element does not have an associated install class.
+// The INF or the device information set or matter does not have an associated install class.
 //
 #define SPAPI_E_NO_ASSOCIATED_CLASS      _HRESULT_TYPEDEF_(0x800F0200L)
 
@@ -32417,7 +32417,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The INF or the device information set or element does not match the specified install class.
+// The INF or the device information set or matter does not match the specified install class.
 //
 #define SPAPI_E_CLASS_MISMATCH           _HRESULT_TYPEDEF_(0x800F0201L)
 
@@ -32435,7 +32435,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// There is no driver selected for the device information set or element.
+// There is no driver selected for the device information set or matter.
 //
 #define SPAPI_E_NO_DRIVER_SELECTED       _HRESULT_TYPEDEF_(0x800F0203L)
 
@@ -32480,7 +32480,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The operation Cannot be performed on a device information element that has not been registered.
+// The operation Cannot be performed on a device information matter that has not been registered.
 //
 #define SPAPI_E_DEVINFO_NOT_REGISTERED   _HRESULT_TYPEDEF_(0x800F0208L)
 
@@ -32561,7 +32561,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// There is no device information element currently selected for this device information set.
+// There is no device information matter currently selected for this device information set.
 //
 #define SPAPI_E_NO_DEVICE_SELECTED       _HRESULT_TYPEDEF_(0x800F0211L)
 
@@ -32579,7 +32579,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The operation Cannot be performed because the device information element is locked.
+// The operation Cannot be performed because the device information matter is locked.
 //
 #define SPAPI_E_DEVINFO_DATA_LOCKED      _HRESULT_TYPEDEF_(0x800F0213L)
 
@@ -32597,7 +32597,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// No class installer parameters have been set for the device information set or element.
+// No class installer parameters have been set for the device information set or matter.
 //
 #define SPAPI_E_NO_CLASSINSTALL_PARAMS   _HRESULT_TYPEDEF_(0x800F0215L)
 
@@ -32624,7 +32624,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// There is no class driver list for the device information element.
+// There is no class driver list for the device information matter.
 //
 #define SPAPI_E_NO_CLASS_DRIVER_LIST     _HRESULT_TYPEDEF_(0x800F0218L)
 
@@ -40550,7 +40550,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// An array that must contain at least one element is zero length.
+// An array that must contain at least one matter is zero length.
 //
 #define FWP_E_ZERO_LENGTH_ARRAY          _HRESULT_TYPEDEF_(0x80320022L)
 

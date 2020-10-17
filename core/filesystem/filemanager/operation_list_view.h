@@ -38,7 +38,7 @@ namespace filemanager
       void OnFileOperationStep(i32 iOperation,bool bFinal);
 
 
-      virtual void update(::update * pupdate) override;
+      virtual void on_apply(::action * paction) override;
 
 
       __pointer(operation_document) get_document();

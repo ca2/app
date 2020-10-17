@@ -695,7 +695,7 @@ namespace user
    }
 
 
-   void impact_host::update(::update * pupdate)
+   void impact_host::on_apply(::action * paction)
    {
 
    }

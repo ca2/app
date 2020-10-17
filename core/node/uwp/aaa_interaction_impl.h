@@ -51,7 +51,7 @@ namespace uwp
       virtual bool has_pending_graphical_update();
       virtual void on_after_graphical_update();
 
-      //virtual void on_delete(element * poc);
+      //virtual void on_delete(matter * poc);
 
       //virtual oswindow get_handle() const;
 

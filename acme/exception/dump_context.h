@@ -11,7 +11,7 @@ public:
    dump_context(file_pointer pfile = nullptr);
 
 
-   i32 GetDepth() const;      // 0 => this element, 1 => children objects
+   i32 GetDepth() const;      // 0 => this matter, 1 => children objects
    void SetDepth(i32 nNewDepth);
 
 
@@ -27,8 +27,8 @@ public:
    void write(const string & str) ;
    void write(const void * p);
           
-   void write(const ::element * pobject) ;
-   void write(const ::element & element) ;
+   void write(const ::matter * pobject) ;
+   void write(const ::matter & matter) ;
    void write(char i) ;
    void write(uchar ui) ;
    void write(i16 i) ;

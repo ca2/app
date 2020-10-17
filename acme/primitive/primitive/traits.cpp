@@ -132,7 +132,7 @@
 ////}
 //
 //
-////void traits::set_action(::element * pobjectFork, const ::trait & traitPayload)
+////void traits::set_action(::matter * pobjectFork, const ::trait & traitPayload)
 ////{
 ////
 ////   if(traitPayload.m_uTrait == EVENT_ID)
@@ -258,7 +258,7 @@
 ////}
 ////
 ////
-////void traits::set_result(::u64 uId, ::u64 uPromisse, ::element * preference)
+////void traits::set_result(::u64 uId, ::u64 uPromisse, ::matter * preference)
 ////{
 ////
 ////   if(uPromisse == 0)
@@ -532,7 +532,7 @@
 ////}
 ////
 ////
-////void trait::_notify(::element * pobject)
+////void trait::_notify(::matter * pobject)
 ////{
 ////
 ////   if(!m_pobjectTaskaNotify || m_pobjectTaskaNotify->is_empty()) return;
@@ -553,7 +553,7 @@
 ////}
 ////
 ////
-////void trait::_call_notify(::element * pobject)
+////void trait::_call_notify(::matter * pobject)
 ////{
 ////
 ////   auto & notifya = *m_pobjectTaskaNotify;
@@ -583,26 +583,26 @@
 ////}
 ////
 ////
-////thread_pointer trait::_fork_notify(::element * pobject)
+////thread_pointer trait::_fork_notify(::matter * pobject)
 ////{
 ////
 ////   if(m_pobjectTaskaNotify) return nullptr;
 ////
-////   __pointer(::element) p(pobject);
+////   __pointer(::matter) p(pobject);
 ////
 ////   return pobject->fork([this, p] { _call_notify(p); });
 ////
 ////}
 ////
 ////
-////thread_spa trait::_fork_notify_each(::element * pobjectFork)
+////thread_spa trait::_fork_notify_each(::matter * pobjectFork)
 ////{
 ////
 ////   thread_spa threada;
 ////
 ////   if(m_pobjectTaskaNotify) return threada;
 ////
-////   __pointer(::element) p(pobject);
+////   __pointer(::matter) p(pobject);
 ////
 ////   auto & notifya = *m_pobjectTaskaNotify;
 ////
@@ -644,7 +644,7 @@
 ////
 ////
 ////
-////void trait::fork(::element * pobject)
+////void trait::fork(::matter * pobject)
 ////{
 ////
 ////   if (is_traited())

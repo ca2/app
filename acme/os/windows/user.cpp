@@ -114,7 +114,7 @@ namespace user
 
          g_bLastDarkModeSystem = bDarkModeSystem;
 
-         ::update_notification_task::set_modified(id_dark_mode);
+         system_set_modified(id_dark_mode);
 
       }
 

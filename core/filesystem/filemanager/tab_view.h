@@ -29,7 +29,7 @@ namespace filemanager
 
       DECL_GEN_SIGNAL(_001OnCreate);
 
-      virtual void update(::update * pupdate) override;
+      virtual void on_apply(::action * paction) override;
 
       __pointer(document) get_document();
 

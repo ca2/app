@@ -14,7 +14,7 @@
 //      ::create            m_commandStartup;
 //
 //
-//      application(::element * pobject);
+//      application(::matter * pobject);
 //      virtual ~application();
 //
 //      virtual HINSTANCE GetHinstance();

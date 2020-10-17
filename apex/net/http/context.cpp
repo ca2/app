@@ -211,7 +211,7 @@ namespace http
                return true;
 
             }
-            else if (strCache == "element")
+            else if (strCache == "matter")
             {
 
                if (::is_set(petype))
@@ -271,7 +271,7 @@ namespace http
          else if (etype == ::file::type_element)
          {
 
-            strCache = "element";
+            strCache = "matter";
 
          }
          else

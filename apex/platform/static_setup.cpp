@@ -135,7 +135,7 @@ static_setup* static_setup::get_first(::static_setup::e_flag eflag, const char* 
 //}
 
 
-::element * static_setup::create_new_object()
+::matter * static_setup::create_new_object()
 {
 
    auto pobject = new_object();
@@ -187,7 +187,7 @@ static_setup* static_setup::get_first(::static_setup::e_flag eflag, const char* 
 
 
 
-::element * static_setup::new_object()
+::matter * static_setup::new_object()
 {
 
    return nullptr;

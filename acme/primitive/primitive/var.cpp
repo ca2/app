@@ -22,22 +22,22 @@ var::var(const char * psz)
 }
 
 
-var::var(::element * pelement)
+var::var(::matter * pmatter)
 {
 
    m_etype = type_new;
 
-   operator = (pelement);
+   operator = (pmatter);
 
 }
 
 
-var::var(const ::element & element)
+var::var(const ::matter & matter)
 {
 
    m_etype = type_new;
 
-   operator = (element);
+   operator = (matter);
 
 }
 
@@ -1365,7 +1365,7 @@ bool var::is_empty() const
       return m_pid->is_empty();
 
 
-      // element classes
+      // matter classes
    case type_element:
       return is_element_null();
    case type_stra:
@@ -1998,7 +1998,7 @@ string var::get_string(const char * pszOnNull) const
       else if (is_element_set())
       {
          
-         str = __str(*element());
+         str = __str(*matter());
 
       }
 
@@ -5784,7 +5784,7 @@ bool var::is_false() const
    case type_future:
          return ::is_null(m_functionbase.m_pobjectTask);
 
-   // element classes
+   // matter classes
    case type_element:
       return is_element_null();
    case type_stra:
@@ -5909,7 +5909,7 @@ bool var::is_set_false() const
    case type_future:
       return ::is_null(m_functionbase.m_pobjectTask);
 
-      // element classes
+      // matter classes
    case type_element:
       return is_element_null();
    case type_stra:
@@ -6007,10 +6007,10 @@ void var::_001Add(const string_array & straParam)
 }
 
 
-var & var::operator = (const ::element & o)
+var & var::operator = (const ::matter & o)
 {
 
-   set_element((::element *) &o);
+   set_element((::matter *) &o);
 
    return *this;
 

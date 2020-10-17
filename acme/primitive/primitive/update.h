@@ -1,36 +1,74 @@
 #pragma once
 
 
+class source;
+
+
+CLASS_DECL_ACME int os_get_system_update_poll_time(const ::id & id);
+
+
+using matter_change = isomap < __pointer(::matter), __pointer(::change) >;
+
+
 class CLASS_DECL_ACME update :
    virtual public ::context_object
 {
 public:
 
 
-   ::id                                   m_id;
-   bool                                   m_bRet;
-   __pointer(::layered)                   m_psender;
-   __pointer(::layered)                   m_pobjectTopic;
-   ::action_context                       m_actioncontext;
-   address_array < ::element * >          m_handledbya;
-   __pointer(::layered)                   m_puserinteraction; // user::interaction
-   __pointer(::layered)                   m_pcontrolevent; // user::control_event
-   __pointer(::file::item)                m_pfileitem;
-   ::user::e_key                          m_ekey;
-   ::var                                  m_var;
+   __pointer(::source)                             m_psource;
+   ::matter_change                                 m_matterchange;
+   ::user::e_key                                   m_ekey;
+   ::var                                           m_var;
+   ::i64                                           m_iUpdateSerial;
+   bool                                            m_bModified;
+   int                                             m_iMillisSleep;
 
 
-   update();
+   update(const ::id& id);
+   update(::source * psource, const :: id & id);
    virtual ~update();
 
 
-   ::update & operator =(::i64 iId) { m_id = iId; return *this; }
-   inline bool operator ==(::i64 iId) const { return m_id == iId || m_id == FULL_ID; }
+   virtual void apply(const ::var& var);
+   virtual void apply(const ::action_context& actioncontext);
+   virtual void apply();
 
 
-   void set_handled_by(const ::element * pobject) { m_handledbya.add((::element *) pobject); }
-   bool handled_by(const ::element * pobject) const { return m_handledbya.has((::element *) pobject); }
+   virtual void add(::matter* pmatter, bool bForkWhenNotify = false);
+   virtual void remove(::matter* pmatter);
 
+
+   void set_modified();
+
+
+   virtual ::change* change(::matter * pmatter);
+
+
+   virtual ::estatus run() override;
+
+
+   void post_destroy_all();
+
+
+   inline bool is_ending() { sync_lock sl(mutex()); return m_matterchange.is_empty(); };
+   inline int poll_millis() { return os_get_system_update_poll_time(m_id); };
+
+
+   static inline bool should_poll(int iMillis)
+   {
+
+      return iMillis >= 100;
+
+   }
+
+
+   ::update& operator =(const ::id& id) { m_id = id; return *this; }
+   inline bool operator ==(const ::id& id) const { return m_id == id || m_id == FULL_ID; }
+
+
+   inline ::id& id();
+   inline const ::id& id() const;
 
 
 };
@@ -39,5 +77,4 @@ public:
 using update_pointer = __pointer(::update);
 
 
-inline auto new_update() { return __new(::update); }
 

@@ -934,22 +934,15 @@ namespace user
    }
 
 
-   void combo_box::update(::update * pupdate)
+   void combo_box::on_apply(::action * paction)
    {
 
       if(m_bEdit)
       {
 
-         ::user::plain_edit::update(pupdate);
+         ::user::plain_edit::apply(paction);
 
       }
-      //else
-      //{
-
-      //   ::user::interaction::update(::update * pupdate);
-
-      //}
-
 
    }
 

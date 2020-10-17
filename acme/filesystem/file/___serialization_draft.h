@@ -70,17 +70,17 @@ public:
    }
 
 
-   virtual void write_object(const ::id & id, const ::id & idFactory, ::element * pobject)
+   virtual void write_object(const ::id & id, const ::id & idFactory, ::matter * pobject)
    {
       exchange("id", idFactory);
       exchange("", pobject);
    }
 
-   virtual __pointer(::element) read_object(const ::id & id)
+   virtual __pointer(::matter) read_object(const ::id & id)
    {
       ::id idFactory;
       exchange("id", idFactory);
-      auto pobject = __id_create<::element>(idFactory);
+      auto pobject = __id_create<::matter>(idFactory);
       exchange("", pobject);
       return pobject;
    }
@@ -112,7 +112,7 @@ public:
 
 
 
-   virtual void write_object(const ::id & id, const ::id & idFactory, ::element * pobject) override
+   virtual void write_object(const ::id & id, const ::id & idFactory, ::matter * pobject) override
    {
       var_stream stream(new var(&var()[id].propset()));
       stream.exchange("id", idFactory);
@@ -124,7 +124,7 @@ public:
       var_stream stream(new var(&var()[id].propset()));
       ::id idFactory;
       stream.exchange("id", idFactory);
-      auto pobject = __id_create<::element>(idFactory);
+      auto pobject = __id_create<::matter>(idFactory);
       stream.exchange("", pobject);
       return pobject;
    }
@@ -146,14 +146,14 @@ public:
 
 
 class window :
-   virtual public element
+   virtual public matter
 {
 public:
 
    i8                   m_iVisible;
    string               m_strTitle;
    in_addr              m_addr;
-   __pointer(::element)  m_pobject;
+   __pointer(::matter)  m_pobject;
 
    virtual void exchange(stream & s);
 
@@ -358,7 +358,7 @@ class exchanger
 
 
 
-              stream & operator >> (stream & stream, element & o)
+              stream & operator >> (stream & stream, matter & o)
            {
 
               exchange e(stream);
@@ -369,7 +369,7 @@ class exchanger
 
            }
 
-           stream & operator >> (stream & s, element & o)
+           stream & operator >> (stream & s, matter & o)
            {
 
               o.exchange(stream);

@@ -147,14 +147,14 @@ public:
    virtual void add_matter_locator(::apex::application * papp);
 
 
-   virtual ::estatus _load_from_file(::element * pobject, const ::var& varFile, const var& varOptions);
-   virtual ::estatus _save_to_file(const ::var& varFile, const var& varOptions, const ::element* pobject);
+   virtual ::estatus _load_from_file(::matter * pobject, const ::var& varFile, const var& varOptions);
+   virtual ::estatus _save_to_file(const ::var& varFile, const var& varOptions, const ::matter* pobject);
 
 
-   inline ::estatus load_from_file(::element* pobject, const ::var& varFile, const var* pvarOptions);
-   inline ::estatus load_from_file(::element* pobject, const ::var& varFile);
-   inline ::estatus save_to_file(const ::var& varFile, const var* pvarOptions, const ::element* pobject);
-   inline ::estatus save_to_file(const ::var& varFile, const ::element* pobject);
+   inline ::estatus load_from_file(::matter* pobject, const ::var& varFile, const var* pvarOptions);
+   inline ::estatus load_from_file(::matter* pobject, const ::var& varFile);
+   inline ::estatus save_to_file(const ::var& varFile, const var* pvarOptions, const ::matter* pobject);
+   inline ::estatus save_to_file(const ::var& varFile, const ::matter* pobject);
 
 
    virtual void finalize() override;

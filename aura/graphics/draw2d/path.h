@@ -28,16 +28,16 @@ namespace draw2d
       //};
 
 
-      //class CLASS_DECL_AURA element :
-      //   virtual public ::element
+      //class CLASS_DECL_AURA matter :
+      //   virtual public ::matter
       //{
       //public:
 
       //   enum_type m_etype;
 
 
-      //   element();
-      //   virtual ~element();
+      //   matter();
+      //   virtual ~matter();
 
 
       //   virtual bool expand_bounding_rect(RECTD* prectd) const;
@@ -55,7 +55,7 @@ namespace draw2d
 
 
       //class CLASS_DECL_AURA begin :
-      //   virtual public element
+      //   virtual public matter
       //{
       //public:
 
@@ -65,7 +65,7 @@ namespace draw2d
 
 
       //class CLASS_DECL_AURA arc :
-      //   virtual public element
+      //   virtual public matter
       //{
       //public:
 
@@ -87,7 +87,7 @@ namespace draw2d
 
 
       //class CLASS_DECL_AURA rect :
-      //   virtual public element
+      //   virtual public matter
       //{
       //public:
 
@@ -105,7 +105,7 @@ namespace draw2d
 
 
       //class CLASS_DECL_AURA line :
-      //   virtual public element
+      //   virtual public matter
       //{
       //public:
 
@@ -123,7 +123,7 @@ namespace draw2d
 
 
       //class CLASS_DECL_AURA lines :
-      //   virtual public element
+      //   virtual public matter
       //{
       //public:
 
@@ -141,7 +141,7 @@ namespace draw2d
 
 
       //class CLASS_DECL_AURA polygon :
-      //   virtual public element
+      //   virtual public matter
       //{
       //public:
 
@@ -160,7 +160,7 @@ namespace draw2d
 
 
       //class CLASS_DECL_AURA text :
-      //   virtual public element
+      //   virtual public matter
       //{
       //public:
 
@@ -204,7 +204,7 @@ namespace draw2d
 
 
       //class CLASS_DECL_AURA close :
-      //   virtual public element
+      //   virtual public matter
       //{
       //public:
 

@@ -81,12 +81,12 @@ namespace filemanager
    }
 
 
-   void left_view::update(::update * pupdate)
+   void left_view::on_apply(::action * paction)
    {
 
-      ::filemanager::impact::update(pupdate);
+      ::filemanager::impact::on_apply(paction);
 
-      ::user::split_view::update(pupdate);
+      ::user::split_view::on_apply(paction);
 
 //      //__update(::update)
 //      {
@@ -94,7 +94,7 @@ namespace filemanager
 //         if (filemanager_document() == pupdate->m_pdocument)
 //         {
 //
-//            //if (pupdate->m_id == id_initialize)
+//            //if (paction->id() == id_initialize)
 //            //{
 //
 //            //   string str;

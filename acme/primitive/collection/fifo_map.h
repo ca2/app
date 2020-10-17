@@ -13,7 +13,7 @@
 //
 //template <class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE = ::comparison::binary < KEY > >
 //class fifo_map :
-//   virtual public ::element
+//   virtual public ::matter
 //{
 //public:
 //
@@ -458,7 +458,7 @@
 //
 //   }
 //
-//   return ppair->element2();  // return new element
+//   return ppair->element2();  // return new matter
 //
 //}
 //
@@ -736,7 +736,7 @@
 //template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE >
 //void fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::dump(dump_context & dumpcontext) const
 //{
-//   element::dump(dumpcontext);
+//   matter::dump(dumpcontext);
 //
 //   dumpcontext << "with " << m_ptra.get_count() << " elements";
 //   if (dumpcontext.GetDepth() > 0)
@@ -761,7 +761,7 @@
 //void fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::assert_valid() const
 //{
 //
-//   element::assert_valid();
+//   matter::assert_valid();
 //
 //}
 //

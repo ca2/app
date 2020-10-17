@@ -6,7 +6,7 @@
 //
 //template <class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, typename COMPARE = ::comparison::less < KEY >, bool m_bMultiKey = false >
 //class sort_map :
-//   virtual public ::element
+//   virtual public ::matter
 //{
 //public:
 //
@@ -708,7 +708,7 @@
 //
 //   }
 //
-//   return pnode->element2();  // return new element
+//   return pnode->element2();  // return new matter
 //
 //}
 //
@@ -1390,7 +1390,7 @@
 //template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE, bool m_bMultiKey >
 //void sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::dump(dump_context & dumpcontext) const
 //{
-//   element::dump(dumpcontext);
+//   matter::dump(dumpcontext);
 //
 //   dumpcontext << "with " << get_count() << " elements";
 //   if (dumpcontext.GetDepth() > 0)
@@ -1415,7 +1415,7 @@
 //void sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::assert_valid() const
 //{
 //
-//   element::assert_valid();
+//   matter::assert_valid();
 //
 //}
 //

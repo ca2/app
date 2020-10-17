@@ -58,12 +58,15 @@ namespace user
          if (pbase->m_id == WM_FONTCHANGE)
          {
 
-            fork([this]()
-               {
 
-                  Session.call(e_method_font_change);
+            system_update(id_os_font_change);
 
-               });
+            //fork([this]()
+              // {
+
+                 // Session.call(e_method_font_change);
+
+               //});
 
          } else if (pbase->m_id == WM_DISPLAYCHANGE ||
                (pbase->m_id == WM_SETTINGCHANGE &&

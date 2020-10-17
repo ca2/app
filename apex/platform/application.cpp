@@ -5446,7 +5446,7 @@ retry_license:
    }
 
 
-   void application::update(::update * pupdate)
+   void application::on_apply(::action * paction)
    {
 
 
@@ -8272,7 +8272,7 @@ namespace apex
       }
 
       // handle all the rest
-      //linux UINT nIDP = __IDP_INTERNAL_FAILURE;   // element message string
+      //linux UINT nIDP = __IDP_INTERNAL_FAILURE;   // matter message string
       const char* nIDP = "Internal Failure";
       pbase->m_lresult = 0;        // sensible default
       if (pbase->m_id == WM_COMMAND)
@@ -8857,7 +8857,7 @@ namespace apex
    //
    //      // return global cast help mode state to FALSE (backward compatibility)
    //      m_bHelpMode = FALSE;
-   //      // trans pMainWnd->PostMessage(WM_KICKIDLE); // trigger idle update
+   //      // trans pMainWnd->PostMessage(WM_KICKIDLE); // trigger idle task
    //
    //      //trans pMainWnd->WinHelp(dwData, nCmd);
    //   }
@@ -8874,7 +8874,7 @@ namespace apex
    //
    //      // return global cast help mode state to FALSE (backward compatibility)
    //      m_bHelpMode = FALSE;
-   //      // trans pMainWnd->PostMessage(WM_KICKIDLE); // trigger idle update
+   //      // trans pMainWnd->PostMessage(WM_KICKIDLE); // trigger idle task
    //
    //      // trans pMainWnd->HtmlHelp(dwData, nCmd);
    //   }
@@ -8889,7 +8889,7 @@ namespace apex
    //
    //      // return global cast help mode state to FALSE (backward compatibility)
    //      m_bHelpMode = FALSE;
-   //      // trans pMainWnd->PostMessage(WM_KICKIDLE); // trigger idle update
+   //      // trans pMainWnd->PostMessage(WM_KICKIDLE); // trigger idle task
    //      // trans pMainWnd->WinHelpInternal(dwData, nCmd);
    //   }
    //
@@ -9098,7 +9098,7 @@ namespace apex
       ENSURE(pMainWnd->is_frame_window());
       pMainWnd->OnContextHelp();
       m_bHelpMode = pMainWnd->m_bHelpMode;
-      pMainWnd->PostMessage(WM_KICKIDLE); // trigger idle update */
+      pMainWnd->PostMessage(WM_KICKIDLE); // trigger idle task */
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -10750,7 +10750,7 @@ namespace apex
    //}
 
 
-   void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const var& var, ::update* pupdate)
+   void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const var& var, ::action * paction)
    {
 
       //if (key.m_strDataKey == "ca2.savings")
@@ -11117,21 +11117,21 @@ namespace apex
    //   }
 
 
-      //void application::update(::update * pupdate)
+      //void application::task(::change * pchange)
       //{
 
-      //   ::apex::application::update(pupdate);
+      //   ::apex::application::task(ptask);
 
-      //   if (pupdate->m_bRet)
+      //   if (ptask->m_bRet)
       //   {
       //
       //      return;
 
       //   }
       //
-      //   ::user::form_callback::update(pupdate);
+      //   ::user::form_callback::task(ptask);
 
-      //   if (pupdate->m_bRet)
+      //   if (ptask->m_bRet)
       //   {
 
       //      return;

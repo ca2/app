@@ -55,12 +55,12 @@ namespace file
    }
 
 
-   /// half-initialization (of file element)
-   /// seeded (the file element has been...)
-   /// (the file element) requires another call to effectively finish creating itself,
+   /// half-initialization (of file matter)
+   /// seeded (the file matter has been...)
+   /// (the file matter) requires another call to effectively finish creating itself,
    ///
-   /// Much probably another ::element with some assigned ::acme::application should be supplied
-   /// to realize the file element.
+   /// Much probably another ::matter with some assigned ::acme::application should be supplied
+   /// to realize the file matter.
    file::file(const ::file::path & path) :
       m_path(path)
    {
@@ -1192,9 +1192,9 @@ namespace file
       ::exception::throw_interface_only();
    }
 
-   void file::write (element & element)
+   void file::write (matter & matter)
    {
-      UNREFERENCED_PARAMETER(element);
+      UNREFERENCED_PARAMETER(matter);
       ::exception::throw_interface_only();
    }
 

@@ -102,7 +102,7 @@ namespace user
       virtual ::user::impact_data * get_impact_data(const id& id, bool bCallOnCreateView = true);
 
 
-      virtual void update(::update * pupdate) override;
+      virtual void on_apply(::action * paction) override;
 
 
       virtual ::count get_view_count();

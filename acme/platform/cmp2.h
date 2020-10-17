@@ -36,7 +36,7 @@ struct add_lvalue_reference
 template<class TYPE>
 struct add_rvalue_reference
 {
-   // add rvalue element
+   // add rvalue matter
    typedef TYPE&& type;
 };
 
@@ -50,7 +50,7 @@ class reference_wrapper;
 //#define _ADD_RVALUE_REFERENCE_VOID(CV_OPT) \
 //template<> \
 //	struct add_rvalue_reference<CV_OPT void> \
-//	{	/* add element */ \
+//	{	/* add matter */ \
 //	typedef CV_OPT void type; \
 //	};
 //

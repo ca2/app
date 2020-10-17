@@ -305,7 +305,7 @@ namespace colorertake5
             if (content->get_children_count() > 0)
             {
                if (errorHandler != nullptr)
-                  errorHandler->warning(string("Bad '")+content->get_name()+"' element in prototype '"+typeName+"'");
+                  errorHandler->warning(string("Bad '")+content->get_name()+"' matter in prototype '"+typeName+"'");
                continue;
             }
             string match = content->get_value();
@@ -411,7 +411,7 @@ namespace colorertake5
             {
                if (errorHandler != nullptr)
                {
-                  errorHandler->error(string("No 'name' attribute in <region> element"));
+                  errorHandler->error(string("No 'name' attribute in <region> matter"));
                }
                continue;
             };

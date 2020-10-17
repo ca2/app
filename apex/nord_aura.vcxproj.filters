@@ -2344,7 +2344,7 @@
     <ClCompile Include="platform\draw_context.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\element.cpp">
+    <ClCompile Include="platform\matter.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\exclusive.cpp">

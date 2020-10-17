@@ -5579,21 +5579,21 @@ ok:
    }
 
 
-   bool graphics::set(const ::draw2d_xlib::path::element & e)
+   bool graphics::set(const ::draw2d_xlib::path::matter & e)
    {
 
       /*      switch(e.m_etype)
             {
-            case ::draw2d::path::element::type_arc:
+            case ::draw2d::path::matter::type_arc:
                set(e.m_arc);
                break;
-            case ::draw2d::path::element::type_line:
+            case ::draw2d::path::matter::type_line:
                set(e.m_line);
                break;
-            case ::draw2d::path::element::type_move:
+            case ::draw2d::path::matter::type_move:
                set(e.m_move);
                break;
-            case ::draw2d::path::element::type_end:
+            case ::draw2d::path::matter::type_end:
                {
 
                   if(e.m_end.m_bClose)
@@ -5603,7 +5603,7 @@ ok:
                }
                break;
             default:
-               __throw(::exception::exception("unexpected simple os graphics element type"));
+               __throw(::exception::exception("unexpected simple os graphics matter type"));
             }*/
 
       return false;

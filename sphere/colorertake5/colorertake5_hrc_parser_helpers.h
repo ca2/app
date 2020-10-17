@@ -51,7 +51,7 @@ namespace colorertake5
 
    };
 
-   /** One entry of 'inherit' element virtualization content.
+   /** One entry of 'inherit' matter virtualization content.
        @ingroup colorer_parsers
    */
    class VirtualEntry

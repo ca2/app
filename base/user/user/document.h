@@ -25,7 +25,7 @@ namespace user
 
       string                              m_strToolbar;
       __pointer(::user::impact_system)    m_pimpactsystem;
-      __pointer_array(::user::impact)          m_viewa;
+      __pointer_array(::user::impact)     m_viewa;
       ::user::impact *                    m_pviewTopic;
 
       bool                                m_bAutoSaveModified;
@@ -247,10 +247,10 @@ namespace user
       // Update Views (simple update - DAG only)
       void id_update_all_views(const ::id & id);
       void update_all_views(impact * pimpact, const ::id & id);
-      virtual void update_all_views(::update * pupdate);
+      virtual void update_all_views(::action * paction);
 
 
-      virtual void update(::update * pupdate) override;
+      virtual void on_apply(::action * paction) override;
 
       //void send_update(__pointer(::user::impact) pSender, LPARAM lHint = 0L,
       //                 ::object* pHint = nullptr);

@@ -6,7 +6,7 @@ namespace calculator
 
 
    class CLASS_DECL_AXIS element:
-      virtual public ::element
+      virtual public ::matter
    {
    public:
 

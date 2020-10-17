@@ -261,9 +261,6 @@
     <ClInclude Include="math\calculator\calculator.h">
       <Filter>Header Files\math\calculator</Filter>
     </ClInclude>
-    <ClInclude Include="math\calculator\element.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
     <ClInclude Include="math\calculator\parser.h">
       <Filter>Header Files\math\calculator</Filter>
     </ClInclude>
@@ -588,6 +585,9 @@
     <ClInclude Include="id.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="math\calculator\element.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\application.cpp">
@@ -705,9 +705,6 @@
       <Filter>Header Files\database\database</Filter>
     </ClCompile>
     <ClCompile Include="math\calculator\calculator.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="math\calculator\element.cpp">
       <Filter>Source Files\math\calculator</Filter>
     </ClCompile>
     <ClCompile Include="math\calculator\parser.cpp">
@@ -832,6 +829,9 @@
     </ClCompile>
     <ClCompile Include="const\idpool.cpp">
       <Filter>Source Files\const</Filter>
+    </ClCompile>
+    <ClCompile Include="math\calculator\element.cpp">
+      <Filter>Source Files\math\calculator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

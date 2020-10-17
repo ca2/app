@@ -1799,7 +1799,7 @@ memsize memory_base::length() const
 }
 
 
-::element * memory_base::clone() const
+::matter * memory_base::clone() const
 {
 
    auto pmemory = new memory();
@@ -1958,7 +1958,7 @@ CLASS_DECL_ACME stream & operator >> (stream & stream, memory_container & memcon
 
 
 
-//const char * element::type_name() const
+//const char * matter::type_name() const
 //{
 //
 //   return typeid(*this).name();

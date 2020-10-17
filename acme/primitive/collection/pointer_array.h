@@ -994,8 +994,8 @@ public:
 //   }
 //
 //
-//   smart_pointer_array2(::element * pobjectContext):
-//      ::element(pobjectContext),
+//   smart_pointer_array2(::matter * pobjectContext):
+//      ::matter(pobjectContext),
 //      comparable_array < pointer < T > >(pobjectContext)
 //   {
 //   }
@@ -1562,9 +1562,9 @@ public:
 //#define spa2(TYPE) ::smart_pointer_array2 < TYPE >
 ///#define __xmlspa(TYPE) ::pointer_array < TYPE >
 
-typedef __pointer_array(element) object_pointera;
+typedef __pointer_array(matter) object_pointera;
 
-typedef __pointer_array(element) simple_object_pointera;
+typedef __pointer_array(matter) simple_object_pointera;
 
 
 

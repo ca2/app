@@ -13,8 +13,8 @@ namespace acme
    }
 
 
-   //history::history(::element * pobject) :
-   //   ::element(pobject)
+   //history::history(::matter * pobject) :
+   //   ::matter(pobject)
    //{
 
    //   m_phistory = nullptr;

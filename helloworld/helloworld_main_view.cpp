@@ -43,9 +43,9 @@ namespace helloworld
    }
 
 
-   void main_view::update(::update * pupdate)
+   void main_view::on_apply(::action * paction)
    {
-      ::user::split_view::update(pupdate);
+      ::user::split_view::on_apply(paction);
    }
 
 

@@ -254,9 +254,9 @@ inline raw_array < TYPE, ARG_TYPE, ALLOCATOR > & raw_array < TYPE, ARG_TYPE, ALL
 // out-of-line functions
 
 template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_array(::element * pobject) 
+raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_array(::matter * pobject) 
    //:
-   //::element(pobject)
+   //::matter(pobject)
 {
 
 }
@@ -275,14 +275,14 @@ inline raw_array < TYPE,ARG_TYPE,ALLOCATOR >::raw_array(::std::initializer_list 
 
 template<class TYPE, class ARG_TYPE, class ALLOCATOR >
 raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_array(const raw_array <TYPE, ARG_TYPE, ALLOCATOR> & a)// :
-   // element(a.get_context_application())
+   // matter(a.get_context_application())
 {
    ::array_base < TYPE, ARG_TYPE, ALLOCATOR >::operator = (a);
 }
 
 template<class TYPE, class ARG_TYPE, class ALLOCATOR >
 raw_array < TYPE,ARG_TYPE,ALLOCATOR >::raw_array(raw_array <TYPE,ARG_TYPE,ALLOCATOR> && a) //:
-//   element(a.get_context_application())
+//   matter(a.get_context_application())
 {
 
    this->m_nGrowBy = a.m_nGrowBy;
@@ -586,7 +586,7 @@ template<class TYPE, class ARG_TYPE, class ALLOCATOR >
 //void raw_array < TYPE, ARG_TYPE, ALLOCATOR >::dump(dump_context & dumpcontext) const
 //{
 //
-//   element::dump(dumpcontext);
+//   matter::dump(dumpcontext);
 //
 //   dumpcontext << "with " << this->m_nSize << " elements";
 //
@@ -608,7 +608,7 @@ template<class TYPE, class ARG_TYPE, class ALLOCATOR >
 //void raw_array < TYPE, ARG_TYPE, ALLOCATOR >::assert_valid() const
 //{
 //
-//   element::assert_valid();
+//   matter::assert_valid();
 //
 //
 //   if (get_data() == nullptr)

@@ -86,7 +86,7 @@ namespace file
       /// @lparam dir The directory
       /// @lparam filename The filename that was accessed (not full path)
       /// @lparam action Action that was performed
-      virtual void handle_file_action(action * paction);
+      virtual void handle_file_action(::file::action * paction);
 
 
    }; // class file_watch_listener
@@ -111,7 +111,7 @@ namespace file
       /// @lparam dir The directory
       /// @lparam filename The filename that was accessed (not full path)
       /// @lparam action Action that was performed
-      virtual void handle_file_action(action * paction) override
+      virtual void handle_file_action(::file::action * paction) override
       {
 
          m_pred(paction);

@@ -381,7 +381,7 @@ void set_global_trace_level(e_trace_level etracelevel)
 }
 
 
-CLASS_DECL_AURA void __simple_tracea(::element * pobjectContext, e_trace_level elevel, const char * pszFunction, const char *pszFileName, i32 iLine, const char * psz)
+CLASS_DECL_AURA void __simple_tracea(::matter * pobjectContext, e_trace_level elevel, const char * pszFunction, const char *pszFileName, i32 iLine, const char * psz)
 {
 
    if (elevel < get_global_trace_level())
@@ -454,7 +454,7 @@ CLASS_DECL_AURA void __simple_tracea(::element * pobjectContext, e_trace_level e
 }
 
 
-CLASS_DECL_AURA void __simple_tracev(::element * pobjectContext, e_trace_level elevel, const char * pszFunction, const char *pszFileName, i32 iLine, const char * pszFormat, va_list args)
+CLASS_DECL_AURA void __simple_tracev(::matter * pobjectContext, e_trace_level elevel, const char * pszFunction, const char *pszFileName, i32 iLine, const char * pszFormat, va_list args)
 {
 
    //if (s_pstringmanager == nullptr)

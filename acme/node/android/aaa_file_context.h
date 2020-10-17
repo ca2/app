@@ -20,7 +20,7 @@ namespace android
       virtual ~file_context();
 
 
-      virtual ::estatus initialize(::element * pobjectContext) override;
+      virtual ::estatus initialize(::matter * pobjectContext) override;
 
 
       virtual ::estatus update_module_path() override;

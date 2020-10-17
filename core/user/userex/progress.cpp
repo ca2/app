@@ -219,7 +219,7 @@ namespace userex
    }
 
 
-   void progress_view::update(::update * pupdate)
+   void progress_view::on_apply(::action * paction)
    {
 
    }

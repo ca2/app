@@ -9,7 +9,7 @@ namespace apex
 
 
    class CLASS_DECL_APEX idpool :
-      virtual public ::element
+      virtual public ::matter
    {
    public:
 

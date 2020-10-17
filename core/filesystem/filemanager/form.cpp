@@ -25,12 +25,12 @@ namespace filemanager
    }
 
 
-   void form::update(::update * pupdate)
+   void form::on_apply(::action * paction)
    {
 
-      ::filemanager::impact::update(pupdate);
+      ::filemanager::impact::on_apply(paction);
 
-      ::user::form_view::update(pupdate);
+      ::user::form_view::on_apply(paction);
 
    }
 
@@ -42,13 +42,11 @@ namespace filemanager
          if(pevent->m_puie->m_id == "lfs")
          {
 
-            auto pupdate = new_update();
+            auto paction = action(BROWSE_ID);
 
-            pupdate->m_id = BROWSE_ID;
+            paction->value(id_form) = "filemanager_add_location_lfs.xhtml";
 
-            pupdate->value(id_form) = "filemanager_add_location_lfs.xhtml";
-
-            get_document()->update_all_views(pupdate);
+            get_document()->update_all_views(paction);
 
             auto pinteraction = get_child_by_name("lfs");
 
@@ -58,13 +56,11 @@ namespace filemanager
          else if(pevent->m_puie->m_id == "ftp")
          {
 
-            auto pupdate = new_update();
+            auto paction = action(id_browse);
 
-            pupdate->m_id = id_browse;
+            paction->value(id_form) = "filemanager_add_location_ftp.xhtml";
 
-            pupdate->value(id_form) = "filemanager_add_location_ftp.xhtml";
-
-            get_document()->update_all_views(pupdate);
+            get_document()->update_all_views(paction);
 
          }
          else if(pevent->m_puie->m_id == "submit")
@@ -89,36 +85,34 @@ namespace filemanager
             }
             else if(m_idCreator == "replace_name")
             {
-               auto pupdate = new_update();
 
-               pupdate->m_id = id_replace_name;
+               auto paction = action(id_replace_name);
 
                auto pinteraction = get_child_by_name("find");
 
-               pinteraction->_001GetText(pupdate->value(id_find));
+               pinteraction->_001GetText(paction->value(id_find));
 
                pinteraction = get_child_by_name("replace");
 
-               pinteraction->_001GetText(pupdate->value(id_replace));
+               pinteraction->_001GetText(paction->value(id_replace));
 
                auto pdocument =  filemanager_document();
 
-               pdocument->update_all_views(pupdate);
+               pdocument->update_all_views(paction);
 
             }
             else if (m_idCreator == "new_folder")
             {
-               auto pupdate = new_update();
-
-               pupdate->m_id = id_new_folder;
+               
+               auto paction = action(id_new_folder);
 
                auto pinteraction = get_child_by_name("name");
 
-               pinteraction->_001GetText(pupdate->value(id_text));
+               pinteraction->_001GetText(paction->value(id_text));
 
                auto pdocument = filemanager_document();
 
-               pdocument->update_all_views(pupdate);
+               pdocument->update_all_views(paction);
 
             }
 

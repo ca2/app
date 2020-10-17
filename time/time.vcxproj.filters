@@ -44,7 +44,7 @@
     <ClInclude Include="calculator\_.h">
       <Filter>Header Files\calculator</Filter>
     </ClInclude>
-    <ClInclude Include="calculator\element.h">
+    <ClInclude Include="calculator\matter.h">
       <Filter>Header Files\calculator</Filter>
     </ClInclude>
     <ClInclude Include="calculator\parser.h">
@@ -103,7 +103,7 @@
     <ClCompile Include="datetime\datetime_windows_file_time.cpp">
       <Filter>Source Files\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="calculator\element.cpp">
+    <ClCompile Include="calculator\matter.cpp">
       <Filter>Source Files\calculator</Filter>
     </ClCompile>
     <ClCompile Include="calculator\parser.cpp">

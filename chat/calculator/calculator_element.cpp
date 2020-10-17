@@ -3,7 +3,7 @@
 namespace calculator
 {
 
-   element::element()
+   matter::matter()
    {
       m_pparent   = nullptr;
       m_pelement1 = nullptr;
@@ -11,14 +11,14 @@ namespace calculator
       m_pelement3 = nullptr;
    }
 
-   element::~element()
+   matter::~matter()
    {
    }
 
 
     double pi();
 
-   value element::get_value()
+   value matter::get_value()
    {
       if(m_ptoken->m_etype == token::type_identifier)
       {
@@ -127,7 +127,7 @@ namespace calculator
       return value();
    }
 
-   string element::get_expression()
+   string matter::get_expression()
    {
       if(m_ptoken->m_etype == token::type_number || m_ptoken->m_etype == token::type_identifier)
       {

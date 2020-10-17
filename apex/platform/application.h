@@ -109,7 +109,7 @@ namespace apex
       ::mutex                                         m_mutexStr;
       string_table                                    m_stringtable;
       string_table                                    m_stringtableStd;
-      map < id, id, string, string >                  m_stringmap;
+      id_map < string >                               m_stringmap;
 
       id_map < __pointer(::channel) >                 m_mapNotify;
 
@@ -769,7 +769,7 @@ namespace apex
 
       virtual string get_app_user_friendly_task_bar_name();
 
-      virtual void update(::update * pupdate) override;
+      virtual void on_apply(::action * paction) override;
 
       //virtual bool compress_ungz(::file::file * pfileUncompressed, ::file::file * pfileCompressed);
 
@@ -1310,7 +1310,7 @@ namespace apex
       }
 
 
-      virtual void data_on_after_change(::database::client* pclient, const ::database::key& id, const var& var, ::update* pupdate) override;
+      virtual void data_on_after_change(::database::client* pclient, const ::database::key& id, const var& var, ::action * paction) override;
 
 
       //user virtual ::user::document* open_document_file(::object* pobject, const char* pszFileName);
@@ -1367,7 +1367,7 @@ namespace apex
 
       //virtual void install_message_routing(::channel * pchannel) override;
 
-      //virtual void update(::update * pupdate) override;
+      //virtual void on_apply(::action * paction) override;
 
       //virtual ::estatus process_init() override;
 

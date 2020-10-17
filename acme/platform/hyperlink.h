@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ACME hyperlink :
-   virtual public ::element
+   virtual public ::matter
 {
 public:
 

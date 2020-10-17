@@ -122,7 +122,7 @@ namespace uwp
       //   // The user tapped inside the control. Give it focus.
       //   SetInternalFocus();
 
-      //   // Tell XAML that this element has focus, so we don't have two
+      //   // Tell XAML that this matter has focus, so we don't have two
       //   // focus elements. That is the extent of our integration with XAML focus.
       //   Focus(FocusState.Programmatic);
 
@@ -652,11 +652,11 @@ namespace uwp
       //SelectionEndIndexText.Text = _selection->EndCaretPosition.ToString();
    }
 
-   //Rect impact::GetElementRect(FrameworkElement element)
+   //Rect impact::GetElementRect(FrameworkElement matter)
    //{
-   //   GeneralTransform transform = element.TransformToVisual(null);
+   //   GeneralTransform transform = matter.TransformToVisual(null);
    //   Point point = transform.TransformPoint(new Point());
-   //   return new Rect(point, new Size(element.ActualWidth, element.ActualHeight));
+   //   return new Rect(point, new Size(matter.ActualWidth, matter.ActualHeight));
    //}
 
 

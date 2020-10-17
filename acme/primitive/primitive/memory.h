@@ -73,7 +73,7 @@ public:
    bool        m_bAligned;
 
 
-   memory(::element * pobjectContext = nullptr) { m_memory.m_pprimitivememory = this; m_bAligned = false; }
+   memory(::matter * pobjectContext = nullptr) { m_memory.m_pprimitivememory = this; m_bAligned = false; }
    memory(enum_create_new, bool bAligned);
    memory(const ::std::initializer_list < int > & iaList);
    memory(const u8 *, memsize size);

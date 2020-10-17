@@ -57,7 +57,7 @@ namespace user
       virtual void close_all_documents(bool bEndApp); // close documents before exiting
       virtual ::count get_open_document_count();
 
-      virtual void update(::update * pupdate);
+      virtual void on_apply(::action * paction);
 
       virtual bool do_prompt_file_name(var & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
 

@@ -59,7 +59,7 @@
 
 /**
  * @class DDInvocationGrabber
- * @discussion DDInvocationGrabber is a helper element that makes it very easy to construct instances of NSInvocation for later use. The element is inspired by NSUndoManager's prepareWithInvocationTarget method. To use a DDInvocationGrabber element, you set its target to some element, then send it a message as if it were the target element (the DDInvocationGrabber element acts as a proxy), if the target message understands the message the DDInvocationGrabber element stores the message invocation.
+ * @discussion DDInvocationGrabber is a helper matter that makes it very easy to construct instances of NSInvocation for later use. The matter is inspired by NSUndoManager's prepareWithInvocationTarget method. To use a DDInvocationGrabber matter, you set its target to some matter, then send it a message as if it were the target matter (the DDInvocationGrabber matter acts as a proxy), if the target message understands the message the DDInvocationGrabber matter stores the message invocation.
  
  DDInvocationGrabber *theGrabber = [DDInvocationGrabber invocationGrabber];
  [theGrabber setTarget:someObject]
@@ -83,7 +83,7 @@
 
 /**
  * @method invocationGrabber
- * @abstract Returns a newly allocated, inited, autoreleased DDInvocationGrabber element.
+ * @abstract Returns a newly allocated, inited, autoreleased DDInvocationGrabber matter.
  */
 + (id)invocationGrabber;
 
@@ -105,7 +105,7 @@
 
 /**
  * @method prepareWithInvocationTarget:
- * @abstract Sets the target element of the receiver and returns itself. The sender can then send a message to the 
+ * @abstract Sets the target matter of the receiver and returns itself. The sender can then send a message to the 
  */
 - (id)prepareWithInvocationTarget:(id)inTarget;
 

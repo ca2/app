@@ -193,8 +193,8 @@
 
 
 //
-//  Define the element mapping array.  This is used to denote the
-//  mapping of each element access right to a specific access mask.
+//  Define the matter mapping array.  This is used to denote the
+//  mapping of each matter access right to a specific access mask.
 //
 
 /*typedef struct _GENERIC_MAPPING {

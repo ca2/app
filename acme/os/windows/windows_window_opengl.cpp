@@ -4,8 +4,8 @@
 
 
 
-window_opengl::window_opengl(::element * pobject) :
-   element(pobject),
+window_opengl::window_opengl(::matter * pobject) :
+   matter(pobject),
    window_graphics(pobject)
 {
 

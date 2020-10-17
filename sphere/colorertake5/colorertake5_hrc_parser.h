@@ -77,7 +77,7 @@ namespace colorertake5
       virtual class region *getRegion(const char * name) = 0;
 
       /** HRC aura version.
-      Usually this is the 'version' attribute of 'hrc' element
+      Usually this is the 'version' attribute of 'hrc' matter
       of the first loaded HRC spfile->
       */
       virtual string getVersion() = 0;

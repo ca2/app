@@ -6,7 +6,7 @@
 //
 //
 //   class CLASS_DECL_ACME idpool :
-//      virtual public ::element
+//      virtual public ::matter
 //   {
 //   public:
 //

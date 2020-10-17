@@ -15,17 +15,17 @@ class obj_ref_dbg;
 //#define OBJ_REF_DBG_MAX_COUNT 256
 #define OBJ_REF_DBG_ARGS p, pszObjRefDbg
 #define OBJ_REF_DBG_ADD_ARGS , OBJ_REF_DBG_ARGS
-#define REF_DBG_POINTER (::element *)(::iptr)1
-#define REF_DBG_VAR (::element *)(::iptr)1
+#define REF_DBG_POINTER (::matter *)(::iptr)1
+#define REF_DBG_VAR (::matter *)(::iptr)1
 #define REF_DBG_ADD_POINTER , REF_DBG_POINTER
-#define OBJ_REF_DBG_PARAMS_DEF ::element * p, const char *pszObjRefDbg
-#define OBJ_REF_DBG_PARAMS ::element * p = ((::element*)(::iptr)1), const char *pszObjRefDbg = nullptr
+#define OBJ_REF_DBG_PARAMS_DEF ::matter * p, const char *pszObjRefDbg
+#define OBJ_REF_DBG_PARAMS ::matter * p = ((::matter*)(::iptr)1), const char *pszObjRefDbg = nullptr
 #define OBJ_REF_DBG_ADD_PARAMS_DEF , OBJ_REF_DBG_PARAMS_DEF
 #define OBJ_REF_DBG_ADD_PARAMS , OBJ_REF_DBG_PARAMS
 #define OBJ_REF_DBG_ADD_NOTE(note) , note
 #define OBJ_REF_DBG_PTR(ptr) ptr
-#define OBJ_REF_DBG_THIS ((::element *) this)
-#define OBJ_REF_DBG_THIS_NOTE(note) ((::element *) this), note
+#define OBJ_REF_DBG_THIS ((::matter *) this)
+#define OBJ_REF_DBG_THIS_NOTE(note) ((::matter *) this), note
 #define OBJ_REF_DBG_P_NOTE(p, note) p, note
 #define OBJ_REF_DBG_ADD_P_NOTE(p, note) , OBJ_REF_DBG_P_NOTE(p, note)
 #define __assign(target, source) ___assign(target, source)

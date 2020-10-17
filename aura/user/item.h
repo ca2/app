@@ -80,11 +80,11 @@ namespace user
 
    class CLASS_DECL_AURA item :
       virtual public item_data,
-      virtual public ::element
+      virtual public ::matter
    {
    public:
 
-      // a user item is a "pointer"/address to a user interface element
+      // a user item is a "pointer"/address to a user interface matter
 
       ::draw2d::graphics_pointer    m_pgraphics;
       ::draw2d::path_pointer        m_ppath;
@@ -141,7 +141,7 @@ namespace user
 
       item(const item & item):
          item_data(item),
-         element(item)
+         matter(item)
       {
 
       }
@@ -149,7 +149,7 @@ namespace user
 
       item(item && item):
       item_data(item),
-      element(::move(item))
+      matter(::move(item))
       {
 
       }

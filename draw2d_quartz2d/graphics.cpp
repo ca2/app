@@ -5284,19 +5284,19 @@ namespace draw2d_quartz2d
    bool graphics::_draw_inline(::draw2d::path * ppath, ::draw2d::pen * ppen)
    {
 
-      for(auto & pelement : ppath->m_elementa)
+      for(auto & pmatter : ppath->m_elementa)
       {
          
-         if(pelement->m_etype == path::type_text_out)
+         if(pmatter->m_etype == path::type_text_out)
          {
 
-            _draw_inline(pelement.cast < path::text_out >(), ppen);
+            _draw_inline(pmatter.cast < path::text_out >(), ppen);
             
          }
-         else if(pelement->m_etype == path::type_draw_text)
+         else if(pmatter->m_etype == path::type_draw_text)
          {
 
-            _draw_inline(pelement.cast < path::draw_text >(), ppen);
+            _draw_inline(pmatter.cast < path::draw_text >(), ppen);
             
          }
 
@@ -5310,19 +5310,19 @@ namespace draw2d_quartz2d
    bool graphics::_fill_inline(::draw2d::path * ppath, ::draw2d::brush * pbrush)
    {
 
-      for(auto & pelement : ppath->m_elementa)
+      for(auto & pmatter : ppath->m_elementa)
       {
          
-         if(pelement->m_etype == path::type_text_out)
+         if(pmatter->m_etype == path::type_text_out)
          {
 
-            _fill_inline(pelement.cast < path::text_out >(), pbrush);
+            _fill_inline(pmatter.cast < path::text_out >(), pbrush);
             
          }
-         else if(pelement->m_etype == path::type_draw_text)
+         else if(pmatter->m_etype == path::type_draw_text)
          {
 
-            _fill_inline(pelement.cast < path::draw_text >(), pbrush);
+            _fill_inline(pmatter.cast < path::draw_text >(), pbrush);
             
          }
 
@@ -5334,27 +5334,27 @@ namespace draw2d_quartz2d
 
 
 
-//   bool graphics::_set(::draw2d_quartz2d::path::element * pelement)
+//   bool graphics::_set(::draw2d_quartz2d::path::matter * pmatter)
 //   {
 //
-//      switch(pelement->m_etype)
+//      switch(pmatter->m_etype)
 //      {
 //      case ::draw2d::path::type_begin:
-//         return _set(dynamic_cast < path::begin *>(pelement));
+//         return _set(dynamic_cast < path::begin *>(pmatter));
 //      case ::draw2d::path::type_arc:
-//         return _set(dynamic_cast < path::arc *>(pelement));
+//         return _set(dynamic_cast < path::arc *>(pmatter));
 //      case ::draw2d::path::type_rect:
-//         return _set(dynamic_cast < path::rect *>(pelement));
+//         return _set(dynamic_cast < path::rect *>(pmatter));
 //      case ::draw2d::path::type_line:
-//         return _set(dynamic_cast < path::line *>(pelement));
+//         return _set(dynamic_cast < path::line *>(pmatter));
 //      case ::draw2d::path::type_lines:
-//         return _set(dynamic_cast < path::lines *>(pelement));
+//         return _set(dynamic_cast < path::lines *>(pmatter));
 //      case ::draw2d::path::type_polygon:
-//         return _set(dynamic_cast < path::polygon *>(pelement));
+//         return _set(dynamic_cast < path::polygon *>(pmatter));
 //      case ::draw2d::path::type_text_out:
 //         break;
 //      case ::draw2d::path::type_close:
-//         return _set(dynamic_cast < path::close *>(pelement));
+//         return _set(dynamic_cast < path::close *>(pmatter));
 //      default:
 //         break;
 //      }
@@ -5364,13 +5364,13 @@ namespace draw2d_quartz2d
 //   }
 
 
-   bool graphics::_draw_inline(::draw2d_quartz2d::path::element * pelement, ::draw2d::pen * ppen)
+   bool graphics::_draw_inline(::draw2d_quartz2d::path::matter * pmatter, ::draw2d::pen * ppen)
    {
 
-      switch(pelement->m_etype)
+      switch(pmatter->m_etype)
       {
       case ::draw2d::path::type_text_out:
-         _draw_inline(dynamic_cast < path::text_out * >(pelement), ppen);
+         _draw_inline(dynamic_cast < path::text_out * >(pmatter), ppen);
          break;
       default:
          break;
@@ -5381,13 +5381,13 @@ namespace draw2d_quartz2d
    }
 
 
-   bool graphics::_fill_inline(::draw2d_quartz2d::path::element * pelement, ::draw2d::brush * pbrush)
+   bool graphics::_fill_inline(::draw2d_quartz2d::path::matter * pmatter, ::draw2d::brush * pbrush)
    {
 
-      switch(pelement->m_etype)
+      switch(pmatter->m_etype)
       {
       case ::draw2d::path::type_text_out:
-         _fill_inline(dynamic_cast < path::text_out * >(pelement), pbrush);
+         _fill_inline(dynamic_cast < path::text_out * >(pmatter), pbrush);
          break;
       default:
          break;

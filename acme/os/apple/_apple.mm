@@ -154,11 +154,11 @@ void ns_main_sync(dispatch_block_t block, unsigned int)
    
 }
 
-class element;
+class matter;
 
-CLASS_DECL_ACME ::estatus __call(::element * prunnable);
+CLASS_DECL_ACME ::estatus __call(::matter * prunnable);
 
-void main_async_runnable(::element * prunnable)
+void main_async_runnable(::matter * prunnable)
 {
    
    ns_main_async(^
@@ -173,7 +173,7 @@ void main_async_runnable(::element * prunnable)
 }
 
 
-void _main_sync_runnable(::element * prunnable, DWORD dwMillis)
+void _main_sync_runnable(::matter * prunnable, DWORD dwMillis)
 {
    
    ns_main_sync(^

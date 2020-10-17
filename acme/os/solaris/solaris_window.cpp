@@ -730,7 +730,7 @@ public:
 
    ::rect m_rectDesktop;
 
-   xlib_message_box(__pointer(base_application) papp) : ::element(pobject), ::os::simple_ui(pobject), ::user::interaction(pobject)
+   xlib_message_box(__pointer(base_application) papp) : ::matter(pobject), ::os::simple_ui(pobject), ::user::interaction(pobject)
    {
    }
 

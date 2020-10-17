@@ -7,13 +7,13 @@ namespace html
    namespace impl
    {
 
-      class element;
+      class matter;
 
    }
 }
 
 
-//#include "core/html/impl/element.h"
+//#include "core/html/impl/matter.h"
 
 
 #include "element.h"

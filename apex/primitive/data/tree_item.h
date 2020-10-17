@@ -239,7 +239,7 @@ namespace data
 
 
    class CLASS_DECL_APEX tree_item :
-      virtual public element
+      virtual public matter
    {
    public:
 
@@ -279,14 +279,14 @@ namespace data
       virtual i64 add_ref(OBJ_REF_DBG_PARAMS)
       {
 
-         return ::element::add_ref(OBJ_REF_DBG_ARGS);
+         return ::matter::add_ref(OBJ_REF_DBG_ARGS);
 
       }
 
       virtual i64 dec_ref(OBJ_REF_DBG_PARAMS)
       {
 
-         return ::element::dec_ref(OBJ_REF_DBG_ARGS);
+         return ::matter::dec_ref(OBJ_REF_DBG_ARGS);
 
       }
 

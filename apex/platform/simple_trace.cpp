@@ -9,8 +9,8 @@
 //#include "trace_category.h"
 
 
-CLASS_DECL_APEX void __simple_tracea(::element * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
-CLASS_DECL_APEX void __simple_tracev(::element * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
+CLASS_DECL_APEX void __simple_tracea(::matter * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
+CLASS_DECL_APEX void __simple_tracev(::matter * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
 
 
 //CLASS_DECL_APEX void FUNCTION_DEBUGBOX(const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, ::callback callback)
@@ -200,7 +200,7 @@ simple_trace::~simple_trace()
 }
 
 
-void simple_trace::__tracea(::element * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz)
+void simple_trace::__tracea(::matter * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz)
 {
 
    __simple_tracea(pobjectContext, elevel, pszFunction, pszFile, iLine, psz);

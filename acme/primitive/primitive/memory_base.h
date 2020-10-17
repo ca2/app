@@ -78,7 +78,7 @@ MUTABLE * __mutable(const MUTABLE * pmutable) { return (MUTABLE *)pmutable; }
 
 
 class CLASS_DECL_ACME memory_base :
-   virtual public ::element
+   virtual public ::matter
 {
 public:
 
@@ -154,7 +154,7 @@ public:
    void allocate_add_up(memsize iAddUp);
 
 
-   virtual ::element * clone() const override;
+   virtual ::matter * clone() const override;
 
 
    inline byte *           internal_get_data() const;

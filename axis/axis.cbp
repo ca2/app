@@ -421,8 +421,8 @@
 		<Unit filename="math/calculator/calculator_scanner.h" />
 		<Unit filename="math/calculator/calculator_token.h" />
 		<Unit filename="math/calculator/calculator_value.h" />
-		<Unit filename="math/calculator/element.cpp" />
-		<Unit filename="math/calculator/element.h" />
+		<Unit filename="math/calculator/matter.cpp" />
+		<Unit filename="math/calculator/matter.h" />
 		<Unit filename="math/calculator/parser.cpp" />
 		<Unit filename="math/calculator/parser.h" />
 		<Unit filename="math/calculator/parser_exception.cpp" />

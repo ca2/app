@@ -85,7 +85,7 @@ void freemsg(char* msg){
 
 int* list2array(char* poplist){
 /* returns an int array of sizes of messages from a LIST pop query */
-/* array[0] holds id of the array's element */
+/* array[0] holds id of the array's matter */
 /* should only be called on data received by a pop3_list() request */
 int* array=nullptr;
 int len,size;
@@ -98,8 +98,8 @@ char* cur;
 	if((!poplist)||pop3_error(poplist)){
 		return(nullptr); /* any suggestions ? */
 	}
-	if(!dotline(poplist)){/* if simple element list */
-	/* you should't use this function for simple element... */
+	if(!dotline(poplist)){/* if simple matter list */
+	/* you should't use this function for simple matter... */
 	/* you should better use listi2size() */
 		/* skip '+OK ': look for first mail int id */
 		for(cur=poplist;(*cur<'0')||(*cur>'9');cur++);
@@ -214,8 +214,8 @@ char* cur;
         if((!resp)||pop3_error(resp)){
 		return(nullptr); /* any suggestions ? */
 	}
-	if(!dotline(resp)){ /* simple element uidl */
-	/* you should not use this function for simple element */
+	if(!dotline(resp)){ /* simple matter uidl */
+	/* you should not use this function for simple matter */
 	/* you would better use uidli2sig() */
 #ifdef EBUG
 		fprintf(stderr,"bad way of use of uidl2array()\n");

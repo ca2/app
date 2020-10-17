@@ -23,6 +23,38 @@ namespace draw2d
    }
 
 
+   ::estatus font_enumeration::initialize(::layered* pobjectContext)
+   {
+
+      auto estatus = ::object::initialize(pobjectContext);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      System.add_update(id_os_font_change, this);
+
+      return estatus;
+
+   }
+
+
+   void font_enumeration::on_apply(::action * paction)
+   {
+
+      if (paction->id() == id_os_font_change)
+      {
+
+         update();
+
+      }
+
+   }
+
+
    bool font_enumeration::has_font_name(const string& str)
    {
 
@@ -135,6 +167,8 @@ namespace draw2d
 
       m_bUpdating = false;
 
+      System.set_modified(id_font_enumeration);
+
       return true;
 
    }
@@ -158,6 +192,8 @@ namespace draw2d
       m_iUpdateId++;
 
       m_bUpdating = false;
+
+      System.set_modified(id_font_enumeration);
 
       return true;
 

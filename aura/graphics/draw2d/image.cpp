@@ -9136,7 +9136,7 @@ stream & image::read(::stream & stream)
 }
 
 
-::element * image::clone() const
+::matter * image::clone() const
 {
 
    auto pimage = __create<::image>();

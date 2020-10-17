@@ -4711,7 +4711,7 @@
     <ClCompile Include="aura\aura\drawable.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\element.cpp">
+    <ClCompile Include="aura\aura\matter.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
     <ClCompile Include="aura\aura\fixed_alloc.cpp">

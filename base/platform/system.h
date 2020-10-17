@@ -769,7 +769,7 @@ namespace base
 //
 //
 //
-//      virtual void __tracea(::element * pcontextobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz) override;
+//      virtual void __tracea(::matter * pcontextobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz) override;
 //
 //
 //      virtual string get_user_language();
@@ -977,7 +977,7 @@ namespace base
 //      //virtual ::user::interaction_impl * impl_from_handle(void * pdata) override;
 //      //virtual ::user::interaction * ui_from_handle(void * pdata) override;
 //
-//      virtual void update(::update* pupdate) override;
+//      virtual void on_apply(::action * paction) override;
 //
 //      // virtual void on_command_create(::create* pcreate);
 //

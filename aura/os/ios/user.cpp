@@ -8,7 +8,7 @@
 #include <stdio.h>
 
 
-CLASS_DECL_AURA void main_branch(::element* pobjectTask, e_priority epriority)
+CLASS_DECL_AURA void main_branch(::matter* pobjectTask, e_priority epriority)
 {
 
    ns_main_sync(^()

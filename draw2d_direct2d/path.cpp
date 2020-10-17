@@ -512,31 +512,31 @@ namespace draw2d_direct2d
    }
 
 
-   //bool path::set(::draw2d_direct2d::graphics * pgraphics, const ::draw2d::path::element & e)
+   //bool path::set(::draw2d_direct2d::graphics * pgraphics, const ::draw2d::path::matter & e)
    //{
 
    //   switch(e.m_etype)
    //   {
-   //   case ::draw2d::path::element::type_move:
+   //   case ::draw2d::path::matter::type_move:
    //      set(e.u.m_move);
    //      break;
-   //   case ::draw2d::path::element::type_arc:
+   //   case ::draw2d::path::matter::type_arc:
    //      set(e.u.m_arc);
    //      break;
-   //   case ::draw2d::path::element::type_line:
+   //   case ::draw2d::path::matter::type_line:
    //      set(e.u.m_line);
    //      break;
-   //   case ::draw2d::path::element::type_rect:
+   //   case ::draw2d::path::matter::type_rect:
    //      set(e.u.m_rect);
    //      break;
-   //   case ::draw2d::path::element::type_string:
+   //   case ::draw2d::path::matter::type_string:
    //      set(pgraphics,e.m_stringpath);
    //      break;
-   //   case ::draw2d::path::element::type_end:
+   //   case ::draw2d::path::matter::type_end:
    //      internal_end_figure(e.u.m_end.m_bClose);
    //      break;
    //   default:
-   //      __throw(::exception::exception("unexpected simple os graphics element type"));
+   //      __throw(::exception::exception("unexpected simple os graphics matter type"));
    //   }
 
    //   return false;

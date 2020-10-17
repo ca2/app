@@ -29,7 +29,7 @@ namespace str
    }
 
    /**
-     Creates ch_class element from regexp character class syntax.
+     Creates ch_class matter from regexp character class syntax.
      Extensions (comparing to Perl):
      inner class substraction [{L}-[{Lu}]], addition [{L}[1234]], intersection [{L}&[{Lu}]]
    */

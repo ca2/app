@@ -434,7 +434,7 @@
 		<Unit filename="aura/drawable.cpp" />
 		<Unit filename="aura/drawable.h" />
 		<Unit filename="aura/e_status.h" />
-		<Unit filename="aura/element.cpp" />
+		<Unit filename="aura/matter.cpp" />
 		<Unit filename="aura/enum.h" />
 		<Unit filename="aura/error.h" />
 		<Unit filename="aura/exclusive.cpp" />

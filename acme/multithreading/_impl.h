@@ -187,10 +187,10 @@ inline bool pred_Sleep(int iTime, PRED pred)
 
 
 
-//inline thread_parameter::thread_parameter(const element * psimpleobject)
+//inline thread_parameter::thread_parameter(const matter * psimpleobject)
 //{
 //
-//   m_psimpleobject = (element *)psimpleobject;
+//   m_psimpleobject = (matter *)psimpleobject;
 //
 //   m_psimpleobject->add_ref(OBJ_REF_DBG_ARGS);
 //
@@ -200,7 +200,7 @@ inline bool pred_Sleep(int iTime, PRED pred)
 
 
 template < typename PRED >
-auto sync_pred(void (* pfnBranch )(::element * pobjectTask, e_priority), PRED pred, ::duration durationTimeout, e_priority epriority)
+auto sync_pred(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRED pred, ::duration durationTimeout, e_priority epriority)
 {
 
    auto pobjectTask = __sync_pred(pred);
@@ -227,7 +227,7 @@ auto sync_pred(void (* pfnBranch )(::element * pobjectTask, e_priority), PRED pr
 
 
 template < typename PRED >
-void async_pred(void (* pfnBranch )(::element * pobjectTask, e_priority), PRED pred, e_priority epriority)
+void async_pred(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRED pred, e_priority epriority)
 {
 
    auto pobjectTask = __pred_method(pred);

@@ -45,17 +45,17 @@ public:
 
 
 //class CLASS_DECL_ACME object_ptra :
-//   virtual public ::address_array < element * >
+//   virtual public ::address_array < matter * >
 //{
 //public:
 //
-//   typedef ::address_array < element * > BASE_TYPE;
+//   typedef ::address_array < matter * > BASE_TYPE;
 //
 //   inline object_ptra() {}
-//   inline object_ptra(::element * pobject) : ::element(pobject) { }
-//   inline object_ptra(const object_ptra & a) : ::element(a), BASE_TYPE(a) { }
-//   inline object_ptra(const BASE_TYPE & a) : ::element((const ::element & )a), BASE_TYPE(a) { }
-//   inline object_ptra(object_ptra && a): ::element(a), BASE_TYPE(::move(a)) { }
+//   inline object_ptra(::matter * pobject) : ::matter(pobject) { }
+//   inline object_ptra(const object_ptra & a) : ::matter(a), BASE_TYPE(a) { }
+//   inline object_ptra(const BASE_TYPE & a) : ::matter((const ::matter & )a), BASE_TYPE(a) { }
+//   inline object_ptra(object_ptra && a): ::matter(a), BASE_TYPE(::move(a)) { }
 //
 //   inline object_ptra & operator = (const object_ptra & a) { this->BASE_TYPE::operator = (a); return *this; }
 //   inline object_ptra & operator = (const BASE_TYPE & a) { this->BASE_TYPE::operator = (a); return *this; }
@@ -82,7 +82,7 @@ class CLASS_DECL_ACME const_char_ptra :
 
 typedef address_array < void * > void_ptra;
 
-typedef address_array < element * > simple_object_ptra;
+typedef address_array < matter * > simple_object_ptra;
 
 
-typedef address_array < element * > reference_addressa;
+typedef address_array < matter * > reference_addressa;

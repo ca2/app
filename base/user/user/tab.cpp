@@ -3438,34 +3438,34 @@ namespace user
    }
 
 
-   void tab::update(::update * pupdate)
+   void tab::on_apply(::action * paction)
    {
 
-      ::user::interaction::update(pupdate);
+      ::user::interaction::on_apply(paction);
 
-      if (pupdate->m_id == id_get_topic_view_id)
+      if (paction->id() == id_get_topic_view_id)
       {
 
-         pupdate->value(id_id) = get_cur_tab_id();
+         paction->value(id_id) = get_cur_tab_id();
 
-         pupdate->m_bRet = true;
+         paction->m_bRet = true;
 
       }
-      else if (pupdate->m_id == id_set_topic_view_by_id)
+      else if (paction->id() == id_set_topic_view_by_id)
       {
 
-         set_cur_tab_by_id(pupdate->value(id_id));
+         set_cur_tab_by_id(paction->value(id_id));
 
-         pupdate->m_bRet = true;
+         paction->m_bRet = true;
 
       }
-      else if(pupdate->m_id == id_place_child_title_change)
+      else if(paction->id() == id_place_child_title_change)
       {
 
          for (auto& ppane : get_data()->m_panea)
          {
 
-            if (ppane->m_pplaceholder == pupdate->m_puserinteraction)
+            if (ppane->m_pplaceholder == paction->m_puserinteraction)
             {
 
                auto pchild = ppane->m_pplaceholder->m_uiptraChild.first_interaction();

@@ -266,10 +266,10 @@ void simple_ui_display::call_expose(Display * pdisplay)
 }
 
 
-void simple_ui_display::update(::update * pupdate)
+void simple_ui_display::on_apply(::action * paction)
 {
 
-   if(pupdate->m_id == id_dark_mode)
+   if(paction->id() == id_dark_mode)
    {
 
       m_bDarkModeModified = true;
@@ -664,7 +664,7 @@ int simple_ui_display::show()
 
          on_alloc_colors(pdisplay);
 
-         ::update_notification_task::add(id_dark_mode, this);
+         ::update_task::add(id_dark_mode, this);
 
          on_layout(pdisplay);
 
@@ -893,7 +893,7 @@ void simple_ui_display::close_window()
 
    unhook();
 
-   ::update_notification_task::remove(id_dark_mode, this);
+   ::update_task::remove(id_dark_mode, this);
 
 }
 

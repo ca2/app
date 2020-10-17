@@ -12,8 +12,8 @@ var_stream::~var_stream()
 //{
 //
 //
-//   var_stream::var_stream(::element * pobject, bool bStoring) :
-//      ::element(pobject),
+//   var_stream::var_stream(::matter * pobject, bool bStoring) :
+//      ::matter(pobject),
 //      stream(pobject)
 //   {
 //
@@ -163,8 +163,8 @@ var_stream::~var_stream()
 //      m_
 //   }
 //   void var_stream::write(string & str);
-//   void var_stream::write(element * pobject);
-//   void var_stream::write(element & element);
+//   void var_stream::write(matter * pobject);
+//   void var_stream::write(matter & matter);
 //
 //
 //
@@ -199,8 +199,8 @@ var_stream::~var_stream()
 //   void var_stream::read(var & var);
 //   void var_stream::read(property & property);
 //   void var_stream::read(string & str);
-//   void var_stream::read(element * pobject);
-//   void var_stream::read(element & element);
+//   void var_stream::read(matter * pobject);
+//   void var_stream::read(matter & matter);
 //
 //
 //   bool is_storing()
@@ -212,7 +212,7 @@ var_stream::~var_stream()
 //
 //
 //
-//   output_var_stream(::element * pobject);
+//   output_var_stream(::matter * pobject);
 //   virtual ~output_var_stream();
 //
 //
@@ -222,7 +222,7 @@ var_stream::~var_stream()
 //
 
 
-//void var_stream::write_object(const ::id & id, ::element * pobject)
+//void var_stream::write_object(const ::id & id, ::matter * pobject)
 //{
 //
 //   var_stream stream(new ::var(&var()[id].propset()));
@@ -240,7 +240,7 @@ var_stream::~var_stream()
 //}
 //
 //
-//__pointer(::element) var_stream::read_object(const ::id & id)
+//__pointer(::matter) var_stream::read_object(const ::id & id)
 //{
 //
 //   var_stream stream(new ::var(&var()[id].propset()));

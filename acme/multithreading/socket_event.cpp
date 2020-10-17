@@ -13,8 +13,8 @@
 ///  \brief		constructor with passed socket handle and read state
 ///  \lparam		socket socket handle (default: -1)
 ///  \lparam		read true if socket should be ready to read (default: true)
-socket_event::socket_event(::element * pobject, u32 socket, bool read) :
-   ::element(pobject),
+socket_event::socket_event(::matter * pobject, u32 socket, bool read) :
+   ::matter(pobject),
 	event(papp, false, true),
 	m_bRead(read),
 	m_bActive(false),

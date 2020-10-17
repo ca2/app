@@ -23,7 +23,7 @@ namespace filemanager
       virtual ~preview();
 
       virtual void install_message_routing(::channel * pchannel) override;
-      virtual void update(::update * pupdate) override;
+      virtual void on_apply(::action * paction) override;
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 

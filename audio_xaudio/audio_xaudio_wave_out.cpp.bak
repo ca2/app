@@ -10,7 +10,7 @@ namespace multimedia
       
 
       out::out(__pointer(::axis::application) papp) :
-         element(pobject),
+         matter(pobject),
          ::thread(pobject),
          wave_base(pobject),
          ::wave::out(pobject)

@@ -4,7 +4,7 @@
 
 class mq;
 
-typedef __pointer_array(::element) object_array;
+typedef __pointer_array(::matter) object_array;
 typedef isomap < ITHREAD, __pointer(thread) > thread_map;
 typedef isomap < thread *, ITHREAD > thread_id_map;
 
@@ -15,6 +15,7 @@ namespace user { class frame;  }
 ///
 class CLASS_DECL_APEX thread :
    virtual public channel
+   , virtual public change
 #ifdef WINDOWS
    ,virtual public ::exception::translator
 #endif
@@ -225,8 +226,8 @@ public:
 
    virtual bool send_object(UINT message, WPARAM wParam, lparam lParam, ::duration durationTimeout = ::duration::infinite());
 
-   virtual bool post_task(::element * pobjectTask);
-   virtual bool send_task(::element * pobjectTask, ::duration durationTimeout = ::duration::infinite());
+   virtual bool post_task(::matter * pobjectTask);
+   virtual bool send_task(::matter * pobjectTask, ::duration durationTimeout = ::duration::infinite());
 
    template < typename PRED >
    bool pred(PRED pred)

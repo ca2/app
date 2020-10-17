@@ -52,7 +52,7 @@ namespace filemanager
       //void FileSize();
 
       virtual void route_command_message(::user::command * pcommand) override;
-      virtual void update(::update * pupdate) override;
+      virtual void on_apply(::action * paction) override;
       virtual bool pre_create_window(::user::create_struct& cs) override;
 
       virtual void on_command_probe(::user::command * pcommand) override;

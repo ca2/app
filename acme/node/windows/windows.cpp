@@ -123,7 +123,7 @@ namespace windows
    }
 
 
-   CLASS_DECL_ACME void time_to_filetime(::element * pobject,const ::datetime::time& time,LPFILETIME pFileTime)
+   CLASS_DECL_ACME void time_to_filetime(::matter * pobject,const ::datetime::time& time,LPFILETIME pFileTime)
    {
 
       SYSTEMTIME sysTime;

@@ -36,7 +36,7 @@ namespace draw2d_quartz2d
 
       virtual void * detach() override;
       
-      //bool set(const ::draw2d::path::element & e);
+      //bool set(const ::draw2d::path::matter & e);
       bool _set(::draw2d::graphics* pgraphics, ::draw2d::path::begin * pbegin) override;
       bool _set(::draw2d::graphics* pgraphics, ::draw2d::path::arc * parc) override;
       bool _set(::draw2d::graphics* pgraphics, ::draw2d::path::rect * prect) override;

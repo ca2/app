@@ -37,7 +37,7 @@ struct add_lvalue_reference
 template<class TYPE>
 struct add_rvalue_reference
 {
-   // add rvalue element
+   // add rvalue matter
    typedef TYPE&& type;
 };
 

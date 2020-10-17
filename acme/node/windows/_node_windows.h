@@ -132,7 +132,7 @@ namespace windows
    CLASS_DECL_ACME bool        delete_file(const char * pFileName);
 
    CLASS_DECL_ACME i32     get_menu_string(HMENU hMenu,UINT uIDItem,string & str,UINT flags);
-   CLASS_DECL_ACME void        time_to_filetime(::element * pobject,const ::datetime::time& time,LPFILETIME pFileTime);
+   CLASS_DECL_ACME void        time_to_filetime(::matter * pobject,const ::datetime::time& time,LPFILETIME pFileTime);
 
 
 } // namespace windows

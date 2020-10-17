@@ -86,7 +86,7 @@ namespace html
          virtual float get_extra_content_height();
 
 
-         virtual void implement_phase1(html_data * pdocument, ::html::element * pelemental);
+         virtual void implement_phase1(html_data * pdocument, ::html::element* pelemental);
 
 
          virtual void layout_phase0(html_data * pdocument);

@@ -464,7 +464,7 @@ namespace apple
 
       setenv("DYLD_FALLBACK_LIBRARY_PATH", strFallback, TRUE);
 
-      // Create authorization element
+      // Create authorization matter
       OSStatus status;
 
       AuthorizationRef authorizationRef;

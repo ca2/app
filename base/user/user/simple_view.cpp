@@ -44,10 +44,10 @@ namespace user
    }
 
 
-   void simple_view::update(::update * pupdate)
+   void simple_view::on_apply(::action * paction)
    {
 
-      ::user::impact::update(pupdate);
+      ::user::impact::on_apply(paction);
 
    }
 

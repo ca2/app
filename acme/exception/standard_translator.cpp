@@ -429,7 +429,7 @@ namespace exception
          str = "A trace trap or other single-instruction mechanism signaled that one instruction has been executed";
          break;
       case EXCEPTION_ARRAY_BOUNDS_EXCEEDED:
-         str = "The thread attempted to access an bastandard_array element that is out of bounds, and the underlying hardware supports bounds checking";
+         str = "The thread attempted to access an bastandard_array matter that is out of bounds, and the underlying hardware supports bounds checking";
          break;
       case EXCEPTION_FLT_DENORMAL_OPERAND:
          str = "One of the operands in a floating-point operation is denormal. A denormal value is one that is too small to represent as a standard floating-point value";

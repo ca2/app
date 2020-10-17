@@ -108,7 +108,7 @@ namespace colorertak5
        return ignoreComments;
      }
      /**
-      * Ignores is_empty element's text content (content with only
+      * Ignores is_empty matter's text content (content with only
       * spaces, tabs, CR/LF).
       */
      void setIgnoringElementContentWhitespace(bool _whitespace)

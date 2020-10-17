@@ -510,7 +510,7 @@ namespace linux
 //
 
 
-      shell::e_folder shell::get_folder_type(::element * pobject, const char * lpcsz)
+      shell::e_folder shell::get_folder_type(::matter * pobject, const char * lpcsz)
       {
 
          return get_folder_type(pobject, ::str::international::utf8_to_unicode(lpcsz));
@@ -518,7 +518,7 @@ namespace linux
       }
 
 
-      shell::e_folder shell::get_folder_type(::element * pobject, const widechar * lpcszPath)
+      shell::e_folder shell::get_folder_type(::matter * pobject, const widechar * lpcszPath)
       {
 
          string strPath;

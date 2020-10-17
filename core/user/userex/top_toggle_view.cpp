@@ -32,10 +32,10 @@ namespace userex
    }
 
 
-   void top_toggle_view::update(::update * pupdate)
+   void top_toggle_view::on_apply(::action * paction)
    {
 
-      ::user::impact::update(pupdate);
+      ::user::impact::on_apply(paction);
 
    }
 

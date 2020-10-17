@@ -131,7 +131,7 @@ namespace user
 
       virtual ::color get_color(const ::user::interaction* pinteraction, ::user::e_element eelement, ::user::estate estate = ::user::e_state_none) const override;
       //virtual bool get_font(::draw2d::font_pointer & sp, e_font efont, style_context * pcontext) override;
-      //virtual bool get_translucency(e_translucency & etranslucency, e_element element, style_context * pcontext) override;
+      //virtual bool get_translucency(e_translucency & etranslucency, e_element matter, style_context * pcontext) override;
       //virtual bool get_flag(bool & bSet, e_flag eflag, style_context * pcontext) override;
       //virtual bool get_rect(style_rect & rect, e_rect erect, style_context * pcontext) override;
       //virtual bool get_int(int & i, e_int eint, style_context * pcontext) override;

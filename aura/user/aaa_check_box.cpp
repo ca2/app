@@ -631,10 +631,10 @@ namespace user
    }
 
 
-   void check_box::update(::update * pupdate)
+   void check_box::on_apply(::action * paction)
    {
 
-      interaction::update(pupdate);
+      interaction::on_apply(paction);
 
    }
 

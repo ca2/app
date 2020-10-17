@@ -47,7 +47,7 @@ inline BLOCK_TYPE & memory_template < BLOCK_TYPE > ::operator = (const ::block &
 }
 
 struct lparam_dbg :
-   virtual element
+   virtual matter
 {
 
 };
@@ -98,7 +98,7 @@ inline void CopyElements(TYPE* pDest, const TYPE* pSrc, ::count nCount)
    ASSERT((nCount == 0) || __is_valid_address(pDest, (size_t)nCount * sizeof(TYPE)));
    ASSERT((nCount == 0) || __is_valid_address(pSrc, (size_t)nCount * sizeof(TYPE)));
 
-   // default is element-copy using assignment
+   // default is matter-copy using assignment
    while (nCount--)
    {
 

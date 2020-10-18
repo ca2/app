@@ -1044,9 +1044,9 @@ namespace filemanager
 
       CreateViews();
 
-      auto paction = fork_action(id_create_bars);
+      ::action action(id_create_bars);
 
-      paction->value(id_document) = this;
+      action.value(id_document) = this;
 
       if (bInitialBrowsePath)
       {

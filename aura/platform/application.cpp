@@ -5731,6 +5731,8 @@ retry_license:
          if (Session.m_puiHost != nullptr)
          {
 
+            sync_lock sl(::user::mutex_children());
+
             return Session.m_puiHost->m_uiptraChild.get_child(pinteraction);
 
          }
@@ -5740,6 +5742,8 @@ retry_license:
 #endif
 
       sync_lock sl(&m_mutexFrame);
+
+      sync_lock slChildren(::user::mutex_children());
 
       return m_puiptraFrame->get_child(pinteraction);
 
@@ -5797,6 +5801,8 @@ retry_license:
          {
 
             auto puiHost = __user_interaction(Session.m_puiHost);
+
+            sync_lock sl(::user::mutex_children());
 
             puiHost->m_uiptraChild.add_unique_interaction(pwnd);
 

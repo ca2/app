@@ -21,9 +21,12 @@ action::action(const ::id& id, const ::action_context & actioncontext)
 
 }
 
+
 action::action(const ::id& id, ::matter* pmatter) :
    m_pmatter(pmatter)
 {
+
+   action_common_construct();
 
    m_id = id;
 

@@ -75,13 +75,13 @@ namespace userex
 
       SCAST_PTR(::message::key, pkey, pmessage);
 
-      auto paction = fork_action(id_key_down);
+      ::action action(id_key_down);
 
-      paction->m_puserinteraction = this;
+      action.m_puserinteraction = this;
 
-      paction->m_ekey = pkey->m_ekey;
+      action.m_ekey = pkey->m_ekey;
 
-      get_document()->update_all_views(paction);
+      get_document()->update_all_views(action);
 
       if (pkey->m_ekey == ::user::key_return)
       {

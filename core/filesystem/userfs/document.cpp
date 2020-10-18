@@ -252,13 +252,13 @@ namespace userfs
 
       }
 
-      auto paction = fork_action(id_synchronize_path);
+      ::action action(id_synchronize_path);
 
-      paction->m_pfileitem = pitem;
+      action.m_pfileitem = pitem;
 
-      paction->m_actioncontext = context + ::source_sync;
+      action.m_actioncontext = context + ::source_sync;
 
-      update_all_views(paction);
+      update_all_views(action);
 
       return true;
 

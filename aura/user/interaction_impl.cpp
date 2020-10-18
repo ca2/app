@@ -1116,6 +1116,9 @@ namespace user
             ::output_debug_string("lbutton_up");
 
          }
+
+         sync_lock sl(mutex_children());
+
          m_puserinteraction->_000OnMouse(pmouse);
 
       }

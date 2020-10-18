@@ -413,6 +413,8 @@ namespace user
 
       bool bDuplicate = true;
 
+      sync_lock slChildren(::user::mutex_children());
+
       for (index iIdSuffix = 1; iIdSuffix <= 1000; iIdSuffix++)
       {
 
@@ -541,6 +543,8 @@ namespace user
          layout().sketch().set_modified();
 
       }
+
+      sync_lock slChildren(::user::mutex_children());
 
       for (auto & pinteraction : m_uiptraChild.interactiona())
       {
@@ -1456,6 +1460,8 @@ namespace user
          if (!m_pimpl->m_bDestroying)
          {
 
+            sync_lock slChildren(::user::mutex_children());
+
             for (index i = 0; i < m_uiptraChild.interaction_count(); i++)
             {
 
@@ -1844,7 +1850,7 @@ namespace user
          try
          {
 
-            single_lock sl(puiParent->mutex(), true);
+            sync_lock slChildren(::user::mutex_children());
 
             if (puiParent->m_bUserPrimitiveOk)
             {
@@ -2028,6 +2034,8 @@ namespace user
 
       if(this == Session.m_puiHost)
       {
+
+         sync_lock slChildren(::user::mutex_children());
 
          for (auto& puserinteraction : m_uiptraChild.interactiona())
          {
@@ -2573,8 +2581,6 @@ namespace user
       //// keep this past z-order
       //interaction_pointer_array uia;
 
-      sync_lock sl(mutex_children());
-
       for (auto & pinteraction : m_uiptraChild.interactiona())
       {
 
@@ -2587,8 +2593,6 @@ namespace user
                continue;
 
             }
-
-            //::draw2d::savedc keep(pgraphics);
 
             if (::is_set(pinteraction) && !pinteraction->is_custom_draw())
             {
@@ -2762,6 +2766,8 @@ namespace user
 
       try
       {
+
+         sync_lock slChildren(::user::mutex_children());
 
          _001Print(pgraphics);
 
@@ -4366,7 +4372,7 @@ namespace user
 
       {
 
-         sync_lock sl(mutex());
+         sync_lock slChildren(::user::mutex_children());
 
          uia = m_uiptraChild;
 
@@ -5176,6 +5182,8 @@ namespace user
       if (!bIgnoreChildren)
       {
 
+         sync_lock slChildren(::user::mutex_children());
+
          if (m_uiptraChild.has_interaction())
          {
 
@@ -5200,9 +5208,7 @@ namespace user
 
       }
 
-      sync_lock slParent(GetParent()->mutex());
-
-      sync_lock sl(mutex());
+      sync_lock slChildren(::user::mutex_children());
 
       index iFind = GetParent()->m_uiptraChild.interactiona().find_first(this);
 
@@ -6504,6 +6510,8 @@ namespace user
 
   //    if (GetParent() != NULL)
       {
+
+         sync_lock slChildren(::user::mutex_children());
 
          string strType = type_name();
 
@@ -8399,10 +8407,7 @@ namespace user
             INFO("");
             INFO("");
 
-
-            single_lock sl(m_pdescriptor->m_puserinteractionParent->mutex(), TRUE);
-
-            single_lock sl2(mutex(), TRUE);
+            sync_lock slChildren(::user::mutex_children());
 
             m_pdescriptor->m_puserinteractionParent->m_uiptraChild.remove_interaction(this);
 

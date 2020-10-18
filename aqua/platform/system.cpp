@@ -6,7 +6,6 @@
 #include "aqua/const/idpool.h"
 
 
-//bool __rich_text_initialize();
 
 
 CLASS_DECL_APEX const char* multimedia_get_library_name();
@@ -42,7 +41,6 @@ namespace aqua
 
       create_factory < ::aqua::application, ::apex::application >();
       create_factory < ::aqua::session, ::apex::session >();
-      //create_factory < ::core::user, ::user::user >();
       create_factory < ::aqua::idpool, ::apex::idpool >();
 
    }
@@ -154,12 +152,6 @@ namespace aqua
 
       }
 
-      //      if (!bOk)
-        //    {
-
-               //message_box("Could not open platform audio library.");
-
-          //  }
 
    }
 

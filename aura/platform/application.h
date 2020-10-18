@@ -16,11 +16,6 @@ namespace aura
       void* m_pnativeapp;
 
 
-
-      // 2020-01-25: removing from ::aura::system, placing here (at ::context)
-      // 2020-07-23: now at ::aura::application
-      __pointer(::user::language_map)                 m_puserlanguagemap;
-
       ::aura::application *                           m_pappParent;
       //string                                          m_strAppName;
       //string                                          m_strAppTitle;
@@ -158,9 +153,6 @@ namespace aura
       virtual void dump(dump_context & dumpcontext) const override;
 
 
-      virtual string __get_text(string str) override;
-
-
       inline ::aura::game* game() { return m_pgame->m_pauragame; }
 
 
@@ -204,7 +196,7 @@ namespace aura
       virtual bool Ex2OnAppInstall() override;
       virtual bool Ex2OnAppUninstall() override;
 
-      virtual ::estatus init_application() override;
+      //virtual ::estatus init_application() override;
 
       virtual ::estatus init1() override;
       virtual ::estatus init2() override;
@@ -387,15 +379,15 @@ namespace aura
       //virtual void dump(dump_context & dumpcontext) const override;
 
 
-      virtual ::file::path get_app_localconfig_folder() override;
-      virtual ::handle::ini get_ini() override;
+      //virtual ::file::path get_app_localconfig_folder() override;
+      //virtual ::handle::ini get_ini() override;
 
 
-      virtual bool app_data_set(const ::id & id, stream & os) override;
-      virtual bool app_data_get(const ::id & id, stream & is) override;
-
-      virtual bool app_data_set(const ::id & id, ::object & obj) override;
-      virtual bool app_data_get(const ::id & id, ::object & obj) override;
+      //virtual bool app_data_set(const ::id & id, stream & os) override;
+      //virtual bool app_data_get(const ::id & id, stream & is) override;
+      
+      //virtual bool app_data_set(const ::id & id, ::object & obj) override;
+      //virtual bool app_data_get(const ::id & id, ::object & obj) override;
 
       virtual void install_message_routing(::channel * pchannel) override;
 
@@ -423,7 +415,7 @@ namespace aura
       virtual ::object * parent_property_set_holder() const override;
 
 
-      virtual bool is_set_finish() const override;
+      //virtual bool is_set_finish() const override;
 
 
       virtual void on_change_theme() override;
@@ -468,8 +460,8 @@ namespace aura
       virtual void on_file_new() override;
 
 
-      virtual string get_title() override;
-      virtual string_array get_categories() override;
+      //virtual string get_title() override;
+      //virtual string_array get_categories() override;
 
       virtual void defer_create_keyboard() override;
       //virtual bool set_keyboard_layout(const char * pszPath, const ::action_context & action_context);
@@ -488,7 +480,7 @@ namespace aura
       //virtual bool is_serviceable() const;
       virtual bool is_user_service() const override;
 
-      void set_has_installer(bool bSet);
+      //void set_has_installer(bool bSet);
 
 
 
@@ -519,10 +511,10 @@ namespace aura
 
       virtual string get_version() override;
 
-      virtual __pointer(::interprocess_intercommunication) create_interprocess_intercommunication() override;
+//      virtual __pointer(::interprocess_intercommunication) create_interprocess_intercommunication() override;
 
       //virtual ::estatus process_init();
-      virtual void process_term() override;
+      //virtual void process_term() override;
 
       //virtual ::estatus impl_process_init();
       //virtual ::estatus impl_init1();
@@ -542,10 +534,10 @@ namespace aura
       virtual void term2() override;
       virtual void term3() override;
 
-      virtual ::estatus init_thread() override;
+      //virtual ::estatus init_thread() override;
       //virtual ::estatus init_application();
       //virtual void term_application();
-      virtual void term_thread() override;
+      //virtual void term_thread() override;
 
       //virtual ::estatus init_instance() override;
       virtual void term_instance() override;
@@ -682,13 +674,13 @@ namespace aura
 
       //virtual bool assert_user_logged_in();
 
-      virtual ::estatus     do_request(::create * pcreate) override;
+      //virtual ::estatus     do_request(::create * pcreate) override;
       virtual ::estatus     call_request(::create * pcreate) override;
 
 
-      virtual void process_message(::message::base * base) override;
+      //virtual void process_message(::message::base * base) override;
 
-      virtual void message_handler(::message::base * pbase) override;
+      //virtual void message_handler(::message::base * pbase) override;
 
 
 

@@ -2,11 +2,6 @@
 #include "apex/platform/static_setup.h"
 
 
-//extern string_map < __pointer(::apex::library) > * g_pmapLibrary;
-
-//extern ::mutex * &::get_context_system()->m_mutexLibrary;
-
-
 typedef  void(*PFN_create_factory)();
 
 

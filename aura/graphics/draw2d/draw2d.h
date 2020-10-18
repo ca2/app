@@ -29,7 +29,7 @@ namespace draw2d
       virtual ~draw2d();
 
 
-      virtual void construct(::layered * pobjectContext);
+      virtual ::estatus initialize(::layered * pobjectContext) override;
 
       virtual ::estatus process_init() override;
 
@@ -38,6 +38,7 @@ namespace draw2d
 
       virtual void term() override;
 
+      virtual void finalize() override;
 
       virtual class api & api();
 

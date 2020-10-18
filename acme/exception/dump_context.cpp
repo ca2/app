@@ -1,7 +1,8 @@
 #include "framework.h"
-//#include <stdarg.h>
+
 
 #ifdef LINUX
+
 
 inline i32 _stprintf_s(char * pszBuffer, i32 iBufferLen, const char * pszFormat, ...)
 {
@@ -28,9 +29,6 @@ inline size_t lstrlen(const char * psz)
 #endif
 
 
-
-
-
 i32 dump_context::GetDepth() const
 {
    
@@ -41,7 +39,9 @@ i32 dump_context::GetDepth() const
 
 void dump_context::SetDepth(i32 nNewDepth)
 {
+   
    m_nDepth = nNewDepth;
+
 }
 
 
@@ -54,12 +54,11 @@ void dump_context::output_string(const char * psz)
 
       ::output_debug_string(psz);
 
-
       return;
 
    }
 
-   ASSERT( psz != nullptr );
+   ASSERT(psz != nullptr);
 
    if (psz == nullptr)
    {
@@ -74,19 +73,40 @@ void dump_context::output_string(const char * psz)
 }
 
 
-dump_context::dump_context(file_pointer  pFile)
+dump_context::dump_context(::file::file * pfile) :
+   text_stream(pfile)
 {
-   if (pFile)
-      ASSERT_VALID(pFile);
 
-   m_p = pFile;
    m_nDepth = 0;
+
 }
+
+
+dump_context::~dump_context()
+{
+
+
+}
+
+
+void dump_context::finalize()
+{
+
+   text_stream::finalize();
+
+}
+
 
 void dump_context::flush()
 {
+
    if (m_p)
+   {
+
       m_p->flush();
+
+   }
+
 }
 
 
@@ -94,42 +114,55 @@ void dump_context::write(const char * psz)
 {
 
    if (psz == nullptr)
-
    {
+
       output_string("nullptr");
+
       return;
+
    }
 
-   ASSERT( psz != nullptr );
+   ASSERT(psz != nullptr);
 
-   if( psz == nullptr )
+   if (psz == nullptr)
+   {
 
       __throw(user_exception());
 
+   }
+
    if (!m_p)
    {
+
       char szBuffer[512];
+
       LPSTR pdata = szBuffer;
 
       while (*psz != '\0')
-
       {
-         if (pdata > szBuffer + _countof(szBuffer) - 3)
 
+         if (pdata > szBuffer + _countof(szBuffer) - 3)
          {
+
             *pdata = '\0';
 
             output_string(szBuffer);
+
             pdata = szBuffer;
 
          }
+
          if (*psz == '\n')
+         {
 
             *pdata++ = '\r';
+
+         }
 
          *pdata++ = *psz++;
 
       }
+
       *pdata = '\0';
 
       output_string(szBuffer);
@@ -465,23 +498,38 @@ void dump_context::write(HFONT h)
 // Formatted output
 
 void dump_context::hex_dump(const char * pszLine, BYTE* pby, i32 nBytes, i32 nWidth)
-
 // do a simple hex-dump (8 per line) to a dump_context
 //  the "pszLine" is a string to print at the start of each line
-
 //    (%lx should be used to expand the current address)
 {
+
    ASSERT(nBytes > 0);
-   if( nBytes <= 0 )
+
+   if (nBytes <= 0)
+   {
+
       __throw(invalid_argument_exception());
+
+   }
+
    ASSERT(nWidth > 0);
-   if( nWidth <= 0 )
+
+   if (nWidth <= 0)
+   {
+
       __throw(invalid_argument_exception());
+
+   }
+
    ASSERT(__is_valid_string(pszLine));
 
-   if( pszLine == nullptr )
+   if (pszLine == nullptr)
+   {
 
       __throw(invalid_argument_exception());
+
+   }
+
    ASSERT(__is_valid_address(pby, nBytes, FALSE));
    if( pby == nullptr )
       __throw(invalid_argument_exception());

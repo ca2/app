@@ -36,6 +36,13 @@ namespace draw2d
    }
 
 
+   cursor::~cursor()
+   {
+
+
+   }
+
+
    bool cursor::to(::draw2d::graphics_pointer & pgraphics, const ::point & point)
    {
 
@@ -50,29 +57,6 @@ namespace draw2d
    {
 
       sync_lock sl(psession->mutex());
-
-//#if defined(MACOS) || defined(WINDOWS_DESKTOP)
-//
-//      HCURSOR hcursor = get_HCURSOR(pinteraction);
-//
-//      if (hcursor == nullptr)
-//      {
-//
-//         return false;
-//
-//      }
-//
-//      if (!::SetCursor(hcursor))
-//      {
-//
-//         return false;
-//
-//      }
-//
-//#elif defined(_UWP)
-//      #if defined(_UWP)
-
-//#else
 
       if(::is_null(pinteraction))
       {
@@ -119,6 +103,19 @@ namespace draw2d
       return true;
 
    }
+
+
+   void cursor::finalize()
+   {
+
+      m_pimage.release();
+
+      m_pimageCursor.release();
+
+      ::matter::finalize();
+
+   }
+
 
 #ifdef WINDOWS_DESKTOP
 

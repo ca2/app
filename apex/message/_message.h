@@ -14,6 +14,29 @@ namespace message
 #define DECL_GEN_SIGNAL(function) void function(::message::message * pmessage)
 
 
+namespace user
+{
+
+
+   class command;
+
+
+} // namespace user
+
+
+namespace message
+{
+
+   class message;
+   class id_route;
+   template < typename MESSAGE > class typed_route;
+   class id;
+   class route;
+
+} // namespace status
+
+
+
 #include "const.h"
 #include "id.h"
 #include "receiver.h"

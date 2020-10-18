@@ -32,24 +32,29 @@ void context_object::dump(dump_context& context) const
 void context_object::finalize()
 {
 
+   ::layered::finalize();
+
+   m_pobjectContext.release(OBJ_REF_DBG_THIS);
+
+   m_pia.release(OBJ_REF_DBG_THIS);
+
+   m_pset.release(OBJ_REF_DBG_THIS);
+
 }
 
 
 void context_object::set_context_object(::layered * pobjectContext)
 {
 
-   auto pold = m_pobjectContext;
+   m_pobjectContext.reset(pobjectContext, this, "context_object::set_context_object");
 
-   if(::is_set(pobjectContext))
-   {
+}
 
-      pobjectContext->add_ref(this, "matter::set_context_object");
 
-   }
+void context_object::set_finish()
+{
 
-   m_pobjectContext.m_p = pobjectContext;
-
-   ::release(pold);
+   finalize();
 
 }
 

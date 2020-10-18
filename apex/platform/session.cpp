@@ -1,15 +1,8 @@
 #include "framework.h"
-//#include "apex/net/sockets/_.h"
-//#include "apex/papaya/papaya_zoneing.h"
 #include "apex/const/id.h"
 #include "apex/platform/app_core.h"
 #include "apex/platform/static_setup.h"
 
-
-
-
-
-//CLASS_DECL_APEX ::user::interaction * create_system_message_window(::object* pobject);
 
 
 #if defined(APPLE_IOS)
@@ -45,9 +38,6 @@ void defer_term_ui();
 
 CLASS_DECL_ACME bool is_verbose();
 
-//extern string_map < __pointer(::apex::library) >* g_pmapLibrary;
-//extern ::mutex * &::get_context_system()->m_mutexLibrary;
-//extern string_map < PFN_NEW_APEX_LIBRARY >* g_pmapNewAuraLibrary;
 
 int_bool point_is_window_origin(POINT ptHitTest, oswindow oswindowExclude, int iMargin);
 
@@ -126,9 +116,11 @@ namespace apex
 
       m_bSystemSynchronizedScreen      = true;
 
-      //m_pimplPendingFocus2             = nullptr;
-
       set_context_session(this);
+
+      set_context_object(this);
+
+      set_context(this);
 
       if (get_context_system() != nullptr)
       {
@@ -150,8 +142,6 @@ namespace apex
       m_bShowPlatform                  = false;
 
       m_pappCurrent                    = nullptr;
-
-      m_iMainMonitor = -1;
 
       return ::success;
 
@@ -569,16 +559,11 @@ namespace apex
    void session::term2()
    {
 
-      // __release(m_ptheme);
-
-      //m_mapTheme.remove_all();
-
 #ifdef WINDOWS_DESKTOP
 
       __release(m_puiSession);
 
 #endif
-
 
    }
 
@@ -1045,282 +1030,6 @@ namespace apex
    }
 
 
-//   __pointer(::apex::application) session::get_new_application(::layered * pobjectContext, const char * pszAppId)
-//   {
-//
-//      string strAppId(pszAppId);
-//
-//      __pointer(::apex::application) papp;
-//
-//      if (!papp)
-//      {
-//
-//         if (System.m_pappcore != nullptr && System.m_pmaindata && System.m_pfnNewAuraApplication != nullptr)
-//         {
-//
-//            papp = System.m_pfnNewAuraApplication();
-//
-//            if (papp.is_null())
-//            {
-//
-//               return nullptr;
-//
-//            }
-//
-//            auto estatus = papp->initialize(pobjectContext);
-//
-//            if (!estatus)
-//            {
-//
-//               m_result.add(estatus);
-//
-//               return nullptr;
-//
-//            }
-//
-//            papp->m_strLibraryName = strAppId;
-//
-//
-//         }
-//         sync_lock sl(&::get_context_system()->m_mutexLibrary);
-//
-//         __pointer(::apex::library) & plibrary = &::get_context_system()->m_mapLibrary[pszAppId];
-//
-//         if (!plibrary)
-//         {
-//
-//            if (System.m_pappcore != nullptr && System.m_pfnNewAuraLibrary != nullptr)
-//            {
-//
-//               plibrary = __move_transfer(System.m_pfnNewAuraLibrary());
-//
-//            }
-//            else
-//            {
-//
-//               ::apex_app * papexapp = ::apex_app::get(pszAppId);
-//
-//               if (papexapp != nullptr)
-//               {
-//
-//                  if (papexapp->m_pfnNewAuraLibrary != nullptr)
-//                  {
-//
-//                     plibrary = __move_transfer(papexapp->m_pfnNewAuraLibrary());
-//
-//                  }
-//                  else if (papexapp->m_pfnNewAuraApplication != nullptr)
-//                  {
-//
-//                     papp = __move_transfer(papexapp->m_pfnNewAuraApplication());
-//
-//                     if (papp.is_null())
-//                     {
-//
-//                        return nullptr;
-//
-//                     }
-//
-//                     papp->m_strLibraryName = pszAppId;
-//
-//                  }
-//
-//               }
-//
-//               if (papp.is_null())
-//               {
-//
-//                  if (plibrary)
-//                  {
-//
-//                     plibrary->initialize_apex_library(pobjectContext, 0, nullptr);
-//
-//                  }
-//                  else
-//                  {
-//
-//                     plibrary = __new(::apex::library);
-//
-//                     plibrary->initialize_apex_library(pobjectContext, 0, nullptr);
-//
-//                     //g_pmapLibrary[string(pszAppId)] = plibrary;
-//
-//                     string strLibrary = strAppId;
-//
-//                     strLibrary.replace("/", "_");
-//
-//                     strLibrary.replace("-", "_");
-//
-//                     if (is_verbose())
-//                     {
-//
-//                        ::output_debug_string("\n\n::apex::session::get_new_application assembled library path " + strLibrary + "\n\n");
-//
-//                     }
-//
-//                     if (!plibrary->open(strLibrary, false))
-//                     {
-//
-//#ifndef _UWP
-//
-//                        os_message_box(nullptr, "Application \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", MB_ICONERROR);
-//
-//#endif
-//
-//                        return nullptr;
-//
-//                     }
-//
-//                     if (is_verbose())
-//                     {
-//
-//                        ::output_debug_string("\n\n::apex::session::get_new_application Found library : " + strLibrary + "\n\n");
-//
-//                     }
-//
-//                     // error anticipation maybe counter-self-healing
-//   //               if (!plibrary->is_opened())
-//   //               {
-//   //
-//   //                  ::output_debug_string("\n\n::apex::session::get_new_application Failed to load library : " + strLibrary + "\n\n");
-//   //
-//   //                  return nullptr;
-//   //
-//   //               }
-//
-//                     if (is_verbose())
-//                     {
-//
-//                        ::output_debug_string("\n\n::apex::session::get_new_application Opened library : " + strLibrary + "\n\n");
-//
-//                     }
-//
-//                     if (!plibrary->open_ca2_library())
-//                     {
-//
-//                        ::output_debug_string("\n\n::apex::session::get_new_application open_ca2_library failed(2) : " + strLibrary + "\n\n");
-//
-//                        return nullptr;
-//
-//                     }
-//
-//                     if (is_verbose())
-//                     {
-//
-//                        ::output_debug_string("\n\n\n|(5)----");
-//                        ::output_debug_string("| app : " + strAppId + "\n");
-//                        ::output_debug_string("|\n");
-//                        ::output_debug_string("|\n");
-//                        ::output_debug_string("|----");
-//
-//                     }
-//
-//                  }
-//
-//               }
-//
-//            }
-//
-//         }
-//
-//         if (papp.is_null())
-//
-//         {
-//
-//            ::apex::library & library = *plibrary;
-//
-//
-//            papp = library.get_new_application(this, strAppId);
-//
-//            ::output_debug_string("\n\n\n|(4)----");
-//            ::output_debug_string("| app : " + strAppId + "(papp=0x" + ::hex::upper_from((uptr)papp.m_p) + ")\n");
-//            ::output_debug_string("|\n");
-//            ::output_debug_string("|\n");
-//            ::output_debug_string("|----");
-//
-//         }
-//
-//         if (!papp)
-//         {
-//
-//            return nullptr;
-//
-//         }
-//
-//      }
-//
-//#ifdef WINDOWS_DESKTOP
-//
-//      WCHAR wsz[1024];
-//
-//      DWORD dwSize = sizeof(wsz) / sizeof(WCHAR);
-//
-//      GetUserNameW(wsz, &dwSize);
-//
-//      string strUserName = wsz;
-//
-//#endif // WINDOWS_DESKTOP
-//
-//      if (is_verbose())
-//      {
-//
-//         ::output_debug_string("\n\n\n|(3)----");
-//         ::output_debug_string("| app : " + strAppId + "\n");
-//         ::output_debug_string("|\n");
-//         ::output_debug_string("|\n");
-//         ::output_debug_string("|----");
-//
-//      }
-//
-//      if (is_verbose())
-//      {
-//
-//         ::output_debug_string("\n\n\n|(2)----");
-//         ::output_debug_string("| app : " + strAppId + "\n");
-//         ::output_debug_string("|\n");
-//         ::output_debug_string("|\n");
-//         ::output_debug_string("|----");
-//
-//      }
-//
-//#if !defined(ANDROID)
-//
-//      if (!papp->is_serviceable() || papp->is_user_service())
-//      {
-//
-//         System.m_spmutexUserAppData = __new(::mutex(e_create_new, false, "Local\\ca2.UserAppData"));
-//         System.m_spmutexSystemAppData = __new(::mutex(e_create_new, false, "Local\\ca2.SystemAppData"));
-//
-//      }
-//
-//#endif
-//
-//      if (is_verbose())
-//      {
-//
-//         ::output_debug_string("\n\n\n|(1)----");
-//         ::output_debug_string("| app : " + strAppId + "\n");
-//         ::output_debug_string("|\n");
-//         ::output_debug_string("|\n");
-//         ::output_debug_string("|----");
-//
-//      }
-//
-//      papp->m_strAppId = pszAppId;
-//
-//      set_context_app(papp);
-//
-//      return papp;
-//
-//   }
-
-
-   //void session::interactive_credentials(::account::credentials * pcredentials)
-   //{
-
-   //   //pcredentials->m_puser->m_estatusAuthentication = ::error_credentials_non_interactive;
-
-   //}
 
 
    bool session::is_licensed(const char * pszAppId, bool bInteractive)
@@ -2615,346 +2324,6 @@ ret:
    }
 
 
-   //::user::theme_pointer session::get_user_theme(const char * pszExperienceLibrary, ::apex::application * papp)
-   //{
-
-   //   auto &  ptheme = m_mapTheme[pszExperienceLibrary];
-
-   //   if (!ptheme)
-   //   {
-
-   //      auto pthemeNew = instantiate_user_theme(pszExperienceLibrary, papp);
-
-   //      __compose(ptheme, pthemeNew);
-
-   //   }
-
-   //   return ptheme;
-
-   //}
-
-
-//   ::user::theme_pointer session::instantiate_user_theme(const char * pszExperienceLibrary, ::apex::application * papp)
-//   {
-//
-//      INFO("apex::session::instantiate_user_theme");
-//
-//      if (papp == nullptr)
-//      {
-//
-//         papp = get_context_application();
-//
-//      }
-//
-//      string_array straLibrary;
-//
-//      {
-//
-//         string strId(pszExperienceLibrary);
-//
-//         if (strId.has_char())
-//         {
-//
-//            straLibrary.add(strId);
-//
-//         }
-//
-//      }
-//
-//      {
-//
-//         string strId(App(papp).preferred_experience());
-//
-//         if (strId.has_char())
-//         {
-//
-//            straLibrary.add(strId);
-//
-//         }
-//
-//      }
-//
-//      {
-//
-//         string strConfig;
-//
-//         if (has_property("experience"))
-//         {
-//
-//            strConfig = value("experience");
-//
-//         }
-//
-//         if (strConfig.has_char())
-//         {
-//
-//            string strLibrary = string("experience_") + strConfig;
-//
-//            straLibrary.add(strConfig);
-//
-//         }
-//
-//      }
-//
-//      {
-//
-//         string strWndFrm = Ctx(papp).file().as_string(::dir::config() / App(papp).m_strAppName / "experience.txt");
-//
-//         if (strWndFrm.has_char())
-//         {
-//
-//            straLibrary.add(strWndFrm);
-//
-//         }
-//
-//      }
-//
-//      {
-//
-//         string strWndFrm = Ctx(papp).file().as_string(::dir::config() / ::file::path(App(papp).m_strAppName).folder() / "experience.txt");
-//
-//         if (strWndFrm.has_char())
-//         {
-//
-//            straLibrary.add(strWndFrm);
-//
-//         }
-//
-//      }
-//
-//      {
-//
-//         string strWndFrm = Ctx(papp).file().as_string(::dir::config() / ::file::path(App(papp).m_strAppName).name() / "experience.txt");
-//
-//         if (strWndFrm.has_char())
-//         {
-//
-//            straLibrary.add(strWndFrm);
-//
-//         }
-//
-//      }
-//
-//      {
-//
-//         string strWndFrm = Ctx(papp).file().as_string(::dir::config() / "system/experience.txt");
-//
-//         if (strWndFrm.has_char())
-//         {
-//
-//            straLibrary.add(strWndFrm);
-//
-//         }
-//
-//      }
-//
-//      straLibrary.add("experience_core");
-//
-//      straLibrary.add("experience_metro");
-//
-//      straLibrary.add("experience_rootkiller");
-//
-//      straLibrary.add("experience_hyper");
-//
-//      ::user::theme_pointer ptheme;
-//
-//      for (string strLibrary : straLibrary)
-//      {
-//
-//         strLibrary.replace("-", "_");
-//
-//         strLibrary.replace("/", "_");
-//
-//         if (!::str::begins_ci(strLibrary, "experience_"))
-//         {
-//
-//            strLibrary = "experience_" + strLibrary;
-//
-//         }
-//
-//         auto plibrary = System.get_library(strLibrary, true);
-//
-//         if (::is_null(plibrary))
-//         {
-//
-//            ERR("Failed to Load %s", strLibrary.c_str());
-//
-//            continue;
-//
-//         }
-//
-//         ptheme = plibrary->create_object(papp, "user_theme");
-//
-//         if (ptheme.is_null())
-//         {
-//
-//            INFO("could not create user_style from ", strLibrary.c_str());
-//
-//            continue;
-//
-//         }
-//
-//         sync_lock sl(&::get_context_system()->m_mutexLibrary);
-//
-//         ::get_context_system()->m_mapLibrary[strLibrary] = plibrary;
-//
-//         ptheme->m_plibrary = plibrary;
-//
-//         m_puserstyle = ptheme;
-//
-//         break;
-//
-//      }
-//
-//      if (ptheme.is_null())
-//      {
-//
-////         message_box(nullptr, "Failed to find/open 'experience' library.\n\nSome reasons:\n   - No 'experience' library present;\n   - Failure to open any suitable 'experience' library.",nullptr, MB_OK);
-//
-//         __throw(exit_exception(get_context_system()));
-//
-//      }
-//
-//      if (ptheme.is_set())
-//      {
-//
-//         ptheme->initialize_theme();
-//
-//
-//      }
-//
-//      return ptheme;
-//
-//   }
-
-
-   //void session::defer_instantiate_user_theme(const char * pszUiInteractionLibrary)
-   //{
-
-   //   if (m_ptheme.is_null())
-   //   {
-
-   //      __compose(m_ptheme, get_user_theme(pszUiInteractionLibrary));
-
-   //      if (m_ptheme.is_null())
-   //      {
-
-   //         ERR("apex::session::defer_instantiate_user_theme");
-
-   //         __throw(resource_exception());
-
-   //      }
-
-   //   }
-
-   //}
-
-
-   //void session::set_bound_ui(::id idView, ::user::interaction * pinteraction)
-   //{
-
-   //   m_mapboundui.set_at(idView, pinteraction);
-
-   //}
-
-
-   //::user::interaction * session::get_bound_ui(::id idView)
-   //{
-
-   //   auto p = m_mapboundui.plookup(idView);
-
-   //   if (!p)
-   //   {
-
-   //      return nullptr;
-
-   //   }
-
-   //   return p->m_element2;
-
-   //}
-
-
-   //void session::on_show_user_input_popup(::user::interaction * pinteraction)
-   //{
-
-   //   sync_lock sl(mutex());
-
-   //   try
-   //   {
-
-   //      if (m_puiLastUserInputPopup != nullptr
-   //            && m_puiLastUserInputPopup != pinteraction)
-   //      {
-
-   //         m_puiLastUserInputPopup->display(display_none);
-
-   //      }
-
-   //   }
-   //   catch (...)
-   //   {
-
-   //   }
-
-   //   m_puiLastUserInputPopup = pinteraction;
-
-   //}
-
-
-//   void session::on_user_logon(::account::user * puser)
-//   {
-//
-//      // Remember:
-//      // (Implement items below here or at derived class 'on_user_logon'
-//      //  virtual member overload)
-//      //
-//      // - userpresence
-//      // - intelligent file system (ifs)
-//      //
-//
-//
-//      //if(puser->m_strPathPrefix.is_empty())
-//      //{
-//
-//      //   puser->m_strPathPrefix = Context.dir().default_os_user_path_prefix();
-//
-//      //}
-//
-//      //auto puser = get_user22();
-//
-////      if(::is_null(puser))
-////      {
-////
-////         return;
-////
-////      }
-//
-//      puser->m_pathFolder = Context.dir().appdata() / "profile" / puser->m_strLogin;
-//
-//      Context.dir().mk(puser->m_pathFolder);
-//
-//      for (auto & papp : m_applicationa)
-//      {
-//
-//         if (papp.is_set())
-//         {
-//
-//            papp->call_update(id_change_user);
-//
-//         }
-//
-//      }
-//
-//   }
-//
-//
-//   void session::on_remove_user(::account::user * puser)
-//   {
-//
-//   }
-
-
    ::user::interaction * session::get_session_window()
    {
 
@@ -3094,109 +2463,6 @@ ret:
 
       INFO(".2");
 
-      //if (System.m_bUser)
-      //{
-
-      //   //if (!::axis::application::process_init())
-      //   //{
-
-      //   //   ERR(".2");
-
-      //   //   return false;
-
-      //   //}
-
-      //   //fill_locale_schema(*str_context()->m_plocaleschema);
-
-
-      //   // apex commented
-
-      //   //INFO("success");
-
-      //   //auto psetup = static_setup::get_first(::static_setup::flag_object_user);
-
-      //   //if (psetup)
-      //   //{
-
-      //   //   estatus = __compose(m_puser, psetup->create_new_object());
-
-      //   //}
-
-      //   //if (!estatus)
-      //   //{
-
-      //   //   estatus = __compose_new(m_puser);
-
-      //   //}
-
-      //   //if (!estatus || !m_puser)
-      //   //{
-
-      //   //   ERR(".4");
-
-      //   //   return false;
-
-      //   //}
-
-      //   //INFO("end");
-
-
-
-      //   //if (!m_puser->init1())
-      //   //   return false;
-
-      //   //if (!m_puser->init2())
-      //   //   return false;
-
-      ////   if (System.m_bUserEx)
-      ////   {
-
-      ////      estatus = __compose(m_puserex);
-
-      ////      if (!estatus)
-      ////      {
-
-      ////         return false;
-
-      ////      }
-
-      ////      if (!m_puserex->init())
-      ////      {
-
-      ////         WARN("userex::init Failed");
-
-      ////         return false;
-
-      ////      }
-
-      ////      if (!m_puserex->init1())
-      ////      {
-
-      ////         WARN("userex::init1 Failed");
-
-      ////         return false;
-
-      ////      }
-
-      ////      if (!m_puserex->init2())
-      ////      {
-
-      ////         WARN("userex::init2 Failed");
-
-      ////         return false;
-
-      ////      }
-
-      ////   }
-
-      //}
-
-      //if (System.m_bUser)
-      //{
-
-      //   Context.os().enum_draw2d_fonts(m_fontenumitema);
-
-      //}
 
       return true;
 
@@ -3327,67 +2593,6 @@ ret:
    void session::term()
    {
 
-      //if (m_puser)
-      //{
-
-      //   try
-      //   {
-
-      //      m_puser->term();
-
-      //   }
-      //   catch (...)
-      //   {
-
-      //   }
-
-      //   __release(m_puser);
-
-      //}
-
-      //if (m_puserex)
-      //{
-
-      //   try
-      //   {
-
-      //      if (m_puserex.is_set())
-      //      {
-
-      //         m_puserex->term();
-
-      //      }
-
-      //   }
-      //   catch (...)
-      //   {
-
-      //   }
-
-      //   __release(m_puserex);
-
-      //}
-
-      //filemanager_finalize();
-
-      //try
-      //{
-
-      //   if (m_pcopydesk.is_set())
-      //   {
-
-      //      m_pcopydesk->finalize();
-
-      //      __release(m_pcopydesk);
-
-      //   }
-
-      //}
-      //catch (...)
-      //{
-
-      //}
-
       try
       {
 
@@ -3400,23 +2605,6 @@ ret:
          m_result.add(error_failed);
 
       }
-
-      //try
-      //{
-
-      //   __release(m_paccount);
-
-      //}
-      //catch (...)
-      //{
-
-      //   m_result.add(error_failed);
-
-      //}
-
-//      __release(m_pkeyboard);
-
-      //defer_term_ui();
 
    }
 
@@ -4212,6 +3400,8 @@ namespace apex
 
    void session::finalize()
    {
+
+      ::application_container::m_applicationa.remove_all();
 
       ::apex::context_thread::finalize();
 

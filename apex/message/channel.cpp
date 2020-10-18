@@ -1,429 +1,250 @@
 #include "framework.h"
 #include "apex/message.h"
 
-//
-//namespace message
-//{
-//
-//
-//   sender::sender()
-//   {
-//
-//      m_pmutexIdRoute = new ::mutex();
-//
-//      m_bNew = true;
-//
-//   }
-//
-//
-//   sender::~sender()
-//   {
-//
-//      remove_all_routes();
-//
-//      ::acme::del(m_pmutexIdRoute);
-//
-//   }
-//
-//
-//   void sender::remove_receiver(::object * preceiver)
-//   {
-//
-//      for (auto & id_route_array : m_idroute)
-//      {
-//
-//         if (id_route_array.element2().is_null())
-//         {
-//
-//            continue;
-//
-//         }
-//
-//         id_route_array.element2()->pred_remove([=](auto & pitem)
-//         {
-//
-//            return pitem->m_preceiver == preceiver;
-//
-//         });
-//
-//      }
-//
-//      //preceiver->m_sendera.remove(this);
-//
-//   }
-//
-//   void sender::transfer_receiver(id_route & router, ::object * preceiver)
-//   {
-//
-//      for (auto & id_route_array : m_idroute)
-//      {
-//
-//         if (id_route_array.element2().is_null())
-//         {
-//
-//            continue;
-//
-//         }
-//
-//         id_route_array.element2()->pred_each([&](auto & pitem)
-//         {
-//
-//            if (pitem->m_preceiver == preceiver)
-//            {
-//
-//               auto & routera = router[id_route_array.element1()];
-//
-//               if (routera.is_null())
-//               {
-//
-//                  routera = __new(route_array);
-//
-//               }
-//
-//               routera->add(pitem);
-//
-//            }
-//
-//         });
-//
-//         id_route_array.element2()->pred_remove([&](auto & pitem)
-//         {
-//
-//            return pitem->m_preceiver == preceiver;
-//
-//         });
-//
-//      }
-//
-//
-//   }
-//
-//
-//   void sender::route_message(::message::message * pmessage)
-//   {
-//
-//      if (::is_null(pmessage)) { ASSERT(FALSE); return; } { sync_lock sl(m_pmutexIdRoute); pmessage->m_routea = m_idroute[pmessage->m_id]; } if (pmessage->m_routea.is_null()) { return; }
-//
-//      for(pmessage->m_psender = this, pmessage->m_iRouteIndex = pmessage->m_routea->get_upper_bound(); pmessage->m_iRouteIndex >= 0; pmessage->m_iRouteIndex--)
-//      {
-//
-//         pmessage->m_routea.m_p->m_pData[pmessage->m_iRouteIndex].m_p->m_pmessageable.m_p->on_message(pmessage); if(pmessage->m_bRet) return;
-//
-//      }
-//
-//   }
-//
-//
-//   void sender::remove_all_routes()
-//   {
-//
-//      try
-//      {
-//
-//         sync_lock sl(m_pmutexIdRoute);
-//
-//         if(m_bNew)
-//         {
-//
-//            m_idrouteNew = m_idroute;
-//
-//            m_bNew = false;
-//
-//         }
-//
-//         m_idroute.remove_all();
-//
-////         for (auto & id_route_array : m_idroute)
-////         {
-////
-////            if (id_route_array.element2().is_null())
-////            {
-////
-////               continue;
-////
-////            }
-////
-////            id_route_array.element2()->pred_each([=](auto & route)
-////            {
-////
-////               try
-////               {
-////
-////                  sync_lock sl(route->m_preceiver->mutex());
-////
-////                  route->m_preceiver->m_sendera.remove(this);
-////
-////               }
-////               catch (...)
-////               {
-////
-////               }
-////
-////            });
-////
-////            id_route_array.element2()->remove_all();
-////
-////         }
-////
-//
-//      }
-//      catch (...)
-//      {
-//
-//      }
-//
-//
-//
-//   }
-//
-//
-//
-//
-//} // namespace message
 
 __pointer(::mutex) channel::s_pmutexChannel;
 
 
-   channel::channel()
+channel::channel()
+{
+
+   channel_common_construct();
+
+}
+
+
+channel::~channel()
+{
+
+   remove_all_routes();
+
+}
+
+
+void channel::install_message_routing(::channel* pchannel)
+{
+
+   ::object::install_message_routing(pchannel);
+
+}
+
+
+
+
+void channel::remove_receiver(::object * preceiver)
+{
+
+   sync_lock sl(channel_mutex());
+
+   for (auto & id_route_array : m_idroute)
    {
 
-
-      CommonConstruct();
-
-
-   }
-
-
-   channel::~channel()
-   {
-
-      remove_all_routes();
-
-   }
-
-
-   ::mutex * channel::defer_mutex_channel()
-   {
-
-      return s_pmutexChannel;
-
-   }
-
-
-   void channel::remove_receiver(::object * preceiver)
-   {
-
-      sync_lock sl(defer_mutex_channel());
-
-      for (auto & id_route_array : m_idroute)
+      if (id_route_array.element2().is_null())
       {
 
-         if (id_route_array.element2().is_null())
-         {
-
-            continue;
-
-         }
-
-         id_route_array.element2()->pred_remove([=](auto & pitem)
-         {
-
-            return pitem->m_preceiver == preceiver;
-
-         });
+         continue;
 
       }
 
-      //preceiver->m_sendera.remove(this);
+      id_route_array.element2()->pred_remove([=](auto & pitem)
+      {
+
+         return pitem->m_preceiver == preceiver;
+
+      });
 
    }
 
-   void channel::transfer_receiver(::message::id_route & router, ::object * preceiver)
+   //preceiver->m_sendera.remove(this);
+
+}
+
+void channel::transfer_receiver(::message::id_route & router, ::object * preceiver)
+{
+
+   sync_lock sl(channel_mutex());
+
+   for (auto & id_route_array : m_idroute)
    {
 
-      sync_lock sl(defer_mutex_channel());
-
-      for (auto & id_route_array : m_idroute)
+      if (id_route_array.element2().is_null())
       {
 
-         if (id_route_array.element2().is_null())
+         continue;
+
+      }
+
+      id_route_array.element2()->pred_each([&](auto & pitem)
+      {
+
+         if (pitem->m_preceiver == preceiver)
          {
 
-            continue;
+            auto & routera = router[id_route_array.element1()];
 
-         }
-
-         id_route_array.element2()->pred_each([&](auto & pitem)
-         {
-
-            if (pitem->m_preceiver == preceiver)
+            if (routera.is_null())
             {
 
-               auto & routera = router[id_route_array.element1()];
-
-               if (routera.is_null())
-               {
-
-                  routera = __new(::message::route_array);
-
-               }
-
-               routera->add(pitem);
+               routera = __new(::message::route_array);
 
             }
 
-         });
+            routera->add(pitem);
 
-         id_route_array.element2()->pred_remove([&](auto & pitem)
-         {
+         }
 
-            return pitem->m_preceiver == preceiver;
+      });
 
-         });
-
-      }
-
-
-   }
-
-
-   void channel::route_message(::message::message * pmessage)
-   {
-
-      if (::is_null(pmessage)) { ASSERT(FALSE); return; } { sync_lock sl(defer_mutex_channel()); pmessage->m_proutea = m_idroute[pmessage->m_id]; } if (pmessage->m_proutea.is_null()) { return; }
-
-      for(pmessage->m_pchannel = this, pmessage->m_iRouteIndex = pmessage->m_proutea->get_upper_bound(); pmessage->m_iRouteIndex >= 0; pmessage->m_iRouteIndex--)
+      id_route_array.element2()->pred_remove([&](auto & pitem)
       {
 
-         pmessage->m_proutea.m_p->m_pData[pmessage->m_iRouteIndex].m_p->m_pmessageable.m_p->on_message(pmessage); if(pmessage->m_bRet) return;
+         return pitem->m_preceiver == preceiver;
 
-      }
+      });
 
    }
 
 
-   __pointer(::message::base) channel::get_message_base(UINT message, WPARAM wparam, lparam lparam)
+}
+
+
+void channel::route_message(::message::message * pmessage)
+{
+
+   if (::is_null(pmessage)) { ASSERT(FALSE); return; } { sync_lock sl(channel_mutex()); pmessage->m_proutea = m_idroute[pmessage->m_id]; } if (pmessage->m_proutea.is_null()) { return; }
+
+   for(pmessage->m_pchannel = this, pmessage->m_iRouteIndex = pmessage->m_proutea->get_upper_bound(); pmessage->m_iRouteIndex >= 0; pmessage->m_iRouteIndex--)
    {
 
-      MESSAGE msg;
-
-      xxf_zero(msg);
-
-      msg.message = message;
-      msg.wParam = wparam;
-      msg.lParam = lparam;
-
-      return get_message_base(&msg);
+      pmessage->m_proutea.m_p->m_pData[pmessage->m_iRouteIndex].m_p->m_pmessageable.m_p->on_message(pmessage); if(pmessage->m_bRet) return;
 
    }
+
+}
+
+
+__pointer(::message::base) channel::get_message_base(UINT message, WPARAM wparam, lparam lparam)
+{
+
+   MESSAGE msg;
+
+   xxf_zero(msg);
+
+   msg.message = message;
+   msg.wParam = wparam;
+   msg.lParam = lparam;
+
+   return get_message_base(&msg);
+
+}
 
 
 #ifdef LINUX
 
 
-   __pointer(::message::base) channel::get_message_base(void * pevent,::user::interaction * pwnd)
-   {
+__pointer(::message::base) channel::get_message_base(void * pevent,::user::interaction * pwnd)
+{
 
-      __throw(todo());
+   __throw(todo());
 
-      return nullptr;
+   return nullptr;
 
-   }
+}
 
 
 #endif
 
 
-   __pointer(::message::base) channel::get_message_base(LPMESSAGE pmsg)
+__pointer(::message::base) channel::get_message_base(LPMESSAGE pmsg)
+{
+
+   //__throw(todo("message"));
+   //__throw(todo("interaction"));
+   ::layered * playeredUserPrimitive = nullptr;
+
+   //if (pinteraction == nullptr && pmsg->hwnd != nullptr)
+   //{
+
+   //   if (pmsg->message == 126)
+   //   {
+
+   //      TRACE("WM_DISPLAYCHANGE");
+
+   //   }
+
+   //   ::user::interaction_impl * pimpl = System.impl_from_handle(pmsg->hwnd);
+
+   //   if (pimpl != nullptr)
+   //   {
+
+   //      try
+   //      {
+
+   //         pinteraction = pimpl->m_puserinteraction;
+
+   //      }
+   //      catch (...)
+   //      {
+
+   //         pinteraction = nullptr;
+
+   //      }
+
+   //   }
+
+   //   if (pinteraction == nullptr)
+   //   {
+
+   //      pinteraction = pimpl;
+
+   //   }
+
+   //}
+
+   //if (pinteraction != nullptr)
+   //{
+
+   //   return pinteraction->get_message_base(pmsg->message, pmsg->wParam, pmsg->lParam);
+
+   //}
+
+   auto pbase = __new(::message::base);
+
+   if (!pbase)
    {
 
-      //__throw(todo("message"));
-      //__throw(todo("interaction"));
-      ::layered * playeredUserPrimitive = nullptr;
-
-      //if (pinteraction == nullptr && pmsg->hwnd != nullptr)
-      //{
-
-      //   if (pmsg->message == 126)
-      //   {
-
-      //      TRACE("WM_DISPLAYCHANGE");
-
-      //   }
-
-      //   ::user::interaction_impl * pimpl = System.impl_from_handle(pmsg->hwnd);
-
-      //   if (pimpl != nullptr)
-      //   {
-
-      //      try
-      //      {
-
-      //         pinteraction = pimpl->m_puserinteraction;
-
-      //      }
-      //      catch (...)
-      //      {
-
-      //         pinteraction = nullptr;
-
-      //      }
-
-      //   }
-
-      //   if (pinteraction == nullptr)
-      //   {
-
-      //      pinteraction = pimpl;
-
-      //   }
-
-      //}
-
-      //if (pinteraction != nullptr)
-      //{
-
-      //   return pinteraction->get_message_base(pmsg->message, pmsg->wParam, pmsg->lParam);
-
-      //}
-
-      auto pbase = __new(::message::base);
-
-      if (!pbase)
-      {
-
-         return nullptr;
-
-      }
-
-      pbase->set(playeredUserPrimitive, pmsg->message, pmsg->wParam, pmsg->lParam);
-
-
-      return pbase;
-
-
+      return nullptr;
 
    }
 
+   pbase->set(playeredUserPrimitive, pmsg->message, pmsg->wParam, pmsg->lParam);
 
-   void channel::remove_all_routes()
+
+   return pbase;
+
+
+
+}
+
+
+void channel::remove_all_routes()
+{
+
+   try
    {
 
-      try
+      sync_lock sl(channel_mutex());
+
+      if(m_bNewChannel)
       {
 
-         sync_lock sl(defer_mutex_channel());
+         m_idrouteNew = m_idroute;
 
-         if(m_bNewChannel)
-         {
+         m_bNewChannel = false;
 
-            m_idrouteNew = m_idroute;
+      }
 
-            m_bNewChannel = false;
-
-         }
-
-         m_idroute.remove_all();
+      m_idroute.remove_all();
 
 //         for (auto & id_route_array : m_idroute)
 //         {
@@ -458,274 +279,298 @@ __pointer(::mutex) channel::s_pmutexChannel;
 //         }
 //
 
-      }
-      catch (...)
+   }
+   catch (...)
+   {
+
+   }
+
+}
+
+
+void channel::channel_common_construct()
+{
+
+   m_bNewChannel = true;
+
+}
+
+
+void channel::finalize()
+{
+
+   if (m_pchannel && m_pchannel != this)
+   {
+
+      m_pchannel->finalize();
+
+   }
+
+   m_pchannel.release();
+
+   m_idaHandledCommands.remove_all();
+
+   m_idroute.remove_all();
+
+   m_idrouteNew.remove_all();
+
+   for (auto& a : m_mapRunnable.values())
+   {
+
+      a.finalize();
+
+      a.remove_all();
+
+   }
+
+   m_mapRunnable.remove_all();
+
+   ::object::finalize();
+
+}
+
+
+bool channel::handle(::user::command * pcommand)
+{
+
+   return pcommand->handle(this);
+
+}
+
+
+void channel::BeginWaitCursor()
+{
+
+}
+
+
+void channel::EndWaitCursor()
+{
+
+}
+
+
+void channel::RestoreWaitCursor()
+{
+
+}
+
+
+void channel::default_toggle_check_handling(const ::id & id)
+{
+
+   auto pproperty = fetch_property(id);
+
+   connect_command_pred(id, [this, id, pproperty](::message::message* pmessage)
       {
 
-      }
+         SCAST_PTR(::user::command, pcommand, pmessage);
 
-
-
-   }
-
-
-
-
-
-   void channel::CommonConstruct()
-   {
-
-      //defer_create_mutex();
-
-      m_bNewChannel = true;
-
-   }
-
-
-
-   bool channel::handle(::user::command * pcommand)
-   {
-
-      return pcommand->handle(this);
-
-   }
-
-
-   void channel::BeginWaitCursor()
-   {
-
-   }
-
-
-   void channel::EndWaitCursor()
-   {
-
-   }
-
-
-   void channel::RestoreWaitCursor()
-   {
-
-   }
-
-
-   void channel::default_toggle_check_handling(const ::id & id)
-   {
-
-      auto pproperty = fetch_property(id);
-
-      connect_command_pred(id, [this, id, pproperty](::message::message* pmessage)
+         if (pproperty->get_bool())
          {
 
-            SCAST_PTR(::user::command, pcommand, pmessage);
+            *pproperty = ::check_unchecked;
 
-            if (pproperty->get_bool())
-            {
-
-               *pproperty = ::check_unchecked;
-
-            }
-            else
-            {
-
-               *pproperty = ::check_checked;
-
-            }
-
-            this->update(pproperty->m_id)->apply(pcommand->m_actioncontext);
-
-      });
-
-   }
-
-
-   void channel::_001SendCommand(::user::command * pbase)
-   {
-
-      pbase->m_pchannel = this;
-
-      {
-
-         __set_restore(pbase->m_id.m_emessagetype, ::message::type_command);
-
-         route_command_message(pbase);
-
-      }
-
-   }
-
-
-   void channel::_001SendCommandProbe(::user::command * pcommand)
-   {
-
-      pcommand->m_pcommandtargetSource = this;
-
-      {
-
-         __set_restore(pcommand->m_id.m_emessagetype, ::message::type_command_probe);
-
-         route_command_message(pcommand);
-
-      }
-
-   }
-
-
-   //void channel::apply(const ::id & id, const ::action_context & context)
-   //{
-
-   //   auto & notifya = m_mapUpdate[id];
-
-   //   for (auto & pnotify : notifya)
-   //   {
-
-   //      pnotify->call_update((const ::__id & ) id, context);
-
-   //   }
-
-   //   if(context.is_user_source())
-   //   {
-
-   //      auto& runnablea = m_mapRunnable[id];
-
-   //      ::call_sync(runnablea);
-
-   //   }
-
-   //}
-
-
-
-   void channel::route_command_message(::user::command * pcommand)
-   {
-
-      on_command_message(pcommand);
-
-   }
-
-
-   void channel::on_command_message(::user::command* pcommand)
-   {
-
-      if (pcommand->m_id.m_emessagetype == ::message::type_command)
-      {
-
-         pcommand->m_bHasCommandHandler = has_command_handler(pcommand);
-
-         on_command_probe(pcommand);
-
-         if (!pcommand->m_bEnableChanged
-            && !pcommand->m_bRadioChanged
-            && pcommand->m_echeck == check_undefined
-            && !pcommand->m_bHasCommandHandler)
+         }
+         else
          {
 
-            return;
+            *pproperty = ::check_checked;
 
          }
 
-         on_command(pcommand);
+         this->update(pproperty->m_id)->apply(pcommand->m_actioncontext);
 
-      }
-      else if (pcommand->m_id.m_emessagetype == ::message::type_command_probe)
-      {
+   });
 
-         pcommand->m_bHasCommandHandler = has_command_handler(pcommand);
+}
 
-         on_command_probe(pcommand);
 
-      }
-      else if (pcommand->m_id.m_emessagetype == ::message::type_has_command_handler)
-      {
+void channel::_001SendCommand(::user::command * pbase)
+{
 
-         pcommand->m_bHasCommandHandler = has_command_handler(pcommand);
+   pbase->m_pchannel = this;
 
-      }
-      else
-      {
+   {
 
-         __throw(not_implemented());
+      __set_restore(pbase->m_id.m_emessagetype, ::message::type_command);
 
-      }
+      route_command_message(pbase);
 
    }
 
+}
 
-   void channel::on_command(::user::command * pcommand)
+
+void channel::_001SendCommandProbe(::user::command * pcommand)
+{
+
+   pcommand->m_pcommandtargetSource = this;
+
    {
 
-      {
+      __set_restore(pcommand->m_id.m_emessagetype, ::message::type_command_probe);
 
-         __set_restore(pcommand->m_id.m_emessagetype, ::message::type_command);
-
-         route_message(pcommand);
-
-      }
+      route_command_message(pcommand);
 
    }
 
+}
 
-   bool channel::has_command_handler(::user::command * pcommand)
+
+//void channel::apply(const ::id & id, const ::action_context & context)
+//{
+
+//   auto & notifya = m_mapUpdate[id];
+
+//   for (auto & pnotify : notifya)
+//   {
+
+//      pnotify->call_update((const ::__id & ) id, context);
+
+//   }
+
+//   if(context.is_user_source())
+//   {
+
+//      auto& runnablea = m_mapRunnable[id];
+
+//      ::call_sync(runnablea);
+
+//   }
+
+//}
+
+
+
+void channel::route_command_message(::user::command * pcommand)
+{
+
+   on_command_message(pcommand);
+
+}
+
+
+void channel::on_command_message(::user::command* pcommand)
+{
+
+   if (pcommand->m_id.m_emessagetype == ::message::type_command)
    {
 
-      sync_lock sl(defer_mutex_channel());
+      pcommand->m_bHasCommandHandler = has_command_handler(pcommand);
+
+      on_command_probe(pcommand);
+
+      if (!pcommand->m_bEnableChanged
+         && !pcommand->m_bRadioChanged
+         && pcommand->m_echeck == check_undefined
+         && !pcommand->m_bHasCommandHandler)
+      {
+
+         return;
+
+      }
+
+      on_command(pcommand);
+
+   }
+   else if (pcommand->m_id.m_emessagetype == ::message::type_command_probe)
+   {
+
+      pcommand->m_bHasCommandHandler = has_command_handler(pcommand);
+
+      on_command_probe(pcommand);
+
+   }
+   else if (pcommand->m_id.m_emessagetype == ::message::type_has_command_handler)
+   {
+
+      pcommand->m_bHasCommandHandler = has_command_handler(pcommand);
+
+   }
+   else
+   {
+
+      __throw(not_implemented());
+
+   }
+
+}
+
+
+void channel::on_command(::user::command * pcommand)
+{
+
+   {
 
       __set_restore(pcommand->m_id.m_emessagetype, ::message::type_command);
 
-      if (m_idaHandledCommands.contains(pcommand->m_id))
-      {
+      route_message(pcommand);
 
-         return true;
+   }
 
-      }
+}
 
-      __pointer(::message::route_array) & proutea = m_idroute[pcommand->m_id];
 
-      if (proutea.is_null())
-      {
+bool channel::has_command_handler(::user::command * pcommand)
+{
 
-         return false;
+   sync_lock sl(channel_mutex());
 
-      }
+   __set_restore(pcommand->m_id.m_emessagetype, ::message::type_command);
 
-      if (proutea->is_empty())
-      {
-
-         return false;
-
-      }
+   if (m_idaHandledCommands.contains(pcommand->m_id))
+   {
 
       return true;
 
    }
 
+   __pointer(::message::route_array) & proutea = m_idroute[pcommand->m_id];
 
-   void channel::on_command_probe(::user::command * pcommand)
+   if (proutea.is_null())
    {
 
-      {
-
-         __set_restore(pcommand->m_id.m_emessagetype, ::message::type_command_probe);
-
-         route_message(pcommand);
-
-         pcommand->m_bHasCommandHandler = has_command_handler(pcommand);
-
-         pcommand->m_bRet =
-            pcommand->m_bEnableChanged
-            || pcommand->m_bRadioChanged
-            || pcommand->m_echeck != check_undefined;
-
-      }
+      return false;
 
    }
 
-
-
-
-   void channel::install_message_routing(::channel * pchannel)
+   if (proutea->is_empty())
    {
 
-      ::object::install_message_routing(pchannel);
+      return false;
 
    }
+
+   return true;
+
+}
+
+
+void channel::on_command_probe(::user::command * pcommand)
+{
+
+   {
+
+      __set_restore(pcommand->m_id.m_emessagetype, ::message::type_command_probe);
+
+      route_message(pcommand);
+
+      pcommand->m_bHasCommandHandler = has_command_handler(pcommand);
+
+      pcommand->m_bRet =
+         pcommand->m_bEnableChanged
+         || pcommand->m_bRadioChanged
+         || pcommand->m_echeck != check_undefined;
+
+   }
+
+}
+
+
+
+
+
+
+
+

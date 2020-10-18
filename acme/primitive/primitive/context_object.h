@@ -49,7 +49,8 @@ public:
 
 
 
-
+   virtual void set_finish() override;
+   
 
 
    template < typename TYPE >

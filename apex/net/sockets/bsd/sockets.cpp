@@ -19,10 +19,6 @@ namespace sockets
    sockets::~sockets()
    {
 
-      m_spnet.release();
-
-      m_spportforward.release();
-
       ::acme::del(m_psslinit);
 
       //::acme::del(m_pajpaxissocketinit);
@@ -47,10 +43,9 @@ namespace sockets
 
       m_psslinit = new ::sockets::SSLInitializer(get_context_object());
 
-      m_spnet = __create_new<::sockets::net>();
-      //m_spnet.create(this);
+      estatus = __construct_new(m_pnet);
 
-      if(m_spnet.is_null())
+      if(!estatus || !m_pnet)
       {
 
          m_iErrorCode = -1986;
@@ -59,9 +54,9 @@ namespace sockets
 
       }
 
-
-      if (!m_spnet->initialize(this))
+      if (!m_pnet->initialize(this))
       {
+
          return error_failed;
 
       }
@@ -73,8 +68,7 @@ namespace sockets
 
       //}
 
-
-      m_spportforward.create();
+      m_pportforward.create();
 
       //m_pajpaxissocketinit = new AjpBaseSocket::Initializer;
 
@@ -88,15 +82,17 @@ namespace sockets
    void sockets::finalize()
    {
 
+      sockets_base::finalize();
+
       bool bOk = true;
 
-      if (m_spnet)
+      if (m_pnet)
       {
 
          try
          {
 
-            if (!m_spnet->gudo_set())
+            if (!m_pnet->gudo_set())
             {
 
                m_iErrorCode = -87;
@@ -116,10 +112,10 @@ namespace sockets
       try
       {
 
-         if(m_spportforward.is_set())
+         if(m_pportforward.is_set())
          {
 
-            m_spportforward.release();
+            m_pportforward.release();
 
          }
 
@@ -133,22 +129,22 @@ namespace sockets
 
       try
       {
-         m_spportforward.release();
+         
+         m_pportforward.release();
+
       }
       catch(...)
       {
+
       }
 
-
-
-      if (m_spnet)
+      if (m_pnet)
       {
-
 
          try
          {
 
-            m_spnet->finalize();
+            m_pnet->finalize();
 
          }
          catch (...)
@@ -161,7 +157,7 @@ namespace sockets
          try
          {
 
-            m_spnet.release();
+            m_pnet.release();
 
          }
          catch (...)
@@ -181,7 +177,7 @@ namespace sockets
    ::sockets::net & sockets::net()
    {
 
-      return *m_spnet;
+      return *m_pnet;
 
    }
    

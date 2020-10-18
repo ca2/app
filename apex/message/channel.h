@@ -1,32 +1,8 @@
 #pragma once
 
 
-//#include "apex/primitive/collection/runnable_array.h"
-namespace user
-{
-
-
-   class command;
-
-
-} // namespace user
-
-
-namespace message
-{
-
-   class message;
-   class id_route;
-   template < typename MESSAGE > class typed_route;
-   class id;
-   class route;
-
-} // namespace status
-
-
 class CLASS_DECL_APEX channel :
-   virtual public ::object //,
-   //virtual public ::source
+   virtual public ::object
 {
 public:
 
@@ -37,7 +13,6 @@ public:
    ::message::id_route                             m_idroute;
    ::message::id_route                             m_idrouteNew;
    bool                                            m_bNewChannel;
-   //id_map < __pointer_array(::matter) >           m_mapUpdate;
    id_map < runnable_array >                       m_mapRunnable;
 
 
@@ -45,8 +20,15 @@ public:
    virtual ~channel();
 
 
+   void channel_common_construct();
 
-   virtual ::mutex * defer_mutex_channel();
+   
+   virtual void install_message_routing(::channel* pchannel);
+
+
+   static inline ::mutex* channel_mutex() { return s_pmutexChannel; }
+
+   virtual void finalize() override;
 
    virtual void remove_receiver(::object * preceiver);
 
@@ -183,10 +165,6 @@ public:
    virtual void _001SendCommandProbe(::user::command * pcommand);
 
 
-   //using ::object::call_update;
-   //virtual void apply(const ::id & id, const ::action_context & action_context);
-
-
    virtual void on_command(::user::command * pcommand);
    virtual bool has_command_handler(::user::command * pcommand);
    virtual void on_command_probe(::user::command * pcommand);
@@ -197,10 +175,6 @@ public:
 
    virtual void on_command_message(::user::command* pcommand);
 
-
-   virtual void install_message_routing(::channel * pchannel);
-
-   void CommonConstruct();
 
    void BeginWaitCursor();
    void EndWaitCursor();

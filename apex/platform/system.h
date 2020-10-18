@@ -94,7 +94,7 @@ namespace apex
 
 
       // for lesser cooperative GUI applications
-      bool                                               m_bProdevianMouse;
+      //bool                                               m_bProdevianMouse;
       __composite(class ::str::base64)                   m_pbase64;
 
       ::string_to_string                                 m_mapAppLibrary;

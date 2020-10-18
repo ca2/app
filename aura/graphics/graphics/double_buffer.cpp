@@ -189,6 +189,9 @@ namespace graphics
 
    void double_buffer::destroy_buffer()
    {
+      
+      m_imageaBuffer[0].release();
+      m_imageaBuffer[1].release();
 
    }
 

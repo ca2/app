@@ -29,8 +29,6 @@ namespace sockets
 
 
    net::net()
-//      m_mapCache(papp,""),
-      //    m_mapReverseCache(papp,"sockets::net::m_mapReverseCache")
    {
 
       defer_create_mutex();
@@ -100,6 +98,8 @@ namespace sockets
 
    void net::finalize()
    {
+
+      ::object::finalize();
 
       if (!m_bInitialized)
       {

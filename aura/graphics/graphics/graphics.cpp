@@ -65,7 +65,15 @@ namespace graphics
    void graphics::finalize()
    {
 
+      destroy_buffer();
+
       object::finalize();
+
+   }
+
+
+   void graphics::destroy_buffer()
+   {
 
    }
 

@@ -330,52 +330,6 @@ public:
 
    inline void defer_set_storing() { if (!is_storing()) set_storing(); }
 
-   //virtual stream * branch(const ::id &) { return this; }
-
-   //inline auto seek_begin() { m_p->seek_begin(); }
-   //inline auto get_length() const { m_p->get_length(); }
-
-   //template < typename TYPE >
-   //void exchange(TYPE & t)
-   //{
-   //   if (is_storing())
-   //   {
-   //      t ;
-   //   }
-   //   else
-   //   {
-   //      read(t);
-   //   }
-   //}
-
-   // streaming uses the ordering/sequence and versioning "to omit" the id
-   // reordering or adding/excluding members leads to new format
-   // up-to-date is the only readily-fastly-effortless safe one for streaming
-   // id-value pairs are safe about reordering/adding/excluding members at most? scenarios
-   //template < typename TYPE >
-   //void exchange(const ::id &, TYPE & t)
-   //{
-
-   //   //__pointer(::stream) pstream = branch(this, id);
-
-   //   //t.exchange(*pstream);
-   //   if (is_storing())
-   //   {
-   //      write(id, t);
-   //   }
-   //   else
-   //   {
-   //      read(id, t);
-   //   }
-
-   //}
-
-   //operator ::file::file * () { return m_p; }
-
-
-   //virtual filesize seek(filesize offset, ::file::e_seek eseek);
-
-
    virtual string factory_id_to_text(const :: id & id);
    virtual ::id text_to_factory_id(string strText);
 
@@ -390,16 +344,12 @@ public:
 
    inline void exchange(const ::id & id, void * pdata, memsize s);
 
-
    virtual void add_exception(::exception::exception * pexception);
    virtual void on_catch_all_exception();
-
 
    virtual void write_object(const ::id & id, ::matter * pobject);
 
    virtual __pointer(::matter) read_object(const ::id & id);
-
-
 
 
    virtual bool is_open() const;
@@ -413,8 +363,6 @@ public:
    virtual bool set_internal_data_size(memsize c);
    virtual filesize get_position() const;
 
-
-   //inline memsize read(void * pdata, memsize nCount) { return m_gcount = m_p->read(pdata, nCount); }
 
    virtual void read(memory_base & m);
    virtual void write(const memory_base & m);
@@ -466,7 +414,6 @@ public:
       }
 
    }
-
 
    inline void read_buffer_length(::u64 & u)
    {

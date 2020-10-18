@@ -76,7 +76,7 @@ namespace aura
 
 
       // for lesser cooperative GUI applications
-      //bool                                               m_bProdevianMouse;
+      bool                                                  m_bProdevianMouse;
       //__composite(class ::str::base64)                   m_pbase64;
 
       //::string_to_string                                 m_mapAppLibrary;
@@ -145,8 +145,6 @@ namespace aura
 //      bool                                               m_bSystemSynchronizedCursor;
 //      bool                                               m_bSystemSynchronizedScreen;
 //
-//      // 2020-01-25: removing from here (::aura::system), placing at ::context
-//      //__pointer(::user::language_map)                    m_puserlanguagemap;
 //#ifdef WINDOWS_DESKTOP
 //
 ////#pragma message("at macos??")
@@ -749,13 +747,7 @@ namespace aura
       virtual void __tracea(::matter * pcontextobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz) override;
 
 
-      virtual string get_user_language() override;
-      virtual bool set_user_language(::apex::application * papp, index iSel) override;
-      virtual bool set_user_language(::apex::application * papp, string strLang) override;
-
       void chromium(string strUrl, string strBrowser, string strId, ::file::path path, string strProfile, string strParam);
-
-      //      void commander(string strUrl, string strWeather, string strUser, ::file::path path, string strParam);
 
       void defer_create_firefox_profile(::file::path pathFirefox, string strProfileName, ::file::path pathProfile);
 

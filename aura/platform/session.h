@@ -7,21 +7,9 @@ namespace aura
 
    class CLASS_DECL_AURA session :
       virtual public ::aqua::session,
-      //,
-      //virtual public ::application_container,
-      virtual public ::filemanager::item_action //,
-      ////virtual public ::filemanager::component,
-      ////virtual public ::user::document_manager_container
+      virtual public ::filemanager::item_action
    {
    public:
-
-
-      class CLASS_DECL_AURA map:
-         virtual public isomap < index, __pointer(::aura::session) >
-      {
-
-
-      };
 
 
 #if defined _UWP
@@ -30,32 +18,10 @@ namespace aura
 
 #endif
 
-#ifdef WINDOWS_DESKTOP
-
-      //#pragma message("at macos??")
-      __composite(::user::interaction)                      m_puiSession;
-
-#endif
-
-
-      // For Mobile systems it is particularly meaningful...
-      // ... is is the "Main Window" (sometimes just a concept) holding the App.
-      // For Desktop Applications a meaning should be given or this member could be ignored?
-      // The Main Application window?
-      //__reference(::user::interaction)                      m_puiHost;
-      //__pointer(::user::interaction)                        m_puiMain2;
 
       __composite(::user::keyboard)                         m_pkeyboard;
 
-      index                                                 m_iEdge;
-      ::map < ::user::e_key, ::user::e_key, bool, bool > *  m_pmapKeyPressed;
-
-      bool                                                  m_bProgrammerMode;
-
-      //point                                                 m_pointCursor;
       bool                                                  m_bAcceptsFirstResponder;
-
-      comparable_array < __reference(::user::interaction) > m_uiptraToolWindow;
 
       ::user::interaction_impl *                            m_pimplPendingFocus2;
       ::user::interaction *                                 m_puiLastUserInputPopup;
@@ -64,11 +30,8 @@ namespace aura
       e_cursor                                              m_ecursorDefault;
       e_cursor                                              m_ecursor;
 
-
       ::user::interaction *                                 m_puiCapture;
       bool                                                  m_bDrawCursor;
-
-      __pointer(::object)                                   m_pobjectCoreUser;
 
       __composite(::user::copydesk)                         m_pcopydesk;
 
@@ -78,66 +41,15 @@ namespace aura
 
       ::draw2d::font_enum_item_array                        m_fontenumitema;
 
-      //index                                               m_iEdge;
-
-      //__composite(::account::department)                    m_paccount;
-      //__pointer(::account::licensing)                     m_plicensing;
-      //__composite(::user::interaction)                      m_puserinteractionSystem;
       __composite(::apex::savings)                          m_psavings;
 
-      var                                                   m_varTopicFile;
-      var                                                   m_varCurrentViewFile;
-      bool                                                  m_bShowPlatform;
-
-      __composite(::apex::str_context)                      m_puserstrcontext;
-
-
-      //rect_array                                            m_rectaMonitor;
-      //rect_array                                            m_rectaWkspace;
-
-      // 2020-01-25: removing from here (::apex::system), placing at ::context
-      //__pointer(::user::language_map)                    m_puserlanguagemap;
-#ifdef WINDOWS_DESKTOP
-
-//#pragma message("at macos??")
-      raw_array < MONITORINFO >                          m_monitorinfoa;
-      raw_array < HMONITOR >                             m_hmonitora;
-      raw_array < MONITORINFO >                          m_monitorinfoaDesk;
-
-#else
-
-      rect_array                                         m_rectaMonitor;
-      rect_array                                         m_rectaWork;
-
-#endif
       index                                                 m_iMainMonitor;
       index                                                 m_iMainWkspace;
 
-
-
       id_map < ::user::interaction * >                      m_mapboundui;
-
-
-
-      //__composite(::userpresence::department)               m_puserpresence;
-
-
-      __composite(::ftpfs)                                  m_pftpfs;
-      __composite(::fs::remote_native)                      m_premotefs;
-      __composite(::fs::fs)                                 m_pfs;
-      __composite(::fs::data)                               m_pfsdata;
-      __composite(::ifs)                                    m_pifs;
-      //ke
-      bool                                                  m_bIfs;
-
-      bool                                                  m_bMatterFromHttpCache;
-
-      DWORD                                                 m_dwLongPhRESSingTime;
-
 
       __composite(::draw2d::font_list)                      m_pfontlistSingleColumn;
       __composite(::user::user)                             m_puser;
-      ::draw2d::font_pointer                                m_pfontCopyDesk;
 
 
       session();
@@ -156,6 +68,8 @@ namespace aura
       void monitor_enum(HMONITOR hmonitor, HDC hdcMonitor, RECT* prcMonitor);
 
 #endif
+
+      virtual void set_finish() override;
 
 
       virtual void enum_display_monitors() override;
@@ -263,10 +177,10 @@ namespace aura
       //virtual ::estatus     initialize(::layered * pobjectContext) override;
 
 
-      virtual ::user::interaction * get_session_window() override;
+      //virtual ::user::interaction * get_session_window() override;
 
 
-      ::apex::str_context * str_context() { return m_puserstrcontext; }
+      //::apex::str_context * str_context() { return m_puserstrcontext; }
 
       //virtual bool is_session() const override;
 

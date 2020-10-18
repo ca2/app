@@ -250,8 +250,6 @@ __pointer(::apex::application) application_container::instantiate_application(co
 
       }
 
-      set_context_app(papp);
-
       if (!papp)
       {
 

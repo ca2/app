@@ -105,8 +105,23 @@ namespace apex
 
 
       bool                                                  m_bSystemSynchronizedScreen;
+
+#ifdef WINDOWS_DESKTOP
+
+      //#pragma message("at macos??")
+      raw_array < MONITORINFO >                          m_monitorinfoa;
+      raw_array < HMONITOR >                             m_hmonitora;
+      raw_array < MONITORINFO >                          m_monitorinfoaDesk;
+
+#else
+
+      //rect_array                                         m_rectaMonitor;
+      //rect_array                                         m_rectaWork;
+
       rect_array                                            m_rectaMonitor;
       rect_array                                            m_rectaWkspace;
+#endif
+
       index                                                 m_iMainMonitor;
       index                                                 m_iMainWkspace;
 

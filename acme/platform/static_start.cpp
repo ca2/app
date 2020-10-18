@@ -661,17 +661,6 @@ namespace acme
 
 #endif
 
-      //sqlite3_config(SQLITE_CONFIG_MULTITHREAD);
-
-      //acme commented
-      //__construct_new(::channel::s_pmutexChannel);
-
-//#ifdef LINUX
-//
-//      ::user::initialize_edesktop();
-//
-//#endif
-
       g_pacmestrpool = new acme_str_pool();
 
       //acme commented
@@ -816,9 +805,6 @@ namespace acme
       g_bAcme = 0;
 
       ::acme::del(g_pacmestrpool);
-
-      //acme commented
-      //::channel::s_pmutexChannel.release();
 
       // acme commented
       //g_ptrace = g_psimpletrace;

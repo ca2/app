@@ -1,9 +1,6 @@
 #include "framework.h"
 #include "aura/id.h"
 #include "acme/platform/version.h"
-//#include "aura/platform/machine_event_data2.h"
-//#include "aura/platform/machine_event2.h"
-//#include "aura/platform/machine_event_central2.h"
 #include "apex/platform/app_core.h"
 #include "acme/platform/profiler.h"
 #include "apex/platform/str_context.h"
@@ -304,23 +301,10 @@ namespace aura
    }
 
 
-   //string application::calc_data_key()
-   //{
-
-   //   return typeid(*this).name();
-
-   //}
-
-
-
-
-
    void application::finalize()
    {
 
-      ::thread::finalize();
-
-      m_pappContext.release();
+      ::apex::application::finalize();
 
    }
 
@@ -340,36 +324,29 @@ namespace aura
    }
 
 
-   //string application::get_theme()
-   //{
 
-   //   return "lite";
-
-   //}
-
-
-   bool application::is_set_finish() const
+   /*bool application::is_set_finish() const
    {
 
       return ::thread::is_set_finish() || m_ethreadClose != thread_none;
 
-   }
+   }*/
 
 
-   void application::set_has_installer(bool bSet)
-   {
+   //void application::set_has_installer(bool bSet)
+   //{
 
-      m_bAppHasInstallerProtected = bSet;
+   //   m_bAppHasInstallerProtected = bSet;
 
-      m_bAppHasInstallerChangedProtected = true;
+   //   m_bAppHasInstallerChangedProtected = true;
 
-   }
+   //}
 
 
    void application::assert_valid() const
    {
 
-      thread::assert_valid();
+      ::apex::application::assert_valid();
 
    }
 
@@ -377,34 +354,11 @@ namespace aura
    void application::dump(dump_context & dumpcontext) const
    {
 
-      thread::dump(dumpcontext);
+      ::apex::application::dump(dumpcontext);
 
-//#ifdef WINDOWS
-//
-//      dumpcontext << "m_hinstance = " << (void *)m_hinstance;
-//
-//#endif
-
-      //dumpcontext << "\nm_strCmdLine = " << m_strCmdLine;
-      //dumpcontext << "\nm_nCmdShow = " << m_nCmdShow;
       dumpcontext << "\nm_bHelpMode = " << m_strAppName;
 
       dumpcontext << "\n";
-
-   }
-
-
-   string application::__get_text(string str)
-   {
-
-      if (!m_puserlanguagemap)
-      {
-
-         return str;
-
-      }
-
-      return m_puserlanguagemap->__get_text(str);
 
    }
 
@@ -418,14 +372,6 @@ namespace aura
       connect_command("switch_context_theme", &application::_001OnSwitchContextTheme);
 
    }
-
-
-   //imaging & application::imaging()
-   //{
-
-   //   return *m_pimaging;
-
-   //}
 
 
    bool application::enable_application_events(::object * pobject, bool bEnable)
@@ -458,152 +404,152 @@ namespace aura
    }
 
 
-   string application::get_title()
-   {
+   //string application::get_title()
+   //{
 
-      if(m_strAppTitle.has_char())
-      {
+   //   if(m_strAppTitle.has_char())
+   //   {
 
-         return m_strAppTitle;
+   //      return m_strAppTitle;
 
-      }
+   //   }
 
-      string_array stra;
+   //   string_array stra;
 
-      stra.explode("/", m_strAppName);
+   //   stra.explode("/", m_strAppName);
 
-      string strTitle;
+   //   string strTitle;
 
-      if(stra.get_count() > 1)
-      {
+   //   if(stra.get_count() > 1)
+   //   {
 
-         strTitle = stra.implode("/", 1);
+   //      strTitle = stra.implode("/", 1);
 
-         if(strTitle.length() > 0)
-         {
+   //      if(strTitle.length() > 0)
+   //      {
 
-            return strTitle;
+   //         return strTitle;
 
-         }
+   //      }
 
-      }
+   //   }
 
-      if(m_strAppName.has_char())
-      {
+   //   if(m_strAppName.has_char())
+   //   {
 
-         return m_strAppName;
+   //      return m_strAppName;
 
-      }
+   //   }
 
-      stra.explode("/", m_strAppId);
+   //   stra.explode("/", m_strAppId);
 
-      if(stra.get_count() > 1)
-      {
+   //   if(stra.get_count() > 1)
+   //   {
 
-         strTitle = stra.implode("/", 1);
+   //      strTitle = stra.implode("/", 1);
 
-         if(strTitle.length() > 0)
-         {
+   //      if(strTitle.length() > 0)
+   //      {
 
-            return strTitle;
+   //         return strTitle;
 
-         }
+   //      }
 
-      }
+   //   }
 
-      if(m_strAppId.has_char())
-      {
+   //   if(m_strAppId.has_char())
+   //   {
 
-         return m_strAppId;
+   //      return m_strAppId;
 
-      }
+   //   }
 
-      return Context.file().module().title();
+   //   return Context.file().module().title();
 
-   }
+   //}
 
 
-   string_array application::get_categories()
-   {
+   //string_array application::get_categories()
+   //{
 
-      return m_straAppCategory;
+   //   return m_straAppCategory;
 
-   }
+   //}
 
 
-   ::file::path application::get_app_localconfig_folder()
-   {
+   //::file::path application::get_app_localconfig_folder()
+   //{
 
-      ::file::path pathFolder = ::dir::localconfig() / m_strAppName;
+   //   ::file::path pathFolder = ::dir::localconfig() / m_strAppName;
 
-      return pathFolder;
+   //   return pathFolder;
 
-   }
+   //}
 
 
-   ::handle::ini application::get_ini()
-   {
+   //::handle::ini application::get_ini()
+   //{
 
-      ::handle::ini ini;
+   //   ::handle::ini ini;
 
-      auto pathFolder = get_app_localconfig_folder();
+   //   auto pathFolder = get_app_localconfig_folder();
 
-      auto preader = Context.file().get_reader(pathFolder / "this.ini");
+   //   auto preader = Context.file().get_reader(pathFolder / "this.ini");
 
-      if (preader)
-      {
+   //   if (preader)
+   //   {
 
-         string str;
+   //      string str;
 
-         preader->full_read_string(str);
+   //      preader->full_read_string(str);
 
-         ini.parse_ini(str);
+   //      ini.parse_ini(str);
 
-      }
+   //   }
 
-      return ini;
+   //   return ini;
 
-   }
+   //}
 
 
-   bool application::app_data_set(const ::id & id, stream & os)
-   {
+   //bool application::app_data_set(const ::id & id, stream & os)
+   //{
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
-   bool application::app_data_get(const ::id & id, stream & is)
-   {
+   //bool application::app_data_get(const ::id & id, stream & is)
+   //{
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
-   bool application::app_data_set(const ::id & id, ::object & obj)
-   {
+   //bool application::app_data_set(const ::id & id, ::object & obj)
+   //{
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
-   bool application::app_data_get(const ::id & id, ::object & obj)
-   {
+   //bool application::app_data_get(const ::id & id, ::object & obj)
+   //{
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
-   ::estatus     application::do_request(::create * pcreate)
-   {
+   //::estatus     application::do_request(::create * pcreate)
+   //{
 
-      return ::thread::do_request(pcreate);
+   //   return ::apex::app::do_request(pcreate);
 
-   }
+   //}
 
 
    ::estatus     application::call_request(::create * pcreate)
@@ -1456,137 +1402,72 @@ namespace aura
    }
 
 
-   //bool application::final_handle_exception(::exception::exception * pe)
+   //::estatus application::init_thread()
    //{
 
-   //   UNREFERENCED_PARAMETER(pe);
-
-   //   //linux      exit(-1);
-
-   //   if (!is_system())
+   //   try
    //   {
 
-   //      // get_context_application() may be it self, it is ok...
-   //      if (System.final_handle_exception(pe))
-   //         return true;
+   //      Session.add_reference(this);
 
+   //   }
+   //   catch (...)
+   //   {
 
    //   }
 
-   //   return false;
+   //   try
+   //   {
+
+   //      if (!pre_run())
+   //      {
+
+   //         return false;
+
+   //      }
+
+   //   }
+   //   catch (::exception_pointer pe)
+   //   {
+
+   //      handle_exception(pe);
+
+   //      return false;
+
+   //   }
+   //   catch (...)
+   //   {
+
+   //      return false;
+
+   //   }
+
+   //   return true;
+
    //}
 
 
-//   ::estatus     application::main()
-//   {
-//
-//      INFO("aura::application::main");
-//
-//      try
-//      {
-//
-//         m_bReady = true;
-//
-//         m_estatus = on_run();
-//
-////         if(m_iErrorCode != 0)
-////         {
-////
-////            dappy(string(typeid(*this).name()) + " : on_run failure : " + __str(m_iErrorCode));
-////
-////            ::output_debug_string("application::main on_run termination failure\n");
-////
-////         }
-//
-//      }
-//      catch (::exception_pointer pe)
-//      {
-//
-//         if (!handle_exception(pe))
-//         {
-//
-//
-//         }
-//
-//      }
-//      catch (...)
-//      {
-//
-//         //dappy(string(typeid(*this).name()) + " : on_run general exception");
-//
-//      }
-//
-//      return m_estatus;
-//
-//   }
+   //void application::term_thread()
+   //{
 
+   //   INFO("aura::application::term_thread");
 
-   ::estatus application::init_thread()
-   {
+   //   m_tickHeartBeat.Now();
 
-      try
-      {
+   //   try
+   //   {
 
-         Session.add_reference(this);
+   //      pos_run();
 
-      }
-      catch (...)
-      {
+   //   }
+   //   catch (...)
+   //   {
 
-      }
+   //   }
 
-      try
-      {
+   //   ::thread::term_thread();
 
-         if (!pre_run())
-         {
-
-            return false;
-
-         }
-
-      }
-      catch (::exception_pointer pe)
-      {
-
-         handle_exception(pe);
-
-         return false;
-
-      }
-      catch (...)
-      {
-
-         return false;
-
-      }
-
-      return true;
-
-   }
-
-
-   void application::term_thread()
-   {
-
-      INFO("aura::application::term_thread");
-
-      m_tickHeartBeat.Now();
-
-      try
-      {
-
-         pos_run();
-
-      }
-      catch (...)
-      {
-
-      }
-
-      ::thread::term_thread();
-
-   }
+   //}
 
 
    ::estatus application::pre_run()
@@ -1798,121 +1679,10 @@ namespace aura
    void application::on_pos_run_thread()
    {
 
-      try
-      {
-
-         m_pinterprocessintercommunication.release();
-
-      }
-      catch (...)
-      {
-
-      }
-
-
-      ::thread::on_pos_run_thread();
-
-      sync_lock sl(mutex());
-
-      //try
-      //{
-
-      //   for (auto & papp : m_applicationa)
-      //   {
-
-      //      try
-      //      {
-
-      //         if (papp != this && papp->get_context_application() == this)
-      //         {
-
-      //            set_context_object(nullptr);
-
-      //         }
-
-      //         if (is_session())
-      //         {
-
-      //            ::aura::session * psessionThis = dynamic_cast <::aura::session *>(this);
-
-      //            if (papp->get_context_session() == psessionThis && papp != this)
-      //            {
-
-      //               papp->get_context_session() = nullptr;
-
-      //            }
-
-      //         }
-
-      //         if (is_system())
-      //         {
-
-      //            ::aura::system * psystemThis = dynamic_cast <::aura::system *>(this);
-
-      //            if (papp->get_context_system() == psystemThis && papp != this)
-      //            {
-
-      //               papp->get_context_system() = nullptr;
-
-      //            }
-
-      //         }
-
-      //      }
-      //      catch (...)
-      //      {
-
-      //      }
-
-      //   }
-
-      //}
-      //catch (...)
-      //{
-
-      //}
+      ::apex::application::on_pos_run_thread();
 
    }
 
-
-   //void application::release_parents()
-   //{
-
-   //   try
-   //   {
-
-   //      if(::is_set(get_context_system()))
-   //      {
-
-   //         get_context_system()->appptra_remove(this);
-
-   //      }
-
-   //   }
-   //   catch(...)
-   //   {
-
-   //   }
-
-   //   try
-   //   {
-
-   //      if(::is_set(get_context_session()))
-   //      {
-
-   //         get_context_session()->appptra_remove(this);
-
-   //      }
-
-   //   }
-   //   catch(...)
-   //   {
-
-   //   }
-
-   //   ::thread::release_parents();
-
-   //}
 
 
    void application::pos_run()
@@ -2324,20 +2094,6 @@ retry_license:
 
       INFO("initial_check_directrix : ok (%s)%s\n\n", typeid(*this).name(), m_strAppId.c_str());
 
-//      auto pcommand = m_pcommand;
-//
-//      if(pcommand.is_set())
-//      {
-//
-//         m_pcommand.release();
-//
-//         request(pcommand);
-//
-//         pcommand.release();
-//
-//         ::output_debug_string("initial_check_directrix : command processed");
-//
-//      }
 
       return true;
 
@@ -2921,290 +2677,135 @@ retry_license:
    }
 
 
-   void application::process_term()
-   {
-
-      //try
-      //{
-
-      //   impl_process_term();
-
-      //}
-      //catch(...)
-      //{
-
-      //}
-
-      try
-      {
-
-         notify_process_term();
-
-      }
-      catch(...)
-      {
-
-      }
-
-      try
-      {
-
-         release_exclusive();
-
-      }
-      catch(...)
-      {
-
-      }
-
-      //try
-      //{
-
-      //   m_phttp->message_receiver_destruct();
-
-      //}
-      //catch (...)
-      //{
-
-      //}
-
-      //try
-      //{
-
-      //   m_phttp.release();
-
-      //}
-      //catch (...)
-      //{
-
-      //}
-
-      //m_phandler.release();
-
-//      try
-//      {
-//
-//         route_message(&message);
-//
-//      }
-//      catch (...)
-//      {
-//
-//      }
-
-      try
-      {
-
-         if (!is_session() && !is_system())
-         {
-
-            if (get_context_system() != nullptr)
-            {
-
-               get_context_system()->request({::command_check_exit});
-
-            }
-
-         }
-
-      }
-      catch(...)
-      {
-
-      }
-
-      try
-      {
-
-         m_stringtable.remove_all();
-
-         m_stringtableStd.remove_all();
-
-      }
-      catch(...)
-      {
-
-      }
-
-      //m_spfile.release();
-
-      //m_spdir.release();
-
-      //::acme::del(m_pimaging);
-
-
-      /// commented out the code below
-      /// reasoning: better leave to the session the responsability
-      /// to do those checks/actions.
-//      if (!is_session() && !is_system())
-//      {
-//
-//         try
-//         {
-//
-//            if (Session.appptra().get_count() <= 1)
-//            {
-//
-//               if (System.thread::get_os_data() != nullptr)
-//               {
-//
-//                  ::multithreading::set_finish(&System);
-//
-//               }
-//
-//            }
-//
-//         }
-//         catch (...)
-//         {
-//
-//         }
-//
-//      }
-
-   }
-
-
-   ::estatus application::init_application()
-   {
-
-      //if (m_bAuraInitializeInstance)
-      //{
-
-      //   return m_bAuraInitializeInstanceResult;
-
-      //}
-
-      INFO("aura::application::init_application");
-
-      //m_bAuraInitializeInstance = true;
-
-      //m_bAuraInitializeInstanceResult = false;
-
-      m_tickHeartBeat.Now();
-
-      if (!init1())
-      {
-
-         //dappy(string(typeid(*this).name()) + " : init1 failure : " + __str(m_iErrorCode));
-
-         return false;
-
-      }
-
-      System.install_progress_add_up(); // 2
-
-      //xxdebug_box("init1 ok", "init1 ok", MB_ICONINFORMATION);
-
-      m_tickHeartBeat.Now();
-
-      if (!init2())
-      {
-
-         //dappy(string(typeid(*this).name()) + " : init2 failure : " + __str(m_iErrorCode));
-
-         return false;
-
-      }
-
-      System.install_progress_add_up(); // 3
-
-      //xxdebug_box("init2 ok", "init2 ok", MB_ICONINFORMATION);
-
-      m_tickHeartBeat.Now();
-
-      if (!init3())
-      {
-
-         //dappy(string(typeid(*this).name()) + " : init3 failure : " + __str(m_iErrorCode));
-
-         return false;
-
-      }
-
-      System.install_progress_add_up(); // 4
-
-      //xxdebug_box("init3 ok", "init3 ok", MB_ICONINFORMATION);
-
-      m_tickHeartBeat.Now();
-
-      //dappy(string(typeid(*this).name()) + " : init3 ok : " + __str(m_iErrorCode));
-
-      try
-      {
-
-         if (!init())
-         {
-
-            //dappy(string(typeid(*this).name()) + " : initialize failure : " + __str(m_iErrorCode));
-
-            return false;
-
-         }
-
-      }
-      catch (const char * psz)
-      {
-
-         if (!strcmp(psz, "You have not logged in! Exiting!"))
-         {
-
-            return false;
-
-         }
-
-         return false;
-
-      }
-
-      System.install_progress_add_up(); // 5
-
-//      m_bAuraInitializeInstanceResult = true;
-
-      return true;
-
-   }
-
-
-   __pointer(::interprocess_intercommunication) application::create_interprocess_intercommunication()
-   {
-
-      try
-      {
-
-         return __new(::interprocess_intercommunication(m_strAppName));
-
-      }
-      catch (...)
-      {
-
-         return nullptr;
-
-      }
-
-   }
-
-
-   //::estatus application::notify_process_init()
+   //void application::process_term()
    //{
 
-   //   ::message::application message(::message::application_process_init);
 
-   //   route_message(&message);
+   //   apex::application::process_term();
 
-   //   return true;
 
+   // 
    //}
 
 
-   //::estatus application::notify_init1()
+//   ::estatus application::init_application()
+//   {
+//
+//      auto estatus = ::apex::application::init_application();
+//
+//      if (!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//      INFO("aura::application::init_application");
+//
+//      //m_bAuraInitializeInstance = true;
+//
+//      //m_bAuraInitializeInstanceResult = false;
+//
+//      m_tickHeartBeat.Now();
+//
+//      if (!init1())
+//      {
+//
+//         //dappy(string(typeid(*this).name()) + " : init1 failure : " + __str(m_iErrorCode));
+//
+//         return false;
+//
+//      }
+//
+//      System.install_progress_add_up(); // 2
+//
+//      //xxdebug_box("init1 ok", "init1 ok", MB_ICONINFORMATION);
+//
+//      m_tickHeartBeat.Now();
+//
+//      if (!init2())
+//      {
+//
+//         //dappy(string(typeid(*this).name()) + " : init2 failure : " + __str(m_iErrorCode));
+//
+//         return false;
+//
+//      }
+//
+//      System.install_progress_add_up(); // 3
+//
+//      //xxdebug_box("init2 ok", "init2 ok", MB_ICONINFORMATION);
+//
+//      m_tickHeartBeat.Now();
+//
+//      if (!init3())
+//      {
+//
+//         //dappy(string(typeid(*this).name()) + " : init3 failure : " + __str(m_iErrorCode));
+//
+//         return false;
+//
+//      }
+//
+//      System.install_progress_add_up(); // 4
+//
+//      //xxdebug_box("init3 ok", "init3 ok", MB_ICONINFORMATION);
+//
+//      m_tickHeartBeat.Now();
+//
+//      //dappy(string(typeid(*this).name()) + " : init3 ok : " + __str(m_iErrorCode));
+//
+//      try
+//      {
+//
+//         if (!init())
+//         {
+//
+//            //dappy(string(typeid(*this).name()) + " : initialize failure : " + __str(m_iErrorCode));
+//
+//            return false;
+//
+//         }
+//
+//      }
+//      catch (const char * psz)
+//      {
+//
+//         if (!strcmp(psz, "You have not logged in! Exiting!"))
+//         {
+//
+//            return false;
+//
+//         }
+//
+//         return false;
+//
+//      }
+//
+//      System.install_progress_add_up(); // 5
+//
+////      m_bAuraInitializeInstanceResult = true;
+//
+//      return true;
+//
+//   }
+
+
+   //__pointer(::interprocess_intercommunication) application::create_interprocess_intercommunication()
    //{
 
-   //   ::message::application message(::message::application_init1);
+   //   try
+   //   {
 
-   //   route_message(&message);
+   //      return __new(::interprocess_intercommunication(m_strAppName));
 
-   //   return message.m_bOk;
+   //   }
+   //   catch (...)
+   //   {
+
+   //      return nullptr;
+
+   //   }
 
    //}
 
@@ -3212,49 +2813,12 @@ retry_license:
    ::estatus application::init1()
    {
 
-      ::estatus estatus = __construct_new(m_puserlanguagemap);
+      ::estatus estatus = ::apex::application::init1();
 
       if (!estatus)
       {
 
          return estatus;
-
-      }
-
-      if (get_context_system())
-      {
-
-         if (get_context_system()->m_pintstringLanguageResourceMap != nullptr)
-         {
-
-            m_puserlanguagemap->set_language_resource_map(get_context_system()->m_pintstringLanguageResourceMap);
-
-         }
-
-      }
-
-      if (System.m_bLocalization)
-      {
-
-         string strLang = System.get_user_language();
-
-         if (!m_puserlanguagemap->set_language(this, strLang))
-         {
-
-            m_puserlanguagemap->set_default_language(this);
-
-         }
-
-      }
-
-      //g_pf1 = (void *)(uptr) ::str::to_u64(Context.file().as_string(::dir::system() / "config\\system\\pf1.txt"));
-
-      m_tickHeartBeat.Now();
-
-      if (!notify_init1())
-      {
-
-         return ::error_failed;
 
       }
 
@@ -3274,214 +2838,11 @@ retry_license:
 
          }
 
-         //__throw(todo("xml"));
-
-         //string strLocaleSystem;
-
-         //string strSchemaSystem;
-
-         //string strPath = Context.dir().appdata() / "langstyle_settings.xml";
-
-         //if (Context.file().exists(strPath))
-         //{
-
-         //   string strSystem = Context.file().as_string(strPath);
-
-         //   ::xml::document docSystem;
-
-         //   if (docSystem.load(strSystem))
-         //   {
-
-         //      if (docSystem.get_child("lang") != nullptr)
-         //      {
-
-         //         strLocaleSystem = docSystem.get_child("lang")->get_value();
-
-         //      }
-
-         //      if (docSystem.get_child("style") != nullptr)
-         //      {
-
-         //         strSchemaSystem = docSystem.get_child("style")->get_value();
-
-         //      }
-
-         //   }
-
-         //}
-
-      }
-
-      if (System.m_bLocalization)
-      {
-
-         string strLocale;
-
-         string strSchema;
-
-         if (System.get_user_language().has_char())
-         {
-
-            m_strLocale = System.get_user_language();
-
-            m_strSchema = m_strLocale;
-
-         }
-         else
-         {
-
-#ifdef _UWP
-
-            string_array stra;
-
-            try
-            {
-
-               stra.explode("-", ::Windows::Globalization::ApplicationLanguages::PrimaryLanguageOverride);
-
-            }
-            catch (long)
-            {
-
-            }
-
-            strLocale = stra[0];
-
-            strSchema = stra[0];
-
-#elif defined(WINDOWS)
-
-            LANGID langid = ::GetUserDefaultLangID();
-
-            string strIso = ::windows::langid_to_iso(langid);
-
-            strLocale = strIso;
-
-            strSchema = strIso;
-
-#endif
-
-         }
-
-         if (strLocale.is_empty())
-         {
-
-            strLocale = "_std";
-
-         }
-
-         if (strSchema.is_empty())
-         {
-
-            strSchema = strLocale;
-
-         }
-
-         //if (strLocaleSystem.has_char())
-         //{
-
-         //   strLocale = strLocaleSystem;
-
-         //}
-
-         //if (strSchemaSystem.has_char())
-         //{
-
-         //   strSchema = strSchemaSystem;
-
-         //}
-
-         if (System.value("locale").get_count() > 0)
-         {
-
-            strLocale = System.value("locale").stra()[0];
-
-         }
-
-         if (System.value("schema").get_count() > 0)
-         {
-
-            strSchema = System.value("schema").stra()[0];
-
-         }
-
-         if (Application.value("locale").get_count() > 0)
-         {
-
-            strLocale = Application.value("locale").stra()[0];
-
-         }
-
-         if (Application.value("schema").get_count() > 0)
-         {
-
-            strSchema = Application.value("schema").stra()[0];
-
-         }
-
-         set_locale(strLocale, ::source_database);
-
-         set_schema(strSchema, ::source_database);
-
-      }
-
-      if (!initialize_contextualized_theme())
-      {
-
-         FATAL("Failed to initialize_contextualized_theme");
-
-         return false;
-
       }
 
       INFO("start");
 
-      //if (!::aura::application::init1())
-      //{
-
-      //   ERR(".1");
-
-      //   return false;
-
-      //}
-
-      //if (!initialize1_experience())
-      //{
-
-      //   ERR(".2");
-
-      //   return false;
-
-      //}
-
       m_tickHeartBeat.Now();
-
-      //estatus = __compose(m_puserfs);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //if (!userfs_init1())
-      //{
-
-      //   ERR(".3");
-
-      //   return false;
-
-      //}
-
-
-
-      /*if(!m_spuser->init1())
-      return false;
-      if(!m_spuser->init2())
-      return false;*/
-
-
 
       return ::success;
 
@@ -3628,60 +2989,7 @@ retry_license:
    void application::term_application()
    {
 
-
-      //try
-      //{
-
-      //   close(::apex::e_end_app);
-
-      //}
-      //catch (...)
-      //{
-
-      //}
-
-
-      //try
-      //{
-
-      //   m_spobjectUserFs.release();
-
-      //}
-      //catch (...)
-      //{
-
-
-      //}
-
-      //m_puserfs = nullptr;
-
-      //__release(m_pexperience);
-
-      //try
-      //{
-
-      //   ::aura::application::term_application();
-
-      //}
-      //catch (...)
-      //{
-
-      //}
-
       release_exclusive();
-
-      //::aura::::message::application signal(::aura::::message::application_term_instance);
-
-      //try
-      //{
-
-      //   route_message(&signal);
-
-      //}
-      //catch (...)
-      //{
-
-      //}
 
       try
       {
@@ -3700,23 +3008,6 @@ retry_license:
 
          }
 
-         //if(::is_set(get_context_system()))
-         //{
-
-         //   get_context_system()->app_remove(this);
-
-         //}
-
-         try
-         {
-
-            m_pinterprocessintercommunication.release();
-
-         }
-         catch (...)
-         {
-
-         }
 
          try
          {
@@ -3773,46 +3064,7 @@ retry_license:
 
       }
 
-      //if (m_psimpledb.is_set())
-      //{
-
-      //   try
-      //   {
-
-      //      m_psimpledb->finalize();
-
-      //   }
-      //   catch (...)
-      //   {
-
-      //      m_result.add(error_failed);
-
-      //   }
-
-      //}
-
-      //try
-      //{
-
-      //   __release(m_pdocmanager);
-
-      //}
-      //catch (...)
-      //{
-
-      //}
-
-
-      //m_psimpledb.release();
-
-
    }
-
-
-
-
-
-
 
 
    service_base * application::allocate_new_service()
@@ -4465,12 +3717,12 @@ retry_license:
 
 
 
-   void application::message_handler(::message::base * pbase)
-   {
+   //void application::message_handler(::message::base * pbase)
+   //{
 
-      ::thread::message_handler(pbase);
+   //   ::thread::message_handler(pbase);
 
-   }
+   //}
 
 
    void application::set_locale(const string & pcsz, const ::action_context & context)
@@ -5854,12 +5106,12 @@ retry_license:
 
    //}
 
-   void application::process_message(::message::base * pbase)
-   {
+   //void application::process_message(::message::base * pbase)
+   //{
 
-      return ::thread::process_message(pbase);
+   //   return ::thread::process_message(pbase);
 
-   }
+   //}
 
 
 //   ::account::user * application::interactive_get_user(::file::path pathUrl)
@@ -6565,84 +5817,6 @@ retry_license:
       return true;
 
    }
-
-
-//
-
-   //void application::term_application()
-   //{
-
-
-   //   try
-   //   {
-
-
-   //      //destroy_message_queue();
-
-   //   }
-   //   catch (...)
-   //   {
-
-   //      m_result.add(error_failed);
-
-   //   }
-
-   //   release_exclusive();
-
-   //   ::aura::::message::application signal(::aura::::message::application_term_instance);
-
-   //   try
-   //   {
-
-   //      route_message(&signal);
-
-   //   }
-   //   catch (...)
-   //   {
-
-   //   }
-
-   //   try
-   //   {
-
-   //      try
-   //      {
-
-   //         aura::application::term_application();
-
-   //      }
-   //      catch (...)
-   //      {
-
-   //      }
-
-   //   }
-   //   catch (...)
-   //   {
-
-   //   }
-
-   //   if (m_psimpledb.is_set())
-   //   {
-
-   //      try
-   //      {
-
-   //         m_psimpledb->finalize();
-
-   //      }
-   //      catch (...)
-   //      {
-
-   //         m_result.add(error_failed);
-
-   //      }
-
-   //   }
-
-   //   m_psimpledb.release();
-
-   //}
 
 
    void application::term()

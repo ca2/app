@@ -6,7 +6,7 @@ namespace draw2d
    
    
    class CLASS_DECL_AURA cursor :
-      virtual public ::context_object
+      virtual public ::matter
    {
    public:
 
@@ -22,10 +22,14 @@ namespace draw2d
 
 
       cursor();
+      virtual ~cursor();
+
 
       bool to(::draw2d::graphics_pointer & pgraphics, const ::point & point);
 
       bool initialize_system_default();
+
+      virtual void finalize() override;
 
       HCURSOR get_HCURSOR(::user::interaction * pinteraction);
 

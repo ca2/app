@@ -23,6 +23,8 @@ namespace graphics
       virtual ::estatus initialize_graphics_graphics(::user::interaction_impl * pimpl);
       virtual void finalize();
 
+      virtual void destroy_buffer();
+
       virtual bool round_swap_key_buffers();
 
       virtual bool update_window();

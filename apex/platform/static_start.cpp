@@ -576,8 +576,6 @@ namespace apex
 
 #endif
 
-      //sqlite3_config(SQLITE_CONFIG_MULTITHREAD);
-
       __construct_new(::channel::s_pmutexChannel);
 
 #ifdef LINUX

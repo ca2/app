@@ -1294,6 +1294,15 @@ namespace user
 
       }
 
+      if (m_pgraphics)
+      {
+
+         m_pgraphics->destroy_buffer();
+
+         m_pgraphics->finalize();
+
+      }
+
       __release(m_pgraphics);
 
       UNREFERENCED_PARAMETER(pmessage);
@@ -1324,13 +1333,11 @@ namespace user
 
       }
 
-      ::user::primitive::PostNcDestroy();
+      ::user::primitive_impl::PostNcDestroy();
 
       detach();
 
       m_puserinteraction.release();
-
-      //release_parents();
 
       auto pwindowthread = m_puserthread;
 

@@ -1504,11 +1504,13 @@ namespace user
 
    void primitive_impl::_001OnNcDestroy(::message::message * pmessage)
    {
+      
       if (m_puserinteraction && ::str::demangle(m_puserinteraction->type_name()).contains("notify_icon"))
       {
-         INFO("notify_icon");
-      }
 
+         INFO("notify_icon");
+
+      }
 
       PostNcDestroy();
 

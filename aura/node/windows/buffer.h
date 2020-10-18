@@ -12,14 +12,13 @@ namespace windows
    public:
 
       
-      class os_buffer :
-         virtual public ::object
+      class os_buffer 
       {
       public:
 
          
          os_buffer();
-         virtual ~os_buffer();
+         ~os_buffer();
 
 
          ::pixmap                      m_pixmap;

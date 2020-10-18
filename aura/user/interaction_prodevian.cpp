@@ -32,151 +32,152 @@ namespace user
 
    }
 
-::estatus     prodevian::initialize_prodevian(interaction_impl * pimpl)
-{
 
-   auto estatus = initialize(pimpl);
-
-   if (!estatus)
+   ::estatus prodevian::initialize_prodevian(interaction_impl * pimpl)
    {
+
+      auto estatus = initialize(pimpl);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      __pointer(prodevian) pholdThis = this;
+
+      m_ptaskUpdateScreen = __pred_method([pholdThis]()
+         {
+
+            auto phold = pholdThis;
+
+            if (phold)
+            {
+
+               phold->update_screen();
+
+               phold->m_bUpdatingScreen = false;
+
+            }
+
+         });
+
+      m_ptaskWindowShow = __pred_method([pholdThis]()
+         {
+
+            auto phold = pholdThis;
+
+            if (phold && phold->m_pimpl)
+            {
+
+               phold->m_pimpl->window_show();
+
+            }
+
+         });
+
+      m_puserinteraction = pimpl->m_puserinteraction;
+
+      m_pimpl = pimpl;
+
+      set_config_fps(20);
+
+      string strType;
+
+      strType = ::str::demangle(m_puserinteraction->type_name());
+
+      if (strType.contains("playlist"))
+      {
+
+         INFO("frame playlist");
+
+      }
 
       return estatus;
 
    }
 
-   auto pholdThis = ::move_transfer(this);
 
-   m_ptaskUpdateScreen = __pred_method([pholdThis]()
+   prodevian::~prodevian()
+   {
+
+   }
+
+
+   ::estatus prodevian::run()
+   {
+
+      m_pimpl->m_puserinteraction->m_threada.add(this);
+
+      m_synca.add(&m_evUpdateScreen);
+
+   #ifdef WINDOWS_DESKTOP
+
+      attach_thread_input_to_main_thread(true);
+
+   #endif
+
+
+      if (m_bAuraMessageQueue)
       {
 
-         auto phold = pholdThis;
+         m_synca.add(&get_mq()->m_eventNewMessage);
 
-         if (phold)
+      }
+
+      //__pointer(mq) pmq = __get_mq(get_current_ithread(), true);
+
+      //m_synca.add(&pmq->m_eventNewMessage);
+
+
+      ::thread_set_name("prodevian," + ::str::demangle(m_puserinteraction->type_name()));
+
+      while (thread_get_run())
+      {
+
+         pump_runnable();
+
+         if (!m_puserinteraction)
          {
 
-            phold->update_screen();
-
-            phold->m_bUpdatingScreen = false;
+            break;
 
          }
 
-      });
-
-   m_ptaskWindowShow = __pred_method([pholdThis]()
-      {
-
-         auto phold = pholdThis;
-
-         if (phold && phold->m_pimpl)
+         if (!m_pimpl)
          {
 
-            phold->m_pimpl->window_show();
+            break;
 
          }
 
-      });
+         if (!prodevian_iteration())
+         {
 
-   m_puserinteraction = pimpl->m_puserinteraction;
+            break;
 
-   m_pimpl = pimpl;
+         }
 
-   set_config_fps(20);
+         if (!m_puserinteraction)
+         {
 
-   string strType;
+            break;
 
-   strType = ::str::demangle(m_puserinteraction->type_name());
+         }
 
-   if (strType.contains("playlist"))
-   {
+         if (!m_pimpl)
+         {
 
-      INFO("frame playlist");
+            break;
+
+         }
+
+      }
+
+      return m_estatus;
 
    }
-
-   return estatus;
-
-}
-
-
-prodevian::~prodevian()
-{
-
-}
-
-
-::estatus prodevian::run()
-{
-
-   m_pimpl->m_puserinteraction->m_threada.add(this);
-
-   m_synca.add(&m_evUpdateScreen);
-
-#ifdef WINDOWS_DESKTOP
-
-   attach_thread_input_to_main_thread(true);
-
-#endif
-
-
-   if (m_bAuraMessageQueue)
-   {
-
-      m_synca.add(&get_mq()->m_eventNewMessage);
-
-   }
-
-   //__pointer(mq) pmq = __get_mq(get_current_ithread(), true);
-
-   //m_synca.add(&pmq->m_eventNewMessage);
-
-
-   ::thread_set_name("prodevian," + ::str::demangle(m_puserinteraction->type_name()));
-
-   while (thread_get_run())
-   {
-
-      pump_runnable();
-
-      if (!m_puserinteraction)
-      {
-
-         break;
-
-      }
-
-      if (!m_pimpl)
-      {
-
-         break;
-
-      }
-
-      if (!prodevian_iteration())
-      {
-
-         break;
-
-      }
-
-      if (!m_puserinteraction)
-      {
-
-         break;
-
-      }
-
-      if (!m_pimpl)
-      {
-
-         break;
-
-      }
-
-   }
-
-   return m_estatus;
-
-}
 
 
 bool prodevian::prodevian_reset(::user::interaction * pinteraction)
@@ -217,6 +218,47 @@ void prodevian::term_thread()
    m_pimpl.release();
 
    m_puserinteraction.release();
+
+}
+
+
+void prodevian::finalize()
+{
+
+   if (m_bRunThisThread)
+   {
+
+      m_evUpdateScreen.SetEvent();
+
+   }
+
+   if (m_ptaskUpdateScreen)
+   {
+
+      m_ptaskUpdateScreen->finalize();
+
+   }
+
+   m_ptaskUpdateScreen.release(OBJ_REF_DBG_THIS);
+
+   if (m_ptaskWindowShow)
+   {
+
+      m_ptaskWindowShow->finalize();
+
+   }
+
+   m_ptaskWindowShow.release(OBJ_REF_DBG_THIS);
+
+   m_puserinteraction.release(OBJ_REF_DBG_THIS);
+
+   m_pimpl.release(OBJ_REF_DBG_THIS);
+
+   m_synca.m_synca.remove_all();
+   
+   m_synca.m_hsyncaCache.remove_all();
+
+   ::thread::finalize();
 
 }
 

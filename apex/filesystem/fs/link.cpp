@@ -8,7 +8,39 @@ namespace fs
 
    link::link()
    {
-      m_plisting = __new(::file::listing());
+      
+   }
+
+
+   link::~link()
+   {
+
+   }
+
+
+   ::estatus link::initialize(::layered* pobjectContext) 
+   {
+
+      auto estatus = ::fs::native::initialize(pobjectContext);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = __construct_new(m_plisting);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
    }
 
 

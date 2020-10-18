@@ -2482,8 +2482,6 @@ namespace user
 
          post_redraw();
 
-         ::output_debug_string("\npos reddfkgjhsdfkjgraw \n");
-
          // and finally, bring to top after showing
          //BringToTop(edisplay);
       }

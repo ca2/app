@@ -329,23 +329,14 @@ namespace apex
    }
 
 
-   //string application::calc_data_key()
-   //{
-
-   //   return typeid(*this).name();
-
-   //}
-
-
-
-
-
    void application::finalize()
    {
 
-      ::thread::finalize();
+      ::application_container::m_applicationa.remove_all();
 
-      m_pappContext.release();
+      m_puserlanguagemap.release(OBJ_REF_DBG_THIS);
+
+      ::thread::finalize();
 
    }
 
@@ -1576,17 +1567,6 @@ namespace apex
       try
       {
 
-         Session.add_reference(this);
-
-      }
-      catch (...)
-      {
-
-      }
-
-      try
-      {
-
          if (!pre_run())
          {
 
@@ -1847,18 +1827,6 @@ namespace apex
    void application::on_pos_run_thread()
    {
 
-      try
-      {
-
-         m_pinterprocessintercommunication.release();
-
-      }
-      catch (...)
-      {
-
-      }
-
-
       ::thread::on_pos_run_thread();
 
       sync_lock sl(mutex());
@@ -1922,46 +1890,6 @@ namespace apex
       //}
 
    }
-
-
-   //void application::release_parents()
-   //{
-
-   //   try
-   //   {
-
-   //      if(::is_set(get_context_system()))
-   //      {
-
-   //         get_context_system()->appptra_remove(this);
-
-   //      }
-
-   //   }
-   //   catch(...)
-   //   {
-
-   //   }
-
-   //   try
-   //   {
-
-   //      if(::is_set(get_context_session()))
-   //      {
-
-   //         get_context_session()->appptra_remove(this);
-
-   //      }
-
-   //   }
-   //   catch(...)
-   //   {
-
-   //   }
-
-   //   ::thread::release_parents();
-
-   //}
 
 
    void application::pos_run()
@@ -2764,21 +2692,6 @@ retry_license:
 
       INFO("initial_check_directrix : ok (%s)%s\n\n", typeid(*this).name(), m_strAppId.c_str());
 
-//      auto pcommand = m_pcommand;
-//
-//      if(pcommand.is_set())
-//      {
-//
-//         m_pcommand.release();
-//
-//         request(pcommand);
-//
-//         pcommand.release();
-//
-//         ::output_debug_string("initial_check_directrix : command processed");
-//
-//      }
-
       return true;
 
    }
@@ -3354,16 +3267,6 @@ retry_license:
    void application::process_term()
    {
 
-      //try
-      //{
-
-      //   impl_process_term();
-
-      //}
-      //catch(...)
-      //{
-
-      //}
 
       try
       {
@@ -3387,56 +3290,19 @@ retry_license:
 
       }
 
-      //try
-      //{
-
-      //   m_phttp->message_receiver_destruct();
-
-      //}
-      //catch (...)
-      //{
-
-      //}
-
-      //try
-      //{
-
-      //   m_phttp.release();
-
-      //}
-      //catch (...)
-      //{
-
-      //}
-
-      //m_phandler.release();
-
-//      try
-//      {
-//
-//         route_message(&message);
-//
-//      }
-//      catch (...)
-//      {
-//
-//      }
-
+      
       try
       {
 
-         if (!is_session() && !is_system())
+
+         if (get_context_system() != nullptr)
          {
 
-            if (get_context_system() != nullptr)
-            {
-
-               get_context_system()->request({::command_check_exit});
-
-            }
+            get_context_system()->request({::command_check_exit});
 
          }
 
+         
       }
       catch(...)
       {
@@ -3456,60 +3322,13 @@ retry_license:
 
       }
 
-      //m_spfile.release();
-
-      //m_spdir.release();
-
-      //::acme::del(m_pimaging);
-
-
-      /// commented out the code below
-      /// reasoning: better leave to the session the responsability
-      /// to do those checks/actions.
-//      if (!is_session() && !is_system())
-//      {
-//
-//         try
-//         {
-//
-//            if (Session.appptra().get_count() <= 1)
-//            {
-//
-//               if (System.thread::get_os_data() != nullptr)
-//               {
-//
-//                  ::multithreading::set_finish(&System);
-//
-//               }
-//
-//            }
-//
-//         }
-//         catch (...)
-//         {
-//
-//         }
-//
-//      }
-
    }
 
 
    ::estatus application::init_application()
    {
 
-      //if (m_bAuraInitializeInstance)
-      //{
-
-      //   return m_bAuraInitializeInstanceResult;
-
-      //}
-
       INFO("apex::application::init_application");
-
-      //m_bAuraInitializeInstance = true;
-
-      //m_bAuraInitializeInstanceResult = false;
 
       m_tickHeartBeat.Now();
 
@@ -3639,16 +3458,19 @@ retry_license:
 
       }
 
-      string strLang = System.get_user_language();
-
-      if (!m_puserlanguagemap->set_language(this, strLang))
+      if (System.m_bLocalization)
       {
 
-         m_puserlanguagemap->set_default_language(this);
+         string strLang = System.get_user_language();
+
+         if (!m_puserlanguagemap->set_language(this, strLang))
+         {
+
+            m_puserlanguagemap->set_default_language(this);
+
+         }
 
       }
-
-      //g_pf1 = (void *)(uptr) ::str::to_u64(Context.file().as_string(::dir::system() / "config\\system\\pf1.txt"));
 
       m_tickHeartBeat.Now();
 
@@ -3659,207 +3481,117 @@ retry_license:
 
       }
 
-      //__throw(todo("xml"));
-
-      //string strLocaleSystem;
-
-      //string strSchemaSystem;
-
-      //string strPath = Context.dir().appdata() / "langstyle_settings.xml";
-
-      //if (Context.file().exists(strPath))
-      //{
-
-      //   string strSystem = Context.file().as_string(strPath);
-
-      //   ::xml::document docSystem;
-
-      //   if (docSystem.load(strSystem))
-      //   {
-
-      //      if (docSystem.get_child("lang") != nullptr)
-      //      {
-
-      //         strLocaleSystem = docSystem.get_child("lang")->get_value();
-
-      //      }
-
-      //      if (docSystem.get_child("style") != nullptr)
-      //      {
-
-      //         strSchemaSystem = docSystem.get_child("style")->get_value();
-
-      //      }
-
-      //   }
-
-      //}
-
-      string strLocale;
-
-      string strSchema;
-
-      if (System.get_user_language().has_char())
+      if (System.m_bLocalization)
       {
 
-         m_strLocale = System.get_user_language();
+         string strLocale;
 
-         m_strSchema = m_strLocale;
+         string strSchema;
 
-      }
-      else
-      {
+         if (System.get_user_language().has_char())
+         {
+
+            m_strLocale = System.get_user_language();
+
+            m_strSchema = m_strLocale;
+
+         }
+         else
+         {
 
 #ifdef _UWP
 
-         string_array stra;
+            string_array stra;
 
-         try
-         {
+            try
+            {
 
-            stra.explode("-", ::Windows::Globalization::ApplicationLanguages::PrimaryLanguageOverride);
+               stra.explode("-", ::Windows::Globalization::ApplicationLanguages::PrimaryLanguageOverride);
 
-         }
-         catch (long)
-         {
+            }
+            catch (long)
+            {
 
-         }
+            }
 
-         strLocale = stra[0];
+            strLocale = stra[0];
 
-         strSchema = stra[0];
+            strSchema = stra[0];
 
 #elif defined(WINDOWS)
 
-         LANGID langid = ::GetUserDefaultLangID();
+            LANGID langid = ::GetUserDefaultLangID();
 
-         string strIso = ::windows::langid_to_iso(langid);
+            string strIso = ::windows::langid_to_iso(langid);
 
-         strLocale = strIso;
+            strLocale = strIso;
 
-         strSchema = strIso;
+            strSchema = strIso;
 
 #endif
 
-      }
+         }
 
-      if (strLocale.is_empty())
-      {
+         if (strLocale.is_empty())
+         {
 
-         strLocale = "_std";
+            strLocale = "_std";
 
-      }
+         }
 
-      if (strSchema.is_empty())
-      {
+         if (strSchema.is_empty())
+         {
 
-         strSchema = strLocale;
+            strSchema = strLocale;
 
-      }
+         }
 
-      //if (strLocaleSystem.has_char())
-      //{
+         if (System.value("locale").get_count() > 0)
+         {
 
-      //   strLocale = strLocaleSystem;
+            strLocale = System.value("locale").stra()[0];
 
-      //}
+         }
 
-      //if (strSchemaSystem.has_char())
-      //{
+         if (System.value("schema").get_count() > 0)
+         {
 
-      //   strSchema = strSchemaSystem;
+            strSchema = System.value("schema").stra()[0];
 
-      //}
+         }
 
-      if (System.value("locale").get_count() > 0)
-      {
+         if (Application.value("locale").get_count() > 0)
+         {
 
-         strLocale = System.value("locale").stra()[0];
+            strLocale = Application.value("locale").stra()[0];
 
-      }
+         }
 
-      if (System.value("schema").get_count() > 0)
-      {
+         if (Application.value("schema").get_count() > 0)
+         {
 
-         strSchema = System.value("schema").stra()[0];
+            strSchema = Application.value("schema").stra()[0];
 
-      }
+         }
 
-      if (Application.value("locale").get_count() > 0)
-      {
+         set_locale(strLocale, ::source_database);
 
-         strLocale = Application.value("locale").stra()[0];
+         set_schema(strSchema, ::source_database);
 
-      }
+         if (!initialize_contextualized_theme())
+         {
 
-      if (Application.value("schema").get_count() > 0)
-      {
+            FATAL("Failed to initialize_contextualized_theme");
 
-         strSchema = Application.value("schema").stra()[0];
+            return false;
 
-      }
-
-      set_locale(strLocale, ::source_database);
-
-      set_schema(strSchema, ::source_database);
-
-      if (!initialize_contextualized_theme())
-      {
-
-         FATAL("Failed to initialize_contextualized_theme");
-
-         return false;
+         }
 
       }
 
       INFO("start");
 
-      //if (!::apex::application::init1())
-      //{
-
-      //   ERR(".1");
-
-      //   return false;
-
-      //}
-
-      //if (!initialize1_experience())
-      //{
-
-      //   ERR(".2");
-
-      //   return false;
-
-      //}
-
       m_tickHeartBeat.Now();
-
-      //estatus = __compose(m_puserfs);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //if (!userfs_init1())
-      //{
-
-      //   ERR(".3");
-
-      //   return false;
-
-      //}
-
-
-
-      /*if(!m_spuser->init1())
-      return false;
-      if(!m_spuser->init2())
-      return false;*/
-
-
 
       return ::success;
 
@@ -4001,37 +3733,6 @@ retry_license:
    }
 
 
-   //::estatus application::init()
-   //{
-
-   //   return true;
-
-
-   //}
-//
-//
-//   void application::term()
-//   {
-//
-//      //::acme::del(m_pimaging);
-//
-////      bool bOk = true;
-////
-////      return bOk;
-//
-//   }
-
-
-
-
-   //void application::release_children()
-   //{
-
-   //   ::thread::release_children();
-
-   //}
-
-
    void application::term_application()
    {
 
@@ -4047,48 +3748,7 @@ retry_license:
 
       }
 
-
-      //try
-      //{
-
-      //   m_spobjectUserFs.release();
-
-      //}
-      //catch (...)
-      //{
-
-
-      //}
-
-      //m_puserfs = nullptr;
-
-      //__release(m_pexperience);
-
-      //try
-      //{
-
-      //   ::apex::application::term_application();
-
-      //}
-      //catch (...)
-      //{
-
-      //}
-
       release_exclusive();
-
-      //::apex::::message::application signal(::apex::::message::application_term_instance);
-
-      //try
-      //{
-
-      //   route_message(&signal);
-
-      //}
-      //catch (...)
-      //{
-
-      //}
 
       try
       {
@@ -4107,17 +3767,10 @@ retry_license:
 
          }
 
-         //if(::is_set(get_context_system()))
-         //{
-
-         //   get_context_system()->app_remove(this);
-
-         //}
-
          try
          {
 
-            m_pinterprocessintercommunication.release();
+            m_pinterprocessintercommunication.release(OBJ_REF_DBG_THIS);
 
          }
          catch (...)
@@ -4180,110 +3833,8 @@ retry_license:
 
       }
 
-      //if (m_psimpledb.is_set())
-      //{
-
-      //   try
-      //   {
-
-      //      m_psimpledb->finalize();
-
-      //   }
-      //   catch (...)
-      //   {
-
-      //      m_result.add(error_failed);
-
-      //   }
-
-      //}
-
-      //try
-      //{
-
-      //   __release(m_pdocmanager);
-
-      //}
-      //catch (...)
-      //{
-
-      //}
-
-
-      //m_psimpledb.release();
-
 
    }
-
-
-
-
-
-
-//   bool application::impl_process_init()
-//   {
-//
-//      return true;
-//
-//   }
-
-//   bool application::impl_init1()
-//   {
-//
-//      //set_run();
-//
-//      return true;
-//
-//   }
-
-//   bool application::impl_init2()
-//   {
-//      return true;
-//   }
-
-//   bool application::impl_init3()
-//   {
-//      return true;
-//   }
-
-// thread termination
-//   void application::impl_process_term() // default will 'delete this'
-//   {
-//
-//      set_os_data(nullptr);
-//
-//      //i32 iRet = ::apex::application::term_instance();
-//
-//      //return 0;
-//
-//   }
-
-
-//   void application::impl_term3()
-//   {
-//
-//
-//   }
-//
-//
-//   void application::impl_term2()
-//   {
-//
-//
-//   }
-//
-//
-//   void application::impl_term1()
-//   {
-//
-//
-//   }
- /*  bool application::is_running()
-   {
-
-      return is_alive();
-
-   }*/
 
 
    service_base * application::allocate_new_service()
@@ -4292,8 +3843,6 @@ retry_license:
       return nullptr;
 
    }
-
-
 
 
    __pointer(::acme::exclusive) application::get_exclusive(string strId, LPSECURITY_ATTRIBUTES psa)
@@ -5180,9 +4729,7 @@ retry_license:
       localeschema.add_locale_variant(__id(std), strSchema);
       localeschema.add_locale_variant(__id(en), strSchema);
 
-
       localeschema.finalize();
-
 
    }
 
@@ -5260,17 +4807,8 @@ retry_license:
 
       localeschema.finalize();
 
-
    }
 
-
-//   void application::defer_add_thread_run_wait(sync_array & soa)
-//   {
-//
-////      soa.add(&axiom()->m_ev);
-//
-//   }
-//
 
    bool application::platform_open_by_file_extension(index iEdge, const char * pszPathName, ::create * pcreate)
    {
@@ -7188,84 +6726,6 @@ retry_license:
       return true;
 
    }
-
-
-//
-
-   //void application::term_application()
-   //{
-
-
-   //   try
-   //   {
-
-
-   //      //destroy_message_queue();
-
-   //   }
-   //   catch (...)
-   //   {
-
-   //      m_result.add(error_failed);
-
-   //   }
-
-   //   release_exclusive();
-
-   //   ::apex::::message::application signal(::apex::::message::application_term_instance);
-
-   //   try
-   //   {
-
-   //      route_message(&signal);
-
-   //   }
-   //   catch (...)
-   //   {
-
-   //   }
-
-   //   try
-   //   {
-
-   //      try
-   //      {
-
-   //         apex::application::term_application();
-
-   //      }
-   //      catch (...)
-   //      {
-
-   //      }
-
-   //   }
-   //   catch (...)
-   //   {
-
-   //   }
-
-   //   if (m_psimpledb.is_set())
-   //   {
-
-   //      try
-   //      {
-
-   //         m_psimpledb->finalize();
-
-   //      }
-   //      catch (...)
-   //      {
-
-   //         m_result.add(error_failed);
-
-   //      }
-
-   //   }
-
-   //   m_psimpledb.release();
-
-   //}
 
 
    void application::term()
@@ -10699,160 +10159,13 @@ namespace apex
 
 
 
-   //__pointer(::apex::application) application::create_application(const char * pszType,const char * pszId,bool bSynch,application_bias * pbias)
-   //{
-
-   //   __pointer(::apex::application) pbaseapp = instantiate_application(pszType,pszId,pbias);
-
-   //   if(pbaseapp == nullptr)
-   //      return nullptr;
-
-   //   ::apex::application * papp = (pbaseapp);
-
-   //   if(!papp->start_application(bSynch,pbias))
-   //   {
-   //      try
-   //      {
-   //         pbaseapp.release();
-   //      }
-   //      catch(...)
-   //      {
-   //      }
-   //      return nullptr;
-   //   }
-
-
-   //   return pbaseapp;
-
-   //}
-
-
-
-
-   //::user::document* application::place_hold(::user::interaction* pinteraction)
-   //{
-
-   //   return nullptr;
-
-   //}
-
-
-
-   //::estatus application::add_library(::apex::library * plibrary)
-   //{
-
-   //   plibrary->set_context_object(this);
-
-   //   System.add_library(plibrary);
-
-   //   return true;
-
-   //}
 
 
    void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const var& var, ::action * paction)
    {
 
-      //if (key.m_strDataKey == "ca2.savings")
-      //{
-
-      //   Session.savings().m_eresourceflagsShouldSave = (::apex::e_resource) var.i32();
-
-      //}
 
    }
-
-
-   //i32 application::GetVisibleTopLevelFrameCountExcept(__pointer(::user::interaction) pwndExcept)
-   //{
-
-   //   //::user::interaction_pointer_array wnda = *m_puiptraFrame;
-
-   //   //i32 iCount = 0;
-   //   //for (i32 i = 0; i < wnda.get_size(); i++)
-   //   //{
-   //   //   __pointer(::user::interaction) pwnd = wnda.element_at(i);
-   //   //   __pointer(::user::frame) pframewindow = pwnd;
-   //   //   bool bDefaultNotifyIcon = (pframewindow.is_set() && pframewindow->m_bDefaultNotifyIcon);
-   //   //   if (pwnd != nullptr &&
-   //   //      pwnd != pwndExcept &&
-   //   //      pwnd->is_window() &&
-   //   //      (pwnd->is_window_visible() || bDefaultNotifyIcon) &&
-   //   //      pwnd->get_window_type() == ::user::interaction::type_frame &&
-   //   //      !(pwnd->GetStyle() & WS_CHILD))
-   //   //   {
-   //   //      iCount++;
-   //   //   }
-   //   //}
-
-   //   int iCount = 0;
-
-
-   //
-   //   return iCount;
-
-   //}
-
-
-   //i32 application::GetVisibleFrameCount()
-   //{
-
-   //   return 0;
-
-   //   //::user::interaction_pointer_array wnda = *m_puiptraFrame;
-
-   //   //i32 iCount = 0;
-   //   //for (i32 i = 0; i < wnda.get_size(); i++)
-   //   //{
-   //   //   __pointer(::user::interaction) pwnd = wnda.element_at(i);
-   //   //   if (pwnd != nullptr
-   //   //      && pwnd->is_window()
-   //   //      && pwnd->is_window_visible())
-   //   //   {
-   //   //      iCount++;
-   //   //   }
-   //   //}
-   //   //return iCount;
-   //}
-
-
-   //void application::on_create_keyboard()
-   //{
-
-   //   string str;
-
-   //   // keyboard on_layout
-   //   //if(data_get("keyboard_layout",str) && str.has_char())
-   //   {
-   //      // Session.set_keyboard_layout(str,::source_database);
-   //   }
-   //   //else
-   //   {
-   //      set_keyboard_layout(nullptr, ::source_database);
-   //   }
-
-   //}
-
-
-   //::type application::user_default_controltype_to_typeinfo(enum user::e_control_type econtroltype)
-   //{
-
-   //   return Sess(this).userex()->controltype_to_typeinfo(econtroltype);
-
-   //}
-
-
-   //bool application::platform_open_by_file_extension(int iEdge, const char * pszPathName, application_bias * papplicationbias)
-   //{
-
-   //   return System.get_platform(iEdge)->open_by_file_extension(pszPathName, papplicationbias);
-   //}
-
-   //bool application::platform_open_by_file_extension(int iEdge, ::create * pcc)
-   //{
-
-   //   return System.get_platform(iEdge)->open_by_file_extension(pcc);
-   //}
 
 
    __pointer(::apex::application) application::create_platform(::apex::session* psession)

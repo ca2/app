@@ -6,7 +6,7 @@ namespace fs
 
 
    class CLASS_DECL_APEX set :
-      public ::fs::data
+      virtual public ::fs::data
    {
    public:
 
@@ -38,6 +38,9 @@ namespace fs
       virtual file_result get_file(const ::file::path & path, UINT nOpenFlags);
 
       virtual bool is_zero_latency(const ::file::path & psz);
+
+      virtual void finalize() override;
+
 
    };
 

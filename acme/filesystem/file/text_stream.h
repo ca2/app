@@ -51,7 +51,7 @@ public:
    ::file_pointer    m_p;
 
    text_stream() {}
-   text_stream(const ::file_pointer & p) : m_p(p) { }
+   text_stream(::file::file * pfile) : m_p(pfile) { }
    text_stream(const text_stream & base) :
       m_p(base.m_p)
    {
@@ -63,6 +63,8 @@ public:
 
    }
    virtual ~text_stream();
+
+   virtual void finalize() override;
 
    virtual void to_string(const string_exchange & str) const override;
 

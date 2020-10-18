@@ -29,6 +29,9 @@ namespace user
       };
 
 
+      ::draw2d::font_pointer        m_pfont;
+
+
       copydesk();
       virtual ~copydesk();
 

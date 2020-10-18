@@ -33,6 +33,8 @@ namespace user
 
       }
 
+      m_pfont = ::draw2d::point_font(FONT_SANS, 14.0);
+
       return true;
 
    }
@@ -395,7 +397,7 @@ namespace user
                   if (is_status_ok())
                   {
 
-                     auto pfont = Session.m_pfontCopyDesk;
+                     auto pfont = m_pfont;
 
                      pimage->g()->set(pfont);
 

@@ -34,6 +34,34 @@ namespace fs
    }
 
 
+   void set::finalize()
+   {
+
+      for (auto& pdata : m_spafsdata)
+      {
+         pdata->finalize();
+
+
+      }
+
+      for (auto& pdata : m_fsdatamap.values())
+      {
+
+         pdata->finalize();
+
+      }
+
+      m_spafsdata.remove_all();
+
+      m_fsdatamap.remove_all();
+      
+      
+      ::fs::data::finalize();
+
+
+   }
+
+
    ::file::listing & set::root_ones(::file::listing & listing)
    {
 

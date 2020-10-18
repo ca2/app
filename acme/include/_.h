@@ -3263,22 +3263,14 @@ namespace zip
 #include "acme/platform/exclusive.h"
 
 
-//#include "acme/platform/application_menu.h"
-//#include "acme/platform/application_array.h"
-//#include "acme/platform/application_container.h"
-
-
 #include "acme/os/process.h"
 
-//#include "acme/platform/interprocess_intercommunication.h"
 
 #include "acme/platform/hyperlink.h"
 
-//#include "acme/platform/context.h"
-
-//#include "acme/geoip/geoip.h"
 
 class ftpfs;
+
 
 namespace fs
 {

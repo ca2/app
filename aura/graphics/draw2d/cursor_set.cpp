@@ -5,8 +5,7 @@ namespace draw2d
 {
 
 
-   cursor_set::cursor_set(::object* pobject) :
-      ::object(pobject)
+   cursor_set::cursor_set()
    {
 
    }
@@ -15,6 +14,23 @@ namespace draw2d
    cursor_set::~cursor_set()
    {
 
+
+   }
+
+
+   void cursor_set::finalize()
+   {
+
+      for (auto& pcursor : m_cursormap.values())
+      {
+
+         pcursor->finalize();
+
+      }
+
+      m_cursormap.remove_all();
+
+      ::matter::finalize();
 
    }
 

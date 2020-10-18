@@ -98,7 +98,7 @@ template < typename RECEIVER >
 ::message::route & channel::add_route(::message::id id, RECEIVER * preceiverDerived)
 {
 
-  sync_lock sl(defer_mutex_channel());
+  sync_lock sl(channel_mutex());
 
   ::object* pobjectReceiver = dynamic_cast <::object*> (preceiverDerived);
 

@@ -275,6 +275,13 @@ void thread::term_thread()
 
    }
 
+   if (get_context_object())
+   {
+
+      get_context_object()->release_reference(this);
+
+   }
+
    if (get_context_application())
    {
 
@@ -1556,7 +1563,9 @@ void thread::thread_remove(::thread * pthread)
 void thread::finalize()
 {
 
-   ::object::finalize();
+   call(DESTROY_METHOD);
+
+   ::channel::finalize();
 
    string strType = type_name();
 
@@ -1853,30 +1862,6 @@ void thread::dispatch_thread_message(::message::message * pbase)
 {
 
    route_message(pbase);
-
-   //LRESULT lresult;
-
-   //sync_lock sl(mutex());
-   //int i = 0;
-   //Signal * pSignal;
-   //while((pSignal = m_signala.GetSignal(pbase->m_id,0,0, i)) != nullptr)
-   //{
-   //   class signal * psignal = pSignal->m_psignal;
-   //   message::e_prototype eprototype = pSignal->m_eprototype;
-   //   if(eprototype == message::PrototypeNone)
-   //   {
-   //      //::message::base apex(get_object());
-   //      pbase->m_psignal = psignal;
-   //      //lresult = 0;
-   //      //apex.set(pmsg->message, pmsg->wParam, pmsg->lParam, lresult);
-   //      psignal->emit(pbase);
-   //      if(pbase->m_bRet)
-   //         return;
-   //   }
-   //   break;
-   //   pbase->m_bRet = true;
-   //}
-
 
 }
 
@@ -2488,12 +2473,6 @@ void thread::__os_initialize()
 
    __node_init_thread(this);
 
-   //if (::is_set(get_context_application()))
-   //{
-
-   //   get_context_application()->add_reference(this);
-
-   //}
 
 }
 
@@ -2501,37 +2480,7 @@ void thread::__os_initialize()
 void thread::__os_finalize()
 {
 
-
-   //m_pappContext.release();
-
-   //m_psessionContext.release();
-
-   //m_psystemContext.release();
-
-   //if (::is_set(get_context_application()))
-   //{
-
-   //   get_context_application()->release_reference(this);
-
-   //}
-
-   //if (::is_set(get_context_session()))
-   //{
-
-   //   get_context_session()->release_reference(this);
-
-   //}
-
-   //if (::is_set(get_context_system()))
-   //{
-
-   //   get_context_system()->release_reference(this);
-
-   //}
-
    __node_term_thread(this);
-
-   //set_os_data(nullptr);
 
 }
 
@@ -2713,15 +2662,6 @@ void thread::__set_thread_off()
    }
 
    ::thread * pthread = this;
-
-   if (get_context_object())
-   {
-
-      get_context_object()->release_reference(this);
-
-   }
-
-   //release(OBJ_REF_DBG_THIS);
 
    ::multithreading::thread_unregister(m_ithread1, pthread);
 

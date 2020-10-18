@@ -1699,60 +1699,6 @@ bool app_core::has_apex_application_factory() const
 }
 
 
-//::estatus app_core::system_pre_run()
-//{
-//
-//   if (m_pmainstruct && m_pmainstruct->m_bConsole)
-//   {
-//
-//      return get_context_system()->inline_init();
-//
-//   }
-//
-//   return ::success;
-//
-//}
-//
-
-
-//#if !defined(LINUX)
-//
-//
-//::estatus app_core::system_start()
-//{
-//
-//   ::estatus estatus = system_pre_run();
-//
-//   if (!estatus)
-//   {
-//
-//      return estatus;
-//
-//   }
-//
-//   get_context_system()->add_ref(OBJ_REF_DBG_THIS);
-//
-//   if (m_pmainstruct && m_pmainstruct->m_bConsole)
-//   {
-//
-//      get_context_system()->get_context_session()->set_context_app(get_context_system()->m_papplicationStartup);
-//
-//      get_context_system()->set_context_app(get_context_system()->m_papplicationStartup);
-//
-//      get_context_system()->get_context_session()->set_context(get_context_system()->m_papplicationStartup);
-//
-//      get_context_system()->set_context(get_context_system()->m_papplicationStartup);
-//
-//   }
-//
-//   return estatus;
-//
-//}
-//
-//
-//#endif
-
-
 
 #ifdef __APPLE__
 
@@ -2078,18 +2024,6 @@ __result(::apex::application) app_core::get_new_application(::object* pobjectCon
    }
 
    papp->m_strAppId = strAppId;
-
-   //papp->set_context_object(get_context_system()->get_context_session());
-
-   //papp->set_context_system(get_context_system());
-
-   //papp->set_context_session(get_context_system()->get_context_session());
-
-   //papp->set_context_app(papp);
-
-   //papp->set_context_thread(get_context_system()->get_context_session());
-
-   //papp->set_context(papp);
 
    return papp;
 

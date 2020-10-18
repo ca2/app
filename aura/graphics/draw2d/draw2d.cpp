@@ -1,37 +1,6 @@
 #include "framework.h"
 
 
-
-/*
-namespace draw2d
-{
-
-
-   draw2d::draw2d(::image * pimage)
-   {
-      m_pdc = pgraphics;
-   }
-
-
-   draw2d::~draw2d()
-   {
-   }
-
-
-   void draw2d::Polygon(const point_array & pointa)
-   {
-      m_pdc->Polygon(pointa.get_data(), (i32) pointa.get_size());
-   }
-
-
-} // draw2d
-
-
-#include "framework.h"
-
-*/
-
-
 namespace draw2d
 {
 
@@ -44,7 +13,7 @@ namespace draw2d
 
       defer_create_mutex();
 
-      m_papi = __new(::draw2d::api);
+      create_factory < cursor_set >();
 
       m_bSettingCursorMatter = false;
 
@@ -58,10 +27,28 @@ namespace draw2d
    }
 
 
-   void draw2d::construct(::layered * pobjectContext)
+   ::estatus draw2d::initialize(::layered * pobjectContext)
    {
 
-      ::apex::department::initialize(pobjectContext);
+      auto estatus = ::apex::department::initialize(pobjectContext);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = __construct_new(m_papi);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 
@@ -133,17 +120,6 @@ namespace draw2d
       return true;
 
    }
-
-   //u32 c_cdecl draw2d::thread_proc_parallel_initialize(void * pparamThis)
-   //{
-
-   //   draw2d * pvisual = (draw2d *)pparamThis;
-
-   //   pvisual->set_cursor_set_from_matter("cursor/antialiased-classic");
-
-   //   return 0;
-
-   //}
 
    double draw2d::font_similarity(const char* pszSystem, const char* pszUser)
    {
@@ -220,10 +196,12 @@ namespace draw2d
       try
       {
 
-         if (m_papi.is_set())
+         if (m_papi)
          {
 
             m_papi->close();
+
+            m_papi->finalize();
 
          }
 
@@ -233,12 +211,10 @@ namespace draw2d
 
       }
 
-      m_papi.release();
-
       try
       {
 
-         if (m_pfontdepartment.is_set())
+         if (m_pfontdepartment)
          {
 
             m_pfontdepartment->finalize();
@@ -251,6 +227,27 @@ namespace draw2d
 
 
       }
+
+      m_alpha_spread__24CC_filterMap.remove_all();
+
+      m_alpha_spread__32CC_filterMap.remove_all();
+
+      if (m_pcursorset)
+      {
+
+         m_pcursorset->finalize();
+
+      }
+
+   }
+
+
+   void draw2d::finalize()
+   {
+
+      ::apex::department::finalize();
+
+      m_papi.release();
 
       m_pfontdepartment.release();
 
@@ -267,19 +264,12 @@ namespace draw2d
       if (m_pfontdepartment == nullptr)
       {
 
-         m_pfontdepartment = __new(class font_department);
+         auto estatus = __construct_new(m_pfontdepartment);
 
-         if (m_pfontdepartment)
+         if (estatus)
          {
 
-            auto estatus = m_pfontdepartment->initialize(this);
-
-            if (estatus)
-            {
-
-               m_pfontdepartment->defer_create_font_enumeration();
-
-            }
+            m_pfontdepartment->defer_create_font_enumeration();
 
          }
 
@@ -297,10 +287,19 @@ namespace draw2d
    __pointer(cursor) draw2d::get_cursor(e_cursor ecursor)
    {
 
+      sync_lock sl(mutex());
+
       if (m_pcursorset.is_null())
       {
 
-         m_pcursorset = __new(cursor_set(this));
+         auto estatus =  __construct_new(m_pcursorset);
+
+         if (!estatus)
+         {
+
+            return nullptr;
+
+         }
 
          m_pcursorset->set_cursor_set_system_default();
 
@@ -328,7 +327,7 @@ namespace draw2d
 
       sl.unlock();
 
-      auto pcursorset = __new(cursor_set(this));
+      auto pcursorset = __create_new < cursor_set > ();
 
       if (!pcursorset->set_cursor_set_from_matter(pathDir))
       {

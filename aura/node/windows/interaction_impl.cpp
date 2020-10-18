@@ -914,15 +914,6 @@ namespace windows
 
       UNREFERENCED_PARAMETER(pmessage);
 
-      //if (m_himc)
-      //{
-
-      //   HWND hwnd = get_handle();
-
-      //   ImmReleaseContext(hwnd, m_himc);
-
-      //}
-
    }
 
 
@@ -5977,26 +5968,6 @@ namespace windows
 
    }
 
-
-   //::estatus interaction_impl::update_graphics_resources()
-   //{
-
-   //   //__throw(interface_only_exception());
-
-   //   single_lock sl(mutex());
-
-   //   if (m_pgraphics.is_null())
-   //   {
-
-   //      __raw_compose(m_pgraphics, __new(::graphics::double_buffer));
-
-   //      m_pgraphics->initialize_graphics_graphics(this);
-
-   //   }
-
-   //   return ::success;
-
-   //}
 
    void interaction_impl::non_top_most_upper_window_rects(::rect_array& recta)
    {

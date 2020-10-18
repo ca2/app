@@ -39,6 +39,9 @@ public:
 
    action_pointer action(const ::id& id, ::matter* pmatter = nullptr);
 
+
+   virtual void finalize() override;
+
    //virtual void source_add(::matter* pmatter);
    //virtual void source_remove(::matter* pmatter);
 

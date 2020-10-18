@@ -1296,8 +1296,6 @@ namespace user
 
       sync_lock sl(mutex());
 
-      m_threada.remove_all();
-
       if (m_pcompositea)
       {
 
@@ -1430,8 +1428,6 @@ namespace user
       UNREFERENCED_PARAMETER(pmessage);
 
       user_interaction_on_destroy();
-
-      //_OnDestroy();
 
       pmessage->previous();
 
@@ -1914,28 +1910,7 @@ namespace user
 
       }
 
-      //if (get_context_application())
-      //{
-
-      //   if (Application.m_puiMain1 == this)
-      //   {
-
-      //      Application.m_puiMain1 = nullptr;
-
-      //   }
-
-      //}
-
       m_bUserPrimitiveOk = false;
-
-      //if (m_pmenuitemThis.is_set() && m_pmenuitemThis->m_puserinteraction == this)
-      //{
-
-      //   m_pmenuitemThis->m_puserinteraction.release();
-
-      //}
-
-      //m_pmenuitemThis.release();
 
       m_ewindowflag -= window_flag_is_window;
 
@@ -2004,10 +1979,6 @@ namespace user
          }
 
       }
-
-      //children_post_quit_and_wait(one_minute());
-
-      //release_parents();
 
    }
 
@@ -5854,6 +5825,8 @@ namespace user
          }
 
       }
+
+      m_pdescriptor.release();
 
       string strType;
 

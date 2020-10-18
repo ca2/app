@@ -132,6 +132,16 @@ action_pointer source::action(const ::id& id, ::matter* pmatter)
 }
 
 
+void source::finalize()
+{
+
+   context_object::finalize();
+
+   m_pmap.release();
+
+}
+
+
 void source::remove(::matter* pmatter)
 {
 

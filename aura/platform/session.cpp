@@ -127,12 +127,6 @@ extern "C"
 void defer_term_ui();
 
 
-//bool is_verbose();
-
-//extern string_map < __pointer(::apex::library) >* g_pmapLibrary;
-//extern ::mutex * &::get_context_system()->m_mutexLibrary;
-//extern string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
-
 int_bool point_is_window_origin(POINT ptHitTest, oswindow oswindowExclude, int iMargin);
 
 #ifdef _UWP
@@ -505,14 +499,6 @@ the file README-colorramp for more information. */
 
       }
 
-      m_bIfs                           = true;
-
-      m_bProgrammerMode                = false;
-
-      m_bSystemSynchronizedCursor      = true;
-
-      m_bSystemSynchronizedScreen      = true;
-
       m_pimplPendingFocus2             = nullptr;
 
       m_ecursorDefault                 = cursor_arrow;
@@ -532,19 +518,6 @@ the file README-colorramp for more information. */
       m_pmapKeyPressed                 = nullptr;
 
       m_puiMouseMoveCapture            = nullptr;
-
-      m_iMainMonitor                   = -1;
-
-      m_bZipIsDir2                     = true;
-
-      m_iEdge                          = 0;
-
-      m_bShowPlatform                  = false;
-
-      m_pappCurrent                    = nullptr;
-
-
-      m_iMainMonitor = -1;
 
       m_puiCapture = nullptr;
 
@@ -676,35 +649,6 @@ the file README-colorramp for more information. */
    //}
 
 
-   //void session::term_thread()
-   //{
-
-   //   try
-   //   {
-
-   //      term_session();
-
-   //   }
-   //   catch (...)
-   //   {
-
-   //   }
-
-   //   try
-   //   {
-
-   //      process_term();
-
-   //   }
-   //   catch(...)
-   //   {
-
-   //   }
-
-   //   ::thread::term_thread();
-
-   //}
-
 
    ::estatus session::process_init()
    {
@@ -753,16 +697,7 @@ the file README-colorramp for more information. */
    void session::term2()
    {
 
-      // __release(m_ptheme);
-
-      //m_mapTheme.remove_all();
-
-#ifdef WINDOWS_DESKTOP
-
-      __release(m_puiSession);
-
-#endif
-
+      ::apex::session::term2();
 
    }
 
@@ -770,6 +705,7 @@ the file README-colorramp for more information. */
    void session::term1()
    {
 
+      ::apex::session::term1();
 
    }
 
@@ -777,7 +713,7 @@ the file README-colorramp for more information. */
    void session::process_term()
    {
 
-      System.session_remove(m_iEdge);
+      ::apex::session::process_term();
 
    }
 
@@ -1639,13 +1575,6 @@ the file README-colorramp for more information. */
    }
 
 
-   //::draw2d::cursor * session::get_default_cursor()
-   //{
-
-   //   return nullptr;
-
-   //}
-
 
    void session::get_cursor_pos(LPPOINT ppoint)
    {
@@ -1686,21 +1615,11 @@ the file README-colorramp for more information. */
    bool session::ReleaseCapture()
    {
 
-      // oswindow oswindowCapture = ::get_capture();
-
-      // if (oswindowCapture == nullptr)
-      // {
-
-      //    return false;
-
-      // }
-
       ::release_capture();
 
       m_puiCapture = nullptr;
 
       return true;
-
 
    }
 
@@ -1886,6 +1805,20 @@ the file README-colorramp for more information. */
 
 
 #endif
+
+   void session::set_finish()
+   {
+
+      if (m_puiSession)
+      {
+
+         __user_interaction(m_puiSession)->DestroyWindow();
+
+      }
+
+      ::aqua::session::set_finish();
+
+   }
 
 
    void session::enum_display_monitors()
@@ -3815,22 +3748,6 @@ ret:
    }
 
 
-   ::user::interaction * session::get_session_window()
-   {
-
-#ifdef WINDOWS_DESKTOP
-
-      return m_puiSession;
-
-#else
-
-      return nullptr;
-
-#endif
-
-   }
-
-
    ::estatus session::init1()
    {
 
@@ -4074,17 +3991,17 @@ ret:
 
       INFO("aura::session::init2 .1");
 
-      if (System.m_bUser)
-      {
+      //if (System.m_bUser)
+      //{
 
-         if(System.m_bDraw2d)
-         {
+      //   if(System.m_bDraw2d)
+      //   {
 
-            m_pfontCopyDesk = ::draw2d::point_font(FONT_SANS, 14.0);
+      //      
 
-         }
+      //   }
 
-      }
+      //}
 
       if (!InitializeLocalDataCentral())
       {
@@ -4158,6 +4075,8 @@ ret:
    void session::term()
    {
 
+      ::apex::session::term();
+
       if (m_puser)
       {
 
@@ -4176,30 +4095,6 @@ ret:
 
       }
 
-      //if (m_puserex)
-      //{
-
-      //   try
-      //   {
-
-      //      if (m_puserex.is_set())
-      //      {
-
-      //         m_puserex->term();
-
-      //      }
-
-      //   }
-      //   catch (...)
-      //   {
-
-      //   }
-
-      //   __release(m_puserex);
-
-      //}
-
-      //filemanager_finalize();
 
       try
       {
@@ -4218,34 +4113,6 @@ ret:
       {
 
       }
-
-      try
-      {
-
-         ::acme::del(m_pmapKeyPressed);
-
-      }
-      catch (...)
-      {
-
-         m_result.add(error_failed);
-
-      }
-
-      //try
-      //{
-
-      //   __release(m_paccount);
-
-      //}
-      //catch (...)
-      //{
-
-      //   m_result.add(error_failed);
-
-      //}
-
-//      __release(m_pkeyboard);
 
       defer_term_ui();
 
@@ -4756,7 +4623,7 @@ namespace aura
    void session::finalize()
    {
 
-      ::apex::context_thread::finalize();
+      ::apex::session::finalize();
 
    }
 

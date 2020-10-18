@@ -12,7 +12,6 @@ namespace fs
 
 
    class CLASS_DECL_APEX data :
-      virtual public ::object,
       virtual public ::data::data,
       virtual public ::file::listing_provider
    {

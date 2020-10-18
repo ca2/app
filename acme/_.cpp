@@ -166,7 +166,7 @@ void matter::check_pending_releases()
    if (m_pobjrefdbg->m_itema.has_element())
    {
 
-      ::output_debug_string("\nThere are pending releases:\n");
+      ::output_debug_string("\nThere are pending releases (m_countReference=" + __str(m_countReference) + "):\n");
 
       try
       {

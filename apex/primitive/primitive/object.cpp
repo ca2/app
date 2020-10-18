@@ -3,36 +3,22 @@
 #include "apex/update.h"
 
 
-
-//extern ::mutex * g_pmutexChildren;
-
 #ifdef DEBUG
 
+
 CLASS_DECL_APEX void object_on_add_composite(const matter* pbase);
+
 
 #endif
 
 
-object::object(::layered * pobjectContext)
+object::object(::layered * pobjectContext) :
+   m_pmeta(nullptr)
 {
-
-   m_pmeta = nullptr;
 
    set_layer(0, this);
 
    initialize(pobjectContext);
-
-   //m_pObjectThis = nullptr;
-
-   //set_context_object(__object(pobjectContext));
-
-   //__refer(m_pobjectContext, pobject);
-
-   //__refer(m_pappContext, ::get_context_application(m_pobjectContext));
-
-   //__refer(m_psessionContext, ::get_context_session(m_pobjectContext));
-
-   //__refer(m_psystemContext, ::get_context_system(m_pobjectContext));
 
 }
 
@@ -102,14 +88,6 @@ i64 object::release(OBJ_REF_DBG_PARAMS_DEF)
    return i;
 
 }
-
-
-//sync * object::get_mutex()
-//{
-//
-//   return mutex();
-//
-//}
 
 
 void object::create_object_meta()
@@ -273,11 +251,6 @@ void object::dev_log(string strMessage) const
 #endif //__DEBUG
 
 }
-
-
-
-
-
 
 
 array < ::method >* object::methods(const ::id & idMethod)
@@ -457,26 +430,8 @@ void object::set_topic_text(const ::string & strTopicText)
 }
 
 
-//void object::set_context_object(::layered * pobjectContext)
-//{
-//
-//   ::context_object::set_context_object(pobjectContext);
-//
-//
-//}
-
-
-
-
 ::estatus object::initialize(::layered * pobjectContext)
 {
-
-   if (get_context_object())
-   {
-
-      return ::success;
-
-   }
 
    auto estatus = ::success;
 
@@ -870,6 +825,8 @@ void object::on_finalize()
 void object::finalize()
 {
 
+   source::finalize();
+
 #if OBJ_TYP_CTR
 
    if (m_eobject.is(e_object_obj_typ_ctr))
@@ -883,15 +840,15 @@ void object::finalize()
 
 #endif
 
-   m_pcontextContext.release();
+   m_pcontextContext.release(OBJ_REF_DBG_THIS);
 
-   m_pthreadContext.release();
+   m_pthreadContext.release(OBJ_REF_DBG_THIS);
 
-   m_pappContext.release();
+   m_pappContext.release(OBJ_REF_DBG_THIS);
 
-   set_context_session(nullptr);
+   m_psessionContext.release(OBJ_REF_DBG_THIS);
 
-   m_psystemContext.release();
+   m_psystemContext.release(OBJ_REF_DBG_THIS);
 
    on_finalize();
 
@@ -913,6 +870,7 @@ void object::finalize()
 
 }
 
+
 // please refer to object::set_finish verses/documentation
 void object::delete_this()
 {
@@ -922,14 +880,6 @@ void object::delete_this()
    context_object::delete_this();
 
 }
-
-
-//sync * object::get_mutex() const
-//{
-//
-//   return mutex();
-//
-//}
 
 
 string object::lstr(const ::id & id, string strDefault)
@@ -956,7 +906,7 @@ void object::copy_from(const object & o)
    if (!o.m_pset)
    {
 
-      m_pset.release();
+      m_pset.release(OBJ_REF_DBG_THIS);
 
    }
    else
@@ -1011,7 +961,7 @@ void object::release_references()
 
       }
 
-      m_pcompositea.release();
+      m_pcompositea.release(OBJ_REF_DBG_THIS);
 
    }
 
@@ -1034,7 +984,7 @@ void object::release_references()
 
       }
 
-      m_preferencea.release();
+      m_preferencea.release(OBJ_REF_DBG_THIS);
 
    }
 
@@ -1829,7 +1779,7 @@ string object::get_text(const var& var, const ::id& id)
 void object::set_context(::context* pcontext)
 {
 
-   m_pcontextContext = pcontext;
+   m_pcontextContext.reset(pcontext, this, "object::set_context");;
 
 }
 
@@ -1837,7 +1787,7 @@ void object::set_context(::context* pcontext)
 void object::set_context_thread(::thread* pthread)
 {
 
-   m_pthreadContext = pthread;
+   m_pthreadContext.reset(pthread, this, "object::set_context_thread");
 
 }
 
@@ -1845,7 +1795,7 @@ void object::set_context_thread(::thread* pthread)
 void object::set_context_app(::apex::application* pappContext)
 {
 
-   m_pappContext = pappContext;
+   m_pappContext.reset(pappContext, this, "object::set_context_app");
 
 }
 
@@ -1853,7 +1803,7 @@ void object::set_context_app(::apex::application* pappContext)
 void object::set_context_session(::apex::session* psessionContext)
 {
 
-   m_psessionContext = psessionContext;
+   m_psessionContext.reset(psessionContext, this, "object::set_context_session");
 
 }
 
@@ -1861,51 +1811,12 @@ void object::set_context_session(::apex::session* psessionContext)
 void object::set_context_system(::apex::system* psystemContext)
 {
 
-   m_psystemContext = psystemContext;
+   m_psystemContext.reset(psystemContext, this, "object::set_context_system");
 
 }
-
-
-//void object::set_context_user(::object * puserContext)
-//{
-//
-//   m_puserContext = puserContext;
-//
-//}
 
 
 #endif
 
 
-// CLASS_DECL_APEX const char* topic_text(::matter* pgeneric)
-// {
-
-//    if (::is_null(pgeneric))
-//    {
-
-//       return nullptr;
-
-//    }
-
-//    auto playered = pgeneric->m_pobjectContext;
-
-//    if (!playered)
-//    {
-
-//       return nullptr;
-
-//    }
-
-//    auto pobject = __object(playered);
-
-//    if (::is_null(pobject))
-//    {
-
-//       return nullptr;
-
-//    }
-
-//    return pobject->topic_text();
-
-// }
 

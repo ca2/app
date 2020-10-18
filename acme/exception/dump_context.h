@@ -6,9 +6,12 @@ class CLASS_DECL_ACME dump_context :
 {
 public:
 
-   file_pointer   m_p;
+   
+   dump_context(::file::file * pfile = nullptr);
+   virtual ~dump_context();
 
-   dump_context(file_pointer pfile = nullptr);
+
+   virtual void finalize() override;
 
 
    i32 GetDepth() const;      // 0 => this matter, 1 => children objects

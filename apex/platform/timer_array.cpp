@@ -52,11 +52,11 @@ namespace apex
 
       auto ptimer = __new(timer(this, nIDEvent, pfnTimer, pvoidData, mutex()));
 
-      ptimer->set_context_thread(get_context_thread());
+      //ptimer->set_context_thread(get_context_thread());
 
       ptimer->m_pcallback = this;
 
-      m_map.set_at(nIDEvent, ptimer);
+      //m_map.set_at(nIDEvent, ptimer);
 
       //sl.unlock();
 
@@ -65,7 +65,7 @@ namespace apex
       try
       {
 
-         if(!ptimer->start(nEllapse,bPeriodic))
+         if(!ptimer->start(millis(nEllapse),bPeriodic))
          {
 
             bOk = false;

@@ -3132,8 +3132,6 @@ class mq_base;
 CLASS_DECL_ACME string get_exe_path();
 
 
-//#include "acme/platform/savings.h"
-
 //#include "acme/net/_.h"
 
 //#include "acme/platform/launcher.h"

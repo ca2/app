@@ -7718,12 +7718,15 @@ namespace user
    }
 
 
-// timer Functions
    bool interaction::SetTimer(uptr nIDEvent, UINT nElapse, PFN_TIMER pfnTimer)
    {
 
       if (m_pimpl == nullptr)
+      {
+
          return false;
+
+      }
 
       return m_pimpl->SetTimer(nIDEvent, nElapse, pfnTimer);
 

@@ -1,7 +1,6 @@
 #pragma once
 
 
-
 class CLASS_DECL_APEX nano_timer
 {
 public:
@@ -127,11 +126,12 @@ public:
    bool                                m_bPeriodic;
    void *                              m_pvoidData;
    bool                                m_bRunning;
-   DWORD                               m_dwMillis;
+   ::duration                          m_duration;
    ::user::interaction *               m_puserinteraction;
    bool                                m_bHandling;
 
    bool                                m_bRet; // for event handlers ( _001OnTimer() )
+   string                              m_strDebugNote;
 
 //
 //#ifdef _UWP
@@ -165,26 +165,27 @@ public:
    virtual ~timer();
 
 
+   virtual i64 add_ref(OBJ_REF_DBG_PARAMS);
+   virtual i64 dec_ref(OBJ_REF_DBG_PARAMS);
+   virtual i64 release(OBJ_REF_DBG_PARAMS);
+
+
    void impl_init();
    void impl_term();
 
-   //#ifdef LINUX
+
    virtual ::estatus run() override;
 
-   //#endif
 
+   bool start(const ::duration & duration, bool bPeriodic);
 
-   bool start(int millis, bool bPeriodic);
-
-   //void stop();
-
-   void call_on_timer();
+   //void call_on_timer();
 
    virtual bool on_timer();
 
-   bool impl_start();
-   bool impl_restart();
-   void impl_stop();
+   //bool impl_start();
+   //bool impl_restart();
+   //void impl_stop();
    virtual void term_thread() override;
 
    inline bool is_timer_ok() const { return is_ok(); }
@@ -193,10 +194,7 @@ public:
    virtual bool thread_active() const override;
 
 
-   //virtual void __destroy() override;
-
-
-   // virtual void finalize() override;
+   const char * debug_note() const;
 
 
 };

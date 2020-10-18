@@ -96,8 +96,6 @@ namespace apex
       //__composite(::account::department)                    m_paccount;
       //__pointer(::account::licensing)                     m_plicensing;
       //__composite(::layered)                      m_puserinteractionSystem;
-      // apex commented
-      //__composite(::apex::savings)                          m_psavings;
 
       var                                                   m_varTopicFile;
       var                                                   m_varCurrentViewFile;
@@ -281,34 +279,13 @@ namespace apex
 
       virtual bool open_by_file_extension(::create * pcc);
 
-      //__pointer(::apex::application) get_new_application(::layered * pobjectContext, const char * pszAppId);
-
-      //inline ::apex::savings &                  savings()      { return *m_psavings; }
-
-      //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style_pointer & pstyle, ::user::menu_item * pitem);
-
       virtual COLORREF get_default_color(u64 ui);
 
-      //virtual ::size get_window_minimum_size();
-
       virtual void frame_pre_translate_message(::message::message * pmessage);
-
-      //virtual bool defer_create_session_frame_window();
-
-      //inline ::account::department * account() { return m_paccount; }
-
-      // apex commented
-      //::user::copydesk & copydesk();
-
-      //virtual ::account::user * get_user(::file::path pathUrl = nullptr, bool bFetch = false, bool bInteractive = true);
-
-      //virtual void on_remove_user(::account::user * puser);
 
       virtual bool is_licensed(const char * pszId, bool bInteractive = true);
 
       virtual bool get_auth(const string & pszForm, string & strUsername, string & strPassword);
-
-      //virtual void interactive_credentials(::account::credentials * pcredentials);
 
       ::apex::application * application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate) override;
 
@@ -316,44 +293,6 @@ namespace apex
 
       virtual void set_key_pressed(::user::e_key ekey, bool bPressed);
 
-      // apex commented
-      //virtual ::user::primitive * get_keyboard_focus();
-      //virtual bool set_keyboard_focus(::user::primitive * pkeyboardfocus);
-
-      // apex commented
-      //virtual ::user::primitive * clear_focus();
-
-
-      // apex commented
-      //virtual ::user::primitive * get_active_ui() override;
-      //virtual ::user::primitive * get_focus_ui();
-
-      // apex commented
-      //virtual void on_finally_focus_set(::user::primitive * pelementalFocus);
-
-      // apex commented
-      //virtual oswindow get_capture();
-
-      // apex commented
-      //virtual bool set_cursor(::user::interaction * pinteraction, ::draw2d::cursor * pcursor);
-      //virtual bool set_cursor(::user::interaction * pinteraction, e_cursor ecursor);
-      //virtual bool set_default_cursor(::user::interaction * pinteraction, e_cursor ecursor);
-      //virtual ::draw2d::cursor * get_cursor();
-      //virtual ::draw2d::cursor * get_default_cursor();
-
-      // apex commented
-      //virtual bool on_ui_mouse_message(::message::mouse * pmouse);
-
-      // apex commented
-      //virtual ::user::primitive * GetActiveWindow();
-      //virtual ::user::primitive * GetFocus();
-
-      // apex commented
-      //virtual bool ReleaseCapture();
-      //virtual __pointer(::user::interaction) GetCapture();
-
-      //virtual void translate_os_key_message(::user::key * pkey);
-      //virtual bool on_create_frame_window();
 
       // apex commented
       virtual void get_cursor_pos(LPPOINT ppoint);

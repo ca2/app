@@ -194,13 +194,13 @@ namespace aura
 
       virtual ::estatus init2() override;
 
-      virtual ::estatus init_session() override;
+      //virtual ::estatus init_session() override;
 
       virtual ::estatus init() override;
 
       virtual void term() override;
 
-      virtual void term_session() override;
+      //virtual void term_session() override;
 
 
       inline class ::fs::data * fs() { return m_pfsdata; }
@@ -270,7 +270,7 @@ namespace aura
 
       //virtual bool is_session() const override;
 
-      virtual ::estatus init_thread() override;
+      //virtual ::estatus init_thread() override;
 
       //virtual ::estatus process_init();
 
@@ -287,7 +287,7 @@ namespace aura
 
       virtual void term1() override;
 
-      virtual void term_thread() override;
+      //virtual void term_thread() override;
 
       //virtual void term_session();
 

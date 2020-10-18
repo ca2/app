@@ -275,6 +275,27 @@ void thread::term_thread()
 
    }
 
+   if (get_context_application())
+   {
+
+      get_context_application()->release_reference(this);
+
+   }
+
+   if (get_context_session())
+   {
+
+      get_context_session()->release_reference(this);
+
+   }
+
+   if (get_context_system())
+   {
+
+      get_context_system()->release_reference(this);
+
+   }
+
 }
 
 
@@ -3207,7 +3228,7 @@ error:;
    }
 
    // first -- check for simple worker thread
-   ::estatus     estatus = ::success;
+   ::estatus estatus = ::success;
 
    // else check for thread with message loop
    ASSERT_VALID(this);
@@ -4230,9 +4251,9 @@ bool __thread_sleep(thread * pthread, tick tick)
 
    }
 
-   auto iTenths = tick.m_i / 100;
+   auto iTenths = tick.m_i / 10;
 
-   auto iMillis = tick.m_i % 100;
+   auto iMillis = tick.m_i % 10;
 
    try
    {
@@ -4263,10 +4284,10 @@ bool __thread_sleep(thread * pthread, tick tick)
 
       }
 
-      while(iTenths > 0)
-      {
+      //while(iTenths > 0)
+      //{
 
-         pthread->m_pevSleep->wait(100_ms);
+         pthread->m_pevSleep->wait(tick);
 
          if (!pthread->thread_get_run())
          {
@@ -4275,9 +4296,9 @@ bool __thread_sleep(thread * pthread, tick tick)
 
          }
 
-         iTenths--;
+         //iTenths--;
 
-      }
+      //}
 
    }
    catch (...)

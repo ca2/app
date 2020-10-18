@@ -136,8 +136,6 @@ namespace axis
 
       m_iMainMonitor                   = -1;
 
-      __compose_new(m_psavings);
-
       m_bZipIsDir2                     = true;
 
       m_iEdge                          = 0;
@@ -164,20 +162,9 @@ namespace axis
 
       m_puiMouseMoveCapture = nullptr;
 
-      estatus = __compose_new(m_psavings);
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
       return estatus;
 
    }
-
-
 
 
    ::estatus session::process_init()

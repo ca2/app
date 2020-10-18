@@ -61,11 +61,13 @@ namespace userex
       pcreate->previous();
 
       if (pcreate->m_bRet)
+      {
+
          return;
 
+      }
 
       m_ptopview = GetTypedParent < top_view >();
-
 
    }
 
@@ -105,7 +107,6 @@ namespace userex
    {
 
       ::user::show < ::user::plain_edit >::_001OnTimer(ptimer);
-
 
       if (ptimer->m_etimer == 5544)
       {

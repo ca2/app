@@ -537,7 +537,9 @@ sync_result event::wait (const duration & durationTimeout)
 
 #ifdef WINDOWS
 
-   result = sync_result((u32) ::WaitForSingleObjectEx(hsync(), durationTimeout.lock_duration(),FALSE));
+   auto osduration = durationTimeout.lock_duration();
+
+   result = sync_result((u32) ::WaitForSingleObjectEx(hsync(), osduration,FALSE));
 
 #elif defined(ANDROID)
 

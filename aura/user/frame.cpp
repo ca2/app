@@ -68,6 +68,15 @@ namespace user
    }
 
 
+   ::task_pool * frame::taskpool()
+   {
+
+      __defer_construct_new(m_ptaskpool);
+
+      return m_ptaskpool;
+
+   }
+
 
    style * frame::_get_style() const
    {

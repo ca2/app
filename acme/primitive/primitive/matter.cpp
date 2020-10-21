@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "acme/id.h"
+#include "acme/primitive/primitive/layered.h"
 
 
 #if OBJ_REF_DBG
@@ -302,6 +303,55 @@ void matter::receive_response(const ::var& var)
 {
 
    return ::success_none;
+
+}
+
+
+::matter* matter::get_taskpool_container()
+{
+
+   return nullptr;
+
+}
+
+
+::layered* matter::taskpool()
+{
+
+   auto pcontainer = get_taskpool_container();
+
+   if (pcontainer)
+   {
+
+      auto ptaskpool = pcontainer->taskpool();
+
+      if (ptaskpool)
+      {
+
+         return ptaskpool;
+
+      }
+
+   }
+
+   return nullptr;
+
+}
+
+
+::task* matter::defer_fork(const ::id& id, const matter* pmatter)
+{
+
+   auto ptasktool = __task_pool(taskpool());
+
+   if (ptasktool)
+   {
+
+      return ptasktool->start(id, pmatter);
+
+   }
+
+   return nullptr;
 
 }
 

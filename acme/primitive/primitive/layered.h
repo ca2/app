@@ -32,6 +32,7 @@ public:
 #define LAYERED_THREAD 2
 #define LAYERED_USER_INTERACTION 3
 #define LAYERED_USER_CONTROL_EVENT 7
+#define LAYERED_TASK_POOL 5
 
 
 class object;
@@ -110,3 +111,15 @@ inline ::user::control_event * __user_control_event(::layered* playered)
    return (::user::control_event*) playered->layer(LAYERED_USER_CONTROL_EVENT);
 
 }
+
+
+
+inline ::task_pool* __task_pool(::layered* playered)
+{
+
+   return (::task_pool*) playered->layer(LAYERED_TASK_POOL);
+
+}
+
+
+

@@ -1361,7 +1361,6 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="multithreading\thread_impl.h" />
     <ClInclude Include="multithreading\thread_os.h" />
     <ClInclude Include="multithreading\thread_parameter.h" />
-    <ClInclude Include="multithreading\pool.h" />
     <ClInclude Include="multithreading\tools.h" />
     <ClInclude Include="multithreading\_.h" />
     <ClInclude Include="multithreading\_impl.h" />

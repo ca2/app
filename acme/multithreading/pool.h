@@ -2,27 +2,26 @@
 
 
 template < typename THREAD_POINTER >
-class thread_pool :
-   virtual public ::object
+class ___task_pool :
+   virtual public ::context_object
 {
 protected:
 
-   
-   THREAD_POINTER& thread(const ::id& id) {return m_map[id]; }
+
+   THREAD_POINTER& thread(const ::id& id) { return m_map[id]; }
 
 
 public:
 
 
    id_map < THREAD_POINTER >   m_map;
-   
-   
-   thread_pool(); 
-   virtual ~thread_pool();
 
 
-   using ::object::start;
-   virtual THREAD_POINTER& start(const ::id & id, const matter_pointer & pmatter);
+   ___task_pool();
+   virtual ~___task_pool();
+
+
+   virtual THREAD_POINTER& start(const ::id& id, const matter_pointer& pmatter);
 
 
    virtual void start_clock(enum_clock eclock, duration duration);
@@ -36,7 +35,7 @@ public:
 
 
 template < typename THREAD_POINTER >
-thread_pool < THREAD_POINTER >::thread_pool()
+___task_pool < THREAD_POINTER >::___task_pool()
 {
 
    defer_create_mutex();
@@ -45,7 +44,7 @@ thread_pool < THREAD_POINTER >::thread_pool()
 
 
 template < typename THREAD_POINTER >
-thread_pool < THREAD_POINTER >::~thread_pool()
+___task_pool < THREAD_POINTER >::~___task_pool()
 {
 
 
@@ -53,17 +52,17 @@ thread_pool < THREAD_POINTER >::~thread_pool()
 
 
 template < typename THREAD_POINTER >
-THREAD_POINTER & thread_pool < THREAD_POINTER >::start(const ::id& id, const matter_pointer& pmatter)
+THREAD_POINTER& ___task_pool < THREAD_POINTER >::start(const ::id& id, const matter_pointer& pmatter)
 {
 
-   auto & pthread = thread(id);
+   auto& pthread = thread(id);
 
    auto estatus = __construct(pthread);
 
    if (!estatus)
    {
 
-      pthread = __create_new < ::thread >();
+      pthread = __create_new < ::task >();
 
    }
 
@@ -85,7 +84,7 @@ THREAD_POINTER & thread_pool < THREAD_POINTER >::start(const ::id& id, const mat
 
 
 template < typename THREAD_POINTER >
-void thread_pool < THREAD_POINTER >::start_clock(enum_clock eclock, duration duration)
+void ___task_pool < THREAD_POINTER >::start_clock(enum_clock eclock, duration duration)
 {
 
    //string eclock;
@@ -117,40 +116,12 @@ void thread_pool < THREAD_POINTER >::start_clock(enum_clock eclock, duration dur
 }
 
 
-template < typename THREAD_POINTER >
-void thread_pool < THREAD_POINTER >::_task_clock(enum_clock eclock, duration duration)
-{
-
-   auto timeout = duration.get_total_milliseconds();
-
-   while (true)
-   {
-
-      if (!thread_sleep((u32)timeout))
-      {
-
-         break;
-
-      }
-
-      try
-      {
-
-         on_clock(eclock);
-
-      }
-      catch (...)
-      {
-
-      }
-
-   }
-
-}
+//template < typename THREAD_POINTER >
+//void ___task_pool < THREAD_POINTER >::_task_clock(enum_clock eclock, duration duration)
 
 
 template < typename THREAD_POINTER >
-void thread_pool < THREAD_POINTER >::on_clock(enum_clock eclock)
+void ___task_pool < THREAD_POINTER >::on_clock(enum_clock eclock)
 {
 
 }

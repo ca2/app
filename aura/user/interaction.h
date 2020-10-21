@@ -341,6 +341,10 @@ namespace user
       virtual ::user::form * get_parent_form();
 
 
+      virtual matter* get_taskpool_container() override;
+
+      //task_pointer defer_fork(const ::id& id, const matter_pointer& pmatter);
+
       virtual void set_place_child_title(const char* pszTitle);
 
       virtual ::user::primitive * get_bind_ui();

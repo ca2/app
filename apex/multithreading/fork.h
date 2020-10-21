@@ -19,6 +19,9 @@ public:
       m_pred(pred)
    {
 
+
+      m_bitIsPred = true;
+
       //m_bLastingThread = false;
 
       //m_bFork = true;

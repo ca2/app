@@ -2419,3 +2419,38 @@ inline bool change::is_up_to_date(::update * pupdate) const
 //inline const ::id& action::id() const { return m_pupdate->id(); }
 inline ::id& update::id() { return m_psource->m_id; }
 inline const ::id& update::id() const { return m_psource->m_id; }
+
+
+template < typename THREAD_POINTER >
+void ___task_pool < THREAD_POINTER >::_task_clock(enum_clock eclock, duration duration)
+{
+
+   auto timeout = duration.get_total_milliseconds();
+
+   while (true)
+   {
+
+      if (!thread_sleep((u32)timeout))
+      {
+
+         break;
+
+      }
+
+      try
+      {
+
+         on_clock(eclock);
+
+      }
+      catch (...)
+      {
+
+      }
+
+   }
+
+}
+
+
+

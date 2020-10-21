@@ -1293,6 +1293,8 @@ namespace core
 
       }
 
+      pcreate->finish_initialization();
+
       m_ptemplateChildForm->do_request(pcreate);
 
       __pointer(::form_document) pdocument = ::user::__document(pcreate);

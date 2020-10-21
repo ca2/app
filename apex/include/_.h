@@ -2969,7 +2969,6 @@ class mq;
 //#include "apex/multithreading/pred_holder.h"
 //#include "apex/primitive/primitive/command.h"
 #include "apex/multithreading/thread.h"
-#include "apex/multithreading/pool.h"
 #include "apex/multithreading/handler.h"
 #include "apex/multithreading/service_base.h"
 #include "apex/multithreading/service/plain_service.h"

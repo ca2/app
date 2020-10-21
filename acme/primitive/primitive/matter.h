@@ -2,7 +2,7 @@
 
 
 //class update;
-//class task;
+class task;
 class action_context;
 class var;
 class layered;
@@ -177,6 +177,11 @@ public:
 
    virtual ::estatus set_generic_object_name(const char* pszName);
 
+   virtual ::matter * get_taskpool_container();
+
+   virtual ::layered * taskpool();
+
+   virtual ::task* defer_fork(const ::id& id, const matter* pmatter);
 
    virtual void delete_this();
 

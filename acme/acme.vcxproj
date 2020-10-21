@@ -1569,6 +1569,7 @@ copy $(__archive)\storage-windows\third\binary\$(PlatformName)\$(Configuration)\
     <ClInclude Include="multithreading\delay_thread.h" />
     <ClInclude Include="multithreading\event.h" />
     <ClInclude Include="multithreading\file_change_event.h" />
+    <ClInclude Include="multithreading\pool.h" />
     <ClInclude Include="multithreading\task.h" />
     <ClInclude Include="multithreading\handler.h" />
     <ClInclude Include="multithreading\initial_single_lock.h" />

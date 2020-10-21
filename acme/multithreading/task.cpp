@@ -103,7 +103,7 @@ void* task::s_os_task(void* p)
 
       ::task* ptask = (::task*) p;
 
-      ::set_task(ptask);
+      ::set_task(ptask OBJ_REF_DBG_ADD_P_FUNCTION_LINE(ptask));
 
       ptask->release();
 
@@ -135,7 +135,7 @@ void* task::s_os_task(void* p)
 
       }
 
-      ::set_task(nullptr);
+      ::thread_release(OBJ_REF_DBG_P_NOTE(ptask, ""));
 
    }
    catch (...)

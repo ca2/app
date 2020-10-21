@@ -1874,4 +1874,13 @@ void object::set_context_system(::apex::system* psystemContext OBJ_REF_DBG_ADD_P
 #endif
 
 
+matter* object::get_taskpool_container()
+{
+
+   return get_context_thread();
+
+}
+
+
+
 

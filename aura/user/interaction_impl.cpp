@@ -593,6 +593,8 @@ namespace user
       if (m_puserinteraction->m_ewindowflag & window_flag_satellite_window)
       {
 
+         //__bind(m_puserinteraction, m_pthreadUserInteraction, )
+
          // all except if satellite window it will use calling thread/parent window thread
 
          bNewOwnThread = false;

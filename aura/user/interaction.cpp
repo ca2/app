@@ -690,6 +690,14 @@ namespace user
 
    }
 
+   
+   matter* interaction::get_taskpool_container()
+   {
+
+      return GetParentFrame();
+
+   }
+
 
    void interaction::set_place_child_title(const char* pszTitle)
    {
@@ -5856,6 +5864,13 @@ namespace user
       pinteraction->m_uiptraOwned.add(this);
 
       ::user::interaction * puiRet = m_pimpl->SetOwner(pinteraction);
+
+      if (m_ewindowflag & window_flag_satellite_window)
+      {
+
+         __bind(this, m_pthreadUserInteraction, m_puiOwner->m_pthreadUserInteraction OBJ_REF_DBG_ADD_THIS_FUNCTION_LINE);
+
+      }
 
       return puiRet;
 
@@ -12198,7 +12213,7 @@ restart:
       else
       {
 
-         get_wnd()->show_software_keyboard(bShow, str, iBeg, iEnd);
+         get_host_wnd()->show_software_keyboard(bShow, str, iBeg, iEnd);
 
       }
 

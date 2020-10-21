@@ -86,6 +86,7 @@ public:
 
    address_array < ::user::frame * >                  m_frameptra;
 
+   __pointer(::task_pool)                             m_ptaskpool;
 
    UINT                                               m_nDisablePumpCount;
 
@@ -145,6 +146,9 @@ public:
 
    user_interaction_ptr_array & uiptra();
 
+
+
+
 //#ifdef WINDOWS_DESKTOP
 //
 //   virtual void associate_imc(::user::interaction* pinteraction);
@@ -201,6 +205,8 @@ public:
    virtual void add_notify(::matter* pmatter);
    virtual void remove_notify(::matter* pmatter);
 
+
+   virtual ::task_pool* taskpool() override;
 
    virtual int get_x_window_count() const;
 

@@ -1089,6 +1089,8 @@ typename remove_reference<T>::TYPE&& move(T && t)
 
 
 
+class task;
+
 
 template < class T >
 class ___pointer;
@@ -1108,6 +1110,15 @@ using source_pointer = __pointer(source);
 using update_pointer = __pointer(update);
 using change_pointer = __pointer(change);
 using action_pointer = __pointer(action);
+
+
+
+template < typename THREAD_POINTER >
+class ___task_pool;
+
+using task_pointer = __pointer(::task);
+
+using task_pool = ___task_pool<::task_pointer>;
 
 
 
@@ -2740,7 +2751,7 @@ namespace core
 class task;
 
 
-using task_pointer = __pointer(::task);
+
 
 
 #include "acme/exception/_.h"
@@ -2764,6 +2775,8 @@ using task_pointer = __pointer(::task);
 #include "acme/primitive/primitive/pred_method.h"
 
 #include "acme/primitive/primitive/pred_future.h"
+
+#include "acme/multithreading/pool.h"
 
 #include "acme/primitive/geometry2d/_collection.h"
 

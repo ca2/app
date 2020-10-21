@@ -406,8 +406,6 @@ void thread::term_thread()
 
    __set_thread_off();
 
-   ::thread_release(OBJ_REF_DBG_THIS);
-
    ::__term_thread();
 
    ::estatus estatus = m_result.m_estatus;
@@ -441,6 +439,16 @@ void thread::remove_notify(::matter* pmatter)
    sync_lock sl(mutex());
 
    m_elementaNotify.remove_item(pmatter OBJ_REF_DBG_ADD_THIS);
+
+}
+
+
+::task_pool* thread::taskpool()
+{
+
+   __defer_construct_new(m_ptaskpool);
+
+   return m_ptaskpool;
 
 }
 

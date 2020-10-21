@@ -19,7 +19,7 @@ namespace account
       __pointer(product_array)                     m_pproducta;
       __pointer(class storage)                     m_pstorage;
       __pointer(class authenticator)               m_pauthenticator;
-      __pointer(::thread_pool < ::task_pointer >)  m_ptaskpool;
+      __pointer(::task_pool)                       m_ptaskpool;
 
 #if !MOBILE_PLATFORM
       

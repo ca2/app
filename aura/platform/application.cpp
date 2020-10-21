@@ -8934,7 +8934,7 @@ namespace aura
       if (!m_ptheme)
       {
 
-         return ::aura::application::get_theme();
+         return ::apex::application::get_theme();
 
       }
 

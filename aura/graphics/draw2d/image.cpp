@@ -393,6 +393,13 @@ bool image::destroy()
 bool image::stretch_image(::image * pimage)
 {
 
+   //if (::is_null(pimage))
+   //{
+
+   //   return false;
+
+   //}
+
    return get_graphics()->StretchBlt(0, 0,
                                      width(),
                                      height(),

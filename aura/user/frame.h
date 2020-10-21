@@ -108,7 +108,8 @@ namespace user
       string_array                                 m_straMenuParent;
       string_array                                 m_straMenuName;
       string_array                                 m_straMenuId;
-      
+      __pointer(::task_pool)                       m_ptaskpool;
+
   
       frame();
       virtual ~frame();
@@ -116,7 +117,8 @@ namespace user
 
       virtual void install_message_routing(::channel* pchannel) override;
 
-      
+      virtual ::task_pool  * taskpool() override;
+
       virtual style * _get_style() const override;
 
       virtual void set_frame_title(const string& strFrameTitle);
@@ -127,6 +129,8 @@ namespace user
 
       ::estatus add_menu_item(const string & strPath, const string & strText, const string & strId);
 
+
+      //virtual ::task_pool* taskpool() override;
       
       virtual ::user::interaction * GetActiveView() const;
       virtual void SetActiveView(::user::interaction* pViewNew, bool bNotify = TRUE);

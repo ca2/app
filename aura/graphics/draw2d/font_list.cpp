@@ -579,7 +579,12 @@ namespace draw2d
    void font_list::set_need_layout()
    {
 
-      m_puserinteraction->set_need_layout();
+      if (m_puserinteraction)
+      {
+
+         m_puserinteraction->set_need_layout();
+
+      }
 
       set_need_redraw();
 

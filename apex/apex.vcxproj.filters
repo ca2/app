@@ -1541,9 +1541,6 @@
     <ClInclude Include="multithreading\service\pool.h">
       <Filter>Header Files\multithreading\service</Filter>
     </ClInclude>
-    <ClInclude Include="multithreading\pool.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\command_line.cpp">

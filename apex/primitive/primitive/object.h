@@ -580,10 +580,10 @@ public:
 
          sync_lock sl(ptask->mutex());
 
-         if (ptask && ptask->m_bitIsRunning)
+         if (ptask && ptask->m_bitIsPred)
          {
 
-            ptask->m_pmatter = ptask;
+            method();
 
             return ptask;
 
@@ -712,6 +712,7 @@ public:
    ::thread_pointer __start_thread(const ::id & id, void(TYPE:: * pfn)(), e_priority epriority = priority_normal);
 
 
+   virtual matter* get_taskpool_container() override;
 
 
 };

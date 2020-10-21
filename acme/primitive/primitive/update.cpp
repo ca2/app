@@ -290,7 +290,7 @@ void update::add(::matter* pmatter, bool bForkWhenNotify)
    //if (bShouldFork)
    //{
 
-      m_bModified = pchange->is_up_to_date(this);
+      m_bModified = !pchange->is_up_to_date(this);
 
       ::task::start(this);
 

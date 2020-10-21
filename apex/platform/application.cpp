@@ -3577,14 +3577,14 @@ retry_license:
 
          set_schema(strSchema, ::source_database);
 
-         if (!initialize_contextualized_theme())
-         {
+      }
 
-            FATAL("Failed to initialize_contextualized_theme");
+      if (!initialize_contextualized_theme())
+      {
 
-            return false;
+         FATAL("Failed to initialize_contextualized_theme");
 
-         }
+         return false;
 
       }
 
